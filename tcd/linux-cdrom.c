@@ -187,14 +187,14 @@ int tcd_readtoc( cd_struct *cd )
     cd->first_t = cd->tochdr.cdth_trk0;
     cd->last_t = cd->tochdr.cdth_trk1;
 
-    if(allocated_members < ((cd->last_t - cd->first_t)+2))
+    if(allocated_members < ((cd->last_t - cd->first_t)+3))
     {
 	if(cd->trk)
 	{
 	    g_free(cd->trk);
 	}
-	cd->trk = g_new(struct cd_track, (cd->last_t - cd->first_t)+2);
-	allocated_members = (cd->last_t - cd->first_t)+2;
+	cd->trk = g_new(struct cd_track, (cd->last_t - cd->first_t)+3);
+	allocated_members = (cd->last_t - cd->first_t)+3;
     }
 
     /* read the leadout track */

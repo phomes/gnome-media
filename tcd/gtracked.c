@@ -7,6 +7,7 @@
 #include "gtcd_public.h"
 
 GtkWidget *trwin;
+static gint signal_id;
 
 static void destroy_window(GtkWidget *widget, gboolean save);
 static void update_list(GtkWidget *list, int track);
@@ -41,11 +42,14 @@ void update_editor(void)
     dtitle= gtk_object_get_data(GTK_OBJECT(trwin), "dtitle");
     track = gtk_object_get_data(GTK_OBJECT(trwin), "track");
 
-    gtk_clist_clear(GTK_CLIST(clist));
-    fill_list(clist);
-
+    gtk_signal_disconnect(GTK_OBJECT(track), signal_id);
     gtk_entry_set_text(GTK_ENTRY(dtitle), cd.dtitle);
     gtk_entry_set_text(GTK_ENTRY(track), "");
+    signal_id = gtk_signal_connect(GTK_OBJECT(track), "changed",
+                       GTK_SIGNAL_FUNC(activate_entry), clist);
+                           
+    gtk_clist_clear(GTK_CLIST(clist));
+    fill_list(clist);
 }
 
 static void update_list( GtkWidget *list, int track )
@@ -62,16 +66,16 @@ static void fill_list( GtkWidget *list )
     char *tmp[4];
 	
     for(i=0; i < 4; i++)
-	tmp[i] = g_malloc(255);
+	tmp[i] = g_malloc(TRK_NAME_LEN);
 
     gtk_clist_freeze(GTK_CLIST(list));
 
-    for( i=1; i <= cd.last_t; i++ )
+    for( i=cd.first_t; i <= cd.last_t; i++ )
     {
-	g_snprintf(tmp[0], 255, "%d", i);
-	g_snprintf(tmp[1], 255, "%2d:%02d",
+	g_snprintf(tmp[0], TRK_NAME_LEN-1, "%d", i);
+	g_snprintf(tmp[1], TRK_NAME_LEN-1, "%2d:%02d",
 		   cd.trk[i].tot_min, cd.trk[i].tot_sec);
-	strncpy(tmp[2], cd.trk[i].name, 255);
+	g_snprintf(tmp[2], TRK_NAME_LEN-1, "%s", cd.trk[i].name);
 	tmp[3] = NULL;
 	
 	gtk_clist_append(GTK_CLIST(list), tmp);
@@ -256,7 +260,7 @@ void edit_window(GtkWidget *widget, gpointer data)
 		       GTK_SIGNAL_FUNC(select_row_cb), track_entry);
     gtk_signal_connect(GTK_OBJECT(disc_entry), "changed",
 		       GTK_SIGNAL_FUNC(dtitle_changed), NULL);
-    gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
+    signal_id = gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
 		       GTK_SIGNAL_FUNC(activate_entry), track_list);
     gtk_signal_connect(GTK_OBJECT(track_entry), "activate",
 		       GTK_SIGNAL_FUNC(next_entry), track_list);
