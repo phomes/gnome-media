@@ -34,12 +34,7 @@
 #include <pwd.h>
 #include <dirent.h>
 
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
+#include "linux-cdrom.h"
 
 #include "cddb.h"
 

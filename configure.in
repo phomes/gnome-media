@@ -74,6 +74,8 @@ dnl Everything OK for tcd?
 dnl
 PROGRAMS_TCD=""
 AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_TCD=tcd])
+AC_CHECK_HEADERS(sys/cdio.h,[PROGRAMS_TCD=tcd])
+AC_CHECK_HEADERS(sun/dkio.h,[PROGRAMS_TCD=tcd])
 
 AC_MSG_CHECKING([whether to use cd changer support (Linux 2.1.x headers required)])
 AC_EGREP_CPP(answer_affirmatively,

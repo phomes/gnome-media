@@ -24,8 +24,6 @@
 */
 
 #include <config.h>
-#include <gnome.h>
-#include <gdk/gdkkeysyms.h>
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -41,12 +39,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
+#include <gnome.h>
+#include <gdk/gdkkeysyms.h>
+
+#include "linux-cdrom.h"
 
 #include "gtracked.h"
 #include "prefs.h"

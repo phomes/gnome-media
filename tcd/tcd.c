@@ -48,12 +48,7 @@
 #include <sys/stat.h>
 #include <sys/socket.h>
 
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
+#include "linux-cdrom.h"
 
 #include "tcd.h"
 #include "tracked.h"
@@ -118,7 +113,15 @@ int main(int argc, char **argv)
     }
 
     if( argc < 2 )
+#if defined(sun) || defined(__sun__)
+#if defined(SVR4) || defined(__svr4__)
+	strcpy(cd->cdpath, "/vol/dev/aliases/cdrom0");
+#else
+	strcpy(cd->cdpath, "/dev/rcd0");
+#endif
+#else
 	strcpy(cd->cdpath, "/dev/cdrom");
+#endif
     else			
     {
 	strncpy(cd->cdpath, argv[1], 50);

@@ -53,7 +53,15 @@ GtkWidget *key_page(void);
 
 void load_prefs(tcd_prefs *prop)
 {
+#if defined(sun) || defined(__sun__)
+#if defined(SVR4) || defined(__svr4__)
+    prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/vol/dev/aliases/cdrom0");
+#else
+    prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/dev/rcd0");
+#endif
+#else
     prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/dev/cdrom");
+#endif
     prop->handle=gnome_config_get_bool     ("/gtcd/ui/handle=false");
     prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
     prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");

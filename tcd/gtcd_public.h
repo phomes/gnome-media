@@ -3,7 +3,6 @@
 
 #include <gnome.h>
 #include <sys/types.h>
-#include <linux/cdrom.h>
 
 #include "linux-cdrom.h"
 #include "prefs.h"
