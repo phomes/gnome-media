@@ -1,4 +1,9 @@
 2002-10-08 Iain <iain@prettypeople.org>
+
+	* gmix.c (open_device): Fall back onto /dev/mixer and /dev/sound/mixer
+	if the supplied doesn't work.
+
+2002-10-08 Iain <iain@prettypeople.org>
 	
 	* gmix.c (main): Remove all the options that we were ignoring before.
 	Add a --device option.

@@ -409,6 +409,25 @@ recsrc_from_channels (device_info *device)
 	return recsrc;
 }
 
+static int
+open_mixer_device (const char *name,
+		   int device_num)
+{
+	char *device;
+	int fd;
+
+	if (device_num == 0) {
+		device = g_strdup (name);
+	} else {
+		device = g_strdup_printf ("%s%i", name, device_num);
+	}
+
+	fd = open (device, O_RDWR, 0);
+
+	g_free (device);
+	return fd;
+}
+
 static void
 set_channels_from_recsrc (device_info *device,
 			  int recsrc)
@@ -568,7 +587,6 @@ open_device (int num)
 	gdk_input_add (snd_mixer_file_descriptor(new_device->handle), GDK_INPUT_READ,
 		       read_mixer, new_device);
 #else
-	char *device_name;
 	int res, ver, cnt;
 	/* Masks for the channel data - OSS blows compared to ALSA */
 	int recmask, recsrc, stereodee;
@@ -580,18 +598,21 @@ open_device (int num)
 	/*
 	 * open the mixer-device
 	 */
-	if (num == 0) {
-		device_name = g_strdup (mixer_device);
-	} else {
-		device_name = g_strdup_printf ("%s%i", mixer_device, num);
-	}
 
-	new_device->fd = open (device_name, O_RDWR, 0);
-	g_free (device_name);
+	new_device->fd = open_mixer_device (mixer_device, num);
 
 	if (new_device->fd < 0) {
-		g_free (new_device);
-		return NULL;
+		/* If the supplied value didn't work try the default */
+		new_device->fd = open_mixer_device (mixer_device, num);
+
+		if (new_device->fd < 0) {
+			new_device->fd = open_mixer_device ("/dev/sound/mixer", num);
+		}
+
+		if (new_device->fd > 0) {
+			g_free (new_device);
+			return NULL;
+		}
 	}
 	
 	/*
