@@ -552,8 +552,12 @@ void preferences(GtkWidget *widget, void *data)
     GtkWidget *label;
 
     if(pref_window)
+    {
+	gtk_widget_destroy(pref_window);
+	cancel_cb();
 	return;
-
+    }
+    
     pref_window = gnome_property_box_new();
     gtk_widget_realize(pref_window);
 

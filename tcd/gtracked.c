@@ -143,8 +143,11 @@ void edit_window(GtkWidget *widget, gpointer data)
     GtkWidget *entry_box;
 	
     if( trwin )
+    {
+	destroy_window(trwin, 1);
 	return;
-
+    }
+    
     trwin = gtk_window_new(GTK_WINDOW_DIALOG);
     gtk_container_border_width(GTK_CONTAINER(trwin), 5);
     gtk_window_set_title(GTK_WINDOW(trwin), _("Track Editor"));
