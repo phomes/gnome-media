@@ -84,6 +84,14 @@ void           gtk_tv_set_sound      (GtkTV *tv,
 				      gfloat treble,
 				      gint flags /* VIDEO_AUDIO_* */,
 				      gint mode /* VIDEO_MODE_* */);
+void           gtk_tv_set_picture    (GtkTV *tv,
+				      /* For all the params, passing in
+					 -1 signifies "no change" */
+				      gfloat brightness, /* between 0 & 1 */
+				      gfloat hue,
+				      gfloat colour,
+				      gfloat contrast,
+				      gfloat whiteness);
 
 /* Broken, doesn't work, blah blah. */
 GdkImlibImage *gtk_tv_grab_image(GtkTV *tv, gint width, gint height);

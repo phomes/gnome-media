@@ -1071,3 +1071,30 @@ gtk_tv_set_format(GtkTV *tv, GtkTVFormat fmt)
 
   gtk_tv_set_input(GTK_TV(tv), tmpin);
 }
+
+void
+gtk_tv_set_picture(GtkTV *tv,
+		   /* For all the params, passing in
+		      -1 signifies "no change" */
+		   gfloat brightness, /* between 0 & 1 */
+		   gfloat hue,
+		   gfloat colour,
+		   gfloat contrast,
+		   gfloat whiteness)
+{
+  g_return_if_fail(tv != NULL);
+  g_return_if_fail(GTK_IS_TV(tv));
+#define DOVAR(x) \
+  if(x >= 0) \
+    tv->vpic.x = (unsigned short)((x) * 65535);
+
+  DOVAR(brightness);
+  DOVAR(hue);
+  DOVAR(colour);
+  DOVAR(contrast);
+  DOVAR(whiteness);
+
+#undef DOVAR
+
+  g_return_if_fail(ioctl(tv->fd, VIDIOCSPICT, &tv->vpic) == 0);
+}
