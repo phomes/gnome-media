@@ -1,3 +1,12 @@
+2003-04-28  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* src/gsr-window.c: (finalize), (seek_started), (seek_to),
+	(tick_callback), (error_handler), (make_play_pipeline),
+	(make_record_pipeline), (init), (gsr_window_new):
+	- use g_get_tmp_dir().
+	- fix seeking.
+	- pop-up error dialog if gst reports error.
+
 2003-04-26  Christian Neumair  <chris@gnome-de.org>
 
 	* gsr.xml: Fixed a typo (#110819).

@@ -74,13 +74,12 @@ struct _GSRWindowPrivate {
 	int n_channels, bitrate, samplerate;
 	gboolean has_file;
 	gboolean dirty;
+	gboolean seek_in_progress;
 
 	guint32 tick_id; /* tick_callback timeout ID */
 };
 
 static BonoboWindowClass *parent_class = NULL;
-
-static char *temppath = NULL;
 
 static void
 shutdown_pipeline (GSRWindowPipeline *pipe)
@@ -109,6 +108,8 @@ finalize (GObject *object)
 	if (priv->tick_id > 0) {
 		g_source_remove (priv->tick_id);
 	}
+
+	g_idle_remove_by_data (window);
 
 	shutdown_pipeline (priv->play);
 	g_free (priv->play);
@@ -1129,8 +1130,16 @@ get_length (GSRWindow *window)
 	return (gst_element_get_state (window->priv->play->pipeline) == GST_STATE_PLAYING);
 }
 
-static void
-seek_to (GtkRange *range,
+static gboolean
+seek_started (GtkRange *range,GdkEventButton *event,
+	      GSRWindow *window) {
+	g_return_val_if_fail (window->priv != NULL, FALSE);
+	window->priv->seek_in_progress = TRUE;
+	return FALSE;
+}
+
+static gboolean
+seek_to (GtkRange *range,GdkEventButton *gdkevent,
 	 GSRWindow *window)
 {
 	double value = range->adjustment->value;
@@ -1146,9 +1155,12 @@ seek_to (GtkRange *range,
 
 	gst_element_set_state (window->priv->play->pipeline, GST_STATE_PAUSED);
 	time = ((value / 100) * window->priv->len_secs) * GST_SECOND;
+
 	event = gst_event_new_seek (GST_FORMAT_TIME | GST_SEEK_FLAG_FLUSH, time);
 	ret = gst_element_send_event (window->priv->play->sink, event);
 	gst_element_set_state (window->priv->play->pipeline, old_state);
+	window->priv->seek_in_progress = FALSE;
+	return FALSE;
 }
 
 static gboolean
@@ -1173,6 +1185,9 @@ tick_callback (GSRWindow *window)
 		}
 	}
 
+	if (window->priv->seek_in_progress)
+		return TRUE;
+
 	query_worked = gst_element_query (window->priv->play->sink,
 					  GST_QUERY_POSITION, 
 					  &format, &value);
@@ -1181,15 +1196,7 @@ tick_callback (GSRWindow *window)
 		secs = value / GST_SECOND;
 		
 		percentage = ((double) secs / (double) window->priv->len_secs) * 100.0;
-		g_signal_handlers_block_matched (G_OBJECT (window->priv->scale),
-						 G_SIGNAL_MATCH_FUNC,
-						 0, 0, NULL,
-						 G_CALLBACK (seek_to), NULL);
 		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, percentage + 0.5);
-		g_signal_handlers_unblock_matched (G_OBJECT (window->priv->scale),
-						   G_SIGNAL_MATCH_FUNC,
-						   0, 0, NULL,
-						   G_CALLBACK (seek_to), NULL);
 
 	}
 
@@ -1238,8 +1245,10 @@ play_state_changed (GstElement *element,
 		gtk_widget_set_sensitive (window->priv->scale, TRUE);
 		break;
 
-	case GST_STATE_PAUSED:
 	case GST_STATE_READY:
+		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
+		gtk_widget_set_sensitive (window->priv->scale, FALSE);
+	case GST_STATE_PAUSED:
 		bonobo_ui_component_set_prop (window->priv->ui_component,
 					      "/commands/MediaStop", 
 					      "sensitive", "0", NULL);
@@ -1257,8 +1266,6 @@ play_state_changed (GstElement *element,
 					      "sensitive", "1", NULL);
 		bonobo_ui_component_set_status (window->priv->ui_component,
 						_("Ready"), NULL);
-		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
-		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 		break;
 	default:
 		break;
@@ -1297,6 +1304,21 @@ play_deep_notify (GstElement *element,
 	}
 }
 
+void
+error_handler (GObject *object, GstObject *orig, gchar *error, GtkWidget *window)
+{
+	GtkWidget *dialog;
+
+	dialog = gtk_message_dialog_new (GTK_WINDOW(window),
+					 GTK_DIALOG_DESTROY_WITH_PARENT,
+					 GTK_MESSAGE_ERROR,
+					 GTK_BUTTONS_CLOSE,
+					 error);
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
+}
+
+
 static GSRWindowPipeline *
 make_play_pipeline (GSRWindow *window)
 {
@@ -1310,6 +1332,9 @@ make_play_pipeline (GSRWindow *window)
 						      window);
 	g_signal_connect (G_OBJECT (pipeline->pipeline), "deep-notify",
 			  G_CALLBACK (play_deep_notify), window);
+
+	g_signal_connect (G_OBJECT (pipeline->pipeline), "error",
+			  G_CALLBACK (error_handler), window);
 
 	pipeline->src = gst_element_factory_make ("filesrc", "src");
  	spider = gst_element_factory_make ("spider", "spider");
@@ -1398,6 +1423,9 @@ make_record_pipeline (GSRWindow *window)
 						      "state-change",
 						      G_CALLBACK (record_state_changed),
 						      window);
+	g_signal_connect (G_OBJECT (pipeline->pipeline), "error",
+			  G_CALLBACK (error_handler), window);
+
 	pipeline->src = gst_element_factory_make ("osssrc", "src");
 	encoder = gst_element_factory_make ("wavenc", "encoder");
 	if (encoder == NULL) {
@@ -1421,10 +1449,6 @@ static void
 init (GSRWindow *window)
 {
 	GSRWindowPrivate *priv;
-
-	if (temppath == NULL) {
-		temppath = g_strdup ("/tmp/");
-	}
 
 	window->priv = g_new0 (GSRWindowPrivate, 1);
 	priv = window->priv;
@@ -1528,7 +1552,7 @@ gsr_window_new (const char *filename)
 	}
 
 	window->priv->record_filename = g_strdup_printf ("%s/gsr-record-%s-%d.XXXXXX",
-							 temppath, filename, getpid ());
+							 g_get_tmp_dir(), filename, getpid ());
 	window->priv->record_fd = mkstemp (window->priv->record_filename);
 	close (window->priv->record_fd);
 
@@ -1550,9 +1574,12 @@ gsr_window_new (const char *filename)
 	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), hbox, FALSE, FALSE, 0);
 	
 	window->priv->scale = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 100, 1, 1, 0)));
+	window->priv->seek_in_progress = FALSE;
 	g_signal_connect (G_OBJECT (window->priv->scale), "format-value",
 			  G_CALLBACK (calculate_format_value), window);
-	g_signal_connect (G_OBJECT (window->priv->scale), "value-changed",
+	g_signal_connect (G_OBJECT (window->priv->scale), "button_press_event",
+			  G_CALLBACK (seek_started), window);
+	g_signal_connect (G_OBJECT (window->priv->scale), "button_release_event",
 			  G_CALLBACK (seek_to), window);
 
 	gtk_scale_set_value_pos (GTK_SCALE (window->priv->scale), GTK_POS_BOTTOM);
