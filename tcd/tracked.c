@@ -159,7 +159,7 @@ void edit_trackdb( void )
 			/* Ugh, nasty if statement. This makes sure that
 			   the entered number is within the correct bounds. */
 			if( track >= pages[cur_page][1].track && 
-			    track < pages[cur_page][pages[cur_page][0].num_tracks].track )
+			    track <= pages[cur_page][pages[cur_page][0].num_tracks].track )
 			{
 				/* Search for the correct track */
 				for( i=1; i <= pages[cur_page][0].num_tracks; i++ )
