@@ -756,7 +756,8 @@ fill_in_information (GSRWindow *window,
 	}
 	gtk_label_set_text (GTK_LABEL (fp->filename), text);
 	g_free (text);
-
+	g_free (name);
+	
 	/* Size */
 	if (stat (window->priv->working_file, &buf) == 0) {
 		char *human;
@@ -845,6 +846,7 @@ file_properties (BonoboUIComponent *uic,
 	dialog = gtk_dialog_new_with_buttons (title, GTK_WINDOW (window),
 					      GTK_DIALOG_DESTROY_WITH_PARENT,
 					      GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
+	g_free (title);
 	gtk_window_set_resizable (GTK_WINDOW(dialog), FALSE);
 	fp = g_new (struct _file_props, 1);
 	fp->dialog = dialog;

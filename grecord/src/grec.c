@@ -1200,7 +1200,7 @@ save_dialog (void)
 	if (!g_strcasecmp (active_file, temp_file)) {
 		gchar* home_dir = g_strdup (getenv ("HOME"));
 		gchar* d_file = g_build_filename (home_dir, 
-						  _(temp_filename_play),
+						  temp_filename_play,
 						  NULL);
 
 		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), d_file);
