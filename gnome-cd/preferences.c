@@ -590,6 +590,8 @@ preferences_dialog_show (GnomeCD *gcd)
 						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 	gtk_window_set_default_size (GTK_WINDOW (pd->window), 390, 315);
+	gtk_container_set_border_width (GTK_CONTAINER (pd->window), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (pd->window)->vbox), 2);
 	
 	g_signal_connect (G_OBJECT (pd->window), "response",
 			  G_CALLBACK (prefs_response_cb), pd);
@@ -599,7 +601,7 @@ preferences_dialog_show (GnomeCD *gcd)
 
 	/* General */
 	vbox = gtk_vbox_new (FALSE, 12);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox), 12);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 	gtk_widget_show (vbox);
 	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pd->window)->vbox), vbox);
 	
@@ -608,7 +610,7 @@ preferences_dialog_show (GnomeCD *gcd)
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE, 0);
 	gtk_widget_show (inner_vbox);
 	
-	label = make_title_label (_("CD Player De_vice:"));
+	label = make_title_label (_("CD Player"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
@@ -620,8 +622,12 @@ preferences_dialog_show (GnomeCD *gcd)
 	inner_hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (hbox), inner_hbox, TRUE, TRUE, 0);
 	
+	label = gtk_label_new_with_mnemonic (_("_Device:"));
+	gtk_box_pack_start (GTK_BOX (inner_hbox), label, FALSE, FALSE, 0);
+	
 	pd->cd_device = bacon_cd_selection_new ();
 	bacon_cd_selection_set_device (BACON_CD_SELECTION (pd->cd_device), gcd->preferences->device);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->cd_device);
 	
 	g_signal_connect (pd->cd_device, "device_changed",
 			  G_CALLBACK (device_changed_cb), pd);
@@ -630,7 +636,7 @@ preferences_dialog_show (GnomeCD *gcd)
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE, 0);
 
-	label = make_title_label (_("CD Player Behaviour:"));
+	label = make_title_label (_("Behavior"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
@@ -640,7 +646,7 @@ preferences_dialog_show (GnomeCD *gcd)
 	gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
 	
 	/* left side */
-	action_vbox = gtk_vbox_new (TRUE, 0);
+	action_vbox = gtk_vbox_new (TRUE, 6);
 	gtk_box_pack_start (GTK_BOX (hbox), action_vbox, TRUE, TRUE, 0);
 
 	pd->start_play = gtk_check_button_new_with_mnemonic (_("Start _playing CD when CD Player starts"));
@@ -673,11 +679,21 @@ preferences_dialog_show (GnomeCD *gcd)
 	gtk_widget_show (inner_vbox);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, TRUE, TRUE, 0);
 
-	label = make_title_label (_("_Available Themes:"));
+	label = make_title_label (_("Themes"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
 	/* Theme */
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
+	gtk_widget_show (hbox);
+
+	spacer = gtk_label_new ("    ");
+	gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
+	
+	label = gtk_label_new_with_mnemonic (_("_Select a theme:"));
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+		
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	gtk_widget_show (hbox);
@@ -710,6 +726,7 @@ preferences_dialog_show (GnomeCD *gcd)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(sw), GTK_SHADOW_IN);
 	gtk_container_add (GTK_CONTAINER (sw), pd->theme_list);
 	gtk_box_pack_start (GTK_BOX (hbox), sw, TRUE, TRUE, 0);
 
