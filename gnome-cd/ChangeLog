@@ -1,5 +1,10 @@
 2002-04-25 Iain <iain@ximian.com>
 
+	* linux-cdrom.c (linux_cdrom_set_device): Check for permission.
+	(linux_cdrom_open): Ditto.
+
+2002-04-25 Iain <iain@ximian.com>
+
 	* linux-cdrom.c: Make error messages more better english grammar.
 	(gnome_cdrom_new): Check we have permission to open the device, so we
 	can give a more specific error.

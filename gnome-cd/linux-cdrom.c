@@ -138,7 +138,12 @@ linux_cdrom_open (LinuxCDRom *lcd,
 
 	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
 	if (lcd->priv->cdrom_fd < 0) {
-		if (error) {
+		if (errno == EACCES && error != NULL) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      _("You do not seem to have permission to access %s."),
+					      lcd->priv->cdrom_device);
+		} else if (error != NULL) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
 					      _("%s does not appear to point to a valid CD device. This may be because:\n"
@@ -147,7 +152,7 @@ linux_cdrom_open (LinuxCDRom *lcd,
 						"c) %s is not the CD drive.\n"),					     
 					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
 		}
-
+		
 		return FALSE;
 	}
 
@@ -1113,6 +1118,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 	LinuxCDRom *lcd;
 	LinuxCDRomPrivate *priv;
 	GnomeCDRomStatus *status;
+	int fd;
 	
 	lcd = LINUX_CDROM (cdrom);
 	priv = lcd->priv;
@@ -1124,7 +1130,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 	
 	if (linux_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
 		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
-			if (linux_cdrom_stop (cdrom, &error) == FALSE) {
+			if (linux_cdrom_stop (cdrom, error) == FALSE) {
 				return FALSE;
 			}
 		}
@@ -1134,18 +1140,28 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 		g_free (priv->cdrom_device);
 	}
 	priv->cdrom_device = g_strdup (device);
-	
-	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
-					 lcd->priv->cdrom_device, error) == FALSE) {
+
+	/* Attempt an open to see if we have permission */
+	fd = open (priv->cdrom_device, O_RDONLY | O_NONBLOCK);
+	if (fd < 0 && errno == EACCES && error != NULL) {
+		*error = g_error_new (GNOME_CDROM_ERROR,
+				      GNOME_CDROM_ERROR_NOT_OPENED,
+				      _("You do not seem to have permission to acess %s."),
+				      priv->cdrom_device);
+	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
+						lcd->priv->cdrom_device, error) == FALSE) {
+		close (fd);
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
 					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
-					      "a) CD support is not compiled into Linux\n"
-					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n"),					     
+						"a) CD support is not compiled into Linux\n"
+						"b) You do not have the correct permissions to access the CD drive\n"
+						"c) %s is not the CD drive.\n"),					     
 					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
 		}
+	} else {
+		close (fd);
 	}
 
 	/* Force the new CD to be scanned at next update cycle */
@@ -1289,6 +1305,7 @@ gnome_cdrom_new (const char *cdrom_device,
 	priv->update = update;
 
 	fd = open (cdrom_device, O_RDONLY | O_NONBLOCK);
+	
 	if (fd < 0) {
 		if (errno == EACCES &&
 		    error != NULL) {
@@ -1300,6 +1317,7 @@ gnome_cdrom_new (const char *cdrom_device,
 	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
 						cdrom->priv->cdrom_device,
 						error) == FALSE) {
+		close (fd);
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
@@ -1309,8 +1327,10 @@ gnome_cdrom_new (const char *cdrom_device,
 						"c) %s is not the CD drive.\n"),					     
 					      cdrom->priv->cdrom_device, cdrom->priv->cdrom_device);
 		}
+	} else {
+		close (fd);
 	}
-	
+
 	/* Force an update so that a status will always exist */
 	update_cd (cdrom);
 	
