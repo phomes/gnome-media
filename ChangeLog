@@ -1,5 +1,81 @@
 2004-09-16  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* gst-mixer/pixmaps/3dsound.png:
+	* gst-mixer/pixmaps/Makefile.am:
+	* gst-mixer/pixmaps/chain-broken.png:
+	* gst-mixer/pixmaps/chain.png:
+	* gst-mixer/pixmaps/headphones.png:
+	* gst-mixer/pixmaps/noplay.png:
+	* gst-mixer/pixmaps/norecord.png:
+	* gst-mixer/pixmaps/play.png:
+	* gst-mixer/pixmaps/record.png:
+	* gst-mixer/src/Makefile.am:
+	* gst-mixer/src/button.c: (gnome_volume_control_button_get_type),
+	(gnome_volume_control_button_class_init),
+	(gnome_volume_control_button_init),
+	(gnome_volume_control_button_dispose),
+	(gnome_volume_control_button_new),
+	(gnome_volume_control_button_get_active),
+	(gnome_volume_control_button_set_active),
+	(gnome_volume_control_button_clicked),
+	(gnome_volume_control_button_mouseover),
+	(gnome_volume_control_button_mouseout):
+	* gst-mixer/src/button.h:
+	* gst-mixer/src/element.c: (gnome_volume_control_element_get_type),
+	(gnome_volume_control_element_class_init),
+	(gnome_volume_control_element_init),
+	(gnome_volume_control_element_new),
+	(gnome_volume_control_element_dispose),
+	(gnome_volume_control_element_change), (cb_gconf):
+	* gst-mixer/src/element.h:
+	* gst-mixer/src/keys.h:
+	* gst-mixer/src/main.c: (create_mixer_collection),
+	(register_stock_icons), (cb_destroy), (main):
+	* gst-mixer/src/mixer.c:
+	* gst-mixer/src/preferences.c:
+	(gnome_volume_control_preferences_get_type),
+	(gnome_volume_control_preferences_class_init),
+	(gnome_volume_control_preferences_init),
+	(gnome_volume_control_preferences_new),
+	(gnome_volume_control_preferences_dispose),
+	(gnome_volume_control_preferences_response), (get_gconf_key),
+	(gnome_volume_control_preferences_change), (cb_toggle):
+	* gst-mixer/src/preferences.h:
+	* gst-mixer/src/stock.h:
+	* gst-mixer/src/track.c: (cb_mute_toggled), (cb_record_toggled),
+	(cb_option_changed), (cb_check),
+	(gnome_volume_control_track_add_title),
+	(gnome_volume_control_track_add_switch),
+	(gnome_volume_control_track_add_playback),
+	(gnome_volume_control_track_add_capture),
+	(gnome_volume_control_track_add_option),
+	(gnome_volume_control_track_free),
+	(gnome_volume_control_track_show):
+	* gst-mixer/src/track.h:
+	* gst-mixer/src/volume.c: (gnome_volume_control_volume_get_type),
+	(gnome_volume_control_volume_class_init),
+	(gnome_volume_control_volume_init), (cb_mouseover), (cb_mouseout),
+	(get_scale), (get_button), (gnome_volume_control_volume_new),
+	(gnome_volume_control_volume_dispose),
+	(gnome_volume_control_volume_size_req),
+	(gnome_volume_control_volume_size_alloc),
+	(gnome_volume_control_volume_expose), (cb_volume_changed),
+	(cb_lock_toggled), (cb_check):
+	* gst-mixer/src/volume.h:
+	* gst-mixer/src/window.c: (gnome_volume_control_window_get_type),
+	(gnome_volume_control_window_class_init),
+	(gnome_volume_control_window_init),
+	(gnome_volume_control_window_new),
+	(gnome_volume_control_window_dispose), (cb_change), (cb_exit),
+	(cb_preferences_destroy), (cb_preferences), (cb_about), (cb_gconf),
+	(cb_error):
+	* gst-mixer/src/window.h:
+	  New volume control. Full ALSA integration, better maintainable
+	  code, updates if other apps change volume and some really cute
+	  icons. What else could one wish for?
+
+2004-09-16  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* configure.in:
 	  Go to 2.9 development.
 
