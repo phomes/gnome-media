@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 #include <gst/mixer/mixer.h>
 
+#include "element.h"
 #include "preferences.h"
 #include "keys.h"
 #include "track.h"
@@ -271,6 +272,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   GtkTreeIter iter;
   GtkListStore *store;
   const GList *item;
+  gvc_whitelist list[] = whitelist_init_list;
 
   g_return_if_fail (GST_IS_MIXER (element));
   mixer = GST_MIXER (element);
@@ -291,7 +293,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
     GstMixerTrack *track = item->data;
     gchar *key = get_gconf_key (mixer, track->label);
     GConfValue *value;
-    gboolean active = TRUE;
+    gboolean active = gnome_volume_control_element_whitelist (track, list);
 
     if ((value = gconf_client_get (prefs->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {

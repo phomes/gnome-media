@@ -1,5 +1,17 @@
 2004-12-11  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* gst-mixer/src/element.c:
+	(gnome_volume_control_element_whitelist),
+	(gnome_volume_control_element_change):
+	* gst-mixer/src/element.h:
+	* gst-mixer/src/preferences.c:
+	(gnome_volume_control_preferences_change):
+	  Whitelists (#158346).
+	* gst-mixer/src/track.c: (cb_check):
+	  Some more checkbox work.
+
+2004-12-11  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* gst-mixer/src/element.c: (gnome_volume_control_element_change),
 	(cb_gconf):
 	* gst-mixer/src/track.c: (cb_toggle_changed),

@@ -124,6 +124,13 @@ cb_check (gpointer data)
     }
   }
 
+  if (trkw->toggle) {
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (trkw->toggle)) !=
+            mute) {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (trkw->toggle), mute);
+    }
+  }
+
   /* FIXME:
    * - options.
    * - we cannot check flags! We need a _get_*() function in the

@@ -132,6 +132,38 @@ gnome_volume_control_element_dispose (GObject *object)
 }
 
 /*
+ * Checks if we want to show the track by default ("whitelist").
+ */
+
+gboolean
+gnome_volume_control_element_whitelist (GstMixerTrack *track,
+					gvc_whitelist *list)
+{
+  gint i, pos;
+  gboolean found = FALSE;
+
+  for (i = 0; !found && list[i].label != NULL; i++) {
+    gchar *label_l;
+
+    if (list[i].done)
+      continue;
+
+    /* make case insensitive */
+    label_l = g_strdup (track->label);
+    for (pos = 0; label_l[pos] != '\0'; pos++)
+      label_l[pos] = g_ascii_tolower (label_l[pos]);
+
+    if (g_strrstr (label_l, list[i].label) != NULL) {
+      found = TRUE;
+      list[i].done = TRUE;
+    }
+    g_free (label_l);
+  }
+
+  return found;
+}
+
+/*
  * Change the element. Basically recreates this object internally.
  */
 
@@ -161,6 +193,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     { _("Options"),  NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
+  gvc_whitelist list[] = whitelist_init_list;
   gint i;
   const GList *item;
   GstMixer *mixer;
@@ -204,7 +237,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     GnomeVolumeControlTrack *trkw;
     gchar *key;
     const GConfValue *value;
-    gboolean active = TRUE;
+    gboolean active;
 
     if (GST_IS_MIXER_OPTIONS (track))
       i = 3;
@@ -229,6 +262,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
 
     /* visible? */
+    active = gnome_volume_control_element_whitelist (track, list);
     key = get_gconf_key (el->mixer, track->label);
     if ((value = gconf_client_get (el->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {

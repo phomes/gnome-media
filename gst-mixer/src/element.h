@@ -67,6 +67,30 @@ GtkWidget *	gnome_volume_control_element_new	(GstElement  *element,
 void		gnome_volume_control_element_change	(GnomeVolumeControlElement *el,
 							 GstElement  *element);
 
+/*
+ * Yes this is a hack.
+ */
+
+typedef struct {
+  gchar *label;
+  gboolean done;
+} gvc_whitelist;
+
+#define whitelist_init_list { \
+    { "cd", FALSE }, \
+    { "line", FALSE }, \
+    { "mic", FALSE }, \
+    { "pcm", FALSE }, \
+    { "headphone", FALSE }, \
+    { "speaker", FALSE }, \
+    { "volume", FALSE }, \
+    { "master", FALSE }, \
+    { NULL, FALSE } \
+  }
+
+gboolean	gnome_volume_control_element_whitelist	(GstMixerTrack *track,
+							 gvc_whitelist *list);
+
 G_END_DECLS
 
 #endif /* __GVC_ELEMENT_H__ */
