@@ -1022,10 +1022,13 @@ media_record (BonoboUIComponent *uic,
 {
 	GSRWindowPrivate *priv = window->priv;
 
+	if (priv->record) {
+		gst_element_set_state (priv->record->pipeline, GST_STATE_NULL);
+		g_object_unref (priv->record->pipeline);
+	}
 	priv->record = make_record_pipeline (window);
 
 	if (priv->record != NULL) {
-		g_print ("setting location to %s\n", priv->record_filename);
 		g_object_set (G_OBJECT (priv->record->sink),
 			      "location", priv->record_filename,
 			      NULL);
@@ -1381,10 +1384,6 @@ record_state_changed_cb (GstElement *element,
 			 GstElementState state,
 			 GSRWindow *window)
 {
-	g_print ("%s: entered: %s->%s\n", __FUNCTION__,
-		 gst_element_state_get_name (old),
-		 gst_element_state_get_name (state));
-	
 	switch (state) {
 	case GST_STATE_PLAYING:
 		window->priv->record_id = g_idle_add (record_start, window);
@@ -1435,7 +1434,6 @@ make_record_pipeline (GSRWindow *window)
 					 gst_gconf_get_string ("default/audiosrc"),
 					 gm_audio_profile_get_pipeline (profile));
 	
-	g_print ("Creating pipeline: %s\n", pipeline_desc);
 	encoder = gst_gconf_render_bin_from_description (pipeline_desc);
 	g_free (pipeline_desc);
 	if (!encoder) {
