@@ -16,8 +16,11 @@ typedef enum
 typedef struct
 {
     gint key;
-    gboolean ctrl, alt, shift;
+    guint mods;
 } Shortcut;
+
+#define GTCD_MOD_MASK (GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_MOD2_MASK | \
+		       GDK_MOD3_MASK    | GDK_MOD4_MASK | GDK_MOD5_MASK)
 
 typedef struct
 {
@@ -35,7 +38,8 @@ typedef struct
     int x,y,h,w;
 
     Shortcut quit, play, stop, tracked, mixer;
-    Shortcut eject, back, forward;
+    Shortcut eject, back, forward, preferences;
+    Shortcut fast_forward, rewind, vol_up, vol_down;
 
     gchar *cddb_server;
     guint cddb_port;

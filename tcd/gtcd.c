@@ -117,11 +117,13 @@ gint slow_timer(gpointer *data);
 gint roll_timer(gpointer *data);
 gint release_timer(gpointer *data);
 int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data);
+int key_skip_cb(GtkWidget *widget, gpointer *data);
 gint changer_callback(GtkWidget *widget, gpointer *data);
 GtkWidget* make_changer_buttons(void);
 GtkWidget* create_buttons(void);
 void setup_colors(void);
 void draw_time_playing(void);
+void calculate_title(int, int);
 void draw_titles(void);
 void draw_time_scanning(void);
 gint volume_changed(GtkWidget *widget, gpointer *data);
@@ -168,6 +170,25 @@ gint release_timer(gpointer *data)
 	return FALSE;
 }
 
+/*
+ * The callback routine for the visible next/prev (ff/rewind)
+ * buttons. Upon a BUTTON_PRESS event a timer is started and this
+ * routine exits.  If a BUTTON_RELEASE event is received before the
+ * timer expires, then skip forward/backward to the next track.  This
+ * routine performs the changes necessary for track skips.  If a
+ * BUTTON_RELEASE event is not received before the timer expires, then
+ * this is a fast forward/rewind operation.  Most of the work has
+ * already been performed inside of one of the timer functions.
+ *
+ * @param widget Unused.
+ *
+ * @param event The GDK event that occurred.  The interesting events
+ * for this routine are GDK_BUTTON_PRESS and GDK_BUTTON_RELEASE.  This
+ * routine also sees GDK_ENTER_NOTIFY and GDK_LEAVE_NOTIFY events.
+ *
+ * @param data An indication of whether to move forwards (1) or
+ * backwards (-1).
+ */
 int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 {
 	skip_first = TRUE;
@@ -218,6 +239,61 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 	
 	return FALSE;	
 }
+
+/*
+ * The callback routine for the accelerator keys on all of the
+ * invisible buttons.  These include the next/prev accelerators, fast
+ * forward/rewind accelerators, and volume up/down accelerators.  This
+ * routine is called once each time an appropriate accelerator key is
+ * pressed.
+ *
+ * @param widget Unused.
+ *
+ * @param data An indication of which accelerator key was pressed.
+ */
+int key_skip_cb(GtkWidget *widget, gpointer *data)
+{
+	gfloat value;
+
+	switch (GPOINTER_TO_INT(data)) {
+	    case 'F':
+		if(cd.cur_t < cd.last_t)
+		{   
+			cd.cur_t++;
+			tcd_playtracks(&cd,cd.cur_t, cd.last_t, prefs->only_use_trkind);
+			if(cd.play_method==REPEAT_TRK)
+				cd.repeat_track = cd.cur_t;
+		}
+		break;
+	    case 'B':
+		if( cd.cur_t > cd.first_t )
+		{
+			if( (cd.t_sec+(cd.t_min*60)) < 10 )
+				cd.cur_t--;
+			tcd_playtracks( &cd,cd.cur_t, cd.last_t, prefs->only_use_trkind);
+			if( cd.play_method==REPEAT_TRK )
+				cd.repeat_track = cd.cur_t;
+		}
+		break;
+	    case '[':
+		tcd_play_seconds(&cd, -4);
+		cd.repeat_track = cd.cur_t;
+		break;
+	    case ']':
+		tcd_play_seconds(&cd, 4);
+		cd.repeat_track = cd.cur_t;
+		break;
+	    case '<':
+	        value = GTK_ADJUSTMENT(vol)->value - 1;
+		gtk_adjustment_set_value(GTK_ADJUSTMENT(vol), value);
+		break;
+	    case '>':
+	        value = GTK_ADJUSTMENT(vol)->value + 1;
+		gtk_adjustment_set_value(GTK_ADJUSTMENT(vol), value);
+		break;
+	}
+	return FALSE;
+}   
 
 GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
 				   Shortcut *key,  gchar *tooltip)
@@ -317,6 +393,51 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 	return FALSE;
 }
 
+/*
+ * Create a button widget and add it to a table, but not as a visible
+ * widget.  Also call the routine to set of the accelerator binding
+ * for this button.
+ *
+ * @param table The table currently being built.
+ *
+ * @param label A user visible label that will appear in the
+ * preferences dialog for changing key mappings.
+ *
+ * @param obj_name The name used to add this button to the table.  The
+ * button is added as user data, not inserted into a row/column of the
+ * table.
+ *
+ * @param id The identifier used to tell the key_skip_cb routine what
+ * function to perform.
+ *
+ * @param key The accelerator key (and modifiers) to set.
+ */
+static void add_invisible(GtkWidget *table, gchar *label,
+			  gchar *obj_name, gint id, Shortcut *key)
+{
+	GtkWidget *button;
+
+	button = gtk_button_new();
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+			   GTK_SIGNAL_FUNC(key_skip_cb), GINT_TO_POINTER(id));
+	gtk_object_set_data(GTK_OBJECT(table), obj_name, button);
+	add_key_binding(button, "clicked", label, key);
+}
+
+/*
+ * Create the table of CD Player controls.  This routine creates a 3x3
+ * matrix of visible buttons.  It also creates some invisible buttons
+ * to support the various accelerator keys.  These invisible buttons
+ * are required because a button press and release on the visible
+ * ff/rewind buttons (for example) is the equivalent of clicking that
+ * button.  Putting the accelerators onto the visible buttons and
+ * using the "clicked" signal results in all ff/rewinds becoming track
+ * skips, and all track skips being doubled.  These invisible buttons
+ * can be removed if there is a better method of implementing this, or
+ * if some other signal can be used.
+ *
+ * @return GtkWidget* A pointer to the newly created table
+ */
 GtkWidget* create_buttons(void)
 {
 	GtkWidget *table;
@@ -348,15 +469,12 @@ GtkWidget* create_buttons(void)
 	gtk_widget_set_events(ff, GDK_BUTTON_PRESS_MASK
 			      | GDK_BUTTON_RELEASE_MASK);
 
-	add_key_binding(rw, "clicked", _("Skip backwards"), &prefs->back);
-	add_key_binding(rw, "clicked", _("Skip forwards"), &prefs->forward);
-
 	gtk_signal_connect(GTK_OBJECT(ff), "event",
 			   GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(1));
 	gtk_signal_connect(GTK_OBJECT(rw), "event",
 			   GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(-1));
 
-/* Create goto button  */
+	/* Create goto button  */
 	gotobutton = gtk_button_new();
 	name = gnome_pixmap_file("tcd/goto.xpm");
 	pixmap = gnome_pixmap_new_from_file(name);
@@ -367,14 +485,25 @@ GtkWidget* create_buttons(void)
 	gtk_table_attach_defaults(GTK_TABLE(table), ff, 1, 2, 1, 2);
 	gtk_table_attach_defaults(GTK_TABLE(table), gotobutton, 2, 3, 1, 2);
 
+/* BOTTOM ROW */
 	b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, &prefs->tracked, _("Open track editor"));
-	b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
+	b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, &prefs->preferences, _("Preferences"));
 	b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, &prefs->quit, _("Quit"));
 
 	gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 2, 3);
 	gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 2, 3);
 	gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 3, 2, 3);
 
+/* INVISIBLE BUTTONS */
+	b1 = make_button_stock(GNOME_STOCK_PIXMAP_VOLUME, mixer_cb, &prefs->mixer, _("Mixer"));
+	gtk_object_set_data(GTK_OBJECT(table), "mixer", b1);
+
+	add_invisible(table, _("Skip backwards"), "back",    'B', &prefs->back);
+	add_invisible(table, _("Skip forwards"),  "forward", 'F', &prefs->forward);
+	add_invisible(table, _("Fast Forward"),   "ff",      ']', &prefs->fast_forward);
+	add_invisible(table, _("Rewind"),         "rw",      '[', &prefs->rewind);
+	add_invisible(table, _("Volume Up"),      "up",      '>', &prefs->vol_up);
+	add_invisible(table, _("Volume Down"),    "down",    '<', &prefs->vol_down);
 	return table;
 }
 

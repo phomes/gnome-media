@@ -1,5 +1,11 @@
 2001-05-31  Peter Teichman  <peter@ximian.com>
 
+	* gtcd.c, keybindings.c, popup.c, prefs.c, prefs.h: fix keybinding
+	support. add a new section in the gtcd config file with newer
+	style keybindings. these store modifiers + keys, instead of just
+	numeric key codes. Patch from 
+	David Hampton <hampton@employees.org>
+
 	* gtcd.c, tcd.c: use sigaction rather than signal for the cd info
 	reloading function. Fixes a segfault. Patch from
 	David Hampton <hampton@employees.org>
