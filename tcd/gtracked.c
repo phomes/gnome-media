@@ -3,11 +3,15 @@
 #include <linux/cdrom.h>
 #include "linux-cdrom.h"
 
+#ifdef PIXMAPS
 #include "icons/data.xpm"
 #include "icons/music.xpm"
+#endif
 
 GtkWidget *trwin;
+#ifdef PIXMAPS
 GtkWidget *music, *data;
+#endif
 static int current_track;
 extern cd_struct cd;
 
@@ -48,9 +52,11 @@ void fill_list( GtkWidget *list )
 	
 		gtk_clist_append(GTK_CLIST(list), tmp );
 		g_snprintf(tmp[0],255, "%d", i);
+#ifdef PIXMAPS
 		gtk_clist_set_pixtext(GTK_CLIST(list), i-1,0, tmp[0], 2, 
 			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->pixmap, 
 			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->mask);
+#endif
 	}
 
 	gtk_clist_thaw(GTK_CLIST(list));
@@ -68,7 +74,6 @@ void activate_entry( GtkWidget *widget, GtkWidget *list )
 	strcpy(cd.trk[current_track].name, 
 		gtk_entry_get_text(GTK_ENTRY(widget)));
 	update_list(list, current_track);
-	gtk_clist_select_row(GTK_CLIST(list), 0, current_track);
 	return;
 }
 
@@ -80,7 +85,7 @@ void select_row_cb( GtkCList *clist,
 {
 	gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row+1].name);
 	current_track = row+1;
-	if( event->type == GDK_2BUTTON_PRESS )
+	if( event && event->type == GDK_2BUTTON_PRESS )
 		tcd_playtracks(&cd, row+1, -1);
 
 	return;
@@ -110,9 +115,11 @@ void edit_window( void )
 		GTK_SIGNAL_FUNC(destroy_window), trwin);
 	
 	main_box = gtk_vbox_new(FALSE, 4);
-	
+
+#ifdef PIXMAPS
 	music = gnome_pixmap_new_from_xpm_d(music_xpm);
 	data = gnome_pixmap_new_from_xpm_d(data_xpm);
+#endif
 	
 	/* Disc area */
 	disc_table  = gtk_table_new(2, 2, FALSE);
@@ -144,7 +151,7 @@ void edit_window( void )
 	track_list  = gtk_clist_new_with_titles(3, titles);
 	current_track = 1;
 	gtk_clist_set_border(GTK_CLIST(track_list), GTK_SHADOW_NONE);
-	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 30);
+	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 20);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
 	gtk_clist_set_policy(GTK_CLIST(track_list), GTK_POLICY_AUTOMATIC,
 						    GTK_POLICY_AUTOMATIC);

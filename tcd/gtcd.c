@@ -933,7 +933,7 @@ void init_window(void)
     gtk_signal_connect( GTK_OBJECT(window), "delete_event",
 			GTK_SIGNAL_FUNC(delete_event), NULL);
 
-    gtk_container_border_width( GTK_CONTAINER(window), 4 );
+    gtk_container_border_width( GTK_CONTAINER(window), 2 );
     gtk_widget_realize(window);
 
     main_box = gtk_hbox_new( FALSE, 5 );
