@@ -44,6 +44,13 @@ AM_PROG_LIBTOOL
 PKG_CHECK_MODULES(MEDIA, glib-2.0 >= 1.3.7 gmodule-2.0 >= 1.3.7 \
 		  libgnomeui-2.0 >= 1.102.0\
 		  esound >= 0.2.23)
+host=`uname -s`
+case "$host" in
+*SunOS*)
+	MEDIA_LIBS="$MEDIA_LIBS -ldevinfo"
+        ;;
+esac
+
 AC_SUBST(MEDIA_CFLAGS)
 AC_SUBST(MEDIA_LIBS)
 

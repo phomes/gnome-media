@@ -716,6 +716,52 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
+	case GNOME_CDROM_STATUS_DATA_CD:
+		if (gcd->disc_info != NULL) {
+				cddb_free_disc_info (gcd->disc_info);
+				gcd->disc_info = NULL;
+		}	
+		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
+
+                /* Set the other widgets off */
+                gtk_widget_set_sensitive (gcd->tracks, FALSE);
+                gtk_widget_set_sensitive (gcd->back_b, FALSE);
+                gtk_widget_set_sensitive (gcd->rewind_b, FALSE);
+                gtk_widget_set_sensitive (gcd->play_b, FALSE);
+                gtk_widget_set_sensitive (gcd->stop_b, FALSE);
+                gtk_widget_set_sensitive (gcd->ffwd_b, FALSE);
+                gtk_widget_set_sensitive (gcd->next_b, FALSE);
+
+		/* Eject button can be used even to eject a data cd */
+		gtk_widget_set_sensitive (gcd->eject_b, TRUE);
+	
+		cd_display_clear (CD_DISPLAY (gcd->display));
+                cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Data CD"));
+                gnome_cd_set_window_title (gcd, NULL, NULL);
+                break;
+
+	case GNOME_CDROM_STATUS_NO_CDROM:
+		if (gcd->disc_info != NULL) {
+				cddb_free_disc_info (gcd->disc_info);
+				gcd->disc_info = NULL;
+		}	
+		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
+
+                /* Set the other widgets off */
+                gtk_widget_set_sensitive (gcd->tracks, FALSE);
+                gtk_widget_set_sensitive (gcd->back_b, FALSE);
+                gtk_widget_set_sensitive (gcd->rewind_b, FALSE);
+                gtk_widget_set_sensitive (gcd->play_b, FALSE);
+                gtk_widget_set_sensitive (gcd->stop_b, FALSE);
+                gtk_widget_set_sensitive (gcd->ffwd_b, FALSE);
+                gtk_widget_set_sensitive (gcd->next_b, FALSE);
+		gtk_widget_set_sensitive (gcd->eject_b, TRUE);
+	
+		cd_display_clear (CD_DISPLAY (gcd->display));
+                cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No Cdrom"));
+                gnome_cd_set_window_title (gcd, NULL, NULL);
+                break;
+
 	default:
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);

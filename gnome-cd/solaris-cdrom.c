@@ -16,11 +16,15 @@
 #include <sys/cdio.h>
 #include <sys/audioio.h>	
 #include <errno.h>
+#include <libdevinfo.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "gnome-cd.h"
 #include "solaris-cdrom.h"
 
 static GnomeCDRomClass *parent_class = NULL;
+gboolean cdrom_drive_present = FALSE;
 
 typedef struct _SolarisCDRomTrackInfo {
 	char *name;
@@ -39,6 +43,24 @@ struct _SolarisCDRomPrivate {
 
 	SolarisCDRomTrackInfo *track_info;
 };
+
+/* specify which disk links to use in the /dev directory */
+#define DEVLINK_REGEX   "rdsk/.*"
+
+/* The list of names of possible cdrom types used by libdevinfo. */
+static char *disktypes[] = {
+        DDI_NT_CD_CHAN,
+        DDI_NT_CD,
+        NULL
+};
+
+static di_devlink_handle_t      handle;
+static char                     prev_name[MAXPATHLEN];
+
+static int              findcdroms(di_node_t node, di_minor_t minor, void *arg);static void             findevs();
+static int              find_devpath(di_devlink_t devlink, void *arg);
+static int              is_cdrom(di_node_t node, di_minor_t minor);
+
 
 static gboolean solaris_cdrom_eject (GnomeCDRom *cdrom,
 				   GError **error);
@@ -67,6 +89,87 @@ static gboolean solaris_cdrom_close_tray (GnomeCDRom *cdrom,
 					GError **error);
 
 static GnomeCDRomMSF blank_msf = { 0, 0, 0};
+
+/* To determine whether the machine has a cdrom drive or not */
+void
+find_cdrom()
+{
+        handle = di_devlink_init(NULL, 0);
+        findevs();
+        di_devlink_fini(&handle);
+}
+
+static void
+findevs()
+{
+        di_node_t               di_root;
+
+        di_root = di_init("/", DINFOCPYALL );
+        di_walk_minor(di_root, NULL, 0, NULL, findcdroms);
+        di_fini(di_root);
+}
+
+static int
+findcdroms(di_node_t node, di_minor_t minor, void *arg)
+{
+        if (di_minor_spectype(minor) == S_IFCHR && is_cdrom(node, minor)) {
+            char        *devpath;
+
+            devpath = di_devfs_path(node);
+
+            /* avoid doing every minor node for the cdrom */
+            if (strcmp(devpath, prev_name) != 0) {
+                char    dev_name[MAXPATHLEN];
+
+                strlcpy(prev_name, devpath, sizeof(prev_name));
+
+                (void) snprintf(dev_name, sizeof (dev_name), "%s:%s", devpath,
+                        di_minor_name(minor));
+
+                /* Walk the /dev tree to get the devlinks. */
+                di_devlink_walk(handle, DEVLINK_REGEX, dev_name,
+                    DI_PRIMARY_LINK, NULL, find_devpath);
+            }
+
+            di_devfs_path_free((void *) devpath);
+        }
+
+        return (DI_WALK_CONTINUE);
+}
+
+static int
+find_devpath(di_devlink_t devlink, void *arg)
+{
+        char    *devlink_path;
+
+        devlink_path = (char *)di_devlink_path(devlink);
+        if (devlink_path != NULL) {
+	    cdrom_drive_present = TRUE;
+        }
+        return (DI_WALK_CONTINUE);
+}
+
+static int
+is_cdrom(di_node_t node, di_minor_t minor)
+{
+        char    *type;
+        int     type_index;
+
+        if ((type = di_minor_nodetype(minor)) == NULL) {
+            return (0);
+        }
+
+        for (type_index = 0; disktypes[type_index]; type_index++) {
+            if (strcmp(type, disktypes[type_index]) == 0) {
+                return (1);
+            }
+        }
+
+        return (0);
+}
+
+
+
 
 static void
 solaris_cdrom_finalize (GObject *object)
@@ -749,6 +852,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	SolarisCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
 	struct cdrom_subchnl subchnl;
+	struct cdrom_tocentry tocentry;
 	struct audio_info audioinfo;
 	int vol_fd;
 	int cd_status;
@@ -763,8 +867,16 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	realstatus->volume = 0;
 
 	if (solaris_cdrom_open (lcd, error) == FALSE) {
+		static gboolean function_called = FALSE;
 		g_free (realstatus);
 		solaris_cdrom_close (lcd);
+		if (!function_called)
+		find_cdrom (); 
+		function_called = TRUE;
+                if (cdrom_drive_present) 
+                        realstatus->cd = GNOME_CDROM_STATUS_NO_DISC;
+                else
+                        realstatus->cd = GNOME_CDROM_STATUS_NO_CDROM;
 		return FALSE;
 	}
 
@@ -821,7 +933,17 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 #else
-	realstatus->cd = GNOME_CDROM_STATUS_OK;
+	tocentry.cdte_track = CDROM_LEADOUT;
+	tocentry.cdte_format = CDROM_MSF;
+	if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
+		g_warning ("Error getting leadout");
+		solaris_cdrom_invalidate (lcd);
+		return FALSE;
+	}
+	if (tocentry.cdte_ctrl == CDROM_DATA_TRACK)
+		realstatus->cd = GNOME_CDROM_STATUS_DATA_CD;
+	else
+		realstatus->cd = GNOME_CDROM_STATUS_OK;
 #endif
 
 	subchnl.cdsc_format = CDROM_MSF;
