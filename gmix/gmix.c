@@ -321,7 +321,7 @@ void create_dialog()
 		}
 	}
 
-	button=gtk_button_new_with_label("Quit");
+	button=gtk_button_new_with_label("Exit");
 	gtk_signal_connect (GTK_OBJECT (button), 
 		"clicked", 
 		(GtkSignalFunc) destroy, 
