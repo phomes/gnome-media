@@ -400,9 +400,16 @@ create_model_from_list (GList *list)
 
 	for (l = list; l; l = l->next) {
 		char **vector;
-
+		char *end;
+		
 		vector = (char **) l->data;
-
+		/* Strip newlines and \r */
+		vector[2][strlen (vector[2]) - 1] = 0;
+		end = strchr (vector[2], '\r');
+		if (end != NULL) {
+			*end = 0;
+		}
+		
 		gtk_list_store_append (store, &iter);
 		gtk_list_store_set (store, &iter, 0, vector[0], 1, vector[1], 2, vector[2], -1);
 	}
