@@ -1,0 +1,22 @@
+Source: gnome-media@SUFFIX@
+Section: sound
+Priority: optional
+Maintainer: Jim Pick <jim@jimpick.com>
+Standards-Version: 2.4.0.0
+
+Package: gnome-media@SUFFIX@
+Architecture: any
+Depends: gnome-core@SUFFIX@ (>= ${Source-Version}), ${shlibs:Depends}
+Conflicts: tcd
+Replaces: tcd
+Provides: tcd
+Description: Gnome Media Utilities (gmix, gtcd)
+ Gnome is the "GNU Network Object Model Environment"
+ .
+ It is a project to build a complete, user-friendly desktop based
+ entirely on free software.
+ .
+ This package contains:
+ .
+   gmix - a mixer 
+   gtcd - a cd player
