@@ -1,14 +1,14 @@
 # Përkthimi i mesazheve të gnome-media në shqip
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
-# Laurent Dhima  <laurenti@alblinux.net>, 2003, 2004.
+# Laurent Dhima  <laurenti@alblinux.net>, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
-"PO-Revision-Date: 2004-12-17 12:26+0100\n"
+"POT-Creation-Date: 2005-02-02 05:46+0100\n"
+"PO-Revision-Date: 2005-02-02 10:53+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -160,9 +160,9 @@ msgid "Unknown / Unknown"
 msgstr "Panjohur / Panjohur"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:738
+#: grecord/src/gsr-window.c:747 grecord/src/gsr-window.c:756
+#: grecord/src/gsr-window.c:766 grecord/src/gsr-window.c:1082
 msgid "Unknown"
 msgstr "Nuk njihet"
 
@@ -957,7 +957,7 @@ msgid "Paused"
 msgstr "E pezulluar"
 
 #: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Lexuesi i CD"
@@ -1165,27 +1165,27 @@ msgstr "Hiq CD"
 msgid "Eject"
 msgstr "Nxirre jashtë"
 
-#: gnome-cd/gnome-cd.c:893
+#: gnome-cd/gnome-cd.c:905
 msgid "CD device to use"
 msgstr "Dispozitivi CD që do të përdoret"
 
-#: gnome-cd/gnome-cd.c:895
+#: gnome-cd/gnome-cd.c:907
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Filloje vetëm nëqoftëse një lexues tjetër CD nuk është në ekzekutim"
 
-#: gnome-cd/gnome-cd.c:897
+#: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
 msgstr "Riprodho CD kur niset"
 
-#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:190
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
-msgstr ""
+msgstr "Regjistri nuk ekziston ose është i dëmtuar, përditësoje duke zbatuar gst-register"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:947
+#: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
 msgstr "Nuk arrij të krijoj player"
 
@@ -1278,8 +1278,8 @@ msgstr "_Zgjidh një temë:"
 msgid "Record sound clips"
 msgstr "Regjistron audio clips"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:955
+#: grecord/src/gsr-window.c:1291
 msgid "Sound Recorder"
 msgstr "Regjistruesi i Zërit"
 
@@ -1307,7 +1307,7 @@ msgstr "Krijo një shembull të ri"
 msgid "Display help for Sound Recorder"
 msgstr "Vizualizo ndihmën për Regjistruesin e Tingujve"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:824
 msgid "File Information"
 msgstr "Informacione në lidhje me File"
 
@@ -1478,120 +1478,124 @@ msgstr "sekonda"
 msgid "second"
 msgstr "sekondë"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1243
+#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1677
 msgid "Ready"
 msgstr "Gati"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
-#, fuzzy, c-format
-msgid "Could not save the file \"%s\""
+#: grecord/src/gsr-window.c:513
+#, c-format
+msgid "Could not save the file \" %s\""
 msgstr "E pamundur ruajtja e file \" %s\""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:522
+#, c-format
+msgid "Could not save the file \"%s\""
+msgstr "E pamundur ruajtja e file \"%s\""
+
+#: grecord/src/gsr-window.c:569
 msgid "Save file as"
 msgstr "Ruaj file si"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:625
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nuk është instaluar në path."
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:635
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Gabim gjatë nisjes së %s: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:712
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Akoma e paruajtur)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:725
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s (%llu byte)"
+msgstr[1] "%s (%llu bytes)"
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:729
 msgid "Unknown size"
 msgstr "Madhësi e panjohur"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:749
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:758
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:770
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:774
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:803
 #, c-format
 msgid "%s Information"
 msgstr "Informacione mbi %s"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:838
 msgid "Folder:"
 msgstr "Kartela:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:844 grecord/src/gsr-window.c:1609
 msgid "Filename:"
 msgstr "Emri i file:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:850
 msgid "File size:"
 msgstr "Madhësia e file:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:859
 msgid "Audio Information"
 msgstr "Informacione në lidhje me Audio-n"
 
-#: grecord/src/gsr-window.c:857
-#, fuzzy
+#: grecord/src/gsr-window.c:873
 msgid "File duration:"
-msgstr "Informacione rreth file"
+msgstr "Kohëzgjatja e file:"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:879
 msgid "Number of channels:"
 msgstr "Numri i kanaleve:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:885
 msgid "Sample rate:"
 msgstr "Frekuenca e kampionamentit:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:891
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:957
 msgid "A sound recorder for GNOME"
 msgstr "Një regjistrues audio për GNOME"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1228
 msgid "Playing..."
 msgstr "Duke riprodhuar..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1287
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Regjistruesi zërit"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1378
 msgid "Recording..."
 msgstr "Duke regjistruar..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1438
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1599,17 +1603,17 @@ msgstr ""
 "Nuk është caktuar asnjë element i prezgjedhur për audio input në GStreamer - "
 "ju lutem instaloni skemat GConf GStreamer ose përcakto një manualisht"
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1453
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Krijimi i elementëve enkodues GStreamer dështoi - kontrolloni rregullimet "
 "tuaja të enkodimit"
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1463
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Plugin filesink i GStreamer nuk u gjet - ju lutem instalojeni"
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1471
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1617,19 +1621,19 @@ msgstr ""
 "Lidhja e elementëve enkodues me elementin file output dështoi - ndoshta keni "
 "zgjedhur një enkodues të pavlefshëm"
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1577
 msgid "Record as"
 msgstr "Regjistro si"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1594
 msgid "File information"
 msgstr "Informacione rreth file"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1616
 msgid "<none>"
 msgstr "<asnjë>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1625
 msgid "Length:"
 msgstr "Gjatësia:"
 
@@ -1898,10 +1902,10 @@ msgstr "_Pipeline:"
 msgid "_Test"
 msgstr "_Kontrolloje"
 
-#: gstreamer-properties/pipeline-constants.c:61
-#: gstreamer-properties/pipeline-constants.c:83
-#: gstreamer-properties/pipeline-constants.c:100
-#: gstreamer-properties/pipeline-constants.c:115
+#: gstreamer-properties/pipeline-constants.c:63
+#: gstreamer-properties/pipeline-constants.c:85
+#: gstreamer-properties/pipeline-constants.c:104
+#: gstreamer-properties/pipeline-constants.c:119
 msgid "Custom"
 msgstr "E personalizuar"
 
@@ -1939,8 +1943,7 @@ msgstr "Gabim gjatë marrjes së listës me profilet gm_audio. (%s)\n"
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
-msgstr ""
-"Gabim gjatë regjistrimit të ndryshimeve të listës së profilit audio. (%s)\n"
+msgstr "Gabim gjatë regjistrimit të ndryshimeve të listës së profilit audio. (%s)\n"
 
 #: profiles/audio-profile.c:911
 #, c-format
@@ -2076,8 +2079,7 @@ msgstr ""
 "përshkruan kur duhet përdorur ky profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "Një mbrapashtesë e emrit të file që duhet përdorur kur ruhen files e koduar "
 "me këtë profil."
@@ -2145,8 +2147,7 @@ msgstr ""
 "radio."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to voice-quality audio. Use this for recording speech."
+msgid "Used for converting to voice-quality audio. Use this for recording speech."
 msgstr ""
 "Përdoret për konvertim në kualitet audio e folur. Përdore për regjistrime të "
 "zërit."
@@ -2232,8 +2233,3 @@ msgstr "Monitor i volumit në dalje të zërit"
 msgid "Volume monitor"
 msgstr "Monitor i Volumit"
 
-#~ msgid "Song length:"
-#~ msgstr "Kohëzgjatja e këngës:"
-
-#~ msgid "GStreamer Preferences"
-#~ msgstr "Preferimet e GStreamer"
