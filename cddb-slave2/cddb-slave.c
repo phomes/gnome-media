@@ -23,6 +23,8 @@
 #include <bonobo/bonobo-exception.h>
 #include <gnome.h>
 
+#include <gconf/gconf-client.h>
+
 /* Use local copy of gnet */
 #include "gnet.h"
 
@@ -31,6 +33,8 @@
 #include "cddb-slave.h"
 #include "GNOME_Media_CDDBSlave2.h"
 
+
+static GConfClient *client = NULL;
 
 #define PARENT_TYPE BONOBO_OBJECT_TYPE
 static BonoboObjectClass *parent_class = NULL;
@@ -42,6 +46,8 @@ typedef enum {
 } CDDBSlaveAccess;
 
 struct _CDDBSlavePrivate {
+	char *name;
+	char *hostname;
 	char *server; /* Server address */
 	int port; /* Server port */
 
@@ -636,8 +642,11 @@ do_hello (ConnectionData *cd)
 	/* Send the Hello command
 	   CDDB howto says these shouldn't be hardcoded,
 	   but that seems to be a privacy issue */
-	hello = g_strconcat ("cddb hello johnsmith 198.172.174.22 ",
-			     cd->name, " ", cd->version, "\n", NULL);
+	hello = g_strdup_printf ("cddb hello %s %s %s %s\n",
+				 cd->cddb->priv->name,
+				 cd->cddb->priv->hostname,
+				 cd->name,
+				 cd->version);
 	
 	/* Need to check the return of this one */
 	status = gnet_io_channel_writen (cd->iochannel, hello,
@@ -1048,7 +1057,9 @@ finalize (GObject *object)
 		return;
 
 	g_free (priv->server);
-
+	g_free (priv->name);
+	g_free (priv->hostname);
+	
 	g_free (priv);
 	cddb->priv = NULL;
 
@@ -1108,6 +1119,8 @@ BONOBO_TYPE_FUNC_FULL (CDDBSlave, GNOME_Media_CDDBSlave2, PARENT_TYPE, cddb_slav
 CDDBSlave *
 cddb_slave_new_full (const char *server,
 		     int port,
+		     const char *name,
+		     const char *hostname,
 		     BonoboEventSource *event_source)
 {
 	CDDBSlave *cddb;
@@ -1130,6 +1143,9 @@ cddb_slave_new_full (const char *server,
 		priv->port = port;
 	}
 
+	priv->name = g_strdup (name);
+	priv->hostname = g_strdup (hostname);
+	
 	priv->event_source = event_source;
 	bonobo_object_add_interface (BONOBO_OBJECT (cddb),
 				     BONOBO_OBJECT (priv->event_source));
@@ -1150,13 +1166,15 @@ cddb_slave_new_full (const char *server,
  */
 CDDBSlave *
 cddb_slave_new (const char *server,
-		int port)
+		int port,
+		const char *name,
+		const char *hostname)
 {
 	BonoboEventSource *event_source;
 
 	event_source = bonobo_event_source_new ();
 
-	return cddb_slave_new_full (server, port, event_source);
+	return cddb_slave_new_full (server, port, name, hostname, event_source);
 }
 
 /**

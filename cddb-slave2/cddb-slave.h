@@ -50,9 +50,13 @@ struct _CDDBSlaveClass {
 
 GType cddb_slave_get_type ();
 CDDBSlave *cddb_slave_new (const char *server,
-			   int port);
+			   int port,
+			   const char *name,
+			   const char *hostname);
 CDDBSlave *cddb_slave_new_full (const char *server,
 				int port,
+				const char *name,
+				const char *hostname,
 				BonoboEventSource *event_source);
 BonoboEventSource *cddb_slave_get_event_source (CDDBSlave *cddb);
 

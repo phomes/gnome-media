@@ -1,3 +1,15 @@
+2002-02-14  Iain <iain@ximian.com>
+
+	* main.c (get_username): Get the current username.
+	(get_hostname): Get the hostname.
+	(factory_fn): Get the name and hostname stuff from gconf.
+
+	* cddb-slave.[ch] (do_hello): Use the name and hostname stuff instead
+	of hardcoding it.
+	(finalize): Free the name and hostname.
+	(cddb_slave_new_full): Add the name and hostname args
+	(cddb_slave_new): Ditto.
+
 2002-02-12  Iain <iain@ximian.com>
 
 	* Makefile.am (cddb_slave2_properties_SOURCES): Add all the gnet

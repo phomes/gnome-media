@@ -24,6 +24,13 @@
 #define CDDB_PORT 888;
 
 static int running_objects = 0;
+static GConfClient *client = NULL;
+
+enum {
+	CDDB_SEND_FAKE_INFO,
+	CDDB_SEND_REAL_INFO,
+	CDDB_SEND_OTHER_INFO
+};
 
 static void
 cddb_destroy_cb (GObject *cddb,
@@ -36,34 +43,80 @@ cddb_destroy_cb (GObject *cddb,
 	}
 }
 
+static char *
+get_username (void)
+{
+	const char *name;
+
+	name = g_getenv ("USER");
+	if (name == NULL || *name == 0) {
+		return g_strdup ("Unknown");
+	} else {
+		return g_strdup (name);
+	}
+}
+
+static char *
+get_hostname (void)
+{
+	char name[4096];
+
+	if (gethostname (name, 4095) == -1) {
+		return g_strdup ("localhost");
+	} else {
+		return g_strdup (name);
+	}
+}
+	
 static BonoboObject *
 factory_fn (BonoboGenericFactory *factory,
 	    const char *component_id,
 	    void *closure)
 {
-	GConfClient *client;
 	CDDBSlave *cddb;
 	gboolean auth;
 	char *server;
 	int port;
-
+	int info, server_type;
+	char *name;
+	char *hostname;
+	
 	/* Get GConf db */
-	client = gconf_client_get_default ();
 	if (client == NULL) {
-		server = g_strdup ("freedb.freedb.org");
-		port = 888;
-	} else {
-		
-		/* Get server info */
-		server = gconf_client_get_string (client, 
-						  "/apps/CDDB-Slave2/server", NULL);
-		port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
-
-		g_object_unref (G_OBJECT (client));
+		client = gconf_client_get_default ();
 	}
 
+	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
+	switch (info) {
+	case CDDB_SEND_FAKE_INFO:
+		name = g_strdup ("cddbslave2-user");
+		hostname = g_strdup ("192.168.77.77");
+		break;
+
+	case CDDB_SEND_REAL_INFO:
+		name = get_username ();
+		hostname = get_hostname ();
+		break;
+
+	case CDDB_SEND_OTHER_INFO:
+		name = g_strdup (gconf_client_get_string (client,
+							  "/apps/CDDB-Slave2/name", NULL));
+		hostname = g_strdup (gconf_client_get_string (client,
+							      "/apps/CDDB-Slave2/hostname", NULL));
+		break;
+
+	default:
+		break;
+	}
+
+	server = gconf_client_get_string (client, 
+					  "/apps/CDDB-Slave2/server", NULL);
+	port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
+	
 	/* Create the new slave */
-	cddb = cddb_slave_new (server, port);
+	cddb = cddb_slave_new (server, port, name, hostname);
+	g_free (name);
+	g_free (hostname);
 
 	if (cddb == NULL) {
 		g_error ("Could not create CDDB slave");
@@ -106,7 +159,7 @@ main (int argc,
 
 	gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
 			    argc, argv, NULL);
-	
+
 	g_idle_add (cddbslave_init, NULL);
 	bonobo_main ();
 
