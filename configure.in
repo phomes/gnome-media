@@ -34,10 +34,10 @@ AC_TYPE_OFF_T
 AC_TYPE_SIZE_T
 
 # Checks for library functions.
-AC_FUNC_ALLOCA
+#AC_FUNC_ALLOCA
 AC_PROG_GCC_TRADITIONAL
 AC_FUNC_MMAP
-AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
+#AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
 AM_PROG_LIBTOOL
 
 # Start of pkg-config checks
@@ -161,6 +161,7 @@ AC_SUBST(GMIX_LIBS)
 AC_MSG_CHECKING([for default mixer])
 if test "x$build_gmix" = "xyes"; then
     DEFAULT_MIXER=gnome-volume-control
+    AC_DEFINE(HAVE_MIXER)
     AC_MSG_RESULT($DEFAULT_MIXER)
 else
 # Bala thinks this should be done at runtime.
@@ -170,11 +171,12 @@ else
   case "$host" in
   *SunOS*)
     AC_MSG_RESULT([sdtaudiocontrol])
-    AC_PATH_PROG(SDTAUDIOCONTROL, sdtaudiocontrol, no)
+    AC_PATH_PROG(SDTAUDIOCONTROL, sdtaudiocontrol, no, "/usr/dt/bin")
     if test x$SDTAUDIOCONTROL = xno; then
 	    DEFAULT_MIXER=gnome-volume-control
     else
 	    DEFAULT_MIXER=sdtaudiocontrol
+	    AC_DEFINE(HAVE_MIXER)
     fi
     ;;
   esac

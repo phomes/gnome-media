@@ -48,6 +48,7 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 	GNOMEUIINFO_MENU_SAVE_ITEM (on_save_activate_cb, NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM (on_saveas_activate_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
+#ifdef HAVE_MIXER
 	{
 		GNOME_APP_UI_ITEM, N_("Run _Mixer"),
 		N_("Run GNOME Volume Control"),
@@ -56,6 +57,7 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 		0, 0, NULL
 	},
 	GNOMEUIINFO_SEPARATOR,
+#endif
 	GNOMEUIINFO_MENU_EXIT_ITEM (on_exit_activate_cb, NULL),
 	GNOMEUIINFO_END
 };
