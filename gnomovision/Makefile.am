@@ -1,12 +1,13 @@
 Mediadir = $(datadir)/apps/Media
 
-INCLUDES = -I$(includedir)
+INCLUDES = -I$(includedir)	\
+             $(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = tvset about preferences
 
 tvset_SOURCES = \
 	xwindows.c	\
-	tv-set.c	\
+	tvset.c		\
 	tv-videodev.c	\
 	channels.h	\
 	channels.c

@@ -1,0 +1,13 @@
+1998-03-29  Christopher Blizzard  <blizzard@appliedtheory.com>
+
+	* tv-videodev.c: Removed #include <stdinc.h>
+
+	* gnomovision.h: Added placeholder file.
+
+	* tvset.c: Removed #include <stdinc.h>...that's not that
+ 	standard. :)
+
+	* Makefile.am (tvset_SOURCES): Changed "tv-set.c" to "tvset.c"
+ 	since that appears to be the wrong name of the file.
+	(INCLUDES): Added $(GNOME_INCLUDEDIR) so that the proper include
+ 	dirs get picked up.
