@@ -36,6 +36,9 @@ if intltoolize --version < /dev/null > /dev/null 2>&1 ; then
 	    0.2[5-9]*)
 		have_intltoolize=true
 		;;
+	    0.3[0-9]*)
+		have_intltoolize=true
+		;;
 	esac
 fi
 if $have_intltoolize ; then : ; else
