@@ -159,7 +159,7 @@ const char *device_pixmap[] = {
    GNOME_STOCK_PIXMAP_VOLUME,               /* Master Volume */
    GNOME_STOCK_PIXMAP_BLANK,                /* Bass */
    GNOME_STOCK_PIXMAP_BLANK,                /* Treble */
-   GNOME_STOCK_PIXMAP_MIDI,                /* Synth */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Synth */
    GNOME_STOCK_PIXMAP_BLANK,                /* PCM */
    GNOME_STOCK_PIXMAP_VOLUME,               /* Speaker */
    GNOME_STOCK_PIXMAP_LINE_IN,              /* Line In */
@@ -183,7 +183,7 @@ const char *device_pixmap[] = {
    GNOME_STOCK_PIXMAP_BLANK,                /* Monitor (usually mic) vol */
    GNOME_STOCK_PIXMAP_BLANK,                /* 3d Depth/space param */
    GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
-   GNOME_STOCK_PIXMAP_MIDI                 /* Midi */
+   GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
 };
 
 /*
