@@ -63,8 +63,13 @@ static GtkWidget *create_local_db(void)
     GtkWidget *clist, *refresh_button, *edit_button, *hsep;
     GtkWidget *hbox, *bbox, *scw, *remove_button;
 
-    hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+#ifdef ENABLE_NLS
+    titles[0] = _(titles[0]);
+    titles[1] = _(titles[1]);
+#endif /* ENABLE_NLS */
     
+    hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+
     /* buttons */
     bbox = gtk_vbutton_box_new();
     gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_START);
@@ -248,6 +253,10 @@ static void fill_list(GtkWidget *clist)
     gchar *tmp[2];
     DIR *d;
     struct dirent *de;
+
+#ifdef ENABLE_NLS
+    error_item[1] = _(error_item[1]);
+#endif /* ENABLE_NLS */
 
     dname = get_file_name("");
     if(!dname)
