@@ -25,6 +25,7 @@
 #endif
 
 #include <gnome.h>
+#include <gdk/gdkx.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <libbonoboui.h>
 
@@ -1011,9 +1012,12 @@ static gboolean
 track_editor_init (gpointer data)
 {
 	BonoboGenericFactory *factory;
+	char *display_iid;
 
-	factory = bonobo_generic_factory_new (CDDBSLAVE_TRACK_EDITOR_IID,
+	display_iid = bonobo_activation_make_registration_id (CDDBSLAVE_TRACK_EDITOR_IID, DisplayString (gdk_display));
+	factory = bonobo_generic_factory_new (display_iid,
 					      factory_fn, NULL);
+	g_free (display_iid);
 	if (factory == NULL) {
 		g_print (_("Cannot create CDDBTrackEditor factory.\n"
 			   "This may be caused by another copy of cddb-track-editor already running.\n"));
