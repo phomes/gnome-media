@@ -91,7 +91,7 @@ libcddb_slave2include_HEADERS =			\
 schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=CDDB-Slave2.schemas
 
-oafdir = $(DESTDIR)$(libdir)/bonobo/servers
+oafdir = $(libdir)/bonobo/servers
 oaf_in_files = GNOME_Media_CDDBSlave2.server.in
 oaf_DATA = $(oaf_in_files:.server.in=.server)
 
