@@ -95,7 +95,7 @@ int tcd_readcddb( cd_struct* cd, char* filename )
                 	else
                 		cd->trk[trk+1].name[0] = 0;
 		}				
-		// Otherwise ignore it
+		/* Otherwise ignore it */
 	}
 	fclose(fp);
 	return 0;
@@ -111,11 +111,11 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	if( fp == NULL )
 		return(-1);
 					
-	fprintf( fp, "# xmcd CD Database Entry\n" );		// Signature
-	fprintf( fp, "#\n" );			// Blank
+	fprintf( fp, "# xmcd CD Database Entry\n" );
+	fprintf( fp, "#\n" );
 	fprintf( fp, "# Track frame offsets:\n" );
 	
-	// Print the frame offsets
+	/* Print the frame offsets */
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 	{
 		int min, sec;
@@ -126,7 +126,7 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 		n = (min*60)+sec;
 		fprintf( fp, "# %u\n", (n*75)+cd->trk[i].toc.cdte_addr.msf.frame );
 	}
-	// Print the number of seconds
+	/* Print the number of seconds */
 	fprintf( fp, "#\n# Disc length: %i seconds\n", 
 		(cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
                 +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
