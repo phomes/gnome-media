@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-14 03:50+0100\n"
-"PO-Revision-Date: 2003-12-14 16:00+0100\n"
+"POT-Creation-Date: 2003-12-15 03:51+0100\n"
+"PO-Revision-Date: 2003-12-15 13:13+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -365,7 +365,9 @@ msgstr "Noise"
 msgid "Alt"
 msgstr "Alt"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Basy"
 
@@ -876,40 +878,386 @@ msgstr ""
 "Nelze vytvořit generátor CDDBTrackEditor.\n"
 "To může být způsobeno již běžící jinou kopií programu cddb-track-editor.\n"
 
-#: gst-mixer/src/mixer.c:219
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Syntet"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "D/A př."
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "Dig. vst."
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Linka"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "Mikrof"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "CD"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Video"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Rádio"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Telefon"
+
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "PC repro"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Aux"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Střed vst."
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Woofer vst."
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Surround vst."
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Hlavní"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Hl. mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Hl. digitál"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Sluch."
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "Telef. výst."
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Střed"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Woofer"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Surround"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "Dig. výst"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Výšky"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Ekvalizér"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Zeslab"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Efekt"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "3D efekt"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Mik. zisk"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Vst. zisk"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Výst. zisk"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Analog zp. vaz."
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Digitál zp. vaz."
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Hlasit"
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Basy  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "Výšky "
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "PCM   "
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "Repro "
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Linka "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "Mikrof"
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "CD   "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "Mixáž "
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "PCM2  "
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Záznam"
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "VsZisk"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "VýZisk"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "Linka1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "Linka2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "Linka3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Digitál1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Digitál2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Digitál3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "TlfVst"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "TlfVýst"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "Monitor"
+
+#: gmix/gmix.c:115
+msgid "Help"
+msgstr "Nápověda"
+
+#: gmix/gmix.c:146
+msgid "Mixer device to use"
+msgstr "Zařízení mixéru, které použít"
+
+#: gmix/gmix.c:327
+#, c-format
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
+msgstr ""
+"Ovládání hlasitosti nemůže fungovat.\n"
+"\n"
+"Nemohu se otevřít zvukové zařízení '%s'.\n"
+"Zkontrolujte prosím, jestli máte oprávnění otevřít '%s'\n"
+"a jestli máte v jádře podporu zvuku.\n"
+"\n"
+"Ovládání hlasitosti ukončíte stisknutím Konec"
+
+#: gmix/gmix.c:381
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
+msgstr ""
+"Ovládání hlasitosti nemůže fungovat.\n"
+"\n"
+"Podrobnosti o důvodech selhání získáte stisknutím tlačítka 'Podrobnosti'.\n"
+"\n"
+"Ovládání hlasitosti ukončíte stisknutím Konec"
+
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
+msgid "_Details"
+msgstr "Po_drobnosti"
+
+#: gmix/gmix.c:387
+msgid "Invalid mixer device"
+msgstr "Neplatné zařízení mixéru"
+
+#: gmix/gmix.c:632
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"Varování: Tato verze Gnome Ovládání hlasitosti byla přeložena\n"
+"s OSS verze %d.%d.%d. a váš systém používá\n"
+"s verzí starší než 3.6.0.\n"
+
+#: gmix/gmix.c:639
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"Upozornění: Tato verze programu Ovládání hlasitosti pro GNOME byla "
+"přeložena\n"
+"s OSS verze %d.%d.%d. a tento systém běží\n"
+"s verzí %d.%d.%d.\n"
+
+#: gmix/gmix.c:1112
+#, c-format
+msgid "left %s"
+msgstr "levý %s"
+
+#: gmix/gmix.c:1138
+#, c-format
+msgid "Right %s"
+msgstr "Pravý %s"
+
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "Spř"
 
-#: gst-mixer/src/mixer.c:229
+#: gmix/gmix.c:1244
+#, c-format
+msgid "%s Lock"
+msgstr "%s Spř"
+
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "Umlč"
 
-#: gst-mixer/src/mixer.c:241
+#: gmix/gmix.c:1268
+#, c-format
+msgid "%s Mute"
+msgstr "%s Umlč"
+
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "Zázn"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:394 gst-mixer/src/mixer.c:482
-msgid "GStreamer Volume Control"
-msgstr "Ovládání hlasitosti GStreamer"
+#: gmix/gmix.c:1294
+#, c-format
+msgid "%s Record"
+msgstr "%s Záznam"
 
-#: gst-mixer/src/mixer.c:397
-msgid "A GNOME/GStreamer-based mixer application"
-msgstr "Aplikace mixéru založená na GNOME/GStreamer"
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
+msgid "Volume Control"
+msgstr "Ovládání hlasitosti"
 
-#: gst-mixer/src/mixer.c:499
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr "Lituji, nenalezen element a/nebo zařízení mixéru"
+#: gmix/gmix.c:1774
+msgid "GNOME Volume Control"
+msgstr "GNOME Ovládání hlasitosti"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
+#: gmix/gmix.c:1777
+msgid "A mixer for sound devices"
+msgstr "Mixér pro zvuková zařízení"
+
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Upravit úroveň hlasitosti"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
-#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-msgid "Volume Control"
-msgstr "Ovládání hlasitosti"
+#: gmix/prefs.c:193 gmix/prefs.c:196
+msgid "Shown"
+msgstr "Zobrazeno"
+
+#: gmix/prefs.c:204 gmix/prefs.c:207
+msgid "Mixer label"
+msgstr "Nadpis mixéru"
+
+#. Add the label reset button
+#: gmix/prefs.c:216
+msgid "_Reset labels to their defaults"
+msgstr "V_rátit nadpisy na původní hodnoty"
+
+#: gmix/prefs.c:313
+msgid "Gnome Volume Control Preferences"
+msgstr "Nastavení Gnome Ovládání hlasitosti"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -1117,10 +1465,6 @@ msgstr ""
 "\n"
 "Stiskněte tlačítko 'Nastavit zařízení' a nastavte zařízení, nebo ukončete "
 "přehrávač CD stisknutím Konec"
-
-#: gnome-cd/gnome-cd.c:490
-msgid "_Details"
-msgstr "Po_drobnosti"
 
 #: gnome-cd/gnome-cd.c:491
 msgid "_Set device"
@@ -1999,10 +2343,6 @@ msgstr "_Mono"
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1087
-msgid "Mono"
-msgstr "Mono"
-
 #: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Stereo"
@@ -2056,6 +2396,19 @@ msgstr "Kanály: stereo"
 msgid "Adding echo to sample..."
 msgstr "Do vzorku se přidává ozvěna..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:394 gst-mixer/src/mixer.c:482
+msgid "GStreamer Volume Control"
+msgstr "Ovládání hlasitosti GStreamer"
+
+#: gst-mixer/src/mixer.c:397
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr "Aplikace mixéru založená na GNOME/GStreamer"
+
+#: gst-mixer/src/mixer.c:499
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr "Lituji, nenalezen element a/nebo zařízení mixéru"
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2076,6 +2429,7 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2115,10 +2469,6 @@ msgstr "Te_st"
 msgid "Testing Pipeline"
 msgstr "Testuji pipeline"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Video"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
 msgstr "V_stup:"
@@ -2148,6 +2498,16 @@ msgstr "Vlastní"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nemohu vytvořit testovací pipeline pro '%s'"
 
+#: profiles/audio-profile-edit.c:201
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Při zobrazování nápovědy došlo k chybě: %s"
+
+#: profiles/audio-profile-edit.c:406
+#, c-format
+msgid "Editing profile \"%s\""
+msgstr "Upravuji profil \"%s\""
+
 #: profiles/audio-profile.c:100
 msgid "<not named>"
 msgstr "<nepojmenován>"
@@ -2166,7 +2526,9 @@ msgstr "Při získávání seznamu profilů zvuku došlo k chybě. (%s)\n"
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
-msgstr "Při přihlašování se k upozornění na změny seznamu profilů terminálu došlo k chybě. (%s)\n"
+msgstr ""
+"Při přihlašování se k upozornění na změny seznamu profilů terminálu došlo k "
+"chybě. (%s)\n"
 
 #: profiles/audio-profile.c:907
 #, c-format
@@ -2184,16 +2546,6 @@ msgstr "identita"
 #: profiles/audio-profile.c:1021
 msgid "wav"
 msgstr "wav"
-
-#: profiles/audio-profile-edit.c:201
-#, c-format
-msgid "There was an error displaying help: %s"
-msgstr "Při zobrazování nápovědy došlo k chybě: %s"
-
-#: profiles/audio-profile-edit.c:406
-#, c-format
-msgid "Editing profile \"%s\""
-msgstr "Upravuji profil \"%s\""
 
 #: profiles/audio-profiles-edit.c:112
 msgid "_Edit"
@@ -2251,6 +2603,53 @@ msgstr "Již máte profil zvuku nazvaný \"%s\""
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Chyba GConf (FIXME): %s\n"
 
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr "Soubor \"%s\" chybí. To znamená, že aplikace je nesprávně nainstalována, takže dialog nelze zobrazit."
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr "Upravit profil zvuku"
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+msgid "File _Extension:"
+msgstr "_Přípona souboru:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "Nový profil"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "Popis profilu:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "_Popis profilu:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "_Název profilu:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr "_Aktivní?"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "_Vytvořit"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "Pipeline _GStreameru:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "Název _profilu:"
+
 #: profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
 msgstr "Popis profilu zvuku"
@@ -2259,41 +2658,54 @@ msgstr "Popis profilu zvuku"
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
-msgstr "Popis profilu obsahující více informací a popisující, kdy používat tento profil."
+msgstr ""
+"Popis profilu obsahující více informací a popisující, kdy používat tento "
+"profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr "Přípona názvu souboru, kterou používat pro ukládání souborů kódovaných s tímto profilem."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
 msgstr "Částečná pipeline GStreameru, kterou používat pro tento profil."
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
 msgstr "Krátký název profilu zvuku"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "Krátký název profilu zvuku používaný ve výběrech a jedinečně identifikující profil."
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/record/profiles."
-msgstr "Seznam profilů záznamu zvuku. Seznam obsahuje řetězce s názvy poadresářů relativně k /system/gstreamer/record/profiles."
+msgstr ""
+"Krátký název profilu zvuku používaný ve výběrech a jedinečně identifikující "
+"profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr "Seznam profilů záznamu zvuku. Seznam obsahuje řetězce s názvy poadresářů relativně k /system/gstreamer/audio/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
 msgstr "Seznam profilů"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr "Implicitní přípona souboru pro tento profil"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
 msgstr "Používaná částečná pipeline GStreameru"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
 msgstr "Jestli se má tento profil používat"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "Whether or not to use and display this profile."
 msgstr "Jestli používat a zobrazovat tento profil."
 
@@ -2365,224 +2777,3 @@ msgstr "Sledování hlasitosti zvukového výstupu"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Sledování hlasitosti"
-
-#~ msgid "Synth"
-#~ msgstr "Syntet"
-
-#~ msgid "DAC"
-#~ msgstr "D/A př."
-
-#~ msgid "DSP Input"
-#~ msgstr "Dig. vst."
-
-#~ msgid "Line"
-#~ msgstr "Linka"
-
-#~ msgid "MIC"
-#~ msgstr "Mikrof"
-
-#~ msgid "Radio"
-#~ msgstr "Rádio"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "PC Speaker"
-#~ msgstr "PC repro"
-
-#~ msgid "Center Input"
-#~ msgstr "Střed vst."
-
-#~ msgid "Woofer Input"
-#~ msgstr "Woofer vst."
-
-#~ msgid "Surround Input"
-#~ msgstr "Surround vst."
-
-#~ msgid "Master"
-#~ msgstr "Hlavní"
-
-#~ msgid "Master Mono"
-#~ msgstr "Hl. mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Hl. digitál"
-
-#~ msgid "Headphone"
-#~ msgstr "Sluch."
-
-#~ msgid "Phone Output"
-#~ msgstr "Telef. výst."
-
-#~ msgid "Center"
-#~ msgstr "Střed"
-
-#~ msgid "DSP Output"
-#~ msgstr "Dig. výst"
-
-#~ msgid "Treble"
-#~ msgstr "Výšky"
-
-#~ msgid "Equalizer"
-#~ msgstr "Ekvalizér"
-
-#~ msgid "Fader"
-#~ msgstr "Zeslab"
-
-#~ msgid "Effect"
-#~ msgstr "Efekt"
-
-#~ msgid "3D Effect"
-#~ msgstr "3D efekt"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Mik. zisk"
-
-#~ msgid "Input Gain"
-#~ msgstr "Vst. zisk"
-
-#~ msgid "Output Gain"
-#~ msgstr "Výst. zisk"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analog zp. vaz."
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digitál zp. vaz."
-
-#~ msgid "Vol  "
-#~ msgstr "Hlasit"
-
-#~ msgid "Bass "
-#~ msgstr "Basy  "
-
-#~ msgid "Trebl"
-#~ msgstr "Výšky "
-
-#~ msgid "Pcm  "
-#~ msgstr "PCM   "
-
-#~ msgid "Spkr "
-#~ msgstr "Repro "
-
-#~ msgid "Line "
-#~ msgstr "Linka "
-
-#~ msgid "Mic  "
-#~ msgstr "Mikrof"
-
-#~ msgid "Mix  "
-#~ msgstr "Mixáž "
-
-#~ msgid "Pcm2 "
-#~ msgstr "PCM2  "
-
-#~ msgid "Rec  "
-#~ msgstr "Záznam"
-
-#~ msgid "IGain"
-#~ msgstr "VsZisk"
-
-#~ msgid "OGain"
-#~ msgstr "VýZisk"
-
-#~ msgid "Line1"
-#~ msgstr "Linka1"
-
-#~ msgid "Line2"
-#~ msgstr "Linka2"
-
-#~ msgid "Line3"
-#~ msgstr "Linka3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digitál1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digitál2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digitál3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "TlfVst"
-
-#~ msgid "PhoneOut"
-#~ msgstr "TlfVýst"
-
-#~ msgid "Help"
-#~ msgstr "Nápověda"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Zařízení mixéru, které použít"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Ovládání hlasitosti nemůže fungovat.\n"
-#~ "\n"
-#~ "Nemohu se otevřít zvukové zařízení '%s'.\n"
-#~ "Zkontrolujte prosím, jestli máte oprávnění otevřít '%s'\n"
-#~ "a jestli máte v jádře podporu zvuku.\n"
-#~ "\n"
-#~ "Ovládání hlasitosti ukončíte stisknutím Konec"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Ovládání hlasitosti nemůže fungovat.\n"
-#~ "\n"
-#~ "Podrobnosti o důvodech selhání získáte stisknutím tlačítka "
-#~ "'Podrobnosti'.\n"
-#~ "\n"
-#~ "Ovládání hlasitosti ukončíte stisknutím Konec"
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Neplatné zařízení mixéru"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Upozornění: Tato verze programu Ovládání hlasitosti pro GNOME byla "
-#~ "přeložena\n"
-#~ "s OSS verze %d.%d.%d. a tento systém běží\n"
-#~ "s verzí %d.%d.%d.\n"
-
-#~ msgid "Right %s"
-#~ msgstr "Pravý %s"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s Spř"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s Umlč"
-
-#~ msgid "%s Record"
-#~ msgstr "%s Záznam"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "GNOME Ovládání hlasitosti"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Mixér pro zvuková zařízení"
-
-#~ msgid "Shown"
-#~ msgstr "Zobrazeno"
-
-#~ msgid "Mixer label"
-#~ msgstr "Nadpis mixéru"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "V_rátit nadpisy na původní hodnoty"
