@@ -1,19 +1,43 @@
 # Finnish translation of the gnome-media module.
 # Copyright (C) 1998-2001 Free Software Foundation, Inc.
 # Tuomas J. Lukka <lukka@iki.fi>, 1998.
-# Mikko Rauhala <mjr@iki.fi>.
-# Jarkko Ranta <jjranta@cc.joensuu.fi>, 2000-2001.
+# Mikko Rauhala <mjr@iki.fi>, 1999.
+# Jarkko Ranta <jjranta@cc.joensuu.fi>, 2000-2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2001-12-29 14:23+0000\n"
-"PO-Revision-Date: 2001-11-09 14:00+0200\n"
+"POT-Creation-Date: 2002-01-29 16:09+0200\n"
+"PO-Revision-Date: 2002-01-29 14:00+0200\n"
 "Last-Translator: Jarkko Ranta <jjranta@cc.joensuu.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:327
+msgid "Multiple matches..."
+msgstr "Useita osumia..."
+
+#: cddb-slave2/cddb-slave.c:331
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+"Tietokannasta lˆytyi useita hakua vastaavia osumia.\n"
+"Alla on lista mahdollisista osumista, valitse niist‰ paras"
+
+#: cddb-slave2/cddb-slave.c:342
+msgid "Category"
+msgstr "Kategoria"
+
+#: cddb-slave2/cddb-slave.c:346
+msgid "Disc ID"
+msgstr "Levyn ID"
+
+#: cddb-slave2/cddb-slave.c:350
+msgid "Artist and Title"
+msgstr "Esitt‰j‰ ja levyn nimi"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -278,7 +302,7 @@ msgstr "alusta mikseri(t) varastoituihin arvoihin ja poistu"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "‰l‰ tallenna (muutettuja) mikserin asetuksia"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -288,7 +312,7 @@ msgstr ""
 "Varmista ett‰ sinulla on oikeus avata /dev/mixer\n"
 "ja ett‰ sinulla on ‰‰nituki k‰‰nnettyn‰ kerneliisi."
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -299,7 +323,7 @@ msgstr ""
 "versionumerolle %d.%d.%d, ja j‰rjestelm‰si versio\n"
 "on aikaisempi kuin 3.6.0.\n"
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -311,27 +335,27 @@ msgstr ""
 "on aikaisempi kuin 3.6.0.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:1016
 msgid "Lock"
 msgstr "Lukko"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1026
 msgid "Rec."
 msgstr "ƒ‰nitys"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1044
 msgid "Mute"
 msgstr "Hiljenn‰"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1087 gmix/gmix.desktop.in.h:2
 msgid "Volume Control"
 msgstr "ƒ‰nenvoimakkuuden s‰‰tˆ"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1418
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome-mikseri"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1420
 msgid "This is a mixer for sound devices"
 msgstr "T‰m‰ on mikseri ‰‰nilaitteille"
 
@@ -364,7 +388,7 @@ msgstr "K‰yt‰ mikserin otsikkoja"
 msgid "Defaults"
 msgstr "Oletukset"
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:344
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -372,9 +396,137 @@ msgstr "Asetukset"
 msgid "Labels"
 msgstr "Otsikot"
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:408 grecord/src/gui.c:245
+msgid "Play"
+msgstr "Soita"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:275
+#: gnome-cd/callbacks.c:314 gnome-cd/callbacks.c:338 gnome-cd/callbacks.c:373
+msgid "Pause"
+msgstr "Keskeyt‰"
+
+#: gnome-cd/callbacks.c:550
+msgid "Copyright (C) 2001, 2002"
+msgstr "Copyright (C) 2001, 2002"
+
+#: gnome-cd/callbacks.c:551
+msgid "A GNOME cd player"
+msgstr "Gnomen cd-soitin"
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr "Tuntematon esitt‰j‰"
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr "Tuntematon levy"
+
+#: gnome-cd/gnome-cd.c:123
+#, c-format
+msgid "%d - Unknown"
+msgstr "%d - Tuntematon"
+
+#: gnome-cd/gnome-cd.c:237
+msgid "P_revious track"
+msgstr "_Edellinen raita"
+
+#: gnome-cd/gnome-cd.c:238
+msgid "_Stop"
+msgstr "_Pys‰yt‰"
+
+#: gnome-cd/gnome-cd.c:239
+msgid "_Play / Pause"
+msgstr "_Soita / Keskeyt‰"
+
+#: gnome-cd/gnome-cd.c:240
+msgid "_Next track"
+msgstr "Seu_raava raita"
+
+#: gnome-cd/gnome-cd.c:241
+msgid "_Eject disc"
+msgstr "_Levy ulos"
+
+#: gnome-cd/gnome-cd.c:242
+msgid "_About Gnome-CD"
+msgstr "_Tietoja Gnome-CD:st‰"
+
+#: gnome-cd/gnome-cd.c:339
+msgid "Open track editor"
+msgstr "Avaa raitamuokkain"
+
+#: gnome-cd/gnome-cd.c:339
+msgid "Track editor"
+msgstr "Raitamuokkain"
+
+#: gnome-cd/gnome-cd.c:383
+msgid "Previous track"
+msgstr "Edellinen raita"
+
+#: gnome-cd/gnome-cd.c:383
+msgid "Previous"
+msgstr "Edellinen"
+
+#: gnome-cd/gnome-cd.c:387
+msgid "Rewind"
+msgstr "Takaisinkelaus"
+
+#: gnome-cd/gnome-cd.c:408
+msgid "Play / Pause"
+msgstr "Soita / Keskeyt‰"
+
+#: gnome-cd/gnome-cd.c:413 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Pys‰yt‰"
+
+#: gnome-cd/gnome-cd.c:417
+msgid "Fast forward"
+msgstr "Eteenp‰inkelaus"
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Next track"
+msgstr "Seuraava raita"
+
+#: gnome-cd/gnome-cd.c:429
+msgid "Eject CD"
+msgstr "Levy ulos"
+
+#
+#: gnome-cd/gnome-cd.c:429
+msgid "Eject"
+msgstr "Levy ulos"
+
+#: gnome-cd/gnome-cd.c:434
+msgid "Open mixer"
+msgstr "Avaa mikseri"
+
+#: gnome-cd/gnome-cd.c:434
+msgid "Open Mixer"
+msgstr "Avaa mikseri"
+
+#: gnome-cd/gnome-cd.c:439
+msgid "Change volume"
+msgstr "Muuta ‰‰nenvoimakkuutta"
+
+#: gnome-cd/gnome-cd.c:439
+msgid "Volume"
+msgstr "ƒ‰nenvoimakkuus"
+
+#: gnome-cd/gnome-cd.c:465
+msgid "Cannot create player"
+msgstr "Soittimen luonti ep‰onnistui"
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD-soitin"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Soita audio-CD:it‰"
+
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
-msgstr "Gnome-‰‰nentallennin:"
+msgstr "Gnomen ‰‰nentallennin:"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -549,17 +701,9 @@ msgstr "Uusi"
 msgid "Create new sample"
 msgstr "Luo uusi ‰‰ni"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "Soita"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Soita nykyinen ‰‰ni"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Pys‰yt‰"
 
 #
 #: grecord/src/gui.c:258
@@ -605,7 +749,7 @@ msgstr "Tiedosto '%s' ei ole tuettu ‰‰nitiedosto."
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas HydËn <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:454 grecord/src/main.c:110
+#: grecord/src/gui.c:454 grecord/src/main.c:111
 msgid "GNOME Sound recorder"
 msgstr "Gnomen nauhuri"
 
@@ -770,11 +914,11 @@ msgstr "M‰‰rit‰ tiedosto ‰‰nityst‰ varten"
 msgid "Specify a file to start playing"
 msgstr "M‰‰rit‰ tiedosto soittamista varten"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "ƒl‰ n‰yt‰ t‰t‰ viesti‰ uudestaan."
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -911,21 +1055,21 @@ msgstr "Avaa pystysuora muunnelma mittarista."
 msgid "Act as recording level meter."
 msgstr "Toimi ‰‰nityksen ‰‰nentason mittarina."
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "Kone on %s\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "ƒ‰nityksen ‰‰nenvoimakkuus"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "ƒ‰nenvoimakkuusmittari"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr "Tarkkaile ‰‰nityksen ‰‰nenvoimakkuutta"
 
 #: vu-meter/reclevel.desktop.in.h:2
