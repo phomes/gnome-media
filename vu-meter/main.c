@@ -94,22 +94,11 @@ save_state (GnomeClient *client,
 	    int fast,
 	    gpointer client_data)
 {
-	const char *prefix= gnome_client_get_config_prefix (client);
-	char *argv[]= { "rm", "-r", NULL };  
-	int xpos;
-	int ypos;
-
-	gnome_config_push_prefix (prefix);
+	char *argv[] = { NULL };
 	
-	gdk_window_get_geometry (window->window, &xpos, &ypos, NULL, NULL, NULL);
-	gnome_config_set_int ("Geometry/x", xpos);
-	gnome_config_set_int ("Geometry/y", ypos);
-	
-	gnome_config_pop_prefix ();
-	gnome_config_sync();
-	
-	argv[2]= gnome_config_get_real_path (prefix);
-	gnome_client_set_discard_command (client, 3, argv);
+	argv[0]= (char *) client_data;
+	gnome_client_set_clone_command (client, 1, argv);
+	gnome_client_set_restart_command (client, 1, argv);
 	
 	return TRUE;
 }
@@ -295,15 +284,6 @@ main (int argc,
 	g_signal_connect (G_OBJECT (client), "die",
 			  G_CALLBACK (gtk_main_quit), argv[0]);
 	
-	if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED) {
-		gnome_config_push_prefix (gnome_client_get_config_prefix (client));
-		
-		session_xpos = gnome_config_get_int ("Geometry/x");
-		session_ypos = gnome_config_get_int ("Geometry/y");
-		
-		gnome_config_pop_prefix ();
-	}
-	
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gnome_window_icon_set_from_file (GTK_WINDOW (window),
 					 GNOME_ICONDIR"/gnome-vumeter.png");
@@ -348,10 +328,6 @@ main (int argc,
 	/* time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter); */
 	
 	gtk_main ();
-	
-	gtk_object_unref (GTK_OBJECT (client));
-	/*   gtk_timeout_remove (time_id); */
-	g_free (meter);
 	
 	return 0;
 }
