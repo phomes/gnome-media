@@ -423,6 +423,7 @@ init_player (void)
 	/* Create app controls */
 	side_vbox = gtk_vbox_new (FALSE, 0);
 	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, open_track_editor, _("Open track editor"), _("Track editor"));
+	gtk_widget_set_sensitive (button, FALSE);
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->trackeditor_b = button;
 

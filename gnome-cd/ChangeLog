@@ -1,3 +1,19 @@
+2002-02-28  Iain <iain@ximian.com>
+
+	* gnome-cd.c (init_player): Make the track editor button ghosted.
+
+	* callbacks.c (cd_status_changed_cb): Make the track editor button
+	ghosted or not, depending on the status of the CD drive.
+
+	* display.c: Remove debugging crap.
+
+	* linux-cdrom.c (linux_cdrom_get_status): A function that just copies
+	the old status.
+	(linux_cdrom_real_get_status): A function that actually gets the
+	status.
+
+	* theme.c: Remove debugging crap.
+
 2002-02-27  Iain <iain@ximian.com>
 
 	* Makefile.am: Use the correct schema variable.

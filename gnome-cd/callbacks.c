@@ -450,6 +450,7 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
+		gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
 		if (status->audio == GNOME_CDROM_AUDIO_COMPLETE) {
 			if (cdrom->loopmode == GNOME_CDROM_LOOP) {
 				if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
@@ -531,33 +532,27 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
 		
 	case GNOME_CDROM_STATUS_NO_DISC:
+		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
+		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive open"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	default:
+		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive Error"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 	}
 
-#ifdef DEBUG
-	g_print ("Status changed\n"
-		 "Device: %d\nAudio %d\n"
-		 "Track: %d (%d:%d:%d)\n"
-		 "--------------------\n",
-		 status->cd, status->audio,
-		 status->track, status->relative.minute,
-		 status->relative.second, status->relative.frame);
-#endif
 	if (gcd->last_status != NULL) {
 		g_free (gcd->last_status);
 	}

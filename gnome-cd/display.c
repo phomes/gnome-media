@@ -780,7 +780,6 @@ cd_display_parse_theme (CDDisplay *disp,
 			xmlChar *location;
 
 			location = xmlGetProp (cur, (const xmlChar *) "location");
-			g_print ("Location: %s\n", location);
 			if (location != NULL) {
 				char *file, *full;
 

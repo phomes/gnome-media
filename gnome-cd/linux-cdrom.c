@@ -796,6 +796,25 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 {
 	LinuxCDRom *lcd;
 	LinuxCDRomPrivate *priv;
+
+	lcd = LINUX_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (priv->recent_status != NULL) {
+		*status = gnome_cdrom_copy_status (priv->recent_status);
+		return TRUE;
+	} else {
+		return linux_cdrom_real_get_status (cdrom, status, error);
+	}
+}
+
+static gboolean
+linux_cdrom_real_get_status (GnomeCDRom *cdrom,
+			     GnomeCDRomStatus **status,
+			     GError **error)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
 	struct cdrom_subchnl subchnl;
 	int cd_status;
@@ -989,7 +1008,6 @@ linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 
 	for (i = priv->track0 - 1; i < priv->track1; i++) {
 		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
-		g_print ("%d: %u\n", i, msf_to_frames (&priv->track_info[i].address));
 	}
 
 	linux_cdrom_close (lcd);
@@ -1087,13 +1105,13 @@ update_cd (gpointer data)
 	priv = lcd->priv;
 
 	/* Do an update */
-	if (linux_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
+	if (linux_cdrom_real_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
-
+		
 		g_error_free (error);
 		return TRUE;
 	}
-
+	
 	if (priv->recent_status == NULL) {
 		priv->recent_status = status;
 		
@@ -1113,7 +1131,7 @@ update_cd (gpointer data)
 			    status->cd == GNOME_CDROM_STATUS_OK) {
 				linux_cdrom_update_cd (lcd);
 			}
-
+			
 			g_free (priv->recent_status);
 			priv->recent_status = status;
 

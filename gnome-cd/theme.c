@@ -127,7 +127,6 @@ theme_load (GnomeCD *gcd,
 	g_return_val_if_fail (gcd != NULL, NULL);
 	g_return_val_if_fail (theme_name != NULL, NULL);
 
-	g_print ("HEllo theme world\n");
 	theme_path = g_concat_dir_and_file (THEME_DIR, theme_name);
 	if (g_file_test (theme_path, G_FILE_TEST_IS_DIR) == FALSE) {
 		/* Theme dir isn't a dir */
@@ -152,7 +151,6 @@ theme_load (GnomeCD *gcd,
 		return NULL;
 	}
 
-	g_print ("Parsin file\n");
 	xml = xmlParseFile (xml_file);
 	g_free (xml_file);
 	
@@ -195,13 +193,10 @@ theme_load (GnomeCD *gcd,
 
 	while (ptr != NULL) {
 		if (xmlStrcmp (ptr->name, (const xmlChar *) "display") == 0) {
-			g_print ("Parsing display theme\n");
 			cd_display_parse_theme (gcd->display, theme, xml, ptr->xmlChildrenNode);
 		} else if (xmlStrcmp (ptr->name, (const xmlChar *) "icons") == 0) {
-			g_print ("Parsing widget theme\n");
 			parse_theme (theme, xml, ptr->xmlChildrenNode);
 		} else {
-			g_print ("Uknown element: %s\n", ptr->name);
 		}
 
 		ptr = ptr->next;
