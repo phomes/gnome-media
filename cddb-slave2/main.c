@@ -97,8 +97,8 @@ main (int argc,
 {
 	CORBA_ORB orb;
 
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	textdomain (GETTEXT_PACKAGE);
 
 #if 0
 	/* We don't really want an X connection

@@ -51,7 +51,7 @@ oafdir = $(DESTDIR)$(libdir)/bonobo/servers
 oaf_in_files = GNOME_Media_CDDBSlave2.server.in
 oaf_DATA = $(oaf_in_files:.server.in=.server)
 
-@XML_I18N_MERGE_OAF_RULE@
+@INTLTOOL_SERVER_RULE@
 
 EXTRA_DIST = $(oaf_in_files) $(oaf_DATA) $(IDLS) $(schema_DATA)
 

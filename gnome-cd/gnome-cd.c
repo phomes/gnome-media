@@ -212,6 +212,10 @@ main (int argc,
       char *argv[])
 {
 	GnomeCD *gcd;
+
+	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	textdomain (GETTEXT_PACKAGE);
+
 	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, NULL);
 	gcd = init_player ();

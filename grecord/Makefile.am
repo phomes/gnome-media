@@ -8,7 +8,7 @@ EXTRA_DIST = \
 Applicationsdir = $(datadir)/gnome/apps/Multimedia
 Applications_in_files = Soundrecorder.desktop.in 
 Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_SERVER_RULE@
 
 Mimedir = $(datadir)/mime-info
 Mime_DATA = grecord.keys grecord.mime

@@ -2,7 +2,7 @@ AC_PREREQ(2.52)
 AC_INIT(gmix)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-media2, 1.100.0)
+AM_INIT_AUTOMAKE(gnome-media, 1.100.0)
 AM_MAINTAINER_MODE
 
 if test -z "$CERTIFIED_GNOMIE"; then
@@ -10,10 +10,14 @@ if test -z "$CERTIFIED_GNOMIE"; then
   exit 1
 fi
 
-AM_PROG_XML_I18N_TOOLS
+AC_PROG_INTLTOOL
 
 GNOME_COMMON_INIT
 GNOME_PLATFORM_GNOME_2(yes, force)
+
+GETTEXT_PACKAGE=gnome-media-2.0
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
 AC_PROG_CC
 AC_ISC_POSIX
@@ -91,8 +95,8 @@ if test "x$enable_alsa" = "xyes"; then
     fi
 fi
 
-ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt lv nl nn no pl pt pt_BR ro ru sk sl sv tr uk zh_TW.Big5 zh_CN.GB2312"
-AM_GNOME2_GETTEXT
+ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk zh_TW zh_CN.GB2312"
+AM_GLIB_GNU_GETTEXT
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
@@ -171,7 +175,6 @@ gmix/doc/Makefile
 gmix/doc/C/Makefile
 gmix/doc/it/Makefile
 vu-meter/Makefile
-intl/Makefile
 cddb-slave2/Makefile
 gnome-cd/Makefile
 gnome-cd/images/Makefile

@@ -104,8 +104,8 @@ main (int argc, char *argv[])
 	gboolean fullpath = FALSE;
 	
 	/* i18n stuff ---------------------------------- */
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	textdomain (GETTEXT_PACKAGE);
 	
 	gnome_init_with_popt_table (_("GNOME Sound recorder"), VERSION, argc, argv,
 				    grec_options, 0, &pctx);
