@@ -433,7 +433,8 @@ GtkWidget*
 create_about (void)
 {
 	const gchar *authors[] = {
-	/* if your language allows it, replace the "e" of Hyden by an "eacute" */
+		/* if your charset allows it, replace the "e" of "Hyden"
+		 *  by an "eacute" (U00E9) */
 		N_("Andreas Hyden <a.hyden@cyberpoint.se>"),
 		NULL
 	};
@@ -443,8 +444,8 @@ create_about (void)
 	authors[0]=_(authors[0]);
 #endif
 	about = gnome_about_new (_("GNOME Sound recorder"), VERSION,
-				/* if your language allows it, replace the
-				   "e" of Hyden by an "eacute" */
+				/* if your charset allows it, replace the
+				   "e" of Hyden by an "eacute" (U00E9) */
 				 _("Copyright (C)  2000 Andreas Hyden"),
 				 authors,
 				 _("A simple soundrecorder and soundplayer for GNOME.\nDedicated to my cat, Malte."),
