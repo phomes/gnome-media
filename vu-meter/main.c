@@ -54,32 +54,23 @@ save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	    gint shutdown, GnomeInteractStyle inter_style, gint fast,
 	    gpointer client_data)
 {
-  gchar  *argv[20];
-  gchar  *session_id;
-  gint   i;
-  gint   xpos, ypos, w, h;
+  gchar *prefix= gnome_client_get_config_prefix (client);
+  gchar *argv[]= { "rm", "-r", NULL };  
+  gint   xpos;
+  gint   ypos;
 
-  session_id = gnome_client_get_id (client);
-  gdk_window_get_geometry (window->window, &xpos, &ypos, &w, &h, NULL);
-  gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+  gnome_config_push_prefix (prefix);
+
+  gdk_window_get_geometry (window->window, &xpos, &ypos, NULL, NULL, NULL);
   gnome_config_set_int ("Geometry/x", xpos);
   gnome_config_set_int ("Geometry/y", ypos);
-  gnome_config_set_int ("Geometry/w", w);
-  gnome_config_set_int ("Geometry/h", h);
+
   gnome_config_pop_prefix ();
   gnome_config_sync();
+  
+  argv[2]= gnome_config_get_real_path (prefix);
+  gnome_client_set_discard_command (client, 3, argv);
 
-  i    = 0;
-  argv[i++] = (gchar *)client_data;
-  argv[i++] = "-x";
-  argv[i++] = g_strdup (itoa (xpos));
-  argv[i++] = "-y";
-  argv[i++] = g_strdup (itoa (ypos));
-  gnome_client_set_restart_command (client, i, argv);
-  gnome_client_set_clone_command (client, 0, NULL);
- 
-  g_free (argv[2]);
-  g_free (argv[4]);
   return TRUE;
 }
 
@@ -171,18 +162,17 @@ main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (save_state), argv[0]);
   gtk_signal_connect (GTK_OBJECT (client), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), argv[0]);
-  if (GNOME_CLIENT_CONNECTED (client))
-    {
-      GnomeClient *cloned = gnome_cloned_client ();
-      if (cloned)
-	{
-	  gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
-	  session_xpos = gnome_config_get_int ("Geometry/x");
-	  session_ypos = gnome_config_get_int ("Geometry/y");
 
-	  gnome_config_pop_prefix ();
-	}
+  if (gnome_client_get_flags (client) & GNOME_CLIENT_RESTORED)
+    {
+      gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+
+      session_xpos = gnome_config_get_int ("Geometry/x");
+      session_ypos = gnome_config_get_int ("Geometry/y");
+
+      gnome_config_pop_prefix ();
     }
+
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Volume Meter");
   if (session_xpos >=0 && session_ypos >= 0)
