@@ -97,7 +97,7 @@ oaf_DATA = $(oaf_in_files:.server.in=.server)
 @INTLTOOL_SERVER_RULE@
 @INTLTOOL_DESKTOP_RULE@
 
-desktopdir = $(datadir)/control-center-2/capplets
+desktopdir = $(datadir)/control-center-2.0/capplets
 Desktop_in_files = cddb-slave.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
