@@ -103,10 +103,6 @@
 #define DISC_INFO_LEN	512
 #define MAXTRACKS	111
 
-//#define TRK_PLAYING	0x01 /* 00000001b */
-//#define TRK_DATA	0x02 /* 00000010b */
-//#define TRK_REPEAT	0x04 /* 00000100b */ 
-
 struct cd_track
 {
 	char name[TRK_NAME_LEN+1];
@@ -125,7 +121,7 @@ typedef struct
 	unsigned long cddb_id;		/* cddb id */
 	unsigned long old_cddb_id;
 
-	struct cd_track trk[MAXTRACKS];	/* Track info, to be allocated 
+	struct cd_track *trk;	/* Track info, to be allocated 
                			   	   after cd_tchdr is read */
 
 	int first_t, last_t;		/* first and last track numbers
@@ -133,8 +129,6 @@ typedef struct
 
 	char dtitle[DISC_INFO_LEN+1];	/* Disc title */
 	char album[DISC_INFO_LEN+1], artist[DISC_INFO_LEN+1];
-	
-	char trkext[MAXTRACKS][DISC_INFO_LEN+1];
 	
 	/* See /usr/src/linux/include/linux/cdrom.h */
 	struct cdrom_ti ti;		/* Track info */
@@ -155,16 +149,13 @@ typedef struct
 
 	int cur_disc;			/* For changer use */
 					   
-	/* Not yet implemented, placeholder for cddb stuff */
-	char playlist[80];
-
 	/* error area, these may not all be accurate all the time */
 	int isplayable;		/* TRUE if the disc is playable */
 	int isdisk;		/* TRUE if there's a disc in the drive */
 	int err;		/* TRUE if there's any error */
 	int ejected;		/* Internal, used by tcd_ejectcd */
 	int needs_dbwrite;	/* Internal */
-	char errmsg[100];	/* Human readable error message, filled 
+	char errmsg[64];	/* Human readable error message, filled 
 				   if err== TRUE */
 	int nslots; 		/* Number of slots the cdrom drive has */
 } cd_struct;

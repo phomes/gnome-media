@@ -98,7 +98,7 @@ int configured = FALSE, old_status=-1, max,tfont_height;
 unsigned int cur_goto_id, release_t=0, roll_t=0;
 tcd_prefs prefs;
 int cddb=0, max_title_width;
-
+       
 /* prototypes */
 void status_changed(void);
 gint slow_timer(gpointer *data);
@@ -672,7 +672,7 @@ void make_goto_menu()
 
 void adjust_status_size(void)
 {
-    int i, t;
+    int t;
     max_title_width = 0;
 
     t = gdk_string_width(tfont, cd.artist);
@@ -787,7 +787,6 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 
 void setup_time_display(GtkWidget *table)
 {
-    int width;
     GtkWidget *handle1, *frame;
     GtkWidget *box;
 
@@ -967,19 +966,13 @@ void setup_keys()
 int main (int argc, char *argv[])
 {
     GtkWidget *table;
-    char *homedir;
-    char rcfile[256];
 
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
 
     gnome_init("gtcd", VERSION, argc, argv);
 
-    homedir = getenv("HOME");
-    g_snprintf(rcfile, 255, "%s/.tcd/gtcdrc", homedir);
-    gtk_rc_parse(rcfile);
-
-    cd.play_method = NORMAL;        
+    cd.play_method = NORMAL;
 
     load_prefs(&prefs);
     cd.cdpath = prefs.cddev;
@@ -1014,7 +1007,7 @@ int main (int argc, char *argv[])
     
     signal(SIGUSR2, reload_info);
     
-    gtk_main ();
+    gtk_main();
     save_prefs(&prefs);
     gnome_config_sync();
     gdk_gc_destroy(gc);

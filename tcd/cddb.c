@@ -86,11 +86,6 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 			strncpy( cd->dtitle, string+7, DISC_INFO_LEN );
 			continue;
 		}
-		if( strncmp( string, "PLAYLIST", 8 ) == 0)
-		{
-			strncpy( cd->playlist, string+9, 80 );
-			continue;
-		}
 		if( strncmp( string, "TTITLE", 6 ) == 0 )
 		{
                        	if(sscanf( string, "TTITLE%d=", &trk ) == 1)
@@ -145,9 +140,7 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	fprintf( fp, "DTITLE=%s\n", cd->dtitle );
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 		fprintf( fp, "TTITLE%ld=%s\n", i-1, cd->trk[i].name );
-	for( i = cd->first_t; i <= cd->last_t; i++ )
-		fprintf( fp, "EXTT%ld=%s\n", i-1, cd->trkext[i] );
-	fprintf( fp, "PLAYLIST=%s\n", cd->playlist );
+	fprintf( fp, "PLAYLIST=\n");
 	/* FIXME print extended info here too */
 	
 	fclose(fp);
