@@ -1332,7 +1332,7 @@ make_play_pipeline (GSRWindow *window)
 	obj->sink = gst_gconf_get_default_audio_sink ();
 	if (!obj->sink)
 	{
-		g_error ("Could not find default audio src element");
+		g_error ("Could not find default audio sink element");
 		return NULL;
 	}
 
