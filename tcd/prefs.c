@@ -96,6 +96,7 @@ void load_prefs(tcd_prefs *prop)
 	prop->forward.key = gnome_config_get_int("/gtcd/keybindings/forward=43");
 
 	prop->only_use_trkind = gnome_config_get_bool("/gtcd/general/only_use_trkind=0");
+	prop->squared_volume = gnome_config_get_bool("/gtcd/general/squared_volume=0");
 
 /* cddb stuff, used by cddbslave. */
 	prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=freedb.freedb.org");
@@ -143,6 +144,7 @@ void save_prefs(tcd_prefs *prop)
 	gnome_config_private_set_string("/cddbslave/server/http_proxy_auth_passwd", prop->cddb_httpproxy_auth_passwd);
 
 	gnome_config_set_bool("/gtcd/general/only_use_trkind", prop->only_use_trkind);
+	gnome_config_set_bool("/gtcd/general/squared_volume", prop->squared_volume);
 	gnome_config_set_bool("/cddbslave/server/use_socks", prop->use_socks);
 	gnome_config_set_string("/cddbslave/server/socks_server", prop->socks_server);
         
@@ -324,7 +326,7 @@ GtkWidget *create_general_frame()
 	GtkWidget *dev_entry;
 	GtkWidget *cp, *fs;
 	GtkWidget *left_box, *right_box, *hbox, *vbox;
-	GtkWidget *handles, *tooltips, *trkind;
+	GtkWidget *handles, *tooltips, *trkind, *slvolume;
     
 	left_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 	right_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
@@ -384,6 +386,13 @@ GtkWidget *create_general_frame()
 	gtk_signal_connect(GTK_OBJECT(trkind), "clicked",
 			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->only_use_trkind);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), trkind);
+
+	/* use squared law volume */
+	slvolume = gtk_check_button_new_with_label(_("Use squared law volume control"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(slvolume), prefs->squared_volume);
+	gtk_signal_connect(GTK_OBJECT(slvolume), "clicked",
+			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->squared_volume);
+	gtk_box_pack_start_defaults(GTK_BOX(vbox), slvolume);
     
 	gtk_widget_show_all(vbox);
 	return vbox;

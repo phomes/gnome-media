@@ -46,6 +46,7 @@ typedef struct
     gchar *socks_server;
 
     gboolean only_use_trkind;
+    gboolean squared_volume;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );

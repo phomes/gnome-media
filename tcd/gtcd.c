@@ -673,7 +673,15 @@ gint volume_changed( GtkWidget *widget, gpointer *data )
 {
 	if(!data)
 	{
-		tcd_set_volume(&cd, (int)floor(GTK_ADJUSTMENT(vol)->value));
+	        gfloat value = GTK_ADJUSTMENT(vol)->value;
+
+		if(prefs->squared_volume) {
+		    tcd_set_volume(&cd, (int)rint(value * value / 256.0));
+		}
+		else {
+		    tcd_set_volume(&cd, (int)rint(value));
+		}
+
 	}
 	draw_status();
 	return 1;
@@ -771,7 +779,14 @@ static gint status_configure_event(GtkWidget *widget, GdkEventConfigure *event)
 		status_height = status_area->allocation.height;
 		first=FALSE;
 	}
-	GTK_ADJUSTMENT(vol)->value = (double)tcd_get_volume(&cd);
+
+	if(prefs->squared_volume) {
+	    GTK_ADJUSTMENT(vol)->value = sqrt((double)tcd_get_volume(&cd) * 256.0);
+	}
+	else {
+	    GTK_ADJUSTMENT(vol)->value = (double)tcd_get_volume(&cd);
+	}
+
 	gtk_signal_emit_by_name(GTK_OBJECT(vol),"value_changed", "no_update");
 	return TRUE;
 }
