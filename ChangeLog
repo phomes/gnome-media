@@ -1,3 +1,11 @@
+2005-02-04  John Spray  <jcs116@york.ac.uk>
+
+	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* gst-mixer/src/track.c: (gnome_volume_control_track_show):
+	  Patch to not try to call gtk_table_set_[col|row]_spacing for
+	  negative (0 - 1) row/col numbers.
+
 2005-02-04  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* gnome-cd/preferences.c: (preferences_dialog_show):

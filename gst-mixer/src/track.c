@@ -505,25 +505,29 @@ gnome_volume_control_track_show (GnomeVolumeControlTrack *track,
     if (track->options) {
       gtk_table_set_row_spacing (track->table,
 				 track->pos, 6);
-      gtk_table_set_row_spacing (track->table,
-				 track->pos - 1, 6);
+      if (track->pos > 0)
+        gtk_table_set_row_spacing (track->table,
+				   track->pos - 1, 6);
     } else if (!track->toggle) {
       gtk_table_set_col_spacing (track->table,
 				 track->pos, 6);
-      gtk_table_set_col_spacing (track->table,
-				 track->pos - 1, 6);
+      if (track->pos > 0)
+        gtk_table_set_col_spacing (track->table,
+				   track->pos - 1, 6);
     }
   } else {
     if (track->options) {
       gtk_table_set_row_spacing (track->table,
 				 track->pos, 0);
-      gtk_table_set_row_spacing (track->table,
-				 track->pos - 1, 0);
+      if (track->pos > 0)
+        gtk_table_set_row_spacing (track->table,
+				   track->pos - 1, 0);
     } else if (!track->toggle) {
       gtk_table_set_col_spacing (track->table,
 				 track->pos, 0);
-      gtk_table_set_col_spacing (track->table,
-				 track->pos - 1, 0);
+      if (track->pos > 0)
+        gtk_table_set_col_spacing (track->table,
+				   track->pos - 1, 0);
     }
   }
 }
