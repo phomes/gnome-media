@@ -6,7 +6,7 @@ always_built_SUBDIRS = cddb-slave2 profiles
 SUBDIRS = po $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ \
 	  @PROGRAMS_GNOME_CD@ \
-	  @PROGRAMS_GSTMIX@ \
+	  @PROGRAMS_GSTMIXER@ \
 	  @PROGRAMS_GRECORD@ \
 	  @PROGRAMS_GSTPROPS@
 

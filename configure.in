@@ -75,10 +75,11 @@ PKG_CHECK_MODULES(VUMETER, glib-2.0 >= 1.3.7 gtk+-2.0 >= 1.3.7 \
 AC_SUBST(VUMETER_CFLAGS)
 AC_SUBST(VUMETER_LIBS)
 
-# Check for GStreamer stuff
+# Check for GStreamer stuff and GSR depds
 HAVE_GST=no
 
 GST_MAJORMINOR=0.7
+PROGRAMS_GSTRECORD=""
 PKG_CHECK_MODULES(GSR, \
   gstreamer-$GST_MAJORMINOR >= 0.7.2 gstreamer-libs-$GST_MAJORMINOR >= 0.7.2 \
 		  libgnomeui-2.0 >= 1.102.0,
@@ -86,7 +87,10 @@ PKG_CHECK_MODULES(GSR, \
 
 if test "x$HAVE_GST" = "xno"; then
   AC_MSG_WARN(you need GStreamer installed for the mixer and recorder to work)
+else
+  PROGRAMS_GSTRECORD="grecord"
 fi
+AC_SUBST(PROGRAMS_GRECORD)
 
 AC_SUBST(GSR_CFLAGS)
 AC_SUBST(GSR_LIBS)
@@ -237,11 +241,6 @@ PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
 
 AC_SUBST(GAILUTIL_CFLAGS)
 AC_SUBST(GAILUTIL_LIBS)
-
-# grecord
-PROGRAMS_GRECORD="grecord"
-AC_SUBST(PROGRAMS_GRECORD)
-
 
 # gstreamer-properties
 PROGRAMS_GSTPROPS=""
