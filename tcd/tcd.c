@@ -80,7 +80,7 @@ int main(int argc, char **argv)
     /* Install signal handler */
     for( i=SIGHUP; i<SIGTERM+1; i++ )
 	signal( i, sighandler );
-    signal(SIGUSR1, reload_info);
+    signal(SIGUSR2, reload_info);
 
     /* Allocate some memory for the cd structure */
     cd = malloc(sizeof(cd_struct));
