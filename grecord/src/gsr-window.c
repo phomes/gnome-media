@@ -470,22 +470,143 @@ pipeline_error_cb (GstElement *parent,
 	eos_done (ed);
 }
 
+GtkWidget *
+gsr_button_new_with_stock_image (const gchar *text, const gchar *stock_id)
+{
+	GtkWidget *button;
+	GtkStockItem item;
+	GtkWidget *label;
+	GtkWidget *image;
+	GtkWidget *hbox;
+	GtkWidget *align;
+
+	button = gtk_button_new ();
+
+	if (GTK_BIN (button)->child)
+		gtk_container_remove (GTK_CONTAINER (button),
+				      GTK_BIN (button)->child);
+
+	if (gtk_stock_lookup (stock_id, &item)) {
+		label = gtk_label_new_with_mnemonic (text);
+
+		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+
+		image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+		hbox = gtk_hbox_new (FALSE, 2);
+
+		align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+		gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+		gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+		gtk_container_add (GTK_CONTAINER (button), align);
+		gtk_container_add (GTK_CONTAINER (align), hbox);
+
+		gtk_widget_show_all (align);
+
+		return button;
+
+	}
+
+	label = gtk_label_new_with_mnemonic (text);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
+
+	gtk_widget_show (label);
+	gtk_container_add (GTK_CONTAINER (button), label);
+
+	return button;
+}
+
+GtkWidget *
+gsr_dialog_add_button (GtkDialog *dialog, const gchar *text, const gchar *stock_id, gint response_id)
+{
+	GtkWidget *button;
+
+	g_return_val_if_fail (GTK_IS_DIALOG (dialog), NULL);
+	g_return_val_if_fail (text != NULL, NULL);
+	g_return_val_if_fail (stock_id != NULL, NULL);
+
+	button = gsr_button_new_with_stock_image (text, stock_id);
+	g_return_val_if_fail (button != NULL, NULL);
+
+	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+
+	gtk_widget_show (button);
+
+	gtk_dialog_add_action_widget (dialog, button, response_id);
+
+	return button;
+}
+
+static gboolean
+replace_dialog (GtkWindow *parent,
+		const gchar *message,
+		const gchar *file_name)
+{
+	GtkWindow *message_dialog;
+	gint ret;
+
+	g_return_val_if_fail (file_name != NULL, FALSE);
+
+	message_dialog = gtk_message_dialog_new (parent,
+						 GTK_DIALOG_DESTROY_WITH_PARENT,
+						 GTK_MESSAGE_QUESTION,
+						 GTK_BUTTONS_NONE,
+						 message,
+						 file_name);
+	/* Add cancel button */
+	gtk_dialog_add_button (GTK_DIALOG (message_dialog),
+			       GTK_STOCK_CANCEL,
+			       GTK_RESPONSE_CANCEL);
+	/* Add replace button */
+	gsr_dialog_add_button (GTK_DIALOG (message_dialog), _("_Replace"),
+			       GTK_STOCK_REFRESH,
+			       GTK_RESPONSE_YES);
+
+	gtk_dialog_set_default_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_CANCEL);
+	gtk_window_set_resizable (GTK_WINDOW (message_dialog), FALSE);
+	ret = gtk_dialog_run (GTK_DIALOG (message_dialog));
+	gtk_widget_destroy (GTK_WIDGET (message_dialog));
+
+	return (ret == GTK_RESPONSE_YES);
+}
+
+static gboolean
+replace_existing_file (GtkWindow *parent,
+		      const gchar *file_name) 
+{
+	return replace_dialog (parent,
+			       _("A file named \"%s\" already exists. \n"
+			       "Do you want to replace it with the "
+			       "one you are saving?"),
+			       file_name);
+}
+
 static void
 do_save_file (GSRWindow *window,
-	      const char *name)
+	      const char *_name)
 {
 	GSRWindowPrivate *priv;
         GMAudioProfile *profile;
-	char *tmp, *src;
+	char *tmp, *src, *name;
 	GnomeVFSURI *src_uri, *dst_uri;
 
 	priv = window->priv;
 
         profile = gm_audio_profile_choose_get_active (priv->profile);
 
-	tmp = g_strdup_printf ("file://%s.%s", name,
+	if (g_str_has_suffix (_name, gm_audio_profile_get_extension (profile)))
+		name = g_strdup (_name);
+	else
+		name = g_strdup_printf ("%s.%s", _name,
 			       gm_audio_profile_get_extension (profile));
+	if (g_file_test (name, G_FILE_TEST_EXISTS)) {
+		if (!replace_existing_file (GTK_WINDOW (window), name))
+			return;
+	}
 
+	tmp = g_strdup_printf ("file://%s", name);
 	src = g_strdup_printf ("file://%s", priv->record_filename);
 	src_uri = gnome_vfs_uri_new (src);
 	dst_uri = gnome_vfs_uri_new (tmp);
@@ -499,8 +620,7 @@ do_save_file (GSRWindow *window,
 			NULL, NULL);
 		if (result == GNOME_VFS_OK) {
 			char *title, *short_name;
-			priv->filename = g_strdup_printf ("%s.%s",
-				name, gm_audio_profile_get_extension (profile));
+			priv->filename = g_strdup (name);
 			short_name = g_path_get_basename (priv->filename);
 			title = g_strdup_printf ("%s - Sound Recorder",
 				short_name);
@@ -519,11 +639,12 @@ do_save_file (GSRWindow *window,
 	} else {
 		gchar *error_message;
 
-		error_message = g_strdup_printf (_("Could not save the file \"%s\""), tmp);
+		error_message = g_strdup_printf (_("Could not save the file \"%s\""), name);
 		show_error_dialog (GTK_WINDOW (window), error_message);
 		g_free (error_message);
 	}
 
+	g_free (name);
 	g_free (tmp);
 }
 
