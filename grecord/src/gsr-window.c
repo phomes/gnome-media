@@ -663,7 +663,7 @@ file_save (BonoboUIComponent *uic,
 		do_save_file (window, window->priv->filename);
 	}
 }
-/*
+
 static void
 file_mixer (BonoboUIComponent *uic,
 	    GSRWindow *window,
@@ -674,10 +674,10 @@ file_mixer (BonoboUIComponent *uic,
 	GError *error = NULL;
 	gboolean ret;
 
-COMMENT!	 Open the mixer 
-	mixer_path = g_find_program_in_path (DEFAULT_MIXER);
+	/* Open the mixer */
+	mixer_path = g_find_program_in_path ("gst-mixer");
 	if (mixer_path == NULL) {
-		g_warning (_("%s is not installed in the path."), DEFAULT_MIXER);
+		g_warning (_("%s is not installed in the path."), "gst-mixer");
 		return;
 	}
 
@@ -691,7 +691,6 @@ COMMENT!	 Open the mixer
 
 	g_free (mixer_path);
 }
-*/
 
 static GtkWidget *
 make_title_label (const char *text)
@@ -1091,7 +1090,7 @@ static BonoboUIVerb file_verbs[] = {
 	BONOBO_UI_VERB ("FileSave", (BonoboUIVerbFn) file_save),
 	BONOBO_UI_VERB ("FileSaveAs", (BonoboUIVerbFn) file_save_as),
 
-/*	BONOBO_UI_VERB ("FileMixer", (BonoboUIVerbFn) file_mixer), */
+	BONOBO_UI_VERB ("FileMixer", (BonoboUIVerbFn) file_mixer),
 	BONOBO_UI_VERB ("FileProperties", (BonoboUIVerbFn) file_properties),
 
 	BONOBO_UI_VERB ("FileClose", (BonoboUIVerbFn) file_close),
