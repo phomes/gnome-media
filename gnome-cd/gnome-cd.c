@@ -368,6 +368,17 @@ show_error (GtkWidget	*dialog,
 	}
 }
 
+static void
+tray_object_destroyed (GnomeCD *gcd)
+{
+	/* FIXME: gcd->tray should also be set to NULL.  
+	   Need a mechanism to re-create the eggtrayicon
+	   when the tray applet is re-added.
+	*/
+	g_free (gcd->tray_tips);
+	gcd->tray_tips = NULL;
+}
+
 static GnomeCD *
 init_player (const char *device_override)
 {
@@ -643,6 +654,10 @@ init_player (const char *device_override)
 	box = gtk_event_box_new ();
 	g_signal_connect (G_OBJECT (box), "button_press_event",
 			 	G_CALLBACK (tray_icon_clicked), gcd);
+
+	g_object_set_data_full (G_OBJECT (gcd->tray), "tray-action-data", gcd,
+				(GDestroyNotify) tray_object_destroyed);
+
 	gtk_container_add (GTK_CONTAINER (gcd->tray), box);
 	pixbuf = gdk_pixbuf_scale_simple (pixbuf_from_file ("gnome-cd/cd.png"),
 				16, 16, GDK_INTERP_BILINEAR);

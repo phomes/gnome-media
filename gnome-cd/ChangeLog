@@ -1,3 +1,15 @@
+2003-09-05  Ted Gould  <ted@gould.cx>
+
+	* callbacks.c, gnome-cd.c: Just adding the patch that is documented
+	bellow.  Thanks Kaushal.
+
+2003-09-05  Kaushal Kumar  <kaushal.kumar@wipro.com>
+
+	* gnome-cd.c: Added a monitor for tray destroy.
+	* gnome-cd.c(tray_object_destroyed): Callback.   
+	* callbacks.c: Null check tray_tips before passing it.
+	Fixes bugzilla bug #121538.
+
 2003-08-25  Irene Ryan <irene.ryan@sun.com>
 
 	* doc/C/gnome-cd.xml: minor updates to Help for GNOME 2.4 release
