@@ -683,6 +683,7 @@ void adjust_status_size(void)
 	max_title_width = t;
     t = gdk_string_width(tfont, " ") * 25;
     if(max_title_width < t) max_title_width = t;
+    if(max_title_width < 100) max_title_width = 100; /* make sure we can fit time */
     gtk_widget_set_usize(status_area, max_title_width+8, tfont_height+27);
 }
 
