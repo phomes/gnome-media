@@ -1590,6 +1590,8 @@ record_start (gpointer user_data)
 	sample_count++;
 	gtk_window_set_title (GTK_WINDOW(window), name);
 
+	g_free (name);
+
 	return FALSE;
 }
 
