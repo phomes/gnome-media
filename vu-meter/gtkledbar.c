@@ -110,11 +110,12 @@ led_bar_new (gint segments, gint orientation )
       gtk_led_set_colors (GTK_LED (led_bar->segments[i]), &active, &inactive);
 
       if ( !orientation ) /* horiz */
-	  gtk_table_attach_defaults (GTK_TABLE (table), led_bar->segments[i],
-				     i, (i + 1), 0, 1);
+	  gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
+				     i, (i + 1), 0, 1, 0, 0, 0, 0);
       else /* vert */
-	  gtk_table_attach_defaults (GTK_TABLE (table), led_bar->segments[i],
-				     0, 1, (segments - i - 1), (segments - i) );
+	  gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
+				     0, 1, (segments - i - 1), (segments - i),
+                                     0, 0, 0, 0 );
       gtk_widget_show (led_bar->segments[i]);
     }
 
