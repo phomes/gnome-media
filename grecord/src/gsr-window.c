@@ -103,6 +103,7 @@ struct _GSRWindowPrivate {
 };
 
 static GSRWindowPipeline * make_record_pipeline    (GSRWindow         *window);
+static GSRWindowPipeline * make_play_pipeline      (GSRWindow         *window);
 static void                gsr_window_init         (GSRWindow         *window);
 static void                gsr_window_class_init   (GSRWindowClass    *klass);
 static void                gsr_window_finalize     (GObject           *object);
@@ -936,6 +937,16 @@ media_play (BonoboUIComponent *uic,
 	if (priv->has_file == FALSE)
 		return;
 
+	if (priv->play) {
+		gst_element_set_state (priv->play->pipeline, GST_STATE_NULL);
+		g_object_unref (priv->play->pipeline);
+	}
+	priv->play = make_play_pipeline (window);
+
+	g_object_set (G_OBJECT (window->priv->play->src),
+		      "location", priv->filename,
+		      NULL);
+
 	if (priv->record && gst_element_get_state (priv->record->pipeline) == GST_STATE_PLAYING) {
 		gst_element_set_state (priv->record->pipeline, GST_STATE_READY);
 	}
@@ -1630,7 +1641,7 @@ gsr_window_init (GSRWindow *window)
 	bonobo_ui_component_thaw (priv->ui_component, NULL);
 
 	/* Make the pipelines */
-	priv->play = make_play_pipeline (window);
+	priv->play = NULL;
 	priv->record = NULL; 
 
 	priv->len_secs = 0;
@@ -1707,9 +1718,6 @@ gsr_window_set_property (GObject      *object,
 		g_free (title);
 		g_free (short_name);
 				      
-		g_object_set (G_OBJECT (window->priv->play->src),
-			      "location", priv->filename,
-			      NULL);
 		
 		CMD_SET_SENSITIVE (window, "MediaPlay", window->priv->has_file ? "1" : "0");
 		CMD_SET_SENSITIVE (window, "MediaStop", "0");
