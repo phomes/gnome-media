@@ -305,7 +305,7 @@ GtkWidget *optpage()
 	gtk_container_border_width(GTK_CONTAINER(gui_frame), GNOME_PAD_SMALL);
 
 	vbox = gtk_vbox_new(TRUE, 0);
-	temp = gtk_check_button_new_with_label(_("Use Mixer Icons"));
+	temp = gtk_check_button_new_with_label(_("Use mixer icons"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
 				     prefs.use_icons);
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
@@ -313,7 +313,7 @@ GtkWidget *optpage()
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
 	
 	
-	temp = gtk_check_button_new_with_label(_("Use Mixer Labels"));
+	temp = gtk_check_button_new_with_label(_("Use mixer labels"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
 				     prefs.use_labels);
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
