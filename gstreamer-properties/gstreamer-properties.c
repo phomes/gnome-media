@@ -184,14 +184,26 @@ static GtkOptionMenu *create_pipeline_menu (GladeXML * dialog, GSTPPipelineEdito
 	GtkOptionMenu *option = NULL;
 	gint i;
 	GSTPPipelineDescription *pipeline_desc = editor->pipeline_desc;
+
+	
 	option = GTK_OPTION_MENU (WID (editor->optionmenu_name));
 	if (option)
 	{
 		GtkMenu *menu = GTK_MENU (gtk_menu_new ());
 		GtkMenuItem *mi = NULL;
+		
 		for (i = 0; i < editor->n_pipeline_desc; i++)
 		{
 			GSTPPipelineDescription *cur_pipeline_desc = &(pipeline_desc[i]);
+			GstElementFactory *factory;
+
+			if (cur_pipeline_desc->pipeline != NULL) {
+				factory = gst_element_factory_find (cur_pipeline_desc->pipeline);
+				if (factory == NULL) {
+					continue;
+				}
+			}
+			
 			mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label(cur_pipeline_desc->name));
 			cur_pipeline_desc->index = i;
 			g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
@@ -199,8 +211,10 @@ static GtkOptionMenu *create_pipeline_menu (GladeXML * dialog, GSTPPipelineEdito
 			gtk_widget_show (GTK_WIDGET (mi));
 			gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
 		}
+
 		gtk_option_menu_set_menu (option, GTK_WIDGET (menu));
 	}
+
 	return option;
 }
 
