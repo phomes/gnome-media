@@ -28,6 +28,7 @@ gnome_cd_SOURCES =		\
 	linux-cdrom.c		\
 	linux-cdrom.h		\
 	preferences.c		\
+	preferences.h		\
 	theme.c
 
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
