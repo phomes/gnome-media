@@ -845,13 +845,15 @@ main (int argc,
 
 	changeset = gconf_change_set_new ();
 
-	dialog_win = gtk_dialog_new_with_buttons (_("CDDBSlave 2 Properties"),
+	dialog_win = gtk_dialog_new_with_buttons (_("CD Database Preferences"),
 						  NULL, -1,
 						  GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);
 	create_dialog (dialog_win);
-	
+
+	gtk_dialog_set_default_response(GTK_DIALOG (dialog_win), GTK_RESPONSE_CLOSE);
+
   	g_signal_connect (G_OBJECT (dialog_win), "response",
   			  G_CALLBACK (dialog_button_clicked_cb), changeset);
 
