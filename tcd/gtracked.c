@@ -66,7 +66,7 @@ void gtracked()
 	if( trwin )
 		return;
 
-	trwin = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+	trwin = gtk_window_new( GTK_WINDOW_DIALOG );
 	gtk_window_set_title( GTK_WINDOW(trwin), "TCD 2.0 - Track Editor" );
         gtk_window_set_wmclass( GTK_WINDOW(trwin), "track_editor","gtcd" );
          		

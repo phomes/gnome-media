@@ -396,23 +396,17 @@ void draw_status( void )
 	gc = gdk_gc_new( window->window );
 	gdk_gc_copy( gc, status_area->style->white_gc );
 
-/* Erase Rectangle */
+	/* Erase Rectangle */
 	gdk_draw_rectangle( status_db, 
 			    status_area->style->black_gc,
 			    TRUE, 0,0,
 			    status_area->allocation.width,
 			    status_area->allocation.height );
-/* Done */
 
 	gdk_gc_set_foreground( gc, &darkgrey );
 	
 	gdk_draw_line( status_db,gc,0,28,status_area->allocation.width,28 );
 	gdk_draw_line( status_db,gc,48,0,48,28 );
-	gdk_draw_rectangle( status_db, 
-			    gc,FALSE, 0,0,
-			    status_area->allocation.width-1,
-			    status_area->allocation.height-1 );
-
 
 	gdk_gc_set_foreground(gc, &timecolor);
 
@@ -719,7 +713,7 @@ static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
 
 void setup_time_display( void )
 {
-	GtkWidget *handle1;
+	GtkWidget *handle1, *frame;
 	
 	lowerbox = gtk_hbox_new( FALSE, 5 );
 	
@@ -751,6 +745,9 @@ void setup_time_display( void )
                                            | GDK_POINTER_MOTION_MASK
                                            | GDK_POINTER_MOTION_HINT_MASK);	
 
+	frame = gtk_frame_new(NULL);
+	gtk_frame_set_shadow_type( GTK_FRAME(frame), GTK_SHADOW_IN );
+	gtk_container_add(GTK_CONTAINER(frame), status_area);
 	status_table = gtk_vbox_new( FALSE, 4 );
 	gtk_box_pack_start( GTK_BOX(upper_box), status_table, TRUE, TRUE, 2 );
 
@@ -762,11 +759,11 @@ void setup_time_display( void )
 	if( props.handle )
 	{
 		handle1 = gtk_handle_box_new();
-		gtk_container_add(GTK_CONTAINER(handle1), status_area );
+		gtk_container_add(GTK_CONTAINER(handle1), frame );
 		gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
 	}
 	else
-		gtk_box_pack_start( GTK_BOX(status_table), status_area, TRUE, TRUE, 4);
+		gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 4);
 		                
 	gtk_box_pack_start( GTK_BOX(status_table), lowerbox, FALSE, FALSE, 4 );
 	gtk_widget_show_all(status_table);
@@ -813,7 +810,7 @@ void setup_rows( void )
 
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
 
-
+	/* About button */
 	aboutbutton = gtk_button_new();
 	pixmap = gnome_pixmap_new_from_file(gnome_pixmap_file("tcd/cdrom.xpm"));
 	gtk_container_add(GTK_CONTAINER(aboutbutton), pixmap );
@@ -821,7 +818,8 @@ void setup_rows( void )
 		GTK_SIGNAL_FUNC(callback), (gpointer*)ABOUT );
         gtk_box_pack_start(GTK_BOX(bottom_box), aboutbutton, FALSE, FALSE, 0);
         gtk_tooltips_set_tip( tooltips, aboutbutton, TT_ABOUT, "" );
-        
+
+	/* Property button */        
 	propsbutton = gtk_button_new();
 	pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
 	gtk_container_add(GTK_CONTAINER(propsbutton), pixmap );

@@ -230,7 +230,18 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 	cddb_l_box = gtk_vbox_new( FALSE, 2 );
 	cddb_box   = gtk_hbox_new( FALSE, 2 );
 	cddb_frame = gtk_frame_new("CDDB Access");
-	
+
+	/* server entry */
+	label = gtk_label_new("Server:");
+	gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
+        cddb_i = gtk_entry_new();
+	gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
+	props.cddb = gtk_entry_get_text(GTK_ENTRY(cddb_i));
+	gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
+		GTK_SIGNAL_FUNC(changed_cb), NULL );
+	gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
+	gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i,TRUE, TRUE, 0 );
+
 	/* port spinner */
 	label = gtk_label_new("Port:");
 	gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
@@ -244,17 +255,6 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 		GTK_SIGNAL_FUNC(changed_cb), NULL );
 	gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(cddb_r_box), port_i,TRUE, TRUE, 0 );
-
-	/* server entry */
-	label = gtk_label_new("Server:");
-	gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
-        cddb_i = gtk_entry_new();
-	gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
-	props.cddb = gtk_entry_get_text(GTK_ENTRY(cddb_i));
-	gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
-		GTK_SIGNAL_FUNC(changed_cb), NULL );
-	gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
-	gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i,TRUE, TRUE, 0 );
 
 	/* put it together */
 	gtk_box_pack_start( GTK_BOX(cddb_box), cddb_l_box, TRUE, TRUE, 0 );

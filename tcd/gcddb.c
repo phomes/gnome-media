@@ -76,7 +76,7 @@ void gcddb()
 	gtk_frame_set_shadow_type(GTK_FRAME(infoframe),GTK_SHADOW_ETCHED_IN);
 	gtk_container_add(GTK_CONTAINER(infoframe), infobox);
 
-	win = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+	win = gtk_window_new( GTK_WINDOW_DIALOG );
 	gtk_container_border_width (GTK_CONTAINER (win), 5);
 	gtk_window_set_title( GTK_WINDOW(win), "CDDB Remote" );
 	gtk_window_set_wmclass( GTK_WINDOW(win), "cddb","gtcd" );
