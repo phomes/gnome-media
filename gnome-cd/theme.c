@@ -94,6 +94,8 @@ theme_load (GnomeCD *gcd,
 		xmlFreeDoc (xml);
 		return NULL;
 	}
+
+	g_free (theme_path);
 	
 	theme = g_new0 (GCDTheme, 1);
 

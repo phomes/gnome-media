@@ -793,6 +793,7 @@ cd_display_parse_theme (CDDisplay *disp,
 
 				file = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
 				full = make_fullname (cd_theme->name, file);
+				xmlFree (file);
 				
 				if (xmlStrcmp (location, "top-left") == 0) {
 					theme->corners[TOPLEFT] = cd_image_new (full, 0, 0);
@@ -818,6 +819,7 @@ cd_display_parse_theme (CDDisplay *disp,
 
 				g_free (full);
 			}
+			xmlFree (location);
 		}
 
 		cur = cur->next;
