@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-31 11:06+0100\n"
+"POT-Creation-Date: 2004-01-09 13:56+0100\n"
 "PO-Revision-Date: 2003-09-15 23:00+0100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -78,11 +78,11 @@ msgstr "Nazwa lokalnego komputera"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
-msgstr "Rozmiar strzałki rozszerzającej"
+msgstr "Rozmiar elementu rozwijającego"
 
 #: cddb-slave2/cddb-disclosure.c:246
 msgid "Size of the expander arrow"
-msgstr "Rozmiar strzałki rozszerzającej"
+msgstr "Rozmiar strzałki rozwijającej drzewo"
 
 #: cddb-slave2/cddb-slave-capplet.c:115
 #, c-format
@@ -160,9 +160,9 @@ msgid "Unknown / Unknown"
 msgstr "Nieznany / Nieznany"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:787
-#: grecord/src/gsr-window.c:796 grecord/src/gsr-window.c:805
-#: grecord/src/gsr-window.c:815 grecord/src/gsr-window.c:1154
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:864
+#: grecord/src/gsr-window.c:873 grecord/src/gsr-window.c:882
+#: grecord/src/gsr-window.c:892 grecord/src/gsr-window.c:1231
 msgid "Unknown"
 msgstr "Nieznany"
 
@@ -1270,8 +1270,8 @@ msgstr "D_ostępne motywy:"
 msgid "Record sound clips"
 msgstr "Rejestracja i odtwarzanie dźwięków"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1010
-#: grecord/src/gsr-window.c:1639
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1087
+#: grecord/src/gsr-window.c:1711
 msgid "Sound Recorder"
 msgstr "Rejestrator dźwięku"
 
@@ -1299,7 +1299,7 @@ msgstr "Tworzy nowy plik dźwiękowy"
 msgid "Display help for Sound Recorder"
 msgstr "Wyświetla pomoc programu Rejestrator dźwięku"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:873
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:950
 msgid "File Information"
 msgstr "Informacje o pliku"
 
@@ -1319,7 +1319,7 @@ msgstr "Nowy"
 msgid "Open"
 msgstr "Otwórz"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:393
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:396
 msgid "Open a file"
 msgstr "Otwarcie pliku"
 
@@ -1435,151 +1435,159 @@ msgstr "Za_rejestruj"
 msgid "_Save"
 msgstr "_Zapisz"
 
-#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
-#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:294
 msgid "hours"
 msgstr "godzin"
 
-#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
-#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:294
 msgid "hour"
 msgstr "godzina"
 
-#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:301 grecord/src/gsr-window.c:305
 msgid "minutes"
 msgstr "minut"
 
-#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:301 grecord/src/gsr-window.c:305
 msgid "minute"
 msgstr "minuta"
 
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:307
-#: grecord/src/gsr-window.c:310
+#: grecord/src/gsr-window.c:281 grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:302 grecord/src/gsr-window.c:310
+#: grecord/src/gsr-window.c:313
 msgid "seconds"
 msgstr "sekund"
 
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:310
+#: grecord/src/gsr-window.c:281 grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:302 grecord/src/gsr-window.c:313
 msgid "second"
 msgstr "sekunda"
 
-#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1334
-#: grecord/src/gsr-window.c:1468 grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:479 grecord/src/gsr-window.c:1411
+#: grecord/src/gsr-window.c:1542 grecord/src/gsr-window.c:1632
 msgid "Ready"
 msgstr "Gotowe"
 
-#: grecord/src/gsr-window.c:567
+#: grecord/src/gsr-window.c:590
+msgid "Unknown extension, doing nothing"
+msgstr "Nieznane rozszerzenie, brak podejmowanego działania"
+
+#: grecord/src/gsr-window.c:603
+msgid "Could not build pipeline"
+msgstr "Nie można utworzyć potoku"
+
+#: grecord/src/gsr-window.c:644
 #, c-format
 msgid "Saving %s..."
 msgstr "Zapisywanie %s..."
 
-#: grecord/src/gsr-window.c:626
+#: grecord/src/gsr-window.c:703
 msgid "Save file as"
 msgstr "Zapisz plik pod podaną nazwą"
 
-#: grecord/src/gsr-window.c:680
+#: grecord/src/gsr-window.c:757
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "Nie umieszczono %s na ścieżce."
 
-#: grecord/src/gsr-window.c:687
+#: grecord/src/gsr-window.c:764
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Przy uruchamianiu %s wystąpił błąd: %s"
 
-#: grecord/src/gsr-window.c:762
+#: grecord/src/gsr-window.c:839
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (niezapisane)"
 
-#: grecord/src/gsr-window.c:778
+#: grecord/src/gsr-window.c:855
 msgid "Unknown size"
 msgstr "Nieznany rozmiar"
 
-#: grecord/src/gsr-window.c:798
+#: grecord/src/gsr-window.c:875
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:807
+#: grecord/src/gsr-window.c:884
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:819
+#: grecord/src/gsr-window.c:896
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:823
+#: grecord/src/gsr-window.c:900
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:852
+#: grecord/src/gsr-window.c:929
 #, c-format
 msgid "%s Information"
 msgstr "Informacje o %s"
 
-#: grecord/src/gsr-window.c:887
+#: grecord/src/gsr-window.c:964
 msgid "Folder:"
 msgstr "Folder:"
 
-#: grecord/src/gsr-window.c:893 grecord/src/gsr-window.c:1700
+#: grecord/src/gsr-window.c:970 grecord/src/gsr-window.c:1772
 msgid "Filename:"
 msgstr "Nazwa pliku:"
 
-#: grecord/src/gsr-window.c:899
+#: grecord/src/gsr-window.c:976
 msgid "File size:"
 msgstr "Rozmiar pliku:"
 
-#: grecord/src/gsr-window.c:908
+#: grecord/src/gsr-window.c:985
 msgid "Audio Information"
 msgstr "Informacje o dźwięku"
 
-#: grecord/src/gsr-window.c:922
+#: grecord/src/gsr-window.c:999
 msgid "Song length:"
 msgstr "Długość utworu:"
 
-#: grecord/src/gsr-window.c:928
+#: grecord/src/gsr-window.c:1005
 msgid "Number of channels:"
 msgstr "Liczba kanałów:"
 
-#: grecord/src/gsr-window.c:934
+#: grecord/src/gsr-window.c:1011
 msgid "Sample rate:"
 msgstr "Częstotliwość próbkowania:"
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:1017
 msgid "Bit rate:"
 msgstr "Gęstość bitowa:"
 
-#: grecord/src/gsr-window.c:1012
+#: grecord/src/gsr-window.c:1089
 msgid "A sound recorder for GNOME"
 msgstr "Rejestrator dźwięku dla GNOME"
 
-#: grecord/src/gsr-window.c:1310
+#: grecord/src/gsr-window.c:1387
 msgid "Playing..."
 msgstr "Odtwarzanie..."
 
-#: grecord/src/gsr-window.c:1443
+#: grecord/src/gsr-window.c:1517
 msgid "Recording..."
 msgstr "Nagrywanie..."
 
-#: grecord/src/gsr-window.c:1635
+#: grecord/src/gsr-window.c:1707
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Rejestrator dźwięku"
 
-#: grecord/src/gsr-window.c:1685
+#: grecord/src/gsr-window.c:1757
 msgid "File information"
 msgstr "Informacje o pliku"
 
-#: grecord/src/gsr-window.c:1706
+#: grecord/src/gsr-window.c:1778
 msgid "<none>"
 msgstr "<brak>"
 
-#: grecord/src/gsr-window.c:1715
+#: grecord/src/gsr-window.c:1787
 msgid "Length:"
 msgstr "Długość:"
 
@@ -2275,9 +2283,6 @@ msgstr "Monitor głośności"
 #~ "\n"
 #~ "Jeśli w systemie nie ma programu sox, nagrywanie ani używanie efektów nie "
 #~ "będzie możliwe."
-
-#~ msgid "Could not fork child process"
-#~ msgstr "Nie można utworzyć procesu potomnego"
 
 #~ msgid "Converting file..."
 #~ msgstr "Konwertowanie pliku..."
