@@ -3,15 +3,15 @@
 # Max Valianskiy <maxcom@vinchi.ru> 1998-99
 # Sergey Panov <sipan@mit.edu> 1999
 # Valek Filippov <frob@df.ru>, 2000-2002
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004
 # Andrew W. Nosenko <awn@bcs.zp.ua>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-09 02:57-0700\n"
-"PO-Revision-Date: 2003-06-14 15:01+0300\n"
-"Last-Translator: \"Andrew W. Nosenko\" <awn@bcs.zp.ua>\n"
+"POT-Creation-Date: 2004-03-22 07:58+0300\n"
+"PO-Revision-Date: 2004-03-22 09:17+0300\n"
+"Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,9 +22,8 @@ msgid "Address of the server to contact for CD queries"
 msgstr "Адрес сервера для посылки запросов по компакт-дискам"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-#, fuzzy
 msgid "Information to send to server"
-msgstr "Показать информацию о программе звукозаписи"
+msgstr "Информация, посылаемая на сервер"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
 msgid "Port"
@@ -35,9 +34,8 @@ msgid "Server name"
 msgstr "Сервер"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-#, fuzzy
 msgid "Server type"
-msgstr "Сервер"
+msgstr "Тип сервера"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
@@ -52,6 +50,8 @@ msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
+"Тип сервера для запроса по компакт-дискам. Возможные значения 0 (циклический "
+"сервер системы FreeDB), 1 (другой сервер системы freedb) и 2 (иной сервер)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -67,10 +67,13 @@ msgid ""
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
 msgstr ""
+"Этот ключ определяет, какая информация о пользователе будет послана на "
+"сервер для запроса о компакт-диске. Возможные значения 0 (информация не "
+"посылается), 1 (реальная информация) и 3 (другая информация)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
-msgstr "Ваш узел"
+msgstr "Ваше имя узла"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -91,34 +94,28 @@ msgstr ""
 
 #. Log on info
 #: cddb-slave2/cddb-slave-capplet.c:696
-#, fuzzy
 msgid "Login Information"
-msgstr "Занесение информации в журнал"
+msgstr "Информация о пользователе"
 
 #: cddb-slave2/cddb-slave-capplet.c:702
-#, fuzzy
 msgid "Sen_d no information"
-msgstr "Занесение информации в журнал"
+msgstr "_не посылать информацию"
 
 #: cddb-slave2/cddb-slave-capplet.c:711
-#, fuzzy
 msgid "Send real _information"
-msgstr "посылать действительную _информацию"
+msgstr "посылать _действительную информацию"
 
 #: cddb-slave2/cddb-slave-capplet.c:720
-#, fuzzy
 msgid "Send _other information:"
-msgstr "посылать _другую информацию..."
+msgstr "посылать д_ругую информацию:"
 
 #: cddb-slave2/cddb-slave-capplet.c:745
-#, fuzzy
 msgid "_Name:"
-msgstr "И_мя:"
+msgstr "_Имя:"
 
 #: cddb-slave2/cddb-slave-capplet.c:765
-#, fuzzy
 msgid "Hostna_me:"
-msgstr "Имя узла:"
+msgstr "Имя _узла:"
 
 #. Server info
 #: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
@@ -130,28 +127,24 @@ msgid "FreeDB _round robin server"
 msgstr "_циклический сервер системы FreeDB"
 
 #: cddb-slave2/cddb-slave-capplet.c:797
-#, fuzzy
 msgid "Other _FreeDB server:"
-msgstr "д_ругой сервер системы FreeDB"
+msgstr "другой сервер системы _FreeDB"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
 msgstr "Местоположение"
 
 #: cddb-slave2/cddb-slave-capplet.c:864
-#, fuzzy
 msgid "_Update Server List"
-msgstr "Обновить список серверов"
+msgstr "_Обновить список серверов"
 
 #: cddb-slave2/cddb-slave-capplet.c:871
-#, fuzzy
 msgid "Other _server:"
 msgstr "другой с_ервер..."
 
 #: cddb-slave2/cddb-slave-capplet.c:891
-#, fuzzy
 msgid "Hos_tname:"
-msgstr "Имя узла:"
+msgstr "И_мя узла:"
 
 #: cddb-slave2/cddb-slave-capplet.c:908
 msgid "_Port:"
@@ -825,7 +818,7 @@ msgstr "_Исполнитель:"
 
 #: cddb-slave2/cddb-track-editor.c:641
 msgid "Disc _Title:"
-msgstr "_Название диска:"
+msgstr "На_именование диска:"
 
 #: cddb-slave2/cddb-track-editor.c:651
 msgid "Show advanced disc options"
@@ -852,7 +845,7 @@ msgstr "_Год:"
 
 #: cddb-slave2/cddb-track-editor.c:734
 msgid "Title"
-msgstr "Название"
+msgstr "Наименование"
 
 #: cddb-slave2/cddb-track-editor.c:741
 msgid "Length"
@@ -1114,9 +1107,8 @@ msgid "Volume control"
 msgstr "Управление громкостью"
 
 #: gnome-cd/gnome-cd.c:572
-#, fuzzy
 msgid "Position"
-msgstr "Х-координата"
+msgstr "Положение"
 
 #: gnome-cd/gnome-cd.c:589
 msgid "Open track editor"
@@ -1452,9 +1444,8 @@ msgid "_Save"
 msgstr "Со_хранить"
 
 #: grecord/src/gnome-recorder.c:155
-#, fuzzy
 msgid "Dummy option"
-msgstr "Параметры звука"
+msgstr "Пустой параметр"
 
 #: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
 #: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
@@ -1579,18 +1570,17 @@ msgid "Playing..."
 msgstr "Воспроизводится..."
 
 #: grecord/src/gsr-window.c:1284
-#, fuzzy, c-format
+#, c-format
 msgid "%s.%s - Sound Recorder"
-msgstr "%s - Звукозапись"
+msgstr "%s.%s - Звукозапись"
 
 #: grecord/src/gsr-window.c:1376
 msgid "Recording..."
 msgstr "Записывается..."
 
 #: grecord/src/gsr-window.c:1560
-#, fuzzy
 msgid "Record as"
-msgstr "Записать"
+msgstr "Записать как"
 
 #: grecord/src/gsr-window.c:1577
 msgid "File information"
@@ -1617,17 +1607,17 @@ msgstr "Управление громкостью"
 #: gst-mixer/src/mixer.c:218
 #, c-format
 msgid "%s Slider"
-msgstr ""
+msgstr "Ползунок %s"
 
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr ""
+msgstr "Канал %d ползунка %s"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
 msgid "%s Slider %d"
-msgstr ""
+msgstr "%2$d ползунка %1$s"
 
 #: gst-mixer/src/mixer.c:234
 msgid "Lock"
@@ -1658,11 +1648,11 @@ msgstr "%s Запись"
 
 #: gst-mixer/src/mixer.c:456
 msgid "A GNOME/GStreamer-based mixer application"
-msgstr ""
+msgstr "Микшер для среды Гном"
 
 #: gst-mixer/src/mixer.c:563
 msgid "Sorry, no mixer elements and/or devices found"
-msgstr ""
+msgstr "Элементы и/или устройства микширования не найдены"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -1682,7 +1672,7 @@ msgstr ""
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "Multimedia Systems Selector"
-msgstr ""
+msgstr "Выбор мультимедийной системы"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1690,14 +1680,12 @@ msgid "*"
 msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Sink</b>"
-msgstr "Исходное назначение"
+msgstr "<b>Исходное назначение</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Source</b>"
-msgstr "Исходный источник"
+msgstr "<b>Исходный источник</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -1708,24 +1696,20 @@ msgid "Audio"
 msgstr "Аудио"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-#, fuzzy
 msgid "Click Ok to finish."
 msgstr "Нажмите \"OK\" для завершения"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-#, fuzzy
 msgid "GStreamer Preferences"
 msgstr "Настройки архитектуры GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-#, fuzzy
 msgid "Pipe_line:"
-msgstr "Цепочка:"
+msgstr "_Цепочка:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-#, fuzzy
 msgid "Te_st"
-msgstr "Проверить..."
+msgstr "_Проверить..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Testing Pipeline"
@@ -1736,31 +1720,27 @@ msgid "Video"
 msgstr "Видео"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
-#, fuzzy
 msgid "_Input:"
-msgstr "Аудио_ввод:"
+msgstr "_Вход:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:13
-#, fuzzy
 msgid "_Output:"
-msgstr "Аудиов_ывод:"
+msgstr "В_ыход:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-#, fuzzy
 msgid "_Pipeline:"
-msgstr "Цепочка:"
+msgstr "Ц_епочка:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-#, fuzzy
 msgid "_Test"
-msgstr "Проверить..."
+msgstr "П_роверить..."
 
 #: gstreamer-properties/pipeline-constants.c:60
 #: gstreamer-properties/pipeline-constants.c:82
 #: gstreamer-properties/pipeline-constants.c:99
 #: gstreamer-properties/pipeline-constants.c:114
 msgid "Custom"
-msgstr ""
+msgstr "Иной"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:110
@@ -1769,30 +1749,26 @@ msgid "Failed to construct test pipeline for '%s'"
 msgstr "Произошёл сбой при создании проверочной цепочки для \"%s\""
 
 #: profiles/audio-profile-edit.c:185
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error displaying help: %s"
-msgstr ""
-"Произошла ошибка при запуске отображении справки: \n"
-"%s"
+msgstr "Произошла ошибка при отображении справки: %s"
 
 #: profiles/audio-profile-edit.c:387
-#, fuzzy, c-format
 msgid "Editing profile \"%s\""
-msgstr "Идентификатор (ID) редактируемого диска: %s"
+msgstr "Изменение профиля \"%s\""
 
 #: profiles/audio-profile.c:101
-#, fuzzy
 msgid "<not named>"
-msgstr "<нет>"
+msgstr "<без имени>"
 
 #: profiles/audio-profile.c:102
 msgid "<not described>"
-msgstr ""
+msgstr "<без описания>"
 
 #: profiles/audio-profile.c:217
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "Произошла ошибка при запуске программы \"%s\": %s"
+msgstr "Произошла ошибка при получении списка аудио-профилей. (%s)\n"
 
 #: profiles/audio-profile.c:718
 #, c-format
@@ -1800,51 +1776,51 @@ msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
 msgstr ""
+"Произошла ошибка при подписке на уведомление об изменении списка профилей. (%"
+"s)\n"
 
 #: profiles/audio-profile.c:908
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
-msgstr "Произошла ошибка при запуске программы \"%s\": %s"
+msgstr "Произошла ошибка при отмене каталога профилей \"%s\". (%s)\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
-msgstr ""
+msgstr "<без описания>"
 
 #: profiles/audio-profile.c:1011
 msgid "identity"
-msgstr ""
+msgstr "identity"
 
 #: profiles/audio-profile.c:1022
 msgid "wav"
-msgstr ""
+msgstr "wav"
 
 #: profiles/audio-profiles-edit.c:113
-#, fuzzy
 msgid "_Edit"
-msgstr "В_ыйти"
+msgstr "_Изменить"
 
 #: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
-msgstr ""
+msgstr "Необходимор определить один или несколько профилей для удаления."
 
 #: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
-msgstr ""
+msgstr "Удалить эти два профиля?\n"
 
 #: profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete these %d profiles?\n"
-msgstr ""
+msgstr "Удалить эти %d профиля?\n"
 
 #: profiles/audio-profiles-edit.c:481
 #, c-format
 msgid "Delete profile \"%s\"?"
-msgstr ""
+msgstr "Удалить профиль \"%s\"?"
 
 #: profiles/audio-profiles-edit.c:503
-#, fuzzy
 msgid "Delete Profile"
-msgstr "Выбрать звуковой файл"
+msgstr "Удаление профиля"
 
 #.
 #. dialog =
@@ -1859,24 +1835,22 @@ msgstr "Выбрать звуковой файл"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: profiles/audio-profiles-edit.c:597
-#, fuzzy
 msgid "Edit GMAudio Profiles"
-msgstr "Идентификатор (ID) редактируемого диска: %s"
+msgstr "Изменение профилей"
 
 #: profiles/audio-profiles-edit.c:650
-#, fuzzy
 msgid "_Profiles:"
-msgstr "Файлы программ"
+msgstr "_Профили:"
 
 #: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr ""
+msgstr "Профиль с именем \"%s\" уже существует"
 
 #: profiles/audio-profiles-edit.c:903
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
-msgstr ""
+msgstr "Произошла ошибка системы GConf: %s\n"
 
 #: profiles/gmp-util.c:64
 #, c-format
@@ -1884,106 +1858,111 @@ msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
+"Файл \"%s\" отсутствует. Это означает, что приложение установлено "
+"некорректно, так что диалог не может быть отображён."
 
 #: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
-msgstr ""
+msgstr "Изменение аудио-профилей"
 
 #: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
 msgid "File _Extension:"
-msgstr "Размер файла:"
+msgstr "Рас_ширение файла:"
 
 #: profiles/gnome-audio-profiles.glade2.h:4
 msgid "New Profile"
-msgstr ""
+msgstr "Новый профиль"
 
 #: profiles/gnome-audio-profiles.glade2.h:5
 msgid "Profile Description:"
-msgstr ""
+msgstr "Описание профиля:"
 
 #: profiles/gnome-audio-profiles.glade2.h:6
 msgid "Profile _Description:"
-msgstr ""
+msgstr "_Описание профиля:"
 
 #: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
 msgid "Profile _name:"
-msgstr "Имя файла:"
+msgstr "На_именование профиля:"
 
 #: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
-msgstr ""
+msgstr "_Активный?"
 
 #: profiles/gnome-audio-profiles.glade2.h:9
-#, fuzzy
 msgid "_Create"
-msgstr "Центр"
+msgstr "_Создать"
 
 #: profiles/gnome-audio-profiles.glade2.h:10
-#, fuzzy
 msgid "_GStreamer Pipeline:"
-msgstr "Настройки архитектуры GStreamer"
+msgstr "_Цепочка:"
 
 #: profiles/gnome-audio-profiles.glade2.h:11
-#, fuzzy
 msgid "_Profile name:"
-msgstr "Имя файла:"
+msgstr "Наименование _профиля:"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
-msgstr ""
+msgstr "Описание аудиопрофиля"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:2
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
 msgstr ""
+"Описание профиля, содержащее дополнительную информацию и использование "
+"профиля."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
+"Расширение файла, используемое для сохранения файлов, закодированных этим "
+"профилем."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+msgstr "Частичная цепочка для использования с этим профилем."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
-msgstr ""
+msgstr "Краткое имя для этого аудио-профиля"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:6
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
 msgstr ""
+"Краткое имя для этого аудио-профиля, используемое для выбора и уникальной "
+"идентификации профиля."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
+"Список записывающих аудио-профилей. Список содержит строки, именующие "
+"подкатологи относительно /system/gstreamer/audio/profiles."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
-msgstr ""
+msgstr "Список профилей"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "The default file extension for this profile"
-msgstr ""
+msgstr "Исходное расширение файла для этого профиля"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
-msgstr ""
+msgstr "Используемая частичная цепочка"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
-msgstr ""
+msgstr "Используется ли данный профиль"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "Whether or not to use and display this profile."
-msgstr ""
+msgstr "Используется ли и отображается данный профиль."
 
 #: vu-meter/main.c:120
 msgid ""
