@@ -179,6 +179,7 @@ typedef struct
 	char errmsg[64];	/* Human readable error message, filled 
 				   if err== TRUE */
 	int nslots; 		/* Number of slots the cdrom drive has */
+	int time_lock;          /* if TRUE, won't update time even if asked. */
 } cd_struct;
 
 typedef void (*WarnFunc)(char *, char*);

@@ -117,6 +117,9 @@ int tcd_readtoc( cd_struct *cd )
     int tmp,i;
     int delsecs;
 
+    if(cd->time_lock)
+	    return;
+
     debug("cdrom.c: tcd_readtoc(%p) top\n", cd );
     cd->err = FALSE;
     cd->isplayable=FALSE;
@@ -207,6 +210,8 @@ int tcd_readtoc( cd_struct *cd )
 void tcd_recalculate(cd_struct *cd)
 {
     int result;
+    if(cd->time_lock)
+	    return;
 
     /* calculate various timing values */
     cd->cur_pos_abs = cd->sc.cdsc_absaddr.msf.minute * 60 +
@@ -234,27 +239,67 @@ void tcd_recalculate(cd_struct *cd)
 #endif
 }
 
+void tcd_recalculate_fake(cd_struct *cd, gint abs_pos, gint track)
+{
+    int result;
+
+    /* calculate various timing values */
+    cd->cur_t = track;
+    cd->cur_pos_abs = abs_pos;
+    cd->cur_frame = cd->cur_pos_abs * 75;
+
+    cd->cur_pos_rel = (cd->cur_frame - cd->trk[track].start) / 75;
+	
+    if (cd->cur_pos_rel < 0)
+	cd->cur_pos_rel = -cd->cur_pos_rel;
+        
+    if (cd->cur_pos_rel > 0 && (result = cd->cur_pos_rel % 60) == cd->t_sec)
+	return;
+
+    /* calculate current track time */
+    cd->t_sec = result;
+    cd->t_min = cd->cur_pos_rel / 60;
+
+    /* calculate current cd time */
+    cd->cd_sec = cd->cur_pos_abs % 60;
+    cd->cd_min = cd->cur_pos_abs / 60;
+}
+
+/* finds the track the current second in teh album is in */
+inline int tcd_find_track(cd_struct *cd, gint abs_pos)
+{
+	int t;
+	
+	for(t = cd->first_t; t < cd->last_t;)
+	{
+		if(abs_pos >= cd->trk[t].start/75)
+			t++;
+		else
+			return t-1;
+	}
+}
+
 void tcd_gettime( cd_struct *cd )
 {
-    cd->err = FALSE;
-    cd->sc.cdsc_format = CDROM_MSF;
-        
-    if(cd->isplayable)
-    {
-	if(ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc))
+	cd->err = FALSE;
+	cd->sc.cdsc_format = CDROM_MSF;
+	
+	if(cd->isplayable)
 	{
-	    strcpy( cd->errmsg, "Can't read disc." );
-	    cd->err = TRUE;
-	    debug("cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
-	    cd->cur_t = 0;
-	    return;
+		if(ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc))
+		{
+			strcpy( cd->errmsg, "Can't read disc." );
+			cd->err = TRUE;
+			debug("cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
+			cd->cur_t = 0;
+			return;
+		}
+		if(cd->sc.cdsc_audiostatus==CDROM_AUDIO_PLAY)
+			cd->cur_t = cd->sc.cdsc_trk;
+		else
+			cd->cur_t = 0;
+		tcd_recalculate(cd);
 	}
-	if(cd->sc.cdsc_audiostatus==CDROM_AUDIO_PLAY)
-		cd->cur_t = cd->sc.cdsc_trk;
-	else
-		cd->cur_t = 0;
-	tcd_recalculate(cd);
-    }
 }
 
 int tcd_set_volume(cd_struct *cd, int volume)
