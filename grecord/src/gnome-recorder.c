@@ -121,8 +121,10 @@ init_stock_icons (void)
 		GdkPixbuf *pixbuf;
 		char *filename, *fullname;
 
-		filename = g_strconcat ("gnome-media/gnome-sound-recorder/", stock_items[i], ".png", NULL);
-                                                                                   		fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
+		filename = g_strconcat ("gnome-media/gnome-sound-recorder/",
+					stock_items[i], ".png", NULL);
+		fullname = gnome_program_locate_file (NULL,
+						      GNOME_FILE_DOMAIN_APP_PIXMAP,
 						      filename, TRUE, NULL);
 		g_free (filename);
 
@@ -161,7 +163,6 @@ main (int argc,
 
 	/* init gstreamer */
 	gsr_options[0].arg = (void *) gst_init_get_popt_table ();
-	gst_scheduler_factory_set_default_name ("basicomega");
 
 	/* Init GNOME */
 	program = gnome_program_init ("gnome-sound-recorder", VERSION,
