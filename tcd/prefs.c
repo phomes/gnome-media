@@ -509,7 +509,7 @@ static GtkWidget *key_page(void)
     mod_box = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 
     entry = gtk_entry_new_with_max_length(1);
-    label = gtk_label_new("Click here to change:");
+    label = gtk_label_new(_("Click here to change:"));
 
     ctrl_check = gtk_check_button_new_with_label("Control");
     alt_check = gtk_check_button_new_with_label("Alt");

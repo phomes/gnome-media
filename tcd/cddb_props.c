@@ -69,17 +69,17 @@ static GtkWidget *create_local_db(void)
     bbox = gtk_vbutton_box_new();
     gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_START);
 
-    edit_button = gtk_button_new_with_label("Edit");
+    edit_button = gtk_button_new_with_label(_("Edit"));
     gtk_widget_set_sensitive(edit_button, FALSE);
     gtk_box_pack_start_defaults(GTK_BOX(bbox), edit_button);
 
-    remove_button = gtk_button_new_with_label("Remove");
+    remove_button = gtk_button_new_with_label(_("Remove"));
     gtk_box_pack_start_defaults(GTK_BOX(bbox), remove_button);
 
     hsep = gtk_hseparator_new();
     gtk_box_pack_start_defaults(GTK_BOX(bbox), hsep);
 
-    refresh_button = gtk_button_new_with_label("Refresh List");
+    refresh_button = gtk_button_new_with_label(_("Refresh List"));
     gtk_box_pack_start_defaults(GTK_BOX(bbox), refresh_button);
 
     gtk_box_pack_end(GTK_BOX(hbox), bbox, FALSE, FALSE, GNOME_PAD_SMALL);
@@ -126,7 +126,7 @@ GtkWidget *create_cddb_page(void)
     vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 
     /* server settings */
-    frame = gtk_frame_new("Server Settings");
+    frame = gtk_frame_new(_("Server Settings"));
     gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 
     gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
@@ -135,7 +135,7 @@ GtkWidget *create_cddb_page(void)
     gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
     gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 
-    label = gtk_label_new("Address");
+    label = gtk_label_new(_("Address"));
     entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_server);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
@@ -145,7 +145,7 @@ GtkWidget *create_cddb_page(void)
 
     adj = gtk_adjustment_new(8880, 0, 65536, 1, 100, 10);
     gtk_adjustment_set_value(GTK_ADJUSTMENT(adj), prefs.cddb_port);
-    label = gtk_label_new("Port");
+    label = gtk_label_new(_("Port"));
     entry = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 2, 3, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 3, 4, 0, 1);
@@ -155,7 +155,7 @@ GtkWidget *create_cddb_page(void)
     gtk_container_add(GTK_CONTAINER(frame), table);
 
     /* local db */
-    frame = gtk_frame_new("Local Database");
+    frame = gtk_frame_new(_("Local Database"));
     gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_NONE);
     gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 
@@ -197,7 +197,7 @@ static EditWindow *create_edit_window(GtkWidget *clist)
     gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
     
     /* frame */
-    frame = gtk_frame_new("CDDB Data");
+    frame = gtk_frame_new(_("CDDB Data"));
     gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 0);
 
     /* TEXT WINDOW */
@@ -355,7 +355,7 @@ static void msg_callback(gint reply, GtkCList *clist)
 	if(remove(filename))
 	{
 	    gchar tmp[256];
-	    g_snprintf(tmp, 255, "Couldn't remove file: %s\n", strerror(errno));
+	    g_snprintf(tmp, 255, _("Couldn't remove file: %s\n"), strerror(errno));
 	    gtk_widget_show(gnome_error_dialog(tmp));
 	}
 	else
@@ -367,7 +367,7 @@ static void remove_cb(GtkWidget *widget, GtkWidget *clist)
 {
     GtkWidget *msg;
 
-    msg = gnome_question_dialog("Delete CDDB Entry?",
+    msg = gnome_question_dialog(_("Delete CDDB Entry?"),
 				(GnomeReplyCallback)msg_callback,
 				clist);
     gtk_widget_show(msg);

@@ -552,10 +552,10 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
  
     if(cd->cd_dev < 0)
     {
-	g_snprintf(tmp, 255, "Error accessing cdrom device.\n"
+	g_snprintf(tmp, 255, _("Error accessing cdrom device.\n"
 		             "Please check to make sure cdrom drive support\n"
                              "is compiled into the kernel, and that you have\n"
-                             "permission to access the device.\n\nReason: %s\n", strerror(errno));
+                             "permission to access the device.\n\nReason: %s\n"), strerror(errno));
 	if(msg_cb)
 	    msg_cb(tmp,"error");
 	cd->err = TRUE;
