@@ -75,7 +75,7 @@ static GnomeCDRomMSF blank_msf = { 0, 0, 0};
 static void
 freebsd_cdrom_finalize (GObject *object)
 {
-	FreeBSDCDrom *cdrom = (FreeBSDCDrom *) object;
+	FreeBSDCDRom *cdrom = (FreeBSDCDRom *) object;
 
 	g_free (cdrom->priv);
 
