@@ -276,6 +276,13 @@ AC_SUBST(GSTMIX_LIBS)
 AC_SUBST(GSTMIX_CFLAGS)
 AC_SUBST(PROGRAMS_GSTMIX)
 
+# profiles
+PKG_CHECK_MODULES(GMP, gconf-2.0 gtk+-2.0 libglade-2.0 libgnome-2.0,
+                  USE_GMP=yes, USE_GMP=no)
+AC_SUBST(GMP_CFLAGS)
+AC_SUBST(GMP_LIBS)
+
+
 AC_OUTPUT([ 
 gnome-media.spec
 Makefile
@@ -321,6 +328,7 @@ gst-mixer/src/Makefile
 gst-mixer/pixmaps/Makefile
 gst-mixer/doc/Makefile
 gst-mixer/doc/C/Makefile
+profiles/Makefile
 version.h])
 
 echo ""

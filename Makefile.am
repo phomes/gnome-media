@@ -1,7 +1,7 @@
 # If you want to build these components, please cd to their respective
 # directories and type `make'.
 
-always_built_SUBDIRS = cddb-slave2
+always_built_SUBDIRS = cddb-slave2 profiles
 
 SUBDIRS = po $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ \
@@ -11,7 +11,8 @@ SUBDIRS = po $(always_built_SUBDIRS) \
 	  @PROGRAMS_GSTPROPS@
 
 DIST_SUBDIRS = po $(always_built_SUBDIRS) \
-	       vu-meter grecord gst-mixer gnome-cd gstreamer-properties
+	       vu-meter grecord gst-mixer gnome-cd \
+               gstreamer-properties
 
 EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 		acinclude.m4 COPYING-DOCS \
