@@ -44,7 +44,7 @@ maybe_close_tray (GnomeCD *gcd)
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
 		gcd_warning ("%s", error);
 		g_error_free (error);
-		
+		g_free (status);
 		return;
 	}
 
@@ -96,6 +96,7 @@ play_cb (GtkButton *button,
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
 		gcd_warning ("%s", error);
 		g_error_free (error);
+		g_free (status);
 		return;
 
 	}

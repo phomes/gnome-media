@@ -70,6 +70,7 @@ skip_to_track (GtkWidget *item,
 	track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 
 	if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) {
+		g_free (status);
 		return;
 	}
 
@@ -162,8 +163,8 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 				}
 			}
 
-			g_free (status);
 		}
+		g_free (status);
 	}
 
 	gtk_option_menu_set_menu (GTK_OPTION_MENU (gcd->tracks), GTK_WIDGET (menu));
@@ -550,6 +551,7 @@ init_player (void)
 				     (double) status->volume);
 		g_free (status);
 	} else {
+		g_free (status);
 		gcd_warning ("Error getting status: %s", NULL);
 	}
 

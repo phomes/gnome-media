@@ -332,6 +332,7 @@ solaris_cdrom_eject (GnomeCDRom *cdrom,
 
 	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		solaris_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 
@@ -498,6 +499,7 @@ solaris_cdrom_play (GnomeCDRom *cdrom,
 
 	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		solaris_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 
@@ -525,6 +527,7 @@ solaris_cdrom_play (GnomeCDRom *cdrom,
 	/* Get the status again: It might have changed */
 	if (gnome_cdrom_get_status (GNOME_CDROM (lcd), &status, error) == FALSE) {
 		solaris_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 	if (status->cd != GNOME_CDROM_STATUS_OK) {
@@ -626,6 +629,7 @@ solaris_cdrom_pause (GnomeCDRom *cdrom,
 
 	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		solaris_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 
@@ -694,6 +698,7 @@ solaris_cdrom_stop (GnomeCDRom *cdrom,
 
 	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		solaris_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 
@@ -868,7 +873,6 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 
 	if (solaris_cdrom_open (lcd, error) == FALSE) {
 		static gboolean function_called = FALSE;
-		g_free (realstatus);
 		solaris_cdrom_close (lcd);
 		if (!function_called)
 		find_cdrom (); 

@@ -342,6 +342,7 @@ cdrom_set_device (GnomeCDRom *cdrom,
 	}
 
 	gnome_cdrom_force_status_rescan (cdrom);
+	g_free (status);
 
 	return TRUE;	
 }
@@ -782,6 +783,7 @@ timeout_update_cd (gpointer data)
 		gcd_warning ("%s", error);
 		g_error_free (error);
 		g_object_unref (G_OBJECT (cdrom));
+		g_free (status);
 		return TRUE;
 	}
 	
