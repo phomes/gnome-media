@@ -1,0 +1,1 @@
+SUBDIRS = @PROGRAMS_GMIX@ po intl

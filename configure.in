@@ -1,0 +1,54 @@
+AC_INIT(gmix)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(gnome-media, 0.13)
+AM_MAINTAINER_MODE
+GNOME_INIT
+
+AC_PROG_CC
+AC_ISC_POSIX
+
+dnl Checks for programs.
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(fcntl.h limits.h malloc.h strings.h sys/ioctl.h unistd.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_OFF_T
+AC_TYPE_SIZE_T
+
+dnl Checks for library functions.
+AC_FUNC_ALLOCA
+AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MMAP
+AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
+AM_PROG_LIBTOOL
+
+ALL_LINGUAS=""
+AM_GNU_GETTEXT
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+
+dnl gmix
+PROGRAMS_GMIX=""
+AC_CHECK_HEADERS(linux/soundcard.h,[PROGRAMS_GMIX=gmix],[
+  AC_CHECK_HEADERS(machine/soundcard.h, [PROGRAMS_GMIX=gmix])])
+AC_SUBST(PROGRAMS_GMIX)
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+gmix/Makefile
+intl/Makefile
+version.h
+stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

@@ -263,7 +263,7 @@ void create_dialog()
 				gtk_widget_show (scale);
 
 				/* lock-button, only useful for stereo */
-				vol_info[i].lock_button=gtk_check_button_new_with_label("Lock");
+				vol_info[i].lock_button=gtk_check_button_new_with_label(_("Lock"));
 				gtk_signal_connect (GTK_OBJECT (vol_info[i].lock_button), 
 					"toggled", 
 					(GtkSignalFunc) toggle_lock, 
@@ -272,7 +272,7 @@ void create_dialog()
 				gtk_widget_show (vol_info[i].lock_button);
 			}
 
-			vol_info[i].mute_button=gtk_check_button_new_with_label("Mute");
+			vol_info[i].mute_button=gtk_check_button_new_with_label(_("Mute"));
 			gtk_signal_connect (GTK_OBJECT (vol_info[i].mute_button),
 				"toggled", 
 				(GtkSignalFunc) toggle_mute, 
@@ -286,7 +286,7 @@ void create_dialog()
 	gtk_box_pack_start(GTK_BOX(box), vbox, TRUE, TRUE, 0);
 	gtk_widget_show(vbox);
 
-	frame=gtk_frame_new("rec-src");
+	frame=gtk_frame_new(_("rec-src"));
 	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 	gtk_widget_show(frame);
 
@@ -321,7 +321,7 @@ void create_dialog()
 		}
 	}
 
-	button=gtk_button_new_with_label("Exit");
+	button=gtk_button_new_with_label(_("Exit"));
 	gtk_signal_connect (GTK_OBJECT (button), 
 		"clicked", 
 		(GtkSignalFunc) destroy, 
@@ -368,7 +368,7 @@ void gerror(char *s)
 	gtk_widget_show (label);
 
 	/* Button to dismiss the dialog */
-	button = gtk_button_new_with_label ("OK");
+	button = gtk_button_new_with_label (_("OK"));
 	gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		(GtkSignalFunc) gerror_destroy,
 		(gpointer)dialog);

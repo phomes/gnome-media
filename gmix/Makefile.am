@@ -3,10 +3,7 @@ Audiodir = $(datadir)/apps/Audio
 #EXTRA_DIST = README TODO NEWS gmix.desktop
 
 INCLUDES = 				\
-	-I../.. 			\
-	-I$(srcdir)/../..	 	\
-	-I$(includedir)			\
-	$(X_CFLAGS)
+	-I$(includedir)
 
 bin_PROGRAMS = gmix
 
@@ -14,9 +11,6 @@ gmix_SOURCES =	\
 	gmix.c
 
 gmix_LDADD = \
-	$(top_builddir)/libgnome/libgnome.la		\
-	$(top_builddir)/libgnomeui/libgnomeui.la 	\
-	$(GTK_LIBS)                                     \
-        $(X_LIBS) $(x_libs) $(INTLLIBS) $(DL_LIB)
+	$(GNOMEUI_LIBS)
 
 Audio_DATA = gmix.desktop
