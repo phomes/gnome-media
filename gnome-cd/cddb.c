@@ -212,7 +212,6 @@ cddb_get_query (GnomeCD *gcd)
 	}
 
 	info = g_hash_table_lookup (cddb_cache, discid);
-	g_free (discid);
 
 	if (info != NULL) {
 		gcd->disc_info = info;
@@ -248,6 +247,7 @@ cddb_get_query (GnomeCD *gcd)
 				 data->nsecs, "GnomeCD", VERSION);
 	
 	gnome_cdrom_free_cddb_data (data);
+	g_free (offsets);
 }
 
 int
