@@ -3,10 +3,10 @@
 
 always_built_SUBDIRS = po macros cddbslave
 
-SUBDIRS = $(always_built_SUBDIRS) @PROGRAMS_EXTACE@ \
+SUBDIRS = $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_TCD@
 
-DIST_SUBDIRS = $(always_built_SUBDIRS) extace \
+DIST_SUBDIRS = $(always_built_SUBDIRS) \
 	       vu-meter gmix tcd
 
 EXTRA_DIST = gnome-media.spec.in configure acinclude.m4
