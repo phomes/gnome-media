@@ -141,10 +141,10 @@ linux_cdrom_open (LinuxCDRom *lcd,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("Unable to open %s. This may be caused by:\n"
-					      "a) CD support is not compiled into Linux\n"
-					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n"),					     
+					      _("%s does not appear to point to a valid CD device. This may be because:\n"
+						"a) CD support is not compiled into Linux\n"
+						"b) You do not have the correct permissions to access the CD drive\n"
+						"c) %s is not the CD drive.\n"),					     
 					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
 		}
 
@@ -1140,7 +1140,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not point to a valid CDRom device. This may be caused by:\n"
+					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
 					      "a) CD support is not compiled into Linux\n"
 					      "b) You do not have the correct permissions to access the CD drive\n"
 					      "c) %s is not the CD drive.\n"),					     
@@ -1288,18 +1288,25 @@ gnome_cdrom_new (const char *cdrom_device,
 	priv->cdrom_device = g_strdup (cdrom_device);
 	priv->update = update;
 
-	linux_cdrom_open (cdrom, error);
-	linux_cdrom_close (cdrom);
-	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
-					 cdrom->priv->cdrom_device,
-					 error) == FALSE) {
+	fd = open (cdrom_device, O_RDONLY | O_NONBLOCK);
+	if (fd < 0) {
+		if (errno == EACCES &&
+		    error != NULL) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      _("You do not seem to have permission to access %s."),
+					      cdrom_device);
+		}
+	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
+						cdrom->priv->cdrom_device,
+						error) == FALSE) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not point to a valid CDRom device. This may be caused by:\n"
-					      "a) CD support is not compiled into Linux\n"
-					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n"),					     
+					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
+						"a) CD support is not compiled into Linux\n"
+						"b) You do not have the correct permissions to access the CD drive\n"
+						"c) %s is not the CD drive.\n"),					     
 					      cdrom->priv->cdrom_device, cdrom->priv->cdrom_device);
 		}
 	}

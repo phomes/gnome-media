@@ -417,9 +417,9 @@ init_player (void)
 		
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_NONE,
-						 _("The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
-						   "will be unable to run correctly. Press Set device to go to a dialog\n"
-						   "where you can set the device, or click Quit to quit GnomeCD"));
+						 _("%s\nThis means that GnomeCD"
+						   " will be unable to run correctly. Press Set device to go to a dialog "
+						   "where you can set the device, or click Quit to quit GnomeCD"), error->message);
 		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
 					_("Set device"), 1, NULL);
 		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
