@@ -1,3 +1,14 @@
+2002-10-09  Havoc Pennington  <hp@pobox.com>
+
+	* preferences.c (preferences_dialog_show): call it "CD Player"
+
+	* gnome-cd.c (gnome_cd_set_window_title): change title to "CD
+	Player"
+	(init_player): change title to "CD Player", and set 
+	window role instead of window class for ICCCM compliance.
+	Matched window stuff should still be able to key off the role, 
+	I know it can in Sawfish.
+
 2002-10-16  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* preferences (create_theme_model): Add call to closedir().

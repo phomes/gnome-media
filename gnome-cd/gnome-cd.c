@@ -52,7 +52,7 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 
 	if (artist == NULL ||
 	    track == NULL) {
-		title = g_strdup (_("Gnome CD Player"));
+		title = g_strdup (_("CD Player"));
 	} else {
 		title = g_strconcat (track, " - ", artist, NULL);
 	}
@@ -492,8 +492,8 @@ init_player (const char *device_override)
 	gcd->cd_selection = cd_selection_start (gcd->device_override ?
 						gcd->device_override : gcd->preferences->device);
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title (GTK_WINDOW (gcd->window), _("Gnome CD Player"));
-	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
+	gtk_window_set_title (GTK_WINDOW (gcd->window), _("CD Player"));
+	gtk_window_set_role (GTK_WINDOW (gcd->window), "gnome-cd-main-window");
 	gtk_window_set_default_size (GTK_WINDOW (gcd->window), 350, 129);
 	
 	pixbuf = pixbuf_from_file ("gnome-cd/cd.png");
