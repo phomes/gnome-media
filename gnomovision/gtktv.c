@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdinc.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -12,20 +13,11 @@
 #include <gdk/gdktypes.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
-#include <gnome.h>
+#include <gtk/gtk.h>
 #include <gtk/gtkeventbox.h>
 
 #include <linux/types.h>
 #include <linux/videodev.h>
-
-#include "dummy.xpm"
-#include "capturer.xpm"
-#include "audio.xpm"
-#include "quit.xpm"
-
-#include "channels.h"
-
-#include "gnomovision.h"
 
 static GtkWidget *window;
 static GtkWidget *tv;
@@ -42,21 +34,43 @@ static int widescreen=0;
 static int widescreen_h;
 
 /*
- *	Bottom panel
+ *	TV card driving.
  */
 
-GtkWidget *channel_label;
-GtkWidget *volume_bar;
-GtkWidget *size_label;
+static struct video_window vwin;
+static struct video_picture vpic;
+static struct video_buffer vbuf;
+static struct video_capability vcap;
+static struct video_audio vaudio;
+static int grabber_format;
+static int capture_running;
+static int capture_hidden;	/* Dont capture we are hidden */
+
+
+static int tv_fd = -1;
+
+/*
+ *	Methods to work with
+ */
+ 
+static int kill_on_overlap = 0;	/* Set for overlay cards that dont clip */
+static int clean_display = 0;		/* Set on overlay cards that do DMA */
+static int chroma_key = 0;		/* Set for chromakey cards */
+static int fixed_size = 0;		/* Size is fixed by the card (we dont scale yet) */
+static int need_colour_cube = 0;	/* Set for colour cubes 0 - no 1 - 240 colour set for bt848 */
+static int use_shm = 0;			/* Capture only card */
+static int xsize = 320, ysize = 200;	/* Initial size */
+static int xmin, ymin;			/* Limits */
+static int xmax, ymax;	
 
 static GdkColor colourmap[256];		/* Colour map */
 static int colourmap_size;
 static int colourmap_base;
 static GdkColormap *private_colourmap;
 
+static int sanity1=0;
+static int sanity2=0;
 
-#define min(a,b)	(((a)>(b))?(b):(a))
-#define max(a,b)	(((a)>(b))?(a):(b))
 
 static void make_palette_grey(int num)
 {
@@ -104,21 +118,282 @@ static void make_colour_cube(void)
 	gdk_window_set_colormap(window->window, private_colourmap);
 }
 
-
-
-static void init_gtk_tvcard(void)
+static char *probe_tv_set(int n)
 {
-	if(chroma_key==0)
-		gdk_color_black(gdk_colormap_get_system(), &chroma_colour);
+	static struct video_capability t;
+	char buf[64];
+	int fd;
+	sprintf(buf,"/dev/video%d", n);
+	
+	fd=open(buf, O_RDWR);
+	if(fd==-1)
+		return NULL;
+		
+	if(ioctl(fd, VIDIOCGCAP, &t)==-1)
+	{
+		close(fd);
+		return NULL;
+	}
+	close(fd);
+	return t.name;
+}
+
+static int open_tv_card(int n)
+{
+	Display *disp;
+	int fd;
+	unsigned int rwidth;
+	int bank, ram, major, minor;
+	
+	char buf[64];
+	
+	sprintf(buf,"/dev/video%d",n);
+	
+	fd=open(buf,O_RDWR);
+	
+	
+	if(fd==-1)
+	{
+		perror("open");
+		return -1;
+	}
+	
+	if(ioctl(fd, VIDIOCGAUDIO, &vaudio)==0)
+	{
+		vaudio.flags|=VIDEO_AUDIO_MUTE;
+		ioctl(fd, VIDIOCSAUDIO, &vaudio);
+	}
+
+	if(ioctl(fd, VIDIOCGCAP, &vcap))
+	{
+		perror("get capabilities");
+		return -1;
+	}
+	
+	/*
+	 *	Use black as the background unless we later find a 
+	 *	chromakey device
+	 */
+	 
+	gdk_color_black(gdk_colormap_get_system(), &chroma_colour);
+	 
+	/* 
+	 *	Now see what we support
+	 */
+	 
+	if(!(vcap.type&VID_TYPE_OVERLAY))
+	{
+		if(vcap.type&VID_TYPE_CAPTURE)
+			use_shm = 1;
+		else
+		{
+			fprintf(stderr,"I don't know how to handle this device.\n");
+			return -1;
+		}
+	}
 	else
 	{
-		/* We want the most vile unused colour we can get
-		   for our chroma key - this is pretty foul */
-		gdk_color_parse("#FA77A1", &chroma_colour);
-		gdk_color_alloc(gdk_colormap_get_system(), &chroma_colour);
+		/* Ok now see what method to use */
+		if(vcap.type&VID_TYPE_CLIPPING)
+		{
+		}
+		else if(vcap.type&VID_TYPE_CHROMAKEY)
+		{
+			chroma_key = 1;
+			/* We want the most vile unused colour we can get
+			   for our chroma key - this is pretty foul */
+			gdk_color_parse("#FA77A1", &chroma_colour);
+			gdk_color_alloc(gdk_colormap_get_system(), &chroma_colour);
+		}
+		else
+			kill_on_overlap = 1;
+		if(vcap.type&VID_TYPE_FRAMERAM)
+			clean_display = 1;
+		
 	}
-	if(need_greymap!=0)
-		make_palette_grey(need_greymap);
+	
+	/*
+	 *	Set the window size constraints
+	 */
+	 
+	if(!(vcap.type&VID_TYPE_SCALES))
+	{
+		xmin = xmax = xsize = vcap.maxwidth;
+		ymin = ymax = ysize = vcap.maxheight;
+		fixed_size = 1;
+	}
+	else
+	{
+		xmin = vcap.minwidth;
+		ymin = vcap.minheight;
+		xmax = vcap.maxwidth;
+		ymax = vcap.maxheight;
+		xsize = min(max(xsize, xmin), xmax);
+		ysize = min(max(ysize, ymin), ymax);
+	}
+
+	/*
+	 *	Now get the video parameters (one day X will set these)
+	 */
+	 
+	disp=GDK_DISPLAY();
+	if (XF86DGAQueryVersion(disp, &major, &minor)) 
+		XF86DGAGetVideoLL(disp, DefaultScreen(disp), &(vbuf.base),
+		&rwidth, &bank, &ram);
+	else 
+	{
+		fprintf(stderr,"XF86DGA: DGA not available.\n");
+		return -1;
+	}
+
+	/*
+	 *	Hunt the visual
+	 */
+	 
+	vbuf.depth = gdk_visual_get_best_depth();
+	vbuf.bytesperline = rwidth*vbuf.depth/8;
+	
+	/*
+	 *	Set the overlay buffer up
+	 */
+	 
+	if(ioctl(fd, VIDIOCSFBUF, &vbuf)==-1)
+	{
+		perror("Set frame buffer");
+		/*
+		 *	If we can't use MITSHM then we can't overlay if
+		 *	the board can't handle our framebuffer...
+		 *
+		 *	For SHM we can do post processing.
+		 */
+		 
+		if(!use_shm)
+			return -1;
+	}
+	
+	if(seteuid(getuid())==-1)
+	{
+		perror("seteuid");
+		exit(1);
+	}
+	
+	/*
+	 *	Set the format
+	 */
+ 
+	ioctl(fd, VIDIOCGPICT , &vpic);
+
+	if(use_shm)
+	{	
+	
+		/*
+		 *	Try 24bit RGB, then 565 then 555. Arguably we ought to
+		 *	try one matching our visual first, then try them in 
+		 *	quality order
+		 *
+		 */
+		
+		
+		if(vcap.type&VID_TYPE_MONOCHROME)
+		{
+			vpic.depth=8;
+			vpic.palette=VIDEO_PALETTE_GREY;	/* 8bit grey */
+			if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+			{
+				vpic.depth=6;
+				if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+				{
+					vpic.depth=4;
+					if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+					{
+						fprintf(stderr, "Unable to find a supported capture format.\n");
+						return -1;
+					}
+				}
+			}
+			/*
+			 *	Make a grey scale cube - only go to 6bit
+			 */
+			 
+			if(vpic.depth==4)
+				make_palette_grey(16);
+			else
+				make_palette_grey(64);
+			
+		}
+		else
+		{
+			vpic.depth=24;
+			vpic.palette=VIDEO_PALETTE_RGB24;
+		
+			if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+			{
+				vpic.palette=VIDEO_PALETTE_RGB565;
+				vpic.depth=16;
+				
+				if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+				{
+					vpic.palette=VIDEO_PALETTE_RGB555;
+					vpic.depth=15;
+				
+					if(ioctl(tv_fd, VIDIOCSPICT, &vpic)==-1)
+					{
+						fprintf(stderr, "Unable to find a supported capture format.\n");
+						return -1;
+					}
+				}
+			}
+		}
+	}
+	/*
+	 *	Soft overlays by chroma etc we dont have to care about
+	 *	the format for.. but DMA to frame buffer we do
+	 */
+	else if(vcap.type&VID_TYPE_FRAMERAM)
+	{
+		vpic.depth = vbuf.depth;
+		switch(vpic.depth)
+		{
+			case 8:
+				vpic.palette=VIDEO_PALETTE_HI240;	/* colour cube */
+				need_colour_cube=1;
+				break;
+			case 15:
+				vpic.palette=VIDEO_PALETTE_RGB555;
+				break;
+			case 16:
+				vpic.palette=VIDEO_PALETTE_RGB565;
+				break;
+			case 24:
+				vpic.palette=VIDEO_PALETTE_RGB24;
+				break;
+			case 32:		
+				vpic.palette=VIDEO_PALETTE_RGB32;
+				break;
+			default:
+				fprintf(stderr,"Unsupported X11 depth.\n");
+		}
+		if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
+		{
+			/* Depth mismatch is fatal on overlay */
+			perror("set depth");
+			return -1;
+		}
+	}
+		
+	if(ioctl(fd, VIDIOCGPICT, &vpic)==-1)
+		perror("get picture");
+			
+	grabber_format = vpic.palette;
+	
+	sanity1=1;
+	return fd;
+}	
+
+
+static void close_tv_card(int handle)
+{
+	close(handle);
 }
 
 /*
@@ -349,7 +624,6 @@ static void write_ppm_image(FILE *f)
 static void do_painting(void)
 {
 	gint x,y,w,h,d;
-	char buf[40];
 	
 	/*
 	 *	Called during setup - ignore	 
@@ -360,10 +634,6 @@ static void do_painting(void)
 		
 		
         gdk_window_get_geometry(painter->window, &x, &y, &w, &h, &d);
-        
-        snprintf(buf,40,"%dx%d",w,h);
-        
-//        gtk_label_set(size_label,buf);
 
 	if(use_shm && capture && capture_running && !capture_hidden)
 	{
@@ -388,15 +658,16 @@ static void do_painting(void)
 }
 		
 
-static gint tv_grabber(gpointer data)
+static void tv_grabber(void)
 {
 	grab_image(capture->mem, 0, 0);
 	do_painting();
-	return TRUE;
 }
 
 static void tv_capture(int handle, int onoff)
 {
+	int old_state = onoff;
+	
 	if(use_shm==0)
 	{
 		/*
@@ -488,63 +759,67 @@ static void tv_set_window(int handle)
 		vwin.y-=h/10;
 		vwin.height+=h/5;
 	}
-	if(ioctl(tv_fd, VIDIOCSWIN, &vwin)==-1)
-		perror("set video window");
-	if(ioctl(tv_fd, VIDIOCGWIN, &vwin)==-1)
-		perror("get video window");
-	/* x,y,h,w are now the values that were chosen by the
-	   device to be as close as possible - eg the quickcam only
-	   has 3 sizes */
-	xsize = vwin.width;
-	ysize = vwin.height;
-
-	/*
-	 *	Now check the image in question
-	 */
-	 
-	if(use_shm)
+	if(sanity1!=0)
 	{
-		if(capture==NULL || capture_w!=xsize || capture_h!=ysize)
+		if(ioctl(tv_fd, VIDIOCSWIN, &vwin)==-1)
+			perror("set video window");
+		if(ioctl(tv_fd, VIDIOCGWIN, &vwin)==-1)
+			perror("get video window");
+		/* x,y,h,w are now the values that were chosen by the
+		   device to be as close as possible - eg the quickcam only
+		   has 3 sizes */
+		xsize = vwin.width;
+		ysize = vwin.height;
+
+		/*
+		 *	Now check the image in question
+		 */
+		 
+		if(use_shm)
 		{
-			capture_type = GDK_IMAGE_FASTEST;
-			
-			if(capture!=NULL)
+			if(capture==NULL || capture_w!=xsize || capture_h!=ysize)
 			{
-				gdk_image_destroy(capture);
-				capture=NULL;
-			}
+				capture_type = GDK_IMAGE_FASTEST;
+				
+				if(capture!=NULL)
+				{
+					gdk_image_destroy(capture);
+					capture=NULL;
+				}
 #ifdef __alpha__
-			/*
-			 *	Taken from the sane xcam
-			 */
-			 
-			/* Some X servers seem to have a problem with shared images that
-			    have a width that is not a multiple of 8.  Duh... ;-( */
-			if (xsize % 8)
-				capture_type = GDK_IMAGE_NORMAL;
+				/*
+				 *	Taken from the sane xcam
+				 */
+				 
+				/* Some X servers seem to have a problem with shared images that
+				    have a width that is not a multiple of 8.  Duh... ;-( */
+				if (xsize % 8)
+					capture_type = GDK_IMAGE_NORMAL;
 #endif
-			
-			capture=gdk_image_new(capture_type, 
+				
+				capture=gdk_image_new(capture_type, 
 					gdk_window_get_visual(t),
 					xsize,ysize);
 					
-			capture_h=ysize;
-			capture_w=xsize;
-		}
-		/*
-		 *	Capture and draw
-		 */
+				capture_h=ysize;
+				capture_w=xsize;
+			}
+			/*
+			 *	Capture and draw
+			 */
 			 
-		d=capture_running;
-		capture_running=0;
-		do_painting();
-		capture_running=d;
+			d=capture_running;
+			capture_running=0;
+			do_painting();
+			capture_running=d;
 			
-		/*
-		 *	Start grabbing again
-		 */
-		
-		grab_image(capture->mem, x,y);
+			/*
+			 *	Start grabbing again
+			 */
+			
+			grab_image(capture->mem, x,y);
+			
+		}				
 	}
 }
 
@@ -616,14 +891,13 @@ static int capturer_running;
 static int crap_eraser_lock;
 static int crap_eraser_delay=0;
 
-static gint crap_eraser(gpointer trash)
+static void crap_eraser(void)
 {
 	if(!crap_eraser_running)
 	{
 		static int warn=0;
 		if(warn++==0)
 			printf("Your gtk seems to have an idle bug.\n");
-		return FALSE;
 	}
 	else
 	{
@@ -632,24 +906,21 @@ static gint crap_eraser(gpointer trash)
 		crap_eraser_lock = 0;
 		crap_eraser_delay = 1;
 	}
+	gtk_idle_remove(crap_eraser_tag);
 	crap_eraser_running=0;
-	return FALSE;
 }
 
-static gint capturer(gpointer foo)
+static void capturer(void)
 {
 	if(crap_eraser_running)
-	{
-		crap_eraser(NULL);
-		gtk_idle_remove(crap_eraser_tag);
-	}
+		crap_eraser();
 	if(capturer_running)
 	{
 		tv_capture(tv_fd, capture_running);
 /*		printf("RAN CAPTURER\n");*/
 	}
+	gtk_idle_remove(capturer_tag);
 	capturer_running=0;
-	return FALSE;
 }
 
 
@@ -664,6 +935,16 @@ static void queue_crap_eraser(int n)
 	else
 /*		printf("CRAPPER ACTIVE\n")*/;
 	crap_eraser_lock|=n;
+}
+
+static void dequeue_crap_eraser(void)
+{
+	if(crap_eraser_running==1 && !crap_eraser_lock)
+	{
+/*		printf("DECRAPPER QUEUED\n");*/
+		crap_eraser_running=0;
+		gtk_idle_remove(crap_eraser_tag);
+	}
 }
 
 static void queue_capturer(void)
@@ -684,13 +965,11 @@ static void queue_capturer(void)
   
 static gint painting_event(GtkWidget *self, GdkEvent *event)
 {
-#if 0
 	GList *winlist;
 	GList *node;
 	GdkWindow *win;
 	static struct video_clip clips[256];
 	int next_clip = 0;
-#endif	
 	/* Remember if we are drawing */
 	int capture_was_running = capture_running;
 	int crapped_on = 0;
@@ -840,15 +1119,21 @@ static void set_channel(GtkObject *o, void *p)
 	int channel=(int)p;
 	if(ioctl(tv_fd, VIDIOCSCHAN, &channel)==-1)
 		perror("set channel");
-	/*
-	 *	See if we have a frequency 
-	 */
-	 
-	ioctl(tv_fd, VIDIOCGFREQ, &vbase_freq);
+	/* FIXME : hack for now 8683 is my video ;) */
+	if(p==0)
+	{
+		struct video_tuner vt;
+		unsigned long f=8683;
+		vt.tuner=0;
+		vt.mode=VIDEO_MODE_PAL;
+		ioctl(tv_fd, VIDIOCSTUNER, &vt);
+		ioctl(tv_fd, VIDIOCSFREQ, &f);
+	}
 }
 
 static void set_format(GtkObject *o, void *p)
 {
+	struct video_tuner vt;
 	int format = (int)p;
 	
 	vt.tuner = 0;		/* FIXME : support multiple tuners */
@@ -857,7 +1142,6 @@ static void set_format(GtkObject *o, void *p)
 		perror("get tuner");
 
 	vt.mode = format;
-	vt.tuner = 0;
 	
 	if(ioctl(tv_fd, VIDIOCSTUNER, &vt)==-1)
 		perror("set tuner");
@@ -872,6 +1156,7 @@ void format_bar(GtkWidget *menubar)
 {
 	GtkWidget* menu;
 	GtkWidget* menuitem;
+	struct video_tuner vt;
 	int n;
 	static char *name[4]= {
 		"PAL",
@@ -892,7 +1177,6 @@ void format_bar(GtkWidget *menubar)
 		vt.tuner = 0; 	/* FIXME: support multiple tuners */
 		if(ioctl(tv_fd, VIDIOCGTUNER, &vt)==0)
 		{
-			vt.tuner = 0;
 			vt.mode = n;
 			if(ioctl(tv_fd, VIDIOCSTUNER, &vt)==-1)
 				continue;
@@ -916,54 +1200,6 @@ void format_bar(GtkWidget *menubar)
 	}
 }
 
-
-static void process_help(GtkObject *o, void *p)
-{
-	int x,y;
-        gdk_window_get_origin(painter->window, &x, &y);
-        x-=30;
-        y-=20;
-        if(x<0)
-        	x+=60;
-        if(y<0)
-        	y+=30;
-        	
-        make_about_box(x,y);
-}
-        
-
-void help_bar(GtkWidget *menubar)
-{
-	GtkWidget* menu;
-	GtkWidget* menuitem;
-	int n;
-	static char *name[2]= {
-		"About",
-		"Help Topics"
-	};
-
-	menu = gtk_menu_new();
-	
-	menuitem = gtk_menu_item_new();
-	gtk_menu_append(GTK_MENU(menu), menuitem);
-	gtk_widget_show(menuitem);
-
-	for(n=0;n<2;n++)
-	{
-		menuitem = gtk_menu_item_new_with_label(name[n]);
-		gtk_menu_append(GTK_MENU(menu), menuitem);
-		gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
-                     (GtkSignalFunc) process_help,(void *)n);
-		gtk_widget_show(menuitem);
-	}
-
-	menuitem = gtk_menu_item_new_with_label("Help");
-	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitem), menu);
-	gtk_menu_item_right_justify(GTK_MENU_ITEM(menuitem));
-	gtk_container_add(GTK_CONTAINER(menubar), menuitem);
-	gtk_widget_show(menuitem);
-}
-
 void channel_bar(GtkWidget *menubar)
 {
 	GtkWidget* menu;
@@ -985,7 +1221,7 @@ void channel_bar(GtkWidget *menubar)
 		return;
 	}
 	
-	sprintf(buf, "Gnomovision 1.09: %s", vc.name);
+	sprintf(buf, "Gnomovision 1.06: %s", vc.name);
 	
 	gtk_window_set_title(GTK_WINDOW(window), buf);
 	
@@ -1057,12 +1293,6 @@ GtkWidget *tv_menu_bar(void)
 		gtk_widget_show(menuitem);
 	}
 	
-	menuitem = gtk_menu_item_new_with_label("Preferences");
-	gtk_menu_append(GTK_MENU(menu), menuitem);
-	gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
-				(GtkSignalFunc) preferences_page, NULL);
-	gtk_widget_show(menuitem);
-
 	menuitem = gtk_menu_item_new_with_label("Exit");
 	gtk_menu_append(GTK_MENU(menu), menuitem);
 	gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
@@ -1078,12 +1308,119 @@ GtkWidget *tv_menu_bar(void)
 	
 	format_bar(menubar);
 	
-	help_bar(menubar);
-	
 	return menubar;
 }
 
 
+static GtkWidget *colour_widget=NULL;
+
+
+static gint colour_settings(GtkAdjustment *adj_data, void *ptr)
+{
+	int n=(int)ptr;
+	
+	adj_data->value+=0.5;
+	
+	switch(n)
+	{
+		case 0:
+			vpic.brightness=adj_data->value;
+			break;
+		case 1:
+			vpic.contrast=adj_data->value;
+			break;
+		case 2:
+			vpic.whiteness=adj_data->value;
+			break;
+		case 3:
+			vpic.colour=adj_data->value;
+			break;
+		case 4:
+			vpic.hue=adj_data->value;
+			break;
+	}
+	if(ioctl(tv_fd, VIDIOCSPICT, &vpic)==-1)
+		perror("set picture");
+	return TRUE;
+}
+
+static void slider_create(char *name, GtkWidget *vbox, int id, float value)
+{
+	GtkWidget *scale;
+	GtkObject *slider;
+	
+	scale=gtk_label_new(name);
+	gtk_box_pack_start(GTK_BOX(vbox), scale, FALSE, FALSE, 2);
+	gtk_widget_show(scale);
+	
+	slider = gtk_adjustment_new(value, 0.0, 65535.0, 1.0, 1.0, 0.0);
+	scale = gtk_hscale_new(GTK_ADJUSTMENT(slider));
+	gtk_widget_set_usize(scale,200,0);
+	gtk_box_pack_start(GTK_BOX(vbox), scale, FALSE, FALSE, 0);
+	
+	gtk_range_set_update_policy(GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
+	gtk_scale_set_value_pos(GTK_SCALE(scale), GTK_POS_TOP);
+	gtk_scale_set_digits(GTK_SCALE(scale), 1);
+	
+	gtk_signal_connect(slider, "value_changed",
+		(GtkSignalFunc)colour_settings, (void *)id); 
+
+	gtk_widget_show(scale);
+}
+
+static void done_colour_settings(void)
+{
+	gtk_widget_hide(colour_widget);
+}
+
+
+static void colour_setting(void)
+{
+	GtkWidget *main_vbox, *vbox, *hbox, *button;
+	
+	
+	if(colour_widget)
+	{
+		gtk_widget_show(colour_widget);
+		return;
+	}
+	
+	colour_widget = gtk_dialog_new();
+	
+	gtk_window_set_title(GTK_WINDOW(colour_widget),"Picture Control");
+	main_vbox = GTK_DIALOG(colour_widget)->vbox;
+	
+	vbox = gtk_vbox_new(FALSE,5);
+	gtk_container_border_width(GTK_CONTAINER(vbox),3);
+	gtk_box_pack_start(GTK_BOX(main_vbox), vbox, TRUE, TRUE, 0);
+	gtk_widget_show(vbox);
+	
+	slider_create("Brightness", vbox, 0, (float)vpic.brightness);
+	slider_create("Contrast", vbox, 1, (float)vpic.contrast);
+	
+	if(vcap.type&VID_TYPE_MONOCHROME)
+	{
+		slider_create("Whiteness", vbox, 2, (float)vpic.whiteness);
+	}
+	else
+	{
+		slider_create("Colour", vbox, 3, (float)vpic.colour);
+		slider_create("Hue", vbox, 4, (float)vpic.hue);
+	}
+
+	hbox = GTK_DIALOG(colour_widget)->action_area;
+	
+	button = gtk_button_new_with_label("Dismiss");
+	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		(GtkSignalFunc)done_colour_settings, NULL);
+	gtk_box_pack_start(GTK_BOX(hbox), button, TRUE, TRUE, 0);
+	gtk_widget_show(button);
+	gtk_widget_grab_default(button);
+	
+	gtk_widget_show(hbox);
+	gtk_widget_show(colour_widget);
+}
 
 static void wide_toggle(void)
 {
@@ -1154,27 +1491,35 @@ static void snapshot_image(void)
 	file_selector = filesel;
 }
 	
-static GnomeUIInfo tbar[] =
-{
-	GNOMEUIINFO_ITEM(NULL, "Capture Images", capture_toggle, capturer_xpm),
-	GNOMEUIINFO_ITEM(NULL, "Save Snapshot", snapshot_image, quit_xpm),
-	GNOMEUIINFO_ITEM(NULL, "Audio on/off", audio_toggle, audio_xpm),
-	GNOMEUIINFO_ITEM(NULL, "Select a channel", frequency_setting , dummy_xpm),
-	GNOMEUIINFO_ITEM(NULL, "Exit Gnomovision", gtk_main_quit, quit_xpm),
-	GNOMEUIINFO_END
-};
+static void toolbar_add(GtkWidget *toolbar, char *name, void *func)
+{	
+	GtkWidget *button=gtk_button_new_with_label(name);
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		(GtkSignalFunc)func, NULL);
+	gtk_box_pack_start(GTK_BOX(toolbar), button, TRUE, TRUE, 0);
+	gtk_widget_show(button);
+}
 
+static void pack_toolbar(GtkWidget *toolbar)
+{
+	toolbar_add(toolbar, "Capture", capture_toggle);
+	if(vcap.type&VID_TYPE_CAPTURE)
+		toolbar_add(toolbar, "Snapshot", snapshot_image);
+	toolbar_add(toolbar, "Picture", colour_setting);
+	if(vcap.audios)
+		toolbar_add(toolbar, "Audio", audio_toggle);
+	toolbar_add(toolbar, "Tuning", colour_setting);
+	toolbar_add(toolbar, "Wide/Narr", wide_toggle);
+	toolbar_add(toolbar, "Exit", gtk_main_quit);
+}
 
 void make_tv_set(void)
 {
 	GtkWidget *menubar;
-	GtkWidget *hbox, *vbox, *frame;
+	GtkWidget *hbox, *vbox;
+	GtkWidget *toolbar;
 
-	window = gnome_app_new("gnomovision", "Televison Gnome");
-	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, TRUE);
-	
-	xsize = gnome_config_get_int("/gnomovision/geometry/xsize=320");
-	ysize = gnome_config_get_int("/gnomovision/geometry/xsize=240");
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
  
 	gtk_widget_set_events(window, GDK_EXPOSURE_MASK|GDK_VISIBILITY_NOTIFY_MASK|GDK_ALL_EVENTS_MASK);
 	gtk_signal_connect(GTK_OBJECT(window), "destroy", capture_off, NULL);
@@ -1189,9 +1534,13 @@ void make_tv_set(void)
 		painting_event, 0);
 
 	vbox = gtk_vbox_new(FALSE, 0);
-	
-	gnome_app_set_contents(GNOME_APP(window), vbox);
 
+	toolbar = gtk_hbox_new(FALSE, 0);
+	
+	pack_toolbar(toolbar);
+	
+	gtk_widget_show(toolbar);
+	
 	/*
 	 *	FIXME: now I can't resize below this user size. How do
 	 *	I fix that ?
@@ -1216,11 +1565,8 @@ void make_tv_set(void)
 	
 
 	menubar = tv_menu_bar();
-	gnome_app_set_menus(GNOME_APP(window), GTK_MENU_BAR(menubar));
-	gnome_app_create_toolbar(GNOME_APP(window), tbar);
-//	gnome_app_toolbar_set_position(GNOME_APP(window), GNOME_APP_POS_BOTTOM);
-	
-	gtk_container_border_width(GTK_CONTAINER(GNOME_APP(window)->toolbar), 3);
+	gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	
@@ -1233,30 +1579,6 @@ void make_tv_set(void)
 		make_colour_cube();
 
 	gtk_widget_show(hbox);
-	
-	hbox = gtk_hbox_new(FALSE, 2);
-	
-	frame = gtk_frame_new(NULL);
-	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_ETCHED_IN);
-	channel_label = gtk_label_new("");
-	gtk_widget_set_usize(channel_label, 96,16);
-	gtk_container_add(GTK_CONTAINER(frame), channel_label);
-	gtk_widget_show(channel_label);
-	gtk_widget_show(frame);
-	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
-
-	frame = gtk_frame_new(NULL);
-	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_ETCHED_IN);
-	size_label = gtk_label_new("");
-	gtk_widget_set_usize(size_label, 96,16);
-	gtk_container_add(GTK_CONTAINER(frame), size_label);
-	gtk_widget_show(size_label);
-	gtk_widget_show(frame);
-	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
-
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE/*TRUE*/, FALSE, 0);
-	
-	gtk_widget_show(hbox);
 	gtk_widget_show(vbox);
 	gtk_widget_show(window);
 	tv_set_window(tv_fd);
@@ -1267,28 +1589,10 @@ static int chosen_unit = 0;
 
 static void video_device_ok(void)
 {
-	/*
-	 *	Open the card
-	 */
-	 
+	static void colour_setting(void);
 	if((tv_fd=open_tv_card(chosen_unit))==-1)
 		return;
-	/*
-	 *	Do the magic to set our colours up
-	 */
-	
-	init_gtk_tvcard();	
-	
-	/*
-	 *	Blow the selector away
-	 */
-	 
 	gtk_widget_destroy(choose);
-	
-	/*
-	 *	And sprout a tvset
-	 */
-	 
 	make_tv_set();
 }
 
@@ -1302,7 +1606,7 @@ static void video_device_pick(GtkWidget *widget, GdkEventButton *event, gpointer
 
 static void choose_video_device(void)
 {
-	GtkWidget *main_vbox, *vbox, *hbox, *button, *frame;
+	GtkWidget *main_vbox, *vbox, *hbox, *button;
 	GSList *owner;
 	gint i;
 	int count=0;
@@ -1312,17 +1616,10 @@ static void choose_video_device(void)
 	gtk_window_set_title(GTK_WINDOW(choose),"Select Video Device");
 	main_vbox = GTK_DIALOG(choose)->vbox;
 	
-	frame=gtk_frame_new("Select Video Device");
-	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_ETCHED_IN);
-	gtk_container_border_width(GTK_CONTAINER(frame),5);
-	
-	gtk_container_add(GTK_CONTAINER(main_vbox), frame);
-		
 	vbox = gtk_vbox_new(FALSE,5);
 	gtk_container_border_width(GTK_CONTAINER(vbox),3);
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
+	gtk_box_pack_start(GTK_BOX(main_vbox), vbox, TRUE, TRUE, 0);
 	gtk_widget_show(vbox);
-	gtk_widget_show(frame);
 	owner=NULL;
 	
 	for(i=0;i<240;i++)
@@ -1362,42 +1659,15 @@ static void choose_video_device(void)
 #ifdef FIXME	
 	if(count==0)
 		video_no_devices();
+#endif		
 	if(count==1)
 		video_device_ok();
 	else
-#endif	
 		gtk_widget_show(choose);
 }
 
 
-/************** DANGER ZERO CLUE GNOME FEATURE SUPPORT AHEAD *****************/
 
-/*
- *	This heap of shite is caused by 'argp'. I don't know which idiot
- *	added it to Gnome but they ought to be forced to program in COBOL
- *	for 3 months as punishment. Note all options are gone, whichever
- *	fuckwit added Argp can damn well fix it not me.
- */
- 
-
-
-static error_t parse_an_arg(int keycrap, char *argcrap, struct argp_state *fucked)
-{
-	if(keycrap!=ARGP_KEY_ARG)
-		return ARGP_ERR_UNKNOWN;
-	return 0;
-}
-
-static struct argp shite1=
-{
-	NULL,
-	parse_an_arg,
-	N_("FILE ..."),
-	NULL,
-	NULL,
-	NULL,
-	NULL
-};
 
 /*
  *	Run the TV set
@@ -1406,8 +1676,7 @@ static struct argp shite1=
 int main(int argc, char *argv[])
 {
 	int n=0;
-	gnome_init(argv[0], &shite1, argc, argv, 0 ,NULL);
-#ifdef THE_GNOME_PEOPLE_HAD_A_CLUE	
+	gtk_init(&argc,&argv);
 	if(argv[1] && strcmp(argv[1], "-w")==0)
 	{
 		argv++;
@@ -1418,11 +1687,9 @@ int main(int argc, char *argv[])
 		sscanf(argv[1],"%d",&n);
 		if((tv_fd=open_tv_card(n))==-1)
 			return 1;
-		init_gtk_tvcard();
 		make_tv_set();
 	}
 	else
-#endif
 		choose_video_device();
 	
 	gtk_main();

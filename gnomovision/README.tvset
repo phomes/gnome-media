@@ -8,40 +8,41 @@ o	Overlay cards don't behave correctly
 
 	The next version of gtk supports visibility events and noexpose.
 	This will allow me to resolve most of these issues. Eventually
-	an XFree extension will solve the rest
+	an XFree extension will solve the rest. 
 
 	For now, keep the tv on top, and use the "Show" menu option before
-	turning capture on after moving the window.
+	turning capture on after moving the window if you have an older gtk
 
 o	Wide mode interacts wrongly with devices that can't do arbitary
 	scaling (eg qcam), as the request for the bigger image is ignored.
 
-	We should disable scale in these cases
+	We should disable scale in these cases. Until someone sorts argp
+	out -w is disabled.
 
 o	Offers capture for the BT848 when it should not. Kernel bug - will
-	fix soon.
-
-o	No SECAM on BT848. Kernel bug - will get fixed soon
+	fix soon. (Fixed in kernel CVS). Need to support mmap capture tho.
+	Need to support YUV boards (the sun capture board is dumb)
 
 o	Capture is done at the point you select the filename not before
 
+o	Sizing is wacked somewhere. If I enable the footer with size in my
+	window keeps resizing to its original. Annoying
 
+o	Clipping is not being done (this busts wide mode too)
 
 To Do
 
-o	8bit colour modes are not supported
-
-o	Shift from gtk to gnome + gtk and redo the toolbar properly
+o	8bit colour modes are not supported - we need to load a 955
+	colour cube into colours 16->240 on a private CMAP. 
 
 o	Tuner/Autotuner - needs kernel side support for "tuned in" for the
 	autotuner.
-
-o	Multiple audio channel support for Gerd Knorrs driver extensions
-	for the newest hauppauge cards with sound chip
 
 o	Write gtk teletext support and add it to the program
 
 o	Help system. Waiting for gnome's html help tool to be done.
 
 o	Capture sequences of frames
+
+o	Preferences dialog to set tuning type etc.
 

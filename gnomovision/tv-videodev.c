@@ -4,6 +4,7 @@
  */
  
 #include <stdio.h>
+#include <stdinc.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -15,6 +16,8 @@
 
 #include <linux/types.h>
 #include <linux/videodev.h>
+
+#include <gtk/gtk.h>
 
 #include "gnomovision.h"
 
@@ -318,3 +321,16 @@ void close_tv_card(int handle)
 {
 	close(handle);
 }
+
+void set_tv_frequency(long value)
+{
+	if(ioctl(tv_fd, VIDIOCSFREQ, &vfrequency)==-1)
+		perror("set frequency");
+}
+
+void set_tv_picture(struct video_picture *vp)
+{
+	if(ioctl(tv_fd, VIDIOCSPICT, vp)==-1)
+		perror("set picture");
+}
+
