@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-17 14:56+0100\n"
+"POT-Creation-Date: 2003-12-29 20:46+0100\n"
 "PO-Revision-Date: 2003-11-17 14:58+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -366,7 +366,9 @@ msgstr "Noise"
 msgid "Alt"
 msgstr "Alt"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Bass"
 
@@ -877,40 +879,386 @@ msgstr ""
 "No es pot crear la fàbrica del CDDBTrackEditor.\n"
 "Pot ser perque ja hi ha un altra còpia del cddb-track-editor en execució.\n"
 
-#: gst-mixer/src/mixer.c:219
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Synth"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "DAC"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "Entrada DSP"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Line"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "MIC"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "CD"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Vídeo"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Ràdio"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Telèfon"
+
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "Altaveu del PC"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Aux"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Entrada central"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Entrada del Woofer"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Entrada Surround"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Master"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Master Mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Master Digital"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Auriculars"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "Sortida del Telèfon"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Centre"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Woofer"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Surround"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "Sortida DSP"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Aguts"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Equalitzador"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Esvair"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Efecte"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "Efecte 3D"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Guany del Mic"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Guany d'entrada"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Guany de sortida"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Loopback analògic"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Loopback digital"
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Vol  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Baixos "
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "Aguts"
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "Pcm  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "Altaveu "
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Línia "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "Mic  "
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "CD   "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "Mes  "
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "Pcm2 "
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Enrg  "
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "IGain"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "OGain"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "Línia1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "Línia2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "Línia3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Digital1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Digital2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Digital3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "PhoneIn"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "PhoneOut"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "Monitor"
+
+#: gmix/gmix.c:115
+msgid "Help"
+msgstr "Ajuda"
+
+#: gmix/gmix.c:146
+msgid "Mixer device to use"
+msgstr "Dispositiu de mesclador a usar"
+
+#: gmix/gmix.c:327
+#, c-format
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
+msgstr ""
+"El control de volum no es pot executar correctament.\n"
+"\n"
+"No s'ha pogut obrir el dispositiu d'àudio «%s».\n"
+"Si us plau comproveu que teniu premis per obrir «%s»\n"
+"i assegureu-vos de que teniu suport d'àudio al vostre nucli.\n"
+"\n"
+"Feu clic en Surt per a sortir del control de volum"
+
+#: gmix/gmix.c:381
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
+msgstr ""
+"El control de volum no es pot executar correctament.\n"
+"\n"
+"Premeu el botó de detalls per a veure més detalls sobre les raons del "
+"problema.\n"
+"\n"
+"Premeu Surt per a sortir del control de volum"
+
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
+msgid "_Details"
+msgstr "_Detalls"
+
+#: gmix/gmix.c:387
+msgid "Invalid mixer device"
+msgstr "Dispositiu de mesclador invàlid"
+
+#: gmix/gmix.c:632
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"Avís: Aquesta versió del Gnome Volume Control ha estat compilada amb\n"
+"la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
+"una versió anterior a la 3.6.0.\n"
+
+#: gmix/gmix.c:639
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"Avís: Aquesta versió del Gnome Volume Control ha estat compilada amb\n"
+"la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
+"la versió %d.%d.%d.\n"
+
+#: gmix/gmix.c:1112
+#, c-format
+msgid "left %s"
+msgstr "%s esquerre"
+
+#: gmix/gmix.c:1138
+#, c-format
+msgid "Right %s"
+msgstr "%s dret"
+
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "Bloca"
 
-#: gst-mixer/src/mixer.c:229
+#: gmix/gmix.c:1244
+#, c-format
+msgid "%s Lock"
+msgstr "%s Bloca"
+
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "Silenci"
 
-#: gst-mixer/src/mixer.c:241
+#: gmix/gmix.c:1268
+#, c-format
+msgid "%s Mute"
+msgstr "%s silenciat"
+
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "Enrg."
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:394 gst-mixer/src/mixer.c:482
-msgid "GStreamer Volume Control"
-msgstr "Control del volum de GStreamer"
+#: gmix/gmix.c:1294
+#, c-format
+msgid "%s Record"
+msgstr "%s enregistra"
 
-#: gst-mixer/src/mixer.c:397
-msgid "A GNOME/GStreamer-based mixer application"
-msgstr "Una aplicació mesclador basada en GNOME/GStreamer"
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
+msgid "Volume Control"
+msgstr "Control del volum"
 
-#: gst-mixer/src/mixer.c:499
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr "No s'ha trobat cap element i/o dispositius de mesclador"
+#: gmix/gmix.c:1774
+msgid "GNOME Volume Control"
+msgstr "Control de Volum del GNOME"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
+#: gmix/gmix.c:1777
+msgid "A mixer for sound devices"
+msgstr "Un mesclador per dispositius de so"
+
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Ajusta el nivell de volum"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
-#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-msgid "Volume Control"
-msgstr "Control del volum"
+#: gmix/prefs.c:193 gmix/prefs.c:196
+msgid "Shown"
+msgstr "Mostrat"
+
+#: gmix/prefs.c:204 gmix/prefs.c:207
+msgid "Mixer label"
+msgstr "Etiqueta del mesclador"
+
+#. Add the label reset button
+#: gmix/prefs.c:216
+msgid "_Reset labels to their defaults"
+msgstr "_Reinicia les etiquetes al seus valors per defecte"
+
+#: gmix/prefs.c:313
+msgid "Gnome Volume Control Preferences"
+msgstr "Preferències del Gnome Volume Control"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -1121,10 +1469,6 @@ msgstr ""
 "\n"
 "Premeu «Estableix el dispositiu» per a anar a un diàleg on podeu establir el "
 "dispositiu,o premeu «Surt» per a sortir del reproductor de CD"
-
-#: gnome-cd/gnome-cd.c:490
-msgid "_Details"
-msgstr "_Detalls"
 
 #: gnome-cd/gnome-cd.c:491
 msgid "_Set device"
@@ -2013,10 +2357,6 @@ msgstr "_Mono"
 msgid "_Stereo"
 msgstr "_Estèreo"
 
-#: grecord/src/gui.c:1087
-msgid "Mono"
-msgstr "Mono"
-
 #: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Estèreo"
@@ -2070,6 +2410,19 @@ msgstr "Canals: estèreo"
 msgid "Adding echo to sample..."
 msgstr "S'està afegir ressò a la mostra..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:403 gst-mixer/src/mixer.c:491
+msgid "GStreamer Volume Control"
+msgstr "Control del volum de GStreamer"
+
+#: gst-mixer/src/mixer.c:406
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr "Una aplicació mesclador basada en GNOME/GStreamer"
+
+#: gst-mixer/src/mixer.c:508
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr "No s'ha trobat cap element i/o dispositius de mesclador"
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2090,6 +2443,7 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2141,10 +2495,6 @@ msgstr "Pro_va"
 msgid "Testing Pipeline"
 msgstr "S'està provant el conducte"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Vídeo"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
 msgstr "_Entrada:"
@@ -2169,10 +2519,226 @@ msgid "Custom"
 msgstr "Personalitzat"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "No s'ha pogut construir un conducte de prova per a «%s»"
+
+#: profiles/audio-profile-edit.c:201
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"Hi ha hagut un error en mostrar l'ajuda: \n"
+"%s"
+
+#: profiles/audio-profile-edit.c:406
+#, fuzzy, c-format
+msgid "Editing profile \"%s\""
+msgstr "S'està editant l'ID del disc: %s"
+
+#: profiles/audio-profile.c:100
+#, fuzzy
+msgid "<not named>"
+msgstr "<cap>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr ""
+
+#: profiles/audio-profile.c:216
+#, fuzzy, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr "Hi ha hagut un error en engegar %s: %s"
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:907
+#, fuzzy, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr "Hi ha hagut un error en engegar %s: %s"
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr ""
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr ""
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "_Surt"
+
+#: profiles/audio-profiles-edit.c:450
+msgid "You must select one or more profiles to delete."
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:460
+msgid "Delete these two profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:462
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:480
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:502
+#, fuzzy
+msgid "Delete Profile"
+msgstr "Seleccionar un fitxer d'àudio"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:596
+msgid "Edit Audio Profiles"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:649
+#, fuzzy
+msgid "_Profiles:"
+msgstr "Fitxers del programa"
+
+#: profiles/audio-profiles-edit.c:877
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:902
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr ""
+
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+#, fuzzy
+msgid "File _Extension:"
+msgstr "Mida del fitxer:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+#, fuzzy
+msgid "Profile _name:"
+msgstr "Nom del fitxer:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+#, fuzzy
+msgid "_Create"
+msgstr "Centre"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "Propietats de GStreamer"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+#, fuzzy
+msgid "_Profile name:"
+msgstr "Nom del fitxer:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr ""
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2242,265 +2808,6 @@ msgstr "Monitorar el volum de so de sortida"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Monitor de volum"
-
-#~ msgid "Synth"
-#~ msgstr "Synth"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "Entrada DSP"
-
-#~ msgid "Line"
-#~ msgstr "Line"
-
-#~ msgid "MIC"
-#~ msgstr "MIC"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Ràdio"
-
-#~ msgid "Phone"
-#~ msgstr "Telèfon"
-
-#~ msgid "PC Speaker"
-#~ msgstr "Altaveu del PC"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Center Input"
-#~ msgstr "Entrada central"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Entrada del Woofer"
-
-#~ msgid "Surround Input"
-#~ msgstr "Entrada Surround"
-
-#~ msgid "Master"
-#~ msgstr "Master"
-
-#~ msgid "Master Mono"
-#~ msgstr "Master Mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Master Digital"
-
-#~ msgid "Headphone"
-#~ msgstr "Auriculars"
-
-#~ msgid "Phone Output"
-#~ msgstr "Sortida del Telèfon"
-
-#~ msgid "Center"
-#~ msgstr "Centre"
-
-#~ msgid "Woofer"
-#~ msgstr "Woofer"
-
-#~ msgid "Surround"
-#~ msgstr "Surround"
-
-#~ msgid "DSP Output"
-#~ msgstr "Sortida DSP"
-
-#~ msgid "Treble"
-#~ msgstr "Aguts"
-
-#~ msgid "Equalizer"
-#~ msgstr "Equalitzador"
-
-#~ msgid "Fader"
-#~ msgstr "Esvair"
-
-#~ msgid "Effect"
-#~ msgstr "Efecte"
-
-#~ msgid "3D Effect"
-#~ msgstr "Efecte 3D"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Guany del Mic"
-
-#~ msgid "Input Gain"
-#~ msgstr "Guany d'entrada"
-
-#~ msgid "Output Gain"
-#~ msgstr "Guany de sortida"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Loopback analògic"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Loopback digital"
-
-#~ msgid "Vol  "
-#~ msgstr "Vol  "
-
-#~ msgid "Bass "
-#~ msgstr "Baixos "
-
-#~ msgid "Trebl"
-#~ msgstr "Aguts"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Altaveu "
-
-#~ msgid "Line "
-#~ msgstr "Línia "
-
-#~ msgid "Mic  "
-#~ msgstr "Mic  "
-
-#~ msgid "CD   "
-#~ msgstr "CD   "
-
-#~ msgid "Mix  "
-#~ msgstr "Mes  "
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2 "
-
-#~ msgid "Rec  "
-#~ msgstr "Enrg  "
-
-#~ msgid "IGain"
-#~ msgstr "IGain"
-
-#~ msgid "OGain"
-#~ msgstr "OGain"
-
-#~ msgid "Line1"
-#~ msgstr "Línia1"
-
-#~ msgid "Line2"
-#~ msgstr "Línia2"
-
-#~ msgid "Line3"
-#~ msgstr "Línia3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digital1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digital2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digital3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "PhoneIn"
-
-#~ msgid "PhoneOut"
-#~ msgstr "PhoneOut"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitor"
-
-#~ msgid "Help"
-#~ msgstr "Ajuda"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Dispositiu de mesclador a usar"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "El control de volum no es pot executar correctament.\n"
-#~ "\n"
-#~ "No s'ha pogut obrir el dispositiu d'àudio «%s».\n"
-#~ "Si us plau comproveu que teniu premis per obrir «%s»\n"
-#~ "i assegureu-vos de que teniu suport d'àudio al vostre nucli.\n"
-#~ "\n"
-#~ "Feu clic en Surt per a sortir del control de volum"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "El control de volum no es pot executar correctament.\n"
-#~ "\n"
-#~ "Premeu el botó de detalls per a veure més detalls sobre les raons del "
-#~ "problema.\n"
-#~ "\n"
-#~ "Premeu Surt per a sortir del control de volum"
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Dispositiu de mesclador invàlid"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Avís: Aquesta versió del Gnome Volume Control ha estat compilada amb\n"
-#~ "la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
-#~ "una versió anterior a la 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Avís: Aquesta versió del Gnome Volume Control ha estat compilada amb\n"
-#~ "la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
-#~ "la versió %d.%d.%d.\n"
-
-#~ msgid "left %s"
-#~ msgstr "%s esquerre"
-
-#~ msgid "Right %s"
-#~ msgstr "%s dret"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s Bloca"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s silenciat"
-
-#~ msgid "%s Record"
-#~ msgstr "%s enregistra"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Control de Volum del GNOME"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Un mesclador per dispositius de so"
-
-#~ msgid "Shown"
-#~ msgstr "Mostrat"
-
-#~ msgid "Mixer label"
-#~ msgstr "Etiqueta del mesclador"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_Reinicia les etiquetes al seus valors per defecte"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Preferències del Gnome Volume Control"
 
 #~ msgid "_Hostname:"
 #~ msgstr "Nom de l'ordinador _central:"

@@ -21,3 +21,6 @@ EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 
 dist-hook: gnome-media.spec
 	cp gnome-media.spec $(distdir)
+
+distuninstallcheck_listfiles = \
+        find -path ./var/scrollkeeper/\* -prune -or -type f -print

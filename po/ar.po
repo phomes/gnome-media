@@ -14,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-25 01:01-0700\n"
+"POT-Creation-Date: 2003-12-29 20:46+0100\n"
 "PO-Revision-Date: 2003-12-19 01:24+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -366,7 +366,9 @@ msgstr "نويْز"
 msgid "Alt"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:120
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "باس"
 
@@ -877,40 +879,382 @@ msgstr ""
 "لا يمكن إنشاء مصنع محرر CDDB للمقطوعات.\n"
 "ربما بسبب وجود نسخة أخرى من محرر CDDB للمقطوعات شاغلة.\n"
 
-#: gst-mixer/src/mixer.c:219
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "موالفة"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "DAC"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "إدخال DSP"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "خطر"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "MIC"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "قرص مدمج"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "فيديو"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "راديو"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "هاتف"
+
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+msgid "Mono"
+msgstr "مونو"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "مكبرات الحاسوب"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Aux"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "إدخال المركز"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "إدخال الووفر"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "إدخال محيط"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "رئيسي"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "مونو الرئيسي"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "رقمي رئيسي"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "سماعة أذن"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "إخراج السماعة"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "وسط"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "ووفر"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "صوت محيطي"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "إخراج DSP"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "تربل"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "معادل"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "منقص"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "مؤثرات"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "مؤثرات ثلاثيّة الأبعاد"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "مكسب المصدح"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "مكسب الإدخال"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "مكسب الإخراج"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "حلقة مفرغة مناظرة"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "رقمي"
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "شدة الصوت  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "الايقاع "
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "تربل"
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "Pcm  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "مصدح"
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "خط "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "مصدح  "
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "قرص مدمج   "
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "مؤلفّ  "
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "Pcm2 "
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "تسجيل  "
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "مكسب الإدخال"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "مكسب الإخراج"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "خط1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "خط2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "خط3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "رقمي1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "رقمي2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "رقمي3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "إدخال السماعة"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "إخراج السماعة"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "شاشة"
+
+#: gmix/gmix.c:115
+msgid "Help"
+msgstr "مساعدة"
+
+#: gmix/gmix.c:146
+msgid "Mixer device to use"
+msgstr "جهاز التأليف للاستعمال"
+
+#: gmix/gmix.c:327
+#, c-format
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
+msgstr ""
+"التحكم في شدة الصوت لا يعمل بسلامة.\n"
+"\n"
+"فتح جهاز الصوت غير ممكن '%s'.\n"
+"رجاء تثبت من إمتلاكك لالتصريحات لفتح  '%s'\n"
+"و وجود الصوت في .\n"
+"\n"
+"انقر خروج للخروج من برنامج التحكم في شدة الصوت"
+
+#: gmix/gmix.c:381
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
+msgstr ""
+"لا يمكن لمتحكم شدة الصوت العمل بسلامة.\n"
+"\n"
+"انقر زر التفاصيل للمزيد من التفاصيل عن أسباب الفشل.\n"
+"انقر 'خروج' للخروج من متحكم شدة الصوت"
+
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
+msgid "_Details"
+msgstr "_تفاصيل"
+
+#: gmix/gmix.c:387
+msgid "Invalid mixer device"
+msgstr "جهاز تأليف غير صحيح"
+
+#: gmix/gmix.c:632
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"تحذير: إصدارة متحكم شدة الصوت لجنوم جمعت بـإصدارة\n"
+"%d.%d.%d لـ OSS، وجهازك يشغل إصدارة أحدث من 3.6.0.\n"
+
+#: gmix/gmix.c:639
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"تحذير: إصدارة متحكم شدة الصوت لجنوم جمع بـإصدارة\n"
+"OSS %d.%d.%d، و جهازك يعمل بإصدارة %d.%d.%d.\n"
+
+#: gmix/gmix.c:1112
+#, c-format
+msgid "left %s"
+msgstr "%s اليسار"
+
+#: gmix/gmix.c:1138
+#, c-format
+msgid "Right %s"
+msgstr "%s اليمين"
+
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "قفل"
 
-#: gst-mixer/src/mixer.c:229
+#: gmix/gmix.c:1244
+#, c-format
+msgid "%s Lock"
+msgstr "قفل %s"
+
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "صمت"
 
-#: gst-mixer/src/mixer.c:241
+#: gmix/gmix.c:1268
+#, c-format
+msgid "%s Mute"
+msgstr "%s صمت"
+
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "تسجيل"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:394 gst-mixer/src/mixer.c:482
-msgid "GStreamer Volume Control"
-msgstr "متحكم جستريمر لشدة الصوت"
+#: gmix/gmix.c:1294
+#, c-format
+msgid "%s Record"
+msgstr "%s تسجيل"
 
-#: gst-mixer/src/mixer.c:397
-msgid "A GNOME/GStreamer-based mixer application"
-msgstr ""
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
+msgid "Volume Control"
+msgstr "متحكم شدة الصوت"
 
-#: gst-mixer/src/mixer.c:499
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr ""
+#: gmix/gmix.c:1774
+msgid "GNOME Volume Control"
+msgstr "متحكم شدة الصوت لجنوم"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
+#: gmix/gmix.c:1777
+msgid "A mixer for sound devices"
+msgstr "مؤلف لأجهزة الصوت"
+
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "احكام مستوى شدة الصوت"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
-#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-msgid "Volume Control"
-msgstr "متحكم شدة الصوت"
+#: gmix/prefs.c:193 gmix/prefs.c:196
+msgid "Shown"
+msgstr "أظهر"
+
+#: gmix/prefs.c:204 gmix/prefs.c:207
+msgid "Mixer label"
+msgstr "علامة"
+
+#. Add the label reset button
+#: gmix/prefs.c:216
+msgid "_Reset labels to their defaults"
+msgstr "_إعادة العلامات لقيمها الإفتراضية"
+
+#: gmix/prefs.c:313
+msgid "Gnome Volume Control Preferences"
+msgstr "تفضيلات متحكم شدة الصوت لجنوم"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -1119,10 +1463,6 @@ msgstr ""
 "انقر 'ضبط الجهاز' للذهاب إلى حوار يمكنك منه ضبط الجهاز، أو انقر 'إنهاء' "
 "لإنهاء عازف الأقراص المدمجة"
 
-#: gnome-cd/gnome-cd.c:490
-msgid "_Details"
-msgstr "_تفاصيل"
-
 #: gnome-cd/gnome-cd.c:491
 msgid "_Set device"
 msgstr "_ضبط الجهاز"
@@ -1238,7 +1578,8 @@ msgstr ""
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
+msgstr ""
+"مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "What theme should the CD player use for it's appearance"
@@ -1853,12 +2194,9 @@ msgstr "الملف '%s' ملف صوت غير مدعوم."
 #: grecord/src/gui.c:425
 msgid "translator_credits"
 msgstr ""
-"تحت إشراف عرب آيز (http://www.arabeyes.org): "
-"عرفات المديني، تونس، "
-"سيد جعفر الموسوي، البحرين، "
-"عصام بيازيدي، الأردن، "
-"ابراهيم الابراهيم، الكويت، "
-"نور الدين أمين آغة، العربية السعودية،"
+"تحت إشراف عرب آيز (http://www.arabeyes.org): عرفات المديني، تونس، سيد جعفر "
+"الموسوي، البحرين، عصام بيازيدي، الأردن، ابراهيم الابراهيم، الكويت، نور الدين "
+"أمين آغة، العربية السعودية،"
 
 #: grecord/src/gui.c:429
 msgid "GNOME Sound Recorder"
@@ -2003,10 +2341,6 @@ msgstr "_مونو"
 msgid "_Stereo"
 msgstr "_ستيريو"
 
-#: grecord/src/gui.c:1087
-msgid "Mono"
-msgstr "مونو"
-
 #: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "ستيريو"
@@ -2060,6 +2394,19 @@ msgstr "القنوات: ستيريو"
 msgid "Adding echo to sample..."
 msgstr "اضافة صدا للعينة..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:403 gst-mixer/src/mixer.c:491
+msgid "GStreamer Volume Control"
+msgstr "متحكم جستريمر لشدة الصوت"
+
+#: gst-mixer/src/mixer.c:406
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr ""
+
+#: gst-mixer/src/mixer.c:508
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr ""
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2080,6 +2427,7 @@ msgid "GStreamer"
 msgstr "جستريمر"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2119,10 +2467,6 @@ msgstr "ا_ختبار"
 msgid "Testing Pipeline"
 msgstr "جاري اختبار خط الأنابيب"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "فيديو"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
 msgstr "الإ_دخال:"
@@ -2147,10 +2491,226 @@ msgid "Custom"
 msgstr "خاص"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "فشل بناء خط أنابيب إختبار لـ '%s'"
+
+#: profiles/audio-profile-edit.c:201
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"حصل خطأ عند عرض المساعدة. \n"
+"%s"
+
+#: profiles/audio-profile-edit.c:406
+#, fuzzy, c-format
+msgid "Editing profile \"%s\""
+msgstr "تحرير هوية القرص: %s"
+
+#: profiles/audio-profile.c:100
+#, fuzzy
+msgid "<not named>"
+msgstr "<لا شيء>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr ""
+
+#: profiles/audio-profile.c:216
+#, fuzzy, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr "حصل خطأ أثناء تشغيل %s: %s"
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:907
+#, fuzzy, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr "حصل خطأ أثناء تشغيل %s: %s"
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr ""
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr ""
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "إ_نهاء"
+
+#: profiles/audio-profiles-edit.c:450
+msgid "You must select one or more profiles to delete."
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:460
+msgid "Delete these two profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:462
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:480
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:502
+#, fuzzy
+msgid "Delete Profile"
+msgstr "انتقاء ملف صوت"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:596
+msgid "Edit Audio Profiles"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:649
+#, fuzzy
+msgid "_Profiles:"
+msgstr "ملفات البرنامج"
+
+#: profiles/audio-profiles-edit.c:877
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:902
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr ""
+
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+#, fuzzy
+msgid "File _Extension:"
+msgstr "حجم الملف:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+#, fuzzy
+msgid "Profile _name:"
+msgstr "اسم الملف:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+#, fuzzy
+msgid "_Create"
+msgstr "وسط"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "تفضيلات جستريمر"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+#, fuzzy
+msgid "_Profile name:"
+msgstr "اسم الملف:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr ""
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2226,261 +2786,6 @@ msgstr "مراقب شدة الصوت"
 
 #~ msgid "_Hostname:"
 #~ msgstr "ا_سم المضيف:"
-
-#~ msgid "Synth"
-#~ msgstr "موالفة"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "إدخال DSP"
-
-#~ msgid "Line"
-#~ msgstr "خطر"
-
-#~ msgid "MIC"
-#~ msgstr "MIC"
-
-#~ msgid "CD"
-#~ msgstr "قرص مدمج"
-
-#~ msgid "Radio"
-#~ msgstr "راديو"
-
-#~ msgid "Phone"
-#~ msgstr "هاتف"
-
-#~ msgid "PC Speaker"
-#~ msgstr "مكبرات الحاسوب"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Center Input"
-#~ msgstr "إدخال المركز"
-
-#~ msgid "Woofer Input"
-#~ msgstr "إدخال الووفر"
-
-#~ msgid "Surround Input"
-#~ msgstr "إدخال محيط"
-
-#~ msgid "Master"
-#~ msgstr "رئيسي"
-
-#~ msgid "Master Mono"
-#~ msgstr "مونو الرئيسي"
-
-#~ msgid "Master Digital"
-#~ msgstr "رقمي رئيسي"
-
-#~ msgid "Headphone"
-#~ msgstr "سماعة أذن"
-
-#~ msgid "Phone Output"
-#~ msgstr "إخراج السماعة"
-
-#~ msgid "Center"
-#~ msgstr "وسط"
-
-#~ msgid "Woofer"
-#~ msgstr "ووفر"
-
-#~ msgid "Surround"
-#~ msgstr "صوت محيطي"
-
-#~ msgid "DSP Output"
-#~ msgstr "إخراج DSP"
-
-#~ msgid "Treble"
-#~ msgstr "تربل"
-
-#~ msgid "Equalizer"
-#~ msgstr "معادل"
-
-#~ msgid "Fader"
-#~ msgstr "منقص"
-
-#~ msgid "Effect"
-#~ msgstr "مؤثرات"
-
-#~ msgid "3D Effect"
-#~ msgstr "مؤثرات ثلاثيّة الأبعاد"
-
-#~ msgid "Mic Gain"
-#~ msgstr "مكسب المصدح"
-
-#~ msgid "Input Gain"
-#~ msgstr "مكسب الإدخال"
-
-#~ msgid "Output Gain"
-#~ msgstr "مكسب الإخراج"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "حلقة مفرغة مناظرة"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "رقمي"
-
-#~ msgid "Vol  "
-#~ msgstr "شدة الصوت  "
-
-#~ msgid "Bass "
-#~ msgstr "الايقاع "
-
-#~ msgid "Trebl"
-#~ msgstr "تربل"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "مصدح"
-
-#~ msgid "Line "
-#~ msgstr "خط "
-
-#~ msgid "Mic  "
-#~ msgstr "مصدح  "
-
-#~ msgid "CD   "
-#~ msgstr "قرص مدمج   "
-
-#~ msgid "Mix  "
-#~ msgstr "مؤلفّ  "
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2 "
-
-#~ msgid "Rec  "
-#~ msgstr "تسجيل  "
-
-#~ msgid "IGain"
-#~ msgstr "مكسب الإدخال"
-
-#~ msgid "OGain"
-#~ msgstr "مكسب الإخراج"
-
-#~ msgid "Line1"
-#~ msgstr "خط1"
-
-#~ msgid "Line2"
-#~ msgstr "خط2"
-
-#~ msgid "Line3"
-#~ msgstr "خط3"
-
-#~ msgid "Digital1"
-#~ msgstr "رقمي1"
-
-#~ msgid "Digital2"
-#~ msgstr "رقمي2"
-
-#~ msgid "Digital3"
-#~ msgstr "رقمي3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "إدخال السماعة"
-
-#~ msgid "PhoneOut"
-#~ msgstr "إخراج السماعة"
-
-#~ msgid "Monitor"
-#~ msgstr "شاشة"
-
-#~ msgid "Help"
-#~ msgstr "مساعدة"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "جهاز التأليف للاستعمال"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "التحكم في شدة الصوت لا يعمل بسلامة.\n"
-#~ "\n"
-#~ "فتح جهاز الصوت غير ممكن '%s'.\n"
-#~ "رجاء تثبت من إمتلاكك لالتصريحات لفتح  '%s'\n"
-#~ "و وجود الصوت في .\n"
-#~ "\n"
-#~ "انقر خروج للخروج من برنامج التحكم في شدة الصوت"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "لا يمكن لمتحكم شدة الصوت العمل بسلامة.\n"
-#~ "\n"
-#~ "انقر زر التفاصيل للمزيد من التفاصيل عن أسباب الفشل.\n"
-#~ "انقر 'خروج' للخروج من متحكم شدة الصوت"
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "جهاز تأليف غير صحيح"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "تحذير: إصدارة متحكم شدة الصوت لجنوم جمعت بـإصدارة\n"
-#~ "%d.%d.%d لـ OSS، وجهازك يشغل إصدارة أحدث من 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "تحذير: إصدارة متحكم شدة الصوت لجنوم جمع بـإصدارة\n"
-#~ "OSS %d.%d.%d، و جهازك يعمل بإصدارة %d.%d.%d.\n"
-
-#~ msgid "left %s"
-#~ msgstr "%s اليسار"
-
-#~ msgid "Right %s"
-#~ msgstr "%s اليمين"
-
-#~ msgid "%s Lock"
-#~ msgstr "قفل %s"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s صمت"
-
-#~ msgid "%s Record"
-#~ msgstr "%s تسجيل"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "متحكم شدة الصوت لجنوم"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "مؤلف لأجهزة الصوت"
-
-#~ msgid "Shown"
-#~ msgstr "أظهر"
-
-#~ msgid "Mixer label"
-#~ msgstr "علامة"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_إعادة العلامات لقيمها الإفتراضية"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "تفضيلات متحكم شدة الصوت لجنوم"
 
 #~ msgid "Action on application exit"
 #~ msgstr "العملية التي ستفعّل عند الخروج من التطبيق"

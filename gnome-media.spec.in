@@ -58,6 +58,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
+rm -rf $RPM_BUILD_ROOT%{_localstatedir}/scrollkeeper
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -103,7 +104,7 @@ scrollkeeper-update
 %{_datadir}/gnome-media/pixmaps/*
 %{_libdir}/*.so.*
 %{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
-%{_libdir}libglade/2.0/*.so
+%{_libdir}/libglade/2.0/*.so
 %{_bindir}/cddb-slave2-properties
 %{_bindir}/gnome-cd
 %{_bindir}/gst-mixer

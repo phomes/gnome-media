@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-25 14:26+0200\n"
+"POT-Creation-Date: 2003-12-29 20:46+0100\n"
 "PO-Revision-Date: 2003-10-25 14:26+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -165,9 +165,9 @@ msgid "Unknown / Unknown"
 msgstr "Ukendt/ukendt"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:788
-#: grecord/src/gsr-window.c:797 grecord/src/gsr-window.c:806
-#: grecord/src/gsr-window.c:816 grecord/src/gsr-window.c:1155
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:796 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:815 grecord/src/gsr-window.c:1154
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -372,7 +372,9 @@ msgstr "Støj"
 msgid "Alt"
 msgstr "Alt"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Bas"
 
@@ -883,40 +885,381 @@ msgstr ""
 "Kan ikke oprette fabrik til CDDBTrackEditor.\n"
 "Det kan skyldes at en anden kopi af cddb-track-editor allerede kører.\n"
 
-#: gst-mixer/src/mixer.c:217
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Synth"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "DAC"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "DSP-ind"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Linje"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "Mik"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "Cd"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Video"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Radio"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Telefon"
+
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "PC-højtaler"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Ud"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Center ind"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Woofer ind"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Surround ind"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Master"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Master mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Master digital"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Hovedtelefon"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "Telefon ud"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Center"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Woofer"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Surround"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "DSP-ud"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Diskant"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Udligner"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Udflader"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Effekt"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "Rumeffekt"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Mikrofonforstærkning"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Indforstærkning"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Udforstærkning"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Analog tilbagekobling"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Digital tilbagekobling"
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Styrke"
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Bas"
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "Diskant"
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "Pcm"
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "Højtaler"
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Linje"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "Mikrofon"
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "Cd"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "Mikser"
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "Pcm2"
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Optag"
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "Indforstærk"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "Udforstærk"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "Linje1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "Linje2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "Linje3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Digital1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Digital2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Digital3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "Telefonind"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "Telefonud"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "Monitor"
+
+#: gmix/gmix.c:115
+msgid "Help"
+msgstr "Hjælp"
+
+#: gmix/gmix.c:146
+msgid "Mixer device to use"
+msgstr "Mikserenhed der skal benyttes"
+
+#: gmix/gmix.c:327
+#, c-format
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
+msgstr ""
+"Lydstyrkekontrollen kan ikke køre korrekt.\n"
+"\n"
+"Kunne ikke åbne lydenheden '%s'. Kontrollér \n"
+"at du har rettighed til at åbne '%s' og at\n"
+"lydunderstøttelse er med i kernen.\n"
+"\n"
+"Klik på 'Afslut' for at afslutte \n"
+"lydstyrkekontrollen."
+
+#: gmix/gmix.c:381
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
+msgstr ""
+"Lydstyrkekontrollen kan ikke køre korrekt.\n"
+"\n"
+"Tryk på 'Detaljer' for at få flere detaljer om grunden til problemet.\n"
+"\n"
+"Klik på 'Afslut' for at afslutte lydstyrkekontrollen."
+
+# bemærk: skal koordineres med ovenstående tekst
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
+msgid "_Details"
+msgstr "_Detaljer"
+
+#: gmix/gmix.c:387
+msgid "Invalid mixer device"
+msgstr "Ugyldig mikserenhed"
+
+#: gmix/gmix.c:632
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+
+#: gmix/gmix.c:639
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+
+#: gmix/gmix.c:1112
+#, c-format
+msgid "left %s"
+msgstr "venstre %s"
+
+#: gmix/gmix.c:1138
+#, c-format
+msgid "Right %s"
+msgstr "Højre %s"
+
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "Lås"
 
-#: gst-mixer/src/mixer.c:227
+#: gmix/gmix.c:1244
+#, c-format
+msgid "%s Lock"
+msgstr "%s-lås"
+
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "Stum"
 
-#: gst-mixer/src/mixer.c:239
+#: gmix/gmix.c:1268
+#, c-format
+msgid "%s Mute"
+msgstr "%s-stum"
+
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "Optag"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:358 gst-mixer/src/mixer.c:454
-msgid "GStreamer Volume Control"
-msgstr "Lydstyrkekontrol til GStreamer"
+#: gmix/gmix.c:1294
+#, c-format
+msgid "%s Record"
+msgstr "%s-optag"
 
-#: gst-mixer/src/mixer.c:361
-msgid "A GNOME/GStreamer-based mixer application"
-msgstr "Et Gnome/GStreamer-baseret mixerprogram"
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
+msgid "Volume Control"
+msgstr "Lydstyrkekontrol"
 
-#: gst-mixer/src/mixer.c:464
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr "Desværre, ingen mixerelementer eller -enheder fundet"
+#: gmix/gmix.c:1774
+msgid "GNOME Volume Control"
+msgstr "Lydstyrkekontrol"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
+#: gmix/gmix.c:1777
+msgid "A mixer for sound devices"
+msgstr "En mikser til lydenheder"
+
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Justér lydstyrken"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
-#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-msgid "Volume Control"
-msgstr "Lydstyrkekontrol"
+#: gmix/prefs.c:193 gmix/prefs.c:196
+msgid "Shown"
+msgstr "Vist"
+
+#: gmix/prefs.c:204 gmix/prefs.c:207
+msgid "Mixer label"
+msgstr "Miksernavne"
+
+#. Add the label reset button
+#: gmix/prefs.c:216
+msgid "_Reset labels to their defaults"
+msgstr "_Nulstil navne til standardværdierne"
+
+#: gmix/prefs.c:313
+msgid "Gnome Volume Control Preferences"
+msgstr "Indstillinger for lydstyrkekontrol"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -1128,11 +1471,6 @@ msgstr ""
 "Tryk på 'Angiv enhed' for at gå til et vindue hvor du kan angive enheden, "
 "eller tryk på 'Afslut' for at afslutte cd-afspilleren."
 
-# bemærk: skal koordineres med ovenstående tekst
-#: gnome-cd/gnome-cd.c:490
-msgid "_Details"
-msgstr "_Detaljer"
-
 # NB: skal synkroniseres med ovenstående tekst
 #: gnome-cd/gnome-cd.c:491
 msgid "_Set device"
@@ -1316,8 +1654,8 @@ msgstr "_Tilgængelige temaer:"
 msgid "Record sound clips"
 msgstr "Optag lydklip"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1011
-#: grecord/src/gsr-window.c:1640 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:1639 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Lydoptager"
 
@@ -1345,7 +1683,7 @@ msgstr "Opret nyt lydklip"
 msgid "Display help for Sound Recorder"
 msgstr "Vis hjælpen til lydoptager"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:874
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:873
 msgid "File Information"
 msgstr "Filoplysninger"
 
@@ -1506,11 +1844,11 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "Kunne ikke fraspalte underproces"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1444
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1443
 msgid "Recording..."
 msgstr "Optager..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1311
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1310
 msgid "Playing..."
 msgstr "Afspiller..."
 
@@ -1547,7 +1885,7 @@ msgstr "Vælg en lydfil"
 msgid "%s is not installed in the path"
 msgstr "%s er ikke installeret i stien til kørbare filer"
 
-#: grecord/src/grec.c:523
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:687
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Der opstod en fejl ved start af %s: %s"
@@ -1688,8 +2026,8 @@ msgstr "sekunder"
 msgid "second"
 msgstr "sekund"
 
-#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1335
-#: grecord/src/gsr-window.c:1469 grecord/src/gsr-window.c:1562
+#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1334
+#: grecord/src/gsr-window.c:1468 grecord/src/gsr-window.c:1561
 msgid "Ready"
 msgstr "Klar"
 
@@ -1702,88 +2040,93 @@ msgstr "Gemmer %s..."
 msgid "Save file as"
 msgstr "Gem fil som"
 
-#: grecord/src/gsr-window.c:763
+#: grecord/src/gsr-window.c:680
+#, c-format
+msgid "%s is not installed in the path."
+msgstr "%s er ikke installeret i stien til kørbare filer."
+
+#: grecord/src/gsr-window.c:762
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (er ikke blevet gemt)"
 
-#: grecord/src/gsr-window.c:779
+#: grecord/src/gsr-window.c:778
 msgid "Unknown size"
 msgstr "Ukendt størrelse"
 
-#: grecord/src/gsr-window.c:799
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:808
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:820
+#: grecord/src/gsr-window.c:819
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:824
+#: grecord/src/gsr-window.c:823
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:853
+#: grecord/src/gsr-window.c:852
 #, c-format
 msgid "%s Information"
 msgstr "Oplysninger om %s"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:887
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: grecord/src/gsr-window.c:894 grecord/src/gsr-window.c:1701
+#: grecord/src/gsr-window.c:893 grecord/src/gsr-window.c:1700
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: grecord/src/gsr-window.c:900
+#: grecord/src/gsr-window.c:899
 msgid "File size:"
 msgstr "Filstørrelse:"
 
-#: grecord/src/gsr-window.c:909
+#: grecord/src/gsr-window.c:908
 msgid "Audio Information"
 msgstr "Lydoplysninger"
 
-#: grecord/src/gsr-window.c:923
+#: grecord/src/gsr-window.c:922
 msgid "Song length:"
 msgstr "Længde af klip:"
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:928
 msgid "Number of channels:"
 msgstr "Antal kanaler:"
 
-#: grecord/src/gsr-window.c:935
+#: grecord/src/gsr-window.c:934
 msgid "Sample rate:"
 msgstr "Samplingsrate:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:940
 msgid "Bit rate:"
 msgstr "Bitrate:"
 
-#: grecord/src/gsr-window.c:1013
+#: grecord/src/gsr-window.c:1012
 msgid "A sound recorder for GNOME"
 msgstr "En lydoptager til Gnome"
 
-#: grecord/src/gsr-window.c:1636 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1635 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - lydoptager"
 
-#: grecord/src/gsr-window.c:1686
+#: grecord/src/gsr-window.c:1685
 msgid "File information"
 msgstr "Filoplysninger"
 
-#: grecord/src/gsr-window.c:1707
+#: grecord/src/gsr-window.c:1706
 msgid "<none>"
 msgstr "<ingen>"
 
-#: grecord/src/gsr-window.c:1716
+#: grecord/src/gsr-window.c:1715
 msgid "Length:"
 msgstr "Længde:"
 
@@ -2010,10 +2353,6 @@ msgstr "_Mono"
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1087
-msgid "Mono"
-msgstr "Mono"
-
 #: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Stereo"
@@ -2067,6 +2406,19 @@ msgstr "Kanaler: stereo"
 msgid "Adding echo to sample..."
 msgstr "Tilføjer ekko til lydklippet..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:403 gst-mixer/src/mixer.c:491
+msgid "GStreamer Volume Control"
+msgstr "Lydstyrkekontrol til GStreamer"
+
+#: gst-mixer/src/mixer.c:406
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr "Et Gnome/GStreamer-baseret mixerprogram"
+
+#: gst-mixer/src/mixer.c:508
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr "Desværre, ingen mixerelementer eller -enheder fundet"
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2087,6 +2439,7 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2126,10 +2479,6 @@ msgstr "Te_st"
 msgid "Testing Pipeline"
 msgstr "Tester datakanal"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Video"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
 msgstr "_Ind:"
@@ -2154,10 +2503,226 @@ msgid "Custom"
 msgstr "Brugerdefineret"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Kunne ikke konstruere testdatakanal til '%s'"
+
+#: profiles/audio-profile-edit.c:201
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"Der opstod en fejl ved visning af hjælp: \n"
+"%s"
+
+#: profiles/audio-profile-edit.c:406
+#, fuzzy, c-format
+msgid "Editing profile \"%s\""
+msgstr "Redigerer disk-id: %s"
+
+#: profiles/audio-profile.c:100
+#, fuzzy
+msgid "<not named>"
+msgstr "<ingen>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr ""
+
+#: profiles/audio-profile.c:216
+#, fuzzy, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr "Der opstod en fejl ved start af %s: %s"
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:907
+#, fuzzy, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr "Der opstod en fejl ved start af %s: %s"
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr ""
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr ""
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "_Afslut"
+
+#: profiles/audio-profiles-edit.c:450
+msgid "You must select one or more profiles to delete."
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:460
+msgid "Delete these two profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:462
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:480
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:502
+#, fuzzy
+msgid "Delete Profile"
+msgstr "Vælg en lydfil"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:596
+msgid "Edit Audio Profiles"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:649
+#, fuzzy
+msgid "_Profiles:"
+msgstr "Programfiler"
+
+#: profiles/audio-profiles-edit.c:877
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:902
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr ""
+
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+#, fuzzy
+msgid "File _Extension:"
+msgstr "Filstørrelse:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+#, fuzzy
+msgid "Profile _name:"
+msgstr "Filnavn:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+#, fuzzy
+msgid "_Create"
+msgstr "Center"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "Indstillinger for GStreamer"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+#, fuzzy
+msgid "_Profile name:"
+msgstr "Filnavn:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr ""
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2229,250 +2794,6 @@ msgstr "Overvåg afspilningslydstyrken"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Lydstyrkeovervåger"
-
-#~ msgid "Synth"
-#~ msgstr "Synth"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "DSP-ind"
-
-#~ msgid "Line"
-#~ msgstr "Linje"
-
-#~ msgid "MIC"
-#~ msgstr "Mik"
-
-#~ msgid "CD"
-#~ msgstr "Cd"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "PC Speaker"
-#~ msgstr "PC-højtaler"
-
-#~ msgid "Aux"
-#~ msgstr "Ud"
-
-#~ msgid "Center Input"
-#~ msgstr "Center ind"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Woofer ind"
-
-#~ msgid "Surround Input"
-#~ msgstr "Surround ind"
-
-#~ msgid "Master"
-#~ msgstr "Master"
-
-#~ msgid "Master Mono"
-#~ msgstr "Master mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Master digital"
-
-#~ msgid "Headphone"
-#~ msgstr "Hovedtelefon"
-
-#~ msgid "Phone Output"
-#~ msgstr "Telefon ud"
-
-#~ msgid "Center"
-#~ msgstr "Center"
-
-#~ msgid "Woofer"
-#~ msgstr "Woofer"
-
-#~ msgid "Surround"
-#~ msgstr "Surround"
-
-#~ msgid "DSP Output"
-#~ msgstr "DSP-ud"
-
-#~ msgid "Treble"
-#~ msgstr "Diskant"
-
-#~ msgid "Equalizer"
-#~ msgstr "Udligner"
-
-#~ msgid "Fader"
-#~ msgstr "Udflader"
-
-#~ msgid "Effect"
-#~ msgstr "Effekt"
-
-#~ msgid "3D Effect"
-#~ msgstr "Rumeffekt"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Mikrofonforstærkning"
-
-#~ msgid "Input Gain"
-#~ msgstr "Indforstærkning"
-
-#~ msgid "Output Gain"
-#~ msgstr "Udforstærkning"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analog tilbagekobling"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digital tilbagekobling"
-
-#~ msgid "Vol  "
-#~ msgstr "Styrke"
-
-#~ msgid "Bass "
-#~ msgstr "Bas"
-
-#~ msgid "Trebl"
-#~ msgstr "Diskant"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm"
-
-#~ msgid "Spkr "
-#~ msgstr "Højtaler"
-
-#~ msgid "Line "
-#~ msgstr "Linje"
-
-#~ msgid "Mic  "
-#~ msgstr "Mikrofon"
-
-#~ msgid "CD   "
-#~ msgstr "Cd"
-
-#~ msgid "Mix  "
-#~ msgstr "Mikser"
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2"
-
-#~ msgid "Rec  "
-#~ msgstr "Optag"
-
-#~ msgid "IGain"
-#~ msgstr "Indforstærk"
-
-#~ msgid "OGain"
-#~ msgstr "Udforstærk"
-
-#~ msgid "Line1"
-#~ msgstr "Linje1"
-
-#~ msgid "Line2"
-#~ msgstr "Linje2"
-
-#~ msgid "Line3"
-#~ msgstr "Linje3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digital1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digital2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digital3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "Telefonind"
-
-#~ msgid "PhoneOut"
-#~ msgstr "Telefonud"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitor"
-
-#~ msgid "Help"
-#~ msgstr "Hjælp"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Mikserenhed der skal benyttes"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Lydstyrkekontrollen kan ikke køre korrekt.\n"
-#~ "\n"
-#~ "Kunne ikke åbne lydenheden '%s'. Kontrollér \n"
-#~ "at du har rettighed til at åbne '%s' og at\n"
-#~ "lydunderstøttelse er med i kernen.\n"
-#~ "\n"
-#~ "Klik på 'Afslut' for at afslutte \n"
-#~ "lydstyrkekontrollen."
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Lydstyrkekontrollen kan ikke køre korrekt.\n"
-#~ "\n"
-#~ "Tryk på 'Detaljer' for at få flere detaljer om grunden til problemet.\n"
-#~ "\n"
-#~ "Klik på 'Afslut' for at afslutte lydstyrkekontrollen."
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Ugyldig mikserenhed"
-
-#~ msgid "left %s"
-#~ msgstr "venstre %s"
-
-#~ msgid "Right %s"
-#~ msgstr "Højre %s"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s-lås"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s-stum"
-
-#~ msgid "%s Record"
-#~ msgstr "%s-optag"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Lydstyrkekontrol"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "En mikser til lydenheder"
-
-#~ msgid "Shown"
-#~ msgstr "Vist"
-
-#~ msgid "Mixer label"
-#~ msgstr "Miksernavne"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_Nulstil navne til standardværdierne"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Indstillinger for lydstyrkekontrol"
-
-#~ msgid "%s is not installed in the path."
-#~ msgstr "%s er ikke installeret i stien til kørbare filer."
 
 #~ msgid "Action on application exit"
 #~ msgstr "Handling ved afslutning"

@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.2.0\n"
-"POT-Creation-Date: 2003-10-20 23:36-0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-29 20:46+0100\n"
 "PO-Revision-Date: 2003-01-26 19:50+0200\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -1174,7 +1175,7 @@ msgstr ""
 msgid "Right %s"
 msgstr ""
 
-#: gmix/gmix.c:1231
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "Lukk"
 
@@ -1183,7 +1184,7 @@ msgstr "Lukk"
 msgid "%s Lock"
 msgstr "%s lukk"
 
-#: gmix/gmix.c:1255
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "Vait"
 
@@ -1192,7 +1193,7 @@ msgstr "Vait"
 msgid "%s Mute"
 msgstr "%s vait"
 
-#: gmix/gmix.c:1282
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "Salv."
 
@@ -1203,6 +1204,7 @@ msgstr "%s salv."
 
 #: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Helitugevuse regulaator"
 
@@ -1216,6 +1218,7 @@ msgstr "Heliseadmete mikser"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Muuda helitugevust"
 
@@ -2344,6 +2347,20 @@ msgstr "Kanalid: stereo"
 msgid "Adding echo to sample..."
 msgstr "Kaja lisamine..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:403 gst-mixer/src/mixer.c:491
+#, fuzzy
+msgid "GStreamer Volume Control"
+msgstr "Gnome helitugevuse regulaator"
+
+#: gst-mixer/src/mixer.c:406
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr ""
+
+#: gst-mixer/src/mixer.c:508
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr ""
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2364,6 +2381,7 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2432,9 +2450,223 @@ msgid "Custom"
 msgstr ""
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
+msgstr ""
+
+#: profiles/audio-profile-edit.c:201
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+
+#: profiles/audio-profile-edit.c:406
+#, c-format
+msgid "Editing profile \"%s\""
+msgstr ""
+
+#: profiles/audio-profile.c:100
+#, fuzzy
+msgid "<not named>"
+msgstr "<ei ole>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr ""
+
+#: profiles/audio-profile.c:216
+#, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:907
+#, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr ""
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr ""
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr ""
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:112
+#, fuzzy
+msgid "_Edit"
+msgstr "_Lõpeta"
+
+#: profiles/audio-profiles-edit.c:450
+msgid "You must select one or more profiles to delete."
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:460
+msgid "Delete these two profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:462
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:480
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:502
+#, fuzzy
+msgid "Delete Profile"
+msgstr "Vali helifail"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:596
+msgid "Edit Audio Profiles"
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:649
+#, fuzzy
+msgid "_Profiles:"
+msgstr "Programmifailid"
+
+#: profiles/audio-profiles-edit.c:877
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr ""
+
+#: profiles/audio-profiles-edit.c:902
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr ""
+
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+#, fuzzy
+msgid "File _Extension:"
+msgstr "Failisuurus:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+#, fuzzy
+msgid "Profile _name:"
+msgstr "Failinimi:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+#, fuzzy
+msgid "_Create"
+msgstr "Keskel"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "GStreameri omadused"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+#, fuzzy
+msgid "_Profile name:"
+msgstr "Failinimi:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
 msgstr ""
 
 #: vu-meter/main.c:120
@@ -2539,9 +2771,6 @@ msgstr ""
 
 #~ msgid "don't save (modified) mixer-settings into configuration"
 #~ msgstr "ära salvesta (muudetud) mikseri positsioone konfiguratsiooni"
-
-#~ msgid "Gnome Volume Control"
-#~ msgstr "Gnome helitugevuse regulaator"
 
 #~ msgid "Copyright (C) 2001, 2002"
 #~ msgstr "Copyright (C) 2001, 2002"
