@@ -1,7 +1,7 @@
 INCLUDES = \
 	$(GSTMIXER_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-DDATA_DIR=\""$(pkgdatadir)"\"			\
+	-DDATA_DIR=\""$(datadir)"\"			\
 	-DPIX_DIR=\""$(pkgdatadir)/pixmaps"\"
 
 bin_PROGRAMS = gnome-volume-control

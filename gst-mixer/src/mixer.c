@@ -473,7 +473,7 @@ static GnomeUIInfo file_menu[] = {
 
 static GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about, NULL),
-  GNOMEUIINFO_HELP (PACKAGE),
+  GNOMEUIINFO_HELP ("gnome-volume-control"),
   GNOMEUIINFO_END
 };
 
@@ -527,9 +527,14 @@ main (gint   argc,
     POPT_TABLEEND
   };
 
+  /* yay! */
+  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
+
   /* init gstreamer/gnome */
   options[0].arg = (void *) gst_init_get_popt_table();
-  gnome_program_init (PACKAGE, VERSION, LIBGNOMEUI_MODULE,
+  gnome_program_init ("gnome-volume-control", VERSION, LIBGNOMEUI_MODULE,
 		      argc, argv,
 		      GNOME_PARAM_POPT_TABLE, options,
 		      GNOME_PARAM_APP_DATADIR, DATA_DIR,
@@ -537,7 +542,7 @@ main (gint   argc,
   register_stock_icons ();
 
   /* create main window + menus */
-  window = gnome_app_new (PACKAGE, _("Volume Control"));
+  window = gnome_app_new ("gnome-volume-control", _("Volume Control"));
   gnome_app_create_menus (GNOME_APP (window), main_menu);
  
   /* Set appicon image */ 
