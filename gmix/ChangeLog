@@ -1,3 +1,52 @@
+2002-04-01 Iain <iain@ximian.com>
+
+	* gmix.c: Update copyright notice.
+	Include gconf-client.h
+	Make static definitions.
+	(element_cb): Realign some stuff.
+	(main): Add white space. Always initialise the mixer prefs.
+	(recsrc_from_channels): Utility function to convert all the channel
+	info into a bitmask
+	(set_channels_from_recsrc): Set all the channels depending on the
+	bitmask.
+	(open_device): Add whitespace to stuff to make it readable.
+	Create a unique card name dependant on the driver, the card name and
+	the card position.
+	Create the individual channels here, instead of using bitmasks.
+	Remove debugging info.
+	(make_channels): Removed.
+	(scan_devices): Don't call make_channels anymore.
+	(free_one_channel): Free some ALSA specific stuff.
+	(free_one_device): Free a device.
+	(init_one_device): Init the devices from the settings.
+	(init_devices): Init all the devices.
+	(get_bool_with_default): Get a key from GConf or the default value if
+	there's an error.
+	(get_int_with_default): Ditto.
+	(get_string_with_default): ditto.
+	(get_one_device_config): Use the card names and GConf. Don't need any
+	card specific stuff.
+	(get_device_config): Add whitespace.
+	(put_one_device_config): Use the card names and GConf. don't need any
+	card specific stuff.
+	(make_slider_mixer): Add whitespace. Use the new info in channel_info.
+	Update functions. Make i18n easier.
+	(fill_in_device_guis): Add whitespaces. Use the new info. Create the
+	correct width of a table.
+	(build_slidernotebook): Whitespace.
+	(lock_cb): Update for the new info. (Whitespace)
+	(mute_cb): Ditto.
+	(turn_off_record_except): A sort of radiobutton utility function for
+	checkboxes.
+	(rec_cb): Update for new info. (Whitespace)
+	(adj_left_cb): Update for new info, manipulate the adjustment
+	correctly.
+	(adk_right_cb): ditto.
+	(about_cb): Add me to the copyright.
+
+	* gmix.h: Move the channel bitmasks out of the device struct and into
+	the channel one where they should have been.
+	
 2002-03-21 Iain <iain@ximian.com>
 
 	* gmix.c: Remove the mixer pages list; 
