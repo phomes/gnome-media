@@ -428,10 +428,10 @@ create_about (void)
 	GtkWidget* about;
 	
 	authors[0]=_(authors[0]);
-	about = gnome_about_new (_("Gnome Sound Recorder"), VERSION,
+	about = gnome_about_new (_("GNOME Sound Recorder"), VERSION,
 				/* if your charset allows it, replace the
 				   "e" of Hyden by an "eacute" (U00E9) */
-				 _("Copyright (C)  2000 Andreas Hyden"),
+				 _("(C) 2000 Andreas Hyden"),
 				 _("A simple soundrecorder and soundplayer for GNOME.\nDedicated to my cat, Malte."),
 				 authors,
 				 documenters,

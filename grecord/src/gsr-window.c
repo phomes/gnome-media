@@ -856,7 +856,7 @@ file_properties (BonoboUIComponent *uic,
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
-	label = make_info_label (_("Directory:"));
+	label = make_info_label (_("Folder:"));
 	pack_table_widget (table, label, 0, 0);
 
 	fp->dirname = make_info_label ("");
@@ -977,10 +977,9 @@ help_about (BonoboUIComponent *uic,
 		gdk_window_raise (about->window);
 		gdk_window_show (about->window);
 	} else {
-		about = gnome_about_new ("Sound Recorder", VERSION,
-					 "Copyright (C) 2002",
-					 "A sound recorder\n"
-					 "http://www.gnome.org",
+		about = gnome_about_new (_("Sound Recorder"), VERSION,
+					 _("(C) 2002 Iain Holmes"),
+					 _("A sound recorder for GNOME"),
 					 authors, NULL, NULL, NULL);
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);

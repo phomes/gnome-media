@@ -813,9 +813,9 @@ about_cb (GtkWidget *widget,
 	const char *authors[2] = {"Iain Holmes", NULL};
 	
 	if (about == NULL) {
-		about = gnome_about_new ("CD Player", VERSION,
-					 _("Copyright (C) 2001, 2002"),
-					 _("A GNOME cd player"),
+		about = gnome_about_new (_("CD Player"), VERSION,
+					 _("(C) 2001 Iain Holmes"),
+					 _("A CD player for GNOME"),
 					 authors, NULL, NULL, NULL);
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
