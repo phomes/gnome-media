@@ -1,5 +1,4 @@
-figs = \
-	figures/grecord_window.png
+figdir = figures
 docname = grecord
 lang = C
 omffile = grecord-C.omf

@@ -1,6 +1,4 @@
-figs = \
-	figures/gmix-prefs.png	\
-	figures/gmix.png
+figdir = figures
 docname = gmix
 lang = C
 omffile = gmix-C.omf
