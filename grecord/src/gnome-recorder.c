@@ -29,10 +29,6 @@
 
 #include "gnome-recorder.h"
 
-static struct poptOption gsr_options[] = {
-	{ NULL, '\0', 0, NULL, 0, NULL, NULL }
-};
-
 static GList *windows = NULL;
 
 static void
@@ -151,11 +147,20 @@ main (int argc,
 	poptContext pctx;
 	GValue value = {0, };
 	char **args = NULL;
+	static struct poptOption gsr_options[] = {
+		{ NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
+		{ NULL, 'p', POPT_ARG_NONE, NULL, 1, N_("Dummy option"), NULL },
+		POPT_TABLEEND
+	};
 
 	/* Init gettext */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+
+	/* init gstreamer */
+	gsr_options[0].arg = (void *) gst_init_get_popt_table ();
+	gst_scheduler_factory_set_default_name ("basicomega");
 
 	/* Init GNOME */
 	program = gnome_program_init ("gnome-sound-recorder", VERSION,
@@ -168,9 +173,6 @@ main (int argc,
 				      NULL);
 
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
-	/* Init GStreamer */
-	gst_init (&argc, &argv);
-	gst_scheduler_factory_set_default_name ("basicomega");
 
 	/* Init the icons */
 	init_stock_icons ();
