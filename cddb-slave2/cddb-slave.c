@@ -864,7 +864,7 @@ read_from_server (GIOChannel *iochannel,
 		goto error;
 	}
 
-	if (condition & G_IO_IN) {
+	if (condition & (G_IO_IN | G_IO_PRI)) {
 		GIOError error;
 		char *buffer;
 		gsize bytes_read;
