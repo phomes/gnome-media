@@ -1,3 +1,8 @@
+1999-05-25  Tim Gerla  <timg@means.net>
+
+	* Added patch from AJG to allow --device=/dev/whatever to be passed
+	to the command line.
+
 1999-05-24  James Henstridge  <james@daa.com.au>
 
 	* cddb.c (append_data): I was using the strncat function
@@ -26,6 +31,7 @@
 	long.  Without this change, CDs with long song titles would get
 	rejected when submited to one of the cddb databases.
 
+>>>>>>> 1.64
 1999-05-02  James Henstridge  <james@daa.com.au>
 
 	* gtracked.c (gtracked_submit): was leaking the section names when

@@ -971,6 +971,17 @@ void setup_keys()
     accel = gtk_accel_group_get_default();
 }    
 
+static char *CD_device = NULL;
+poptContext ctx;
+
+const struct poptOption gtcd_popt_options [] = {
+	{ "device", '\0', POPT_ARG_STRING, &CD_device, 0,
+	  N_("Filename of the CD device"),   N_("FILE") },
+	{ NULL, '\0', 0, NULL, 0 }
+};
+
+
+
 int main (int argc, char *argv[])
 {
     GtkWidget *table;
@@ -979,13 +990,16 @@ int main (int argc, char *argv[])
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
 
-    gnome_init("gtcd", VERSION, argc, argv);
+    gnome_init_with_popt_table("gtcd", VERSION, argc, argv, gtcd_popt_options, 0, &ctx);
 
     cd.play_method = NORMAL;
 
     load_prefs(&prefs);
-    cd.cdpath = prefs.cddev;
-	
+    if(CD_device)
+	cd.cdpath = CD_device;
+    else
+    	cd.cdpath = prefs.cddev;
+    		
     tcd_init_disc(&cd, (WarnFunc)create_warning);
 
     start_action();

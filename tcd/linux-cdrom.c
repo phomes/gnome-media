@@ -68,14 +68,8 @@ void debug( const char *fmt, ...)
 
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
-    char *homedir=NULL;
-    
     debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
     tcd_opencddev( cd, msg_cb );
-    
-    homedir = g_get_home_dir();
-    if(!homedir)
-	homedir = "/";
     
 #if defined(TCD_CHANGER_ENABLED)
     cd->nslots = ioctl( cd->cd_dev, CDROM_CHANGER_NSLOTS );
@@ -379,24 +373,52 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     return tmp;
 }       
 
+static int msf_2_frame( struct cdrom_msf0 *msf )
+{
+	return( ( msf->minute * CD_SECS + msf->second )
+			* CD_FRAMES + msf->frame );
+}
+
+static void frame_2_msf( int frame, struct cdrom_msf0 *msf )
+{
+	msf->frame = frame % CD_FRAMES;
+	frame /= CD_FRAMES;
+	msf->second = frame % CD_SECS;
+	msf->minute = frame / CD_SECS;
+}
+
 int tcd_play_seconds( cd_struct *cd, long int offset )
 {
     struct cdrom_msf msf;
-    int tmp;
+    struct cdrom_msf0 msf0;
+    int cur_frame, start_frame, end_frame;
 
-    debug("cdrom.c: tcd_playseconds( %p, %ld )\n", cd, offset );
+    debug("cdrom.c: tcd_play_seconds( %p, %ld )\n", cd, offset );
 
     cd->err = FALSE;
     cd->isplayable=FALSE;
 
-    /* got subchannel? */
-    msf.cdmsf_sec0 = cd->sc.cdsc_absaddr.msf.second+offset;
-    msf.cdmsf_min0 = cd->sc.cdsc_absaddr.msf.minute;
-    msf.cdmsf_frame0 = cd->sc.cdsc_absaddr.msf.frame;
+    /* converting msf to frames makes life much easier */
+    start_frame = msf_2_frame( &cd->trk[C(cd->first_t)].toc.cdte_addr.msf );
+    end_frame = msf_2_frame( &cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf ) - 1;
+    cur_frame = cd->cur_frame + ( offset * CD_FRAMES );
+
+    /* keep the cur_frame within the boundaries of the first and last track */
+    if ( cur_frame < start_frame ) {
+	    cur_frame = start_frame;
+    } else if ( cur_frame > end_frame ) {
+	    cur_frame = end_frame;
+    }
+
+    /* convert frames back to msf */
+    frame_2_msf( cur_frame, &msf0 );
+    msf.cdmsf_min0 = msf0.minute;
+    msf.cdmsf_sec0 = msf0.second;
+    msf.cdmsf_frame0 = msf0.frame;
     msf.cdmsf_min1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.minute;
     msf.cdmsf_sec1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.second;
     msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame - 1;
-
+ 
 #ifdef UNSIGNED_NUMBERS_CAN_BE_NEGATIVE
     if(msf.cdmsf_frame1 < 0)
     {
@@ -414,12 +436,6 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
     }
 #endif
 	
-    if( msf.cdmsf_sec0 > 60 && (offset<0) )
-    {
-	msf.cdmsf_sec0 = 60-abs(offset);
-	msf.cdmsf_min0--;
-    }
-	
     if(ioctl(cd->cd_dev, CDROMPLAYMSF, &msf))
     {
 	strcpy( cd->errmsg, "Error playing disc." );
@@ -430,8 +446,8 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
     }
     cd->isplayable=TRUE;                                                 
 
-    debug("cdrom.c: tcd_playseconds exiting normally\n" );
-    return tmp;
+    debug("cdrom.c: tcd_play_seconds exiting normally\n" );
+    return( 0 );
 }       
 
 int tcd_ejectcd( cd_struct *cd )
