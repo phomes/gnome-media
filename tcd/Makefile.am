@@ -8,7 +8,7 @@ gtcd_SOURCES = 		\
 	gtcd.c 		\
 	cddb.c 		\
 	socket.c 	\
-	cdrom.c 	\
+	linux-cdrom.c 	\
 	gtracked.c 	\
 	gabout.c 	\
 	gcddb.c 	\
@@ -24,7 +24,7 @@ tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
 	socket.c 	\
-	cdrom.c 	\
+	linux-cdrom.c 	\
 	cddb.h 		\
 	socket.h 	\
 	cdrom.h		\
