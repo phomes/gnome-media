@@ -29,7 +29,8 @@ BuildRequires:  Xft
 BuildRequires:  fontconfig
 BuildRequires:  desktop-file-utils >= %{desktop_file_utils_version}
 BuildRequires:  /usr/bin/automake-1.4
-
+Requires:	gstreamer >= 0.4.2
+Requires:	scrollkeeper >= 0.3.8
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly set of
 GUI applications and desktop tools to be used in conjunction with a
@@ -58,6 +59,8 @@ unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -rf $RPM_BUILD_ROOT/var/scrollkeeper/*
+rm -f $RPM_BUILD_ROOT/%{_datadir}/pixmaps/gnome-cd/*.png
+rm -f $RPM_BUILD_ROOT/%{_datadir}/pixmaps/gnome-cd/*.xpm
 
 %find_lang %{gettext_package}
 
@@ -65,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT/var/scrollkeeper/*
 rm -rf $RPM_BUILD_ROOT
 
 %post
-scrollkeeper-update
+scrollkeeper-update -q
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="CDDB-Slave2.schemas gnome-volume-control.schemas gnome-cd.schemas gnome-sound-recorder.schemas"
 for S in $SCHEMAS; do
@@ -80,19 +83,39 @@ scrollkeeper-update
 
 %files -f %{gettext_package}.lang
 %defattr(-, root, root)
-
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_prefix}/libexec/*
-%{_datadir}/idl
-%{_datadir}/applications
-%{_datadir}/pixmaps
-%{_datadir}/omf
-%{_datadir}/gnome
+%{_datadir}/idl/GNOME_Media_CDDBSlave2.idl
+%{_datadir}/applications/gnome-cd.desktop
+%{_datadir}/applications/gnome-sound-recorder.desktop
+%{_datadir}/applications/gnome-volume-control.desktop
+%{_datadir}/applications/reclevel.desktop
+%{_datadir}/applications/vumeter.desktop
+%{_datadir}/pixmaps/gnome-cd.png
+%{_datadir}/pixmaps/gnome-cd/themes/lcd/*.png
+%{_datadir}/pixmaps/gnome-cd/themes/lcd/lcd.theme
+%{_datadir}/pixmaps/gnome-cd/themes/media/*.png
+%{_datadir}/pixmaps/gnome-cd/themes/media/media.theme
+%{_datadir}/pixmaps/gnome-cd/themes/red-lcd/*.png
+%{_datadir}/pixmaps/gnome-cd/themes/red-lcd/red-lcd.theme
+%{_datadir}/pixmaps/gnome-grecord.png
+%{_datadir}/pixmaps/gnome-mixer.png
+%{_datadir}/pixmaps/gnome-reclevel.png
+%{_datadir}/pixmaps/gnome-vumeter.png
+%{_datadir}/pixmaps/gnome-media
+%{_datadir}/omf/gnome-media
+%{_datadir}/gnome/help/gnome-cd
+%{_datadir}/gnome/help/gnome-volume-control
+%{_datadir}/gnome/help/grecord
 %{_datadir}/gnome-sound-recorder/ui/gsr.xml
-%{_datadir}/control-center-2.0
+%{_datadir}/control-center-2.0/capplets/cddb-slave.desktop
 %{_libdir}/*.so.*
-%{_libdir}/bonobo
-%{_bindir}/*
+%{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
+%{_bindir}/cddb-slave2-properties
+%{_bindir}/gnome-cd
+%{_bindir}/gnome-sound-recorder
+%{_bindir}/gnome-volume-control
+%{_bindir}/vumeter
 %{_sysconfdir}/gconf/schemas/*.schemas
 
 # devel, if we had a devel
@@ -100,6 +123,11 @@ scrollkeeper-update
 %{_libdir}/*.so
 
 %changelog
+* Wed Nov 06 2002 Christian Schaller <Uraeus@gnome.org>
+- Clean up files listing
+- Add some RPM pre-req
+- Add -q to scrollkeeper command
+
 * Wed Oct 23 2002 Christian Schaller <Uraeus@gnome.org>
 - Update for use in CVS package
 - I remove all the stuff installed into /var/scrollkeeper this is probably a bugwhich I have no idea how to fix
