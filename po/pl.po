@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-03-09 23:29+0100\n"
-"PO-Revision-Date: 2002-03-09 23:31+0100\n"
+"POT-Creation-Date: 2002-03-20 23:20+0100\n"
+"PO-Revision-Date: 2002-03-20 23:40+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -852,7 +852,8 @@ msgstr "Radio"
 msgid "Phone"
 msgstr "Telefon"
 
-#: gmix/device_labels_alsa.h:1
+#: gmix/device_labels_alsa.h:1 grecord/src/gui.c:1 grecord/src/gui.c:1
+#: grecord/src/gui.c:1
 msgid "Mono"
 msgstr "Mono"
 
@@ -1079,7 +1080,7 @@ msgid ""
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
 msgstr ""
-"Uwaga: Używana wersja Kontroli Głośności dla GNOME została skompilowana\n"
+"Uwaga: Używana wersja Kontroli głośności dla GNOME została skompilowana\n"
 "z OSS w wersji %d.%d.%d, natomiast w systemie\n"
 "zainstalowana jest wersja przed 3.6.0.\n"
 
@@ -1090,7 +1091,7 @@ msgid ""
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
 msgstr ""
-"Uwaga: Używana wersja Kontroli Głośności dla GNOME została skompilowana\n"
+"Uwaga: Używana wersja Kontroli głośności dla GNOME została skompilowana\n"
 "z OSS w wersji %d.%d.%d, natomiast w systemie\n"
 "zainstalowana jest wersja %d.%d.%d.\n"
 
@@ -1494,8 +1495,7 @@ msgstr "Konwertowanie pliku..."
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: grecord/src/grec.c:1 grecord/src/grec.c:1 grecord/src/gui.c:1
-#: grecord/src/preferences.c:1
+#: grecord/src/grec.c:1 grecord/src/grec.c:1 grecord/src/preferences.c:1
 msgid "Audioformat: "
 msgstr "Format dźwięku: "
 
@@ -1520,6 +1520,15 @@ msgstr "Wybór pliku dźwiękowego"
 #: grecord/src/grec.c:1
 msgid "Don't quit"
 msgstr "Nie kończ"
+
+#: grecord/src/grec.c:1
+msgid "Gnome Volume Control is not installed in the path"
+msgstr "Na ścieżce nie odnaleziono programu Kontroli głośności dla GNOME"
+
+#: grecord/src/grec.c:1
+#, c-format
+msgid "There was an error starting %s: %s"
+msgstr "Przy uruchamianiu %s wystąpił błąd: %s"
 
 #: grecord/src/grec.c:1
 msgid "Undoing all changes..."
@@ -1686,6 +1695,23 @@ msgstr "%s - Rejestrator dźwięku"
 msgid "Sound Recorder"
 msgstr "Rejestrator dźwięku"
 
+#: grecord/src/gui.c:1 grecord/src/gui.c:1 grecord/src/gui.c:1
+msgid "16bit PCM"
+msgstr "16-bitowy PCM"
+
+#: grecord/src/gui.c:1 grecord/src/gui.c:1 grecord/src/gui.c:1
+#: grecord/src/gui.c:1
+msgid "8bit PCM"
+msgstr "8-bitowy PCM"
+
+#: grecord/src/gui.c:1
+msgid "stereo"
+msgstr "stereo"
+
+#: grecord/src/gui.c:1
+msgid "mono"
+msgstr "mono"
+
 #: grecord/src/gui.c:1
 msgid "New"
 msgstr "Nowy"
@@ -1713,6 +1739,10 @@ msgstr "Rozpoczyna nagrywanie"
 #: grecord/src/gui.c:1
 msgid "Info"
 msgstr "Informacje"
+
+#: grecord/src/gui.c:1
+msgid "Audio format: "
+msgstr "Format dźwięku: "
 
 #: grecord/src/gui.c:1
 #, c-format
@@ -1749,6 +1779,14 @@ msgstr ""
 "GNOME. Dedykowany mojemu kotu, Malte."
 
 #: grecord/src/gui.c:1
+msgid "Gnome Sound Recorder Preferences"
+msgstr "Ustawienia Rejestratora dźwięku dla GNOME"
+
+#: grecord/src/gui.c:1
+msgid "Recording"
+msgstr "Nagrywanie"
+
+#: grecord/src/gui.c:1
 msgid "Time"
 msgstr "Czas"
 
@@ -1783,16 +1821,16 @@ msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Zatrzymywanie nagrywania, jeśli rozmiar próbki (w MB) przekroczy:"
 
 #: grecord/src/gui.c:1
-msgid "Recording"
-msgstr "Nagrywanie"
+msgid "Playing"
+msgstr "Odtwarzanie"
 
 #: grecord/src/gui.c:1
-msgid "Play-repeating"
-msgstr "Powtarzanie odtwarzania"
-
-#: grecord/src/gui.c:1
-msgid "Repeat"
+msgid "Repetition"
 msgstr "Powtarzanie"
+
+#: grecord/src/gui.c:1
+msgid "Repeat the sound"
+msgstr "Powtarzanie dźwięku"
 
 #: grecord/src/gui.c:1
 msgid "Forever"
@@ -1803,8 +1841,8 @@ msgid "Nr of times:"
 msgstr "Liczba powtórzeń:"
 
 #: grecord/src/gui.c:1
-msgid "Playing"
-msgstr "Odtwarzanie"
+msgid "Paths"
+msgstr "Ścieżki"
 
 #: grecord/src/gui.c:1
 msgid "Program files"
@@ -1814,65 +1852,49 @@ msgstr "Pliki programów"
 msgid "Path to sox:"
 msgstr "Ścieżka programu sox:"
 
-#: grecord/src/gui.c:1
-msgid "Path to mixer:"
-msgstr "Ścieżka miksera:"
+#: grecord/src/gui.c:1 grecord/src/gui.c:1
+msgid "Apply"
+msgstr "Zastosuj"
 
 #: grecord/src/gui.c:1
 msgid "Directories"
 msgstr "Katalogi"
 
 #: grecord/src/gui.c:1
-msgid "Temp dir:"
+msgid "Temporary directory:"
 msgstr "Katalog tymczasowy:"
-
-#: grecord/src/gui.c:1
-msgid "Paths"
-msgstr "Ścieżki"
-
-#: grecord/src/gui.c:1
-msgid "Sound options"
-msgstr "Opcje dźwięku"
-
-#: grecord/src/gui.c:1
-msgid "Audioformat:"
-msgstr "Format dźwięku:"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "8bit pcm"
-msgstr "8-bitowy pcm"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "16bit pcm"
-msgstr "16-bitowy pcm"
-
-#: grecord/src/gui.c:1
-msgid "Sample rate:"
-msgstr "Częstotliwość próbkowania:"
-
-#: grecord/src/gui.c:1
-msgid "mono/stereo"
-msgstr "mono/stereo"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "mono"
-msgstr "mono"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "stereo"
-msgstr "stereo"
 
 #: grecord/src/gui.c:1
 msgid "Sound"
 msgstr "Dźwięk"
 
 #: grecord/src/gui.c:1
-msgid "Main window"
-msgstr "Główne okno"
+msgid "Sound options"
+msgstr "Opcje dźwięku"
+
+#: grecord/src/gui.c:1
+msgid "Audio format:"
+msgstr "Format dźwięku:"
+
+#: grecord/src/gui.c:1
+msgid "Sample rate:"
+msgstr "Częstotliwość próbkowania:"
+
+#: grecord/src/gui.c:1
+msgid "Mono/Stereo"
+msgstr "Mono/Stereo"
+
+#: grecord/src/gui.c:1 grecord/src/gui.c:1
+msgid "Stereo"
+msgstr "Stereo"
 
 #: grecord/src/gui.c:1
 msgid "User interface"
 msgstr "Interfejs użytkownika"
+
+#: grecord/src/gui.c:1
+msgid "Main window"
+msgstr "Główne okno"
 
 #: grecord/src/main.c:1
 msgid "Specify the geometry of the main window"
@@ -1895,6 +1917,10 @@ msgid "Specify a file to start playing"
 msgstr "Określa plik, którego odtwarzanie należy rozpocząć"
 
 #: grecord/src/main.c:1
+msgid "GConf file is incorrectly installed."
+msgstr "Plik GConfa nie został poprawnie zainstalowany."
+
+#: grecord/src/main.c:1
 msgid "Don't show this message again."
 msgstr "Bez wyświetlania tego komunikatu w przyszłości."
 
@@ -1911,6 +1937,27 @@ msgstr ""
 "\n"
 "Jeśli w systemie nie ma programu xos, nagrywanie ani używanie efektów nie "
 "będzie możliwe."
+
+#: grecord/src/preferences.c:1
+msgid "Audio format: 8bit PCM"
+msgstr "Format dźwięku: 8-bitowy PCM"
+
+#: grecord/src/preferences.c:1
+msgid "Audio format: 16bit PCM"
+msgstr "Format dźwięku: 16-bitowy PCM"
+
+#: grecord/src/preferences.c:1
+#, c-format
+msgid "Sample rate: %s"
+msgstr "Częstotliwość próbkowania: %s"
+
+#: grecord/src/preferences.c:1
+msgid "Channels: mono"
+msgstr "Kanały: jeden (mono)"
+
+#: grecord/src/preferences.c:1
+msgid "Channels: stereo"
+msgstr "Kanały: dwa (stereo)"
 
 #: grecord/src/preferences.c:1
 msgid ""
