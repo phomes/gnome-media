@@ -126,6 +126,7 @@ void callback (GtkWidget *widget, gpointer *data)
 			break;
 		case STOP:
 			tcd_stopcd(&cd);
+			cd.play_method = NORMAL;
 			break;	                                                                                                        
 		case EJECT:
 			tcd_ejectcd(&cd);
