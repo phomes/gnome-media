@@ -572,10 +572,13 @@ record_sound (void)
 	g_free (tfile);
 
 	/* Set up bits, channels etc after the preferences */
-	if (esd_channels == 1)
+	if (channels == 1) {
 		esd_channels = ESD_MONO;
-	if (audioformat != 0)
+	}
+	
+	if (audioformat != 0) {
 		bits = ESD_BITS8;
+	}
 
 	rate = atoi (samplerate);
 
