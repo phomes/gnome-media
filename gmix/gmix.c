@@ -710,8 +710,8 @@ open_device (int num)
 			new_channel->device = new_device;
 			new_channel->channel = cnt;
 			new_channel->pixmap = g_strdup (device_pixmap[cnt]);
-			new_channel->title = g_strdup (_(device_labels[cnt]));
-			new_channel->user_title = g_strdup (new_channel->title);
+			new_channel->title = g_strdup (device_names[cnt]);
+			new_channel->user_title = g_strdup (_(device_labels[cnt]));
 			new_channel->passive = 0;
 
 			new_channel->is_muted = FALSE;
@@ -949,18 +949,20 @@ get_one_device_config (gpointer a,
 			g_object_unref (G_OBJECT (client));
 			continue;
 		}
-		
+
 		g_object_unref (G_OBJECT (client));
-		
+
+#if 0 /* TODO: Hack fix for a full fix next version */
 		key = g_strdup_printf ("%s/title", key_base);
 
 		if (channel->user_title != NULL) {
 			g_free (channel->user_title);
 		}
-		
+
 		channel->user_title = get_string_with_default (key, channel->title);
 		g_free (key);
-		
+#endif
+
 		key = g_strdup_printf ("%s/mute", key_base);
 		channel->is_muted = get_bool_with_default (key, channel->is_muted);
 		g_free (key);
@@ -974,12 +976,12 @@ get_one_device_config (gpointer a,
 			key = g_strdup_printf ("%s/lock", key_base);
 			channel->is_locked = get_bool_with_default (key, channel->is_locked);
 			g_free (key);
-			
+
 			key = g_strdup_printf ("%s/volume_left", key_base);
 			channel->volume_left = get_int_with_default (key,
 								     channel->volume_left);
 			g_free (key);
-			
+
 			key = g_strdup_printf ("%s/volume_right", key_base);
 			channel->volume_right = get_int_with_default (key,
 								      channel->volume_right);
@@ -998,7 +1000,7 @@ get_one_device_config (gpointer a,
 			g_free (key);
 		}
 
-		
+
 		g_free (key_base);
 	}
 }
@@ -1027,8 +1029,10 @@ put_one_device_config (gpointer a,
 		key_base = g_strdup_printf ("/apps/gnome-volume-control/%s/%s",
 					    info->card_name, channel->title);
 
+#if 0 /* TODO: Hack fix for a full fix next version */
 		key = g_strdup_printf ("%s/title", key_base);
 		gconf_client_set_string (client, key, channel->user_title, &err);
+#endif
 		if (err != NULL) {
 			g_warning ("Error says %s\n", err->message);
 			g_error_free (err);
