@@ -50,7 +50,7 @@ void update_editor(void)
     gtk_entry_set_text(GTK_ENTRY(dtitle), cd.dtitle);
     gtk_entry_set_text(GTK_ENTRY(track), "");
     signal_id = gtk_signal_connect(GTK_OBJECT(track), "changed",
-                       GTK_SIGNAL_FUNC(activate_entry), clist);
+				   GTK_SIGNAL_FUNC(activate_entry), clist);
                            
     gtk_clist_clear(GTK_CLIST(clist));
     fill_list(clist);
@@ -154,7 +154,7 @@ static void select_row_cb( GtkCList *clist,
     gtk_editable_insert_text(GTK_EDITABLE(extra), cd.trk[row].extd,
 			     strlen(cd.trk[row].extd), &pos);
     gtk_signal_handler_unblock_by_func(GTK_OBJECT(extra),
-				GTK_SIGNAL_FUNC(edit_track_extra), clist);
+				       GTK_SIGNAL_FUNC(edit_track_extra), clist);
 
     if(gtk_events_pending())
 	gtk_main_iteration();
@@ -332,7 +332,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_signal_connect(GTK_OBJECT(disc_entry), "changed",
 		       GTK_SIGNAL_FUNC(dtitle_changed), NULL);
     signal_id = gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
-		       GTK_SIGNAL_FUNC(activate_entry), track_list);
+				   GTK_SIGNAL_FUNC(activate_entry), track_list);
     gtk_signal_connect(GTK_OBJECT(track_entry), "activate",
 		       GTK_SIGNAL_FUNC(next_entry), track_list);
 
@@ -351,103 +351,114 @@ void edit_window(GtkWidget *widget, gpointer data)
 
 void gtracked_submit(void)
 {
-	GtkWidget *dialog;
-	GtkWidget *hbox, *label, *item, *omenu, *menu, *combo;
-	GtkBox *vbox;
-	gchar *prefix, *sect, *key, *description;
-	void *iter;
-	/* these should not be translated -- otherwise the cddb server may
-	 * have troubles */
-	gchar *categories[] = {
-		"blues",
-		"classical",
-		"country",
-		"data",
-		"folk",
-		"jazz",
-		"misc",
-		"newage",
-		"reggae",
-		"rock",
-		"soundtrack"
-	};
-	gint i, ncategories = sizeof(categories)/sizeof(gchar *);
+    GtkWidget *dialog, *hbox;
+    GtkWidget *label, *item, *service_omenu, *service_menu;
+    GtkWidget *cat_menu, *cat_omenu, *menu_box, *label_box;
+    GtkBox *vbox;
+    gchar *prefix, *sect, *key, *description;
+    void *iter;
+    /* these should not be translated -- otherwise the cddb server may
+     * have troubles */
+    gchar *categories[] = {
+	"blues",
+	"classical",
+	"country",
+	"data",
+	"folk",
+	"jazz",
+	"misc",
+	"newage",
+	"reggae",
+	"rock",
+	"soundtrack"
+    };
+    gint i, ncategories = sizeof(categories)/sizeof(gchar *);
 
-	dialog = gnome_dialog_new(_("Submit Information"),
-				  GNOME_STOCK_BUTTON_OK,
-				  GNOME_STOCK_BUTTON_CANCEL, NULL);
-	gnome_dialog_close_hides(GNOME_DIALOG(dialog), TRUE);
-	vbox = GTK_BOX(GNOME_DIALOG(dialog)->vbox);
+    dialog = gnome_dialog_new(_("Submit Information"),
+			      GNOME_STOCK_BUTTON_OK,
+			      GNOME_STOCK_BUTTON_CANCEL, NULL);
+    gnome_dialog_close_hides(GNOME_DIALOG(dialog), TRUE);
+    vbox = GTK_BOX(GNOME_DIALOG(dialog)->vbox);
 
-	description = g_strdup_printf(_("Submit information about\n'%s'"),
-				      cd.dtitle);
-	label = gtk_label_new(description);
-	g_free(description);
-	gtk_box_pack_start(vbox, label, FALSE, TRUE, 0);
+    description = g_strdup_printf(_("Submit information about\n'%s'"),
+				  cd.dtitle);
+    label = gtk_label_new(description);
+    g_free(description);
+    gtk_box_pack_start(vbox, label, FALSE, TRUE, 0);
 
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(vbox, hbox, FALSE, TRUE, 0);
+    menu_box = gtk_vbox_new(TRUE, GNOME_PAD_SMALL);
+    label_box = gtk_vbox_new(TRUE, GNOME_PAD_SMALL);
 
-	label = gtk_label_new(_("To: "));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 0);
+    label = gtk_label_new(_("To: "));
+    gtk_box_pack_start(GTK_BOX(label_box), label, FALSE, TRUE, 0);
+    
+    /* build service menu */
+    service_menu = gtk_menu_new();
+    key = gnome_datadir_file("gnome/cddb-submit-methods");
+    prefix = g_strconcat("=", key, "=/", NULL);
+    g_free(key);
 
-	menu = gtk_menu_new();
-	key = gnome_datadir_file("gnome/cddb-submit-methods");
-	prefix = g_strconcat("=", key, "=/", NULL);
+    iter = gnome_config_init_iterator_sections(prefix);
+    while ((iter = gnome_config_iterator_next(iter, &sect, NULL))!=NULL) {
+	key = g_strconcat(prefix, "/", sect, "/description", NULL);
+	description = gnome_config_get_translated_string(key);
 	g_free(key);
-
-	iter = gnome_config_init_iterator_sections(prefix);
-	while ((iter = gnome_config_iterator_next(iter, &sect, NULL))!=NULL) {
-		key = g_strconcat(prefix, "/", sect, "/description", NULL);
-		description = gnome_config_get_translated_string(key);
-		g_free(key);
-		if (!description) {
-			g_free(sect);
-			continue;
-		}
-		item = gtk_menu_item_new_with_label(description);
-		g_free(description);
-		gtk_object_set_data_full(GTK_OBJECT(item), "service",
-					 sect,
-					 (GtkDestroyNotify)g_free);
-		gtk_menu_prepend(GTK_MENU(menu), item);
-		gtk_widget_show(item);
+	if (!description) {
+	    g_free(sect);
+	    continue;
 	}
-	g_free(prefix);
-	omenu = gtk_option_menu_new();
-	gtk_option_menu_set_menu(GTK_OPTION_MENU(omenu), menu);
-	gtk_box_pack_start(GTK_BOX(hbox), omenu, TRUE, TRUE, 0);
+	item = gtk_menu_item_new_with_label(description);
+	g_free(description);
+	gtk_object_set_data_full(GTK_OBJECT(item), "service",
+				 sect,
+				 (GtkDestroyNotify)g_free);
+	gtk_menu_prepend(GTK_MENU(service_menu), item);
+	gtk_widget_show(item);
+    }
+    g_free(prefix);
+    service_omenu = gtk_option_menu_new();
+    gtk_option_menu_set_menu(GTK_OPTION_MENU(service_omenu), service_menu);
+    gtk_box_pack_start(GTK_BOX(menu_box), service_omenu, TRUE, TRUE, 0);
+    /* end of service menu */
 
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(vbox, hbox, FALSE, TRUE, 0);
+    label = gtk_label_new(_("Category: "));
+    gtk_box_pack_start(GTK_BOX(label_box), label, FALSE, TRUE, 0);
 
-	label = gtk_label_new(_("Category: "));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 0);
+    /* build cat menu */
+    cat_menu = gtk_menu_new();
+    for (i = 0; i < ncategories; i++) {
+	item = gtk_menu_item_new_with_label(categories[i]);
+	gtk_object_set_data(GTK_OBJECT(item),
+			    "category", categories[i]);
+	gtk_menu_append(GTK_MENU(cat_menu), item);
+	gtk_widget_show(item);
+    }
+    cat_omenu = gtk_option_menu_new();
+    gtk_option_menu_set_menu(GTK_OPTION_MENU(cat_omenu), cat_menu);
+    gtk_box_pack_start(GTK_BOX(menu_box), cat_omenu, TRUE, TRUE, 0);
+    /* end */
 
-	combo = gtk_combo_new();
-	gtk_combo_set_value_in_list(GTK_COMBO(combo), FALSE, TRUE);
-	for (i = 0; i < ncategories; i++) {
-		item = gtk_list_item_new_with_label(categories[i]);
-		gtk_container_add(GTK_CONTAINER(GTK_COMBO(combo)->list), item);
-		gtk_widget_show(item);
-	}
-	gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
+    hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+    gtk_box_pack_start(GTK_BOX(hbox), label_box, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), menu_box, FALSE, TRUE, 0);
+    gtk_box_pack_start(vbox, hbox, FALSE, TRUE, 0);
 
-	gtk_widget_show_all(GTK_WIDGET(vbox));
+    gtk_widget_show_all(GTK_WIDGET(vbox));
 
-	if (gnome_dialog_run_and_close(GNOME_DIALOG(dialog)) == 0) {
-		gchar *service, *category;
-		/* should do a test to make sure that some fields have
-		 * been filled in*/
-		/* increment revision before submitting */
-		cd.cddb_rev++;
-		tcd_writediskinfo(&cd);
-		service = gtk_object_get_data(
-		    GTK_OBJECT(GTK_OPTION_MENU(omenu)->menu_item), "service");
-		category = gtk_entry_get_text(
-		    GTK_ENTRY(GTK_COMBO(combo)->entry));
-		tcd_call_cddb_submit(&cd, category, service);
-	}
+    if (gnome_dialog_run_and_close(GNOME_DIALOG(dialog)) == 0) {
+	gchar *service, *category;
+	/* should do a test to make sure that some fields have
+	 * been filled in*/
+	/* increment revision before submitting */
+	cd.cddb_rev++;
+	tcd_writediskinfo(&cd);
+	service = gtk_object_get_data(
+	    GTK_OBJECT(GTK_OPTION_MENU(service_omenu)->menu_item), "service");
+	category = gtk_object_get_data(
+	    GTK_OBJECT(GTK_OPTION_MENU(cat_omenu)->menu_item), "category");
 
-	gtk_widget_destroy(dialog);
+	tcd_call_cddb_submit(&cd, category, service);
+    }
+
+    gtk_widget_destroy(dialog);
 }
