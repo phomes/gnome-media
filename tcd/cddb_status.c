@@ -3,56 +3,29 @@
 #include "gtcd_public.h"
 #include "cddb.h"
 
-char *status_string[] = 
-{
-    N_("No status."),
-    N_("Connecting."),
-    N_("Querying server."),
-    N_("Waiting for reply."),
-    N_("Reading reply."),
-    N_("Disconnecting."),
-    N_("Error connecting."),
-    N_("Error querying."),
-    N_("Error reading reply."),
-    N_("No exact match found."),
-    N_("No status."),
-};
-
 GtkWidget *csw;			/* cddb status window */
 guint timer=0;
 
-static void destroy_window (GtkWidget *widget, gpointer data);
+static void destroy_window(GtkWidget *widget, gpointer data);
+static int status_timer(GtkWidget *gl);
 
-static void destroy_window (GtkWidget *widget, gpointer data)
+static void destroy_window(GtkWidget *widget, gpointer data)
 {
     gtk_timeout_remove(timer);
     gtk_widget_destroy(csw);
     csw = NULL;
 }
 
-static char *read_status(void)
-{
-    int status;
-    FILE *fp;
-    
-    fp = fopen("/tmp/.cddbstatus", "r");
-    if(!fp)
-	return status_string[0x000];
-    fscanf(fp, "%03d\n", &status);
-    fclose(fp);
-
-    return status_string[status];
-}
-
 static int status_timer(GtkWidget *gl)
 {
-    gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbslave");
+    if(!gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbstatus"))
+    	gnome_less_clear(GNOME_LESS(gl));
     return TRUE;
 }
 
 static void call_slave(GtkWidget *widget, gpointer data)
 {
-    tcd_call_cddb_slave(&cd, "TCD", "3.0");
+    tcd_call_cddb_slave(&cd, "TCD (Gnome)", "1.0");
 }
 
 void cddb_status_dialog(GtkWidget *widget, gpointer data)
@@ -78,6 +51,7 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
     /* status box */
     gl = gnome_less_new();
     gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbstatus");
+
     gtk_box_pack_start(GTK_BOX(main_box), gl, TRUE, TRUE, 0);
 
     /* grab button */

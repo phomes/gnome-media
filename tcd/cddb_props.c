@@ -15,10 +15,10 @@
 
 #include "gtcd_public.h"
 #include "cddb_props.h"
+#include "prefs.h"
 
 /* prototypes */
 static void edit_cb(GtkWidget *widget, GtkWidget *clist);
-
 static GtkWidget *create_local_db(void);
 static gchar *get_file_name(gchar *append);
 static gchar *get_dtitle(const gchar *filename);
@@ -33,6 +33,8 @@ static EditWindow *create_edit_window(GtkWidget *clist);
 static void refresh_cb(GtkWidget *widget, GtkWidget *clist);
 static void remove_cb(GtkWidget *widget, GtkWidget *clist);
 static void msg_callback(gint reply, GtkCList *clist);
+static entry_cb(GtkWidget *widget, gpointer data);
+static port_cb(GtkObject *adj, gpointer data);
 
 /* code */
 static void select_row_cb(GtkCList *clist,
@@ -135,9 +137,12 @@ GtkWidget *create_cddb_page(void)
 
     label = gtk_label_new("Address");
     entry = gtk_entry_new();
+    g_print("%s\n", prefs.cddb_server);
     gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_server);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, 0, 1);
+    gtk_signal_connect(GTK_OBJECT(entry), "changed",
+		       GTK_SIGNAL_FUNC(entry_cb), NULL);
 
     adj = gtk_adjustment_new(8880, 0, 65536, 1, 100, 10);
     gtk_adjustment_set_value(GTK_ADJUSTMENT(adj), prefs.cddb_port);
@@ -145,6 +150,10 @@ GtkWidget *create_cddb_page(void)
     entry = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 2, 3, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 3, 4, 0, 1);
+    gtk_signal_connect(GTK_OBJECT(adj), "changed",
+		       GTK_SIGNAL_FUNC(port_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(adj), "value_changed",
+		       GTK_SIGNAL_FUNC(port_cb), NULL);
 
     gtk_container_add(GTK_CONTAINER(frame), table);
 
@@ -416,4 +425,16 @@ static void remove_cb(GtkWidget *widget, GtkWidget *clist)
 				(GnomeReplyCallback)msg_callback,
 				clist);
     gtk_widget_show(msg);
+}
+
+static entry_cb(GtkWidget *widget, gpointer data)
+{
+    prefs.cddb_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+    changed_cb(NULL, NULL);
+}
+
+static port_cb(GtkObject *adj, gpointer data)
+{
+    prefs.cddb_port = (gint)GTK_ADJUSTMENT(adj)->value;
+    changed_cb(NULL, NULL);
 }

@@ -25,6 +25,7 @@
 #include <config.h>
 #include <gnome.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "gtcd_public.h"
 #include "keybindings.h"
@@ -446,7 +447,7 @@ static void select_row_cb(GtkCList *clist,
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(alt_check), kb->key->alt);
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(shift_check), kb->key->shift);
     
-    kb->data = clist;
+    kb->data = (GtkWidget*)clist;
     kb->data2 = row;
     entry_cb = gtk_signal_connect(GTK_OBJECT(entry), "event",
 				  GTK_SIGNAL_FUNC(entry_changed), kb);
@@ -525,7 +526,8 @@ GtkWidget *key_page(void)
 void apply_cb( GtkWidget *widget, void *data )
 {       
 /* Do stuff here if needed */
-    if( prefs.tooltip )
+ 
+    if(prefs.tooltip)
         gtk_tooltips_enable(tooltips);
     else
         gtk_tooltips_disable(tooltips);
@@ -537,7 +539,7 @@ void apply_cb( GtkWidget *widget, void *data )
 void preferences(GtkWidget *widget, void *data)
 {
     GtkWidget *label;
-    
+
     pref_window = gnome_property_box_new();
     gtk_widget_realize(pref_window);
 

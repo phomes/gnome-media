@@ -41,5 +41,6 @@ typedef struct
 void load_prefs( tcd_prefs *prop );
 void save_prefs( tcd_prefs *prop );
 void prefs_cb( GtkWidget *widget, void *data );
+void changed_cb(GtkWidget *widget, void *data);
 
 #endif
