@@ -83,6 +83,10 @@ void load_prefs(tcd_prefs *prop)
     prop->eject.key =   gnome_config_get_int("/gtcd/keybindings/eject=69");
     prop->back.key =    gnome_config_get_int("/gtcd/keybindings/back=45");
     prop->forward.key = gnome_config_get_int("/gtcd/keybindings/forward=43");
+
+/* cddb stuff, used by cddbslave. */
+    prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
+    prop->cddb_port   = gnome_config_get_int("/cddbslave/server/port=8880");
 }
 
 void save_prefs(tcd_prefs *prop)
@@ -109,9 +113,12 @@ void save_prefs(tcd_prefs *prop)
     gnome_config_set_int("/gtcd/keybindings/back", prop->back.key);
     gnome_config_set_int("/gtcd/keybindings/forward", prop->forward.key);
 
+    gnome_config_set_string("/cddbslave/server/address", prop->cddb_server);
+    gnome_config_set_int("/cddbslave/server/port=8880", prop->cddb_port);
+        
     gnome_config_sync();
 }
-
+        
 void changed_cb(GtkWidget *widget, void *data)
 {
     gnome_property_box_changed(GNOME_PROPERTY_BOX(pref_window));

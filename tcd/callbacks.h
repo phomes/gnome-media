@@ -15,15 +15,3 @@ void quit_cb(GtkWidget *widget, gpointer data);
 void changer_cb(GtkWidget *widget, gpointer data);
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-

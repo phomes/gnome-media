@@ -424,7 +424,7 @@ void draw_titles(void)
     gdk_gc_set_foreground( gc, &track_color );
     inc = (tfont->ascent+tfont->descent)-2;
 
-    gdk_draw_text(status_db,tfont,gc,4,39, cd.artist, 
+    gdk_draw_text(status_db,tfont,gc,4,39, cd.artist,
 		  strlen(cd.artist));
     gdk_draw_text(status_db,tfont,gc,4,39+inc, cd.album, 
 		  strlen(cd.album));
@@ -660,9 +660,9 @@ void make_goto_menu()
 	item = gtk_menu_item_new_with_label(buf);
 	gtk_widget_show(item);
 	gtk_menu_append(GTK_MENU(gotomenu), item);
-	gtk_signal_connect_object(GTK_OBJECT(item), "activate",
-				  GTK_SIGNAL_FUNC(goto_track_cb), GINT_TO_POINTER(i));
-    }
+	gtk_signal_connect(GTK_OBJECT(item), "activate",
+			   GTK_SIGNAL_FUNC(goto_track_cb), GINT_TO_POINTER(i));
+   }
     if(gotoi) gtk_signal_disconnect(GTK_OBJECT(gotobutton), gotoi);
     gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",
 				      GTK_SIGNAL_FUNC(button_press), GTK_OBJECT(gotomenu));

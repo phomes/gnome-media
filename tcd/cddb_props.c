@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <pwd.h>
 
+#include "gtcd_public.h"
 #include "cddb_props.h"
 
 /* prototypes */
@@ -134,10 +135,12 @@ GtkWidget *create_cddb_page(void)
 
     label = gtk_label_new("Address");
     entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_server);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, 0, 1);
 
     adj = gtk_adjustment_new(8880, 0, 65536, 1, 100, 10);
+    gtk_adjustment_set_value(GTK_ADJUSTMENT(adj), prefs.cddb_port);
     label = gtk_label_new("Port");
     entry = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 2, 3, 0, 1);

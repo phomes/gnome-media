@@ -33,6 +33,9 @@ typedef struct
 
     Shortcut quit, play, stop, tracked;
     Shortcut eject, back, forward;
+
+    gchar *cddb_server;
+    guint cddb_port;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );
