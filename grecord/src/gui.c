@@ -679,6 +679,8 @@ create_grecord_propertybox (void)
 	GtkWidget* playxtimes_radiobutton;
 	GtkWidget* playxtimes_spinbutton;
 	GtkWidget *mono_rb, *stereo_rb;
+	GtkWidget* path_to_sox_gnomeentry;
+	GtkWidget* TempDir_gnomeentry;
 	
 	GList *items = NULL;
 
@@ -735,11 +737,14 @@ create_grecord_propertybox (void)
 	gtk_widget_show (RecordTimeout_spinbutton);
 	gtk_box_pack_start (GTK_BOX (hbox), RecordTimeout_spinbutton, FALSE, FALSE, 0);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (RecordTimeout_spinbutton), TRUE);
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, RecordTimeout_spinbutton, ATK_RELATION_LABELLED_BY);
 	
 	label = gtk_label_new (_("minutes"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_misc_set_padding (GTK_MISC (label), 5, 0);
+	
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, RecordTimeout_spinbutton, ATK_RELATION_LABELLED_BY);
 	
 	StopRecordOnTimeout_checkbox = gtk_check_button_new_with_mnemonic (_("_Stop recording on timeout"));
 
@@ -860,8 +865,6 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (hbox), playxtimes_spinbutton, TRUE, TRUE, 0);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (playxtimes_spinbutton), TRUE);
 	
-	add_paired_relations (playrepeat_radiobutton, ATK_RELATION_CONTROLLER_FOR, playrepeatforever_radiobutton, ATK_RELATION_CONTROLLED_BY);
-	add_paired_relations (playrepeat_radiobutton, ATK_RELATION_CONTROLLER_FOR, playxtimes_radiobutton, ATK_RELATION_CONTROLLED_BY);
 	add_paired_relations (playxtimes_radiobutton, ATK_RELATION_LABEL_FOR, playxtimes_spinbutton, ATK_RELATION_LABELLED_BY);
 
 	vbox = gtk_vbox_new (FALSE, 0);
@@ -895,7 +898,10 @@ create_grecord_propertybox (void)
 
 	path_to_sox_combo_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (path_to_sox_fileentry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), path_to_sox_combo_entry);
-
+	
+	path_to_sox_gnomeentry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY (path_to_sox_fileentry));
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, path_to_sox_gnomeentry, ATK_RELATION_LABELLED_BY);
+	
 	button = gtk_button_new_with_mnemonic (_("_Apply"));
 	gtk_widget_show (button);
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
@@ -928,7 +934,10 @@ create_grecord_propertybox (void)
 	
 	TempDir_combo_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (TempDir_fileentry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), TempDir_combo_entry);
-
+	
+	TempDir_gnomeentry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY (TempDir_fileentry));
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, TempDir_gnomeentry, ATK_RELATION_LABELLED_BY);
+	
 	button = gtk_button_new_with_label (_("Apply"));
 	gtk_widget_show (button);
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
@@ -992,9 +1001,12 @@ create_grecord_propertybox (void)
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
-
+	
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, bit8_radiobutton, ATK_RELATION_LABELLED_BY);
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, bit16_radiobutton, ATK_RELATION_LABELLED_BY);
+	
 	/* If only combos didn't suck! */
-	label = gtk_label_new (_("Sample rate:"));
+	label = gtk_label_new_with_mnemonic (_("S_ample rate:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	
@@ -1018,6 +1030,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (Samplerate_combo_entry);
 	gtk_entry_set_text (GTK_ENTRY (Samplerate_combo_entry), _(samplerate));
 	
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), Samplerate_combo_entry);
 	add_paired_relations (label, ATK_RELATION_LABEL_FOR, Samplerate_combo, ATK_RELATION_LABELLED_BY);
 	
 	hbox = gtk_hbox_new (FALSE, 0);
@@ -1044,7 +1057,10 @@ create_grecord_propertybox (void)
 			  G_CALLBACK (stereo_toggled), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox_vbox), stereo_rb, FALSE, FALSE, 0);
 	gtk_widget_show (stereo_rb);
-
+	
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, mono_rb, ATK_RELATION_LABELLED_BY);
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR, stereo_rb, ATK_RELATION_LABELLED_BY);
+	
 	if (channels) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mono_rb), TRUE);
 	} else {
