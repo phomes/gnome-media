@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.30\n"
-"POT-Creation-Date: 1999-01-31 20:32-0600\n"
+"POT-Creation-Date: 1999-01-03 17:06-0500\n"
 "PO-Revision-Date: 1998-11-21 21:58+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
@@ -75,94 +75,197 @@ msgid "Inactive. %s\n"
 msgstr ""
 
 #: gmix/gmix.c:77
-#, fuzzy
 msgid "_About"
-msgstr "Acerca..."
+msgstr "_Acerca..."
 
-#: gmix/gmix.c:88
-msgid "_Program"
-msgstr ""
+#: gmix/gmix.c:83
+msgid "E_xit"
+msgstr "_Salir"
 
 #: gmix/gmix.c:89
-msgid "_Help"
-msgstr ""
+msgid "_Program"
+msgstr "_Programa"
 
-#: gmix/gmix.c:138
+#: gmix/gmix.c:90
+msgid "_Help"
+msgstr "A_yuda"
+
+#: gmix/gmix.c:139
 msgid "don't restore mixer-settings from configuration"
 msgstr "No cargar los parámetros del mezclador de la configuración"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:140
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "inicializa los mezcladores de la configuración almacenada y termina"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:141
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "no guarda la configuración (modificada) de los mezcladores"
 
-#: gmix/gmix.c:524
+#: gmix/gmix.c:525
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:586
+#: gmix/gmix.c:587
 msgid "Lock"
 msgstr "Bloquea"
 
-#: gmix/gmix.c:597
+#: gmix/gmix.c:598
 msgid "Rec."
 msgstr "Graba"
 
-#: gmix/gmix.c:604
+#: gmix/gmix.c:605
 msgid "Mute"
 msgstr "Mudo"
 
-#: gmix/gmix.c:763
+#: gmix/gmix.c:769
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - El mezclador de GNOME"
 
-#: gmix/gmix.c:766
+#: gmix/gmix.c:772
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Este es un mezclador para dispositivos de sonido OSS"
-
-#: gnomovision/tvset.c:1412
-msgid "FILE ..."
-msgstr ""
 
 #: tcd/callbacks.c:83
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - El lector de CD de Gnome"
 
 #: tcd/callbacks.c:87
-#, fuzzy
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
-"Lector de CD musicales de Gnome; con soporte CDDB. Lea el archivo 'Thanks' "
-"incluido con la distribución para más información sobre los autores."
+"GTCD es el lector de CD musicales de Gnome; con soporte CDDB. Lea el "
+"archivo 'Thanks' incluido con la distribución para más información sobre "
+"los autores."
 
-#: tcd/cddb_props.c:62
-msgid "Disc ID"
-msgstr ""
+#: tcd/gtracked.c:133
+msgid "Trk"
+msgstr "Pst"
 
-#: tcd/cddb_props.c:62
-#, fuzzy
-msgid "Disc Title"
+#: tcd/gtracked.c:133
+msgid "Time"
+msgstr "Tiempo"
+
+#: tcd/gtracked.c:133
+msgid "Title"
 msgstr "Título"
 
-#: tcd/cddb_props.c:233
-#, fuzzy
-msgid "CDDB Editor"
+#: tcd/gtracked.c:150
+msgid "Track Editor"
 msgstr "Editor de pistas"
 
-#: tcd/cddb_props.c:247
-msgid "Error reading $HOME/.cddbslave."
-msgstr ""
+#: tcd/gtracked.c:161
+#, c-format
+msgid "Disc Information (%02u:%02u minutes)"
+msgstr "Información Disco (%02u:%02u minutos)"
+
+#: tcd/gtracked.c:166
+msgid "Artist / Title"
+msgstr "Artista / Título"
+
+#. ...
+#: tcd/gtracked.c:210
+msgid "Track Information"
+msgstr "Información Pista"
+
+#. Clear button
+#: tcd/gtracked.c:224
+msgid "Clear"
+msgstr "Borrar"
+
+#. Playlist button
+#: tcd/gtracked.c:229
+msgid "Playlist"
+msgstr "Lista de preferidos"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:238
+#: tcd/cddb_status.c:50 tcd/gtracked.c:235
 msgid "CDDB Status"
 msgstr "Estado CDDB"
+
+#. do nothing
+#: tcd/prefs.c:167 tcd/prefs.c:222
+msgid "Do Nothing"
+msgstr "No hacer nada"
+
+#: tcd/prefs.c:173
+msgid "Start Playing"
+msgstr "Empezar a tocar"
+
+#: tcd/prefs.c:179 tcd/prefs.c:228
+msgid "Stop Playing"
+msgstr "Parar de tocar"
+
+#. close tray
+#: tcd/prefs.c:183 tcd/prefs.c:240
+msgid "Close Tray"
+msgstr "Cerrar CD"
+
+#: tcd/prefs.c:234
+msgid "Open Tray"
+msgstr "Abrir CD"
+
+#. device entry
+#: tcd/prefs.c:313
+msgid "CDROM Device"
+msgstr "Dispositivo de CD"
+
+#. Color picker
+#: tcd/prefs.c:322
+msgid "Track/Title Color"
+msgstr "Color Pista/Título"
+
+#. font picker
+#: tcd/prefs.c:334
+msgid "Track/Title Font"
+msgstr "Fuente Pista/Título"
+
+#: tcd/prefs.c:335
+msgid "Change Font"
+msgstr "Cambiar Fuente"
+
+#. show handles
+#: tcd/prefs.c:342
+msgid "Show Handles (Restart of TCD required)"
+msgstr "Mostrar \"Handles\" (es necesario reiniciar TCD)"
+
+#. show tooltips
+#: tcd/prefs.c:349
+msgid "Show Tooltips"
+msgstr "Mostrar Tooltips"
+
+#. start frame
+#: tcd/prefs.c:369
+msgid "On Startup"
+msgstr "Al iniciar"
+
+#. exit frame
+#: tcd/prefs.c:375
+msgid "On Exit"
+msgstr "Al salir"
+
+#: tcd/prefs.c:483
+msgid "Key"
+msgstr "Tecla"
+
+#: tcd/prefs.c:484
+msgid "Action"
+msgstr "Acción"
+
+#. Frame
+#: tcd/prefs.c:524 tcd/prefs.c:564
+msgid "Keybindings"
+msgstr "Teclas acceleradoras"
+
+#: tcd/gtcd.c:298 tcd/prefs.c:560
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: tcd/prefs.c:568
+msgid "CDDB Settings"
+msgstr "Configuración CDDB"
 
 #. grab button
 #: tcd/cddb_status.c:68
@@ -194,9 +297,8 @@ msgid "loop-t"
 msgstr ""
 
 #: tcd/gtcd.c:69
-#, fuzzy
 msgid "normal"
-msgstr "General"
+msgstr "normal"
 
 #: tcd/gtcd.c:70
 msgid "random"
@@ -205,10 +307,6 @@ msgstr ""
 #: tcd/gtcd.c:297
 msgid "Open track editor"
 msgstr "Abrir editor de pistas"
-
-#: tcd/gtcd.c:298 tcd/prefs.c:574
-msgid "Preferences"
-msgstr "Preferencias"
 
 #: tcd/gtcd.c:299 tcd/popup.c:23
 msgid "Quit"
@@ -248,54 +346,13 @@ msgstr "Disco Ausente"
 msgid "Error"
 msgstr "Error"
 
-#: tcd/gtracked.c:133
-msgid "Trk"
-msgstr "Pst"
-
-#: tcd/gtracked.c:133
-msgid "Time"
-msgstr "Tiempo"
-
-#: tcd/gtracked.c:133
-msgid "Title"
-msgstr "Título"
-
-#: tcd/gtracked.c:153
-msgid "Track Editor"
-msgstr "Editor de pistas"
-
-#: tcd/gtracked.c:164
-#, c-format
-msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Información Disco (%02u:%02u minutos)"
-
-#: tcd/gtracked.c:169
-msgid "Artist / Title"
-msgstr "Artista / Título"
-
-#. ...
-#: tcd/gtracked.c:213
-msgid "Track Information"
-msgstr "Información Pista"
-
-#. Clear button
-#: tcd/gtracked.c:227
-msgid "Clear"
-msgstr "Borrar"
-
-#. Playlist button
-#: tcd/gtracked.c:232
-msgid "Playlist"
-msgstr "Lista de preferidos"
-
-#: tcd/linux-cdrom.c:639
+#: tcd/linux-cdrom.c:623
 msgid "Unknown / Unknown"
 msgstr ""
 
-#: tcd/linux-cdrom.c:643
-#, fuzzy, c-format
+#: tcd/linux-cdrom.c:627
 msgid "Track %d"
-msgstr "Editor de pistas"
+msgstr "Pista %d"
 
 #: tcd/popup.c:15
 msgid "Play"
@@ -313,134 +370,33 @@ msgstr "Editor de pistas..."
 msgid "About..."
 msgstr "Acerca..."
 
-#. do nothing
-#: tcd/prefs.c:170 tcd/prefs.c:225
-#, fuzzy
-msgid "Do nothing"
-msgstr "No hacer nada"
-
-#: tcd/prefs.c:176
-#, fuzzy
-msgid "Start playing"
-msgstr "Empezar a tocar"
-
-#: tcd/prefs.c:182 tcd/prefs.c:231
-#, fuzzy
-msgid "Stop playing"
-msgstr "Parar de tocar"
-
-#. close tray
-#: tcd/prefs.c:186 tcd/prefs.c:243
-#, fuzzy
-msgid "Close tray"
-msgstr "Cerrar CD"
-
-#: tcd/prefs.c:237
-#, fuzzy
-msgid "Open tray"
-msgstr "Abrir CD"
-
-#. device entry
-#: tcd/prefs.c:316
-#, fuzzy
-msgid "CDROM device"
-msgstr "Dispositivo de CD"
-
-#. Color picker
-#: tcd/prefs.c:325
-#, fuzzy
-msgid "Track/title color"
-msgstr "Color Pista/Título"
-
-#. font picker
-#: tcd/prefs.c:337
-#, fuzzy
-msgid "Track/title font"
-msgstr "Fuente Pista/Título"
-
-#: tcd/prefs.c:338
-#, fuzzy
-msgid "Change font"
-msgstr "Cambiar Fuente"
-
-#. show handles
-#: tcd/prefs.c:345
-#, fuzzy
-msgid "Show handles (restart required)"
-msgstr "Mostrar \"Handles\" (es necesario reiniciar TCD)"
-
-#. show tooltips
-#: tcd/prefs.c:352
-#, fuzzy
-msgid "Show tooltips"
-msgstr "Mostrar Tooltips"
-
-#. use alternate play ioctl
-#: tcd/prefs.c:359
-msgid "Use alternate method to play CD"
-msgstr ""
-
-#. start frame
-#: tcd/prefs.c:379
-#, fuzzy
-msgid "On startup"
-msgstr "Al iniciar"
-
-#. exit frame
-#: tcd/prefs.c:385
-#, fuzzy
-msgid "On exit"
-msgstr "Al salir"
-
-#: tcd/prefs.c:493
-msgid "Key"
-msgstr "Tecla"
-
-#: tcd/prefs.c:494
-msgid "Action"
-msgstr "Acción"
-
-#. Frame
-#: tcd/prefs.c:534 tcd/prefs.c:578
-msgid "Keybindings"
-msgstr "Teclas acceleradoras"
-
-#: tcd/prefs.c:582
-#, fuzzy
-msgid "CDDB Settings"
-msgstr "Estado CDDB"
-
-#: vu-meter/main.c:139
+#: vu-meter/main.c:148
 msgid "Specify the X position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:140
+#: vu-meter/main.c:149
 msgid "X-Position"
 msgstr ""
 
-#: vu-meter/main.c:142
+#: vu-meter/main.c:151
 msgid "Specify the Y position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:143
+#: vu-meter/main.c:152
 msgid "Y-Position"
 msgstr ""
 
-#: vu-meter/main.c:145
+#: vu-meter/main.c:154
 msgid "Connect to the esd server on this host."
 msgstr ""
 
-#: vu-meter/main.c:146
+#: vu-meter/main.c:155
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:148
+#: vu-meter/main.c:157
 msgid "Open a vertical version of the meter."
 msgstr ""
-
-#, fuzzy
-#~ msgid "E_xit"
-#~ msgstr "Al salir"
 
 #~ msgid "File/Exit"
 #~ msgstr "Archivo/Salir"
