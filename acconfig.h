@@ -11,6 +11,9 @@
 #undef HAVE_PROGRAM_INVOCATION_SHORT_NAME
 #undef HAVE_PROGRAM_INVOCATION_NAME
 
+/* Have the ALSA driver */
+#undef ALSA
+
 /* Have the libghttp library on the system */
 #undef WITH_LIBGHTTP
 

@@ -353,7 +353,8 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     }
 
 #if defined(CDROMCLOSETRAY)
-    ioctl(cd->cd_dev, CDROMCLOSETRAY);
+    if( ioctl( cd->cd_dev, CDROM_DRIVE_STATUS ) == CDS_TRAY_OPEN )
+	    ioctl(cd->cd_dev, CDROMCLOSETRAY);
 #endif	        
 	
     if(cd->trk[start_t].toc.cdte_ctrl == CDROM_DATA_TRACK)

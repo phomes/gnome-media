@@ -148,7 +148,11 @@ static void select_row_cb( GtkCList *clist,
     row++;
     gtk_object_set_user_data(GTK_OBJECT(clist), GINT_TO_POINTER(row));
 
-    gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row].name);
+    if(strncmp(cd.trk[row].name, "Track", 5))
+	    gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row].name);
+    else
+	    gtk_entry_set_text(GTK_ENTRY(entry), "");
+
     gtk_signal_handler_block_by_func(GTK_OBJECT(extra),
 				     GTK_SIGNAL_FUNC(edit_track_extra), clist);
     gtk_editable_delete_text(GTK_EDITABLE(extra), 0, -1);

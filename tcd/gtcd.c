@@ -1065,7 +1065,6 @@ int main (int argc, char *argv[])
 	make_goto_menu();
 
 	setup_popup_menu(status_area, &cd);
-	track_buttons(NULL, NULL);
     
 	/* Initialize some timers */
 	if(cd.isplayable) tcd_gettime(&cd);

@@ -70,8 +70,17 @@ dnl
 dnl gmix
 dnl
 PROGRAMS_GMIX=""
-AC_CHECK_HEADERS(linux/soundcard.h,[PROGRAMS_GMIX=gmix],[
-  AC_CHECK_HEADERS(machine/soundcard.h, [PROGRAMS_GMIX=gmix])])
+AC_CHECK_HEADERS(soundcard.h linux/soundcard.h sys/soundcard.h)
+AC_CHECK_HEADERS(machine/soundcard.h sys/asoundlib.h)
+if test "${ac_cv_header_sys_asoundlib_h}" = "yes"; then
+    PROGRAMS_GMIX=gmix
+    AC_DEFINE(ALSA)
+elif test "${ac_cv_header_sys_soundcard_h}" = "yes" || \
+     test "${ac_cv_header_soundcard_h}" = "yes" || \
+     test "${ac_cv_header_linux_soundcard_h}" = "yes" || \
+     test "${ac_cv_header_machine_soundcard_h}" = "yes"; then
+    PROGRAMS_GMIX=gmix
+fi
 AC_SUBST(PROGRAMS_GMIX)
 
 

@@ -33,8 +33,7 @@ gtcd_SOURCES = 		\
 	gtcd_public.h	\
 	cddb_status.c	\
 	cddb_props.c	\
-	cddb_props.h	\
-	track_buttons.c
+	cddb_props.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\
