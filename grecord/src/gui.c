@@ -121,7 +121,7 @@ static GnomeUIInfo edit_menu_uiinfo[] =
 
 static GnomeUIInfo hj_lp1_menu_uiinfo[] =
 {
-	/* GNOMEUIINFO_HELP ("grecord"), */
+	GNOMEUIINFO_HELP ("grecord"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (on_about_activate_cb, NULL),
 	GNOMEUIINFO_END
 };

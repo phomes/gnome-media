@@ -4,6 +4,7 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(top_srcdir)/intl \
 	$(MEDIA_CFLAGS)		\
+	-DDATADIR=\""$(datadir)"\"		\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
 
 bin_PROGRAMS = gnome-sound-recorder

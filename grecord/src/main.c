@@ -165,12 +165,12 @@ main (int argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	
-	program = gnome_program_init ("gnome-sound-recorder", VERSION,
+	program = gnome_program_init ("grecord", VERSION,
 				      LIBGNOMEUI_MODULE, argc, argv,
 				      GNOME_PARAM_POPT_TABLE, grec_options,
 				      GNOME_PARAM_HUMAN_READABLE_NAME,
 				      _("Sound recorder"),
-				      NULL);
+				      GNOME_PARAM_APP_DATADIR,DATADIR,NULL);
 	
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
 	g_value_init (&value, G_TYPE_POINTER);

@@ -1087,7 +1087,7 @@ UpdateStatusbarRecord (gboolean begin)
 	
 	if (waitpid (RecEng.pid, NULL, WNOHANG | WUNTRACED)) {
 		if (convert_is_running)
-			return FALSE;
+			return TRUE;
 
 		counter = 0;
 		RecEng.is_running = FALSE;
@@ -1147,6 +1147,10 @@ UpdateStatusbarRecord (gboolean begin)
 
 		if (fileinfo.st_size >= (maxfilesize * 1000000 /* In MB */ )) {
 		  	on_stop_activate_cb (NULL, NULL);
+
+		if (save_when_finished)
+			save_dialog ();
+
 		        return FALSE;
 		}
 	}
