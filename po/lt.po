@@ -1,5 +1,5 @@
 # Lithuanian translation of gnome-media
-# Copyright (C) 2000-2001 Free Software Foundation, Inc.
+# Copyright (C) 2000-2004 Free Software Foundation, Inc.
 # Gediminas Paulauskas <menesis@delfi.lt>, 2000-2001.
 # Žygimantas Beručka <uid0@akl.lt>, 2003-2004.
 # 
@@ -8,13 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 12:48+0200\n"
-"PO-Revision-Date: 2004-03-14 14:59+0200\n"
+"POT-Creation-Date: 2004-06-11 18:59+0300\n"
+"PO-Revision-Date: 2004-06-11 21:26+0300\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -174,7 +175,7 @@ msgid ""
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
 "Duomenų bazėje buvo rasta keletas atitikimų.\n"
-"Žemiau yra galimų atitikimų sąrašas, prašom pasirinkti geriausiąatitikmenį."
+"Žemiau yra galimų atitikimų sąrašas, prašom pasirinkti geriausią atitikmenį."
 
 #: cddb-slave2/cddb-slave.c:288
 msgid "Category"
@@ -186,7 +187,7 @@ msgstr "Disko ID"
 
 #: cddb-slave2/cddb-slave.c:296
 msgid "Artist and Title"
-msgstr "Atlikėjas ir Pavadinimas"
+msgstr "Atlikėjas ir pavadinimas"
 
 #: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
 #: gnome-cd/gnome-cd.c:176
@@ -194,14 +195,12 @@ msgid "Unknown track"
 msgstr "Nežinomas takelis"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
-#, fuzzy
 msgid "CD Database Server"
-msgstr "CD duomenų bazė"
+msgstr "CD duomenų bazės serveris"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
-#, fuzzy
 msgid "Modify your CD database server preferences"
-msgstr "Keisk savo CD duomų bazės nuostatas"
+msgstr "Keiskit savo CD duomų bazės serverio nustatymus"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -1200,7 +1199,6 @@ msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr "Kelias iki CD įrenginio kurį CD grotuvas turėtu naudoti CD grojimui"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-#, fuzzy
 msgid "What theme should the CD player use for its appearance"
 msgstr "Kokią temą CD grotuvas turėtų naudoti savo išvaizdai"
 
@@ -1754,18 +1752,18 @@ msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr "Gaunant gm_audio profilių sąrašą įvyko klaida. (%s)\n"
 
 #: profiles/audio-profile.c:718
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
-"Įvyko klaida registruojantis prie terminalo profilių pakeitimų perspėjimų. (%"
-"s)\n"
+"Įvyko klaida registruojantis prie audio profilių sąrašo pakeitimų "
+"perspėjimų. (%s)\n"
 
 #: profiles/audio-profile.c:908
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
-msgstr "Pamirštant profilio katalogą %s, įvyko klaida. (%s)\n"
+msgstr "Pamirštant profilio kelią %s, įvyko klaida. (%s)\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
@@ -1789,11 +1787,12 @@ msgstr "Norėdami ištrinti Jūs turite pasirinkti vieną ar daugiau profilių."
 
 #. the first argument will never be used since we only run for count > 1
 #: profiles/audio-profiles-edit.c:460
-#, fuzzy, c-format
+#, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "Pašalinti šiuos %d profilius?\n"
+msgstr[0] "Pašalinti šį %d profilį?\n"
 msgstr[1] "Pašalinti šiuos %d profilius?\n"
+msgstr[2] "Pašalinti šiuos %d prafilių?\n"
 
 #: profiles/audio-profiles-edit.c:479
 #, c-format
@@ -1868,7 +1867,6 @@ msgid "Profile _name:"
 msgstr "Profilio _vardas:"
 
 #: profiles/gnome-audio-profiles.glade2.h:8
-#, fuzzy
 msgid "_Active?"
 msgstr "_Aktyvus?"
 
@@ -1920,11 +1918,11 @@ msgstr ""
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, Lossless"
-msgstr ""
+msgstr "CD kokybė, nenukenčianti"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "CD Quality, Lossy"
-msgstr ""
+msgstr "CD kokybė, nukenčianti"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
@@ -1951,22 +1949,28 @@ msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
+"Naudojama kovertuoti CD-kokybės garsui, bet su kokybei nekenkiančiu "
+"suspaudimu. Naudokit šį profilį jeigu vėliau norėsit redaguoti šią bylą "
+"arba norėsit įrašyti į CD."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
+"Naudojama konvertuoti CD kokybės garsui, bet su kokybei kenkiančiu suspaudimu "
+"Naudoki šį profilį įrašymui iš CD ir radio įrašams."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""
 "Used for converting to voice-quality audio. Use this for recording speech."
 msgstr ""
+"Naudojama balso kokybės garso kovertavimui. Naudokit šį profilį įrašinėti "
+"kalbai."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid "Voice"
-msgstr "Video"
+msgstr "Balsas"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid "Whether or not this profile is to be used"
