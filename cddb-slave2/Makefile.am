@@ -43,6 +43,9 @@ libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la
 # installed programs
 bin_PROGRAMS = cddb-slave2-properties
 
+# uninstalled programs
+noinst_PROGRAMS = cddb-slave2-query
+
 cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
 cddb_slave2_properties_SOURCES = 		\
 	cddb-slave-capplet.c			\
@@ -60,7 +63,9 @@ cddb_slave2_properties_SOURCES = 		\
 	tcp.c					\
 	tcp.h
 
-
+cddb_slave2_query_LDADD = $(CDDBSLAVE_LIBS) libcddb-slave2.la
+cddb_slave2_query_SOURCES = cddb-slave2-query.c
+	
 ### libexec programs
 libexec_PROGRAMS = CDDBSlave2 cddb-track-editor
 
