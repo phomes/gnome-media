@@ -730,6 +730,7 @@ main (int argc, char *argv[])
 		exit (0);
 	}
 
+	gtk_widget_show_all (gcd->window);
 	g_signal_connect (client, "die",
 			  G_CALLBACK (client_die), gcd);
 
