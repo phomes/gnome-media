@@ -155,11 +155,12 @@ void cleanup()
 	 */
 	gdk_window_get_origin(window->window, &x, &y);
 	gdk_window_get_size(window->window, &w, &h);
-
+#ifdef WE_HAVE_FIXED_DISALLOWED_SHRINKING_BETWEEN_SESSIONS
 	gnome_config_set_int("/gmix/geometry/width",w);
 	gnome_config_set_int("/gmix/geometry/height",h);
 	gnome_config_set_int("/gmix/geometry/xpos",x);
 	gnome_config_set_int("/gmix/geometry/ypos",y);
+#endif
 	gnome_config_sync();
 	close(dev_mixer);
 }
@@ -184,7 +185,19 @@ void create_dialog()
 	char cnf_string[255];
 
 	window=gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	gtk_signal_connect(GTK_OBJECT(window),
+			   "delete_event",
+			   GTK_SIGNAL_FUNC(gtk_true), NULL);
+	gtk_signal_connect(GTK_OBJECT(window),
+			   "destroy",
+			   GTK_SIGNAL_FUNC(gtk_true), NULL);
+
 	gtk_window_set_title (GTK_WINDOW(window), "G-MIX 2.0");
+#ifdef WE_HAVE_FIXED_DISALLOWED_SHRINKING_BETWEEN_SESSIONS
+/* Try making the window bigger, quitting gmix, starting it up
+   again, and shrinking the window. If you can shrink it, then the
+   disable_resize hack can go, along with the #ifdef on the
+   gnome_config_set_int stuff in the config saver */
 	gtk_widget_set_usize(window, 
 		gnome_config_get_int("/gmix/geometry/width=-1"),
 		gnome_config_get_int("/gmix/geometry/height=200"));
@@ -192,6 +205,9 @@ void create_dialog()
 	gtk_widget_set_uposition(window, 
 		gnome_config_get_int("/gmix/geometry/xpos=-2"),
 		gnome_config_get_int("/gmix/geometry/ypos=-2"));
+#else
+	gtk_container_disable_resize(GTK_CONTAINER(window));
+#endif
 	
 	box=gtk_hbox_new(FALSE, 5);
 	gtk_container_add(GTK_CONTAINER(window), box);
