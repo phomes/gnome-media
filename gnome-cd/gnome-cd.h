@@ -40,6 +40,8 @@ typedef struct _GnomeCD {
 	GtkWidget *ffwd_b, *next_b;
 	GtkWidget *eject_b;
 
+	GtkWidget *play_image, *pause_image, *current_image;
+
 	/* FIXME: Make this a control too */
 	GtkWidget *mixer_b, *volume_b;
 

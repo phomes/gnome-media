@@ -34,6 +34,7 @@ typedef struct _GnomeCDRomPrivate GnomeCDRomPrivate;
 typedef struct _GnomeCDRomClass GnomeCDRomClass;
 
 typedef enum _GnomeCDRomDriveStatus {
+	GNOME_CDROM_STATUS_NOTHING,
 	GNOME_CDROM_STATUS_OK,
 	GNOME_CDROM_STATUS_NO_DISC,
 	GNOME_CDROM_STATUS_TRAY_OPEN,

@@ -1,5 +1,25 @@
 2001-11-17  Iain Holmes  <iain@ximian.com>
 
+	* callbacks.c (play_cb): Change the pause/play image depending on the
+	buttons function.
+	(stop_cb): Ditto
+	(ffwd_press_cb): Ditto
+	(next_cb): Ditto.
+	(back_cb): Ditto.
+	(rewind_press_cb): Ditto.
+
+	* gnome-cd.h: Add entities for the pause/play images.
+
+	* gnome-cd.c (init_player): Set up the pause play images.
+
+2001-11-17  Iain Holmes  <iain@ximian.com>
+
+	* gnome-cd.c (init_player): Set the last settings to be NOTHING, so
+	that the first time the status is checked, if there is a disc, a 
+	disc change will be registered.
+
+2001-11-17  Iain Holmes  <iain@ximian.com>
+
 	* gnome-cd.h (GnomeCD): Remove some unused items, add a last status
 	entity.
 

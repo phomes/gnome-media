@@ -26,6 +26,12 @@ eject_cb (GtkButton *button,
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
 	}
+
+	if (gcd->current_image == gcd->pause_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
+		gcd->current_image = gcd->play_image;
+	}
 }
 
 void
@@ -87,6 +93,11 @@ play_cb (GtkButton *button,
 			return;
 		}
 
+		if (gcd->current_image == gcd->pause_image) {
+			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
+			gcd->current_image = gcd->play_image;
+		}
 		break;
 
 	case GNOME_CDROM_AUDIO_PAUSE:
@@ -99,6 +110,11 @@ play_cb (GtkButton *button,
 			return;
 		}
 
+		if (gcd->current_image == gcd->play_image) {
+			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+			gcd->current_image = gcd->pause_image;
+		}
 		break;
 
 	case GNOME_CDROM_AUDIO_COMPLETE:
@@ -115,6 +131,11 @@ play_cb (GtkButton *button,
 			return;
 		}
 
+		if (gcd->current_image == gcd->play_image) {
+			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+			gcd->current_image = gcd->pause_image;
+		}
 		break;
 
 	case GNOME_CDROM_AUDIO_ERROR:
@@ -140,6 +161,12 @@ stop_cb (GtkButton *button,
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
 	}
+
+	if (gcd->current_image == gcd->pause_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
+		gcd->current_image = gcd->play_image;
+	}
 }
 
 static gboolean
@@ -163,6 +190,13 @@ ffwd_press_cb (GtkButton *button,
 	       GnomeCD *gcd)
 {
 	gcd->timeout = gtk_timeout_add (140, ffwd_timeout_cb, gcd);
+
+	if (gcd->current_image == gcd->play_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+		gcd->current_image = gcd->pause_image;
+	}
+
 	return FALSE;
 }
 
@@ -188,6 +222,12 @@ next_cb (GtkButton *button,
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
 	}
+
+	if (gcd->current_image == gcd->play_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+		gcd->current_image = gcd->pause_image;
+	}
 }
 
 void
@@ -199,6 +239,12 @@ back_cb (GtkButton *button,
 	if (gnome_cdrom_back (gcd->cdrom, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
+	}
+
+	if (gcd->current_image == gcd->play_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+		gcd->current_image = gcd->pause_image;
 	}
 }
 
@@ -223,6 +269,13 @@ rewind_press_cb (GtkButton *button,
 		 GnomeCD *gcd)
 {
 	gcd->timeout = gtk_timeout_add (140, rewind_timeout_cb, gcd);
+
+	if (gcd->current_image == gcd->play_image) {
+		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+		gcd->current_image = gcd->pause_image;
+	}
+
 	return FALSE;
 }
 

@@ -87,6 +87,7 @@ init_player (void)
 	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow, *frame;
 	GError *error;
+	char *fullname;
 
 	gcd = g_new0 (GnomeCD, 1);
 
@@ -98,6 +99,9 @@ init_player (void)
 		g_free (gcd);
 		return NULL;
 	}
+
+	gcd->last_cd = GNOME_CDROM_STATUS_NOTHING;
+	gcd->last_audio = GNOME_CDROM_AUDIO_NOTHING;
 
 	gcd->window = bonobo_window_new ("Gnome-CD", "Gnome-CD "VERSION);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
@@ -149,9 +153,23 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->rewind_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/play.xpm", G_CALLBACK (play_cb), _("Play / Pause"));
+	/* Create the play and pause images, and ref them so they never
+	   get destroyed */
+	fullname = gnome_pixmap_file ("gnome-cd/play.xpm");
+	gcd->play_image = gtk_image_new_from_file (fullname);
+	g_object_ref (gcd->play_image);
+	g_free (fullname);
+
+	fullname = gnome_pixmap_file ("gnome-cd/pause.xpm");
+	gcd->pause_image = gtk_image_new_from_file (fullname);
+	gtk_widget_show (gcd->pause_image);
+	g_object_ref (gcd->pause_image);
+	g_free (fullname);
+
+	button = make_button_from_widget (gcd, gcd->play_image, G_CALLBACK (play_cb), _("Play / Pause"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->play_b = button;
+	gcd->current_image = gcd->play_image;
 	
 	button = make_button_from_file (gcd, "gnome-cd/stop.xpm", G_CALLBACK (stop_cb), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
