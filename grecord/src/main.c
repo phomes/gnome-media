@@ -99,6 +99,8 @@ main (int argc, char *argv[])
 	GnomeClient* client;
 	gchar** args = NULL;
 	gboolean dont_show_warningmess;
+	gint temp_count;
+	gboolean fullpath = FALSE;
 	
 	/* i18n stuff ---------------------------------- */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
@@ -157,28 +159,38 @@ main (int argc, char *argv[])
 
 	dont_show_warningmess = gnome_config_get_bool ("/grecord/Misc/dontshowwarningmess=FALSE");
 
+	/* Check if the sox command is a path */
+	temp_count = 0;
+	while (sox_command[temp_count] != '\0') {
+		if (sox_command[temp_count] == '/')
+			fullpath = TRUE;
+		temp_count++;
+	}
+
 	/* Check for program 'sox' ------------------- */
-	if (1==2) {
-		GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
-
-		gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences under the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
-
-		GtkWidget* mess = gnome_message_box_new (show_mess,
-							 GNOME_MESSAGE_BOX_WARNING,
-							 GNOME_STOCK_BUTTON_OK,
-							 NULL);
-
-		gtk_widget_show (dont_show_again_checkbutton);
-		gtk_container_add (GTK_CONTAINER (GNOME_DIALOG (mess)->vbox), dont_show_again_checkbutton);
-
-		/* Connect a signal on ok-button, so we can get the stat on the checkbutton */
-		gtk_signal_connect (GTK_OBJECT (mess), "destroy",
-				    GTK_SIGNAL_FUNC (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
-
-		gnome_dialog_run (GNOME_DIALOG (mess));
-
-		g_free (show_mess);
-		on_preferences_activate_cb (NULL, NULL);
+	if (fullpath) {
+		if (!g_file_exists (sox_command) && !dont_show_warningmess) {
+			GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
+			
+			gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences under the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
+			
+			GtkWidget* mess = gnome_message_box_new (show_mess,
+								 GNOME_MESSAGE_BOX_WARNING,
+								 GNOME_STOCK_BUTTON_OK,
+								 NULL);
+			
+			gtk_widget_show (dont_show_again_checkbutton);
+			gtk_container_add (GTK_CONTAINER (GNOME_DIALOG (mess)->vbox), dont_show_again_checkbutton);
+			
+			/* Connect a signal on ok-button, so we can get the stat on the checkbutton */
+			gtk_signal_connect (GTK_OBJECT (mess), "destroy",
+					    GTK_SIGNAL_FUNC (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
+			
+			gnome_dialog_run (GNOME_DIALOG (mess));
+			
+			g_free (show_mess);
+			on_preferences_activate_cb (NULL, NULL);
+		}
 	}
 
 	gtk_main ();
