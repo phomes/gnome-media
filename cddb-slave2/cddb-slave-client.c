@@ -373,7 +373,8 @@ cddb_slave_client_set_disc_title (CDDBSlaveClient *client,
 	objref = client->priv->objref;
 
 	CORBA_exception_init (&ev);
-	GNOME_Media_CDDBSlave2_setDiscTitle (objref, discid, title, &ev);
+	GNOME_Media_CDDBSlave2_setDiscTitle (objref, discid,
+					     title ? title : "", &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error setting disc title\n%s",
 			   CORBA_exception_id (&ev));
@@ -421,7 +422,8 @@ cddb_slave_client_set_artist (CDDBSlaveClient *client,
 	objref = client->priv->objref;
 
 	CORBA_exception_init (&ev);
-	GNOME_Media_CDDBSlave2_setArtist (objref, discid, artist, &ev);
+	GNOME_Media_CDDBSlave2_setArtist (objref, discid,
+					  artist ? artist : "", &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error setting artist\n%s",
 			   CORBA_exception_id (&ev));
@@ -591,7 +593,8 @@ cddb_slave_client_set_comment (CDDBSlaveClient *client,
 
 	CORBA_exception_init (&ev);
 
-	GNOME_Media_CDDBSlave2_setComment (objref, discid, comment, &ev);
+	GNOME_Media_CDDBSlave2_setComment (objref, discid,
+					   comment ? comment : "", &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error setting comment\n%s", CORBA_exception_id (&ev));
 	}
@@ -685,7 +688,8 @@ cddb_slave_client_set_genre (CDDBSlaveClient *client,
 	objref = client->priv->objref;
 
 	CORBA_exception_init (&ev);
-	GNOME_Media_CDDBSlave2_setGenre (objref, discid, genre, &ev);
+	GNOME_Media_CDDBSlave2_setGenre (objref, discid,
+					 genre ? genre : "", &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error setting genre\n%s",
 			   CORBA_exception_id (&ev));
