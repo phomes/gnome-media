@@ -1,15 +1,15 @@
 # gnome-media's Portuguese Translation
-# Copyright © 1998, 2001, 2002, 2003, 2004 gnome-media
+# Copyright © 1998, 2001, 2002, 2003, 2004, 2005 gnome-media
 # Distributed under the same licence as the gnome-media package
-# Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1998
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004
+# Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1998.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.8\n"
+"Project-Id-Version: 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
-"PO-Revision-Date: 2004-08-02 23:55+0000\n"
+"POT-Creation-Date: 2005-01-28 00:45+0000\n"
+"PO-Revision-Date: 2005-01-28 00:55+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -160,9 +160,9 @@ msgid "Unknown / Unknown"
 msgstr "Desconhecido / Desconhecido"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:738
+#: grecord/src/gsr-window.c:747 grecord/src/gsr-window.c:756
+#: grecord/src/gsr-window.c:766 grecord/src/gsr-window.c:1082
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -1015,12 +1015,11 @@ msgstr ""
 
 #: gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr ""
+msgstr "Orientação"
 
 #: gnome-cd/eggtrayicon.c:119
-#, fuzzy
 msgid "The orientation of the tray."
-msgstr "Especifique a posição X do medidor."
+msgstr "A orientação da área de notificação."
 
 #: gnome-cd/gnome-cd.c:222
 #, c-format
@@ -1184,6 +1183,7 @@ msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
 msgstr ""
+"Registo inexistente ou corrompido, actualize-o executando gst-register"
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:947
@@ -1244,13 +1244,12 @@ msgid "CD Player Preferences"
 msgstr "Preferências do Leitor de CD"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "Caminho do dispositivo"
+msgstr "_Dispositivo:"
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "Comportamento"
 
 #: gnome-cd/preferences.c:652
 msgid "Start _playing CD when CD Player starts"
@@ -1270,18 +1269,18 @@ msgstr "Tentar ejectar o CD ao sair do Leitor de CD"
 
 #: gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr ""
+msgstr "Temas"
 
 #: gnome-cd/preferences.c:694
 msgid "_Select a theme:"
-msgstr ""
+msgstr "_Seleccione um tema:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
 msgstr "Gravar trechos de som"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:955
+#: grecord/src/gsr-window.c:1291
 msgid "Sound Recorder"
 msgstr "Gravador de Som"
 
@@ -1309,7 +1308,7 @@ msgstr "Criar uma nova amostra"
 msgid "Display help for Sound Recorder"
 msgstr "Apresentar ajuda do Gravador de Som"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:824
 msgid "File Information"
 msgstr "Informação de Ficheiro"
 
@@ -1480,120 +1479,124 @@ msgstr "segundos"
 msgid "second"
 msgstr "segundo"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1243
+#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1677
 msgid "Ready"
 msgstr "Preparado"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#: grecord/src/gsr-window.c:513
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr "Incapaz de gravar o ficheiro \" %s\""
+
+#: grecord/src/gsr-window.c:522
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr ""
+msgstr "Incapaz de gravar o ficheiro \"%s\""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:569
 msgid "Save file as"
 msgstr "Gravar ficheiro como"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:625
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s não está instalado no caminho."
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:635
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Ocorreu um erro ao inicializar %s: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:712
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Não foi gravado)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:725
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s (%llu byte)"
+msgstr[1] "%s (%llu bytes)"
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:729
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:749
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:758
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:770
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:774
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:803
 #, c-format
 msgid "%s Information"
 msgstr "Informação de %s"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:838
 msgid "Folder:"
 msgstr "Pasta:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:844 grecord/src/gsr-window.c:1609
 msgid "Filename:"
 msgstr "Nome de ficheiro:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:850
 msgid "File size:"
 msgstr "Tamanho de ficheiro:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:859
 msgid "Audio Information"
 msgstr "Informação Audio"
 
-#: grecord/src/gsr-window.c:857
-#, fuzzy
+#: grecord/src/gsr-window.c:873
 msgid "File duration:"
-msgstr "Informação de ficheiro"
+msgstr "Duração do ficheiro:"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:879
 msgid "Number of channels:"
 msgstr "Número de canais:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:885
 msgid "Sample rate:"
 msgstr "Rácio de amostra:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:891
 msgid "Bit rate:"
 msgstr "Rácio de bit:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:957
 msgid "A sound recorder for GNOME"
 msgstr "Um gravador de som para o GNOME"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1228
 msgid "Playing..."
 msgstr "A reproduzir..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1287
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Gravador de Som"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1378
 msgid "Recording..."
 msgstr "A gravar..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1438
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1601,17 +1604,17 @@ msgstr ""
 "Não existe nenhum elemento de entrada audio GStreamer definido - instale os "
 "esquemas GStreamer-GConf ou defina um manualmente"
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1453
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Falha ao criar elementos de codificação GStreamer - verifique a configuração "
 "das suas codificações"
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1463
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Incapaz de encontrar o plugin \"filesink\" GStreamer - instale-o"
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1471
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1619,19 +1622,19 @@ msgstr ""
 "Falha ao ligar elementos de codificação com o elemento de saída audio - "
 "provavelmente seleccionou um codificador inválido"
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1577
 msgid "Record as"
 msgstr "Gravar como"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1594
 msgid "File information"
 msgstr "Informação de ficheiro"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1616
 msgid "<none>"
 msgstr "<nenhuma>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1625
 msgid "Length:"
 msgstr "Duração:"
 
@@ -1645,22 +1648,20 @@ msgid "Volume Control"
 msgstr "Controlo de Volume"
 
 #: gst-mixer/src/element.c:230
-#, fuzzy
 msgid "Playback"
 msgstr "Reproduzir"
 
 #: gst-mixer/src/element.c:232
-#, fuzzy
 msgid "Capture"
-msgstr "Sátiras"
+msgstr "Capturar"
 
 #: gst-mixer/src/element.c:234
 msgid "Switches"
-msgstr ""
+msgstr "Interruptores"
 
 #: gst-mixer/src/element.c:236
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #. FIXME:
 #. * - maybe we want to rename the element to its actual name
@@ -1669,40 +1670,38 @@ msgstr ""
 #. create element
 #. and recreate this object, since we give it to the mixer
 #: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown Volume Control %d"
-msgstr "Controlo de Volume"
+msgstr "Controlo de Volume Desconhecido %d"
 
 #: gst-mixer/src/main.c:253
-#, fuzzy
 msgid "No volume control elements and/or devices found."
-msgstr "Nenhum elemento e/ou dispositivo de mistura encontrado"
+msgstr "Nenhum elemento e/ou dispositivo de controlo de volume encontrado."
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:108
-#, fuzzy
 msgid "Volume Control Preferences"
-msgstr "Controlo de Volume"
+msgstr "Preferências do Controlo de Volume"
 
 #: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
-msgstr ""
+msgstr "_Seleccione faixas a tornar visíveis:"
 
 #: gst-mixer/src/track.c:220
 #, c-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #. mute button
 #: gst-mixer/src/track.c:260
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "Silenciar/tornar audível %s"
 
 #: gst-mixer/src/track.c:275
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s: mute"
-msgstr "Lista de Faixas"
+msgstr "Faixa %s: silenciar"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1712,51 +1711,49 @@ msgstr "Lista de Faixas"
 #: gst-mixer/src/track.c:355
 #, c-format
 msgid "Toggle audio capture from %s"
-msgstr ""
+msgstr "Alternar a captura audio de %s"
 
 #: gst-mixer/src/track.c:370
 #, c-format
 msgid "Track %s: audio capture"
-msgstr ""
+msgstr "Faixa %s: captura audio"
 
 #: gst-mixer/src/track.c:449
 #, c-format
 msgid "%s Option Selection"
-msgstr ""
+msgstr "Opções de Selecção de %s"
 
 #: gst-mixer/src/volume.c:132
-#, fuzzy
 msgid "mono"
-msgstr "1 (mono)"
+msgstr "mono"
 
 #: gst-mixer/src/volume.c:134
 msgid "left"
-msgstr ""
+msgstr "esquerda"
 
 #: gst-mixer/src/volume.c:134
 msgid "right"
-msgstr ""
+msgstr "direita"
 
 #: gst-mixer/src/volume.c:137
 msgid "front left"
-msgstr ""
+msgstr "frontal esquerda"
 
 #: gst-mixer/src/volume.c:138
 msgid "front right"
-msgstr ""
+msgstr "frontal direita"
 
 #: gst-mixer/src/volume.c:139
 msgid "rear left"
-msgstr ""
+msgstr "traseira esquerda"
 
 #: gst-mixer/src/volume.c:140
 msgid "rear right"
-msgstr ""
+msgstr "traseira direita"
 
 #: gst-mixer/src/volume.c:141
-#, fuzzy
 msgid "front center"
-msgstr "Conteúdo"
+msgstr "frontal central"
 
 #. Translators: This is the name of a surround sound channel. It
 #. * stands for "Low-Frequency Effects". If you're not sure that
@@ -1764,73 +1761,70 @@ msgstr "Conteúdo"
 #. * language, leave it unchanged.
 #: gst-mixer/src/volume.c:146
 msgid "LFE"
-msgstr ""
+msgstr "LFE"
 
 #: gst-mixer/src/volume.c:147
 msgid "side left"
-msgstr ""
+msgstr "lateral esquerda"
 
 #: gst-mixer/src/volume.c:148
 msgid "side right"
-msgstr ""
+msgstr "lateral direita"
 
 #: gst-mixer/src/volume.c:149
-#, fuzzy
 msgid "unknown"
-msgstr "Desconhecido"
+msgstr "desconhecida"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
 #: gst-mixer/src/volume.c:155
-#, fuzzy, c-format
+#, c-format
 msgid "Volume of %s channel on %s"
-msgstr "Número de canais:"
+msgstr "Volume do canal %s na %s:"
 
 #: gst-mixer/src/volume.c:203
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s"
-msgstr "Lista de Faixas"
+msgstr "Faixa %s"
 
 #: gst-mixer/src/volume.c:206
-#, fuzzy, c-format
+#, c-format
 msgid "Channel %d of track %s"
-msgstr "Canal %d do Botão Deslizante %s"
+msgstr "Canal %d da faixa %s"
 
 #: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "Faixa %s, canal %d"
 
 #: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr ""
+msgstr "Faixa %s: trancar os canais juntos"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
 msgid "_Change Device"
-msgstr "Definir dispositivo"
+msgstr "_Alterar o Dispositivo"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "Controlar o volume num dispositivo diferente"
 
 #: gst-mixer/src/window.c:179
-#, fuzzy, c-format
+#, c-format
 msgid "Change device to %s"
-msgstr "Dispositivo de CD a utilizar"
+msgstr "Alterar o dispositivo para %s"
 
 #. window title and menu selection
 #. change window title
 #: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
-#, fuzzy, c-format
+#, c-format
 msgid "Volume Control: %s"
-msgstr "Controlo de Volume"
+msgstr "Controlo de Volume: %s"
 
 #: gst-mixer/src/window.c:377
-#, fuzzy
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Uma aplicação de mistura baseada em GNOME/GStreamer"
+msgstr "Uma aplicação de controlo de volume baseada no GNOME/GStreamer"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
