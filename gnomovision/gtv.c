@@ -108,7 +108,7 @@ gtk_tv_new(int video_num)
 
   XF86DGAGetVideoLL(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()),
 		    (int *)&(retval->vbuf.base), &rwidth, &bank, &ram);
-  retval->vbuf.depth = gdk_visual_get_best_depth();
+  retval->vbuf.depth = gdk_visual_get_system()->depth;
 
   /* We need this magic code here to fix 32 bit displays */
   /* Code is a near copy of the code from xawtv */
