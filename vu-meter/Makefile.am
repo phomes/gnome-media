@@ -1,4 +1,4 @@
-Audiodir = $(datadir)/apps/Audio
+Audiodir = $(datadir)/gnome/apps/Audio
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \

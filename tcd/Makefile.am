@@ -1,4 +1,4 @@
-Audiodir = $(datadir)/apps/Audio
+Audiodir = $(datadir)/gnome/apps/Audio
 
 EXTRA_DIST = README TODO NEWS gtcd.desktop
 
