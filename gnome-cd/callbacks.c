@@ -451,6 +451,20 @@ status_ok (GnomeCD *gcd,
 	/* Allow the track editor to work */
 	gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
 
+	/* Set the track menu on. */
+	gtk_widget_set_sensitive (gcd->tracks, TRUE);
+	
+	/* All buttons can be used when the tray is open,
+	   they should shut the tray. */
+	gtk_widget_set_sensitive (gcd->back_b, TRUE);
+	gtk_widget_set_sensitive (gcd->rewind_b, TRUE);
+	gtk_widget_set_sensitive (gcd->play_b, TRUE);
+	gtk_widget_set_sensitive (gcd->stop_b, TRUE);
+	gtk_widget_set_sensitive (gcd->ffwd_b, TRUE);
+	gtk_widget_set_sensitive (gcd->next_b, TRUE);
+	gtk_widget_set_sensitive (gcd->eject_b, TRUE);
+
+
 	switch (status->audio) {
 	case GNOME_CDROM_AUDIO_NOTHING:
 		break;
@@ -636,6 +650,19 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		}
 		
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
+
+		/* Set the other widgets off */
+		gtk_widget_set_sensitive (gcd->tracks, FALSE);
+		gtk_widget_set_sensitive (gcd->back_b, FALSE);
+		gtk_widget_set_sensitive (gcd->rewind_b, FALSE);
+		gtk_widget_set_sensitive (gcd->play_b, FALSE);
+		gtk_widget_set_sensitive (gcd->stop_b, FALSE);
+		gtk_widget_set_sensitive (gcd->ffwd_b, FALSE);
+		gtk_widget_set_sensitive (gcd->next_b, FALSE);
+
+		/* We can still use the eject button when there's no disc. */
+		gtk_widget_set_sensitive (gcd->eject_b, TRUE);
+
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
@@ -648,6 +675,20 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		}
 		
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
+
+		/* Set the track menu off. */
+		gtk_widget_set_sensitive (gcd->tracks, FALSE);
+
+		/* All buttons can be used when the tray is open,
+		   they should shut the tray. */
+		gtk_widget_set_sensitive (gcd->back_b, TRUE);
+		gtk_widget_set_sensitive (gcd->rewind_b, TRUE);
+		gtk_widget_set_sensitive (gcd->play_b, TRUE);
+		gtk_widget_set_sensitive (gcd->stop_b, TRUE);
+		gtk_widget_set_sensitive (gcd->ffwd_b, TRUE);
+		gtk_widget_set_sensitive (gcd->next_b, TRUE);
+		gtk_widget_set_sensitive (gcd->eject_b, TRUE);
+
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive open"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
