@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-05-31 08:57+0200\n"
-"PO-Revision-Date: 2002-05-31 08:58+0200\n"
+"POT-Creation-Date: 2002-06-21 14:03+0200\n"
+"PO-Revision-Date: 2002-06-21 14:03+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1288,14 +1288,6 @@ msgstr "Copyright (C) 2001, 2002"
 msgid "A GNOME cd player"
 msgstr "Odtwarzacz CD dla GNOME"
 
-#: gnome-cd/display.c:1
-msgid "Unknown artist"
-msgstr "Nieznany wykonawca"
-
-#: gnome-cd/display.c:1
-msgid "Unknown disc"
-msgstr "Nieznana płyta"
-
 #: gnome-cd/cdrom.c:1
 #, c-format
 msgid "You do not seem to have permission to access %s."
@@ -1313,6 +1305,117 @@ msgstr ""
 "a) W jądro systemu nie wkompilowano obsługi napędów CD\n"
 "b) Brak uprawnień dostępu do napędu CD\n"
 "c) %s nie jest napędem CD.\n"
+
+#: gnome-cd/display.c:1
+msgid "Unknown artist"
+msgstr "Nieznany wykonawca"
+
+#: gnome-cd/display.c:1
+msgid "Unknown disc"
+msgstr "Nieznana płyta"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+msgid "Error opening CD"
+msgstr "Błąd przy otwieraniu CD"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+msgid "Error reading CD header"
+msgstr "Błąd przy od odczycie nagłówka CD"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+msgid "IOCtl failed"
+msgstr "Operacja ioctl nie powiodła się"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+msgid "Error getting leadout"
+msgstr "Błąd przy pobieraniu wstępnej części płyty"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+#, c-format
+msgid ""
+"CD changed\n"
+"Track count: %d\n"
+"------------------\n"
+msgstr ""
+"Zmiana płyty CD\n"
+"Liczba ścieżek: %d\n"
+"------------------\n"
+
+#: gnome-cd/freebsd-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+#, c-format
+msgid "(eject): ioctl failed: %s"
+msgstr "(eject): Operacja ioctl nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+msgid "(freebsd_cdrom_play): Drive not ready"
+msgstr "(freebsd_cdrom_play): Napęd nie jest gotowy"
+
+#: gnome-cd/freebsd-cdrom.c:1
+msgid "(freebsd_cdrom_play): Drive still not ready"
+msgstr "(freebsd_cdrom_play): Napęd nadal nie jest gotowy"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_play) ioctl failed %s"
+msgstr "(freebsd_cdrom_play) operacja ioctl nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+msgid "(freebsd_cdrom_pause): Drive not ready"
+msgstr "(freebsd_cdrom_pause): Napęd nie jest gotowy"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_pause): Resume failed %s"
+msgstr "(freebsd_cdrom_pause): Wznowienie nie powiodło się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_pause): ioctl failed %s"
+msgstr "(freebsd_cdrom_pause): Operacja ioctl nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_stop) ioctl failed %s"
+msgstr "(freebsd_cdrom_stop): Operacja ioctl nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_get_status): ioctl error %s"
+msgstr "(freebsd_cdrom_get_status): Błąd przy operacji ioctl: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"
+msgstr ""
+"(freebsd_cdrom_get_status): Operacja ioctl (CDIOCREADSUBCHANNEL) nie "
+"powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"
+msgstr ""
+"(freebsd_cdrom_get_status): Operacja ioctl (CDIOCGETVOL) nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_close_tray): ioctl failed %s"
+msgstr "(freebsd_cdrom_close_tray): Operacja ioctl nie powiodła się: %s"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "(freebsd_cdrom_set_volume:1): ioctl failed %s"
+msgstr "(freebsd_cdrom_set_volume:1): Operacja ioctl nie powiodła się: %s"
+
+#. Failed, it's not a CDROM drive
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "%s is not a CDROM drive\n"
+msgstr "%s nie jest napędem CD-ROM\n"
+
+#: gnome-cd/freebsd-cdrom.c:1
+#, c-format
+msgid "%s is a CDROM drive\n"
+msgstr "%s jest napędem CD-ROM\n"
 
 #: gnome-cd/gnome-cd.c:1 gnome-cd/gnome-cd.c:1
 msgid "Gnome CD Player"
@@ -1446,38 +1549,6 @@ msgstr "Odtwarzacz CD"
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "Play audio CDs"
 msgstr "Odtwarzacz muzycznych płyt CD"
-
-#: gnome-cd/linux-cdrom.c:1
-msgid "Error opening CD"
-msgstr "Błąd przy otwieraniu CD"
-
-#: gnome-cd/linux-cdrom.c:1
-msgid "Error reading CD header"
-msgstr "Błąd przy od odczycie nagłówka CD"
-
-#: gnome-cd/linux-cdrom.c:1
-msgid "IOCtl failed"
-msgstr "Operacja ioctl nie powiodła się"
-
-#: gnome-cd/linux-cdrom.c:1
-msgid "Error getting leadout"
-msgstr "Błąd przy pobieraniu wstępnej części płyty"
-
-#: gnome-cd/linux-cdrom.c:1
-#, c-format
-msgid ""
-"CD changed\n"
-"Track count: %d\n"
-"------------------\n"
-msgstr ""
-"Zmiana płyty CD\n"
-"Liczba ścieżek: %d\n"
-"------------------\n"
-
-#: gnome-cd/linux-cdrom.c:1
-#, c-format
-msgid "(eject): ioctl failed: %s"
-msgstr "(eject): Operacja ioctl nie powiodła się: %s"
 
 #: gnome-cd/linux-cdrom.c:1
 msgid "(linux_cdrom_play): Drive not ready"
