@@ -266,6 +266,8 @@ ffwd_press_cb (GtkButton *button,
 {
 	maybe_close_tray (gcd);
 
+	ffwd_timeout_cb (gcd);
+	
 	gcd->timeout = gtk_timeout_add (140, ffwd_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {
@@ -364,6 +366,8 @@ rewind_press_cb (GtkButton *button,
 {
 	maybe_close_tray (gcd);
 
+	/* Call it so a click will activate it */
+	rewind_timeout_cb (gcd);
 	gcd->timeout = gtk_timeout_add (140, rewind_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {

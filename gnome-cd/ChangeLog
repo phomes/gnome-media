@@ -1,3 +1,9 @@
+2002-02-14  Iain <iain@ximian.com>
+
+	* callbacks.c (ffwd_press_cb): Call ffwd_timeout_cb so that the first
+	click makes the cd player skip.
+	(rewind_press_cb): Ditto.
+
 2002-02-11  Iain <iain@ximian.com>
 
 	* linux-cdrom.c (gnome_cdrom_new): Don't return NULL if the cd device
