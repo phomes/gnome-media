@@ -76,6 +76,10 @@ GtkWidget *	gnome_volume_control_volume_new	(GstMixer *mixer,
 						 GstMixerTrack *track,
 						 gint      padding,
 						 GnomeAppBar *appbar);
+void		gnome_volume_control_volume_sync (GnomeVolumeControlVolume *volume);
+void		gnome_volume_control_volume_ask (GnomeVolumeControlVolume *volume,
+						 gboolean * real_zero,
+						 gboolean * slider_zero);
 
 G_END_DECLS
 

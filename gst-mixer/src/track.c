@@ -61,6 +61,7 @@ cb_mute_toggled (GnomeVolumeControlButton *button,
 
   gst_mixer_set_mute (ctrl->mixer, ctrl->track,
 		      !gnome_volume_control_button_get_active (button));
+  gnome_volume_control_volume_sync (GNOME_VOLUME_CONTROL_VOLUME (ctrl->sliderbox));
 }
 
 static void
@@ -111,6 +112,15 @@ cb_check (gpointer data)
 				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE,
            record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
 				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
+  gboolean vol_is_zero = FALSE, slider_is_zero = FALSE;
+
+  if (trkw->sliderbox) {
+    gnome_volume_control_volume_ask (
+      GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox),
+      &vol_is_zero, &slider_is_zero);
+  }
+  if (!slider_is_zero && vol_is_zero)
+    mute = TRUE;
 
   if (trkw->mute) {
     if (gnome_volume_control_button_get_active (trkw->mute) == mute) {

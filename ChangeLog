@@ -1,3 +1,12 @@
+2005-01-11  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* gst-mixer/src/track.c: (cb_mute_toggled), (cb_check):
+	* gst-mixer/src/volume.c: (gnome_volume_control_volume_sync),
+	(gnome_volume_control_volume_ask), (cb_check):
+	* gst-mixer/src/volume.h:
+	  Add workarounds for interaction with other applications that
+	  do evil stuff to the soundcard when trying to mute.
+
 2005-01-10  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:

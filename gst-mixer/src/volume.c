@@ -489,6 +489,16 @@ cb_volume_changed (GtkAdjustment *_adj,
   vol->locked = FALSE;
 }
 
+/*
+ * To be called after unmuting.
+ */
+
+void
+gnome_volume_control_volume_sync (GnomeVolumeControlVolume * vol)
+{
+  cb_volume_changed (gtk_range_get_adjustment (vol->scales->data), vol);
+}
+
 static void
 cb_lock_toggled (GtkToggleButton *button,
 		 gpointer         data)
@@ -519,6 +529,36 @@ cb_lock_toggled (GtkToggleButton *button,
 }
 
 /*
+ * See if our volume is zero.
+ */
+
+void
+gnome_volume_control_volume_ask (GnomeVolumeControlVolume * vol,
+    gboolean *real_zero, gboolean *slider_zero)
+{
+  GList *scales;
+  gint *volumes, n, tot = 0;
+
+  volumes = g_new (gint, vol->track->num_channels);
+  gst_mixer_get_volume (vol->mixer, vol->track, volumes);
+  for (n = 0; n < vol->track->num_channels; n++)
+    tot += volumes[n];
+  g_free (volumes);
+  *real_zero = (tot == 0);
+
+  *slider_zero = TRUE;
+  for (n = 0, scales = vol->scales;
+       scales != NULL; scales = scales->next, n++) {
+    GtkAdjustment *adj = gtk_range_get_adjustment (scales->data);
+                                                                                
+    if (gtk_adjustment_get_value (adj) != 0) {
+      *slider_zero = FALSE;
+      break;
+    }
+  }
+}
+
+/*
  * Timeout to check for volume changes.
  */
 
@@ -526,7 +566,8 @@ static gboolean
 cb_check (gpointer data)
 {
   GnomeVolumeControlVolume *vol = data;
-  gint *volumes, n = 0;
+  gint *volumes, n;
+  gboolean real_zero, slider_zero;
   GList *scales;
 
   /* don't do callbacks */
@@ -536,9 +577,17 @@ cb_check (gpointer data)
 
   volumes = g_new (gint, vol->track->num_channels);
   gst_mixer_get_volume (vol->mixer, vol->track, volumes);
+  gnome_volume_control_volume_ask (vol, &real_zero, &slider_zero);
+  if (real_zero || GST_MIXER_TRACK_HAS_FLAG (vol->track,
+					     GST_MIXER_TRACK_MUTE)) {
+    g_free (volumes);
+    vol->locked = FALSE;
+    return TRUE;
+  }
 
   /* did we change? */
-  for (scales = vol->scales; scales != NULL; scales = scales->next, n++) {
+  for (n = 0, scales = vol->scales;
+       scales != NULL; scales = scales->next, n++) {
     GtkAdjustment *adj = gtk_range_get_adjustment (scales->data);
 
     if ((gint) gtk_adjustment_get_value (adj) != volumes[n]) {
