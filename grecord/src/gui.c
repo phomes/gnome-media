@@ -47,8 +47,8 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM (on_saveas_activate_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	{
-		GNOME_APP_UI_ITEM, N_("Run mixer..."),
-		N_("Run GNOME mixer"),
+		GNOME_APP_UI_ITEM, N_("Run mixer"),
+		N_("Run GNOME Volume Control"),
 		on_runmixer_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_DATA, gnome_mixer_xpm,
 		0, 0, NULL
