@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-05-16 20:49+0200\n"
-"PO-Revision-Date: 2000-05-16 20:50+0200\n"
+"POT-Creation-Date: 2000-05-18 00:20+0200\n"
+"PO-Revision-Date: 2000-05-19 00:26+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Este é o mesturador para os dispositivos de son OSS"
 msgid "GNOME Sound recorder:"
 msgstr "Gravador de Son de GNOME:"
 
-#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:1038
+#: grecord/src/grec.c:87 grecord/src/grec.c:117 grecord/src/grec.c:1016
 msgid "Could not fork child process"
 msgstr "Non se puido crea-lo proceso fillo"
 
@@ -259,42 +259,38 @@ msgstr "Non se puido crea-lo proceso fillo"
 msgid "Recording..."
 msgstr "Garvando..."
 
-#: grecord/src/grec.c:120
+#: grecord/src/grec.c:119
 msgid "Playing..."
 msgstr "Reproducindo..."
 
-#: grecord/src/grec.c:174
+#: grecord/src/grec.c:173
 msgid "Converting file..."
 msgstr "Convertendo ficheiro..."
 
-#: grecord/src/grec.c:240 grecord/src/grec.c:682 grecord/src/gui.c:330
+#: grecord/src/grec.c:239 grecord/src/grec.c:648 grecord/src/gui.c:325
 #: grecord/src/preferences.c:394
 msgid "Audioformat: "
 msgstr "Formato de Audio: "
 
-#: grecord/src/grec.c:244 grecord/src/grec.c:668 grecord/src/gui.c:337
+#: grecord/src/grec.c:243 grecord/src/grec.c:634 grecord/src/gui.c:332
 #: grecord/src/preferences.c:398
 msgid "Sample rate: "
 msgstr "Frecuencia de mostraxe: "
 
-#: grecord/src/grec.c:254 grecord/src/grec.c:672 grecord/src/gui.c:344
+#: grecord/src/grec.c:253 grecord/src/grec.c:638 grecord/src/gui.c:339
 #: grecord/src/preferences.c:402
 msgid "Channels: "
 msgstr "Canles: "
 
-#: grecord/src/grec.c:284
+#: grecord/src/grec.c:283
 msgid "Select a sound file"
 msgstr "Escoller un ficheiro de son"
 
-#: grecord/src/grec.c:397
-msgid "GNOME Sound recorder web page"
-msgstr "Páxina web do Gravador de Son de GNOME"
+#: grecord/src/grec.c:497
+msgid "Undoing all changes..."
+msgstr "Desfacendo tódolos cambios..."
 
-#: grecord/src/grec.c:503
-msgid "Undoing all..."
-msgstr "Desfacendo todo..."
-
-#: grecord/src/grec.c:609
+#: grecord/src/grec.c:575
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -303,7 +299,7 @@ msgstr ""
 "'%s' é un directorio.\n"
 "Escolla un ficheiro de son para abrir."
 
-#: grecord/src/grec.c:621
+#: grecord/src/grec.c:587
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -312,12 +308,12 @@ msgstr ""
 "O ficheiro '%s' non existe.\n"
 "Escolla un ficheiro de son que exista para abrir."
 
-#: grecord/src/grec.c:633
+#: grecord/src/grec.c:599
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son válido."
 
-#: grecord/src/grec.c:706
+#: grecord/src/grec.c:672
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -326,7 +322,7 @@ msgstr ""
 "'%s' é un directorio.\n"
 "Introduza outro nome de ficheiro."
 
-#: grecord/src/grec.c:716
+#: grecord/src/grec.c:682
 #, c-format
 msgid ""
 "File '%s' already exists.\n"
@@ -335,29 +331,29 @@ msgstr ""
 "O ficheiro '%s' xa existe.\n"
 "¿Quere sobrescribilo?"
 
-#: grecord/src/grec.c:731
+#: grecord/src/grec.c:697
 msgid "Error saving sound file"
 msgstr "Erro gardando o ficheiro de son"
 
-#: grecord/src/grec.c:767
+#: grecord/src/grec.c:733
 msgid "File not saved. Do you want to save it?"
 msgstr "Ficheiro non gardado. ¿Quere gardalo?"
 
 #. Save the file
-#: grecord/src/grec.c:786
+#: grecord/src/grec.c:752
 msgid "Saving..."
 msgstr "Gardando..."
 
-#: grecord/src/grec.c:897
+#: grecord/src/grec.c:863
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "¡O tamaño da gravación actual é maior que %i Mb!"
 
-#: grecord/src/grec.c:945
+#: grecord/src/grec.c:911
 msgid "Save sound file"
 msgstr "Gardar ficheiro de son"
 
-#: grecord/src/grec.c:1097
+#: grecord/src/grec.c:1075
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -389,125 +385,117 @@ msgstr "Engadir eco"
 msgid "Add echo to the current sample"
 msgstr "Engadir eco á gravación actual"
 
-#: grecord/src/gui.c:71
-msgid "Remove echo"
-msgstr "Quitar eco"
-
-#: grecord/src/gui.c:72
-msgid "Remove echo from the current sample"
-msgstr "Quitar o eco da gravación actual"
-
-#: grecord/src/gui.c:83
+#: grecord/src/gui.c:76
 msgid "Increase speed"
 msgstr "Incrementar velocidade"
 
-#: grecord/src/gui.c:84
+#: grecord/src/gui.c:77
 msgid "Increase the speed of the current sample"
 msgstr "Incrementar a velocidade da gravación actual"
 
-#: grecord/src/gui.c:90
+#: grecord/src/gui.c:83
 msgid "Decrease speed"
 msgstr "Diminuir velocidade"
 
-#: grecord/src/gui.c:91
+#: grecord/src/gui.c:84
 msgid "Decrease the speed of the current sample"
 msgstr "Diminuír a velocidade da gravación actual"
 
-#: grecord/src/gui.c:101
+#: grecord/src/gui.c:94
 msgid "Echo"
 msgstr "Eco"
 
-#: grecord/src/gui.c:102
+#: grecord/src/gui.c:95
 msgid "Speed"
 msgstr "Velocidade"
 
-#: grecord/src/gui.c:110
+#: grecord/src/gui.c:103
 msgid "Undo all changes"
 msgstr "Desfacer tódolos cambios"
 
-#: grecord/src/gui.c:111
+#: grecord/src/gui.c:104
 msgid "Undo all changes made on the current sample"
 msgstr "Desfacer tódolos cambios feitos á gravación actual"
 
-#: grecord/src/gui.c:118
+#: grecord/src/gui.c:111
 msgid "Effects"
 msgstr "Efectos"
 
-#: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:864
+#: grecord/src/gui.c:120 grecord/src/gui.c:121 grecord/src/gui.c:859
 msgid "Show time"
 msgstr "Amosar tempo"
 
-#: grecord/src/gui.c:134
+#: grecord/src/gui.c:127
 msgid "Show soundinfo"
 msgstr "Amosar información do son"
 
-#: grecord/src/gui.c:135 grecord/src/gui.c:869
+#: grecord/src/gui.c:128 grecord/src/gui.c:864
 msgid "Show sound information"
 msgstr "Amosar información do son"
 
-#: grecord/src/gui.c:235
+#: grecord/src/gui.c:230
 msgid "New"
 msgstr "Novo"
 
-#: grecord/src/gui.c:236
+#: grecord/src/gui.c:231
 msgid "Create new sample"
 msgstr "Crear unha nova gravación"
 
-#: grecord/src/gui.c:246 tcd/popup.c:15
+#: grecord/src/gui.c:241 tcd/popup.c:15
 msgid "Play"
 msgstr "Tocar"
 
-#: grecord/src/gui.c:247
+#: grecord/src/gui.c:242
 msgid "Play current sample"
 msgstr "Reproduci-la gravación actual"
 
-#: grecord/src/gui.c:255 tcd/gtcd.c:328 tcd/popup.c:16
+#: grecord/src/gui.c:250 tcd/gtcd.c:328 tcd/popup.c:16
 msgid "Stop"
 msgstr "Parar"
 
-#: grecord/src/gui.c:256
+#: grecord/src/gui.c:251
 msgid "Stop playing/recording"
 msgstr "Para de reproducir/gravar"
 
-#: grecord/src/gui.c:264
+#: grecord/src/gui.c:259
 msgid "Record"
 msgstr "Gravar"
 
-#: grecord/src/gui.c:265
+#: grecord/src/gui.c:260
 msgid "Start recording"
 msgstr "Comezar a gravar"
 
-#: grecord/src/gui.c:275
+#: grecord/src/gui.c:270
 msgid "Exit"
 msgstr "Saír"
 
-#: grecord/src/gui.c:276
+#: grecord/src/gui.c:271
 msgid "Exit this program"
 msgstr "Saír deste programa"
 
-#: grecord/src/gui.c:290
+#: grecord/src/gui.c:285
 msgid "Info"
 msgstr "Información"
 
-#: grecord/src/gui.c:389
+#: grecord/src/gui.c:384
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "O ficheiro '%s' non existe; usarase o ficheiro por defecto."
 
-#: grecord/src/gui.c:410
+#: grecord/src/gui.c:405
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son soportado."
 
-#: grecord/src/gui.c:444 grecord/src/main.c:105
+#: grecord/src/gui.c:439 grecord/src/main.c:107
 msgid "GNOME Sound recorder"
 msgstr "Gravador de Son de GNOME"
 
-#: grecord/src/gui.c:445
+#: grecord/src/gui.c:440
 msgid "Copyright (C)  2000 Andreas Hydén"
 msgstr "Copyright (C)  2000 Andreas Hydén"
 
-#: grecord/src/gui.c:447
+#: grecord/src/gui.c:442
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -515,149 +503,166 @@ msgstr ""
 "Un sinxelo reproductor e gravador de son para GNOME.\n"
 "Dedicado ó meu gato, Malte."
 
-#: grecord/src/gui.c:538 tcd/gtracked.c:171
+#: grecord/src/gui.c:533 tcd/gtracked.c:171
 msgid "Time"
 msgstr "Tempo"
 
-#: grecord/src/gui.c:551
+#: grecord/src/gui.c:546
 msgid "Recording timeout: "
 msgstr "Expiración da gravación: "
 
-#: grecord/src/gui.c:562
+#: grecord/src/gui.c:557
 msgid "minutes"
 msgstr "minutos"
 
-#: grecord/src/gui.c:567
+#: grecord/src/gui.c:562
 msgid "Stop recording on timeout"
 msgstr "Parar de gravar ó expira-lo tempo"
 
-#: grecord/src/gui.c:572
+#: grecord/src/gui.c:567
 msgid "Popup save dialog when recording is finished"
 msgstr "Amosar diálogo de gardar cando a gravación estea terminada"
 
-#: grecord/src/gui.c:581
+#: grecord/src/gui.c:576
 msgid "Size"
 msgstr "Tamaño"
 
-#: grecord/src/gui.c:590
+#: grecord/src/gui.c:585
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Amosar mensaxe de aviso se o tamaño (Mb) da gravación faise maior que:"
 
-#: grecord/src/gui.c:600
+#: grecord/src/gui.c:595
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Parar de gravar se o tamaño (Mb) da gravación faise maior que:"
 
-#: grecord/src/gui.c:611
+#: grecord/src/gui.c:606
 msgid "Recording"
 msgstr "Garvando"
 
-#: grecord/src/gui.c:620
+#: grecord/src/gui.c:615
 msgid "Play-repeating"
 msgstr "Reproducindo con repetición"
 
-#: grecord/src/gui.c:629
+#: grecord/src/gui.c:624
 msgid "Repeat"
 msgstr "Repetir"
 
-#: grecord/src/gui.c:638
+#: grecord/src/gui.c:633
 msgid "Forever"
 msgstr "Sempre"
 
-#: grecord/src/gui.c:643
+#: grecord/src/gui.c:638
 msgid "Nr of times:"
 msgstr "Número de veces:"
 
-#: grecord/src/gui.c:654
+#: grecord/src/gui.c:649
 msgid "Playing"
 msgstr "Reproducindo"
 
-#: grecord/src/gui.c:663
+#: grecord/src/gui.c:658
 msgid "Program files"
 msgstr "Ficheiros de programas"
 
-#: grecord/src/gui.c:680
+#: grecord/src/gui.c:675
 msgid "Path to sox:"
 msgstr "Camiño ó sox:"
 
-#: grecord/src/gui.c:696
+#: grecord/src/gui.c:691
 msgid "Path to mixer:"
 msgstr "Camiño ó mesturador:"
 
-#: grecord/src/gui.c:712
+#: grecord/src/gui.c:707
 msgid "Directories"
 msgstr "Directorios"
 
-#: grecord/src/gui.c:725
+#: grecord/src/gui.c:720
 msgid "Temp dir:"
 msgstr "Dir. temporal:"
 
-#: grecord/src/gui.c:741
+#: grecord/src/gui.c:736
 msgid "Paths"
 msgstr "Camiños"
 
-#: grecord/src/gui.c:749
+#: grecord/src/gui.c:744
 msgid "Sound options"
 msgstr "Opcións de son"
 
-#: grecord/src/gui.c:762
+#: grecord/src/gui.c:757
 msgid "Audioformat:"
 msgstr "Formato de audio:"
 
-#: grecord/src/gui.c:773 grecord/src/gui.c:783
+#: grecord/src/gui.c:768 grecord/src/gui.c:778
 msgid "8bit pcm"
 msgstr "PCM 8 bits"
 
-#: grecord/src/gui.c:774 grecord/src/gui.c:785
+#: grecord/src/gui.c:769 grecord/src/gui.c:780
 msgid "16bit pcm"
 msgstr "PCM 16 bits"
 
-#: grecord/src/gui.c:791
+#: grecord/src/gui.c:786
 msgid "Sample rate:"
 msgstr "Frecuencia de mostraxe:"
 
-#: grecord/src/gui.c:821
+#: grecord/src/gui.c:816
 msgid "mono/stereo"
 msgstr "mono/estéreo"
 
-#: grecord/src/gui.c:832 grecord/src/gui.c:842
+#: grecord/src/gui.c:827 grecord/src/gui.c:837
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:833 grecord/src/gui.c:844
+#: grecord/src/gui.c:828 grecord/src/gui.c:839
 msgid "stereo"
 msgstr "estéreo"
 
-#: grecord/src/gui.c:847
+#: grecord/src/gui.c:842
 msgid "Sound"
 msgstr "Son"
 
-#: grecord/src/gui.c:855
+#: grecord/src/gui.c:850
 msgid "Main window"
 msgstr "Fiestra principal"
 
-#: grecord/src/gui.c:874
+#: grecord/src/gui.c:869
 msgid "User interface"
 msgstr "Interface de usuario"
 
-#: grecord/src/main.c:52
+#: grecord/src/main.c:53
 msgid "Specify the geometry of the main window"
 msgstr "Especifica-la xeometría da fiestra principal"
 
-#: grecord/src/main.c:53
+#: grecord/src/main.c:54
 msgid "GEOMETRY"
 msgstr "XEOMETRÍA"
 
-#: grecord/src/main.c:61
+#: grecord/src/main.c:62
 msgid "Specify a file to be opened"
 msgstr "Especificar un ficheiro a abrir"
 
-#: grecord/src/main.c:70
+#: grecord/src/main.c:71
 msgid "Specify a file to start recording"
 msgstr "Especificar un ficheiro para comezar a gravar"
 
-#: grecord/src/main.c:79
+#: grecord/src/main.c:80
 msgid "Specify a file to start playing"
 msgstr "Especificar un ficheiro para comezar a reproducir"
+
+#: grecord/src/main.c:162
+msgid "Don't show this message again."
+msgstr "Non amosar esta mensaxe de novo."
+
+#: grecord/src/main.c:164
+#, c-format
+msgid ""
+"Could not find '%s'.\n"
+"Set the correct path to sox in preferences under the tab 'paths'.\n"
+"\n"
+"If you don't have sox, you will not be able to record or do any effects."
+msgstr ""
+"Non se puido atopar '%s'.\n"
+"Poña o camiño correcto ó sox nas preferencias, dentro da pestana 'camiños'.\n"
+"\n"
+"Se non ten o sox, non poderá gravar nin facer ningún efecto."
 
 #: grecord/src/preferences.c:196
 msgid ""
@@ -739,17 +744,9 @@ msgstr ""
 msgid " untitled.wav"
 msgstr " sentitular.wav"
 
-#: grecord/src/sound.c:156
-msgid "Making backup..."
-msgstr "Creando copia de seguridade..."
-
-#: grecord/src/sound.c:157
+#: grecord/src/sound.c:148 grecord/src/sound.c:152
 msgid "Adding echo to sample..."
 msgstr "Engadindo eco á gravación..."
-
-#: grecord/src/sound.c:158
-msgid "Please wait..."
-msgstr "Por favor, agarde..."
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
@@ -1187,6 +1184,3 @@ msgstr "O servidor é %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Contador de Volume"
-
-#~ msgid "Error saving sound file!"
-#~ msgstr "¡Erro gardando o ficheiro de son!"
