@@ -298,7 +298,8 @@ int tcd_formatread_http( cd_struct *cd, char *buf, int blen, char *hostname, int
 #ifdef DEBUG
 	printf( "DEBUG:  in tcd_formatread_http()\n" );
 #endif
-	sprintf(buf,"GET http://%s:%d/%s?cmd=cddb+read+%s+%s&hello=%s+%s+TCD+2.0&proto=1 HTTP/1.0\n\n",hostname,port,path,categ,discid,pw->pw_name,thishost);  
+	sprintf(buf,"GET http://%s:%d/%s?cmd=cddb+read+%s+%s&hello=%s+%s+TCD+2.0&proto=1 HTTP/1.0\n\n",hostname,port,path,categ,discid,pw->pw_name,thishost);
+	return 0;
 }
 
 int tcd_formatquery_http( cd_struct *cd, char *buf, int blen, char *hostname, int port, char *path)
@@ -342,6 +343,7 @@ int tcd_formatquery_http( cd_struct *cd, char *buf, int blen, char *hostname, in
 		strcpy(pw->pw_name,"user");
 	sprintf(s,"hello=%s+%s+TCD+2.0&proto=1 HTTP/1.0\n\n",pw->pw_name,thishost);
 	strcat(buf,s);
+	return 0;
 }
   
 /*

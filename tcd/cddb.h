@@ -67,5 +67,11 @@ int 		tcd_getquery( cddb_server *server, cddb_query_str *query );
 void 		tcd_formatquery( cd_struct *cd, char *buf , int blen);
 int 		tcd_open_cddb( cddb_server *server );
 
+int             tcd_formatread_http( cd_struct *cd, char *buf, int blen,
+				     char *hostname, int port, char *path,
+				     char *categ, char *discid);
+int             tcd_formatquery_http( cd_struct *cd, char *buf, int blen,
+				      char *hostname, int port, char *path);
+
 
 #endif /* TCD_CDDB_H */
