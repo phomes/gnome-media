@@ -57,7 +57,6 @@ unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -rf $RPM_BUILD_ROOT/var/scrollkeeper/*
-rm -f $RPM_BUILD_ROOT/%{_datadir}/pixmaps/gnome-cd/*.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,10 +87,7 @@ scrollkeeper-update
 %{_datadir}/applications/gnome-volume-control.desktop
 %{_datadir}/applications/gstreamer-properties.desktop
 %{_datadir}/pixmaps/gnome-cd.png
-%{_datadir}/pixmaps/gnome-cd/themes/lcd/*
-%{_datadir}/pixmaps/gnome-cd/themes/media/*
-%{_datadir}/pixmaps/gnome-cd/themes/red-lcd/*
-%{_datadir}/pixmaps/gnome-cd/themes/None/*
+%{_datadir}/pixmaps/gnome-cd
 %{_datadir}/pixmaps/gnome-grecord.png
 %{_datadir}/pixmaps/mixer.png
 %{_datadir}/pixmaps/gnome-mixer.png
