@@ -867,10 +867,9 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 		g_free (realstatus);
 		return FALSE;
 	}
-
+#else
+	realstatus->cd = GNOME_CDROM_STATUS_OK;
 #endif
-
-realstatus->cd = GNOME_CDROM_STATUS_OK;
 
 	subchnl.cdsc_format = CDROM_MSF;
 	if (ioctl (priv->cdrom_fd, CDROMSUBCHNL, &subchnl) < 0) {
