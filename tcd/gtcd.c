@@ -398,6 +398,7 @@ void draw_status( void )
 {
 	char tmp[30];
 	GdkGC *gc;
+	int liney = 8+tfont->ascent+tfont->descent;
 
 	if( !configured )
 		return;
@@ -413,28 +414,30 @@ void draw_status( void )
 			    status_area->allocation.height );
 
 	gdk_gc_set_foreground( gc, &darkgrey );
-	
-	gdk_draw_line( status_db,gc,0,28,status_area->allocation.width,28 );
-	gdk_draw_line( status_db,gc,48,0,48,28 );
+
+	gdk_draw_line( status_db,gc,
+		       0,liney,
+		       status_area->allocation.width,liney );
+	gdk_draw_line( status_db,gc,48,0,48,liney );
 
 	gdk_gc_set_foreground(gc, &timecolor);
 
 	sprintf( tmp, "%2d/%2d", cd.cur_t, cd.last_t );
-	gdk_draw_text( status_db,tfont,gc,3,20,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,tfont,gc,3,4+tfont->ascent,tmp,strlen(tmp) );
 
 	sprintf( tmp, "%2d:%02d / %d:%02d", cd.t_min, cd.t_sec,
 						cd.trk[C(cd.cur_t)].tot_min,
 						cd.trk[C(cd.cur_t)].tot_sec );
-	gdk_draw_text( status_db,tfont,gc,55,20,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,tfont,gc,55,4+tfont->ascent,tmp,strlen(tmp) );
 
 	gdk_gc_set_foreground(gc, &trackcolor);
 
 	sprintf( tmp, "%2d:%02d", cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.minute,
                 cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.second);
-	gdk_draw_text( status_db,sfont, gc,114,40,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,sfont, gc,100,liney+4+sfont->ascent,tmp,strlen(tmp) );
 
 	sprintf( tmp, "%d%%", (int)ceil(cd.volume*0.390625) );
-	gdk_draw_text( status_db,sfont, gc,114,52,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,sfont, gc,100,liney+4+2*sfont->ascent+sfont->descent,tmp,strlen(tmp) );
 	
 	if( !cd.err )
 	{
@@ -464,9 +467,9 @@ void draw_status( void )
 	}
 	else strcpy( tmp, cd.errmsg );
 
-	gdk_draw_text( status_db,sfont,gc,4,40,tmp, strlen(tmp) );
+	gdk_draw_text( status_db,sfont,gc,4,liney+4+sfont->ascent,tmp, strlen(tmp) );
 	
-	gdk_draw_text( status_db,sfont,gc,4,52, play_methods[cd.play_method] ,
+	gdk_draw_text( status_db,sfont,gc,4,liney+4+2*sfont->ascent+sfont->descent, play_methods[cd.play_method] ,
 		strlen(play_methods[cd.play_method]) );
 
 	/* Finally, update the display */
@@ -747,7 +750,8 @@ void setup_time_display( void )
         	(GtkSignalFunc)status_configure_event, NULL);
 	gtk_signal_connect( GTK_OBJECT(status_area),"button_press_event",
         	(GtkSignalFunc)status_click_event, NULL);
-	gtk_widget_set_usize( status_area, 150, 59 );
+	gtk_widget_set_usize( status_area, 150,
+			      8+tfont->ascent+tfont->descent+2*(sfont->ascent+sfont->descent)+8 );
 
 	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
         
