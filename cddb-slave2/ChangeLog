@@ -1,8 +1,18 @@
+2003-07-09  Ted Gould      <ted@gould.cx>
+
+	* cddb-slave.c, cddb-slave-caplet.c, cddb-parser.c:
+	Added in patch from Kjartan Maraas below.  Fixes bug #116804
+	Also has an attempt to fix #90788
+
 2003-07-02  Jordi Mallach  <jordi@sindominio.net>
 
 	* cddb-slave.desktop.in: Add StartupNotify support and X-Bugzilla
 	entries.
 
+2003-05-10  Kjartan Maraas  <kmaraas@gnome.org>
+ 
+ 	* cddb-slave-capplet.c (create_dialog): Plug some leaks.
+ 	
 2003-05-07 Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* cddb-track-editor.c,main.c: Start CDDBSlave2 per display

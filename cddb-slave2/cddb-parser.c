@@ -106,6 +106,9 @@ cddb_entry_parse_file (CDDBEntry *entry,
 
 	g_free (prev_vector[0]);
 	g_free (prev_vector[1]);
+
+	fclose (handle);
+
 	return TRUE;
 }
 
