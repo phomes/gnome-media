@@ -1,3 +1,9 @@
+2004-10-12  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
+
+	* src/gsr-window.c (media_stop): Don't do a g_object_set on the play
+	pipeline. Since play pipeline is created now in media_play. This
+	stops a crash when the recording is stopped.
+
 2004-09-24  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* src/gsr-window.c (media_play): If we have a play pipeline already

@@ -971,9 +971,8 @@ media_stop (BonoboUIComponent *uic,
 		g_free (priv->working_file);
 		priv->working_file = g_strdup (priv->record_filename);
 
-		g_object_set (G_OBJECT (priv->play->src),
-			      "location", priv->working_file,
-			      NULL);
+		g_free (priv->filename);
+		priv->filename = g_strdup (priv->record_filename);
 
 		priv->dirty = TRUE;
 		priv->has_file = TRUE;
