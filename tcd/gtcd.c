@@ -479,7 +479,8 @@ void draw_titles(void)
 {
 	int inc;
 
-	gdk_gc_set_foreground( gc, &track_color );
+	if(gc && &track_color)
+		gdk_gc_set_foreground( gc, &track_color );
 	inc = (tfont->ascent+tfont->descent)-2;
 
 	gdk_draw_text(status_db,tfont,gc,4,39, cd.artist,
