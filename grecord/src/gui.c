@@ -185,9 +185,10 @@ create_grecord_window (void)
 ;
 	gboolean found_file = FALSE;
 	gboolean unsupported_soundfile = FALSE;
-	gchar* audioformat_string = NULL;
-	gchar* channels_string = NULL;
-	gchar* temp_string = NULL;
+	char *audioformat_string = NULL;
+	char *channels_string = NULL;
+	char *temp_string = NULL;
+	char *fullname;
 
 	grecord_window = gnome_app_new ("grecord", "grecord");
 
@@ -219,13 +220,11 @@ create_grecord_window (void)
 		menu_item->active = TRUE;
 	}
 
-	toolbar1 = gtk_toolbar_new (GTK_ORIENTATION_HORIZONTAL, GTK_TOOLBAR_BOTH);
+	toolbar1 = gtk_toolbar_new ();
 	gtk_widget_show (toolbar1);
-	gtk_toolbar_set_space_size (GTK_TOOLBAR (toolbar1), 16);
-	gtk_toolbar_set_space_style (GTK_TOOLBAR (toolbar1), GTK_TOOLBAR_SPACE_LINE);
-	gtk_toolbar_set_button_relief (GTK_TOOLBAR (toolbar1), GTK_RELIEF_NONE);
 
-	tmp_toolbar_icon = gnome_stock_pixmap_widget (grecord_window, GNOME_STOCK_PIXMAP_NEW);
+	tmp_toolbar_icon = gtk_image_new_from_stock (GTK_STOCK_NEW,
+						     GTK_ICON_SIZE_BUTTON);
 	New_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
 						 GTK_TOOLBAR_CHILD_BUTTON,
 						 NULL,
@@ -236,7 +235,10 @@ create_grecord_window (void)
 
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar1));
 
-	tmp_toolbar_icon = gnome_stock_pixmap_widget (grecord_window, GNOME_STOCK_PIXMAP_FORWARD);
+	fullname = gnome_pixmap_file ("gnome-cd/play.xpm");
+	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
+	g_free (fullname);
+
 	Play_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
 						  GTK_TOOLBAR_CHILD_BUTTON,
 						  NULL,
@@ -245,7 +247,10 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Play_button);
 
-	tmp_toolbar_icon = gnome_stock_pixmap_widget (grecord_window, GNOME_STOCK_PIXMAP_STOP);
+	fullname = gnome_pixmap_file ("gnome-cd/stop.xpm");
+	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
+	g_free (fullname);
+
 	Stop_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
 						  GTK_TOOLBAR_CHILD_BUTTON,
 						  NULL,
@@ -254,7 +259,8 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Stop_button);
 
-	tmp_toolbar_icon = gnome_stock_pixmap_widget (grecord_window, GNOME_STOCK_PIXMAP_MIC);
+	tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_MIC,
+						     GTK_ICON_SIZE_BUTTON);
 	Record_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
 						    GTK_TOOLBAR_CHILD_BUTTON,
 						    NULL,
@@ -265,7 +271,8 @@ create_grecord_window (void)
       
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar1));
 
-	tmp_toolbar_icon = gnome_stock_pixmap_widget (grecord_window, GNOME_STOCK_PIXMAP_EXIT);
+	tmp_toolbar_icon = gtk_image_new_from_stock (GTK_STOCK_QUIT,
+						     GTK_ICON_SIZE_BUTTON);
 	Exit_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
 						  GTK_TOOLBAR_CHILD_BUTTON,
 						  NULL,
@@ -436,6 +443,7 @@ create_about (void)
 		/* if your charset allows it, replace the "e" of "Hyden"
 		 *  by an "eacute" (U00E9) */
 		N_("Andreas Hyden <a.hyden@cyberpoint.se>"),
+		"Iain Holmes <iain@ximian.com>",
 		NULL
 	};
 	GtkWidget* about;
@@ -447,8 +455,8 @@ create_about (void)
 				/* if your charset allows it, replace the
 				   "e" of Hyden by an "eacute" (U00E9) */
 				 _("Copyright (C)  2000 Andreas Hyden"),
-				 authors,
 				 _("A simple soundrecorder and soundplayer for GNOME.\nDedicated to my cat, Malte."),
+				 authors, NULL, NULL,
 				 NULL);
 	
 	return about;

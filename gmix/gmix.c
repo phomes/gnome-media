@@ -160,16 +160,16 @@ static const struct poptOption options[] = {
 #endif
 struct pixmap device_pixmap[] = {
 	"Input Gain", GNOME_STOCK_PIXMAP_BLANK,
-	"PC Speaker", GNOME_STOCK_PIXMAP_VOLUME,
-	"MIC", GNOME_STOCK_PIXMAP_MIC,
-	"Line", GNOME_STOCK_PIXMAP_LINE_IN,
-	"CD", GNOME_STOCK_PIXMAP_CDROM,
+	"PC Speaker", GNOME_STOCK_VOLUME,
+	"MIC", GNOME_STOCK_PIXMAP_BLANK,
+	"Line", GNOME_STOCK_LINE_IN,
+	"CD", GTK_STOCK_CDROM,
 	"Synth", GNOME_STOCK_PIXMAP_BLANK,
 	"PCM", GNOME_STOCK_PIXMAP_BLANK,
 	"Output Gain", GNOME_STOCK_PIXMAP_BLANK,
 	"Treble", GNOME_STOCK_PIXMAP_BLANK,
 	"Bass", GNOME_STOCK_PIXMAP_BLANK,
-	"Master", GNOME_STOCK_PIXMAP_VOLUME,
+	"Master", GNOME_STOCK_VOLUME,
 	"default", GNOME_STOCK_PIXMAP_BLANK,
 };
 #else
@@ -939,6 +939,7 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 		gtk_scale_set_draw_value(GTK_SCALE(scale), FALSE);
 		gtk_box_pack_start (GTK_BOX (hbox), scale, TRUE, TRUE, 0);
 		gtk_widget_show (scale);
+
 		if (di->stereodevs & (1<<ci->channel)) {
 			/* Right channel, display only if we have stereo */
 #ifdef ALSA
@@ -975,22 +976,24 @@ void fill_in_device_guis(GtkWidget *notebook){
 		/* 
 		 * David: changed 7 to 8 for table rows (06/04/1999)
 		 */
-		table=gtk_table_new(i*2, 8, FALSE);
-		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-					 table, 
-					 gtk_label_new(di->info.name));
+		table = gtk_table_new (i*2, 8, FALSE);
+		gtk_notebook_append_page (GTK_NOTEBOOK(notebook),
+					  table, 
+					  gtk_label_new(di->info.name));
 		gtk_table_set_row_spacings (GTK_TABLE (table), 0);
 		gtk_table_set_col_spacings (GTK_TABLE (table), 0);
 		gtk_container_border_width (GTK_CONTAINER (table), 0);
 		gtk_widget_show (table);
 
-		for (c=((device_info *)d->data)->channels;c;c=c->next) {
+		for (c= ((device_info *)d->data)->channels; c; c=c->next) {
 			GtkWidget *label, *mixer, *separator;
 			channel_info *ci;
+
 			ci=c->data;
-			if ((ci->pixmap)&&(prefs.use_icons))
-			{
-				spixmap = gnome_stock_pixmap_widget (app, ci->pixmap);
+
+			if ((ci->pixmap) && (prefs.use_icons)) {
+				spixmap = gtk_image_new_from_stock (ci->pixmap,
+								    GTK_ICON_SIZE_BUTTON);
 				gtk_table_attach (GTK_TABLE (table), spixmap, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (spixmap);
 			}
@@ -1363,18 +1366,36 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	}
 }
 
-void help(GtkWidget *widget, gpointer data)
+void 
+help(GtkWidget *widget, 
+     gpointer data)
 {
-        GnomeHelpMenuEntry help_entry = { "gmix",
-                                          "index.html" };
-        gnome_help_display(NULL, &help_entry);
+	GnomeProgram *program;
+	GError *error;
+	gboolean ret;
+	
+	program = gnome_program_get ();
+        ret = gnome_help_display(program, "index.html", NULL, &error);
+	if (ret == FALSE) {
+		g_warning ("Error displaying document: %s", error->message);
+		g_error_free (error);
+	}
 }
 
-void help_cb(GtkWidget *widget, gpointer data)
+void 
+help_cb(GtkWidget *widget, 
+	gpointer data)
 {
-        GnomeHelpMenuEntry help_entry = { "gmix",
-                                          "gmix-prefs.html" };
-        gnome_help_display(NULL, &help_entry);
+	GnomeProgram *program;
+	GError *error;
+	gboolean ret;
+
+	program = gnome_program_get ();
+        ret = gnome_help_display(program, "gmix-prefs.html", NULL, &error);
+	if (ret == FALSE) {
+		g_warning ("Error displaying document: %s", error->message);
+		g_error_free (error);
+	}
 }
 
 static void about_cb (GtkWidget *widget, gpointer data)
@@ -1383,6 +1404,7 @@ static void about_cb (GtkWidget *widget, gpointer data)
 
 	static const char *authors[] = {
 		"Jens Ch. Restemeier",
+		"Iain Holmes",
 		NULL
 	};
 
@@ -1394,8 +1416,9 @@ static void about_cb (GtkWidget *widget, gpointer data)
 	{
 		about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
 					  "(C) 1998 Jens Ch. Restemeier",
+					  _("This is a mixer for sound devices"),
 					  authors,
-					  _("This is a mixer for OSS sound-devices."),
+					  NULL, NULL,
 					  NULL);
 
 		gtk_signal_connect (GTK_OBJECT (about), "destroy",

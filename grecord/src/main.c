@@ -116,10 +116,12 @@ main (int argc, char *argv[])
 	mwin.y = -1;
 	mwin.width = 400;
 	mwin.height = 170;
-	
+
+#ifdef GEOMETRY	
 	if (geometry)
 		gnome_parse_geometry (geometry, &mwin.x, &mwin.y,
 				      &mwin.width, &mwin.height);
+#endif
 
 	/* Session management ------------------------- */
 	client = gnome_master_client ();

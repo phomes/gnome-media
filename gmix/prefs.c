@@ -92,8 +92,10 @@ static GtkWidget *general_page(void)
 
 	prefs_copy = g_malloc(sizeof(mixerprefs));
 	g_assert(prefs_copy);
+
 	*prefs_copy = prefs;
-	gtk_object_set_data(GTK_OBJECT(ubervbox), PREFS_COPY, prefs_copy);
+	g_object_set_data_full (G_OBJECT(ubervbox), PREFS_COPY, 
+				prefs_copy, g_free);
 
 	start_frame = gtk_frame_new(_("On startup"));
 	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
@@ -168,8 +170,7 @@ static void labels_retrieve_one_slider(gpointer entry, gpointer user_data)
 	channel_info *channel;
 
 	channel = gtk_object_get_user_data(GTK_OBJECT(entry));
-	channel->user_title =
-		strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+	channel->user_title = g_strdup( gtk_entry_get_text (GTK_ENTRY (entry)));
 }
 
 /*
@@ -182,14 +183,15 @@ static void labels_retrieve_one_slider(gpointer entry, gpointer user_data)
  *
  * @param user_data Unused.
  */
-static void labels_retrieve_one_page(gpointer page, gpointer user_data)
+static void 
+labels_retrieve_one_page (gpointer page, 
+			  gpointer user_data)
 {
 	GSList *entry_list;
 	
-	entry_list =
-		gtk_object_get_user_data(GTK_OBJECT(GTK_NOTEBOOK_PAGE(page)));
-	g_assert(entry_list);
-	g_slist_foreach(entry_list, labels_retrieve_one_slider, NULL);
+	entry_list = gtk_object_get_user_data (GTK_OBJECT (((GList *) page)->data));
+	g_assert (entry_list);
+	g_slist_foreach (entry_list, labels_retrieve_one_slider, NULL);
 }
 
 /*
@@ -229,8 +231,8 @@ static void labels_destroy_one_page(gpointer page, gpointer user_data)
 {
 	GSList *entry_list;
 	
-	entry_list =
-		gtk_object_get_user_data(GTK_OBJECT(GTK_NOTEBOOK_PAGE(page)));
+	entry_list = gtk_object_get_user_data (GTK_OBJECT (((GList *) page)->data));
+
 	g_assert(entry_list);
 	g_slist_free(entry_list);
 	/* No need to free the data.  All items are gtk widgets */
@@ -462,7 +464,6 @@ static void cancel_cb(GtkWidget *widget, void *data)
 
 	/* Find and free the copy of the preferences data */
 	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
-	destroy_prefs(page);
 
 	page = gtk_object_get_data(GTK_OBJECT(configwin), LABELS_PAGE);
 	labels_destroy_all(page);

@@ -228,7 +228,7 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	grecord_set_sensitive_nofile ();
 
 	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar), GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 1000, 1, 1, 0)));
-	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar));
+/*  	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar)); */
 
 	/* Reload configuration */
 	load_config_file ();
@@ -814,7 +814,7 @@ UpdateStatusbarPlay (gboolean begin)
 	set_min_sec_time (countersec, FALSE);
 
 	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar), GTK_ADJUSTMENT (gtk_adjustment_new (counter, 0, 1000, 1, 1, 0)));
-	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar));
+/*  	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar)); */
 	
 	return TRUE;
 }
@@ -913,7 +913,7 @@ UpdateStatusbarRecord (gboolean begin)
 	counter += (int) 1000 / timeout;
 
 	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar), GTK_ADJUSTMENT (gtk_adjustment_new (counter, 0, 1000, 1, 1, 0)));
-	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar));
+/*  	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar)); */
 
 	return TRUE;
 }

@@ -1,0 +1,37 @@
+/*
+ * GNOME_Media_CDDBSlave2.idl: IDL file for the CDDBSlave 2 interface
+ *
+ * Copyright (C) 2001 Ximian, Inc.
+ *
+ * Authors: Iain Holmes  <iain@ximian.com>
+ */
+
+#include <Bonobo.idl>
+
+module GNOME {
+
+module Media {
+
+	interface CDDBSlave2 : Bonobo::Unknown {
+
+		/**
+		 * query: Queries the server for a CD
+ 		 * @discid: CDDB disc id.
+		 * @ntrks:  Number of tracks on the cd.
+		 * @offsets: A string of all the frame offsets of the starting
+  		 *           location of each track, seperated by spaces.
+		 * @nsecs: Total playing length of the CD in seconds.
+		 * @name: Client name.
+		 * @version: Client version.
+		 *
+		 * Sends a query to the server.
+		 */
+		void query(in string discid,
+		           in short ntrks,
+		   	   in string offsets,
+		   	   in long nsecs,
+		   	   in string name,
+		   	   in string version);
+	};
+};
+};  

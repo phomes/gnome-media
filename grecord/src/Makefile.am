@@ -3,7 +3,7 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(top_srcdir)/intl \
-	$(GNOME_INCLUDEDIR)	\
+	$(MEDIA_CFLAGS)		\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
 
 bin_PROGRAMS = grecord
@@ -16,5 +16,5 @@ grecord_SOURCES = \
 	sound.c sound.h \
 	prog.h
 
-grecord_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+grecord_LDADD = $(MEDIA_LIBS) $(INTLLIBS)
 

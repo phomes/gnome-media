@@ -9,7 +9,7 @@ SUBDIRS = doc
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	$(GNOME_INCLUDEDIR) 				\
+	$(MEDIA_CFLAGS) 				\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
 bin_PROGRAMS = gmix
@@ -18,7 +18,7 @@ gmix_SOURCES =	\
 	gmix.c gmix.h prefs.c prefs.h
 
 gmix_LDADD = \
-	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) $(GMIX_LIBS)
+	$(MEDIA_LIBS) $(INTLLIBS) $(GMIX_LIBS)
 
 Audio_in_files = gmix.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
