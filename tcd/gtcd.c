@@ -554,20 +554,23 @@ gint slow_timer( gpointer *data )
     if( cd.cddb_id != cur_goto_id )
 	make_goto_menu();
 
-    if( cd.err || !cd.isplayable )
-    {
-	tcd_readtoc(&cd);
-	tcd_readdiskinfo(&cd);
-    }
-
     if( cd.sc.cdsc_audiostatus != CDROM_AUDIO_PLAY &&
 	cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
     {
 	if( cd.play_method == REPEAT_CD )
 	    tcd_playtracks( &cd, cd.first_t, cd.last_t );
     }
-    tcd_gettime(&cd);
-    adjust_status();
+    if( cd.isplayable ) {
+	tcd_gettime(&cd);
+	adjust_status();
+
+	if( cd.err ) {
+	    cd.isplayable = FALSE;
+	    cd.isdisk = FALSE;
+	    cd.play_method = NORMAL;
+	    cd.repeat_track = -1;
+	}
+    }
     draw_status(); 
     return 1;
 }
@@ -652,7 +655,15 @@ void make_goto_menu()
 
 gint fast_timer( gpointer *data )
 {
-    tcd_gettime(&cd);
+    if( cd.isplayable ) {
+	tcd_gettime(&cd);
+	if( cd.err ) {
+	   cd.isplayable = FALSE;
+	   cd.isdisk = FALSE;
+	   cd.play_method = NORMAL;
+	   cd.repeat_track = -1;
+	}
+    }
     status_changed();
     if((cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track))
 	tcd_playtracks(&cd, cd.repeat_track, -1);
@@ -858,9 +869,8 @@ void create_warning(char *message_text, char *type)
 
 void reload_info(int signal)
 {
-    tcd_close_disc(&cd);
-    tcd_init_disc(&cd, create_warning);
-    make_goto_menu();
+    tcd_post_init(&cd);
+    if( cd.isplayable ) make_goto_menu();
     draw_status();
 }
 
@@ -872,10 +882,13 @@ void exit_action(void)
 	tcd_stopcd(&cd);
 	break;
     case OpenTray:
+	cd.isdisk = TRUE;
 	tcd_ejectcd(&cd);
 	break;
     case CloseTray:
-	ioctl(cd.cd_dev, CDROMCLOSETRAY);
+	cd.isdisk = FALSE;
+	tcd_ejectcd(&cd);
+	if( cd.isplayable ) make_goto_menu();
 	break;
     case DoNothing:
     default:
@@ -885,12 +898,16 @@ void exit_action(void)
 
 void start_action(void)
 {
-    if(prefs.close_tray_on_start)
-	ioctl(cd.cd_dev, CDROMCLOSETRAY);
+    if(prefs.close_tray_on_start) {
+	cd.isdisk = FALSE;
+	tcd_ejectcd(&cd);
+	if( cd.isplayable ) make_goto_menu();
+    }
     switch(prefs.start_action)
     {
     case StartPlaying:
 	tcd_playtracks(&cd, cd.first_t, cd.last_t);
+	if( cd.isplayable ) make_goto_menu();
 	break;
     case StopPlaying:
 	tcd_stopcd(&cd);

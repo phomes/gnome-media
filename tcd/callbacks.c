@@ -11,11 +11,18 @@
 
 void play_cb(GtkWidget *widget, gpointer data)
 {
-    if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
-	tcd_pausecd(&cd);
-    else
-	tcd_playtracks(&cd, cd.first_t, cd.last_t);
-    cd.repeat_track = cd.cur_t;
+    if( !cd.isdisk ) {
+	tcd_ejectcd(&cd);
+	if ( cd.isplayable ) make_goto_menu();
+    }
+
+    if( !cd.err ) {
+	if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
+	    tcd_pausecd(&cd);
+	else
+	    tcd_playtracks(&cd, cd.first_t, cd.last_t);
+	cd.repeat_track = cd.cur_t;
+    }
 
     draw_status();
     return;
@@ -23,7 +30,7 @@ void play_cb(GtkWidget *widget, gpointer data)
 
 void pause_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_pausecd(&cd);
+    if( cd.isplayable ) tcd_pausecd(&cd);
     
     draw_status();
     return;
@@ -31,7 +38,7 @@ void pause_cb(GtkWidget *widget, gpointer data)
 
 void stop_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_stopcd(&cd);
+    if( cd.isplayable) tcd_stopcd(&cd);
 
     draw_status();
     return;
@@ -44,6 +51,7 @@ void eject_cb(GtkWidget *widget, gpointer data)
     cd.repeat_track = -1;
     /* SDH: Make sure play/pause state change is noticed */
     cd.sc.cdsc_audiostatus = -1;
+    if( cd.isplayable ) make_goto_menu();
 
     draw_status();
     return;
@@ -91,10 +99,10 @@ void quit_cb(GtkWidget *widget, gpointer data)
 
 void changer_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_close_disc(&cd);
     tcd_change_disc(&cd, GPOINTER_TO_INT(data));
-    tcd_init_disc(&cd,create_warning);
+    tcd_post_init(&cd);
     cd.play_method = NORMAL;
+    if( cd.isplayable ) make_goto_menu();
 
     return;
 }

@@ -145,7 +145,15 @@ int main(int argc, char **argv)
 	if( cd->play_method==REPEAT_TRK && cd->cur_t != cd->repeat_track )
 	    tcd_playtracks( cd, cd->repeat_track, cd->last_t );
 		
-	if( cd->isplayable ) tcd_gettime(cd);
+	if( cd->isplayable ) {
+		tcd_gettime(cd);
+		if( cd->err ) {
+			cd->isplayable = FALSE;
+			cd->isdisk = FALSE;
+			cd->play_method = NORMAL;
+			cd->repeat_track = -1;
+		}
+	}
 
 	update_display();
 	wmove( win, maxy-1,maxx-1 );
@@ -159,7 +167,14 @@ int main(int argc, char **argv)
 	    break;
 	case 'p':
 	case 'P':
-	    if( cd->isdisk ) {
+	    if( !cd->isdisk ) {
+		tcd_ejectcd(cd);
+
+		wclear(win);
+		wrefresh(win);
+		draw_not_always();
+	    }
+	    if( cd->isplayable ) {
 		if( cd->sc.cdsc_audiostatus == CDROM_AUDIO_PAUSED )
 		    tcd_pausecd(cd);
 		else
@@ -228,6 +243,11 @@ int main(int argc, char **argv)
 	case 'e':
 	case 'E':
 	    tcd_ejectcd(cd);
+
+	    wclear(win);
+	    wrefresh(win);
+	    draw_not_always();
+
 	    cd->play_method = NORMAL;
 	    cd->repeat_track = -1;
 	    break;
@@ -259,9 +279,8 @@ int main(int argc, char **argv)
 	case '2':
 	case '3':
 	case '4':
-	    tcd_close_disc(cd);
 	    tcd_change_disc( cd, c-49 );
-	    tcd_init_disc(cd,NULL);
+	    tcd_post_init(cd);
 
 	    wclear(win);
 	    wrefresh(win);
@@ -286,19 +305,7 @@ int main(int argc, char **argv)
 	t2=time(NULL);
 	if( t1 < t2 )
 	{
-	    if( cd->err || !cd->isdisk )
-	    {
-		tcd_readtoc(cd);
-		if( !cd->err )
-		{
-		    tcd_readdiskinfo(cd);
-		    cd->err = FALSE;
-		    cd->isdisk = TRUE;
-		}                         
-		wclear(win);
-		wrefresh(win);
-		draw_not_always();
-	    }
+	    draw_not_always();
 	    t1=time(NULL);
 	}
     }			
@@ -643,8 +650,7 @@ void phelp( int y, int x, char key, char *func, int toggle, int enabled )
 
 void reload_info(int signal)
 {
-    tcd_close_disc(cd);
-    tcd_init_disc(cd, NULL);
+    tcd_post_init(cd);
     draw_not_always();
 }
 

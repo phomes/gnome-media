@@ -109,6 +109,7 @@ int	tcd_readdiskinfo( cd_struct *cd );
 void	tcd_writediskinfo( cd_struct *cd );
 int 	tcd_ejectcd( cd_struct *cd );
 int 	tcd_init_disc( cd_struct *cd, WarnFunc msg_cb );
+int 	tcd_post_init( cd_struct *cd );
 int 	tcd_stopcd( cd_struct *cd );
 int	tcd_close_disc( cd_struct *cd );
 int	tcd_change_disc( cd_struct *cd, int disc );	

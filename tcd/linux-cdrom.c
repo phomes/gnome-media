@@ -42,12 +42,7 @@
 #include <math.h>
 #include <sys/ioctl.h>
 
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
+#include "linux-cdrom.h"
 
 #include "cddb.h"
 
@@ -88,23 +83,33 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 	    homedir = "/";                           
     }
     
-    if( !cd->err ) tcd_readtoc(cd);
-#ifdef DATABASE_SUPPORT
-    if( !cd->err ) tcd_readdiskinfo(cd);
-#endif
-    if( cd->err )
-    {
-	debug( "cdrom.c: tcd_init_disc exiting early (!cd->err)\n" );
-	return(-1);
-    }
-    
-#ifdef TCD_CHANGER_ENABLED
+#if defined(TCD_CHANGER_ENABLED)
     cd->nslots = ioctl( cd->cd_dev, CDROM_CHANGER_NSLOTS );
 #else
     cd->nslots = 0;
 #endif
     
     debug("cdrom.c: tcd_init_disc exiting normally\n" );
+    return( tcd_post_init( cd ));
+}
+
+int tcd_post_init( cd_struct *cd )
+{
+    debug("cdrom.c: tcd_post_init(%p) top\n", cd );
+
+    if( cd->isdisk && !cd->err ) {
+	tcd_readtoc(cd);
+#ifdef DATABASE_SUPPORT
+	tcd_readdiskinfo(cd);
+#endif
+	if( cd->err )
+	{
+	    debug( "cdrom.c: tcd_post_init exiting early (!cd->err)\n" );
+	    return(-1);
+	}
+    }
+
+    debug("cdrom.c: tcd_post_init exiting normally\n" );
     return(0);
 }
 
@@ -276,12 +281,16 @@ int tcd_set_volume(cd_struct *cd, int volume)
 
 int tcd_get_volume(cd_struct *cd)
 {
+#ifdef CDROMVOLREAD
         struct cdrom_volctrl vol;
 
 	if(ioctl(cd->cd_dev, CDROMVOLREAD, &vol) < 0)
 		return -1;
 
 	return vol.channel0;
+#else
+	return 0;
+#endif
 }	
 	                                  
 int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
@@ -291,10 +300,25 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	int tmp;
 	debug("cdrom.c: tcd_playtracks( %p, %d, %d )\n", cd, start_t, end_t );
 	cd->err = FALSE;
-	cd->isplayable=FALSE;
-	cd->isdisk=FALSE;
 	
-	ioctl( cd->cd_dev, CDROMCLOSETRAY );
+	tcd_gettime(cd);
+	if(cd->err) 
+	{
+	    cd->isdisk = FALSE;
+	    tcd_ejectcd(cd);
+
+	    if(cd->err) 
+	    {
+
+		debug("cdrom.c: tcd_playtracks - error while fetching disc.\n");
+		return -1;
+
+	    }
+	}
+
+#ifdef CDROMCLOSETRAY
+	ioctl(cd->cd_dev, CDROMCLOSETRAY);
+#endif	        
 	
 	if(cd->trk[start_t].toc.cdte_ctrl == CDROM_DATA_TRACK)
 	    start_t++;		/* FIXME bad hack */
@@ -353,8 +377,6 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 			return -1;
 		}
 	}
-   	cd->isplayable=TRUE;                                                 
-	cd->isdisk=TRUE;
 
 	debug("cdrom.c: tcd_playtracks exiting normally\n" );
    	return tmp;
@@ -421,24 +443,47 @@ int tcd_ejectcd( cd_struct *cd )
 	int tmp;
 
 	debug("cdrom.c: tcd_eject(%p) top\n", cd );
-	tcd_stopcd(cd);
+	if( cd->isplayable ) tcd_stopcd(cd);
 	cd->err = FALSE;
 
-	tmp = ioctl( cd->cd_dev, CDROMEJECT );
-	/* Error? try injecting */
-	if(tmp)
+	if( cd->isdisk ) {
+
+		tmp = ioctl( cd->cd_dev, CDROMEJECT );
+		cd->isdisk = FALSE;
+		cd->isplayable = FALSE;
+		strcpy( cd->errmsg, "No disc in drive " );
+		cd->err = TRUE;
+
+	} else {
+#ifdef CDROMCLOSETRAY
 		tmp = ioctl( cd->cd_dev, CDROMCLOSETRAY );
+		cd->isdisk = TRUE;
 
-   	if(tmp)
-	{
-		strcpy( cd->errmsg, "Can't eject disc." );
-               	cd->err = TRUE;
+	   	if(tmp) {
+			strcpy( cd->errmsg, "Can't close drive" );
+               		cd->err = TRUE;
 
-		debug("cdrom.c: tcd_eject exiting early. eject error. %s\n", cd, 
+			debug("cdrom.c: tcd_eject - close error. %s\n", 
 			strerror(errno) );
 
-		return(-1);
-        }
+			return(-1);
+        	}
+#endif
+		tmp = tcd_post_init( cd );
+
+	   	if(tmp) {
+			strcpy( cd->errmsg, "Disc init error. " );
+               		cd->err = TRUE;
+			
+			debug("cdrom.c: tcd_eject - disc init error. %s\n",  
+			strerror(errno) );
+
+			return(-1);
+		}
+
+		cd->isdisk = TRUE;
+		cd->isplayable = TRUE;
+	}
 	cd->cur_t = 0;	
 	
 	debug("cdrom.c: tcd_eject exiting normally\n" );
@@ -462,7 +507,7 @@ int tcd_stopcd( cd_struct *cd )
 		strcpy( cd->errmsg, "Can't stop disc." );
                	cd->err = TRUE;
 
-		debug("cdrom.c: tcd_stopcd exiting early. CDROMSTOP ioctl error.\n" );
+		debug("cdrom.c: tcd_stopcd exiting early. CDROMSTOP ioctl error = %x.\n", tmp);
 		return(-1);
         }
 
@@ -532,7 +577,7 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
  
         if( cd->cd_dev < 0 )
         {
-		snprintf( tmp, 255, "Error accessing cdrom device.\n\
+		g_snprintf( tmp, 255, "Error accessing cdrom device.\n\
 			Please check to make sure cdrom drive support\n\
 			is compiled into the kernel, and that you have\n\
 			permission to access the device.\n\nReason: %s\n", strerror(errno));
@@ -589,7 +634,7 @@ int tcd_readdiskinfo( cd_struct *cd )
     strncat( tcd_dir, "/.cddbslave/", sizeof(tcd_dir) );
     tcd_dir[sizeof(tcd_dir) - 1] = 0;
     
-    snprintf( fn, sizeof(fn) - 1, "%s%08lx", tcd_dir, cd->cddb_id );
+    g_snprintf( fn, sizeof(fn) - 1, "%s%08lx", tcd_dir, cd->cddb_id );
 
     fp = fopen(fn, "r");	
     if(fp != NULL)
@@ -647,7 +692,7 @@ void tcd_writediskinfo( cd_struct *cd )
     
     strncpy( home, homedir, sizeof(home) );
     home[sizeof(home) - 1] = 0;
-    snprintf( fn, sizeof(fn) - 1, "%s/.cddbslave/%08lx", home, cd->cddb_id );
+    g_snprintf( fn, sizeof(fn) - 1, "%s/.cddbslave/%08lx", home, cd->cddb_id );
     
     if( tcd_writecddb(cd, fn) < 0 )
     {

@@ -47,7 +47,7 @@ gtcd_LDADD = 	$(GNOME_LIBDIR) \
 		$(GNOMEUI_LIBS) \
 		$(INTLLIBS)
 
-tcd_LDADD = -lm $(CURSES_LIBS)
+tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS)
 
 CLEANFILES = *~
 
