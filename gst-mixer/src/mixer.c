@@ -23,6 +23,8 @@
 #include <config.h>
 #endif
 
+#undef USE_OPTION_WIDGET
+
 #include <string.h>
 #include <glib.h>
 #include <gnome.h>
@@ -140,23 +142,35 @@ cb_record_toggled (GtkWidget *button,
 		        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
 }
 
+#if USE_OPTION_WIDGET
 static void
-create_track_widget (GstMixer      *mixer,
+cb_opt_changed (GtkComboBox *box,
+		gpointer     data)
+{
+  MyMixerControls *ctrl = (MyMixerControls *) data;
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  gchar *opt;
+
+  if (gtk_combo_box_get_active_iter (box, &iter)) {
+    model = gtk_combo_box_get_model (box);
+    gtk_tree_model_get (model, &iter, 0, &opt, -1);
+    gst_mixer_set_option (ctrl->mixer, GST_MIXER_OPTIONS (ctrl->track), opt);
+  }
+}
+#endif
+
+static MyMixerControls *
+create_track_header (GstMixer      *mixer,
 		     GtkWidget     *table,
 		     gint           column_pos,
 		     GstMixerTrack *track)
 {
-  GtkWidget *label, *slider, *button, *image;
-  GtkObject *adj;
-  gint i, *volumes;
-  GList *adjlist = NULL;
+  GtkWidget *label, *image;
+  gint i, c = track->num_channels ? track->num_channels : 1;
   MyMixerControls *ctrl = g_new0 (MyMixerControls, 1);
   gchar *str = NULL;
   gboolean found = FALSE;
-  AtkObject *accessible;
-  gchar *accessible_name;
-
-  volumes = g_malloc (sizeof (gint) * track->num_channels);
 
   ctrl->mixer = mixer;
   ctrl->track = track;
@@ -188,7 +202,7 @@ create_track_widget (GstMixer      *mixer,
     if ((image = gtk_image_new_from_stock (str, GTK_ICON_SIZE_MENU)) != NULL) {
       gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.5);
       gtk_table_attach (GTK_TABLE (table), image,
-			column_pos, column_pos + track->num_channels,
+			column_pos, column_pos + c,
 			0, 1, 5, 0, 0, 0);
     }
   }
@@ -198,10 +212,31 @@ create_track_widget (GstMixer      *mixer,
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
   gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
   gtk_table_attach (GTK_TABLE (table), label,
-		    column_pos, column_pos + track->num_channels,
+		    column_pos, column_pos + c,
 		    1, 2, 5, 0, 0, 0);
 
+  return ctrl;
+}
+
+static void
+create_track_widget (GstMixer      *mixer,
+                     GtkWidget     *table,
+                     gint           column_pos,
+                     GstMixerTrack *track)
+{
+  GtkWidget *slider, *button;
+  gint i, *volumes;
+  GList *adjlist = NULL;
+  GtkObject *adj;
+  AtkObject *accessible;
+  gchar *accessible_name;
+  MyMixerControls *ctrl;
+
+  /* header */
+  ctrl = create_track_header (mixer, table, column_pos, track);
+
   /* now sliders for each of the tracks */
+  volumes = g_malloc (sizeof (gint) * track->num_channels);
   gst_mixer_get_volume (mixer, track, volumes);
   for (i = 0; i < track->num_channels; i++) {
     adj = gtk_adjustment_new (volumes[i],
@@ -246,9 +281,9 @@ create_track_widget (GstMixer      *mixer,
 		      G_CALLBACK (cb_lock_toggled), (gpointer) ctrl);
     accessible = gtk_widget_get_accessible (ctrl->lock);
     if (GTK_IS_ACCESSIBLE (accessible)) {
-       accessible_name = g_strdup_printf (_("%s Lock"), ctrl->track->label);
-       atk_object_set_name (accessible, accessible_name);
-       g_free (accessible_name);
+      accessible_name = g_strdup_printf (_("%s Lock"), ctrl->track->label);
+      atk_object_set_name (accessible, accessible_name);
+      g_free (accessible_name);
     }
   }
 
@@ -264,9 +299,9 @@ create_track_widget (GstMixer      *mixer,
   ctrl->mute = button;
   accessible = gtk_widget_get_accessible (ctrl->mute);
   if (GTK_IS_ACCESSIBLE (accessible)) {
-     accessible_name = g_strdup_printf (_("%s Mute"), ctrl->track->label);
-     atk_object_set_name (accessible, accessible_name);
-     g_free (accessible_name);
+    accessible_name = g_strdup_printf (_("%s Mute"), ctrl->track->label);
+    atk_object_set_name (accessible, accessible_name);
+    g_free (accessible_name);
   }
 
   if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)) {
@@ -282,12 +317,87 @@ create_track_widget (GstMixer      *mixer,
     ctrl->record = button;
     accessible = gtk_widget_get_accessible (ctrl->record);
     if (GTK_IS_ACCESSIBLE (accessible)) {
-       accessible_name = g_strdup_printf (_("%s Record"), ctrl->track->label);
-       atk_object_set_name (accessible, accessible_name);
-       g_free (accessible_name);
+      accessible_name = g_strdup_printf (_("%s Record"), ctrl->track->label);
+      atk_object_set_name (accessible, accessible_name);
+      g_free (accessible_name);
     }
   }
   g_free (volumes);
+}
+
+#if USE_OPTION_WIDGET
+static void
+create_options_widget (GstMixer      *mixer,
+		       GtkWidget     *table,
+		       gint           column_pos,
+		       GstMixerTrack *track)
+{
+  GtkWidget *box;
+  GstMixerOptions *options = GST_MIXER_OPTIONS (track);
+  MyMixerControls *ctrl;
+  const GList *opt;
+  AtkObject *accessible;
+  gchar *accessible_name;
+  gint i = 0;
+  const gchar *active_opt;
+
+  /* header */
+  ctrl = create_track_header (mixer, table, column_pos, track);
+
+  /* optionmenu */
+  active_opt = gst_mixer_get_option (mixer, GST_MIXER_OPTIONS (track));
+  box = gtk_combo_box_new_text ();
+  for (opt = options->values; opt != NULL; opt = opt->next, i++) {
+    gtk_combo_box_append_text (GTK_COMBO_BOX (box), opt->data);
+    if (!strcmp (active_opt, opt->data)) {
+      gtk_combo_box_set_active (GTK_COMBO_BOX (box), i);
+    }
+  }
+  gtk_table_attach (GTK_TABLE (table), box, column_pos, column_pos + 1, 2, 3,
+		    0, 0, 0, 0);
+  accessible = gtk_widget_get_accessible (box);
+  if (GTK_IS_ACCESSIBLE (accessible)) {
+    accessible_name = g_strdup_printf (_("%s Option Selection"),
+				       ctrl->track->label);
+    atk_object_set_name (accessible, accessible_name);
+    g_free (accessible_name);
+  }
+  gtk_widget_show (box);
+  g_signal_connect (box, "changed", G_CALLBACK (cb_opt_changed), ctrl);
+}
+#endif
+
+static void
+create_switch_widget (GstMixer      *mixer,
+		      GtkWidget     *table,
+		      gint           column_pos,
+		      GstMixerTrack *track)
+{
+  GtkWidget *button;
+  MyMixerControls *ctrl;
+  AtkObject *accessible;
+  gchar *accessible_name;
+
+  /* header */
+  ctrl = create_track_header (mixer, table, column_pos, track);
+
+  /* mute button */
+  button = gtk_check_button_new_with_label (_("Mute"));
+  gtk_table_attach (GTK_TABLE (table), button,
+                    column_pos, column_pos + 1,
+                    4, 5, 5, 0, 0, 0);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+                                GST_MIXER_TRACK_HAS_FLAG (track,
+                                                GST_MIXER_TRACK_MUTE));
+  g_signal_connect (G_OBJECT (button), "toggled",
+                    G_CALLBACK (cb_mute_toggled), (gpointer) ctrl);
+  ctrl->mute = button;
+  accessible = gtk_widget_get_accessible (ctrl->mute);
+  if (GTK_IS_ACCESSIBLE (accessible)) {
+    accessible_name = g_strdup_printf (_("%s Mute"), ctrl->track->label);
+    atk_object_set_name (accessible, accessible_name);
+    g_free (accessible_name);
+  }
 }
 
 static GtkWidget *
@@ -322,12 +432,25 @@ create_mixer_widget (GstMixer *mixer)
   for ( ; tracks != NULL; tracks = tracks->next) {
     GstMixerTrack *track = GST_MIXER_TRACK (tracks->data);
 
-    /* hack */
-    if (track->min_volume == track->max_volume)
-      continue;
+    /* hack for bad API (because of API stability...) in GStreamer-0.8.x */
+    if (track->num_channels == 0) {
+      if (GST_IS_MIXER_OPTIONS (track)) {
+#if USE_OPTION_WIDGET
+        /* options - menu */
+        create_options_widget (mixer, table, tablepos, track);
+#else
+        /* ignore */
+        continue;
+#endif
+      } else {
+        /* switch */
+        create_switch_widget (mixer, table, tablepos, track);
+      }
+    } else {
+      create_track_widget (mixer, table, tablepos, track);
+    }
 
-    create_track_widget (mixer, table, tablepos, track);
-    tablepos += track->num_channels;
+    tablepos += track->num_channels ? track->num_channels : 1;
     if (tracks->next != NULL) {
       GtkWidget *sep = gtk_vseparator_new ();
       gtk_table_attach_defaults (GTK_TABLE (table), sep,
@@ -458,11 +581,12 @@ cb_about (GtkWidget *widget,
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
-  const gchar *documentors[2] = {"Sun Microsystems", NULL};
+  const gchar *documentors[] = { "Sun Microsystems",
+				 NULL};
 
   about = gnome_about_new (_("Volume Control"),
 			   VERSION,
-			   "(c) 2003 Ronald Bultje",
+			   "(c) 2003-2004 Ronald Bultje",
 			   _("A GNOME/GStreamer-based mixer application"),
 			   authors, documentors, NULL,
 			   NULL);

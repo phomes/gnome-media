@@ -1,3 +1,15 @@
+2004-08-31  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* configure.in:
+	* gst-mixer/src/mixer.c: (cb_opt_changed), (create_track_header),
+	(create_track_widget), (create_options_widget),
+	(create_switch_widget), (create_mixer_widget), (cb_about):
+	  Add switches (ALSA uses those, and is unusable on several sound
+	  cards without). Add options, but #ifdef'ed out because the UI is
+	  so severely uglified by it that it doesn't belong in there at all.
+	  Also up GStreamer requirement to 0.8.2 because that's when the
+	  required API was added to the mixer interface.
+
 2004-08-29  Ronald S. Bultje  <Ronald S. Bultje <rbultje@ronald.bitfreak.net>>
 
 	* cddb-slave2/cddb-parser.c: (cddb_entry_new_from_file):
