@@ -14,10 +14,10 @@ BITMAPS = cddb.xpm	\
 	prev_t.xpm	\
 	rw.xpm		\
 	stop.xpm	\
-	repeat_cd.xpm	\
-	repeat_track.xpm\
-	repeat_normal.xpm\
-	repeat_random.xpm
+	loop.xpm	\
+	shuffle.xpm	\
+	repeat.xpm	\
+	normal.xpm
 
 pixmap_DATA = $(BITMAPS)
 

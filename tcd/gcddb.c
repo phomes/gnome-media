@@ -39,14 +39,14 @@
 #include "gcddb.h"
 #include "socket.h"
 #include "cddb.h"
-#include "properties.h"
+#include "prefs.h"
 
 GtkWidget *cddbwin, *label, *pb;
 GtkWidget *cancelbutton, *startbutton;
         
 extern int titlelabel_f;
 extern cd_struct cd;
-extern tcd_properties props;
+extern tcd_prefs prefs;
 
 int val;
 int cancel_id, start_id, timeout;
@@ -97,13 +97,13 @@ void gcddb()
 	start_id = gtk_signal_connect (GTK_OBJECT (startbutton), "clicked",
 		GTK_SIGNAL_FUNC(do_cddb), NULL);
 
-	g_snprintf( tmp, 255, _("Server: %s:%d\n"), props.cddb, props.cddbport );
+	g_snprintf( tmp, 255, _("Server: %s:%d\n"), prefs.cddb, prefs.cddbport );
         tmplabel = gtk_label_new(tmp);
 	gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
-	if( props.use_http )
+	if( prefs.use_http )
 	{
 		g_snprintf( tmp, 255, _("HTTP %s Enabled\n"), 
-			props.use_proxy? _("and Proxy"):"" );
+			prefs.use_proxy? _("and Proxy"):"" );
 	        tmplabel = gtk_label_new(tmp);
 		gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
 	}
@@ -138,18 +138,18 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	FILE *outfile;
 	cddb_query_str query;
 
-	strcpy( server.hostname, props.cddb );
-	server.port = props.cddbport;
-	server.http = props.use_http;
-	server.proxy = props.use_proxy;
+	strcpy( server.hostname, prefs.cddb );
+	server.port = prefs.cddbport;
+	server.http = prefs.use_http;
+	server.proxy = prefs.use_proxy;
 
 #ifdef DEBUG
-	printf("use_http==%d  use_proxy==%d\n",props.use_http,props.use_proxy);
+	printf("use_http==%d  use_proxy==%d\n",prefs.use_http,prefs.use_proxy);
 #endif
 	if(server.proxy) {
-		strcpy(server.proxy_server, props.proxy_server);
-		server.proxy_port = props.proxy_port;
-		strcpy(server.remote_path, props.remote_path);
+		strcpy(server.proxy_server, prefs.proxy_server);
+		server.proxy_port = prefs.proxy_port;
+		strcpy(server.remote_path, prefs.remote_path);
 	}
 	
 	gtk_label_set(GTK_LABEL(label), _("Connecting..."));

@@ -26,8 +26,8 @@ gtcd_SOURCES = 		\
 	gabout.h 	\
 	gcddb.h		\
 	tooltips.h	\
-	properties.c	\
-	properties.h	\
+	prefs.c	\
+	prefs.h	\
 	led.h		\
 	led.c		\
 	led.xpm	\

@@ -13,10 +13,10 @@ typedef struct
 	gchar *statusfont;
 	gchar *trackcolor;
 	gchar *statuscolor;
-} tcd_properties;
+} tcd_prefs;
 
-void load_properties( tcd_properties *prop );
-void save_properties( tcd_properties *prop );
-void properties_cb( GtkWidget *widget, void *data );
+void load_prefs( tcd_prefs *prop );
+void save_prefs( tcd_prefs *prop );
+void prefs_cb( GtkWidget *widget, void *data );
 
 #endif

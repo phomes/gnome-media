@@ -21,6 +21,7 @@ GtkWidget *music, *data;
 extern cd_struct cd;
 
 void make_gotomenu();
+void gcddb();
  
 void destroy_window (GtkWidget *widget, gboolean save)
 {
@@ -194,7 +195,9 @@ void edit_window( void )
 
 	button_box = gtk_hbox_new(FALSE,2);
 	button = gtk_button_new_with_label(_("CDDB Get"));
-	gtk_widget_set_sensitive(button, FALSE);
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		GTK_SIGNAL_FUNC(gcddb), NULL);
+//	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
 	button = gtk_button_new_with_label(_("Submit"));
 	gtk_widget_set_sensitive(button, FALSE);

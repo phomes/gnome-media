@@ -33,6 +33,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <stdarg.h>
+#include <sys/time.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -67,13 +68,24 @@ int opensocket( char *hostname, int port )
 	return sockfd;
 }
 
-int fgetsock( char* s, int size, int socket, PeriodicFunc func )
+int fgetsock(char* s, int size, int socket, PeriodicFunc func)
 {
+	fd_set rfds;
+	struct timeval tv;
+	int retval;
 	int i=0, r;
         char c;
-        
-    	i=0;
-        
+
+	FD_ZERO(&rfds);
+	FD_SET(socket, &rfds);
+	tv.tv_sec = 0;
+	tv.tv_usec = 10;
+
+	retval = select(socket+1, &rfds, NULL, NULL, &tv);
+	
+	if(!retval)
+		if(func) func();
+	        
         while( (r=recv(socket, &c, 1, 0)) != 00 )
         {
         	if(c == '\r' || c == '\n')
@@ -82,10 +94,10 @@ int fgetsock( char* s, int size, int socket, PeriodicFunc func )
                 	break;
                 s[i] = c;
 		i++;
-//		if( func ) func();
+		if(func) func();
 	}
         s[i] = 0;
-	recv(socket, &c, 1, 0 );
+	recv(socket, &c, 1, 0);
 	if( r < 0 )
 		return -1;
 	return r;

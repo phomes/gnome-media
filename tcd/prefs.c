@@ -1,3 +1,6 @@
+#define PACKAGE "TCD"                                             
+#define VERSION "2.0"                                             
+
 /* This file is part of TCD 2.0.
    
    Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
@@ -22,12 +25,11 @@
    timg@means.net
 */
 
-#include <config.h>
 #include <gnome.h>
 #include <string.h>
-#include "properties.h"
+#include "prefs.h"
 
-tcd_properties props;
+tcd_prefs prefs;
 GtkWidget *propbox;
 extern GtkTooltips *tooltips;
 
@@ -41,13 +43,13 @@ struct font_str
     char **font;
 };
 
-void load_properties( tcd_properties *prop )
+void load_prefs( tcd_prefs *prop )
 {
     prop->cddev=gnome_config_get_string       ("/gtcd/cdrom/device=/dev/cdrom");
     prop->cddb=gnome_config_get_string        ("/gtcd/cddb/server=cddb.cddb.com");
     prop->cddbport=gnome_config_get_int       ("/gtcd/cddb/port=888");
     prop->handle=gnome_config_get_bool        ("/gtcd/ui/handle=1");
-    prop->tooltip=gnome_config_get_bool       ("/gtcd/ui/tooltip=0");
+    prop->tooltip=gnome_config_get_bool       ("/gtcd/ui/tooltip=1");
     prop->time_display=gnome_config_get_int   ("/gtcd/ui/time_display=0");
     prop->trackfont=gnome_config_get_string   ("/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
     prop->statusfont=gnome_config_get_string  ("/gtcd/ui/statusfont=-adobe-times-medium-*-*-*-20-*-*-*-*-*-*-*" );
@@ -61,7 +63,7 @@ void load_properties( tcd_properties *prop )
     prop->remote_path=gnome_config_get_string ("/gtcd/cddb/remote_path=~cddb/cddb.cgi");
 }
 
-void save_properties( tcd_properties *prop )
+void save_prefs( tcd_prefs *prop )
 {
     gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
     gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
@@ -90,7 +92,7 @@ void changed_cb( GtkWidget *widget, void *data )
 
 void cddb_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
 {
-    props.cddbport = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
+    prefs.cddbport = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
@@ -99,11 +101,11 @@ GtkWidget *http_box, *proxy_box;
 void http_checked( GtkWidget *widget, gpointer data )
 {
     if (GTK_TOGGLE_BUTTON(widget)->active) {
-	props.use_http=TRUE;
+	prefs.use_http=TRUE;
 	gtk_widget_set_sensitive(http_box,TRUE);
     } 
     else {
-	props.use_http=FALSE;
+	prefs.use_http=FALSE;
 	gtk_widget_set_sensitive(http_box,FALSE);
     }
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
@@ -112,11 +114,11 @@ void http_checked( GtkWidget *widget, gpointer data )
 void proxy_checked( GtkWidget *widget, gpointer data )
 {
     if (GTK_TOGGLE_BUTTON(widget)->active) {
-	props.use_proxy=TRUE;
+	prefs.use_proxy=TRUE;
 	gtk_widget_set_sensitive(proxy_box,TRUE);
     } 
     else {
-	props.use_proxy=FALSE;
+	prefs.use_proxy=FALSE;
 	gtk_widget_set_sensitive(proxy_box,FALSE);
     }
     
@@ -125,7 +127,7 @@ void proxy_checked( GtkWidget *widget, gpointer data )
 
 void proxy_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
 {
-    props.proxy_port = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
+    prefs.proxy_port = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
@@ -147,17 +149,17 @@ GtkWidget *create_http_frame()
     
     /* http checkbox */
     http_check = gtk_check_button_new_with_label(_("Use HTTP"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(http_check), props.use_http);
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(http_check), prefs.use_http);
     gtk_signal_connect(GTK_OBJECT(http_check),"toggled",
 		       GTK_SIGNAL_FUNC(http_checked),NULL);  
     
-    gtk_widget_set_sensitive(http_box,props.use_http);
+    gtk_widget_set_sensitive(http_box,prefs.use_http);
     
     /* remote path entry & label */
     label = gtk_label_new(_("Path:"));
     path_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(path_entry), props.remote_path );
-    props.remote_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(path_entry)));
+    gtk_entry_set_text(GTK_ENTRY(path_entry), prefs.remote_path );
+    prefs.remote_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(path_entry)));
     gtk_signal_connect(GTK_OBJECT(path_entry), "changed",
 		       GTK_SIGNAL_FUNC(changed_cb), NULL );
     
@@ -166,25 +168,25 @@ GtkWidget *create_http_frame()
     
     /* proxy checkbox */
     proxy_check = gtk_check_button_new_with_label(_("Use Proxy Server"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(proxy_check), props.use_proxy);
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(proxy_check), prefs.use_proxy);
     gtk_signal_connect(GTK_OBJECT(proxy_check),"toggled",
 		       GTK_SIGNAL_FUNC(proxy_checked),NULL);  
     
-    gtk_widget_set_sensitive(proxy_box,props.use_proxy);
+    gtk_widget_set_sensitive(proxy_box,prefs.use_proxy);
     
     /* proxy server */
     label = gtk_label_new(_("Server:"));
     proxy_server_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(proxy_server_entry), props.proxy_server );
+    gtk_entry_set_text(GTK_ENTRY(proxy_server_entry), prefs.proxy_server );
     gtk_box_pack_start(GTK_BOX(proxy_l_box), label, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(proxy_r_box), proxy_server_entry, TRUE, TRUE, 0);
-    props.proxy_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(proxy_server_entry)));
+    prefs.proxy_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(proxy_server_entry)));
     gtk_signal_connect(GTK_OBJECT(proxy_server_entry), "changed",
 		       GTK_SIGNAL_FUNC(changed_cb), NULL );
     
     /* proxy port */
     label = gtk_label_new(_("Port:"));
-    adj = gtk_adjustment_new( props.proxy_port, 1, 9999, 1, 10, 10 );
+    adj = gtk_adjustment_new( prefs.proxy_port, 1, 9999, 1, 10, 10 );
     proxy_port_spin  = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
     gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(proxy_port_spin),
 				    GTK_SHADOW_NONE);
@@ -225,8 +227,8 @@ GtkWidget *create_cddb_frame()
     label = gtk_label_new(_("Server:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddb_i = gtk_entry_new();
-    gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
-    props.cddb = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddb_i)));
+    gtk_entry_set_text( GTK_ENTRY(cddb_i), prefs.cddb );
+    prefs.cddb = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddb_i)));
     gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
 			GTK_SIGNAL_FUNC(changed_cb), NULL );
     gtk_box_pack_start( GTK_BOX(cddb_l_box), label, TRUE, TRUE, 0 );
@@ -235,7 +237,7 @@ GtkWidget *create_cddb_frame()
     /* port spinner */
     label = gtk_label_new(_("Port:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
-    adj = gtk_adjustment_new( props.cddbport, 1, 9999, 1, 10, 10 );
+    adj = gtk_adjustment_new( prefs.cddbport, 1, 9999, 1, 10, 10 );
     port_i = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
     gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(port_i),
 				    GTK_SHADOW_NONE);
@@ -274,8 +276,8 @@ GtkWidget *create_cdrom_frame()
     label = gtk_label_new(_("Device:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddev_i = gtk_entry_new();
-    gtk_entry_set_text( GTK_ENTRY(cddev_i), props.cddev );
-    props.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddev_i)));
+    gtk_entry_set_text( GTK_ENTRY(cddev_i), prefs.cddev );
+    prefs.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddev_i)));
     gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
 			GTK_SIGNAL_FUNC(changed_cb), NULL );
     gtk_box_pack_start( GTK_BOX(cdrom_l_box), label, TRUE, TRUE, 0 );
@@ -306,14 +308,14 @@ void track_color_changed_cb( GnomeColorSelector *widget, void *data )
     gnome_color_selector_get_color_int( 
 	widget, &r, &g, &b, 255 );
     
-    snprintf( props.trackcolor, 24, "#%02x%02x%02x", r, g, b );
+    snprintf( prefs.trackcolor, 24, "#%02x%02x%02x", r, g, b );
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
 /* Track font functions */
 void track_font_changed_cb( GtkWidget *widget, GnomeFontSelector *fs )
 {
-    strcpy(props.trackfont,gnome_font_selector_get_selected(fs));
+    strcpy(prefs.trackfont,gnome_font_selector_get_selected(fs));
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
@@ -331,7 +333,7 @@ void track_font_cb( GtkWidget *widget, gchar *data )
 /* Status font functions */
 void status_font_changed_cb( GtkWidget *widget, GnomeFontSelector *fs )
 {
-    strcpy(props.statusfont,gnome_font_selector_get_selected(fs));
+    strcpy(prefs.statusfont,gnome_font_selector_get_selected(fs));
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 void status_font_cb( GtkWidget *widget, gchar *data )
@@ -355,16 +357,16 @@ GtkWidget *create_status_frame()
     
     GtkWidget *frame, *status_table;
     
-    if(sscanf(props.trackcolor, "#%02x%02x%02x", &tr,&tg,&tb) != 3)
+    if(sscanf(prefs.trackcolor, "#%02x%02x%02x", &tr,&tg,&tb) != 3)
     {
 	g_print("WARNING: Error parsing color: #%02X%02X%02X\n", tr, tg, tb);
-	strcpy(props.trackcolor, "#FF0000");
+	strcpy(prefs.trackcolor, "#FF0000");
     }   
  
-    if(sscanf(props.statuscolor,"#%02x%02x%02x", &rr,&rg,&rb) != 3)
+    if(sscanf(prefs.statuscolor,"#%02x%02x%02x", &rr,&rg,&rb) != 3)
     {
 	g_print("WARNING: Error parsing color: #%02X%02X%02X\n", tr, tg, tb);
-	strcpy(props.statuscolor,"#00FF00");
+	strcpy(prefs.statuscolor,"#00FF00");
     }
 
     status_table = gtk_table_new( 4, 2, FALSE );
@@ -416,15 +418,15 @@ GtkWidget *create_ui_frame()
     handle_i = gtk_check_button_new_with_label(_("Show Handles (Restart of TCD required)"));
     tooltips_i = gtk_check_button_new_with_label(_("Show Tooltips"));
     
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), props.handle );
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), props.tooltip );
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), prefs.handle );
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), prefs.tooltip );
     
     ui_frame = gtk_frame_new(_("Interface"));
     
     gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
-			GTK_SIGNAL_FUNC(check_changed_cb), &props.handle );
+			GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle );
     gtk_signal_connect( GTK_OBJECT(tooltips_i), "clicked",
-			GTK_SIGNAL_FUNC(check_changed_cb), &props.tooltip );
+			GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip );
     
     gtk_box_pack_start( GTK_BOX(ui_l_box), handle_i, FALSE, FALSE, 4 );
     gtk_box_pack_start( GTK_BOX(ui_l_box), tooltips_i, FALSE, FALSE, 4 );
@@ -504,24 +506,24 @@ void help_cb(GtkWidget *widget, void *data)
 void apply_cb( GtkWidget *widget, void *data )
 {	
 /* Do stuff here if needed */
-    if( props.tooltip )
+    if( prefs.tooltip )
 	gtk_tooltips_enable(tooltips);
     else
 	gtk_tooltips_disable(tooltips);
     setup_colors();		
     setup_fonts();
-    save_properties(&props);
+    save_prefs(&prefs);
 }
 
-void properties_cb( GtkWidget *widget, void *data )
+void prefs_cb( GtkWidget *widget, void *data )
 {
     GtkWidget *general, *page2, *label, *interface;
     GtkWidget *box1;
     
-    load_properties(&props);
+    load_prefs(&prefs);
     
     propbox = gnome_property_box_new();
-    gtk_window_set_title( GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window), _("TCD Settings") );
+    gtk_window_set_title(GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window), _("Preferences"));
     
     box1 = gtk_vbox_new(FALSE,2);
     general = create_page1();
