@@ -3,31 +3,31 @@ Audiodir = $(datadir)/apps/Audio
 bin_PROGRAMS = gtcd tcd
 
 gtcd_SOURCES = 			\
-	src/gtcd.c 		\
-	src/cddb.c 		\
-	src/socket.c 		\
-	src/cdrom.c 		\
-	src/gtracked.c 		\
-	src/gabout.c 		\
-	src/gcddb.c 		\
-	src/cddb.h 		\
-	src/socket.h 		\
-	src/gtracked.h 		\
-	src/gabout.h 		\
-	src/gcddb.h		\
-	src/tooltips.h
+	gtcd.c 		\
+	cddb.c 		\
+	socket.c 		\
+	cdrom.c 		\
+	gtracked.c 		\
+	gabout.c 		\
+	gcddb.c 		\
+	cddb.h 		\
+	socket.h 		\
+	gtracked.h 		\
+	gabout.h 		\
+	gcddb.h		\
+	tooltips.h
 
 tcd_SOURCES = 			\
-	src/tcd.c 		\
-	src/cddb.c 		\
-	src/socket.c 		\
-	src/cdrom.c 		\
-	src/cddb.h 		\
-	src/socket.h 		\
-	src/cdrom.h		\
-	src/tcd.h		\
-	src/tracked.h		\
-	src/tracked.c
+	tcd.c 		\
+	cddb.c 		\
+	socket.c 		\
+	cdrom.c 		\
+	cddb.h 		\
+	socket.h 		\
+	cdrom.h		\
+	tcd.h		\
+	tracked.h		\
+	tracked.c
 
 gtcd_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
@@ -35,6 +35,6 @@ tcd_LDADD = -lm -lncurses
 
 CLEANFILES = *.o core *~ libcdrom.a
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -DTCD_CHANGER_ENABLED
+INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) #-DTCD_CHANGER_ENABLED
 
 Audio_data = gtcd.desktop
