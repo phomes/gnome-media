@@ -194,7 +194,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_widget_set_usize(trwin, 500, 300);
 
     gtk_signal_connect(GTK_OBJECT(trwin), "delete_event",
-		       GTK_SIGNAL_FUNC(destroy_window), trwin);
+		       GTK_SIGNAL_FUNC(destroy_window), (gpointer)FALSE);
 	
     main_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 
@@ -401,12 +401,14 @@ void gtracked_submit(void)
 		key = g_strconcat(prefix, "/", sect, "/description", NULL);
 		description = gnome_config_get_string(key);
 		g_free(key);
-		if (!description)
+		if (!description) {
+			g_free(sect);
 			continue;
+		}
 		item = gtk_menu_item_new_with_label(description);
 		g_free(description);
 		gtk_object_set_data_full(GTK_OBJECT(item), "service",
-					 g_strdup(sect),
+					 sect,
 					 (GtkDestroyNotify)g_free);
 		gtk_menu_prepend(GTK_MENU(menu), item);
 		gtk_widget_show(item);

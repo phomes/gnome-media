@@ -250,7 +250,7 @@ GtkWidget* make_changer_buttons( void )
     int i;
     
     box = gtk_hbox_new(FALSE, 0);
-    changer_buttons = (GtkWidget**)g_new(GtkWidget, cd.nslots);
+    changer_buttons = g_new(GtkWidget *, cd.nslots);
     
     for(i=0; i < cd.nslots && i < 12; i++)
     {
@@ -567,6 +567,8 @@ void draw_status(void)
 
 gint slow_timer( gpointer *data )
 {
+    static char *lock_file = NULL;
+    
     tcd_post_init(&cd);
 
     /* see if we need to make a new menu */
@@ -585,7 +587,9 @@ gint slow_timer( gpointer *data )
     }
 
     /* is a cddb operation going on? */
-    cddb = g_file_test(gnome_util_home_file(".cddbstatus_lock"), G_FILE_TEST_EXISTS);
+    if (!lock_file)
+      lock_file = gnome_util_home_file(".cddbstatus_lock");
+    cddb = g_file_test(lock_file, G_FILE_TEST_EXISTS);
     
     draw_status(); 
     return 1;

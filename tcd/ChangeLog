@@ -1,3 +1,14 @@
+1999-05-02  James Henstridge  <james@daa.com.au>
+
+	* gtracked.c (gtracked_submit): was leaking the section names when
+	iterating over the file cddb-submit-methods.
+
+	* gtcd.c (slow_timer): fixed a memory leak.  The return value of
+	gnome_util_home_file was not being freed.  This was causing gtcd to
+	leak one string every second -- not good if you leave gtcd running.
+	Now the malloc/free difference seems to be stable (except when you
+	bring up any dialogs).
+
 1999-04-30  James Henstridge  <james@daa.com.au>
 
 	* gtracked.c (gtracked_submit): coded the dialog used to submit
