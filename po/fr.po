@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
-"POT-Creation-Date: 1999-03-01 17:36-0500\n"
+"POT-Creation-Date: 1999-05-31 22:06-0500\n"
 "PO-Revision-Date: 1998-02-22 19:26+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Vincent Renardias <vincent@ldsol.com>\n"
@@ -13,65 +13,95 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cddbslave/main.c:43
+#: cddbslave/main.c:53
 #, c-format
 msgid "Ready for command: %s\n"
 msgstr "Pret pour la commande: %s\n"
 
-#: cddbslave/main.c:44
+#: cddbslave/main.c:54
 #, c-format
 msgid "Connecting [%s]\n"
 msgstr "Connexion [%s]\n"
 
-#: cddbslave/main.c:45
+#: cddbslave/main.c:55
 #, c-format
 msgid "Querying server [%s]\n"
 msgstr "Interrogation du serveur [%s]\n"
 
-#: cddbslave/main.c:46
+#: cddbslave/main.c:56
 #, c-format
 msgid "Waiting for reply [%s]\n"
 msgstr "Attente de la réponse [%s]\n"
 
-#: cddbslave/main.c:47
+#: cddbslave/main.c:57
 #, c-format
 msgid "Reading reply [%s]\n"
 msgstr "Lecture de la réponse [%s]\n"
 
-#: cddbslave/main.c:48
+#: cddbslave/main.c:58
 #, c-format
 msgid "Disconnecting [%s]\n"
 msgstr "Déconnexion [%s]\n"
 
-#: cddbslave/main.c:49
+#: cddbslave/main.c:59
 #, c-format
 msgid "Error connecting [%s]\n"
 msgstr "Erreur de connexion [%s]\n"
 
-#: cddbslave/main.c:50
+#: cddbslave/main.c:60
 #, c-format
 msgid "Error querying [%s]\n"
 msgstr "Erreur d'interrogation [%s]\n"
 
-#: cddbslave/main.c:51
+#: cddbslave/main.c:61
 #, c-format
 msgid "Error reading [%s]\n"
 msgstr "Erreur de lecture [%s]\n"
 
-#: cddbslave/main.c:52
+#: cddbslave/main.c:62
 #, c-format
 msgid "No match found for %s\n"
 msgstr ""
 
-#: cddbslave/main.c:53
+#: cddbslave/main.c:63
 #, c-format
 msgid "Timeout: %s\n"
 msgstr ""
 
-#: cddbslave/main.c:54
+#: cddbslave/main.c:64
 #, c-format
 msgid "Inactive. %s\n"
 msgstr "Inactif. %s\n"
+
+#: extace/extace.c:94
+msgid "Cannot connect to EsounD\n"
+msgstr ""
+
+#: extace/extace.c:631
+msgid "3D"
+msgstr ""
+
+#: extace/extace.c:637
+msgid "Flat"
+msgstr ""
+
+#: extace/extace.c:643
+msgid "Oscill"
+msgstr ""
+
+#: extace/extace.c:649
+msgid "Spikes"
+msgstr ""
+
+#: extace/extace.c:655
+#, fuzzy
+msgid "About"
+msgstr "_À Propos..."
+
+#: extace/extace.c:661
+#, fuzzy
+msgid "Close"
+msgstr "Fermer le tiroir"
 
 #: gmix/gmix.c:77
 msgid "_About"
@@ -102,23 +132,23 @@ msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:629
+#: gmix/gmix.c:632
 msgid "Lock"
 msgstr "Vérouiller"
 
-#: gmix/gmix.c:640
+#: gmix/gmix.c:642
 msgid "Rec."
 msgstr "Enr."
 
-#: gmix/gmix.c:647
+#: gmix/gmix.c:659
 msgid "Mute"
 msgstr "Sourdine"
 
-#: gmix/gmix.c:797
+#: gmix/gmix.c:812
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Le Mixeur Gnome"
 
-#: gmix/gmix.c:800
+#: gmix/gmix.c:815
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ce programme est un mixeur pour les pilotes de son OSS"
 
@@ -135,70 +165,78 @@ msgstr ""
 "Regardez le fichier 'Thanks' inclu dans la distribution pour la liste des "
 "contributeurs."
 
-#: tcd/cddb_props.c:62
+#: tcd/cddb_props.c:64
 msgid "Disc ID"
 msgstr "ID Disque"
 
-#: tcd/cddb_props.c:62
+#: tcd/cddb_props.c:64
 msgid "Disc Title"
 msgstr "Titre du Disque"
 
-#: tcd/cddb_props.c:77
+#: tcd/cddb_props.c:79
 #, fuzzy
 msgid "Edit"
 msgstr "_Quitter"
 
-#: tcd/cddb_props.c:81
+#: tcd/cddb_props.c:83
 msgid "Remove"
 msgstr ""
 
-#: tcd/cddb_props.c:87
+#: tcd/cddb_props.c:89
 msgid "Refresh List"
 msgstr ""
 
 #. server settings
-#: tcd/cddb_props.c:134
+#: tcd/cddb_props.c:138
 msgid "Server Settings"
 msgstr ""
 
-#: tcd/cddb_props.c:143
+#: tcd/cddb_props.c:147
 msgid "Address"
 msgstr ""
 
-#: tcd/cddb_props.c:153
+#: tcd/cddb_props.c:157
 msgid "Port"
 msgstr ""
 
+#: tcd/cddb_props.c:164
+msgid "Use HTTP"
+msgstr ""
+
+#: tcd/cddb_props.c:169
+msgid "Proxy"
+msgstr ""
+
 #. local db
-#: tcd/cddb_props.c:163
+#: tcd/cddb_props.c:189
 msgid "Local Database"
 msgstr ""
 
 #. frame
-#: tcd/cddb_props.c:205
+#: tcd/cddb_props.c:231
 #, fuzzy
 msgid "CDDB Data"
 msgstr "Etat CDDB"
 
-#: tcd/cddb_props.c:237
+#: tcd/cddb_props.c:263
 msgid "CDDB Editor"
 msgstr "Éditeur CDDB"
 
-#: tcd/cddb_props.c:251
+#: tcd/cddb_props.c:277
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Erreur lors de la lecture de $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:367
+#: tcd/cddb_props.c:393
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr ""
 
-#: tcd/cddb_props.c:379
+#: tcd/cddb_props.c:405
 msgid "Delete CDDB Entry?"
 msgstr ""
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:242
+#: tcd/cddb_status.c:50 tcd/gtracked.c:310
 msgid "CDDB Status"
 msgstr "Etat CDDB"
 
@@ -243,7 +281,7 @@ msgstr "aléatoire"
 msgid "Open track editor"
 msgstr "Ouvrir l'éditeur de piste"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:578
+#: tcd/gtcd.c:298 tcd/prefs.c:582
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -285,47 +323,87 @@ msgstr "Pas de Disque"
 msgid "Error"
 msgstr "Erreur"
 
-#: tcd/gtracked.c:137
+#: tcd/gtcd.c:800
+msgid "Volume"
+msgstr ""
+
+#: tcd/gtcd.c:979
+msgid "Filename of the CD device"
+msgstr ""
+
+#: tcd/gtcd.c:979
+#, fuzzy
+msgid "FILE"
+msgstr "FICHIER ..."
+
+#: tcd/gtracked.c:169
 msgid "Trk"
 msgstr "Pst"
 
-#: tcd/gtracked.c:137
+#: tcd/gtracked.c:169
 msgid "Time"
 msgstr "Temps"
 
-#: tcd/gtracked.c:137
+#: tcd/gtracked.c:169
 msgid "Title"
 msgstr "Titre"
 
-#: tcd/gtracked.c:157
+#: tcd/gtracked.c:192
 msgid "Track Editor"
 msgstr "Éditeur de piste"
 
-#: tcd/gtracked.c:168
+#. Disc area
+#: tcd/gtracked.c:208
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Informations Disque (%02u:%02u minutes)"
 
-#: tcd/gtracked.c:173
+#: tcd/gtracked.c:217
 msgid "Artist / Title"
 msgstr "Artiste / Titre"
 
-#. ...
-#: tcd/gtracked.c:217
+#. END Disc area
+#. Track area
+#: tcd/gtracked.c:240
 msgid "Track Information"
 msgstr "Informations sur la piste"
 
 #. Clear button
-#: tcd/gtracked.c:231
+#: tcd/gtracked.c:299
 msgid "Clear"
 msgstr "Effacer"
 
 #. Playlist button
-#: tcd/gtracked.c:236
+#: tcd/gtracked.c:304
 msgid "Playlist"
 msgstr ""
 
-#: tcd/linux-cdrom.c:555
+#: tcd/gtracked.c:316
+#, fuzzy
+msgid "Submit"
+msgstr "Quiter"
+
+#: tcd/gtracked.c:376
+#, fuzzy
+msgid "Submit Information"
+msgstr "Informations sur la piste"
+
+#: tcd/gtracked.c:382
+#, c-format
+msgid ""
+"Submit information about\n"
+"'%s'"
+msgstr ""
+
+#: tcd/gtracked.c:391
+msgid "To: "
+msgstr ""
+
+#: tcd/gtracked.c:424
+msgid "Category: "
+msgstr ""
+
+#: tcd/linux-cdrom.c:571
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -336,11 +414,11 @@ msgid ""
 "Reason: %s\n"
 msgstr ""
 
-#: tcd/linux-cdrom.c:624
+#: tcd/linux-cdrom.c:640
 msgid "Unknown / Unknown"
 msgstr "Inconnu / Inconnu"
 
-#: tcd/linux-cdrom.c:628
+#: tcd/linux-cdrom.c:646
 #, c-format
 msgid "Track %d"
 msgstr "Piste %d"
@@ -362,146 +440,143 @@ msgid "About..."
 msgstr "À Propos..."
 
 #. do nothing
-#: tcd/prefs.c:174 tcd/prefs.c:229
+#: tcd/prefs.c:178 tcd/prefs.c:233
 #, fuzzy
 msgid "Do nothing"
 msgstr "Ne rien faire"
 
-#: tcd/prefs.c:180
+#: tcd/prefs.c:184
 #, fuzzy
 msgid "Start playing"
 msgstr "Commencer à jouer"
 
-#: tcd/prefs.c:186 tcd/prefs.c:235
+#: tcd/prefs.c:190 tcd/prefs.c:239
 #, fuzzy
 msgid "Stop playing"
 msgstr "Arrêter"
 
 #. close tray
-#: tcd/prefs.c:190 tcd/prefs.c:247
+#: tcd/prefs.c:194 tcd/prefs.c:251
 #, fuzzy
 msgid "Close tray"
 msgstr "Fermer le tiroir"
 
-#: tcd/prefs.c:241
+#: tcd/prefs.c:245
 #, fuzzy
 msgid "Open tray"
 msgstr "Ouvrir le tiroir"
 
 #. device entry
-#: tcd/prefs.c:320
+#: tcd/prefs.c:324
 #, fuzzy
 msgid "CDROM device"
 msgstr "Périphérique CDROM"
 
 #. Color picker
-#: tcd/prefs.c:329
+#: tcd/prefs.c:333
 #, fuzzy
 msgid "Track/title color"
 msgstr "Couleur de Piste/Titre"
 
 #. font picker
-#: tcd/prefs.c:341
+#: tcd/prefs.c:345
 #, fuzzy
 msgid "Track/title font"
 msgstr "Police de Piste/Titre"
 
-#: tcd/prefs.c:342
+#: tcd/prefs.c:346
 #, fuzzy
 msgid "Change font"
 msgstr "Changer la police"
 
 #. show handles
-#: tcd/prefs.c:349
+#: tcd/prefs.c:353
 msgid "Show handles (restart required)"
 msgstr ""
 
 #. show tooltips
-#: tcd/prefs.c:356
+#: tcd/prefs.c:360
 #, fuzzy
 msgid "Show tooltips"
 msgstr "Afficher les bulles d'aides"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:363
+#: tcd/prefs.c:367
 msgid "Use alternate method to play CD"
 msgstr ""
 
 #. start frame
-#: tcd/prefs.c:383
+#: tcd/prefs.c:387
 #, fuzzy
 msgid "On startup"
 msgstr "Au démarrage"
 
 #. exit frame
-#: tcd/prefs.c:389
+#: tcd/prefs.c:393
 #, fuzzy
 msgid "On exit"
 msgstr "En quittant"
 
-#: tcd/prefs.c:497
+#: tcd/prefs.c:501
 msgid "Key"
 msgstr "Touche"
 
-#: tcd/prefs.c:498
+#: tcd/prefs.c:502
 msgid "Action"
 msgstr "Action"
 
-#: tcd/prefs.c:516
+#: tcd/prefs.c:520
 msgid "Click here to change:"
 msgstr ""
 
 #. Frame
-#: tcd/prefs.c:538 tcd/prefs.c:582
+#: tcd/prefs.c:542 tcd/prefs.c:586
 msgid "Keybindings"
 msgstr "Raccourcis clavier"
 
-#: tcd/prefs.c:586
+#: tcd/prefs.c:590
 msgid "CDDB Settings"
 msgstr ""
 
-#: vu-meter/main.c:114
+#: vu-meter/main.c:125
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
 
-#: vu-meter/main.c:178
+#: vu-meter/main.c:247
 msgid "Specify the X position of the meter."
 msgstr "Spécifiez la position X du vue-métre."
 
-#: vu-meter/main.c:179
+#: vu-meter/main.c:248
 msgid "X-Position"
 msgstr "Position X"
 
-#: vu-meter/main.c:181
+#: vu-meter/main.c:250
 msgid "Specify the Y position of the meter."
 msgstr "Spécifiez la position Y du vue-métre."
 
-#: vu-meter/main.c:182
+#: vu-meter/main.c:251
 msgid "Y-Position"
 msgstr "Position-Y"
 
-#: vu-meter/main.c:184
+#: vu-meter/main.c:253
 msgid "Connect to the esd server on this host."
 msgstr "Impossible de se connecter à un server esd sur cette machine."
 
-#: vu-meter/main.c:185
+#: vu-meter/main.c:254
 msgid "ESD Server Host"
 msgstr "Machine Serveur ESD"
 
-#: vu-meter/main.c:187
+#: vu-meter/main.c:256
 msgid "Open a vertical version of the meter."
 msgstr "Ouvrir une version verticale du vue-métre."
 
-#: vu-meter/main.c:195
+#: vu-meter/main.c:264
 #, c-format
 msgid "Host is %s\n"
 msgstr ""
 
-#: vu-meter/main.c:216
+#: vu-meter/main.c:285
 msgid "Volume Meter"
 msgstr ""
-
-#~ msgid "FILE ..."
-#~ msgstr "FICHIER ..."

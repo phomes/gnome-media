@@ -298,7 +298,6 @@ unsigned long cddb_discid( cd_struct *cd )
 
 	for( i=0; i <= cd->last_t+1; i++ )
 	{
-		g_print("foo: %d\n", i+1);
  		cdtoc[i].frame = cd->trk[i+1].toc.cdte_addr.msf.frame;
  		cdtoc[i].min = cd->trk[i+1].toc.cdte_addr.msf.minute;
  		cdtoc[i].sec = cd->trk[i+1].toc.cdte_addr.msf.second;
