@@ -7,13 +7,71 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 17:46+0200\n"
+"POT-Creation-Date: 2004-05-09 16:44+0200\n"
 "PO-Revision-Date: 2004-03-12 17:18-0500\n"
 "Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "Endereço do servidor a ser contatado em requisições de CD"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Informação a mandar para o servidor"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Porta"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "Nome do servidor"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Tipo do servidor"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "O nome do host que será enviado com todas as requisições"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "A porta em que o servidor está rodando o banco de dados"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"O tipo do servidor para obter informações de CD. Valores possíveis são 0 "
+"(rodízio de servidor FreeDB), 1 (outro servidor freedb) e 2 (outro servidor)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "O nome do usuário"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "O nome do usuário que será enviado com todas as requisições"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"Esta chave especifica qual informação de usuário será enviada para o "
+"servidor ao obter informações do CD. Valores possíveis são 0 (nenhuma "
+"informação), 1 (informação real) e 3 (outra informação)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Nome da sua máquina"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -69,10 +127,6 @@ msgstr "_Rodízio de servidores FreeDB"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Outro servidor _FreeDB:"
-
-#: cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Porta"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -137,6 +191,14 @@ msgstr "Artista e Título"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Faixa desconhecida"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:1
+msgid "CD Database"
+msgstr "Banco de Dados de CD"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:2
+msgid "Modify your CD database preferences"
+msgstr "Alterar suas preferências para o banco de dados de CD"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -869,7 +931,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Linha para exibição do nome do álbum"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Reproduzir"
 
@@ -894,6 +956,7 @@ msgstr "Pausado"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
+#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Reprodutor de CD"
 
@@ -956,7 +1019,7 @@ msgstr "%d - Desconhecido"
 msgid "P_revious track"
 msgstr "Faixa ante_rior"
 
-#: gnome-cd/gnome-cd.c:347
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Parar"
 
@@ -972,7 +1035,7 @@ msgstr "_Próxima faixa"
 msgid "_Eject disc"
 msgstr "Abrir band_eja do disco"
 
-#: gnome-cd/gnome-cd.c:351
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "A_juda"
 
@@ -1073,7 +1136,7 @@ msgstr "Retroceder"
 msgid "Play / Pause"
 msgstr "Reproduzir / Pausar"
 
-#: gnome-cd/gnome-cd.c:693
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Parar"
 
@@ -1109,6 +1172,44 @@ msgstr "Reproduzir o CD ao iniciar"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Não foi possível criar o reprodutor"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Reproduzir CDs de áudio"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player theme"
+msgstr "Tema do Reprodutor de CD"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "Device path"
+msgstr "Caminho para o dispositivo"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "Abrir bandeja do CD quando o Reprodutor de CD sair?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "Tocar música quando o Reprodutor de CD iniciar?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "A bandeja do CD deve ser aberta quando o Reprodutor de CD sair?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr ""
+"O caminho para a unidade de CD que o Reprodutor de CD deve usar para tocar "
+"CDs"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "What theme should the CD player use for it's appearance"
+msgstr "Que tema o Reprodutor de CD deve usar para sua aparência"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Quando o Reprodutor de CD é iniciado, deve começar tocando o CD?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1159,6 +1260,175 @@ msgstr "Tentar abrir a bandeja do CD quando o Reprodutor de CD sair"
 msgid "_Available Themes:"
 msgstr "Tem_as Disponíveis:"
 
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "Gravar clipes de som"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
+#: grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Gravador de Som"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "Sobre"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Fechar"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Fechar esta janela"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Conteúdo"
+
+#: grecord/gsr.xml.h:5
+msgid "Create a new sample"
+msgstr "Criar uma nova amostra"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Mostrar ajuda para o Gravador de Som"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Informações do Arquivo"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "_Informações do Arquivo"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Barra de ferramentas principal"
+
+#: grecord/gsr.xml.h:10
+msgid "New"
+msgstr "Novo"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Abrir"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Abrir um arquivo"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Tocar som"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Sair"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Sair da aplicação"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "_Arquivos Recentes"
+
+#: grecord/gsr.xml.h:18
+msgid "Record"
+msgstr "Gravar"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Gravar som"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Executar Mixer"
+
+#: grecord/gsr.xml.h:21
+msgid "Run _Mixer"
+msgstr "Executar _Mixer"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Executar o mixer de áudio"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Salvar"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Salvar Como"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "Salvar _Como..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Salvar o arquivo atual"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Salvar o arquivo atual com um nome diferente"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Mostrar informações sobre o arquivo atual"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Mostrar informações para o Gravador de Som"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Parar som"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_Sobre"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Fechar Janela"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Conteúdo"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Controle"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_Arquivo"
+
+#: grecord/gsr.xml.h:38
+msgid "_New"
+msgstr "_Novo"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Abrir..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "Re_produzir"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "_Sair"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "G_ravar"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_Salvar"
+
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Opções básicas"
@@ -1193,10 +1463,6 @@ msgstr "segundos"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "segundo"
-
-#: grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Abrir um arquivo"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1249,10 +1515,6 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Informações de %s"
 
-#: grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Informações do Arquivo"
-
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Pasta:"
@@ -1284,10 +1546,6 @@ msgstr "Taxa da amostra: "
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Taxa de bits:"
-
-#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Gravador de Som"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1321,6 +1579,16 @@ msgstr "<nenhum>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Tamanho:"
+
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "Ajustar o nível do volume"
+
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
+#: gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Controle de Volume"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1364,11 +1632,6 @@ msgstr "Gravar"
 msgid "%s Record"
 msgstr "%s Gravar"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Controle de Volume"
-
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Uma aplicação de mixer baseada no GNOME/GStreamer"
@@ -1388,81 +1651,74 @@ msgstr "Falha ao criar a janela principal"
 msgid "Could not load UI resource %s"
 msgstr "Não foi possível carregar o recurso de UI %s"
 
-#: gstreamer-properties/gstreamer-properties.glade:10
-msgid "GStreamer Preferences"
-msgstr "Preferências do GStreamer"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
+msgid "Configure defaults for GStreamer applications"
+msgstr "Configurar padrões para aplicações GStreamer"
 
-#: gstreamer-properties/gstreamer-properties.glade:91
-#: gstreamer-properties/gstreamer-properties.glade:633
-msgid "<b>Default Sink</b>"
-msgstr "<b>Sink Padrão</b>"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+msgid "Multimedia Systems Selector"
+msgstr "Seletor de Sistemas Multimídia"
 
-#: gstreamer-properties/gstreamer-properties.glade:150
-#: gstreamer-properties/gstreamer-properties.glade:692
-msgid "_Output:"
-msgstr "_Saída:"
-
-#: gstreamer-properties/gstreamer-properties.glade:191
-#: gstreamer-properties/gstreamer-properties.glade:733
-msgid "_Pipeline:"
-msgstr "En_canamento:"
-
-#: gstreamer-properties/gstreamer-properties.glade:228
-#: gstreamer-properties/gstreamer-properties.glade:483
-#: gstreamer-properties/gstreamer-properties.glade:770
-#: gstreamer-properties/gstreamer-properties.glade:1025
-#: profiles/gnome-audio-profiles.glade2:166
-#: profiles/gnome-audio-profiles.glade2:382
-#: profiles/gnome-audio-profiles.glade2:404
-#: profiles/gnome-audio-profiles.glade2:426
-#: profiles/gnome-audio-profiles.glade2:448
+#: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
-#: gstreamer-properties/gstreamer-properties.glade:278
-#: gstreamer-properties/gstreamer-properties.glade:820
-msgid "_Test"
-msgstr "_Teste"
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Sink Padrão</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:346
-#: gstreamer-properties/gstreamer-properties.glade:888
+#: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Source</b>"
 msgstr "<b>Fonte Padrão</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:405
-#: gstreamer-properties/gstreamer-properties.glade:947
-msgid "_Input:"
-msgstr "_Entrada:"
-
-#: gstreamer-properties/gstreamer-properties.glade:446
-#: gstreamer-properties/gstreamer-properties.glade:988
-msgid "Pipe_line:"
-msgstr "Encanamen_to:"
-
-#: gstreamer-properties/gstreamer-properties.glade:533
-#: gstreamer-properties/gstreamer-properties.glade:1075
-msgid "Te_st"
-msgstr "Te_ste"
-
-#: gstreamer-properties/gstreamer-properties.glade:598
-msgid "Audio"
-msgstr "Áudio"
-
-#: gstreamer-properties/gstreamer-properties.glade:1140
-msgid "Video"
-msgstr "Vídeo"
-
-#: gstreamer-properties/gstreamer-properties.glade:1170
-msgid "Testing Pipeline"
-msgstr "Testando Encanamento"
-
-#: gstreamer-properties/gstreamer-properties.glade:1219
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">Testando...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade:1254
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Audio"
+msgstr "Áudio"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "Clique Ok para terminar."
+
+#: gstreamer-properties/gstreamer-properties.glade.h:7
+msgid "GStreamer Preferences"
+msgstr "Preferências do GStreamer"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Pipe_line:"
+msgstr "Encanamen_to:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "Te_st"
+msgstr "Te_ste"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Testing Pipeline"
+msgstr "Testando Encanamento"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Vídeo"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "_Entrada:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "_Saída:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "_Pipeline:"
+msgstr "En_canamento:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Test"
+msgstr "_Teste"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1591,45 +1847,108 @@ msgstr ""
 "Falta o arquivo \"%s\". Isso indica que a aplicação não está instalada "
 "corretamente e, por isso, a caixa de diálogo não pode ser mostrada."
 
-#: profiles/gnome-audio-profiles.glade2:10
-msgid "New Profile"
-msgstr "Novo Perfil"
-
-#: profiles/gnome-audio-profiles.glade2:84
-msgid "_Create"
-msgstr "_Criar"
-
-#: profiles/gnome-audio-profiles.glade2:138
-msgid "Profile _name:"
-msgstr "Nome do perfil:"
-
-#: profiles/gnome-audio-profiles.glade2:203
+#: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
 msgstr "Editar Perfil de Áudio"
 
-#: profiles/gnome-audio-profiles.glade2:273
-msgid "_Profile name:"
-msgstr "Nome do _perfil:"
-
-#: profiles/gnome-audio-profiles.glade2:298
-msgid "Profile _Description:"
-msgstr "_Descrição do Perfil:"
-
-#: profiles/gnome-audio-profiles.glade2:310
-msgid "Profile Description:"
-msgstr "Descrição do Perfil:"
-
-#: profiles/gnome-audio-profiles.glade2:326
-msgid "_GStreamer Pipeline:"
-msgstr "Linha de montagem do _GStreamer:"
-
-#: profiles/gnome-audio-profiles.glade2:351
+#: profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
 msgstr "_Extensão do Arquivo:"
 
-#: profiles/gnome-audio-profiles.glade2:480
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "Novo Perfil"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "Descrição do Perfil:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "_Descrição do Perfil:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "Nome do perfil:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
 msgstr "_Ativar?"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "_Criar"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "Linha de montagem do _GStreamer:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "Nome do _perfil:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "Uma descrição para o perfil de áudio"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+"Uma descrição do perfil, contendo mais informação e descrevendo quando usar "
+"o perfil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+"Uma extensão para o nome de arquivo para ser usada ao armazenar arquivos "
+"codificados com esse perfil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "Uma linha de montagem parcial do GStreamer para usar com este perfil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr "Um apelido para o perfil de áudio"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+"Um apelido para o perfil de áudio, para ser usado em seleções e "
+"identificando unicamente o perfil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+"Lista dos perfis de gravação de áudio. A lista contém strings dando nome aos "
+"subdiretórios relativos a /system/gstreamer/audio/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr "Lista de perfis"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr "A extensão padrão de arquivos para este perfil"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr "A linha de montagem parcial do GStreamer utilizada"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr "Se esse perfil deve ou não ser usado"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr "Se esse perfil deve ou não ser usado e mostrado."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1684,275 +2003,21 @@ msgstr "Nível de gravação"
 msgid "Volume Meter"
 msgstr "Medidor de volume"
 
-#~ msgid "Address of the server to contact for CD queries"
-#~ msgstr "Endereço do servidor a ser contatado em requisições de CD"
-
-#~ msgid "Information to send to server"
-#~ msgstr "Informação a mandar para o servidor"
-
-#~ msgid "Server name"
-#~ msgstr "Nome do servidor"
-
-#~ msgid "Server type"
-#~ msgstr "Tipo do servidor"
-
-#~ msgid "The hostname that will be sent with all queries"
-#~ msgstr "O nome do host que será enviado com todas as requisições"
-
-#~ msgid "The port that the server is running the database on"
-#~ msgstr "A porta em que o servidor está rodando o banco de dados"
-
-#~ msgid ""
-#~ "The type of the server to contact for CD queries. Possible values are 0 "
-#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-#~ msgstr ""
-#~ "O tipo do servidor para obter informações de CD. Valores possíveis são 0 "
-#~ "(rodízio de servidor FreeDB), 1 (outro servidor freedb) e 2 (outro "
-#~ "servidor)."
-
-#~ msgid "The username"
-#~ msgstr "O nome do usuário"
-
-#~ msgid "The username that will be sent with all queries"
-#~ msgstr "O nome do usuário que será enviado com todas as requisições"
-
-#~ msgid ""
-#~ "This key specifies which user information will be sent to the server to "
-#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
-#~ "information) and 3 (other information)."
-#~ msgstr ""
-#~ "Esta chave especifica qual informação de usuário será enviada para o "
-#~ "servidor ao obter informações do CD. Valores possíveis são 0 (nenhuma "
-#~ "informação), 1 (informação real) e 3 (outra informação)."
-
-#~ msgid "Your hostname"
-#~ msgstr "Nome da sua máquina"
-
-#~ msgid "CD Database"
-#~ msgstr "Banco de Dados de CD"
-
-#~ msgid "Modify your CD database preferences"
-#~ msgstr "Alterar suas preferências para o banco de dados de CD"
-
-#~ msgid "Play audio CDs"
-#~ msgstr "Reproduzir CDs de áudio"
-
-#~ msgid "CD player theme"
-#~ msgstr "Tema do Reprodutor de CD"
-
-#~ msgid "Device path"
-#~ msgstr "Caminho para o dispositivo"
-
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "Abrir bandeja do CD quando o Reprodutor de CD sair?"
-
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "Tocar música quando o Reprodutor de CD iniciar?"
-
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "A bandeja do CD deve ser aberta quando o Reprodutor de CD sair?"
-
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr ""
-#~ "O caminho para a unidade de CD que o Reprodutor de CD deve usar para "
-#~ "tocar CDs"
-
-#~ msgid "What theme should the CD player use for it's appearance"
-#~ msgstr "Que tema o Reprodutor de CD deve usar para sua aparência"
-
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr "Quando o Reprodutor de CD é iniciado, deve começar tocando o CD?"
-
-#~ msgid "Record sound clips"
-#~ msgstr "Gravar clipes de som"
-
-#~ msgid "About"
-#~ msgstr "Sobre"
-
-#~ msgid "Close"
-#~ msgstr "Fechar"
-
-#~ msgid "Close this window"
-#~ msgstr "Fechar esta janela"
-
-#~ msgid "Contents"
-#~ msgstr "Conteúdo"
-
-#~ msgid "Create a new sample"
-#~ msgstr "Criar uma nova amostra"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "Mostrar ajuda para o Gravador de Som"
-
-#~ msgid "File _Information"
-#~ msgstr "_Informações do Arquivo"
-
-#~ msgid "Main toolbar"
-#~ msgstr "Barra de ferramentas principal"
-
-#~ msgid "New"
-#~ msgstr "Novo"
-
-#~ msgid "Open"
-#~ msgstr "Abrir"
-
-#~ msgid "Play sound"
-#~ msgstr "Tocar som"
-
-#~ msgid "Quit"
-#~ msgstr "Sair"
-
-#~ msgid "Quit the application"
-#~ msgstr "Sair da aplicação"
-
-#~ msgid "Recent _Files"
-#~ msgstr "_Arquivos Recentes"
-
-#~ msgid "Record"
-#~ msgstr "Gravar"
-
-#~ msgid "Record sound"
-#~ msgstr "Gravar som"
-
-#~ msgid "Run Mixer"
-#~ msgstr "Executar Mixer"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Executar _Mixer"
-
-#~ msgid "Run the audio mixer"
-#~ msgstr "Executar o mixer de áudio"
-
-#~ msgid "Save"
-#~ msgstr "Salvar"
-
-#~ msgid "Save As"
-#~ msgstr "Salvar Como"
-
-#~ msgid "Save _As..."
-#~ msgstr "Salvar _Como..."
-
-#~ msgid "Save the current file"
-#~ msgstr "Salvar o arquivo atual"
-
-#~ msgid "Save the current file with a different name"
-#~ msgstr "Salvar o arquivo atual com um nome diferente"
-
-#~ msgid "Show information about the current file"
-#~ msgstr "Mostrar informações sobre o arquivo atual"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "Mostrar informações para o Gravador de Som"
-
-#~ msgid "Stop sound"
-#~ msgstr "Parar som"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Fechar Janela"
-
-#~ msgid "_Contents"
-#~ msgstr "_Conteúdo"
-
-#~ msgid "_Control"
-#~ msgstr "_Controle"
-
-#~ msgid "_File"
-#~ msgstr "_Arquivo"
-
-#~ msgid "_New"
-#~ msgstr "_Novo"
-
-#~ msgid "_Open..."
-#~ msgstr "_Abrir..."
-
-#~ msgid "_Play"
-#~ msgstr "Re_produzir"
-
-#~ msgid "_Quit"
-#~ msgstr "_Sair"
-
-#~ msgid "_Record"
-#~ msgstr "G_ravar"
-
-#~ msgid "_Save"
-#~ msgstr "_Salvar"
-
-#~ msgid "Adjust the volume level"
-#~ msgstr "Ajustar o nível do volume"
-
-#~ msgid "Configure defaults for GStreamer applications"
-#~ msgstr "Configurar padrões para aplicações GStreamer"
-
-#~ msgid "Multimedia Systems Selector"
-#~ msgstr "Seletor de Sistemas Multimídia"
-
-#~ msgid "A description for the audio profile"
-#~ msgstr "Uma descrição para o perfil de áudio"
-
-#~ msgid ""
-#~ "A description of the profile, containing more information and describing "
-#~ "when to use this profile."
-#~ msgstr ""
-#~ "Uma descrição do perfil, contendo mais informação e descrevendo quando "
-#~ "usar o perfil."
-
-#~ msgid ""
-#~ "A filename extension to be used when storing files encoded with this "
-#~ "profile."
-#~ msgstr ""
-#~ "Uma extensão para o nome de arquivo para ser usada ao armazenar arquivos "
-#~ "codificados com esse perfil."
-
-#~ msgid "A partial GStreamer pipeline to use for this profile."
-#~ msgstr ""
-#~ "Uma linha de montagem parcial do GStreamer para usar com este perfil."
-
-#~ msgid "A short name for the audio profile"
-#~ msgstr "Um apelido para o perfil de áudio"
-
-#~ msgid ""
-#~ "A short name for the audio profile, to be used in selections and uniquely "
-#~ "identifying the profile."
-#~ msgstr ""
-#~ "Um apelido para o perfil de áudio, para ser usado em seleções e "
-#~ "identificando unicamente o perfil."
-
-#~ msgid ""
-#~ "List of audio recording profiles. The list contains strings naming "
-#~ "subdirectories relative to /system/gstreamer/audio/profiles."
-#~ msgstr ""
-#~ "Lista dos perfis de gravação de áudio. A lista contém strings dando nome "
-#~ "aos subdiretórios relativos a /system/gstreamer/audio/profiles."
-
-#~ msgid "List of profiles"
-#~ msgstr "Lista de perfis"
-
-#~ msgid "The default file extension for this profile"
-#~ msgstr "A extensão padrão de arquivos para este perfil"
-
-#~ msgid "The partial GStreamer pipeline used"
-#~ msgstr "A linha de montagem parcial do GStreamer utilizada"
-
-#~ msgid "Whether or not this profile is to be used"
-#~ msgstr "Se esse perfil deve ou não ser usado"
-
-#~ msgid "Whether or not to use and display this profile."
-#~ msgstr "Se esse perfil deve ou não ser usado e mostrado."
-
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "Monitorar o volume de entrada da gravação"
-
-#~ msgid "Recording level monitor"
-#~ msgstr "Monitor de Nível de Gravação"
-
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "Monitorar o volume de saída de som"
-
-#~ msgid "Volume monitor"
-#~ msgstr "Medidor de Volume"
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "Monitor the recording input volume"
+msgstr "Monitorar o volume de entrada da gravação"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "Recording level monitor"
+msgstr "Monitor de Nível de Gravação"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "Monitor the sound output volume"
+msgstr "Monitorar o volume de saída de som"
+
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "Volume monitor"
+msgstr "Medidor de Volume"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Artista desconhecido"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 17:46+0200\n"
+"POT-Creation-Date: 2004-05-09 16:44+0200\n"
 "PO-Revision-Date: 2004-03-02 21:44+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -33,6 +33,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "Διεύθυνση εξυπηρετητή επικοινωνίας για αναζητήσεις CD"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Πληροφορίες που θα αποσταλούν στον εξυπηρετητή"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Θύρα"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "Όνομα εξυπηρετητή"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Τύπος Εξυπηρετητή"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "Το όνομα του συστήματος όπου θα στέλνονται όλες οι αναζητήσεις"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "Η θύρα στην οποία ο εξυπηρετητής τρέχει τη βάση δεδομένων"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"Ο τύπος του εξυπηρετητή για επικοινωνία για ερωτήματα CD. Οι πιθανές τιμές "
+"είναι  0 (FreeDB round robin server), 1 (άλλος εξυπηρετητής freedb) και 2 "
+"(άλλος εξυπηρετητής)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "Το όνομα χρήστη"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "Το όνομα χρήστη που θα στέλνεται σε όλες τις αναζητήσεις"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"Αυτό το κλειδί καθορίζει ποιές πληροφορίες χρήστη θα αποσταλούν στον "
+"εξυπηρετητή για ερωτήματα CD. Οι πιθανές τιμές είναι 0 (όχι πληροφορίες), 1 "
+"(αληθινές πληροφορίες) και 3 (άλλες πληροφορίες)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Το όνομα συστήματος σας"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -88,10 +147,6 @@ msgstr "Εξυπηρετητής FreeDB _round robin"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Άλλος εξυπηρετητής  _FreeDB:"
-
-#: cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Θύρα"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -156,6 +211,14 @@ msgstr "Καλλιτέχνης και Τίτλος"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Άγνωστο κομμάτι"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:1
+msgid "CD Database"
+msgstr "Βάση Δεδομένων CD"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:2
+msgid "Modify your CD database preferences"
+msgstr "Τροποποίηση των προτιμήσεων βάσης δεδομένων CD"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -890,7 +953,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Γραμμή εμφάνισης του ονόματος του δίσκου"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Αναπαραγωγή"
 
@@ -915,6 +978,7 @@ msgstr "Παύση"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
+#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Αναγνώστης CD"
 
@@ -978,7 +1042,7 @@ msgstr "%d - Άγνωστο"
 msgid "P_revious track"
 msgstr "Π_ροηγούμενο κομμάτι"
 
-#: gnome-cd/gnome-cd.c:347
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Διακοπή"
 
@@ -994,7 +1058,7 @@ msgstr "_Επόμενο κομμάτι"
 msgid "_Eject disc"
 msgstr "_Εξαγωγή δίσκου"
 
-#: gnome-cd/gnome-cd.c:351
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Βοήθεια"
 
@@ -1094,7 +1158,7 @@ msgstr "Μετακίνηση στην αρχή"
 msgid "Play / Pause"
 msgstr "Αναπαραγωγή / Παύση"
 
-#: gnome-cd/gnome-cd.c:693
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Διακοπή"
 
@@ -1131,6 +1195,44 @@ msgstr "Αναπαραγωγή του CD κατά την εκκίνηση"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Αδυναμία δημιουργίας συσκευής αναπαραγωγής"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Αναπαραγωγή Μουσικών CD"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player theme"
+msgstr "Θέμα εφαρμογής αναπαραγωγής CD"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "Device path"
+msgstr "Διαδρομή συσκευής"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "Εξαγωγή του CD όταν η εφαρμογή CD τερματίζεται;"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "Εξαγωγή του CD όταν η εφαρμογή CD τερματίζεται;"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr ""
+"Η διαδρομή στον οδηγό CD που θα χρησιμοποιεί η εφαρμογή για την αναπαραγωγή "
+"CDs"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "What theme should the CD player use for it's appearance"
+msgstr "Ποιό θέμα θα χρησιμοποιεί η εφαρμογή για την εμφάνιση της"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1181,6 +1283,175 @@ msgstr "Προσπάθεια εξαγωγής του CD όταν η εφαρμο
 msgid "_Available Themes:"
 msgstr "Δια_θέσιμα θέματα:"
 
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "Ηχογράφηση ηχητικών κλιπ"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
+#: grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Εγγραφέας Ήχου"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "Περί"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Κλείσιμο αυτού του παραθύρου"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Περιεχόμενα"
+
+#: grecord/gsr.xml.h:5
+msgid "Create a new sample"
+msgstr "Δημιουργία νέου δείγματος"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Προβολή βοήθειας για τον Εγγραφέα Ήχου"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Πληροφορίες αρχείου"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "Πληρο_φορίες αρχείου"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Κύρια εργαλειοθήκη"
+
+#: grecord/gsr.xml.h:10
+msgid "New"
+msgstr "Νέο"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Άνοιγμα ενός αρχείου"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Αναπαραγωγή ήχου"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Έξοδος από την εφαρμογή"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "Πρόσφατα _Αρχεία"
+
+#: grecord/gsr.xml.h:18
+msgid "Record"
+msgstr "Ηχογράφηση"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Ηχογράφηση ήχου"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Άνοιγμα Mίκτη"
+
+#: grecord/gsr.xml.h:21
+msgid "Run _Mixer"
+msgstr "Άνοιγμα  _Mίκτη"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Εκτέλεση του μίκτη ήχου"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Αποθήκευση Ως"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "Αποθήκευση _Ως..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Αποθήκευση του τρέχοντος αρχείου"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Αποθήκευση του τρέχοντος αρχείου με διαφορετικό όνομα"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Εμφάνιση πληροφοριών για το τρέχον αρχείο"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Εμφάνιση πληροφοριών για τον Εγγραφέα ήχου"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Διακοπή ήχου"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_Περί"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Κλείσιμο παραθύρου"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Περιεχόμενα"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Έλεγχος"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_Αρχείο"
+
+#: grecord/gsr.xml.h:38
+msgid "_New"
+msgstr "_Νέο"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Άνοιγμα..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "Ανα_παραγωγή"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "Έ_ξοδος "
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "Εγγ_ραφή"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "Αποθήκευ_ση"
+
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Επιλογή Dummy"
@@ -1215,10 +1486,6 @@ msgstr "δευτερόλεπτα"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "δευτερόλεπτο"
-
-#: grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Άνοιγμα ενός αρχείου"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1271,10 +1538,6 @@ msgstr "2 (στερεοφωνικό)"
 msgid "%s Information"
 msgstr "%s Πληροφορίες"
 
-#: grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Πληροφορίες αρχείου"
-
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Φάκελος:"
@@ -1306,10 +1569,6 @@ msgstr "Ρυθμός δειγματοληψίας:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Bit rate:"
-
-#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Εγγραφέας Ήχου"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1343,6 +1602,16 @@ msgstr "<κενό>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Διάρκεια:"
+
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "Ρύθμιση επιπέδου έντασης"
+
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
+#: gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "'Ελεγχος Έντασης Ήχου"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1386,11 +1655,6 @@ msgstr "Rec."
 msgid "%s Record"
 msgstr "%s Ηχογράφηση"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "'Ελεγχος Έντασης Ήχου"
-
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Μια εφαρμογή μείκτη βασισμένη στο GNOME/GStreamer"
@@ -1410,81 +1674,74 @@ msgstr "Αποτυχία εκκίνησης κυρίως παραθύρου"
 msgid "Could not load UI resource %s"
 msgstr "Αδυναμία φόρτωσης πηγής UI %s"
 
-#: gstreamer-properties/gstreamer-properties.glade:10
-msgid "GStreamer Preferences"
-msgstr "Προτιμήσεις GStreamer"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
+msgid "Configure defaults for GStreamer applications"
+msgstr "Ρύθμιση προεπιλεγμένων επιλογών για εφαρμογές GStreamer "
 
-#: gstreamer-properties/gstreamer-properties.glade:91
-#: gstreamer-properties/gstreamer-properties.glade:633
-msgid "<b>Default Sink</b>"
-msgstr "<b>Προεπιλεγμένο Sink</b>"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+msgid "Multimedia Systems Selector"
+msgstr "Επιλογέας συστημάτων πολυμέσων"
 
-#: gstreamer-properties/gstreamer-properties.glade:150
-#: gstreamer-properties/gstreamer-properties.glade:692
-msgid "_Output:"
-msgstr "Έξ_οδος  ήχου:"
-
-#: gstreamer-properties/gstreamer-properties.glade:191
-#: gstreamer-properties/gstreamer-properties.glade:733
-msgid "_Pipeline:"
-msgstr "_Pipeline:"
-
-#: gstreamer-properties/gstreamer-properties.glade:228
-#: gstreamer-properties/gstreamer-properties.glade:483
-#: gstreamer-properties/gstreamer-properties.glade:770
-#: gstreamer-properties/gstreamer-properties.glade:1025
-#: profiles/gnome-audio-profiles.glade2:166
-#: profiles/gnome-audio-profiles.glade2:382
-#: profiles/gnome-audio-profiles.glade2:404
-#: profiles/gnome-audio-profiles.glade2:426
-#: profiles/gnome-audio-profiles.glade2:448
+#: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
-#: gstreamer-properties/gstreamer-properties.glade:278
-#: gstreamer-properties/gstreamer-properties.glade:820
-msgid "_Test"
-msgstr "Δοκι_μή"
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Προεπιλεγμένο Sink</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:346
-#: gstreamer-properties/gstreamer-properties.glade:888
+#: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Source</b>"
 msgstr "<b>Προεπιλεγμένη Πηγή</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:405
-#: gstreamer-properties/gstreamer-properties.glade:947
-msgid "_Input:"
-msgstr "Είσ_οδος ήχου:"
-
-#: gstreamer-properties/gstreamer-properties.glade:446
-#: gstreamer-properties/gstreamer-properties.glade:988
-msgid "Pipe_line:"
-msgstr "Pipe_line:"
-
-#: gstreamer-properties/gstreamer-properties.glade:533
-#: gstreamer-properties/gstreamer-properties.glade:1075
-msgid "Te_st"
-msgstr "_Δοκιμή"
-
-#: gstreamer-properties/gstreamer-properties.glade:598
-msgid "Audio"
-msgstr "Ήχος"
-
-#: gstreamer-properties/gstreamer-properties.glade:1140
-msgid "Video"
-msgstr "Βίντεο"
-
-#: gstreamer-properties/gstreamer-properties.glade:1170
-msgid "Testing Pipeline"
-msgstr "Δοκιμή Pipeline"
-
-#: gstreamer-properties/gstreamer-properties.glade:1219
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">Δοκιμή...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade:1254
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Audio"
+msgstr "Ήχος"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "Πατήστε Ok για τερματισμό."
+
+#: gstreamer-properties/gstreamer-properties.glade.h:7
+msgid "GStreamer Preferences"
+msgstr "Προτιμήσεις GStreamer"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Pipe_line:"
+msgstr "Pipe_line:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "Te_st"
+msgstr "_Δοκιμή"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Testing Pipeline"
+msgstr "Δοκιμή Pipeline"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Βίντεο"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "Είσ_οδος ήχου:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "Έξ_οδος  ήχου:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "_Pipeline:"
+msgstr "_Pipeline:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Test"
+msgstr "Δοκι_μή"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1613,45 +1870,108 @@ msgstr ""
 "Το αρχείο \"%s\" λείπει . Αυτό σημαίνει ότι η εφαρμογή δεν έχει εγκατασταθεί "
 "σωστά, και έτσι δεν μπορεί να εμφανιστει ο διάλογος."
 
-#: profiles/gnome-audio-profiles.glade2:10
-msgid "New Profile"
-msgstr "Νέο προφίλ"
-
-#: profiles/gnome-audio-profiles.glade2:84
-msgid "_Create"
-msgstr "_Δημιουργία"
-
-#: profiles/gnome-audio-profiles.glade2:138
-msgid "Profile _name:"
-msgstr "Ό_νομα προφίλ:"
-
-#: profiles/gnome-audio-profiles.glade2:203
+#: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
 msgstr "Επεξεργασία προφιλ ήχου"
 
-#: profiles/gnome-audio-profiles.glade2:273
-msgid "_Profile name:"
-msgstr "Όνομα _προφίλ:"
-
-#: profiles/gnome-audio-profiles.glade2:298
-msgid "Profile _Description:"
-msgstr "Περι_γραφή προφίλ:"
-
-#: profiles/gnome-audio-profiles.glade2:310
-msgid "Profile Description:"
-msgstr "Περιγραφή προφίλ:"
-
-#: profiles/gnome-audio-profiles.glade2:326
-msgid "_GStreamer Pipeline:"
-msgstr "_GStreamer Pipeline:"
-
-#: profiles/gnome-audio-profiles.glade2:351
+#: profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
 msgstr "Ε_πέκταση αρχείου:"
 
-#: profiles/gnome-audio-profiles.glade2:480
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "Νέο προφίλ"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "Περιγραφή προφίλ:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "Περι_γραφή προφίλ:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "Ό_νομα προφίλ:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
 msgstr "Ενε_ργό?"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "_Δημιουργία"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "_GStreamer Pipeline:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "Όνομα _προφίλ:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "Μια περιγραφή για το προφίλ ήχου"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+"Μια περιγραφή για το προφίλ, που περιέχει περισσότερες πληροφορίες και "
+"περιγράφει πότε να χρησιμοποιηθεί αυτό το προφίλ."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+"Μια επέκταση ονόματος αρχείου που θα χρησιμοποιηθεί κατά την αποθήκευση "
+"αρχείων που έχουν κωδικοποιηθεί με αυτό το προφίλ."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "Μια μερική GStreamer pipeline για χρήση με αυτό το προφίλ."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr "Ένα σύντομο για το προφίλ ήχου"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+"Ένα σύντομο για το προφίλ ήχου, για να χρησιμοποιηθεί σε επιλογές και να "
+"είναι αναγνωριστικό του προφίλ."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+"Λίστα από προφίλ ηχογράφησης, Η λίστα περιέχει strings naming subdirectories "
+"relative to /system/gstreamer/audio/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr "Λίστα προφίλ"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr "Η προπεπιλέγμένη επέκταση αρχείου για αυτό το προφίλ"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr "Η μερική GStreamer pipeline που χρησιμοποιείται"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr "Αν χρησιμοποιηθεί ή όχι αυτό το προφίλ"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr "Αν χρησιμοποιηθεί και εμφανιστεί ή όχι αυτό το προφίλ."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1706,274 +2026,21 @@ msgstr "Επίπεδο ηχογράφησης"
 msgid "Volume Meter"
 msgstr "Μετρητής Έντασης Ήχου"
 
-#~ msgid "Address of the server to contact for CD queries"
-#~ msgstr "Διεύθυνση εξυπηρετητή επικοινωνίας για αναζητήσεις CD"
-
-#~ msgid "Information to send to server"
-#~ msgstr "Πληροφορίες που θα αποσταλούν στον εξυπηρετητή"
-
-#~ msgid "Server name"
-#~ msgstr "Όνομα εξυπηρετητή"
-
-#~ msgid "Server type"
-#~ msgstr "Τύπος Εξυπηρετητή"
-
-#~ msgid "The hostname that will be sent with all queries"
-#~ msgstr "Το όνομα του συστήματος όπου θα στέλνονται όλες οι αναζητήσεις"
-
-#~ msgid "The port that the server is running the database on"
-#~ msgstr "Η θύρα στην οποία ο εξυπηρετητής τρέχει τη βάση δεδομένων"
-
-#~ msgid ""
-#~ "The type of the server to contact for CD queries. Possible values are 0 "
-#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-#~ msgstr ""
-#~ "Ο τύπος του εξυπηρετητή για επικοινωνία για ερωτήματα CD. Οι πιθανές "
-#~ "τιμές είναι  0 (FreeDB round robin server), 1 (άλλος εξυπηρετητής freedb) "
-#~ "και 2 (άλλος εξυπηρετητής)."
-
-#~ msgid "The username"
-#~ msgstr "Το όνομα χρήστη"
-
-#~ msgid "The username that will be sent with all queries"
-#~ msgstr "Το όνομα χρήστη που θα στέλνεται σε όλες τις αναζητήσεις"
-
-#~ msgid ""
-#~ "This key specifies which user information will be sent to the server to "
-#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
-#~ "information) and 3 (other information)."
-#~ msgstr ""
-#~ "Αυτό το κλειδί καθορίζει ποιές πληροφορίες χρήστη θα αποσταλούν στον "
-#~ "εξυπηρετητή για ερωτήματα CD. Οι πιθανές τιμές είναι 0 (όχι πληροφορίες), "
-#~ "1 (αληθινές πληροφορίες) και 3 (άλλες πληροφορίες)."
-
-#~ msgid "Your hostname"
-#~ msgstr "Το όνομα συστήματος σας"
-
-#~ msgid "CD Database"
-#~ msgstr "Βάση Δεδομένων CD"
-
-#~ msgid "Modify your CD database preferences"
-#~ msgstr "Τροποποίηση των προτιμήσεων βάσης δεδομένων CD"
-
-#~ msgid "Play audio CDs"
-#~ msgstr "Αναπαραγωγή Μουσικών CD"
-
-#~ msgid "CD player theme"
-#~ msgstr "Θέμα εφαρμογής αναπαραγωγής CD"
-
-#~ msgid "Device path"
-#~ msgstr "Διαδρομή συσκευής"
-
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "Εξαγωγή του CD όταν η εφαρμογή CD τερματίζεται;"
-
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
-
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "Εξαγωγή του CD όταν η εφαρμογή CD τερματίζεται;"
-
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr ""
-#~ "Η διαδρομή στον οδηγό CD που θα χρησιμοποιεί η εφαρμογή για την "
-#~ "αναπαραγωγή CDs"
-
-#~ msgid "What theme should the CD player use for it's appearance"
-#~ msgstr "Ποιό θέμα θα χρησιμοποιεί η εφαρμογή για την εμφάνιση της"
-
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
-
-#~ msgid "Record sound clips"
-#~ msgstr "Ηχογράφηση ηχητικών κλιπ"
-
-#~ msgid "About"
-#~ msgstr "Περί"
-
-#~ msgid "Close"
-#~ msgstr "Κλείσιμο"
-
-#~ msgid "Close this window"
-#~ msgstr "Κλείσιμο αυτού του παραθύρου"
-
-#~ msgid "Contents"
-#~ msgstr "Περιεχόμενα"
-
-#~ msgid "Create a new sample"
-#~ msgstr "Δημιουργία νέου δείγματος"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "Προβολή βοήθειας για τον Εγγραφέα Ήχου"
-
-#~ msgid "File _Information"
-#~ msgstr "Πληρο_φορίες αρχείου"
-
-#~ msgid "Main toolbar"
-#~ msgstr "Κύρια εργαλειοθήκη"
-
-#~ msgid "New"
-#~ msgstr "Νέο"
-
-#~ msgid "Open"
-#~ msgstr "Άνοιγμα"
-
-#~ msgid "Play sound"
-#~ msgstr "Αναπαραγωγή ήχου"
-
-#~ msgid "Quit"
-#~ msgstr "Έξοδος"
-
-#~ msgid "Quit the application"
-#~ msgstr "Έξοδος από την εφαρμογή"
-
-#~ msgid "Recent _Files"
-#~ msgstr "Πρόσφατα _Αρχεία"
-
-#~ msgid "Record"
-#~ msgstr "Ηχογράφηση"
-
-#~ msgid "Record sound"
-#~ msgstr "Ηχογράφηση ήχου"
-
-#~ msgid "Run Mixer"
-#~ msgstr "Άνοιγμα Mίκτη"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Άνοιγμα  _Mίκτη"
-
-#~ msgid "Run the audio mixer"
-#~ msgstr "Εκτέλεση του μίκτη ήχου"
-
-#~ msgid "Save"
-#~ msgstr "Αποθήκευση"
-
-#~ msgid "Save As"
-#~ msgstr "Αποθήκευση Ως"
-
-#~ msgid "Save _As..."
-#~ msgstr "Αποθήκευση _Ως..."
-
-#~ msgid "Save the current file"
-#~ msgstr "Αποθήκευση του τρέχοντος αρχείου"
-
-#~ msgid "Save the current file with a different name"
-#~ msgstr "Αποθήκευση του τρέχοντος αρχείου με διαφορετικό όνομα"
-
-#~ msgid "Show information about the current file"
-#~ msgstr "Εμφάνιση πληροφοριών για το τρέχον αρχείο"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "Εμφάνιση πληροφοριών για τον Εγγραφέα ήχου"
-
-#~ msgid "Stop sound"
-#~ msgstr "Διακοπή ήχου"
-
-#~ msgid "_About"
-#~ msgstr "_Περί"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Κλείσιμο παραθύρου"
-
-#~ msgid "_Contents"
-#~ msgstr "_Περιεχόμενα"
-
-#~ msgid "_Control"
-#~ msgstr "_Έλεγχος"
-
-#~ msgid "_File"
-#~ msgstr "_Αρχείο"
-
-#~ msgid "_New"
-#~ msgstr "_Νέο"
-
-#~ msgid "_Open..."
-#~ msgstr "_Άνοιγμα..."
-
-#~ msgid "_Play"
-#~ msgstr "Ανα_παραγωγή"
-
-#~ msgid "_Quit"
-#~ msgstr "Έ_ξοδος "
-
-#~ msgid "_Record"
-#~ msgstr "Εγγ_ραφή"
-
-#~ msgid "_Save"
-#~ msgstr "Αποθήκευ_ση"
-
-#~ msgid "Adjust the volume level"
-#~ msgstr "Ρύθμιση επιπέδου έντασης"
-
-#~ msgid "Configure defaults for GStreamer applications"
-#~ msgstr "Ρύθμιση προεπιλεγμένων επιλογών για εφαρμογές GStreamer "
-
-#~ msgid "Multimedia Systems Selector"
-#~ msgstr "Επιλογέας συστημάτων πολυμέσων"
-
-#~ msgid "A description for the audio profile"
-#~ msgstr "Μια περιγραφή για το προφίλ ήχου"
-
-#~ msgid ""
-#~ "A description of the profile, containing more information and describing "
-#~ "when to use this profile."
-#~ msgstr ""
-#~ "Μια περιγραφή για το προφίλ, που περιέχει περισσότερες πληροφορίες και "
-#~ "περιγράφει πότε να χρησιμοποιηθεί αυτό το προφίλ."
-
-#~ msgid ""
-#~ "A filename extension to be used when storing files encoded with this "
-#~ "profile."
-#~ msgstr ""
-#~ "Μια επέκταση ονόματος αρχείου που θα χρησιμοποιηθεί κατά την αποθήκευση "
-#~ "αρχείων που έχουν κωδικοποιηθεί με αυτό το προφίλ."
-
-#~ msgid "A partial GStreamer pipeline to use for this profile."
-#~ msgstr "Μια μερική GStreamer pipeline για χρήση με αυτό το προφίλ."
-
-#~ msgid "A short name for the audio profile"
-#~ msgstr "Ένα σύντομο για το προφίλ ήχου"
-
-#~ msgid ""
-#~ "A short name for the audio profile, to be used in selections and uniquely "
-#~ "identifying the profile."
-#~ msgstr ""
-#~ "Ένα σύντομο για το προφίλ ήχου, για να χρησιμοποιηθεί σε επιλογές και να "
-#~ "είναι αναγνωριστικό του προφίλ."
-
-#~ msgid ""
-#~ "List of audio recording profiles. The list contains strings naming "
-#~ "subdirectories relative to /system/gstreamer/audio/profiles."
-#~ msgstr ""
-#~ "Λίστα από προφίλ ηχογράφησης, Η λίστα περιέχει strings naming "
-#~ "subdirectories relative to /system/gstreamer/audio/profiles."
-
-#~ msgid "List of profiles"
-#~ msgstr "Λίστα προφίλ"
-
-#~ msgid "The default file extension for this profile"
-#~ msgstr "Η προπεπιλέγμένη επέκταση αρχείου για αυτό το προφίλ"
-
-#~ msgid "The partial GStreamer pipeline used"
-#~ msgstr "Η μερική GStreamer pipeline που χρησιμοποιείται"
-
-#~ msgid "Whether or not this profile is to be used"
-#~ msgstr "Αν χρησιμοποιηθεί ή όχι αυτό το προφίλ"
-
-#~ msgid "Whether or not to use and display this profile."
-#~ msgstr "Αν χρησιμοποιηθεί και εμφανιστεί ή όχι αυτό το προφίλ."
-
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "Παρακολούθηση της έντασης εγγραφής εισόδου ήχου"
-
-#~ msgid "Recording level monitor"
-#~ msgstr "Μετρητής Επιπέδου Ηχογράφησης"
-
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "Παρακολούθηση της έντασης εξόδου ήχου"
-
-#~ msgid "Volume monitor"
-#~ msgstr "Μετρητής Έντασης Ήχου"
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "Monitor the recording input volume"
+msgstr "Παρακολούθηση της έντασης εγγραφής εισόδου ήχου"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "Recording level monitor"
+msgstr "Μετρητής Επιπέδου Ηχογράφησης"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "Monitor the sound output volume"
+msgstr "Παρακολούθηση της έντασης εξόδου ήχου"
+
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "Volume monitor"
+msgstr "Μετρητής Έντασης Ήχου"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Άγνωστος καλλιτέχνης"

@@ -11,13 +11,71 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 17:46+0200\n"
+"POT-Creation-Date: 2004-05-09 16:44+0200\n"
 "PO-Revision-Date: 2004-03-17 12:49+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "عنوان النادل للاتصال لطلبات القرص المدمج"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "المعلومات التي سترسل للنادل"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "المَنْفذ"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "إسم النادل"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "نوع النادل"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "إسم المضيف الذي سيبعث مع جميع الطلبات"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "المنفذ الذي يشغل النادل قاعدة البيانات عليه"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"نوع النادل الذي سيتصل به للسؤال عن الأقراص المدمجة. القيم الممكنةهي 0 (نادل "
+"راوند روبن FreeDB)و 1 (نادل freedb مغاير) و 2 (نادل آخر)"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "اسم المستخدم"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "اسم المستخدم الذي سيبعث مع جميع الطلبات"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"يحدد هذا المفتاح أي معلومات المستخدم سترسل للنادل للاتصال به للإستفسار عن "
+"الأقراص المدمجة. القيم الممكنة هي0 (لا معلومات) و 1 (معلومات حقيقية) و 3 "
+"(معلومات أخرى)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "اسم مضيفك"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -73,10 +131,6 @@ msgstr "نا_دل FreeDB round robin"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "نادل FreeDB آ_خر:"
-
-#: cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "المَنْفذ"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -141,6 +195,14 @@ msgstr "الفنان وعنوان الأغنية"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "قطعة مجهولة"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:1
+msgid "CD Database"
+msgstr "قاعدة بيانات القرص المدمج"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:2
+msgid "Modify your CD database preferences"
+msgstr "عدل خصائص قاعدة بياناتك للقرص المدمج"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -870,7 +932,7 @@ msgid "Line for displaying the name of the album"
 msgstr "سطر لعرض إسم الألبوم"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "عزف"
 
@@ -895,6 +957,7 @@ msgstr "إوقف مؤقتا"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
+#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "عازف الأقراص المدمجة"
 
@@ -957,7 +1020,7 @@ msgstr "مجهول - %d"
 msgid "P_revious track"
 msgstr "المقطوعة الس_ابقة"
 
-#: gnome-cd/gnome-cd.c:347
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "تو_قف"
 
@@ -973,7 +1036,7 @@ msgstr "ال_مقطوعة التالية"
 msgid "_Eject disc"
 msgstr "طر_د القرص"
 
-#: gnome-cd/gnome-cd.c:351
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_مساعدة"
 
@@ -1072,7 +1135,7 @@ msgstr "لف"
 msgid "Play / Pause"
 msgstr "عزف / ايقاف مؤقت"
 
-#: gnome-cd/gnome-cd.c:693
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "توقف"
 
@@ -1108,6 +1171,43 @@ msgstr "عزف القرص المدمج عند البدأ"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "لا يمكن انشاء عازف"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "عزف أقراص مدمجة صوتية"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player theme"
+msgstr "تيمة عازف الأقراص المدمجة"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "Device path"
+msgstr "مسار الجهاز"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "هل تريد طرد القرص المدمج عند انهاء عازف الأقراص المدمجة؟"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "عزف عند تشغيل عازف الأقراص المدمجة؟"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "هل يطرد القرص المدمج عند إنهاء عازف الأقراص المدمجة؟"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr ""
+"مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "What theme should the CD player use for it's appearance"
+msgstr "ما هي التيمة التي من المفروض ان يستعملها عازف الأقراص المدمجة لمظهره"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "هل يعزف عازف الأقراص المدمجة القرص عند بدأ تشغيله؟"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1158,6 +1258,175 @@ msgstr "محاولة طرد القرص المدمج عند خروج عازف ا�
 msgid "_Available Themes:"
 msgstr "التيمات ال_متوفرة:"
 
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "تسجيل قطع صوتية"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
+#: grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "مسجل الأصوات"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "حول"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "غلق"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "غلق هذه النافذة"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "المحتويات"
+
+#: grecord/gsr.xml.h:5
+msgid "Create a new sample"
+msgstr "انشاء عينة جديدة"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "عرض المساعدة لمسجل الأصوات"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "معلومات الملف"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "_معلومات الملف"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "عمود الأدوات الرئيسي"
+
+#: grecord/gsr.xml.h:10
+msgid "New"
+msgstr "جديد"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "فتح"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "فتح ملفّ"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "عزف صوت"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "إنهاء"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "إنهاء التطبيق"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "الملفات ال_حديثة"
+
+#: grecord/gsr.xml.h:18
+msgid "Record"
+msgstr "تسجيل"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "تسجيل صوت"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "تشغيل المؤلف"
+
+#: grecord/gsr.xml.h:21
+msgid "Run _Mixer"
+msgstr "تشغيل الم_ؤلف"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "تشغيل مؤلف الصوت"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "حفظ"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "حفظ كـ"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "حفظ _كـ..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "حفظ الملف الحالي"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "حفظ الملف الحالي باسم مغاير"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "عرض معلومات عن الملف الحالي"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "عرض معلومات عن مسجل اﻷصوات"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "ايقاف الصوت"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_حول..."
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_غلق النافذة"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "الم_حتويات"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_التحكم"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_ملف"
+
+#: grecord/gsr.xml.h:38
+msgid "_New"
+msgstr "_جديد"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_فتح..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "_عزف"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "إ_نهاء"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "_تسجيل"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_حفظ"
+
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "خيارات زائفة"
@@ -1192,10 +1461,6 @@ msgstr "ثوان"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "ثانية"
-
-#: grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "فتح ملفّ"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1248,10 +1513,6 @@ msgstr "2 (ستيرٍٍِِيو)"
 msgid "%s Information"
 msgstr "معلومات %s"
 
-#: grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "معلومات الملف"
-
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "الدليل:"
@@ -1283,10 +1544,6 @@ msgstr "نسبة التردد:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "نسبة البايتات:"
-
-#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "مسجل الأصوات"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1320,6 +1577,16 @@ msgstr "<لا شيء>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "الطول:"
+
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "احكام مستوى شدة الصوت"
+
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
+#: gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "متحكم شدة الصوت"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1363,11 +1630,6 @@ msgstr "تسجيل"
 msgid "%s Record"
 msgstr "%s تسجيل"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "متحكم شدة الصوت"
-
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "تطبيق تأليف معتمد على جنوم/جستريمر"
@@ -1387,81 +1649,74 @@ msgstr "فشل تلحيظ النافذة الرئيسية"
 msgid "Could not load UI resource %s"
 msgstr "لم يمكن تحميل مورد واجهة المستخدم %s"
 
-#: gstreamer-properties/gstreamer-properties.glade:10
-msgid "GStreamer Preferences"
-msgstr "تفضيلات جستريمر"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
+msgid "Configure defaults for GStreamer applications"
+msgstr "إعداد إفتراض تطبيقات جستريمر"
 
-#: gstreamer-properties/gstreamer-properties.glade:91
-#: gstreamer-properties/gstreamer-properties.glade:633
-msgid "<b>Default Sink</b>"
-msgstr "<b>المهبط الافتراضي</b>"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+msgid "Multimedia Systems Selector"
+msgstr "منتقي نظم الوسائط المتعدّدة"
 
-#: gstreamer-properties/gstreamer-properties.glade:150
-#: gstreamer-properties/gstreamer-properties.glade:692
-msgid "_Output:"
-msgstr "الإخ_راج:"
-
-#: gstreamer-properties/gstreamer-properties.glade:191
-#: gstreamer-properties/gstreamer-properties.glade:733
-msgid "_Pipeline:"
-msgstr "خط الأنا_بيب:"
-
-#: gstreamer-properties/gstreamer-properties.glade:228
-#: gstreamer-properties/gstreamer-properties.glade:483
-#: gstreamer-properties/gstreamer-properties.glade:770
-#: gstreamer-properties/gstreamer-properties.glade:1025
-#: profiles/gnome-audio-profiles.glade2:166
-#: profiles/gnome-audio-profiles.glade2:382
-#: profiles/gnome-audio-profiles.glade2:404
-#: profiles/gnome-audio-profiles.glade2:426
-#: profiles/gnome-audio-profiles.glade2:448
+#: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
-#: gstreamer-properties/gstreamer-properties.glade:278
-#: gstreamer-properties/gstreamer-properties.glade:820
-msgid "_Test"
-msgstr "اخ_تبار"
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>المهبط الافتراضي</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:346
-#: gstreamer-properties/gstreamer-properties.glade:888
+#: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Source</b>"
 msgstr "<b>المصدر الإفتراضي</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:405
-#: gstreamer-properties/gstreamer-properties.glade:947
-msgid "_Input:"
-msgstr "الإ_دخال:"
-
-#: gstreamer-properties/gstreamer-properties.glade:446
-#: gstreamer-properties/gstreamer-properties.glade:988
-msgid "Pipe_line:"
-msgstr "خط الأ_نابيب"
-
-#: gstreamer-properties/gstreamer-properties.glade:533
-#: gstreamer-properties/gstreamer-properties.glade:1075
-msgid "Te_st"
-msgstr "ا_ختبار"
-
-#: gstreamer-properties/gstreamer-properties.glade:598
-msgid "Audio"
-msgstr "قطعة صوت"
-
-#: gstreamer-properties/gstreamer-properties.glade:1140
-msgid "Video"
-msgstr "فيديو"
-
-#: gstreamer-properties/gstreamer-properties.glade:1170
-msgid "Testing Pipeline"
-msgstr "جاري اختبار خط الأنابيب"
-
-#: gstreamer-properties/gstreamer-properties.glade:1219
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">اختبار...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade:1254
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Audio"
+msgstr "قطعة صوت"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "انقر موافق للإنهاء."
+
+#: gstreamer-properties/gstreamer-properties.glade.h:7
+msgid "GStreamer Preferences"
+msgstr "تفضيلات جستريمر"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Pipe_line:"
+msgstr "خط الأ_نابيب"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "Te_st"
+msgstr "ا_ختبار"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Testing Pipeline"
+msgstr "جاري اختبار خط الأنابيب"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "فيديو"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "الإ_دخال:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "الإخ_راج:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "_Pipeline:"
+msgstr "خط الأنا_بيب:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Test"
+msgstr "اخ_تبار"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1590,45 +1845,106 @@ msgstr ""
 "الملف \"%s\" مفقود. يعني ذلك أن التطبيق غير مثبت بسلامة و بالتالي لن يمكن "
 "عرض الحوار."
 
-#: profiles/gnome-audio-profiles.glade2:10
-msgid "New Profile"
-msgstr "لمحة مختصرة جديدة"
-
-#: profiles/gnome-audio-profiles.glade2:84
-msgid "_Create"
-msgstr "إ_نشاء"
-
-#: profiles/gnome-audio-profiles.glade2:138
-msgid "Profile _name:"
-msgstr "ا_سم اللمحة المختصرة:"
-
-#: profiles/gnome-audio-profiles.glade2:203
+#: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
 msgstr "تحرير اللمحة المختصرة للصوت"
 
-#: profiles/gnome-audio-profiles.glade2:273
-msgid "_Profile name:"
-msgstr "اسم ال_لمحة المختصرة:"
-
-#: profiles/gnome-audio-profiles.glade2:298
-msgid "Profile _Description:"
-msgstr "_وصف اللمحة المختصرة:"
-
-#: profiles/gnome-audio-profiles.glade2:310
-msgid "Profile Description:"
-msgstr "وصف اللمحة المختصرة:"
-
-#: profiles/gnome-audio-profiles.glade2:326
-msgid "_GStreamer Pipeline:"
-msgstr "أنبوب _جستريمر:"
-
-#: profiles/gnome-audio-profiles.glade2:351
+#: profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
 msgstr "ا_متداد الملف:"
 
-#: profiles/gnome-audio-profiles.glade2:480
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "لمحة مختصرة جديدة"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "وصف اللمحة المختصرة:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "_وصف اللمحة المختصرة:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "ا_سم اللمحة المختصرة:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
 msgstr "_نشط ؟"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "إ_نشاء"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "أنبوب _جستريمر:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "اسم ال_لمحة المختصرة:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "وصف للمحة الصوت المختصرة"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+"وصف للمحة المختصرة، مشتملا للمزيد من المعلومات و حالات استعمال هذهاللمحة "
+"المختصرة."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr "إمتداد إسم ملف يستخدم عند خزن ملفات مشفرة باللمحة المختصرة هذه."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "خط أنبوب جزئي لجستريمر للاستخدام مع هذه اللمحة المختصرة."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr "إسم مختصر للمحة الصوت المختصرة"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+"إسم مختصر للمحة الصوت المختصرة، يمكن استعماله في المنتقيات و للتحديدالموحد "
+"للمحة المختصرة."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+"قائمة للمحات مختصرة للتسجيلات الصوتية. القائمة تشتمل على أسماء سلسلية "
+"للدلائل نسبة إلى /system/gstreamer/audio/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr "قائمة اللمحات المختصرة"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr "امتداد الملف الإفتراضي للمحة الاختصار هذه"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr "خط أنبوب جستريمر الجزئي المستخدم"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr "فيما إذا ستستخدم هذه اللمحة المختصرة أم لا"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr "فيما إذا ستستخدم و تعرض هذه اللمحة المختصرة."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1683,271 +1999,21 @@ msgstr "مستوى التسجيل"
 msgid "Volume Meter"
 msgstr "قياس شدة الصوت"
 
-#~ msgid "Address of the server to contact for CD queries"
-#~ msgstr "عنوان النادل للاتصال لطلبات القرص المدمج"
-
-#~ msgid "Information to send to server"
-#~ msgstr "المعلومات التي سترسل للنادل"
-
-#~ msgid "Server name"
-#~ msgstr "إسم النادل"
-
-#~ msgid "Server type"
-#~ msgstr "نوع النادل"
-
-#~ msgid "The hostname that will be sent with all queries"
-#~ msgstr "إسم المضيف الذي سيبعث مع جميع الطلبات"
-
-#~ msgid "The port that the server is running the database on"
-#~ msgstr "المنفذ الذي يشغل النادل قاعدة البيانات عليه"
-
-#~ msgid ""
-#~ "The type of the server to contact for CD queries. Possible values are 0 "
-#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-#~ msgstr ""
-#~ "نوع النادل الذي سيتصل به للسؤال عن الأقراص المدمجة. القيم الممكنةهي 0 "
-#~ "(نادل راوند روبن FreeDB)و 1 (نادل freedb مغاير) و 2 (نادل آخر)"
-
-#~ msgid "The username"
-#~ msgstr "اسم المستخدم"
-
-#~ msgid "The username that will be sent with all queries"
-#~ msgstr "اسم المستخدم الذي سيبعث مع جميع الطلبات"
-
-#~ msgid ""
-#~ "This key specifies which user information will be sent to the server to "
-#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
-#~ "information) and 3 (other information)."
-#~ msgstr ""
-#~ "يحدد هذا المفتاح أي معلومات المستخدم سترسل للنادل للاتصال به للإستفسار عن "
-#~ "الأقراص المدمجة. القيم الممكنة هي0 (لا معلومات) و 1 (معلومات حقيقية) و 3 "
-#~ "(معلومات أخرى)."
-
-#~ msgid "Your hostname"
-#~ msgstr "اسم مضيفك"
-
-#~ msgid "CD Database"
-#~ msgstr "قاعدة بيانات القرص المدمج"
-
-#~ msgid "Modify your CD database preferences"
-#~ msgstr "عدل خصائص قاعدة بياناتك للقرص المدمج"
-
-#~ msgid "Play audio CDs"
-#~ msgstr "عزف أقراص مدمجة صوتية"
-
-#~ msgid "CD player theme"
-#~ msgstr "تيمة عازف الأقراص المدمجة"
-
-#~ msgid "Device path"
-#~ msgstr "مسار الجهاز"
-
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "هل تريد طرد القرص المدمج عند انهاء عازف الأقراص المدمجة؟"
-
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "عزف عند تشغيل عازف الأقراص المدمجة؟"
-
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "هل يطرد القرص المدمج عند إنهاء عازف الأقراص المدمجة؟"
-
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr ""
-#~ "مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
-
-#~ msgid "What theme should the CD player use for it's appearance"
-#~ msgstr ""
-#~ "ما هي التيمة التي من المفروض ان يستعملها عازف الأقراص المدمجة لمظهره"
-
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr "هل يعزف عازف الأقراص المدمجة القرص عند بدأ تشغيله؟"
-
-#~ msgid "Record sound clips"
-#~ msgstr "تسجيل قطع صوتية"
-
-#~ msgid "About"
-#~ msgstr "حول"
-
-#~ msgid "Close"
-#~ msgstr "غلق"
-
-#~ msgid "Close this window"
-#~ msgstr "غلق هذه النافذة"
-
-#~ msgid "Contents"
-#~ msgstr "المحتويات"
-
-#~ msgid "Create a new sample"
-#~ msgstr "انشاء عينة جديدة"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "عرض المساعدة لمسجل الأصوات"
-
-#~ msgid "File _Information"
-#~ msgstr "_معلومات الملف"
-
-#~ msgid "Main toolbar"
-#~ msgstr "عمود الأدوات الرئيسي"
-
-#~ msgid "New"
-#~ msgstr "جديد"
-
-#~ msgid "Open"
-#~ msgstr "فتح"
-
-#~ msgid "Play sound"
-#~ msgstr "عزف صوت"
-
-#~ msgid "Quit"
-#~ msgstr "إنهاء"
-
-#~ msgid "Quit the application"
-#~ msgstr "إنهاء التطبيق"
-
-#~ msgid "Recent _Files"
-#~ msgstr "الملفات ال_حديثة"
-
-#~ msgid "Record"
-#~ msgstr "تسجيل"
-
-#~ msgid "Record sound"
-#~ msgstr "تسجيل صوت"
-
-#~ msgid "Run Mixer"
-#~ msgstr "تشغيل المؤلف"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "تشغيل الم_ؤلف"
-
-#~ msgid "Run the audio mixer"
-#~ msgstr "تشغيل مؤلف الصوت"
-
-#~ msgid "Save"
-#~ msgstr "حفظ"
-
-#~ msgid "Save As"
-#~ msgstr "حفظ كـ"
-
-#~ msgid "Save _As..."
-#~ msgstr "حفظ _كـ..."
-
-#~ msgid "Save the current file"
-#~ msgstr "حفظ الملف الحالي"
-
-#~ msgid "Save the current file with a different name"
-#~ msgstr "حفظ الملف الحالي باسم مغاير"
-
-#~ msgid "Show information about the current file"
-#~ msgstr "عرض معلومات عن الملف الحالي"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "عرض معلومات عن مسجل اﻷصوات"
-
-#~ msgid "Stop sound"
-#~ msgstr "ايقاف الصوت"
-
-#~ msgid "_About"
-#~ msgstr "_حول..."
-
-#~ msgid "_Close Window"
-#~ msgstr "_غلق النافذة"
-
-#~ msgid "_Contents"
-#~ msgstr "الم_حتويات"
-
-#~ msgid "_Control"
-#~ msgstr "_التحكم"
-
-#~ msgid "_File"
-#~ msgstr "_ملف"
-
-#~ msgid "_New"
-#~ msgstr "_جديد"
-
-#~ msgid "_Open..."
-#~ msgstr "_فتح..."
-
-#~ msgid "_Play"
-#~ msgstr "_عزف"
-
-#~ msgid "_Quit"
-#~ msgstr "إ_نهاء"
-
-#~ msgid "_Record"
-#~ msgstr "_تسجيل"
-
-#~ msgid "_Save"
-#~ msgstr "_حفظ"
-
-#~ msgid "Adjust the volume level"
-#~ msgstr "احكام مستوى شدة الصوت"
-
-#~ msgid "Configure defaults for GStreamer applications"
-#~ msgstr "إعداد إفتراض تطبيقات جستريمر"
-
-#~ msgid "Multimedia Systems Selector"
-#~ msgstr "منتقي نظم الوسائط المتعدّدة"
-
-#~ msgid "A description for the audio profile"
-#~ msgstr "وصف للمحة الصوت المختصرة"
-
-#~ msgid ""
-#~ "A description of the profile, containing more information and describing "
-#~ "when to use this profile."
-#~ msgstr ""
-#~ "وصف للمحة المختصرة، مشتملا للمزيد من المعلومات و حالات استعمال هذهاللمحة "
-#~ "المختصرة."
-
-#~ msgid ""
-#~ "A filename extension to be used when storing files encoded with this "
-#~ "profile."
-#~ msgstr "إمتداد إسم ملف يستخدم عند خزن ملفات مشفرة باللمحة المختصرة هذه."
-
-#~ msgid "A partial GStreamer pipeline to use for this profile."
-#~ msgstr "خط أنبوب جزئي لجستريمر للاستخدام مع هذه اللمحة المختصرة."
-
-#~ msgid "A short name for the audio profile"
-#~ msgstr "إسم مختصر للمحة الصوت المختصرة"
-
-#~ msgid ""
-#~ "A short name for the audio profile, to be used in selections and uniquely "
-#~ "identifying the profile."
-#~ msgstr ""
-#~ "إسم مختصر للمحة الصوت المختصرة، يمكن استعماله في المنتقيات و "
-#~ "للتحديدالموحد للمحة المختصرة."
-
-#~ msgid ""
-#~ "List of audio recording profiles. The list contains strings naming "
-#~ "subdirectories relative to /system/gstreamer/audio/profiles."
-#~ msgstr ""
-#~ "قائمة للمحات مختصرة للتسجيلات الصوتية. القائمة تشتمل على أسماء سلسلية "
-#~ "للدلائل نسبة إلى /system/gstreamer/audio/profiles."
-
-#~ msgid "List of profiles"
-#~ msgstr "قائمة اللمحات المختصرة"
-
-#~ msgid "The default file extension for this profile"
-#~ msgstr "امتداد الملف الإفتراضي للمحة الاختصار هذه"
-
-#~ msgid "The partial GStreamer pipeline used"
-#~ msgstr "خط أنبوب جستريمر الجزئي المستخدم"
-
-#~ msgid "Whether or not this profile is to be used"
-#~ msgstr "فيما إذا ستستخدم هذه اللمحة المختصرة أم لا"
-
-#~ msgid "Whether or not to use and display this profile."
-#~ msgstr "فيما إذا ستستخدم و تعرض هذه اللمحة المختصرة."
-
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "مراقبة شدة صوت الإدخال المسجل"
-
-#~ msgid "Recording level monitor"
-#~ msgstr "مراقب مستوى التسجيل"
-
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "مراقبة شدة صوت الإخراج الصوتي"
-
-#~ msgid "Volume monitor"
-#~ msgstr "مراقب شدة الصوت"
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "Monitor the recording input volume"
+msgstr "مراقبة شدة صوت الإدخال المسجل"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "Recording level monitor"
+msgstr "مراقب مستوى التسجيل"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "Monitor the sound output volume"
+msgstr "مراقبة شدة صوت الإخراج الصوتي"
+
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "Volume monitor"
+msgstr "مراقب شدة الصوت"
 
 #~ msgid "Unknown artist"
 #~ msgstr "فنان مجهول"

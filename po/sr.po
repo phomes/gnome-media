@@ -9,13 +9,71 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 17:46+0200\n"
+"POT-Creation-Date: 2004-05-09 16:44+0200\n"
 "PO-Revision-Date: 2004-03-01 17:45+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "Адреса сервера коме ће се прослеђивати ЦД упити"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Подаци који се шаљу серверу"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Порт"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "Назив сервера"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Врста сервера"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "Назив домаћина који ће се проследити уз све упите"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "Порт на коме сервер гостује базу података"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"Врста сервера коме се шаљу упити о ЦД-има. Дозвољене вредности су 0 (ФриДБ "
+"наизменични сервер), 1 (неки други ФриДБ сервер) или 2 (други сервер)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "Корисничко име"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "Корисничко име које ће се проследити уз све упите"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"Овај кључ наводи који подаци о кориснику ће се послати серверу ради упита о "
+"ЦД-има. Дозвољене вредности су 0 (ништа се не шаље), 1 (прави подаци) или 3 "
+"(неки други подаци)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Назив Вашег домаћина"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -71,10 +129,6 @@ msgstr "_Наизменични ФриДБ сервер"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Други _ФриДБ сервер:"
-
-#: cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Порт"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -139,6 +193,14 @@ msgstr "Извођач и Наслов"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Непозната нумера"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:1
+msgid "CD Database"
+msgstr "База података компакт дискова"
+
+#: cddb-slave2/cddb-slave.desktop.in.h:2
+msgid "Modify your CD database preferences"
+msgstr "Промените подешавања Ваше базе података"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -872,7 +934,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Линија у којој се приказује назив албума"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Репродукција"
 
@@ -897,6 +959,7 @@ msgstr "Паузирано"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
+#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "ЦД плејер"
 
@@ -959,7 +1022,7 @@ msgstr "%d - Непознато"
 msgid "P_revious track"
 msgstr "Претходна нумера"
 
-#: gnome-cd/gnome-cd.c:347
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "Заустави"
 
@@ -975,7 +1038,7 @@ msgstr "Следећа нумера"
 msgid "_Eject disc"
 msgstr "Избаци диск"
 
-#: gnome-cd/gnome-cd.c:351
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Помоћ"
 
@@ -1073,7 +1136,7 @@ msgstr "Премотавање уназад"
 msgid "Play / Pause"
 msgstr "Репродукција / Пауза"
 
-#: gnome-cd/gnome-cd.c:693
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Заустави репродукцију"
 
@@ -1109,6 +1172,42 @@ msgstr "Репродукуј ЦД по стартовању"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Нејие могуће креирати плејер"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Репродукција аудио ЦД-ова"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player theme"
+msgstr "Тема"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "Device path"
+msgstr "Путања до уређаја"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "Избаци ЦД при затварању ЦД плејера?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "Пусти при покретању ЦД плејера?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "Да ли ЦД треба избацити при затварању ЦД плејера"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "Путања ка ЦД уређају који ЦД плејер треба да користи за пуштање ЦД-ова"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "What theme should the CD player use for it's appearance"
+msgstr "Коју тему да користи ЦД плејер за свој изглед"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Када се покрене ЦД плејер, да ли да пушта ЦД?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1159,6 +1258,175 @@ msgstr "Покушај да избациш ЦД при затварању ЦД �
 msgid "_Available Themes:"
 msgstr "_Доступне теме:"
 
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "Сними исечке звука"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
+#: grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Снимање звука"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "О програму"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Затвори"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Затвори овај прозор"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Садржај"
+
+#: grecord/gsr.xml.h:5
+msgid "Create a new sample"
+msgstr "Направи нови исечак"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Прикажи помоћ за снимање звука"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Подаци о датотеци"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "_Подаци о датотеци"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Главне алатке"
+
+#: grecord/gsr.xml.h:10
+msgid "New"
+msgstr "Нови"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Отвори"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Отвори датотеку"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Пусти звук"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Затвори"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Изађи из програма"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "_Последње отваране датотеке"
+
+#: grecord/gsr.xml.h:18
+msgid "Record"
+msgstr "Сними"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Сними звук"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Покрени миксер"
+
+#: grecord/gsr.xml.h:21
+msgid "Run _Mixer"
+msgstr "Покрени _миксер"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Покрени подешавање јачине звука"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Сачувај"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Сачувај као"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "Сними к_ао..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Сачувај текућу датотеку"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Сачувај текућу датотеку под другим именом"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Прикажи податке о текућој датотеци"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Прикажи податке о снимању звука"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Заустави звук"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "О _програму"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Затвори прозор"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Садржај"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Управљање"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "Дато_тека"
+
+#: grecord/gsr.xml.h:38
+msgid "_New"
+msgstr "_Нова"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Отвори..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "_Пусти"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "_Затвори"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "_Сними"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_Сачувај"
+
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Глупа опција"
@@ -1199,10 +1467,6 @@ msgstr "секунди"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "секунда"
-
-#: grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Отвори датотеку"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1255,10 +1519,6 @@ msgstr "2 (стерео)"
 msgid "%s Information"
 msgstr "Подаци о %s"
 
-#: grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Подаци о датотеци"
-
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Директоријум:"
@@ -1290,10 +1550,6 @@ msgstr "Величина узорка:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Квалитет:"
-
-#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Снимање звука"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1327,6 +1583,16 @@ msgstr "<ништа>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Дужина:"
+
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "Прилагоди јачину звука"
+
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
+#: gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Управљање јачином звука"
 
 # bug: string composition
 #: gst-mixer/src/mixer.c:223
@@ -1376,11 +1642,6 @@ msgstr "Сним."
 msgid "%s Record"
 msgstr "Снимај %s"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Управљање јачином звука"
-
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Програм за управљање јачином звука за Гнома/ГСтример"
@@ -1400,81 +1661,74 @@ msgstr "Грешка при образовању главног прозора"
 msgid "Could not load UI resource %s"
 msgstr "Не може да учита ресурс корисничког сучеља %s"
 
-#: gstreamer-properties/gstreamer-properties.glade:10
-msgid "GStreamer Preferences"
-msgstr "Поставке ГСтримера"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
+msgid "Configure defaults for GStreamer applications"
+msgstr "Постави уобичајена подешавања за ГСтример програме"
 
-#: gstreamer-properties/gstreamer-properties.glade:91
-#: gstreamer-properties/gstreamer-properties.glade:633
-msgid "<b>Default Sink</b>"
-msgstr "<b>Уобичајени излаз</b>"
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+msgid "Multimedia Systems Selector"
+msgstr "Избирач мултимедијалног система"
 
-#: gstreamer-properties/gstreamer-properties.glade:150
-#: gstreamer-properties/gstreamer-properties.glade:692
-msgid "_Output:"
-msgstr "_Излаз:"
-
-#: gstreamer-properties/gstreamer-properties.glade:191
-#: gstreamer-properties/gstreamer-properties.glade:733
-msgid "_Pipeline:"
-msgstr "_Цев:"
-
-#: gstreamer-properties/gstreamer-properties.glade:228
-#: gstreamer-properties/gstreamer-properties.glade:483
-#: gstreamer-properties/gstreamer-properties.glade:770
-#: gstreamer-properties/gstreamer-properties.glade:1025
-#: profiles/gnome-audio-profiles.glade2:166
-#: profiles/gnome-audio-profiles.glade2:382
-#: profiles/gnome-audio-profiles.glade2:404
-#: profiles/gnome-audio-profiles.glade2:426
-#: profiles/gnome-audio-profiles.glade2:448
+#: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
-#: gstreamer-properties/gstreamer-properties.glade:278
-#: gstreamer-properties/gstreamer-properties.glade:820
-msgid "_Test"
-msgstr "_Проба"
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Уобичајени излаз</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:346
-#: gstreamer-properties/gstreamer-properties.glade:888
+#: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Source</b>"
 msgstr "<b>Уобичајени извор</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade:405
-#: gstreamer-properties/gstreamer-properties.glade:947
-msgid "_Input:"
-msgstr "_Улаз:"
-
-#: gstreamer-properties/gstreamer-properties.glade:446
-#: gstreamer-properties/gstreamer-properties.glade:988
-msgid "Pipe_line:"
-msgstr "_Цев:"
-
-#: gstreamer-properties/gstreamer-properties.glade:533
-#: gstreamer-properties/gstreamer-properties.glade:1075
-msgid "Te_st"
-msgstr "Про_ба"
-
-#: gstreamer-properties/gstreamer-properties.glade:598
-msgid "Audio"
-msgstr "Звук"
-
-#: gstreamer-properties/gstreamer-properties.glade:1140
-msgid "Video"
-msgstr "Видео"
-
-#: gstreamer-properties/gstreamer-properties.glade:1170
-msgid "Testing Pipeline"
-msgstr "Испробава цев"
-
-#: gstreamer-properties/gstreamer-properties.glade:1219
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">Испробава...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade:1254
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Audio"
+msgstr "Звук"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "Притисните „У реду“ да завршите."
+
+#: gstreamer-properties/gstreamer-properties.glade.h:7
+msgid "GStreamer Preferences"
+msgstr "Поставке ГСтримера"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Pipe_line:"
+msgstr "_Цев:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "Te_st"
+msgstr "Про_ба"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Testing Pipeline"
+msgstr "Испробава цев"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Видео"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "_Улаз:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "_Излаз:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "_Pipeline:"
+msgstr "_Цев:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Test"
+msgstr "_Проба"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1608,45 +1862,108 @@ msgstr ""
 "Недостаје датотека „%s“. Ово значи да је програм неисправно постављен, па се "
 "прозорче не може приказати."
 
-#: profiles/gnome-audio-profiles.glade2:10
-msgid "New Profile"
-msgstr "Нови скуп поставки"
-
-#: profiles/gnome-audio-profiles.glade2:84
-msgid "_Create"
-msgstr "_Направи"
-
-#: profiles/gnome-audio-profiles.glade2:138
-msgid "Profile _name:"
-msgstr "_Име скупа поставки:"
-
-#: profiles/gnome-audio-profiles.glade2:203
+#: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
 msgstr "Уреди скуп звучних поставки"
 
-#: profiles/gnome-audio-profiles.glade2:273
-msgid "_Profile name:"
-msgstr "_Име скупа поставки:"
-
-#: profiles/gnome-audio-profiles.glade2:298
-msgid "Profile _Description:"
-msgstr "_Опис скупа поставки:"
-
-#: profiles/gnome-audio-profiles.glade2:310
-msgid "Profile Description:"
-msgstr "Опис скупа поставки:"
-
-#: profiles/gnome-audio-profiles.glade2:326
-msgid "_GStreamer Pipeline:"
-msgstr "_Цевка ГСтримера:"
-
-#: profiles/gnome-audio-profiles.glade2:351
+#: profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
 msgstr "_Екстензија датотеке:"
 
-#: profiles/gnome-audio-profiles.glade2:480
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "Нови скуп поставки"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "Опис скупа поставки:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "_Опис скупа поставки:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "_Име скупа поставки:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
 msgstr "_Активан?"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "_Направи"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "_Цевка ГСтримера:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "_Име скупа поставки:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "Опис скупа звучних поставки"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr ""
+"Опис скупа поставки који садржи више података и описује када треба користити "
+"овај скуп."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+"Екстензија датотеке која се користи при смештању датотека записаних помоћу "
+"овог скупа поставки."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "Делимична ГСтример цевка коју користи овај скуп поставки."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid "A short name for the audio profile"
+msgstr "Кратко име за скуп звучних поставки"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr ""
+"Кратко име за скуп звучних поставки, који се користи при избору и "
+"једнозначном одређивању скупа."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/audio/profiles."
+msgstr ""
+"Списак скупова поставки за снимање звука. Списак садржи ниске које именују "
+"поддиректоријуме у односу на /system/gstreamer/audio/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "List of profiles"
+msgstr "Списак скупова поставки"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "The default file extension for this profile"
+msgstr "Подразумевана екстензија датотеке за овај скуп поставки"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "The partial GStreamer pipeline used"
+msgstr "Коришћена делимична ГСтример цевка"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "Whether or not this profile is to be used"
+msgstr "Да ли се овај скуп поставки користи"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+msgid "Whether or not to use and display this profile."
+msgstr "Да ли се приказује и користи овај скуп поставки."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1701,273 +2018,21 @@ msgstr "Јачина снимка"
 msgid "Volume Meter"
 msgstr "Мерач јачине"
 
-#~ msgid "Address of the server to contact for CD queries"
-#~ msgstr "Адреса сервера коме ће се прослеђивати ЦД упити"
-
-#~ msgid "Information to send to server"
-#~ msgstr "Подаци који се шаљу серверу"
-
-#~ msgid "Server name"
-#~ msgstr "Назив сервера"
-
-#~ msgid "Server type"
-#~ msgstr "Врста сервера"
-
-#~ msgid "The hostname that will be sent with all queries"
-#~ msgstr "Назив домаћина који ће се проследити уз све упите"
-
-#~ msgid "The port that the server is running the database on"
-#~ msgstr "Порт на коме сервер гостује базу података"
-
-#~ msgid ""
-#~ "The type of the server to contact for CD queries. Possible values are 0 "
-#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-#~ msgstr ""
-#~ "Врста сервера коме се шаљу упити о ЦД-има. Дозвољене вредности су 0 "
-#~ "(ФриДБ наизменични сервер), 1 (неки други ФриДБ сервер) или 2 (други "
-#~ "сервер)."
-
-#~ msgid "The username"
-#~ msgstr "Корисничко име"
-
-#~ msgid "The username that will be sent with all queries"
-#~ msgstr "Корисничко име које ће се проследити уз све упите"
-
-#~ msgid ""
-#~ "This key specifies which user information will be sent to the server to "
-#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
-#~ "information) and 3 (other information)."
-#~ msgstr ""
-#~ "Овај кључ наводи који подаци о кориснику ће се послати серверу ради упита "
-#~ "о ЦД-има. Дозвољене вредности су 0 (ништа се не шаље), 1 (прави подаци) "
-#~ "или 3 (неки други подаци)."
-
-#~ msgid "Your hostname"
-#~ msgstr "Назив Вашег домаћина"
-
-#~ msgid "CD Database"
-#~ msgstr "База података компакт дискова"
-
-#~ msgid "Modify your CD database preferences"
-#~ msgstr "Промените подешавања Ваше базе података"
-
-#~ msgid "Play audio CDs"
-#~ msgstr "Репродукција аудио ЦД-ова"
-
-#~ msgid "CD player theme"
-#~ msgstr "Тема"
-
-#~ msgid "Device path"
-#~ msgstr "Путања до уређаја"
-
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "Избаци ЦД при затварању ЦД плејера?"
-
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "Пусти при покретању ЦД плејера?"
-
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "Да ли ЦД треба избацити при затварању ЦД плејера"
-
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr ""
-#~ "Путања ка ЦД уређају који ЦД плејер треба да користи за пуштање ЦД-ова"
-
-#~ msgid "What theme should the CD player use for it's appearance"
-#~ msgstr "Коју тему да користи ЦД плејер за свој изглед"
-
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr "Када се покрене ЦД плејер, да ли да пушта ЦД?"
-
-#~ msgid "Record sound clips"
-#~ msgstr "Сними исечке звука"
-
-#~ msgid "About"
-#~ msgstr "О програму"
-
-#~ msgid "Close"
-#~ msgstr "Затвори"
-
-#~ msgid "Close this window"
-#~ msgstr "Затвори овај прозор"
-
-#~ msgid "Contents"
-#~ msgstr "Садржај"
-
-#~ msgid "Create a new sample"
-#~ msgstr "Направи нови исечак"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "Прикажи помоћ за снимање звука"
-
-#~ msgid "File _Information"
-#~ msgstr "_Подаци о датотеци"
-
-#~ msgid "Main toolbar"
-#~ msgstr "Главне алатке"
-
-#~ msgid "New"
-#~ msgstr "Нови"
-
-#~ msgid "Open"
-#~ msgstr "Отвори"
-
-#~ msgid "Play sound"
-#~ msgstr "Пусти звук"
-
-#~ msgid "Quit"
-#~ msgstr "Затвори"
-
-#~ msgid "Quit the application"
-#~ msgstr "Изађи из програма"
-
-#~ msgid "Recent _Files"
-#~ msgstr "_Последње отваране датотеке"
-
-#~ msgid "Record"
-#~ msgstr "Сними"
-
-#~ msgid "Record sound"
-#~ msgstr "Сними звук"
-
-#~ msgid "Run Mixer"
-#~ msgstr "Покрени миксер"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Покрени _миксер"
-
-#~ msgid "Run the audio mixer"
-#~ msgstr "Покрени подешавање јачине звука"
-
-#~ msgid "Save"
-#~ msgstr "Сачувај"
-
-#~ msgid "Save As"
-#~ msgstr "Сачувај као"
-
-#~ msgid "Save _As..."
-#~ msgstr "Сними к_ао..."
-
-#~ msgid "Save the current file"
-#~ msgstr "Сачувај текућу датотеку"
-
-#~ msgid "Save the current file with a different name"
-#~ msgstr "Сачувај текућу датотеку под другим именом"
-
-#~ msgid "Show information about the current file"
-#~ msgstr "Прикажи податке о текућој датотеци"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "Прикажи податке о снимању звука"
-
-#~ msgid "Stop sound"
-#~ msgstr "Заустави звук"
-
-#~ msgid "_About"
-#~ msgstr "О _програму"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Затвори прозор"
-
-#~ msgid "_Contents"
-#~ msgstr "_Садржај"
-
-#~ msgid "_Control"
-#~ msgstr "_Управљање"
-
-#~ msgid "_File"
-#~ msgstr "Дато_тека"
-
-#~ msgid "_New"
-#~ msgstr "_Нова"
-
-#~ msgid "_Open..."
-#~ msgstr "_Отвори..."
-
-#~ msgid "_Play"
-#~ msgstr "_Пусти"
-
-#~ msgid "_Quit"
-#~ msgstr "_Затвори"
-
-#~ msgid "_Record"
-#~ msgstr "_Сними"
-
-#~ msgid "_Save"
-#~ msgstr "_Сачувај"
-
-#~ msgid "Adjust the volume level"
-#~ msgstr "Прилагоди јачину звука"
-
-#~ msgid "Configure defaults for GStreamer applications"
-#~ msgstr "Постави уобичајена подешавања за ГСтример програме"
-
-#~ msgid "Multimedia Systems Selector"
-#~ msgstr "Избирач мултимедијалног система"
-
-#~ msgid "A description for the audio profile"
-#~ msgstr "Опис скупа звучних поставки"
-
-#~ msgid ""
-#~ "A description of the profile, containing more information and describing "
-#~ "when to use this profile."
-#~ msgstr ""
-#~ "Опис скупа поставки који садржи више података и описује када треба "
-#~ "користити овај скуп."
-
-#~ msgid ""
-#~ "A filename extension to be used when storing files encoded with this "
-#~ "profile."
-#~ msgstr ""
-#~ "Екстензија датотеке која се користи при смештању датотека записаних "
-#~ "помоћу овог скупа поставки."
-
-#~ msgid "A partial GStreamer pipeline to use for this profile."
-#~ msgstr "Делимична ГСтример цевка коју користи овај скуп поставки."
-
-#~ msgid "A short name for the audio profile"
-#~ msgstr "Кратко име за скуп звучних поставки"
-
-#~ msgid ""
-#~ "A short name for the audio profile, to be used in selections and uniquely "
-#~ "identifying the profile."
-#~ msgstr ""
-#~ "Кратко име за скуп звучних поставки, који се користи при избору и "
-#~ "једнозначном одређивању скупа."
-
-#~ msgid ""
-#~ "List of audio recording profiles. The list contains strings naming "
-#~ "subdirectories relative to /system/gstreamer/audio/profiles."
-#~ msgstr ""
-#~ "Списак скупова поставки за снимање звука. Списак садржи ниске које "
-#~ "именују поддиректоријуме у односу на /system/gstreamer/audio/profiles."
-
-#~ msgid "List of profiles"
-#~ msgstr "Списак скупова поставки"
-
-#~ msgid "The default file extension for this profile"
-#~ msgstr "Подразумевана екстензија датотеке за овај скуп поставки"
-
-#~ msgid "The partial GStreamer pipeline used"
-#~ msgstr "Коришћена делимична ГСтример цевка"
-
-#~ msgid "Whether or not this profile is to be used"
-#~ msgstr "Да ли се овај скуп поставки користи"
-
-#~ msgid "Whether or not to use and display this profile."
-#~ msgstr "Да ли се приказује и користи овај скуп поставки."
-
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "Прати јачину улазног снимка"
-
-#~ msgid "Recording level monitor"
-#~ msgstr "Праћење јачине снимка"
-
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "Прати јачину излаза звука"
-
-#~ msgid "Volume monitor"
-#~ msgstr "Праћење јачине звука"
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "Monitor the recording input volume"
+msgstr "Прати јачину улазног снимка"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "Recording level monitor"
+msgstr "Праћење јачине снимка"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "Monitor the sound output volume"
+msgstr "Прати јачину излаза звука"
+
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "Volume monitor"
+msgstr "Праћење јачине звука"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Непознати извођач"
