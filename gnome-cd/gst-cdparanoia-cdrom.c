@@ -234,12 +234,20 @@ check_playtime (GstBin * bin, gpointer data)
 }
 
 static void
+cb_error (GstElement *el, GstElement *src,
+	  GError *err, gchar *debug, gpointer data)
+{
+	g_warning (err->message);
+}
+
+static void
 build_pipeline (GstCdparanoiaCDRom * lcd)
 {
 	GstCdparanoiaCDRomPrivate *priv;
 	static int pipeline_built = 0;
 	char *sink;
 	char *sink_options_start = NULL;
+	GstElement *conv, *scale;
 
 	if (pipeline_built == 1)
 		return; 
@@ -248,6 +256,9 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 
 	priv->play_thread = gst_thread_new ("play_thread");
 	g_assert (priv->play_thread != 0);	/* TBD: GError */
+
+	g_signal_connect (priv->play_thread, "error",
+			  G_CALLBACK (cb_error), priv);
 
 	g_signal_connect (priv->play_thread, "iterate",
 			  G_CALLBACK (check_playtime), priv);
@@ -269,12 +280,16 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	priv->audio_sink = gst_gconf_get_default_audio_sink ();
 	g_assert (priv->audio_sink != 0);	/* TBD: GError */
 
+	conv = gst_element_factory_make ("audioconvert", "conv");
+	scale = gst_element_factory_make ("audioscale", "scale");
+
 	/* Now build the pipeline */
 	gst_bin_add_many (GST_BIN (priv->play_thread), priv->cdparanoia,
-			  priv->audio_sink, NULL);
+			  conv, scale, priv->audio_sink, NULL);
 
 	/* Link 'er up */
-	gst_element_link_many (priv->cdparanoia, priv->audio_sink, NULL);
+	gst_element_link_many (priv->cdparanoia, conv, scale,
+			       priv->audio_sink, NULL);
 
 	pipeline_built = 1;
 }

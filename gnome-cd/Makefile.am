@@ -1,4 +1,11 @@
 SUBDIRS = images access doc
+
+if HAVE_GSTREAMER
+GST_CFLAGS="-DHAVE_GST=1"
+else
+GST_CFLAGS=
+endif
+
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	$(GNOME_INCLUDEDIR)			\
@@ -7,6 +14,8 @@ INCLUDES =					\
 	$(MEDIA_CFLAGS)				\
 	$(GNOMECD_CFLAGS)			\
 	$(GAILUTIL_CFLAGS)			\
+	$(GSR_CFLAGS)                           \
+	$(GST_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"	\
@@ -22,6 +31,8 @@ EXTRA_DIST = \
 	bsd-cdrom.h		\
 	linux-cdrom.c		\
 	linux-cdrom.h		\
+	gst-cdparanoia-cdrom.c	\
+	gst-cdparanoia-cdrom.h	\
 	gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
 ### intermediate libtool library generated from IDL source
@@ -40,6 +51,9 @@ $(IDL_GENERATED): $(IDLS)
 noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
 libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 
+if HAVE_GSTREAMER
+cd_sources = gst-cdparanoia-cdrom.c
+else
 if CDROM_HOST_BSD
 cd_sources = bsd-cdrom.c bsd-cdrom.h
 endif
@@ -48,6 +62,7 @@ cd_sources = linux-cdrom.c linux-cdrom.h
 endif
 if CDROM_HOST_SOLARIS
 cd_sources = solaris-cdrom.c solaris-cdrom.h
+endif
 endif
 
 bin_PROGRAMS = gnome-cd
@@ -79,6 +94,7 @@ gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(INTLLIBS)		\
 		 $(GAILUTIL_LIBS)	\
 		 $(ACCESS_LT_LIB)	\
+		 $(GSR_LIBS)		\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
 		 libgnomemedia-cddbslave2.la
 

@@ -23,6 +23,10 @@
 #include "preferences.h"
 #include "access/factory.h"
 
+#ifdef HAVE_GST
+#include <gst/gst.h>
+#endif
+
 #define DEFAULT_THEME "lcd"
 #define MAX_TRACKNAME_LENGTH 30
 
@@ -804,6 +808,9 @@ int
 main (int argc, char *argv[])
 {
 	static struct poptOption cd_popt_options [] = {
+#ifdef HAVE_GST
+		{ NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
+#endif
 		{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
 		  N_("CD device to use"), NULL },
 		{ "unique", '\0', POPT_ARG_NONE, &cd_option_unique, 0,
@@ -826,6 +833,9 @@ main (int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
+#ifdef HAVE_GST
+	cd_popt_options[0].arg = (void*) gst_init_get_popt_table();
+#endif
 	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, 
 			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
