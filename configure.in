@@ -140,26 +140,26 @@ AC_SUBST(PROGRAMS_VUMETER)
 # gmix
 PROGRAMS_GMIX=""
 GMIX_LIBS=""
-build_gmix=no
+build_gmix=false
 AC_CHECK_HEADERS(soundcard.h linux/soundcard.h sys/soundcard.h)
 AC_CHECK_HEADERS(machine/soundcard.h)
 if test "x$enable_alsa" = "xyes"; then
     PROGRAMS_GMIX=gmix
-    build_gmix=yes
+    build_gmix=true
     GMIX_LIBS="-lasound"
 elif test "${ac_cv_header_sys_soundcard_h}" = "yes" || \
      test "${ac_cv_header_soundcard_h}" = "yes" || \
      test "${ac_cv_header_linux_soundcard_h}" = "yes" || \
      test "${ac_cv_header_machine_soundcard_h}" = "yes"; then
     PROGRAMS_GMIX=gmix
-    build_gmix=yes
+    build_gmix=true
 fi
 AC_SUBST(PROGRAMS_GMIX)
 AC_SUBST(GMIX_LIBS)
 
 # Check for the Solaris mixer to use until gnome-volume-control is ported
 AC_MSG_CHECKING([for default mixer])
-if test "x$build_gmix" = "xyes"; then
+if test "x$build_gmix" = "xtrue"; then
     DEFAULT_MIXER=gnome-volume-control
     AC_DEFINE(HAVE_MIXER)
     AC_MSG_RESULT($DEFAULT_MIXER)
@@ -181,6 +181,16 @@ else
     ;;
   esac
 fi
+
+#Just to install gnome-volume-control desktop files for Solaris
+AC_SUBST(DEFAULT_MIXER)
+
+  case "$host" in
+  *SunOS*)
+    PROGRAMS_GMIX=gmix
+  ;;
+  esac
+AM_CONDITIONAL(BUILD_GMIX, $build_gmix)
 
 AC_DEFINE_UNQUOTED(DEFAULT_MIXER, "$DEFAULT_MIXER")
 
@@ -274,6 +284,7 @@ gnome-media.spec
 Makefile
 po/Makefile.in
 gmix/Makefile
+gmix/gnome-volume-control.desktop.in
 gmix/doc/Makefile
 gmix/doc/C/Makefile
 vu-meter/Makefile

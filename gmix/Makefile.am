@@ -13,6 +13,7 @@ INCLUDES = \
 
 SUBDIRS = doc
 
+if BUILD_GMIX
 bin_PROGRAMS = gnome-volume-control
 
 gnome_volume_control_SOURCES =	\
@@ -20,6 +21,7 @@ gnome_volume_control_SOURCES =	\
 
 gnome_volume_control_LDADD = \
 	$(MEDIA_LIBS) $(INTLLIBS) $(GMIX_LIBS)
+endif
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -29,6 +31,7 @@ Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
 
 pixmap_DATA = gnome-mixer.png
 
+if BUILD_GMIX
 schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=gnome-volume-control.schemas
 
@@ -36,3 +39,4 @@ install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 
 install-data-local: install-schemas
+endif

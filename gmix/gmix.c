@@ -97,7 +97,6 @@ static void mute_cb (GtkWidget *widget, channel_info *data);
 static void rec_cb (GtkWidget *widget, channel_info *data);
 static void adj_left_cb (GtkAdjustment *widget, channel_info *data);
 static void adj_right_cb (GtkAdjustment *widget, channel_info *data);
-static void help(GtkWidget *widget, gpointer data);
 static void about_cb (GtkWidget *widget, gpointer data);
 
 static void help_cb(GtkWidget *widget, gpointer data);
@@ -112,7 +111,7 @@ GtkWidget  *slidernotebook;
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-/*  	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help, GNOME_STOCK_PIXMAP_HELP), */
+  	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help_cb, GNOME_STOCK_PIXMAP_HELP),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
@@ -329,7 +328,7 @@ main(int argc,
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
-	gnome_init_with_popt_table("gnome-volume-control", VERSION,
+	gnome_init_with_popt_table("gmix", VERSION,
 				   argc, argv, options,
 				   0, NULL);
 
@@ -815,16 +814,13 @@ get_bool_with_default (const char *key,
 	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 	
-	g_print ("Result for %s is - ", key);
 	if (value != NULL) {
 		gboolean result;
 		
 		result = gconf_value_get_bool (value);
-		g_print ("%s\n", result ? "true" : "false");
 		gconf_value_free (value);
 		return result;
 	} else {
-		g_print ("%s (default)\n", default_result ? "true" : "false");
 		return default_result;
 	}
 }
@@ -840,17 +836,14 @@ get_int_with_default (const char *key,
 	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 
-	g_print ("Result for %s is - ", key);
 	if (value != NULL) {
 		int result;
 
 		result = gconf_value_get_int (value);
-		g_print ("%d\n", result);
 		gconf_value_free (value);
 		
 		return result;
 	} else {
-		g_print ("%d (default)\n", default_result);
 		return default_result;
 	}
 }
@@ -866,16 +859,13 @@ get_string_with_default (const char *key,
 	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 
-	g_print ("Result for %s is - ", key);
 	if (value != NULL) {
 		char *result;
 
 		result = g_strdup (gconf_value_get_string (value));
-		g_print ("%s\n", result);
 		gconf_value_free (value);
 		return result;
 	} else {
-		g_print ("%s (default)\n", default_result);
 		return g_strdup (default_result);
 	}
 }
@@ -898,13 +888,11 @@ get_one_device_config (gpointer a,
 		/* Check if the key base directory exists */
 		client = gconf_client_get_default ();
 		if (gconf_client_dir_exists (client, key_base, NULL) == FALSE) {
-			g_print ("%s does not exist\n", key_base);
 			g_free (key_base);
 			g_object_unref (G_OBJECT (client));
 			continue;
-		} else {
-			g_print ("Directory %s exists\n", key_base);
 		}
+		
 		g_object_unref (G_OBJECT (client));
 		
 		key = g_strdup_printf ("%s/title", key_base);
@@ -1682,17 +1670,16 @@ adj_right_cb (GtkAdjustment *adjustment,
 }
 
 void 
-help(GtkWidget *widget, 
-     gpointer data)
+help_cb (GtkWidget *widget, 
+	 gpointer data)
 {
-	GnomeProgram *program;
 	GError *error = NULL;
-	gboolean ret;
 	
-	program = gnome_program_get ();
-        ret = gnome_help_display ("index.html", NULL, &error);
-	if (ret == FALSE) {
-		g_warning ("Error displaying document: %s", error->message);
+	gnome_help_display ("gmix", "gmix", &error);
+
+	if (error != NULL) {
+		/* FIXME: This is bad :) */
+		g_warning ("%s\n", error->message);
 		g_error_free (error);
 	}
 }
