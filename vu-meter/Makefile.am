@@ -4,7 +4,7 @@ pixmapdir = $(datadir)/pixmaps
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(MEDIA_CFLAGS)			\
+	$(VUMETER_CFLAGS)			\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
 bin_PROGRAMS = vumeter
@@ -17,7 +17,7 @@ vumeter_SOURCES = \
 	main.c
 
 vumeter_LDADD = \
-	$(MEDIA_LIBS) $(INTLLIBS)
+	$(VUMETER_LIBS) $(INTLLIBS)
 
 BITMAPS = gnome-vumeter.png gnome-reclevel.png
 

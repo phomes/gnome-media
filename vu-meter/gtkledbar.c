@@ -92,21 +92,21 @@ led_bar_new (gint segments, gint orientation )
 				gdk_color_parse ("#F10000", &active);
 				gdk_color_parse ("#8C0000", &inactive);
 			}
-			
-			led_bar->segments[i] = gtk_led_new ();
-			gtk_led_set_colors (GTK_LED (led_bar->segments[i]), &active, &inactive);
-		
-			if ( !orientation ) {/* horiz */
-				gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
-						  i, (i + 1), 0, 1, 0, 0, 0, 0);
-			} else { /* vert */
-				gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
-						  0, 1, (segments - i - 1), (segments - i),
-						  0, 0, 0, 0 );
-			}
+		}			
 
-			gtk_widget_show (led_bar->segments[i]);
+		led_bar->segments[i] = gtk_led_new ();
+		gtk_led_set_colors (GTK_LED (led_bar->segments[i]), &active, &inactive);
+		
+		if ( !orientation ) {/* horiz */
+			gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
+					  i, (i + 1), 0, 1, 0, 0, 0, 0);
+		} else { /* vert */
+			gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
+					  0, 1, (segments - i - 1), (segments - i),
+					  0, 0, 0, 0 );
 		}
+		
+		gtk_widget_show (led_bar->segments[i]);
 	}
 	
 	return GTK_WIDGET (led_bar);
