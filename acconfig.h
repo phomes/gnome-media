@@ -14,6 +14,9 @@
 /* Have the libghttp library on the system */
 #undef WITH_LIBGHTTP
 
+/* the mail transfer agent to use */
+#undef MAIL_TRANSFER_AGENT
+
 /*=== Curses version detection defines ===*/
 /* Found some version of curses that we're going to use */
 #undef HAS_CURSES

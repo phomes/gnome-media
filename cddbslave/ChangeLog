@@ -1,5 +1,13 @@
 1999-04-29  James Henstridge  <james@daa.com.au>
 
+	* cddbsubmit.c: for email submissions, run the value of the constant
+	MAIL_TRANSFER_AGENT, rather than /usr/sbin/sendmail.  That constant
+	is set by some autoconf macros, so it should be more portable.
+	Now cddbsubmit can submit using both email and http submit methods.
+	(well it works on my system at least).
+
+1999-04-29  James Henstridge  <james@daa.com.au>
+
 	* cddbsubmit.c: new program that is responsible for submitting
 	records to the cddb database.
 

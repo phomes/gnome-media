@@ -7,6 +7,7 @@ AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
 
 GNOME_INIT
+GNOME_COMPILE_WARNINGS
 
 AC_PROG_CC
 AC_ISC_POSIX
@@ -94,6 +95,19 @@ if test -n "`echo x$GHTTP_LIB | grep ghttp`"; then
 else
   GHTTP_LIB=
 fi
+
+dnl find the mailer for use with the submission helper
+dnl This code is from the gnome-bug script.  It should work for most systems
+AC_MSG_CHECKING(for the MTA)
+if test -f /usr/sbin/sendmail; then
+  MAIL_TRANSFER_AGENT="/usr/sbin/sendmail -t"
+elif test -f /usr/lib/sendmail; then
+  MAIL_TRANSFER_AGENT="/usr/lib/sendmail -t"
+else
+  MAIL_TRANSFER_AGENT="rmail "
+fi
+AC_DEFINE_UNQUOTED(MAIL_TRANSFER_AGENT, "$MAIL_TRANSFER_AGENT")
+AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 
 dnl
 dnl Everything OK for tcd?

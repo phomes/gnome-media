@@ -19,8 +19,7 @@ int submitByMail(char *category, char *ID) {
   char buf[1024];
 
   fflush(stdout);
-  /* the configure script should check where sendmail is installed ... */
-  pipe = popen("/usr/sbin/sendmail -t", "w");
+  pipe = popen(MAIL_TRANSFER_AGENT, "w");
   to = gnome_config_get_string("email_address");
   if (!to) {
     g_printerr("cddbsubmit: error in service description - no email address\n");
