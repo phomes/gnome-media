@@ -22,9 +22,6 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-# Utility conditional
-AM_CONDITIONAL(FALSE, test x = y)
-
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(fcntl.h limits.h malloc.h strings.h sys/ioctl.h unistd.h)
@@ -185,6 +182,7 @@ vu-meter/Makefile
 cddb-slave2/Makefile
 gnome-cd/Makefile
 gnome-cd/images/Makefile
+gnome-cd/images/lcd-theme/Makefile
 grecord/Makefile
 grecord/src/Makefile
 omf-install/Makefile
