@@ -521,7 +521,7 @@ void draw_status(void)
 	strncpy(tmp, cd.errmsg, sizeof(tmp));
 	gdk_draw_text(status_db,tfont,gc,
 		      4, 39, tmp, strlen(tmp));
-	gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
+	gtk_window_set_title(GTK_WINDOW(window), "TCD "VERSION" ");
     }
     if(cddb)
     {
@@ -590,7 +590,6 @@ gint slow_timer( gpointer *data )
 	if(cd.err) 
 	{
 	    cd.isplayable = FALSE;
-	    cd.isdisk = FALSE;
 	    cd.play_method = NORMAL;
 	    cd.repeat_track = -1;
 	}
@@ -603,7 +602,6 @@ gint slow_timer( gpointer *data )
 	else
 	{
 	    cd.isplayable = TRUE;
-	    cd.isdisk = TRUE;
 	    cd.play_method = NORMAL;
 	    cd.repeat_track = -1;    
 	    update_editor();
@@ -701,7 +699,6 @@ gint fast_timer( gpointer *data )
 	tcd_gettime(&cd);
 	if( cd.err ) {
 /*	   cd.isplayable = FALSE;
-	   cd.isdisk = FALSE;
 	   cd.play_method = NORMAL;
 	   cd.repeat_track = -1;*/
 	}
@@ -929,11 +926,9 @@ void exit_action(void)
 	tcd_stopcd(&cd);
 	break;
     case OpenTray:
-	cd.isdisk = TRUE;
 	tcd_ejectcd(&cd);
 	break;
     case CloseTray:
-	cd.isdisk = FALSE;
 	tcd_ejectcd(&cd);
 	if(cd.isplayable)
 	{
@@ -950,7 +945,6 @@ void exit_action(void)
 void start_action(void)
 {
     if(prefs.close_tray_on_start) {
-	cd.isdisk = FALSE;
 	tcd_ejectcd(&cd);
 	if(cd.isplayable)
 	{

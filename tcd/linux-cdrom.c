@@ -113,7 +113,7 @@ int tcd_post_init( cd_struct *cd )
 int tcd_close_disc( cd_struct *cd )
 {
     debug("cdrom.c: tcd_close_disc(%p) top\n", cd );
-    close( cd->cd_dev );
+    close(cd->cd_dev);
     debug("cdrom.c: tcd_close_disc exiting normally\n" );
     return 0;
 }
@@ -306,7 +306,6 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     tcd_gettime(cd);
     if(cd->err) 
     {
-	cd->isdisk = FALSE;
 	/* try and inject cd */
 	tcd_ejectcd(cd);
 
@@ -380,7 +379,6 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     }
 
     cd->isplayable = TRUE;
-    cd->isdisk = TRUE;
     debug("cdrom.c: tcd_playtracks exiting normally\n" );
     return tmp;
 }       
@@ -394,7 +392,6 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 
     cd->err = FALSE;
     cd->isplayable=FALSE;
-    cd->isdisk=FALSE;
 
     /* got subchannel? */
     msf.cdmsf_sec0 = cd->sc.cdsc_absaddr.msf.second+offset;
@@ -436,7 +433,6 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 	return(-1);
     }
     cd->isplayable=TRUE;                                                 
-    cd->isdisk=TRUE;
 
     debug("cdrom.c: tcd_playseconds exiting normally\n" );
     return tmp;
@@ -450,19 +446,16 @@ int tcd_ejectcd( cd_struct *cd )
     if(cd->isplayable) tcd_stopcd(cd);
     cd->err = FALSE;
 
-    if(cd->isdisk) 
+    if(!ioctl(cd->cd_dev, CDROMEJECT))
     {
-	ioctl( cd->cd_dev, CDROMEJECT );
-	cd->isdisk = FALSE;
 	cd->isplayable = FALSE;
-	strcpy( cd->errmsg, "No disc in drive " );
+	strcpy(cd->errmsg, "No disc in drive ");
 	cd->err = TRUE;
     } 
     else 
     {
 #ifdef CDROMCLOSETRAY
 	tmp = ioctl( cd->cd_dev, CDROMCLOSETRAY );
-	cd->isdisk = TRUE;
 #endif
 
 	if(tcd_post_init(cd))
@@ -475,8 +468,6 @@ int tcd_ejectcd( cd_struct *cd )
 
 	    return(-1);
 	}
-
-	cd->isdisk = TRUE;
 	cd->isplayable = TRUE;
     }
     cd->cur_t = 0;	
@@ -557,7 +548,6 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 {
     char tmp[256];
     cd->err = FALSE;
-    cd->isdisk=FALSE;
 
     if(cd->cd_dev > 0) /* SDH rvs test (was < should be > ) */
 	close(cd->cd_dev);
@@ -575,7 +565,6 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 	cd->err = TRUE;
 	return;
     }
-    cd->isdisk=TRUE;
 }
 
 void parse_dtitle(cd_struct *cd)

@@ -10,26 +10,19 @@
 
 void play_cb(GtkWidget *widget, gpointer data)
 {
-    if( !cd.isdisk ) {
-	tcd_ejectcd(&cd);
-	if ( cd.isplayable ) make_goto_menu();
-    }
-
-    if( !cd.err ) {
-	if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
-	    tcd_pausecd(&cd);
-	else
-	    tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
-	cd.repeat_track = cd.cur_t;
-    }
-
+    if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
+	tcd_pausecd(&cd);
+    else
+	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
+    cd.repeat_track = cd.cur_t;
+    
     draw_status();
     return;
 }
 
 void pause_cb(GtkWidget *widget, gpointer data)
 {
-    if( cd.isplayable ) tcd_pausecd(&cd);
+    if(cd.isplayable) tcd_pausecd(&cd);
     
     draw_status();
     return;
@@ -37,7 +30,7 @@ void pause_cb(GtkWidget *widget, gpointer data)
 
 void stop_cb(GtkWidget *widget, gpointer data)
 {
-    if( cd.isplayable) tcd_stopcd(&cd);
+    if(cd.isplayable) tcd_stopcd(&cd);
 
     draw_status();
     return;
@@ -81,7 +74,7 @@ void about_cb(GtkWidget *widget, gpointer data)
 
     about = gnome_about_new ( 
 	_("TCD - The Gnome CD Player"), 
-	"2.2 (CVS)",
+	VERSION,
 	"(C) 1997-98 Tim P. Gerla",
 	(const gchar**)authors,
 	_("GTCD is the Gnome CD player application. Includes CDDB support."
