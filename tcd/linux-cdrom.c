@@ -519,7 +519,11 @@ void parse_dtitle(cd_struct *cd)
 
   /* Parse out the individual title elements. Help from Alec M. */
   strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
-  strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
+  if (tmp[0])
+     strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
+    else
+     cd->artist[0]=0;
+
   tmp2 = strtok(NULL, "\0");
   if(tmp2)
     strncpy(cd->album, tmp2+1, DISC_INFO_LEN);
