@@ -31,8 +31,15 @@ gint sound = -1;
 short          aubuf[NSAMP];
 GtkWidget   *dial[2];
 GtkWidget   *window;
-void update (void);
 gchar       *esd_host = NULL;
+
+/* function prototypes to make gcc happy: */
+void update (void);
+char *itoa (int i);
+void open_sound (void);
+void  update_levels (gpointer data, gint source, GdkInputCondition condition);
+
+
 char 
 *itoa (int i)
 {
@@ -40,6 +47,7 @@ char
   sprintf (ret, "%d", i);
   return ret;
 }
+
 
 static gint
 save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
@@ -75,17 +83,28 @@ save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
   return TRUE;
 }
 
+
+static void
+error_close_cb(void)
+{
+  g_error("Cannot connect to sound daemon.");
+}
+
+
 void 
 open_sound (void)
 {
   sound = esd_monitor_stream (ESD_BITS16|ESD_STEREO|ESD_STREAM|ESD_PLAY,
 			      RATE, esd_host, "volume_meter");
   if (sound < 0)
-    {
-      g_error ("Cannot connect to EsoundD\n");
-      exit (1);
+    { /* TPG: Make a friendly error dialog if we can't open sound */
+      GtkWidget *box;
+      box = gnome_error_dialog("Cannot connect to sound daemon.\nPlease run 'esd' at a command prompt.");
+      gtk_signal_connect(GTK_OBJECT(box), "close",
+      			 GTK_SIGNAL_FUNC(error_close_cb), NULL);
     }
 }
+
 
 void 
 update_levels (gpointer data, gint source, GdkInputCondition condition)
@@ -144,6 +163,7 @@ main (int argc, char *argv[])
                               0, NULL);
   if (esd_host)
     g_print ("Host is %s\n", esd_host);
+
   client = gnome_master_client ();
   gtk_object_ref (GTK_OBJECT (client));
   gtk_object_sink (GTK_OBJECT (client));
@@ -190,12 +210,12 @@ main (int argc, char *argv[])
       gtk_box_pack_start (GTK_BOX (hbox), dial[i], FALSE, FALSE, 0);
     }
   gtk_widget_show_all (window);
-  open_sound ();
-  gdk_input_add (sound, GDK_INPUT_READ, update_levels, NULL);
+  open_sound();
+
+  if(sound > 0) /* TPG: Make sure we have a valid fd... */
+    gdk_input_add (sound, GDK_INPUT_READ, update_levels, NULL);
   gtk_main ();
   gtk_object_unref (GTK_OBJECT (client));
   return 0;
 
 }
-
-
