@@ -1308,30 +1308,39 @@ static void snapshot_image(void)
 	file_selector = filesel;
 }
 	
-static GnomeToolbarInfo tbar[] =
+static GnomeUIInfo tbar[] =
 {
-	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Capture"*/, "Capture images",
-		GNOME_APP_PIXMAP_DATA, capturer_xpm, capture_toggle},
-	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Snapshot"*/, "Save a snapshot",
-		GNOME_APP_PIXMAP_DATA, dummy_xpm, snapshot_image},
-//	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-//	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Picture"*/, "Adjust picture",
-//		GNOME_APP_PIXMAP_DATA, dummy_xpm, colour_setting},
-	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Audio"*/, "Audio on/off",
-		GNOME_APP_PIXMAP_DATA, audio_xpm, audio_toggle},
-	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Tuning"*/, "Select a channel",
-		GNOME_APP_PIXMAP_DATA, dummy_xpm, frequency_setting},
-//	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-//	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Wide"*/, "Toggle wide/normal view",
-//		GNOME_APP_PIXMAP_DATA, dummy_xpm, wide_toggle},
-	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, NULL/*"Exit"*/, "Exit Gnomovision",
-		GNOME_APP_PIXMAP_DATA, quit_xpm, gtk_main_quit},
-//	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ENDOFINFO, NULL, NULL, 0, NULL, NULL}
+  {GNOME_APP_UI_ITEM, N_("Capture"), N_("Capture images"), capture_toggle,
+   GNOME_APP_PIXMAP_DATA, capturer_xpm, NULL},
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Snapshot"), N_("Save a snapshot"), snapshot_image
+   GNOME_APP_PIXMAP_DATA, dummy_xpm, 0, 0, NULL},
+#if 0
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Picture"), N_("Adjust picture"), colour_setting,
+   GNOME_APP_PIXMAP_DATA, dummy_xpm, 0, 0, NULL},
+#endif
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Audio"), N_("Audio on/off"), audio_toggle
+   GNOME_APP_PIXMAP_DATA, audio_xpm, 0, 0, NULL},
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Tuning"), N_("Select a channel"), frequency_setting
+   GNOME_APP_PIXMAP_DATA, dummy_xpm, 0, 0, NULL},
+#if 0
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Wide"), N_("Toggle wide/normal view"), wide_toggle,
+   GNOME_APP_PIXMAP_DATA, dummy_xpm, 0, 0, NULL},
+#endif
+  {GNOME_APP_UI_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+  {GNOME_APP_UI_ITEM, N_("Exit"), N_("Exit Gnomovision"), gtk_main_quit,
+   GNOME_APP_PIXMAP_DATA, quit_xpm, 0, 0, NULL},
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 
