@@ -1,3 +1,30 @@
+=== release 2.8.0 ===
+
+2004-09-13  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* configure.in:
+	* NEWS:
+	  Prepare release.
+	* gnome-cd/Makefile.am:
+	* gnome-cd/gnome-cd.c: (main):
+	  Disable GStreamer backend for now. We'll re-enable it if there's
+	  some more testing. Following approval from release-team.
+	* gnome-cd/bsd-cdrom.c:
+	  Fix BSD backend (#151573) with approval from release-team.
+	* gnome-cd/cdrom.c: (timeout_update_cd):
+	* gnome-cd/linux-cdrom.c: (linux_cdrom_update_cd):
+	  Those two free()es are occasionally causing crashes elsewhere.
+	  Don't know what else to do right now, so just pushing back to
+	  the GNOME 2.6 code status basically.
+	  The problem appears to be that the Linux native CD backend touches
+	  those variables when they shouldn't be. The GStreamer backend
+	  doesn't, so those reversals are basically part of the disabling
+	  of the GStreamer backend. Anyway, those are leaks. This needs
+	  careful looking over.
+	* gnome-cd/gst-cdparanoia-cdrom.c: (msf_struct_to_frames),
+	(frames_to_msf_struct), (build_pipeline):
+	  This fixes BSD support in the (now unused) GStreamer backend.
+
 2004-09-04  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* configure.in:
