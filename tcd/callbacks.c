@@ -31,7 +31,7 @@ void pause_cb(GtkWidget *widget, gpointer data)
 
 void stop_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_pausecd(&cd);
+    tcd_stopcd(&cd);
 
     draw_status();
     return;

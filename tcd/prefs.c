@@ -331,13 +331,11 @@ GtkWidget *create_page()
     /* start frame */
     start_frame = gtk_frame_new(_("On Startup"));
     gtk_container_add(GTK_CONTAINER(start_frame), create_start_frame());
-    gtk_widget_set_sensitive(start_frame, FALSE);
     gtk_table_attach_defaults(GTK_TABLE(table), start_frame, 0, 1, 0, 1);
     
     /* exit frame */
     exit_frame = gtk_frame_new(_("On Exit"));
     gtk_container_add(GTK_CONTAINER(exit_frame), create_exit_frame());
-    gtk_widget_set_sensitive(exit_frame, FALSE);
     gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);
     
     /* general frame */

@@ -25,6 +25,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -92,6 +93,7 @@ GdkColormap *colormap;
 GdkFont *sfont, *tfont;
 GdkColor track_color, darkgrey, timecolor, trackcolor;
 GdkGC *gc;
+GtkAccelGroup *accel;
 
 GtkTooltips *tooltips;
 
@@ -122,10 +124,13 @@ void setup_time_display(GtkWidget *table);
 void setup_fonts(void);
 void init_window(void);
 GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
-				   gpointer data,  gchar *tooltip);
+				   guint key,  gchar *tooltip);
 GtkWidget* make_button_stock(char *stock, GtkSignalFunc func,
-			     gpointer data, gchar *tooltip);
+			     guint key, gchar *tooltip);
 void reload_info(int signal);
+void exit_action(void);
+void start_action(void);
+void setup_keys(void);
 
 /* functions */
 gint roll_timer(gpointer *data)
@@ -190,8 +195,8 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
     return FALSE;	
 }
 
-GtkWidget* make_button_with_pixmap( char *pic, GtkSignalFunc func,
-				    gpointer data,  gchar *tooltip )
+GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
+				   guint key ,  gchar *tooltip)
 {
     GtkWidget *button;
     GtkWidget *pixmap;
@@ -208,18 +213,21 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkSignalFunc func,
     
     button = gtk_button_new();
     gtk_container_add( GTK_CONTAINER(button), pixmap );
-    
+
+    if(key != -1)
+	gtk_widget_add_accelerator(button, "clicked", accel, key, 0, GTK_ACCEL_VISIBLE);
+
     if(func)
-	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
-			   GTK_SIGNAL_FUNC(func), data );
+	gtk_signal_connect(GTK_OBJECT (button), "clicked",
+			   GTK_SIGNAL_FUNC(func), NULL);
     
     gtk_tooltips_set_tip(tooltips, button, tooltip, "");
     
     return button;
 }	                        
 
-GtkWidget* make_button_stock( char *stock, GtkSignalFunc func,
-			      gpointer data, gchar *tooltip )
+GtkWidget* make_button_stock(char *stock, GtkSignalFunc func,
+			     guint key, gchar *tooltip)
 {
     GtkWidget *button;
     GtkWidget *pixmap;
@@ -228,9 +236,12 @@ GtkWidget* make_button_stock( char *stock, GtkSignalFunc func,
     button = gtk_button_new();
     gtk_container_add(GTK_CONTAINER(button), pixmap);
 
+    if(key != -1)
+	gtk_widget_add_accelerator(button, "clicked", accel, key, 0, GTK_ACCEL_VISIBLE);
+
     if(func)
-	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
-			   GTK_SIGNAL_FUNC(func), data);
+	gtk_signal_connect(GTK_OBJECT (button), "clicked",
+			   GTK_SIGNAL_FUNC(func), NULL);
 	
     gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 	
@@ -289,9 +300,9 @@ GtkWidget *make_small_buttons(void)
     
     table = gtk_table_new(TRUE, 6,1);
 
-    b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, NULL, _("Open track editor"));
-    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
-    b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, NULL, _("Quit"));
+    b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, 'T', _("Open track editor"));
+    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, -1, _("Preferences"));
+    b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, 'Q', _("Quit"));
 
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b2, 2, 4, 0, 1);
@@ -312,26 +323,29 @@ GtkWidget* create_buttons(void)
 
 /* TOP ROW */ 
      
-    playbutton = make_button_with_pixmap("play", play_cb, NULL, _("Play"));
+    playbutton = make_button_with_pixmap("play", play_cb, 'P', _("Play"));
     status_changed();
     b1 = playbutton;
     
-    b2 = make_button_with_pixmap( "stop", stop_cb, NULL, _("Stop") );
-    b3 = make_button_with_pixmap( "eject", eject_cb, NULL, _("Eject") );
+    b2 = make_button_with_pixmap( "stop", stop_cb, 'S', _("Stop") );
+    b3 = make_button_with_pixmap( "eject", eject_cb, 'E', _("Eject") );
     
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 3, 0, 1);
 
 /* MIDDLE ROW */
-    rw = make_button_with_pixmap("rw", NULL, NULL, _("Skip backwards"));
-    ff = make_button_with_pixmap("ff", NULL, NULL, _("Skip forwards"));
+    rw = make_button_with_pixmap("rw", NULL, -1, _("Skip backwards"));
+    ff = make_button_with_pixmap("ff", NULL, -1, _("Skip forwards"));
 
     gtk_widget_set_events(rw, GDK_BUTTON_PRESS_MASK
 			  | GDK_BUTTON_RELEASE_MASK);
     gtk_widget_set_events(ff, GDK_BUTTON_PRESS_MASK
 			  | GDK_BUTTON_RELEASE_MASK);
- 
+
+    gtk_widget_add_accelerator(rw, "clicked", accel, '-', 0, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(ff, "clicked", accel, '+', 0, GTK_ACCEL_VISIBLE);
+
     gtk_signal_connect(GTK_OBJECT(ff), "event",
 		       GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(2));
     gtk_signal_connect(GTK_OBJECT(rw), "event",
@@ -852,7 +866,49 @@ void reload_info(int signal)
     make_goto_menu();
     draw_status();
 }
-	
+
+void exit_action(void)
+{
+    switch(prefs.exit_action)
+    {
+    case StopPlaying:
+	tcd_stopcd(&cd);
+	break;
+    case OpenTray:
+	tcd_ejectcd(&cd);
+	break;
+    case CloseTray:
+	ioctl(cd.cd_dev, CDROMCLOSETRAY);
+	break;
+    case DoNothing:
+    default:
+	break;
+    }
+}	
+
+void start_action(void)
+{
+    if(prefs.close_tray_on_start)
+	ioctl(cd.cd_dev, CDROMCLOSETRAY);
+    switch(prefs.start_action)
+    {
+    case StartPlaying:
+	tcd_playtracks(&cd, cd.first_t, cd.last_t);
+	break;
+    case StopPlaying:
+	tcd_stopcd(&cd);
+	break;
+    case DoNothing:
+    default:
+	break;
+    }
+}	
+
+void setup_keys()
+{
+    accel = gtk_accel_group_get_default();
+}    
+
 int main (int argc, char *argv[])
 {
     GtkWidget *table;
@@ -877,8 +933,10 @@ int main (int argc, char *argv[])
 	
     tcd_init_disc(&cd, (WarnFunc)create_warning);
 
+    start_action();
     signal(SIGUSR1, reload_info);
     
+    setup_keys();
     init_window();
 
     table = create_buttons();
@@ -904,5 +962,8 @@ int main (int argc, char *argv[])
     save_prefs(&prefs);
     gnome_config_sync();
     gdk_gc_destroy(gc);
+    exit_action();
+    tcd_close_disc(&cd);
+
     return 0;
 }
