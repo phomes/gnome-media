@@ -297,6 +297,7 @@ struct _MenuItem menuitems[] = {
 	{N_("_Play / Pause"), "gnome-cd/a-play-menu.png", G_CALLBACK (play_cb)},
 	{N_("_Next track"), "gnome-cd/a-last-menu.png", G_CALLBACK (next_cb)},
 	{N_("_Eject disc"), "gnome-cd/a-eject-menu.png", G_CALLBACK (eject_cb)},
+	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
 	{N_("_About Gnome-CD"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{NULL, NULL, NULL}
 };

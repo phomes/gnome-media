@@ -15,9 +15,10 @@
 #include <gtk/gtkrange.h>
 #include <gtk/gtkbutton.h>
 #include <gtk/gtkoptionmenu.h>
-
+#include <gtk/gtkmessagedialog.h> 
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
+#include <libgnome/gnome-help.h>
 
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-control.h>
@@ -800,6 +801,29 @@ about_cb (GtkWidget *widget,
 	}
 }
 
+void
+help_cb (GtkWidget *widget,
+	 gpointer data)
+{
+	GError *error = NULL;
+
+	gnome_help_display ("gnome-cd", NULL, &error); 
+	if (error) {
+		GtkWidget *msgbox;
+		msgbox = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 ("There was an error displaying help: \n%s"),
+						 error->message);
+		g_signal_connect (G_OBJECT(msgbox), "response",
+				  G_CALLBACK (gtk_widget_destroy),
+				  NULL);
+		gtk_widget_show (msgbox);
+		g_error_free (error);
+	} 
+}
+ 
 void
 loopmode_changed_cb (GtkWidget *display,
 		     GnomeCDRomMode mode,

@@ -40,6 +40,9 @@ void cd_status_changed_cb (GnomeCDRom *cdrom,
 			   GnomeCD *gcd);
 void about_cb (GtkWidget *widget,
 	       gpointer data);
+void help_cb (GtkWidget *widget,
+	      gpointer data);
+		
 void loopmode_changed_cb (GtkWidget *widget,
 			  GnomeCDRomMode mode,
 			  GnomeCD *gcd);
