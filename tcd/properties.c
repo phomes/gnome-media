@@ -395,14 +395,18 @@ GtkWidget *create_status_frame( GtkWidget *box )
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
 	                                status_l, 0,2,1,2 );
 
-	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                trackbutton_c, 2,3,0,1 );
-	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                trackbutton_f, 3,4,1,2 );
-	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                statusbutton_c, 2,3,1,2 );
-	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                statusbutton_f, 3,4,0,1 );
+	gtk_table_attach( GTK_TABLE(status_table),
+	                                trackbutton_c, 2,3,0,1,
+	                                0,0,2,2 );
+	gtk_table_attach( GTK_TABLE(status_table),
+	                                trackbutton_f, 3,4,1,2,
+	                                GTK_EXPAND,0,2,2 );
+	gtk_table_attach( GTK_TABLE(status_table),
+	                                statusbutton_c, 2,3,1,2,
+	                                0,0,2,2 );
+	gtk_table_attach( GTK_TABLE(status_table),
+	                                statusbutton_f, 3,4,0,1,
+	                                GTK_EXPAND,0,2,2 );
 
 	gtk_container_add( GTK_CONTAINER(frame), status_table );
 
