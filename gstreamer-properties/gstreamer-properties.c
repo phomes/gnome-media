@@ -283,7 +283,7 @@ void create_dialog (void)
 	}
 	else {
 		/* FIXME:warning */
-		g_print("Error loading main window icon %s", GSTPROPS_ICONDIR "/gstreamer-properties.png");
+		g_print("Error loading main window icon %s", GSTPROPS_ICONDIR "/gstreamer-properties.png\n");
 	}
 	gtk_widget_show (GTK_WIDGET (main_window));
 }
