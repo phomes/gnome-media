@@ -1,6 +1,6 @@
 Audiodir = $(datadir)/apps/Audio
 
-#EXTRA_DIST = README TODO NEWS gmix.desktop
+EXTRA_DIST = README TODO NEWS gmix.desktop
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
