@@ -71,7 +71,9 @@ typedef struct _PropertyDialog {
 	GTcpSocket *socket;
 	GIOChannel *iochannel;
 	guint tag;
-
+	/* Gconf notify ID */
+	guint notify_id;
+	
 	ConnectionMode mode;
 	CDDBSlaveAccess access;
 } PropertyDialog;
@@ -92,6 +94,9 @@ static void
 destroy_window (GtkWidget *window,
 		PropertyDialog *pd)
 {
+	/* Remove the gconf notify */
+	gconf_client_notify_remove (client, pd->notify_id);
+	
 	g_free (pd);
 	gtk_main_quit ();
 }
@@ -676,6 +681,102 @@ hig_category_new (GtkWidget *parent, gchar *title, gboolean expand, gboolean fil
 }
 
 static void
+notify_cb (GConfClient *client,
+		guint cnxn_id,
+		GConfEntry *entry,
+		gpointer user_data)
+{
+	PropertyDialog *pd = user_data;
+	char *str;
+	const char *entry_str;
+	int info;
+
+	if (!strcmp (entry->key, "/apps/CDDB-Slave2/name")) {
+		str = gconf_client_get_string (client, "/apps/CDDB-Slave2/name", NULL);
+		entry_str = gtk_entry_get_text (GTK_ENTRY (pd->real_name));
+
+		if (str != NULL && strcmp (str, entry_str) != 0) {
+			g_signal_handlers_block_by_func	(G_OBJECT (pd->real_name), G_CALLBACK (real_name_changed), pd);
+			gtk_entry_set_text (GTK_ENTRY (pd->real_name), str);
+			g_signal_handlers_unblock_by_func (G_OBJECT (pd->real_name), G_CALLBACK (real_name_changed), pd);
+		}
+
+		if (str) g_free (str);
+	} else if (!strcmp (entry->key, "/apps/CDDB-Slave2/hostname")) {
+		str = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
+		entry_str = gtk_entry_get_text (GTK_ENTRY (pd->real_host));
+
+		if (str != NULL && strcmp (str, entry_str) != 0) {
+			g_signal_handlers_block_by_func	(G_OBJECT (pd->real_host), G_CALLBACK (real_host_changed), pd);
+			gtk_entry_set_text (GTK_ENTRY (pd->real_host), str);
+			g_signal_handlers_unblock_by_func (G_OBJECT (pd->real_host), G_CALLBACK (real_host_changed), pd);
+		}
+
+		if (str) g_free (str);
+	} else if (!strcmp (entry->key, "/apps/CDDB-Slave2/info")) {
+
+		info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
+		switch (info) {
+			case CDDB_SEND_FAKE_INFO: 
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->no_info), TRUE);
+				break;
+
+			case CDDB_SEND_REAL_INFO:
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->real_info), TRUE);
+				break;
+
+			case CDDB_SEND_OTHER_INFO:
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->specific_info), TRUE);
+				break;
+
+			default:
+				break;
+		}
+	} else if (!strcmp (entry->key, "/apps/CDDB-Slave2/server-type")) {
+		info = gconf_client_get_int (client, "/apps/CDDB-Slave2/server-type", NULL);
+		
+		switch (info) {
+			case CDDB_ROUND_ROBIN:
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->round_robin), TRUE);
+				break;
+
+			case CDDB_OTHER_FREEDB:
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->other_freedb), TRUE);
+				break;
+
+			case CDDB_OTHER_SERVER:
+				gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->other_server), TRUE);
+				break;
+
+			default:
+				break;
+		}
+	} else if (!strcmp (entry->key, "/apps/CDDB-Slave2/server")) {
+		str = gconf_client_get_string (client, "/apps/CDDB-Slave2/server", NULL);
+		entry_str = gtk_entry_get_text (GTK_ENTRY (pd->other_host));
+		
+		if (str != NULL && (strcmp (str, entry_str) != 0) && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (pd->other_server))) {
+			g_signal_handlers_block_by_func	(G_OBJECT (pd->other_host), G_CALLBACK (other_host_changed), pd);
+			gtk_entry_set_text (GTK_ENTRY (pd->other_host), str);
+			g_signal_handlers_unblock_by_func (G_OBJECT (pd->other_host), G_CALLBACK (other_host_changed), pd);
+		}
+		
+		if (str) g_free (str);
+	} else if (!strcmp (entry->key, "/apps/CDDB-Slave2/port")) {
+		info = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
+		str = g_strdup_printf ("%d", info);
+		entry_str = gtk_entry_get_text (GTK_ENTRY (pd->other_port));
+		
+		if ((strcmp (str, entry_str) != 0) && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (pd->other_server))) {
+			g_signal_handlers_block_by_func	(G_OBJECT (pd->other_port), G_CALLBACK (other_port_changed), pd);
+			gtk_entry_set_text (GTK_ENTRY (pd->other_port), str);
+			g_signal_handlers_unblock_by_func (G_OBJECT (pd->other_port), G_CALLBACK (other_port_changed), pd);
+		}
+		g_free (str);
+	}
+}
+
+static void
 create_dialog (GtkWidget *window)
 {
 	PropertyDialog *pd;
@@ -947,6 +1048,10 @@ create_dialog (GtkWidget *window)
 	default:
 		break;
 	}
+	/* Add Notify */
+	pd->notify_id =  gconf_client_notify_add (client,
+			"/apps/CDDB-Slave2", notify_cb,
+			pd, NULL, NULL);
 }
 
 static GdkPixbuf *

@@ -1,4 +1,11 @@
-2005-03-29  Madhan Raj M  <madhanrm@cvs.gnome.org>
+2005-03-30  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	* cddb-slave2/cddb-slave-capplet.c (notify_cb): Do 
+	appropriate changes when notified.
+	(destroy_window): Remove the notify
+	(create_dialog): Add a notify (Fixes #90792)
+
+2005-03-30  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* gnome-cd/gnome-cd.c (menuitems): Added quit menu item.
 	(make_popup_menu): Create quit menu item for tray popup.
@@ -37,10 +44,10 @@
 
 2005-03-28  Nirmal Kumar  <nirmalk@cvs.gnome.org>
 
-        * gnome-cd/callbacks.c (popup_menu_cb):
-        * gnome-cd/gnome-cd.c (make_popup_menu):
-        * gnome-cd/gnome-cd.h: Establishes "Iconify to tray" option
-          (Fixes #139808)
+	* gnome-cd/callbacks.c (popup_menu_cb):
+	* gnome-cd/gnome-cd.c (make_popup_menu):
+	* gnome-cd/gnome-cd.h: Establishes "Iconify to tray" option
+	(Fixes #139808)
 
 2005-03-28  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
