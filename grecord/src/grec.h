@@ -55,7 +55,7 @@ void grecord_set_sensitive_file (void);
 void grecord_set_sensitive_nofile (void);
 void grecord_set_sensitive_progress (void);
 void grecord_set_sensitive_loading (void);
-void run_command (const gchar* command, const gchar* appbar_comment);
+void run_command (const gchar* appbar_comment, ...);
 guint check_if_loading_finished (gint pid);
 gboolean soundfile_supported (const gchar* filename);
 gboolean check_if_sounddevice_ready (void);

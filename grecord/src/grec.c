@@ -37,6 +37,7 @@
 #include <esd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <stdarg.h>
 
 #include "grec.h"
 #include "gui.h"
@@ -255,29 +256,24 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 	}
 
 	if (RecEng.is_running) {
-		gchar* command;
 		gchar* temp_string;
 		gchar* tfile1 = g_build_filename (temp_dir, 
 						  temp_filename_record, NULL);
 		gchar* tfile2 = g_build_filename (temp_dir, 
 						  temp_filename_play, NULL);
 		
-		command = g_strconcat (sox_command, " ", temp_string1, " ", temp_string2, " ",
-				       "-w ", "-s ", tfile1, " ",
-				       tfile2, NULL);
-		
 		kill (RecEng.pid, SIGKILL);
 		waitpid (RecEng.pid, NULL, WUNTRACED);
 
 		RecEng.is_running = FALSE;
 
-		run_command (command, _("Converting file..."));
+		run_command (_("Converting file..."), sox_command, temp_string1,
+			     temp_string2, "-w", "-s", tfile1, tfile2, NULL);
 
 		temp_string = g_build_filename (temp_dir, 
 						temp_filename_play, NULL);
 
 		g_free (temp_string);
-		g_free (command);
 		g_free (tfile1);
 		g_free (tfile2);
 	}
@@ -368,6 +364,7 @@ on_open_activate_cb (GtkWidget* widget, gpointer data)
 {
 	gint choice;
 	static GtkWidget* filesel = NULL;
+
 	if (filesel) {
 		if (filesel->window == NULL)
 			return;
@@ -428,7 +425,6 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 {
 	gint choice;
 	gchar* tfile;
-	gchar* command;
 
 	if (PlayEng.is_running || RecEng.is_running)
 		on_stop_activate_cb (widget, data);
@@ -447,9 +443,7 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 	tfile = g_build_filename (temp_dir, temp_filename_backup, NULL);
 	
 	if (g_file_test (tfile, G_FILE_TEST_EXISTS)) {
-		command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
-		system (command);
-		g_free (command);
+		execlp ("cp", "cp", "-f", tfile, active_file, NULL);
 	}
 
 	gtk_main_quit ();
@@ -616,9 +610,8 @@ on_undoall_activate_cb (GtkWidget* widget, gpointer data)
 					       temp_filename_backup, NULL);
 
 	if (g_file_test (temp_string, G_FILE_TEST_EXISTS)) {
-		gchar* t = g_strconcat ("cp -f ", temp_string, " ", active_file, NULL);
-		run_command (t, _("Undoing all changes..."));
-		g_free (t);
+		run_command (_("Undoing all changes..."), "cp", "-f",
+			     temp_string, active_file, NULL);
 	}
 
 	g_free (temp_string);
@@ -998,13 +991,11 @@ save_sound_file (const gchar* filename)
 	if (default_file) {
 		gchar* tfile = g_build_filename (temp_dir, 
 						 temp_filename_play, NULL);
-		gchar* command = g_strconcat ("cp -f ", tfile, " ", filename, NULL);
 		
 		/* Save the file */
-		run_command (command, _("Saving..."));
+		run_command (_("Saving..."), "cp", "-f", tfile, filename, NULL);
 
 		g_free (tfile);
-		g_free (command);
 
 		/* It's saved now */
 		default_file = FALSE;
@@ -1275,9 +1266,55 @@ grecord_set_sensitive_loading (void)
 }
 
 void
-run_command (const gchar* command, const gchar* appbar_comment)
+run_command (const gchar* appbar_comment, ...)
 {
-	gint load_pid;
+	/* Non-GTK+/GNOME types for use with non-GTK+/GNOME
+	   POSIX and ANSI calls.
+	*/
+	pid_t load_pid;
+	va_list ap;
+	size_t cmdline_size = 0;
+	size_t ix;
+	char **cmdline = NULL;
+	char *ptr = NULL;
+	char first_arg = 1;
+	char *cmd_name = NULL;
+
+	/* Count the arguments; Record the address of the first
+	   argument. */
+	
+	va_start (ap, appbar_comment);
+	do {
+		ptr = va_arg (ap, char *);
+		if (ptr) {
+			if (first_arg) {
+				cmd_name = ptr;
+				first_arg = 0;
+			}
+
+			cmdline_size++;
+		}
+	} while (ptr);
+	va_end (ap);
+
+	if (first_arg) {
+		g_error ("Cannot run empty command line.");
+	}
+
+	/* Build the argument list */
+	cmdline = g_malloc ((cmdline_size + 1) * sizeof (char *));
+	va_start (ap, appbar_comment);
+	for (ix = 0; ix < cmdline_size; ix++) {
+		ptr = va_arg (ap, char *);
+		cmdline[ix] = ptr;
+	}
+	va_end (ap);
+
+	/* The last of the strings in {cmdline} is the NULL pointer
+	   required by execvp.
+	*/
+
+	cmdline[cmdline_size] = NULL;
 
 	/* Make the widgets insensitive */
 	grecord_set_sensitive_loading ();
@@ -1287,15 +1324,27 @@ run_command (const gchar* command, const gchar* appbar_comment)
 
         load_pid = fork ();
 	if (load_pid == 0) {
+		/* BUG: The stderr output of this child process
+		   should be captured. If the exit status is
+		   nonzero, the stderr output should be displayed.
+		   Errors can be caused either by execvp ()
+		   failure, or by the command being executed
+		*/
+
 		/* Run the command */
-		system (command);
+		execvp (cmd_name, cmdline);
 
-		/* Finished, exit child process */
-		_exit (0);
-	}
-	else if (load_pid == -1)
+		/* If this is reached, then an error occurred. */
+
+		perror (cmd_name);
+		_exit (1);
+	} else if (load_pid == -1) {
+		g_free (cmdline);
 		g_error (_("Could not fork child process"));
+	}
 
+	g_free (cmdline);
+	
 	convert_is_running = TRUE;
 
 	/* Add a function for checking when process has died */
