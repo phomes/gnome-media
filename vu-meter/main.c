@@ -29,7 +29,49 @@ gint sound = -1;
 #define NSAMP  2048
 short          aubuf[NSAMP];
 GtkWidget   *dial[2];
+GtkWidget   *window;
 void update (void);
+
+char *itoa (int i)
+{
+  static char ret[ 30 ];
+  sprintf (ret, "%d", i);
+  return ret;
+}
+
+static gint
+save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
+	    gint shutdown, GnomeInteractStyle inter_style, gint fast,
+	    gpointer client_data)
+{
+  gchar  *argv[20];
+  gchar  *session_id;
+  gint   i;
+  gint   xpos, ypos, w, h;
+
+  session_id = gnome_client_get_id (client);
+  gdk_window_get_geometry (window->window, &xpos, &ypos, &w, &h, NULL);
+  gnome_config_push_prefix (gnome_client_get_config_prefix (client));
+  gnome_config_set_int ("Geometry/x", xpos);
+  gnome_config_set_int ("Geometry/y", ypos);
+  gnome_config_set_int ("Geometry/w", w);
+  gnome_config_set_int ("Geometry/h", h);
+  gnome_config_pop_prefix ();
+  gnome_config_sync();
+
+  i    = 0;
+  argv[i++] = (gchar *)client_data;
+  argv[i++] = "-x";
+  argv[i++] = g_strdup (itoa (xpos));
+  argv[i++] = "-y";
+  argv[i++] = g_strdup (itoa (ypos));
+  gnome_client_set_restart_command (client, i, argv);
+  gnome_client_set_clone_command (client, 0, NULL);
+ 
+  g_free (argv[2]);
+  g_free (argv[4]);
+  return TRUE;
+}
 
 void 
 open_sound (void)
@@ -42,6 +84,7 @@ open_sound (void)
       exit (1);
     }
 }
+
 void 
 update_levels (gpointer data, gint source, GdkInputCondition condition)
 {
@@ -70,15 +113,44 @@ update_levels (gpointer data, gint source, GdkInputCondition condition)
 int 
 main (int argc, char *argv[])
 {
-  GtkWidget     *window;
+  GnomeClient   *client;
   GtkWidget     *hbox;
   GtkWidget     *frame;
   gint          i;
+  gint          session_xpos = -1;
+  gint          session_ypos = -1;
+  const struct poptOption options[] = 
+  {
+     { NULL, 'x', POPT_ARG_INT, &session_xpos, 0, NULL, NULL },
+     { NULL, 'y', POPT_ARG_INT, &session_ypos, 0, NULL, NULL },
+     { NULL, '\0', 0, NULL, 0 }
+  };
+  gnome_init_with_popt_table ("Volume Meter", "0.1", argc, argv, options, 
+                              0, NULL);
+  client = gnome_master_client ();
+  gtk_object_ref (GTK_OBJECT (client));
+  gtk_object_sink (GTK_OBJECT (client));
+  gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
+		      GTK_SIGNAL_FUNC (save_state), argv[0]);
+  gtk_signal_connect (GTK_OBJECT (client), "die",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), argv[0]);
+  if (GNOME_CLIENT_CONNECTED (client))
+    {
+      GnomeClient *cloned = gnome_cloned_client ();
+      if (cloned)
+	{
+	  gnome_config_push_prefix (gnome_client_get_config_prefix (cloned));
+	  session_xpos = gnome_config_get_int ("Geometry/x");
+	  session_ypos = gnome_config_get_int ("Geometry/y");
 
-  gtk_init (&argc, &argv);
-  
+	  gnome_config_pop_prefix ();
+	}
+    }
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Volume Meter");
+  if (session_xpos >=0 && session_ypos >= 0)
+    gtk_widget_set_uposition (window, session_xpos, session_ypos);
+
   gtk_signal_connect (GTK_OBJECT (window), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",
@@ -100,6 +172,9 @@ main (int argc, char *argv[])
   open_sound ();
   gdk_input_add (sound, GDK_INPUT_READ, update_levels, NULL);
   gtk_main ();
+  gtk_object_unref (GTK_OBJECT (client));
+  return 0;
+
 }
 
 
