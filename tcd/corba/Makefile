@@ -12,7 +12,7 @@ cdaudio-stubs.c: cdaudio.idl
 cdaudio-common.c: cdaudio.idl
 	orbit-idl cdaudio.idl
 
-cdaudio-server: cdaudio-skels.c cdaudio-common.c cdaudio-server.c
+cdaudio-server: cdaudio-skels.c cdaudio-common.c cdaudio-server.c cdaudio-impl.c
 	gcc -g -Wall $(ORBIT) $(GNOME) -o $@ $^
 	-killall cdaudio-server
 
