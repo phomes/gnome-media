@@ -169,7 +169,6 @@ GtkWidget *create_cddb_page(void)
 /* EDIT STUFF */
 static void edit_destroy_cb(GtkWidget *widget, EditWindow *w)
 {
-    /* FIXME implement saving here */
     if(strncmp(gtk_object_get_data(GTK_OBJECT(widget), "save"), "y", 1) == 0)
 	gnome_less_write_file(GNOME_LESS(w->gl), w->filename);
 
