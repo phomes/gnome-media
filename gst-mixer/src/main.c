@@ -93,6 +93,7 @@ create_mixer_collection (void)
     /* set all devices and test for mixer */
     for (n = 0; n < array->n_values; n++) {
       GValue *device = g_value_array_get_nth (array, n);
+      gchar *devname = NULL;
 
       /* set this device */
       g_object_set_property (G_OBJECT (element), "device", device);
@@ -115,14 +116,11 @@ create_mixer_collection (void)
       /* fetch name */
       if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (element)),
 					"device-name")) {
-        gchar *devname;
         g_object_get (element, "device-name", &devname, NULL);
-        name = g_strdup_printf ("%s (%s)", devname,
-				gst_element_factory_get_longname (factory));
-      } else {
-        name = g_strdup_printf ("%s (%s)", title,
-				gst_element_factory_get_longname (factory));
       }
+
+      name = g_strdup_printf ("%s (%s)", devname ? devname : title,
+			      gst_element_factory_get_longname (factory));
       g_object_set_data (G_OBJECT (element), "gnome-volume-control-name",
 			 name);
 
@@ -132,6 +130,7 @@ create_mixer_collection (void)
       num++;
 
       /* and recreate this object, since we give it to the mixer */
+      g_free (title);
       title = g_strdup_printf (gettext("Unknown Volume Control %d"), num);
       element = gst_element_factory_create (factory, title);
     }
