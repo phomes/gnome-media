@@ -104,7 +104,10 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   prefs->mixer = NULL;
 
   /* make window look cute */
-  gtk_window_set_title (GTK_WINDOW (prefs), _("Volume Control: Preferences"));
+  gtk_window_set_title (GTK_WINDOW (prefs), _("Volume Control Preferences"));
+  gtk_dialog_set_has_separator (GTK_DIALOG (prefs), FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (prefs), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG(prefs)->vbox), 2);
   gtk_dialog_add_buttons (GTK_DIALOG (prefs),
 			  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 			  /* help goes here (future) */
@@ -112,10 +115,9 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 
   /* add a treeview for all the properties */
   box = gtk_vbox_new (FALSE, 6);
-  gtk_container_set_border_width (GTK_CONTAINER (box), 6);
+  gtk_container_set_border_width (GTK_CONTAINER (box), 5);
 
-  label = gtk_label_new (_("Select the tracks that you wish to be visible\n"
-			   "in the main window."));
+  label = gtk_label_new_with_mnemonic (_("_Select tracks to be visible:"));
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
@@ -124,16 +126,18 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 			      G_TYPE_STRING, G_TYPE_POINTER);
   prefs->treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (prefs->treeview), FALSE);
+  gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET (prefs->treeview));
 
   /* viewport for lots of tracks */
   view = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (view),
 				  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+  gtk_widget_set_usize (view, -1, 150);
 
   hadjustment = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (view));
   vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (view));
   viewport = gtk_viewport_new (hadjustment, vadjustment);
-  gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
+  gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_IN);
 
   gtk_container_add (GTK_CONTAINER (viewport), prefs->treeview);
   gtk_container_add (GTK_CONTAINER (view), viewport);
