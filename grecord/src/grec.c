@@ -64,6 +64,7 @@ gint repeat_counter = 0;
 gchar* active_file = NULL;
 gboolean default_file = FALSE;
 gboolean file_changed = FALSE;
+gboolean show_message = FALSE;
 
 static guint play_id;
 static guint record_id;
@@ -141,6 +142,7 @@ check_for_sox (void)
 void
 on_record_activate_cb (GtkWidget* widget, gpointer data)
 {
+	show_message = TRUE;
 	/* Check if the sounddevice is ready */
 	if (!check_if_sounddevice_ready ())
 		return;
@@ -1105,8 +1107,7 @@ UpdateStatusbarRecord (gboolean begin)
 	
 	if (popup_warn_mess) {
 		struct stat fileinfo;
-		static gint maxfilesize = -1;
-		static gboolean show_message = TRUE;
+		gint maxfilesize = -1;
 		gchar* filename = g_build_filename (temp_dir, 
 						    temp_filename_record, NULL);
 		
@@ -1134,7 +1135,7 @@ UpdateStatusbarRecord (gboolean begin)
 	
 	if (stop_record) {
 		struct stat fileinfo;
-		static gint maxfilesize = -1;
+		gint maxfilesize = -1;
 		gchar* filename = g_build_filename (temp_dir, 
 						    temp_filename_record, NULL);
 
