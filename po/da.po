@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 22:09+0100\n"
+"POT-Creation-Date: 2004-02-24 00:19-0700\n"
 "PO-Revision-Date: 2004-02-23 22:08+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -165,9 +165,9 @@ msgid "Unknown / Unknown"
 msgstr "Ukendt/ukendt"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:856
-#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:874
-#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1223
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:974
+#: grecord/src/gsr-window.c:983 grecord/src/gsr-window.c:992
+#: grecord/src/gsr-window.c:1002 grecord/src/gsr-window.c:1341
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -1280,8 +1280,8 @@ msgstr "_Tilgængelige temaer:"
 msgid "Record sound clips"
 msgstr "Optag lydklip"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1079
-#: grecord/src/gsr-window.c:1475
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1197
+#: grecord/src/gsr-window.c:1593
 msgid "Sound Recorder"
 msgstr "Lydoptager"
 
@@ -1309,7 +1309,7 @@ msgstr "Opret nyt lydklip"
 msgid "Display help for Sound Recorder"
 msgstr "Vis hjælpen til lydoptager"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:942
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1060
 msgid "File Information"
 msgstr "Filoplysninger"
 
@@ -1480,132 +1480,146 @@ msgstr "sekunder"
 msgid "second"
 msgstr "sekund"
 
-#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1403
-#: grecord/src/gsr-window.c:1574 grecord/src/gsr-window.c:1664
+#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1521
+#: grecord/src/gsr-window.c:1692 grecord/src/gsr-window.c:1782
 msgid "Ready"
 msgstr "Klar"
 
-#: grecord/src/gsr-window.c:583
+#: grecord/src/gsr-window.c:651
+#, fuzzy
+msgid "_Replace"
+msgstr "Futuristisk"
+
+#: grecord/src/gsr-window.c:668
+#, fuzzy, c-format
+msgid ""
+"A file named \"%s\" already exists.\n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"<b>Filen '%s' eksisterer allerede.</b>\n"
+"Ønsker du at overskrive den?"
+
+#: grecord/src/gsr-window.c:701
 msgid "Unknown extension, doing nothing"
 msgstr "Ukendt endelse, gør ingenting"
 
-#: grecord/src/gsr-window.c:596
+#: grecord/src/gsr-window.c:714
 msgid "Could not build pipeline"
 msgstr "Kunne ikke opbygge datakanal"
 
-#: grecord/src/gsr-window.c:637
+#: grecord/src/gsr-window.c:755
 #, c-format
 msgid "Saving %s..."
 msgstr "Gemmer %s..."
 
-#: grecord/src/gsr-window.c:692
+#: grecord/src/gsr-window.c:810
 msgid "Save file as"
 msgstr "Gem fil som"
 
-#: grecord/src/gsr-window.c:749
+#: grecord/src/gsr-window.c:867
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s er ikke installeret i stien til kørbare filer."
 
-#: grecord/src/gsr-window.c:756
+#: grecord/src/gsr-window.c:874
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Der opstod en fejl ved start af %s: %s"
 
-#: grecord/src/gsr-window.c:831
+#: grecord/src/gsr-window.c:949
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (er ikke blevet gemt)"
 
-#: grecord/src/gsr-window.c:847
+#: grecord/src/gsr-window.c:965
 msgid "Unknown size"
 msgstr "Ukendt størrelse"
 
-#: grecord/src/gsr-window.c:867
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:876
+#: grecord/src/gsr-window.c:994
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:1006
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:892
+#: grecord/src/gsr-window.c:1010
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:921
+#: grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%s Information"
 msgstr "Oplysninger om %s"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:1074
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: grecord/src/gsr-window.c:962 grecord/src/gsr-window.c:1808
+#: grecord/src/gsr-window.c:1080 grecord/src/gsr-window.c:1926
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: grecord/src/gsr-window.c:968
+#: grecord/src/gsr-window.c:1086
 msgid "File size:"
 msgstr "Filstørrelse:"
 
-#: grecord/src/gsr-window.c:977
+#: grecord/src/gsr-window.c:1095
 msgid "Audio Information"
 msgstr "Lydoplysninger"
 
-#: grecord/src/gsr-window.c:991
+#: grecord/src/gsr-window.c:1109
 msgid "Song length:"
 msgstr "Længde af klip:"
 
-#: grecord/src/gsr-window.c:997
+#: grecord/src/gsr-window.c:1115
 msgid "Number of channels:"
 msgstr "Antal kanaler:"
 
-#: grecord/src/gsr-window.c:1003
+#: grecord/src/gsr-window.c:1121
 msgid "Sample rate:"
 msgstr "Samplingsrate:"
 
-#: grecord/src/gsr-window.c:1009
+#: grecord/src/gsr-window.c:1127
 msgid "Bit rate:"
 msgstr "Bitrate:"
 
-#: grecord/src/gsr-window.c:1081
+#: grecord/src/gsr-window.c:1199
 msgid "A sound recorder for GNOME"
 msgstr "En lydoptager til Gnome"
 
-#: grecord/src/gsr-window.c:1379
+#: grecord/src/gsr-window.c:1497
 msgid "Playing..."
 msgstr "Afspiller..."
 
-#: grecord/src/gsr-window.c:1471
+#: grecord/src/gsr-window.c:1589
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - lydoptager"
 
-#: grecord/src/gsr-window.c:1549
+#: grecord/src/gsr-window.c:1667
 msgid "Recording..."
 msgstr "Optager..."
 
-#: grecord/src/gsr-window.c:1783
+#: grecord/src/gsr-window.c:1901
 msgid "Record as"
 msgstr "Optag som"
 
-#: grecord/src/gsr-window.c:1793
+#: grecord/src/gsr-window.c:1911
 msgid "File information"
 msgstr "Filoplysninger"
 
-#: grecord/src/gsr-window.c:1815
+#: grecord/src/gsr-window.c:1933
 msgid "<none>"
 msgstr "<ingen>"
 
-#: grecord/src/gsr-window.c:1824
+#: grecord/src/gsr-window.c:1942
 msgid "Length:"
 msgstr "Længde:"
 
@@ -2354,13 +2368,6 @@ msgstr "Lydstyrkeovervåger"
 #~ msgstr ""
 #~ "'%s' er en mappe.\n"
 #~ "Vælg venligst et andet filnavn."
-
-#~ msgid ""
-#~ "<b>File '%s' already exists.</b>\n"
-#~ "Do you want to overwrite it?"
-#~ msgstr ""
-#~ "<b>Filen '%s' eksisterer allerede.</b>\n"
-#~ "Ønsker du at overskrive den?"
 
 #~ msgid "Cancel save"
 #~ msgstr "Annullér gemning"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media (gnome-2-6)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-21 19:16+0200\n"
+"POT-Creation-Date: 2004-02-24 00:19-0700\n"
 "PO-Revision-Date: 2004-01-06 17:31+0200\n"
 "Last-Translator: Jarkko Ranta <jjranta@cc.joensuu.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -162,9 +162,9 @@ msgid "Unknown / Unknown"
 msgstr "Tuntematon / Tuntematon"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:856
-#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:874
-#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1223
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:974
+#: grecord/src/gsr-window.c:983 grecord/src/gsr-window.c:992
+#: grecord/src/gsr-window.c:1002 grecord/src/gsr-window.c:1341
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -1236,39 +1236,39 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Virhe asetettaessa asemaa"
 
-#: gnome-cd/preferences.c:635
+#: gnome-cd/preferences.c:638
 msgid "CD Player Preferences"
 msgstr "CD-soittimen asetukset"
 
-#: gnome-cd/preferences.c:669
+#: gnome-cd/preferences.c:672
 msgid "CD Player De_vice:"
 msgstr "CD-soitinlai_te:"
 
-#: gnome-cd/preferences.c:693
+#: gnome-cd/preferences.c:696
 msgid "_Apply change"
 msgstr "_Toteuta muutokset"
 
-#: gnome-cd/preferences.c:705
+#: gnome-cd/preferences.c:708
 msgid "CD Player Behaviour:"
 msgstr "CD-soittimen toimint_a:"
 
-#: gnome-cd/preferences.c:718
+#: gnome-cd/preferences.c:721
 msgid "Start _playing CD when CD Player starts"
 msgstr "Aloita soittamaan CD:tä kun CD-soitin _käynnistetään"
 
-#: gnome-cd/preferences.c:719
+#: gnome-cd/preferences.c:722
 msgid "Start playing CD when CD Player starts"
 msgstr "Aloita soittamaan CD:tä kun CD-soitin käynnistetään"
 
-#: gnome-cd/preferences.c:731
+#: gnome-cd/preferences.c:734
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Yrit_ä avata CD-asema kun CD-soittimesta poistutaan"
 
-#: gnome-cd/preferences.c:732
+#: gnome-cd/preferences.c:735
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Yritä avata CD-asema kun CD-soittimesta poistutaan"
 
-#: gnome-cd/preferences.c:752
+#: gnome-cd/preferences.c:755
 msgid "_Available Themes:"
 msgstr "_Käytettävissä olevat teemat:"
 
@@ -1276,8 +1276,8 @@ msgstr "_Käytettävissä olevat teemat:"
 msgid "Record sound clips"
 msgstr "Äänitä äänitiedostoja"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1079
-#: grecord/src/gsr-window.c:1475
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1197
+#: grecord/src/gsr-window.c:1593
 msgid "Sound Recorder"
 msgstr "Ääninauhuri"
 
@@ -1306,7 +1306,7 @@ msgid "Display help for Sound Recorder"
 msgstr "Näytä ääninauhurin ohje"
 
 #
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:942
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1060
 msgid "File Information"
 msgstr "Tiedoston tiedot"
 
@@ -1482,136 +1482,150 @@ msgstr "sekuntia"
 msgid "second"
 msgstr "sekunti"
 
-#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1403
-#: grecord/src/gsr-window.c:1574 grecord/src/gsr-window.c:1664
+#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1521
+#: grecord/src/gsr-window.c:1692 grecord/src/gsr-window.c:1782
 msgid "Ready"
 msgstr "Valmis"
 
-#: grecord/src/gsr-window.c:583
+#: grecord/src/gsr-window.c:651
+#, fuzzy
+msgid "_Replace"
+msgstr "Space"
+
+#: grecord/src/gsr-window.c:668
+#, fuzzy, c-format
+msgid ""
+"A file named \"%s\" already exists.\n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"<b>Tiedosto \"%s\" on jo olemassa.</b>\n"
+"Haluatko kirjoittaa sen yli?"
+
+#: grecord/src/gsr-window.c:701
 msgid "Unknown extension, doing nothing"
 msgstr "Tuntematon pääte. Ei tehty mitään."
 
-#: grecord/src/gsr-window.c:596
+#: grecord/src/gsr-window.c:714
 msgid "Could not build pipeline"
 msgstr "Putken rakentaminen ei onnistunut"
 
-#: grecord/src/gsr-window.c:637
+#: grecord/src/gsr-window.c:755
 #, c-format
 msgid "Saving %s..."
 msgstr "Tallennetaan %s..."
 
-#: grecord/src/gsr-window.c:692
+#: grecord/src/gsr-window.c:810
 msgid "Save file as"
 msgstr "Tallenna tiedosto nimeltä"
 
-#: grecord/src/gsr-window.c:749
+#: grecord/src/gsr-window.c:867
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ei ole asennettuna polussa."
 
-#: grecord/src/gsr-window.c:756
+#: grecord/src/gsr-window.c:874
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Virhe käynnistettäessä kohdetta \"%s\": %s"
 
-#: grecord/src/gsr-window.c:831
+#: grecord/src/gsr-window.c:949
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Ei tallennettu)"
 
-#: grecord/src/gsr-window.c:847
+#: grecord/src/gsr-window.c:965
 msgid "Unknown size"
 msgstr "Tuntematon koko"
 
-#: grecord/src/gsr-window.c:867
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:876
+#: grecord/src/gsr-window.c:994
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kt/s"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:1006
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:892
+#: grecord/src/gsr-window.c:1010
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
 #
-#: grecord/src/gsr-window.c:921
+#: grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%s Information"
 msgstr "%s - Tiedot"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:1074
 msgid "Folder:"
 msgstr "Kansio:"
 
-#: grecord/src/gsr-window.c:962 grecord/src/gsr-window.c:1808
+#: grecord/src/gsr-window.c:1080 grecord/src/gsr-window.c:1926
 msgid "Filename:"
 msgstr "Tiedostonimi:"
 
-#: grecord/src/gsr-window.c:968
+#: grecord/src/gsr-window.c:1086
 msgid "File size:"
 msgstr "Tiedoston koko:"
 
-#: grecord/src/gsr-window.c:977
+#: grecord/src/gsr-window.c:1095
 msgid "Audio Information"
 msgstr "Äänitiedot"
 
-#: grecord/src/gsr-window.c:991
+#: grecord/src/gsr-window.c:1109
 msgid "Song length:"
 msgstr "Teoksen pituus:"
 
-#: grecord/src/gsr-window.c:997
+#: grecord/src/gsr-window.c:1115
 msgid "Number of channels:"
 msgstr "Kanavien määrä:"
 
-#: grecord/src/gsr-window.c:1003
+#: grecord/src/gsr-window.c:1121
 msgid "Sample rate:"
 msgstr "Äänitaajuus:"
 
 # Onkohan tälle jotain vakiintunutta suomennosta?
-#: grecord/src/gsr-window.c:1009
+#: grecord/src/gsr-window.c:1127
 msgid "Bit rate:"
 msgstr "Bittinopeus:"
 
-#: grecord/src/gsr-window.c:1081
+#: grecord/src/gsr-window.c:1199
 msgid "A sound recorder for GNOME"
 msgstr "Ääninauhuri Gnomelle"
 
-#: grecord/src/gsr-window.c:1379
+#: grecord/src/gsr-window.c:1497
 msgid "Playing..."
 msgstr "Soitetaan..."
 
-#: grecord/src/gsr-window.c:1471
+#: grecord/src/gsr-window.c:1589
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Ääninauhuri"
 
-#: grecord/src/gsr-window.c:1549
+#: grecord/src/gsr-window.c:1667
 msgid "Recording..."
 msgstr "Äänitetään..."
 
 #
-#: grecord/src/gsr-window.c:1783
+#: grecord/src/gsr-window.c:1901
 msgid "Record as"
 msgstr "Äänitä muodossa"
 
 #
-#: grecord/src/gsr-window.c:1793
+#: grecord/src/gsr-window.c:1911
 msgid "File information"
 msgstr "Tiedoston tiedot"
 
-#: grecord/src/gsr-window.c:1815
+#: grecord/src/gsr-window.c:1933
 msgid "<none>"
 msgstr "<ei mitään>"
 
-#: grecord/src/gsr-window.c:1824
+#: grecord/src/gsr-window.c:1942
 msgid "Length:"
 msgstr "Pituus:"
 
@@ -1623,28 +1637,59 @@ msgstr "Säädä äänenvoimakkuutta"
 msgid "Volume Control"
 msgstr "Äänenhallinta"
 
-#: gst-mixer/src/mixer.c:219
+#: gst-mixer/src/mixer.c:218
+#, c-format
+msgid "%s Slider"
+msgstr ""
+
+#: gst-mixer/src/mixer.c:220
+#, c-format
+msgid "Channel %d of %s Slider"
+msgstr ""
+
+#: gst-mixer/src/mixer.c:221
+#, c-format
+msgid "%s Slider %d"
+msgstr ""
+
+#: gst-mixer/src/mixer.c:234
 msgid "Lock"
 msgstr "Lukitus"
 
-#: gst-mixer/src/mixer.c:229
+#: gst-mixer/src/mixer.c:244
+#, c-format
+msgid "%s Lock"
+msgstr "%s Lukitus"
+
+#: gst-mixer/src/mixer.c:250
 msgid "Mute"
 msgstr "Vaimennus"
 
-#: gst-mixer/src/mixer.c:241
+#: gst-mixer/src/mixer.c:262
+#, c-format
+msgid "%s Mute"
+msgstr "%s Vaimennus"
+
+#: gst-mixer/src/mixer.c:268
 msgid "Rec."
 msgstr "Äänitys"
 
+#
+#: gst-mixer/src/mixer.c:280
+#, c-format
+msgid "%s Record"
+msgstr "%s Äänitys"
+
 #. create main window + menus
-#: gst-mixer/src/mixer.c:407 gst-mixer/src/mixer.c:495
+#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
 msgid "GStreamer Volume Control"
 msgstr "GStreamer Äänenhallinta"
 
-#: gst-mixer/src/mixer.c:410
+#: gst-mixer/src/mixer.c:442
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "GNOME/Gstreamer-pohjainen mikserisovellus"
 
-#: gst-mixer/src/mixer.c:512
+#: gst-mixer/src/mixer.c:544
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Valitettavasti mikserielementtejä ja/tai -laitteita ei löytynyt"
 
@@ -2258,16 +2303,6 @@ msgstr "Äänenvoimakkuusmonitori"
 #~ msgid "Right %s"
 #~ msgstr "Oikea %s"
 
-#~ msgid "%s Lock"
-#~ msgstr "%s Lukitus"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s Vaimennus"
-
-#
-#~ msgid "%s Record"
-#~ msgstr "%s Äänitys"
-
 #~ msgid "GNOME Volume Control"
 #~ msgstr "Gnomen äänenhallinta"
 
@@ -2351,13 +2386,6 @@ msgstr "Äänenvoimakkuusmonitori"
 #~ msgstr ""
 #~ "\"%s\" on hakemisto.\n"
 #~ "Anna toinen tiedostonimi."
-
-#~ msgid ""
-#~ "<b>File '%s' already exists.</b>\n"
-#~ "Do you want to overwrite it?"
-#~ msgstr ""
-#~ "<b>Tiedosto \"%s\" on jo olemassa.</b>\n"
-#~ "Haluatko kirjoittaa sen yli?"
 
 #~ msgid "Cancel save"
 #~ msgstr "Peruuta tallennus"
