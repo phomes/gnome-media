@@ -60,7 +60,6 @@ void my_exit(int errorcode)
     exit(errorcode);
 }
 
-
 int main(int argc, char *argv[])
 {
     char req[512], client[512];
@@ -161,9 +160,9 @@ int main(int argc, char *argv[])
 	set_status(STATUS_NONE, "");
 	g_free(dname);
 	disconnect(fd);
+	my_exit(EXIT_SUCCESS);
     }
-    my_exit(EXIT_SUCCESS);
-    return 0; /* bah, silence gcc */
+    exit(EXIT_SUCCESS);
 }
 
 int do_request(char *req, int fd)
