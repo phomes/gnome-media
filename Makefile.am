@@ -1,8 +1,10 @@
 SUBDIRS = po intl macros	\
-	@PROGRAMS_EXTACE@	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_GNOMOVISION@  \
 	@PROGRAMS_TCD@
+#
+# broken with current esound
+#	@PROGRAMS_EXTACE@	
 
 ## to automatically rebuild aclocal.m4 if any of the macros in `macros/' change
 @MAINT@include macros/macros.dep
