@@ -26,6 +26,13 @@
 
 gint sound = -1;
 #define RATE   44100
+typedef struct _vumeter {
+   gdouble      l_level;
+   gdouble      r_level;
+   gint         esd_stat;
+   gint         meter_stat;
+}vumeter;
+
 /* A fairly good size buffer to keep resource (cpu) down */
 #define NSAMP  2048
 short          aubuf[NSAMP];
@@ -100,10 +107,13 @@ open_sound (void)
 void 
 update_levels (gpointer data, gint source, GdkInputCondition condition)
 {
+  vumeter  *meter;
   register gint i;
   register short val_l, val_r;
   static unsigned short bigl, bigr;
 
+  meter = (vumeter *)data;
+  meter->meter_stat = FALSE;
   if (!(read (source, aubuf, NSAMP * 2)))
     return;
   bigl = bigr = 0;
@@ -116,11 +126,24 @@ update_levels (gpointer data, gint source, GdkInputCondition condition)
     }
   bigl /= 256;
   bigr /= 256;
-  led_bar_light_percent (dial[0], (bigl / 100.0));
-  led_bar_light_percent (dial[1], (bigr / 100.0));
-
+  meter->l_level = bigl / 100.0;
+  meter->r_level = bigr / 100.0;
+  meter->meter_stat = TRUE;
+  led_bar_light_percent (dial[0], meter->l_level);
+  led_bar_light_percent (dial[1], meter->r_level);
 }
+static gint
+update_display (gpointer data)
+{
+   vumeter  *meter;
 
+   meter = (vumeter *)data;
+   meter->l_level = (meter->l_level >= 0.0) ? meter->l_level - 1.0 : 0.0;
+   meter->r_level = (meter->r_level >= 0.0) ? meter->r_level - 1.0 : 0.0;
+   led_bar_light_percent (dial[0], meter->l_level);
+   led_bar_light_percent (dial[1], meter->r_level);
+   return TRUE;
+}
 
 int 
 main (int argc, char *argv[])
@@ -128,6 +151,8 @@ main (int argc, char *argv[])
   GnomeClient   *client;
   GtkWidget     *hbox;
   GtkWidget     *frame;
+  vumeter       *meter;
+  gint          time_id;
   gint          i;
   gint          session_xpos = -1;
   gint          session_ypos = -1;
@@ -154,7 +179,7 @@ main (int argc, char *argv[])
                               0, NULL);
   if (esd_host)
     g_print ("Host is %s\n", esd_host);
-
+  meter = g_malloc0 (sizeof (vumeter));
   client = gnome_master_client ();
   gtk_object_ref (GTK_OBJECT (client));
   gtk_object_sink (GTK_OBJECT (client));
@@ -201,11 +226,14 @@ main (int argc, char *argv[])
     }
   gtk_widget_show_all (window);
   open_sound();
-
   if(sound > 0) /* TPG: Make sure we have a valid fd... */
-    gdk_input_add (sound, GDK_INPUT_READ, update_levels, NULL);
+    gdk_input_add (sound, GDK_INPUT_READ, update_levels, meter);
+  time_id = gtk_timeout_add (1000, (GtkFunction)update_display, meter);
   gtk_main ();
   gtk_object_unref (GTK_OBJECT (client));
+  gtk_timeout_remove (time_id);
+  g_free (meter);
   return 0;
 
 }
+
