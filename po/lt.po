@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-03 16:17+0200\n"
+"POT-Creation-Date: 2004-12-22 16:49+0100\n"
 "PO-Revision-Date: 2004-12-03 17:27+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -1583,8 +1584,8 @@ msgstr ""
 #: grecord/src/gsr-window.c:1436
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
-"Nepavyko sukurti GStreamer kodavimo programos elementų - patikrinkite "
-"Jūsų audio kodavimo nustatymus"
+"Nepavyko sukurti GStreamer kodavimo programos elementų - patikrinkite Jūsų "
+"audio kodavimo nustatymus"
 
 #: grecord/src/gsr-window.c:1446
 msgid "Could not find GStreamer filesink plugin - please install it"
@@ -1595,8 +1596,8 @@ msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
-"Nepavyko susieti kodavimo programos elementų su bylos išvedimo elementu "
-"- Jūs tikriausiai pasirinkote blogą kodavimo programą"
+"Nepavyko susieti kodavimo programos elementų su bylos išvedimo elementu - "
+"Jūs tikriausiai pasirinkote blogą kodavimo programą"
 
 #: grecord/src/gsr-window.c:1560
 msgid "Record as"
@@ -1619,19 +1620,23 @@ msgid "Adjust the volume level"
 msgstr "Nustatyti garsumo lygį"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:368
+#: gst-mixer/src/window.c:374
 msgid "Volume Control"
 msgstr "Garso valdymas"
 
-#: gst-mixer/src/element.c:155
+#: gst-mixer/src/element.c:187
 msgid "Playback"
 msgstr "Grojimas"
 
-#: gst-mixer/src/element.c:157
+#: gst-mixer/src/element.c:189
 msgid "Capture"
 msgstr "Rašymas"
 
-#: gst-mixer/src/element.c:159
+#: gst-mixer/src/element.c:191
+msgid "Switches"
+msgstr ""
+
+#: gst-mixer/src/element.c:193
 msgid "Options"
 msgstr "Nustatymai"
 
@@ -1651,26 +1656,26 @@ msgid "No volume control elements and/or devices found."
 msgstr "Garso valdymo elementų ir/arba įrenginių nerasta."
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:107
+#: gst-mixer/src/preferences.c:108
 msgid "Volume Control Preferences"
 msgstr "Garso valdymo nustatymai"
 
-#: gst-mixer/src/preferences.c:120
+#: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
 msgstr "_Pasirinkite norimus matyti takelius:"
 
-#: gst-mixer/src/track.c:193
+#: gst-mixer/src/track.c:210
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: gst-mixer/src/track.c:233
+#: gst-mixer/src/track.c:250
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Nutildyti/netildyti %s"
 
-#: gst-mixer/src/track.c:248
+#: gst-mixer/src/track.c:265
 #, c-format
 msgid "Track %s: mute"
 msgstr "Takelis %s: nutildyta"
@@ -1680,17 +1685,17 @@ msgstr "Takelis %s: nutildyta"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:328
+#: gst-mixer/src/track.c:345
 #, c-format
 msgid "Toggle audio capture from %s"
 msgstr "Įjungti/išjungti audio rašymą iš %s"
 
-#: gst-mixer/src/track.c:343
+#: gst-mixer/src/track.c:360
 #, c-format
 msgid "Track %s: audio capture"
 msgstr "Takelis %s: audio rašymas"
 
-#: gst-mixer/src/track.c:391
+#: gst-mixer/src/track.c:439
 #, fuzzy, c-format
 msgid "%s Option Selection"
 msgstr "%s nustatymų parinkimas"
@@ -1785,12 +1790,12 @@ msgstr "Pakeisti įrenginį į %s"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Garso valdymas: %s"
 
-#: gst-mixer/src/window.c:371
+#: gst-mixer/src/window.c:377
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/GStreamer paremta garso valdymo programa"
 
@@ -2108,17 +2113,17 @@ msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
-"Naudojama kovertuoti CD-kokybės garsui, su kokybei nekenkiančiu "
-"suspaudimu. Naudokit šį profilį jeigu vėliau norėsit redaguoti šią bylą arba "
-"norėsit įrašyti į CD."
+"Naudojama kovertuoti CD-kokybės garsui, su kokybei nekenkiančiu suspaudimu. "
+"Naudokit šį profilį jeigu vėliau norėsit redaguoti šią bylą arba norėsit "
+"įrašyti į CD."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
-"Naudojama konvertuoti CD kokybės garsui, su kokybei kenkiančiu "
-"suspaudimu Naudoki šį profilį įrašymui iš CD ir radio įrašams."
+"Naudojama konvertuoti CD kokybės garsui, su kokybei kenkiančiu suspaudimu "
+"Naudoki šį profilį įrašymui iš CD ir radio įrašams."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""

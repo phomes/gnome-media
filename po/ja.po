@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-05 18:07+0900\n"
+"POT-Creation-Date: 2004-12-22 16:49+0100\n"
 "PO-Revision-Date: 2004-12-05 18:05+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -1622,19 +1622,23 @@ msgid "Adjust the volume level"
 msgstr "音量レベルを調整します"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:368
+#: gst-mixer/src/window.c:374
 msgid "Volume Control"
 msgstr "音量コントロール"
 
-#: gst-mixer/src/element.c:155
+#: gst-mixer/src/element.c:187
 msgid "Playback"
 msgstr "録音再生"
 
-#: gst-mixer/src/element.c:157
+#: gst-mixer/src/element.c:189
 msgid "Capture"
 msgstr "キャプチャ"
 
-#: gst-mixer/src/element.c:159
+#: gst-mixer/src/element.c:191
+msgid "Switches"
+msgstr ""
+
+#: gst-mixer/src/element.c:193
 msgid "Options"
 msgstr "オプション"
 
@@ -1654,26 +1658,26 @@ msgid "No volume control elements and/or devices found."
 msgstr "音量コントロールの要素/デバイスが見つかりませんでした。"
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:107
+#: gst-mixer/src/preferences.c:108
 msgid "Volume Control Preferences"
 msgstr "音量コントロールの設定"
 
-#: gst-mixer/src/preferences.c:120
+#: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
 msgstr "表示するトラックの選択(_S):"
 
-#: gst-mixer/src/track.c:193
+#: gst-mixer/src/track.c:210
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: gst-mixer/src/track.c:233
+#: gst-mixer/src/track.c:250
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s のミュートを ON/OFF します"
 
-#: gst-mixer/src/track.c:248
+#: gst-mixer/src/track.c:265
 #, c-format
 msgid "Track %s: mute"
 msgstr "トラック %s: ミュート"
@@ -1683,17 +1687,17 @@ msgstr "トラック %s: ミュート"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:328
+#: gst-mixer/src/track.c:345
 #, c-format
 msgid "Toggle audio capture from %s"
 msgstr "%s のオーディオ・キャプチャを切り替えます"
 
-#: gst-mixer/src/track.c:343
+#: gst-mixer/src/track.c:360
 #, c-format
 msgid "Track %s: audio capture"
 msgstr "トラック %s: オーディオ・キャプチャ"
 
-#: gst-mixer/src/track.c:391
+#: gst-mixer/src/track.c:439
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s のオプション"
@@ -1788,12 +1792,12 @@ msgstr "デバイスを %s へ変更します"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
 #, c-format
 msgid "Volume Control: %s"
 msgstr "音量コントロール: %s"
 
-#: gst-mixer/src/window.c:371
+#: gst-mixer/src/window.c:377
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/GStreamer ベースの音量コントロール・アプリケーションです。"
 
