@@ -31,7 +31,6 @@
 #include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
-#include <gst/gstautoplug.h>
 #include <gst/gconf/gconf.h>
 
 #include "pipeline-tests.h"
