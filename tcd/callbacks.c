@@ -19,7 +19,7 @@ void play_cb(GtkWidget *widget, gpointer data)
 	if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
 	    tcd_pausecd(&cd);
 	else
-	    tcd_playtracks(&cd, cd.first_t, cd.last_t);
+	    tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
 	cd.repeat_track = cd.cur_t;
     }
 
@@ -101,7 +101,7 @@ void about_cb(GtkWidget *widget, gpointer data)
 
 gint goto_track_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_playtracks(&cd, GPOINTER_TO_INT(data), cd.last_t);
+    tcd_playtracks(&cd, GPOINTER_TO_INT(data), cd.last_t, prefs.only_use_trkind);
     cd.repeat_track = GPOINTER_TO_INT(data);
     return 1;
 }

@@ -89,6 +89,7 @@ void load_prefs(tcd_prefs *prop)
     prop->back.key =    gnome_config_get_int("/gtcd/keybindings/back=45");
     prop->forward.key = gnome_config_get_int("/gtcd/keybindings/forward=43");
 
+    prop->only_use_trkind = gnome_config_get_bool("/gtcd/general/only_use_trkind=0");
 /* cddb stuff, used by cddbslave. */
     prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
     prop->cddb_port   = gnome_config_get_int("/cddbslave/server/port=8880");
@@ -120,6 +121,8 @@ void save_prefs(tcd_prefs *prop)
 
     gnome_config_set_string("/cddbslave/server/address", prop->cddb_server);
     gnome_config_set_int("/cddbslave/server/port=8880", prop->cddb_port);
+
+    gnome_config_set_bool("/gtcd/general/only_use_trkind", prop->only_use_trkind);
         
     gnome_config_sync();
 }
@@ -164,23 +167,23 @@ static GtkWidget *create_start_frame()
     vbox = gtk_vbox_new(TRUE, 0);
 
     /* do nothing */
-    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
+    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do nothing"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.start_action==DoNothing)?1:0);
 
     /* start playing */
     start_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
-	_("Start Playing"));
+	_("Start playing"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(start_playing), (prefs.start_action==StartPlaying)?1:0);
     
     /* stop playing */
     stop_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
-	_("Stop Playing"));
+	_("Stop playing"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.start_action==StopPlaying)?1:0);
 	
     /* close tray */
-    close_tray = gtk_check_button_new_with_label(_("Close Tray"));
+    close_tray = gtk_check_button_new_with_label(_("Close tray"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), prefs.close_tray_on_start);
 
     gtk_signal_connect(GTK_OBJECT(close_tray), "clicked",
@@ -219,25 +222,25 @@ static GtkWidget *create_exit_frame()
     vbox = gtk_vbox_new(TRUE, 0);
 
     /* do nothing */
-    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
+    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do nothing"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.exit_action==DoNothing)?1:0);
     
     /* stop playing */
     stop_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
-	_("Stop Playing"));
+	_("Stop playing"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.exit_action==StopPlaying)?1:0);
 
     /* open tray */
     open_tray = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
-	_("Open Tray"));
+	_("Open tray"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(open_tray), (prefs.exit_action==OpenTray)?1:0);
         
     /* close tray */
     close_tray = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
-	_("Close Tray"));
+	_("Close tray"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), (prefs.exit_action==CloseTray)?1:0);
 
     gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
@@ -298,7 +301,7 @@ GtkWidget *create_general_frame()
     GtkWidget *dev_entry;
     GtkWidget *cp, *fs;
     GtkWidget *left_box, *right_box, *hbox, *vbox;
-    GtkWidget *handles, *tooltips;
+    GtkWidget *handles, *tooltips, *trkind;
     
     left_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
     right_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
@@ -310,7 +313,7 @@ GtkWidget *create_general_frame()
     gtk_box_pack_start_defaults(GTK_BOX(vbox), hbox);
     
     /* device entry */
-    label = gtk_label_new(_("CDROM Device"));
+    label = gtk_label_new(_("CDROM device"));
     dev_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(dev_entry), prefs.cddev);
     gtk_signal_connect(GTK_OBJECT(dev_entry), "changed",
@@ -319,7 +322,7 @@ GtkWidget *create_general_frame()
     gtk_box_pack_start_defaults(GTK_BOX(right_box), dev_entry);
     
     /* Color picker */
-    label = gtk_label_new(_("Track/Title Color"));
+    label = gtk_label_new(_("Track/title color"));
     cp = gnome_color_picker_new();
     gnome_color_picker_set_i8(GNOME_COLOR_PICKER(cp), 
 			      prefs.trackcolor_r, 
@@ -331,26 +334,33 @@ GtkWidget *create_general_frame()
     gtk_box_pack_start(GTK_BOX(right_box), cp, TRUE, FALSE, 0);
     
     /* font picker */
-    label = gtk_label_new(_("Track/Title Font"));
-    fs = gtk_button_new_with_label(_("Change Font"));
+    label = gtk_label_new(_("Track/title font"));
+    fs = gtk_button_new_with_label(_("Change font"));
     gtk_signal_connect(GTK_OBJECT(fs), "clicked",
 		       GTK_SIGNAL_FUNC(font_button_cb), NULL);
     gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
     gtk_box_pack_start(GTK_BOX(right_box), fs, TRUE, FALSE, 0);
     
     /* show handles */
-    handles = gtk_check_button_new_with_label(_("Show Handles (Restart of TCD required)"));
+    handles = gtk_check_button_new_with_label(_("Show handles (restart required)"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(handles), prefs.handle);
     gtk_signal_connect(GTK_OBJECT(handles), "clicked",
 		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle);
     gtk_box_pack_start_defaults(GTK_BOX(vbox), handles);
     
     /* show tooltips */
-    tooltips = gtk_check_button_new_with_label(_("Show Tooltips"));
+    tooltips = gtk_check_button_new_with_label(_("Show tooltips"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tooltips), prefs.tooltip);
     gtk_signal_connect(GTK_OBJECT(tooltips), "clicked",
 		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip);
     gtk_box_pack_start_defaults(GTK_BOX(vbox), tooltips);
+
+    /* use alternate play ioctl */
+    trkind = gtk_check_button_new_with_label(_("Use alternate method to play CD"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(trkind), prefs.only_use_trkind);
+    gtk_signal_connect(GTK_OBJECT(trkind), "clicked",
+    		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.only_use_trkind);
+                       gtk_box_pack_start_defaults(GTK_BOX(vbox), trkind);
     
     gtk_widget_show_all(vbox);
     return vbox;
@@ -366,13 +376,13 @@ static GtkWidget *create_page()
     table = gtk_table_new(2, 2, FALSE);
     
     /* start frame */
-    start_frame = gtk_frame_new(_("On Startup"));
+    start_frame = gtk_frame_new(_("On startup"));
     gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(start_frame), create_start_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), start_frame, 0, 1, 0, 1);
     
     /* exit frame */
-    exit_frame = gtk_frame_new(_("On Exit"));
+    exit_frame = gtk_frame_new(_("On exit"));
     gtk_container_border_width(GTK_CONTAINER(exit_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(exit_frame), create_exit_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);

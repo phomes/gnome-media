@@ -36,6 +36,8 @@ typedef struct
 
     gchar *cddb_server;
     guint cddb_port;
+
+    gboolean only_use_trkind;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );

@@ -294,7 +294,7 @@ int tcd_get_volume(cd_struct *cd)
 #endif
 }	
 	                                  
-int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
+int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
 {
     struct cdrom_msf msf;
     struct cdrom_ti trkind;
@@ -359,11 +359,12 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
     }
     msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
     msf.cdmsf_sec1 %= 60;
-		
-    if(ioctl( cd->cd_dev, CDROMPLAYMSF, &msf))
+
+    if(ioctl( cd->cd_dev, CDROMPLAYMSF, &msf) || only_use_trkind)
     {
-	debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error. Trying PLAYTRKIND\n" );
-	/* Try alternate method of playing  FIXME: handle -1 end_t */
+	debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error (or user override). Trying PLAYTRKIND\n" );
+
+	/* Try alternate method of playing */
 	trkind.cdti_trk0 = start_t;     /* start track */
 	trkind.cdti_ind0 = 0;      	/* start index */
 	trkind.cdti_trk1 = end_t;      	/* end track */
@@ -373,7 +374,7 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	{
 	    strcpy( cd->errmsg, "Error playing disc" );
 	    cd->err = TRUE;
-	    debug("cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n" );
+	    debug("cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n");
 	    return -1;
 	}
     }

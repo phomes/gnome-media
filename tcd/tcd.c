@@ -143,10 +143,10 @@ int main(int argc, char **argv)
 	    cd->sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
 	{
 	    if( cd->play_method == REPEAT_CD )
-		tcd_playtracks( cd, cd->first_t, cd->last_t );
+		tcd_playtracks(cd, cd->first_t, cd->last_t, 0);
 	}				                                                        
 	if( cd->play_method==REPEAT_TRK && cd->cur_t != cd->repeat_track )
-	    tcd_playtracks( cd, cd->repeat_track, cd->last_t );
+	    tcd_playtracks(cd, cd->repeat_track, cd->last_t, 0);
 		
 	if( cd->isplayable ) {
 		tcd_gettime(cd);
@@ -181,7 +181,7 @@ int main(int argc, char **argv)
 		if( cd->sc.cdsc_audiostatus == CDROM_AUDIO_PAUSED )
 		    tcd_pausecd(cd);
 		else
-		    tcd_playtracks( cd,cd->first_t,cd->last_t );
+		    tcd_playtracks(cd,cd->first_t,cd->last_t, 0);
 		update_tracklist();
 	    }
 	    break;
@@ -193,7 +193,7 @@ int main(int argc, char **argv)
 	case '+':
 	    if( (cd->cur_t < cd->last_t) && cd->isplayable ) {	
 		cd->cur_t++;
-		tcd_playtracks( cd,cd->cur_t, cd->last_t );
+		tcd_playtracks(cd,cd->cur_t, cd->last_t, 0);
 		if( cd->play_method==REPEAT_TRK )
 		    cd->repeat_track = cd->cur_t;
 	    }
@@ -203,7 +203,7 @@ int main(int argc, char **argv)
 	    if( (cd->cur_t > cd->first_t) && cd->isplayable ) {
 		if( cd->t_sec < 10 )
 		    cd->cur_t--;
-		tcd_playtracks( cd,cd->cur_t, cd->last_t );
+		tcd_playtracks(cd,cd->cur_t, cd->last_t, 0);
 		if( cd->play_method==REPEAT_TRK )
 		    cd->repeat_track = cd->cur_t;
 	    }
@@ -214,7 +214,7 @@ int main(int argc, char **argv)
 		if( (track = get_i_track())!=-1 )
 		{
 		    cd->cur_t = track;
-		    tcd_playtracks( cd, track, cd->last_t );
+		    tcd_playtracks(cd, track, cd->last_t, 0);
 		    if( cd->play_method==REPEAT_TRK )
 			cd->repeat_track = cd->cur_t;
 		}

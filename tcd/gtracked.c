@@ -123,7 +123,7 @@ static void select_row_cb( GtkCList *clist,
     if(gtk_events_pending())
 	gtk_main_iteration();
     if(event && event->type == GDK_2BUTTON_PRESS)
-	tcd_playtracks(&cd, row, -1);
+	tcd_playtracks(&cd, row, -1, prefs.only_use_trkind);
 
     return;
 }

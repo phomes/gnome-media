@@ -161,7 +161,7 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 		if(cd.cur_t < cd.last_t)
 		{   
 		    cd.cur_t++;
-		    tcd_playtracks(&cd,cd.cur_t, cd.last_t);
+		    tcd_playtracks(&cd,cd.cur_t, cd.last_t, prefs.only_use_trkind);
 		    if(cd.play_method==REPEAT_TRK)
 			cd.repeat_track = cd.cur_t;
 		}
@@ -172,7 +172,7 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 		{
 		    if( (cd.t_sec+(cd.t_min*60)) < 10 )
 			cd.cur_t--;
-		    tcd_playtracks( &cd,cd.cur_t, cd.last_t );
+		    tcd_playtracks( &cd,cd.cur_t, cd.last_t, prefs.only_use_trkind);
 				                                                             
 		    if( cd.play_method==REPEAT_TRK )
 			cd.repeat_track = cd.cur_t;
@@ -578,7 +578,7 @@ gint slow_timer( gpointer *data )
 	cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
     {
 	if( cd.play_method == REPEAT_CD )
-	    tcd_playtracks( &cd, cd.first_t, cd.last_t );
+	    tcd_playtracks( &cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
     }
 
     /* see if we need to scan for a new disc */
@@ -708,7 +708,7 @@ gint fast_timer( gpointer *data )
     }
     status_changed();
     if((cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track))
-	tcd_playtracks(&cd, cd.repeat_track, -1);
+	tcd_playtracks(&cd, cd.repeat_track, -1, prefs.only_use_trkind);
     return 1;
 }
 
@@ -961,7 +961,7 @@ void start_action(void)
     switch(prefs.start_action)
     {
     case StartPlaying:
-	tcd_playtracks(&cd, cd.first_t, cd.last_t);
+	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
 	if(cd.isplayable)
 	{
 	    make_goto_menu();
