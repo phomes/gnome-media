@@ -1,55 +1,52 @@
 # translation of sk.po to Slovak
 # GNOME-media Slovak translation
-# Copyright (C) 2000-2002 Free Software Foundation, Inc.
-# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000-2002.
+# Copyright (C) 2000-2002,2003 Free Software Foundation, Inc.
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000-2002,2003.
 # Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: sk\n"
-"POT-Creation-Date: 2002-12-07 15:16+0000\n"
-"PO-Revision-Date: 2002-05-31 09:39+0200\n"
-"Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
+"POT-Creation-Date: 2003-01-19 15:13+0100\n"
+"PO-Revision-Date: 2003-01-19 15:44+0100\n"
+"Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0beta2\n"
+"X-Generator: KBabel 1.2\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "Adresa serveru pre dotazy na CD"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
 msgstr "Port"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#, fuzzy
 msgid "Server name"
-msgstr "Server"
+msgstr "Meno serveru"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgstr "Hostiteľ, ktorému budú poslané všetky dotazy"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr ""
+msgstr "Port serveru, na ktorom beží databáza"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-#, fuzzy
 msgid "The username"
-msgstr "Meno témy"
+msgstr "Používateľ"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "Používateľ, ktorý sa bude pre dotazy používať"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-#, fuzzy
 msgid "Your hostname"
-msgstr "Hostiteľ:"
+msgstr "Váš hostiteľ"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -118,9 +115,8 @@ msgid "_Port:"
 msgstr "_Port:"
 
 #: cddb-slave2/cddb-slave-capplet.c:866
-#, fuzzy
 msgid "CD Database Preferences"
-msgstr "Nastavenie Prehrávača CD GNOME"
+msgstr "Nastavenie Databáze CD"
 
 #: cddb-slave2/cddb-slave.c:213
 msgid "Unknown / Unknown"
@@ -164,11 +160,11 @@ msgstr "Neznáma stopa"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
 msgid "CD Database"
-msgstr ""
+msgstr "Databáza CD"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
 msgid "Modify your CD database preferences"
-msgstr ""
+msgstr "Možnosť upravenia nastavení databáze CD"
 
 #: cddb-slave2/cddb-track-editor.c:78
 msgid "Blues"
@@ -892,7 +888,7 @@ msgstr "Rádio"
 msgid "Phone"
 msgstr "Telef"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1090
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
 msgid "Mono"
 msgstr "Mono"
 
@@ -1088,10 +1084,10 @@ msgstr "Pomocník"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Zariadenie mixéru"
 
 #: gmix/gmix.c:327
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Volume control is unable to run correctly.\n"
 "\n"
@@ -1101,9 +1097,13 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
-"Nepodarilo sa otvoriť zvukové zariadenie.\n"
-"Prosím, overte práva pre otvorenie /dev/mixer\n"
-"a že máte v kerneli podporu zvuku."
+"Nepodarilo sa spustiť ovládanie hlasitosti.\n"
+"\n"
+"Nepodarilo sa otvoriť zvukové zariadenie '%s'.\n"
+"Prosím, overte práva pre otvorenie '%s'\n"
+"a že máte v kerneli podporu zvuku.\n"
+"\n"
+"Stlačením Ukončiť zatvoríte ovládanie hlasitosti."
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1113,16 +1113,19 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"Nepodarilo sa spustiť ovládanie hlasitosti.\n"
+"\n"
+"Stlačením Detaily sa zobrazí dôvod zlyhania.\n"
+"\n"
+"Stlačením Ukončiť zatvoríte ovládanie hlasitosti."
 
 #: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
-#, fuzzy
 msgid "_Details"
-msgstr "Štandardné"
+msgstr "_Detaily"
 
 #: gmix/gmix.c:387
-#, fuzzy
 msgid "Invalid mixer device"
-msgstr "Neplatné zariadenie CD"
+msgstr "Neplatné zariadenie mixéru"
 
 #: gmix/gmix.c:626
 #, c-format
@@ -1189,20 +1192,12 @@ msgid "Volume Control"
 msgstr "Nastavenie hlasitosti"
 
 #: gmix/gmix.c:1748
-#, fuzzy
 msgid "GNOME Volume Control"
-msgstr "Spustiť Ovládanie hlasitosti GNOME"
-
-#: gmix/gmix.c:1749
-msgid ""
-"(C) 1998 Jens Ch. Restemeier\n"
-"(C) 2001 Iain Holmes"
-msgstr ""
+msgstr "Ovládanie hlasitosti GNOME"
 
 #: gmix/gmix.c:1751
-#, fuzzy
 msgid "A mixer for sound devices"
-msgstr "Toto je mixér pre zvukové zariadenia"
+msgstr "Mixér pre zvukové zariadenia"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
@@ -1283,9 +1278,9 @@ msgid "Pause"
 msgstr "Pauza"
 
 #: gnome-cd/callbacks.c:530
-#, fuzzy, c-format
+#, c-format
 msgid "Playing %s - %s"
-msgstr "Prehrávanie"
+msgstr "Prehrávanie %s - %s"
 
 #: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:662 gnome-cd/callbacks.c:673
 msgid "Unknown Artist"
@@ -1295,15 +1290,14 @@ msgstr "Neznámy autor"
 msgid "Unknown Album"
 msgstr "Neznáme album"
 
-#: gnome-cd/callbacks.c:534 grecord/src/gui.c:827
+#: gnome-cd/callbacks.c:534 grecord/src/gui.c:824
 msgid "Playing"
 msgstr "Prehrávanie"
 
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:557
-#, fuzzy
 msgid "Paused"
-msgstr "Pauza"
+msgstr "Pozastavené"
 
 #. Update tray icon tooltip
 #: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55
@@ -1314,9 +1308,8 @@ msgstr "CD prehrávač"
 
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:620
-#, fuzzy
 msgid "Stopped"
-msgstr "Stop"
+msgstr "Zastavené"
 
 #: gnome-cd/callbacks.c:626
 msgid "Disc error"
@@ -1333,24 +1326,20 @@ msgstr "Mechanika otvorená"
 
 #: gnome-cd/callbacks.c:766
 msgid "Data CD"
-msgstr ""
+msgstr "Dátové CD"
 
 #. Updated the tray icon tooltip
 #: gnome-cd/callbacks.c:788 gnome-cd/callbacks.c:792
 msgid "No Cdrom"
-msgstr ""
+msgstr "Žiadne CD"
 
 #: gnome-cd/callbacks.c:803
 msgid "Drive Error"
 msgstr "Chyba mechaniky"
 
-#: gnome-cd/callbacks.c:824
-msgid "(C) 2001 Iain Holmes"
-msgstr ""
-
 #: gnome-cd/callbacks.c:825
 msgid "A CD player for GNOME"
-msgstr ""
+msgstr "Prehrávač CD pre GNOME"
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1358,7 +1347,7 @@ msgid "You do not seem to have permission to access %s."
 msgstr "Asi nemáte práva pre prístup k %s."
 
 #: gnome-cd/cdrom.c:373
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not present in your machine\n"
@@ -1366,7 +1355,7 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 "%s asi nie je odkaz na platné zariadenie CD. To môže byť spôsobené:\n"
-"a) podpora CD nie je zakompilovaná v Linuxe\n"
+"a) podpora CD nie je zapnutá na vašom počítači\n"
 "b) nemáte správne práva pre prístup k zariadeniu CD\n"
 "c) %s nie je zariadenie CD.\n"
 
@@ -1404,26 +1393,23 @@ msgid "_Eject disc"
 msgstr "_Vysunúť disk"
 
 #: gnome-cd/gnome-cd.c:305 grecord/gsr.xml.h:37
-#, fuzzy
 msgid "_Help"
-msgstr "Pomocník"
+msgstr "_Pomocník"
 
 #: gnome-cd/gnome-cd.c:306
-#, fuzzy
 msgid "_About CD player"
-msgstr "CD prehrávač GNOME"
+msgstr "_O prehrávači CD"
 
 #: gnome-cd/gnome-cd.c:414
-#, fuzzy
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
-"Zariadenie CD nie je nastavené. To znamemá, že GnomeCD\n"
-"nemôže fungovať. Stlačte Nastaviť zariadenie aby sa zobrazil\n"
+"Zariadenie CD nie je nastavené. To znamemá, že prehrávač CD\n"
+"nemôže fungovať. Stlačte 'Nastaviť zariadenie' aby sa zobrazil\n"
 "dialóg, kde zariadenie môžete nastaviť, alebou použite\n"
-"Koniec pre ukončenie GnomeCD."
+"'Koniec' pre ukončenie prehrávača."
 
 #: gnome-cd/gnome-cd.c:418
 msgid "Set device"
@@ -1434,7 +1420,6 @@ msgid "No CD device"
 msgstr "Žiadne zariadenie CD"
 
 #: gnome-cd/gnome-cd.c:474
-#, fuzzy
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1443,24 +1428,24 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
-"%s\n"
-"To znamemá, že GnomeCD nemôže fungovať správne. Stlačte Nastaviť zariadenie "
-"aby sa zobrazili dialóg, kde zariadenie môžete nastaviť, alebou použite "
-"Koniec pre ukončenie GnomeCD."
+"Nepodarilo sa spustiť prehrávač CD.\n"
+"\n"
+"Stlačením 'Detaily' sa zobrazí dôvod zlyhania.\n"
+"\n"
+"Stlačením 'Nastaviť zariadenie' sa zobrazí dialóg, kde môžete "
+"nastaviť zariadenie, alebo stlačením 'Ukončiť' zatvoríte prehrávač CD."
 
 #: gnome-cd/gnome-cd.c:479
-#, fuzzy
 msgid "_Set device"
-msgstr "Nastaviť zariadenie"
+msgstr "_Nastaviť zariadenie"
 
 #: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
 msgstr "Neplatné zariadenie CD"
 
 #: gnome-cd/gnome-cd.c:542
-#, fuzzy
 msgid "Volume control"
-msgstr "Nastavenie hlasitosti"
+msgstr "Ovládanie hlasitosti"
 
 #: gnome-cd/gnome-cd.c:551
 msgid "Open track editor"
@@ -1518,21 +1503,20 @@ msgstr "Vysunúť CD"
 msgid "Eject"
 msgstr "Vysunúť"
 
-#: gnome-cd/gnome-cd.c:731
-#, fuzzy
+#: gnome-cd/gnome-cd.c:734
 msgid "CD device to use"
-msgstr "Žiadne zariadenie CD"
+msgstr "Zariadenie CD"
 
-#: gnome-cd/gnome-cd.c:740
+#: gnome-cd/gnome-cd.c:736
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Spustiť iba ak nebeží iný prehrávač CD"
 
-#: gnome-cd/gnome-cd.c:742
+#: gnome-cd/gnome-cd.c:738
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Prehrávať CD pri spustení"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:773
+#: gnome-cd/gnome-cd.c:769
 msgid "Cannot create player"
 msgstr "Nepodarilo sa vytvoriť prehrávač"
 
@@ -1542,72 +1526,73 @@ msgstr "Prehráva zvukové CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr ""
+msgstr "Akcia pri ukončení"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
-#, fuzzy
 msgid "Action on start"
-msgstr "Skryť menu pri štarte"
+msgstr "Akcia pri spustení"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
 msgid "CD player theme"
-msgstr "_Zariadenie CD"
+msgstr "Téma prehrávača CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
-msgstr ""
+msgstr "Cesta zariadenia"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgstr "Má sa prehrávač CD pokúsiť pri spustení zatvoriť mechaniku CD?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr ""
+msgstr "Zatvoriť pri štarte mechaniku CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
+msgstr "Cesta k mechanike CD, ktorú má prehrávač CD používať pre prehrávanie"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
 msgstr ""
+"Aká akcia sa má pri ukončení prehrávača CD vykonať? 0 = nič, "
+"1 = zastaviť prehrávanie, 2 = vysunúť CD, 3 = pokúsiť sa zatvoriť "
+"mechaniku"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
 msgstr ""
+"Aká akcia sa má pri spustení prehrávača CD vykonať? 0 = nič, "
+"1 = spustiť prehrávanie, 2 = zastaviť prehrávanie"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
-msgstr ""
+msgstr "Akú tému má prehrávač CD použiť pri svoj vzhľad"
 
 #: gnome-cd/preferences.c:83
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
-"To znamená, že GNOME-CD nebude fungovať správne."
+"To znamená, že prehrávač CD nebude fungovať možné spustiť."
 
 #: gnome-cd/preferences.c:84
 msgid "Error setting device"
 msgstr "Chyba pri nastavovaní zariadenia"
 
 #: gnome-cd/preferences.c:824
-#, fuzzy
 msgid "CD Player Preferences"
-msgstr "Nastavenie Prehrávača CD GNOME"
+msgstr "Nastavenie Prehrávača CD"
 
 #: gnome-cd/preferences.c:853
-#, fuzzy
 msgid "CD player de_vice:"
-msgstr "_Zariadenie CD"
+msgstr "_Zariadenie CD:"
 
 #: gnome-cd/preferences.c:868
 msgid "_Apply change"
@@ -1615,36 +1600,32 @@ msgstr "_Použiť zmeny"
 
 #. left side
 #: gnome-cd/preferences.c:881
-#, fuzzy
 msgid "When CD player starts"
-msgstr "Pri spustení Prehrávača CD"
+msgstr "Pri spustení prehrávača CD"
 
 #: gnome-cd/preferences.c:889
 msgid "Do _nothing"
 msgstr "_Nerobiť nič"
 
 #: gnome-cd/preferences.c:890
-#, fuzzy
 msgid "Do nothing when CD Player starts"
-msgstr "Pri spustení Prehrávača CD"
+msgstr "Pri spustení prehrávača CD nerobiť nič"
 
 #: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
 msgstr "Začať _hrať CD"
 
 #: gnome-cd/preferences.c:901
-#, fuzzy
 msgid "Start playing CD when CD Player starts"
-msgstr "Pri spustení Prehrávača CD"
+msgstr "Pri spustení prehrávača CD spustiť prehrávanie"
 
 #: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
 msgstr "_Zastaviť hranie CD"
 
 #: gnome-cd/preferences.c:911
-#, fuzzy
 msgid "Stop playing CD when CD Player starts"
-msgstr "Pri spustení Prehrávača CD"
+msgstr "Pri spustení prehrávača CD zastaviť prehrávanie"
 
 #: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
@@ -1652,18 +1633,16 @@ msgstr "Pokúsiť sa _zavrieť CD"
 
 #. Right side
 #: gnome-cd/preferences.c:937
-#, fuzzy
 msgid "When CD player quits"
-msgstr "Pri ukončení Prehrávača CD"
+msgstr "Pri ukončení prehrávača CD"
 
 #: gnome-cd/preferences.c:945
 msgid "Do not_hing"
 msgstr "N_erobiť nič"
 
 #: gnome-cd/preferences.c:946
-#, fuzzy
 msgid "Do nothing when CD Player exits"
-msgstr "Pri ukončení Prehrávača CD"
+msgstr "Pri ukončení prehrávača CD nerobiť nič"
 
 #: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
@@ -1671,16 +1650,15 @@ msgstr "Z_astaviť hranie CD"
 
 #: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
-msgstr ""
+msgstr "Pri ukončení prehrávača CD zastaviť prehrávanie"
 
 #: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "Pokúsiť sa _otvoriť CD"
 
 #: gnome-cd/preferences.c:967
-#, fuzzy
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "Pokúsiť sa _otvoriť CD"
+msgstr "Pri ukončení prehrávača CD sa pokúsiť zatvoriť mechaniku"
 
 #: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
@@ -1829,7 +1807,7 @@ msgid "Error saving '%s'"
 msgstr "Chyba pri ukladaní '%s'"
 
 #: grecord/src/grec.c:976
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
 "\n"
@@ -1874,149 +1852,130 @@ msgstr ""
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
-#, fuzzy
 msgid "hours"
-msgstr "Chorus"
+msgstr "hodín"
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
 msgid "hour"
-msgstr ""
+msgstr "hodina"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#: grecord/src/gui.c:756
+#: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "minút"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#, fuzzy
 msgid "minute"
 msgstr "minút"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
 #: grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "seconds"
-msgstr "Nahrávať %s"
+msgstr "sekúnd"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "second"
-msgstr "Nahrávať %s"
+msgstr "sekunda"
 
 #: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
-#, fuzzy
 msgid "Open a file"
-msgstr "Spustiť mixér"
+msgstr "Otvoriť súbor"
 
 #: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
 #: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
 msgid "Ready"
-msgstr ""
+msgstr "Pripravený"
 
 #: grecord/src/gsr-window.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "Saving %s..."
-msgstr "Ukladám..."
+msgstr "Ukladám %s..."
 
 #: grecord/src/gsr-window.c:600
-#, fuzzy
 msgid "Save file as"
-msgstr "Uložiť zvukový súbor"
+msgstr "Uložiť súbor ako"
 
 #: grecord/src/gsr-window.c:654
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not installed in the path."
-msgstr "%s nie je nainštalované v ceste"
+msgstr "%s nie je nainštalované v ceste."
 
 #: grecord/src/gsr-window.c:736
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr ""
+msgstr "%s (neuložené)"
 
 #: grecord/src/gsr-window.c:751
-#, fuzzy
 msgid "Unknown size"
-msgstr "Neznámy disk"
+msgstr "Neznáma veľkosť"
 
 #: grecord/src/gsr-window.c:771
 #, c-format
 msgid "%.1f kHz"
-msgstr ""
+msgstr "%.1f kHz"
 
 #: grecord/src/gsr-window.c:780
 #, c-format
 msgid "%.0f kb/s"
-msgstr ""
+msgstr "%.0f kb/s"
 
 #: grecord/src/gsr-window.c:792
-#, fuzzy
 msgid "1 (mono)"
-msgstr "mono"
+msgstr "1 (mono)"
 
 #: grecord/src/gsr-window.c:796
-#, fuzzy
 msgid "2 (stereo)"
-msgstr "stereo"
+msgstr "2 (stereo)"
 
 #: grecord/src/gsr-window.c:825
-#, fuzzy, c-format
+#, c-format
 msgid "%s Information"
-msgstr "Informácie pri prihlásení"
+msgstr "Informácie %s"
 
 #: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
-#, fuzzy
 msgid "File Information"
-msgstr "Informácie pri prihlásení"
+msgstr "Informácie o súbore"
 
 #: grecord/src/gsr-window.c:859
-#, fuzzy
 msgid "Folder:"
-msgstr "Priečinky"
+msgstr "Priečinok:"
 
 #: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
 msgid "Filename:"
-msgstr ""
+msgstr "Meno súboru:"
 
 #: grecord/src/gsr-window.c:871
 msgid "File size:"
-msgstr ""
+msgstr "Veľkosť súboru:"
 
 #: grecord/src/gsr-window.c:880
-#, fuzzy
 msgid "Audio Information"
-msgstr "Audioformát:"
+msgstr "Informácie o zvuku"
 
 #: grecord/src/gsr-window.c:894
 msgid "Song length:"
-msgstr ""
+msgstr "Dĺžka piesne:"
 
 #: grecord/src/gsr-window.c:900
-#, fuzzy
 msgid "Number of channels:"
-msgstr "_Počet opakovaní:"
+msgstr "Počet kanálov:"
 
 #: grecord/src/gsr-window.c:906
-#, fuzzy
 msgid "Sample rate:"
-msgstr "Vzorkovacia frekvencia: "
+msgstr "Vzorkovacia frekvencia:"
 
 #: grecord/src/gsr-window.c:912
 msgid "Bit rate:"
-msgstr ""
-
-#: grecord/src/gsr-window.c:981
-msgid "(C) 2002 Iain Holmes"
-msgstr ""
+msgstr "Počet bitov:"
 
 #: grecord/src/gsr-window.c:982
-#, fuzzy
 msgid "A sound recorder for GNOME"
-msgstr "Záznam zvuku"
+msgstr "Záznam zvuku pre GNOME"
 
 #: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
 #, c-format
@@ -2024,18 +1983,16 @@ msgid "%s - Sound Recorder"
 msgstr "%s - Záznam zvuku"
 
 #: grecord/src/gsr-window.c:1548
-#, fuzzy
 msgid "File information"
-msgstr "Informácie pri prihlásení"
+msgstr "Informácie o súbore"
 
 #: grecord/src/gsr-window.c:1569
 msgid "<none>"
-msgstr ""
+msgstr "<žiadne>"
 
 #: grecord/src/gsr-window.c:1578
-#, fuzzy
 msgid "Length:"
-msgstr "Dĺžka"
+msgstr "Dĺžka:"
 
 #: grecord/src/gui.c:45 grecord/gsr.xml.h:38
 msgid "_New"
@@ -2131,29 +2088,15 @@ msgstr "Súbor '%s' neexistuje, použijem štandardný."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Súbor '%s' nie je podporovaný zvukový súbor."
 
-#. if your charset allows it, replace the "e" of "Hyden"
-#. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
-msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:427
+#: grecord/src/gui.c:425
 msgid "translator_credits"
 msgstr "Stanislav Višňovský"
 
-#: grecord/src/gui.c:431
-#, fuzzy
+#: grecord/src/gui.c:429
 msgid "GNOME Sound Recorder"
-msgstr "GNOME Záznam zvuku"
+msgstr "Záznam zvuku GNOME"
 
-#. if your charset allows it, replace the
-#. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
-#, fuzzy
-msgid "(C) 2000 Andreas Hyden"
-msgstr "Copyright (C)  2000 Andreas Hyden"
-
-#: grecord/src/gui.c:435
+#: grecord/src/gui.c:431
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -2161,103 +2104,103 @@ msgstr ""
 "Jednoduchý záznam a prehrávanie zvukov pre GNOME.\n"
 "Venované mojej mačke Malte."
 
-#: grecord/src/gui.c:703
+#: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
 msgstr "Nastavenie Záznam zvuku GNOME"
 
-#: grecord/src/gui.c:710
+#: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
 msgstr "Nastavenie Záznam zvuku GNOME"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:719
 msgid "Recording"
 msgstr "Nahrávanie"
 
-#: grecord/src/gui.c:727
+#: grecord/src/gui.c:724
 msgid "Time"
 msgstr "Čas"
 
-#: grecord/src/gui.c:740
+#: grecord/src/gui.c:737
 msgid "_Recording timeout: "
 msgstr "Časový _limit nahrávania: "
 
-#: grecord/src/gui.c:763
+#: grecord/src/gui.c:760
 msgid "_Stop recording on timeout"
 msgstr "_Zastaviť nahrávanie po časovom limite"
 
-#: grecord/src/gui.c:771
+#: grecord/src/gui.c:768
 msgid "_Open save dialog when recording is finished"
 msgstr "Zobraziť _dialóg pre uloženie po dokončení nahrávania"
 
-#: grecord/src/gui.c:778
+#: grecord/src/gui.c:775
 msgid "Size"
 msgstr "Veľkosť"
 
-#: grecord/src/gui.c:787
+#: grecord/src/gui.c:784
 msgid "Show warning _message if size (MB) of sample becomes bigger than:"
 msgstr "Zobraziť _varovanie ak je veľkosť vzorky väčšia ako (MB):"
 
-#: grecord/src/gui.c:805
+#: grecord/src/gui.c:802
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
 msgstr "Za_staviť nahrávanie ak je veľkosť vzorky väčšia ako (MB):"
 
-#: grecord/src/gui.c:832
+#: grecord/src/gui.c:829
 msgid "Repetition"
 msgstr "Opakovanie"
 
-#: grecord/src/gui.c:842
+#: grecord/src/gui.c:839
 msgid "_Repeat the sound"
 msgstr "_Opakovať zvuk"
 
-#: grecord/src/gui.c:849
+#: grecord/src/gui.c:846
 msgid "Play the sound _once only."
 msgstr "Zahrať _iba raz."
 
-#: grecord/src/gui.c:855
+#: grecord/src/gui.c:852
 msgid "Repeat _forever"
 msgstr "Opakovať _stále"
 
-#: grecord/src/gui.c:866
+#: grecord/src/gui.c:863
 msgid "_Number of times:"
 msgstr "_Počet opakovaní:"
 
-#: grecord/src/gui.c:888
+#: grecord/src/gui.c:885
 msgid "Paths"
 msgstr "Cesty"
 
-#: grecord/src/gui.c:893
+#: grecord/src/gui.c:890
 msgid "Program files"
 msgstr "Programy"
 
-#: grecord/src/gui.c:906
+#: grecord/src/gui.c:903
 msgid "_Path to sox:"
 msgstr "_Cesta k sox:"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:917
 msgid "_Apply"
 msgstr "_Použiť"
 
-#: grecord/src/gui.c:929
+#: grecord/src/gui.c:926
 msgid "Folders"
 msgstr "Priečinky"
 
-#: grecord/src/gui.c:942
+#: grecord/src/gui.c:939
 msgid "_Temporary folder:"
 msgstr "_Dočasný priečinok:"
 
-#: grecord/src/gui.c:956
+#: grecord/src/gui.c:953
 msgid "Apply"
 msgstr "Použiť"
 
-#: grecord/src/gui.c:968
+#: grecord/src/gui.c:965
 msgid "Sound"
 msgstr "Zvuk"
 
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:970
 msgid "Sound options"
 msgstr "Zvuk"
 
-#: grecord/src/gui.c:982
+#: grecord/src/gui.c:979
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
@@ -2265,36 +2208,36 @@ msgstr ""
 "Poznámka: Tieto možnosti sa prejavia pri vytvorení nového zvukového\n"
 "súboru. Nepoužijú sa pre už existujúce zvuky."
 
-#: grecord/src/gui.c:995
+#: grecord/src/gui.c:992
 msgid "Audio format:"
 msgstr "Audioformát:"
 
-#: grecord/src/gui.c:1004
+#: grecord/src/gui.c:1001
 msgid "8 _bit PCM"
 msgstr "_8-bitový PCM"
 
-#: grecord/src/gui.c:1010
+#: grecord/src/gui.c:1007
 msgid "16 b_it PCM"
 msgstr "_16-bitový PCM"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1024
+#: grecord/src/gui.c:1021
 msgid "S_ample rate:"
 msgstr "_Vzorkovacia frekvencia:"
 
-#: grecord/src/gui.c:1055
+#: grecord/src/gui.c:1052
 msgid "Mono or Stereo:"
 msgstr "Mono alebo Stereo:"
 
-#: grecord/src/gui.c:1064
+#: grecord/src/gui.c:1061
 msgid "_Mono"
 msgstr "_Mono"
 
-#: grecord/src/gui.c:1070
+#: grecord/src/gui.c:1067
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1091
+#: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -2348,239 +2291,217 @@ msgid "Adding echo to sample..."
 msgstr "Pridávam ozvenu do vzorky..."
 
 #: grecord/gsr.xml.h:1
-#, fuzzy
 msgid "About"
-msgstr "Akustická hudba"
+msgstr "O programe"
 
 #: grecord/gsr.xml.h:2
-#, fuzzy
 msgid "Close"
-msgstr "Club-House"
+msgstr "Zatvoriť"
 
 #: grecord/gsr.xml.h:3
 msgid "Close this window"
-msgstr ""
+msgstr "Zatvoriť toto okno"
 
 #: grecord/gsr.xml.h:4
 msgid "Contents"
-msgstr ""
+msgstr "Obsah"
 
 #: grecord/gsr.xml.h:6
-#, fuzzy
 msgid "Display help for Sound Recorder"
-msgstr "%s - Záznam zvuku"
+msgstr "Zobraziť pomocníka pre Záznam zvuku"
 
 #: grecord/gsr.xml.h:8
-#, fuzzy
 msgid "File _Information"
-msgstr "Informácie pri prihlásení"
+msgstr "_Informácie o súbore"
 
 #: grecord/gsr.xml.h:9
 msgid "Main toolbar"
-msgstr ""
+msgstr "Hlavný panel nástrojov"
 
 #: grecord/gsr.xml.h:11
-#, fuzzy
 msgid "Open"
-msgstr "Opera"
+msgstr "Otvoriť"
 
 #: grecord/gsr.xml.h:14
 msgid "Play sound"
-msgstr ""
+msgstr "Prehrať zvuk"
 
 #: grecord/gsr.xml.h:15
 msgid "Quit"
-msgstr ""
+msgstr "Koniec"
 
 #: grecord/gsr.xml.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "Ukončiť aplikáciu"
 
 #: grecord/gsr.xml.h:17
 msgid "Recent _Files"
-msgstr ""
+msgstr "N_edávne súbory"
 
 #: grecord/gsr.xml.h:19
-#, fuzzy
 msgid "Record sound"
-msgstr "Nahrávanie zvukových klipov"
+msgstr "Nahrávanie zvuku"
 
 #: grecord/gsr.xml.h:20
-#, fuzzy
 msgid "Run Mixer"
-msgstr "Spustiť _mixér"
+msgstr "Spustiť mixér"
 
 #: grecord/gsr.xml.h:22
-#, fuzzy
 msgid "Run the audio mixer"
-msgstr "Cesta k mixéru:"
+msgstr "Spustiť mixér"
 
 #: grecord/gsr.xml.h:23
 msgid "Save"
 msgstr "Uložiť"
 
 #: grecord/gsr.xml.h:24
-#, fuzzy
 msgid "Save As"
-msgstr "Uložiť %s?"
+msgstr "Uložiť ako"
 
 #: grecord/gsr.xml.h:25
-#, fuzzy
 msgid "Save _As..."
-msgstr "Uložiť %s?"
+msgstr "Uložiť _ako..."
 
 #: grecord/gsr.xml.h:26
-#, fuzzy
 msgid "Save the current file"
-msgstr "Uložiť zvukový súbor"
+msgstr "Uložiť aktuálny súbor"
 
 #: grecord/gsr.xml.h:27
 msgid "Save the current file with a different name"
-msgstr ""
+msgstr "Uložiť aktuálny súbor pod iným menom"
 
 #: grecord/gsr.xml.h:28
 msgid "Show information about the current file"
-msgstr ""
+msgstr "Zobraziť informácie o aktuálnom súbore"
 
 #: grecord/gsr.xml.h:29
-#, fuzzy
 msgid "Show information for Sound Recorder"
-msgstr "Záznam zvuku GNOME"
+msgstr "Zobraziť informácie o Zázname zvuku"
 
 #: grecord/gsr.xml.h:31
-#, fuzzy
 msgid "Stop sound"
-msgstr "Zvuk"
+msgstr "Zastaviť prehrávanie"
 
 #: grecord/gsr.xml.h:32
 msgid "_About"
-msgstr ""
+msgstr "_O programe"
 
 #: grecord/gsr.xml.h:33
 msgid "_Close Window"
-msgstr ""
+msgstr "_Zatvoriť okno"
 
 #: grecord/gsr.xml.h:34
 msgid "_Contents"
-msgstr ""
+msgstr "_Obsah"
 
 #: grecord/gsr.xml.h:35
-#, fuzzy
 msgid "_Control"
-msgstr "Country"
+msgstr "_Ovládanie"
 
 #: grecord/gsr.xml.h:36
 msgid "_File"
-msgstr ""
+msgstr "_Súbor"
 
 #: grecord/gsr.xml.h:39
 msgid "_Open..."
-msgstr ""
+msgstr "_Otvoriť..."
 
 #: grecord/gsr.xml.h:40
-#, fuzzy
 msgid "_Play"
-msgstr "Hrať"
+msgstr "_Hrať"
 
 #: grecord/gsr.xml.h:41
 msgid "_Quit"
-msgstr ""
+msgstr "_Koniec"
 
 #: grecord/gsr.xml.h:42
-#, fuzzy
 msgid "_Record"
-msgstr "Nahrávať"
+msgstr "_Nahrávať"
 
 #: grecord/gsr.xml.h:43
-#, fuzzy
 msgid "_Save"
-msgstr "Uložiť"
+msgstr "_Uložiť"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:249
+#: gstreamer-properties/gstreamer-properties.c:263
 msgid "Failure instantiating main window"
-msgstr ""
+msgstr "Chyba pri vytváraní hlavného okna"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:289
-#, fuzzy, c-format
+#: gstreamer-properties/gstreamer-properties.c:303
+#, c-format
 msgid "Could not load UI resource %s"
-msgstr "Nie je možné vytvoriť proces potomka"
+msgstr "Nie je možné načítať rozhranie %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr ""
+msgstr "Štandardné nastavenie pre aplikácie GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-#, fuzzy
 msgid "GStreamer"
-msgstr "Hra"
+msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" size=\"x-large\">Testujem...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
-#, fuzzy
 msgid "Audio _Input:"
-msgstr "Audioformát:"
+msgstr "Audio _vstup:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
-#, fuzzy
 msgid "Audio _Output:"
-msgstr "Telef. výstup"
+msgstr "Audio vý_stup:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish"
-msgstr ""
+msgstr "Stlačením OK dokončíte nastavenie"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Default Sink"
-msgstr ""
+msgstr "Štandardný cieľ"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Default Source"
-msgstr ""
+msgstr "Štandardný zdroj"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-#, fuzzy
 msgid "GStreamer Properties"
-msgstr "Vlastnosti CDDBSlave 2"
+msgstr "Vlastnosti GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Pipeline:"
-msgstr ""
+msgstr "Postupnosť:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Test..."
-msgstr ""
+msgstr "Test..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
-msgstr ""
+msgstr "Testujem postupnosť"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "Video _Input:"
-msgstr ""
+msgstr "Video _vstup:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-#, fuzzy
 msgid "Video _Output:"
-msgstr "Telef. výstup"
+msgstr "Video vý_stup:"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť testovaciu postupnosť pre '%s'"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2640,7 +2561,6 @@ msgid "Monitor the recording input volume"
 msgstr "Monitorovať hlasitosť nahrávacieho vstupu"
 
 #: vu-meter/reclevel.desktop.in.h:2
-#, fuzzy
 msgid "Recording level monitor"
 msgstr "Monitor pre hlasitosť nahrávania"
 
@@ -2649,270 +2569,6 @@ msgid "Monitor the sound output volume"
 msgstr "Monitorovať hlasitosť zvukového výstupu"
 
 #: vu-meter/vumeter.desktop.in.h:2
-#, fuzzy
 msgid "Volume monitor"
 msgstr "Monitor hlasitosti"
 
-#~ msgid "Gnome Volume Control"
-#~ msgstr "Nastavenie hlasitosti GNOME"
-
-#~ msgid "Copyright (C) 2001, 2002"
-#~ msgstr "Copyright (C) 2001, 2002"
-
-#~ msgid "A GNOME cd player"
-#~ msgstr "Prehrávač CD pre GNOME"
-
-#~ msgid "_About Gnome-CD"
-#~ msgstr "_O Gnome-CD"
-
-#~ msgid "CDDB"
-#~ msgstr "CDDB"
-
-#~ msgid "CDDB Properties"
-#~ msgstr "Vlastnosti CDDB"
-
-#~ msgid "don't restore mixer-settings from configuration"
-#~ msgstr "neobnovovať nastavenie mixéru z konfigurácie"
-
-#~ msgid "restore mixer-settings from configuration"
-#~ msgstr "obnovovať nastavenie mixéru z konfigurácie"
-
-#~ msgid "initialise the mixer(s) from stored configuration and exit"
-#~ msgstr "inicializovať nastavenie mixéru z konfigurácie a skončiť"
-
-#~ msgid "don't save (modified) mixer-settings into configuration"
-#~ msgstr "neukladať (zmenené) nastavenie mixéru do konfigurácie"
-
-#~ msgid "On startup"
-#~ msgstr "Pri štarte"
-
-#~ msgid "Restore saved mixer levels on startup"
-#~ msgstr "Obnoviť uložené hladiny hlasitosti pri štarte"
-
-#~ msgid "GUI"
-#~ msgstr "GUI"
-
-#~ msgid "Show mixer icons"
-#~ msgstr "Zobraziť ikony mixéru"
-
-#~ msgid "Show mixer labels"
-#~ msgstr "Zobraziť popisy mixéru"
-
-#~ msgid "Labels"
-#~ msgstr "Popisy"
-
-#~ msgid "Error opening CD"
-#~ msgstr "Chyba pri otváraní CD"
-
-#~ msgid "Error reading CD header"
-#~ msgstr "Chyba pri čítaní hlavičky CD"
-
-#~ msgid "IOCtl failed"
-#~ msgstr "Zlyhalo volanie IOCtl"
-
-#~ msgid "Error getting leadout"
-#~ msgstr "Chyba pri čítaní začiatku CD"
-
-#~ msgid ""
-#~ "CD changed\n"
-#~ "Track count: %d\n"
-#~ "------------------\n"
-#~ msgstr ""
-#~ "CD zmenené.\n"
-#~ "Počet stôp: %d\n"
-#~ "------------------\n"
-
-#~ msgid "(eject): ioctl failed: %s"
-#~ msgstr "(vysunúť): zlyhalo ioctl: %s"
-
-#~ msgid "(linux_cdrom_play): Drive not ready"
-#~ msgstr "(linux_cdrom_play): Zariadenie nepripravené"
-
-#~ msgid "(linux_cdrom_play): Drive still not ready"
-#~ msgstr "(linux_cdrom_play): Zariadenie nepripravené"
-
-#~ msgid "(linux_cdrom_play) ioctl failed %s"
-#~ msgstr "(linux_cdrom_play) zlyhalo ioctl %s"
-
-#~ msgid "(linux_cdrom_pause): Drive not ready"
-#~ msgstr "(linux_cdrom_pause): Zariadenie nepripravené"
-
-#~ msgid "(linux_cdrom_pause): Resume failed %s"
-#~ msgstr "(linux_cdrom_pause): Pokračovanie zlyhalo %s"
-
-#~ msgid "(linux_cdrom_pause): ioctl failed %s"
-#~ msgstr "(linux_cdrom_pause): zlyhalo ioctl %s"
-
-#~ msgid "(linux_cdrom_stop) ioctl failed %s"
-#~ msgstr "(linux_cdrom_stop) zlyhalo ioctl %s"
-
-#~ msgid "(linux_cdrom_get_status): ioctl error %s"
-#~ msgstr "(linux_cdrom_get_status): chyba ioctl %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): zlyhalo ioctl CDROMSUBCHNL %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): zlyhalo ioctl CDROMVOLREAD %s"
-
-#~ msgid "(linux_cdrom_close_tray): ioctl failed %s"
-#~ msgstr "(linux_cdrom_close_tray): zlyhalo ioctl %s"
-
-#~ msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-#~ msgstr "(linux_cdrom_set_volume:1): zlyhalo ioctl %s"
-
-#~ msgid "%s is not a CDROM drive"
-#~ msgstr "%s nie je zariadenie CDROM"
-
-#~ msgid ""
-#~ "%s does not appear to point to a valid CDRom device. This may be "
-#~ "because:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s asi nie je platné zariadenie CDROM. Dôvod môže byť:\n"
-#~ "a) podpora CD nie je zakompilovaná v Linuxe\n"
-#~ "b) nemáte správne práva pre prístup k zariadeniu CD\n"
-#~ "c) %s nie je zariadenie CD.\n"
-
-#~ msgid ""
-#~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
-#~ "will be unable to run correctly. Press Set device to go to a dialog\n"
-#~ "where you can set the device, or click Quit to quit GnomeCD"
-#~ msgstr ""
-#~ "Nastavenené zariadenie nie je mechanika CD. To znamemá, že GnomeCD\n"
-#~ "nemôže fungovať. Stlačte Nastaviť zariadenie aby sa zobrazil\n"
-#~ "dialóg, kde zariadenie môžete nastaviť, alebou použite\n"
-#~ "Koniec pre ukončenie GnomeCD."
-
-#~ msgid "%s%s"
-#~ msgstr "%s%s"
-
-#~ msgid "Rec"
-#~ msgstr "Nahr"
-
-#~ msgid "Open Mixer"
-#~ msgstr "Spustiť mixér"
-
-#~ msgid "Change volume"
-#~ msgstr "Zmeniť hlasitosť"
-
-#~ msgid "Volume"
-#~ msgstr "Hlasitosť"
-
-#~ msgid "Don't quit"
-#~ msgstr "Nekončiť"
-
-#~ msgid ""
-#~ "<b>Save the changes to %s?</b>\n"
-#~ "If you don't save, these changes will be discarded."
-#~ msgstr ""
-#~ "<b>Uložiť zmeny do %s?</b>\n"
-#~ "Ak ich neuložíte, budú stratené."
-
-#~ msgid "Undo all changes"
-#~ msgstr "Vrátiť späť všetky zmeny"
-
-#~ msgid "Show time"
-#~ msgstr "Zobraziť čas"
-
-#~ msgid "Show soundinfo"
-#~ msgstr "Zobraziť zvukové informácie"
-
-#~ msgid "Show sound information"
-#~ msgstr "Zobrazí zvukové informácie"
-
-#~ msgid "Info"
-#~ msgstr "Informácia"
-
-#~ msgid "Forever"
-#~ msgstr "Donekonečna"
-
-#~ msgid "Directories"
-#~ msgstr "Priečinky"
-
-#~ msgid "User interface"
-#~ msgstr "Používateľské rozhranie"
-
-#~ msgid "Main window"
-#~ msgstr "Hlavné okno"
-
-#~ msgid ""
-#~ "You havn't entered a sox command; you will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Nezadali ste príkaz pre sox, nebude možné nahrávať.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "File %s in 'sox command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Súbor %s v príkaze 'sox' neexistuje.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "You havn't entered a mixer command; you will not be able to start the "
-#~ "mixer.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Nezadali ste príkaz pre mixér, nebude možné spustiť mixér.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "File %s in 'mixer command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Súbor %s v 'mixér' neexistuje.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "You havn't entered a temp dir. You will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Nezadali ste priečinok pre dočasné súbory. Nebude možné nahrávať.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "Temp directory %s is a file.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Dočasný priečinok %s je súbor.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "You don't have the correct permissions (read & write) for temp directory %"
-#~ "s.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Nemáte dostatočné práva (zápis a čítanie) pre dočasný priečinok %s.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid ""
-#~ "Directory %s does not exist.\n"
-#~ "Do want to use it anyway?"
-#~ msgstr ""
-#~ "Priečinok %s neexistuje.\n"
-#~ "Ste si istý týmto nastavením?"
-
-#~ msgid "Play-repeating"
-#~ msgstr "Opakované prehrávanie"
-
-#~ msgid "GMIX - The Gnome Mixer"
-#~ msgstr "GMIX - Gnome Mixér"
-
-#~ msgid "File not saved. Do you want to save it?"
-#~ msgstr "Súbor nie je uložený. Chcete ho uložiť?"
-
-#~ msgid "Run GNOME mixer"
-#~ msgstr "Spustí GNOME mixér"
-
-#~ msgid " untitled.wav"
-#~ msgstr " bezmena.wav"
-
-#~ msgid "Exit"
-#~ msgstr "Koniec"
-
-#~ msgid "Exit this program"
-#~ msgstr "Ukončí tento program"
