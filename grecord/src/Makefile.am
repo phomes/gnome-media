@@ -6,9 +6,9 @@ INCLUDES = \
 	$(MEDIA_CFLAGS)		\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
 
-bin_PROGRAMS = grecord
+bin_PROGRAMS = gnome-sound-recorder
 
-grecord_SOURCES = \
+gnome_sound_recorder_SOURCES = \
 	main.c \
 	gui.c gui.h \
 	grec.c grec.h \
@@ -16,5 +16,5 @@ grecord_SOURCES = \
 	sound.c sound.h \
 	prog.h
 
-grecord_LDADD = $(MEDIA_LIBS) $(INTLLIBS)
+gnome_sound_recorder_LDADD = $(MEDIA_LIBS) $(INTLLIBS)
 

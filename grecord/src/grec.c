@@ -48,7 +48,7 @@
 #define DONTSAVE 1
 #define CANCEL 2
 
-const gchar* maintopic = N_("GNOME Soundrecorder:");
+const gchar* maintopic = N_("Sound Recorder:");
 
 const gchar* temp_filename_record = "untitled.raw";
 const gchar* temp_filename_play = "untitled.wav";

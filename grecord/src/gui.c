@@ -451,7 +451,7 @@ create_about (void)
 #ifdef ENABLE_NLS
 	authors[0]=_(authors[0]);
 #endif
-	about = gnome_about_new (_("GNOME Sound recorder"), VERSION,
+	about = gnome_about_new (_("Sound recorder"), VERSION,
 				/* if your charset allows it, replace the
 				   "e" of Hyden by an "eacute" (U00E9) */
 				 _("Copyright (C)  2000 Andreas Hyden"),
