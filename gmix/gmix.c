@@ -65,6 +65,8 @@
 
 #include <gnome.h>
 
+void help(GtkWidget *widget, gpointer data);
+void help_cb(GtkWidget *widget, gpointer data);
 static void about_cb (GtkWidget *widget, gpointer data);
 static void quit_cb (GtkWidget *widget, gpointer data);
 static void config_cb (GtkWidget *widget, gpointer data);
@@ -101,6 +103,7 @@ mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
+	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help, GNOME_STOCK_PIXMAP_HELP),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
@@ -497,6 +500,8 @@ void config_cb(GtkWidget *widget, gpointer data)
 				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
 		gtk_signal_connect(GTK_OBJECT(configwin), "delete_event",
 				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
+		gtk_signal_connect(GTK_OBJECT(configwin), "help",
+				   GTK_SIGNAL_FUNC(help_cb), NULL);
 
 		gtk_widget_show_all(configwin);	
     
@@ -1509,6 +1514,20 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data->lock), FALSE);
 	}
+}
+
+void help(GtkWidget *widget, gpointer data)
+{
+        GnomeHelpMenuEntry help_entry = { "gmix",
+                                          "index.html" };
+        gnome_help_display(NULL, &help_entry);
+}
+
+void help_cb(GtkWidget *widget, gpointer data)
+{
+        GnomeHelpMenuEntry help_entry = { "gmix",
+                                          "gmix-prefs.html" };
+        gnome_help_display(NULL, &help_entry);
 }
 
 static void about_cb (GtkWidget *widget, gpointer data)

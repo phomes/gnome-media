@@ -4,6 +4,8 @@ pixmapdir = $(datadir)/pixmaps
 EXTRA_DIST = README TODO NEWS gmix.desktop gnome-mixer.png \
 	device_labels_linux.sed device_labels_linux.h
 
+SUBDIRS = doc
+
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	$(GNOME_INCLUDEDIR) 				\
