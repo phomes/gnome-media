@@ -1,5 +1,5 @@
 # Hungarian translation of gnome-media.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
 # Szabolcs Ban <shooby@gnome.hu>, 1999, 2000.
 # Miklos Szel <mukka@freemail.hu>, 2000.
@@ -7,14 +7,14 @@
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 13:55+0100\n"
-"PO-Revision-Date: 2004-09-12 12:18+0200\n"
+"POT-Creation-Date: 2005-03-04 13:54+0100\n"
+"PO-Revision-Date: 2005-03-04 14:23+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -34,12 +34,10 @@ msgstr "A kiszolgálónak küldendő adatok"
 msgid "Port"
 msgstr "Port"
 
-# tcd/cddb_props.c:246
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "Kiszolgáló neve"
 
-# tcd/cddb_props.c:246
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "Server type"
 msgstr "Kiszolgáló típusa"
@@ -125,7 +123,6 @@ msgstr "_Név:"
 msgid "Hostna_me:"
 msgstr "_Gépnév:"
 
-# tcd/cddb_props.c:246
 #. Server info
 #: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
 msgid "Server"
@@ -163,12 +160,10 @@ msgstr "_Port:"
 msgid "CD Database Preferences"
 msgstr "CD-adatbázis beállításai"
 
-# tcd/linux-cdrom.c:687
 #: cddb-slave2/cddb-slave.c:221
 msgid "Unknown / Unknown"
 msgstr "Ismeretlen / Ismeretlen"
 
-# tcd/linux-cdrom.c:687
 #. Attempts to get length ran out.
 #: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
 #: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
@@ -1023,14 +1018,12 @@ msgstr ""
 
 #: gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr ""
+msgstr "Elhelyezkedés"
 
 #: gnome-cd/eggtrayicon.c:119
-#, fuzzy
 msgid "The orientation of the tray."
-msgstr "A mérő X-pozíciójának meghatározása."
+msgstr "A tálca elhelyezkedése."
 
-# tcd/linux-cdrom.c:687
 #: gnome-cd/gnome-cd.c:222
 #, c-format
 msgid "%d - Unknown"
@@ -1194,6 +1187,8 @@ msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
 msgstr ""
+"A registry nem létezik vagy sérült, kérem frissítse a gst-register parancs "
+"futtatásával"
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:959
@@ -1256,21 +1251,18 @@ msgid "CD Player Preferences"
 msgstr "CD-lejátszó beállításai"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "Eszköz elérési útja"
+msgstr "_Eszköz:"
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "Viselkedés"
 
 #: gnome-cd/preferences.c:652
-#, fuzzy
 msgid "Start _playback when CD Player starts"
 msgstr "Kezdje _lejátszani a CD-t, amikor a CD-lejátszó elindul"
 
 #: gnome-cd/preferences.c:653
-#, fuzzy
 msgid "Start playback when CD Player starts"
 msgstr "Kezdje lejátszani a CD-t, amikor a CD-lejátszó elindul"
 
@@ -1284,11 +1276,11 @@ msgstr "Próbálja meg kinyitni a CD tálcáját, amikor a CD-lejátszó kilép"
 
 #: gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr ""
+msgstr "Témák"
 
 #: gnome-cd/preferences.c:694
 msgid "_Select a theme:"
-msgstr ""
+msgstr "_Téma kiválasztása:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1474,10 +1466,11 @@ msgstr "M_entés"
 #. * a proper filename. See gnome-record.c:94.
 #: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
 #: grecord/src/gsr-window.c:1896
-#, fuzzy, c-format
+#, c-format
 msgid "Untitled"
 msgid_plural "Untitled-%d"
-msgstr[0] "Cím"
+msgstr[0] "Névtelen"
+msgstr[1] "Névtelen-%d"
 
 #: grecord/src/gnome-recorder.c:168
 msgid "Dummy option"
@@ -1521,9 +1514,8 @@ msgstr "Kész"
 
 #. Add replace button
 #: grecord/src/gsr-window.c:619
-#, fuzzy
 msgid "_Replace"
-msgstr "Space"
+msgstr "_Csere"
 
 #: grecord/src/gsr-window.c:636
 #, c-format
@@ -1531,16 +1523,18 @@ msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
+"Már létezik \"%s\" nevű fájl. \n"
+"Szeretné lecserélni azzal, amit épp menteni készül?"
 
 #: grecord/src/gsr-window.c:689
 #, c-format
 msgid "Could not save the file \" %s\""
-msgstr ""
+msgstr "Nem lehet menteni a(z) \"%s\" fájlt"
 
 #: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr ""
+msgstr "Nem lehet menteni a(z) \"%s\" fájlt"
 
 #: grecord/src/gsr-window.c:746
 msgid "Save file as"
@@ -1565,8 +1559,8 @@ msgstr "%s (Nincs mentve)"
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s (%llu bájt)"
+msgstr[1] "%s (%llu bájt)"
 
 #: grecord/src/gsr-window.c:911
 msgid "Unknown size"
@@ -1612,9 +1606,8 @@ msgid "Audio Information"
 msgstr "Hanginformáció"
 
 #: grecord/src/gsr-window.c:1055
-#, fuzzy
 msgid "File duration:"
-msgstr "Fájlinformáció"
+msgstr "Fájl hossza:"
 
 #: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
@@ -1697,22 +1690,20 @@ msgid "Volume Control"
 msgstr "Hangerőszabályozó"
 
 #: gst-mixer/src/element.c:230
-#, fuzzy
 msgid "Playback"
 msgstr "Lejátszás"
 
 #: gst-mixer/src/element.c:232
-#, fuzzy
 msgid "Capture"
-msgstr "Szatíra"
+msgstr "Felvétel"
 
 #: gst-mixer/src/element.c:234
 msgid "Switches"
-msgstr ""
+msgstr "Kapcsolók"
 
 #: gst-mixer/src/element.c:236
 msgid "Options"
-msgstr ""
+msgstr "Beállítások"
 
 #. FIXME:
 #. * - maybe we want to rename the element to its actual name
@@ -1721,40 +1712,38 @@ msgstr ""
 #. create element
 #. and recreate this object, since we give it to the mixer
 #: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown Volume Control %d"
-msgstr "Hangerőszabályozó"
+msgstr "Ismeretlen hangerőszabályozó %d"
 
 #: gst-mixer/src/main.c:253
-#, fuzzy
 msgid "No volume control elements and/or devices found."
-msgstr "Sajnálom, mixer elem és/vagy eszköz nem található"
+msgstr "Hangerőszabályozó elemek és/vagy eszközök nem találhatóak."
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:108
-#, fuzzy
 msgid "Volume Control Preferences"
-msgstr "Hangerőszabályozó"
+msgstr "Hangerőszabályozó beállításai"
 
 #: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
-msgstr ""
+msgstr "Látható számok ki_választása:"
 
 #: gst-mixer/src/track.c:220
 #, c-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #. mute button
 #: gst-mixer/src/track.c:260
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "%s némítása/visszakapcsolása"
 
 #: gst-mixer/src/track.c:275
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s: mute"
-msgstr "Számok listája"
+msgstr "%s sáv: némítás"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1764,51 +1753,49 @@ msgstr "Számok listája"
 #: gst-mixer/src/track.c:355
 #, c-format
 msgid "Toggle audio capture from %s"
-msgstr ""
+msgstr "Audio felvétel átváltása a következőről: %s"
 
 #: gst-mixer/src/track.c:370
 #, c-format
 msgid "Track %s: audio capture"
-msgstr ""
+msgstr "%s sáv: audio felvétel"
 
 #: gst-mixer/src/track.c:449
 #, c-format
 msgid "%s Option Selection"
-msgstr ""
+msgstr "%s opció kiválasztása"
 
 #: gst-mixer/src/volume.c:132
-#, fuzzy
 msgid "mono"
-msgstr "1 (monó)"
+msgstr "monó"
 
 #: gst-mixer/src/volume.c:134
 msgid "left"
-msgstr ""
+msgstr "bal"
 
 #: gst-mixer/src/volume.c:134
 msgid "right"
-msgstr ""
+msgstr "jobb"
 
 #: gst-mixer/src/volume.c:137
 msgid "front left"
-msgstr ""
+msgstr "szemközti bal"
 
 #: gst-mixer/src/volume.c:138
 msgid "front right"
-msgstr ""
+msgstr "szemközti jobb"
 
 #: gst-mixer/src/volume.c:139
 msgid "rear left"
-msgstr ""
+msgstr "bal hátsó"
 
 #: gst-mixer/src/volume.c:140
 msgid "rear right"
-msgstr ""
+msgstr "jobb hátsó"
 
 #: gst-mixer/src/volume.c:141
-#, fuzzy
 msgid "front center"
-msgstr "Tartalom"
+msgstr "szemközti középső"
 
 #. Translators: This is the name of a surround sound channel. It
 #. * stands for "Low-Frequency Effects". If you're not sure that
@@ -1816,80 +1803,83 @@ msgstr "Tartalom"
 #. * language, leave it unchanged.
 #: gst-mixer/src/volume.c:146
 msgid "LFE"
-msgstr ""
+msgstr "LFE"
 
 #: gst-mixer/src/volume.c:147
 msgid "side left"
-msgstr ""
+msgstr "bal oldal"
 
 #: gst-mixer/src/volume.c:148
 msgid "side right"
-msgstr ""
+msgstr "jobb oldal"
 
-# tcd/linux-cdrom.c:687
 #: gst-mixer/src/volume.c:149
-#, fuzzy
 msgid "unknown"
-msgstr "Ismeretlen"
+msgstr "ismeretlen"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
 #: gst-mixer/src/volume.c:155
-#, fuzzy, c-format
+#, c-format
 msgid "Volume of %s channel on %s"
-msgstr "Csatornák száma:"
+msgstr "%s csatorna hangereje %s eszközön"
 
 #: gst-mixer/src/volume.c:203
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s"
-msgstr "Számok listája"
+msgstr "   sáv            %s"
 
 #: gst-mixer/src/volume.c:206
-#, fuzzy, c-format
+#, c-format
 msgid "Channel %d of track %s"
-msgstr "%d / %s csatorna csúszka"
+msgstr "%d. csatorna %s sávon"
 
 #: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "%s sáv, %d. csatorna"
 
 #: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr ""
+msgstr "%s sáv: csatornák összekapcsolása"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
 msgid "_Change Device"
-msgstr "Eszköz megadása"
+msgstr "Eszköz _megváltoztatása"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "Hangerő szabályzása egy másik eszközön"
 
 #: gst-mixer/src/window.c:179
-#, fuzzy, c-format
+#, c-format
 msgid "Change device to %s"
-msgstr "Használandó CD-eszköz"
+msgstr "Eszköz megváltoztatása erre: %s"
 
 #. window title and menu selection
 #. change window title
 #: gst-mixer/src/window.c:223 gst-mixer/src/window.c:426
-#, fuzzy, c-format
+#, c-format
 msgid "Volume Control: %s"
-msgstr "Hangerőszabályozó"
+msgstr "Hangerőszabályozó: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
 #: gst-mixer/src/window.c:375
 msgid "translator-credits"
 msgstr ""
+"Bán Szabolcs <shooby@gnome.hu>\n"
+"Dvornik László <dvornik@gnome.hu>\n"
+"Kelemen Gábor <kelemeng@gnome.hu>\n"
+"Kovács Emese <emese@gnome.hu>\n"
+"Nagy Gergely <greg@gnome.hu>\n"
+"Szél Miklós <mukka@freemail.hu>\n"
+"Tímár András <timar@gnome.hu>"
 
 #: gst-mixer/src/window.c:383
-#, fuzzy
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Egy GNOME/GStreamer-alapú mixer alkalmazás"
+msgstr "Egy GNOME/GStreamer-alapú hangerőszabályozó alkalmazás"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -2260,12 +2250,10 @@ msgstr "Y-pozíció"
 msgid "Connect to the esd server on this host."
 msgstr "Kapcsolódás a gép esd kiszolgálójához."
 
-# vu-meter/main.c:255
 #: vu-meter/main.c:235
 msgid "ESD Server Host"
 msgstr "ESD kiszolgálógép"
 
-# vu-meter/main.c:257
 #: vu-meter/main.c:237
 msgid "Open a vertical version of the meter."
 msgstr "A mérő függőleges változatának megnyitása."
@@ -2302,45 +2290,3 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
-
-#~ msgid "Song length:"
-#~ msgstr "Zeneszám hossza:"
-
-#~ msgid "GStreamer Preferences"
-#~ msgstr "A GStreamer tulajdonságai"
-
-#~ msgid "CD Player De_vice:"
-#~ msgstr "_CD-lejátszó eszköz:"
-
-#~ msgid "CD Player Behaviour:"
-#~ msgstr "CD-lejátszó viselkedése:"
-
-#~ msgid "_Available Themes:"
-#~ msgstr "_Elérhető témák:"
-
-#~ msgid "_Apply change"
-#~ msgstr "_Alkalmaz"
-
-#~ msgid "%s Slider"
-#~ msgstr "%s csúszka"
-
-#~ msgid "%s Slider %d"
-#~ msgstr "%s csúszka %d"
-
-#~ msgid "Lock"
-#~ msgstr "Zárolás"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s zárolása"
-
-#~ msgid "Mute"
-#~ msgstr "Némít"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s némít"
-
-#~ msgid "Rec."
-#~ msgstr "Felv."
-
-#~ msgid "%s Record"
-#~ msgstr "%s Felvétel"
