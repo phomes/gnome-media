@@ -61,6 +61,7 @@ void load_properties( tcd_properties *prop )
 	prop->proxy_server= gnome_config_get_string("/gtcd/cddb/proxy_server=proxy");
 	prop->proxy_port = gnome_config_get_int("/gtcd/cddb/proxy_port=80");
 	prop->remote_path =gnome_config_get_string("/gtcd/cddb/remote_path=~cddb/cddb.cgi");
+	prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
 }
 
 void save_properties( tcd_properties *prop )
@@ -80,6 +81,7 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_string("/gtcd/cddb/proxy_server", prop->proxy_server);
 	gnome_config_set_int("/gtcd/cddb/proxy_port",prop->proxy_port);
 	gnome_config_set_string("/gtcd/cddb/remote_path", prop->remote_path);
+	gnome_config_set_int("/gtcd/ui/time_display", prop->time_display);
 
 	gnome_config_sync();
 }

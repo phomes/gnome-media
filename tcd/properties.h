@@ -5,7 +5,7 @@ typedef struct
 {
 	gchar *cddev;
 	gchar *cddb, *remote_path, *proxy_server;
-	gint  cddbport, proxy_port;
+	gint  cddbport, proxy_port, time_display;
 	gboolean handle;
 	gboolean tooltip;
 	gboolean use_http, use_proxy;

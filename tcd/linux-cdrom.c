@@ -313,10 +313,18 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	msf.cdmsf_sec0 = cd->trk[start_t].toc.cdte_addr.msf.second;
 	msf.cdmsf_frame0 = cd->trk[start_t].toc.cdte_addr.msf.frame;
 	
-	msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
-	msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
-	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
-	
+	if( end_t < 0 )
+	{
+		msf.cdmsf_min1 = cd->trk[start_t].tot_min+msf.cdmsf_min0;
+		msf.cdmsf_sec1 = cd->trk[start_t].tot_sec+msf.cdmsf_sec0;
+		msf.cdmsf_frame1=0;
+	}
+	else
+	{
+		msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
+		msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
+		msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
+	}
 	msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
 	msf.cdmsf_sec1 %= 60;
 	tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );

@@ -89,7 +89,7 @@ GnomePixmap *play_method_pixmap[4];
 /* Regular globals */
 cd_struct cd;
 int titlelabel_f = 0;
-int gotoi, time_display_type;
+int gotoi;
 
 /* Gtk Globals */
 GtkWidget *row, *upper_box;
@@ -117,6 +117,7 @@ tcd_properties props;
 void draw_status( void );
 void delete_event (GtkWidget *widget, gpointer *data);
 void create_warn( char *, char * );
+void make_gotomenu();
 
 void callback (GtkWidget *widget, gpointer *data)
 {
@@ -406,14 +407,14 @@ void setup_pixmaps( void )
 	{
 		sprintf( tmp, "tcd/%s", play_methods[i] );
 		play_method_pixmap[i] = 
-			gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+			GNOME_PIXMAP(gnome_pixmap_new_from_file(gnome_pixmap_file(tmp)));
 	}
 }
 
 void draw_time_playing( GdkGC *gc )
 {
 	int pos, end, cur, min, sec;
-	switch( time_display_type )
+	switch( props.time_display )
 	{
 		case TRACK_E: /* track time ascending */
 			led_draw_time(status_db, status_area,
@@ -490,13 +491,13 @@ void draw_status( void )
 	gdk_gc_set_foreground( gc, &darkgrey );
 
 	gdk_draw_text( status_db,sfont,gc,32,26, 
-		display_types[time_display_type], 
-		strlen(display_types[time_display_type]));
+		display_types[props.time_display], 
+		strlen(display_types[props.time_display]));
 
-	gdk_draw_line( status_db,gc,0,27,status_area->allocation.width,27 );
+/*	gdk_draw_line( status_db,gc,0,27,status_area->allocation.width,27 );
 	gdk_draw_line( status_db,gc,28,0,28,27 );
 	gdk_draw_line( status_db,gc,79,0,79,27 );
-
+*/
 	if( !cd.err )
 	{
 		switch( cd.sc.cdsc_audiostatus )
@@ -588,18 +589,27 @@ void adjust_status(void)
 
 gint slow_timer( gpointer *data )
 {
+	static unsigned long old_id;
 	int oldmax, len;
+
+	if( cd.cddb_id != old_id )
+	{
+		make_gotomenu();
+		old_id = cd.cddb_id;
+	}
+
 	if( cd.err || !cd.isdisk )
         {
 		tcd_readtoc(&cd);
 		tcd_readdiskinfo(&cd);
         }
+
 	if( cd.sc.cdsc_audiostatus != CDROM_AUDIO_PLAY &&
 		cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
 	{
 		if( cd.play_method == REPEAT_CD )
-		tcd_playtracks( &cd, cd.first_t, cd.last_t );
-	}				                                                        
+			tcd_playtracks( &cd, cd.first_t, cd.last_t );
+	}                                        
 	tcd_gettime(&cd);
 	adjust_status();
 	draw_status();
@@ -681,7 +691,7 @@ gint fast_timer( gpointer *data )
 	tcd_gettime(&cd);
 	status_changed();
 	if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
-		tcd_playtracks( &cd, cd.repeat_track, cd.last_t );
+		tcd_playtracks( &cd, cd.repeat_track, -1 );
 	return 1;
 }
 
@@ -764,9 +774,9 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 		    x < 79 &&
 		    y < 27 )
 		{
-			time_display_type++;
-			if( time_display_type >= TIME_LAST )
-				time_display_type = TIME_FIRST+1;
+			props.time_display++;
+			if( props.time_display >= TIME_LAST )
+				props.time_display = TIME_FIRST+1;
 			draw_status();
 			return TRUE;
 		}
@@ -881,6 +891,7 @@ void init_window(void)
         window = gnome_app_new( "gtcd", "TCD 2.0" );
         gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
         gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd" );
+	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, TRUE);
 
         gtk_signal_connect( GTK_OBJECT(window), "delete_event",
                 GTK_SIGNAL_FUNC(delete_event), NULL);
@@ -931,7 +942,6 @@ int main (int argc, char *argv[])
 	setup_pixmaps();
 	led_init(window);
 	
-	time_display_type = TRACK_R;
 	/* Initialize some timers */
 	if( cd.isplayable ) tcd_gettime(&cd);
 

@@ -73,7 +73,7 @@ void select_row_cb( GtkCList *clist,
 	gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row+1].name);
 	current_track = row+1;
 	if( event->type == GDK_2BUTTON_PRESS )
-		tcd_playtracks(&cd, row+1, cd.last_t);
+		tcd_playtracks(&cd, row+1, -1);
 
 	return;
 }
