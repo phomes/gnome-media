@@ -23,6 +23,7 @@
    timg@means.net
 */
 
+#include <stdio.h>
 #include <gtk/gtk.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -38,7 +39,7 @@
 GtkWidget *win, *label, *pb;
 GtkWidget *cancelbutton, *startbutton;
         
-extern int tracklabel_f, titlelabel_f;
+extern int titlelabel_f;
 extern cd_struct cd;
 extern tcd_properties props;
 
@@ -132,7 +133,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	server.proxy = props.use_proxy;
 
 #ifdef DEBUG
-	printf("use_http==%d  use_proxy==%d\n",use_http,use_proxy);
+	printf("use_http==%d  use_proxy==%d\n",props.use_http,props.use_proxy);
 #endif
 	if(server.proxy) {
 		strcpy(server.proxy_server, props.proxy_server);
@@ -244,7 +245,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	tcd_close_disc(&cd);
         tcd_init_disc(&cd, create_warn);
 
-	titlelabel_f = tracklabel_f = TRUE;
+	titlelabel_f = TRUE;
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0);
 	while(gtk_events_pending()) gtk_main_iteration();
 
