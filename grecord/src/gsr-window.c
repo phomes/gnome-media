@@ -681,6 +681,7 @@ do_save_file (GSRWindow *window,
 			title = g_strdup_printf ("%s - Sound Recorder",
 				short_name);
 			gtk_window_set_title (GTK_WINDOW (window), title);
+			gtk_label_set (GTK_LABEL (priv->name), short_name);
 			priv->dirty = FALSE;
 			g_free (title);
 		} else {
@@ -760,10 +761,28 @@ file_save_as (BonoboUIComponent *uic,
 
 	if (window->priv->filename != NULL) {
 		char *basename;
+		gchar *filename, *filename_ext, *extension;
+		gint length;
+		GMAudioProfile *profile;
 
 		basename = g_path_get_basename (window->priv->filename);
+		length = strlen (basename);
+		extension = strrchr (basename, '.');
+
+		if (extension != NULL) {
+			length = length - strlen (extension);
+		}
+
+		filename = g_strndup (basename,length);
+		profile = gm_audio_profile_choose_get_active (window->priv->profile);
+		g_free (window->priv->extension);
+
+		window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
+		filename_ext = g_strdup_printf ("%s.%s", filename , window->priv->extension);
 		gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (file_chooser),
-						   basename);
+						   filename_ext);
+		g_free (filename);
+		g_free (filename_ext);
 		g_free (basename);
 	}
 
