@@ -5,18 +5,21 @@
 # Andras Timar <timar@gnome.hu>, 2001.
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Laszlo Dvornik <dvornikl@mailbox.hu>, 2004.
+# Gabor Kelemen <kg0021@stud.unideb.hu>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-23 03:48+0100\n"
-"PO-Revision-Date: 2004-03-26 20:32+0100\n"
-"Last-Translator: Laszlo Dvornik <dvornikl@mailbox.hu>\n"
+"POT-Creation-Date: 2004-04-13 19:41+0200\n"
+"PO-Revision-Date: 2004-04-14 17:58+0200\n"
+"Last-Translator: Gabor Kelemen <kg0021@stud.unideb.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=1; plural=0;\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -53,6 +56,8 @@ msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
+"A CD-lekérdezésekhez használt kiszolgáló típusa. Lehetséges értékek: 0 "
+"(FreeDB round robin kiszolgáló), 1 (egyéb freedb kiszolgáló) és 2 (egyéb kiszolgáló)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -67,7 +72,7 @@ msgid ""
 "This key specifies which user information will be sent to the server to "
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
-msgstr ""
+msgstr "Ez a kulcs megadja, mely felhasználói információk lesznek elküldve a kiszolgálónak, amelyhez CD-lekérdezésekkor kapcsolódik. Lehetséges értékek: 0 (semmilyen információ), 1 (valós információk) és 3 (egyéb információk)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -1285,7 +1290,7 @@ msgstr "Bezárás"
 
 #: grecord/gsr.xml.h:3
 msgid "Close this window"
-msgstr "Az aktuális ablak bezárása"
+msgstr "A jelenlegi ablak bezárása"
 
 #: grecord/gsr.xml.h:4
 msgid "Contents"
@@ -1373,15 +1378,15 @@ msgstr "Men_tés másként..."
 
 #: grecord/gsr.xml.h:26
 msgid "Save the current file"
-msgstr "Az aktuális fájl mentése"
+msgstr "A jelenlegi fájl mentése"
 
 #: grecord/gsr.xml.h:27
 msgid "Save the current file with a different name"
-msgstr "Az aktuális fájl mentése más néven"
+msgstr "A jelenlegi fájl mentése más néven"
 
 #: grecord/gsr.xml.h:28
 msgid "Show information about the current file"
-msgstr "Az aktuális fájl adatai"
+msgstr "A jelenlegi fájl adatai"
 
 #: grecord/gsr.xml.h:29
 msgid "Show information for Sound Recorder"
@@ -1655,7 +1660,7 @@ msgstr "Nem sikerült létrehozni a főablakot"
 #: gstreamer-properties/gstreamer-properties.c:312
 #, c-format
 msgid "Could not load UI resource %s"
-msgstr "Nem sikerült betölteni a felhasználói felületet: %s"
+msgstr "Nem lehet betölteni a felhasználói felületet: %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -1768,11 +1773,13 @@ msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
 msgstr ""
+"Hiba történt a terminálprofil-lista változásainak értesítéséhez történő "
+"feliratkozáskor. (%s)\n"
 
 #: profiles/audio-profile.c:908
 #, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
-msgstr ""
+msgstr "Hiba történt a(z) %s profilkönyvtár elfelejtése közben. (%s)\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
@@ -1899,15 +1906,15 @@ msgstr "Az audio profil leírása"
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
-msgstr ""
+msgstr "A profil több információt tartalmazó leírása, amely megadja, mikor használadó ez a profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid "A filename extension to be used when storing files encoded with this profile."
-msgstr ""
+msgstr "Az ezzel a profillal kódolt fájlok tárolásakor használt fájlnévkiterjesztés."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+msgstr "Az ezzel a profillal használandó, részleges GStreamer csővezeték."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
@@ -1917,13 +1924,13 @@ msgstr "Az audio profil rövid neve"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr ""
+msgstr "A profil rövid, a profil egyedi azonosítására és kiválasztásokkor használandó neve"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
+msgstr "A felvételre használt audio profilok listája.A lista karakterláncokat tartalmaz, amelyek alkönyvtárakat neveznek meg /system/gstreamer/audio/profiles-hoz képest"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
@@ -1935,15 +1942,15 @@ msgstr "Az alapértelmezett fájl kiterjesztés ehhez a profilhoz"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
-msgstr ""
+msgstr "A használt részleges GStreamer csővezeték"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
-msgstr ""
+msgstr "Ez a profil használatban van-e vagy sem?"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "Whether or not to use and display this profile."
-msgstr "Használja és megjelenítse-e ezt a profilt."
+msgstr "Használja és jelenítse-e meg ezt a profilt."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2015,3 +2022,4 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
+
