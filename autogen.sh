@@ -20,4 +20,6 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
+# fix doc build before turning on common doc build
+# USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
+USE_GNOME2_MACROS=1 . gnome-autogen.sh
