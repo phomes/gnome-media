@@ -3,6 +3,8 @@ SUBDIRS = src
 EXTRA_DIST = \
 	gnome-sound-recorder.desktop.in README COPYING AUTHORS INSTALL \
 	pixmaps/gnome_mixer.xpm \
+	$(pixmap_DATA)		\
+	$(Icon_DATA)		\
 	gnome-grecord.png	\
 	gnome-sound-recorder.schemas
 
