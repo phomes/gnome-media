@@ -914,7 +914,7 @@ UpdateStatusbarRecord (gboolean begin)
 	}
 
 	/* Timeout */
-	if (counter >= 1000) {
+	if (counter >= record_timeout * 60) {
 		if (stop_on_timeout) {
 			on_stop_activate_cb (NULL, NULL);
 
@@ -995,14 +995,19 @@ UpdateStatusbarRecord (gboolean begin)
 		}
 	}
 
-	/* Get the timeout value and convert it to seconds (if it isn't allready done) */
-	if (timeout == 0)
+	/* Get the timeout value and convert it to seconds
+	   (if it isn't already done) */
+	if (timeout == 0) {
 		timeout = record_timeout * 60;
+	}
 
-	counter += (int) 1000 / timeout;
+	counter++;
 
-	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar), GTK_ADJUSTMENT (gtk_adjustment_new (counter, 0, 1000, 1, 1, 0)));
-/*  	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar)); */
+	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar),
+				  GTK_ADJUSTMENT (gtk_adjustment_new (counter,
+								      0,
+								      timeout,
+								      1, 1, 0)));
 
 	return TRUE;
 }
