@@ -1,21 +1,24 @@
-#
-# need this to force these directories to be distributed, even if
-# maintainer doesnt have required libraries for the conditional components
-#
-DIST_SUBDIRS = po intl macros gmix tcd vumeter cddbslave gnomovision extace
+# If you want to build these components, please cd to their respective
+# directories and type `make'.
+if FALSE
+gnomovision = gnomovision
+else
+gnomovision =
+endif
+
+if FALSE
+extace = extace
+else
+extace =
+endif
 
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_TCD@		\
 	@PROGRAMS_VUMETER@	\
-	cddbslave
-#
-# broken with current esound
-#	@PROGRAMS_EXTACE@	
-
-#
-# broken too
-# 	@PROGRAMS_GNOMOVISION
+	cddbslave		\
+	$(gnomovision)		\
+	$(extace)
 
 EXTRA_DIST = gnome-media.spec configure
 

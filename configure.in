@@ -20,7 +20,8 @@ dnl Look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
 
-dnl Checks for libraries.
+dnl Utility conditional
+AM_CONDITIONAL(FALSE, test x = y)
 
 dnl Checks for header files.
 AC_HEADER_STDC
