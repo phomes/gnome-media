@@ -84,14 +84,14 @@ int titlelabel_f = 0;
 int gotoi, time_display_type;
 
 /* Gtk Globals */
-GtkWidget *row, *vbox, *upper_box;
+GtkWidget *row, *upper_box;
 GtkWidget *button_box, *row1, *row2, *row3;
 GtkWidget *trackeditor;
 GtkWidget *tracktime_label, *trackcur_label;
 GtkWidget *cdtime_label, *changer_box, *playbutton;
 GtkWidget *status_table, *status_area, *sep;
 GtkWidget *volume, *window, *aboutbutton, *propsbutton;
-GtkWidget *gotomenu = NULL, *gotobutton, *lowerbox;
+GtkWidget *gotomenu = NULL, *gotobutton, *main_box;
 GdkPixmap *status_db;
 GtkWidget **changer_buttons, *cddbbutton;
 GtkObject *vol;
@@ -102,7 +102,7 @@ GdkColor red, darkgrey, timecolor, trackcolor;
 GtkTooltips *tooltips;
 
 int timeonly = FALSE, status_height, status_width, playid=-1;
-int configured = FALSE, old_status=-1;
+int configured = FALSE, old_status=-1, max;
 tcd_properties props;
 
 /* Prototypes */
@@ -544,8 +544,29 @@ void draw_status( void )
 	gdk_gc_destroy(gc);
 }
 
+void adjust_status(void)
+{
+	int oldmax, len;
+        oldmax = max;
+
+        max = 0;
+        len = gdk_string_width(sfont, cd.album);
+	if( len > max ) max = len;
+        len = gdk_string_width(sfont, cd.artist);
+        if( len > max ) max = len;
+        len = gdk_string_width(sfont, cd.trk[cd.cur_t].name);
+        if( len > max ) max = len;
+	if( max != oldmax )
+	{
+		if( max < 102 ) 
+			max=102;
+		gtk_widget_set_usize( status_area, max+8, 60 );
+	}
+}
+
 gint slow_timer( gpointer *data )
 {
+	int oldmax, len;
 	if( cd.err || !cd.isdisk )
         {
 		tcd_readtoc(&cd);
@@ -558,6 +579,7 @@ gint slow_timer( gpointer *data )
 		tcd_playtracks( &cd, cd.first_t, cd.last_t );
 	}				                                                        
 	tcd_gettime(&cd);
+	adjust_status();
 	draw_status();
 	return 1;
 }
@@ -723,8 +745,6 @@ void setup_time_display( void )
 {
 	GtkWidget *handle1, *frame, *row;
 	
-	lowerbox = gtk_hbox_new( FALSE, 5 );
-	
 	vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
 	volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
 	gtk_range_set_update_policy( GTK_RANGE(volume), GTK_UPDATE_CONTINUOUS );
@@ -743,7 +763,7 @@ void setup_time_display( void )
         	(GtkSignalFunc)status_configure_event, NULL);
 	gtk_signal_connect( GTK_OBJECT(status_area),"button_press_event",
         	(GtkSignalFunc)status_click_event, NULL);
-	gtk_widget_set_usize( status_area, 75, 60 );
+	gtk_widget_set_usize( status_area, 102, 60 );
 
 	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
         
@@ -757,16 +777,11 @@ void setup_time_display( void )
 	gtk_frame_set_shadow_type( GTK_FRAME(frame), GTK_SHADOW_IN );
 	gtk_container_add(GTK_CONTAINER(frame), status_area);
 	status_table = gtk_vbox_new( FALSE, 4 );
-	gtk_box_pack_start( GTK_BOX(upper_box), status_table, TRUE, TRUE, 2 );
 
 #ifdef TCD_CHANGER_ENABLED
-	gtk_box_pack_start( GTK_BOX(lowerbox), changer_box, FALSE, FALSE, 0 );
+	gtk_box_pack_start( GTK_BOX(main_box), changer_box, FALSE, FALSE, 0 );
 #endif
-/*        row = make_row3();
-	gtk_box_pack_start( GTK_BOX(lowerbox), row, TRUE, TRUE, 0 );
-	gtk_widget_show(row);
-*/
-	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
+	gtk_box_pack_end( GTK_BOX(status_table), volume, FALSE, FALSE, 5 );
 
 	if( props.handle )
 	{
@@ -777,7 +792,7 @@ void setup_time_display( void )
 	else
 		gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 4);
 		                
-	gtk_box_pack_start( GTK_BOX(status_table), lowerbox, FALSE, FALSE, 4 );
+	gtk_box_pack_start( GTK_BOX(main_box), status_table, TRUE, TRUE, 4 );
 	gtk_widget_show_all(status_table);
 	return;
 }
@@ -788,25 +803,19 @@ void setup_rows( void )
 	GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
 	sep = gtk_hseparator_new();
 
-	vbox = gtk_vbox_new( FALSE, 4 );
-	upper_box = gtk_hbox_new( TRUE, 4 );
 	button_box = gtk_vbox_new( TRUE, 0 );
 
         row = make_row1();
 
 	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 ); 
-	gtk_widget_show(row);
 	
         row = make_row2();
 	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 );
-	gtk_widget_show(row);
 
         row = make_row3();
 	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 );
-	gtk_widget_show(row);
 
-	gtk_box_pack_start( GTK_BOX(upper_box), button_box, TRUE, TRUE, 0 );
-	gtk_box_pack_start( GTK_BOX(vbox), upper_box, TRUE, TRUE, 0 );
+	gtk_box_pack_start( GTK_BOX(main_box), button_box, TRUE, TRUE, 0 );
 
 	return;
 }
@@ -842,6 +851,8 @@ void init_window(void)
 
         gtk_container_border_width( GTK_CONTAINER(window), 4 );
         gtk_widget_realize(window);
+
+	main_box = gtk_hbox_new( FALSE, 5 );
 
 	tooltips = gtk_tooltips_new();
 	if( props.tooltip )
@@ -892,8 +903,8 @@ int main (int argc, char *argv[])
 	gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
 	
-        gnome_app_set_contents( GNOME_APP(window), vbox );
-	
+        gnome_app_set_contents( GNOME_APP(window), main_box );
+	adjust_status();	
         gtk_widget_show_all(window);
 	
 	gtk_main ();
