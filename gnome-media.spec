@@ -15,14 +15,14 @@ Obsoletes: gnome
 Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
-
 Requires: gnome-libs >= 0.30
+Summary(es): Programas multimedia de GNOME
+Summary(fr): Programmes multimédia de GNOME
 
 # msf - disabled in 0.30 release
 # these needed for extace
 #Requires: gsl
 #Requires: esound
-
 
 %description
 GNOME media programs.
@@ -31,7 +31,27 @@ GNOME is the GNU Network Object Model Environment.  That's a fancy
 name but really GNOME is a nice GUI desktop environment.  It makes
 using your computer easy, powerful, and easy to configure.
 
+%description -l es
+Programas multimedia GNOME.
+
+GNOME (GNU Network Object Model Environment) es un entorno gráfico
+orientado escritorio. Con él el uso de su computadora es más fácil,
+agradable y eficaz.
+
+Este paquete contiene varios juegos para el entorno Gnome.
+
+%description -l fr
+Programmes multimédia GNOME.
+
+GNOME (GNU Network Object Model Environment) est un environnement graphique
+de type bureau. Il rends l'utilisation de votre ordinateur plus facile,
+agréable et eficace, et est facile à configurer.
+
 %changelog
+
+* Sat Nov 21 1998 Pablo Saratxaga <srtxg@chanae.alphanet.ch>
+
+- added spanish and french translations for rpm
 
 * Wed Sep 23 1998 Michael Fulbright <msf@redhat.com>
 
