@@ -4,7 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0\n"
-"POT-Creation-Date: 2004-03-28 23:02+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-04-19 23:02+0200\n"
 "PO-Revision-Date: 2004-03-28 23:02+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -46,8 +47,9 @@ msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
-"Vrsta poslužitelja kojem se šalju upiti o CD-ima. Dozvoljene vrijednosti su 0 (FriDB "
-"kružni poslužitelj), 1 (neki drugi FriDB poslužitelj) ili 2 (drugi poslužitelj)."
+"Vrsta poslužitelja kojem se šalju upiti o CD-ima. Dozvoljene vrijednosti su "
+"0 (FriDB kružni poslužitelj), 1 (neki drugi FriDB poslužitelj) ili 2 (drugi "
+"poslužitelj)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -63,9 +65,9 @@ msgid ""
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
 msgstr ""
-"Ovaj ključ navodi koji podaci o korisniku će se poslati poslužitelju radi upita o "
-"CD-ima. Dozvoljene vrijednosti su 0 (ništa se ne šalje), 1 (pravi podaci) ili "
-"3 (neki drugi podaci)."
+"Ovaj ključ navodi koji podaci o korisniku će se poslati poslužitelju radi "
+"upita o CD-ima. Dozvoljene vrijednosti su 0 (ništa se ne šalje), 1 (pravi "
+"podaci) ili 3 (neki drugi podaci)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -80,6 +82,7 @@ msgid "Size of the expander arrow"
 msgstr "Veličina strelice za proširivanje"
 
 #: cddb-slave2/cddb-slave-capplet.c:115
+#, c-format
 msgid ""
 "There was an error displaying help: \n"
 "%s"
@@ -870,8 +873,7 @@ msgid ""
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
 "Ne mogu stvoriti CDDBTrackEditor tvornicu.\n"
-"Razlog je možda u tome što je već pokrenut cddb-track-editor-a."
-"\n"
+"Razlog je možda u tome što je već pokrenut cddb-track-editor-a.\n"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -882,8 +884,8 @@ msgid ""
 "Displays information about the currently playing album, artist and time "
 "elapsed"
 msgstr ""
-"Prikazivanje podataka o albumu koji se trenutno svira, izvođaču i "
-"proteklom vremenu"
+"Prikazivanje podataka o albumu koji se trenutno svira, izvođaču i proteklom "
+"vremenu"
 
 #: gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -1199,7 +1201,8 @@ msgstr "Treba li CD izbaciti pri zatvaranju CD svirača"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Putanja prema CD uređaju koji CD svirač treba koristiti za puštanje CD-ova"
+msgstr ""
+"Putanja prema CD uređaju koji CD svirač treba koristiti za puštanje CD-ova"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "What theme should the CD player use for it's appearance"
@@ -1509,6 +1512,7 @@ msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
 #: grecord/src/gsr-window.c:802
+#, c-format
 msgid "%s Information"
 msgstr "Podaci o %s"
 
@@ -1553,7 +1557,7 @@ msgid "Playing..."
 msgstr "Izvođenje..."
 
 #: grecord/src/gsr-window.c:1284
-#, , c-format
+#, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Snimatelj zvuka"
 
@@ -1582,55 +1586,58 @@ msgid "Adjust the volume level"
 msgstr "Prilagodi jačinu zvuka"
 
 #. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:453
-#: gst-mixer/src/mixer.c:546
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
+#: gst-mixer/src/mixer.c:551
 msgid "Volume Control"
 msgstr "Kontrola glasnoće"
 
-#: gst-mixer/src/mixer.c:218
+#: gst-mixer/src/mixer.c:223
 #, c-format
 msgid "%s Slider"
 msgstr "%s klizač"
 
-#: gst-mixer/src/mixer.c:220
+#: gst-mixer/src/mixer.c:225
 #, c-format
 msgid "Channel %d of %s Slider"
 msgstr "Kanal %d u %s klizača"
 
-#: gst-mixer/src/mixer.c:221
+#: gst-mixer/src/mixer.c:226
 #, c-format
 msgid "%s Slider %d"
 msgstr "%s klizač %d"
 
-#: gst-mixer/src/mixer.c:234
+#: gst-mixer/src/mixer.c:239
 msgid "Lock"
 msgstr "Zaključano"
 
-#: gst-mixer/src/mixer.c:244
+#: gst-mixer/src/mixer.c:249
+#, c-format
 msgid "%s Lock"
 msgstr "Zaključaj %s"
 
-#: gst-mixer/src/mixer.c:250
+#: gst-mixer/src/mixer.c:255
 msgid "Mute"
 msgstr "Utišaj"
 
-#: gst-mixer/src/mixer.c:262
+#: gst-mixer/src/mixer.c:267
+#, c-format
 msgid "%s Mute"
 msgstr "Stišaj %s"
 
-#: gst-mixer/src/mixer.c:268
+#: gst-mixer/src/mixer.c:273
 msgid "Rec."
 msgstr "Snim."
 
-#: gst-mixer/src/mixer.c:280
+#: gst-mixer/src/mixer.c:285
+#, c-format
 msgid "%s Record"
 msgstr "%s snimi"
 
-#: gst-mixer/src/mixer.c:456
+#: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Program za miješanje zvuka na osnovi programa GNOME/GStreamer"
 
-#: gst-mixer/src/mixer.c:563
+#: gst-mixer/src/mixer.c:568
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Nažalost, nisam našao elemente i/ili uređaje miješala"
 
@@ -1723,14 +1730,17 @@ msgstr "Prilagođeno"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:110
+#, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Neuspjeh u stvaranju probnog cjevovoda za \"%s\""
 
 #: profiles/audio-profile-edit.c:185
+#, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Došlo je do greške pri prikazivanju pomoći: %s"
 
 #: profiles/audio-profile-edit.c:387
+#, c-format
 msgid "Editing profile \"%s\""
 msgstr "Uređivanje profila \"%s\""
 
@@ -1743,9 +1753,10 @@ msgid "<not described>"
 msgstr "<nije opisano>"
 
 #: profiles/audio-profile.c:217
-#, , c-format
+#, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "Došlo je do greške pri preuzimanju popisa gm_audio profila zvukova. (%s)\n"
+msgstr ""
+"Došlo je do greške pri preuzimanju popisa gm_audio profila zvukova. (%s)\n"
 
 #: profiles/audio-profile.c:718
 #, c-format
@@ -1753,11 +1764,11 @@ msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
 msgstr ""
-"Došlo je do greške prilikom pretplaćivanja na obavijesti o promjenama "
-"u popisu profila terminala. (%s)\n"
+"Došlo je do greške prilikom pretplaćivanja na obavijesti o promjenama u "
+"popisu profila terminala. (%s)\n"
 
 #: profiles/audio-profile.c:908
-#, , c-format
+#, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
 msgstr "Došlo je do greške, zaboravljena je mapa s profilima %s. (%s)\n"
 
@@ -1799,17 +1810,18 @@ msgstr "Obriši profil \"%s\"?"
 msgid "Delete Profile"
 msgstr "Izbriši profil"
 
+#.
 #. dialog =
-#.  gtk_dialog_new_with_buttons (_("Edit Profiles"),
-#.  NULL,
-#.  GTK_DIALOG_DESTROY_WITH_PARENT,
-#.  GTK_STOCK_HELP,
-#.  GTK_RESPONSE_HELP,
-#.  GTK_STOCK_CLOSE,
-#.  GTK_RESPONSE_ACCEPT,
-#.  NULL);
-#. 
-#.  FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: profiles/audio-profiles-edit.c:597
 msgid "Edit GMAudio Profiles"
 msgstr "Uredi profile GM zvuka"
@@ -1885,11 +1897,15 @@ msgstr "Opis za profil zvučne datoteke"
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
-msgstr "Opis profila, sadrži više informacija, te opisuje kada koristiti ovaj profil."
+msgstr ""
+"Opis profila, sadrži više informacija, te opisuje kada koristiti ovaj profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid "A filename extension to be used when storing files encoded with this profile."
-msgstr "Dodatak naziva datoteke koji će se koristiti kod spremanja datoteka šifriranih ovim profilom."
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+"Dodatak naziva datoteke koji će se koristiti kod spremanja datoteka "
+"šifriranih ovim profilom."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -1912,8 +1928,8 @@ msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
-"Popis profila zapisivanja zvuka. Popis sadrži nazive podmapa "
-"koje se odnose na /system/gstreamer/audio/profiles."
+"Popis profila zapisivanja zvuka. Popis sadrži nazive podmapa koje se odnose "
+"na /system/gstreamer/audio/profiles."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
@@ -2003,4 +2019,3 @@ msgstr "Monitorirajte izlaznu jačinu zvuka"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Gnome uređivač ikona"
-
