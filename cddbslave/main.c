@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <dirent.h>
 #include <signal.h>
 #include <errno.h>
 #include <pwd.h>
@@ -20,16 +21,22 @@ static char *if_strtok(char *p, const char *p2);
 char *get_file_name(char *discid);
 void getusername_safe(char *buf, int len);
 void gethostname_safe(char *buf, int len);
+void die(int signal);
+int do_request(char *req, int fd);
+
+int check_cache(char *req);
+int create_cache(char *req);
+int remove_cache(char *req);
+char *cache_name(char *req);
+
+char hostname[512], username[512];
+char client_ver[64], client_name[64];
+char *g_req;
+int pid;
 
 int main(int argc, char *argv[])
 {
     char req[512], client[512];
-    char hostname[512], username[512];
-    char client_ver[64], client_name[64];
-    int pid;
-
-    fprintf(stderr, "This program shouldn't be executed from the command line.\n");
-    fprintf(stderr, "Unless you really know what you are doing, press CTRL-C now.\n");
 
     fgets(req, 511, stdin);	/* grab the cddb request */
     fgets(client, 511, stdin);	/* and then the client info */
@@ -39,64 +46,118 @@ int main(int argc, char *argv[])
     gethostname_safe(hostname, 512);
     getusername_safe(username, 512);
 
-    g_print("%s %s\n", hostname, username);
-    
+    if(check_cache(req))
+	exit(0);
+    create_cache(req);
+
     if(fork()==0)
     {
-	int fd, i;
-	char buf[512];
+	int fd;
+	char *dname;
+	DIR *d;
+	struct dirent *de;
 
+	/* connect to cddb server */
+	g_req = req;
 	fd = opensocket("cddb.cddb.com", 888);
 	if(fd < 0)
 	{
+	    remove_cache(req);
 	    return(-1);
 	}
-	
-	/* receive login banner */
-	fgetsock(buf, 511, fd);
-	
-	if((i=check_response(buf)) > 400)
+
+	/* grab directory name */
+	dname = get_file_name("");
+	if(!dname)
 	{
+	    do_request(req, fd);
+	    remove_cache(req);
 	    disconnect(fd);
-	    return i;
+	    exit(-1);
 	}
 
-	/* send handshake */
-	g_snprintf(buf, 511, "cddb hello %s %s %s %s\n", 
-		   username, hostname, 
-		   client_name, client_ver);
-	send(fd, buf, strlen(buf), 0);
-
-	/* receive handshake result */
-	fgetsock(buf, 511, fd);
-
-	if((i=check_response(buf)) != 200)
+	/* open directory for scanning */
+	d = opendir(dname);
+	if(!d)
 	{
+	    do_request(req, fd);
+	    remove_cache(req);
 	    disconnect(fd);
-	    return i;
+	    exit(-1);
 	}
 
-	/* we're connected and identified. */
-	/* now we send our query */
-	g_snprintf(buf, 511, "%s\n", req);
-	send(fd, buf, strlen(buf), 0);
-
-	/* receive query result */
-	fgetsock(buf, 511, fd);
-
-	if((i=check_response(buf)) != 200)
+	/* scan for cached queries */
+	while((de=readdir(d)))
 	{
-	    return -1;
+	    if(strstr(de->d_name, ".query"))
+	    {
+		FILE *fp;
+		char *fname;
+		char buf[512];
+		
+		fname = get_file_name(de->d_name);
+		g_print("opening %s for request...\n", fname);
+
+		fp = fopen(fname, "r");
+		if(!fp)
+		    break;
+		
+		fgets(buf, 512, fp);
+		fclose(fp);
+		do_request(buf, fd);
+		remove_cache(buf);
+		g_free(fname);
+	    }
 	}
-
-	/* alright, our query response was positive, now send the read request. */
-	read_query(buf, fd, 512);
-
+	/* clean up */
+	g_free(dname);
 	disconnect(fd);
-	kill(pid, SIGUSR1);
     }
 
     exit(EXIT_SUCCESS);
+}
+
+int do_request(char *req, int fd)
+{
+    int i;
+    char buf[512];
+
+    g_req = req;		/* make the request available to die() */
+    
+    /* receive login banner */
+    fgetsock(buf, 511, fd);
+    
+    if((i=check_response(buf)) > 400)
+	return i;
+
+    /* send handshake */
+    g_snprintf(buf, 511, "cddb hello %s %s %s %s\n", 
+	       username, hostname, 
+	       client_name, client_ver);
+    send(fd, buf, strlen(buf), 0);
+    
+    /* receive handshake result */
+    fgetsock(buf, 511, fd);
+    
+    if((i=check_response(buf)) != 200)
+	return i;
+    
+    /* we're connected and identified. */
+    /* now we send our query */
+    g_snprintf(buf, 511, "%s\n", req);
+    send(fd, buf, strlen(buf), 0);
+    
+    /* receive query result */
+    fgetsock(buf, 511, fd);
+    
+    if((i=check_response(buf)) != 200)
+	return -1;
+    
+    /* alright, our query response was positive, now send the read request. */
+    read_query(buf, fd, 512);
+    
+    kill(pid, SIGUSR1);
+    return 0;
 }
 
 int check_response(char *buf)
@@ -235,3 +296,77 @@ void getusername_safe(char *buf, int len)
     else
 	strncpy(buf, "user", len);
 }
+
+char *cache_name(char *req)
+{
+    char discid[64];
+    char *fname;
+    
+    if(sscanf(req, "cddb query %[0-9a-fA-F]", discid) != 1)
+	return FALSE;
+    
+    strncat(discid, ".query", 63);
+    
+    fname = get_file_name(discid);
+    return fname;
+}
+   
+/* Deal with cached requests. */
+int check_cache(char *req)
+{
+    char *fname;
+    FILE *fp;
+
+    fname = cache_name(req);
+    if(!fname)
+	return FALSE;
+
+    fp = fopen(fname, "rw");
+    if(!fp)
+	return FALSE;		/* query already has been submitted */
+    
+    fclose(fp);
+    g_free(fname);
+
+    return TRUE;
+}
+
+/* Create `lock' file. */
+int create_cache(char *req)
+{
+    char *fname;
+    FILE *fp;
+
+    fname = cache_name(req);
+    if(!fname)
+	return FALSE;
+    
+    fp = fopen(fname, "w");
+    if(!fp)
+	return FALSE;		/* can't open file */
+
+    fputs(req, fp);
+
+    fclose(fp);
+    g_free(fname);
+
+    return TRUE;
+}
+
+/* Remove fulfulled queries */
+int remove_cache(char *req)
+{
+    char *fname;
+    
+    fname = cache_name(req);
+    if(!fname)
+	return FALSE;
+    
+    if(remove(fname))
+	return FALSE;		/* can't remove file */
+
+    g_free(fname);
+
+    return TRUE;
+}
+
