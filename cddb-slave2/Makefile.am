@@ -24,21 +24,27 @@ $(IDL_GENERATED): $(IDLS)
 idldir = $(datadir)/idl
 idl_DATA = $(IDLS)
 
-noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
+### intermediate helper libraries to link to internally
+noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la libcddb-slave2-private.la
+
+# FIXME: rename this lib to something like libcddb-slave2-idl.la
 libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
+libcddb_slave2_private_la_SOURCES = cddb-slave-private.c
 
 ### installed cddb slave library
 lib_LTLIBRARIES = libcddb-slave2.la
-# since automake builds dependencies AFTER objects, and the object
-# needs a generated header, we add a hack to make sure the .h gets
-# generated before objects are compiled
-cddb-slave-client.lo: libgnomemedia-cddbslave2.la
 
 libcddb_slave2includedir = $(includedir)/cddb-slave2
 libcddb_slave2include_HEADERS = cddb-slave-client.h
 
 libcddb_slave2_la_SOURCES = cddb-slave-client.c
-libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la
+libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la libcddb-slave2-private.la
+
+# since automake builds dependencies AFTER objects, and the object
+# needs a generated header, we add a hack to make sure the .h gets
+# generated before objects are compiled
+
+cddb-slave-client.lo: libgnomemedia-cddbslave2.la
 
 # installed programs
 bin_PROGRAMS = cddb-slave2-properties
@@ -66,31 +72,37 @@ cddb_slave2_properties_SOURCES = 		\
 cddb_slave2_query_LDADD = $(CDDBSLAVE_LIBS) libcddb-slave2.la
 cddb_slave2_query_SOURCES = cddb-slave2-query.c
 	
+### headers we won't install
+
+noinst_HEADERS = \
+	cddb-slave-private.h			\
+	cddb-slave.h				\
+	cddb-parser.h				\
+	gnet.h					\
+	gnet-private.h				\
+	iochannel.h				\
+	inetaddr.h				\
+	socks.h					\
+	socks-private.h				\
+	tcp.h
+
 ### libexec programs
 libexec_PROGRAMS = CDDBSlave2 cddb-track-editor
 
 CDDBSlave2_SOURCES =				\
 	cddb-slave.c				\
-	cddb-slave.h				\
 	cddb-parser.c				\
-	cddb-parser.h				\
-	gnet.h					\
 	gnet-private.c				\
-	gnet-private.h				\
 	iochannel.c				\
-	iochannel.h				\
 	inetaddr.c				\
-	inetaddr.h				\
 	main.c					\
 	socks.c					\
-	socks.h					\
 	socks-private.c				\
-	socks-private.h				\
-	tcp.c					\
-	tcp.h
+	tcp.c
 
 CDDBSlave2_LDADD =				\
 	libgnomemedia-cddbslave2.la		\
+	libcddb-slave2-private.la		\
 	$(CDDBSLAVE_LIBS)			\
 	$(INTLLIBS)
 

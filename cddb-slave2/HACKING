@@ -3,6 +3,24 @@ Hacking notes for cddb-slave2
 * ChangeLog entries go in this directory until we merge all of them with
   the toplevel one
 
+* CDDBSlave2 is the bonobo component that handles cddb-slave-client requests,
+  and creates cddb-slave objects which connect to a server and do lookups.
+  It lives for as long as a process still has a cddb-slave-client handle.
+  cddb-slave-client handles are created with cddb_slave_client_new () and
+  removed with g_object_unref ()
+  (main.c)
+
+* cddb-slave is the GObject created by the bonobo component that does the
+  actual connecting to the CDDB server.
+  (cddb-slave.c)
+
+* cddb-slave-client is the library used by applications.
+  The cddb-slave-client GObject is created using cddb_slave_client_new ().
+  All requests for lookup are invoked through this object, which then
+  calls the appropriate CORBA methods on the CDDBSlave2 component.
+  For each slave-client that gets created, a slave object gets created in
+  the CDDBSlave2 component.
+
 DEBUGGING CDDB lookups
 ----------------------
 * kill the CDDBSlave2 component

@@ -15,6 +15,7 @@
 #include <bonobo-activation/bonobo-activation.h>
 
 #include "GNOME_Media_CDDBSlave2.h"
+#include "cddb-slave-private.h"			/* cs_debug */
 #include "cddb-slave-client.h"
 
 #include <bonobo/bonobo-listener.h>
@@ -35,6 +36,7 @@ finalize (GObject *object)
 {
 	CDDBSlaveClient *client;
 
+	cs_debug ("cddb-slave-client.c: finalize");
 	client = CDDB_SLAVE_CLIENT (object);
 	if (client->priv == NULL)
 		return;
@@ -254,6 +256,8 @@ cddb_slave_client_add_listener (CDDBSlaveClient *client,
 	g_return_if_fail (listener != NULL);
 	g_return_if_fail (BONOBO_IS_LISTENER (listener));
 
+	cs_debug ("adding listener to client %p", client);
+
 	client_objref = client->priv->objref;
 	listener_objref = bonobo_object_corba_objref (BONOBO_OBJECT (listener));
 
@@ -268,6 +272,7 @@ cddb_slave_client_add_listener (CDDBSlaveClient *client,
 	}
 
 	/* Add the listener */
+	cs_debug ("cddb_slave_client: adding event source %p", event_source);
 	Bonobo_EventSource_addListener (event_source, listener_objref, &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error adding listener\n%s", CORBA_exception_id (&ev));
@@ -314,6 +319,7 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 	}
 
 	/* Remove the listener */
+	cs_debug ("cddb_slave_client: removing event source %p", event_source);
 	Bonobo_EventSource_removeListener (event_source, listener_objref, &ev);
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error removing listener\n%s", CORBA_exception_id (&ev));

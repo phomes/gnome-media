@@ -27,35 +27,32 @@
 #include <glib.h>
 #include <bonobo/bonobo-main.h>
 
+#include "cddb-slave-private.h"
 #include <cddb-slave-client.h>
 #include <GNOME_Media_CDDBSlave2.h>
 
-static gboolean have_result = FALSE; /* set to TRUE from the event callback */
+static gboolean is_setup = FALSE; /* set from setup_cb */
 static gboolean query_ok = FALSE; /* set to TRUE from cb if query went ok */
+static gboolean have_result = FALSE;
 
+/* In a real application we would put these in a structure
+ * and pass the structure around.
+ */
+static CDDBSlaveClient *slave_client = NULL;
+gchar *discid = NULL;
+gchar *offsets = NULL;
+gint ntracks;
+gint nsecs;
+
+static void listener_event_cb (BonoboListener *listener,
+                               const char *name,
+                               const BonoboArg *arg,
+                               CORBA_Environment *ev,
+	                       gpointer data);
+
+/* display the result */
 static void
-listener_event_cb (BonoboListener *listener,
-                   const char *name,
-                   const BonoboArg *arg,
-                   CORBA_Environment *ev,
-                   gpointer *user_data)
-{
-        GNOME_Media_CDDBSlave2_QueryResult *qr;
-
-        qr = arg->_value;
-
-        switch (qr->result) {
-        case GNOME_Media_CDDBSlave2_OK:
-                break;
-	default:
-		g_warning ("Lookup through slave failed");
-	}
-	query_ok = TRUE;
-	have_result = TRUE;
-}
-
-static void
-display_result (CDDBSlaveClient *slave, const char *discid)
+display_result (CDDBSlaveClient *slave_client, const char *discid)
 {
 	gchar *artist = NULL;
 	gchar *title = NULL;
@@ -63,11 +60,11 @@ display_result (CDDBSlaveClient *slave, const char *discid)
 	gint i;
 	CDDBSlaveClientTrackInfo **track_info = NULL;
 
-	artist = cddb_slave_client_get_artist (slave, discid);
-	title = cddb_slave_client_get_disc_title (slave, discid);
-	track_info = cddb_slave_client_get_tracks (slave, discid);
-	ntracks = cddb_slave_client_get_ntrks (slave, discid);
-	track_info = cddb_slave_client_get_tracks (slave, discid);
+	artist = cddb_slave_client_get_artist (slave_client, discid);
+	title = cddb_slave_client_get_disc_title (slave_client, discid);
+	track_info = cddb_slave_client_get_tracks (slave_client, discid);
+	ntracks = cddb_slave_client_get_ntrks (slave_client, discid);
+	track_info = cddb_slave_client_get_tracks (slave_client, discid);
 
 	g_print ("Results of CDDBSlave2 lookup:\n");
 	g_print ("Artist:     %s\n", artist);
@@ -87,18 +84,102 @@ display_result (CDDBSlaveClient *slave, const char *discid)
 	g_print ("\n");
 }
 
+
+/* set up our slave client */
+static gboolean
+setup_cb (void)
+{
+	BonoboListener *listener = NULL;
+
+	/* create a cddb slave client */
+	slave_client = cddb_slave_client_new ();
+	cs_debug ("created slave client %p", slave_client);
+
+	/* create a bonobo listener */
+	listener = bonobo_listener_new (NULL, NULL);
+	cs_debug ("created bonobo listener %p", listener);
+
+	/* connect a callback to the listener */
+	g_signal_connect (G_OBJECT (listener), "event-notify",
+			  G_CALLBACK (listener_event_cb), NULL);
+
+	/* add the listener to the slave client */
+	cddb_slave_client_add_listener (slave_client, listener);
+
+	is_setup = TRUE;
+	/* remove ourselves from idle loop */
+	return FALSE;
+}
+
+
+static gboolean
+query_cb (gpointer data)
+{
+	if (!is_setup)
+		/* call us back later */
+		return TRUE;
+
+	/* send the query */
+	cs_debug ("query: sending query");
+	if (! cddb_slave_client_query (slave_client, discid, ntracks, offsets, nsecs,
+                                       "cddb-slave2-query", "0"))
+		g_warning ("Could not query");
+
+	cs_debug ("query: sent query");
+	return FALSE;
+}
+
+/* teardown the connection; will also quit from bonobo main loop */
+static gboolean
+teardown_cb (gpointer data)
+{
+	if (!have_result) return TRUE;
+
+	/* unref our slave object
+         * this also triggers notify removal */
+	cs_debug ("teardown_cb: unreffing slave client");
+        g_object_unref (G_OBJECT (slave_client));
+
+	cs_debug ("teardown_cb: quitting bonobo main loop");
+	bonobo_main_quit ();
+
+	return FALSE;
+}
+
+static void
+listener_event_cb (BonoboListener *listener,
+                   const char *name,
+                   const BonoboArg *arg,
+                   CORBA_Environment *ev,
+	           gpointer data)
+{
+        GNOME_Media_CDDBSlave2_QueryResult *qr;
+
+	cs_debug ("listener event callback on slave client %p", slave_client);
+
+        qr = arg->_value;
+
+        switch (qr->result) {
+        case GNOME_Media_CDDBSlave2_OK:
+		cs_debug ("callback: lookup ok");
+		query_ok = TRUE;
+                break;
+	default:
+		g_warning ("Lookup through slave failed");
+		break;
+	}
+	have_result = TRUE;
+	if (query_ok)
+		display_result (slave_client, discid);
+
+}
+
 int
 main (int argc,
       char *argv[])
 {
-	CDDBSlaveClient *slave = NULL;
-	BonoboListener *listener = NULL;
-	gchar *discid = NULL;
 	char *endptr = NULL;
-	gchar *offsets = NULL;
 	gchar *string = NULL;
-	gint ntracks;
-	gint nsecs;
 	gint i;
 
 	/* initialize bonobo so we can use cddb_slave_client_new */
@@ -152,7 +233,6 @@ main (int argc,
 		return 6;
 	}
 
-
 	/* output parsed info */
 	g_print ("Looking up CDDBSlave2 entry with:\n");
 	g_print ("discid:           %s\n", discid);
@@ -161,29 +241,21 @@ main (int argc,
 	g_print ("total seconds:    %d\n", nsecs);
 	g_print ("\n");
 
-	/* create a cddb slave client */
-	slave = cddb_slave_client_new ();
+	/* check for debug */
+	if (g_getenv ("CDDB_SLAVE_DEBUG"))
+		cs_set_debug (TRUE);
+	g_timeout_add (10, (GSourceFunc) setup_cb, NULL);
+	g_timeout_add (10, (GSourceFunc) query_cb, NULL);
+	g_timeout_add (10, (GSourceFunc) teardown_cb, NULL);
 
-	/* create a bonobo listener */
-	listener = bonobo_listener_new (NULL, NULL);
+	/* enter bonobo main loop */
+	bonobo_main ();
 
-	/* connect a callback to the listener */
-	g_signal_connect (G_OBJECT (listener), "event-notify",
-			  G_CALLBACK (listener_event_cb), NULL);
+	cs_debug ("query: returned from bonobo_main");
 
-	/* add the listener to the slave */
-	cddb_slave_client_add_listener (slave, listener);
+	/* remove the listener from the slave */
+	//cddb_slave_client_remove_listener (slave, listener);
 
-	/* send the query */
-	if (! cddb_slave_client_query (slave, discid, ntracks, offsets, nsecs,
-                                       "cddb-slave2-query", "0"))
-		g_warning ("Could not query");
-
-	/* now wait for the result */
-	while (!have_result) ;
-
-	if (query_ok)
-		display_result (slave, discid);
 
 	return 0;
 }

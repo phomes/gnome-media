@@ -32,6 +32,7 @@
 
 #include "cddb-slave.h"
 #include "cddb-parser.h"
+#include "cddb-slave-private.h"		/* cs_debug */
 #include "GNOME_Media_CDDBSlave2.h"
 
 
@@ -100,8 +101,6 @@ static GList *cddb_slaves = NULL;
 
 static void do_hello (ConnectionData *cd);
 
-extern gboolean cddb_debugging;
-
 
 #define CDDB_SLAVE_CDDB_FINISHED "GNOME_Media_CDDBSlave2:CDDB-Finished"
 
@@ -125,15 +124,19 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 	any._type = (CORBA_TypeCode) TC_GNOME_Media_CDDBSlave2_QueryResult;
 	any._value = &qr;
 
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: Notifying listeners.\n");
-	}
+	cs_debug ("cddb-slave.c: notifying on slaves");
 
+	/* cddb_slaves is a static GList of all slaves we started */
+	/* FIXME: would be nice if we keep track of what listeners requested
+         * what discid's, so we don't signal every lookup to every listener.
+         * For now, make the clients check if the discid we're giving them
+         * is the one they asked for. */
 	for (l = cddb_slaves; l; l = l->next) {
 		CDDBSlave *slave;
 
 		slave = CDDB_SLAVE (l->data);
 
+		cs_debug ("cddb-slave.c: notifying on slave %p", slave);
 		bonobo_event_source_notify_listeners (slave->priv->event_source,
 						      CDDB_SLAVE_CDDB_FINISHED,
 						      &any, NULL);
@@ -150,17 +153,11 @@ do_goodbye_response (ConnectionData *cd,
 	code = atoi (response);
 	switch (code) {
 	case 230:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Disconnected\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Disconnected\n%s", response);
 		break;
 
 	default:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Unknown response\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Unknown response\n%s", response);
 		break;
 	}
 
@@ -173,6 +170,7 @@ do_goodbye_response (ConnectionData *cd,
   	g_io_channel_unref (cd->iochannel);
 
 	/* Notify listeners */
+	cs_debug ("cddb-slave.c: successful lookup, notifying listeners");
 	cddb_slave_notify_listeners (cddb, cd->discid, GNOME_Media_CDDBSlave2_OK);
 
 	/* Destroy data */
@@ -199,13 +197,14 @@ do_goodbye_response (ConnectionData *cd,
 /* clears the entry from the cache by marking it as invalid, which causes
  * the editor to fill in dummy values */
 static void
-clear_entry_from_cache (const char *discid)
+clear_entry_from_cache (const char *discid, GNOME_Media_CDDBSlave2_Result result)
 {
 	CDDBEntry *entry;
 	int i;
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
         entry->is_valid = FALSE;
+	entry->result = result;
 	entry->revision = 0;
 
         g_hash_table_insert (entry->fields, g_strdup ("DTITLE"),
@@ -223,16 +222,13 @@ clear_entry_from_cache (const char *discid)
 static void
 do_goodbye (ConnectionData *cd)
 {
-	guint bytes_writen;
+	guint bytes_written;
 	GIOError status;
 
 	/* Send quit command */
 	status = gnet_io_channel_writen (cd->iochannel, "quit\n",
-					 5, &bytes_writen);
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: status: %d bytes_writen %d\n",
-			 status, bytes_writen);
-	}
+					 5, &bytes_written);
+	cs_debug ("status: %d bytes_written %d", status, bytes_written);
 
 	cd->mode = CONNECTION_MODE_NEED_GOODBYE;
 }
@@ -255,10 +251,7 @@ do_read_response (ConnectionData *cd,
 
 	switch (code) {
 	case 210:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Received data.\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Received data\n%s", response);
 
 		if (waiting_for_terminator == FALSE) {
 			/* Open the file */
@@ -268,14 +261,12 @@ do_read_response (ConnectionData *cd,
 			filename = g_concat_dir_and_file (dirname, cd->discid);
 			g_free (dirname);
 
-			if (cddb_debugging == TRUE) {
-				g_print ("CDDB: Opening %s\n", filename);
-			}
+			cs_debug ("Opening %s", filename);
 
 			handle = fopen (filename, "w");
 
 			if (handle == NULL) {
-				g_warning ("Could not open %s\n", filename);
+				g_warning ("Could not open %s", filename);
 				g_free (filename);
 				return FALSE;
 			}
@@ -287,9 +278,7 @@ do_read_response (ConnectionData *cd,
 			g_assert (handle != NULL);
 
 			/* Write the line */
-			if (cddb_debugging == TRUE) {
-				g_print ("CDDB: Writing %s\n", response);
-			}
+			cs_debug ("Writing %s", response);
 
 			fputs (response, handle);
 		}
@@ -306,9 +295,7 @@ do_read_response (ConnectionData *cd,
 			g_free (dirname);
 
 			entry = g_hash_table_lookup (cddb_cache, cd->discid);
-			if (cddb_debugging == TRUE) {
-				g_print ("CDDB: Parsing %s\n", filename);
-			}
+			cs_debug ("Parsing %s", filename);
 			cddb_entry_parse_file (entry, filename);
 			g_free (filename);
 
@@ -324,40 +311,28 @@ do_read_response (ConnectionData *cd,
 		break;
 
 	case 401:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Specified CDDB entry not found\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Specified CDDB entry not found\n%s", response);
 		more = FALSE;
 		disconnect = TRUE;
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_UNKNOWN_ENTRY);
 		break;
 
 	case 402:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Server error\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Server error\n%s", response);
 		more = FALSE;
 		disconnect = TRUE;
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_ERROR_RETRIEVING_DATA);
 		break;
 
 	case 403:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Database entry is corrupt\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Database entry is corrupt\n%s", response);
 		more = FALSE;
 		disconnect = TRUE;
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_MALFORMED_DATA);
 		break;
 
 	case 409:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No handshake\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("No handshake\n%s", response);
 
 		/* Handshake */
 		do_hello (cd);
@@ -380,17 +355,14 @@ do_read (ConnectionData *cd,
 	 const char *dtitle)
 {
 	char *query;
-	guint bytes_writen;
+	guint bytes_written;
 	GIOError status;
 
 	/* Send read command */
 	query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
 	status = gnet_io_channel_writen (cd->iochannel, query,
-					 strlen (query), &bytes_writen);
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: status: %d bytes_writen %d\n",
-			 status, bytes_writen);
-	}
+					 strlen (query), &bytes_written);
+	cs_debug ("status: %d bytes_written %d", status, bytes_written);
 	g_free (query);
 	cd->mode = CONNECTION_MODE_NEED_READ_RESPONSE;
 }
@@ -520,16 +492,11 @@ do_query_response (ConnectionData *cd,
 
 	switch (code) {
 	case 200:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Exact match found.\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Exact match found.\n%s", response);
 
 		vector = g_strsplit (response, " ", 4);
 		if (vector == NULL) {
-			if (cddb_debugging == TRUE) {
-				g_print ("CDDB: Response did not contain all the information.\n");
-			}
+			cs_debug ("Response did not contain all the information.");
 			return FALSE;
 		}
 
@@ -544,10 +511,7 @@ do_query_response (ConnectionData *cd,
 
 	case 211:
 		/* Should this be 210 as well? */
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Multiple matches found.\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Multiple matches found\n%s", response);
 
 		if (response[0] == '.') {
 			/* Terminator */
@@ -575,7 +539,7 @@ do_query_response (ConnectionData *cd,
 				} else {
 				/* Need to disconnect here...
 				   none of our matches matched */
-					clear_entry_from_cache (cd->discid);
+					clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_UNKNOWN_ENTRY);
 					do_goodbye (cd);
 				}
 			}
@@ -594,9 +558,7 @@ do_query_response (ConnectionData *cd,
 		if (waiting_for_terminator == TRUE) {
 			vector = g_strsplit (response, " ", 3);
 			if (vector == NULL) {
-				if (cddb_debugging == TRUE) {
-					g_print ("CDDB: Response did not containe enough info\n");
-				}
+				cs_debug ("Response did not containe enough info");
 				return FALSE;
 			}
 
@@ -610,38 +572,25 @@ do_query_response (ConnectionData *cd,
 		break;
 
 	case 202:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No match found\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("No match found\n%s", response);
 		more = FALSE;
 		disconnect = TRUE;
 		break;
 
 	case 403:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Database entry is corrupt\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Database entry is corrupt\n%s", response);
 		more = FALSE;
 		disconnect = TRUE;
 		break;
 
 	case 409:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No handshake\n");
-			g_print ("CDDB: %s\n", response);
-		}
-
+		cs_debug ("No handshake\n%s", response);
 		do_hello (cd);
 		more = FALSE;
 		break;
 
 	default:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Unknown response\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Unknown response\n%s", response);
 		disconnect = TRUE;
 		more = FALSE;
 		break;
@@ -655,7 +604,7 @@ do_query_response (ConnectionData *cd,
 	}
 
 	if (disconnect == TRUE) {
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_IO_ERROR);
 		do_goodbye (cd);
 	}
 
@@ -669,7 +618,7 @@ static void
 do_query (ConnectionData *cd)
 {
 	char *query;
-	guint bytes_writen;
+	guint bytes_written;
 	GIOError status;
 
 	/* Send query command */
@@ -677,11 +626,8 @@ do_query (ConnectionData *cd)
 				 cd->discid, cd->ntrks,
 				 cd->offsets, cd->nsecs);
 	status = gnet_io_channel_writen (cd->iochannel, query,
-					 strlen (query), &bytes_writen);
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: status: %d bytes_writen %d\n",
-			 status, bytes_writen);
-	}
+					 strlen (query), &bytes_written);
+	cs_debug ("status: %d bytes_written %d", status, bytes_written);
 	g_free (query);
 	cd->mode = CONNECTION_MODE_NEED_QUERY_RESPONSE;
 }
@@ -696,35 +642,23 @@ do_hello_response (ConnectionData *cd,
 	code = atoi (response);
 	switch (code) {
 	case 200:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Hello ok - Welcome\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Hello ok - Welcome\n%s", response);
 		break;
 
 	case 431:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Hello unsuccessful\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Hello unsuccessful\n%s", response);
 
 		/* Disconnect here */
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
 		do_goodbye (cd);
 		break;
 
 	case 402:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Already shook hands\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Already shook hands\n%s", response);
 		break;
 
 	default:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Unknown response\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Unknown response\n%s", response);
 		break;
 	}
 
@@ -739,7 +673,7 @@ static void
 do_hello (ConnectionData *cd)
 {
 	char *hello;
-	guint bytes_writen;
+	guint bytes_written;
 	GIOError status;
 
 	/* Send the Hello command
@@ -753,11 +687,8 @@ do_hello (ConnectionData *cd)
 
 	/* Need to check the return of this one */
 	status = gnet_io_channel_writen (cd->iochannel, hello,
-					 strlen (hello), &bytes_writen);
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: Status: %d bytes_writen: %d\n",
-			 status, bytes_writen);
-	}
+					 strlen (hello), &bytes_written);
+	cs_debug ("Status: %d bytes_written: %d", status, bytes_written);
 	g_free (hello);
 
 	cd->mode = CONNECTION_MODE_NEED_HELLO_RESPONSE;
@@ -774,51 +705,35 @@ do_open_response (ConnectionData *cd,
 	code = atoi (response);
 	switch (code) {
 	case 200:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Hello ok - Read/Write access allowed\n");
-			g_print ("CDDB: %s\n", response);
-		}
+			g_print ("Hello ok - Read/Write access allowed\n%s", response);
+			g_print ("%s\n", response);
 
 		cddb->priv->access = CDDB_ACCESS_READWRITE;
 		break;
 
 	case 201:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Hello ok - Read only access\n");
-			g_print ("CDDB: %s\n", response);
-		}
+			g_print ("Hello ok - Read only access\n%s", response);
+			g_print ("%s\n", response);
 		cddb->priv->access = CDDB_ACCESS_READONLY;
 		break;
 
 	case 432:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No more connections allowed\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("No more connections allowed\n%s", response);
 		cddb->priv->access = CDDB_ACCESS_NONE;
 		break;
 
 	case 433:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No connections allowed: X users allowed, Y currently active\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("No connections allowed: X users allowed, Y currently active\n%s", response);
 		cddb->priv->access = CDDB_ACCESS_NONE;
 		break;
 
 	case 434:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: No connections allowed: system load too high\n");
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("No connections allowed: system load too high\n%s", response);
 		cddb->priv->access = CDDB_ACCESS_NONE;
 		break;
 
 	default:
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Unknown response code: %d\n",code);
-			g_print ("CDDB: %s\n", response);
-		}
+		cs_debug ("Unknown response code\n%s", response);
 		cddb->priv->access = CDDB_ACCESS_NONE;
 		break;
 	}
@@ -828,7 +743,7 @@ do_open_response (ConnectionData *cd,
 	} else {
 		/* Do something to indicate that we can't contact server */
 		/* Close connection to tell listeners we're not doing anything */
-		clear_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
 		do_goodbye (cd);
 	}
 
@@ -915,10 +830,12 @@ read_from_server (GIOChannel *iochannel,
 		return TRUE;
 
  error:
-	clear_entry_from_cache (cd->discid);
+	clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_IO_ERROR);
 	return FALSE;
 }
 
+/* This callback handles the actual CDDB connection and is called on
+ * opening of the connection */
 static void
 open_cb (GTcpSocket *sock,
 	 GInetAddr *addr,
@@ -934,32 +851,33 @@ open_cb (GTcpSocket *sock,
 			   cd->cddb->priv->server,
 			   cd->cddb->priv->port);
 
+		clear_entry_from_cache (cd->discid, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
 		/* notify listeners */
-		clear_entry_from_cache (cd->discid);
+		cddb_slave_notify_listeners (cd->cddb, cd->discid, GNOME_Media_CDDBSlave2_OK);
+		/* unref the cddb slave */
+		g_object_unref (cd->cddb);
 		return;
 	}
 
 	sin = gnet_tcp_socket_get_iochannel (sock);
 	cd->iochannel = sin;
 
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: Opened connection, adding watch\n");
-	}
+	cs_debug ("Opened connection, adding watch");
 
 	cd->tag = g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
 				  read_from_server, data);
 }
 
+/* called to set up the connection with the CDDB server;
+ * actual connection is handled from the open_cb callback */
 static void
 cddb_send_cmd (ConnectionData *data)
 {
 	GTcpSocketConnectAsyncID *sock;
 
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: Opening socket to %s on port %d",
-			 data->cddb->priv->server,
-			 data->cddb->priv->port);
-	}
+	cs_debug ("Opening socket to %s on port %d",
+		 data->cddb->priv->server,
+		 data->cddb->priv->port);
 
 	sock = gnet_tcp_socket_connect_async (data->cddb->priv->server,
 					      data->cddb->priv->port,
@@ -973,7 +891,8 @@ cddb_send_cmd (ConnectionData *data)
 	}
 }
 
-/* checks if the given discid is a valid entry.
+/* Checks if the given discid is a valid entry.
+ * Creates a new invalid entry if the discid is not in the cache.
  */
 static gboolean
 cddb_entry_is_valid (const char *discid)
@@ -982,7 +901,7 @@ cddb_entry_is_valid (const char *discid)
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (!entry) {
-		clear_entry_from_cache (discid);
+		clear_entry_from_cache (discid, GNOME_Media_CDDBSlave2_UNKNOWN_ENTRY);
 		return FALSE;
 	}
 	return entry->is_valid;
@@ -1010,8 +929,11 @@ cddb_check_cache (const char *discid)
 						     ".cddb",
 						     discid, NULL);
 			entry = cddb_entry_new_from_file (filename);
-			/* also write it to our .cddbslave dir */
-			cddb_entry_write_to_file (entry);
+			/* also write it to our .cddbslave dir if we can */
+			if (entry) {
+				cs_debug ("writing entry from .cddb to .cddbslave");
+				cddb_entry_write_to_file (entry);
+			}
 			g_free (filename);
 
 			if (entry == NULL) {
@@ -1048,32 +970,31 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	CDDBEntry *entry;
 	ConnectionData *cd;
 
-	if (cddb_debugging == TRUE) {
-		g_print ("CDDB: Querying for %s\n", discid);
-	}
+	cs_debug ("Querying for %s", discid);
 	cddb = cddb_slave_from_servant (servant);
 
 	if (cddb_check_cache (discid) == TRUE) {
 		if (!cddb_entry_is_valid (discid)) {
-			if (cddb_debugging == TRUE) {
-				g_print ("CDDB: Found %s in cache but invalid\n", discid);
-			}
+			cs_debug ("Found %s in cache but invalid", discid);
+				/* FIXME: we should keep the error code from the first lookup */
+			cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
 			return;
 		}
-		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Found %s in cache\n", discid);
-		}
+		cs_debug ("Found %s in cache", discid);
 		cddb_slave_notify_listeners (cddb, discid,
 					     GNOME_Media_CDDBSlave2_OK);
 		return;
 	}
 
-	/* Make an entry */
+	/* It wasn't in our cache, so make a new entry */
 	entry = cddb_entry_new (discid, ntrks, offsets, nsecs);
 	g_hash_table_insert (cddb_cache, g_strdup (discid), entry);
 
 	cd = g_new (ConnectionData, 1);
 	cd->cddb = cddb;
+	/* We reference for the lifecycle of the lookup; we need
+         * to unref everywhere we consider the lookup done, whether
+	 * succesful or not */
 	g_object_ref (cddb);
 
 	cd->tag = 0;
@@ -1087,6 +1008,7 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	cd->mode = CONNECTION_MODE_NEED_HELLO;
 
 	cd->matches = NULL;
+	/* and start the connection for the entry lookup */
 	cddb_send_cmd (cd);
 }
 
@@ -1108,6 +1030,7 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 	}
 
 	/* since we're asked to save, we should keep this entry as valid */
+	cs_debug ("cddb-slave component asked to save for discid %s", discid);
 	entry->is_valid = TRUE;
 	write_ret = cddb_entry_write_to_file (entry);
 	if (write_ret == FALSE) {
@@ -1317,7 +1240,7 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 	(*names_list)->_buffer = CORBA_sequence_GNOME_Media_CDDBSlave2_TrackInfo_allocbuf (entry->ntrks);
 
 	if (entry->ntrks == 0) {
-		g_warning ("No tracks\n");
+		g_warning ("No tracks");
 		return;
 	}
 
@@ -1570,10 +1493,12 @@ finalize (GObject *object)
 	cddb = CDDB_SLAVE (object);
 	priv = cddb->priv;
 
+	cs_debug ("cddb-slave.c: finalize");
 	if (priv == NULL)
 		return;
 
 	/* Remove this slave from our list */
+	cs_debug ("cddb-slave.c: Removing slave %p", cddb);
 	cddb_slaves = g_list_remove (cddb_slaves, cddb);
 
 	g_free (priv->server);
@@ -1682,6 +1607,7 @@ cddb_slave_new_full (const char *server,
 
 
 	/* Add this slave to our global list of slaves */
+	cs_debug ("cddb-slave.c: adding slave %p", cddb);
 	cddb_slaves = g_list_prepend (cddb_slaves, cddb);
 
 	return cddb;

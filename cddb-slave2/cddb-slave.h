@@ -1,5 +1,6 @@
 /*
  * cddb-slave.h: Header for CDDBSlave object
+ * internal to cddb-slave
  *
  * Copyright (C) 2001-2002 Iain Holmes
  *
@@ -40,6 +41,7 @@ typedef struct _CDDBEntry {
 	GList *comments;
 	GHashTable *fields;
 	gboolean is_valid; /* TRUE when result of a good lookup or editor save */
+	GNOME_Media_CDDBSlave2_Result result; /* result of query */
 } CDDBEntry;
 
 

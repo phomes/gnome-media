@@ -1,5 +1,46 @@
 2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
 
+	* GNOME_Media_CDDBSlave2.idl:
+          add a result for UNKNOWN ENTRY
+	* HACKING:
+          add some more hacking notes
+	* Makefile.am:
+          reorganize to include cddb-slave-private
+	* cddb-slave-private.c: (cs_set_debug), (cs_debug):
+	* cddb-slave-private.h:
+          debugging functions
+	* cddb-slave-client.c: (finalize),
+	(cddb_slave_client_add_listener),
+	(cddb_slave_client_remove_listener):
+          use debugging
+	* cddb-slave.c: (cddb_slave_notify_listeners),
+	(do_goodbye_response), (clear_entry_from_cache), (do_goodbye),
+	(do_read_response), (do_read), (do_query_response), (do_query),
+	(do_hello_response), (do_hello), (do_open_response),
+	(read_from_server), (open_cb), (cddb_send_cmd),
+	(cddb_entry_is_valid), (cddb_check_cache),
+	(impl_GNOME_Media_CDDBSlave2_query),
+	(impl_GNOME_Media_CDDBSlave2_save),
+	(impl_GNOME_Media_CDDBSlave2_getAllTracks), (finalize),
+	(cddb_slave_new_full):
+          use debugging everywhere
+          store result of lookup when clearing entry from the cache
+          so we can return the result for the next lookup for this id
+          bytes_writen -> bytes_written
+          notify listeners and unref slave even on failed lookups
+          only write to .cddb dir from .cddbslave entry if it existed
+	* cddb-slave.h:
+          add struct member to store the result lookup
+	* cddb-slave2-query.c: (display_result), (setup_cb), (query_cb),
+	(teardown_cb), (listener_event_cb), (main):
+          a test application so we can debug lookups more easily by
+          specyfing the cddb query command.
+	* main.c: (cddb_destroy_cb), (factory_fn), (cddbslave_init),
+	(main):
+          add debugging.  check return values.
+
+2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
+
 	* Makefile.am:
 	* cddb-slave2-query.c: (listener_event_cb), (display_result),
 	(main):
