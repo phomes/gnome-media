@@ -117,7 +117,7 @@ void edit_window(GtkWidget *widget, gpointer data)
 	char tmp[64];
 	int i;
 
-	GtkWidget *disc_entry, *disc_ext;
+	GtkWidget *disc_entry, *disc_ext, *track_list_window;
 	GtkWidget *label, *disc_frame, *button_box;
 	GtkWidget *main_box, *disc_table, *button;
 
@@ -178,20 +178,27 @@ void edit_window(GtkWidget *widget, gpointer data)
 	   supports i18n */
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 20);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
-	gtk_clist_set_policy(GTK_CLIST(track_list), GTK_POLICY_AUTOMATIC,
-						    GTK_POLICY_AUTOMATIC);
 	gtk_clist_set_selection_mode(GTK_CLIST(track_list), 
 						    GTK_SELECTION_BROWSE);
 	gtk_clist_column_titles_passive(GTK_CLIST(track_list));
 	gtk_widget_set_usize(track_list, 150, 225 );
 	fill_list(track_list);
 
+	track_list_window = gtk_scrolled_window_new(GTK_CLIST(track_list)->hadjustment,
+						    GTK_CLIST(track_list)->vadjustment);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(track_list_window),
+				       GTK_POLICY_AUTOMATIC,
+				       GTK_POLICY_AUTOMATIC);
+
+	gtk_container_add(GTK_CONTAINER(track_list_window), track_list);
+
+	/* ... */
 	track_frame = gtk_frame_new(_("Track Information"));
 	
 	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
 	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_ext);
 	gtk_box_pack_start_defaults(GTK_BOX(track_vbox), entry_box);
-	gtk_box_pack_start_defaults(GTK_BOX(track_vbox), track_list);
+	gtk_box_pack_start_defaults(GTK_BOX(track_vbox), track_list_window);
 	gtk_container_add(GTK_CONTAINER(track_frame), track_vbox);
 	gtk_box_pack_start_defaults(GTK_BOX(main_box), track_frame);	
 	/* END Track area */
