@@ -76,11 +76,14 @@ int main(int argc, char **argv)
     int quit=FALSE, track, i;
     char c;
     time_t t1, t2;
+    struct sigaction sig_info;
 	
     /* Install signal handler */
     for( i=SIGHUP; i<SIGTERM+1; i++ )
 	signal( i, sighandler );
-    signal(SIGUSR2, reload_info);
+    memset (&sig_info, 0, sizeof(sig_info));
+    sig_info.sa_handler = reload_info;
+    sigaction(SIGUSR2, &sig_info, NULL);
 
     /* Allocate some memory for the cd structure */
     cd = malloc(sizeof(cd_struct));

@@ -1,3 +1,14 @@
+2001-05-31  Peter Teichman  <peter@ximian.com>
+
+	* gtcd.c, tcd.c: use sigaction rather than signal for the cd info
+	reloading function. Fixes a segfault. Patch from
+	David Hampton <hampton@employees.org>
+
+	* linux-cdrom.c: be a little more lenient when parsing artist and
+	album information. This fixes a crash when "/" was the first
+	character for an artist/title. Patch from  
+	David Hampton <hampton@employees.org> 
+
 2001-05-29  Peter Teichman  <peter@ximian.com>
 
 	* Makefile.am: remove the explicit gtcd.c rule. it was breaking

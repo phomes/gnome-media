@@ -1172,6 +1172,7 @@ int main (int argc, char *argv[])
 	CORBA_Environment ev;
 	PortableServer_POA poa;
 	GNOME_GTcd gtcd_server;
+	struct sigaction sig_info;
 
 	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
 	textdomain(PACKAGE);
@@ -1241,7 +1242,9 @@ int main (int argc, char *argv[])
 	gdk_color_black( gtk_widget_get_colormap(status_area), &black);
 	gdk_window_set_background( status_area->window, &black);
     
-	signal(SIGUSR2, reload_info);
+	memset (&sig_info, 0, sizeof(sig_info));
+	sig_info.sa_handler = reload_info;
+	sigaction(SIGUSR2, &sig_info, NULL);
 
 	PortableServer_POAManager_activate
 		(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);

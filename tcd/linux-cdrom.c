@@ -39,6 +39,7 @@
 #include <errno.h>
 #include <math.h>
 #include <sys/ioctl.h>
+#include <ctype.h>
 
 /* For _() */
 #include <config.h>
@@ -682,22 +683,46 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
     }
 }
 
+/*
+ * Parse the title information for a CD.  This information is in the
+ * format "Artist / Album" where the spaces around the divider may or
+ * may not be included.
+ */
 void parse_dtitle(cd_struct *cd)
 {
     char tmp[DISC_INFO_LEN], *tmp2;
+    int len;
 
-    /* Parse out the individual title elements. Help from Alec M. */
+    /* Parse out the individual title elements. */
     strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
-    if (tmp[0])
-	strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
-    else
-	cd->artist[0]=0;
+    if (tmp[0] == '\0') {
+	cd->artist[0] = '\0';
+	cd->album[0] = '\0';
+	return;
+    }
 
-    tmp2 = strtok(NULL, "\0");
-    if(tmp2)
-	strncpy(cd->album, tmp2+1, DISC_INFO_LEN);
+    tmp2 = index(tmp, '/');
+    if (tmp2)
+    {
+	len = tmp2 - tmp;
+	if (len > 0)
+	{				// Back up to first non-space
+	    while ((len > 0) && isspace(tmp[len-1]))
+		   len--;
+	}
+	strncpy(cd->artist, tmp, len);
+	cd->artist[len] = '\0';		// Tie off the string
+
+	tmp2++;				// Skip the '/'
+	while (isspace(*tmp2))		// Skip spaces
+	    tmp2++;
+	strncpy(cd->album, tmp2, DISC_INFO_LEN);
+    }
     else
-	strncpy(cd->album, "", DISC_INFO_LEN);
+    {
+	strncpy(cd->artist, tmp, DISC_INFO_LEN);
+	cd->album[0] = '\0';
+    }
 }
 
 int tcd_readdiskinfo( cd_struct *cd )
