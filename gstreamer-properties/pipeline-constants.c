@@ -44,69 +44,69 @@ extern GSTPPipelineDescription audiosrc_pipelines[];
 extern GSTPPipelineDescription videosrc_pipelines[];
 
 GSTPPipelineDescription audiosink_pipelines[] = {
-	{PIPE_TYPE_AUDIOSINK, 0, _("ALSA - Advanced Linux Sound Architecture"),
+	{PIPE_TYPE_AUDIOSINK, 0,"ALSA - Advanced Linux Sound Architecture",
 	 "alsasink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0, _("Artsd - ART Sound Daemon"), "artsdsink", FALSE,
+	{PIPE_TYPE_AUDIOSINK, 0,"Artsd - ART Sound Daemon", "artsdsink", FALSE,
 	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0, _("ESD - Enlightenment Sound Daemon"), "esdsink",
+	{PIPE_TYPE_AUDIOSINK, 0,"ESD - Enlightenment Sound Daemon", "esdsink",
 	 FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0, _("Jack"), "jacksink", FALSE, TEST_PIPE_SUPPLIED,
+	{PIPE_TYPE_AUDIOSINK, 0,"Jack", "jacksink", FALSE, TEST_PIPE_SUPPLIED,
 	 audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0, _("OSS - Open Sound System"), "osssink", FALSE,
+	{PIPE_TYPE_AUDIOSINK, 0,"OSS - Open Sound System", "osssink", FALSE,
 	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
-	{PIPE_TYPE_AUDIOSINK, 0, _("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
+	{PIPE_TYPE_AUDIOSINK, 0,"Custom", NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 audiosink_test_pipe, TRUE}
 };
 
 GSTPPipelineDescription videosink_pipelines[] = {
-	{PIPE_TYPE_VIDEOSINK, 0, _("Ascii Art - X11"), "aasink driver=0", FALSE,
+	{PIPE_TYPE_VIDEOSINK, 0,"Ascii Art - X11", "aasink driver=0", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("Ascii Art - console"), "aasink driver=1", FALSE,
+	{PIPE_TYPE_VIDEOSINK, 0,"Ascii Art - console", "aasink driver=1", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("Generic Videosink"), "videosink", FALSE,
+	{PIPE_TYPE_VIDEOSINK, 0,"Generic Videosink", "videosink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("SDL - Simple DirectMedia Layer"), "sdlvideosink",
+	{PIPE_TYPE_VIDEOSINK, 0,"SDL - Simple DirectMedia Layer", "sdlvideosink",
 	 FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("XWindows (No Xv)"),
+	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (No Xv)",
 	 "xvideosink disable-xv=true", FALSE, TEST_PIPE_SUPPLIED,
 	 videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("XWindows (X11/XShm/Xv)"), "xvideosink", FALSE,
+	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (X11/XShm/Xv)", "xvideosink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0, _("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
+	{PIPE_TYPE_VIDEOSINK, 0,"Custom", NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 videosink_test_pipe, TRUE}
 };
 
 GSTPPipelineDescription audiosrc_pipelines[] = {
-	{PIPE_TYPE_AUDIOSRC, 0, _("ALSA - Advanced Linux Sound Architecture"),
+	{PIPE_TYPE_AUDIOSRC, 0,"ALSA - Advanced Linux Sound Architecture",
 	 "alsasrc", FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("ESD - Enlightenment Sound Daemon"), "esdmon",
+	{PIPE_TYPE_AUDIOSRC, 0,"ESD - Enlightenment Sound Daemon", "esdmon",
 	 FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("Jack"), "jacksrc", FALSE, TEST_PIPE_AUDIOSINK,
+	{PIPE_TYPE_AUDIOSRC, 0,"Jack", "jacksrc", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("OSS - Open Sound System"), "osssrc", FALSE,
+	{PIPE_TYPE_AUDIOSRC, 0,"OSS - Open Sound System", "osssrc", FALSE,
 	 TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("OSS Monitor (capture OSS apps)"), "ossgst",
+	{PIPE_TYPE_AUDIOSRC, 0,"OSS Monitor (capture OSS apps)", "ossgst",
 	 FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("Silence"), "silence", FALSE, TEST_PIPE_AUDIOSINK,
+	{PIPE_TYPE_AUDIOSRC, 0,"Silence", "silence", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0, _("Custom"), NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
+	{PIPE_TYPE_AUDIOSRC, 0,"Custom", NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
 	 TRUE}
 };
 
 GSTPPipelineDescription videosrc_pipelines[] = {
-/*	{PIPE_TYPE_VIDEOSRC, 0, _("None"), "fakesrc", FALSE,
+/*	{PIPE_TYPE_VIDEOSRC, 0,"None", "fakesrc", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE}, */
-	{PIPE_TYPE_VIDEOSRC, 0, _("MJPEG (e.g. Zoran v4l device)"), "v4lmjpegsrc", FALSE,
+	{PIPE_TYPE_VIDEOSRC, 0,"MJPEG (e.g. Zoran v4l device)", "v4lmjpegsrc", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0, _("QCAM"), "qcamsrc", FALSE, TEST_PIPE_VIDEOSINK,
+	{PIPE_TYPE_VIDEOSRC, 0,"QCAM", "qcamsrc", FALSE, TEST_PIPE_VIDEOSINK,
 	 NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0, _("Test Input"), "videotestsrc", FALSE,
+	{PIPE_TYPE_VIDEOSRC, 0,"Test Input", "videotestsrc", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0, _("Video for Linux (v4l)"), "v4lsrc", FALSE,
+	{PIPE_TYPE_VIDEOSRC, 0,"Video for Linux (v4l)", "v4lsrc", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0, _("Video for Linux 2 (v4l2)"), "v4l2src", FALSE,
+	{PIPE_TYPE_VIDEOSRC, 0,"Video for Linux 2 (v4l2)", "v4l2src", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0, _("Custom"), NULL, TRUE, TEST_PIPE_VIDEOSINK, NULL,
+	{PIPE_TYPE_VIDEOSRC, 0,"Custom", NULL, TRUE, TEST_PIPE_VIDEOSINK, NULL,
 	 TRUE}
 };
 
