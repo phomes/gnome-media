@@ -282,8 +282,8 @@ on_save_activate_cb (GtkWidget* widget, gpointer data)
 		return;
 	}
 
-	if (!save_wav_file (active_file)) {
-		GtkWidget* mess = gnome_message_box_new (_("Error saving . wav file"),
+	if (!save_sound_file (active_file)) {
+		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
 							 GNOME_MESSAGE_BOX_WARNING,
 							 GNOME_STOCK_BUTTON_OK,
 							 NULL);
@@ -646,8 +646,8 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 
 	active_file = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector)));
 
-	if (!save_wav_file (active_file)) {
-		GtkWidget* mess = gnome_message_box_new (_("Error saving wav file"),
+	if (!save_sound_file (active_file)) {
+		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
 							 GNOME_MESSAGE_BOX_WARNING,
 							 GNOME_STOCK_BUTTON_OK,
 							 NULL);
@@ -677,18 +677,18 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 gint
 save_dont_or_cancel (void)
 {
-	GtkWidget* mess = gnome_message_box_new ("File not saved. Do you want to save it?",
+	GtkWidget* mess = gnome_message_box_new (_("File not saved. Do you want to save it?"),
 						 GNOME_MESSAGE_BOX_QUESTION,
 						 GNOME_STOCK_BUTTON_YES,
 						 GNOME_STOCK_BUTTON_NO,
 						 GNOME_STOCK_BUTTON_CANCEL,
 						 NULL);
 
-	return ( gnome_dialog_run (GNOME_DIALOG (mess)) );
+	return (gnome_dialog_run (GNOME_DIALOG (mess)));
 }
 
 gboolean
-save_wav_file (const gchar* file)
+save_sound_file (const gchar* file)
 {
 	if (!file_changed) {
 		gchar* tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
