@@ -165,7 +165,8 @@ listener_event_cb (BonoboListener *listener,
 		query_ok = TRUE;
                 break;
 	default:
-		g_warning ("Lookup through slave failed");
+		g_warning ("Lookup through slave failed due to an error: %d",
+			qr->result);
 		break;
 	}
 	have_result = TRUE;

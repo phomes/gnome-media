@@ -75,5 +75,84 @@ cddb-slave2-query 56072d07 7 150 17640 29625 51380 70567 99705 122287 1839
 is the query for the disc mentioned in
 http://bugzilla.gnome.org/show_bug.cgi?id=78201
 
+CDDB protocol
+-------------
+
+- http://www.freedb.org/modules.php?name=Sections&sop=viewarticle&artid=28
+- UTF-8 is handled from protocol level 6 on.  You can set the server to
+  a given protocol level by sending "proto 6" which will get a reply like
+
+201 OK, CDDB protocol level now: 6
+
+  if it worked and
+
+501 Illegal CDDB protocol level.
+
+  if it failed.
+
+A sample session:
+
+[thomas@urgent thomas]$ telnet freedb.freedb.org 888
+Trying 193.201.200.74...
+Connected to freedb.freedb.org.
+Escape character is '^]'.
+201 urchin CDDBP server v1.5PL2 ready at Tue May 11 09:47:19 2004
+cddb hello unknown localhost telnet 0
+200 Hello and welcome unknown@localhost running telnet 0.
+cddb query 9b0ab70b 11 150 18628 34394 50839 69678 79616 99248 134880 151507 164754 189715 2745
+200 rock 9b0ab70b Death Cab for Cutie / Transatlanticism
+cddb read rock 9b0ab70b
+210 rock 9b0ab70b CD database entry follows (until terminating `.')
+# xmcd
+#
+# Track frame offsets:
+#        150
+#        18628
+#        34394
+#        50839
+#        69678
+#        79616
+#        99248
+#        134880
+#        151507
+#        164754
+#        189715
+#
+# Disc length: 2745 seconds
+#
+# Revision: 5
+# Processed by: cddbd v1.5PL2 Copyright (c) Steve Scherf et al.
+# Submitted via: ExactAudioCopy v0.95a5
+#
+DISCID=9b0ab70b
+DTITLE=Death Cab for Cutie / Transatlanticism
+TTITLE0=The New Year
+TTITLE1=Lightness
+TTITLE2=Title And Registration
+TTITLE3=Expo '86
+TTITLE4=The Sound Of Settling
+TTITLE5=Tiny Vessels
+TTITLE6=Transatlanticism
+TTITLE7=Passenger Seat
+TTITLE8=Death of an Interior Decorator
+TTITLE9=We Looked Like Giants
+TTITLE10=A Lack Of Color
+EXTD= YEAR: 2003
+EXTT0=
+EXTT1=
+EXTT2=
+EXTT3=
+EXTT4=
+EXTT5=
+EXTT6=
+EXTT7=
+EXTT8=
+EXTT9=
+EXTT10=
+PLAYORDER=
+.
+quit
+230 urchin Closing connection.  Goodbye.
+Connection closed by foreign host.
 
 

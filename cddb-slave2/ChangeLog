@@ -1,3 +1,18 @@
+2004-05-11  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* HACKING:
+          add more hacking notes concerning the protocol used.
+	* cddb-slave.c: (do_goodbye_response), (do_open_response),
+	(do_hello_challenge), (do_hello_response), (do_protocol_challenge),
+	(do_protocol_response), (do_query_challenge), (do_query_response),
+	(do_read_challenge), (do_read_response), (do_goodbye_challenge),
+	(read_from_server), (open_cb), (impl_GNOME_Media_CDDBSlave2_query):
+	  - add a protocol stage so we can set protocol level 6 (UTF-8)
+	  - reorder challenge/response code so we can follow the flow
+          - notify slaves on each error as well
+	* cddb-slave2-query.c: (listener_event_cb):
+          - show error code on failure
+
 2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* GNOME_Media_CDDBSlave2.idl:
