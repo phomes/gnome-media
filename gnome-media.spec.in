@@ -64,16 +64,15 @@ agréable et eficace, et est facile à configurer.
 if [ ! -f configure ]; then
 %ifarch alpha
   CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --host=alpha-redhat-linux --prefix=%prefi
-x --sysconfdir="/etc"
+x 
 %else
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix --sysconfdir="/etc"
+  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix 
 %endif
 else
 %ifarch alpha
   CFLAGS="$RPM_OPT_FLAGS" ./configure --host=alpha-redhat-linux --prefix=%prefix
- --sysconfdir="/etc"
 %else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --sysconfdir="/etc"
+  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix 
 %endif
 fi
 
