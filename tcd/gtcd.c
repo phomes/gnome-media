@@ -832,9 +832,16 @@ void setup_fonts(void)
 		gdk_font_unref(tfont);
         if( sfont )
 		gdk_font_unref(sfont);
-		
-        tfont = gdk_font_load( props.statusfont );
-	sfont = gdk_font_load( props.trackfont );
+
+	if(props.statusfont)
+	        sfont = gdk_font_load( props.statusfont );
+	else
+		sfont = NULL;
+
+	if(props.trackfont)
+		tfont = gdk_font_load( props.trackfont );
+	else
+		tfont = NULL;
 }
 
 void init_window(void)

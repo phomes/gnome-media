@@ -16,13 +16,13 @@
 
 static void gtk_tv_class_init(GtkTVClass *tvclass);
 static void gtk_tv_init(GtkTV *tv);
-static void gtk_tv_realize(GtkTV *tv);
-static void gtk_tv_unrealize(GtkTV *tv);
 static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event,
 			       gboolean is_our_window);
 static void gtk_tv_destroy(GtkWidget *widget);
 static void gtk_tv_map(GtkTV *widget);
 static void gtk_tv_unmap(GtkTV *widget);
+static void gtk_tv_show(GtkTV *widget);
+static void gtk_tv_hide(GtkTV *widget);
 static void gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition);
 static void gtk_tv_size_allocate(GtkWidget *widget, GtkAllocation *allocation);
 static gboolean gtk_tv_rootwin_event(GtkWidget *widget,
@@ -33,6 +33,8 @@ static gboolean gtk_tv_toplevel_relay(GtkWidget *widget,
 				      GtkWidget *tv);
 static void gtk_tv_configure_event(GtkWidget *widget,
 				   GdkEventConfigure *event);
+
+GtkWidgetClass *parent_class;
 
 guint
 gtk_tv_get_type(void)
@@ -63,13 +65,13 @@ gtk_tv_class_init(GtkTVClass *tvclass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(tvclass);
 
+  parent_class = gtk_type_parent_class(gtk_tv_get_type());
+
   GTK_OBJECT_CLASS(tvclass)->destroy = (gpointer)gtk_tv_destroy;
   widget_class->unmap = (gpointer)gtk_tv_unmap;
   widget_class->map = (gpointer)gtk_tv_map;
-#if 0
-  widget_class->hide = (gpointer)gtk_tv_unmap;
-  widget_class->show = (gpointer)gtk_tv_map;
-#endif
+  widget_class->hide = (gpointer)gtk_tv_hide;
+  widget_class->show = (gpointer)gtk_tv_show;
   widget_class->size_request = (gpointer)gtk_tv_size_request;
   widget_class->size_allocate = (gpointer)gtk_tv_size_allocate;
 }
@@ -79,8 +81,9 @@ gtk_tv_init(GtkTV *tv)
 {
   tv->fd = -1;
   tv->toplevel_config_id = -1;
+  tv->blocking_events = FALSE;
 
-  GTK_WIDGET_SET_FLAGS (GTK_WIDGET(tv), GTK_NO_WINDOW);
+  GTK_WIDGET_SET_FLAGS (tv, GTK_NO_WINDOW);
 
   tv->rootwin = gnome_rootwin_new();
   gtk_signal_connect(GTK_OBJECT(tv->rootwin), "event",
@@ -315,6 +318,9 @@ gtk_tv_toplevel_relay(GtkWidget *widget,
 		      GdkEvent *event,
 		      GtkWidget *tv)
 {
+  if(GTK_TV(tv)->blocking_events)
+    return FALSE;
+
   switch(event->type)
     {
     case GDK_EXPOSE:
@@ -324,6 +330,9 @@ gtk_tv_toplevel_relay(GtkWidget *widget,
 			    event->expose.area.width,
 			    event->expose.area.height);
     case GDK_VISIBILITY_NOTIFY:
+#ifdef DEBUG_GTV
+	g_print("Toplevel got visibility notify\n");
+#endif
       gtk_tv_do_clipping(GTK_TV(tv), event, TRUE);
       if(ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow))
 	g_warning("VIDIOCSWIN failed in toplevel_relay visibility\n");
@@ -347,6 +356,9 @@ gtk_tv_rootwin_event(GtkWidget *widget,
 		     GdkEvent *event,
 		     GtkTV *tv)
 {
+  if(tv->blocking_events)
+    return FALSE;
+
   switch(event->type)
     {
     case GDK_MAP:
@@ -429,6 +441,21 @@ gtk_tv_configure_event(GtkWidget *widget,
     g_warning("VIDIOCSWIN failed in configure_event\n");
 }
 
+static void
+gtk_tv_show(GtkTV *tv)
+{
+  tv->blocking_events = 0;
+  if(parent_class->show)
+    parent_class->show(tv);
+}
+
+static void
+gtk_tv_hide(GtkTV *tv)
+{
+  tv->blocking_events = 1;
+  if(parent_class->hide)
+    parent_class->hide(tv);
+}
 
 static void
 gtk_tv_map(GtkTV *tv)
@@ -444,6 +471,8 @@ gtk_tv_map(GtkTV *tv)
       if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
 	g_warning("VIDIOCCAPTURE failed in map\n");
     }
+  if(parent_class->map)
+    parent_class->map(tv);
 }
 
 static void
@@ -458,6 +487,8 @@ gtk_tv_unmap(GtkTV *tv)
       if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
 	g_warning("VIDIOCCAPTURE failed in unmap\n");
     }
+  if(parent_class->unmap)
+    parent_class->unmap(tv);
 }
 
 /* Copied almost directly from xtvscreen */
@@ -882,13 +913,14 @@ gdk_get_RGB_from_16(GdkWindow *w, int xx, int yy, int width, int height)
    unsigned char *data,*ptr;
    unsigned short *ptr2,val;
    
-   if (!w) return NULL;
+   if (!w) { g_print("no window to get from\n"); return NULL; }
    ww=width;hh=height;
    i=gdk_image_get(w,xx,yy,ww,hh);
-   if (!i) return NULL;
-   data=(unsigned char *)malloc(ww*hh*3);
+   if (!i) { g_print("gdk_image_get failed\n"); return NULL; }
+   data=(unsigned char *)g_malloc(ww*hh*3);
    if (!data)
      {
+	g_print("malloc failed for %dx%d\n",ww,hh);
 	gdk_image_destroy(i);
 	return NULL;
      }
@@ -906,7 +938,9 @@ gdk_get_RGB_from_16(GdkWindow *w, int xx, int yy, int width, int height)
      }
    gdk_image_destroy(i);
    im=gdk_imlib_create_image_from_data(data,NULL,ww,hh);
-   free(data);
+   g_free(data);
+   g_print("create_image_from_data(%p,NULL,%d,%d) = %p\n",
+	   data,ww,hh,im);
    return im;
 }
 
@@ -932,6 +966,9 @@ gtk_tv_grab_image(GtkTV *tv,
 
   abool = tv->visible;
   ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+
+  g_print("gtk_tv_grab_image returns %p\n", retval);
+
   return retval;
 
   g_return_if_fail(tv != NULL);

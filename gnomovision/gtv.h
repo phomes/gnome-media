@@ -32,7 +32,8 @@ struct _GtkTV
 			       the video buffer goes */
   GdkColor chroma_colour;
   /* Misc flags */
-  gboolean use_shm, kill_on_overlap, clean_display, need_colour_cube;
+  gboolean use_shm, kill_on_overlap, clean_display, need_colour_cube,
+    blocking_events;
   gint visible;
 
   /*** These are initialized at object creation, of course, but are
