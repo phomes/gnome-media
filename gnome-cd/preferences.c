@@ -781,6 +781,17 @@ add_paired_relations (GtkWidget *target1,
 	add_relation (set2, target2_type, atk_target1);
 }
 
+static void
+add_description (GtkWidget *widget, 
+		 const gchar *desc)
+{
+	AtkObject *atk_widget;
+
+	atk_widget = gtk_widget_get_accessible (widget);
+	atk_object_set_description (atk_widget, desc);
+}
+
+
 GtkWidget *
 preferences_dialog_show (GnomeCD *gcd,
 			 gboolean only_device)
@@ -870,6 +881,8 @@ preferences_dialog_show (GnomeCD *gcd,
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 	
 	pd->start_nothing = gtk_radio_button_new_with_mnemonic (NULL, _("Do _nothing"));
+	add_description (pd->start_nothing, _("Do nothing when CD Player starts"));
+
 	if (gcd->preferences->start == GNOME_CD_PREFERENCES_START_NOTHING) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->start_nothing), TRUE);
 	}
@@ -879,6 +892,7 @@ preferences_dialog_show (GnomeCD *gcd,
 
 	pd->start_play = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->start_nothing),
 									 _("Start _playing CD"));
+	add_description (pd->start_play, _("Start playing CD when CD Player starts"));
 	if (gcd->preferences->start == GNOME_CD_PREFERENCES_START_START) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->start_play), TRUE);
 	}
@@ -888,6 +902,8 @@ preferences_dialog_show (GnomeCD *gcd,
 	
 	pd->start_stop = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->start_play),
 									 _("_Stop playing CD"));
+	add_description (pd->start_stop, _("Stop playing CD when CD Player starts"));
+
 	if (gcd->preferences->start == GNOME_CD_PREFERENCES_START_STOP) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->start_stop), TRUE);
 	}
@@ -921,6 +937,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 
 	pd->stop_nothing = gtk_radio_button_new_with_mnemonic (NULL, _("Do not_hing"));
+	add_description (pd->stop_nothing, _("Do nothing when CD Player exits"));
 	if (gcd->preferences->stop == GNOME_CD_PREFERENCES_STOP_NOTHING) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->stop_nothing), TRUE);
 	}
@@ -930,6 +947,8 @@ preferences_dialog_show (GnomeCD *gcd,
 
 	pd->stop_stop = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->stop_nothing),
 									_("S_top playing CD"));
+	add_description (pd->stop_stop, _("Stop playing CD when CD player quits"));
+
 	if (gcd->preferences->stop == GNOME_CD_PREFERENCES_STOP_STOP) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->stop_stop), TRUE);
 	}
@@ -939,6 +958,7 @@ preferences_dialog_show (GnomeCD *gcd,
 
 	pd->stop_open = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->stop_stop),
 									_("Attempt to _open CD tray"));
+	add_description (pd->stop_open, _("Attempt to open CD tray when CD Player exits"));
 	if (gcd->preferences->stop == GNOME_CD_PREFERENCES_STOP_OPEN) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->stop_open), TRUE);
 	}
