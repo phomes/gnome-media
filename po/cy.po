@@ -1,49 +1,79 @@
-#Gnome yn Gymraeg.
-#Copyright (C) 2003 Free Software Foundation, Inc.
-#www.gyfieithu.co.uk <kyfieithu@dotmon.com>, 2003.
-#and contributors
+# Translation of gnome-media.po to Cymraeg
+# Gnome yn Gymraeg.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# www.kyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
+# KGyfieithu <kyfieithu@dotmon.com>, 2003
+# Owain Green, Dafydd Harries, Dafydd Jones, Steve Griffiths, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 2.2\n"
-"POT-Creation-Date: 2002-09-18 02:56+0200\n"
-"PO-Revision-Date: 2003-05-02 21:50+0200\n"
-"Last-Translator: www.gyfieithu.co.uk <kyfieithu@dotmon.com>\n"
-"Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
+"Project-Id-Version: gnome-media\n"
+"POT-Creation-Date: 2003-07-20 10:26+0100\n"
+"PO-Revision-Date: 2003-07-20 18:58+0100\n"
+"Last-Translator: Telsa Gwynne <hobbit@aloss.ukuu.org.uk>\n"
+"Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
-"X-Generator: Kartouche 0.0.1a\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.1\n"
+"\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
 msgstr "Cyfeiriad y gweinydd i'w ddefnyddio ar gyfer ymholiadau CD"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Gwybodaeth i'w anfon i'r gweinydd"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:841
 msgid "Port"
 msgstr "Porth"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "Enw'r gweinydd"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Math y gweinydd"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
 msgstr "Enw'r gwesteiwr a gaiff ei anfon gyda pob ymholiad"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
 msgstr "Y porth mae'r gweinydd yn ateb ymholiadau arni"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"Y math o weinydd i gysylltu a fe ar gyfer ymholiadau CD. Gwerthoedd posib: "
+"0 (gweinydd ar hap) , 1 (gweinydd FreeDB arall) a 2 (gweinydd arall)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "Yr enw cyfrif"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
 msgstr "Yr enw cyfrif a gaiff ei anfon gyda pob ymholiad"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"Mae'r allwedd hon yn penodi pa wybodaeth a gaiff ei anfon i'r gweinydd "
+"ar gyfer ymholiadau CD. Gwerthoedd posib: 0 (dim gwybodaeth), 1 (gwir "
+"wybodaeth) a 3 (gwybodaeth arall)."
+
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr "Enw eich gwesteiwr"
 
@@ -55,65 +85,72 @@ msgstr "Maint Ehangwr"
 msgid "Size of the expander arrow"
 msgstr "Maint y saeth ehangu"
 
-#. Log on info 
-#: cddb-slave2/cddb-slave-capplet.c:648
-msgid "Log on information"
-msgstr "Gwybodaeth mewngofnodi"
+#: cddb-slave2/cddb-slave-capplet.c:117
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "Bu gwall wrth ddangos cymorth: \n"
+"%s"
 
-#: cddb-slave2/cddb-slave-capplet.c:657
-msgid "Send _no info"
+#. Log on info
+#: cddb-slave2/cddb-slave-capplet.c:702
+msgid "Log On Information"
+msgstr "Gwybodaeth Mewngofnodi"
+
+#: cddb-slave2/cddb-slave-capplet.c:708
+msgid "Sen_d no information"
 msgstr "Anfon _dim gwybodaeth"
 
-#: cddb-slave2/cddb-slave-capplet.c:666
-msgid "Send real _info"
+#: cddb-slave2/cddb-slave-capplet.c:717
+msgid "Send real _information"
 msgstr "Anfon _gwir wybodaeth"
 
-#: cddb-slave2/cddb-slave-capplet.c:675
-msgid "Send _other info..."
-msgstr "Anfon gwyboadaeth _arall..."
+#: cddb-slave2/cddb-slave-capplet.c:726
+msgid "Send _other information:"
+msgstr "Anfon gwybodaeth _arall..."
 
-#: cddb-slave2/cddb-slave-capplet.c:692
-msgid "N_ame:"
+#: cddb-slave2/cddb-slave-capplet.c:751
+msgid "_Name:"
 msgstr "_Enw:"
 
-#: cddb-slave2/cddb-slave-capplet.c:711
-msgid "_Hostname:"
-msgstr "Enw _Gwesteiwr:"
+#: cddb-slave2/cddb-slave-capplet.c:771
+msgid "Hostna_me:"
+msgstr "Enw gwesteiwr:"
 
-#. Server info 
-#: cddb-slave2/cddb-slave-capplet.c:733 cddb-slave2/cddb-slave-capplet.c:773
+#. Server info
+#: cddb-slave2/cddb-slave-capplet.c:794 cddb-slave2/cddb-slave-capplet.c:838
 msgid "Server"
 msgstr "Gweinydd"
 
-#: cddb-slave2/cddb-slave-capplet.c:741
+#: cddb-slave2/cddb-slave-capplet.c:800
 msgid "FreeDB _round robin server"
 msgstr "Gweinydd _dosbarthiad cylchol FreeDB"
 
-#: cddb-slave2/cddb-slave-capplet.c:747
-msgid "Other _FreeDB server..."
+#: cddb-slave2/cddb-slave-capplet.c:806
+msgid "Other _FreeDB server:"
 msgstr "Gweinydd _FreeDB arall..."
 
-#: cddb-slave2/cddb-slave-capplet.c:779
+#: cddb-slave2/cddb-slave-capplet.c:844
 msgid "Location"
 msgstr "Lleoliad"
 
-#: cddb-slave2/cddb-slave-capplet.c:785
-msgid "Update server list"
+#: cddb-slave2/cddb-slave-capplet.c:850
+msgid "_Update Server List"
 msgstr "Diweddaru'r rhestr gwesteiwyr"
 
-#: cddb-slave2/cddb-slave-capplet.c:792
-msgid "Other _server..."
-msgstr "Gwesteiwr _arall..."
+#: cddb-slave2/cddb-slave-capplet.c:857
+msgid "Other _server:"
+msgstr "Gwesteiwr _arall:"
 
-#: cddb-slave2/cddb-slave-capplet.c:804
-msgid "Hostname:"
+#: cddb-slave2/cddb-slave-capplet.c:877
+msgid "Hos_tname:"
 msgstr "Enw gwesteiwr:"
 
-#: cddb-slave2/cddb-slave-capplet.c:816
+#: cddb-slave2/cddb-slave-capplet.c:894
 msgid "_Port:"
 msgstr "Porth:"
 
-#: cddb-slave2/cddb-slave-capplet.c:866
+#: cddb-slave2/cddb-slave-capplet.c:960
 msgid "CD Database Preferences"
 msgstr "Hoffiannau Cronfa Ddata CD"
 
@@ -121,10 +158,10 @@ msgstr "Hoffiannau Cronfa Ddata CD"
 msgid "Unknown / Unknown"
 msgstr "Anhysbys / Anhysbys"
 
-#. Attempts to get length ran out. 
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:760 
-#: grecord/src/gsr-window.c:769 grecord/src/gsr-window.c:778 
-#: grecord/src/gsr-window.c:788 grecord/src/gsr-window.c:1108
+#. Attempts to get length ran out.
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:778
+#: grecord/src/gsr-window.c:787 grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:806 grecord/src/gsr-window.c:1133
 msgid "Unknown"
 msgstr "Anhysbys"
 
@@ -134,11 +171,12 @@ msgstr "Sawl cydweddiad..."
 
 #: cddb-slave2/cddb-slave.c:446
 msgid ""
-" There were multiple matches found in the database.\n"
-" Below is a list of possible matches, please choose the best match\n"
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
 msgstr ""
-" Canfuwyd sawl cydweddiad yn y cronfa ddata.\n"
-" Islaw mae rhestr o gydweddiadau posibl - dewiswch yr un gorau os gwelwch yn dda\n"
+"Canfuwyd sawl cydweddiad yn y cronfa ddata.\n"
+" Islaw mae rhestr o gydweddiadau posibl - dewiswch yr un gorau os gwelwch yn "
+"dda"
 
 #: cddb-slave2/cddb-slave.c:457
 msgid "Category"
@@ -152,7 +190,7 @@ msgstr "ID y Ddisg"
 msgid "Artist and Title"
 msgstr "Artist a Theitl"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284 
+#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
 #: gnome-cd/gnome-cd.c:130
 msgid "Unknown track"
 msgstr "Trac anhysbys"
@@ -165,645 +203,645 @@ msgstr "Cronfa ddata CD"
 msgid "Modify your CD database preferences"
 msgstr "Addasu eich hoffiannau cronfa ddata CD"
 
-#: cddb-slave2/cddb-track-editor.c:78
+#: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
 msgstr "Y Felan"
 
-#: cddb-slave2/cddb-track-editor.c:79
+#: cddb-slave2/cddb-track-editor.c:80
 msgid "Classical Rock"
 msgstr "Roc Clasurol"
 
-#: cddb-slave2/cddb-track-editor.c:80
+#: cddb-slave2/cddb-track-editor.c:81
 msgid "Country"
 msgstr "Country"
 
-#: cddb-slave2/cddb-track-editor.c:81
+#: cddb-slave2/cddb-track-editor.c:82
 msgid "Dance"
 msgstr "Dawns"
 
-#: cddb-slave2/cddb-track-editor.c:82
+#: cddb-slave2/cddb-track-editor.c:83
 msgid "Disco"
 msgstr "Disgo"
 
-#: cddb-slave2/cddb-track-editor.c:83
+#: cddb-slave2/cddb-track-editor.c:84
 msgid "Funk"
 msgstr "Ffync"
 
-#: cddb-slave2/cddb-track-editor.c:84
+#: cddb-slave2/cddb-track-editor.c:85
 msgid "Grunge"
 msgstr "Grynj"
 
-#: cddb-slave2/cddb-track-editor.c:85
+#: cddb-slave2/cddb-track-editor.c:86
 msgid "Hip-Hop"
 msgstr "Hip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:86
+#: cddb-slave2/cddb-track-editor.c:87
 msgid "Jazz"
 msgstr "Jaz"
 
-#: cddb-slave2/cddb-track-editor.c:87
+#: cddb-slave2/cddb-track-editor.c:88
 msgid "Metal"
 msgstr "Metal"
 
-#: cddb-slave2/cddb-track-editor.c:88
+#: cddb-slave2/cddb-track-editor.c:89
 msgid "New Age"
 msgstr "Oes Newydd"
 
-#: cddb-slave2/cddb-track-editor.c:89
+#: cddb-slave2/cddb-track-editor.c:90
 msgid "Oldies"
 msgstr "Rhai Hen"
 
-#: cddb-slave2/cddb-track-editor.c:90
+#: cddb-slave2/cddb-track-editor.c:91
 msgid "Other"
 msgstr "Eraill"
 
-#: cddb-slave2/cddb-track-editor.c:91
+#: cddb-slave2/cddb-track-editor.c:92
 msgid "Pop"
 msgstr "Pop"
 
-#: cddb-slave2/cddb-track-editor.c:92
+#: cddb-slave2/cddb-track-editor.c:93
 msgid "R&B"
 msgstr "R&B"
 
-#: cddb-slave2/cddb-track-editor.c:93
+#: cddb-slave2/cddb-track-editor.c:94
 msgid "Rap"
 msgstr "Rap"
 
-#: cddb-slave2/cddb-track-editor.c:94
+#: cddb-slave2/cddb-track-editor.c:95
 msgid "Reggae"
 msgstr "Reggae"
 
-#: cddb-slave2/cddb-track-editor.c:95
+#: cddb-slave2/cddb-track-editor.c:96
 msgid "Rock"
 msgstr "Roc"
 
-#: cddb-slave2/cddb-track-editor.c:96
+#: cddb-slave2/cddb-track-editor.c:97
 msgid "Techno"
 msgstr "Tecno"
 
-#: cddb-slave2/cddb-track-editor.c:97
+#: cddb-slave2/cddb-track-editor.c:98
 msgid "Industrial"
 msgstr "Diwydiannol"
 
-#: cddb-slave2/cddb-track-editor.c:98
+#: cddb-slave2/cddb-track-editor.c:99
 msgid "Alternative"
 msgstr "Alternative"
 
-#: cddb-slave2/cddb-track-editor.c:99
+#: cddb-slave2/cddb-track-editor.c:100
 msgid "Ska"
 msgstr "Ska"
 
-#: cddb-slave2/cddb-track-editor.c:100
+#: cddb-slave2/cddb-track-editor.c:101
 msgid "Death Metal"
 msgstr "Death Metal"
 
-#: cddb-slave2/cddb-track-editor.c:101
+#: cddb-slave2/cddb-track-editor.c:102
 msgid "Pranks"
 msgstr "Pranciau"
 
-#: cddb-slave2/cddb-track-editor.c:102
+#: cddb-slave2/cddb-track-editor.c:103
 msgid "Soundtrack"
 msgstr "Trac Sain"
 
-#: cddb-slave2/cddb-track-editor.c:103
+#: cddb-slave2/cddb-track-editor.c:104
 msgid "Euro-Techno"
 msgstr "Euro-Techno"
 
-#: cddb-slave2/cddb-track-editor.c:104
+#: cddb-slave2/cddb-track-editor.c:105
 msgid "Ambient"
 msgstr "Ambient"
 
-#: cddb-slave2/cddb-track-editor.c:105
+#: cddb-slave2/cddb-track-editor.c:106
 msgid "Trip-Hop"
 msgstr "Trip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:106
+#: cddb-slave2/cddb-track-editor.c:107
 msgid "Vocal"
 msgstr "Lleisiol"
 
-#: cddb-slave2/cddb-track-editor.c:107
+#: cddb-slave2/cddb-track-editor.c:108
 msgid "Jazz+Funk"
 msgstr "Jazz a Ffync"
 
-#: cddb-slave2/cddb-track-editor.c:108
+#: cddb-slave2/cddb-track-editor.c:109
 msgid "Fusion"
 msgstr "Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:109
+#: cddb-slave2/cddb-track-editor.c:110
 msgid "Trance"
 msgstr "Trance"
 
-#: cddb-slave2/cddb-track-editor.c:110
+#: cddb-slave2/cddb-track-editor.c:111
 msgid "Classical"
 msgstr "Clasurol"
 
-#: cddb-slave2/cddb-track-editor.c:111
+#: cddb-slave2/cddb-track-editor.c:112
 msgid "Instrumental"
 msgstr "Offerynnol"
 
-#: cddb-slave2/cddb-track-editor.c:112
+#: cddb-slave2/cddb-track-editor.c:113
 msgid "Acid"
 msgstr "Asid"
 
-#: cddb-slave2/cddb-track-editor.c:113
+#: cddb-slave2/cddb-track-editor.c:114
 msgid "House"
 msgstr "House"
 
-#: cddb-slave2/cddb-track-editor.c:114
+#: cddb-slave2/cddb-track-editor.c:115
 msgid "Game"
 msgstr "Gêm"
 
-#: cddb-slave2/cddb-track-editor.c:115
+#: cddb-slave2/cddb-track-editor.c:116
 msgid "Sound Clip"
 msgstr "Clip Swn"
 
-#: cddb-slave2/cddb-track-editor.c:116
+#: cddb-slave2/cddb-track-editor.c:117
 msgid "Gospel"
 msgstr "Efengyl"
 
-#: cddb-slave2/cddb-track-editor.c:117
+#: cddb-slave2/cddb-track-editor.c:118
 msgid "Noise"
 msgstr "Sw^n"
 
-#: cddb-slave2/cddb-track-editor.c:118
+#: cddb-slave2/cddb-track-editor.c:119
 msgid "Alt"
 msgstr "Alt"
 
-#. groups 
-#. max 24 chars 
-#: cddb-slave2/cddb-track-editor.c:119 gmix/device_labels_alsa.h:37
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Bas"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#: cddb-slave2/cddb-track-editor.c:121
 msgid "Soul"
 msgstr "Soul"
 
-#: cddb-slave2/cddb-track-editor.c:121
+#: cddb-slave2/cddb-track-editor.c:122
 msgid "Punk"
 msgstr "Pync"
 
-#: cddb-slave2/cddb-track-editor.c:122
+#: cddb-slave2/cddb-track-editor.c:123
 msgid "Space"
 msgstr "Gofod"
 
-#: cddb-slave2/cddb-track-editor.c:123
+#: cddb-slave2/cddb-track-editor.c:124
 msgid "Meditative"
 msgstr "Synfyfyriol"
 
-#: cddb-slave2/cddb-track-editor.c:124
+#: cddb-slave2/cddb-track-editor.c:125
 msgid "Instrumental Pop"
 msgstr "Pop Offerynnol"
 
-#: cddb-slave2/cddb-track-editor.c:125
+#: cddb-slave2/cddb-track-editor.c:126
 msgid "Instrumental Rock"
 msgstr "Roc Offerynnol"
 
-#: cddb-slave2/cddb-track-editor.c:126
+#: cddb-slave2/cddb-track-editor.c:127
 msgid "Ethnic"
 msgstr "Ethnig"
 
-#: cddb-slave2/cddb-track-editor.c:127
+#: cddb-slave2/cddb-track-editor.c:128
 msgid "Gothic"
 msgstr "Gothig"
 
-#: cddb-slave2/cddb-track-editor.c:128
+#: cddb-slave2/cddb-track-editor.c:129
 msgid "Darkwave"
 msgstr "Darkwave"
 
-#: cddb-slave2/cddb-track-editor.c:129
+#: cddb-slave2/cddb-track-editor.c:130
 msgid "Techno-Industrial"
 msgstr "Tecno-Diwylliannol"
 
-#: cddb-slave2/cddb-track-editor.c:130
+#: cddb-slave2/cddb-track-editor.c:131
 msgid "Electronic"
 msgstr "Electronig"
 
-#: cddb-slave2/cddb-track-editor.c:131
+#: cddb-slave2/cddb-track-editor.c:132
 msgid "Pop-Folk"
 msgstr "Pop Gwerin"
 
-#: cddb-slave2/cddb-track-editor.c:132
+#: cddb-slave2/cddb-track-editor.c:133
 msgid "Eurodance"
 msgstr "Eurodance"
 
-#: cddb-slave2/cddb-track-editor.c:133
+#: cddb-slave2/cddb-track-editor.c:134
 msgid "Dream"
 msgstr "Breuddwyd"
 
-#: cddb-slave2/cddb-track-editor.c:134
+#: cddb-slave2/cddb-track-editor.c:135
 msgid "Southern Rock"
 msgstr "Roc y De"
 
-#: cddb-slave2/cddb-track-editor.c:135
+#: cddb-slave2/cddb-track-editor.c:136
 msgid "Comedy"
 msgstr "Comedi"
 
-#: cddb-slave2/cddb-track-editor.c:136
+#: cddb-slave2/cddb-track-editor.c:137
 msgid "Cult"
 msgstr "Cwlt"
 
-#: cddb-slave2/cddb-track-editor.c:137
+#: cddb-slave2/cddb-track-editor.c:138
 msgid "Gangsta Rap"
 msgstr "Gangsta Rap"
 
-#: cddb-slave2/cddb-track-editor.c:138
+#: cddb-slave2/cddb-track-editor.c:139
 msgid "Top 40"
 msgstr "40 Uchaf"
 
-#: cddb-slave2/cddb-track-editor.c:139
+#: cddb-slave2/cddb-track-editor.c:140
 msgid "Christian Rap"
 msgstr "Rap Cristnogol"
 
-#: cddb-slave2/cddb-track-editor.c:140
+#: cddb-slave2/cddb-track-editor.c:141
 msgid "Pop/Funk"
 msgstr "Pop/Ffync"
 
-#: cddb-slave2/cddb-track-editor.c:141
+#: cddb-slave2/cddb-track-editor.c:142
 msgid "Jungle"
 msgstr "Jyngl"
 
-#: cddb-slave2/cddb-track-editor.c:142
+#: cddb-slave2/cddb-track-editor.c:143
 msgid "Native American"
 msgstr "Native American"
 
-#: cddb-slave2/cddb-track-editor.c:143
+#: cddb-slave2/cddb-track-editor.c:144
 msgid "Cabaret"
 msgstr "Cabaret"
 
-#: cddb-slave2/cddb-track-editor.c:144
+#: cddb-slave2/cddb-track-editor.c:145
 msgid "New Wave"
 msgstr "New Wave"
 
-#: cddb-slave2/cddb-track-editor.c:145
+#: cddb-slave2/cddb-track-editor.c:146
 msgid "Psychedelic"
 msgstr "Psychedelic"
 
-#: cddb-slave2/cddb-track-editor.c:146
+#: cddb-slave2/cddb-track-editor.c:147
 msgid "Rave"
 msgstr "Rave"
 
-#: cddb-slave2/cddb-track-editor.c:147
+#: cddb-slave2/cddb-track-editor.c:148
 msgid "Showtunes"
 msgstr "Showtunes"
 
-#: cddb-slave2/cddb-track-editor.c:148
+#: cddb-slave2/cddb-track-editor.c:149
 msgid "Trailer"
 msgstr "Trailer"
 
-#: cddb-slave2/cddb-track-editor.c:149
+#: cddb-slave2/cddb-track-editor.c:150
 msgid "Lo-Fi"
 msgstr "Lo-Fi"
 
-#: cddb-slave2/cddb-track-editor.c:150
+#: cddb-slave2/cddb-track-editor.c:151
 msgid "Tribal"
 msgstr "Tribal"
 
-#: cddb-slave2/cddb-track-editor.c:151
+#: cddb-slave2/cddb-track-editor.c:152
 msgid "Acid Punk"
 msgstr "Pync Asid"
 
-#: cddb-slave2/cddb-track-editor.c:152
+#: cddb-slave2/cddb-track-editor.c:153
 msgid "Acid Jazz"
 msgstr "Jazz Asid"
 
-#: cddb-slave2/cddb-track-editor.c:153
+#: cddb-slave2/cddb-track-editor.c:154
 msgid "Polka"
 msgstr "Polka"
 
-#: cddb-slave2/cddb-track-editor.c:154
+#: cddb-slave2/cddb-track-editor.c:155
 msgid "Retro"
 msgstr "Retro"
 
-#: cddb-slave2/cddb-track-editor.c:155
+#: cddb-slave2/cddb-track-editor.c:156
 msgid "Musical"
 msgstr "Cerddorol"
 
-#: cddb-slave2/cddb-track-editor.c:156
+#: cddb-slave2/cddb-track-editor.c:157
 msgid "Rock & Roll"
 msgstr "Rock & Roll"
 
-#: cddb-slave2/cddb-track-editor.c:157
+#: cddb-slave2/cddb-track-editor.c:158
 msgid "Hard Rock"
 msgstr "Roc Caled"
 
-#: cddb-slave2/cddb-track-editor.c:158
+#: cddb-slave2/cddb-track-editor.c:159
 msgid "Folk"
 msgstr "Gwerin"
 
-#: cddb-slave2/cddb-track-editor.c:159
+#: cddb-slave2/cddb-track-editor.c:160
 msgid "Folk/Rock"
 msgstr "Roc/Gwerin"
 
-#: cddb-slave2/cddb-track-editor.c:160
+#: cddb-slave2/cddb-track-editor.c:161
 msgid "National Folk"
 msgstr "Gwerin Cenedlaethol"
 
-#: cddb-slave2/cddb-track-editor.c:161
+#: cddb-slave2/cddb-track-editor.c:162
 msgid "Swing"
 msgstr "Swing"
 
-#: cddb-slave2/cddb-track-editor.c:162
+#: cddb-slave2/cddb-track-editor.c:163
 msgid "Fast-Fusion"
 msgstr "Fast-Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:163
+#: cddb-slave2/cddb-track-editor.c:164
 msgid "Bebop"
 msgstr "Bebop"
 
-#: cddb-slave2/cddb-track-editor.c:164
+#: cddb-slave2/cddb-track-editor.c:165
 msgid "Latin"
 msgstr "Latin"
 
-#: cddb-slave2/cddb-track-editor.c:165
+#: cddb-slave2/cddb-track-editor.c:166
 msgid "Revival"
 msgstr "Revival"
 
-#: cddb-slave2/cddb-track-editor.c:166
+#: cddb-slave2/cddb-track-editor.c:167
 msgid "Celtic"
 msgstr "Celtig"
 
-#: cddb-slave2/cddb-track-editor.c:167
+#: cddb-slave2/cddb-track-editor.c:168
 msgid "Bluegrass"
 msgstr "Bluegrass"
 
-#: cddb-slave2/cddb-track-editor.c:168
+#: cddb-slave2/cddb-track-editor.c:169
 msgid "Avantgarde"
 msgstr "Avantgarde"
 
-#: cddb-slave2/cddb-track-editor.c:169
+#: cddb-slave2/cddb-track-editor.c:170
 msgid "Gothic Rock"
 msgstr "Roc Gothig"
 
-#: cddb-slave2/cddb-track-editor.c:170
+#: cddb-slave2/cddb-track-editor.c:171
 msgid "Progressive Rock"
 msgstr "Progressive Rock"
 
-#: cddb-slave2/cddb-track-editor.c:171
+#: cddb-slave2/cddb-track-editor.c:172
 msgid "Psychedelic Rock"
 msgstr "Psychedelic Rock"
 
-#: cddb-slave2/cddb-track-editor.c:172
+#: cddb-slave2/cddb-track-editor.c:173
 msgid "Symphonic Rock"
 msgstr "Symphonic Rock"
 
-#: cddb-slave2/cddb-track-editor.c:173
+#: cddb-slave2/cddb-track-editor.c:174
 msgid "Slow Rock"
 msgstr "Roc Araf"
 
-#: cddb-slave2/cddb-track-editor.c:174
+#: cddb-slave2/cddb-track-editor.c:175
 msgid "Big Band"
 msgstr "Big Band"
 
-#: cddb-slave2/cddb-track-editor.c:175
+#: cddb-slave2/cddb-track-editor.c:176
 msgid "Chorus"
 msgstr "Chorus"
 
-#: cddb-slave2/cddb-track-editor.c:176
+#: cddb-slave2/cddb-track-editor.c:177
 msgid "Easy Listening"
 msgstr "Easy Listening"
 
-#: cddb-slave2/cddb-track-editor.c:177
+#: cddb-slave2/cddb-track-editor.c:178
 msgid "Acoustic"
 msgstr "Acoustic"
 
-#: cddb-slave2/cddb-track-editor.c:178
+#: cddb-slave2/cddb-track-editor.c:179
 msgid "Humour"
 msgstr "Humour"
 
-#: cddb-slave2/cddb-track-editor.c:179
+#: cddb-slave2/cddb-track-editor.c:180
 msgid "Speech"
 msgstr "Llafar"
 
-#: cddb-slave2/cddb-track-editor.c:180
+#: cddb-slave2/cddb-track-editor.c:181
 msgid "Chanson"
 msgstr "Chanson"
 
-#: cddb-slave2/cddb-track-editor.c:181
+#: cddb-slave2/cddb-track-editor.c:182
 msgid "Opera"
 msgstr "Opera"
 
-#: cddb-slave2/cddb-track-editor.c:182
+#: cddb-slave2/cddb-track-editor.c:183
 msgid "Chamber Music"
 msgstr "Cerdd cerddorfa fechan"
 
-#: cddb-slave2/cddb-track-editor.c:183
+#: cddb-slave2/cddb-track-editor.c:184
 msgid "Sonata"
 msgstr "Sonata"
 
-#: cddb-slave2/cddb-track-editor.c:184
+#: cddb-slave2/cddb-track-editor.c:185
 msgid "Symphony"
 msgstr "Simffoni"
 
-#: cddb-slave2/cddb-track-editor.c:185
+#: cddb-slave2/cddb-track-editor.c:186
 msgid "Booty Bass"
 msgstr "Bas Bwti"
 
-#: cddb-slave2/cddb-track-editor.c:186
+#: cddb-slave2/cddb-track-editor.c:187
 msgid "Primus"
 msgstr "Primws"
 
-#: cddb-slave2/cddb-track-editor.c:187
+#: cddb-slave2/cddb-track-editor.c:188
 msgid "Porn Groove"
 msgstr "Grwf Porn"
 
-#: cddb-slave2/cddb-track-editor.c:188
+#: cddb-slave2/cddb-track-editor.c:189
 msgid "Satire"
 msgstr "Gwatwar"
 
-#: cddb-slave2/cddb-track-editor.c:189
+#: cddb-slave2/cddb-track-editor.c:190
 msgid "Slow Jam"
 msgstr "Jam Araf"
 
-#: cddb-slave2/cddb-track-editor.c:190
+#: cddb-slave2/cddb-track-editor.c:191
 msgid "Club"
 msgstr "Clwb"
 
-#: cddb-slave2/cddb-track-editor.c:191
+#: cddb-slave2/cddb-track-editor.c:192
 msgid "Tango"
 msgstr "Tango"
 
-#: cddb-slave2/cddb-track-editor.c:192
+#: cddb-slave2/cddb-track-editor.c:193
 msgid "Samba"
 msgstr "Samba"
 
-#: cddb-slave2/cddb-track-editor.c:193
+#: cddb-slave2/cddb-track-editor.c:194
 msgid "Folklore"
 msgstr "Llen werin"
 
-#: cddb-slave2/cddb-track-editor.c:194
+#: cddb-slave2/cddb-track-editor.c:195
 msgid "Ballad"
 msgstr "Balad"
 
-#: cddb-slave2/cddb-track-editor.c:195
+#: cddb-slave2/cddb-track-editor.c:196
 msgid "Power Ballad"
 msgstr "Balad Pwer"
 
-#: cddb-slave2/cddb-track-editor.c:196
+#: cddb-slave2/cddb-track-editor.c:197
 msgid "Rhythmic Soul"
 msgstr "Sôl â rhythm"
 
-#: cddb-slave2/cddb-track-editor.c:197
+#: cddb-slave2/cddb-track-editor.c:198
 msgid "Freestyle"
 msgstr "Agored"
 
-#: cddb-slave2/cddb-track-editor.c:198
+#: cddb-slave2/cddb-track-editor.c:199
 msgid "Duet"
 msgstr "Deuawd"
 
-#: cddb-slave2/cddb-track-editor.c:199
+#: cddb-slave2/cddb-track-editor.c:200
 msgid "Punk Rock"
 msgstr "Pync"
 
-#: cddb-slave2/cddb-track-editor.c:200
+#: cddb-slave2/cddb-track-editor.c:201
 msgid "Drum Solo"
 msgstr "Unawd drymiau"
 
-#: cddb-slave2/cddb-track-editor.c:201
+#: cddb-slave2/cddb-track-editor.c:202
 msgid "A Cappella"
 msgstr "A Cappella"
 
-#: cddb-slave2/cddb-track-editor.c:202
+#: cddb-slave2/cddb-track-editor.c:203
 msgid "Euro-House"
 msgstr "Ewro-Hows"
 
-#: cddb-slave2/cddb-track-editor.c:203
+#: cddb-slave2/cddb-track-editor.c:204
 msgid "Dance Hall"
 msgstr "Neuadd Ddawns"
 
-#: cddb-slave2/cddb-track-editor.c:204
+#: cddb-slave2/cddb-track-editor.c:205
 msgid "Goa"
 msgstr "Goa"
 
-#: cddb-slave2/cddb-track-editor.c:205
+#: cddb-slave2/cddb-track-editor.c:206
 msgid "Drum & Bass"
 msgstr "Drwm a Bas"
 
-#: cddb-slave2/cddb-track-editor.c:206
+#: cddb-slave2/cddb-track-editor.c:207
 msgid "Club-House"
 msgstr "Clwb-Hows"
 
-#: cddb-slave2/cddb-track-editor.c:207
+#: cddb-slave2/cddb-track-editor.c:208
 msgid "Hardcore"
 msgstr "Hardcore"
 
-#: cddb-slave2/cddb-track-editor.c:208
+#: cddb-slave2/cddb-track-editor.c:209
 msgid "Terror"
 msgstr "BRAW"
 
-#: cddb-slave2/cddb-track-editor.c:209
+#: cddb-slave2/cddb-track-editor.c:210
 msgid "Indie"
 msgstr "Annibyn"
 
-#: cddb-slave2/cddb-track-editor.c:210
+#: cddb-slave2/cddb-track-editor.c:211
 msgid "BritPop"
 msgstr "BritPop"
 
-#: cddb-slave2/cddb-track-editor.c:211
+#: cddb-slave2/cddb-track-editor.c:212
 msgid "Negerpunk"
 msgstr "Negerpync"
 
-#: cddb-slave2/cddb-track-editor.c:212
+#: cddb-slave2/cddb-track-editor.c:213
 msgid "Polsk Punk"
 msgstr "Polsk Pync"
 
-#: cddb-slave2/cddb-track-editor.c:213
+#: cddb-slave2/cddb-track-editor.c:214
 msgid "Beat"
 msgstr "Bît"
 
-#: cddb-slave2/cddb-track-editor.c:214
+#: cddb-slave2/cddb-track-editor.c:215
 msgid "Christian Gangsta Rap"
 msgstr "Gangsta Rap Cristnogol"
 
-#: cddb-slave2/cddb-track-editor.c:215
+#: cddb-slave2/cddb-track-editor.c:216
 msgid "Heavy Metal"
 msgstr "Hefi Metal"
 
-#: cddb-slave2/cddb-track-editor.c:216
+#: cddb-slave2/cddb-track-editor.c:217
 msgid "Black Metal"
 msgstr "Metal ddu"
 
-#: cddb-slave2/cddb-track-editor.c:217
+#: cddb-slave2/cddb-track-editor.c:218
 msgid "Crossover"
 msgstr "Crossover"
 
-#: cddb-slave2/cddb-track-editor.c:218
+#: cddb-slave2/cddb-track-editor.c:219
 msgid "Contemporary Christian"
 msgstr "Cristnogol cyfoes"
 
-#: cddb-slave2/cddb-track-editor.c:219
+#: cddb-slave2/cddb-track-editor.c:220
 msgid "Christian Rock"
 msgstr "Roc cristnogol"
 
-#: cddb-slave2/cddb-track-editor.c:220
+#: cddb-slave2/cddb-track-editor.c:221
 msgid "Merengue"
 msgstr "Merengue"
 
-#: cddb-slave2/cddb-track-editor.c:221
+#: cddb-slave2/cddb-track-editor.c:222
 msgid "Salsa"
 msgstr "Salsa"
 
-#: cddb-slave2/cddb-track-editor.c:222
+#: cddb-slave2/cddb-track-editor.c:223
 msgid "Thrash Metal"
 msgstr "Cweir metal"
 
-#: cddb-slave2/cddb-track-editor.c:223
+#: cddb-slave2/cddb-track-editor.c:224
 msgid "Anime"
 msgstr "Anime"
 
-#: cddb-slave2/cddb-track-editor.c:224
+#: cddb-slave2/cddb-track-editor.c:225
 msgid "JPop"
 msgstr "JPop"
 
-#: cddb-slave2/cddb-track-editor.c:225
+#: cddb-slave2/cddb-track-editor.c:226
 msgid "Synthpop"
 msgstr "Synthpop"
 
-#: cddb-slave2/cddb-track-editor.c:226
+#: cddb-slave2/cddb-track-editor.c:227
 msgid "Nu-Metal"
 msgstr "Nu-metal"
 
-#: cddb-slave2/cddb-track-editor.c:227
+#: cddb-slave2/cddb-track-editor.c:228
 msgid "Art Rock"
 msgstr "Roc celf"
 
-#: cddb-slave2/cddb-track-editor.c:525 
+#: cddb-slave2/cddb-track-editor.c:526
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Golygu Disg ID:%s"
 
-#. Info label 
-#: cddb-slave2/cddb-track-editor.c:615
-msgid "Editing Disc ID:"
-msgstr "Golygu Disg ID:"
+#. Info label
+#: cddb-slave2/cddb-track-editor.c:616
+msgid "Editing Disc ID: "
+msgstr "Golygu Disg ID: "
 
-#: cddb-slave2/cddb-track-editor.c:626
+#: cddb-slave2/cddb-track-editor.c:627
 msgid "_Artist:"
 msgstr "_Artist"
 
-#: cddb-slave2/cddb-track-editor.c:640
+#: cddb-slave2/cddb-track-editor.c:641
 msgid "Disc _Title:"
 msgstr "Teitl y_Ddisg"
 
-#: cddb-slave2/cddb-track-editor.c:650
+#: cddb-slave2/cddb-track-editor.c:651
 msgid "Show advanced disc options"
 msgstr "Dangos dewisiadau uwch am y ddisg"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:652
 msgid "Hide advanced disc options"
 msgstr "Cuddio dewisiadau uwch am y ddisg"
 
-#. Top box: Disc comments. Maybe should be a GtkText? 
+#. Top box: Disc comments. Maybe should be a GtkText?
 #: cddb-slave2/cddb-track-editor.c:664
 msgid "_Disc comments:"
 msgstr "_Sylwadau'r ddisg:"
 
-#. Genre 
+#. Genre
 #: cddb-slave2/cddb-track-editor.c:679
 msgid "_Genre:"
 msgstr "_Genre:"
 
-#. Year 
+#. Year
 #: cddb-slave2/cddb-track-editor.c:695
 msgid "_Year:"
 msgstr "_Blwyddyn:"
@@ -816,34 +854,35 @@ msgstr "Teitl"
 msgid "Length"
 msgstr "Hyd"
 
-#. More advanced options 
-#: cddb-slave2/cddb-track-editor.c:755
+#. More advanced options
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Show advanced track options"
 msgstr "Dangos dewisiadau uwch am y trac"
 
-#: cddb-slave2/cddb-track-editor.c:756
+#: cddb-slave2/cddb-track-editor.c:753
 msgid "Hide advanced track options"
 msgstr "Cuddio dewisiadau uwch am y trac"
 
-#. Extra data 
-#: cddb-slave2/cddb-track-editor.c:764
+#. Extra data
+#: cddb-slave2/cddb-track-editor.c:761
 msgid "_Extra track data:"
-msgstr ""
+msgstr "_Gwybodaeth trac ychwanegol:"
 
-#: cddb-slave2/cddb-track-editor.c:891
+#: cddb-slave2/cddb-track-editor.c:888
 msgid "CDDB Track Editor"
 msgstr "Golygydd Trac CDDB"
 
-#: cddb-slave2/cddb-track-editor.c:1021
+#: cddb-slave2/cddb-track-editor.c:1022
 msgid ""
-" Cannot create CDDBTrackEditor factory.\n"
-" This may be caused by another copy of cddb-track-editor already running.\n"
-"\n"
+"Cannot create CDDBTrackEditor factory.\n"
+"This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
+"Methu creu ffatri CDDBTrackEditor.\n"
+"Gall hyn fod o achos copi arall o cddb-track-editor yn rhedeg eisioes.\n"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
-msgstr ""
+msgstr "Synth"
 
 #: gmix/device_labels_alsa.h:8
 msgid "PCM"
@@ -859,11 +898,11 @@ msgstr "FM"
 
 #: gmix/device_labels_alsa.h:11
 msgid "DSP Input"
-msgstr ""
+msgstr "Mewnbwn DSP"
 
 #: gmix/device_labels_alsa.h:12
 msgid "Line"
-msgstr ""
+msgstr "Llinell"
 
 #: gmix/device_labels_alsa.h:13
 msgid "MIC"
@@ -873,8 +912,8 @@ msgstr "MIC"
 msgid "CD"
 msgstr "CD"
 
-#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10 
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "Fideo"
 
@@ -888,49 +927,49 @@ msgstr "Ffôn"
 
 #: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
 msgid "Mono"
-msgstr ""
+msgstr "Unsain"
 
 #: gmix/device_labels_alsa.h:19
 msgid "PC Speaker"
-msgstr ""
+msgstr "Seinydd PC"
 
 #: gmix/device_labels_alsa.h:20
 msgid "Aux"
-msgstr ""
+msgstr "Ategol"
 
 #: gmix/device_labels_alsa.h:21
 msgid "Center Input"
-msgstr ""
+msgstr "Mewnbwn Canol"
 
 #: gmix/device_labels_alsa.h:22
 msgid "Woofer Input"
-msgstr ""
+msgstr "Mewnbwn Cyfarthydd"
 
 #: gmix/device_labels_alsa.h:23
 msgid "Surround Input"
-msgstr ""
+msgstr "Mewnbwn Amgylchu"
 
-#. outputs 
-#. max 24 chars 
+#. outputs
+#. max 24 chars
 #: gmix/device_labels_alsa.h:26
 msgid "Master"
 msgstr "Prifgopi"
 
 #: gmix/device_labels_alsa.h:27
 msgid "Master Mono"
-msgstr ""
+msgstr "Prif Unsain"
 
 #: gmix/device_labels_alsa.h:28
 msgid "Master Digital"
-msgstr ""
+msgstr "Prif Ddigidol"
 
 #: gmix/device_labels_alsa.h:29
 msgid "Headphone"
-msgstr ""
+msgstr "Clustffon"
 
 #: gmix/device_labels_alsa.h:30
 msgid "Phone Output"
-msgstr ""
+msgstr "Allbwn Ffôn"
 
 #: gmix/device_labels_alsa.h:31
 msgid "Center"
@@ -938,131 +977,143 @@ msgstr "Canol"
 
 #: gmix/device_labels_alsa.h:32
 msgid "Woofer"
-msgstr ""
+msgstr "Cyfarthydd"
 
 #: gmix/device_labels_alsa.h:33
 msgid "Surround"
-msgstr ""
+msgstr "Amgylchu"
 
 #: gmix/device_labels_alsa.h:34
 msgid "DSP Output"
-msgstr ""
+msgstr "Allbwn DSP"
 
 #: gmix/device_labels_alsa.h:38
 msgid "Treble"
-msgstr ""
+msgstr "Trebl"
 
 #: gmix/device_labels_alsa.h:39
 msgid "Equalizer"
-msgstr ""
+msgstr "Cyfartalydd"
 
 #: gmix/device_labels_alsa.h:40
 msgid "Fader"
-msgstr ""
+msgstr "Pylydd"
 
 #: gmix/device_labels_alsa.h:41
 msgid "Effect"
-msgstr ""
+msgstr "Effaith"
 
 #: gmix/device_labels_alsa.h:42
 msgid "3D Effect"
-msgstr ""
+msgstr "Effaith 3D"
 
 #: gmix/device_labels_alsa.h:43
 msgid "Mic Gain"
-msgstr ""
+msgstr "Cynnydd Meicroffon"
 
 #: gmix/device_labels_alsa.h:44
 msgid "Input Gain"
-msgstr ""
+msgstr "Cynnydd Mewnbwn"
 
 #: gmix/device_labels_alsa.h:45
 msgid "Output Gain"
-msgstr ""
+msgstr "Cynnydd Allbwn"
 
 #: gmix/device_labels_alsa.h:46
 msgid "Analog Loopback"
-msgstr ""
+msgstr "Ôl-gylch analog"
 
 #: gmix/device_labels_alsa.h:47
 msgid "Digital Loopback"
-msgstr ""
+msgstr "Ôl-gylch digidol"
 
 #: gmix/device_labels_linux.h:7
-msgid "Vol"
-msgstr ""
+msgid "Vol  "
+msgstr "Lefel Sain"
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Bas"
 
 #: gmix/device_labels_linux.h:7
 msgid "Trebl"
-msgstr ""
+msgstr "Trebl"
 
 #: gmix/device_labels_linux.h:7
-msgid "Pcm"
-msgstr ""
+msgid "Pcm  "
+msgstr "PCM"
 
 #: gmix/device_labels_linux.h:7
-msgid "Spkr"
-msgstr ""
+msgid "Spkr "
+msgstr "Seinydd"
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Llinell"
 
 #: gmix/device_labels_linux.h:8
-msgid "Mic"
-msgstr ""
+msgid "Mic  "
+msgstr "Mffon"
 
 #: gmix/device_labels_linux.h:8
-msgid "Mix"
-msgstr ""
+msgid "CD   "
+msgstr "CD   "
 
 #: gmix/device_labels_linux.h:8
-msgid "Pcm2"
-msgstr ""
+msgid "Mix  "
+msgstr "Cymysg"
 
 #: gmix/device_labels_linux.h:8
-msgid "Rec"
-msgstr ""
+msgid "Pcm2 "
+msgstr "PCM2"
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Recordio"
 
 #: gmix/device_labels_linux.h:8
 msgid "IGain"
-msgstr ""
+msgstr "CnddM"
 
 #: gmix/device_labels_linux.h:8
 msgid "OGain"
-msgstr ""
+msgstr "CnddA"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line1"
-msgstr ""
+msgstr "Llinell1"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line2"
-msgstr ""
+msgstr "Llinell2"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line3"
-msgstr ""
+msgstr "Llinell3"
 
 #: gmix/device_labels_linux.h:9
 msgid "Digital1"
-msgstr ""
+msgstr "Digidol1"
 
 #: gmix/device_labels_linux.h:9
 msgid "Digital2"
-msgstr ""
+msgstr "Digidol2"
 
 #: gmix/device_labels_linux.h:9
 msgid "Digital3"
-msgstr ""
+msgstr "Digidol3"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneIn"
-msgstr ""
+msgstr "FfônMewn"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneOut"
-msgstr ""
+msgstr "FfônAllan"
 
 #: gmix/device_labels_linux.h:10
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 #: gmix/gmix.c:115
 msgid "Help"
@@ -1070,109 +1121,125 @@ msgstr "Cymorth"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Dyfais gymysgu i'w defnyddio"
 
-#: gmix/gmix.c:327 
+#: gmix/gmix.c:327
 #, c-format
 msgid ""
-" Volume control is unable to run correctly.\n"
-" \n"
-" Unable to open audio device '%s'.\n"
-" Please check that you have permissions to open '%s'\n"
-" and that you have sound support in your kernel.\n"
-" \n"
-" Press Quit to exit Volume control\n"
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
 msgstr ""
+"Ni all Rheolydd Lefel Sain redeg yn gywir.\n"
+" \n"
+" Methwyd agor dyfais sain '%s'.\n"
+" Gwiriwch fod gennych ganiatadau i agor '%s'\n"
+" a bod gennych gynhaliaeth sain yn eich cnewyllyn.\n"
+" \n"
+" Gwasgwch Gadael i adael Rheolydd Lefel Sain"
 
 #: gmix/gmix.c:381
 msgid ""
-" Volume control is unable to run correctly.\n"
-" \n"
-" Press the details button for more details on the reasons for failure.\n"
-" \n"
-" Press Quit to quit Volume control\n"
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
 msgstr ""
+"Ni all Rheolydd Lefel Sain redeg yn gywir.\n"
+" \n"
+" Gwasgwch y botwm Manylion am fwy o fanylion am reswm y methiant.\n"
+" \n"
+" Gwasgwch Gadael i adael Rheolydd Lefel Sain"
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:458
 msgid "_Details"
-msgstr ""
+msgstr "_Manylion"
 
 #: gmix/gmix.c:387
 msgid "Invalid mixer device"
-msgstr ""
+msgstr "Dyfais gymysgu annilys"
 
-#: gmix/gmix.c:626 
+#: gmix/gmix.c:633
 #, c-format
 msgid ""
-" Warning: This version of the Gnome Volume Control was compiled with\n"
-" OSS version %d.%d.%d, and your system is running\n"
-" a version prior to 3.6.0.\n"
-"\n"
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
 msgstr ""
+"Rhybudd: Crynhöwyd y fersiwn yma o Reolydd Lefel Sain Gnome gyda\n"
+"fersiwn %d.%d.%d o OSS, a mae'ch cysawd\n"
+"yn rhedeg fersiwn hyn na 3.6.0.\n"
 
-#: gmix/gmix.c:634 
+#: gmix/gmix.c:641
 #, c-format
 msgid ""
-" Warning: This version of the Gnome Volume Control was compiled with\n"
-" OSS version %d.%d.%d, and your system is running\n"
-" version %d.%d.%d.\n"
-"\n"
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
 msgstr ""
+"Rhybudd: Crynhöwyd y fersiwn yma o Reolydd Lefel Sain Gnome gyda\n"
+"fersiwn %d.%d.%d o OSS, a mae'ch cysawd\n"
+"yn rhedeg fersiwn %d.%d.%d.\n"
 
-#: gmix/gmix.c:1088 
+#: gmix/gmix.c:1114
 #, c-format
 msgid "left %s"
 msgstr "%s Chwith"
 
-#: gmix/gmix.c:1114 
+#: gmix/gmix.c:1140
 #, c-format
 msgid "Right %s"
 msgstr "%s De"
 
-#: gmix/gmix.c:1207
+#: gmix/gmix.c:1233
 msgid "Lock"
-msgstr ""
+msgstr "Clo"
 
-#: gmix/gmix.c:1220 
+#: gmix/gmix.c:1246
 #, c-format
 msgid "%s Lock"
-msgstr ""
+msgstr "Clo %s"
 
-#: gmix/gmix.c:1231
+#: gmix/gmix.c:1257
 msgid "Mute"
-msgstr ""
+msgstr "Mudo"
 
-#: gmix/gmix.c:1244 
+#: gmix/gmix.c:1270
 #, c-format
 msgid "%s Mute"
-msgstr ""
+msgstr "%s Mud"
 
-#: gmix/gmix.c:1258
+#: gmix/gmix.c:1284
 msgid "Rec."
-msgstr ""
+msgstr "Rec."
 
-#: gmix/gmix.c:1270 
+#: gmix/gmix.c:1296
 #, c-format
 msgid "%s Record"
-msgstr ""
+msgstr "Recordio %s"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2 
+#: gmix/gmix.c:1368 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
-msgstr ""
+msgstr "Rheolydd Lefel Sain"
 
-#: gmix/gmix.c:1748
+#: gmix/gmix.c:1776
 msgid "GNOME Volume Control"
-msgstr ""
+msgstr "Rheolydd Lefel Sain GNOME"
 
-#: gmix/gmix.c:1751
+#: gmix/gmix.c:1779
 msgid "A mixer for sound devices"
-msgstr ""
+msgstr "Cymysgydd i ddyfeisiau sain"
 
-#: gmix/gnome-volume-control.desktop.in.in.h:1 
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
-msgstr ""
+msgstr "Addasu'r lefel sain"
 
 #: gmix/prefs.c:193 gmix/prefs.c:196
 msgid "Shown"
@@ -1180,147 +1247,154 @@ msgstr "Wedi'i Ddangos"
 
 #: gmix/prefs.c:204 gmix/prefs.c:207
 msgid "Mixer label"
-msgstr ""
+msgstr "Label cymysgydd"
 
-#. Add the label reset button 
+#. Add the label reset button
 #: gmix/prefs.c:216
 msgid "_Reset labels to their defaults"
-msgstr ""
+msgstr "_Ailosod labeli i'w rhagosodion"
 
 #: gmix/prefs.c:313
 msgid "Gnome Volume Control Preferences"
-msgstr ""
+msgstr "Hoffiannau Rheolydd Lefel Sain Gnome"
 
-#: gnome-cd/access/cddisplayaccessible.c:117
+#: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
-msgstr ""
+msgstr "Dangosydd CD"
 
-#: gnome-cd/access/cddisplayaccessible.c:119
-msgid " Displays information about the currently playing album, artist and time elapsed"
+#: gnome-cd/access/cddisplayaccessible.c:120
+msgid ""
+"Displays information about the currently playing album, artist and time "
+"elapsed"
 msgstr ""
-
-#: gnome-cd/access/cddisplayaccessible.c:188
-msgid "Time Line"
-msgstr ""
+"Dangosa wybodaeth am yr albwm sy'n chwarae, y perfformiwr a'r amser aeth "
+"heibio"
 
 #: gnome-cd/access/cddisplayaccessible.c:189
-msgid "Line for displaying the time elapsed for the current track"
-msgstr ""
+msgid "Time Line"
+msgstr "Llinell Amser"
 
-#: gnome-cd/access/cddisplayaccessible.c:192
-msgid "Info Line"
-msgstr ""
+#: gnome-cd/access/cddisplayaccessible.c:190
+msgid "Line for displaying the time elapsed for the current track"
+msgstr "Llinell i ddangos yr amser aeth heibio ar y trac cyfredol"
 
 #: gnome-cd/access/cddisplayaccessible.c:193
-msgid "Line for displaying information"
-msgstr ""
+msgid "Info Line"
+msgstr "Llinell wybodaeth"
 
-#: gnome-cd/access/cddisplayaccessible.c:196
-msgid "Artist Line"
-msgstr ""
+#: gnome-cd/access/cddisplayaccessible.c:194
+msgid "Line for displaying information"
+msgstr "Llinell i ddangos gwybodaeth"
 
 #: gnome-cd/access/cddisplayaccessible.c:197
-msgid "Line for displaying the name of the artist"
-msgstr ""
+msgid "Artist Line"
+msgstr "Llinell Berfformiwr"
 
-#: gnome-cd/access/cddisplayaccessible.c:200
-msgid "Album Line"
-msgstr ""
+#: gnome-cd/access/cddisplayaccessible.c:198
+msgid "Line for displaying the name of the artist"
+msgstr "Llinell i ddangos enw'r perfformiwr"
 
 #: gnome-cd/access/cddisplayaccessible.c:201
-msgid "Line for displaying the name of the album"
-msgstr ""
+msgid "Album Line"
+msgstr "Llinell Albwm"
 
-#: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264 
-#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233 
-#: grecord/gsr.xml.h:13
+#: gnome-cd/access/cddisplayaccessible.c:202
+msgid "Line for displaying the name of the album"
+msgstr "Llinell i ddangos enw'r albwm"
+
+#: gnome-cd/callbacks.c:80 gnome-cd/callbacks.c:168 gnome-cd/callbacks.c:267
+#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:609 grecord/gsr.xml.h:13
+#: grecord/src/gui.c:233
 msgid "Play"
 msgstr "Chwarae"
 
-#: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226 
-#: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370 
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
+#: gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:199 gnome-cd/callbacks.c:229
+#: gnome-cd/callbacks.c:309 gnome-cd/callbacks.c:349 gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:414 gnome-cd/callbacks.c:502
 msgid "Pause"
 msgstr "Seibio"
 
-#: gnome-cd/callbacks.c:530 
+#: gnome-cd/callbacks.c:547
 #, c-format
 msgid "Playing %s - %s"
 msgstr "Chwarae %s - %s"
 
-#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:662 gnome-cd/callbacks.c:673
+#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:679 gnome-cd/callbacks.c:690
 msgid "Unknown Artist"
 msgstr "Artist Anhysbys"
 
-#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:677
+#: gnome-cd/callbacks.c:549 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:694
 msgid "Unknown Album"
 msgstr "Albwm Anhysbys"
 
-#: gnome-cd/callbacks.c:534 grecord/src/gui.c:824
+#: gnome-cd/callbacks.c:551 grecord/src/gui.c:824
 msgid "Playing"
 msgstr "Yn chwarae"
 
-#. Update the tray icon tooltip 
-#: gnome-cd/callbacks.c:557
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:574
 msgid "Paused"
 msgstr "Seibio"
 
-#. Update tray icon tooltip 
-#: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55 
-#: gnome-cd/gnome-cd.c:495 gnome-cd/gnome-cd.c:653 
+#. Update tray icon tooltip
+#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:842 gnome-cd/gnome-cd.c:55
+#: gnome-cd/gnome-cd.c:475 gnome-cd/gnome-cd.c:652
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Chwareuwr CD"
 
-#. Update the tray icon tooltip 
-#: gnome-cd/callbacks.c:620
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:637
 msgid "Stopped"
 msgstr "Wedi Stopio"
 
-#: gnome-cd/callbacks.c:626
+#: gnome-cd/callbacks.c:643
 msgid "Disc error"
 msgstr "Gwall disg"
 
-#. Update the tray icon tooltip 
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:716
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:654 gnome-cd/callbacks.c:733
 msgid "No disc"
 msgstr "Dim disg"
 
-#: gnome-cd/callbacks.c:742
+#: gnome-cd/callbacks.c:759
 msgid "Drive open"
 msgstr "Gyriant ar agor"
 
-#: gnome-cd/callbacks.c:766
+#: gnome-cd/callbacks.c:783
 msgid "Data CD"
 msgstr "CD Data"
 
-#. Updated the tray icon tooltip 
-#: gnome-cd/callbacks.c:788 gnome-cd/callbacks.c:792
+#. Updated the tray icon tooltip
+#: gnome-cd/callbacks.c:805 gnome-cd/callbacks.c:809
 msgid "No Cdrom"
 msgstr "Dim Cdrom"
 
-#: gnome-cd/callbacks.c:803
+#: gnome-cd/callbacks.c:820
 msgid "Drive Error"
 msgstr "Gwall ar y gyriant"
 
-#: gnome-cd/callbacks.c:825
+#: gnome-cd/callbacks.c:844
 msgid "A CD player for GNOME"
 msgstr "Chwareuwr CD i GNOME"
 
-#: gnome-cd/cdrom.c:367 
+#: gnome-cd/cdrom.c:368
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "Nid oes caniatad gennych i yrchu %s"
 
-#: gnome-cd/cdrom.c:373 
+#: gnome-cd/cdrom.c:374
 #, c-format
 msgid ""
-" %s does not appear to point to a valid CD device. This may be because:\n"
-" a) CD support is not present in your machine\n"
-" b) You do not have the correct permissions to access the CD drive\n"
-" c) %s is not the CD drive.\n"
-"\n"
+"%s does not appear to point to a valid CD device. This may be because:\n"
+"a) CD support is not present in your machine\n"
+"b) You do not have the correct permissions to access the CD drive\n"
+"c) %s is not the CD drive.\n"
 msgstr ""
+"Ymddengys nad yw %s yn pwyntio at ddyfais dilys CD. Gall hyn fod oherwydd:\n"
+" a) Nid oes cynhaliaeth CD yn bresennol yn eich peiriant\n"
+" b) Nid oes gennych y caniatadau cywir i gyrchu'r gyrrwr CD\n"
+" c) Nid %s mo'r gyrrwr CD.\n"
 
 #: gnome-cd/display.c:74
 msgid "Unknown artist"
@@ -1330,1157 +1404,1237 @@ msgstr "Artist anhysbys"
 msgid "Unknown disc"
 msgstr "Disg anhysbys"
 
-#: gnome-cd/gnome-cd.c:156 
+#: gnome-cd/gnome-cd.c:156
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Anhysbys"
 
-#: gnome-cd/gnome-cd.c:300
+#: gnome-cd/gnome-cd.c:281
 msgid "P_revious track"
-msgstr ""
+msgstr "Trac _cynt"
 
-#: gnome-cd/gnome-cd.c:301 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:282 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Stopio"
 
-#: gnome-cd/gnome-cd.c:302
+#: gnome-cd/gnome-cd.c:283
 msgid "_Play / Pause"
 msgstr "_Chwarae / Seibio"
 
-#: gnome-cd/gnome-cd.c:303
+#: gnome-cd/gnome-cd.c:284
 msgid "_Next track"
 msgstr "Trac _nesaf"
 
-#: gnome-cd/gnome-cd.c:304
+#: gnome-cd/gnome-cd.c:285
 msgid "_Eject disc"
 msgstr "_Allfwrw'r ddisg"
 
-#: gnome-cd/gnome-cd.c:305 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:286 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Cymorth"
 
-#: gnome-cd/gnome-cd.c:306
+#: gnome-cd/gnome-cd.c:287
 msgid "_About CD player"
-msgstr ""
+msgstr "_Ynghylch Chwaraewr CD"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:395
 msgid ""
-" There is no CD device set. This means that the CD player\n"
-" will be unable to run. Click 'Set device' to go to a dialog\n"
-" where you can set the device, or click 'Quit' to quit the CD player.\n"
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
+"Nid oes dyfais CD wedi'i osod. Golyga hyn na fedr y Chwaraewr CD redeg.\n"
+"Cliciwch 'Gosod dyfais' i fynd i ymgom\n"
+"lle gallwch osod y ddyfais, neu cliciwch 'Gadael' i adael y chwaraewr CD."
 
-#: gnome-cd/gnome-cd.c:418
+#: gnome-cd/gnome-cd.c:399
 msgid "Set device"
-msgstr ""
+msgstr "Gosod dyfais"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:401
 msgid "No CD device"
-msgstr ""
+msgstr "Dim dyfais CD"
 
-#: gnome-cd/gnome-cd.c:474
+#: gnome-cd/gnome-cd.c:454
 msgid ""
-" The CD player is unable to run correctly.\n"
-" \n"
-" Press 'Details' for more details on reasons for the failure.\n"
-" \n"
-" Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player\n"
+"The CD player is unable to run correctly.\n"
+"\n"
+"Press 'Details' for more details on reasons for the failure.\n"
+"\n"
+"Press 'Set device' to go to a dialog where you can set the device, or press "
+"'Quit' to quit the CD player"
 msgstr ""
+"Ni all y Chwaraewr CD redeg yn gywir.\n"
+"\n"
+"Gwasgwch 'Manylion' am fwy o fanylion am resymau'r methiant.\n"
+"\n"
+"Cliciwch 'Gosod dyfais' i fynd i ymgom\n"
+"lle gallwch osod y ddyfais, neu cliciwch 'Gadael' i adael y chwaraewr CD"
 
-#: gnome-cd/gnome-cd.c:479
+#: gnome-cd/gnome-cd.c:459
 msgid "_Set device"
-msgstr ""
+msgstr "_Gosod dyfais"
 
-#: gnome-cd/gnome-cd.c:481
+#: gnome-cd/gnome-cd.c:461
 msgid "Invalid CD device"
-msgstr ""
+msgstr "Dyfais CD annilys"
 
-#: gnome-cd/gnome-cd.c:542
+#: gnome-cd/gnome-cd.c:522
 msgid "Volume control"
-msgstr ""
+msgstr "Rheolydd Lefel Sain"
+
+#: gnome-cd/gnome-cd.c:533
+msgid "Position"
+msgstr "Safle"
+
+#: gnome-cd/gnome-cd.c:550
+msgid "Open track editor"
+msgstr "Agor golygydd traciau"
 
 #: gnome-cd/gnome-cd.c:551
-msgid "Open track editor"
-msgstr ""
-
-#: gnome-cd/gnome-cd.c:552
 msgid "Track editor"
-msgstr ""
+msgstr "Golygydd traciau"
+
+#: gnome-cd/gnome-cd.c:558
+msgid "Open preferences"
+msgstr "Agor hoffiannau"
 
 #: gnome-cd/gnome-cd.c:559
-msgid "Open preferences"
-msgstr ""
-
-#: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
-msgstr ""
+msgstr "Hoffiannau"
 
-#: gnome-cd/gnome-cd.c:568
+#: gnome-cd/gnome-cd.c:567
 msgid "Track List"
-msgstr ""
+msgstr "Rhestr draciau"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:588
 msgid "Previous track"
 msgstr "Trac blaenorol"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:588
 msgid "Previous"
 msgstr "Cynt"
 
-#: gnome-cd/gnome-cd.c:593
+#: gnome-cd/gnome-cd.c:592
 msgid "Rewind"
 msgstr "Ail-ddirwyn"
 
-#: gnome-cd/gnome-cd.c:610
+#: gnome-cd/gnome-cd.c:609
 msgid "Play / Pause"
 msgstr "Chwarae / Seibio"
 
-#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:614 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Stopio"
 
-#: gnome-cd/gnome-cd.c:619
+#: gnome-cd/gnome-cd.c:618
 msgid "Fast forward"
-msgstr ""
+msgstr "Ymlaen yn gyflym"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:626
 msgid "Next track"
-msgstr ""
+msgstr "Trac nesaf"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:630
 msgid "Eject CD"
-msgstr ""
+msgstr "Allfwrw'r CD"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:630
 msgid "Eject"
-msgstr ""
+msgstr "Allfwrw"
 
-#: gnome-cd/gnome-cd.c:734
+#: gnome-cd/gnome-cd.c:733
 msgid "CD device to use"
-msgstr ""
+msgstr "Dyfais CD i'w defnyddio"
 
-#: gnome-cd/gnome-cd.c:736
+#: gnome-cd/gnome-cd.c:735
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Dechrau os nad oes cymhwysiad chwarae CDau yn rhedeg eisioes, yn unig."
 
-#: gnome-cd/gnome-cd.c:738
+#: gnome-cd/gnome-cd.c:737
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Chwarae'r CD ar ymgychwyn"
 
-#. Stick a message box here? 
-#: gnome-cd/gnome-cd.c:769
+#. Stick a message box here?
+#: gnome-cd/gnome-cd.c:767
 msgid "Cannot create player"
-msgstr ""
+msgstr "Methu creu chwaraewr"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
-msgstr ""
+msgstr "Chwarae CDau sain"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "Action on application exit"
-msgstr ""
+msgid "CD player theme"
+msgstr "Thema Chwaraewr CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Action on start"
-msgstr ""
+msgid "Device path"
+msgstr "Llwybr dyfais"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "CD player theme"
-msgstr ""
+msgid "Eject the CD when CD player quits?"
+msgstr "Allfwrw'r CD pan mae'r chwaraewr CD yn gorffen?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Device path"
-msgstr ""
+msgid "Play when the CD player starts?"
+msgstr "Chwarae pan ymddechreuar chwaraewr CD?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "A ddylai'r CD gael ei allfwrw wrth i'r chwaraewr CD orffen?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "Shut the CD tray on start"
-msgstr ""
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "Y llwybr i'r gyrriant CDau dylai'r chwaraewr CDau ddefnyddio i chwarae CDau"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
+msgid "What theme should the CD player use for it's appearance"
+msgstr "Pa thema dylai'r chwaraewr CD ddefnyddio i'w olwg"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid " What action should the CD player perform on exit? 0 = Nothing, 1 = Stop playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid " What action should the CD player perform on start up? 0 = Nothing, 1 = Start playing, 2 = Stop playing"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for it's appearance"
-msgstr ""
-
-#: gnome-cd/preferences.c:83 
-#, c-format
-msgid ""
-" %s\n"
-" This means that the CD player will not be able to run.\n"
-msgstr ""
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "A ddylai'r chwaraewr CD ddechrau chwarae'r CD pan caiff er gychwyn?"
 
 #: gnome-cd/preferences.c:84
+#, c-format
+msgid ""
+"%s\n"
+"This means that the CD player will not be able to run."
+msgstr ""
+"%s\n"
+"Golyga hyn na all y chwaraewr CD redeg."
+
+#: gnome-cd/preferences.c:85
 msgid "Error setting device"
-msgstr ""
+msgstr "Gwall tra'n gosod dyfais"
 
-#: gnome-cd/preferences.c:824
+#: gnome-cd/preferences.c:635
 msgid "CD Player Preferences"
-msgstr ""
+msgstr "Hoffiannau Chwaraewr CD"
 
-#: gnome-cd/preferences.c:853
-msgid "CD player de_vice:"
-msgstr ""
+#: gnome-cd/preferences.c:669
+msgid "CD Player De_vice:"
+msgstr "_Dyfais Chwaraewr CD"
 
-#: gnome-cd/preferences.c:868
+#: gnome-cd/preferences.c:693
 msgid "_Apply change"
-msgstr ""
+msgstr "_Gweithredu newid"
 
-#. left side 
-#: gnome-cd/preferences.c:881
-msgid "When CD player starts"
-msgstr ""
+#: gnome-cd/preferences.c:705
+msgid "CD Player Behaviour:"
+msgstr "Ymddygiad y Chwaraewr CD:"
 
-#: gnome-cd/preferences.c:889
-msgid "Do _nothing"
-msgstr ""
+#: gnome-cd/preferences.c:718
+msgid "Start _playing CD when CD Player starts"
+msgstr "Dechrau _chwarae CD pan ddechreua Chwaraewr CD"
 
-#: gnome-cd/preferences.c:890
-msgid "Do nothing when CD Player starts"
-msgstr ""
-
-#: gnome-cd/preferences.c:900
-msgid "Start _playing CD"
-msgstr ""
-
-#: gnome-cd/preferences.c:901
+#: gnome-cd/preferences.c:719
 msgid "Start playing CD when CD Player starts"
-msgstr ""
+msgstr "Dechrau chwarae CD pan ddechreua Chwaraewr CD"
 
-#: gnome-cd/preferences.c:910
-msgid "_Stop playing CD"
-msgstr ""
+#: gnome-cd/preferences.c:731
+msgid "Attempt to _eject CD when CD Player exits"
+msgstr "Ceisio _allfwrw'r CD pan orffenna Chwaraewr CD"
 
-#: gnome-cd/preferences.c:911
-msgid "Stop playing CD when CD Player starts"
-msgstr ""
+#: gnome-cd/preferences.c:732
+msgid "Attempt to eject CD when CD Player exits"
+msgstr "Ceisio allfwrw'r CD pan orffenna Chwaraewr CD"
 
-#: gnome-cd/preferences.c:925
-msgid "Attempt to _close CD tray"
-msgstr ""
-
-#. Right side 
-#: gnome-cd/preferences.c:937
-msgid "When CD player quits"
-msgstr ""
-
-#: gnome-cd/preferences.c:945
-msgid "Do not_hing"
-msgstr ""
-
-#: gnome-cd/preferences.c:946
-msgid "Do nothing when CD Player exits"
-msgstr ""
-
-#: gnome-cd/preferences.c:955
-msgid "S_top playing CD"
-msgstr ""
-
-#: gnome-cd/preferences.c:956
-msgid "Stop playing CD when CD player quits"
-msgstr ""
-
-#: gnome-cd/preferences.c:966
-msgid "Attempt to _open CD tray"
-msgstr ""
-
-#: gnome-cd/preferences.c:967
-msgid "Attempt to open CD tray when CD Player exits"
-msgstr ""
-
-#: gnome-cd/preferences.c:977
-msgid "Attempt to c_lose CD tray"
-msgstr ""
-
-#: gnome-cd/preferences.c:1008
-msgid "Theme name"
-msgstr ""
+#: gnome-cd/preferences.c:752
+msgid "_Available Themes:"
+msgstr "Themâu ar _Gael:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
-msgstr ""
+msgstr "Recordio darnau sain"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:980 
-#: grecord/src/gsr-window.c:1507 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1001
+#: grecord/src/gsr-window.c:1559 grecord/src/gui.c:193
 msgid "Sound Recorder"
-msgstr ""
+msgstr "Recordydd sain"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "Am"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Cau"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Cau'r ffenestr hon"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Cynnwys"
+
+#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
+msgid "Create a new sample"
+msgstr "Creu sampl newydd"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Dangos cymorth i'r Recordydd Sain"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:864
+msgid "File Information"
+msgstr "Gwybodaeth Ffeil"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "Gwybodaeth _Ffeil"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Prif Far Offer"
+
+#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
+msgid "New"
+msgstr "Newydd"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Agor"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:384
+msgid "Open a file"
+msgstr "Agor ffeil"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Chwarae sain"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Gadael"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Gadael y cymhwysiad"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "Ffeiliau _Diweddar"
+
+#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
+msgid "Record"
+msgstr "Recordio"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Recordio sain"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Rhedeg Cymysgydd"
+
+#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
+msgid "Run _Mixer"
+msgstr "Rhedeg _cymysgydd"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Rhedeg y cymysgydd sain"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Cadw"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Cadw fel"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "Cadw _fel..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Cadw'r ffeil cyfredol"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Cadw'r ffeil cyfredol â enw gwahanol"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Dangos gwybodaeth am y ffeil cyfredol"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Dangos gwybodaeth am Recordydd Sain"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Gorffen sain"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_Ynghylch"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Cau Ffenestr"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Cynnwys"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Rheoli"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_Ffeil"
+
+#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
+msgid "_New"
+msgstr "_Newydd"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Agor..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "_Chwarae"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "_Gadael"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "_Recordio"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_Cadw"
 
 #: grecord/src/grec.c:56
 msgid "Sound Recorder:"
-msgstr ""
+msgstr "Recordydd sain:"
 
 #: grecord/src/grec.c:108 grecord/src/main.c:248
 msgid "Don't show this message again."
-msgstr ""
+msgstr "Peidio â dangos y neges yma eto."
 
-#: grecord/src/grec.c:110 grecord/src/main.c:250 
+#: grecord/src/grec.c:110 grecord/src/main.c:250
 #, c-format
 msgid ""
-" Could not find '%s'.\n"
-" Set the correct path to sox inpreferences under the tab 'paths'.\n"
-" \n"
-" If you don't have sox, you will not be able to record or do any effects.\n"
+"Could not find '%s'.\n"
+"Set the correct path to sox inpreferences under the tab 'paths'.\n"
+"\n"
+"If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
+"Methu canfod '%s'.\n"
+"Gosodwch y llwybr cywir i sox yn yr hoffiannau o dan y tab 'llwybrau'.\n"
+"\n"
+"Os nad oes gennych sox, ni fedrwch recordio na gwneud unrhyw effeithiau."
 
 #: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
 msgid "Could not fork child process"
-msgstr ""
+msgstr "Methu fforchio proses blentyn"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1342
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1393
 msgid "Recording..."
-msgstr ""
+msgstr "Yn recordio..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1221
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1252
 msgid "Playing..."
-msgstr ""
+msgstr "Yn chwarae..."
 
 #: grecord/src/grec.c:272
 msgid "Converting file..."
-msgstr ""
+msgstr "Yn trosi ffeil..."
 
 #: grecord/src/grec.c:302 grecord/src/grec.c:436
 msgid "Cancel"
-msgstr ""
+msgstr "Diddymu"
 
 #: grecord/src/grec.c:345 grecord/src/grec.c:795
-msgid "Audioformat:"
-msgstr ""
+msgid "Audioformat: "
+msgstr "Fformat sain: "
 
 #: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
-msgid "Sample rate:"
-msgstr ""
+msgid "Sample rate: "
+msgstr "Gradd samplo: "
 
 #: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
-msgid "Channels:"
-msgstr ""
+msgid "Channels: "
+msgstr "Sianeli: "
 
 #: grecord/src/grec.c:381
 msgid "Cancel open"
-msgstr ""
+msgstr "Diddymu agor"
 
 #: grecord/src/grec.c:390
 msgid "Select a sound file"
-msgstr ""
+msgstr "Dewis ffeil sain"
 
-#: grecord/src/grec.c:516 
+#: grecord/src/grec.c:516
 #, c-format
 msgid "%s is not installed in the path"
-msgstr ""
+msgstr "Nid yw %s yn osodedig yn y llwybr"
 
-#: grecord/src/grec.c:523 grecord/src/gsr-window.c:661 
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:678
 #, c-format
 msgid "There was an error starting %s: %s"
-msgstr ""
+msgstr "Bu gwall yn dechrau %s: %s"
 
 #: grecord/src/grec.c:615
 msgid "Undoing all changes..."
-msgstr ""
+msgstr "Yn datwneud pob newid..."
 
-#: grecord/src/grec.c:718 
+#: grecord/src/grec.c:718
 #, c-format
 msgid ""
-" '%s' is a folder.\n"
-" Please select a sound file to be opened.\n"
+"'%s' is a folder.\n"
+"Please select a sound file to be opened."
 msgstr ""
+"Mae '%s' yn blygell.\n"
+"Dewiswch ffeil sain i'w agor os gwelwch yn dda."
 
-#: grecord/src/grec.c:730 
+#: grecord/src/grec.c:730
 #, c-format
 msgid ""
-" File '%s' doesn't exist.\n"
-" Please select an existing sound file to be opened.\n"
+"File '%s' doesn't exist.\n"
+"Please select an existing sound file to be opened."
 msgstr ""
+"Nid yw'r ffeil '%s' yn bodoli.\n"
+"Dewiswch ffeil sain gyfredol i'w agor."
 
-#: grecord/src/grec.c:743 
+#: grecord/src/grec.c:743
 #, c-format
 msgid "File '%s isn't a valid sound file."
-msgstr ""
+msgstr "Nid yw'r ffeil '%s' yn ffeil sain dilys."
 
-#: grecord/src/grec.c:819 
+#: grecord/src/grec.c:819
 #, c-format
 msgid ""
-" '%s' is a folder.\n"
-" Please enter another filename.\n"
+"'%s' is a folder.\n"
+"Please enter another filename."
 msgstr ""
+"Mae '%s' yn blygell.\n"
+"Mewnosodwch enw ffeil arall os gwelwch yn dda."
 
-#: grecord/src/grec.c:831 
+#: grecord/src/grec.c:831
 #, c-format
 msgid ""
-" <b>File '%s' already exists.</b>\n"
-" Do you want to overwrite it?\n"
+"<b>File '%s' already exists.</b>\n"
+"Do you want to overwrite it?"
 msgstr ""
+"<b>Mae'r ffeil '%s' yn bodoli eisioes.</b>\n"
+"A ydych am ei drosysgrifo?"
 
 #: grecord/src/grec.c:834
 msgid "Cancel save"
-msgstr ""
+msgstr "Diddymu cadw"
 
 #: grecord/src/grec.c:835
 msgid "Overwrite"
-msgstr ""
+msgstr "Trosysgrifo"
 
-#: grecord/src/grec.c:862 
+#: grecord/src/grec.c:862
 #, c-format
 msgid "Error saving '%s'"
-msgstr ""
+msgstr "Gwall tra'n cadw '%s'"
 
-#: grecord/src/grec.c:976 
+#: grecord/src/grec.c:976
 #, c-format
 msgid ""
-" <b>Do you want to save the changes you made to \"%s\"?</b>\n"
-" \n"
-" Your changes will be lost if you don't save them.\n"
+"<b>Do you want to save the changes you made to \"%s\"?</b>\n"
+"\n"
+"Your changes will be lost if you don't save them."
 msgstr ""
+"<b>A ydych am gadw'r newidiadau a wnaethoch i \"%s\"?</b> \n"
+"\n"
+"Fe gollir eich newidiadau os na gadwch chi nhw."
 
 #: grecord/src/grec.c:981
 msgid "Do_n't save"
-msgstr ""
+msgstr "_Peidio â chadw"
 
-#: grecord/src/grec.c:988 
+#: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
-msgstr ""
+msgstr "Cadw %s?"
 
-#. Save the file 
+#. Save the file
 #: grecord/src/grec.c:1012
 msgid "Saving..."
-msgstr ""
+msgstr "Yn cadw..."
 
-#: grecord/src/grec.c:1142 
+#: grecord/src/grec.c:1142
 #, c-format
 msgid ""
-" The size of the current sample is more than\n"
-" %i Mb!\n"
+"The size of the current sample is more than\n"
+"%i Mb!"
 msgstr ""
+"Mae maint y sampl cyfredol yn fwy na\n"
+"%i Mb!"
 
 #: grecord/src/grec.c:1198
 msgid "Save sound file"
-msgstr ""
+msgstr "Cadw ffeil sain"
 
 #: grecord/src/grec.c:1429
 msgid ""
-" The sound device is not ready. Please check that there isn't\n"
-" another program running that is using the device.\n"
+"The sound device is not ready. Please check that there isn't\n"
+"another program running that is using the device."
 msgstr ""
+"Nid yw'r ddyfais sain yn barod. Gwiriwch nad oes yna\n"
+"raglen arall yn rhedeg sy'n defnyddio'r ddyfais."
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255 
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
 msgid "hours"
-msgstr ""
+msgstr "awr"
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255 
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
 msgid "hour"
-msgstr ""
+msgstr "awr"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256 
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276 
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
+#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
 #: grecord/src/gui.c:753
 msgid "minutes"
-msgstr ""
+msgstr "munud"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256 
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
+#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
 msgid "minute"
-msgstr ""
+msgstr "munud"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262 
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281 
-#: grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
+#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:301
 msgid "seconds"
-msgstr ""
+msgstr "eiliad"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262 
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
+#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:301
 msgid "second"
-msgstr ""
+msgstr "eiliad"
 
-#: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
-msgid "Open a file"
-msgstr ""
-
-#: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243 
-#: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
+#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1276
+#: grecord/src/gsr-window.c:1415 grecord/src/gsr-window.c:1488
 msgid "Ready"
-msgstr ""
+msgstr "Yn barod"
 
-#: grecord/src/gsr-window.c:541 
+#: grecord/src/gsr-window.c:558
 #, c-format
 msgid "Saving %s..."
-msgstr ""
+msgstr "Yn cadw %s..."
 
-#: grecord/src/gsr-window.c:600
+#: grecord/src/gsr-window.c:617
 msgid "Save file as"
-msgstr ""
+msgstr "Cadw ffeil fel"
 
-#: grecord/src/gsr-window.c:654 
+#: grecord/src/gsr-window.c:671
 #, c-format
 msgid "%s is not installed in the path."
-msgstr ""
+msgstr "Nid yw %s wedi'i osod ar y llwybr"
 
-#: grecord/src/gsr-window.c:736 
+#: grecord/src/gsr-window.c:753
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr ""
+msgstr "%s (heb ei gadw)"
 
-#: grecord/src/gsr-window.c:751
+#: grecord/src/gsr-window.c:769
 msgid "Unknown size"
-msgstr ""
+msgstr "Maint anhysbys"
 
-#: grecord/src/gsr-window.c:771 
+#: grecord/src/gsr-window.c:789
 #, c-format
 msgid "%.1f kHz"
-msgstr ""
+msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:780 
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.0f kb/s"
-msgstr ""
+msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:792
+#: grecord/src/gsr-window.c:810
 msgid "1 (mono)"
-msgstr ""
+msgstr "1 (unsain)"
 
-#: grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:814
 msgid "2 (stereo)"
-msgstr ""
+msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:825 
+#: grecord/src/gsr-window.c:843
 #, c-format
 msgid "%s Information"
-msgstr ""
+msgstr "Gwybodaeth %s"
 
-#: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
-msgid "File Information"
-msgstr ""
-
-#: grecord/src/gsr-window.c:859
+#: grecord/src/gsr-window.c:878
 msgid "Folder:"
-msgstr ""
+msgstr "Plygell:"
 
-#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
+#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1618
 msgid "Filename:"
-msgstr ""
+msgstr "Enw Ffeil:"
 
-#: grecord/src/gsr-window.c:871
+#: grecord/src/gsr-window.c:890
 msgid "File size:"
-msgstr ""
+msgstr "Maint Ffeil:"
 
-#: grecord/src/gsr-window.c:880
+#: grecord/src/gsr-window.c:899
 msgid "Audio Information"
-msgstr ""
+msgstr "Gwybodaeth Sain"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:913
 msgid "Song length:"
-msgstr ""
+msgstr "Hyd y gân:"
 
-#: grecord/src/gsr-window.c:900
+#: grecord/src/gsr-window.c:919
 msgid "Number of channels:"
-msgstr ""
+msgstr "Nifer sianeli:"
 
-#: grecord/src/gsr-window.c:912
+#: grecord/src/gsr-window.c:925
+msgid "Sample rate:"
+msgstr "Gradd samplo:"
+
+#: grecord/src/gsr-window.c:931
 msgid "Bit rate:"
-msgstr ""
+msgstr "Gradd didau:"
 
-#: grecord/src/gsr-window.c:982
+#: grecord/src/gsr-window.c:1003
 msgid "A sound recorder for GNOME"
-msgstr ""
+msgstr "Recordydd sain i GNOME"
 
-#: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155 
+#: grecord/src/gsr-window.c:1555 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
-msgstr ""
+msgstr "%s - Recordydd Sain"
 
-#: grecord/src/gsr-window.c:1548
+#: grecord/src/gsr-window.c:1603
 msgid "File information"
-msgstr ""
+msgstr "Gwybodaeth ffeil"
 
-#: grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:1624
 msgid "<none>"
-msgstr ""
+msgstr "<dim>"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1633
 msgid "Length:"
-msgstr ""
-
-#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
-msgid "_New"
-msgstr ""
-
-#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr ""
-
-#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr ""
+msgstr "Hyd:"
 
 #: grecord/src/gui.c:55
 msgid "Run GNOME Volume Control"
-msgstr ""
+msgstr "Rhedeg Rheolydd Lefel Sain GNOME"
 
 #: grecord/src/gui.c:69
 msgid "Add echo"
-msgstr ""
+msgstr "Ychwanegu adlais"
 
 #: grecord/src/gui.c:70
 msgid "Add echo to the current sample"
-msgstr ""
+msgstr "Ychwanegu adlais i'r sampl cyfredol"
 
 #: grecord/src/gui.c:103
 msgid "Echo"
-msgstr ""
+msgstr "Adlais"
 
 #: grecord/src/gui.c:112
 msgid "_Undo All"
-msgstr ""
+msgstr "_Datwneud popeth"
 
 #: grecord/src/gui.c:113
 msgid "Undo all changes made on the current sample"
-msgstr ""
+msgstr "Datwneud pob newid a wnaed i'r sampl cyfredol"
 
 #: grecord/src/gui.c:120
 msgid "Effects"
-msgstr ""
+msgstr "Effeithiau"
 
 #: grecord/src/gui.c:197
 msgid "16bit PCM"
-msgstr ""
+msgstr "PCM 16did"
 
 #: grecord/src/gui.c:199
 msgid "8bit PCM"
-msgstr ""
+msgstr "PCM 8did"
 
 #: grecord/src/gui.c:202
 msgid "stereo"
-msgstr ""
+msgstr "stereo"
 
 #: grecord/src/gui.c:204
 msgid "mono"
-msgstr ""
-
-#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
-msgid "New"
-msgstr ""
+msgstr "unsain"
 
 #: grecord/src/gui.c:218
 msgid "Create new sample"
-msgstr ""
+msgstr "Creu sampl newydd"
 
 #: grecord/src/gui.c:234
 msgid "Play current sample"
-msgstr ""
+msgstr "Chwarae'r sampl cyfredol"
 
 #: grecord/src/gui.c:248
 msgid "Stop playing/recording"
-msgstr ""
-
-#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
-msgid "Record"
-msgstr ""
+msgstr "Gorffen chwarae/recordio"
 
 #: grecord/src/gui.c:262
 msgid "Start recording"
-msgstr ""
+msgstr "Dechrau recordio"
 
 #: grecord/src/gui.c:301
-msgid "Audio format:"
-msgstr ""
+msgid "Audio format: "
+msgstr "Fformat sain: "
 
-#: grecord/src/gui.c:358 
+#: grecord/src/gui.c:358
 #, c-format
 msgid "File '%s' doesn't exist; using default."
-msgstr ""
+msgstr "Nid yw'r ffeil '%s' yn bodoli; yn defnyddio'r rhagosodyn"
 
-#: grecord/src/gui.c:382 
+#: grecord/src/gui.c:382
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
-msgstr ""
+msgstr "Nid yw '%s' yn ffeil sain gynhaledig"
 
 #: grecord/src/gui.c:425
 msgid "translator_credits"
 msgstr ""
+"Owain Green (http://www.kyfieithu.co.uk)\n"
+"Dafydd Jones (http://www.kyfieithu.co.uk)\n"
+"Steve Griffiths (http://www.kyfiethu.co.uk)\n"
+"Dafydd Harries <daf@parnassus.ath.cx>"
 
 #: grecord/src/gui.c:429
 msgid "GNOME Sound Recorder"
-msgstr ""
+msgstr "Recordydd Sain GNOME"
 
 #: grecord/src/gui.c:431
 msgid ""
-" A simple soundrecorder and soundplayer for GNOME.\n"
-" Dedicated to my cat, Malte.\n"
+"A simple soundrecorder and soundplayer for GNOME.\n"
+"Dedicated to my cat, Malte."
 msgstr ""
+"Recordydd sain syml a chwaraewr sain i GNOME.\n"
+"Cyflwynwyd i'm cath, Malte."
 
 #: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
-msgstr ""
+msgstr "Hoffiannau Recordydd Sain Gnome"
 
 #: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
-msgstr ""
+msgstr "Hoffiannau Recordydd Sain"
 
 #: grecord/src/gui.c:719
 msgid "Recording"
-msgstr ""
+msgstr "Recordio"
 
 #: grecord/src/gui.c:724
 msgid "Time"
-msgstr ""
+msgstr "Amser"
 
 #: grecord/src/gui.c:737
-msgid "_Recording timeout:"
-msgstr ""
+msgid "_Recording timeout: "
+msgstr "_Goramser recordio: "
 
 #: grecord/src/gui.c:760
 msgid "_Stop recording on timeout"
-msgstr ""
+msgstr "_Gorffen recordio ar oramser"
 
 #: grecord/src/gui.c:768
 msgid "_Open save dialog when recording is finished"
-msgstr ""
+msgstr "_Agor ymgom cadw wedi gorffen recordio"
 
 #: grecord/src/gui.c:775
 msgid "Size"
-msgstr ""
+msgstr "Maint"
 
 #: grecord/src/gui.c:784
 msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-msgstr ""
+msgstr "Dangos _neges rybudd os yw maint (mewn MB) y sampl yn mynd tu hwnt i:"
 
 #: grecord/src/gui.c:802
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-msgstr ""
+msgstr "Gorffen recordio os yw maint (mewn MB) y sampl yn mynd tu hwnt i:"
 
 #: grecord/src/gui.c:829
 msgid "Repetition"
-msgstr ""
+msgstr "Ailadrodd"
 
 #: grecord/src/gui.c:839
 msgid "_Repeat the sound"
-msgstr ""
+msgstr "_Ailadrodd y sain"
 
 #: grecord/src/gui.c:846
 msgid "Play the sound _once only."
-msgstr ""
+msgstr "Chwarae'r sain _unwaith yn unig"
 
 #: grecord/src/gui.c:852
 msgid "Repeat _forever"
-msgstr ""
+msgstr "Ailadrodd am _byth"
 
 #: grecord/src/gui.c:863
 msgid "_Number of times:"
-msgstr ""
+msgstr "_Nifer o weithiau:"
 
 #: grecord/src/gui.c:885
 msgid "Paths"
-msgstr ""
+msgstr "Llwybrau"
 
 #: grecord/src/gui.c:890
 msgid "Program files"
-msgstr ""
+msgstr "Ffeiliau rhaglenni"
 
 #: grecord/src/gui.c:903
 msgid "_Path to sox:"
-msgstr ""
+msgstr "_Llwybr i sox:"
 
 #: grecord/src/gui.c:917
 msgid "_Apply"
-msgstr ""
+msgstr "_Gweithredu"
 
 #: grecord/src/gui.c:926
 msgid "Folders"
-msgstr ""
+msgstr "Plygelli"
 
 #: grecord/src/gui.c:939
 msgid "_Temporary folder:"
-msgstr ""
+msgstr "_Plygell dros dro:"
 
 #: grecord/src/gui.c:953
 msgid "Apply"
-msgstr ""
+msgstr "Gweithredu"
 
 #: grecord/src/gui.c:965
 msgid "Sound"
-msgstr ""
+msgstr "Sain"
 
 #: grecord/src/gui.c:970
 msgid "Sound options"
-msgstr ""
+msgstr "Dewisiadau sain"
 
 #: grecord/src/gui.c:979
 msgid ""
-" Note: These options only take effect whenever a new sound sample\n"
-" is created. They do not operate on an existing sample.\n"
+"Note: These options only take effect whenever a new sound sample\n"
+"is created. They do not operate on an existing sample."
 msgstr ""
+"Noder: Daw'r dewisiadau yma i rym pan greuir sampl sain newydd\n"
+"yn unig. Nid ydynt yn gweithredu ar sampl cyfredol."
+
+#: grecord/src/gui.c:992
+msgid "Audio format:"
+msgstr "Fformat sain:"
 
 #: grecord/src/gui.c:1001
 msgid "8 _bit PCM"
-msgstr ""
+msgstr "PCM 8_did"
 
 #: grecord/src/gui.c:1007
 msgid "16 b_it PCM"
-msgstr ""
+msgstr "PCM 16d_id"
 
-#. If only combos didn't suck! 
+#. If only combos didn't suck!
 #: grecord/src/gui.c:1021
 msgid "S_ample rate:"
-msgstr ""
+msgstr "Gradd samplo:"
 
 #: grecord/src/gui.c:1052
 msgid "Mono or Stereo:"
-msgstr ""
+msgstr "Unsain neu Stereo"
 
 #: grecord/src/gui.c:1061
 msgid "_Mono"
-msgstr ""
+msgstr "_Unsain"
 
 #: grecord/src/gui.c:1067
 msgid "_Stereo"
-msgstr ""
+msgstr "_Stereo"
 
 #: grecord/src/gui.c:1088
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: grecord/src/main.c:50
 msgid "Specify the geometry of the main window"
-msgstr ""
+msgstr "Penodwch geometreg y prif ffenestr"
 
 #: grecord/src/main.c:51
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETREG"
 
 #: grecord/src/main.c:59
 msgid "Specify a file to be opened"
-msgstr ""
+msgstr "Penodwch ffeil i'w agor"
 
 #: grecord/src/main.c:68
 msgid "Specify a file to start recording"
-msgstr ""
+msgstr "Penodwch ffeil i ddechrau ei recordio"
 
 #: grecord/src/main.c:77
 msgid "Specify a file to start playing"
-msgstr ""
+msgstr "Penodwch ffeil i ddechrau ei chwarae"
 
 #: grecord/src/main.c:172
 msgid "Sound recorder"
-msgstr ""
+msgstr "Recordydd sain"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 8bit PCM"
-msgstr ""
+msgstr "Fformat sain: PCM 8did"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 16bit PCM"
-msgstr ""
+msgstr "Fformat sain: PCM 16did"
 
-#: grecord/src/preferences.c:222 
+#: grecord/src/preferences.c:223
 #, c-format
 msgid "Sample rate: %s"
-msgstr ""
+msgstr "Gradd samplo: %s"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: mono"
-msgstr ""
+msgstr "Sianeli: Unsain"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: stereo"
-msgstr ""
+msgstr "Sianeli: Stereo"
 
 #: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
-msgstr ""
+msgstr "Yn ychwanegu adlais i'r sampl..."
 
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr ""
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr ""
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr ""
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr ""
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr ""
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr ""
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr ""
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr ""
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr ""
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr ""
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr ""
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr ""
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr ""
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr ""
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr ""
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr ""
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr ""
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr ""
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr ""
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr ""
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr ""
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr ""
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr ""
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr ""
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr ""
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr ""
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr ""
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr ""
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr ""
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr ""
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr ""
-
-#. Fatal error 
+#. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:263
 msgid "Failure instantiating main window"
-msgstr ""
+msgstr "Methiant tra'n enghreifftio'r brif ffenestr"
 
-#. Fatal error 
-#: gstreamer-properties/gstreamer-properties.c:303 
+#. Fatal error
+#: gstreamer-properties/gstreamer-properties.c:303
 #, c-format
 msgid "Could not load UI resource %s"
-msgstr ""
+msgstr "Methwyd llwytho adnawdd RhD (UI) %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr ""
+msgstr "Ffurfweddu rhagosodion i gymhwysiadau GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "GStreamer"
-msgstr ""
+msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
+msgid "<b>Default Sink</b>"
+msgstr "<b>Sinc Rhagosodedig</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "Audio"
-msgstr ""
+msgid "<b>Default Source</b>"
+msgstr "<b>Tarddiad Ragosodedig</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio _Input:"
-msgstr ""
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Profi...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr ""
+msgid "Audio"
+msgstr "Sain"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
-msgstr ""
+msgid "Click Ok to finish."
+msgstr "Cliciwch Iawn (OK) i orffen"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "Default Sink"
-msgstr ""
+msgid "GStreamer Preferences"
+msgstr "Hoffterau GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Default Source"
-msgstr ""
+msgid "Pipe_line:"
+msgstr "Pibell:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "GStreamer Properties"
-msgstr ""
+msgid "Te_st"
+msgstr "_Prawf..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeline:"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Test..."
-msgstr ""
+msgid "Testing Pipeline"
+msgstr "Profi'r bibell"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr ""
+msgid "_Input:"
+msgstr "_Mewnbwn:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "_Allbwn:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr ""
+msgid "_Pipeline:"
+msgstr "_Pibell:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
-msgstr ""
+msgid "_Test"
+msgstr "Prawf..."
 
-#: gstreamer-properties/pipeline-test-old.c:215 
-#: gstreamer-properties/pipeline-tests.c:111 
+#: gstreamer-properties/pipeline-constants.c:58
+#: gstreamer-properties/pipeline-constants.c:76
+#: gstreamer-properties/pipeline-constants.c:93
+#: gstreamer-properties/pipeline-constants.c:110
+msgid "Custom"
+msgstr "Addasiedig"
+
+#: gstreamer-properties/pipeline-test-old.c:215
+#: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr ""
+msgstr "Methwyd adeiladu pibell brawf i '%s'"
 
 #: vu-meter/main.c:120
 msgid ""
-" Cannot connect to sound daemon.\n"
-" Please run 'esd' at a command prompt.\n"
+"Cannot connect to sound daemon.\n"
+"Please run 'esd' at a command prompt."
 msgstr ""
+"Methwyd cysylltu ag ellyll sain.\n"
+"Rhedwch 'esd' o anogiad gorchymyn."
 
 #: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
-msgstr ""
+msgstr "Penodwch safle X y mesurydd."
 
 #: vu-meter/main.c:247
 msgid "X-Position"
-msgstr ""
+msgstr "Safle-X"
 
 #: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
-msgstr ""
+msgstr "Penodwch safle Y y mesurydd"
 
 #: vu-meter/main.c:250
 msgid "Y-Position"
-msgstr ""
+msgstr "Safle-Y"
 
 #: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
-msgstr ""
+msgstr "Cysylltu â'r gweinydd esd ar y gwesteiwr yma."
 
 #: vu-meter/main.c:253
 msgid "ESD Server Host"
-msgstr ""
+msgstr "Gwesteiwr gweinydd ESD"
 
 #: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
-msgstr ""
+msgstr "Agor fersiwn fertigol o'r mesurydd"
 
 #: vu-meter/main.c:257
 msgid "Act as recording level meter."
-msgstr ""
+msgstr "Gweithredu fel mesurydd lefel recordio"
 
-#: vu-meter/main.c:274 
+#: vu-meter/main.c:274
 #, c-format
-msgid ""
-"Host is %s\n"
-"\n"
-msgstr ""
+msgid "Host is %s\n"
+msgstr "%s yw'r gwesteiwr\n"
 
 #: vu-meter/main.c:291
 msgid "Recording level"
-msgstr ""
+msgstr "Lefel recordio"
 
 #: vu-meter/main.c:291
 msgid "Volume Meter"
-msgstr ""
+msgstr "Mesurydd Lefel Sain"
 
 #: vu-meter/reclevel.desktop.in.h:1
 msgid "Monitor the recording input volume"
-msgstr ""
+msgstr "Arsylwi lefel sain y mewnbwn recordio"
 
 #: vu-meter/reclevel.desktop.in.h:2
 msgid "Recording level monitor"
-msgstr ""
+msgstr "Arsylwydd lefel recordio"
 
 #: vu-meter/vumeter.desktop.in.h:1
 msgid "Monitor the sound output volume"
-msgstr ""
+msgstr "Arsylwi lefel sain yr allbwn"
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
-msgstr ""
+msgstr "Arsylwydd lefel sain"
 
+#~ msgid "Send _no info"
+#~ msgstr "Anfon _dim gwybodaeth"
+
+#~ msgid "_Hostname:"
+#~ msgstr "Enw _Gwesteiwr:"
+
+#~ msgid "Action on application exit"
+#~ msgstr "Gweithred ar adael y cymhwysiad"
+
+#~ msgid "Action on start"
+#~ msgstr "Gweithred ar ddechrau"
+
+#~ msgid "Should the CD player attempt to shut the CD drive on start up?"
+#~ msgstr "A ddylai'r chwaraewr CD geisio cau'r gyrriant CDau ar ymgychwyn?"
+
+#~ msgid "Shut the CD tray on start"
+#~ msgstr "Cau'r gyrriant CDau ar ymgychwyn"
+
+#~ msgid ""
+#~ "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
+#~ "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
+#~ msgstr ""
+#~ "Pa weithred dylai'r chwaraewr CD gyflawni ar adael? 0 = Dim, 1 = Gorffen "
+#~ "chwarae, 2 = Allfwrw'r CD, 3 = Ceisio cau'r hambwrdd"
+
+#~ msgid ""
+#~ "What action should the CD player perform on start up? 0 = Nothing, 1 = "
+#~ "Start playing, 2 = Stop playing"
+#~ msgstr ""
+#~ "Pa weithred dylai'r chwaraewr CD gyflawni ar ymddechrau? 0 = Dim, 1 = "
+#~ "Dechrau chwarae, 2 = Gorffen chwarae"
+
+#~ msgid "Do _nothing"
+#~ msgstr "Gwneud _dim"
+
+#~ msgid "Do nothing when CD Player starts"
+#~ msgstr "Gwneud dim pan ymddechreua Chwaraewr CD"
+
+#~ msgid "Start _playing CD"
+#~ msgstr "Dechrau _chwarae CD"
+
+#~ msgid "_Stop playing CD"
+#~ msgstr "_Gorffen chwarae CD"
+
+#~ msgid "Stop playing CD when CD Player starts"
+#~ msgstr "Gorffen chwarae CD pan ddechreua Chwaraewr CD"
+
+#~ msgid "Attempt to _close CD tray"
+#~ msgstr "Ceisio _cau hambwrdd CD"
+
+#~ msgid "When CD player quits"
+#~ msgstr "Pan orffena Chwaraewr CD"
+
+#~ msgid "Do not_hing"
+#~ msgstr "Gwneud _dim"
+
+#~ msgid "Do nothing when CD Player exits"
+#~ msgstr "Gwneud dim pan orffena Chwaraewr CD"
+
+#~ msgid "S_top playing CD"
+#~ msgstr "G_orffen chwarae CD"
+
+#~ msgid "Attempt to _open CD tray"
+#~ msgstr "Ceisio _agor hambwrdd CD"
+
+#~ msgid "Attempt to c_lose CD tray"
+#~ msgstr "Ceisio _cau hambwrdd CD"
+
+#~ msgid "Theme name"
+#~ msgstr "Enw thema"
+
+#~ msgid "Video _Input:"
+#~ msgstr "_Mewnbwn Fideo:"
+
+#~ msgid "Video _Output:"
+#~ msgstr "_Allbwn Fideo:"
