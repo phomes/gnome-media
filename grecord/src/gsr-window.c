@@ -757,7 +757,7 @@ fill_in_information (GSRWindow *window,
 	          till we can get the info */
 	/* Length */
 	if (window->priv->len_secs == 0) {
-		text = g_strdup (_("Unknown length"));
+		text = g_strdup (_("Unknown"));
 	} else {
 		text = seconds_to_full_string (window->priv->len_secs);
 	}
@@ -828,21 +828,21 @@ file_properties (BonoboUIComponent *uic,
 	dialog = gtk_dialog_new_with_buttons (title, GTK_WINDOW (window),
 					      GTK_DIALOG_DESTROY_WITH_PARENT,
 					      GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
-
+	gtk_window_set_resizable (GTK_WINDOW(dialog), FALSE);
 	fp = g_new (struct _file_props, 1);
 	fp->dialog = dialog;
 	
 	g_signal_connect (G_OBJECT (dialog), "response",
 			  G_CALLBACK (dialog_closed), fp);
 
-	gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
-	vbox = gtk_vbox_new (FALSE, 18);
+	vbox = gtk_vbox_new (FALSE, 12);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox, TRUE, TRUE, 0);
 
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE,0);
 
-	label = make_title_label (_("File Information:"));
+	label = make_title_label (_("File Information"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
@@ -856,19 +856,19 @@ file_properties (BonoboUIComponent *uic,
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
-	label = make_title_label (_("Directory:"));
+	label = make_info_label (_("Directory:"));
 	pack_table_widget (table, label, 0, 0);
 
 	fp->dirname = make_info_label ("");
 	pack_table_widget (table, fp->dirname, 1, 0);
 
-	label = make_title_label (_("Filename:"));
+	label = make_info_label (_("Filename:"));
 	pack_table_widget (table, label, 0, 1);
 
 	fp->filename = make_info_label ("");
 	pack_table_widget (table, fp->filename, 1, 1);
 
-	label = make_title_label (_("File size:"));
+	label = make_info_label (_("File size:"));
 	pack_table_widget (table, label, 0, 2);
 
 	fp->size = make_info_label ("");
@@ -877,7 +877,7 @@ file_properties (BonoboUIComponent *uic,
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE, 0);
 
-	label = make_title_label (_("Audio Information:"));
+	label = make_title_label (_("Audio Information"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
@@ -891,25 +891,25 @@ file_properties (BonoboUIComponent *uic,
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
-	label = make_title_label (_("Song length:"));
+	label = make_info_label (_("Song length:"));
 	pack_table_widget (table, label, 0, 0);
 
 	fp->length = make_info_label ("");
 	pack_table_widget (table, fp->length, 1, 0);
 
-	label = make_title_label (_("Number of channels:"));
+	label = make_info_label (_("Number of channels:"));
 	pack_table_widget (table, label, 0, 1);
 
 	fp->channels = make_info_label ("");
 	pack_table_widget (table, fp->channels, 1, 1);
 
-	label = make_title_label (_("Sample rate:"));
+	label = make_info_label (_("Sample rate:"));
 	pack_table_widget (table, label, 0, 2);
 
 	fp->samplerate = make_info_label ("");
 	pack_table_widget (table, fp->samplerate, 1, 2);
 
-	label = make_title_label (_("Bit rate:"));
+	label = make_info_label (_("Bit rate:"));
 	pack_table_widget (table, label, 0, 3);
 
 	fp->bitrate = make_info_label ("");
@@ -917,6 +917,12 @@ file_properties (BonoboUIComponent *uic,
 
 	fill_in_information (window, fp);
 	gtk_widget_show_all (dialog);
+}
+
+void
+gsr_window_close (GSRWindow *window)
+{
+	gtk_widget_destroy (GTK_WIDGET (window));
 }
 
 static void
@@ -940,6 +946,23 @@ file_quit (BonoboUIComponent *uic,
 	   const char *path)
 {
 	gsr_quit ();
+}
+
+static void
+help_contents (BonoboUIComponent *component,
+	       GSRWindow *window,
+	       const char *path)
+{
+	GError *error = NULL;
+
+	gnome_help_display ("gnome-sound-recorder.xml", NULL, &error);
+
+	if (error != NULL)
+	{
+		g_warning (error->message);
+
+		g_error_free (error);
+	}
 }
 
 static void
@@ -1032,6 +1055,7 @@ static BonoboUIVerb file_verbs[] = {
 };
 
 static BonoboUIVerb help_verbs[] = {
+	BONOBO_UI_VERB ("HelpContents", (BonoboUIVerbFn) help_contents),
 	BONOBO_UI_VERB ("HelpAbout", (BonoboUIVerbFn) help_about),
 
 	BONOBO_UI_VERB_END
@@ -1568,10 +1592,4 @@ gsr_window_new (const char *filename)
 			       
 	gtk_widget_show_all (window->priv->main_vbox);
 	return GTK_WIDGET (window);
-}
-
-void
-gsr_window_close (GSRWindow *window)
-{
-	gtk_widget_destroy (GTK_WIDGET (window));
 }

@@ -93,7 +93,7 @@ gsr_open_window (const char *filename)
 		name = g_strdup (filename);
 	}
 
-	window = gsr_window_new (name);
+	window = GTK_WIDGET (gsr_window_new (name));
 	g_free (name);
 	g_signal_connect (G_OBJECT (window), "destroy",
 			  G_CALLBACK (window_destroyed), NULL);

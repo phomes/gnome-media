@@ -11,7 +11,7 @@
 			sensitive="0"/>
 
 		<cmd name="FileSaveAs" _label="Save As" _tip="Save the current file with a different name"
-			pixtype="stock" pixname="gtk-save-as" accel="*Shift*Control*S"
+			pixtype="stock" pixname="gtk-save-as" accel="*Shift**Control*S"
 			sensitive="0"/>
 
 		<cmd name="FileMixer" _label="Run Mixer" _tip="Run the audio mixer"
@@ -26,18 +26,22 @@
 		<cmd name="FileExit" _label="Quit" _tip="Quit the program"
 			pixtype="stock" pixname="gtk-quit" accel="*Control*q"/>
 
-		<cmd name="HelpAbout" _label="About Sound Recorder"
+		<cmd name="HelpAbout" _label="About"
 			_tip="Show information for Sound Recorder"
-			pixype="stock" pixname="about"/>
+			pixtype="stock" pixname="gnome-stock-about"/>
+
+		<cmd name="HelpContents" _label="Contents"
+			_tip="Display help for Sound Recorder"
+			pixtype="stock" pixname="gtk-help" accel="F1"/>
 
 		<cmd name="MediaPlay" _label="Play" _tip="Play sound"
-			sensitive="0" pixtype="stock" pixname="media-play"/>
+			sensitive="0" pixtype="stock" pixname="media-play" accel="*Control*p"/>
 
 		<cmd name="MediaStop" _label="Stop" _tip="Stop sound"
-			sensitive="0" pixtype="stock" pixname="media-stop"/>
+			sensitive="0" pixtype="stock" pixname="media-stop" accel="*Control*x"/>
 
 		<cmd name="MediaRecord" _label="Record" _tip="Record sound"
-			sensitive="0" pixtype="stock" pixname="media-rec"/>
+			sensitive="0" pixtype="stock" pixname="media-rec" accel="*Control*r"/>
 	</commands>
 
 	<menu>
@@ -55,8 +59,8 @@
 
 			<separator/>
 
-			<menuitem name="FileMixer" verb="" _label="Run mixer"/>
-			<menuitem name="FileProperties" verb="" _label="File Information"/>
+			<menuitem name="FileMixer" verb="" _label="Run _Mixer"/>
+			<menuitem name="FileProperties" verb="" _label="File _Information"/>
 
 			<separator/>
 
@@ -65,13 +69,14 @@
 		</submenu>
 
 		<submenu name="Actions" _label="_Control">
-			<menuitem name="MediaRecord" verb=""/>
-			<menuitem name="MediaPlay" verb=""/>
-			<menuitem name="MediaStop" verb=""/>
+			<menuitem name="MediaRecord" verb="" _label="_Record"/>
+			<menuitem name="MediaPlay" verb="" _label="_Play"/>
+			<menuitem name="MediaStop" verb="" _label="_Stop"/>
 		</submenu>
 
 		<submenu name="Help" _label="_Help">
-			<menuitem name="HelpAbout" verb=""/>
+			<menuitem name="HelpContents" verb="" _label="_Contents"/>
+			<menuitem name="HelpAbout" verb="" _label="_About"/>
 		</submenu>
 	</menu>
 
