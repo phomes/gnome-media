@@ -108,8 +108,6 @@ CDDBSlave2_LDADD =				\
 	libcddb-slave2-private.la
 
 cddb_track_editor_SOURCES = 			\
-	cddb-disclosure.c			\
-	cddb-disclosure.h			\
 	cddb-track-editor.c
 
 cddb_track_editor_LDADD =			\

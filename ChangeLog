@@ -1,3 +1,15 @@
+2005-03-21  jsc  <yovivoenmetaluna@gmail.com>
+
+	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* cddb-slave2/Makefile.am:
+	* cddb-slave2/cddb-disclosure.c:
+	* cddb-slave2/cddb-disclosure.h:
+	* cddb-slave2/cddb-track-editor.c:
+	(disc_options_expanded_notify_cb),
+	(track_options_expanded_notify_cb), (make_track_editor_control):
+	  Use gtk-expander instead of our own (fixes a11y bug in #98195).
+
 2005-03-21  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* grecord/src/gsr-window.c: (cb_rec_eos), (media_stop):

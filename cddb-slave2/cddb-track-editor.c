@@ -29,7 +29,6 @@
 #include <bonobo-activation/bonobo-activation.h>
 #include <libbonoboui.h>
 
-#include "cddb-disclosure.h"
 #include "cddb-slave-client.h"
 #include "GNOME_Media_CDDBSlave2.h"
 
@@ -605,6 +604,38 @@ load_new_track_data (TrackEditorDialog *td,
 	td->dirty = FALSE;
 }
 
+static void
+disc_options_expanded_notify_cb (GObject *object, 
+				 GParamSpec *pspec, 
+				 gpointer data)
+{
+	GtkExpander *expander;
+
+	expander = GTK_EXPANDER (object);
+
+	if (gtk_expander_get_expanded (expander)) {
+		gtk_expander_set_label (expander, _("Hide advanced disc options"));
+	} else {
+		gtk_expander_set_label (expander, _("Show advanced disc options"));
+	}
+}
+
+static void
+track_options_expanded_notify_cb (GObject *object, 
+				  GParamSpec *pspec, 
+				  gpointer data)
+{
+	GtkExpander *expander;
+
+	expander = GTK_EXPANDER (object);
+
+	if (gtk_expander_get_expanded (expander)) {
+		gtk_expander_set_label (expander, _("Hide advanced track options"));
+	} else {
+		gtk_expander_set_label (expander, _("Show advanced track options"));
+	}
+}
+
 static TrackEditorDialog *
 make_track_editor_control (void)
 {
@@ -662,14 +693,15 @@ make_track_editor_control (void)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->disctitle);
 	set_relation (td->disctitle, label);
 
-	advanced = cddb_disclosure_new (_("Show advanced disc options"),
-					_("Hide advanced disc options"));
+	advanced = gtk_expander_new (_("Show advanced disc options"));
+	g_signal_connect (advanced, "notify::expanded", 
+			  G_CALLBACK (disc_options_expanded_notify_cb), NULL);
+
 	gtk_box_pack_start (GTK_BOX (inner_vbox), advanced, FALSE, FALSE, 0);
 
 	/* Advanced disc options */
 	ad_vbox = gtk_vbox_new (FALSE, 6);
-	gtk_box_pack_start (GTK_BOX (inner_vbox), ad_vbox, FALSE, FALSE, 0);
-	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox);
+	gtk_container_add (GTK_CONTAINER (advanced), ad_vbox);
 
 	hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (ad_vbox), hbox, FALSE, FALSE, 0);
@@ -763,13 +795,13 @@ make_track_editor_control (void)
 	gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
 	/* More advanced options */
-	advanced = cddb_disclosure_new (_("Show advanced track options"),
-					_("Hide advanced track options"));
-	gtk_box_pack_start (GTK_BOX (vbox), advanced, FALSE, FALSE, 0);
+	advanced = gtk_expander_new (_("Show advanced track options")); 
+	g_signal_connect (advanced, "notify::expanded",
+			  G_CALLBACK (track_options_expanded_notify_cb), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox), advanced, TRUE, TRUE, 0);
 
 	ad_vbox2 = gtk_vbox_new (FALSE, 6);
-	gtk_box_pack_start (GTK_BOX (vbox), ad_vbox2, TRUE, TRUE, 0);
-	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox2);
+	gtk_container_add (GTK_CONTAINER (advanced), ad_vbox2);
 
 	/* Extra data */
 	label = gtk_label_new_with_mnemonic (_("_Extra track data:"));
@@ -787,10 +819,8 @@ make_track_editor_control (void)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->extra_info);
 	set_relation (td->extra_info, label);
 
-	/* Special show hide all the stuff we want */
+	/* Show all widgets */
 	gtk_widget_show_all (td->parent);
-	gtk_widget_hide (ad_vbox);
-	gtk_widget_hide (ad_vbox2);
 
 	return td;
 }
