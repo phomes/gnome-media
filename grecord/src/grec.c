@@ -1424,9 +1424,8 @@ check_if_sounddevice_ready ()
 					       GTK_BUTTONS_OK,
 					       _("The sound device is not ready. Please check that there "
 						 "isn't\nanother program running that is using the device."));
-		g_signal_connect (G_OBJECT (mess), "response",
-				  G_CALLBACK (gtk_widget_destroy), NULL);
 		gtk_dialog_run (GTK_DIALOG (mess));
+		gtk_widget_destroy (mess);
 		return FALSE;
 	}
 
