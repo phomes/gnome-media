@@ -883,6 +883,7 @@ dialog_response (GtkDialog *dialog,
 	default:
 		gtk_widget_destroy (GTK_WIDGET (dialog));
 		editor->dialog = NULL;
+		editor->td = NULL;
 		break;
 	}
 }
