@@ -1051,6 +1051,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1,\
 					  1, 2, GTK_EXPAND | GTK_FILL,\
 					  GTK_EXPAND | GTK_FILL, 0, 0);
+			gtk_widget_set_size_request(mixer, -1, 100);
 			gtk_widget_show (mixer);
 			table_focus_chain = g_list_prepend (table_focus_chain, mixer);
 			

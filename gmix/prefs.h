@@ -33,10 +33,6 @@ typedef struct {
 
 extern mixerprefs prefs;
 
-#define PREFS_PAGE "Preferences Page"
-#define PREFS_COPY "Preferences Data Copy"
-#define LABELS_PAGE "Labels Page"
-
 // Common options for the table of sound device labels.
 #define LABEL_TABLE_OPTS GTK_FILL | GTK_EXPAND | GTK_SHRINK, \
 			 GTK_FILL | GTK_EXPAND | GTK_SHRINK, \
@@ -54,4 +50,3 @@ struct label_create_args {
 
 void prefs_make_window(GtkWidget *toplevel);
 void get_gui_config(void);
-void put_gui_config(void);
