@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-09 02:57-0700\n"
-"PO-Revision-Date: 2003-09-29 21:06-0400\n"
-"Last-Translator: Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
+"POT-Creation-Date: 2004-03-12 17:19-0500\n"
+"PO-Revision-Date: 2004-03-12 17:18-0500\n"
+"Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1436,9 +1436,8 @@ msgid "_Save"
 msgstr "_Salvar"
 
 #: grecord/src/gnome-recorder.c:155
-#, fuzzy
 msgid "Dummy option"
-msgstr "Opções de som"
+msgstr "Opções básicas"
 
 #: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
 #: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
@@ -1563,18 +1562,17 @@ msgid "Playing..."
 msgstr "Reproduzindo..."
 
 #: grecord/src/gsr-window.c:1284
-#, fuzzy, c-format
+#, c-format
 msgid "%s.%s - Sound Recorder"
-msgstr "%s - Gravador de som"
+msgstr "%s.%s - Gravador de Som"
 
 #: grecord/src/gsr-window.c:1376
 msgid "Recording..."
 msgstr "Gravando..."
 
 #: grecord/src/gsr-window.c:1560
-#, fuzzy
 msgid "Record as"
-msgstr "Gravar"
+msgstr "Gravar como"
 
 #: grecord/src/gsr-window.c:1577
 msgid "File information"
@@ -1601,17 +1599,17 @@ msgstr "Controle de Volume"
 #: gst-mixer/src/mixer.c:218
 #, c-format
 msgid "%s Slider"
-msgstr ""
+msgstr "Volume %s"
 
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr ""
+msgstr "Canal %d do volume %s"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
 msgid "%s Slider %d"
-msgstr ""
+msgstr "Volume do %s %d"
 
 #: gst-mixer/src/mixer.c:234
 msgid "Lock"
@@ -1642,22 +1640,22 @@ msgstr "%s Gravar"
 
 #: gst-mixer/src/mixer.c:456
 msgid "A GNOME/GStreamer-based mixer application"
-msgstr ""
+msgstr "Uma aplicação de mixer baseada no GNOME/GStreamer"
 
 #: gst-mixer/src/mixer.c:563
 msgid "Sorry, no mixer elements and/or devices found"
-msgstr ""
+msgstr "Desculpe, mas nenhum elemento e/ou dispositivo de mixer foi encontrado"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
 msgid "Failure instantiating main window"
-msgstr "Falha criando janela principal"
+msgstr "Falha ao criar a janela principal"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:312
 #, c-format
 msgid "Could not load UI resource %s"
-msgstr "Não foi possível carregar recurso de UI %s"
+msgstr "Não foi possível carregar o recurso de UI %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -1665,7 +1663,7 @@ msgstr "Configurar padrões para aplicações GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "Multimedia Systems Selector"
-msgstr ""
+msgstr "Seletor de Sistemas Multimídia"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1742,30 +1740,27 @@ msgid "Failed to construct test pipeline for '%s'"
 msgstr "Falha ao construir um encanamento de teste para '%s'"
 
 #: profiles/audio-profile-edit.c:185
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error displaying help: %s"
-msgstr ""
-"Ocorreu um erro ao mostrar ajuda: \n"
-"%s"
+msgstr "Houve um erro ao mostrar a ajuda: %s"
 
 #: profiles/audio-profile-edit.c:387
-#, fuzzy, c-format
+#, c-format
 msgid "Editing profile \"%s\""
-msgstr "Editando ID do disco: %s"
+msgstr "Editando o perfil \"%s\""
 
 #: profiles/audio-profile.c:101
-#, fuzzy
 msgid "<not named>"
-msgstr "<nenhum>"
+msgstr "<sem nome>"
 
 #: profiles/audio-profile.c:102
 msgid "<not described>"
-msgstr ""
+msgstr "<sem descrição>"
 
 #: profiles/audio-profile.c:217
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "Erro ao iniciar %s: %s"
+msgstr "Houve um erro ao obter a lista de perfis gm_audio. (%s)\n"
 
 #: profiles/audio-profile.c:718
 #, c-format
@@ -1773,51 +1768,51 @@ msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
 msgstr ""
+"Houve um erro ao assinar a notificação da lista de modificações do perfil do "
+"terminal. (%s)\n"
 
 #: profiles/audio-profile.c:908
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
-msgstr "Erro ao iniciar %s: %s"
+msgstr "Houve um erro ao esquecer o diretório do perfil %s. (%s)\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
-msgstr ""
+msgstr "<sem descrição>"
 
 #: profiles/audio-profile.c:1011
 msgid "identity"
-msgstr ""
+msgstr "identidade"
 
 #: profiles/audio-profile.c:1022
 msgid "wav"
-msgstr ""
+msgstr "wav"
 
 #: profiles/audio-profiles-edit.c:113
-#, fuzzy
 msgid "_Edit"
-msgstr "_Sair"
+msgstr "_Editar"
 
 #: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
-msgstr ""
+msgstr "Você deve selecionar um ou mais perfis para excluir."
 
 #: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
-msgstr ""
+msgstr "Excluir estes dois perfis?\n"
 
 #: profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete these %d profiles?\n"
-msgstr ""
+msgstr "Excluir estes %d perfis?\n"
 
 #: profiles/audio-profiles-edit.c:481
 #, c-format
 msgid "Delete profile \"%s\"?"
-msgstr ""
+msgstr "Excluir o perfil \"%s\"?"
 
 #: profiles/audio-profiles-edit.c:503
-#, fuzzy
 msgid "Delete Profile"
-msgstr "Selecionar um arquivo de som"
+msgstr "Exclir perfil"
 
 #.
 #. dialog =
@@ -1832,24 +1827,22 @@ msgstr "Selecionar um arquivo de som"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: profiles/audio-profiles-edit.c:597
-#, fuzzy
 msgid "Edit GMAudio Profiles"
-msgstr "Editando ID do disco: %s"
+msgstr "Editar Perfis GMAudio"
 
 #: profiles/audio-profiles-edit.c:650
-#, fuzzy
 msgid "_Profiles:"
-msgstr "Arquivos de programas"
+msgstr "_Perfis:"
 
 #: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr ""
+msgstr "Você já tem um perfil chamado \"%s\""
 
 #: profiles/audio-profiles-edit.c:903
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
-msgstr ""
+msgstr "Erro no GConf (CONSERTE-ME): %s\n"
 
 #: profiles/gmp-util.c:64
 #, c-format
@@ -1857,118 +1850,123 @@ msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
+"Falta o arquivo \"%s\". Isso indica que a aplicação não está instalada "
+"corretamente e, por isso, a caixa de diálogo não pode ser mostrada."
 
 #: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
-msgstr ""
+msgstr "Editar Perfil de Áudio"
 
 #: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
 msgid "File _Extension:"
-msgstr "Tamanho do arquivo:"
+msgstr "_Extensão do Arquivo:"
 
 #: profiles/gnome-audio-profiles.glade2.h:4
 msgid "New Profile"
-msgstr ""
+msgstr "Novo Perfil"
 
 #: profiles/gnome-audio-profiles.glade2.h:5
 msgid "Profile Description:"
-msgstr ""
+msgstr "Descrição do Perfil:"
 
 #: profiles/gnome-audio-profiles.glade2.h:6
 msgid "Profile _Description:"
-msgstr ""
+msgstr "_Descrição do Perfil:"
 
 #: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
 msgid "Profile _name:"
-msgstr "Nome do arquivo:"
+msgstr "Nome do perfil:"
 
 #: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
-msgstr ""
+msgstr "_Ativar?"
 
 #: profiles/gnome-audio-profiles.glade2.h:9
-#, fuzzy
 msgid "_Create"
-msgstr "Centro"
+msgstr "_Criar"
 
 #: profiles/gnome-audio-profiles.glade2.h:10
-#, fuzzy
 msgid "_GStreamer Pipeline:"
-msgstr "Preferências do GStreamer"
+msgstr "Linha de montagem do _GStreamer:"
 
 #: profiles/gnome-audio-profiles.glade2.h:11
-#, fuzzy
 msgid "_Profile name:"
-msgstr "Nome do arquivo:"
+msgstr "Nome do _perfil:"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
-msgstr ""
+msgstr "Uma descrição para o perfil de áudio"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:2
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
 msgstr ""
+"Uma descrição do perfil, contendo mais informação e descrevendo quando usar "
+"o perfil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
+"Uma extensão para o nome de arquivo para ser usada ao armazenar arquivos "
+"codificados com esse perfil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+msgstr "Uma linha de montagem parcial do GStreamer para usar com este perfil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
-msgstr ""
+msgstr "Um apelido para o perfil de áudio"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:6
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
 msgstr ""
+"Um apelido para o perfil de áudio, para ser usado em seleções e "
+"identificando unicamente o perfil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
+"Lista dos perfis de gravação de áudio. A lista contém strings dando nome aos "
+"subdiretórios relativos a /system/gstreamer/audio/profiles."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
-msgstr ""
+msgstr "Lista de perfis"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "The default file extension for this profile"
-msgstr ""
+msgstr "A extensão padrão de arquivos para este perfil"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
-msgstr ""
+msgstr "A linha de montagem parcial do GStreamer utilizada"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
-msgstr ""
+msgstr "Se esse perfil deve ou não ser usado"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "Whether or not to use and display this profile."
-msgstr ""
+msgstr "Se esse perfil deve ou não ser usado e mostrado."
 
 #: vu-meter/main.c:120
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
-"Não foi possível conectar ao servidor de som. \n"
-"Execute 'esd' na linha de comando."
+"Não foi possível conectar ao servidor de som.\n"
+"Por favor execute 'esd' na linha de comando."
 
 #: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
-msgstr "Especificar a posição X do medidor."
+msgstr "Especifique a posição X do medidor."
 
 #: vu-meter/main.c:247
 msgid "X-Position"
@@ -1976,7 +1974,7 @@ msgstr "Posição X"
 
 #: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
-msgstr "Especificar a posição Y do medidor."
+msgstr "Especifique a posição Y do medidor."
 
 #: vu-meter/main.c:250
 msgid "Y-Position"
@@ -2001,7 +1999,7 @@ msgstr "Agir como um medidor de nível de gravação."
 #: vu-meter/main.c:274
 #, c-format
 msgid "Host is %s\n"
-msgstr "Máquina é %s\n"
+msgstr "A máquina é %s\n"
 
 #: vu-meter/main.c:291
 msgid "Recording level"
@@ -2026,602 +2024,3 @@ msgstr "Monitorar o volume de saída de som"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Medidor de Volume"
-
-#, fuzzy
-#~ msgid "GStreamer Volume Control"
-#~ msgstr "Controle de Volume"
-
-#~ msgid "GStreamer"
-#~ msgstr "GStreamer"
-
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "Espaço"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b>Arquivo '%s' já existe.</b>\n"
-#~ "Você deseja sobrescrevê-lo?"
-
-#, fuzzy
-#~ msgid "Could not build pipeline"
-#~ msgstr "Não foi possível dividir processo filho"
-
-#~ msgid "Saving %s..."
-#~ msgstr "Salvando %s..."
-
-#~ msgid "Synth"
-#~ msgstr "Sintetizador"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "Entrada DSP"
-
-#~ msgid "Line"
-#~ msgstr "Linha"
-
-#~ msgid "MIC"
-#~ msgstr "MIC"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Rádio"
-
-#~ msgid "Phone"
-#~ msgstr "Fone"
-
-#~ msgid "Mono"
-#~ msgstr "Mono"
-
-#~ msgid "PC Speaker"
-#~ msgstr "Auto-falante do PC"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Center Input"
-#~ msgstr "Entrada Central"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Entrada de Woofer"
-
-#~ msgid "Surround Input"
-#~ msgstr "Entrada Surround"
-
-#~ msgid "Master"
-#~ msgstr "Master"
-
-#~ msgid "Master Mono"
-#~ msgstr "Master Mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Master Digital"
-
-#~ msgid "Headphone"
-#~ msgstr "Fone de ouvido"
-
-#~ msgid "Phone Output"
-#~ msgstr "Saída de Fone"
-
-#~ msgid "Center"
-#~ msgstr "Centro"
-
-#~ msgid "Woofer"
-#~ msgstr "Woofer"
-
-#~ msgid "Surround"
-#~ msgstr "Surround"
-
-#~ msgid "DSP Output"
-#~ msgstr "Saída DSP"
-
-#~ msgid "Treble"
-#~ msgstr "Agudos"
-
-#~ msgid "Equalizer"
-#~ msgstr "Equalizador"
-
-#~ msgid "Fader"
-#~ msgstr "Fader"
-
-#~ msgid "Effect"
-#~ msgstr "Efeito"
-
-#~ msgid "3D Effect"
-#~ msgstr "Efeito 3D"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Ganho do microfone"
-
-#~ msgid "Input Gain"
-#~ msgstr "Ganho de entrada"
-
-#~ msgid "Output Gain"
-#~ msgstr "Ganho de saída"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Reentrada analógica"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Reentrada digital"
-
-#~ msgid "Vol  "
-#~ msgstr "Vol  "
-
-#~ msgid "Bass "
-#~ msgstr "Graves "
-
-#~ msgid "Trebl"
-#~ msgstr "Agudos"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Auto-falante "
-
-#~ msgid "Line "
-#~ msgstr "Linha "
-
-#~ msgid "Mic  "
-#~ msgstr "Mic  "
-
-#~ msgid "CD   "
-#~ msgstr "CD   "
-
-#~ msgid "Mix  "
-#~ msgstr "Mix  "
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2 "
-
-#~ msgid "Rec  "
-#~ msgstr "Gravação  "
-
-#~ msgid "IGain"
-#~ msgstr "Ganho entrada"
-
-#~ msgid "OGain"
-#~ msgstr "Ganho saída"
-
-#~ msgid "Line1"
-#~ msgstr "Linha1"
-
-#~ msgid "Line2"
-#~ msgstr "Linha2"
-
-#~ msgid "Line3"
-#~ msgstr "Linha3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digital1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digital2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digital3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "Entrada de fone"
-
-#~ msgid "PhoneOut"
-#~ msgstr "Saída de fone"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitor"
-
-#~ msgid "Help"
-#~ msgstr "Ajuda"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Dispositivo mixer a ser usado"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Não foi possível executar o controle de volume corretamente.\n"
-#~ "\n"
-#~ "Não foi possível abrir o dispositivo de áudio '%s'.\n"
-#~ "Por favor verifique se você tem permissões para abrir '%s'\n"
-#~ "e que você tem suporte a som compilado no seu kernel.\n"
-#~ "\n"
-#~ "Pressione Sair para sair do controle de volume."
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "O controle de volume não pode ser executado corretamente.\n"
-#~ "\n"
-#~ "Clique no botão de detalhes para mais detalhes sobre as razões para\n"
-#~ "esta falha.\n"
-#~ "\n"
-#~ "Clique em Sair para sair do controle de Volume."
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Dispositivo de mixer inválido"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Alerta: Esta versão do Controle de Volume Gnome foi compilada com a\n"
-#~ "versão de OSS %d.%d.%d e o seu sistema está executando\n"
-#~ "uma versão anterior a 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Alerta: Esta versão do Controle de Volume Gnome foi compilada com a\n"
-#~ "versão de OSS %d.%d.%d e o seu sistema está executando\n"
-#~ "a versão %d.%d.%d.\n"
-
-#~ msgid "left %s"
-#~ msgstr "esquerda %s"
-
-#~ msgid "Right %s"
-#~ msgstr "Direita %s"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Controle de Volume do GNOME"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Um mixer para dispositivos de som"
-
-#~ msgid "Shown"
-#~ msgstr "Mostrado"
-
-#~ msgid "Mixer label"
-#~ msgstr "Rótulo do mixer"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_Redefinir rótulos como os padrões"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Preferências do Controle de Volume Gnome"
-
-#~ msgid "Sound Recorder:"
-#~ msgstr "Gravador de Som:"
-
-#~ msgid "Don't show this message again."
-#~ msgstr "Não exibir esta mensagem novamente."
-
-#~ msgid ""
-#~ "Could not find '%s'.\n"
-#~ "Set the correct path to sox inpreferences under the tab 'paths'.\n"
-#~ "\n"
-#~ "If you don't have sox, you will not be able to record or do any effects."
-#~ msgstr ""
-#~ "Não foi possível encontrar '%s'.\n"
-#~ "Indique o caminho correto para o sox nas preferências sob a aba "
-#~ "'caminhos'.\n"
-#~ "\n"
-#~ "Se não dispuser do sox, não será possível gravar ou fazer quaisquer "
-#~ "efeitos."
-
-#~ msgid "Converting file..."
-#~ msgstr "Convertendo arquivo..."
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Audioformat: "
-#~ msgstr "Formato de audio: "
-
-#~ msgid "Sample rate: "
-#~ msgstr "Taxa da amostra: "
-
-#~ msgid "Channels: "
-#~ msgstr "Canais: "
-
-#~ msgid "Cancel open"
-#~ msgstr "Cancelar abertura"
-
-#~ msgid "Select a sound file"
-#~ msgstr "Selecionar um arquivo de som"
-
-#~ msgid "%s is not installed in the path"
-#~ msgstr "%s não está instalado no caminho"
-
-#~ msgid "Undoing all changes..."
-#~ msgstr "Desfazendo todas as alterações..."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please select a sound file to be opened."
-#~ msgstr ""
-#~ "'%s' é uma pasta.\n"
-#~ "Por favor selecione um arquivo de som a ser aberto"
-
-#~ msgid ""
-#~ "File '%s' doesn't exist.\n"
-#~ "Please select an existing sound file to be opened."
-#~ msgstr ""
-#~ "Arquivo '%s' não existe.\n"
-#~ "Selecione um arquivo de som existente a ser aberto."
-
-#~ msgid "File '%s isn't a valid sound file."
-#~ msgstr "Arquivo '%s' não é um arquivo de som válido."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please enter another filename."
-#~ msgstr ""
-#~ "'%s' é uma pasta.\n"
-#~ "Eentre outro nome de arquivo."
-
-#~ msgid "Cancel save"
-#~ msgstr "Cancelar salvamento"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobrescrever"
-
-#~ msgid "Error saving '%s'"
-#~ msgstr "Erro ao salvar '%s'"
-
-#~ msgid ""
-#~ "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "<b>Deseja salvar as alterações feitas em \"%s\"?</b>\n"
-#~ "\n"
-#~ "Suas alterações serão perdidas se não forem salvas."
-
-#~ msgid "Do_n't save"
-#~ msgstr "_Não salvar"
-
-#~ msgid "Save %s?"
-#~ msgstr "Salvar %s?"
-
-#~ msgid "Saving..."
-#~ msgstr "Salvando..."
-
-#~ msgid ""
-#~ "The size of the current sample is more than\n"
-#~ "%i Mb!"
-#~ msgstr "O tamanho da amostra atual é maior do que %i Mb!"
-
-#~ msgid "Save sound file"
-#~ msgstr "Salvar arquivo de som"
-
-#~ msgid ""
-#~ "The sound device is not ready. Please check that there isn't\n"
-#~ "another program running that is using the device."
-#~ msgstr ""
-#~ "O dispositivo de som não está disponível. Verifique se não há\n"
-#~ "outro programa sendo executado usando o dispositivo de som."
-
-#~ msgid "Run GNOME Volume Control"
-#~ msgstr "Executar Controle de Volume GNOME"
-
-#~ msgid "Add echo"
-#~ msgstr "Adicionar eco"
-
-#~ msgid "Add echo to the current sample"
-#~ msgstr "Adicionar eco à amostra atual"
-
-#~ msgid "Echo"
-#~ msgstr "Eco"
-
-#~ msgid "_Undo All"
-#~ msgstr "_Desfazer Tudo"
-
-#~ msgid "Undo all changes made on the current sample"
-#~ msgstr "Desfazer todas as mudanças feitas à amostra atual"
-
-#~ msgid "Effects"
-#~ msgstr "Efeitos"
-
-#~ msgid "16bit PCM"
-#~ msgstr "16bit PCM"
-
-#~ msgid "8bit PCM"
-#~ msgstr "8bit PCM"
-
-#~ msgid "stereo"
-#~ msgstr "stereo"
-
-#~ msgid "mono"
-#~ msgstr "mono"
-
-#~ msgid "Create new sample"
-#~ msgstr "Criar nova amostra"
-
-#~ msgid "Play current sample"
-#~ msgstr "Reproduzir amostra atual"
-
-#~ msgid "Stop playing/recording"
-#~ msgstr "Parar reprodução/gravação"
-
-#~ msgid "Start recording"
-#~ msgstr "Iniciar gravação"
-
-#~ msgid "Audio format: "
-#~ msgstr "Formato de áudio: "
-
-#~ msgid "File '%s' doesn't exist; using default."
-#~ msgstr "Arquivo '%s' não existe; usando padrão."
-
-#~ msgid "File '%s' isn't a supported soundfile."
-#~ msgstr "Arquivo '%s' não é um arquivo de som suportado."
-
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
-#~ "Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
-#~ "Sun G11n <gnome_int_l10n@ireland.sun.com>"
-
-#~ msgid "GNOME Sound Recorder"
-#~ msgstr "Gravador de Som do GNOME"
-
-#~ msgid ""
-#~ "A simple soundrecorder and soundplayer for GNOME.\n"
-#~ "Dedicated to my cat, Malte."
-#~ msgstr ""
-#~ "Um simples gravador e reprodutor de som para o GNOME.\n"
-#~ "Dedicado ao meu gato, Malte."
-
-#~ msgid "Gnome Sound Recorder Preferences"
-#~ msgstr "Preferências do Gravador de Som"
-
-#~ msgid "Sound Recorder Preferences"
-#~ msgstr "Preferências do Gravador de Som"
-
-#~ msgid "Recording"
-#~ msgstr "Gravando"
-
-#~ msgid "Time"
-#~ msgstr "Tempo"
-
-#~ msgid "_Recording timeout: "
-#~ msgstr "_Tempo limite de gravação: "
-
-#~ msgid "_Stop recording on timeout"
-#~ msgstr "_Parar de gravar no tempo limite"
-
-#~ msgid "_Open save dialog when recording is finished"
-#~ msgstr "_Abrir diálogo para salvar quando a gravação estiver completa"
-
-#~ msgid "Size"
-#~ msgstr "Tamanho"
-
-#~ msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-#~ msgstr ""
-#~ "Mostrar _mensagem de aviso se o tamanho (Mb) da amostra tornar-se maior "
-#~ "que:"
-
-#~ msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-#~ msgstr "Pa_rar gravação se o tamanho (Mb) da amostra tornar-se maior que:"
-
-#~ msgid "Repetition"
-#~ msgstr "Repetição"
-
-#~ msgid "_Repeat the sound"
-#~ msgstr "_Repetir o som"
-
-#~ msgid "Play the sound _once only."
-#~ msgstr "Reproduzir o som somente _uma vez."
-
-#~ msgid "Repeat _forever"
-#~ msgstr "Repetir para _sempre"
-
-#~ msgid "_Number of times:"
-#~ msgstr "_Número de vezes:"
-
-#~ msgid "Paths"
-#~ msgstr "Caminhos"
-
-#~ msgid "Program files"
-#~ msgstr "Arquivos de programas"
-
-#~ msgid "_Path to sox:"
-#~ msgstr "Caminho _para sox:"
-
-#~ msgid "_Apply"
-#~ msgstr "_Aplicar"
-
-#~ msgid "Folders"
-#~ msgstr "Pastas"
-
-#~ msgid "_Temporary folder:"
-#~ msgstr "Pasta _temporária:"
-
-#~ msgid "Apply"
-#~ msgstr "Aplicar"
-
-#~ msgid "Sound"
-#~ msgstr "Som"
-
-#~ msgid ""
-#~ "Note: These options only take effect whenever a new sound sample\n"
-#~ "is created. They do not operate on an existing sample."
-#~ msgstr ""
-#~ "Observação: Estas opções só terão efeito quando uma nova amostra de som\n"
-#~ "for criada. Elas não funcionam em uma amostra existente."
-
-#~ msgid "Audio format:"
-#~ msgstr "Formato de áudio:"
-
-#~ msgid "8 _bit PCM"
-#~ msgstr "PCM de 8 _bits"
-
-#~ msgid "16 b_it PCM"
-#~ msgstr "PCM de 16 b_its"
-
-#~ msgid "S_ample rate:"
-#~ msgstr "Taxa da amostra:"
-
-#~ msgid "Mono or Stereo:"
-#~ msgstr "Mono ou Stereo"
-
-#~ msgid "_Mono"
-#~ msgstr "_Mono"
-
-#~ msgid "_Stereo"
-#~ msgstr "_Stereo"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Specify the geometry of the main window"
-#~ msgstr "Especificar a geometria da janela principal"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRIA"
-
-#~ msgid "Specify a file to be opened"
-#~ msgstr "Especificar uma arquivo a ser aberto"
-
-#~ msgid "Specify a file to start recording"
-#~ msgstr "Especificar um arquivo para iniciar gravação"
-
-#~ msgid "Specify a file to start playing"
-#~ msgstr "Especificar um arquivo para iniciar reprodução"
-
-#~ msgid "Sound recorder"
-#~ msgstr "Gravador de som"
-
-#~ msgid "Audio format: 8bit PCM"
-#~ msgstr "Formato de áudio: 8bit PCM"
-
-#~ msgid "Audio format: 16bit PCM"
-#~ msgstr "Formato de áudio: 16bit PCM"
-
-#~ msgid "Sample rate: %s"
-#~ msgstr "Rátio da amostra: %s"
-
-#~ msgid "Channels: mono"
-#~ msgstr "Canais: mono"
-
-#~ msgid "Channels: stereo"
-#~ msgstr "Canais: stereo"
-
-#~ msgid "Adding echo to sample..."
-#~ msgstr "Adicionando eco à amostra..."
