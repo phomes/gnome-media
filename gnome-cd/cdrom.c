@@ -604,7 +604,7 @@ void
 gnome_cdrom_status_changed (GnomeCDRom *cdrom,
 			    GnomeCDRomStatus *new_status)
 {
-	GnomeCDRomStatus *status_copy;
+	GnomeCDRomStatus *status_copy = NULL;
 
 	status_copy = gnome_cdrom_copy_status (new_status);
 	
