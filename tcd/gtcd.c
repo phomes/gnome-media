@@ -691,11 +691,8 @@ gint volume_changed( GtkWidget *widget, gpointer *data )
 
 gint launch_gmix( GtkWidget *widget, GdkEvent *event, gpointer data ) 
 {
-	if ( (event->type==GDK_2BUTTON_PRESS) && (fork()==0) )
-	{
-		execlp("gmix","",NULL); 
-		_exit(0);
-	}
+	if (event->type==GDK_2BUTTON_PRESS)
+	  mixer_cb(NULL, NULL);
 
 	return FALSE;
 }

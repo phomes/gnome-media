@@ -1,3 +1,11 @@
+2000-01-13  Scott D. Heavner  <sdh@po.cwru.edu>
+
+	* linux-cdrom.c (tcd_playtracks): do a bunch more defined() tests
+	so it comiles with linux 2.0.38
+
+	* gtcd.c (launch_gmix): use the mixer_cb instead of forking gmix
+	(let mixer_cb handle that so it's all done in one place)
+
 2000-01-10  Tim Gerla  <timg@means.net>
 
 	* linux-cdrom.c (tcd_playtracks): Patch from Ben Collver to clean up
