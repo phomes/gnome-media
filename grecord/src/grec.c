@@ -196,7 +196,7 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	gchar* file2 = g_concat_dir_and_file (temp_dir, temp_filename_play);
 	gchar* file3 = g_concat_dir_and_file (temp_dir, temp_filename_backup);
 
-	if (PlayEng.is_running || RecEng.is_running)
+	if (PlayEng.is_running || RecEng.is_running || convert_is_running)
 		on_stop_activate_cb (widget, data);
 
 	if (file_changed) {
