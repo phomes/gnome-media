@@ -129,14 +129,25 @@ HAVE_GST=no
 GST_REQ=0.8.2
 PROGRAMS_GSTRECORD=""
 
-dnl start with 0.8
-GST_MAJORMINOR=0.8
+dnl start with 0.9
+GST_MAJORMINOR=0.9
 PKG_CHECK_MODULES(GSR, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
   libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
   HAVE_GST=yes,HAVE_GST=no)
+
+dnl fall back to 0.8
+if test "x$HAVE_GST" = "xno"; then
+  GST_MAJORMINOR=0.8
+  PKG_CHECK_MODULES(GSR, \
+    gstreamer-$GST_MAJORMINOR >= $GST_REQ \
+    gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
+    gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
+    libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
+    HAVE_GST=yes,HAVE_GST=no)
+fi
 
 dnl fall back to 0.7
 if test "x$HAVE_GST" = "xno"; then
