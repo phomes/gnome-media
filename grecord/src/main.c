@@ -161,7 +161,7 @@ main (int argc, char *argv[])
 	if (!g_file_exists (sox_command) && !dont_show_warningmess) {
 		GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
 
-		gchar* show_mess = g_strdup_printf (_("Could not find %s.\nSet the correct path to sox in preferences in the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
+		gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences in the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
 
 		GtkWidget* mess = gnome_message_box_new (show_mess,
 							 GNOME_MESSAGE_BOX_WARNING,
