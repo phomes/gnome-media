@@ -205,7 +205,6 @@ GtkWidget* make_button( char *title, GtkWidget *box, int func, gchar *tooltip )
     
     button = gtk_button_new_with_label (title);
     gtk_box_pack_start (GTK_BOX (box), button, TRUE, TRUE, 0);
-    gtk_widget_show (button);
     Connect( button, func );
     
     gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
@@ -221,7 +220,7 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
     char tmp[256];
     char *name;
 	
-    sprintf( tmp, "tcd/%s.xpm", pic );
+    g_snprintf( tmp, 255, "tcd/%s.xpm", pic );
     name = gnome_pixmap_file (tmp);
 #ifdef DEBUG
     g_print( "loading: %s\n", name );
@@ -239,7 +238,6 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
 	
     gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 	
-    gtk_widget_show_all(button);
     return button;
 }	                        
 
@@ -276,9 +274,8 @@ GtkWidget* make_changer_buttons( void )
     
     for( i=0; i < cd.nslots && i < 12; i++ )
     {
-	sprintf( tmp, "%d", i+1 );
+	g_snprintf( tmp, 4, "%d", i+1 );
 	changer_buttons[i] = gtk_button_new_with_label( tmp );
-	gtk_widget_show( changer_buttons[i] );
 	gtk_box_pack_start( GTK_BOX(box), changer_buttons[i], FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT(changer_buttons[i]), "clicked", \
 			    GTK_SIGNAL_FUNC(changer_callback), (gpointer*)i );
@@ -324,7 +321,6 @@ GtkWidget* make_row1( void )
     
     if( props.handle )
     {
-	gtk_widget_show(box);
 	gtk_container_add( GTK_CONTAINER(handle), box );
 	row1=handle;
     }
@@ -346,7 +342,6 @@ GtkWidget* make_row2( void )
 
     if( props.handle )
     {
-	gtk_widget_show(box);
 	gtk_container_add( GTK_CONTAINER(handle), box );
 	row2=handle;
     }
@@ -378,11 +373,8 @@ GtkWidget* make_row3( void )
 	
     make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, _("Quit") );
 
-    gtk_widget_show_all(box);
-	
     if( props.handle )
     {
-	gtk_widget_show(box);
 	gtk_container_add( GTK_CONTAINER(handle), box );
 	row3=handle;
     }
@@ -411,7 +403,7 @@ void setup_pixmaps( void )
     GdkPixmap *pm;
     GdkBitmap *bm;
     GdkImlibImage *im;
-    gchar tmp[128];
+    gchar tmp[256];
     int i;
     char *name;
 
@@ -419,7 +411,7 @@ void setup_pixmaps( void )
 	        
     for( i=0; i < PLAY_METHOD_END-1; i++ )
     {
-	sprintf( tmp, "tcd/%s", play_methods[i] );
+	g_snprintf( tmp, 255, "tcd/%s", play_methods[i] );
 	name = gnome_pixmap_file(tmp);
 	im = gdk_imlib_load_image(name);
 	g_free (name);
@@ -649,7 +641,7 @@ void status_changed(void)
 	char *name;
 
 	old_status = cd.sc.cdsc_audiostatus;
-	sprintf( tmp, "tcd/%s.xpm", 
+	g_snprintf( tmp, 255, "tcd/%s.xpm", 
 		 (old_status==CDROM_AUDIO_PLAY)?"pause":"play" );
 
 	gtk_widget_destroy(GTK_BUTTON(playbutton)->child);
@@ -698,21 +690,21 @@ gint gototrack( GtkWidget *widget, gpointer *data )
 
 void make_gotomenu()
 {
-    char buf[128];
+    char buf[TRK_NAME_LEN];
     int i;
     GtkWidget *item;
-    gotomenu = NULL;
+
+//    gotomenu = NULL;
     gotomenu = gtk_menu_new();
 
     for( i=1; i <= cd.last_t; i++ )
     {
-	sprintf( buf, "%2d - %s", i, cd.trk[C(i)].name );
-
+	g_snprintf( buf, TRK_NAME_LEN-1, "%2d - %s", i, cd.trk[C(i)].name );
 	item = gtk_menu_item_new_with_label(buf);
+	gtk_widget_show(item);
 	gtk_menu_append(GTK_MENU (gotomenu), item);
 	gtk_signal_connect_object(GTK_OBJECT(item), "activate",
 				  GTK_SIGNAL_FUNC(gototrack), (gpointer)i );
-	gtk_widget_show(item);
     }
     if( gotoi ) gtk_signal_disconnect( GTK_OBJECT(gotobutton), gotoi );
     gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",
@@ -824,6 +816,7 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 void setup_time_display( void )
 {
     GtkWidget *handle1, *frame;
+    GtkWidget *box;
 
     vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
     volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
@@ -858,12 +851,16 @@ void setup_time_display( void )
     frame = gtk_frame_new(NULL);
     gtk_frame_set_shadow_type( GTK_FRAME(frame), GTK_SHADOW_IN );
     gtk_container_add(GTK_CONTAINER(frame), status_area);
-    status_table = gtk_vbox_new( FALSE, 2 );
+    status_table = gtk_vbox_new(FALSE, 2);
+
+    box = gtk_hbox_new(FALSE, 2);
 
 #ifdef TCD_CHANGER_ENABLED
-    gtk_box_pack_start( GTK_BOX(main_box), changer_box, FALSE, FALSE, 0 );
+    gtk_box_pack_start(GTK_BOX(box), changer_box, FALSE, FALSE, 0);
 #endif
-    gtk_box_pack_end( GTK_BOX(status_table), volume, FALSE, FALSE, 2 );
+    gtk_box_pack_end(GTK_BOX(box), volume, FALSE, FALSE, 2);
+
+    gtk_box_pack_end(GTK_BOX(status_table), box, FALSE, FALSE, 2);
 
     if( props.handle )
     {
@@ -875,7 +872,6 @@ void setup_time_display( void )
 	gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 2);
 		                
     gtk_box_pack_start(GTK_BOX(main_box), status_table, TRUE, TRUE, 2);
-    gtk_widget_show_all(status_table);
     return;
 }
 
@@ -953,7 +949,7 @@ void create_warn( char *message_text, char *type )
 int main (int argc, char *argv[])
 {
     char *homedir;
-    char rcfile[64];
+    char rcfile[256];
 
     argp_program_version = VERSION;
 
@@ -963,7 +959,7 @@ int main (int argc, char *argv[])
     gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
 
     homedir = getenv("HOME");
-    sprintf( rcfile, "%s/.tcd/gtcdrc", homedir );
+    g_snprintf(rcfile, 255, "%s/.tcd/gtcdrc", homedir);
     gtk_rc_parse( rcfile );
 
     cd.play_method = NORMAL;        

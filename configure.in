@@ -73,7 +73,21 @@ dnl
 dnl Everything OK for tcd?
 dnl
 PROGRAMS_TCD=""
-AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_GNOMOVISION=tcd])
+AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_TCD=tcd])
+
+AC_MSG_CHECKING([whether to use cd changer support (Linux 2.1.x headers required)])
+AC_EGREP_CPP(answer_affirmatively,
+[#include <linux/cdrom.h>
+ #ifdef CDROM_CHANGER_NSLOTS
+	answer_affirmatively
+ #endif
+], cd_changer=yes, cd_changer=no)
+if test "$cd_changer" = "yes"; then
+	USE_CD_CHANGER="-DTCD_CHANGER_ENABLED"
+fi
+AC_MSG_RESULT("$cd_changer")
+
+AC_SUBST(USE_CD_CHANGER)
 AC_SUBST(PROGRAMS_TCD)
 
 AC_OUTPUT([

@@ -43,11 +43,11 @@ void update_list( GtkWidget *list, int track )
 void fill_list( GtkWidget *list )
 {
 	int i;
-	gchar *tmp[4];
+	char *tmp[4];
+	
+	for(i=0; i < 4; i++)
+		tmp[i] = g_malloc(255);
 
-	for( i=0; i < 3; i++ )
-		tmp[i] = malloc(255);
-		
 	gtk_clist_freeze(GTK_CLIST(list));
 
 	for( i=1; i <= cd.last_t; i++ )
@@ -55,10 +55,10 @@ void fill_list( GtkWidget *list )
 		g_snprintf(tmp[0], 255, "%d", i);
 		g_snprintf(tmp[1], 255, "%2d:%02d",
 			cd.trk[i].tot_min, cd.trk[i].tot_sec);
-		strcpy(tmp[2], cd.trk[i].name);
+		strncpy(tmp[2], cd.trk[i].name, 255);
 		tmp[3] = NULL;
 	
-		gtk_clist_append(GTK_CLIST(list), tmp );
+		gtk_clist_append(GTK_CLIST(list), tmp);
 		g_snprintf(tmp[0],255, "%d", i);
 #ifdef PIXMAPS
 		gtk_clist_set_pixtext(GTK_CLIST(list), i-1,0, tmp[0], 2, 
@@ -68,6 +68,9 @@ void fill_list( GtkWidget *list )
 	}
 
 	gtk_clist_thaw(GTK_CLIST(list));
+	for(i=0; i < 4; i++)
+		g_free(tmp[i]);
+		
 	return;
 }
 

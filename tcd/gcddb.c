@@ -134,7 +134,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	cddb_server server;
 	int i,r;
 	char s[128], qs[800];
-	char tmp[60];
+	char tmp[64];
 	FILE *outfile;
 	cddb_query_str query;
 
@@ -157,14 +157,14 @@ void do_cddb( GtkWidget *widget, gpointer data )
 
 	if (server.http) {
 		if(tcd_open_cddb_http(&server) && errno) {
-			sprintf(tmp, _("Error: %s"), server.error);
+			g_snprintf(tmp, 63, _("Error: %s"), server.error);
 			gtk_label_set(GTK_LABEL(label),tmp);
 			return;
 		}
 	} else {
 		if( tcd_open_cddb( &server, periodic ) != 0 )
 		{
-			sprintf( tmp, _("Error: %s"), server.error );
+			g_snprintf(tmp, 63, _("Error: %s"), server.error);
 			gtk_label_set( GTK_LABEL(label), tmp );
 			return;
 		}
@@ -203,7 +203,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 		tcd_formatread_http(&cd,qs,sizeof(qs),server.hostname,server.port,server.remote_path,query.categ,query.discid); 
 		send( server.socket, qs, strlen(qs), 0 );
 	} else {
-		sprintf( qs, "cddb read %s %s\n", query.categ, query.discid );
+		g_snprintf( qs, 799, "cddb read %s %s\n", query.categ, query.discid );
 		send( server.socket, qs, strlen(qs), 0 );
 	}
 #ifdef DEBUG
@@ -212,7 +212,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 1.0);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	sprintf( qs, "%s/.tcd/%s", getenv("HOME"),query.discid );
+	g_snprintf(qs, 799, "%s/.tcd/%s", getenv("HOME"),query.discid);
 	outfile = fopen( qs, "w" );
 	if (outfile == NULL)
 	{
@@ -250,7 +250,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 		g_print( "<- %s\n", s );
 #endif
 		fprintf( outfile, "%s\n", s );
-		sprintf( tmp, _("Downloading line %3d..."),i++ );
+		g_snprintf( tmp, 63, _("Downloading line %3d..."),i++ );
 		gtk_label_set( GTK_LABEL(label), tmp );
 		while(gtk_events_pending()) gtk_main_iteration();
 	} while( strcmp( ".", s ) );
