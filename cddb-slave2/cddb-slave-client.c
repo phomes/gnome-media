@@ -28,6 +28,8 @@ static GObjectClass *parent_class = NULL;
 
 struct _CDDBSlaveClientPrivate {
 	GNOME_Media_CDDBSlave2 objref;
+
+	BonoboListener *listener;
 };
 
 static void
@@ -232,6 +234,10 @@ cddb_slave_client_add_listener (CDDBSlaveClient *client,
 	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
 	g_return_if_fail (listener != NULL);
 	g_return_if_fail (BONOBO_IS_LISTENER (listener));
+	g_return_if_fail (client->priv->listener == NULL);
+	
+	client->priv->listener = listener;
+	bonobo_object_ref (BONOBO_OBJECT (listener));
 	
 	client_objref = client->priv->objref;
 	listener_objref = bonobo_object_corba_objref (BONOBO_OBJECT (listener));
@@ -280,7 +286,7 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 	
 	client_objref = client->priv->objref;
 	listener_objref = bonobo_object_corba_objref (BONOBO_OBJECT (listener));
-	
+
 	CORBA_exception_init (&ev);
 	event_source = Bonobo_Unknown_queryInterface (client_objref,
 						      "IDL:Bonobo/EventSource:1.0", &ev);
@@ -298,6 +304,9 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 	}
 	
 	CORBA_exception_free (&ev);
+
+	bonobo_object_unref (BONOBO_OBJECT (listener));
+	client->priv->listener = NULL;
 	return;
 }
 

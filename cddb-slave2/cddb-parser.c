@@ -33,6 +33,7 @@ cddb_entry_parse_file (CDDBEntry *entry,
 {
 	FILE *handle;
 	char line[4096];
+	gboolean need_topline = TRUE;
 	
 	handle = fopen (filename, "r");
 	if (handle == NULL) {
@@ -43,8 +44,23 @@ cddb_entry_parse_file (CDDBEntry *entry,
 		char *end;
 		char **vector;
 		GString *string;
+
+		if (isdigit (*line) && need_topline == TRUE) {
+			/* Save topline so we can regenerate things later.
+			   and so we know the discid. */
+			entry->topline = g_strsplit (line, " ", 4);
+			need_topline = FALSE;
+			continue;
+		}
+
+		if (*line == '#') {
+			/* Save comments to rebuild the file later. */
+			entry->comments = g_list_append (entry->comments,
+							 g_strdup (line));
+			continue;
+		}
 		
-		if (*line == 0 || *line == '#' || isdigit (*line)) {
+		if (*line == 0 || isdigit (*line)) {
 			continue;
 		}
 
@@ -96,5 +112,51 @@ cddb_entry_new (const char *discid,
 	entry->nsecs = nsecs;
 	
 	entry->fields = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+	return entry;
+}
+
+static void
+is_track (gpointer key,
+	  gpointer value,
+	  gpointer data)
+{
+	int *t = (int *) data;
+
+	if (strncasecmp (key, "TTITLE", 6) == 0) {
+		(*t)++;
+	}
+}
+
+static int
+count_tracks (CDDBEntry *entry)
+{
+	int ntrks = 0;
+
+	g_hash_table_foreach (entry->fields, is_track, &ntrks);
+	return ntrks;
+}
+
+CDDBEntry *
+cddb_entry_new_from_file (const char *filename)
+{
+	CDDBEntry *entry;
+
+	entry = g_new0 (CDDBEntry, 1);
+
+	entry->fields = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+	if (cddb_entry_parse_file (entry, filename) == FALSE) {
+		g_hash_table_destroy (entry->fields);
+		g_strfreev (entry->topline);
+		g_free (entry);
+		return FALSE;
+	}
+
+	entry->discid = g_strdup (entry->topline[2]);
+	entry->ntrks = count_tracks (entry);
+
+	/* Unknown */
+	entry->nsecs = -1;
+	entry->offsets = NULL;
+
 	return entry;
 }

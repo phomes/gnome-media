@@ -1,3 +1,13 @@
+2002-02-16  Iain <iain@ximian.com>
+
+	* main.c (factory_fn): Use g_get_user_name.
+	(cddb_check_cache): Try to load the entry from a file if it's not in
+	the cache.
+	(cddb_entry_new_from_file): Build a CDDBEntry from a file.
+	(count_tracks): Count the tracks in the hash table.
+	(cddb_entry_parse_file): Store the comments and the topline for
+	saving.
+
 2002-02-15  Iain <iain@ximian.com>
 
 	* cddb-slave-capplet.c (update_clicked): Disable the update button.

@@ -44,19 +44,6 @@ cddb_destroy_cb (GObject *cddb,
 }
 
 static char *
-get_username (void)
-{
-	const char *name;
-
-	name = g_getenv ("USER");
-	if (name == NULL || *name == 0) {
-		return g_strdup ("Unknown");
-	} else {
-		return g_strdup (name);
-	}
-}
-
-static char *
 get_hostname (void)
 {
 	char name[4096];
@@ -94,7 +81,7 @@ factory_fn (BonoboGenericFactory *factory,
 		break;
 
 	case CDDB_SEND_REAL_INFO:
-		name = get_username ();
+		name = g_get_user_name ();
 		hostname = get_hostname ();
 		break;
 

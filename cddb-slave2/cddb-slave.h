@@ -31,7 +31,10 @@ typedef struct _CDDBEntry {
 	char *discid;
 	char *offsets;
 	int ntrks, nsecs;
-	
+
+	char **topline;
+
+	GList *comments;
 	GHashTable *fields;
 } CDDBEntry;
 

@@ -846,7 +846,20 @@ static gboolean
 cddb_check_cache (const char *discid)
 {
 	if (g_hash_table_lookup (cddb_cache, discid) == NULL) {
-		return FALSE;
+		char *filename;
+		CDDBEntry *entry;
+
+		filename = g_build_filename (g_get_home_dir (),
+					     ".cddbslave",
+					     discid, NULL);
+		entry = cddb_entry_new_from_file (filename);
+		g_free (filename);
+		if (entry == NULL) {
+			return FALSE;
+		}
+
+		g_hash_table_insert (cddb_cache, g_strdup (discid), entry);
+		return TRUE;
 	} else {
 		return TRUE;
 	}
