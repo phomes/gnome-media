@@ -2,12 +2,11 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.6">
-  <!ENTITY manrevision "2.6">
-  <!ENTITY date "Oct 2003">
-  <!ENTITY app "<application>gnome-volume-control</application>">
+  <!ENTITY appversion "2.2.2">
+  <!ENTITY manrevision "2.1">
+  <!ENTITY date "February 2004">
+  <!ENTITY app "<application>GNOME Volume Control</application>">
   <!ENTITY appname "GNOME Volume Control">
-  <!ENTITY version "2.5.0"> 
 ]>
 
 <!-- 
@@ -15,33 +14,60 @@
   Maintained by the GNOME Documentation Project
   http://developer.gnome.org/projects/gdp
   Template version: 2.0 beta
-  Template last modified Sat Oct 25, 2003
+  Template last modified Jan 2, 2002
 -->
 
 
 <article id="index" lang="en">
 <articleinfo> 
-   <title>Gnome Volume Control Manual</title>
-   <copyright><year>2000</year><holder>Erik Jarvi and others</holder></copyright>
-   <releaseinfo>
-    This is version 1.1 of the GNOME Volume Control manual.
-   </releaseinfo>
+   <title>&appname; Manual V&manrevision;</title>
+
+    <copyright>
+      <year>2004</year>
+      <holder>Sun Microsystems</holder>
+    </copyright>
+
+   <copyright>
+     <year>2003</year>
+     <holder>Christian Schaller</holder>
+   </copyright>
+
+   <copyright>
+     <year>2002</year>
+     <holder>Michael Froh</holder>
+   </copyright>
+
+   <copyright>
+     <year>2000</year>
+     <holder>Erik Jarvi</holder>
+   </copyright>
+
+<!-- translators: uncomment this:
+                                                                                                
+  <copyright>
+   <year>2004</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+                                                                                                
+   -->
+
   <publisher>
-    <publishername>
-      GNOME Documentation Project
-    </publishername>
+    <publishername>GNOME Documentation Project</publishername>
   </publisher>
+
   &legal;
-  <legalnotice id="feedback">
-      <title>Feedback Information</title>
-    <para>
-      To report a bug or make a suggestion regarding this
-      application or this documentation, please see  the
-      <ulink type="help"
-      url="ghelp:gnome-feedback">GNOME Feedback Page</ulink>.
-    </para>
-  </legalnotice>
+   <!-- This file  contains link to license for the documentation (GNU FDL), and
+        other legal stuff such as "NO WARRANTY" statement. Please do not change
+        any of this. -->
+
   <authorgroup>
+
+      <author>
+        <firstname>Sun</firstname>
+        <surname>GNOME Documentation Team</surname>
+        <affiliation><orgname>Sun Microsystems</orgname></affiliation>
+      </author>
+
     <author>
       <firstname>Christian Fredrik</firstname>
       <surname>Kalager Schaller</surname>
@@ -52,18 +78,64 @@
         </address>
       </affiliation>
     </author>
+
+    <author>
+      <firstname>Michael</firstname>
+      <surname>Froh</surname>
+      <affiliation>
+        <orgname>GNOME Documentation Project</orgname>
+        <address>
+              <email>msfroh@uwaterloo.ca</email>
+        </address>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Erik</firstname>
+      <surname>Jarvi</surname>
+      <affiliation>
+        <orgname>GNOME Documentation Project</orgname>
+        <address>
+              <email>ejarvi@megsinet.net</email>
+        </address>
+      </affiliation>
+    </author>
+
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+        <firstname>Latin</firstname>
+        <surname>Translator 1</surname>
+        <affiliation>
+          <orgname>Latin Translation Team</orgname>
+          <address> <email>translator@gnome.org</email> </address>
+        </affiliation>
+        <contrib>Latin translation</contrib>
+      </othercredit>
+-->
+
   </authorgroup>
+
+
   <revhistory>
+
+      <revision>
+        <revnumber>&appname; Manual V&manrevision;</revnumber>
+        <date>&date;</date>
+        <revdescription>
+          <para role="author">Sun GNOME Documentation Team</para>
+          <para role="publisher">GNOME Documentation Project</para>
+        </revdescription>
+      </revision>
+
     <revision>
-      <revnumber>1.1</revnumber>
-      <date>25 Oct 2003</date> <!-- or use &date; -->
+      <revnumber>2.0</revnumber>
+      <date>25 October 2003</date> 
       <revdescription>
                    <para role="author">Christian Schaller
                      <email>uraeus@gnome.org</email></para>
                    <para role="publisher">GNOME Documentation Project</para>
-				   <para>Migrated User Guide to work for Gst-mixer for GNOME 2.6</para>
-          </revdescription>
-
+      </revdescription>
     </revision>
 
     <revision>
@@ -93,178 +165,266 @@
   </revhistory>
 
     <releaseinfo>
-       This manual describes version &version; of &appname;. It was
-       last updated on &date;.
+       This manual describes version &appversion; of &appname;. 
     </releaseinfo>
 
+    <legalnotice>
+      <title>Feedback</title>
+      <para>To report a bug or make a suggestion regarding the &appname; application or this manual, follow the directions in the <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>.
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+
 </articleinfo>
+
 <indexterm zone="index"><primary>gnome-volume-control</primary></indexterm>
-<indexterm zone="index"><primary>Gnome Volume Control</primary></indexterm>
+<indexterm zone="index"><primary>GNOME Volume Control</primary></indexterm>
 
-<!-- ############# Gnome Volume Control - APPLICATION ############# -->
+<!-- ============= Document Body ============================= -->
+ <!-- ============= Introduction ============================== -->
 
-  <sect1 id="intro">
+  <sect1 id="gnome-volume-control-intro">
     <title>Introduction</title>
     <para>
-  &app; (<command>gst-mixer</command>) is a GNOME enabled audio 
-  mixer. &app; allows you to mix audio for various sound cards.
-    </para>
-    <para>
-  To run &app; select 
-  <menuchoice>
-  <guisubmenu>Multimedia</guisubmenu>
-  <guimenuitem>Audio Mixer</guimenuitem>
-  </menuchoice>
-  from the <guimenu>Main Menu</guimenu>, or type
-  <command>gst-mixer</command> on the command line.
-    </para>
-
-     <para>
-      &app; is included in the
-      <filename>gnome-media</filename> package, which is part of the
-      <ulink type="http" url="http://www.gnome.org">GNOME desktop
-      environment</ulink>. This document describes version
-      &version; of &app;.
-    </para>
-
-  </sect1>
-
-<!--  ############# Main page  ############# -->
-
-  <sect1 id="usage">
-  <title>Using GNOME Volume Control</title>
-    <para>
-  There are four main components to &app;:
-  the <guibutton>faders</guibutton>, <guibutton>Mute</guibutton> buttons,
-  <guibutton>Rec.</guibutton> buttons, and the <guibutton>Lock</guibutton>
-  buttons.  The <guibutton>Lock</guibutton> locks the left and right channels
-  together so that you can adjust either <guibutton>fader</guibutton> and both
-  will be syncronized. If you have unlocked the <guibutton>faders</guibutton> and moved them apart, then press the lock button the faders will resyncronize. Meaning you can't lock the faders in an unequal position.  The <guibutton>Mute</guibutton> silences the channel. 
-
-  The last button, <guibutton>Rec.</guibutton> is toggled to turn
-  on/off the recording functions of your soundcard on that channel. 
-  The 
-  <guibutton>faders</guibutton> control the volume of each channel. Below is a
-  listing of what each <guibutton>fader</guibutton> represents. GNOME Volume control has
-its interface generated dynamically based on the specifications of your soundcard. This means that the mixer on your desktop will not look exactly like the one in the screenshot. The mixer in the screenshot is for a Sound Blaster Live card. Depending on your card and sound system you might have fewer or more controls in your mixer.
-  </para>
-  <itemizedlist mark="bullet">
-    <listitem>
-      <para>
-    <guilabel>Vol</guilabel> &mdash; This is the main volume fader.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Synth</guilabel> &mdash; This fader controls the volume of the
-    midi devices.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Pcm</guilabel> &mdash; This fader controls the "wave" files.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Spkr</guilabel> &mdash; This fader controls the Speaker output
-    jack.   <!-- ??? -->
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Line</guilabel> &mdash; This is the Line input on your
-    sound card, if you have one. 
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Mic</guilabel> &mdash; This is the Microphone input on your sound
-    card.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>CD</guilabel> &mdash; This is the CD player input gain. 
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Rec</guilabel> &mdash; This is the overall Record level fader. 
-    (Master Record level)
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Line2</guilabel> &mdash; If your sound card has a second
-    line input this is the fader that controls the volume.
-      </para>
-    </listitem>
-    </itemizedlist> 
-   <figure id="mainwindow-fig">
-    <title>&app; Main Window</title>
-    <screenshot>
-     <mediaobject>
-      <imageobject>
-       <imagedata fileref="figures/gmix.png" format="PNG" />
-      </imageobject>
-      <imageobject>
-       <imagedata fileref="figures/gmix.eps" format="EPS" />
-      </imageobject>
-      <textobject>
-       <phrase>Screenshot of main window</phrase>
-      </textobject>
-     </mediaobject>
-    </screenshot>
-   </figure>
-  </sect1>
-   
-<!-- ================== BUGS ======================= -->  
-
-  <sect1 id="bugs">
-    <title>Known Bugs and Limitations</title>
-    <para>
-    Using the ALSA sound system there might be a very large number of channels. We don't have a proper solution for that yet. Apart from that no known bugs at this time.
+      The &app; application is an audio mixer that enables you to mix audio for two-channel sound cards.
     </para>
   </sect1>
 
-<!-- ============= Authors ================================ -->
+<!-- ============= Getting Started =========================== -->
+  <sect1 id="gnome-volume-control-getting-started">
+    <title>Getting Started</title>
+                                                                                                  
+<!-- ============= To Start Volume Control ============================ -->
+    <sect2 id="gnome-volume-control-to-start">
+      <title>To Start &appname;</title>
+      <para>You can start &app; in the following ways:</para>
+      <variablelist>
+        <varlistentry>
+          <term><guimenu>Applications</guimenu> menu</term>
+          <listitem>
+            <para>
+              Choose <menuchoice><guisubmenu>Multimedia</guisubmenu><guimenuitem>Volume Control</guimenuitem></menuchoice>. 
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>Command line</term>
+          <listitem>
+            <para>
+              Execute the following command: <command>gnome-volume-control</command></para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
+                                                                                                  
+    <sect2 id="gnome-volume-control-when-you-start">
+      <title>When You Start &appname;</title>
+      <para>
+        When you start &app;, the following window is displayed:
+      </para>
+      <figure id="gnome-volume-control-window">
+        <title>&appname; Window</title>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-volume-control_window.png" format="PNG"/>
+            </imageobject>
+            <textobject> <phrase>Shows Volume Control main window.</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+      <para>
+        The &app; window contains the following elements:
+      </para>
+      <variablelist>
+        <varlistentry>
+          <term>Menubar</term>
+          <listitem>
+            <para>
+              The menus on the menubar contain all of the commands that you need to work with &app;.
+            </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>Display area</term>
+          <listitem>
+            <para>
+              The display area contains the channel faders and associated options for several mixers, which enable you to control the volume on those mixers.
+            </para>
+            <note>
+              <para>
+                &app; populates the display area dynamically, based on the functionality supported by your sound card. The mixers displayed in your &app; window might be different to those shown in Figure 1. 
+              </para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
+  </sect1>
 
-  <sect1 id="about">
-    <title>About &app;</title>
-    <para>
-    <application>Gnome Volume Control</application> was written by Ronald Bultje
-    (<email>rbultje@ronald.bitfreak.net</email>). Please send all comments,
-    suggestions, and bug
-    reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
-    bug tracking database</ulink>. (Instructions for submitting bug
-    reports can be found <ulink
-    url="http://bugs.gnome.org/Reporting.html" type="http">
-    on-line</ulink>.) If you are using
-    GNOME 1.1 or later, you can also use <application>Bug Report
-    Tool</application> (<command>bug-buddy</command>), available in the
-    <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
-    Menu</guimenu>, for submitting bug reports.
-    </para>
+ <!-- ================ Usage ================================ -->
 
-    <para>
-    The first version of this manual was written by Erik Jarvi (<email>ejarvi@megsinet.net</email>) and updated by Michael Froh (<email>msfroh@uwaterloo.ca</email>). Based on the original manual Christian Fredrik Kalager Schaller (<email>uraeus@gnome.org</email>) rewrote it to be used with the new mixer in GNOME 2.6. Please send all comments and suggestions regarding this manual to the 
-    <ulink type="http" url="http://www.gnome.org/gdp">
-    GNOME Documentation Project</ulink> 
-    by sending an email to <email>docs@gnome.org</email>. You can also
-    add your comments online by using the <ulink type="http"
-    url="http://www.gnome.org/gdp/doctable/">GNOME Documentation Status
-    Table</ulink>.
-    </para>
-    <para>
-      This program is distributed under the terms of the GNU General
-      Public license as published by the Free Software Foundation;
-      either version 2 of the License, or (at your option) any later
-      version. A copy of this license can be found at this <ulink
-      type="help" url="ghelp:gpl">link</ulink>, or in the file COPYING
-      included with the source code of this program.
-   </para>
+  <sect1 id="gnome-volume-control-usage">
+    <title>Usage</title>
+  
+    <sect2 id="gnome-volume-control-usage-vol">
+      <title>To Change a Mixer Volume</title>
+      <para>
+        To change a mixer volume, use the channel faders for that mixer, as follows:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            To increase the volume, slide the fader up.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            To decrease the volume, slide the fader down.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  
+    <sect2 id="gnome-volume-control-usage-lock">
+      <title>To Lock the Mixer Channels</title>
+      <para>
+        To lock the left and right mixer channels together, select the <guilabel>Lock</guilabel> option for that mixer. When you lock the mixer channels, &app; synchronizes both faders.
+      </para>
+    </sect2>
+  
+    <sect2 id="gnome-volume-control-usage-mute">
+      <title>To Silence a Mixer</title>
+      <para>
+        To silence a mixer, select the <guilabel>Mute</guilabel> option for that mixer.
+      </para>
+      <note>
+        <para>
+          When you adjust the fader of a muted channel, &app; deselects the <guilabel>Mute</guilabel> option for that mixer.
+        </para>
+      </note>
+<!-- Note from original author:
+  [I find this to be anti-intutive, IMHO this should be
+  an option.  If this feature was on a real console, I'd probably be fired
+  more than a few times. :)] 
+-->
+    </sect2>
+  
+    <sect2 id="gnome-volume-control-usage-rec">
+      <title>To Specify the Current Recording Source</title>
+      <para>
+        Any mixer that has a <guilabel>Rec</guilabel> option can be a recording source.
+      </para>
+      <para>
+        To specify the current recording source, select the <guilabel>Rec</guilabel> option for that mixer.
+      </para>
+    </sect2>
 
   </sect1>
+
+  <sect1 id="prefs">
+    <title>Preferences</title>
+    <para>
+      To configure &app;, choose <menuchoice><guimenu>Settings</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>.
+    </para>
+    <note>
+      <para>
+        &app; populates the <guilabel>Gnome Volume Control Preferences</guilabel> dialog dynamically, based on the functionality supported by your sound card.
+      </para>
+    </note>
+    <para>
+      Use the options in the <guilabel>Shown</guilabel> column to select the mixers that are displayed in the main &app; window.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term><guilabel>vol</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the main volume.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>pcm</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the wave files.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>speaker</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the fader that controls the speaker output jack.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>line</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the line input on your sound card, if the sound card has a line input. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>mic</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the fader that controls the microphone input on your sound card.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>cd</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the CD player input gain. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>igain</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the volume level of the selected recording device.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>line1</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the second line input on your sound card, if the sound card has a second line input. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>phin</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the fader that controls the volume of the phin device.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guilabel>video</guilabel></term>
+        <listitem>
+          <para>
+            Select this option to display the faders that control the volume of the video devices.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      To change a mixer label, double-click on the text in the <guilabel>Mixer label</guilabel> column, then enter the new label text.
+    </para>
+    <para>
+      To reset the mixer labels to the default values, click on the <guibutton>Reset labels to their defaults</guibutton> button.
+    </para>
+
+  </sect1>  
 
 </article>
