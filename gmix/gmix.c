@@ -57,7 +57,6 @@ static void about_cb (GtkWidget *widget, void *data);
 static void options_cb (GtkWidget *widget, void *data);
 static void quit_cb (GtkWidget *widget, void *data);
 
-static error_t parse_cb (int key, char *arg, struct argp_state *state);
 static void get_device_config(void);
 static void put_device_config(void);
 static void get_gui_config(void);
@@ -79,25 +78,6 @@ GtkMenuEntry gmix_menu [] = {
   { N_("Edit/Options..."), N_("<control>E"), (GtkMenuCallback) options_cb,  NULL },
 #endif
   { N_("Help/About..."), N_("<control>A"), (GtkMenuCallback) about_cb, NULL },
-};
-
-static struct argp_option arguments[] =
-{
-  { "norestore", 'r', NULL, 0, N_("don't restore mixer-settings from configuration"), 1 },
-  { "initonly", 'i', NULL, 0, N_("initialise the mixer(s) from stored configuration and exit"), 1 },
-  { "nosave", 's', NULL, 0, N_("don't save (modified) mixer-settings into configuration"), 1 },
-  { NULL, 0, NULL, 0, NULL, 0 }
-};
-
-static struct argp parser =
-{
-  arguments,			/* Options. */
-  parse_cb,			/* The parser function. */
-  NULL,				/* Some docs. */
-  NULL,				/* Some more docs. */
-  NULL,				/* Child arguments -- gnome_init fills this in for us.  */
-  NULL,				/* Help filter.  */
-  NULL				/* Translation domain; for the app it can always be NULL. */
 };
 
 /* 
@@ -138,10 +118,17 @@ typedef struct channel_info {
 
 GList *devices;
 
-int mode, num_mixers;
+int mode=0, mode_norestore=0, mode_initonly=0, mode_nosave=0, num_mixers;
 #define M_NORESTORE	1
 #define M_INITONLY 	2
 #define M_NOSAVE	4
+
+static const struct poptOption options[] = {
+  {"norestore", 'r', POPT_ARG_NONE, &mode_norestore, 0, N_("don't restore mixer-settings from configuration"), NULL},
+  {"initonly", 'i', POPT_ARG_NONE, &mode_initonly, 0, N_("initialise the mixer(s) from stored configuration and exit"), NULL},
+  {"nosave", 's', POPT_ARG_NONE, &mode_nosave, 0, N_("don't save (modified) mixer-settings into configuration"), NULL},
+  {NULL, '\0', 0, NULL, 0}
+};
 
 /*
  * Names for the mixer-channels. device_labels are the initial labels for the
@@ -180,10 +167,15 @@ GtkWidget *make_slider_mixer(channel_info *ci);
 int main(int argc, char *argv[]) 
 {
 	mode=0;
-	argp_program_version = VERSION;
+
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
-	gnome_init ("gmix", &parser, argc, argv, 0, NULL);
+	gnome_init_with_popt_table("gmix", VERSION, argc, argv, options,
+				   0, NULL);
+
+	if(mode_nosave) mode |= M_NOSAVE;
+	if(mode_initonly) mode |= M_INITONLY;
+	if(mode_norestore) mode |= M_NORESTORE;
 
 	scan_devices();
 	if (devices) {
@@ -763,7 +755,7 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 void about_cb (GtkWidget *widget, void *data)
 {
 	GtkWidget *about;
-	gchar *authors[] = {
+	static const char *authors[] = {
 		"Jens Ch. Restemeier",
 		NULL
 	};
@@ -773,14 +765,4 @@ void about_cb (GtkWidget *widget, void *data)
 		_("This is a mixer for OSS sound-devices."),
 		NULL);
 	gtk_widget_show (about);
-}
-
-error_t parse_cb (int key, char *arg, struct argp_state *state)
-{
-	switch (key) {
-		case 'r': mode|=M_NORESTORE; return 0;
-		case 'i': mode|=M_INITONLY; return 0;
-		case 's': mode|=M_NOSAVE; return 0;
-	}
-	return ARGP_ERR_UNKNOWN;
 }

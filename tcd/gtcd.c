@@ -913,12 +913,10 @@ int main (int argc, char *argv[])
     char *homedir;
     char rcfile[256];
 
-    argp_program_version = VERSION;
-
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
 
-    gnome_init("gtcd", NULL, argc, argv, 0, NULL);
+    gnome_init("gtcd", VERSION, argc, argv);
 
     homedir = getenv("HOME");
     g_snprintf(rcfile, 255, "%s/.tcd/gtcdrc", homedir);
