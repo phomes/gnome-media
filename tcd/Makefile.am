@@ -26,7 +26,8 @@ gtcd_SOURCES = 		\
 	led.xpm		\
 	linux-cdrom.h	\
 	callbacks.c	\
-	callbacks.h
+	callbacks.h	\
+	popup.c
 
 tcd_SOURCES = 		\
 	tcd.c 		\

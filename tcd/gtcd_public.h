@@ -15,6 +15,7 @@ void gcddb(GtkWidget *widget, gpointer *data);
 void preferences(GtkWidget *widget, void *data);
 void setup_colors(void);
 void setup_fonts(void);
+void setup_popup_menu(GtkWidget *w, cd_struct *data);
 
 extern int titlelabel_f;
 extern cd_struct cd;

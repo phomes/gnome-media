@@ -33,7 +33,6 @@
 #include <errno.h>
 #include <pwd.h>
 #include <dirent.h>
-#include <sys/socket.h>
 
 #ifdef linux
 # include <linux/cdrom.h>

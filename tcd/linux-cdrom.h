@@ -22,18 +22,19 @@
    Climax, MN  56523
    timg@means.net
 */
-
-
 #ifndef TCD_CDROM_H
 #define TCD_CDROM_H
+
+#include <sys/types.h>
+#include <linux/cdrom.h>
 
 #define TRK_NAME_LEN 	512
 #define DISC_INFO_LEN	512
 #define MAXTRACKS	111
 
-#define TRK_PLAYING	0x01 /* 00000001b */
-#define TRK_DATA	0x02 /* 00000010b */
-#define TRK_REPEAT	0x04 /* 00000100b */ 
+//#define TRK_PLAYING	0x01 /* 00000001b */
+//#define TRK_DATA	0x02 /* 00000010b */
+//#define TRK_REPEAT	0x04 /* 00000100b */ 
 
 struct cd_track
 {
@@ -42,7 +43,7 @@ struct cd_track
 	int titled;
 	int start, length;
 	int tot_min, tot_sec;
-	int status;
+	int type;
 };
 
 typedef struct
@@ -50,8 +51,8 @@ typedef struct
 	int cd_dev;			/* file descriptor */
 	char *cdpath;			/* filename of the cdrom dev */
 	int cur_t;			/* current track */
-	unsigned long old_id; 		/* Unique disc ID */
 	unsigned long cddb_id;		/* NEW DISC ID!! */
+
 	struct cd_track trk[MAXTRACKS];	/* Track info, to be allocated 
                			   	   after cd_tchdr is read */
 

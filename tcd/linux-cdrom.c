@@ -143,7 +143,6 @@ int tcd_readtoc( cd_struct *cd )
 	   My timings were all screwed up. Thanks to the cdtool
 	   source, I figured it out.
 	*/
-	cd->old_id = 0; /* Prevent errors :P */
 
     	cd->trk[C(cd->last_t+1)].toc.cdte_track = CDROM_LEADOUT;
         cd->trk[C(cd->last_t+1)].toc.cdte_format = CDROM_MSF;
@@ -173,16 +172,12 @@ int tcd_readtoc( cd_struct *cd )
 			return(-1);
                 }
 
+		cd->trk[C(i)].type = cd->trk[C(i)].toc.cdte_ctrl;
 		cd->trk[C(i)].length = cd->trk[C(i)].toc.cdte_addr.msf.minute * 60 +
                         	    cd->trk[C(i)].toc.cdte_addr.msf.second;
                 cd->trk[C(i)].start = cd->trk[C(i)].length * 75 + 
                                    cd->trk[C(i)].toc.cdte_addr.msf.frame;
 		
-		/* Must not change */
-		cd->old_id += cd->trk[C(i)].length * 
-			       (cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.minute*60+
-		                cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.second);
-
 		/* Set up the default playlist */
 		cd->playlist[i] = i;
 	}
@@ -235,17 +230,6 @@ void tcd_recalculate(cd_struct *cd)
 	cd->cd_sec = cd->cur_pos_abs % 60;
 	cd->cd_min = cd->cur_pos_abs / 60;
 
-	/* Update cd->trk.status */
-	for( result = cd->first_t; result <= cd->last_t; result++ )
-	{
-		cd->trk[C(result)].status = 0;
-		if( (result == cd->cur_t) && cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY )
-			cd->trk[C(result)].status = TRK_PLAYING;
-		if( result == cd->repeat_track )
-			cd->trk[C(result)].status = TRK_REPEAT;
-		if( cd->trk[C(result)].toc.cdte_ctrl == CDROM_DATA_TRACK )
-			cd->trk[C(result)].status = TRK_DATA;
-	}			
 #ifdef TCD_CHANGER_ENABLED
 	cd->cur_disc = ioctl( cd->cd_dev, CDROM_SELECT_DISC, CDSL_CURRENT );
 #endif
@@ -312,11 +296,9 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	
 	ioctl( cd->cd_dev, CDROMCLOSETRAY );
 	
-	if( cd->trk[C(start_t)].status == TRK_DATA )
-	{
-		debug("cdrom.c: tcd_playtracks error. trying to play data track.\n" );
-		return -1;
-	}
+	if(cd->trk[start_t].toc.cdte_ctrl == CDROM_DATA_TRACK)
+	    start_t++;		/* FIXME bad hack */
+
 	
 	msf.cdmsf_min0 = cd->trk[start_t].toc.cdte_addr.msf.minute;
 	msf.cdmsf_sec0 = cd->trk[start_t].toc.cdte_addr.msf.second;

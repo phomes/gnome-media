@@ -1,16 +1,12 @@
 pixmapdir = $(datadir)/pixmaps/tcd
 
-BITMAPS = cddb.xpm	\
+BITMAPS = 
 	cdrom.xpm	\
-	edit.xpm	\
 	eject.xpm	\
 	ff.xpm		\
-	goto.xpm	\
-	menu.xpm	\
 	next_t.xpm	\
 	pause.xpm	\
 	play.xpm	\
-	power.xpm	\
 	prev_t.xpm	\
 	rw.xpm		\
 	stop.xpm

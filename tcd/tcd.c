@@ -474,51 +474,44 @@ void update_tracklist( void )
     int i,j,x=0,y=0;
 
     j=height;
-    if( cd->isdisk )
+    if(cd->isdisk)
     {
-	for( i=cd->first_t; i <= cd->last_t; i++ ) {
-	    switch(cd->trk[C(i)].status) {
-	    case TRK_PLAYING:
-		if( cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY ) 
-		    stat = 'P';
-		else 
-		    stat = 'a';
-		break;
-	    case TRK_REPEAT:
+	for(i=cd->first_t; i <= cd->last_t; i++) 
+	{
+	    if(cd->cur_t == i && cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY)
+		stat = 'P';
+	    else if(cd->repeat_track == i)
 		stat = 'R';
-		break;
-	    case TRK_DATA:
+	    else if(cd->trk[i].toc.cdte_ctrl == CDROM_DATA_TRACK)
 		stat = 'd';
-		break;
-	    default:
+	    else
 		stat = 'a';
-		break;
-	    }
-			 
-		
-	    if( (i+height) > maxy-2 ) {	
+
+	    if((i+height) > maxy-2) 
+	    {	
 		y = j++;	
 		x = 16;
 	    }
-	    else {
+	    else 
+	    {
 		y = (height-1)+i;
 		x = 2;
 	    }
 			
 	    if( cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY && cd->cur_t == i )
 		attron( A_BOLD );
-				
+	    
 	    mvwprintw(win,y,x,"%02u%c - %02u:%02u",
 		      i, stat,cd->trk[C(i)].tot_min,
 		      cd->trk[C(i)].tot_sec );
-
-	    if( cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY && cd->cur_t == i )
+	    
+	    if(cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY && cd->cur_t == i)
 		attroff( A_BOLD );
 	}	
     }
     else
     {
-	for( i = height; i < maxy-2; i++ )
+	for(i = height; i < maxy-2; i++)
 	    mvwprintw( win, i, 2, "                         " );
     }
 }

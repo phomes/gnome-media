@@ -40,7 +40,6 @@
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/socket.h>
 
 #ifdef linux
 # include <linux/cdrom.h>
@@ -719,10 +718,8 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
     if( event->type == GDK_BUTTON_PRESS )
     {
 	if( e->button > 1 )
-	{
-	    about_cb(NULL, NULL);
-	    return TRUE;
-	}
+	    return FALSE;
+
 	if( x > 2 &&
 	    y > 0 &&
 	    x < 48 &&
@@ -911,7 +908,7 @@ void setup_keys()
 
 int main (int argc, char *argv[])
 {
-    GtkWidget *table;
+    GtkWidget *table, *menu;
     char *homedir;
     char rcfile[256];
 
@@ -946,6 +943,8 @@ int main (int argc, char *argv[])
     setup_time_display(table);
     setup_colors();
     led_init(window);
+
+    setup_popup_menu(status_area, &cd);
     
     /* Initialize some timers */
     if(cd.isplayable) tcd_gettime(&cd);
