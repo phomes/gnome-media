@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 20:02+0100\n"
-"PO-Revision-Date: 2004-02-26 00:58+0100\n"
+"POT-Creation-Date: 2004-03-07 14:59+0100\n"
+"PO-Revision-Date: 2004-03-07 16:40+0100\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -1393,7 +1393,6 @@ msgstr "Informatie tonen over Geluidsrecorder"
 msgid "Stop sound"
 msgstr "Geluid stoppen"
 
-#. GRUT modified this item
 #: grecord/gsr.xml.h:32
 msgid "_About"
 msgstr "In_fo"
@@ -1593,7 +1592,9 @@ msgstr "Duur:"
 msgid "Adjust the volume level"
 msgstr "Geluidsniveau aanpassen"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:545
 msgid "Volume Control"
 msgstr "Volumeregeling"
 
@@ -1639,16 +1640,11 @@ msgstr "Rec."
 msgid "%s Record"
 msgstr "%s opnemen"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-msgid "GStreamer Volume Control"
-msgstr "GStreamer volumeregeling"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Een GNOME/GStreamer-gebaseerde volumeregeling"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:562
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Sorry, geen mixer-kanalen of -apparaten gevonden"
 
@@ -1668,8 +1664,8 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Standaardinstellingen configureren voor GStreamer-toepassingen"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "Multimediasystemen selecteren"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1748,8 +1744,7 @@ msgstr "Opbouwen van testpijplijn voor %s mislukt"
 #: profiles/audio-profile-edit.c:185
 #, c-format
 msgid "There was an error displaying help: %s"
-msgstr ""
-"Er is een fout opgetreden bij het weergeven van de hulptekst: %s"
+msgstr "Er is een fout opgetreden bij het weergeven van de hulptekst: %s"
 
 #: profiles/audio-profile-edit.c:387
 #, c-format
@@ -1768,8 +1763,8 @@ msgstr "<niet omschreven>"
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr ""
-"Er is een fout opgetreden bij het ophalen van de lijst van "
-"gm_audio-profielen. (%s)\n"
+"Er is een fout opgetreden bij het ophalen van de lijst van gm_audio-"
+"profielen. (%s)\n"
 
 #: profiles/audio-profile.c:718
 #, c-format
@@ -1918,8 +1913,8 @@ msgstr ""
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
-"Een bestandsnaamachtervoegsel die gebruikt moet worden bij het opslaan van"
-"bestanden die met dit profiel gecodeerd zijn."
+"Een bestandsnaamachtervoegsel die gebruikt moet worden bij het opslaan "
+"vanbestanden die met dit profiel gecodeerd zijn."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -2033,6 +2028,12 @@ msgstr "Geluidsuitvoervolume bijhouden"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Volumemeter"
+
+#~ msgid "GStreamer Volume Control"
+#~ msgstr "GStreamer volumeregeling"
+
+#~ msgid "GStreamer"
+#~ msgstr "GStreamer"
 
 #, fuzzy
 #~ msgid "_Replace"
