@@ -11,7 +11,7 @@ DIST_SUBDIRS = intl po macros $(always_built_SUBDIRS) \
 
 EXTRA_DIST = gnome-media.spec.in configure acinclude.m4
 
-dist-hook:
+dist-hook: gnome-media.spec
 	cp gnome-media.spec $(distdir)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in `macros/' change
