@@ -622,7 +622,7 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 			mess = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
 						       GTK_MESSAGE_ERROR,
 						       GTK_BUTTONS_OK,
-						       _("'%s is a directory.\nPlease select a sound file to be opened."),
+						       _("'%s is a folder.\nPlease select a sound file to be opened."),
 						       tempfile);
 			g_signal_connect (G_OBJECT (mess), "response",
 					  G_CALLBACK (gtk_widget_destroy), NULL);
@@ -720,7 +720,7 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 			mess = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
 						       GTK_MESSAGE_ERROR,
 						       GTK_BUTTONS_OK,
-						       _("'%s' is a directory.\nPlease enter another filename."),
+						       _("'%s' is a folder.\nPlease enter another filename."),
 						       new_file);
 			g_signal_connect (G_OBJECT (mess), "response",
 					  G_CALLBACK (gtk_widget_destroy), NULL);

@@ -868,7 +868,7 @@ create_grecord_propertybox (void)
 	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (sox_button_clicked), path_to_sox_combo_entry);
 
-	frame = gtk_frame_new (_("Directories"));
+	frame = gtk_frame_new (_("Folders"));
 	gtk_widget_show (frame);
 	gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
@@ -881,7 +881,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	
-	label = gtk_label_new (_("Temporary directory:"));
+	label = gtk_label_new (_("Temporary folder:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	
