@@ -17,6 +17,14 @@
 
 #define NUMBER_OF_DISPLAY_LINES 5
 
+typedef struct _GnomeCDDiscInfo {
+	char *discid;
+	char *title;
+	char *artist;
+	int ntracks;
+	char **tracknames;
+} GnomeCDDiscInfo;
+
 typedef struct _GnomeCDText {
 	char *text;
 	int length;
@@ -53,6 +61,8 @@ typedef struct _GnomeCD {
 	guint32 display_timeout;
 
 	int height, max_width;
+
+	GnomeCDDiscInfo *disc_info;
 } GnomeCD;
 
 #endif

@@ -373,12 +373,28 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, text);
 		g_free (text);
 
-		text = g_strdup_printf ("Track %d", status->track);
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, text);
-		g_free (text);
+		if (gcd->disc_info == NULL) {
+			text = g_strdup_printf ("Track %d", status->track);
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, text);
+			g_free (text);
+			
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
+		} else {
+			GnomeCDDiscInfo *info = gcd->disc_info;
 
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
+			if (info->tracknames[status->track - 1] != NULL) {
+				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, info->tracknames[status->track - 1]);
+			}
+
+			if (info->artist != NULL) {
+				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, info->artist);
+			}
+
+			if (info->title != NULL) {
+				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, info->title);
+			}
+		}
 		break;
 
 		

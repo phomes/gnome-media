@@ -99,6 +99,7 @@ static GnomeCD *
 init_player (void) 
 {
 	GnomeCD *gcd;
+	GtkWidget *container;
 	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow, *frame;
 	GdkPixbuf *pixbuf;
@@ -118,7 +119,7 @@ init_player (void)
 	g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
 			  G_CALLBACK (cd_status_changed_cb), gcd);
 
-	gcd->window = bonobo_window_new ("Gnome-CD", "Gnome-CD "VERSION);
+	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
 	gtk_window_set_policy (GTK_WINDOW (gcd->window), FALSE, TRUE, TRUE);
@@ -226,7 +227,7 @@ init_player (void)
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), bottom_hbox, FALSE, FALSE, 0);
 
-	bonobo_window_set_contents (BONOBO_WINDOW (gcd->window), gcd->vbox);
+	gtk_container_add (GTK_CONTAINER (gcd->window), gcd->vbox);
 	gtk_widget_show_all (gcd->vbox);
 
 	return gcd;

@@ -282,7 +282,10 @@ cd_display_set_line (CDDisplay *disp,
 	GnomeCDText *text;
 	PangoRectangle rect;
 	int height, max_width = 0;
-	
+
+	g_return_if_fail (disp != NULL);
+	g_return_if_fail (new_str != NULL);
+
 	priv = disp->priv;
 	
 	text = priv->layout[line];

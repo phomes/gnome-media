@@ -1,3 +1,25 @@
+2002-01-06  Iain Holmes  <iain@ximian.com>
+
+	* callbacks.c (cd_status_changed_cb): Use the cddb info if we have
+	some.
+
+	* cddb.c: Add a cddb cache for already loaded discids
+	(load_cddb_data): Parse the CDDB data.
+	(cddb_listener_event_cb): Set the cd info to NULL if there's an error.
+	(cddb_make_disc_info): Create the discid as a string. Store the number
+	of tracks.
+	(cddb_get_query): Create the cache.
+
+	* display.c: Add some return_if_fails
+
+	* gnome-cd.c (init_player): Make the toplevel a GtkWindow rather 
+	than a BonoboWindow.
+
+	* gnome-cd.h: Define the GnomeCDDiscInfo struct.
+
+	* linux-cdrom.c (linux_cdrom_get_status): Initialise the track number
+	to 1.
+
 2002-01-02  Iain Holmes  <iain@ximian.com>
 
 	* callbacks.c (maybe_close_tray): Function to try to close the CD

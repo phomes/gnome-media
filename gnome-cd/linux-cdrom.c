@@ -804,11 +804,13 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	ASSIGN_MSF (realstatus->relative, blank_msf);
 	ASSIGN_MSF (realstatus->absolute, blank_msf);
+	realstatus->track = 1;
 	switch (subchnl.cdsc_audiostatus) {
 	case CDROM_AUDIO_PLAY:
 		realstatus->audio = GNOME_CDROM_AUDIO_PLAY;
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
+		realstatus->track = subchnl.cdsc_trk;
 
 		break;
 
@@ -816,6 +818,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		realstatus->audio = GNOME_CDROM_AUDIO_PAUSE;
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
+		realstatus->track = subchnl.cdsc_trk;
 
 		break;
 
@@ -823,7 +826,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		realstatus->audio = GNOME_CDROM_AUDIO_COMPLETE;
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
-		
+		realstatus->track = subchnl.cdsc_trk;		
 		break;
 		
 	case CDROM_AUDIO_INVALID:
@@ -837,7 +840,6 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		break;
 	}
 
-	realstatus->track = subchnl.cdsc_trk;
 	return TRUE;
 }
 
