@@ -4,16 +4,15 @@
 # Karl Eichwalder <ke@suse.de>, 1999, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2000-2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrik@gnome-de.org>, 2004.
-# 
+# Hendrik Richter <hendrik@gnome-de.org>, 2004, 2005.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-20 17:39+0100\n"
-"PO-Revision-Date: 2005-01-20 17:39+0100\n"
-"Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
+"POT-Creation-Date: 2005-01-25 09:38+0100\n"
+"PO-Revision-Date: 2005-01-25 09:38+0100\n"
+"Last-Translator: Hendrik Richter <hendrik@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1188,8 +1187,17 @@ msgstr "Nur Starten, falls noch keine CD-Player-Anwendung läuft"
 msgid "Play the CD on startup"
 msgstr "Die CD-Wiedergabe beim Starten beginnen"
 
+#: gnome-cd/gnome-cd.c:852 grecord/src/gnome-recorder.c:190
+#: gst-mixer/src/main.c:228
+msgid ""
+"Registry is not present or it is corrupted, please update it by running gst-"
+"register"
+msgstr ""
+"Registrierung von GStreamer ist nicht aktiv oder beschädigt, bitte starten "
+"Sie »gst-register« um sie zu aktualisieren"
+
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:852
+#: gnome-cd/gnome-cd.c:869
 msgid "Cannot create player"
 msgstr "Player konnte nicht angelegt werden"
 
@@ -1679,7 +1687,7 @@ msgstr "Optionen"
 msgid "Unknown Volume Control %d"
 msgstr "Unbekannter Lautstärkeregler %d"
 
-#: gst-mixer/src/main.c:236
+#: gst-mixer/src/main.c:253
 msgid "No volume control elements and/or devices found."
 msgstr "Es konnten keine Mischpultelemente und/oder -geräte gefunden werden."
 
