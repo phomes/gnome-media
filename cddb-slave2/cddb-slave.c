@@ -844,6 +844,7 @@ read_from_server (GIOChannel *iochannel,
 		  GIOCondition condition,
 		  gpointer data)
 {
+	GIOStatus status;
 	ConnectionData *cd = data;
 
 	if (condition & (G_IO_ERR | G_IO_HUP | G_IO_NVAL)) {
@@ -865,14 +866,13 @@ read_from_server (GIOChannel *iochannel,
 	}
 
 	if (condition & (G_IO_IN | G_IO_PRI)) {
-		GIOError error;
 		char *buffer;
 		gsize bytes_read;
 
 		/* Read the data into our buffer */
-		error = g_io_channel_read_line (iochannel, &buffer,
+		status = g_io_channel_read_line (iochannel, &buffer,
 						&bytes_read, NULL, NULL);
-		while (error == G_IO_STATUS_NORMAL) {
+		while (status == G_IO_STATUS_NORMAL) {
 			gboolean more = FALSE;
 			
 			switch (cd->mode) {
@@ -905,16 +905,18 @@ read_from_server (GIOChannel *iochannel,
 			g_free (buffer);
 
 			if (more == TRUE) {
-				error = g_io_channel_read_line (iochannel, &buffer,
-								&bytes_read,
-								NULL, NULL);
+				status = g_io_channel_read_line (iochannel, &buffer,
+								 &bytes_read,
+								 NULL, NULL);
 			} else {
 				break;
 			}
 		}
 	}
 
-	return TRUE;
+	if (status == G_IO_STATUS_NORMAL ||
+	    status == G_IO_STATUS_AGAIN)
+		return TRUE;
 
  error:
 	clear_entry_from_cache (cd->discid);
