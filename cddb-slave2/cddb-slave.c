@@ -23,7 +23,7 @@
 #include <bonobo/bonobo-exception.h>
 #include <libgnome/gnome-util.h>
 
-#include <gnet/gnet.h>
+#include "gnet.h"
 
 #include <orbit/orbit.h>
 
