@@ -21,21 +21,27 @@ int main(int argc, char *argv[])
 	g_assert(tv);
 	g_print("TV has %d inputs\n",
 		gtk_tv_get_num_inputs(GTK_TV(tv)));
-	gtk_widget_set_usize(GTK_WIDGET(tv), 160, 120);
+	gtk_widget_set_usize(GTK_WIDGET(tv), 640, 480);
 	gtk_container_add(GTK_CONTAINER(w), tv);
 	gtk_tv_set_toplevel(GTK_TV(tv));
-	gtk_widget_show(tv);
 	gtk_widget_show(w);
+	gtk_widget_show(tv);
 
 	gtk_tv_set_sound(GTK_TV(tv),
 			 0.5, 0.5, 0.5, VIDEO_AUDIO_MUTE, VIDEO_SOUND_STEREO);
 
+	gtk_tv_set_format(GTK_TV(tv), GTK_TV_FORMAT_NTSC);
 	gtk_tv_set_input(GTK_TV(tv), 1);
 	gtk_main();
 
+#if 0
 	g_print("Now trying to grab the image\n");
 	g = gtk_tv_grab_image(GTK_TV(tv), 320, 240);
-	gdk_imlib_save_image_to_ppm(g, "tv.ppm");
+	g_print("save returned %d\n",
+		gdk_imlib_save_image(g, "tv.ppm", NULL));
+#endif
+	gtk_widget_hide(tv);
+	gtk_widget_hide(w);
 
 	return 0;
 }

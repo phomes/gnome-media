@@ -11,6 +11,8 @@
 #include <gdk_imlib.h>
 #include "gtv.h"
 #include <gnome.h>
+#include <errno.h>
+#include <string.h>
 
 static void gtk_tv_class_init(GtkTVClass *tvclass);
 static void gtk_tv_init(GtkTV *tv);
@@ -64,6 +66,10 @@ gtk_tv_class_init(GtkTVClass *tvclass)
   GTK_OBJECT_CLASS(tvclass)->destroy = (gpointer)gtk_tv_destroy;
   widget_class->unmap = (gpointer)gtk_tv_unmap;
   widget_class->map = (gpointer)gtk_tv_map;
+#if 0
+  widget_class->hide = (gpointer)gtk_tv_unmap;
+  widget_class->show = (gpointer)gtk_tv_map;
+#endif
   widget_class->size_request = (gpointer)gtk_tv_size_request;
   widget_class->size_allocate = (gpointer)gtk_tv_size_allocate;
 }
@@ -109,6 +115,11 @@ gtk_tv_new(int video_num)
   if(retval->fd < 0)
     goto new_error_exit;
 
+  retval->visible = 0;
+
+  if(ioctl(retval->fd, VIDIOCCAPTURE, &retval->visible))
+    goto new_error_exit;
+
   if(ioctl(retval->fd, VIDIOCGCAP, &retval->vcap))
     goto new_error_exit;
 
@@ -147,7 +158,10 @@ gtk_tv_new(int video_num)
 	goto new_error_exit;
     }
 
-  ioctl(retval->fd, VIDIOCGPICT, &retval->vpic);
+  if(ioctl(retval->fd, VIDIOCGPICT, &retval->vpic))
+    {
+      g_warning("VIDIOCGPICT\n");
+    }
 
   if(retval->use_shm)
     {
@@ -241,9 +255,22 @@ gtk_tv_new(int video_num)
   if(ioctl(retval->fd, VIDIOCGAUDIO, &retval->vaudio) != -1)
     {
       retval->vaudio.flags |= VIDEO_AUDIO_MUTE;
-      ioctl(retval->fd, VIDIOCSAUDIO, &retval->vaudio);
+      if(ioctl(retval->fd, VIDIOCSAUDIO, &retval->vaudio))
+	g_warning("VIDIOCSAUDIO failed\n");
     }
 
+  {
+    int i;
+    for(i = 0; i < retval->vcap.channels; i++)
+      {
+	retval->vtuner.tuner = i;
+	ioctl(retval->fd, VIDIOCGTUNER, &retval->vtuner);
+	retval->vtuner.tuner = i;
+	retval->vtuner.mode = VIDEO_MODE_AUTO;
+	ioctl(retval->fd, VIDIOCSTUNER, &retval->vtuner);
+      }
+  }
+  
   return GTK_WIDGET(retval);
 
  new_error_exit:
@@ -296,7 +323,8 @@ gtk_tv_toplevel_relay(GtkWidget *widget,
 			    event->expose.area.height);
     case GDK_VISIBILITY_NOTIFY:
       gtk_tv_do_clipping(GTK_TV(tv), event, TRUE);
-      ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow);
+      if(ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow))
+	g_warning("VIDIOCSWIN failed in toplevel_relay visibility\n");
       break;
     case GDK_CONFIGURE:
       gtk_tv_configure_event(GTK_WIDGET(tv), (GdkEventConfigure *)event);
@@ -321,7 +349,8 @@ gtk_tv_rootwin_event(GtkWidget *widget,
     case GDK_UNMAP:
     case GDK_DESTROY:
       gtk_tv_do_clipping(GTK_TV(tv), (GdkEvent *)event, FALSE);
-      ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow);
+      if(ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow))
+	g_warning("VIDIOCSWIN failed in rootwin_event\n");
       break;
     case GDK_CONFIGURE:
       {
@@ -388,8 +417,8 @@ gtk_tv_configure_event(GtkWidget *widget,
   tv->vwindow.height = MAX(MIN(widget->allocation.height, tv->vcap.maxheight),
 			   tv->vcap.minheight);
 
-  if(tv->visible)
-    ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+  if(ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow))
+    g_warning("VIDIOCSWIN failed in configure_event\n");
 }
 
 
@@ -398,9 +427,12 @@ gtk_tv_map(GtkTV *tv)
 {
   if(tv->visible == FALSE)
     {
+      g_print("Showing TV\n");
       tv->visible = TRUE;
-      ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
-      ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible);
+      if(ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow))
+	g_warning("VIDIOCSWIN failed in map\n");
+      if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
+	g_warning("VIDIOCCAPTURE failed in map\n");
     }
 }
 
@@ -409,8 +441,10 @@ gtk_tv_unmap(GtkTV *tv)
 {
   if(tv->visible == TRUE)
     {
+      g_print("Showing TV\n");
       tv->visible = FALSE;
-      ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible);
+      if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
+	g_warning("VIDIOCCAPTURE failed in unmap\n");
     }
 }
 
@@ -711,15 +745,18 @@ gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event, gboolean is_our_window)
 	  tv->vwindow.clipcount = 0;
 	  break;
 	}
-      ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
-      ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible);
+      if(ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow))
+	g_warning("VIDIOCSWIN failed in do_clipping vis\n");
+      if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
+	g_warning("VIDIOCCAPTURE failed in do_clipping vis\n");
       break;
     case GDK_EXPOSE:
     case GDK_MAP:
     case GDK_UNMAP:
     case GDK_CONFIGURE:
       getclip(tv);
-      ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+      if(ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow))
+	g_warning("VIDIOCSWIN failed in do_clipping expose etc.\n");
       break;
     default:
       g_print("do_clipping couldn't handle event type %d\n",
@@ -742,7 +779,7 @@ gtk_tv_set_input(GtkTV *tv,
   g_return_if_fail(tv != NULL);
   g_return_if_fail(GTK_IS_TV(tv));
   g_return_if_fail(inputnum < gtk_tv_get_num_inputs(tv));
-  g_return_if_fail(ioctl(tv->fd, VIDIOCSCHAN, &inputnum) != -1);
+  g_return_if_fail(ioctl(tv->fd, VIDIOCSCHAN, &inputnum) == 0);
   tv->curinput = inputnum;
 }
 
@@ -766,7 +803,7 @@ gtk_tv_set_sound(GtkTV *tv,
   if(mode != -1)
     tv->vaudio.mode = (__u16)mode;
   tv->vaudio.audio = tv->curinput;
-  g_return_if_fail(ioctl(tv->fd, VIDIOCSAUDIO, &tv->vaudio) != -1);
+  g_return_if_fail(ioctl(tv->fd, VIDIOCSAUDIO, &tv->vaudio) == 0);
 }
 
 
@@ -807,36 +844,61 @@ gtk_tv_grab_image(GtkTV *tv,
 {
   GdkImlibImage *retval;
   gpointer membuf;
-  int abool = 0;
+  int abool;
 
   g_return_if_fail(tv != NULL);
   g_return_if_fail(GTK_IS_TV(tv));
 
-  tv->cbuf.base = g_malloc(width * height * 3 /* 24bpp */);
-  membuf = g_malloc(width * height * 3 /* 24bpp */);
+  tv->cbuf.base = g_malloc0(width * height * 3 /* 24bpp */);
+  membuf = g_malloc0(width * height * 3 /* 24bpp */);
   tv->cbuf.width = MIN(MAX(width, tv->vcap.minwidth),
 		       tv->vcap.maxwidth);
   tv->cbuf.height = MIN(MAX(height, tv->vcap.minheight),
 			tv->vcap.maxheight);
+  memset(&tv->cwin, 0, sizeof(tv->cwin));
+  tv->cwin.width = tv->cbuf.width;
+  tv->cwin.height = tv->cbuf.height;
+
   tv->cbuf.depth = 24;
   tv->cbuf.bytesperline = width * 3;
 
   tv->cpic = tv->vpic;
   tv->cpic.depth = 24;
+  tv->cpic.palette = VIDEO_PALETTE_RGB24;
 
-  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
-  ioctl(tv->fd, VIDIOCSFBUF, &tv->cbuf);
-  ioctl(tv->fd, VIDIOCSPICT, &tv->cpic);
-  ioctl(tv->fd, VIDIOCSWIN, &tv->cwin);
+  abool = 0;
+  g_return_val_if_fail(
+		       ioctl(tv->fd, VIDIOCCAPTURE, &abool) == 0,
+		       NULL);
+  g_return_val_if_fail(
+		       ioctl(tv->fd, VIDIOCSFBUF, &tv->cbuf) == 0,
+		       NULL);
+  g_return_val_if_fail(
+		       ioctl(tv->fd, VIDIOCSPICT, &tv->cpic) == 0,
+		       NULL);
+  g_return_val_if_fail(
+		       ioctl(tv->fd, VIDIOCSWIN, &tv->cwin) == 0,
+		       NULL);
   abool = 1;
-  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+  g_return_val_if_fail(
+		       ioctl(tv->fd, VIDIOCCAPTURE, &abool) == 0,
+		       NULL);
 
   g_print("Attempting to read %d bytes\n",
 	  tv->cbuf.width * tv->cbuf.height * 3);
 
-  g_print("read it: %d\n",
-	  read(tv->fd, membuf, tv->cbuf.width * tv->cbuf.height * 3)
-	  );
+  // #define LOOPIT
+  #define SLEEPIT
+  // #define READIT
+#if defined(LOOPIT)
+  while(((unsigned char *)tv->cbuf.base)[10] == 0
+	&& ((unsigned char *)tv->cbuf.base)[tv->cbuf.width * tv->cbuf.height] == 0)
+    /**/;
+#elif defined(SLEEPIT)
+  sleep(1);
+#elif defined(READIT)
+  read(tv->fd, membuf, tv->cbuf.width * tv->cbuf.height * 3);
+#endif
 
   abool = 0;
   ioctl(tv->fd, VIDIOCCAPTURE, &abool);
@@ -846,10 +908,39 @@ gtk_tv_grab_image(GtkTV *tv,
   abool = 1;
   ioctl(tv->fd, VIDIOCCAPTURE, &abool);
 
-  retval = gdk_imlib_create_image_from_data(membuf, NULL,
+  retval = gdk_imlib_create_image_from_data(
+#ifdef READIT
+					    membuf,
+#else
+					    tv->cbuf.base,
+#endif
+					    NULL,
 					    (int)tv->cbuf.width,
 					    (int)tv->cbuf.height);
 
   g_free(membuf);
   g_free(tv->cbuf.base);
+
+  return retval;
+}
+
+void
+gtk_tv_set_format(GtkTV *tv, GtkTVFormat fmt)
+{
+  gint tmpin;
+
+  g_return_if_fail(tv != NULL);
+  g_return_if_fail(GTK_IS_TV(tv));
+
+  /* Bad hack for bttv */
+  tmpin = tv->curinput;
+  gtk_tv_set_input(GTK_TV(tv), 0);
+
+  tv->vtuner.tuner = 0;
+  g_return_if_fail(ioctl(tv->fd, VIDIOCGTUNER, &tv->vtuner) == 0);
+  tv->vtuner.tuner = 0;
+  tv->vtuner.mode = fmt;
+  g_return_if_fail(ioctl(tv->fd, VIDIOCSTUNER, &tv->vtuner) == 0);
+
+  gtk_tv_set_input(GTK_TV(tv), tmpin);
 }

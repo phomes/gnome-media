@@ -32,14 +32,15 @@ struct _GtkTV
 			       the video buffer goes */
   GdkColor chroma_colour;
   /* Misc flags */
-  gboolean use_shm, visible, kill_on_overlap, clean_display,
-    need_colour_cube;
+  gboolean use_shm, kill_on_overlap, clean_display, need_colour_cube;
+  gint visible;
 
   /*** These are initialized at object creation, of course, but are
        set on the fly as people change settings ***/
   struct video_audio vaudio;
   struct video_picture vpic;
   struct video_window vwindow;
+  struct video_tuner vtuner;
 
   guint curinput;
 
@@ -83,7 +84,17 @@ void           gtk_tv_set_sound      (GtkTV *tv,
 				      gint flags /* VIDEO_AUDIO_* */,
 				      gint mode /* VIDEO_MODE_* */);
 
+/* Broken, doesn't work, blah blah. */
 GdkImlibImage *gtk_tv_grab_image(GtkTV *tv, gint width, gint height);
+
+typedef enum {
+  GTK_TV_FORMAT_PAL,
+  GTK_TV_FORMAT_NTSC,
+  GTK_TV_FORMAT_SECAM,
+  GTK_TV_FORMAT_AUTO
+} GtkTVFormat; 
+
+void gtk_tv_set_format(GtkTV *tv, GtkTVFormat fmt);
 
 /* To do the DGA stuff, you need root privs. This is here to remind you to
    be security-concious and release them ASAP */
