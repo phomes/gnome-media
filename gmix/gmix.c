@@ -537,6 +537,7 @@ device_info *open_device(int num)
 	/*
 	 * mixer-name
 	 */
+#ifndef __FreeBSD__
 	res=ioctl(new_device->fd, SOUND_MIXER_INFO, &new_device->info);
 	if (res!=0) {
 		g_free(new_device);
@@ -544,6 +545,9 @@ device_info *open_device(int num)
 	}
 	if(!isalpha(new_device->info.name[0]))
 		g_snprintf(new_device->info.name, 31, "Card %d", num+1);
+#else
+	g_snprintf(new_device->info.name, 31, "Card %d", num+1);
+#endif
 	/* 
 	 * several bitmasks describing the mixer
 	 */

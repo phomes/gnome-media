@@ -13,6 +13,8 @@ Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
 EXTRA_DIST = solaris-cdrom.c		\
 	     solaris-cdrom.h		\
+	     freebsd-cdrom.c		\
+	     freebsd-cdrom.h		\
 	     linux-cdrom.c		\
 	     linux-cdrom.h		\
 	     gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in

@@ -25,7 +25,7 @@
  */
 #define GMIX_VERSION 0x030000
 
-#ifdef ALSA
+#if defined(ALSA) || defined(__FreeBSD__)
 /* stolen from OSS's soundcard.h */
 typedef struct mixer_info
 {

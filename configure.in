@@ -175,6 +175,10 @@ AC_SUBST(PROGRAMS_GNOME_CD)
 host=`uname -s`
 
 case "$host" in
+*FreeBSD*)
+	CDROM_HOST=freebsd
+	default_cd_device="/dev/acd0c"
+	;;
 *Linux*) 
 	CDROM_HOST=linux
 	default_cd_device="/dev/cdrom"
