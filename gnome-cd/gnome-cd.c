@@ -494,7 +494,6 @@ init_player (void)
 
 	/* Get the initial volume */
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) == TRUE) {
-		g_print ("volume: %d\n", status->volume);
 		gtk_range_set_value (GTK_RANGE (gcd->slider),
 				     (double) status->volume);
 		g_free (status);
