@@ -89,7 +89,11 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 	if (gcd->disc_info != NULL) {
 		int i;
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
-			item = gtk_menu_item_new_with_label (gcd->disc_info->tracknames[i]);
+			char *title;
+
+			title = g_strdup_printf ("%d - %s", i + 1, gcd->disc_info->tracknames[i]);
+			item = gtk_menu_item_new_with_label (title);
+			g_free (title);
 			gtk_widget_show (item);
 
 			gtk_menu_append (menu, item);
@@ -107,7 +111,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 					for (i = 0; i < data->ntrks; i++) {
 						char *label;
 						
-						label = g_strdup_printf (_("Track %d - Unknown"), i + 1);
+						label = g_strdup_printf (_("%d - Unknown"), i + 1);
 						item = gtk_menu_item_new_with_label (label);
 						g_free (label);
 
@@ -272,7 +276,7 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (top_hbox), side_vbox, FALSE, FALSE, 0);
 
 	/* Create the display */
-	display_box = gtk_vbox_new (FALSE, 0);
+	display_box = gtk_vbox_new (FALSE, 1);
 
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
