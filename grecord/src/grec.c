@@ -48,7 +48,7 @@
 #define DONTSAVE 1
 #define CANCEL 2
 
-gchar* maintopic = N_("GNOME Soundrecorder:");
+const gchar* maintopic = N_("GNOME Soundrecorder:");
 
 const gchar* temp_filename_record = "untitled.raw";
 const gchar* temp_filename_play = "untitled.wav";
@@ -726,7 +726,7 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 	
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
 
-	temp_string = g_strconcat (_(maintopic), active_file, NULL);
+	temp_string = g_strconcat ((maintopic), active_file, NULL);
 	gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), temp_string);
 	g_free (temp_string);
 

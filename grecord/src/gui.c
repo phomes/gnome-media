@@ -70,29 +70,31 @@ static GnomeUIInfo echo_effect_menu_uiinfo [] =
 	GNOMEUIINFO_END
 };
 
-static GnomeUIInfo speed_effect_menu_uiinfo [] =
-{
-	{
-		GNOME_APP_UI_ITEM, N_("Increase speed"),
-		N_("Increase the speed of the current sample"),
-		on_increase_speed_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
-		0, 0, NULL,
-	},
-	{
-		GNOME_APP_UI_ITEM, N_("Decrease speed"),
-		N_("Decrease the speed of the current sample"),
-		on_decrease_speed_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
-		0, 0, NULL,
-	},
-	GNOMEUIINFO_END
-};
+/*
+  static GnomeUIInfo speed_effect_menu_uiinfo [] =
+  {
+  {
+  GNOME_APP_UI_ITEM, N_("Increase speed"),
+  N_("Increase the speed of the current sample"),
+  on_increase_speed_activate_cb, NULL, NULL,
+  GNOME_APP_PIXMAP_NONE, NULL,
+  0, 0, NULL,
+  },
+  {
+  GNOME_APP_UI_ITEM, N_("Decrease speed"),
+  N_("Decrease the speed of the current sample"),
+  on_decrease_speed_activate_cb, NULL, NULL,
+  GNOME_APP_PIXMAP_NONE, NULL,
+  0, 0, NULL,
+  },
+  GNOMEUIINFO_END
+  };
+*/
 
 static GnomeUIInfo effects_menu_uiinfo [] =
 {
 	GNOMEUIINFO_SUBTREE (N_("Echo"), echo_effect_menu_uiinfo),
-	GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo),
+	//GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo),
 	GNOMEUIINFO_END
 };
 

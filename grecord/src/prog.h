@@ -25,7 +25,7 @@
 #include <gnome.h>
 #include <config.h>
 
-extern gchar* maintopic;
+const extern gchar* maintopic;
 
 extern const gchar* temp_filename_record;
 extern const gchar* temp_filename_play;
