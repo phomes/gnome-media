@@ -1141,10 +1141,7 @@ fill_in_device_guis (GtkWidget *notebook)
 				spixmap = gtk_image_new_from_stock (ci->pixmap,
 								    GTK_ICON_SIZE_BUTTON);
 				gtk_box_pack_start (GTK_BOX (hbox), spixmap, FALSE, FALSE, 0);
-				if (prefs.show_icons == TRUE) {
-					gtk_widget_show (spixmap);
-				}
-				
+				gtk_widget_show (spixmap);
 				ci->icon = spixmap;
 			} else {
 				ci->icon = NULL;
@@ -1159,9 +1156,7 @@ fill_in_device_guis (GtkWidget *notebook)
 			gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
 			gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 			
-			if (prefs.show_labels == TRUE) {
-				gtk_widget_show (label);
-			}
+			gtk_widget_show (label);
 			ci->label = label;
 
 			ci->mixer = make_slider_mixer(ci);
