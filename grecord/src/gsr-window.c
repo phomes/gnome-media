@@ -1212,8 +1212,6 @@ cb_rec_eos (GstElement * element,
 
 	priv->dirty = TRUE;
 	priv->has_file = TRUE;
-
-	g_print ("eos received\n");
 }
 
 static void
@@ -1239,12 +1237,11 @@ media_stop (BonoboUIComponent *uic,
 		priv->dirty = TRUE;
 		priv->has_file = TRUE;
 #endif
-g_print ("Sending EOS\n");
 		g_signal_connect (priv->record->pipeline, "eos",
 				  G_CALLBACK (cb_rec_eos), window);
-		gboolean res = gst_pad_send_event (gst_element_get_pad (priv->record->src, "src"),
-					gst_event_new (GST_EVENT_EOS));
-g_print ("Res: %d\n", res);
+		gst_pad_send_event (gst_element_get_pad (priv->record->src,
+							 "src"),
+				    gst_event_new (GST_EVENT_EOS));
 	}
 }
 

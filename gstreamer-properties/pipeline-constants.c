@@ -65,10 +65,15 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 };
 
 GSTPPipelineDescription videosink_pipelines[] = {
+#if 0
+  /*
+   * aasink is disabled because it is not a serious alternative.
+   */
 	{PIPE_TYPE_VIDEOSINK, 0,"Ascii Art - X11", "aasink driver=0", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"Ascii Art - console", "aasink driver=1", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
+#endif
 #if 0 
  /* Leaving this one disabled, because of a bug in cacasink that
   * pops up a window in NULL state
