@@ -32,7 +32,7 @@ struct _AlsaMixerClass
 
 GType alsa_mixer_get_type          (void);
 
-GObject  *alsa_mixer_new            (guint device_number);
+GObject  *alsa_mixer_new            (guint device_number, GError **error);
 
 
 G_END_DECLS

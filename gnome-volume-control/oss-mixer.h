@@ -32,7 +32,7 @@ struct _OssMixerClass
 
 GType oss_mixer_get_type          (void);
 
-GObject  *oss_mixer_new            (guint device_number);
+GObject  *oss_mixer_new            (guint device_number, GError **error);
 
 
 G_END_DECLS

@@ -39,6 +39,17 @@ class_init (GnomeMixerClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 }
 
+GQuark
+gnome_mixer_error_quark (void)
+{
+        static GQuark quark = 0;
+        if (quark == 0) {
+                quark = g_quark_from_static_string ("gnome-mixer-error-quark");
+        }
+
+        return quark;
+}
+
 GType
 gnome_mixer_get_type (void)
 {

@@ -33,7 +33,7 @@ struct _OssChannelClass
 
 GType oss_channel_get_type          (void);
 
-GObject *oss_channel_new (int device_fd, guint channel_num, gboolean stereo);
+GObject *oss_channel_new (int device_fd, guint channel_num, gboolean stereo, GError **error);
 
 G_END_DECLS
 

@@ -1,3 +1,19 @@
+2002-02-10  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+	* alsa-mixer.c: (open_device), (alsa_mixer_new):
+	* alsa-mixer.h:
+	* gnome-mixer.c: (gnome_mixer_error_quark):
+	* gnome-mixer.h:
+	* gnome-volume-control.c: (get_mixer), (main):
+	* oss-channel.c: (oss_channel_new):
+	* oss-channel.h:
+	* oss-mixer.c: (build_channel_list), (generic_error),
+	(open_device), (oss_mixer_new):
+	* oss-mixer.h:
+
+	Modularize the backends, load them dynamically.
+	
 2002-02-06  Seth Nickell  <snickell@stanford.edu>
 
 	* Makefile.am:

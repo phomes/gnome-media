@@ -4,11 +4,58 @@
 #include "gnome-channel.h"
 #include "gnome-channel-widget.h"
 #include "gnome-channel-group.h"
+#include "device-module.h"
 
 #include <gtk/gtk.h>
 #include <gnome.h>
 
 #include "debug.h"
+
+#include <gmodule.h>
+
+#define GNOME_VOLUME_CONTROL_DEVICE_PATH "/gnome/GNOME2/lib/gnome-volume-control/devices"
+
+static GnomeMixer *
+get_mixer (void)
+{
+  static char *devices[] = {"oink", "alsa", "oss", NULL};
+  int i;
+
+  for (i = 0; devices[i] != NULL; i++) {
+    GList *mixers;
+    char *module_name;
+    GetMixersFunc *get_mixers_func = NULL;
+    GModule *module;
+    gboolean success;
+
+    module_name = g_module_build_path (GNOME_VOLUME_CONTROL_DEVICE_PATH,
+				       devices[i]);
+    
+    module = g_module_open (module_name, 0 /*G_MODULE_BIND_LAZY*/);
+    if (module == NULL) {
+      g_warning ("Cannot load module `%s' (%s)", module_name, g_module_error ());
+      continue;
+    }
+    
+    success = g_module_symbol (module, "get_mixers",
+			       (gpointer *) &get_mixers_func);  
+
+    if ((!success) || get_mixers_func == NULL) {
+      g_warning ("Could not load module `%s`, couldn't find mixers function", module_name);
+      continue;
+    }
+    printf ("about to call\n");
+    g_warning ("Errors? %s: %s", module_name, g_module_error ());
+    mixers = (*get_mixers_func) (NULL);
+    printf ("kablamo!\n");
+    if (mixers == NULL) {
+      continue;
+    } else {
+      return GNOME_MIXER (mixers->data);
+    }
+  }
+  
+}
 
 int
 main (int argc, char **argv)
@@ -18,6 +65,7 @@ main (int argc, char **argv)
   GList *node;
   GtkWidget *window;
   GtkWidget *table;
+  GError *error = NULL;
   int i;
 
   GnomeChannel *channel;
@@ -37,7 +85,13 @@ main (int argc, char **argv)
   gtk_container_add (GTK_CONTAINER (window), table);
   gtk_container_set_border_width (GTK_CONTAINER (table), 10);
 
-  mixer = GNOME_MIXER (oss_mixer_new (0));
+  mixer = get_mixer();
+
+  if (error != NULL) {
+    g_warning ("Error %s\n", error->message);
+    g_error_free (error);
+  }
+
   channels = gnome_mixer_get_channels (mixer, NULL);
 
   i = 0;

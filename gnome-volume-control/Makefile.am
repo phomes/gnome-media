@@ -11,14 +11,10 @@ INCLUDES = \
 bin_PROGRAMS = gnome-volume-control
 
 BUILT_SOURCES = 			\
-	volume-marshal.c	\
+	volume-marshal.c		\
 	volume-marshal.h
 
 gnome_volume_control_SOURCES =		\
-	alsa-mixer.c			\
-	alsa-mixer.h			\
-	alsa-channel.c			\
-	alsa-channel.h			\
 	debug.c				\
 	debug.h				\
 	gnome-channel.c			\
@@ -30,14 +26,39 @@ gnome_volume_control_SOURCES =		\
 	gnome-mixer.c			\
 	gnome-mixer.h			\
 	gnome-volume-control.c		\
-	oss-channel.c			\
-	oss-channel.h			\
-	oss-mixer.c			\
-	oss-mixer.h			\
 	$(BUILT_SOURCES)
 
 gnome_volume_control_LDADD = \
 	$(MEDIA_LIBS) $(INTLLIBS) $(GMIX_LIBS) -lasound
+
+device_flags = -export_dynamic -avoid-version
+devicesdir = $(libdir)/gnome-volume-control/devices
+
+devices_LTLIBRARIES =			\
+	libalsa.la			\
+	liboss.la
+
+
+libalsa_la_SOURCES = 			\
+	alsa-device.c			\
+	alsa-mixer.c			\
+	alsa-mixer.h			\
+	alsa-channel.c			\
+	alsa-channel.h			\
+libalsa_la_LDFLAGS = $(device_flags)
+libalsa_la_LIBADD = $(MEDIA_LIBS) $(GMIX_LIBS) -lasound
+
+
+liboss_la_SOURCES =			\
+	oss-device.c			\
+	oss-channel.c			\
+	oss-channel.h			\
+	oss-mixer.c			\
+	oss-mixer.h
+libalsa_la_LDFLAGS = $(device_flags)
+libalsa_la_LIBADD = $(MEDIA_LIBS) $(GMIX_LIBS)
+
+
 
 @INTLTOOL_DESKTOP_RULE@
 

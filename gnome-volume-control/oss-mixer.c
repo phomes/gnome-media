@@ -21,8 +21,10 @@
 #include <signal.h>
 #include <ctype.h>
 
-static void build_channel_list (OssMixer *mixer);
-static gboolean open_device (OssMixer *mixer, int device_number);
+#include <errno.h>
+
+static void build_channel_list (OssMixer *mixer, GError **error);
+static gboolean open_device (OssMixer *mixer, int device_number, GError **error);
 
 static GnomeMixerClass *parent_class = NULL;
 
@@ -44,7 +46,7 @@ struct _OssMixerPrivate {
 };
 
 static void
-build_channel_list (OssMixer *mixer)
+build_channel_list (OssMixer *mixer, GError **error)
 {
   int i;
   GObject *channel;
@@ -53,16 +55,38 @@ build_channel_list (OssMixer *mixer)
     if ((mixer->private->devmask | mixer->private->recmask) & (1<<i)) {
       channel = oss_channel_new (mixer->private->fd, /* device file descriptor */
 				 i, /* channel number */
-				 mixer->private->stereodevs & (1<<i) /* stereo channel? */
-				 );
-      mixer->private->channels = g_list_append (mixer->private->channels, channel);
+				 mixer->private->stereodevs & (1<<i), /* stereo channel? */
+				 error);
+      if (error != NULL) {
+	mixer->private->channels = g_list_append (mixer->private->channels, channel);
+      }
+    }
+  }
+}
 
+static void
+generic_error (GError **error, char *device_name)
+{
+  if (error) {
+    if (errno == EPERM || errno == EACCES || errno == ENXIO) {
+      *error = g_error_new (GNOME_MIXER_ERROR,
+			    GNOME_MIXER_ERROR_PERMISSION,
+			    "The mixer device %s couldn't be used because"
+			    " of insufficient permissions.",
+			    device_name
+			    );
+    } else {
+      *error = g_error_new (GNOME_MIXER_ERROR,
+			    GNOME_MIXER_ERROR_UNKNOWN,
+			    "The mixer device %s couldn't be used.",
+			    device_name
+			    );
     }
   }
 }
 
 static gboolean
-open_device (OssMixer *mixer, int device_number)
+open_device (OssMixer *mixer, int device_number, GError **error)
 {
 	OssMixerPrivate *new_device = mixer->private;
 	char device_name[255];
@@ -76,9 +100,24 @@ open_device (OssMixer *mixer, int device_number)
 	} else {
 		sprintf(device_name, "/dev/mixer%i", device_number);
 	}
-	new_device->fd=open(device_name, O_RDWR, 0);
+
+	
+	if (!g_file_test (device_name, G_FILE_TEST_EXISTS)) {
+	  if (error) {
+	    *error = g_error_new (GNOME_MIXER_ERROR,
+				  GNOME_MIXER_ERROR_NO_SUCH_DEVICE,
+				  "The mixer device %s couldn't be found.",
+				  device_name
+				  );
+	  }
+	  return FALSE;
+	}
+
+	new_device->fd = open(device_name, O_RDWR, 0);
 	if (new_device->fd<0) {
-		return FALSE;
+	  printf ("errno is %d\n", errno);
+	  generic_error (error, device_name);
+	  return FALSE;
 	}
 
 	/*
@@ -86,7 +125,8 @@ open_device (OssMixer *mixer, int device_number)
 	 */
 	res=ioctl(new_device->fd, SOUND_MIXER_INFO, &new_device->info);
 	if (res!=0) {
-		return FALSE;
+	  generic_error (error, device_name);
+	  return FALSE;
 	}
 	if(!isalpha(new_device->info.name[0]))
 		g_snprintf(new_device->info.name, 31, "Card %d", device_number+1);
@@ -99,7 +139,8 @@ open_device (OssMixer *mixer, int device_number)
         res|=ioctl(new_device->fd, SOUND_MIXER_READ_STEREODEVS, &new_device->stereodevs);
         res|=ioctl(new_device->fd, SOUND_MIXER_READ_CAPS, &new_device->caps);
 	if (res!=0) {
-		return FALSE;
+	  generic_error (error, device_name);
+	  return FALSE;
 	}
 
 	/*
@@ -192,14 +233,18 @@ oss_mixer_get_type (void)
 }
 
 GObject *
-oss_mixer_new (guint device_number)
+oss_mixer_new (guint device_number, GError **error)
 {
   OssMixer *mixer;
 
   mixer = g_object_new (oss_mixer_get_type (), NULL);
   
-  open_device (mixer, device_number);
-  build_channel_list (mixer);
+  if (open_device (mixer, device_number, error)) {
+    build_channel_list (mixer, error);
+  } else {
+    g_object_unref (G_OBJECT (mixer));
+    return NULL;
+  }
 
   return G_OBJECT (mixer);
 }

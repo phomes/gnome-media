@@ -224,7 +224,7 @@ check_volume_levels (gpointer data)
 }
 
 GObject *
-oss_channel_new (int device_fd, guint channel_num, gboolean stereo_channel)
+oss_channel_new (int device_fd, guint channel_num, gboolean stereo_channel, GError **error)
 {
   OssChannel *channel;
 

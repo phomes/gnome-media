@@ -18,7 +18,7 @@
 #include <ctype.h>
 
 static void build_channel_list (AlsaMixer *mixer);
-static gboolean open_device (AlsaMixer *mixer, int device_number);
+static gboolean open_device (AlsaMixer *mixer, int device_number, GError **error);
 
 static GnomeMixerClass *parent_class = NULL;
 
@@ -53,7 +53,7 @@ build_channel_list (AlsaMixer *mixer)
 
 
 static gboolean
-open_device (AlsaMixer *mixer, int device_number)
+open_device (AlsaMixer *mixer, int device_number, GError **error)
 {
 	AlsaMixerPrivate *new_device = mixer->private;
 	int err;
@@ -71,12 +71,12 @@ open_device (AlsaMixer *mixer, int device_number)
 	snd_mixer_selem_id_alloca(&sid);
 
 	if ((err = snd_ctl_open(&handle, card, 0)) < 0) {
-		error("Control device %i open error: %s", card, snd_strerror(err));
+		g_warning ("Control device %i open error: %s", card, snd_strerror(err));
 		return err;
 	}
 	
 	if ((err = snd_ctl_card_info(handle, info)) < 0) {
-		error("Control device %i hw info error: %s", card, snd_strerror(err));
+		g_warning ("Control device %i hw info error: %s", card, snd_strerror(err));
 		return err;
 	}
 
@@ -85,22 +85,22 @@ open_device (AlsaMixer *mixer, int device_number)
 	snd_ctl_close(handle);
 
 	if ((err = snd_mixer_open(&mhandle, 0)) < 0) {
-		error("Mixer %s open error: %s", card, snd_strerror(err));
+		g_warning ("Mixer %s open error: %s", card, snd_strerror(err));
 		return err;
 	}
 	if ((err = snd_mixer_attach(mhandle, card)) < 0) {
-		error("Mixer attach %s error: %s", card, snd_strerror(err));
+		g_warning ("Mixer attach %s error: %s", card, snd_strerror(err));
 		snd_mixer_close(mhandle);
 		return err;
 	}
 	if ((err = snd_mixer_selem_register(mhandle, NULL, NULL)) < 0) {
-		error("Mixer register error: %s", snd_strerror(err));
+		g_warning ("Mixer register error: %s", snd_strerror(err));
 		snd_mixer_close(mhandle);
 		return err;
 	}
 	err = snd_mixer_load(mhandle);
 	if (err < 0) {
-		error("Mixer load error: %s", card, snd_strerror(err));
+		g_warning ("Mixer load error: %s", card, snd_strerror(err));
 		snd_mixer_close(mhandle);
 		return err;
 	}
@@ -187,13 +187,13 @@ alsa_mixer_get_type (void)
 }
 
 GObject *
-alsa_mixer_new (guint device_number)
+alsa_mixer_new (guint device_number, GError **error)
 {
   AlsaMixer *mixer;
 
   mixer = g_object_new (alsa_mixer_get_type (), NULL);
   
-  open_device (mixer, device_number);
+  open_device (mixer, device_number, error);
 
   return G_OBJECT (mixer);
 }
