@@ -476,11 +476,11 @@ init_player (void)
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
 	
-	button = make_button_from_file (gcd, "gnome-cd/a-first.png", G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+  	button = make_button_from_file (gcd, "gnome-cd/media-prev.png", G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->back_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/a-rwnd.png", NULL, _("Rewind"), _("Rewind"));
+	button = make_button_from_file (gcd, "gnome-cd/media-rew.png", NULL, _("Rewind"), _("Rewind"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (rewind_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -491,13 +491,13 @@ init_player (void)
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
 	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
-                   "gnome-cd/a-play.png", TRUE, NULL);
+                   "gnome-cd/media-play.png", TRUE, NULL);
 	gcd->play_image = gtk_image_new_from_file (fullname);
 	g_object_ref (gcd->play_image);
 	g_free (fullname);
 
 	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
-                   "gnome-cd/a-pause.png", TRUE, NULL);
+                   "gnome-cd/media-pause.png", TRUE, NULL);
 	gcd->pause_image = gtk_image_new_from_file (fullname);
 	gtk_widget_show (gcd->pause_image);
 	g_object_ref (gcd->pause_image);
@@ -508,11 +508,11 @@ init_player (void)
 	gcd->play_b = button;
 	gcd->current_image = gcd->play_image;
 	
-	button = make_button_from_file (gcd, "gnome-cd/a-stop.png", G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
+	button = make_button_from_file (gcd, "gnome-cd/media-stop.png", G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->stop_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/a-fwd.png", NULL, _("Fast forward"), _("Fast forward"));
+	button = make_button_from_file (gcd, "gnome-cd/media-fwd.png", NULL, _("Fast forward"), _("Fast forward"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (ffwd_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -520,7 +520,7 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->ffwd_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/a-last.png", G_CALLBACK (next_cb), _("Next track"), _("Next track"));
+	button = make_button_from_file (gcd, "gnome-cd/media-next.png", G_CALLBACK (next_cb), _("Next track"), _("Next track"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->next_b = button;
 	
@@ -547,11 +547,39 @@ init_player (void)
 	return gcd;
 }
 
+static int 
+save_session(GnomeClient        *client,
+             gint                phase,
+             GnomeRestartStyle   save_style,
+             gint                shutdown,
+             GnomeInteractStyle  interact_style,
+             gint                fast,
+             gpointer            client_data) 
+{
+
+    gchar *argv[]= { NULL };
+
+    argv[0] = (gchar*) client_data;
+    gnome_client_set_clone_command (client, 1, argv);
+    gnome_client_set_restart_command (client, 1, argv);
+
+    return TRUE;
+}
+
+static gint client_die(GnomeClient *client,
+		       GnomeCD *gcd)
+{
+	gtk_widget_destroy (gcd->window);
+	gtk_main_quit ();
+}
+
+
 int 
 main (int argc,
       char *argv[])
 {
 	GnomeCD *gcd;
+	GnomeClient *client;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -560,11 +588,18 @@ main (int argc,
 	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, NULL);
 	gconf_init (argc, argv, NULL);
+	client = gnome_master_client ();
+    	g_signal_connect (client, "save_yourself",
+                         G_CALLBACK (save_session), (gpointer) argv[0]);
+
 	gcd = init_player ();
 	if (gcd == NULL) {
 		g_error (_("Cannot create player"));
 		exit (0);
 	}
+
+	g_signal_connect (client, "die",
+			  G_CALLBACK (client_die), gcd);
 
 	/* Do the start up stuff */
 	if (gcd->preferences->start_close) {

@@ -24,6 +24,14 @@ BITMAPS = 		\
 	    a-stop.png	\
 	    a-stop-pressed.png	\
 	    a-stop-menu.png	\
+	    media-prev.png	\
+	    media-rew.png	\
+	    media-play.png	\
+	    media-pause.png	\
+	    media-stop.png	\
+	    media-fwd.png	\
+	    media-next.png	\
+	    media-rec.png	\
 	    repeat.png		\
 	    once.png		\
 	    disc.png		\
