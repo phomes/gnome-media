@@ -37,6 +37,7 @@
 
 static GConfClient *client = NULL;
 extern gboolean default_file;
+extern gboolean able_to_record;
 
 static void
 record_timeout_changed (GConfClient *_client,
@@ -149,9 +150,14 @@ sox_command_changed (GConfClient *_client,
 	s = gconf_client_get_string (client, "/apps/gnome-sound-recorder/sox-command", NULL);
 	sox = g_find_program_in_path (s);
 	if (sox == NULL) {
+		able_to_record = FALSE;
+		gtk_widget_set_sensitive (grecord_widgets.Record_button, FALSE);
 		g_free (sox_command);
 		sox_command = g_strdup (s);
 	} else {
+		able_to_record = TRUE;
+		gtk_widget_set_sensitive (grecord_widgets.Record_button, TRUE);
+		
 		g_free (sox_command);
 		sox_command = sox;
 	}

@@ -74,6 +74,8 @@ static GnomeUIInfo echo_effect_menu_uiinfo [] =
 	GNOMEUIINFO_END
 };
 
+extern gboolean able_to_record;
+
 /*
   static GnomeUIInfo speed_effect_menu_uiinfo [] =
   {
@@ -218,10 +220,6 @@ create_grecord_window (void)
 	else
 		channels_string = g_strdup (_("mono"));
 
-	/* Set the size of the main window */
-	gtk_widget_set_uposition (GTK_WIDGET (grecord_window), mwin.x, mwin.y);
-	gtk_window_set_default_size (GTK_WINDOW (grecord_window), mwin.width, mwin.height); 
-
 	menubar = gtk_menu_bar_new ();
 	gtk_widget_show (menubar);
 	gnome_app_fill_menu (GTK_MENU_SHELL (menubar), menubar1_uiinfo,
@@ -248,7 +246,7 @@ create_grecord_window (void)
 						 _("Create new sample"), NULL,
 						 tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (New_button);
-
+	
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 
 	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
@@ -291,6 +289,9 @@ create_grecord_window (void)
 						    _("Record"),
 						    _("Start recording"), NULL,
 						    tmp_toolbar_icon, NULL, NULL);
+	if (able_to_record == FALSE) {
+		gtk_widget_set_sensitive (Record_button, FALSE);
+	}
 	gtk_widget_show (Record_button);
       
 	vbox1 = gtk_vbox_new (FALSE, 0);

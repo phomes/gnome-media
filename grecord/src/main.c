@@ -33,6 +33,8 @@
 #include "prog.h"
 #include "preferences.h"
 
+gboolean able_to_record = TRUE;
+
 static gchar* geometry = NULL;
 static gboolean sfiles = FALSE;
 static gboolean srecord = FALSE;
@@ -240,6 +242,7 @@ main (int argc,
 
 	p = g_find_program_in_path (sox_command);
 	if (p == NULL) {
+		able_to_record = FALSE;
 		if (show_warningmess) {
 			GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
 			
@@ -265,9 +268,7 @@ main (int argc,
 			gtk_widget_destroy (mess);
 			
 			on_preferences_activate_cb (NULL, NULL);
-		} else {
 		}
-		
 	} else {
 		g_free (p);
 	}

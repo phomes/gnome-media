@@ -1,5 +1,17 @@
 2002-03-22  Iain <iain@ximian.com>
 
+	* src/gui.c (create_grecord_window): Remove the stuff that sets the
+	window size. Window manager function.
+	Set the sensitivity on the record button.
+
+	* src/main.c: Add a global able_to_record.
+	(main): Set the able_to_record var.
+
+	* preferences.c (sox_command_changed): Set the able_to_record var, and
+	the sensitivity on the record button.
+
+2002-03-22  Iain <iain@ximian.com>
+
 	* gnome-sound-recorder.schemas.in: Add schema for
 	show-warning-messages.
 
