@@ -200,7 +200,7 @@ void edit_window( void )
 		GTK_SIGNAL_FUNC(select_row_cb), track_entry);
 	gtk_signal_connect(GTK_OBJECT(disc_entry), "changed",
 		GTK_SIGNAL_FUNC(dtitle_changed), NULL);
-	gtk_signal_connect(GTK_OBJECT(track_entry), "activate",
+	gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
 		GTK_SIGNAL_FUNC(activate_entry), track_list);
 	
 	gtk_container_add(GTK_CONTAINER(trwin), main_box);
