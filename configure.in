@@ -2,8 +2,8 @@ AC_PREREQ(2.53)
 AC_INIT(cddb-slave2)
 
 AM_CONFIG_HEADER(config.h)
-GM_VERSION=2.5.0
-AM_INIT_AUTOMAKE(gnome-media, 2.5.0)
+GM_VERSION=2.5.1
+AM_INIT_AUTOMAKE(gnome-media, 2.5.1)
 AM_MAINTAINER_MODE
 
 AC_PROG_INTLTOOL([0.21])
@@ -80,7 +80,7 @@ HAVE_GST=no
 
 GST_MAJORMINOR=0.7
 PKG_CHECK_MODULES(GSR, \
-  gstreamer-$GST_MAJORMINOR >= 0.7.1 gstreamer-libs-$GST_MAJORMINOR >= 0.7.1 \
+  gstreamer-$GST_MAJORMINOR >= 0.7.2 gstreamer-libs-$GST_MAJORMINOR >= 0.7.2 \
 		  libgnomeui-2.0 >= 1.102.0,
 		  HAVE_GST=yes,HAVE_GST=no)
 
