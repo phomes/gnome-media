@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 21:41+0100\n"
-"PO-Revision-Date: 2004-12-11 20:46+0800\n"
+"POT-Creation-Date: 2005-01-22 12:23+0100\n"
+"PO-Revision-Date: 2005-01-22 21:42+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -162,9 +162,9 @@ msgid "Unknown / Unknown"
 msgstr "未知/未知"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:721
-#: grecord/src/gsr-window.c:730 grecord/src/gsr-window.c:739
-#: grecord/src/gsr-window.c:749 grecord/src/gsr-window.c:1065
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
+#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
+#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
 msgid "Unknown"
 msgstr "未知"
 
@@ -896,11 +896,11 @@ msgstr "隐藏高级曲目选项"
 msgid "_Extra track data:"
 msgstr "额外音轨数据(_E)："
 
-#: cddb-slave2/cddb-track-editor.c:903
+#: cddb-slave2/cddb-track-editor.c:904
 msgid "CDDB Track Editor"
 msgstr "CDDB 曲目编辑器"
 
-#: cddb-slave2/cddb-track-editor.c:1040
+#: cddb-slave2/cddb-track-editor.c:1041
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1290,8 +1290,8 @@ msgstr "选择主题(_S)："
 msgid "Record sound clips"
 msgstr "录制声音剪辑"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:1274
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:1275
 msgid "Sound Recorder"
 msgstr "录音机"
 
@@ -1321,7 +1321,7 @@ msgstr "创建新采样"
 msgid "Display help for Sound Recorder"
 msgstr "显示录音机的帮助内容"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:807
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
 msgid "File Information"
 msgstr "文件信息"
 
@@ -1492,14 +1492,14 @@ msgstr "秒"
 msgid "second"
 msgstr "秒"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1226
-#: grecord/src/gsr-window.c:1390 grecord/src/gsr-window.c:1660
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
+#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
 msgid "Ready"
 msgstr "就绪"
 
 #: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
 #, c-format
-msgid "Could not save the file \" %s\""
+msgid "Could not save the file \"%s\""
 msgstr "无法保存文件“%s”"
 
 #: grecord/src/gsr-window.c:553
@@ -1521,116 +1521,122 @@ msgstr "启动 %s 时出错：%s"
 msgid "%s (Has not been saved)"
 msgstr "%s (尚未被保存)"
 
-#: grecord/src/gsr-window.c:712
+#: grecord/src/gsr-window.c:709
+#, c-format
+msgid "%s (%llu byte)"
+msgid_plural "%s (%llu bytes)"
+msgstr[0] "%s (%llu 字节)"
+
+#: grecord/src/gsr-window.c:713
 msgid "Unknown size"
 msgstr "未知大小"
 
-#: grecord/src/gsr-window.c:732
+#: grecord/src/gsr-window.c:733
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:741
+#: grecord/src/gsr-window.c:742
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:753
+#: grecord/src/gsr-window.c:754
 msgid "1 (mono)"
 msgstr "1 (单声道)"
 
-#: grecord/src/gsr-window.c:757
+#: grecord/src/gsr-window.c:758
 msgid "2 (stereo)"
 msgstr "2 (立体声)"
 
-#: grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:787
 #, c-format
 msgid "%s Information"
 msgstr "%s 信息"
 
-#: grecord/src/gsr-window.c:821
+#: grecord/src/gsr-window.c:822
 msgid "Folder:"
 msgstr "目录："
 
-#: grecord/src/gsr-window.c:827 grecord/src/gsr-window.c:1592
+#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
 msgid "Filename:"
 msgstr "文件名："
 
-#: grecord/src/gsr-window.c:833
+#: grecord/src/gsr-window.c:834
 msgid "File size:"
 msgstr "文件大小："
 
-#: grecord/src/gsr-window.c:842
+#: grecord/src/gsr-window.c:843
 msgid "Audio Information"
 msgstr "音频信息"
 
-#: grecord/src/gsr-window.c:856
-msgid "Song length:"
-msgstr "歌曲长度："
+#: grecord/src/gsr-window.c:857
+msgid "File duration:"
+msgstr "文件时长："
 
-#: grecord/src/gsr-window.c:862
+#: grecord/src/gsr-window.c:863
 msgid "Number of channels:"
-msgstr "声道个数："
+msgstr "声道数："
 
-#: grecord/src/gsr-window.c:868
+#: grecord/src/gsr-window.c:869
 msgid "Sample rate:"
 msgstr "采样率："
 
-#: grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:875
 msgid "Bit rate:"
 msgstr "位速率："
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:941
 msgid "A sound recorder for GNOME"
 msgstr "GNOME 的录音机程序"
 
-#: grecord/src/gsr-window.c:1211
+#: grecord/src/gsr-window.c:1212
 msgid "Playing..."
 msgstr "正在播放..."
 
-#: grecord/src/gsr-window.c:1270
+#: grecord/src/gsr-window.c:1271
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - 录音机"
 
-#: grecord/src/gsr-window.c:1361
+#: grecord/src/gsr-window.c:1362
 msgid "Recording..."
 msgstr "正在录音..."
 
-#: grecord/src/gsr-window.c:1421
+#: grecord/src/gsr-window.c:1422
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 "没有设置默认的 GStreamer 音频输入元素 - 请安装 GStreamer-GConf 大纲或手动设置"
 
-#: grecord/src/gsr-window.c:1436
+#: grecord/src/gsr-window.c:1437
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr "创建 GStreamer 编码器元素失败 - 请检查您的编码设置"
 
-#: grecord/src/gsr-window.c:1446
+#: grecord/src/gsr-window.c:1447
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "找不到 GStreamer 文件池插件 - 请安装"
 
-#: grecord/src/gsr-window.c:1454
+#: grecord/src/gsr-window.c:1455
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr "将编码器元素与文件输出元素链接失败 - 您可能选择了无效的编码器"
 
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1561
 msgid "Record as"
 msgstr "录制为"
 
-#: grecord/src/gsr-window.c:1577
+#: grecord/src/gsr-window.c:1578
 msgid "File information"
 msgstr "文件信息"
 
-#: grecord/src/gsr-window.c:1599
+#: grecord/src/gsr-window.c:1600
 msgid "<none>"
 msgstr "<无>"
 
-#: grecord/src/gsr-window.c:1608
+#: grecord/src/gsr-window.c:1609
 msgid "Length:"
 msgstr "长度："
 
@@ -1643,19 +1649,19 @@ msgstr "调整音量"
 msgid "Volume Control"
 msgstr "音量控制"
 
-#: gst-mixer/src/element.c:187
+#: gst-mixer/src/element.c:230
 msgid "Playback"
 msgstr "回放"
 
-#: gst-mixer/src/element.c:189
+#: gst-mixer/src/element.c:232
 msgid "Capture"
 msgstr "抓取"
 
-#: gst-mixer/src/element.c:191
+#: gst-mixer/src/element.c:234
 msgid "Switches"
-msgstr ""
+msgstr "开关"
 
-#: gst-mixer/src/element.c:193
+#: gst-mixer/src/element.c:236
 msgid "Options"
 msgstr "选项"
 
@@ -1683,18 +1689,18 @@ msgstr "音量控制首选项"
 msgid "_Select tracks to be visible:"
 msgstr "选择可见的音轨(_S)："
 
-#: gst-mixer/src/track.c:210
+#: gst-mixer/src/track.c:220
 #, c-format
 msgid "%s:"
 msgstr "%s："
 
 #. mute button
-#: gst-mixer/src/track.c:250
+#: gst-mixer/src/track.c:260
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "静音/取消静音 %s"
 
-#: gst-mixer/src/track.c:265
+#: gst-mixer/src/track.c:275
 #, c-format
 msgid "Track %s: mute"
 msgstr "音轨 %s：静音"
@@ -1704,17 +1710,17 @@ msgstr "音轨 %s：静音"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:345
+#: gst-mixer/src/track.c:355
 #, c-format
 msgid "Toggle audio capture from %s"
-msgstr ""
+msgstr "切换来自 %s 的音频抓取"
 
-#: gst-mixer/src/track.c:360
+#: gst-mixer/src/track.c:370
 #, c-format
 msgid "Track %s: audio capture"
-msgstr ""
+msgstr "音轨 %s：音频抓取"
 
-#: gst-mixer/src/track.c:439
+#: gst-mixer/src/track.c:449
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s 选项"
@@ -1725,31 +1731,31 @@ msgstr "单声道"
 
 #: gst-mixer/src/volume.c:134
 msgid "left"
-msgstr ""
+msgstr "左"
 
 #: gst-mixer/src/volume.c:134
 msgid "right"
-msgstr ""
+msgstr "右"
 
 #: gst-mixer/src/volume.c:137
 msgid "front left"
-msgstr ""
+msgstr "左前"
 
 #: gst-mixer/src/volume.c:138
 msgid "front right"
-msgstr ""
+msgstr "右前"
 
 #: gst-mixer/src/volume.c:139
 msgid "rear left"
-msgstr ""
+msgstr "左后"
 
 #: gst-mixer/src/volume.c:140
 msgid "rear right"
-msgstr ""
+msgstr "右后"
 
 #: gst-mixer/src/volume.c:141
 msgid "front center"
-msgstr ""
+msgstr "中前"
 
 #. Translators: This is the name of a surround sound channel. It
 #. * stands for "Low-Frequency Effects". If you're not sure that
@@ -1757,15 +1763,15 @@ msgstr ""
 #. * language, leave it unchanged.
 #: gst-mixer/src/volume.c:146
 msgid "LFE"
-msgstr ""
+msgstr "LFE"
 
 #: gst-mixer/src/volume.c:147
 msgid "side left"
-msgstr ""
+msgstr "左侧"
 
 #: gst-mixer/src/volume.c:148
 msgid "side right"
-msgstr ""
+msgstr "右侧"
 
 #: gst-mixer/src/volume.c:149
 msgid "unknown"
@@ -2222,5 +2228,3 @@ msgstr "监视声音输出音量"
 msgid "Volume monitor"
 msgstr "音量监视器"
 
-#~ msgid "GStreamer Preferences"
-#~ msgstr "GStreamer 首选项"
