@@ -1,10 +1,5 @@
 figs = \
-	figures/grecord-prefs-play.png	\
-	figures/grecord-prefs-rec.png	\
-	figures/grecord-prefs-path.png	\
-	figures/grecord-prefs-sound.png	\
-	figures/grecord-prefs-ui.png	\
-	figures/grecord.png
+	figures/grecord_window.png
 docname = grecord
 lang = C
 omffile = grecord-C.omf

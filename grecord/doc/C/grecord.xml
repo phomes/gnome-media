@@ -1,378 +1,367 @@
 <?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY date "Feb. 19, 2002">
-  <!ENTITY app "<application>GRecord</application>">
-  <!ENTITY appname "GNOME Sound Recorder">
-  <!ENTITY version "2.0"> 
+  <!ENTITY appversion "1.520.3">
+  <!ENTITY manrevision "2.0">
+  <!ENTITY date "May 2002">
+  <!ENTITY app "Sound Recorder">
 ]>
-
 <!-- 
       (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   http://developer.gnome.org/projects/gdp
   Template version: 2.0 beta
-  Template last modified Jan 2, 2002
+  Template last modified Apr 11, 2002
 -->
-
-
+<!-- =============Document Header ============================= -->
 <article id="index" lang="en">
-<articleinfo> 
-   <title>GNOME Sound Recorder Manual</title>
-   <copyright><year>2002</year><holder>Michael Froh</holder></copyright>
-   <releaseinfo>
-    This is version 1.0 of the &app; manual.
-   </releaseinfo>
-  <publisher>
-    <publishername>
-      GNOME Documentation Project
-    </publishername>
-  </publisher>
-  &legal;
-  <legalnotice id="feedback">
-      <title>Feedback Information</title>
-    <para>
-      To report a bug or make a suggestion regarding this
-      application or this documentation, please see  the
-      <ulink type="help"
-      url="ghelp:gnome-feedback">GNOME Feedback Page</ulink>.
-    </para>
-  </legalnotice>
-  <authorgroup>
-    <author>
-      <firstname>Michael</firstname>
-      <surname>Froh</surname>
-      <affiliation>
-        <orgname>GNOME Documentation Project</orgname>
-        <address>
-              <email>msfroh@uwaterloo.ca</email>
-        </address>
-      </affiliation>
-    </author>
-  </authorgroup>
-  <revhistory>
-    <revision>
-      <revnumber>1.0</revnumber>
-      <date>19 Feb 2002</date> <!-- or use &date; -->
-      <revdescription>
-                   <para role="author">Michael Froh
-                     <email>msfroh@uwaterloo.ca</email></para>
-                   <para role="publisher">GNOME Documentation Project</para>
-				   <para>This was the original release, for GNOME 2.0</para>
-          </revdescription>
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo> 
+    <title>&app; Manual V&manrevision;</title>       
 
-    </revision>
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
 
-  </revhistory>
+<!-- translators: uncomment this:
 
-    <releaseinfo>
-       This manual describes version &version; of &app;. It was
-       last updated on &date;.
-    </releaseinfo>
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
 
-</articleinfo>
-<indexterm zone="index"><primary>grecord</primary></indexterm>
-<indexterm zone="index"><primary>gnome-sound-recorder</primary></indexterm>
-<indexterm zone="index"><primary>GNOME Sound Recorder</primary></indexterm>
+   -->
+    <publisher> 
+      <publishername> GNOME Documentation Project </publishername> 
+    </publisher> 
 
-<!-- ############# GNOME Mixer - APPLICATION ############# -->
+   &legal;
 
-  <sect1 id="intro">
-    <title>Introduction</title>
-    <para>
-  &app; (<command>grecord</command>) is a simple GNOME-enabled sound recorder. 
-  &app; allows you  to record sounds using your sound hardware, and save them
-  to a wave (.WAV) file.
-    </para>
-    <para>
-  To run &app; select 
-  <menuchoice>
-  <guisubmenu>Multimedia</guisubmenu>
-  <guimenuitem>Sound Recorder</guimenuitem>
-  </menuchoice>
-  from the <guimenu>Main Menu</guimenu>, or type
-  <command>gnome-sound-recorder</command> on the command line.
-    </para>
+    <authorgroup> 
+      <author> 
+	<firstname>Sun</firstname> 
+	<surname>GNOME Documentation Team</surname> 
+	<affiliation> 
+	  <orgname>Sun Microsystems</orgname> 
+	  <address> <email>gdocteam@sun.com</email> </address> 
+	</affiliation> 
+      </author> 
 
-     <para>
-      &app; is included in the
-      <filename>gnome-media</filename> package, which is part of the
-      <ulink type="http" url="http://www.gnome.org">GNOME desktop
-      environment</ulink>. This document describes version
-      &version; of &app;.
-    </para>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+
+    <revhistory>
+      <revision> 
+	<revnumber>&app; Manual V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOME Documentation Team
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOME Documentation Project</para>
+	</revdescription> 
+      </revision> 
+    </revhistory> 
+
+    <releaseinfo>This manual describes version &appversion; of &app;.
+    </releaseinfo> 
+    <legalnotice> 
+      <title>Feedback</title> 
+      <para>To report a bug or make a suggestion regarding the &app; application or
+	this manual, follow the directions in the 
+	<ulink url="ghelp:gnome-feedback"
+	  type="help">GNOME Feedback Page</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice> 
+  </articleinfo> 
+
+  <indexterm> 
+    <primary>Sound Recorder</primary> 
+  </indexterm> 
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+
+  <sect1 id="grecord-introduction"> 
+    <title>Introduction</title> 
+    <para>The <application>&app;</application> application enables you to record and play waveform (<filename>.wav</filename>) sound files.</para> 
+  </sect1>
+
+  <sect1 id="grecord-getting-started">
+    <title>Getting Started</title> 
+
+    <para>You can start <application>&app;</application> in the following ways:
+    </para> 
+    <variablelist>
+    	<varlistentry>
+    		<term><guimenu>Applications</guimenu> menu</term>
+    		<listitem>
+    		<para>Choose <menuchoice><guisubmenu>Sound &amp; Video</guisubmenu><guimenuitem>Sound Recorder</guimenuitem></menuchoice></para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>Command line</term>
+    		<listitem>
+    		<para>Type <command>gnome-sound-recorder</command>, then press <keycap>Return</keycap>.</para>
+    		<para> 		 
+    		</para> 
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
+
+    <para>When you start <application>&app;</application>, the following window is displayed.</para>
+
+    <!-- ==== Figure ==== -->
+      <figure id="grecord-fig"> 
+	<title>&app; Window</title> 
+	<screenshot> 
+	  <mediaobject> 
+	    <imageobject>
+	    <imagedata fileref="figures/grecord_window.png" format="PNG"/> 
+	    </imageobject>
+	    <textobject> 
+	      <phrase>Shows &app; main window. Contains menubar, toolbar, progress bar, and statusbar. </phrase> 
+	    </textobject> 
+	  </mediaobject> 
+	</screenshot> 
+      </figure>
+    <!-- ==== End of Figure ==== -->
 
   </sect1>
 
-<!--  ############# Main page  ############# -->
+<!-- ================ Usage ================================ -->
 
-  <sect1 id="usage">
-  <title>Using the GNOME Sound Recorder</title>
-    <para>
-	 
-  </para>
-   <figure id="mainwindow-fig">
-    <title>&app; Main Window</title>
-    <screenshot>
-     <mediaobject>
-      <imageobject>
-       <imagedata fileref="figures/grecord.png" format="PNG" />
-      </imageobject>
-      <imageobject>
-       <imagedata fileref="figures/grecord.eps" format="EPS" />
-      </imageobject>
-      <textobject>
-       <phrase>Screenshot of main window</phrase>
-      </textobject>
-     </mediaobject>
-    </screenshot>
-   </figure>
-  <itemizedlist mark="bullet">
-    <listitem>
-      <para>
-    <guilabel>New</guilabel> &mdash; Start a new recording session.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Play</guilabel> &mdash; Play back the current recording.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Stop</guilabel> &mdash; Stop current record or playback operation.
-      </para>
-    </listitem>
-    <listitem>
-      <para>
-    <guilabel>Record</guilabel> &mdash; Begin recording to the current session.
-      </para>
-    </listitem>
-    </itemizedlist> 
-  </sect1>
+  <sect1 id="grecord-usage"> 
+    <title>Usage</title>
 
-  <sect1 id="prefs">
-    <title>The GNOME Sound Recorder Preferences</title>
-    <para>
-		Preferences may be viewed and changed by selecting 
-		<guimenuitem>Preferences</guimenuitem> from the 
-		<guimenu>Settings</guimenu>.
-	</para>
-	<sect2 id="prefs-rec">
-    <figure id="preferences-rec-fig">
-     <title><guilabel>Preferences</guilabel> Dialog - <guilabel>Recording</guilabel></title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-rec.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-rec.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot (Recording tab)</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-	<itemizedlist>
-	 <listitem>
-	  <para>
-		The <guilabel>Recording timeout</guilabel> option specifies the 
-		maximum length (in minutes) of a recording (when used in conjunction
-		with the <guilabel>Stop recording on timeout</guilabel> option.)
-		The <guilabel>Popup save dialog when recording is finished</guilabel>
-		option causes the <guilabel>Save sound file</guilabel> dialog to
-		appear when the recording has finished (allowing the new recording to
-		be saved immediately.)
-	  </para>
-	 </listitem>
-	 <listitem>
-	  <para>
-	    The <guilabel>Popup warning message if size...</guilabel> option
-		causes a warning message to appear if the current recording has grown 
-		past the specified size. The 
-		<guilabel>Stop recording if size...</guilabel> option causes the 
-		recording to stop if the current recording grows past the specified
-		size.
-	  </para>
-	 </listitem>
-	</itemizedlist>
-	</sect2>
-	<sect2 id="prefs-play">
-    <figure id="preferences-play-fig">
-     <title><guilabel>Preferences</guilabel> Dialog - <guilabel>Playing</guilabel></title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-play.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-play.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot (Playing tab)</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-	<itemizedlist>
-	 <listitem>
-	  <para>
-	    The <guilabel>Repeat the sound</guilabel> option causes playback to
-		repeat after reaching the end of the recording. Playback may repeat
-		a given number of times, or until the <guilabel>Stop</guilabel> button
-		is pressed (i.e. <guilabel>Forever</guilabel>.)
-	  </para>
-	 </listitem>
-	</itemizedlist>
-	</sect2>
-	<sect2 id="prefs-path">
-    <figure id="preferences-path-fig">
-     <title><guilabel>Preferences</guilabel> Dialog - <guilabel>Paths</guilabel></title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-path.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-path.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot (Paths tab)</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-	<itemizedlist>
-	 <listitem>
-	  <para>
-	   The <guilabel>"Path to sox"</guilabel> option allows the user to select 
-	   the location of the <command>sox</command> application (used to play 
-	   back the sound recordings.) This can usually be determined from the 
-	   command line by typing <command>which sox</command>. The
-	   <guilabel>"Temporary directory"</guilabel> option allows the user to 
-	   specify the directory in which to store files as they are being recorded.
-	  </para>
-	 </listitem>
-	</itemizedlist>
-	</sect2>
-	<sect2 id="prefs-sound">
-    <figure id="preferences-sound-fig">
-     <title><guilabel>Preferences</guilabel> Dialog - <guilabel>Sound</guilabel></title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-sound.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-sound.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot (Sound tab)</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-	<itemizedlist>
-	 <listitem>
-	  <para>
-	   These options collectively allow the user to determine the quality and
-	   file size of the sound recordings.
-	  </para>
-	 </listitem>
-	 <listitem>
-	  <para>
-	   The "<guilabel>Audio format</guilabel>" option allows the user to select
-	   the size (in bits) of each sample. The "<guilabel>Sample rate</guilabel>"
-	   option allows the user to select the number of samples per second. The
-	   "<guilabel>Mono/Stereo</guilabel>" option allows the user to specify the
-	   number of audio channels to record (1 or 2.)
-	  </para>
-	 </listitem>
-	</itemizedlist>
-	</sect2>
-	<sect2 id="prefs-ui">
-    <figure id="preferences-ui-fig">
-     <title><guilabel>Preferences</guilabel> Dialog - <guilabel>User interface</guilabel></title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-ui.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/grecord-prefs-ui.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot (User interface tab)</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-	<itemizedlist>
-	 <listitem>
-	  <para>
-	   "<guilabel>Show time</guilabel>" displays the current position (in 
-	   minutes and seconds) in the recording. 
-	   "<guilabel>Show sound information</guilabel>" displays information
-	   related to the file type and sound quality of the current recording (as
-	   specified in hte <guilabel>Sound</guilabel> preferences.)
-	  </para>
-	 </listitem>
-	</itemizedlist>
+    <sect2 id="grecord-record">
+    	<title>To Start a New Recording</title>
+    	<para>To start a new recording session, perform the following steps:</para> 
+    	<orderedlist>
+    		<listitem><para>Click <guibutton>New</guibutton> on the toolbar.</para></listitem>
+    		<listitem><para>To start recording, click <guibutton>Record</guibutton> on the toolbar.</para></listitem>
+    		<listitem><para>To stop recording, click <guibutton>Stop</guibutton> on the toolbar.</para></listitem>
+    		<listitem><para>To play back the recording, click <guibutton>Play</guibutton> on the toolbar.</para></listitem>
+    		<listitem><para>To save the recording, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></menuchoice>, then
+    		type a name for the sound file.</para></listitem>    		
+    	</orderedlist>
     </sect2>
-  </sect1>  
-<!-- ================== BUGS ======================= -->  
-
-  <sect1 id="bugs">
-    <title>Known Bugs and Limitations</title>
-    <para>
-    No known bugs at this time.
-    </para>
+ 
+    <sect2 id="grecord-play">
+    	<title>To Play a Sound File</title>
+    	<para>To play a sound file, choose 
+		<menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>. Select a 
+		sound file in the <guilabel>Select a sound file</guilabel> dialog, then click <guibutton>OK</guibutton>. 
+		<application>&app;</application> displays the duration of the file in minutes and seconds to the right
+		of the progress bar. To play the file, click <guibutton>Play</guibutton>. The progress indicator moves
+		along the progress bar as the sound file is playing. </para> 
+    </sect2>  
+ 
+    <sect2 id="grecord-echo">
+    	<title>To Add an Echo to a Sound File</title>
+    	<para>To add an echo to a sound file, open the sound file, then choose 
+		<menuchoice><guimenu>Edit</guimenu><guisubmenu>Effects</guisubmenu>
+		<guisubmenu>Echo</guisubmenu><guimenuitem>Add echo</guimenuitem></menuchoice>.</para> 
+    </sect2>
+    
+    
+    <sect2 id="grecord-undo">
+    	<title>To Undo Changes to a Sound File</title>
+    	<para>To undo all of the changes that you made to a sound file since you last saved the file, choose 
+    	<menuchoice><guimenu>Edit</guimenu><guimenuitem>Undo All</guimenuitem></menuchoice>.</para> 
+    </sect2>
+    
   </sect1>
 
-<!-- ============= Authors ================================ -->
+<!-- ================ Settings ================================ -->
 
-  <sect1 id="about">
-    <title>About &app;</title>
-    <para>
-    <application>Gnome Sound Recorderr</application> was written by Andreas 
-	Hyden (<email>a.hyden@cyberpoint.se</email>.) To find more information 
-	about <application>Gnome Sound Recorder</application>, please visit the 
-	<ulink url="http://www.gnome.org" type="http">Gnome Sound Recorder
-    page</ulink>.  Please send all comments, suggestions, and bug
-    reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
-    bug tracking database</ulink>. (Instructions for submitting bug
-    reports can be found <ulink
-    url="http://bugs.gnome.org/Reporting.html" type="http">
-    on-line</ulink>.) If you are using
-    GNOME 1.1 or later, you can also use <application>Bug Report
-    Tool</application> (<command>bug-buddy</command>), available in the
-    <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
-    Menu</guimenu>, for submitting bug reports.
-    </para>
+  <sect1 id="grecord-prefs"> 
+    <title>Settings</title>
+    <para>To configure <application>&app;</application>, choose 
+		<menuchoice> 
+		<guimenu>Edit</guimenu>
+		<guimenuitem>Preferences</guimenuitem> 
+		</menuchoice>.
+	</para>
+	<para>The <guilabel>&app; Preferences</guilabel> dialog contains the following
+	tabbed sections:</para>
+	<itemizedlist> 
+		<listitem><para><xref linkend="grecord-prefs-recording"/></para>
+		</listitem>
+		<listitem><para><xref linkend="grecord-prefs-playing"/></para>
+		</listitem>
+		<listitem><para><xref linkend="grecord-prefs-paths"/></para>
+		</listitem>
+		<listitem><para><xref linkend="grecord-prefs-sound"/></para>
+		</listitem>
+	</itemizedlist>
+	
+	<sect2 id="grecord-prefs-recording">
+	<title>Recording</title>   
+    	<variablelist>
+	 		<varlistentry> 
+	 		<term><guilabel>Recording timeout</guilabel> </term> 
+			<listitem> 
+			<para>Use this spin box to specify the time in minutes after which <application>&app;</application> 
+			stops recording if there is no interaction from the user. </para>
+			<para>Default: 2 minutes.</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Stop recording on timeout</guilabel> </term> 
+			<listitem> 
+			<para>Select this option to stop recordings when <application>&app;</application> reaches 
+			the timeout limit specified in the 
+			<guilabel>Recording timeout</guilabel> spin box. </para>
+			<para>Default: selected.</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Open Save dialog when recording is finished</guilabel> </term> 
+			<listitem> 
+			<para>Select this option to automatically open the <guilabel>Save sound file</guilabel> dialog when 
+			<application>&app;</application> finishes a recording. </para>
+			<para>Default: unselected.</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Show warning message if size (MB) of sample becomes bigger than</guilabel> </term> 
+			<listitem> 
+			<para>Select this option to display a warning message if the size of the sound file that you are recording exceeds 100 MB. 
+			Use the spin box to modify the file size at which you want to display a warning.</para>
+			<para>Default: selected, 100 MB.</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Stop recording if size (MB) of sample becomes bigger than</guilabel> </term> 
+			<listitem> 
+			<para>Select this option to stop the recording if the size of the sound file exceeds 200 MB. 
+			Use the spin box to modify the file size at which you want to stop recording.</para>
+			<para>Default: unselected, 200 MB.</para>
+			</listitem>
+		  	</varlistentry>
+	</variablelist>
+	</sect2>	
+	
+	<sect2 id="grecord-prefs-playing">
+	<title>Playing</title>   
+    	<variablelist>
+	 		<varlistentry> 
+	 		<term><guilabel>Repetition</guilabel> </term> 
+			<listitem> 
+			<para>Select one of the following options to determine how <application>&app;</application>
+			plays sound files:</para>
+				<itemizedlist>
+				<listitem>
+				<para><guilabel>Play the sound once only</guilabel></para>
+				<para>Select this option to play the sound file once.</para>
+				</listitem>
+				<listitem>
+				<para><guilabel>Repeat forever</guilabel></para>
+				<para>Select this option to play the sound file indefinitely until you click <guibutton>Stop</guibutton> or
+				quit the application.</para>
+				</listitem>
+				<listitem>
+				<para><guilabel>Number of times</guilabel></para>
+				<para>Select this option to play the sound file the number of the times that is specified in the spin box. 
+				Use the spin box to modify the number of times <application>&app;</application> plays the file.</para>
+				</listitem>
+				</itemizedlist>
+			<para>Default: <guilabel>Number of times</guilabel>, 2.</para>
+			</listitem>
+		  	</varlistentry>
+	</variablelist>
+	</sect2>
+	
+	<sect2 id="grecord-prefs-paths">
+	<title>Paths</title>   
+    	<variablelist>
+	 		<varlistentry> 
+	 		<term><guilabel>Path to sox</guilabel> </term> 
+			<listitem> 
+			<para>Use this field to specify the location of the <application>sox</application> application. 
+			<application>&app;</application> uses <application>sox</application> to play back recordings. To determine
+			the location of <application>sox</application>, type <command>which sox</command> at a command line. 
+			To apply a change to the field, click <guibutton>Apply</guibutton>.</para>
+			<para>Default: The default location depends on your operating system.</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Temporary folder</guilabel> </term> 
+			<listitem> 
+			<para>Use this field to specify the directory in which to temporarily save sound files while <application>&app;</application> 
+			is recording the files. To apply a change to the field, click <guibutton>Apply</guibutton>.</para>
+			<para>Default: The default location depends on your operating system.</para>
+			</listitem>
+		  	</varlistentry>
+	</variablelist>
+	</sect2>	
+	
+	<sect2 id="grecord-prefs-sound">
+	<title>Sound</title>   
+	<para>The preferences that you select in this tabbed section only apply to new sound files that you create.</para>
+    	<variablelist>
+	 		<varlistentry> 
+	 		<term><guilabel>Audio format</guilabel> </term> 
+			<listitem> 
+			<para>Select one of the following options to determine the number of bits per sample in the sound files:</para>
+				<itemizedlist>
+				<listitem>
+				<para><guilabel>8-bit PCM</guilabel></para>
+				<para>Select this option to save the sound files using 8-bit pulse code modulation (PCM).</para>
+				</listitem>
+				<listitem>
+				<para><guilabel>16-bit PCM</guilabel></para>
+				<para>Select this option to save the sound files using 16-bit PCM.</para>
+				</listitem>
+				</itemizedlist>
+			<para>Default: <guilabel>8-bit PCM</guilabel></para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Sample rate</guilabel> </term> 
+			<listitem> 
+			<para>Use this field to specify the number of samples per second.</para>
+			<para>Default: 44100</para>
+			</listitem>
+		  	</varlistentry>
+		  	<varlistentry> 
+	 		<term><guilabel>Mono or Stereo</guilabel> </term> 
+			<listitem> 
+			<para>Select one of the following options to determine whether the sound file is mono or stereo:</para>
+				<itemizedlist>
+				<listitem>
+				<para><guilabel>Mono</guilabel></para>
+				<para>Select this option to save the sound files in monophonic format.</para>
+				</listitem>
+				<listitem>
+				<para><guilabel>Stereo</guilabel></para>
+				<para>Select this option to save the sound files in stereophonic format. This format
+				results in a larger sound file.</para>
+				</listitem>
+				</itemizedlist>
+			<para>Default: <guilabel>Stereo</guilabel></para>
+			</listitem>
+		  	</varlistentry>
+	</variablelist>
+	</sect2>		
+	
 
-    <para>
-    This manual was written by Michael Froh 
-	(<email>msfroh@uwaterloo.ca</email>). 
-    Please send all comments and suggestions regarding this manual to the 
-    <ulink type="http" url="http://www.gnome.org/gdp">
-    GNOME Documentation Project</ulink> 
-    by sending an email to <email>docs@gnome.org</email>. You can also
-    add your comments online by using the <ulink type="http"
-    url="http://www.gnome.org/gdp/doctable/">GNOME Documentation Status
-    Table</ulink>.
-    </para>
-    <para>
-      This program is distributed under the terms of the GNU General
-      Public license as published by the Free Software Foundation;
-      either version 2 of the License, or (at your option) any later
-      version. A copy of this license can be found at this <ulink
-      type="help" url="ghelp:gpl">link</ulink>, or in the file COPYING
-      included with the source code of this program.
-   </para>
-
-  </sect1>
+  </sect1> 
 
 </article>
