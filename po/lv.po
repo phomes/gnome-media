@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2001-05-19 01:20+0200\n"
-"PO-Revision-Date: 2001-09-30 17:50+0200\n"
+"POT-Creation-Date: 2001-10-07 20:10-0400\n"
+"PO-Revision-Date: 2001-10-19 15:14+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <hornet@navigators.lv>\n"
 "MIME-Version: 1.0\n"
@@ -364,137 +364,181 @@ msgstr "TelefIz"
 msgid "Monitor"
 msgstr "Monitors"
 
-#: gmix/gmix.c:106
-#: tcd/popup.c:21
+#: gmix/gmix.c:111
+#: tcd/popup.c:22
 msgid "Help"
 msgstr "Palîdzîba"
 
-#: gmix/gmix.c:190
+#: gmix/gmix.c:142
 msgid "don't restore mixer-settings from configuration"
 msgstr "neatjaunot mikðera uzstâdîjumus no konfigurâcijas"
 
-#: gmix/gmix.c:191
+#: gmix/gmix.c:143
 msgid "restore mixer-settings from configuration"
 msgstr "atjaunot mikðera uzstâdîjumus no konfigurâcijas"
 
-#: gmix/gmix.c:192
+#: gmix/gmix.c:144
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "inicializçt mekðeri(us) no saglabâtâs konfigurâcijas un iziet"
 
-#: gmix/gmix.c:193
+#: gmix/gmix.c:145
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "nesaglabât (izmainîtos) mikðera uzstâdîjumus konfigurâcijâ"
 
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+
+#: gmix/gmix.c:519
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+""
+msgstr ""
+"Brîdinâjums: Ðî gmix versija tika kompilçta ar\n"
+"OSS versiju %d.%d.%d, un jûsu sistçma darbojas ar\n"
+"versiju vecâku par 3.6.0.\n"
+""
+
+#: gmix/gmix.c:527
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+""
+msgstr ""
+"Brîdinâjums: Ðî gmix versija tika kompilçta ar\n"
+"OSS versiju %d.%d.%d, un jûsu sistçma darbojas ar\n"
+"versiju vecâku par %d.%d.%d.\n"
+""
+
+#. lock-button, only useful for stereo
+#: gmix/gmix.c:1012
+msgid "Lock"
+msgstr "Slçgt"
+
+#: gmix/gmix.c:1022
+msgid "Rec."
+msgstr "Ierak."
+
+#: gmix/gmix.c:1040
+msgid "Mute"
+msgstr "Kluss"
+
+#: gmix/gmix.c:1083
+msgid "GMIX 3.0"
+msgstr "GMIX 3.0"
+
+#: gmix/gmix.c:1395
+msgid "GMIX - The Gnome Mixer"
+msgstr "GMIX - Gnome Mikðeris"
+
+#: gmix/gmix.c:1398
+msgid "This is a mixer for OSS sound-devices."
+msgstr "Ðis ir OSS skaòas-iekârtu mikðeris"
+
 #. start frame
-#: gmix/gmix.c:430
-#: tcd/prefs.c:411
+#: gmix/prefs.c:98
+#: tcd/prefs.c:562
 msgid "On startup"
 msgstr "Pie Sâknçðanas"
 
 #. Set on start
-#: gmix/gmix.c:436
+#: gmix/prefs.c:104
 msgid "Restore saved mixer levels on startup"
 msgstr "Atjaunot saglabâtos mikðera lîmeòus pie sâknçðanas"
 
-#: gmix/gmix.c:442
+#: gmix/prefs.c:110
 msgid "Hide menu on start"
 msgstr "Paslçpt izvçlni pie sâknçðanas"
 
-#: gmix/gmix.c:457
+#: gmix/prefs.c:125
 msgid "GUI"
 msgstr "GLI"
 
-#: gmix/gmix.c:461
+#: gmix/prefs.c:129
 msgid "Use mixer icons"
 msgstr "Lietot mikðera ikonas"
 
-#: gmix/gmix.c:469
+#: gmix/prefs.c:137
 msgid "Use mixer labels"
 msgstr "Lietot mikðeru uzrakstus"
 
-#: gmix/gmix.c:492
-#: tcd/gtcd.c:364
-#: tcd/prefs.c:614
+#: gmix/prefs.c:409
+msgid "Defaults"
+msgstr "Noklusçtie"
+
+#: gmix/prefs.c:483
+#: tcd/gtcd.c:490
+#: tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Rekvizîti"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1181
-msgid "Lock"
-msgstr "Slçgt"
-
-#: gmix/gmix.c:1191
-msgid "Rec."
-msgstr "Ierak."
-
-#: gmix/gmix.c:1209
-msgid "Mute"
-msgstr "Kluss"
-
-#: gmix/gmix.c:1233
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
-
-#: gmix/gmix.c:1548
-msgid "GMIX - The Gnome Mixer"
-msgstr "GMIX - Gnome Mikðeris"
-
-#: gmix/gmix.c:1551
-msgid "This is a mixer for OSS sound-devices."
-msgstr "Ðis ir OSS skaòas-iekârtu mikðeris"
+#: gmix/prefs.c:489
+msgid "Labels"
+msgstr "Nosaukumi"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
 msgstr "GNOME Skaòas ierakstîtâjs:"
 
-#: grecord/src/grec.c:88
-#: grecord/src/grec.c:118
-#: grecord/src/grec.c:1024
+#: grecord/src/grec.c:90
+#: grecord/src/grec.c:120
+#: grecord/src/grec.c:1032
 msgid "Could not fork child process"
 msgstr "Nevarçja sadalît bçrna procesu"
 
-#: grecord/src/grec.c:90
+#: grecord/src/grec.c:92
 msgid "Recording..."
 msgstr "Ierakstu..."
 
-#: grecord/src/grec.c:120
+#: grecord/src/grec.c:122
 msgid "Playing..."
 msgstr "Atskaòoju..."
 
-#: grecord/src/grec.c:173
+#: grecord/src/grec.c:175
 msgid "Converting file..."
 msgstr "Konvertçju datni..."
 
-#: grecord/src/grec.c:239
-#: grecord/src/grec.c:653
+#: grecord/src/grec.c:241
+#: grecord/src/grec.c:654
 #: grecord/src/gui.c:327
-#: grecord/src/preferences.c:395
+#: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Audioformâts: "
 
-#: grecord/src/grec.c:243
-#: grecord/src/grec.c:639
+#: grecord/src/grec.c:245
+#: grecord/src/grec.c:640
 #: grecord/src/gui.c:334
-#: grecord/src/preferences.c:399
+#: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Parauga kvalitâte:"
 
-#: grecord/src/grec.c:253
-#: grecord/src/grec.c:643
+#: grecord/src/grec.c:255
+#: grecord/src/grec.c:644
 #: grecord/src/gui.c:341
-#: grecord/src/preferences.c:403
+#: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Kanâli:"
 
-#: grecord/src/grec.c:283
+#: grecord/src/grec.c:285
 msgid "Select a sound file"
 msgstr "Izvçlies skaòas datni"
 
-#: grecord/src/grec.c:502
+#: grecord/src/grec.c:504
 msgid "Undoing all changes..."
 msgstr "Izlâdçju visas izmaiòas..."
 
-#: grecord/src/grec.c:580
+#: grecord/src/grec.c:581
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -503,7 +547,7 @@ msgstr ""
 "'%s' ir direktorijs.\n"
 "Lûdzu, izvçlies skaòas datni, kuru atvçrt."
 
-#: grecord/src/grec.c:592
+#: grecord/src/grec.c:593
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -512,12 +556,12 @@ msgstr ""
 "Datne '%s' neeksistç.\n"
 "Lûdzu, izvçlies eksistçjoðu skaòas datni, kuru atvçrt."
 
-#: grecord/src/grec.c:604
+#: grecord/src/grec.c:605
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Datne '%s' nav derîga skaòas datne."
 
-#: grecord/src/grec.c:677
+#: grecord/src/grec.c:678
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -526,7 +570,7 @@ msgstr ""
 "'%s' ir direktorijs.\n"
 "Lûdzu, ievadi citu datnes nosaukumu."
 
-#: grecord/src/grec.c:687
+#: grecord/src/grec.c:688
 #, c-format
 msgid ""
 "File '%s' already exists.\n"
@@ -535,29 +579,29 @@ msgstr ""
 "Datne '%s' jau eksistç.\n"
 "Gribi to pârraksît?"
 
-#: grecord/src/grec.c:702
+#: grecord/src/grec.c:703
 msgid "Error saving sound file"
 msgstr "Kïûda saglabâjot skaòas datni"
 
-#: grecord/src/grec.c:738
+#: grecord/src/grec.c:739
 msgid "File not saved. Do you want to save it?"
 msgstr "Datne nav saglabâta. Vçlies to saglabât?"
 
 #. Save the file
-#: grecord/src/grec.c:757
+#: grecord/src/grec.c:758
 msgid "Saving..."
 msgstr "Saglabâju..."
 
-#: grecord/src/grec.c:871
+#: grecord/src/grec.c:879
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "Paðreizçjâ parauga izmçrs ir lielâks nekâ %i Mb!"
 
-#: grecord/src/grec.c:919
+#: grecord/src/grec.c:927
 msgid "Save sound file"
 msgstr "Saglabât skaòas datni"
 
-#: grecord/src/grec.c:1087
+#: grecord/src/grec.c:1095
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -593,10 +637,6 @@ msgstr "Pievienot atbalsi paðreizçjam paraugam"
 msgid "Echo"
 msgstr "Atbalss"
 
-#: grecord/src/gui.c:97
-msgid "Speed"
-msgstr "Âtrums"
-
 #: grecord/src/gui.c:105
 msgid "Undo all changes"
 msgstr "Atcelt visas izmaiòas"
@@ -611,7 +651,7 @@ msgstr "Efekti"
 
 #: grecord/src/gui.c:122
 #: grecord/src/gui.c:123
-#: grecord/src/gui.c:867
+#: grecord/src/gui.c:868
 msgid "Show time"
 msgstr "Parâdît laiku"
 
@@ -620,7 +660,7 @@ msgid "Show soundinfo"
 msgstr "Parâdît skaòas info"
 
 #: grecord/src/gui.c:130
-#: grecord/src/gui.c:872
+#: grecord/src/gui.c:873
 msgid "Show sound information"
 msgstr "Parâdît skaòas informâciju"
 
@@ -642,7 +682,7 @@ msgid "Play current sample"
 msgstr "Atskaòot paðreizçjo paraugu"
 
 #: grecord/src/gui.c:252
-#: tcd/gtcd.c:328
+#: tcd/gtcd.c:456
 #: tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
@@ -681,23 +721,24 @@ msgstr "Datne '%s' neeksistç; lietoju noklusçto."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Datne '%s' nav atbalsîta skaòas datne."
 
-#. if your language allows it, replace the "e" of Hyden by an "eacute"
-#: grecord/src/gui.c:437
+#. if your charset allows it, replace the "e" of "Hyden"
+#. *  by an "eacute" (U00E9)
+#: grecord/src/gui.c:438
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:445
-#: grecord/src/main.c:109
+#: grecord/src/gui.c:446
+#: grecord/src/main.c:110
 msgid "GNOME Sound recorder"
 msgstr "GNOME Skaòas Ierakstîtâjs"
 
-#. if your language allows it, replace the
-#. "e" of Hyden by an "eacute"
-#: grecord/src/gui.c:448
+#. if your charset allows it, replace the
+#. "e" of Hyden by an "eacute" (U00E9)
+#: grecord/src/gui.c:449
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Kopçðanas tiesîbas (C)  2000 Andreas Hyden"
 
-#: grecord/src/gui.c:450
+#: grecord/src/gui.c:451
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -705,160 +746,160 @@ msgstr ""
 "Vienkârðs GNOME skaòas ierakstîtâjs un atskaòotâjs.\n"
 "Veltîts manam kaíim, Malte."
 
-#: grecord/src/gui.c:541
-#: tcd/gtracked.c:171
+#: grecord/src/gui.c:542
+#: tcd/gtracked.c:173
 msgid "Time"
 msgstr "Laiks"
 
-#: grecord/src/gui.c:554
+#: grecord/src/gui.c:555
 msgid "Recording timeout: "
 msgstr "Ierakstîðanas taimauts: "
 
-#: grecord/src/gui.c:565
+#: grecord/src/gui.c:566
 msgid "minutes"
 msgstr "minûtes"
 
-#: grecord/src/gui.c:570
+#: grecord/src/gui.c:571
 msgid "Stop recording on timeout"
 msgstr "Pârtraugt ierakstîðanu pie taimauta"
 
-#: grecord/src/gui.c:575
+#: grecord/src/gui.c:576
 msgid "Popup save dialog when recording is finished"
 msgstr "Parâdît saglabâðanas dialogu, kad ierakstîðana ir pabeigta"
 
-#: grecord/src/gui.c:584
+#: grecord/src/gui.c:585
 msgid "Size"
 msgstr "Izmçrs"
 
-#: grecord/src/gui.c:593
+#: grecord/src/gui.c:594
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Parâdît brîdinâjumu, ja paruga izmçrs (Mb) kïûst lielâks par:"
 
-#: grecord/src/gui.c:603
+#: grecord/src/gui.c:604
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Pârtraukt ierakstîðau, ja paruga izmçrs (Mb) kïûst lielâks par:"
 
-#: grecord/src/gui.c:614
+#: grecord/src/gui.c:615
 msgid "Recording"
 msgstr "Ierakstu"
 
-#: grecord/src/gui.c:623
+#: grecord/src/gui.c:624
 msgid "Play-repeating"
 msgstr "Atskaòoðanad atkârtoðanâs"
 
-#: grecord/src/gui.c:632
+#: grecord/src/gui.c:633
 msgid "Repeat"
 msgstr "Atkârtot"
 
-#: grecord/src/gui.c:641
+#: grecord/src/gui.c:642
 msgid "Forever"
 msgstr "Nemitîgi"
 
-#: grecord/src/gui.c:646
+#: grecord/src/gui.c:647
 msgid "Nr of times:"
 msgstr "Reizes:"
 
-#: grecord/src/gui.c:657
+#: grecord/src/gui.c:658
 msgid "Playing"
 msgstr "Atskaòoju"
 
-#: grecord/src/gui.c:666
+#: grecord/src/gui.c:667
 msgid "Program files"
 msgstr "Programmas datnes"
 
-#: grecord/src/gui.c:683
+#: grecord/src/gui.c:684
 msgid "Path to sox:"
 msgstr "Ceïð uz sox:"
 
-#: grecord/src/gui.c:699
+#: grecord/src/gui.c:700
 msgid "Path to mixer:"
 msgstr "Ceïð uz mikðeri:"
 
-#: grecord/src/gui.c:715
+#: grecord/src/gui.c:716
 msgid "Directories"
 msgstr "Direktorijas"
 
-#: grecord/src/gui.c:728
+#: grecord/src/gui.c:729
 msgid "Temp dir:"
 msgstr "Temp dir:"
 
-#: grecord/src/gui.c:744
+#: grecord/src/gui.c:745
 msgid "Paths"
 msgstr "Ceïi"
 
-#: grecord/src/gui.c:752
+#: grecord/src/gui.c:753
 msgid "Sound options"
 msgstr "Skaòas opcijas"
 
-#: grecord/src/gui.c:765
+#: grecord/src/gui.c:766
 msgid "Audioformat:"
 msgstr "Audioformâts:"
 
-#: grecord/src/gui.c:776
-#: grecord/src/gui.c:786
+#: grecord/src/gui.c:777
+#: grecord/src/gui.c:787
 msgid "8bit pcm"
 msgstr "8bit pcm"
 
-#: grecord/src/gui.c:777
-#: grecord/src/gui.c:788
+#: grecord/src/gui.c:778
+#: grecord/src/gui.c:789
 msgid "16bit pcm"
 msgstr "16bit pcm"
 
-#: grecord/src/gui.c:794
+#: grecord/src/gui.c:795
 msgid "Sample rate:"
 msgstr "Parauga kvalitâte:"
 
-#: grecord/src/gui.c:824
+#: grecord/src/gui.c:825
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:835
-#: grecord/src/gui.c:845
+#: grecord/src/gui.c:836
+#: grecord/src/gui.c:846
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:836
-#: grecord/src/gui.c:847
+#: grecord/src/gui.c:837
+#: grecord/src/gui.c:848
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:850
+#: grecord/src/gui.c:851
 msgid "Sound"
 msgstr "Skaòa"
 
-#: grecord/src/gui.c:858
+#: grecord/src/gui.c:859
 msgid "Main window"
 msgstr "Galvenais logs"
 
-#: grecord/src/gui.c:877
+#: grecord/src/gui.c:878
 msgid "User interface"
 msgstr "Lietotâja saskarne"
 
-#: grecord/src/main.c:53
+#: grecord/src/main.c:54
 msgid "Specify the geometry of the main window"
 msgstr "Norâdi galvenâ loga ìeometriju"
 
-#: grecord/src/main.c:54
+#: grecord/src/main.c:55
 msgid "GEOMETRY"
 msgstr "ÌEOMETRIJA"
 
-#: grecord/src/main.c:62
+#: grecord/src/main.c:63
 msgid "Specify a file to be opened"
 msgstr "Norâdi datni, kuru atvçrt"
 
-#: grecord/src/main.c:71
+#: grecord/src/main.c:72
 msgid "Specify a file to start recording"
 msgstr "Norâdi datni, lai sâlktu ierakstîðanu"
 
-#: grecord/src/main.c:80
+#: grecord/src/main.c:81
 msgid "Specify a file to start playing"
 msgstr "Norâdi datni, kuru atskaòot"
 
-#: grecord/src/main.c:173
+#: grecord/src/main.c:174
 msgid "Don't show this message again."
 msgstr "Nerâdît ðo paziòojumu vçlreiz."
 
-#: grecord/src/main.c:175
+#: grecord/src/main.c:176
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -871,7 +912,7 @@ msgstr ""
 "\n"
 "Ja tev nav sox, tu nevarçsi ierakstît vai izveidot kâdus efektus."
 
-#: grecord/src/preferences.c:196
+#: grecord/src/preferences.c:213
 msgid ""
 "You havn't entered a sox command; you will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -879,7 +920,7 @@ msgstr ""
 "Tu neesi ievadîjis sox komandu; tu nevarçsi ierakstît.\n"
 "Vçlies to lietot tik un tâ?"
 
-#: grecord/src/preferences.c:221
+#: grecord/src/preferences.c:238
 #, c-format
 msgid ""
 "File %s in 'sox command' does not exist.\n"
@@ -888,7 +929,7 @@ msgstr ""
 "Datne %s iekð 'sox komanda' neeksistç.\n"
 "Vçlies to lietot tik un tâ?"
 
-#: grecord/src/preferences.c:246
+#: grecord/src/preferences.c:263
 msgid ""
 "You havn't entered a mixer command; you will not be able to start the mixer.\n"
 "Do you want to use it anyway?"
@@ -896,7 +937,7 @@ msgstr ""
 "Tu neesi ievadîjis mikðera komandu; tu nevarçsi palaist mikðeri.\n"
 "Vçlies to lietot tik un tâ?"
 
-#: grecord/src/preferences.c:271
+#: grecord/src/preferences.c:288
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -905,7 +946,7 @@ msgstr ""
 "Datne %s 'mikðera comandâ' neeksistç.\n"
 "Lietot tik un tâ?"
 
-#: grecord/src/preferences.c:294
+#: grecord/src/preferences.c:311
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -916,7 +957,7 @@ msgstr ""
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:313
+#: grecord/src/preferences.c:330
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -925,7 +966,7 @@ msgstr ""
 "Temp direktorijs %s ir datne.\n"
 "Gribi to lietot tik un tâ?"
 
-#: grecord/src/preferences.c:333
+#: grecord/src/preferences.c:350
 #, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory %s.\n"
@@ -935,7 +976,7 @@ msgstr ""
 "Gribi to lietot tik un tâ?"
 
 #. Does not exist
-#: grecord/src/preferences.c:351
+#: grecord/src/preferences.c:368
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -948,99 +989,99 @@ msgstr ""
 msgid " untitled.wav"
 msgstr " beznosaukuma.wav"
 
-#: grecord/src/sound.c:147
-#: grecord/src/sound.c:151
+#: grecord/src/sound.c:146
+#: grecord/src/sound.c:150
 msgid "Adding echo to sample..."
 msgstr "Pievienoju paraugam atbalsi..."
 
-#: tcd/callbacks.c:82
+#: tcd/callbacks.c:85
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome CD Atskaòotâjs"
 
-#: tcd/callbacks.c:86
+#: tcd/callbacks.c:89
 msgid "GTCD is the Gnome CD player application. Includes CDDB support. Please see the 'Thanks' file included with the distribution for more credits."
 msgstr "GTCD ir Gnome CD atskaòotâjs. Ietver CDDB atbalstu. Lûdzu, apskati distribûcijâ iekïauto 'Thanks' datni papildus atzinîbâm."
 
-#: tcd/cddb_props.c:71
+#: tcd/cddb_props.c:72
 msgid "Disc ID"
 msgstr "Diska ID"
 
-#: tcd/cddb_props.c:71
+#: tcd/cddb_props.c:72
 msgid "Disc Title"
 msgstr "Diska Nosaukums"
 
-#: tcd/cddb_props.c:86
+#: tcd/cddb_props.c:87
 msgid "Edit"
 msgstr "Rediìçt"
 
-#: tcd/cddb_props.c:90
+#: tcd/cddb_props.c:91
 msgid "Remove"
 msgstr "Izòemt"
 
-#: tcd/cddb_props.c:96
+#: tcd/cddb_props.c:97
 msgid "Refresh List"
 msgstr "Atjauninât Sarakstu"
 
 #. server settings
-#: tcd/cddb_props.c:147
+#: tcd/cddb_props.c:148
 msgid "Server Settings"
 msgstr "Servera Uzstâdîjumi"
 
-#: tcd/cddb_props.c:156
+#: tcd/cddb_props.c:157
 msgid "Address"
 msgstr "Adrese"
 
-#: tcd/cddb_props.c:166
+#: tcd/cddb_props.c:167
 msgid "Port"
 msgstr "Ports"
 
-#: tcd/cddb_props.c:175
+#: tcd/cddb_props.c:176
 msgid "Use HTTP"
 msgstr "Lietot HTTP"
 
-#: tcd/cddb_props.c:180
+#: tcd/cddb_props.c:181
 msgid "Proxy"
 msgstr "Proxy"
 
-#: tcd/cddb_props.c:198
+#: tcd/cddb_props.c:199
 msgid "Use proxy authentication"
 msgstr "Lietot proxy autentifikâciju"
 
-#: tcd/cddb_props.c:206
+#: tcd/cddb_props.c:207
 msgid "Username"
 msgstr "Lietotâjvârds"
 
-#: tcd/cddb_props.c:226
+#: tcd/cddb_props.c:227
 msgid "Password"
 msgstr "Parole"
 
-#: tcd/cddb_props.c:246
+#: tcd/cddb_props.c:247
 msgid "SOCKS Server"
 msgstr "SOCKS Serveris"
 
-#: tcd/cddb_props.c:253
+#: tcd/cddb_props.c:254
 msgid "Use SOCKS"
 msgstr "Lietot SOCKS"
 
 #. local db
-#: tcd/cddb_props.c:266
+#: tcd/cddb_props.c:267
 msgid "Local Database"
 msgstr "Vietçjâ Datubâze"
 
 #. frame
-#: tcd/cddb_props.c:308
+#: tcd/cddb_props.c:309
 msgid "CDDB Data"
 msgstr "CDDB Dati"
 
-#: tcd/cddb_props.c:341
+#: tcd/cddb_props.c:342
 msgid "CDDB Editor"
 msgstr "CDDB Redaktors"
 
-#: tcd/cddb_props.c:355
+#: tcd/cddb_props.c:356
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Kïûda lasot $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:471
+#: tcd/cddb_props.c:472
 #, c-format
 msgid ""
 "Couldn't remove file: %s\n"
@@ -1049,165 +1090,199 @@ msgstr ""
 "Nevarçja izòemt datni: %s\n"
 ""
 
-#: tcd/cddb_props.c:483
+#: tcd/cddb_props.c:484
 msgid "Delete CDDB Entry?"
 msgstr "Izdzçst CDDB Ierakstu?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:51
-#: tcd/gtracked.c:310
+#: tcd/cddb_status.c:53
+#: tcd/gtracked.c:312
 msgid "CDDB Status"
 msgstr "CDDB Statuss"
 
 #. grab button
-#: tcd/cddb_status.c:69
+#: tcd/cddb_status.c:71
 msgid "Get CDDB Now"
 msgstr "Dabût CDDB Tagad"
 
-#: tcd/gtcd.c:59
+#: tcd/gtcd.c:63
 msgid "trk-e"
 msgstr "cïð-pag"
 
-#: tcd/gtcd.c:60
+#: tcd/gtcd.c:64
 msgid "trk-r"
 msgstr "cïð-atl"
 
-#: tcd/gtcd.c:61
+#: tcd/gtcd.c:65
 msgid "dsc-e"
 msgstr "dsk-pag"
 
-#: tcd/gtcd.c:62
+#: tcd/gtcd.c:66
 msgid "dsc-r"
 msgstr "dsk-atl"
 
-#: tcd/gtcd.c:67
+#: tcd/gtcd.c:71
 msgid "loop-cd"
 msgstr "cd-cilpa"
 
-#: tcd/gtcd.c:68
+#: tcd/gtcd.c:72
 msgid "loop-t"
 msgstr "c-cilpa"
 
-#: tcd/gtcd.c:69
+#: tcd/gtcd.c:73
 msgid "normal"
 msgstr "normâls"
 
-#: tcd/gtcd.c:70
+#: tcd/gtcd.c:74
 msgid "random"
 msgstr "gadîjumizvçles"
 
-#: tcd/gtcd.c:285
-#: tcd/gtcd.c:919
+#: tcd/gtcd.c:368
+#: tcd/gtcd.c:1101
 msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
 #. TOP ROW
-#: tcd/gtcd.c:324
+#: tcd/gtcd.c:452
 msgid "Play/Pause"
 msgstr "Atsk/Pauze"
 
-#: tcd/gtcd.c:329
+#: tcd/gtcd.c:457
 #: tcd/popup.c:17
 msgid "Eject"
 msgstr "Atvçrt"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:336
-#: tcd/gtcd.c:344
+#: tcd/gtcd.c:464
+#: tcd/gtcd.c:501
 msgid "Skip backwards"
 msgstr "Atpakaï"
 
-#: tcd/gtcd.c:337
-#: tcd/gtcd.c:345
+#: tcd/gtcd.c:465
+#: tcd/gtcd.c:502
 msgid "Skip forwards"
 msgstr "Uz priekðu"
 
-#: tcd/gtcd.c:363
+#. BOTTOM ROW
+#: tcd/gtcd.c:489
 msgid "Open track editor"
 msgstr "Atvçrt Ieraksta Celiòu Redaktoru"
 
-#: tcd/gtcd.c:365
-#: tcd/popup.c:24
+#: tcd/gtcd.c:491
+#: tcd/popup.c:25
 msgid "Quit"
 msgstr "Iziet"
 
+#. INVISIBLE BUTTONS
+#: tcd/gtcd.c:498
+msgid "Mixer"
+msgstr "Mikðeris"
+
+#: tcd/gtcd.c:503
+msgid "Fast Forward"
+msgstr "Patît Uz Priekðu"
+
 #: tcd/gtcd.c:504
+msgid "Rewind"
+msgstr "Atpakaï"
+
 #: tcd/gtcd.c:505
+msgid "Volume Up"
+msgstr "Skaïâk"
+
 #: tcd/gtcd.c:506
+msgid "Volume Down"
+msgstr "Klusâk"
+
+#: tcd/gtcd.c:642
+#: tcd/gtcd.c:643
+#: tcd/gtcd.c:644
 msgid "(Scanning)"
 msgstr "(Skançju)"
 
-#: tcd/gtcd.c:528
+#: tcd/gtcd.c:666
 msgid "No Disc"
 msgstr "Nav Diska"
 
-#: tcd/gtcd.c:563
+#: tcd/gtcd.c:701
 msgid "Error"
 msgstr "Kïûda"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:1001
 msgid "Volume"
 msgstr "Skaïums"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1072
+msgid "Cannot load requested font. Reloading default font."
+msgstr "Nevaru ielâdçt pieprasîto fontu. Pârlâdçju noklusçto fontu."
+
+#: tcd/gtcd.c:1083
+msgid "Cannot load default Helvetica font. Loading any fixed width font."
+msgstr "Nevaru ielâdçt noklusçto Helvetica fontu. Lâdçju jebkuru fiksçto fontu."
+
+#: tcd/gtcd.c:1090
+msgid "Cannot load fixed width font. Exiting."
+msgstr "Nevar ielâdçt fiksçto fontu. Izeju."
+
+#: tcd/gtcd.c:1288
 msgid "Filename of the CD device"
 msgstr "CD iekârtas datnes vârds"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1288
 msgid "FILE"
 msgstr "DATNE"
 
-#: tcd/gtcd.c:1029
+#: tcd/gtcd.c:1290
 msgid "Play CD on startup"
 msgstr "Atskaòot CD pie sâknçðanas"
 
-#: tcd/gtracked.c:171
+#: tcd/gtracked.c:173
 msgid "Trk"
 msgstr "Celiòð"
 
-#: tcd/gtracked.c:171
+#: tcd/gtracked.c:173
 msgid "Title"
 msgstr "Nosaukums"
 
-#: tcd/gtracked.c:195
+#: tcd/gtracked.c:197
 msgid "Track Editor"
 msgstr "Ieraksta Celiòu Redaktors"
 
 #. Disc area
-#: tcd/gtracked.c:211
+#: tcd/gtracked.c:213
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Diska Informâcija (%02u:%02u minûtes)"
 
-#: tcd/gtracked.c:220
+#: tcd/gtracked.c:222
 msgid "Artist / Title"
 msgstr "Izpildîtâjs / Nosaukums"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:243
+#: tcd/gtracked.c:245
 msgid "Track Information"
 msgstr "Ieraksta Celiòa Informâcija"
 
 #. Clear button
-#: tcd/gtracked.c:299
+#: tcd/gtracked.c:301
 msgid "Clear"
 msgstr "Attîrît"
 
 #. Playlist button
-#: tcd/gtracked.c:304
+#: tcd/gtracked.c:306
 msgid "Playlist"
 msgstr "Saraksts"
 
-#: tcd/gtracked.c:316
+#: tcd/gtracked.c:318
 msgid "Submit"
 msgstr "Nosûtît"
 
-#: tcd/gtracked.c:378
+#: tcd/gtracked.c:380
 msgid "Submit Information"
 msgstr "Nosûtît Informâciju"
 
-#: tcd/gtracked.c:384
+#: tcd/gtracked.c:386
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -1216,16 +1291,16 @@ msgstr ""
 "Nosûtît informâciju par\n"
 "'%s'"
 
-#: tcd/gtracked.c:393
+#: tcd/gtracked.c:395
 msgid "To: "
 msgstr "Uz:"
 
 #. end of service menu
-#: tcd/gtracked.c:425
+#: tcd/gtracked.c:427
 msgid "Category: "
 msgstr "Katgorija:"
 
-#: tcd/linux-cdrom.c:641
+#: tcd/linux-cdrom.c:678
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1244,11 +1319,11 @@ msgstr ""
 "Reason: %s\n"
 ""
 
-#: tcd/linux-cdrom.c:710
+#: tcd/linux-cdrom.c:771
 msgid "Unknown / Unknown"
 msgstr "Nezinâms / Nezinâms"
 
-#: tcd/linux-cdrom.c:716
+#: tcd/linux-cdrom.c:777
 #, c-format
 msgid "Track %d"
 msgstr "%d celiòð"
@@ -1261,106 +1336,119 @@ msgstr "Rekvizîti..."
 msgid "Track Editor..."
 msgstr "Ieraksta Celiòu Redaktors..."
 
-#: tcd/popup.c:22
+#: tcd/popup.c:21
+msgid "Mixer..."
+msgstr "Mikðeris..."
+
+#: tcd/popup.c:23
 msgid "About"
 msgstr "Par"
 
-#: tcd/prefs.c:77
-msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
 #. do nothing
-#: tcd/prefs.c:194
-#: tcd/prefs.c:249
+#: tcd/prefs.c:334
+#: tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Nedarît neko"
 
-#: tcd/prefs.c:200
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Sâkt atskaòoðanu"
 
-#: tcd/prefs.c:206
-#: tcd/prefs.c:255
+#: tcd/prefs.c:346
+#: tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Pârtraukt atskaòoðanu"
 
 #. close tray
-#: tcd/prefs.c:210
-#: tcd/prefs.c:267
+#: tcd/prefs.c:350
+#: tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Aizvçrt iekârtu"
 
-#: tcd/prefs.c:261
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Atvçrt iekârtu"
 
 #. device entry
-#: tcd/prefs.c:341
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "CDROM iekârta"
 
+#. device entry
+#: tcd/prefs.c:492
+msgid "Mixer Command"
+msgstr "Mikðera Komanda"
+
 #. Color picker
-#: tcd/prefs.c:350
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Ieraksta/nosaukuma krâsa"
 
 #. font picker
-#: tcd/prefs.c:362
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Ieraksta/nosaukuma fonts"
 
-#: tcd/prefs.c:363
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Mainît fontu"
 
 #. show handles
-#: tcd/prefs.c:370
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Parâdît rîkturus (nepiecieðams pârstartçt)"
 
 #. show tooltips
-#: tcd/prefs.c:377
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Parâdît knifus"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:384
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Lietot alternatîvu CD atskaòoðanas metodi"
 
 #. use squared law volume
-#: tcd/prefs.c:391
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Lietot vecâ stila skaòas kontroli"
 
 #. exit frame
-#: tcd/prefs.c:417
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "Pie izieðanas"
 
-#: tcd/prefs.c:525
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Taustiòð"
 
-#: tcd/prefs.c:526
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Darbîba"
 
-#: tcd/prefs.c:546
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Klikðíis ðeit, lai izmainîtu (nepiecieðama pârstartçðana):"
 
 #. Frame
-#: tcd/prefs.c:568
-#: tcd/prefs.c:618
+#: tcd/prefs.c:706
+#: tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Taustiòu kombinâcijas"
 
-#: tcd/prefs.c:622
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "CDDB Uzstâdîjumi"
 
-#: vu-meter/main.c:125
+#: tcd/prefs.h:4
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#: tcd/prefs.h:5
+msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1368,35 +1456,39 @@ msgstr ""
 "Nevar pieslçgties skòas dçmonam.\n"
 "Lûdzu, palaid 'esd' no komandrindas."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Noteikt mçrîtâja X pozîciju."
 
-#: vu-meter/main.c:249
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "X-Pozîcija"
 
-#: vu-meter/main.c:251
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
 msgstr "Noteikt mçrîtâja Y pozîciju."
 
-#: vu-meter/main.c:252
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Y-Pozîcija"
 
-#: vu-meter/main.c:254
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Pieslçgties esd serverim uz ðo resursdatoru."
 
-#: vu-meter/main.c:255
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
 msgstr "ESD Servera Resursdators"
 
-#: vu-meter/main.c:257
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
 msgstr "Atvçrt mçrîtâja vertikâlo versiju."
 
-#: vu-meter/main.c:270
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Darboties kâ ieraksta lîmeòa mçrîtâjs."
+
+#: vu-meter/main.c:271
 #, c-format
 msgid ""
 "Host is %s\n"
@@ -1405,7 +1497,47 @@ msgstr ""
 "Resursdators ir %s\n"
 ""
 
-#: vu-meter/main.c:293
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Ieraksta lîmenis"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Skaïuma mçrîtâjs"
+
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "ESD Ieraksta Lîmeòa Vienîbu Mçrîtâjs"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "ESD Ieraksta Lîmenis"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "A Volume Unit Meter for ESD"
+msgstr "ESD Skaïuma Vienîbu Mçrîtâjs"
+
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "ESD Volume Meter"
+msgstr "ESD Skaïuma mçrîtâjs"
+
+#: tcd/gtcd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD Atskaòotâjs"
+
+#: tcd/gtcd.desktop.in.h:2
+msgid "Gnome CD Player"
+msgstr "Gnome CD Atskaòotâjs"
+
+#: grecord/Soundrecorder.desktop.in.h:1
+msgid "A simple soundrecording program for GNOME"
+msgstr "Vienkârða GNOME skaòas ierakstîðnas programma"
+
+#: grecord/Soundrecorder.desktop.in.h:2
+msgid "Sound recorder"
+msgstr "Skaòas Ierakstîtâjs"
+
+#: gmix/gmix.desktop.in.h:1
+msgid "Audio Mixer"
+msgstr "Audio Mikðeris"
 
