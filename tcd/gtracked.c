@@ -146,17 +146,13 @@ void edit_window(GtkWidget *widget, gpointer data)
 	              
     disc_frame = gtk_frame_new(tmp);
     label 	   = gtk_label_new(_("Artist / Title"));
-    disc_ext   = gtk_button_new_with_label(_("Ext Data"));
-    gtk_widget_set_sensitive(disc_ext, FALSE);
     disc_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(disc_entry), cd.dtitle);
 
     gtk_table_attach_defaults(GTK_TABLE(disc_table), label, 
-			      0,1, 0,1 );
+			      0,1, 0,1);
     gtk_table_attach_defaults(GTK_TABLE(disc_table), disc_entry, 
-			      0,1, 1,2 );
-    gtk_table_attach_defaults(GTK_TABLE(disc_table), disc_ext, 
-			      1,2, 1,2 );
+			      0,1, 1,2);
 
     gtk_container_add(GTK_CONTAINER(disc_frame), disc_table);
     gtk_box_pack_start_defaults(GTK_BOX(main_box), disc_frame);
@@ -167,8 +163,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     entry_box   = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
     track_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(track_entry), cd.trk[1].name);
-    track_ext   = gtk_button_new_with_label(_("Ext Data"));
-    gtk_widget_set_sensitive(track_ext, FALSE);
     track_list = gtk_clist_new(3);
     for (i=0 ; i < 3 ; i++)
 	gtk_clist_set_column_title(GTK_CLIST(track_list), i, _(titles[i]));
@@ -196,7 +190,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     track_frame = gtk_frame_new(_("Track Information"));
 	
     gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
-    gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_ext);
     gtk_box_pack_start_defaults(GTK_BOX(track_vbox), entry_box);
     gtk_box_pack_start_defaults(GTK_BOX(track_vbox), track_list_window);
     gtk_container_add(GTK_CONTAINER(track_frame), track_vbox);
