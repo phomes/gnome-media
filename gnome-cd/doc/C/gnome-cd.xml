@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.3.5">
-  <!ENTITY manrevision "2.5">
-  <!ENTITY date "August 2003">
+  <!ENTITY appversion "2.5.2">
+  <!ENTITY manrevision "2.6">
+  <!ENTITY date "February 2004">
   <!ENTITY app "CD Player">
 ]>
 
@@ -24,7 +24,9 @@
     <title>&app; Manual V&manrevision;</title>       
 
     <copyright> 
-      <year>2002</year>       <year>2003</year>
+      <year>2002</year>
+      <year>2003</year>
+      <year>2004</year>
       <holder>Sun Microsystems</holder> 
     </copyright> 
 
@@ -66,11 +68,19 @@
       </othercredit>
 -->
     </authorgroup>
- 
+ 
     <revhistory>
       <revision> 
 			<revnumber>&app; Manual V&manrevision;</revnumber> 
 			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision>
+      <revision> 
+			<revnumber>CD Player Manual V2.5</revnumber> 
+			<date>August 2003</date> 
 			<revdescription> 
 	  			<para role="author">Sun GNOME Documentation Team</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
@@ -122,10 +132,7 @@
     </releaseinfo> 
     <legalnotice> 
       <title>Feedback</title> 
-      <para>To report a bug or make a suggestion regarding the &app; application or
-	this manual, follow the directions in the 
-	<ulink url="ghelp:gnome-feedback"
-	  type="help">GNOME Feedback Page</ulink>. 
+      <para>To report a bug or make a suggestion regarding the &app; application or this manual, follow the directions in the <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice> 
@@ -138,9 +145,7 @@
 
 <sect1 id="gtcd-introduction">
 <title>Introduction</title>
-<para>The <application>&app;</application> application enables you to
-play audio Compact Discs (CDs) on your computer. You can use <application>CD Player</application>
-to perform the following tasks with audio CDs:</para>
+<para>The <application>&app;</application> application enables you to play audio Compact Discs (CDs) on your computer. You can use <application>CD Player</application> to perform the following tasks with audio CDs:</para>
 <itemizedlist>
 <listitem><para>Play, pause, stop, or eject a CD.</para></listitem>
 <listitem><para>Move through the tracks on the CD.</para></listitem>
@@ -159,17 +164,17 @@ to perform the following tasks with audio CDs:</para>
 <varlistentry>
 <term><guimenu>Applications</guimenu> menu</term>
 <listitem>
-<para>Choose 
+<para>Choose
 <menuchoice>
-<guisubmenu>Sound &amp; Video </guisubmenu>
-<guimenuitem> &app;</guimenuitem>
+<guisubmenu>Multimedia</guisubmenu>
+<guimenuitem>&app;</guimenuitem>
 </menuchoice>. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term>Command line</term>
 <listitem>
-<para>Type <command>gnome-cd</command>, then press <keycap>Return</keycap>.</para>
+<para>Execute the following command: <command>gnome-cd</command></para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -184,7 +189,7 @@ is displayed.</para>
 	<title>&app; Window</title> 
 	<screenshot> 
 	  <mediaobject> 
-	    <imageobject><imagedata fileref="figures/cdplayer_window.png" format="PNG"/> 
+	    <imageobject><imagedata fileref="figures/cdplayer_window.png" format="PNG"/> 
 	    </imageobject>
 	    <textobject> 
 	      <phrase>Shows CD Player main window.</phrase> 
@@ -234,28 +239,11 @@ is displayed.</para>
 <para>The application displays the following information in the display area: 
 </para>
 <itemizedlist>
-<listitem><para>The time elapsed on the current track.</para></listitem>
-<listitem><para>The name of the artist.</para></listitem>
-<listitem><para>The title of the CD.</para>
+<listitem><para>Time elapsed on the current track.</para></listitem>
+<listitem><para>Name of the artist.</para></listitem>
+<listitem><para>Title of the CD.</para>
 </listitem>
 </itemizedlist>
-</sect2>
-
-<sect2 id="gtcd_pause">
-<title>To Pause a CD</title>
-<para>To pause a CD that is playing, click on the 
-<inlinemediaobject>
-<imageobject>
-<imagedata fileref="figures/pause_button.png" format="PNG"/>
-</imageobject>
-<textobject><phrase>Shows Pause button.</phrase></textobject>
-</inlinemediaobject> button. To resume playing the CD, click on the 
-<inlinemediaobject>
-<imageobject>
-<imagedata fileref="figures/play_button.png" format="PNG"/>
-</imageobject>
-<textobject><phrase>Shows Play button.</phrase></textobject>
-</inlinemediaobject> button again. </para>
 </sect2>
 
 <sect2 id="gtcd_movetracks">
@@ -277,8 +265,7 @@ is displayed.</para>
 </imageobject>
 <textobject><phrase>Shows Previous track button.</phrase></textobject>
 </inlinemediaobject> button. </para></listitem>
-<listitem><para>To display a list of the tracks on the CD, click on the drop-down list located below the display area.
-To move to a track on the list, select a track from the list.</para></listitem>
+<listitem><para>To display a list of the tracks on the CD, click on the drop-down list located below the display area. To move to a track on the list, select a track from the list.</para></listitem>
 </itemizedlist>
 </sect2>
 
@@ -304,6 +291,23 @@ To move to a track on the list, select a track from the list.</para></listitem>
 </inlinemediaobject> button.</para>
 </sect2>
 
+<sect2 id="gtcd_pause">
+<title>To Pause a CD</title>
+<para>To pause a CD that is playing, click on the 
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="figures/pause_button.png" format="PNG"/>
+</imageobject>
+<textobject><phrase>Shows Pause button.</phrase></textobject>
+</inlinemediaobject> button. To resume playing the CD, click on the 
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="figures/play_button.png" format="PNG"/>
+</imageobject>
+<textobject><phrase>Shows Play button.</phrase></textobject>
+</inlinemediaobject> button again. </para>
+</sect2>
+
 <sect2 id="gtcd_stop">
 <title>To Stop a CD</title>
 <para>To stop playing a CD, click on the 
@@ -317,10 +321,7 @@ To move to a track on the list, select a track from the list.</para></listitem>
 
 <sect2 id="gtcd_adjust_vol">
 <title>To Adjust the Volume</title>
-<para>To adjust the output volume of the CD Player, move the volume slider
-to specify the volume level you require. The volume slider is located to the right of
-the display area in the application window. Move the slider upwards to increase the volume.
-Move the slider downwards to decrease the volume.</para>
+<para>To adjust the output volume of the CD Player, move the volume slider to specify the volume level you require. The volume slider is located to the right of the display area in the application window. Move the slider upwards to increase the volume. Move the slider downwards to decrease the volume.</para>
 </sect2>
 
 <sect2 id="gtcd_edit_info">
@@ -335,12 +336,9 @@ Move the slider downwards to decrease the volume.</para>
 see <xref linkend="fig-cd-track-editor"/>. </para></listitem>
 <listitem><para>To edit the name of the artist, edit the contents of the <guilabel>Artist</guilabel> text box.</para></listitem>
 <listitem><para>To edit the title of the CD, edit the contents of the <guilabel>Disc Title</guilabel> text box.</para></listitem>
-<listitem><para>To add comments about the CD, the genre of music, and the year the CD was produced, click on the arrow next to 
-<guilabel>Show advanced disc options</guilabel>.</para></listitem>
-<listitem><para>To edit the title of a track, double-click on the track in the <guilabel>Title</guilabel> column of the track table, 
-then type the new title.</para></listitem>
-<listitem><para>To add additional information about a track, select the track in the track table, 
-then click on the arrow next to <guilabel>Show advanced track options</guilabel>.</para></listitem>
+<listitem><para>To add comments about the CD, the genre of music, and the year the CD was produced, click on the arrow next to <guilabel>Show advanced disc options</guilabel>.</para></listitem>
+<listitem><para>To edit the title of a track, click twice on the track in the <guilabel>Title</guilabel> column of the track table, then type the new title.</para></listitem>
+<listitem><para>To add additional information about a track, select the track in the track table, then click on the arrow next to <guilabel>Show advanced track options</guilabel>.</para></listitem>
 <listitem><para>Type the additional track information in the <guilabel>Extra track data</guilabel> text box.</para></listitem>
 <listitem><para>To save the changes on your local computer, click <guibutton>Save</guibutton>.</para></listitem>
 </orderedlist>
