@@ -1,0 +1,54 @@
+2002-02-06  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+	* alsa-channel.c: (volume_float_to_alsa), (volume_alsa_to_float),
+	(alsa_read_in_volume), (alsa_channel_get_volume),
+	(alsa_channel_set_volume), (alsa_channel_get_name),
+	(alsa_channel_get_pixmap), (finalize), (class_init), (init),
+	(alsa_channel_get_type), (check_volume_levels), (alsa_channel_new):
+	* alsa-channel.h:
+	* alsa-mixer.c: (build_channel_list), (open_device),
+	(alsa_mixer_get_channels), (finalize), (class_init), (init),
+	(alsa_mixer_get_type), (alsa_mixer_new):
+	* alsa-mixer.h:
+	* debug.c: (stop_in_debugger), (log_handler), (set_log_handler),
+	(make_warnings_and_criticals_stop_in_debugger):
+	* debug.h:
+	* gnome-channel-group.c: (group_update_volume),
+	(volume_changed_cb), (gnome_channel_group_get_volume),
+	(gnome_channel_group_set_volume), (gnome_channel_group_get_name),
+	(gnome_channel_group_get_pixmap),
+	(gnome_channel_group_weight_changed), (finalize), (class_init),
+	(init), (gnome_channel_group_get_type), (gnome_channel_group_new):
+	* gnome-channel-group.h:
+	* gnome-channel-widget.c: (volume_changed_cb),
+	(slider_value_changed_cb), (gnome_channel_widget_class_init),
+	(gnome_channel_widget_init), (gnome_channel_widget_place_in_table),
+	(gnome_channel_widget_new), (gnome_channel_widget_get_type):
+	* gnome-channel-widget.h:
+	* gnome-channel.c: (channel_get_volume), (channel_set_volume),
+	(channel_get_name), (channel_get_pixmap),
+	(gnome_channel_get_volume), (gnome_channel_set_volume),
+	(gnome_channel_get_name), (gnome_channel_get_pixmap),
+	(gnome_channel_volume_changed), (finalize), (init), (class_init),
+	(gnome_channel_get_type):
+	* gnome-channel.h:
+	* gnome-mixer.c: (mixer_get_channels), (gnome_mixer_get_channels),
+	(finalize), (init), (class_init), (gnome_mixer_get_type):
+	* gnome-mixer.h:
+	* gnome-volume-control.c: (main):
+	* gnome-volume-control.desktop.in:
+	* gnome-volume-control.png:
+	* oss-channel.c: (oss_read_in_volume), (volume_float_to_oss),
+	(volume_oss_to_float), (oss_channel_get_volume),
+	(oss_channel_set_volume), (oss_channel_get_name),
+	(oss_channel_get_pixmap), (finalize), (class_init), (init),
+	(oss_channel_get_type), (check_volume_levels), (oss_channel_new):
+	* oss-channel.h:
+	* oss-mixer.c: (build_channel_list), (open_device),
+	(oss_mixer_get_channels), (finalize), (class_init), (init),
+	(oss_mixer_get_type), (oss_mixer_new):
+	* oss-mixer.h:
+	* volume-marshal.list:
+
+	Initial Checkin of the gmix rewrite.
