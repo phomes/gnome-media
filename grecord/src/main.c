@@ -41,6 +41,7 @@ static gint grec_save_session (GnomeClient* client, gint phase,
 			       gint is_fast, gpointer client_data);
 
 static gint grec_kill_session (GnomeClient* client, gpointer client_data);
+static gint on_dontshowagain_dialog_destroy_activate (GtkWidget* widget, gpointer checkbutton);
 
 struct poptOption grec_options[] = {
 	{
@@ -97,6 +98,7 @@ main (int argc, char *argv[])
 	poptContext pctx;
 	GnomeClient* client;
 	gchar** args = NULL;
+	gboolean dont_show_warningmess;
 	
 	/* i18n stuff ---------------------------------- */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
@@ -116,7 +118,6 @@ main (int argc, char *argv[])
 		gnome_parse_geometry (geometry, &mwin.x, &mwin.y,
 				      &mwin.width, &mwin.height);
 
-	
 	/* Session management ------------------------- */
 	client = gnome_master_client ();
 	gtk_signal_connect (GTK_OBJECT (client),
@@ -153,7 +154,33 @@ main (int argc, char *argv[])
 	/* Popup mainwindow */
 	grecord_window = create_grecord_window ();
 	gtk_widget_show (grecord_window);
-	
+
+	dont_show_warningmess = gnome_config_get_bool ("/grecord/Misc/dontshowwarningmess=FALSE");
+
+	/* Check for program 'sox' ------------------- */
+	if (!g_file_exists (sox_command) && !dont_show_warningmess) {
+		GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
+
+		gchar* show_mess = g_strdup_printf (_("Could not find %s.\nSet the correct path to sox in preferences in the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
+
+		GtkWidget* mess = gnome_message_box_new (show_mess,
+							 GNOME_MESSAGE_BOX_WARNING,
+							 GNOME_STOCK_BUTTON_OK,
+							 NULL);
+
+		gtk_widget_show (dont_show_again_checkbutton);
+		gtk_container_add (GTK_CONTAINER (GNOME_DIALOG (mess)->vbox), dont_show_again_checkbutton);
+
+		/* Connect a signal on ok-button, so we can get the stat on the checkbutton */
+		gtk_signal_connect (GTK_OBJECT (mess), "destroy",
+				    GTK_SIGNAL_FUNC (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
+
+		gnome_dialog_run (GNOME_DIALOG (mess));
+
+		g_free (show_mess);
+		on_preferences_activate_cb (NULL, NULL);
+	}
+
 	gtk_main ();
 	
 	/* This funtions free's som strings */
@@ -203,5 +230,17 @@ static gint grec_kill_session (GnomeClient* client, gpointer client_data)
 
 	gtk_main_quit ();
 
+	return TRUE;
+}
+
+static gint on_dontshowagain_dialog_destroy_activate (GtkWidget* widget, gpointer checkbutton)
+{
+	gboolean stat = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton));
+	gnome_config_set_bool ("/grecord/Misc/dontshowwarningmess", stat);
+
+	/* Save it */
+	gnome_config_sync ();
+
+	/* Exit the dialog */
 	return TRUE;
 }
