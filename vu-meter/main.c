@@ -61,7 +61,7 @@ gint 	    plevel_r = 0;
 /* function prototypes to make gcc happy: */
 void update (void);
 char *itoa (int i);
-void open_sound (void);
+void open_sound (gint record);
 void update_levels (gpointer data);
 gint  update_display (gpointer data);
 void  handle_read (gpointer data, gint source, GdkInputCondition condition);
@@ -108,10 +108,14 @@ save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 
 
 void 
-open_sound (void)
+open_sound (gint record)
 {
-    sound = esd_monitor_stream (ESD_BITS16|ESD_STEREO|ESD_STREAM|ESD_PLAY,
-				RATE, esd_host, "volume_meter");
+    if (record)
+	sound = esd_record_stream (ESD_BITS16|ESD_STEREO|ESD_STREAM|ESD_RECORD,
+				    RATE, esd_host, "recording_level_meter");
+    else
+	sound = esd_monitor_stream (ESD_BITS16|ESD_STEREO|ESD_STREAM|ESD_PLAY,
+				    RATE, esd_host, "volume_meter");
     if (sound < 0)
     { /* TPG: Make a friendly error dialog if we can't open sound */
 	GtkWidget *box;
@@ -234,6 +238,7 @@ main (int argc, char *argv[])
     gint          session_xpos = -1;
     gint          session_ypos = -1;
     gint          orient = 0;
+    gint          record = 0;
 
     struct poptOption options[] = 
     {
@@ -248,12 +253,15 @@ main (int argc, char *argv[])
 	  N_("ESD Server Host") },
 	{ NULL, 'v', POPT_ARG_NONE, NULL, 0, 
 	  N_("Open a vertical version of the meter."), NULL },
+	{ NULL, 'r', POPT_ARG_NONE, NULL, 0, 
+	  N_("Act as recording level meter."), NULL },
 	{ NULL, '\0', 0, NULL, 0 }
     };
     options[0].arg = &session_xpos;
     options[1].arg = &session_ypos;
     options[2].arg = &esd_host;
     options[3].arg = &orient;
+    options[4].arg = &record;
 
     bindtextdomain (PACKAGE, GNOMELOCALEDIR);
     textdomain (PACKAGE);
@@ -283,7 +291,8 @@ main (int argc, char *argv[])
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     gnome_window_icon_set_from_file (GTK_WINDOW (window),
 				     GNOME_ICONDIR"/gnome-vumeter.png");
-    gtk_window_set_title (GTK_WINDOW (window), _("Volume Meter"));
+    gtk_window_set_title (GTK_WINDOW (window),
+			  (record ? _("Recording level") : _("Volume Meter") ));
     if (session_xpos >=0 && session_ypos >= 0)
 	gtk_widget_set_uposition (window, session_xpos, session_ypos);
 
@@ -309,7 +318,7 @@ main (int argc, char *argv[])
 	gtk_box_pack_start (GTK_BOX (hbox), dial[i], FALSE, FALSE, 0);
     }
     gtk_widget_show_all (window);
-    open_sound();
+    open_sound(record);
     fcntl(sound, F_SETFL, O_NONBLOCK);
 
     if(sound > 0) /* TPG: Make sure we have a valid fd... */
