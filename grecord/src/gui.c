@@ -421,6 +421,10 @@ create_about (void)
 		"Iain Holmes <iain@ximian.com>",
 		NULL
 	};
+	const char *documenters [] = {
+		NULL
+	};
+	const char *translator_credits = _("translator_credits");
 	GtkWidget* about;
 	
 	authors[0]=_(authors[0]);
@@ -429,7 +433,9 @@ create_about (void)
 				   "e" of Hyden by an "eacute" (U00E9) */
 				 _("Copyright (C)  2000 Andreas Hyden"),
 				 _("A simple soundrecorder and soundplayer for GNOME.\nDedicated to my cat, Malte."),
-				 authors, NULL, NULL,
+				 authors,
+				 documenters,
+				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				 NULL);
 	
 	return about;
