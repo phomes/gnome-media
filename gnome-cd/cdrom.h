@@ -133,7 +133,10 @@ struct _GnomeCDRomClass {
 	gboolean (*get_cddb_data) (GnomeCDRom *cdrom,
 				   GnomeCDRomCDDBData **data,
 				   GError **error);
-
+	gboolean (*set_device) (GnomeCDRom *cdrom,
+				const char *device,
+				GError **error);
+	
 	/* Signals */
 	void (*status_changed) (GnomeCDRom *cdrom,
 				GnomeCDRomStatus *status);
@@ -188,6 +191,9 @@ void gnome_cdrom_status_changed (GnomeCDRom *cdrom,
 gboolean gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
 				   GnomeCDRomStatus *status2);
 
+gboolean gnome_cdrom_set_device (GnomeCDRom *cdrom,
+				 const char *device,
+				 GError **error);
 G_END_DECLS
 
 #endif

@@ -464,7 +464,6 @@ gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
 	return FALSE;
 }
 
-
 GnomeCDRomStatus *
 gnome_cdrom_copy_status (GnomeCDRomStatus *original)
 {
@@ -479,4 +478,15 @@ gnome_cdrom_copy_status (GnomeCDRomStatus *original)
 	ASSIGN_MSF (status->absolute, original->absolute);
 
 	return status;
+}
+
+gboolean
+gnome_cdrom_set_device (GnomeCDRom *cdrom,
+			const char *device,
+			GError **error)
+{
+	GnomeCDRomClass *klass;
+	
+	klass = GNOME_CDROM_GET_CLASS (cdrom);
+	return klass->set_device (cdrom, device, error);
 }

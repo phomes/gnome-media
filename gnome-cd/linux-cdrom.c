@@ -997,6 +997,43 @@ linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
+static gboolean
+linux_cdrom_set_device (GnomeCDRom *cdrom,
+			const char *device,
+			GError **error)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
+	GnomeCDRomStatus *status;
+	
+	lcd = LINUX_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (strcmp (priv->cdrom_device, device) == 0) {
+		/* device is the same */
+		return TRUE;
+	}
+	
+	if (linux_cdrom_get_status (cdrom, &status, &error) == FALSE) {
+		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
+			if (linux_cdrom_stop (cdrom, &error) == FALSE) {
+				return FALSE;
+			}
+		}
+	}
+
+	if (priv->cdrom_device != NULL) {
+		g_free (priv->cdrom_device);
+	}
+	priv->cdrom_device = g_strdup (device);
+
+	/* Force the new CD to be scanned at next update cycle */
+	g_free (priv->recent_status);
+	priv->recent_status = NULL;
+
+	return TRUE;
+}
+
 static void
 class_init (LinuxCDRomClass *klass)
 {
@@ -1022,6 +1059,8 @@ class_init (LinuxCDRomClass *klass)
 	/* For CDDB */
   	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
 
+	cdrom_class->set_device = linux_cdrom_set_device;
+	
 	parent_class = g_type_class_peek_parent (klass);
 }
 

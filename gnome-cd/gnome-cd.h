@@ -13,7 +13,9 @@
 
 #include <pango/pango.h>
 
+#include "gnome-cd-type.h"
 #include "display.h"
+#include "preferences.h"
 #include "cdrom.h"
 
 #define NUMBER_OF_DISPLAY_LINES 5
@@ -48,7 +50,7 @@ typedef struct _GCDTheme {
 	GdkPixbuf *eject, *eject_menu;
 } GCDTheme;
 
-typedef struct _GnomeCD {
+struct _GnomeCD {
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *display;
@@ -81,7 +83,8 @@ typedef struct _GnomeCD {
 	GnomeCDDiscInfo *disc_info;
 
 	GCDTheme *theme;
-} GnomeCD;
+	GnomeCDPreferences *preferences;
+};
 
 void skip_to_track (GtkWidget *item,
 		    GnomeCD *gcd);

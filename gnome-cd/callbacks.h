@@ -46,4 +46,6 @@ void loopmode_changed_cb (GtkWidget *widget,
 void playmode_changed_cb (GtkWidget *widget,
 			  GnomeCDRomMode mode,
 			  GnomeCD *gcd);
+void open_preferences (GtkWidget *widget,
+		       GnomeCD *gcd);
 #endif

@@ -572,3 +572,18 @@ playmode_changed_cb (GtkWidget *display,
 	gcd->cdrom->playmode = mode;
 }
 
+void
+open_preferences (GtkWidget *widget,
+		  GnomeCD *gcd)
+{
+	static GtkWidget *dialog = NULL;
+
+	if (dialog == NULL) {
+		dialog = preferences_dialog_show (gcd);
+		g_signal_connect (G_OBJECT (dialog), "destroy",
+				  G_CALLBACK (gtk_widget_destroyed), &dialog);
+	} else {
+		gdk_window_show (dialog->window);
+		gdk_window_raise (dialog->window);
+	}
+}

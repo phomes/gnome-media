@@ -1,3 +1,20 @@
+2002-02-02  Iain Holmes  <iain@ximian.com>
+
+	* preferences.[ch]: New file for preferences.
+
+	* Makefile.am: install the .schemas file
+
+	* callbacks.[ch]: Open preferences callback added.
+
+	* cdrom.[ch]: Add a set_device function.
+
+	* gnome-cd.c (window_destroy_cb): Do the on-stop actions.
+	(player_init): Create preferences.
+	(main): Do the on-start actions.
+
+	* linux-cdrom.c (linux_cdrom_set_device): Implement the set_device
+	method.
+
 2002-02-02  Seth Nickell  <snickell@stanford.edu>
 
 	* gnome-cd.png:

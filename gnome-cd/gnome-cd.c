@@ -222,6 +222,28 @@ window_destroy_cb (GtkWidget *window,
 		   gpointer data)
 {
 	GnomeCD *gcd = data;
+
+	/* Before killing the cdrom object, do the shutdown on it */
+	switch (gcd->preferences->stop) {
+	case GNOME_CD_PREFERENCES_STOP_NOTHING:
+		break;
+
+	case GNOME_CD_PREFERENCES_STOP_STOP:
+		gnome_cdrom_stop (gcd->cdrom, NULL);
+		break;
+
+	case GNOME_CD_PREFERENCES_STOP_OPEN:
+		gnome_cdrom_eject (gcd->cdrom, NULL);
+		break;
+
+	case GNOME_CD_PREFERENCES_STOP_CLOSE:
+		gnome_cdrom_close_tray (gcd->cdrom, NULL);
+		break;
+
+	default:
+		g_assert_not_reached ();
+		break;
+	}
 	
 	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
@@ -304,7 +326,8 @@ init_player (void)
 
 	gcd = g_new0 (GnomeCD, 1);
 
-	gcd->cdrom = gnome_cdrom_new ("/dev/cdrom", GNOME_CDROM_UPDATE_CONTINOUS, &error);
+	gcd->preferences = preferences_new (gcd);
+	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
@@ -341,8 +364,7 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->trackeditor_b = button;
 
-	button = make_button_from_stock (gcd, GTK_STOCK_PROPERTIES, NULL, _("Preferences"), _("Preferences"));
-	gtk_widget_set_sensitive (button, FALSE);
+	button = make_button_from_stock (gcd, GTK_STOCK_PROPERTIES, open_preferences, _("Preferences"), _("Preferences"));
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->properties_b = button;
 
@@ -359,7 +381,7 @@ init_player (void)
 			  G_CALLBACK (playmode_changed_cb), gcd);
 
 	/* Theme needs to be loaded after the display is created */
-	gcd->theme = theme_load (gcd, DEFAULT_THEME);
+	gcd->theme = theme_load (gcd, gcd->preferences->theme_name);
 	if (gcd->theme == NULL) {
 		g_error ("Could not create theme");
 	}
@@ -460,12 +482,34 @@ main (int argc,
 
 	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, NULL);
+	gconf_init (argc, argv, NULL);
 	gcd = init_player ();
 	if (gcd == NULL) {
 		g_error (_("Cannot create player"));
 		exit (0);
 	}
 
+	/* Do the start up stuff */
+	if (gcd->preferences->start_close) {
+		gnome_cdrom_close_tray (gcd->cdrom, NULL);
+	}
+	switch (gcd->preferences->start) {
+	case GNOME_CD_PREFERENCES_START_NOTHING:
+		break;
+
+	case GNOME_CD_PREFERENCES_START_START:
+		/* Just fake a click on the button */
+		play_cb (NULL, gcd);
+		break;
+		
+	case GNOME_CD_PREFERENCES_START_STOP:
+		gnome_cdrom_stop (gcd->cdrom, NULL);
+		break;
+
+	default:
+		break;
+	}
+	
 	gtk_widget_show (gcd->window);
 
 	bonobo_main ();
