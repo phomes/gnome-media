@@ -1,5 +1,10 @@
 2002-05-29  Iain <iain@ximian.com>
 
+	* src/grec.c (record_sound): Check if the samplerate is NULL and if so
+	set it to 22050
+
+2002-05-29  Iain <iain@ximian.com>
+
 	* src/grec.c (check_if_sounddevice_ready): Use the correct esd
 	function to check if it's ok.
 

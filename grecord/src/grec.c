@@ -664,7 +664,11 @@ record_sound (void)
 		bits = ESD_BITS8;
 	}
 
-	rate = atoi (samplerate);
+	if (samplerate == NULL) {
+		rate = 22050;
+	} else {
+		rate = atoi (samplerate);
+	}
 
 	format = bits | esd_channels | mode | func;
 	sock = esd_record_stream_fallback (format, rate, host, name);
