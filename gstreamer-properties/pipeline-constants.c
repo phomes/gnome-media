@@ -34,10 +34,10 @@
 static gchar audiosink_test_pipe[] = "sinesrc freq=512";
 static gchar videosink_test_pipe[] = "videotestsrc ! ffcolorspace";
 
-static gchar GSTPROPS_KEY_DEFAULT_VIDEOSINK[] = "/system/gstreamer/default/videosink";
-static gchar GSTPROPS_KEY_DEFAULT_VIDEOSRC[] = "/system/gstreamer/default/videosrc";
-static gchar GSTPROPS_KEY_DEFAULT_AUDIOSINK[] = "/system/gstreamer/default/audiosink";
-static gchar GSTPROPS_KEY_DEFAULT_AUDIOSRC[] = "/system/gstreamer/default/audiosrc";
+static gchar GSTPROPS_KEY_DEFAULT_VIDEOSINK[] = "default/videosink";
+static gchar GSTPROPS_KEY_DEFAULT_VIDEOSRC[] = "default/videosrc";
+static gchar GSTPROPS_KEY_DEFAULT_AUDIOSINK[] = "default/audiosink";
+static gchar GSTPROPS_KEY_DEFAULT_AUDIOSRC[] = "default/audiosrc";
 
 extern GSTPPipelineDescription audiosink_pipelines[];
 extern GSTPPipelineDescription videosink_pipelines[];

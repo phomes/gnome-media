@@ -29,7 +29,7 @@
 #include <locale.h>
 #include <string.h>
 #include <gnome.h>
-#include <gconf/gconf-client.h>
+#include <gst/gconf/gconf.h>
 #include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
@@ -42,8 +42,6 @@ static GtkDialog *main_window;
 
 static gchar pipeline_editor_property[] = "gstp-editor";
 static gchar pipeline_desc_property[] = "gstp-pipe-desc";
-
-static GConfClient *client = NULL;
 
 static void
 dialog_response (GtkDialog * widget, gint response_id, GladeXML * dialog)
@@ -90,7 +88,7 @@ update_from_option (GSTPPipelineEditor* editor,
 		gtk_widget_set_sensitive (GTK_WIDGET (editor->entry), FALSE);
 
 		/* Update GConf */
-		gconf_client_set_string (client, editor->gconf_key, pipeline_desc->pipeline, NULL);
+		gst_gconf_set_string (editor->gconf_key, pipeline_desc->pipeline);
 	}
 	else
 	{
@@ -184,7 +182,7 @@ entry_changed (GtkEditable *editable, gpointer user_data)
 		gtk_widget_set_sensitive (GTK_WIDGET(editor->test_button), TRUE);
 	}
 	/* Update GConf */
-	gconf_client_set_string (client, editor->gconf_key, new_text, NULL);
+	gst_gconf_set_string (editor->gconf_key, new_text);
 }
 
 static GtkOptionMenu *create_pipeline_menu (GladeXML * dialog, GSTPPipelineEditor* editor)
@@ -248,7 +246,7 @@ init_pipeline_editor(GladeXML * dialog, GSTPPipelineEditor* editor)
 	g_object_set_data (G_OBJECT (editor->test_button), pipeline_editor_property, (gpointer) (editor));
 	g_signal_connect (G_OBJECT (editor->test_button), "clicked",  (GCallback) test_button_clicked, (gpointer) (editor));
 	
-	gconf_init_pipe = gconf_client_get_string (client, editor->gconf_key, NULL);
+	gconf_init_pipe = gst_gconf_get_string (editor->gconf_key);
 	
 	if (gconf_init_pipe) {
 		update_from_gconf(editor, gconf_init_pipe);
@@ -296,8 +294,6 @@ main (int argc, char **argv)
 			    argc, argv, NULL);
 	gst_init_with_popt_table (&argc, &argv, NULL);
 
-	client = gconf_client_get_default ();
-	
 	/* FIXME: hardcode uninstalled path here */
 	if (g_file_test("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
 		interface_xml = glade_xml_new ("gstreamer-properties.glade", NULL, NULL);
