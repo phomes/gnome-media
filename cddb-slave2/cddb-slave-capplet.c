@@ -245,7 +245,7 @@ other_port_changed (GtkEntry *entry,
 static void
 do_goodbye (PropertyDialog *pd)
 {
-	gsize bytes_writen;
+	guint bytes_writen;
 	GIOError status;
 	
 	status = gnet_io_channel_writen (pd->iochannel, "quit\n",
@@ -360,7 +360,7 @@ do_sites_response (PropertyDialog *pd,
 static void
 do_sites (PropertyDialog *pd)
 {
-	gsize bytes_writen;
+	guint bytes_writen;
 	GIOError status;
 
 	status = gnet_io_channel_writen (pd->iochannel, "sites\n",
@@ -410,7 +410,7 @@ static void
 do_hello (PropertyDialog *pd)
 {
 	char *hello;
-	gsize bytes_writen;
+	guint bytes_writen;
 	GIOError status;
 
 	/* Use the gconf values */

@@ -1,3 +1,19 @@
+2003-01-08  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	Fix for 64-bit platforms. Probably better do the other way round
+	(aka guint -> gsize) since underlying g_io_channel_read()/...
+	operate the same way. This would change cddb-slave2
+	visible API.
+
+	* cddb-slave2/cddb-slave-capplet.c: (do_goodbye), (do_sites),
+	(do_hello):
+	* cddb-slave2/cddb-slave.c: (do_goodbye), (do_read), (do_query),
+	(do_hello):
+	* cddb-slave2/iochannel.c: (gnet_io_channel_writen),
+	(gnet_io_channel_readn): Use guint instead of gsize to comply with 
+	cddb-slave API.
+	
+
 2003-01-07  Naba Kumar <naba@gnome.org>
 
 	* configure.in: Added hi (hindi) in ALL_LINGUAS
