@@ -54,9 +54,22 @@ dnl Check for ScrollKeeper
 dnl
 AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper package)
 fi
 
+dnl
+dnl ALSA
+dnl
+AC_ARG_ENABLE(alsa, 
+[  --enable-alsa=[no/yes]      Enable support for ALSA sound library],,enable_alsa=no)
+AC_CHECK_HEADERS(sys/asoundlib.h)
+if test "x$enable_alsa" = "xyes"; then
+    if test "${ac_cv_header_sys_asoundlib_h}" == "yes"; then
+	AC_DEFINE(ALSA)
+    else
+	enable_alsa="no";
+    fi
+fi
 
 ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sk sl sv tr uk zh_TW.Big5 zh_CN.GB2312"
 AM_GNOME_GETTEXT
@@ -78,11 +91,12 @@ dnl
 dnl gmix
 dnl
 PROGRAMS_GMIX=""
+GMIX_LIBS=""
 AC_CHECK_HEADERS(soundcard.h linux/soundcard.h sys/soundcard.h)
-AC_CHECK_HEADERS(machine/soundcard.h sys/asoundlib.h)
-if test "${ac_cv_header_sys_asoundlib_h}" = "yes"; then
+AC_CHECK_HEADERS(machine/soundcard.h)
+if test "x$enable_alsa" = "xyes"; then
     PROGRAMS_GMIX=gmix
-    AC_DEFINE(ALSA)
+    GMIX_LIBS="-lasound"
 elif test "${ac_cv_header_sys_soundcard_h}" = "yes" || \
      test "${ac_cv_header_soundcard_h}" = "yes" || \
      test "${ac_cv_header_linux_soundcard_h}" = "yes" || \
@@ -90,6 +104,7 @@ elif test "${ac_cv_header_sys_soundcard_h}" = "yes" || \
     PROGRAMS_GMIX=gmix
 fi
 AC_SUBST(PROGRAMS_GMIX)
+AC_SUBST(GMIX_LIBS)
 
 
 dnl
