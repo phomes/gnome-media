@@ -685,7 +685,7 @@ create_grecord_propertybox (void)
 	path_to_sox_label = gtk_label_new (_("Path to sox:"));
 	gtk_widget_show (path_to_sox_label);
 	gtk_box_pack_start (GTK_BOX (path_to_sox_hbox), path_to_sox_label, FALSE, TRUE, 0);
-	gtk_widget_set_usize (path_to_sox_label, 100, -2);
+	gtk_widget_set_usize (path_to_sox_label, 140, -2);
 	gtk_label_set_justify (GTK_LABEL (path_to_sox_label), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (path_to_sox_label), TRUE);
 	gtk_misc_set_padding (GTK_MISC (path_to_sox_label), 5, 0);
@@ -701,7 +701,7 @@ create_grecord_propertybox (void)
 	label8 = gtk_label_new (_("Path to mixer:"));
 	gtk_widget_show (label8);
 	gtk_box_pack_start (GTK_BOX (hbox5),label8, FALSE, TRUE, 0);
-	gtk_widget_set_usize (label8, 100, -2);
+	gtk_widget_set_usize (label8, 140, -2);
 	gtk_label_set_justify (GTK_LABEL (label8), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
 	gtk_misc_set_padding (GTK_MISC (label8), 5, 0);
@@ -730,7 +730,7 @@ create_grecord_propertybox (void)
 	label5 = gtk_label_new (_("Temp dir:"));
 	gtk_widget_show (label5);
 	gtk_box_pack_start (GTK_BOX (hbox3), label5, FALSE, FALSE, 0);
-	gtk_widget_set_usize (label5, 100, -2);
+	gtk_widget_set_usize (label5, 140, -2);
 	gtk_label_set_justify (GTK_LABEL (label5), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (label5), TRUE);
 	gtk_misc_set_padding (GTK_MISC (label5), 5, 0);
