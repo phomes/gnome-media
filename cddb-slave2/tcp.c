@@ -247,6 +247,7 @@ gnet_tcp_socket_new_async (const GInetAddr* addr,
 	{
 	  ifr = ifc.ifc_req;
 	  num = ifc.ifc_len / sizeof (struct ifreq); /* No of interfaces */
+	  con = 1;
 	  for (i = 0 ; i < num ; i++)
 	    {
 	      struct ifreq ifreq;
@@ -269,7 +270,12 @@ gnet_tcp_socket_new_async (const GInetAddr* addr,
 				break;
 
 	    }
+	  if (con == 1)
+	    /* No interface found to connect to. */
+	    return NULL;
 	}
+      else
+	return NULL;
     }
   else
 #endif

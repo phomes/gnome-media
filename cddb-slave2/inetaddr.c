@@ -701,10 +701,11 @@ gethostbyname_async_child (void* arg) /* pthread_create friendly */
   void** args      = (void**) arg;
   const char* name = (const char*) args[0];
   int outfd        = *(int*) args[1];
-  struct sockaddr_in sa;
   guchar size;
 #ifdef ENABLE_IPV6
   struct sockaddr_in6 sa6;
+#else
+  struct sockaddr_in sa;
 #endif
 
   /* Try to get the host by name (ie, DNS) */
@@ -1288,7 +1289,6 @@ gnet_inetaddr_get_name_async_cancel(GInetAddrGetNameAsyncID id)
 gchar*
 gnet_inetaddr_get_canonical_name(const GInetAddr* ia)
 {
-  gchar buffer[INET_ADDRSTRLEN];	/* defined in netinet/in.h */
   guchar* p;
 
   g_return_val_if_fail (ia != NULL, NULL);
@@ -1298,19 +1298,18 @@ gnet_inetaddr_get_canonical_name(const GInetAddr* ia)
     {
       guchar buffer6[INET6_ADDRSTRLEN];
 
-      p = (guchar*)&(GNET_SOCKADDR_IN6 (ia->sa).sin6_addr);
-
       if (inet_ntop (AF_INET6, &((GNET_SOCKADDR_IN6 (ia->sa)).sin6_addr), buffer6, sizeof (buffer6)))
 	return NULL;
 
       return g_strdup (buffer6);
     }
+  else
 #endif
+    {
+       p = (guchar*) &(GNET_SOCKADDR_IN(ia->sa).sin_addr);
+    }
 
-  g_snprintf(buffer, sizeof(buffer),
-	     "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
-
-  return g_strdup(buffer);
+  return g_strdup_printf ("%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
 }
 
 
@@ -1915,17 +1914,23 @@ gnet_inetaddr_get_interface_to (const GInetAddr* addr)
   GInetAddr* iface;
 
   g_return_val_if_fail (addr, NULL);
-  
+
+  iface = g_new0 (GInetAddr, 1);
+  iface->ref_count = 1;
+
 #ifdef ENABLE_IPV6
   if ((GNET_SOCKADDR_IN6 (addr->sa)).sin6_family == AF_INET6)
     {
       sockfd = socket (AF_INET6, SOCK_STREAM, 0);
-      if (sockfd == -1)
+      if (sockfd == -1) {
+	g_free (iface);
 	return NULL;
+      }
 
       if (connect (sockfd, (struct sockaddr *)&(addr->sa), sizeof (addr->sa)) == -1)
 	{
 	  GNET_CLOSE_SOCKET (sockfd);
+	  g_free (iface);
 	  return NULL;
 	}
 
@@ -1933,6 +1938,7 @@ gnet_inetaddr_get_interface_to (const GInetAddr* addr)
       if (getsockname (sockfd, (struct sockaddr *)&(addr->sa), &len) != 0)
 	{
 	  GNET_CLOSE_SOCKET (sockfd);
+	  g_free (iface);
 	  return NULL;
 	}
 
@@ -1942,12 +1948,15 @@ gnet_inetaddr_get_interface_to (const GInetAddr* addr)
 #endif
   {
     sockfd = socket (AF_INET, SOCK_DGRAM, 0);
-    if (sockfd == -1)
+    if (sockfd == -1) {
+      g_free (iface);
       return NULL;
+    }
 
     if (connect (sockfd, (struct sockaddr *)&addr->sa, sizeof(addr->sa)) == -1)
       {
 	GNET_CLOSE_SOCKET(sockfd);
+	g_free (iface);
 	return NULL;
       }
 
@@ -1955,14 +1964,12 @@ gnet_inetaddr_get_interface_to (const GInetAddr* addr)
     if (getsockname (sockfd, (struct sockaddr*) &myaddr, &len) != 0)
       {
 	GNET_CLOSE_SOCKET(sockfd);
+	g_free (iface);
 	return NULL;
       }
 
     memcpy (&iface->sa, (char*) &myaddr, sizeof (struct sockaddr_in));
   }
-
-  iface = g_new0 (GInetAddr, 1);
-  iface->ref_count = 1;
 
   return iface;
 }

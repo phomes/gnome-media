@@ -124,10 +124,6 @@ typedef void (*GInetAddrGetNameAsyncFunc)(GInetAddr* inetaddr,
 
 /* ********** */
 
-#ifdef ENABLE_IPV6
-static gboolean gnet_have_ipv6 (void);
-#endif
-
 GInetAddr* gnet_inetaddr_new (const gchar* name, gint port);
 
 GInetAddrNewAsyncID

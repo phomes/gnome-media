@@ -1,3 +1,15 @@
+2004-09-20  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* cddb-slave2/inetaddr.c: (gethostbyname_async_child),
+	(gnet_inetaddr_get_canonical_name),
+	(gnet_inetaddr_get_interface_to):
+	* cddb-slave2/inetaddr.h:
+	* cddb-slave2/socks-private.c: (gnet_private_negotiate_socks5):
+	* cddb-slave2/tcp.c: (gnet_tcp_socket_new_async):
+	  Fix some compiler issues (why didn't I see those?), see #111423).
+	  Thanks to Malcolm Tredinnick <malcolm@commsecure.com.au> and
+	  Christophe Fergeau <teuf@users.sourceforge.net>.
+
 2004-09-16  Matthias Clasen  <mclasen@redhat.com>
 
 	reviewed by: Ronald S. Bultje  <rbultje@ronald.bitfreak.net>

@@ -69,13 +69,6 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
   if ((s5r[0] != 5) || (s5r[1] != 0))
     return -1;
 
-#ifdef ENABLE_IPV6
-  if (GNET_INETADDR_FAMILY (dst) == AF_INET6)
-    sa_in6 = (struct sockaddr_in6 *) &dst->sa;
-  else
-#endif
-    sa_in = (struct sockaddr_in*)&dst->sa;
-
   /* fill in SOCKS5 request */
   s5h.vn    = 5;
   s5h.cd    = 1;
@@ -84,6 +77,7 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
 #ifdef ENABLE_IPV6
   if (GNET_INETADDR_FAMILY (dst) == AF_INET6)
     {
+      sa_in6 = (struct sockaddr_in6 *) &dst->sa;
       memcpy (s5h.dip6, sa_in6->sin6_addr.s6_addr, sizeof (struct in6_addr));
       s5h.dport = (short)sa_in6->sin6_port;
       
@@ -91,6 +85,7 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
   else
 #endif
     {
+      sa_in = (struct sockaddr_in*)&dst->sa;
       s5h.dip   = (long)sa_in->sin_addr.s_addr;
       s5h.dport = (short)sa_in->sin_port;
     }
