@@ -693,6 +693,7 @@ preferences_dialog_show (GnomeCD *gcd,
 
 	pd->cd_device = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (pd->cd_device), gcd->preferences->device);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->cd_device);
 	g_signal_connect (G_OBJECT (pd->cd_device), "changed",
 			  G_CALLBACK (device_changed_cb), pd);
 	g_signal_connect (G_OBJECT (pd->cd_device), "activate",
