@@ -165,7 +165,7 @@ GtkWidget *create_http_frame()
     label = gtk_label_new("Path:");
     path_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(path_entry), props.remote_path );
-    props.remote_path = gtk_entry_get_text(GTK_ENTRY(path_entry));
+    props.remote_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(path_entry)));
     gtk_signal_connect(GTK_OBJECT(path_entry), "changed",
 		       GTK_SIGNAL_FUNC(changed_cb), NULL );
     
@@ -190,7 +190,7 @@ GtkWidget *create_http_frame()
     gtk_entry_set_text(GTK_ENTRY(proxy_server_entry), props.proxy_server );
     gtk_box_pack_start(GTK_BOX(proxy_l_box), label, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(proxy_r_box), proxy_server_entry, TRUE, TRUE, 0);
-    props.proxy_server = gtk_entry_get_text(GTK_ENTRY(proxy_server_entry));
+    props.proxy_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(proxy_server_entry)));
     gtk_signal_connect(GTK_OBJECT(proxy_server_entry), "changed",
 		       GTK_SIGNAL_FUNC(changed_cb), NULL );
     
@@ -239,7 +239,7 @@ GtkWidget *create_cddb_frame()
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddb_i = gtk_entry_new();
     gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
-    props.cddb = gtk_entry_get_text(GTK_ENTRY(cddb_i));
+    props.cddb = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddb_i)));
     gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
 			GTK_SIGNAL_FUNC(changed_cb), NULL );
     gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
@@ -289,7 +289,7 @@ GtkWidget *create_cdrom_frame()
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddev_i = gtk_entry_new();
     gtk_entry_set_text( GTK_ENTRY(cddev_i), props.cddev );
-    props.cddev = gtk_entry_get_text(GTK_ENTRY(cddev_i));
+    props.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddev_i)));
     gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
 			GTK_SIGNAL_FUNC(changed_cb), NULL );
     gtk_box_pack_start( GTK_BOX(cdrom_l_box), label, TRUE, TRUE, 0 );
@@ -548,9 +548,6 @@ void properties_cb( GtkWidget *widget, void *data )
 {
     GtkWidget *page1, *page2, *label, *page3;
     
-/*	if( propbox )
-	return;*/
-    
     load_properties(&props);
     
     propbox = gnome_property_box_new();
@@ -559,23 +556,20 @@ void properties_cb( GtkWidget *widget, void *data )
     page1	= create_page1();
     label   = gtk_label_new("General");
     gtk_widget_show(page1);
-    gtk_notebook_append_page(
-    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-	page1, label);
+    gnome_property_box_append_page(GNOME_PROPERTY_BOX(propbox),
+				    page1, label);
     
     page2 	= create_page2();
     label   = gtk_label_new("HTTP/Proxy");
     gtk_widget_show(page2);
-    gtk_notebook_append_page(
-    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-	page2, label);
+    gnome_property_box_append_page(GNOME_PROPERTY_BOX(propbox),
+                                   page2, label);
     
     page3 = create_page3();
     label = gtk_label_new("Interface");
     gtk_widget_show(page3);
-    gtk_notebook_append_page(
-    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-	page3, label);
+    gnome_property_box_append_page(GNOME_PROPERTY_BOX(propbox),
+                                   page3, label);
     
     gtk_signal_connect( GTK_OBJECT(propbox), 
 			"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
@@ -585,8 +579,3 @@ void properties_cb( GtkWidget *widget, void *data )
     gtk_widget_show_all(propbox);
     return;
 }
-
-
-
-
-

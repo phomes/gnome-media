@@ -111,6 +111,7 @@ GtkTooltips *tooltips;
 
 int timeonly = FALSE, status_height, status_width, playid=-1;
 int configured = FALSE, old_status=-1, max,tfont_height;
+unsigned int cur_goto_id;
 tcd_properties props;
 
 /* Prototypes */
@@ -613,14 +614,10 @@ void adjust_status(void)
 
 gint slow_timer( gpointer *data )
 {
-    static unsigned long old_id;
     int oldmax, len;
 
-    if( cd.cddb_id != old_id )
-    {
+    if( cd.cddb_id != cur_goto_id )
 	make_gotomenu();
-	old_id = cd.cddb_id;
-    }
 
     if( cd.err || !cd.isplayable )
     {
@@ -715,6 +712,7 @@ void make_gotomenu()
     gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",
 				      GTK_SIGNAL_FUNC (button_press), GTK_OBJECT(gotomenu));
 
+    cur_goto_id = cd.cddb_id;
 }
 
 gint fast_timer( gpointer *data )
