@@ -99,6 +99,7 @@ typedef struct _ConnectionData {
 
 static GHashTable *pending_requests = NULL;
 static GHashTable *cddb_cache = NULL;
+static GList *cddb_slaves = NULL;
 
 static void do_hello (ConnectionData *cd);
 
@@ -116,7 +117,8 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 {
 	CORBA_any any;
 	GNOME_Media_CDDBSlave2_QueryResult qr;
-
+	GList *l;
+	
 	g_return_if_fail (cddb != NULL);
 	g_return_if_fail (IS_CDDB_SLAVE (cddb));
 
@@ -129,9 +131,16 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 	if (cddb_debugging == TRUE) {
 		g_print ("CDDB: Notifying listeners.\n");
 	}
-	bonobo_event_source_notify_listeners (cddb->priv->event_source,
-					      CDDB_SLAVE_CDDB_FINISHED,
-					      &any, NULL);
+
+	for (l = cddb_slaves; l; l = l->next) {
+		CDDBSlave *slave;
+
+		slave = CDDB_SLAVE (l->data);
+		
+		bonobo_event_source_notify_listeners (slave->priv->event_source,
+						      CDDB_SLAVE_CDDB_FINISHED,
+						      &any, NULL);
+	}
 }
 
 static gboolean
@@ -1054,6 +1063,7 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 				  const CORBA_char *discid,
 				  CORBA_Environment *ev)
 {
+	CDDBSlave *cddb;
 	CDDBEntry *entry;
 	gboolean write_ret;
 	
@@ -1068,7 +1078,13 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 	write_ret = cddb_entry_write_to_file (entry);
 	if (write_ret == FALSE) {
 		/* Exception */
+		return;
 	}
+
+	cddb = cddb_slave_from_servant (servant);
+	/* FIXME: Should we only emit the changed signal here,
+	   or in the set* calls? */
+	cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
 }
 
 static CORBA_char *
@@ -1506,6 +1522,9 @@ finalize (GObject *object)
 	if (priv == NULL)
 		return;
 
+	/* Remove this slave from our list */
+	cddb_slaves = g_list_remove (cddb_slaves, cddb);
+	
 	g_free (priv->server);
 	g_free (priv->name);
 	g_free (priv->hostname);
@@ -1609,6 +1628,10 @@ cddb_slave_new_full (const char *server,
 	bonobo_object_add_interface (BONOBO_OBJECT (cddb),
 				     BONOBO_OBJECT (priv->event_source));
 
+
+	/* Add this slave to our global list of slaves */
+	cddb_slaves = g_list_prepend (cddb_slaves, cddb);
+	
 	return cddb;
 }
 /**

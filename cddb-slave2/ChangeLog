@@ -1,3 +1,13 @@
+2002-05-30  Iain <iain@ximian.com>
+
+	* cddb-slave.c: Keep a list of all the cddb slaves and notify them all
+	when data is ready.
+	(cddb_slave_notify_listeners): Notify all the slaves.
+	(impl_GNOME_Media_CDDBSlave2_save): Notify the listeners of the new
+	data.
+	(finalize): Remove the slave from the global list.
+	(cddb_slave_new_full): Add the slave to the global list.
+
 2002-05-29  Iain <iain@ximian.com>
 
 	* cddb-slave.c (create_model_from_list): Strip newlines and \r's
