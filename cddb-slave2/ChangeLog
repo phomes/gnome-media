@@ -1,3 +1,22 @@
+2002-03-09  Iain <iain@ximian.com>
+
+	* cddb-slave.c (open_cb): Don't try to print an int with %s
+
+2002-03-03  Iain <iain@ximian.com>
+
+	* cddb-parser.c (write_line): Code to right a line so that it always
+	is at most 80 chars long.
+	(write_topline): Form the topline of the file and write it out.
+	(write_offsets): Write the offsets into a comment line
+	(write_disc_length): Write the disclength into a comment.
+	(write_revision): Write the revision.
+	(write_version): Write the version.
+	(write_headers): Write out all the headers/comments.
+	(write_field): Lookup the field in the hashtable and if it exists
+	write it out.
+	(write_body): Write out all the details for the body.
+	(cddb_entry_write_to_file): Dump a CDDBEntry to a file.
+
 2002-03-03  Iain <iain@ximian.com>
 
 	* cddb-slave-client.c: Strdup any returned CORBA strings that aren't

@@ -826,7 +826,7 @@ open_cb (GTcpSocket *sock,
 
 	cd->socket = sock;
 	if (status != GTCP_SOCKET_CONNECT_ASYNC_STATUS_OK) {
-		g_warning ("Error opening %s:%s",
+		g_warning ("Error opening %s:%d",
 			   cd->cddb->priv->server,
 			   cd->cddb->priv->port);
 

@@ -253,7 +253,22 @@ cddb_entry_new_from_file (const char *filename)
 		return FALSE;
 	}
 
-	entry->discid = g_strdup (entry->topline[2]);
+	/* The data in the file may be for a different id than the file */
+	entry->realdiscid = g_path_get_basename (filename);
+	if (entry->topline != NULL) {
+		entry->discid = g_strdup (entry->topline[2]);
+	} else {
+		GString *did;
+
+		did = g_hash_table_lookup (entry->fields, "DISCID");
+		if (did == NULL) {
+			entry->discid = g_path_get_basename (filename);
+		} else {
+			entry->discid = g_strndup (did->str, 8);
+			g_print ("**** Entry->discid = \"%s\"\n", entry->discid);
+		}
+	}
+	
 	entry->ntrks = count_tracks (entry);
 	entry->offsets = g_new (int, entry->ntrks);
 	entry->lengths = g_new (int, entry->ntrks);
@@ -263,4 +278,197 @@ cddb_entry_new_from_file (const char *filename)
 	calculate_lengths (entry);
 	
 	return entry;
+}
+
+/* Handle splitting the line into 80 char lines
+   The spec says <= 256 is the right length,
+   but everyone seems to split on 80 so that it looks good
+   in a terminal */
+static void
+write_line (FILE *handle,
+	    const char *key,
+	    const char *value)
+{
+	int key_len, val_len, line_len;
+	char *tv = value;
+	char *str;
+
+	if (key == NULL) {
+		str = g_strdup_printf ("%s\r\n", value);
+		fputs (str, handle);
+	} else {
+		key_len = strlen (key) + 1 + 2; /* Length of "KEY=" + \r\n */
+		val_len = strlen (value);
+		line_len = 80 - key_len;
+
+		while (val_len > line_len) {
+			str = g_strdup_printf ("%s=%s\r\n", key, tv);
+			fputs (str, handle);
+			g_free (str);
+			
+			tv += line_len;
+			val_len -= line_len;
+		}
+		
+		/* Last line */
+		str = g_strdup_printf ("%s=%s\r\n", key, tv);
+		fputs (str, handle);
+		g_free (str);
+	}
+}
+
+static void
+write_topline (CDDBEntry *entry,
+	       FILE *handle)
+{
+	char *topline;
+
+	if (entry->topline == NULL) {
+		return;
+	}
+	
+	topline = g_strjoin (entry->topline, " ");
+	write_line (handle, NULL, topline);
+	g_free (topline);
+}
+
+static void
+write_offsets (CDDBEntry *entry,
+	       FILE *handle)
+{
+	int i;
+
+	for (i = 0; i < entry->ntrks; i++) {
+		char *str;
+		
+		str = g_strdup_printf ("#\t%d", entry->offsets[i]);
+		write_line (handle, NULL, str);
+		g_free (str);
+	}
+}
+
+static void
+write_disc_length (CDDBEntry *entry,
+		   FILE *handle)
+{
+	char *str;
+
+	str = g_strdup_printf ("# Disc length: %d seconds", entry->disc_length);
+	write_line (handle, NULL, str);
+	g_free (str);
+}
+
+static void
+write_revision (CDDBEntry *entry,
+		FILE *handle)
+{
+	char *str;
+
+	str = g_strdup_printf ("# Revision: %d", entry->revision);
+	write_line (handle, NULL, str);
+	g_free (str);
+}
+
+static void
+write_version (CDDBEntry *entry,
+	       FILE *handle)
+{
+	char *str;
+
+	str = g_strdup_printf ("# Submitted via: CDDBSlave2 %s", VERSION);
+	write_line (handle, NULL, str);
+	g_free (str);
+}
+
+static void
+write_headers (CDDBEntry *entry,
+	       FILE *handle)
+{
+	write_line (handle, NULL, "# xmcd");
+	write_line (handle, NULL, "# Track frame offsets:");
+	
+	write_offsets (entry, handle);
+	
+	write_line (handle, NULL, "#");
+
+	write_disc_length (entry, handle);
+
+	write_revision (entry, handle);
+	write_version (entry, handle);
+
+	write_line (handle, NULL, "#");
+}
+
+static void
+write_field (CDDBEntry *entry,
+	     const char *key,
+	     FILE *handle)
+{
+	GString *value;
+
+	value = g_hash_table_lookup (entry->fields, key);
+	if (value != NULL) {
+		write_line (handle, key, value->str);
+	}
+}
+
+static void
+write_body (CDDBEntry *entry,
+	    FILE *handle)
+{
+	int i;
+	
+	write_line (handle, "DISCID", entry->realdiscid);
+
+	write_field (entry, "DTITLE", handle);
+	write_field (entry, "DGENRE", handle);
+	write_field (entry, "DYEAR", handle);
+	/* Track titles */
+	for (i = 0; i < entry->ntrks; i++) {
+		char *key;
+
+		key = g_strdup_printf ("TTITLE%d", i);
+		write_field (entry, key, handle);
+		g_free (key);
+	}
+	write_field (entry, "EXTD", handle);
+	for (i = 0; i < entry->ntrks; i++) {
+		char *key;
+
+		key = g_strdup_printf ("EXTT%d", i);
+		write_field (entry, key, handle);
+		g_free (key);
+	}
+
+	write_field (entry, "PLAYORDER", handle);
+}
+
+gboolean
+cddb_entry_write_to_file (CDDBEntry *entry)
+{
+	char *filename;
+	FILE *handle;
+	
+	g_return_val_if_fail (entry != NULL, FALSE);
+
+	filename = g_build_filename (g_get_home_dir (),
+				     ".cddbslave",
+				     entry->realdiscid, NULL);
+	handle = fopen (filename, "w");
+	g_free (filename);
+	
+	if (handle == NULL) {
+		return FALSE;
+	}
+
+	/* Update the revision */
+	entry->revision++;
+	
+	write_topline (entry, handle);
+	write_headers (entry, handle);
+	write_body (entry, handle);
+
+	fclose (handle);
+	
+	return TRUE;
 }

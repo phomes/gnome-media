@@ -28,6 +28,7 @@ typedef struct _CDDBSlave CDDBSlave;
 typedef struct _CDDBSlavePrivate CDDBSlavePrivate;
 typedef struct _CDDBSlaveClass CDDBSlaveClass;
 typedef struct _CDDBEntry {
+	char *realdiscid; /* The discid of the file and discid of the contents may not be the same */
 	char *discid;
 	int ntrks;
 	int revision;
