@@ -19,6 +19,7 @@
 #include "cdrom.h"
 #include "callbacks.h"
 #include "display.h"
+#include "access/factory.h"
 
 #define DEFAULT_THEME "lcd"
 
@@ -575,6 +576,8 @@ main (int argc,
 	}
 	
 	gtk_widget_show (gcd->window);
+
+	setup_factory();
 
 	bonobo_main ();
 	return 0;

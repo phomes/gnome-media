@@ -183,6 +183,11 @@ esac
 AC_SUBST(CDROM_HOST)
 AC_SUBST(default_cd_device)
 
+PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
+
+AC_SUBST(GAILUTIL_CFLAGS)
+AC_SUBST(GAILUTIL_LIBS)
+
 # grecord
 PROGRAMS_GRECORD="grecord"
 AC_SUBST(PROGRAMS_GRECORD)
@@ -199,6 +204,7 @@ gnome-cd/gnome-cd.schemas
 gnome-cd/images/Makefile
 gnome-cd/images/lcd-theme/Makefile
 gnome-cd/images/red-lcd-theme/Makefile
+gnome-cd/access/Makefile
 grecord/Makefile
 grecord/src/Makefile
 gnome-volume-control/Makefile

@@ -1,10 +1,11 @@
-SUBDIRS = images
+SUBDIRS = images access
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(top_builddir)			\
 	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
+	$(GAILUTIL_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DTHEME_DIR=\""$(datadir)/pixmaps/gnome-cd/themes"\"
 
@@ -50,9 +51,13 @@ gnome_cd_SOURCES =		\
 	preferences.h		\
 	theme.c
 
+ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
+
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
-		 $(INTLLIBS)
+		 $(INTLLIBS)	\
+		 $(GAILUTIL_LIBS)	\
+		 $(ACCESS_LT_LIB)
 
 @INTLTOOL_DESKTOP_RULE@
 Audio_in_files = gnome-cd.desktop.in

@@ -55,6 +55,8 @@ void cd_display_set_line (CDDisplay *disp,
 			  const char *str);
 void cd_display_clear (CDDisplay *disp);
 
+PangoLayout *cd_display_get_pango_layout(CDDisplay *disp, int i);
+
 G_END_DECLS
 
 #endif
