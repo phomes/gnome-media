@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2002-10-09 01:38+0100\n"
-"PO-Revision-Date: 2002-09-28 18:18+0200\n"
+"POT-Creation-Date: 2002-11-17 18:29+0100\n"
+"PO-Revision-Date: 2002-11-17 18:29+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -23,38 +23,35 @@ msgstr ""
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "Adresse på serveren der skal kontaktes ved cd-forespørgsler"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
 msgstr "Port"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#, fuzzy
 msgid "Server name"
-msgstr "Server"
+msgstr "Servernavn"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgstr "Værtsnavnet der bliver sendt med alle forespørgsler"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr ""
+msgstr "Den port som serveren kører database ved"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-#, fuzzy
 msgid "The username"
-msgstr "Temanavn"
+msgstr "Brugernavnet"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "Det brugernavn som sendes med alle forespørgsler"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-#, fuzzy
 msgid "Your hostname"
-msgstr "Værtsnavn:"
+msgstr "Dit værtsnavn"
 
 # se næste for forklaring
 #: cddb-slave2/cddb-disclosure.c:245
@@ -975,7 +972,6 @@ msgstr "Effekt"
 msgid "3D Effect"
 msgstr "Rumeffekt"
 
-# RETMIG: rigtigt?
 #: gmix/device_labels_alsa.h:43
 msgid "Mic Gain"
 msgstr "Mikrofonforstærkning"
@@ -1090,10 +1086,10 @@ msgstr "Hjælp"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Mixerenhed der skal benyttes"
 
 #: gmix/gmix.c:327
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Volume control is unable to run correctly.\n"
 "\n"
@@ -1103,9 +1099,14 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
-"Kunne ikke åbne lydenheden. Tjek at du har\n"
-"rettigheder til at åbne /dev/mixer og at\n"
-"lydunderstøttelse er med i kernen."
+"Lydstyrkekontrollen kan ikke køre korrekt.\n"
+"\n"
+"Kunne ikke åbne lydenheden '%s'. Kontrollér \n"
+"at du har rettighed til at åbne '%s' og at\n"
+"lydunderstøttelse er med i kernen.\n"
+"\n"
+"Klik på 'Afslut' for at afslutte \n"
+"lydstyrkekontrollen."
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1115,17 +1116,20 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"Lydstyrkekontrollen kan ikke køre korrekt.\n"
+"\n"
+"Tryk på 'Detaljer' for at få flere detaljer om grunden til problemet.\n"
+"\n"
+"Klik på 'Afslut' for at afslutte lydstyrkekontrollen."
 
-# en knap man kan trykke på for at få standardnavnene igen
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:477
-#, fuzzy
+# bemærk: skal koordineres med ovenstående tekst
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 msgid "_Details"
-msgstr "Standardnavne"
+msgstr "_Detaljer"
 
 #: gmix/gmix.c:387
-#, fuzzy
 msgid "Invalid mixer device"
-msgstr "Ugyldig cd-enhed"
+msgstr "Ugyldig mixerenhed"
 
 #: gmix/gmix.c:626
 #, c-format
@@ -1266,53 +1270,76 @@ msgid "Line for displaying the name of the album"
 msgstr "Linje til fremvisning af navnet på albummet"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:532 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
+#: gnome-cd/callbacks.c:538 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
 msgid "Play"
 msgstr "Afspil"
 
 #: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226
 #: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:498
+#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-cd/callbacks.c:604
-msgid "Disc error"
-msgstr "Diskfejl"
+#: gnome-cd/callbacks.c:530
+#, c-format
+msgid "Playing %s - %s"
+msgstr "Afspiller %s - %s"
 
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:648
+#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:655 gnome-cd/callbacks.c:666
 msgid "Unknown Artist"
 msgstr "Ukendt kunstner"
 
-#: gnome-cd/callbacks.c:640 gnome-cd/callbacks.c:652
+#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:658 gnome-cd/callbacks.c:670
 msgid "Unknown Album"
 msgstr "Ukendt album"
 
-#: gnome-cd/callbacks.c:691
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:550
+msgid "Paused"
+msgstr "Pause"
+
+#. Update tray icon tooltip
+#: gnome-cd/callbacks.c:595 gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:495
+#: gnome-cd/gnome-cd.c:653 gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "Cd-afspiller"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:613
+msgid "Stopped"
+msgstr "Stoppet"
+
+#: gnome-cd/callbacks.c:619
+msgid "Disc error"
+msgstr "Diskfejl"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:709
 msgid "No disc"
 msgstr "Ingen disk"
 
-#: gnome-cd/callbacks.c:717
+#: gnome-cd/callbacks.c:735
 msgid "Drive open"
 msgstr "Drev åbent"
 
-#: gnome-cd/callbacks.c:741
+#: gnome-cd/callbacks.c:759
 msgid "Data CD"
 msgstr "Data-cd"
 
-#: gnome-cd/callbacks.c:763
+#. Updated the tray icon tooltip
+#: gnome-cd/callbacks.c:781 gnome-cd/callbacks.c:785
 msgid "No Cdrom"
 msgstr "Ingen cd-rom"
 
-#: gnome-cd/callbacks.c:775
+#: gnome-cd/callbacks.c:796
 msgid "Drive Error"
 msgstr "Drevfejl"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:817
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright © 2001, 2002"
 
-#: gnome-cd/callbacks.c:797
+#: gnome-cd/callbacks.c:818
 msgid "A GNOME cd player"
 msgstr "En cd-afspiller til Gnome"
 
@@ -1322,7 +1349,7 @@ msgid "You do not seem to have permission to access %s."
 msgstr "Det ser ud til du ikke har rettigheder til at tilgå %s."
 
 #: gnome-cd/cdrom.c:373
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not present in your machine\n"
@@ -1330,7 +1357,7 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 "%s ser ikke ud til at være et gyldigt cd-drev. Dette kan skyldes:\n"
-"a) Cd-understøttelse er ikke oversat ind i Linux\n"
+"a) Cd-understøttelse er ikke tilgængeligt på din maskine\n"
 "b) Du har ikke de nødvendige rettigheder til at tilgå cd-drevet\n"
 "c) %s er ikke et cd-drev.\n"
 
@@ -1341,10 +1368,6 @@ msgstr "Ukendt kunstner"
 #: gnome-cd/display.c:75
 msgid "Unknown disc"
 msgstr "Ukendt disk"
-
-#: gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:494
-msgid "Gnome CD Player"
-msgstr "Cd-afspiller"
 
 #: gnome-cd/gnome-cd.c:156
 #, c-format
@@ -1376,136 +1399,131 @@ msgid "_Help"
 msgstr "_Hjælp"
 
 #: gnome-cd/gnome-cd.c:306
-msgid "_About Gnome-CD"
-msgstr "_Om cd-afspilleren"
+msgid "_About CD player"
+msgstr "_Om cd-afspiller"
 
 # NB: skal synkroniseres med næste
-#: gnome-cd/gnome-cd.c:413
+#: gnome-cd/gnome-cd.c:414
 msgid ""
-"There is no CD device set. This means that GnomeCD\n"
-"will be unable to run. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 "Der er ikke angivet nogen cd-enhed. Dette betyder at\n"
-"afspilleren ikke kan køre. Tryk på \"Angiv enhed\" for at\n"
+"cd-afspilleren ikke kan køre. Tryk på \"Angiv enhed\" for at\n"
 "gå til et vindue hvor du kan angive enheden, eller tryk\n"
-"på \"Afslut\" for at afslutte afspilleren."
+"på \"Afslut\" for at afslutte cd-afspilleren."
 
-#: gnome-cd/gnome-cd.c:417
+#: gnome-cd/gnome-cd.c:418
 msgid "Set device"
 msgstr "Angiv enhed"
 
-#: gnome-cd/gnome-cd.c:419
+#: gnome-cd/gnome-cd.c:420
 msgid "No CD device"
 msgstr "Ingen cd-enhed"
 
-# NB: skal synkroniseres med næste
-#: gnome-cd/gnome-cd.c:473
-#, fuzzy
+#: gnome-cd/gnome-cd.c:474
 msgid ""
-"GnomeCD is unable to run correctly.\n"
+"The CD player is unable to run correctly.\n"
 "\n"
-"Press Details button for more details on reasons for failure.\n"
+"Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press Set device to go to a dialog where you can set the device, or click "
-"Quit to quit GnomeCD"
+"Press 'Set device' to go to a dialog where you can set the device, or press "
+"'Quit' to quit the CD player"
 msgstr ""
-"%s\n"
-"Dette betyder at afspilleren ikke kan køre. Tryk på \"Angiv enhed\" for at "
-"gå til et vindue hvor du kan angive enheden, eller tryk på \"Afslut\" for at "
-"afslutte afspilleren."
+"Lydstyrkekontrollen kan ikke køre korrekt.\n"
+"\n"
+"Tryk på 'Detaljer' for at få flere detaljer om grunden til problemet.\n"
+"\n"
+"Tryk på 'Angiv enhed' for at gå til et vindue hvor du kan angive enheden, "
+"eller tryk på 'Afslut' for at afslutte cd-afspilleren."
 
-#: gnome-cd/gnome-cd.c:478
-#, fuzzy
+# NB: skal synkroniseres med ovenstående tekst
+#: gnome-cd/gnome-cd.c:479
 msgid "_Set device"
-msgstr "Angiv enhed"
+msgstr "_Angiv enhed"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
 msgstr "Ugyldig cd-enhed"
 
-#: gnome-cd/gnome-cd.c:541
+#: gnome-cd/gnome-cd.c:542
 msgid "Volume control"
 msgstr "Lydstyrkekontrol"
 
 # mere sigende end original som desuden er svær at oversætte
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:551
 msgid "Open track editor"
 msgstr "Ret i sporoplysninger"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:552
 msgid "Track editor"
 msgstr "Sporredigering"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:559
 msgid "Open preferences"
 msgstr "Indstillinger"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:568
 msgid "Track List"
 msgstr "Sporliste"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous track"
 msgstr "Foregående spor"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous"
 msgstr "Foregående"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:593
 msgid "Rewind"
 msgstr "Spol tilbage"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:610
 msgid "Play / Pause"
 msgstr "Spil/pause"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247
+#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Stop"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:619
 msgid "Fast forward"
 msgstr "Hurtigt frem"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:627
 msgid "Next track"
 msgstr "Næste spor"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject CD"
 msgstr "Skub cd ud"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject"
 msgstr "Skub ud"
 
-#: gnome-cd/gnome-cd.c:671
-#, fuzzy
+#: gnome-cd/gnome-cd.c:688
 msgid "CD device to use"
-msgstr "Ingen cd-enhed"
+msgstr "Cd-enhed der skal benyttes"
 
-#: gnome-cd/gnome-cd.c:680
+#: gnome-cd/gnome-cd.c:697
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Start kun hvis der ikke allerede kører en cd-afspiller"
 
-#: gnome-cd/gnome-cd.c:682
+#: gnome-cd/gnome-cd.c:699
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Afspil cd'en ved start"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:712
+#: gnome-cd/gnome-cd.c:729
 msgid "Cannot create player"
-msgstr "Kan ikke start afspille"
-
-#: gnome-cd/gnome-cd.desktop.in.h:1
-msgid "CD Player"
-msgstr "Cd-afspiller"
+msgstr "Kan ikke oprette afspiller"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1513,54 +1531,59 @@ msgstr "Afspil lyd-cd'er"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr ""
+msgstr "Handling ved afslutning"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Action on start"
-msgstr ""
+msgstr "Handling ved start"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
 msgid "CD player theme"
-msgstr "Cd-_enhed:"
+msgstr "Cd-afspillertema"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
-msgstr ""
+msgstr "Sti til enhed"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgstr "Om cd-afspilleren skal foresøge at lukke cd-drevet ved start"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr ""
+msgstr "Luk cd-bakken ved start"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr ""
+"Stien til det cd-drev som cd-afspilleren skal benytte til at afspille cd'er"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
 msgstr ""
+"Hvilken handling cd-afspilleren forsøger at udføre ved afslutning. 0 = "
+"ingenting, 1 = stop afspilning, 2 = skub cd'en ud, 3 = forsøg at lukke bakken"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
 msgstr ""
+"Hvilken handling cd-afspilleren forsøger at udføre ved start. 0 = ingenting, "
+"1 = start afspilning, 2 = stop afspilning"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
 msgstr ""
+"Hvilket tema der skal benyttes til at ændre på cd-afspillerens udseende"
 
 #: gnome-cd/preferences.c:83
 #, c-format
 msgid ""
 "%s\n"
-"This means that Gnome-CD will not be able to run."
+"This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
 "Dette betyder at cd-afspilleren ikke kan køre."
@@ -1569,90 +1592,85 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Fejl under angivelse af enhed"
 
-#: gnome-cd/preferences.c:822
-msgid "Gnome CD Player Preferences"
+#: gnome-cd/preferences.c:824
+msgid "CD Player Preferences"
 msgstr "Indstillinger for cd-afspiller"
 
-#: gnome-cd/preferences.c:851
+#: gnome-cd/preferences.c:853
 msgid "CD player de_vice:"
 msgstr "Cd-_enhed:"
 
-#: gnome-cd/preferences.c:866
+#: gnome-cd/preferences.c:868
 msgid "_Apply change"
 msgstr "_Anvend ændringer"
 
 #. left side
-#: gnome-cd/preferences.c:879
-msgid "When Gnome CD Player starts"
+#: gnome-cd/preferences.c:881
+msgid "When CD player starts"
 msgstr "Når afspilleren starter"
 
-#: gnome-cd/preferences.c:887
+#: gnome-cd/preferences.c:889
 msgid "Do _nothing"
 msgstr "_Gør ingenting"
 
-#: gnome-cd/preferences.c:888
-#, fuzzy
+#: gnome-cd/preferences.c:890
 msgid "Do nothing when CD Player starts"
-msgstr "Når afspilleren starter"
+msgstr "Gør ingenting når cd-afspilleren starter"
 
-#: gnome-cd/preferences.c:898
+#: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
 msgstr "S_tart afspilning"
 
-#: gnome-cd/preferences.c:899
-#, fuzzy
+#: gnome-cd/preferences.c:901
 msgid "Start playing CD when CD Player starts"
-msgstr "Når afspilleren starter"
+msgstr "Start afspilning når cd-afspilleren starter"
 
-#: gnome-cd/preferences.c:908
+#: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
 msgstr "_Stop afspilning"
 
-#: gnome-cd/preferences.c:909
-#, fuzzy
+#: gnome-cd/preferences.c:911
 msgid "Stop playing CD when CD Player starts"
-msgstr "Når afspilleren starter"
+msgstr "Stop afspilning når cd-afspilleren starter"
 
-#: gnome-cd/preferences.c:923
+#: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
 msgstr "Forsøg at _lukke cd-drev"
 
 #. Right side
-#: gnome-cd/preferences.c:935
-msgid "When Gnome CD Player quits"
+#: gnome-cd/preferences.c:937
+msgid "When CD player quits"
 msgstr "Når afspilleren slutter"
 
-#: gnome-cd/preferences.c:943
+#: gnome-cd/preferences.c:945
 msgid "Do not_hing"
 msgstr "Gør _ingenting"
 
-#: gnome-cd/preferences.c:944
-#, fuzzy
+#: gnome-cd/preferences.c:946
 msgid "Do nothing when CD Player exits"
-msgstr "Når afspilleren slutter"
+msgstr "Gør ingenting når cd-afspilleren slutter"
 
-#: gnome-cd/preferences.c:953
+#: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
 msgstr "St_op afspilning"
 
-#: gnome-cd/preferences.c:954
+#: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
-msgstr ""
+msgstr "Stop afspilning når cd-afspilleren slutter"
 
-#: gnome-cd/preferences.c:964
+#: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "Forsøg at _åbne cd-drev"
 
-#: gnome-cd/preferences.c:965
-#, fuzzy
+#: gnome-cd/preferences.c:967
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "Forsøg at _åbne cd-drev"
+msgstr "Forsøg at åbne cd-drevet når cd-afspilleren afslutter"
 
-#: gnome-cd/preferences.c:975
+#: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
 msgstr "Forsøg at l_ukke cd-drev"
 
-#: gnome-cd/preferences.c:1006
+#: gnome-cd/preferences.c:1008
 msgid "Theme name"
 msgstr "Temanavn"
 
@@ -1685,7 +1703,7 @@ msgstr ""
 "\n"
 "Hvis du ikke har sox, vil du ikke kunne optage eller tilføje nogen effekter."
 
-#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1359
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
 msgid "Could not fork child process"
 msgstr "Kunne ikke fraspalte underproces"
 
@@ -1705,15 +1723,15 @@ msgstr "Konverterer fil..."
 msgid "Cancel"
 msgstr "Annullér"
 
-#: grecord/src/grec.c:345 grecord/src/grec.c:793
+#: grecord/src/grec.c:345 grecord/src/grec.c:795
 msgid "Audioformat: "
 msgstr "Lydformat: "
 
-#: grecord/src/grec.c:349 grecord/src/grec.c:779 grecord/src/gui.c:308
+#: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
 msgid "Sample rate: "
 msgstr "Samplerate: "
 
-#: grecord/src/grec.c:359 grecord/src/grec.c:783 grecord/src/gui.c:315
+#: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
 msgid "Channels: "
 msgstr "Kanaler: "
 
@@ -1762,7 +1780,7 @@ msgstr ""
 msgid "File '%s isn't a valid sound file."
 msgstr "Filen '%s' er ikke en gyldig lydfil."
 
-#: grecord/src/grec.c:817
+#: grecord/src/grec.c:819
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1771,7 +1789,7 @@ msgstr ""
 "'%s' er en mappe.\n"
 "Vælg venligst et andet filnavn."
 
-#: grecord/src/grec.c:829
+#: grecord/src/grec.c:831
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1780,20 +1798,20 @@ msgstr ""
 "<b>Filen '%s' eksisterer allerede.</b>\n"
 "Ønsker du at overskrive den?"
 
-#: grecord/src/grec.c:832
+#: grecord/src/grec.c:834
 msgid "Cancel save"
 msgstr "Annullér gemning"
 
-#: grecord/src/grec.c:833
+#: grecord/src/grec.c:835
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: grecord/src/grec.c:860
+#: grecord/src/grec.c:862
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Fejl under gemning af '%s'"
 
-#: grecord/src/grec.c:974
+#: grecord/src/grec.c:976
 #, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
@@ -1804,21 +1822,21 @@ msgstr ""
 "\n"
 "Dine ændringer mistes hvis du ikke gemmer dem."
 
-#: grecord/src/grec.c:979
+#: grecord/src/grec.c:981
 msgid "Do_n't save"
 msgstr "Gem _ikke"
 
-#: grecord/src/grec.c:986
+#: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
 msgstr "Gem %s?"
 
 #. Save the file
-#: grecord/src/grec.c:1010
+#: grecord/src/grec.c:1012
 msgid "Saving..."
 msgstr "Gemmer..."
 
-#: grecord/src/grec.c:1140
+#: grecord/src/grec.c:1142
 #, c-format
 msgid ""
 "The size of the current sample is more than\n"
@@ -1827,11 +1845,11 @@ msgstr ""
 "Størrelsen på det aktuelle lydklip er mere\n"
 "end %i Mb!"
 
-#: grecord/src/grec.c:1196
+#: grecord/src/grec.c:1198
 msgid "Save sound file"
 msgstr "Gem lydfil"
 
-#: grecord/src/grec.c:1425
+#: grecord/src/grec.c:1429
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -2075,8 +2093,8 @@ msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
 msgstr ""
-"Bemærk disse indstillinger træder først i kraft når et nyt lydklip oprettes. "
-"De påvirker ikke et eksisterende klip."
+"Bemærk at disse indstillinger træder først i kraft når et nyt \n"
+"lydklip oprettes. De påvirker ikke et eksisterende klip."
 
 #: grecord/src/gui.c:995
 msgid "Audio format:"
@@ -2156,7 +2174,7 @@ msgstr "Kanaler: mono"
 msgid "Channels: stereo"
 msgstr "Kanaler: stereo"
 
-#: grecord/src/sound.c:136
+#: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Tilføjer ekko til lydklippet..."
 
@@ -2243,9 +2261,6 @@ msgstr "Lydstyrkeovervåger"
 #~ msgid "don't save (modified) mixer-settings into configuration"
 #~ msgstr "gem ikke (ændrede) mixerværdier i konfigurationen"
 
-#~ msgid "CDDBSlave 2 Properties"
-#~ msgstr "Indstillinger for CDDBSlave 2"
-
 #~ msgid "CDDB"
 #~ msgstr "CDDB"
 
@@ -2257,93 +2272,6 @@ msgstr "Lydstyrkeovervåger"
 
 #~ msgid "Restore saved mixer levels on startup"
 #~ msgstr "Gendan gemte mixerindstillinger ved opstart"
-
-#~ msgid "GUI"
-#~ msgstr "Grænseflade"
-
-#~ msgid "Show mixer icons"
-#~ msgstr "Vis mixerikoner"
-
-#~ msgid "Show mixer labels"
-#~ msgstr "Vis mixernavne"
-
-#~ msgid "Labels"
-#~ msgstr "Etiketter"
-
-#~ msgid "Error opening CD"
-#~ msgstr "Fejl under åbning af cd"
-
-#~ msgid "Error reading CD header"
-#~ msgstr "Fejl ved læsning af cd-hoved"
-
-#~ msgid "IOCtl failed"
-#~ msgstr "IOCtl mislykkedes"
-
-#~ msgid "Error getting leadout"
-#~ msgstr "Fejl ved hentning af 'leadout'"
-
-#~ msgid ""
-#~ "CD changed\n"
-#~ "Track count: %d\n"
-#~ "------------------\n"
-#~ msgstr ""
-#~ "Cd skiftet\n"
-#~ "Sporantal: %d\n"
-#~ "------------------\n"
-
-#~ msgid "(eject): ioctl failed: %s"
-#~ msgstr "(eject): ioctl mislykkedes: %s"
-
-#~ msgid "(linux_cdrom_play): Drive not ready"
-#~ msgstr "(linux_cdrom_play): Drev ikke klar"
-
-#~ msgid "(linux_cdrom_play): Drive still not ready"
-#~ msgstr "(linux_cdrom_play): Drev stadigt ikke klar"
-
-#~ msgid "(linux_cdrom_play) ioctl failed %s"
-#~ msgstr "(linux_cdrom_play) ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_pause): Drive not ready"
-#~ msgstr "(linux_cdrom_pause): Drev ikke klar"
-
-#~ msgid "(linux_cdrom_pause): Resume failed %s"
-#~ msgstr "(linux_cdrom_pause): Genoptagning mislykkedes %s"
-
-#~ msgid "(linux_cdrom_pause): ioctl failed %s"
-#~ msgstr "(linux_cdrom_pause): ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_stop) ioctl failed %s"
-#~ msgstr "(linux_cdrom_stop) ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_get_status): ioctl error %s"
-#~ msgstr "(linux_cdrom_get_status): ioctl-fejl %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): CDROMSUBCHNL-ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): CDROMVOLREAD-ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_close_tray): ioctl failed %s"
-#~ msgstr "(linux_cdrom_close_tray): ioctl mislykkedes %s"
-
-#~ msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-#~ msgstr "(linux_cdrom_set_volume:1): ioctl mislykkedes %s"
-
-#~ msgid "%s is not a CDROM drive"
-#~ msgstr "%s er ikke et cd-rom-drev"
-
-#~ msgid ""
-#~ "%s does not appear to point to a valid CDRom device. This may be "
-#~ "because:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s ser ikke ud til at være et gyldigt cd-rom-drev. Dette kan skyldes:\n"
-#~ "a) Cd-understøttelse er ikke oversat ind i Linux\n"
-#~ "b) Du har ikke de nødvendige rettigheder til at tilgå cd-drevet\n"
-#~ "c) %s er ikke et cd-drev.\n"
 
 #~ msgid "Change volume"
 #~ msgstr "Justér lydstyrke"
@@ -2363,93 +2291,3 @@ msgstr "Lydstyrkeovervåger"
 
 #~ msgid "Undo all changes"
 #~ msgstr "Fortryd alle ændringer"
-
-#~ msgid "Show time"
-#~ msgstr "Vis tid"
-
-#~ msgid "Show soundinfo"
-#~ msgstr "Vis lydinfo"
-
-#~ msgid "Show sound information"
-#~ msgstr "Vis lydinformation"
-
-#~ msgid "Info"
-#~ msgstr "Info"
-
-#~ msgid "Directories"
-#~ msgstr "Mapper"
-
-#~ msgid "User interface"
-#~ msgstr "Grænseflade"
-
-#~ msgid "Main window"
-#~ msgstr "Hovedvindue"
-
-#~ msgid "GConf file is incorrectly installed."
-#~ msgstr "GConf-fil er forkert installeret."
-
-#~ msgid ""
-#~ "You havn't entered a sox command; you will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Du har ikke indtastet en sox-kommando og vil derfor ikke kunne optage.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "File %s in 'sox command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Filen %s i sox-kommando eksisterer ikke.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "You havn't entered a mixer command; you will not be able to start the "
-#~ "mixer.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Du har ikke indtastet en mixerkommando og vil derfor ikke kunne starte "
-#~ "mixeren.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "File %s in 'mixer command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Filen %s i mixerkommandoen eksisterer ikke.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "You havn't entered a temp dir. You will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Du har ikke indtastet en mappe til midlertidige filer og vil derfor ikke "
-#~ "kunne optage.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "Temp directory %s is a file.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Mappen %s til midlertidige filer er en fil.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "You don't have the correct permissions (read & write) for temp directory %"
-#~ "s.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Du har ikke de rigtige rettigheder (læse og skrive) til mappen %s.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid ""
-#~ "Directory %s does not exist.\n"
-#~ "Do want to use it anyway?"
-#~ msgstr ""
-#~ "Mappen %s eksisterer ikke.\n"
-#~ "Vil du bruge den alligevel?"
-
-#~ msgid "Play-repeating"
-#~ msgstr "Afspil gentagende"
-
-#~ msgid "Path to mixer:"
-#~ msgstr "Sti til mixer:"
