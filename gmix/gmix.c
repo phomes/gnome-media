@@ -642,6 +642,7 @@ GList *make_channels(device_info *device)
 				  strcmp(device_pixmap[j].name, g->gid.name)!=0; j++);
 		new_channel->pixmap = g_strdup (device_pixmap[j].pixmap);
 		new_channel->title= g_strdup(_(groups.pgroups[i].name));
+		new_channel->user_title= g_strdup(_(groups.pgroups[i].name));
 		new_channel->passive=0;
 		channels=g_list_append(channels, new_channel);
 	}
@@ -656,6 +657,7 @@ GList *make_channels(device_info *device)
 			new_channel->channel=i;
 	 		new_channel->pixmap = g_strdup (device_pixmap[i]);
 			new_channel->title= g_strdup(_(device_labels[i]));
+			new_channel->user_title= g_strdup(_(device_labels[i]));
 			new_channel->passive=0;
 			channels=g_list_append(channels, new_channel);
 		}
@@ -769,12 +771,17 @@ void get_one_device_config(gpointer a, gpointer b)
 	 * restore mixer-configuration
 	 */ 
 	char name[255];
-#ifdef ALSA
 	GList *p;
+
 	for (p=g_list_first(info->channels); p; p=g_list_next(p)) {
 		channel_info *channel = (channel_info *)p->data;
 		cc=channel->channel;
+#ifdef ALSA
 		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/title=%s", info->info.id,\
+				channel->title,\
+				channel->title);
+			channel->user_title = gnome_config_get_string(name);
 			sprintf(name, "/gmix/%s_%s/mute=%s", info->info.id,\
 				channel->title,\
 				(info->mute_bitmask & (1<<cc))?"true":"false");
@@ -798,10 +805,12 @@ void get_one_device_config(gpointer a, gpointer b)
 			info->recsrc&=~(1<<cc);
 			info->recsrc|=gnome_config_get_bool(name) ? (1<<cc) : 0;
 		}
-	}
 #else
-	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/title=%s", info->info.id,\
+				device_names[cc],\
+				device_labels[cc]);
+			channel->user_title = gnome_config_get_string(name);
 			sprintf(name, "/gmix/%s_%s/mute=%s", info->info.id,\
 				device_names[cc],\
 				(info->mute_bitmask & (1<<cc))?"true":"false");
@@ -825,8 +834,8 @@ void get_one_device_config(gpointer a, gpointer b)
 			info->recsrc&=~(1<<cc);
 			info->recsrc|=gnome_config_get_bool(name) ? (1<<cc) : 0;
 		}
-	}
 #endif
+	}
 }
 
 void get_device_config(void)
@@ -842,12 +851,15 @@ void put_one_device_config(gpointer a, gpointer b)
 	 * save mixer-configuration
 	 */ 
 	char name[255];
-#ifdef ALSA
 	GList *p;
+
 	for (p=g_list_first(info->channels); p; p=g_list_next(p)) {
 		channel_info *channel = (channel_info *)p->data;
 		cc=channel->channel;
+#ifdef ALSA
 		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/title", info->info.id, channel->title);
+			gnome_config_set_string(name, channel->user_title);
 			sprintf(name, "/gmix/%s_%s/mute", info->info.id, channel->title);
 			gnome_config_set_bool(name, (info->mute_bitmask & (1<<cc))!=0);
 			if (info->stereodevs & (1<<cc)) {
@@ -866,10 +878,10 @@ void put_one_device_config(gpointer a, gpointer b)
 			sprintf(name, "/gmix/%s_%s/recsrc", info->info.id, channel->title);
 			gnome_config_set_bool(name, (info->recsrc & (1<<cc))!=0);
 		}
-	}
 #else
-	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/title", info->info.id, device_names[cc]);
+			gnome_config_set_string(name, channel->user_title);
 			sprintf(name, "/gmix/%s_%s/mute", info->info.id, device_names[cc]);
 			gnome_config_set_bool(name, (info->mute_bitmask & (1<<cc))!=0);
 			if (info->stereodevs & (1<<cc)) {
@@ -888,8 +900,8 @@ void put_one_device_config(gpointer a, gpointer b)
 			sprintf(name, "/gmix/%s_%s/recsrc", info->info.id, device_names[cc]);
 			gnome_config_set_bool(name, (info->recsrc & (1<<cc))!=0);
 		}
-	}
 #endif
+	}
 }
 
 void put_device_config(void)
@@ -977,7 +989,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 				gtk_widget_show (spixmap);
 			}
 			if (prefs.use_labels) {
-				label=gtk_label_new(ci->title);
+				label=gtk_label_new(ci->user_title);
 				gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
 				gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show(label);

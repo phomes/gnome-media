@@ -31,6 +31,22 @@ extern mixerprefs prefs;
 
 #define PREFS_PAGE "Preferences Page"
 #define PREFS_COPY "Preferences Data Copy"
+#define LABELS_PAGE "Labels Page"
+
+// Common options for the table of sound device labels.
+#define LABEL_TABLE_OPTS GTK_FILL | GTK_EXPAND | GTK_SHRINK, \
+			 GTK_FILL | GTK_EXPAND | GTK_SHRINK, \
+			 0, 0
+
+// Data structure used to pass information into the routine that
+// builds a single row in the table of labels for a sound device.
+typedef struct label_create_args label_create_args_t;
+struct label_create_args {
+	GSList *entry_list;
+	GtkWidget *table;
+	gint row;
+};
+
 
 void prefs_make_window(void);
 void get_gui_config(void);

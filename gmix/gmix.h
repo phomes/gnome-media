@@ -70,6 +70,7 @@ typedef struct channel_info {
 #endif
 	/* GUI info */
 	char *title; /* or char *titel ? */
+	char *user_title;
 	char *pixmap;
 	/* here are the widgets... */
 	GtkObject *left, *right;
@@ -83,6 +84,7 @@ struct pixmap {
 	const char *pixmap;
 };
 
+extern GList *devices;
 
 void help_cb(GtkWidget *widget, gpointer data);
 void fill_in_device_guis(GtkWidget *notebook);
