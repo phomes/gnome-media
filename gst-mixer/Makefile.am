@@ -1,5 +1,5 @@
 Desktopdir = $(datadir)/applications
-SUBDIRS = pixmaps src
+SUBDIRS = pixmaps src doc
 
 @INTLTOOL_DESKTOP_RULE@
 Desktop_in_files = gnome-volume-control.desktop.in

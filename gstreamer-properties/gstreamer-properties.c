@@ -274,13 +274,13 @@ void create_dialog ()
 	
 	g_signal_connect (G_OBJECT (main_window),
 			  "response", (GCallback) dialog_response, interface_xml);
-	icon = gdk_pixbuf_new_from_file(GSTPROPS_ICONS_DIR "/gstreamer-properties.png", NULL);
+	icon = gdk_pixbuf_new_from_file(GSTPROPS_ICONDIR"/gstreamer-properties.png", NULL);
 	if (icon) {
 		gtk_window_set_icon(GTK_WINDOW(main_window), icon);
 	}
 	else {
 		/* FIXME:warning */
-		g_print("Error loading main window icon %s", GSTPROPS_ICONS_DIR "/gstreamer-properties.png");
+		g_print("Error loading main window icon %s", GSTPROPS_ICONDIR "/gstreamer-properties.png");
 	}
 	gtk_widget_show (GTK_WIDGET (main_window));
 }
@@ -302,14 +302,14 @@ main (int argc, char **argv)
 	if (g_file_test("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
 		interface_xml = glade_xml_new ("gstreamer-properties.glade", NULL, NULL);
 	}
-	else if (g_file_test(GSTPROPS_GLADE_DIR "/gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
-		interface_xml = glade_xml_new (GSTPROPS_GLADE_DIR "/gstreamer-properties.glade", NULL, NULL);
+	else if (g_file_test(GSTPROPS_GLADEDIR "/gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
+		interface_xml = glade_xml_new (GSTPROPS_GLADEDIR"/gstreamer-properties.glade", NULL, NULL);
 	}
 	
 	if (!interface_xml) {
 		/* Fatal error */
-		char *err = g_strdup_printf (_("Could not load UI resource %s"), "gstreamer-properties.glade");
-		g_print ("Error: could not load glade file\n");
+		char *err = g_strdup_printf (_("Could not load UI resource %s"),"gstreamer-properties.glade");
+		g_print ("Error: could not load glade file:\n","gstreamer-properties.glade");
 		gnome_app_error (GNOME_APP (gnome_program_get ()), err);
 		return 1;
 	}

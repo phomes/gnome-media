@@ -26,6 +26,7 @@
 #include <string.h>
 #include <glib.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <gst/gst.h>
 #include <gst/mixer/mixer.h>
 
@@ -425,7 +426,7 @@ gint
 main (gint   argc,
       gchar *argv[])
 {
-  gchar *appfile;
+  gchar *file;
   GtkWidget *window, *notebook;
   GList *mixers, *item;
   struct poptOption options[] = {
@@ -442,17 +443,14 @@ main (gint   argc,
 		      NULL);
   register_stock_icons ();
 
-  appfile = gnome_program_locate_file (NULL,
-				       GNOME_FILE_DOMAIN_APP_PIXMAP,
-				       "mixer.png", TRUE, NULL);
-  if (appfile) {
-    gnome_window_icon_set_default_from_file (appfile);
-    g_free (appfile);
-  }
-
   /* create main window + menus */
   window = gnome_app_new (PACKAGE, _("GStreamer Volume Control"));
   gnome_app_create_menus (GNOME_APP (window), main_menu);
+ 
+  /* Set appicon image */ 
+   file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP, PIX_DIR"/mixer.png", TRUE, NULL);
+    gnome_window_icon_set_default_from_file (file);
+    g_free (file);
 
   /* create all mixers */
   notebook = gtk_notebook_new ();
