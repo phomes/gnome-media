@@ -107,13 +107,6 @@ save_state (GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 }
 
 
-static void
-error_close_cb(void)
-{
-    g_error("Cannot connect to sound daemon.");
-}
-
-
 void 
 open_sound (void)
 {
@@ -123,8 +116,8 @@ open_sound (void)
     { /* TPG: Make a friendly error dialog if we can't open sound */
 	GtkWidget *box;
 	box = gnome_error_dialog(_("Cannot connect to sound daemon.\nPlease run 'esd' at a command prompt."));
-	gtk_signal_connect(GTK_OBJECT(box), "close",
-			   GTK_SIGNAL_FUNC(error_close_cb), NULL);
+	gnome_dialog_run(GNOME_DIALOG(box));
+	exit(1);
     }
 }
 
