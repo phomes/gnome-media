@@ -194,7 +194,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 	/* Check if the given sox command exists --------------------- */
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a sox command; you will not be able to record.\nDo you want to use it anyway?"), temp_file);
-		mess = gnome_message_box_new (_(show_mess),
+		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_QUESTION,
 					      GNOME_STOCK_BUTTON_YES,
 					      GNOME_STOCK_BUTTON_NO,
@@ -219,7 +219,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		/* Check if the given mixer command exists -------------------- */
 		if (!g_file_exists (temp_file)) {
 			show_mess = g_strdup_printf (_("File %s in 'sox command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (_(show_mess),
+			mess = gnome_message_box_new (show_mess,
 						      GNOME_MESSAGE_BOX_QUESTION,
 						      GNOME_STOCK_BUTTON_YES,
 						      GNOME_STOCK_BUTTON_NO,
@@ -243,7 +243,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 	/* Check if the given mix command exists --------------------- */
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a mixer command; you will not be able to start the mixer.\nDo you want to use it anyway?"), temp_file);
-		mess = gnome_message_box_new (_(show_mess),
+		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_QUESTION,
 					      GNOME_STOCK_BUTTON_YES,
 					      GNOME_STOCK_BUTTON_NO,
@@ -268,7 +268,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		/* Check if the given mixer command exists -------------------- */
 		if (!g_file_exists (temp_file)) {
 			show_mess = g_strdup_printf (_("File %s in 'mixer command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (_(show_mess),
+			mess = gnome_message_box_new (show_mess,
 						      GNOME_MESSAGE_BOX_QUESTION,
 						      GNOME_STOCK_BUTTON_YES,
 						      GNOME_STOCK_BUTTON_NO,
@@ -291,7 +291,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a temp dir. You will not be able to record.\nDo you want to use it anyway?"), temp_file);
-		mess = gnome_message_box_new (_(show_mess),
+		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_QUESTION,
 					      GNOME_STOCK_BUTTON_YES,
 					      GNOME_STOCK_BUTTON_NO,
@@ -310,7 +310,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		if (!stat (temp_file, &file_info)) {         /* Exists */
 			if (!S_ISDIR (file_info.st_mode)) {   /* Not a directory */
 				show_mess = g_strdup_printf (_("Temp directory %s is a file.\nDo you want to use it anyway?"), temp_file);
-				mess = gnome_message_box_new (_(show_mess),
+				mess = gnome_message_box_new (show_mess,
 							      GNOME_MESSAGE_BOX_QUESTION,
 							      GNOME_STOCK_BUTTON_YES,
 							      GNOME_STOCK_BUTTON_NO,
