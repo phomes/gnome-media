@@ -514,8 +514,18 @@ device_info *open_device(int num)
 	 */
 #ifdef OSS_GETVERSION
 	res=ioctl(new_device->fd, OSS_GETVERSION, &ver);
-	if ((res!=EINVAL) && (ver!=SOUND_VERSION)) {
-		fprintf(stderr, "Warning: This version of gmix was compiled with a different version of\nsoundcard.h.\n");
+	if ((res==EINVAL) || (ver!=SOUND_VERSION)) {
+		fprintf(stderr,
+			_("Warning: This version of gmix was compiled with\n"
+			  "OSS version %d.%d.%d, and your system is running\n"),
+			SOUND_VERSION >> 16, (SOUND_VERSION >> 8) & 0xff,
+			SOUND_VERSION & 0xff);
+		if (res == EINVAL) {
+			fprintf(stderr, _("a version prior to 3.6.0.\n"));
+		} else {
+			fprintf(stderr, _("version %d.%d.%d.\n"),
+			ver >> 16, (ver >> 8) & 0xff, ver & 0xff);
+		}
 	}
 #endif
 	/*
