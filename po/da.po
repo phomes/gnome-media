@@ -174,74 +174,78 @@ msgstr "Radio"
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:187
+#: gmix/gmix.c:106 tcd/popup.c:21
+msgid "Help"
+msgstr "Hjælp"
+
+#: gmix/gmix.c:190
 msgid "don't restore mixer-settings from configuration"
 msgstr "gendan ikke mixerværdiene fra konfigurationen"
 
-#: gmix/gmix.c:188
+#: gmix/gmix.c:191
 msgid "restore mixer-settings from configuration"
 msgstr "gendan mixerværdiene fra konfigurationen"
 
-#: gmix/gmix.c:189
+#: gmix/gmix.c:192
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "opstart mixer(ne) fra gemt konfiguration og afslut"
 
-#: gmix/gmix.c:190
+#: gmix/gmix.c:193
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "gem ikke (ændrede) mixerværdier i konfigurationen"
 
 #. start frame
-#: gmix/gmix.c:427 tcd/prefs.c:401
+#: gmix/gmix.c:430 tcd/prefs.c:402
 msgid "On startup"
 msgstr "Ved opstart"
 
 #. Set on start
-#: gmix/gmix.c:433
+#: gmix/gmix.c:436
 msgid "Restore saved mixer levels on startup"
 msgstr "Gendan gemte mixerindstillinger ved opstart"
 
-#: gmix/gmix.c:439
+#: gmix/gmix.c:442
 msgid "Hide menu on start"
 msgstr "Gem menu ved start"
 
-#: gmix/gmix.c:454
+#: gmix/gmix.c:457
 msgid "GUI"
 msgstr "Brugerflade"
 
-#: gmix/gmix.c:458
+#: gmix/gmix.c:461
 msgid "Use mixer icons"
 msgstr "Brug mixerikoner"
 
-#: gmix/gmix.c:466
+#: gmix/gmix.c:469
 msgid "Use mixer labels"
 msgstr "Brug mixernavne"
 
-#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:604
+#: gmix/gmix.c:492 tcd/gtcd.c:364 tcd/prefs.c:605
 msgid "Preferences"
 msgstr "Indstillinger"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1175
+#: gmix/gmix.c:1181
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1185
+#: gmix/gmix.c:1191
 msgid "Rec."
 msgstr "Optag"
 
-#: gmix/gmix.c:1203
+#: gmix/gmix.c:1209
 msgid "Mute"
 msgstr "Stum"
 
-#: gmix/gmix.c:1227
+#: gmix/gmix.c:1233
 msgid "GMIX 3.0"
 msgstr "Gnome mixer"
 
-#: gmix/gmix.c:1528
+#: gmix/gmix.c:1548
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMix - Gnome mixeren"
 
-#: gmix/gmix.c:1531
+#: gmix/gmix.c:1551
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mixer for OSS lyd-enheder."
 
@@ -249,7 +253,7 @@ msgstr "Dette er en mixer for OSS lyd-enheder."
 msgid "GNOME Soundrecorder:"
 msgstr "GNOME lydoptager:"
 
-#: grecord/src/grec.c:88 grecord/src/grec.c:118 grecord/src/grec.c:1027
+#: grecord/src/grec.c:88 grecord/src/grec.c:118 grecord/src/grec.c:1024
 msgid "Could not fork child process"
 msgstr "Kunne ikke udføre fork for underproces"
 
@@ -261,34 +265,34 @@ msgstr "Optager..."
 msgid "Playing..."
 msgstr "Spiller..."
 
-#: grecord/src/grec.c:175
+#: grecord/src/grec.c:173
 msgid "Converting file..."
 msgstr "Konverterer fil..."
 
-#: grecord/src/grec.c:241 grecord/src/grec.c:655 grecord/src/gui.c:327
-#: grecord/src/preferences.c:394
+#: grecord/src/grec.c:239 grecord/src/grec.c:653 grecord/src/gui.c:327
+#: grecord/src/preferences.c:395
 msgid "Audioformat: "
 msgstr "Lydformat: "
 
-#: grecord/src/grec.c:245 grecord/src/grec.c:641 grecord/src/gui.c:334
-#: grecord/src/preferences.c:398
+#: grecord/src/grec.c:243 grecord/src/grec.c:639 grecord/src/gui.c:334
+#: grecord/src/preferences.c:399
 msgid "Sample rate: "
 msgstr "Samplerate: "
 
-#: grecord/src/grec.c:255 grecord/src/grec.c:645 grecord/src/gui.c:341
-#: grecord/src/preferences.c:402
+#: grecord/src/grec.c:253 grecord/src/grec.c:643 grecord/src/gui.c:341
+#: grecord/src/preferences.c:403
 msgid "Channels: "
 msgstr "Kanaler: "
 
-#: grecord/src/grec.c:285
+#: grecord/src/grec.c:283
 msgid "Select a sound file"
 msgstr "Vælg en lydfil"
 
-#: grecord/src/grec.c:504
+#: grecord/src/grec.c:502
 msgid "Undoing all changes..."
 msgstr "Omgør alle ændringer..."
 
-#: grecord/src/grec.c:582
+#: grecord/src/grec.c:580
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -297,7 +301,7 @@ msgstr ""
 "'%s' er et katalog.\n"
 "Venligst vælg en lydfil der skal åbnes."
 
-#: grecord/src/grec.c:594
+#: grecord/src/grec.c:592
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -306,12 +310,12 @@ msgstr ""
 "Filen '%s' eksisterer ikke.\n"
 "Venligst vælg en eksisterende lydfil der skal åbnes."
 
-#: grecord/src/grec.c:606
+#: grecord/src/grec.c:604
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Filen '%s' er ikke en gyldig lydfil."
 
-#: grecord/src/grec.c:679
+#: grecord/src/grec.c:677
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -320,7 +324,7 @@ msgstr ""
 "'%s' er et katalog.\n"
 "Venligst vælg et andet filnavn."
 
-#: grecord/src/grec.c:689
+#: grecord/src/grec.c:687
 #, c-format
 msgid ""
 "File '%s' already exists.\n"
@@ -329,29 +333,29 @@ msgstr ""
 "Filen '%s' eksisterer allerede.\n"
 "Ønsker du at overskrive den?"
 
-#: grecord/src/grec.c:704
+#: grecord/src/grec.c:702
 msgid "Error saving sound file"
 msgstr "Fejl under gemning af lydfil"
 
-#: grecord/src/grec.c:740
+#: grecord/src/grec.c:738
 msgid "File not saved. Do you want to save it?"
 msgstr "Fil ikke gemt. Vil du gemme den?"
 
 #. Save the file
-#: grecord/src/grec.c:759
+#: grecord/src/grec.c:757
 msgid "Saving..."
 msgstr "Gemmer..."
 
-#: grecord/src/grec.c:873
+#: grecord/src/grec.c:871
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "Størrelsen på aktive sample er mere end %i Mb!"
 
-#: grecord/src/grec.c:921
+#: grecord/src/grec.c:919
 msgid "Save sound file"
 msgstr "Gem lydfil"
 
-#: grecord/src/grec.c:1090
+#: grecord/src/grec.c:1087
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -469,7 +473,7 @@ msgstr "Filen '%s' eksisterer ikke; bruger standard."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Filen '%s' er ikke en understøttet lydfil."
 
-#: grecord/src/gui.c:441 grecord/src/main.c:107
+#: grecord/src/gui.c:441 grecord/src/main.c:109
 msgid "GNOME Sound recorder"
 msgstr "Gnome lydoptager"
 
@@ -629,11 +633,11 @@ msgstr "Angiv en fil som skal optages"
 msgid "Specify a file to start playing"
 msgstr "Angiv en fil som skal afspilles"
 
-#: grecord/src/main.c:162
+#: grecord/src/main.c:173
 msgid "Don't show this message again."
 msgstr "Vis ikke denne meddelelse igen."
 
-#: grecord/src/main.c:164
+#: grecord/src/main.c:175
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -663,7 +667,7 @@ msgstr ""
 "Filen %s i 'sox kommando' eksisterer ikke.\n"
 "Vil du bruge den alligevel?"
 
-#: grecord/src/preferences.c:245
+#: grecord/src/preferences.c:246
 msgid ""
 "You havn't entered a mixer command; you will not be able to start the "
 "mixer.\n"
@@ -673,7 +677,7 @@ msgstr ""
 "mikseren.\n"
 "Vil du bruge den alligevel?"
 
-#: grecord/src/preferences.c:270
+#: grecord/src/preferences.c:271
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -682,7 +686,7 @@ msgstr ""
 "Filen %s i 'mixer kommando' eksisterer ikke.\n"
 "Vil du bruge den alligevel?"
 
-#: grecord/src/preferences.c:293
+#: grecord/src/preferences.c:294
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -693,7 +697,7 @@ msgstr ""
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:312
+#: grecord/src/preferences.c:313
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -702,7 +706,7 @@ msgstr ""
 "Temp-kataloget %s er en fil.\n"
 "Vil du bruge den alligevel?"
 
-#: grecord/src/preferences.c:332
+#: grecord/src/preferences.c:333
 #, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory "
@@ -714,7 +718,7 @@ msgstr ""
 "Vil du bruge det alligevel?"
 
 #. Does not exist
-#: grecord/src/preferences.c:350
+#: grecord/src/preferences.c:351
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -723,11 +727,11 @@ msgstr ""
 "Kataloget %s eksisterer ikke.\n"
 "Vil du bruge den alligevel?"
 
-#: grecord/src/sound.c:106
+#: grecord/src/sound.c:101
 msgid " untitled.wav"
 msgstr " uden-navn.wav"
 
-#: grecord/src/sound.c:152 grecord/src/sound.c:156
+#: grecord/src/sound.c:147 grecord/src/sound.c:151
 msgid "Adding echo to sample..."
 msgstr "Tilføjer ekko på samplingen..."
 
@@ -814,30 +818,30 @@ msgstr "Lokal database"
 msgid "CDDB Data"
 msgstr "CDDB data"
 
-#: tcd/cddb_props.c:340
+#: tcd/cddb_props.c:341
 msgid "CDDB Editor"
 msgstr "CDDB redigering"
 
-#: tcd/cddb_props.c:354
+#: tcd/cddb_props.c:355
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Fejl under læsning af $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:470
+#: tcd/cddb_props.c:471
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "Kunne ikke fjerne fil: %s\n"
 
-#: tcd/cddb_props.c:482
+#: tcd/cddb_props.c:483
 msgid "Delete CDDB Entry?"
 msgstr "Slet CDDB punkt?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:309
+#: tcd/cddb_status.c:51 tcd/gtracked.c:310
 msgid "CDDB Status"
 msgstr "CDDB status"
 
 #. grab button
-#: tcd/cddb_status.c:68
+#: tcd/cddb_status.c:69
 msgid "Get CDDB Now"
 msgstr "Få CDDB nu!"
 
@@ -939,45 +943,45 @@ msgstr "Spor"
 msgid "Title"
 msgstr "Titel"
 
-#: tcd/gtracked.c:194
+#: tcd/gtracked.c:195
 msgid "Track Editor"
 msgstr "Sporredigering"
 
 #. Disc area
-#: tcd/gtracked.c:210
+#: tcd/gtracked.c:211
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Diskinformation (%02u:%02u minutter)"
 
-#: tcd/gtracked.c:219
+#: tcd/gtracked.c:220
 msgid "Artist / Title"
 msgstr "Kunstner / Titel"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:242
+#: tcd/gtracked.c:243
 msgid "Track Information"
 msgstr "Sporinformation"
 
 #. Clear button
-#: tcd/gtracked.c:298
+#: tcd/gtracked.c:299
 msgid "Clear"
 msgstr "Blank"
 
 #. Playlist button
-#: tcd/gtracked.c:303
+#: tcd/gtracked.c:304
 msgid "Playlist"
 msgstr "Spilleliste"
 
-#: tcd/gtracked.c:315
+#: tcd/gtracked.c:316
 msgid "Submit"
 msgstr "Indsend"
 
-#: tcd/gtracked.c:377
+#: tcd/gtracked.c:378
 msgid "Submit Information"
 msgstr "Indsend information"
 
-#: tcd/gtracked.c:383
+#: tcd/gtracked.c:384
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -986,12 +990,12 @@ msgstr ""
 "Indsend information om\n"
 "'%s'"
 
-#: tcd/gtracked.c:392
+#: tcd/gtracked.c:393
 msgid "To: "
 msgstr "Til: "
 
 #. end of service menu
-#: tcd/gtracked.c:424
+#: tcd/gtracked.c:425
 msgid "Category: "
 msgstr "Kategori: "
 
@@ -1029,10 +1033,6 @@ msgstr "Indstillinger..."
 msgid "Track Editor..."
 msgstr "Sporredigering..."
 
-#: tcd/popup.c:21
-msgid "Help"
-msgstr "Hjælp"
-
 #: tcd/popup.c:22
 msgid "About"
 msgstr "Om..."
@@ -1064,62 +1064,62 @@ msgid "Open tray"
 msgstr "Åbn skuffe"
 
 #. device entry
-#: tcd/prefs.c:338
+#: tcd/prefs.c:339
 msgid "CDROM device"
 msgstr "Cdrom-enhed"
 
 #. Color picker
-#: tcd/prefs.c:347
+#: tcd/prefs.c:348
 msgid "Track/title color"
 msgstr "Spor/titelfarve"
 
 #. font picker
-#: tcd/prefs.c:359
+#: tcd/prefs.c:360
 msgid "Track/title font"
 msgstr "Spor/titelskrift"
 
-#: tcd/prefs.c:360
+#: tcd/prefs.c:361
 msgid "Change font"
 msgstr "Vælg skrifttype"
 
 #. show handles
-#: tcd/prefs.c:367
+#: tcd/prefs.c:368
 msgid "Show handles (restart required)"
 msgstr "Vis håndtag (genstart påkrævet)"
 
 #. show tooltips
-#: tcd/prefs.c:374
+#: tcd/prefs.c:375
 msgid "Show tooltips"
 msgstr "Vis værktøjstips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:381
+#: tcd/prefs.c:382
 msgid "Use alternate method to play CD"
 msgstr "Brug alternativ metode til at afspille cd'er"
 
 #. exit frame
-#: tcd/prefs.c:407
+#: tcd/prefs.c:408
 msgid "On exit"
 msgstr "Ved afslutning"
 
-#: tcd/prefs.c:515
+#: tcd/prefs.c:516
 msgid "Key"
 msgstr "Tast"
 
-#: tcd/prefs.c:516
+#: tcd/prefs.c:517
 msgid "Action"
 msgstr "Handling"
 
-#: tcd/prefs.c:536
+#: tcd/prefs.c:537
 msgid "Click here to change (restart required):"
 msgstr "Klik her for at ændre (genstart påkrævet):"
 
 #. Frame
-#: tcd/prefs.c:558 tcd/prefs.c:608
+#: tcd/prefs.c:559 tcd/prefs.c:609
 msgid "Keybindings"
 msgstr "Tastegenveje"
 
-#: tcd/prefs.c:612
+#: tcd/prefs.c:613
 msgid "CDDB Settings"
 msgstr "CDDB opsætning"
 
@@ -1164,7 +1164,7 @@ msgstr "Brug en lodret udgave af måleren."
 msgid "Host is %s\n"
 msgstr "Vært er %s\n"
 
-#: vu-meter/main.c:291
+#: vu-meter/main.c:293
 msgid "Volume Meter"
 msgstr "Volumenmåler"
 
