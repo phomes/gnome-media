@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 scrollkeeper-update -q
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-SCHEMAS="CDDB-Slave2.schemas gnome-cd.schemas gnome-sound-recorder.schemas"
+SCHEMAS="CDDB-Slave2.schemas gnome-cd.schemas gnome-sound-recorder.schemas gnome-audio-profiles.schemas"
 for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S > /dev/null
 done
@@ -108,7 +108,7 @@ scrollkeeper-update
 %{_libdir}/libglade/2.0/*.so
 %{_bindir}/cddb-slave2-properties
 %{_bindir}/gnome-cd
-%{_bindir}/gst-mixer
+%{_bindir}/gnome-volume-control
 %{_bindir}/vumeter
 %{_bindir}/gstreamer-properties
 %{_bindir}/gnome-audio-profiles-properties
@@ -121,7 +121,9 @@ scrollkeeper-update
 
 
 %changelog
-* Sun Dec 21 2003 Christian Schaller <Uraeus@gnome.org>
+* Sun Jan 03 2004 Christian Schaller <Uraeus@gnome.org>
+- Make sure audio profiles schemas are loaded
+
 * Sun Dec 14 2003 Christian Schaller <Uraeus@gnome.org>
 - Add thomas new media properties
 - Add docs to gstreamer-properties
