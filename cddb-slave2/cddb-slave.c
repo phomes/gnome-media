@@ -919,12 +919,12 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 
 	split = strstr (dtitle->str, " / ");
 	if (split == NULL) {
-		return NULL;
+		ret = CORBA_string_dup (dtitle->str);
+	} else {
+		artist = g_strndup (dtitle->str, split - dtitle->str);
+		ret = CORBA_string_dup (artist);
+		g_free (artist);
 	}
-
-	artist = g_strndup (dtitle->str, split - dtitle->str);
-	ret = CORBA_string_dup (artist);
-	g_free (artist);
 	
 	return ret;
 }
@@ -950,10 +950,10 @@ impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 
 	split = strstr (dtitle->str, " / ");
 	if (split == NULL) {
-		return NULL;
+		return CORBA_string_dup ("");
+	} else {
+		return CORBA_string_dup (split + 3);
 	}
-
-	return CORBA_string_dup (split + 3);
 }
 
 static CORBA_short
