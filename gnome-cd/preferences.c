@@ -54,6 +54,7 @@
 #include <gnome.h>
 
 #include <gconf/gconf-client.h>
+#include <bacon-cd-selection.h>
 
 #include "gnome-cd.h"
 #include "preferences.h"
@@ -70,7 +71,6 @@ do_device_changed (GnomeCDPreferences *prefs,
 	if (prefs->device != NULL) {
 		g_free (prefs->device);
 	}
-
 	prefs->device = g_strdup (device);
 	if (prefs->gcd->cdrom != NULL &&
 	    prefs->gcd->device_override == NULL) {
@@ -90,6 +90,8 @@ do_device_changed (GnomeCDPreferences *prefs,
 		}
 		
 		cd_selection_stop (prefs->gcd->cd_selection);
+		//cddb_get_query (prefs->gcd);
+		prefs->gcd->last_status->cd = GNOME_CDROM_STATUS_NOTHING;
 		prefs->gcd->cd_selection = cd_selection_start (prefs->device);
 	}
 }
@@ -259,7 +261,6 @@ typedef struct _PropertyDialog {
 	GtkWidget *window;
 
 	GtkWidget *cd_device;
-	GtkWidget *apply;
 	
 	GtkWidget *start_play;
 	GtkWidget *start_stop;
@@ -329,74 +330,23 @@ prefs_destroy_cb (GtkDialog *dialog,
 }
 
 static void
-apply_clicked_cb (GtkWidget *apply,
-		  PropertyDialog *pd)
+device_changed_cb (BaconCdSelection *bcs,
+		   const char *device_path,
+		   PropertyDialog *pd)
 {
-	const char *new_device;
 	GnomeCDRom *dummy;
 
-	new_device = gtk_entry_get_text (GTK_ENTRY (pd->cd_device));
-	
-	if (!new_device)
+	if (!device_path)
 		return;
 
 	if (pd->gcd->preferences->device &&
-	    strcmp (new_device, pd->gcd->preferences->device) == 0)
+	    strcmp (device_path, pd->gcd->preferences->device) == 0)
 		return;
 	
-	gconf_client_set_string (client, "/apps/gnome-cd/device", new_device, NULL);
-	gtk_widget_set_sensitive (pd->apply, FALSE);
+	gconf_client_set_string (client, "/apps/gnome-cd/device", device_path, NULL);
 
-	dummy = gnome_cdrom_new (new_device, GNOME_CDROM_UPDATE_NEVER, NULL);
-	if (dummy == NULL) {
-		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
-						   GTK_RESPONSE_CLOSE,
-						   FALSE);
-	} else {
-		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
-						   GTK_RESPONSE_CLOSE,
-						   TRUE);
-		g_object_unref (G_OBJECT (dummy));
-	}
-
-}
-
-static void
-device_changed_cb (GtkWidget *entry,
-		   PropertyDialog *pd)
-{
-	const char *new_device;
-
-	new_device = gtk_entry_get_text (GTK_ENTRY (entry));
-	if (new_device == NULL || *new_device == 0) {
-		gtk_widget_set_sensitive (pd->apply, FALSE);
-		return;
-	}
-
-	if (pd->gcd->preferences->device != NULL) {
-		if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
-			gtk_widget_set_sensitive (pd->apply, FALSE);
-			return;
-		}
-	}
-
-	gtk_widget_set_sensitive (pd->apply, TRUE);
-}
-
-static void
-change_device_widget (GConfClient *_client,
-		      guint cnxn,
-		      GConfEntry *entry,
-		      gpointer user_data)
-{
-	PropertyDialog *pd = user_data;
-	GConfValue *value = gconf_entry_get_value (entry);
-	
-	g_signal_handlers_block_matched (G_OBJECT (pd->cd_device), G_SIGNAL_MATCH_FUNC,
-					 0, 0, NULL, G_CALLBACK (device_changed_cb), pd);
-	gtk_entry_set_text (GTK_ENTRY (pd->cd_device), gconf_value_get_string (value));
-	g_signal_handlers_unblock_matched (G_OBJECT (pd->cd_device), G_SIGNAL_MATCH_FUNC,
-					   0, 0, NULL, G_CALLBACK (device_changed_cb), pd);
+	dummy = gnome_cdrom_new (device_path, GNOME_CDROM_UPDATE_NEVER, NULL);
+	g_object_unref (dummy);
 }
 
 static void
@@ -613,8 +563,7 @@ make_title_label (const char *text)
 }
 
 GtkWidget *
-preferences_dialog_show (GnomeCD *gcd,
-			 gboolean only_device)
+preferences_dialog_show (GnomeCD *gcd)
 {
 	PropertyDialog *pd;
 	GtkWindow *windy;
@@ -643,17 +592,8 @@ preferences_dialog_show (GnomeCD *gcd,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 	gtk_window_set_default_size (GTK_WINDOW (pd->window), 390, 315);
 	
-	if (only_device == FALSE) {
-		g_signal_connect (G_OBJECT (pd->window), "response",
-				  G_CALLBACK (prefs_response_cb), pd);
-	} else {
-		/* A bit of a cheat:
-		   but if we're only setting the device,
-		   that means the device is wrong... */
-		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
-						   GTK_RESPONSE_CLOSE,
-						   FALSE);
-	}
+	g_signal_connect (G_OBJECT (pd->window), "response",
+			  G_CALLBACK (prefs_response_cb), pd);
 
 	g_signal_connect (G_OBJECT (pd->window), "destroy",
 			  G_CALLBACK (prefs_destroy_cb), pd);
@@ -681,27 +621,17 @@ preferences_dialog_show (GnomeCD *gcd,
 	inner_hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (hbox), inner_hbox, TRUE, TRUE, 0);
 	
-	pd->cd_device = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (pd->cd_device), gcd->preferences->device);
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->cd_device);
+	pd->cd_device = bacon_cd_selection_new ();
+	bacon_cd_selection_set_device (BACON_CD_SELECTION (pd->cd_device), gcd->preferences->device);
+/*	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (pd->cd_device));
 	add_paired_relations (label, ATK_RELATION_LABEL_FOR,
-			      pd->cd_device, ATK_RELATION_LABELLED_BY);
+			      GTK_WIDGET (pd->cd_device),
+ATK_RELATION_LABELLED_BY);*/
 	
-	g_signal_connect (G_OBJECT (pd->cd_device), "changed",
+	g_signal_connect (pd->cd_device, "device_changed",
 			  G_CALLBACK (device_changed_cb), pd);
-	g_signal_connect (G_OBJECT (pd->cd_device), "activate",
-			  G_CALLBACK (apply_clicked_cb), pd);
 	gtk_box_pack_start (GTK_BOX (inner_hbox), pd->cd_device, TRUE, TRUE, 0);
 	
-	pd->apply = gtk_button_new_with_mnemonic (_("_Apply change"));
-	gtk_widget_set_sensitive (pd->apply, FALSE);
-	g_signal_connect (G_OBJECT (pd->apply), "clicked",
-			  G_CALLBACK (apply_clicked_cb), pd);
-	gtk_box_pack_start (GTK_BOX (inner_hbox), pd->apply, FALSE, FALSE, 0);
-
-	pd->device_id = gconf_client_notify_add (client,
-						 "/apps/gnome-cd/device",
-						 change_device_widget, pd, NULL, NULL);
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE, 0);
 
@@ -744,10 +674,6 @@ preferences_dialog_show (GnomeCD *gcd,
 					       "/apps/gnome-cd/on-stop-eject",
 					       change_stop_widget, pd, NULL, NULL);
 	
-	if (only_device == TRUE) {
-		gtk_widget_set_sensitive (hbox, FALSE);
-	}
-
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_widget_show (inner_vbox);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, TRUE, TRUE, 0);
@@ -797,10 +723,6 @@ preferences_dialog_show (GnomeCD *gcd,
 						change_theme_selection_widget, pd, NULL, NULL);
 	gtk_widget_show_all (pd->window);
 
-	if (only_device == TRUE) {
-		gtk_widget_set_sensitive (sw, FALSE);
-	}
-	
 	return pd->window;
 }
 

@@ -404,7 +404,7 @@ show_error (GtkWidget	*dialog,
 
 	case 2:
 		gtk_widget_destroy (dialog);
-		dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
+		dialog = GTK_WIDGET(preferences_dialog_show (gcd));
 
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
@@ -462,7 +462,7 @@ init_player (const char *device_override)
 		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
 		case 1:
 			gtk_widget_destroy (dialog);
-			dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
+			dialog = GTK_WIDGET(preferences_dialog_show (gcd));
 
 			/* Don't care what it returns */
 			gtk_dialog_run (GTK_DIALOG (dialog));

@@ -5,6 +5,7 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
+	$(GNOMECD_CFLAGS)			\
 	$(GAILUTIL_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
@@ -74,6 +75,7 @@ gnome_cd_SOURCES =		\
 ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
 
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
+		 $(GNOMECD_LIBS)	\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
 		 libgnomemedia-cddbslave2.la \
 		 $(INTLLIBS)		\

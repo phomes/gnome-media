@@ -41,7 +41,6 @@ typedef struct _GnomeCDPreferences {
 } GnomeCDPreferences;
 
 GnomeCDPreferences *preferences_new         (GnomeCD *gcd);
-GtkWidget          *preferences_dialog_show (GnomeCD *gcd,
-					     gboolean only_device);
+GtkWidget          *preferences_dialog_show (GnomeCD *gcd);
 
 #endif
