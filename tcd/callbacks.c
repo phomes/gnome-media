@@ -113,7 +113,13 @@ void quit_cb(GtkWidget *widget, gpointer data)
 	save_prefs(prefs);
 	gnome_config_set_int("/gtcd/ui/time_display", time_display);
 	gnome_config_sync();
-	
+
+	gtk_widget_set_sensitive (widget, FALSE);
+
+	/* Let widgets redraw */
+	while (g_main_iteration (FALSE))
+		;
+
 	gdk_gc_destroy(gc);
 	exit_action();
 	tcd_close_disc(&cd);
