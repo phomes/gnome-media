@@ -68,10 +68,10 @@ skip_to_track (GtkWidget *item,
 
 	if (gcd->cdrom->playmode == GNOME_CDROM_SINGLE_TRACK) {
 		end_track = track + 2;
-		endmsf = NULL;
+		endmsf = &msf;
 	} else {
 		end_track = -1;
-		endmsf = &msf;
+		endmsf = NULL;
 	}
 	
 	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), track + 1, &msf, end_track, endmsf, &error) == FALSE) {

@@ -424,7 +424,38 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
+		if (status->audio == GNOME_CDROM_AUDIO_COMPLETE) {
+			if (cdrom->loopmode == GNOME_CDROM_LOOP) {
+				if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+					/* Around we go */
+					play_cb (NULL, gcd);
+				} else {
+					GnomeCDRomMSF msf;
+					int start_track, end_track;
+					GError *error;
 
+					/* CD has gone to the start of the next track.
+					   Track we want to loop is track - 1 */
+					start_track = status->track - 1;
+					end_track = status->track;
+
+					msf.minute = 0;
+					msf.second = 0;
+					msf.frame = 0;
+					
+					if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
+							      end_track, &msf, &error) == FALSE) {
+						g_warning ("%s: %s", __FUNCTION__, error->message);
+						g_error_free (error);
+						
+						g_free (status);
+						return;
+					}
+				}
+			}
+			break;
+		}
+		
 		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 		if (track + 1 != status->track) {
 			g_signal_handlers_block_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC,
@@ -449,23 +480,12 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		g_free (text);
 
 		if (gcd->disc_info == NULL) {
-#if 0
-			text = g_strdup_printf ("Track %d", status->track);
-			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, text);
-			g_free (text);
-#endif
-			
 			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
 			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
 			gnome_cd_set_window_title (gcd, NULL, NULL);
 		} else {
 			GnomeCDDiscInfo *info = gcd->disc_info;
 
-#if 0
-			if (info->tracknames[status->track - 1] != NULL) {
-				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, info->tracknames[status->track - 1]);
-			}
-#endif
 			if (info->artist != NULL) {
 				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, info->artist);
 			}
