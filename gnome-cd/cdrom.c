@@ -315,9 +315,15 @@ cdrom_set_device (GnomeCDRom *cdrom,
 	g_free (priv->device);
 	priv->device = g_strdup (device);
 
-	if (!gnome_cdrom_open_dev (cdrom, error))
-		return FALSE;
-	gnome_cdrom_close_dev (cdrom, FALSE);
+	switch (cdrom->lifetime) {
+		case  GNOME_CDROM_DEVICE_STATIC :
+			if (!gnome_cdrom_open_dev (cdrom, error))
+				return FALSE;
+			gnome_cdrom_close_dev (cdrom, FALSE);
+			break;
+		default :
+			break;
+	}
 
 	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
 					 cdrom->priv->device,
@@ -331,7 +337,8 @@ cdrom_set_device (GnomeCDRom *cdrom,
 					      "c) %s is not the CD drive.\n",					     
 					      cdrom->priv->device, cdrom->priv->device);
 		}
-		return FALSE;
+		if (cdrom->lifetime == GNOME_CDROM_DEVICE_STATIC)
+			return FALSE;
 	}
 
 	gnome_cdrom_force_status_rescan (cdrom);
@@ -811,10 +818,12 @@ GnomeCDRom *
 gnome_cdrom_construct (GnomeCDRom      *cdrom,
 		       const char      *device,
 		       GnomeCDRomUpdate update,
+		       GnomeCDRomDeviceLifetime lifetime,
 		       GError         **error)
 {
 	g_return_val_if_fail (GNOME_IS_CDROM (cdrom), NULL);
 
+	cdrom->lifetime = lifetime;
 	cdrom->priv->update = update;
 
 	if (!gnome_cdrom_set_device (cdrom, device, error)) {

@@ -399,7 +399,6 @@ init_player (void)
 	if (gcd->cdrom == NULL) {
 		if (error != NULL) {
 			gcd_warning ("%s", error);
-			g_error_free (error);
 		}
 	} else {
 		g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",

@@ -30,6 +30,11 @@ G_BEGIN_DECLS
 }
 
 typedef enum {
+	GNOME_CDROM_DEVICE_STATIC,
+	GNOME_CDROM_DEVICE_TRANSIENT
+} GnomeCDRomDeviceLifetime;
+
+typedef enum {
 	GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 	GNOME_CDROM_ERROR_NOT_OPENED,
 	GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -100,6 +105,7 @@ struct _GnomeCDRom {
 
 	int fd;
 
+	GnomeCDRomDeviceLifetime lifetime;
 	GnomeCDRomPrivate *priv;
 };
 
@@ -226,6 +232,7 @@ gboolean gnome_cdrom_set_device (GnomeCDRom *cdrom,
 GnomeCDRom *gnome_cdrom_construct  (GnomeCDRom      *cdrom,
 				    const char      *device,
 				    GnomeCDRomUpdate update,
+				    GnomeCDRomDeviceLifetime lifetime,
 				    GError         **error);
 gboolean    gnome_cdrom_open_dev   (GnomeCDRom      *cdrom,
 				    GError         **error);

@@ -1150,5 +1150,5 @@ gnome_cdrom_new (const char      *cdrom_device,
 {
 	return gnome_cdrom_construct (
 		g_object_new (solaris_cdrom_get_type (), NULL),
-		cdrom_device, update, error);
+		cdrom_device, update, GNOME_CDROM_DEVICE_TRANSIENT, error);
 }
