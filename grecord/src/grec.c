@@ -48,7 +48,8 @@
 #define DONTSAVE 1
 #define CANCEL 2
 
-const gchar* maintopic = N_("GNOME Sound recorder:");
+gchar* maintopic = N_("GNOME Soundrecorder:");
+
 const gchar* temp_filename_record = "untitled.raw";
 const gchar* temp_filename_play = "untitled.wav";
 const gchar* temp_filename_backup = "untitled_backup.wav";
@@ -342,13 +343,18 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 
 	/* User didn't want to save; copy the backup file to the changed file (active file) */
 	tfile = g_concat_dir_and_file (temp_dir, temp_filename_backup);
-	command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
-	system (command);
+	
+	if (g_file_exists (tfile)) {
+		command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
+		system (command);
+		g_free (command);
+	}
 
 	gtk_main_quit ();
 
 	remove (tfile);
 	g_free (tfile);
+
 	tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
 	remove (tfile);
 	g_free (tfile);
