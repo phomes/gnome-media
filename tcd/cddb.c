@@ -167,7 +167,7 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
     int i, l;
     FILE *fp;
     
-    sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
+    sprintf( buf, "cddb query %08lx %d %d", cd->cddb_id, cd->last_t, cd->cd_dev);
     for( i = cd->first_t; i <= cd->last_t; i++ )
     {
 	int min, sec;

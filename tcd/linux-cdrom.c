@@ -547,16 +547,13 @@ int tcd_pausecd( cd_struct *cd )
 int tcd_change_disc( cd_struct *cd, int disc )
 {
 #ifdef TCD_CHANGER_ENABLED
-	int tmp, fd;
+	int tmp;
 	cd->err = FALSE;
-	fd = open( cd->cdpath, O_RDONLY | O_NONBLOCK );
 
-        tmp = ioctl( fd, CDROM_SELECT_DISC, disc );
+        tmp = ioctl( cd->cd_dev, CDROM_SELECT_DISC, disc );
 	if(tmp && errno)
 		fprintf( stdout, "ioctl: %s\n", strerror(errno) );	
-	/* Don't be noisy if there's an error */
 
-	close(fd);
    	return tmp;
 #else
 	debug("tcd_change_disc called, but changer support isn't compiled in. Ickyblah.\n" );
