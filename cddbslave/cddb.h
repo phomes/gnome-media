@@ -23,7 +23,8 @@ void set_status(int status, gchar *info);
 #define ERR_QUERYING         7
 #define ERR_READING          8
 #define ERR_NOMATCH          9
+#define ERR_TIMEOUT          10
 
-#define STATUS_NONE          10
+#define STATUS_NONE          11
 
 #endif

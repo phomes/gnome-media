@@ -46,6 +46,8 @@ extern char *g_req;
 
 void die(int signal)
 {
+    set_status(ERR_TIMEOUT, strerror(errno));
+    sleep(5); /* wait a bit */
     set_status(STATUS_NONE, "");
     remove_cache(g_req);
     exit(signal);

@@ -49,6 +49,7 @@ const gchar *status_msg[] = {
     N_("Error querying [%s]\n"),
     N_("Error reading [%s]\n"),
     N_("No match found for %s\n"),
+    N_("Timeout: %s\n"),
     N_("Done. %s\n"),
 };
 
@@ -87,6 +88,8 @@ int main(int argc, char *argv[])
 	fd = opensocket(server, port);
 	if(fd < 0)
 	{
+	    set_status(ERR_CONNECTING, server);
+	    sleep(5);
 	    set_status(STATUS_NONE, "");
 	    remove_cache(req);
 	    return(-1);
@@ -186,7 +189,6 @@ int do_request(char *req, int fd)
     if((i=check_response(buf)) != 200)
     {
 	set_status(ERR_NOMATCH, "disc");
-
 	return -i;
     }
     /* alright, our query response was positive, now send the read request. */
