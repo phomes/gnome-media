@@ -1,12 +1,12 @@
 # If you want to build these components, please cd to their respective
 # directories and type `make'.
 
-always_built_SUBDIRS = po macros cddbslave
+always_built_SUBDIRS = cddbslave
 
-SUBDIRS = $(always_built_SUBDIRS) \
+SUBDIRS = intl po macros $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_TCD@
 
-DIST_SUBDIRS = $(always_built_SUBDIRS) \
+DIST_SUBDIRS = intl po macros $(always_built_SUBDIRS) \
 	       vu-meter gmix tcd
 
 EXTRA_DIST = gnome-media.spec.in configure acinclude.m4
