@@ -102,6 +102,7 @@ static void about_cb (GtkWidget *widget, gpointer data);
 static void help_cb(GtkWidget *widget, gpointer data);
 static void fill_in_device_guis(GtkWidget *notebook);
 static void gmix_build_slidernotebook(void);
+static void gmix_hide_last_separator (void);
 
 /*
  * Gnome info:
@@ -1125,15 +1126,16 @@ fill_in_device_guis (GtkWidget *notebook)
 			GtkWidget *label, *mixer, *separator;
 			GtkWidget *hbox;
 			channel_info *ci;
+			char *s;
 
 			ci = c->data;
 
-			hbox = gtk_hbox_new (FALSE, 2);
+			hbox = gtk_hbox_new (FALSE, 3);
 			gtk_widget_show (hbox);
 			
 			gtk_table_attach (GTK_TABLE (table), hbox, i, i+1,
-					  0, 1, GTK_EXPAND | GTK_FILL,
-					  GTK_FILL, 0, 0);
+					  0, 1, 0,
+					  GTK_FILL, 0, 3);
 			
 			if (ci->pixmap) {
 				spixmap = gtk_image_new_from_stock (ci->pixmap,
@@ -1148,8 +1150,12 @@ fill_in_device_guis (GtkWidget *notebook)
 				ci->icon = NULL;
 			}
 			
-			label = gtk_label_new (ci->user_title);
-			gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+			s = g_strdup_printf ("<span size=\"larger\">%s</span>",
+					     ci->user_title);
+			label = gtk_label_new (s);
+			gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+			g_free (s);
+			gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
 			gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
 			gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 			
@@ -1253,7 +1259,7 @@ fill_in_device_guis (GtkWidget *notebook)
 			ci->separator = gtk_vseparator_new ();
 			gtk_table_attach (GTK_TABLE (table), ci->separator,
 					  i+1, i+2, 0, 6,
-					  GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+					  GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 0);
 			gtk_widget_show (ci->separator);
 
 			if (ci->visible == FALSE) {
@@ -1283,6 +1289,7 @@ fill_in_device_guis (GtkWidget *notebook)
 		g_list_free (table_focus_chain);
 	}
 
+	gmix_hide_last_separator ();
 }
 
 void
@@ -1760,13 +1767,17 @@ gmix_change_channel (channel_info *ci,
 		}
 		
 		gtk_widget_show (ci->mute);
-		if (ci->icon != NULL) {
+		if (ci->icon != NULL && prefs.show_icons == TRUE) {
 			gtk_widget_show (ci->icon);
 		}
-		gtk_widget_show (ci->label);
+		if (prefs.show_labels == TRUE) {
+			gtk_widget_show (ci->label);
+		}
 	}
 
 	ci->visible = show;
+
+	gmix_hide_last_separator ();
 }
 		
 void
@@ -1825,4 +1836,24 @@ gmix_change_labels (gboolean show)
 	}
 }
 
+static void
+gmix_hide_last_separator (void)
+{
+	GList *d, *c;
+	gboolean hid = FALSE;
+	
+	for (d = devices; d; d = d->next) {
+		device_info *di = d->data;
+
+		for (c = g_list_last (di->channels); c; c = c->prev) {
+			channel_info *ci = c->data;
 		
+			if (ci->visible && hid == FALSE) {
+				gtk_widget_hide (ci->separator);
+				hid = TRUE;
+			} else if (ci->visible) {
+				gtk_widget_show (ci->separator);
+			}
+		}
+	}
+}

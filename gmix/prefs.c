@@ -91,6 +91,7 @@ static GtkWidget *general_page(void)
 	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
     
 	vbox = gtk_vbox_new(TRUE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 
 	/* Set on start */
 	init_start = gtk_check_button_new_with_label(_("Restore saved mixer levels on startup"));
@@ -109,7 +110,8 @@ static GtkWidget *general_page(void)
 	gui_frame = gtk_frame_new(_("GUI"));
 	gtk_container_border_width(GTK_CONTAINER(gui_frame), GNOME_PAD_SMALL);
 
-	vbox = gtk_vbox_new(TRUE, 0);
+	vbox = gtk_vbox_new(TRUE, 2);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 	temp = gtk_check_button_new_with_label(_("Show mixer icons"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp),
 				     prefs.show_icons);
@@ -253,28 +255,10 @@ edited (GtkCellRendererText *cell,
 	gtk_tree_path_free (path);
 }
 
-/*
- * Whip up a page showing all the labels for a single sound device.
- * This page is presented as a vertically scrolling pane containing a
- * table of channels and their labels, and button to reset all the
- * labels to their default values.  Each row in the table is a single
- * sound channel giving its "name" (gtk label) and its current value
- * (gtk entry).  All of the gtk entries are strung onto a list for
- * easy access later in the callback routines.  A clist would have
- * been convenient for this task except that it doesn't support
- * editable items.
- *
- * @param device A pointer to the device_info data structure for this
- * sound device.
- *
- * @param parent A pointer to the parent notebook that contains a
- * single page for each sound device.
- */
-static void
-label_one_device_config (gpointer device,
-			 gpointer parent)
+static GtkWidget *
+label_one_device_config_widget (gpointer device)
 {
-	GtkWidget *ubervbox, *label, *treeview, *bbox, *button, *scrlwin;
+	GtkWidget *ubervbox, *treeview, *bbox, *button, *scrlwin;
 	GtkWidget *topvbox;
 	GtkTreeModel *model;
 	GtkCellRenderer *cell;
@@ -282,17 +266,16 @@ label_one_device_config (gpointer device,
 	
 	device_info *info = (device_info *) device;
 
-	/* The page: A scrolled viewport (and a label) */
-	label = gtk_label_new(info->info.name);
+	/* The page: A scrolled viewport */
 	scrlwin = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrlwin),
 				       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrlwin),
+					    GTK_SHADOW_IN);  
 
 	topvbox = gtk_vbox_new (FALSE, 5);
 	gtk_box_pack_start (GTK_BOX (topvbox), scrlwin, TRUE, TRUE, 0);
 	
-	gtk_notebook_append_page(GTK_NOTEBOOK(parent), topvbox, label);
-
 	model = make_label_model (info->channels);
 	treeview = gtk_tree_view_new_with_model (model);
 
@@ -326,6 +309,40 @@ label_one_device_config (gpointer device,
 	gtk_box_pack_start (GTK_BOX(topvbox), button, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT(button), "clicked",
 			  G_CALLBACK (labels_reset_page_cb), model);
+
+	return topvbox;
+}
+
+/*
+ * Whip up a page showing all the labels for a single sound device.
+ * This page is presented as a vertically scrolling pane containing a
+ * table of channels and their labels, and button to reset all the
+ * labels to their default values.  Each row in the table is a single
+ * sound channel giving its "name" (gtk label) and its current value
+ * (gtk entry).  All of the gtk entries are strung onto a list for
+ * easy access later in the callback routines.  A clist would have
+ * been convenient for this task except that it doesn't support
+ * editable items.
+ *
+ * @param device A pointer to the device_info data structure for this
+ * sound device.
+ *
+ * @param parent A pointer to the parent notebook that contains a
+ * single page for each sound device.
+ */
+static void
+label_one_device_config (gpointer device,
+			 gpointer parent)
+{
+	GtkWidget *topvbox;
+	GtkWidget *label;
+
+	device_info *info = (device_info *) device;
+	
+	topvbox = label_one_device_config_widget (device);
+	label = gtk_label_new(info->info.name);
+
+	gtk_notebook_append_page(GTK_NOTEBOOK(parent), topvbox, label);
 }
 
 /*
@@ -341,18 +358,24 @@ label_one_device_config (gpointer device,
  */
 static GtkWidget *labels_create_page(void)
 {
-	GtkWidget *notebook;
-
-	notebook = gtk_notebook_new();
-	gtk_container_set_border_width(GTK_CONTAINER(notebook), 5);
+	GtkWidget *page;
 
 	if (devices->next == NULL) {
 		/* devices->next will only be NULL if there's only one device. */
-		gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+		GtkWidget *widget;
+
+		widget = label_one_device_config_widget (devices->data);
+		page = gtk_hbox_new (FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (page), widget, TRUE, TRUE, 0);
+		gtk_container_set_border_width (GTK_CONTAINER (page), 5);
+	} else {
+		page = gtk_notebook_new();
+		gtk_container_set_border_width(GTK_CONTAINER(page), 5);
+
+		g_list_foreach(devices, label_one_device_config, page);
 	}
-	
-	g_list_foreach(devices, label_one_device_config, notebook);
-	return(notebook);
+
+	return(page);
 }
 
 static void
@@ -398,7 +421,7 @@ prefs_make_window (GtkWidget *toplevel)
 		page = general_page ();
 		gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
 
-		label = gtk_label_new (_("Labels"));
+		label = gtk_label_new (_("Controls"));
 		page = labels_create_page ();
 		gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
 		

@@ -1,3 +1,22 @@
+2002-05-21  Jorn Baayen  <jorn@nl.linux.org>
+
+	* gmix.c (gmix_hide_last_separator): new function to
+	hide the last visible separator
+	(gmix_change_channel): do not show icons/labels when
+	they are turned off, call gmix_hide_last_separator
+	(fill_in_device_guis): some more spacing, center labels,
+	bigger font for labels (<span size="larger">), call
+	gmix_hide_last_separator.
+
+	* prefs.c (prefs_make_windows): s/Labels/Controls on
+	notebook label.
+	(labels_create_page): Change shadow type of the labels
+	view to SHADOW_IN for consistency, don't use a notebook
+	when there's only one page (fixes ugly relief).
+	(label_one_device_config): Ditto.
+	(label_one_device_config_widget): New function, Ditto.
+	(general_page): some more spacing for consistency
+
 2002-07-09  Mark McLoughlin  <mark@skynet.ie>
 
 	* gnome-volume-control.desktop.in.in: use X-GNOME-DocPath
