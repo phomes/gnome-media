@@ -1,6 +1,6 @@
 # Swedish translation of the gnome-media module.
 # Copyright (C) 1998, 1999, 2000, 2001 Free Software Foundation, Inc.
-# Martin Wahlen <mva@sbbs.se>, 1998-1999.
+# Martin Wahlen <mva@sbbs.se>, 1998, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2001.
 #
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2001-07-01 11:21+0200\n"
-"PO-Revision-Date: 2001-07-01 11:40+0200\n"
+"POT-Creation-Date: 2001-10-03 14:51+0200\n"
+"PO-Revision-Date: 2001-10-03 14:56+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -337,7 +337,17 @@ msgstr "initiera mixern (mixrarna) från sparade inställningar och avsluta"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "spara inte (modifierade) mixerinställningar till konfigurationen"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Jag kunde inte öppna din ljudenhet.\n"
+"Kontrollera att du har rättighet att öppna /dev/mixer\n"
+"och försäkra dig om att du har stöd för ljud kompilerat i din kärna."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -348,7 +358,7 @@ msgstr ""
 "OSS version %d.%d.%d, och ditt system använder\n"
 "en version äldre än 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -360,32 +370,32 @@ msgstr ""
 "version %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Insp."
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Tyst"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Mixer för Gnome"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Detta är en mixer för OSS-ljudenheter."
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "Vid uppstart"
 
@@ -414,7 +424,7 @@ msgstr "Använd mixeretiketter"
 msgid "Defaults"
 msgstr "Standardalternativ"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -823,8 +833,8 @@ msgid ""
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
 "Kunde inte hitta \"%s\".\n"
-"Ställ in korrekt sökväg till sox i inställningarna under fliken "
-"\"sökvägar\".\n"
+"Ställ in korrekt sökväg till sox i inställningarna under fliken \"sökvägar"
+"\".\n"
 "\n"
 "Om du inte har sox kommer du inte att kunna spela in eller göra några "
 "effekter."
@@ -888,8 +898,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory "
-"%s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Du har inte rätt läs- och skrivrättigheter för den temporära katalogen %s.\n"
@@ -1257,98 +1267,106 @@ msgid "About"
 msgstr "Om"
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Gör inget"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Börja spela"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Sluta spela"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Stäng luckan"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Öppna luckan"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "CDROM-enhet"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
 msgstr "Mixerkommando"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Färg på spår/titel"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Typsnitt på spår/titel"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Ändra typsnitt"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Visa handtag (kräver omstart)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Visa verktygstips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Använd alternativ metod för att spela CD"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Använd kvadreringsreglerad volymkontroll"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "Vid avslutning"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Tangent"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Händelse"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Klicka här för att ändra (kräver omstart):"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Tangentkombinationer"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "CDDB-inställningar"
 
-#: vu-meter/main.c:118
+#: tcd/prefs.h:4
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#: tcd/prefs.h:5
+msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1356,45 +1374,61 @@ msgstr ""
 "Kan inte ansluta till ljuddemonen.\n"
 "Var vänlig och kör \"esd\" vid en kommandorad."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Ange X-position för mätaren."
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "X-position"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
 msgstr "Ange Y-position för mätaren."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Y-position"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Anslut till esd-servern på denna dator."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
 msgstr "ESD-serverdator"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
 msgstr "Öppna en lodrät version av mätaren."
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Bli en inspelningsnivåmätare."
+
+#: vu-meter/main.c:271
 #, c-format
 msgid "Host is %s\n"
 msgstr "Värddatorn är %s\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Inspelningsnivå"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Volymmätare"
 
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "En inspelningsnivåmätare för ESD"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "ESD-inspelningsnivå"
+
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD "
+msgid "A Volume Unit Meter for ESD"
 msgstr "En volymenhetsmätare för ESD"
 
 #: vu-meter/vumeter.desktop.in.h:2
@@ -1423,9 +1457,6 @@ msgstr "Ljudmixer"
 
 #~ msgid "Speed"
 #~ msgstr "Hastighet"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 
 #~ msgid "Increase speed"
 #~ msgstr "Öka hastigheten"
