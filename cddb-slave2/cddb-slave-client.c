@@ -254,6 +254,7 @@ cddb_slave_client_add_listener (CDDBSlaveClient *client,
 		return;
 	}
 
+	bonobo_object_release_unref (event_source, NULL);
 	CORBA_exception_free (&ev);
 	return;
 }
@@ -296,7 +297,8 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 	if (BONOBO_EX (&ev)) {
 		g_warning ("Error removing listener\n%s", CORBA_exception_id (&ev));
 	}
-	
+
+	bonobo_object_release_unref (event_source, NULL);
 	CORBA_exception_free (&ev);
 
 	return;

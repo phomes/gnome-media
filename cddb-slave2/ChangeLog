@@ -1,3 +1,10 @@
+2002-03-01  Iain <iain@ximian.com>
+
+	* cddb-slave-client.c (cddb_slave_client_add_listener): Unref and
+	release the event_source interface after we are done with it.
+	(cddb_slave_client_remove_listener): Unref and release the 
+	event_source interface.
+
 2002-02-28  Iain <iain@ximian.com>
 
 	* Makefile.am: Fix the gconf schema install rule.
