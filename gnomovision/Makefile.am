@@ -10,6 +10,7 @@ tvset_SOURCES = \
 	tvset.c		\
 	tv-videodev.c	\
 	channels.h	\
+	preferences.c   \
 	channels.c
 
 # preferences_SOURCES = \

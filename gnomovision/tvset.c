@@ -1057,10 +1057,8 @@ GtkWidget *tv_menu_bar(void)
 	
 	menuitem = gtk_menu_item_new_with_label("Preferences");
 	gtk_menu_append(GTK_MENU(menu), menuitem);
-	/* 
 	gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
 				(GtkSignalFunc) preferences_page, NULL);
-	*/
 	gtk_widget_show(menuitem);
 
 	menuitem = gtk_menu_item_new_with_label("Exit");
