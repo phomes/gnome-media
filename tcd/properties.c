@@ -39,6 +39,12 @@ void load_properties( tcd_properties *prop )
 	prop->cddbport  = gnome_config_get_int(   "/gtcd/cddb/port=888");
 	prop->handle    = gnome_config_get_bool(  "/gtcd/ui/handle=1");
 	prop->tooltip   = gnome_config_get_bool(  "/gtcd/ui/tooltip=1");
+	prop->timefont  = gnome_config_get_string(
+		"/gtcd/ui/timefont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
+	prop->trackfont = gnome_config_get_string(
+		"/gtcd/ui/trackfont=-adobe-helvetica-*-r-*-*-14-*-*-*-*-*-*-*" );
+	prop->timecolor = gnome_config_get_string( "/gtcd/ui/timecolor=blue" );
+	prop->trackcolor = gnome_config_get_string( "/gtcd/ui/trackcolor=green" );
 }
 
 void save_properties( tcd_properties *prop )
@@ -47,6 +53,13 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
+	gnome_config_set_string("/gtcd/ui/timefont", prop->timefont );
+	gnome_config_set_string("/gtcd/ui/trackfont",prop->trackfont );
+
+	g_print( "%s %s\n", prop->timecolor, prop->trackcolor );
+	
+	gnome_config_set_string("/gtcd/ui/timecolor", prop->timecolor );
+	gnome_config_set_string("/gtcd/ui/trackcolor",prop->trackcolor );
 	gnome_config_sync();
 }
 
@@ -112,7 +125,7 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 
 	gtk_container_add( GTK_CONTAINER(cddb_frame), cddb_box );
 
-	gtk_widget_show_all(cddb_box);
+	gtk_widget_show_all(cddb_frame);
 
 	return cddb_frame;
 }
@@ -150,7 +163,7 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 	
 	gtk_container_add( GTK_CONTAINER(cdrom_frame), cdrom_box );
 
-	gtk_widget_show_all(cdrom_box);
+	gtk_widget_show_all(cdrom_frame);
 	
 	return cdrom_frame;
 }
@@ -161,13 +174,85 @@ void check_changed_cb( GtkWidget *widget, gboolean *data )
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
+void color_changed_cb( GnomeColorSelector *widget, gchar **color )
+{
+	char *tmp;
+	int r,g,b;
+
+	tmp = malloc(24);
+	if( !tmp )
+	{
+		g_warning( "Can't allocate memory for color\n" );
+		return;
+	}
+	gnome_color_selector_get_color_int( 
+		widget, &r, &g, &b, 255 );
+	
+	sprintf( tmp, "#%02x%02x%02x", r, g, b );
+	*color = tmp;
+	g_print( "color=%s\n", *color ); 
+	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+}
+
+GtkWidget *create_status_frame( GtkWidget *box )
+{
+	GtkWidget *timebutton_c, *trackbutton_c;
+	GtkWidget *timebutton_f, *trackbutton_f;
+	GtkWidget *time_l, *track_l;
+	GnomeColorSelector *time_gcs, *track_gcs;
+	int tr,tg,tb, rr,rg,rb;
+	
+	GtkWidget *frame, *status_table;
+
+	sscanf( props.timecolor, "#%02x%02x%02x", &tr,&tg,&tb );
+	sscanf( props.trackcolor, "#%02x%02x%02x", &rr,&rg,&rb );
+
+	status_table = gtk_table_new( 4, 2, FALSE );
+
+	time_gcs  = gnome_color_selector_new( color_changed_cb, &props.timecolor );
+	track_gcs = gnome_color_selector_new( color_changed_cb, &props.trackcolor );
+	timebutton_f  = gtk_button_new_with_label( "Font" );
+	trackbutton_f = gtk_button_new_with_label( "Font" );
+
+	gnome_color_selector_set_color_int( time_gcs, tr, tg, tb, 255 );
+	gnome_color_selector_set_color_int( track_gcs, rr, rg, rb, 255 );
+
+	timebutton_c = gnome_color_selector_get_button( time_gcs );
+	trackbutton_c = gnome_color_selector_get_button( track_gcs );
+
+	time_l  = gtk_label_new("Time Display");
+	track_l = gtk_label_new("Track Display");
+	
+	frame = gtk_frame_new("Fonts & Colors");
+
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                time_l, 0,2,0,1 );
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                track_l, 0,2,1,2 );
+
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                timebutton_c, 2,3,0,1 );
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                timebutton_f, 3,4,0,1 );
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                trackbutton_c, 2,3,1,2 );
+	gtk_table_attach_defaults( GTK_TABLE(status_table),
+	                                trackbutton_f, 3,4,1,2 );
+
+	gtk_container_add( GTK_CONTAINER(frame), status_table );
+
+	gtk_widget_show_all(frame);
+	
+	return frame;
+}
+
 GtkWidget *create_ui_frame( GtkWidget *box )
 {
 	GtkWidget *ui_r_box;
 	GtkWidget *ui_l_box;
 	GtkWidget *ui_frame;
 	GtkWidget *ui_box;
-
+	
 	GtkWidget *handle_i;
 	GtkWidget *tooltips_i;
 
@@ -197,7 +282,7 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 	
 	gtk_container_add( GTK_CONTAINER(ui_frame), ui_box );
 
-	gtk_widget_show_all(ui_box);
+	gtk_widget_show_all(ui_frame);
 	
 	return ui_frame;
 }
@@ -205,14 +290,16 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 GtkWidget *create_page2()
 {
 	GtkWidget *box;
-	GtkWidget *ui_frame;
+	GtkWidget *ui_frame, *status_frame;
 	GtkWidget *sep;
 
 	box = gtk_vbox_new( FALSE,4 );	
 
-	ui_frame = create_ui_frame( box );
-
+	ui_frame = create_ui_frame(box);
+	status_frame = create_status_frame(box);
+	
 	gtk_box_pack_start( GTK_BOX(box), ui_frame,TRUE, TRUE, 0 );
+	gtk_box_pack_start( GTK_BOX(box), status_frame,TRUE, TRUE, 0 );
 
 	return box;
 }

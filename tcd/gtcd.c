@@ -96,7 +96,7 @@ GtkWidget **changer_buttons, *cddbbutton;
 GtkObject *vol;
 GdkColormap *colormap;
 GdkFont *sfont, *tfont;
-GdkColor darkgrey, green, blue;
+GdkColor darkgrey, timecolor, trackcolor;
 
 GtkTooltips *tooltips;
 
@@ -354,11 +354,11 @@ void setup_colors( void )
 	gdk_color_parse("#353535", &darkgrey);
 	gdk_color_alloc(colormap, &darkgrey);
 
-	gdk_color_parse("green", &green);
-	gdk_color_alloc (colormap, &green);
+	gdk_color_parse(props.timecolor, &timecolor);
+	gdk_color_alloc (colormap, &timecolor);
 
-	gdk_color_parse("blue", &blue);
-	gdk_color_alloc (colormap, &blue);
+	gdk_color_parse(props.trackcolor, &trackcolor);
+	gdk_color_alloc (colormap, &trackcolor);
 }
 
 void draw_status( void )
@@ -390,7 +390,7 @@ void draw_status( void )
 			    status_area->allocation.height-1 );
 
 
-	gdk_gc_set_foreground(gc, &green);
+	gdk_gc_set_foreground(gc, &timecolor);
 
 	sprintf( tmp, "%2d/%2d", cd.cur_t, cd.last_t );
 	gdk_draw_text( status_db,tfont,gc,8,20,tmp,strlen(tmp) );
@@ -435,7 +435,7 @@ void draw_status( void )
 	}
 	else strcpy( tmp, cd.errmsg );
 
-	gdk_gc_set_foreground(gc, &blue);
+	gdk_gc_set_foreground(gc, &trackcolor);
 	gdk_draw_text( status_db,sfont,gc,4,40,tmp,strlen(tmp) );
 	
 	gdk_draw_text( status_db,sfont,gc,4,54, play_methods[cd.play_method] ,
@@ -796,8 +796,8 @@ void setup_rows( void )
 
 void init_window(void)
 {
-        sfont = gdk_font_load( "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
-        tfont = gdk_font_load( "-adobe-helvetica-*-r-*-*-14-*-*-*-*-*-*-*" );
+        sfont = gdk_font_load( props.timefont );
+        tfont = gdk_font_load( props.trackfont );
 
         window = gnome_app_new( "gtcd", "TCD 2.0" );
         gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );

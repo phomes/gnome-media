@@ -8,6 +8,10 @@ typedef struct
 	gint  cddbport;
 	gboolean handle;
 	gboolean tooltip;
+	gchar *timefont;
+	gchar *trackfont;
+	gchar *timecolor;
+	gchar *trackcolor;
 } tcd_properties;
 
 void load_properties( tcd_properties *prop );
