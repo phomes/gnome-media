@@ -40,6 +40,25 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 	g_free (title);
 }
 
+static void
+skip_to_track (GtkWidget *item,
+	       GnomeCD *gcd)
+{
+	int track;
+	GnomeCDRomMSF msf;
+	GError *error;
+	
+	track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
+
+	msf.minute = 0;
+	msf.second = 0;
+	msf.frame = 0;
+	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), track + 1, &msf, &error) == FALSE) {
+		g_warning ("Error skipping %s", error->message);
+		g_error_free (error);
+	}
+}
+
 void
 gnome_cd_build_track_list_menu (GnomeCD *gcd)
 {
@@ -77,7 +96,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 						label = g_strdup_printf (_("Track %d - Unknown"), i + 1);
 						item = gtk_menu_item_new_with_label (label);
 						g_free (label);
-						
+
 						gtk_widget_show (item);
 						
 						gtk_menu_append (menu, item);
@@ -245,6 +264,8 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (display_box), frame, TRUE, TRUE, 0);
 
 	gcd->tracks = gtk_option_menu_new ();
+	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
+			  G_CALLBACK (skip_to_track), gcd);
 	gnome_cd_build_track_list_menu (gcd);
 	gtk_box_pack_start (GTK_BOX (display_box), gcd->tracks, FALSE, FALSE, 0);
 

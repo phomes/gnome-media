@@ -11,6 +11,7 @@
 #endif
 
 #include <gtk/gtkbutton.h>
+#include <gtk/gtkoptionmenu.h>
 #include <glib/gerror.h>
 
 #include <libgnome/gnome-i18n.h>
@@ -392,10 +393,16 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		      GnomeCD *gcd)
 {
 	char *text;
-
+	int track;
+	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
 
+		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
+		if (track + 1 != status->track) {
+			gtk_option_menu_set_history (GTK_OPTION_MENU (gcd->tracks), status->track - 1);
+		}
+		
 		if (gcd->last_status == NULL || gcd->last_status->cd != GNOME_CDROM_STATUS_OK) {
 			cddb_get_query (gcd);
 		}
