@@ -55,8 +55,6 @@ static int colourmap_base;
 static GdkColormap *private_colourmap;
 
 
-#define min(a,b)	(((a)>(b))?(b):(a))
-#define max(a,b)	(((a)>(b))?(a):(b))
 
 static void make_palette_grey(int num)
 {
@@ -928,7 +926,7 @@ static void process_help(GtkObject *o, void *p)
         if(y<0)
         	y+=30;
         	
-        make_about_box(x,y);
+        /* make_about_box(x,y); */
 }
         
 
@@ -1059,8 +1057,10 @@ GtkWidget *tv_menu_bar(void)
 	
 	menuitem = gtk_menu_item_new_with_label("Preferences");
 	gtk_menu_append(GTK_MENU(menu), menuitem);
+	/* 
 	gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
 				(GtkSignalFunc) preferences_page, NULL);
+	*/
 	gtk_widget_show(menuitem);
 
 	menuitem = gtk_menu_item_new_with_label("Exit");
@@ -1159,7 +1159,7 @@ static GnomeUIInfo tbar[] =
 	GNOMEUIINFO_ITEM(NULL, "Capture Images", capture_toggle, capturer_xpm),
 	GNOMEUIINFO_ITEM(NULL, "Save Snapshot", snapshot_image, quit_xpm),
 	GNOMEUIINFO_ITEM(NULL, "Audio on/off", audio_toggle, audio_xpm),
-	GNOMEUIINFO_ITEM(NULL, "Select a channel", frequency_setting , dummy_xpm),
+	/*	GNOMEUIINFO_ITEM(NULL, "Select a channel", frequency_setting , dummy_xpm), */
 	GNOMEUIINFO_ITEM(NULL, "Exit Gnomovision", gtk_main_quit, quit_xpm),
 	GNOMEUIINFO_END
 };

@@ -35,3 +35,11 @@ extern void make_about_box(int x, int y);
 extern void preferences_page(void);
 extern void colour_setting(GtkWidget *w);
 extern void frequency_setting(void);
+
+#ifndef min
+#define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif /* min */
+
+#ifndef max
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#endif /* max */

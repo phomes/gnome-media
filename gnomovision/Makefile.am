@@ -3,7 +3,7 @@ Mediadir = $(datadir)/apps/Media
 INCLUDES = -I$(includedir)	\
              $(GNOME_INCLUDEDIR)
 
-bin_PROGRAMS = tvset about preferences
+bin_PROGRAMS = tvset # preferences
 
 tvset_SOURCES = \
 	xwindows.c	\
@@ -12,15 +12,14 @@ tvset_SOURCES = \
 	channels.h	\
 	channels.c
 
-preferences_SOURCES = \
-	preferences.c
+# preferences_SOURCES = \
+#	preferences.c
 
-about_SOURCES = \
-	about.c
+LINK_FLAGS  = -lXxf86dga $(GNOMEUI_LIBS) $(GNOME_LIBDIR)
 
-LINK_FLAGS  = -lxf86dga $(GNOMEUI_LIBS)
+tvset_LDADD = $(LINK_FLAGS)
 
-tvset_LDADD = 
+# preferences_LDADD = $(LINK_FLAGS)
 
 XPM_FILES = about.xpm audio.xpm capturer.xpm dummy.xpm quit.xpm tmp.xpm picture.xpm
 

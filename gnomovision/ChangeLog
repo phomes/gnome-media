@@ -1,3 +1,29 @@
+1998-04-11  Christopher Blizzard  <blizzard@appliedtheory.com>
+
+	* preferences.c: Remove #include <stdinc.h>
+
+	* Makefile.am (LINK_FLAGS): Remove the "about" target.
+
+	* tvset.c (process_help): Comment out make_about_box() since it's
+	not anywhere to be found...
+	(tv_menu_bar): Comment out signal_connect to "preferences_page"
+	since it's not anywhere to be found.
+	(tbar): Comment out "Select a channel" since this is no where to
+	be found.
+
+	* Makefile.am (LINK_FLAGS): Added -lXxf86dga instead of just
+	xf86dga.
+	(tvset_LDADD): Added LINK_FLAGS to the tvset target.
+
+	* tv-videodev.c: Removed #include <stdinc.h>
+
+	* tvset.c: Removed min() and max() macros since they are in
+	gnomovision.h now.
+
+	* xwindows.c: Removed #include <stdinc.h>
+
+	* gnomovision.h: Added min() and max() macros.
+
 1998-03-29  Christopher Blizzard  <blizzard@appliedtheory.com>
 
 	* tv-videodev.c: Removed #include <stdinc.h>
