@@ -1,6 +1,5 @@
 INCLUDES = \
         -I$(top_srcdir) \
-        -I$(includedir) \
 	$(MEDIA_CFLAGS)	\
 	-I$(top_srcdir)/cddb-slave2	\
 	$(GAILUTIL_CFLAGS)
