@@ -113,7 +113,6 @@ gint release_timer(gpointer *data);
 int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data);
 gint changer_callback(GtkWidget *widget, gpointer *data);
 GtkWidget* make_changer_buttons(void);
-GtkWidget* make_small_buttons(void);
 GtkWidget* create_buttons(void);
 void setup_colors(void);
 void draw_time_playing(void);
@@ -310,24 +309,6 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 	return FALSE;
 }
 
-GtkWidget *make_small_buttons(void)
-{
-	GtkWidget *b1, *b2, *b3;
-	GtkWidget *table;
-    
-	table = gtk_table_new(TRUE, 6,1);
-
-	b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, &prefs->tracked, _("Open track editor"));
-	b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
-	b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, &prefs->quit, _("Quit"));
-
-	gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
-	gtk_table_attach_defaults(GTK_TABLE(table), b2, 2, 4, 0, 1);
-	gtk_table_attach_defaults(GTK_TABLE(table), b3, 4, 6, 0, 1);
-
-	return table;
-}
-
 GtkWidget* create_buttons(void)
 {
 	GtkWidget *table;
@@ -377,7 +358,14 @@ GtkWidget* create_buttons(void)
 	gtk_table_attach_defaults(GTK_TABLE(table), rw, 0, 1, 1, 2);
 	gtk_table_attach_defaults(GTK_TABLE(table), ff, 1, 2, 1, 2);
 	gtk_table_attach_defaults(GTK_TABLE(table), gotobutton, 2, 3, 1, 2);
-	gtk_table_attach_defaults(GTK_TABLE(table), make_small_buttons(), 0, 3, 2, 3);
+
+	b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, &prefs->tracked, _("Open track editor"));
+	b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
+	b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, &prefs->quit, _("Quit"));
+
+	gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 2, 3);
+	gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 2, 3);
+	gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 3, 2, 3);
 
 	return table;
 }
@@ -443,7 +431,7 @@ void draw_time_playing(void)
 	}		
 }
 
-char *calculate_title(int maxwidth, int inc)
+void calculate_title(int maxwidth, int inc)
 {
 	int start = 0, end = 0;
 	int width, slen, w;
