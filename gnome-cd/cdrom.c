@@ -735,6 +735,20 @@ gnome_cdrom_update_cd (GnomeCDRom *cdrom)
 	klass->update_cd (cdrom);
 }
 
+static GnomeCDRomStatus *
+not_ready_status_new (void)
+{
+	GnomeCDRomStatus *status;
+
+	status = g_new0 (GnomeCDRomStatus, 1);
+
+	status->cd = GNOME_CDROM_STATUS_DRIVE_NOT_READY;
+	status->audio = GNOME_CDROM_AUDIO_NOTHING;
+	status->track = -1;
+
+	return status;
+}
+
 static gboolean
 timeout_update_cd (gpointer data)
 {
@@ -751,6 +765,8 @@ timeout_update_cd (gpointer data)
 
 	/* Do an update */
 	if (gnome_cdrom_get_status (GNOME_CDROM (cdrom), &status, &error) == FALSE) {
+		g_free (priv->recent_status);
+		priv->recent_status = not_ready_status_new ();
 		gcd_warning ("%s", error);
 		g_error_free (error);
 		g_object_unref (G_OBJECT (cdrom));

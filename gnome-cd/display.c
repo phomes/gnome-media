@@ -573,7 +573,7 @@ cd_image_new (const char *filename,
 	CDImage *image;
 	char *fullname;
 	
-	image = g_new (CDImage, 1);
+	image = g_new0 (CDImage, 1);
 
 	if (filename[0] != '/') {
 		fullname = gnome_program_locate_file (NULL,
@@ -620,7 +620,7 @@ init (CDDisplay *disp)
 	for (i = 0; i < CD_DISPLAY_END; i++) {
 		PangoRectangle rect;
 		
-		priv->layout[i] = g_new (GnomeCDText, 1);
+		priv->layout[i] = g_new0 (GnomeCDText, 1);
 		
 		priv->layout[i]->text = g_strdup (_(default_text[i]));
 		priv->layout[i]->length = strlen (_(default_text[i]));
@@ -781,7 +781,7 @@ cd_display_parse_theme (CDDisplay *disp,
 	priv = disp->priv;
 	/* Should probably destroy the old theme here */
 
-	priv->theme = g_new (CDDisplayTheme, 1);
+	priv->theme = g_new0 (CDDisplayTheme, 1);
 	theme = priv->theme;
 
 	theme->need_resize = TRUE;

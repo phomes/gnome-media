@@ -99,6 +99,7 @@ struct _GnomeCDRom {
 	GnomeCDRomMode playmode, loopmode;
 
 	int fd;
+
 	GnomeCDRomPrivate *priv;
 };
 

@@ -127,7 +127,7 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 {
 	GnomeCDDiscInfo *discinfo;
 
-	discinfo = g_new (GnomeCDDiscInfo, 1);
+	discinfo = g_new0 (GnomeCDDiscInfo, 1);
 	discinfo->discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 	discinfo->title = NULL;
 	discinfo->artist = NULL;

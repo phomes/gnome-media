@@ -186,7 +186,7 @@ theme_load (GnomeCD *gcd,
 		return NULL;
 	}
 	
-	theme = g_new (GCDTheme, 1);
+	theme = g_new0 (GCDTheme, 1);
 
 	theme->name = g_strdup (theme_name);
 	/* Walk the tree filing in the values */

@@ -263,7 +263,7 @@ preferences_new (GnomeCD *gcd)
 {
 	GnomeCDPreferences *prefs;
 
-	prefs = g_new (GnomeCDPreferences, 1);
+	prefs = g_new0 (GnomeCDPreferences, 1);
 	prefs->gcd = gcd;
 
 	client = gconf_client_get_default ();
@@ -758,7 +758,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	
-	pd = g_new (PropertyDialog, 1);
+	pd = g_new0 (PropertyDialog, 1);
 	
 	pd->gcd = gcd;
 

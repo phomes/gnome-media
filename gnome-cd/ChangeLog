@@ -1,3 +1,15 @@
+2002-05-30  Michael Meeks  <michael@ximian.com>
+
+	* cdrom.c (not_ready_status_new): create a not ready
+	status and return it.
+	(timeout_update_cd): if get_status fails, set status
+	as not ready, so that we get a positive edge when at
+	last we can read the CD drive again ( on Solaris ), so
+	that we re-read the track data correctly #83394
+
+	* *.c: use g_new0 pretty much everywhere to save the
+	plague of uninitialized bits.
+
 2002-05-29 Iain <iain@ximian.com>
 
 	* gnome-cd.c (init_player): Make the option menu expand to the

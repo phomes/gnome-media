@@ -797,7 +797,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 	lcd = FREEBSD_CDROM (cdrom);
 	priv = lcd->priv;
 
-	*status = g_new (GnomeCDRomStatus, 1);
+	*status = g_new0 (GnomeCDRomStatus, 1);
 	realstatus = *status;
 	realstatus->volume = 0;
 
@@ -1046,7 +1046,7 @@ freebsd_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 		return TRUE;
 	}
 	
-	*data = g_new (GnomeCDRomCDDBData, 1);
+	*data = g_new0 (GnomeCDRomCDDBData, 1);
 
 	for (i = 0; i < priv->number_tracks; i++) {
 		n += cddb_sum ((priv->track_info[i].address.minute * 60) + 
@@ -1060,7 +1060,7 @@ freebsd_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 	(*data)->discid = ((n % 0xff) << 24 | t << 8 | (priv->track1));
 	(*data)->ntrks = priv->track1;
 	(*data)->nsecs = (priv->track_info[priv->track1].address.minute * 60) + priv->track_info[priv->track1].address.second;
-	(*data)->offsets = g_new (unsigned int, priv->track1 + 1);
+	(*data)->offsets = g_new0 (unsigned int, priv->track1 + 1);
 
 	for (i = priv->track0 - 1; i < priv->track1; i++) {
 		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
@@ -1104,7 +1104,7 @@ class_init (FreeBSDCDRomClass *klass)
 static void
 init (FreeBSDCDRom *cdrom)
 {
-	cdrom->priv = g_new (FreeBSDCDRomPrivate, 1);
+	cdrom->priv = g_new0 (FreeBSDCDRomPrivate, 1);
 	cdrom->priv->tochdr = g_new (struct ioc_toc_header, 1);
 	cdrom->priv->track_info = NULL;
 }
