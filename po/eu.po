@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:02+0200\n"
+"POT-Creation-Date: 2004-05-07 17:31+0200\n"
 "PO-Revision-Date: 2004-04-14 17:58+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -169,22 +169,22 @@ msgstr "_Ataka:"
 msgid "CD Database Preferences"
 msgstr "CDaren datu-basearen hobespenak"
 
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:215
 msgid "Unknown / Unknown"
 msgstr "Ezezaguna / Ezezaguna"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:443
 msgid "Multiple matches..."
 msgstr "Bat baino gehiago datoz bat..."
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:448
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -193,22 +193,22 @@ msgstr ""
 "Behean bat datozen aukera posibleen zerrenda dago, aukeratu onena"
 
 #
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:459
 msgid "Category"
 msgstr "Kategoria"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:463
 msgid "Disc ID"
 msgstr "Diskoaren IDa"
 
 #
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:467
 msgid "Artist and Title"
 msgstr "Artista eta izenburua"
 
 #
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1330 cddb-slave2/cddb-slave.c:1332
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Pista ezezaguna"
 
@@ -848,78 +848,88 @@ msgstr "Nu-Metal"
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+msgid "Unknown Artist"
+msgstr "Artista ezezaguna"
+
+#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+msgid "Unknown Album"
+msgstr "Album ezezaguna"
+
+#: cddb-slave2/cddb-track-editor.c:544
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Diskoaren IDa editatzen: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:634
 msgid "Editing Disc ID: "
 msgstr "Diskoaren IDa editatzen: "
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:645
 msgid "_Artist:"
 msgstr "_Artista:"
 
 #
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:659
 msgid "Disc _Title:"
 msgstr "Diskoaren _izenburua:"
 
 #
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:669
 msgid "Show advanced disc options"
 msgstr "Erakutsi diskoaren aukera aurreratuak"
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:670
 msgid "Hide advanced disc options"
 msgstr "Ezkutatu diskoaren aukera aurreratuak"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:682
 msgid "_Disc comments:"
 msgstr "_Diskoaren iruzkinak:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:697
 msgid "_Genre:"
 msgstr "_Generoa:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:713
 msgid "_Year:"
 msgstr "_Urtea:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Title"
 msgstr "Izenburua"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:759
 msgid "Length"
 msgstr "Luzera"
 
 #
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:770
 msgid "Show advanced track options"
 msgstr "Erakutsi pistaren aukera aurreratuak"
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:771
 msgid "Hide advanced track options"
 msgstr "Ezkutatu pistaren aukera aurreratuak"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:779
 msgid "_Extra track data:"
 msgstr "_Pistaren aparteko informazioa:"
 
 #
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:907
 msgid "CDDB Track Editor"
 msgstr "CDDB pista-editorea"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1044
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -978,78 +988,70 @@ msgid "Line for displaying the name of the album"
 msgstr "Albumaren izena bistaratzeko lerroa"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Erreproduzitu"
 
 #
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "Pausarazi"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, c-format
 msgid "Playing %s - %s"
 msgstr "%s erreproduzitzen - %s"
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-msgid "Unknown Artist"
-msgstr "Artista ezezaguna"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-msgid "Unknown Album"
-msgstr "Album ezezaguna"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 msgid "Playing"
 msgstr "Erreproduzitzen"
 
 #
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 msgid "Paused"
 msgstr "Pausarazita"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:870 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD erreproduzigailua"
 
 #
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "Geldituta"
 
 #
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 msgid "Disc error"
 msgstr "Disko-errorea"
 
 #
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:758
 msgid "No disc"
 msgstr "Ez dago diskorik"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:786
 msgid "Drive open"
 msgstr "Unitatea irekita"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:810
 msgid "Data CD"
 msgstr "Datuen CDa"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:832 gnome-cd/callbacks.c:837
 msgid "No Cdrom"
 msgstr "Ez dago CD-ROMik"
 
 #
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:848
 msgid "Drive Error"
 msgstr "Unitate-errorea"
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:872
 msgid "A CD player for GNOME"
 msgstr "GNOMErako CD erreproduzigailua"
 
@@ -1072,53 +1074,45 @@ msgstr ""
 "b) Ez duzu CD unitatea atzitzeko baimen egokirik\n"
 "c) %s ez da CD unitatea.\n"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Artista ezezaguna"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Disko ezezaguna"
-
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Ezezaguna"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 msgid "P_revious track"
 msgstr "Au_rreko pista"
 
 #
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "Gel_ditu"
 
 #
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 msgid "_Play / Pause"
 msgstr "_Erreproduzitu/ Pausarazi"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 msgid "_Next track"
 msgstr "_Hurrengo pista"
 
 #
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "E_gotzi diskoa"
 
 #
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "La_guntza"
 
 #
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 msgid "_About CD player"
 msgstr "_CD erreproduzigailuari buruz"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1130,16 +1124,16 @@ msgstr ""
 "eta han gailua ezartzeko, edo sakatu 'Irten' CD erreproduzigailutik irteteko."
 
 #
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 msgid "Set device"
 msgstr "Ezarri gailua"
 
 #
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 msgid "No CD device"
 msgstr "Ez dago CD gailurik"
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1157,110 +1151,110 @@ msgstr ""
 "ezartzeko, edo sakatu 'Irten' CD erreproduzigailutik irteteko"
 
 #
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr "_Xehetasunak"
 
 #
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 msgid "_Set device"
 msgstr "_Ezarri gailua"
 
 #
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 msgid "Invalid CD device"
 msgstr "CD gailu baliogabea"
 
 #
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 msgid "Volume control"
 msgstr "Bolumen-kontrola"
 
 #
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "Kokalekua"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 msgid "Open track editor"
 msgstr "Ireki pista-editorea"
 
 #
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 msgid "Track editor"
 msgstr "Pista-editorea"
 
 #
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 msgid "Open preferences"
 msgstr "Ireki hobespenak"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "Hobespenak"
 
 #
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 msgid "Track List"
 msgstr "Pista-zerrenda"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous track"
 msgstr "Aurreko pista"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "Aurrekoa"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 msgid "Rewind"
 msgstr "Atzera eraman"
 
 #
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "Erreproduzitu/Pausarazi"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Gelditu"
 
 #
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 msgid "Fast forward"
 msgstr "Bizkor aurreratu"
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 msgid "Next track"
 msgstr "Hurrengo pista"
 
 #
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject CD"
 msgstr "Egotzi CDa"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "Egotzi"
 
 #
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 msgid "CD device to use"
 msgstr "Erabili beharreko CD gailua"
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 "CD erreproduzigailuaren aplikaziorik exekutatzen ari ez bada bakarrik "
 "abiarazi "
 
 #
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr "Erreproduzitu CDa abioan"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Ezin da erreproduzigailua sortu"
 
@@ -1548,7 +1542,7 @@ msgstr "_Grabatu"
 msgid "_Save"
 msgstr "G_orde"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Dummy-aukerak"
 
@@ -1857,10 +1851,10 @@ msgstr "_Hodia:"
 msgid "_Test"
 msgstr "_Probatu"
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr "Pertsonalizatua"
 
@@ -2146,6 +2140,12 @@ msgstr "Kontrolatu soinuaren irteera-bolumena"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Bolumenaren monitorea"
+
+#~ msgid "Unknown artist"
+#~ msgstr "Artista ezezaguna"
+
+#~ msgid "Unknown disc"
+#~ msgstr "Disko ezezaguna"
 
 #~ msgid "Synth"
 #~ msgstr "Sint"

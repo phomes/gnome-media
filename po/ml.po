@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:02+0200\n"
+"POT-Creation-Date: 2004-05-07 17:31+0200\n"
 "PO-Revision-Date: 2003-07-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -159,44 +159,44 @@ msgstr "വഴി:"
 msgid "CD Database Preferences"
 msgstr "സി.ഡി പ്ളേയര്‍ മുന്ഗണനകള്"
 
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:215
 #, fuzzy
 msgid "Unknown / Unknown"
 msgstr "അറിയാത്ത തരം ജോലി %u"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "അറിയപ്പെടാത്ത"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:443
 msgid "Multiple matches..."
 msgstr ""
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:448
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
 
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:459
 msgid "Category"
 msgstr "വിഭാഗങ്ങള്"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:463
 #, fuzzy
 msgid "Disc ID"
 msgstr "ഡിസ്‌കോ"
 
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:467
 #, fuzzy
 msgid "Artist and Title"
 msgstr "ജാലക തലക്കുറി"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1330 cddb-slave2/cddb-slave.c:1332
+#: gnome-cd/gnome-cd.c:176
 #, fuzzy
 msgid "Unknown track"
 msgstr "അറിയാത്ത ഇനം"
@@ -901,79 +901,91 @@ msgstr "Meta"
 msgid "Art Rock"
 msgstr "റോക്ക്"
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+#, fuzzy
+msgid "Unknown Artist"
+msgstr "<അറിയാത്ത പ്ര‌വൃത്തി‌>"
+
+#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+#, fuzzy
+msgid "Unknown Album"
+msgstr "അറിയപ്പെടാത്ത"
+
+#: cddb-slave2/cddb-track-editor.c:544
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr ""
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:634
 msgid "Editing Disc ID: "
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:645
 msgid "_Artist:"
 msgstr "കലാകാരന്‍:"
 
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:659
 msgid "Disc _Title:"
 msgstr "തലക്കെട്ട്:"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:669
 #, fuzzy
 msgid "Show advanced disc options"
 msgstr "തിയ്യതി ഉപകരണതന്തുവില് കാണിക്കുക"
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:670
 msgid "Hide advanced disc options"
 msgstr ""
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:682
 #, fuzzy
 msgid "_Disc comments:"
 msgstr "അഭിപ്രായം"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:697
 #, fuzzy
 msgid "_Genre:"
 msgstr "പച്ച:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:713
 #, fuzzy
 msgid "_Year:"
 msgstr "വാക്യം മായ്‍ക്കുക"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Title"
 msgstr "തലക്കെട്ട്"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:759
 msgid "Length"
 msgstr "നീളം"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:770
 msgid "Show advanced track options"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:771
 msgid "Hide advanced track options"
 msgstr ""
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:779
 msgid "_Extra track data:"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:907
 #, fuzzy
 msgid "CDDB Track Editor"
 msgstr "പിന് ചരിത്രം"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1044
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1027,82 +1039,72 @@ msgid "Line for displaying the name of the album"
 msgstr ""
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "കളിക്കുക"
 
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "ചെറിയ ഇടവേള"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, fuzzy, c-format
 msgid "Playing %s - %s"
 msgstr "%s കേള്പ്പി‌ക്കുന്നു"
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-#, fuzzy
-msgid "Unknown Artist"
-msgstr "<അറിയാത്ത പ്ര‌വൃത്തി‌>"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-#, fuzzy
-msgid "Unknown Album"
-msgstr "അറിയപ്പെടാത്ത"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 #, fuzzy
 msgid "Playing"
 msgstr "പ്രതലമായ"
 
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 #, fuzzy
 msgid "Paused"
 msgstr "ചെറിയ ഇടവേള"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:870 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "സി.ഡി പ്ളേയര്‍"
 
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "നിര്‍ത്തി"
 
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 #, fuzzy
 msgid "Disc error"
 msgstr "പൊതു പിശക്"
 
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:758
 #, fuzzy
 msgid "No disc"
 msgstr "നോര്ഡിക്"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:786
 #, fuzzy
 msgid "Drive open"
 msgstr "വികസനം‌"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:810
 #, fuzzy
 msgid "Data CD"
 msgstr "വസ്തുത"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:832 gnome-cd/callbacks.c:837
 #, fuzzy
 msgid "No Cdrom"
 msgstr "പ്രശ്നം ഇല്ല"
 
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:848
 #, fuzzy
 msgid "Drive Error"
 msgstr "IO പിശക്"
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:872
 msgid "A CD player for GNOME"
 msgstr ""
 
@@ -1120,72 +1122,62 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 
-#: gnome-cd/display.c:74
-#, fuzzy
-msgid "Unknown artist"
-msgstr "അറിയാത്ത ഇനം"
-
-#: gnome-cd/display.c:75
-#, fuzzy
-msgid "Unknown disc"
-msgstr "അറിയപ്പെടാത്ത"
-
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, fuzzy, c-format
 msgid "%d - Unknown"
 msgstr "അറിയപ്പെടാത്ത"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 #, fuzzy
 msgid "P_revious track"
 msgstr "മുന് ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "നിര്‌ത്തുക"
 
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 #, fuzzy
 msgid "_Play / Pause"
 msgstr "പ്രവ‌ര്‍ത്തിപ്പിക്കുക / സ്തംഭിപ്പിക്കുക"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 #, fuzzy
 msgid "_Next track"
 msgstr "അടുത്ത ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 #, fuzzy
 msgid "_Eject disc"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "സഹായം"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 #, fuzzy
 msgid "_About CD player"
 msgstr "സി.ഡി പ്ളേയര്‍"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 #, fuzzy
 msgid "Set device"
 msgstr "സേവനം"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 #, fuzzy
 msgid "No CD device"
 msgstr "നിവേശകസംവിധാനങ്ങള്‌ ഇല്ല"
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1195,109 +1187,109 @@ msgid ""
 "'Quit' to quit the CD player"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr "വിശദാംശങ്ങള്"
 
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 #, fuzzy
 msgid "_Set device"
 msgstr "സേവനം"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 #, fuzzy
 msgid "Invalid CD device"
 msgstr "അസാധുവായ XBM ശേഖരം"
 
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 #, fuzzy
 msgid "Volume control"
 msgstr "ശബ്ദം ക്രമീകാരി"
 
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "സ്ഥാനം:"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 #, fuzzy
 msgid "Open track editor"
 msgstr "അടയാളം ചിട്ടപ്പെടുത്തുക"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 #, fuzzy
 msgid "Track editor"
 msgstr "പിന് ചരിത്രം"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 #, fuzzy
 msgid "Open preferences"
 msgstr "അക്ഷരരൂപ മുന്‍ഗണനകള്‍"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "മുന്‍ഗണനകള്‍"
 
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 #, fuzzy
 msgid "Track List"
 msgstr "അനുബന്ധ പട്ടിക"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 #, fuzzy
 msgid "Previous track"
 msgstr "മുന് ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "പിന്നോട്ട്"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 #, fuzzy
 msgid "Rewind"
 msgstr "റുവാണ്ട"
 
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "പ്രവ‌ര്‍ത്തിപ്പിക്കുക / സ്തംഭിപ്പിക്കുക"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "നിര്‌ത്തുക"
 
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 #, fuzzy
 msgid "Fast forward"
 msgstr "മുന്നോട്ട്"
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 #, fuzzy
 msgid "Next track"
 msgstr "അടുത്ത ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 #, fuzzy
 msgid "Eject CD"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 #, fuzzy
 msgid "CD device to use"
 msgstr "ഉപയോഗിക്കുന്നതിനായി X പ്രദര്ശനം"
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 #, fuzzy
 msgid "Cannot create player"
 msgstr "അരിപ്പ് ഉണ്ടാക്കാന്‌ കഴിയുന്നില്ല"
@@ -1572,7 +1564,7 @@ msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
 msgid "_Save"
 msgstr "സംരംക്ഷിക്കുക"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 #, fuzzy
 msgid "Dummy option"
 msgstr "ശബദ ബദലുകള്"
@@ -1900,10 +1892,10 @@ msgstr "പിക്സല് വലിപ്പം:"
 msgid "_Test"
 msgstr "പരീക്ഷിക്കുക"
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr ""
 
@@ -2205,6 +2197,14 @@ msgstr "ശബ്ദം ക്രമീകരിക്കുക"
 #, fuzzy
 msgid "Volume monitor"
 msgstr "ശബ്ദം ക്രമീകാരി"
+
+#, fuzzy
+#~ msgid "Unknown artist"
+#~ msgstr "അറിയാത്ത ഇനം"
+
+#, fuzzy
+#~ msgid "Unknown disc"
+#~ msgstr "അറിയപ്പെടാത്ത"
 
 #, fuzzy
 #~ msgid "GStreamer Volume Control"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:02+0200\n"
+"POT-Creation-Date: 2004-05-07 17:31+0200\n"
 "PO-Revision-Date: 2004-04-14 17:58+0200\n"
 "Last-Translator: Gabor Kelemen <kg0021@stud.unideb.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
@@ -163,23 +163,23 @@ msgid "CD Database Preferences"
 msgstr "CD-adatbázis beállításai"
 
 # tcd/linux-cdrom.c:687
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:215
 msgid "Unknown / Unknown"
 msgstr "Ismeretlen / Ismeretlen"
 
 # tcd/linux-cdrom.c:687
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:443
 msgid "Multiple matches..."
 msgstr "Több egyezés..."
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:448
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -187,20 +187,20 @@ msgstr ""
 "Több találat volt az adatbázisban.\n"
 "Válassza ki az alábbi listából a valósághoz legközelebb álló találatot."
 
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:459
 msgid "Category"
 msgstr "Kategória"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:463
 msgid "Disc ID"
 msgstr "Lemezazonosító"
 
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:467
 msgid "Artist and Title"
 msgstr "Előadó és cím"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1330 cddb-slave2/cddb-slave.c:1332
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Ismeretlen szám"
 
@@ -812,74 +812,84 @@ msgstr "Nu-Metal"
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+msgid "Unknown Artist"
+msgstr "Ismeretlen előadó"
+
+#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+msgid "Unknown Album"
+msgstr "Ismeretlen album"
+
+#: cddb-slave2/cddb-track-editor.c:544
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Következő azonosítójú lemez szerkesztése: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:634
 msgid "Editing Disc ID: "
 msgstr "Következő azonosítójú lemez szerkesztése: "
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:645
 msgid "_Artist:"
 msgstr "_Előadó:"
 
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:659
 msgid "Disc _Title:"
 msgstr "Lemez _címe:"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:669
 msgid "Show advanced disc options"
 msgstr "Haladó lemezbeállítások megjelenítése"
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:670
 msgid "Hide advanced disc options"
 msgstr "Haladó lemezbeállítások elrejtése"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:682
 msgid "_Disc comments:"
 msgstr "Megjegyzések a _lemezhez:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:697
 msgid "_Genre:"
 msgstr "_Műfaj:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:713
 msgid "_Year:"
 msgstr "É_v:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Title"
 msgstr "Cím"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:759
 msgid "Length"
 msgstr "Hossz"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:770
 msgid "Show advanced track options"
 msgstr "Haladó számbeállítások megjelenítése"
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:771
 msgid "Hide advanced track options"
 msgstr "Haladó számbeállítások elrejtése"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:779
 msgid "_Extra track data:"
 msgstr "_További adatok a számról:"
 
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:907
 msgid "CDDB Track Editor"
 msgstr "CDDB számszerkesztő"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1044
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -931,72 +941,64 @@ msgid "Line for displaying the name of the album"
 msgstr "Az album nevét megjelenítő sor"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Lejátszás"
 
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "Szünet"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, c-format
 msgid "Playing %s - %s"
 msgstr "%s - %s lejátszása"
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-msgid "Unknown Artist"
-msgstr "Ismeretlen előadó"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-msgid "Unknown Album"
-msgstr "Ismeretlen album"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 msgid "Playing"
 msgstr "Lejátszás"
 
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 msgid "Paused"
 msgstr "Szünet"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:870 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD-lejátszó"
 
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "Leállítva"
 
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 msgid "Disc error"
 msgstr "Lemezhiba"
 
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:758
 msgid "No disc"
 msgstr "Nincs lemez"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:786
 msgid "Drive open"
 msgstr "Meghajtó nyitva"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:810
 msgid "Data CD"
 msgstr "Adat CD"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:832 gnome-cd/callbacks.c:837
 msgid "No Cdrom"
 msgstr "Nincs CD-ROM"
 
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:848
 msgid "Drive Error"
 msgstr "Meghajtóhiba"
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:872
 msgid "A CD player for GNOME"
 msgstr "CD-lejátszó program a GNOME-hoz"
 
@@ -1018,49 +1020,41 @@ msgstr ""
 "b) nincs joga használni a CD-meghajtót\n"
 "c) %s nem CD-meghajtó\n"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Ismeretlen előadó"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Ismeretlen lemez"
-
 # tcd/linux-cdrom.c:687
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Ismeretlen"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 msgid "P_revious track"
 msgstr "_Előző szám"
 
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Leállítás"
 
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 msgid "_Play / Pause"
 msgstr "_Lejátszás / Szünet"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 msgid "_Next track"
 msgstr "_Következő szám"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "Le_mez kiadása"
 
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Súgó"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 msgid "_About CD player"
 msgstr "CD-lejátszó _névjegye"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1071,15 +1065,15 @@ msgstr ""
 "amely egy párbeszédablakot nyit meg, ahol beállíthatja\n"
 "a CD-eszközt. A \"Kilépés\" gombbal kiléphet a CD-lejátszóból."
 
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 msgid "Set device"
 msgstr "Eszköz megadása"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 msgid "No CD device"
 msgstr "Nincs CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1096,96 +1090,96 @@ msgstr ""
 "meg, ahol beállíthatja a CD-eszközt. A Kilépés gombbal kiléphet a CD-"
 "lejátszó programból."
 
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr "_Részletek"
 
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 msgid "_Set device"
 msgstr "_Eszköz megadása"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 msgid "Invalid CD device"
 msgstr "Érvénytelen CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 msgid "Volume control"
 msgstr "Hangerőszabályozó"
 
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "Pozíció"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 msgid "Open track editor"
 msgstr "Számszerkesztő megnyitása"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 msgid "Track editor"
 msgstr "Számszerkesztő"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 msgid "Open preferences"
 msgstr "Beállítások megnyitása"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 msgid "Track List"
 msgstr "Számok listája"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous track"
 msgstr "Előző szám"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "Előző"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 msgid "Rewind"
 msgstr "Vissza"
 
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "Lejátszás / Szünet"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Leállítás"
 
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 msgid "Fast forward"
 msgstr "Gyorsan előre"
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 msgid "Next track"
 msgstr "Következő szám"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject CD"
 msgstr "CD kiadása"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "Kiadás"
 
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 msgid "CD device to use"
 msgstr "Használandó CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Csak akkor induljon el, ha még nem fut másik CD-lejátszó alkalmazás"
 
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr "CD lejátszása indításkor"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Lejátszó létrehozása sikertelen"
 
@@ -1445,7 +1439,7 @@ msgstr "_Felvétel"
 msgid "_Save"
 msgstr "M_entés"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Üres opció"
 
@@ -1736,10 +1730,10 @@ msgstr "_Csővezeték:"
 msgid "_Test"
 msgstr "_Teszt"
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr "Egyéni"
 
@@ -2036,3 +2030,9 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
+
+#~ msgid "Unknown artist"
+#~ msgstr "Ismeretlen előadó"
+
+#~ msgid "Unknown disc"
+#~ msgstr "Ismeretlen lemez"

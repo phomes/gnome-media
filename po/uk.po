@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:02+0200\n"
+"POT-Creation-Date: 2004-05-07 17:31+0200\n"
 "PO-Revision-Date: 2004-03-13 14:51+0200\n"
 "Last-Translator: Maxim Dzumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -152,22 +152,22 @@ msgstr "_Порт:"
 msgid "CD Database Preferences"
 msgstr "Настройка бази даних програвача CD"
 
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:215
 msgid "Unknown / Unknown"
 msgstr "Невідомий / Невідомий"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:443
 msgid "Multiple matches..."
 msgstr "Декілька відповідностей..."
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:448
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -175,20 +175,20 @@ msgstr ""
 "У базі даних знайдено декілька відповідностей.\n"
 "Виберіть найкращий варіант з приведеного нижче списку."
 
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:459
 msgid "Category"
 msgstr "Категорія"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:463
 msgid "Disc ID"
 msgstr "Ідентифікатор"
 
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:467
 msgid "Artist and Title"
 msgstr "Виконавець та назва"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1330 cddb-slave2/cddb-slave.c:1332
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Невідома доріжка"
 
@@ -800,74 +800,84 @@ msgstr "Ню-метал"
 msgid "Art Rock"
 msgstr "Арт-рок"
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+msgid "Unknown Artist"
+msgstr "Невідомий виконавець"
+
+#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+msgid "Unknown Album"
+msgstr "Невідомий альбом"
+
+#: cddb-slave2/cddb-track-editor.c:544
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Правка ID диску: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:634
 msgid "Editing Disc ID: "
 msgstr "Правка ID диску: "
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:645
 msgid "_Artist:"
 msgstr "_Виконавець:"
 
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:659
 msgid "Disc _Title:"
 msgstr "Назва д_иску:"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:669
 msgid "Show advanced disc options"
 msgstr "Показати додаткові параметри диску"
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:670
 msgid "Hide advanced disc options"
 msgstr "Приховати додаткові параметри диску"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:682
 msgid "_Disc comments:"
 msgstr "_Коментарі:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:697
 msgid "_Genre:"
 msgstr "_Стиль:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:713
 msgid "_Year:"
 msgstr "_Рік:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Title"
 msgstr "Назва"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:759
 msgid "Length"
 msgstr "Час звучання"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:770
 msgid "Show advanced track options"
 msgstr "Показати додаткові параметри доріжки"
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:771
 msgid "Hide advanced track options"
 msgstr "Приховати додаткові параметри доріжки"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:779
 msgid "_Extra track data:"
 msgstr "Дані _додаткової доріжки"
 
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:907
 msgid "CDDB Track Editor"
 msgstr "Редактор доріжок CDDB"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1044
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -918,72 +928,64 @@ msgid "Line for displaying the name of the album"
 msgstr "Рядок для відображення назви альбому"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Відтворити"
 
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "Пауза"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, c-format
 msgid "Playing %s - %s"
 msgstr "Відтворення %s - %s"
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-msgid "Unknown Artist"
-msgstr "Невідомий виконавець"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-msgid "Unknown Album"
-msgstr "Невідомий альбом"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 msgid "Playing"
 msgstr "Відтворення"
 
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 msgid "Paused"
 msgstr "Призупинено"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:870 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Програвач компакт-дисків"
 
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "Зупинено"
 
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 msgid "Disc error"
 msgstr "Помилка диску"
 
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:758
 msgid "No disc"
 msgstr "Немає диска"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:786
 msgid "Drive open"
 msgstr "Привід відкритий"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:810
 msgid "Data CD"
 msgstr "Компакт-диск з даними"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:832 gnome-cd/callbacks.c:837
 msgid "No Cdrom"
 msgstr "Немає компакт-диска"
 
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:848
 msgid "Drive Error"
 msgstr "Помилка пристрою"
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:872
 msgid "A CD player for GNOME"
 msgstr "Програвач для  GNOME"
 
@@ -1006,48 +1008,40 @@ msgstr ""
 "б) Ви не маєте належних прав доступу до пристрою програвача компакт-дисків\n"
 "в) %s не є пристроєм програвача компакт-дисків\n"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Невідомий виконавець"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Невідомий диск"
-
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Невідоме"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 msgid "P_revious track"
 msgstr "П_опередня доріжка"
 
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Зупинити"
 
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 msgid "_Play / Pause"
 msgstr "_Гра / пауза"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 msgid "_Next track"
 msgstr "_Наступна доріжка"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "_Витягти диск"
 
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Довідка"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 msgid "_About CD player"
 msgstr "_Про програвач компакт-дисків"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1058,15 +1052,15 @@ msgstr ""
 "перейти до діалогу де ви зможете вказати пристрій, або натисніть\n"
 "\"Вийти\" щоб вийти з програми програвання компакт-дисків."
 
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 msgid "Set device"
 msgstr "Вказати пристрій"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 msgid "No CD device"
 msgstr "Немає пристрою компакт-дисків"
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1082,97 +1076,97 @@ msgstr ""
 "Щоб відрити діалог, де ви зможете вказати пристрій натисніть \"Вказати "
 "пристрій\", або натисніть \"Вийти\" щоб вийти."
 
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr "_Докладніше"
 
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 msgid "_Set device"
 msgstr "_Вказати пристрій"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 msgid "Invalid CD device"
 msgstr "Неправильний пристій компакт-дисків"
 
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 msgid "Volume control"
 msgstr "Регулятор гучності"
 
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "Позиція"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 msgid "Open track editor"
 msgstr "Відкрити редактор доріжок"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 msgid "Track editor"
 msgstr "Редактор доріжок"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 msgid "Open preferences"
 msgstr "Відкрити вікно настройки"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "Настройка"
 
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 msgid "Track List"
 msgstr "Список доріжок"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous track"
 msgstr "Попередня доріжка"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "Попередня"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 msgid "Rewind"
 msgstr "Повернутись назад"
 
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "Відтв. / Пауза"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Зупинити"
 
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 msgid "Fast forward"
 msgstr "Перейти вперед"
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 msgid "Next track"
 msgstr "Наступна доріжка"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject CD"
 msgstr "Витягти"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "Витягти"
 
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 msgid "CD device to use"
 msgstr "Який CD використовувати"
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 "Запускати лише у випадку, коли немає вже запущеного програвача компакт-дисків"
 
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr "Програвати CD на початку"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Не вдається створити програвача"
 
@@ -1432,7 +1426,7 @@ msgstr "За_писати"
 msgid "_Save"
 msgstr "З_берегти"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Порожній параметр"
 
@@ -1723,10 +1717,10 @@ msgstr "_Конвеєр:"
 msgid "_Test"
 msgstr "Пере_вірити"
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr "Власне"
 
@@ -2022,3 +2016,9 @@ msgstr "Індикатор рівня виходу звуку"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Індикатор гучності"
+
+#~ msgid "Unknown artist"
+#~ msgstr "Невідомий виконавець"
+
+#~ msgid "Unknown disc"
+#~ msgstr "Невідомий диск"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.gnome-2-2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:02+0200\n"
+"POT-Creation-Date: 2004-05-07 17:31+0200\n"
 "PO-Revision-Date: 2003-07-01 23:12+0530\n"
 "Last-Translator: Progga <abulfazl@juniv.edu>\n"
 "Language-Team: Bengali <gnome-translation@bengalinux.org>\n"
@@ -162,22 +162,22 @@ msgid "CD Database Preferences"
 msgstr "সিডি ডেটাবেস সম্বন্ধীয় পছন্দসমূহ"
 
 # C
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:215
 msgid "Unknown / Unknown"
 msgstr "অজানা/ অজানা"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "অজানা"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:443
 msgid "Multiple matches..."
 msgstr "একাধিক মিল..."
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:448
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -185,20 +185,20 @@ msgstr ""
 "ডেটাবেসে একাধিক মিল পাওয়া গিয়েছে।\n"
 "নিচে দেওয়া সম্ভাব্য মিলগুলের তালিকা থেকে সঠিক মিলটি বাছে নিন"
 
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:459
 msgid "Category"
 msgstr "শ্রেণী"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:463
 msgid "Disc ID"
 msgstr "ডিস্ক পরিচায়ক"
 
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:467
 msgid "Artist and Title"
 msgstr "শিল্পী এবং গানের নাম"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1330 cddb-slave2/cddb-slave.c:1332
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "অজানা গান"
 
@@ -814,74 +814,84 @@ msgstr "নু-মেটাল"
 msgid "Art Rock"
 msgstr "আর্ট রক"
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+msgid "Unknown Artist"
+msgstr "অজানা শিল্পী"
+
+#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+msgid "Unknown Album"
+msgstr "অজানা সংকলন"
+
+#: cddb-slave2/cddb-track-editor.c:544
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "এই ডিস্ক আইডি'টি সম্পাদন করা হচ্ছে: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:634
 msgid "Editing Disc ID: "
 msgstr "এই ডিস্ক আইডি'টি সম্পাদন করা হচ্ছে: "
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:645
 msgid "_Artist:"
 msgstr "_শিল্পী:"
 
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:659
 msgid "Disc _Title:"
 msgstr "ডিস্কের _নাম:"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:669
 msgid "Show advanced disc options"
 msgstr "অগ্রসর ডিস্ক অপশনসমূহ দেখাও"
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:670
 msgid "Hide advanced disc options"
 msgstr "অগ্রসর ডিস্ক অপশনসমূহ লুকিয়ে ফেলো"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:682
 msgid "_Disc comments:"
 msgstr "_ডিস্ক সম্বন্ধীয় মন্তব্য:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:697
 msgid "_Genre:"
 msgstr "_ধরন:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:713
 msgid "_Year:"
 msgstr "_বছর:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Title"
 msgstr "শিরোনাম"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:759
 msgid "Length"
 msgstr "দৈর্ঘ্য"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:770
 msgid "Show advanced track options"
 msgstr "গান সম্বন্ধে অগ্রসর অপশন দেখানো হোক"
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:771
 msgid "Hide advanced track options"
 msgstr "গান সম্বন্ধে অগ্রসর অপশন লোকানো হোক"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:779
 msgid "_Extra track data:"
 msgstr "গান সম্বন্ধীয় _অতিরিক্ত তথ্য:"
 
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:907
 msgid "CDDB Track Editor"
 msgstr "সি-ডি-ডি-বি গান সম্বন্ধীয় তথ্য সম্পাদক"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1044
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -934,72 +944,64 @@ msgid "Line for displaying the name of the album"
 msgstr "সংকলনের নাম প্রদর্শন করার রেখা"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "বাজাও"
 
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "বিরাম"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, c-format
 msgid "Playing %s - %s"
 msgstr "%s - %s বাজানো হচ্ছে"
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-msgid "Unknown Artist"
-msgstr "অজানা শিল্পী"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-msgid "Unknown Album"
-msgstr "অজানা সংকলন"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 msgid "Playing"
 msgstr "বাজানো হচ্ছে"
 
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 msgid "Paused"
 msgstr "স্থগিত অবস্থায় আছে"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:870 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "সিডি বাদক"
 
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "থামানো আছে"
 
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 msgid "Disc error"
 msgstr "ডিস্ক ত্রুটি"
 
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:758
 msgid "No disc"
 msgstr "কোন ডিস্ক নেই"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:786
 msgid "Drive open"
 msgstr "ড্রাইভ খোলা"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:810
 msgid "Data CD"
 msgstr "তথ্য (ডাটা) সিডি"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:832 gnome-cd/callbacks.c:837
 msgid "No Cdrom"
 msgstr "কোন সিডিরম নেই"
 
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:848
 msgid "Drive Error"
 msgstr "ড্রাইভ ত্রুটি"
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:872
 msgid "A CD player for GNOME"
 msgstr "গুহ্‌নোমের জন্য একটি সিডি বাদক"
 
@@ -1021,48 +1023,40 @@ msgstr ""
 "খ) সিডি ড্রাইভ চালানোর সঠিক অনুমতি আপনার নেই\n"
 "গ) %s সিডি ড্রাইভ নয়।\n"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "অজানা শিল্পী"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "অজানা ডিস্ক"
-
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - অজানা"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 msgid "P_revious track"
 msgstr "_পূর্ববর্তী গান"
 
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_থামো"
 
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 msgid "_Play / Pause"
 msgstr "_বাজাও / স্থগিত করো"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 msgid "_Next track"
 msgstr "_পরবর্তী গান"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "ডিস্ক _বের করে দাও"
 
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_সাহায্য"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 msgid "_About CD player"
 msgstr "সিডি বাদকের _সম্বন্ধে"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1072,15 +1066,15 @@ msgstr ""
 "সম্ভব হবে না। 'ডিভাইস নির্ধারণ করা' ক্লিক করে ডায়লগ বাক্স প্রদর্শন করে ডিভাইস\n"
 "নির্ধারণ করুন, অথবা 'প্রস্থান' টিপে সিডি প্লেয়ার বন্ধ করুন। "
 
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 msgid "Set device"
 msgstr "ডিভাইস _নির্ধারণ করুন"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 msgid "No CD device"
 msgstr "কোন সিডি ডিভাইস নেই"
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1096,96 +1090,96 @@ msgstr ""
 " 'ডিভাইস সেট করা' ক্লিক করে ডায়লগ বাক্স প্রদর্শন করে ডিভাইস নির্ধারণ করুন, অথবা "
 "'প্রস্থান' টিপে সিডি প্লেয়ার বন্ধ করুন।"
 
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr "_বিস্তারিত"
 
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 msgid "_Set device"
 msgstr "ডিভাইস _নির্ধারণ করুন"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 msgid "Invalid CD device"
 msgstr "ভুল সিডি ডিভাইস"
 
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 msgid "Volume control"
 msgstr "শব্দের মাত্রা নিয়ন্ত্রণকারী"
 
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "অবস্থান"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 msgid "Open track editor"
 msgstr "গান সম্বন্ধীয় তথ্যের সম্পাদক খোলো"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 msgid "Track editor"
 msgstr "গান সম্বন্ধীয় তথ্যের সম্পাদক"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 msgid "Open preferences"
 msgstr "পছন্দের তালিকা খোলো"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "পছন্দসমূহ"
 
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 msgid "Track List"
 msgstr "গানের তালিকা"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous track"
 msgstr "পূর্ববর্তী গান"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "পূর্ববর্তী"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 msgid "Rewind"
 msgstr "পিছিয়ে যাও (রিওয়াইন্ড)"
 
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "বাজাও/বিরতি দাও"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "থামাও"
 
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 msgid "Fast forward"
 msgstr "এগিয়ে যাও (ফাস্ট ফরওয়ার্ড)"
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 msgid "Next track"
 msgstr "পরবর্তী গান"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject CD"
 msgstr "সিডি বের করে দাও"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "বের করে দাও"
 
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 msgid "CD device to use"
 msgstr "যে সিডি ডিভাইস ব্যবহৃত হবে"
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr "কোন সিডি প্লেয়ার অ্যাপ্লিকেশন বর্তমানে সক্রিয় না থাকলেই কেবল আরম্ভ করো"
 
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr "প্রারম্ভে সিডি বাজাও"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "বাদক তৈরি করা গেল না"
 
@@ -1443,7 +1437,7 @@ msgstr "_রেকর্ড"
 msgid "_Save"
 msgstr "_সংরক্ষণ"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 #, fuzzy
 msgid "Dummy option"
 msgstr "শব্দ সম্বন্ধীয় অপশনসমূহ"
@@ -1736,10 +1730,10 @@ msgstr "পাইপলাইন:"
 msgid "_Test"
 msgstr "পরীক্ষা..."
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr "নিজস্ব"
 
@@ -2035,6 +2029,12 @@ msgstr "শব্দের আউটপুট মাত্রার উপরে
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "শব্দের মাত্রার উপর নজরকারী"
+
+#~ msgid "Unknown artist"
+#~ msgstr "অজানা শিল্পী"
+
+#~ msgid "Unknown disc"
+#~ msgstr "অজানা ডিস্ক"
 
 #, fuzzy
 #~ msgid "GStreamer Volume Control"
