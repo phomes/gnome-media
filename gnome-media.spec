@@ -9,16 +9,19 @@ Version: %ver
 Release: %rel
 Copyright: LGPL
 Group: X11/Libraries
-Source: ftp://ftp.gnome.org/pub/gnome-media-%{ver}.tar.gz
-BuildRoot: /tmp/gnome-media-root
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-media-%{ver}.tar.gz
+BuildRoot: /var/tmp/gnome-media-root
 Obsoletes: gnome
 Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
 
+Requires: gnome-libs >= 0.30
+
+# msf - disabled in 0.30 release
 # these needed for extace
-Requires: gsl
-Requires: esound
+#Requires: gsl
+#Requires: esound
 
 
 %description
@@ -29,6 +32,10 @@ name but really GNOME is a nice GUI desktop environment.  It makes
 using your computer easy, powerful, and easy to configure.
 
 %changelog
+
+* Wed Sep 23 1998 Michael Fulbright <msf@redhat.com>
+
+- Updated to 0.30 release
 
 * Mon Mar 16 1998 Marc Ewing <marc@redhat.com>
 
