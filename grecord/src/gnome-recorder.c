@@ -146,6 +146,7 @@ main (int argc,
       char **argv)
 {
 	GnomeProgram *program;
+	GtkIconInfo *icon_info;
 	poptContext pctx;
 	GValue value = {0, };
 	char **args = NULL;
@@ -174,7 +175,13 @@ main (int argc,
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
 
-	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
+	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
+						"gnome-audio2", 48, 0);
+	if (icon_info) {
+		gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
+		gtk_icon_info_free (icon_info);
+	}
+
 
 	/* Init the icons */
 	init_stock_icons ();
