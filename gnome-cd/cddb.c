@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * cddb.c
  *
@@ -122,6 +123,8 @@ load_cddb_data (GnomeCD *gcd,
 	g_print ("Loaded\n");
 	fclose (handle);
 	g_free (filename);
+
+	gnome_cd_build_track_list_menu (gcd);
 }
 
 static void

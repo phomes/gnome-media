@@ -1,3 +1,24 @@
+2002-01-10  Iain Holmes  <iain@ximian.com>
+
+	* *.c: Add the emacs crap at the top.
+
+	* callbacks.c (cd_status_changed_cb): Don't put the track name on 
+	the display. Set the window title to something useful.
+
+	* cddb.c (load_cddb_data): Rebuild the tracklist menu.
+
+	* display.h: Remove the CD_DISPLAY_LINE_TRACK enum value.
+
+	* gnome-cd.c (gnome_cd_set_window_title): Function to set the
+	window title to something.
+	(gnome_cd_build_track_list_menu): Generate an option menu from the
+	tracknames.
+	(init_player): Add an option menu for the tracks. Remove the mixer
+	button and volume button.
+
+	* linux-cdrom.c (linux_cdrom_get_status): Handle the other
+	CDS_ status results.
+
 2002-01-09  Iain Holmes  <iain@ximian.com>
 
 	* cddb.c (load_cddb_data): Swap the artist and album title round. Opps

@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * linux-cdrom.c: Linux CD controlling functions.
  *
@@ -753,6 +754,22 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	cd_status = ioctl (priv->cdrom_fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
 	if (cd_status != -1) {
 		switch (cd_status) {
+		case CDS_NO_INFO:
+			realstatus->cd = GNOME_CDROM_STATUS_NO_DISC;
+			realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
+			realstatus->track = -1;
+
+			linux_cdrom_close (lcd);
+			return TRUE;
+
+		case CDS_NO_DISC:
+			realstatus->cd = GNOME_CDROM_STATUS_NO_DISC;
+			realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
+			realstatus->track = -1;
+
+			linux_cdrom_close (lcd);
+			return TRUE;
+			
 		case CDS_TRAY_OPEN:
 			realstatus->cd = GNOME_CDROM_STATUS_TRAY_OPEN;
 			realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
@@ -886,6 +903,11 @@ linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (priv->track_info == NULL) {
+		*data = NULL;
+		return TRUE;
+	}
+	
 	*data = g_new (GnomeCDRomCDDBData, 1);
 
 	for (i = 0; i < priv->number_tracks; i++) {
@@ -1045,6 +1067,10 @@ gnome_cdrom_new (const char *cdrom_device,
 
 	/* Do a test open to see if we have CD stuff working */
 	if (linux_cdrom_open (cdrom, error) == TRUE) {
+
+		/* Force an update so that a status will always exist */
+		update_cd (cdrom);
+		
 		/* All worked, start the counter */
 		switch (update) {
 		case GNOME_CDROM_UPDATE_NEVER:

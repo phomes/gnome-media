@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  * callbacks.c
  *
@@ -410,25 +411,35 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		g_free (text);
 
 		if (gcd->disc_info == NULL) {
+#if 0
 			text = g_strdup_printf ("Track %d", status->track);
 			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, text);
 			g_free (text);
+#endif
 			
 			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
 			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
+			gnome_cd_set_window_title (gcd, NULL, NULL);
 		} else {
 			GnomeCDDiscInfo *info = gcd->disc_info;
 
+#if 0
 			if (info->tracknames[status->track - 1] != NULL) {
 				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, info->tracknames[status->track - 1]);
 			}
-
+#endif
 			if (info->artist != NULL) {
 				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, info->artist);
 			}
-
 			if (info->title != NULL) {
 				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, info->title);
+			}
+
+			if (status->audio == GNOME_CDROM_AUDIO_PLAY ||
+			    status->audio == GNOME_CDROM_AUDIO_PAUSE) {
+				gnome_cd_set_window_title (gcd, info->artist, info->tracknames[status->track - 1]);
+			} else {
+				gnome_cd_set_window_title (gcd, info->artist, info->title);
 			}
 		}
 		break;
@@ -437,16 +448,19 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	case GNOME_CDROM_STATUS_NO_DISC:
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "No disc");
+		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive open");
+		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	default:
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive Error");
+		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 	}
 

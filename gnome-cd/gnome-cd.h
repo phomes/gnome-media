@@ -38,6 +38,8 @@ typedef struct _GnomeCD {
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *display;
+	GtkWidget *tracks;
+	GtkWidget *menu;
 	GtkTooltips *tooltips;
 
 	GtkWidget *trackeditor_b, *properties_b;
@@ -64,5 +66,10 @@ typedef struct _GnomeCD {
 
 	GnomeCDDiscInfo *disc_info;
 } GnomeCD;
+
+void gnome_cd_set_window_title (GnomeCD *gcd,
+				const char *artist,
+				const char *track);
+void gnome_cd_rebuild_track_list_menu (GnomeCD *gcd);
 
 #endif

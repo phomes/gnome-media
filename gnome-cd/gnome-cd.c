@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /**
  * gnome-cd.c: GNOME-CD player.
  *
@@ -20,6 +21,79 @@
 #include "cdrom.h"
 #include "callbacks.h"
 #include "display.h"
+
+void
+gnome_cd_set_window_title (GnomeCD *gcd,
+			   const char *artist,
+			   const char *track)
+{
+	char *title;
+
+	if (artist == NULL &&
+	    track == NULL) {
+		title = g_strdup ("Gnome-CD " VERSION);
+	} else {
+		title = g_strconcat (artist, " - ", track, NULL);
+	}
+
+	gtk_window_set_title (GTK_WINDOW (gcd->window), title);
+	g_free (title);
+}
+
+void
+gnome_cd_build_track_list_menu (GnomeCD *gcd)
+{
+	GtkMenu *menu;
+	GtkWidget *item;
+
+	if (gcd->menu != NULL) {
+		menu = GTK_MENU (gcd->menu);
+		gtk_option_menu_remove_menu (GTK_OPTION_MENU (gcd->tracks));
+	}
+
+	
+	menu = gtk_menu_new ();
+	if (gcd->disc_info != NULL) {
+		int i;
+		for (i = 0; i < gcd->disc_info->ntracks; i++) {
+			item = gtk_menu_item_new_with_label (gcd->disc_info->tracknames[i]);
+			gtk_widget_show (item);
+
+			gtk_menu_append (menu, item);
+		}
+	} else {
+		GnomeCDRomCDDBData *data;
+		GnomeCDRomStatus *status;
+
+		if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) != FALSE) {
+
+			if (status->cd == GNOME_CDROM_STATUS_OK) {
+				if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) != FALSE) {
+					int i;
+				
+					for (i = 0; i < data->ntrks; i++) {
+						char *label;
+						
+						label = g_strdup_printf (_("Track %d - Unknown"), i + 1);
+						item = gtk_menu_item_new_with_label (label);
+						g_free (label);
+						
+						gtk_widget_show (item);
+						
+						gtk_menu_append (menu, item);
+					}
+					
+					g_free (data);
+				}
+			}
+
+			g_free (status);
+		}
+	}
+
+	gtk_option_menu_set_menu (GTK_OPTION_MENU (gcd->tracks), GTK_WIDGET (menu));
+	gcd->menu = menu;
+}
 
 static GtkWidget *
 make_button_from_widget (GnomeCD *gcd,
@@ -105,7 +179,7 @@ static GnomeCD *
 init_player (void) 
 {
 	GnomeCD *gcd;
-	GtkWidget *container;
+	GtkWidget *container, *display_box;
 	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow, *frame;
 	GdkPixbuf *pixbuf;
@@ -145,7 +219,7 @@ init_player (void)
 	top_hbox = gtk_hbox_new (FALSE, 0);
 
 	/* Create app controls */
-	side_vbox = gtk_vbox_new (TRUE, 0);
+	side_vbox = gtk_vbox_new (FALSE, 0);
 	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, NULL, _("Open track editor"), _("Track editor"));
 	gtk_widget_set_sensitive (button, FALSE);
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
@@ -159,6 +233,8 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (top_hbox), side_vbox, FALSE, FALSE, 0);
 
 	/* Create the display */
+	display_box = gtk_vbox_new (FALSE, 0);
+
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 
@@ -166,11 +242,17 @@ init_player (void)
 
 	gtk_container_add (GTK_CONTAINER (frame), gcd->display);
 
-	gtk_box_pack_start (GTK_BOX (top_hbox), frame, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (display_box), frame, TRUE, TRUE, 0);
+
+	gcd->tracks = gtk_option_menu_new ();
+	gnome_cd_build_track_list_menu (gcd);
+	gtk_box_pack_start (GTK_BOX (display_box), gcd->tracks, FALSE, FALSE, 0);
+
+	gtk_box_pack_start (GTK_BOX (top_hbox), display_box, TRUE, TRUE, 0);
 	
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 	
-	bottom_hbox = gtk_hbox_new (FALSE, 0);
+	bottom_hbox = gtk_hbox_new (TRUE, 0);
 	button_hbox = gtk_hbox_new (TRUE, 0);
 	
 	button = make_button_from_file (gcd, "gnome-cd/back.xpm", G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
@@ -222,8 +304,9 @@ init_player (void)
 	button = make_button_from_file (gcd, "gnome-cd/eject.xpm", G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->eject_b = button;
-	gtk_box_pack_start (GTK_BOX (bottom_hbox), button_hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (bottom_hbox), button_hbox, TRUE, TRUE, 0);
 
+#if 0
 	button = make_button_from_file (gcd, "gnome-cd/mixer.png", G_CALLBACK (mixer_cb), _("Open mixer"), _("Open Mixer"));
 	gtk_box_pack_start (GTK_BOX (bottom_hbox), button, FALSE, FALSE, 0);
 	gcd->mixer_b = button;
@@ -232,7 +315,7 @@ init_player (void)
 	button = make_button_from_widget (gcd, arrow, NULL, _("Change volume"), _("Volume"));
 	gcd->volume_b = button;
 	gtk_box_pack_start (GTK_BOX (bottom_hbox), button, FALSE, FALSE, 0);
-
+#endif
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), bottom_hbox, FALSE, FALSE, 0);
 
 	gtk_container_add (GTK_CONTAINER (gcd->window), gcd->vbox);
