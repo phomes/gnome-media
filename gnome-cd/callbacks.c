@@ -439,6 +439,179 @@ mixer_cb (GtkButton *button,
 	g_free (mixer_path);
 }
 
+/* Do all the stuff for when the status is ok */
+static void
+status_ok (GnomeCD *gcd,
+	   GnomeCDRomStatus *status)
+{
+	AtkObject *aob;
+	int track;
+	char *text;
+	
+	/* Allow the track editor to work */
+	gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
+
+	switch (status->audio) {
+	case GNOME_CDROM_AUDIO_NOTHING:
+		break;
+
+	case GNOME_CDROM_AUDIO_PLAY:
+		/* Change the play button to pause */
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Pause"));
+
+		if (gcd->current_image != gcd->pause_image) {
+			gtk_container_remove (GTK_CONTAINER (gcd->play_b),
+					      gcd->play_image);
+			gtk_container_add (GTK_CONTAINER (gcd->play_b),
+					   gcd->pause_image);
+			gcd->current_image = gcd->pause_image;
+		}
+		/* Find out if the track has changed */
+		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
+		if (track + 1 != status->track) {
+			g_signal_handlers_block_matched (G_OBJECT (gcd->tracks),
+							 G_SIGNAL_MATCH_FUNC,
+							 0, 0, NULL,
+							 G_CALLBACK (skip_to_track),
+							 gcd);
+			gtk_option_menu_set_history (GTK_OPTION_MENU (gcd->tracks),
+						     status->track - 1);
+			g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks),
+							   G_SIGNAL_MATCH_FUNC,
+							   0, 0, NULL,
+							   G_CALLBACK (skip_to_track),
+							   gcd);
+		}
+		
+		
+/*  		cd_display_clear (CD_DISPLAY (gcd->display)); */
+		if (status->relative.second >= 10) {
+			text = g_strdup_printf ("%d:%d", status->relative.minute, status->relative.second);
+		} else {
+			text = g_strdup_printf ("%d:0%d", status->relative.minute, status->relative.second);
+		}
+		
+		cd_display_set_line (CD_DISPLAY (gcd->display),
+				     CD_DISPLAY_LINE_TIME, text);
+		g_free (text);
+		if (gcd->disc_info != NULL) {
+			gnome_cd_set_window_title (gcd, gcd->disc_info->artist,
+						   gcd->disc_info->track_info[status->track - 1]->name);
+		}
+			
+		break;
+
+	case GNOME_CDROM_AUDIO_PAUSE:
+		/* Change the play button to pause */
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Play"));
+		if (gcd->current_image != gcd->play_image) {
+			gtk_container_remove (GTK_CONTAINER (gcd->play_b),
+					      gcd->pause_image);
+			gtk_container_add (GTK_CONTAINER (gcd->play_b),
+					   gcd->play_image);
+			gcd->current_image = gcd->play_image;
+		}
+
+		if (gcd->disc_info != NULL) {
+			gnome_cd_set_window_title (gcd, gcd->disc_info->artist,
+						   gcd->disc_info->track_info[status->track - 1]->name);
+		}
+
+		break;
+		
+	case GNOME_CDROM_AUDIO_COMPLETE:
+		if (gcd->cdrom->loopmode == GNOME_CDROM_LOOP) {
+			if (gcd->cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+				/* Around we go */
+				play_cb (NULL, gcd);
+			} else {
+				GnomeCDRomMSF msf;
+				int start_track, end_track;
+				GError *error;
+				
+				/* CD has gone to the start of the next track.
+				   Track we want to loop is track - 1 */
+				start_track = status->track - 1;
+				end_track = status->track;
+				
+				msf.minute = 0;
+				msf.second = 0;
+				msf.frame = 0;
+				
+				if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
+						      end_track, &msf, &error) == FALSE) {
+					g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+					g_error_free (error);
+					
+					g_free (status);
+					return;
+				}
+			}
+		}
+		
+		break;
+		
+	case GNOME_CDROM_AUDIO_STOP:
+		cd_display_set_line (CD_DISPLAY (gcd->display),
+				     CD_DISPLAY_LINE_TIME, "");
+		if (gcd->disc_info != NULL) {
+			gnome_cd_set_window_title (gcd, gcd->disc_info->artist,
+						   gcd->disc_info->title);
+		} else {
+			gnome_cd_set_window_title (gcd, NULL, NULL);
+		}
+		break;
+		
+	case GNOME_CDROM_AUDIO_ERROR:
+		cd_display_clear (CD_DISPLAY (gcd->display));
+		cd_display_set_line (CD_DISPLAY (gcd->display),
+				     CD_DISPLAY_LINE_TIME, _("Disc error"));
+		if (gcd->disc_info != NULL) {
+			gnome_cd_set_window_title (gcd, gcd->disc_info->artist,
+						   gcd->disc_info->title);
+		} else {
+			gnome_cd_set_window_title (gcd, NULL, NULL);
+		}
+		break;
+		
+	default:
+		if (gcd->disc_info != NULL) {
+			gnome_cd_set_window_title (gcd, gcd->disc_info->artist,
+						   gcd->disc_info->title);
+		} else {
+			gnome_cd_set_window_title (gcd, NULL, NULL);
+		}
+		
+		break;
+	}
+	
+	if (gcd->last_status == NULL ||
+	    gcd->last_status->cd != GNOME_CDROM_STATUS_OK) {
+		cddb_get_query (gcd);
+		
+		if (gcd->disc_info == NULL) {
+			cd_display_set_line (CD_DISPLAY (gcd->display),
+					     CD_DISPLAY_LINE_ARTIST,
+					     _("Unknown Artist"));
+			cd_display_set_line (CD_DISPLAY (gcd->display),
+					     CD_DISPLAY_LINE_ALBUM,
+					     _("Unknown Album"));
+			gnome_cd_set_window_title (gcd, NULL, NULL);
+		} else {
+			GnomeCDDiscInfo *info = gcd->disc_info;
+			
+			cd_display_set_line (CD_DISPLAY (gcd->display),
+					     CD_DISPLAY_LINE_ARTIST,
+					     info->artist);
+			cd_display_set_line (CD_DISPLAY (gcd->display),
+					     CD_DISPLAY_LINE_ALBUM,
+					     info->title);
+		}
+	}
+}
+
 void
 cd_status_changed_cb (GnomeCDRom *cdrom,
 		      GnomeCDRomStatus *status,
@@ -453,86 +626,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
-		gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
-		if (status->audio == GNOME_CDROM_AUDIO_COMPLETE) {
-			if (cdrom->loopmode == GNOME_CDROM_LOOP) {
-				if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
-					/* Around we go */
-					play_cb (NULL, gcd);
-				} else {
-					GnomeCDRomMSF msf;
-					int start_track, end_track;
-					GError *error;
-
-					/* CD has gone to the start of the next track.
-					   Track we want to loop is track - 1 */
-					start_track = status->track - 1;
-					end_track = status->track;
-
-					msf.minute = 0;
-					msf.second = 0;
-					msf.frame = 0;
-					
-					if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
-							      end_track, &msf, &error) == FALSE) {
-						g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
-						g_error_free (error);
-						
-						g_free (status);
-						return;
-					}
-				}
-			}
-			break;
-		}
-		
-		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
-		if (track + 1 != status->track) {
-			g_signal_handlers_block_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC,
-							 0, 0, NULL, G_CALLBACK (skip_to_track), gcd);
-			gtk_option_menu_set_history (GTK_OPTION_MENU (gcd->tracks), status->track - 1);
-			g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC,
-							   0, 0, NULL, G_CALLBACK (skip_to_track), gcd);
-		}
-		
-		if (gcd->last_status == NULL || gcd->last_status->cd != GNOME_CDROM_STATUS_OK) {
-			cddb_get_query (gcd);
-		}
-
-		cd_display_clear (CD_DISPLAY (gcd->display));
-		if (status->relative.second >= 10) {
-			text = g_strdup_printf ("%d:%d", status->relative.minute, status->relative.second);
-		} else {
-			text = g_strdup_printf ("%d:0%d", status->relative.minute, status->relative.second);
-		}
-
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, text);
-		g_free (text);
-
-		if (gcd->disc_info == NULL) {
-			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, _("Unknown Artist"));
-			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, _("Unknown Album"));
-			gnome_cd_set_window_title (gcd, NULL, NULL);
-		} else {
-			GnomeCDDiscInfo *info = gcd->disc_info;
-
-			if (info->artist != NULL) {
-				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, info->artist);
-			}
-			if (info->title != NULL) {
-				cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, info->title);
-			}
-
-			if (status->audio == GNOME_CDROM_AUDIO_PLAY ||
-			    status->audio == GNOME_CDROM_AUDIO_PAUSE) {
-				gnome_cd_set_window_title (gcd, info->artist,
-							   info->track_info[status->track - 1]->name);
-			} else {
-				gnome_cd_set_window_title (gcd, info->artist, info->title);
-			}
-		}
+		status_ok (gcd, status);
 		break;
-
 		
 	case GNOME_CDROM_STATUS_NO_DISC:
 		if (gcd->disc_info != NULL) {
@@ -551,7 +646,7 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 			cddb_free_disc_info (gcd->disc_info);
 			gcd->disc_info = NULL;
 		}
-
+		
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive open"));
