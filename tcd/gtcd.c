@@ -182,8 +182,9 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 			gtk_timeout_remove(release_t);
 			if(GPOINTER_TO_INT(data) > 0)
 			{
-				if(cd.cur_t < cd.last_t)
-				{   
+				if((cd.cur_t < cd.last_t) &&
+				   (cd.trk[cd.cur_t+1].toc.cdte_ctrl != CDROM_DATA_TRACK))
+				{
 					cd.cur_t++;
 					tcd_playtracks(&cd,cd.cur_t, cd.last_t, prefs->only_use_trkind);
 					if(cd.play_method==REPEAT_TRK)
@@ -706,6 +707,7 @@ void make_goto_menu()
 	char buf[TRK_NAME_LEN];
 	int i;
 	GtkWidget *item;
+	gboolean data_track;
 
 	if(gotomenu)
 		gtk_widget_destroy(gotomenu);
@@ -713,12 +715,17 @@ void make_goto_menu()
 
 	for(i=1; i <= cd.last_t; i++)
 	{
-		g_snprintf(buf, TRK_NAME_LEN, "%2d - %s", i, cd.trk[C(i)].name);
+		data_track = (cd.trk[C(i)].toc.cdte_ctrl == CDROM_DATA_TRACK);
+
+		g_snprintf(buf, TRK_NAME_LEN, "%2d - %s", i,
+			   data_track ? "[Data]" : cd.trk[C(i)].name);
 		item = gtk_menu_item_new_with_label(buf);
 		gtk_widget_show(item);
 		gtk_menu_append(GTK_MENU(gotomenu), item);
-		gtk_signal_connect(GTK_OBJECT(item), "activate",
-				   GTK_SIGNAL_FUNC(goto_track_cb), GINT_TO_POINTER(i));
+		if (!data_track)
+			gtk_signal_connect(GTK_OBJECT(item), "activate",
+					   GTK_SIGNAL_FUNC(goto_track_cb),
+					   GINT_TO_POINTER(i));
 	}
 	if(gotoi) gtk_signal_disconnect(GTK_OBJECT(gotobutton), gotoi);
 	gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",

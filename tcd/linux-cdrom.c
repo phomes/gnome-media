@@ -297,19 +297,20 @@ void tcd_recalculate_fake(cd_struct *cd, gint abs_pos, gint track)
     cd->cd_min = cd->cur_pos_abs / 60;
 }
 
-/* finds the track the current second in teh album is in */
+/* finds the track the current second in the album is in */
 int tcd_find_track(cd_struct *cd, gint abs_pos)
 {
 	int t;
 	
-	for(t = cd->first_t; t < cd->last_t;)
+	for(t = cd->first_t; t <= cd->last_t; t++)
 	{
-		if(abs_pos >= cd->trk[t].start/75)
-			t++;
-		else
+		if(cd->trk[t].toc.cdte_ctrl == CDROM_DATA_TRACK)
 			return t-1;
+		if(abs_pos >= cd->trk[t].start/75)
+			continue;
+		return t-1;
 	}
-	return t;
+	return cd->last_t;
 }
 
 void tcd_gettime( cd_struct *cd )
