@@ -1159,9 +1159,6 @@ gnome_cdrom_new (const char *cdrom_device,
 	LinuxCDRomPrivate *priv;
 	int fd;
 
-	g_return_val_if_fail (cdrom_device != NULL, NULL);
-	g_return_val_if_fail (*cdrom_device != 0, NULL);
-
 	cdrom = g_object_new (linux_cdrom_get_type (), NULL);
 	priv = cdrom->priv;
 

@@ -1,5 +1,13 @@
 2002-02-14  Iain <iain@ximian.com>
 
+	* gnome-cd.c (init_player): Only dereference the error if it isn't 
+	NULL.
+
+	* linux-cdrom.c (gnome_cdrom_new): Allow NULL and "" for the device 
+	name.
+
+2002-02-14  Iain <iain@ximian.com>
+
 	* callbacks.c (rewind_press_cb): Only set a new timeout if one isn't
 	running.
 	(rewind_release_cb): Zero the timeout value.

@@ -361,8 +361,10 @@ init_player (void)
 		
 	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
-		g_error_free (error);
+		if (error != NULL) {
+			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_error_free (error);
+		}
 	} else {
 		g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
 				  G_CALLBACK (cd_status_changed_cb), gcd);

@@ -2,7 +2,7 @@
 /*
  *  Authors: Iain Holmes <iain@ximian.com>
  *
- *  Copyright 2002 Ximain, Inc. (www.ximian.com)
+ *  Copyright 2002 Iain Holmes 
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
