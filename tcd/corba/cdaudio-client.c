@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 	g_print("ID %d: %s\n", i, servlist[i].server_id);
 	if(!strcmp(servlist[i].server_id, "cdaudio")) 
 	{
+	    g_print("Chosen: %s\n", servlist[i].server_id);
 	    chosen = &servlist[i];
 	    break;
 	}
