@@ -39,7 +39,7 @@ GtkWidget *trwin;
 GtkWidget *box, *namebox;
 GtkWidget *entry[50], *title;
 extern cd_struct cd;
-extern int tracklabel_f, titlelabel_f;
+extern int titlelabel_f;
 
 void destroy_window (GtkWidget *widget, GtkWidget **window)
 {
@@ -52,7 +52,7 @@ void destroy_window (GtkWidget *widget, GtkWidget **window)
 	tcd_writediskinfo(&cd);
 	gtk_widget_destroy( trwin );
 	trwin = NULL;
-	tracklabel_f = titlelabel_f = -100; /* Invalidate the labels */
+	titlelabel_f = -100; /* Invalidate the labels */
 }
 
 

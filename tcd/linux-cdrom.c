@@ -331,13 +331,29 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
         tmp = ioctl( cd->cd_dev, CDROMPLAYTRKIND, &cd->ti );
    	if( tmp < 0 )
 	{
-		strcpy( cd->errmsg, "Error playing disc" );
-               	cd->err = TRUE;
+		struct cdrom_msf msf;
+		msf.cdmsf_min0 = cd->trk[start_t].toc.cdte_addr.msf.minute;
+		msf.cdmsf_sec0 = cd->trk[start_t].toc.cdte_addr.msf.second;
+		msf.cdmsf_frame0 = cd->trk[start_t].toc.cdte_addr.msf.frame;
+	
+		msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
+		msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
+		msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
+	
+		msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
+		msf.cdmsf_sec1 %= 60;
+		tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );
+		
+		if( tmp < 0 )
+		{
+			strcpy( cd->errmsg, "Error playing disc" );
+			cd->err = TRUE;
 #ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n" );
+			fprintf( stderr, "cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n" );
 #endif
-		return(-1);
-        }
+			return -1;
+		}
+	}
    	cd->isplayable=TRUE;                                                 
 	cd->isdisk=TRUE;
 #ifdef DEBUG
@@ -524,8 +540,12 @@ int tcd_readdiskinfo( cd_struct *cd )
 	int i, res;
 	FILE *fp;
 	char fn[60];
+	char tmp[256], *tmp2;
 	char artist[DISC_INFO_LEN], album[DISC_INFO_LEN];
 	char tcd_dir[128];
+
+	if( !cd->isplayable )
+		return;
 	
 	strcpy( tcd_dir, getenv("HOME"));
         strcat( tcd_dir, "/.tcd/" );
@@ -541,6 +561,13 @@ int tcd_readdiskinfo( cd_struct *cd )
 			sleep(2);
 			return -1;
 		}
+		strcpy( tmp, cd->dtitle );
+		strcpy( cd->artist, strtok( tmp, "/" ) );
+		tmp2 = strtok(NULL, "\0");
+		if( tmp2 )
+			strcpy( cd->album, tmp2+1 );
+		else
+			strcpy( cd->album, "" );
 		strcpy( cd->trk[0].name, "--" );
 		return 0;
 	}

@@ -376,9 +376,9 @@ GtkWidget *create_status_frame( GtkWidget *box )
 	statusbutton_f = gtk_button_new_with_label( "Track Font" );
 	
 	gtk_signal_connect( GTK_OBJECT(trackbutton_f), "clicked",
-		GTK_SIGNAL_FUNC(font_cb), &props.statusfont );
-	gtk_signal_connect( GTK_OBJECT(statusbutton_f), "clicked",
 		GTK_SIGNAL_FUNC(font_cb), &props.trackfont );
+	gtk_signal_connect( GTK_OBJECT(statusbutton_f), "clicked",
+		GTK_SIGNAL_FUNC(font_cb), &props.statusfont );
 
 	gnome_color_selector_set_color_int( track_gcs, tr, tg, tb, 255 );
 	gnome_color_selector_set_color_int( status_gcs, rr, rg, rb, 255 );

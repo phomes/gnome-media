@@ -51,40 +51,42 @@
 #endif
 
 #include "cddb.h"
-
 #include "gtracked.h"
 #include "gabout.h"
 #include "gcddb.h"
 #include "properties.h"
-
 #include "tooltips.h"
+#include "led.h"
 
-
+/* callback commands */
 enum { PLAY=0, PAUSE, STOP, EJECT,
        FF, RW, NEXT_T, PREV_T,
        CDDB, TRACKLIST, GOTO, QUIT, ABOUT, PROPS };
 
+/* time display types */
+enum { TRACK_ASC, TRACK_DEC, DISC_ASC };
+
 char *play_methods[] =
 {
-	"Repeat CD",
-        "Repeat Trk",
-        "Normal",
-        "Random" // Not yet implemented
+	"repeat_cd.xpm",
+        "repeat_track.xpm",
+        "repeat_normal.xpm",
+        "repeat_random.xpm" // Not yet implemented
 };
-                                 
+GnomePixmap *play_method_pixmap[4];
 
 #define Connect( x,y ) gtk_signal_connect (GTK_OBJECT (x), "clicked", \
 	        GTK_SIGNAL_FUNC (callback), (gpointer*)y);
       
 /* Regular globals */
 cd_struct cd;
-int tracklabel_f = 0, titlelabel_f = 0;
-int gotoi;
+int titlelabel_f = 0;
+int gotoi, time_display_type;
 
 /* Gtk Globals */
-GtkWidget *row, *vbox, *upper_box, *bottom_box;
+GtkWidget *row, *vbox, *upper_box;
 GtkWidget *button_box, *row1, *row2, *row3;
-GtkWidget *tracklabel, *titlelabel, *trackeditor;
+GtkWidget *trackeditor;
 GtkWidget *tracktime_label, *trackcur_label;
 GtkWidget *cdtime_label, *changer_box, *playbutton;
 GtkWidget *status_table, *status_area, *sep;
@@ -95,7 +97,7 @@ GtkWidget **changer_buttons, *cddbbutton;
 GtkObject *vol;
 GdkColormap *colormap;
 GdkFont *sfont, *tfont;
-GdkColor darkgrey, timecolor, trackcolor;
+GdkColor red, darkgrey, timecolor, trackcolor;
 
 GtkTooltips *tooltips;
 
@@ -246,8 +248,6 @@ gint changer_callback( GtkWidget *widget, gpointer *data )
 	tcd_init_disc(&cd,create_warn);
 	
 	cd.play_method = NORMAL;
-	titlelabel_f = TRUE;
-	tracklabel_f = -100;
 	return 1;
 }
 
@@ -356,8 +356,7 @@ GtkWidget* make_row3( void )
 	trackeditor =make_button_with_pixmap( "edit", box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
 
 	gotobutton = gtk_button_new();
-	sprintf( tmp, "tcd/%s.xpm", "goto" );
-	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file("tcd/goto.xpm") );
 	gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );
         gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
 	gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
@@ -386,19 +385,76 @@ void setup_colors( void )
 	gdk_color_parse("#353535", &darkgrey);
 	gdk_color_alloc(colormap, &darkgrey);
 
-	gdk_color_parse(props.trackcolor, &timecolor);
-	gdk_color_alloc (colormap, &timecolor);
-
-	gdk_color_parse(props.statuscolor, &trackcolor);
-	gdk_color_alloc (colormap, &trackcolor);
+	gdk_color_parse("#FF0000", &red);
+	gdk_color_alloc(colormap, &red);
 	draw_status();
+}
+
+void setup_pixmaps( void )
+{
+	gchar tmp[128];
+	int i;
+	for( i=0; i < PLAY_METHOD_END-1; i++ )
+	{
+		sprintf( tmp, "tcd/%s", play_methods[i] );
+		play_method_pixmap[i] = 
+			gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+	}
+}
+
+void draw_time_playing( GdkGC *gc )
+{
+	int pos, end, cur, min, sec;
+	switch( time_display_type )
+	{
+		case TRACK_ASC: /* track time ascending */
+			led_draw_time(status_db, status_area,
+				32,4, cd.t_min, cd.t_sec);
+			break;
+		case TRACK_DEC: /* track time decending */
+			cur = cd.cur_pos_rel;
+			end = (cd.trk[cd.cur_t].tot_min*60)+
+			       cd.trk[cd.cur_t].tot_sec;
+			pos = end-cur;
+			min = pos/60;
+			sec = pos-(pos/60)*60;
+			led_draw_time(status_db, status_area,
+				32,4, min, sec );
+			break;
+		case DISC_ASC: /* disc time ascending */
+			led_draw_time(status_db, status_area,
+				32,4, cd.cd_min, cd.cd_sec);
+			break;
+		default:
+			break;
+	}		
+}
+
+void draw_titles( GdkGC *gc )
+{
+	gdk_gc_set_foreground( gc, &red );
+	gdk_draw_text(status_db,sfont,gc,4,32, cd.artist, 
+		strlen(cd.artist));
+	gdk_draw_text( status_db,sfont,gc,4,32+12, cd.album, 
+		strlen(cd.album));
+	gdk_draw_text( status_db,sfont,gc,4,32+24, cd.trk[cd.cur_t].name, 
+		strlen(cd.trk[cd.cur_t].name));
+        gtk_window_set_title( GTK_WINDOW(window), cd.trk[cd.cur_t].name );
+}
+
+void draw_time_scanning( GdkGC *gc )
+{
+	gdk_gc_set_foreground( gc, &red );
+	gdk_draw_text(status_db,sfont,gc,4,32, "(Scanning)", 
+		10);
+        gtk_window_set_title( GTK_WINDOW(window), "(Scanning)" );
 }
 
 void draw_status( void )
 {
-	char tmp[30];
+	char tmp[128], *album;
+	GtkWidget *pixmap;
 	GdkGC *gc;
-	int liney = 8+tfont->ascent+tfont->descent;
 
 	if( !configured )
 		return;
@@ -415,62 +471,67 @@ void draw_status( void )
 
 	gdk_gc_set_foreground( gc, &darkgrey );
 
-	gdk_draw_line( status_db,gc,
-		       0,liney,
-		       status_area->allocation.width,liney );
-	gdk_draw_line( status_db,gc,48,0,48,liney );
+	gdk_draw_line( status_db,gc,0,22,status_area->allocation.width,22 );
+	gdk_draw_line( status_db,gc,28,0,28,22 );
+	gdk_draw_line( status_db,gc,79,0,79,22 );
 
-	gdk_gc_set_foreground(gc, &timecolor);
-
-	sprintf( tmp, "%2d/%2d", cd.cur_t, cd.last_t );
-	gdk_draw_text( status_db,tfont,gc,3,4+tfont->ascent,tmp,strlen(tmp) );
-
-	sprintf( tmp, "%2d:%02d / %d:%02d", cd.t_min, cd.t_sec,
-						cd.trk[C(cd.cur_t)].tot_min,
-						cd.trk[C(cd.cur_t)].tot_sec );
-	gdk_draw_text( status_db,tfont,gc,55,4+tfont->ascent,tmp,strlen(tmp) );
-
-	gdk_gc_set_foreground(gc, &trackcolor);
-
-	sprintf( tmp, "%2d:%02d", cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.minute,
-                cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.second);
-	gdk_draw_text( status_db,sfont, gc,100,liney+4+sfont->ascent,tmp,strlen(tmp) );
-
-	sprintf( tmp, "%d%%", (int)ceil(cd.volume*0.390625) );
-	gdk_draw_text( status_db,sfont, gc,100,liney+4+2*sfont->ascent+sfont->descent,tmp,strlen(tmp) );
-	
 	if( !cd.err )
 	{
 		switch( cd.sc.cdsc_audiostatus )
 		{
 			case CDROM_AUDIO_INVALID:
-				strcpy( tmp,"No Audio" );
+				strcpy( tmp,"No Disc" );
+				gdk_draw_text( status_db,sfont,gc,4,32,tmp, strlen(tmp) );
+				draw_time_scanning(gc);
 				break;
 			case CDROM_AUDIO_PLAY:
-				strcpy( tmp,"Playing" );
+				if( cd.isplayable ) /* we can't be playing if we can't play */
+				{
+					draw_time_playing(gc);
+					draw_titles(gc);
+					led_draw_track(status_db, status_area, 
+						4,4, cd.cur_t);
+				}
+				else
+					draw_time_scanning(gc);
 				break;
 			case CDROM_AUDIO_PAUSED:
-				strcpy( tmp,"Paused" );
+				draw_titles(gc);
 				break;
 			case CDROM_AUDIO_COMPLETED:
-				strcpy( tmp,"Stopped" );
+			case CDROM_AUDIO_NO_STATUS:
+				led_stop_time(status_db, status_area, 34,4 );
+				led_stop_track(status_db, status_area, 4,4 );
+				if( cd.isplayable )
+					draw_titles(gc);
+				else
+					draw_time_scanning(gc);
 				break;
 			case CDROM_AUDIO_ERROR:
 				strcpy( tmp,"Error" );
-				break;
-			case CDROM_AUDIO_NO_STATUS:
-				strcpy( tmp,"Stopped" );
+				gdk_draw_text( status_db,sfont,gc,4,32,tmp, strlen(tmp) );
+				draw_time_scanning(gc);
 				break;
 			default:
-				strcpy( tmp,"" );
+				break;
 		}
 	}
-	else strcpy( tmp, cd.errmsg );
-
-	gdk_draw_text( status_db,sfont,gc,4,liney+4+sfont->ascent,tmp, strlen(tmp) );
+	else
+	{
+		led_stop_time(status_db, status_area, 34,4 );
+		led_stop_track(status_db, status_area, 4,4 );
+		strcpy( tmp, cd.errmsg );
+		gdk_draw_text( status_db,sfont,gc,
+			4, 32, tmp, strlen(tmp) );
+		draw_time_scanning(gc);
+	}
 	
-	gdk_draw_text( status_db,sfont,gc,4,liney+4+2*sfont->ascent+sfont->descent, play_methods[cd.play_method] ,
-		strlen(play_methods[cd.play_method]) );
+	gdk_draw_pixmap(status_db,
+			status_area->style->fg_gc[GTK_WIDGET_STATE(status_area)],
+		        GNOME_PIXMAP(play_method_pixmap[cd.play_method])->pixmap,
+		        0, 0,
+		        80, -2,
+		        24, 24);
 
 	/* Finally, update the display */
 	gdk_draw_pixmap(status_area->window,
@@ -489,18 +550,6 @@ gint slow_timer( gpointer *data )
         {
 		tcd_readtoc(&cd);
 		tcd_readdiskinfo(&cd);
-		if( cd.err )
-		{
-			cd.cur_t = 0;
-		        gtk_window_set_title (GTK_WINDOW (window),"(scanning)" );
-			gtk_label_set( GTK_LABEL(titlelabel), "(scanning)" );
-			gtk_label_set( GTK_LABEL(tracklabel), "(scanning)" );
-	        	tracklabel_f = titlelabel_f = FALSE;
-		}
-		else
-		{
-	        	tracklabel_f = titlelabel_f = TRUE;
-        	}
         }
 	if( cd.sc.cdsc_audiostatus != CDROM_AUDIO_PLAY &&
 		cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
@@ -581,46 +630,10 @@ void make_gotomenu()
 		GTK_SIGNAL_FUNC (button_press), GTK_OBJECT(gotomenu));
 
 }
-#if 0
-GtkWidget* add_rootmenu( GtkWidget *menu, GtkSignalFunc func, int data, char *label )
-{
-	GtkWidget *item;
-	item = gtk_menu_item_new_with_label(label);
-	gtk_menu_append(GTK_MENU(menu), item);
-	gtk_signal_connect_object(GTK_OBJECT(item), "activate",
-		func, (gpointer)data );
-	gtk_widget_show(item);
-	return(item);
-}
-
-void make_rootmenu()
-{
-	GtkWidget *item;
-	rootmenu = NULL;
-	rootmenu = gtk_menu_new();
-
-	add_rootmenu( rootmenu, GTK_SIGNAL_FUNC(callback), QUIT, "Quit" );
-}
-#endif
 
 gint fast_timer( gpointer *data )
 {
 	char buf[128];
-	if( tracklabel_f != (-cd.cur_t) )
-	{
-		tracklabel_f = -cd.cur_t;
-		gtk_label_set( GTK_LABEL(tracklabel), cd.trk[C(cd.cur_t)].name );
-		sprintf( buf, "%s", cd.trk[C(cd.cur_t)].name );
-	        gtk_window_set_title (GTK_WINDOW (window),buf );
-		draw_status();
-	}
-	if( titlelabel_f )
-	{
-		titlelabel_f = FALSE;
-		gtk_label_set( GTK_LABEL(titlelabel), cd.dtitle );
-		make_gotomenu();
-		draw_status();
-	}
 	tcd_gettime(&cd);
 	status_changed();
 	if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
@@ -673,53 +686,33 @@ static gint status_expose_event (GtkWidget *widget, GdkEventExpose *event)
 	return FALSE;
 }
 
-static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
+static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 {
-	if( event->type = GDK_BUTTON_PRESS )
-	{
+	GdkEventButton *e = (GdkEventButton *)event;
+	int x, y;
 	
-		if( event->x < (status_width/4) &&
-			event->y < (status_height/2) )
+	x = floor(e->x);
+	y = floor(e->y);
+		                
+	if( event->type == GDK_BUTTON_PRESS )
+	{
+		if( e->button > 1 )
 		{
-			switch( event->button )
-			{
-			case 1:
-				if( cd.cur_t < cd.last_t )
-				{
-					cd.cur_t++;
-					tcd_playtracks( &cd, cd.cur_t, cd.last_t );
-				}
-				break;
-			case 2:
-			case 3:
-				if( cd.cur_t > cd.first_t )
-				{
-					cd.cur_t--;
-					tcd_playtracks( &cd, cd.cur_t, cd.last_t );
-				}
-				break;
-			} 
-		}				
-		else
+			about_cb(NULL, NULL);
+			return FALSE;
+		}
+		if( x > 80 &&
+		    y > 0 &&
+		    x < 104 &&
+		    y < 24 )
 		{
-			switch( event->button )
-			{
-			case 1:
-				cd.play_method++;
-				if( cd.play_method > NORMAL )
-					cd.play_method = 0;
-				if( cd.play_method == REPEAT_TRK )
-					cd.repeat_track = cd.cur_t;
-#ifdef DEBUG
-				g_print( "cd.play_method = %d\n", cd.play_method );
-#endif
-				draw_status();
-				break;
-			case 2:
-			case 3:
-				about_cb(NULL, NULL);
-				break;
-			}
+			cd.play_method++;
+			if( cd.play_method > NORMAL )
+				cd.play_method = 0;
+			if( cd.play_method == REPEAT_TRK )
+				cd.repeat_track = cd.cur_t;
+
+			draw_status();
 		}
 	}
 	
@@ -728,7 +721,7 @@ static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
 
 void setup_time_display( void )
 {
-	GtkWidget *handle1, *frame;
+	GtkWidget *handle1, *frame, *row;
 	
 	lowerbox = gtk_hbox_new( FALSE, 5 );
 	
@@ -750,8 +743,7 @@ void setup_time_display( void )
         	(GtkSignalFunc)status_configure_event, NULL);
 	gtk_signal_connect( GTK_OBJECT(status_area),"button_press_event",
         	(GtkSignalFunc)status_click_event, NULL);
-	gtk_widget_set_usize( status_area, 150,
-			      8+tfont->ascent+tfont->descent+2*(sfont->ascent+sfont->descent)+8 );
+	gtk_widget_set_usize( status_area, 75, 60 );
 
 	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
         
@@ -770,6 +762,10 @@ void setup_time_display( void )
 #ifdef TCD_CHANGER_ENABLED
 	gtk_box_pack_start( GTK_BOX(lowerbox), changer_box, FALSE, FALSE, 0 );
 #endif
+/*        row = make_row3();
+	gtk_box_pack_start( GTK_BOX(lowerbox), row, TRUE, TRUE, 0 );
+	gtk_widget_show(row);
+*/
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
 	if( props.handle )
@@ -792,7 +788,6 @@ void setup_rows( void )
 	GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
 	sep = gtk_hseparator_new();
 
-	bottom_box = gtk_hbox_new( FALSE, 4 );
 	vbox = gtk_vbox_new( FALSE, 4 );
 	upper_box = gtk_hbox_new( TRUE, 4 );
 	button_box = gtk_vbox_new( TRUE, 0 );
@@ -812,20 +807,6 @@ void setup_rows( void )
 
 	gtk_box_pack_start( GTK_BOX(upper_box), button_box, TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(vbox), upper_box, TRUE, TRUE, 0 );
-
-        gtk_box_pack_start(GTK_BOX(vbox), sep, TRUE, FALSE, 0);
-
-	tracklabel = gtk_label_new("--");
-	gtk_widget_show(tracklabel);
-        gtk_box_pack_start(GTK_BOX(ttbox), tracklabel, TRUE, FALSE, 0);
-	
-	titlelabel = gtk_label_new("-");
-	gtk_widget_show(titlelabel);
-	titlelabel_f = tracklabel_f = TRUE;
-        gtk_box_pack_start(GTK_BOX(ttbox), titlelabel, TRUE, FALSE, 0);
-
-        gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
-        gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
 	return;
 }
@@ -900,14 +881,17 @@ int main (int argc, char *argv[])
 	make_gotomenu();
 	setup_time_display();
 	setup_colors();
-
+	setup_pixmaps();
+	led_init(window);
+	
+	time_display_type = TRACK_DEC;
 	/* Initialize some timers */
 	if( cd.isplayable ) tcd_gettime(&cd);
 
 	gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
 	gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
-
+	
         gnome_app_set_contents( GNOME_APP(window), vbox );
 	
         gtk_widget_show_all(window);

@@ -59,6 +59,8 @@ typedef struct
 				           1 as the first track. */
 
 	char dtitle[DISC_INFO_LEN+1];	/* Disc title */
+	char album[DISC_INFO_LEN+1], artist[DISC_INFO_LEN+1];
+	
 	char trkext[MAXTRACKS][DISC_INFO_LEN+1];
 	
 	/* See /usr/src/linux/include/linux/cdrom.h */
@@ -112,15 +114,8 @@ int	tcd_change_disc( cd_struct *cd, int disc );
 int 	tcd_play_seconds( cd_struct *cd, long int offset );
 
 /* Some constants */
-#define STOPPED 	0
-#define PLAYING 	1
-#define PAUSED 		2
-#define NODISC 		3
-
-#define NORMAL		2
-#define REPEAT_CD 	0
-#define REPEAT_TRK	1
-#define SHUFFLE		3 /* not yet implemented */
+enum { STOPPED=0, PLAYING, PAUSED, NODISC, STATUS_END } DriveStatus;
+enum { REPEAT_CD=0, REPEAT_TRK, NORMAL, SHUFFLE, PLAY_METHOD_END } PlayMethod;
 
 #define C(index)	((index)>(MAXTRACKS-1)?0:(index))
 

@@ -9,30 +9,30 @@ gtcd_SOURCES = 		\
 	cddb.c 		\
 	socket.c 	\
 	linux-cdrom.c 	\
-	linux-cdrom.h	\
 	gtracked.c 	\
 	gabout.c 	\
 	gcddb.c 	\
-	gcddb.h		\
 	cddb.h 		\
 	socket.h 	\
 	gtracked.h 	\
 	gabout.h 	\
+	gcddb.h		\
 	tooltips.h	\
 	properties.c	\
-	properties.h
+	led.h		\
+	led.c
 
 tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
-	cddb.h 		\
 	socket.c 	\
 	linux-cdrom.c 	\
-	linux-cdrom.h	\
+	cddb.h 		\
 	socket.h 	\
+	cdrom.h		\
 	tcd.h		\
-	tracked.c	\
-	tracked.h
+	tracked.h	\
+	tracked.c
 
 gtcd_LDADD = 	$(GNOME_LIBDIR) \
 		$(GNOMEUI_LIBS) \
@@ -43,7 +43,4 @@ tcd_LDADD = -lm -lncurses
 CLEANFILES = *.o core *~ libcdrom.a
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -I/usr/include/ncurses
-
-EXTRA_DIST = gtcd.desktop
-
 Audio_DATA = gtcd.desktop
