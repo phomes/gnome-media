@@ -151,6 +151,7 @@ int tcd_readtoc( cd_struct *cd )
 #ifdef DEBUG
 		fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCHDR ioctl error.\n" );
 #endif
+		cd->cur_t = 0;
 		return(-1);		
 	}
 	
@@ -175,6 +176,7 @@ int tcd_readtoc( cd_struct *cd )
 #ifdef DEBUG
                 fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 #endif
+		cd->cur_t = 0;
 		return(-1);
         }                                         
 
@@ -191,6 +193,7 @@ int tcd_readtoc( cd_struct *cd )
 #ifdef DEBUG
 	                fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 #endif
+			cd->cur_t = 0;
 			return(-1);
                 }
 
@@ -236,6 +239,7 @@ int tcd_readtoc( cd_struct *cd )
 	return tmp;
 }
 
+/* This is some ugly code. Would be nice to modularize it */
 void tcd_gettime( cd_struct *cd )
 {
 	int result;
@@ -254,51 +258,51 @@ void tcd_gettime( cd_struct *cd )
 #ifdef DEBUG
 			fprintf( stderr, "cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
 #endif
+			cd->cur_t = 0;
 			return;
 	        }
-	}
+		cd->cur_t = cd->sc.cdsc_trk;
 #ifndef CDROMVOLCTRL_BUG
-	vol.channel0 = cd->volume;
-	vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0; 
-	ioctl( cd->cd_dev, CDROMVOLCTRL, &vol );
-	ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
-	cd->volume = vol.channel0;
+		vol.channel0 = cd->volume;
+		vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0; 
+		ioctl( cd->cd_dev, CDROMVOLCTRL, &vol );
+		ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
+		cd->volume = vol.channel0;
 #endif
-
-	cd->cur_t = cd->sc.cdsc_trk;
-
-	cd->cur_pos_abs = cd->sc.cdsc_absaddr.msf.minute * 60 +
-         cd->sc.cdsc_absaddr.msf.second;
-        cd->cur_frame = cd->cur_pos_abs * 75 + cd->sc.cdsc_absaddr.msf.frame;
-        
-	cd->cur_pos_rel = (cd->cur_frame - cd->trk[C(cd->cur_t)].start) / 75;
 	
-	if (cd->cur_pos_rel < 0)
-        	cd->cur_pos_rel = -cd->cur_pos_rel;
+		cd->cur_pos_abs = cd->sc.cdsc_absaddr.msf.minute * 60 +
+			cd->sc.cdsc_absaddr.msf.second;
+	        cd->cur_frame = cd->cur_pos_abs * 75 + cd->sc.cdsc_absaddr.msf.frame;
         
-  	if (cd->cur_pos_rel > 0 && (result = cd->cur_pos_rel % 60) == cd->t_sec)
-      		return;
-
-        cd->t_sec = result;
-        cd->t_min = cd->cur_pos_rel / 60;
+		cd->cur_pos_rel = (cd->cur_frame - cd->trk[C(cd->cur_t)].start) / 75;
+	
+		if (cd->cur_pos_rel < 0)
+	        	cd->cur_pos_rel = -cd->cur_pos_rel;
         
-        cd->cd_sec = cd->cur_pos_abs % 60;
-	cd->cd_min = cd->cur_pos_abs / 60;
+	  	if (cd->cur_pos_rel > 0 && (result = cd->cur_pos_rel % 60) == cd->t_sec)
+	      		return;
 
-	/* Update cd->trk.status */
-	for( result = cd->first_t; result <= cd->last_t; result++ )
-	{
-		cd->trk[C(result)].status = 0;
-		if( (result == cd->cur_t) && cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY )
-			cd->trk[C(result)].status = TRK_PLAYING;
-		if( result == cd->repeat_track )
-			cd->trk[C(result)].status = TRK_REPEAT;
-		if( cd->trk[C(result)].toc.cdte_ctrl == CDROM_DATA_TRACK )
-			cd->trk[C(result)].status = TRK_DATA;
-	}			
+	        cd->t_sec = result;
+	        cd->t_min = cd->cur_pos_rel / 60;
+        
+	        cd->cd_sec = cd->cur_pos_abs % 60;
+		cd->cd_min = cd->cur_pos_abs / 60;
+
+		/* Update cd->trk.status */
+		for( result = cd->first_t; result <= cd->last_t; result++ )
+		{
+			cd->trk[C(result)].status = 0;
+			if( (result == cd->cur_t) && cd->sc.cdsc_audiostatus == CDROM_AUDIO_PLAY )
+				cd->trk[C(result)].status = TRK_PLAYING;
+			if( result == cd->repeat_track )
+				cd->trk[C(result)].status = TRK_REPEAT;
+			if( cd->trk[C(result)].toc.cdte_ctrl == CDROM_DATA_TRACK )
+				cd->trk[C(result)].status = TRK_DATA;
+		}			
 #ifdef TCD_CHANGER_ENABLED
-	cd->cur_disc = ioctl( cd->cd_dev, CDROM_SELECT_DISC, CDSL_CURRENT );
+		cd->cur_disc = ioctl( cd->cd_dev, CDROM_SELECT_DISC, CDSL_CURRENT );
 #endif
+	}
 }
 	                                   
 int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
