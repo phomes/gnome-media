@@ -1,3 +1,7 @@
+/* TV widget by Elliot Lee
+   Large parts ripped directly from stuff by Alan Cox et al.
+*/
+
 #include <stdio.h>
 #include <stdinc.h>
 #include <string.h>
@@ -19,16 +23,47 @@
 #include <linux/types.h>
 #include <linux/videodev.h>
 
+struct _GtkTVPrivate {
+  GdkGC *painter_gc;
+  GdkColor chroma_colour;
+
+  struct video_window vwin;
+  struct video_picture vpic;
+  struct video_buffer vbuf;
+  struct video_capability vcap;
+  struct video_audio vaudio;
+  int grabber_format;
+  int capture_running;
+  int capture_hidden;	/* Dont capture we are hidden */
+  int tv_fd;
+ 
+  int kill_on_overlap /*= 0*/;	/* Set for overlay cards that dont clip */
+  int clean_display /*= 0*/;		/* Set on overlay cards that do DMA */
+  int chroma_key /*= 0*/;		/* Set for chromakey cards */
+  int fixed_size /*= 0*/;		/* Size is fixed by the card
+				   (we dont scale yet) */
+  int need_colour_cube /*= 0*/;	/* Set for colour cubes
+				   0 - no 1 - 240 colour set for bt848 */
+  int use_shm /*= 0*/;		/* Capture only card */
+  int xmin, ymin;		/* Limits */
+  int xmax, ymax;
+  int xsize, ysize;
+
+  GdkColor colourmap[256];	/* Colour map */
+  int colourmap_size;
+  int colourmap_base;
+  GdkColormap *private_colourmap;
+
+  int sanity1;
+  int sanity2;
+  gint capture_h, capture_w;
+};
+
 static GtkWidget *window;
 static GtkWidget *tv;
 static GtkWidget *painter;
 static GdkGC *painter_gc;
 static GdkColor chroma_colour;
-static GdkImage *capture;		/* Capture Image */
-static GdkImageType capture_type;
-static gint capture_h,capture_w;
-static gint window_h, window_w;
-static gint window_x, window_y;
 
 static int widescreen=0;
 static int widescreen_h;
@@ -37,85 +72,56 @@ static int widescreen_h;
  *	TV card driving.
  */
 
-static struct video_window vwin;
-static struct video_picture vpic;
-static struct video_buffer vbuf;
-static struct video_capability vcap;
-static struct video_audio vaudio;
-static int grabber_format;
-static int capture_running;
-static int capture_hidden;	/* Dont capture we are hidden */
-
-
-static int tv_fd = -1;
 
 /*
  *	Methods to work with
  */
- 
-static int kill_on_overlap = 0;	/* Set for overlay cards that dont clip */
-static int clean_display = 0;		/* Set on overlay cards that do DMA */
-static int chroma_key = 0;		/* Set for chromakey cards */
-static int fixed_size = 0;		/* Size is fixed by the card (we dont scale yet) */
-static int need_colour_cube = 0;	/* Set for colour cubes 0 - no 1 - 240 colour set for bt848 */
-static int use_shm = 0;			/* Capture only card */
-static int xsize = 320, ysize = 200;	/* Initial size */
-static int xmin, ymin;			/* Limits */
-static int xmax, ymax;	
 
-static GdkColor colourmap[256];		/* Colour map */
-static int colourmap_size;
-static int colourmap_base;
-static GdkColormap *private_colourmap;
-
-static int sanity1=0;
-static int sanity2=0;
-
-
-static void make_palette_grey(int num)
+static void make_palette_grey(GtkTV *tv, int num)
 {
-	char buf[16];
-	int i,x=0;
-	int step=256/num;
+  char buf[16];
+  int i, x;
+  int step=256/num;
+  GdkColor c;
 	
-	for(i=0;i<256; i+=step)
-	{
-		sprintf(buf,"#%02X%02X%02X",
-			i,i,i);
-		gdk_color_parse(buf, &colourmap[x]);
-		gdk_color_alloc(gdk_colormap_get_system(), &colourmap[x]);
-		x++;
-	}
-	colourmap_size=num;
-	colourmap_base=0;
+  for(i=0, x=0; i < 256; i += step, x++)
+    {
+      c.pixel = gdk_imlib_best_color_match(&i, &i, &i);
+      c.red = c.green = c.blue = i;
+      gdk_color_alloc(gdk_imlib_get_colormap(), &colourmap[x]);
+    }
+
+  tv->p->colourmap_size = num;
+  tv->p->colourmap_base = 0;
 }
 
-static void make_colour_cube(void)
+static void make_colour_cube(GtkTV *tv)
 {
-	char buf[16];
-	int i;
+  char buf[16];
+  int i;
 	
-	private_colourmap = gdk_colormap_new(gdk_visual_get_best(),256);
-	for(i=0;i<16;i++)
-	{
-		gdk_color_black(private_colourmap, &colourmap[i]);
-	}
-	for(i=0;i<225;i++)
-	{
-		int r, rr;
-		r=i%25;
-		rr=r%5;
-		sprintf(buf,"#%02X%02X%02X",
-			(65535*(r/5)/4),
-			(65535*(i/25)/8),
-			(65535*rr/4));
-		gdk_color_parse(buf, &colourmap[i+16]);
-		gdk_color_alloc(private_colourmap, &colourmap[i+16]);
-	}
-	colourmap_size=225;
-	colourmap_base=16;
-	gdk_window_set_colormap(tv->window, private_colourmap);
-	gdk_window_set_colormap(window->window, private_colourmap);
+  tv->p->private_colourmap = gdk_colormap_new(gdk_imlib_get_visual(), 256);
+  for(i=0;i<16;i++)
+    {
+      gdk_color_black(private_colourmap, &colourmap[i]);
+    }
+  for(i=0;i<225;i++)
+    {
+      int r, rr, n1, n2, n3;
+      r=i%25;
+      rr=r%5;
+      n1 = (65535*(r/5)/4);
+      n2 = (65535*(i/25)/8);
+      n3 = (65535*rr/4);
+      colourmap[i+16].red = n1;
+      colourmap[i+16].green = n2;
+      colourmap[i+16].blue = n3;
+      colourmap[i+16].pixel = gdk_imlib_best_color_match(&n1, &n2, &n3);
+      gdk_color_alloc(private_colourmap, &colourmap[i+16]);
+    }
+  colourmap_size=225;
+  colourmap_base=16;
+  gdk_window_set_colormap(tv->window, private_colourmap);
 }
 
 static char *probe_tv_set(int n)
@@ -138,262 +144,312 @@ static char *probe_tv_set(int n)
 	return t.name;
 }
 
-static int open_tv_card(int n)
+guint
+gtk_tv_get_type(void)
 {
-	Display *disp;
-	int fd;
-	unsigned int rwidth;
-	int bank, ram, major, minor;
-	
-	char buf[64];
-	
-	sprintf(buf,"/dev/video%d",n);
-	
-	fd=open(buf,O_RDWR);
-	
-	
-	if(fd==-1)
-	{
-		perror("open");
-		return -1;
-	}
-	
-	if(ioctl(fd, VIDIOCGAUDIO, &vaudio)==0)
-	{
-		vaudio.flags|=VIDEO_AUDIO_MUTE;
-		ioctl(fd, VIDIOCSAUDIO, &vaudio);
-	}
+  static guint tv_type = 0;
 
-	if(ioctl(fd, VIDIOCGCAP, &vcap))
-	{
-		perror("get capabilities");
-		return -1;
-	}
+  if (!tv_type)
+    {
+      GtkTypeInfo tv_info =
+      {
+        "GtkTV",
+        sizeof (GtkTV),
+        sizeof (GtkTV),
+        (GtkClassInitFunc) gtk_tv_class_init,
+        (GtkObjectInitFunc) gtk_tv_init,
+        (GtkArgSetFunc) NULL,
+        (GtkArgGetFunc) NULL,
+      };
+
+      tv_type = gtk_type_unique (gtk_widget_get_type (), &tv_info);
+    }
+
+  return tv_type;
+}
+
+static void
+gtk_tv_class_init(GtkTVClass *tvclass)
+{
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(tvclass);
+
+  widget_class->destroy = gtk_tv_destroy;
+}
+
+static void
+gtk_tv_init(GtkTV *tv)
+{
+  tv->p = g_new(GtkTVPrivate, 1);
+  
+}
+
+GtkWidget*
+gtk_tv_new(int video_num)
+{
+  int fd;
+  static char buf[64];
+  GtkWidget *widget;
+  GtkTV *tv;
+  Display *d;
+  unsigned int rwidth;
+  int bank, ram, major, minor;
+
+  g_return_val_if_fail(video_num >= 0, NULL);
+
+  snprintf(buf, sizeof(buf), "/dev/video%d", video_num);
+  fd = open(buf, O_RDWR);
+
+  g_return_val_if_fail(fd != -1, NULL);
+
+  widget = GTK_WIDGET ( gtk_type_new (gtk_tv_get_type ()));
+  tv = GTK_TV(widget);
+ 
+  tv->p->tv_fd = fd;
+
+  if(ioctl(fd, VIDIOCGAUDIO, &tv->p->vaudio)==0)
+    {
+      tv->p->vaudio.flags|=VIDEO_AUDIO_MUTE;
+      ioctl(fd, VIDIOCSAUDIO, &tv->p->vaudio);
+    }
+
+  if(ioctl(fd, VIDIOCGCAP, &tv->p->vcap))
+    {
+      g_error("VIDIOCGCAP failed\n");
+      gtk_widget_destroy(widget);
+      return NULL;
+    }
 	
-	/*
-	 *	Use black as the background unless we later find a 
-	 *	chromakey device
-	 */
+  /*
+   *	Use black as the background unless we later find a 
+   *	chromakey device
+   */
 	 
-	gdk_color_black(gdk_colormap_get_system(), &chroma_colour);
+  gdk_color_black(gdk_imlib_get_colormap(), &chroma_colour);
 	 
-	/* 
-	 *	Now see what we support
-	 */
+  /* 
+   *	Now see what we support
+   */
 	 
-	if(!(vcap.type&VID_TYPE_OVERLAY))
+  if(!(tv->p->vcap.type & VID_TYPE_OVERLAY))
+    {
+      if(tv->p->vcap.type&VID_TYPE_CAPTURE)
+	tv->p->use_shm = 1;
+      else
 	{
-		if(vcap.type&VID_TYPE_CAPTURE)
-			use_shm = 1;
-		else
-		{
-			fprintf(stderr,"I don't know how to handle this device.\n");
-			return -1;
-		}
+	  g_error("I don't know how to handle this device.\n");
+	  gtk_widget_destroy(widget);
+	  return NULL;
 	}
-	else
+    }
+  else
+    {
+      /* Ok now see what method to use */
+      if(tv->p->vcap.type&VID_TYPE_CLIPPING)
 	{
-		/* Ok now see what method to use */
-		if(vcap.type&VID_TYPE_CLIPPING)
-		{
-		}
-		else if(vcap.type&VID_TYPE_CHROMAKEY)
-		{
-			chroma_key = 1;
-			/* We want the most vile unused colour we can get
-			   for our chroma key - this is pretty foul */
-			gdk_color_parse("#FA77A1", &chroma_colour);
-			gdk_color_alloc(gdk_colormap_get_system(), &chroma_colour);
-		}
-		else
-			kill_on_overlap = 1;
-		if(vcap.type&VID_TYPE_FRAMERAM)
-			clean_display = 1;
+	}
+      else if(tv->p->vcap.type&VID_TYPE_CHROMAKEY)
+	{
+	  GdkColor c;
+	  tv->p->chroma_key = 1;
+	  /* We want the most vile unused colour we can get
+	     for our chroma key - this is pretty foul */
+	  gdk_color_parse("#FA77A1", &c);
+	  tv->p->chroma_colour = c;
+	  tv->p->chroma_colour.pixel = gdk_imlib_best_color_match(&c.red,
+								  &c.green,
+								  &c.blue);
+	  gdk_color_alloc(gdk_imlib_get_colormap(), &tv->p->chroma_colour);
+	}
+      else
+	tv->p->kill_on_overlap = 1;
+      if(tv->p->vcap.type&VID_TYPE_FRAMERAM)
+	tv->p->clean_display = 1;
 		
-	}
+    }
 	
-	/*
+  /*
 	 *	Set the window size constraints
 	 */
 	 
-	if(!(vcap.type&VID_TYPE_SCALES))
-	{
-		xmin = xmax = xsize = vcap.maxwidth;
-		ymin = ymax = ysize = vcap.maxheight;
-		fixed_size = 1;
-	}
-	else
-	{
-		xmin = vcap.minwidth;
-		ymin = vcap.minheight;
-		xmax = vcap.maxwidth;
-		ymax = vcap.maxheight;
-		xsize = min(max(xsize, xmin), xmax);
-		ysize = min(max(ysize, ymin), ymax);
-	}
+  if(!(tv->p->vcap.type&VID_TYPE_SCALES))
+    {
+      tv->p->xmin = tv->p->xmax = tv->p->xsize = tv->p->vcap.maxwidth;
+      tv->p->ymin = tv->p->ymax = tv->p->ysize = tv->p->vcap.maxheight;
+      tv->p->fixed_size = 1;
+    }
+  else
+    {
+      tv->p->xmin = tv->p->vcap.minwidth;
+      tv->p->ymin = tv->p->vcap.minheight;
+      tv->p->xmax = tv->p->vcap.maxwidth;
+      tv->p->ymax = tv->p->vcap.maxheight;
+      tv->p->xsize = min(max(tv->p->xsize, tv->p->xmin), tv->p->xmax);
+      tv->p->ysize = min(max(tv->p->ysize, tv->p->ymin), tv->p->ymax);
+    }
 
-	/*
+  /*
 	 *	Now get the video parameters (one day X will set these)
 	 */
 	 
-	disp=GDK_DISPLAY();
-	if (XF86DGAQueryVersion(disp, &major, &minor)) 
-		XF86DGAGetVideoLL(disp, DefaultScreen(disp), &(vbuf.base),
-		&rwidth, &bank, &ram);
-	else 
-	{
-		fprintf(stderr,"XF86DGA: DGA not available.\n");
-		return -1;
-	}
+  disp=GDK_DISPLAY();
 
-	/*
+  if (XF86DGAQueryVersion(disp, &major, &minor))
+    XF86DGAGetVideoLL(disp, DefaultScreen(disp), &(tv->p->vbuf.base),
+		      &rwidth, &bank, &ram);
+  else 
+    {
+      g_error("XF86DGA: DGA not available.\n");
+      gtk_widget_destroy(widget);
+      return NULL;
+    }
+
+  /*
 	 *	Hunt the visual
 	 */
 	 
-	vbuf.depth = gdk_visual_get_best_depth();
-	vbuf.bytesperline = rwidth*vbuf.depth/8;
+  tv->p->vbuf.depth = gdk_visual_get_best_depth();
+  tv->p->vbuf.bytesperline = rwidth*tv->p->vbuf.depth/8;
 	
-	/*
-	 *	Set the overlay buffer up
-	 */
+  /*
+   *	Set the overlay buffer up
+   */
 	 
-	if(ioctl(fd, VIDIOCSFBUF, &vbuf)==-1)
-	{
-		perror("Set frame buffer");
-		/*
-		 *	If we can't use MITSHM then we can't overlay if
-		 *	the board can't handle our framebuffer...
-		 *
-		 *	For SHM we can do post processing.
-		 */
+  if(ioctl(fd, VIDIOCSFBUF, &tv->p->vbuf)==-1)
+    {
+      g_warning("Set frame buffer");
+      /*
+       *	If we can't use MITSHM then we can't overlay if
+       *	the board can't handle our framebuffer...
+       *
+       *	For SHM we can do post processing.
+       */
 		 
-		if(!use_shm)
-			return -1;
-	}
-	
-	if(seteuid(getuid())==-1)
+      if(!use_shm)
 	{
-		perror("seteuid");
-		exit(1);
+	  gtk_widget_destroy(widget);
+	  return NULL;
 	}
+    }
 	
-	/*
-	 *	Set the format
-	 */
+  /*
+   *	Set the format
+   */
  
-	ioctl(fd, VIDIOCGPICT , &vpic);
+  ioctl(fd, VIDIOCGPICT , &tv->p->vpic);
 
-	if(use_shm)
-	{	
-	
-		/*
-		 *	Try 24bit RGB, then 565 then 555. Arguably we ought to
-		 *	try one matching our visual first, then try them in 
-		 *	quality order
-		 *
-		 */
+  if(tv->p->use_shm)
+    {	
+      /*
+       *	Try 24bit RGB, then 565 then 555. Arguably we ought to
+       *	try one matching our visual first, then try them in 
+       *	quality order
+       *
+       */
 		
-		
-		if(vcap.type&VID_TYPE_MONOCHROME)
-		{
-			vpic.depth=8;
-			vpic.palette=VIDEO_PALETTE_GREY;	/* 8bit grey */
-			if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-			{
-				vpic.depth=6;
-				if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-				{
-					vpic.depth=4;
-					if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-					{
-						fprintf(stderr, "Unable to find a supported capture format.\n");
-						return -1;
-					}
-				}
-			}
-			/*
-			 *	Make a grey scale cube - only go to 6bit
-			 */
-			 
-			if(vpic.depth==4)
-				make_palette_grey(16);
-			else
-				make_palette_grey(64);
-			
-		}
-		else
-		{
-			vpic.depth=24;
-			vpic.palette=VIDEO_PALETTE_RGB24;
-		
-			if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-			{
-				vpic.palette=VIDEO_PALETTE_RGB565;
-				vpic.depth=16;
-				
-				if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-				{
-					vpic.palette=VIDEO_PALETTE_RGB555;
-					vpic.depth=15;
-				
-					if(ioctl(tv_fd, VIDIOCSPICT, &vpic)==-1)
-					{
-						fprintf(stderr, "Unable to find a supported capture format.\n");
-						return -1;
-					}
-				}
-			}
-		}
-	}
-	/*
-	 *	Soft overlays by chroma etc we dont have to care about
-	 *	the format for.. but DMA to frame buffer we do
-	 */
-	else if(vcap.type&VID_TYPE_FRAMERAM)
+      if(tv->p->vcap.type&VID_TYPE_MONOCHROME)
 	{
-		vpic.depth = vbuf.depth;
-		switch(vpic.depth)
+	  tv->p->vpic.depth=8;
+	  tv->p->vpic.palette=VIDEO_PALETTE_GREY;	/* 8bit grey */
+	  if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+	    {
+	      tv->p->vpic.depth=6;
+	      if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
 		{
-			case 8:
-				vpic.palette=VIDEO_PALETTE_HI240;	/* colour cube */
-				need_colour_cube=1;
-				break;
-			case 15:
-				vpic.palette=VIDEO_PALETTE_RGB555;
-				break;
-			case 16:
-				vpic.palette=VIDEO_PALETTE_RGB565;
-				break;
-			case 24:
-				vpic.palette=VIDEO_PALETTE_RGB24;
-				break;
-			case 32:		
-				vpic.palette=VIDEO_PALETTE_RGB32;
-				break;
-			default:
-				fprintf(stderr,"Unsupported X11 depth.\n");
+		  tv->p->vpic.depth=4;
+		  if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+		    {
+		      g_error("Unable to find a supported capture format.\n");
+		      gtk_widget_destroy(widget);
+		      return NULL;
+		    }
 		}
-		if(ioctl(fd, VIDIOCSPICT, &vpic)==-1)
-		{
-			/* Depth mismatch is fatal on overlay */
-			perror("set depth");
-			return -1;
-		}
-	}
-		
-	if(ioctl(fd, VIDIOCGPICT, &vpic)==-1)
-		perror("get picture");
+	    }
+	  /*
+	   *	Make a grey scale cube - only go to 6bit
+	   */
+			 
+	  if(tv->p->vpic.depth==4)
+	    make_palette_grey(tv, 16);
+	  else
+	    make_palette_grey(tv, 64);
 			
-	grabber_format = vpic.palette;
+	}
+      else
+	{
+	  tv->p->vpic.depth=24;
+	  tv->p->vpic.palette=VIDEO_PALETTE_RGB24;
+		
+	  if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+	    {
+	      tv->p->vpic.palette=VIDEO_PALETTE_RGB565;
+	      tv->p->vpic.depth=16;
+				
+	      if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+		{
+		  tv->p->vpic.palette=VIDEO_PALETTE_RGB555;
+		  tv->p->vpic.depth=15;
+				
+		  if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+		    {
+		      g_error("Unable to find a supported capture format.\n");
+		      gtk_widget_destroy(widget);
+		      return NULL;
+		    }
+		}
+	    }
+	}
+    }
+  /*
+   *	Soft overlays by chroma etc we dont have to care about
+   *	the format for.. but DMA to frame buffer we do
+   */
+  else if(tv->p->vcap.type&VID_TYPE_FRAMERAM)
+    {
+      tv->p->vpic.depth = tv->p->vbuf.depth;
+      switch(tv->p->vpic.depth)
+	{
+	case 8:
+	  tv->p->vpic.palette=VIDEO_PALETTE_HI240;	/* colour cube */
+	  tv->p->need_colour_cube=1;
+	  break;
+	case 15:
+	  tv->p->vpic.palette=VIDEO_PALETTE_RGB555;
+	  break;
+	case 16:
+	  tv->p->vpic.palette=VIDEO_PALETTE_RGB565;
+	  break;
+	case 24:
+	  tv->p->vpic.palette=VIDEO_PALETTE_RGB24;
+	  break;
+	case 32:		
+	  tv->p->vpic.palette=VIDEO_PALETTE_RGB32;
+	  break;
+	default:
+	  g_warning("Unsupported X11 depth.\n");
+	}
+      if(ioctl(fd, VIDIOCSPICT, &tv->p->vpic)==-1)
+	{
+	  /* Depth mismatch is fatal on overlay */
+	  g_error("set depth");
+	  gtk_widget_destroy(widget);
+	  return NULLx;
+	}
+    }
+		
+  if(ioctl(fd, VIDIOCGPICT, &errorvpic)==-1)
+    g_error("get picture");
+			
+  tv->p->grabber_format = tv->p->vpic.palette;
 	
-	sanity1=1;
-	return fd;
-}	
+  tv->p->sanity1 = 1;
 
+  return widget;
+}
 
-static void close_tv_card(int handle)
+static void
+gtk_tv_card_destroy(GtkTV *tv)
 {
-	close(handle);
+  close(tv->p->tv_fd);
 }
 
 /*
@@ -447,9 +503,8 @@ static void close_tv_card(int handle)
 			break;						\
 									\
 		default:						\
-			fprintf(stderr, 				\
-				"Format %d not yet supported\n",	\
-				format);				\
+			g_warning("Format %d not yet supported\n",	\
+				  format);				\
 	}								\
 }						
 
@@ -521,100 +576,53 @@ static void close_tv_card(int handle)
 	}								\
 }
  
-static void grab_image(unsigned char *dst, int xpos, int ypos)
+static void
+gtk_tv_grab_image(GtkTV *tv,
+		  unsigned char *dst,
+		  int xpos, int ypos)
 {
-	int x;
-	int lines=0;
-	int pixels_per_line, bytes_per_line, byte_order, bytes_per_pixel;
-	int dst_depth, src_depth;
-	guint32 r = 0, g = 0, b = 0, lum, rgb, src_mask, dst_mask;
-	unsigned char *mem, *src;	
+  int x;
+  int lines=0;
+  int pixels_per_line, bytes_per_line, byte_order, bytes_per_pixel;
+  int dst_depth, src_depth;
+  guint32 r = 0, g = 0, b = 0, lum, rgb, src_mask, dst_mask;
+  unsigned char *mem, *src;	
 
-	src_depth = vpic.depth;
-	dst_depth = capture->depth;
+  src_depth = tv->p->vpic.depth;
+  dst_depth = tv->p->capture->depth;
 	
-	pixels_per_line = capture_w;
-	bytes_per_line = capture->bpl;
-	bytes_per_pixel = capture->bpp;
-	byte_order = capture->byte_order;
+  pixels_per_line = tv->p->capture_w;
+  bytes_per_line = tv->p->capture->bpl;
+  bytes_per_pixel = tv->p->capture->bpp;
+  byte_order = tv->p->capture->byte_order;
 
-	mem=malloc(bytes_per_line * capture_h);
-	if(mem==NULL)
-		return;
+  mem=g_malloc(bytes_per_line * tv->p->capture_h);
+  if(mem==NULL)
+    return;
 
-	src=mem;
+  src=mem;
 	
-	read(tv_fd, mem, bytes_per_line * capture_h);
+  read(tv->p->tv_fd, mem, bytes_per_line * tv->p->capture_h);
 			
-	x = 0;
+  x = 0;
 
-	src_mask = 0x80;
-	dst_mask = 0x01;
+  src_mask = 0x80;
+  dst_mask = 0x01;
 	
-	while (lines<capture_h)
+  while (lines < tv->p->capture_h)
+    {
+      READ_VIDEO_PIXEL(src, tv->p->grabber_format, src_depth, r, g, b);
+      PUT_X11_PIXEL(dst, byte_order, dst_depth, bytes_per_pixel, r, g, b,
+		    win.canvas.graylevel);
+      if (++x >= pixels_per_line)
 	{
-		READ_VIDEO_PIXEL(src, grabber_format, src_depth, r, g, b);
-		PUT_X11_PIXEL(dst, byte_order, dst_depth, bytes_per_pixel, r, g, b,
-			win.canvas.graylevel);
-		if (++x >= pixels_per_line)
-		{
-			x = 0;
-			dst += bytes_per_line - pixels_per_line * bytes_per_pixel;
-			lines++;
-		}
+	  x = 0;
+	  dst += bytes_per_line - pixels_per_line * bytes_per_pixel;
+	  lines++;
 	}
-	free(mem);
+    }
+  g_free(mem);
 }
-
-static void write_ppm_image(FILE *f)
-{
-	int x;
-	int lines=0;
-	int pixels_per_line, bytes_per_line, byte_order, bytes_per_pixel;
-	int dst_depth, src_depth;
-	guint32 r = 0, g = 0, b = 0, src_mask, dst_mask;
-	unsigned char *mem, *src;	
-
-	src_depth = vpic.depth;
-	dst_depth = capture->depth;
-	
-	pixels_per_line = capture_w;
-	bytes_per_line = capture->bpl;
-	bytes_per_pixel = capture->bpp;
-	byte_order = capture->byte_order;
-
-	mem=malloc(bytes_per_line * capture_h);
-	if(mem==NULL)
-		return;
-
-	src=mem;
-	
-	read(tv_fd, mem, bytes_per_line * capture_h);
-			
-	x = 0;
-
-	src_mask = 0x80;
-	dst_mask = 0x01;
-	
-	fprintf(f,"P6 %d %d 255\n",
-		pixels_per_line, capture_h);
-	
-	while (lines<capture_h)
-	{
-		READ_VIDEO_PIXEL(src, grabber_format, src_depth, r, g, b);
-		fputc(r>>8, f);
-		fputc(g>>8, f);
-		fputc(b>>8, f);
-		if (++x >= pixels_per_line)
-		{
-			x=0;
-			lines++;
-		}
-	}
-	free(mem);
-	fclose(f);
-}
-
 
 /*
  *	Paint the drawing area. We use this to keep it clean when not
