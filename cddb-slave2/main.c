@@ -26,6 +26,8 @@
 static int running_objects = 0;
 static GConfClient *client = NULL;
 
+gboolean cddb_debugging = FALSE;
+
 enum {
 	CDDB_SEND_FAKE_INFO,
 	CDDB_SEND_REAL_INFO,
@@ -148,6 +150,10 @@ main (int argc,
 	gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
 			    argc, argv, NULL);
 
+	if (g_getenv ("CDDB_SLAVE_DEBUG")) {
+		cddb_debugging = TRUE;
+		g_print ("CDDBSlave2 debugging turned on.\n");
+	}
 	cddbdir = g_build_filename (g_get_home_dir (),
 				    ".cddbslave", NULL);
 	if (g_file_test (cddbdir, G_FILE_TEST_EXISTS) == FALSE) {
