@@ -370,6 +370,11 @@ void preferences(GtkWidget *widget, void *data)
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
 			     create_page(), label);
     
+    
+    label = gtk_label_new(_("Keybindings"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
+    			     gtk_label_new("This is not implemented yet."), label);
+	
     gtk_signal_connect(GTK_OBJECT(pref_window),
 		       "apply", GTK_SIGNAL_FUNC(apply_cb), NULL);
 

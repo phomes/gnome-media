@@ -7,7 +7,7 @@ typedef enum
     StopPlaying, 
     StartPlaying, 
     OpenTray, 
-    CloseTray,
+    CloseTray
 } TCDAction;
 
 typedef struct

@@ -323,7 +323,7 @@ GtkWidget* create_buttons(void)
 
 /* TOP ROW */ 
      
-    playbutton = make_button_with_pixmap("play", play_cb, 'P', _("Play"));
+    playbutton = make_button_with_pixmap("play", NULL, 'P', _("Play"));
     status_changed();
     b1 = playbutton;
     
@@ -577,7 +577,7 @@ gint slow_timer( gpointer *data )
 
 void status_changed(void)
 {
-    if( old_status != cd.sc.cdsc_audiostatus)
+    if(old_status != cd.sc.cdsc_audiostatus)
     {
 	GtkWidget *pixmap;
 	GtkSignalFunc func;
@@ -601,20 +601,20 @@ void status_changed(void)
 	    func = GTK_SIGNAL_FUNC(pause_cb);
 	else
 	    func = GTK_SIGNAL_FUNC(play_cb);
-
+	
 	if(playid > 0)
 	    gtk_signal_disconnect(GTK_OBJECT(playbutton), playid);
+
 	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked",
-				    func, NULL );
+				    func, NULL);
     }
 }
 
 gint volume_changed( GtkWidget *widget, gpointer *data )
 {
-    if( !data )
+    if(!data)
     {
-	cd.volume = (int)floor(GTK_ADJUSTMENT(vol)->value);
-	if(cd.isplayable) tcd_gettime(&cd);
+	tcd_set_volume(&cd, (int)floor(GTK_ADJUSTMENT(vol)->value));
     }
     draw_status();
     return 1;
@@ -692,7 +692,7 @@ static gint status_configure_event(GtkWidget *widget, GdkEventConfigure *event)
 	status_height = status_area->allocation.height;
 	first=FALSE;
     }
-    GTK_ADJUSTMENT(vol)->value = (double)cd.volume;
+    GTK_ADJUSTMENT(vol)->value = (double)tcd_get_volume(&cd);
     gtk_signal_emit_by_name(GTK_OBJECT(vol),"value_changed", "no_update");
     return TRUE;
 }

@@ -72,7 +72,6 @@ void debug( const char *fmt, ...)
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
     char *homedir=NULL;
-    struct cdrom_volctrl vol;
     struct passwd *pw=NULL;
     
     debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
@@ -104,8 +103,6 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 #else
     cd->nslots = 0;
 #endif
-    ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
-    cd->volume = vol.channel0;
     
     debug("cdrom.c: tcd_init_disc exiting normally\n" );
     return(0);
@@ -257,7 +254,6 @@ void tcd_recalculate(cd_struct *cd)
 void tcd_gettime( cd_struct *cd )
 {
 	int result;
-	struct cdrom_volctrl vol;
 
 	cd->err = FALSE;
         cd->sc.cdsc_format = CDROM_MSF;
@@ -277,17 +273,33 @@ void tcd_gettime( cd_struct *cd )
 			cd->cur_t = cd->sc.cdsc_trk;
 		else
 			cd->cur_t = 0;
-#ifndef CDROMVOLCTRL_BUG
-		vol.channel0 = cd->volume;
-		vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0; 
-		ioctl( cd->cd_dev, CDROMVOLCTRL, &vol );
-		ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
-		cd->volume = vol.channel0;
-#endif
 		tcd_recalculate(cd);
 	}
 }
-	                                   
+
+int tcd_set_volume(cd_struct *cd, int volume)
+{
+        struct cdrom_volctrl vol;
+
+	vol.channel0 = volume;
+	vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0;
+	
+	if(ioctl(cd->cd_dev, CDROMVOLCTRL, &vol) < 0)
+		return FALSE;
+
+	return TRUE;
+}
+
+int tcd_get_volume(cd_struct *cd)
+{
+        struct cdrom_volctrl vol;
+
+	if(ioctl(cd->cd_dev, CDROMVOLREAD, &vol) < 0)
+		return -1;
+
+	return vol.channel0;
+}	
+	                                  
 int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 {
 	struct cdrom_msf msf;
