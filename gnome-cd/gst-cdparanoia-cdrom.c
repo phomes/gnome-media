@@ -769,7 +769,7 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 			gst_cdparanoia_cdrom_close (lcd);
 			return FALSE;
 		}
-		break;
+		/* fall-through to process seek */
 
 	case GNOME_CDROM_AUDIO_NOTHING:
 	case GNOME_CDROM_AUDIO_COMPLETE:
@@ -888,8 +888,10 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 
 		/* PLAY IT AGAIN */
 		build_pipeline (lcd);
-		gst_element_set_state (GST_ELEMENT (priv->play_thread),
-				       GST_STATE_PAUSED);
+		if (GST_STATE (priv->play_thread) <= GST_STATE_PAUSED) {
+			gst_element_set_state (GST_ELEMENT (priv->play_thread),
+					       GST_STATE_PAUSED);
+		}
 
 		frames = msf_struct_to_frames (&msf, 0);
 		ret = gst_pad_send_event (GST_PAD (priv->cdp_pad),
@@ -898,8 +900,10 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 					    GST_SEEK_FLAG_FLUSH,
 					    frames));
 
-		gst_element_set_state (GST_ELEMENT (priv->play_thread),
-				       GST_STATE_PLAYING);
+		if (status->audio != GNOME_CDROM_AUDIO_PAUSE) {
+			gst_element_set_state (GST_ELEMENT (priv->play_thread),
+					       GST_STATE_PLAYING);
+		}
 		priv->cur_track = start_track;
 		priv->cur_abs_frame = frames;
 		priv->cur_rel_frame =
