@@ -1,5 +1,17 @@
 1998-12-31  Mark Crichton  <crichton@gimp.org>
 
+	* gtv.c: OK.  SOMEONE HELP ME HERE!
+	gnome_rootwin used to be used, but now it's gone.
+	I am now forced to use a gdk_window_filter function.
+	BUT, I dont have gdk events, but X events. :(
+
+	Is there a way around decoding the events...
+
+	* gtv.h: Redid some funcs to represent removal of
+	gnome_rootwin
+
+1998-12-31  Mark Crichton  <crichton@gimp.org>
+
 	* gtv.c: changed gdk_visual_get_best_depth for
 	gdk_visual_get_system()->depth.  Seems saner?
 

@@ -50,7 +50,7 @@ struct _GtkTV
   guint curinput;
 
   struct video_clip clips[256];
-  GtkWidget *rootwin;
+  GdkWindow *rootwin;
 
   GtkWidget *oldtoplevel;
   gint toplevel_config_id; /* The signal id for

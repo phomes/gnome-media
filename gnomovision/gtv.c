@@ -4,12 +4,15 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <X11/Xlib.h>
+
+#ifdef HAVE_LIBXXF86DGA
 #include <X11/extensions/xf86dga.h>
+#endif
+
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
 #include "gtv.h"
 #include <linux/videodev.h>
-#include <gnome.h>
 #include <errno.h>
 #include <string.h>
 
@@ -24,7 +27,7 @@ static void gtk_tv_show(GtkTV *widget);
 static void gtk_tv_hide(GtkTV *widget);
 static void gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition);
 static void gtk_tv_size_allocate(GtkWidget *widget, GtkAllocation *allocation);
-static gboolean gtk_tv_rootwin_event(GtkWidget *widget,
+static GdkFilterReturn gtk_tv_event_filter(GdkXEvent *xevent,
 				     GdkEvent *event,
 				     GtkTV *tv);
 static gboolean gtk_tv_toplevel_relay(GtkWidget *widget,
@@ -84,14 +87,9 @@ gtk_tv_init(GtkTV *tv)
 
   GTK_WIDGET_SET_FLAGS (tv, GTK_NO_WINDOW);
 
-  tv->rootwin = gnome_rootwin_new();
-  gtk_signal_connect(GTK_OBJECT(tv->rootwin), "event",
-		     GTK_SIGNAL_FUNC(gtk_tv_rootwin_event), tv);
-  gtk_widget_set_events(tv->rootwin, gtk_widget_get_events(tv->rootwin)
-			|GDK_STRUCTURE_MASK
-			|GDK_EXPOSURE_MASK
-			|GDK_SUBSTRUCTURE_MASK);
-  gtk_widget_realize(tv->rootwin);
+  tv->rootwin = GDK_ROOT_PARENT();
+  
+  gdk_window_add_filter (tv->rootwin, (GdkFilterFunc) gtk_tv_event_filter, tv);
 }
 
 GtkWidget*
@@ -300,7 +298,7 @@ gtk_tv_new(int video_num)
 static void
 gtk_tv_destroy(GtkWidget *widget)
 {
-  gtk_widget_destroy(GTK_TV(widget)->rootwin);
+  gdk_window_remove_filter (widget->rootwin, (GdkFilterFunc) gtk_tv_event_filter, widget)
   close(GTK_TV(widget)->fd);
 }
 
@@ -366,13 +364,22 @@ gtk_tv_toplevel_relay(GtkWidget *widget,
   return TRUE;
 }
 
-static gboolean
-gtk_tv_rootwin_event(GtkWidget *widget,
+static GdkFilterReturn
+gtk_tv_event_filter(GtkXEvent *gdk_xevent,
 		     GdkEvent *event,
 		     GtkTV *tv)
 {
+  XEvent *xev;
+
   if(tv->blocking_events)
-    return FALSE;
+    return GDK_FILTER_CONTINUE;
+
+  xev = (XEvent *)gdk_xevent;
+
+  /* This sucks big time.  Here, I convert X events I care about into
+   * gdk events.  gdk_translate_event doesn't help me here, since 
+   * gdk_translate_event calls me... :(
+   */
 
   switch(event->type)
     {
@@ -381,7 +388,7 @@ gtk_tv_rootwin_event(GtkWidget *widget,
     case GDK_DESTROY:
       gtk_tv_do_clipping(GTK_TV(tv), (GdkEvent *)event, FALSE);
       if(ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow))
-	g_warning("VIDIOCSWIN failed in rootwin_event\n");
+	g_warning("VIDIOCSWIN failed in event_filter\n");
       break;
     case GDK_CONFIGURE:
       {
@@ -424,7 +431,7 @@ gtk_tv_rootwin_event(GtkWidget *widget,
       break;
     default:
 #ifdef DEBUG_GTV
-      g_print("rootwin: Don't know how to handle event %d\n", event->type);
+      g_print("event_filter: Don't know how to handle event %d\n", event->type);
 #endif
       return FALSE;
     }
