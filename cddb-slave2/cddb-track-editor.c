@@ -273,6 +273,25 @@ clear_track_list (TrackEditorDialog *td)
 }
 
 static void
+free_track_info (TrackEditorDialog *td)
+{
+	CDDBInfo *info;
+
+	info = td->info;
+	
+	g_free (info->discid);
+	g_free (info->title);
+	g_free (info->artist);
+	g_free (info->comment);
+	g_free (info->genre);
+
+	cddb_slave_client_free_track_info (info->track_info);
+	
+	g_free (info);
+	td->info = NULL;
+}
+
+static void
 load_new_track_data (TrackEditorDialog *td,
 		     const char *discid)
 {
@@ -375,6 +394,10 @@ artist_changed (GtkEntry *entry,
 {
 	const char *artist;
 
+	if (td->info == NULL) {
+		return;
+	}
+		       
 	artist = gtk_entry_get_text (entry);
 	if (td->info->artist != NULL) {
 		g_free (td->info->artist);
@@ -389,6 +412,10 @@ disctitle_changed (GtkEntry *entry,
 {
 	const char *title;
 
+	if (td->info == NULL) {
+		return;
+	}
+	
 	title = gtk_entry_get_text (entry);
 	if (td->info->title != NULL) {
 		g_free (td->info->title);
@@ -404,6 +431,10 @@ year_changed (GtkEntry *entry,
 {
 	const char *year;
 
+	if (td->info == NULL) {
+		return;
+	}
+		      
 	year = gtk_entry_get_text (entry);
 
 	if (year != NULL) {
@@ -421,6 +452,10 @@ genre_changed (GtkEntry *entry,
 {
 	const char *genre;
 
+	if (td->info == NULL) {
+		return;
+	}
+	
 	genre = gtk_entry_get_text (entry);
 
 	if (td->info->genre != NULL) {
@@ -437,6 +472,10 @@ comment_changed (GtkEntry *entry,
 {
 	char *comment;
 
+	if (td->info == NULL) {
+		return;
+	}
+	
 	comment = gtk_entry_get_text (entry);
 
 	if (td->info->comment != NULL) {
@@ -462,6 +501,7 @@ make_track_editor_control (void)
 	
 	td = g_new0 (TrackEditorDialog, 1);
 
+	td->info = NULL;
 	td->dirty = FALSE;
 	
 	td->parent = gtk_vbox_new (FALSE, 4);
@@ -660,7 +700,9 @@ impl_GNOME_Media_CDDBTrackEditor_showWindow (PortableServer_Servant servant,
 	editor = cddb_track_editor_from_servant (servant);
 	if (editor->dialog == NULL) {
 		editor->td = make_track_editor_control ();
-		load_new_track_data (editor->td, editor->discid);
+		if (editor->discid != NULL) {
+			load_new_track_data (editor->td, editor->discid);
+		}
 		
 		editor->dialog = gtk_dialog_new_with_buttons (_("CDDB Track Editor"),
 							      NULL, 0,
@@ -694,10 +736,15 @@ impl_GNOME_Media_CDDBTrackEditor_setDiscID (PortableServer_Servant servant,
 		return;
 	}
 
-	g_free (editor->discid);
+	if (editor->discid != NULL) {
+		g_free (editor->discid);
+	}
 	editor->discid = g_strdup (discid);
 
 	if (editor->td != NULL) {
+		if (editor->td->info != NULL) {
+			free_track_info (editor->td);
+		}
 		load_new_track_data (editor->td, discid);
 	}	       
 }
@@ -739,6 +786,7 @@ cddb_track_editor_init (CDDBTrackEditor *editor)
 {
 	editor->td = NULL;
 	editor->dialog = NULL;
+	editor->discid = NULL;
 }
 
 BONOBO_TYPE_FUNC_FULL (CDDBTrackEditor, GNOME_Media_CDDBTrackEditor,

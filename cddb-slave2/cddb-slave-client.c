@@ -475,6 +475,19 @@ cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 }
 
 void
+cddb_slave_client_free_track_info (CDDBSlaveClientTrackInfo **track_info)
+{
+	int i;
+	for (i = 0; track_info[i] != NULL; i++) {
+		g_free (track_info[i]->name);
+		g_free (track_info[i]->comment);
+		g_free (track_info[i]);
+	}
+
+	g_free (track_info);
+}
+
+void
 cddb_slave_client_set_tracks (CDDBSlaveClient *client,
 			      const char *discid,
 			      CDDBSlaveClientTrackInfo **track_info)
@@ -495,7 +508,7 @@ cddb_slave_client_set_tracks (CDDBSlaveClient *client,
 	list->_maximum = i;
 	list->_buffer = CORBA_sequence_GNOME_Media_CDDBSlave2_TrackInfo_allocbuf (i);
 	
-	for (i = 0; *track_info != NULL; i++) {
+	for (i = 0; track_info[i] != NULL; i++) {
 		list->_buffer[i].name = CORBA_string_dup (track_info[i]->name ? track_info[i]->name : "");
 		list->_buffer[i].length = 0; /* We can't change the length of a track :) */
 		list->_buffer[i].comment = CORBA_string_dup (track_info[i]->comment ?

@@ -104,6 +104,6 @@ desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = $(oaf_in_files) $(Desktop_in_files) $(oaf_DATA) $(IDLS) $(schema_DATA)
 
 install-schemas:
-	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 
 install-data-local: install-schemas

@@ -1,5 +1,19 @@
 2002-02-28  Iain <iain@ximian.com>
 
+	* Makefile.am: Fix the gconf schema install rule.
+
+	* cddb-track-editor.c (free_track_info): Free the track info
+	structure.
+	(artist_changed): Only do stuff if td->info is valid
+	(disctitle_changed): Ditto.
+	(year_changed): Ditto.
+	(genre_changed): Ditto
+	(comment_changed): Ditto.
+
+	* cddb-slave-client.[ch]: Add function to free the trackinfo struct.
+
+2002-02-28  Iain <iain@ximian.com>
+
 	* cddb-slave-client.c (cddb_slave_client_get_tracks): Fix buffer
 	overrun.
 

@@ -70,6 +70,7 @@ int cddb_slave_client_get_ntrks (CDDBSlaveClient *client,
 				 const char *discid);
 CDDBSlaveClientTrackInfo **cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 							 const char *discid);
+void cddb_slave_client_free_track_info (CDDBSlaveClientTrackInfo **track_info);
 
 #ifdef __cplusplus
 }
