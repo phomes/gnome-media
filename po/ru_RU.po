@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1998-09-18 18:11+0400\n"
+"POT-Creation-Date: 1998-09-22 16:41-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Max Valianskiy <maxcom@maxcom.ml.org>\n"
 "Language-Team: \n"
@@ -47,34 +47,30 @@ msgstr "инициализировать микшер(ы) из сохраненной конфигурации и выйти"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "не сохранять (измененные) настройки микшера в конфигурацию"
 
-#: gmix/gmix.c:508
+#: gmix/gmix.c:520
 msgid "GMIX 3.0"
 msgstr ""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:576
+#: gmix/gmix.c:588
 msgid "Lock"
 msgstr "Фикс."
 
-#: gmix/gmix.c:587
+#: gmix/gmix.c:599
 msgid "Rec."
 msgstr "Запись"
 
-#: gmix/gmix.c:594
+#: gmix/gmix.c:606
 msgid "Mute"
 msgstr "Выкл."
 
-#: gmix/gmix.c:758
+#: gmix/gmix.c:770
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome микшер"
 
-#: gmix/gmix.c:761
+#: gmix/gmix.c:773
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Микшер для звуковыйх устройств OSS."
-
-#: gnomovision/tvset.c:1412
-msgid "FILE ..."
-msgstr "ФАЙЛ ..."
 
 #: tcd/callbacks.c:61
 msgid "TCD - The Gnome CD Player"
@@ -85,8 +81,8 @@ msgid ""
 "Gnome CD player application with CDDB support. Please see the 'Thanks' file "
 "included with the distribution for more credits."
 msgstr ""
-"Gnome CD-проигрыватель с поддержкой CDDB. Пожалуйста посмотрите 'Thanks' файл "
-"из поставки для дополнительной информации о авторах"
+"Gnome CD-проигрыватель с поддержкой CDDB. Пожалуйста посмотрите 'Thanks' "
+"файл из поставки для дополнительной информации о авторах"
 
 #: tcd/gtracked.c:116
 msgid "Trk"
@@ -131,76 +127,89 @@ msgid "Playlist"
 msgstr "Список треков"
 
 #. do nothing
-#: tcd/prefs.c:130 tcd/prefs.c:185
+#: tcd/prefs.c:132 tcd/prefs.c:187
 msgid "Do Nothing"
 msgstr "Ничего не Делать"
 
-#: tcd/prefs.c:136
+#: tcd/prefs.c:138
 msgid "Start Playing"
 msgstr "Начать Проигрывание"
 
-#: tcd/prefs.c:142 tcd/prefs.c:191
+#: tcd/prefs.c:144 tcd/prefs.c:193
 msgid "Stop Playing"
 msgstr "Остановить Проигрывание"
 
 #. close tray
-#: tcd/prefs.c:146 tcd/prefs.c:203
+#: tcd/prefs.c:148 tcd/prefs.c:205
 msgid "Close Tray"
 msgstr "Закрыть Трап"
 
-#: tcd/prefs.c:197
+#: tcd/prefs.c:199
 msgid "Open Tray"
 msgstr "Открыть Трап"
 
 #. device entry
-#: tcd/prefs.c:276
+#: tcd/prefs.c:278
 msgid "CDROM Device"
 msgstr "CDROM Устройства"
 
 #. Color picker
-#: tcd/prefs.c:285
+#: tcd/prefs.c:287
 msgid "Track/Title Color"
 msgstr "Цвет Трека/Заглавия"
 
 #. font picker
-#: tcd/prefs.c:297
+#: tcd/prefs.c:299
 msgid "Track/Title Font"
 msgstr "Фонт Трека/Заглавия"
 
-#: tcd/prefs.c:298
+#: tcd/prefs.c:300
 msgid "Change Font"
 msgstr "Изменить Фонт"
 
 #. show handles
-#: tcd/prefs.c:305
+#: tcd/prefs.c:307
 msgid "Show Handles (Restart of TCD required)"
 msgstr "Показать Ручки (Требуется перезапуск TCD)"
 
 #. show tooltips
-#: tcd/prefs.c:312
+#: tcd/prefs.c:314
 msgid "Show Tooltips"
 msgstr "Показать Подсказки"
 
 #. start frame
-#: tcd/prefs.c:332
+#: tcd/prefs.c:334
 msgid "On Startup"
 msgstr "При Запуске"
 
 #. exit frame
-#: tcd/prefs.c:337
+#: tcd/prefs.c:339
 msgid "On Exit"
 msgstr "При Выходе"
 
 #. general frame
-#: tcd/prefs.c:342
+#: tcd/prefs.c:344
 msgid "General"
 msgstr "Общие"
 
-#: tcd/gtcd.c:304 tcd/prefs.c:369
+#: tcd/prefs.c:379
+msgid "Key"
+msgstr ""
+
+#: tcd/prefs.c:380
+msgid "Action"
+msgstr ""
+
+#. Frame
+#: tcd/prefs.c:392
+msgid "Keybindings (not editable YET)"
+msgstr ""
+
+#: tcd/gtcd.c:304 tcd/prefs.c:418
 msgid "Preferences"
 msgstr "Настройки"
 
-#: tcd/prefs.c:374
+#: tcd/prefs.c:423
 msgid "Keybindings"
 msgstr "Настройки Клавиш"
 
@@ -226,11 +235,11 @@ msgid "Eject"
 msgstr "Вытащить"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:338
+#: tcd/gtcd.c:338 tcd/gtcd.c:346
 msgid "Skip backwards"
 msgstr "Перемотать назад"
 
-#: tcd/gtcd.c:339
+#: tcd/gtcd.c:339 tcd/gtcd.c:347
 msgid "Skip forwards"
 msgstr "Преремотать вперед"
 
@@ -245,3 +254,6 @@ msgstr "Нет Диска"
 #: tcd/gtcd.c:499
 msgid "Error"
 msgstr "Ошибка"
+
+#~ msgid "FILE ..."
+#~ msgstr "ФАЙЛ ..."

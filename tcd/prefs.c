@@ -49,6 +49,7 @@ GtkWidget *create_general_frame(void);
 GtkWidget *create_page(void);
 void apply_cb(GtkWidget *widget, void *data);
 void preferences(GtkWidget *widget, void *data);
+GtkWidget *key_page(void);
 
 void load_prefs(tcd_prefs *prop)
 {

@@ -29,8 +29,9 @@ gtcd_SOURCES = 		\
 	callbacks.h	\
 	popup.c		\
 	keybindings.c	\
-	keybindings.h
-
+	keybindings.h	\
+	gtcd_public.h
+	
 tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\

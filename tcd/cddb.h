@@ -34,6 +34,4 @@ unsigned long 	cddb_discid( cd_struct *cd );
 void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version);
 int calc_offset(int minute, int second, int frame);
 
-
-
 #endif /* TCD_CDDB_H */

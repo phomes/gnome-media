@@ -13,5 +13,9 @@ BITMAPS =
 
 pixmap_DATA = $(BITMAPS)
 
-EXTRA_DIST = $(BITMAPS)
+EXTRA_DIST = $(BITMAPS) \
+	play_m.xpm	\
+	stop_m.xpm	\
+	eject_m.xpm
+
 

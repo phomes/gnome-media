@@ -1,16 +1,17 @@
 msgid ""
 msgstr ""
-"Date: 1998-08-24 21:58:59+0200\n"
 "Project-Id-Version: gnome-core 0.20\n"
-"POT-Creation-Date: 1998-04-24 16:08-0500\n"
+"POT-Creation-Date: 1998-09-22 16:41-0500\n"
 "PO-Revision-Date: 1998-08-24 21:58+0200\n"
-"From: Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx>\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Xgettext-Options: --default-domain=gnome-media --directory=.. --add-comments --keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
+"Date: 1998-08-24 21:58:59+0200\n"
+"From: Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx>\n"
+"Xgettext-Options: --default-domain=gnome-media --directory=.. --add-comments "
+"--keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
 "Files: gmix/gmix.c\n"
 
 #: gmix/gmix.c:76
@@ -21,6 +22,7 @@ msgstr "Archivo/Salir"
 msgid "<control>E"
 msgstr "<control>S"
 
+#. no options, yet
 #: gmix/gmix.c:79
 msgid "Edit/Options..."
 msgstr "Edición/Opciones..."
@@ -45,124 +47,263 @@ msgstr "inicializa los mezcladores de la configuración almacenada y termina"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "no guarda la configuración (modificada) de los mezcladores"
 
-#: gmix/gmix.c:508
+#: gmix/gmix.c:520
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:576
+#: gmix/gmix.c:588
 msgid "Lock"
 msgstr "Bloquea"
 
-#: gmix/gmix.c:587
+#: gmix/gmix.c:599
 msgid "Rec."
 msgstr "Graba"
 
-#: gmix/gmix.c:594
+#: gmix/gmix.c:606
 msgid "Mute"
 msgstr "Mudo"
 
-#: gmix/gmix.c:758
+#: gmix/gmix.c:770
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - El mezclador de GNOME"
 
-#: gmix/gmix.c:761
+#: gmix/gmix.c:773
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Este es un mezclador para dispositivos de sonido OSS"
 
-#: tcd/gabout.c:38
+#: tcd/callbacks.c:61
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - El lector de CD de Gnome"
 
-#: tcd/gabout.c:42
-msgid "Gnome CD player application with CDDB support. Please see the 'Thanks' file included with the distribution for more credits."
-msgstr "Lector de CD musicales de Gnome; con soporte CDDB. Lea el archivo 'Thanks' incluido con la distribución para más información sobre los autores."
+#: tcd/callbacks.c:65
+msgid ""
+"Gnome CD player application with CDDB support. Please see the 'Thanks' file "
+"included with the distribution for more credits."
+msgstr ""
+"Lector de CD musicales de Gnome; con soporte CDDB. Lea el archivo 'Thanks' "
+"incluido con la distribución para más información sobre los autores."
 
-#: tcd/gcddb.c:81
-msgid "Configuration:"
-msgstr "Configuración:"
+#: tcd/gtracked.c:116
+msgid "Trk"
+msgstr ""
 
-#: tcd/gcddb.c:87
-msgid "CDDB Remote"
-msgstr "CDDB Remoto"
+#: tcd/gtracked.c:116
+msgid "Time"
+msgstr ""
 
-#. cancel button
-#: tcd/gcddb.c:91
-msgid "Close"
+#: tcd/gtracked.c:116
+msgid "Title"
+msgstr ""
+
+#: tcd/gtracked.c:132
+msgid "Track Editor"
+msgstr ""
+
+#: tcd/gtracked.c:142
+msgid "Disc Information"
+msgstr ""
+
+#: tcd/gtracked.c:143
+msgid "Artist / Title"
+msgstr ""
+
+#: tcd/gtracked.c:144 tcd/gtracked.c:165
+msgid "Ext Data"
+msgstr ""
+
+#: tcd/gtracked.c:184
+msgid "Track Information"
+msgstr ""
+
+#. Clear button
+#: tcd/gtracked.c:196
+#, fuzzy
+msgid "Clear"
 msgstr "Cerrar"
 
-#: tcd/gcddb.c:96
-msgid "Go"
-msgstr "Listo"
+#. Playlist button
+#: tcd/gtracked.c:200
+msgid "Playlist"
+msgstr ""
 
-#: tcd/gcddb.c:100
-msgid "Server: %s:%d\n"
-msgstr "Servidor: %s:%d\n"
+#. do nothing
+#: tcd/prefs.c:132 tcd/prefs.c:187
+msgid "Do Nothing"
+msgstr ""
 
-#: tcd/gcddb.c:105
-msgid "HTTP %s Enabled\n"
-msgstr "HTTP %s Activado\n"
+#: tcd/prefs.c:138
+msgid "Start Playing"
+msgstr ""
 
-#: tcd/gcddb.c:106
-msgid "and Proxy"
-msgstr "y Proxy"
+#: tcd/prefs.c:144 tcd/prefs.c:193
+msgid "Stop Playing"
+msgstr ""
 
-#: tcd/gcddb.c:155
-msgid "Connecting..."
-msgstr "Conectando..."
+#. close tray
+#: tcd/prefs.c:148 tcd/prefs.c:205
+#, fuzzy
+msgid "Close Tray"
+msgstr "Cerrar"
 
-#: tcd/gcddb.c:160 tcd/gcddb.c:167
-msgid "Error: %s"
-msgstr "Error: %s"
+#: tcd/prefs.c:199
+msgid "Open Tray"
+msgstr ""
 
-#: tcd/gcddb.c:172
-msgid "Connected!"
-msgstr "¡Conectado!"
+#. device entry
+#: tcd/prefs.c:278
+msgid "CDROM Device"
+msgstr ""
 
-#: tcd/gcddb.c:181
-msgid "Sending query..."
-msgstr "Enviando demanda..."
+#. Color picker
+#: tcd/prefs.c:287
+msgid "Track/Title Color"
+msgstr ""
 
-#: tcd/gcddb.c:189
-msgid "Reading results..."
-msgstr "Leyendo resultados..."
+#. font picker
+#: tcd/prefs.c:299
+msgid "Track/Title Font"
+msgstr ""
 
-#: tcd/gcddb.c:192
-msgid "Error: Unable to open cddb read socket\n"
-msgstr "Error: Imposible de abrir zócalo cddb en lectura\n"
+#: tcd/prefs.c:300
+msgid "Change Font"
+msgstr ""
 
-#: tcd/gcddb.c:201
-msgid "Downloading data..."
-msgstr "Bajando datos..."
+#. show handles
+#: tcd/prefs.c:307
+msgid "Show Handles (Restart of TCD required)"
+msgstr ""
 
-#: tcd/gcddb.c:219
-msgid "Can't open local file."
-msgstr "Imposible de abrir archivo local."
+#. show tooltips
+#: tcd/prefs.c:314
+msgid "Show Tooltips"
+msgstr ""
 
-#: tcd/gcddb.c:239
-msgid "Exact match not found."
-msgstr "No se encuentra un correspondencia exacta."
+#. start frame
+#: tcd/prefs.c:334
+msgid "On Startup"
+msgstr ""
 
-#: tcd/gcddb.c:253
-msgid "Downloading line %3d..."
-msgstr "Bajando linea %3d..."
+#. exit frame
+#: tcd/prefs.c:339
+msgid "On Exit"
+msgstr ""
 
-#: tcd/gcddb.c:260
-msgid "Done!"
-msgstr "¡Terminado!"
+#. general frame
+#: tcd/prefs.c:344
+msgid "General"
+msgstr ""
 
-#: tcd/gtcd.c:379
+#: tcd/prefs.c:379
+msgid "Key"
+msgstr ""
+
+#: tcd/prefs.c:380
+msgid "Action"
+msgstr ""
+
+#. Frame
+#: tcd/prefs.c:392
+msgid "Keybindings (not editable YET)"
+msgstr ""
+
+#: tcd/gtcd.c:304 tcd/prefs.c:418
+msgid "Preferences"
+msgstr ""
+
+#: tcd/prefs.c:423
+msgid "Keybindings"
+msgstr ""
+
+#: tcd/gtcd.c:303
+msgid "Open track editor"
+msgstr ""
+
+#: tcd/gtcd.c:305
 msgid "Quit"
 msgstr "Salir"
 
-#: tcd/gtcd.c:504 tcd/gtcd.c:505 tcd/gtcd.c:506
+#. TOP ROW
+#: tcd/gtcd.c:326
+msgid "Play"
+msgstr ""
+
+#: tcd/gtcd.c:330
+msgid "Stop"
+msgstr ""
+
+#: tcd/gtcd.c:331
+msgid "Eject"
+msgstr ""
+
+#. MIDDLE ROW
+#: tcd/gtcd.c:338 tcd/gtcd.c:346
+msgid "Skip backwards"
+msgstr ""
+
+#: tcd/gtcd.c:339 tcd/gtcd.c:347
+msgid "Skip forwards"
+msgstr ""
+
+#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
 msgid "(Scanning)"
 msgstr "(Leyendo)"
 
-#: tcd/gtcd.c:532
+#: tcd/gtcd.c:471
 msgid "No Disc"
 msgstr "Disco Ausente"
 
-#: tcd/gtcd.c:560
+#: tcd/gtcd.c:499
 msgid "Error"
 msgstr "Error"
+
+#~ msgid "Configuration:"
+#~ msgstr "Configuración:"
+
+#~ msgid "CDDB Remote"
+#~ msgstr "CDDB Remoto"
+
+#~ msgid "Go"
+#~ msgstr "Listo"
+
+#~ msgid "Server: %s:%d\n"
+#~ msgstr "Servidor: %s:%d\n"
+
+#~ msgid "HTTP %s Enabled\n"
+#~ msgstr "HTTP %s Activado\n"
+
+#~ msgid "and Proxy"
+#~ msgstr "y Proxy"
+
+#~ msgid "Connecting..."
+#~ msgstr "Conectando..."
+
+#~ msgid "Error: %s"
+#~ msgstr "Error: %s"
+
+#~ msgid "Connected!"
+#~ msgstr "¡Conectado!"
+
+#~ msgid "Sending query..."
+#~ msgstr "Enviando demanda..."
+
+#~ msgid "Reading results..."
+#~ msgstr "Leyendo resultados..."
+
+#~ msgid "Error: Unable to open cddb read socket\n"
+#~ msgstr "Error: Imposible de abrir zócalo cddb en lectura\n"
+
+#~ msgid "Downloading data..."
+#~ msgstr "Bajando datos..."
+
+#~ msgid "Can't open local file."
+#~ msgstr "Imposible de abrir archivo local."
+
+#~ msgid "Exact match not found."
+#~ msgstr "No se encuentra un correspondencia exacta."
+
+#~ msgid "Downloading line %3d..."
+#~ msgstr "Bajando linea %3d..."
+
+#~ msgid "Done!"
+#~ msgstr "¡Terminado!"

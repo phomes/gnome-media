@@ -1,6 +1,6 @@
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
-	@PROGRAMS_GNOMOVISION@  \
+#	@PROGRAMS_GNOMOVISION@  \
 	@PROGRAMS_TCD@		\
 	cddbslave
 #
