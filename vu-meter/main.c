@@ -111,7 +111,7 @@ open_sound (void)
   if (sound < 0)
     { /* TPG: Make a friendly error dialog if we can't open sound */
       GtkWidget *box;
-      box = gnome_error_dialog("Cannot connect to sound daemon.\nPlease run 'esd' at a command prompt.");
+      box = gnome_error_dialog(_("Cannot connect to sound daemon.\nPlease run 'esd' at a command prompt."));
       gtk_signal_connect(GTK_OBJECT(box), "close",
       			 GTK_SIGNAL_FUNC(error_close_cb), NULL);
     }
@@ -192,7 +192,7 @@ main (int argc, char *argv[])
   gnome_init_with_popt_table ("Volume Meter", "0.1", argc, argv, options, 
                               0, NULL);
   if (esd_host)
-    g_print ("Host is %s\n", esd_host);
+    g_print (_("Host is %s\n"), esd_host);
   meter = g_malloc0 (sizeof (vumeter));
   client = gnome_master_client ();
   gtk_object_ref (GTK_OBJECT (client));
@@ -213,7 +213,7 @@ main (int argc, char *argv[])
     }
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window), "Volume Meter");
+  gtk_window_set_title (GTK_WINDOW (window), _("Volume Meter"));
   if (session_xpos >=0 && session_ypos >= 0)
     gtk_widget_set_uposition (window, session_xpos, session_ypos);
 
