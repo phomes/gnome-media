@@ -15,12 +15,12 @@
 #include <gnome.h>
 #include <bonobo.h>
 
-#include <pango/pangoft2.h>
-
 #include "gnome-cd.h"
 #include "cdrom.h"
 #include "callbacks.h"
 #include "display.h"
+
+#define DEFAULT_THEME "lcd"
 
 void
 gnome_cd_set_window_title (GnomeCD *gcd,
@@ -314,7 +314,7 @@ init_player (void)
 	}
 	g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
 			  G_CALLBACK (cd_status_changed_cb), gcd);
-
+	
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
@@ -357,6 +357,12 @@ init_player (void)
 			  G_CALLBACK (loopmode_changed_cb), gcd);
 	g_signal_connect (G_OBJECT (gcd->display), "playmode-changed",
 			  G_CALLBACK (playmode_changed_cb), gcd);
+
+	/* Theme needs to be loaded after the display is created */
+	gcd->theme = theme_load (gcd, DEFAULT_THEME);
+	if (gcd->theme == NULL) {
+		g_error ("Could not create theme");
+	}
 	
 	gnome_popup_menu_attach (make_popup_menu (gcd), gcd->display, NULL);
 	

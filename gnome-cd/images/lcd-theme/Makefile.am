@@ -1,4 +1,4 @@
-pixmapdir = $(datadir)/pixmaps/gnome-cd/lcd-theme
+pixmapdir = $(datadir)/pixmaps/gnome-cd/themes/lcd
 
 BITMAPS = 		\
 	    top-left.png	\
@@ -9,8 +9,21 @@ BITMAPS = 		\
 	    middle-right.png	\
 	    top.png		\
 	    bottom.png		\
-	    middle.png
+	    middle.png		\
+	    a-eject-menu.png	\
+	    a-eject.png		\
+	    a-first-menu.png	\
+	    a-first.png		\
+	    a-fwd.png		\
+	    a-last-menu.png	\
+	    a-last.png		\
+	    a-pause.png		\
+	    a-play-menu.png	\
+	    a-play.png		\
+	    a-rwnd.png		\
+	    a-stop-menu.png	\
+	    a-stop.png
+	    
+pixmap_DATA = $(BITMAPS) lcd.theme
 
-pixmap_DATA = $(BITMAPS)
-
-EXTRA_DIST = $(BITMAPS)
+EXTRA_DIST = $(BITMAPS) lcd.theme

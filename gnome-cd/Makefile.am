@@ -2,11 +2,11 @@ SUBDIRS = images
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	$(GNOME_INCLUDEDIR)			\
-	-I$(includedir)				\
 	-I$(top_builddir)			\
 	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DTHEME_DIR=\""$(datadir)/pixmaps/gnome-cd/themes"\"
 
 Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
@@ -25,7 +25,8 @@ gnome_cd_SOURCES =		\
 	display.c		\
 	display.h		\
 	linux-cdrom.c		\
-	linux-cdrom.h
+	linux-cdrom.h		\
+	theme.c
 
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\

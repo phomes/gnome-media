@@ -1,3 +1,27 @@
+2002-01-26  Iain Holmes  <iain@ximian.com>
+
+	* images/lcd-theme/*: Added more icons, and lcd.theme file.
+
+	* Makefile.am: Remove the includedir line, and add the THEME_DIR 
+	define.
+
+	* display.c: Define CDDisplayTheme structure.
+	(cd_display_resize_images): Resize and reposition images.
+	(expose_event): Resize the images if they need it. Use theme instead
+	of priv->images.
+	(cd_image_new): Only call gnome_pixmap_file if the filename isn't
+	absolute. Initialise scaled with pixbuf and ref it.
+	(make_fullname): Take a file and a theme name and work out the full
+	path
+	(cd_display_parse_theme): Parse the theme.
+
+	* gnome-cd.c: Remove the pangoft2.h include. Set the default theme to
+	lcd.
+	(init_player): load the theme.
+
+	* theme.c: New file to load the theme.
+	
+	
 2002-01-26  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* main.c: get translations in UTF-8

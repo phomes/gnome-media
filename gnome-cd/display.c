@@ -8,6 +8,9 @@
 
 #include <libgnome/gnome-util.h>
 #include <libgnome/gnome-i18n.h>
+
+#include <libxml/tree.h>
+
 #include "gnome-cd.h"
 #include "cdrom.h"
 #include "display.h"
@@ -33,6 +36,16 @@ typedef struct _CDImage {
 	GdkRectangle rect;
 } CDImage;
 
+typedef struct _CDDisplayTheme {
+	gboolean need_resize;
+	
+	CDImage *corners[4];
+	CDImage *straights[4];
+	CDImage *middle;
+
+	CDImage *cd, *track, *loop, *once;
+} CDDisplayTheme;
+
 struct _CDDisplayPrivate {
 	GdkColor red;
 	GdkColor blue;
@@ -42,10 +55,8 @@ struct _CDDisplayPrivate {
 	int height;
 	int need_height;
 
-	CDImage *corners[4];
-	CDImage *straights[4];
-	CDImage *middle;
-
+	CDDisplayTheme *theme;
+	/* These need to be removed */
 	CDImage *cd, *track, *loop, *once;
 
 	GnomeCDRomMode playmode, loopmode;
@@ -88,6 +99,47 @@ scale_image (CDImage *image)
 }
 
 static void
+cd_display_resize_images (CDDisplay *display,
+			  GtkAllocation *allocation)
+{
+	CDDisplayPrivate *priv;
+	CDDisplayTheme *theme;
+
+	priv = display->priv;
+	theme = priv->theme;
+
+	if (GTK_WIDGET_REALIZED (GTK_WIDGET (display))) {
+		if (allocation == NULL) {
+			allocation = &(GTK_WIDGET (display)->allocation);
+		}
+	} else {
+		/* Don't need to scale yet */
+		return;
+	}
+
+	theme->need_resize = FALSE;
+	theme->corners[TOPRIGHT]->rect.x = allocation->width - 16;
+	theme->corners[BOTTOMLEFT]->rect.y = allocation->height - 16;
+	theme->corners[BOTTOMRIGHT]->rect.x = allocation->width - 16;
+	theme->corners[BOTTOMRIGHT]->rect.y = allocation->height - 16;
+
+	theme->straights[BOTTOM]->rect.y = allocation->height - 16;
+	theme->straights[RIGHT]->rect.x = allocation->width - 16;
+
+	theme->straights[TOP]->rect.width = allocation->width - 32;
+	theme->straights[BOTTOM]->rect.width = allocation->width - 32;
+	scale_image (theme->straights[TOP]);
+	scale_image (theme->straights[BOTTOM]);
+
+	theme->straights[LEFT]->rect.height = allocation->height - 32;
+	theme->straights[RIGHT]->rect.height = allocation->height - 32;
+
+	theme->middle->rect.width = allocation->width - 32;
+	theme->middle->rect.height = allocation->height - 32;
+	scale_image (theme->middle);
+}
+	
+static void
 size_allocate (GtkWidget *drawing_area,
 	       GtkAllocation *allocation)
 {
@@ -114,26 +166,7 @@ size_allocate (GtkWidget *drawing_area,
 	}
 
 	/* Resize and position pixbufs */
-	priv->corners[TOPRIGHT]->rect.x = allocation->width - 16;
-	priv->corners[BOTTOMLEFT]->rect.y = allocation->height - 16;
-	priv->corners[BOTTOMRIGHT]->rect.x = allocation->width - 16;
-	priv->corners[BOTTOMRIGHT]->rect.y = allocation->height - 16;
-
-	priv->straights[BOTTOM]->rect.y = allocation->height - 16;
-	priv->straights[RIGHT]->rect.x = allocation->width - 16;
-
-	priv->straights[TOP]->rect.width = allocation->width - 32;
-	priv->straights[BOTTOM]->rect.width = allocation->width - 32;
-	scale_image (priv->straights[TOP]);
-	scale_image (priv->straights[BOTTOM]);
-
-	priv->straights[LEFT]->rect.height = allocation->height - 32;
-	priv->straights[RIGHT]->rect.height = allocation->height - 32;
-
-	priv->middle->rect.width = allocation->width - 32;
-	priv->middle->rect.height = allocation->height - 32;
-	scale_image (priv->middle);
-	
+	cd_display_resize_images (disp, allocation);
 	GTK_WIDGET_CLASS (parent_class)->size_allocate (drawing_area, allocation);
 }
 
@@ -198,6 +231,7 @@ expose_event (GtkWidget *drawing_area,
 {
 	CDDisplay *disp;
 	CDDisplayPrivate *priv;
+	CDDisplayTheme *theme;
 	PangoContext *context;
 	PangoDirection base_dir;
 	GdkRectangle *area;
@@ -206,19 +240,25 @@ expose_event (GtkWidget *drawing_area,
 
 	disp = CD_DISPLAY (drawing_area);
 	priv = disp->priv;
+	theme = priv->theme;
 
+	g_assert (theme != NULL);
+	
 	area = &event->area;
 
+	if (theme->need_resize == TRUE) {
+		cd_display_resize_images (disp, NULL);
+	}
 	/* Check corners and draw them */
 	for (i = 0; i < 4; i++) {
 		GdkRectangle inter;
 		
-		if (gdk_rectangle_intersect (area, &priv->corners[i]->rect, &inter) == TRUE) {
-			draw_pixbuf (priv->corners[i]->pixbuf,
+		if (gdk_rectangle_intersect (area, &theme->corners[i]->rect, &inter) == TRUE) {
+			draw_pixbuf (theme->corners[i]->pixbuf,
 				     drawing_area->window,
 				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-				     inter.x - priv->corners[i]->rect.x,
-				     inter.y - priv->corners[i]->rect.y,
+				     inter.x - theme->corners[i]->rect.x,
+				     inter.y - theme->corners[i]->rect.y,
 				     inter.x, inter.y,
 				     inter.width, inter.height);
 		}
@@ -227,12 +267,12 @@ expose_event (GtkWidget *drawing_area,
 	for (i = TOP; i <= BOTTOM; i++) {
 		GdkRectangle inter;
 
-		if (gdk_rectangle_intersect (&priv->straights[i]->rect, area, &inter) == TRUE) {
-			draw_pixbuf (priv->straights[i]->scaled,
+		if (gdk_rectangle_intersect (&theme->straights[i]->rect, area, &inter) == TRUE) {
+			draw_pixbuf (theme->straights[i]->scaled,
 				     drawing_area->window,
 				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-				     inter.x - priv->straights[i]->rect.x,
-				     inter.y - priv->straights[i]->rect.y,
+				     inter.x - theme->straights[i]->rect.x,
+				     inter.y - theme->straights[i]->rect.y,
 				     inter.x, inter.y,
 				     inter.width, inter.height);
 		}
@@ -240,17 +280,17 @@ expose_event (GtkWidget *drawing_area,
 
 	for (i = LEFT; i <= RIGHT; i++) {
 		GdkRectangle inter;
-		if (gdk_rectangle_intersect (area, &priv->straights[i]->rect, &inter) == TRUE) {
+		if (gdk_rectangle_intersect (area, &theme->straights[i]->rect, &inter) == TRUE) {
 			int repeats, extra_s, extra_end, d, j;
 
 			d = inter.y / 16;
 			extra_s = inter.y - (d * 16);
 			
 			if (extra_s > 0) {
-				draw_pixbuf (priv->straights[i]->pixbuf,
+				draw_pixbuf (theme->straights[i]->pixbuf,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->straights[i]->rect.x,
+					     inter.x - theme->straights[i]->rect.x,
 					     16 - extra_s,
 					     inter.x, inter.y,
 					     inter.width, extra_s);
@@ -260,10 +300,10 @@ expose_event (GtkWidget *drawing_area,
 			extra_end = (inter.height - extra_s) % 16;
 			
 			for (j = 0; j < repeats; j++) {
-				draw_pixbuf (priv->straights[i]->pixbuf,
+				draw_pixbuf (theme->straights[i]->pixbuf,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->straights[i]->rect.x,
+					     inter.x - theme->straights[i]->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (j * 16) + extra_s,
@@ -271,10 +311,10 @@ expose_event (GtkWidget *drawing_area,
 			}
 
 			if (extra_end > 0) {
-				draw_pixbuf (priv->straights[i]->pixbuf,
+				draw_pixbuf (theme->straights[i]->pixbuf,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->straights[i]->rect.x,
+					     inter.x - theme->straights[i]->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (repeats * 16) + extra_s,
@@ -286,17 +326,17 @@ expose_event (GtkWidget *drawing_area,
 	/* Do the middle - combination of the above */
 	{
 		GdkRectangle inter;
-		if (gdk_rectangle_intersect (area, &priv->middle->rect, &inter) == TRUE) {
+		if (gdk_rectangle_intersect (area, &theme->middle->rect, &inter) == TRUE) {
 			int repeats, extra_s, extra_end, j, d;
 
 			d = inter.y / 16;
 			extra_s = inter.y - (d * 16);
 			
 			if (extra_s > 0) {
-				draw_pixbuf (priv->middle->scaled,
+				draw_pixbuf (theme->middle->scaled,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->middle->rect.x,
+					     inter.x - theme->middle->rect.x,
 					     16 - extra_s,
 					     inter.x, inter.y,
 					     inter.width, extra_s);
@@ -306,10 +346,10 @@ expose_event (GtkWidget *drawing_area,
 			extra_end = (inter.height - extra_s) % 16;
 			
 			for (j = 0; j < repeats; j++) {
-				draw_pixbuf (priv->middle->scaled,
+				draw_pixbuf (theme->middle->scaled,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->middle->rect.x,
+					     inter.x - theme->middle->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (j * 16) + extra_s,
@@ -317,10 +357,10 @@ expose_event (GtkWidget *drawing_area,
 			}
 
 			if (extra_end > 0) {
-				draw_pixbuf (priv->middle->scaled,
+				draw_pixbuf (theme->middle->scaled,
 					     drawing_area->window,
 					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
-					     inter.x - priv->middle->rect.x,
+					     inter.x - theme->middle->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (repeats * 16) + extra_s,
@@ -431,6 +471,7 @@ realize (GtkWidget *widget)
 
 	gtk_widget_add_events (widget, GDK_BUTTON_PRESS_MASK |
 			       GDK_KEY_PRESS_MASK);
+
 	GTK_WIDGET_CLASS (parent_class)->realize (widget);
 }
 
@@ -528,15 +569,19 @@ cd_image_new (const char *filename,
 	
 	image = g_new (CDImage, 1);
 
-	fullname = gnome_pixmap_file (filename);
-	if (fullname == NULL) {
-		g_warning ("Error loading %s", filename);
-		g_free (image);
-		return NULL;
+	if (filename[0] != '/') {
+		fullname = gnome_pixmap_file (filename);
+		if (fullname == NULL) {
+			g_warning ("Error loading %s", filename);
+			g_free (image);
+			return NULL;
+		}
+		
+		image->pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
+		g_free (fullname);
+	} else {
+		image->pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
 	}
-	
-	image->pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
-	g_free (fullname);
 	
 	if (image->pixbuf == NULL) {
 		g_warning ("Error loading %s", filename);
@@ -544,7 +589,8 @@ cd_image_new (const char *filename,
 		return NULL;
 	}
 
-	image->scaled = NULL;
+	image->scaled = image->pixbuf;
+	g_object_ref (image->scaled);
 	image->rect.x = x;
 	image->rect.y = y;
 	image->rect.width = gdk_pixbuf_get_width (image->pixbuf);
@@ -590,19 +636,6 @@ init (CDDisplay *disp)
 	priv->playmode = GNOME_CDROM_WHOLE_CD;
 	priv->loopmode = GNOME_CDROM_PLAY_ONCE;
 	
-	/* Load pixbufs */
-	priv->corners[TOPLEFT] = cd_image_new ("gnome-cd/lcd-theme/top-left.png", 0, 0);
-	priv->corners[TOPRIGHT] = cd_image_new ("gnome-cd/lcd-theme/top-right.png", 48, 0);
-	priv->corners[BOTTOMLEFT] = cd_image_new ("gnome-cd/lcd-theme/bottom-left.png", 0, 48);
-	priv->corners[BOTTOMRIGHT] = cd_image_new ("gnome-cd/lcd-theme/bottom-right.png", 48, 48);
-
-	priv->straights[LEFT] = cd_image_new ("gnome-cd/lcd-theme/middle-left.png", 0, 16);
-	priv->straights[RIGHT] = cd_image_new ("gnome-cd/lcd-theme/middle-right.png", 48, 16);
-	priv->straights[TOP] = cd_image_new ("gnome-cd/lcd-theme/top.png", 16, 0);
-	priv->straights[BOTTOM] = cd_image_new ("gnome-cd/lcd-theme/bottom.png", 16, 48);
-
-	priv->middle = cd_image_new ("gnome-cd/lcd-theme/middle.png", 16, 16);
-
 	/* Don't know where these are to be placed yet */
 	priv->track = cd_image_new ("gnome-cd/track.png", 16, 0);
 	priv->cd = cd_image_new ("gnome-cd/disc.png", 16, 0);
@@ -711,4 +744,78 @@ cd_display_clear (CDDisplay *disp)
 
 	priv->max_width = max_width;
 	gtk_widget_queue_resize (GTK_WIDGET (disp));
+}
+
+static inline char *
+make_fullname (const char *theme_name,
+	       const char *name)
+{
+	char *loc, *image;
+
+	loc = g_concat_dir_and_file (theme_name, name);
+	image = g_concat_dir_and_file (THEME_DIR, loc);
+	g_free (loc);
+	
+	return image;
+}
+
+void
+cd_display_parse_theme (CDDisplay *disp,
+			GCDTheme *cd_theme,
+			xmlDocPtr doc,
+			xmlNodePtr cur)
+{
+	CDDisplayPrivate *priv;
+	CDDisplayTheme *theme;
+
+	priv = disp->priv;
+	/* Should probably destroy the old theme here */
+
+	priv->theme = g_new (CDDisplayTheme, 1);
+	theme = priv->theme;
+
+	theme->need_resize = TRUE;
+	while (cur != NULL) {
+		if (xmlStrcmp (cur->name, (const xmlChar *) "image") == 0) {
+			xmlChar *location;
+
+			location = xmlGetProp (cur, (const xmlChar *) "location");
+			g_print ("Location: %s\n", location);
+			if (location != NULL) {
+				char *file, *full;
+
+				file = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
+				full = make_fullname (cd_theme->name, file);
+				
+				if (xmlStrcmp (location, "top-left") == 0) {
+					theme->corners[TOPLEFT] = cd_image_new (full, 0, 0);
+				} else if (xmlStrcmp (location, "top-right") == 0) {
+					theme->corners[TOPRIGHT] = cd_image_new (full, 48, 0);
+				} else if (xmlStrcmp (location, "bottom-right") == 0) {
+					theme->corners[BOTTOMRIGHT] = cd_image_new (full, 48, 32);
+				} else if (xmlStrcmp (location, "bottom-left") == 0) {
+					theme->corners[BOTTOMLEFT] = cd_image_new (full, 0, 32);
+				} else if (xmlStrcmp (location, "left") == 0) {
+					theme->straights[LEFT] = cd_image_new (full, 0, 16);
+				} else if (xmlStrcmp (location, "right") == 0) {
+					theme->straights[RIGHT] = cd_image_new (full, 48, 16);
+				} else if (xmlStrcmp (location, "top") == 0) {
+					theme->straights[TOP] = cd_image_new (full, 16, 0);
+				} else if (xmlStrcmp (location, "bottom") == 0) {
+					theme->straights[BOTTOM] = cd_image_new (full, 16, 32);
+				} else if (xmlStrcmp (location, "middle") == 0) {
+					theme->middle = cd_image_new (full, 16, 16);
+				} else {
+					/** Hmmmmm */
+				}
+
+				g_free (full);
+			}
+		}
+
+		cur = cur->next;
+	}
+
+	/* Update sizes */
+	cd_display_resize_images (disp, NULL);
 }

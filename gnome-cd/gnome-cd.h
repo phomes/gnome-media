@@ -35,6 +35,19 @@ typedef struct _GnomeCDText {
 	GdkColor *background;
 } GnomeCDText;
 
+typedef struct _GCDTheme {
+	char *name;
+	
+	GdkPixbuf *previous, *previous_menu;
+	GdkPixbuf *rewind;
+	GdkPixbuf *play, *play_menu;
+	GdkPixbuf *pause;
+	GdkPixbuf *stop, *stop_menu;
+	GdkPixbuf *forward;
+	GdkPixbuf *next, *next_menu;
+	GdkPixbuf *eject, *eject_menu;
+} GCDTheme;
+
 typedef struct _GnomeCD {
 	GtkWidget *window;
 	GtkWidget *vbox;
@@ -66,6 +79,8 @@ typedef struct _GnomeCD {
 	int height, max_width;
 
 	GnomeCDDiscInfo *disc_info;
+
+	GCDTheme *theme;
 } GnomeCD;
 
 void skip_to_track (GtkWidget *item,
