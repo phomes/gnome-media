@@ -29,10 +29,8 @@
 
 #include <libgnome/gnome-util.h>
 
-#include <libxml/tree.h>
-#include <libxml/parser.h>
-
 #include "gnome-cd.h"
+#include "display.h"
 
 GCDTheme *
 theme_load (GnomeCD *gcd,

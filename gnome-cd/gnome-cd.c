@@ -631,7 +631,7 @@ init_player (const char *device_override)
 	gcd->tray_icon = gtk_image_new_from_pixbuf (pixbuf);
 	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
 	gcd->tray_tips = gtk_tooltips_new ();
-	gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
+	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), gcd->tray, _("CD Player"), NULL);
 	gnome_popup_menu_attach (make_popup_menu (gcd), box, NULL);
 	gtk_widget_show_all (gcd->tray);
 
@@ -721,7 +721,6 @@ main (int argc, char *argv[])
 	};
 
 	GnomeCD *gcd;
-	CDSelection *cd_selection;
 	GnomeClient *client;
 
 	free (malloc (8)); /* -lefence */

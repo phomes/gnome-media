@@ -57,7 +57,7 @@ typedef struct _GCDTheme {
 struct _GnomeCD {
 	GtkWidget *tray;
 	GtkWidget *tray_icon;
-	GtkWidget *tray_tips;
+	GtkTooltips *tray_tips;
 
 	GtkWidget *window;
 	GtkWidget *vbox;

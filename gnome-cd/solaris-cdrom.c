@@ -23,6 +23,8 @@
 #include "gnome-cd.h"
 #include "solaris-cdrom.h"
 
+extern gboolean debug_mode;
+
 static GnomeCDRomClass *parent_class = NULL;
 gboolean cdrom_drive_present = FALSE;
 
@@ -974,16 +976,21 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 	/* get initial volume */
-	vol_fd = open ( "/dev/audioctl", O_RDWR);
-	if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
+	vol_fd = open ( "/dev/audioctl", O_RDONLY);
+	if (vol_fd < 0) {
+		g_warning("(solaris_cdrom_get_status): /dev/audioctl %s",
+			  strerror( errno ));
+	} else {
+		if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
 			g_warning ("(solaris_cdrom_get_status): AUDIO_GETINFO ioctl failed %s",
 				   strerror (errno));
 			realstatus->volume = -1;
-	} else {
-		realstatus->volume = audioinfo.play.gain;
-	}
+		} else {
+			realstatus->volume = audioinfo.play.gain;
+		}
 
-	close (vol_fd);
+		close (vol_fd);
+	}
 
 	solaris_cdrom_close (lcd);
 
@@ -1134,14 +1141,19 @@ solaris_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	struct audio_info audioinfo;
 	struct cdrom_volctrl vol;
 
-	vol_fd = open ( "/dev/audioctl", O_RDWR);
-	if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
+	vol_fd = open ( "/dev/audioctl", O_RDONLY);
+	if (vol_fd < 0) {
+		g_warning("(solaris_cdrom_is_cdrom_device): /dev/audioctl %s",
+			  strerror (errno));
+	} else {
+		if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
 			g_warning ("(solaris_cdrom_is_cdrom_device): AUDIO_GETINFO ioctl failed %s",
                                    strerror (errno));
-	} else {
-                volume = audioinfo.play.gain;
+		} else {
+			volume = audioinfo.play.gain;
+		}
+		close (vol_fd);
 	}
-	close (vol_fd);
 
 	if (device == NULL || *device == 0) {
 		return FALSE;

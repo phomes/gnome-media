@@ -102,7 +102,29 @@ dialog_button_clicked_cb (GtkDialog *dialog,
 			  int response_id,
 			  GConfChangeSet *changeset)
 {
+	GError *error = NULL;
 	switch (response_id) {
+	case GTK_RESPONSE_HELP:
+		gnome_help_display_desktop (NULL, "user-guide",
+					    "wgoscustlookandfeel.xml",
+					    "goscustlookandfeel-39", &error);
+		if (error) {
+			GtkWidget *msg_dialog;
+			msg_dialog = gtk_message_dialog_new (GTK_WINDOW(dialog),
+							     GTK_DIALOG_MODAL,
+							     GTK_MESSAGE_ERROR,
+							     GTK_BUTTONS_CLOSE,
+							     _("There was an error displaying help: \n%s"),
+							     error->message);
+			g_signal_connect (G_OBJECT (msg_dialog), "response",
+					  G_CALLBACK (gtk_widget_destroy),
+					  NULL);
+			gtk_window_set_resizable (GTK_WINDOW (msg_dialog), FALSE);
+			gtk_widget_show (msg_dialog);
+			g_error_free (error);
+                }
+	break;
+
 	case GTK_RESPONSE_APPLY:
 		gconf_client_commit_change_set (client, changeset, TRUE, NULL);
 		break;
@@ -865,6 +887,7 @@ main (int argc,
 
 	dialog_win = gtk_dialog_new_with_buttons (_("CD Database Preferences"),
 						  NULL, -1,
+						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
 						  GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);

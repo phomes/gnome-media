@@ -28,6 +28,7 @@
 #include "cddisplayaccessible.h"
 #include "../display.h"
 #include "../gnome-cd.h"
+
 #include "pangoaccessiblefactory.h"
 
 static void cddisplay_accessible_class_init(CDDisplayAccessibleClass *klass);

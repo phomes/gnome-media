@@ -51,6 +51,7 @@
 #include <gtk/gtkscrolledwindow.h>
 
 #include <libgnome/gnome-i18n.h>
+#include <gnome.h>
 
 #include <gconf/gconf-client.h>
 
