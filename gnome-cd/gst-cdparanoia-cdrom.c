@@ -65,6 +65,7 @@ struct _GstCdparanoiaCDRomPrivate {
 	GstElement *play_thread;
 	GstElement *cdparanoia;
 	GstElement *audio_sink;
+	GstElement *vol_element;
 
 	GstFormat sector_format;
 	GstPad *cdp_pad;
@@ -247,7 +248,7 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	static int pipeline_built = 0;
 	char *sink;
 	char *sink_options_start = NULL;
-	GstElement *conv, *scale, *pthread, *queue;
+	GstElement *conv, *scale, *vol, *pthread, *queue;
 
 	if (pipeline_built == 1)
 		return; 
@@ -286,15 +287,16 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	queue = gst_element_factory_make ("queue", "q");
 	conv = gst_element_factory_make ("audioconvert", "conv");
 	scale = gst_element_factory_make ("audioscale", "scale");
+	priv->vol_element = vol = gst_element_factory_make ("volume", "vol");
 
 	/* Now build the pipeline */
 	gst_bin_add_many (GST_BIN (pthread), queue, conv,
-			  scale, priv->audio_sink, NULL);
+			  scale, vol, priv->audio_sink, NULL);
 	gst_bin_add_many (GST_BIN (priv->play_thread), priv->cdparanoia,
 			  pthread, NULL);
 
 	/* Link 'er up */
-	gst_element_link_many (priv->cdparanoia, queue, conv, scale,
+	gst_element_link_many (priv->cdparanoia, queue, conv, scale, vol,
 			       priv->audio_sink, NULL);
 
 	pipeline_built = 1;
@@ -884,13 +886,10 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 
 		frames = msf_struct_to_frames (&msf, 0);
 		ret = gst_pad_send_event (GST_PAD (priv->cdp_pad),
-					  gst_event_new_seek (priv->
-							      sector_format
-							      |
-							      GST_SEEK_METHOD_SET
-							      |
-							      GST_SEEK_FLAG_FLUSH,
-							      frames));
+			gst_event_new_seek (priv->sector_format |
+					    GST_SEEK_METHOD_SET |
+					    GST_SEEK_FLAG_FLUSH,
+					    frames));
 
 		gst_element_set_state (GST_ELEMENT (priv->play_thread),
 				       GST_STATE_PLAYING);
@@ -1130,6 +1129,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 				 GnomeCDRomStatus ** status,
 				 GError ** error)
 {
+	gdouble vol = 0.0;
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
@@ -1215,10 +1215,6 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	}
 #endif
 
-	/* Get the volume */
-	/* TODO: get the mixer volume */
-	realstatus->volume = -1;	/* -1 means no volume command */
-
 	gst_cdparanoia_cdrom_close (lcd);
 
 	ASSIGN_MSF (realstatus->relative, blank_msf);
@@ -1234,6 +1230,8 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	   the hardware. */
 
 	build_pipeline (lcd);
+	g_object_get (G_OBJECT (priv->vol_element), "volume", &vol, NULL);
+	realstatus->volume = lrint (vol * 255.0);
 	cur_gst_status =
 	    gst_element_get_state (GST_ELEMENT (priv->play_thread));
 
@@ -1387,44 +1385,13 @@ gst_cdparanoia_cdrom_set_volume (GnomeCDRom * cdrom,
 {
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-	struct ioc_vol vol;
-#else
-	struct cdrom_volctrl vol;
-#endif
 
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
 
-	if (gst_cdparanoia_cdrom_open (lcd, error) == FALSE) {
-		return FALSE;
-	}
+	g_object_set (G_OBJECT (priv->vol_element), "volume",
+		      (gdouble) volume / 255.0, NULL);
 
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-	vol.vol[0] = volume;
-	vol.vol[1] = vol.vol[2] = vol.vol[3] = volume;
-#else
-	vol.channel0 = volume;
-	vol.channel1 = vol.channel2 = vol.channel3 = volume;
-#endif
-
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-	if (ioctl (cdrom->fd, CDIOCSETVOL, &vol) < 0) {
-#else
-	if (ioctl (cdrom->fd, CDROMVOLCTRL, &vol) < 0) {
-#endif
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(gst_cdparanoia_cdrom_set_volume:1): ioctl failed %s",
-					      g_strerror (errno));
-		}
-
-		gst_cdparanoia_cdrom_close (lcd);
-		return FALSE;
-	}
-
-	gst_cdparanoia_cdrom_close (lcd);
 	return TRUE;
 }
 
