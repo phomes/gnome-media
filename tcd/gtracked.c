@@ -11,18 +11,22 @@
 #endif
 
 GtkWidget *trwin;
+
 #ifdef PIXMAPS
 GtkWidget *music, *data;
 #endif
-static int current_track;
+
 extern cd_struct cd;
 
+void make_gotomenu();
+ 
 void destroy_window (GtkWidget *widget, gboolean save)
 {
 	if( save )
 		tcd_writediskinfo(&cd);
         gtk_widget_destroy(trwin);
 	trwin = NULL;
+	make_gotomenu();
 	return;
 }
 
@@ -67,15 +71,16 @@ void fill_list( GtkWidget *list )
 
 void dtitle_changed( GtkWidget *widget, gpointer data )
 {
-	strcpy(cd.dtitle, gtk_entry_get_text(GTK_ENTRY(widget)));
+	strncpy(cd.dtitle, gtk_entry_get_text(GTK_ENTRY(widget)), DISC_INFO_LEN);
 	return;
 }
 
 void activate_entry( GtkWidget *widget, GtkWidget *list )
 {
-	strcpy(cd.trk[current_track].name, 
-		gtk_entry_get_text(GTK_ENTRY(widget)));
-	update_list(list, current_track);
+	int trk = GPOINTER_TO_INT(gtk_object_get_user_data(GTK_OBJECT(list)));
+	strncpy(cd.trk[trk].name, 
+		gtk_entry_get_text(GTK_ENTRY(widget)), TRK_NAME_LEN);
+	update_list(list, trk);
 	return;
 }
 
@@ -85,10 +90,15 @@ void select_row_cb( GtkCList *clist,
                     GdkEventButton *event,
                     GtkWidget *entry)
 {
-	gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row+1].name);
-	current_track = row+1;
+	row++;
+
+	gtk_object_set_user_data(GTK_OBJECT(clist), GINT_TO_POINTER(row));
+	gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row].name);
+
+	if(gtk_events_pending())
+		gtk_main_iteration();
 	if( event && event->type == GDK_2BUTTON_PRESS )
-		tcd_playtracks(&cd, row+1, -1);
+		tcd_playtracks(&cd, row, -1);
 
 	return;
 }
@@ -151,7 +161,6 @@ void edit_window( void )
 	track_ext   = gtk_button_new_with_label("Ext Data");
 	gtk_widget_set_sensitive(track_ext, FALSE);
 	track_list  = gtk_clist_new_with_titles(3, titles);
-	current_track = 1;
 	gtk_clist_set_border(GTK_CLIST(track_list), GTK_SHADOW_NONE);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 20);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);

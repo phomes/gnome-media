@@ -27,8 +27,8 @@
 #ifndef TCD_CDROM_H
 #define TCD_CDROM_H
 
-#define TRK_NAME_LEN 	80
-#define DISC_INFO_LEN	80
+#define TRK_NAME_LEN 	512
+#define DISC_INFO_LEN	512
 #define MAXTRACKS	111
 
 #define TRK_PLAYING	0x01 /* 00000001b */

@@ -48,6 +48,7 @@ int val;
 int cancel_id, start_id, timeout;
 
 void create_warn( char *message_text, char *type );
+void make_gotomenu();
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
@@ -257,6 +258,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 
 	tcd_close_disc(&cd);
         tcd_init_disc(&cd, create_warn);
+	make_gotomenu();
 
 	titlelabel_f = TRUE;
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0);

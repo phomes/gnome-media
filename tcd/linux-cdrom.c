@@ -522,7 +522,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	int i, res;
 	FILE *fp;
 	char fn[60];
-	char tmp[256], *tmp2;
+	char tmp[DISC_INFO_LEN], *tmp2;
 	char artist[DISC_INFO_LEN], album[DISC_INFO_LEN];
 	char tcd_dir[128];
 
@@ -543,14 +543,14 @@ int tcd_readdiskinfo( cd_struct *cd )
 			sleep(2);
 			return -1;
 		}
-		strcpy( tmp, cd->dtitle );
-		strcpy( cd->artist, strtok( tmp, "/" ) );
+		strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
+		strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
 		tmp2 = strtok(NULL, "\0");
 		if( tmp2 )
-			strcpy( cd->album, tmp2+1 );
+			strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
 		else
-			strcpy( cd->album, "" );
-		strcpy( cd->trk[0].name, "--" );
+			strncpy(cd->album, "", DISC_INFO_LEN);
+		strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
 		return 0;
 	}
 	else
@@ -569,10 +569,10 @@ int tcd_readdiskinfo( cd_struct *cd )
 			artist[strlen(artist)-1] = 0;
 			album[strlen(album)-1] = 0;
 			
-			strcpy( cd->dtitle, "" );
-			strcat( cd->dtitle, artist );
-			strcat( cd->dtitle, " / " );
-			strcat( cd->dtitle, album );
+			strncpy(cd->dtitle, "", DISC_INFO_LEN);
+			strncat(cd->dtitle, artist, DISC_INFO_LEN);
+			strncat(cd->dtitle, " / ", DISC_INFO_LEN);
+			strncat(cd->dtitle, album, DISC_INFO_LEN);
 				
 			for( i = cd->first_t; i <= cd->last_t; i++ )
 			{
@@ -583,7 +583,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 			sprintf( fn, "%s%08lx", tcd_dir, cd->cddb_id );
 			tcd_writecddb( cd, fn );
 			fclose(fp);
-			strcpy( cd->trk[0].name, "--" );
+			strncpy( cd->trk[0].name, "--", TRK_NAME_LEN);
 			return 0;
 		}	                                                                                       			
 		else 
