@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2001-09-06 00:53+0800\n"
-"PO-Revision-Date: 2001-09-06 14:59+0800\n"
+"POT-Creation-Date: 2001-09-21 03:44+0800\n"
+"PO-Revision-Date: 2001-09-21 03:52+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,17 @@ msgstr "依設定檔來起始混音設定並離開"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "不要把現時的混音設定值存入設定檔"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"無法開啟音效裝置。\n"
+"請檢查是否有足夠權限開啟 /dev/mixer\n"
+"及請確定核心裡已有音效支援。"
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -343,7 +353,7 @@ msgstr ""
 "警告：此版本的 gmix 使用了 OSS 版本 %d.%d.%d\n"
 "編譯，但你的系統使用的 OSS 版本舊於 3.6.0。\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -354,27 +364,27 @@ msgstr ""
 "編譯，但你的系統使用的 OSS 版本是 %d.%d.%d。\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "鎖定"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "錄音"
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "靜音"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome 混音器"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "OSS 音效裝置用的混音器"
 
