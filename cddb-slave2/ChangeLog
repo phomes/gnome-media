@@ -1,5 +1,14 @@
 2002-04-14  Iain <iain@ximian.com>
 
+	* cddb-track-editor.c (extra_info_changed): Store the extra info.
+	(track_selection_changed): Block the signal handlers before changing
+	the info.
+	(track_name_edited): Store the new name.
+	(make_track_editor_control): Connect the signals to the edittable
+	column and the extra_info buffer.
+
+2002-04-14  Iain <iain@ximian.com>
+
 	* cddb-slave-client.c (cddb_slave_client_set_tracks): Fix infinite
 	loop.
 

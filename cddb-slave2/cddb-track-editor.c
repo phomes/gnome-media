@@ -69,6 +69,8 @@ typedef struct _TrackEditorDialog {
 	GtkTextBuffer *buffer;
 	GtkTreeModel *model;
 
+	int current_track; /* The array offset that is currently
+			      selected in the tree */
 	CDDBInfo *info;
 } TrackEditorDialog;
 
@@ -318,6 +320,26 @@ make_genre_list (void)
 }
 
 static void
+extra_info_changed (GtkTextBuffer *tb,
+		    TrackEditorDialog *td)
+{
+	GtkTextIter start, end;
+	char *text;
+
+	if (td->current_track == -1) {
+		return; /* Hmmm, curious */
+	}
+
+	if (td->info->track_info[td->current_track]->comment != NULL) {
+		g_free (td->info->track_info[td->current_track]->comment);
+	}
+	
+	gtk_text_buffer_get_bounds (tb, &start, &end);
+	text = gtk_text_buffer_get_text (tb, &start, &end, FALSE);
+	td->info->track_info[td->current_track]->comment = text;
+}
+	
+static void
 track_selection_changed (GtkTreeSelection *selection,
 			 TrackEditorDialog *td)
 {
@@ -331,11 +353,26 @@ track_selection_changed (GtkTreeSelection *selection,
 		gtk_tree_model_get (model, &iter, 0, &track, -1);
 		comment = td->info->track_info[track - 1]->comment;
 
+		td->current_track = track - 1;
+		g_signal_handlers_block_matched (G_OBJECT (td->buffer),
+						 G_SIGNAL_MATCH_FUNC,
+						 0, 0, NULL,
+						 G_CALLBACK (extra_info_changed),
+						 td);
 		if (comment != NULL) {
 			gtk_text_buffer_set_text (td->buffer, comment, -1);
 		} else {
 			gtk_text_buffer_set_text (td->buffer, "", -1);
 		}
+		g_signal_handlers_unblock_matched (G_OBJECT (td->buffer),
+						   G_SIGNAL_MATCH_FUNC,
+						   0, 0, NULL,
+						   G_CALLBACK (extra_info_changed),
+						   td);
+		gtk_widget_set_sensitive (td->extra_info, TRUE);
+	} else {
+		/* No track selected, you can enter a comment */
+		gtk_widget_set_sensitive (td->extra_info, FALSE);
 	}
 }
 
@@ -435,6 +472,30 @@ comment_changed (GtkEntry *entry,
 
 	td->info->comment = g_strdup (comment);
 	td->dirty = TRUE;
+}
+
+static void
+track_name_edited (GtkCellRendererText *cell,
+		   char *path_string,
+		   char *new_text,
+		   TrackEditorDialog *td)
+{
+	GtkTreeModel *model = td->model;
+	GtkTreeIter iter;
+	GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+	int track_no;
+
+	gtk_tree_model_get_iter (model, &iter, path);
+	gtk_tree_model_get (model, &iter, 0, &track_no, -1);
+
+	g_print ("track no %d\n", track_no);
+	if (td->info->track_info[track_no - 1]->name != NULL) {
+		g_free (td->info->track_info[track_no - 1]->name);
+	}
+	td->info->track_info[track_no - 1]->name = g_strdup (new_text);
+
+	gtk_list_store_set (GTK_LIST_STORE (model), &iter, 1, new_text, -1);
+	gtk_tree_path_free (path);
 }
 
 static void
@@ -544,6 +605,7 @@ make_track_editor_control (void)
 	td = g_new0 (TrackEditorDialog, 1);
 
 	td->info = NULL;
+	td->current_track = -1;
 	td->dirty = FALSE;
 	
 	td->parent = gtk_vbox_new (FALSE, 4);
@@ -667,6 +729,8 @@ make_track_editor_control (void)
 	gtk_tree_view_append_column (GTK_TREE_VIEW (td->tracks), col);
 
 	cell = gtk_cell_renderer_text_new ();
+	g_signal_connect (G_OBJECT (cell), "edited",
+			  G_CALLBACK (track_name_edited), td);
 	col = gtk_tree_view_column_new_with_attributes (_("Title"), cell,
 							"text", MODEL_NAME,
 							"editable", MODEL_EDITABLE,
@@ -703,6 +767,9 @@ make_track_editor_control (void)
 
 	td->extra_info = gtk_text_view_new ();
 	td->buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (td->extra_info));
+	g_signal_connect (G_OBJECT (td->buffer), "changed",
+			  G_CALLBACK (extra_info_changed), td);
+	gtk_widget_set_sensitive (td->extra_info, FALSE);
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (td->extra_info),
 				     GTK_WRAP_WORD);
 	gtk_box_pack_start (GTK_BOX (ad_vbox2), td->extra_info, TRUE, TRUE, 0);
