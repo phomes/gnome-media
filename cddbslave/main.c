@@ -37,14 +37,16 @@ int pid;
 int main(int argc, char *argv[])
 {
     char req[512], client[512];
+    int cddev;
 
     fgets(req, 511, stdin);	/* grab the cddb request */
     fgets(client, 511, stdin);	/* and then the client info */
     
-    sscanf(client, "client %s %s %d\n", client_name, client_ver, &pid);
+    sscanf(client, "client %s %s %d %d\n", client_name, client_ver, &pid, &cddev);
 
     gethostname_safe(hostname, 512);
     getusername_safe(username, 512);
+    close(cddev);
 
     if(check_cache(req))
 	exit(0);
