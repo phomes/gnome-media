@@ -1255,7 +1255,6 @@ record_tick_callback (GSRWindow *window)
 		gchar* len_str;
 		secs = value / GST_SECOND;
 		
-		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, secs);
 		len_str = seconds_to_full_string (secs);
 		window->priv->len_secs = secs;
 		gtk_label_set (GTK_LABEL (window->priv->length), len_str);
@@ -1442,7 +1441,7 @@ record_start(gpointer user_data)
 				      "sensitive", "0", NULL);
 	bonobo_ui_component_set_status (window->priv->ui_component,
 					_("Recording..."), NULL);
-	gtk_widget_set_sensitive (window->priv->scale, TRUE);
+	gtk_widget_set_sensitive (window->priv->scale, FALSE);
 	window->priv->record_id = 0;
 	return FALSE;
 }

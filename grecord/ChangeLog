@@ -1,3 +1,11 @@
+2003-10-14  Ted Gould <ted@gould.cx>
+
+	* src/gsr-window.c: Undid part of the patch below, because it
+	was using the slider.  The problem here is that the slider implies
+	that there is a fixed length of something, and really, we can
+	record for quite a long time.  So, just using the counter to
+	show that we're recording.
+
 2003-10-08  Ted Gould <ted@gould.cx>
 
 	* src/gsr-window.c: Fix for bug 123937 to make the gnome-recorder
