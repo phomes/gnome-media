@@ -72,7 +72,7 @@ void load_prefs(tcd_prefs *prop)
 	prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
 	prop->mixer_cmd=gnome_config_get_string    ("/gtcd/ui/mixer=gmix");
 	prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
-	prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
+	prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-iso8859-1");
 
 	prop->trackcolor_r=gnome_config_get_int("/gtcd/ui/trackcolor_r=255" );
 	prop->trackcolor_g=gnome_config_get_int("/gtcd/ui/trackcolor_g=0" );
@@ -558,6 +558,7 @@ static void apply_cb(GtkWidget *widget, void *data)
 		gtk_tooltips_disable(tooltips);
 	setup_colors();
 	setup_fonts();
+	adjust_status_size();
 	save_prefs(&prefs);
 }
 
