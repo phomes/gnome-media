@@ -54,6 +54,21 @@ gcd_warning (const char *message,
 	g_warning (message, error ? error->message : "(None)");
 }
 
+void
+gcd_error (const gchar *message,
+	   GError *error)
+{
+	GtkWidget *dlg;
+
+	gcd_warning (message, error);
+
+	dlg = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
+				      GTK_BUTTONS_CLOSE, message,
+				      error ? error->message : "(None)");
+	gtk_dialog_run (GTK_DIALOG (dlg));
+	gtk_widget_destroy (dlg);
+}
+
 /* if env var GNOME_CD_DEBUG is set, g_print the given message */
 void
 gcd_debug (const gchar *format,
@@ -118,7 +133,7 @@ skip_to_track (GtkWidget *item,
 	int track, end_track;
 	GnomeCDRomStatus *status = NULL;
 	GnomeCDRomMSF msf, *endmsf;
-	GError *error;
+	GError *error = NULL;
 	
 	track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 

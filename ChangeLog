@@ -1,5 +1,18 @@
 2005-03-20  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* gnome-cd/callbacks.c: (maybe_close_tray), (eject_cb), (play_cb),
+	(stop_cb), (ffwd_timeout_cb), (next_cb), (back_cb),
+	(rewind_timeout_cb), (status_ok), (open_track_editor),
+	(volume_changed), (position_changed):
+	* gnome-cd/gnome-cd.c: (gcd_error), (skip_to_track):
+	* gnome-cd/gnome-cd.h:
+	* gnome-cd/gst-cdparanoia-cdrom.c: (build_pipeline):
+	  Show error dialog to user if something fatal went wrong while
+	  doing an actual user action (press a button or so), e.g. because
+	  the GStreamer element was missing. Fixes #164120.
+
+2005-03-20  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* grecord/src/gnome-recorder.c: (gsr_open_window):
 	* grecord/src/gsr-window.c: (record_start):
 	  Update title bar when we record a new file while another file

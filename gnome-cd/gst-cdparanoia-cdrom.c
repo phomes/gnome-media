@@ -241,8 +241,8 @@ cb_error (GstElement *el, GstElement *src,
 	g_warning (err->message);
 }
 
-static void
-build_pipeline (GstCdparanoiaCDRom * lcd)
+static gboolean
+build_pipeline (GstCdparanoiaCDRom * lcd, GError ** error)
 {
 	GstCdparanoiaCDRomPrivate *priv;
 	static int pipeline_built = 0;
@@ -251,7 +251,7 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	GstElement *conv, *scale, *vol, *pthread, *queue;
 
 	if (pipeline_built == 1)
-		return; 
+		return TRUE; 
 
 	priv = lcd->priv;
 
@@ -266,7 +266,11 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 
 	priv->cdparanoia =
 	    gst_element_factory_make ("cdparanoia", "cdparanoia");
-	g_assert (priv->cdparanoia != 0);	/* TBD: GError */
+	if (!priv->cdparanoia) {
+		g_set_error (error, 0, 0,
+			     _("Failed to set up CD reader; please install the GStreamer cdparanoia plugin."));
+		return FALSE;
+	}
 
 	if (priv->cd_device) {
 		if (g_object_class_find_property (
@@ -288,7 +292,11 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	g_assert (priv->cdp_pad != 0);	/* TBD: GError */
 
 	priv->audio_sink = gst_gconf_get_default_audio_sink ();
-	g_assert (priv->audio_sink != 0);	/* TBD: GError */
+	if (!priv->audio_sink) {
+		g_set_error (error, 0, 0,
+			     _("Failed to set up audio output; please install a GStreamer plugin for your soundcard."));
+		return FALSE;
+	}
 
 	pthread = gst_element_factory_make ("thread", "outthr");
 	queue = gst_element_factory_make ("queue", "q");
@@ -307,6 +315,8 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 			       priv->audio_sink, NULL);
 
 	pipeline_built = 1;
+
+	return TRUE;
 }
 
 
@@ -887,7 +897,9 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 		}
 
 		/* PLAY IT AGAIN */
-		build_pipeline (lcd);
+		if (!build_pipeline (lcd, error))
+			return FALSE;
+
 		if (GST_STATE (priv->play_thread) <= GST_STATE_PAUSED) {
 			gst_element_set_state (GST_ELEMENT (priv->play_thread),
 					       GST_STATE_PAUSED);
@@ -1239,8 +1251,9 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	   happens that finds the CD caught up. cur_track is an answer to
 	   that where we keep better track of what's currently playing than
 	   the hardware. */
+	if (!build_pipeline (lcd, error))
+		return FALSE;
 
-	build_pipeline (lcd);
 	g_object_get (G_OBJECT (priv->vol_element), "volume", &vol, NULL);
 	realstatus->volume = lrint (vol * 255.0);
 	cur_gst_status =

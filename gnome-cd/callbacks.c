@@ -45,7 +45,7 @@ static void
 maybe_close_tray (GnomeCD *gcd)
 {
 	GnomeCDRomStatus *status;
-	GError *error;
+	GError *error = NULL;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
 		gcd_warning ("%s", error);
@@ -69,10 +69,10 @@ void
 eject_cb (GtkButton *button,
 	  GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 
 	if (gnome_cdrom_eject (gcd->cdrom, &error) == FALSE) {
-		gcd_warning ("%s", error);
+		gcd_error ("%s", error);
 		g_error_free (error);
 	}
 
@@ -92,7 +92,7 @@ void
 play_cb (GtkButton *button,
 	 GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 	GnomeCDRomStatus *status;
 	GnomeCDRomMSF msf;
 	AtkObject *aob;
@@ -100,7 +100,7 @@ play_cb (GtkButton *button,
 	GnomeCDRomMSF *endmsf;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		gcd_warning ("%s", error);
+		gcd_error ("%s", error);
 		g_error_free (error);
 		g_free (status);
 		return;
@@ -110,7 +110,7 @@ play_cb (GtkButton *button,
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
 		if (gnome_cdrom_close_tray (gcd->cdrom, &error) == FALSE) {
-			gcd_warning ("Cannot close tray: %s", error);
+			gcd_error ("Cannot close tray: %s", error);
 			g_error_free (error);
 
 			g_free (status);
@@ -139,7 +139,7 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
-		gcd_warning ("Drive not ready: %s", NULL);
+		gcd_error ("Drive not ready: %s", NULL);
 
 		g_free (status);
 		return;
@@ -159,7 +159,7 @@ play_cb (GtkButton *button,
 			gcd->current_image = gcd->pause_image;
 		} else { 
 			if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
-				gcd_warning ("%s", error);
+				gcd_error ("%s", error);
 				g_error_free (error);
 
 				g_free (status);
@@ -190,7 +190,7 @@ play_cb (GtkButton *button,
 		}
 		if (gnome_cdrom_play (gcd->cdrom, status->track,
 				      &status->relative, end_track, endmsf, &error) == FALSE) {
-			gcd_warning ("%s", error);
+			gcd_error ("%s", error);
 			g_error_free (error);
 			
 			g_free (status);
@@ -220,7 +220,7 @@ play_cb (GtkButton *button,
 			endmsf = &msf;
 		}
 		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
-			gcd_warning ("%s", error);
+			gcd_error ("%s", error);
 			g_error_free (error);
 
 			g_free (status);
@@ -237,7 +237,7 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_AUDIO_ERROR:
-		gcd_warning ("Error playing CD: %s", NULL);
+		gcd_error ("Error playing CD: %s", NULL);
 		g_free (status);
 		return;
 
@@ -253,14 +253,15 @@ void
 stop_cb (GtkButton *button,
 	 GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 
 	/* Close the tray if needed */
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_stop (gcd->cdrom, &error) == FALSE) {
-		gcd_warning ("%s", error);
+		gcd_error ("%s", error);
 		g_error_free (error);
+		return;
 	}
 
 	if (gcd->current_image == gcd->pause_image) {
@@ -278,7 +279,7 @@ stop_cb (GtkButton *button,
 static gboolean
 ffwd_timeout_cb (gpointer data)
 {
-	GError *error;
+	GError *error = NULL;
 	GnomeCD *gcd = data;
 
 	if (gnome_cdrom_fast_forward (gcd->cdrom, &error) == FALSE) {
@@ -336,12 +337,12 @@ void
 next_cb (GtkButton *button,
 	 GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_next (gcd->cdrom, &error) == FALSE) {
-		gcd_warning ("%s", error);
+		gcd_error ("%s", error);
 		g_error_free (error);
 	}
 
@@ -360,12 +361,12 @@ void
 back_cb (GtkButton *button,
 	 GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_back (gcd->cdrom, &error) == FALSE) {
-		gcd_warning ("%s", error);
+		gcd_error ("%s", error);
 		g_error_free (error);
 	}
 
@@ -383,7 +384,7 @@ back_cb (GtkButton *button,
 static gboolean
 rewind_timeout_cb (gpointer data)
 {
-	GError *error;
+	GError *error = NULL;
 	GnomeCD *gcd = data;
 	
 	if (gnome_cdrom_rewind (gcd->cdrom, &error) == FALSE) {
@@ -593,7 +594,7 @@ status_ok (GnomeCD *gcd,
 			} else {
 				GnomeCDRomMSF msf;
 				int start_track, end_track;
-				GError *error;
+				GError *error = NULL;
 				
 				/* CD has gone to the start of the next track.
 				   Track we want to loop is track - 1 */
@@ -1078,7 +1079,7 @@ void
 open_track_editor (GtkWidget *widget,
 		   GnomeCD *gcd)
 {
-	GError *error;
+	GError *error = NULL;
 	GnomeCDRomCDDBData *data;
 	CORBA_Environment ev;
 	char *discid;
@@ -1134,7 +1135,7 @@ volume_changed (GtkRange *range,
 		GnomeCD *gcd)
 {
 	double volume;
-	GError *error;
+	GError *error = NULL;
 
 	volume = gtk_range_get_value (range);
 	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, &error) == FALSE) {
@@ -1151,7 +1152,7 @@ position_changed (GtkRange *range,
 	int end_track;
 	GnomeCDRomStatus *status = NULL;
 	GnomeCDRomMSF msf, msf2, *endmsf;
-	GError *error;
+	GError *error = NULL;
 	gint length, pos;
 	GtkAdjustment *adj;
 	
