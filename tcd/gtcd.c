@@ -992,25 +992,16 @@ void exit_action(void)
 	}
 }	
 
+int play_on_start_flag = FALSE;
 void start_action(void)
 {
 	if(prefs.close_tray_on_start) {
 		tcd_ejectcd(&cd);
-		if(cd.isplayable)
-		{
-			make_goto_menu();
-			update_editor();
-		}
 	}
-	switch(prefs.start_action)
+	switch(play_on_start_flag ? StartPlaying : prefs.start_action)
 	{
 	case StartPlaying:
 		tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
-		if(cd.isplayable)
-		{
-			make_goto_menu();
-			update_editor();
-		}
 		break;
 	case StopPlaying:
 		tcd_stopcd(&cd);
@@ -1032,6 +1023,8 @@ poptContext ctx;
 const struct poptOption gtcd_popt_options [] = {
 	{ "device", '\0', POPT_ARG_STRING, &CD_device, 0,
 	  N_("Filename of the CD device"),   N_("FILE") },
+	{ "play", '\0', POPT_ARG_NONE, &play_on_start_flag, 0,
+	  N_("Play CD on startup"), NULL},
 	{ NULL, '\0', 0, NULL, 0 }
 };
 
