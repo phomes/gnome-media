@@ -1,4 +1,4 @@
-SUBDIRS = intl po macros src
+SUBDIRS = src
 
 EXTRA_DIST = \
 	Soundrecorder.desktop README COPYING AUTHORS INSTALL \
