@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52pre1\n"
 "POT-Creation-Date: 2000-04-29 06:51+0200\n"
-"PO-Revision-Date: 2000-04-29 08:26+02:00\n"
+"PO-Revision-Date: 2000-04-29 09:20+02:00\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -449,7 +449,7 @@ msgstr "Spur"
 
 #: grecord/src/gui.c:543 tcd/gtracked.c:171
 msgid "Time"
-msgstr "Zeit"
+msgstr "Dauer"
 
 #: tcd/gtracked.c:171
 msgid "Title"
@@ -852,9 +852,10 @@ msgstr "Echo"
 msgid "Speed"
 msgstr ""
 
+# Avoid a more lengthy menu entry. -ke-
 #: grecord/src/gui.c:110
 msgid "Undo all changes"
-msgstr "Alle Änderungen rückgängig machen"
+msgstr "Alle Änderungen rückgängig"
 
 #: grecord/src/gui.c:111
 msgid "Undo all changes made on the current sample"
@@ -866,15 +867,15 @@ msgstr "Effekte"
 
 #: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:869
 msgid "Show time"
-msgstr "Zeit anzeigen"
+msgstr "Dauer anzeigen"
 
 #: grecord/src/gui.c:134
 msgid "Show soundinfo"
-msgstr ""
+msgstr "Soundinfo anzeigen"
 
 #: grecord/src/gui.c:135 grecord/src/gui.c:874
 msgid "Show sound information"
-msgstr ""
+msgstr "Infos zur Sounddatei anzeigen"
 
 #: grecord/src/gui.c:235
 msgid "New"
@@ -929,23 +930,23 @@ msgstr ""
 
 #: grecord/src/gui.c:556
 msgid "Recording timeout: "
-msgstr ""
+msgstr "Ende der Aufnahme nach:"
 
 #: grecord/src/gui.c:567
 msgid "minutes"
-msgstr ""
+msgstr "Minuten"
 
 #: grecord/src/gui.c:572
 msgid "Stop recording on timeout"
-msgstr ""
+msgstr "Die Aufnahme beim Erreichen des Endes der Zeitvorgabe stoppen"
 
 #: grecord/src/gui.c:577
 msgid "Popup save dialog when recording is finished"
-msgstr ""
+msgstr "Dialog zum Speichern anzeigen, wenn die Aufnahme fertig ist"
 
 #: grecord/src/gui.c:586
 msgid "Size"
-msgstr ""
+msgstr "Größe"
 
 #: grecord/src/gui.c:595
 msgid "Popup warning message if size (MB) of sample becomes bigger than:"
@@ -961,19 +962,19 @@ msgstr "Aufnahme"
 
 #: grecord/src/gui.c:625
 msgid "Play-repeating"
-msgstr ""
+msgstr "Wiederholung der Wiedergabe"
 
 #: grecord/src/gui.c:634
 msgid "Repeat"
-msgstr ""
+msgstr "Wiederholen"
 
 #: grecord/src/gui.c:643
 msgid "Forever"
-msgstr ""
+msgstr "Ohne Ende"
 
 #: grecord/src/gui.c:648
 msgid "Nr of times:"
-msgstr ""
+msgstr "Anzahl der Wiederholungen:"
 
 #: grecord/src/gui.c:659
 msgid "Playing"
@@ -981,7 +982,7 @@ msgstr "Wiedergabe"
 
 #: grecord/src/gui.c:668
 msgid "Program files"
-msgstr "Programmdateien"
+msgstr "Dateien der Programme"
 
 #: grecord/src/gui.c:685
 msgid "Path to sox:"
@@ -995,9 +996,10 @@ msgstr "Pfad zum Mischpult:"
 msgid "Directories"
 msgstr "Verzeichnisse"
 
+# At the moment we don't have enough room to avoid an abbrev... -ke-
 #: grecord/src/gui.c:730
 msgid "Temp dir:"
-msgstr "Temp-Verzeichnis:"
+msgstr "Temp-Verz.:"
 
 #: grecord/src/gui.c:746
 msgid "Paths"
@@ -1065,6 +1067,9 @@ msgid ""
 "File %s in 'sox command' does not exist.\n"
 "Do you want to use it anyway?"
 msgstr ""
+"Die Datei %s für den sox-Aufruf existiert nicht.\n"
+"\n"
+"Wollen Sie die Einstellung trotzdem verwenden?"
 
 #: grecord/src/preferences.c:214
 #, c-format
@@ -1072,6 +1077,9 @@ msgid ""
 "File %s in 'mixer command' does not exist.\n"
 "Do you want to use it anyway?"
 msgstr ""
+"Die Datei %s für den Mischpult-Aufruf existiert nicht.\n"
+"\n"
+"Wollen Sie die Einstellung trotzdem verwenden?"
 
 #. Check if the given temp directory exists --------------------
 #. Exists
@@ -1082,8 +1090,9 @@ msgid ""
 "Temp directory %s is a file.\n"
 "Do you still want to use it anyway?"
 msgstr ""
-"Temp-Verzeichnis %s ist eine Datei.\n"
-"Wollen Sie es trotzdem verwenden?"
+"Das Temp-Verzeichnis %s ist eine Datei.\n"
+"\n"
+"Wollen Sie die Einstellung trotzdem verwenden?"
 
 #. Does not exist
 #: grecord/src/preferences.c:254
@@ -1092,5 +1101,6 @@ msgid ""
 "Directory %s does not exist.\n"
 "Do you still want to use it?"
 msgstr ""
-"Verzeichnis %s existiert nicht.\n"
-"Wollen Sie es trotzdem verwenden?"
+"Das Verzeichnis %s existiert nicht.\n"
+"\n"
+"Wollen Sie die Einstellung trotzdem verwenden?"
