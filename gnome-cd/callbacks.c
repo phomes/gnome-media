@@ -35,6 +35,9 @@
 
 static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
 
+static gboolean position_auto_update=TRUE;
+static gboolean position_update_ignore_event=FALSE;
+
 static void
 maybe_close_tray (GnomeCD *gcd)
 {
@@ -512,12 +515,26 @@ status_ok (GnomeCD *gcd,
 					       status->track);
 		}
 		
-		
 /*  		cd_display_clear (CD_DISPLAY (gcd->display)); */
-		if (status->relative.second >= 10) {
-			text = g_strdup_printf ("%d:%d", status->relative.minute, status->relative.second);
-		} else {
-			text = g_strdup_printf ("%d:0%d", status->relative.minute, status->relative.second);
+		text = g_strdup_printf ("%d:%02d / %d:%02d", 
+					status->relative.minute, status->relative.second,
+					status->length.minute, status->length.second);
+		
+		/* update position slider */
+		if(position_auto_update && (status->length.minute!=0 ||
+					    status->length.second!=0)){
+			gboolean update_ignore_save = position_update_ignore_event;
+			
+			gint pos = status->relative.minute*60+status->relative.second;
+			gint length = status->length.minute*60+status->length.second;
+			
+			if(pos>length) length = pos;
+			if(pos<0) pos = 0;
+			
+			position_update_ignore_event = TRUE;
+			gtk_adjustment_set_value (GTK_ADJUSTMENT(gcd->position_adj),
+						  100.0*(double)pos/(double)length);
+			position_update_ignore_event = update_ignore_save;
 		}
 		
 		cd_display_set_line (CD_DISPLAY (gcd->display),
@@ -999,4 +1016,83 @@ volume_changed (GtkRange *range,
 		gcd_warning ("Error setting volume: %s", error);
 		g_error_free (error);
 	}
+}
+
+void
+position_changed (GtkRange *range,
+		  GnomeCD *gcd)
+{
+	double position;
+	int end_track;
+	GnomeCDRomStatus *status = NULL;
+	GnomeCDRomMSF msf, msf2, *endmsf;
+	GError *error;
+	gint length, pos;
+	GtkAdjustment *adj;
+	
+	if(position_update_ignore_event) return;
+	
+	position = gtk_range_get_value (range);
+		
+	if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) 
+		goto out;
+	
+	/* slider should have no effect unless the CD is playing or 
+	 * at lease pausing 
+	 */
+	if(status->cd!=GNOME_CDROM_STATUS_OK) goto out;
+	if(status->audio!=GNOME_CDROM_AUDIO_PLAY &&
+	   status->audio!=GNOME_CDROM_AUDIO_PAUSE) goto out;
+	
+	adj=gtk_range_get_adjustment (range);
+	length = status->length.minute*60 + status->length.second;
+	pos = length * position / (adj->upper - adj->lower);
+	
+	msf.minute = pos / 60;
+	msf.second = pos % 60;
+	msf.frame = 0;
+	
+	msf2.minute = 0;
+	msf2.second = 0;
+	msf2.frame = 0;
+	
+	if (gcd->cdrom->playmode == GNOME_CDROM_SINGLE_TRACK) {
+		end_track = status->track + 1;
+		endmsf = &msf2;
+	} else {
+		end_track = -1;
+		endmsf = NULL;
+	}
+	
+	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), status->track, 
+			      &msf, end_track, endmsf, &error) == FALSE) {
+		gcd_warning ("Error skipping %s", error);
+		g_error_free (error);
+	}
+	if (status->audio==GNOME_CDROM_AUDIO_PAUSE){
+		if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
+			gcd_warning ("%s", error);
+			g_error_free (error);
+		}
+	}
+	
+out:
+	if(status) g_free(status);
+	return;
+}
+
+void 
+position_slider_enter (GtkRange *range, 
+		       GdkEventCrossing *event,
+		       GnomeCD *gcd){
+	/* stop updating our position slider so the user has full control */
+	position_auto_update = FALSE; 
+}
+
+void 
+position_slider_leave (GtkRange *range, 
+		       GdkEventCrossing *event,
+		       GnomeCD *gcd){
+	/* user has moved the mouse away, we may now update the slider again */
+	position_auto_update = TRUE;
 }

@@ -437,6 +437,7 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 	}
 
 	g_free (status);
+	
 	/* Get the status again: It might have changed */
 	if (gnome_cdrom_get_status (GNOME_CDROM (lcd), &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
@@ -476,7 +477,9 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 			msf.cdmsf_sec0 = status->absolute.second;
 			msf.cdmsf_frame0 = status->absolute.frame;
 		} else {
-			if (start_track >= 0) {
+			if (start_track > 0 &&
+			    priv && priv->track_info &&
+			    start_track <= priv->number_tracks ) {
 				GnomeCDRomMSF tmpmsf;
 				
 				add_msf (&priv->track_info[start_track - 1].address, start, &tmpmsf);
@@ -491,11 +494,20 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 		}
 
 		if (finish == NULL) {
-			msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
-			msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
-			msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
+			if ( priv && priv->track_info && 
+			    priv->number_tracks >0 ) {
+				msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
+				msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
+				msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
+			} else {
+				msf.cdmsf_min1 = 0;
+				msf.cdmsf_sec1 = 0;
+				msf.cdmsf_frame1 = 0;
+			}
 		} else {
-			if (finish_track >= 0) {
+			if (finish_track > 0 &&
+			    priv && priv->track_info &&
+			    finish_track <= priv->number_tracks ) {
 				GnomeCDRomMSF tmpmsf;
 
 				add_msf (&priv->track_info[finish_track - 1].address, finish, &tmpmsf);
@@ -640,7 +652,6 @@ linux_cdrom_stop (GnomeCDRom *cdrom,
 	}
 
 	linux_cdrom_close (lcd);
-	g_free (status);
 	return TRUE;
 }
 
@@ -885,6 +896,8 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	ASSIGN_MSF (realstatus->relative, blank_msf);
 	ASSIGN_MSF (realstatus->absolute, blank_msf);
+	ASSIGN_MSF (realstatus->length, blank_msf);
+	
 	realstatus->track = 1;
 	switch (subchnl.cdsc_audiostatus) {
 	case CDROM_AUDIO_PLAY:
@@ -892,7 +905,11 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
 		realstatus->track = subchnl.cdsc_trk;
-
+		if(priv && realstatus->track>0 && 
+		   realstatus->track<=priv->number_tracks){
+			// track_info may not be initialized
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 
 	case CDROM_AUDIO_PAUSED:
@@ -900,14 +917,23 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
 		realstatus->track = subchnl.cdsc_trk;
-
+		if(priv && realstatus->track>0 && 
+		   realstatus->track<=priv->number_tracks){
+			// track_info may not be initialized
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 
 	case CDROM_AUDIO_COMPLETED:
 		realstatus->audio = GNOME_CDROM_AUDIO_COMPLETE;
 		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
-		realstatus->track = subchnl.cdsc_trk;		
+		realstatus->track = subchnl.cdsc_trk;
+		if(priv && realstatus->track>0 && 
+		   realstatus->track<=priv->number_tracks){
+			// track_info may not be initialized
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 		
 	case CDROM_AUDIO_INVALID:
@@ -1011,7 +1037,7 @@ linux_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	}
 	
 	close (fd);
-
+	
 	return TRUE;
 }
 
@@ -1065,7 +1091,7 @@ linux_cdrom_class_init (LinuxCDRomClass *klass)
 {
 	GObjectClass *object_class;
 	GnomeCDRomClass *cdrom_class;
-
+	
 	object_class = G_OBJECT_CLASS (klass);
 	cdrom_class = GNOME_CDROM_CLASS (klass);
 

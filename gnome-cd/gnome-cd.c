@@ -415,7 +415,6 @@ init_player (const char *device_override)
 			exit (0);
 		}
 	}
-
  nodevice:		
 	gcd->cdrom = gnome_cdrom_new (gcd->device_override ? gcd->device_override : gcd->preferences->device, 
 				      GNOME_CDROM_UPDATE_CONTINOUS, &error);
@@ -523,7 +522,26 @@ init_player (const char *device_override)
 			      _("Volume control"), NULL);
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
-
+	
+	
+	/* Position slider */
+	gcd->position_adj = gtk_adjustment_new (0.0, 0.0, 100.0,
+						1.0, 1.0, 1.0);
+	gcd->position_slider = gtk_hscale_new (GTK_ADJUSTMENT (gcd->position_adj));
+	gtk_scale_set_draw_value (GTK_SCALE (gcd->position_slider), FALSE);
+	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->position_slider),
+			      _("Position"), NULL);
+	gtk_range_set_update_policy (GTK_RANGE(gcd->position_slider), 
+					       GTK_UPDATE_DISCONTINUOUS);
+	gtk_box_pack_start (GTK_BOX (gcd->vbox), gcd->position_slider, 
+			    FALSE, FALSE, 0);
+	g_signal_connect (G_OBJECT (gcd->position_slider), "value-changed",
+			  G_CALLBACK (position_changed), gcd);
+	g_signal_connect (G_OBJECT (gcd->position_slider), "enter-notify-event",
+			  G_CALLBACK (position_slider_enter), gcd);
+	g_signal_connect (G_OBJECT (gcd->position_slider), "leave-notify-event",
+			  G_CALLBACK (position_slider_leave), gcd);
+	
 	option_hbox = gtk_hbox_new (FALSE, 2);
 
 	/* Create app controls */
@@ -567,7 +585,7 @@ init_player (const char *device_override)
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
 	
-  	button = make_button_from_stock (gcd, GNOME_CD_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+	button = make_button_from_stock (gcd, GNOME_CD_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->back_b = button;
 
@@ -740,7 +758,7 @@ main (int argc, char *argv[])
 
 	register_stock_icons ();
 	client = gnome_master_client ();
-    	g_signal_connect (client, "save_yourself",
+	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);
 
 	gcd = init_player (cd_option_device);

@@ -308,6 +308,8 @@ cdrom_set_device (GnomeCDRom *cdrom,
 	
 	g_free (priv->device);
 	priv->device = g_strdup (device);
+#if 0
+	// stop CD playback upon startup
 	if (gnome_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
 		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
 			if (gnome_cdrom_stop (cdrom, error) == FALSE) {
@@ -315,10 +317,9 @@ cdrom_set_device (GnomeCDRom *cdrom,
 				return FALSE;
 			}
 		}
-
 		g_free (status);
 	}
-
+#endif
 
 	switch (cdrom->lifetime) {
 		case  GNOME_CDROM_DEVICE_STATIC :

@@ -62,6 +62,8 @@ struct _GnomeCD {
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *display;
+	GtkObject *position_adj;
+	GtkWidget *position_slider;
 	GtkWidget *tracks;
 	GtkWidget *menu;
 	GtkWidget *slider;

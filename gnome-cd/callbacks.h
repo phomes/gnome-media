@@ -56,6 +56,14 @@ void open_track_editor (GtkWidget *widget,
 void destroy_track_editor (void);
 void volume_changed (GtkRange *range,
 		     GnomeCD *gcd);
+void position_changed (GtkRange *range,
+		       GnomeCD *gcd);
+void position_slider_enter (GtkRange *range, 
+			    GdkEventCrossing *event,
+			    GnomeCD *gcd);
+void position_slider_leave (GtkRange *range, 
+			    GdkEventCrossing *event,
+			    GnomeCD *gcd);
 
 gboolean tray_icon_clicked (GtkWidget *widget,
                            GdkEventButton *event,
