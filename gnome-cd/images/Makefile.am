@@ -36,20 +36,7 @@ BITMAPS = 		\
 	    repeat.png		\
 	    once.png		\
 	    disc.png		\
-	    track.png		\
-	back.xpm	\
-	cdrom.xpm	\
-	cd.png		\
-	eject.xpm	\
-	ffwd.xpm	\
-	mixer.png	\
-	next.xpm	\
-	pause.xpm	\
-	play.xpm	\
-	rewind.xpm	\
-	stop.xpm	\
-	volume.xpm	\
-	goto.xpm
+	    track.png
 
 pixmap_DATA = $(BITMAPS)
 
