@@ -29,3 +29,51 @@ DEBUGGING CDDB lookups
 
 * cddb info is cached in $HOME/.cddbslave/ with files with the discid as
   name
+
+cddb-slave2-query
+-----------------
+* a sample command-line application that can perform lookups given the
+  cddb query string used in the protocol.
+
+  arg 1 is the cd's discid
+  arg 2 is the number of tracks (n)
+  arg 3 .. 3 + n - 1 are the track start offsets
+  arg 3 + n is the length of the disc in seconds
+  
+  Examples:
+
+
+cddb-slave2-query 9b0ab70b 11 150 18628 34394 50839 69678 79616 99248 134880 151507 164754 189715 2745
+
+returns
+
+Looking up CDDBSlave2 entry with:
+discid:           9b0ab70b
+number of tracks: 11
+offsets:          150 18628 34394 50839 69678 79616 99248 134880 151507 164754 189715
+total seconds:    2745
+ 
+Results of CDDBSlave2 lookup:
+Artist:     Death Cab for Cutie
+Disc Title: Transatlanticism
+Tracks:     11
+ 
+Track  1:   The New Year (4:5)
+Track  2:   Lightness (3:29)
+Track  3:   Title and Registration (3:38)
+Track  4:   Expo '86 (4:10)
+Track  5:   The Sound of Settling (2:11)
+Track  6:   Tiny Vessels (4:20)
+Track  7:   Transatlanticism (7:54)
+Track  8:   Passenger Seat (3:40)
+Track  9:   Death of an Interior Decorator (2:55)
+Track 10:   We Looked Like Giants (5:31)
+Track 11:   A Lack of Color (3:34)
+
+cddb-slave2-query 56072d07 7 150 17640 29625 51380 70567 99705 122287 1839
+
+is the query for the disc mentioned in
+http://bugzilla.gnome.org/show_bug.cgi?id=78201
+
+
+
