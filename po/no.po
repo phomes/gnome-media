@@ -5,73 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2001-09-25 00:57+0200\n"
-"PO-Revision-Date: 2001-09-25 00:58+0200\n"
+"POT-Creation-Date: 2001-12-16 16:30+0100\n"
+"PO-Revision-Date: 2001-12-16 16:33+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
-
-#: cddbslave/main.c:56
-#, c-format
-msgid "Ready for command: %s\n"
-msgstr "Klar for kommando: %s\n"
-
-#: cddbslave/main.c:57
-#, c-format
-msgid "Connecting [%s]\n"
-msgstr "Oppretter forbindelse [%s]\n"
-
-#: cddbslave/main.c:58
-#, c-format
-msgid "Querying server [%s]\n"
-msgstr "Sender forespørsel til tjeneren [%s]\n"
-
-#: cddbslave/main.c:59
-#, c-format
-msgid "Waiting for reply [%s]\n"
-msgstr "Venter på svar [%s]\n"
-
-#: cddbslave/main.c:60
-#, c-format
-msgid "Reading reply [%s]\n"
-msgstr "Leser svar [%s]\n"
-
-#: cddbslave/main.c:61
-#, c-format
-msgid "Disconnecting [%s]\n"
-msgstr "Kobler fra [%s]\n"
-
-#: cddbslave/main.c:62
-#, c-format
-msgid "Error connecting [%s]\n"
-msgstr "Feil under tilkobling [%s]\n"
-
-#: cddbslave/main.c:63
-#, c-format
-msgid "Error querying [%s]\n"
-msgstr "Feil under forespørsel [%s]\n"
-
-#: cddbslave/main.c:64
-#, c-format
-msgid "Error reading [%s]\n"
-msgstr "Feil under lesing av [%s]\n"
-
-#: cddbslave/main.c:65
-#, c-format
-msgid "No match found for %s\n"
-msgstr "Ingen treff for %s\n"
-
-#: cddbslave/main.c:66
-#, c-format
-msgid "Timeout: %s\n"
-msgstr "Tidsavbrudd: %s\n"
-
-#: cddbslave/main.c:67
-#, c-format
-msgid "Inactive. %s\n"
-msgstr "Inaktiv. %s\n"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -313,7 +253,7 @@ msgstr "TlfUt"
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:111 tcd/popup.c:22
+#: gmix/gmix.c:111
 msgid "Help"
 msgstr "Hjelp"
 
@@ -366,65 +306,64 @@ msgstr ""
 "versjon %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1012
+#: gmix/gmix.c:1015
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1022
+#: gmix/gmix.c:1025
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:1040
+#: gmix/gmix.c:1043
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:1083
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
+#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+msgid "Volume Control"
+msgstr "Volumkontroll"
 
-#: gmix/gmix.c:1395
+#: gmix/gmix.c:1417
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:1398
-msgid "This is a mixer for OSS sound-devices."
-msgstr "Dette er en mikser for OSS lydenheter."
+#: gmix/gmix.c:1419
+msgid "This is a mixer for sound devices"
+msgstr "Dette er en mikser for lydenheter"
 
-#. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:562
+#: gmix/prefs.c:100
 msgid "On startup"
 msgstr "Ved oppstart"
 
 #. Set on start
-#: gmix/prefs.c:104
+#: gmix/prefs.c:106
 msgid "Restore saved mixer levels on startup"
 msgstr "Gjenoprett lagrede mikserinnstillinger ved oppstart"
 
-#: gmix/prefs.c:110
+#: gmix/prefs.c:112
 msgid "Hide menu on start"
 msgstr "Skjul meny ved start"
 
-#: gmix/prefs.c:125
+#: gmix/prefs.c:127
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/prefs.c:129
+#: gmix/prefs.c:131
 msgid "Use mixer icons"
 msgstr "Bruk mikserikoner"
 
-#: gmix/prefs.c:137
+#: gmix/prefs.c:139
 msgid "Use mixer labels"
 msgstr "Bruk mikseretiketter"
 
-#: gmix/prefs.c:409
+#: gmix/prefs.c:411
 msgid "Defaults"
 msgstr "Forvalg"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:491 tcd/prefs.c:752
+#: gmix/prefs.c:484
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: gmix/prefs.c:489
+#: gmix/prefs.c:490
 msgid "Labels"
 msgstr "Etiketter"
 
@@ -448,17 +387,17 @@ msgstr "Spiller..."
 msgid "Converting file..."
 msgstr "Konverterer fil..."
 
-#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:327
+#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:334
 #: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Lydformat: "
 
-#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:334
+#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:341
 #: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Samplerate: "
 
-#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:341
+#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:348
 #: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Kanaler: "
@@ -582,7 +521,7 @@ msgstr "Forkaster alle endringer som er gjort på aktiv sample"
 msgid "Effects"
 msgstr "Effekter"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:868
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:876
 msgid "Show time"
 msgstr "Vis tid"
 
@@ -590,81 +529,81 @@ msgstr "Vis tid"
 msgid "Show soundinfo"
 msgstr "Vis lydinformasjon"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:873
+#: grecord/src/gui.c:130 grecord/src/gui.c:881
 msgid "Show sound information"
 msgstr "Vis lydinformasjon"
 
-#: grecord/src/gui.c:232
+#: grecord/src/gui.c:231
 msgid "New"
 msgstr "Ny"
 
-#: grecord/src/gui.c:233
+#: grecord/src/gui.c:232
 msgid "Create new sample"
 msgstr "Oppretter ny sample"
 
-#: grecord/src/gui.c:243 tcd/popup.c:15
+#: grecord/src/gui.c:245
 msgid "Play"
 msgstr "Spill"
 
-#: grecord/src/gui.c:244
+#: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Spill av aktiv sample"
 
-#: grecord/src/gui.c:252 tcd/gtcd.c:456 tcd/popup.c:16
+#: grecord/src/gui.c:257
 msgid "Stop"
 msgstr "Stopp"
 
-#: grecord/src/gui.c:253
+#: grecord/src/gui.c:258
 msgid "Stop playing/recording"
 msgstr "Stopp inn-/avspilling"
 
-#: grecord/src/gui.c:261
+#: grecord/src/gui.c:267
 msgid "Record"
 msgstr "Ta opp"
 
-#: grecord/src/gui.c:262
+#: grecord/src/gui.c:268
 msgid "Start recording"
 msgstr "Start innspilling"
 
-#: grecord/src/gui.c:272
+#: grecord/src/gui.c:279
 msgid "Exit"
 msgstr "Avslutt"
 
-#: grecord/src/gui.c:273
+#: grecord/src/gui.c:280
 msgid "Exit this program"
 msgstr "Avslutt dette programmet"
 
-#: grecord/src/gui.c:287
+#: grecord/src/gui.c:294
 msgid "Info"
 msgstr "Info"
 
-#: grecord/src/gui.c:386
+#: grecord/src/gui.c:393
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Filen '%s' eksisterer ikke; bruker standard."
 
-#: grecord/src/gui.c:407
+#: grecord/src/gui.c:414
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Filen '%s' er i et format som ikke er støttet."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:438
+#: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:446 grecord/src/main.c:110
+#: grecord/src/gui.c:454 grecord/src/main.c:110
 msgid "GNOME Sound recorder"
 msgstr "GNOME lydinnspilling"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:449
+#: grecord/src/gui.c:457
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright © 2000 Andreas Hyden"
 
-#: grecord/src/gui.c:451
+#: grecord/src/gui.c:458
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -672,127 +611,127 @@ msgstr ""
 "Et enkelt program for inn-/avspilling av lyd for GNOME.\n"
 "Tilegnet katten min, Malte."
 
-#: grecord/src/gui.c:542 tcd/gtracked.c:173
+#: grecord/src/gui.c:550
 msgid "Time"
 msgstr "Tid"
 
-#: grecord/src/gui.c:555
+#: grecord/src/gui.c:563
 msgid "Recording timeout: "
 msgstr "Tidsavbrudd for opptak: "
 
-#: grecord/src/gui.c:566
+#: grecord/src/gui.c:574
 msgid "minutes"
 msgstr "minutter"
 
-#: grecord/src/gui.c:571
+#: grecord/src/gui.c:579
 msgid "Stop recording on timeout"
 msgstr "Stopp opptak etter tidsavbrudd"
 
-#: grecord/src/gui.c:576
+#: grecord/src/gui.c:584
 msgid "Popup save dialog when recording is finished"
 msgstr "Vis lagre-dialog når innspilling er ferdig"
 
-#: grecord/src/gui.c:585
+#: grecord/src/gui.c:593
 msgid "Size"
 msgstr "Størrelse"
 
-#: grecord/src/gui.c:594
+#: grecord/src/gui.c:602
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Vis advarsel hvis størrelsen (MB) av samplingen blir større enn:"
 
-#: grecord/src/gui.c:604
+#: grecord/src/gui.c:612
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Stopp innspilling hvis størrelsen (MB) av samplingen blir større enn:"
 
-#: grecord/src/gui.c:615
+#: grecord/src/gui.c:623
 msgid "Recording"
 msgstr "Opptak"
 
-#: grecord/src/gui.c:624
+#: grecord/src/gui.c:632
 msgid "Play-repeating"
 msgstr "Spill gjentagende"
 
-#: grecord/src/gui.c:633
+#: grecord/src/gui.c:641
 msgid "Repeat"
 msgstr "Gjenta"
 
-#: grecord/src/gui.c:642
+#: grecord/src/gui.c:650
 msgid "Forever"
 msgstr "For alltid"
 
-#: grecord/src/gui.c:647
+#: grecord/src/gui.c:655
 msgid "Nr of times:"
 msgstr "Antall ganger:"
 
-#: grecord/src/gui.c:658
+#: grecord/src/gui.c:666
 msgid "Playing"
 msgstr "Spiller"
 
-#: grecord/src/gui.c:667
+#: grecord/src/gui.c:675
 msgid "Program files"
 msgstr "Programfiler"
 
-#: grecord/src/gui.c:684
+#: grecord/src/gui.c:692
 msgid "Path to sox:"
 msgstr "Sti til sox:"
 
-#: grecord/src/gui.c:700
+#: grecord/src/gui.c:708
 msgid "Path to mixer:"
 msgstr "Sti til mikser:"
 
-#: grecord/src/gui.c:716
+#: grecord/src/gui.c:724
 msgid "Directories"
 msgstr "Kataloger"
 
-#: grecord/src/gui.c:729
+#: grecord/src/gui.c:737
 msgid "Temp dir:"
 msgstr "Temp-katalog:"
 
-#: grecord/src/gui.c:745
+#: grecord/src/gui.c:753
 msgid "Paths"
 msgstr "Stier"
 
-#: grecord/src/gui.c:753
+#: grecord/src/gui.c:761
 msgid "Sound options"
 msgstr "Alternativer for lyd"
 
-#: grecord/src/gui.c:766
+#: grecord/src/gui.c:774
 msgid "Audioformat:"
 msgstr "Lydformat:"
 
-#: grecord/src/gui.c:777 grecord/src/gui.c:787
+#: grecord/src/gui.c:785 grecord/src/gui.c:795
 msgid "8bit pcm"
 msgstr "8-bit pcm"
 
-#: grecord/src/gui.c:778 grecord/src/gui.c:789
+#: grecord/src/gui.c:786 grecord/src/gui.c:797
 msgid "16bit pcm"
 msgstr "16-bit pcm"
 
-#: grecord/src/gui.c:795
+#: grecord/src/gui.c:803
 msgid "Sample rate:"
 msgstr "Samplingsrate:"
 
-#: grecord/src/gui.c:825
+#: grecord/src/gui.c:833
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:836 grecord/src/gui.c:846
+#: grecord/src/gui.c:844 grecord/src/gui.c:854
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:837 grecord/src/gui.c:848
+#: grecord/src/gui.c:845 grecord/src/gui.c:856
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:851
+#: grecord/src/gui.c:859
 msgid "Sound"
 msgstr "Lyd"
 
-#: grecord/src/gui.c:859
+#: grecord/src/gui.c:867
 msgid "Main window"
 msgstr "Hovedvindu"
 
-#: grecord/src/gui.c:878
+#: grecord/src/gui.c:886
 msgid "User interface"
 msgstr "Brukergrensesnitt"
 
@@ -816,11 +755,11 @@ msgstr "Spesifiser en fil som skal tas opp"
 msgid "Specify a file to start playing"
 msgstr "Spesifiser en fil som skal spilles av"
 
-#: grecord/src/main.c:174
+#: grecord/src/main.c:176
 msgid "Don't show this message again."
 msgstr "Ikke vis denne meldingen igjen."
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:178
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -916,449 +855,7 @@ msgstr " uten-navn.wav"
 msgid "Adding echo to sample..."
 msgstr "Legger til ekko på samplingen..."
 
-#: tcd/callbacks.c:85
-msgid "TCD - The Gnome CD Player"
-msgstr "TCD - Gnome CD-spiller"
-
-#: tcd/callbacks.c:89
-msgid ""
-"GTCD is the Gnome CD player application. Includes CDDB support. Please see "
-"the 'Thanks' file included with the distribution for more credits."
-msgstr ""
-"GTCD er Gnome CD-spiller applikasjon med støtte for CDDB. Vær vennlig å se i "
-"'Thanks' filen som er inkludert i distribusjonen for flere krediteringer."
-
-#: tcd/cddb_props.c:72
-msgid "Disc ID"
-msgstr "Plate-ID"
-
-#: tcd/cddb_props.c:72
-msgid "Disc Title"
-msgstr "Platetittel"
-
-#: tcd/cddb_props.c:87
-msgid "Edit"
-msgstr "Rediger"
-
-#: tcd/cddb_props.c:91
-msgid "Remove"
-msgstr "Fjern"
-
-#: tcd/cddb_props.c:97
-msgid "Refresh List"
-msgstr "Gjenles listen"
-
-#. server settings
-#: tcd/cddb_props.c:148
-msgid "Server Settings"
-msgstr "Tjenerinnstillinger"
-
-#: tcd/cddb_props.c:157
-msgid "Address"
-msgstr "Adresse"
-
-#: tcd/cddb_props.c:167
-msgid "Port"
-msgstr "Port"
-
-#: tcd/cddb_props.c:176
-msgid "Use HTTP"
-msgstr "Bruk HTTP"
-
-#: tcd/cddb_props.c:181
-msgid "Proxy"
-msgstr "Proxy"
-
-#: tcd/cddb_props.c:199
-msgid "Use proxy authentication"
-msgstr "Bruk proxy-autentisering"
-
-#: tcd/cddb_props.c:207
-msgid "Username"
-msgstr "Brukernavn"
-
-#: tcd/cddb_props.c:227
-msgid "Password"
-msgstr "Passord"
-
-#: tcd/cddb_props.c:247
-msgid "SOCKS Server"
-msgstr "SOCKS tjener"
-
-#: tcd/cddb_props.c:254
-msgid "Use SOCKS"
-msgstr "Bruk SOCKS"
-
-#. local db
-#: tcd/cddb_props.c:267
-msgid "Local Database"
-msgstr "Lokal database"
-
-#. frame
-#: tcd/cddb_props.c:309
-msgid "CDDB Data"
-msgstr "CDDB-data"
-
-#: tcd/cddb_props.c:342
-msgid "CDDB Editor"
-msgstr "CDDB-redigering"
-
-#: tcd/cddb_props.c:356
-msgid "Error reading $HOME/.cddbslave."
-msgstr "Feil under lesing av $HOME/.cddbslave."
-
-#: tcd/cddb_props.c:472
-#, c-format
-msgid "Couldn't remove file: %s\n"
-msgstr "Kunne ikke fjerne filen: %s\n"
-
-#: tcd/cddb_props.c:484
-msgid "Delete CDDB Entry?"
-msgstr "Slett CDDB-oppføring?"
-
-#. CDDB Status  button
-#: tcd/cddb_status.c:53 tcd/gtracked.c:312
-msgid "CDDB Status"
-msgstr "CDDB-status"
-
-#. grab button
-#: tcd/cddb_status.c:71
-msgid "Get CDDB Now"
-msgstr "Hent CDDB nå"
-
-#: tcd/gtcd.c:63
-msgid "trk-e"
-msgstr "spr-e"
-
-#: tcd/gtcd.c:64
-msgid "trk-r"
-msgstr "spr-r"
-
-#: tcd/gtcd.c:65
-msgid "dsc-e"
-msgstr "dsk-e"
-
-#: tcd/gtcd.c:66
-msgid "dsc-r"
-msgstr "dsk-r"
-
-#: tcd/gtcd.c:71
-msgid "loop-cd"
-msgstr "repeter-cd"
-
-#: tcd/gtcd.c:72
-msgid "loop-t"
-msgstr "repeter-s"
-
-#: tcd/gtcd.c:73
-msgid "normal"
-msgstr "normal"
-
-#: tcd/gtcd.c:74
-msgid "random"
-msgstr "tilfeldig"
-
-#: tcd/gtcd.c:368 tcd/gtcd.c:1102
-msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
-
-#. TOP ROW
-#: tcd/gtcd.c:452
-msgid "Play/Pause"
-msgstr "Spill/pause"
-
-#: tcd/gtcd.c:457 tcd/popup.c:17
-msgid "Eject"
-msgstr "Løs ut"
-
-#. MIDDLE ROW
-#: tcd/gtcd.c:464 tcd/gtcd.c:502
-msgid "Skip backwards"
-msgstr "Hopp bakover"
-
-#: tcd/gtcd.c:465 tcd/gtcd.c:503
-msgid "Skip forwards"
-msgstr "Hopp fremover"
-
-#. BOTTOM ROW
-#: tcd/gtcd.c:490
-msgid "Open track editor"
-msgstr "Åpne sporredigering"
-
-#: tcd/gtcd.c:492 tcd/popup.c:25
-msgid "Quit"
-msgstr "Avslutt"
-
-#. INVISIBLE BUTTONS
-#: tcd/gtcd.c:499
-msgid "Mixer"
-msgstr "Mikser"
-
-#: tcd/gtcd.c:504
-msgid "Fast Forward"
-msgstr "Spol fremover"
-
-#: tcd/gtcd.c:505
-msgid "Rewind"
-msgstr "Spol tilbake"
-
-#: tcd/gtcd.c:506
-msgid "Volume Up"
-msgstr "Volum opp"
-
-#: tcd/gtcd.c:507
-msgid "Volume Down"
-msgstr "Volum ned"
-
-#: tcd/gtcd.c:643 tcd/gtcd.c:644 tcd/gtcd.c:645
-msgid "(Scanning)"
-msgstr "(Søker)"
-
-#: tcd/gtcd.c:667
-msgid "No Disc"
-msgstr "Ingen plate"
-
-#: tcd/gtcd.c:702
-msgid "Error"
-msgstr "Feil"
-
-#: tcd/gtcd.c:1002
-msgid "Volume"
-msgstr "Volum"
-
-#: tcd/gtcd.c:1073
-msgid "Cannot load requested font. Reloading default font."
-msgstr "Kan ikke laste forespurt skrifttype. Gjenleser forvalgt skrifttype."
-
-#: tcd/gtcd.c:1084
-msgid "Cannot load default Helvetica font. Loading any fixed width font."
-msgstr ""
-"Kan ikke laste forvalgt skrifttype, Helvetica. Laster en skrifttype med fast "
-"bredde."
-
-#: tcd/gtcd.c:1091
-msgid "Cannot load fixed width font. Exiting."
-msgstr "Kan ikke laste en skrifttype med fast bredde. Avslutter."
-
-#: tcd/gtcd.c:1289
-msgid "Filename of the CD device"
-msgstr "Filnavnet på CD-enheten"
-
-#: tcd/gtcd.c:1289
-msgid "FILE"
-msgstr "FIL"
-
-#: tcd/gtcd.c:1291
-msgid "Play CD on startup"
-msgstr "Spill CD ved oppstart"
-
-#: tcd/gtracked.c:173
-msgid "Trk"
-msgstr "Spor"
-
-#: tcd/gtracked.c:173
-msgid "Title"
-msgstr "Tittel"
-
-#: tcd/gtracked.c:197
-msgid "Track Editor"
-msgstr "Sporredigering"
-
-#. Disc area
-#: tcd/gtracked.c:213
-#, c-format
-msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Informasjon om plate (%02u:%02u minutter)"
-
-#: tcd/gtracked.c:222
-msgid "Artist / Title"
-msgstr "Artist / Tittel"
-
-#. END Disc area
-#. Track area
-#: tcd/gtracked.c:245
-msgid "Track Information"
-msgstr "Informasjon om spor"
-
-#. Clear button
-#: tcd/gtracked.c:301
-msgid "Clear"
-msgstr "Blank ut"
-
-#. Playlist button
-#: tcd/gtracked.c:306
-msgid "Playlist"
-msgstr "Spilleliste"
-
-#: tcd/gtracked.c:318
-msgid "Submit"
-msgstr "Send inn"
-
-#: tcd/gtracked.c:380
-msgid "Submit Information"
-msgstr "Send inn informasjonen"
-
-#: tcd/gtracked.c:386
-#, c-format
-msgid ""
-"Submit information about\n"
-"'%s'"
-msgstr ""
-"Send inn informasjon om\n"
-"'%s'"
-
-#: tcd/gtracked.c:395
-msgid "To: "
-msgstr "Til: "
-
-#. end of service menu
-#: tcd/gtracked.c:427
-msgid "Category: "
-msgstr "Kategori: "
-
-#: tcd/linux-cdrom.c:678
-#, c-format
-msgid ""
-"Error accessing cdrom device.\n"
-"Please check to make sure cdrom drive support\n"
-"is compiled into the kernel, and that you have\n"
-"permission to access the device.\n"
-"\n"
-"Reason: %s\n"
-msgstr ""
-"Feil ved tilgang til cdrom enheten.\n"
-"Vennligst forsikre deg om at støtte for CD-ROM\n"
-"er kompilert inn i kjernen, og at du har\n"
-"tilgangsrettigheter til enheten.\n"
-"\n"
-"Årsak: %s\n"
-
-#: tcd/linux-cdrom.c:771
-msgid "Unknown / Unknown"
-msgstr "Ukjent / Ukjent"
-
-#: tcd/linux-cdrom.c:777
-#, c-format
-msgid "Track %d"
-msgstr "Spor %d"
-
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Brukervalg..."
-
-#: tcd/popup.c:20
-msgid "Track Editor..."
-msgstr "Sporredigering..."
-
-#: tcd/popup.c:21
-msgid "Mixer..."
-msgstr "Mikser..."
-
-#: tcd/popup.c:23
-msgid "About"
-msgstr "Om"
-
-#. do nothing
-#: tcd/prefs.c:334 tcd/prefs.c:389
-msgid "Do nothing"
-msgstr "Ikke gjør noe"
-
-#: tcd/prefs.c:340
-msgid "Start playing"
-msgstr "Start avspilling"
-
-#: tcd/prefs.c:346 tcd/prefs.c:395
-msgid "Stop playing"
-msgstr "Stopp avspilling"
-
-#. close tray
-#: tcd/prefs.c:350 tcd/prefs.c:407
-msgid "Close tray"
-msgstr "Lukk skuff"
-
-#: tcd/prefs.c:401
-msgid "Open tray"
-msgstr "Åpne skuff"
-
-#. device entry
-#: tcd/prefs.c:483
-msgid "CDROM device"
-msgstr "CD-ROM-enhet"
-
-#. device entry
-#: tcd/prefs.c:492
-msgid "Mixer Command"
-msgstr "Mikserkommando"
-
-#. Color picker
-#: tcd/prefs.c:501
-msgid "Track/title color"
-msgstr "Spor-/tittelfarge"
-
-#. font picker
-#: tcd/prefs.c:513
-msgid "Track/title font"
-msgstr "Spor-/tittelskrifttype"
-
-#: tcd/prefs.c:514
-msgid "Change font"
-msgstr "Endre skrifttype"
-
-#. show handles
-#: tcd/prefs.c:521
-msgid "Show handles (restart required)"
-msgstr "Vis håndtak (Omstart av TCD nødvendig)"
-
-#. show tooltips
-#: tcd/prefs.c:528
-msgid "Show tooltips"
-msgstr "Vis verktøystips"
-
-#. use alternate play ioctl
-#: tcd/prefs.c:535
-msgid "Use alternate method to play CD"
-msgstr "Bruk alternativ metode for å spille CD"
-
-#. use squared law volume
-#: tcd/prefs.c:542
-msgid "Use squared law volume control"
-msgstr "Bruk \"squared law\" volumkontroll"
-
-#. exit frame
-#: tcd/prefs.c:568
-msgid "On exit"
-msgstr "Ved avslutning"
-
-#: tcd/prefs.c:668
-msgid "Key"
-msgstr "Tast"
-
-#: tcd/prefs.c:669
-msgid "Action"
-msgstr "Handling"
-
-#: tcd/prefs.c:692
-msgid "Click here to change (restart required):"
-msgstr "Klikk her for å endre (omstart nødvendig):"
-
-#. Frame
-#: tcd/prefs.c:706 tcd/prefs.c:756
-msgid "Keybindings"
-msgstr "Tastaturbindinger"
-
-#: tcd/prefs.c:760
-msgid "CDDB Settings"
-msgstr "CDDB-innstillinger"
-
-#: tcd/prefs.h:4
-msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
-#: tcd/prefs.h:5
-msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
-msgstr "-*-fast-*-*-*-*-*-*-*-*-*-*-*-*"
-
-#: vu-meter/main.c:122
+#: vu-meter/main.c:131
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1366,83 +863,446 @@ msgstr ""
 "Kan ikke koble til lyd-daemonen.\n"
 "Vennligst kjør 'esd' fra kommandolinjen."
 
-#: vu-meter/main.c:246
+#: vu-meter/main.c:257
 msgid "Specify the X position of the meter."
 msgstr "Spesifiser X-posisjonen til måleren."
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:258
 msgid "X-Position"
 msgstr "X-posisjon"
 
-#: vu-meter/main.c:249
+#: vu-meter/main.c:260
 msgid "Specify the Y position of the meter."
 msgstr "Spesifiser Y-posisjonen til måleren."
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:261
 msgid "Y-Position"
 msgstr "Y-posisjon"
 
-#: vu-meter/main.c:252
+#: vu-meter/main.c:263
 msgid "Connect to the esd server on this host."
 msgstr "Koble til esd-tjeneren på denne verten."
 
-#: vu-meter/main.c:253
+#: vu-meter/main.c:264
 msgid "ESD Server Host"
 msgstr "ESD-tjener vert"
 
-#: vu-meter/main.c:255
+#: vu-meter/main.c:266
 msgid "Open a vertical version of the meter."
 msgstr "Åpne en vertikal utgave av måleren."
 
-#: vu-meter/main.c:257
+#: vu-meter/main.c:268
 msgid "Act as recording level meter."
 msgstr "Funger som opptaksnivåmåler"
 
-#: vu-meter/main.c:271
+#: vu-meter/main.c:284
 #, c-format
 msgid "Host is %s\n"
 msgstr "Verten er %s\n"
 
-#: vu-meter/main.c:295
+#: vu-meter/main.c:310
 msgid "Recording level"
 msgstr "Opptaksnivå"
 
-#: vu-meter/main.c:295
+#: vu-meter/main.c:310
 msgid "Volume Meter"
 msgstr "Volummåler"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "A Recording Level Meter Unit for ESD"
-msgstr "Nivåmåler for opptak for ESD"
+msgid "Monitor the recording intput volume"
+msgstr "Nivåmåler for opptaksvolum"
 
 #: vu-meter/reclevel.desktop.in.h:2
-msgid "ESD Recording Level"
-msgstr "ESD opptaksnivå"
+msgid "Recording Level Monitor"
+msgstr "Nivåmåler for opptak"
 
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD"
-msgstr "Volummeter for ESD"
+msgid "Monitor the sound output volume"
+msgstr "Overvåk utgangsnivå for volum"
 
 #: vu-meter/vumeter.desktop.in.h:2
-msgid "ESD Volume Meter"
-msgstr "ESD volummeter"
-
-#: tcd/gtcd.desktop.in.h:1
-msgid "CD Player"
-msgstr "CD-spiller"
-
-#: tcd/gtcd.desktop.in.h:2
-msgid "Gnome CD Player"
-msgstr "Gnome CD-spiller"
+msgid "Volume Monitor"
+msgstr "Måler for volumnivå"
 
 #: grecord/Soundrecorder.desktop.in.h:1
-msgid "A simple soundrecording program for GNOME"
-msgstr "Et enkelt program for lydinnspilling i GNOME"
+msgid "Record sound clips"
+msgstr "Ta opp lydklipp"
 
 #: grecord/Soundrecorder.desktop.in.h:2
 msgid "Sound recorder"
 msgstr "Lydinnspilling"
 
 #: gmix/gmix.desktop.in.h:1
-msgid "Audio Mixer"
-msgstr "Lydmikser"
+msgid "Adjust the volume level"
+msgstr "Juster volumets nivå"
+
+#~ msgid "GMIX 3.0"
+#~ msgstr "GMIX 3.0"
+
+#~ msgid "ESD Recording Level"
+#~ msgstr "ESD opptaksnivå"
+
+#~ msgid "A Volume Unit Meter for ESD"
+#~ msgstr "Volummeter for ESD"
+
+#~ msgid "ESD Volume Meter"
+#~ msgstr "ESD volummeter"
+
+#~ msgid "A simple soundrecording program for GNOME"
+#~ msgstr "Et enkelt program for lydinnspilling i GNOME"
+
+#~ msgid "Audio Mixer"
+#~ msgstr "Lydmikser"
+
+#~ msgid "Ready for command: %s\n"
+#~ msgstr "Klar for kommando: %s\n"
+
+#~ msgid "Connecting [%s]\n"
+#~ msgstr "Oppretter forbindelse [%s]\n"
+
+#~ msgid "Querying server [%s]\n"
+#~ msgstr "Sender forespørsel til tjeneren [%s]\n"
+
+#~ msgid "Waiting for reply [%s]\n"
+#~ msgstr "Venter på svar [%s]\n"
+
+#~ msgid "Reading reply [%s]\n"
+#~ msgstr "Leser svar [%s]\n"
+
+#~ msgid "Disconnecting [%s]\n"
+#~ msgstr "Kobler fra [%s]\n"
+
+#~ msgid "Error connecting [%s]\n"
+#~ msgstr "Feil under tilkobling [%s]\n"
+
+#~ msgid "Error querying [%s]\n"
+#~ msgstr "Feil under forespørsel [%s]\n"
+
+#~ msgid "Error reading [%s]\n"
+#~ msgstr "Feil under lesing av [%s]\n"
+
+#~ msgid "No match found for %s\n"
+#~ msgstr "Ingen treff for %s\n"
+
+#~ msgid "Timeout: %s\n"
+#~ msgstr "Tidsavbrudd: %s\n"
+
+#~ msgid "Inactive. %s\n"
+#~ msgstr "Inaktiv. %s\n"
+
+#~ msgid "TCD - The Gnome CD Player"
+#~ msgstr "TCD - Gnome CD-spiller"
+
+#~ msgid ""
+#~ "GTCD is the Gnome CD player application. Includes CDDB support. Please "
+#~ "see the 'Thanks' file included with the distribution for more credits."
+#~ msgstr ""
+#~ "GTCD er Gnome CD-spiller applikasjon med støtte for CDDB. Vær vennlig å "
+#~ "se i 'Thanks' filen som er inkludert i distribusjonen for flere "
+#~ "krediteringer."
+
+#~ msgid "Disc ID"
+#~ msgstr "Plate-ID"
+
+#~ msgid "Disc Title"
+#~ msgstr "Platetittel"
+
+#~ msgid "Edit"
+#~ msgstr "Rediger"
+
+#~ msgid "Remove"
+#~ msgstr "Fjern"
+
+#~ msgid "Refresh List"
+#~ msgstr "Gjenles listen"
+
+#~ msgid "Server Settings"
+#~ msgstr "Tjenerinnstillinger"
+
+#~ msgid "Address"
+#~ msgstr "Adresse"
+
+#~ msgid "Port"
+#~ msgstr "Port"
+
+#~ msgid "Use HTTP"
+#~ msgstr "Bruk HTTP"
+
+#~ msgid "Proxy"
+#~ msgstr "Proxy"
+
+#~ msgid "Use proxy authentication"
+#~ msgstr "Bruk proxy-autentisering"
+
+#~ msgid "Username"
+#~ msgstr "Brukernavn"
+
+#~ msgid "Password"
+#~ msgstr "Passord"
+
+#~ msgid "SOCKS Server"
+#~ msgstr "SOCKS tjener"
+
+#~ msgid "Use SOCKS"
+#~ msgstr "Bruk SOCKS"
+
+#~ msgid "Local Database"
+#~ msgstr "Lokal database"
+
+#~ msgid "CDDB Data"
+#~ msgstr "CDDB-data"
+
+#~ msgid "CDDB Editor"
+#~ msgstr "CDDB-redigering"
+
+#~ msgid "Error reading $HOME/.cddbslave."
+#~ msgstr "Feil under lesing av $HOME/.cddbslave."
+
+#~ msgid "Couldn't remove file: %s\n"
+#~ msgstr "Kunne ikke fjerne filen: %s\n"
+
+#~ msgid "Delete CDDB Entry?"
+#~ msgstr "Slett CDDB-oppføring?"
+
+#~ msgid "CDDB Status"
+#~ msgstr "CDDB-status"
+
+#~ msgid "Get CDDB Now"
+#~ msgstr "Hent CDDB nå"
+
+#~ msgid "trk-e"
+#~ msgstr "spr-e"
+
+#~ msgid "trk-r"
+#~ msgstr "spr-r"
+
+#~ msgid "dsc-e"
+#~ msgstr "dsk-e"
+
+#~ msgid "dsc-r"
+#~ msgstr "dsk-r"
+
+#~ msgid "loop-cd"
+#~ msgstr "repeter-cd"
+
+#~ msgid "loop-t"
+#~ msgstr "repeter-s"
+
+#~ msgid "normal"
+#~ msgstr "normal"
+
+#~ msgid "random"
+#~ msgstr "tilfeldig"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+
+#~ msgid "Play/Pause"
+#~ msgstr "Spill/pause"
+
+#~ msgid "Eject"
+#~ msgstr "Løs ut"
+
+#~ msgid "Skip backwards"
+#~ msgstr "Hopp bakover"
+
+#~ msgid "Skip forwards"
+#~ msgstr "Hopp fremover"
+
+#~ msgid "Open track editor"
+#~ msgstr "Åpne sporredigering"
+
+#~ msgid "Quit"
+#~ msgstr "Avslutt"
+
+#~ msgid "Mixer"
+#~ msgstr "Mikser"
+
+#~ msgid "Fast Forward"
+#~ msgstr "Spol fremover"
+
+#~ msgid "Rewind"
+#~ msgstr "Spol tilbake"
+
+#~ msgid "Volume Up"
+#~ msgstr "Volum opp"
+
+#~ msgid "(Scanning)"
+#~ msgstr "(Søker)"
+
+#~ msgid "No Disc"
+#~ msgstr "Ingen plate"
+
+#~ msgid "Error"
+#~ msgstr "Feil"
+
+#~ msgid "Volume"
+#~ msgstr "Volum"
+
+#~ msgid "Cannot load requested font. Reloading default font."
+#~ msgstr "Kan ikke laste forespurt skrifttype. Gjenleser forvalgt skrifttype."
+
+#~ msgid "Cannot load default Helvetica font. Loading any fixed width font."
+#~ msgstr ""
+#~ "Kan ikke laste forvalgt skrifttype, Helvetica. Laster en skrifttype med "
+#~ "fast bredde."
+
+#~ msgid "Cannot load fixed width font. Exiting."
+#~ msgstr "Kan ikke laste en skrifttype med fast bredde. Avslutter."
+
+#~ msgid "Filename of the CD device"
+#~ msgstr "Filnavnet på CD-enheten"
+
+#~ msgid "FILE"
+#~ msgstr "FIL"
+
+#~ msgid "Play CD on startup"
+#~ msgstr "Spill CD ved oppstart"
+
+#~ msgid "Trk"
+#~ msgstr "Spor"
+
+#~ msgid "Title"
+#~ msgstr "Tittel"
+
+#~ msgid "Track Editor"
+#~ msgstr "Sporredigering"
+
+#~ msgid "Disc Information (%02u:%02u minutes)"
+#~ msgstr "Informasjon om plate (%02u:%02u minutter)"
+
+#~ msgid "Artist / Title"
+#~ msgstr "Artist / Tittel"
+
+#~ msgid "Track Information"
+#~ msgstr "Informasjon om spor"
+
+#~ msgid "Clear"
+#~ msgstr "Blank ut"
+
+#~ msgid "Playlist"
+#~ msgstr "Spilleliste"
+
+#~ msgid "Submit"
+#~ msgstr "Send inn"
+
+#~ msgid "Submit Information"
+#~ msgstr "Send inn informasjonen"
+
+#~ msgid ""
+#~ "Submit information about\n"
+#~ "'%s'"
+#~ msgstr ""
+#~ "Send inn informasjon om\n"
+#~ "'%s'"
+
+#~ msgid "To: "
+#~ msgstr "Til: "
+
+#~ msgid "Category: "
+#~ msgstr "Kategori: "
+
+#~ msgid ""
+#~ "Error accessing cdrom device.\n"
+#~ "Please check to make sure cdrom drive support\n"
+#~ "is compiled into the kernel, and that you have\n"
+#~ "permission to access the device.\n"
+#~ "\n"
+#~ "Reason: %s\n"
+#~ msgstr ""
+#~ "Feil ved tilgang til cdrom enheten.\n"
+#~ "Vennligst forsikre deg om at støtte for CD-ROM\n"
+#~ "er kompilert inn i kjernen, og at du har\n"
+#~ "tilgangsrettigheter til enheten.\n"
+#~ "\n"
+#~ "Årsak: %s\n"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Ukjent / Ukjent"
+
+#~ msgid "Track %d"
+#~ msgstr "Spor %d"
+
+#~ msgid "Preferences..."
+#~ msgstr "Brukervalg..."
+
+#~ msgid "Track Editor..."
+#~ msgstr "Sporredigering..."
+
+#~ msgid "Mixer..."
+#~ msgstr "Mikser..."
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Do nothing"
+#~ msgstr "Ikke gjør noe"
+
+#~ msgid "Start playing"
+#~ msgstr "Start avspilling"
+
+#~ msgid "Stop playing"
+#~ msgstr "Stopp avspilling"
+
+#~ msgid "Close tray"
+#~ msgstr "Lukk skuff"
+
+#~ msgid "Open tray"
+#~ msgstr "Åpne skuff"
+
+#~ msgid "CDROM device"
+#~ msgstr "CD-ROM-enhet"
+
+#~ msgid "Mixer Command"
+#~ msgstr "Mikserkommando"
+
+#~ msgid "Track/title color"
+#~ msgstr "Spor-/tittelfarge"
+
+#~ msgid "Track/title font"
+#~ msgstr "Spor-/tittelskrifttype"
+
+#~ msgid "Change font"
+#~ msgstr "Endre skrifttype"
+
+#~ msgid "Show handles (restart required)"
+#~ msgstr "Vis håndtak (Omstart av TCD nødvendig)"
+
+#~ msgid "Show tooltips"
+#~ msgstr "Vis verktøystips"
+
+#~ msgid "Use alternate method to play CD"
+#~ msgstr "Bruk alternativ metode for å spille CD"
+
+#~ msgid "Use squared law volume control"
+#~ msgstr "Bruk \"squared law\" volumkontroll"
+
+#~ msgid "On exit"
+#~ msgstr "Ved avslutning"
+
+#~ msgid "Key"
+#~ msgstr "Tast"
+
+#~ msgid "Action"
+#~ msgstr "Handling"
+
+#~ msgid "Click here to change (restart required):"
+#~ msgstr "Klikk her for å endre (omstart nødvendig):"
+
+#~ msgid "Keybindings"
+#~ msgstr "Tastaturbindinger"
+
+#~ msgid "CDDB Settings"
+#~ msgstr "CDDB-innstillinger"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#~ msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+#~ msgstr "-*-fast-*-*-*-*-*-*-*-*-*-*-*-*"
+
+#~ msgid "CD Player"
+#~ msgstr "CD-spiller"
+
+#~ msgid "Gnome CD Player"
+#~ msgstr "Gnome CD-spiller"
