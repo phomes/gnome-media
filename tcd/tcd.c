@@ -687,7 +687,13 @@ void tcd_get_cddb( void )
 
 	sprintf( test, "%s/.tcd/%s", getenv("HOME"),query.discid );
 	outfile = fopen( test, "w" );
-
+	if (outfile == NULL)
+	{
+        	mvwprintw( win, maxy-1, 2, "Can't open local file.  Aborting. ");
+        	refresh();
+		close(server.socket);
+                return;
+        }   
 	i=0;
 	do
 	{

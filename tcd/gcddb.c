@@ -28,6 +28,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <errno.h>
 #include <linux/cdrom.h>
 
 #include "linux-cdrom.h"
@@ -36,7 +37,7 @@
 #include "cddb.h"
 #include "properties.h"
 
-GtkWidget *win, *label, *pb;
+GtkWidget *cddbwin, *label, *pb;
 GtkWidget *cancelbutton, *startbutton;
         
 extern int titlelabel_f;
@@ -50,8 +51,8 @@ void create_warn( char *message_text, char *type );
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
-	gtk_widget_destroy(win);
-	win = NULL;
+	gtk_widget_destroy(cddbwin);
+	cddbwin = NULL;
 }
 
 void cancel_cddb( GtkWidget *widget, gpointer data )
@@ -67,7 +68,7 @@ void gcddb()
 	char tmp[255];
 	char pt[24];
 
-	if( win )
+	if( cddbwin )
 		return;
 	
 	label = gtk_label_new("");
@@ -77,10 +78,10 @@ void gcddb()
 	gtk_frame_set_shadow_type(GTK_FRAME(infoframe),GTK_SHADOW_ETCHED_IN);
 	gtk_container_add(GTK_CONTAINER(infoframe), infobox);
 
-	win = gtk_window_new( GTK_WINDOW_DIALOG );
-	gtk_container_border_width (GTK_CONTAINER (win), 5);
-	gtk_window_set_title( GTK_WINDOW(win), "CDDB Remote" );
-	gtk_window_set_wmclass( GTK_WINDOW(win), "cddb","gtcd" );
+	cddbwin = gtk_window_new( GTK_WINDOW_DIALOG );
+	gtk_container_border_width (GTK_CONTAINER (cddbwin), 5);
+	gtk_window_set_title( GTK_WINDOW(cddbwin), "CDDB Remote" );
+	gtk_window_set_wmclass( GTK_WINDOW(cddbwin), "cddb","gtcd" );
 	
 	/* cancel button */
 	cancelbutton = gtk_button_new_with_label( "Close" );
@@ -110,12 +111,12 @@ void gcddb()
 	gtk_box_pack_start( GTK_BOX(box), cancelbutton, TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(box), pb, TRUE, TRUE, 0 );
 
-        gtk_signal_connect (GTK_OBJECT (win), "delete_event",
+        gtk_signal_connect (GTK_OBJECT (cddbwin), "delete_event",
                         GTK_SIGNAL_FUNC(close_cddb), NULL);
 
-	gtk_container_add( GTK_CONTAINER(win), box );
+	gtk_container_add( GTK_CONTAINER(cddbwin), box );
 
-	gtk_widget_show_all(win);
+	gtk_widget_show_all(cddbwin);
 }
 
 void periodic(void)
@@ -151,8 +152,8 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	while(gtk_events_pending()) gtk_main_iteration();
 
 	if (server.http) {
-		if(tcd_open_cddb_http(&server, periodic)) {
-			sprintf(tmp,"Eror: %s", server.error);
+		if(tcd_open_cddb_http(&server, periodic)&&errno) {
+			sprintf(tmp,"Error: %s", server.error);
 			gtk_label_set(GTK_LABEL(label),tmp);
 			return(0);
 		}
@@ -209,7 +210,13 @@ int do_cddb( GtkWidget *widget, gpointer data )
 
 	sprintf( qs, "%s/.tcd/%s", getenv("HOME"),query.discid );
 	outfile = fopen( qs, "w" );
-
+	if (outfile == NULL)
+	{
+		gtk_label_set( GTK_LABEL(label), "Can't open local file." );
+	        close(server.socket);
+	        return;
+	}
+	
 	if (server.http) {
 		do {
 			fgetsock(s,127,server.socket, periodic);

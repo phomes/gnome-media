@@ -49,6 +49,7 @@ void load_properties( tcd_properties *prop )
 	prop->cddbport  = gnome_config_get_int(   "/gtcd/cddb/port=888");
 	prop->handle    = gnome_config_get_bool(  "/gtcd/ui/handle=1");
 	prop->tooltip   = gnome_config_get_bool(  "/gtcd/ui/tooltip=1");
+	prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
 	prop->trackfont  = gnome_config_get_string(
 		"/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
 	prop->statusfont = gnome_config_get_string(
@@ -61,7 +62,6 @@ void load_properties( tcd_properties *prop )
 	prop->proxy_server= gnome_config_get_string("/gtcd/cddb/proxy_server=proxy");
 	prop->proxy_port = gnome_config_get_int("/gtcd/cddb/proxy_port=80");
 	prop->remote_path =gnome_config_get_string("/gtcd/cddb/remote_path=~cddb/cddb.cgi");
-	prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
 }
 
 void save_properties( tcd_properties *prop )
@@ -71,6 +71,8 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport);
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
+	gnome_config_set_int("/gtcd/ui/time_display", prop->time_display);
+	printf( "%d\n", prop->time_display );
 	gnome_config_set_string("/gtcd/ui/trackfont", prop->trackfont);
 	gnome_config_set_string("/gtcd/ui/statusfont",prop->statusfont);
 	gnome_config_set_string("/gtcd/ui/trackcolor", prop->trackcolor);
@@ -81,7 +83,6 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_string("/gtcd/cddb/proxy_server", prop->proxy_server);
 	gnome_config_set_int("/gtcd/cddb/proxy_port",prop->proxy_port);
 	gnome_config_set_string("/gtcd/cddb/remote_path", prop->remote_path);
-	gnome_config_set_int("/gtcd/ui/time_display", prop->time_display);
 
 	gnome_config_sync();
 }
@@ -200,6 +201,8 @@ GtkWidget *create_http_frame( GtkWidget *box )
 	label = gtk_label_new("Port:");
 	adj = gtk_adjustment_new( props.proxy_port, 1, 9999, 1, 10, 10 );
 	proxy_port_spin  = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
+	gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(proxy_port_spin),
+		GTK_SHADOW_NONE);
 	gtk_signal_connect( GTK_OBJECT(adj),"value_changed",
         	GTK_SIGNAL_FUNC(proxy_port_changed_cb),proxy_port_spin );
         gtk_spin_button_set_update_policy( GTK_SPIN_BUTTON(proxy_port_spin),
@@ -250,6 +253,8 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 	gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
 	adj = gtk_adjustment_new( props.cddbport, 1, 9999, 1, 10, 10 );
 	port_i = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
+	gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(port_i),
+		GTK_SHADOW_NONE);
 	gtk_signal_connect( GTK_OBJECT(adj),"value_changed",
         	GTK_SIGNAL_FUNC(cddb_port_changed_cb),port_i );
         gtk_spin_button_set_update_policy( GTK_SPIN_BUTTON(port_i),

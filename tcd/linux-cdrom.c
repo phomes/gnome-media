@@ -303,6 +303,8 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	cd->isplayable=FALSE;
 	cd->isdisk=FALSE;
 	
+	ioctl( cd->cd_dev, CDROMCLOSETRAY );
+	
 	if( cd->trk[C(start_t)].status == TRK_DATA )
 	{
 		debug("cdrom.c: tcd_playtracks error. trying to play data track.\n" );
@@ -388,7 +390,7 @@ int tcd_ejectcd( cd_struct *cd )
 	int tmp;
 
 	debug("cdrom.c: tcd_eject(%p) top\n", cd );
-
+	tcd_stopcd(cd);
 	cd->err = FALSE;
 
 	tmp = ioctl( cd->cd_dev, CDROMEJECT );
@@ -416,10 +418,14 @@ int tcd_ejectcd( cd_struct *cd )
 int tcd_stopcd( cd_struct *cd )
 {
 	int tmp;
-	cd->err = FALSE;
 
 	debug("cdrom.c: tcd_stopcd(%p)\n", cd );
+	
+	/* SDH: Makes things cleaner on eject */
+	if( cd->sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED )
+		tcd_pausecd(cd);
 
+	cd->err = FALSE;
         tmp = ioctl( cd->cd_dev, CDROMSTOP );
    	if( tmp < 0 )
 	{
@@ -489,7 +495,7 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 	cd->err = FALSE;
 	cd->isdisk=FALSE;
 
-	if( cd->cd_dev < 0 )
+	if( cd->cd_dev > 0 ) /* SDH rvs test (was < should be > ) */
 		close( cd->cd_dev );
                                                 
 	cd->cd_dev = open( cd->cdpath, O_RDONLY | O_NONBLOCK );

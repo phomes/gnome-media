@@ -81,7 +81,7 @@ char *play_methods[] =
         "repeat_normal.xpm",
         "repeat_random.xpm" // Not yet implemented
 };
-GnomePixmap *play_method_pixmap[4];
+GtkWidget *play_method_pixmap[4];
 
 #define Connect( x,y ) gtk_signal_connect (GTK_OBJECT (x), "clicked", \
 	        GTK_SIGNAL_FUNC (callback), (gpointer*)y);
@@ -142,6 +142,8 @@ void callback (GtkWidget *widget, gpointer *data)
 			tcd_ejectcd(&cd);
 		        cd.play_method = NORMAL;
 		        cd.repeat_track = -1;
+			/* SDH: Make sure play/pause state change is noticed */
+			cd.sc.cdsc_audiostatus = -1;
 		        break;
 		case FF:
 			tcd_play_seconds(&cd, 4);
@@ -401,13 +403,38 @@ void setup_colors( void )
 
 void setup_pixmaps( void )
 {
+	int r,g,b;
+	GdkPixmap *pm;
+	GdkBitmap *bm;
+	GdkImlibImage *im;
+	GdkImlibColorModifier m;
 	gchar tmp[128];
 	int i;
+
+        sscanf( props.statuscolor, "#%02x%02x%02x", &r,&g,&b );
+	g_print("%d %d %d\n", r,g,b);
+	        
 	for( i=0; i < PLAY_METHOD_END-1; i++ )
 	{
 		sprintf( tmp, "tcd/%s", play_methods[i] );
-		play_method_pixmap[i] = 
-			GNOME_PIXMAP(gnome_pixmap_new_from_file(gnome_pixmap_file(tmp)));
+		im = gdk_imlib_load_image(gnome_pixmap_file(tmp));
+
+		gdk_imlib_get_image_red_modifier(im, &m);
+		m.brightness = r*256;
+		gdk_imlib_set_image_red_modifier(im, &m);
+
+		gdk_imlib_get_image_green_modifier(im, &m);
+		m.brightness = g*256;
+		gdk_imlib_set_image_green_modifier(im, &m);
+
+		gdk_imlib_get_image_blue_modifier(im, &m);
+		m.brightness = b*256;
+		gdk_imlib_set_image_blue_modifier(im, &m);
+
+		gdk_imlib_render(im, im->rgb_width, im->rgb_height);
+		pm = gdk_imlib_move_image(im);
+		bm = gdk_imlib_move_mask(im);
+		play_method_pixmap[i] = gtk_pixmap_new(pm, bm);		
 	}
 }
 
@@ -451,12 +478,14 @@ void draw_time_playing( GdkGC *gc )
 
 void draw_titles( GdkGC *gc )
 {
+	int inc;
 	gdk_gc_set_foreground( gc, &red );
+	inc = (sfont->ascent+sfont->descent)-2;
 	gdk_draw_text(status_db,sfont,gc,4,39, cd.artist, 
 		strlen(cd.artist));
-	gdk_draw_text( status_db,sfont,gc,4,39+10, cd.album, 
+	gdk_draw_text( status_db,sfont,gc,4,39+inc, cd.album, 
 		strlen(cd.album));
-	gdk_draw_text( status_db,sfont,gc,4,39+20, cd.trk[cd.cur_t].name, 
+	gdk_draw_text( status_db,sfont,gc,4,39+inc+inc, cd.trk[cd.cur_t].name, 
 		strlen(cd.trk[cd.cur_t].name));
         gtk_window_set_title( GTK_WINDOW(window), cd.trk[cd.cur_t].name );
 }
@@ -551,7 +580,7 @@ void draw_status( void )
 
 	gdk_draw_pixmap(status_db,
 			status_area->style->fg_gc[GTK_WIDGET_STATE(status_area)],
-		        GNOME_PIXMAP(play_method_pixmap[cd.play_method])->pixmap,
+		        GTK_PIXMAP(play_method_pixmap[cd.play_method])->pixmap,
 		        0, 0,
 		        80, -2,
 		        24, 24);
@@ -583,6 +612,7 @@ void adjust_status(void)
 	{
 		if( max < 102 ) 
 			max=102;
+			
 		gtk_widget_set_usize( status_area, max+8, 60 );
 	}
 }
@@ -598,7 +628,7 @@ gint slow_timer( gpointer *data )
 		old_id = cd.cddb_id;
 	}
 
-	if( cd.err || !cd.isdisk )
+	if( cd.err || !cd.isplayable )
         {
 		tcd_readtoc(&cd);
 		tcd_readdiskinfo(&cd);
@@ -639,7 +669,6 @@ gint status_changed(void)
 		playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
 		        GTK_SIGNAL_FUNC (callback),
 		        (old_status==CDROM_AUDIO_PLAY)?(gpointer*)PAUSE:(gpointer*)PLAY );
-		old_status = cd.sc.cdsc_audiostatus;
 	}
 }
 
@@ -729,6 +758,7 @@ static gint status_configure_event(GtkWidget *widget, GdkEventConfigure *event)
 	gtk_signal_emit_by_name(GTK_OBJECT(vol),"value_changed", "no_update");
         return TRUE;
 }
+
 static gint status_expose_event (GtkWidget *widget, GdkEventExpose *event)
 {
 	gdk_draw_pixmap(widget->window,
@@ -954,6 +984,7 @@ int main (int argc, char *argv[])
         gtk_widget_show_all(window);
 	
 	gtk_main ();
+	save_properties(&props);
 	gnome_config_sync();
         return 0;
 }
