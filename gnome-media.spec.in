@@ -87,18 +87,17 @@ scrollkeeper-update
 %{_datadir}/applications/vumeter.desktop
 %{_datadir}/applications/gnome-volume-control.desktop
 %{_datadir}/applications/gstreamer-properties.desktop
+%{_datadir}/applications/gnome-sound-recorder.desktop
 %{_datadir}/gnome/help/gstreamer-properties
-%{_datadir}/pixmaps/gnome-cd.png
-%{_datadir}/pixmaps/gnome-cd
-%{_datadir}/pixmaps/gnome-reclevel.png
-%{_datadir}/pixmaps/gnome-vumeter.png
-%{_datadir}/pixmaps/gstreamer-properties.png
 %{_datadir}/gstreamer-properties/icons/gstreamer-properties.png
 %{_datadir}/gstreamer-properties/glade/gstreamer-properties.glade
 %{_datadir}/gnome-media/glade/gnome-audio-profiles.glade2
+%{_datadir}/gnome-sound-recorder/ui/*
 %{_datadir}/omf/gnome-media
 %{_datadir}/gnome/help/gnome-cd
 %{_datadir}/gnome/help/gnome-volume-control
+%{_datadir}/gnome/help/grecord
+%{_datadir}/gnome/help/gnome-sound-recorder
 %{_datadir}/control-center-2.0/capplets/cddb-slave.desktop
 %{_datadir}/locale/*
 %{_datadir}/gnome-media/pixmaps/*
@@ -112,6 +111,7 @@ scrollkeeper-update
 %{_bindir}/vumeter
 %{_bindir}/gstreamer-properties
 %{_bindir}/gnome-audio-profiles-properties
+%{_bindir}/gnome-sound-recorder
 %{_sysconfdir}/gconf/schemas/*.schemas
 
 # devel, if we had a devel
@@ -121,6 +121,9 @@ scrollkeeper-update
 
 
 %changelog
+* Sat Jan 10 2004 Christian Schaller <Uraeus@gnome.org>
+- Wish gnome-sound-recorder welcome back into the fold
+
 * Sun Jan 03 2004 Christian Schaller <Uraeus@gnome.org>
 - Make sure audio profiles schemas are loaded
 
