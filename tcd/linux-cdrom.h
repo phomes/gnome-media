@@ -28,14 +28,15 @@
 #include <sys/types.h>
 #include <glib.h>
 #if !defined(linux) && !defined(sun) && !defined(__sun__)
-#error TCD only builds on linux and Solaris/SunOs
+# error TCD only builds on linux and Solaris/SunOs
 #endif
 
 #ifdef linux
-#include <linux/cdrom.h>
-
-typedef struct cdrom_msf0 cd_min_sec_frame;
-
+# include <linux/cdrom.h>
+  typedef struct cdrom_msf0 cd_min_sec_frame;
+# ifdef HAVE_LINUX_UCDROM_H
+#  include <linux/ucdrom.h>
+# endif
 #endif
 
 #if defined(sun) || defined(__sun__)

@@ -112,6 +112,7 @@ dnl Everything OK for tcd?
 dnl
 PROGRAMS_TCD=""
 AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_TCD=tcd])
+AC_CHECK_HEADERS(linux/ucdrom.h)
 AC_CHECK_HEADERS(sys/cdio.h,[PROGRAMS_TCD=tcd])
 AC_CHECK_HEADERS(sun/dkio.h,[PROGRAMS_TCD=tcd])
 
