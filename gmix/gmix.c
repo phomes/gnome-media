@@ -101,19 +101,23 @@ mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
-			       GNOME_STOCK_MENU_ABOUT),
+	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
- 
-static GnomeUIInfo program_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK(N_("_Preferences..."),NULL,config_cb,GNOME_STOCK_MENU_PREF),
+
+static GnomeUIInfo settings_menu[] = {
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM (config_cb, NULL),
+	GNOMEUIINFO_END
+};
+
+static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb, NULL),
 	GNOMEUIINFO_END
 };      
 
 static GnomeUIInfo main_menu[] = {
-        GNOMEUIINFO_SUBTREE(N_("_Program"), &program_menu),
+        GNOMEUIINFO_MENU_FILE_TREE (file_menu),
+	GNOMEUIINFO_MENU_SETTINGS_TREE (settings_menu),
         GNOMEUIINFO_MENU_HELP_TREE (help_menu),
         GNOMEUIINFO_END
 };
@@ -1515,8 +1519,10 @@ static void about_cb (GtkWidget *widget, gpointer data)
 		NULL
 	};
 
-	if ( about != NULL )
-		return;
+	if (about != NULL) {
+		gdk_window_show (about->window);
+		gdk_window_raise (about->window);
+	}
 	else
 	{
 		about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
