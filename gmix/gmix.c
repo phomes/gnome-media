@@ -216,7 +216,7 @@ const char *device_pixmap[] = {
 snd_mixer_callbacks_t read_cbs;
 
 static void rebuild_cb(void *data) {
-        fprintf(stderr, "gmix rebuild_cb()\n");
+        g_printerr ("gmix rebuild_cb()\n");
 }
 
 static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
@@ -229,19 +229,19 @@ static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
 		return;
 
 	if (snd_mixer_element_has_info(eid) != 1) {
-/*		fprintf(stderr, "no element info\n"); */
+/*		g_printerr ("no element info\n"); */
 		return;
 	}
 	memset(&info, 0, sizeof(info));
 	info.eid = *eid;
 	if ((err = snd_mixer_element_info_build(device->handle, &info)) < 0) {
-		fprintf(stderr, "element info build error: %s\n", snd_strerror(err));
+		g_printerr ("element info build error: %s\n", snd_strerror(err));
 		return;
 	}
 	memset(&element, 0, sizeof(element));
 	element.eid = *eid;
 	if ((err = snd_mixer_element_build(device->handle, &element)) < 0) {
-		fprintf(stderr, "element build error: %s\n", snd_strerror(err));
+		g_printerr ("element build error: %s\n", snd_strerror(err));
 		return;
 	}
 	if (element.eid.type == SND_MIXER_ETYPE_VOLUME1) {
@@ -257,7 +257,7 @@ static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
 			 i++, channels = g_list_next(channels)) {
 			channel_info *ci=(channel_info *)channels->data;
 
-			fprintf(stderr, "%d(%d%%) ", element.data.volume1.pvoices[i],
+			g_printerr ("%d(%d%%) ", element.data.volume1.pvoices[i],
 				element.data.volume1.pvoices[i] * 100 /
 				(info.data.volume1.prange[i].max -
 				 info.data.volume1.prange[i].min));
@@ -270,17 +270,17 @@ static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
 				(info.data.volume1.prange[i].max -
 				 info.data.volume1.prange[i].min))));
 		}
-		fprintf(stderr, "\n");
+		g_printerr ("\n");
 #endif
 	} else /* XXX ignore silently */
-		fprintf(stderr, "unsupported element.eid.type=%d for %s\n",
+		g_printerr ("unsupported element.eid.type=%d for %s\n",
 				element.eid.type, element.eid.name);
 	snd_mixer_element_free(&element);
 
 }
 
 static void group_cb(void *data, int cmd, snd_mixer_gid_t *gid) {
-	fprintf(stderr, "gmix group_cb()\n");
+	g_printerr("gmix group_cb()\n");
 }
 
 #if 0
@@ -293,7 +293,7 @@ void read_mixer(gpointer a, gint source, GdkInputCondition condition)
 	int err;
 
 	if ((err=snd_mixer_read(info->handle, &read_cbs))<0) {
-		fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+		g_printerr ("error reading group: %s\n", snd_strerror(err));
 		exit (1);
 	}
 }
@@ -473,7 +473,7 @@ open_device (int num)
 		return NULL;
 	} 
 	if ((err = snd_mixer_info (new_device->handle, &info)) < 0) { 
-		fprintf (stderr, "info failed: %s\n", snd_strerror (err));  
+		g_printerr ("info failed: %s\n", snd_strerror (err));  
 		snd_mixer_close (new_device->handle); 
 		g_free (new_device);
 		return NULL; 
@@ -569,7 +569,7 @@ open_device (int num)
 			} else if ((1 << chn) & SND_MIXER_CHN_MASK_FRONT_RIGHT) {
 				new_channel->volume_right = (g->volume.values[chn] * 100 / (g->max - g->min));
 			} else {
-				fprintf(stderr, "Unhandled channel on soundcard: %s\n",
+				g_printerr ("Unhandled channel on soundcard: %s\n",
 					snd_mixer_channel_name(chn));
 			}
 		}
@@ -629,16 +629,14 @@ open_device (int num)
 	res = ioctl(new_device->fd, OSS_GETVERSION, &ver);
 	if ((res == EINVAL) || (ver != SOUND_VERSION)) {
 		if (res == EINVAL) {
-			fprintf (stderr, 
-				 _("Warning: This version of the Gnome Volume Control was compiled with\n"
+			g_printerr (_("Warning: This version of the Gnome Volume Control was compiled with\n"
 				   "OSS version %d.%d.%d, and your system is running\n"
 				   "a version prior to 3.6.0.\n"), 
 				 SOUND_VERSION >> 16, 
 				 (SOUND_VERSION >> 8) & 0xff, 
 				 SOUND_VERSION & 0xff);
 		} else {
-			fprintf (stderr, 
-				 _("Warning: This version of the Gnome Volume Control was compiled with\n"
+			g_printerr (_("Warning: This version of the Gnome Volume Control was compiled with\n"
 				   "OSS version %d.%d.%d, and your system is running\n"
 				   "version %d.%d.%d.\n"), 
 				 SOUND_VERSION >> 16, 
@@ -821,14 +819,14 @@ init_one_device (gpointer a,
 		
 		while ((err = snd_mixer_group_write (info->handle, g)) < 0 && err == -EBUSY) {
 			if ((err = snd_mixer_read (info->handle, &read_cbs)) < 0) {
-				fprintf(stderr, "error reading group: %s\n",
+				g_printerr ("error reading group: %s\n",
 					snd_strerror(err));
 				exit (1);
 			}
 		}
 		
 		if (err < 0) {
-			fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+			g_printerr ("error writing group: %s\n", snd_strerror(err));
 			exit (1);
 		}
 	}
@@ -1565,7 +1563,7 @@ rec_cb (GtkWidget *widget,
 	}
 	
 	if (err < 0) {
-		fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+		g_printerr ("error writing group: %s\n", snd_strerror(err));
 		exit (1);
 	}
 #else
