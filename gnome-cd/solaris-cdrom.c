@@ -274,12 +274,12 @@ solaris_cdrom_update_cd (GnomeCDRom *cdrom)
 	priv = lcd->priv;
 
 	if (solaris_cdrom_open (lcd, &error) == FALSE) {
-		g_warning ("Error opening CD");
+		g_message ("Error opening CD");
 		return;
 	}
 
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
-		g_warning ("Error reading CD header");
+		g_message ("Error reading CD header");
 		solaris_cdrom_close (lcd);
 
 		return;

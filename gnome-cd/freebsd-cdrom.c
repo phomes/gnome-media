@@ -173,12 +173,12 @@ freebsd_cdrom_update_cd (GnomeCDRom *cdrom)
 	priv = lcd->priv;
 
 	if (freebsd_cdrom_open (lcd, &error) == FALSE) {
-		g_warning ("Error opening CD");
+		g_message ("Error opening CD");
 		return;
 	}
 
 	if (ioctl (cdrom->fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
-		g_warning ("Error reading CD header");
+		g_message ("Error reading CD header");
 		freebsd_cdrom_close (lcd);
 
 		return;
