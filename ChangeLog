@@ -1,5 +1,27 @@
 2004-03-09  Ted Gould <ted@gould.cx>
 
+	* configure.in: Upping to 2.3.5
+
+2004-03-09  Jan Schmidt  <thaytan@mad.scientist.com>
+ 
+ 	* gstreamer-properties/gstreamer-properties.c:
+ 	(create_pipeline_menu):
+ 	* gstreamer-properties/pipeline-constants.c:
+           - Add "audioconvert ! audioscale" to the pipeline for testing 
+ 	  audio sinks.  This makes esdsink 'work' and fixes #136407
+ 	  - Wrap lines in pipeline-constants to 80 chars for readability.
+ 	  - Use gst_parse_launch to evaluate the validity of a sink pipeline, i
+ 	  rather than assuming that they contain only a single sink. 
+ 	  Resurrects Ascii Art.
+ 	  - Add a disabled cacasink destination. Disabled because apparently
+ 	  cacasink briefly creates an empty window, even though we never 
+ 	  set the element to READY.
+ 	  - Disable jack source & sink, since they're not working.
+ 	  - Remove ossgst audio source which no longer exists.
+ 	  - Remove fakesrc as a video source.
+
+2004-03-09  Ted Gould <ted@gould.cx>
+
 	* grecord/src/gsr-window.c, gst-mixer/src/mixer.c: Adding
 	Sun Microsystems at the documenters as requested by Breda McColgan
 	who did the documentation for those.

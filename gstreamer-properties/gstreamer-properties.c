@@ -201,11 +201,16 @@ static GtkOptionMenu *create_pipeline_menu (GladeXML * dialog, GSTPPipelineEdito
 		for (i = 0; i < editor->n_pipeline_desc; i++)
 		{
 			GSTPPipelineDescription *cur_pipeline_desc = &(pipeline_desc[i]);
-			GstElementFactory *factory;
+			GstElement *pipeline;
+			GError     *error = NULL;
 
 			if (cur_pipeline_desc->pipeline != NULL) {
-				factory = gst_element_factory_find (cur_pipeline_desc->pipeline);
-				if (factory == NULL) {
+				pipeline = gst_parse_launch (cur_pipeline_desc->pipeline, &error);
+				if (pipeline != NULL) {
+					gst_object_unref (GST_OBJECT (pipeline));
+				}
+				if (error != NULL) {
+					g_error_free (error);
 					continue;
 				}
 			}

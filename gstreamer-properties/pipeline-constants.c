@@ -31,7 +31,7 @@
  
 /* Test specified inputs for pipelines */
 /* static const gchar audiosink_test_pipe[] = "afsrc location=\"" TEST_MEDIA_FILE "\""; FIXME*/
-static gchar audiosink_test_pipe[] = "sinesrc freq=512";
+static gchar audiosink_test_pipe[] = "sinesrc freq=512 ! audioconvert";
 static gchar videosink_test_pipe[] = "videotestsrc ! ffcolorspace";
 
 static gchar GSTPROPS_KEY_DEFAULT_VIDEOSINK[] = "default/videosink";
@@ -47,14 +47,16 @@ extern GSTPPipelineDescription videosrc_pipelines[];
 GSTPPipelineDescription audiosink_pipelines[] = {
 	{PIPE_TYPE_AUDIOSINK, 0,"ALSA - Advanced Linux Sound Architecture",
 	 "alsasink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0,"Artsd - ART Sound Daemon", "artsdsink", FALSE,
+	{PIPE_TYPE_AUDIOSINK, 0,"Artsd - ART Sound Daemon", 
+	 "artsdsink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
+	{PIPE_TYPE_AUDIOSINK, 0,"ESD - Enlightenment Sound Daemon", 
+	 "esdsink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
+#if 0 /* Disabled this until it works */
+	{PIPE_TYPE_AUDIOSINK, 0,"Jack", "jackbin.( jacksink )", FALSE, 
 	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0,"ESD - Enlightenment Sound Daemon", "esdsink",
-	 FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0,"Jack", "jacksink", FALSE, TEST_PIPE_SUPPLIED,
-	 audiosink_test_pipe, FALSE},
-	{PIPE_TYPE_AUDIOSINK, 0,"OSS - Open Sound System", "osssink", FALSE,
-	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
+#endif
+	{PIPE_TYPE_AUDIOSINK, 0,"OSS - Open Sound System", 
+	 "osssink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
 	{PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 audiosink_test_pipe, TRUE}
 };
@@ -64,13 +66,17 @@ GSTPPipelineDescription videosink_pipelines[] = {
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"Ascii Art - console", "aasink driver=1", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0,"Generic Videosink", "videosink", FALSE,
+#if 0 
+ /* Leaving this one disabled, because of a bug in cacasink that
+  * pops up a window in NULL state
+  */
+	{PIPE_TYPE_VIDEOSINK, 0,"Colour Ascii Art", "cacasink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
+#endif
 	{PIPE_TYPE_VIDEOSINK, 0,"SDL - Simple DirectMedia Layer", "sdlvideosink",
 	 FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (No Xv)",
-	 "ximagesink", FALSE, TEST_PIPE_SUPPLIED,
-	 videosink_test_pipe, FALSE},
+	 "ximagesink", FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (X11/XShm/Xv)", "xvimagesink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
@@ -82,12 +88,12 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
 	 "alsasrc", FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
 	{PIPE_TYPE_AUDIOSRC, 0,"ESD - Enlightenment Sound Daemon", "esdmon",
 	 FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0,"Jack", "jacksrc", FALSE, TEST_PIPE_AUDIOSINK,
+#if 0 /* Disabled this until it works */
+	{PIPE_TYPE_AUDIOSRC, 0,"Jack", "jackbin{ jacksrc }", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
+#endif
 	{PIPE_TYPE_AUDIOSRC, 0,"OSS - Open Sound System", "osssrc", FALSE,
 	 TEST_PIPE_AUDIOSINK, NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0,"OSS Monitor (capture OSS apps)", "ossgst",
-	 FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
 	{PIPE_TYPE_AUDIOSRC, 0,"Silence", "silence", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
 	{PIPE_TYPE_AUDIOSRC, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
@@ -95,8 +101,6 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
 };
 
 GSTPPipelineDescription videosrc_pipelines[] = {
-/*	{PIPE_TYPE_VIDEOSRC, 0,"None", "fakesrc", FALSE,
-	 TEST_PIPE_VIDEOSINK, NULL, FALSE}, */
 	{PIPE_TYPE_VIDEOSRC, 0,"MJPEG (e.g. Zoran v4l device)", "v4lmjpegsrc", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
 	{PIPE_TYPE_VIDEOSRC, 0,"QCAM", "qcamsrc", FALSE, TEST_PIPE_VIDEOSINK,
