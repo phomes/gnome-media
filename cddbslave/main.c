@@ -283,25 +283,14 @@ char *get_file_name(char *discid)
 {
     char *fname;
     char *homedir=NULL;
-    struct passwd *pw=NULL;
     struct stat fs;
 
-    homedir = getenv("HOME");
-
-    if(homedir == NULL)
-    {
-	pw = getpwuid(getuid());
-
-	if(pw != NULL)
-	    homedir = pw->pw_dir;
-	else
-	    homedir = "/";
-    }
-
+    homedir = g_get_home_dir();
     fname = g_malloc(512);
 
     /* Make our directory if it doesn't exist. */
     g_snprintf(fname, 511, "%s/.cddbslave", homedir);
+    g_print("Fname: %s\n", fname);
     if(stat(fname, &fs) < 0)
     {
 	if(errno == ENOENT)
@@ -328,12 +317,7 @@ void gethostname_safe(char *buf, int len)
 
 void getusername_safe(char *buf, int len)
 {
-    struct passwd *pw;
-    pw = getpwuid(getuid());
-    if(pw && (strcmp(pw->pw_name, "")!=0))
-	strncpy(buf, pw->pw_name, len);
-    else
-	strncpy(buf, "user", len);
+    strncpy(buf, g_get_user_name(), len);
 }
 
 char *cache_name(char *req)
@@ -412,11 +396,15 @@ int remove_cache(char *req)
 /* FIXME: this assumes that /tmp is your temp dir. */
 void set_status(int status, gchar *info)
 {
+    char tmp[512];
     FILE *fp;
+
+    g_snprintf(tmp, 511, "%s/.cddbstatus", g_get_tmp_dir());
+    g_print("tmp: %s\n", tmp);
     if(status == STATUS_NONE)
-	truncate("/tmp/.cddbstatus", 0);
+	truncate(tmp, 0);
     
-    fp = fopen("/tmp/.cddbstatus", "a+");
+    fp = fopen(tmp, "a+");
     if(!fp)
     {
 	perror("fopen");
