@@ -2,7 +2,7 @@ SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_GNOMOVISION@  \
 	@PROGRAMS_TCD@		\
-	@PROGRAMS_CDDBSLAVE@
+	cddbslave
 #
 # broken with current esound
 #	@PROGRAMS_EXTACE@	
