@@ -80,8 +80,7 @@ static GnomeUIInfo help_menu[] = {
 };
  
 static GnomeUIInfo program_menu[] = {
-    GNOMEUIINFO_ITEM_STOCK(N_("E_xit"), NULL, quit_cb,
-                           GNOME_STOCK_MENU_QUIT),
+    GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb, NULL),
     GNOMEUIINFO_END
 };      
 
