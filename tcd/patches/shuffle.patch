@@ -1,0 +1,202 @@
+--- tcd.c.orig	Fri Jun  5 14:53:24 1998
++++ tcd.c	Thu Jul 23 10:52:25 1998
+@@ -59,6 +59,12 @@
+ int maxx, maxy;
+ cd_struct* cd;
+ 
++#ifdef GENERATE_RANDOM_TRACK
++#undef GENERATE_RANDOM_TRACK
++#endif
++
++#define GENERATE_RANDOM_TRACK   1+(int)(((float)cd->last_t)*rand()/(RAND_MAX+1.0))
++
+ void tcd_get_cddb( void );
+ 
+ char *play_methods[] =
+@@ -106,6 +112,7 @@
+ 	draw_not_always();
+         t1 = time(NULL);
+         t2 = t1;
++	srand(t1);
+ 	cd->needs_dbwrite=FALSE;
+ 	
+ 	while( !quit )
+@@ -118,7 +125,19 @@
+ 		{
+ 			if( cd->play_method == REPEAT_CD )
+ 				tcd_playtracks( cd, cd->first_t, cd->last_t );
+-		}				                                                        
++		}
++		
++		if (cd->play_method==SHUFFLE && cd->cur_t != cd->shuffle_track) {
++			int t1;
++
++			t1=cd->cur_t;
++			do {
++				t1=GENERATE_RANDOM_TRACK;
++			} while (t1==cd->cur_t);
++			cd->shuffle_track=t1;
++			tcd_playtracks(cd,cd->shuffle_track,cd->last_t);
++		}
++
+ 		if( cd->play_method==REPEAT_TRK && cd->cur_t != cd->repeat_track )
+ 			tcd_playtracks( cd, cd->repeat_track, cd->last_t );
+ 		
+@@ -150,9 +169,20 @@
+ 				break;
+ 			case '=':
+ 			case '+':
+-				if( (cd->cur_t < cd->last_t) && cd->isplayable ) {	
+-					cd->cur_t++;
+-					tcd_playtracks( cd,cd->cur_t, cd->last_t );
++				if( (cd->cur_t < cd->last_t || cd->play_method==SHUFFLE) && cd->isplayable ) {	
++					if (cd->play_method==SHUFFLE) {
++						int t1;
++
++						t1=cd->cur_t;
++						do {
++							t1=GENERATE_RANDOM_TRACK;
++						} while (t1==cd->cur_t);
++						cd->shuffle_track=t1;
++						tcd_playtracks(cd,cd->shuffle_track,cd->last_t);
++					} else {
++						cd->cur_t++;
++						tcd_playtracks( cd,cd->cur_t, cd->last_t );
++					}
+ 					if( cd->play_method==REPEAT_TRK )
+ 						cd->repeat_track = cd->cur_t;
+ 				}
+@@ -160,6 +190,8 @@
+ 			case '-':
+ 			case '_':
+ 				if( (cd->cur_t > cd->first_t) && cd->isplayable ) {
++					if (cd->play_method==SHUFFLE)
++						cd->play_method=NORMAL;
+ 					if( cd->t_sec < 10 )
+ 						cd->cur_t--;
+ 			        	tcd_playtracks( cd,cd->cur_t, cd->last_t );
+@@ -191,10 +223,10 @@
+ 			case 'm':
+ 			case 'M':
+ 				cd->play_method++;
+-				if( cd->play_method > NORMAL )
++				if( cd->play_method > SHUFFLE )
+ 					cd->play_method = REPEAT_CD;
+ 				if( cd->play_method < REPEAT_CD )
+-					cd->play_method = NORMAL;
++					cd->play_method = SHUFFLE;
+ 
+ 				if( cd->play_method == REPEAT_TRK )
+ 					cd->repeat_track = cd->cur_t;
+--- gtcd.c.orig	Fri Jun  5 14:53:24 1998
++++ gtcd.c	Thu Jul 23 10:55:40 1998
+@@ -75,7 +75,12 @@
+ 
+ #define Connect( x,y ) gtk_signal_connect (GTK_OBJECT (x), "clicked", \
+ 	        GTK_SIGNAL_FUNC (callback), (gpointer*)y);
+-      
++
++#ifdef GENERATE_RANDOM_TRACK
++#undef GENERATE_RANDOM_TRACK
++#endif      
++#define GENERATE_RANDOM_TRACK	1+(int)(((float)cd.last_t)*rand()/(RAND_MAX+1.0))
++
+ /* Regular globals */
+ cd_struct cd;
+ int tracklabel_f = 0, titlelabel_f = 0;
+@@ -141,17 +146,32 @@
+ 			cd.repeat_track = cd.cur_t;
+ 			break;
+ 		case NEXT_T:
+-			if( cd.cur_t < cd.last_t ) 
++			if( cd.cur_t < cd.last_t || cd.play_method==SHUFFLE) 
+ 			{
+-				cd.cur_t++;
+-				tcd_playtracks( &cd,cd.cur_t, cd.last_t );
+-				if( cd.play_method==REPEAT_TRK )
++				if (cd.play_method==SHUFFLE) {
++					int t1;
++
++					t1=cd.cur_t;
++					do {
++						t1=GENERATE_RANDOM_TRACK;
++					} while (t1==cd.cur_t);
++					cd.shuffle_track=t1;
++					tcd_playtracks(&cd,cd.shuffle_track,cd.last_t);
++				} else {
++					cd.cur_t++;
++					tcd_playtracks( &cd,cd.cur_t, cd.last_t );
++				}
++
++				if( cd.play_method==REPEAT_TRK ) 
+ 					cd.repeat_track = cd.cur_t;
++
+ 			}
+ 			break;
+ 		case PREV_T:
+                 	if( cd.cur_t > cd.first_t ) 
+                 	{
++				if (cd.play_method==SHUFFLE)
++					cd.play_method=NORMAL;
+ 				if( (cd.t_sec+(cd.t_min*60)) < 10 )
+ 					cd.cur_t--;
+ 	                       	tcd_playtracks( &cd,cd.cur_t, cd.last_t );
+@@ -620,6 +640,17 @@
+ 	}
+ 	tcd_gettime(&cd);
+ 	status_changed();
++
++	if ((cd.play_method==SHUFFLE) && (cd.cur_t != cd.shuffle_track)) {
++		int t1;
++
++		t1=cd.shuffle_track;
++		do {
++			t1=GENERATE_RANDOM_TRACK;
++		} while (t1 == cd.shuffle_track);
++		cd.shuffle_track=t1;
++		tcd_playtracks(&cd,cd.shuffle_track,cd.last_t);
++	}
+ 	if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
+ 		tcd_playtracks( &cd, cd.repeat_track, cd.last_t );
+ 	return 1;
+@@ -703,10 +734,19 @@
+ 			{
+ 			case 1:
+ 				cd.play_method++;
+-				if( cd.play_method > NORMAL )
++				if( cd.play_method > SHUFFLE )
+ 					cd.play_method = 0;
+ 				if( cd.play_method == REPEAT_TRK )
+ 					cd.repeat_track = cd.cur_t;
++				if (cd.play_method==SHUFFLE) {
++					int t1;
++					
++					t1=cd.cur_t;
++					do {
++						t1=GENERATE_RANDOM_TRACK;
++					} while (t1==cd.cur_t);
++					cd.shuffle_track=t1;
++				}
+ #ifdef DEBUG
+ 				g_print( "cd.play_method = %d\n", cd.play_method );
+ #endif
+@@ -884,6 +924,8 @@
+         sprintf( rcfile, "%s/.tcd/gtcdrc", homedir );
+ 	gtk_rc_parse( rcfile );
+ 
++	srand(time(NULL));
++	
+ 	cd.play_method = NORMAL;        
+ 
+ 	load_properties(&props);
+--- linux-cdrom.h.orig	Thu Jul 23 10:13:40 1998
++++ linux-cdrom.h	Thu Jul 23 10:14:16 1998
+@@ -77,6 +77,8 @@
+ 	int play_method;		/* REPEAT_CD, REPEAT_TRK, NORMAL */
+ 	int repeat_track;		/* Contains the currently repeating
+ 					   track. */
++	int shuffle_track;		/* Contains next track for random
++					   mode. */
+ 
+ 	int cur_disc;			/* For changer use */
+ 					   

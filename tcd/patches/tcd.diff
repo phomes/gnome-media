@@ -1,0 +1,12 @@
+diff -ur gnome-media/tcd/tracked.c gnome-media/tcd-fix/tracked.c
+--- gnome-media/tcd/tracked.c	Wed Jul  1 17:13:43 1998
++++ gnome-media/tcd-fix/tracked.c	Mon Aug  3 22:22:11 1998
+@@ -159,7 +159,7 @@
+ 			/* Ugh, nasty if statement. This makes sure that
+ 			   the entered number is within the correct bounds. */
+ 			if( track >= pages[cur_page][1].track && 
+-			    track < pages[cur_page][pages[cur_page][0].num_tracks].track )
++			    track <= pages[cur_page][pages[cur_page][0].num_tracks].track )
+ 			{
+ 				/* Search for the correct track */
+ 				for( i=1; i <= pages[cur_page][0].num_tracks; i++ )
