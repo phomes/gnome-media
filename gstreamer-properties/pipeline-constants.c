@@ -58,6 +58,8 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 #endif
 	{PIPE_TYPE_AUDIOSINK, 0,"OSS - Open Sound System", 
 	 "osssink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
+	{PIPE_TYPE_AUDIOSINK, 0,"Polypaudio Sound Server", 
+	 "polypsink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 	{PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 audiosink_test_pipe, TRUE}
 };
@@ -94,6 +96,8 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
 	 NULL, FALSE},
 #endif
 	{PIPE_TYPE_AUDIOSRC, 0,"OSS - Open Sound System", "osssrc", FALSE,
+	 TEST_PIPE_AUDIOSINK, NULL, FALSE},
+	{PIPE_TYPE_AUDIOSRC, 0,"Polypaudio Sound Server", "polypsrc", FALSE,
 	 TEST_PIPE_AUDIOSINK, NULL, FALSE},
 	{PIPE_TYPE_AUDIOSRC, 0,"Silence", "silence", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
