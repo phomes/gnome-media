@@ -518,7 +518,7 @@ record_sound (void)
 	gint length = 0;
 	
 	gint bits = ESD_BITS16;
-	gint channels = ESD_STEREO;
+	gint esd_channels = ESD_STEREO;
 	gint mode = ESD_STREAM;
 	gint func = ESD_RECORD;
 	esd_format_t format = 0;
@@ -534,14 +534,14 @@ record_sound (void)
 	g_free (tfile);
 
 	/* Set up bits, channels etc after the preferences */
-	if (channels == 1)
-		channels = ESD_MONO;
+	if (esd_channels == 1)
+		esd_channels = ESD_MONO;
 	if (audioformat != 0)
 		bits = ESD_BITS8;
 
 	rate = atoi (samplerate);
 
-	format = bits | channels | mode | func;
+	format = bits | esd_channels | mode | func;
 	sock = esd_record_stream_fallback (format, rate, host, name);
 	
 	if (sock <= 0)
