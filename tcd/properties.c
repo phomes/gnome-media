@@ -389,7 +389,7 @@ GtkWidget *create_status_frame( GtkWidget *box )
 	status_l = gtk_label_new("Status Display");
 	
 	frame = gtk_frame_new("Fonts & Colors");
-
+        
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
 	                                track_l, 0,2,0,1 );
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
@@ -432,7 +432,6 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), props.tooltip );
 
 	ui_frame = gtk_frame_new("General");
-	gtk_container_border_width( GTK_CONTAINER(ui_frame), 5 );
 
 	gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
 		GTK_SIGNAL_FUNC(check_changed_cb), &props.handle );
@@ -515,8 +514,8 @@ void properties_cb( GtkWidget *widget, void *data )
 {
 	GtkWidget *page1, *page2, *label, *page3;
 
-	if( propbox )
-		return;
+/*	if( propbox )
+		return;*/
 
 	load_properties(&props);
 		

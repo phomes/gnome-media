@@ -86,7 +86,7 @@ GtkWidget *row, *vbox, *upper_box, *bottom_box;
 GtkWidget *button_box, *row1, *row2, *row3;
 GtkWidget *tracklabel, *titlelabel, *trackeditor;
 GtkWidget *tracktime_label, *trackcur_label;
-GtkWidget *cdtime_label, *changer_box;
+GtkWidget *cdtime_label, *changer_box, *playbutton;
 GtkWidget *status_table, *status_area, *sep;
 GtkWidget *volume, *window, *aboutbutton, *propsbutton;
 GtkWidget *gotomenu = NULL, *gotobutton, *lowerbox;
@@ -99,9 +99,8 @@ GdkColor darkgrey, timecolor, trackcolor;
 
 GtkTooltips *tooltips;
 
-int timeonly = FALSE, status_height, status_width;
-int configured = FALSE, applet_id;
-guint32 winid;
+int timeonly = FALSE, status_height, status_width, playid=-1;
+int configured = FALSE, old_status=-1;
 tcd_properties props;
 
 /* Prototypes */
@@ -117,7 +116,7 @@ void callback (GtkWidget *widget, gpointer *data)
 		case PLAY:
   			if( cd.sc.cdsc_audiostatus == CDROM_AUDIO_PAUSED )
 	                	tcd_pausecd(&cd);
-        	        else 
+        	       	else 
 				tcd_playtracks( &cd,cd.first_t,cd.last_t );
 			cd.repeat_track = cd.cur_t;
                 	break;
@@ -217,8 +216,10 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
 	button = gtk_button_new();
 	gtk_container_add( GTK_CONTAINER(button), pixmap );
 	gtk_box_pack_start( GTK_BOX (box), button, expand, fill, 0 );
-	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
-	        GTK_SIGNAL_FUNC (callback), (gpointer*)func );
+
+	if( func != -1 )
+		gtk_signal_connect(GTK_OBJECT (button), "clicked", \
+		        GTK_SIGNAL_FUNC (callback), (gpointer*)func );
 	
 	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 
@@ -288,15 +289,24 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 
 GtkWidget* make_row1( void )
 {
-	GtkWidget *box, *handle;
+	GtkWidget *box, *handle, *pixmap;
 	
 	box = gtk_hbox_new( TRUE, 0 );
 	handle = gtk_handle_box_new();
 
-	make_button_with_pixmap( "play", box, PLAY, TRUE, TRUE, TT_PLAY );
-	make_button_with_pixmap( "pause", box, PAUSE, TRUE, TRUE, TT_PAUSE );
+	playbutton = make_button_with_pixmap( "play", box, -1, TRUE, TRUE, TT_PLAY );
+	status_changed();
+
 	make_button_with_pixmap( "stop", box, STOP, TRUE, TRUE, TT_STOP );
 	make_button_with_pixmap( "eject", box, EJECT, TRUE, TRUE, TT_EJECT );
+
+	propsbutton = gtk_button_new();
+	pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
+	gtk_container_add(GTK_CONTAINER(propsbutton), pixmap );
+	gtk_signal_connect(GTK_OBJECT(propsbutton), "clicked",
+		GTK_SIGNAL_FUNC(callback), (gpointer*)PROPS );
+        gtk_box_pack_start(GTK_BOX(box), propsbutton, TRUE, TRUE, 0);
+        gtk_tooltips_set_tip( tooltips, propsbutton, TT_PROPS, "" );
 	
 	if( props.handle )
 	{
@@ -346,14 +356,13 @@ GtkWidget* make_row3( void )
 	trackeditor =make_button_with_pixmap( "edit", box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
 
 	gotobutton = gtk_button_new();
-
 	sprintf( tmp, "tcd/%s.xpm", "goto" );
 	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
 	gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );
         gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
 	gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
 	
-	button = make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
+	make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
 
 	gtk_widget_show_all(box);
 	
@@ -496,10 +505,36 @@ gint slow_timer( gpointer *data )
 		if( cd.play_method == REPEAT_CD )
 		tcd_playtracks( &cd, cd.first_t, cd.last_t );
 	}				                                                        
-	 
 	tcd_gettime(&cd);
 	draw_status();
 	return 1;
+}
+
+gint status_changed(void)
+{
+	if( old_status != cd.sc.cdsc_audiostatus )
+	{
+		GtkWidget *pixmap;
+		char tmp[256];
+	
+		old_status = cd.sc.cdsc_audiostatus;
+ 		sprintf( tmp, "tcd/%s.xpm", 
+ 			(old_status==CDROM_AUDIO_PLAY)?"pause":"play" );
+		
+		gtk_widget_destroy(GTK_BUTTON(playbutton)->child);
+		GTK_BUTTON(playbutton)->child = NULL;
+
+		pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+		gtk_widget_show(pixmap);
+		gtk_container_add( GTK_CONTAINER(playbutton), pixmap );
+		
+		if( playid > 0 )
+			gtk_signal_disconnect(GTK_OBJECT(playbutton), playid);
+		playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
+		        GTK_SIGNAL_FUNC (callback),
+		        (old_status==CDROM_AUDIO_PLAY)?(gpointer*)PAUSE:(gpointer*)PLAY );
+		old_status = cd.sc.cdsc_audiostatus;
+	}
 }
 
 gint volume_changed( GtkWidget *widget, gpointer *data )
@@ -584,6 +619,7 @@ gint fast_timer( gpointer *data )
 		draw_status();
 	}
 	tcd_gettime(&cd);
+	status_changed();
 	if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
 		tcd_playtracks( &cd, cd.repeat_track, cd.last_t );
 	return 1;
@@ -634,30 +670,6 @@ static gint status_expose_event (GtkWidget *widget, GdkEventExpose *event)
 	return FALSE;
 }
 
-void no_buttons( GtkWidget *widget, gpointer *data )
-{
-/*	GtkWidget *win;
-	if( timeonly==FALSE )
-	{
-	        gtk_container_border_width (GTK_CONTAINER (window), 0);
-		gtk_widget_set_usize( status_area, status_width, status_height );
-		gtk_widget_hide( button_box );
-		gtk_widget_hide( lowerbox );
-		gtk_widget_hide( bottom_box );
-		gtk_widget_hide( sep );
-	}
-	else
-	{
-	        gtk_container_border_width (GTK_CONTAINER (window), 5);
-		gtk_widget_show( button_box );
-		gtk_widget_show( lowerbox );
-		gtk_widget_show( bottom_box );
-		gtk_widget_show( sep );
-	}
-	timeonly = ~timeonly;*/
-	properties_cb(NULL, NULL);
-}
-
 static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
 {
 	if( event->type = GDK_BUTTON_PRESS )
@@ -702,7 +714,7 @@ static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
 				break;
 			case 2:
 			case 3:
-				no_buttons(NULL, NULL);
+				about_cb(NULL, NULL);
 				break;
 			}
 		}
@@ -809,25 +821,6 @@ void setup_rows( void )
         gtk_box_pack_start(GTK_BOX(ttbox), titlelabel, TRUE, FALSE, 0);
 
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
-
-	/* About button */
-	aboutbutton = gtk_button_new();
-	pixmap = gnome_pixmap_new_from_file(gnome_pixmap_file("tcd/cdrom.xpm"));
-	gtk_container_add(GTK_CONTAINER(aboutbutton), pixmap );
-	gtk_signal_connect(GTK_OBJECT(aboutbutton), "clicked",
-		GTK_SIGNAL_FUNC(callback), (gpointer*)ABOUT );
-        gtk_box_pack_start(GTK_BOX(bottom_box), aboutbutton, FALSE, FALSE, 0);
-        gtk_tooltips_set_tip( tooltips, aboutbutton, TT_ABOUT, "" );
-
-	/* Property button */        
-	propsbutton = gtk_button_new();
-	pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
-	gtk_container_add(GTK_CONTAINER(propsbutton), pixmap );
-	gtk_signal_connect(GTK_OBJECT(propsbutton), "clicked",
-		GTK_SIGNAL_FUNC(callback), (gpointer*)PROPS );
-        gtk_box_pack_start(GTK_BOX(bottom_box), propsbutton, FALSE, FALSE, 0);
-        gtk_tooltips_set_tip( tooltips, propsbutton, TT_PROPS, "" );
-	                        
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
 	return;

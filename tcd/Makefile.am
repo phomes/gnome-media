@@ -18,7 +18,7 @@ gtcd_SOURCES = 		\
 	gabout.h 	\
 	gcddb.h		\
 	tooltips.h	\
-	properties.c
+	properties.c	
 
 tcd_SOURCES = 		\
 	tcd.c 		\
