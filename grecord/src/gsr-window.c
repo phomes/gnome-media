@@ -1361,11 +1361,10 @@ record_start (gpointer user_data)
 {
 	GSRWindow *window = GSR_WINDOW (user_data);
 
-	if (window->priv->len_secs == 0) {
-		window->priv->get_length_attempts = 16;
-		g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
-	}
-	
+
+	window->priv->get_length_attempts = 16;
+	g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
+
 	CMD_SET_SENSITIVE (window, "MediaStop", "1");
 	CMD_SET_SENSITIVE (window, "MediaPlay", "0");
 	CMD_SET_SENSITIVE (window, "MediaRecord", "0");
