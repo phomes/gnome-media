@@ -552,8 +552,9 @@ init_player (const char *device_override)
 	gtk_box_pack_start (GTK_BOX (top_hbox), display_box, TRUE, TRUE, 0);
 
 	/* Volume slider */
-	gcd->slider = gtk_vscale_new_with_range (-255.0, 0.0, 1.0);
+	gcd->slider = gtk_vscale_new_with_range (0.0, 255.0, 1.0);
 	gtk_scale_set_draw_value (GTK_SCALE (gcd->slider), FALSE);
+	gtk_range_set_inverted(GTK_RANGE(gcd->slider), TRUE);
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
 	
 	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider),

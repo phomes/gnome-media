@@ -1076,8 +1076,7 @@ volume_changed (GtkRange *range,
 	GError *error;
 
 	volume = gtk_range_get_value (range);
-
-	if (gnome_cdrom_set_volume (gcd->cdrom, (int) -volume, &error) == FALSE) {
+	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, &error) == FALSE) {
 		gcd_warning ("Error setting volume: %s", error);
 		g_error_free (error);
 	}
