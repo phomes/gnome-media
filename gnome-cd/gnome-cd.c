@@ -100,8 +100,17 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 		int i;
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
 			char *title;
+			CDDBSlaveClientTrackInfo *info;
 
-			title = g_strdup_printf ("%d - %s", i + 1, gcd->disc_info->track_info[i]->name);
+			info = gcd->disc_info->track_info[i];
+			if (info == NULL) {
+				title = g_strdup_printf ("%d - %s", i + 1,
+							 _("Unknown track"));
+			} else {
+				title = g_strdup_printf ("%d - %s", i + 1,
+							 info->name);
+			}
+			
 			item = gtk_menu_item_new_with_label (title);
 			g_free (title);
 			gtk_widget_show (item);

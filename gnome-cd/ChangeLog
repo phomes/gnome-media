@@ -1,3 +1,12 @@
+2002-04-02 Iain <iain@ximian.com>
+
+	* cddb.c (count_tracks): Count the number of tracks in the info.
+	(get_disc_info): If the number of tracks returned != the requested
+	number, then NULL the info and accept it as bad data.
+
+	* gnome-cd.c (rebuild_track_option_menu): Check that the info is
+	valid before dereferencing.
+
 2002-03-29 Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* solaris-cdrom.c (solaris_cdrom_eject): close the audio device when

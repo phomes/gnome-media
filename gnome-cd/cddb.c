@@ -24,6 +24,19 @@
 static GHashTable *cddb_cache;
 static CDDBSlaveClient *slave = NULL;
 
+static int
+count_tracks (CDDBSlaveClientTrackInfo **info)
+{
+	int i;
+
+	for (i = 0; info[i] != NULL; i++) {
+		;
+	}
+
+	g_print ("number of tracks: %d\n", i);
+	return i;
+}
+
 static void
 get_disc_info (GnomeCD *gcd,
 	       const char *discid)
@@ -42,6 +55,14 @@ get_disc_info (GnomeCD *gcd,
 	info->artist = cddb_slave_client_get_artist (slave, discid);
 	info->track_info = cddb_slave_client_get_tracks (slave, discid);
 
+	g_print ("info->ntracks = %d\n", info->ntracks);
+	if (count_tracks (info->track_info) != info->ntracks) {
+		/* Duff info */
+		cddb_slave_client_free_track_info (info->track_info);
+		info->track_info = NULL;
+		gcd->disc_info = NULL;
+	}
+	
 	gnome_cd_build_track_list_menu (gcd);
 }
 
