@@ -1,5 +1,7 @@
 Audiodir = $(datadir)/apps/Audio
 
+#EXTRA_DIST = README TODO NEWS gmix.desktop
+
 INCLUDES = 				\
 	-I../.. 			\
 	-I$(srcdir)/../..	 	\
@@ -18,5 +20,3 @@ gmix_LDADD = \
         $(X_LIBS) $(x_libs) $(INTLLIBS) $(DL_LIB)
 
 Audio_DATA = gmix.desktop
-
-EXTRA_DIST = README TODO NEWS gmix.desktop
