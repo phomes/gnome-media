@@ -8,18 +8,22 @@
  *
  * Supported sound-drivers:
  * - OSS (only lite checked)
+ * - ALSA driver >0.4.1f, lib >0.4.1d
  *
  * TODO:
- * - ALSA support
  * - /dev/audio (if the admins install GTK and GNOME on our Sparcs...)
  * - other sound systems
  * - you name it...
  * - Animated ramping of mixer sliders to preset values
  * - Load Settings button, several for presets ?
  * - more configuration
+ * - move the sliders in accordance to the information received from
+ *   the ALSA driver when another application adjusts a mixer setting
+ *   (yes ALSA does this, without having to poll the mixer!!)
  *
  * Copyright (C) 1998 Jens Ch. Restemeier <jchrr@hrz.uni-bielefeld.de>
  * Config dialog added by Matt Martin <Matt.Martin@ieee.org>, Sept 1999
+ * ALSA driver by Brian J. Murrell <gnome-alsa@interlinx.bc.ca> Dec 1999
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,10 +53,14 @@
 #include <string.h>
 #include <signal.h>
 #include <ctype.h>
+#ifdef ALSA
+#include <sys/asoundlib.h>
+#else
 #ifdef HAVE_LINUX_SOUNDCARD_H 
 #include <linux/soundcard.h>
 #else 
 #include <machine/soundcard.h>
+#endif
 #endif
 
 #include <gnome.h>
@@ -108,10 +116,24 @@ static GnomeUIInfo main_menu[] = {
 };
 /* End of menus */ 
 
+#ifdef ALSA
+/* stolen from OSS's soundcard.h */
+typedef struct mixer_info
+{
+  char id[16];
+  char name[32];
+  int  modify_counter;
+  int fillers[10];
+} mixer_info;
+#endif
+
 /* 
  * All, that is known about a mixer-device
  */
 typedef struct device_info {
+#ifdef ALSA
+	snd_mixer_t *handle;
+#endif
 	int fd;
 	mixer_info info;
 	int recsrc;	/* current recording-source(s) */
@@ -134,6 +156,9 @@ typedef struct channel_info {
 	/* general info */
 	device_info *device;	/* refferrence back to the device */
 	int channel;		/* which channel of that device am I ? */
+#ifdef ALSA
+	snd_mixer_group_t *mixer_group;
+#endif
 	/* GUI info */
 	char *title; /* or char *titel ? */
 	char *pixmap;
@@ -167,6 +192,29 @@ static const struct poptOption options[] = {
  * only used in the initial configuration.
  * Don't translate the "device_names", because they're used for configuration.
  */
+#ifdef ALSA
+#ifndef GNOME_STOCK_PIXMAP_BLANK
+#define GNOME_STOCK_PIXMAP_BLANK NULL
+#endif
+struct pixmap {
+	char *name;
+	const char *pixmap;
+};
+struct pixmap device_pixmap[] = {
+	"Input Gain", GNOME_STOCK_PIXMAP_BLANK,
+	"PC Speaker", GNOME_STOCK_PIXMAP_VOLUME,
+	"MIC", GNOME_STOCK_PIXMAP_MIC,
+	"Line", GNOME_STOCK_PIXMAP_LINE_IN,
+	"CD", GNOME_STOCK_PIXMAP_CDROM,
+	"Synth", GNOME_STOCK_PIXMAP_BLANK,
+	"PCM", GNOME_STOCK_PIXMAP_BLANK,
+	"Output Gain", GNOME_STOCK_PIXMAP_BLANK,
+	"Treble", GNOME_STOCK_PIXMAP_BLANK,
+	"Bass", GNOME_STOCK_PIXMAP_BLANK,
+	"Master", GNOME_STOCK_PIXMAP_VOLUME,
+	"default", GNOME_STOCK_PIXMAP_BLANK,
+};
+#else
 const char *device_labels[] = SOUND_DEVICE_LABELS;
 const char *device_names[]  = SOUND_DEVICE_NAMES;
 #ifndef GNOME_STOCK_PIXMAP_BLANK
@@ -202,6 +250,7 @@ const char *device_pixmap[] = {
 	GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
 	GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
 };
+#endif
 
 /*
  * GMIX version, for version-checking the config-file
@@ -225,6 +274,98 @@ void init_devices(void);
 void get_one_device_config(gpointer a, gpointer b);
 void put_one_device_config(gpointer a, gpointer b);
 GtkWidget *make_slider_mixer(channel_info *ci);
+
+#ifdef ALSA
+snd_mixer_callbacks_t read_cbs;
+
+static void rebuild_cb(void *data) {
+	fprintf(stderr, "gmix rebuild_cb()\n");
+}
+static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
+	device_info *device=(device_info *)data;
+	int err;
+	snd_mixer_element_info_t info;
+	snd_mixer_element_t element;
+
+	if(cmd != SND_MIXER_READ_ELEMENT_VALUE)
+		return;
+
+	if (snd_mixer_element_has_info(eid) != 1) {
+/*		fprintf(stderr, "no element info\n"); */
+		return;
+	}
+	memset(&info, 0, sizeof(info));
+	info.eid = *eid;
+	if ((err = snd_mixer_element_info_build(device->handle, &info)) < 0) {
+		fprintf(stderr, "element info build error: %s\n", snd_strerror(err));
+		return;
+	}
+	memset(&element, 0, sizeof(element));
+	element.eid = *eid;
+	if ((err = snd_mixer_element_build(device->handle, &element)) < 0) {
+		fprintf(stderr, "element build error: %s\n", snd_strerror(err));
+		return;
+	}
+	if (element.eid.type == SND_MIXER_ETYPE_VOLUME1) {
+#if 0 /* XXX This code should make the slider actually change to the
+		int i;
+		GList *channels=g_list_first(device->channels);
+		for (i=0; i<element.data.volume1.voices_size;
+			 i++, channels = g_list_next(channels)) {
+			channel_info *ci=(channel_info *)channels->data;
+		 value in element.data.volume1.pvoices[0] (left) and
+		 element.data.volume1.pvoices[1] (right).  This way the slider
+		 reflects the value of the item changed in whatever other
+		 applications are manipulating the (hardware) mixer */
+
+			fprintf(stderr, "%d(%d%%) ", element.data.volume1.pvoices[i],
+									   element.data.volume1.pvoices[i] * 100 /
+									   (info.data.volume1.prange[i].max -
+					 					info.data.volume1.prange[i].min));
+			/* This did not seem to work.
+			 * I don't know how "sliders" and "adjustments" and all that goo
+			 * works in GTK+.
+			 */
+			gtk_adjustment_set_value(GTK_ADJUSTMENT(ci->left), (gfloat)(-(
+					element.data.volume1.pvoices[i] * 100 /
+									   (info.data.volume1.prange[i].max -
+					 					info.data.volume1.prange[i].min))));
+		}
+		fprintf(stderr, "\n");
+#endif
+	} else /* XXX ignore silently */
+		fprintf(stderr, "unsupported element.eid.type=%d for %s\n",
+				element.eid.type, element.eid.name);
+	snd_mixer_element_free(&element);
+
+}
+static void group_cb(void *data, int cmd, snd_mixer_gid_t *gid) {
+	fprintf(stderr, "gmix group_cb()\n");
+}
+
+#if 0
+void read_mixer (gpointer a, gpointer b)
+#else
+void read_mixer(gpointer a, gint source, GdkInputCondition condition) 
+#endif
+{
+	device_info *info = (device_info *)a;
+	int err;
+
+	if ((err=snd_mixer_read(info->handle, &read_cbs))<0) {
+		fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+		exit (1);
+	}
+}
+
+#if 0
+gboolean read_mixers ()
+{
+	g_list_foreach(devices, read_mixer, NULL);
+	return TRUE;
+}
+#endif
+#endif
 
 static void error_close_cb(void)
 {
@@ -410,6 +551,110 @@ int main(int argc, char *argv[])
  */
 device_info *open_device(int num)
 {
+#ifdef ALSA
+	device_info *new_device;
+	int device = 0, err; 
+	snd_mixer_info_t info; 
+	snd_mixer_groups_t groups;
+	snd_mixer_gid_t *group;
+	int cnt, chn;
+	/*
+	 * create new device configureation
+	 */
+	new_device = g_new0(device_info, 1);
+	/*
+	 * open the mixer-device
+	 */
+	if ((err=snd_mixer_open(&new_device->handle, num, device)) < 0) { 
+		g_free(new_device);
+		return NULL;
+	} 
+	if ((err=snd_mixer_info(new_device->handle, &info)) < 0) { 
+		fprintf(stderr, "info failed: %s\n", snd_strerror(err));  
+		snd_mixer_close(new_device->handle); 
+		g_free(new_device);
+		return NULL; 
+	} 
+	/*
+	 * mixer-name
+	 */
+	strcpy(new_device->info.name, info.name);
+	if(!isalpha(new_device->info.name[0]))
+		g_snprintf(new_device->info.name, 31, "Card %d", num+1);
+	/* and id */
+	strcpy(new_device->info.id, info.id);
+	/* 
+	 * several bitmasks describing the mixer
+	 */
+	memset(&groups, 0, sizeof(groups));
+	if ((err=snd_mixer_groups(new_device->handle, &groups))<0) {
+		g_free(new_device);
+		return NULL;
+	}
+	groups.pgroups=
+		(snd_mixer_gid_t *)malloc(groups.groups_over*sizeof(snd_mixer_gid_t));
+	if (!groups.pgroups) {
+		g_free(new_device);
+		return NULL;
+	}
+	groups.groups_size=groups.groups_over;
+	groups.groups_over=groups.groups=0;
+	if ((err=snd_mixer_groups(new_device->handle, &groups))<0) {
+		g_free(new_device);
+		free(groups.pgroups);
+		return NULL;
+	}
+	for (cnt=0; cnt<groups.groups; cnt++) {
+		snd_mixer_group_t g;
+
+		group=&groups.pgroups[cnt];
+		new_device->devmask|=(1<<cnt);
+		memset(&g, 0, sizeof(g));
+		g.gid=*group;
+		err=snd_mixer_group_read(new_device->handle, &g);
+		if (g.mute)
+			/* XXX muting is actually done on a channel by channel basis on a
+			 * given group
+			 * gmix is not that sophisticated though... yet
+			 */
+			new_device->mute_bitmask|=(1<<cnt);
+		if (g.capture)
+			/* XXX same for recording sources */
+			new_device->recsrc|=(1<<cnt);
+			
+		if (g.caps & SND_MIXER_GRPCAP_CAPTURE)
+			new_device->recmask|=(1<<cnt);
+		if (g.channels == SND_MIXER_CHN_MASK_STEREO)
+			new_device->stereodevs|=(1<<cnt);
+    	/*
+    	 * get current volume
+    	 */
+		for (chn = 0; chn <= SND_MIXER_CHN_LAST; chn++) {
+			if (!(g.channels & (1<<chn)))
+				continue;
+			if ((1<<chn) & SND_MIXER_CHN_MASK_FRONT_LEFT)
+				new_device->volume_left[cnt]=
+					(g.volume.values[chn] * 100 / (g.max - g.min));
+			else if ((1<<chn) & SND_MIXER_CHN_MASK_FRONT_RIGHT)
+				new_device->volume_right[cnt]=
+					(g.volume.values[chn] * 100 / (g.max - g.min));
+			else
+				fprintf(stderr, "Unhandled channel on soundcard: %s\n",
+						snd_mixer_channel_name(chn));
+		}
+	}
+	free(groups.pgroups);
+	new_device->lock_bitmask=new_device->stereodevs;	/* all locked */
+	new_device->enabled_bitmask=new_device->devmask;	/* all enabled */
+	
+	memset(&read_cbs, 0, sizeof(read_cbs));
+	read_cbs.private_data=new_device;
+	read_cbs.rebuild=rebuild_cb;
+	read_cbs.element=element_cb;
+	read_cbs.group=group_cb;
+	gdk_input_add(snd_mixer_file_descriptor(new_device->handle), GDK_INPUT_READ,
+				  read_mixer, new_device);
+#else
 	device_info *new_device;
 	char device_name[255];
 	int res, ver, cnt;
@@ -481,6 +726,7 @@ device_info *open_device(int num)
 			}
 		}
 	}
+#endif
 #if 0
 	/*
 	 * print debug-information
@@ -515,6 +761,48 @@ GList *make_channels(device_info *device)
 {
 	int i;
 	GList *channels;
+#ifdef ALSA
+	int err;
+	snd_mixer_groups_t groups;
+	channels=NULL;
+	memset(&groups, 0, sizeof(groups));
+	if ((err=snd_mixer_groups(device->handle, &groups))<0)
+		return NULL;
+	groups.pgroups=
+		(snd_mixer_gid_t *)malloc(groups.groups_over*sizeof(snd_mixer_gid_t));
+	if (!groups.pgroups)
+		return NULL;
+	groups.groups_size=groups.groups_over;
+	groups.groups_over=groups.groups=0;
+	if ((err=snd_mixer_groups(device->handle, &groups))<0) {
+		free(groups.pgroups);
+		return NULL;
+	}
+	for (i=0; i<groups.groups; i++) {
+		int j;
+		channel_info *new_channel;
+		snd_mixer_group_t *g;
+		g=(snd_mixer_group_t *)calloc(1, sizeof(snd_mixer_group_t));
+		g->gid=groups.pgroups[i];
+		if ((err=snd_mixer_group_read(device->handle, g)<0)) {
+			fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+			free(groups.pgroups);
+			return NULL;
+		}
+		new_channel=(channel_info *)malloc(sizeof(channel_info));
+		new_channel->mixer_group=g;
+		new_channel->device=device;
+		new_channel->channel=i;
+		/* find the pixmap for this group */
+		for (j=0; strcmp(device_pixmap[j].name, "default")!=0 &&
+				  strcmp(device_pixmap[j].name, g->gid.name)!=0; j++);
+		new_channel->pixmap = g_strdup (device_pixmap[j].pixmap);
+		new_channel->title= g_strdup(groups.pgroups[i].name);
+		new_channel->passive=0;
+		channels=g_list_append(channels, new_channel);
+	}
+	free(groups.pgroups);
+#else
 	channels=NULL;
 	for (i=0; i<SOUND_MIXER_NRDEVICES; i++) {
 		if ((device->devmask | device->recmask) & (1<<i)) {
@@ -528,6 +816,7 @@ GList *make_channels(device_info *device)
 			channels=g_list_append(channels, new_channel);
 		}
 	}
+#endif
 	return channels;
 }
 
@@ -546,10 +835,24 @@ void scan_devices(void)
 	num_mixers=cnt-1;
 }
 
+#ifdef ALSA
+void free_one_channel(gpointer a, gpointer b)
+{
+	channel_info *chan = (channel_info *)a;
+	free(chan->mixer_group);
+}
+#endif
+
 void free_one_device(gpointer a, gpointer b)
 {
 	device_info *info = (device_info *)a;
+#ifdef ALSA
+	snd_mixer_close(info->handle);
+	g_list_foreach(info->channels, free_one_channel, NULL);
+#else
 	close(info->fd);
+#endif
+	g_list_free(info->channels);
 }
 
 void free_devices(void)
@@ -560,10 +863,39 @@ void free_devices(void)
 
 void init_one_device(gpointer a, gpointer b)
 {
+	device_info *info = (device_info *)a;
+#ifdef ALSA
+	GList *p;
+#else
 	unsigned long vol;
+#endif
 	int c;
 	
-	device_info *info = (device_info *)a;
+#ifdef ALSA
+	for (p=g_list_first(info->channels); p; p=g_list_next(p)) {
+		channel_info *channel = (channel_info *)p->data;
+		snd_mixer_group_t *g=channel->mixer_group;
+		c = channel->channel;
+		if (info->devmask & (1<<c)) {
+			int err;
+			if (info->mute_bitmask & (1<<c))
+				g->mute=SND_MIXER_CHN_MASK_FRONT_LEFT+
+						SND_MIXER_CHN_MASK_FRONT_RIGHT;
+			else
+				g->mute=0;
+			while ((err=snd_mixer_group_write(info->handle, g))<0 && err==-EBUSY)
+				if ((err=snd_mixer_read(info->handle, &read_cbs))<0) {
+					fprintf(stderr, "error reading group: %s\n",
+							snd_strerror(err));
+					exit (1);
+				}
+			if (err<0) {
+				fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+				exit (1);
+			}
+		}
+	}
+#else
 	ioctl(info->fd, SOUND_MIXER_WRITE_RECSRC, &info->recsrc);
 
 	for (c=0; c<SOUND_MIXER_NRDEVICES; c++) {
@@ -577,6 +909,7 @@ void init_one_device(gpointer a, gpointer b)
 			ioctl(info->fd, MIXER_WRITE(c), &vol);
 		}
 	}
+#endif
 }
 
 void init_devices(void)
@@ -592,6 +925,37 @@ void get_one_device_config(gpointer a, gpointer b)
 	 * restore mixer-configuration
 	 */ 
 	char name[255];
+#ifdef ALSA
+	GList *p;
+	for (p=g_list_first(info->channels); p; p=g_list_next(p)) {
+		channel_info *channel = (channel_info *)p->data;
+		cc=channel->channel;
+		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/mute=%s", info->info.id,\
+				channel->title,\
+				(info->mute_bitmask & (1<<cc))?"true":"false");
+			info->mute_bitmask&=~(1<<cc);
+			info->mute_bitmask|= gnome_config_get_bool(name) ? (1<<cc) : 0;
+			if (info->stereodevs & (1<<cc)) {
+				sprintf(name, "/gmix/%s_%s/lock=%s", info->info.id, channel->title, (info->lock_bitmask & (1<<cc))?"true":"false");
+				info->lock_bitmask&=~(1<<cc);
+				info->lock_bitmask|=gnome_config_get_bool(name) ? (1<<cc) : 0;
+				sprintf(name, "/gmix/%s_%s/volume_left=%i", info->info.id, channel->title, info->volume_left[cc]);
+				info->volume_left[cc]=gnome_config_get_int(name);
+				sprintf(name, "/gmix/%s_%s/volume_right=%i", info->info.id, channel->title, info->volume_right[cc]);
+				info->volume_right[cc]=gnome_config_get_int(name);
+			} else {
+				sprintf(name, "/gmix/%s_%s/volume=%i", info->info.id, channel->title, info->volume_left[cc]);
+				info->volume_left[cc]=gnome_config_get_int(name);
+			}
+		}
+		if (info->recmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/recsrc=%s", info->info.id, channel->title, (info->recsrc & (1<<cc))?"true":"false");
+			info->recsrc&=~(1<<cc);
+			info->recsrc|=gnome_config_get_bool(name) ? (1<<cc) : 0;
+		}
+	}
+#else
 	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
 			sprintf(name, "/gmix/%s_%s/mute=%s", info->info.id,\
@@ -618,6 +982,7 @@ void get_one_device_config(gpointer a, gpointer b)
 			info->recsrc|=gnome_config_get_bool(name) ? (1<<cc) : 0;
 		}
 	}
+#endif
 }
 
 void get_device_config(void)
@@ -633,6 +998,32 @@ void put_one_device_config(gpointer a, gpointer b)
 	 * save mixer-configuration
 	 */ 
 	char name[255];
+#ifdef ALSA
+	GList *p;
+	for (p=g_list_first(info->channels); p; p=g_list_next(p)) {
+		channel_info *channel = (channel_info *)p->data;
+		cc=channel->channel;
+		if (info->devmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/mute", info->info.id, channel->title);
+			gnome_config_set_bool(name, (info->mute_bitmask & (1<<cc))!=0);
+			if (info->stereodevs & (1<<cc)) {
+				sprintf(name, "/gmix/%s_%s/lock", info->info.id, channel->title);
+				gnome_config_set_bool(name, (info->lock_bitmask & (1<<cc))!=0);
+				sprintf(name, "/gmix/%s_%s/volume_left", info->info.id, channel->title);
+				gnome_config_set_int(name, info->volume_left[cc]);
+				sprintf(name, "/gmix/%s_%s/volume_right", info->info.id, channel->title);
+				gnome_config_set_int(name, info->volume_right[cc]);
+			} else {
+				sprintf(name, "/gmix/%s_%s/volume", info->info.id, channel->title);
+				gnome_config_set_int(name, info->volume_left[cc]);
+			}
+		}
+		if (info->recmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/recsrc", info->info.id, channel->title);
+			gnome_config_set_bool(name, (info->recsrc & (1<<cc))!=0);
+		}
+	}
+#else
 	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
 			sprintf(name, "/gmix/%s_%s/mute", info->info.id, device_names[cc]);
@@ -654,6 +1045,7 @@ void put_one_device_config(gpointer a, gpointer b)
 			gnome_config_set_bool(name, (info->recsrc & (1<<cc))!=0);
 		}
 	}
+#endif
 }
 
 void put_device_config(void)
@@ -663,10 +1055,10 @@ void put_device_config(void)
 
 void get_gui_config(void)
 {
-	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init");
-	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=false");
-	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=true");
-	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=true");
+	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init=1");
+	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=0");
+	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=1");
+	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=1");
 }
 
 void put_gui_config(void)
@@ -690,7 +1082,11 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 
 	if (di->devmask & (1<<ci->channel)) {
 	/* Left channel, display only if we have mixable device */
+#ifdef ALSA
+		ci->left=gtk_adjustment_new (-ci->device->volume_left[ci->channel], -100.0, 0.0, 1.0, 1.0, 0.0);
+#else
 		ci->left=gtk_adjustment_new (-ci->device->volume_left[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
+#endif
 		gtk_signal_connect(GTK_OBJECT(ci->left), "value_changed", (GtkSignalFunc)adj_left_cb, (gpointer)ci);
 		scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->left));
 		gtk_range_set_update_policy (GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
@@ -699,7 +1095,11 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 		gtk_widget_show (scale);
 		if (di->stereodevs & (1<<ci->channel)) {
 			/* Right channel, display only if we have stereo */
+#ifdef ALSA
+			ci->right=gtk_adjustment_new (-ci->device->volume_right[ci->channel], -100.0, 0.0, 1.0, 1.0, 0.0);
+#else
 			ci->right=gtk_adjustment_new (-ci->device->volume_right[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
+#endif
 			gtk_signal_connect(GTK_OBJECT(ci->right), "value_changed", (GtkSignalFunc)adj_right_cb, (gpointer)ci);
 			scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->right));
 			gtk_range_set_update_policy (GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
@@ -876,38 +1276,96 @@ void lock_cb (GtkWidget *widget, channel_info *data)
 void mute_cb (GtkWidget *widget, channel_info *data)
 {
 	unsigned long vol;
+#ifdef ALSA
+	int err;
+	snd_mixer_group_t *g=data->mixer_group;
+#endif
 	if (data==NULL) return;
 	data->device->mute_bitmask&=~(1<<data->channel);
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
 		data->device->mute_bitmask|=1<<data->channel;
 		vol=0;
+#ifdef ALSA
+		g->mute=SND_MIXER_CHN_MASK_FRONT_LEFT+SND_MIXER_CHN_MASK_FRONT_RIGHT;
+		while ((err=snd_mixer_group_write(data->device->handle, g))<0 &&
+			   err==-EBUSY)
+			if ((err=snd_mixer_read(data->device->handle, &read_cbs))<0) {
+				fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+				exit (1);
+			}
+		if (err<0) {
+			fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+			exit (1);
+		}
+#else
 		ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
+#endif
 	} else {
+#ifdef ALSA
+		g->mute=0;
+		while ((err=snd_mixer_group_write(data->device->handle, g))<0 && err==-EBUSY)
+			if ((err=snd_mixer_read(data->device->handle, &read_cbs))<0) {
+				fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+				exit (1);
+			}
+		if (err<0) {
+			fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+			exit (1);
+		}
+#else
 		vol=data->device->volume_left[data->channel];
 		vol|=data->device->volume_right[data->channel] << 8;
 		ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
+#endif
 	}
 }
 
 void rec_cb(GtkWidget *widget, channel_info *data)
 {
 	GList *c;
+#ifdef ALSA
+	snd_mixer_group_t *g=data->mixer_group;
+	int err;
+#endif
 	if (data==NULL) return;
 	if (data->passive) return;
 
 	data->device->recsrc&=~(1<<data->channel);
 
 	if (GTK_TOGGLE_BUTTON (data->rec)->active) {
+#ifdef ALSA
+		if (g->caps & SND_MIXER_GRPCAP_EXCL_CAPTURE) {
+#else
 		if (data->device->caps & SOUND_CAP_EXCL_INPUT) {
+			/* XXX not sure if this is how this works because I don't have a
+			 *     mixer that has "exclusive capture" devices
+			 */
+#endif
 			data->device->recsrc=1<<data->channel;
 		} else {
 			data->device->recsrc|=(1<<data->channel);
 		}
 	}
 
+#ifdef ALSA
+	if ((data->device->recsrc & (1<<data->channel))!=0)
+		g->capture = g->channels;
+	else
+		g->capture = 0;
+	while ((err=snd_mixer_group_write(data->device->handle, g))<0 && err==-EBUSY)
+		if ((err=snd_mixer_read(data->device->handle, &read_cbs))<0) {
+			fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+			exit (1);
+		}
+	if (err<0) {
+		fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+		exit (1);
+	}
+#else
 	ioctl(data->device->fd,SOUND_MIXER_WRITE_RECSRC, &data->device->recsrc);
 	
 	ioctl(data->device->fd,SOUND_MIXER_READ_RECSRC, &data->device->recsrc);
+#endif
 
 	for (c=data->device->channels; c; c=c->next) {
 		channel_info *info;
@@ -918,12 +1376,15 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->recsrc & (1<<info->channel))!=0);
 		info->passive=0;
 	}
-
 }
 
 void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 {
 	unsigned long vol;
+#ifdef ALSA
+	int err;
+	snd_mixer_group_t *g=data->mixer_group;
+#endif
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -940,9 +1401,26 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 	} else {
 		data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->left)->value;
 	}
+#ifdef ALSA
+	vol=g->max*data->device->volume_left[data->channel]/100;
+	/* avoid writing if there is no change */
+	if (g->volume.values[SND_MIXER_CHN_FRONT_LEFT] != vol) {
+		g->volume.values[SND_MIXER_CHN_FRONT_LEFT] = vol;
+		while ((err=snd_mixer_group_write(data->device->handle, g))<0 && err==-EBUSY)
+			if ((err=snd_mixer_read(data->device->handle, &read_cbs))<0) {
+				fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+				exit (1);
+			}
+		if (err<0) {
+			fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+			exit (1);
+		}
+	}
+#else
 	vol=data->device->volume_left[data->channel];
 	vol|=data->device->volume_right[data->channel] << 8;
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
+#endif
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data->mute), FALSE);
@@ -952,6 +1430,10 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 {
 	unsigned long vol;
+#ifdef ALSA
+	int err;
+	snd_mixer_group_t *g=data->mixer_group;
+#endif
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -968,9 +1450,26 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	} else {
 		data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->left)->value;
 	}
+#ifdef ALSA
+	vol=g->max*data->device->volume_right[data->channel]/100;
+	/* avoid writing if there is no change */
+	if (g->volume.values[SND_MIXER_CHN_FRONT_RIGHT] != vol) {
+		g->volume.values[SND_MIXER_CHN_FRONT_RIGHT] = vol;
+		while ((err=snd_mixer_group_write(data->device->handle, g))<0 && err==-EBUSY)
+			if ((err=snd_mixer_read(data->device->handle, &read_cbs))<0) {
+				fprintf(stderr, "error reading group: %s\n", snd_strerror(err));
+				exit (1);
+			}
+		if (err<0) {
+			fprintf(stderr, "error writing group: %s\n", snd_strerror(err));
+			exit (1);
+		}
+	}
+#else
 	vol=data->device->volume_left[data->channel];
 	vol|=data->device->volume_right[data->channel] << 8;
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
+#endif
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data->lock), FALSE);
