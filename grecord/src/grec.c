@@ -200,7 +200,7 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 		on_stop_activate_cb (widget, data);
 
 	if (file_changed) {
-		choice = save_dont_or_cancel ();
+		choice = save_dont_or_cancel (_("Cancel"));
 		if (choice == SAVE) {
 			save_dialog ();
 			return;
@@ -273,7 +273,7 @@ on_open_activate_cb (GtkWidget* widget, gpointer data)
 	}
 
 	if (file_changed) {
-		choice = save_dont_or_cancel ();
+		choice = save_dont_or_cancel (_("Cancel open"));
 		if (choice == SAVE) {
 			save_dialog ();
 			return;
@@ -333,7 +333,7 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 		on_stop_activate_cb (widget, data);
 
 	if (file_changed) {
-		choice = save_dont_or_cancel ();
+		choice = save_dont_or_cancel (_("Don't quit"));
 		if (choice == SAVE) {
 			save_dialog ();
 			return;
@@ -730,16 +730,29 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 }
 
 gint
-save_dont_or_cancel (void)
+save_dont_or_cancel (const char *quit_text)
 {
-	GtkWidget* mess = gnome_message_box_new (_("File not saved. Do you want to save it?"),
-						 GNOME_MESSAGE_BOX_QUESTION,
-						 GNOME_STOCK_BUTTON_YES,
-						 GNOME_STOCK_BUTTON_NO,
-						 GNOME_STOCK_BUTTON_CANCEL,
-						 NULL);
+	int result;
+	
+	GtkWidget *mess = gtk_message_dialog_new (NULL, 0,
+						  GTK_MESSAGE_WARNING,
+						  GTK_BUTTONS_NONE,
+						  _("<b>Save the changes to this file?</b>\nIf you don't save, these changes will be discarded."));
+	gtk_dialog_add_buttons (GTK_DIALOG (mess),
+				_("Don't save"), DONTSAVE,
+				quit_text, CANCEL,
+				_("Save"), SAVE, NULL);
+	gtk_dialog_set_default_response (GTK_DIALOG (mess), 0);
+	gtk_window_set_title (GTK_WINDOW (mess), _("Save file?"));
 
-	return (gnome_dialog_run (GNOME_DIALOG (mess)));
+	/* This is a bad hack, it's marked private, but tough */
+	gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), TRUE);
+	gtk_label_set_line_wrap (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), FALSE);
+	gtk_label_set_justify (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), GTK_JUSTIFY_LEFT);
+	
+	result = gtk_dialog_run (GTK_DIALOG (mess));
+	gtk_widget_destroy (mess);
+	return result;
 }
 
 gboolean

@@ -45,7 +45,7 @@ void record_sound (void);
 void play_sound (const gchar* filename);
 void store_filename (GtkFileSelection* selector, gpointer file_selector);
 void save_filename (GtkFileSelection* selector, gpointer file_selector);
-gint save_dont_or_cancel (void);
+gint save_dont_or_cancel (const char *quit_text);
 gboolean save_sound_file (const gchar* filename);
 guint UpdateStatusbarPlay (gboolean begin);
 guint UpdateStatusbarRecord (gboolean begin);

@@ -1,3 +1,11 @@
+2002-03-03  Iain <iain@ximian.com>
+
+	* src/grec.c (on_new_activate_cb): Update for new signature.
+	(on_open_activate_cb): Ditto.
+	(on_exit_activate_cb): Ditto.
+	(save_dont_or_cancel): Rewrite using GtkMessageDialog so that the
+	buttons and text are the same as the HIG would like us to be.
+
 2002-02-09  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* src/gui.c: remove Exit from toolbar
