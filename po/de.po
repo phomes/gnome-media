@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52pre1\n"
-"POT-Creation-Date: 2000-03-26 19:49+0200\n"
-"PO-Revision-Date: 2000-03-26 20:00+02:00\n"
+"POT-Creation-Date: 2000-04-16 05:46+0200\n"
+"PO-Revision-Date: 2000-04-16 06:15+02:00\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Inaktiv. %s\n"
 
 #: gmix/gmix.c:104
 msgid "_About"
-msgstr "_Info"
+msgstr "_Info..."
 
 #: gmix/gmix.c:110
 msgid "_Preferences..."
@@ -129,7 +129,7 @@ msgstr "Mischpult-Icons verwenden"
 msgid "Use mixer labels"
 msgstr "Mischpult-Beschriftungen verwenden"
 
-#: gmix/gmix.c:485 tcd/gtcd.c:321 tcd/prefs.c:596
+#: gmix/gmix.c:485 tcd/gtcd.c:363 tcd/prefs.c:596
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -168,7 +168,7 @@ msgstr "Tiefen"
 
 #: gmix/device_labels_linux.h:7
 msgid "Trebl"
-msgstr ""
+msgstr "Höhen"
 
 #: gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -192,7 +192,7 @@ msgstr "Mikro"
 
 #: gmix/device_labels_linux.h:8
 msgid "CD   "
-msgstr ""
+msgstr "CD   "
 
 #: gmix/device_labels_linux.h:8
 msgid "Mix  "
@@ -252,7 +252,7 @@ msgstr ""
 
 #: gmix/device_labels_linux.h:10
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: gmix/device_labels_linux.h:10
 msgid "Monitor"
@@ -266,7 +266,10 @@ msgstr "TCD - Der GNOME CD-Player"
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
-msgstr "GTCD ist der CD-Player des GNOME Projects. Der Player beinhaltet CDDB-Unterstützung. Bitte lesen Sie die `Thanks'-Datei in der Distribution; in dieser Datei finden Sie weitere Danksagungen."
+msgstr ""
+"GTCD ist der CD-Player des GNOME Projects. Der Player beinhaltet "
+"CDDB-Unterstützung. Bitte lesen Sie die `Thanks'-Datei in der Distribution; "
+"in dieser Datei finden Sie weitere Danksagungen."
 
 #: tcd/cddb_props.c:69
 msgid "Disc ID"
@@ -390,61 +393,61 @@ msgstr "normal"
 msgid "random"
 msgstr "zufall"
 
-#: tcd/gtcd.c:320
-msgid "Open track editor"
-msgstr "Titeleditor öffnen"
-
-#: tcd/gtcd.c:322 tcd/popup.c:24
-msgid "Quit"
-msgstr "Beenden"
-
 #. TOP ROW
-#: tcd/gtcd.c:342
+#: tcd/gtcd.c:323
 msgid "Play/Pause"
 msgstr "Start/Pause"
 
-#: tcd/gtcd.c:346 tcd/popup.c:16
+#: tcd/gtcd.c:327 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
 
-#: tcd/gtcd.c:347 tcd/popup.c:17
+#: tcd/gtcd.c:328 tcd/popup.c:17
 msgid "Eject"
 msgstr "Auswurf"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:354 tcd/gtcd.c:362
+#: tcd/gtcd.c:335 tcd/gtcd.c:343
 msgid "Skip backwards"
 msgstr "Titel rückwärts"
 
-#: tcd/gtcd.c:355 tcd/gtcd.c:363
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip forwards"
 msgstr "Titel vorwärts"
 
-#: tcd/gtcd.c:514 tcd/gtcd.c:515 tcd/gtcd.c:516
+#: tcd/gtcd.c:362
+msgid "Open track editor"
+msgstr "Titeleditor öffnen"
+
+#: tcd/gtcd.c:364 tcd/popup.c:24
+msgid "Quit"
+msgstr "Beenden"
+
+#: tcd/gtcd.c:502 tcd/gtcd.c:503 tcd/gtcd.c:504
 msgid "(Scanning)"
 msgstr "(Suche)"
 
-#: tcd/gtcd.c:538
+#: tcd/gtcd.c:526
 msgid "No Disc"
 msgstr "Keine CD"
 
-#: tcd/gtcd.c:573
+#: tcd/gtcd.c:561
 msgid "Error"
 msgstr "Fehler"
 
-#: tcd/gtcd.c:848
+#: tcd/gtcd.c:836
 msgid "Volume"
 msgstr "Lautstärke"
 
-#: tcd/gtcd.c:1020
+#: tcd/gtcd.c:1008
 msgid "Filename of the CD device"
 msgstr "Dateiname des CD-Geräts"
 
-#: tcd/gtcd.c:1020
+#: tcd/gtcd.c:1008
 msgid "FILE"
 msgstr "DATEI"
 
-#: tcd/gtcd.c:1022
+#: tcd/gtcd.c:1010
 msgid "Play CD on startup"
 msgstr "Beim Start CD abspielen"
 
@@ -561,7 +564,7 @@ msgstr "Hilfe"
 
 #: tcd/popup.c:22
 msgid "About"
-msgstr "Info"
+msgstr "Info..."
 
 #. do nothing
 #: tcd/prefs.c:184 tcd/prefs.c:239
@@ -607,7 +610,7 @@ msgstr "Schriftart ändern"
 #. show handles
 #: tcd/prefs.c:359
 msgid "Show handles (restart required)"
-msgstr "Griffe anzeigen (Neustart benötigt)"
+msgstr "Griffe anzeigen (Neustart notwendig)"
 
 #. show tooltips
 #: tcd/prefs.c:366
