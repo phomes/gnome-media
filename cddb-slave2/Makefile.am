@@ -72,7 +72,7 @@ cddb_slave2_properties_SOURCES = 		\
 
 cddb_slave2_query_LDADD = $(CDDBSLAVE_LIBS) libcddb-slave2.la
 cddb_slave2_query_SOURCES = cddb-slave2-query.c
-	
+
 ### headers we won't install
 
 noinst_HEADERS = \
@@ -145,7 +145,7 @@ $(server_in_files:.server.in.in=.server.in): $(server_in_files)
 @INTLTOOL_SCHEMAS_RULE@
 
 ### desktop files
-desktopdir = $(datadir)/control-center-2.0/capplets
+desktopdir = $(datadir)/applications
 Desktop_in_files = cddb-slave.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
