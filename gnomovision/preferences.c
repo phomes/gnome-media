@@ -119,7 +119,7 @@ static void done_tuner_settings(void)
 }
 
 
-static void colour_setting(GtkWidget *colour_widget)
+void colour_setting(GtkWidget *colour_widget)
 {
 	GtkWidget *vbox, *button;
 	

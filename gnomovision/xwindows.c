@@ -30,7 +30,7 @@ int video_ll_mapping(struct video_buffer *vb)
 	disp=GDK_DISPLAY();
 
 	if (XF86DGAQueryVersion(disp, &major, &minor)) 
-		XF86DGAGetVideoLL(disp, DefaultScreen(disp), &(vb->base),
+		XF86DGAGetVideoLL(disp, DefaultScreen(disp), (void *)&(vb->base),
 		&rwidth, &bank, &ram);
 	else 
 	{

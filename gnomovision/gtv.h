@@ -4,7 +4,11 @@
 #include <gdk/gdk.h>
 #include <gdk_imlib.h>
 #include <gtk/gtkwidget.h>
-#include <linux/types.h>
+#include <sys/types.h>
+typedef guint32 __u32;
+typedef guint16 __u16;
+typedef guint8 __u8;
+typedef gint32 __s32;
 #include <linux/videodev.h>
 
 #ifdef __cplusplus

@@ -3,13 +3,12 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <linux/types.h>
-#include <linux/videodev.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/xf86dga.h>
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
 #include "gtv.h"
+#include <linux/videodev.h>
 #include <gnome.h>
 #include <errno.h>
 #include <string.h>
@@ -446,7 +445,7 @@ gtk_tv_show(GtkTV *tv)
 {
   tv->blocking_events = 0;
   if(parent_class->show)
-    parent_class->show(tv);
+    parent_class->show(GTK_WIDGET(tv));
 }
 
 static void
@@ -454,7 +453,7 @@ gtk_tv_hide(GtkTV *tv)
 {
   tv->blocking_events = 1;
   if(parent_class->hide)
-    parent_class->hide(tv);
+    parent_class->hide(GTK_WIDGET(tv));
 }
 
 static void
@@ -472,7 +471,7 @@ gtk_tv_map(GtkTV *tv)
 	g_warning("VIDIOCCAPTURE failed in map\n");
     }
   if(parent_class->map)
-    parent_class->map(tv);
+    parent_class->map(GTK_WIDGET(tv));
 }
 
 static void
@@ -488,7 +487,7 @@ gtk_tv_unmap(GtkTV *tv)
 	g_warning("VIDIOCCAPTURE failed in unmap\n");
     }
   if(parent_class->unmap)
-    parent_class->unmap(tv);
+    parent_class->unmap(GTK_WIDGET(tv));
 }
 
 /* Copied almost directly from xtvscreen */
@@ -1097,4 +1096,13 @@ gtk_tv_set_picture(GtkTV *tv,
 #undef DOVAR
 
   g_return_if_fail(ioctl(tv->fd, VIDIOCSPICT, &tv->vpic) == 0);
+}
+
+void
+gtk_tv_set_frequency(GtkTV *tv, gulong frequency)
+{
+  g_return_if_fail(tv != NULL);
+  g_return_if_fail(GTK_IS_TV(tv));
+
+  ioctl(tv->fd, VIDIOCSFREQ, &frequency);
 }

@@ -75,6 +75,7 @@ static GdkColor chroma_colour;
 static int widescreen=0;
 static int widescreen_h;
 
+GtkWidgetClass *parent_class;
 /*
  *	TV card driving.
  */
@@ -168,7 +169,8 @@ gtk_tv_get_type(void)
         (GtkArgSetFunc) NULL,
         (GtkArgGetFunc) NULL,
       };
-
+      
+      parent_class = gtk_type_class(gtk_widget_get_type());
       tv_type = gtk_type_unique (gtk_widget_get_type (), &tv_info);
     }
 

@@ -1209,11 +1209,13 @@ void make_tv_set(void)
 	 	
 	hbox = tv = gtk_event_box_new();
 	gtk_widget_set_usize(tv, xsize, ysize);
+#if 0
 	gtk_signal_connect(GTK_OBJECT(tv), "drag_request_event",
 			   GTK_SIGNAL_FUNC(dnd_drag_request),
 			   NULL);
 	gtk_widget_dnd_drag_set(GTK_WIDGET(tv), TRUE, (char **)&possible_drag_type,
 				1);
+#endif
 	
 	painter=gtk_drawing_area_new();
 	gtk_drawing_area_size(GTK_DRAWING_AREA(painter), xsize, ysize);
@@ -1226,7 +1228,6 @@ void make_tv_set(void)
 		painting_event, 0);
 	gtk_signal_connect(GTK_OBJECT(painter), "other_event", (GtkSignalFunc)
 		painting_event, 0);
-	gtk_widget_show(painter);
 	gtk_container_add(GTK_CONTAINER(tv), painter);
 	
 
@@ -1271,6 +1272,7 @@ void make_tv_set(void)
 
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE/*TRUE*/, FALSE, 0);
 	
+	gtk_widget_show(painter);
 	gtk_widget_show(hbox);
 	gtk_widget_show(vbox);
 	gtk_widget_show(window);

@@ -20,7 +20,7 @@ tgtv_SOURCES = \
 #preferences_SOURCES = \
 #	preferences.c
 
-LINK_FLAGS  = -lXxf86dga $(GNOMEUI_LIBS) $(GNOME_LIBDIR)
+LINK_FLAGS  = -lXxf86dga $(GNOME_LIBDIR) $(GNOMEUI_LIBS)
 
 tvset_LDADD = $(LINK_FLAGS)
 
