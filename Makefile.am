@@ -6,19 +6,13 @@ else
 gnomovision =
 endif
 
-if FALSE
-extace = extace
-else
-extace =
-endif
-
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_TCD@		\
 	@PROGRAMS_VUMETER@	\
+	@PROGRAMS_EXTACE@	\
 	cddbslave		\
-	$(gnomovision)		\
-	$(extace)
+	$(gnomovision)
 
 EXTRA_DIST = gnome-media.spec configure
 

@@ -138,7 +138,7 @@ GetFFT(void)
 
    if (mode==2) return 1;
    /* do the FFT */
-   gsl_fft_real_radix2(audata, NSAMP);
+   gsl_fft_real_radix2(audata, 1, NSAMP);
    aufft[0] = (audata[0]*audata[0])/(NSAMP*NSAMP);
    aufft[NSAMP/2] = (audata[NSAMP/2]*audata[NSAMP/2])/(NSAMP*NSAMP);
    /* take the log */

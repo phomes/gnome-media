@@ -14,8 +14,7 @@ extace_SOURCES =	\
 	extace.c
 
 extace_LDADD = \
-	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) -lesd \
-	-lgslfft -lgslerr
+	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) -lgsl $(ESD_LIBS)
 
 EXTRA_DIST = extace.desktop README NEWS TODO
 
