@@ -4,12 +4,13 @@
 # Sergey Panov <sipan@mit.edu> 1999
 # Valek Filippov <frob@df.ru>, 2000-2002
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
+# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2003-03-03 08:43+0300\n"
-"PO-Revision-Date: 2003-03-03 08:44+0300\n"
-"Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
+"POT-Creation-Date: 2003-03-28 20:30+0000\n"
+"PO-Revision-Date: 2003-06-14 15:01+0300\n"
+"Last-Translator: \"Andrew W. Nosenko\" <awn@bcs.zp.ua>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,7 @@ msgstr ""
 msgid "Address of the server to contact for CD queries"
 msgstr "Адрес сервера для посылки запросов по компакт-дискам"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:798
 msgid "Port"
 msgstr "Порт"
 
@@ -55,65 +56,74 @@ msgstr "Размер расширителя"
 msgid "Size of the expander arrow"
 msgstr "Размер стрелки расширителя"
 
+#: cddb-slave2/cddb-slave-capplet.c:117
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Произошла ошибка при запуске отображении справки: \n"
+"%s"
+
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:648
+#: cddb-slave2/cddb-slave-capplet.c:670
 msgid "Log on information"
 msgstr "Занесение информации в журнал"
 
-#: cddb-slave2/cddb-slave-capplet.c:657
+#: cddb-slave2/cddb-slave-capplet.c:679
 msgid "Send _no info"
 msgstr "_не посылать информацию"
 
-#: cddb-slave2/cddb-slave-capplet.c:666
+#: cddb-slave2/cddb-slave-capplet.c:688
 msgid "Send real _info"
 msgstr "посылать действительную _информацию"
 
-#: cddb-slave2/cddb-slave-capplet.c:675
+#: cddb-slave2/cddb-slave-capplet.c:697
 msgid "Send _other info..."
 msgstr "посылать _другую информацию..."
 
-#: cddb-slave2/cddb-slave-capplet.c:692
+#: cddb-slave2/cddb-slave-capplet.c:714
 msgid "N_ame:"
 msgstr "И_мя:"
 
-#: cddb-slave2/cddb-slave-capplet.c:711
+#: cddb-slave2/cddb-slave-capplet.c:733
 msgid "_Hostname:"
 msgstr "Имя _узла:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:733 cddb-slave2/cddb-slave-capplet.c:773
+#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
 msgid "Server"
 msgstr "Сервер"
 
-#: cddb-slave2/cddb-slave-capplet.c:741
+#: cddb-slave2/cddb-slave-capplet.c:763
 msgid "FreeDB _round robin server"
 msgstr "_циклический сервер системы FreeDB"
 
-#: cddb-slave2/cddb-slave-capplet.c:747
+#: cddb-slave2/cddb-slave-capplet.c:769
 msgid "Other _FreeDB server..."
 msgstr "д_ругой сервер системы FreeDB"
 
-#: cddb-slave2/cddb-slave-capplet.c:779
+#: cddb-slave2/cddb-slave-capplet.c:801
 msgid "Location"
 msgstr "Местоположение"
 
-#: cddb-slave2/cddb-slave-capplet.c:785
+#: cddb-slave2/cddb-slave-capplet.c:807
 msgid "Update server list"
 msgstr "Обновить список серверов"
 
-#: cddb-slave2/cddb-slave-capplet.c:792
+#: cddb-slave2/cddb-slave-capplet.c:814
 msgid "Other _server..."
 msgstr "другой с_ервер..."
 
-#: cddb-slave2/cddb-slave-capplet.c:804
+#: cddb-slave2/cddb-slave-capplet.c:826
 msgid "Hostname:"
 msgstr "Имя узла:"
 
-#: cddb-slave2/cddb-slave-capplet.c:816
+#: cddb-slave2/cddb-slave-capplet.c:838
 msgid "_Port:"
 msgstr "Пор_т:"
 
-#: cddb-slave2/cddb-slave-capplet.c:866
+#: cddb-slave2/cddb-slave-capplet.c:888
 msgid "CD Database Preferences"
 msgstr "Настройки базы данных компакт-дисков"
 
@@ -122,9 +132,9 @@ msgid "Unknown / Unknown"
 msgstr "Неизвестный / Неизвестный"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:760
-#: grecord/src/gsr-window.c:769 grecord/src/gsr-window.c:778
-#: grecord/src/gsr-window.c:788 grecord/src/gsr-window.c:1108
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:776
+#: grecord/src/gsr-window.c:785 grecord/src/gsr-window.c:794
+#: grecord/src/gsr-window.c:804 grecord/src/gsr-window.c:1124
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -794,47 +804,47 @@ msgid "Hide advanced disc options"
 msgstr "Скрыть расширенные параметры диска"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:663
 msgid "_Disc comments:"
 msgstr "Комментарий к _диску:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:678
 msgid "_Genre:"
 msgstr "_Жанр:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:694
 msgid "_Year:"
 msgstr "_Год:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:733
 msgid "Title"
 msgstr "Название"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:740
 msgid "Length"
 msgstr "Длина"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:755
+#: cddb-slave2/cddb-track-editor.c:751
 msgid "Show advanced track options"
 msgstr "Показать расширенные параметры дорожки"
 
-#: cddb-slave2/cddb-track-editor.c:756
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Hide advanced track options"
 msgstr "Скрыть расширенные параметры дорожки"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:764
+#: cddb-slave2/cddb-track-editor.c:760
 msgid "_Extra track data:"
 msgstr "Д_ополнительные данные дорожки:"
 
-#: cddb-slave2/cddb-track-editor.c:891
+#: cddb-slave2/cddb-track-editor.c:887
 msgid "CDDB Track Editor"
 msgstr "Редактор дорожек"
 
-#: cddb-slave2/cddb-track-editor.c:1021
+#: cddb-slave2/cddb-track-editor.c:1018
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1118,7 +1128,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку \"Выйти\" для выхода из программы"
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:459
 msgid "_Details"
 msgstr "_Показать подробности"
 
@@ -1220,11 +1230,11 @@ msgstr "С_бросить метки до их исходных значений
 msgid "Gnome Volume Control Preferences"
 msgstr "Настройки управления громкостью в среде Гном"
 
-#: gnome-cd/access/cddisplayaccessible.c:117
+#: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
 msgstr "Дисплей устройства чтения компакт-дисков"
 
-#: gnome-cd/access/cddisplayaccessible.c:119
+#: gnome-cd/access/cddisplayaccessible.c:120
 msgid ""
 "Displays information about the currently playing album, artist and time "
 "elapsed"
@@ -1232,40 +1242,40 @@ msgstr ""
 "Отображает информацию о воспроизводимом альбоме, исполнителе и прошедшем "
 "времени"
 
-#: gnome-cd/access/cddisplayaccessible.c:188
+#: gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
 msgstr "Строка времени"
 
-#: gnome-cd/access/cddisplayaccessible.c:189
+#: gnome-cd/access/cddisplayaccessible.c:190
 msgid "Line for displaying the time elapsed for the current track"
 msgstr "Строка для отображения времени воспроизведения для текущей дорожки"
 
-#: gnome-cd/access/cddisplayaccessible.c:192
+#: gnome-cd/access/cddisplayaccessible.c:193
 msgid "Info Line"
 msgstr "Информационная строка"
 
-#: gnome-cd/access/cddisplayaccessible.c:193
+#: gnome-cd/access/cddisplayaccessible.c:194
 msgid "Line for displaying information"
 msgstr "Строка отображения информации"
 
-#: gnome-cd/access/cddisplayaccessible.c:196
+#: gnome-cd/access/cddisplayaccessible.c:197
 msgid "Artist Line"
 msgstr "Строка исполнителя"
 
-#: gnome-cd/access/cddisplayaccessible.c:197
+#: gnome-cd/access/cddisplayaccessible.c:198
 msgid "Line for displaying the name of the artist"
 msgstr "Строка для отображения имени исполнителя"
 
-#: gnome-cd/access/cddisplayaccessible.c:200
+#: gnome-cd/access/cddisplayaccessible.c:201
 msgid "Album Line"
 msgstr "Строка альбома"
 
-#: gnome-cd/access/cddisplayaccessible.c:201
+#: gnome-cd/access/cddisplayaccessible.c:202
 msgid "Line for displaying the name of the album"
 msgstr "Строка для отображения названия альбома"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
+#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:591 grecord/src/gui.c:233
 #: grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Воспроизвести"
@@ -1300,7 +1310,7 @@ msgstr "Приостановлено"
 
 #. Update tray icon tooltip
 #: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55
-#: gnome-cd/gnome-cd.c:495 gnome-cd/gnome-cd.c:653
+#: gnome-cd/gnome-cd.c:476 gnome-cd/gnome-cd.c:634
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Проигрыватель компакт-дисков"
@@ -1330,11 +1340,11 @@ msgstr "Компакт-диск с данными"
 #. Updated the tray icon tooltip
 #: gnome-cd/callbacks.c:788 gnome-cd/callbacks.c:792
 msgid "No Cdrom"
-msgstr "Не компакт-диска"
+msgstr "Нет компакт-диска"
 
 #: gnome-cd/callbacks.c:803
 msgid "Drive Error"
-msgstr "Ошибка дисковода"
+msgstr "Ошибка привода"
 
 #: gnome-cd/callbacks.c:825
 msgid "A CD player for GNOME"
@@ -1375,35 +1385,35 @@ msgstr "Неизвестный диск"
 msgid "%d - Unknown"
 msgstr "%d - Неизвестный"
 
-#: gnome-cd/gnome-cd.c:300
+#: gnome-cd/gnome-cd.c:281
 msgid "P_revious track"
 msgstr "_Пред. дорожка"
 
-#: gnome-cd/gnome-cd.c:301 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:282 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "Ос_тановить"
 
-#: gnome-cd/gnome-cd.c:302
+#: gnome-cd/gnome-cd.c:283
 msgid "_Play / Pause"
 msgstr "_Воспроизвести/Пауза"
 
-#: gnome-cd/gnome-cd.c:303
+#: gnome-cd/gnome-cd.c:284
 msgid "_Next track"
 msgstr "_След. дорожка"
 
-#: gnome-cd/gnome-cd.c:304
+#: gnome-cd/gnome-cd.c:285
 msgid "_Eject disc"
 msgstr "_Извлечь диск"
 
-#: gnome-cd/gnome-cd.c:305 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:286 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Справка"
 
-#: gnome-cd/gnome-cd.c:306
+#: gnome-cd/gnome-cd.c:287
 msgid "_About CD player"
 msgstr "_О проигрывателе"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:395
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1415,15 +1425,15 @@ msgstr ""
 "чтобы перейти к диалогу установки устройства или \n"
 "кнопку \"Выйти\", чтобы выйти из проигрывателя."
 
-#: gnome-cd/gnome-cd.c:418
+#: gnome-cd/gnome-cd.c:399
 msgid "Set device"
 msgstr "Установить устройство"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:401
 msgid "No CD device"
 msgstr "Нет устройства чтения компакт-дисков"
 
-#: gnome-cd/gnome-cd.c:474
+#: gnome-cd/gnome-cd.c:455
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1439,88 +1449,88 @@ msgstr ""
 "Нажмите кнопку \"Установить устройство\" для запуска диалога установки "
 "устройства или \"Выйти\" для выхода из программы"
 
-#: gnome-cd/gnome-cd.c:479
+#: gnome-cd/gnome-cd.c:460
 msgid "_Set device"
 msgstr "_Установить устройство"
 
-#: gnome-cd/gnome-cd.c:481
+#: gnome-cd/gnome-cd.c:462
 msgid "Invalid CD device"
 msgstr "Недопустимое устройство чтения компакт-дисков"
 
-#: gnome-cd/gnome-cd.c:542
+#: gnome-cd/gnome-cd.c:523
 msgid "Volume control"
 msgstr "Управление громкостью"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:532
 msgid "Open track editor"
 msgstr "Открыть редактор дорожек"
 
-#: gnome-cd/gnome-cd.c:552
+#: gnome-cd/gnome-cd.c:533
 msgid "Track editor"
 msgstr "Редактор дорожек"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:540
 msgid "Open preferences"
 msgstr "Изменить настройки"
 
-#: gnome-cd/gnome-cd.c:560
+#: gnome-cd/gnome-cd.c:541
 msgid "Preferences"
 msgstr "Настройки"
 
-#: gnome-cd/gnome-cd.c:568
+#: gnome-cd/gnome-cd.c:549
 msgid "Track List"
 msgstr "Список дорожек"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:570
 msgid "Previous track"
 msgstr "Пред. дорожка"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:570
 msgid "Previous"
 msgstr "Предыдущая"
 
-#: gnome-cd/gnome-cd.c:593
+#: gnome-cd/gnome-cd.c:574
 msgid "Rewind"
 msgstr "Перемотка назад"
 
-#: gnome-cd/gnome-cd.c:610
+#: gnome-cd/gnome-cd.c:591
 msgid "Play / Pause"
 msgstr "Воспр./ Пауза"
 
-#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:596 grecord/src/gui.c:247 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Стоп"
 
-#: gnome-cd/gnome-cd.c:619
+#: gnome-cd/gnome-cd.c:600
 msgid "Fast forward"
 msgstr "Перемотка вперёд"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:608
 msgid "Next track"
 msgstr "След. дорожка"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:612
 msgid "Eject CD"
 msgstr "Извлечь компкт-диск"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:612
 msgid "Eject"
 msgstr "Извлечь"
 
-#: gnome-cd/gnome-cd.c:734
+#: gnome-cd/gnome-cd.c:715
 msgid "CD device to use"
 msgstr "Устройства чтения компакт-дисков используется"
 
-#: gnome-cd/gnome-cd.c:736
+#: gnome-cd/gnome-cd.c:717
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Запускаться только если отсутствуют другие запущенные проигрыватели"
 
-#: gnome-cd/gnome-cd.c:738
+#: gnome-cd/gnome-cd.c:719
 msgid "Play the CD on startup"
 msgstr "Проигрывать компакт-диск при старте"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:769
+#: gnome-cd/gnome-cd.c:749
 msgid "Cannot create player"
 msgstr "Невозможно создать проигрыватель"
 
@@ -1529,57 +1539,42 @@ msgid "Play audio CDs"
 msgstr "Программа для воспроизвести звуковых компакт-дисков"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "Action on application exit"
-msgstr "Действие, выполняемое при выходе из приложения"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Action on start"
-msgstr "Действие, выполняемое при запуске приложения"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "CD player theme"
 msgstr "Тема проигрывателя компакт-дисков"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Device path"
 msgstr "Путь к устройству"
 
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "Извлекать CD при выходе из проигрывателя комакт-дисков?"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "Начинать воспроизведение при запуске проигрывателя компакт дисков?"
+
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr "Следует ли проигрывателю пытаться закрыть устройство при старте?"
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr ""
+"Должен ли поигрыватель компакт дисков извлекать CD из привода при выходе?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "Shut the CD tray on start"
-msgstr "Закрывать устройство при старте"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr ""
 "Путь к устройству чтения компакт-дисков, которое проигрыватель должен "
 "использовать"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid ""
-"What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
-"playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr ""
-"Что следует делать проигрывателю при выходе? 0 = ничего, 1 = останавливать "
-"воспроизведение, 2 = выбрасывать компакт-диск, 3 = пытаться закрыть "
-"устройство"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid ""
-"What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
-"playing, 2 = Stop playing"
-msgstr ""
-"Что следует делать проигрывателю при запуске? 0 = ничего, 1 = начинать "
-"воспроизведение, 2 = останавливать воспроизведение"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:10
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "What theme should the CD player use for it's appearance"
 msgstr "Какую тему должен использовать проигрыватель для своего внешнего вида"
 
-#: gnome-cd/preferences.c:83
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr ""
+"Начинать ли воспроизведение сразу после старта поигрывателя компакт-дисков?"
+
+#: gnome-cd/preferences.c:84
 #, c-format
 msgid ""
 "%s\n"
@@ -1588,101 +1583,54 @@ msgstr ""
 "%s\n"
 "Это значит, что проигрыватель компакт-дисков не может быть запущен."
 
-#: gnome-cd/preferences.c:84
+#: gnome-cd/preferences.c:85
 msgid "Error setting device"
 msgstr "Произошла ошибка установки устройства"
 
-#: gnome-cd/preferences.c:824
+#: gnome-cd/preferences.c:635
 msgid "CD Player Preferences"
 msgstr "Настройки проигрывателя компакт-дисков"
 
-#: gnome-cd/preferences.c:853
-msgid "CD player de_vice:"
-msgstr "_Устройство проигрывателя компакт-дисков"
+#: gnome-cd/preferences.c:669
+msgid "CD Player De_vice:"
+msgstr "_Устройство проигрывателя компакт-дисков:"
 
-#: gnome-cd/preferences.c:868
+#: gnome-cd/preferences.c:693
 msgid "_Apply change"
 msgstr "_Применить"
 
-#. left side
-#: gnome-cd/preferences.c:881
-msgid "When CD player starts"
-msgstr "При запуске проигрывателя компакт-дисков"
+#: gnome-cd/preferences.c:705
+msgid "CD Player Behaviour:"
+msgstr "Поведение проигрывателя компакт-дисков:"
 
-#: gnome-cd/preferences.c:889
-msgid "Do _nothing"
-msgstr "ничего _не делать"
+#: gnome-cd/preferences.c:718
+msgid "Start _playing CD when CD Player starts"
+msgstr "Начинать _воспроизведение при запуске проигрывателя компакт-дисков"
 
-#: gnome-cd/preferences.c:890
-msgid "Do nothing when CD Player starts"
-msgstr "Ничего не делать при запуске проигрывателя компакт-дисков"
-
-#: gnome-cd/preferences.c:900
-msgid "Start _playing CD"
-msgstr "начинать воспро_изведение"
-
-#: gnome-cd/preferences.c:901
+#: gnome-cd/preferences.c:719
 msgid "Start playing CD when CD Player starts"
 msgstr "Начинать воспроизведение при запуске проигрывателя компакт-дисков"
 
-#: gnome-cd/preferences.c:910
-msgid "_Stop playing CD"
-msgstr "_останавливать воспроизведение"
+#: gnome-cd/preferences.c:731
+msgid "Attempt to _eject CD when CD Player exits"
+msgstr "_Извлекать компакт-диск из привода при выходе из проигрывателя"
 
-#: gnome-cd/preferences.c:911
-msgid "Stop playing CD when CD Player starts"
-msgstr "Останавливать воспроизведение при запуске проигрывателя компакт-дисков"
-
-#: gnome-cd/preferences.c:925
-msgid "Attempt to _close CD tray"
-msgstr "пытаться за_крыть лоток устройства чтения компакт-диска"
-
-#. Right side
-#: gnome-cd/preferences.c:937
-msgid "When CD player quits"
-msgstr "При выходе из проигрывателя компакт-дисков"
-
-#: gnome-cd/preferences.c:945
-msgid "Do not_hing"
-msgstr "ничего н_е делать"
-
-#: gnome-cd/preferences.c:946
-msgid "Do nothing when CD Player exits"
-msgstr "Ничего не делать при выходе из проигрывателя компакт-дисков"
-
-#: gnome-cd/preferences.c:955
-msgid "S_top playing CD"
-msgstr "ос_танавливать воспроизведение"
-
-#: gnome-cd/preferences.c:956
-msgid "Stop playing CD when CD player quits"
-msgstr ""
-"Останавливать воспроизведение при выходе из проигрывателя комакт-дисков"
-
-#: gnome-cd/preferences.c:966
-msgid "Attempt to _open CD tray"
-msgstr "Пытаться отк_рыть лоток устройства чтения компакт-диска"
-
-#: gnome-cd/preferences.c:967
-msgid "Attempt to open CD tray when CD Player exits"
+#: gnome-cd/preferences.c:732
+msgid "Attempt to eject CD when CD Player exits"
 msgstr ""
 "Пытаться открыть лоток устройства чтения компакт-диска при выходе из "
 "проигрывателя компакт-дисков"
 
-#: gnome-cd/preferences.c:977
-msgid "Attempt to c_lose CD tray"
-msgstr "Пытаться закр_ыть лоток устройства чтения компакт-диска"
-
-#: gnome-cd/preferences.c:1008
-msgid "Theme name"
-msgstr "Имя темы"
+#: gnome-cd/preferences.c:752
+msgid "_Available Themes:"
+msgstr "_Доступные темы:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
 msgstr "Программа записи звуковых отрывков"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:980
-#: grecord/src/gsr-window.c:1507 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:996
+#: grecord/src/gsr-window.c:1527 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Звукозапись"
 
@@ -1713,11 +1661,11 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "Не удалось разветвить дочерний процесс"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1342
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1360
 msgid "Recording..."
 msgstr "Записывается..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1221
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1237
 msgid "Playing..."
 msgstr "Воспроизводится..."
 
@@ -1754,7 +1702,7 @@ msgstr "Выбрать звуковой файл"
 msgid "%s is not installed in the path"
 msgstr "Программа \"%s\" не установлена в пути"
 
-#: grecord/src/grec.c:523 grecord/src/gsr-window.c:661
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:677
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Произошла ошибка при запуске программы \"%s\": %s"
@@ -1863,147 +1811,147 @@ msgstr ""
 "Звуковое устройство не готово! Проверьте, что\n"
 "оно не используется другой программой."
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:266 grecord/src/gsr-window.c:271
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:281
 msgid "hours"
 msgstr "часов"
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:266 grecord/src/gsr-window.c:271
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:281
 msgid "hour"
 msgstr "час"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:288 grecord/src/gsr-window.c:292
 #: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "минут"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:288 grecord/src/gsr-window.c:292
 msgid "minute"
 msgstr "минута"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
-#: grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:297
+#: grecord/src/gsr-window.c:300
 msgid "seconds"
 msgstr "секунд"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:300
 msgid "second"
 msgstr "секунда"
 
-#: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
+#: grecord/src/gsr-window.c:383 grecord/gsr.xml.h:12
 msgid "Open a file"
 msgstr "Открыть файл"
 
-#: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
-#: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
+#: grecord/src/gsr-window.c:461 grecord/src/gsr-window.c:1259
+#: grecord/src/gsr-window.c:1382 grecord/src/gsr-window.c:1456
 msgid "Ready"
 msgstr "Готово"
 
-#: grecord/src/gsr-window.c:541
+#: grecord/src/gsr-window.c:557
 #, c-format
 msgid "Saving %s..."
 msgstr "Сохраняется файл \"%s\"..."
 
-#: grecord/src/gsr-window.c:600
+#: grecord/src/gsr-window.c:616
 msgid "Save file as"
 msgstr "Сохранить файл как"
 
-#: grecord/src/gsr-window.c:654
+#: grecord/src/gsr-window.c:670
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "Программа \"%s\" не установлена в пути."
 
-#: grecord/src/gsr-window.c:736
+#: grecord/src/gsr-window.c:752
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (не был сохранён)"
 
-#: grecord/src/gsr-window.c:751
+#: grecord/src/gsr-window.c:767
 msgid "Unknown size"
 msgstr "Размер неизвестен"
 
-#: grecord/src/gsr-window.c:771
+#: grecord/src/gsr-window.c:787
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f кГц"
 
-#: grecord/src/gsr-window.c:780
+#: grecord/src/gsr-window.c:796
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f кб/с"
 
-#: grecord/src/gsr-window.c:792
+#: grecord/src/gsr-window.c:808
 msgid "1 (mono)"
 msgstr "1 (моно)"
 
-#: grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:812
 msgid "2 (stereo)"
 msgstr "2 (стерео)"
 
-#: grecord/src/gsr-window.c:825
+#: grecord/src/gsr-window.c:841
 #, c-format
 msgid "%s Information"
 msgstr "Информация о файле \"%s\""
 
-#: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
+#: grecord/src/gsr-window.c:861 grecord/gsr.xml.h:7
 msgid "File Information"
 msgstr "Информация о файле"
 
-#: grecord/src/gsr-window.c:859
+#: grecord/src/gsr-window.c:875
 msgid "Folder:"
 msgstr "Папка:"
 
-#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
+#: grecord/src/gsr-window.c:881 grecord/src/gsr-window.c:1583
 msgid "Filename:"
 msgstr "Имя файла:"
 
-#: grecord/src/gsr-window.c:871
+#: grecord/src/gsr-window.c:887
 msgid "File size:"
 msgstr "Размер файла:"
 
-#: grecord/src/gsr-window.c:880
+#: grecord/src/gsr-window.c:896
 msgid "Audio Information"
 msgstr "Аудиоинформация"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:910
 msgid "Song length:"
 msgstr "Длина записи:"
 
-#: grecord/src/gsr-window.c:900
+#: grecord/src/gsr-window.c:916
 msgid "Number of channels:"
 msgstr "Число каналов:"
 
-#: grecord/src/gsr-window.c:906
+#: grecord/src/gsr-window.c:922
 msgid "Sample rate:"
 msgstr "Частота сэмплирования:"
 
-#: grecord/src/gsr-window.c:912
+#: grecord/src/gsr-window.c:928
 msgid "Bit rate:"
 msgstr "Ширина потока:"
 
-#: grecord/src/gsr-window.c:982
+#: grecord/src/gsr-window.c:998
 msgid "A sound recorder for GNOME"
 msgstr "Программа звукозаписи для среды Гном"
 
-#: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1523 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Звукозапись"
 
-#: grecord/src/gsr-window.c:1548
+#: grecord/src/gsr-window.c:1568
 msgid "File information"
 msgstr "Информация о файле"
 
-#: grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:1589
 msgid "<none>"
 msgstr "<нет>"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1598
 msgid "Length:"
 msgstr "Длина:"
 
@@ -2590,3 +2538,70 @@ msgstr "Программа для индикации уровня громкос
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Индикатор громкости"
+
+#~ msgid "Action on application exit"
+#~ msgstr "Действие, выполняемое при выходе из приложения"
+
+#~ msgid "Action on start"
+#~ msgstr "Действие, выполняемое при запуске приложения"
+
+#~ msgid "Should the CD player attempt to shut the CD drive on start up?"
+#~ msgstr "Следует ли проигрывателю пытаться закрыть устройство при старте?"
+
+#~ msgid "Shut the CD tray on start"
+#~ msgstr "Закрывать устройство при старте"
+
+#~ msgid ""
+#~ "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
+#~ "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
+#~ msgstr ""
+#~ "Что следует делать проигрывателю при выходе? 0 = ничего, 1 = "
+#~ "останавливать воспроизведение, 2 = выбрасывать компакт-диск, 3 = пытаться "
+#~ "закрыть устройство"
+
+#~ msgid ""
+#~ "What action should the CD player perform on start up? 0 = Nothing, 1 = "
+#~ "Start playing, 2 = Stop playing"
+#~ msgstr ""
+#~ "Что следует делать проигрывателю при запуске? 0 = ничего, 1 = начинать "
+#~ "воспроизведение, 2 = останавливать воспроизведение"
+
+#~ msgid "Do _nothing"
+#~ msgstr "ничего _не делать"
+
+#~ msgid "Do nothing when CD Player starts"
+#~ msgstr "Ничего не делать при запуске проигрывателя компакт-дисков"
+
+#~ msgid "Start _playing CD"
+#~ msgstr "начинать воспро_изведение"
+
+#~ msgid "_Stop playing CD"
+#~ msgstr "_останавливать воспроизведение"
+
+#~ msgid "Stop playing CD when CD Player starts"
+#~ msgstr ""
+#~ "Останавливать воспроизведение при запуске проигрывателя компакт-дисков"
+
+#~ msgid "Attempt to _close CD tray"
+#~ msgstr "пытаться за_крыть лоток устройства чтения компакт-диска"
+
+#~ msgid "When CD player quits"
+#~ msgstr "При выходе из проигрывателя компакт-дисков"
+
+#~ msgid "Do not_hing"
+#~ msgstr "ничего н_е делать"
+
+#~ msgid "Do nothing when CD Player exits"
+#~ msgstr "Ничего не делать при выходе из проигрывателя компакт-дисков"
+
+#~ msgid "S_top playing CD"
+#~ msgstr "ос_танавливать воспроизведение"
+
+#~ msgid "Attempt to _open CD tray"
+#~ msgstr "Пытаться отк_рыть лоток устройства чтения компакт-диска"
+
+#~ msgid "Attempt to c_lose CD tray"
+#~ msgstr "Пытаться закр_ыть лоток устройства чтения компакт-диска"
+
+#~ msgid "Theme name"
+#~ msgstr "Имя темы"
