@@ -204,7 +204,7 @@ static GtkOptionMenu *create_pipeline_menu (GladeXML * dialog, GSTPPipelineEdito
 				}
 			}
 			
-			mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label(cur_pipeline_desc->name));
+			mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label(_(cur_pipeline_desc->name)));
 			cur_pipeline_desc->index = i;
 			g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
 					   (gpointer) (cur_pipeline_desc));

@@ -27,6 +27,7 @@
 
 #include "gstreamer-properties-structs.h"
 #include <gtk/gtk.h>
+#include <bonobo/bonobo-i18n.h>
  
 /* Test specified inputs for pipelines */
 /* static const gchar audiosink_test_pipe[] = "afsrc location=\"" TEST_MEDIA_FILE "\""; FIXME*/
@@ -54,7 +55,7 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 	 audiosink_test_pipe, FALSE},
 	{PIPE_TYPE_AUDIOSINK, 0,"OSS - Open Sound System", "osssink", FALSE,
 	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
-	{PIPE_TYPE_AUDIOSINK, 0,"Custom", NULL, TRUE, TEST_PIPE_SUPPLIED,
+	{PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 audiosink_test_pipe, TRUE}
 };
 
@@ -72,7 +73,7 @@ GSTPPipelineDescription videosink_pipelines[] = {
 	 videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (X11/XShm/Xv)", "xvideosink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0,"Custom", NULL, TRUE, TEST_PIPE_SUPPLIED,
+	{PIPE_TYPE_VIDEOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 videosink_test_pipe, TRUE}
 };
 
@@ -89,7 +90,7 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
 	 FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
 	{PIPE_TYPE_AUDIOSRC, 0,"Silence", "silence", FALSE, TEST_PIPE_AUDIOSINK,
 	 NULL, FALSE},
-	{PIPE_TYPE_AUDIOSRC, 0,"Custom", NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
+	{PIPE_TYPE_AUDIOSRC, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
 	 TRUE}
 };
 
@@ -106,7 +107,7 @@ GSTPPipelineDescription videosrc_pipelines[] = {
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
 	{PIPE_TYPE_VIDEOSRC, 0,"Video for Linux 2 (v4l2)", "v4l2src", FALSE,
 	 TEST_PIPE_VIDEOSINK, NULL, FALSE},
-	{PIPE_TYPE_VIDEOSRC, 0,"Custom", NULL, TRUE, TEST_PIPE_VIDEOSINK, NULL,
+	{PIPE_TYPE_VIDEOSRC, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_VIDEOSINK, NULL,
 	 TRUE}
 };
 
