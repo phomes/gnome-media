@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-04-25 11:24+0200\n"
-"PO-Revision-Date: 2000-04-25 16:53+0200\n"
+"POT-Creation-Date: 2000-04-29 12:27+0200\n"
+"PO-Revision-Date: 2000-04-29 12:29+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -712,73 +712,86 @@ msgstr "Especificar un ficheiro para comezar a reproducir"
 msgid "GNOME Sound recorder"
 msgstr "Gravador de Son de GNOME"
 
-#: grecord/src/grec.c:46
+#: grecord/src/grec.c:51
 msgid "GNOME Sound recorder:"
 msgstr "Gravador de Son de GNOME:"
 
-#. Couldn't record
-#: grecord/src/grec.c:76
-msgid "Couldn't record!"
-msgstr "¡Non se puido gravar!"
-
-#: grecord/src/grec.c:79 grecord/src/grec.c:109
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:946
 msgid "Could not fork child process"
 msgstr "Non se puido crea-lo proceso fillo"
 
-#. Should never ever, in the name of love, get here
-#: grecord/src/grec.c:106
-#, c-format
-msgid "Error playing %s"
-msgstr "Erro reproducindo %s"
+#: grecord/src/grec.c:86
+msgid "Recording..."
+msgstr "Garvando..."
 
-#: grecord/src/grec.c:157
+#: grecord/src/grec.c:117
+msgid "Playing..."
+msgstr "Reproducindo..."
+
+#: grecord/src/grec.c:165
 msgid "Converting file..."
 msgstr "Convertendo ficheiro..."
 
-#: grecord/src/grec.c:213 grecord/src/grec.c:633 grecord/src/gui.c:330
-#: grecord/src/preferences.c:305
+#: grecord/src/grec.c:219 grecord/src/grec.c:637 grecord/src/gui.c:330
+#: grecord/src/preferences.c:297
 msgid "Audioformat: "
 msgstr "Formato de Audio: "
 
-#: grecord/src/grec.c:217 grecord/src/grec.c:619 grecord/src/gui.c:337
-#: grecord/src/preferences.c:309
+#: grecord/src/grec.c:223 grecord/src/grec.c:623 grecord/src/gui.c:337
+#: grecord/src/preferences.c:301
 msgid "Sample rate: "
 msgstr "Frecuencia de mostraxe: "
 
-#: grecord/src/grec.c:227 grecord/src/grec.c:623 grecord/src/gui.c:344
-#: grecord/src/preferences.c:313
+#: grecord/src/grec.c:233 grecord/src/grec.c:627 grecord/src/gui.c:344
+#: grecord/src/preferences.c:305
 msgid "Channels: "
 msgstr "Canles: "
 
-#: grecord/src/grec.c:257
+#: grecord/src/grec.c:263
 msgid "Select a sound file"
 msgstr "Escoller un ficheiro de son"
 
-#: grecord/src/grec.c:286 grecord/src/grec.c:650
-msgid "Error saving sound file"
-msgstr "Erro gardando o ficheiro de son"
+#: grecord/src/grec.c:292
+msgid "Error saving sound file!"
+msgstr "¡Erro gardando o ficheiro de son!"
 
-#: grecord/src/grec.c:374
+#: grecord/src/grec.c:380
 msgid "GNOME Sound recorder web page"
 msgstr "Páxina web do Gravador de Son de GNOME"
 
-#: grecord/src/grec.c:585 grecord/src/gui.c:415
+#: grecord/src/grec.c:486
+msgid "Undoing all..."
+msgstr "Desfacendo todo..."
+
+#: grecord/src/grec.c:589 grecord/src/gui.c:415
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son válido."
 
-#: grecord/src/grec.c:680
+#: grecord/src/grec.c:654
+msgid "Error saving sound file"
+msgstr "Erro gardando o ficheiro de son"
+
+#: grecord/src/grec.c:684
 msgid "File not saved. Do you want to save it?"
 msgstr "Ficheiro non gardado. ¿Quere gardalo?"
 
-#: grecord/src/grec.c:803
+#: grecord/src/grec.c:807
 #, c-format
 msgid "The size of the current sample is more than %i MB!"
 msgstr "¡O tamaño da gravación actual é maior que %i MB!"
 
-#: grecord/src/grec.c:851
+#: grecord/src/grec.c:855
 msgid "Save sound file"
 msgstr "Gardar ficheiro de son"
+
+#: grecord/src/grec.c:1002
+msgid ""
+"Sounddevice not ready! Please check that there isn't\n"
+"another program running that's using the sounddevice."
+msgstr ""
+"¡O dispositivo de son non está preparado! Comprobe que non\n"
+"hai outro programa a se executar usando o dispositivo de son."
 
 #: grecord/src/gui.c:42
 msgid "_New"
@@ -1011,8 +1024,8 @@ msgid "Sample rate:"
 msgstr "Frecuencia de mostraxe:"
 
 #: grecord/src/gui.c:826
-msgid "# of channels"
-msgstr "Número de canles"
+msgid "mono/stereo"
+msgstr "mono/estéreo"
 
 #: grecord/src/gui.c:837 grecord/src/gui.c:847
 msgid "mono"
@@ -1030,23 +1043,23 @@ msgstr "Son"
 msgid "Main window"
 msgstr "Fiestra principal"
 
-#: grecord/src/sound.c:104
+#: grecord/src/sound.c:102
 msgid " untitled.wav"
 msgstr " sentitular.wav"
 
-#: grecord/src/sound.c:161
+#: grecord/src/sound.c:156
 msgid "Making backup..."
 msgstr "Creando copia de seguridade..."
 
-#: grecord/src/sound.c:162
+#: grecord/src/sound.c:157
 msgid "Adding echo to sample..."
 msgstr "Engadindo eco á gravación..."
 
-#: grecord/src/sound.c:163
+#: grecord/src/sound.c:158
 msgid "Please wait..."
 msgstr "Por favor, agarde..."
 
-#: grecord/src/preferences.c:195
+#: grecord/src/preferences.c:192
 #, c-format
 msgid ""
 "File %s in 'sox command' does not exist.\n"
@@ -1055,7 +1068,7 @@ msgstr ""
 "O ficheiro %s no 'comando do sox' non existe.\n"
 "¿Quere usalo de calquera xeito?"
 
-#: grecord/src/preferences.c:217
+#: grecord/src/preferences.c:214
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -1067,7 +1080,7 @@ msgstr ""
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:237
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -1077,7 +1090,7 @@ msgstr ""
 "¿Quere usalo de calquera xeito?"
 
 #. Does not exist
-#: grecord/src/preferences.c:257
+#: grecord/src/preferences.c:254
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -1085,7 +1098,3 @@ msgid ""
 msgstr ""
 "O directorio %s non existe.\n"
 "¿Quere usalo de calquera xeito?"
-
-#: grecord/src/preferences.c:291
-msgid "Error! Wrong page number. (shouldn't happen)\n"
-msgstr "¡Erro! Número de páxina erróneo. (non debería ocorrer)\n"
