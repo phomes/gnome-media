@@ -484,12 +484,10 @@ status_ok (GnomeCD *gcd,
 	
 	/* All buttons can be used when the tray is open,
 	   they should shut the tray. */
-	gtk_widget_set_sensitive (gcd->back_b, TRUE);
 	gtk_widget_set_sensitive (gcd->rewind_b, TRUE);
 	gtk_widget_set_sensitive (gcd->play_b, TRUE);
 	gtk_widget_set_sensitive (gcd->stop_b, TRUE);
 	gtk_widget_set_sensitive (gcd->ffwd_b, TRUE);
-	gtk_widget_set_sensitive (gcd->next_b, TRUE);
 	gtk_widget_set_sensitive (gcd->eject_b, TRUE);
 
 	switch (status->audio) {
@@ -713,7 +711,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		status_ok (gcd, status);
 		if (status->track >= gcd->disc_info->ntracks)
                        gtk_widget_set_sensitive (gcd->next_b, FALSE);
+		else
+                       gtk_widget_set_sensitive (gcd->next_b, TRUE);
                if (status->track <= 1 && (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio == GNOME_CDROM_AUDIO_COMPLETE))
+                       gtk_widget_set_sensitive (gcd->back_b, FALSE);
+		else
                        gtk_widget_set_sensitive (gcd->back_b, FALSE);
 		break;
 		

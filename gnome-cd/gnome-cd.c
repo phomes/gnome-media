@@ -50,6 +50,7 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 			   const char *track)
 {
 	char *title;
+	const char *old_title;
 
 	if (artist == NULL ||
 	    track == NULL) {
@@ -57,8 +58,13 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 	} else {
 		title = g_strconcat (track, " - ", artist, NULL);
 	}
+	/*
+	 * Call gtk_window_set_title only if the title has changed
+	 */
+	old_title = gtk_window_get_title (GTK_WINDOW (gcd->window));
+	if (!old_title || strcmp (title, old_title))
+		gtk_window_set_title (GTK_WINDOW (gcd->window), title);
 
-	gtk_window_set_title (GTK_WINDOW (gcd->window), title);
 	g_free (title);
 }
 
