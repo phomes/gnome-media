@@ -1,6 +1,6 @@
 /* This file is part of TCD 2.0.
    
-   Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
+   Copyright (C) 1997-98 Tim P. Gerla <timg@rrv.net>
    
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
    Tim P. Gerla
    RR 1, Box 40
    Climax, MN  56523
-   timg@means.net
+   timg@rrv.net
 */
 
 #include <config.h>

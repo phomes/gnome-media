@@ -1,4 +1,4 @@
-/* Author: Tim P. Gerla <timg@means.net> */ 
+/* Author: Tim P. Gerla <timg@rrv.net> */ 
 #include <config.h>
 #include <gnome.h>
 #include <stdio.h>

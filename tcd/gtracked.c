@@ -26,7 +26,7 @@ static void edit_disc_extra(GtkWidget *widget);
 static void edit_track_extra(GtkWidget *widget, GtkWidget *list);
 static void gtracked_submit(void);
 
-static void destroy_window (GtkWidget *widget, gboolean save)
+static void destroy_window(GtkWidget *widget, gboolean save)
 {
     if(save)
 	tcd_writediskinfo(&cd);
@@ -189,7 +189,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     }
     
     trwin = gtk_window_new(GTK_WINDOW_DIALOG);
-    gtk_container_border_width(GTK_CONTAINER(trwin), 5);
+    gtk_container_border_width(GTK_CONTAINER(trwin), GNOME_PAD_SMALL);
     gtk_window_set_title(GTK_WINDOW(trwin), _("Track Editor"));
     gtk_window_set_wmclass(GTK_WINDOW(trwin), "track_editor","gtcd");
     gtk_widget_set_usize(trwin, 500, 300);
@@ -325,8 +325,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		       GTK_SIGNAL_FUNC(destroy_window), (gpointer)FALSE);
 
-    gtk_signal_connect(GTK_OBJECT(track_list), "select_row",
-		       GTK_SIGNAL_FUNC(select_row_cb), trwin);
     gtk_signal_connect(GTK_OBJECT(disc_entry), "changed",
 		       GTK_SIGNAL_FUNC(dtitle_changed), NULL);
     signal_id = gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
@@ -342,6 +340,9 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_container_add(GTK_CONTAINER(trwin), main_box);
 
     fill_list(track_list);
+
+    gtk_signal_connect(GTK_OBJECT(track_list), "select_row",
+		       GTK_SIGNAL_FUNC(select_row_cb), trwin);
 
     gtk_widget_show_all(trwin);
     return;
