@@ -1495,7 +1495,7 @@ make_play_pipeline (GSRWindow *window)
 	GSRWindowPipeline *obj;
 	GstElement *pipeline;
 	guint32 id;
-	GstElement *spider;
+	GstElement *spider, *conv, *scale;
 
 	pipeline = gst_pipeline_new ("play-pipeline");
 	g_signal_connect (pipeline, "deep-notify",
@@ -1521,7 +1521,9 @@ make_play_pipeline (GSRWindow *window)
 		g_error ("Could not find element spider");
 		return NULL;
 	}
-	
+
+	conv = gst_element_factory_make ("audioconvert", "conf");
+	scale = gst_element_factory_make ("audioscale", "scale");
 	obj->sink = gst_gconf_get_default_audio_sink ();
 	if (!obj->sink)
 	{
@@ -1529,8 +1531,9 @@ make_play_pipeline (GSRWindow *window)
 		return NULL;
 	}
 
-	gst_bin_add_many (GST_BIN (pipeline), obj->src, spider, obj->sink, NULL);
-	gst_element_link_many (obj->src, spider, obj->sink, NULL);
+	gst_bin_add_many (GST_BIN (pipeline),
+			  obj->src, spider, conv, scale, obj->sink, NULL);
+	gst_element_link_many (obj->src, spider, conv, scale, obj->sink, NULL);
 
 	return obj;
 }
