@@ -296,7 +296,9 @@ cdrom_set_device (GnomeCDRom *cdrom,
 {
 	GnomeCDRomStatus *status;
 	GnomeCDRomPrivate *priv;
-	
+
+	g_return_val_if_fail (cdrom != NULL, FALSE);
+
 	priv = cdrom->priv;
 
 	if (priv->device && !strcmp (priv->device, device))
@@ -450,6 +452,7 @@ cdrom_init (GnomeCDRom *cdrom)
 	cdrom->priv = g_new0 (GnomeCDRomPrivate, 1);
 	cdrom->playmode = GNOME_CDROM_WHOLE_CD;
 	cdrom->loopmode = GNOME_CDROM_PLAY_ONCE;
+	cdrom->priv->device = g_strdup ("/dev/cdrom");
 }
 
 /* API */
@@ -775,15 +778,12 @@ timeout_update_cd (gpointer data)
 	if (gnome_cdrom_get_status (GNOME_CDROM (cdrom), &status, &error) == FALSE) {
 		g_free (priv->recent_status);
 		priv->recent_status = not_ready_status_new ();
-		if (status->cd == GNOME_CDROM_STATUS_NO_DISC ||
-		    status->cd == GNOME_CDROM_STATUS_NO_CDROM )
-			priv->recent_status->cd = status->cd;
 		if (priv->update != GNOME_CDROM_UPDATE_NEVER)
 			gnome_cdrom_status_changed (GNOME_CDROM (cdrom), priv->recent_status);
 		gcd_warning ("%s", error);
 		g_error_free (error);
 		g_object_unref (G_OBJECT (cdrom));
-		g_free (status);
+
 		return TRUE;
 	}
 	

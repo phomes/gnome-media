@@ -1,3 +1,14 @@
+2002-10-07 Iain <iain@prettypeople.org>
+
+	* cdrom.c (cdrom_set_device): Check if the device is ! NULL.
+	(cdrom_init): Set the device to /dev/cdrom.
+	(timeout_update_cd): When get_status returns FALSE, status is not valid.
+
+	* gnome-cd.c (init_player): Get a new cdrom device once the device is 
+	set. If it is not valid, get it again.
+
+	* linux-cdrom (linux_cdrom_get_status): Free real status
+
 2002-10-07  Iain <iain@prettypeople.org>
 
 	* gnome-cd.c

@@ -428,7 +428,10 @@ init_player (void)
 		}
 	}
 		
-	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
+	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, 
+				      GNOME_CDROM_UPDATE_CONTINOUS, &error);
+
+ nodevice:
 	if (gcd->cdrom == NULL) {
 		if (error != NULL) {
 			gcd_warning ("%s", error);
@@ -463,6 +466,13 @@ init_player (void)
 
 		g_error_free (error);
 		g_error_free (detailed_error);
+
+		gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, 
+					      GNOME_CDROM_UPDATE_CONTINOUS, 
+					      &error);
+		if (gcd->cdrom == NULL) {
+			goto nodevice;
+		}
 	}
 		
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);

@@ -798,6 +798,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	
 	if (linux_cdrom_open (lcd, error) == FALSE) {
 		linux_cdrom_close (lcd);
+		g_free (realstatus);
 		return FALSE;
 	}
 
