@@ -60,7 +60,7 @@ cddb_entry_parse_file (CDDBEntry *entry,
 			*end = 0;
 		}
 
-		vector = g_strplit (line, "=", 2);
+		vector = g_strsplit (line, "=", 2);
 		if (vector == NULL) {
 			continue;
 		}

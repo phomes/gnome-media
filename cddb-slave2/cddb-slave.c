@@ -996,6 +996,40 @@ impl_GNOME_Media_CDDBSlave2_getTrackTitle (PortableServer_Servant servant,
 	return CORBA_string_dup (ttitle->str);
 }
 
+static void
+impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
+					  const CORBA_char *discid,
+					  GNOME_Media_CDDBSlave2_StringList **names_list,
+					  CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	int ntrk;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	*names_list = GNOME_Media_CDDBSlave2_StringList__alloc ();
+	(*names_list)->_length = 0;
+	(*names_list)->_maximum = entry->ntrks;
+	(*names_list)->_buffer = CORBA_sequence_CORBA_string_allocbuf (entry->ntrks);
+	
+	for (ntrk = 0; ntrk < entry->ntrks; ntrk++) {
+		char *name;
+		GString *ttitle;
+
+		name = g_strdup_printf ("TTITLE%d", ntrk + 1);
+		ttitle = g_hash_table_lookup (entry->fields, name);
+		(*names_list)->_buffer[ntrk] = CORBA_string_dup (ttitle->str ? ttitle->str : "");
+		(*names_list)->_maximum++;
+
+		g_free (name);
+	}
+
+	return;
+}
+	
 
 static void
 finalize (GObject *object)
@@ -1028,6 +1062,11 @@ cddb_slave_class_init (CDDBSlaveClass *klass)
 
 	parent_class = g_type_class_peek_parent (klass);
 	epv->query = impl_GNOME_Media_CDDBSlave2_query;
+	epv->getArtist = impl_GNOME_Media_CDDBSlave2_getArtist;
+	epv->getDiscTitle = impl_GNOME_Media_CDDBSlave2_getDiscTitle;
+	epv->getNTrks = impl_GNOME_Media_CDDBSlave2_getNTrks;
+	epv->getTrackTitle = impl_GNOME_Media_CDDBSlave2_getTrackTitle;
+	epv->getAllTracks = impl_GNOME_Media_CDDBSlave2_getAllTracks;
 }
 
 static void

@@ -28,6 +28,8 @@ module Media {
 			Result result;
 		};
 
+		typedef sequence<string> StringList;
+		
 		/**
 		 * query: Queries the server for a CD
  		 * @discid: CDDB disc id.
@@ -63,6 +65,9 @@ module Media {
 
 		string getTrackTitle (in string discid, 
 				      in short track);
+
+		void getAllTracks (in string discid,
+				   out StringList names);
 	};
 };
 };  

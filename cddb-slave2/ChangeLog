@@ -1,5 +1,13 @@
 2002-02-10  Iain <iain@ximian.com>
 
+	* cddb-parser.c (cddb_entry_parse_file): fix typo.
+
+	* cddb-slave.c (impl_GNOME_Media_CDDBSlave2_getAllTracks): Get all the
+	track names.
+	(cddb_slave_class_init): Connect the rest of the methods.
+
+2002-02-10  Iain <iain@ximian.com>
+
 	* cddb-slave.c (impl_GNOME_Media_CDDBSlave2_getDiscTitle): Fix for
 	case where there's no / in the DTITLE.
 	(impl_GNOME_Media_CDDBSlave2_getArtist): Fix for case where there's no
