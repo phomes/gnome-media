@@ -27,7 +27,6 @@ tcd_SOURCES = 		\
 	linux-cdrom.c 	\
 	cddb.h 		\
 	socket.h 	\
-	cdrom.h		\
 	tcd.h		\
 	tracked.h	\
 	tracked.c
