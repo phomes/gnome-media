@@ -31,19 +31,13 @@ fi
 
 have_intltoolize=false
 if intltoolize --version < /dev/null > /dev/null 2>&1 ; then
-	intltool_version=`intltoolize --version | sed 's/^[^0-9]*\([0-9.][0-9.]*\).*/\1/'`
-	case $intltool_version in
-	    0.2[5-9]*)
-		have_intltoolize=true
-		;;
-	    0.3[0-9]*)
-		have_intltoolize=true
-		;;
-	esac
+# Moving intltool version checking into configure
+# which really makes more sense
+	have_intltoolize=true
 fi
 if $have_intltoolize ; then : ; else
 	echo
-	echo "You must have intltool 0.25 installed to compile $PROJECT."
+	echo "You must have intltool 0.25 or later installed to compile $PROJECT."
 	echo "Install the appropriate package for your distribution,"
 	echo "or get the source tarball at ftp://ftp.gnu.org/pub/gnu/"
 	DIE=1
