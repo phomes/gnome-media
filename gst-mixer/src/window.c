@@ -364,7 +364,6 @@ static void
 cb_about (GtkWidget *widget,
 	  gpointer   data)
 {
-  GtkWidget *about;
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
@@ -376,15 +375,17 @@ cb_about (GtkWidget *widget,
 
   if (!strcmp (translators, "translator-credits"))
     translators = NULL;
-
-  about = gnome_about_new (_("Volume Control"),
-			   VERSION,
-			   "(c) 2003-2004 Ronald Bultje",
-			   _("A GNOME/GStreamer-based volume control application"),
-			   authors, documentors, translators,
-			   NULL);
-
-  gtk_widget_show (about);
+  
+  gtk_show_about_dialog (NULL,
+			 "name", _("Volume Control"),
+			 "version", VERSION,
+			 "copyright", "(c) 2003-2004 Ronald Bultje",
+			 "comments", _("A GNOME/GStreamer-based volume control application"),
+			 "authors", authors,
+			 "documenters", documentors,
+			 "translator-credits", translators,
+			 "logo-icon-name", "volume-knob",
+			 NULL);
 }
 
 /*
