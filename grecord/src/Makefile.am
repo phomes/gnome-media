@@ -3,7 +3,7 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-I$(top_srcdir)/intl \
-	$(MEDIA_CFLAGS)		\
+	$(GSR_CFLAGS)		\
 	-DDATADIR=\""$(datadir)"\"		\
 	-DGSR_DATADIR=\""$(datadir)/gnome-sound-recorder"\"	\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
@@ -24,6 +24,6 @@ gnome_sound_recorder_SOURCES = \
 	gsr-window.c		\
 	gsr-window.h
 
-gnome_sound_recorder_LDADD = $(MEDIA_LIBS) $(INTLLIBS)
+gnome_sound_recorder_LDADD = $(GSR_LIBS) $(INTLLIBS)
 
 
