@@ -284,7 +284,7 @@ then
 fi
 
 # profiles
-PKG_CHECK_MODULES(GMP, gconf-2.0 gtk+-2.0 libglade-2.0 libgnome-2.0,
+PKG_CHECK_MODULES(GMP, gconf-2.0 libglade-2.0 libgnomeui-2.0,
                   USE_GMP=yes, USE_GMP=no)
 AC_SUBST(GMP_CFLAGS)
 AC_SUBST(GMP_LIBS)
