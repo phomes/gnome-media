@@ -337,7 +337,7 @@ void config_cb(GtkWidget *widget, void *data)
 	if (!configwin) {
 	        configwin=gnome_property_box_new();
 		gtk_widget_realize(configwin);
-		label = gtk_label_new(_("Preferences"));
+		label = gtk_label_new(_("Preferences..."));
 		gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(configwin)->notebook),
 					 optpage(), label);
 		/*    
