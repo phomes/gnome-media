@@ -21,8 +21,9 @@
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-arg.h>
 #include <bonobo/bonobo-exception.h>
-#include <libgnome/gnome-util.h>
+#include <gnome.h>
 
+/* Use local copy of gnet */
 #include "gnet.h"
 
 #include <orbit/orbit.h>
@@ -118,8 +119,8 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 }
 
 static gboolean
-do_goodbye (ConnectionData *cd,
-	    const char *response)
+do_goodbye_response (ConnectionData *cd,
+		     const char *response)
 {
 	CDDBSlave *cddb = cd->cddb;
 	int code;
@@ -163,6 +164,20 @@ do_goodbye (ConnectionData *cd,
 	g_free (cd);
 	
 	return FALSE;
+}
+
+static void
+do_goodbye (ConnectionData *cd)
+{
+	char *quit;
+	gsize bytes_writen;
+	GIOError status;
+	
+	/* Send quit command */
+	status = gnet_io_channel_writen (cd->iochannel, "quit\n",
+					 5, &bytes_writen);
+	g_print ("status: %d bytes_writen: %d\n", status, bytes_writen);
+	cd->mode = CONNECTION_MODE_NEED_GOODBYE;
 }
 
 static gboolean
@@ -249,18 +264,129 @@ do_read_response (ConnectionData *cd,
 	}
 
 	if (more == FALSE) {
-		char *quit;
-		gsize bytes_writen;
-		GIOError status;
-
-		/* Send quit command */
-		status = gnet_io_channel_writen (cd->iochannel, "quit\n",
-						 5, &bytes_writen);
-		g_print ("status: %d bytes_writen: %d\n", status, bytes_writen);
-		cd->mode = CONNECTION_MODE_NEED_GOODBYE;
+		do_goodbye (cd);
 	}
 		
 	return more;
+}
+
+static void
+do_read (ConnectionData *cd,
+	 const char *cat,
+	 const char *discid,
+	 const char *dtitle)
+{
+	char *query;
+	gsize bytes_writen;
+	GIOError status;
+	
+	/* Send read command */
+	query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
+	g_print ("Sending %s\n", query);
+	status = gnet_io_channel_writen (cd->iochannel, query,
+					 strlen (query), &bytes_writen);
+	g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
+	g_free (query);
+	cd->mode = CONNECTION_MODE_NEED_READ_RESPONSE;
+}
+
+static GtkTreeModel *
+create_model_from_list (GList *list)
+{
+	GtkListStore *store;
+	GtkTreeIter iter;
+	GList *l;
+
+	store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+
+	for (l = list; l; l = l->next) {
+		char **vector;
+
+		vector = (char **) l->data;
+
+		gtk_list_store_append (store, &iter);
+		gtk_list_store_set (store, &iter, 0, vector[0], 1, vector[1], 2, vector[2], -1);
+	}
+
+	return GTK_TREE_MODEL (store);
+}
+		
+static char **
+display_results (ConnectionData *cd)
+{
+	GtkWidget *window, *list, *sw, *label;
+	GtkCellRenderer *cell;
+	GtkTreeViewColumn *col;
+	GtkTreeModel *model, *selmodel;
+	GtkTreeSelection *selection;
+	GtkTreeIter iter;
+	char **vector;
+	int i;
+	
+	window = gtk_dialog_new_with_buttons (_("Multiple matches..."),
+					      NULL, 0,
+					      GTK_STOCK_CANCEL, 0, GTK_STOCK_OK, 1, NULL);
+
+	label = gtk_label_new (_("There were multiple matches found in the database.\n"
+				 "Below is a list of possible matches, please choose the "
+				 "best match"));
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), label, TRUE, TRUE, 0);
+	gtk_widget_show (label);
+	
+	model = create_model_from_list (cd->matches);
+	list = gtk_tree_view_new_with_model (model);
+	g_object_unref (model);
+
+	cell = gtk_cell_renderer_text_new ();
+	col = gtk_tree_view_column_new_with_attributes (_("Category"), cell,
+							"text", 0, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
+	
+	col = gtk_tree_view_column_new_with_attributes (_("Disc ID"), cell,
+							"text", 1, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
+	
+	col = gtk_tree_view_column_new_with_attributes (_("Artist and Title"), cell,
+							"text", 2, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
+	
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (sw), list);
+	gtk_widget_show_all (sw);
+
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), sw, TRUE, TRUE, 0);
+	switch (gtk_dialog_run (GTK_DIALOG (window))) {
+	case 0:
+		gtk_widget_destroy (window);
+		return NULL;
+
+	case 1:
+		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
+		if (gtk_tree_selection_get_selected (selection, NULL, &iter) == TRUE) {
+			char **vector;
+
+			vector = g_new (char *, 3);
+			gtk_tree_model_get (model, &iter, 0, &vector[0], 1, &vector[1], 2, &vector[2], -1);
+
+			gtk_widget_destroy (window);
+			return vector;
+		} else {
+			gtk_widget_destroy (window);
+			return NULL;
+		}
+		
+		gtk_widget_destroy (window);
+		return NULL;
+
+	default:
+		break;
+	}
+
+	gtk_widget_destroy (window);
+	return NULL;
 }
 
 static gboolean
@@ -273,7 +399,8 @@ do_query_response (ConnectionData *cd,
 	char *cat = NULL, *discid = NULL, *dtitle = NULL;
 	char **vector;
 	static gboolean waiting_for_terminator = FALSE;
-
+	gboolean disconnect = FALSE;
+	
 	if (waiting_for_terminator == TRUE) {
 		code = 211;
 	} else {
@@ -301,23 +428,50 @@ do_query_response (ConnectionData *cd,
 		break;
 
 	case 211:
-		waiting_for_terminator = TRUE;
 
 		if (response[0] == '.') {
 			/* Terminator */
+			char **result;
+			GList *l;
+			
 			waiting_for_terminator = FALSE;
-/*  			display_results (cd); */
+  			result = display_results (cd);
+
+			if (result != NULL) {
+				cat = result[0];
+				discid = result[1];
+				dtitle = result[2];
+				g_free (result);
+
+			} else {
+				/* Need to disconnect here...
+				   none of our matches matched */
+				do_goodbye (cd);
+			}
+
+			/* Free the vector list */
+			for (l = cd->matches; l; l = l->next) {
+				g_strfreev ((char **) l->data);
+			}
+			g_list_free (cd->matches);
+			cd->matches = NULL;
+			
 			more = FALSE;
-		}
-		
-		vector = g_strsplit (response, " ", 3);
-		if (vector == NULL) {
-			g_print ("Erk!\n");
-			return FALSE;
+			break;
 		}
 
-		/* Add the vector to the list of matches */
-		cd->matches = g_list_append (cd->matches, vector);
+		if (waiting_for_terminator == TRUE) {
+			vector = g_strsplit (response, " ", 3);
+			if (vector == NULL) {
+				g_print ("Erk!\n");
+				return FALSE;
+			}
+			
+			/* Add the vector to the list of matches */
+			cd->matches = g_list_append (cd->matches, vector);
+		}
+
+		waiting_for_terminator = TRUE;
 		more = TRUE;
 
 		break;
@@ -352,23 +506,34 @@ do_query_response (ConnectionData *cd,
 	    discid != NULL &&
 	    dtitle != NULL &&
 	    cddb->priv->access != CDDB_ACCESS_NONE) {
-		char *query;
-		gsize bytes_writen;
-		GIOError status;
-
-		/* Send read command */
-		query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
-		g_print ("Sending %s\n", query);
-		status = gnet_io_channel_writen (cd->iochannel, query,
-						 strlen (query), &bytes_writen);
-		g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
-		g_free (query);
-		cd->mode = CONNECTION_MODE_NEED_READ_RESPONSE;
+		do_read (cd, cat, discid, dtitle);
 	}
 
+	g_free (cat);
+	g_free (discid);
+	g_free (dtitle);
 	return more;
 }
-		
+
+static void
+do_query (ConnectionData *cd)
+{
+	char *query;
+	gsize bytes_writen;
+	GIOError status;
+	
+	/* Send query command */
+	query = g_strdup_printf ("cddb query %s %d %s %d\n",
+				 cd->discid, cd->ntrks, 
+				 cd->offsets, cd->nsecs);
+	g_print ("Sending %s\n", query);
+	status = gnet_io_channel_writen (cd->iochannel, query,
+					 strlen (query), &bytes_writen);
+	g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
+	g_free (query);
+	cd->mode = CONNECTION_MODE_NEED_QUERY_RESPONSE;
+}
+
 static gboolean
 do_hello_response (ConnectionData *cd,
 		   const char *response)
@@ -402,28 +567,38 @@ do_hello_response (ConnectionData *cd,
 	}
 
 	if (cddb->priv->access != CDDB_ACCESS_NONE) {
-		char *query;
-		gsize bytes_writen;
-		GIOError status;
-		
-		/* Send query command */
-		query = g_strdup_printf ("cddb query %s %d %s %d\n",
-					 cd->discid, cd->ntrks, 
-					 cd->offsets, cd->nsecs);
-		g_print ("Sending %s\n", query);
-		status = gnet_io_channel_writen (cd->iochannel, query,
-						strlen (query), &bytes_writen);
-		g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
-		g_free (query);
-		cd->mode = CONNECTION_MODE_NEED_QUERY_RESPONSE;
+		do_query (cd);
 	}
 
 	return FALSE;
 }
 
+static void
+do_hello (ConnectionData *cd)
+{
+	char *hello;
+	gsize bytes_writen;
+	GIOError status;
+	
+	/* Send the Hello command
+	   CDDB howto says these shouldn't be hardcoded,
+	   but that seems to be a privacy issue */
+	hello = g_strconcat ("cddb hello johnsmith 198.172.174.22 ",
+			     cd->name, " ", cd->version, "\n", NULL);
+	g_print ("Sending %s\n", hello);
+	
+	/* Need to check the return of this one */
+	status = gnet_io_channel_writen (cd->iochannel, hello,
+					 strlen (hello), &bytes_writen);
+	g_print ("Status: %d bytes_writen: %d\n", status, bytes_writen);
+	g_free (hello);
+
+	cd->mode = CONNECTION_MODE_NEED_HELLO_RESPONSE;
+}
+
 static gboolean
-do_hello (ConnectionData *cd,
-	  const char *response)
+do_open_response (ConnectionData *cd,
+		  const char *response)
 {
 	CDDBSlave *cddb = cd->cddb;
 	int code;
@@ -469,27 +644,11 @@ do_hello (ConnectionData *cd,
 	}
 
 	if (cddb->priv->access != CDDB_ACCESS_NONE) {
-		char *hello;
-		gsize bytes_writen;
-		GIOError status;
-		
-		/* Send the Hello command
-		   CDDB howto says these shouldn't be hardcoded,
-		   but that seems to be a privacy issue */
-		hello = g_strconcat ("cddb hello johnsmith 198.172.174.22 ",
-				     cd->name, " ", cd->version, "\n", NULL);
-		g_print ("Sending %s\n", hello);
-
-		/* Need to check the return of this one */
-		status = gnet_io_channel_writen (cd->iochannel, hello,
-						 strlen (hello), &bytes_writen);
-		g_print ("Status: %d bytes_writen: %d\n", status, bytes_writen);
-		g_free (hello);
+		do_hello (cd);
 	} else {
 		/* Do something to indicate that we can't contact server */
 	}
 
-	cd->mode = CONNECTION_MODE_NEED_HELLO_RESPONSE;
 	return FALSE;
 }
 	
@@ -531,7 +690,7 @@ read_from_server (GIOChannel *iochannel,
 			
 			switch (cd->mode) {
 			case CONNECTION_MODE_NEED_HELLO:
-				more = do_hello (cd, buffer);
+				more = do_open_response (cd, buffer);
 				break;
 
 			case CONNECTION_MODE_NEED_HELLO_RESPONSE:
@@ -547,7 +706,7 @@ read_from_server (GIOChannel *iochannel,
 				break;
 
 			case CONNECTION_MODE_NEED_GOODBYE:
-				more = do_goodbye (cd, buffer);
+				more = do_goodbye_response (cd, buffer);
 				break;
 				
 			default:

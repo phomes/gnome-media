@@ -77,6 +77,7 @@ factory_fn (BonoboGenericFactory *factory,
 
 	return BONOBO_OBJECT (cddb);
 }
+
 static gboolean
 cddbslave_init (gpointer data)
 {

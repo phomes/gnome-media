@@ -1,3 +1,12 @@
+2002-01-18  Iain Holmes  <iain@ximian.com>
+
+	* cddb-slave.c: Modularise the commands and the responses.
+	(display_results): Create a GUI to display multiple results.
+	(create_model_from_list): Create a GtkTreeModel from a list of
+	vectors.
+	(do_query_response): If the result code is 211, collect a list of
+	vectors, and display them then free the list.
+
 2002-01-17  Iain Holmes  <iain@ximian.com>
 
 	* main.c (main): Init the GUI as well.
