@@ -642,7 +642,7 @@ create_dialog (GtkWidget *window)
 
 	main_vbox = gtk_vbox_new (FALSE, 5);
 	gtk_container_set_border_width (GTK_CONTAINER (main_vbox), 5);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, TRUE, TRUE, 0);
 
 	/* Log on info */
 	frame = gtk_frame_new (_("Log on information"));
@@ -865,6 +865,7 @@ main (int argc,
 						  GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);
+	gtk_window_set_default_size (GTK_WINDOW (dialog_win), 440, 570);
 	create_dialog (dialog_win);
 
 	gtk_dialog_set_default_response(GTK_DIALOG (dialog_win), GTK_RESPONSE_CLOSE);
