@@ -17,12 +17,6 @@
 
 #define NUMBER_OF_DISPLAY_LINES 5
 
-typedef enum _GnomeCDState {
-	GNOME_CD_PLAY,
-	GNOME_CD_PAUSE,
-	GNOME_CD_STOP
-} GnomeCDState;
-
 typedef struct _GnomeCDText {
 	char *text;
 	int length;
@@ -40,10 +34,6 @@ typedef struct _GnomeCD {
 
 	GtkWidget *trackeditor_b, *properties_b;
 
-	/* Pango stuff */
-	PangoContext *pango_context;
-	PangoFontDescription *font_desc;
-
 	/* FIXME: Make this a control */
 	GtkWidget *back_b, *rewind_b;
 	GtkWidget *play_b, *stop_b;
@@ -55,9 +45,8 @@ typedef struct _GnomeCD {
 
 	GnomeCDRom *cdrom;
 
-	GnomeCDState state;
-
-	GnomeCDText *layout[NUMBER_OF_DISPLAY_LINES];
+	GnomeCDRomDriveStatus last_cd;
+	GnomeCDRomAudioStatus last_audio;
 
 	guint32 timeout;
 	guint32 display_timeout;

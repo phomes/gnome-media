@@ -63,6 +63,13 @@ typedef struct _GnomeCDRomStatus {
 	GnomeCDRomMSF absolute;
 } GnomeCDRomStatus;
 
+typedef struct _GnomeCDRomCDDBData {
+	int discid;
+	int ntrks;
+	int *offsets;
+	int nsecs;
+} GnomeCDRomCDDBData;
+
 struct _GnomeCDRom {
 	GObject object;
 
@@ -95,6 +102,11 @@ struct _GnomeCDRomClass {
 				GError **error);
 	gboolean (*close_tray) (GnomeCDRom *cdrom,
 				GError **error);
+
+	/* For CDDB */
+	gboolean (*get_cddb_data) (GnomeCDRom *cdrom,
+				   GnomeCDRomCDDBData **data,
+				   GError **error);
 };
 
 GQuark gnome_cdrom_error_quark (void);
@@ -125,6 +137,10 @@ gboolean gnome_cdrom_get_status (GnomeCDRom *cdrom,
 				 GError **error);
 gboolean gnome_cdrom_close_tray (GnomeCDRom *cdrom,
 				 GError **error);
+gboolean gnome_cdrom_get_cddb_data (GnomeCDRom *cdrom,
+				    GnomeCDRomCDDBData **data,
+				    GError **error);
+void gnome_cdrom_free_cddb_data (GnomeCDRomCDDBData *data);
 
 /* This function is not defined in cdrom.c.
    It is defined in each of the architecture specific files. It is defined here

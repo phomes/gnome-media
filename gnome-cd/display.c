@@ -158,11 +158,14 @@ finalize (GObject *object)
 }
 
 static void
-realize (CDDisplay *disp)
+realize (GtkWidget *widget)
 {
+	CDDisplay *disp;
 	GdkColormap *cmap;
 
-	cmap = gtk_widget_get_colormap (GTK_WIDGET (disp));
+	disp = CD_DISPLAY (widget);
+
+	cmap = gtk_widget_get_colormap (widget);
 	disp->priv->red.red = 65535;
 	disp->priv->red.green = 0;
 	disp->priv->red.blue = 0;
@@ -173,7 +176,7 @@ realize (CDDisplay *disp)
 	disp->priv->blue.blue = 65535;
 	gdk_color_alloc (cmap, &disp->priv->blue);
 
-	GTK_WIDGET_CLASS (parent_class)->realize (disp);
+	GTK_WIDGET_CLASS (parent_class)->realize (widget);
 }
 
 static void
@@ -213,7 +216,7 @@ init (CDDisplay *disp)
 		
 		priv->layout[i]->text = g_strdup (default_text[i]);
 		priv->layout[i]->length = strlen (default_text[i]);
-		priv->layout[i]->layout = gtk_widget_create_pango_layout (disp, priv->layout[i]->text);
+		priv->layout[i]->layout = gtk_widget_create_pango_layout (GTK_WIDGET (disp), priv->layout[i]->text);
 		pango_layout_set_text (priv->layout[i]->layout,
 				       priv->layout[i]->text,
 				       priv->layout[i]->length);

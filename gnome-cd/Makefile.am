@@ -4,6 +4,7 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(includedir)				\
 	-I$(top_builddir)			\
+	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
@@ -13,6 +14,8 @@ gnome_cd_SOURCES =		\
 	gnome-cd.h		\
 	callbacks.c		\
 	callbacks.h		\
+	cddb.c			\
+	cddb.h			\
 	cdrom.c			\
 	cdrom.h			\
 	display.c		\

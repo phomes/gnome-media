@@ -90,7 +90,6 @@ init_player (void)
 
 	gcd = g_new0 (GnomeCD, 1);
 
-	gcd->state = GNOME_CD_STOP;
 	gcd->cdrom = gnome_cdrom_new ("/dev/cdrom", &error);
 	if (gcd->cdrom == NULL) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
@@ -127,7 +126,7 @@ init_player (void)
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 
-	gcd->display = cd_display_new ();
+	gcd->display = GTK_WIDGET (cd_display_new ());
 
 	gtk_container_add (GTK_CONTAINER (frame), gcd->display);
 

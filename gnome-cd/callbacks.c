@@ -279,11 +279,17 @@ update_cb (gpointer data)
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
 		g_warning ("Tray open");
 
+		gcd->last_cd = status->cd;
+		gcd->last_audio = status->audio;
+
 		g_free (status);
 		return TRUE;
 
 	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
 		g_warning ("Drive not ready");
+
+		gcd->last_cd = status->cd;
+		gcd->last_audio = status->audio;
 
 		g_free (status);
 		return TRUE;
@@ -291,11 +297,22 @@ update_cb (gpointer data)
 	case GNOME_CDROM_STATUS_NO_DISC:
 		g_warning ("No disc");
 
+		gcd->last_cd = status->cd;
+		gcd->last_audio = status->audio;
+
 		return TRUE;
 
 	case GNOME_CDROM_STATUS_OK:
 		g_warning ("Drive OK");
-		
+
+		if (gcd->last_cd != GNOME_CDROM_STATUS_OK) {
+			/* Disc has just been inserted. */
+			cddb_get_query (gcd);
+		}
+
+		gcd->last_cd = status->cd;
+		gcd->last_audio = status->audio;
+
 		break;
 
 	default:

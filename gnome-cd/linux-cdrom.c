@@ -692,6 +692,74 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
+static gboolean
+linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
+			   GnomeCDRomCDDBData **data,
+			   GError **error)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
+	int i, t = 0, n = 0;
+	
+	lcd = LINUX_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (linux_cdrom_check (lcd, error) == FALSE) {
+		return FALSE;
+	}
+
+	*data = g_new (GnomeCDRomCDDBData, 1);
+
+	for (i = 0; i < priv->number_tracks; i++) {
+		n += cddb_sum ((priv->track_info[i].address.minute * 60) +
+			       priv->track_info[i].address.second);
+		t += ((priv->track_info[i + 1].address.minute * 60) +
+		      priv->track_info[i + 1].address.second) -
+			((priv->track_info[i].address.minute * 60) + 
+			 priv->track_info[i].address.second);
+	}
+
+	(*data)->discid = ((n % 0xff) << 24 | t << 8 | (priv->track1));
+	(*data)->ntrks = priv->track1;
+	(*data)->nsecs = (priv->track_info[priv->track1].address.minute * 60) + (priv->track_info[priv->track1].address.second);
+	(*data)->offsets = g_new (unsigned int, priv->track1 + 1);
+	
+	for (i = priv->track0; i <= priv->track1; i++) {
+		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
+	}
+		
+	linux_cdrom_close (lcd);
+	return TRUE;
+}
+
+static gboolean
+linux_cdrom_close_tray (GnomeCDRom *cdrom,
+			GError **error)
+{
+	LinuxCDRom *lcd;
+
+	lcd = LINUX_CDROM (cdrom);
+	if (linux_cdrom_check (lcd, error) == FALSE) {
+		return FALSE;
+	}
+
+	if (ioctl (lcd->priv->cdrom_fd, CDROMCLOSETRAY) < 0) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(%s) ioctl failed %s",
+					      __FUNCTION__,
+					      strerror (errno));
+		}
+
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+
+	linux_cdrom_close (lcd);
+	return TRUE;
+}	
+
 static void
 class_init (LinuxCDRomClass *klass)
 {
@@ -712,6 +780,10 @@ class_init (LinuxCDRomClass *klass)
 	cdrom_class->rewind = linux_cdrom_rewind;
 	cdrom_class->back = linux_cdrom_back;
 	cdrom_class->get_status = linux_cdrom_get_status;
+	cdrom_class->close_tray = linux_cdrom_close_tray;
+
+	/* For CDDB */
+	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
 
 	parent_class = g_type_class_peek_parent (klass);
 }

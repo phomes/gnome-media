@@ -202,6 +202,22 @@ cdrom_close_tray (GnomeCDRom *cdrom,
 	return FALSE;
 }
 
+static gboolean
+cdrom_get_cddb_data (GnomeCDRom *cdrom,
+		     GnomeCDRomCDDBData **data,
+		     GError **error)
+{
+	if (error) {
+		*error = g_error_new (GNOME_CDROM_ERROR,
+				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
+				      "%s has not been implemented in %s",
+				      __FUNCTION__,
+				      G_OBJECT_TYPE_NAME (cdrom));
+	}
+
+	return FALSE;
+}
+
 static void
 class_init (GnomeCDRomClass *klass)
 {
@@ -220,6 +236,9 @@ class_init (GnomeCDRomClass *klass)
 	klass->back = cdrom_back;
 	klass->get_status = cdrom_get_status;
 	klass->close_tray = cdrom_close_tray;
+
+	/* CDDB stuff */
+	klass->get_cddb_data = cdrom_get_cddb_data;
 
 	parent_class = g_type_class_peek_parent (klass);
 }
@@ -352,3 +371,20 @@ gnome_cdrom_close_tray (GnomeCDRom *cdrom,
 	return klass->close_tray (cdrom, error);
 }
 
+gboolean
+gnome_cdrom_get_cddb_data (GnomeCDRom *cdrom,
+			   GnomeCDRomCDDBData **data,
+			   GError **error)
+{
+	GnomeCDRomClass *klass;
+
+	klass = GNOME_CDROM_GET_CLASS (cdrom);
+	return klass->get_cddb_data (cdrom, data, error);
+}
+
+void
+gnome_cdrom_free_cddb_data (GnomeCDRomCDDBData *data)
+{
+	g_free (data->offsets);
+	g_free (data);
+}
