@@ -3,7 +3,7 @@
 
 always_built_SUBDIRS = po macros cddbslave
 
-# always distribute extace damnit
+# always distribute extace even if we can't build it
 if BUILD_EXTACE
 extace = extace
 endif

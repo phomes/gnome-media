@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-01-03 17:06-0500\n"
+"POT-Creation-Date: 1999-01-31 20:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Max Valianskiy <maxcom@vinchi.ru>\n"
 "Language-Team: \n"
@@ -78,55 +78,54 @@ msgstr ""
 msgid "_About"
 msgstr "_О Программе"
 
-#: gmix/gmix.c:83
-#, fuzzy
-msgid "E_xit"
-msgstr "В_ыход"
-
-#: gmix/gmix.c:89
+#: gmix/gmix.c:88
 msgid "_Program"
 msgstr "_Программа"
 
-#: gmix/gmix.c:90
+#: gmix/gmix.c:89
 msgid "_Help"
 msgstr "_Помощь"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:138
 msgid "don't restore mixer-settings from configuration"
 msgstr "не востанавливать настройки микшера из конфигурации"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:139
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "инициализировать микшер(ы) из сохраненной конфигурации и выйти"
 
-#: gmix/gmix.c:141
+#: gmix/gmix.c:140
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "не сохранять (измененные) настройки микшера в конфигурацию"
 
-#: gmix/gmix.c:525
+#: gmix/gmix.c:524
 msgid "GMIX 3.0"
 msgstr ""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:587
+#: gmix/gmix.c:586
 msgid "Lock"
 msgstr "Фикс."
 
-#: gmix/gmix.c:598
+#: gmix/gmix.c:597
 msgid "Rec."
 msgstr "Запись"
 
-#: gmix/gmix.c:605
+#: gmix/gmix.c:604
 msgid "Mute"
 msgstr "Выкл."
 
-#: gmix/gmix.c:769
+#: gmix/gmix.c:763
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome микшер"
 
-#: gmix/gmix.c:772
+#: gmix/gmix.c:766
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Микшер для звуковыйх устройств OSS."
+
+#: gnomovision/tvset.c:1412
+msgid "FILE ..."
+msgstr "ФАЙЛ ..."
 
 #: tcd/callbacks.c:83
 msgid "TCD - The Gnome CD Player"
@@ -141,132 +140,28 @@ msgstr ""
 "Gnome CD-проигрыватель с поддержкой CDDB. Пожалуйста посмотрите 'Thanks' "
 "файл из поставки для дополнительной информации о авторах"
 
-#: tcd/gtracked.c:133
-msgid "Trk"
-msgstr "Трк"
+#: tcd/cddb_props.c:62
+msgid "Disc ID"
+msgstr ""
 
-#: tcd/gtracked.c:133
-msgid "Time"
-msgstr "Время"
-
-#: tcd/gtracked.c:133
-msgid "Title"
+#: tcd/cddb_props.c:62
+#, fuzzy
+msgid "Disc Title"
 msgstr "Заглавие"
 
-#: tcd/gtracked.c:150
-msgid "Track Editor"
+#: tcd/cddb_props.c:233
+#, fuzzy
+msgid "CDDB Editor"
 msgstr "Редактор Треков"
 
-#: tcd/gtracked.c:161
-#, fuzzy, c-format
-msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Информация о Диске"
-
-#: tcd/gtracked.c:166
-msgid "Artist / Title"
-msgstr "Автор / Заглавие"
-
-#. ...
-#: tcd/gtracked.c:210
-msgid "Track Information"
-msgstr "Информация о Треке"
-
-#. Clear button
-#: tcd/gtracked.c:224
-msgid "Clear"
-msgstr "Очистить"
-
-#. Playlist button
-#: tcd/gtracked.c:229
-msgid "Playlist"
-msgstr "Список треков"
+#: tcd/cddb_props.c:247
+msgid "Error reading $HOME/.cddbslave."
+msgstr ""
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:235
+#: tcd/cddb_status.c:50 tcd/gtracked.c:238
 msgid "CDDB Status"
 msgstr "Статус CDDB"
-
-#. do nothing
-#: tcd/prefs.c:167 tcd/prefs.c:222
-msgid "Do Nothing"
-msgstr "Ничего не Делать"
-
-#: tcd/prefs.c:173
-msgid "Start Playing"
-msgstr "Начать Проигрывание"
-
-#: tcd/prefs.c:179 tcd/prefs.c:228
-msgid "Stop Playing"
-msgstr "Остановить Проигрывание"
-
-#. close tray
-#: tcd/prefs.c:183 tcd/prefs.c:240
-msgid "Close Tray"
-msgstr "Закрыть Трап"
-
-#: tcd/prefs.c:234
-msgid "Open Tray"
-msgstr "Открыть Трап"
-
-#. device entry
-#: tcd/prefs.c:313
-msgid "CDROM Device"
-msgstr "CDROM Устройство"
-
-#. Color picker
-#: tcd/prefs.c:322
-msgid "Track/Title Color"
-msgstr "Цвет Трека/Заглавия"
-
-#. font picker
-#: tcd/prefs.c:334
-msgid "Track/Title Font"
-msgstr "Фонт Трека/Заглавия"
-
-#: tcd/prefs.c:335
-msgid "Change Font"
-msgstr "Изменить Фонт"
-
-#. show handles
-#: tcd/prefs.c:342
-msgid "Show Handles (Restart of TCD required)"
-msgstr "Показать Ручки (Требуется перезапуск TCD)"
-
-#. show tooltips
-#: tcd/prefs.c:349
-msgid "Show Tooltips"
-msgstr "Показать Подсказки"
-
-#. start frame
-#: tcd/prefs.c:369
-msgid "On Startup"
-msgstr "При Запуске"
-
-#. exit frame
-#: tcd/prefs.c:375
-msgid "On Exit"
-msgstr "При Выходе"
-
-#: tcd/prefs.c:483
-msgid "Key"
-msgstr "Клавиша"
-
-#: tcd/prefs.c:484
-msgid "Action"
-msgstr "Действие"
-
-#. Frame
-#: tcd/prefs.c:524 tcd/prefs.c:564
-msgid "Keybindings"
-msgstr "Настройки Клавиш"
-
-#: tcd/gtcd.c:298 tcd/prefs.c:560
-msgid "Preferences"
-msgstr "Настройки"
-
-#: tcd/prefs.c:568
-msgid "CDDB Settings"
-msgstr "Настройки CDDB"
 
 #. grab button
 #: tcd/cddb_status.c:68
@@ -310,6 +205,10 @@ msgstr "случайный"
 msgid "Open track editor"
 msgstr "Открыть редактор треков"
 
+#: tcd/gtcd.c:298 tcd/prefs.c:574
+msgid "Preferences"
+msgstr "Настройки"
+
 #: tcd/gtcd.c:299 tcd/popup.c:23
 msgid "Quit"
 msgstr "Выход"
@@ -348,11 +247,51 @@ msgstr "Нет Диска"
 msgid "Error"
 msgstr "Ошибка"
 
-#: tcd/linux-cdrom.c:623
+#: tcd/gtracked.c:133
+msgid "Trk"
+msgstr "Трк"
+
+#: tcd/gtracked.c:133
+msgid "Time"
+msgstr "Время"
+
+#: tcd/gtracked.c:133
+msgid "Title"
+msgstr "Заглавие"
+
+#: tcd/gtracked.c:153
+msgid "Track Editor"
+msgstr "Редактор Треков"
+
+#: tcd/gtracked.c:164
+#, fuzzy, c-format
+msgid "Disc Information (%02u:%02u minutes)"
+msgstr "Информация о Диске"
+
+#: tcd/gtracked.c:169
+msgid "Artist / Title"
+msgstr "Автор / Заглавие"
+
+#. ...
+#: tcd/gtracked.c:213
+msgid "Track Information"
+msgstr "Информация о Треке"
+
+#. Clear button
+#: tcd/gtracked.c:227
+msgid "Clear"
+msgstr "Очистить"
+
+#. Playlist button
+#: tcd/gtracked.c:232
+msgid "Playlist"
+msgstr "Список треков"
+
+#: tcd/linux-cdrom.c:639
 msgid "Unknown / Unknown"
 msgstr "Неизвестный / Неизвестный"
 
-#: tcd/linux-cdrom.c:627
+#: tcd/linux-cdrom.c:643
 #, fuzzy, c-format
 msgid "Track %d"
 msgstr "Редактор Треков"
@@ -376,33 +315,133 @@ msgstr "Редактор Треков"
 msgid "About..."
 msgstr "Помощь/О программе..."
 
-#: vu-meter/main.c:148
+#. do nothing
+#: tcd/prefs.c:170 tcd/prefs.c:225
+#, fuzzy
+msgid "Do nothing"
+msgstr "Ничего не Делать"
+
+#: tcd/prefs.c:176
+#, fuzzy
+msgid "Start playing"
+msgstr "Начать Проигрывание"
+
+#: tcd/prefs.c:182 tcd/prefs.c:231
+#, fuzzy
+msgid "Stop playing"
+msgstr "Остановить Проигрывание"
+
+#. close tray
+#: tcd/prefs.c:186 tcd/prefs.c:243
+#, fuzzy
+msgid "Close tray"
+msgstr "Закрыть Трап"
+
+#: tcd/prefs.c:237
+#, fuzzy
+msgid "Open tray"
+msgstr "Открыть Трап"
+
+#. device entry
+#: tcd/prefs.c:316
+#, fuzzy
+msgid "CDROM device"
+msgstr "CDROM Устройство"
+
+#. Color picker
+#: tcd/prefs.c:325
+#, fuzzy
+msgid "Track/title color"
+msgstr "Цвет Трека/Заглавия"
+
+#. font picker
+#: tcd/prefs.c:337
+#, fuzzy
+msgid "Track/title font"
+msgstr "Фонт Трека/Заглавия"
+
+#: tcd/prefs.c:338
+#, fuzzy
+msgid "Change font"
+msgstr "Изменить Фонт"
+
+#. show handles
+#: tcd/prefs.c:345
+#, fuzzy
+msgid "Show handles (restart required)"
+msgstr "Показать Ручки (Требуется перезапуск TCD)"
+
+#. show tooltips
+#: tcd/prefs.c:352
+#, fuzzy
+msgid "Show tooltips"
+msgstr "Показать Подсказки"
+
+#. use alternate play ioctl
+#: tcd/prefs.c:359
+msgid "Use alternate method to play CD"
+msgstr ""
+
+#. start frame
+#: tcd/prefs.c:379
+#, fuzzy
+msgid "On startup"
+msgstr "При Запуске"
+
+#. exit frame
+#: tcd/prefs.c:385
+#, fuzzy
+msgid "On exit"
+msgstr "При Выходе"
+
+#: tcd/prefs.c:493
+msgid "Key"
+msgstr "Клавиша"
+
+#: tcd/prefs.c:494
+msgid "Action"
+msgstr "Действие"
+
+#. Frame
+#: tcd/prefs.c:534 tcd/prefs.c:578
+msgid "Keybindings"
+msgstr "Настройки Клавиш"
+
+#: tcd/prefs.c:582
+msgid "CDDB Settings"
+msgstr "Настройки CDDB"
+
+#: vu-meter/main.c:139
 msgid "Specify the X position of the meter."
 msgstr "Указать Х-координату индикатора"
 
-#: vu-meter/main.c:149
+#: vu-meter/main.c:140
 msgid "X-Position"
 msgstr "Х-координата"
 
-#: vu-meter/main.c:151
+#: vu-meter/main.c:142
 msgid "Specify the Y position of the meter."
 msgstr "Указать Y-координату индикатора."
 
-#: vu-meter/main.c:152
+#: vu-meter/main.c:143
 msgid "Y-Position"
 msgstr "Y-координата"
 
-#: vu-meter/main.c:154
+#: vu-meter/main.c:145
 msgid "Connect to the esd server on this host."
 msgstr "Присоедениться к esd-серверу на этом хостею"
 
-#: vu-meter/main.c:155
+#: vu-meter/main.c:146
 msgid "ESD Server Host"
 msgstr "Хост ESD Сервера"
 
-#: vu-meter/main.c:157
+#: vu-meter/main.c:148
 msgid "Open a vertical version of the meter."
 msgstr "Открыть вертикальную версию индикатора"
+
+#, fuzzy
+#~ msgid "E_xit"
+#~ msgstr "В_ыход"
 
 #~ msgid "File/Exit"
 #~ msgstr "Файл/Выход"
@@ -415,6 +454,3 @@ msgstr "Открыть вертикальную версию индикатора"
 
 #~ msgid "Keybindings (not editable YET)"
 #~ msgstr "Настройки клавишь (не редактируемы ПОКА)"
-
-#~ msgid "FILE ..."
-#~ msgstr "ФАЙЛ ..."
