@@ -58,14 +58,14 @@ static void options_cb (GtkWidget *widget, void *data);
 static void quit_cb (GtkWidget *widget, void *data);
 
 static error_t parse_cb (int key, char *arg, struct argp_state *state);
-static void get_device_config();
-static void put_device_config();
-static void get_gui_config();
-static void put_gui_config();
-void scan_devices();
-void free_devices();
-void init_devices();
-void open_dialog();
+static void get_device_config(void);
+static void put_device_config(void);
+static void get_gui_config(void);
+static void put_gui_config(void);
+void scan_devices(void);
+void free_devices(void);
+void init_devices(void);
+void open_dialog(void);
 
 /*
  * Gnome info:
@@ -165,6 +165,18 @@ void mute_cb (GtkWidget *widget, channel_info *data);
 void adj_left_cb (GtkAdjustment *widget, channel_info *data);
 void adj_right_cb (GtkAdjustment *widget, channel_info *data);
 
+/* Prototypes to make gcc happy. TPG */
+device_info *open_device(int num);
+GList *make_channels(device_info *device);
+void scan_devices(void);
+void free_one_device(gpointer a, gpointer b);
+void free_devices(void);
+void init_one_device(gpointer a, gpointer b);
+void init_devices(void);
+void get_one_device_config(gpointer a, gpointer b);
+void put_one_device_config(gpointer a, gpointer b);
+GtkWidget *make_slider_mixer(channel_info *ci);
+ 
 int main(int argc, char *argv[]) 
 {
 	mode=0;
@@ -324,7 +336,7 @@ GList *make_channels(device_info *device)
 	return channels;
 }
 
-void scan_devices()
+void scan_devices(void)
 {
 	int cnt;
 	device_info *new_device;
@@ -345,7 +357,7 @@ void free_one_device(gpointer a, gpointer b)
 	close(info->fd);
 }
 
-void free_devices()
+void free_devices(void)
 {
 	g_list_foreach(devices, free_one_device, NULL);
 	g_list_free(devices);
@@ -375,7 +387,7 @@ void init_one_device(gpointer a, gpointer b)
 	}
 }
 
-void init_devices()
+void init_devices(void)
 {
 	g_list_foreach(devices, init_one_device, NULL);
 }
@@ -414,7 +426,7 @@ void get_one_device_config(gpointer a, gpointer b)
 	}
 }
 
-void get_device_config()
+void get_device_config(void)
 {
 	g_list_foreach(devices, get_one_device_config, NULL);
 }
@@ -450,16 +462,16 @@ void put_one_device_config(gpointer a, gpointer b)
 	}
 }
 
-void put_device_config()
+void put_device_config(void)
 {
 	g_list_foreach(devices, put_one_device_config, NULL);
 }
 
-void get_gui_config()
+void get_gui_config(void)
 {
 }
 
-void put_gui_config()
+void put_gui_config(void)
 {
 }
 
@@ -497,7 +509,7 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 	return hbox;
 }
 
-void open_dialog()
+void open_dialog(void)
 {
 	GtkWidget *table;
 	GtkMenuFactory *mf;
@@ -757,7 +769,7 @@ void about_cb (GtkWidget *widget, void *data)
 	};
 	about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
 		"(C) 1998 Jens Ch. Restemeier",
-		authors,
+		(const gchar**)authors,
 		_("This is a mixer for OSS sound-devices."),
 		NULL);
 	gtk_widget_show (about);
