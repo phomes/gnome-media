@@ -55,10 +55,10 @@ AC_SUBST(LDFLAGS)
 dnl
 dnl extace - currently disabled
 dnl
-dnl PROGRAMS_EXTACE=""
-dnl AC_CHECK_LIB(esd,main,[
-dnl   AC_CHECK_LIB(gslfft,gsl_fft_real,PROGRAMS_EXTACE=extace,,-lm -lgslerr)],,$GNOME_LIBS $LIBS -lm)
-dnl AC_SUBST(PROGRAMS_EXTACE)
+PROGRAMS_EXTACE=""
+AC_CHECK_LIB(esd,main,[
+ AC_CHECK_LIB(gslfft,gsl_fft_real,PROGRAMS_EXTACE=extace,,-lm -lgslerr)],,$GNOME_LIBS $LIBS -lm)
+AC_SUBST(PROGRAMS_EXTACE)
 
 dnl
 dnl vu-meter
@@ -111,7 +111,7 @@ AC_SUBST(PROGRAMS_CDDBSLAVE)
 AC_OUTPUT([
 Makefile
 po/Makefile.in
-dnl extace/Makefile
+extace/Makefile
 gmix/Makefile
 vu-meter/Makefile
 dnl gnomovision/Makefile
