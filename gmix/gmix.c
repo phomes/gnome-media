@@ -213,6 +213,7 @@ const char *device_pixmap[] = {
 	GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
 	GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
 };
+
 #endif
 
 #ifdef ALSA
@@ -564,6 +565,12 @@ open_device (int num)
 	int res, ver, cnt;
 	/* Masks for the channel data - OSS blows compared to ALSA */
 	int recmask, recsrc, stereodee;
+
+	/*
+	 * This list is borrowed from GCONF_SOURCE/gconf/gconf.c
+	 */
+	gchar gconf_key_invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
+
 	
 	/*
 	 * create new device configureation
@@ -621,7 +628,7 @@ open_device (int num)
 		return NULL;
 	}
 	
-	g_strdelimit (new_device->info.name, " ", '_');
+	g_strdelimit (new_device->info.name, gconf_key_invalid_chars, '_');
 	new_device->card_name = g_strdup_printf ("OSS-%s-%d", new_device->info.name, num + 1);
 	
 	if (!g_ascii_isalpha (new_device->info.name[0])) {
