@@ -98,9 +98,9 @@ cb_check (gpointer data)
 {
   GnomeVolumeControlTrack *trkw = data;
   gboolean mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
-					    GST_MIXER_TRACK_MUTE),
+				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE,
            record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
-					      GST_MIXER_TRACK_RECORD);
+				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
 
   if (trkw->mute) {
     if (gnome_volume_control_button_get_active (trkw->mute) == mute) {
