@@ -31,6 +31,7 @@
 #include <signal.h>
 #include <audiofile.h>
 #include <esd.h>
+#include <fcntl.h>
 
 #include "grec.h"
 #include "gui.h"
@@ -844,14 +845,22 @@ void
 save_dialog (void)
 {
 	GtkWidget* filesel = NULL;
+	gchar* temp_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
 
-	filesel = gtk_file_selection_new (_("Save .wav file"));
+	filesel = gtk_file_selection_new (_("Save sound file"));
 
-	if (active_file != NULL)
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), active_file);
+	if (!g_strcasecmp (active_file, temp_file)) {
+		gchar* home_dir = g_strdup (getenv ("HOME"));
+		gchar* default_file = g_concat_dir_and_file (home_dir, _(temp_filename_play));
+
+		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), default_file);
+
+		g_free (home_dir);
+		g_free (default_file);
+	}
 	else
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), _("untitled.wav"));
-	
+		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), active_file);
+		
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
 			    "clicked", 
 			    GTK_SIGNAL_FUNC (save_filename),
@@ -918,7 +927,6 @@ run_command (const gchar* command, const gchar* appbar_comment)
 	/* Add a comment do the appbar about what is going on */
 	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _(appbar_comment));
 
-
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
@@ -927,4 +935,18 @@ run_command (const gchar* command, const gchar* appbar_comment)
 
 	/* Remove the comment from the appbar, becase we're finished */
 	gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+}
+
+gboolean
+soundtype_supported (const gchar* filename)
+{
+	gint soundtype;
+	gint fd = open (filename, O_CREAT);
+
+	soundtype = afIdentifyFD (fd);
+
+	if (soundtype == 0 ||
+	    soundtype == AF_FILE_UNKNOWN)
+		return FALSE;
+	return TRUE;
 }
