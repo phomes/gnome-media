@@ -712,7 +712,7 @@ open_device (int num)
 			new_channel->device = new_device;
 			new_channel->channel = cnt;
 			new_channel->pixmap = g_strdup (device_pixmap[cnt]);
-			new_channel->title = g_strdup (_(device_names[cnt]));
+			new_channel->title = g_strdup (_(device_labels[cnt]));
 			new_channel->user_title = g_strdup (new_channel->title);
 			new_channel->passive = 0;
 
