@@ -1,3 +1,10 @@
+2002-05-24 Iain <iain@ximian.com>
+
+	* callbacks.c (set_track_option_menu): Helper function to block
+	signals, set the history and unblock the signals.
+	(status_ok): Use the helper functions.
+	Reset the tracklist and play button when a CD is finished.
+
 2002-05-13 Iain <iain@ximian.com>
 
 	* display.c: Don't use RED!

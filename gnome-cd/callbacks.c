@@ -415,7 +415,22 @@ rewind_release_cb (GtkButton *button,
 	
 	return FALSE;
 }
-	
+
+static void
+set_track_option_menu (GtkOptionMenu *menu,
+		       int track)
+{
+	g_signal_handlers_block_matched (G_OBJECT (menu),
+					 G_SIGNAL_MATCH_FUNC,
+					 0, 0, NULL,
+					 G_CALLBACK (skip_to_track), NULL);
+	gtk_option_menu_set_history (menu, track - 1);
+	g_signal_handlers_unblock_matched (G_OBJECT (menu),
+					   G_SIGNAL_MATCH_FUNC,
+					   0, 0, NULL,
+					   G_CALLBACK (skip_to_track), NULL);
+}
+
 /* Do all the stuff for when the status is ok */
 static void
 status_ok (GnomeCD *gcd,
@@ -461,18 +476,8 @@ status_ok (GnomeCD *gcd,
 		/* Find out if the track has changed */
 		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 		if (track + 1 != status->track) {
-			g_signal_handlers_block_matched (G_OBJECT (gcd->tracks),
-							 G_SIGNAL_MATCH_FUNC,
-							 0, 0, NULL,
-							 G_CALLBACK (skip_to_track),
-							 gcd);
-			gtk_option_menu_set_history (GTK_OPTION_MENU (gcd->tracks),
-						     status->track - 1);
-			g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks),
-							   G_SIGNAL_MATCH_FUNC,
-							   0, 0, NULL,
-							   G_CALLBACK (skip_to_track),
-							   gcd);
+			set_track_option_menu (GTK_OPTION_MENU (gcd->tracks),
+					       status->track);
 		}
 		
 		
@@ -546,8 +551,19 @@ status_ok (GnomeCD *gcd,
 					return;
 				}
 			}
-		}
-		
+		} else {
+			/* We've stopped playing anything
+			   reset play button, and track option menu */
+			if (gcd->current_image != gcd->play_image) {
+				gtk_container_remove (GTK_CONTAINER (gcd->play_b),
+						      gcd->pause_image);
+				gtk_container_add (GTK_CONTAINER (gcd->play_b),
+						   gcd->play_image);
+				gcd->current_image = gcd->play_image;
+			}
+
+			set_track_option_menu (gcd->tracks, 1);
+		}		
 		break;
 		
 	case GNOME_CDROM_AUDIO_STOP:
