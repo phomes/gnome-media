@@ -172,12 +172,12 @@ linux_cdrom_update_cd (GnomeCDRom *cdrom)
 	priv = lcd->priv;
 
 	if (linux_cdrom_open (lcd, &error) == FALSE) {
-		g_warning (_("Error opening CD"));
+		g_warning ("Error opening CD");
 		return;
 	}
 
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
-		g_warning (_("Error reading CD header"));
+		g_warning ("Error reading CD header");
 		linux_cdrom_close (lcd);
 
 		return;
@@ -194,7 +194,7 @@ linux_cdrom_update_cd (GnomeCDRom *cdrom)
 		tocentry.cdte_format = CDROM_MSF;
 
 		if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
-			g_warning (_("IOCtl failed"));
+			g_warning ("IOCtl failed");
 			continue;
 		}
 
@@ -206,19 +206,13 @@ linux_cdrom_update_cd (GnomeCDRom *cdrom)
 	tocentry.cdte_track = CDROM_LEADOUT;
 	tocentry.cdte_format = CDROM_MSF;
 	if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
-		g_warning (_("Error getting leadout"));
+		g_warning ("Error getting leadout");
 		linux_cdrom_invalidate (lcd);
 		return;
 	}
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address, tocentry.cdte_addr.msf);
 	calculate_track_lengths (lcd);
 
-#ifdef DEBUG
-	g_print (_("CD changed\n"
-		 "Track count: %d\n------------------\n"),
-		 priv->number_tracks);
-#endif
-	
 	linux_cdrom_close (lcd);
 	return;
 }
@@ -246,7 +240,7 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(eject): ioctl failed: %s"),
+						      "(eject): ioctl failed: %s",
 						      g_strerror (errno));
 			}
 
@@ -431,7 +425,7 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_NOT_READY,
-						      _("(linux_cdrom_play): Drive not ready"));
+						      "(linux_cdrom_play): Drive not ready");
 			}
 
 			linux_cdrom_close (lcd);
@@ -451,7 +445,7 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      _("(linux_cdrom_play): Drive still not ready"));
+					      "(linux_cdrom_play): Drive still not ready");
 		}
 
 		linux_cdrom_close (lcd);
@@ -516,7 +510,7 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(linux_cdrom_play) ioctl failed %s"),
+						      "(linux_cdrom_play) ioctl failed %s",
 						      g_strerror (errno));
 			}
 
@@ -552,7 +546,7 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      _("(linux_cdrom_pause): Drive not ready"));
+					      "(linux_cdrom_pause): Drive not ready");
 		}
 
 		g_free (status);
@@ -565,7 +559,7 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(linux_cdrom_pause): Resume failed %s"),
+						      "(linux_cdrom_pause): Resume failed %s",
 						      g_strerror (errno));
 			}
 
@@ -584,7 +578,7 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(linux_cdrom_pause): ioctl failed %s"),
+						      "(linux_cdrom_pause): ioctl failed %s",
 						      g_strerror (errno));
 			}
 
@@ -630,7 +624,7 @@ linux_cdrom_stop (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_stop) ioctl failed %s"),
+					      "(linux_cdrom_stop) ioctl failed %s",
 					      g_strerror (errno));
 		}
 
@@ -846,7 +840,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_get_status): ioctl error %s"),
+					      "(linux_cdrom_get_status): ioctl error %s",
 					      g_strerror (errno));
 		}
 
@@ -860,7 +854,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"),
+					      "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s",
 					      g_strerror (errno));
 		}
 
@@ -871,7 +865,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	/* Get the volume */
 	if (ioctl (cdrom->fd, CDROMVOLREAD, &vol) < 0) {
-		g_warning (_("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"),
+		g_warning ("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s",
 			   g_strerror (errno));
 		realstatus->volume = -1; /* -1 means no volume command */
 	} else {
@@ -936,7 +930,7 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_close_tray): ioctl failed %s"),
+					      "(linux_cdrom_close_tray): ioctl failed %s",
 					      g_strerror (errno));
 		}
 
@@ -971,7 +965,7 @@ linux_cdrom_set_volume (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_set_volume:1): ioctl failed %s"),
+					      "(linux_cdrom_set_volume:1): ioctl failed %s",
 					      g_strerror (errno));
 		}
 
@@ -1002,8 +996,6 @@ linux_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	/* Fire a harmless ioctl at the device. */
 	if (ioctl (fd, CDROM_GET_CAPABILITY, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
-		g_warning (_("%s is not a CDROM drive"), device);
-		g_print ("G_Strerror reports: %s\n", g_strerror (errno));
 		close (fd);
 		
 		return FALSE;

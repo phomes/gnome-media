@@ -210,12 +210,6 @@ solaris_cdrom_update_cd (GnomeCDRom *cdrom)
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address, tocentry.cdte_addr.msf);
 	calculate_track_lengths (lcd);
 
-#ifdef DEBUG
-	g_print ("CD changed\n"
-		 "Track count: %d\n------------------\n",
-		 priv->number_tracks);
-#endif
-	
 	solaris_cdrom_close (lcd);
 	return;
 }
@@ -1027,13 +1021,11 @@ solaris_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	/* Fire a harmless ioctl at the device. */
 	if (ioctl (fd, CDROMVOLCTRL, &vol) < 0) {
 		/* Failed, it's not a CDROM drive */
-		g_print ("%s is not a CDROM drive", device);
 		close (fd);
 		
 		return FALSE;
 	}
 	
-	g_print ("%s is a CDROM drive", device);
 	close (fd);
 
 	return TRUE;

@@ -173,12 +173,12 @@ freebsd_cdrom_update_cd (GnomeCDRom *cdrom)
 	priv = lcd->priv;
 
 	if (freebsd_cdrom_open (lcd, &error) == FALSE) {
-		g_warning (_("Error opening CD"));
+		g_warning ("Error opening CD");
 		return;
 	}
 
 	if (ioctl (cdrom->fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
-		g_warning (_("Error reading CD header"));
+		g_warning ("Error reading CD header");
 		freebsd_cdrom_close (lcd);
 
 		return;
@@ -195,7 +195,7 @@ freebsd_cdrom_update_cd (GnomeCDRom *cdrom)
 		tocentry.address_format = CD_MSF_FORMAT;
 
 		if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
-			g_warning (_("IOCtl failed"));
+			g_warning ("IOCtl failed");
 			continue;
 		}
 
@@ -208,19 +208,13 @@ freebsd_cdrom_update_cd (GnomeCDRom *cdrom)
 	tocentry.track = priv->number_tracks + 1;
 	tocentry.address_format = CD_MSF_FORMAT;
 	if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
-		g_warning (_("Error getting leadout"));
+		g_warning ("Error getting leadout");
 		freebsd_cdrom_invalidate (lcd);
 		return;
 	}
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address, tocentry.entry.addr.msf);
 	calculate_track_lengths (lcd);
 
-#ifdef DEBUG
-	g_print (_("CD changed\n"
-		 "Track count: %d\n------------------\n"),
-		 priv->number_tracks);
-#endif
-	
 	freebsd_cdrom_close (lcd);
 	return;
 }
@@ -248,7 +242,7 @@ freebsd_cdrom_eject (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(eject): ioctl failed: %s"),
+						      "(eject): ioctl failed: %s",
 						      strerror (errno));
 			}
 
@@ -434,7 +428,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_NOT_READY,
-						      _("(freebsd_cdrom_play): Drive not ready"));
+						      "(freebsd_cdrom_play): Drive not ready");
 			}
 
 			freebsd_cdrom_close (lcd);
@@ -454,7 +448,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      _("(freebsd_cdrom_play): Drive still not ready"));
+					      "(freebsd_cdrom_play): Drive still not ready");
 		}
 
 		freebsd_cdrom_close (lcd);
@@ -519,7 +513,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(freebsd_cdrom_play) ioctl failed %s"),
+						      "(freebsd_cdrom_play) ioctl failed %s",
 						      strerror (errno));
 			}
 
@@ -555,7 +549,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      _("(freebsd_cdrom_pause): Drive not ready"));
+					      "(freebsd_cdrom_pause): Drive not ready");
 		}
 
 		g_free (status);
@@ -568,7 +562,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(freebsd_cdrom_pause): Resume failed %s"),
+						      "(freebsd_cdrom_pause): Resume failed %s",
 						      strerror (errno));
 			}
 
@@ -587,7 +581,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      _("(freebsd_cdrom_pause): ioctl failed %s"),
+						      "(freebsd_cdrom_pause): ioctl failed %s",
 						      strerror (errno));
 			}
 
@@ -633,7 +627,7 @@ freebsd_cdrom_stop (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(freebsd_cdrom_stop) ioctl failed %s"),
+					      "(freebsd_cdrom_stop) ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -851,7 +845,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(freebsd_cdrom_get_status): ioctl error %s"),
+					      "(freebsd_cdrom_get_status): ioctl error %s",
 					      strerror (errno));
 		}
 
@@ -871,7 +865,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"),
+					      "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -882,7 +876,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 	/* Get the volume */
 	if (ioctl (cdrom->fd, CDIOCGETVOL, &vol) < 0) {
-		g_warning (_("(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"),
+		g_warning ("(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s",
 			   strerror (errno));
 		realstatus->volume = -1; /* -1 means no volume command */
 	} else {
@@ -945,7 +939,7 @@ freebsd_cdrom_close_tray (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(freebsd_cdrom_close_tray): ioctl failed %s"),
+					      "(freebsd_cdrom_close_tray): ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -980,7 +974,7 @@ freebsd_cdrom_set_volume (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(freebsd_cdrom_set_volume:1): ioctl failed %s"),
+					      "(freebsd_cdrom_set_volume:1): ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -1012,14 +1006,11 @@ freebsd_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	/* Fire a harmless ioctl at the device. */
 	if (ioctl (fd, CDIOCGETVOL, &vol) < 0) {
 		/* Failed, it's not a CDROM drive */
-		g_print (_("%s is not a CDROM drive\n"), device);
-		g_print ("Strerror reports: %s\n", strerror(errno));
 		close (fd);
 		
 		return FALSE;
 	}
 	
-	g_print (_("%s is a CDROM drive\n"), device);
 	close (fd);
 
 	return TRUE;
