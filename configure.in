@@ -156,6 +156,10 @@ if test "x$build_gmix" = "xyes"; then
     DEFAULT_MIXER=gnome-volume-control
     AC_MSG_RESULT($DEFAULT_MIXER)
 else
+# Bala thinks this should be done at runtime.
+# Probably should.
+  host=`uname -s`
+  
   case "$host" in
   *SunOS*)
     AC_MSG_RESULT([sdtaudiocontrol])
