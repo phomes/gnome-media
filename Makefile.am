@@ -3,13 +3,14 @@
 
 always_built_SUBDIRS = cddbslave
 
-SUBDIRS = intl po macros $(always_built_SUBDIRS) \
+SUBDIRS = intl po macros omf-install $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_TCD@ @PROGRAMS_GRECORD@
 
-DIST_SUBDIRS = intl po macros $(always_built_SUBDIRS) \
+DIST_SUBDIRS = intl po macros omf-install $(always_built_SUBDIRS) \
 	       vu-meter gmix tcd grecord
 
-EXTRA_DIST = gnome-media.spec.in configure acinclude.m4
+EXTRA_DIST = gnome-media.spec.in configure acinclude.m4 COPYING-DOCS \
+		sgmldocs.make
 
 dist-hook: gnome-media.spec
 	cp gnome-media.spec $(distdir)

@@ -49,6 +49,14 @@ if test -n "$we_have_esd"; then
 AC_DEFINE(HAVE_ESD)
 fi
 
+dnl
+dnl Check for ScrollKeeper
+dnl
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
+if test x$SCROLLKEEPER_CONFIG = xno; then
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
+fi
+
 
 ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sk sl sv tr uk zh_TW.Big5 zh_CN.GB2312"
 AM_GNOME_GETTEXT
@@ -155,4 +163,5 @@ tcd/doc/C/Makefile
 cddbslave/Makefile
 grecord/Makefile
 grecord/src/Makefile
+omf-install/Makefile
 version.h])
