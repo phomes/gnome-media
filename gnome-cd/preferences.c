@@ -124,12 +124,19 @@ static void
 do_theme_changed (GnomeCDPreferences *prefs,
 		  const char *theme_name)
 {
+	GCDTheme *old_theme;
+	
 	if (prefs->theme_name != NULL) {
 		g_free (prefs->theme_name);
 	}
 
 	prefs->theme_name = g_strdup (theme_name);
-	/* FIXME: Change */
+	old_theme = prefs->gcd->theme;
+	prefs->gcd->theme = theme_load (prefs->gcd, theme_name);
+
+	/*
+	theme_free (old_theme);
+	*/
 }
 
 static void
