@@ -462,16 +462,6 @@ int tcd_ejectcd( cd_struct *cd )
 #ifdef CDROMCLOSETRAY
 		tmp = ioctl( cd->cd_dev, CDROMCLOSETRAY );
 		cd->isdisk = TRUE;
-
-	   	if(tmp) {
-			strcpy( cd->errmsg, "Can't close drive" );
-               		cd->err = TRUE;
-
-			debug("cdrom.c: tcd_eject - close error. %s\n", 
-			strerror(errno) );
-
-			return(-1);
-        	}
 #endif
 		tmp = tcd_post_init( cd );
 

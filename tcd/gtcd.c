@@ -366,7 +366,7 @@ void setup_colors( void )
     
     colormap = gtk_widget_get_colormap(status_area);
     
-    gdk_color_parse("#555555", &darkgrey);
+    gdk_color_parse("#888888", &darkgrey);
     gdk_color_alloc(colormap, &darkgrey);
 
     g_snprintf(tmp, 15, "#%02X%02X%02X", 
@@ -558,15 +558,30 @@ gint slow_timer( gpointer *data )
 	if( cd.play_method == REPEAT_CD )
 	    tcd_playtracks( &cd, cd.first_t, cd.last_t );
     }
-    if( cd.isplayable ) {
+    if(cd.isplayable) 
+    {
 	tcd_gettime(&cd);
 	adjust_status();
 
-	if( cd.err ) {
+	if(cd.err) 
+	{
 	    cd.isplayable = FALSE;
 	    cd.isdisk = FALSE;
 	    cd.play_method = NORMAL;
 	    cd.repeat_track = -1;
+	}
+    }
+    else
+    {
+	tcd_readtoc(&cd);
+	if(!cd.err)
+	    tcd_readdiskinfo(&cd);
+	else
+	{
+	    cd.isplayable = TRUE;
+	    cd.isdisk = TRUE;
+	    cd.play_method = NORMAL;
+	    cd.repeat_track = -1;    
 	}
     }
     draw_status(); 
@@ -656,10 +671,10 @@ gint fast_timer( gpointer *data )
     if( cd.isplayable ) {
 	tcd_gettime(&cd);
 	if( cd.err ) {
-	   cd.isplayable = FALSE;
+/*	   cd.isplayable = FALSE;
 	   cd.isdisk = FALSE;
 	   cd.play_method = NORMAL;
-	   cd.repeat_track = -1;
+	   cd.repeat_track = -1;*/
 	}
     }
     status_changed();
