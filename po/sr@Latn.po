@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-26 02:41+0200\n"
-"PO-Revision-Date: 2003-10-26 02:42+0200\n"
+"POT-Creation-Date: 2003-12-14 13:06+0100\n"
+"PO-Revision-Date: 2003-12-14 13:18+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Nepoznato / nepoznato"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:788
-#: grecord/src/gsr-window.c:797 grecord/src/gsr-window.c:806
-#: grecord/src/gsr-window.c:816 grecord/src/gsr-window.c:1155
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:796 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:815 grecord/src/gsr-window.c:1154
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -366,7 +366,9 @@ msgstr "Šum"
 msgid "Alt"
 msgstr "Alt"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#. groups
+#. max 24 chars
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Bas"
 
@@ -879,40 +881,387 @@ msgstr ""
 "Razlog može biti u tome što je već jedan primerak cddb-track-editor-a "
 "pokrenut.\n"
 
-#: gst-mixer/src/mixer.c:218
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Sintisajzer"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "Digitalni ulaz"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "Digitalni procesorski izlaz"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Linija"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "Mikrofon"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "CD"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Video"
+msgstr "Video"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Radio"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Telefon"
+
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "Kompjuterski zvučnik"
+
+# bug: aux -> auxiliary?
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Pomoćni"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Centralni ulaz"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Ulaz pojačivača"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Saraund ulaz"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Glavni"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Glavni mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Glavni digitalni"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Slušalice"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "Izlaz telefona"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Centar"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Pojačivač"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Saraund"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "Digitalni (DSP) izlaz"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Šum"
+
+# Ujednačenje, ekvalajzer
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Ujednačenje"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Bleđenje"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Efekat"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "3D efekat"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Pojačanje mikrofona"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Pojačanje ulaza"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Pojačanje izlaza"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Analogni ciklus"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Digitalni ciklus"
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Jačina"
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Bas  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "Šum  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "Pcm  "
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "Zvučnik"
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Linija"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "Mikrofon"
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "CD"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "Mikser"
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "Pcm2"
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Snimanje"
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "UPojačanje"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "IPojačanje"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "Linija1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "Linija2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "Linija3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Digitalno1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Digitalno2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Digitalno3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "Telefonski ulaz"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "Telefonski izlaz"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "Praćenje"
+
+#: gmix/gmix.c:115
+msgid "Help"
+msgstr "Pomoć"
+
+#: gmix/gmix.c:146
+msgid "Mixer device to use"
+msgstr "Koji mikser uređaj da koristi"
+
+#: gmix/gmix.c:327
+#, c-format
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Unable to open audio device '%s'.\n"
+"Please check that you have permissions to open '%s'\n"
+"and that you have sound support in your kernel.\n"
+"\n"
+"Press Quit to exit Volume control"
+msgstr ""
+"Podešavanje jačine zvuka ne može da radi ispravno.\n"
+"\n"
+"Ne može da pristupi audio uređaju „%s“.\n"
+"Molim proverite da li imate ovlašćenja da pristupite „%s“\n"
+"i da vam ja podrška za zvuk omogućena u jezgru.\n"
+"\n"
+"Pritisnite „Izađi“ da napustite podešavanje zvuka."
+
+#: gmix/gmix.c:381
+msgid ""
+"Volume control is unable to run correctly.\n"
+"\n"
+"Press the details button for more details on the reasons for failure.\n"
+"\n"
+"Press Quit to quit Volume control"
+msgstr ""
+"Podešavanje jačine zvuka ne može da radi ispravno.\n"
+"\n"
+"Pritisnite dugme za više detalja o razlozima neuspeha.\n"
+"\n"
+"Pritisnite „Izađi“ da napustite podešavanje zvuka."
+
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
+msgid "_Details"
+msgstr "_Detalji"
+
+#: gmix/gmix.c:387
+msgid "Invalid mixer device"
+msgstr "Neispravan mikser uređaj"
+
+#: gmix/gmix.c:632
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
+"OSS izdanje %d.%d.%d, a vaš sistem koristi izdanje\n"
+"starije od 3.6.0.\n"
+
+#: gmix/gmix.c:639
+#, c-format
+msgid ""
+"Warning: This version of the Gnome Volume Control was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
+"OSS izdanje %d.%d.%d, a vaš sistem koristi \n"
+"izdanje %d.%d.%d.\n"
+
+#: gmix/gmix.c:1112
+#, c-format
+msgid "left %s"
+msgstr "levi %s"
+
+#: gmix/gmix.c:1138
+#, c-format
+msgid "Right %s"
+msgstr "desni %s"
+
+#: gmix/gmix.c:1231 gst-mixer/src/mixer.c:219
 msgid "Lock"
 msgstr "Zaključaj"
 
-#: gst-mixer/src/mixer.c:228
+#: gmix/gmix.c:1244
+#, c-format
+msgid "%s Lock"
+msgstr "Zaključaj %s"
+
+#: gmix/gmix.c:1255 gst-mixer/src/mixer.c:229
 msgid "Mute"
 msgstr "Utišaj"
 
-#: gst-mixer/src/mixer.c:240
+#: gmix/gmix.c:1268
+#, c-format
+msgid "%s Mute"
+msgstr "Utišaj %s"
+
+#: gmix/gmix.c:1282 gst-mixer/src/mixer.c:241
 msgid "Rec."
 msgstr "Snim."
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:359 gst-mixer/src/mixer.c:447
-msgid "GStreamer Volume Control"
+#: gmix/gmix.c:1294
+#, c-format
+msgid "%s Record"
+msgstr "Snimaj %s"
+
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
+#: gst-mixer/gnome-volume-control.desktop.in.h:2
+msgid "Volume Control"
 msgstr "Upravljanje jačinom zvuka"
 
-#: gst-mixer/src/mixer.c:362
-msgid "A GNOME/GStreamer-based mixer application"
-msgstr "Program za upravljanje jačinom zvuka za Gnoma/GStrimer"
+#: gmix/gmix.c:1774
+msgid "GNOME Volume Control"
+msgstr "Gnomovo upravljanje jačinom zvuka"
 
-#: gst-mixer/src/mixer.c:462
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr "Nažalost, nisam našao elemente i/ili uređaje miksera"
+#: gmix/gmix.c:1777
+msgid "A mixer for sound devices"
+msgstr "Mikser za zvučne uređaje"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+#: gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Prilagodi jačinu zvuka"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
-#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-msgid "Volume Control"
-msgstr "Upravljanje jačinom zvuka"
+#: gmix/prefs.c:193 gmix/prefs.c:196
+msgid "Shown"
+msgstr "Prikazano"
+
+#: gmix/prefs.c:204 gmix/prefs.c:207
+msgid "Mixer label"
+msgstr "Oznaka miksera"
+
+#. Add the label reset button
+#: gmix/prefs.c:216
+msgid "_Reset labels to their defaults"
+msgstr "_Vrati oznake na uobičajene"
+
+#: gmix/prefs.c:313
+msgid "Gnome Volume Control Preferences"
+msgstr "Postavke Gnomovog upravljanja jačinom zvuka"
 
 #: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -1122,10 +1471,6 @@ msgstr ""
 "Pritisnite „Postavi uređaj‟ za otvaranje dijaloga na kome možete definisati "
 "uređaj, ili pritisnite „Izlaz‟ za napuštanje programa"
 
-#: gnome-cd/gnome-cd.c:490
-msgid "_Details"
-msgstr "_Detalji"
-
 #: gnome-cd/gnome-cd.c:491
 msgid "_Set device"
 msgstr "_Postavi uređaj"
@@ -1304,8 +1649,8 @@ msgstr "_Dostupne teme:"
 msgid "Record sound clips"
 msgstr "Snimi isečke zvuka"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1011
-#: grecord/src/gsr-window.c:1640 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:1639 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Snimanje zvuka"
 
@@ -1333,7 +1678,7 @@ msgstr "Napravi novi isečak"
 msgid "Display help for Sound Recorder"
 msgstr "Prikaži pomoć za snimanje zvuka"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:874
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:873
 msgid "File Information"
 msgstr "Podaci o datoteci"
 
@@ -1494,11 +1839,11 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "Ne može da podeli sadržani proces"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1444
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1443
 msgid "Recording..."
 msgstr "Snima..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1311
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1310
 msgid "Playing..."
 msgstr "Pušta..."
 
@@ -1535,7 +1880,7 @@ msgstr "Izaberi zvučnu datoteku"
 msgid "%s is not installed in the path"
 msgstr "Nije postavljen %s u putanji"
 
-#: grecord/src/grec.c:523
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:687
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Došlo je do greške pri pokretanju %s: %s"
@@ -1682,8 +2027,8 @@ msgstr "sekundi"
 msgid "second"
 msgstr "sekunda"
 
-#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1335
-#: grecord/src/gsr-window.c:1469 grecord/src/gsr-window.c:1562
+#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1334
+#: grecord/src/gsr-window.c:1468 grecord/src/gsr-window.c:1561
 msgid "Ready"
 msgstr "Spreman"
 
@@ -1696,88 +2041,93 @@ msgstr "Čuva %s..."
 msgid "Save file as"
 msgstr "Sačuvaj datoteku kao"
 
-#: grecord/src/gsr-window.c:763
+#: grecord/src/gsr-window.c:680
+#, c-format
+msgid "%s is not installed in the path."
+msgstr "Nije instaliran %s u putanji."
+
+#: grecord/src/gsr-window.c:762
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (nije sačuvan)"
 
-#: grecord/src/gsr-window.c:779
+#: grecord/src/gsr-window.c:778
 msgid "Unknown size"
 msgstr "Nepoznata veličina"
 
-#: grecord/src/gsr-window.c:799
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:808
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f KB/s"
 
-#: grecord/src/gsr-window.c:820
+#: grecord/src/gsr-window.c:819
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:824
+#: grecord/src/gsr-window.c:823
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:853
+#: grecord/src/gsr-window.c:852
 #, c-format
 msgid "%s Information"
 msgstr "Podaci o %s"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:887
 msgid "Folder:"
 msgstr "Direktorijum:"
 
-#: grecord/src/gsr-window.c:894 grecord/src/gsr-window.c:1701
+#: grecord/src/gsr-window.c:893 grecord/src/gsr-window.c:1700
 msgid "Filename:"
 msgstr "Ime datoteke:"
 
-#: grecord/src/gsr-window.c:900
+#: grecord/src/gsr-window.c:899
 msgid "File size:"
 msgstr "Veličina datoteke:"
 
-#: grecord/src/gsr-window.c:909
+#: grecord/src/gsr-window.c:908
 msgid "Audio Information"
 msgstr "Podaci o snimku"
 
-#: grecord/src/gsr-window.c:923
+#: grecord/src/gsr-window.c:922
 msgid "Song length:"
 msgstr "Dužina pesme:"
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:928
 msgid "Number of channels:"
 msgstr "Broj kanala:"
 
-#: grecord/src/gsr-window.c:935
+#: grecord/src/gsr-window.c:934
 msgid "Sample rate:"
 msgstr "Veličina uzorka:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:940
 msgid "Bit rate:"
 msgstr "Kvalitet:"
 
-#: grecord/src/gsr-window.c:1013
+#: grecord/src/gsr-window.c:1012
 msgid "A sound recorder for GNOME"
 msgstr "Snimanje zvuka za Gnom"
 
-#: grecord/src/gsr-window.c:1636 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1635 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - snimanje zvuka"
 
-#: grecord/src/gsr-window.c:1686
+#: grecord/src/gsr-window.c:1685
 msgid "File information"
 msgstr "Podaci o datoteci"
 
-#: grecord/src/gsr-window.c:1707
+#: grecord/src/gsr-window.c:1706
 msgid "<none>"
 msgstr "<ništa>"
 
-#: grecord/src/gsr-window.c:1716
+#: grecord/src/gsr-window.c:1715
 msgid "Length:"
 msgstr "Dužina:"
 
@@ -2009,10 +2359,6 @@ msgstr "_Mono"
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1087
-msgid "Mono"
-msgstr "Mono"
-
 #: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Stereo"
@@ -2066,6 +2412,19 @@ msgstr "Kanali: stereo"
 msgid "Adding echo to sample..."
 msgstr "Dodaje eho u isečak..."
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:394 gst-mixer/src/mixer.c:482
+msgid "GStreamer Volume Control"
+msgstr "Upravljanje jačinom zvuka"
+
+#: gst-mixer/src/mixer.c:397
+msgid "A GNOME/GStreamer-based mixer application"
+msgstr "Program za upravljanje jačinom zvuka za Gnoma/GStrimer"
+
+#: gst-mixer/src/mixer.c:499
+msgid "Sorry, no mixer elements and/or devices found"
+msgstr "Nažalost, nisam našao elemente i/ili uređaje miksera"
+
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
@@ -2086,6 +2445,7 @@ msgid "GStreamer"
 msgstr "GStrimer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
+#: profiles/gnome-audio-profiles.glade2.h:1
 msgid "*"
 msgstr "*"
 
@@ -2125,10 +2485,6 @@ msgstr "Pro_ba"
 msgid "Testing Pipeline"
 msgstr "Isprobava cev"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Video"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
 msgstr "_Ulaz:"
@@ -2153,10 +2509,209 @@ msgid "Custom"
 msgstr "Po izboru"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nije uspeo da napravi probnu cev za „%s“"
+
+#: profiles/audio-profile-edit.c:201
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Došlo je do greške pri prikazivanju pomoći: %s"
+
+#: profiles/audio-profile-edit.c:406
+#, c-format
+msgid "Editing profile \"%s\""
+msgstr "Uređujem skup postavki „%s“"
+
+#: profiles/audio-profile.c:100
+msgid "<not named>"
+msgstr "<bez imena>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr "<bez opisa>"
+
+#: profiles/audio-profile.c:216
+#, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr "Došlo je do greške pri dobavljanju spiska skupova zvučnih postavki. (%s)\n"
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr "Došlo je do greške pri preplaćivanju na obaveštenja o izmeni spiska skupova postavki terminala. (%s)\n"
+
+#: profiles/audio-profile.c:907
+#, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr "Došlo je do greške pri zanemarivanju direktorijuma skupa postavki %s. (%s)\n"
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr "<bez opisa>"
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr "identitet"
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr "wav"
+
+#: profiles/audio-profiles-edit.c:112
+msgid "_Edit"
+msgstr "_Uređivanje"
+
+#: profiles/audio-profiles-edit.c:453
+msgid "You must select one or more profiles to delete."
+msgstr "Morate izabrati jedan ili više skupova postavki za brisanje"
+
+# bug: plural-forms
+#: profiles/audio-profiles-edit.c:463
+msgid "Delete these two profiles?\n"
+msgstr "Obriši ova dva skupa postavki?\n"
+
+# bug: plural-forms
+#: profiles/audio-profiles-edit.c:465
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr "Obriši ovih %d skupova postavki?\n"
+
+# bug: plural-forms
+#: profiles/audio-profiles-edit.c:483
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr "Obriši skup postavki „%s“?"
+
+#: profiles/audio-profiles-edit.c:505
+msgid "Delete Profile"
+msgstr "Obriši profil"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:599
+msgid "Edit Audio Profiles"
+msgstr "Uredi skupove zvučnih postavki"
+
+#: profiles/audio-profiles-edit.c:652
+msgid "_Profiles:"
+msgstr "S_kupovi postavki:"
+
+#: profiles/audio-profiles-edit.c:880
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr "Već imate skup postavki sa imenom „%s“"
+
+#: profiles/audio-profiles-edit.c:905
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr "GKonf greška (ISPRAVI-ME): %s\n"
+
+#: profiles/gmp-util.c:64
+#, c-format
+msgid ""
+"The file \"%s\" is missing. This indicates that the application is installed "
+"incorrectly, so the dialog can't be displayed."
+msgstr "Nedostaje datoteka „%s“. Ovo znači da je program neispravno postavljen, pa se prozorče ne može prikazati."
+
+#: profiles/gnome-audio-profiles.glade2.h:2
+msgid "Edit Audio Profile"
+msgstr "Uredi skup zvučnih postavki"
+
+#: profiles/gnome-audio-profiles.glade2.h:3
+msgid "File _Extension:"
+msgstr "_Ekstenzija datoteke:"
+
+#: profiles/gnome-audio-profiles.glade2.h:4
+msgid "New Profile"
+msgstr "Novi skup postavki"
+
+#: profiles/gnome-audio-profiles.glade2.h:5
+msgid "Profile Description:"
+msgstr "Opis skupa postavki:"
+
+#: profiles/gnome-audio-profiles.glade2.h:6
+msgid "Profile _Description:"
+msgstr "_Opis skupa postavki:"
+
+#: profiles/gnome-audio-profiles.glade2.h:7
+msgid "Profile _name:"
+msgstr "_Ime skupa postavki:"
+
+#: profiles/gnome-audio-profiles.glade2.h:8
+msgid "_Active ?"
+msgstr "_Aktivan?"
+
+#: profiles/gnome-audio-profiles.glade2.h:9
+msgid "_Create"
+msgstr "_Napravi"
+
+#: profiles/gnome-audio-profiles.glade2.h:10
+msgid "_GStreamer Pipeline:"
+msgstr "_Cevka GStrimera:"
+
+#: profiles/gnome-audio-profiles.glade2.h:11
+msgid "_Profile name:"
+msgstr "_Ime skupa postavki:"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "Opis skupa zvučnih postavki"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr "Opis skupa postavki koji sadrži više podataka i opisuje kada treba koristiti ovaj skup."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "Delimična GStrimer cevka koju koristi ovaj skup postavki."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A short name for the audio profile"
+msgstr "Kratko ime za skup zvučnih postavki"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr "Kratko ime za skup zvučnih postavki, koji se koristi pri izboru i jednoznačnom određivanju skupa."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/record/profiles."
+msgstr "Spisak skupova postavki za snimanje zvuka. Spisak sadrži niske koje imenuju poddirektorijume u odnosu na /system/gstreamer/record/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "List of profiles"
+msgstr "Spisak skupova postavki"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "The partial GStreamer pipeline used"
+msgstr "Korišćena delimična GStrimer cevka"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "Whether or not this profile is to be used"
+msgstr "Da li se ovaj skup postavki koristi"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "Whether or not to use and display this profile."
+msgstr "Da li se prikazuje i koristi ovaj skup postavki."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2226,266 +2781,3 @@ msgstr "Prati jačinu izlaza zvuka"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Praćenje jačine zvuka"
-
-#~ msgid "Synth"
-#~ msgstr "Sintisajzer"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "Digitalni ulaz"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "Digitalni procesorski izlaz"
-
-#~ msgid "Line"
-#~ msgstr "Linija"
-
-#~ msgid "MIC"
-#~ msgstr "Mikrofon"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "PC Speaker"
-#~ msgstr "Kompjuterski zvučnik"
-
-# bug: aux -> auxiliary?
-#~ msgid "Aux"
-#~ msgstr "Pomoćni"
-
-#~ msgid "Center Input"
-#~ msgstr "Centralni ulaz"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Ulaz pojačivača"
-
-#~ msgid "Surround Input"
-#~ msgstr "Saraund ulaz"
-
-#~ msgid "Master"
-#~ msgstr "Glavni"
-
-#~ msgid "Master Mono"
-#~ msgstr "Glavni mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Glavni digitalni"
-
-#~ msgid "Headphone"
-#~ msgstr "Slušalice"
-
-#~ msgid "Phone Output"
-#~ msgstr "Izlaz telefona"
-
-#~ msgid "Center"
-#~ msgstr "Centar"
-
-#~ msgid "Woofer"
-#~ msgstr "Pojačivač"
-
-#~ msgid "Surround"
-#~ msgstr "Saraund"
-
-#~ msgid "DSP Output"
-#~ msgstr "Digitalni (DSP) izlaz"
-
-#~ msgid "Treble"
-#~ msgstr "Šum"
-
-# Ujednačenje, ekvalajzer
-#~ msgid "Equalizer"
-#~ msgstr "Ujednačenje"
-
-#~ msgid "Fader"
-#~ msgstr "Bleđenje"
-
-#~ msgid "Effect"
-#~ msgstr "Efekat"
-
-#~ msgid "3D Effect"
-#~ msgstr "3D efekat"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Pojačanje mikrofona"
-
-#~ msgid "Input Gain"
-#~ msgstr "Pojačanje ulaza"
-
-#~ msgid "Output Gain"
-#~ msgstr "Pojačanje izlaza"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analogni ciklus"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digitalni ciklus"
-
-#~ msgid "Vol  "
-#~ msgstr "Jačina"
-
-#~ msgid "Bass "
-#~ msgstr "Bas  "
-
-#~ msgid "Trebl"
-#~ msgstr "Šum  "
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Zvučnik"
-
-#~ msgid "Line "
-#~ msgstr "Linija"
-
-#~ msgid "Mic  "
-#~ msgstr "Mikrofon"
-
-#~ msgid "CD   "
-#~ msgstr "CD"
-
-#~ msgid "Mix  "
-#~ msgstr "Mikser"
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2"
-
-#~ msgid "Rec  "
-#~ msgstr "Snimanje"
-
-#~ msgid "IGain"
-#~ msgstr "UPojačanje"
-
-#~ msgid "OGain"
-#~ msgstr "IPojačanje"
-
-#~ msgid "Line1"
-#~ msgstr "Linija1"
-
-#~ msgid "Line2"
-#~ msgstr "Linija2"
-
-#~ msgid "Line3"
-#~ msgstr "Linija3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digitalno1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digitalno2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digitalno3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "Telefonski ulaz"
-
-#~ msgid "PhoneOut"
-#~ msgstr "Telefonski izlaz"
-
-#~ msgid "Monitor"
-#~ msgstr "Praćenje"
-
-#~ msgid "Help"
-#~ msgstr "Pomoć"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Koji mikser uređaj da koristi"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Podešavanje jačine zvuka ne može da radi ispravno.\n"
-#~ "\n"
-#~ "Ne može da pristupi audio uređaju „%s“.\n"
-#~ "Molim proverite da li imate ovlašćenja da pristupite „%s“\n"
-#~ "i da vam ja podrška za zvuk omogućena u jezgru.\n"
-#~ "\n"
-#~ "Pritisnite „Izađi“ da napustite podešavanje zvuka."
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Podešavanje jačine zvuka ne može da radi ispravno.\n"
-#~ "\n"
-#~ "Pritisnite dugme za više detalja o razlozima neuspeha.\n"
-#~ "\n"
-#~ "Pritisnite „Izađi“ da napustite podešavanje zvuka."
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Neispravan mikser uređaj"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
-#~ "OSS izdanje %d.%d.%d, a vaš sistem koristi izdanje\n"
-#~ "starije od 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
-#~ "OSS izdanje %d.%d.%d, a vaš sistem koristi \n"
-#~ "izdanje %d.%d.%d.\n"
-
-#~ msgid "left %s"
-#~ msgstr "levi %s"
-
-#~ msgid "Right %s"
-#~ msgstr "desni %s"
-
-#~ msgid "%s Lock"
-#~ msgstr "Zaključaj %s"
-
-#~ msgid "%s Mute"
-#~ msgstr "Utišaj %s"
-
-#~ msgid "%s Record"
-#~ msgstr "Snimaj %s"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Gnomovo upravljanje jačinom zvuka"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Mikser za zvučne uređaje"
-
-#~ msgid "Shown"
-#~ msgstr "Prikazano"
-
-#~ msgid "Mixer label"
-#~ msgstr "Oznaka miksera"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_Vrati oznake na uobičajene"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Postavke Gnomovog upravljanja jačinom zvuka"
-
-#~ msgid "%s is not installed in the path."
-#~ msgstr "Nije instaliran %s u putanji."
