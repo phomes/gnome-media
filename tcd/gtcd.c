@@ -677,6 +677,15 @@ gint volume_changed( GtkWidget *widget, gpointer *data )
     return 1;
 }
 
+gint launch_gmix( GtkWidget *widget, GdkEvent *event, gpointer data ) 
+{
+    if ( event->type==GDK_2BUTTON_PRESS )
+        if (fork()==0)
+            execlp("gmix","",NULL); 
+
+     return FALSE;
+}
+
 gint gototrack( GtkWidget *widget, gpointer *data )
 {
     tcd_playtracks( &cd, (int)data, cd.last_t );
@@ -814,13 +823,15 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 void setup_time_display( void )
 {
     GtkWidget *handle1, *frame, *row;
-	
+
     vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
     volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
     gtk_range_set_update_policy( GTK_RANGE(volume), GTK_UPDATE_CONTINUOUS );
     gtk_scale_set_draw_value( GTK_SCALE(volume), FALSE );
     gtk_signal_connect( GTK_OBJECT(vol), "value_changed",
 			(GtkSignalFunc)volume_changed, NULL);
+    gtk_signal_connect( GTK_OBJECT(volume), "button_press_event",
+			(GtkSignalFunc)launch_gmix, NULL);
 
 #ifdef TCD_CHANGER_ENABLED
     changer_box = make_changer_buttons();
