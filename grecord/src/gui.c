@@ -592,20 +592,27 @@ tmp_button_clicked (GtkButton *button,
 }
 
 static void
-audio_format_changed (GtkEntry *entry,
-		      gpointer data)
+bit8_toggled (GtkToggleButton *tb,
+	      gpointer data)
 {
-	gboolean format;
-	const char *text;
-
-	text = gtk_entry_get_text (entry);
-	if (strcmp (text, _("8bit PCM")) == 0) {
-		format = TRUE;
-	} else {
-		format = FALSE;
+	if (gtk_toggle_button_get_active (tb) == FALSE) {
+		return;
 	}
 
-	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/audio-format", format, NULL);
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/audio-format",
+			       TRUE, NULL);
+}
+
+static void
+bit16_toggled (GtkToggleButton *tb,
+	       gpointer data)
+{
+	if (gtk_toggle_button_get_active (tb) == FALSE) {
+		return;
+	}
+
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/audio-format",
+			       FALSE, NULL);
 }
 
 static void
@@ -617,20 +624,25 @@ sample_rate_changed (GtkEntry *entry,
 }
 
 static void
-channels_changed (GtkEntry *entry,
-		  gpointer data)
+mono_toggled (GtkToggleButton *tb,
+	      gpointer data)
 {
-	gboolean channels;
-	const char *text;
-
-	text = gtk_entry_get_text (entry);
-	if (strcmp (text, _("Mono")) == 0) {
-		channels = TRUE;
-	} else {
-		channels = FALSE;
+	if (gtk_toggle_button_get_active (tb) == FALSE) {
+		return;
 	}
 
-	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/channels", channels, NULL);
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/channels", TRUE, NULL);
+}
+
+static void
+stereo_toggled (GtkToggleButton *tb,
+		gpointer data)
+{
+	if (gtk_toggle_button_get_active (tb) == FALSE) {
+		return;
+	}
+
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/channels", FALSE, NULL);
 }
 
 GtkWidget*
@@ -639,9 +651,9 @@ create_grecord_propertybox (void)
 	GtkWidget *grecord_propertybox;
 	GtkWidget *frame, *label;
 	GtkWidget *notebook;
-	GtkWidget *vbox, *inner_vbox;
+	GtkWidget *vbox, *inner_vbox, *hbox_vbox;
 	GtkWidget *hbox;
-	GtkWidget *button;
+	GtkWidget *button, *sep;
 	
 	GtkObject* spinbutton_adj;
 	GtkWidget* RecordTimeout_spinbutton;
@@ -653,12 +665,10 @@ create_grecord_propertybox (void)
 	GtkWidget* StopRecordSize_spinbutton;
 	GtkWidget* TempDir_fileentry;
 	GtkWidget* TempDir_combo_entry;
-	GtkWidget* Audioformat_combo;
-	GtkWidget* Audioformat_combo_entry;
+	GtkWidget *bit16_radiobutton;
+	GtkWidget *bit8_radiobutton;
 	GtkWidget* Samplerate_combo;
 	GtkWidget* Samplerate_combo_entry;
-	GtkWidget* NrChannel_combo;
-	GtkWidget* NrChannel_combo_entry;
 	GtkWidget* path_to_sox_fileentry;
 	GtkWidget* path_to_sox_combo_entry;
 	GtkWidget* mainwindow_gui_vbox;
@@ -668,7 +678,8 @@ create_grecord_propertybox (void)
 	GtkWidget* playrepeatforever_radiobutton;
 	GtkWidget* playxtimes_radiobutton;
 	GtkWidget* playxtimes_spinbutton;
-
+	GtkWidget *mono_rb, *stereo_rb;
+	
 	GList *items = NULL;
 
 	if (client == NULL) {
@@ -943,41 +954,46 @@ create_grecord_propertybox (void)
 	inner_vbox = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (inner_vbox);
 	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
+
+	label = gtk_label_new (_("Note: These options only take effect whenever a new sound sample\n"
+				 "is created. They do not operate on an existing sample."));
+	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
+	gtk_widget_show (label);
+
+	sep = gtk_hseparator_new ();
+	gtk_box_pack_start (GTK_BOX (inner_vbox), sep, FALSE, FALSE, 2);
+	gtk_widget_show (sep);
 	
 	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show (hbox);
-	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
-
+	
 	label = gtk_label_new (_("Audio format:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0);
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
-	/* Use radiobutton, not combo. Combo's suck :) */
-	Audioformat_combo = gtk_combo_new ();
-	gtk_widget_show (Audioformat_combo);
-	gtk_box_pack_start (GTK_BOX (hbox), Audioformat_combo, FALSE, TRUE, 0);
-	items = g_list_append (NULL, _("8bit PCM"));
-	items = g_list_append (items, _("16bit PCM"));
-	gtk_combo_set_popdown_strings (GTK_COMBO (Audioformat_combo), items);
-	g_list_free (items);
-	gtk_container_set_border_width (GTK_CONTAINER (Audioformat_combo), 7);
+	hbox_vbox = gtk_vbox_new (FALSE, 0);
+	gtk_widget_show (hbox_vbox);
+	gtk_box_pack_start (GTK_BOX (hbox), hbox_vbox, TRUE, TRUE, 0);
+
+	bit8_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("8 _bit PCM"));
+	g_signal_connect (G_OBJECT (bit8_radiobutton), "toggled",
+			  G_CALLBACK (bit8_toggled), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_vbox), bit8_radiobutton, FALSE, FALSE, 0);
+	gtk_widget_show (bit8_radiobutton);
 	
-	Audioformat_combo_entry = GTK_COMBO (Audioformat_combo)->entry;
-	gtk_widget_show (Audioformat_combo_entry);
-	gtk_entry_set_editable (GTK_ENTRY (Audioformat_combo_entry), FALSE);
-	g_signal_connect (G_OBJECT (Audioformat_combo_entry), "changed",
-			  G_CALLBACK (audio_format_changed), NULL);
-	if (audioformat)
-		gtk_entry_set_text (GTK_ENTRY (Audioformat_combo_entry), _("8bit PCM"));
-	else
-		gtk_entry_set_text (GTK_ENTRY (Audioformat_combo_entry), _("16bit PCM"));
-	
-	add_paired_relations (label, ATK_RELATION_LABEL_FOR, Audioformat_combo, ATK_RELATION_LABELLED_BY);
+	bit16_radiobutton = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (bit8_radiobutton), _("16 b_it PCM"));
+	g_signal_connect (G_OBJECT (bit16_radiobutton), "toggled",
+			  G_CALLBACK (bit16_toggled), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_vbox), bit16_radiobutton, FALSE, FALSE, 0);
+	gtk_widget_show (bit16_radiobutton);
 	
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
-	
+
+	/* If only combos didn't suck! */
 	label = gtk_label_new (_("Sample rate:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -1008,10 +1024,34 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	
-	label = gtk_label_new (_("Mono/Stereo"));
+	label = gtk_label_new (_("Mono or Stereo:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0);
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
+	hbox_vbox = gtk_vbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), hbox_vbox, TRUE, TRUE, 0);
+	gtk_widget_show (hbox_vbox);
+
+	mono_rb = gtk_radio_button_new_with_mnemonic (NULL, _("_Mono"));
+	g_signal_connect (G_OBJECT (mono_rb), "toggled",
+			  G_CALLBACK (mono_toggled), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_vbox), mono_rb, FALSE, FALSE, 0);
+	gtk_widget_show (mono_rb);
+
+	stereo_rb = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (mono_rb), _("_Stereo"));
+	g_signal_connect (G_OBJECT (stereo_rb), "toggled",
+			  G_CALLBACK (stereo_toggled), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox_vbox), stereo_rb, FALSE, FALSE, 0);
+	gtk_widget_show (stereo_rb);
+
+	if (channels) {
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (mono_rb), TRUE);
+	} else {
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (stereo_rb), TRUE);
+	}
+
+#if 0
 	/* Radiobuttons, not combo */
 	NrChannel_combo = gtk_combo_new ();
 	gtk_widget_show (NrChannel_combo);
@@ -1027,13 +1067,7 @@ create_grecord_propertybox (void)
 	gtk_entry_set_editable (GTK_ENTRY (NrChannel_combo_entry), FALSE);
 	g_signal_connect (G_OBJECT (NrChannel_combo_entry), "changed",
 			  G_CALLBACK (channels_changed), NULL);
-	if (channels)
-		gtk_entry_set_text (GTK_ENTRY (NrChannel_combo_entry), _("Mono"));
-	else
-		gtk_entry_set_text (GTK_ENTRY (NrChannel_combo_entry), _("Stereo"));
-	
-	vbox = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox);
+#endif	
 
 	propertywidgets.RecordTimeout_spinbutton_v = RecordTimeout_spinbutton;
 	propertywidgets.StopRecordOnTimeout_checkbox_v = StopRecordOnTimeout_checkbox;
@@ -1051,9 +1085,7 @@ create_grecord_propertybox (void)
 	propertywidgets.Sox_fileentry_v = path_to_sox_fileentry;
 	propertywidgets.TempDir_fileentry_v = TempDir_fileentry;
 
-	propertywidgets.Audioformat_combo_entry_v = Audioformat_combo_entry;
 	propertywidgets.Samplerate_combo_entry_v = Samplerate_combo_entry;
-	propertywidgets.NrChannel_combo_entry_v = NrChannel_combo_entry;
 
 	gtk_entry_set_text (GTK_ENTRY (path_to_sox_combo_entry), sox_command);
 	gtk_entry_set_text (GTK_ENTRY (TempDir_combo_entry), temp_dir);	
