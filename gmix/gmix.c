@@ -1745,14 +1745,14 @@ about_cb (GtkWidget *widget,
 		gdk_window_show (about->window);
 		gdk_window_raise (about->window);
 	} else {
-		about = gnome_about_new ( _("Volume Control"), VERSION,
-					  "Copyright (C) 1998 Jens Ch. Restemeier\n"
-					  "Copyright (C) 2001, 2002 Iain Holmes",
+		about = gnome_about_new ( _("GNOME Volume Control"), VERSION,
+					  "Copyright \xc2\xa9 1998-2000 Jens Ch. Restemeier\n"
+					  "Copyright \xc2\xa9 2001-2002 Iain Holmes",
 					  _("A mixer for sound devices"),
 					  authors,
 					  NULL, NULL,
 					  NULL);
-		
+
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
 		gtk_widget_show (about);

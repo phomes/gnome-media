@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.0.x\n"
-"POT-Creation-Date: 2002-12-07 15:16+0000\n"
-"PO-Revision-Date: 2002-12-04 10:00+0100\n"
+"POT-Creation-Date: 2002-12-16 17:47+0100\n"
+"PO-Revision-Date: 2002-12-16 17:44+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -890,7 +890,7 @@ msgstr "Radio"
 msgid "Phone"
 msgstr "Telefon"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1090
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
 msgid "Mono"
 msgstr "Mono"
 
@@ -1101,9 +1101,9 @@ msgid ""
 msgstr ""
 "Die Lautstärkeregelung konnte nicht gestartet werden.\n"
 "\n"
-"Das Audio-Gerät konnte nicht geöffnet werden.\n"
-"Bitte überprüfen Sie, ob Sie die Rechte haben, um /dev/mixer\n"
-"zu öffnen und im kernel Audio-Unterstützung einkompiliert ist.\n"
+"Das Audio-Gerät »%s«  konnte nicht geöffnet werden.\n"
+"Bitte überprüfen Sie, ob Sie die Rechte haben, uauf »%s«zuzugreifen und im "
+"kernel Audio-Unterstützung einkompiliert is.\n"
 "\n"
 "Klicken Sie den Knopf »Beenden«, um die Lautstärkeregelung zu beenden"
 
@@ -1118,7 +1118,7 @@ msgstr ""
 "Die Lautstärkeregelung konnte nicht gestartet werden.\n"
 "\n"
 "Drücken Sie den Knopf »Details«, um detailiertere Informationen zum Grund "
-"für das Problem zu erhalten.\n"
+"des Problems zu erhalten.\n"
 "\n"
 "Klicken Sie den Knopf »Beenden«, um die Lautstärkeregelung zu beenden"
 
@@ -1197,14 +1197,6 @@ msgstr "Lautstärkeregler"
 #: gmix/gmix.c:1748
 msgid "GNOME Volume Control"
 msgstr "GNOME-Lautstärkeregler"
-
-#: gmix/gmix.c:1749
-msgid ""
-"(C) 1998 Jens Ch. Restemeier\n"
-"(C) 2001 Iain Holmes"
-msgstr ""
-"© 1998 Jens Ch. Restemeier\n"
-"© 2001 Iain Holmes"
 
 #: gmix/gmix.c:1751
 msgid "A mixer for sound devices"
@@ -1302,7 +1294,7 @@ msgstr "Unbekannter Interpret"
 msgid "Unknown Album"
 msgstr "Unbekanntes Album"
 
-#: gnome-cd/callbacks.c:534 grecord/src/gui.c:827
+#: gnome-cd/callbacks.c:534 grecord/src/gui.c:824
 msgid "Playing"
 msgstr "Wiedergabe"
 
@@ -1348,10 +1340,6 @@ msgstr "Kein CD-ROM"
 #: gnome-cd/callbacks.c:803
 msgid "Drive Error"
 msgstr "Laufwerkfehler"
-
-#: gnome-cd/callbacks.c:824
-msgid "(C) 2001 Iain Holmes"
-msgstr "© 2001 Iain Holmes"
 
 #: gnome-cd/callbacks.c:825
 msgid "A CD player for GNOME"
@@ -1887,7 +1875,7 @@ msgstr "Stunde"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#: grecord/src/gui.c:756
+#: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "Minuten"
 
@@ -1931,18 +1919,18 @@ msgid "%s is not installed in the path."
 msgstr "%s ist nicht im Pfad installiert"
 
 #: grecord/src/gsr-window.c:736
-#, fuzzy, c-format
+#, c-format
 msgid "%s (Has not been saved)"
-msgstr "%s (wurde nicht gespeichert"
+msgstr "%s (wurde nicht gespeichert)"
 
 #: grecord/src/gsr-window.c:751
 msgid "Unknown size"
 msgstr "Größe unbekannt"
 
 #: grecord/src/gsr-window.c:771
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f kHz"
-msgstr "%.1f Khz/s"
+msgstr "%.1f kHz"
 
 #: grecord/src/gsr-window.c:780
 #, c-format
@@ -1997,10 +1985,6 @@ msgstr "Samplerate:"
 #: grecord/src/gsr-window.c:912
 msgid "Bit rate:"
 msgstr "Bitrate"
-
-#: grecord/src/gsr-window.c:981
-msgid "(C) 2002 Iain Holmes"
-msgstr "© 2002 Iain Holmes"
 
 #: grecord/src/gsr-window.c:982
 msgid "A sound recorder for GNOME"
@@ -2118,13 +2102,7 @@ msgstr "Datei »%s« existiert nicht; Vorgabe wird verwendet."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Datei »%s« ist keine unterstützte Audiodatei."
 
-#. if your charset allows it, replace the "e" of "Hyden"
-#. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
-msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:427
+#: grecord/src/gui.c:425
 msgid "translator_credits"
 msgstr ""
 "Karl Eichwalder <ke@suse.de>\n"
@@ -2132,17 +2110,11 @@ msgstr ""
 "Christian Neumair <chris@gnome-de.org>\n"
 "Matthias Warkus <mawarkus@gnome.org>"
 
-#: grecord/src/gui.c:431
+#: grecord/src/gui.c:429
 msgid "GNOME Sound Recorder"
 msgstr "GNOME Audio-Recorder"
 
-#. if your charset allows it, replace the
-#. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
-msgid "(C) 2000 Andreas Hyden"
-msgstr "© 2000 Andreas Hydén"
-
-#: grecord/src/gui.c:435
+#: grecord/src/gui.c:431
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -2150,104 +2122,104 @@ msgstr ""
 "Ein einfacher Audio-Recorder und -Player für GNOME.\n"
 "Gewidmet Malte, meiner Katze."
 
-#: grecord/src/gui.c:703
+#: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
 msgstr "Einstellungen des GNOME Audio-Recorders"
 
-#: grecord/src/gui.c:710
+#: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
 msgstr "Einstellungen des Audio-Recorders"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:719
 msgid "Recording"
 msgstr "Aufnahme"
 
-#: grecord/src/gui.c:727
+#: grecord/src/gui.c:724
 msgid "Time"
 msgstr "Dauer"
 
-#: grecord/src/gui.c:740
+#: grecord/src/gui.c:737
 msgid "_Recording timeout: "
 msgstr "_Ende der Aufnahme nach:"
 
-#: grecord/src/gui.c:763
+#: grecord/src/gui.c:760
 msgid "_Stop recording on timeout"
 msgstr "Die Aufnahme beim Erreichen des Endes der Zeitvorgabe _stoppen"
 
-#: grecord/src/gui.c:771
+#: grecord/src/gui.c:768
 msgid "_Open save dialog when recording is finished"
 msgstr "Dialog zum Speichern _anzeigen, wenn die Aufnahme fertig ist"
 
-#: grecord/src/gui.c:778
+#: grecord/src/gui.c:775
 msgid "Size"
 msgstr "Größe"
 
-#: grecord/src/gui.c:787
+#: grecord/src/gui.c:784
 msgid "Show warning _message if size (MB) of sample becomes bigger than:"
 msgstr "_Warnen, wenn das Sample größer wird als (in MB):"
 
-#: grecord/src/gui.c:805
+#: grecord/src/gui.c:802
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
 msgstr "Aufnahme sto_ppen, wenn das Sample größer wird als (in MB):"
 
-#: grecord/src/gui.c:832
+#: grecord/src/gui.c:829
 msgid "Repetition"
 msgstr "Wiederholung"
 
-#: grecord/src/gui.c:842
+#: grecord/src/gui.c:839
 msgid "_Repeat the sound"
 msgstr "Den Klang _wiederholen"
 
-#: grecord/src/gui.c:849
+#: grecord/src/gui.c:846
 msgid "Play the sound _once only."
 msgstr "Den Klang _einmal abspielen"
 
-#: grecord/src/gui.c:855
+#: grecord/src/gui.c:852
 msgid "Repeat _forever"
 msgstr "_Endlosschleife"
 
-#: grecord/src/gui.c:866
+#: grecord/src/gui.c:863
 msgid "_Number of times:"
 msgstr "_Anzahl der Wiederholungen:"
 
-#: grecord/src/gui.c:888
+#: grecord/src/gui.c:885
 msgid "Paths"
 msgstr "Pfade"
 
-#: grecord/src/gui.c:893
+#: grecord/src/gui.c:890
 msgid "Program files"
 msgstr "Programmdateien"
 
-#: grecord/src/gui.c:906
+#: grecord/src/gui.c:903
 msgid "_Path to sox:"
 msgstr "_Pfad zu sox:"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:917
 msgid "_Apply"
 msgstr "_Anwenden"
 
-#: grecord/src/gui.c:929
+#: grecord/src/gui.c:926
 msgid "Folders"
 msgstr "Ordner"
 
-#: grecord/src/gui.c:942
+#: grecord/src/gui.c:939
 msgid "_Temporary folder:"
 msgstr "_Temporärer Ordner:"
 
-#: grecord/src/gui.c:956
+#: grecord/src/gui.c:953
 msgid "Apply"
 msgstr "Anwenden"
 
-#: grecord/src/gui.c:968
+#: grecord/src/gui.c:965
 msgid "Sound"
 msgstr "Sound"
 
 # At the moment we don't have enough room to avoid an abbrev... -ke-
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:970
 msgid "Sound options"
 msgstr "Audio-Optionen"
 
-#: grecord/src/gui.c:982
+#: grecord/src/gui.c:979
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
@@ -2255,36 +2227,36 @@ msgstr ""
 "Hinweis: Diese Optionen werden erst wirksam, sobald ein neues Audiosample\n"
 "erstellt wird. Sie verändern nichts an einer bereits existierenden Datei."
 
-#: grecord/src/gui.c:995
+#: grecord/src/gui.c:992
 msgid "Audio format:"
 msgstr "Audio-Format:"
 
-#: grecord/src/gui.c:1004
+#: grecord/src/gui.c:1001
 msgid "8 _bit PCM"
 msgstr "8 _Bit PCM"
 
-#: grecord/src/gui.c:1010
+#: grecord/src/gui.c:1007
 msgid "16 b_it PCM"
 msgstr "16 B_it PCM"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1024
+#: grecord/src/gui.c:1021
 msgid "S_ample rate:"
 msgstr "S_amplerate:"
 
-#: grecord/src/gui.c:1055
+#: grecord/src/gui.c:1052
 msgid "Mono or Stereo:"
 msgstr "Mono oder Stereo:"
 
-#: grecord/src/gui.c:1064
+#: grecord/src/gui.c:1061
 msgid "_Mono"
 msgstr "_Mono"
 
-#: grecord/src/gui.c:1070
+#: grecord/src/gui.c:1067
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1091
+#: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -2470,12 +2442,12 @@ msgid "_Save"
 msgstr "_Speichern"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:249
+#: gstreamer-properties/gstreamer-properties.c:263
 msgid "Failure instantiating main window"
 msgstr "Fehler beim Instanziieren des Hauptfensters"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:289
+#: gstreamer-properties/gstreamer-properties.c:303
 #, c-format
 msgid "Could not load UI resource %s"
 msgstr "Benutzeroberflächen-Ressource %s konnte nicht geladen werden"

@@ -978,8 +978,8 @@ help_about (BonoboUIComponent *uic,
 		gdk_window_show (about->window);
 	} else {
 		about = gnome_about_new (_("Sound Recorder"), VERSION,
-					 "Copyright (C) 2002 Iain Holmes",
-					 _("A sound recorder program"),
+					 "Copyright \xc2\xa9 2002 Iain Holmes",
+					 _("A sound recorder for GNOME"),
 					 authors, NULL, NULL, NULL);
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
