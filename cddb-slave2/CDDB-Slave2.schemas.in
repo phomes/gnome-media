@@ -8,6 +8,8 @@
       <type>string</type>
       <default>freedb.freedb.org</default>
       <locale name="C">
+	<short>Server name</short>
+	<long>Address of the server to contact for CD queries</long>
       </locale>
     </schema>
     <schema>
@@ -17,6 +19,8 @@
       <type>int</type>
       <default>888</default>
       <locale name="C">
+	<short>Port</short>
+	<long>The port that the server is running the database on</long>
       </locale>
     </schema>
     <schema>
@@ -42,7 +46,10 @@
       <owner>CDDB-Slave2</owner>
       <type>string</type>
       <default></default>
-      <locale name="C"></locale>
+      <locale name="C">
+	<short>The username</short>
+	<long>The username that will be sent with all queries</long>
+      </locale>
     </schema>
     <schema>
       <key>/schemas/apps/CDDB-Slave2/hostname</key>
@@ -50,7 +57,10 @@
       <owner>CDDB-Slave2</owner>
       <type>string</type>
       <default></default>
-      <locale name="C"></locale>
+      <locale name="C">
+	<short>Your hostname</short>
+	<long>The hostname that will be sent with all queries</long>
+      </locale>
     </schema>
   </schemalist>
 </gconfschemafile>
