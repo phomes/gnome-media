@@ -123,4 +123,6 @@ void theme_free (GCDTheme *theme);
 void make_popup_menu (GnomeCD *gcd,
                 GdkEventButton *event);
 
+void tray_icon_create (GnomeCD *gcd);
+
 #endif

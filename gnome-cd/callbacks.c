@@ -1011,6 +1011,22 @@ tray_icon_expose (GtkWidget* widget, GdkEventExpose *event)
   return FALSE;
 }
 
+gboolean
+tray_icon_destroyed (GtkWidget *widget, GnomeCD *gcd)
+{
+	GdkPixbuf *pixbuf;
+	GtkWidget *box;
+
+	if (!GTK_WIDGET_VISIBLE (gcd->window)) {
+		gtk_widget_show (gcd->window);
+	}
+	gtk_widget_destroy (gcd->tray);
+
+	tray_icon_create (gcd);
+
+	return TRUE;
+}
+
 void
 open_preferences (GtkWidget *widget,
 		  GnomeCD *gcd)

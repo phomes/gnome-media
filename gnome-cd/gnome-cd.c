@@ -780,9 +780,23 @@ init_player (const char *device_override)
 
 	gcd->not_ready = FALSE;
 
+
+	tray_icon_create (gcd);
+	
+	return gcd;
+}
+
+void
+tray_icon_create (GnomeCD *gcd)
+{
+	GdkPixbuf *pixbuf;
+	GtkWidget *box;
+
 	/* Tray icon */
 	gcd->tray = GTK_WIDGET (egg_tray_icon_new ("GnomeCD Tray Icon"));
 	box = gtk_event_box_new ();
+	g_signal_connect (G_OBJECT (gcd->tray), "destroy",
+			 	G_CALLBACK (tray_icon_destroyed), gcd);
 	g_signal_connect (G_OBJECT (box), "button_press_event",
 			 	G_CALLBACK (tray_icon_clicked), gcd);
 	g_signal_connect (G_OBJECT (box), "key_press_event",
@@ -806,8 +820,6 @@ init_player (const char *device_override)
 	            G_CALLBACK (popup_menu_cb), gcd);
 	
 	gtk_widget_show_all (gcd->tray);
-
-	return gcd;
 }
 
 static int 

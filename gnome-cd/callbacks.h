@@ -78,6 +78,9 @@ gboolean button_press_event_cb (GtkWidget *widget,
 	                      GdkEventButton *event,
 	                      GnomeCD *gcd);
 gboolean popup_menu_cb (GtkWidget *widget,
-					   GnomeCD *gcd);
+			GnomeCD *gcd);
+
+gboolean tray_icon_destroyed (GtkWidget *widget,
+			      GnomeCD *gcd);
 
 #endif
