@@ -93,12 +93,12 @@ void gcddb()
 	start_id = gtk_signal_connect (GTK_OBJECT (startbutton), "clicked",
 		GTK_SIGNAL_FUNC(do_cddb), NULL);
 
-	snprintf( tmp, 255, "Server: %s:%d\n", props.cddb, props.cddbport );
+	g_snprintf( tmp, 255, "Server: %s:%d\n", props.cddb, props.cddbport );
         tmplabel = gtk_label_new(tmp);
 	gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
 	if( props.use_http )
 	{
-		snprintf( tmp, 255, "HTTP %s Enabled\n", 
+		g_snprintf( tmp, 255, "HTTP %s Enabled\n", 
 			props.use_proxy?"and Proxy":"" );
 	        tmplabel = gtk_label_new(tmp);
 		gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
