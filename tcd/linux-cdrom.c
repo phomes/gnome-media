@@ -250,7 +250,10 @@ void tcd_gettime( cd_struct *cd )
 			cd->cur_t = 0;
 			return;
 	        }
-		cd->cur_t = cd->sc.cdsc_trk;
+		if( cd->sc.cdsc_audiostatus==CDROM_AUDIO_PLAY )
+			cd->cur_t = cd->sc.cdsc_trk;
+		else
+			cd->cur_t = 0;
 #ifndef CDROMVOLCTRL_BUG
 		vol.channel0 = cd->volume;
 		vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0; 
@@ -408,9 +411,8 @@ int tcd_ejectcd( cd_struct *cd )
 
 		return(-1);
         }
-	cd->isplayable=FALSE;
-	cd->isdisk=FALSE;
-
+	cd->cur_t = 0;	
+	
 	debug("cdrom.c: tcd_eject exiting normally\n" );
    	return 0;
 }       

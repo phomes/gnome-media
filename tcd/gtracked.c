@@ -3,7 +3,11 @@
 #include <linux/cdrom.h>
 #include "linux-cdrom.h"
 
+#include "icons/data.xpm"
+#include "icons/music.xpm"
+
 GtkWidget *trwin;
+GtkWidget *music, *data;
 static int current_track;
 extern cd_struct cd;
 
@@ -43,6 +47,10 @@ void fill_list( GtkWidget *list )
 		tmp[3] = NULL;
 	
 		gtk_clist_append(GTK_CLIST(list), tmp );
+		g_snprintf(tmp[0],255, "%d", i);
+		gtk_clist_set_pixtext(GTK_CLIST(list), i-1,0, tmp[0], 2, 
+			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->pixmap, 
+			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->mask);
 	}
 
 	gtk_clist_thaw(GTK_CLIST(list));
@@ -103,6 +111,9 @@ void edit_window( void )
 	
 	main_box = gtk_vbox_new(FALSE, 4);
 	
+	music = gnome_pixmap_new_from_xpm_d(music_xpm);
+	data = gnome_pixmap_new_from_xpm_d(data_xpm);
+	
 	/* Disc area */
 	disc_table  = gtk_table_new(2, 2, FALSE);
 	disc_frame = gtk_frame_new("Disc Information");
@@ -133,7 +144,7 @@ void edit_window( void )
 	track_list  = gtk_clist_new_with_titles(3, titles);
 	current_track = 1;
 	gtk_clist_set_border(GTK_CLIST(track_list), GTK_SHADOW_NONE);
-	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 18);
+	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 30);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
 	gtk_clist_set_policy(GTK_CLIST(track_list), GTK_POLICY_AUTOMATIC,
 						    GTK_POLICY_AUTOMATIC);
