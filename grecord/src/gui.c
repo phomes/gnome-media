@@ -187,7 +187,7 @@ create_grecord_window (void)
 	GtkWidget* timemin_label
 ;
 	gboolean found_file = FALSE;
-	gboolean file_wav = FALSE;
+	gboolean unsupported_soundfile = FALSE;
 	gchar* audioformat_string = NULL;
 	gchar* channels_string = NULL;
 	gchar* temp_string = NULL;
@@ -406,13 +406,13 @@ create_grecord_window (void)
 		gtk_widget_set_sensitive (GTK_WIDGET (Play_button), FALSE);
 		gtk_widget_set_sensitive (GTK_WIDGET (Stop_button), FALSE);
 	}
+	else if (found_file && !default_file) {
+		if (!soundfile_supported (active_file))
+			unsupported_soundfile = TRUE;
+	}
 	
-	if (active_file[strlen (active_file)-1] == 'v' && active_file[strlen (active_file)-2] == 'a' &&
-	    active_file[strlen (active_file)-3] == 'w' && active_file[strlen (active_file)-4] == '.')
-		file_wav = TRUE;
-	
-	if ((found_file || default_file) && !file_wav) {
-		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a .wav file; using default."), active_file);
+	if ((found_file || default_file) && unsupported_soundfile) {
+		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a valid soundfile."), active_file);
 		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_WARNING,
 					      GNOME_STOCK_BUTTON_OK,

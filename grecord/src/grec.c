@@ -254,7 +254,7 @@ on_open_activate_cb (GtkWidget* widget, gpointer data)
 			return;
 	}
 
-	filesel = gtk_file_selection_new (_("Select a .wav file"));
+	filesel = gtk_file_selection_new (_("Select a sound file"));
 
 	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
 			    "clicked", 
@@ -581,12 +581,13 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 	AFfilehandle filename;
 	gint in_audioformat, in_channels, in_rate, in_width;
 
-	if (!(tempfile[strlen (tempfile)-1] == 'v' && tempfile[strlen (tempfile)-2] == 'a' &&
-	      tempfile[strlen (tempfile)-3] == 'w' && tempfile[strlen (tempfile)-4] == '.')) {
-		mess = gnome_message_box_new (_("You must select a .wav file."),
+	if (!soundfile_supported (tempfile)) {
+		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a valid soundfile."), tempfile);
+		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_WARNING,
 					      GNOME_STOCK_BUTTON_OK,
 					      NULL);
+		g_free (show_mess);
 		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
 		gtk_widget_show (mess);
 		return;
@@ -938,15 +939,16 @@ run_command (const gchar* command, const gchar* appbar_comment)
 }
 
 gboolean
-soundtype_supported (const gchar* filename)
+soundfile_supported (const gchar* filename)
 {
-	gint soundtype;
-	gint fd = open (filename, O_CREAT);
+	AFfilehandle filetype  = afOpenFile (filename, "r", NULL);
+	gint soundtype = afGetFileFormat (filetype, NULL);
 
-	//soundtype = afIdentifyFD (fd);
-
-	if (soundtype == 0 ||
-	    soundtype == AF_FILE_UNKNOWN)
+	if (!g_file_exists (filename))
 		return FALSE;
+
+	if (soundtype == AF_FILE_UNKNOWN)
+		return FALSE;
+
 	return TRUE;
 }

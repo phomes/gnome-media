@@ -64,4 +64,4 @@ void grecord_set_sensitive_nofile (void);
 void grecord_set_sensitive_progress (void);
 void grecord_set_sensitive_loading (void);
 void run_command (const gchar* command, const gchar* appbar_comment);
-gboolean soundtype_supported (const gchar* filename);
+gboolean soundfile_supported (const gchar* filename);
