@@ -43,6 +43,7 @@ get_disc_info (GnomeCD *gcd,
 {
 	GnomeCDDiscInfo *info;
 	
+        gcd_debug ("get_disc_info for discid %s", discid);
 	info = g_hash_table_lookup (cddb_cache, discid);
 	if (info == NULL) {
 		g_warning ("No cache for %s", discid);
@@ -51,9 +52,10 @@ get_disc_info (GnomeCD *gcd,
 		gcd->disc_info = info;
 	}
 
-	info->title = cddb_slave_client_get_disc_title (slave, discid);
 	info->artist = cddb_slave_client_get_artist (slave, discid);
+	info->title = cddb_slave_client_get_disc_title (slave, discid);
 	info->track_info = cddb_slave_client_get_tracks (slave, discid);
+        gcd_debug ("get_disc_info: artist %s, title %s", info->artist, info->title);
 
 	if (count_tracks (info->track_info) != info->ntracks) {
 		/* Duff info */
@@ -231,7 +233,7 @@ cddb_get_query (GnomeCD *gcd)
 int
 cddb_sum (int n)
 {
-	char buf[12], *p;
+	char buf[12], *p = NULL;
 	int ret = 0;
 	
 	/* This is what I get for copying TCD code */

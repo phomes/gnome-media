@@ -110,6 +110,7 @@ void gnome_cd_set_window_title (GnomeCD *gcd,
 void gnome_cd_build_track_list_menu (GnomeCD *gcd);
 
 void gcd_warning (const char *message, GError *error);
+void gcd_debug (const gchar *format, ...) G_GNUC_PRINTF (1, 2);
 
 /* theme.c */
 GCDTheme *theme_load (GnomeCD    *gcd,

@@ -33,6 +33,9 @@ static char *cd_option_device = NULL;
 static gboolean cd_option_unique = FALSE;
 static gboolean cd_option_play = FALSE;
 
+/* if env var GNOME_CD_DEBUG is set,
+ * g_warning the given message, and if there was an error, the error message
+ */
 void
 gcd_warning (const char *message,
 	     GError *error)
@@ -42,6 +45,25 @@ gcd_warning (const char *message,
 	}
 	
 	g_warning (message, error ? error->message : "(None)");
+}
+
+/* if env var GNOME_CD_DEBUG is set, g_print the given message */
+void
+gcd_debug (const gchar *format,
+           ...)
+{
+	va_list args;
+	gchar *string;
+
+	if (debug_mode == FALSE) {
+		return;
+	}
+	va_start (args, format);
+	string = g_strdup_vprintf (format, args);
+	va_end (args);
+
+	g_print ("DEBUG: gnome-cd: %s\n", string);
+	g_free (string);
 }
 
 /*

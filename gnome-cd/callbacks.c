@@ -634,6 +634,7 @@ status_ok (GnomeCD *gcd,
 		cd_display_set_line (CD_DISPLAY (gcd->display),
 				     CD_DISPLAY_LINE_TIME, "");
 		if (gcd->disc_info != NULL) {
+                        gcd_debug ("AUDIO_STOP: artist %s, title %s", gcd->disc_info->artist, gcd->disc_info->title);
 			gnome_cd_set_window_title (gcd,
 						   gcd->disc_info->artist ?
 						   gcd->disc_info->artist : "",
@@ -653,6 +654,7 @@ status_ok (GnomeCD *gcd,
 		cd_display_set_line (CD_DISPLAY (gcd->display),
 				     CD_DISPLAY_LINE_TIME, _("Disc error"));
 		if (gcd->disc_info != NULL) {
+                        gcd_debug ("AUDIO_ERROR: artist %s, title %s", gcd->disc_info->artist, gcd->disc_info->title);
 			gnome_cd_set_window_title (gcd, gcd->disc_info->artist ?
 						   gcd->disc_info->artist : "",
 						   gcd->disc_info->title ?
@@ -668,6 +670,7 @@ status_ok (GnomeCD *gcd,
 		
 	default:
 		if (gcd->disc_info != NULL) {
+                        gcd_debug ("default: artist %s, title %s", gcd->disc_info->artist, gcd->disc_info->title);
 			gnome_cd_set_window_title (gcd,
 						   gcd->disc_info->artist ?
 						   gcd->disc_info->artist : "",
