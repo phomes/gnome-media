@@ -664,9 +664,9 @@ void put_device_config(void)
 void get_gui_config(void)
 {
 	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init");
-	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu");
-	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons");
-	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels");
+	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=false");
+	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=true");
+	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=true");
 }
 
 void put_gui_config(void)
