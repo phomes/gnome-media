@@ -1146,7 +1146,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 	if (fd < 0 && errno == EACCES && error != NULL) {
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_OPENED,
-				      _("You do not seem to have permission to acess %s."),
+				      _("You do not seem to have permission to access %s."),
 				      priv->cdrom_device);
 		return FALSE;
 	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
