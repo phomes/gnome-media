@@ -92,6 +92,55 @@ static gboolean solaris_cdrom_close_tray (GnomeCDRom *cdrom,
 
 static GnomeCDRomMSF blank_msf = { 0, 0, 0};
 
+static void
+set_audio_port ()
+{
+	int fd;
+	audio_info_t audio_info;
+	gchar        *audio_dev;
+
+	/* Retrieve AUDIODEV, if set */
+	if (g_getenv("AUDIODEV") != NULL) {
+		audio_dev = g_strdup (g_getenv("AUDIODEV"));
+	} else {
+		audio_dev = g_strdup ("/dev/audio");
+	}
+
+	/* Open the device */
+	if ((fd = open (audio_dev, O_WRONLY | O_NDELAY)) < 0) {
+		g_warning ("(set_audio_port): Opening of device failed %s",
+			   strerror (errno));
+	}
+
+	/* Retrieve info */
+	if (ioctl(fd, AUDIO_GETINFO, &audio_info) < 0) {
+		g_warning ("(set_audio_port): AUDIO_GETINFO ioctl failed %s",
+			   strerror (errno));
+        }
+
+	/* Check for AUDIO_CD */
+	if (audio_info.record.avail_ports & AUDIO_CD) {
+		/* Initialise */
+		AUDIO_INITINFO(&audio_info, sizeof (audio_info));
+
+		/* Set the port to AUDIO_CD */
+		audio_info.record.port = AUDIO_CD;
+
+		/* Set monitor gain */
+		audio_info.monitor_gain = AUDIO_MID_GAIN;
+
+		/* Apply */
+		if (ioctl(fd, AUDIO_SETINFO, &audio_info) < 0) {
+		g_warning ("(set_audio_port): AUDIO_SETINFO ioctl failed %s",
+			   strerror (errno));
+			perror ("AUDIO_SETINFO");
+		}
+	}
+
+	close (fd);
+	g_free (audio_dev);
+}
+
 /* To determine whether the machine has a cdrom drive or not */
 void
 find_cdrom()
@@ -862,6 +911,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	struct cdrom_subchnl subchnl;
 	struct cdrom_tocentry tocentry;
 	struct audio_info audioinfo;
+	static gboolean port_set = FALSE;
 	int vol_fd;
 	int cd_status;
 	int i, j;
@@ -888,6 +938,10 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (!port_set) {
+		set_audio_port ();
+		port_set = TRUE;
+	}
 #if 0
 	cd_status = ioctl (cdrom->fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
 	if (cd_status != -1) {
