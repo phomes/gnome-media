@@ -207,21 +207,14 @@ label_one_device_config_widget (gpointer device)
 						     -1, _("Mixer label"),
 						     cell,
 						     "text", 0,
-#if 0 /* TODO: This is a hack until this can be fixed for real */
 						     "editable", 4,
-#endif
 						     NULL);
 
 	gtk_container_add (GTK_CONTAINER (scrlwin), treeview);
 	
 	/* Add the label reset button */
 	button = gtk_button_new_with_mnemonic (_("_Reset labels to their defaults"));
-#if 0 /* TODO: This is a hack until this can be fixed for real */
 	gtk_box_pack_start (GTK_BOX(topvbox), button, FALSE, FALSE, 0);
-#else
-	g_object_ref(G_OBJECT(button));
-	g_object_unref(G_OBJECT(button));
-#endif
 	g_signal_connect (G_OBJECT(button), "clicked",
 			  G_CALLBACK (labels_reset_page_cb), model);
 

@@ -952,7 +952,6 @@ get_one_device_config (gpointer a,
 
 		g_object_unref (G_OBJECT (client));
 
-#if 0 /* TODO: Hack fix for a full fix next version */
 		key = g_strdup_printf ("%s/title", key_base);
 
 		if (channel->user_title != NULL) {
@@ -961,7 +960,6 @@ get_one_device_config (gpointer a,
 
 		channel->user_title = get_string_with_default (key, channel->title);
 		g_free (key);
-#endif
 
 		key = g_strdup_printf ("%s/mute", key_base);
 		channel->is_muted = get_bool_with_default (key, channel->is_muted);
@@ -1029,10 +1027,8 @@ put_one_device_config (gpointer a,
 		key_base = g_strdup_printf ("/apps/gnome-volume-control/%s/%s",
 					    info->card_name, channel->title);
 
-#if 0 /* TODO: Hack fix for a full fix next version */
 		key = g_strdup_printf ("%s/title", key_base);
 		gconf_client_set_string (client, key, channel->user_title, &err);
-#endif
 		if (err != NULL) {
 			g_warning ("Error says %s\n", err->message);
 			g_error_free (err);
