@@ -83,6 +83,14 @@ void activate_entry( GtkWidget *widget, GtkWidget *list )
 	return;
 }
 
+void next_entry( GtkWidget *widget, GtkWidget *list )
+{
+	int trk = GPOINTER_TO_INT(gtk_object_get_user_data(GTK_OBJECT(list)));
+
+	if (trk<cd.last_t)
+           gtk_clist_select_row(GTK_CLIST(list), trk, 0);
+}
+
 void select_row_cb( GtkCList *clist,
 		    gint row,
                     gint column,
@@ -171,6 +179,7 @@ void edit_window(GtkWidget *widget, gpointer data)
 	gtk_clist_column_titles_passive(GTK_CLIST(track_list));
 	gtk_widget_set_usize(track_list, 150, 225 );
 	fill_list(track_list);
+
 	track_frame = gtk_frame_new(_("Track Information"));
 	
 	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
@@ -209,6 +218,8 @@ void edit_window(GtkWidget *widget, gpointer data)
 		GTK_SIGNAL_FUNC(dtitle_changed), NULL);
 	gtk_signal_connect(GTK_OBJECT(track_entry), "changed",
 		GTK_SIGNAL_FUNC(activate_entry), track_list);
+	gtk_signal_connect(GTK_OBJECT(track_entry), "activate",
+		GTK_SIGNAL_FUNC(next_entry), track_list);
 	
 	gtk_container_add(GTK_CONTAINER(trwin), main_box);
 	gtk_widget_show_all(trwin);
