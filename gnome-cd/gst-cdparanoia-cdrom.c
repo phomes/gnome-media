@@ -269,8 +269,15 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	g_assert (priv->cdparanoia != 0);	/* TBD: GError */
 
 	if (priv->cd_device) {
-		g_object_set (G_OBJECT (priv->cdparanoia), "location",
-			      priv->cd_device, NULL);
+		if (g_object_class_find_property (
+				G_OBJECT_GET_CLASS (priv->cdparanoia),
+				"device")) {
+			g_object_set (G_OBJECT (priv->cdparanoia), "device",
+				      priv->cd_device, NULL);
+		} else {
+			g_object_set (G_OBJECT (priv->cdparanoia), "location",
+				      priv->cd_device, NULL);
+		}
 	}
 	g_signal_connect (G_OBJECT (priv->cdparanoia), "eos",
 			  G_CALLBACK (eos), priv);
