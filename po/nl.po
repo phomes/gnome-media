@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 08:34+0100\n"
-"PO-Revision-Date: 2004-10-31 00:17+0100\n"
+"POT-Creation-Date: 2004-11-07 19:54+0100\n"
+"PO-Revision-Date: 2004-11-08 01:17+0100\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
-"Language-Team: Dutch <vertaling@nl.linux.org>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -163,9 +163,9 @@ msgid "Unknown / Unknown"
 msgstr "Onbekend / Onbekend"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:698
-#: grecord/src/gsr-window.c:707 grecord/src/gsr-window.c:716
-#: grecord/src/gsr-window.c:726 grecord/src/gsr-window.c:1042
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:721
+#: grecord/src/gsr-window.c:730 grecord/src/gsr-window.c:739
+#: grecord/src/gsr-window.c:749 grecord/src/gsr-window.c:1065
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -1272,8 +1272,8 @@ msgstr "Beschikb_are thema's:"
 msgid "Record sound clips"
 msgstr "Geluidsfragmenten opnemen"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:915
-#: grecord/src/gsr-window.c:1251
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:1274
 msgid "Sound Recorder"
 msgstr "Geluidsrecorder"
 
@@ -1301,7 +1301,7 @@ msgstr "Nieuw sample maken"
 msgid "Display help for Sound Recorder"
 msgstr "Hulp weergeven voor Geluidsrecorder"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:784
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:807
 msgid "File Information"
 msgstr "Bestandsinformatie"
 
@@ -1472,107 +1472,112 @@ msgstr "seconden"
 msgid "second"
 msgstr "seconde"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1203
-#: grecord/src/gsr-window.c:1367 grecord/src/gsr-window.c:1637
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1226
+#: grecord/src/gsr-window.c:1390 grecord/src/gsr-window.c:1660
 msgid "Ready"
-msgstr "Klaar"
+msgstr "Gereed"
 
-#: grecord/src/gsr-window.c:530
+#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr "Kan het bestand \"%s\" niet opslaan"
+
+#: grecord/src/gsr-window.c:553
 msgid "Save file as"
 msgstr "Bestand opslaan als"
 
-#: grecord/src/gsr-window.c:586
+#: grecord/src/gsr-window.c:609
 #, c-format
 msgid "%s is not installed in the path."
-msgstr "%s staat is niet in het pad geïnstalleerd"
+msgstr "%s is niet in het pad geïnstalleerd."
 
-#: grecord/src/gsr-window.c:596
+#: grecord/src/gsr-window.c:619
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Er is een fout opgetreden bij het starten van %s: %s"
 
-#: grecord/src/gsr-window.c:673
+#: grecord/src/gsr-window.c:696
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (niet opgeslagen)"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:712
 msgid "Unknown size"
 msgstr "Onbekende grootte"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:732
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:718
+#: grecord/src/gsr-window.c:741
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:730
+#: grecord/src/gsr-window.c:753
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:734
+#: grecord/src/gsr-window.c:757
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:763
+#: grecord/src/gsr-window.c:786
 #, c-format
 msgid "%s Information"
 msgstr "%s-informatie"
 
-#: grecord/src/gsr-window.c:798
+#: grecord/src/gsr-window.c:821
 msgid "Folder:"
 msgstr "Map:"
 
-#: grecord/src/gsr-window.c:804 grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:827 grecord/src/gsr-window.c:1592
 msgid "Filename:"
 msgstr "Bestandsnaam:"
 
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:833
 msgid "File size:"
 msgstr "Bestandsgrootte:"
 
-#: grecord/src/gsr-window.c:819
+#: grecord/src/gsr-window.c:842
 msgid "Audio Information"
 msgstr "Audio-informatie"
 
-#: grecord/src/gsr-window.c:833
+#: grecord/src/gsr-window.c:856
 msgid "Song length:"
 msgstr "Lengte nummer:"
 
-#: grecord/src/gsr-window.c:839
+#: grecord/src/gsr-window.c:862
 msgid "Number of channels:"
 msgstr "Aantal kanalen:"
 
-#: grecord/src/gsr-window.c:845
+#: grecord/src/gsr-window.c:868
 msgid "Sample rate:"
 msgstr "Sample rate: "
 
-#: grecord/src/gsr-window.c:851
+#: grecord/src/gsr-window.c:874
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:940
 msgid "A sound recorder for GNOME"
 msgstr "Een geluidsrecorder voor GNOME"
 
-#: grecord/src/gsr-window.c:1188
+#: grecord/src/gsr-window.c:1211
 msgid "Playing..."
 msgstr "Afspelen..."
 
-#: grecord/src/gsr-window.c:1247
+#: grecord/src/gsr-window.c:1270
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Geluidsrecorder"
 
-#: grecord/src/gsr-window.c:1338
+#: grecord/src/gsr-window.c:1361
 msgid "Recording..."
 msgstr "Opname actief..."
 
-#: grecord/src/gsr-window.c:1398
+#: grecord/src/gsr-window.c:1421
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1580,17 +1585,17 @@ msgstr ""
 "Er is geen standaard GStreamer-audioinvoerelement ingesteld - installeer de "
 "GStreamer-GConf schemas of stel er handmatig één in"
 
-#: grecord/src/gsr-window.c:1413
+#: grecord/src/gsr-window.c:1436
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Aanmaken GStreamer-codeerelementen mislukt - controleer uw "
 "coderingsinstellingen"
 
-#: grecord/src/gsr-window.c:1423
+#: grecord/src/gsr-window.c:1446
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Kan de GStreamer-filesinkplugin niet vinden - installeer deze "
 
-#: grecord/src/gsr-window.c:1431
+#: grecord/src/gsr-window.c:1454
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1598,19 +1603,19 @@ msgstr ""
 "Koppelen van coderingselementen met bestandsuitvoerelement mislukt - u heeft "
 "waarschijnlijk een ongeldige coderingsmethode geselecteerd"
 
-#: grecord/src/gsr-window.c:1537
+#: grecord/src/gsr-window.c:1560
 msgid "Record as"
 msgstr "Opnemen als"
 
-#: grecord/src/gsr-window.c:1554
+#: grecord/src/gsr-window.c:1577
 msgid "File information"
 msgstr "Bestandsinformatie"
 
-#: grecord/src/gsr-window.c:1576
+#: grecord/src/gsr-window.c:1599
 msgid "<none>"
 msgstr "<geen>"
 
-#: grecord/src/gsr-window.c:1585
+#: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Duur:"
 
@@ -1771,8 +1776,8 @@ msgid "Track %s: lock channels together"
 msgstr "Spoor %s: kanalen aan elkaar koppelen"
 
 #: gst-mixer/src/window.c:109
-msgid "Change device"
-msgstr "Veranderen van apparaat"
+msgid "_Change Device"
+msgstr "Ver_anderen van apparaat"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
@@ -1921,20 +1926,20 @@ msgstr ""
 "Er is een fout opgetreden bij het abonneren op mededelingen bij "
 "veranderingen van de audioprofielenlijst. (%s)\n"
 
-#: profiles/audio-profile.c:910
+#: profiles/audio-profile.c:911
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Er is een fout opgetreden bij het vergeten van profielpad %s. (%s)\n"
 
-#: profiles/audio-profile.c:1002
+#: profiles/audio-profile.c:1003
 msgid "<no description>"
 msgstr "<geen omschrijving>"
 
-#: profiles/audio-profile.c:1013
+#: profiles/audio-profile.c:1014
 msgid "identity"
 msgstr "identiteit"
 
-#: profiles/audio-profile.c:1024
+#: profiles/audio-profile.c:1025
 msgid "wav"
 msgstr "wav"
 
