@@ -456,7 +456,7 @@ gint slow_timer( gpointer *data )
 	if( cd.err )
         {
 		tcd_readtoc(&cd);
-		tcd_readdiskinfo(&cd);		
+		tcd_readdiskinfo(&cd);
 		if( cd.err )
 		{
 			cd.cur_t = 0;
@@ -476,7 +476,7 @@ gint slow_timer( gpointer *data )
 		if( cd.play_method == REPEAT_CD )
 		tcd_playtracks( &cd, cd.first_t, cd.last_t );
 	}				                                                        
- 
+	 
 	tcd_gettime(&cd);
 	draw_status();
 	return 1;
@@ -846,7 +846,7 @@ int main (int argc, char *argv[])
 	if( cd.isplayable ) tcd_gettime(&cd);
 
 	gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
-	gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
+	gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
         gnome_app_set_contents( GNOME_APP(window), vbox);
 	

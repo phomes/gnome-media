@@ -28,7 +28,7 @@
    
 
 #include <fcntl.h>
-#include <ncurses.h>
+#include <ncurses/curses.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>

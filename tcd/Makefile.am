@@ -2,6 +2,8 @@ Audiodir = $(datadir)/apps/Audio
 
 bin_PROGRAMS = gtcd tcd
 
+SUBDIRS = icons
+
 gtcd_SOURCES = 		\
 	gtcd.c 		\
 	cddb.c 		\
@@ -38,6 +40,6 @@ tcd_LDADD = -lm -lncurses
 
 CLEANFILES = *.o core *~ libcdrom.a
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR)
+INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -I/usr/include/ncurses
 
 Audio_DATA = gtcd.desktop
