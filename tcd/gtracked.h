@@ -34,6 +34,7 @@ struct pass_str
 	GtkWidget *window;	
 };
 
+void edit_window( void );
 void destroy_window (GtkWidget *widget, GtkWidget **window);
 void gtracked();
 

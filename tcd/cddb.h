@@ -71,6 +71,7 @@ int 		tcd_getquery_http(cddb_server *server,
 
 void 		tcd_formatquery( cd_struct *cd, char *buf , int blen);
 int 		tcd_open_cddb( cddb_server *server, PeriodicFunc func );
+int             tcd_open_cddb_http(cddb_server *server);
 
 int             tcd_formatread_http( cd_struct *cd, char *buf, int blen,
 				     char *hostname, int port, char *path,

@@ -527,7 +527,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	char tcd_dir[128];
 
 	if( !cd->isplayable )
-		return;
+		return 0;
 	
 	strcpy( tcd_dir, getenv("HOME"));
         strcat( tcd_dir, "/.tcd/" );

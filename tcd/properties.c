@@ -26,6 +26,7 @@
 */
 
 #include <gnome.h>
+#include <string.h>
 #include "properties.h"
 
 tcd_properties props;
@@ -133,14 +134,12 @@ void proxy_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
 GtkWidget *create_http_frame()
 {
     GtkWidget *vbox, *http_check, *proxy_check;
-    GtkWidget *proxy_host, *proxy_port;
     GtkWidget *http_box, *proxy_box;
     GtkWidget *proxy_l_box, *proxy_r_box;
     GtkWidget *label;
     GtkWidget *path_entry, *path_box;
     GtkWidget *proxy_server_entry, *proxy_port_spin;
     GtkObject *adj;
-    gchar tmp[17];
     
     vbox		= gtk_vbox_new(FALSE,2);
     http_box	= gtk_vbox_new(FALSE,2);
@@ -371,7 +370,7 @@ GtkWidget *create_status_frame()
     
     if(sscanf(props.trackcolor, "#%02x%02x%02x", &tr,&tg,&tb) != 3)
     {
-	g_print("WARNING: Error parsing color: #%02X%02X02X\n", tr, tg, tb);
+	g_print("WARNING: Error parsing color: #%02X%02X%02X\n", tr, tg, tb);
 	strcpy(props.trackcolor, "#FF0000");
     }   
  
@@ -474,7 +473,6 @@ GtkWidget *create_page2()
 {
     GtkWidget *box;
     GtkWidget *http_frame;
-    GtkWidget *sep;
     
     box = gtk_vbox_new( FALSE,4 );	
     http_frame = create_http_frame();
@@ -487,7 +485,6 @@ GtkWidget *create_page3()
 {
     GtkWidget *box;
     GtkWidget *ui_frame, *status_frame;
-    GtkWidget *sep;
     
     box = gtk_vbox_new( FALSE,4 );	
     
@@ -504,7 +501,6 @@ GtkWidget *create_page1()
 {
     GtkWidget *box;
     GtkWidget *cdrom_frame, *cddb_frame;
-    GtkWidget *sep;
     
     box = gtk_vbox_new( FALSE,4 );	
     
@@ -517,7 +513,7 @@ GtkWidget *create_page1()
     return box;
 }
 
-help_cb(GtkWidget *widget, void *data)
+void help_cb(GtkWidget *widget, void *data)
 {
     gchar *file,*file2;
 /* fixme */

@@ -98,7 +98,7 @@ GtkWidget *cdtime_label, *changer_box, *playbutton;
 GtkWidget *status_table, *status_area, *sep;
 GtkWidget *volume, *window, *aboutbutton, *propsbutton;
 GtkWidget *gotomenu = NULL, *gotobutton, *main_box;
-GdkPixmap *status_db;
+GdkPixmap *status_db = NULL;
 GtkWidget **changer_buttons, *cddbbutton;
 GtkObject *vol;
 GdkColormap *colormap;
@@ -117,6 +117,7 @@ void draw_status( void );
 void delete_event (GtkWidget *widget, gpointer *data);
 void create_warn( char *, char * );
 void make_gotomenu();
+void status_changed(void);
 
 void callback (GtkWidget *widget, gpointer *data)
 {
@@ -218,12 +219,15 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
     GtkWidget *button;
     GtkWidget *pixmap;
     char tmp[256];
+    char *name;
 	
     sprintf( tmp, "tcd/%s.xpm", pic );
+    name = gnome_pixmap_file (tmp);
 #ifdef DEBUG
-    g_print( "loading: %s\n", gnome_pixmap_file(tmp) );
+    g_print( "loading: %s\n", name );
 #endif
-    pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+    pixmap = gnome_pixmap_new_from_file(name);
+    g_free (name);
 	
     button = gtk_button_new();
     gtk_container_add( GTK_CONTAINER(button), pixmap );
@@ -353,10 +357,9 @@ GtkWidget* make_row2( void )
 
 GtkWidget* make_row3( void )
 {
-    char tmp[128];
-    GtkWidget *box, *bbox, *pm;
-    GtkWidget *button, *gotolabel;
+    GtkWidget *box, *bbox;
     GtkWidget *pixmap, *handle;
+    char *name;
 	
     box = gtk_hbox_new( TRUE, 0 );
     bbox = gtk_vbox_new( FALSE, 0 );
@@ -366,7 +369,9 @@ GtkWidget* make_row3( void )
     trackeditor =make_button_with_pixmap( "edit", box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
 
     gotobutton = gtk_button_new();
-    pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file("tcd/goto.xpm") );
+    name = gnome_pixmap_file("tcd/goto.xpm");
+    pixmap = gnome_pixmap_new_from_file(name);
+    g_free (name);
     gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );
     gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
     gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
@@ -406,16 +411,18 @@ void setup_pixmaps( void )
     GdkPixmap *pm;
     GdkBitmap *bm;
     GdkImlibImage *im;
-    GdkImlibColorModifier m;
     gchar tmp[128];
     int i;
+    char *name;
 
     sscanf( props.statuscolor, "#%02x%02x%02x", &r,&g,&b );
 	        
     for( i=0; i < PLAY_METHOD_END-1; i++ )
     {
 	sprintf( tmp, "tcd/%s", play_methods[i] );
-	im = gdk_imlib_load_image(gnome_pixmap_file(tmp));
+	name = gnome_pixmap_file(tmp);
+	im = gdk_imlib_load_image(name);
+	g_free (name);
 /*
   gdk_imlib_get_image_red_modifier(im, &m);
   m.brightness = r*256;
@@ -500,8 +507,7 @@ void draw_time_scanning( GdkGC *gc )
 
 void draw_status( void )
 {
-    char tmp[128], *album;
-    GtkWidget *pixmap;
+    char tmp[128];
     GdkGC *gc;
 
     if( !configured )
@@ -612,8 +618,6 @@ void adjust_status(void)
 
 gint slow_timer( gpointer *data )
 {
-    int oldmax, len;
-
     if( cd.cddb_id != cur_goto_id )
 	make_gotomenu();
 
@@ -628,31 +632,34 @@ gint slow_timer( gpointer *data )
     {
 	if( cd.play_method == REPEAT_CD )
 	    tcd_playtracks( &cd, cd.first_t, cd.last_t );
-    }                                        
+    }
     tcd_gettime(&cd);
     adjust_status();
     draw_status();
     return 1;
 }
 
-gint status_changed(void)
+void status_changed(void)
 {
-    if( old_status != cd.sc.cdsc_audiostatus )
+    if( old_status != cd.sc.cdsc_audiostatus || 1)
     {
 	GtkWidget *pixmap;
 	char tmp[256];
-	
+	char *name;
+
 	old_status = cd.sc.cdsc_audiostatus;
 	sprintf( tmp, "tcd/%s.xpm", 
 		 (old_status==CDROM_AUDIO_PLAY)?"pause":"play" );
-		
+
 	gtk_widget_destroy(GTK_BUTTON(playbutton)->child);
 	GTK_BUTTON(playbutton)->child = NULL;
 
-	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+	name = gnome_pixmap_file(tmp);
+	pixmap = gnome_pixmap_new_from_file(name);
+	g_free (name);
 	gtk_widget_show(pixmap);
 	gtk_container_add( GTK_CONTAINER(playbutton), pixmap );
-		
+
 	if( playid > 0 )
 	    gtk_signal_disconnect(GTK_OBJECT(playbutton), playid);
 	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
@@ -716,7 +723,6 @@ void make_gotomenu()
 
 gint fast_timer( gpointer *data )
 {
-    char buf[128];
     tcd_gettime(&cd);
     status_changed();
     if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
@@ -729,7 +735,7 @@ static gint status_configure_event(GtkWidget *widget, GdkEventConfigure *event)
     static int first=TRUE;
     configured = TRUE;	
     if( status_db )
-	status_db = NULL;
+	gdk_pixmap_unref (status_db);
 		
     status_db = gdk_pixmap_new( widget->window, 
 				widget->allocation.width,
@@ -819,7 +825,7 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 
 void setup_time_display( void )
 {
-    GtkWidget *handle1, *frame, *row;
+    GtkWidget *handle1, *frame;
 
     vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
     volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
@@ -877,8 +883,6 @@ void setup_time_display( void )
 
 void setup_rows( void )
 {
-    GtkWidget *pixmap;
-    GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
     sep = gtk_hseparator_new();
 
     button_box = gtk_vbox_new( TRUE, 0 );

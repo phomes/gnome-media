@@ -305,7 +305,7 @@ int tcd_formatread_http( cd_struct *cd, char *buf, int blen, char *hostname, int
 int tcd_formatquery_http( cd_struct *cd, char *buf, int blen, char *hostname, int port, char *path)
 {
 	char tmp[10];
-	int i,n,l;
+	int i, l;
 	char s[200];
 
 #ifdef DEBUG
@@ -353,7 +353,7 @@ int tcd_formatquery_http( cd_struct *cd, char *buf, int blen, char *hostname, in
 void tcd_formatquery( cd_struct *cd, char *buf , int blen)
 {
 	char tmp[10];
-	int i,n,l;
+	int i, l;
 		
 	sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
 	for( i = cd->first_t; i <= cd->last_t; i++ )

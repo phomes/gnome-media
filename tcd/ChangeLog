@@ -1,3 +1,41 @@
+1998-08-04  Federico Mena Quintero  <federico@nuclecu.unam.mx>
+
+	* gtcd.c (status_configure_event): Fixed the leak that was causing
+	the X server to grow to an infinite size -- the status_db pixmap
+	was being recreated on every configure event but it was never
+	being freed.
+
+	* properties.c (create_status_frame): Fixed erroneous printf format.
+	(help_cb): Made void, as it had no return type.
+	#include <string.h>
+
+	* gcddb.c (do_cddb): Do not pass more than one parameter to tcd_open_cddb_http().
+	#include <stdlib.h> and <string.h>
+	(do_cddb): Made void, as the function is not supposed to return
+
+	* gtracked.c: #include <string.h>
+
+	* linux-cdrom.c (tcd_readdiskinfo): Return 0 when the disk is not playable.
+
+	* cddb.h: Added prototype for tcd_open_cddb_http().
+
+	* gtcd.c (status_changed): Made void, as the function does not
+	return anything.
+
+	* Removed unused variables all over the place to keep gcc happy.
+
+	* gtcd.c: Added prototype for status_changed().
+
+	* properties.h: Added prototype for properties_cb().
+
+	* gtracked.h: Added prototype for edit_window().
+
+	* gtcd.c (make_button_with_pixmap):
+	(make_row3): 
+	(setup_pixmaps): 
+	(status_changed): Fixed memory leaks caused by not freeing the
+	string returned by gnome_pixmap_file().
+
 Mon Aug  3 17:17:08 CEST 1998  Tim P. Gerla  <timg@means.net>
 	* gtracked.c: Fixed silly clist bug. Now the tracks won't be
 corrupted.

@@ -17,5 +17,6 @@ typedef struct
 
 void load_properties( tcd_properties *prop );
 void save_properties( tcd_properties *prop );
+void properties_cb( GtkWidget *widget, void *data );
 
 #endif

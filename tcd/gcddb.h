@@ -30,7 +30,7 @@
 
 void cancel( GtkWidget *, GtkWidget ** );
 void gcddb();
-int do_cddb( GtkWidget *, gpointer );
+void do_cddb( GtkWidget *, gpointer );
 
 
 #endif /* GCDDB_H */

@@ -31,6 +31,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 #include <linux/cdrom.h>
 
 #include "linux-cdrom.h"
@@ -69,7 +71,6 @@ void gcddb()
 {
 	GtkWidget *box, *tmplabel, *infoframe, *infobox;
 	char tmp[255];
-	char pt[24];
 
 	if( cddbwin )
 		return;
@@ -127,7 +128,7 @@ void periodic(void)
 	while(gtk_events_pending()) gtk_main_iteration();
 }
 
-int do_cddb( GtkWidget *widget, gpointer data )
+void do_cddb( GtkWidget *widget, gpointer data )
 {
 	int result;
 	cddb_server server;
@@ -155,17 +156,17 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	while(gtk_events_pending()) gtk_main_iteration();
 
 	if (server.http) {
-		if(tcd_open_cddb_http(&server, periodic)&&errno) {
+		if(tcd_open_cddb_http(&server) && errno) {
 			sprintf(tmp,"Error: %s", server.error);
 			gtk_label_set(GTK_LABEL(label),tmp);
-			return(0);
+			return;
 		}
 	} else {
 		if( tcd_open_cddb( &server, periodic ) != 0 )
 		{
 			sprintf( tmp, "Error: %s", server.error );
 			gtk_label_set( GTK_LABEL(label), tmp );
-			return 0;
+			return;
 		}
 	}
 	gtk_label_set( GTK_LABEL(label), "Connected!" );
@@ -189,7 +190,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	if (server.http) {
 		if (tcd_getquery_http(&server,&query, periodic)) {
 			gtk_label_set(GTK_LABEL(label),"Error: Unable to open cddb read socket\n");
-			return(0);
+			return;
 		}
 	} else {
 		tcd_getquery( &server, &query, periodic );

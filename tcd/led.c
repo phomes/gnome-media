@@ -23,7 +23,6 @@ led_done()
 void
 led_create_widget(GtkWidget * window, GtkWidget ** time, GtkWidget ** track)
 {
-	GtkWidget *w;
 	*time = gtk_pixmap_new(gdk_pixmap_new(window->window,
 					      LED_WIDTH, LED_HEIGHT + 2,
 					      -1), NULL);
