@@ -62,7 +62,7 @@ static int num_digits( int num)
 int tcd_readcddb( cd_struct* cd, char* filename )
 {
 	FILE* fp;
-	char string[100];
+	char string[256];
 	int trk;	
 	
 	fp = fopen( filename, "r" );
@@ -73,7 +73,7 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 		return -1;
 	
 	/* AC: dont feof.. feof is only true _after_ eof is read */	
-	while(fgets( string, 80, fp )!=NULL)
+	while(fgets( string, 255, fp )!=NULL)
 	{
 		string[strlen(string)-1] = 0;
 		/* If it's a comment, ignore. */
