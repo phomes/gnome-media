@@ -478,8 +478,8 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about, NULL),
   GNOMEUIINFO_HELP ("gnome-volume-control"),
+  GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about, NULL),
   GNOMEUIINFO_END
 };
 
