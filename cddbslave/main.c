@@ -49,6 +49,7 @@ const gchar *status_msg[] = {
     N_("Error querying [%s]\n"),
     N_("Error reading [%s]\n"),
     N_("No match found for %s\n"),
+    N_("Done. %s\n"),
 };
 
 int main(int argc, char *argv[])
@@ -61,6 +62,7 @@ int main(int argc, char *argv[])
     
     sscanf(client, "client %s %s %d %d\n", client_name, client_ver, &pid, &cddev);
 
+    gnomelib_init("cddbslave", VERSION);
     server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
     port = gnome_config_get_int("/cddbslave/server/port=8880");
 
@@ -410,15 +412,14 @@ void set_status(int status, gchar *info)
 {
     FILE *fp;
     if(status == STATUS_NONE)
-    {
-	remove("/tmp/.cddbstatus");	/* erase old status, just in case */
-	return;
-    }
+	truncate("/tmp/.cddbstatus", 0);
     
     fp = fopen("/tmp/.cddbstatus", "a+");
     if(!fp)
+    {
+	perror("fopen");
 	return;
-    
+    }
     fprintf(fp, "%03d ", status);
     fprintf(fp, status_msg[status], info);
     fclose(fp);
