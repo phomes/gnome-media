@@ -53,6 +53,9 @@ finalize (GObject *object)
 		return;
 	}
 
+	g_free (disclosure->priv->hidden);
+	g_free (disclosure->priv->shown);
+
 	if (disclosure->priv->container != NULL) {
 		g_object_unref (G_OBJECT (disclosure->priv->container));
 	}
