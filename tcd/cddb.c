@@ -191,7 +191,6 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
 	strcat( buf,tmp );
 
     /* ok, buf now holds our query. */
-    fprintf(stderr, "Calling slave...\n");
     fflush(stderr);
     fp = popen("cddbslave", "w");
     if(fp == NULL)
