@@ -494,7 +494,8 @@ open_device (int num)
 	for (cnt = 0; cnt < groups.groups; cnt++) {
 		channel_info *new_channel;
 		snd_mixer_group_t *g;
-
+		int j;
+		
 		group = &groups.pgroups[cnt];
 
 		g = g_new0 (snd_mixer_group_t, 1);
@@ -512,7 +513,7 @@ open_device (int num)
 		new_channel->pixmap = g_strdup (device_pixmap[j].pixmap);
 
 		/* Chomp it to remove any yucky spaces */
-		new_channel->title = g_strchomp (groups.pgroups[i].name);
+		new_channel->title = g_strchomp (groups.pgroups[cnt].name);
 		new_channel->user_title = g_strdup (new_channel->title);
 		new_channel->passive = 0;
 		
@@ -753,7 +754,7 @@ init_one_device (gpointer a,
 		snd_mixer_group_t *g = channel->mixer_group;
 		int err;
 		
-		if (channel->is_mute) {
+		if (channel->is_muted) {
 			g->mute = SND_MIXER_CHN_MASK_FRONT_LEFT +
 				SND_MIXER_CHN_MASK_FRONT_RIGHT;
 		} else {
