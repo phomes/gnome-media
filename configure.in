@@ -2,7 +2,8 @@ AC_PREREQ(2.52)
 AC_INIT(gmix)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-media, 2.2.1.1)
+GM_VERSION=2.3.0
+AM_INIT_AUTOMAKE(gnome-media, 2.3.0)
 AM_MAINTAINER_MODE
 
 AC_PROG_INTLTOOL([0.21])
@@ -372,7 +373,7 @@ gstreamer-properties/Makefile
 version.h])
 
 echo ""
-echo "Gnome-Media has been configured as follows: "
+echo "Gnome-Media ${GM_VERSION} has been configured as follows: "
 echo "------------------------------------------- "
 echo "Architecture:           ${CDROM_HOST}"
 echo "Source code location:   ${srcdir}"
