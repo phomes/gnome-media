@@ -1,5 +1,11 @@
 2004-08-31  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* gst-mixer/src/mixer.c: (create_options_widget):
+	  Unbreak string freeze. Accidently had intltool mark an #if 0'ed
+	  string (in new code) for translation, unmarked for now.
+
+2004-08-31  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* configure.in:
 	* gst-mixer/src/mixer.c: (cb_opt_changed), (create_track_header),
 	(create_track_widget), (create_options_widget),

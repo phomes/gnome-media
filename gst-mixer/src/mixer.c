@@ -357,7 +357,8 @@ create_options_widget (GstMixer      *mixer,
 		    0, 0, 0, 0);
   accessible = gtk_widget_get_accessible (box);
   if (GTK_IS_ACCESSIBLE (accessible)) {
-    accessible_name = g_strdup_printf (_("%s Option Selection"),
+    /* once this code is un-#if 0'ed, please i18n'ize this */
+    accessible_name = g_strdup_printf ("%s Option Selection",
 				       ctrl->track->label);
     atk_object_set_name (accessible, accessible_name);
     g_free (accessible_name);
