@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52\n"
-"POT-Creation-Date: 2001-01-16 15:51+0100\n"
+"POT-Creation-Date: 2001-06-11 18:12+0200\n"
 "PO-Revision-Date: 2001-01-18 11:14+01:00\n"
 "Last-Translator: Stanislav Brabec <utx@penguin.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -313,125 +313,155 @@ msgstr "TlfVýst"
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:106 tcd/popup.c:21
+#: gmix/gmix.c:111 tcd/popup.c:22
 msgid "Help"
 msgstr "Nápovìda"
 
-#: gmix/gmix.c:190
+#: gmix/gmix.c:142
 msgid "don't restore mixer-settings from configuration"
 msgstr "nevracet nastavení mixá¾e z konfigurace"
 
-#: gmix/gmix.c:191
+#: gmix/gmix.c:143
 msgid "restore mixer-settings from configuration"
 msgstr "vracet nastavení mixá¾e z konfigurace"
 
-#: gmix/gmix.c:192
+#: gmix/gmix.c:144
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "nastavit mixá¾(e) z konfigurace a skonèit"
 
-#: gmix/gmix.c:193
+#: gmix/gmix.c:145
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "neukládat do konfigurace (zmìnìné) nastavení mixá¾e"
 
+#: gmix/gmix.c:520
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"Upozornìní: Tato verze gmix-u byla pøelo¾ena\n"
+"s OSS verze %d.%d.%d. a tento systém bì¾í\n"
+"s verzí ni¾¹í ne¾ 3.6.0.\n"
+
+#: gmix/gmix.c:528
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"Upozornìní: Tato verze gmix-u byla pøelo¾ena\n"
+"s OSS verze %d.%d.%d. a tento systém bì¾í\n"
+"s verzí %d.%d.%d.\n"
+
+#. lock-button, only useful for stereo
+#: gmix/gmix.c:1013
+msgid "Lock"
+msgstr "Spø"
+
+#: gmix/gmix.c:1023
+msgid "Rec."
+msgstr "Zázn"
+
+#: gmix/gmix.c:1041
+msgid "Mute"
+msgstr "Umlè"
+
+#: gmix/gmix.c:1084
+msgid "GMIX 3.0"
+msgstr "GMIX 3.0"
+
+#: gmix/gmix.c:1396
+msgid "GMIX - The Gnome Mixer"
+msgstr "GMIX - Gnome Mixá¾ní pult"
+
+#: gmix/gmix.c:1399
+msgid "This is a mixer for OSS sound-devices."
+msgstr "Toto je mixá¾ní pult pro zvuková zaøízení OSS."
+
 #. start frame
-#: gmix/gmix.c:430 tcd/prefs.c:411
+#: gmix/prefs.c:98 tcd/prefs.c:561
 msgid "On startup"
 msgstr "Pøi spu¹tìní"
 
 #. Set on start
-#: gmix/gmix.c:436
+#: gmix/prefs.c:104
 msgid "Restore saved mixer levels on startup"
 msgstr "Pøi spu¹tìní vracet ulo¾ené úrovnì mixá¾e"
 
-#: gmix/gmix.c:442
+#: gmix/prefs.c:110
 msgid "Hide menu on start"
 msgstr "Pøi spu¹tìní skrýt menu"
 
-#: gmix/gmix.c:457
+#: gmix/prefs.c:125
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:461
+#: gmix/prefs.c:129
 msgid "Use mixer icons"
 msgstr "Na mixá¾i zobrazit ikony"
 
-#: gmix/gmix.c:469
+#: gmix/prefs.c:137
 msgid "Use mixer labels"
 msgstr "Na mixá¾i zobrazit nápisy"
 
-#: gmix/gmix.c:492 tcd/gtcd.c:364 tcd/prefs.c:614
+#: gmix/prefs.c:409
+msgid "Defaults"
+msgstr "Pùvodní nastavení"
+
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
 msgid "Preferences"
 msgstr "Konfigurace"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1181
-msgid "Lock"
-msgstr "Spø"
-
-#: gmix/gmix.c:1191
-msgid "Rec."
-msgstr "Zázn"
-
-#: gmix/gmix.c:1209
-msgid "Mute"
-msgstr "Umlè"
-
-#: gmix/gmix.c:1233
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
-
-#: gmix/gmix.c:1548
-msgid "GMIX - The Gnome Mixer"
-msgstr "GMIX - Gnome Mixá¾ní pult"
-
-#: gmix/gmix.c:1551
-msgid "This is a mixer for OSS sound-devices."
-msgstr "Toto je mixá¾ní pult pro zvuková zaøízení OSS."
+#: gmix/prefs.c:489
+msgid "Labels"
+msgstr "Oznaèení"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
 msgstr "GNOME záznamník zvukù:"
 
-#: grecord/src/grec.c:88 grecord/src/grec.c:118 grecord/src/grec.c:1024
+#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
 msgstr "Nelze vìtvit na synovský proces"
 
-#: grecord/src/grec.c:90
+#: grecord/src/grec.c:92
 msgid "Recording..."
 msgstr "Nahrává se..."
 
-#: grecord/src/grec.c:120
+#: grecord/src/grec.c:122
 msgid "Playing..."
 msgstr "Pøehrává se..."
 
-#: grecord/src/grec.c:173
+#: grecord/src/grec.c:175
 msgid "Converting file..."
 msgstr "Pøevádí se soubor..."
 
-#: grecord/src/grec.c:239 grecord/src/grec.c:653 grecord/src/gui.c:327
-#: grecord/src/preferences.c:395
+#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:327
+#: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Zvukový formát: "
 
-#: grecord/src/grec.c:243 grecord/src/grec.c:639 grecord/src/gui.c:334
-#: grecord/src/preferences.c:399
+#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:334
+#: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Vzorkovací kmitoèet: "
 
-#: grecord/src/grec.c:253 grecord/src/grec.c:643 grecord/src/gui.c:341
-#: grecord/src/preferences.c:403
+#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:341
+#: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Kanály: "
 
-#: grecord/src/grec.c:283
+#: grecord/src/grec.c:285
 msgid "Select a sound file"
 msgstr "Zvolte zvukový soubor"
 
-#: grecord/src/grec.c:502
+#: grecord/src/grec.c:504
 msgid "Undoing all changes..."
 msgstr "Ru¹í se v¹echny zmìny..."
 
-#: grecord/src/grec.c:580
+#: grecord/src/grec.c:581
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -440,7 +470,7 @@ msgstr ""
 "'%s' je adresáø.\n"
 "K otevøení zvolte zvukový soubor."
 
-#: grecord/src/grec.c:592
+#: grecord/src/grec.c:593
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -449,12 +479,12 @@ msgstr ""
 "Soubor '%s' neexistuje.\n"
 "K otevøení zvolte existující zvukový soubor."
 
-#: grecord/src/grec.c:604
+#: grecord/src/grec.c:605
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Soubor '%s' není platný zvukový soubor."
 
-#: grecord/src/grec.c:677
+#: grecord/src/grec.c:678
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -463,7 +493,7 @@ msgstr ""
 "'%s' je adresáø.\n"
 "Zvolte existující jiný soubor."
 
-#: grecord/src/grec.c:687
+#: grecord/src/grec.c:688
 #, c-format
 msgid ""
 "File '%s' already exists.\n"
@@ -472,29 +502,29 @@ msgstr ""
 "Soubor '%s' ji¾ existuje.\n"
 "Chcete jej pøepsat?"
 
-#: grecord/src/grec.c:702
+#: grecord/src/grec.c:703
 msgid "Error saving sound file"
 msgstr "Chyba pøi zápisu zvukového souboru"
 
-#: grecord/src/grec.c:738
+#: grecord/src/grec.c:739
 msgid "File not saved. Do you want to save it?"
 msgstr "Soubor není zapsán. Chcete jej zapsat?"
 
 #. Save the file
-#: grecord/src/grec.c:757
+#: grecord/src/grec.c:758
 msgid "Saving..."
 msgstr "Zapisuje se..."
 
-#: grecord/src/grec.c:871
+#: grecord/src/grec.c:879
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "Velikost aktuálního vzorku pøesahuje %i MB!"
 
-#: grecord/src/grec.c:919
+#: grecord/src/grec.c:927
 msgid "Save sound file"
 msgstr "Zapsat zvukový soubor"
 
-#: grecord/src/grec.c:1087
+#: grecord/src/grec.c:1095
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -530,10 +560,6 @@ msgstr "Pøidat ozvìnu do aktuálního vzorku"
 msgid "Echo"
 msgstr "Ozvìna"
 
-#: grecord/src/gui.c:97
-msgid "Speed"
-msgstr "Rychlost"
-
 #: grecord/src/gui.c:105
 msgid "Undo all changes"
 msgstr "Zru¹it v¹echny zmìny"
@@ -546,7 +572,7 @@ msgstr "Zru¹it v¹echny zmìny provedené na aktuálním vzorku"
 msgid "Effects"
 msgstr "Efekty"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:867
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:868
 msgid "Show time"
 msgstr "Zobrazit èas"
 
@@ -554,7 +580,7 @@ msgstr "Zobrazit èas"
 msgid "Show soundinfo"
 msgstr "Zobrazit informaci o zvuku"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:872
+#: grecord/src/gui.c:130 grecord/src/gui.c:873
 msgid "Show sound information"
 msgstr "Zobrazit informaci o zvuku"
 
@@ -574,7 +600,7 @@ msgstr "Pøehrávání"
 msgid "Play current sample"
 msgstr "Pøehrávání aktuálního vzorku"
 
-#: grecord/src/gui.c:252 tcd/gtcd.c:328 tcd/popup.c:16
+#: grecord/src/gui.c:252 tcd/gtcd.c:456 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
 
@@ -612,22 +638,23 @@ msgstr "Soubor '%s' neexistuje; pou¾ije se implicitního."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Soubor '%s' nemá podporovaný zvukový formát."
 
-#. if your language allows it, replace the "e" of Hyden by an "eacute"
-#: grecord/src/gui.c:437
+#. if your charset allows it, replace the "e" of "Hyden"
+#. *  by an "eacute" (U00E9)
+#: grecord/src/gui.c:438
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:445 grecord/src/main.c:109
+#: grecord/src/gui.c:446 grecord/src/main.c:110
 msgid "GNOME Sound recorder"
 msgstr "GNOME zvukový záznamík"
 
-#. if your language allows it, replace the
-#. "e" of Hyden by an "eacute"
-#: grecord/src/gui.c:448
+#. if your charset allows it, replace the
+#. "e" of Hyden by an "eacute" (U00E9)
+#: grecord/src/gui.c:449
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C) 2000 Andreas Hydén"
 
-#: grecord/src/gui.c:450
+#: grecord/src/gui.c:451
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -635,155 +662,155 @@ msgstr ""
 "Jednoduchý zvukový záznamík a zvukový pøehrávaè pro GNOME.\n"
 "Vìmováno mé koèce Malte."
 
-#: grecord/src/gui.c:541 tcd/gtracked.c:171
+#: grecord/src/gui.c:542 tcd/gtracked.c:173
 msgid "Time"
 msgstr "Èas"
 
-#: grecord/src/gui.c:554
+#: grecord/src/gui.c:555
 msgid "Recording timeout: "
 msgstr "Omezení èasu nahrávání: "
 
-#: grecord/src/gui.c:565
+#: grecord/src/gui.c:566
 msgid "minutes"
 msgstr "v minutách"
 
-#: grecord/src/gui.c:570
+#: grecord/src/gui.c:571
 msgid "Stop recording on timeout"
 msgstr "Zastavit nahrávání po vypr¹ení èasu"
 
-#: grecord/src/gui.c:575
+#: grecord/src/gui.c:576
 msgid "Popup save dialog when recording is finished"
 msgstr "Vyskakovací dialog zápisu po skonèení nahrávání"
 
-#: grecord/src/gui.c:584
+#: grecord/src/gui.c:585
 msgid "Size"
 msgstr "Velikost"
 
-#: grecord/src/gui.c:593
+#: grecord/src/gui.c:594
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Vyskakovací varování, pøekroèí-li velikost vzorku (v MB):"
 
-#: grecord/src/gui.c:603
+#: grecord/src/gui.c:604
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Zastavit nahrávání, pøekroèí-li velikost vzorku (v MB):"
 
-#: grecord/src/gui.c:614
+#: grecord/src/gui.c:615
 msgid "Recording"
 msgstr "Záznam"
 
-#: grecord/src/gui.c:623
+#: grecord/src/gui.c:624
 msgid "Play-repeating"
 msgstr "Opakování pøehrávání"
 
-#: grecord/src/gui.c:632
+#: grecord/src/gui.c:633
 msgid "Repeat"
 msgstr "Opakovat"
 
-#: grecord/src/gui.c:641
+#: grecord/src/gui.c:642
 msgid "Forever"
 msgstr "Trvale"
 
-#: grecord/src/gui.c:646
+#: grecord/src/gui.c:647
 msgid "Nr of times:"
 msgstr "Poèet:"
 
-#: grecord/src/gui.c:657
+#: grecord/src/gui.c:658
 msgid "Playing"
 msgstr "Pøehrávání"
 
-#: grecord/src/gui.c:666
+#: grecord/src/gui.c:667
 msgid "Program files"
 msgstr "Programové soubory"
 
-#: grecord/src/gui.c:683
+#: grecord/src/gui.c:684
 msgid "Path to sox:"
 msgstr "Cesta k sox:"
 
-#: grecord/src/gui.c:699
+#: grecord/src/gui.c:700
 msgid "Path to mixer:"
 msgstr "Cesta k mixeru:"
 
-#: grecord/src/gui.c:715
+#: grecord/src/gui.c:716
 msgid "Directories"
 msgstr "Adresáøe"
 
-#: grecord/src/gui.c:728
+#: grecord/src/gui.c:729
 msgid "Temp dir:"
 msgstr "Pracovní adresáø:"
 
-#: grecord/src/gui.c:744
+#: grecord/src/gui.c:745
 msgid "Paths"
 msgstr "Cesty"
 
-#: grecord/src/gui.c:752
+#: grecord/src/gui.c:753
 msgid "Sound options"
 msgstr "Volby zvuku"
 
-#: grecord/src/gui.c:765
+#: grecord/src/gui.c:766
 msgid "Audioformat:"
 msgstr "Zvukový formát:"
 
-#: grecord/src/gui.c:776 grecord/src/gui.c:786
+#: grecord/src/gui.c:777 grecord/src/gui.c:787
 msgid "8bit pcm"
 msgstr "8bitový PCM"
 
-#: grecord/src/gui.c:777 grecord/src/gui.c:788
+#: grecord/src/gui.c:778 grecord/src/gui.c:789
 msgid "16bit pcm"
 msgstr "16bitový PCM"
 
-#: grecord/src/gui.c:794
+#: grecord/src/gui.c:795
 msgid "Sample rate:"
 msgstr "Rychost vzorkování:"
 
-#: grecord/src/gui.c:824
+#: grecord/src/gui.c:825
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:835 grecord/src/gui.c:845
+#: grecord/src/gui.c:836 grecord/src/gui.c:846
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:836 grecord/src/gui.c:847
+#: grecord/src/gui.c:837 grecord/src/gui.c:848
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:850
+#: grecord/src/gui.c:851
 msgid "Sound"
 msgstr "Zvuk"
 
-#: grecord/src/gui.c:858
+#: grecord/src/gui.c:859
 msgid "Main window"
 msgstr "Hlavní okno"
 
-#: grecord/src/gui.c:877
+#: grecord/src/gui.c:878
 msgid "User interface"
 msgstr "U¾ivatelské rozhraní"
 
-#: grecord/src/main.c:53
+#: grecord/src/main.c:54
 msgid "Specify the geometry of the main window"
 msgstr "Zadání geometrie hlavního okna"
 
-#: grecord/src/main.c:54
+#: grecord/src/main.c:55
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: grecord/src/main.c:62
+#: grecord/src/main.c:63
 msgid "Specify a file to be opened"
 msgstr "Zadání souboru k otevøení"
 
-#: grecord/src/main.c:71
+#: grecord/src/main.c:72
 msgid "Specify a file to start recording"
 msgstr "Zadání souboru ke spu¹tìní náhrávání"
 
-#: grecord/src/main.c:80
+#: grecord/src/main.c:81
 msgid "Specify a file to start playing"
 msgstr "Zadání souboru ke spu¹tìní pøehrávání"
 
-#: grecord/src/main.c:173
+#: grecord/src/main.c:174
 msgid "Don't show this message again."
 msgstr "Pøí¹tì tuto zprávu nezobrazovat."
 
-#: grecord/src/main.c:175
+#: grecord/src/main.c:176
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -796,7 +823,7 @@ msgstr ""
 "\n"
 "Nemáte-li sox, nemù¾ete nahrávat nebo provádìt efekty."
 
-#: grecord/src/preferences.c:196
+#: grecord/src/preferences.c:213
 msgid ""
 "You havn't entered a sox command; you will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -804,7 +831,7 @@ msgstr ""
 "Nebyl zadán pøíkaz sox; nebude mo¾né nahrávat.\n"
 "Chcete ho pøesto pou¾ít?"
 
-#: grecord/src/preferences.c:221
+#: grecord/src/preferences.c:238
 #, c-format
 msgid ""
 "File %s in 'sox command' does not exist.\n"
@@ -813,7 +840,7 @@ msgstr ""
 "Soubor %s v 'pøíkazu sox' neexistuje.\n"
 "Chcete ho pøesto pou¾ít?"
 
-#: grecord/src/preferences.c:246
+#: grecord/src/preferences.c:263
 msgid ""
 "You havn't entered a mixer command; you will not be able to start the "
 "mixer.\n"
@@ -822,7 +849,7 @@ msgstr ""
 "Nebyl zadán mixá¾ní pøíkaz; nebude mo¾né spustit mixá¾ní pult\n"
 "Chcete ho pøesto pou¾ít?"
 
-#: grecord/src/preferences.c:271
+#: grecord/src/preferences.c:288
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -831,7 +858,7 @@ msgstr ""
 "Soubor %s v 'pøíkazu mixá¾e' neexistuje.\n"
 "Chcete ho pøesto pou¾ít?"
 
-#: grecord/src/preferences.c:294
+#: grecord/src/preferences.c:311
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -842,7 +869,7 @@ msgstr ""
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:313
+#: grecord/src/preferences.c:330
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -851,7 +878,7 @@ msgstr ""
 "Pracovní adresáø %s je soubor.\n"
 "Chcete ho pøesto pou¾ít?"
 
-#: grecord/src/preferences.c:333
+#: grecord/src/preferences.c:350
 #, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory "
@@ -862,7 +889,7 @@ msgstr ""
 "Chcete ho pøesto pou¾ít?"
 
 #. Does not exist
-#: grecord/src/preferences.c:351
+#: grecord/src/preferences.c:368
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -875,15 +902,15 @@ msgstr ""
 msgid " untitled.wav"
 msgstr " bezejmenný.wav"
 
-#: grecord/src/sound.c:147 grecord/src/sound.c:151
+#: grecord/src/sound.c:146 grecord/src/sound.c:150
 msgid "Adding echo to sample..."
 msgstr "Do vzorku se pøidává ozvìna..."
 
-#: tcd/callbacks.c:82
+#: tcd/callbacks.c:85
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome CD pøehrávaè"
 
-#: tcd/callbacks.c:86
+#: tcd/callbacks.c:89
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
@@ -891,241 +918,278 @@ msgstr ""
 "GTCD je Gnome CD pøehrávaè. Zahrnuje podporu CDDB. Pøeètìte si podìkování "
 "v distribuèním souboru 'Thanks', kde najdete dal¹í informace o zásluhách."
 
-#: tcd/cddb_props.c:71
+#: tcd/cddb_props.c:72
 msgid "Disc ID"
 msgstr "ID disku"
 
-#: tcd/cddb_props.c:71
+#: tcd/cddb_props.c:72
 msgid "Disc Title"
 msgstr "Titul disku"
 
-#: tcd/cddb_props.c:86
+#: tcd/cddb_props.c:87
 msgid "Edit"
 msgstr "Úpravy"
 
-#: tcd/cddb_props.c:90
+#: tcd/cddb_props.c:91
 msgid "Remove"
 msgstr "Odstanit"
 
-#: tcd/cddb_props.c:96
+#: tcd/cddb_props.c:97
 msgid "Refresh List"
 msgstr "Zaktualizovat seznam"
 
 #. server settings
-#: tcd/cddb_props.c:147
+#: tcd/cddb_props.c:148
 msgid "Server Settings"
 msgstr "Nastavení serveru"
 
-#: tcd/cddb_props.c:156
+#: tcd/cddb_props.c:157
 msgid "Address"
 msgstr "Adresa"
 
-#: tcd/cddb_props.c:166
+#: tcd/cddb_props.c:167
 msgid "Port"
 msgstr "Port"
 
-#: tcd/cddb_props.c:175
+#: tcd/cddb_props.c:176
 msgid "Use HTTP"
 msgstr "Pou¾ít HTTP"
 
-#: tcd/cddb_props.c:180
+#: tcd/cddb_props.c:181
 msgid "Proxy"
 msgstr "Proxy"
 
-#: tcd/cddb_props.c:198
+#: tcd/cddb_props.c:199
 msgid "Use proxy authentication"
 msgstr "Pou¾ít proxy toto¾nost"
 
-#: tcd/cddb_props.c:206
+#: tcd/cddb_props.c:207
 msgid "Username"
 msgstr "Jméno u¾ivatele"
 
-#: tcd/cddb_props.c:226
+#: tcd/cddb_props.c:227
 msgid "Password"
 msgstr "Heslo"
 
-#: tcd/cddb_props.c:246
+#: tcd/cddb_props.c:247
 msgid "SOCKS Server"
 msgstr "SOCKS server"
 
-#: tcd/cddb_props.c:253
+#: tcd/cddb_props.c:254
 msgid "Use SOCKS"
 msgstr "Pou¾ít SOCKS"
 
 #. local db
-#: tcd/cddb_props.c:266
+#: tcd/cddb_props.c:267
 msgid "Local Database"
 msgstr "Místní databáze"
 
 #. frame
-#: tcd/cddb_props.c:308
+#: tcd/cddb_props.c:309
 msgid "CDDB Data"
 msgstr "Data CDDB"
 
-#: tcd/cddb_props.c:341
+#: tcd/cddb_props.c:342
 msgid "CDDB Editor"
 msgstr "Editor CDDB"
 
-#: tcd/cddb_props.c:355
+#: tcd/cddb_props.c:356
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Chyba pøi ètení $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:471
+#: tcd/cddb_props.c:472
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "Nelze odstranit soubor: %s\n"
 
-#: tcd/cddb_props.c:483
+#: tcd/cddb_props.c:484
 msgid "Delete CDDB Entry?"
 msgstr "Smazat záznam CDDB?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:51 tcd/gtracked.c:310
+#: tcd/cddb_status.c:53 tcd/gtracked.c:312
 msgid "CDDB Status"
 msgstr "Stav CDDB"
 
 #. grab button
-#: tcd/cddb_status.c:69
+#: tcd/cddb_status.c:71
 msgid "Get CDDB Now"
 msgstr "Naèíst CDDB"
 
-#: tcd/gtcd.c:59
+#: tcd/gtcd.c:63
 msgid "trk-e"
 msgstr "skl-z"
 
-#: tcd/gtcd.c:60
+#: tcd/gtcd.c:64
 msgid "trk-r"
 msgstr "skl-k"
 
-#: tcd/gtcd.c:61
+#: tcd/gtcd.c:65
 msgid "dsc-e"
 msgstr "dsk-z"
 
-#: tcd/gtcd.c:62
+#: tcd/gtcd.c:66
 msgid "dsc-r"
 msgstr "dsk-k"
 
-#: tcd/gtcd.c:67
+#: tcd/gtcd.c:71
 msgid "loop-cd"
 msgstr "smyè-cd"
 
-#: tcd/gtcd.c:68
+#: tcd/gtcd.c:72
 msgid "loop-t"
 msgstr "smyè-s"
 
-#: tcd/gtcd.c:69
+#: tcd/gtcd.c:73
 msgid "normal"
 msgstr "normální"
 
-#: tcd/gtcd.c:70
+#: tcd/gtcd.c:74
 msgid "random"
 msgstr "náhodný"
 
-#: tcd/gtcd.c:285 tcd/gtcd.c:919
+#: tcd/gtcd.c:368 tcd/gtcd.c:1101
 msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
 #. TOP ROW
-#: tcd/gtcd.c:324
+#: tcd/gtcd.c:452
 msgid "Play/Pause"
 msgstr "Pøehrávání/Pauza"
 
-#: tcd/gtcd.c:329 tcd/popup.c:17
+#: tcd/gtcd.c:457 tcd/popup.c:17
 msgid "Eject"
 msgstr "Vysunout"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:336 tcd/gtcd.c:344
+#: tcd/gtcd.c:464 tcd/gtcd.c:501
 msgid "Skip backwards"
 msgstr "Skok dozadu"
 
-#: tcd/gtcd.c:337 tcd/gtcd.c:345
+#: tcd/gtcd.c:465 tcd/gtcd.c:502
 msgid "Skip forwards"
 msgstr "Skok dopøedu"
 
-#: tcd/gtcd.c:363
+#. BOTTOM ROW
+#: tcd/gtcd.c:489
 msgid "Open track editor"
 msgstr "Otevøít editor skladeb"
 
-#: tcd/gtcd.c:365 tcd/popup.c:24
+#: tcd/gtcd.c:491 tcd/popup.c:25
 msgid "Quit"
 msgstr "Konec"
 
-#: tcd/gtcd.c:504 tcd/gtcd.c:505 tcd/gtcd.c:506
+#. INVISIBLE BUTTONS
+#: tcd/gtcd.c:498
+#, fuzzy
+msgid "Mixer"
+msgstr "Mixá¾ní pult"
+
+#: tcd/gtcd.c:503
+msgid "Fast Forward"
+msgstr "Posun dopøedu"
+
+#: tcd/gtcd.c:504
+msgid "Rewind"
+msgstr "Posun dozadu"
+
+#: tcd/gtcd.c:505
+#, fuzzy
+msgid "Volume Up"
+msgstr "Hlasitost"
+
+#: tcd/gtcd.c:506
+#, fuzzy
+msgid "Volume Down"
+msgstr "Hlasitost"
+
+#: tcd/gtcd.c:642 tcd/gtcd.c:643 tcd/gtcd.c:644
 msgid "(Scanning)"
 msgstr "(Provìøuje se)"
 
-#: tcd/gtcd.c:528
+#: tcd/gtcd.c:666
 msgid "No Disc"
 msgstr "Není disk"
 
-#: tcd/gtcd.c:563
+#: tcd/gtcd.c:701
 msgid "Error"
 msgstr "Chyba"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:1001
 msgid "Volume"
 msgstr "Hlasitost"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1072
+msgid "Cannot load requested font. Reloading default font."
+msgstr "Nemohu nalézt po¾adované písmo. Pou¾iji standardní písmo."
+
+#: tcd/gtcd.c:1083
+msgid "Cannot load default Helvetica font. Loading any fixed width font."
+msgstr "Nemohu nalézt písmo Helvetica. Pou¾iji nìkteré z písem s pevnou ¹íøkou."
+
+#: tcd/gtcd.c:1090
+msgid "Cannot load fixed width font. Exiting."
+msgstr "Nemohu nalézt písmo 'fixed'. Konèím."
+
+#: tcd/gtcd.c:1288
 msgid "Filename of the CD device"
 msgstr "Jméno souboru CD zaøízení"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1288
 msgid "FILE"
 msgstr "SOUBOR"
 
-#: tcd/gtcd.c:1029
+#: tcd/gtcd.c:1290
 msgid "Play CD on startup"
 msgstr "Pøi spu¹tìní spustit pøehrávání CD"
 
-#: tcd/gtracked.c:171
+#: tcd/gtracked.c:173
 msgid "Trk"
 msgstr "Skl"
 
-#: tcd/gtracked.c:171
+#: tcd/gtracked.c:173
 msgid "Title"
 msgstr "Titul"
 
-#: tcd/gtracked.c:195
+#: tcd/gtracked.c:197
 msgid "Track Editor"
 msgstr "Editor skladeb"
 
 #. Disc area
-#: tcd/gtracked.c:211
+#: tcd/gtracked.c:213
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Informace o disku (%02u:%02u min)"
 
-#: tcd/gtracked.c:220
+#: tcd/gtracked.c:222
 msgid "Artist / Title"
 msgstr "Úèinkující / Titul"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:243
+#: tcd/gtracked.c:245
 msgid "Track Information"
 msgstr "Informace o skladbì"
 
 #. Clear button
-#: tcd/gtracked.c:299
+#: tcd/gtracked.c:301
 msgid "Clear"
 msgstr "Vymazat"
 
 #. Playlist button
-#: tcd/gtracked.c:304
+#: tcd/gtracked.c:306
 msgid "Playlist"
 msgstr "Program pøehrávání"
 
-#: tcd/gtracked.c:316
+#: tcd/gtracked.c:318
 msgid "Submit"
 msgstr "Odeslat"
 
-#: tcd/gtracked.c:378
+#: tcd/gtracked.c:380
 msgid "Submit Information"
 msgstr "Odeslat informace"
 
-#: tcd/gtracked.c:384
+#: tcd/gtracked.c:386
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -1134,16 +1198,16 @@ msgstr ""
 "Odeslat informace\n"
 "o '%s'"
 
-#: tcd/gtracked.c:393
+#: tcd/gtracked.c:395
 msgid "To: "
 msgstr "Komu: "
 
 #. end of service menu
-#: tcd/gtracked.c:425
+#: tcd/gtracked.c:427
 msgid "Category: "
 msgstr "Kategorie: "
 
-#: tcd/linux-cdrom.c:641
+#: tcd/linux-cdrom.c:678
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1160,11 +1224,11 @@ msgstr ""
 "\n"
 "Dùvod: %s\n"
 
-#: tcd/linux-cdrom.c:710
+#: tcd/linux-cdrom.c:771
 msgid "Unknown / Unknown"
 msgstr "Neznámý / Neznámý"
 
-#: tcd/linux-cdrom.c:716
+#: tcd/linux-cdrom.c:777
 #, c-format
 msgid "Track %d"
 msgstr "Skladba %d"
@@ -1177,102 +1241,108 @@ msgstr "Konfigurace..."
 msgid "Track Editor..."
 msgstr "Editor skladeb..."
 
-#: tcd/popup.c:22
+#: tcd/popup.c:21
+#, fuzzy
+msgid "Mixer..."
+msgstr "Spustit mixá¾..."
+
+#: tcd/popup.c:23
 msgid "About"
 msgstr "O programu"
 
-#: tcd/prefs.c:77
-msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
 #. do nothing
-#: tcd/prefs.c:194 tcd/prefs.c:249
+#: tcd/prefs.c:333 tcd/prefs.c:388
 msgid "Do nothing"
 msgstr "Nedìlat nic"
 
-#: tcd/prefs.c:200
+#: tcd/prefs.c:339
 msgid "Start playing"
 msgstr "Spustit pøehrávání"
 
-#: tcd/prefs.c:206 tcd/prefs.c:255
+#: tcd/prefs.c:345 tcd/prefs.c:394
 msgid "Stop playing"
 msgstr "Zastavit pøehrávání"
 
 #. close tray
-#: tcd/prefs.c:210 tcd/prefs.c:267
+#: tcd/prefs.c:349 tcd/prefs.c:406
 msgid "Close tray"
 msgstr "Zavøít pøehrávaè"
 
-#: tcd/prefs.c:261
+#: tcd/prefs.c:400
 msgid "Open tray"
 msgstr "Otevøít pøehrávaè"
 
 #. device entry
-#: tcd/prefs.c:341
+#: tcd/prefs.c:482
 msgid "CDROM device"
 msgstr "Zaøízení CDROM"
 
+#. device entry
+#: tcd/prefs.c:491
+msgid "Mixer Command"
+msgstr "Mixá¾ní program"
+
 #. Color picker
-#: tcd/prefs.c:350
+#: tcd/prefs.c:500
 msgid "Track/title color"
 msgstr "Editor skladeb/titulù"
 
 #. font picker
-#: tcd/prefs.c:362
+#: tcd/prefs.c:512
 msgid "Track/title font"
 msgstr "Písmo skladeb/titulù"
 
-#: tcd/prefs.c:363
+#: tcd/prefs.c:513
 msgid "Change font"
 msgstr "Zmìnit písmo"
 
 #. show handles
-#: tcd/prefs.c:370
+#: tcd/prefs.c:520
 msgid "Show handles (restart required)"
 msgstr "Zobrazovat dr¾átka (nutný restart)"
 
 #. show tooltips
-#: tcd/prefs.c:377
+#: tcd/prefs.c:527
 msgid "Show tooltips"
 msgstr "Zobrazovat tipy"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:384
+#: tcd/prefs.c:534
 msgid "Use alternate method to play CD"
 msgstr "Pou¾ít alternativní metodu pøehrávání CD"
 
 #. use squared law volume
-#: tcd/prefs.c:391
+#: tcd/prefs.c:541
 msgid "Use squared law volume control"
 msgstr "Kvadratické øízení hlasitosti"
 
 #. exit frame
-#: tcd/prefs.c:417
+#: tcd/prefs.c:567
 msgid "On exit"
 msgstr "Pøi skonèení"
 
-#: tcd/prefs.c:525
+#: tcd/prefs.c:667
 msgid "Key"
 msgstr "Klávesa"
 
-#: tcd/prefs.c:526
+#: tcd/prefs.c:668
 msgid "Action"
 msgstr "Akce"
 
-#: tcd/prefs.c:546
+#: tcd/prefs.c:691
 msgid "Click here to change (restart required):"
 msgstr "Zmìòte klepnutím zde (nutný restart):"
 
 #. Frame
-#: tcd/prefs.c:568 tcd/prefs.c:618
+#: tcd/prefs.c:705 tcd/prefs.c:755
 msgid "Keybindings"
 msgstr "Rozlo¾ení kláves"
 
-#: tcd/prefs.c:622
+#: tcd/prefs.c:759
 msgid "CDDB Settings"
 msgstr "Nastavení CDDB"
 
-#: vu-meter/main.c:125
+#: vu-meter/main.c:118
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1280,77 +1350,70 @@ msgstr ""
 "Nepodaøilo se spojit se zvukovým démonem.\n"
 "Prosím spus»te z pøíkazové øádky 'esd'."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:241
 msgid "Specify the X position of the meter."
 msgstr "Zadání X polohy mìøidla."
 
-#: vu-meter/main.c:249
+#: vu-meter/main.c:242
 msgid "X-Position"
 msgstr "X poloha"
 
-#: vu-meter/main.c:251
+#: vu-meter/main.c:244
 msgid "Specify the Y position of the meter."
 msgstr "Zadání Y polohy mìøidla."
 
-#: vu-meter/main.c:252
+#: vu-meter/main.c:245
 msgid "Y-Position"
 msgstr "Y poloha"
 
-#: vu-meter/main.c:254
+#: vu-meter/main.c:247
 msgid "Connect to the esd server on this host."
 msgstr "Spojení s esd serverem na daném hostu."
 
-#: vu-meter/main.c:255
+#: vu-meter/main.c:248
 msgid "ESD Server Host"
 msgstr "Host ESD serveru"
 
-#: vu-meter/main.c:257
+#: vu-meter/main.c:250
 msgid "Open a vertical version of the meter."
 msgstr "Otevøít vertikální verzi mìøidla."
 
-#: vu-meter/main.c:270
+#: vu-meter/main.c:263
 #, c-format
 msgid "Host is %s\n"
 msgstr "Host je %s\n"
 
-#: vu-meter/main.c:293
+#: vu-meter/main.c:286
 msgid "Volume Meter"
 msgstr "Mìøidlo hlasitosti"
 
+#~ msgid "Speed"
+#~ msgstr "Rychlost"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
 #, fuzzy
+#~ msgid "ESD Volume Meter"
+#~ msgstr "ESD mìøidlo hlasitosti"
 
-#: vu-meter/vumeter.desktop.in:3
-msgid "ESD Volume Meter"
-msgstr "ESD mìøidlo hlasitosti"
+#~ msgid "A Volume Unit Meter for ESD "
+#~ msgstr "Jednotka mìøení hlasitosti pro ESD"
 
-#: vu-meter/vumeter.desktop.in:4
-msgid "A Volume Unit Meter for ESD "
-msgstr "Jednotka mìøení hlasitosti pro ESD"
+#~ msgid "CD Player"
+#~ msgstr "CD pøehrávaè"
 
-#: tcd/gtcd.desktop.in:3
-msgid "CD Player"
-msgstr "CD pøehrávaè"
+#~ msgid "Gnome CD Player"
+#~ msgstr "Gnome CD pøehrávaè s podporou CDDB"
 
-#: tcd/gtcd.desktop.in:4
-msgid "Gnome CD Player"
-msgstr "Gnome CD pøehrávaè s podporou CDDB"
+#~ msgid "Sound recorder"
+#~ msgstr "Záznamník zvukù"
 
-#: grecord/Soundrecorder.desktop.in:3
-msgid "Sound recorder"
-msgstr "Záznamník zvukù"
+#~ msgid "A simple soundrecording program for GNOME"
+#~ msgstr "Jednoduchý záznamník zvukù pro GNOME"
 
-#: grecord/Soundrecorder.desktop.in:4
-msgid "A simple soundrecording program for GNOME"
-msgstr "Jednoduchý záznamník zvukù pro GNOME"
+#~ msgid "TV set"
+#~ msgstr "Televize"
 
-#: gnomovision/gnomovision.desktop.in:3
-msgid "TV set"
-msgstr "Televize"
-
-#: gnomovision/gnomovision.desktop.in:4
-msgid "Gnomovision applications"
-msgstr "Gnome televize"
-
-#: gmix/gmix.desktop.in:3
-msgid "Audio Mixer"
-msgstr "Mixá¾ní pult"
+#~ msgid "Gnomovision applications"
+#~ msgstr "Gnome televize"
