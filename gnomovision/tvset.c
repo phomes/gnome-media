@@ -1558,7 +1558,7 @@ static void choose_video_device(void)
 int main(int argc, char *argv[])
 {
 	int n=0;
-	gnome_init(&argc,&argv);
+	gnome_init("gnomovision", &argc,&argv);
 	if(argv[1] && strcmp(argv[1], "-w")==0)
 	{
 		argv++;
