@@ -5,70 +5,70 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.9\n"
-"POT-Creation-Date: 1999-09-18 21:26+0200\n"
-"PO-Revision-Date: 1999-09-18 21:31+02:00\n"
+"POT-Creation-Date: 1999-09-29 00:04+0200\n"
+"PO-Revision-Date: 1999-09-29 00:05+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: cddbslave/main.c:53
+#: cddbslave/main.c:56
 #, c-format
 msgid "Ready for command: %s\n"
 msgstr "Klar for kommando: %s\n"
 
-#: cddbslave/main.c:54
+#: cddbslave/main.c:57
 #, c-format
 msgid "Connecting [%s]\n"
 msgstr "Oppretter forbindelse [%s]\n"
 
-#: cddbslave/main.c:55
+#: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
 msgstr "Sender forespørsel til tjeneren [%s]\n"
 
-#: cddbslave/main.c:56
+#: cddbslave/main.c:59
 #, c-format
 msgid "Waiting for reply [%s]\n"
 msgstr "Venter på svar [%s]\n"
 
-#: cddbslave/main.c:57
+#: cddbslave/main.c:60
 #, c-format
 msgid "Reading reply [%s]\n"
 msgstr "Leser svar [%s]\n"
 
-#: cddbslave/main.c:58
+#: cddbslave/main.c:61
 #, c-format
 msgid "Disconnecting [%s]\n"
 msgstr "Kobler fra [%s]\n"
 
-#: cddbslave/main.c:59
+#: cddbslave/main.c:62
 #, c-format
 msgid "Error connecting [%s]\n"
 msgstr "Feil under tilkobling [%s]\n"
 
-#: cddbslave/main.c:60
+#: cddbslave/main.c:63
 #, c-format
 msgid "Error querying [%s]\n"
 msgstr "Feil under forespørsel [%s]\n"
 
-#: cddbslave/main.c:61
+#: cddbslave/main.c:64
 #, c-format
 msgid "Error reading [%s]\n"
 msgstr "Feil under lesing av [%s]\n"
 
-#: cddbslave/main.c:62
+#: cddbslave/main.c:65
 #, c-format
 msgid "No match found for %s\n"
 msgstr "Ingen treff for %s\n"
 
-#: cddbslave/main.c:63
+#: cddbslave/main.c:66
 #, c-format
 msgid "Timeout: %s\n"
 msgstr "Tidsavbrudd: %s\n"
 
-#: cddbslave/main.c:64
+#: cddbslave/main.c:67
 #, c-format
 msgid "Inactive. %s\n"
 msgstr "Inaktiv. %s\n"
@@ -78,8 +78,8 @@ msgid "_About"
 msgstr "_Om"
 
 #: gmix/gmix.c:99
-msgid "_Properties"
-msgstr "_Egenskaper"
+msgid "_Preferences..."
+msgstr "_Brukervalg..."
 
 #: gmix/gmix.c:105
 msgid "_Program"
@@ -106,7 +106,7 @@ msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ikke lagre (modifiserte) mikser-verdier til konfigurasjonen"
 
 #. start frame
-#: gmix/gmix.c:278 tcd/prefs.c:388
+#: gmix/gmix.c:278 tcd/prefs.c:393
 msgid "On startup"
 msgstr "Ved oppstart"
 
@@ -119,7 +119,7 @@ msgstr "Gjenopprett lagrede miksernivåer ved oppstart"
 msgid "Hide menu on start"
 msgstr "Skjul menyen ved oppstart"
 
-#: gmix/gmix.c:306
+#: gmix/gmix.c:305
 msgid "GUI"
 msgstr "GUI"
 
@@ -131,32 +131,32 @@ msgstr "Bruk mikserikoner"
 msgid "Use Mixer Labels"
 msgstr "Bruk mikseretiketter"
 
-#: gmix/gmix.c:340 tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Innstillinger..."
+#: gmix/gmix.c:340 tcd/gtcd.c:326 tcd/prefs.c:596
+msgid "Preferences"
+msgstr "Innstillinger"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:775
+#: gmix/gmix.c:765
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:785
+#: gmix/gmix.c:775
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:802
+#: gmix/gmix.c:792
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:825
+#: gmix/gmix.c:815
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:994
+#: gmix/gmix.c:984
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:997
+#: gmix/gmix.c:987
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mikser for OSS lydenheter."
 
@@ -172,76 +172,88 @@ msgstr ""
 "GTCD er Gnome CD-spiller applikasjon med støtte for CDDB. Vær vennlig å se i "
 "'Thanks' filen som er inkludert i distribusjonen for flere krediteringer."
 
-#: tcd/cddb_props.c:64
+#: tcd/cddb_props.c:69
 msgid "Disc ID"
 msgstr "Plate-ID"
 
-#: tcd/cddb_props.c:64
+#: tcd/cddb_props.c:69
 msgid "Disc Title"
 msgstr "Platetittel"
 
-#: tcd/cddb_props.c:79
+#: tcd/cddb_props.c:84
 msgid "Edit"
 msgstr "Rediger"
 
-#: tcd/cddb_props.c:83
+#: tcd/cddb_props.c:88
 msgid "Remove"
 msgstr "Fjern"
 
-#: tcd/cddb_props.c:89
+#: tcd/cddb_props.c:94
 msgid "Refresh List"
 msgstr "Gjenles listen"
 
 #. server settings
-#: tcd/cddb_props.c:140
+#: tcd/cddb_props.c:145
 msgid "Server Settings"
 msgstr "Tjenerinnstillinger"
 
-#: tcd/cddb_props.c:149
+#: tcd/cddb_props.c:154
 msgid "Address"
 msgstr "Adresse"
 
-#: tcd/cddb_props.c:159
+#: tcd/cddb_props.c:164
 msgid "Port"
 msgstr "Port"
 
-#: tcd/cddb_props.c:168
+#: tcd/cddb_props.c:173
 msgid "Use HTTP"
 msgstr "Bruk HTTP"
 
-#: tcd/cddb_props.c:173
+#: tcd/cddb_props.c:178
 msgid "Proxy"
 msgstr "Stedfortreder (proxy)"
 
+#: tcd/cddb_props.c:195
+msgid "Use proxy authentication"
+msgstr "Bruk proxy-autentisering"
+
+#: tcd/cddb_props.c:203
+msgid "Username"
+msgstr "Brukernavn"
+
+#: tcd/cddb_props.c:223
+msgid "Password"
+msgstr "Passord"
+
 #. local db
-#: tcd/cddb_props.c:193
+#: tcd/cddb_props.c:246
 msgid "Local Database"
 msgstr "Lokal database"
 
 #. frame
-#: tcd/cddb_props.c:235
+#: tcd/cddb_props.c:288
 msgid "CDDB Data"
 msgstr "CDDB-data"
 
-#: tcd/cddb_props.c:267
+#: tcd/cddb_props.c:320
 msgid "CDDB Editor"
 msgstr "CDDB-redigering"
 
-#: tcd/cddb_props.c:281
+#: tcd/cddb_props.c:334
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Feil under lesing av $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:397
+#: tcd/cddb_props.c:450
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "Kunne ikke fjerne filen: %s\n"
 
-#: tcd/cddb_props.c:409
+#: tcd/cddb_props.c:462
 msgid "Delete CDDB Entry?"
 msgstr "Slett CDDB-oppføring?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:308
+#: tcd/cddb_status.c:50 tcd/gtracked.c:307
 msgid "CDDB Status"
 msgstr "CDDB-status"
 
@@ -282,65 +294,61 @@ msgstr "normal"
 msgid "random"
 msgstr "vilkårlig"
 
-#: tcd/gtcd.c:326
+#: tcd/gtcd.c:325
 msgid "Open track editor"
 msgstr "Åpne sporredigering"
 
-#: tcd/gtcd.c:327 tcd/prefs.c:586
-msgid "Preferences"
-msgstr "Innstillinger"
-
-#: tcd/gtcd.c:328 tcd/popup.c:23
+#: tcd/gtcd.c:327 tcd/popup.c:24
 msgid "Quit"
 msgstr "Avslutt"
 
 #. TOP ROW
-#: tcd/gtcd.c:348
+#: tcd/gtcd.c:347
 msgid "Play/Pause"
 msgstr "Spill/pause"
 
-#: tcd/gtcd.c:352 tcd/popup.c:16
+#: tcd/gtcd.c:351 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stopp"
 
-#: tcd/gtcd.c:353 tcd/popup.c:17
+#: tcd/gtcd.c:352 tcd/popup.c:17
 msgid "Eject"
 msgstr "Løs ut"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:360 tcd/gtcd.c:368
+#: tcd/gtcd.c:359 tcd/gtcd.c:367
 msgid "Skip backwards"
 msgstr "Hopp bakover"
 
-#: tcd/gtcd.c:361 tcd/gtcd.c:369
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip forwards"
 msgstr "Hopp fremover"
 
-#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
+#: tcd/gtcd.c:519 tcd/gtcd.c:520 tcd/gtcd.c:521
 msgid "(Scanning)"
 msgstr "(Søker)"
 
-#: tcd/gtcd.c:544
+#: tcd/gtcd.c:543
 msgid "No Disc"
 msgstr "Ingen plate"
 
-#: tcd/gtcd.c:579
+#: tcd/gtcd.c:578
 msgid "Error"
 msgstr "Feil"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:856
 msgid "Volume"
 msgstr "Volum"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "Filename of the CD device"
 msgstr "Filnavnet på CD-enheten"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "FILE"
 msgstr "FIL"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1030
 msgid "Play CD on startup"
 msgstr "Spill CD Ved oppstart"
 
@@ -377,24 +385,24 @@ msgid "Track Information"
 msgstr "Informasjon om spor"
 
 #. Clear button
-#: tcd/gtracked.c:297
+#: tcd/gtracked.c:296
 msgid "Clear"
 msgstr "Blank ut"
 
 #. Playlist button
-#: tcd/gtracked.c:302
+#: tcd/gtracked.c:301
 msgid "Playlist"
 msgstr "Spilleliste"
 
-#: tcd/gtracked.c:314
+#: tcd/gtracked.c:313
 msgid "Submit"
 msgstr "Send inn"
 
-#: tcd/gtracked.c:375
+#: tcd/gtracked.c:374
 msgid "Submit Information"
 msgstr "Send inn informasjonen"
 
-#: tcd/gtracked.c:381
+#: tcd/gtracked.c:380
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -403,12 +411,12 @@ msgstr ""
 "Send inn informasjonen om\n"
 "'%s'"
 
-#: tcd/gtracked.c:390
+#: tcd/gtracked.c:389
 msgid "To: "
 msgstr "Til: "
 
 #. end of service menu
-#: tcd/gtracked.c:422
+#: tcd/gtracked.c:421
 msgid "Category: "
 msgstr "Kategori: "
 
@@ -442,93 +450,101 @@ msgstr "Spor %d"
 msgid "Play"
 msgstr "Spill"
 
+#: tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Innstillinger..."
+
 #: tcd/popup.c:20
 msgid "Track Editor..."
 msgstr "Sporredigering..."
 
 #: tcd/popup.c:21
-msgid "About..."
-msgstr "Om..."
+msgid "Help"
+msgstr "Hjelp"
+
+#: tcd/popup.c:22
+msgid "About"
+msgstr "Om"
 
 #. do nothing
-#: tcd/prefs.c:179 tcd/prefs.c:234
+#: tcd/prefs.c:184 tcd/prefs.c:239
 msgid "Do nothing"
 msgstr "Ikke gjør noe"
 
-#: tcd/prefs.c:185
+#: tcd/prefs.c:190
 msgid "Start playing"
 msgstr "Start avspilling"
 
-#: tcd/prefs.c:191 tcd/prefs.c:240
+#: tcd/prefs.c:196 tcd/prefs.c:245
 msgid "Stop playing"
 msgstr "Stopp avspilling"
 
 #. close tray
-#: tcd/prefs.c:195 tcd/prefs.c:252
+#: tcd/prefs.c:200 tcd/prefs.c:257
 msgid "Close tray"
 msgstr "Lukk skuff"
 
-#: tcd/prefs.c:246
+#: tcd/prefs.c:251
 msgid "Open tray"
 msgstr "Åpne skuff"
 
 #. device entry
-#: tcd/prefs.c:325
+#: tcd/prefs.c:330
 msgid "CDROM device"
 msgstr "CDROM-enhet"
 
 #. Color picker
-#: tcd/prefs.c:334
+#: tcd/prefs.c:339
 msgid "Track/title color"
 msgstr "Spor-/tittelfarge"
 
 #. font picker
-#: tcd/prefs.c:346
+#: tcd/prefs.c:351
 msgid "Track/title font"
 msgstr "Spor-/tittelskrifttype"
 
-#: tcd/prefs.c:347
+#: tcd/prefs.c:352
 msgid "Change font"
 msgstr "Endre skrifttype"
 
 #. show handles
-#: tcd/prefs.c:354
+#: tcd/prefs.c:359
 msgid "Show handles (restart required)"
 msgstr "Vis håndtak (Omstart av TCD nødvendig)"
 
 #. show tooltips
-#: tcd/prefs.c:361
+#: tcd/prefs.c:366
 msgid "Show tooltips"
 msgstr "Vis verktøystips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:368
+#: tcd/prefs.c:373
 msgid "Use alternate method to play CD"
 msgstr "Bruk alternativ metode for å spille CD"
 
 #. exit frame
-#: tcd/prefs.c:394
+#: tcd/prefs.c:399
 msgid "On exit"
 msgstr "Ved avslutning"
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:507
 msgid "Key"
 msgstr "Tast"
 
-#: tcd/prefs.c:503
+#: tcd/prefs.c:508
 msgid "Action"
 msgstr "Handling"
 
-#: tcd/prefs.c:523
+#: tcd/prefs.c:528
 msgid "Click here to change (restart required):"
 msgstr "Klikk her for å endre (omstart nødvendig):"
 
 #. Frame
-#: tcd/prefs.c:545 tcd/prefs.c:590
+#: tcd/prefs.c:550 tcd/prefs.c:600
 msgid "Keybindings"
 msgstr "Tastaturbindinger"
 
-#: tcd/prefs.c:594
+#: tcd/prefs.c:604
 msgid "CDDB Settings"
 msgstr "CDDB-innstillinger"
 
@@ -576,3 +592,9 @@ msgstr "Verten er %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volummåler"
+
+#~ msgid "_Properties"
+#~ msgstr "_Egenskaper"
+
+#~ msgid "About..."
+#~ msgstr "Om..."
