@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-29 20:13+0100\n"
-"PO-Revision-Date: 2004-08-06 10:35+0800\n"
+"POT-Creation-Date: 2004-12-11 12:24+0100\n"
+"PO-Revision-Date: 2004-12-11 20:46+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -1036,12 +1036,11 @@ msgstr ""
 
 #: gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr ""
+msgstr "方向"
 
 #: gnome-cd/eggtrayicon.c:119
-#, fuzzy
 msgid "The orientation of the tray."
-msgstr "指定指示器的 X 位置。"
+msgstr "托盘的方向。"
 
 #: gnome-cd/gnome-cd.c:219
 #, c-format
@@ -1256,13 +1255,12 @@ msgid "CD Player Preferences"
 msgstr "CD 播放机首选项"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "设备路径"
+msgstr "设备(_D)："
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "行为"
 
 #: gnome-cd/preferences.c:652
 msgid "Start _playing CD when CD Player starts"
@@ -1282,11 +1280,11 @@ msgstr "当 CD 播放机退出时尝试弹出 CD"
 
 #: gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr ""
+msgstr "主题"
 
 #: gnome-cd/preferences.c:694
 msgid "_Select a theme:"
-msgstr ""
+msgstr "选择主题(_S)："
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1502,7 +1500,7 @@ msgstr "就绪"
 #: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
 #, c-format
 msgid "Could not save the file \" %s\""
-msgstr ""
+msgstr "无法保存文件“%s”"
 
 #: grecord/src/gsr-window.c:553
 msgid "Save file as"
@@ -1646,18 +1644,16 @@ msgid "Volume Control"
 msgstr "音量控制"
 
 #: gst-mixer/src/element.c:155
-#, fuzzy
 msgid "Playback"
-msgstr "播放"
+msgstr "回放"
 
 #: gst-mixer/src/element.c:157
-#, fuzzy
 msgid "Capture"
-msgstr "讽刺(Satire)"
+msgstr "抓取"
 
 #: gst-mixer/src/element.c:159
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 #. FIXME:
 #. * - maybe we want to rename the element to its actual name
@@ -1666,40 +1662,38 @@ msgstr ""
 #. create element
 #. and recreate this object, since we give it to the mixer
 #: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown Volume Control %d"
-msgstr "音量控制"
+msgstr "未知音量控制 %d"
 
 #: gst-mixer/src/main.c:236
-#, fuzzy
 msgid "No volume control elements and/or devices found."
-msgstr "抱歉，没有找到混音器元素和/或混音器设备"
+msgstr "没有找到音量控制元素和/或设备。"
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:107
-#, fuzzy
 msgid "Volume Control Preferences"
-msgstr "音量控制"
+msgstr "音量控制首选项"
 
 #: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
-msgstr ""
+msgstr "选择可见的音轨(_S)："
 
 #: gst-mixer/src/track.c:193
 #, c-format
 msgid "%s:"
-msgstr ""
+msgstr "%s："
 
 #. mute button
 #: gst-mixer/src/track.c:233
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "静音/取消静音 %s"
 
 #: gst-mixer/src/track.c:248
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s: mute"
-msgstr "曲目列表"
+msgstr "音轨 %s：静音"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1719,12 +1713,11 @@ msgstr ""
 #: gst-mixer/src/track.c:391
 #, c-format
 msgid "%s Option Selection"
-msgstr ""
+msgstr "%s 选项"
 
 #: gst-mixer/src/volume.c:132
-#, fuzzy
 msgid "mono"
-msgstr "1 (单声道)"
+msgstr "单声道"
 
 #: gst-mixer/src/volume.c:134
 msgid "left"
@@ -1751,9 +1744,8 @@ msgid "rear right"
 msgstr ""
 
 #: gst-mixer/src/volume.c:141
-#, fuzzy
 msgid "front center"
-msgstr "内容"
+msgstr ""
 
 #: gst-mixer/src/volume.c:142
 msgid "LFE"
@@ -1768,62 +1760,59 @@ msgid "side right"
 msgstr ""
 
 #: gst-mixer/src/volume.c:145
-#, fuzzy
 msgid "unknown"
 msgstr "未知"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
 #: gst-mixer/src/volume.c:151
-#, fuzzy, c-format
+#, c-format
 msgid "Volume of %s channel on %s"
-msgstr "声道个数："
+msgstr "%2$s 上 %1$s 声道的音量"
 
 #: gst-mixer/src/volume.c:199
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s"
-msgstr "曲目列表"
+msgstr "音轨 %s"
 
 #: gst-mixer/src/volume.c:202
-#, fuzzy, c-format
+#, c-format
 msgid "Channel %d of track %s"
-msgstr "%2$s 滑块的第%1$d声道"
+msgstr "%2$s 音轨的第%1$d声道"
 
 #: gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "音轨 %s，声道 %d"
 
 #: gst-mixer/src/volume.c:243
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr ""
+msgstr "音轨 %s：锁定声道"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
 msgid "_Change Device"
-msgstr "设置设备"
+msgstr "更改设备(_C)"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "控制不同设备的音量"
 
 #: gst-mixer/src/window.c:179
-#, fuzzy, c-format
+#, c-format
 msgid "Change device to %s"
-msgstr "要使用的 CD 设备"
+msgstr "将设备更改为 %s"
 
 #. window title and menu selection
 #. change window title
 #: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
-#, fuzzy, c-format
+#, c-format
 msgid "Volume Control: %s"
-msgstr "音量控制"
+msgstr "音量控制：%s"
 
 #: gst-mixer/src/window.c:371
-#, fuzzy
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "基于 GNOME/GStreamer 的混音器应用程序"
+msgstr "基于 GNOME/GStreamer 的音量控制应用程序"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -2227,39 +2216,3 @@ msgstr "监视声音输出音量"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量监视器"
-
-#~ msgid "CD Player De_vice:"
-#~ msgstr "CD 播放机设备(_V)："
-
-#~ msgid "CD Player Behaviour:"
-#~ msgstr "CD 播放机行为："
-
-#~ msgid "_Available Themes:"
-#~ msgstr "可用主题(_A)："
-
-#~ msgid "_Apply change"
-#~ msgstr "应用更改(_A)"
-
-#~ msgid "%s Slider"
-#~ msgstr "%s 滑块"
-
-#~ msgid "%s Slider %d"
-#~ msgstr "%s 滑块 %d"
-
-#~ msgid "Lock"
-#~ msgstr "锁定"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s 锁定"
-
-#~ msgid "Mute"
-#~ msgstr "静音"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s 静音"
-
-#~ msgid "Rec."
-#~ msgstr "录音"
-
-#~ msgid "%s Record"
-#~ msgstr "%s 录音"
