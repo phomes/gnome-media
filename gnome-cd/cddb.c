@@ -34,7 +34,6 @@ count_tracks (CDDBSlaveClientTrackInfo **info)
 		;
 	}
 
-	g_print ("number of tracks: %d\n", i);
 	return i;
 }
 
@@ -56,7 +55,6 @@ get_disc_info (GnomeCD *gcd,
 	info->artist = cddb_slave_client_get_artist (slave, discid);
 	info->track_info = cddb_slave_client_get_tracks (slave, discid);
 
-	g_print ("info->ntracks = %d\n", info->ntracks);
 	if (count_tracks (info->track_info) != info->ntracks) {
 		/* Duff info */
 		cddb_slave_client_free_track_info (info->track_info);
