@@ -96,16 +96,20 @@ factory_fn (BonoboGenericFactory *factory,
 		break;
 
 	default:
+		name = NULL;
+		hostname = NULL;
 		break;
 	}
 
 	server = gconf_client_get_string (client, 
 					  "/apps/CDDB-Slave2/server", NULL);
 	port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
-	g_object_unref (server);
+	g_object_unref (client);
+	client = NULL;
 
 	/* Create the new slave */
 	cddb = cddb_slave_new (server, port, name, hostname);
+	g_free (server);
 	g_free (name);
 	g_free (hostname);
 
