@@ -767,6 +767,8 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 	in_rate     = afGetRate (filename, AF_DEFAULT_TRACK);
 	afGetSampleFormat (filename, AF_DEFAULT_TRACK, &in_audioformat, &in_width);
 
+	afCloseFile (filename);
+	
 	/* Update mainwindow with the new values and set topic */
 	set_min_sec_time (get_play_time (active_file));
 
@@ -1396,6 +1398,8 @@ soundfile_supported (const gchar* filename)
 	AFfilehandle filetype  = afOpenFile (filename, "r", NULL);
 	gint soundtype = afGetFileFormat (filetype, NULL);
 
+	afCloseFile (filetype);
+	
 	/* Check if the file exists */
 	if (!g_file_test (filename, G_FILE_TEST_EXISTS))
 		return FALSE;

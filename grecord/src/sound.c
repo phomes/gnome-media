@@ -58,7 +58,8 @@ get_play_time (const gchar* filename)
 
 		/* Play time */
 		play_time = (int) framecount / samplerate;
-		
+
+		afCloseFile(file);		
 		afFreeFileSetup (setup);
 	}
 	else
