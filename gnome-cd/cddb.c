@@ -77,8 +77,8 @@ load_cddb_data (GnomeCD *gcd,
 			}
 
 			*div = 0;
-			info->title = g_strdup (title);
-			info->artist = g_strdup (div + 3);
+			info->artist = g_strdup (title);
+			info->title = g_strdup (div + 3);
 		} else if (strncmp (line, "TTITLE", 6) == 0) {
 			char *name;
 			int number;

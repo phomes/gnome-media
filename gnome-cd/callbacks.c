@@ -12,6 +12,8 @@
 #include <gtk/gtkbutton.h>
 #include <glib/gerror.h>
 
+#include <libgnome/gnome-i18n.h>
+
 #include "cdrom.h"
 #include "display.h"
 #include "gnome-cd.h"
@@ -52,6 +54,11 @@ eject_cb (GtkButton *button,
 	}
 
 	if (gcd->current_image == gcd->pause_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Play"));
+
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
 		gcd->current_image = gcd->play_image;
@@ -65,6 +72,7 @@ play_cb (GtkButton *button,
 	GError *error;
 	GnomeCDRomStatus *status;
 	GnomeCDRomMSF msf;
+	AtkObject *aob;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
@@ -118,6 +126,8 @@ play_cb (GtkButton *button,
 		}
 
 		if (gcd->current_image == gcd->pause_image) {
+			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+			atk_object_set_name (aob, _("Play"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
 			gcd->current_image = gcd->play_image;
@@ -135,6 +145,8 @@ play_cb (GtkButton *button,
 		}
 
 		if (gcd->current_image == gcd->play_image) {
+			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+			atk_object_set_name (aob, _("Pause"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 			gcd->current_image = gcd->pause_image;
@@ -156,6 +168,8 @@ play_cb (GtkButton *button,
 		}
 
 		if (gcd->current_image == gcd->play_image) {
+			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+			atk_object_set_name (aob, _("Pause"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 			gcd->current_image = gcd->pause_image;
@@ -190,6 +204,11 @@ stop_cb (GtkButton *button,
 	}
 
 	if (gcd->current_image == gcd->pause_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Play"));
+
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
 		gcd->current_image = gcd->play_image;
@@ -221,6 +240,11 @@ ffwd_press_cb (GtkButton *button,
 	gcd->timeout = gtk_timeout_add (140, ffwd_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Pause"));
+
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 		gcd->current_image = gcd->pause_image;
@@ -255,6 +279,10 @@ next_cb (GtkButton *button,
 	}
 
 	if (gcd->current_image == gcd->play_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Pause"));
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 		gcd->current_image = gcd->pause_image;
@@ -275,6 +303,10 @@ back_cb (GtkButton *button,
 	}
 
 	if (gcd->current_image == gcd->play_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Pause"));
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 		gcd->current_image = gcd->pause_image;
@@ -306,6 +338,10 @@ rewind_press_cb (GtkButton *button,
 	gcd->timeout = gtk_timeout_add (140, rewind_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {
+		AtkObject *aob;
+
+		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+		atk_object_set_name (aob, _("Pause"));
 		gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
 		gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
 		gcd->current_image = gcd->pause_image;

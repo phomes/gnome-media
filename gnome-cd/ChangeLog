@@ -1,3 +1,23 @@
+2002-01-09  Iain Holmes  <iain@ximian.com>
+
+	* cddb.c (load_cddb_data): Swap the artist and album title round. Opps
+
+	* gnome-cd.c (make_button_from_widget): Set a short name for 
+	accessibility.
+	(make_button_from_file): Take a shortname.
+	(make_button_from_stock): Take a shortname.
+	(init_player): Set the short name for all the buttons. Make the
+	tracklist, preferences and volume buttons inactive until they do stuff.
+
+	* callbacks.c: Include i18n headers
+	(eject_cb): Change the play buttons short name.
+	(play_cb): Ditto.
+	(stop_cb): Ditto.
+	(ffwd_press_cb): Ditto.
+	(next_cb): Ditto.
+	(back_cb): Ditto.
+	(rewind_press_cb): Ditto.
+	
 2002-01-06  Iain Holmes  <iain@ximian.com>
 
 	* callbacks.c (cd_status_changed_cb): Use the cddb info if we have
