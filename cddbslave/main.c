@@ -96,7 +96,6 @@ int main(int argc, char *argv[])
 		char buf[512];
 		
 		fname = get_file_name(de->d_name);
-		g_print("opening %s for request...\n", fname);
 
 		fp = fopen(fname, "r");
 		if(!fp)
@@ -155,7 +154,7 @@ int do_request(char *req, int fd)
     
     /* alright, our query response was positive, now send the read request. */
     read_query(buf, fd, 512);
-    
+
     kill(pid, SIGUSR1);
     return 0;
 }
@@ -236,6 +235,7 @@ void read_query(char *s, int fd, int len)
 	fprintf(fp, "%s", buf);
     } while(strncmp(".", buf, 1));
    
+    fclose(fp);
     g_free(fname);
     return;
 }
