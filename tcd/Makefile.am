@@ -44,4 +44,6 @@ CLEANFILES = *.o core *~ libcdrom.a
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -I/usr/include/ncurses
 
+EXTRA_DIST = gtcd.desktop
+
 Audio_DATA = gtcd.desktop
