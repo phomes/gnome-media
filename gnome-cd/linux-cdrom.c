@@ -796,8 +796,10 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	LinuxCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
 	struct cdrom_subchnl subchnl;
+	struct cdrom_tocentry tocentry;
 	struct cdrom_volctrl vol;
 	int cd_status;
+	int i,j;
 	
 	g_return_val_if_fail (status != NULL, TRUE);
 	
@@ -851,7 +853,28 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 			return TRUE;
 
 		default:
-			realstatus->cd = GNOME_CDROM_STATUS_OK;
+			if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
+				g_print ("Error reading CD header");
+				linux_cdrom_close (lcd);
+
+				return;
+			}
+			realstatus->cd = GNOME_CDROM_STATUS_DATA_CD;
+
+			for (i = 0, j = priv->tochdr->cdth_trk0; i < (priv->tochdr->cdth_trk1 - priv->tochdr->cdth_trk0 + 1); i++, j++) {
+				tocentry.cdte_track = j;
+				tocentry.cdte_format = CDROM_MSF;
+
+				if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
+					g_print ("IOCtl failed");
+					continue;
+				}
+
+				if (tocentry.cdte_ctrl != CDROM_DATA_TRACK) {
+					realstatus->cd = GNOME_CDROM_STATUS_OK;
+					break; 
+				}
+			}
 			break;
 		}
 	} else {
