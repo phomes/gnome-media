@@ -58,17 +58,6 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 dnl
-dnl extace
-dnl
-dnl PROGRAMS_EXTACE=""
-dnl if test -n "$we_have_esd"; then
-dnl AC_CHECK_LIB(gslfft, gsl_fft_real_radix2,
-dnl 	PROGRAMS_EXTACE=extace,,-lgslfft -lgslerr -lm)
-dnl AC_CHECK_HEADERS(gsl/gsl.h, [USE_GSL_GSL_H=1])
-dnl fi
-dnl AC_SUBST(PROGRAMS_EXTACE)
-
-dnl
 dnl vu-meter
 dnl
 PROGRAMS_VUMETER=""
@@ -136,7 +125,6 @@ AC_OUTPUT([
 gnome-media.spec
 Makefile
 po/Makefile.in
-dnl extace/Makefile
 gmix/Makefile
 vu-meter/Makefile
 macros/Makefile

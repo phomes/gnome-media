@@ -374,7 +374,9 @@ GList *make_channels(device_info *device)
 			new_channel->device=device;
 			new_channel->channel=i;
 	 		new_channel->pixmap = g_strdup (device_pixmap[i]);
-			new_channel->title=strdup(device_labels[i]);
+			g_print("title (make_channels, before strdup): %s\n", device_labels[i]);
+			new_channel->title= g_strdup(device_labels[i]);
+			g_print("title (make_channels, after strdup): %s\n", new_channel->title);
 			new_channel->passive=0;
 			channels=g_list_append(channels, new_channel);
 		}
@@ -619,6 +621,7 @@ void open_dialog(void)
 			  gtk_widget_show (spixmap);
 			 }
 			label=gtk_label_new(ci->title);
+			g_print("title (open_dialog): %s\n", ci->title);
 			gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
 			gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 			gtk_widget_show(label);
