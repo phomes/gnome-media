@@ -75,6 +75,7 @@ typedef struct _ConnectionData {
 
 	GTcpSocket *socket;
 	GIOChannel *iochannel;
+	guint tag;
 	
 	ConnectionMode mode;
 	
@@ -140,6 +141,10 @@ do_goodbye_response (ConnectionData *cd,
 	}
 
 	/* Disconnect */
+	if (cd->tag) {
+		g_source_remove (cd->tag);
+	}
+	
   	gnet_tcp_socket_unref (cd->socket);
   	g_io_channel_unref (cd->iochannel);
 	
@@ -767,8 +772,8 @@ open_cb (GTcpSocket *sock,
 	sin = gnet_tcp_socket_get_iochannel (sock);
 	cd->iochannel = sin;
 	
-	g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
-			read_from_server, data);
+	cd->tag = g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
+				  read_from_server, data);
 }
 
 static void
@@ -851,6 +856,8 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	cd = g_new (ConnectionData, 1);
 	cd->cddb = cddb;
 	g_object_ref (cddb);
+
+	cd->tag = 0;
 	
 	cd->name = g_strdup_printf ("%s(CDDBSlave2)", name);
 	cd->version = g_strdup (version);
