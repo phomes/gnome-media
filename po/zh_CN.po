@@ -3,14 +3,14 @@
 # Dillion Chen <dillon.chen@turbolinux.com.cn>, 1999
 # Replaced by He Qiangqiang <carton@linux.net.cn>, 2002
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002
-# Funda Wang <fundawang@linux.net.cn>, 2003.
+# Funda Wang <fundawang@linux.net.cn>, 2003,2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 22:11-0700\n"
-"PO-Revision-Date: 2003-08-07 04:36+0800\n"
+"POT-Creation-Date: 2004-03-07 14:59+0100\n"
+"PO-Revision-Date: 2004-03-07 23:37+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +158,7 @@ msgstr "CD 数据库首选项"
 
 #: cddb-slave2/cddb-slave.c:213
 msgid "Unknown / Unknown"
-msgstr "未知 / 未知"
+msgstr "未知/未知"
 
 #. Attempts to get length ran out.
 #: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
@@ -602,7 +602,7 @@ msgstr "爵士乐团(Big Band)"
 
 #: cddb-slave2/cddb-track-editor.c:176
 msgid "Chorus"
-msgstr "合声(Chorus)"
+msgstr "和声(Chorus)"
 
 #: cddb-slave2/cddb-track-editor.c:177
 msgid "Easy Listening"
@@ -909,7 +909,7 @@ msgstr "显示当前播放的曲集的有关信息，艺术家和播放时间"
 
 #: gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
-msgstr "时间行"
+msgstr "时间线"
 
 # SUN NEW TRANSLATION
 #: gnome-cd/access/cddisplayaccessible.c:190
@@ -1099,9 +1099,9 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
-"无法正常运行 CD 播放机\n"
+"无法正常运行 CD 播放机。\n"
 "\n"
-"要查看详细的出错原因请单击‘详细’按钮。\n"
+"要查看详细的出错原因请单击“细节”按钮。\n"
 "\n"
 "单击“设置设备”，然后在对话框中设置 CD 设备，或单击“退出”以退出 CD 播放机"
 
@@ -1304,7 +1304,7 @@ msgstr "关闭"
 
 #: grecord/gsr.xml.h:3
 msgid "Close this window"
-msgstr "关闭这个窗口"
+msgstr "关闭此窗口"
 
 #: grecord/gsr.xml.h:4
 msgid "Contents"
@@ -1420,7 +1420,7 @@ msgstr "关闭窗口(_C)"
 
 #: grecord/gsr.xml.h:34
 msgid "_Contents"
-msgstr "内容(_C)"
+msgstr "目录(_C)"
 
 #: grecord/gsr.xml.h:35
 msgid "_Control"
@@ -1455,9 +1455,8 @@ msgid "_Save"
 msgstr "保存(_S)"
 
 #: grecord/src/gnome-recorder.c:155
-#, fuzzy
 msgid "Dummy option"
-msgstr "声音选项"
+msgstr "哑选项"
 
 #: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
 #: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
@@ -1582,18 +1581,17 @@ msgid "Playing..."
 msgstr "正在播放..."
 
 #: grecord/src/gsr-window.c:1280
-#, fuzzy, c-format
+#, c-format
 msgid "%s.%s - Sound Recorder"
-msgstr "%s - 录音机"
+msgstr "%s.%s - 录音机"
 
 #: grecord/src/gsr-window.c:1372
 msgid "Recording..."
 msgstr "正在录音..."
 
 #: grecord/src/gsr-window.c:1561
-#, fuzzy
 msgid "Record as"
-msgstr "录音"
+msgstr "录制为"
 
 #: grecord/src/gsr-window.c:1578
 msgid "File information"
@@ -1611,24 +1609,26 @@ msgstr "长度："
 msgid "Adjust the volume level"
 msgstr "调整音量"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:545
 msgid "Volume Control"
 msgstr "音量控制"
 
 #: gst-mixer/src/mixer.c:218
 #, c-format
 msgid "%s Slider"
-msgstr ""
+msgstr "%s 滑块"
 
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr ""
+msgstr "%2$s 滑块的第%1$d声道"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
 msgid "%s Slider %d"
-msgstr ""
+msgstr "%s 滑块 %d"
 
 #: gst-mixer/src/mixer.c:234
 msgid "Lock"
@@ -1657,19 +1657,13 @@ msgstr "录音"
 msgid "%s Record"
 msgstr "%s 录音"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-#, fuzzy
-msgid "GStreamer Volume Control"
-msgstr "音量控制"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
-msgstr ""
+msgstr "基于 GNOME/GStreamer 的混音器应用程序"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:562
 msgid "Sorry, no mixer elements and/or devices found"
-msgstr ""
+msgstr "抱歉，没有找到混音器元素和/或设备"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:271
@@ -1686,10 +1680,9 @@ msgstr "无法载入用户界面资源 %s"
 msgid "Configure defaults for GStreamer applications"
 msgstr "配置 GStreamer 应用程序的默认值"
 
-# SUN NEW TRANSLATION
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "多媒体系统选择器"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1767,30 +1760,29 @@ msgid "Failed to construct test pipeline for '%s'"
 msgstr "为“%s”创建测试流水线失败"
 
 #: profiles/audio-profile-edit.c:185
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error displaying help: %s"
 msgstr ""
-"显示帮助时出错：\n"
+"显示帮助时出错："
 "%s"
 
 #: profiles/audio-profile-edit.c:387
-#, fuzzy, c-format
+#, c-format
 msgid "Editing profile \"%s\""
-msgstr "编辑碟片 ID：%s"
+msgstr "编辑配置文件“%s”"
 
 #: profiles/audio-profile.c:101
-#, fuzzy
 msgid "<not named>"
-msgstr "<无>"
+msgstr "<未命名>"
 
 #: profiles/audio-profile.c:102
 msgid "<not described>"
-msgstr ""
+msgstr "<未描述>"
 
 #: profiles/audio-profile.c:217
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "启动 %s 时出错：%s"
+msgstr "获得 gm_audio 配置文件列表出错。(%s)\n"
 
 #: profiles/audio-profile.c:718
 #, c-format
@@ -1798,51 +1790,50 @@ msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
 msgstr ""
+"订阅终端配置文件列表更改通知出错。(%s)\n"
 
 #: profiles/audio-profile.c:908
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
-msgstr "启动 %s 时出错：%s"
+msgstr "丢弃配置文件目录 %s 出错。(%s)\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
-msgstr ""
+msgstr "<无描述>"
 
 #: profiles/audio-profile.c:1011
 msgid "identity"
-msgstr ""
+msgstr "标识"
 
 #: profiles/audio-profile.c:1022
 msgid "wav"
-msgstr ""
+msgstr "方式"
 
 #: profiles/audio-profiles-edit.c:113
-#, fuzzy
 msgid "_Edit"
-msgstr "退出(_Q)"
+msgstr "编辑(_E)"
 
 #: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
-msgstr ""
+msgstr "您必须选择要删除的一个或多个配置文件。"
 
 #: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
-msgstr ""
+msgstr "删除这两个配置文件吗？\n"
 
 #: profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete these %d profiles?\n"
-msgstr ""
+msgstr "删除这%d个配置文件吗？\n"
 
 #: profiles/audio-profiles-edit.c:481
 #, c-format
 msgid "Delete profile \"%s\"?"
-msgstr ""
+msgstr "删除配置文件“%s”吗？"
 
 #: profiles/audio-profiles-edit.c:503
-#, fuzzy
 msgid "Delete Profile"
-msgstr "选择声音文件"
+msgstr "删除配置文件"
 
 #.
 #. dialog =
@@ -1857,24 +1848,22 @@ msgstr "选择声音文件"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: profiles/audio-profiles-edit.c:597
-#, fuzzy
 msgid "Edit GMAudio Profiles"
-msgstr "编辑碟片 ID：%s"
+msgstr "编辑 GMAudio 配置文件"
 
 #: profiles/audio-profiles-edit.c:650
-#, fuzzy
 msgid "_Profiles:"
-msgstr "程序文件"
+msgstr "配置文件(_P)："
 
 #: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr ""
+msgstr "您已经有名为“%s”的配置文件了"
 
 #: profiles/audio-profiles-edit.c:903
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
-msgstr ""
+msgstr "GConf 错误(待修正)：%s\n"
 
 #: profiles/gmp-util.c:64
 #, c-format
@@ -1882,107 +1871,108 @@ msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
+"缺少文件“%s”。这表明应用程序安装不正确，所以无法显示对话框。"
 
 #: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
-msgstr ""
+msgstr "编辑音频配置文件"
 
 #: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
 msgid "File _Extension:"
-msgstr "文件大小："
+msgstr "文件扩展名(_E)："
 
 #: profiles/gnome-audio-profiles.glade2.h:4
 msgid "New Profile"
-msgstr ""
+msgstr "新建配置文件"
 
 #: profiles/gnome-audio-profiles.glade2.h:5
 msgid "Profile Description:"
-msgstr ""
+msgstr "配置文件描述："
 
 #: profiles/gnome-audio-profiles.glade2.h:6
 msgid "Profile _Description:"
-msgstr ""
+msgstr "配置文件描述(_D)："
 
 #: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
 msgid "Profile _name:"
-msgstr "文件名："
+msgstr "配置文件名(_N)："
 
 #: profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active ?"
-msgstr ""
+msgstr "激活否(_A)"
 
 # SUN NEW TRANSLATION
 #: profiles/gnome-audio-profiles.glade2.h:9
-#, fuzzy
 msgid "_Create"
-msgstr "居中"
+msgstr "创建(_C)"
 
 #: profiles/gnome-audio-profiles.glade2.h:10
-#, fuzzy
 msgid "_GStreamer Pipeline:"
-msgstr "GStreamer 首选项"
+msgstr "_GStreamer 流水线："
 
 #: profiles/gnome-audio-profiles.glade2.h:11
-#, fuzzy
 msgid "_Profile name:"
-msgstr "文件名："
+msgstr "配置文件名(_P)："
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
-msgstr ""
+msgstr "音频配置文件的描述"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:2
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
 msgstr ""
+"配置文件描述，其中包含了更多的信息并描述了何时使用此配置文件。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
+"对用此配置文件编码的文件进行排序时要使用的文件扩展名。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+msgstr "此配置文件要使用的部分 GStreamer 流水线。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
-msgstr ""
+msgstr "音频配置文件的短名称"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:6
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
 msgstr ""
+"音频配置文件的短名称，要在选择区中使用并唯一表示配置文件。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
+"列出音频录制配置文件。此列表包含的字符串会作为相对 /system/gstreamer/audio/profiles "
+"起名之用。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
-msgstr ""
+msgstr "配置文件列表"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "The default file extension for this profile"
-msgstr ""
+msgstr "此配置文件的默认文件扩展名"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
-msgstr ""
+msgstr "所用的部分 GStreamer 流水线"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
-msgstr ""
+msgstr "是否要使用此配置文件"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "Whether or not to use and display this profile."
-msgstr ""
+msgstr "是否要使用并显示此配置文件。"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2054,598 +2044,3 @@ msgstr "监视声音输出音量"
 msgid "Volume monitor"
 msgstr "音量监视器"
 
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "太空音乐(Space)"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b>文件“%s”已经存在。</b>\n"
-#~ "是否要覆盖它？"
-
-#, fuzzy
-#~ msgid "Could not build pipeline"
-#~ msgstr "无法 fork 子进程"
-
-#~ msgid "Saving %s..."
-#~ msgstr "正在保存 %s..."
-
-#~ msgid "Synth"
-#~ msgstr "Synth"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "DSP 输入"
-
-#~ msgid "Line"
-#~ msgstr "Line"
-
-#~ msgid "MIC"
-#~ msgstr "MIC"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Phone"
-
-#~ msgid "Mono"
-#~ msgstr "单声道"
-
-#~ msgid "PC Speaker"
-#~ msgstr "PC 扬声器"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Center Input"
-#~ msgstr "中置输入"
-
-#~ msgid "Woofer Input"
-#~ msgstr "低音炮输入"
-
-#~ msgid "Surround Input"
-#~ msgstr "环绕声输入"
-
-#~ msgid "Master"
-#~ msgstr "主"
-
-#~ msgid "Master Mono"
-#~ msgstr "主单声道"
-
-#~ msgid "Master Digital"
-#~ msgstr "主数字设备"
-
-#~ msgid "Headphone"
-#~ msgstr "耳机"
-
-#~ msgid "Phone Output"
-#~ msgstr "话筒输出"
-
-# SUN NEW TRANSLATION
-#~ msgid "Center"
-#~ msgstr "居中"
-
-#~ msgid "Woofer"
-#~ msgstr "低音炮"
-
-#~ msgid "Surround"
-#~ msgstr "环绕声"
-
-#~ msgid "DSP Output"
-#~ msgstr "DSP 输出"
-
-#~ msgid "Treble"
-#~ msgstr "高音"
-
-#~ msgid "Equalizer"
-#~ msgstr "均衡器"
-
-#~ msgid "Fader"
-#~ msgstr "衰减器"
-
-#~ msgid "Effect"
-#~ msgstr "效果"
-
-#~ msgid "3D Effect"
-#~ msgstr "3D 效果"
-
-#~ msgid "Mic Gain"
-#~ msgstr "话筒增益"
-
-#~ msgid "Input Gain"
-#~ msgstr "输入增益"
-
-#~ msgid "Output Gain"
-#~ msgstr "输出增益"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "模拟回馈"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "数码回馈"
-
-#~ msgid "Vol  "
-#~ msgstr "音量"
-
-#~ msgid "Bass "
-#~ msgstr "低音"
-
-#~ msgid "Trebl"
-#~ msgstr "高音"
-
-#~ msgid "Pcm  "
-#~ msgstr "波形"
-
-#~ msgid "Spkr "
-#~ msgstr "扬声器"
-
-#~ msgid "Line "
-#~ msgstr "线路"
-
-#~ msgid "Mic  "
-#~ msgstr "话筒"
-
-#~ msgid "CD   "
-#~ msgstr "CD"
-
-#~ msgid "Mix  "
-#~ msgstr "混音"
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2"
-
-#~ msgid "Rec  "
-#~ msgstr "录音"
-
-#~ msgid "IGain"
-#~ msgstr "输入增益"
-
-#~ msgid "OGain"
-#~ msgstr "输出增益"
-
-#~ msgid "Line1"
-#~ msgstr "线路1"
-
-#~ msgid "Line2"
-#~ msgstr "线路2"
-
-#~ msgid "Line3"
-#~ msgstr "线路3"
-
-#~ msgid "Digital1"
-#~ msgstr "数码1"
-
-#~ msgid "Digital2"
-#~ msgstr "数码2"
-
-#~ msgid "Digital3"
-#~ msgstr "数码3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "话筒输入"
-
-#~ msgid "PhoneOut"
-#~ msgstr "话筒输出"
-
-#~ msgid "Monitor"
-#~ msgstr "监视器"
-
-#~ msgid "Help"
-#~ msgstr "帮助"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "要使用的混音器设备"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "无法正常运行音量控制。\n"
-#~ "\n"
-#~ "无法打开音频设备‘%s’。\n"
-#~ "请确认您拥有打开‘%s’的权限\n"
-#~ "并且您在编译内核时已经加入了声卡支持。\n"
-#~ "\n"
-#~ "请单击退出来退出音量控制"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "无法正常运行音量控制。\n"
-#~ "\n"
-#~ "要查看详细的出错原因请单击详细按钮。\n"
-#~ "\n"
-#~ "请单击退出来退出音量控制"
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "无效的混音器设备"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "警告：此版本的 Gnome 音量控制是与 OSS %d.%d.%d 版\n"
-#~ "编译，而您的系统正在运行的是一个\n"
-#~ "3.6.0 以前的版本。\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "警告：此版本的 Gnome 音量控制是与 OSS %d.%d.%d 版\n"
-#~ "编译，而您的系统正在运行的是 %d.%d.%d 版。\n"
-
-#~ msgid "left %s"
-#~ msgstr "左 %s"
-
-#~ msgid "Right %s"
-#~ msgstr "右 %s"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "GNOME 音量控制"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "声音设备的混音器"
-
-#~ msgid "Shown"
-#~ msgstr "显示"
-
-#~ msgid "Mixer label"
-#~ msgstr "混音器标签"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "重置标签为默认值(_R)"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Gnome 音量控制首选项"
-
-#~ msgid "Sound Recorder:"
-#~ msgstr "录音机："
-
-#~ msgid "Don't show this message again."
-#~ msgstr "不再显示该信息。"
-
-#~ msgid ""
-#~ "Could not find '%s'.\n"
-#~ "Set the correct path to sox inpreferences under the tab 'paths'.\n"
-#~ "\n"
-#~ "If you don't have sox, you will not be able to record or do any effects."
-#~ msgstr ""
-#~ "找不到“%s”。\n"
-#~ "请在“路径”选项卡下设置 sox 程序的正确路径。\n"
-#~ "\n"
-#~ "如果没有安装 sox 程序，您将无法录音或进行音效处理。"
-
-#~ msgid "Converting file..."
-#~ msgstr "正在转换文件..."
-
-#~ msgid "Cancel"
-#~ msgstr "取消"
-
-#~ msgid "Audioformat: "
-#~ msgstr "音频格式："
-
-#~ msgid "Sample rate: "
-#~ msgstr "采样率："
-
-#~ msgid "Channels: "
-#~ msgstr "声道："
-
-#~ msgid "Cancel open"
-#~ msgstr "取消打开"
-
-#~ msgid "Select a sound file"
-#~ msgstr "选择声音文件"
-
-#~ msgid "%s is not installed in the path"
-#~ msgstr "%s 没有安装到路径中"
-
-#~ msgid "Undoing all changes..."
-#~ msgstr "正在撤销所有改动..."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please select a sound file to be opened."
-#~ msgstr ""
-#~ "“%s”是目录。\n"
-#~ "请选择要打开的声音文件。"
-
-#~ msgid ""
-#~ "File '%s' doesn't exist.\n"
-#~ "Please select an existing sound file to be opened."
-#~ msgstr ""
-#~ "文件“%s” 不存在。\n"
-#~ "请选择已存在的声音文件来打开。"
-
-#~ msgid "File '%s isn't a valid sound file."
-#~ msgstr "文件“%s”是无效的声音文件。"
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please enter another filename."
-#~ msgstr ""
-#~ "“%s”是目录。\n"
-#~ "请输入另一个文件名。"
-
-#~ msgid "Cancel save"
-#~ msgstr "取消保存"
-
-#~ msgid "Overwrite"
-#~ msgstr "覆盖"
-
-#~ msgid "Error saving '%s'"
-#~ msgstr "保存“%s”时出错"
-
-# SUN NEW TRANSLATION
-#~ msgid ""
-#~ "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "<b>您是否要保存对“%s”所做的更改？</b>\n"
-#~ "\n"
-#~ "如果不保存，这些更改将丢失。"
-
-#~ msgid "Do_n't save"
-#~ msgstr "不保存(_N)"
-
-#~ msgid "Save %s?"
-#~ msgstr "保存 %s？"
-
-#~ msgid "Saving..."
-#~ msgstr "正在保存..."
-
-#~ msgid ""
-#~ "The size of the current sample is more than\n"
-#~ "%i Mb!"
-#~ msgstr ""
-#~ "当前采样的大小大于\n"
-#~ "%i MB！"
-
-#~ msgid "Save sound file"
-#~ msgstr "保存声音文件"
-
-#~ msgid ""
-#~ "The sound device is not ready. Please check that there isn't\n"
-#~ "another program running that is using the device."
-#~ msgstr ""
-#~ "声音设备未就绪。请确认没有另一个\n"
-#~ "运行中的程序正在使用该设备。"
-
-#~ msgid "Run GNOME Volume Control"
-#~ msgstr "运行 GNOME 音量控制"
-
-#~ msgid "Add echo"
-#~ msgstr "添加回音"
-
-#~ msgid "Add echo to the current sample"
-#~ msgstr "在当前采样中添加回音"
-
-#~ msgid "Echo"
-#~ msgstr "回音"
-
-# SUN NEW TRANSLATION
-#~ msgid "_Undo All"
-#~ msgstr "全部撤消(_U)"
-
-#~ msgid "Undo all changes made on the current sample"
-#~ msgstr "撤消对当前采样的所有更改"
-
-#~ msgid "Effects"
-#~ msgstr "效果"
-
-#~ msgid "16bit PCM"
-#~ msgstr "16位 PCM"
-
-#~ msgid "8bit PCM"
-#~ msgstr "8位 PCM"
-
-#~ msgid "stereo"
-#~ msgstr "立体声"
-
-#~ msgid "mono"
-#~ msgstr "单声道"
-
-#~ msgid "Create new sample"
-#~ msgstr "创建新采样"
-
-#~ msgid "Play current sample"
-#~ msgstr "播放当前采样"
-
-#~ msgid "Stop playing/recording"
-#~ msgstr "停止 播放/录音"
-
-#~ msgid "Start recording"
-#~ msgstr "开始录音"
-
-#~ msgid "Audio format: "
-#~ msgstr "音频格式："
-
-#~ msgid "File '%s' doesn't exist; using default."
-#~ msgstr "文件“%s”不存在，使用默认值。"
-
-#~ msgid "File '%s' isn't a supported soundfile."
-#~ msgstr "文件“%s”不是支持的声音文件。"
-
-# SUN NEW TRANSLATION
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Dillion Chen <dillon.chen@turbolinux.com.cn>, 1999\n"
-#~ "He Qiangqiang <carton@linux.net.cn>, 2002\n"
-#~ "Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002\n"
-#~ "Funda Wang <fundawang@linux.net.cn>, 2003"
-
-#~ msgid "GNOME Sound Recorder"
-#~ msgstr "GNOME 录音机"
-
-#~ msgid ""
-#~ "A simple soundrecorder and soundplayer for GNOME.\n"
-#~ "Dedicated to my cat, Malte."
-#~ msgstr ""
-#~ "简单的 GNOME 录音机和声音播放器。\n"
-#~ "献给我的猫 Malte。"
-
-#~ msgid "Gnome Sound Recorder Preferences"
-#~ msgstr "Gnome 录音机首选项"
-
-#~ msgid "Sound Recorder Preferences"
-#~ msgstr "录音机首选项"
-
-#~ msgid "Recording"
-#~ msgstr "录音"
-
-#~ msgid "Time"
-#~ msgstr "时间"
-
-#~ msgid "_Recording timeout: "
-#~ msgstr "录音超时(_R)："
-
-#~ msgid "_Stop recording on timeout"
-#~ msgstr "超时则停止录音(_S)"
-
-#~ msgid "_Open save dialog when recording is finished"
-#~ msgstr "录音完成时弹出保存对话框(_O)"
-
-#~ msgid "Size"
-#~ msgstr "大小"
-
-#~ msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-#~ msgstr "弹出警告消息，如果采样大小超过(MB)(_M)："
-
-#~ msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-#~ msgstr "停止录音，如果采样大小超过(MB)(_P)："
-
-#~ msgid "Repetition"
-#~ msgstr "循环"
-
-#~ msgid "_Repeat the sound"
-#~ msgstr "循环播放(_R)"
-
-# SUN NEW TRANSLATION
-#~ msgid "Play the sound _once only."
-#~ msgstr "只播放一次(_O)。"
-
-# SUN NEW TRANSLATION
-#~ msgid "Repeat _forever"
-#~ msgstr "始终重播(_F)"
-
-#~ msgid "_Number of times:"
-#~ msgstr "次数(_N)："
-
-#~ msgid "Paths"
-#~ msgstr "路径"
-
-#~ msgid "Program files"
-#~ msgstr "程序文件"
-
-#~ msgid "_Path to sox:"
-#~ msgstr "sox 程序的路径(_P)："
-
-#~ msgid "_Apply"
-#~ msgstr "应用(_A)"
-
-#~ msgid "Folders"
-#~ msgstr "目录"
-
-#~ msgid "_Temporary folder:"
-#~ msgstr "临时目录(_T)："
-
-#~ msgid "Apply"
-#~ msgstr "应用"
-
-#~ msgid "Sound"
-#~ msgstr "声音"
-
-# SUN NEW TRANSLATION
-#~ msgid ""
-#~ "Note: These options only take effect whenever a new sound sample\n"
-#~ "is created. They do not operate on an existing sample."
-#~ msgstr ""
-#~ "注意：这些选项只在创建新声音样例时才会生效。\n"
-#~ "它们不会作用于现有样例。"
-
-#~ msgid "Audio format:"
-#~ msgstr "音频格式："
-
-#~ msgid "8 _bit PCM"
-#~ msgstr "8位 PCM(_B)"
-
-#~ msgid "16 b_it PCM"
-#~ msgstr "16位 PCM(_I)"
-
-#~ msgid "S_ample rate:"
-#~ msgstr "采样率(_A)："
-
-#~ msgid "Mono or Stereo:"
-#~ msgstr "单声道/立体声："
-
-#~ msgid "_Mono"
-#~ msgstr "单声道(_M)"
-
-#~ msgid "_Stereo"
-#~ msgstr "立体声(_S)"
-
-#~ msgid "Stereo"
-#~ msgstr "立体声"
-
-#~ msgid "Specify the geometry of the main window"
-#~ msgstr "指定主窗口的几何属性"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "几何属性"
-
-#~ msgid "Specify a file to be opened"
-#~ msgstr "指定要打开的文件"
-
-#~ msgid "Specify a file to start recording"
-#~ msgstr "指定记录录音的文件"
-
-#~ msgid "Specify a file to start playing"
-#~ msgstr "指定要播放的文件"
-
-#~ msgid "Sound recorder"
-#~ msgstr "录音机"
-
-#~ msgid "Audio format: 8bit PCM"
-#~ msgstr "音频格式：8位 PCM"
-
-#~ msgid "Audio format: 16bit PCM"
-#~ msgstr "音频格式：16位 PCM"
-
-#~ msgid "Sample rate: %s"
-#~ msgstr "采样率：%s"
-
-#~ msgid "Channels: mono"
-#~ msgstr "声道：单声道"
-
-#~ msgid "Channels: stereo"
-#~ msgstr "声道：立体声"
-
-#~ msgid "Adding echo to sample..."
-#~ msgstr "正在给采样添加回音..."
