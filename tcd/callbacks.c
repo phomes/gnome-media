@@ -71,7 +71,7 @@ void about_cb(GtkWidget *widget, gpointer data)
     return;
 }
 
-gint goto_track_cb( GtkWidget *widget, gpointer data )
+gint goto_track_cb(GtkWidget *widget, gpointer data)
 {
     tcd_playtracks(&cd, GPOINTER_TO_INT(data), cd.last_t);
     cd.repeat_track = GPOINTER_TO_INT(data);
@@ -80,6 +80,12 @@ gint goto_track_cb( GtkWidget *widget, gpointer data )
 
 void quit_cb(GtkWidget *widget, gpointer data)
 {
+    gdk_window_get_geometry(window->window, &prefs.x, &prefs.y, &prefs.w, &prefs.h, NULL);
+    gnome_config_set_int("/gtcd/Geometry/x", prefs.x);
+    gnome_config_set_int("/gtcd/Geometry/y", prefs.y);
+    gnome_config_set_int("/gtcd/Geometry/w", prefs.w);
+    gnome_config_set_int("/gtcd/Geometry/h", prefs.h);
+    gnome_config_sync();
     gtk_main_quit();
 }
 

@@ -114,6 +114,7 @@ static void select_row_cb( GtkCList *clist,
 void edit_window(GtkWidget *widget, gpointer data)
 {
 	char *titles[] = {N_("Trk"),N_("Time"),N_("Title")};
+	char tmp[64];
 	int i;
 
 	GtkWidget *disc_entry, *disc_ext;
@@ -139,7 +140,11 @@ void edit_window(GtkWidget *widget, gpointer data)
 
 	/* Disc area */
 	disc_table  = gtk_table_new(2, 2, FALSE);
-	disc_frame = gtk_frame_new(_("Disc Information"));
+	g_snprintf(tmp, 63, _("Disc Information (%02u:%02u minutes)"),
+		cd.trk[cd.last_t+1].toc.cdte_addr.msf.minute,
+	        cd.trk[cd.last_t+1].toc.cdte_addr.msf.second);
+	              
+	disc_frame = gtk_frame_new(tmp);
 	label 	   = gtk_label_new(_("Artist / Title"));
 	disc_ext   = gtk_button_new_with_label(_("Ext Data"));
 	gtk_widget_set_sensitive(disc_ext, FALSE);

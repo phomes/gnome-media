@@ -18,11 +18,22 @@ void setup_fonts(void);
 void setup_popup_menu(GtkWidget *w, cd_struct *data);
 void edit_window(GtkWidget *widget, gpointer data);
 
+GnomeClient *new_client(void);
+void session_die (gpointer client_data);
+int save_state (GnomeClient        *client,
+		       gint                phase,
+		       GnomeRestartStyle   save_style,
+		       gint                shutdown,
+		       GnomeInteractStyle  interact_style,
+		       gint                fast,
+		       gpointer            client_data);
+
 extern int titlelabel_f;
 extern cd_struct cd;
 extern tcd_prefs prefs;
 extern GtkTooltips *tooltips;
 extern GtkAccelGroup *accel;
 extern GList *keys;
+extern GtkWidget *window;
 
 #endif

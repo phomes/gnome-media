@@ -66,7 +66,6 @@ void load_prefs(tcd_prefs *prop)
     prop->exit_action=gnome_config_get_int         ("/gtcd/general/exit_action=0");
     prop->start_action=gnome_config_get_int        ("/gtcd/general/start_action=0");
     prop->close_tray_on_start=gnome_config_get_bool("/gtcd/general/close_tray_on_start=false");
-
 }
 
 void save_prefs(tcd_prefs *prop)

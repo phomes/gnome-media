@@ -22,6 +22,8 @@ typedef struct
 
     TCDAction exit_action, start_action;
     gboolean close_tray_on_start;
+
+    int x,y,h,w;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );

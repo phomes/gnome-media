@@ -808,7 +808,7 @@ void setup_time_display(GtkWidget *table)
 
 void setup_fonts(void)
 {
-    if( tfont )
+    if(tfont)
 	gdk_font_unref(tfont);
 
     if(prefs.trackfont)
@@ -827,7 +827,7 @@ void setup_fonts(void)
 void init_window(void)
 {
     setup_fonts();
-
+    /* Window */
     window = gnome_app_new("gtcd", "TCD 2.0");
     gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
     gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd");
@@ -837,8 +837,10 @@ void init_window(void)
 		       GTK_SIGNAL_FUNC(quit_cb), NULL);
 
     gtk_container_border_width(GTK_CONTAINER(window), 3);
+
     gtk_widget_realize(window);
 
+    /* a gc */
     gc = gdk_gc_new(window->window);
     gdk_gc_copy(gc, window->style->white_gc);
 
