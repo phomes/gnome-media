@@ -504,10 +504,9 @@ status_ok (GnomeCD *gcd,
 
 	case GNOME_CDROM_AUDIO_PLAY:
 		/* Change the play button to pause */
-		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
-		atk_object_set_name (aob, _("Pause"));
-
 		if (gcd->current_image != gcd->pause_image) {
+			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+			atk_object_set_name (aob, _("Pause"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b),
 					      gcd->play_image);
 			gtk_container_add (GTK_CONTAINER (gcd->play_b),
@@ -567,9 +566,9 @@ status_ok (GnomeCD *gcd,
 
 	case GNOME_CDROM_AUDIO_PAUSE:
 		/* Change the play button to pause */
-		aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
-		atk_object_set_name (aob, _("Play"));
 		if (gcd->current_image != gcd->play_image) {
+			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+			atk_object_set_name (aob, _("Play"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b),
 					      gcd->pause_image);
 			gtk_container_add (GTK_CONTAINER (gcd->play_b),
