@@ -5,7 +5,9 @@ INCLUDES =					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DG_LOG_DOMAIN=\"CDDBSlave2\"
 
-bin_PROGRAMS = CDDBSlave2 cddb-slave2-properties
+bin_PROGRAMS = CDDBSlave2 			\
+	       cddb-slave2-properties 		\
+	       cddb-track-editor
 
 lib_LTLIBRARIES = libcddb-slave2.la
 
@@ -51,6 +53,12 @@ CDDBSlave2_LDADD =				\
 	$(CDDBSLAVE_LIBS)				\
 	$(INTLLIBS)
 
+cddb_track_editor_SOURCES = cddb-disclosure.c	\
+	cddb-disclosure.h			\
+	cddb-track-editor.c
+
+cddb_track_editor_LDADD =				\
+	$(CDDBSLAVE_LIBS)
 cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
 cddb_slave2_properties_SOURCES = cddb-slave-capplet.c	\
 				 gnet.h			\
