@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 1998-11-07 00:29+0100\n"
+"POT-Creation-Date: 1998-11-21 04:58-0500\n"
 "PO-Revision-Date: 1998-11-07 00:30+0100\n"
 "Last-Translator: Tuomas J. Lukka <lukka@iki.fi>\n"
 "MIME-Version: 1.0\n"
@@ -70,16 +70,15 @@ msgstr "GMIX - Gnome-miksaajan"
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Miksaaja OSS ‰‰nikorteille."
 
-#: tcd/callbacks.c:61
+#: tcd/callbacks.c:69
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnomen CD-soitin"
 
-#: tcd/callbacks.c:65
+#: tcd/callbacks.c:73
 msgid ""
 "Gnome CD player application with CDDB support. Please see the 'Thanks' file "
 "included with the distribution for more credits."
-msgstr ""
-"Gnomen CD-soitin, osaa k‰ytt‰‰ CDDB:t‰. "
+msgstr "Gnomen CD-soitin, osaa k‰ytt‰‰ CDDB:t‰. "
 
 #: tcd/gtracked.c:116
 msgid "Trk"
@@ -106,152 +105,187 @@ msgstr "Levyn tiedot (%02u:%02u minuuttia)"
 msgid "Artist / Title"
 msgstr "Taiteilija / Nimi"
 
-#: tcd/gtracked.c:149 tcd/gtracked.c:170
-msgid "Ext Data"
-msgstr "Ext data"
-
-#: tcd/gtracked.c:189
+#. ...
+#: tcd/gtracked.c:190
 msgid "Track Information"
 msgstr "Uratiedot"
 
 #. Clear button
-#: tcd/gtracked.c:201
+#: tcd/gtracked.c:203
 msgid "Clear"
 msgstr "Tyhjenn‰"
 
 #. Playlist button
-#: tcd/gtracked.c:205
+#: tcd/gtracked.c:208
 msgid "Playlist"
 msgstr "Soittolista"
 
+#. CDDB Status  button
+#: tcd/gtracked.c:213
+msgid "CDDB Status"
+msgstr "CDDB-Tila"
+
 #. do nothing
-#: tcd/prefs.c:130 tcd/prefs.c:185
+#: tcd/prefs.c:146 tcd/prefs.c:201
 msgid "Do Nothing"
 msgstr "ƒl‰ tee mit‰‰n"
 
-#: tcd/prefs.c:136
+#: tcd/prefs.c:152
 msgid "Start Playing"
 msgstr "Ala soittaa"
 
-#: tcd/prefs.c:142 tcd/prefs.c:191
+#: tcd/prefs.c:158 tcd/prefs.c:207
 msgid "Stop Playing"
 msgstr "Lakkaa soittamasta"
 
 #. close tray
-#: tcd/prefs.c:146 tcd/prefs.c:203
+#: tcd/prefs.c:162 tcd/prefs.c:219
 msgid "Close Tray"
 msgstr "Sulje luukku"
 
-#: tcd/prefs.c:197
+#: tcd/prefs.c:213
 msgid "Open Tray"
 msgstr "Avaa luukku"
 
 #. device entry
-#: tcd/prefs.c:276
+#: tcd/prefs.c:292
 msgid "CDROM Device"
 msgstr "CDROM-laite"
 
 #. Color picker
-#: tcd/prefs.c:285
+#: tcd/prefs.c:301
 msgid "Track/Title Color"
 msgstr "Ura-/Otsikkov‰ri"
 
 #. font picker
-#: tcd/prefs.c:297
+#: tcd/prefs.c:313
 msgid "Track/Title Font"
 msgstr "Ura-/otsikkokirjasinlaji"
 
-#: tcd/prefs.c:298
+#: tcd/prefs.c:314
 msgid "Change Font"
 msgstr "Vaihda kirjasinlajia"
 
 #. show handles
-#: tcd/prefs.c:305
+#: tcd/prefs.c:321
 msgid "Show Handles (Restart of TCD required)"
 msgstr "N‰yt‰ kahvat (TCD t‰ytyy k‰ynnist‰‰ uudelleen)"
 
 #. show tooltips
-#: tcd/prefs.c:312
+#: tcd/prefs.c:328
 msgid "Show Tooltips"
 msgstr "N‰yt‰ ilmapalloapu"
 
 #. start frame
-#: tcd/prefs.c:332
+#: tcd/prefs.c:348
 msgid "On Startup"
 msgstr "Alussa"
 
 #. exit frame
-#: tcd/prefs.c:337
+#: tcd/prefs.c:354
 msgid "On Exit"
 msgstr "Poistuttaessa"
 
 #. general frame
-#: tcd/prefs.c:342
+#: tcd/prefs.c:360
 msgid "General"
 msgstr "Yleist‰"
 
-#: tcd/prefs.c:377
+#: tcd/prefs.c:459
 msgid "Key"
 msgstr "N‰pp‰in"
 
-#: tcd/prefs.c:378
+#: tcd/prefs.c:460
 msgid "Action"
 msgstr "Toiminta"
 
 #. Frame
-#: tcd/prefs.c:390
-msgid "Keybindings (not editable YET)"
-msgstr "N‰pp‰imet (Ei viel‰ muutettavissa)"
-
-#: tcd/gtcd.c:304 tcd/prefs.c:416
-msgid "Preferences"
-msgstr "Asetukset"
-
-#: tcd/prefs.c:421
+#: tcd/prefs.c:498 tcd/prefs.c:530
 msgid "Keybindings"
 msgstr "N‰pp‰imet"
 
-#: tcd/gtcd.c:303
+#: tcd/gtcd.c:301 tcd/prefs.c:525
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: tcd/gtcd.c:63
+msgid "trk-e"
+msgstr "ura-k"
+
+#: tcd/gtcd.c:64
+msgid "trk-r"
+msgstr "ura-j"
+
+#: tcd/gtcd.c:65
+msgid "dsc-e"
+msgstr "levy-k"
+
+#: tcd/gtcd.c:66
+msgid "dsc-r"
+msgstr "levy-j"
+
+#: tcd/gtcd.c:71
+msgid "loop-cd"
+msgstr "toisto"
+
+#: tcd/gtcd.c:72
+msgid "loop-t"
+msgstr "uratoisto"
+
+#: tcd/gtcd.c:73
+#, fuzzy
+msgid "normal"
+msgstr "normaali"
+
+#: tcd/gtcd.c:74
+msgid "random"
+msgstr "seka"
+
+#: tcd/gtcd.c:300
 msgid "Open track editor"
 msgstr "Avaa uraeditori"
 
-#: tcd/gtcd.c:305 tcd/popup.c:23
+#: tcd/gtcd.c:302 tcd/popup.c:23
 msgid "Quit"
 msgstr "Poistu"
 
 #. TOP ROW
-#: tcd/gtcd.c:326 tcd/popup.c:15
-msgid "Play"
-msgstr "Soita"
+#: tcd/gtcd.c:323
+msgid "Play/Pause"
+msgstr "Soita/Odota"
 
-#: tcd/gtcd.c:330 tcd/popup.c:16
+#: tcd/gtcd.c:327 tcd/popup.c:16
 msgid "Stop"
 msgstr "Seis"
 
-#: tcd/gtcd.c:331 tcd/popup.c:17
+#: tcd/gtcd.c:328 tcd/popup.c:17
 msgid "Eject"
 msgstr "Levy ulos"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:338 tcd/gtcd.c:346
+#: tcd/gtcd.c:335 tcd/gtcd.c:343
 msgid "Skip backwards"
 msgstr "Hypp‰‰ taaksep‰in"
 
-#: tcd/gtcd.c:339 tcd/gtcd.c:347
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip forwards"
 msgstr "Hypp‰‰ eteenp‰in"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:444 tcd/gtcd.c:445 tcd/gtcd.c:446
 msgid "(Scanning)"
 msgstr "(Skannaa)"
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:468
 msgid "No Disc"
 msgstr "Ei levy‰"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:496
 msgid "Error"
 msgstr "Vika"
+
+#: tcd/popup.c:15
+msgid "Play"
+msgstr "Soita"
 
 #: tcd/popup.c:19
 msgid "Preferences..."
@@ -264,3 +298,9 @@ msgstr "Uraeditori..."
 #: tcd/popup.c:21
 msgid "About..."
 msgstr "Tietoja..."
+
+#~ msgid "Ext Data"
+#~ msgstr "Ext data"
+
+#~ msgid "Keybindings (not editable YET)"
+#~ msgstr "N‰pp‰imet (Ei viel‰ muutettavissa)"

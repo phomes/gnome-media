@@ -60,18 +60,18 @@ enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
 
 char *display_types[] = 
 {
-    "trk-e",
-    "trk-r",
-    "dsc-e",
-    "dsc-r"
+    N_("trk-e"),
+    N_("trk-r"),
+    N_("dsc-e"),
+    N_("dsc-r")
 };
 
 char *play_types[] = 
 {
-    "loop-cd",
-    "loop-t",
-    "normal",
-    "random"
+    N_("loop-cd"),
+    N_("loop-t"),
+    N_("normal"),
+    N_("random")
 };
 
 /* globals */
@@ -502,13 +502,15 @@ void draw_status(void)
 	}
 	if(cd.isplayable)
 	{		
+	    char *dtmsg = gettext(display_types[prefs.time_display]);
+	    char *pmsg =  gettext(play_types[cd.play_method]);
 	    gdk_gc_set_foreground(gc, &darkgrey);
 	    gdk_draw_text( status_db,sfont,gc,48,26, 
-			   display_types[prefs.time_display], 
-			   strlen(display_types[prefs.time_display]));
+	    		   dtmsg, 
+			   strlen(dtmsg));
 	    gdk_draw_text( status_db,sfont,gc,2,26, 
-			   play_types[cd.play_method], 
-			   strlen(play_types[cd.play_method]));
+			   pmsg,
+			   strlen(pmsg));
 	}
     }
     else
