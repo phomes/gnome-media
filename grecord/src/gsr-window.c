@@ -330,60 +330,48 @@ file_new (BonoboUIComponent *uic,
 	gsr_open_window (NULL);
 }
 
-struct _FileOpenData {
-	GtkWidget *filesel;
-	GSRWindow *window;
-};
-
 static void
-file_sel_response (GtkDialog *filesel,
-		   int response_id,
-		   struct _FileOpenData *fd)
+file_chooser_open_response (GtkDialog *file_chooser,
+			    int response_id,
+			    GSRWindow *window)
 {
 	GConfClient *client;
-	const char *name;
-	char *dirname, *d;
+	char *name;
+	char *dirname;
 
 	switch (response_id) {
 	case GTK_RESPONSE_OK:
-		name = gtk_file_selection_get_filename (GTK_FILE_SELECTION (filesel));
+		name = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser));
 
-		d = g_path_get_dirname (name);
-		/* Add a trailing / so that the file selector 
-		   will cd into it */
-		dirname = g_strdup_printf ("%s/", d);
+		if (name != NULL) {
+			dirname = g_path_get_dirname (name);
 
-		client = gconf_client_get_default ();
-		gconf_client_set_string (client,
-					 "/apps/gnome-sound-recorder/system-state/open-file-directory",
-					 dirname, NULL);
-		g_object_unref (G_OBJECT (client));
-		g_free (dirname);
-		g_free (d);
+			client = gconf_client_get_default ();
+			gconf_client_set_string (client,
+					 	"/apps/gnome-sound-recorder/system-state/open-file-directory",
+					 	dirname, NULL);
+			g_object_unref (G_OBJECT (client));
+			g_free (dirname);
 
-		if (fd->window->priv->has_file == TRUE) {
-			/* Just open a new window with the file */
-			
-			gsr_open_window (name);
-			
-			gtk_widget_destroy (GTK_WIDGET (filesel));
-			g_free (fd);
-			return;
-		} else {
-			/* Set the file in this window */
-			g_object_set (G_OBJECT (fd->window),
-				      "location", name,
-				      NULL);
+			if (window->priv->has_file == TRUE) {
+				/* Just open a new window with the file */
+				gsr_open_window (name);
+			} else {
+				/* Set the file in this window */
+				g_object_set (G_OBJECT (window),
+					      "location", name,
+					      NULL);
+			}
+
+			g_free (name);
 		}
 
 		break;
-
 	default:
 		break;
 	}
 
-	gtk_widget_destroy (GTK_WIDGET (filesel));
-	g_free (fd);
+	gtk_widget_destroy (GTK_WIDGET (file_chooser));
 }
 
 static void
@@ -391,29 +379,30 @@ file_open (BonoboUIComponent *uic,
 	   GSRWindow *window,
 	   const char *path)
 {
-	struct _FileOpenData *fd;
+	GtkWidget *file_chooser;
 	GConfClient *client;
 	char *directory;
 
-	fd = g_new (struct _FileOpenData, 1);
-	fd->window = window;
-	fd->filesel = gtk_file_selection_new (_("Open a file"));
-	gtk_window_set_transient_for (GTK_WINDOW (fd->filesel), GTK_WINDOW (window));
+	file_chooser = gtk_file_chooser_dialog_new (_("Open a file"),
+						    GTK_WINDOW (window),
+						    GTK_FILE_CHOOSER_ACTION_OPEN,
+						    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+						    GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+						    NULL);
 
 	client = gconf_client_get_default ();
 	directory = gconf_client_get_string (client,
 					     "/apps/gnome-sound-recorder/system-state/open-file-directory",
 					     NULL);
 	if (directory != NULL && *directory != 0) {
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (fd->filesel),
-						 directory);
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), directory);
 	}
 	g_object_unref (G_OBJECT (client));
 	g_free (directory);
 
-	g_signal_connect (G_OBJECT (fd->filesel), "response",
-			  G_CALLBACK (file_sel_response), fd);
-	gtk_widget_show (fd->filesel);
+	g_signal_connect (G_OBJECT (file_chooser), "response",
+			  G_CALLBACK (file_chooser_open_response), window);
+	gtk_widget_show (file_chooser);
 }
 
 enum mimetype {
@@ -657,79 +646,78 @@ do_save_file (GSRWindow *window,
 }
 
 static void
-file_sel_save_response (GtkDialog *filesel,
-			int response_id,
-			struct _FileOpenData *fd)
+file_chooser_save_response (GtkDialog *file_chooser,
+			    int response_id,
+			    GSRWindow *window)
 {
 	GConfClient *client;
-	const char *name;
-	char *dirname, *d;
+	char *name;
+	char *dirname;
 
 	switch (response_id) {
 	case GTK_RESPONSE_OK:
-		name = gtk_file_selection_get_filename (GTK_FILE_SELECTION (filesel));
+		name = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser));
 
-		d = g_path_get_dirname (name);
-		/* Add a trailing / so that the file selector 
-		   will cd into it */
-		dirname = g_strdup_printf ("%s/", d);
+		if (name != NULL) {
+			dirname = g_path_get_dirname (name);
 
-		client = gconf_client_get_default ();
-		gconf_client_set_string (client,
-					 "/apps/gnome-sound-recorder/system-state/save-file-directory",
-					 dirname, NULL);
-		g_object_unref (G_OBJECT (client));
-		g_free (dirname);
-		g_free (d);
+			client = gconf_client_get_default ();
+			gconf_client_set_string (client,
+					 	"/apps/gnome-sound-recorder/system-state/save-file-directory",
+					 	dirname, NULL);
+			g_object_unref (G_OBJECT (client));
+			g_free (dirname);
 
-		do_save_file (fd->window, name);
+			do_save_file (window, name);
+			g_free (name);
+		}
+
 		break;
-
 	default:
 		break;
 	}
 
-	gtk_widget_destroy (GTK_WIDGET (filesel));
-	g_free (fd);
+	gtk_widget_destroy (GTK_WIDGET (file_chooser));
 }
 
 static void
 file_save_as (BonoboUIComponent *uic,
-	   GSRWindow *window,
-	   const char *path)
+	      GSRWindow *window,
+	      const char *path)
 {
-	struct _FileOpenData *fd;
+	GtkWidget *file_chooser;
 	GConfClient *client;
 	char *directory;
 
-	fd = g_new (struct _FileOpenData, 1);
-	fd->window = window;
-	fd->filesel = gtk_file_selection_new (_("Save file as"));
-	gtk_window_set_transient_for (GTK_WINDOW (fd->filesel), GTK_WINDOW (window));
+	file_chooser = gtk_file_chooser_dialog_new (_("Save file as"),
+						    GTK_WINDOW (window),
+						    GTK_FILE_CHOOSER_ACTION_SAVE,
+						    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+						    GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+						    NULL);
 
 	client = gconf_client_get_default ();
 	directory = gconf_client_get_string (client,
 					     "/apps/gnome-sound-recorder/system-state/save-file-directory",
 					     NULL);
 	if (directory != NULL && *directory != 0) {
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (fd->filesel),
-						 directory);
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), directory);
 	}
 	g_object_unref (G_OBJECT (client));
 	g_free (directory);
-	
+
 	if (window->priv->filename != NULL) {
 		char *basename;
 
 		basename = g_path_get_basename (window->priv->filename);
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (fd->filesel),
-						 basename);
+		gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (file_chooser),
+						   basename);
 		g_free (basename);
 	}
 
-	g_signal_connect (G_OBJECT (fd->filesel), "response",
-			  G_CALLBACK (file_sel_save_response), fd);
-	gtk_widget_show (fd->filesel);
+	g_signal_connect (G_OBJECT (file_chooser), "response",
+			  G_CALLBACK (file_chooser_save_response), window);
+	gtk_widget_show (file_chooser);
 }
 
 static void
