@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-05-13 22:33+0100\n"
-"PO-Revision-Date: 2002-04-22 23:29+0300\n"
+"POT-Creation-Date: 2002-06-03 18:24+0300\n"
+"PO-Revision-Date: 2002-05-31 13:00+0300\n"
 "Last-Translator: Jarkko Ranta <jjranta@cc.joensuu.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -90,19 +90,19 @@ msgstr "_Portti:"
 msgid "CDDBSlave 2 Properties"
 msgstr "CDDBSlave 2 Asetukset"
 
-#: cddb-slave2/cddb-slave.c:204
+#: cddb-slave2/cddb-slave.c:213
 msgid "Unknown / Unknown"
 msgstr "Tuntematon / Tuntematon"
 
-#: cddb-slave2/cddb-slave.c:210
+#: cddb-slave2/cddb-slave.c:219
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: cddb-slave2/cddb-slave.c:425
+#: cddb-slave2/cddb-slave.c:441
 msgid "Multiple matches..."
 msgstr "Useita osumia..."
 
-#: cddb-slave2/cddb-slave.c:429
+#: cddb-slave2/cddb-slave.c:445
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -110,20 +110,20 @@ msgstr ""
 "Tietokannasta löytyi useita hakua vastaavia osumia.\n"
 "Alla on lista mahdollisista osumista, valitse niistä paras"
 
-#: cddb-slave2/cddb-slave.c:440
+#: cddb-slave2/cddb-slave.c:456
 msgid "Category"
 msgstr "Kategoria"
 
-#: cddb-slave2/cddb-slave.c:444
+#: cddb-slave2/cddb-slave.c:460
 msgid "Disc ID"
 msgstr "Levyn ID"
 
-#: cddb-slave2/cddb-slave.c:448
+#: cddb-slave2/cddb-slave.c:464
 msgid "Artist and Title"
 msgstr "Esittäjä ja levyn nimi"
 
-#: cddb-slave2/cddb-slave.c:1256 cddb-slave2/cddb-slave.c:1258
-#: gnome-cd/gnome-cd.c:122
+#: cddb-slave2/cddb-slave.c:1279 cddb-slave2/cddb-slave.c:1281
+#: gnome-cd/gnome-cd.c:125
 msgid "Unknown track"
 msgstr "Tuntematon raita"
 
@@ -740,13 +740,13 @@ msgstr "Art Rock"
 
 #: cddb-slave2/cddb-track-editor.c:525
 #, c-format
-msgid "Editting discid: %s"
-msgstr "Muokataan levy-ID:tä: %s"
+msgid "Editing Disc ID: %s"
+msgstr "Muokataan levyn ID:tä: %s"
 
 #. Info label
 #: cddb-slave2/cddb-track-editor.c:615
-msgid "Editting discid: "
-msgstr "Muokataan levy-ID:tä"
+msgid "Editing Disc ID: "
+msgstr "Muokataan levyn ID:tä:"
 
 #: cddb-slave2/cddb-track-editor.c:626
 msgid "_Artist:"
@@ -858,7 +858,7 @@ msgstr "Radio"
 msgid "Phone"
 msgstr "Puhelin"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1081
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1091
 msgid "Mono"
 msgstr "Mono"
 
@@ -1050,24 +1050,28 @@ msgstr "PuhUlos"
 msgid "Monitor"
 msgstr "Monitori"
 
-#: gmix/gmix.c:147
+#: gmix/gmix.c:114
+msgid "Help"
+msgstr "Ohje"
+
+#: gmix/gmix.c:146
 msgid "don't restore mixer-settings from configuration"
 msgstr "älä palauta mikserin asetuksia varastoituihin arvoihin"
 
 #
-#: gmix/gmix.c:148
+#: gmix/gmix.c:147
 msgid "restore mixer-settings from configuration"
 msgstr "palauta mikserin asetukset varastoituihin arvoihin"
 
-#: gmix/gmix.c:149
+#: gmix/gmix.c:148
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "alusta mikseri(t) varastoituihin arvoihin ja poistu"
 
-#: gmix/gmix.c:150
+#: gmix/gmix.c:149
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "älä tallenna (muutettuja) mikserin asetuksia"
 
-#: gmix/gmix.c:379
+#: gmix/gmix.c:378
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -1077,7 +1081,7 @@ msgstr ""
 "Varmista että sinulla on oikeus avata /dev/mixer\n"
 "ja että sinulla on äänituki käännettynä kerneliisi."
 
-#: gmix/gmix.c:594
+#: gmix/gmix.c:593
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1088,7 +1092,7 @@ msgstr ""
 "versionumerolle %d.%d.%d, ja järjestelmäsi versio\n"
 "on aikaisempi kuin 3.6.0.\n"
 
-#: gmix/gmix.c:602
+#: gmix/gmix.c:601
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1099,58 +1103,59 @@ msgstr ""
 "versionumerolle %d.%d.%d, ja järjestelmäsi versio\n"
 "on %d.%d.%d.\n"
 
-#: gmix/gmix.c:1067
+#: gmix/gmix.c:1055
 #, c-format
 msgid "left %s"
 msgstr "Vasen %s"
 
-#: gmix/gmix.c:1093
+#: gmix/gmix.c:1081
 #, c-format
 msgid "Right %s"
 msgstr "Oikea %s"
 
-#: gmix/gmix.c:1186
+#: gmix/gmix.c:1174
 msgid "Lock"
 msgstr "Lukitus"
 
-#: gmix/gmix.c:1199
+#: gmix/gmix.c:1187
 #, c-format
 msgid "%s Lock"
 msgstr "%s Lukitus"
 
-#: gmix/gmix.c:1210
+#: gmix/gmix.c:1198
 msgid "Mute"
 msgstr "Vaimennus"
 
-#: gmix/gmix.c:1223
+#: gmix/gmix.c:1211
 #, c-format
 msgid "%s Mute"
 msgstr "%s Vaimennus"
 
-#: gmix/gmix.c:1237
+#: gmix/gmix.c:1225
 msgid "Rec."
 msgstr "Äänitys"
 
 #
-#: gmix/gmix.c:1249
+#: gmix/gmix.c:1237
 #, c-format
 msgid "%s Record"
 msgstr "%s Äänitys"
 
-#: gmix/gmix.c:1320 gmix/gnome-volume-control.desktop.in.h:2
+#: gmix/gmix.c:1308 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-cd/gnome-cd.c:489
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Äänenhallinta"
 
-#: gmix/gmix.c:1716
+#: gmix/gmix.c:1703
 msgid "Gnome Volume Control"
 msgstr "Gnomen äänenhallinta"
 
-#: gmix/gmix.c:1719
+#: gmix/gmix.c:1706
 msgid "This is a mixer for sound devices"
 msgstr "Tämä on mikseri äänilaitteille"
 
-#: gmix/gnome-volume-control.desktop.in.h:1
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Säädä äänenvoimakkuutta"
@@ -1194,7 +1199,7 @@ msgstr "Aseta otsikkoasetukset _oletusarvoihinsa"
 msgid "Gnome Volume Control Preferences"
 msgstr "Gnomen äänenhallinnan asetukset"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:524
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:507
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -1247,189 +1252,64 @@ msgstr "Levyrivi"
 msgid "Line for displaying the name of the album"
 msgstr "Rivi joka näyttää levyn nimen"
 
-#: gnome-cd/callbacks.c:73 gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:250
-#: gnome-cd/callbacks.c:502 gnome-cd/gnome-cd.c:571 grecord/src/gui.c:232
+#: gnome-cd/callbacks.c:76 gnome-cd/callbacks.c:163 gnome-cd/callbacks.c:262
+#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:556 grecord/src/gui.c:236
 msgid "Play"
 msgstr "Soita"
 
-#: gnome-cd/callbacks.c:182 gnome-cd/callbacks.c:212 gnome-cd/callbacks.c:292
-#: gnome-cd/callbacks.c:332 gnome-cd/callbacks.c:356 gnome-cd/callbacks.c:397
-#: gnome-cd/callbacks.c:452
+#: gnome-cd/callbacks.c:148 gnome-cd/callbacks.c:194 gnome-cd/callbacks.c:224
+#: gnome-cd/callbacks.c:304 gnome-cd/callbacks.c:344 gnome-cd/callbacks.c:368
+#: gnome-cd/callbacks.c:409 gnome-cd/callbacks.c:496
 msgid "Pause"
 msgstr "Keskeytä"
 
-#: gnome-cd/callbacks.c:570
+#: gnome-cd/callbacks.c:602
 msgid "Disc error"
 msgstr "Levyvirhe"
 
-#: gnome-cd/callbacks.c:603 gnome-cd/callbacks.c:614
+#: gnome-cd/callbacks.c:635 gnome-cd/callbacks.c:646
 msgid "Unknown Artist"
 msgstr "Tuntematon esittäjä"
 
-#: gnome-cd/callbacks.c:606 gnome-cd/callbacks.c:618
+#: gnome-cd/callbacks.c:638 gnome-cd/callbacks.c:650
 msgid "Unknown Album"
 msgstr "Tuntematon levy"
 
-#: gnome-cd/callbacks.c:660
+#: gnome-cd/callbacks.c:689
 msgid "No disc"
 msgstr "Ei levyä"
 
-#: gnome-cd/callbacks.c:686
+#: gnome-cd/callbacks.c:715
 msgid "Drive open"
 msgstr "Asema auki"
 
-#: gnome-cd/callbacks.c:698
+#: gnome-cd/callbacks.c:727
 msgid "Drive Error"
 msgstr "Asemavirhe"
 
-#: gnome-cd/callbacks.c:719
+#: gnome-cd/callbacks.c:748
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:720
+#: gnome-cd/callbacks.c:749
 msgid "A GNOME cd player"
 msgstr "Gnomen cd-soitin"
 
-#: gnome-cd/display.c:73
+#: gnome-cd/display.c:74
 msgid "Unknown artist"
 msgstr "Tuntematon esittäjä"
 
-#: gnome-cd/display.c:74
+#: gnome-cd/display.c:75
 msgid "Unknown disc"
 msgstr "Tuntematon levy"
 
-#: gnome-cd/gnome-cd.c:148
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - Tuntematon"
-
-#: gnome-cd/gnome-cd.c:312
-msgid "P_revious track"
-msgstr "_Edellinen raita"
-
-#: gnome-cd/gnome-cd.c:313
-msgid "_Stop"
-msgstr "_Pysäytä"
-
-#: gnome-cd/gnome-cd.c:314
-msgid "_Play / Pause"
-msgstr "_Soita / Keskeytä"
-
-#: gnome-cd/gnome-cd.c:315
-msgid "_Next track"
-msgstr "Seu_raava raita"
-
-#: gnome-cd/gnome-cd.c:316
-msgid "_Eject disc"
-msgstr "_Levy ulos"
-
-#: gnome-cd/gnome-cd.c:317
-msgid "_About Gnome-CD"
-msgstr "_Tietoja Gnome-CD:stä"
-
-#: gnome-cd/gnome-cd.c:394
-msgid ""
-"There is no CD device set. This means that GnomeCD\n"
-"will be unable to run. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
-msgstr ""
-"CD-laitetta ei ole asetettu. Tämä tarkoittaa ettei Gnome-CD\n"
-"tule toimimaan. Valitse 'Aseta laite' päästäksesi valitsemaan\n"
-"oikean laitteen, tai valitse 'Lopeta' poistuaksesi Gnome-CD:stä"
-
-#: gnome-cd/gnome-cd.c:398 gnome-cd/gnome-cd.c:438
-msgid "Set device"
-msgstr "Aseta laite"
-
-#: gnome-cd/gnome-cd.c:400
-msgid "No CD device"
-msgstr "Ei CD-asemaa"
-
-#: gnome-cd/gnome-cd.c:434
-#, fuzzy, c-format
-msgid ""
-"%s\n"
-"This means that GnomeCD will be unable to run correctly. Press Set device to "
-"go to a dialog where you can set the device, or click Quit to quit GnomeCD"
-msgstr ""
-"CD-laitetta ei ole asetettu. Tämä tarkoittaa ettei Gnome-CD\n"
-"tule toimimaan. Valitse 'Aseta laite' päästäksesi valitsemaan\n"
-"oikean laitteen, tai valitse 'Lopeta' poistuaksesi Gnome-CD:stä"
-
-#: gnome-cd/gnome-cd.c:440
-msgid "Invalid CD device"
-msgstr "Epäkelpo CD-laite"
-
-#: gnome-cd/gnome-cd.c:515
-msgid "Open track editor"
-msgstr "Avaa raitamuokkain"
-
-#: gnome-cd/gnome-cd.c:516
-msgid "Track editor"
-msgstr "Raitamuokkain"
-
-#: gnome-cd/gnome-cd.c:523
-#, fuzzy
-msgid "Open preferences"
-msgstr "Asetukset"
-
-#: gnome-cd/gnome-cd.c:550
-msgid "Previous track"
-msgstr "Edellinen raita"
-
-#: gnome-cd/gnome-cd.c:550
-msgid "Previous"
-msgstr "Edellinen"
-
-#: gnome-cd/gnome-cd.c:554
-msgid "Rewind"
-msgstr "Takaisinkelaus"
-
-#: gnome-cd/gnome-cd.c:571
-msgid "Play / Pause"
-msgstr "Soita / Keskeytä"
-
-#: gnome-cd/gnome-cd.c:576 grecord/src/gui.c:246
-msgid "Stop"
-msgstr "Pysäytä"
-
-#: gnome-cd/gnome-cd.c:580
-msgid "Fast forward"
-msgstr "Eteenpäinkelaus"
-
-#: gnome-cd/gnome-cd.c:588
-msgid "Next track"
-msgstr "Seuraava raita"
-
-#: gnome-cd/gnome-cd.c:592
-msgid "Eject CD"
-msgstr "Levy ulos"
-
-#
-#: gnome-cd/gnome-cd.c:592
-msgid "Eject"
-msgstr "Levy ulos"
-
-#: gnome-cd/gnome-cd.c:656
-msgid "Cannot create player"
-msgstr "Soittimen luonti epäonnistui"
-
-#: gnome-cd/gnome-cd.desktop.in.h:1
-msgid "CD Player"
-msgstr "CD-soitin"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "Soita audio-CD:itä"
-
-#: gnome-cd/linux-cdrom.c:144 gnome-cd/linux-cdrom.c:1148
-#: gnome-cd/linux-cdrom.c:1315
+#: gnome-cd/cdrom.c:355
 #, c-format
 msgid "You do not seem to have permission to access %s."
-msgstr ""
+msgstr "Sinulla ei näytä olevan saantioikeuksia kohteeseen %s."
 
-#: gnome-cd/linux-cdrom.c:149
-#, fuzzy, c-format
+#: gnome-cd/cdrom.c:361
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not compiled into Linux\n"
@@ -1442,23 +1322,155 @@ msgstr ""
 "b) Sinulla ei ole tarvittavia oikeuksia CD-aseman käyttöön\n"
 "c) %s ei ole CD-asema.\n"
 
-#: gnome-cd/linux-cdrom.c:224
+#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
+msgid "Gnome CD Player"
+msgstr "Gnomen CD-soitin"
+
+#: gnome-cd/gnome-cd.c:151
+#, c-format
+msgid "%d - Unknown"
+msgstr "%d - Tuntematon"
+
+#: gnome-cd/gnome-cd.c:295
+msgid "P_revious track"
+msgstr "_Edellinen raita"
+
+#: gnome-cd/gnome-cd.c:296
+msgid "_Stop"
+msgstr "_Pysäytä"
+
+#: gnome-cd/gnome-cd.c:297
+msgid "_Play / Pause"
+msgstr "_Soita / Keskeytä"
+
+#: gnome-cd/gnome-cd.c:298
+msgid "_Next track"
+msgstr "Seu_raava raita"
+
+#: gnome-cd/gnome-cd.c:299
+msgid "_Eject disc"
+msgstr "_Levy ulos"
+
+#: gnome-cd/gnome-cd.c:300
+msgid "_About Gnome-CD"
+msgstr "_Tietoja Gnome-CD:stä"
+
+#: gnome-cd/gnome-cd.c:374
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+"CD-laitetta ei ole asetettu. Tämä tarkoittaa ettei Gnome-CD\n"
+"tule toimimaan. Valitse 'Aseta laite' päästäksesi valitsemaan\n"
+"oikean laitteen, tai valitse 'Lopeta' poistuaksesi Gnome-CD:stä"
+
+#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:418
+msgid "Set device"
+msgstr "Aseta laite"
+
+#: gnome-cd/gnome-cd.c:380
+msgid "No CD device"
+msgstr "Ei CD-asemaa"
+
+#: gnome-cd/gnome-cd.c:414
+#, c-format
+msgid ""
+"%s\n"
+"This means that GnomeCD will be unable to run correctly. Press Set device to "
+"go to a dialog where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+"%s\n"
+"Tämä tarkoittaa ettei Gnome-CD tule toimimaan kunnolla. Valitse 'Aseta "
+"laite' päästäksesi valitsemaan oikean laitteen, tai valitse 'Lopeta' "
+"poistuaksesi Gnome-CD:stä"
+
+#: gnome-cd/gnome-cd.c:420
+msgid "Invalid CD device"
+msgstr "Epäkelpo CD-laite"
+
+#: gnome-cd/gnome-cd.c:498
+msgid "Open track editor"
+msgstr "Avaa raitamuokkain"
+
+#: gnome-cd/gnome-cd.c:499
+msgid "Track editor"
+msgstr "Raitamuokkain"
+
+#: gnome-cd/gnome-cd.c:506
+msgid "Open preferences"
+msgstr "Avaa asetusikkuna"
+
+#: gnome-cd/gnome-cd.c:515
+msgid "Track List"
+msgstr "Raitaluettelo"
+
+#: gnome-cd/gnome-cd.c:535
+msgid "Previous track"
+msgstr "Edellinen raita"
+
+#: gnome-cd/gnome-cd.c:535
+msgid "Previous"
+msgstr "Edellinen"
+
+#: gnome-cd/gnome-cd.c:539
+msgid "Rewind"
+msgstr "Takaisinkelaus"
+
+#: gnome-cd/gnome-cd.c:556
+msgid "Play / Pause"
+msgstr "Soita / Keskeytä"
+
+#: gnome-cd/gnome-cd.c:561 grecord/src/gui.c:250
+msgid "Stop"
+msgstr "Pysäytä"
+
+#: gnome-cd/gnome-cd.c:565
+msgid "Fast forward"
+msgstr "Eteenpäinkelaus"
+
+#: gnome-cd/gnome-cd.c:573
+msgid "Next track"
+msgstr "Seuraava raita"
+
+#: gnome-cd/gnome-cd.c:577
+msgid "Eject CD"
+msgstr "Levy ulos"
+
+#
+#: gnome-cd/gnome-cd.c:577
+msgid "Eject"
+msgstr "Levy ulos"
+
+#: gnome-cd/gnome-cd.c:641
+msgid "Cannot create player"
+msgstr "Soittimen luonti epäonnistui"
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD-soitin"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Soita audio-CD:itä"
+
+#: gnome-cd/linux-cdrom.c:175
 msgid "Error opening CD"
 msgstr "Virhe avattaessa CD:tä"
 
-#: gnome-cd/linux-cdrom.c:229
+#: gnome-cd/linux-cdrom.c:180
 msgid "Error reading CD header"
 msgstr "Virhe luettaessa CD:n otsikkotietoja"
 
-#: gnome-cd/linux-cdrom.c:246
+#: gnome-cd/linux-cdrom.c:197
 msgid "IOCtl failed"
 msgstr "IOCtl epäonnistui"
 
-#: gnome-cd/linux-cdrom.c:258
+#: gnome-cd/linux-cdrom.c:209
 msgid "Error getting leadout"
 msgstr "Virhe haettaessa leadoutia"
 
-#: gnome-cd/linux-cdrom.c:266
+#: gnome-cd/linux-cdrom.c:217
 #, c-format
 msgid ""
 "CD changed\n"
@@ -1469,157 +1481,144 @@ msgstr ""
 "Raitoja: %d\n"
 "------------------\n"
 
-#: gnome-cd/linux-cdrom.c:298
+#: gnome-cd/linux-cdrom.c:249
 #, c-format
 msgid "(eject): ioctl failed: %s"
 msgstr "(eject): ioctl epäonnistui: %s"
 
-#: gnome-cd/linux-cdrom.c:484
+#: gnome-cd/linux-cdrom.c:434
 msgid "(linux_cdrom_play): Drive not ready"
 msgstr "(linux_cdrom_play): Asema ei ole valmis"
 
-#: gnome-cd/linux-cdrom.c:504
+#: gnome-cd/linux-cdrom.c:454
 msgid "(linux_cdrom_play): Drive still not ready"
 msgstr "(linux_cdrom_play): Asema ei ole vieläkään valmis"
 
-#: gnome-cd/linux-cdrom.c:569
+#: gnome-cd/linux-cdrom.c:519
 #, c-format
 msgid "(linux_cdrom_play) ioctl failed %s"
 msgstr "(linux_cdrom_play) ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:605
+#: gnome-cd/linux-cdrom.c:555
 msgid "(linux_cdrom_pause): Drive not ready"
 msgstr "(linux_cdrom_pause): Asema ei ole valmis"
 
-#: gnome-cd/linux-cdrom.c:618
+#: gnome-cd/linux-cdrom.c:568
 #, c-format
 msgid "(linux_cdrom_pause): Resume failed %s"
 msgstr "(linux_cdrom_pause): Jatkaminen epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:637
+#: gnome-cd/linux-cdrom.c:587
 #, c-format
 msgid "(linux_cdrom_pause): ioctl failed %s"
 msgstr "(linux_cdrom_pause): ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:683
+#: gnome-cd/linux-cdrom.c:633
 #, c-format
 msgid "(linux_cdrom_stop) ioctl failed %s"
 msgstr "(linux_cdrom_stop) ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:899
+#: gnome-cd/linux-cdrom.c:849
 #, c-format
 msgid "(linux_cdrom_get_status): ioctl error %s"
 msgstr "(linux_cdrom_get_status): ioctl-virhe %s"
 
-#: gnome-cd/linux-cdrom.c:913
+#: gnome-cd/linux-cdrom.c:863
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
 msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:924
+#: gnome-cd/linux-cdrom.c:874
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
 msgstr "(linux_cdrom_get_status): CDROMVOLREAD ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:989
+#: gnome-cd/linux-cdrom.c:939
 #, c-format
 msgid "(linux_cdrom_close_tray): ioctl failed %s"
 msgstr "(linux_cdrom_close_tray): ioctl epäonnistui %s"
 
-#: gnome-cd/linux-cdrom.c:1024
+#: gnome-cd/linux-cdrom.c:974
 #, c-format
 msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
 msgstr "(linux_cdrom_set_volume:1): ioctl epäonnistui %s"
 
 #. Failed, it's not a CDROM drive
-#: gnome-cd/linux-cdrom.c:1055
-#, fuzzy, c-format
+#: gnome-cd/linux-cdrom.c:1005
+#, c-format
 msgid "%s is not a CDROM drive"
-msgstr "%s ei ole CDROM-asema\n"
+msgstr "%s ei ole CDROM-asema"
 
-#: gnome-cd/linux-cdrom.c:1157 gnome-cd/linux-cdrom.c:1325
-#, fuzzy, c-format
-msgid ""
-"%s does not appear to point to a valid CDRom device. This may be because:\n"
-"a) CD support is not compiled into Linux\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"%s ei osoita kelvolliseen CD-asemaan. Tämä saattaa johtua jostain "
-"seuraavista seikoista:\n"
-"a) Kernelissäsi ei ole CD-tukea\n"
-"b) Sinulla ei ole tarvittavia oikeuksia CD-aseman käyttöön\n"
-"c) %s ei ole CD-asema.\n"
-
-#: gnome-cd/preferences.c:78
+#: gnome-cd/preferences.c:82
 #, c-format
 msgid ""
 "%s\n"
 "This means that Gnome-CD will not be able to run."
 msgstr ""
+"%s\n"
+"Tämä tarkoittaa sitä ettei Gnome-CD:tä voi ajaa."
 
-#: gnome-cd/preferences.c:79
-#, fuzzy
+#: gnome-cd/preferences.c:83
 msgid "Error setting device"
-msgstr "Virhe haettaessa leadoutia"
+msgstr "Virhe asetettaessa asemaa"
 
-#: gnome-cd/preferences.c:778
-msgid "Gnome-CD Preferences"
-msgstr "Gnome-CD:n asetukset"
+#: gnome-cd/preferences.c:771
+msgid "Gnome CD Player Preferences"
+msgstr "Gnomen CD-soittimen asetukset"
 
-#: gnome-cd/preferences.c:796
+#: gnome-cd/preferences.c:789
 msgid "CD player de_vice"
 msgstr "CD-soitinlait_e"
 
-#: gnome-cd/preferences.c:811
+#: gnome-cd/preferences.c:804
 msgid "_Apply change"
 msgstr "_Toteuta muutokset"
 
 #. left side
-#: gnome-cd/preferences.c:824
-msgid "When Gnome-CD starts"
-msgstr "Gnome-CD:n käynnistyessä"
+#: gnome-cd/preferences.c:817
+msgid "When Gnome CD Player starts"
+msgstr "Gnomen CD-soittimen käynnistyessä"
 
-#: gnome-cd/preferences.c:832
+#: gnome-cd/preferences.c:825
 msgid "Do _nothing"
 msgstr "Älä tee mitää_n"
 
-#: gnome-cd/preferences.c:841
+#: gnome-cd/preferences.c:834
 msgid "Start _playing CD"
 msgstr "Al_oita CD:n soittaminen"
 
 #
-#: gnome-cd/preferences.c:850
+#: gnome-cd/preferences.c:843
 msgid "_Stop playing CD"
 msgstr "Lakkaa _soittamasta CD:tä"
 
-#: gnome-cd/preferences.c:863
+#: gnome-cd/preferences.c:856
 msgid "Attempt to _close CD tray"
 msgstr "_Yritä sulkea CD-teline"
 
 #. Right side
-#: gnome-cd/preferences.c:875
-msgid "When Gnome-CD quits"
-msgstr "Gnome-CD:n lopettaessa"
+#: gnome-cd/preferences.c:868
+msgid "When Gnome CD Player quits"
+msgstr "Gnomen CD-soittimen lopettaessa"
 
-#: gnome-cd/preferences.c:883
+#: gnome-cd/preferences.c:876
 msgid "Do not_hing"
 msgstr "Älä tee _mitään"
 
 #
-#: gnome-cd/preferences.c:892
+#: gnome-cd/preferences.c:885
 msgid "S_top playing CD"
 msgstr "Lakkaa soi_ttamasta CD:tä"
 
-#: gnome-cd/preferences.c:901
+#: gnome-cd/preferences.c:894
 msgid "Attempt to _open CD tray"
 msgstr "Yrit_ä avata CD-teline"
 
-#: gnome-cd/preferences.c:911
+#: gnome-cd/preferences.c:904
 msgid "Attempt to c_lose CD tray"
 msgstr "Yritä _sulkea CD-teline"
 
-#: gnome-cd/preferences.c:942
+#: gnome-cd/preferences.c:935
 msgid "Theme name"
 msgstr "Teeman nimi"
 
@@ -1631,15 +1630,15 @@ msgstr "Äänitä äänitiedostoja"
 msgid "Sound recorder"
 msgstr "Ääninauhuri"
 
-#: grecord/src/grec.c:55
+#: grecord/src/grec.c:56
 msgid "Sound Recorder:"
 msgstr "Ääninauhuri:"
 
-#: grecord/src/grec.c:107 grecord/src/main.c:248
+#: grecord/src/grec.c:108 grecord/src/main.c:248
 msgid "Don't show this message again."
 msgstr "Älä näytä tätä viestiä uudestaan."
 
-#: grecord/src/grec.c:109 grecord/src/main.c:250
+#: grecord/src/grec.c:110 grecord/src/main.c:250
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -1652,61 +1651,61 @@ msgstr ""
 "\n"
 "Jos sinulla ei ole sox:ia, et pysty äänittämään tai käyttämään efektejä."
 
-#: grecord/src/grec.c:170 grecord/src/grec.c:217 grecord/src/grec.c:1288
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1343
 msgid "Could not fork child process"
 msgstr "Lapsiprosessin haarauttaminen (fork) ei onnistunut"
 
-#: grecord/src/grec.c:172
+#: grecord/src/grec.c:173
 msgid "Recording..."
 msgstr "Äänitetään..."
 
-#: grecord/src/grec.c:219
+#: grecord/src/grec.c:220
 msgid "Playing..."
 msgstr "Soitetaan..."
 
-#: grecord/src/grec.c:274
+#: grecord/src/grec.c:270
 msgid "Converting file..."
 msgstr "Muunnetaan tiedostoa..."
 
-#: grecord/src/grec.c:303 grecord/src/grec.c:437
+#: grecord/src/grec.c:299 grecord/src/grec.c:433
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: grecord/src/grec.c:346 grecord/src/grec.c:779
+#: grecord/src/grec.c:342 grecord/src/grec.c:781
 msgid "Audioformat: "
 msgstr "Äänimuoto: "
 
-#: grecord/src/grec.c:350 grecord/src/grec.c:765 grecord/src/gui.c:307
+#: grecord/src/grec.c:346 grecord/src/grec.c:767 grecord/src/gui.c:311
 msgid "Sample rate: "
 msgstr "Äänitaajuus: "
 
-#: grecord/src/grec.c:360 grecord/src/grec.c:769 grecord/src/gui.c:314
+#: grecord/src/grec.c:356 grecord/src/grec.c:771 grecord/src/gui.c:318
 msgid "Channels: "
 msgstr "Kanavia: "
 
-#: grecord/src/grec.c:381
+#: grecord/src/grec.c:378
 msgid "Cancel open"
 msgstr "Peruuta avaus"
 
-#: grecord/src/grec.c:390
+#: grecord/src/grec.c:387
 msgid "Select a sound file"
 msgstr "Valitse äänitiedosto"
 
-#: grecord/src/grec.c:520
+#: grecord/src/grec.c:514
 #, c-format
 msgid "%s is not installed in the path"
 msgstr "%s ei ole asennettuna polussa"
 
-#: grecord/src/grec.c:527
+#: grecord/src/grec.c:521
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Virhe käynnistettäessä kohdetta '%s': %s"
 
-#: grecord/src/grec.c:620
+#: grecord/src/grec.c:613
 msgid "Undoing all changes..."
 msgstr "Kumotaan tehdyt muutokset..."
 
-#: grecord/src/grec.c:704
+#: grecord/src/grec.c:706
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1715,7 +1714,7 @@ msgstr ""
 "'%s' on hakemisto.\n"
 "Valitse äänitiedosto avattavaksi."
 
-#: grecord/src/grec.c:716
+#: grecord/src/grec.c:718
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -1724,12 +1723,12 @@ msgstr ""
 "Tiedostoa '%s' ei ole olemassa.\n"
 "Valitse olemassaoleva äänitiedosto avattavaksi."
 
-#: grecord/src/grec.c:729
+#: grecord/src/grec.c:731
 #, c-format
 msgid "File '%s isn't a valid sound file."
 msgstr "Tiedosto '%s' ei ole kelvollinen äänitiedosto."
 
-#: grecord/src/grec.c:803
+#: grecord/src/grec.c:805
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1738,7 +1737,7 @@ msgstr ""
 "'%s' on hakemisto.\n"
 "Anna toinen tiedostonimi."
 
-#: grecord/src/grec.c:815
+#: grecord/src/grec.c:817
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1747,20 +1746,20 @@ msgstr ""
 "<b>Tiedosto '%s' on jo olemassa.</b>\n"
 "Haluatko kirjoittaa sen yli?"
 
-#: grecord/src/grec.c:818
+#: grecord/src/grec.c:820
 msgid "Cancel save"
 msgstr "Peruuta tallennus"
 
-#: grecord/src/grec.c:819
+#: grecord/src/grec.c:821
 msgid "Overwrite"
 msgstr "Kirjoita yli"
 
-#: grecord/src/grec.c:846
+#: grecord/src/grec.c:848
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Virhe tallennettaessa tiedostoa '%s'"
 
-#: grecord/src/grec.c:958
+#: grecord/src/grec.c:960
 #, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
@@ -1771,17 +1770,17 @@ msgstr ""
 "\n"
 "Muutoksesi menetetään jollet tallenna niitä."
 
-#: grecord/src/grec.c:963
+#: grecord/src/grec.c:965
 msgid "Do_n't save"
 msgstr "Ä_lä tallenna"
 
-#: grecord/src/grec.c:970
+#: grecord/src/grec.c:972
 #, c-format
 msgid "Save %s?"
 msgstr "Tallennetaanko %s?"
 
 #. Save the file
-#: grecord/src/grec.c:995
+#: grecord/src/grec.c:996
 msgid "Saving..."
 msgstr "Tallennetaan..."
 
@@ -1798,7 +1797,7 @@ msgstr ""
 msgid "Save sound file"
 msgstr "Tallenna äänitiedosto"
 
-#: grecord/src/grec.c:1353
+#: grecord/src/grec.c:1409
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -1806,134 +1805,134 @@ msgstr ""
 "Äänilaite ei ole valmiina. Varmista, ettei\n"
 "toinen ohjelma käytä samaa äänilaitetta."
 
-#: grecord/src/gui.c:44
+#: grecord/src/gui.c:45
 msgid "_New"
 msgstr "_Uusi"
 
-#: grecord/src/gui.c:45
+#: grecord/src/gui.c:46
 msgid "Create a new sample"
 msgstr "Luo uusi äänitiedosto"
 
-#: grecord/src/gui.c:52
+#: grecord/src/gui.c:54
 msgid "Run _Mixer"
 msgstr "Aja _mikseri"
 
-#: grecord/src/gui.c:53
+#: grecord/src/gui.c:55
 msgid "Run GNOME Volume Control"
 msgstr "Aja Gnomen äänenhallinta"
 
-#: grecord/src/gui.c:66
+#: grecord/src/gui.c:69
 msgid "Add echo"
 msgstr "Lisää kaiku"
 
-#: grecord/src/gui.c:67
+#: grecord/src/gui.c:70
 msgid "Add echo to the current sample"
 msgstr "Lisää kaiku nykyiseen ääneen"
 
-#: grecord/src/gui.c:100
+#: grecord/src/gui.c:103
 msgid "Echo"
 msgstr "Kaiku"
 
-#: grecord/src/gui.c:109
+#: grecord/src/gui.c:112
 msgid "_Undo All"
 msgstr "K_umoa kaikki"
 
-#: grecord/src/gui.c:110
+#: grecord/src/gui.c:113
 msgid "Undo all changes made on the current sample"
 msgstr "Kumoa kaikki ääneen tehdyt muutokset"
 
 #
-#: grecord/src/gui.c:117
+#: grecord/src/gui.c:120
 msgid "Effects"
 msgstr "Efektit"
 
-#: grecord/src/gui.c:152
+#: grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Ääninauhuri"
 
-#: grecord/src/gui.c:191
+#: grecord/src/gui.c:194
 msgid "Sound Recorder"
 msgstr "Ääninauhuri"
 
-#: grecord/src/gui.c:194
+#: grecord/src/gui.c:198
 msgid "16bit PCM"
 msgstr "16bit PCM"
 
-#: grecord/src/gui.c:196
+#: grecord/src/gui.c:200
 msgid "8bit PCM"
 msgstr "8bit PCM"
 
-#: grecord/src/gui.c:199
+#: grecord/src/gui.c:203
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:201
+#: grecord/src/gui.c:205
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:216
+#: grecord/src/gui.c:220
 msgid "New"
 msgstr "Uusi"
 
-#: grecord/src/gui.c:217
+#: grecord/src/gui.c:221
 msgid "Create new sample"
 msgstr "Luo uusi ääni"
 
-#: grecord/src/gui.c:233
+#: grecord/src/gui.c:237
 msgid "Play current sample"
 msgstr "Soita nykyinen ääni"
 
 #
-#: grecord/src/gui.c:247
+#: grecord/src/gui.c:251
 msgid "Stop playing/recording"
 msgstr "Lakkaa soittamasta/äänittämästä"
 
 #
-#: grecord/src/gui.c:260
+#: grecord/src/gui.c:264
 msgid "Record"
 msgstr "Äänitä"
 
 #
-#: grecord/src/gui.c:261
+#: grecord/src/gui.c:265
 msgid "Start recording"
 msgstr "Käynnistä äänitys"
 
-#: grecord/src/gui.c:300
+#: grecord/src/gui.c:304
 msgid "Audio format: "
 msgstr "Äänimuoto: "
 
-#: grecord/src/gui.c:358
+#: grecord/src/gui.c:362
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Tiedostoa '%s' ei ole; käytetään oletusta."
 
-#: grecord/src/gui.c:382
+#: grecord/src/gui.c:386
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Tiedosto '%s' ei ole tuettu äänitiedosto."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
+#: grecord/src/gui.c:424
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hydèn <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:427
+#: grecord/src/gui.c:431
 msgid "translator_credits"
 msgstr "Jarkko Ranta <jjranta@cc.joensuu.fi>"
 
-#: grecord/src/gui.c:431
+#: grecord/src/gui.c:435
 msgid "Gnome Sound Recorder"
 msgstr "Gnomen ääninauhuri"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
+#: grecord/src/gui.c:438
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hydén"
 
-#: grecord/src/gui.c:435
+#: grecord/src/gui.c:439
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -1941,113 +1940,113 @@ msgstr ""
 "Yksinkertainen nauhuri ja soitin Gnomelle.\n"
 "Omistettu kissalleni, Maltelle. Suomennos: http://gnome-fi.sourceforge.net/"
 
-#: grecord/src/gui.c:697
+#: grecord/src/gui.c:705
 msgid "Gnome Sound Recorder Preferences"
 msgstr "Gnomen ääninauhurin asetukset"
 
-#: grecord/src/gui.c:702
+#: grecord/src/gui.c:712
 msgid "Sound Recorder Preferences"
 msgstr "Ääninauhurin asetukset"
 
-#: grecord/src/gui.c:714
+#: grecord/src/gui.c:724
 msgid "Recording"
 msgstr "Äänitetään"
 
-#: grecord/src/gui.c:719
+#: grecord/src/gui.c:729
 msgid "Time"
 msgstr "Aika"
 
-#: grecord/src/gui.c:732
+#: grecord/src/gui.c:742
 msgid "_Recording timeout: "
 msgstr "Äänityksen ai_kakatkaisu: "
 
-#: grecord/src/gui.c:748
+#: grecord/src/gui.c:758
 msgid "minutes"
 msgstr "minuuttia"
 
-#: grecord/src/gui.c:755
+#: grecord/src/gui.c:765
 msgid "_Stop recording on timeout"
 msgstr "_Lakkaa äänittämästä aikakatkaisun kohdalla"
 
-#: grecord/src/gui.c:763
+#: grecord/src/gui.c:773
 msgid "_Open save dialog when recording is finished"
 msgstr "_Avaa tallennusikkuna äänityksen päätyttyä"
 
-#: grecord/src/gui.c:770
+#: grecord/src/gui.c:780
 msgid "Size"
 msgstr "Koko"
 
-#: grecord/src/gui.c:779
-msgid "Show warning _message if size (Mb) of sample becomes bigger than:"
-msgstr "Näytä varoitus, jos äänitteen k_oko (Mt) tulee suuremmaksi kuin:"
+#: grecord/src/gui.c:789
+msgid "Show warning _message if size (MB) of sample becomes bigger than:"
+msgstr "Näytä _varoitus, jos äänitteen koko (Mt) tulee suuremmaksi kuin:"
 
-#: grecord/src/gui.c:797
-msgid "Sto_p recording if size (Mb) of sample becomes bigger than:"
-msgstr "Lak_kaa äänittämästä, jos äänitteen koko (Mt) tulee suuremmaksi kuin:"
+#: grecord/src/gui.c:807
+msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
+msgstr "_Lakkaa äänittämästä, jos äänitteen koko (Mt) tulee suuremmaksi kuin:"
 
 #
-#: grecord/src/gui.c:819
+#: grecord/src/gui.c:829
 msgid "Playing"
 msgstr "Soitetaan"
 
-#: grecord/src/gui.c:824
+#: grecord/src/gui.c:834
 msgid "Repetition"
 msgstr "Toisto"
 
-#: grecord/src/gui.c:834
+#: grecord/src/gui.c:844
 msgid "_Repeat the sound"
 msgstr "_Toista ääni"
 
-#: grecord/src/gui.c:841
+#: grecord/src/gui.c:851
 msgid "Play the sound _once only."
 msgstr "Soita ääni vain _kerran."
 
-#: grecord/src/gui.c:847
+#: grecord/src/gui.c:857
 msgid "Repeat _forever"
 msgstr "Toista _ikuisesti"
 
-#: grecord/src/gui.c:858
+#: grecord/src/gui.c:868
 msgid "_Number of times:"
 msgstr "_Kertaa: "
 
-#: grecord/src/gui.c:879
+#: grecord/src/gui.c:889
 msgid "Paths"
 msgstr "Polut"
 
 #
-#: grecord/src/gui.c:884
+#: grecord/src/gui.c:894
 msgid "Program files"
 msgstr "Ohjelmatiedostot"
 
-#: grecord/src/gui.c:897
+#: grecord/src/gui.c:907
 msgid "_Path to sox:"
 msgstr "_Polku sox:iin:"
 
-#: grecord/src/gui.c:911
+#: grecord/src/gui.c:921
 msgid "_Apply"
 msgstr "_Toteuta"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:930
 msgid "Folders"
 msgstr "Kansiot"
 
-#: grecord/src/gui.c:933
+#: grecord/src/gui.c:943
 msgid "_Temporary folder:"
 msgstr "_Väliaikaishakemisto:"
 
-#: grecord/src/gui.c:947
+#: grecord/src/gui.c:957
 msgid "Apply"
 msgstr "Toteuta"
 
-#: grecord/src/gui.c:959
+#: grecord/src/gui.c:969
 msgid "Sound"
 msgstr "Ääni"
 
-#: grecord/src/gui.c:964
+#: grecord/src/gui.c:974
 msgid "Sound options"
 msgstr "Ääniasetukset"
 
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:983
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
@@ -2055,36 +2054,36 @@ msgstr ""
 "Huom: Nämä asetukset tulevat voimaan vasta kun uusi äänitiedosto\n"
 "luodaan. Ne eivät ole voimassa olemassaolevien äänien kohdalla."
 
-#: grecord/src/gui.c:986
+#: grecord/src/gui.c:996
 msgid "Audio format:"
 msgstr "Äänimuoto:"
 
-#: grecord/src/gui.c:995
+#: grecord/src/gui.c:1005
 msgid "8 _bit PCM"
 msgstr "8 _bit PCM"
 
-#: grecord/src/gui.c:1001
+#: grecord/src/gui.c:1011
 msgid "16 b_it PCM"
 msgstr "16 b_it PCM"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1015
+#: grecord/src/gui.c:1025
 msgid "S_ample rate:"
 msgstr "Äänit_aajuus:"
 
-#: grecord/src/gui.c:1046
+#: grecord/src/gui.c:1056
 msgid "Mono or Stereo:"
 msgstr "Mono vai Stereo:"
 
-#: grecord/src/gui.c:1055
+#: grecord/src/gui.c:1065
 msgid "_Mono"
 msgstr "_Mono"
 
-#: grecord/src/gui.c:1061
+#: grecord/src/gui.c:1071
 msgid "_Stereo"
 msgstr "_Stereo"
 
-#: grecord/src/gui.c:1082
+#: grecord/src/gui.c:1092
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -2130,7 +2129,7 @@ msgstr "Kanavat: mono"
 msgid "Channels: stereo"
 msgstr "Kanavat: stereo"
 
-#: grecord/src/sound.c:126 grecord/src/sound.c:130
+#: grecord/src/sound.c:136
 msgid "Adding echo to sample..."
 msgstr "Lisätään kaikua..."
 
@@ -2202,6 +2201,19 @@ msgstr "Tarkkaile ulosmenon äänenvoimakkuutta"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Äänenvoimakkuusmonitori"
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CDRom device. This may be "
+#~ "because:\n"
+#~ "a) CD support is not compiled into Linux\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "%s ei osoita kelvolliseen CD-asemaan. Tämä saattaa johtua jostain "
+#~ "seuraavista seikoista:\n"
+#~ "a) Kernelissäsi ei ole CD-tukea\n"
+#~ "b) Sinulla ei ole tarvittavia oikeuksia CD-aseman käyttöön\n"
+#~ "c) %s ei ole CD-asema.\n"
 
 #~ msgid ""
 #~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
