@@ -552,6 +552,8 @@ gnome_cdrom_free_cddb_data (GnomeCDRomCDDBData * data)
   g_free (data);
 }
 
+/* emit the status-changed signal with the given new_status
+ * called from timeout_update_cd */
 void
 gnome_cdrom_status_changed (GnomeCDRom * cdrom, GnomeCDRomStatus * new_status)
 {
@@ -705,6 +707,8 @@ not_ready_status_new (void)
   return status;
 }
 
+/* timeout function added to main loop for WHEN_CHANGED/CONTINUOUS update
+ * policy */
 static gboolean
 timeout_update_cd (gpointer data)
 {

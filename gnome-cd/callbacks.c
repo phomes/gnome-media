@@ -449,6 +449,13 @@ set_track_option_menu (GtkOptionMenu *menu,
 					   G_CALLBACK (skip_to_track), NULL);
 }
 
+/* set the window title
+ *   with the current artist (through gcd)
+ *   and the track title (through status' track index)
+ * FIXME: only called during PAUSE/PLAY state changes, while this
+ *        would make sense to be used during track changes too.
+ *        What is being done instead there ?
+ */
 static void
 set_window_track_title (GnomeCD *gcd,
 			GnomeCDRomStatus *status)
@@ -483,8 +490,7 @@ status_ok (GnomeCD *gcd,
 	/* Set the track menu on. */
 	gtk_widget_set_sensitive (gcd->tracks, TRUE);
 	
-	/* All buttons can be used when the tray is open,
-	   they should shut the tray. */
+	/* All buttons can be used when the state is ok */
 	gtk_widget_set_sensitive (gcd->rewind_b, TRUE);
 	gtk_widget_set_sensitive (gcd->play_b, TRUE);
 	gtk_widget_set_sensitive (gcd->stop_b, TRUE);
@@ -508,8 +514,11 @@ status_ok (GnomeCD *gcd,
 			gcd->current_image = gcd->pause_image;
 		}
 		/* Find out if the track has changed */
-		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
-		if (track + 1 != status->track) {
+                /* FIXME: this would be a good place to call
+                   set_window_track_title instead.
+                   Also, gtk_option_menu_get_history is now deprecated. */
+		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks)) + 1;
+		if (track != status->track) {
 			set_track_option_menu (GTK_OPTION_MENU (gcd->tracks),
 					       status->track);
 		}
@@ -698,6 +707,7 @@ status_ok (GnomeCD *gcd,
 	}
 }
 
+/* GnomeCDRom status-changed signal handler */
 void
 cd_status_changed_cb (GnomeCDRom *cdrom,
 		      GnomeCDRomStatus *status,
@@ -709,17 +719,23 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
+                /* does everything when the state is ok */
 		status_ok (gcd, status);
+                /* next is sensitive when this is not the last track */
 		if (status->track >= gcd->disc_info->ntracks)
                        gtk_widget_set_sensitive (gcd->next_b, FALSE);
 		else
                        gtk_widget_set_sensitive (gcd->next_b, TRUE);
+                /* FIXME: EASYFIX: back is always insensitive ?
+                   should probably be "sensitive when this is not the
+                   first track" */
                if (status->track <= 1 && (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio == GNOME_CDROM_AUDIO_COMPLETE))
                        gtk_widget_set_sensitive (gcd->back_b, FALSE);
 		else
                        gtk_widget_set_sensitive (gcd->back_b, FALSE);
 		break;
 		
+        /* everything below are states where we're not playing */
 	case GNOME_CDROM_STATUS_NO_DISC:
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);
@@ -749,7 +765,7 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);
 			gcd->disc_info = NULL;
-			//we need to destroy the hashtable(cddb_cache) 
+			/* we need to destroy the hashtable(cddb_cache) */
 			destroy_cache_hashTable();
 		}
 		

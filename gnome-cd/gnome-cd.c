@@ -44,6 +44,14 @@ gcd_warning (const char *message,
 	g_warning (message, error ? error->message : "(None)");
 }
 
+/*
+ * Sets the window title based on the passed artist and track name.
+ * If either artist or track is NULL, then "CD Player" is displayed.
+ *
+ * FIXME: it might be nice to change this function so that it takes
+ * artist, track, album, status, so we can decide better what to display.
+ * Right now, sometimes this is called with the disc title instead of
+ * the track title */
 void
 gnome_cd_set_window_title (GnomeCD *gcd,
 			   const char *artist,
