@@ -19,6 +19,7 @@ extace_SOURCES = \
 extace_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) -lgslfft -lgslerr $(ESD_LIBS)
 
-EXTRA_DIST = extace.desktop README NEWS TODO
-
+EXTRA_DIST = extace.png extace.desktop README NEWS TODO
+icondir = $(datadir)/pixmaps
+icon_DATA = extace.png
 Multimedia_DATA = extace.desktop
