@@ -1088,7 +1088,7 @@ get_length (GSRWindow *window)
 
 	if (window->priv->play->sink != NULL) {
 		query_worked = gst_element_query (window->priv->play->sink,
-						  GST_PAD_QUERY_TOTAL, &format, &value);
+						  GST_QUERY_TOTAL, &format, &value);
 	}
 
 	if (query_worked) {
@@ -1158,7 +1158,7 @@ tick_callback (GSRWindow *window)
 	}
 
 	query_worked = gst_element_query (window->priv->play->sink,
-					  GST_PAD_QUERY_POSITION, 
+					  GST_QUERY_POSITION, 
 					  &format, &value);
 	if (query_worked) {
 		double percentage;
