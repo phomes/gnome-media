@@ -449,6 +449,7 @@ main (int argc,
 	GnomeCD *gcd;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
 	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 

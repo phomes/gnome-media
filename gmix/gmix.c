@@ -318,6 +318,7 @@ int main(int argc, char *argv[])
 	mode=0;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	gnome_init_with_popt_table("gmix", VERSION, argc, argv, options,
 				   0, NULL);

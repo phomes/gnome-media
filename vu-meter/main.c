@@ -276,6 +276,7 @@ main (int argc,
 	options[4].arg = &record;
 	
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
 	gnome_init_with_popt_table ("Volume Meter", VERSION, argc, argv, options, 
 				    0, NULL);
