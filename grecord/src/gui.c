@@ -142,7 +142,7 @@ static GnomeUIInfo alternativ1_menu_uiinfo[] =
 
 static GnomeUIInfo hj_lp1_menu_uiinfo[] =
 {
-	GNOMEUIINFO_HELP ("grecord"),
+	//GNOMEUIINFO_HELP ("grecord"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (on_about_activate_cb, NULL),
 	GNOMEUIINFO_END
 };
@@ -823,7 +823,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (shbox4);
 	gtk_box_pack_start (GTK_BOX (svbox2), shbox4, TRUE, TRUE, 0);
 	
-	NrChannels_label = gtk_label_new (_("# of channels"));
+	NrChannels_label = gtk_label_new (_("mono/stereo"));
 	gtk_widget_show (NrChannels_label);
 	gtk_box_pack_start (GTK_BOX (shbox4), NrChannels_label, FALSE, FALSE, 0);
 	gtk_widget_set_usize (NrChannels_label, 100, -2);

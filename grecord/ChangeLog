@@ -1,5 +1,21 @@
 2000-04-28  Andreas Hyden  <a.hyden@cyberpoint.se>
 
+	* src/gui.c:
+	  Commented out help stuff, because there are now documentation avalible yet.
+	  Changed message "# of channels" to "mono/stereo", makes it a bit easier
+	  to understand.
+
+	* src/preferences.c:
+	  Fixed the bug that didn't save the properties in the preferences-dialog
+	  when you changed a tab.
+
+	* src/grec.c:
+	  Make the play-button sensitive again after adding echo.
+
+	  Thanks to Richard Hult for finding the bugs.
+
+2000-04-28  Andreas Hyden  <a.hyden@cyberpoint.se>
+
 	* src/grec.c:
 	  The function that checks if the sounddevice is ready or not,
 	  now works (it calls esd_audio_open () and checks errno).

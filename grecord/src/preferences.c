@@ -173,89 +173,69 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		return;
 
 	/* Get configuration from the propertybox ------------------------------------------- */
-	if (page_num == 0) {
-		record_timeout     = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.RecordTimeout_spinbutton_v));
-		stop_on_timeout    = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.StopRecordOnTimeout_checkbox_v));
-		save_when_finished = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.PopupSaveOnTimeout_checkbox_v));
-		popup_warn_mess    = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.PopupWarnMessSize_checkbox_v));
-		popup_warn_mess_v  = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.WarningSize_spinbutton_v));
-		stop_record        = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.StopRecordSize_checkbox_v));
-		stop_record_v      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.StopRecordSize_spinbutton_v));
-	}
-	else if (page_num == 1) {
-		playrepeat         = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.playrepeat_checkbox_v));
-		playrepeatforever  = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.playrepeatforever_radiobutton_v));
-		playxtimes         = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.playxtimes_spinbutton_v));
-	}
-	else if (page_num == 2) {
-		temp_file   = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v)))));
-
-		/* Check if the given sox command exists --------------------- */
-		if (!g_file_exists (temp_file)) {
-			show_mess = g_strdup_printf (_("File %s in 'sox command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (_(show_mess),
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
-			g_free (show_mess);
-			choice = gnome_dialog_run (GNOME_DIALOG (mess));
-			if (choice == 0) 
-				sox_command = g_strdup (temp_file);
-			else
-				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v))), sox_command);
-		}
-		else
+	record_timeout     = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.RecordTimeout_spinbutton_v));
+	stop_on_timeout    = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.StopRecordOnTimeout_checkbox_v));
+	save_when_finished = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.PopupSaveOnTimeout_checkbox_v));
+	popup_warn_mess    = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.PopupWarnMessSize_checkbox_v));
+	popup_warn_mess_v  = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.WarningSize_spinbutton_v));
+	stop_record        = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.StopRecordSize_checkbox_v));
+	stop_record_v      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.StopRecordSize_spinbutton_v));
+    
+	playrepeat         = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.playrepeat_checkbox_v));
+	playrepeatforever  = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.playrepeatforever_radiobutton_v));
+	playxtimes         = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (propertywidgets.playxtimes_spinbutton_v));
+       
+	temp_file   = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v)))));
+	
+	/* Check if the given sox command exists --------------------- */
+	if (!g_file_exists (temp_file)) {
+		show_mess = g_strdup_printf (_("File %s in 'sox command' does not exist.\nDo you want to use it anyway?"), temp_file);
+		mess = gnome_message_box_new (_(show_mess),
+					      GNOME_MESSAGE_BOX_QUESTION,
+					      GNOME_STOCK_BUTTON_YES,
+					      GNOME_STOCK_BUTTON_NO,
+					      NULL);
+		g_free (show_mess);
+		choice = gnome_dialog_run (GNOME_DIALOG (mess));
+		if (choice == 0) 
 			sox_command = g_strdup (temp_file);
-			
-		g_free (temp_file);
-
-		temp_file   = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v)))));
-
-		/* Check if the given mixer command exists -------------------- */
-		if (!g_file_exists (temp_file)) {
-			show_mess = g_strdup_printf (_("File %s in 'mixer command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (_(show_mess),
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
-			g_free (show_mess);
-			choice = gnome_dialog_run (GNOME_DIALOG (mess));
-			if (choice == 0)
-				mixer_command = g_strdup (temp_file);
-			else
-				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v))), mixer_command);
-		}
 		else
+			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v))), sox_command);
+	}
+	else
+		sox_command = g_strdup (temp_file);
+	
+	g_free (temp_file);
+	
+	temp_file   = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v)))));
+	
+	/* Check if the given mixer command exists -------------------- */
+	if (!g_file_exists (temp_file)) {
+		show_mess = g_strdup_printf (_("File %s in 'mixer command' does not exist.\nDo you want to use it anyway?"), temp_file);
+		mess = gnome_message_box_new (_(show_mess),
+					      GNOME_MESSAGE_BOX_QUESTION,
+					      GNOME_STOCK_BUTTON_YES,
+					      GNOME_STOCK_BUTTON_NO,
+					      NULL);
+		g_free (show_mess);
+		choice = gnome_dialog_run (GNOME_DIALOG (mess));
+		if (choice == 0)
 			mixer_command = g_strdup (temp_file);
-
-		g_free (temp_file);
-
-		temp_file      = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v)))));
-
-		/* Check if the given temp directory exists -------------------- */
-		if (!stat (temp_file, &file_info)) {         /* Exists */
-			if (!S_ISDIR (file_info.st_mode)) {   /* Not a directory */
-				show_mess = g_strdup_printf (_("Temp directory %s is a file.\nDo you still want to use it anyway?"), temp_file);
-				mess = gnome_message_box_new (_(show_mess),
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
-				g_free (show_mess);
-				choice = gnome_dialog_run (GNOME_DIALOG (mess));
-				if (choice == 0)
-					temp_dir = g_strdup (temp_file);
-				else
-					gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
-			}
-			else  /* Exists and is a directory */
-				temp_dir = g_strdup (temp_file);
-		}
-		else if (errno == ENOENT) {                  /* Does not exist */
-			show_mess = g_strdup_printf (_("Directory %s does not exist.\nDo you still want to use it?"), temp_file);
-			mess = gnome_message_box_new (show_mess,
+		else
+			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v))), mixer_command);
+	}
+	else
+		mixer_command = g_strdup (temp_file);
+	
+	g_free (temp_file);
+	
+	temp_file      = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v)))));
+	
+	/* Check if the given temp directory exists -------------------- */
+	if (!stat (temp_file, &file_info)) {         /* Exists */
+		if (!S_ISDIR (file_info.st_mode)) {   /* Not a directory */
+			show_mess = g_strdup_printf (_("Temp directory %s is a file.\nDo you still want to use it anyway?"), temp_file);
+			mess = gnome_message_box_new (_(show_mess),
 						      GNOME_MESSAGE_BOX_QUESTION,
 						      GNOME_STOCK_BUTTON_YES,
 						      GNOME_STOCK_BUTTON_NO,
@@ -267,29 +247,41 @@ on_propertybox_apply_activate (GtkWidget* widget,
 			else
 				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
 		}
-		else
+		else  /* Exists and is a directory */
 			temp_dir = g_strdup (temp_file);
-
-		g_free (temp_file);
 	}
-	else if (page_num == 3) {
-		if (g_strcasecmp (gtk_entry_get_text (GTK_ENTRY (propertywidgets.Audioformat_combo_entry_v)), "16bit pcm"))
-			audioformat = TRUE;
+	else if (errno == ENOENT) {                  /* Does not exist */
+		show_mess = g_strdup_printf (_("Directory %s does not exist.\nDo you still want to use it?"), temp_file);
+		mess = gnome_message_box_new (show_mess,
+					      GNOME_MESSAGE_BOX_QUESTION,
+					      GNOME_STOCK_BUTTON_YES,
+					      GNOME_STOCK_BUTTON_NO,
+					      NULL);
+		g_free (show_mess);
+		choice = gnome_dialog_run (GNOME_DIALOG (mess));
+		if (choice == 0)
+			temp_dir = g_strdup (temp_file);
 		else
-			audioformat = FALSE;
-		samplerate  = g_strdup (gtk_entry_get_text (GTK_ENTRY (propertywidgets.Samplerate_combo_entry_v)));
-		if (g_strcasecmp (gtk_entry_get_text (GTK_ENTRY (propertywidgets.NrChannel_combo_entry_v)), "stereo"))
-			channels = TRUE;
-		else
-			channels = FALSE;
-	}
-	else if (page_num == 4) {
-		show_time      = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.show_time_checkbutton_v));
-		show_soundinfo = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.show_soundinfo_checkbutton_v));
+			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
 	}
 	else
-		g_error (_("Error! Wrong page number. (shouldn't happen)\n"));
+		temp_dir = g_strdup (temp_file);
+	
+	g_free (temp_file);
 
+	if (g_strcasecmp (gtk_entry_get_text (GTK_ENTRY (propertywidgets.Audioformat_combo_entry_v)), "16bit pcm"))
+		audioformat = TRUE;
+	else
+		audioformat = FALSE;
+	samplerate  = g_strdup (gtk_entry_get_text (GTK_ENTRY (propertywidgets.Samplerate_combo_entry_v)));
+	if (g_strcasecmp (gtk_entry_get_text (GTK_ENTRY (propertywidgets.NrChannel_combo_entry_v)), "stereo"))
+		channels = TRUE;
+	else
+		channels = FALSE;
+  
+	show_time      = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.show_time_checkbutton_v));
+	show_soundinfo = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (propertywidgets.show_soundinfo_checkbutton_v));
+	
 	if (!audioformat)
 		audioformat_string = g_strdup ("16bit pcm");
 	else
