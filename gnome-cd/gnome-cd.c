@@ -95,7 +95,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 		gtk_option_menu_remove_menu (GTK_OPTION_MENU (gcd->tracks));
 	}
 
-	menu = gtk_menu_new ();
+	menu = GTK_MENU(gtk_menu_new ());
 	if (gcd->disc_info != NULL) {
 		int i;
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
@@ -106,7 +106,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 			g_free (title);
 			gtk_widget_show (item);
 
-			gtk_menu_shell_append ((GtkMenu *)(menu), item);
+			gtk_menu_shell_append (GTK_MENU_SHELL(menu), item);
 		}
 	} else {
 		GnomeCDRomCDDBData *data;
@@ -141,7 +141,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 	}
 
 	gtk_option_menu_set_menu (GTK_OPTION_MENU (gcd->tracks), GTK_WIDGET (menu));
-	gcd->menu = menu;
+	gcd->menu = GTK_WIDGET(menu);
 
 	g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
 					   G_CALLBACK (skip_to_track), gcd);
@@ -310,7 +310,7 @@ make_popup_menu (GnomeCD *gcd)
 
 			if (image != NULL) {
 				gtk_widget_show (image);
-				gtk_image_menu_item_set_image (item, image);
+				gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
 			}
 		}
 				
@@ -340,7 +340,7 @@ init_player (void)
 	gcd = g_new0 (GnomeCD, 1);
 
 	gcd->not_ready = TRUE;
-	gcd->preferences = preferences_new (gcd);
+	gcd->preferences = (GnomeCDPreferences *)preferences_new (gcd);
 	if (gcd->preferences->device == NULL || gcd->preferences->device[0] == 0) {
 		GtkWidget *dialog;
 
@@ -357,7 +357,7 @@ init_player (void)
 		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
 		case 1:
 			gtk_widget_destroy (dialog);
-			dialog = preferences_dialog_show (gcd, TRUE);
+			dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
 
 			/* Don't care what it returns */
 			gtk_dialog_run (GTK_DIALOG (dialog));
@@ -397,7 +397,7 @@ init_player (void)
 		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
 		case 1:
 			gtk_widget_destroy (dialog);
-			dialog = preferences_dialog_show (gcd, TRUE);
+			dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
 
 			/* Don't care what it returns */
 			gtk_dialog_run (GTK_DIALOG (dialog));
@@ -433,12 +433,12 @@ init_player (void)
 
 	/* Create app controls */
 	side_vbox = gtk_vbox_new (FALSE, 0);
-	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, open_track_editor, _("Open track editor"), _("Track editor"));
+	button = make_button_from_stock (gcd, GTK_STOCK_INDEX, G_CALLBACK(open_track_editor), _("Open track editor"), _("Track editor"));
 	gtk_widget_set_sensitive (button, FALSE);
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->trackeditor_b = button;
 
-	button = make_button_from_stock (gcd, GTK_STOCK_PROPERTIES, open_preferences, _("Preferences"), _("Preferences"));
+	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, G_CALLBACK(open_preferences), _("Preferences"), _("Preferences"));
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->properties_b = button;
 
@@ -455,7 +455,7 @@ init_player (void)
 			  G_CALLBACK (playmode_changed_cb), gcd);
 
 	/* Theme needs to be loaded after the display is created */
-	gcd->theme = theme_load (gcd, gcd->preferences->theme_name);
+	gcd->theme = (GCDTheme *)theme_load (gcd, gcd->preferences->theme_name);
 	if (gcd->theme == NULL) {
 		g_error ("Could not create theme");
 	}
