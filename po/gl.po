@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-04-03 00:00+0200\n"
+"POT-Creation-Date: 2000-04-25 11:24+0200\n"
 "PO-Revision-Date: 2000-01-03 16:11+0100\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
@@ -76,86 +76,74 @@ msgstr "Tempo de expiración: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Inactivo. %s\n"
 
-#: gmix/gmix.c:104
-msgid "_About"
-msgstr "_Acerca"
-
-#: gmix/gmix.c:110
-msgid "_Preferences..."
-msgstr "_Preferencias..."
-
-#: gmix/gmix.c:116
-msgid "_Program"
-msgstr "Pr_ograma"
-
-#: gmix/gmix.c:183
+#: gmix/gmix.c:187
 msgid "don't restore mixer-settings from configuration"
 msgstr "non restablece-los parámetros do mesturador dende a configuración"
 
-#: gmix/gmix.c:184
+#: gmix/gmix.c:188
 msgid "restore mixer-settings from configuration"
 msgstr "restablece-los parámetros do mesturador dende a configuración"
 
-#: gmix/gmix.c:185
+#: gmix/gmix.c:189
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "inicializa-lo(s) mesturador(es) dende a configuración gardada e saír"
 
-#: gmix/gmix.c:186
+#: gmix/gmix.c:190
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "non garda-la configuración (modificada) do mesturador"
 
 #. start frame
-#: gmix/gmix.c:423 tcd/prefs.c:393
+#: gmix/gmix.c:427 tcd/prefs.c:397
 msgid "On startup"
 msgstr "Ó iniciar"
 
 #. Set on start
-#: gmix/gmix.c:429
+#: gmix/gmix.c:433
 msgid "Restore saved mixer levels on startup"
 msgstr "Restablece-los niveis gardados do mesturador ó iniciar"
 
-#: gmix/gmix.c:435
+#: gmix/gmix.c:439
 msgid "Hide menu on start"
 msgstr "Esconde-lo menú ó iniciar"
 
-#: gmix/gmix.c:450
+#: gmix/gmix.c:454 grecord/src/gui.c:879
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:454
+#: gmix/gmix.c:458
 msgid "Use mixer icons"
 msgstr "Usa-los iconos do mesturador"
 
-#: gmix/gmix.c:462
+#: gmix/gmix.c:466
 msgid "Use mixer labels"
 msgstr "Usa-las etiquetas do mesturador"
 
-#: gmix/gmix.c:485 tcd/gtcd.c:363 tcd/prefs.c:596
+#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:600
 msgid "Preferences"
 msgstr "Preferencias"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1171
+#: gmix/gmix.c:1175
 msgid "Lock"
 msgstr "Bloquear"
 
-#: gmix/gmix.c:1181
+#: gmix/gmix.c:1185
 msgid "Rec."
-msgstr "Grabar"
+msgstr "Gravar"
 
-#: gmix/gmix.c:1199
+#: gmix/gmix.c:1203
 msgid "Mute"
 msgstr "Mudo"
 
-#: gmix/gmix.c:1223
+#: gmix/gmix.c:1227
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1522
+#: gmix/gmix.c:1528
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - O Mesturador de Gnome"
 
-#: gmix/gmix.c:1525
+#: gmix/gmix.c:1531
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Este é o mesturador para os dispositivos de son OSS"
 
@@ -352,7 +340,7 @@ msgid "Delete CDDB Entry?"
 msgstr "¿Borra-la entrada CDDB?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:312
+#: tcd/cddb_status.c:50 tcd/gtracked.c:309
 msgid "CDDB Status"
 msgstr "Estado CDDB"
 
@@ -393,115 +381,119 @@ msgstr "normal"
 msgid "random"
 msgstr "aleatorio"
 
+#: tcd/gtcd.c:285 tcd/gtcd.c:903
+msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+
 #. TOP ROW
-#: tcd/gtcd.c:323
+#: tcd/gtcd.c:324
 msgid "Play/Pause"
 msgstr "Tocar/Pausa"
 
-#: tcd/gtcd.c:327 tcd/popup.c:16
+#: grecord/src/gui.c:255 tcd/gtcd.c:328 tcd/popup.c:16
 msgid "Stop"
 msgstr "Parar"
 
-#: tcd/gtcd.c:328 tcd/popup.c:17
+#: tcd/gtcd.c:329 tcd/popup.c:17
 msgid "Eject"
 msgstr "Expulsar"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:335 tcd/gtcd.c:343
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip backwards"
 msgstr "Saltar hacia atrás"
 
-#: tcd/gtcd.c:336 tcd/gtcd.c:344
+#: tcd/gtcd.c:337 tcd/gtcd.c:345
 msgid "Skip forwards"
 msgstr "Saltar hacia adiante"
 
-#: tcd/gtcd.c:362
+#: tcd/gtcd.c:363
 msgid "Open track editor"
 msgstr "Abri-lo editor de pistas"
 
-#: tcd/gtcd.c:364 tcd/popup.c:24
+#: tcd/gtcd.c:365 tcd/popup.c:24
 msgid "Quit"
 msgstr "Saír"
 
-#: tcd/gtcd.c:502 tcd/gtcd.c:503 tcd/gtcd.c:504
+#: tcd/gtcd.c:503 tcd/gtcd.c:504 tcd/gtcd.c:505
 msgid "(Scanning)"
 msgstr "(Explorando)"
 
-#: tcd/gtcd.c:526
+#: tcd/gtcd.c:527
 msgid "No Disc"
 msgstr "Sen disco"
 
-#: tcd/gtcd.c:561
+#: tcd/gtcd.c:562
 msgid "Error"
 msgstr "Erro"
 
-#: tcd/gtcd.c:836
+#: tcd/gtcd.c:839
 msgid "Volume"
 msgstr "Volume"
 
-#: tcd/gtcd.c:1008
+#: tcd/gtcd.c:1011
 msgid "Filename of the CD device"
 msgstr "Ficheiro do dispositivo do CD"
 
-#: tcd/gtcd.c:1008
+#: tcd/gtcd.c:1011
 msgid "FILE"
 msgstr "FICHEIRO"
 
-#: tcd/gtcd.c:1010
+#: tcd/gtcd.c:1013
 msgid "Play CD on startup"
 msgstr "Reproduci-lo CD ó iniciar"
 
-#: tcd/gtracked.c:174
+#: tcd/gtracked.c:171
 msgid "Trk"
 msgstr "Pst"
 
-#: tcd/gtracked.c:174
+#: grecord/src/gui.c:543 tcd/gtracked.c:171
 msgid "Time"
 msgstr "Tempo"
 
-#: tcd/gtracked.c:174
+#: tcd/gtracked.c:171
 msgid "Title"
 msgstr "Título"
 
-#: tcd/gtracked.c:197
+#: tcd/gtracked.c:194
 msgid "Track Editor"
 msgstr "Editor de pistas"
 
 #. Disc area
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:210
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Información do disco: (%02u:%02u minutos)"
 
-#: tcd/gtracked.c:222
+#: tcd/gtracked.c:219
 msgid "Artist / Title"
 msgstr "Artista / Título"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:245
+#: tcd/gtracked.c:242
 msgid "Track Information"
 msgstr "Información da pista"
 
 #. Clear button
-#: tcd/gtracked.c:301
+#: tcd/gtracked.c:298
 msgid "Clear"
 msgstr "Limpar"
 
 #. Playlist button
-#: tcd/gtracked.c:306
+#: tcd/gtracked.c:303
 msgid "Playlist"
 msgstr "Lista a Tocar"
 
-#: tcd/gtracked.c:318
+#: tcd/gtracked.c:315
 msgid "Submit"
 msgstr "Enviar"
 
-#: tcd/gtracked.c:380
+#: tcd/gtracked.c:377
 msgid "Submit Information"
 msgstr "Enviar Información"
 
-#: tcd/gtracked.c:386
+#: tcd/gtracked.c:383
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -510,12 +502,12 @@ msgstr ""
 "Enviar información acerca de\n"
 "'%s'"
 
-#: tcd/gtracked.c:395
+#: tcd/gtracked.c:392
 msgid "To: "
 msgstr "A: "
 
 #. end of service menu
-#: tcd/gtracked.c:427
+#: tcd/gtracked.c:424
 msgid "Category: "
 msgstr "Categoría: "
 
@@ -545,7 +537,7 @@ msgstr "Descoñecido / Descoñecido"
 msgid "Track %d"
 msgstr "Pista %d"
 
-#: tcd/popup.c:15
+#: grecord/src/gui.c:246 tcd/popup.c:15
 msgid "Play"
 msgstr "Tocar"
 
@@ -565,85 +557,89 @@ msgstr "Axuda"
 msgid "About"
 msgstr "Acerca"
 
+#: tcd/prefs.c:77
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
 #. do nothing
-#: tcd/prefs.c:184 tcd/prefs.c:239
+#: tcd/prefs.c:188 tcd/prefs.c:243
 msgid "Do nothing"
 msgstr "Non facer nada"
 
-#: tcd/prefs.c:190
+#: tcd/prefs.c:194
 msgid "Start playing"
 msgstr "Comezar a tocar"
 
-#: tcd/prefs.c:196 tcd/prefs.c:245
+#: tcd/prefs.c:200 tcd/prefs.c:249
 msgid "Stop playing"
 msgstr "Parar de tocar"
 
 #. close tray
-#: tcd/prefs.c:200 tcd/prefs.c:257
+#: tcd/prefs.c:204 tcd/prefs.c:261
 msgid "Close tray"
 msgstr "Pecha-la bandexa"
 
-#: tcd/prefs.c:251
+#: tcd/prefs.c:255
 msgid "Open tray"
 msgstr "Abri-la bandexa"
 
 #. device entry
-#: tcd/prefs.c:330
+#: tcd/prefs.c:334
 msgid "CDROM device"
 msgstr "Dispositivo CDROM"
 
 #. Color picker
-#: tcd/prefs.c:339
+#: tcd/prefs.c:343
 msgid "Track/title color"
 msgstr "Cor da pista/título"
 
 #. font picker
-#: tcd/prefs.c:351
+#: tcd/prefs.c:355
 msgid "Track/title font"
 msgstr "Tipo de letra da pista/título"
 
-#: tcd/prefs.c:352
+#: tcd/prefs.c:356
 msgid "Change font"
 msgstr "Cambiar tipo de letra"
 
 #. show handles
-#: tcd/prefs.c:359
+#: tcd/prefs.c:363
 msgid "Show handles (restart required)"
 msgstr "Amosar manexadores (é preciso reiniciar)"
 
 #. show tooltips
-#: tcd/prefs.c:366
+#: tcd/prefs.c:370
 msgid "Show tooltips"
 msgstr "Amosar explicacións"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:373
+#: tcd/prefs.c:377
 msgid "Use alternate method to play CD"
 msgstr "Usar método alternativo para toca-lo CD"
 
 #. exit frame
-#: tcd/prefs.c:399
+#: tcd/prefs.c:403
 msgid "On exit"
 msgstr "Ó saír"
 
-#: tcd/prefs.c:507
+#: tcd/prefs.c:511
 msgid "Key"
 msgstr "Tecla"
 
-#: tcd/prefs.c:508
+#: tcd/prefs.c:512
 msgid "Action"
 msgstr "Acción"
 
-#: tcd/prefs.c:528
+#: tcd/prefs.c:532
 msgid "Click here to change (restart required):"
 msgstr "Premer aquí para cambiar (é preciso reiniciar):"
 
 #. Frame
-#: tcd/prefs.c:550 tcd/prefs.c:600
+#: tcd/prefs.c:554 tcd/prefs.c:604
 msgid "Keybindings"
 msgstr "Atallos de Teclado"
 
-#: tcd/prefs.c:604
+#: tcd/prefs.c:608
 msgid "CDDB Settings"
 msgstr "Configuración CDDB"
 
@@ -691,3 +687,405 @@ msgstr "O servidor é %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Contador de Volume"
+
+#: grecord/src/main.c:52
+msgid "Specify the geometry of the main window"
+msgstr "Especifica-la xeometría da fiestra principal"
+
+#: grecord/src/main.c:53
+msgid "GEOMETRY"
+msgstr "XEOMETRÍA"
+
+#: grecord/src/main.c:61
+msgid "Specify a file to be opened"
+msgstr "Especificar un ficheiro a abrir"
+
+#: grecord/src/main.c:70
+msgid "Specify a file to start recording"
+msgstr "Especificar un ficheiro para comezar a gravar"
+
+#: grecord/src/main.c:79
+msgid "Specify a file to start playing"
+msgstr "Especificar un ficheiro para comezar a reproducir"
+
+#: grecord/src/gui.c:449 grecord/src/main.c:105
+msgid "GNOME Sound recorder"
+msgstr "Gravador de Son de GNOME"
+
+#: grecord/src/grec.c:46
+msgid "GNOME Sound recorder:"
+msgstr "Gravador de Son de GNOME:"
+
+#. Couldn't record
+#: grecord/src/grec.c:76
+msgid "Couldn't record!"
+msgstr "¡Non se puido gravar!"
+
+#: grecord/src/grec.c:79 grecord/src/grec.c:109
+msgid "Could not fork child process"
+msgstr "Non se puido crea-lo proceso fillo"
+
+#. Should never ever, in the name of love, get here
+#: grecord/src/grec.c:106
+#, c-format
+msgid "Error playing %s"
+msgstr "Erro reproducindo %s"
+
+#: grecord/src/grec.c:157
+msgid "Converting file..."
+msgstr "Convertendo ficheiro..."
+
+#: grecord/src/grec.c:213 grecord/src/grec.c:633 grecord/src/gui.c:330
+#: grecord/src/preferences.c:305
+msgid "Audioformat: "
+msgstr "Formato de Audio: "
+
+#: grecord/src/grec.c:217 grecord/src/grec.c:619 grecord/src/gui.c:337
+#: grecord/src/preferences.c:309
+msgid "Sample rate: "
+msgstr "Frecuencia de mostraxe: "
+
+#: grecord/src/grec.c:227 grecord/src/grec.c:623 grecord/src/gui.c:344
+#: grecord/src/preferences.c:313
+msgid "Channels: "
+msgstr "Canles: "
+
+#: grecord/src/grec.c:257
+msgid "Select a sound file"
+msgstr "Escoller un ficheiro de son"
+
+#: grecord/src/grec.c:286 grecord/src/grec.c:650
+msgid "Error saving sound file"
+msgstr "Erro gardando o ficheiro de son"
+
+#: grecord/src/grec.c:374
+msgid "GNOME Sound recorder web page"
+msgstr "Páxina web do Gravador de Son de GNOME"
+
+#: grecord/src/grec.c:585 grecord/src/gui.c:415
+#, c-format
+msgid "File '%s' isn't a valid soundfile."
+msgstr "O ficheiro '%s' non é un ficheiro de son válido."
+
+#: grecord/src/grec.c:680
+msgid "File not saved. Do you want to save it?"
+msgstr "Ficheiro non gardado. ¿Quere gardalo?"
+
+#: grecord/src/grec.c:803
+#, c-format
+msgid "The size of the current sample is more than %i MB!"
+msgstr "¡O tamaño da gravación actual é maior que %i MB!"
+
+#: grecord/src/grec.c:851
+msgid "Save sound file"
+msgstr "Gardar ficheiro de son"
+
+#: grecord/src/gui.c:42
+msgid "_New"
+msgstr "_Novo"
+
+#: grecord/src/gui.c:43
+msgid "Create a new sample"
+msgstr "Crear unha nova gravación"
+
+#: grecord/src/gui.c:50
+msgid "Run mixer..."
+msgstr "Executar mesturador..."
+
+#: grecord/src/gui.c:51
+msgid "Run GNOME mixer"
+msgstr "Executa-lo mesturador de GNOME"
+
+#: grecord/src/gui.c:64
+msgid "Add echo"
+msgstr "Engadir eco"
+
+#: grecord/src/gui.c:65
+msgid "Adds echo to the current sample"
+msgstr "Engade eco á gravación actual"
+
+#: grecord/src/gui.c:71
+msgid "Remove echo"
+msgstr "Quitar eco"
+
+#: grecord/src/gui.c:72
+msgid "Removes echo from the current sample"
+msgstr "Quita o eco da gravación actual"
+
+#: grecord/src/gui.c:83
+msgid "Increase speed"
+msgstr "Incrementar velocidade"
+
+#: grecord/src/gui.c:84
+msgid "Increases the speed of the current sample"
+msgstr "Incrementa a velocidade da gravación actual"
+
+#: grecord/src/gui.c:90
+msgid "Decrease speed"
+msgstr "Diminuir velocidade"
+
+#: grecord/src/gui.c:91
+msgid "Decreases the speed of the current sample"
+msgstr "Diminúe a velodiade da gravación actual"
+
+#: grecord/src/gui.c:101
+msgid "Echo"
+msgstr "Eco"
+
+#: grecord/src/gui.c:102
+msgid "Speed"
+msgstr "Velocidade"
+
+#: grecord/src/gui.c:110
+msgid "Undo all changes"
+msgstr "Desfacer tódolos cambios"
+
+#: grecord/src/gui.c:111
+msgid "Undo all changes made on the current sample"
+msgstr "Desfacer tódolos cambios feitos á gravación actual"
+
+#: grecord/src/gui.c:118
+msgid "Effects"
+msgstr "Efectos"
+
+#: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:869
+msgid "Show time"
+msgstr "Amosar tempo"
+
+#: grecord/src/gui.c:134
+msgid "Show soundinfo"
+msgstr "Amosar información do son"
+
+#: grecord/src/gui.c:135 grecord/src/gui.c:874
+msgid "Show sound information"
+msgstr "Amosar información do son"
+
+#: grecord/src/gui.c:235
+msgid "New"
+msgstr "Novo"
+
+#: grecord/src/gui.c:236
+msgid "Create new sample"
+msgstr "Crear unha nova gravación"
+
+#: grecord/src/gui.c:247
+msgid "Play current sample"
+msgstr "Reproduci-la gravación actual"
+
+#: grecord/src/gui.c:256
+msgid "Stop playing/recording"
+msgstr "Para de reproducir/gravar"
+
+#: grecord/src/gui.c:264
+msgid "Record"
+msgstr "Gravar"
+
+#: grecord/src/gui.c:265
+msgid "Start recording"
+msgstr "Comezar a gravar"
+
+#: grecord/src/gui.c:275
+msgid "Exit"
+msgstr "Saír"
+
+#: grecord/src/gui.c:276
+msgid "Exit this program"
+msgstr "Saír deste programa"
+
+#: grecord/src/gui.c:290
+msgid "Info"
+msgstr "Información"
+
+#: grecord/src/gui.c:394
+#, c-format
+msgid "File '%s' doesn't exist; using default."
+msgstr "O ficheiro '%s' non existe; usarase o ficheiro por defecto."
+
+#: grecord/src/gui.c:450
+msgid "Copyright (C)  2000 Andreas Hydén"
+msgstr "Copyright (C)  2000 Andreas Hydén"
+
+#: grecord/src/gui.c:452
+msgid ""
+"A simple soundrecorder and soundplayer for GNOME.\n"
+"Dedicated to my cat, Malte."
+msgstr ""
+"Un sinxelo reproductor e gravador de son para GNOME.\n"
+"Dedicado ó meu gato, Malte."
+
+#: grecord/src/gui.c:556
+msgid "Recording timeout: "
+msgstr "Expiración da gravación: "
+
+#: grecord/src/gui.c:567
+msgid "minutes"
+msgstr "minutos"
+
+#: grecord/src/gui.c:572
+msgid "Stop recording on timeout"
+msgstr "Parar de gravar ó expira-lo tempo"
+
+#: grecord/src/gui.c:577
+msgid "Popup save dialog when recording is finished"
+msgstr "Amosar diálogo de gardar cando a gravación estea terminada"
+
+#: grecord/src/gui.c:586
+msgid "Size"
+msgstr "Tamaño"
+
+#: grecord/src/gui.c:595
+msgid "Popup warning message if size (MB) of sample becomes bigger than:"
+msgstr ""
+"Amosar mensaxe de aviso se o tamaño (en MB) da gravación faise maior que:"
+
+#: grecord/src/gui.c:605
+msgid "Stop recording if size (MB) of sample becomes bigger than:"
+msgstr "Parar de gravar se o tamaño (en MB) da gravación faise maior que:"
+
+#: grecord/src/gui.c:616
+msgid "Recording"
+msgstr "Garvando"
+
+#: grecord/src/gui.c:625
+msgid "Play-repeating"
+msgstr "Reproducindo con repetición"
+
+#: grecord/src/gui.c:634
+msgid "Repeat"
+msgstr "Repetir"
+
+#: grecord/src/gui.c:643
+msgid "Forever"
+msgstr "Sempre"
+
+#: grecord/src/gui.c:648
+msgid "Nr of times:"
+msgstr "Número de veces:"
+
+#: grecord/src/gui.c:659
+msgid "Playing"
+msgstr "Reproducindo"
+
+#: grecord/src/gui.c:668
+msgid "Program files"
+msgstr "Ficheiros de programas"
+
+#: grecord/src/gui.c:685
+msgid "Path to sox:"
+msgstr "Camiño ó sox:"
+
+#: grecord/src/gui.c:701
+msgid "Path to mixer:"
+msgstr "Camiño ó mesturador:"
+
+#: grecord/src/gui.c:717
+msgid "Directories"
+msgstr "Directorios"
+
+#: grecord/src/gui.c:730
+msgid "Temp dir:"
+msgstr "Dir. temporal:"
+
+#: grecord/src/gui.c:746
+msgid "Paths"
+msgstr "Camiños"
+
+#: grecord/src/gui.c:754
+msgid "Sound options"
+msgstr "Opcións de son"
+
+#: grecord/src/gui.c:767
+msgid "Audioformat:"
+msgstr "Formato de audio:"
+
+#: grecord/src/gui.c:778 grecord/src/gui.c:788
+msgid "8bit pcm"
+msgstr "PCM 8 bits"
+
+#: grecord/src/gui.c:779 grecord/src/gui.c:790
+msgid "16bit pcm"
+msgstr "PCM 16 bits"
+
+#: grecord/src/gui.c:796
+msgid "Sample rate:"
+msgstr "Frecuencia de mostraxe:"
+
+#: grecord/src/gui.c:826
+msgid "# of channels"
+msgstr "Número de canles"
+
+#: grecord/src/gui.c:837 grecord/src/gui.c:847
+msgid "mono"
+msgstr "mono"
+
+#: grecord/src/gui.c:838 grecord/src/gui.c:849
+msgid "stereo"
+msgstr "estéreo"
+
+#: grecord/src/gui.c:852
+msgid "Sound"
+msgstr "Son"
+
+#: grecord/src/gui.c:860
+msgid "Main window"
+msgstr "Fiestra principal"
+
+#: grecord/src/sound.c:104
+msgid " untitled.wav"
+msgstr " sentitular.wav"
+
+#: grecord/src/sound.c:161
+msgid "Making backup..."
+msgstr "Creando copia de seguridade..."
+
+#: grecord/src/sound.c:162
+msgid "Adding echo to sample..."
+msgstr "Engadindo eco á gravación..."
+
+#: grecord/src/sound.c:163
+msgid "Please wait..."
+msgstr "Por favor, agarde..."
+
+#: grecord/src/preferences.c:195
+#, c-format
+msgid ""
+"File %s in 'sox command' does not exist.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"O ficheiro %s no 'comando do sox' non existe.\n"
+"¿Quere usalo de calquera xeito?"
+
+#: grecord/src/preferences.c:217
+#, c-format
+msgid ""
+"File %s in 'mixer command' does not exist.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"O ficheiro %s no 'comando do mesturador' non existe.\n"
+"¿Quere usalo de calquera xeito?"
+
+#. Check if the given temp directory exists --------------------
+#. Exists
+#. Not a directory
+#: grecord/src/preferences.c:240
+#, c-format
+msgid ""
+"Temp directory %s is a file.\n"
+"Do you still want to use it anyway?"
+msgstr ""
+"O directorio temporal %s é un ficheiro.\n"
+"¿Quere usalo de calquera xeito?"
+
+#. Does not exist
+#: grecord/src/preferences.c:257
+#, c-format
+msgid ""
+"Directory %s does not exist.\n"
+"Do you still want to use it?"
+msgstr ""
+"O directorio %s non existe.\n"
+"¿Quere usalo de calquera xeito?"
+
+#: grecord/src/preferences.c:291
+msgid "Error! Wrong page number. (shouldn't happen)\n"
+msgstr "¡Erro! Número de páxina erróneo. (non debería ocorrer)\n"
