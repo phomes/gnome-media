@@ -853,7 +853,7 @@ file_properties (BonoboUIComponent *uic,
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
-	label = make_info_label (_("Song length:"));
+	label = make_info_label (_("File duration:"));
 	pack_table_widget (table, label, 0, 0);
 
 	fp->length = make_info_label ("");
