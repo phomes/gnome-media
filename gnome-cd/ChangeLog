@@ -1,3 +1,8 @@
+2002-04-18 Theo van Klaveren <t.vanklaveren@student.utwente.nl>
+
+	* freebsd-cdrom.c: Fix segfault on play by taking the track no. 
+	returned from the IOCTL, not the one passed to it (which was garbage).
+
 2002-04-17 Iain <iain@ximian.com>
 
 	* preferences.c (add_relation): Do some Atk black magic.

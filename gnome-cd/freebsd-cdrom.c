@@ -925,21 +925,21 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 		realstatus->audio = GNOME_CDROM_AUDIO_PLAY;
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
-		realstatus->track = subchnl.track;
+		realstatus->track = subchnl.data->what.position.track_number;
 		break;
 
 	case CD_AS_PLAY_PAUSED:
 		realstatus->audio = GNOME_CDROM_AUDIO_PAUSE;
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
-		realstatus->track = subchnl.track;
+		realstatus->track = subchnl.data->what.position.track_number;
 		break;
 
 	case CD_AS_PLAY_COMPLETED:
 		realstatus->audio = GNOME_CDROM_AUDIO_COMPLETE;
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
-		realstatus->track = subchnl.track;
+		realstatus->track = subchnl.data->what.position.track_number;
 		break;
 
 	case CD_AS_AUDIO_INVALID:
