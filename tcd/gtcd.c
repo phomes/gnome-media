@@ -96,8 +96,9 @@ GtkTooltips *tooltips;
 int timeonly = FALSE, status_height, status_width, playid=-1;
 int configured = FALSE, old_status=-1, max,tfont_height;
 unsigned int cur_goto_id, release_t=0, roll_t=0;
-tcd_prefs prefs;
+tcd_prefs *prefs;
 int cddb=0, max_title_width;
+int time_display;
 
 /* stuff for scanning */
 int skip_offset =0;
@@ -185,7 +186,7 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 				if(cd.cur_t < cd.last_t)
 				{   
 					cd.cur_t++;
-					tcd_playtracks(&cd,cd.cur_t, cd.last_t, prefs.only_use_trkind);
+					tcd_playtracks(&cd,cd.cur_t, cd.last_t, prefs->only_use_trkind);
 					if(cd.play_method==REPEAT_TRK)
 						cd.repeat_track = cd.cur_t;
 				}
@@ -196,7 +197,7 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 				{
 					if( (cd.t_sec+(cd.t_min*60)) < 10 )
 						cd.cur_t--;
-					tcd_playtracks( &cd,cd.cur_t, cd.last_t, prefs.only_use_trkind);
+					tcd_playtracks( &cd,cd.cur_t, cd.last_t, prefs->only_use_trkind);
 				                                                             
 					if( cd.play_method==REPEAT_TRK )
 						cd.repeat_track = cd.cur_t;
@@ -277,11 +278,9 @@ GtkWidget* make_changer_buttons( void )
 	int i;
     
 	box = gtk_hbox_new(FALSE, 0);
-	if(cd.nslots < 0 || cd.nslots > 12)
-		return box;
 	changer_buttons = g_new(GtkWidget *, cd.nslots);
     
-	for(i=0; i < cd.nslots && i < 12; i++)
+	for(i=0; i < cd.nslots; i++)
 	{
 		g_snprintf( tmp, 4, "%d", i+1 );
 		changer_buttons[i] = gtk_button_new_with_label(tmp);
@@ -323,9 +322,9 @@ GtkWidget *make_small_buttons(void)
     
 	table = gtk_table_new(TRUE, 6,1);
 
-	b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, &prefs.tracked, _("Open track editor"));
+	b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, &prefs->tracked, _("Open track editor"));
 	b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
-	b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, &prefs.quit, _("Quit"));
+	b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, &prefs->quit, _("Quit"));
 
 	gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
 	gtk_table_attach_defaults(GTK_TABLE(table), b2, 2, 4, 0, 1);
@@ -345,12 +344,12 @@ GtkWidget* create_buttons(void)
 	table = gtk_table_new(TRUE, 3, 4);
 
 /* TOP ROW */ 
-     	playbutton = make_button_with_pixmap("play", NULL, &prefs.play, _("Play/Pause"));
+     	playbutton = make_button_with_pixmap("play", NULL, &prefs->play, _("Play/Pause"));
 	status_changed();
 	b1 = playbutton;
     
-	b2 = make_button_with_pixmap( "stop", stop_cb, &prefs.stop, _("Stop") );
-	b3 = make_button_with_pixmap( "eject", eject_cb, &prefs.eject, _("Eject") );
+	b2 = make_button_with_pixmap( "stop", stop_cb, &prefs->stop, _("Stop") );
+	b3 = make_button_with_pixmap( "eject", eject_cb, &prefs->eject, _("Eject") );
     
 	gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 0, 1);
 	gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 0, 1);
@@ -365,8 +364,8 @@ GtkWidget* create_buttons(void)
 	gtk_widget_set_events(ff, GDK_BUTTON_PRESS_MASK
 			      | GDK_BUTTON_RELEASE_MASK);
 
-	add_key_binding(rw, "clicked", _("Skip backwards"), &prefs.back);
-	add_key_binding(rw, "clicked", _("Skip forwards"), &prefs.forward);
+	add_key_binding(rw, "clicked", _("Skip backwards"), &prefs->back);
+	add_key_binding(rw, "clicked", _("Skip forwards"), &prefs->forward);
 
 	gtk_signal_connect(GTK_OBJECT(ff), "event",
 			   GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(1));
@@ -402,9 +401,9 @@ void setup_colors( void )
 	gdk_color_alloc(colormap, &blue);
 
 	g_snprintf(tmp, 15, "#%02X%02X%02X", 
-		   prefs.trackcolor_r,
-		   prefs.trackcolor_g,
-		   prefs.trackcolor_b);
+		   prefs->trackcolor_r,
+		   prefs->trackcolor_g,
+		   prefs->trackcolor_b);
 
 	gdk_color_parse(tmp, &track_color);
 	gdk_color_alloc(colormap, &track_color);
@@ -414,7 +413,7 @@ void setup_colors( void )
 void draw_time_playing(void)
 {
 	int pos, end, cur, min, sec;
-	switch( prefs.time_display )
+	switch( time_display )
 	{
 	case TRACK_E: /* track time ascending */
 		led_draw_time(status_db, status_area,
@@ -585,7 +584,7 @@ void draw_status(void)
 		}
 		if(cd.isplayable)
 		{		
-			char *dtmsg = gettext(display_types[prefs.time_display]);
+			char *dtmsg = gettext(display_types[time_display]);
 			char *pmsg =  gettext(play_types[cd.play_method]);
 			gdk_gc_set_foreground(gc, &darkgrey);
 			gdk_draw_text( status_db,sfont,gc,48,26, 
@@ -638,7 +637,7 @@ gint slow_timer( gpointer *data )
 	    cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
 	{
 		if( cd.play_method == REPEAT_CD )
-			tcd_playtracks( &cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
+			tcd_playtracks( &cd, cd.first_t, cd.last_t, prefs->only_use_trkind);
 	}
 
 	/* is a cddb operation going on? */
@@ -754,7 +753,7 @@ gint fast_timer( gpointer *data )
 
 	status_changed();
 	if((cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track))
-		tcd_playtracks(&cd, cd.repeat_track, -1, prefs.only_use_trkind);
+		tcd_playtracks(&cd, cd.repeat_track, -1, prefs->only_use_trkind);
 	return 1;
 }
 
@@ -836,9 +835,9 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 		    x < 100 &&
 		    y < 32 )
 		{
-			prefs.time_display++;
-			if( prefs.time_display >= TIME_LAST )
-				prefs.time_display = TIME_FIRST+1;
+			time_display++;
+			if( time_display >= TIME_LAST )
+				time_display = TIME_FIRST+1;
 			draw_status();
 			return TRUE;
 		}
@@ -885,13 +884,14 @@ void setup_time_display(GtkWidget *table)
 
 	box = gtk_hbox_new(FALSE, 2);
 #ifdef TCD_CHANGER_ENABLED
-	gtk_box_pack_start(GTK_BOX(box), make_changer_buttons(), FALSE, FALSE, 0);
+	if(cd.nslots > 2)
+		gtk_box_pack_start(GTK_BOX(box), make_changer_buttons(), FALSE, FALSE, 0);
 #endif
 	gtk_box_pack_start(GTK_BOX(box), volume, TRUE, TRUE, 0);
 
 	gtk_box_pack_end(GTK_BOX(status_table), box, FALSE, FALSE, 0);
 
-	if( prefs.handle )
+	if( prefs->handle )
 	{
 		handle1 = gtk_handle_box_new();
 		gtk_container_add(GTK_CONTAINER(handle1), frame );
@@ -909,8 +909,8 @@ void setup_fonts(void)
 	if(tfont)
 		gdk_font_unref(tfont);
 
-	if(prefs.trackfont)
-		tfont = gdk_font_load( prefs.trackfont );
+	if(prefs->trackfont)
+		tfont = gdk_font_load( prefs->trackfont );
 	else
 		tfont = NULL;
 
@@ -929,7 +929,7 @@ void init_window(void)
 	window = gnome_app_new("gtcd", "TCD 2.0");
 	gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
 	gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd");
-	gtk_window_set_policy(GTK_WINDOW(window), TRUE, FALSE, TRUE);
+	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, TRUE);
 
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_cb), NULL);
@@ -945,7 +945,7 @@ void init_window(void)
 	main_box = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 
 	tooltips = gtk_tooltips_new();
-	if( prefs.tooltip )
+	if( prefs->tooltip )
 		gtk_tooltips_enable(tooltips);
 	else
 		gtk_tooltips_disable(tooltips);
@@ -967,12 +967,13 @@ void reload_info(int signal)
 		update_editor();
 	}
 	draw_status();
+	adjust_status_size();
 }
 
 
 void exit_action(void)
 {
-	switch(prefs.exit_action)
+	switch(prefs->exit_action)
 	{
 	case StopPlaying:
 		tcd_stopcd(&cd);
@@ -997,13 +998,13 @@ void exit_action(void)
 int play_on_start_flag = FALSE;
 void start_action(void)
 {
-	if(prefs.close_tray_on_start) {
+	if(prefs->close_tray_on_start) {
 		tcd_ejectcd(&cd);
 	}
-	switch(play_on_start_flag ? StartPlaying : prefs.start_action)
+	switch(play_on_start_flag ? StartPlaying : prefs->start_action)
 	{
 	case StartPlaying:
-		tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
+		tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs->only_use_trkind);
 		break;
 	case StopPlaying:
 		tcd_stopcd(&cd);
@@ -1044,11 +1045,14 @@ int main (int argc, char *argv[])
 
 	cd.play_method = NORMAL;
 
-	load_prefs(&prefs);
+	prefs = g_new0(tcd_prefs, 1);
+	load_prefs(prefs);
+	time_display = gnome_config_get_int("/gtcd/ui/time_display=0");
+
 	if(CD_device)
 		cd.cdpath = CD_device;
 	else
-		cd.cdpath = prefs.cddev;
+		cd.cdpath = prefs->cddev;
     		
 	tcd_init_disc(&cd, (WarnFunc)create_warning);
 
@@ -1084,11 +1088,5 @@ int main (int argc, char *argv[])
 	signal(SIGUSR2, reload_info);
     
 	gtk_main();
-	save_prefs(&prefs);
-	gnome_config_sync();
-	gdk_gc_destroy(gc);
-	exit_action();
-	tcd_close_disc(&cd);
-
 	return 0;
 }

@@ -13,7 +13,7 @@ void play_cb(GtkWidget *widget, gpointer data)
     if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
 	tcd_pausecd(&cd);
     else
-	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
+	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs->only_use_trkind);
     cd.repeat_track = cd.cur_t;
     
     draw_status();
@@ -54,7 +54,7 @@ void eject_cb(GtkWidget *widget, gpointer data)
 
 void mixer_cb(GtkWidget *widget, gpointer data)
 {
-    gnome_execute_shell(NULL, prefs.mixer_cmd);
+    gnome_execute_shell(NULL, prefs->mixer_cmd);
     return;
 }
 
@@ -100,20 +100,24 @@ void about_cb(GtkWidget *widget, gpointer data)
 
 gint goto_track_cb(GtkWidget *widget, gpointer data)
 {
-    tcd_playtracks(&cd, GPOINTER_TO_INT(data), cd.last_t, prefs.only_use_trkind);
+    tcd_playtracks(&cd, GPOINTER_TO_INT(data), cd.last_t, prefs->only_use_trkind);
     cd.repeat_track = GPOINTER_TO_INT(data);
     return 1;
 }
 
+extern int time_display;
+extern GdkGC *gc;
 void quit_cb(GtkWidget *widget, gpointer data)
 {
-    gdk_window_get_geometry(window->window, &prefs.x, &prefs.y, &prefs.w, &prefs.h, NULL);
-    gnome_config_set_int("/gtcd/Geometry/x", prefs.x);
-    gnome_config_set_int("/gtcd/Geometry/y", prefs.y);
-    gnome_config_set_int("/gtcd/Geometry/w", prefs.w);
-    gnome_config_set_int("/gtcd/Geometry/h", prefs.h);
-    gnome_config_sync();
-    gtk_main_quit();
+	save_prefs(prefs);
+	gnome_config_set_int("/gtcd/ui/time_display", time_display);
+	gnome_config_sync();
+	
+	gdk_gc_destroy(gc);
+	exit_action();
+	tcd_close_disc(&cd);
+	
+	gtk_main_quit();
 }
 
 void changer_cb(GtkWidget *widget, gpointer data)
@@ -131,4 +135,15 @@ void changer_cb(GtkWidget *widget, gpointer data)
 	draw_status();
     }
     return;
+}
+
+static GnomeHelpMenuEntry help_ref = {"gnome-terminal", "options.html"};
+
+void help(GtkWidget *widget, gpointer data)
+{
+	gchar *file = gnome_help_file_path("users-guide", "gtcd-use.html");
+	gchar *path = g_strdup_printf("file:%s", file);
+	gnome_help_goto(NULL, path);
+	g_free(file);
+	g_free(path);
 }

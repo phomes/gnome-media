@@ -33,6 +33,7 @@
 #include "cddb_props.h"
 
 static GtkWidget *pref_window;
+static tcd_prefs *oldprefs;
 
 /* private functions */
 static void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb);
@@ -71,7 +72,6 @@ void load_prefs(tcd_prefs *prop)
 	prop->handle=gnome_config_get_bool     ("/gtcd/ui/handle=false");
 	prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
 	prop->mixer_cmd=gnome_config_get_string    ("/gtcd/ui/mixer=gmix");
-	prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
 	prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-iso8859-1");
 
 	prop->trackcolor_r=gnome_config_get_int("/gtcd/ui/trackcolor_r=255" );
@@ -106,7 +106,6 @@ void save_prefs(tcd_prefs *prop)
 	gnome_config_set_string("/gtcd/ui/mixer", prop->mixer_cmd);
 	gnome_config_set_bool  ("/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool  ("/gtcd/ui/tooltip", prop->tooltip);
-	gnome_config_set_int   ("/gtcd/ui/time_display", prop->time_display);
 	gnome_config_set_string("/gtcd/ui/trackfont", prop->trackfont);
 
 	gnome_config_set_int("/gtcd/ui/trackcolor_r", prop->trackcolor_r);
@@ -143,16 +142,16 @@ void changed_cb(GtkWidget *widget, void *data)
 
 static void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
 {
-	prefs.trackcolor_r = pr / 256;
-	prefs.trackcolor_g = pg / 256;
-	prefs.trackcolor_b = pb / 256; 
+	prefs->trackcolor_r = pr / 256;
+	prefs->trackcolor_g = pg / 256;
+	prefs->trackcolor_b = pb / 256; 
 
 	changed_cb(NULL, NULL);
 }
 
 static void start_toggle_cb(GtkWidget *widget, gpointer data)
 {
-	prefs.start_action = GPOINTER_TO_INT(data);
+	prefs->start_action = GPOINTER_TO_INT(data);
 	changed_cb(NULL, NULL);
 }
 
@@ -177,26 +176,26 @@ static GtkWidget *create_start_frame()
 
 	/* do nothing */
 	do_nothing = gtk_radio_button_new_with_label(NULL, _("Do nothing"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.start_action==DoNothing)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs->start_action==DoNothing)?1:0);
 
 	/* start playing */
 	start_playing = gtk_radio_button_new_with_label(
 		gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 		_("Start playing"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(start_playing), (prefs.start_action==StartPlaying)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(start_playing), (prefs->start_action==StartPlaying)?1:0);
     
 	/* stop playing */
 	stop_playing = gtk_radio_button_new_with_label(
 		gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 		_("Stop playing"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.start_action==StopPlaying)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs->start_action==StopPlaying)?1:0);
 	
 	/* close tray */
 	close_tray = gtk_check_button_new_with_label(_("Close tray"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), prefs.close_tray_on_start);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), prefs->close_tray_on_start);
 
 	gtk_signal_connect(GTK_OBJECT(close_tray), "clicked",
-			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs.close_tray_on_start);
+			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->close_tray_on_start);
    
 	gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
 			   GTK_SIGNAL_FUNC(start_toggle_cb), GINT_TO_POINTER(DoNothing));
@@ -216,7 +215,7 @@ static GtkWidget *create_start_frame()
 
 static void exit_toggle_cb(GtkWidget *widget, gpointer data)
 {
-	prefs.exit_action = GPOINTER_TO_INT(data);
+	prefs->exit_action = GPOINTER_TO_INT(data);
 	changed_cb(NULL, NULL);
 }
 
@@ -232,25 +231,25 @@ static GtkWidget *create_exit_frame()
 
 	/* do nothing */
 	do_nothing = gtk_radio_button_new_with_label(NULL, _("Do nothing"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.exit_action==DoNothing)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs->exit_action==DoNothing)?1:0);
     
 	/* stop playing */
 	stop_playing = gtk_radio_button_new_with_label(
 		gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 		_("Stop playing"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.exit_action==StopPlaying)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs->exit_action==StopPlaying)?1:0);
 
 	/* open tray */
 	open_tray = gtk_radio_button_new_with_label(
 		gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 		_("Open tray"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(open_tray), (prefs.exit_action==OpenTray)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(open_tray), (prefs->exit_action==OpenTray)?1:0);
         
 	/* close tray */
 	close_tray = gtk_radio_button_new_with_label(
 		gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 		_("Close tray"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), (prefs.exit_action==CloseTray)?1:0);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), (prefs->exit_action==CloseTray)?1:0);
 
 	gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
 			   GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(DoNothing));
@@ -272,13 +271,13 @@ static GtkWidget *create_exit_frame()
 
 static void dev_entry_changed_cb(GtkWidget *widget, gpointer data)
 {
-	prefs.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+	prefs->cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
 	changed_cb(NULL, NULL);
 }
 
 static void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 {
-        prefs.trackfont = g_strdup(gtk_font_selection_dialog_get_font_name(
+        prefs->trackfont = g_strdup(gtk_font_selection_dialog_get_font_name(
                 GTK_FONT_SELECTION_DIALOG(fs)));
         gtk_widget_destroy(fs);
 	changed_cb(NULL, NULL);
@@ -294,7 +293,7 @@ static void font_button_cb(GtkWidget *widget, gpointer *data)
         GtkWidget *fs;
         
         fs = gtk_font_selection_dialog_new("Font");
-        gtk_font_selection_dialog_set_font_name(GTK_FONT_SELECTION_DIALOG(fs), prefs.trackfont);
+        gtk_font_selection_dialog_set_font_name(GTK_FONT_SELECTION_DIALOG(fs), prefs->trackfont);
 
         gtk_signal_connect(GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(fs)->ok_button), "clicked",
 			   GTK_SIGNAL_FUNC(font_ok_clicked_cb), fs);
@@ -324,7 +323,7 @@ GtkWidget *create_general_frame()
 	/* device entry */
 	label = gtk_label_new(_("CDROM device"));
 	dev_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(dev_entry), prefs.cddev);
+	gtk_entry_set_text(GTK_ENTRY(dev_entry), prefs->cddev);
 	gtk_signal_connect(GTK_OBJECT(dev_entry), "changed",
 			   GTK_SIGNAL_FUNC(dev_entry_changed_cb), NULL);
 	gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
@@ -334,9 +333,9 @@ GtkWidget *create_general_frame()
 	label = gtk_label_new(_("Track/title color"));
 	cp = gnome_color_picker_new();
 	gnome_color_picker_set_i8(GNOME_COLOR_PICKER(cp), 
-				  prefs.trackcolor_r, 
-				  prefs.trackcolor_g, 
-				  prefs.trackcolor_b, 0);
+				  prefs->trackcolor_r, 
+				  prefs->trackcolor_g, 
+				  prefs->trackcolor_b, 0);
 	gtk_signal_connect(GTK_OBJECT(cp), "color_set",
 			   GTK_SIGNAL_FUNC(color_set_cb), NULL);
 	gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
@@ -352,23 +351,23 @@ GtkWidget *create_general_frame()
     
 	/* show handles */
 	handles = gtk_check_button_new_with_label(_("Show handles (restart required)"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(handles), prefs.handle);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(handles), prefs->handle);
 	gtk_signal_connect(GTK_OBJECT(handles), "clicked",
-			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle);
+			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->handle);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), handles);
     
 	/* show tooltips */
 	tooltips = gtk_check_button_new_with_label(_("Show tooltips"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tooltips), prefs.tooltip);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tooltips), prefs->tooltip);
 	gtk_signal_connect(GTK_OBJECT(tooltips), "clicked",
-			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip);
+			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->tooltip);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), tooltips);
 
 	/* use alternate play ioctl */
 	trkind = gtk_check_button_new_with_label(_("Use alternate method to play CD"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(trkind), prefs.only_use_trkind);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(trkind), prefs->only_use_trkind);
 	gtk_signal_connect(GTK_OBJECT(trkind), "clicked",
-			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs.only_use_trkind);
+			   GTK_SIGNAL_FUNC(check_changed_cb), &prefs->only_use_trkind);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), trkind);
     
 	gtk_widget_show_all(vbox);
@@ -553,19 +552,21 @@ static GtkWidget *key_page(void)
 static void apply_cb(GtkWidget *widget, void *data)
 {       
 /* Do stuff here if needed */
- 
-	if(prefs.tooltip)
+
+	if(prefs->tooltip)
 		gtk_tooltips_enable(tooltips);
 	else
 		gtk_tooltips_disable(tooltips);
 	setup_colors();
 	setup_fonts();
 	adjust_status_size();
-	save_prefs(&prefs);
+	save_prefs(prefs);
+	load_prefs(oldprefs);
 }
 
 static void cancel_cb(void)
 {
+	prefs = oldprefs;
 	pref_window = NULL;
 }
 
@@ -579,10 +580,13 @@ void preferences(GtkWidget *widget, void *data)
 		cancel_cb();
 		return;
 	}
-    
+	/* store current settings */
+	oldprefs = g_new0(tcd_prefs, 1);
+	load_prefs(oldprefs);
+	
 	pref_window = gnome_property_box_new();
 	gtk_widget_realize(pref_window);
-
+	
 	label = gtk_label_new(_("Preferences"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
 				 create_page(), label);
@@ -597,6 +601,8 @@ void preferences(GtkWidget *widget, void *data)
 	
 	gtk_signal_connect(GTK_OBJECT(pref_window), "apply",
 			   GTK_SIGNAL_FUNC(apply_cb), NULL);
+	gtk_signal_connect(GTK_OBJECT(pref_window), "help",
+			   GTK_SIGNAL_FUNC(help), NULL);
 	gtk_signal_connect(GTK_OBJECT(pref_window), "destroy",
 			   GTK_SIGNAL_FUNC(cancel_cb), NULL);
 	gtk_signal_connect(GTK_OBJECT(pref_window), "delete_event",

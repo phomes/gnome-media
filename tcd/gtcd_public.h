@@ -18,6 +18,7 @@ void setup_popup_menu(GtkWidget *w, cd_struct *data);
 void edit_window(GtkWidget *widget, gpointer data);
 void cddb_status_dialog(GtkWidget *widget, gpointer data);
 void update_editor(void);
+void help(GtkWidget *widget, gpointer data);
 
 GnomeClient *new_client(void);
 void session_die (gpointer client_data);
@@ -31,7 +32,7 @@ int save_state (GnomeClient        *client,
 
 extern int titlelabel_f;
 extern cd_struct cd;
-extern tcd_prefs prefs;
+extern tcd_prefs *prefs;
 extern GtkTooltips *tooltips;
 extern GtkAccelGroup *accel;
 extern GList *keys;

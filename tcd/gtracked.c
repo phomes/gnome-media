@@ -159,7 +159,7 @@ static void select_row_cb( GtkCList *clist,
     if(gtk_events_pending())
 	gtk_main_iteration();
     if(event && event->type == GDK_2BUTTON_PRESS)
-	tcd_playtracks(&cd, row, -1, prefs.only_use_trkind);
+	tcd_playtracks(&cd, row, -1, prefs->only_use_trkind);
 
     return;
 }
@@ -268,7 +268,6 @@ void edit_window(GtkWidget *widget, gpointer data)
         gtk_clist_set_column_auto_resize(GTK_CLIST(track_list), i, TRUE);
     }
     gtk_clist_column_titles_show(GTK_CLIST(track_list));
-    gtk_clist_set_shadow_type(GTK_CLIST(track_list), GTK_SHADOW_NONE);
     gtk_clist_set_selection_mode(GTK_CLIST(track_list), 
 				 GTK_SELECTION_BROWSE);
     gtk_clist_column_titles_passive(GTK_CLIST(track_list));

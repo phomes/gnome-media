@@ -19,7 +19,6 @@ typedef struct
 typedef struct
 {
     gchar *cddev;
-    gint time_display;
     gboolean handle;
     gchar *mixer_cmd;
     gboolean tooltip;
