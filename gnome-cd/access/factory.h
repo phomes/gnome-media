@@ -26,7 +26,7 @@
 #include "cddisplayaccessiblefactory.h"
 #include "../display.h"
 
+void setup_a11y_factory      (void);
 void cddisplay_setup_factory (void);
-static gboolean is_gail_loaded(GType derived_type);
 
 #endif /* __FACTORY_H__ */

@@ -35,11 +35,6 @@ typedef struct _FreeBSDCDRomTrackInfo {
 } FreeBSDCDRomTrackInfo;
 
 struct _FreeBSDCDRomPrivate {
-	char *cdrom_device;
-	guint32 update_id;
-	int cdrom_fd;
-	int ref_count;
-
 	GnomeCDRomUpdate update;
 
 	struct ioc_toc_header *tochdr;
@@ -47,8 +42,6 @@ struct _FreeBSDCDRomPrivate {
 	unsigned char track0, track1;
 
 	FreeBSDCDRomTrackInfo *track_info;
-	
-	GnomeCDRomStatus *recent_status;
 };
 
 static gboolean freebsd_cdrom_eject (GnomeCDRom *cdrom,
@@ -80,20 +73,11 @@ static gboolean freebsd_cdrom_close_tray (GnomeCDRom *cdrom,
 static GnomeCDRomMSF blank_msf = { 0, 0, 0};
 
 static void
-finalize (GObject *object)
+freebsd_cdrom_finalize (GObject *object)
 {
-	FreeBSDCDRom *cdrom;
-
-	cdrom = FREEBSD_CDROM (object);
-	if (cdrom->priv == NULL) {
-		return;
-	}
-
-	close (cdrom->priv->cdrom_fd);
-	g_free (cdrom->priv->cdrom_device);
+	FreeBSDCDrom *cdrom = (FreeBSDCDrom *) object;
 
 	g_free (cdrom->priv);
-	cdrom->priv = NULL;
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -134,52 +118,15 @@ add_msf (GnomeCDRomMSF *msf1,
 
 static gboolean
 freebsd_cdrom_open (FreeBSDCDRom *lcd,
-		  GError **error)
+		    GError      **error)
 {
-	if (lcd->priv->cdrom_fd != -1) {
-		lcd->priv->ref_count++;
-		return TRUE;
-	}
-
-	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (lcd->priv->cdrom_fd < 0) {
-		if (errno == EACCES && error != NULL) {
-			*error = g_error_new(GNOME_CDROM_ERROR,
-					     GNOME_CDROM_ERROR_NOT_OPENED,
-					     _("You do not seem to have permission to access %s."),
-					     lcd->priv->cdrom_device);
-		} else if (error != NULL) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("Unable to open %s. This may be caused by:\n"
-					        "a) CD support is not compiled into the FreeBSD kernel\n"
- 						"b) You do not have the correct permissions to access the CD drive\n"
- 						"c) %s is not the CD drive.\n"),					     
-					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
-		}
-
-		return FALSE;
-	}
-
-	lcd->priv->ref_count = 1;
-	return TRUE;
+	return gnome_cdrom_open_dev (GNOME_CDROM (lcd), error);
 }
 
 static void
 freebsd_cdrom_close (FreeBSDCDRom *lcd)
 {
-	if (lcd->priv->cdrom_fd == -1) {
-		return;
-	}
-
-	lcd->priv->ref_count--;
-
-	if (lcd->priv->ref_count <= 0) {
-		close (lcd->priv->cdrom_fd);
-		lcd->priv->cdrom_fd = -1;
-	}
-
-	return;
+	gnome_cdrom_close_dev (GNOME_CDROM (lcd), FALSE);
 }
 
 static void
@@ -215,8 +162,9 @@ calculate_track_lengths (FreeBSDCDRom *lcd)
 }
 
 static void
-freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
+freebsd_cdrom_update_cd (GnomeCDRom *cdrom)
 {
+	FreeBSDCDRom *lcd = FREEBSD_CDROM (cdrom);
 	FreeBSDCDRomPrivate *priv;
 	struct ioc_read_toc_single_entry tocentry;
 	int i, j;
@@ -229,7 +177,7 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 		return;
 	}
 
-	if (ioctl (priv->cdrom_fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
+	if (ioctl (cdrom->fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
 		g_warning (_("Error reading CD header"));
 		freebsd_cdrom_close (lcd);
 
@@ -246,7 +194,7 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 		tocentry.track = j;
 		tocentry.address_format = CD_MSF_FORMAT;
 
-		if (ioctl (priv->cdrom_fd, CDIOREADTOCENTRY, &tocentry) < 0) {
+		if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
 			g_warning (_("IOCtl failed"));
 			continue;
 		}
@@ -259,7 +207,7 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 	/* On FreeBSD, the leadout track is the track LAST_TRACK + 1. */
 	tocentry.track = priv->number_tracks + 1;
 	tocentry.address_format = CD_MSF_FORMAT;
-	if (ioctl (priv->cdrom_fd, CDIOREADTOCENTRY, &tocentry) < 0) {
+	if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
 		g_warning (_("Error getting leadout"));
 		freebsd_cdrom_invalidate (lcd);
 		return;
@@ -279,7 +227,7 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 
 static gboolean
 freebsd_cdrom_eject (GnomeCDRom *cdrom,
-		   GError **error)
+		     GError    **error)
 {
 	FreeBSDCDRom *lcd;
 	GnomeCDRomStatus *status;
@@ -296,7 +244,7 @@ freebsd_cdrom_eject (GnomeCDRom *cdrom,
 	}
 
 	if (status->cd != GNOME_CDROM_STATUS_TRAY_OPEN) {
-		if (ioctl (lcd->priv->cdrom_fd, CDIOCEJECT, 0) < 0) {
+		if (ioctl (cdrom->fd, CDIOCEJECT, 0) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -321,8 +269,8 @@ freebsd_cdrom_eject (GnomeCDRom *cdrom,
 
 	g_free (status);
 
-	lcd->priv->ref_count = 0;
-	freebsd_cdrom_close (lcd);
+	gnome_cdrom_close_dev (cdrom, TRUE);
+
 	return TRUE;
 }
 
@@ -567,7 +515,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 		}
 
 		/* PLAY IT AGAIN */
-		if (ioctl (priv->cdrom_fd, CDIOCPLAYMSF, &msf) < 0) {
+		if (ioctl (cdrom->fd, CDIOCPLAYMSF, &msf) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -616,7 +564,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 	}
 
 	if (status->audio == GNOME_CDROM_AUDIO_PAUSE) {
-		if (ioctl (lcd->priv->cdrom_fd, CDIOCRESUME) < 0) {
+		if (ioctl (cdrom->fd, CDIOCRESUME) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -635,7 +583,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 	}
 
 	if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
-		if (ioctl (lcd->priv->cdrom_fd, CDIOCPAUSE, 0) < 0) {
+		if (ioctl (cdrom->fd, CDIOCPAUSE, 0) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -681,7 +629,7 @@ freebsd_cdrom_stop (GnomeCDRom *cdrom,
 	}
 #endif
 
-	if (ioctl (lcd->priv->cdrom_fd, CDIOCSTOP, 0) < 0) {
+	if (ioctl (cdrom->fd, CDIOCSTOP, 0) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -860,7 +808,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 #if 0
-	cd_status = ioctl (priv->cdrom_fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
+	cd_status = ioctl (cdrom->fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
 	if (cd_status != -1) {
 		switch (cd_status) {
 		case CDS_NO_INFO:
@@ -919,7 +867,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 	subchnl.data_format = CD_CURRENT_POSITION;
 	subchnl.data = &subchnl_info;
 	subchnl.data_len = sizeof(struct cd_sub_channel_info);
-	if (ioctl (priv->cdrom_fd, CDIOCREADSUBCHANNEL, &subchnl) < 0) {
+	if (ioctl (cdrom->fd, CDIOCREADSUBCHANNEL, &subchnl) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -933,7 +881,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	/* Get the volume */
-	if (ioctl (priv->cdrom_fd, CDIOCGETVOL, &vol) < 0) {
+	if (ioctl (cdrom->fd, CDIOCGETVOL, &vol) < 0) {
 		g_warning (_("(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"),
 			   strerror (errno));
 		realstatus->volume = -1; /* -1 means no volume command */
@@ -993,7 +941,7 @@ freebsd_cdrom_close_tray (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
-	if (ioctl (lcd->priv->cdrom_fd, CDIOCCLOSE) < 0) {
+	if (ioctl (cdrom->fd, CDIOCCLOSE) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -1028,7 +976,7 @@ freebsd_cdrom_set_volume (GnomeCDRom *cdrom,
 	vol.vol[0] = (u_char)volume;
 	vol.vol[1] = vol.vol[2] = vol.vol[3] = vol.vol[0];
 	
-	if (ioctl (priv->cdrom_fd, CDIOCSETVOL, &vol) < 0) {
+	if (ioctl (cdrom->fd, CDIOCSETVOL, &vol) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -1122,70 +1070,6 @@ freebsd_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
-static gboolean
-freebsd_cdrom_set_device (GnomeCDRom *cdrom,
-			const char *device,
-			GError **error)
-{
-	FreeBSDCDRom *lcd;
-	FreeBSDCDRomPrivate *priv;
-	GnomeCDRomStatus *status;
-	int fd;
-	
-	lcd = FREEBSD_CDROM (cdrom);
-	priv = lcd->priv;
-
-	if (strcmp (priv->cdrom_device, device) == 0) {
-		/* device is the same */
-		return TRUE;
-	}
-	
-	if (freebsd_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
-		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
-			if (freebsd_cdrom_stop (cdrom, error) == FALSE) {
-				return FALSE;
-			}
-		}
-	}
-
-	if (priv->cdrom_device != NULL) {
-		g_free (priv->cdrom_device);
-	}
-	priv->cdrom_device = g_strdup (device);
-
-	/* Attempt an open to see if we have permission */
-	fd = open (priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (fd < 0 && errno == EACCES && error != NULL) {
-		*error = g_error_new (GNOME_CDROM_ERROR,
-				      GNOME_CDROM_ERROR_NOT_OPENED,
-				      _("You do not seem to have permission to acess %s."),
-				      priv->cdrom_device);
-		return FALSE;
-	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
-						lcd->priv->cdrom_device, error) == FALSE) {
-		close (fd);
-
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
-					      "a) CD support is not compiled into the FreeBSD kernel\n"
-					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n"),					     
-					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
-		}
-		return FALSE;
-	} else {
-		close (fd);
-	}
-
-	/* Force the new CD to be scanned at next update cycle */
-	g_free (priv->recent_status);
-	priv->recent_status = NULL;
-
-	return TRUE;
-}
-
 static void
 class_init (FreeBSDCDRomClass *klass)
 {
@@ -1195,7 +1079,7 @@ class_init (FreeBSDCDRomClass *klass)
 	object_class = G_OBJECT_CLASS (klass);
 	cdrom_class = GNOME_CDROM_CLASS (klass);
 
-	object_class->finalize = finalize;
+	object_class->finalize = freebsd_cdrom_finalize;
 
 	cdrom_class->eject = freebsd_cdrom_eject;
 	cdrom_class->next = freebsd_cdrom_next;
@@ -1209,11 +1093,10 @@ class_init (FreeBSDCDRomClass *klass)
 	cdrom_class->close_tray = freebsd_cdrom_close_tray;
 	cdrom_class->set_volume = freebsd_cdrom_set_volume;
 	cdrom_class->is_cdrom_device = freebsd_cdrom_is_cdrom_device;
+	cdrom_class->update_cd = freebsd_cdrom_update_cd;
 	
 	/* For CDDB */
   	cdrom_class->get_cddb_data = freebsd_cdrom_get_cddb_data;
-
-	cdrom_class->set_device = freebsd_cdrom_set_device;
 	
 	parent_class = g_type_class_peek_parent (klass);
 }
@@ -1223,63 +1106,7 @@ init (FreeBSDCDRom *cdrom)
 {
 	cdrom->priv = g_new (FreeBSDCDRomPrivate, 1);
 	cdrom->priv->tochdr = g_new (struct ioc_toc_header, 1);
-	cdrom->priv->cdrom_fd = -1;
-	cdrom->priv->ref_count = 0;
-	cdrom->priv->update_id = -1;
-	cdrom->priv->recent_status = NULL;
 	cdrom->priv->track_info = NULL;
-}
-
-static gboolean
-update_cd (gpointer data)
-{
-	FreeBSDCDRom *lcd;
-	FreeBSDCDRomPrivate *priv;
-	GnomeCDRomStatus *status;
-	GError *error;
-
-	lcd = data;
-	priv = lcd->priv;
-
-	/* Do an update */
-	if (freebsd_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
-		
-		g_error_free (error);
-		return TRUE;
-	}
-	
-	if (priv->recent_status == NULL) {
-		priv->recent_status = status;
-		
-		/* emit changed signal */
-		freebsd_cdrom_update_cd (lcd);
-		if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
-			gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-		}
-	} else {
-		if (gnome_cdrom_status_equal (status, priv->recent_status) == TRUE) {
-			if (priv->update == GNOME_CDROM_UPDATE_CONTINOUS) {
-				/* emit changed signal */
-				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-			}
-		} else {
-			if (priv->recent_status->cd != GNOME_CDROM_STATUS_OK &&
-			    status->cd == GNOME_CDROM_STATUS_OK) {
-				freebsd_cdrom_update_cd (lcd);
-			}
-			
-			g_free (priv->recent_status);
-			priv->recent_status = status;
-
-			if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
-				/* emit changed signal */
-				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-			}
-		}
-	}
-
-	return TRUE;
 }
 	
 /* API */
@@ -1301,68 +1128,12 @@ freebsd_cdrom_get_type (void)
 	return type;
 }
 
-/* This is the creation function. It returns a GnomeCDRom object instead of
-   a FreeBSDCDRom one because the caller doesn't know about FreeBSDCDRom only
-   GnomeCDRom */
 GnomeCDRom *
 gnome_cdrom_new (const char *cdrom_device,
 		 GnomeCDRomUpdate update,
 		 GError **error)
 {
-	FreeBSDCDRom *cdrom;
-	FreeBSDCDRomPrivate *priv;
-	int fd;
-
-	cdrom = g_object_new (freebsd_cdrom_get_type (), NULL);
-	priv = cdrom->priv;
-
-	priv->cdrom_device = g_strdup (cdrom_device);
-	priv->update = update;
-
-	fd = open (cdrom_device, O_RDONLY | O_NONBLOCK);
-
-	if (fd < 0) {
-		if (errno == EACCES &&
-		    error != NULL) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("You do not seem to have permission to access %s."),
-					      cdrom_device);
-
-		}
-	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
-					 cdrom->priv->cdrom_device,
-					 error) == FALSE) {
-		close (fd);
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
-					      "a) CD support is not compiled into FreeBSD\n"
-					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n"),					     
-					      cdrom->priv->cdrom_device, cdrom->priv->cdrom_device);
-		}
-	} else {
-		close (fd);
-	}
-	
-	/* Force an update so that a status will always exist */
-	update_cd (cdrom);
-	
-	/* All worked, start the counter */
-	switch (update) {
-	case GNOME_CDROM_UPDATE_NEVER:
-		break;
-		
-	case GNOME_CDROM_UPDATE_WHEN_CHANGED:
-	case GNOME_CDROM_UPDATE_CONTINOUS:
-		priv->update_id = g_timeout_add (1000, update_cd, cdrom);
-		break;
-		
-	default:
-		break;
-	}
-
-	return GNOME_CDROM (cdrom);
+	return gnome_cdrom_construct (
+		g_object_new (freebsd_cdrom_get_type (), NULL),
+		cdrom_device, update, error);
 }

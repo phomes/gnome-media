@@ -16,9 +16,11 @@
 #include <bonobo.h>
 
 #include "gnome-cd.h"
+#include "cddb.h"
 #include "cdrom.h"
-#include "callbacks.h"
 #include "display.h"
+#include "callbacks.h"
+#include "preferences.h"
 #include "access/factory.h"
 
 #define DEFAULT_THEME "lcd"
@@ -197,26 +199,6 @@ make_button_from_widget (GnomeCD *gcd,
 }
 
 static GtkWidget *
-make_button_from_file (GnomeCD *gcd,
-		       const char *filename,
-		       GCallback func,
-		       const char *tooltip,
-		       const char *shortname)
-{
-	GtkWidget *pixmap;
-	char *fullname;
-
-	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
-		   filename, TRUE, NULL);
-	g_return_val_if_fail (fullname != NULL, NULL);
-
-	pixmap = gtk_image_new_from_file (fullname);
-	g_free (fullname);
-
-	return make_button_from_widget (gcd, pixmap, func, tooltip, shortname);
-}
-
-static GtkWidget *
 make_button_from_pixbuf (GnomeCD *gcd,
 			 GdkPixbuf *pixbuf,
 			 GCallback func,
@@ -294,7 +276,7 @@ window_destroy_cb (GtkWidget *window,
 	}
 
 	/* Unref the cddb slave */
-	close_cddb_client ();
+	cddb_close_client ();
 
 	/* And the track editor */
 	destroy_track_editor ();
@@ -376,12 +358,9 @@ init_player (void)
 	GnomeCDRomStatus *status;
 	GtkWidget *display_box;
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
-	GtkWidget *button, *arrow;
+	GtkWidget *button;
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
-	GtkAdjustment *adj;
-	GtkWidget *slider;
-	char *fullname;
 
 	gcd = g_new0 (GnomeCD, 1);
 
@@ -631,8 +610,7 @@ static gint client_die(GnomeClient *client,
 
 
 int 
-main (int argc,
-      char *argv[])
+main (int argc, char *argv[])
 {
 	GnomeCD *gcd;
 	GnomeClient *client;
@@ -649,7 +627,6 @@ main (int argc,
 
 	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, NULL);
-	gconf_init (argc, argv, NULL);
 	client = gnome_master_client ();
     	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);
@@ -689,7 +666,7 @@ main (int argc,
 	
 	gtk_widget_show (gcd->window);
 
-	setup_factory();
+	setup_a11y_factory ();
 
 	bonobo_main ();
 	return 0;

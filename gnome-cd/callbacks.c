@@ -10,12 +10,14 @@
 #include <config.h>
 #endif
 
+#include <glib/gerror.h>
+#include <gtk/gtkmain.h>
+#include <gtk/gtkrange.h>
 #include <gtk/gtkbutton.h>
 #include <gtk/gtkoptionmenu.h>
-#include <gtk/gtkrange.h>
-#include <glib/gerror.h>
 
 #include <libgnome/gnome-i18n.h>
+#include <libgnomeui/gnome-about.h>
 
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-control.h>
@@ -23,6 +25,7 @@
 
 #include <bonobo-activation/bonobo-activation.h>
 
+#include "cddb.h"
 #include "cdrom.h"
 #include "display.h"
 #include "gnome-cd.h"
@@ -38,7 +41,7 @@ maybe_close_tray (GnomeCD *gcd)
 	GError *error;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		gcd_warning ("%s", error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 		
 		return;
@@ -114,7 +117,7 @@ play_cb (GtkButton *button,
 			end_track = -1;
 			endmsf = NULL;
 		} else {
-			end_track == 2;
+			end_track = 2;
 			endmsf = &msf;
 		}
 		
@@ -440,6 +443,24 @@ set_track_option_menu (GtkOptionMenu *menu,
 					   G_CALLBACK (skip_to_track), NULL);
 }
 
+static void
+set_window_track_title (GnomeCD *gcd,
+			GnomeCDRomStatus *status)
+{
+	int idx = status->track - 1;
+	const char *artist = "";
+	const char *track_name = "";
+
+	if (gcd->disc_info) {
+		if (idx >= 0 && idx < gcd->disc_info->ntracks)
+			track_name = gcd->disc_info->track_info [idx]->name;
+
+		artist = gcd->disc_info->artist ? gcd->disc_info->artist : "";
+	}
+
+	gnome_cd_set_window_title (gcd, artist, track_name);
+}
+
 /* Do all the stuff for when the status is ok */
 static void
 status_ok (GnomeCD *gcd,
@@ -464,7 +485,6 @@ status_ok (GnomeCD *gcd,
 	gtk_widget_set_sensitive (gcd->ffwd_b, TRUE);
 	gtk_widget_set_sensitive (gcd->next_b, TRUE);
 	gtk_widget_set_sensitive (gcd->eject_b, TRUE);
-
 
 	switch (status->audio) {
 	case GNOME_CDROM_AUDIO_NOTHING:
@@ -500,13 +520,7 @@ status_ok (GnomeCD *gcd,
 		cd_display_set_line (CD_DISPLAY (gcd->display),
 				     CD_DISPLAY_LINE_TIME, text);
 		g_free (text);
-		if (gcd->disc_info != NULL) {
-			gnome_cd_set_window_title (gcd,
-						   gcd->disc_info->artist ?
-						   gcd->disc_info->artist : "",
-						   gcd->disc_info->track_info[status->track - 1]->name ?
-						   gcd->disc_info->track_info[status->track - 1]->name : "");
-		}
+		set_window_track_title (gcd, status);
 			
 		break;
 
@@ -522,14 +536,7 @@ status_ok (GnomeCD *gcd,
 			gcd->current_image = gcd->play_image;
 		}
 
-		if (gcd->disc_info != NULL) {
-			gnome_cd_set_window_title (gcd,
-						   gcd->disc_info->artist ?
-						   gcd->disc_info->artist : "",
-						   gcd->disc_info->track_info[status->track - 1]->name ?
-						   gcd->disc_info->track_info[status->track - 1] ->name : "");
-		}
-
+		set_window_track_title (gcd, status);
 		break;
 		
 	case GNOME_CDROM_AUDIO_COMPLETE:
@@ -571,7 +578,7 @@ status_ok (GnomeCD *gcd,
 				gcd->current_image = gcd->play_image;
 			}
 
-			set_track_option_menu (gcd->tracks, 1);
+			set_track_option_menu (GTK_OPTION_MENU (gcd->tracks), 1);
 		}		
 		break;
 		
@@ -649,9 +656,6 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		      GnomeCDRomStatus *status,
 		      GnomeCD *gcd)
 {
-	char *text;
-	int track;
-
 	if (gcd->not_ready == TRUE) {
 		return;
 	}
@@ -852,7 +856,7 @@ open_track_editor (GtkWidget *widget,
 	}
 
 	if (data != NULL) {
-		discid = g_strdup_printf ("%08lx", data->discid);
+		discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 		GNOME_Media_CDDBTrackEditor_setDiscID (track_editor, discid, &ev);
 		g_free (discid);
 	}

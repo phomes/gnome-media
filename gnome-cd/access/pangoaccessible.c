@@ -250,7 +250,7 @@ pango_accessible_get_text (AtkText *text,
 				  pango_layout_get_text(playout));
 
 	return gail_text_util_get_substring (PANGO_ACCESSIBLE(text)->textutil,
-					     &start_pos, &end_pos);
+					     start_pos, end_pos);
 }
 
 static gchar*

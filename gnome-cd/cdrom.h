@@ -16,8 +16,8 @@ G_BEGIN_DECLS
 #define GNOME_CDROM_TYPE (gnome_cdrom_get_type ())
 #define GNOME_CDROM(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GNOME_CDROM_TYPE, GnomeCDRom))
 #define GNOME_CDROM_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GNOME_CDROM_TYPE, GnomeCDRomClass))
-#define IS_GNOME_CDROM(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GNOME_CDROM_TYPE))
-#define IS_GNOME_CDROM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GNOME_CDROM_TYPE))
+#define GNOME_IS_CDROM(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GNOME_CDROM_TYPE))
+#define GNOME_IS_CDROM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GNOME_CDROM_TYPE))
 #define GNOME_CDROM_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GNOME_CDROM_TYPE, GnomeCDRomClass))
 
 #define GNOME_CDROM_ERROR gnome_cdrom_error_quark ()
@@ -97,7 +97,8 @@ struct _GnomeCDRom {
 	GObject object;
 
 	GnomeCDRomMode playmode, loopmode;
-	
+
+	int fd;
 	GnomeCDRomPrivate *priv;
 };
 
@@ -150,6 +151,13 @@ struct _GnomeCDRomClass {
 	/* Signals */
 	void (*status_changed) (GnomeCDRom *cdrom,
 				GnomeCDRomStatus *status);
+
+	/* Internal methods */
+	gboolean (*open_dev)   (GnomeCDRom *cdrom,
+				GError    **error);
+	void     (*close_dev)  (GnomeCDRom *cdrom,
+				gboolean    force_close);
+	void     (*update_cd)  (GnomeCDRom *cdrom);
 };
 
 GQuark gnome_cdrom_error_quark (void);
@@ -206,10 +214,24 @@ void gnome_cdrom_status_changed (GnomeCDRom *cdrom,
 				 GnomeCDRomStatus *new_status);
 gboolean gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
 				   GnomeCDRomStatus *status2);
+GnomeCDRomStatus *gnome_cdrom_copy_status (GnomeCDRomStatus *original);
 
 gboolean gnome_cdrom_set_device (GnomeCDRom *cdrom,
 				 const char *device,
 				 GError **error);
+
+/* Methods for device implementors */
+
+GnomeCDRom *gnome_cdrom_construct  (GnomeCDRom      *cdrom,
+				    const char      *device,
+				    GnomeCDRomUpdate update,
+				    GError         **error);
+gboolean    gnome_cdrom_open_dev   (GnomeCDRom      *cdrom,
+				    GError         **error);
+void        gnome_cdrom_close_dev  (GnomeCDRom      *cdrom,
+				    gboolean         force_close);
+void        gnome_cdrom_force_status_rescan (GnomeCDRom *cdrom);
+
 G_END_DECLS
 
 #endif

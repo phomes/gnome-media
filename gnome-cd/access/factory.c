@@ -19,29 +19,6 @@
 
 #include "factory.h"
 
-void
-setup_factory (void)
-{
-        AtkRegistry* default_registry;
-        GType derived_type;
-
-        /*
-         * set up the factory only if GAIL is loaded.
-         */
-        derived_type = g_type_parent (CD_DISPLAY_TYPE);
-
-        if (is_gail_loaded(derived_type)) {
-
-                /* create the factory */
-                default_registry = atk_get_default_registry();
-                atk_registry_set_factory_type(default_registry, CD_DISPLAY_TYPE,
-                                             CDDISPLAY_TYPE_ACCESSIBLE_FACTORY);
-                atk_registry_set_factory_type(default_registry,
-                                              PANGO_TYPE_LAYOUT,
-                                              PANGO_TYPE_ACCESSIBLE_FACTORY);
-        }
-}
-
 /*
  * This function checks if GAIL is loaded or not,
  * given the parent type.
@@ -49,7 +26,7 @@ setup_factory (void)
  * after gnome_program_init() is called.
  */
 static gboolean
-is_gail_loaded(GType derived_type)
+is_gail_loaded (GType derived_type)
 {
         AtkObjectFactory *factory;
         GType derived_atk_type;
@@ -60,4 +37,27 @@ is_gail_loaded(GType derived_type)
         if (g_type_is_a (derived_atk_type, GTK_TYPE_ACCESSIBLE))
                 return TRUE;
         return FALSE;
+}
+
+void
+setup_a11y_factory (void)
+{
+        AtkRegistry* default_registry;
+        GType derived_type;
+
+        /*
+         * set up the factory only if GAIL is loaded.
+         */
+        derived_type = g_type_parent (CD_DISPLAY_TYPE);
+
+        if (is_gail_loaded (derived_type)) {
+
+                /* create the factory */
+                default_registry = atk_get_default_registry();
+                atk_registry_set_factory_type(default_registry, CD_DISPLAY_TYPE,
+                                             CDDISPLAY_TYPE_ACCESSIBLE_FACTORY);
+                atk_registry_set_factory_type(default_registry,
+                                              PANGO_TYPE_LAYOUT,
+                                              PANGO_TYPE_ACCESSIBLE_FACTORY);
+        }
 }

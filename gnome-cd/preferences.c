@@ -24,6 +24,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <sys/types.h>
 #include <dirent.h>
 
@@ -33,6 +34,7 @@
 #include <gtk/gtkmessagedialog.h>
 #include <gtk/gtkstock.h>
 #include <gtk/gtkvbox.h>
+#include <gtk/gtkframe.h>
 #include <gtk/gtkhbox.h>
 #include <gtk/gtkradiobutton.h>
 #include <gtk/gtkcheckbutton.h>
@@ -42,6 +44,8 @@
 #include <gtk/gtkliststore.h>
 #include <gtk/gtkcellrenderer.h>
 #include <gtk/gtktreeviewcolumn.h>
+#include <gtk/gtktreeselection.h>
+#include <gtk/gtkcellrenderertext.h>
 #include <gtk/gtktreeview.h>
 
 #include <gtk/gtkscrolledwindow.h>
@@ -239,15 +243,8 @@ restore_preferences (GnomeCDPreferences *prefs)
 void
 preferences_free (GnomeCDPreferences *prefs)
 {
-	GConfClient *client;
-	
-	if (prefs->device != NULL) {
-		g_free (prefs->device);
-	}
-
-	if (prefs->theme_name != NULL) {
-		g_free (prefs->theme_name);
-	}
+	g_free (prefs->device);
+	g_free (prefs->theme_name);
 
 	/* Remove the listeners */
 	gconf_client_notify_remove (client, prefs->device_id);
@@ -350,19 +347,16 @@ static void
 apply_clicked_cb (GtkWidget *apply,
 		  PropertyDialog *pd)
 {
-	char *new_device;
+	const char *new_device;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (pd->cd_device));
 	
-	if (new_device == NULL) {
+	if (!new_device)
 		return;
-	}
 
-	if (pd->gcd->preferences->device != NULL) {
-		if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
-			return;
-		}
-	}
+	if (pd->gcd->preferences->device &&
+	    !strcmp (new_device, pd->gcd->preferences->device) == 0)
+		return;
 	
 	gconf_client_set_string (client, "/apps/gnome-cd/device", new_device, NULL);
 	gtk_widget_set_sensitive (pd->apply, FALSE);
@@ -372,7 +366,7 @@ static void
 device_changed_cb (GtkWidget *entry,
 		   PropertyDialog *pd)
 {
-	char *new_device;
+	const char *new_device;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (entry));
 	if (new_device == NULL || *new_device == 0) {
@@ -511,7 +505,7 @@ change_start_widget (GConfClient *client,
 {
 	PropertyDialog *pd = user_data;
 	GConfValue *value = gconf_entry_get_value (entry);
-	GCallback *func;
+	GCallback func;
 	GtkToggleButton *tb;
 	
 	switch (gconf_value_get_int (value)) {
@@ -550,7 +544,7 @@ change_stop_widget (GConfClient *client,
 {
 	PropertyDialog *pd = user_data;
 	GConfValue *value = gconf_entry_get_value (entry);
-	GCallback *func;
+	GCallback func;
 	GtkToggleButton *tb;
 
 	switch (gconf_value_get_int (value)) {
@@ -763,7 +757,6 @@ preferences_dialog_show (GnomeCD *gcd,
 	GtkTreeViewColumn *col;
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
-	GtkTreeIter sel_iter;
 	
 	pd = g_new (PropertyDialog, 1);
 	
@@ -927,9 +920,9 @@ preferences_dialog_show (GnomeCD *gcd,
 	
 	/* Theme selector */
 	pd->theme_list = gtk_tree_view_new ();
-	selection = gtk_tree_view_get_selection (pd->theme_list);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->theme_list));
 
-	model = create_theme_model (pd, pd->theme_list, selection);
+	model = create_theme_model (pd, GTK_TREE_VIEW (pd->theme_list), selection);
 	if (model == NULL) {
 		/* Should free stuff here */
 		return NULL;

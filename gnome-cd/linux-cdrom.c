@@ -14,10 +14,13 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
-#include <linux/cdrom.h>
 #include <errno.h>
+#include <unistd.h>
 
 #include "linux-cdrom.h"
+#include "cddb.h"
+
+#include <linux/cdrom.h>
 
 static GnomeCDRomClass *parent_class = NULL;
 
@@ -30,11 +33,6 @@ typedef struct _LinuxCDRomTrackInfo {
 } LinuxCDRomTrackInfo;
 
 struct _LinuxCDRomPrivate {
-	char *cdrom_device;
-	guint32 update_id;
-	int cdrom_fd;
-	int ref_count;
-
 	GnomeCDRomUpdate update;
 
 	struct cdrom_tochdr *tochdr;
@@ -43,7 +41,6 @@ struct _LinuxCDRomPrivate {
 
 	LinuxCDRomTrackInfo *track_info;
 	
-	GnomeCDRomStatus *recent_status;
 };
 
 static gboolean linux_cdrom_eject (GnomeCDRom *cdrom,
@@ -75,20 +72,11 @@ static gboolean linux_cdrom_close_tray (GnomeCDRom *cdrom,
 static GnomeCDRomMSF blank_msf = { 0, 0, 0};
 
 static void
-finalize (GObject *object)
+linux_cdrom_finalize (GObject *object)
 {
-	LinuxCDRom *cdrom;
-
-	cdrom = LINUX_CDROM (object);
-	if (cdrom->priv == NULL) {
-		return;
-	}
-
-	close (cdrom->priv->cdrom_fd);
-	g_free (cdrom->priv->cdrom_device);
+	LinuxCDRom *cdrom = (LinuxCDRom *) object;
 
 	g_free (cdrom->priv);
-	cdrom->priv = NULL;
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -131,51 +119,13 @@ static gboolean
 linux_cdrom_open (LinuxCDRom *lcd,
 		  GError **error)
 {
-	if (lcd->priv->cdrom_fd != -1) {
-		lcd->priv->ref_count++;
-		return TRUE;
-	}
-
-	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (lcd->priv->cdrom_fd < 0) {
-		if (errno == EACCES && error != NULL) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("You do not seem to have permission to access %s."),
-					      lcd->priv->cdrom_device);
-		} else if (error != NULL) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not appear to point to a valid CD device. This may be because:\n"
-						"a) CD support is not compiled into Linux\n"
-						"b) You do not have the correct permissions to access the CD drive\n"
-						"c) %s is not the CD drive.\n"),					     
-					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
-		}
-		
-		return FALSE;
-	}
-
-	
-	lcd->priv->ref_count = 1;
-	return TRUE;
+	return gnome_cdrom_open_dev (GNOME_CDROM (lcd), error);
 }
 
 static void
 linux_cdrom_close (LinuxCDRom *lcd)
 {
-	if (lcd->priv->cdrom_fd == -1) {
-		return;
-	}
-
-	lcd->priv->ref_count--;
-
-	if (lcd->priv->ref_count <= 0) {
-		close (lcd->priv->cdrom_fd);
-		lcd->priv->cdrom_fd = -1;
-	}
-
-	return;
+	gnome_cdrom_close_dev (GNOME_CDROM (lcd), FALSE);
 }
 
 static void
@@ -211,8 +161,9 @@ calculate_track_lengths (LinuxCDRom *lcd)
 }
 
 static void
-linux_cdrom_update_cd (LinuxCDRom *lcd)
+linux_cdrom_update_cd (GnomeCDRom *cdrom)
 {
+	LinuxCDRom *lcd = LINUX_CDROM (cdrom);
 	LinuxCDRomPrivate *priv;
 	struct cdrom_tocentry tocentry;
 	int i, j;
@@ -225,7 +176,7 @@ linux_cdrom_update_cd (LinuxCDRom *lcd)
 		return;
 	}
 
-	if (ioctl (priv->cdrom_fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
+	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
 		g_warning (_("Error reading CD header"));
 		linux_cdrom_close (lcd);
 
@@ -242,7 +193,7 @@ linux_cdrom_update_cd (LinuxCDRom *lcd)
 		tocentry.cdte_track = j;
 		tocentry.cdte_format = CDROM_MSF;
 
-		if (ioctl (priv->cdrom_fd, CDROMREADTOCENTRY, &tocentry) < 0) {
+		if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
 			g_warning (_("IOCtl failed"));
 			continue;
 		}
@@ -254,7 +205,7 @@ linux_cdrom_update_cd (LinuxCDRom *lcd)
 
 	tocentry.cdte_track = CDROM_LEADOUT;
 	tocentry.cdte_format = CDROM_MSF;
-	if (ioctl (priv->cdrom_fd, CDROMREADTOCENTRY, &tocentry) < 0) {
+	if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
 		g_warning (_("Error getting leadout"));
 		linux_cdrom_invalidate (lcd);
 		return;
@@ -291,12 +242,12 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 	}
 
 	if (status->cd != GNOME_CDROM_STATUS_TRAY_OPEN) {
-		if (ioctl (lcd->priv->cdrom_fd, CDROMEJECT, 0) < 0) {
+		if (ioctl (cdrom->fd, CDROMEJECT, 0) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 						      _("(eject): ioctl failed: %s"),
-						      strerror (errno));
+						      g_strerror (errno));
 			}
 
 			g_free (status);
@@ -316,8 +267,8 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 
 	g_free (status);
 
-	lcd->priv->ref_count = 0;
-	linux_cdrom_close (lcd);
+	gnome_cdrom_close_dev (cdrom, TRUE);
+
 	return TRUE;
 }
 
@@ -457,7 +408,6 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 	LinuxCDRomPrivate *priv;
 	GnomeCDRomStatus *status;
 	struct cdrom_msf msf;
-	int minutes, seconds, frames;
 
 	lcd = LINUX_CDROM (cdrom);
 	priv = lcd->priv;
@@ -562,12 +512,12 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 		}
 
 		/* PLAY IT AGAIN */
-		if (ioctl (priv->cdrom_fd, CDROMPLAYMSF, &msf) < 0) {
+		if (ioctl (cdrom->fd, CDROMPLAYMSF, &msf) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 						      _("(linux_cdrom_play) ioctl failed %s"),
-						      strerror (errno));
+						      g_strerror (errno));
 			}
 
 			linux_cdrom_close (lcd);
@@ -611,12 +561,12 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 	}
 
 	if (status->audio == GNOME_CDROM_AUDIO_PAUSE) {
-		if (ioctl (lcd->priv->cdrom_fd, CDROMRESUME) < 0) {
+		if (ioctl (cdrom->fd, CDROMRESUME) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 						      _("(linux_cdrom_pause): Resume failed %s"),
-						      strerror (errno));
+						      g_strerror (errno));
 			}
 
 			g_free (status);
@@ -630,12 +580,12 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 	}
 
 	if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
-		if (ioctl (lcd->priv->cdrom_fd, CDROMPAUSE, 0) < 0) {
+		if (ioctl (cdrom->fd, CDROMPAUSE, 0) < 0) {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 						      _("(linux_cdrom_pause): ioctl failed %s"),
-						      strerror (errno));
+						      g_strerror (errno));
 			}
 
 			g_free (status);
@@ -676,12 +626,12 @@ linux_cdrom_stop (GnomeCDRom *cdrom,
 	}
 #endif
 
-	if (ioctl (lcd->priv->cdrom_fd, CDROMSTOP, 0) < 0) {
+	if (ioctl (cdrom->fd, CDROMSTOP, 0) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      _("(linux_cdrom_stop) ioctl failed %s"),
-					      strerror (errno));
+					      g_strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
@@ -736,7 +686,7 @@ linux_cdrom_rewind (GnomeCDRom *cdrom,
 	frames_to_msf (&tmpmsf, frames);
 	tmpmsf.frame = 0; /* Zero the frames */
 
-	if (cdrom->playmode = GNOME_CDROM_WHOLE_CD) {
+	if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
 		end_track = -1;
 		endmsf = NULL;
 	} else {
@@ -853,7 +803,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
-	cd_status = ioctl (priv->cdrom_fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
+	cd_status = ioctl (cdrom->fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
 	if (cd_status != -1) {
 		switch (cd_status) {
 		case CDS_NO_INFO:
@@ -897,7 +847,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      _("(linux_cdrom_get_status): ioctl error %s"),
-					      strerror (errno));
+					      g_strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
@@ -906,12 +856,12 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	subchnl.cdsc_format = CDROM_MSF;
-	if (ioctl (priv->cdrom_fd, CDROMSUBCHNL, &subchnl) < 0) {
+	if (ioctl (cdrom->fd, CDROMSUBCHNL, &subchnl) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      _("(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"),
-					      strerror (errno));
+					      g_strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
@@ -920,9 +870,9 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	/* Get the volume */
-	if (ioctl (priv->cdrom_fd, CDROMVOLREAD, &vol) < 0) {
+	if (ioctl (cdrom->fd, CDROMVOLREAD, &vol) < 0) {
 		g_warning (_("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"),
-			   strerror (errno));
+			   g_strerror (errno));
 		realstatus->volume = -1; /* -1 means no volume command */
 	} else {
 		realstatus->volume = vol.channel0;
@@ -982,12 +932,12 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
-	if (ioctl (lcd->priv->cdrom_fd, CDROMCLOSETRAY) < 0) {
+	if (ioctl (cdrom->fd, CDROMCLOSETRAY) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      _("(linux_cdrom_close_tray): ioctl failed %s"),
-					      strerror (errno));
+					      g_strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
@@ -1017,12 +967,12 @@ linux_cdrom_set_volume (GnomeCDRom *cdrom,
 	vol.channel0 = volume;
 	vol.channel1 = vol.channel2 = vol.channel3 = volume;
 	
-	if (ioctl (priv->cdrom_fd, CDROMVOLCTRL, &vol) < 0) {
+	if (ioctl (cdrom->fd, CDROMVOLCTRL, &vol) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      _("(linux_cdrom_set_volume:1): ioctl failed %s"),
-					      strerror (errno));
+					      g_strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
@@ -1053,7 +1003,7 @@ linux_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	if (ioctl (fd, CDROM_GET_CAPABILITY, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
 		g_warning (_("%s is not a CDROM drive"), device);
-		g_print ("Strerror reports: %s\n", strerror (errno));
+		g_print ("G_Strerror reports: %s\n", g_strerror (errno));
 		close (fd);
 		
 		return FALSE;
@@ -1109,71 +1059,8 @@ linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
-static gboolean
-linux_cdrom_set_device (GnomeCDRom *cdrom,
-			const char *device,
-			GError **error)
-{
-	LinuxCDRom *lcd;
-	LinuxCDRomPrivate *priv;
-	GnomeCDRomStatus *status;
-	int fd;
-	
-	lcd = LINUX_CDROM (cdrom);
-	priv = lcd->priv;
-
-	if (strcmp (priv->cdrom_device, device) == 0) {
-		/* device is the same */
-		return TRUE;
-	}
-	
-	if (linux_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
-		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
-			if (linux_cdrom_stop (cdrom, error) == FALSE) {
-				return FALSE;
-			}
-		}
-	}
-
-	if (priv->cdrom_device != NULL) {
-		g_free (priv->cdrom_device);
-	}
-	priv->cdrom_device = g_strdup (device);
-
-	/* Attempt an open to see if we have permission */
-	fd = open (priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (fd < 0 && errno == EACCES && error != NULL) {
-		*error = g_error_new (GNOME_CDROM_ERROR,
-				      GNOME_CDROM_ERROR_NOT_OPENED,
-				      _("You do not seem to have permission to access %s."),
-				      priv->cdrom_device);
-		return FALSE;
-	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
-						lcd->priv->cdrom_device, error) == FALSE) {
-		close (fd);
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
-						"a) CD support is not compiled into Linux\n"
-						"b) You do not have the correct permissions to access the CD drive\n"
-						"c) %s is not the CD drive.\n"),					     
-					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
-		}
-		return FALSE;
-	} else {
-		close (fd);
-	}
-
-	/* Force the new CD to be scanned at next update cycle */
-	g_free (priv->recent_status);
-	priv->recent_status = NULL;
-
-	return TRUE;
-}
-
 static void
-class_init (LinuxCDRomClass *klass)
+linux_cdrom_class_init (LinuxCDRomClass *klass)
 {
 	GObjectClass *object_class;
 	GnomeCDRomClass *cdrom_class;
@@ -1181,7 +1068,7 @@ class_init (LinuxCDRomClass *klass)
 	object_class = G_OBJECT_CLASS (klass);
 	cdrom_class = GNOME_CDROM_CLASS (klass);
 
-	object_class->finalize = finalize;
+	object_class->finalize = linux_cdrom_finalize;
 
 	cdrom_class->eject = linux_cdrom_eject;
 	cdrom_class->next = linux_cdrom_next;
@@ -1195,77 +1082,20 @@ class_init (LinuxCDRomClass *klass)
 	cdrom_class->close_tray = linux_cdrom_close_tray;
 	cdrom_class->set_volume = linux_cdrom_set_volume;
 	cdrom_class->is_cdrom_device = linux_cdrom_is_cdrom_device;
+	cdrom_class->update_cd = linux_cdrom_update_cd;
 	
 	/* For CDDB */
   	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
 
-	cdrom_class->set_device = linux_cdrom_set_device;
-	
 	parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-init (LinuxCDRom *cdrom)
+linux_cdrom_init (LinuxCDRom *cdrom)
 {
 	cdrom->priv = g_new (LinuxCDRomPrivate, 1);
 	cdrom->priv->tochdr = g_new (struct cdrom_tochdr, 1);
-	cdrom->priv->cdrom_fd = -1;
-	cdrom->priv->ref_count = 0;
-	cdrom->priv->update_id = -1;
-	cdrom->priv->recent_status = NULL;
 	cdrom->priv->track_info = NULL;
-}
-
-static gboolean
-update_cd (gpointer data)
-{
-	LinuxCDRom *lcd;
-	LinuxCDRomPrivate *priv;
-	GnomeCDRomStatus *status;
-	GError *error;
-
-	lcd = data;
-	priv = lcd->priv;
-
-	/* Do an update */
-	if (linux_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
-		gcd_warning ("%s", error);
-		
-		g_error_free (error);
-		return TRUE;
-	}
-	
-	if (priv->recent_status == NULL) {
-		priv->recent_status = status;
-		
-		/* emit changed signal */
-		linux_cdrom_update_cd (lcd);
-		if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
-			gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-		}
-	} else {
-		if (gnome_cdrom_status_equal (status, priv->recent_status) == TRUE) {
-			if (priv->update == GNOME_CDROM_UPDATE_CONTINOUS) {
-				/* emit changed signal */
-				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-			}
-		} else {
-			if (priv->recent_status->cd != GNOME_CDROM_STATUS_OK &&
-			    status->cd == GNOME_CDROM_STATUS_OK) {
-				linux_cdrom_update_cd (lcd);
-			}
-			
-			g_free (priv->recent_status);
-			priv->recent_status = status;
-
-			if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
-				/* emit changed signal */
-				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
-			}
-		}
-	}
-
-	return TRUE;
 }
 	
 /* API */
@@ -1277,8 +1107,8 @@ linux_cdrom_get_type (void)
 	if (type == 0) {
 		GTypeInfo info = {
 			sizeof (LinuxCDRomClass),
-			NULL, NULL, (GClassInitFunc) class_init, NULL, NULL,
-			sizeof (LinuxCDRom), 0, (GInstanceInitFunc) init,
+			NULL, NULL, (GClassInitFunc) linux_cdrom_class_init, NULL, NULL,
+			sizeof (LinuxCDRom), 0, (GInstanceInitFunc) linux_cdrom_init,
 		};
 
 		type = g_type_register_static (GNOME_CDROM_TYPE, "LinuxCDRom", &info, 0);
@@ -1287,67 +1117,12 @@ linux_cdrom_get_type (void)
 	return type;
 }
 
-/* This is the creation function. It returns a GnomeCDRom object instead of
-   a LinuxCDRom one because the caller doesn't know about LinuxCDRom only
-   GnomeCDRom */
 GnomeCDRom *
-gnome_cdrom_new (const char *cdrom_device,
+gnome_cdrom_new (const char      *cdrom_device,
 		 GnomeCDRomUpdate update,
-		 GError **error)
+		 GError         **error)
 {
-	LinuxCDRom *cdrom;
-	LinuxCDRomPrivate *priv;
-	int fd;
-
-	cdrom = g_object_new (linux_cdrom_get_type (), NULL);
-	priv = cdrom->priv;
-
-	priv->cdrom_device = g_strdup (cdrom_device);
-	priv->update = update;
-
-	fd = open (cdrom_device, O_RDONLY | O_NONBLOCK);
-	
-	if (fd < 0) {
-		if (errno == EACCES &&
-		    error != NULL) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("You do not seem to have permission to access %s."),
-					      cdrom_device);
-		}
-	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
-						cdrom->priv->cdrom_device,
-						error) == FALSE) {
-		close (fd);
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      _("%s does not appear to point to a valid CDRom device. This may be because:\n"
-						"a) CD support is not compiled into Linux\n"
-						"b) You do not have the correct permissions to access the CD drive\n"
-						"c) %s is not the CD drive.\n"),					     
-					      cdrom->priv->cdrom_device, cdrom->priv->cdrom_device);
-		}
-	} else {
-		close (fd);
-	}
-
-	/* Force an update so that a status will always exist */
-	update_cd (cdrom);
-	
-	/* All worked, start the counter */
-	switch (update) {
-	case GNOME_CDROM_UPDATE_NEVER:
-		break;
-		
-	case GNOME_CDROM_UPDATE_WHEN_CHANGED:
-	case GNOME_CDROM_UPDATE_CONTINOUS:
-		priv->update_id = g_timeout_add (1000, update_cd, cdrom);
-		break;
-		
-	default:
-		break;
-	}
-
-	return GNOME_CDROM (cdrom);
+	return gnome_cdrom_construct (
+		g_object_new (linux_cdrom_get_type (), NULL),
+		cdrom_device, update, error);
 }

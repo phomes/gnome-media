@@ -98,4 +98,10 @@ void gnome_cd_build_track_list_menu (GnomeCD *gcd);
 
 void gcd_warning (const char *message, GError *error);
 
+/* theme.c */
+GCDTheme *theme_load (GnomeCD    *gcd,
+		      const char *theme_name);
+void theme_change_widgets (GnomeCD *gcd);
+void theme_free (GCDTheme *theme);
+
 #endif

@@ -10,6 +10,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <bonobo/bonobo-listener.h>
 
 #include <cddb-slave-client.h>
@@ -129,7 +130,7 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 	GnomeCDDiscInfo *discinfo;
 
 	discinfo = g_new (GnomeCDDiscInfo, 1);
-	discinfo->discid = g_strdup_printf ("%08lx", data->discid);
+	discinfo->discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 	discinfo->title = NULL;
 	discinfo->artist = NULL;
 	discinfo->ntracks = data->ntrks;
@@ -139,12 +140,12 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 }
 
 void
-close_cddb_client (void)
+cddb_close_client (void)
 {
-	if (slave != NULL) {
+	if (slave != NULL)
 		g_object_unref (G_OBJECT (slave));
-	}
 }
+
 void
 cddb_get_query (GnomeCD *gcd)
 {
@@ -165,7 +166,7 @@ cddb_get_query (GnomeCD *gcd)
 		return;
 	}
 
-	discid = g_strdup_printf ("%08lx", data->discid);
+	discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 	for (i = 0; i < data->ntrks; i++) {
 		char *tmp;
 

@@ -32,7 +32,7 @@ GNOME_Media_CDDBSlave2-impl.o: GNOME_Media_CDDBSlave.h
 $(IDL_GENERATED): $(IDLS)
 	$(ORBIT_IDL) -I $(BONOBO_IDLDIR) -I $(BONOBO_ACT_IDLDIR)	\
 	-I $(srcdir) -I $(datadir)/idl	$(IDLS)
-	
+
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
 	$(IDL_GENERATED)	\

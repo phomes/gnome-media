@@ -1,3 +1,48 @@
+2002-05-29  Michael Meeks  <michael@ximian.com>
+
+	* callbacks.c (set_window_track_title): split out of
+	(status_ok): here and do some more checking on
+	the track index etc.
+
+	* cdrom.c (gnome_cdrom_status_changed): copy the
+	status while emitting the signal, so it doesn't
+	get freed by some other method, during manipulations
+	on the GnomeCD at a later date, while we're holding
+	a pointer to it. #79778
+
+2002-05-29  Michael Meeks  <michael@ximian.com>
+
+	* preferences.c (preferences_free): don't
+	de-reference an un-initialized pointer.
+
+	* callbacks.c (play_cb): setup end_track, don't
+	compare it with no effect.
+
+	* gnome-cd.c (make_button_from_file): kill, unused.
+
+	* access/factory.c (setup_factory): rename to
+	something useful, remove bogus 'static' prototype
+	from header !
+
+	* *.[ch]: clean warnings, add missing prototypes
+	etc. blah blah.
+	
+	* access/pangoaccessible.c
+	(pango_accessible_get_text): fix gailutil code.
+
+	* cdrom.c (gnome_cdrom_get_dev_fd): impl.
+	(gnome_cdrom_open_dev, gnome_cdrom_close_dev): impl.
+	(timeout_update_cd, gnome_cdrom_update_cd): impl.
+	(cdrom_dispose): impl. to unhook the timeout.
+	(cdrom_finalize): don't leak recent_status.
+	(timeout_update_cd): remove == TRUE abomination.
+
+	* linux-cdrom.c,
+	* solaris-cdrom.c,
+	* freebsd-cdrom.c: Fix rats nest of cut and paste
+	evilness, much of it now cleanly genericized
+	inside gnome-cdrom.c
+
 2002-05-27  Michael Meeks  <michael@ximian.com>
 
 	* gnome-cd.c (gnome_cd_build_track_list_menu):

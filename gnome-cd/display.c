@@ -6,6 +6,7 @@
  * Authors: Iain Holmes  <iain@ximian.com>
  */
 
+#include <string.h>
 #include <libgnome/gnome-util.h>
 #include <libgnome/gnome-i18n.h>
 
@@ -144,7 +145,7 @@ size_allocate (GtkWidget *drawing_area,
 	CDDisplayPrivate *priv;
 	PangoContext *context;
 	PangoDirection base_dir;
-	int i, mod;
+	int i;
 	
 	disp = CD_DISPLAY (drawing_area);
 	priv = disp->priv;
@@ -173,7 +174,7 @@ size_request (GtkWidget *widget,
 {
 	CDDisplay *disp;
 	CDDisplayPrivate *priv;
-	int i, height = 0, width = 0, mod;
+	int i, height = 0, width = 0;
 	
 	disp = CD_DISPLAY (widget);
 	priv = disp->priv;
@@ -454,10 +455,11 @@ static void
 realize (GtkWidget *widget)
 {
 	CDDisplay *disp;
-	GdkColormap *cmap;
 
 	disp = CD_DISPLAY (widget);
 #if 0
+	GdkColormap *cmap;
+
 	cmap = gtk_widget_get_colormap (widget);
 	disp->priv->red.red = 65535;
 	disp->priv->red.green = 0;
