@@ -227,6 +227,8 @@ cddb_get_query (GnomeCD *gcd)
 	info = g_hash_table_lookup (cddb_cache, discid);
 	if (info != NULL) {
 		gcd->disc_info = info;
+
+		gnome_cd_build_track_list_menu (gcd);
 		return;
 	} else {
 		info = cddb_make_disc_info (data);

@@ -27,7 +27,6 @@ static char *default_text[CD_DISPLAY_END] = {
 	" ",
 	"---------------",
 	" ",
-	" ",
 	" "
 };
 
@@ -282,7 +281,7 @@ cd_display_set_line (CDDisplay *disp,
 	CDDisplayPrivate *priv;
 	GnomeCDText *text;
 	PangoRectangle rect;
-	int height, max_width = 0;
+	int height;
 
 	g_return_if_fail (disp != NULL);
 	g_return_if_fail (new_str != NULL);
@@ -330,8 +329,9 @@ cd_display_clear (CDDisplay *disp)
 		text->height = rect.height / 1000;
 
 		priv->height = height + text->height;
-		priv->max_width = MAX (priv->max_width, rect.width / 1000);
+		max_width = MAX (max_width, rect.width / 1000);
 	}
 
+	priv->max_width = max_width;
 	gtk_widget_queue_resize (GTK_WIDGET (disp));
 }

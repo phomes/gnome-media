@@ -70,6 +70,6 @@ typedef struct _GnomeCD {
 void gnome_cd_set_window_title (GnomeCD *gcd,
 				const char *artist,
 				const char *track);
-void gnome_cd_rebuild_track_list_menu (GnomeCD *gcd);
+void gnome_cd_build_track_list_menu (GnomeCD *gcd);
 
 #endif
