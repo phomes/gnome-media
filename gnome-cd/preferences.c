@@ -370,6 +370,7 @@ apply_clicked_cb (GtkWidget *apply,
 		  PropertyDialog *pd)
 {
 	const char *new_device;
+	GnomeCDRom *dummy;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (pd->cd_device));
 	
@@ -382,6 +383,19 @@ apply_clicked_cb (GtkWidget *apply,
 	
 	gconf_client_set_string (client, "/apps/gnome-cd/device", new_device, NULL);
 	gtk_widget_set_sensitive (pd->apply, FALSE);
+
+	dummy = gnome_cdrom_new (new_device, GNOME_CDROM_UPDATE_NEVER, NULL);
+	if (dummy == NULL) {
+		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
+						   GTK_RESPONSE_CLOSE,
+						   FALSE);
+	} else {
+		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
+						   GTK_RESPONSE_CLOSE,
+						   TRUE);
+		g_object_unref (G_OBJECT (dummy));
+	}
+
 }
 
 static void
@@ -796,10 +810,19 @@ preferences_dialog_show (GnomeCD *gcd,
 						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 	gtk_window_set_default_size (GTK_WINDOW (pd->window), 390, 375);
+       
 	if (only_device == FALSE) {
 		g_signal_connect (G_OBJECT (pd->window), "response",
 				  G_CALLBACK (prefs_response_cb), pd);
+	} else {
+		/* A bit of a cheat:
+		   but if we're only setting the device,
+		   that means the device is wrong... */
+		gtk_dialog_set_response_sensitive (GTK_DIALOG (pd->window),
+						   GTK_RESPONSE_CLOSE,
+						   FALSE);
 	}
+
 	g_signal_connect (G_OBJECT (pd->window), "destroy",
 			  G_CALLBACK (prefs_destroy_cb), pd);
 

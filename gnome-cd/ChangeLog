@@ -1,5 +1,13 @@
 2002-10-07 Iain <iain@prettypeople.org>
 
+	* preferences.c (preferences_dialog_show): Don't allow the close button
+	to work if the device isn't right.
+	(apply_clicked_cb): Ditto
+
+	* cdrom.c (cdrom_get_status): Free status in the right place.
+
+2002-10-07 Iain <iain@prettypeople.org>
+
 	* cdrom.c (cdrom_set_device): Check if the device is ! NULL.
 	(cdrom_init): Set the device to /dev/cdrom.
 	(timeout_update_cd): When get_status returns FALSE, status is not valid.

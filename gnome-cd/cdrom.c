@@ -309,9 +309,12 @@ cdrom_set_device (GnomeCDRom *cdrom,
 	if (gnome_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
 		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
 			if (gnome_cdrom_stop (cdrom, error) == FALSE) {
+				g_free (status);
 				return FALSE;
 			}
 		}
+
+		g_free (status);
 	}
 
 	g_free (priv->device);
@@ -344,7 +347,6 @@ cdrom_set_device (GnomeCDRom *cdrom,
 	}
 
 	gnome_cdrom_force_status_rescan (cdrom);
-	g_free (status);
 
 	return TRUE;	
 }
