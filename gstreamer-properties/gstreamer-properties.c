@@ -141,7 +141,7 @@ update_from_gconf(GSTPPipelineEditor* editor,
 		editor->cur_pipeline_index = custom_desc;
 		if (custom_desc >= 0) {
 			gtk_entry_set_text (editor->entry, pipeline_str);
-			if (pipeline_str == NULL || *pipeline_str = '\0')
+			if (pipeline_str == NULL || *pipeline_str == '\0')
 				gtk_widget_set_sensitive (GTK_WIDGET(editor->test_button), FALSE);
 		}
 	}
