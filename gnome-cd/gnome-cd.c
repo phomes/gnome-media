@@ -257,29 +257,10 @@ window_destroy_cb (GtkWidget *window,
 	GnomeCD *gcd = data;
 
 	/* Before killing the cdrom object, do the shutdown on it */
-	switch (gcd->preferences->stop) {
-	case GNOME_CD_PREFERENCES_STOP_NOTHING:
-		break;
-
-	case GNOME_CD_PREFERENCES_STOP_STOP:
-		gnome_cdrom_stop (gcd->cdrom, NULL);
-		break;
-
-	case GNOME_CD_PREFERENCES_STOP_OPEN:
+	if (gcd->preferences->stop_eject) {
 		gnome_cdrom_eject (gcd->cdrom, NULL);
-		break;
-		
-#ifdef HAVE_CDROMCLOSETRAY_IOCTL
-	case GNOME_CD_PREFERENCES_STOP_CLOSE:
-		gnome_cdrom_close_tray (gcd->cdrom, NULL);
-		break;
-#endif
-
-	default:
-		g_assert_not_reached ();
-		break;
 	}
-
+		
 	/* Unref the cddb slave */
 	cddb_close_client ();
 
@@ -774,33 +755,9 @@ main (int argc, char *argv[])
 	g_signal_connect (client, "die",
 			  G_CALLBACK (client_die), gcd);
 
-	/* Do the start up stuff */
-#ifdef HAVE_CDROMCLOSETRAY_IOCTL
-	if (gcd->preferences->start_close) {
-		gnome_cdrom_close_tray (gcd->cdrom, NULL);
-	}
-#endif
-
-	if (cd_option_play) {
+	if (cd_option_play || gcd->preferences->start_play) {
 		/* Just fake a click on the button */
 		play_cb (NULL, gcd);
-	} else {
-	switch (gcd->preferences->start) {
-	case GNOME_CD_PREFERENCES_START_NOTHING:
-		break;
-
-	case GNOME_CD_PREFERENCES_START_START:
-		/* Just fake a click on the button */
-		play_cb (NULL, gcd);
-		break;
-		
-	case GNOME_CD_PREFERENCES_START_STOP:
-		gnome_cdrom_stop (gcd->cdrom, NULL);
-		break;
-
-	default:
-		break;
-	}
 	}
 	
 	if (cd_option_unique &&

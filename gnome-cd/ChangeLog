@@ -1,3 +1,18 @@
+2003-03-14 Iain <iain@prettypeople.org>
+
+	* preferences.c (on_start_changed): Get the boolean.
+	(on_stop_changed): Ditto.
+	(restore_preferences): Get booleans.
+	(preferences_free): Remove notifies.
+	(preferences_dialog_show): HIGify the dialog, remove the abundance of
+	behaviourial options.
+
+	* gnome-cd.c (main): Remove the case statement, just check the 
+	start_play value.
+	(window_destroy_cb): Remove the switch.
+
+	* gnome-cd.schemas.in.in: Remove the unused schemas, add the new ones
+
 2003-01-23  Irene Ryan <irene.ryan@sun.com>
 
 	* help/C/gnome-cd.xml: updated the help manual for GNOME 2.2
