@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-libs-0.20\n"
-"POT-Creation-Date: 2000-05-08 00:29+0200\n"
+"POT-Creation-Date: 2000-05-09 21:08+0200\n"
 "PO-Revision-Date: 1999-09-27 20:30+0100\n"
 "Last-Translator: Andreas Hyden  <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -204,7 +204,7 @@ msgstr "Återställ sparade mixernivåer vid uppstart"
 msgid "Hide menu on start"
 msgstr "Göm menyn vid uppstart"
 
-#: gmix/gmix.c:454 grecord/src/gui.c:874
+#: gmix/gmix.c:454
 msgid "GUI"
 msgstr "Gränssnitt"
 
@@ -249,7 +249,7 @@ msgstr "Detta är en mixer för OSS-ljudenheter."
 msgid "GNOME Sound recorder:"
 msgstr "GNOME ljudinspelaren:"
 
-#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:952
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:967
 msgid "Could not fork child process"
 msgstr "Kunde inte \"forka\" barnprocessen"
 
@@ -309,16 +309,21 @@ msgstr "Fel vid sparning av ljudfil"
 msgid "File not saved. Do you want to save it?"
 msgstr "Filen inte sparad. Vill du spara den?"
 
-#: grecord/src/grec.c:813
-#, c-format
-msgid "The size of the current sample is more than %i MB!"
-msgstr "Storleken på det aktuella ljudklippet är mer än %i MB!"
+#. Save the file
+#: grecord/src/grec.c:717
+msgid "Saving..."
+msgstr "Sparar..."
 
-#: grecord/src/grec.c:861
+#: grecord/src/grec.c:828
+#, c-format
+msgid "The size of the current sample is more than %i Mb!"
+msgstr "Storleken på det aktuella ljudklippet är mer än %i Mb!"
+
+#: grecord/src/grec.c:876
 msgid "Save sound file"
 msgstr "Spara ljudfil"
 
-#: grecord/src/grec.c:1011
+#: grecord/src/grec.c:1026
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -456,6 +461,7 @@ msgid "File '%s' doesn't exist; using default."
 msgstr "Filen \"%s\" existerar inte; använder standard."
 
 #: grecord/src/gui.c:410
+#, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Filen \"%s\" är inte en stödd ljudfil."
 
@@ -500,12 +506,12 @@ msgid "Size"
 msgstr "Storlek"
 
 #: grecord/src/gui.c:590
-msgid "Popup warning message if size (MB) of sample becomes bigger than:"
-msgstr "Poppa upp varningsdialog om ljudklippets storlek (MB) blir större än:"
+msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
+msgstr "Poppa upp varningsdialog om ljudklippets storlek (Mb) blir större än:"
 
 #: grecord/src/gui.c:600
-msgid "Stop recording if size (MB) of sample becomes bigger than:"
-msgstr "Stanna inspelning om ljudklippets storlek (MB) blir större än:"
+msgid "Stop recording if size (Mb) of sample becomes bigger than:"
+msgstr "Stanna inspelning om ljudklippets storlek (Mb) blir större än:"
 
 #: grecord/src/gui.c:611
 msgid "Recording"
@@ -594,6 +600,10 @@ msgstr "Ljud"
 #: grecord/src/gui.c:855
 msgid "Main window"
 msgstr "Huvudfönstret"
+
+#: grecord/src/gui.c:874
+msgid "User interface"
+msgstr "Användargränssnitt"
 
 #: grecord/src/main.c:52
 msgid "Specify the geometry of the main window"
