@@ -798,6 +798,8 @@ cddb_check_cache (const char *discid)
 	dirname = gnome_util_prepend_user_home (".cddbslave");
 	if (g_file_test (dirname, G_FILE_TEST_IS_DIR) == FALSE) {
 		/* Cache dir doesn't exist */
+		g_free (dirname);
+
 		mkdir (dirname, S_IRWXU);
 		return FALSE;
 	}

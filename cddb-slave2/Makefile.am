@@ -1,7 +1,6 @@
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
-	-I$(includedir)				\
 	$(CDDBSLAVE_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DG_LOG_DOMAIN=\"CDDBSlave2\"
