@@ -563,8 +563,11 @@ void adjust_status(void)
 
 gint slow_timer( gpointer *data )
 {
+    tcd_post_init(&cd);
+    adjust_status();
+
     /* see if we need to make a new menu */
-    if( cd.cddb_id != cur_goto_id )
+    if(cd.cddb_id != cur_goto_id)
     {
 	make_goto_menu();
 	update_editor();
@@ -579,9 +582,9 @@ gint slow_timer( gpointer *data )
     }
 
     /* see if we need to scan for a new disc */
-    if(cd.isplayable) 
+/*    if(cd.isplayable) 
     {
-	tcd_gettime(&cd);
+	tcd_post_init(&cd);
 	adjust_status();
 
 	if(cd.err) 
@@ -594,7 +597,7 @@ gint slow_timer( gpointer *data )
     }
     else
     {
-	tcd_readtoc(&cd);
+	tcd_post_init(&cd);
 	if(!cd.err)
 	    tcd_readdiskinfo(&cd);
 	else
@@ -605,7 +608,7 @@ gint slow_timer( gpointer *data )
 	    cd.repeat_track = -1;    
 	    update_editor();
 	}
-    }
+    }*/
 
     /* is a cddb operation going on? */
     cddb = g_file_test(gnome_util_home_file(".cddbstatus_lock"), G_FILE_TEST_EXISTS);
@@ -694,7 +697,7 @@ void make_goto_menu()
 
 gint fast_timer( gpointer *data )
 {
-    if( cd.isplayable ) {
+    if(cd.isplayable) {
 	tcd_gettime(&cd);
 	if( cd.err ) {
 /*	   cd.isplayable = FALSE;
@@ -916,6 +919,7 @@ void reload_info(int signal)
     }
     draw_status();
 }
+
 
 void exit_action(void)
 {

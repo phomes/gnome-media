@@ -122,7 +122,8 @@ typedef struct
 	int cd_dev;			/* file descriptor */
 	char *cdpath;			/* filename of the cdrom dev */
 	int cur_t;			/* current track */
-	unsigned long cddb_id;		/* NEW DISC ID!! */
+	unsigned long cddb_id;		/* cddb id */
+	unsigned long old_cddb_id;
 
 	struct cd_track trk[MAXTRACKS];	/* Track info, to be allocated 
                			   	   after cd_tchdr is read */

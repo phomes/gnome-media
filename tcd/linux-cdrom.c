@@ -82,6 +82,7 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 #else
     cd->nslots = 0;
 #endif
+    cd->old_cddb_id = 0;
     
     debug("cdrom.c: tcd_init_disc exiting normally\n" );
     return(tcd_post_init(cd));
@@ -91,16 +92,18 @@ int tcd_post_init( cd_struct *cd )
 {
     debug("cdrom.c: tcd_post_init(%p) top\n", cd );
 
-    if(cd->isdisk && !cd->err)
-    {
-	tcd_readtoc(cd);
+    tcd_readtoc(cd);
+    if(cd->cddb_id != cd->old_cddb_id)
+    {		
 	tcd_readdiskinfo(cd);
+	cd->old_cddb_id = cd->cddb_id;
+    }
+    tcd_gettime(cd);
 
-	if(cd->err)
-	{
-	    debug( "cdrom.c: tcd_post_init exiting early (!cd->err)\n" );
-	    return(-1);
-	}
+    if(cd->err)
+    {
+        debug( "cdrom.c: tcd_post_init exiting early (!cd->err)\n" );
+        return(-1);
     }
 
     debug("cdrom.c: tcd_post_init exiting normally\n" );
@@ -131,6 +134,7 @@ int tcd_readtoc( cd_struct *cd )
 	cd->err = TRUE;
 	debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCHDR ioctl error.\n" );
 	cd->cur_t = 0;
+	cd->cddb_id = 0;
 	return(-1);		
     }
 
@@ -150,6 +154,7 @@ int tcd_readtoc( cd_struct *cd )
 
 	debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 	cd->cur_t = 0;
+	cd->cddb_id = 0;
 	return(-1);
     }                                         
 
@@ -165,6 +170,7 @@ int tcd_readtoc( cd_struct *cd )
 	    cd->err = TRUE;
 	    debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 	    cd->cur_t = 0;
+	    cd->cddb_id = 0;
 	    return(-1);
 	}
 
@@ -191,8 +197,13 @@ int tcd_readtoc( cd_struct *cd )
 	cd->trk[C(i)].tot_min = delsecs / 60;
 	cd->trk[C(i)].tot_sec = delsecs - (delsecs/60)*60;
 
-	strcpy(cd->trk[C(i)].name, "(unknown)");
-	cd->trk[C(i)].titled = FALSE;
+	if(cd->cddb_id != cd->old_cddb_id)
+	{
+		strcpy(cd->trk[C(i)].name, "(unknown)");
+		cd->trk[C(i)].titled = FALSE;
+	}
+	else
+		cd->trk[i].titled = TRUE;
     }	
     cd->trk[C(cd->last_t+1)].titled=TRUE;
 
@@ -248,10 +259,10 @@ void tcd_gettime( cd_struct *cd )
 	    cd->cur_t = 0;
 	    return;
 	}
-	if( cd->sc.cdsc_audiostatus==CDROM_AUDIO_PLAY )
-	    cd->cur_t = cd->sc.cdsc_trk;
+	if(cd->sc.cdsc_audiostatus==CDROM_AUDIO_PLAY)
+		cd->cur_t = cd->sc.cdsc_trk;
 	else
-	    cd->cur_t = 0;
+		cd->cur_t = 0;
 	tcd_recalculate(cd);
     }
 }
