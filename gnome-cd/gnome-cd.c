@@ -418,7 +418,7 @@ init_player (void)
 	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		if (error != NULL) {
-			gcd_warning ("%s", error->message);
+			gcd_warning ("%s", error);
 			g_error_free (error);
 		}
 	} else {
@@ -509,11 +509,6 @@ init_player (void)
 	
 	gtk_box_pack_start (GTK_BOX (display_box), gcd->display, TRUE, TRUE, 0);
 
-	gcd->tracks = gtk_option_menu_new ();
-	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
-			  G_CALLBACK (skip_to_track), gcd);
-	gnome_cd_build_track_list_menu (gcd);
-	gtk_box_pack_start (GTK_BOX (display_box), gcd->tracks, FALSE, FALSE, 0);
 
 	gtk_box_pack_start (GTK_BOX (top_hbox), display_box, TRUE, TRUE, 0);
 
@@ -522,6 +517,14 @@ init_player (void)
 	gtk_range_set_inverted (GTK_RANGE (gcd->slider), TRUE);
 	gtk_scale_set_draw_value (GTK_SCALE (gcd->slider), FALSE);
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
+
+	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
+	
+	gcd->tracks = gtk_option_menu_new ();
+	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
+			  G_CALLBACK (skip_to_track), gcd);
+	gnome_cd_build_track_list_menu (gcd);
+	gtk_box_pack_start (GTK_BOX (gcd->vbox), gcd->tracks, FALSE, FALSE, 0);
 
 	/* Get the initial volume */
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) == TRUE) {
@@ -534,7 +537,6 @@ init_player (void)
 
 	g_signal_connect (G_OBJECT (gcd->slider), "value-changed",
 			  G_CALLBACK (volume_changed), gcd);
-	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
 	
