@@ -526,10 +526,17 @@ status_ok (GnomeCD *gcd,
 		set_window_track_title (gcd, status);
 			
 		/* Update the tray icon tooltip */
-		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray,
-		g_strdup_printf (_("Playing %s - %s"),
-			gcd->disc_info->artist ? gcd->disc_info->artist : _("Unknown Artist"),
-			gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album")), NULL);
+		if (gcd->disc_info != NULL) {
+			text = g_strdup_printf (_("Playing %s - %s"),
+						gcd->disc_info->artist ? gcd->disc_info->artist : _("Unknown Artist"),
+						gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album"));
+		} else {
+			text = g_strdup (_("Playing"));
+		}
+		
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, text, NULL);
+		g_free (text);
+		
 		break;
 
 	case GNOME_CDROM_AUDIO_PAUSE:
@@ -810,7 +817,7 @@ about_cb (GtkWidget *widget,
 	  gpointer data)
 {
 	static GtkWidget *about = NULL;
-	const char *authors[2] = {"Iain Holmes", NULL};
+	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
 	
 	if (about == NULL) {
 		about = gnome_about_new (_("CD Player"), VERSION,
