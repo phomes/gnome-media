@@ -320,7 +320,7 @@ int main(int argc, char *argv[])
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
-	gnome_init_with_popt_table("gmix", VERSION, argc, argv, options,
+	gnome_init_with_popt_table("gnome-volume-control", VERSION, argc, argv, options,
 				   0, NULL);
 
 	if (g_file_exists (GNOME_ICONDIR"/gnome-volume.png"))
@@ -517,7 +517,7 @@ device_info *open_device(int num)
 	if ((res==EINVAL) || (ver!=SOUND_VERSION)) {
 		if (res == EINVAL) {
 			fprintf(stderr, 
-				_("Warning: This version of gmix was compiled with\n"
+				_("Warning: This version of the Gnome Volume Control was compiled with\n"
 				"OSS version %d.%d.%d, and your system is running\n"
 				"a version prior to 3.6.0.\n"), 
 				SOUND_VERSION >> 16, 
@@ -525,7 +525,7 @@ device_info *open_device(int num)
 				SOUND_VERSION & 0xff);
 		} else {
 			fprintf(stderr, 
-				_("Warning: This version of gmix was compiled with\n"
+				_("Warning: This version of the Gnome Volume Control was compiled with\n"
 				"OSS version %d.%d.%d, and your system is running\n"
 				"version %d.%d.%d.\n"), 
 				SOUND_VERSION >> 16, 
@@ -1461,7 +1461,7 @@ static void about_cb (GtkWidget *widget, gpointer data)
 	}
 	else
 	{
-		about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
+		about = gnome_about_new ( _("Gnome Volume Control"), VERSION,
 					  "(C) 1998 Jens Ch. Restemeier",
 					  _("This is a mixer for sound devices"),
 					  authors,
