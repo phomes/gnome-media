@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-26 04:39+0200\n"
-"PO-Revision-Date: 2003-06-26 12:24+0300\n"
+"POT-Creation-Date: 2003-07-15 12:55+0200\n"
+"PO-Revision-Date: 2003-07-16 00:13+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,31 +22,57 @@ msgstr ""
 msgid "Address of the server to contact for CD queries"
 msgstr "כתובת השרת להתחברות לשאילתות תקליטורים"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:798
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Info to send to server"
+msgstr "מידע לשליחה לשרת"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:801
 msgid "Port"
 msgstr "פתחה"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "שם השרת"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "סוג השרת"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
 msgstr "שם השרת אליו ישלחו כל השאילתות"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
 msgstr "הפתחה שעליה השרת מריץ את מסד הנתונים"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"סוג השרת ליצירת קשר לשאילתות תקליטור. ערכים אפשריים הם 0 "
+"(שרת FreeDB round robin), 1 (שרת freedb אחר) ו 2 (שרת אחר)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "שם המשתמש"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
 msgstr "שם המשתמש שישלח עם כל השאילתות"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user info will be sent to the server to contact for "
+"CD queries. Possible values are 0 (no info), 1 (real info) and 3 (other "
+"info)."
+msgstr ""
+"מפתח זה מציין איזה מידע משתמש ישלח לשרת ליצירת קשר לשאילתות "
+"תקליטור. ערכים אפשריים הם 0 (אף מידע), 1 (מידע אמיתי) ו 3 (מידע "
+"אחר)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr "שם המארח שלך"
 
@@ -68,64 +94,64 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:670
+#: cddb-slave2/cddb-slave-capplet.c:671
 msgid "Log on information"
 msgstr "מידע התחברות"
 
-#: cddb-slave2/cddb-slave-capplet.c:679
+#: cddb-slave2/cddb-slave-capplet.c:680
 msgid "Send _no info"
 msgstr "_אל תשלח מידע"
 
-#: cddb-slave2/cddb-slave-capplet.c:688
+#: cddb-slave2/cddb-slave-capplet.c:689
 msgid "Send real _info"
 msgstr "שלח _מידע אמיתי"
 
-#: cddb-slave2/cddb-slave-capplet.c:697
+#: cddb-slave2/cddb-slave-capplet.c:698
 msgid "Send _other info..."
 msgstr "שלח מידע א_חר..."
 
-#: cddb-slave2/cddb-slave-capplet.c:714
+#: cddb-slave2/cddb-slave-capplet.c:715
 msgid "N_ame:"
 msgstr "_שם:"
 
-#: cddb-slave2/cddb-slave-capplet.c:733
+#: cddb-slave2/cddb-slave-capplet.c:735
 msgid "_Hostname:"
 msgstr "מא_רח:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
+#: cddb-slave2/cddb-slave-capplet.c:758 cddb-slave2/cddb-slave-capplet.c:798
 msgid "Server"
 msgstr "שרת"
 
-#: cddb-slave2/cddb-slave-capplet.c:763
+#: cddb-slave2/cddb-slave-capplet.c:766
 msgid "FreeDB _round robin server"
 msgstr "שרת FreeDB _round robin"
 
-#: cddb-slave2/cddb-slave-capplet.c:769
+#: cddb-slave2/cddb-slave-capplet.c:772
 msgid "Other _FreeDB server..."
 msgstr "שרת _FreeDB אחר..."
 
-#: cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/cddb-slave-capplet.c:804
 msgid "Location"
 msgstr "מיקום"
 
-#: cddb-slave2/cddb-slave-capplet.c:807
+#: cddb-slave2/cddb-slave-capplet.c:810
 msgid "Update server list"
 msgstr "עדכן רשימת שרתים"
 
-#: cddb-slave2/cddb-slave-capplet.c:814
+#: cddb-slave2/cddb-slave-capplet.c:817
 msgid "Other _server..."
 msgstr "_שרת אחר..."
 
-#: cddb-slave2/cddb-slave-capplet.c:826
+#: cddb-slave2/cddb-slave-capplet.c:829
 msgid "Hostname:"
 msgstr "מארח:"
 
-#: cddb-slave2/cddb-slave-capplet.c:838
+#: cddb-slave2/cddb-slave-capplet.c:842
 msgid "_Port:"
 msgstr "_יציאה:"
 
-#: cddb-slave2/cddb-slave-capplet.c:888
+#: cddb-slave2/cddb-slave-capplet.c:892
 msgid "CD Database Preferences"
 msgstr "העדפות מסד נתוני תקליטור"
 
@@ -887,7 +913,7 @@ msgid "CD"
 msgstr "תקליטור"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "וידאו"
 
@@ -995,11 +1021,11 @@ msgstr "פלט נוסף"
 
 #: gmix/device_labels_alsa.h:46
 msgid "Analog Loopback"
-msgstr ""
+msgstr "לולאת חזרה אנאלוגית"
 
 #: gmix/device_labels_alsa.h:47
 msgid "Digital Loopback"
-msgstr ""
+msgstr "לולאת חזרה דיגיטלית"
 
 #: gmix/device_labels_linux.h:7
 msgid "Vol  "
@@ -2401,56 +2427,56 @@ msgid "*"
 msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>קולט ברירת מחדל</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "<b>Default Source</b>"
+msgstr "<b>מקור ברירת מחדל</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">בודק...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:3
+#: gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Audio"
 msgstr "שמע"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio _Input:"
-msgstr "_קלט שמע:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr "_פלט שמע:"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
-msgstr "לחץ אישור לסיום"
+msgid "Click Ok to finish."
+msgstr "לחץ אישור לסיום."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "Default Sink"
-msgstr "קולט ברירת מחדל"
+msgid "GStreamer Preferences"
+msgstr "העדפות GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Default Source"
-msgstr "מקור ברירת מחדל"
+msgid "Pipe_line:"
+msgstr "צי_נור:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "GStreamer Properties"
-msgstr "מאפייני GStreamer"
+msgid "Te_st"
+msgstr "_בדוק"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeline:"
-msgstr "צינור:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Test..."
-msgstr "בדוק..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
 msgstr "בודק צינור"
 
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "_קלט:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "_פלט:"
+
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr "_קלט וידאו:"
+msgid "_Pipeline:"
+msgstr "_צינור:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
-msgstr "_פלט וידאו:"
+msgid "_Test"
+msgstr "_בדוק"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
@@ -2526,6 +2552,12 @@ msgstr "מציג את עוצמת יציאת הקול"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "צג עוצמה"
+
+#~ msgid "Audio _Input:"
+#~ msgstr "_קלט שמע:"
+
+#~ msgid "Video _Output:"
+#~ msgstr "_פלט וידאו:"
 
 #~ msgid "Action on application exit"
 #~ msgstr "פעולה ביציאה מהיישום"
