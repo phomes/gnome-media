@@ -32,7 +32,7 @@ gtcd_SOURCES = 		\
 	keybindings.h	\
 	gtcd_public.h	\
 	cddb_status.c
-	
+
 tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
@@ -47,7 +47,7 @@ gtcd_LDADD = 	$(GNOME_LIBDIR) \
 		$(GNOMEUI_LIBS) \
 		$(INTLLIBS)
 
-tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS)
+tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS) $(INTLLIBS)
 
 CLEANFILES = *~
 
