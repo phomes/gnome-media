@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-10 01:47+0100\n"
-"PO-Revision-Date: 2004-01-10 01:48+0100\n"
+"POT-Creation-Date: 2004-01-13 10:07+0100\n"
+"PO-Revision-Date: 2004-01-13 10:08+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Непознато / непознато"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:864
-#: grecord/src/gsr-window.c:873 grecord/src/gsr-window.c:882
-#: grecord/src/gsr-window.c:892 grecord/src/gsr-window.c:1231
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:868
+#: grecord/src/gsr-window.c:877 grecord/src/gsr-window.c:886
+#: grecord/src/gsr-window.c:896 grecord/src/gsr-window.c:1235
 msgid "Unknown"
 msgstr "Непознато"
 
@@ -1268,8 +1268,8 @@ msgstr "_Доступне теме:"
 msgid "Record sound clips"
 msgstr "Сними исечке звука"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1087
-#: grecord/src/gsr-window.c:1711
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1091
+#: grecord/src/gsr-window.c:1487
 msgid "Sound Recorder"
 msgstr "Снимање звука"
 
@@ -1297,7 +1297,7 @@ msgstr "Направи нови исечак"
 msgid "Display help for Sound Recorder"
 msgstr "Прикажи помоћ за снимање звука"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:950
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:954
 msgid "File Information"
 msgstr "Подаци о датотеци"
 
@@ -1317,7 +1317,7 @@ msgstr "Нови"
 msgid "Open"
 msgstr "Отвори"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:396
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:400
 msgid "Open a file"
 msgstr "Отвори датотеку"
 
@@ -1433,169 +1433,173 @@ msgstr "_Сними"
 msgid "_Save"
 msgstr "_Сачувај"
 
-#: grecord/src/gnome-recorder.c:152
+#: grecord/src/gnome-recorder.c:153
 msgid "Dummy option"
 msgstr "Глупа опција"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:284
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:294
+#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
 msgid "hours"
 msgstr "часова"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:284
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:294
+#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
 msgid "hour"
 msgstr "час"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:285
-#: grecord/src/gsr-window.c:301 grecord/src/gsr-window.c:305
+#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
+#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
 msgid "minutes"
 msgstr "минута"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:285
-#: grecord/src/gsr-window.c:301 grecord/src/gsr-window.c:305
+#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
+#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
 msgid "minute"
 msgstr "минут"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:281 grecord/src/gsr-window.c:291
-#: grecord/src/gsr-window.c:302 grecord/src/gsr-window.c:310
-#: grecord/src/gsr-window.c:313
+#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
+#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:314
+#: grecord/src/gsr-window.c:317
 msgid "seconds"
 msgstr "секунди"
 
 # bug: plural-forms
-#: grecord/src/gsr-window.c:281 grecord/src/gsr-window.c:291
-#: grecord/src/gsr-window.c:302 grecord/src/gsr-window.c:313
+#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
+#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:317
 msgid "second"
 msgstr "секунда"
 
-#: grecord/src/gsr-window.c:479 grecord/src/gsr-window.c:1411
-#: grecord/src/gsr-window.c:1542 grecord/src/gsr-window.c:1632
+#: grecord/src/gsr-window.c:483 grecord/src/gsr-window.c:1415
+#: grecord/src/gsr-window.c:1586 grecord/src/gsr-window.c:1676
 msgid "Ready"
 msgstr "Спреман"
 
-#: grecord/src/gsr-window.c:590
+#: grecord/src/gsr-window.c:594
 msgid "Unknown extension, doing nothing"
 msgstr "Непознато проширење, не радим ништа"
 
-#: grecord/src/gsr-window.c:603
+#: grecord/src/gsr-window.c:607
 msgid "Could not build pipeline"
 msgstr "Не могу да направим цев"
 
-#: grecord/src/gsr-window.c:644
+#: grecord/src/gsr-window.c:648
 #, c-format
 msgid "Saving %s..."
 msgstr "Чува %s..."
 
-#: grecord/src/gsr-window.c:703
+#: grecord/src/gsr-window.c:707
 msgid "Save file as"
 msgstr "Сачувај датотеку као"
 
-#: grecord/src/gsr-window.c:757
+#: grecord/src/gsr-window.c:761
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "Није инсталиран %s у путањи."
 
-#: grecord/src/gsr-window.c:764
+#: grecord/src/gsr-window.c:768
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Дошло је до грешке при покретању %s: %s"
 
-#: grecord/src/gsr-window.c:839
+#: grecord/src/gsr-window.c:843
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (није сачуван)"
 
-#: grecord/src/gsr-window.c:855
+#: grecord/src/gsr-window.c:859
 msgid "Unknown size"
 msgstr "Непозната величина"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:879
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:884
+#: grecord/src/gsr-window.c:888
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f КБ/с"
 
-#: grecord/src/gsr-window.c:896
+#: grecord/src/gsr-window.c:900
 msgid "1 (mono)"
 msgstr "1 (моно)"
 
-#: grecord/src/gsr-window.c:900
+#: grecord/src/gsr-window.c:904
 msgid "2 (stereo)"
 msgstr "2 (стерео)"
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:933
 #, c-format
 msgid "%s Information"
 msgstr "Подаци о %s"
 
-#: grecord/src/gsr-window.c:964
+#: grecord/src/gsr-window.c:968
 msgid "Folder:"
 msgstr "Директоријум:"
 
-#: grecord/src/gsr-window.c:970 grecord/src/gsr-window.c:1772
+#: grecord/src/gsr-window.c:974 grecord/src/gsr-window.c:1820
 msgid "Filename:"
 msgstr "Име датотеке:"
 
-#: grecord/src/gsr-window.c:976
+#: grecord/src/gsr-window.c:980
 msgid "File size:"
 msgstr "Величина датотеке:"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:989
 msgid "Audio Information"
 msgstr "Подаци о снимку"
 
-#: grecord/src/gsr-window.c:999
+#: grecord/src/gsr-window.c:1003
 msgid "Song length:"
 msgstr "Дужина песме:"
 
-#: grecord/src/gsr-window.c:1005
+#: grecord/src/gsr-window.c:1009
 msgid "Number of channels:"
 msgstr "Број канала:"
 
-#: grecord/src/gsr-window.c:1011
+#: grecord/src/gsr-window.c:1015
 msgid "Sample rate:"
 msgstr "Величина узорка:"
 
-#: grecord/src/gsr-window.c:1017
+#: grecord/src/gsr-window.c:1021
 msgid "Bit rate:"
 msgstr "Квалитет:"
 
-#: grecord/src/gsr-window.c:1089
+#: grecord/src/gsr-window.c:1093
 msgid "A sound recorder for GNOME"
 msgstr "Снимање звука за Гном"
 
-#: grecord/src/gsr-window.c:1387
+#: grecord/src/gsr-window.c:1391
 msgid "Playing..."
 msgstr "Пушта..."
 
-#: grecord/src/gsr-window.c:1517
+#: grecord/src/gsr-window.c:1483
+#, c-format
+msgid "%s.%s - Sound Recorder"
+msgstr "%s,%s — снимање звука"
+
+#: grecord/src/gsr-window.c:1561
 msgid "Recording..."
 msgstr "Снима..."
 
-#: grecord/src/gsr-window.c:1707
-#, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - снимање звука"
+#: grecord/src/gsr-window.c:1795
+msgid "Record as"
+msgstr "Сними као"
 
-#: grecord/src/gsr-window.c:1757
+#: grecord/src/gsr-window.c:1805
 msgid "File information"
 msgstr "Подаци о датотеци"
 
-#: grecord/src/gsr-window.c:1778
+#: grecord/src/gsr-window.c:1827
 msgid "<none>"
 msgstr "<ништа>"
 
-#: grecord/src/gsr-window.c:1787
+#: grecord/src/gsr-window.c:1836
 msgid "Length:"
 msgstr "Дужина:"
 
@@ -1725,31 +1729,30 @@ msgstr "По избору"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Није успео да направи пробну цев за „%s“"
 
-#: profiles/audio-profile-edit.c:201
+#: profiles/audio-profile-edit.c:185
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Дошло је до грешке при приказивању помоћи: %s"
 
-#: profiles/audio-profile-edit.c:406
+#: profiles/audio-profile-edit.c:387
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Уређујем скуп поставки „%s“"
 
-#: profiles/audio-profile.c:100
+#: profiles/audio-profile.c:101
 msgid "<not named>"
 msgstr "<без имена>"
 
-#: profiles/audio-profile.c:101
+#: profiles/audio-profile.c:102
 msgid "<not described>"
 msgstr "<без описа>"
 
-#: profiles/audio-profile.c:216
+#: profiles/audio-profile.c:217
 #, c-format
-msgid "There was an error getting the list of audio profiles. (%s)\n"
-msgstr ""
-"Дошло је до грешке при добављању списка скупова звучних поставки. (%s)\n"
+msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
+msgstr "Дошло је до грешке при добављању списка скупова звучних поставки. (%s)\n"
 
-#: profiles/audio-profile.c:717
+#: profiles/audio-profile.c:718
 #, c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
@@ -1758,50 +1761,50 @@ msgstr ""
 "Дошло је до грешке при преплаћивању на обавештења о измени списка скупова "
 "поставки терминала. (%s)\n"
 
-#: profiles/audio-profile.c:907
+#: profiles/audio-profile.c:908
 #, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
 msgstr ""
 "Дошло је до грешке при занемаривању директоријума скупа поставки %s. (%s)\n"
 
-#: profiles/audio-profile.c:999
+#: profiles/audio-profile.c:1000
 msgid "<no description>"
 msgstr "<без описа>"
 
-#: profiles/audio-profile.c:1010
+#: profiles/audio-profile.c:1011
 msgid "identity"
 msgstr "идентитет"
 
-#: profiles/audio-profile.c:1021
+#: profiles/audio-profile.c:1022
 msgid "wav"
 msgstr "wav"
 
-#: profiles/audio-profiles-edit.c:112
+#: profiles/audio-profiles-edit.c:113
 msgid "_Edit"
 msgstr "_Уређивање"
 
-#: profiles/audio-profiles-edit.c:450
+#: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
 msgstr "Морате изабрати један или више скупова поставки за брисање"
 
 # bug: plural-forms
-#: profiles/audio-profiles-edit.c:460
+#: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
 msgstr "Обриши ова два скупа поставки?\n"
 
 # bug: plural-forms
-#: profiles/audio-profiles-edit.c:462
+#: profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete these %d profiles?\n"
 msgstr "Обриши ових %d скупова поставки?\n"
 
 # bug: plural-forms
-#: profiles/audio-profiles-edit.c:480
+#: profiles/audio-profiles-edit.c:481
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Обриши скуп поставки „%s“?"
 
-#: profiles/audio-profiles-edit.c:502
+#: profiles/audio-profiles-edit.c:503
 msgid "Delete Profile"
 msgstr "Обриши профил"
 
@@ -1817,20 +1820,20 @@ msgstr "Обриши профил"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: profiles/audio-profiles-edit.c:596
-msgid "Edit Audio Profiles"
+#: profiles/audio-profiles-edit.c:597
+msgid "Edit GMAudio Profiles"
 msgstr "Уреди скупове звучних поставки"
 
-#: profiles/audio-profiles-edit.c:649
+#: profiles/audio-profiles-edit.c:650
 msgid "_Profiles:"
 msgstr "С_купови поставки:"
 
-#: profiles/audio-profiles-edit.c:877
+#: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Већ имате скуп поставки са именом „%s“"
 
-#: profiles/audio-profiles-edit.c:902
+#: profiles/audio-profiles-edit.c:903
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "ГКонф грешка (ИСПРАВИ-МЕ): %s\n"
