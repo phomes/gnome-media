@@ -858,7 +858,7 @@ void setup_time_display( void )
 #ifdef TCD_CHANGER_ENABLED
     gtk_box_pack_start(GTK_BOX(box), changer_box, FALSE, FALSE, 0);
 #endif
-    gtk_box_pack_end(GTK_BOX(box), volume, FALSE, FALSE, 2);
+    gtk_box_pack_end(GTK_BOX(box), volume, TRUE, TRUE, 2);
 
     gtk_box_pack_end(GTK_BOX(status_table), box, FALSE, FALSE, 2);
 
