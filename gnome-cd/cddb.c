@@ -61,7 +61,7 @@ get_disc_info (GnomeCD *gcd,
 		info->track_info = NULL;
 		gcd->disc_info = NULL;
 	}
-	
+
 	gnome_cd_build_track_list_menu (gcd);
 }
 
@@ -156,7 +156,6 @@ cddb_get_query (GnomeCD *gcd)
 
 	if (cddb_cache == NULL) {
 		cddb_cache = g_hash_table_new (g_str_hash, g_str_equal);
-		/* cddb_preload_cache (); */
 	}
 
 	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
