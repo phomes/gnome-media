@@ -1,7 +1,7 @@
 /*
  * GTK/GDK/GNOME sound (esd) system output display program
  * 
- * Copyright (C) 1998 by Michael Fullbright
+ * Copyright (C) 1998 by Michael Fulbright
  * Re-hacked to look good by The Rasterman
  * 
  * This software comes under thr GPL (GNU Public License)
