@@ -14,7 +14,7 @@ gmix_SOURCES =	\
 gmix_LDADD = \
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/libgnomeui/libgnomeui.la 	\
-        $(X_LIBS)
+        $(X_LIBS) $(x_libs)
 
 Audio_DATA = gmix.desktop
 
