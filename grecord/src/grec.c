@@ -922,7 +922,7 @@ UpdateStatusbarRecord (gboolean begin)
 				save_dialog ();
 			}
 
-			return TRUE;
+			return FALSE;
 		}
 
 		counter /= 2;
