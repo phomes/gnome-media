@@ -168,7 +168,7 @@ make_label_model (GList *in)
 	store = gtk_list_store_new (5, G_TYPE_STRING, /* User title */
 				    G_TYPE_STRING, /* Real title (Not shown) */
 				    G_TYPE_STRING, /* Card name (Not shown */
-				    G_TYPE_BOOLEAN, /* Is fader shown? Not used yet */
+				    G_TYPE_BOOLEAN, /* Is fader shown? */
 				    G_TYPE_BOOLEAN); /* Editable? */
 	for (p = in; p; p = p->next) {
 		channel_info *channel = (channel_info *) p->data;
@@ -178,12 +178,46 @@ make_label_model (GList *in)
 				    0, channel->user_title,
 				    1, channel->title,
 				    2, channel->device->info.name,
-				    3, TRUE,
+				    3, channel->visible,
 				    4, TRUE,
 				    -1);
 	}
 
 	return GTK_TREE_MODEL (store);
+}
+
+static void
+toggled (GtkCellRendererToggle *cell,
+	 char *path_string,
+	 GtkTreeModel *model)
+{
+	GtkTreeIter iter;
+	GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+	gboolean value;
+	char *device_name, *channel_name;
+	device_info *di;
+	GList *p;
+	
+	gtk_tree_model_get_iter (model, &iter, path);
+	gtk_tree_model_get (model, &iter,
+			    1, &channel_name,
+			    2, &device_name,
+			    3, &value, -1);
+
+	value = !value;
+
+	di = device_from_name (device_name);
+	for (p = di->channels; p; p = p->next) {
+		channel_info *ci = (channel_info *) p->data;
+		if (strcmp (ci->title, channel_name) == 0) {
+			gmix_change_channel (ci, value);
+			break;
+		}
+	}
+	
+	gtk_list_store_set (GTK_LIST_STORE (model), &iter, 3, value, -1);
+
+	gtk_tree_path_free (path);
 }
 
 static void
@@ -262,6 +296,17 @@ label_one_device_config (gpointer device,
 	model = make_label_model (info->channels);
 	treeview = gtk_tree_view_new_with_model (model);
 
+	cell = gtk_cell_renderer_toggle_new ();
+	g_signal_connect (G_OBJECT (cell), "toggled",
+			  G_CALLBACK (toggled), model);
+	col = gtk_tree_view_column_new_with_attributes (_("Shown"), cell,
+							"active", 3, NULL);
+	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview),
+						     -1, _("Shown"), cell,
+						     "active", 3,
+						     NULL);
+	
+						     
 	cell = gtk_cell_renderer_text_new ();
 	g_signal_connect (G_OBJECT (cell), "edited",
 			  G_CALLBACK (edited), model);
@@ -271,13 +316,13 @@ label_one_device_config (gpointer device,
 						     -1, _("Mixer label"),
 						     cell,
 						     "text", 0,
-						     "editable", 3,
+						     "editable", 4,
 						     NULL);
 
 	gtk_container_add (GTK_CONTAINER (scrlwin), treeview);
 	
 	/* Add the label reset button */
-	button = gtk_button_new_with_label (_("Reset labels to their defaults"));
+	button = gtk_button_new_with_mnemonic (_("_Reset labels to their defaults"));
 	gtk_box_pack_start (GTK_BOX(topvbox), button, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT(button), "clicked",
 			  G_CALLBACK (labels_reset_page_cb), model);

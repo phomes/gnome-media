@@ -870,7 +870,7 @@ get_string_with_default (const char *key,
 		return g_strdup (default_result);
 	}
 }
-	
+
 static void
 get_one_device_config (gpointer a,
 		       gpointer b)
@@ -880,11 +880,24 @@ get_one_device_config (gpointer a,
 	GList *p;
 
 	for (p = info->channels; p; p = p->next) {
+		GConfClient *client;
 		channel_info *channel = (channel_info *) p->data;
 
 		key_base = g_strdup_printf ("/apps/gnome-volume-control/%s/%s",
 					    info->card_name, channel->title);
 
+		/* Check if the key base directory exists */
+		client = gconf_client_get_default ();
+		if (gconf_client_dir_exists (client, key_base, NULL) == FALSE) {
+			g_print ("%s does not exist\n", key_base);
+			g_free (key_base);
+			g_object_unref (G_OBJECT (client));
+			continue;
+		} else {
+			g_print ("Directory %s exists\n", key_base);
+		}
+		g_object_unref (G_OBJECT (client));
+		
 		key = g_strdup_printf ("%s/title", key_base);
 
 		if (channel->user_title != NULL) {
@@ -897,6 +910,11 @@ get_one_device_config (gpointer a,
 		key = g_strdup_printf ("%s/mute", key_base);
 		channel->is_muted = get_bool_with_default (key, channel->is_muted);
 		g_free (key);
+
+		key = g_strdup_printf ("%s/visible", key_base);
+		channel->visible = get_bool_with_default (key, TRUE);
+		g_free (key);
+
 #ifdef WE_WANT_VOLUME_RESET		
 		if (channel->is_stereo) {
 			key = g_strdup_printf ("%s/lock", key_base);
@@ -926,6 +944,7 @@ get_one_device_config (gpointer a,
 			g_free (key);
 		}
 
+		
 		g_free (key_base);
 	}
 }
@@ -986,9 +1005,15 @@ put_one_device_config (gpointer a,
 
 		if (channel->record_source == TRUE) {
 			key = g_strdup_printf ("%s/recsrc", key_base);
-			gconf_client_set_bool(client, key, channel->is_record_source, NULL);
+			gconf_client_set_bool (client, key, channel->is_record_source, NULL);
 			g_free (key);
 		}
+
+		key = g_strdup_printf ("%s/visible", key_base);
+		gconf_client_set_bool (client, key, channel->visible, NULL);
+		g_free (key);
+
+		g_free (key_base);
 	}
 
 	g_object_unref (G_OBJECT (client));
@@ -1134,13 +1159,15 @@ fill_in_device_guis (GtkWidget *notebook)
 			}
 			ci->label = label;
 
-			mixer = make_slider_mixer(ci);
-			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1,\
-					  1, 2, GTK_EXPAND | GTK_FILL,\
+			ci->mixer = make_slider_mixer(ci);
+			gtk_table_attach (GTK_TABLE (table), ci->mixer,
+					  i, i+1,
+					  1, 2, GTK_EXPAND | GTK_FILL,
 					  GTK_EXPAND | GTK_FILL, 0, 0);
-			gtk_widget_set_size_request (mixer, -1, 100);
-			gtk_widget_show (mixer);
-			table_focus_chain = g_list_prepend (table_focus_chain, mixer);
+  			gtk_widget_set_size_request (ci->mixer, -1, 100); 
+			gtk_widget_show (ci->mixer);
+			table_focus_chain = g_list_prepend (table_focus_chain,
+							    ci->mixer);
 			
 			if (ci->is_stereo == TRUE) {
 				/* lock-button, only useful for stereo */
@@ -1224,15 +1251,32 @@ fill_in_device_guis (GtkWidget *notebook)
 				ci->rec = NULL;
 			}
 	
-			separator = gtk_vseparator_new ();
-			gtk_table_attach (GTK_TABLE (table), separator,
+			ci->separator = gtk_vseparator_new ();
+			gtk_table_attach (GTK_TABLE (table), ci->separator,
 					  i+1, i+2, 0, 6,
 					  GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
-			gtk_widget_show (separator);
+			gtk_widget_show (ci->separator);
 
-			gtk_widget_show (table);
+			if (ci->visible == FALSE) {
+				/* Hide everything */
+				gtk_widget_hide (ci->separator);
+				gtk_widget_hide (ci->mixer);
+				if (ci->lock != NULL) {
+					gtk_widget_hide (ci->lock);
+				}
+				
+				if (ci->rec != NULL) {
+					gtk_widget_hide (ci->rec);
+				}
+				gtk_widget_hide (ci->mute);
+				if (ci->icon != NULL) {
+					gtk_widget_hide (ci->icon);
+				}
+				gtk_widget_hide (ci->label);
+			}
 		}
-	
+		
+		gtk_widget_show (table);
 		/* Set the new focus chain for the table */
 
 		table_focus_chain = g_list_reverse (table_focus_chain);
@@ -1266,6 +1310,7 @@ open_dialog (void)
 {
 	app = gnome_app_new ("gnome-volume-control", _("Volume Control") );
 	gtk_widget_realize (app);
+	gtk_window_set_resizable (GTK_WINDOW (app), FALSE);
 	g_signal_connect (G_OBJECT (app), "delete_event",
 			  G_CALLBACK (quit_cb), NULL);
 
@@ -1673,6 +1718,48 @@ about_cb (GtkWidget *widget,
 	}
 }
 
+void
+gmix_change_channel (channel_info *ci,
+		     gboolean show)
+{
+	if (show == FALSE) {
+		gtk_widget_hide (ci->separator);
+		gtk_widget_hide (ci->mixer);
+		if (ci->lock != NULL) {
+			gtk_widget_hide (ci->lock);
+		}
+
+		if (ci->rec != NULL) {
+			gtk_widget_hide (ci->rec);
+		}
+		
+		gtk_widget_hide (ci->mute);
+		
+		if (ci->icon != NULL) {
+			gtk_widget_hide (ci->icon);
+		}
+		gtk_widget_hide (ci->label);
+	} else {
+		gtk_widget_show (ci->separator);
+		gtk_widget_show (ci->mixer);
+		if (ci->lock != NULL) {
+			gtk_widget_show (ci->lock);
+		}
+
+		if (ci->rec != NULL) {
+			gtk_widget_show (ci->rec);
+		}
+		
+		gtk_widget_show (ci->mute);
+		if (ci->icon != NULL) {
+			gtk_widget_show (ci->icon);
+		}
+		gtk_widget_show (ci->label);
+	}
+
+	ci->visible = show;
+}
+		
 void
 gmix_change_icons (gboolean show)
 {

@@ -93,9 +93,11 @@ typedef struct channel_info {
 	
 	/* here are the widgets... */
 	GtkObject *left, *right;
+	GtkWidget *mixer;
 	GtkWidget *lock, *rec, *mute;
 	GtkWidget *icon;
 	GtkWidget *label;
+	GtkWidget *separator;
 
 	int passive; /* avoid recursive calls to event handler */
 } channel_info;

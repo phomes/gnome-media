@@ -1,3 +1,19 @@
+2002-04-09 Iain <iain@ximian.com>
+
+	* gmix.c (get_one_device_config): If the cards directory doesn't exist
+	just load the defaults. Get the visible key.
+	(put_one_device_config): Set the visible.
+	(fill_in_device_guis): Keep the mixer widget around. Hide everything
+	if the channel isn't visible.
+	(open_dialog): Make the window not resizable.
+	(gmix_change_channel): Hide or show a channel.
+
+	* prefs.c (make_tree_model): Set the visible column to the correct
+	value.
+	(toggled): Show or hide a channel.
+	(label_one_device_config): Add a toggle button column. Add a mnemonic
+	to the button.
+
 2002-04-08 Iain <iain@ximian.com>
 
 	* gmix.c (get_one_device_config): Don't load the volume.
