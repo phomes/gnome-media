@@ -43,7 +43,7 @@ AM_PROG_LIBTOOL
 dnl
 dnl Check for esound library
 dnl
-AM_PATH_ESD(0.2.5, AC_DEFINE(HAVE_ESD))
+AM_PATH_ESD(0.2.7, AC_DEFINE(HAVE_ESD))
 
 
 ALL_LINGUAS="da fi ko de fr it ja es no ga pt ru_RU"
@@ -54,13 +54,12 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 dnl
-dnl extace - currently disabled
+dnl extace
 dnl
-PROGRAMS_EXTACE=
-AM_PATH_ESD(0.2.7,
-  AC_CHECK_LIB(gslfft, gsl_fft_real_radix2,
-    PROGRAMS_EXTACE=extace,,-lgslerr -lm))
-AC_SUBST(PROGRAMS_EXTACE)
+PROGRAMS_EXTACE=""
+AC_CHECK_LIB(gslfft, gsl_fft_real_radix2,
+	PROGRAMS_EXTACE=extace,,-lgslfft -lgslerr -lm)
+AM_CONDITIONAL(BUILD_EXTACE, test "$PROGRAMS_EXTACE" = "extace")
 
 dnl
 dnl vu-meter
@@ -79,12 +78,13 @@ AC_SUBST(PROGRAMS_GMIX)
 
 dnl
 dnl Find out if we can compile gnomovision on this system
+dnl [disabled]
 dnl
-PROGRAMS_GNOMOVISION=""
-AC_CHECK_HEADERS(linux/videodev.h,[PROGRAMS_GNOMOVISION=gnomovision])
-AC_SUBST(PROGRAMS_GNOMOVISION)
-AC_CHECK_LIB(Xxf86dga, XF86DGAQueryExtension,[GNOMOVISION_LIBS=-lXxf86dga],,[$GNOME_LIBDIR $GNOMEUI_LIBS])
-AC_SUBST(GNOMOVISION_LIBS)
+dnl PROGRAMS_GNOMOVISION=""
+dnl AC_CHECK_HEADERS(linux/videodev.h,[PROGRAMS_GNOMOVISION=gnomovision])
+dnl AC_SUBST(PROGRAMS_GNOMOVISION)
+dnl AC_CHECK_LIB(Xxf86dga, XF86DGAQueryExtension,[GNOMOVISION_LIBS=-lXxf86dga],,[$GNOME_LIBDIR $GNOMEUI_LIBS])
+dnl AC_SUBST(GNOMOVISION_LIBS)
 
 dnl
 dnl Everything OK for tcd?
@@ -109,16 +109,13 @@ AC_MSG_RESULT("$cd_changer")
 AC_SUBST(USE_CD_CHANGER)
 AC_SUBST(PROGRAMS_TCD)
 
-PROGRAMS_CDDBSLAVE=""
-AC_SUBST(PROGRAMS_CDDBSLAVE)
-
 AC_OUTPUT([
 Makefile
 po/Makefile.in
 extace/Makefile
 gmix/Makefile
 vu-meter/Makefile
-gnomovision/Makefile
+dnl gnomovision/Makefile
 macros/Makefile
 tcd/Makefile
 tcd/icons/Makefile

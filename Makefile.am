@@ -1,18 +1,18 @@
 # If you want to build these components, please cd to their respective
 # directories and type `make'.
-if FALSE
-gnomovision = gnomovision
-else
-gnomovision =
+
+always_built_SUBDIRS = po macros cddbslave
+
+# always distribute extace damnit
+if BUILD_EXTACE
+extace = extace
 endif
 
-SUBDIRS = po macros	\
-	@PROGRAMS_GMIX@		\
-	@PROGRAMS_TCD@		\
-	@PROGRAMS_VUMETER@	\
-	@PROGRAMS_EXTACE@	\
-#	@PROGRAMS_GNOMOVISION	\
-	cddbslave		
+SUBDIRS = $(always_built_SUBDIRS) $(extace) \
+	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_TCD@
+
+DIST_SUBDIRS = $(always_built_SUBDIRS) extace \
+	       vu-meter gmix tcd
 
 EXTRA_DIST = gnome-media.spec configure
 
