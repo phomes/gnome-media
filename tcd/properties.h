@@ -4,10 +4,11 @@
 typedef struct
 {
 	gchar *cddev;
-	gchar *cddb;
-	gint  cddbport;
+	gchar *cddb, *remote_path, *proxy_server;
+	gint  cddbport, proxy_port;
 	gboolean handle;
 	gboolean tooltip;
+	gboolean use_http, use_proxy;
 	gchar *trackfont;
 	gchar *statusfont;
 	gchar *trackcolor;

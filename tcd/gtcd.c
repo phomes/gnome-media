@@ -23,9 +23,9 @@
    Tim P. Gerla
    RR 1, Box 40
    Climax, MN  56523
-   timg@means.net
+   timg@means.net 						
 */
-#include <gtk/gtk.h>
+
 #include <gnome.h>
 
 #include <fcntl.h>
@@ -416,16 +416,18 @@ void draw_status( void )
 	gdk_gc_set_foreground(gc, &timecolor);
 
 	sprintf( tmp, "%2d/%2d", cd.cur_t, cd.last_t );
-	gdk_draw_text( status_db,tfont,gc,8,20,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,tfont,gc,3,20,tmp,strlen(tmp) );
 
-	sprintf( tmp, "Trk %2d:%02d/%d:%02d", cd.t_min, cd.t_sec,
+	sprintf( tmp, "%2d:%02d / %d:%02d", cd.t_min, cd.t_sec,
 						cd.trk[C(cd.cur_t)].tot_min,
 						cd.trk[C(cd.cur_t)].tot_sec );
-	gdk_draw_text( status_db,sfont,gc,52,12,tmp,strlen(tmp) );
-	sprintf( tmp, " CD %2d:%02d/%d:%02d", cd.cd_min, cd.cd_sec,
-		cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.minute,
-		cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.second  );
-	gdk_draw_text( status_db,sfont,gc,52,24,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,tfont,gc,55,20,tmp,strlen(tmp) );
+
+	gdk_gc_set_foreground(gc, &trackcolor);
+
+	sprintf( tmp, "%2d:%02d", cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.minute,
+                cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.second);
+	gdk_draw_text( status_db,sfont, gc,114,40,tmp,strlen(tmp) );
 
 	sprintf( tmp, "%d%%", (int)ceil(cd.volume*0.390625) );
 	gdk_draw_text( status_db,sfont, gc,114,52,tmp,strlen(tmp) );
@@ -458,7 +460,6 @@ void draw_status( void )
 	}
 	else strcpy( tmp, cd.errmsg );
 
-	gdk_gc_set_foreground(gc, &trackcolor);
 	gdk_draw_text( status_db,sfont,gc,4,40,tmp, strlen(tmp) );
 	
 	gdk_draw_text( status_db,sfont,gc,4,52, play_methods[cd.play_method] ,
@@ -829,7 +830,6 @@ void setup_rows( void )
         gtk_tooltips_set_tip( tooltips, propsbutton, TT_PROPS, "" );
 	                        
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
-        gtk_container_add(GTK_CONTAINER (window), vbox);
 
 	return;
 }
@@ -856,7 +856,7 @@ void init_window(void)
         gtk_signal_connect( GTK_OBJECT(window), "delete_event",
                 GTK_SIGNAL_FUNC(delete_event), NULL);
 
-        gtk_container_border_width( GTK_CONTAINER(window), 1 );
+        gtk_container_border_width( GTK_CONTAINER(window), 4 );
         gtk_widget_realize(window);
 
 	tooltips = gtk_tooltips_new();

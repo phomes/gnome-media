@@ -243,23 +243,27 @@ void tcd_gettime( cd_struct *cd )
 
 	cd->err = FALSE;
         cd->sc.cdsc_format = CDROM_MSF;
-        	
-	result = ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc );
-	if( result < 0 )
+        
+        if( cd->isplayable )
 	{
-		strcpy( cd->errmsg, "Can't read disc." );
-               	cd->err = TRUE;
+		result = ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc );
+		if( result < 0 )
+		{
+			strcpy( cd->errmsg, "Can't read disc." );
+	               	cd->err = TRUE;
 #ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
+			fprintf( stderr, "cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
 #endif
-		return;
-        }
-
+			return;
+	        }
+	}
+#ifndef CDROMVOLCTRL_BUG
 	vol.channel0 = cd->volume;
 	vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0; 
 	ioctl( cd->cd_dev, CDROMVOLCTRL, &vol );
 	ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
 	cd->volume = vol.channel0;
+#endif
 
 	cd->cur_t = cd->sc.cdsc_trk;
 

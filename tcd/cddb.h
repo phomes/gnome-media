@@ -39,6 +39,11 @@ typedef struct {
 	int socket;
 	int connected;
 	char error[100];
+	int proxy;
+	char proxy_server[HOSTNAME_MAX];
+	int proxy_port;
+	int http;
+	char remote_path[512];
 } cddb_server;
 
 typedef struct {

@@ -51,6 +51,7 @@ void destroy_window (GtkWidget *widget, GtkWidget **window)
 	strcpy( cd.dtitle, (char*)gtk_entry_get_text(GTK_ENTRY(title)));
 	tcd_writediskinfo(&cd);
 	gtk_widget_destroy( trwin );
+	trwin = NULL;
 	tracklabel_f = titlelabel_f = -100; /* Invalidate the labels */
 }
 

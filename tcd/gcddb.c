@@ -27,35 +27,30 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <linux/cdrom.h>
 
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
-
+#include "linux-cdrom.h"
 #include "gcddb.h"
 #include "socket.h"
 #include "cddb.h"
 #include "properties.h"
 
-GtkWidget *win, *label;
-GtkWidget *server_e, *port;
+GtkWidget *win, *label, *pb;
+GtkWidget *cancelbutton, *startbutton;
+        
 extern int tracklabel_f, titlelabel_f;
 extern cd_struct cd;
-GtkWidget *box;
-GtkWidget *pb;
+extern tcd_properties props;
+
 int val;
 int cancel_id, start_id, timeout;
-GtkWidget *cancelbutton, *startbutton;
 
-extern tcd_properties props;
-void create_warn(void);
+void create_warn( char *message_text, char *type );
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
 	gtk_widget_destroy(win);
+	win = NULL;
 }
 
 void cancel_cddb( GtkWidget *widget, gpointer data )
@@ -63,78 +58,62 @@ void cancel_cddb( GtkWidget *widget, gpointer data )
 	gtk_signal_disconnect( GTK_OBJECT(cancelbutton), cancel_id );
 	cancel_id = gtk_signal_connect (GTK_OBJECT(cancelbutton), "clicked",
         	GTK_SIGNAL_FUNC(close_cddb), NULL);
-	
 }
 
 void gcddb()
 {
-	GtkWidget *table, *tmp;
-	char ctmp[8];
+	GtkWidget *box, *tmplabel, *infoframe, *infobox;
+	char tmp[255];
+	char pt[24];
 
 	if( win )
 		return;
 	
+	label = gtk_label_new("");
 	box = gtk_vbox_new( FALSE, 5 );
-	table = gtk_table_new( 2,4,TRUE );
+	infobox = gtk_vbox_new( FALSE, 0 );
+	infoframe = gtk_frame_new("Configuration:");
+	gtk_frame_set_shadow_type(GTK_FRAME(infoframe),GTK_SHADOW_ETCHED_IN);
+	gtk_container_add(GTK_CONTAINER(infoframe), infobox);
 
 	win = gtk_window_new( GTK_WINDOW_TOPLEVEL );
 	gtk_container_border_width (GTK_CONTAINER (win), 5);
-
-	tmp = gtk_label_new( "Server:" );
-	gtk_widget_show( tmp );
-	gtk_table_attach_defaults( GTK_TABLE(table), tmp, 0,3,0,1 );
-	tmp = gtk_label_new( "Port:" );
-	gtk_widget_show( tmp );
-	gtk_table_attach_defaults( GTK_TABLE(table), tmp, 3,4,0,1 );
-	
-	server_e = gtk_entry_new();
-	port = gtk_entry_new();
-	gtk_widget_show( server_e );
-	gtk_widget_show( port );
-	gtk_table_attach_defaults( GTK_TABLE(table), server_e, 0,3,1,2 );
-	gtk_table_attach_defaults( GTK_TABLE(table), port, 3,4,1,2 );
-	gtk_entry_set_text( GTK_ENTRY(server_e), props.cddb );
-	sprintf( ctmp, "%d", props.cddbport );
-	gtk_entry_set_text( GTK_ENTRY(port), ctmp );
-	
-	gtk_widget_set_usize( table, 200, 50 );
-	gtk_widget_show(table);
-	
 	gtk_window_set_title( GTK_WINDOW(win), "CDDB Remote" );
 	gtk_window_set_wmclass( GTK_WINDOW(win), "cddb","gtcd" );
 	
+	/* cancel button */
 	cancelbutton = gtk_button_new_with_label( "Close" );
-	gtk_widget_show( cancelbutton );
 	cancel_id = gtk_signal_connect (GTK_OBJECT (cancelbutton), "clicked",
 		GTK_SIGNAL_FUNC(close_cddb), NULL);
 
-        label = gtk_label_new("CDDB Remote Controller");
-	gtk_widget_show(label);
-
+	/* go button */
 	startbutton = gtk_button_new_with_label( "Go" );
-	gtk_widget_show( startbutton);
 	start_id = gtk_signal_connect (GTK_OBJECT (startbutton), "clicked",
 		GTK_SIGNAL_FUNC(do_cddb), NULL);
 
-	tmp = gtk_hseparator_new();
-	gtk_widget_show( tmp );
-
+	snprintf( tmp, 256, "Server: %s:%d\n", props.cddb, props.cddbport );
+        tmplabel = gtk_label_new(tmp);
+	gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
+	if( props.use_http )
+	{
+		snprintf( tmp, 256, "HTTP %s Enabled\n", 
+			props.use_proxy?"and Proxy":"" );
+	        tmplabel = gtk_label_new(tmp);
+		gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
+	}
 	pb = gtk_progress_bar_new();
-	gtk_widget_show( pb );
-
-        gtk_box_pack_start( GTK_BOX(box), label, TRUE, TRUE, 0 );
-	gtk_box_pack_start( GTK_BOX(box), tmp, TRUE, TRUE, 0 );
-        gtk_box_pack_start( GTK_BOX(box), table, TRUE, TRUE, 0 );
+	
+	gtk_box_pack_start( GTK_BOX(box), infoframe, TRUE, TRUE, 0 );
+	gtk_box_pack_start( GTK_BOX(box), label, TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(box), startbutton, TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(box), cancelbutton, TRUE, TRUE, 0 );
 	gtk_box_pack_start( GTK_BOX(box), pb, TRUE, TRUE, 0 );
-                        
+
         gtk_signal_connect (GTK_OBJECT (win), "delete_event",
                         GTK_SIGNAL_FUNC(close_cddb), NULL);
 
 	gtk_container_add( GTK_CONTAINER(win), box );
-	gtk_widget_show( box );
-	gtk_widget_show( win );                                                
+	gtk_widget_show_all(win);
 }
 
 int do_cddb( GtkWidget *widget, gpointer data )
@@ -142,27 +121,51 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	int result;
 	cddb_server server;
 	int i,r;
-	char s[80], qs[200];
+	char s[128], qs[800];
 	char tmp[60];
 	FILE *outfile;
 	cddb_query_str query;
 
-	strcpy( server.hostname, (char*)gtk_entry_get_text(GTK_ENTRY(server_e)));
-	server.port = atoi( gtk_entry_get_text(GTK_ENTRY(port)) );
+	strcpy( server.hostname, props.cddb );
+	server.port = props.cddbport;
+	server.http = props.use_http;
+	server.proxy = props.use_proxy;
+
+#ifdef DEBUG
+	printf("use_http==%d  use_proxy==%d\n",use_http,use_proxy);
+#endif
+	if(server.proxy) {
+		strcpy(server.proxy_server, props.proxy_server);
+		server.proxy_port = props.proxy_port;
+		strcpy(server.remote_path, props.remote_path);
+	}
+	
 	gtk_label_set( GTK_LABEL(label), "Connecting..." );
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	if( tcd_open_cddb( &server ) != 0 )
-	{
-		sprintf( tmp, "Error: %s", server.error );
-		gtk_label_set( GTK_LABEL(label), tmp );
-		return 0;
+	if (server.http) {
+		if(tcd_open_cddb_http(&server)) {
+			sprintf(tmp,"Eror: %s", server.error);
+			gtk_label_set(GTK_LABEL(label),tmp);
+			return(0);
+		}
+	} else {
+		if( tcd_open_cddb( &server ) != 0 )
+		{
+			sprintf( tmp, "Error: %s", server.error );
+			gtk_label_set( GTK_LABEL(label), tmp );
+			return 0;
+		}
 	}
 	gtk_label_set( GTK_LABEL(label), "Connected!" );
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.2);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	tcd_formatquery( &cd, qs , sizeof(qs));
+	if (server.http) {
+		tcd_formatquery_http(&cd,qs,sizeof(qs),server.hostname,server.port,server.remote_path);
+	} else {
+		tcd_formatquery( &cd, qs, sizeof(qs) );
+	}
 	gtk_label_set( GTK_LABEL(label), "Sending query..." );
 	r = send( server.socket, qs, strlen(qs), 0 );
 #ifdef DEBUG
@@ -172,13 +175,25 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	while(gtk_events_pending()) gtk_main_iteration();
 
 	gtk_label_set( GTK_LABEL(label), "Reading results..." );
-	tcd_getquery( &server, &query );
+	if (server.http) {
+		if (tcd_getquery_http(&server,&query)) {
+			gtk_label_set(GTK_LABEL(label),"Error: Unable to open cddb read socket\n");
+			return(0);
+		}
+	} else {
+		tcd_getquery( &server, &query );
+	}
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.6);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	sprintf( qs, "cddb read %s %s\n", query.categ, query.discid );
 	gtk_label_set( GTK_LABEL(label), "Downloading data..." );
-	send( server.socket, qs, strlen(qs), 0 );
+	if (server.http) {
+		tcd_formatread_http(&cd,qs,sizeof(qs),server.hostname,server.port,server.remote_path,query.categ,query.discid); 
+		send( server.socket, qs, strlen(qs), 0 );
+	} else {
+		sprintf( qs, "cddb read %s %s\n", query.categ, query.discid );
+		send( server.socket, qs, strlen(qs), 0 );
+	}
 #ifdef DEBUG
 	g_print( "-> %s\n", qs );
 #endif
@@ -187,6 +202,13 @@ int do_cddb( GtkWidget *widget, gpointer data )
 
 	sprintf( qs, "%s/.tcd/%s", getenv("HOME"),query.discid );
 	outfile = fopen( qs, "w" );
+
+	if (server.http) {
+		do {
+			fgetsock(s,127,server.socket);
+		} while (strncmp(s,"Content-Type:",13));
+		fgetsock(s,127,server.socket);
+	}
 
 	fgetsock( s, 80, server.socket );
 	sscanf( s, "%d ", &result );
@@ -220,7 +242,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	gtk_label_set( GTK_LABEL(label), "Done!" );
 
 	tcd_close_disc(&cd);
-        tcd_init_disc(&cd,(WarnFunc)create_warn);
+        tcd_init_disc(&cd, create_warn);
 
 	titlelabel_f = tracklabel_f = TRUE;
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0);
