@@ -44,9 +44,9 @@ static char *read_status(void)
     return status_string[status];
 }
 
-static int status_timer(GtkWidget *label)
+static int status_timer(GtkWidget *gl)
 {
-    gtk_label_set(GTK_LABEL(label), _(read_status()));
+    gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbslave");
     return TRUE;
 }
 
@@ -57,7 +57,7 @@ static void call_slave(GtkWidget *widget, gpointer data)
 
 void cddb_status_dialog(GtkWidget *widget, gpointer data)
 {
-    GtkWidget *main_box;
+    GtkWidget *main_box, *gl;
     GtkWidget *button;
     GtkWidget *label;
 
@@ -75,9 +75,10 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
     main_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(csw), main_box);
 		  
-    /* status line */
-    label = gtk_label_new(_("No status."));
-    gtk_box_pack_start_defaults(GTK_BOX(main_box), label);
+    /* status box */
+    gl = gnome_less_new();
+    gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbstatus");
+    gtk_box_pack_start(GTK_BOX(main_box), gl, TRUE, TRUE, 0);
 
     /* grab button */
     button = gtk_button_new_with_label(_("Get CDDB Now"));
@@ -91,6 +92,6 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		       GTK_SIGNAL_FUNC(destroy_window), NULL);
 
-    timer = gtk_timeout_add(500, (GtkFunction)status_timer, label);
+    timer = gtk_timeout_add(500, (GtkFunction)status_timer, gl);
     gtk_widget_show_all(csw);
 }
