@@ -290,6 +290,10 @@ create_mixer_widget (GstMixer *mixer)
 {
   GtkWidget *view;
   GtkWidget *table;
+  GtkWidget *viewport;
+  GtkAdjustment *hadjustment;
+  GtkAdjustment *vadjustment;
+
   gint tablepos = 0;
   const GList *tracks;
 
@@ -330,7 +334,16 @@ create_mixer_widget (GstMixer *mixer)
 				  GTK_POLICY_NEVER);
   if (tablepos > 30)
     gtk_widget_set_size_request (view, 600, -1);
-  gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (view), table);
+
+  hadjustment = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (view));
+  vadjustment = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW (view));
+
+  viewport = gtk_viewport_new(GTK_ADJUSTMENT (hadjustment), GTK_ADJUSTMENT (vadjustment));
+  gtk_viewport_set_shadow_type(GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
+
+  gtk_container_add(GTK_CONTAINER (viewport), table);
+  gtk_container_add(GTK_CONTAINER (view), viewport);
+
 
   return view;
 }
@@ -436,7 +449,7 @@ cb_about (GtkWidget *widget,
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
 
-  about = gnome_about_new (_("GStreamer Volume Control"),
+  about = gnome_about_new (_("Volume Control"),
 			   VERSION,
 			   "(c) 2003 Ronald Bultje",
 			   _("A GNOME/GStreamer-based mixer application"),
@@ -524,7 +537,7 @@ main (gint   argc,
   register_stock_icons ();
 
   /* create main window + menus */
-  window = gnome_app_new (PACKAGE, _("GStreamer Volume Control"));
+  window = gnome_app_new (PACKAGE, _("Volume Control"));
   gnome_app_create_menus (GNOME_APP (window), main_menu);
  
   /* Set appicon image */ 
