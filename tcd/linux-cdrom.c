@@ -384,6 +384,9 @@ void tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     cd->err = FALSE;
 	
     /* make sure we can play it */
+    if(!cd->isplayable)
+	return;
+
     tcd_gettime(cd);
     if(cd->err) 
     {
