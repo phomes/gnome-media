@@ -1,3 +1,14 @@
+1999-04-06  David A. Knight  <david@ritter.demon.co.uk>
+
+	* gmix.c removed the #if 0's that were disabling record channel
+	selection.
+	(open_dialog) rec part of struct channel_info set to NULL if the
+	channel has can't record.
+	(open_dialog) table height of channel display changed to 8 and
+	record button added in the correct place.
+	(rec_cb) added a check for channel having a record button before
+	attempting to toggle it.
+	
 1999-03-20  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
 
 	* gmix.c (open_device): Use g_free instead of free when freeing

@@ -596,7 +596,10 @@ void open_dialog(void)
 			j+=2;
 		}
 
-		table=gtk_table_new(i*2, 7, FALSE);
+		/* 
+		 * David: changed 7 to 8 for table rows (06/04/1999)
+		 */
+		table=gtk_table_new(i*2, 8, FALSE);
 		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
 			table, 
 			gtk_label_new(di->info.name));
@@ -632,18 +635,27 @@ void open_dialog(void)
 				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->lock);
 			}
-#if 0
 	/*
-	 * record-sources are disabled for now...
+	 * recording sources
 	 */
 			if (ci->device->recmask & (1<<ci->channel)) {
 				ci->rec = gtk_check_button_new_with_label (_("Rec."));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->rec), "toggled", (GtkSignalFunc) rec_cb, (gpointer)ci);
-				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				/* David: changed TOP_ATTACH to 7 and
+				 * BOTTOM_ATTACH to 8   06/04/1999
+				 */
+				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 7, 8, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
+			} else { /* 
+				* David: need to init it to null
+				* otherwise we get a segfault when
+				* trying to toggle
+				* the buttons 
+				*/
+				ci->rec = NULL;
 			}
-#endif	
+	
 			ci->mute=gtk_check_button_new_with_label(_("Mute"));
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
 			gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
@@ -651,7 +663,8 @@ void open_dialog(void)
 			gtk_widget_show (ci->mute);
 
 			separator = gtk_vseparator_new ();
-			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 7, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			/* BOTTOM_ATTACH changed to 8 */
+			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 8, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (separator);
 			i+=2; 
 		}
@@ -701,7 +714,6 @@ void mute_cb (GtkWidget *widget, channel_info *data)
 	}
 }
 
-#if 0
 void rec_cb(GtkWidget *widget, channel_info *data)
 {
 	GList *c;
@@ -709,28 +721,31 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 	if (data->passive) return;
 
 	data->device->record_bitmask&=~(1<<data->channel);
+
 	if (GTK_TOGGLE_BUTTON (data->rec)->active) {
 		if (data->device->caps & SOUND_CAP_EXCL_INPUT) {
 			data->device->record_bitmask=1<<data->channel;
 		} else {
-			data->device->record_bitmask|=1<<data->channel;
+			data->device->record_bitmask|=(1<<data->channel);
 		}
 	}
+
 	ioctl(data->device->fd,SOUND_MIXER_WRITE_RECSRC, &data->device->record_bitmask);
-#if 0
+	
 	ioctl(data->device->fd,SOUND_MIXER_READ_RECSRC, &data->device->record_bitmask);
-#endif
-/*
+
 	for (c=data->device->channels; c; c=c->next) {
 		channel_info *info;
 		info=c->data;
 		info->passive=1;
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->record_bitmask & (1<<info->channel))!=0);
+		/* check to see if channel can record */
+		if( info->rec != NULL )
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->record_bitmask & (1<<info->channel))!=0);
 		info->passive=0;
 	}
-*/
+
 }
-#endif
+
 void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 {
     unsigned long vol;
