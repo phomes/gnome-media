@@ -362,10 +362,9 @@ int main(int argc, char *argv[])
 		free_devices();
 	} else {
 		GtkWidget *box;
-		box = gnome_error_dialog(
-			"I was not able to open your audio device.\n"
+		box = gnome_error_dialog(_("I was not able to open your audio device.\n"
 			"Please check that you have permission to open /dev/mixer\n"
-			"and make sure you have sound support compiled into your kernel.");
+			"and make sure you have sound support compiled into your kernel."));
 
 		gtk_signal_connect(GTK_OBJECT(box), "close",
 				   GTK_SIGNAL_FUNC(error_close_cb), NULL);
