@@ -784,7 +784,8 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
-/* There should probably be 2 get_status functions. A public one and the private one.
+/* There should probably be 2 get_status functions.
+   A public one and the private one.
    The private one would get called by the update handler every second, and the
    public one would just return a copy of the status */
 static gboolean
@@ -800,6 +801,8 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	struct cdrom_volctrl vol;
 	int cd_status;
 	int i,j;
+	/* bug 117695: set this to FALSE if this ioctl is not supported */
+	static gboolean CDROMVOLREAD_supported = TRUE;
 	
 	g_return_val_if_fail (status != NULL, TRUE);
 	
@@ -907,12 +910,20 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	/* Get the volume */
-	if (ioctl (cdrom->fd, CDROMVOLREAD, &vol) < 0) {
-		g_warning ("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s",
-			   g_strerror (errno));
-		realstatus->volume = -1; /* -1 means no volume command */
-	} else {
-		realstatus->volume = vol.channel0;
+	if (CDROMVOLREAD_supported) {
+		if (ioctl (cdrom->fd, CDROMVOLREAD, &vol) < 0) {
+			/* if ENOTSUP, flag so we don't repeatedly call */
+			if (errno == ENOTSUP) {
+				g_warning ("(linux_cdrom_get_status): CDROMVOLREAD ioctl not supported.");
+				CDROMVOLREAD_supported = FALSE;
+			} else {
+				g_warning ("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s",
+					g_strerror (errno));
+				realstatus->volume = -1; /* -1 means no volume command */
+			}
+		} else {
+			realstatus->volume = vol.channel0;
+		}
 	}
 
 	linux_cdrom_close (lcd);

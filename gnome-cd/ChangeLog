@@ -1,3 +1,8 @@
+2004-06-01  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* linux-cdrom.c: (linux_cdrom_get_status):
+          fix #117695 - if ENOTSUP, flag and don't retry
+
 2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* callbacks.c: (cd_status_changed_cb):
