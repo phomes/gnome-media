@@ -37,6 +37,9 @@ static char *cd_option_device = NULL;
 static gboolean cd_option_unique = FALSE;
 static gboolean cd_option_play = FALSE;
 
+/* Popup Menu*/
+static GtkWidget *popup_menu = NULL;
+
 /* if env var GNOME_CD_DEBUG is set,
  * g_warning the given message, and if there was an error, the error message
  */
@@ -340,54 +343,124 @@ struct _MenuItem menuitems[] = {
 	{NULL, NULL, NULL}
 };
 
-static GtkWidget *
-make_popup_menu (GnomeCD *gcd)
+static void
+popup_menu_detach (GtkWidget *attach_widget,
+                GtkMenu *menu)
 {
-	GtkWidget *menu;
-	int i;
+	popup_menu = NULL;
+}
 
-	menu = gtk_menu_new ();
+void
+make_popup_menu (GnomeCD *gcd, GdkEventButton *event)
+{
+	int i;
+	GnomeCDRomStatus *status = NULL;
+
+    if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) {
+    }
+	
+	if (!GTK_WIDGET_REALIZED (gcd->display)) {
+       	goto cleanup;
+    }
+	if (popup_menu) {
+       	gtk_widget_destroy (popup_menu);
+    }
+	
+	popup_menu = gtk_menu_new ();
+	gtk_menu_attach_to_widget (GTK_MENU (popup_menu),
+                               GTK_WIDGET (gcd->display),
+                               popup_menu_detach);
+	
 	for (i = 0; menuitems[i].name != NULL; i++) {
 		GtkWidget *item, *image;
+	    gchar *icon_name;
 
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
-		if (menuitems[i].icon != NULL) {
-			char *ext = strrchr (menuitems[i].icon, '.');
-
-			if (ext == NULL) {
-				image = gtk_image_new_from_stock (menuitems[i].icon,
-								  GTK_ICON_SIZE_MENU);
-			} else {
-				char *fullname;
-
-				fullname = gnome_program_locate_file (NULL, 
-				GNOME_FILE_DOMAIN_PIXMAP, menuitems[i].icon,
-                                TRUE, NULL);
-				if (fullname != NULL) {
-					image = gtk_image_new_from_file (fullname);
-				} else {
-					image = NULL;
-				}
-				
-				g_free (fullname);
-			}
-
-			if (image != NULL) {
-				gtk_widget_show (image);
-				gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
-			}
+	        
+		/* If status is play, display the pause icon else display the play icon */
+        if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 2) {
+            icon_name = GNOME_CD_PAUSE;
+		} else {
+          icon_name = menuitems[i].icon;
 		}
-				
+	    
+		if (icon_name != NULL) {
+	        char *ext = strrchr (icon_name, '.');
+	        if (ext == NULL) {
+	           image = gtk_image_new_from_stock (icon_name,
+	    	                             GTK_ICON_SIZE_MENU);
+	        } else {
+	          char *fullname;
+	          fullname = gnome_program_locate_file (NULL,
+              		     GNOME_FILE_DOMAIN_PIXMAP, icon_name,
+                	     TRUE, NULL);
+              if (fullname != NULL) {
+                  image = gtk_image_new_from_file (fullname);
+              } else {
+                image = NULL;
+               	}
+              
+			  g_free (fullname);
+	     	}
+        }
+		
+		if (image != NULL) {
+			gtk_widget_show (image);
+			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
+		}
+
+		if (status->cd == GNOME_CDROM_STATUS_OK) {
+            /* Previous menuitem is sensitive when it is  not the first track and
+               we're playing */
+            if (i == 0) {
+                if (status->track <= 1 && 
+					 (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio ==GNOME_CDROM_AUDIO_COMPLETE)) {
+                    gtk_widget_set_sensitive (item, FALSE);
+                } else {
+                  gtk_widget_set_sensitive (item, TRUE);
+                }
+            }
+            /* Next menuitem is sensitive when this is not the last track */
+            if (i == 3) {
+                if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) {
+                    gtk_widget_set_sensitive (item, FALSE);
+                } else {
+                 gtk_widget_set_sensitive (item, TRUE);
+                }
+            }
+        }
+		
+		/* Disable the first four menu items when no disc is inserted
+		 * Update as per the buttons on the main window
+		 */
+		if (status->cd == GNOME_CDROM_STATUS_NO_DISC && i < 4) {
+	       	gtk_widget_set_sensitive (item, FALSE);
+        }
+
 		gtk_widget_show (item);
 
-		gtk_menu_shell_append ((GtkMenuShell *)(menu), item);
+		gtk_menu_shell_append ((GtkMenuShell *)(popup_menu), item);
 		if (menuitems[i].callback != NULL) {
 			g_signal_connect (G_OBJECT (item), "activate",
-					  G_CALLBACK (menuitems[i].callback), gcd);
+	        G_CALLBACK (menuitems[i].callback), gcd);
 		}
 	}
-
-	return menu;
+	
+	if (event != NULL) {
+    	gtk_menu_popup (GTK_MENU (popup_menu),
+    	                NULL, NULL,
+    	                NULL, NULL,
+    	                event->button,
+    	                event->time);
+   	} else {
+      gtk_menu_popup (GTK_MENU (popup_menu),
+                      NULL, NULL,
+                      NULL, NULL,
+        	          0,
+    	              gtk_get_current_event_time ());
+    }
+    cleanup:
+        g_free (status);
 }
 
 static void
@@ -571,7 +644,10 @@ init_player (const char *device_override)
 		g_error ("Could not create theme");
 	}
 	
-	gnome_popup_menu_attach (make_popup_menu (gcd), gcd->display, NULL);
+	g_signal_connect (G_OBJECT (gcd->display), "popup_menu",
+			  G_CALLBACK (popup_menu_cb), gcd);
+	g_signal_connect (G_OBJECT (gcd->display), "button_press_event",
+	          G_CALLBACK (button_press_event_cb), gcd);
 	
 	gtk_box_pack_start (GTK_BOX (display_box), gcd->display, TRUE, TRUE, 0);
 
@@ -726,7 +802,9 @@ init_player (const char *device_override)
 	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
 	gcd->tray_tips = gtk_tooltips_new ();
 	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), box, _("CD Player"), NULL);
-	gnome_popup_menu_attach (make_popup_menu (gcd), box, NULL);
+	g_signal_connect (G_OBJECT (box), "popup_menu",
+	            G_CALLBACK (popup_menu_cb), gcd);
+	
 	gtk_widget_show_all (gcd->tray);
 
 	return gcd;

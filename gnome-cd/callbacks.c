@@ -928,6 +928,27 @@ playmode_changed_cb (GtkWidget *display,
 	gcd->cdrom->playmode = mode;
 }
 
+/* Popup Menu callback */
+gboolean
+button_press_event_cb (GtkWidget *widget,
+                GdkEventButton *event,
+                GnomeCD *gcd)
+{
+    if ((event->button == 3) && !(event->state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK))) {
+        make_popup_menu (gcd, event);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+/* Popup Menu callback */
+gboolean
+popup_menu_cb (GtkWidget *widget, GnomeCD *gcd)
+{
+    make_popup_menu (gcd, NULL);
+    return TRUE;
+}
+
 gboolean
 tray_icon_clicked (GtkWidget *widget, GdkEventButton *event, GnomeCD *gcd)
 {

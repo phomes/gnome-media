@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-21 21:09+0100\n"
+"POT-Creation-Date: 2005-01-25 12:11+0100\n"
 "PO-Revision-Date: 2005-01-21 21:09+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <es@li.org>\n"
@@ -221,7 +221,7 @@ msgid "Artist and Title"
 msgstr "Artista y título"
 
 #: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:183
 msgid "Unknown track"
 msgstr "Pista desconocida"
 
@@ -1009,7 +1009,7 @@ msgstr "Línea para mostrar el nombre del álbum"
 # grecord/src/gui.c:243
 # tcd/popup.c:15
 #: gnome-cd/callbacks.c:83 gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:270
-#: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:675 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:751 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Reproducir"
 
@@ -1037,8 +1037,8 @@ msgid "Paused"
 msgstr "Pausado"
 
 # tcd/gtcd.desktop.in.h:1
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:92
-#: gnome-cd/gnome-cd.c:538 gnome-cd/gnome-cd.c:725 gnome-cd/gnome-cd.c:728
+#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Reproductor de CD"
@@ -1108,47 +1108,47 @@ msgid "The orientation of the tray."
 msgstr "La orientación de la bandeja."
 
 # tcd/linux-cdrom.c:771
-#: gnome-cd/gnome-cd.c:219
+#: gnome-cd/gnome-cd.c:222
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Desconocido"
 
-#: gnome-cd/gnome-cd.c:333
+#: gnome-cd/gnome-cd.c:336
 msgid "P_revious track"
 msgstr "Pista ante_rior"
 
 # grecord/src/gui.c:252
 # tcd/gtcd.c:456
 # tcd/popup.c:16
-#: gnome-cd/gnome-cd.c:334 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:337 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Parar"
 
 # tcd/gtcd.c:452
-#: gnome-cd/gnome-cd.c:335
+#: gnome-cd/gnome-cd.c:338
 msgid "_Play / Pause"
 msgstr "Re_producir/Pausa"
 
-#: gnome-cd/gnome-cd.c:336
+#: gnome-cd/gnome-cd.c:339
 msgid "_Next track"
 msgstr "Siguie_nte pista"
 
 # tcd/gtcd.c:457
 # tcd/popup.c:17
-#: gnome-cd/gnome-cd.c:337
+#: gnome-cd/gnome-cd.c:340
 msgid "_Eject disc"
 msgstr "_Expulsar"
 
-#: gnome-cd/gnome-cd.c:338 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:341 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "A_yuda"
 
 # tcd/gtcd.desktop.in.h:1
-#: gnome-cd/gnome-cd.c:339
+#: gnome-cd/gnome-cd.c:342
 msgid "_About CD player"
 msgstr "_Acerca del Reproductor de CD"
 
-#: gnome-cd/gnome-cd.c:458
+#: gnome-cd/gnome-cd.c:531
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1161,16 +1161,16 @@ msgstr ""
 "reproductor."
 
 # tcd/prefs.c:483
-#: gnome-cd/gnome-cd.c:462
+#: gnome-cd/gnome-cd.c:535
 msgid "Set device"
 msgstr "Configurar dispositivo"
 
 # tcd/prefs.c:483
-#: gnome-cd/gnome-cd.c:464
+#: gnome-cd/gnome-cd.c:537
 msgid "No CD device"
 msgstr "No hay dispositivo de CD"
 
-#: gnome-cd/gnome-cd.c:517
+#: gnome-cd/gnome-cd.c:590
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1186,119 +1186,126 @@ msgstr ""
 "Presione «Configurar dispositivo» para abrir un diálogo en el que puede "
 "configurar el dispositivo, o pulse «Salir» para salir del reproductor de CD."
 
-#: gnome-cd/gnome-cd.c:521
+#: gnome-cd/gnome-cd.c:594
 msgid "_Details"
 msgstr "_Detalles"
 
 # tcd/prefs.c:483
-#: gnome-cd/gnome-cd.c:522
+#: gnome-cd/gnome-cd.c:595
 msgid "_Set device"
 msgstr "_Configurar dispositivo"
 
 # tcd/prefs.c:483
-#: gnome-cd/gnome-cd.c:524
+#: gnome-cd/gnome-cd.c:597
 msgid "Invalid CD device"
 msgstr "El dispositivo de CD no es válido"
 
 # tcd/gtcd.c:506
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:664
 msgid "Volume control"
 msgstr "Control de volumen"
 
-#: gnome-cd/gnome-cd.c:599
+#: gnome-cd/gnome-cd.c:675
 msgid "Position"
 msgstr "Posición"
 
 # tcd/gtcd.c:489
-#: gnome-cd/gnome-cd.c:616
+#: gnome-cd/gnome-cd.c:692
 msgid "Open track editor"
 msgstr "Abrir editor de pistas"
 
 # tcd/gtracked.c:197
-#: gnome-cd/gnome-cd.c:617
+#: gnome-cd/gnome-cd.c:693
 msgid "Track editor"
 msgstr "Editor de pistas"
 
 # gmix/prefs.c:483
 # tcd/gtcd.c:490
 # tcd/prefs.c:752
-#: gnome-cd/gnome-cd.c:624
+#: gnome-cd/gnome-cd.c:700
 msgid "Open preferences"
 msgstr "Abrir preferencias."
 
 # gmix/prefs.c:483
 # tcd/gtcd.c:490
 # tcd/prefs.c:752
-#: gnome-cd/gnome-cd.c:625
+#: gnome-cd/gnome-cd.c:701
 msgid "Preferences"
 msgstr "Preferencias"
 
 # tcd/gtracked.c:197
-#: gnome-cd/gnome-cd.c:633
+#: gnome-cd/gnome-cd.c:709
 msgid "Track List"
 msgstr "Lista de pistas"
 
-#: gnome-cd/gnome-cd.c:654
+#: gnome-cd/gnome-cd.c:730
 msgid "Previous track"
 msgstr "Pista anterior"
 
-#: gnome-cd/gnome-cd.c:654
+#: gnome-cd/gnome-cd.c:730
 msgid "Previous"
 msgstr "Anterior"
 
 # tcd/gtcd.c:504
-#: gnome-cd/gnome-cd.c:658
+#: gnome-cd/gnome-cd.c:734
 msgid "Rewind"
 msgstr "Rebobinar"
 
 # tcd/gtcd.c:452
-#: gnome-cd/gnome-cd.c:675
+#: gnome-cd/gnome-cd.c:751
 msgid "Play / Pause"
 msgstr "Reproducir/Pausa"
 
 # grecord/src/gui.c:252
 # tcd/gtcd.c:456
 # tcd/popup.c:16
-#: gnome-cd/gnome-cd.c:680 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:756 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Parar"
 
 # tcd/gtcd.c:503
-#: gnome-cd/gnome-cd.c:684
+#: gnome-cd/gnome-cd.c:760
 msgid "Fast forward"
 msgstr "Avance rápido"
 
-#: gnome-cd/gnome-cd.c:692
+#: gnome-cd/gnome-cd.c:768
 msgid "Next track"
 msgstr "Siguiente pista"
 
 # tcd/gtcd.c:457
 # tcd/popup.c:17
-#: gnome-cd/gnome-cd.c:696
+#: gnome-cd/gnome-cd.c:772
 msgid "Eject CD"
 msgstr "Expulsar CD"
 
 # tcd/gtcd.c:457
 # tcd/popup.c:17
-#: gnome-cd/gnome-cd.c:696
+#: gnome-cd/gnome-cd.c:772
 msgid "Eject"
 msgstr "Expulsar"
 
 # tcd/prefs.c:483
-#: gnome-cd/gnome-cd.c:815
+#: gnome-cd/gnome-cd.c:893
 msgid "CD device to use"
 msgstr "Dispositivo de CD"
 
-#: gnome-cd/gnome-cd.c:817
+#: gnome-cd/gnome-cd.c:895
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Iniciar solamente si no hay ya una aplicación de CD en ejecución"
 
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:897
 msgid "Play the CD on startup"
 msgstr "Reproducir el CD al iniciar"
 
+#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gst-mixer/src/main.c:228
+msgid ""
+"Registry is not present or it is corrupted, please update it by running gst-"
+"register"
+msgstr ""
+
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:852
+#: gnome-cd/gnome-cd.c:947
 msgid "Cannot create player"
 msgstr "No se puede crear el reproductor"
 
@@ -1842,7 +1849,7 @@ msgstr "Opciones"
 msgid "Unknown Volume Control %d"
 msgstr "Control de volumen desconocido %d"
 
-#: gst-mixer/src/main.c:236
+#: gst-mixer/src/main.c:253
 msgid "No volume control elements and/or devices found."
 msgstr "No se han encontrado elementos y/o dispositivos de control de volumen."
 

@@ -74,4 +74,10 @@ gboolean tray_icon_pressed (GtkWidget *widget,
                            GnomeCD *gcd);
 gint tray_icon_expose (GtkWidget* widget,
                       GdkEventExpose *event);
+gboolean button_press_event_cb (GtkWidget *widget,
+	                      GdkEventButton *event,
+	                      GnomeCD *gcd);
+gboolean popup_menu_cb (GtkWidget *widget,
+					   GnomeCD *gcd);
+
 #endif
