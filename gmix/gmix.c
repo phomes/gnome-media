@@ -45,6 +45,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
+#include <ctype.h>
 #ifdef HAVE_LINUX_SOUNDCARD_H 
 #include <linux/soundcard.h>
 #else 
@@ -71,14 +72,25 @@ void open_dialog(void);
  */
 GtkWidget *app;
 
-GtkMenuEntry gmix_menu [] = {
-  { N_("File/Exit"),	 N_("<control>E"), (GtkMenuCallback) quit_cb,  NULL },
-#if 0
-/* no options, yet */
-  { N_("Edit/Options..."), N_("<control>E"), (GtkMenuCallback) options_cb,  NULL },
-#endif
-  { N_("Help/About..."), N_("<control>A"), (GtkMenuCallback) about_cb, NULL },
+/* Menus */
+static GnomeUIInfo help_menu[] = {
+    GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
+                           GNOME_STOCK_MENU_ABOUT),
+    GNOMEUIINFO_END
 };
+ 
+static GnomeUIInfo program_menu[] = {
+    GNOMEUIINFO_ITEM_STOCK(N_("E_xit"), NULL, quit_cb,
+                           GNOME_STOCK_MENU_QUIT),
+    GNOMEUIINFO_END
+};      
+
+static GnomeUIInfo main_menu[] = {
+        GNOMEUIINFO_SUBTREE(N_("_Program"), &program_menu),
+        GNOMEUIINFO_SUBTREE(N_("_Help"), &help_menu),
+        GNOMEUIINFO_END
+};
+/* End of menus */ 
 
 /* 
  * All, that is known about a mixer-device
@@ -214,7 +226,7 @@ device_info *open_device(int num)
 	/*
 	 * create new device configureation
 	 */
-	new_device=(device_info *)malloc(sizeof(device_info));
+	new_device = g_new0(device_info, 1);
 	/*
 	 * open the mixer-device
 	 */
@@ -245,6 +257,8 @@ device_info *open_device(int num)
 		free(new_device);
 		return NULL;
 	}
+	if(!isalpha(new_device->info.name[0]))
+		g_snprintf(new_device->info.name, 31, "Card %d", num+1);
 	/* 
 	 * several bitmasks describing the mixer
 	 */
@@ -503,8 +517,7 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 
 void open_dialog(void)
 {
-	GtkWidget *table;
-	GtkMenuFactory *mf;
+	GtkWidget *table, *notebook;
 	GList *d, *c;
 	
 	int i,j;
@@ -515,19 +528,10 @@ void open_dialog(void)
 		GTK_SIGNAL_FUNC (quit_cb),
 		NULL);
 
-	/* 
-	 * fix Internationalization of the menue
-	 */
-	for (i = 0; i < (sizeof(gmix_menu)/sizeof(gmix_menu[0])); i++) {
-		gmix_menu[i].path = _(gmix_menu[i].path);
-	}
-
 	/*
 	 * Build main menue
 	 */
-	mf = gtk_menu_factory_new  (GTK_MENU_FACTORY_MENU_BAR);
-	gtk_menu_factory_add_entries (mf, gmix_menu, sizeof(gmix_menu)/sizeof(gmix_menu[0]));
-	gnome_app_set_menus ( GNOME_APP (app), GTK_MENU_BAR (mf->widget));
+	gnome_app_create_menus(GNOME_APP(app), main_menu);
 
 	/*
 	 * count channels for table size;
@@ -541,25 +545,28 @@ void open_dialog(void)
 
 	/*
 	 * Build table with sliders
-	 */
-	table=gtk_table_new(i*2, 6, FALSE);
-	gtk_table_set_row_spacings (GTK_TABLE (table), 0);
-	gtk_table_set_col_spacings (GTK_TABLE (table), 0);
-	gtk_container_border_width (GTK_CONTAINER (table), 0);
-	gnome_app_set_contents(GNOME_APP (app), table);
-	gtk_widget_show (table);
+	 */	
+	notebook = gtk_notebook_new();
+	gtk_widget_show(notebook);
+	gnome_app_set_contents(GNOME_APP (app), notebook);
+
 	i=0;
 	for (d=devices; d; d=d->next) {
-		GtkWidget *button;
 		device_info *di;
 		di=d->data;
 		j=0;
 		for (c=((device_info *)d->data)->channels;c;c=c->next) {
 			j+=2;
 		}
-		button = gtk_button_new_with_label(di->info.name);
-		gtk_table_attach (GTK_TABLE (table), button, i, j+i, 0, 1, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-		gtk_widget_show (button);
+
+		table=gtk_table_new(i*2, 6, FALSE);
+		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
+			table, 
+			gtk_label_new(di->info.name));
+		gtk_table_set_row_spacings (GTK_TABLE (table), 0);
+		gtk_table_set_col_spacings (GTK_TABLE (table), 0);
+		gtk_container_border_width (GTK_CONTAINER (table), 0);
+		gtk_widget_show (table);
 
 		for (c=((device_info *)d->data)->channels;c;c=c->next) {
 			GtkWidget *label, *mixer, *separator;
