@@ -1,6 +1,6 @@
 # Note that this is NOT a relocatable package
-%define ver      0.99.0
-%define rel      SNAP
+%define ver      0.99.1
+%define rel      1
 %define prefix   /usr
 
 Summary: GNOME media programs
@@ -15,7 +15,7 @@ Obsoletes: gnome
 Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
-Requires: gnome-libs >= 0.30
+Requires: gnome-libs >= 0.99.1
 Summary(es): Programas multimedia de GNOME
 Summary(fr): Programmes multimédia de GNOME
 
