@@ -176,6 +176,8 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_clist_column_titles_passive(GTK_CLIST(track_list));
     gtk_widget_set_usize(track_list, 150, 225 );
     fill_list(track_list);
+    gtk_clist_select_row(GTK_CLIST(track_list), 0, 0);
+
 
     track_list_window = gtk_scrolled_window_new(GTK_CLIST(track_list)->hadjustment,
 						GTK_CLIST(track_list)->vadjustment);
