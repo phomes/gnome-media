@@ -504,7 +504,7 @@ void draw_titles(void)
 		      strlen(cd.album));
     
 	/* make sure the title fits */
-	calculate_title(120, inc);
+	calculate_title(max_title_width, inc);
 
 	if (cd.cur_t == 0)
 		gtk_window_set_title(GTK_WINDOW(window), cd.dtitle);
