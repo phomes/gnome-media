@@ -7,13 +7,73 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2003-09-02 22:48+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-03 22:16+0300\n"
 "PO-Revision-Date: 2003-01-28 16:08+0300\n"
 "Last-Translator: Jarkko Ranta <jjranta@cc.joensuu.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "Sen palvelimen osoite johon CD-kyselyt tehdään"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Palvelimelle lähetettävät tiedot"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Portti"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "Palvelimen nimi"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Palvelimen tyyppi"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "Isäntänimi joka lähetetään aina kyselyitä tehtäessä"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "Portti jossa tietokantaa ajava palvelin sijaitsee"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"Sen palvelimen tyyppi johon CD-kyselyitä tehtäessä otetaan yhteyttä. "
+"Mahdollisia arvoja on 0 (FreeDB round robin -palvelin), 1 (muu FreeDB-"
+"palvelin) ja 2 (muu palvelin)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "Käyttäjätunnus"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "Käyttäjätunnus joka lähetetään aina kyselyitä tehtäessä"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+"Tämä arvo määrittää minkälaisia käyttäjätietoja palvelimelle lähetetään. "
+"Mahdollisia arvoja on 0 (tietoja ei lähetetä), 1 (lähetetään oikeat tiedot) "
+"ja 3 (lähetetään muita tietoja)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Isäntänimesi"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -28,7 +88,8 @@ msgstr "Laajenninnuolen koko"
 msgid ""
 "There was an error displaying help: \n"
 "%s"
-msgstr "Virhe näytettäessä ohjetta: \n"
+msgstr ""
+"Virhe näytettäessä ohjetta: \n"
 "%s"
 
 #
@@ -70,10 +131,6 @@ msgstr "FreeDB _round robin -palvelin"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Muu _FreeDB-palvelin:"
-
-#: cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Portti"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -1517,6 +1574,38 @@ msgstr "Soittimen luonti epäonnistui"
 msgid "Play audio CDs"
 msgstr "Soita audio-CD:itä"
 
+#: gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player theme"
+msgstr "CD-soittimen teema"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "Device path"
+msgstr "Laitepolku"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Eject the CD when CD player quits?"
+msgstr "Avaa CD-asema kun CD-soittimesta poistutaan"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Play when the CD player starts?"
+msgstr "Aloita soittamaan kun CD-soitin käynnistetään"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "Avaa CD-asema kun CD-soittimesta poistutaan"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "Polku siihen CD-asemaan jota CD-soitin käyttää CD:iden soittamiseen"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "What theme should the CD player use for it's appearance"
+msgstr "CD-soittimen käyttämä teema"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Aloitetaanko CD:n soittaminen CD-soittimen käynnistyessä"
+
 #: gnome-cd/preferences.c:84
 #, c-format
 msgid ""
@@ -2361,20 +2450,20 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "&lt;b&gt;Default Sink&lt;/b&gt;"
-msgstr "&lt;b&gt;Oletuskohde&lt;/b&gt;"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "&lt;b&gt;Default Source&lt;/b&gt;"
-msgstr "&lt;b&gt;Oletuslähde&lt;/b&gt;"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "&lt;span weight=\"bold\" size=\"x-large\"&gt;Testing...&lt;/span&gt;"
-msgstr "&lt;span weight=\"bold\" size=\"x-large\"&gt;Kokeillaan..&lt;/span&gt;"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "*"
 msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Oletuskohde</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "<b>Default Source</b>"
+msgstr "<b>Oletuslähde&lt</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Kokeillaan..</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Audio"
@@ -2435,7 +2524,7 @@ msgid ""
 "Please run 'esd' at a command prompt."
 msgstr ""
 "Äänipalvelimeen ei saatu yhteyttä.\n"
-"Aja 'esd' komentoriviltä."
+"Aja \"esd\" komentoriviltä."
 
 #: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
@@ -2497,4 +2586,3 @@ msgstr "Tarkkaile ulostulon äänenvoimakkuutta"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Äänenvoimakkuusmonitori"
-
