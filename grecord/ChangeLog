@@ -1,3 +1,9 @@
+2003-06-09  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/grec.c: (save_dialog): Don't run gettext on something that
+	hasn't been marked for translation. The default filenames should
+	be fixed to be localisable though.
+
 2003-06-07  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/gsr-window.c: (fill_in_information), (file_properties): Plug some leaks.
