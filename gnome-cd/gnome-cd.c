@@ -514,7 +514,7 @@ init_player (void)
 	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->tracks), 
 			      _("Track List"), NULL );
 	gnome_cd_build_track_list_menu (gcd);
-	gtk_box_pack_start (GTK_BOX (option_hbox), gcd->tracks, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (option_hbox), gcd->tracks, TRUE, TRUE, 0);
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), option_hbox, FALSE, FALSE, 0);
 	
