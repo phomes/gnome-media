@@ -537,11 +537,11 @@ void prefs_cb( GtkWidget *widget, void *data )
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
 				    box1, label);
     
-    page2 	= create_page2();
+/*    page2 	= create_page2();
     label   = gtk_label_new(_("HTTP/Proxy"));
     gtk_widget_show(page2);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    page2, label);
+				    page2, label);*/
     
     gtk_signal_connect( GTK_OBJECT(propbox), 
 			"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );

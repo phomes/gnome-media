@@ -32,10 +32,8 @@
 #include <string.h>
 #include <errno.h>
 #include <pwd.h>
+#include <dirent.h>
 #include <sys/socket.h>
-//#include <utsnamelen.h>
-
-
 
 #ifdef linux
 # include <linux/cdrom.h>
@@ -44,7 +42,6 @@
 # error TCD currently only builds under Linux systems.
 #endif
 
-#include "socket.h"
 #include "cddb.h"
 
 #define TRUE 1
@@ -58,9 +55,6 @@ struct toc {
 };
                         
 struct toc cdtoc[100];
-
-static char thishost[65];
-static struct passwd *pw;                        
 
 static int num_digits( int num)
 {
@@ -113,7 +107,7 @@ int tcd_readcddb( cd_struct* cd, char* filename )
                 		cd->trk[trk+1].name[0] = 0;
 		}				
 		// Otherwise ignore it
-	}		
+	}
 	fclose(fp);
 	return 0;
 }
@@ -166,95 +160,49 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	return 0;
 }
 
-int tcd_sendhandshake( 	cddb_server *server,
-			char* username, 
-			char* hostname, 
-			char* clientname, 
-			char* version )
+void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
 {
-	char tmp[512];
+    char buf[512];
+    char tmp[10];
+    int blen=512;
+    int i, l;
+    FILE *fp;
+    
+    sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
+    for( i = cd->first_t; i <= cd->last_t; i++ )
+    {
+	int min, sec;
 	
-	/* length sanity - AC */
-	snprintf( tmp, 512, "cddb hello %s %s %s %s\n", username,
-						  hostname,
-						  clientname,
-						  version );
-						
-	send( server->socket, tmp, strlen(tmp), 0 );
-	return 0;
-}
-
-/*
- *	Corrupt reply - gets you ???? 
- */
- 
-static char *if_strtok(char *p, const char *p2)
-{
-	p=strtok(p,p2);
-	if(p==NULL)
-		return("????");
-	return p;
-}
-
-int tcd_getquery_http(cddb_server *server, cddb_query_str *query, PeriodicFunc func) 
-{
-	char s[512];
-	int i;
-
-#ifdef DEBUG
-	printf( "DEBUG:  in tcd_getquery_http()\n" );
-#endif
-
-	do {
-		fgetsock(s,511,server->socket, func);
-	} while (strncmp(s,"Content-Type:",13));
-	fgetsock(s,511,server->socket, func);
-	fgetsock(s,511,server->socket, func);
-
-	/* different from cddb.howto? maybe not*/
-	if (!strncmp(s,"200",3) || !strncmp(s,"201",3)) {
-		s[511]=0;
-		query->code=atoi(strtok(s," "));
-		strncpy(query->categ,if_strtok(NULL," "),CATEG_MAX);
-		query->categ[CATEG_MAX-1]=0;
-		strncpy(query->discid,if_strtok(NULL," "),DISCID_MAX);
-		query->discid[DISCID_MAX-1]=0;
-		strncpy(query->dtitle,if_strtok(NULL,"\0"),DTITLE_MAX);
-		query->dtitle[DTITLE_MAX-1]=0;
-	}
-	close(server->socket);
-	i=tcd_open_cddb_http(server);
-	return(i);
-}
-
-int tcd_getquery( cddb_server *server, cddb_query_str *query, PeriodicFunc func )
-{
-	char s[512];
-	fgetsock( s, 511, server->socket, func );
-	s[511]=0;
-	
-	/* Fill in query info  - watch lengths - AC */
-	query->code = atoi(strtok( s, " " ));
-	strncpy(query->categ, if_strtok(NULL, " ") , CATEG_MAX);
-	query->categ[CATEG_MAX-1]=0;
-	strncpy(query->discid, if_strtok( NULL, " "), DISCID_MAX);
-	query->discid[DISCID_MAX-1]=0;
-	strncpy(query->dtitle, if_strtok( NULL, "\0"), DTITLE_MAX);
-	query->dtitle[DTITLE_MAX-1]=0;
-	return 0;
-}
-
-int cddb_sum(int n)
-{
-        char    buf[12], *p;
-        int     ret = 0;
-                                
-        /* For backward compatibility this algorithm must not change */
-	sprintf(buf, "%u", n);
-        for (p = buf; *p != '\0'; p++)
-        	ret += (*p - '0');
+	min = cd->trk[i].toc.cdte_addr.msf.minute;
+	sec = cd->trk[i].toc.cdte_addr.msf.second;
         
-        return (ret);
+	l=sprintf( tmp, "%u ", calc_offset(min,sec,cd->trk[i].toc.cdte_addr.msf.frame));
+	
+	if(blen>=l)
+	{
+	    strcat( buf, tmp );
+	    blen-=l;
+	}
+    }
+    l=sprintf( tmp, "%i\n",
+	       (cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
+	       +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
+    if(blen>=l)
+	strcat( buf,tmp );
+
+    /* ok, buf now holds our query. */
+    fprintf(stderr, "Calling slave...\n");
+    fflush(stderr);
+    fp = popen("cddbslave", "w");
+    if(fp == NULL)
+    {
+	fprintf(stderr, "Slave call failed! (couldn't execute `cddbslave')\n");
+	return;
+    }
+
+    fprintf(fp, "%s", buf);
+    fprintf(fp, "client %s %s %d\n", package, version, getpid());
+    pclose(fp);
 }
 
 
@@ -285,204 +233,23 @@ unsigned long cddb_discid( cd_struct *cd )
         return ((n % 0xff) << 24 | t << 8 | (cd->last_t));
 }
 
+int cddb_sum(int n)
+{
+        char    buf[12], *p;
+        int     ret = 0;
+  
+        /* For backward compatibility this algorithm must not change */
+        sprintf(buf, "%u", n);
+        for (p = buf; *p != '\0'; p++)
+                ret += (*p - '0');
+        
+        return (ret);
+}
+
 int calc_offset(int minute, int second, int frame) 
 {
 	int n;
 
 	n=(minute*60)+second;
 	return((n*75)+frame);
-}
-
-int tcd_formatread_http( cd_struct *cd, char *buf, int blen, char *hostname, int port, char *path, char *categ, char *discid)
-{
-#ifdef DEBUG
-	printf( "DEBUG:  in tcd_formatread_http()\n" );
-#endif
-	sprintf(buf,"GET http://%s:%d/%s?cmd=cddb+read+%s+%s&hello=%s+%s+TCD+2.0&proto=1 HTTP/1.0\n\n",hostname,port,path,categ,discid,pw->pw_name,thishost);
-	return 0;
-}
-
-int tcd_formatquery_http( cd_struct *cd, char *buf, int blen, char *hostname, int port, char *path)
-{
-	char tmp[10];
-	int i, l;
-	char s[200];
-
-#ifdef DEBUG
-	printf( "DEBUG:  in tcd_formatquery_http()\n" );
-#endif
-	sprintf(buf,"GET http://%s:%d/%s?cmd=cddb+query+%08lx+%d+",hostname,port,path,cd->cddb_id,cd->last_t);
-	for (i=cd->first_t; i<=cd->last_t; i++) {
-		int min,sec;
-
-		min=cd->trk[i].toc.cdte_addr.msf.minute;
-		sec=cd->trk[i].toc.cdte_addr.msf.second;
-		l=sprintf(tmp,"%u+",calc_offset(min,sec,cd->trk[i].toc.cdte_addr.msf.frame));
-		if (blen>=l) {
-			strcat(buf,tmp);
-			blen-=l;
-		}
-	}
-	l=sprintf(tmp,"%i&",(cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
-	                   +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second));
-	if (blen>=l)
-		strcat(buf,tmp);
-
-	/* basically copied from tcd_open_cddb(...)
-	   delayed hello for HTTP
-	 */
-
-	gethostname(thishost,65);
-	if (strcmp(thishost,"")==0)
-		strcpy(thishost,"generic");
-	pw=getpwuid(getuid());
-	if (pw==NULL) {
-		return(-1);
-	}
-	if (strcmp(pw->pw_name,"")==0)
-		strcpy(pw->pw_name,"user");
-	sprintf(s,"hello=%s+%s+TCD+2.0&proto=1 HTTP/1.0\n\n",pw->pw_name,thishost);
-	strcat(buf,s);
-	return 0;
-}
-  
-/*
- *	The caller passes us a buffer length constraint now - AC
- */
- 
-void tcd_formatquery( cd_struct *cd, char *buf , int blen)
-{
-	char tmp[10];
-	int i, l;
-		
-	sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
-	for( i = cd->first_t; i <= cd->last_t; i++ )
-	{
-	        int min, sec;
-		
-		min = cd->trk[i].toc.cdte_addr.msf.minute;
-		sec = cd->trk[i].toc.cdte_addr.msf.second;
-	
-		/* n = (min*60)+sec; 
-		l=sprintf( tmp, "%u ", (n*75)+cd->trk[i].toc.cdte_addr.msf.frame ); */
-	        l=sprintf( tmp, "%u ", calc_offset(min,sec,cd->trk[i].toc.cdte_addr.msf.frame));
-
-		if(blen>=l)
-		{
-			strcat( buf, tmp );
-			blen-=l;
-		}
-	}
-        l=sprintf( tmp, "%i\n",
-                        (cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
-                        +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
-        if(blen>=l)
-		strcat( buf,tmp );                                                                               
-}
-
-int tcd_open_cddb_http(cddb_server *server)
-{
-#ifdef DEBUG
-	printf( "DEBUG:  in tcd_open_cddb_http()\nsocket==%d\n",server->proxy_port );
-#endif
-	if (server->proxy) {
-		server->socket=opensocket(server->proxy_server,server->proxy_port);
-	} else {
-		server->socket=opensocket(server->hostname,server->port);
-	}
-
-	if (server->socket<0) {
-		strcpy(server->error,strerror(errno));
-		return(-1);
-	}
-	return(0);
-}
-
-  
-int tcd_open_cddb( cddb_server *server, PeriodicFunc func )
-{
-	struct passwd* pw;
-	int code;
-	char s[200];
-	
-	/* FIXME - is there a 'right' way to set this portably */
-	char hostname[65];
-	
-	gethostname(hostname, 65);
-	if( strcmp(hostname, "") == 0)
-		strcpy( hostname, "generic" );
-	pw = getpwuid(getuid());
-	/* Password entry gone - eg crashed NIS servers */
-	if(pw==NULL)
-	{
-		strcpy(server->error, "Your username isnt available." );
-		return -1;
-	}
-	if( strcmp(pw->pw_name, "") == 0)
-		strcpy( pw->pw_name, "user" );
-
-	server->socket = opensocket( server->hostname, server->port );
-
-	if( server->socket < 0 )
-	{
-		strcpy( server->error, strerror(errno) );
-		return -1;
-	}
-	fgetsock( s, 80, server->socket, func );
-	if( sscanf( s, "%d", &code ) != 1 )
-	{
-		strcpy( server->error, "CDDB Server returned garbled information." );
-		return -1;
-	}
-	if( code != 200 || code != 201 )
-	{
-		switch( code )
-		{
-			case 432:
-				strcpy( server->error, 
-					"Permission Denied" );
-				return -1;		
-			case 433:
-				strcpy( server->error, 
-					"Too many users" );
-				return -1;		
-			case 434:
-				strcpy( server->error, 
-					"Load too high" );
-				return -1;		
-			default:
-				strcpy( server->error,
-					"Unknown error" );
-		}
-	}
-
-	tcd_sendhandshake( server,pw->pw_name,
-					hostname,
-			        	"TCD",
-			        	"2.0" );
-
-	fgetsock( s, 80, server->socket, func );
-	if( sscanf( s, "%d", &code ) != 1 )
-	{
-		strcpy( server->error, "CDDB Server returned garbled information." );
-		return -1;
-	}
-	if( code != 200 || code != 201 )
-	{
-		switch( code )
-		{
-			case 431:
-				strcpy( server->error, 
-					"Handshake not successful" );
-				return -1;		
-			case 433:
-				strcpy( server->error, 
-					"Already shook hands (SHOULD NOT HAPPEN!)" );
-				return -1;		
-			default:
-				strcpy( server->error,
-					"Unknown error" );
-		}
-	}
-	return 0;
 }

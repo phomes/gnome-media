@@ -89,6 +89,7 @@ AC_MSG_RESULT("$cd_changer")
 
 AC_SUBST(USE_CD_CHANGER)
 AC_SUBST(PROGRAMS_TCD)
+AC_SUBST(PROGRAMS_CDDBSLAVE)
 
 AC_OUTPUT([
 Makefile
@@ -100,5 +101,6 @@ intl/Makefile
 macros/Makefile
 tcd/Makefile
 tcd/icons/Makefile
+cddbslave/Makefile
 version.h
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

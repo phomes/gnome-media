@@ -27,58 +27,12 @@
 #ifndef TCD_CDDB_H
 #define TCD_CDDB_H
 
-#include "socket.h"
-
-#define HOSTNAME_MAX	256
-#define VERSION_MAX	10
-#define CATEG_MAX	20	
-#define DISCID_MAX	10
-#define DTITLE_MAX	80
-
-typedef struct {
-	char hostname[HOSTNAME_MAX];
-	int port;
-	int socket;
-	int connected;
-	char error[100];
-	int proxy;
-	char proxy_server[HOSTNAME_MAX];
-	int proxy_port;
-	int http;
-	char remote_path[512];
-} cddb_server;
-
-typedef struct {
-	int code;
-	char categ[CATEG_MAX];
-	char discid[DISCID_MAX];
-	char dtitle[DTITLE_MAX];
-} cddb_query_str;
-	
-
 int 		tcd_readcddb( cd_struct* cd, char* filename );
 int 		tcd_writecddb( cd_struct* cd, char *filename );
 int 		cddb_sum(int n);
 unsigned long 	cddb_discid( cd_struct *cd );
-int 		tcd_sendhandshake(  cddb_server *server,
-                		        char* username,
-                			char* hostname,
-                		        char* clientname,
-                		        char* version );
-int 		tcd_getquery_http(cddb_server *server, 
-			cddb_query_str *query, 
-			PeriodicFunc func);
+void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version);
 
-void 		tcd_formatquery( cd_struct *cd, char *buf , int blen);
-int 		tcd_open_cddb( cddb_server *server, PeriodicFunc func );
-int             tcd_open_cddb_http(cddb_server *server);
-
-int             tcd_formatread_http( cd_struct *cd, char *buf, int blen,
-				     char *hostname, int port, char *path,
-				     char *categ, char *discid);
-int             tcd_formatquery_http( cd_struct *cd, char *buf, int blen,
-				      char *hostname, int port, char *path);
-int tcd_getquery( cddb_server *server, cddb_query_str *query, PeriodicFunc func );
 
 
 #endif /* TCD_CDDB_H */

@@ -48,9 +48,7 @@
 # error TCD currently only builds under Linux systems.
 #endif
 
-#include "cddb.h"
 #include "gtracked.h"
-#include "gcddb.h"
 #include "prefs.h"
 #include "tooltips.h"
 #include "led.h"
@@ -834,6 +832,14 @@ void create_warning(char *message_text, char *type)
     gtk_widget_show(gnome_message_box_new(message_text, type,
 					  GNOME_STOCK_BUTTON_OK, NULL));
 }
+
+void reload_info(int signal)
+{
+    tcd_close_disc(&cd);
+    tcd_init_disc(&cd, create_warning);
+    make_goto_menu();
+    draw_status();
+}
 	
 int main (int argc, char *argv[])
 {
@@ -858,22 +864,24 @@ int main (int argc, char *argv[])
     cd.cdpath = prefs.cddev;
 	
     tcd_init_disc(&cd, (WarnFunc)create_warning);
-        
+
+    signal(SIGUSR1, reload_info);
+    
     init_window();
 
     table = create_buttons();
     gtk_box_pack_start(GTK_BOX(main_box), table, FALSE, FALSE, 0);
-
+    
     make_goto_menu();
     setup_time_display(table);
     setup_colors();
     led_init(window);
-	
+    
     /* Initialize some timers */
     if(cd.isplayable) tcd_gettime(&cd);
-
+    
     gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
-    gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
+    gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
     titlelabel_f = TRUE;
 	
     gnome_app_set_contents(GNOME_APP(window), main_box);

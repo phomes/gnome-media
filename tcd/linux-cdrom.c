@@ -28,8 +28,10 @@
 
 #define DATABASE_SUPPORT
 
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <pwd.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -66,64 +68,44 @@ void debug( const char *fmt, ...)
 
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
-	char tcd_dir[60];
-	char tmp[256];
-	struct stat fs;
-	struct cdrom_volctrl vol;
-
-	debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
-	tcd_opencddev( cd, msg_cb );
-
-#ifdef DATABASE_SUPPORT
-	strcpy( tcd_dir, getenv("HOME"));
-	strcat( tcd_dir, "/.tcd/" );
-	if( stat( tcd_dir, &fs ) < 0 ) 
-	{
-		if( errno == ENOENT )
-		{
-			if( mkdir(tcd_dir,S_IRWXU) )
-			{
-				snprintf( tmp, 255, "Error creating %s. Reason: %s\n", tcd_dir, strerror(errno) );
-				if( msg_cb )
-					msg_cb(tmp,"error");
-
-				debug( "cdrom.c: tcd_init_disc exiting early.\n" );
-				return -1;
-			}
-			if( msg_cb )
-				msg_cb("Created directory ~/.tcd/ for cddb files.", "info" );
-		}
-		else 
-		{
-			snprintf( tmp, 255, "Error accessing %s. Reason: %s\n", tcd_dir, strerror(errno) );
-			if( msg_cb )
-				msg_cb(tmp,"error");
-			return -1;
-		}
-	}
-#endif
+    char *homedir=NULL;
+    struct cdrom_volctrl vol;
+    struct passwd *pw=NULL;
+    
+    debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
+    tcd_opencddev( cd, msg_cb );
+    
+    homedir = getenv("HOME");
+    
+    if (homedir == NULL) {
+	pw = getpwuid(getuid());
 	
-	if( !cd->err ) tcd_readtoc(cd);
+	if (pw != NULL)
+	    homedir = pw->pw_dir;
+	else /* This should never happen */
+	    homedir = "/";                           
+    }
+    
+    if( !cd->err ) tcd_readtoc(cd);
 #ifdef DATABASE_SUPPORT
-	if( !cd->err ) tcd_readdiskinfo(cd);
+    if( !cd->err ) tcd_readdiskinfo(cd);
 #endif
-	if( cd->err )
-	{
-		debug( "cdrom.c: tcd_init_disc exiting early (!cd->err)\n" );
-		return(-1);
-	}
-
+    if( cd->err )
+    {
+	debug( "cdrom.c: tcd_init_disc exiting early (!cd->err)\n" );
+	return(-1);
+    }
+    
 #ifdef TCD_CHANGER_ENABLED
-	/* FIXME set capability flag here for CHANGER */
-	cd->nslots = ioctl( cd->cd_dev, CDROM_CHANGER_NSLOTS );
+    cd->nslots = ioctl( cd->cd_dev, CDROM_CHANGER_NSLOTS );
 #else
-	cd->nslots = 0;
+    cd->nslots = 0;
 #endif
-	ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
-	cd->volume = vol.channel0;
-
-	debug("cdrom.c: tcd_init_disc exiting normally\n" );
-	return(0);
+    ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
+    cd->volume = vol.channel0;
+    
+    debug("cdrom.c: tcd_init_disc exiting normally\n" );
+    return(0);
 }
 
 int tcd_close_disc( cd_struct *cd )
@@ -536,109 +518,112 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 
 int tcd_readdiskinfo( cd_struct *cd )
 {
-	struct stat fs;
-	int i, res;
-	FILE *fp;
-	char fn[60];
-	char tmp[DISC_INFO_LEN], *tmp2;
-	char artist[DISC_INFO_LEN], album[DISC_INFO_LEN];
-	char tcd_dir[128];
-
-	if( !cd->isplayable )
-		return 0;
+    int i, res;
+    FILE *fp;
+    char fn[60];
+    char tmp[DISC_INFO_LEN], *tmp2;
+    char *homedir=NULL;
+    char tcd_dir[128];
+    struct passwd *pw=NULL;
+    
+    if( !cd->isplayable )
+	return 0;
+    
+    homedir = getenv("HOME");
+    
+    if (homedir == NULL) {
+	pw = getpwuid(getuid());
 	
-	strcpy( tcd_dir, getenv("HOME"));
-        strcat( tcd_dir, "/.tcd/" );
-                 
-	sprintf( fn, "%s%08lx", tcd_dir, cd->cddb_id );
-	fp = fopen(fn, "r");	
-	if( fp != NULL ) // Does the new format exist?
-	{
-		fclose(fp);
-		if( (res = tcd_readcddb( cd, fn ))<0 )
-		{
-			debug("tcd_readcddb returned an error, %d\n", res );
-			sleep(2);
-			return -1;
-		}
-		strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
-		strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
-		tmp2 = strtok(NULL, "\0");
-		if( tmp2 )
-			strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
-		else
-			strncpy(cd->album, "", DISC_INFO_LEN);
-		strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
-		return 0;
-	}
-	else
-	{
+	if (pw != NULL)
+	    homedir = pw->pw_dir;
+	else /* This should never happen */
+	    homedir = "/";
+    }
+    
+    strncpy( tcd_dir, homedir, sizeof(tcd_dir) );
+    strncat( tcd_dir, "/.cddbslave/", sizeof(tcd_dir) );
+    tcd_dir[sizeof(tcd_dir) - 1] = 0;
+    
+    snprintf( fn, sizeof(fn) - 1, "%s%08lx", tcd_dir, cd->cddb_id );
 
-		sprintf( fn, "%s%ld.tcd", tcd_dir, cd->old_id );
-
-		debug("Warning, can't open new format \'%s\', trying old.\n", fn );
-		debug("opening...%s\n", fn );
-
-		if( !stat(fn, &fs) )
-		{
-			fp = fopen( fn, "r" );
-			fgets( artist, 40, fp );
-			fgets( album, 40, fp );
-			artist[strlen(artist)-1] = 0;
-			album[strlen(album)-1] = 0;
-			
-			strncpy(cd->dtitle, "", DISC_INFO_LEN);
-			strncat(cd->dtitle, artist, DISC_INFO_LEN);
-			strncat(cd->dtitle, " / ", DISC_INFO_LEN);
-			strncat(cd->dtitle, album, DISC_INFO_LEN);
-				
-			for( i = cd->first_t; i <= cd->last_t; i++ )
-			{
-				fgets( cd->trk[C(i)].name, 40, fp );
-			        cd->trk[C(i)].name[strlen(cd->trk[C(i)].name)-1] = 0;
-				cd->trk[C(i)].titled = TRUE;
-			}
-			sprintf( fn, "%s%08lx", tcd_dir, cd->cddb_id );
-			tcd_writecddb( cd, fn );
-			fclose(fp);
-			strncpy( cd->trk[0].name, "--", TRK_NAME_LEN);
-			return 0;
-		}	                                                                                       			
-		else 
-		{		
-
-			debug("Warning, can't open \'%s\' \n", fn );
-			strcpy( cd->dtitle, "Unknown / Unknown" );
-		
-			for( i = cd->first_t; i <= cd->last_t; i++ )
-			{
-				sprintf( cd->trk[C(i)].name, "Track %d", i );
-				cd->trk[C(i)].titled = FALSE;
-			}
-                        sprintf( fn, "%s%08lx", tcd_dir, cd->cddb_id );
-                        tcd_writecddb( cd, fn );
-			strcpy( cd->trk[0].name, "--" );
-			return 0;
-        	}
-	}
+    fp = fopen(fn, "r");	
+    if(fp != NULL)
+    {
 	fclose(fp);
-	return -1;
+	if((res = tcd_readcddb( cd, fn ))<0)
+	{
+	    debug("tcd_readcddb returned an error, %d\n", res );
+	    return -1;
+	}
+
+	/* Parse out the individual title elements. Help from Alec M. */
+	strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
+	strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
+	tmp2 = strtok(NULL, "\0");
+	if(tmp2)
+	    strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
+	else
+	    strncpy(cd->album, "", DISC_INFO_LEN);
+	strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
+	return 0;
+    }
+    else
+    {
+	/* Here's where we want to send a request to our slave */
+	tcd_call_cddb_slave(cd, "TCD", "3.0");
+	debug("Warning, can't open \'%s\' \n", fn );
+	strcpy( cd->dtitle, "Unknown / Unknown" );
+	
+	for( i = cd->first_t; i <= cd->last_t; i++ )
+	{
+	    sprintf( cd->trk[C(i)].name, "Track %d", i );
+	    cd->trk[C(i)].titled = FALSE;
+	}
+	strcpy( cd->trk[0].name, "--" );
+
+	/* Parse out the individual title elements. Help from Alec M. */
+	strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
+	strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
+	tmp2 = strtok(NULL, "\0");
+	if(tmp2)
+	    strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
+	else
+	    strncpy(cd->album, "", DISC_INFO_LEN);
+	strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
+
+	return 0;
+    }
+    fclose(fp);
+    return -1;
 }
 
 void tcd_writediskinfo( cd_struct *cd )
 {
-	char fn[60];
-	char home[60];
+    char fn[60];
+    char home[60];
 
-	strcpy( home, getenv("HOME"));
-	sprintf( fn, "%s/.tcd/%08lx", home, cd->cddb_id );
+    char *homedir = getenv("HOME");
+    struct passwd *pw = NULL;
+    
+    if (homedir == NULL) {
+	pw = getpwuid(getuid());
 	
-        if( tcd_writecddb(cd, fn) < 0 )
-        {
-        	perror( "tcd_writecddb" );
-        	exit(-1);
-        }
-
-	cd->needs_dbwrite=FALSE;        
-	return;
+	if (pw != NULL)
+	    homedir = pw->pw_dir;
+	else /* This should never happen */
+	    homedir = "/";
+    }
+    
+    strncpy( home, homedir, sizeof(home) );
+    home[sizeof(home) - 1] = 0;
+    snprintf( fn, sizeof(fn) - 1, "%s/.cddbslave/%08lx", home, cd->cddb_id );
+    
+    if( tcd_writecddb(cd, fn) < 0 )
+    {
+	perror( "tcd_writecddb" );
+	exit(-1);
+    }
+    
+    cd->needs_dbwrite=FALSE;        
+    return;
 }					

@@ -170,15 +170,6 @@ void edit_window(GtkWidget *widget, gpointer data)
 	/* END Track area */
 
 	button_box = gtk_hbox_new(FALSE,2);
-	/* CDDB Get button */
-	button = gtk_button_new_with_label(_("CDDB Get"));
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-		GTK_SIGNAL_FUNC(gcddb), NULL);
-	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	/* CDDB Submit button */
-	button = gtk_button_new_with_label(_("Submit"));
-	gtk_widget_set_sensitive(button, FALSE);
-	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
 	/* Clear button */
 	button = gtk_button_new_with_label(_("Clear"));
 	gtk_widget_set_sensitive(button, FALSE);

@@ -1,4 +1,29 @@
-Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@marshank.gerla.org>
+Sun Aug 30 21:06:10 1998  Tim P. Gerla	<timg@means.net>
+
+	* cddb.c: Removed many function calls that were replaced by
+	cddbslave. Added code to call cddbslave.
+	
+	* gtcd.c: Added signal handler for SIGUSR1 to reload cddb file.
+
+	* gtracked.c: Removed cddb stuff.
+
+	* linux-cdrom.c: Changed cddb code to reflect changes.
+
+	* socket.[ch]: Removed.
+	
+	* gcddb.[ch]: Removed.
+	
+	* Makefile.am: Changed to reflect other changes.
+
+Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
+
+	* tcd.c (main): Augustus Gloop work.
+
+	* socket.c (fgetsock): More nonblocking work.
+
+	* linux-cdrom.c: Added some $HOME fixes from Augustus Gloop.
+
+	* gcddb.c (do_cddb): Likewise.
 
         * Makefile.am: Added and removed some files.
 	
@@ -15,6 +40,7 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@marshank.gerla.org>
 1998-08-28  Tim P. Gerla  <timg@means.net>
 	
 	* gtcd.c: Interface changes...let me know if they are bad or good.
+
         * socket.c: Added a select to make things a bit more
 	  responsive...Still not quite right.
 
@@ -25,21 +51,27 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@marshank.gerla.org>
 1998-08-25  Tim P. Gerla  <timg@means.net>
 
 	* gtcd.c: rearraneged button layout.
+
 	* *.*: Changed all occurances of 'properties' to 'preferences'.
 
 1998-08-24  Tim P. Gerla  <timg@means.net>
 
 	* gtcd.c: Fastforward/rewind buttons now work as a real CD player would. Click                        
           and release to change track, hold to skip seconds.                                   
+
 	* linux-cdrom.c: Split tcd_gettime() into two parts.
+
 	* TODO: a few changes.
 
 1998-08-24  Tim P. Gerla  <timg@means.net>
 
         * tcd/Makefile.am: Support for above.
+
         * tcd/gcddb.c: Changed sprintfs to g_snprintfs.
+
         * tcd/gtracked.c: Fixed some silly bug that manifested itself when I
 	  enabled changer support.
+
         * tcd/gtcd.c: Changed sprintfs to g_snprintfs, and removed several
           superfluous gtk_show_widgets. Fixed changer box packing order.
 	  Also set volume widget to fill&expand.

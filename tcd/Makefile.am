@@ -15,14 +15,10 @@ SUBDIRS = icons
 gtcd_SOURCES = 		\
 	gtcd.c 		\
 	cddb.c 		\
-	socket.c 	\
 	linux-cdrom.c 	\
 	gtracked.c 	\
-	gcddb.c 	\
 	cddb.h 		\
-	socket.h 	\
 	gtracked.h 	\
-	gcddb.h		\
 	tooltips.h	\
 	prefs.c		\
 	prefs.h		\
@@ -36,10 +32,8 @@ gtcd_SOURCES = 		\
 tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
-	socket.c 	\
 	linux-cdrom.c 	\
 	cddb.h 		\
-	socket.h 	\
 	linux-cdrom.h	\
 	tcd.h		\
 	tracked.h	\
