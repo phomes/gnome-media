@@ -68,6 +68,75 @@ gboolean file_changed = FALSE;
 static guint play_id;
 static guint record_id;
 
+extern gboolean able_to_record;
+
+static void
+on_dontshowagain_dialog_destroy_activate (GtkWidget* widget,
+					  gpointer checkbutton)
+{
+	GConfClient *client;
+	gboolean stat = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton));
+	
+	client = gconf_client_get_default ();
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-warning-messages", !stat, NULL);
+	g_object_unref (client);
+}
+
+gboolean
+check_for_sox (void)
+{
+	char *p;
+	gboolean show_warningmess;
+	GConfClient *client;
+	
+	if (sox_command == NULL) {
+		return FALSE;
+	}
+
+	client = gconf_client_get_default ();
+	show_warningmess = gconf_client_get_bool (client,
+						  "/apps/gnome-sound-recorder/show-warning-messages", NULL);
+	g_object_unref (client);
+
+	p = g_find_program_in_path (sox_command);
+	if (p == NULL) {
+		able_to_record = FALSE;
+		gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Record_button), FALSE);
+		if (show_warningmess) {
+			GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
+			
+			gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in"
+							      "preferences under the tab 'paths'.\n\nIf you don't have"
+							      " sox, you will not be able to record or do any effects."),
+							    sox_command);
+			GtkWidget* mess = gtk_message_dialog_new (NULL,
+								  GTK_DIALOG_MODAL,	
+								  GTK_MESSAGE_WARNING,
+								  GTK_BUTTONS_OK,
+								  show_mess);
+			g_free (show_mess);
+			
+			gtk_widget_show (dont_show_again_checkbutton);
+			gtk_container_add (GTK_CONTAINER (GTK_DIALOG (mess)->vbox), dont_show_again_checkbutton);
+			
+			/* Connect a signal on ok-button, so we can get the stat on the checkbutton */
+			g_signal_connect (mess, "destroy",
+					  G_CALLBACK (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
+			
+			gtk_dialog_run (GTK_DIALOG (mess));
+			gtk_widget_destroy (mess);
+		}
+
+		able_to_record = FALSE;
+		gtk_widget_set_sensitive (grecord_widgets.Record_button, FALSE);
+		return FALSE;
+	} else {
+		g_free (p);
+	}
+
+	return TRUE;
+}
+
 /* ------------------- Callbacks ------------------------------- */
 void
 on_record_activate_cb (GtkWidget* widget, gpointer data)
@@ -76,6 +145,10 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 	if (!check_if_sounddevice_ready ())
 		return;
 
+	if (check_for_sox () == FALSE) {
+		return;
+	}
+	
 	grecord_set_sensitive_progress ();
 	save_set_sensitive (TRUE);
 	file_changed = TRUE;
