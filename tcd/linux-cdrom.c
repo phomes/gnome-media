@@ -126,7 +126,7 @@ int tcd_readtoc( cd_struct *cd )
 	cd->isplayable=FALSE;
 	
 	tmp = ioctl( cd->cd_dev, CDROMREADTOCHDR, &cd->tochdr );
-	if( tmp < 0 )
+	if(tmp)
 	{
 		strcpy( cd->errmsg, "Can't read disc." );
 		cd->err = TRUE;
@@ -147,7 +147,7 @@ int tcd_readtoc( cd_struct *cd )
     	cd->trk[C(cd->last_t+1)].toc.cdte_track = CDROM_LEADOUT;
         cd->trk[C(cd->last_t+1)].toc.cdte_format = CDROM_MSF;
 	tmp = ioctl(cd->cd_dev, CDROMREADTOCENTRY, &cd->trk[C(cd->last_t+1)].toc );
-	if( tmp < 0 )
+	if(tmp)
 	{
 		strcpy( cd->errmsg, "Can't read disc." );
                 cd->err = TRUE;
@@ -163,7 +163,7 @@ int tcd_readtoc( cd_struct *cd )
                 cd->trk[C(i)].toc.cdte_format = CDROM_MSF;
 
                 tmp = ioctl( cd->cd_dev, CDROMREADTOCENTRY, &cd->trk[C(i)].toc );		
-                if( tmp < 0 )
+                if(tmp)
 		{
 			strcpy( cd->errmsg, "Can't read disc." );
                   	cd->err = TRUE;
@@ -314,13 +314,28 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	{
 		msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
 		msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
-		msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
+		msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame - 1;
+
+		if(msf.cdmsf_frame1 < 0)
+		{
+		    msf.cdmsf_sec1 += msf.cdmsf_frame1;
+		    msf.cdmsf_frame1 = 0;
+		}
+		if(msf.cdmsf_sec1 < 0)
+		{
+		    msf.cdmsf_min1 += msf.cdmsf_sec1;
+		    msf.cdmsf_sec1 = 0;
+		}
+		if(msf.cdmsf_min1 < 0)
+		{
+		    msf.cdmsf_min1 = 0;
+		}
 	}
 	msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
 	msf.cdmsf_sec1 %= 60;
 	tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );
 		
-	if( tmp < 0 )
+	if(tmp)
 	{
 		debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error. Trying PLAYTRKIND\n" );
 		/* Try alternate method of playing  FIXME: handle -1 end_t */
@@ -330,7 +345,7 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 		trkind.cdti_ind1 = 0;      	/* end index */
 		                                
 		tmp = ioctl( cd->cd_dev, CDROMPLAYTRKIND, &trkind );
-		if( tmp < 0 )
+		if(tmp)
 		{
 			strcpy( cd->errmsg, "Error playing disc" );
 			cd->err = TRUE;
@@ -362,7 +377,23 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 	msf.cdmsf_frame0 = cd->sc.cdsc_absaddr.msf.frame;
 	msf.cdmsf_min1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.minute;
 	msf.cdmsf_sec1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.second;
-	msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame;
+	msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame - 1;
+
+	if(msf.cdmsf_frame1 < 0)
+	{
+	    msf.cdmsf_sec1 += msf.cdmsf_frame1;
+	    msf.cdmsf_frame1 = 0;
+	}
+	if(msf.cdmsf_sec1 < 0)
+	{
+	    msf.cdmsf_min1 += msf.cdmsf_sec1;
+	    msf.cdmsf_sec1 = 0;
+	}
+	if(msf.cdmsf_min1 < 0)
+	{
+	    msf.cdmsf_min1 = 0;
+	}
+	
 	if( msf.cdmsf_sec0 > 60 && (offset<0) )
 	{
 		msf.cdmsf_sec0 = 60-abs(offset);
@@ -370,7 +401,7 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 	}
 	
         tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );
-   	if( tmp < 0 )
+   	if(tmp)
 	{
 		strcpy( cd->errmsg, "Error playing disc." );
                	cd->err = TRUE;
@@ -395,10 +426,10 @@ int tcd_ejectcd( cd_struct *cd )
 
 	tmp = ioctl( cd->cd_dev, CDROMEJECT );
 	/* Error? try injecting */
-	if( tmp < 0 )
+	if(tmp)
 		tmp = ioctl( cd->cd_dev, CDROMCLOSETRAY );
 
-   	if( tmp < 0 )
+   	if(tmp)
 	{
 		strcpy( cd->errmsg, "Can't eject disc." );
                	cd->err = TRUE;
@@ -426,7 +457,7 @@ int tcd_stopcd( cd_struct *cd )
 
 	cd->err = FALSE;
         tmp = ioctl( cd->cd_dev, CDROMSTOP );
-   	if( tmp < 0 )
+   	if(tmp)
 	{
 		strcpy( cd->errmsg, "Can't stop disc." );
                	cd->err = TRUE;
@@ -447,7 +478,7 @@ int tcd_pausecd( cd_struct *cd )
 	if( cd->sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED )
 	{       
 		tmp = ioctl( cd->cd_dev, CDROMRESUME );
-		if( tmp < 0 )
+		if(tmp)
 		{
 			strcpy( cd->errmsg, strerror( errno ) );
                         cd->err = TRUE;
@@ -458,7 +489,7 @@ int tcd_pausecd( cd_struct *cd )
 	else
 	{
 		tmp = ioctl( cd->cd_dev, CDROMPAUSE );
-		if( tmp < 0 )
+		if(tmp)
 		{
 			strcpy( cd->errmsg, strerror( errno ) );
                         cd->err = TRUE;
@@ -476,7 +507,7 @@ int tcd_change_disc( cd_struct *cd, int disc )
 	fd = open( cd->cdpath, O_RDONLY | O_NONBLOCK );
 
         tmp = ioctl( fd, CDROM_SELECT_DISC, disc );
-	if( tmp < 0 )
+	if(tmp && errno)
 		fprintf( stdout, "ioctl: %s\n", strerror(errno) );	
 	/* Don't be noisy if there's an error */
 
