@@ -1,4 +1,4 @@
-Audiodir = $(datadir)/gnome/apps/Audio
+Multimediadir = $(datadir)/gnome/apps/Multimedia
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
@@ -21,4 +21,4 @@ extace_LDADD = \
 
 EXTRA_DIST = extace.desktop README NEWS TODO
 
-Audio_DATA = extace.desktop
+Multimedia_DATA = extace.desktop

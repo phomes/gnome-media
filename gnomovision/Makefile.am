@@ -1,4 +1,4 @@
-Mediadir = $(datadir)/gnome/apps/Media
+Mediadir = $(datadir)/gnome/apps/Multimedia
 
 INCLUDES = -I$(includedir)	\
              $(GNOME_INCLUDEDIR)
