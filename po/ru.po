@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.55\n"
-"POT-Creation-Date: 1999-10-06 17:44-0500\n"
-"PO-Revision-Date: 2000-04-01 03:25+04:00\n"
+"POT-Creation-Date: 2000-04-17 13:06+0400\n"
+"PO-Revision-Date: 2000-04-17 13:11+04:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,92 +74,188 @@ msgstr "Время ожидания %s\n"
 msgid "Inactive. %s\n"
 msgstr "Не используется. %s\n"
 
-#: gmix/gmix.c:93
+#: gmix/gmix.c:104
 msgid "_About"
 msgstr "О Программе"
 
-#: gmix/gmix.c:99
+#: gmix/gmix.c:110
 msgid "_Preferences..."
 msgstr "Настройки..."
 
-#: gmix/gmix.c:105
+#: gmix/gmix.c:116
 msgid "_Program"
 msgstr "Программа"
 
-#: gmix/gmix.c:106
-msgid "_Help"
-msgstr "Справка"
-
-#: gmix/gmix.c:155
+#: gmix/gmix.c:183
 msgid "don't restore mixer-settings from configuration"
 msgstr "не восстанавливать настройки микшера из конфигурации"
 
-#: gmix/gmix.c:156
+#: gmix/gmix.c:184
 msgid "restore mixer-settings from configuration"
 msgstr "восстановить настройки микшера из конфигурации"
 
-#: gmix/gmix.c:157
+#: gmix/gmix.c:185
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "инициализировать микшер(ы) из сохраненной конфигурации и выйти"
 
-#: gmix/gmix.c:158
+#: gmix/gmix.c:186
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "не сохранять (измененные) настройки микшера в конфигурацию"
 
 #. start frame
-#: gmix/gmix.c:277 tcd/prefs.c:393
+#: gmix/gmix.c:423 tcd/prefs.c:393
 msgid "On startup"
 msgstr "При запуске"
 
 #. Set on start
-#: gmix/gmix.c:283
+#: gmix/gmix.c:429
 msgid "Restore saved mixer levels on startup"
 msgstr "Восстанавливать сохраненные уровни при старте"
 
-#: gmix/gmix.c:289
+#: gmix/gmix.c:435
 msgid "Hide menu on start"
 msgstr "Скрыть меню при старте"
 
-#: gmix/gmix.c:304
+#: gmix/gmix.c:450
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:308
+#: gmix/gmix.c:454
 msgid "Use mixer icons"
 msgstr "Использовать пиктограммы микшера"
 
-#: gmix/gmix.c:316
+#: gmix/gmix.c:462
 msgid "Use mixer labels"
 msgstr "Использовать метки микшера"
 
-#: gmix/gmix.c:339 tcd/gtcd.c:321 tcd/prefs.c:596
+#: gmix/gmix.c:485 tcd/gtcd.c:363 tcd/prefs.c:596
 msgid "Preferences"
 msgstr "Настройки"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:766
+#: gmix/gmix.c:1171
 msgid "Lock"
 msgstr "Фикс."
 
-#: gmix/gmix.c:776
+#: gmix/gmix.c:1181
 msgid "Rec."
 msgstr "Запись"
 
-#: gmix/gmix.c:794
+#: gmix/gmix.c:1199
 msgid "Mute"
 msgstr "Выкл."
 
-#: gmix/gmix.c:818
+#: gmix/gmix.c:1223
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:987
+#: gmix/gmix.c:1522
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome микшер"
 
-#: gmix/gmix.c:990
+#: gmix/gmix.c:1525
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Микшер для звуковых устройств OSS."
+
+#: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Громкость"
+
+#: gmix/device_labels_linux.h:7
+msgid "Bass "
+msgstr "Низкие"
+
+#: gmix/device_labels_linux.h:7
+msgid "Trebl"
+msgstr "Высокие"
+
+#: gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Синтез"
+
+#: gmix/device_labels_linux.h:7
+msgid "Pcm  "
+msgstr "Pcm"
+
+#: gmix/device_labels_linux.h:7
+msgid "Spkr "
+msgstr "Динамик"
+
+#: gmix/device_labels_linux.h:7
+msgid "Line "
+msgstr "Линия"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mic  "
+msgstr "Микрофон"
+
+#: gmix/device_labels_linux.h:8
+msgid "CD   "
+msgstr "CD"
+
+#: gmix/device_labels_linux.h:8
+msgid "Mix  "
+msgstr "Микшер"
+
+#: gmix/device_labels_linux.h:8
+msgid "Pcm2 "
+msgstr "Pcm2"
+
+#: gmix/device_labels_linux.h:8
+msgid "Rec  "
+msgstr "Запись"
+
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "Усиление на входе"
+
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "Усиление на выходе"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line1"
+msgstr "Линия1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line2"
+msgstr "Линия2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Line3"
+msgstr "Линия3"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Цифр.канал1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Цифр.канал2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Цифр.канал3"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneIn"
+msgstr "Микрофон"
+
+#: gmix/device_labels_linux.h:10
+msgid "PhoneOut"
+msgstr "Наушники"
+
+#: gmix/device_labels_linux.h:10
+msgid "Video"
+msgstr "Видео"
+
+#: gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Радио"
+
+#: gmix/device_labels_linux.h:10
+msgid "Monitor"
+msgstr "Монитор"
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
@@ -254,7 +350,7 @@ msgid "Delete CDDB Entry?"
 msgstr "Удалить запись CDDB?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:308
+#: tcd/cddb_status.c:50 tcd/gtracked.c:312
 msgid "CDDB Status"
 msgstr "Статус CDDB"
 
@@ -295,115 +391,115 @@ msgstr "нормальный"
 msgid "random"
 msgstr "случайный"
 
-#: tcd/gtcd.c:320
-msgid "Open track editor"
-msgstr "Открыть редактор треков"
-
-#: tcd/gtcd.c:322 tcd/popup.c:24
-msgid "Quit"
-msgstr "Выход"
-
 #. TOP ROW
-#: tcd/gtcd.c:342
+#: tcd/gtcd.c:323
 msgid "Play/Pause"
 msgstr "Проигрывать/Пауза"
 
-#: tcd/gtcd.c:346 tcd/popup.c:16
+#: tcd/gtcd.c:327 tcd/popup.c:16
 msgid "Stop"
 msgstr "Остановить"
 
-#: tcd/gtcd.c:347 tcd/popup.c:17
+#: tcd/gtcd.c:328 tcd/popup.c:17
 msgid "Eject"
 msgstr "Вынуть"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:354 tcd/gtcd.c:362
+#: tcd/gtcd.c:335 tcd/gtcd.c:343
 msgid "Skip backwards"
 msgstr "Перемотать назад"
 
-#: tcd/gtcd.c:355 tcd/gtcd.c:363
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip forwards"
 msgstr "Перемотать вперед"
 
-#: tcd/gtcd.c:514 tcd/gtcd.c:515 tcd/gtcd.c:516
+#: tcd/gtcd.c:362
+msgid "Open track editor"
+msgstr "Открыть редактор треков"
+
+#: tcd/gtcd.c:364 tcd/popup.c:24
+msgid "Quit"
+msgstr "Выход"
+
+#: tcd/gtcd.c:502 tcd/gtcd.c:503 tcd/gtcd.c:504
 msgid "(Scanning)"
 msgstr "(Сканирую)"
 
-#: tcd/gtcd.c:538
+#: tcd/gtcd.c:526
 msgid "No Disc"
 msgstr "Нет диска"
 
-#: tcd/gtcd.c:573
+#: tcd/gtcd.c:561
 msgid "Error"
 msgstr "Ошибка"
 
-#: tcd/gtcd.c:851
+#: tcd/gtcd.c:836
 msgid "Volume"
 msgstr "Том"
 
-#: tcd/gtcd.c:1023
+#: tcd/gtcd.c:1008
 msgid "Filename of the CD device"
 msgstr "Имя файла устройства CD"
 
-#: tcd/gtcd.c:1023
+#: tcd/gtcd.c:1008
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1010
 msgid "Play CD on startup"
 msgstr "Запускать CD при старте"
 
-#: tcd/gtracked.c:170
+#: tcd/gtracked.c:174
 msgid "Trk"
 msgstr "Трк"
 
-#: tcd/gtracked.c:170
+#: tcd/gtracked.c:174
 msgid "Time"
 msgstr "Время"
 
-#: tcd/gtracked.c:170
+#: tcd/gtracked.c:174
 msgid "Title"
 msgstr "Заглавие"
 
-#: tcd/gtracked.c:193
+#: tcd/gtracked.c:197
 msgid "Track Editor"
 msgstr "Редактор треков"
 
 #. Disc area
-#: tcd/gtracked.c:209
+#: tcd/gtracked.c:213
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Информация о диске (%02u:%02u минуты)"
 
-#: tcd/gtracked.c:218
+#: tcd/gtracked.c:222
 msgid "Artist / Title"
 msgstr "Автор / Заглавие"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:241
+#: tcd/gtracked.c:245
 msgid "Track Information"
 msgstr "Информация о Треке"
 
 #. Clear button
-#: tcd/gtracked.c:297
+#: tcd/gtracked.c:301
 msgid "Clear"
 msgstr "Очистить"
 
 #. Playlist button
-#: tcd/gtracked.c:302
+#: tcd/gtracked.c:306
 msgid "Playlist"
 msgstr "Список треков"
 
-#: tcd/gtracked.c:314
+#: tcd/gtracked.c:318
 msgid "Submit"
 msgstr "Передать"
 
-#: tcd/gtracked.c:375
+#: tcd/gtracked.c:380
 msgid "Submit Information"
 msgstr "Передать информацию"
 
-#: tcd/gtracked.c:381
+#: tcd/gtracked.c:386
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -412,16 +508,16 @@ msgstr ""
 "Передать информацию о\n"
 "'%s'"
 
-#: tcd/gtracked.c:390
+#: tcd/gtracked.c:395
 msgid "To: "
 msgstr "По адресу:"
 
 #. end of service menu
-#: tcd/gtracked.c:422
+#: tcd/gtracked.c:427
 msgid "Category: "
 msgstr "Категория: "
 
-#: tcd/linux-cdrom.c:617
+#: tcd/linux-cdrom.c:618
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -438,11 +534,11 @@ msgstr ""
 "\n"
 "Причина:  %s\n"
 
-#: tcd/linux-cdrom.c:686
+#: tcd/linux-cdrom.c:687
 msgid "Unknown / Unknown"
 msgstr "Неизвестный / Неизвестный"
 
-#: tcd/linux-cdrom.c:692
+#: tcd/linux-cdrom.c:693
 #, c-format
 msgid "Track %d"
 msgstr "Трек %d"
@@ -593,9 +689,3 @@ msgstr "Имя машины: %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Индикатор громкости"
-
-#~ msgid "About..."
-#~ msgstr "О..."
-
-#~ msgid "Click here to change:"
-#~ msgstr "Новая клавишная команда:"
