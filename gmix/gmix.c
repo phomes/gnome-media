@@ -1084,7 +1084,7 @@ void open_dialog(void)
 	
 	int i;
 
-	app = gnome_app_new ("gmix", _("Volume Control") );
+	app = gnome_app_new ("gnome-volume-control", _("Volume Control") );
 	gtk_widget_realize (app);
 	gtk_signal_connect (GTK_OBJECT (app), "delete_event",
 			    GTK_SIGNAL_FUNC (quit_cb),
