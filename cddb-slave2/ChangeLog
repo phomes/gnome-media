@@ -1,3 +1,10 @@
+2003-10-05  Ted Gould      <ted@gould.cx>
+
+	* cddb-slave-capplet.c:  Removing a signal connection
+	to an object that wasn't created.  Signal was being
+	attached twice.  Bug # 123390.  Reported and fixed
+	by Pav Lucistnik.
+
 2003-08-04  Ted Gould      <ted@gould.cx>
 
 	* cddb-slave-capplet.c:  More HIGification from
