@@ -27,6 +27,7 @@ static GtkDrawingAreaClass *parent_class = NULL;
 
 typedef struct _CDImage {
 	GdkPixbuf *pixbuf;
+	GdkPixbuf *scaled;
 	GdkRectangle rect;
 } CDImage;
 
@@ -58,6 +59,18 @@ free_cd_text (GnomeCDText *text)
 	g_object_unref (text->layout);
 
 	g_free (text);
+}
+
+static void
+scale_image (CDImage *image)
+{
+	if (image->scaled != NULL) {
+		g_object_unref (image->scaled);
+	}
+
+	image->scaled = gdk_pixbuf_scale_simple (image->pixbuf,
+						 image->rect.width, 16,
+						 GDK_INTERP_BILINEAR);
 }
 
 static void
@@ -97,11 +110,15 @@ size_allocate (GtkWidget *drawing_area,
 
 	priv->straights[TOP]->rect.width = allocation->width - 32;
 	priv->straights[BOTTOM]->rect.width = allocation->width - 32;
+	scale_image (priv->straights[TOP]);
+	scale_image (priv->straights[BOTTOM]);
+
 	priv->straights[LEFT]->rect.height = allocation->height - 32;
 	priv->straights[RIGHT]->rect.height = allocation->height - 32;
 
 	priv->middle->rect.width = allocation->width - 32;
 	priv->middle->rect.height = allocation->height - 32;
+	scale_image (priv->middle);
 	
 	GTK_WIDGET_CLASS (parent_class)->size_allocate (drawing_area, allocation);
 }
@@ -133,6 +150,35 @@ size_request (GtkWidget *widget,
 	requisition->height = height + (2 * Y_OFFSET);
 }
 
+static void
+draw_pixbuf (GdkPixbuf *pixbuf,
+	     GdkDrawable *drawable,
+	     GdkGC *gc,
+	     int src_x, int src_y,
+	     int dest_x, int dest_y,
+	     int width, int height)
+{
+	if (gdk_pixbuf_get_has_alpha (pixbuf)) {
+		gdk_draw_rgb_32_image (drawable, gc,
+				       dest_x, dest_y,
+				       width, height,
+				       GDK_RGB_DITHER_MAX,
+				       gdk_pixbuf_get_pixels (pixbuf) +
+				       (src_y * gdk_pixbuf_get_rowstride (pixbuf)) +
+				       (src_x * gdk_pixbuf_get_n_channels (pixbuf)),
+				       gdk_pixbuf_get_rowstride (pixbuf));
+	} else {
+		gdk_draw_rgb_image (drawable, gc,
+				    dest_x, dest_y,
+				    width, height,
+				    GDK_RGB_DITHER_MAX,
+				    gdk_pixbuf_get_pixels (pixbuf) +
+				    (src_y * gdk_pixbuf_get_rowstride (pixbuf)) +
+				    (src_x * gdk_pixbuf_get_n_channels (pixbuf)),
+				    gdk_pixbuf_get_rowstride (pixbuf));
+	}
+}
+	     
 static gboolean
 expose_event (GtkWidget *drawing_area,
 	      GdkEventExpose *event)
@@ -158,44 +204,28 @@ expose_event (GtkWidget *drawing_area,
 			GdkGC *gc;
 
 			gc = gdk_gc_new (drawing_area->window);
-			gdk_pixbuf_render_to_drawable (priv->corners[i]->pixbuf,
-						       drawing_area->window, gc,
-						       inter.x - priv->corners[i]->rect.x,
-						       inter.y - priv->corners[i]->rect.y,
-						       inter.x, inter.y,
-						       inter.width, inter.height,
-						       GDK_RGB_DITHER_NORMAL,
-						       0, 0);
-			gdk_gc_unref (gc);
+			draw_pixbuf (priv->corners[i]->pixbuf,
+				     drawing_area->window,
+				     drawing_area->style->black_gc,
+				     inter.x - priv->corners[i]->rect.x,
+				     inter.y - priv->corners[i]->rect.y,
+				     inter.x, inter.y,
+				     inter.width, inter.height);
+			g_object_unref (gc);
 		}
 	}
 
 	for (i = TOP; i <= BOTTOM; i++) {
 		GdkRectangle inter;
 
-		if (gdk_rectangle_intersect (area, &priv->straights[i]->rect, &inter) == TRUE) {
-			GdkGC *gc;
-			GdkPixbuf *line;
-			
-			gc = gdk_gc_new (drawing_area->window);
-
-			/* Rescale pixbuf */
-			line = gdk_pixbuf_scale_simple (priv->straights[i]->pixbuf,
-							priv->straights[i]->rect.width,
-							priv->straights[i]->rect.height,
-							GDK_INTERP_BILINEAR);
-
-			/* Draw */
-			gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
-						       inter.x - priv->straights[i]->rect.x,
-						       inter.y - priv->straights[i]->rect.y,
-						       inter.x + 16, inter.y,
-						       inter.width, inter.height,
-						       GDK_RGB_DITHER_NORMAL,
-						       0, 0);
-
-			gdk_pixbuf_unref (line);
-			gdk_gc_unref (gc);
+		if (gdk_rectangle_intersect (&priv->straights[i]->rect, area, &inter) == TRUE) {
+			draw_pixbuf (priv->straights[i]->scaled,
+				     drawing_area->window,
+				     drawing_area->style->black_gc,
+				     inter.x - priv->straights[i]->rect.x,
+				     inter.y - priv->straights[i]->rect.y,
+				     inter.x, inter.y,
+				     inter.width, inter.height);
 		}
 	}
 
@@ -210,44 +240,41 @@ expose_event (GtkWidget *drawing_area,
 			
 			gc = gdk_gc_new (drawing_area->window);
 			if (extra_s > 0) {
-				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
-							       drawing_area->window, gc,
-							       inter.x - priv->straights[i]->rect.x,
-							       16 - extra_s,
-							       inter.x, inter.y + 16,
-							       inter.width, extra_s,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->straights[i]->pixbuf,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->straights[i]->rect.x,
+					     16 - extra_s,
+					     inter.x, inter.y,
+					     inter.width, extra_s);
 			}
 
 			repeats = (inter.height - extra_s) / 16;
 			extra_end = (inter.height - extra_s) % 16;
 			
 			for (j = 0; j < repeats; j++) {
-				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
-							       drawing_area->window, gc,
-							       inter.x - priv->straights[i]->rect.x,
-							       0,
-							       inter.x,
-							       inter.y + 16 + (j * 16) + extra_s,
-							       inter.width, 16,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->straights[i]->pixbuf,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->straights[i]->rect.x,
+					     0,
+					     inter.x,
+					     inter.y + (j * 16) + extra_s,
+					     inter.width, 16);
 			}
 
 			if (extra_end > 0) {
-				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
-							       drawing_area->window, gc,
-							       inter.x - priv->straights[i]->rect.x,
-							       0,
-							       inter.x,
-							       inter.y + 16 + (repeats * 16) + extra_s,
-							       inter.width, extra_end,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->straights[i]->pixbuf,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->straights[i]->rect.x,
+					     0,
+					     inter.x,
+					     inter.y + (repeats * 16) + extra_s,
+					     inter.width, extra_end);
 			}
 
-			gdk_gc_unref (gc);
+			g_object_unref (gc);
 		}
 	}
 							       
@@ -256,59 +283,50 @@ expose_event (GtkWidget *drawing_area,
 		GdkRectangle inter;
 		if (gdk_rectangle_intersect (area, &priv->middle->rect, &inter) == TRUE) {
 			GdkGC *gc;
-			GdkPixbuf *line;
 			int repeats, extra_s, extra_end, j, d;
-
-			/* Rescale pixbuf - Keep height at 16 */
-			line = gdk_pixbuf_scale_simple (priv->middle->pixbuf,
-							priv->middle->rect.width,
-							16, GDK_INTERP_BILINEAR);
 
 			d = inter.y / 16;
 			extra_s = inter.y - (d * 16);
 			
 			gc = gdk_gc_new (drawing_area->window);
 			if (extra_s > 0) {
-				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
-							       inter.x - priv->middle->rect.x,
-							       16 - extra_s,
-							       inter.x + 16, inter.y + 16,
-							       inter.width, extra_s,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->middle->scaled,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->middle->rect.x,
+					     16 - extra_s,
+					     inter.x, inter.y,
+					     inter.width, extra_s);
 			}
 
 			repeats = (inter.height - extra_s) / 16;
 			extra_end = (inter.height - extra_s) % 16;
 			
 			for (j = 0; j < repeats; j++) {
-				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
-							       inter.x - priv->middle->rect.x,
-							       0,
-							       inter.x + 16,
-							       inter.y + 16 + (j * 16) + extra_s,
-							       inter.width, 16,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->middle->scaled,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->middle->rect.x,
+					     0,
+					     inter.x,
+					     inter.y + (j * 16) + extra_s,
+					     inter.width, 16);
 			}
 
 			if (extra_end > 0) {
-				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
-							       inter.x - priv->middle->rect.x,
-							       0,
-							       inter.x + 16,
-							       inter.y + 16 + (repeats * 16) + extra_s,
-							       inter.width, extra_end,
-							       GDK_RGB_DITHER_NORMAL,
-							       0, 0);
+				draw_pixbuf (priv->middle->scaled,
+					     drawing_area->window,
+					     drawing_area->style->black_gc,
+					     inter.x - priv->middle->rect.x,
+					     0,
+					     inter.x,
+					     inter.y + (repeats * 16) + extra_s,
+					     inter.width, extra_end);
 			}
 
-			gdk_pixbuf_unref (line);
-			gdk_gc_unref (gc);
+			g_object_unref (gc);
 		}
 	}
-	
-	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], area);
 
 	context = pango_layout_get_context (priv->layout[0]->layout);
 	base_dir = pango_context_get_base_dir (context);
@@ -329,8 +347,6 @@ expose_event (GtkWidget *drawing_area,
 		height += priv->layout[i]->height;
 	}
 
-	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], NULL);
-
 	return TRUE;
 }
 
@@ -348,6 +364,8 @@ finalize (GObject *object)
 		return;
 	}
 
+	/* FIXME: Free the CDImages here */
+	
 	for (i = 0; i < CD_DISPLAY_END; i++) {
 		free_cd_text (priv->layout[i]);
 	}
@@ -427,9 +445,10 @@ cd_image_new (const char *filename,
 		g_free (image);
 		return NULL;
 	}
-	
-	image->rect.x = 0;
-	image->rect.y = 0;
+
+	image->scaled = NULL;
+	image->rect.x = x;
+	image->rect.y = y;
 	image->rect.width = gdk_pixbuf_get_width (image->pixbuf);
 	image->rect.height = gdk_pixbuf_get_height (image->pixbuf);
 

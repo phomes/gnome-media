@@ -1,5 +1,16 @@
 2002-01-13  Iain Holmes  <iain@ximian.com>
 
+	* display.c (draw_pixbuf): Add helper function so I can change how
+	the pixbufs are drawn without having to change it in many places.
+	(expose_event): Use draw_pixbuf. Remove the GC creations. Don't scale
+	the pixbufs here, use the pre-calculated scaled ones.
+	(scale_image): Scale the image to the size required.
+	(size_allocate): Scale the image.
+	(cd_image_new): Set the scaled pixbuf to NULL and set the x and y
+	correctly.
+
+2002-01-13  Iain Holmes  <iain@ximian.com>
+
 	* display.c (expose_event): Don't fill the area with black.
 
 	* images/Theme-Limitations: Document describing themes
