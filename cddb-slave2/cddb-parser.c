@@ -192,6 +192,7 @@ cddb_entry_new (const char *discid,
 	entry = g_new0 (CDDBEntry, 1);
 
 	entry->discid = g_strdup (discid);
+	entry->realdiscid = g_strdup (discid);
 	entry->ntrks = ntrks;
   	entry->offsets = g_new (int, entry->ntrks);
 	entry->lengths = g_new (int, entry->ntrks);
