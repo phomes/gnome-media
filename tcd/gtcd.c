@@ -968,6 +968,7 @@ void setup_keys()
 int main (int argc, char *argv[])
 {
     GtkWidget *table;
+    GdkColor black;
 
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
@@ -1006,6 +1007,9 @@ int main (int argc, char *argv[])
     gnome_app_set_contents(GNOME_APP(window), main_box);
     adjust_status_size();
     gtk_widget_show_all(window);
+
+    gdk_color_black( gtk_widget_get_colormap(status_area), &black);
+    gdk_window_set_background( status_area->window, &black);
     
     signal(SIGUSR2, reload_info);
     
