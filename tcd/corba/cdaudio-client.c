@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
 	}
     }
     cdaudio_client = goad_server_activate(chosen, GOAD_ACTIVATE_SHLIB);
-    sleep (5);
 
     if(cdaudio_client == CORBA_OBJECT_NIL)
     {

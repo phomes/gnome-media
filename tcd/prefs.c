@@ -365,7 +365,8 @@ GtkWidget *create_page()
     gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);
     
     /* general frame */
-    general_frame = gtk_frame_new(_("General"));
+    general_frame = gtk_frame_new(NULL);
+    gtk_frame_set_shadow_type(GTK_FRAME(general_frame), GTK_SHADOW_NONE);
     gtk_container_border_width(GTK_CONTAINER(general_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(general_frame), create_general_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), general_frame, 1, 2, 0, 2);
