@@ -320,9 +320,14 @@ create_mixer_widget (GstMixer *mixer)
   tablepos = 0;
   tracks = gst_mixer_list_tracks (mixer);
   for ( ; tracks != NULL; tracks = tracks->next) {
-    create_track_widget (mixer, table, tablepos,
-			 (GstMixerTrack *) tracks->data);
-    tablepos += ((GstMixerTrack *) tracks->data)->num_channels;
+    GstMixerTrack *track = GST_MIXER_TRACK (tracks->data);
+
+    /* hack */
+    if (track->min_volume == track->max_volume)
+      continue;
+
+    create_track_widget (mixer, table, tablepos, track);
+    tablepos += track->num_channels;
     if (tracks->next != NULL) {
       GtkWidget *sep = gtk_vseparator_new ();
       gtk_table_attach_defaults (GTK_TABLE (table), sep,
