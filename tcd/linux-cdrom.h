@@ -194,6 +194,6 @@ void 	parse_dtitle(cd_struct *cd);
 enum { STOPPED=0, PLAYING, PAUSED, NODISC, STATUS_END } DriveStatus;
 enum { REPEAT_CD=0, REPEAT_TRK, NORMAL, SHUFFLE, PLAY_METHOD_END } PlayMethod;
 
-#define C(index)	((index)>(MAXTRACKS-1)?0:(index))
+#define C(index)	(index)
 
 #endif /* TCD_CDROM_H */					
