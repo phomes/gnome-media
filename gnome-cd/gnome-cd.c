@@ -36,6 +36,7 @@ static char *cd_option_device = NULL;
 
 static gboolean cd_option_unique = FALSE;
 static gboolean cd_option_play = FALSE;
+static gboolean cd_option_tray = FALSE;
 
 /* Popup Menu*/
 static GtkWidget *popup_menu = NULL;
@@ -371,115 +372,113 @@ popup_menu_detach (GtkWidget *attach_widget,
 }
 
 void
-make_popup_menu (GnomeCD *gcd, GdkEventButton *event)
+make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 {
-	int i;
+	int i, no_of_menu_items;
 	GnomeCDRomStatus *status = NULL;
 
-    if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) {
-    }
+	if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) {
+	}
 	
 	if (!GTK_WIDGET_REALIZED (gcd->display)) {
-       	goto cleanup;
-    }
-	if (popup_menu) {
+		if (!iconify)
+		       	goto cleanup;
+    	}
+
+	if (popup_menu) 
        	gtk_widget_destroy (popup_menu);
-    }
 	
 	popup_menu = gtk_menu_new ();
 	gtk_menu_attach_to_widget (GTK_MENU (popup_menu),
                                GTK_WIDGET (gcd->display),
                                popup_menu_detach);
+	if (iconify == TRUE)
+		no_of_menu_items = 4;
+	else
+		no_of_menu_items = 6;
 	
-	for (i = 0; menuitems[i].name != NULL; i++) {
+	for (i = 0; i <= no_of_menu_items; i++) {
 		GtkWidget *item, *image;
-	    gchar *icon_name;
+		gchar *icon_name;
 
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
 	        
 		/* If status is play, display the pause icon else display the play icon */
-        if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 2) {
-            icon_name = GNOME_CD_PAUSE;
-		} else {
-          icon_name = menuitems[i].icon;
-		}
-	    
+        	if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 2) 
+	        	icon_name = GNOME_CD_PAUSE;
+		else 
+		        icon_name = menuitems[i].icon;
+		
 		if (icon_name != NULL) {
-	        char *ext = strrchr (icon_name, '.');
-	        if (ext == NULL) {
-	           image = gtk_image_new_from_stock (icon_name,
-	    	                             GTK_ICON_SIZE_MENU);
-	        } else {
-	          char *fullname;
-	          fullname = gnome_program_locate_file (NULL,
-              		     GNOME_FILE_DOMAIN_PIXMAP, icon_name,
-                	     TRUE, NULL);
-              if (fullname != NULL) {
-                  image = gtk_image_new_from_file (fullname);
-              } else {
-                image = NULL;
-               	}
-              
-			  g_free (fullname);
+	        	char *ext = strrchr (icon_name, '.');
+	        if (ext == NULL) 
+			image = gtk_image_new_from_stock (icon_name, GTK_ICON_SIZE_MENU);
+	        else {
+			char *fullname;
+			fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+			                                      icon_name, TRUE, NULL);
+			if (fullname != NULL) 
+                		image = gtk_image_new_from_file (fullname);
+			else 
+                		image = NULL;
+        	       	       
+			g_free (fullname);
 	     	}
-        }
+        	}
 		
 		if (image != NULL) {
 			gtk_widget_show (image);
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
-		}
+	}
 
-		if (status->cd == GNOME_CDROM_STATUS_OK) {
-            /* Previous menuitem is sensitive when it is  not the first track and
-               we're playing */
-            if (i == 0) {
-                if (status->track <= 1 && 
-					 (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio ==GNOME_CDROM_AUDIO_COMPLETE)) {
-                    gtk_widget_set_sensitive (item, FALSE);
-                } else {
-                  gtk_widget_set_sensitive (item, TRUE);
-                }
-            }
+	if (status->cd == GNOME_CDROM_STATUS_OK) {
+        /* Previous menuitem is sensitive when it is  not the first track and
+        we're playing */
+        	if (i == 0) {
+                	if (status->track <= 1 && 
+			   (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio ==GNOME_CDROM_AUDIO_COMPLETE)) 
+				gtk_widget_set_sensitive (item, FALSE);
+                else 
+                	  gtk_widget_set_sensitive (item, TRUE);
+                
+            	}
+
             /* Next menuitem is sensitive when this is not the last track */
-            if (i == 3) {
-                if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) {
-                    gtk_widget_set_sensitive (item, FALSE);
-                } else {
-                 gtk_widget_set_sensitive (item, TRUE);
+		if (i == 3) {
+	                if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) 
+        	        	gtk_widget_set_sensitive (item, FALSE);
+                else 
+                	 gtk_widget_set_sensitive (item, TRUE);
                 }
-            }
         }
 		
 		/* Disable the first four menu items when no disc is inserted
 		 * Update as per the buttons on the main window
 		 */
-		if (status->cd == GNOME_CDROM_STATUS_NO_DISC && i < 4) {
+		if (status->cd == GNOME_CDROM_STATUS_NO_DISC && i < 4) 
 	       	gtk_widget_set_sensitive (item, FALSE);
-        }
-
+        
 		gtk_widget_show (item);
 
 		gtk_menu_shell_append ((GtkMenuShell *)(popup_menu), item);
-		if (menuitems[i].callback != NULL) {
-			g_signal_connect (G_OBJECT (item), "activate",
-	        G_CALLBACK (menuitems[i].callback), gcd);
-		}
+		if (menuitems[i].callback != NULL) 
+			g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (menuitems[i].callback), gcd);
+		
 	}
 	
 	if (event != NULL) {
-    	gtk_menu_popup (GTK_MENU (popup_menu),
+   	gtk_menu_popup (GTK_MENU (popup_menu),
     	                NULL, NULL,
     	                NULL, NULL,
     	                event->button,
     	                event->time);
    	} else {
-      gtk_menu_popup (GTK_MENU (popup_menu),
-                      NULL, NULL,
-                      NULL, NULL,
-        	          0,
-    	              gtk_get_current_event_time ());
-    }
-    cleanup:
+	gtk_menu_popup (GTK_MENU (popup_menu),
+			NULL, NULL,
+			NULL, NULL,
+			0, gtk_get_current_event_time ());
+    	}
+	cleanup:
         g_free (status);
 }
 
@@ -965,6 +964,8 @@ main (int argc, char *argv[])
 		  N_("Only start if there isn't already a CD player application running"), NULL },
 		{ "play",   '\0', POPT_ARG_NONE, &cd_option_play, 0,
 		  N_("Play the CD on startup"), NULL },
+		{ "tray", '\0', POPT_ARG_NONE, &cd_option_tray, 0,
+		  N_("Start iconified to tray"), NULL},
 		{ NULL, '\0', 0, NULL, 0 },
 	};
 
@@ -1018,7 +1019,9 @@ main (int argc, char *argv[])
 		exit (0);
 	}
 
-	gtk_widget_show_all (gcd->window);
+	if (!cd_option_tray)
+		gtk_widget_show_all (gcd->window);
+
 	g_signal_connect (client, "die",
 			  G_CALLBACK (client_die), gcd);
 

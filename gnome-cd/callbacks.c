@@ -936,7 +936,7 @@ button_press_event_cb (GtkWidget *widget,
                 GnomeCD *gcd)
 {
     if ((event->button == 3) && !(event->state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK))) {
-        make_popup_menu (gcd, event);
+        make_popup_menu (gcd, event, FALSE);
         return TRUE;
     }
     return FALSE;
@@ -946,7 +946,7 @@ button_press_event_cb (GtkWidget *widget,
 gboolean
 popup_menu_cb (GtkWidget *widget, GnomeCD *gcd)
 {
-    make_popup_menu (gcd, NULL);
+    make_popup_menu (gcd, NULL, FALSE);
     return TRUE;
 }
 
@@ -962,6 +962,10 @@ tray_icon_clicked (GtkWidget *widget, GdkEventButton *event, GnomeCD *gcd)
 
 		return TRUE;
 	} else {
+	if (event->button == 3) {	
+		make_popup_menu(gcd, NULL, TRUE);
+		return TRUE;
+	}
 		return FALSE;
 	}
 }

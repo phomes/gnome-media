@@ -123,7 +123,7 @@ void theme_change_widgets (GnomeCD *gcd);
 void theme_free (GCDTheme *theme);
 
 void make_popup_menu (GnomeCD *gcd,
-                GdkEventButton *event);
+                GdkEventButton *event, gboolean iconify);
 
 void tray_icon_create (GnomeCD *gcd);
 GConfClient *client;
