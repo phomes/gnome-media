@@ -35,7 +35,7 @@ static GtkWidget *pref_window=NULL;
 void load_prefs(tcd_prefs *prop);
 void save_prefs(tcd_prefs *prop);
 void changed_cb(GtkWidget *widget, void *data);
-void color_set_cb(GnomeColorPicker *cp, int pr, int pg, int pb);
+void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb);
 void start_toggle_cb(GtkWidget *widget, gpointer data);
 void check_changed_cb(GtkWidget *widget, gboolean *data);
 GtkWidget *create_start_frame(void);
@@ -93,13 +93,12 @@ void changed_cb(GtkWidget *widget, void *data)
     gnome_property_box_changed(GNOME_PROPERTY_BOX(pref_window));
 }
 
-void color_set_cb(GnomeColorPicker *cp, int pr, int pg, int pb)
+void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
 {
-    gnome_color_picker_get_i8(cp, 
-			      &prefs.trackcolor_r, 
-			      &prefs.trackcolor_g, 
-			      &prefs.trackcolor_b,
-			      NULL);
+    prefs.trackcolor_r = pr;
+    prefs.trackcolor_g = pg;
+    prefs.trackcolor_b = pb;
+
     changed_cb(NULL, NULL);
 }
 
