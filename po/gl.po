@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-05-15 19:52+0200\n"
-"PO-Revision-Date: 2000-05-15 19:53+0200\n"
+"POT-Creation-Date: 2000-05-16 20:49+0200\n"
+"PO-Revision-Date: 2000-05-16 20:50+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Este é o mesturador para os dispositivos de son OSS"
 msgid "GNOME Sound recorder:"
 msgstr "Gravador de Son de GNOME:"
 
-#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:974
+#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:1038
 msgid "Could not fork child process"
 msgstr "Non se puido crea-lo proceso fillo"
 
@@ -267,17 +267,17 @@ msgstr "Reproducindo..."
 msgid "Converting file..."
 msgstr "Convertendo ficheiro..."
 
-#: grecord/src/grec.c:240 grecord/src/grec.c:658 grecord/src/gui.c:330
+#: grecord/src/grec.c:240 grecord/src/grec.c:682 grecord/src/gui.c:330
 #: grecord/src/preferences.c:394
 msgid "Audioformat: "
 msgstr "Formato de Audio: "
 
-#: grecord/src/grec.c:244 grecord/src/grec.c:644 grecord/src/gui.c:337
+#: grecord/src/grec.c:244 grecord/src/grec.c:668 grecord/src/gui.c:337
 #: grecord/src/preferences.c:398
 msgid "Sample rate: "
 msgstr "Frecuencia de mostraxe: "
 
-#: grecord/src/grec.c:254 grecord/src/grec.c:648 grecord/src/gui.c:344
+#: grecord/src/grec.c:254 grecord/src/grec.c:672 grecord/src/gui.c:344
 #: grecord/src/preferences.c:402
 msgid "Channels: "
 msgstr "Canles: "
@@ -286,46 +286,78 @@ msgstr "Canles: "
 msgid "Select a sound file"
 msgstr "Escoller un ficheiro de son"
 
-#: grecord/src/grec.c:313
-msgid "Error saving sound file!"
-msgstr "¡Erro gardando o ficheiro de son!"
-
-#: grecord/src/grec.c:401
+#: grecord/src/grec.c:397
 msgid "GNOME Sound recorder web page"
 msgstr "Páxina web do Gravador de Son de GNOME"
 
-#: grecord/src/grec.c:507
+#: grecord/src/grec.c:503
 msgid "Undoing all..."
 msgstr "Desfacendo todo..."
 
-#: grecord/src/grec.c:610
+#: grecord/src/grec.c:609
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please select a soundfile to be opened."
+msgstr ""
+"'%s' é un directorio.\n"
+"Escolla un ficheiro de son para abrir."
+
+#: grecord/src/grec.c:621
+#, c-format
+msgid ""
+"File '%s' doesn't exist.\n"
+"Please select a existing soundfile to be opened."
+msgstr ""
+"O ficheiro '%s' non existe.\n"
+"Escolla un ficheiro de son que exista para abrir."
+
+#: grecord/src/grec.c:633
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son válido."
 
-#: grecord/src/grec.c:675
+#: grecord/src/grec.c:706
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please enter another filename."
+msgstr ""
+"'%s' é un directorio.\n"
+"Introduza outro nome de ficheiro."
+
+#: grecord/src/grec.c:716
+#, c-format
+msgid ""
+"File '%s' already exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"O ficheiro '%s' xa existe.\n"
+"¿Quere sobrescribilo?"
+
+#: grecord/src/grec.c:731
 msgid "Error saving sound file"
 msgstr "Erro gardando o ficheiro de son"
 
-#: grecord/src/grec.c:705
+#: grecord/src/grec.c:767
 msgid "File not saved. Do you want to save it?"
 msgstr "Ficheiro non gardado. ¿Quere gardalo?"
 
 #. Save the file
-#: grecord/src/grec.c:724
+#: grecord/src/grec.c:786
 msgid "Saving..."
 msgstr "Gardando..."
 
-#: grecord/src/grec.c:835
+#: grecord/src/grec.c:897
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "¡O tamaño da gravación actual é maior que %i Mb!"
 
-#: grecord/src/grec.c:883
+#: grecord/src/grec.c:945
 msgid "Save sound file"
 msgstr "Gardar ficheiro de son"
 
-#: grecord/src/grec.c:1033
+#: grecord/src/grec.c:1097
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -1155,3 +1187,6 @@ msgstr "O servidor é %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Contador de Volume"
+
+#~ msgid "Error saving sound file!"
+#~ msgstr "¡Erro gardando o ficheiro de son!"
