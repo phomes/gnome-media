@@ -1,3 +1,4 @@
+SUBDIRS = help
 bin_PROGRAMS = gstreamer-properties
 
 gstreamer_properties_LDADD = $(GSTPROPS_LIBS)
