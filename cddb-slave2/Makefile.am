@@ -20,7 +20,8 @@ IDL_GENERATED =					\
 GNOME_Media_CDDBSlave2-impl.o: GNOME_Media_CDDBSlave.h
 
 $(IDL_GENERATED): $(IDLS)
-	$(ORBIT_IDL) -I $(srcdir) -I $(datadir)/idl 	\
+	$(ORBIT_IDL) -I $(BONOBO_IDLDIR) -I $(BONOBO_ACT_IDLDIR)	\
+	-I $(srcdir) -I $(datadir)/idl 	\
 		$(srcdir)/GNOME_Media_CDDBSlave2.idl
 
 idldir = $(datadir)/idl

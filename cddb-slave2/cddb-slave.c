@@ -212,7 +212,7 @@ cddb_send_read (struct _CDDBRequest *request,
 	request->close_cb = cddb_close_data_cb;
 
 	gnome_vfs_async_open (&request->handle, request->uri,
-			      GNOME_VFS_OPEN_READ, cddb_open_cb, request);
+			      GNOME_VFS_OPEN_READ, GNOME_VFS_PRIORITY_MIN, cddb_open_cb, request);
 }
 
 /* Takes the string that the query returned, 
@@ -458,7 +458,7 @@ cddb_send_cmd (CDDBSlave *cddb,
 	g_hash_table_insert (pending_requests, request->discid, request);
 
 	gnome_vfs_async_open (&request->handle, request->uri,
-			      GNOME_VFS_OPEN_READ, cddb_open_cb, request);
+			      GNOME_VFS_OPEN_READ, GNOME_VFS_PRIORITY_MIN, cddb_open_cb, request);
 }
 
 static gboolean

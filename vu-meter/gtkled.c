@@ -46,8 +46,7 @@ enum {
 };
 
 GNOME_CLASS_BOILERPLATE (GtkLed, gtk_led,
-			 GtkMisc, gtk_misc,
-			 GTK_TYPE_MISC);
+			 GtkMisc, GTK_TYPE_MISC);
 
 void
 gtk_led_class_init (GtkLedClass *class)

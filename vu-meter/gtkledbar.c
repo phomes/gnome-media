@@ -34,8 +34,7 @@ static void led_bar_class_init (LedBarClass *klass);
 static void led_bar_instance_init (LedBar      *led_bar);
 
 GNOME_CLASS_BOILERPLATE (LedBar, led_bar,
-			 GtkVBox, gtk_vbox, 
-			 GTK_TYPE_VBOX);
+			 GtkVBox, GTK_TYPE_VBOX);
 
 static void
 led_bar_class_init (LedBarClass *class)

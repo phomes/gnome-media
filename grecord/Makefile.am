@@ -6,8 +6,8 @@ EXTRA_DIST = \
 	gnome-grecord.png
 
 Applicationsdir = $(datadir)/gnome/apps/Multimedia
-Applications_in_files = Soundrecorder.desktop.in 
-Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
+#Applications_in_files = Soundrecorder.desktop.in 
+#Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
 @INTLTOOL_SERVER_RULE@
 
 Mimedir = $(datadir)/mime-info

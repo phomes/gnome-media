@@ -20,8 +20,8 @@ gmix_SOURCES =	\
 gmix_LDADD = \
 	$(MEDIA_LIBS) $(INTLLIBS) $(GMIX_LIBS)
 
-Audio_in_files = gmix.desktop.in
-Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+#Audio_in_files = gmix.desktop.in
+#Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
 @INTLTOOL_SERVER_RULE@
 
 pixmap_DATA = gnome-mixer.png

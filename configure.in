@@ -52,7 +52,7 @@ PKG_CHECK_MODULES(MEDIA, glib-2.0 >= 1.3.7 gmodule-2.0 >= 1.3.7 \
 		  gnome-vfs-2.0 >= 1.1 libbonobo-2.0 >= 1.100.0	\
 		  libbonoboui-2.0 >= 1.97.0 \
 		  libgnome-2.0 >= 1.102.0 libgnomeui-2.0 >= 1.102.0
-		  bonobo-activation-2.0 >= 0.9.1)
+		  bonobo-activation-2.0 >= 0.9.1 esound >= 0.2.23)
 AC_SUBST(MEDIA_CFLAGS)
 AC_SUBST(MEDIA_LIBS)
 
@@ -64,6 +64,11 @@ AC_SUBST(CDDBSLAVE_CFLAGS)
 AC_SUBST(CDDBSLAVE_LIBS)
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
+
+BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir libbonobo-2.0`"
+AC_SUBST(BONOBO_IDLDIR)
+BONOBO_ACT_IDLDIR="`$PKG_CONFIG --variable=idldir bonobo-activation-2.0`"
+AC_SUBST(BONOBO_ACT_IDLDIR)
 
 ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
 AC_SUBST(ORBIT_IDL)

@@ -25,6 +25,6 @@ pixmap_DATA = $(BITMAPS)
 
 EXTRA_DIST = $(BITMAPS) vumeter.desktop.in reclevel.desktop.in README TODO
 
-Audio_in_files = vumeter.desktop.in reclevel.desktop.in
-Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+#Audio_in_files = vumeter.desktop.in reclevel.desktop.in
+#Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
 @INTLTOOL_SERVER_RULE@
