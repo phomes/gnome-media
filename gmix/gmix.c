@@ -618,6 +618,7 @@ open_device (int num)
 		return NULL;
 	}
 	
+	g_strdelimit (new_device->info.name, " ", '_');
 	new_device->card_name = g_strdup_printf ("OSS-%s-%d", new_device->info.name, num + 1);
 	
 	if (!g_ascii_isalpha (new_device->info.name[0])) {
