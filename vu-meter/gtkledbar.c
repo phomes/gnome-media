@@ -69,7 +69,7 @@ led_bar_init (LedBar *led_bar)
 }
 
 GtkWidget *
-led_bar_new (gint segments)
+led_bar_new (gint segments, gint orientation )
 {
   LedBar    *led_bar;
   GtkWidget *table;
@@ -82,7 +82,11 @@ led_bar_new (gint segments)
   if (segments > MAX_SEGMENTS)
     segments = MAX_SEGMENTS;
   led_bar->num_segments = segments;
-  table = gtk_table_new (1, segments, FALSE);
+  led_bar->orientation = orientation;
+  if ( !orientation ) /* horiz */
+      table = gtk_table_new (1, segments, FALSE);
+  else /* vert */
+      table = gtk_table_new (segments, 1, FALSE);
   gtk_container_add (GTK_CONTAINER (led_bar), table);
   gtk_widget_show (table);
   half = .50 * segments;
@@ -104,8 +108,13 @@ led_bar_new (gint segments)
 	  }
       led_bar->segments[i] = gtk_led_new ();
       gtk_led_set_colors (GTK_LED (led_bar->segments[i]), &active, &inactive);
-      gtk_table_attach_defaults (GTK_TABLE (table), led_bar->segments[i],
-				 i, (i + 1), 0, 1);
+
+      if ( !orientation ) /* horiz */
+	  gtk_table_attach_defaults (GTK_TABLE (table), led_bar->segments[i],
+				     i, (i + 1), 0, 1);
+      else /* vert */
+	  gtk_table_attach_defaults (GTK_TABLE (table), led_bar->segments[i],
+				     0, 1, (segments - i - 1), (segments - i) );
       gtk_widget_show (led_bar->segments[i]);
     }
 

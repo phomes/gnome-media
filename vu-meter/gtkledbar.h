@@ -49,6 +49,7 @@ struct _LedBar
   gint      lit_segments;         /* last segment that is lit */
   gint      seq_segment;          /* which led in the sequence we are at */
   gint      seq_dir;              /* direction */
+  gint      orientation;          /* horizontal (0), or vertical (1) */
 };
 
 struct _LedBarClass
@@ -57,7 +58,8 @@ struct _LedBarClass
 };
 
 guint         led_bar_get_type            (void);
-GtkWidget*    led_bar_new                 (gint       segments);
+GtkWidget*    led_bar_new                 (gint       segments,
+					   gint       orientation);
 gint          led_bar_get_num_segments    (GtkWidget  *bar);
 void          led_bar_light_segments      (GtkWidget  *bar,
 					   gint       num);

@@ -119,10 +119,13 @@ main (int argc, char *argv[])
   gint          i;
   gint          session_xpos = -1;
   gint          session_ypos = -1;
+  gint          orient = 0;
+
   const struct poptOption options[] = 
   {
      { NULL, 'x', POPT_ARG_INT, &session_xpos, 0, NULL, NULL },
      { NULL, 'y', POPT_ARG_INT, &session_ypos, 0, NULL, NULL },
+     { NULL, 'v', POPT_ARG_NONE, &orient, 0, NULL, NULL },
      { NULL, '\0', 0, NULL, 0 }
   };
   gnome_init_with_popt_table ("Volume Meter", "0.1", argc, argv, options, 
@@ -160,12 +163,16 @@ main (int argc, char *argv[])
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
   gtk_container_border_width (GTK_CONTAINER (frame), 4);
   gtk_container_add (GTK_CONTAINER (window), frame);
-  hbox = gtk_vbox_new (FALSE, 5);
+
+  if ( !orient ) 
+      hbox = gtk_vbox_new (FALSE, 5);
+  else
+      hbox = gtk_hbox_new (FALSE, 5);
   gtk_container_border_width (GTK_CONTAINER (hbox), 5);
   gtk_container_add (GTK_CONTAINER (frame), hbox);
   for (i = 0; i < 2; i++)
     {
-      dial[i] = led_bar_new (25);
+      dial[i] = led_bar_new (25, orient);
       gtk_box_pack_start (GTK_BOX (hbox), dial[i], FALSE, FALSE, 0);
     }
   gtk_widget_show_all (window);
