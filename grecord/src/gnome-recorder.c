@@ -170,6 +170,7 @@ main (int argc,
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
 	/* Init GStreamer */
 	gst_init (&argc, &argv);
+	gst_scheduler_factory_set_default_name ("basicomega");
 
 	/* Init the icons */
 	init_stock_icons ();
