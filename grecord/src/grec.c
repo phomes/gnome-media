@@ -304,19 +304,15 @@ on_open_activate_cb (GtkWidget* widget, gpointer data)
 void
 on_save_activate_cb (GtkWidget* widget, gpointer data)
 {
-	if (file_changed || default_file) {
-		save_dialog ();
-		return;
-	}
+	/* Check if the current sample is a new (recorded) one */
+	is_file_default ();
 
-	if (!save_sound_file (active_file)) {
-		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file!"),
-							 GNOME_MESSAGE_BOX_WARNING,
-							 GNOME_STOCK_BUTTON_OK,
-							 NULL);
-		gtk_window_set_modal (GTK_WINDOW (mess), TRUE); 
-		gtk_widget_show (mess);
-	}
+	if (default_file)
+		save_dialog ();
+
+	/* No saving is needed, because the changes goes directly to the file. */
+	/* If you don't want to save the changes (when it ask you) or if you select */
+	/* 'undo all', it will copy a backup file back to the active file. */
 }
 
 void
@@ -667,27 +663,44 @@ void
 save_filename (GtkFileSelection* selector, gpointer file_selector)
 {
 	gchar* temp_string;
-	gchar* string;
+	gchar* new_file;
 
-	active_file = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector)));
+	new_file = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector)));
 
-	if (!save_sound_file (active_file)) {
+	if (!new_file) {
+		GtkWidget* mess = gnome_message_box_new (_("You havn't selected a file."),
+							 GNOME_MESSAGE_BOX_WARNING,
+							 GNOME_STOCK_BUTTON_OK,
+							 NULL);
+		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+		gtk_widget_show (mess);
+		g_free (new_file);
+		return;
+	}
+
+	if (!save_sound_file (new_file)) {
 		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
 							 GNOME_MESSAGE_BOX_WARNING,
 							 GNOME_STOCK_BUTTON_OK,
 							 NULL);
 		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
 		gtk_widget_show (mess);
+		g_free (new_file);
+		return;
 	}
 
 	if (active_file[1] == '/') {
-		string = g_strdup ((char *) strrchr (active_file, '/'));
+		gchar* tempstring;
+		gchar* string = g_strdup ((char *) strrchr (active_file, '/'));
 		string[1] = ' ';
 		temp_string = g_strconcat (_(maintopic), string, NULL);
-		gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), temp_string);
-		g_free (temp_string);
+		gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), tempstring);
+		g_free (tempstring);
 		g_free (string);
 	}
+
+	active_file = g_strdup (new_file);
+	g_free (new_file);
 	
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
 
@@ -713,12 +726,12 @@ save_dont_or_cancel (void)
 }
 
 gboolean
-save_sound_file (const gchar* file)
+save_sound_file (const gchar* filename)
 {
 	/* Check if the file is default (if it's been recorded) */
 	if (default_file) {
 		gchar* tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
-		gchar* command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
+		gchar* command = g_strconcat ("cp -f ", tfile, " ", filename, NULL);
 		
 		/* Save the file */
 		run_command (command, _("Saving..."));
@@ -907,6 +920,8 @@ save_dialog (void)
 	gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
 	
 	gtk_widget_show (filesel);
+
+	g_free (temp_file);
 }
 
 void
