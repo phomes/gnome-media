@@ -16,8 +16,9 @@ GnomeUIInfo gtcd_popup_menu[] =
     GNOMEUIINFO_ITEM(N_("Stop"), NULL, stop_cb, stop_m_xpm),
     GNOMEUIINFO_ITEM(N_("Eject"), NULL, eject_cb, eject_m_xpm),
     {GNOME_APP_UI_SEPARATOR},
-    GNOMEUIINFO_ITEM_STOCK(N_("About..."), NULL, about_cb, GNOME_STOCK_MENU_ABOUT),
+    GNOMEUIINFO_ITEM_STOCK(N_("Preferences..."), NULL, edit_window, GNOME_STOCK_MENU_PREF),
     GNOMEUIINFO_ITEM_STOCK(N_("Track Editor..."), NULL, edit_window, GNOME_STOCK_MENU_PROP),
+    GNOMEUIINFO_ITEM_STOCK(N_("About..."), NULL, about_cb, GNOME_STOCK_MENU_ABOUT),
     {GNOME_APP_UI_SEPARATOR},
     GNOMEUIINFO_ITEM_STOCK(N_("Quit"), NULL, quit_cb, GNOME_STOCK_MENU_QUIT),
     GNOMEUIINFO_END
