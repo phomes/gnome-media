@@ -2,6 +2,7 @@
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+	-I$(top_srcdir) \
 	-I$(top_srcdir)/intl \
 	$(GSR_CFLAGS)		\
 	-DDATADIR=\""$(datadir)"\"		\
