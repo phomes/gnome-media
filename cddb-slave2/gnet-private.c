@@ -33,7 +33,11 @@
  *
  **/
 GInetAddr*
+#ifdef ENABLE_IPV6
+gnet_private_inetaddr_sockaddr_new(const struct sockaddr_storage sa)
+#else
 gnet_private_inetaddr_sockaddr_new(const struct sockaddr sa)
+#endif
 {
   GInetAddr* ia = g_new0(GInetAddr, 1);
 
@@ -53,7 +57,11 @@ gnet_private_inetaddr_sockaddr_new(const struct sockaddr sa)
  *
  *  Returns: the sockaddr struct
  **/
+#ifdef ENABLE_IPV6
+struct sockaddr_storage
+#else
 struct sockaddr
+#endif
 gnet_private_inetaddr_get_sockaddr(const GInetAddr* ia)
 {
   g_assert(ia != NULL);

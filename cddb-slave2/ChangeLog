@@ -1,3 +1,57 @@
+2004-06-30 Archana Shah <archana.shah@wipro.com>
+
+	* inetaddr.c :(gnet_have_ipv6): Added to check for run time
+	  IPv6 support.
+
+	(gnet_gethostbyname): Used getaddrinfo to resolve IPv6 addresses.
+	  Changed the signature to accept sockaddr* argument instead of
+	  sockaddr_in*.
+
+	(gnet_gethostbyaddr): Used getaddrinfo to resolve IPv6 addresses.
+
+	(gnet_inetaddr_async_child): If IPv6 entry is found then changed
+	  to write that address as well.
+
+	(gnet_inetaddr_new_nonblock): Changed for IPv6 addresses and
+	  also fixed the illegal assignment into the constant pointer
+	  "name".
+
+	(gnet_inetaddr_get_name_async): Tries to resolve the name for
+	  the address, according to the address family and writes
+	  that to the pipe.
+
+	(gnet_inetaddr_new), 
+	(gnet_inetaddr_new_async),
+	(gnet_inetaddr_get_canonical_name),
+	(gnet_inetaddr_get_port),
+	(gnet_inetaddr_set_port),
+	(gnet_inetaddr_is_canonical),
+	(gnet_inetaddr_is_private),
+	(gnet_inetaddr_is_reserved),
+	(gnet_inetaddr_is_loopback),
+	(gnet_inetaddr_is_multicast):
+	  All are modified to deal with IPv6 addresses.
+
+	* tcp.c: (gnet_tcp_socket_new_async):
+	  Changed for IPv6.
+
+	* gnet-private.c:
+	(gnet_private_inetaddr_sockaddr_new),
+	(gnet_private_inetaddr_get_sockaddr): Changed to handle
+	  IPv6 modifications.
+
+	* socks-private.c: (gnet_private_negotiate_socks4),
+	(gnet_private_negotiate_socks5): Changed for IPv6.
+
+	* gnet-private.h: Added the prototype of gnet_have_ipv6(). Changed
+	  the prototype of function gnet_private_inetaddr_sockaddr_new() and
+	  definition of structure _GInetAddr and _GTcpSocket to have a field
+	  of type sockaddr_storage instead of sockaddr, if IPv6
+	  support is there. Also defined some IPv6 specific macros.
+
+	* socks-private.h: changed the definition of structures socks5_h
+	  and sokcs4_h to include field large enough to hold IPv6 address.
+
 2004-05-11  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* HACKING:

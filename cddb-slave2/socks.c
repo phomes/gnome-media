@@ -93,6 +93,38 @@ gnet_socks_get_server(void)
 	  int i;
 	  GInetAddr* addr;
 
+#ifdef ENABLE_IPV6
+	  char *loc;
+	  char *ep;
+	  int cnt = 0;
+
+	  for (i = 0; i < strlen (var) ; i++)
+	    if (var[i] == ':')
+	      cnt++; 
+
+	  if (cnt == 1)
+	    {
+	      loc = strrchr (var, ':');
+	      *loc = '\0';
+	      hostname = g_strndup (var, i);
+	      port = strtoul (&var[i+1], &ep, 10);
+	    }
+	  else
+	    {
+	      if (cnt != 0 && ((loc = strrchr ((var), ']')) != NULL))
+		{
+		  *loc = '\0';
+		  hostname = g_strdup (++var);
+		  port = strtoul (&var[i+1], &ep, 10);
+		}
+	      else
+		{
+		  hostname = g_strdup (var);
+		}
+
+	    }
+
+#else
 	  for (i = 0; var[i] && var[i] != ':'; ++i) ;
 	  if (i == 0) return NULL;
 	  hostname = g_strndup (var, i);
@@ -107,6 +139,7 @@ gnet_socks_get_server(void)
 		  return NULL;
 		}
 	    }
+#endif
 
 	  addr = gnet_inetaddr_new (hostname, port);
 

@@ -28,8 +28,12 @@
 
 /* **************************************** */
 
-static gboolean gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicename);
+static gboolean gnet_gethostbyname (const char* hostname, struct sockaddr* sa, gchar** nicename);
 static gchar* gnet_gethostbyaddr(const char* addr, size_t length, int type);
+
+#ifdef ENABLE_IPV6
+static int use_ipv6;
+#endif
 
 /* Testing stuff */
 /*  #undef   HAVE_GETHOSTBYNAME_R_GLIBC */
@@ -43,14 +47,61 @@ static gchar* gnet_gethostbyaddr(const char* addr, size_t length, int type);
 G_LOCK_DEFINE (gethostbyname);
 #endif
 
+#ifdef ENABLE_IPV6
+static gboolean
+gnet_have_ipv6 (void)
+{
+  int s;
+
+  s = socket (AF_INET6, SOCK_STREAM, 0);
+
+  if (s != -1)
+    {
+      close (s);
+      return TRUE;
+    }
+
+  return FALSE;
+}
+#endif
+
 /* Thread safe gethostbyname.  The only valid fields are sin_len,
    sin_family, and sin_addr.  Nice name */
 
 gboolean
-gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicename)
+gnet_gethostbyname(const char* hostname, struct sockaddr* sa, gchar** nicename)
 {
   gboolean rv = FALSE;
 
+#ifdef ENABLE_IPV6
+  if (gnet_have_ipv6 ())
+    {
+      struct addrinfo hints, *res, *result;
+
+      result = NULL;
+      memset (&hints, 0, sizeof (hints));
+      hints.ai_socktype = SOCK_STREAM;
+      hints.ai_flags = AI_CANONNAME;
+
+      if (!getaddrinfo (hostname, NULL, &hints, &result))
+	{
+	  /* got the address*/
+
+	  for (res = result ; res ; res= res->ai_next)
+	    if (res->ai_family == AF_INET6 || res->ai_family == AF_INET)
+	      break;
+
+	  if (res && sa)
+	    memcpy (sa, res->ai_addr, res->ai_addrlen);
+
+	  if (nicename && res && res->ai_canonname)
+	    *nicename = g_strdup (res->ai_canonname);
+
+	  freeaddrinfo (result);
+	  rv = TRUE;
+	}
+    }
+#endif
 #ifdef HAVE_GETHOSTBYNAME_R_GLIBC
   {
     struct hostent result_buf, *result;
@@ -74,8 +125,8 @@ gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicenam
 
     if (sa)
       {
-	sa->sin_family = result->h_addrtype;
-	memcpy(&sa->sin_addr, result->h_addr_list[0], result->h_length);
+	((struct sockaddr_in *)sa)->sin_family = result->h_addrtype;
+	memcpy(&((struct sockaddr_in *)sa)->sin_addr, result->h_addr_list[0], result->h_length);
       }
 
     if (nicename && result->h_name)
@@ -110,8 +161,8 @@ gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicenam
 
     if (sa)
       {
-	sa->sin_family = result->h_addrtype;
-	memcpy(&sa->sin_addr, result->h_addr_list[0], result->h_length);
+	((struct sockaddr_in *)sa)->sin_family = result->h_addrtype;
+	memcpy(&((struct sockaddr_in *)sa)->sin_addr, result->h_addr_list[0], result->h_length);
       }
 
     if (nicename && result->h_name)
@@ -136,8 +187,8 @@ gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicenam
       {
 	if (sa)
 	  {
-	    sa->sin_family = result.h_addrtype;
-	    memcpy(&sa->sin_addr, result.h_addr_list[0], result.h_length);
+	    ((struct sockaddr_in *)sa)->sin_family = result.h_addrtype;
+	    memcpy(&((struct sockaddr_in *)sa)->sin_addr, result.h_addr_list[0], result.h_length);
 	  }
 
 	if (nicename && result.h_name)
@@ -162,8 +213,8 @@ gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicenam
       {
 	if (sa)
 	  {
-	    sa->sin_family = he->h_addrtype;
-	    memcpy(&sa->sin_addr, he->h_addr_list[0], he->h_length);
+	    ((struct sockaddr_in *)sa)->sin_family = he->h_addrtype;
+	    memcpy(&((struct sockaddr_in *)sa)->sin_addr, he->h_addr_list[0], he->h_length);
 	  }
 
 	if (nicename && he->h_name)
@@ -206,8 +257,8 @@ gnet_gethostbyname(const char* hostname, struct sockaddr_in* sa, gchar** nicenam
       {
 	if (sa)
 	  {
-	    sa->sin_family = he->h_addrtype;
-	    memcpy(&sa->sin_addr, he->h_addr_list[0], he->h_length);
+	    ((struct sockaddr_in *)sa)->sin_family = he->h_addrtype;
+	    memcpy(&((struct sockaddr_in *)sa)->sin_addr, he->h_addr_list[0], he->h_length);
 	  }
 
 	if (nicename && he->h_name)
@@ -239,6 +290,26 @@ gnet_gethostbyaddr(const char* addr, size_t length, int type)
 {
   gchar* rv = NULL;
 
+#ifdef ENABLE_IPV6
+  if (gnet_have_ipv6 ())
+    {
+      struct addrinfo hints, *result;
+      char *name;
+
+      result = NULL;
+      memset (&hints, 0, sizeof (hints));
+      hints.ai_socktype = SOCK_STREAM;
+      hints.ai_flags = AI_CANONNAME;
+
+      if (!getaddrinfo (addr, NULL, &hints, &result))
+	{
+	  if (result->ai_canonname)
+	    name = g_strdup (result->ai_canonname);
+
+	  freeaddrinfo (result);
+	}
+    }
+#endif
 #ifdef HAVE_GETHOSTBYNAME_R_GLIBC
   {
     struct hostent result_buf, *result;
@@ -383,10 +454,54 @@ gnet_inetaddr_new (const gchar* name, gint port)
   struct sockaddr_in* sa_in;
   struct in_addr inaddr;
   GInetAddr* ia = NULL;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 *sa_in6;
+  struct in6_addr in6addr;
+  struct sockaddr_in6 addr6;
+#endif
 
   g_return_val_if_fail(name != NULL, NULL);
 
+  ia = g_new0(GInetAddr, 1);
+  ia->name = g_strdup (name);
+  ia->ref_count = 1;
+
   /* Try to read the name as if were dotted decimal */
+#ifdef ENABLE_IPV6
+  if (gnet_have_ipv6 ())
+    {
+      memset (&addr6, 0, sizeof (addr6));
+
+      if (inet_pton (AF_INET6, name, &in6addr) > 0)
+	{
+	  sa_in6 = (struct sockaddr_in6 *) &ia->sa;
+	  sa_in6->sin6_family = AF_INET6;
+	  sa_in6->sin6_port = g_htons (port);
+	  memcpy (&sa_in6->sin6_addr, &addr6.sin6_addr, sizeof (struct in6_addr));
+	}
+      else if (gnet_gethostbyname (name, (struct sockaddr *) &addr6, NULL))
+	{
+	  /* Try to get the host address */
+	  ia->name = g_strdup (name);
+	  if (addr6.sin6_family == AF_INET6)
+	    {
+	      sa_in6 = (struct sockaddr_in6 *) &ia->sa;
+	      sa_in6->sin6_family = AF_INET6;
+	      sa_in6->sin6_port = g_htons (port);
+	      memcpy (&sa_in6->sin6_addr, &addr6.sin6_addr, sizeof (struct in6_addr));
+	    }
+	  else
+	    {
+	      sa_in = (struct sockaddr_in *) &ia->sa;
+	      sa_in->sin_family = AF_INET;
+	      sa_in->sin_port = g_htons (port);
+	      memcpy (&sa_in->sin_addr, &((struct sockaddr_in *)&addr6)->sin_addr, sizeof (struct in_addr));
+	    }
+	}
+      return ia;
+    }
+  else
+#endif
   if (inet_pton(AF_INET, name, &inaddr) > 0)
     {
       ia = g_new0(GInetAddr, 1);
@@ -403,7 +518,7 @@ gnet_inetaddr_new (const gchar* name, gint port)
       struct sockaddr_in sa;
 
       /* Try to get the host by name (ie, DNS) */
-      if (gnet_gethostbyname(name, &sa, NULL))
+      if (gnet_gethostbyname(name, (struct sockaddr *)&sa, NULL))
 	{
 	  ia = g_new0(GInetAddr, 1);
 	  ia->name = g_strdup(name);
@@ -462,6 +577,9 @@ gnet_inetaddr_new_async (const gchar* name, gint port,
 {
   int pipes[2];
   GInetAddr* ia;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6* sa_in6;
+#endif
   struct sockaddr_in* sa_in;
   GInetAddrAsyncState* state;
 
@@ -545,9 +663,20 @@ gnet_inetaddr_new_async (const gchar* name, gint port,
   ia->name = g_strdup(name);
   ia->ref_count = 1;
 
-  sa_in = (struct sockaddr_in*) &ia->sa;
-  sa_in->sin_family = AF_INET;
-  sa_in->sin_port = g_htons(port);
+#ifdef ENABLE_IPV6
+  if (use_ipv6 == 1)
+    {
+      sa_in6 = (struct sockaddr_in6*) &ia->sa;
+      sa_in6->sin6_family = AF_INET6;
+      sa_in6->sin6_port = g_htons(port);
+    }
+  else
+#endif
+    {
+      sa_in = (struct sockaddr_in*) &ia->sa;
+      sa_in->sin_family = AF_INET;
+      sa_in->sin_port = g_htons(port);
+    }
 
   /* Create a structure for the call back */
   state->ia = ia;
@@ -573,16 +702,47 @@ gethostbyname_async_child (void* arg) /* pthread_create friendly */
   const char* name = (const char*) args[0];
   int outfd        = *(int*) args[1];
   struct sockaddr_in sa;
+  guchar size;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 sa6;
+#endif
 
   /* Try to get the host by name (ie, DNS) */
-  if (gnet_gethostbyname(name, &sa, NULL))
+
+#ifdef ENABLE_IPV6
+  memset (&sa6, 0, sizeof (sa6));
+
+  if (gnet_gethostbyname (name, (struct sockaddr *)&sa6, NULL))
     {
-      guchar size = 4;	/* FIX for IPv6 */
+      if (sa6.sin6_family == AF_INET6)
+	{
+	  size = 16;
+          use_ipv6 = 1;
+
+	  if ( (write (outfd, &size, sizeof (guchar)) == -1) ||
+               (write (outfd, &sa6.sin6_addr, size) == -1) )
+	      g_warning ("Problem writing to pipe\n");
+	}
+      else
+	{
+	  size = 4;
+	  use_ipv6 = 0;
+
+	  if ( (write (outfd, &size, sizeof (guchar)) == -1) ||
+               (write (outfd, &((struct sockaddr_in *)&sa6)->sin_addr, size) == -1) )
+	    g_warning ("Problem writing to pipe\n");
+	}
+    }
+#else
+  if (gnet_gethostbyname(name, (struct sockaddr *)&sa, NULL))
+    {
+      size = 4;	/* 16 for IPv6 */
 
       if ( (write(outfd, &size, sizeof(guchar)) == -1) ||
 	   (write(outfd, &sa.sin_addr, size) == -1) )
 	g_warning ("Problem writing to pipe\n");
     }
+#endif
   else
     {
       /* Write a zero */
@@ -630,10 +790,23 @@ gnet_inetaddr_new_async_cb (GIOChannel* iochannel,
              successful. */
 	  if (state->len > 1)
 	    {
-	      struct sockaddr_in* sa_in;
+#ifdef ENABLE_IPV6
+	      if (state->len == 17)
+		{
+		  struct sockaddr_in6 *sa_in6;
 
-	      sa_in = (struct sockaddr_in*) &state->ia->sa;
-	      memcpy(&sa_in->sin_addr, &state->buffer[1], (state->len - 1));
+		  sa_in6 = (struct sockaddr_in6 *) &state->ia->sa;
+		  sa_in6->sin6_family = AF_INET6;
+		  memcpy (&sa_in6->sin6_addr, &state->buffer[1], (state->len -1));
+		}
+	      else
+#endif
+		{
+		  struct sockaddr_in* sa_in;
+
+		  sa_in = (struct sockaddr_in*) &state->ia->sa;
+		  memcpy(&sa_in->sin_addr, &state->buffer[1], (state->len - 1));
+		}
 	    }
 
 	  /* Otherwise, we got a 0 because there was an error */
@@ -718,11 +891,33 @@ gnet_inetaddr_new_nonblock (const gchar* name, gint port)
   struct sockaddr_in* sa_in;
   struct in_addr inaddr;
   GInetAddr* ia = NULL;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 *sa_in6;
+  struct in6_addr in6addr;
+#endif
 
   g_return_val_if_fail (name, NULL);
 
   /* Try to read the name as if were dotted decimal */
  try_again:
+#ifdef ENABLE_IPV6
+  if (inet_pton (AF_INET6, name, &in6addr) > 0)
+    {
+      ia = g_new0 (GInetAddr, 0);
+
+      ia->ref_count = 1;
+      sa_in6 = (struct sockaddr_in6 *) &ia->sa;
+      sa_in6->sin6_family = AF_INET6;
+      sa_in6->sin6_port = g_htons (port);
+      memcpy (&sa_in6->sin6_addr, (char*) &in6addr, sizeof (struct in6_addr));
+    }
+  else if (!strcmp (name, "localhost"))
+    {
+      name = "::1";
+      goto try_again;
+    }
+  else
+#endif
   if (inet_pton(AF_INET, name, &inaddr) > 0)
     {
       ia = g_new0(GInetAddr, 1);
@@ -883,8 +1078,14 @@ gnet_inetaddr_get_name_async (GInetAddr* ia,
 
 	  /* Write the name to the pipe.  If we didn't get a name, we
              just write the canonical name. */
-	  if ((name = gnet_gethostbyaddr((char*) &((struct sockaddr_in*)&ia->sa)->sin_addr,
-					sizeof(struct in_addr), AF_INET)) != NULL)
+#ifdef ENABLE_IPV6
+	  if (GNET_INETADDR_FAMILY (ia) == AF_INET6)
+	    name = gnet_gethostbyaddr ((char *)&(GNET_SOCKADDR_IN6 (ia->sa).sin6_addr), sizeof (struct in6_addr), AF_INET6);
+	  else
+#endif
+	    name = gnet_gethostbyaddr((char*) &((struct sockaddr_in*)&ia->sa)->sin_addr, sizeof(struct in_addr), AF_INET);
+
+	  if (name != NULL)
 	    {
 	      guint lenint = strlen(name);
 
@@ -905,16 +1106,37 @@ gnet_inetaddr_get_name_async (GInetAddr* ia,
 	    }
 	  else
 	    {
-	      gchar buffer[INET_ADDRSTRLEN];	/* defined in netinet/in.h */
-	      guchar* p = (guchar*) &(GNET_SOCKADDR_IN(ia->sa).sin_addr);
 
-	      g_snprintf(buffer, sizeof(buffer),
-			 "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
-	      len = strlen(buffer);
-
-	      if ((write(pipes[1], &len, sizeof(len)) == -1) ||
-		  (write(pipes[1], buffer, len) == -1))
-		g_warning ("Problem writing to pipe\n");
+#if defined (ENABLE_IPV6)
+	      if (GNET_INETADDR_FAMILY (ia) == AF_INET6)
+		{
+		  gchar buffer6[INET6_ADDRSTRLEN];
+		   
+		  if (inet_ntop (AF_INET6, &(GNET_SOCKADDR_IN6 (ia->sa).sin6_addr), buffer6, INET6_ADDRSTRLEN))
+		    {
+		      len = strlen (buffer6);
+		      if ((write (pipes[1], &len, sizeof (len)) == -1) ||
+		          (write (pipes[1], buffer6, len) == -1))
+			g_warning ("Problem writing to pipe\n");
+		    }
+		 }
+	      else if (GNET_INETADDR_FAMILY(ia) == AF_INET)
+#endif
+		{
+		  gchar buffer[INET_ADDRSTRLEN];
+		  
+		  guchar* p = (guchar*) &(GNET_SOCKADDR_IN (ia->sa).sin_addr);
+						                                                                                             
+		  g_snprintf (buffer, sizeof (buffer),
+	                  "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
+		  len = strlen (buffer);
+	                                                                                   
+		  if ((write (pipes[1], &len, sizeof (len)) == -1) ||
+                      (write (pipes[1], buffer, len) == -1))
+		    {
+		      g_warning ("Problem writing to pipe\n");
+		    }
+		}
 	    }
 
 	  /* Close the socket */
@@ -1067,9 +1289,23 @@ gchar*
 gnet_inetaddr_get_canonical_name(const GInetAddr* ia)
 {
   gchar buffer[INET_ADDRSTRLEN];	/* defined in netinet/in.h */
-  guchar* p = (guchar*) &(GNET_SOCKADDR_IN(ia->sa).sin_addr);
+  guchar* p;
 
   g_return_val_if_fail (ia != NULL, NULL);
+
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (ia) == AF_INET6)
+    {
+      guchar buffer6[INET6_ADDRSTRLEN];
+
+      p = (guchar*)&(GNET_SOCKADDR_IN6 (ia->sa).sin6_addr);
+
+      if (inet_ntop (AF_INET6, &((GNET_SOCKADDR_IN6 (ia->sa)).sin6_addr), buffer6, sizeof (buffer6)))
+	return NULL;
+
+      return g_strdup (buffer6);
+    }
+#endif
 
   g_snprintf(buffer, sizeof(buffer),
 	     "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
@@ -1090,6 +1326,10 @@ gnet_inetaddr_get_port(const GInetAddr* ia)
 {
   g_return_val_if_fail(ia != NULL, -1);
 
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (ia) == AF_INET6)
+    return (gint) g_ntohs ((GNET_SOCKADDR_IN6 (ia->sa)).sin6_port);
+#endif
   return (gint) g_ntohs(((struct sockaddr_in*) &ia->sa)->sin_port);
 }
 
@@ -1107,7 +1347,12 @@ gnet_inetaddr_set_port(const GInetAddr* ia, guint port)
 {
   g_return_if_fail(ia != NULL);
 
-  ((struct sockaddr_in*) &ia->sa)->sin_port = g_htons(port);
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (ia) == AF_INET6)
+    (GNET_SOCKADDR_IN6 (ia->sa)).sin6_port = g_htons (port);
+  else
+#endif
+    ((struct sockaddr_in*) &ia->sa)->sin_port = g_htons(port);
 }
 
 
@@ -1132,6 +1377,14 @@ gnet_inetaddr_is_canonical (const gchar* name)
 
   g_return_val_if_fail (name, FALSE);
 
+#ifdef ENABLE_IPV6
+  {
+    struct in6_addr in6addr;
+
+    return ((inet_pton (AF_INET6, name, &in6addr) > 0) ||
+            (inet_pton (AF_INET, name, &inaddr) > 0));
+  }
+#endif
   return (inet_pton(AF_INET, name, &inaddr) > 0);
 }
 
@@ -1196,6 +1449,17 @@ gnet_inetaddr_is_private (const GInetAddr* inetaddr)
 
   g_return_val_if_fail (inetaddr != NULL, FALSE);
 
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (inetaddr) == AF_INET6)
+    {
+      if (IN6_IS_ADDR_LINKLOCAL (&((struct sockaddr_in6 *) &(inetaddr->sa))->sin6_addr) ||
+          IN6_IS_ADDR_SITELOCAL (&((struct sockaddr_in6 *) &(inetaddr->sa))->sin6_addr))
+	return TRUE;
+
+      return FALSE;
+    }
+#endif
+
   addr = GNET_SOCKADDR_IN(inetaddr->sa).sin_addr.s_addr;
   addr = g_ntohl(addr);
 
@@ -1234,6 +1498,25 @@ gnet_inetaddr_is_reserved (const GInetAddr* inetaddr)
 
   g_return_val_if_fail (inetaddr != NULL, FALSE);
 
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY(inetaddr) == AF_INET6)
+    {
+      struct sockaddr_in6 sin6 ;
+      char buffer6[INET6_ADDRSTRLEN];
+
+      /* In IPv6 reserved address is 0:0:0:0:0:0:0:0 i.e. (::) */
+
+      sin6 =  GNET_SOCKADDR_IN6 (inetaddr->sa);
+      if (inet_ntop (AF_INET6, &(sin6.sin6_addr), buffer6, sizeof (buffer6)))
+	{
+	  if (!strcmp (buffer6, "::"))
+	  return TRUE;
+	}
+
+      return FALSE;
+    }
+#endif
+
   addr = GNET_SOCKADDR_IN(inetaddr->sa).sin_addr.s_addr;
   addr = g_ntohl(addr);
 
@@ -1266,6 +1549,16 @@ gnet_inetaddr_is_loopback (const GInetAddr* inetaddr)
 
   g_return_val_if_fail (inetaddr != NULL, FALSE);
 
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY (inetaddr) == AF_INET6)
+    {
+      if (IN6_IS_ADDR_LOOPBACK (&GNET_SOCKADDR_IN6 (inetaddr->sa).sin6_addr))
+	return TRUE;
+
+      return FALSE;
+    }
+#endif
+
   addr = GNET_SOCKADDR_IN(inetaddr->sa).sin_addr.s_addr;
   addr = g_ntohl(addr);
 
@@ -1294,6 +1587,16 @@ gnet_inetaddr_is_multicast (const GInetAddr* inetaddr)
   guint addr;
 
   g_return_val_if_fail (inetaddr != NULL, FALSE);
+
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY (inetaddr) == AF_INET6)
+    {
+      if (IN6_IS_ADDR_MULTICAST (&GNET_SOCKADDR_IN6 (inetaddr->sa).sin6_addr))
+	return TRUE;
+
+      return FALSE;
+    }
+#endif
 
   addr = GNET_SOCKADDR_IN(inetaddr->sa).sin_addr.s_addr;
   addr = g_htonl(addr);
@@ -1360,6 +1663,20 @@ gnet_inetaddr_hash (gconstpointer p)
   ia = (const GInetAddr*) p;
   /* We do pay attention to network byte order just in case the hash
      result is saved or sent to a different host.  */
+
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY(ia) == AF_INET6)
+    {
+      port = GNET_SOCKADDR_IN6(ia->sa).sin6_port;
+      addr = g_ntohl (GNET_INETADDR_ADDR32 (ia, 0)) ^
+             g_ntohl (GNET_INETADDR_ADDR32 (ia, 1)) ^
+             g_ntohl (GNET_INETADDR_ADDR32 (ia, 2)) ^
+             g_ntohl (GNET_INETADDR_ADDR32 (ia, 3));
+
+      return (port ^ addr);
+    }
+#endif
+
   port = (guint32) g_ntohs(((struct sockaddr_in*) &ia->sa)->sin_port);
   addr = g_ntohl(((struct sockaddr_in*) &ia->sa)->sin_addr.s_addr);
 
@@ -1387,6 +1704,14 @@ gnet_inetaddr_equal(gconstpointer p1, gconstpointer p2)
   g_assert(p1 != NULL && p2 != NULL);
 
   /* Note network byte order doesn't matter */
+
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY (ia1) == AF_INET6)
+    return ((GNET_SOCKADDR_IN6 (ia1->sa).sin6_addr.s6_addr ==
+             GNET_SOCKADDR_IN6 (ia2->sa).sin6_addr.s6_addr) &&
+            (GNET_SOCKADDR_IN6 (ia1->sa).sin6_port ==
+             GNET_SOCKADDR_IN6 (ia2->sa).sin6_port));
+#endif
   return ((GNET_SOCKADDR_IN(ia1->sa).sin_addr.s_addr ==
 	   GNET_SOCKADDR_IN(ia2->sa).sin_addr.s_addr) &&
 	  (GNET_SOCKADDR_IN(ia1->sa).sin_port ==
@@ -1413,6 +1738,12 @@ gnet_inetaddr_noport_equal(gconstpointer p1, gconstpointer p2)
   g_assert(p1 != NULL && p2 != NULL);
 
   /* Note network byte order doesn't matter */
+
+#if defined (ENABLE_IPV6)
+  if (GNET_INETADDR_FAMILY (ia1) == AF_INET6)
+    return (GNET_SOCKADDR_IN6 (ia1->sa).sin6_addr.s6_addr ==
+            GNET_SOCKADDR_IN6 (ia2->sa).sin6_addr.s6_addr);
+#endif
   return (GNET_SOCKADDR_IN(ia1->sa).sin_addr.s_addr ==
 	  GNET_SOCKADDR_IN(ia2->sa).sin_addr.s_addr);
 }
@@ -1494,6 +1825,20 @@ gnet_inetaddr_new_any (void)
   struct sockaddr_in* sa_in;
 
   ia = g_new0 (GInetAddr, 1);
+
+#if defined (ENABLE_IPV6)
+  if (gnet_have_ipv6 ())
+    {
+      struct sockaddr_in6 *sa_in6;
+
+      sa_in6 = (struct sockaddr_in6*) &ia->sa;
+      sa_in6->sin6_addr = in6addr_any;
+      sa_in6->sin6_port = 0;
+      ia->name = g_strdup ("<in6addr_any>");
+
+      return ia;
+    }
+#endif
   sa_in = (struct sockaddr_in*) &ia->sa;
   sa_in->sin_addr.s_addr = g_htonl(INADDR_ANY);
   sa_in->sin_port = 0;
@@ -1562,32 +1907,62 @@ GInetAddr*
 gnet_inetaddr_get_interface_to (const GInetAddr* addr)
 {
   int sockfd;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 myaddr6;
+#endif
   struct sockaddr_in myaddr;
   socklen_t len;
   GInetAddr* iface;
 
   g_return_val_if_fail (addr, NULL);
-
-  sockfd = socket (AF_INET, SOCK_DGRAM, 0);
-  if (sockfd == -1)
-    return NULL;
-
-  if (connect (sockfd, &addr->sa, sizeof(addr->sa)) == -1)
+  
+#ifdef ENABLE_IPV6
+  if ((GNET_SOCKADDR_IN6 (addr->sa)).sin6_family == AF_INET6)
     {
-      GNET_CLOSE_SOCKET(sockfd);
-      return NULL;
-    }
+      sockfd = socket (AF_INET6, SOCK_STREAM, 0);
+      if (sockfd == -1)
+	return NULL;
 
-  len = sizeof (myaddr);
-  if (getsockname (sockfd, (struct sockaddr*) &myaddr, &len) != 0)
-    {
-      GNET_CLOSE_SOCKET(sockfd);
-      return NULL;
+      if (connect (sockfd, (struct sockaddr *)&(addr->sa), sizeof (addr->sa)) == -1)
+	{
+	  GNET_CLOSE_SOCKET (sockfd);
+	  return NULL;
+	}
+
+      len = sizeof (myaddr6);
+      if (getsockname (sockfd, (struct sockaddr *)&(addr->sa), &len) != 0)
+	{
+	  GNET_CLOSE_SOCKET (sockfd);
+	  return NULL;
+	}
+
+      memcpy (&iface->sa, (char*) &myaddr6, sizeof (struct sockaddr_in6));
     }
+  else
+#endif
+  {
+    sockfd = socket (AF_INET, SOCK_DGRAM, 0);
+    if (sockfd == -1)
+      return NULL;
+
+    if (connect (sockfd, (struct sockaddr *)&addr->sa, sizeof(addr->sa)) == -1)
+      {
+	GNET_CLOSE_SOCKET(sockfd);
+	return NULL;
+      }
+
+    len = sizeof (myaddr);
+    if (getsockname (sockfd, (struct sockaddr*) &myaddr, &len) != 0)
+      {
+	GNET_CLOSE_SOCKET(sockfd);
+	return NULL;
+      }
+
+    memcpy (&iface->sa, (char*) &myaddr, sizeof (struct sockaddr_in));
+  }
 
   iface = g_new0 (GInetAddr, 1);
   iface->ref_count = 1;
-  memcpy (&iface->sa, (char*) &myaddr, sizeof (struct sockaddr_in));
 
   return iface;
 }

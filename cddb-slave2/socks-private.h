@@ -26,6 +26,9 @@ struct socks4_h {
 	guint8 vn;
 	guint8 cd;
 	guint16 dport;
+#ifdef ENABLE_IPV6
+	guint8 dip6[16];
+#endif
 	guint32 dip;
 	guint8 userid;
 };
@@ -35,6 +38,9 @@ struct socks5_h {
 	guint8  cd;
 	guint8  rsv;
 	guint8  atyp;
+#ifdef ENABLE_IPV6
+	guint8 dip6[16];
+#endif
 	guint32 dip;
 	guint32 dport;
 };

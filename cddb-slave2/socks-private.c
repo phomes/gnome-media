@@ -53,6 +53,9 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
   unsigned char s5r[3];
   struct socks5_h s5h;
   struct sockaddr_in *sa_in;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 *sa_in6;
+#endif
   int len;
 
   s5r[0] = 5;
@@ -66,15 +69,31 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
   if ((s5r[0] != 5) || (s5r[1] != 0))
     return -1;
 
-  sa_in = (struct sockaddr_in*)&dst->sa;
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (dst) == AF_INET6)
+    sa_in6 = (struct sockaddr_in6 *) &dst->sa;
+  else
+#endif
+    sa_in = (struct sockaddr_in*)&dst->sa;
 
   /* fill in SOCKS5 request */
   s5h.vn    = 5;
   s5h.cd    = 1;
   s5h.rsv   = 0;
   s5h.atyp  = 1;
-  s5h.dip   = (long)sa_in->sin_addr.s_addr;
-  s5h.dport = (short)sa_in->sin_port;
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (dst) == AF_INET6)
+    {
+      memcpy (s5h.dip6, sa_in6->sin6_addr.s6_addr, sizeof (struct in6_addr));
+      s5h.dport = (short)sa_in6->sin6_port;
+      
+    }
+  else
+#endif
+    {
+      s5h.dip   = (long)sa_in->sin_addr.s_addr;
+      s5h.dport = (short)sa_in->sin_port;
+    }
 
   if (gnet_io_channel_writen(ioc, (gchar*)&s5h, 10, &len) != G_IO_ERROR_NONE)
     return -1;
@@ -92,14 +111,28 @@ gnet_private_negotiate_socks4 (GIOChannel *ioc, const GInetAddr *dst)
 {
   struct socks4_h s4h;
   struct sockaddr_in *sa_in;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6 *sa_in6;
+#endif
   int len;
 
-  sa_in = (struct sockaddr_in*) &dst->sa;
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (dst) == AF_INET6)
+    {
+      sa_in6 = (struct sockaddr_in6 *) &dst->sa;
+      s4h.dport  = (short) sa_in6->sin6_port;
+      memcpy (s4h.dip6, sa_in6->sin6_addr.s6_addr, sizeof (struct in6_addr));
+    }
+  else
+#endif
+    {
+      sa_in = (struct sockaddr_in*)&dst->sa;
+      s4h.dport  = (short) sa_in->sin_port;
+      s4h.dip    = (long) sa_in->sin_addr.s_addr;
+    }
 
   s4h.vn     = 4;
   s4h.cd     = 1;
-  s4h.dport  = (short) sa_in->sin_port;
-  s4h.dip    = (long) sa_in->sin_addr.s_addr;
   s4h.userid = 0;
 
   if (gnet_io_channel_writen(ioc, &s4h, 9, &len) != G_IO_ERROR_NONE)

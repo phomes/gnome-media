@@ -167,15 +167,27 @@ gnet_tcp_socket_new_async (const GInetAddr* addr,
   GTcpSocket* 		s;
   GInetAddr* 		socks_addr = NULL;
   const GInetAddr* 	socks_addr_save   = NULL;
-  struct sockaddr	sa;
+#ifdef ENABLE_IPV6
+  struct sockaddr_in6* 	sa_in6;
+  struct sockaddr_in6 	sa6;
+  int ifindex;
+#endif
   struct sockaddr_in* 	sa_in;
+  struct sockaddr	sa;
+  gint con;
   GTcpSocketAsyncState* state;
 
   g_return_val_if_fail(addr != NULL, NULL);
   g_return_val_if_fail(func != NULL, NULL);
 
   /* Create socket */
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (addr) == AF_INET6)
+    sockfd = socket (AF_INET6, SOCK_STREAM, 0);
+  else
+#endif
+    sockfd = socket (AF_INET, SOCK_STREAM, 0);
+
   if (sockfd < 0)
     {
       (func)(NULL, GTCP_SOCKET_NEW_ASYNC_STATUS_ERROR, data);
@@ -211,12 +223,65 @@ gnet_tcp_socket_new_async (const GInetAddr* addr,
     }
 
   /* Set up address and port for connection */
-  memcpy(&sa, &addr->sa, sizeof(sa));
-  sa_in = (struct sockaddr_in*) &sa;
-  sa_in->sin_family = AF_INET;
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (addr) == AF_INET6)
+    {
+      int sock;       /* Temporary socket for getting information about available interfaces */
+      int i, num;
+      char *buf;
+      /* For interfaces' list */
+      struct ifconf ifc;
+      struct ifreq *ifr = NULL;
+
+      memcpy(&sa6, &addr->sa, sizeof(sa6));
+      sa_in6 = (struct sockaddr_in6 *) &sa6;
+      sa_in6->sin6_family = AF_INET6;
+
+      sock = socket (AF_INET, SOCK_DGRAM, 0);
+      num = 64;
+
+      ifc.ifc_len = sizeof (struct ifreq) * num;
+      ifc.ifc_buf = buf = malloc (ifc.ifc_len);
+
+      if (ioctl (sock, SIOCGIFCONF, &ifc) >= 0)
+	{
+	  ifr = ifc.ifc_req;
+	  num = ifc.ifc_len / sizeof (struct ifreq); /* No of interfaces */
+	  for (i = 0 ; i < num ; i++)
+	    {
+	      struct ifreq ifreq;
+
+	      memset (&ifreq, 0, sizeof (ifreq));
+	      strncpy (ifreq.ifr_name, ifr[i].ifr_name, sizeof (ifreq.ifr_name));
+	      ifreq.ifr_name[sizeof (ifreq.ifr_name) - 1] = '\0';
+
+	      if (ioctl (sock, SIOCGIFFLAGS, &ifreq) < 0)
+		g_warning ("Could not get interface flags for %s\n", ifr[i].ifr_name); 
+	      ifindex = if_nametoindex (ifr[i].ifr_name);
+                                                            
+	      if (!(ifreq.ifr_flags & IFF_UP) || (ifreq.ifr_flags & IFF_LOOPBACK) || (ifindex == 0 ))
+		/* Not a valid interface or Loopback or Not up */
+		continue;
+
+	      sa_in6->sin6_scope_id = ifindex;
+	      con = connect (s->sockfd, (struct sockaddr *)&sa6, sizeof(s->sa));
+	      if (con == 0 || errno == EINPROGRESS)
+				break;
+
+	    }
+	}
+    }
+  else
+#endif
+    {
+      memcpy(&sa, &addr->sa, sizeof(sa));
+      sa_in = (struct sockaddr_in *) &sa;
+      sa_in->sin_family = AF_INET;
+      con = connect(s->sockfd, &sa, sizeof(s->sa));
+    }
 
   /* Connect (but non-blocking!) */
-  if (connect(s->sockfd, &sa, sizeof(s->sa)) < 0)
+  if (con < 0)
     {
       if (errno != EINPROGRESS)
 	{
@@ -232,9 +297,20 @@ gnet_tcp_socket_new_async (const GInetAddr* addr,
     addr = socks_addr_save;
 
   /* Save address */
-  memcpy(&s->sa, &addr->sa, sizeof(s->sa));
-  sa_in = (struct sockaddr_in*) &sa;
-  sa_in->sin_family = AF_INET;
+#ifdef ENABLE_IPV6
+  if (GNET_INETADDR_FAMILY (addr) == AF_INET6)
+    {
+      memcpy(&s->sa, &addr->sa, sizeof(s->sa));
+      sa_in6 = (struct sockaddr_in6 *) &sa6;
+      sa_in6->sin6_family = AF_INET6;
+    }
+  else
+#endif
+    {
+      memcpy(&s->sa, &addr->sa, sizeof(s->sa));
+      sa_in = (struct sockaddr_in*) &sa;
+      sa_in->sin_family = AF_INET;
+    }
 
   /* Note that if connect returns 0, then we're already connected and
      we could call the call back immediately.  But, it would probably

@@ -94,6 +94,12 @@ typedef guint32 socklen_t;
 #define INET6_ADDRSTRLEN 46
 #endif
 
+#ifdef ENABLE_IPV6
+#define GNET_INETADDR_FAMILY(s) ((s->sa).ss_family)
+#define GNET_SOCKADDR_IN6(s) (*((struct sockaddr_in6 *) &s))
+#define GNET_INETADDR_ADDR32(i,n) *(guint32 *) &((((struct sockaddr_in6 *) &(i->sa))->sin6_addr).s6_addr[(n)*4])
+#endif
+
 #define GNET_SOCKADDR_IN(s) (*((struct sockaddr_in*) &s))
 #define GNET_ANY_IO_CONDITION  (G_IO_IN|G_IO_OUT|G_IO_PRI|G_IO_ERR|G_IO_HUP|G_IO_NVAL)
 
@@ -124,7 +130,11 @@ struct _GUdpSocket
 struct _GTcpSocket
 {
   gint sockfd;
+#ifdef ENABLE_IPV6
+  struct sockaddr_storage sa;
+#else
   struct sockaddr sa;		/* Why not an InetAddr? */
+#endif
   guint ref_count;
   GIOChannel* iochannel;
 };
@@ -149,7 +159,11 @@ struct _GMcastSocket
 struct _GInetAddr
 {
   gchar* name;
+#ifdef ENABLE_IPV6
+  struct sockaddr_storage sa;
+#else
   struct sockaddr sa;
+#endif
   guint ref_count;
 };
 
@@ -174,7 +188,7 @@ typedef struct _GInetAddrAsyncState
 #endif
   int fd;
   guint watch;
-  guchar buffer[16];
+  guchar buffer[64];
   int len;
 #else
   int WSAhandle;
@@ -291,9 +305,16 @@ extern HANDLE gnet_hostent_Mutex;
 /* Private/Experimental functions */
 
 
+#ifdef ENABLE_IPV6
+GInetAddr* gnet_private_inetaddr_sockaddr_new (const struct sockaddr_storage sa);
+
+struct sockaddr_storage gnet_private_inetaddr_get_sockaddr (const GInetAddr* ia);
+#else
 GInetAddr* gnet_private_inetaddr_sockaddr_new(const struct sockaddr sa);
 
 struct sockaddr gnet_private_inetaddr_get_sockaddr(const GInetAddr* ia);
+#endif
+
 /* gtk-doc doesn't like this function...  (but it will be fixed.) */
 
 
