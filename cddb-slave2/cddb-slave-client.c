@@ -332,7 +332,7 @@ cddb_slave_client_get_disc_title (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return ret;
+	return *ret == 0 ? NULL : g_strdup (ret);
 }
 
 /**
@@ -384,7 +384,7 @@ cddb_slave_client_get_artist (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return ret;
+	return *ret == 0 ? NULL : g_strdup (ret);
 }
 
 void
@@ -553,7 +553,7 @@ cddb_slave_client_get_comment (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return ret;
+	return *ret == 0 ? NULL : g_strdup (ret);
 }
 
 void
@@ -648,7 +648,7 @@ cddb_slave_client_get_genre (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return ret;
+	return *ret == 0 ? NULL : g_strdup (ret);
 }
 
 void

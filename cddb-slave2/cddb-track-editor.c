@@ -292,66 +292,6 @@ free_track_info (TrackEditorDialog *td)
 	td->info = NULL;
 }
 
-static void
-load_new_track_data (TrackEditorDialog *td,
-		     const char *discid)
-{
-	CDDBInfo *info;
-	char *title;
-	
-	if (client == NULL) {
-		client = cddb_slave_client_new ();
-	}
-
-	info = g_new (CDDBInfo, 1);
-	td->info = info;
-
-	info->discid = g_strdup (discid);
-	info->title = cddb_slave_client_get_disc_title (client, discid);
-	info->artist = cddb_slave_client_get_artist (client, discid);
-	info->comment = cddb_slave_client_get_comment (client, discid);
-	info->genre = cddb_slave_client_get_genre (client, discid);
-	info->year = cddb_slave_client_get_year (client, discid);
-	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
-	info->track_info = cddb_slave_client_get_tracks (client, discid);
-
-	title = g_strdup_printf (_("Editting discid: %s"), info->discid);
-	gtk_label_set_text (GTK_LABEL (td->discid), title);
-	g_free (title);
-
-	if (info->title != NULL) {
-		gtk_entry_set_text (GTK_ENTRY (td->disctitle), info->title);
-	}
-
-	if (info->artist != NULL) {
-		gtk_entry_set_text (GTK_ENTRY (td->artist), info->artist);
-	}
-
-	if (info->year != -1) {
-		char *year;
-
-		year = g_strdup_printf ("%d", info->year);
-		gtk_entry_set_text (GTK_ENTRY (td->year), year);
-		g_free (year);
-	}
-
-	if (info->comment != NULL) {
-		gtk_entry_set_text (GTK_ENTRY (td->disccomments), info->comment);
-	}
-
-	if (info->genre != NULL) {
-		gtk_entry_set_text (GTK_ENTRY (GTK_COMBO (td->genre)->entry), info->genre);
-	} else {
-		gtk_entry_set_text (GTK_ENTRY (GTK_COMBO (td->genre)->entry), "");
-	}
-	
-	/* Rebuild track list */
-	clear_track_list (td);
-	build_track_list (td);
-
-	td->dirty = FALSE;
-}
-
 static GList *
 make_genre_list (void)
 {
@@ -485,6 +425,97 @@ comment_changed (GtkEntry *entry,
 
 	td->info->comment = g_strdup (comment);
 	td->dirty = TRUE;
+}
+
+static void
+load_new_track_data (TrackEditorDialog *td,
+		     const char *discid)
+{
+	CDDBInfo *info;
+	char *title;
+	
+	if (client == NULL) {
+		client = cddb_slave_client_new ();
+	}
+
+	info = g_new (CDDBInfo, 1);
+	td->info = info;
+
+	/* Does the CORBA stuff need to be strduped? */
+	info->discid = g_strdup (discid);
+	info->title = cddb_slave_client_get_disc_title (client, discid);
+	info->artist = cddb_slave_client_get_artist (client, discid);
+	info->comment = cddb_slave_client_get_comment (client, discid);
+	info->genre = cddb_slave_client_get_genre (client, discid);
+	info->year = cddb_slave_client_get_year (client, discid);
+	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
+	info->track_info = cddb_slave_client_get_tracks (client, discid);
+
+	title = g_strdup_printf (_("Editting discid: %s"), info->discid);
+	gtk_label_set_text (GTK_LABEL (td->discid), title);
+	g_free (title);
+
+	if (info->title != NULL) {
+		g_signal_handlers_block_matched (G_OBJECT (td->disctitle),
+						 G_SIGNAL_MATCH_FUNC,
+						 0, 0, NULL, G_CALLBACK (disctitle_changed), td);
+		gtk_entry_set_text (GTK_ENTRY (td->disctitle), info->title);
+		g_signal_handlers_unblock_matched (G_OBJECT (td->disctitle),
+						   G_SIGNAL_MATCH_FUNC,
+						   0, 0, NULL, G_CALLBACK (disctitle_changed), td);
+	}
+
+	if (info->artist != NULL) {
+		g_signal_handlers_block_matched (G_OBJECT (td->artist),
+						 G_SIGNAL_MATCH_FUNC,
+						 0, 0, NULL, G_CALLBACK (artist_changed), td);
+		gtk_entry_set_text (GTK_ENTRY (td->artist), info->artist);
+		g_signal_handlers_unblock_matched (G_OBJECT (td->artist),
+						   G_SIGNAL_MATCH_FUNC,
+						   0, 0, NULL, G_CALLBACK (artist_changed), td);
+	}
+
+	if (info->year != -1) {
+		char *year;
+
+		year = g_strdup_printf ("%d", info->year);
+		g_signal_handlers_block_matched (G_OBJECT (td->year),
+						 G_SIGNAL_MATCH_FUNC,
+						 0, 0, NULL, G_CALLBACK (year_changed), td);
+		gtk_entry_set_text (GTK_ENTRY (td->year), year);
+		g_signal_handlers_unblock_matched (G_OBJECT (td->year),
+						   G_SIGNAL_MATCH_FUNC,
+						   0, 0, NULL, G_CALLBACK (year_changed), td);
+		g_free (year);
+	}
+
+	if (info->comment != NULL) {
+		g_signal_handlers_block_matched (G_OBJECT (td->disccomments),
+						 G_SIGNAL_MATCH_FUNC,
+						 0, 0, NULL, G_CALLBACK (comment_changed), td);
+		gtk_entry_set_text (GTK_ENTRY (td->disccomments), info->comment);
+		g_signal_handlers_unblock_matched (G_OBJECT (td->disccomments),
+						   G_SIGNAL_MATCH_FUNC,
+						   0, 0, NULL, G_CALLBACK (comment_changed), td);
+	}
+
+	g_signal_handlers_block_matched (G_OBJECT (GTK_COMBO (td->genre)->entry),
+					 G_SIGNAL_MATCH_FUNC,
+					 0, 0, NULL, G_CALLBACK (genre_changed), td);
+	if (info->genre != NULL) {
+		gtk_entry_set_text (GTK_ENTRY (GTK_COMBO (td->genre)->entry), info->genre);
+	} else {
+		gtk_entry_set_text (GTK_ENTRY (GTK_COMBO (td->genre)->entry), "");
+	}
+	g_signal_handlers_unblock_matched (G_OBJECT (GTK_COMBO (td->genre)->entry),
+					   G_SIGNAL_MATCH_FUNC,
+					   0, 0, NULL, G_CALLBACK (genre_changed), td);
+	
+	/* Rebuild track list */
+	clear_track_list (td);
+	build_track_list (td);
+
+	td->dirty = FALSE;
 }
 
 static TrackEditorDialog *
@@ -690,6 +721,7 @@ dialog_response (GtkDialog *dialog,
 		 CDDBTrackEditor *editor)
 {
 	gtk_widget_destroy (GTK_WIDGET (dialog));
+	editor->dialog = NULL;
 }
 
 static void

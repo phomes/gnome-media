@@ -1,3 +1,11 @@
+2002-03-03  Iain <iain@ximian.com>
+
+	* cddb-slave-client.c: Strdup any returned CORBA strings that aren't
+	NULL.
+
+	* cddb-track-editor.c (load_new_track_data): Move function around.
+	Block signals before changing data.
+
 2002-03-01  Iain <iain@ximian.com>
 
 	* cddb-track-editor.c (factory_fn): Keep track of our objects.
