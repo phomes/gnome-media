@@ -1,17 +1,17 @@
 # Galician translation of gnome-media.
 # Copyright (C) 1999 Sergio Rua <srua@iname.com>
-# Copyright (C) 2000 Jesús Bravo Álvarez <jba@pobox.com>
+# Copyright (C) 2000-2001 Jesús Bravo Álvarez <jba@pobox.com>
 #
-# Se desexas colaborar connosco na traducción de programas libres ó galego,
-# vai mira-la páxina do noso grupo:  http://www.ctv.es/USERS/jtarrio/trans
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://trasno.gpul.org
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-05-20 12:40+0200\n"
-"PO-Revision-Date: 2000-05-30 12:41+0200\n"
+"Project-Id-Version: gnome-media\n"
+"POT-Creation-Date: 2001-01-29 13:13+0100\n"
+"PO-Revision-Date: 2001-03-08 18:20+0100\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
-"Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
+"Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,12 +29,12 @@ msgstr "Conectando [%s]\n"
 #: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
-msgstr "Preguntando ó servidor [%s]\n"
+msgstr "Consultando ó servidor [%s]\n"
 
 #: cddbslave/main.c:59
 #, c-format
 msgid "Waiting for reply [%s]\n"
-msgstr "Esperando a resposta [%s]\n"
+msgstr "Agardando a resposta [%s]\n"
 
 #: cddbslave/main.c:60
 #, c-format
@@ -54,7 +54,7 @@ msgstr "Erro na conexión [%s]\n"
 #: cddbslave/main.c:63
 #, c-format
 msgid "Error querying [%s]\n"
-msgstr "Erro na petición [%s]\n"
+msgstr "Erro na consulta [%s]\n"
 
 #: cddbslave/main.c:64
 #, c-format
@@ -64,7 +64,7 @@ msgstr "Erro lendo [%s]\n"
 #: cddbslave/main.c:65
 #, c-format
 msgid "No match found for %s\n"
-msgstr "Non se atopa correspondencia a %s\n"
+msgstr "Non se atopou ningunha coincidencia con %s\n"
 
 #: cddbslave/main.c:66
 #, c-format
@@ -76,21 +76,169 @@ msgstr "Tempo de expiración: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Inactivo. %s\n"
 
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Sint "
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "DAC"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "Entrada DSP"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Liña"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "MIC"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "CD"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+msgid "Video"
+msgstr "Vídeo"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Radio"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Teléf"
+
+#: gmix/device_labels_alsa.h:18
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "Altof. PC"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "Aux"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Entrada central"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Entrada do woofer"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Entrada de surround"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Mestre"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Mestre Mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Mestre Dixital"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Headphone"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "Saída Teléfono"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Centro"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Woofer"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Surround"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "Saída do DSP"
+
+#. groups
+#. max 24 chars
+#: gmix/device_labels_alsa.h:37
+msgid "Bass"
+msgstr "Graves"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Agudos"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Ecualizador"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Fader"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Efectos"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "Efectos 3D"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Gaño do micrófono"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Gaño de entrada"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Gaño de saída"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Realimentación analóxico"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Realimentación dixital"
+
 #: gmix/device_labels_linux.h:7
 msgid "Vol  "
 msgstr "Vol  "
 
 #: gmix/device_labels_linux.h:7
 msgid "Bass "
-msgstr "Baixo"
+msgstr "Grave"
 
 #: gmix/device_labels_linux.h:7
 msgid "Trebl"
 msgstr "Agudo"
-
-#: gmix/device_labels_linux.h:7
-msgid "Synth"
-msgstr "Sint "
 
 #: gmix/device_labels_linux.h:7
 msgid "Pcm  "
@@ -158,106 +306,102 @@ msgstr "Dixital3"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneIn"
-msgstr "TeléfEnt"
+msgstr "TeléfIn"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneOut"
-msgstr "TeléfSaí"
-
-#: gmix/device_labels_linux.h:10
-msgid "Video"
-msgstr "Vídeo"
-
-#: gmix/device_labels_linux.h:10
-msgid "Radio"
-msgstr "Radio"
+msgstr "TeléfOut"
 
 #: gmix/device_labels_linux.h:10
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:187
-msgid "don't restore mixer-settings from configuration"
-msgstr "non restablece-los parámetros do mesturador dende a configuración"
-
-#: gmix/gmix.c:188
-msgid "restore mixer-settings from configuration"
-msgstr "restablece-los parámetros do mesturador dende a configuración"
-
-#: gmix/gmix.c:189
-msgid "initialise the mixer(s) from stored configuration and exit"
-msgstr "inicializa-lo(s) mesturador(es) dende a configuración gardada e saír"
+#: gmix/gmix.c:106 tcd/popup.c:21
+msgid "Help"
+msgstr "Axuda"
 
 #: gmix/gmix.c:190
+msgid "don't restore mixer-settings from configuration"
+msgstr "non restablecer os parámetros do mesturador a partir da configuración"
+
+#: gmix/gmix.c:191
+msgid "restore mixer-settings from configuration"
+msgstr "restablecer os parámetros do mesturador a partir da configuración"
+
+#: gmix/gmix.c:192
+msgid "initialise the mixer(s) from stored configuration and exit"
+msgstr "inicializar o(s) mesturador(es) a partir da configuración gardada e saír"
+
+#: gmix/gmix.c:193
 msgid "don't save (modified) mixer-settings into configuration"
-msgstr "non garda-la configuración (modificada) do mesturador"
+msgstr "non gardar a configuración (modificada) do mesturador"
 
 #. start frame
-#: gmix/gmix.c:427 tcd/prefs.c:401
+#: gmix/gmix.c:430 tcd/prefs.c:411
 msgid "On startup"
 msgstr "Ó iniciar"
 
 #. Set on start
-#: gmix/gmix.c:433
+#: gmix/gmix.c:436
 msgid "Restore saved mixer levels on startup"
-msgstr "Restablece-los niveis gardados do mesturador ó iniciar"
+msgstr "Restablecer os niveis gardados do mesturador ó iniciar"
 
-#: gmix/gmix.c:439
+#: gmix/gmix.c:442
 msgid "Hide menu on start"
-msgstr "Esconde-lo menú ó iniciar"
+msgstr "Agochar o menú ó iniciar"
 
-#: gmix/gmix.c:454
+#: gmix/gmix.c:457
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:458
+#: gmix/gmix.c:461
 msgid "Use mixer icons"
-msgstr "Usa-las iconas do mesturador"
+msgstr "Usar as iconas do mesturador"
 
-#: gmix/gmix.c:466
+#: gmix/gmix.c:469
 msgid "Use mixer labels"
-msgstr "Usa-las etiquetas do mesturador"
+msgstr "Usar as etiquetas do mesturador"
 
-#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:604
+#: gmix/gmix.c:492 tcd/gtcd.c:364 tcd/prefs.c:614
 msgid "Preferences"
 msgstr "Preferencias"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1175
+#: gmix/gmix.c:1181
 msgid "Lock"
 msgstr "Bloquear"
 
-#: gmix/gmix.c:1185
+#: gmix/gmix.c:1191
 msgid "Rec."
 msgstr "Gravar"
 
-#: gmix/gmix.c:1203
+#: gmix/gmix.c:1209
 msgid "Mute"
 msgstr "Mudo"
 
-#: gmix/gmix.c:1227
+#: gmix/gmix.c:1233
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1528
+#: gmix/gmix.c:1548
 msgid "GMIX - The Gnome Mixer"
-msgstr "GMIX - O Mesturador de Gnome"
+msgstr "GMIX - O mesturador de Gnome"
 
-#: gmix/gmix.c:1531
+#: gmix/gmix.c:1551
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Este é o mesturador para os dispositivos de son OSS"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
-msgstr "Gravador de Son de GNOME:"
+msgstr "Gravador de son de GNOME:"
 
 #: grecord/src/grec.c:88 grecord/src/grec.c:118 grecord/src/grec.c:1024
 msgid "Could not fork child process"
-msgstr "Non se puido crea-lo proceso fillo"
+msgstr "Non foi posible crear o proceso fillo"
 
 #: grecord/src/grec.c:90
 msgid "Recording..."
-msgstr "Garvando..."
+msgstr "Gravando..."
 
 #: grecord/src/grec.c:120
 msgid "Playing..."
@@ -265,20 +409,20 @@ msgstr "Reproducindo..."
 
 #: grecord/src/grec.c:173
 msgid "Converting file..."
-msgstr "Convertendo ficheiro..."
+msgstr "Convertendo o ficheiro..."
 
 #: grecord/src/grec.c:239 grecord/src/grec.c:653 grecord/src/gui.c:327
-#: grecord/src/preferences.c:394
+#: grecord/src/preferences.c:395
 msgid "Audioformat: "
-msgstr "Formato de Audio: "
+msgstr "Formato de audio: "
 
 #: grecord/src/grec.c:243 grecord/src/grec.c:639 grecord/src/gui.c:334
-#: grecord/src/preferences.c:398
+#: grecord/src/preferences.c:399
 msgid "Sample rate: "
 msgstr "Frecuencia de mostraxe: "
 
 #: grecord/src/grec.c:253 grecord/src/grec.c:643 grecord/src/gui.c:341
-#: grecord/src/preferences.c:402
+#: grecord/src/preferences.c:403
 msgid "Channels: "
 msgstr "Canles: "
 
@@ -329,7 +473,7 @@ msgid ""
 "Do you want to overwrite it?"
 msgstr ""
 "O ficheiro '%s' xa existe.\n"
-"¿Quere sobrescribilo?"
+"¿Desexa sobrescribilo?"
 
 #: grecord/src/grec.c:702
 msgid "Error saving sound file"
@@ -337,7 +481,7 @@ msgstr "Erro gardando o ficheiro de son"
 
 #: grecord/src/grec.c:738
 msgid "File not saved. Do you want to save it?"
-msgstr "Ficheiro non gardado. ¿Quere gardalo?"
+msgstr "Ficheiro non gardado. ¿Desexa gardalo?"
 
 #. Save the file
 #: grecord/src/grec.c:757
@@ -347,7 +491,7 @@ msgstr "Gardando..."
 #: grecord/src/grec.c:871
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
-msgstr "¡O tamaño da gravación actual é maior que %i Mb!"
+msgstr "¡O tamaño da gravación actual é superior a %i Mb!"
 
 #: grecord/src/grec.c:919
 msgid "Save sound file"
@@ -371,11 +515,11 @@ msgstr "Crear unha nova gravación"
 
 #: grecord/src/gui.c:50
 msgid "Run mixer..."
-msgstr "Executar mesturador..."
+msgstr "Executar o mesturador..."
 
 #: grecord/src/gui.c:51
 msgid "Run GNOME mixer"
-msgstr "Executa-lo mesturador de GNOME"
+msgstr "Executar o mesturador de GNOME"
 
 #: grecord/src/gui.c:64
 msgid "Add echo"
@@ -405,7 +549,7 @@ msgstr "Desfacer tódolos cambios feitos á gravación actual"
 msgid "Effects"
 msgstr "Efectos"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:861
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:867
 msgid "Show time"
 msgstr "Amosar tempo"
 
@@ -413,7 +557,7 @@ msgstr "Amosar tempo"
 msgid "Show soundinfo"
 msgstr "Amosar información do son"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:866
+#: grecord/src/gui.c:130 grecord/src/gui.c:872
 msgid "Show sound information"
 msgstr "Amosar información do son"
 
@@ -427,11 +571,11 @@ msgstr "Crear unha nova gravación"
 
 #: grecord/src/gui.c:243 tcd/popup.c:15
 msgid "Play"
-msgstr "Tocar"
+msgstr "Reproducir"
 
 #: grecord/src/gui.c:244
 msgid "Play current sample"
-msgstr "Reproduci-la gravación actual"
+msgstr "Reproducir a gravación actual"
 
 #: grecord/src/gui.c:252 tcd/gtcd.c:328 tcd/popup.c:16
 msgid "Stop"
@@ -471,15 +615,22 @@ msgstr "O ficheiro '%s' non existe; usarase o ficheiro por defecto."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son soportado."
 
-#: grecord/src/gui.c:441 grecord/src/main.c:107
-msgid "GNOME Sound recorder"
-msgstr "Gravador de Son de GNOME"
+#. if your language allows it, replace the "e" of Hyden by an "eacute"
+#: grecord/src/gui.c:437
+msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
+msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:442
-msgid "Copyright (C)  2000 Andreas Hydén"
+#: grecord/src/gui.c:445 grecord/src/main.c:109
+msgid "GNOME Sound recorder"
+msgstr "Gravador de son de GNOME"
+
+#. if your language allows it, replace the
+#. "e" of Hyden by an "eacute"
+#: grecord/src/gui.c:448
+msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hydén"
 
-#: grecord/src/gui.c:444
+#: grecord/src/gui.c:450
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -487,133 +638,133 @@ msgstr ""
 "Un sinxelo reproductor e gravador de son para GNOME.\n"
 "Dedicado ó meu gato, Malte."
 
-#: grecord/src/gui.c:535 tcd/gtracked.c:171
+#: grecord/src/gui.c:541 tcd/gtracked.c:171
 msgid "Time"
 msgstr "Tempo"
 
-#: grecord/src/gui.c:548
+#: grecord/src/gui.c:554
 msgid "Recording timeout: "
 msgstr "Expiración da gravación: "
 
-#: grecord/src/gui.c:559
+#: grecord/src/gui.c:565
 msgid "minutes"
 msgstr "minutos"
 
-#: grecord/src/gui.c:564
+#: grecord/src/gui.c:570
 msgid "Stop recording on timeout"
-msgstr "Parar de gravar ó expira-lo tempo"
+msgstr "Parar de gravar cando se esgote o tempo"
 
-#: grecord/src/gui.c:569
+#: grecord/src/gui.c:575
 msgid "Popup save dialog when recording is finished"
-msgstr "Amosar diálogo de gardar cando a gravación estea terminada"
+msgstr "Amosar o diálogo para gardar cando a gravación finalice"
 
-#: grecord/src/gui.c:578
+#: grecord/src/gui.c:584
 msgid "Size"
 msgstr "Tamaño"
 
-#: grecord/src/gui.c:587
+#: grecord/src/gui.c:593
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Amosar mensaxe de aviso se o tamaño (Mb) da gravación faise maior que:"
 
-#: grecord/src/gui.c:597
+#: grecord/src/gui.c:603
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Parar de gravar se o tamaño (Mb) da gravación faise maior que:"
 
-#: grecord/src/gui.c:608
+#: grecord/src/gui.c:614
 msgid "Recording"
-msgstr "Garvando"
+msgstr "Gravando"
 
-#: grecord/src/gui.c:617
+#: grecord/src/gui.c:623
 msgid "Play-repeating"
 msgstr "Reproducindo con repetición"
 
-#: grecord/src/gui.c:626
+#: grecord/src/gui.c:632
 msgid "Repeat"
 msgstr "Repetir"
 
-#: grecord/src/gui.c:635
+#: grecord/src/gui.c:641
 msgid "Forever"
 msgstr "Sempre"
 
-#: grecord/src/gui.c:640
+#: grecord/src/gui.c:646
 msgid "Nr of times:"
 msgstr "Número de veces:"
 
-#: grecord/src/gui.c:651
+#: grecord/src/gui.c:657
 msgid "Playing"
 msgstr "Reproducindo"
 
-#: grecord/src/gui.c:660
+#: grecord/src/gui.c:666
 msgid "Program files"
 msgstr "Ficheiros de programas"
 
-#: grecord/src/gui.c:677
+#: grecord/src/gui.c:683
 msgid "Path to sox:"
-msgstr "Camiño ó sox:"
+msgstr "Camiño para o sox:"
 
-#: grecord/src/gui.c:693
+#: grecord/src/gui.c:699
 msgid "Path to mixer:"
-msgstr "Camiño ó mesturador:"
+msgstr "Camiño para o mesturador:"
 
-#: grecord/src/gui.c:709
+#: grecord/src/gui.c:715
 msgid "Directories"
 msgstr "Directorios"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:728
 msgid "Temp dir:"
 msgstr "Dir. temporal:"
 
-#: grecord/src/gui.c:738
+#: grecord/src/gui.c:744
 msgid "Paths"
 msgstr "Camiños"
 
-#: grecord/src/gui.c:746
+#: grecord/src/gui.c:752
 msgid "Sound options"
 msgstr "Opcións de son"
 
-#: grecord/src/gui.c:759
+#: grecord/src/gui.c:765
 msgid "Audioformat:"
 msgstr "Formato de audio:"
 
-#: grecord/src/gui.c:770 grecord/src/gui.c:780
+#: grecord/src/gui.c:776 grecord/src/gui.c:786
 msgid "8bit pcm"
 msgstr "PCM 8 bits"
 
-#: grecord/src/gui.c:771 grecord/src/gui.c:782
+#: grecord/src/gui.c:777 grecord/src/gui.c:788
 msgid "16bit pcm"
 msgstr "PCM 16 bits"
 
-#: grecord/src/gui.c:788
+#: grecord/src/gui.c:794
 msgid "Sample rate:"
 msgstr "Frecuencia de mostraxe:"
 
-#: grecord/src/gui.c:818
+#: grecord/src/gui.c:824
 msgid "mono/stereo"
 msgstr "mono/estéreo"
 
-#: grecord/src/gui.c:829 grecord/src/gui.c:839
+#: grecord/src/gui.c:835 grecord/src/gui.c:845
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:830 grecord/src/gui.c:841
+#: grecord/src/gui.c:836 grecord/src/gui.c:847
 msgid "stereo"
 msgstr "estéreo"
 
-#: grecord/src/gui.c:844
+#: grecord/src/gui.c:850
 msgid "Sound"
 msgstr "Son"
 
-#: grecord/src/gui.c:852
+#: grecord/src/gui.c:858
 msgid "Main window"
 msgstr "Fiestra principal"
 
-#: grecord/src/gui.c:871
+#: grecord/src/gui.c:877
 msgid "User interface"
 msgstr "Interface de usuario"
 
 #: grecord/src/main.c:53
 msgid "Specify the geometry of the main window"
-msgstr "Especifica-la xeometría da fiestra principal"
+msgstr "Especificar a xeometría da fiestra principal"
 
 #: grecord/src/main.c:54
 msgid "GEOMETRY"
@@ -621,7 +772,7 @@ msgstr "XEOMETRÍA"
 
 #: grecord/src/main.c:62
 msgid "Specify a file to be opened"
-msgstr "Especificar un ficheiro a abrir"
+msgstr "Especificar un ficheiro para abrir"
 
 #: grecord/src/main.c:71
 msgid "Specify a file to start recording"
@@ -631,11 +782,11 @@ msgstr "Especificar un ficheiro para comezar a gravar"
 msgid "Specify a file to start playing"
 msgstr "Especificar un ficheiro para comezar a reproducir"
 
-#: grecord/src/main.c:162
+#: grecord/src/main.c:173
 msgid "Don't show this message again."
 msgstr "Non amosar esta mensaxe de novo."
 
-#: grecord/src/main.c:164
+#: grecord/src/main.c:175
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -643,8 +794,9 @@ msgid ""
 "\n"
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
-"Non se puido atopar '%s'.\n"
-"Poña o camiño correcto ó sox nas preferencias, dentro da pestana 'camiños'.\n"
+"Non se atopou '%s'.\n"
+"Poña o camiño correcto para o sox nas preferencias, dentro da pestana "
+"'camiños'.\n"
 "\n"
 "Se non ten o sox, non poderá gravar nin facer ningún efecto."
 
@@ -653,7 +805,7 @@ msgid ""
 "You havn't entered a sox command; you will not be able to record.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Non introduciu un comando de sox; non será capaz de gravar.\n"
+"Non indicou o comando do sox; non vai ser posible facer gravacións.\n"
 "¿Quere usalo de calquera xeito?"
 
 #: grecord/src/preferences.c:221
@@ -665,16 +817,16 @@ msgstr ""
 "O ficheiro %s no 'comando do sox' non existe.\n"
 "¿Quere usalo de calquera xeito?"
 
-#: grecord/src/preferences.c:245
+#: grecord/src/preferences.c:246
 msgid ""
 "You havn't entered a mixer command; you will not be able to start the "
 "mixer.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Non introduciu un comando de mesturador; non poderá iniciar o mesturador.\n"
+"Non indicou un comando de mesturador; non poderá iniciar o mesturador.\n"
 "¿Quere usalo de calquera xeito?"
 
-#: grecord/src/preferences.c:270
+#: grecord/src/preferences.c:271
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -683,18 +835,18 @@ msgstr ""
 "O ficheiro %s no 'comando do mesturador' non existe.\n"
 "¿Quere usalo de calquera xeito?"
 
-#: grecord/src/preferences.c:293
+#: grecord/src/preferences.c:294
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Non introduciu un directorio temporal. Non será capaz de gravar.\n"
+"Non indicou un directorio temporal. Non vai ser posible facer gravacións.\n"
 "¿Quere usalo de calquera xeito?"
 
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:312
+#: grecord/src/preferences.c:313
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -703,7 +855,7 @@ msgstr ""
 "O directorio temporal %s é un ficheiro.\n"
 "¿Quere usalo de calquera xeito?"
 
-#: grecord/src/preferences.c:332
+#: grecord/src/preferences.c:333
 #, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory "
@@ -715,7 +867,7 @@ msgstr ""
 "¿Quere usalo de calquera xeito?"
 
 #. Does not exist
-#: grecord/src/preferences.c:350
+#: grecord/src/preferences.c:351
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -726,7 +878,7 @@ msgstr ""
 
 #: grecord/src/sound.c:101
 msgid " untitled.wav"
-msgstr " sentitular.wav"
+msgstr " sentítulo.wav"
 
 #: grecord/src/sound.c:147 grecord/src/sound.c:151
 msgid "Adding echo to sample..."
@@ -734,19 +886,19 @@ msgstr "Engadindo eco á gravación..."
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
-msgstr "TCD - O lector de CD de Gnome"
+msgstr "TCD - O reproductor de CD de Gnome"
 
 #: tcd/callbacks.c:86
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
-"GTCD é o lector de CD de Gnome. Inclúe soporte CDDB. Por favor, mire no "
-"ficheiro 'Thanks' incluido coa distribución para máis información."
+"GTCD é o reproductor de CD de Gnome. Inclúe soporte CDDB. Mire o ficheiro "
+"'Thanks' incluído coa distribución para máis información."
 
 #: tcd/cddb_props.c:71
 msgid "Disc ID"
-msgstr "ID Disco"
+msgstr "ID do disco"
 
 #: tcd/cddb_props.c:71
 msgid "Disc Title"
@@ -758,16 +910,16 @@ msgstr "Editar"
 
 #: tcd/cddb_props.c:90
 msgid "Remove"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: tcd/cddb_props.c:96
 msgid "Refresh List"
-msgstr "Refrescar Lista"
+msgstr "Actualizar Lista"
 
 #. server settings
 #: tcd/cddb_props.c:147
 msgid "Server Settings"
-msgstr "Configuración do Servidor"
+msgstr "Configuración do servidor"
 
 #: tcd/cddb_props.c:156
 msgid "Address"
@@ -787,7 +939,7 @@ msgstr "Proxy"
 
 #: tcd/cddb_props.c:198
 msgid "Use proxy authentication"
-msgstr "Usar autentificación de proxy"
+msgstr "Usar autenticación de proxy"
 
 #: tcd/cddb_props.c:206
 msgid "Username"
@@ -808,39 +960,39 @@ msgstr "Usar SOCKS"
 #. local db
 #: tcd/cddb_props.c:266
 msgid "Local Database"
-msgstr "Base de Datos Local"
+msgstr "Base de datos local"
 
 #. frame
 #: tcd/cddb_props.c:308
 msgid "CDDB Data"
-msgstr "Datos CDDB"
+msgstr "Datos de CDDB"
 
-#: tcd/cddb_props.c:340
+#: tcd/cddb_props.c:341
 msgid "CDDB Editor"
-msgstr "Editor CDDB"
+msgstr "Editor de CDDB"
 
-#: tcd/cddb_props.c:354
+#: tcd/cddb_props.c:355
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Erro lendo $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:470
+#: tcd/cddb_props.c:471
 #, c-format
 msgid "Couldn't remove file: %s\n"
-msgstr "Non se puido borra-lo ficheiro: %s\n"
+msgstr "Non foi posible borrar o ficheiro: %s\n"
 
-#: tcd/cddb_props.c:482
+#: tcd/cddb_props.c:483
 msgid "Delete CDDB Entry?"
-msgstr "¿Borra-la entrada CDDB?"
+msgstr "¿Borrar a entrada CDDB?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:309
+#: tcd/cddb_status.c:51 tcd/gtracked.c:310
 msgid "CDDB Status"
 msgstr "Estado CDDB"
 
 #. grab button
-#: tcd/cddb_status.c:68
+#: tcd/cddb_status.c:69
 msgid "Get CDDB Now"
-msgstr "Obter CDDB agora"
+msgstr "Consultar agora"
 
 #: tcd/gtcd.c:59
 msgid "trk-e"
@@ -874,31 +1026,31 @@ msgstr "normal"
 msgid "random"
 msgstr "aleatorio"
 
-#: tcd/gtcd.c:285 tcd/gtcd.c:904
+#: tcd/gtcd.c:285 tcd/gtcd.c:919
 msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
 #. TOP ROW
 #: tcd/gtcd.c:324
 msgid "Play/Pause"
-msgstr "Tocar/Pausa"
+msgstr "Reproducir/Pausa"
 
 #: tcd/gtcd.c:329 tcd/popup.c:17
 msgid "Eject"
-msgstr "Expulsar"
+msgstr "Extraer"
 
 #. MIDDLE ROW
 #: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip backwards"
-msgstr "Saltar hacia atrás"
+msgstr "Saltar para atrás"
 
 #: tcd/gtcd.c:337 tcd/gtcd.c:345
 msgid "Skip forwards"
-msgstr "Saltar hacia adiante"
+msgstr "Saltar para adiante"
 
 #: tcd/gtcd.c:363
 msgid "Open track editor"
-msgstr "Abri-lo editor de pistas"
+msgstr "Abrir o editor de pistas"
 
 #: tcd/gtcd.c:365 tcd/popup.c:24
 msgid "Quit"
@@ -906,7 +1058,7 @@ msgstr "Saír"
 
 #: tcd/gtcd.c:504 tcd/gtcd.c:505 tcd/gtcd.c:506
 msgid "(Scanning)"
-msgstr "(Explorando)"
+msgstr "(Examinando)"
 
 #: tcd/gtcd.c:528
 msgid "No Disc"
@@ -916,21 +1068,21 @@ msgstr "Sen disco"
 msgid "Error"
 msgstr "Erro"
 
-#: tcd/gtcd.c:840
+#: tcd/gtcd.c:855
 msgid "Volume"
 msgstr "Volume"
 
-#: tcd/gtcd.c:1012
+#: tcd/gtcd.c:1027
 msgid "Filename of the CD device"
 msgstr "Ficheiro do dispositivo do CD"
 
-#: tcd/gtcd.c:1012
+#: tcd/gtcd.c:1027
 msgid "FILE"
 msgstr "FICHEIRO"
 
-#: tcd/gtcd.c:1014
+#: tcd/gtcd.c:1029
 msgid "Play CD on startup"
-msgstr "Reproduci-lo CD ó iniciar"
+msgstr "Reproducir o CD ó iniciar"
 
 #: tcd/gtracked.c:171
 msgid "Trk"
@@ -940,63 +1092,63 @@ msgstr "Pst"
 msgid "Title"
 msgstr "Título"
 
-#: tcd/gtracked.c:194
+#: tcd/gtracked.c:195
 msgid "Track Editor"
 msgstr "Editor de pistas"
 
 #. Disc area
-#: tcd/gtracked.c:210
+#: tcd/gtracked.c:211
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Información do disco: (%02u:%02u minutos)"
 
-#: tcd/gtracked.c:219
+#: tcd/gtracked.c:220
 msgid "Artist / Title"
 msgstr "Artista / Título"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:242
+#: tcd/gtracked.c:243
 msgid "Track Information"
 msgstr "Información da pista"
 
 #. Clear button
-#: tcd/gtracked.c:298
+#: tcd/gtracked.c:299
 msgid "Clear"
 msgstr "Limpar"
 
 #. Playlist button
-#: tcd/gtracked.c:303
+#: tcd/gtracked.c:304
 msgid "Playlist"
-msgstr "Lista a Tocar"
+msgstr "Lista de reproducción"
 
-#: tcd/gtracked.c:315
+#: tcd/gtracked.c:316
 msgid "Submit"
 msgstr "Enviar"
 
-#: tcd/gtracked.c:377
+#: tcd/gtracked.c:378
 msgid "Submit Information"
-msgstr "Enviar Información"
+msgstr "Enviar información"
 
-#: tcd/gtracked.c:383
+#: tcd/gtracked.c:384
 #, c-format
 msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr ""
-"Enviar información acerca de\n"
+"Enviar información sobre\n"
 "'%s'"
 
-#: tcd/gtracked.c:392
+#: tcd/gtracked.c:393
 msgid "To: "
 msgstr "A: "
 
 #. end of service menu
-#: tcd/gtracked.c:424
+#: tcd/gtracked.c:425
 msgid "Category: "
 msgstr "Categoría: "
 
-#: tcd/linux-cdrom.c:618
+#: tcd/linux-cdrom.c:641
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1006,18 +1158,18 @@ msgid ""
 "\n"
 "Reason: %s\n"
 msgstr ""
-"Erro ó acceder ó dispositivo do CD.\n"
-"Por favor comprobe que o soporte para o\n"
+"Erro accedendo ó dispositivo do CD.\n"
+"Por favor, verifique que o soporte para o\n"
 "dispositivo de cdrom está compilado no kernel,\n"
-"e que ten permiso para acceder ó dispositivo.\n"
+"e que ten permisos para acceder ó dispositivo.\n"
 "\n"
 "Motivo: %s\n"
 
-#: tcd/linux-cdrom.c:687
+#: tcd/linux-cdrom.c:710
 msgid "Unknown / Unknown"
 msgstr "Descoñecido / Descoñecido"
 
-#: tcd/linux-cdrom.c:693
+#: tcd/linux-cdrom.c:716
 #, c-format
 msgid "Track %d"
 msgstr "Pista %d"
@@ -1028,11 +1180,7 @@ msgstr "Preferencias..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
-msgstr "Editor de Pistas..."
-
-#: tcd/popup.c:21
-msgid "Help"
-msgstr "Axuda"
+msgstr "Editor de pistas..."
 
 #: tcd/popup.c:22
 msgid "About"
@@ -1043,84 +1191,89 @@ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 
 #. do nothing
-#: tcd/prefs.c:192 tcd/prefs.c:247
+#: tcd/prefs.c:194 tcd/prefs.c:249
 msgid "Do nothing"
 msgstr "Non facer nada"
 
-#: tcd/prefs.c:198
+#: tcd/prefs.c:200
 msgid "Start playing"
-msgstr "Comezar a tocar"
+msgstr "Iniciar reproducción"
 
-#: tcd/prefs.c:204 tcd/prefs.c:253
+#: tcd/prefs.c:206 tcd/prefs.c:255
 msgid "Stop playing"
-msgstr "Parar de tocar"
+msgstr "Deter reproducción"
 
 #. close tray
-#: tcd/prefs.c:208 tcd/prefs.c:265
+#: tcd/prefs.c:210 tcd/prefs.c:267
 msgid "Close tray"
-msgstr "Pecha-la bandexa"
+msgstr "Pechar a bandexa"
 
-#: tcd/prefs.c:259
+#: tcd/prefs.c:261
 msgid "Open tray"
-msgstr "Abri-la bandexa"
+msgstr "Abrir a bandexa"
 
 #. device entry
-#: tcd/prefs.c:338
+#: tcd/prefs.c:341
 msgid "CDROM device"
-msgstr "Dispositivo CDROM"
+msgstr "Dispositivo do CDROM"
 
 #. Color picker
-#: tcd/prefs.c:347
+#: tcd/prefs.c:350
 msgid "Track/title color"
 msgstr "Cor da pista/título"
 
 #. font picker
-#: tcd/prefs.c:359
+#: tcd/prefs.c:362
 msgid "Track/title font"
 msgstr "Tipo de letra da pista/título"
 
-#: tcd/prefs.c:360
+#: tcd/prefs.c:363
 msgid "Change font"
-msgstr "Cambiar tipo de letra"
+msgstr "Cambiar o tipo de letra"
 
 #. show handles
-#: tcd/prefs.c:367
+#: tcd/prefs.c:370
 msgid "Show handles (restart required)"
 msgstr "Amosar manexadores (é preciso reiniciar)"
 
 #. show tooltips
-#: tcd/prefs.c:374
+#: tcd/prefs.c:377
 msgid "Show tooltips"
-msgstr "Amosar explicacións"
+msgstr "Amosar tooltips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:381
+#: tcd/prefs.c:384
 msgid "Use alternate method to play CD"
-msgstr "Usar método alternativo para toca-lo CD"
+msgstr "Usar método alternativo para reproducir o CD"
+
+#. use squared law volume
+#: tcd/prefs.c:391
+msgid "Use squared law volume control"
+msgstr "Usar control de volume de lei cuadrática"
 
 #. exit frame
-#: tcd/prefs.c:407
+#: tcd/prefs.c:417
 msgid "On exit"
 msgstr "Ó saír"
 
-#: tcd/prefs.c:515
+#: tcd/prefs.c:525
 msgid "Key"
 msgstr "Tecla"
 
-#: tcd/prefs.c:516
+#: tcd/prefs.c:526
 msgid "Action"
 msgstr "Acción"
 
-#: tcd/prefs.c:536
+#: tcd/prefs.c:546
 msgid "Click here to change (restart required):"
 msgstr "Premer aquí para cambiar (é preciso reiniciar):"
 
 #. Frame
-#: tcd/prefs.c:558 tcd/prefs.c:608
+#: tcd/prefs.c:568 tcd/prefs.c:618
 msgid "Keybindings"
-msgstr "Atallos de Teclado"
+msgstr "Atallos de teclado"
 
-#: tcd/prefs.c:612
+#: tcd/prefs.c:622
 msgid "CDDB Settings"
 msgstr "Configuración CDDB"
 
@@ -1129,12 +1282,12 @@ msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
-"Non se pode conectar ó servidor de son.\n"
+"Non é posible conectarse ó servidor de son.\n"
 "Por favor, execute 'esd' dende a liña de comandos."
 
 #: vu-meter/main.c:248
 msgid "Specify the X position of the meter."
-msgstr "Especifica-la posición X do contador"
+msgstr "Especificar a posición X do contador"
 
 #: vu-meter/main.c:249
 msgid "X-Position"
@@ -1142,7 +1295,7 @@ msgstr "Posición-X"
 
 #: vu-meter/main.c:251
 msgid "Specify the Y position of the meter."
-msgstr "Especifica-la posición Y do contador"
+msgstr "Especificar a posición Y do contador"
 
 #: vu-meter/main.c:252
 msgid "Y-Position"
@@ -1150,11 +1303,11 @@ msgstr "Posición-Y"
 
 #: vu-meter/main.c:254
 msgid "Connect to the esd server on this host."
-msgstr "Conectar ó servidor esd neste servidor"
+msgstr "Conectar ó servidor esd nesta máquina."
 
 #: vu-meter/main.c:255
 msgid "ESD Server Host"
-msgstr "ESD Server Host"
+msgstr "Máquina do servidor ESD"
 
 #: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
@@ -1165,6 +1318,6 @@ msgstr "Abrir unha versión vertical do contador."
 msgid "Host is %s\n"
 msgstr "O servidor é %s\n"
 
-#: vu-meter/main.c:291
+#: vu-meter/main.c:293
 msgid "Volume Meter"
-msgstr "Contador de Volume"
+msgstr "Contador de volume"
