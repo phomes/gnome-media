@@ -22,6 +22,10 @@
  * the "lag" variable below to taste if you don't like it...  Utilized
  * code from "extace" to get the desired effects..
  * 
+ * Small additions April 14th 1999, by Dave J. Andruczyk to fix the missing 
+ * peaks problem that happened with quick transients not showin on the vu-meter.
+ * Now it will catch pretty much all of them.
+ * 
  * Eye candy!
  */
 #include <config.h>
@@ -49,8 +53,10 @@ GtkWidget   *dial[2];
 GtkWidget   *window;
 gchar       *esd_host = NULL;
 gint 	    curbuf = 0;
-gint 	    lag = 3;
+gint 	    lag = 7;
 gint 	    locount = 0;
+gint 	    plevel_l = 0;
+gint 	    plevel_r = 0;
 
 /* function prototypes to make gcc happy: */
 void update (void);
@@ -142,7 +148,7 @@ update_levels(gpointer data)
 	return; 
     
     bigl = bigr = 0;
-    for (i = 1; i < NSAMP/2;i++)
+    for (i = 0; i < NSAMP/2;i++)
     {
 	val_l = abs (aubuf[curbuf][i]);
 	i++;
@@ -150,13 +156,28 @@ update_levels(gpointer data)
 	bigl = (val_l > bigl) ? val_l : bigl;
 	bigr = (val_r > bigr) ? val_r : bigr;
     }
-    bigl /= 256;
-    bigr /= 256;
+    bigl /= (NSAMP/8);
+    bigr /= (NSAMP/8);
     meter->l_level = bigl / 100.0;
     meter->r_level = bigr / 100.0;
-    meter->meter_stat = TRUE;
     led_bar_light_percent (dial[0], meter->l_level);
     led_bar_light_percent (dial[1], meter->r_level);
+    meter->meter_stat = TRUE;
+
+				    // updates display RIGHT AWAY if a new
+				    // peack has arrived.  Fixes the "lost
+				    // peaks" problem that happens with fast
+				    // transient music. Also reduced the MAIN
+				    // update rate to lower cpu use. make it 
+				    // work a bit better too..
+    if(plevel_l < meter->l_level)
+	update_display(meter);
+
+    if(plevel_r < meter->r_level)
+	update_display(meter);
+
+    plevel_l = meter->l_level;
+    plevel_r = meter->r_level;
 
 }
 
@@ -182,12 +203,6 @@ handle_read (gpointer data, gint source, GdkInputCondition condition)
 	to_get = NSAMP*2;
 	pos = 0;
 	update_levels(data);
-//	if(locount >20)
-//	{
-//	    update_display(data);
-//	    locount = 0;
-//	}
-//	locount++;
     }
 
 }
@@ -197,10 +212,13 @@ update_display (gpointer data)
     vumeter  *meter;
     meter = (vumeter *)data;
 
-    meter->l_level = (meter->l_level >= 0.0) ? meter->l_level - 1.0 : 0.0;
-    meter->r_level = (meter->r_level >= 0.0) ? meter->r_level - 1.0 : 0.0;
-    led_bar_light_percent (dial[0], meter->l_level);
-    led_bar_light_percent (dial[1], meter->r_level);
+    if(!meter->meter_stat)
+    {
+	meter->l_level = (meter->l_level >= 0.0) ? meter->l_level - 1.0 : 0.0;
+	meter->r_level = (meter->r_level >= 0.0) ? meter->r_level - 1.0 : 0.0;
+	led_bar_light_percent (dial[0], meter->l_level);
+	led_bar_light_percent (dial[1], meter->r_level);
+    }
     return TRUE;
 }
 
@@ -289,7 +307,7 @@ main (int argc, char *argv[])
 
     if(sound > 0) /* TPG: Make sure we have a valid fd... */
 	gdk_input_add (sound, GDK_INPUT_READ, handle_read, meter);
-      time_id = gtk_timeout_add (1000, (GtkFunction)update_display, meter);
+      time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter);
 
     gtk_main ();
     gtk_object_unref (GTK_OBJECT (client));
