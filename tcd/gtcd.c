@@ -159,10 +159,8 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 	if(release_t)
 	{
 	    gtk_timeout_remove(release_t);
-	    switch(GPOINTER_TO_INT(data))
+	    if(GPOINTER_TO_INT(data) > 0)
 	    {
-		/* +track */
-	    case 2:
 		if(cd.cur_t < cd.last_t)
 		{   
 		    cd.cur_t++;
@@ -170,9 +168,9 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 		    if(cd.play_method==REPEAT_TRK)
 			cd.repeat_track = cd.cur_t;
 		}
-		break;
-		/* -track */
-	    case -2:
+	    }
+	    else
+	    {
 		if( cd.cur_t > cd.first_t )
 		{
 		    if( (cd.t_sec+(cd.t_min*60)) < 10 )
@@ -182,7 +180,6 @@ int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 		    if( cd.play_method==REPEAT_TRK )
 			cd.repeat_track = cd.cur_t;
 		}
-		break;
 	    }
 	}   
 	if(roll_t)
