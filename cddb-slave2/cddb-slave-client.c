@@ -468,7 +468,7 @@ cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 	}
 
 	/* NULL terminator */
-	ret[++i] = NULL;
+	ret[i] = NULL;
 	
 	CORBA_free (list);
 	return ret;
