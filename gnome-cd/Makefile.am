@@ -76,11 +76,12 @@ ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
 
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(GNOMECD_LIBS)	\
-		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
-		 libgnomemedia-cddbslave2.la \
 		 $(INTLLIBS)		\
 		 $(GAILUTIL_LIBS)	\
-		 $(ACCESS_LT_LIB)
+		 $(ACCESS_LT_LIB)	\
+		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
+		 libgnomemedia-cddbslave2.la
+
 
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
