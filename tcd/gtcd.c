@@ -107,6 +107,7 @@ tcd_properties props;
 /* Prototypes */
 void draw_status( void );
 void delete_event (GtkWidget *widget, gpointer *data);
+void create_warn(void);
 
 void callback (GtkWidget *widget, gpointer *data)
 {
@@ -240,7 +241,7 @@ gint changer_callback( GtkWidget *widget, gpointer *data )
 {
 	tcd_close_disc(&cd);
 	tcd_change_disc( &cd, (int)data );
-	tcd_init_disc(&cd);
+	tcd_init_disc(&cd,create_warn);
 	
 	cd.play_method = NORMAL;
 	titlelabel_f = TRUE;
@@ -865,6 +866,14 @@ void init_window(void)
 		gtk_tooltips_disable(tooltips);
 }
 
+void create_warn(void)
+{
+	GtkWidget *msg;
+	msg = gnome_message_box_new( "TCD has created the directory ~/.tcd/ where it will store it's cddb files.",
+			"question");
+	gtk_widget_show(msg);
+}
+	
 int main (int argc, char *argv[])
 {
 	char *homedir;
@@ -873,6 +882,8 @@ int main (int argc, char *argv[])
         argp_program_version = VERSION;
 
  	gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
+
+	create_warn();
 
         homedir = getenv("HOME");
         sprintf( rcfile, "%s/.tcd/gtcdrc", homedir );
@@ -883,7 +894,7 @@ int main (int argc, char *argv[])
 	load_properties(&props);
 	cd.cdpath = props.cddev;
 	
-        tcd_init_disc(&cd);
+        tcd_init_disc(&cd, (WarnFunc)create_warn);
         
 	init_window();
 	setup_rows();

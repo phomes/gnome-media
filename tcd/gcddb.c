@@ -51,6 +51,7 @@ int cancel_id, start_id, timeout;
 GtkWidget *cancelbutton, *startbutton;
 
 extern tcd_properties props;
+void create_warn(void);
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
@@ -220,7 +221,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	gtk_label_set( GTK_LABEL(label), "Done!" );
 
 	tcd_close_disc(&cd);
-        tcd_init_disc(&cd);
+        tcd_init_disc(&cd,(WarnFunc)create_warn);
 
 	titlelabel_f = tracklabel_f = TRUE;
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0);

@@ -51,7 +51,7 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
-int tcd_init_disc( cd_struct *cd )
+int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
 	char tcd_dir[60];
 	struct stat fs;
@@ -69,8 +69,10 @@ int tcd_init_disc( cd_struct *cd )
 	{
 		if( errno == ENOENT )
 		{
-			fprintf( stderr, "Can't open \'%s\'\n", tcd_dir );
+/*			fprintf( stderr, "Can't open \'%s\'\n", tcd_dir );
 			fprintf( stderr, "TCD will now attempt to create %s to store it's files.\n", tcd_dir);
+*/
+			msg_cb();
 			if( mkdir(tcd_dir,S_IRWXU) )
 			{
 				/* FIXME, let it continue, but without database support. */

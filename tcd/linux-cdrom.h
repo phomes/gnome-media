@@ -94,6 +94,8 @@ typedef struct
 	int nslots; 		/* Number of slots the cdrom drive has */
 } cd_struct;
 
+typedef void (*WarnFunc)(void);
+
 /* CD drive control routines */   
 void	tcd_opencddev( cd_struct *cd );
 int 	tcd_readtoc( cd_struct *cd );
@@ -103,7 +105,7 @@ void	tcd_gettime( cd_struct *cd );
 int	tcd_readdiskinfo( cd_struct *cd );
 void	tcd_writediskinfo( cd_struct *cd );
 int 	tcd_ejectcd( cd_struct *cd );
-int 	tcd_init_disc( cd_struct *cd );
+int 	tcd_init_disc( cd_struct *cd, WarnFunc msg_cb );
 int 	tcd_stopcd( cd_struct *cd );
 int	tcd_close_disc( cd_struct *cd );
 int	tcd_change_disc( cd_struct *cd, int disc );	
