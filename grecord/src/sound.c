@@ -135,38 +135,26 @@ add_echo (gchar* filename, gboolean overwrite)
 	gchar* backup_file;
 	gchar* temp_file;
 
-	gchar* make_backup;
 	gchar* command;
-	gchar* copy_back;
+	gchar* command_plus_make_backup;
 
 	backup_file = g_concat_dir_and_file (temp_dir, temp_filename_backup);
-	temp_file = g_concat_dir_and_file (temp_dir, temp_filename);
 
-	make_backup = g_strconcat ("cp -f ", active_file, " ", backup_file, NULL);
-	command = g_strconcat (sox_command, " ", active_file, " ", temp_filename,
-			       " echo 0.8 0.88 60.0 0.4", NULL);
-	copy_back = g_strconcat ("cp -f ", temp_filename, " ", active_file, NULL);
+	command = g_strconcat (sox_command, " ", backup_file, " ", active_file, " echo 0.8 0.88 60.0 0.4", NULL);
+	command_plus_make_backup = g_strconcat ("cp -f ", active_file, " ", backup_file, " ; ", command, NULL);
 
 	/* Make a backup only the first time */
 	if (first_time) {
-		system (make_backup);
+		run_command (command_plus_make_backup, _("Adding echo to sample..."));
 		first_time = FALSE;
 	}
-
-	run_command (make_backup, _("Making backup..."));
-	run_command (command, _("Adding echo to sample..."));
-	run_command (copy_back, _("Please wait..."));
+	else
+		run_command (command, _("Adding echo to sample..."));
 
 	g_free (backup_file);
 	g_free (temp_file);
-	g_free (make_backup);
 	g_free (command);
-	g_free (copy_back);
-}
-
-void
-remove_echo (gchar* filename, gboolean overwrite)
-{
+	g_free (command_plus_make_backup);
 }
 
 void

@@ -67,13 +67,6 @@ static GnomeUIInfo echo_effect_menu_uiinfo [] =
 		GNOME_APP_PIXMAP_NONE, NULL,
 		0, 0, NULL,
 	},
-	{
-		GNOME_APP_UI_ITEM, N_("Remove echo"),
-		N_("Remove echo from the current sample"),
-		on_remove_echo_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
-		0, 0, NULL,
-	},
 	GNOMEUIINFO_END
 };
 
@@ -147,7 +140,7 @@ static GnomeUIInfo hj_lp1_menu_uiinfo[] =
 	GNOMEUIINFO_END
 };
 
-static GnomeUIInfo menubar1_uiinfo[] =
+GnomeUIInfo menubar1_uiinfo[] =
 {
 	GNOMEUIINFO_MENU_FILE_TREE (arkiv1_menu_uiinfo),
 	GNOMEUIINFO_MENU_EDIT_TREE (edit_menu_uiinfo),
@@ -155,6 +148,8 @@ static GnomeUIInfo menubar1_uiinfo[] =
 	GNOMEUIINFO_MENU_HELP_TREE (hj_lp1_menu_uiinfo),
 	GNOMEUIINFO_END
 };
+
+gpointer main_menu = menubar1_uiinfo;
 
 GtkWidget*
 create_grecord_window (void)
@@ -422,7 +417,7 @@ create_grecord_window (void)
 	set_min_sec_time (get_play_time (active_file), TRUE);
  
 	/* Setup some callbacks */
-	gtk_signal_connect (GTK_OBJECT (grecord_window), "delete_event", GTK_SIGNAL_FUNC (delete_event_cb), NULL);
+	gtk_signal_connect (GTK_OBJECT (grecord_window), "delete_event", GTK_SIGNAL_FUNC (on_exit_activate_cb), NULL);
 	gtk_signal_connect (GTK_OBJECT (New_button), "clicked", GTK_SIGNAL_FUNC (on_new_activate_cb), NULL);
 	gtk_signal_connect (GTK_OBJECT (Record_button), "clicked", GTK_SIGNAL_FUNC (on_record_activate_cb), NULL);
 	gtk_signal_connect (GTK_OBJECT (Play_button), "clicked", GTK_SIGNAL_FUNC (on_play_activate_cb), NULL);

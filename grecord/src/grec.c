@@ -102,7 +102,6 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 		return;
 
 	grecord_set_sensitive_progress ();
-	PlayEng.is_running = TRUE;
 
 	/* Show play-time and stuff */
 	UpdateStatusbarPlay (TRUE);
@@ -312,7 +311,7 @@ on_save_activate_cb (GtkWidget* widget, gpointer data)
 
 	/* No saving is needed, because the changes goes directly to the file. */
 	/* If you don't want to save the changes (when it ask you) or if you select */
-	/* 'undo all', it will copy a backup file back to the active file. */
+	/* 'undo all', it will copy the backup file back to the active file. */
 }
 
 void
@@ -326,6 +325,7 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 {
 	gint choice;
 	gchar* tfile;
+	gchar* command;
 
 	if (PlayEng.is_running || RecEng.is_running)
 		on_stop_activate_cb (widget, data);
@@ -340,8 +340,15 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 			return;
 	}
 
+	/* User didn't want to save; copy the backup file to the changed file (active file) */
+	tfile = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
+	system (command);
+
 	gtk_main_quit ();
 
+	remove (tfile);
+	g_free (tfile);
 	tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
 	remove (tfile);
 	g_free (tfile);
@@ -376,7 +383,7 @@ void
 on_about_activate_cb (GtkWidget* widget, gpointer data)
 {
 	static GtkWidget* about = NULL;
-	//static GtkWidget* href;
+
 	if (about) {
 		if (about->window == NULL)
 			return;
@@ -393,12 +400,6 @@ on_about_activate_cb (GtkWidget* widget, gpointer data)
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 			    &about);
 
-	//href = gnome_href_new ("http://w1.462.telia.com/~u46703521",
-	//_("GNOME Sound recorder web page"));
-
-	//(gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (about)->vbox),
-	//		    href, FALSE, FALSE, 0);
-	//gtk_widget_show (href);
 	gtk_widget_show (about);
 }
 
@@ -428,13 +429,6 @@ on_add_echo_activate_cb (GtkWidget* widget, gpointer data)
 
 	file_changed = TRUE;
 	add_echo (active_file, TRUE);
-}
-
-void
-on_remove_echo_activate_cb (GtkWidget* widget, gpointer data)
-{
-	file_changed = TRUE;
-	remove_echo (active_file, TRUE);
 }
 
 void
@@ -500,40 +494,12 @@ on_undoall_activate_cb (GtkWidget* widget, gpointer data)
 
 	if (g_file_exists (temp_string)) {
 		gchar* t = g_strconcat ("cp -f ", temp_string, " ", active_file, NULL);
-		run_command (t, _("Undoing all..."));
+		run_command (t, _("Undoing all changes..."));
 		g_free (t);
 	}
 
 	g_free (temp_string);
 }
-
-gint
-delete_event_cb (GtkWidget* widget, GdkEventAny event,
-		 gpointer data)
-{
-	gint choice;
-	gchar* tfile;
-	if (file_changed) {
-		choice = save_dont_or_cancel ();
-		if (choice == SAVE) {
-			save_dialog ();
-			return TRUE;
-		}
-		else if (choice == CANCEL)
-			return TRUE;
-	}
-
-	gtk_main_quit ();
-	
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
-	remove (tfile);
-	g_free (tfile);
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
-	remove (tfile);
-	g_free (tfile);
-	return FALSE;
-}
-
 
 ///////////////////////////////////////////////////////////////
 // --------------------- Help functions -------------------- //
@@ -991,6 +957,12 @@ void grecord_set_sensitive_file (void)
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Record_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Play_button), TRUE);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Stop_button), FALSE);
+
+	/* Make the menu sensitive again */
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[0].widget), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[1].widget), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[2].widget), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[3].widget), TRUE);
 }
 
 void grecord_set_sensitive_nofile (void)
@@ -1013,6 +985,12 @@ grecord_set_sensitive_loading (void)
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Record_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Play_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Stop_button), FALSE);
+
+	/* Also make the menu insensitive, so you can't save or anything during the process */
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[0].widget), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[1].widget), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[2].widget), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (menubar1_uiinfo[3].widget), FALSE);
 }
 
 void

@@ -27,7 +27,6 @@ void    set_min_sec_time (gint sec, gboolean set_topic);
 
 /* Effects */
 void add_echo (gchar* filename, gboolean overwrite);
-void remove_echo (gchar* filename, gboolean overwrite);
 
 void increase_speed (gchar* filename, gboolean overwrite);
 void decrease_speed (gchar* filename, gboolean overwrite);

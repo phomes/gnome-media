@@ -47,6 +47,9 @@ struct grecwidgets {
 	gpointer timemin_label;
 } grecord_widgets;
 
+extern GnomeUIInfo menubar1_uiinfo[];
+
 GtkWidget* create_grecord_window      (void);
 GtkWidget* create_about               (void);
 GtkWidget* create_grecord_propertybox (void);
+

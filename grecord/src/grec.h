@@ -34,13 +34,11 @@ void on_runmixer_activate_cb (GtkWidget* widget, gpointer data);
 void on_increase_speed_activate_cb (GtkWidget* widget, gpointer data);
 void on_decrease_speed_activate_cb (GtkWidget* widget, gpointer data);
 void on_add_echo_activate_cb (GtkWidget* widget, gpointer data);
-void on_remove_echo_activate_cb (GtkWidget* widget, gpointer data);
 void on_show_time_activate_cb (GtkWidget* widget, gpointer data);
 void on_show_soundinfo_activate_cb (GtkWidget* widget, gpointer data);
 void on_undo_activate_cb (GtkWidget* widget, gpointer data);
 void on_redo_activate_cb (GtkWidget* widget, gpointer data);
 void on_undoall_activate_cb (GtkWidget* widget, gpointer data);
-gint delete_event_cb (GtkWidget* widget, GdkEventAny event, gpointer data);
 
 /* Help functions ----------------------------------------------------------- */
 void record_sound (void);
@@ -48,7 +46,7 @@ void play_sound (const gchar* filename);
 void store_filename (GtkFileSelection* selector, gpointer file_selector);
 void save_filename (GtkFileSelection* selector, gpointer file_selector);
 gint save_dont_or_cancel (void);
-gboolean save_sound_file (const gchar* file);
+gboolean save_sound_file (const gchar* filename);
 guint UpdateStatusbarPlay (gboolean begin);
 guint UpdateStatusbarRecord (gpointer data);
 void save_dialog (void);
