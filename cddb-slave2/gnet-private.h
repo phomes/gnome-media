@@ -68,8 +68,8 @@
 #include <resolv.h>
 #include <netdb.h>
 
-#ifndef socklen_t
-#define socklen_t size_t
+#ifndef __socklen_t_defined
+typedef guint32 socklen_t;
 #endif
 
 #define GNET_CLOSE_SOCKET(SOCKFD) close(SOCKFD)
