@@ -1148,6 +1148,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 				      GNOME_CDROM_ERROR_NOT_OPENED,
 				      _("You do not seem to have permission to acess %s."),
 				      priv->cdrom_device);
+		return FALSE;
 	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
 						lcd->priv->cdrom_device, error) == FALSE) {
 		close (fd);
@@ -1160,6 +1161,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 						"c) %s is not the CD drive.\n"),					     
 					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
 		}
+		return FALSE;
 	} else {
 		close (fd);
 	}

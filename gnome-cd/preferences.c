@@ -30,6 +30,7 @@
 #include <atk/atk.h>
 
 #include <gtk/gtkdialog.h>
+#include <gtk/gtkmessagedialog.h>
 #include <gtk/gtkstock.h>
 #include <gtk/gtkvbox.h>
 #include <gtk/gtkhbox.h>
@@ -58,13 +59,29 @@ static void
 do_device_changed (GnomeCDPreferences *prefs,
 		   const char *device)
 {
+	GError *error = NULL;
+	gboolean ret;
+	
 	if (prefs->device != NULL) {
 		g_free (prefs->device);
 	}
 
 	prefs->device = g_strdup (device);
 	if (prefs->gcd->cdrom != NULL) {
-		gnome_cdrom_set_device (prefs->gcd->cdrom, prefs->device, NULL);
+		ret = gnome_cdrom_set_device (prefs->gcd->cdrom, prefs->device, &error);
+		if (ret == FALSE) {
+			GtkWidget *dialog;
+
+			dialog = gtk_message_dialog_new (NULL, 0,
+							 GTK_MESSAGE_ERROR,
+							 GTK_BUTTONS_OK,
+							 _("%s\nThis means that Gnome-CD will not be able to run."), error->message);
+			gtk_window_set_title (GTK_WINDOW (dialog), _("Error setting device"));
+			g_signal_connect (G_OBJECT (dialog), "response",
+					  G_CALLBACK (gtk_widget_destroy), dialog);
+			gtk_widget_show (dialog);
+			g_error_free (error);
+		}
 	}
 }
 

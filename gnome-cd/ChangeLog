@@ -1,5 +1,12 @@
 2002-04-25 Iain <iain@ximian.com>
 
+	* linux-cdrom.c (linux_cdrom_set_device): Return FALSE on failure. Doh.
+
+	* preferences.c (do_device_changed): Actually check if there's an
+	error and display it in a pretty dialog.
+
+2002-04-25 Iain <iain@ximian.com>
+
 	* linux-cdrom.c (linux_cdrom_set_device): Check for permission.
 	(linux_cdrom_open): Ditto.
 
