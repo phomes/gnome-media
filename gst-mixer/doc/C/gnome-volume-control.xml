@@ -43,26 +43,6 @@
   </legalnotice>
   <authorgroup>
     <author>
-      <firstname>Erik</firstname>
-      <surname>Jarvi</surname>
-      <affiliation>
-        <orgname>GNOME Documentation Project</orgname>
-        <address>
-              <email>ejarvi@megsinet.net</email>
-        </address>
-      </affiliation>
-    </author>
-    <author>
-      <firstname>Michael</firstname>
-      <surname>Froh</surname>
-      <affiliation>
-        <orgname>GNOME Documentation Project</orgname>
-        <address>
-              <email>msfroh@uwaterloo.ca</email>
-        </address>
-      </affiliation>
-    </author>
-    <author>
       <firstname>Christian Fredrik</firstname>
       <surname>Kalager Schaller</surname>
       <affiliation>
@@ -126,8 +106,8 @@
   <sect1 id="intro">
     <title>Introduction</title>
     <para>
-  &app; (<command>gnome-volume-control</command>) is a GNOME enabled audio 
-  mixer. &app; allows you to mix audio for 2 channel sound cards.
+  &app; (<command>gst-mixer</command>) is a GNOME enabled audio 
+  mixer. &app; allows you to mix audio for various sound cards.
     </para>
     <para>
   To run &app; select 
@@ -136,7 +116,7 @@
   <guimenuitem>Audio Mixer</guimenuitem>
   </menuchoice>
   from the <guimenu>Main Menu</guimenu>, or type
-  <command>gnome-volume-control</command> on the command line.
+  <command>gst-mixer</command> on the command line.
     </para>
 
      <para>
@@ -159,20 +139,14 @@
   <guibutton>Rec.</guibutton> buttons, and the <guibutton>Lock</guibutton>
   buttons.  The <guibutton>Lock</guibutton> locks the left and right channels
   together so that you can adjust either <guibutton>fader</guibutton> and both
-  with be syncronized.  The <guibutton>Mute</guibutton> silences the channel, 
-  but once you change the volume from the <guibutton>fader</guibutton> the
-  channel is unmuted.  
-<!-- [I find this to be anti-intutive, IMHO this should be
-  an option.  If this feature was on a real console, I'd probably be fired
-  more than a few times. :)] 
--->
+  will be syncronized. If you have unlocked the <guibutton>faders</guibutton> and moved them apart, then press the lock button the faders will resyncronize. Meaning you can't lock the faders in an unequal position.  The <guibutton>Mute</guibutton> silences the channel. 
+
   The last button, <guibutton>Rec.</guibutton> is toggled to turn
-  on/off the recording functions of your soundcard on that channel. There 
-  always has to be one channel with the record button pressed.
-<!-- [Why does there have to be one on?] -->
+  on/off the recording functions of your soundcard on that channel. 
   The 
   <guibutton>faders</guibutton> control the volume of each channel. Below is a
-  listing of what each <guibutton>fader</guibutton> represents.
+  listing of what each <guibutton>fader</guibutton> represents. GNOME Volume control has
+its interface generated dynamically based on the specifications of your soundcard. This means that the mixer on your desktop will not look exactly like the one in the screenshot. The mixer in the screenshot is for a Sound Blaster Live card. Depending on your card and sound system you might have fewer or more controls in your mixer.
   </para>
   <itemizedlist mark="bullet">
     <listitem>
@@ -244,42 +218,13 @@
     </screenshot>
    </figure>
   </sect1>
-
-  <sect1 id="prefs">
-    <title>The GNOME Volume Control Preferences</title>
-    <para>
-    In the <guimenu>Settings</guimenu> <!--<guisubmenu>Preferences</guisubmenu> -->
-    <guimenuitem>Preferences</guimenuitem> 
-    menu window, the <guilabel>On startup</guilabel>
-    <guilabel>Restore saved mixer levels on startup</guilabel> saves your
-    current mixer settings and adjusts them upon start up.  Under
-    <guilabel>GUI</guilabel>, <guilabel>Use mixer icons</guilabel> and 
-    <guilabel>Use mixer labels</guilabel> displays icon representation of the
-    channels and the text equivalent respectively.
-    </para>
-    <figure id="preferences-fig">
-     <title><guilabel>Preferences</guilabel> Dialog</title>
-     <screenshot>
-      <mediaobject>
-       <imageobject>
-        <imagedata fileref="figures/gmix-prefs.png" format="PNG" />
-       </imageobject>
-       <imageobject>
-        <imagedata fileref="figures/gmix-prefs.eps" format="EPS" />
-       </imageobject>
-       <textobject>
-        <phrase>Preferences dialog screenshot</phrase>
-       </textobject>
-      </mediaobject>
-     </screenshot>
-    </figure>
-  </sect1>  
+   
 <!-- ================== BUGS ======================= -->  
 
   <sect1 id="bugs">
     <title>Known Bugs and Limitations</title>
     <para>
-    No known bugs at this time.
+    Using the ALSA sound system there might be a very large number of channels. We don't have a proper solution for that yet. Apart from that no known bugs at this time.
     </para>
   </sect1>
 
@@ -303,10 +248,7 @@
     </para>
 
     <para>
-    This manual was written by Erik Jarvi (<email>ejarvi@megsinet.net</email>),
-    and updated by Michael Froh (<email>msfroh@uwaterloo.ca</email>) and
-    Christian Fredrik Kalager Schaller. 
-    Please send all comments and suggestions regarding this manual to the 
+    The first version of this manual was written by Erik Jarvi (<email>ejarvi@megsinet.net</email>) and updated by Michael Froh (<email>msfroh@uwaterloo.ca</email>). Based on the original manual Christian Fredrik Kalager Schaller (<email>uraeus@gnome.org</email>) rewrote it to be used with the new mixer in GNOME 2.6. Please send all comments and suggestions regarding this manual to the 
     <ulink type="http" url="http://www.gnome.org/gdp">
     GNOME Documentation Project</ulink> 
     by sending an email to <email>docs@gnome.org</email>. You can also
