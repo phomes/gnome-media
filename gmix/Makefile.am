@@ -15,7 +15,7 @@ INCLUDES = \
 bin_PROGRAMS = gmix
 
 gmix_SOURCES =	\
-	gmix.c
+	gmix.c gmix.h prefs.c prefs.h
 
 gmix_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) $(GMIX_LIBS)

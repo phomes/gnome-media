@@ -38,7 +38,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
  */
 
 #include <config.h>
@@ -64,45 +63,48 @@
 #endif
 
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
-void help(GtkWidget *widget, gpointer data);
-void help_cb(GtkWidget *widget, gpointer data);
-static void about_cb (GtkWidget *widget, gpointer data);
-static void quit_cb (GtkWidget *widget, gpointer data);
+#include "gmix.h"
+#include "prefs.h"
+
 static void config_cb (GtkWidget *widget, gpointer data);
-void fill_in_device_guis(GtkWidget *notebook);
 
-static void get_device_config(void);
-static void put_device_config(void);
-static void get_gui_config(void);
-static void put_gui_config(void);
+device_info *open_device(int num);
+GList *make_channels(device_info *device);
 void scan_devices(void);
+void free_one_device(gpointer a, gpointer b);
 void free_devices(void);
+void init_one_device(gpointer a, gpointer b);
 void init_devices(void);
+void get_one_device_config(gpointer a, gpointer b);
+static void get_device_config(void);
+void put_one_device_config(gpointer a, gpointer b);
+static void put_device_config(void);
+GtkWidget *make_slider_mixer(channel_info *ci);
 void open_dialog(void);
-GtkWidget *optpage(void);
 
 static void gmix_restore_window_size (void);
 static void gmix_save_window_size (void);
+
+void scan_devices(void);
+void free_devices(void);
+void init_devices(void);
+
+static void quit_cb (GtkWidget *widget, gpointer data);
+static void lock_cb (GtkWidget *widget, channel_info *data);
+static void mute_cb (GtkWidget *widget, channel_info *data);
+static void rec_cb (GtkWidget *widget, channel_info *data);
+static void adj_left_cb (GtkAdjustment *widget, channel_info *data);
+static void adj_right_cb (GtkAdjustment *widget, channel_info *data);
+static void help(GtkWidget *widget, gpointer data);
+static void about_cb (GtkWidget *widget, gpointer data);
 
 /*
  * Gnome info:
  */
 GtkWidget *app;
-GtkWidget *configwin;
 GtkWidget  *slidernotebook;
-
-typedef struct {
-	gboolean set_mixer_on_start;
-	gboolean hide_menu;
-	gboolean use_icons;
-	gboolean use_labels;
-} mixerprefs;
-
-mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
-
-#define PREFS_PAGE "Preferences Page"
-#define PREFS_COPY "Preferences Data Copy"
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
@@ -128,59 +130,6 @@ static GnomeUIInfo main_menu[] = {
         GNOMEUIINFO_END
 };
 /* End of menus */ 
-
-#ifdef ALSA
-/* stolen from OSS's soundcard.h */
-typedef struct mixer_info
-{
-  char id[16];
-  char name[32];
-  int  modify_counter;
-  int fillers[10];
-} mixer_info;
-#endif
-
-/* 
- * All, that is known about a mixer-device
- */
-typedef struct device_info {
-#ifdef ALSA
-	snd_mixer_t *handle;
-#endif
-	int fd;
-	mixer_info info;
-	int recsrc;	/* current recording-source(s) */
-	int devmask;	/* devices supported by this driver */
-	int recmask;	/* devices, that can be a recording-source */
-	int stereodevs;	/* devices with stereo abilities */
-	int caps;	/* features supported by the mixer */
-	int volume_left[32], volume_right[32]; /* volume, mono only left */
-
-	int mute_bitmask; /* which channels are muted */
-	int lock_bitmask; /* which channels have the L/R sliders linked together */
-	int enabled_bitmask; /* which channels should be visible in the GUI ? */
-	GList *channels;
-} device_info;
-
-/*
- * All channels, that are visible in the mixer-window
- */
-typedef struct channel_info {
-	/* general info */
-	device_info *device;	/* refferrence back to the device */
-	int channel;		/* which channel of that device am I ? */
-#ifdef ALSA
-	snd_mixer_group_t *mixer_group;
-#endif
-	/* GUI info */
-	char *title; /* or char *titel ? */
-	char *pixmap;
-	/* here are the widgets... */
-	GtkObject *left, *right;
-	GtkWidget *lock, *rec, *mute;
-
-	int passive; /* avoid recursive calls to event handler */
-} channel_info;
 
 GList *devices;
 
@@ -209,10 +158,6 @@ static const struct poptOption options[] = {
 #ifndef GNOME_STOCK_PIXMAP_BLANK
 #define GNOME_STOCK_PIXMAP_BLANK NULL
 #endif
-struct pixmap {
-	char *name;
-	const char *pixmap;
-};
 struct pixmap device_pixmap[] = {
 	"Input Gain", GNOME_STOCK_PIXMAP_BLANK,
 	"PC Speaker", GNOME_STOCK_PIXMAP_VOLUME,
@@ -265,29 +210,6 @@ const char *device_pixmap[] = {
 };
 #endif
 
-/*
- * GMIX version, for version-checking the config-file
- */
-#define GMIX_VERSION 0x030000
-
-void lock_cb (GtkWidget *widget, channel_info *data);
-void rec_cb (GtkWidget *widget, channel_info *data);
-void mute_cb (GtkWidget *widget, channel_info *data);
-void adj_left_cb (GtkAdjustment *widget, channel_info *data);
-void adj_right_cb (GtkAdjustment *widget, channel_info *data);
-
-/* Prototypes to make gcc happy. TPG */
-device_info *open_device(int num);
-GList *make_channels(device_info *device);
-void scan_devices(void);
-void free_one_device(gpointer a, gpointer b);
-void free_devices(void);
-void init_one_device(gpointer a, gpointer b);
-void init_devices(void);
-void get_one_device_config(gpointer a, gpointer b);
-void put_one_device_config(gpointer a, gpointer b);
-GtkWidget *make_slider_mixer(channel_info *ci);
-
 #ifdef ALSA
 snd_mixer_callbacks_t read_cbs;
 
@@ -320,16 +242,17 @@ static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
 		return;
 	}
 	if (element.eid.type == SND_MIXER_ETYPE_VOLUME1) {
-#if 0 /* XXX This code should make the slider actually change to the
+#if 0
+		/* XXX This code should make the slider actually change to the
+		 value in element.data.volume1.pvoices[0] (left) and
+		 element.data.volume1.pvoices[1] (right).  This way the slider
+		 reflects the value of the item changed in whatever other
+		 applications are manipulating the (hardware) mixer */
 		int i;
 		GList *channels=g_list_first(device->channels);
 		for (i=0; i<element.data.volume1.voices_size;
 			 i++, channels = g_list_next(channels)) {
 			channel_info *ci=(channel_info *)channels->data;
-		 value in element.data.volume1.pvoices[0] (left) and
-		 element.data.volume1.pvoices[1] (right).  This way the slider
-		 reflects the value of the item changed in whatever other
-		 applications are manipulating the (hardware) mixer */
 
 			fprintf(stderr, "%d(%d%%) ", element.data.volume1.pvoices[i],
 									   element.data.volume1.pvoices[i] * 100 /
@@ -385,170 +308,9 @@ static void error_close_cb(void)
 	exit(1);
 }
 
-static void retrieve_prefs(GtkWidget *page)
-{
-	mixerprefs *prefs_copy;
-
-	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
-	prefs = *prefs_copy;
-}
-
-static void apply_cb(GtkWidget *widget, gint page_num, void *data)
-{       
-        GtkWidget *page;
-
-        /* This is a sloppy way to re-draw the mixers */
-        GList *d;
-
-	if (page_num != -1)
-		return;
-
-	/* Copy out the user's new preferences */
-	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
-	retrieve_prefs(page);
-
-        put_gui_config();
-
-	gtk_widget_hide(slidernotebook);
-	/* Assumes that the number of devices is static... */
-	for (d=devices; d; d=d->next) 
-		gtk_notebook_remove_page(GTK_NOTEBOOK(slidernotebook),0);
-	gtk_widget_show(slidernotebook);
-
-	fill_in_device_guis(slidernotebook);
-	
-}
-
-static void destroy_prefs(GtkWidget *page)
-{
-	mixerprefs *prefs_copy;
-
-	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
-	g_free(prefs_copy);
-}
-
-static void cancel_cb(GtkWidget *widget, void *data)
-{       
-        GtkWidget *page;
-
-	/* Find and free the copy of the preferences data */
-	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
-	destroy_prefs(page);
-
-	gtk_widget_destroy (configwin);
-        configwin=NULL;
-}
-
-static void bool_changed_cb(GtkWidget *widget, gboolean *data)
-{
-	if( *data )
-		*data = FALSE;
-	else        
-		*data = TRUE;
-	gnome_property_box_changed(GNOME_PROPERTY_BOX(configwin));
-}
-
-GtkWidget *make_config_win(void)
-{
-	return NULL;
-}
-
-GtkWidget *optpage(void)
-{
-	GtkWidget *start_frame, *gui_frame;
-	GtkWidget *ubervbox;
-	GtkWidget *vbox, *init_start, *menu_hide, *temp;
-	mixerprefs *prefs_copy;
-
-	ubervbox = gtk_vbox_new(TRUE, 0);
-
-	prefs_copy = g_malloc(sizeof(mixerprefs));
-	g_assert(prefs_copy);
-	*prefs_copy = prefs;
-	gtk_object_set_data(GTK_OBJECT(ubervbox), PREFS_COPY, prefs_copy);
-
-	start_frame = gtk_frame_new(_("On startup"));
-	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
-    
-	vbox = gtk_vbox_new(TRUE, 0);
-
-	/* Set on start */
-	init_start = gtk_check_button_new_with_label(_("Restore saved mixer levels on startup"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(init_start), \
-				     prefs_copy->set_mixer_on_start);
-	gtk_signal_connect(GTK_OBJECT(init_start), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->set_mixer_on_start);
-
-	menu_hide = gtk_check_button_new_with_label(_("Hide menu on start"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(menu_hide), \
-				     prefs_copy->hide_menu);
-	gtk_signal_connect(GTK_OBJECT(menu_hide), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->hide_menu);
-
-	gtk_box_pack_start_defaults(GTK_BOX(vbox), init_start);
-	/*	gtk_box_pack_start_defaults(GTK_BOX(vbox), menu_hide);*/
-
-	gtk_widget_show_all(vbox);
-
-
-	gtk_container_add(GTK_CONTAINER(start_frame), vbox);
-	gtk_container_add(GTK_CONTAINER(ubervbox), start_frame);
-
-	gui_frame = gtk_frame_new(_("GUI"));
-	gtk_container_border_width(GTK_CONTAINER(gui_frame), GNOME_PAD_SMALL);
-
-	vbox = gtk_vbox_new(TRUE, 0);
-	temp = gtk_check_button_new_with_label(_("Use mixer icons"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs_copy->use_icons);
-	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_icons);
-	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
-	
-	
-	temp = gtk_check_button_new_with_label(_("Use mixer labels"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs_copy->use_labels);
-	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_labels);
-	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
-	
-	
-	gtk_container_add(GTK_CONTAINER(gui_frame), vbox);
-	
-	gtk_container_add(GTK_CONTAINER(ubervbox), gui_frame);
-	
-	gtk_widget_show_all(ubervbox);
-
-	return ubervbox;
-}
-
 void config_cb(GtkWidget *widget, gpointer data)
 {
-        GtkWidget *label, *page;
-
-	if (!configwin) {
-	        configwin=gnome_property_box_new();
-		gtk_widget_realize(configwin);
-		label = gtk_label_new(_("Preferences"));
-		page = optpage();
-		gtk_object_set_data(GTK_OBJECT(configwin), PREFS_PAGE, page);
-		gtk_notebook_append_page(
-			GTK_NOTEBOOK(
-			GNOME_PROPERTY_BOX(configwin)->notebook), page, label);
-		
-		gtk_signal_connect(GTK_OBJECT(configwin), "apply",
-				   GTK_SIGNAL_FUNC(apply_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "destroy",
-				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "delete_event",
-				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "help",
-				   GTK_SIGNAL_FUNC(help_cb), NULL);
-
-		gtk_widget_show_all(configwin);	
-    
-	};
+	prefs_make_window();
 };
 
 int main(int argc, char *argv[]) 
@@ -1125,22 +887,6 @@ void put_device_config(void)
 	g_list_foreach(devices, put_one_device_config, NULL);
 }
 
-void get_gui_config(void)
-{
-	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init=true");
-	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=false");
-	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=true");
-	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=true");
-}
-
-void put_gui_config(void)
-{
-	gnome_config_set_bool("/gmix/startup/init",prefs.set_mixer_on_start);
-	gnome_config_set_bool("/gmix/gui/menu",prefs.hide_menu);
-	gnome_config_set_bool("/gmix/gui/icons",prefs.use_icons);
-	gnome_config_set_bool("/gmix/gui/labels",prefs.use_labels);
-}
-
 /*
  * dialogs:
  */
@@ -1280,6 +1026,25 @@ void fill_in_device_guis(GtkWidget *notebook){
 
 }
 
+void gmix_build_slidernotebook(void)
+{
+        /* This is a sloppy way to re-draw the mixers */
+        GList *d;
+
+	if (slidernotebook)
+	{
+		gtk_widget_hide(slidernotebook);
+		/* Assumes that the number of devices is static... */
+		for (d=devices; d; d=d->next) 
+			gtk_notebook_remove_page(GTK_NOTEBOOK(slidernotebook),0);
+	}
+	else
+	{
+		slidernotebook = gtk_notebook_new();
+	}
+	gtk_widget_show(slidernotebook);
+	fill_in_device_guis(slidernotebook);
+}
 
 void open_dialog(void)
 {
@@ -1314,11 +1079,8 @@ void open_dialog(void)
 	/*
 	 * Build table with sliders
 	 */	
-	slidernotebook = gtk_notebook_new();
-	gtk_widget_show(slidernotebook);
+	gmix_build_slidernotebook();
 	gnome_app_set_contents(GNOME_APP (app), slidernotebook);
-
-	fill_in_device_guis(slidernotebook);
 
 	gtk_widget_show(app);
 
