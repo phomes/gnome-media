@@ -30,7 +30,6 @@
 #include "gnet.h"
 
 static GConfClient *client = NULL;
-static GConfChangeSet *changeset;
 
 typedef enum {
 	CDDB_ACCESS_READWRITE,
@@ -99,8 +98,7 @@ destroy_window (GtkWidget *window,
 
 static void
 dialog_button_clicked_cb (GtkDialog *dialog,
-			  int response_id,
-			  GConfChangeSet *changeset)
+			  int response_id)
 {
 	GError *error = NULL;
 	switch (response_id) {
@@ -125,12 +123,7 @@ dialog_button_clicked_cb (GtkDialog *dialog,
                 }
 	break;
 
-	case GTK_RESPONSE_APPLY:
-		gconf_client_commit_change_set (client, changeset, TRUE, NULL);
-		break;
-
 	default:
-		gconf_client_commit_change_set (client, changeset, TRUE, NULL);
 		gtk_widget_destroy (GTK_WIDGET (dialog));
 		break;
 	}
@@ -145,7 +138,7 @@ no_info_toggled (GtkToggleButton *tb,
 	}
 
 	gtk_widget_set_sensitive (pd->name_box, FALSE);
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/info", CDDB_SEND_FAKE_INFO);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/info", CDDB_SEND_FAKE_INFO, NULL);
 }
 
 static void
@@ -157,7 +150,7 @@ real_info_toggled (GtkToggleButton *tb,
 	}
 
 	gtk_widget_set_sensitive (pd->name_box, FALSE);
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/info", CDDB_SEND_REAL_INFO);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/info", CDDB_SEND_REAL_INFO, NULL);
 }
 
 static void
@@ -169,23 +162,23 @@ specific_info_toggled (GtkToggleButton *tb,
 	}
 
 	gtk_widget_set_sensitive (pd->name_box, TRUE);
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/info", CDDB_SEND_OTHER_INFO);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/info", CDDB_SEND_OTHER_INFO, NULL);
 }
 
 static void
 real_name_changed (GtkEntry *entry,
 		   PropertyDialog *pd)
 {
-	gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/name",
-				     gtk_entry_get_text (entry));
+	gconf_client_set_string (client, "/apps/CDDB-Slave2/name",
+				 gtk_entry_get_text (entry), NULL);
 }
 
 static void
 real_host_changed (GtkEntry *entry,
 		   PropertyDialog *pd)
 {
-	gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/hostname",
-				     gtk_entry_get_text (entry));
+	gconf_client_set_string (client, "/apps/CDDB-Slave2/hostname",
+				 gtk_entry_get_text (entry), NULL);
 }
 
 #define DEFAULT_SERVER "freedb.freedb.org"
@@ -201,9 +194,9 @@ round_robin_toggled (GtkToggleButton *tb,
 
 	gtk_widget_set_sensitive (pd->freedb_box, FALSE);
 	gtk_widget_set_sensitive (pd->other_box, FALSE);
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/server-type", CDDB_ROUND_ROBIN);
-	gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/server", DEFAULT_SERVER);
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/port", DEFAULT_PORT);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/server-type", CDDB_ROUND_ROBIN, NULL);
+	gconf_client_set_string (client, "/apps/CDDB-Slave2/server", DEFAULT_SERVER, NULL);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/port", DEFAULT_PORT, NULL);
 }
 
 static void
@@ -217,7 +210,7 @@ other_freedb_toggled (GtkToggleButton *tb,
 	gtk_widget_set_sensitive (pd->freedb_box, TRUE);
 	gtk_widget_set_sensitive (pd->other_box, FALSE);
 
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/server-type", CDDB_OTHER_FREEDB);
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/server-type", CDDB_OTHER_FREEDB, NULL);
 	/* Set it to the default selection */
 }
 
@@ -234,18 +227,18 @@ other_server_toggled (GtkToggleButton *tb,
 	gtk_widget_set_sensitive (pd->freedb_box, FALSE);
 	gtk_widget_set_sensitive (pd->other_box, TRUE);
 
-	gconf_change_set_set_int (changeset,
-				  "/apps/CDDB-Slave2/server-type", CDDB_OTHER_SERVER);
+	gconf_client_set_int (client,
+			      "/apps/CDDB-Slave2/server-type", CDDB_OTHER_SERVER, NULL);
 	str = gtk_entry_get_text (GTK_ENTRY (pd->other_host));
 	if (str != NULL) {
-		gconf_change_set_set_string (changeset,
-					     "/apps/CDDB-Slave2/server", str);
+		gconf_client_set_string (client,
+					 "/apps/CDDB-Slave2/server", str, NULL);
 	}
 
 	str = gtk_entry_get_text (GTK_ENTRY (pd->other_port));
 	if (str != NULL) {
-		gconf_change_set_set_int (changeset,
-					  "/apps/CDDB-Slave2/port", atoi (str));
+		gconf_client_set_int (client,
+				      "/apps/CDDB-Slave2/port", atoi (str), NULL);
 	}
 }
 
@@ -253,16 +246,16 @@ static void
 other_host_changed (GtkEntry *entry,
 		    PropertyDialog *pd)
 {
-	gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/server",
-				     gtk_entry_get_text (entry));
+	gconf_client_set_string (client, "/apps/CDDB-Slave2/server",
+				 gtk_entry_get_text (entry), NULL);
 }
 
 static void
 other_port_changed (GtkEntry *entry,
 		    PropertyDialog *pd)
 {
-	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/port",
-				  atoi (gtk_entry_get_text (entry)));
+	gconf_client_set_int (client, "/apps/CDDB-Slave2/port",
+			      atoi (gtk_entry_get_text (entry)), NULL);
 }
 
 static void
@@ -620,8 +613,8 @@ server_selection_changed (GtkTreeSelection *selection,
 		char *port;
 
 		gtk_tree_model_get (model, &iter, 0, &server, 1, &port, -1);
-		gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/server", server);
-		gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/port", atoi (port));
+		gconf_client_set_string (client, "/apps/CDDB-Slave2/server", server, NULL);
+		gconf_client_set_int (client, "/apps/CDDB-Slave2/port", atoi (port), NULL);
 	}
 }
 
@@ -979,12 +972,9 @@ main (int argc,
 	gconf_client_add_dir (client, "/apps/CDDB-Slave2",
 			      GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
 
-	changeset = gconf_change_set_new ();
-
 	dialog_win = gtk_dialog_new_with_buttons (_("CD Database Preferences"),
 						  NULL, -1,
 						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
-						  GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);
 	gtk_dialog_set_has_separator (GTK_DIALOG (dialog_win), FALSE);
@@ -996,7 +986,7 @@ main (int argc,
 	gtk_dialog_set_default_response(GTK_DIALOG (dialog_win), GTK_RESPONSE_CLOSE);
 
   	g_signal_connect (G_OBJECT (dialog_win), "response",
-  			  G_CALLBACK (dialog_button_clicked_cb), changeset);
+  			  G_CALLBACK (dialog_button_clicked_cb), NULL);
 
 	pixbuf = pixbuf_from_file ("gnome-cd/cd.png");
 	if (pixbuf == NULL) {
@@ -1009,7 +999,6 @@ main (int argc,
 	gtk_widget_show_all (dialog_win);
 
 	gtk_main ();
-	gconf_change_set_unref (changeset);
 
 	return 0;
 }
