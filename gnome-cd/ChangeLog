@@ -1,10 +1,7 @@
 2002-05-03  jacob berkman  <jacob@ximian.com>
 
-	* gnome-cd.c (gcd_warning): s/inline/G_INLINE_FUNC/
-
-	* gnome-cd.h (gcd_warning): declare gcm_debug
-
-	fixes solaris build
+	* gnome-cd.[ch] (gcd_warning): don't inline, as it's more trouble
+	than it's worth
 
 2002-05-03 Iain <iain@ximian.com>
 

@@ -26,7 +26,7 @@
 /* Debugging? */
 gboolean debug_mode = FALSE;
 
-G_INLINE_FUNC void
+void
 gcd_warning (const char *message,
 	     GError *error)
 {
