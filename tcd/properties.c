@@ -120,6 +120,7 @@ void proxy_checked( GtkWidget *widget, gpointer data )
 		props.use_proxy=FALSE;
 		gtk_widget_set_sensitive(proxyframe,FALSE);
 	}
+
         gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
@@ -505,8 +506,8 @@ GtkWidget *create_page1()
 help_cb(GtkWidget *widget, void *data)
 {
    gchar *file,*file2;
-
-   file=gnome_help_file_path("gnome-intro","f01.html");
+/* fixme */
+   file=(gchar*)gnome_help_file_find_file("gnome-intro","c0205.html#GTCD");
    if (file)
      {
         file2=alloca(strlen(file)+10);
@@ -562,7 +563,7 @@ void properties_cb( GtkWidget *widget, void *data )
 	gtk_signal_connect( GTK_OBJECT(propbox), 
 		"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
 	gtk_signal_connect( GTK_OBJECT(propbox),
-		"apply", GTK_SIGNAL_FUNC(help_cb), NULL );
+		"help", GTK_SIGNAL_FUNC(help_cb), NULL );
 
 	gtk_widget_show_all(propbox);
 	return;

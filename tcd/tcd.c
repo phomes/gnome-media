@@ -172,6 +172,7 @@ int main( int argc, char **argv )
 				if( cd->isdisk ) {
 					if( (track = get_i_track())!=-1 )
 					{
+						cd->cur_t = track;
 						tcd_playtracks( cd, track, cd->last_t );
 						if( cd->play_method==REPEAT_TRK )
 							cd->repeat_track = cd->cur_t;
