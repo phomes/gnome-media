@@ -1,11 +1,14 @@
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
-#	@PROGRAMS_GNOMOVISION@  \
 	@PROGRAMS_TCD@		\
 	cddbslave
 #
 # broken with current esound
 #	@PROGRAMS_EXTACE@	
+
+#
+# broken too
+# 	@PROGRAMS_GNOMOVISION
 
 EXTRA_DIST = gnome-media.spec
 
