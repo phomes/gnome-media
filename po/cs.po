@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2001-08-07 14:05+0200\n"
-"PO-Revision-Date: 2001-08-07 14:05+0200\n"
+"POT-Creation-Date: 2001-09-19 23:59+0200\n"
+"PO-Revision-Date: 2001-09-20 00:01+0200\n"
 "Last-Translator: Stanislav Brabec <utx@penguin.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,17 @@ msgstr "nastavit mixá¾(e) z konfigurace a skonèit"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "neukládat do konfigurace (zmìnìné) nastavení mixá¾e"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Nepodaøilo se otevøít zvukové zaøízení.\n"
+"Zkontrolujte práva pro otevøení /dev/mixer a ujistìte se,\n"
+"máte-li v jádru zakompilovanou podporu zvuku."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -344,7 +354,7 @@ msgstr ""
 "s OSS verze %d.%d.%d. a tento systém bì¾í\n"
 "s verzí ni¾¹í ne¾ 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -356,32 +366,32 @@ msgstr ""
 "s verzí %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Spø"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Zázn"
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Umlè"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome Mixá¾ní pult"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Toto je mixá¾ní pult pro zvuková zaøízení OSS."
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "Pøi spu¹tìní"
 
@@ -410,7 +420,7 @@ msgstr "Na mixá¾i zobrazit nápisy"
 msgid "Defaults"
 msgstr "Základní nastavení"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Konfigurace"
 
@@ -1248,94 +1258,94 @@ msgid "About"
 msgstr "O programu"
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Nedìlat nic"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Spustit pøehrávání"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Zastavit pøehrávání"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Zavøít pøehrávaè"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Otevøít pøehrávaè"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "Zaøízení CDROM"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
 msgstr "Mixá¾ní program"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Editor skladeb/titulù"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Písmo skladeb/titulù"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Zmìnit písmo"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Zobrazovat dr¾átka (nutný restart)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Zobrazovat tipy"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Pou¾ít alternativní metodu pøehrávání CD"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Kvadratické øízení hlasitosti"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "Pøi skonèení"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Klávesa"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Akce"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Zmìòte klepnutím zde (nutný restart):"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Rozlo¾ení kláves"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "Nastavení CDDB"
 
