@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
+"POT-Creation-Date: 2005-03-01 13:55+0100\n"
 "PO-Revision-Date: 2003-01-06 23:14+0200\n"
 "Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -161,9 +161,9 @@ msgid "Unknown / Unknown"
 msgstr "Nezināms / Nezināms"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
+#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
 msgid "Unknown"
 msgstr "Nezināms"
 
@@ -961,7 +961,7 @@ msgid "Paused"
 msgstr "Pauzēts"
 
 #: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD Atskaņotājs"
@@ -1170,19 +1170,19 @@ msgstr "Izlikt CD"
 msgid "Eject"
 msgstr "Izlikt"
 
-#: gnome-cd/gnome-cd.c:893
+#: gnome-cd/gnome-cd.c:905
 msgid "CD device to use"
 msgstr "Lietojamā CD iekārta"
 
-#: gnome-cd/gnome-cd.c:895
+#: gnome-cd/gnome-cd.c:907
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Tikai sāknēt tad, ja jau nav palaista CD atskaņotāja aplikācija"
 
-#: gnome-cd/gnome-cd.c:897
+#: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
 msgstr "Aatskaņot CD pie sāknēšanas"
 
-#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1190,7 +1190,7 @@ msgid ""
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:947
+#: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
 msgstr "Nevaru izveidot spēlētāju"
 
@@ -1262,11 +1262,12 @@ msgstr ""
 
 #: gnome-cd/preferences.c:652
 #, fuzzy
-msgid "Start _playing CD when CD Player starts"
+msgid "Start _playback when CD Player starts"
 msgstr "Sākt spēlēt CD, kad CD Atskaņotājs startējas"
 
 #: gnome-cd/preferences.c:653
-msgid "Start playing CD when CD Player starts"
+#, fuzzy
+msgid "Start playback when CD Player starts"
 msgstr "Sākt spēlēt CD, kad CD Atskaņotājs startējas"
 
 #: gnome-cd/preferences.c:665
@@ -1292,8 +1293,8 @@ msgstr ""
 msgid "Record sound clips"
 msgstr "Ierakstīt skaņas klipus"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
+#: grecord/src/gsr-window.c:1473
 msgid "Sound Recorder"
 msgstr "Skaņu Ierakstītājs"
 
@@ -1321,7 +1322,7 @@ msgstr "Izveidot jaunu paraugu"
 msgid "Display help for Sound Recorder"
 msgstr "Parādīt Skaņu Ierakstītāja palīdzību"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
 msgid "File Information"
 msgstr "Faila Informācija"
 
@@ -1341,7 +1342,7 @@ msgstr "Jauns"
 msgid "Open"
 msgstr "Atvērt"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:347
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:353
 msgid "Open a file"
 msgstr "Atvēt failu"
 
@@ -1457,189 +1458,230 @@ msgstr "_Ierakstīt"
 msgid "_Save"
 msgstr "_Saglabāt"
 
-#: grecord/src/gnome-recorder.c:162
+#. Translator comment: untitled here implies that
+#. * there is no active sound sample. Any newly
+#. * recorded samples will be saved to disk with this
+#. * name as default value.
+#. Translator comment: Untitled here implies a track without a
+#. * name. See also the translation in gnome-recorder.c:94. Those
+#. * two strings should match! If the track is unnamed, we will
+#. * open the save-as dialog here, else we´ll use the given file
+#. * to save to.
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:1896
+#, fuzzy, c-format
+msgid "Untitled"
+msgid_plural "Untitled-%d"
+msgstr[0] "Virsraksts"
+msgstr[1] "Virsraksts"
+
+#: grecord/src/gnome-recorder.c:168
 #, fuzzy
 msgid "Dummy option"
 msgstr "Skaņas opcijas"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hours"
 msgstr "stundas"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hour"
 msgstr "stunda"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minutes"
 msgstr "minūtes"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minute"
 msgstr "minūte"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:291
 msgid "seconds"
 msgstr "sekundes"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:291
 msgid "second"
 msgstr "sekunde"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
+#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
 msgid "Ready"
 msgstr "Gatavs"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#. Add replace button
+#: grecord/src/gsr-window.c:619
+#, fuzzy
+msgid "_Replace"
+msgstr "Kosmoss"
+
+#: grecord/src/gsr-window.c:636
+#, fuzzy, c-format
+msgid ""
+"A file named \"%s\" already exists. \n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"<b>Fails '%s' jau eksistē.</b>\n"
+"Vēlaties to pārraksīt?"
+
+#: grecord/src/gsr-window.c:689
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr ""
+
+#: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr ""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:746
 msgid "Save file as"
 msgstr "Saglabāt failu kā"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nav instalēta ceļā."
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:817
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Kļūda, startējot %s: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:894
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nav ticis saglabāts)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:907
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:911
 msgid "Unknown size"
 msgstr "Nezināms izmērs"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:931
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:952
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:956
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s Information"
 msgstr "%s Informācija"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:1020
 msgid "Folder:"
 msgstr "Mape:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
 msgid "Filename:"
 msgstr "Faila nosaukums:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:1032
 msgid "File size:"
 msgstr "Faila izmērs:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:1041
 msgid "Audio Information"
 msgstr "Audio Informācija"
 
-#: grecord/src/gsr-window.c:857
+#: grecord/src/gsr-window.c:1055
 #, fuzzy
 msgid "File duration:"
 msgstr "Faila Informācija"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
 msgstr "Kanālu skaits:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:1067
 msgid "Sample rate:"
 msgstr "Nolases kavalitāte:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:1073
 msgid "Bit rate:"
 msgstr "Bit ātrums:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:1139
 msgid "A sound recorder for GNOME"
 msgstr "Skaņas ierakstītājs priekš GNOME"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1409
 msgid "Playing..."
 msgstr "Atskaņoju..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1469
 #, fuzzy, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s - Skaņu Ierakstītājs"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1560
 msgid "Recording..."
 msgstr "Ierakstu..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1620
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1635
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1645
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1653
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1759
 #, fuzzy
 msgid "Record as"
 msgstr "Ierakstīt"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1776
 msgid "File information"
 msgstr "Faila Informācija"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1798
 msgid "<none>"
 msgstr "<nekas>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1807
 msgid "Length:"
 msgstr "Garums:"
 
@@ -1648,7 +1690,7 @@ msgid "Adjust the volume level"
 msgstr "Noregulēt skaļuma līmeni"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:374
+#: gst-mixer/src/window.c:380
 msgid "Volume Control"
 msgstr "Skaļuma Kontrole"
 
@@ -1830,12 +1872,21 @@ msgstr "Lietojamā CD iekārta"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:426
 #, fuzzy, c-format
 msgid "Volume Control: %s"
 msgstr "Skaļuma Kontrole"
 
-#: gst-mixer/src/window.c:377
+#. Translators comment: put your own name here to appear in the
+#. * about dialog.
+#: gst-mixer/src/window.c:375
+#, fuzzy
+msgid "translator-credits"
+msgstr ""
+"Pēteris Krišjānis <peteris.krisjanis@os.lv>\n"
+"Artis Trops <hornet@navigator.lv>"
+
+#: gst-mixer/src/window.c:383
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr ""
 
@@ -1925,10 +1976,10 @@ msgstr "Konveijers:"
 msgid "_Test"
 msgstr "Testēt..."
 
-#: gstreamer-properties/pipeline-constants.c:61
-#: gstreamer-properties/pipeline-constants.c:83
-#: gstreamer-properties/pipeline-constants.c:100
-#: gstreamer-properties/pipeline-constants.c:115
+#: gstreamer-properties/pipeline-constants.c:63
+#: gstreamer-properties/pipeline-constants.c:85
+#: gstreamer-properties/pipeline-constants.c:104
+#: gstreamer-properties/pipeline-constants.c:119
 msgid "Custom"
 msgstr ""
 
@@ -1974,15 +2025,15 @@ msgstr "Kļūda, startējot %s: %s"
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Kļūda, startējot %s: %s"
 
-#: profiles/audio-profile.c:1003
+#: profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr ""
 
-#: profiles/audio-profile.c:1014
+#: profiles/audio-profile.c:1013
 msgid "identity"
 msgstr ""
 
-#: profiles/audio-profile.c:1025
+#: profiles/audio-profile.c:1024
 msgid "wav"
 msgstr ""
 
@@ -2299,18 +2350,6 @@ msgstr "Skaļuma monitors"
 
 #~ msgid "GStreamer"
 #~ msgstr "GStreamer"
-
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "Kosmoss"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b>Fails '%s' jau eksistē.</b>\n"
-#~ "Vēlaties to pārraksīt?"
 
 #, fuzzy
 #~ msgid "Could not build pipeline"
@@ -2725,11 +2764,6 @@ msgstr "Skaļuma monitors"
 
 #~ msgid "File '%s' isn't a supported soundfile."
 #~ msgstr "Fails '%s' nav atbalsīts skaņas fails."
-
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Pēteris Krišjānis <peteris.krisjanis@os.lv>\n"
-#~ "Artis Trops <hornet@navigator.lv>"
 
 #~ msgid "GNOME Sound Recorder"
 #~ msgstr "GNOME Skaņu Ierakstītājs"

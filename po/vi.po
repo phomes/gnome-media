@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
+"POT-Creation-Date: 2005-03-01 13:55+0100\n"
 "PO-Revision-Date: 2004-09-07 13:33+0700\n"
 "Last-Translator: Trinh Minh Thanh <tmthanh@linuxmail.org>\n"
 "Language-Team: Gnome-Vi Team <Gnomevi-list@lists.sourceforge.net>\n"
@@ -156,9 +156,9 @@ msgid "Unknown / Unknown"
 msgstr "Không biết / Không biết"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
+#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
 msgid "Unknown"
 msgstr "Không rõ"
 
@@ -953,7 +953,7 @@ msgid "Paused"
 msgstr "Tạm ngừng"
 
 #: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Trình chơi CD"
@@ -1160,19 +1160,19 @@ msgstr "Đẩy CD ra"
 msgid "Eject"
 msgstr "Đẩy ra"
 
-#: gnome-cd/gnome-cd.c:893
+#: gnome-cd/gnome-cd.c:905
 msgid "CD device to use"
 msgstr "Thiết bị CD cần dùng"
 
-#: gnome-cd/gnome-cd.c:895
+#: gnome-cd/gnome-cd.c:907
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Chỉ khởi động nếu  chưa có bộ chơi CD nào khác đang chạy"
 
-#: gnome-cd/gnome-cd.c:897
+#: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
 msgstr "Chơi CD lúc khởi động"
 
-#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1180,7 +1180,7 @@ msgid ""
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:947
+#: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
 msgstr "Không thể tạo bộ chơi CD"
 
@@ -1247,11 +1247,13 @@ msgid "Behavior"
 msgstr ""
 
 #: gnome-cd/preferences.c:652
-msgid "Start _playing CD when CD Player starts"
+#, fuzzy
+msgid "Start _playback when CD Player starts"
 msgstr "_Bắt đầu chơi CD khi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:653
-msgid "Start playing CD when CD Player starts"
+#, fuzzy
+msgid "Start playback when CD Player starts"
 msgstr "Bắt đầu chơi CD khi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:665
@@ -1275,8 +1277,8 @@ msgstr ""
 msgid "Record sound clips"
 msgstr "Thu đoạn âm thanh"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
+#: grecord/src/gsr-window.c:1473
 msgid "Sound Recorder"
 msgstr "Bộ thu âm"
 
@@ -1304,7 +1306,7 @@ msgstr "Tạo mẫu mới"
 msgid "Display help for Sound Recorder"
 msgstr "Hiện trợ giúp cho Bộ thu âm"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
 msgid "File Information"
 msgstr "Thông tin tập tin"
 
@@ -1324,7 +1326,7 @@ msgstr "Mới"
 msgid "Open"
 msgstr "Mở"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:347
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:353
 msgid "Open a file"
 msgstr "Mở tập tin"
 
@@ -1440,187 +1442,226 @@ msgstr "_Thu"
 msgid "_Save"
 msgstr "_Lưu"
 
-#: grecord/src/gnome-recorder.c:162
+#. Translator comment: untitled here implies that
+#. * there is no active sound sample. Any newly
+#. * recorded samples will be saved to disk with this
+#. * name as default value.
+#. Translator comment: Untitled here implies a track without a
+#. * name. See also the translation in gnome-recorder.c:94. Those
+#. * two strings should match! If the track is unnamed, we will
+#. * open the save-as dialog here, else we´ll use the given file
+#. * to save to.
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:1896
+#, fuzzy, c-format
+msgid "Untitled"
+msgid_plural "Untitled-%d"
+msgstr[0] "Tựa đề"
+
+#: grecord/src/gnome-recorder.c:168
 msgid "Dummy option"
 msgstr "Tùy chọn giả"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hours"
 msgstr "giờ"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hour"
 msgstr "giờ"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minutes"
 msgstr "phút"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minute"
 msgstr "phút"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:291
 msgid "seconds"
 msgstr "giây"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:291
 msgid "second"
 msgstr "giây"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
+#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
 msgid "Ready"
 msgstr "Sẵn sàng"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#. Add replace button
+#: grecord/src/gsr-window.c:619
+msgid "_Replace"
+msgstr "_Thay thế"
+
+#: grecord/src/gsr-window.c:636
+#, fuzzy, c-format
+msgid ""
+"A file named \"%s\" already exists. \n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"Tập tin '%s' đã tồn tại.\n"
+"Bạn có muốn ghi đè không?"
+
+#: grecord/src/gsr-window.c:689
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr ""
+
+#: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr ""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:746
 msgid "Save file as"
 msgstr "Lưu tập tin là"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s không được cài đặt trong đường dẫn."
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:817
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Gặp lỗi khi khởi động %s: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:894
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Chưa được lưu)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:907
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:911
 msgid "Unknown size"
 msgstr "Không biết kích thước"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:931
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:952
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:956
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s Information"
 msgstr "Thông tin %s"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:1020
 msgid "Folder:"
 msgstr "Thư mục:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
 msgid "Filename:"
 msgstr "Tên tập tin:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:1032
 msgid "File size:"
 msgstr "Kích thước tập tin:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:1041
 msgid "Audio Information"
 msgstr "Thông tin Âm thanh"
 
-#: grecord/src/gsr-window.c:857
+#: grecord/src/gsr-window.c:1055
 #, fuzzy
 msgid "File duration:"
 msgstr "Thông tin tập tin"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
 msgstr "Số kênh:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:1067
 msgid "Sample rate:"
 msgstr "Tần số lấy mẫu:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:1073
 msgid "Bit rate:"
 msgstr "Tần số bit:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:1139
 msgid "A sound recorder for GNOME"
 msgstr "Bộ thu âm cho GNOME"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1409
 msgid "Playing..."
 msgstr "Đang chơi..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1469
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Bộ thu âm"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1560
 msgid "Recording..."
 msgstr "Đang thu..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1620
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1635
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1645
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1653
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1759
 msgid "Record as"
 msgstr "Thu là"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1776
 msgid "File information"
 msgstr "Thông tin tập tin"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1798
 msgid "<none>"
 msgstr "<không>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1807
 msgid "Length:"
 msgstr "Dài:"
 
@@ -1629,7 +1670,7 @@ msgid "Adjust the volume level"
 msgstr "Điều chỉnh mức âm lượng"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:374
+#: gst-mixer/src/window.c:380
 msgid "Volume Control"
 msgstr "Điều khiển âm lượng"
 
@@ -1811,12 +1852,19 @@ msgstr "Thiết bị CD cần dùng"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:426
 #, fuzzy, c-format
 msgid "Volume Control: %s"
 msgstr "Điều khiển âm lượng"
 
-#: gst-mixer/src/window.c:377
+#. Translators comment: put your own name here to appear in the
+#. * about dialog.
+#: gst-mixer/src/window.c:375
+#, fuzzy
+msgid "translator-credits"
+msgstr "Nguyễn Thái Ngọc Duy"
+
+#: gst-mixer/src/window.c:383
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr ""
 
@@ -1897,10 +1945,10 @@ msgstr "Ống _dẫn:"
 msgid "_Test"
 msgstr "_Kiểm tra"
 
-#: gstreamer-properties/pipeline-constants.c:61
-#: gstreamer-properties/pipeline-constants.c:83
-#: gstreamer-properties/pipeline-constants.c:100
-#: gstreamer-properties/pipeline-constants.c:115
+#: gstreamer-properties/pipeline-constants.c:63
+#: gstreamer-properties/pipeline-constants.c:85
+#: gstreamer-properties/pipeline-constants.c:104
+#: gstreamer-properties/pipeline-constants.c:119
 msgid "Custom"
 msgstr "Tự chọn"
 
@@ -1945,15 +1993,15 @@ msgstr "Lỗi đăng ký thông báo thay đổi Danh sách hồ sơ Audio (%s)\
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Lỗi quên đường dẫn hồ sơ %s. (%s)\n"
 
-#: profiles/audio-profile.c:1003
+#: profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr "<không mô tả>"
 
-#: profiles/audio-profile.c:1014
+#: profiles/audio-profile.c:1013
 msgid "identity"
 msgstr ""
 
-#: profiles/audio-profile.c:1025
+#: profiles/audio-profile.c:1024
 msgid "wav"
 msgstr "wav"
 
@@ -2262,16 +2310,6 @@ msgstr "Trình Theo Dõi Âm Lượng"
 
 #~ msgid "GStreamer"
 #~ msgstr "GStreamer"
-
-#~ msgid "_Replace"
-#~ msgstr "_Thay thế"
-
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "Tập tin '%s' đã tồn tại.\n"
-#~ "Bạn có muốn ghi đè không?"
 
 #~ msgid "Could not build pipeline"
 #~ msgstr "Không thể tạo ống dẫn"
@@ -2686,9 +2724,6 @@ msgstr "Trình Theo Dõi Âm Lượng"
 
 #~ msgid "File '%s' isn't a supported soundfile."
 #~ msgstr "Tập tin '%s' không được hỗ trợ."
-
-#~ msgid "translator_credits"
-#~ msgstr "Nguyễn Thái Ngọc Duy"
 
 #~ msgid "GNOME Sound Recorder"
 #~ msgstr "Bộ thu âm GNOME"

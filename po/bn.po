@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.gnome-2-2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
+"POT-Creation-Date: 2005-03-01 13:55+0100\n"
 "PO-Revision-Date: 2003-07-01 23:12+0530\n"
 "Last-Translator: Progga <abulfazl@juniv.edu>\n"
 "Language-Team: Bengali <gnome-translation@bengalinux.org>\n"
@@ -167,9 +167,9 @@ msgid "Unknown / Unknown"
 msgstr "অজানা/ অজানা"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
+#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -970,7 +970,7 @@ msgid "Paused"
 msgstr "স্থগিত অবস্থায় আছে"
 
 #: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "সিডি বাদক"
@@ -1177,19 +1177,19 @@ msgstr "সিডি বের করে দাও"
 msgid "Eject"
 msgstr "বের করে দাও"
 
-#: gnome-cd/gnome-cd.c:893
+#: gnome-cd/gnome-cd.c:905
 msgid "CD device to use"
 msgstr "যে সিডি ডিভাইস ব্যবহৃত হবে"
 
-#: gnome-cd/gnome-cd.c:895
+#: gnome-cd/gnome-cd.c:907
 msgid "Only start if there isn't already a CD player application running"
 msgstr "কোন সিডি প্লেয়ার অ্যাপ্লিকেশন বর্তমানে সক্রিয় না থাকলেই কেবল আরম্ভ করো"
 
-#: gnome-cd/gnome-cd.c:897
+#: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
 msgstr "প্রারম্ভে সিডি বাজাও"
 
-#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1197,7 +1197,7 @@ msgid ""
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:947
+#: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
 msgstr "বাদক তৈরি করা গেল না"
 
@@ -1265,11 +1265,13 @@ msgid "Behavior"
 msgstr ""
 
 #: gnome-cd/preferences.c:652
-msgid "Start _playing CD when CD Player starts"
+#, fuzzy
+msgid "Start _playback when CD Player starts"
 msgstr "সিডি বাদক শুরু হবার সময় সিডি বাজানো _শুরু করা হবে"
 
 #: gnome-cd/preferences.c:653
-msgid "Start playing CD when CD Player starts"
+#, fuzzy
+msgid "Start playback when CD Player starts"
 msgstr "সিডি বাদক শুরু হবার সময় সিডি বাজানো _শুরু করা হবে"
 
 #: gnome-cd/preferences.c:665
@@ -1293,8 +1295,8 @@ msgstr ""
 msgid "Record sound clips"
 msgstr "শব্দের টুকরো রেকর্ড করুন"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
+#: grecord/src/gsr-window.c:1473
 msgid "Sound Recorder"
 msgstr "শব্দ রেকর্ডকারী"
 
@@ -1322,7 +1324,7 @@ msgstr "একটি নতুন নমুনা তৈরি করো"
 msgid "Display help for Sound Recorder"
 msgstr "শব্দ রেকর্ডারের জন্য সহায়িকা দেখানো হোক"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
 msgid "File Information"
 msgstr "ফাইল সম্বন্ধীয় তথ্য"
 
@@ -1342,7 +1344,7 @@ msgstr "নতুন"
 msgid "Open"
 msgstr "খোলো"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:347
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:353
 msgid "Open a file"
 msgstr "ফাইল খোলো"
 
@@ -1458,189 +1460,230 @@ msgstr "_রেকর্ড"
 msgid "_Save"
 msgstr "_সংরক্ষণ"
 
-#: grecord/src/gnome-recorder.c:162
+#. Translator comment: untitled here implies that
+#. * there is no active sound sample. Any newly
+#. * recorded samples will be saved to disk with this
+#. * name as default value.
+#. Translator comment: Untitled here implies a track without a
+#. * name. See also the translation in gnome-recorder.c:94. Those
+#. * two strings should match! If the track is unnamed, we will
+#. * open the save-as dialog here, else we´ll use the given file
+#. * to save to.
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:1896
+#, fuzzy, c-format
+msgid "Untitled"
+msgid_plural "Untitled-%d"
+msgstr[0] "শিরোনাম"
+msgstr[1] "শিরোনাম"
+
+#: grecord/src/gnome-recorder.c:168
 #, fuzzy
 msgid "Dummy option"
 msgstr "শব্দ সম্বন্ধীয় অপশনসমূহ"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hours"
 msgstr "ঘন্টা"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
 msgid "hour"
 msgstr "ঘন্টা"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minutes"
 msgstr "মিনিট"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
 msgid "minute"
 msgstr "মিনিট"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:291
 msgid "seconds"
 msgstr "সেকেন্ড"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
+#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:291
 msgid "second"
 msgstr "সেকেন্ড"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
+#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
 msgid "Ready"
 msgstr "প্রস্তুত"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#. Add replace button
+#: grecord/src/gsr-window.c:619
+#, fuzzy
+msgid "_Replace"
+msgstr "স্পেস"
+
+#: grecord/src/gsr-window.c:636
+#, fuzzy, c-format
+msgid ""
+"A file named \"%s\" already exists. \n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"<b> '%s' ফাইলটি বর্তমানে উপস্থিত আছে.</b>\n"
+"আপনি কি এটি পুনরায় লিখতে ইচ্ছুক?"
+
+#: grecord/src/gsr-window.c:689
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr ""
+
+#: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr ""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:746
 msgid "Save file as"
 msgstr "নতুন নামে ফাইল সংরক্ষণ করো"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "পথ নির্দেশে %s ইনস্টল করা নেই।"
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:817
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s খুলতে কিছু অসুবিধে দেখা দিয়েছে: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:894
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (সংরক্ষণ করা হয় নি)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:907
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:911
 msgid "Unknown size"
 msgstr "অজানা আয়তন"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:931
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:952
 msgid "1 (mono)"
 msgstr "১ (একক)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:956
 msgid "2 (stereo)"
 msgstr "২ (দ্বৈত)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s Information"
 msgstr "%s তথ্য"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:1020
 msgid "Folder:"
 msgstr "ফোল্ডার:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
 msgid "Filename:"
 msgstr "ফাইলের নাম:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:1032
 msgid "File size:"
 msgstr "ফাইলের আয়তন:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:1041
 msgid "Audio Information"
 msgstr "শব্দ সম্বন্ধীয় তথ্য"
 
-#: grecord/src/gsr-window.c:857
+#: grecord/src/gsr-window.c:1055
 #, fuzzy
 msgid "File duration:"
 msgstr "ফাইল সম্বন্ধীয় তথ্য"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
 msgstr "চ্যানেল সংখ্যা:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:1067
 msgid "Sample rate:"
 msgstr "স্যাম্পলের গতি:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:1073
 msgid "Bit rate:"
 msgstr "বিট মাত্রা"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:1139
 msgid "A sound recorder for GNOME"
 msgstr "গুহ্‌নোমের জন্য একটি শব্দ রেকর্ডকারী"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1409
 msgid "Playing..."
 msgstr "বাজানো হচ্ছে..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1469
 #, fuzzy, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s - শব্দ রেকর্ডকারী"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1560
 msgid "Recording..."
 msgstr "রেকর্ড করা হচ্ছে..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1620
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1635
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1645
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1653
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1759
 #, fuzzy
 msgid "Record as"
 msgstr "রেকর্ড"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1776
 msgid "File information"
 msgstr "ফাইল সম্বন্ধীয় তথ্য"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1798
 msgid "<none>"
 msgstr "<কোনটিই নয়>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1807
 msgid "Length:"
 msgstr "দৈর্ঘ্য:"
 
@@ -1649,7 +1692,7 @@ msgid "Adjust the volume level"
 msgstr "শব্দের মাত্রা ঠিক করুন"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:374
+#: gst-mixer/src/window.c:380
 msgid "Volume Control"
 msgstr "শব্দের মাত্রা নিয়ন্ত্রণকারী"
 
@@ -1831,12 +1874,22 @@ msgstr "যে সিডি ডিভাইস ব্যবহৃত হবে"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:426
 #, fuzzy, c-format
 msgid "Volume Control: %s"
 msgstr "শব্দের মাত্রা নিয়ন্ত্রণকারী"
 
-#: gst-mixer/src/window.c:377
+#. Translators comment: put your own name here to appear in the
+#. * about dialog.
+#: gst-mixer/src/window.c:375
+#, fuzzy
+msgid "translator-credits"
+msgstr ""
+"সায়মিন্দু দাশগুপ্ত <unmadindu@bengalinux.org>, রুণা ভট্টাচার্য <Runa@Bengalinux."
+"org>\n"
+"(অঙ্কুর প্রকল্পের পক্ষ থেকে)"
+
+#: gst-mixer/src/window.c:383
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr ""
 
@@ -1917,10 +1970,10 @@ msgstr "পাইপলাইন:"
 msgid "_Test"
 msgstr "পরীক্ষা..."
 
-#: gstreamer-properties/pipeline-constants.c:61
-#: gstreamer-properties/pipeline-constants.c:83
-#: gstreamer-properties/pipeline-constants.c:100
-#: gstreamer-properties/pipeline-constants.c:115
+#: gstreamer-properties/pipeline-constants.c:63
+#: gstreamer-properties/pipeline-constants.c:85
+#: gstreamer-properties/pipeline-constants.c:104
+#: gstreamer-properties/pipeline-constants.c:119
 msgid "Custom"
 msgstr "নিজস্ব"
 
@@ -1969,15 +2022,15 @@ msgstr "%s খুলতে কিছু অসুবিধে দেখা দ�
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "%s খুলতে কিছু অসুবিধে দেখা দিয়েছে: %s"
 
-#: profiles/audio-profile.c:1003
+#: profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr ""
 
-#: profiles/audio-profile.c:1014
+#: profiles/audio-profile.c:1013
 msgid "identity"
 msgstr ""
 
-#: profiles/audio-profile.c:1025
+#: profiles/audio-profile.c:1024
 msgid "wav"
 msgstr ""
 
@@ -2294,18 +2347,6 @@ msgstr "শব্দের মাত্রার উপর নজরকারী
 
 #~ msgid "GStreamer"
 #~ msgstr "জীস্ট্রিমার"
-
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "স্পেস"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b> '%s' ফাইলটি বর্তমানে উপস্থিত আছে.</b>\n"
-#~ "আপনি কি এটি পুনরায় লিখতে ইচ্ছুক?"
 
 #, fuzzy
 #~ msgid "Could not build pipeline"
@@ -2699,12 +2740,6 @@ msgstr "শব্দের মাত্রার উপর নজরকারী
 
 #~ msgid "File '%s' isn't a supported soundfile."
 #~ msgstr "'%s' কোন ব্যবহারযোগ্য শব্দধারী ফাইল নয়।"
-
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "সায়মিন্দু দাশগুপ্ত <unmadindu@bengalinux.org>, রুণা ভট্টাচার্য <Runa@Bengalinux."
-#~ "org>\n"
-#~ "(অঙ্কুর প্রকল্পের পক্ষ থেকে)"
 
 #~ msgid "GNOME Sound Recorder"
 #~ msgstr "গুহ্‌নোমের শব্দ রেকর্ডকারী"
