@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.100 HEAD\n"
-"POT-Creation-Date: 2002-12-07 15:16+0000\n"
-"PO-Revision-Date: 2002-11-05 20:51+0800\n"
+"POT-Creation-Date: 2002-12-16 17:05+0800\n"
+"PO-Revision-Date: 2002-12-16 17:01+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
 "MIME-Version: 1.0\n"
@@ -1184,26 +1184,15 @@ msgstr "Rek."
 msgid "%s Record"
 msgstr "Rekod %s"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1342 gmix/gmix.c:1748
+#: gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Kawalan Volum"
 
-#: gmix/gmix.c:1748
-#, fuzzy
-msgid "GNOME Volume Control"
-msgstr "Laksanakan Kawalan Volum GNOME"
-
-#: gmix/gmix.c:1749
-msgid ""
-"(C) 1998 Jens Ch. Restemeier\n"
-"(C) 2001 Iain Holmes"
-msgstr ""
-
 #: gmix/gmix.c:1751
-#, fuzzy
 msgid "A mixer for sound devices"
-msgstr "Mixer ini untuk peranti bunyi"
+msgstr "Mixer bagi peranti bunyi"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
@@ -1272,8 +1261,8 @@ msgid "Line for displaying the name of the album"
 msgstr "Baris bagi memapar nama album"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
-#: grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/gsr.xml.h:13
+#: grecord/src/gui.c:233
 msgid "Play"
 msgstr "Putar"
 
@@ -1343,13 +1332,9 @@ msgstr "Tiada CDROM"
 msgid "Drive Error"
 msgstr "Ralat Pemacu"
 
-#: gnome-cd/callbacks.c:824
-msgid "(C) 2001 Iain Holmes"
-msgstr ""
-
 #: gnome-cd/callbacks.c:825
-msgid "A CD player for GNOME"
-msgstr ""
+msgid "A CD player"
+msgstr "Pemain CD"
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1492,7 +1477,7 @@ msgstr "Rewind"
 msgid "Play / Pause"
 msgstr "Putar / Kaku"
 
-#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:615 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Berhenti"
 
@@ -1559,23 +1544,27 @@ msgstr "Tutup dulang CD pada permulaan"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
+msgstr "Path di pemacu CD yang Pemain CD akan gunakan untuk memain CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
 msgstr ""
+"Apakah aksi yang Pemain CD akan lakukan bila keluar? 0 = TIada apa, 1 = "
+"Henti bermain, 2 = Lenting CD; 3 = Cuba menutup dulang"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
 msgstr ""
+"Apakah aksi yang Pemain CD akan lakukan pada permulaan? 0 = TIada apa, 1 = "
+"Mula bermain, 2 = Henti Bermain"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
-msgstr ""
+msgstr "Apakah tema yang patut Pemain CD gunakan untuk penambilannya"
 
 #: gnome-cd/preferences.c:83
 #, c-format
@@ -1859,14 +1848,13 @@ msgstr ""
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
-#, fuzzy
 msgid "hours"
-msgstr "Chorus"
+msgstr "jam"
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
 msgid "hour"
-msgstr ""
+msgstr "jam"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
@@ -1876,131 +1864,114 @@ msgstr "minit"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#, fuzzy
 msgid "minute"
 msgstr "minit"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
 #: grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "seconds"
-msgstr "Rekod %s"
+msgstr "saat"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "second"
-msgstr "Rekod %s"
+msgstr "saat"
 
-#: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:367
 msgid "Open a file"
-msgstr ""
+msgstr "Buka fail"
 
 #: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
 #: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
 msgid "Ready"
-msgstr ""
+msgstr "Bersedia"
 
 #: grecord/src/gsr-window.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "Saving %s..."
-msgstr "Menyimpan..."
+msgstr "Menyimpan %s..."
 
 #: grecord/src/gsr-window.c:600
-#, fuzzy
 msgid "Save file as"
-msgstr "Simpan fail bunyi"
+msgstr "Simpan fail sebagai"
 
 #: grecord/src/gsr-window.c:654
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not installed in the path."
-msgstr "%s tidak dipasang di dalam path"
+msgstr "%s tidak dipasang di dalam path."
 
 #: grecord/src/gsr-window.c:736
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr ""
+msgstr "%s (Tidak disimpan)"
 
 #: grecord/src/gsr-window.c:751
-#, fuzzy
 msgid "Unknown size"
-msgstr "Cakera tidak diketahui"
+msgstr "Saiz tidak diketahui"
 
 #: grecord/src/gsr-window.c:771
 #, c-format
 msgid "%.1f kHz"
-msgstr ""
+msgstr "%.1f kHz"
 
 #: grecord/src/gsr-window.c:780
 #, c-format
 msgid "%.0f kb/s"
-msgstr ""
+msgstr "%.0f kb/s"
 
 #: grecord/src/gsr-window.c:792
-#, fuzzy
 msgid "1 (mono)"
-msgstr "mono"
+msgstr "1 (mono)"
 
 #: grecord/src/gsr-window.c:796
-#, fuzzy
 msgid "2 (stereo)"
-msgstr "stereo"
+msgstr "2 (stereo)"
 
 #: grecord/src/gsr-window.c:825
-#, fuzzy, c-format
+#, c-format
 msgid "%s Information"
-msgstr "Maklumat logmasuk"
+msgstr "Maklumat %s"
 
-#: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
-#, fuzzy
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:845
 msgid "File Information"
-msgstr "Maklumat logmasuk"
+msgstr "Maklumat Fail"
 
 #: grecord/src/gsr-window.c:859
-#, fuzzy
 msgid "Folder:"
-msgstr "Folder"
+msgstr "Folder:"
 
 #: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
 msgid "Filename:"
-msgstr ""
+msgstr "Namafail:"
 
 #: grecord/src/gsr-window.c:871
 msgid "File size:"
-msgstr ""
+msgstr "Saiz fail:"
 
 #: grecord/src/gsr-window.c:880
-#, fuzzy
 msgid "Audio Information"
-msgstr "Format audio:"
+msgstr "Maklumat Audio:"
 
 #: grecord/src/gsr-window.c:894
 msgid "Song length:"
-msgstr ""
+msgstr "Panjang lagu:"
 
 #: grecord/src/gsr-window.c:900
-#, fuzzy
 msgid "Number of channels:"
-msgstr "_Berapa kali:"
+msgstr "Bilangan saluran:"
 
 #: grecord/src/gsr-window.c:906
-#, fuzzy
 msgid "Sample rate:"
-msgstr "Kadar sampel: "
+msgstr "Kadar sampel:"
 
 #: grecord/src/gsr-window.c:912
 msgid "Bit rate:"
-msgstr ""
-
-#: grecord/src/gsr-window.c:981
-msgid "(C) 2002 Iain Holmes"
-msgstr ""
+msgstr "Kadar bit"
 
 #: grecord/src/gsr-window.c:982
-#, fuzzy
-msgid "A sound recorder for GNOME"
-msgstr "Perekod Bunyi"
+msgid "A sound recorder program"
+msgstr "Program perekod bunyi"
 
 #: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
 #, c-format
@@ -2008,28 +1979,26 @@ msgid "%s - Sound Recorder"
 msgstr "Perekod Bunyi - %s"
 
 #: grecord/src/gsr-window.c:1548
-#, fuzzy
 msgid "File information"
-msgstr "Maklumat logmasuk"
+msgstr "Maklumat fail"
 
 #: grecord/src/gsr-window.c:1569
 msgid "<none>"
-msgstr ""
+msgstr "<tiada>"
 
 #: grecord/src/gsr-window.c:1578
-#, fuzzy
 msgid "Length:"
-msgstr "Panjang"
+msgstr "Panjang:"
 
-#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
+#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
 msgid "_New"
 msgstr "Yang _Baru"
 
-#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
+#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
 msgid "Create a new sample"
 msgstr "Cipta sampel baru"
 
-#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
+#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
 msgid "Run _Mixer"
 msgstr "Laksanakan _Mixer"
 
@@ -2077,7 +2046,7 @@ msgstr "stereo"
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
+#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
 msgid "New"
 msgstr "Yang Baru"
 
@@ -2093,7 +2062,7 @@ msgstr "Putar sampel semasa"
 msgid "Stop playing/recording"
 msgstr "Hentikan putar/rekod"
 
-#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
+#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
 msgid "Record"
 msgstr "Rekod"
 
@@ -2128,16 +2097,14 @@ msgstr ""
 "Khairulanuar Abd Majid <khairul@ikhlas.com>"
 
 #: grecord/src/gui.c:431
-#, fuzzy
 msgid "GNOME Sound Recorder"
-msgstr "Perekod Bunyi"
+msgstr "Perekod Bunyi GNOME"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
 #: grecord/src/gui.c:434
-#, fuzzy
 msgid "(C) 2000 Andreas Hyden"
-msgstr "Hakcipta (C) 2000 Andreas Hyden"
+msgstr "(C) 2000 Andreas Hyden"
 
 #: grecord/src/gui.c:435
 msgid ""
@@ -2334,239 +2301,217 @@ msgid "Adding echo to sample..."
 msgstr "Menambah gema pada sampel..."
 
 #: grecord/gsr.xml.h:1
-#, fuzzy
 msgid "About"
-msgstr "Akustik"
+msgstr "Perihal"
 
 #: grecord/gsr.xml.h:2
-#, fuzzy
 msgid "Close"
-msgstr "Rumah-Kelab"
+msgstr "Tutup"
 
 #: grecord/gsr.xml.h:3
 msgid "Close this window"
-msgstr ""
+msgstr "Tutup tetingkap ini"
 
 #: grecord/gsr.xml.h:4
 msgid "Contents"
-msgstr ""
+msgstr "Kandungan"
 
 #: grecord/gsr.xml.h:6
-#, fuzzy
 msgid "Display help for Sound Recorder"
-msgstr "Perekod Bunyi - %s"
+msgstr "Papar bantuan bagi Perekod Bunyi"
 
 #: grecord/gsr.xml.h:8
-#, fuzzy
 msgid "File _Information"
-msgstr "Maklumat logmasuk"
+msgstr "_Maklumat Fail"
 
 #: grecord/gsr.xml.h:9
 msgid "Main toolbar"
-msgstr ""
+msgstr "Toolbar utama"
 
 #: grecord/gsr.xml.h:11
-#, fuzzy
 msgid "Open"
-msgstr "Opera"
+msgstr "Buka"
 
 #: grecord/gsr.xml.h:14
 msgid "Play sound"
-msgstr ""
+msgstr "Mainkan bunyi"
 
 #: grecord/gsr.xml.h:15
 msgid "Quit"
-msgstr ""
+msgstr "Keluar"
 
 #: grecord/gsr.xml.h:16
-#, fuzzy
 msgid "Quit the application"
-msgstr "Aksi pada aplikasi keluar"
+msgstr "Keluar aplikasi"
 
 #: grecord/gsr.xml.h:17
 msgid "Recent _Files"
-msgstr ""
+msgstr "_Fail Kebelakangan"
 
 #: grecord/gsr.xml.h:19
-#, fuzzy
 msgid "Record sound"
-msgstr "klip bunyi Rekod"
+msgstr "Rekod Bunyi"
 
 #: grecord/gsr.xml.h:20
-#, fuzzy
 msgid "Run Mixer"
-msgstr "Laksanakan _Mixer"
+msgstr "Laksanakan Mixer"
 
 #: grecord/gsr.xml.h:22
 msgid "Run the audio mixer"
-msgstr ""
+msgstr "Laksanakan mixer audio"
 
 #: grecord/gsr.xml.h:23
-#, fuzzy
 msgid "Save"
-msgstr "Rave"
+msgstr "Simpan"
 
 #: grecord/gsr.xml.h:24
-#, fuzzy
 msgid "Save As"
-msgstr "Simpan %s?"
+msgstr "Simpan Sebagai"
 
 #: grecord/gsr.xml.h:25
-#, fuzzy
 msgid "Save _As..."
-msgstr "Simpan %s?"
+msgstr "Simpan Seb_agai..."
 
 #: grecord/gsr.xml.h:26
-#, fuzzy
 msgid "Save the current file"
-msgstr "Simpan fail bunyi"
+msgstr "Simpan fail semasa"
 
 #: grecord/gsr.xml.h:27
 msgid "Save the current file with a different name"
-msgstr ""
+msgstr "Simpan fail semasa dengan nama lain"
 
 #: grecord/gsr.xml.h:28
 msgid "Show information about the current file"
-msgstr ""
+msgstr "Papar maklumat perihal fail semasa"
 
 #: grecord/gsr.xml.h:29
-#, fuzzy
 msgid "Show information for Sound Recorder"
-msgstr "Perekod Bunyi Gnome"
+msgstr "Papar maklumat bagi Perekod Bunyi"
 
 #: grecord/gsr.xml.h:31
-#, fuzzy
 msgid "Stop sound"
-msgstr "Bunyi"
+msgstr "Henti bunyi"
 
 #: grecord/gsr.xml.h:32
 msgid "_About"
-msgstr ""
+msgstr "_Perihal"
 
 #: grecord/gsr.xml.h:33
 msgid "_Close Window"
-msgstr ""
+msgstr "_Tutup Tetingkap"
 
 #: grecord/gsr.xml.h:34
 msgid "_Contents"
-msgstr ""
+msgstr "_Kandungan"
 
 #: grecord/gsr.xml.h:35
-#, fuzzy
 msgid "_Control"
-msgstr "Negara"
+msgstr "_Kawalan"
 
 #: grecord/gsr.xml.h:36
 msgid "_File"
-msgstr ""
+msgstr "_Fail"
 
 #: grecord/gsr.xml.h:39
 msgid "_Open..."
-msgstr ""
+msgstr "_Buka..."
 
 #: grecord/gsr.xml.h:40
-#, fuzzy
 msgid "_Play"
-msgstr "Putar"
+msgstr "_Main"
 
 #: grecord/gsr.xml.h:41
 msgid "_Quit"
-msgstr ""
+msgstr "_Keluar"
 
 #: grecord/gsr.xml.h:42
-#, fuzzy
 msgid "_Record"
-msgstr "Rekod"
+msgstr "_Rekod"
 
 #: grecord/gsr.xml.h:43
-#, fuzzy
 msgid "_Save"
-msgstr "Rave"
+msgstr "_Simpan"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:249
 msgid "Failure instantiating main window"
-msgstr ""
+msgstr "Gagal menginstans tetingkap utama"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:289
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load UI resource %s"
-msgstr "Tak dapat sepit proses anak"
+msgstr "Tak dapat memuatkan sumber UI %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr ""
+msgstr "Konfigurasi default bagi aplikasi GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-#, fuzzy
 msgid "GStreamer"
-msgstr "Permainan"
+msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" size=\"x-large\">menguji...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
-#, fuzzy
 msgid "Audio _Input:"
-msgstr "Format audio:"
+msgstr "_Input Audio:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
-#, fuzzy
 msgid "Audio _Output:"
-msgstr "Fon Output"
+msgstr "_Output Audio:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish"
-msgstr ""
+msgstr "Klik Ok untuk selesai"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Default Sink"
-msgstr ""
+msgstr "Sinki Default"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Default Source"
-msgstr ""
+msgstr "Sumber Default"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
 msgid "GStreamer Properties"
-msgstr ""
+msgstr "Ciri-ciri GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Pipeline:"
-msgstr ""
+msgstr "Barispaip:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Test..."
-msgstr ""
+msgstr "Uji..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
-msgstr ""
+msgstr "Menguji Barispaip"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "Video _Input:"
-msgstr ""
+msgstr "_Input Video:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-#, fuzzy
 msgid "Video _Output:"
-msgstr "Fon Output"
+msgstr "_Output Video:"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr ""
+msgstr "Gagal mengadakan ujian barispaip bagi '%s'"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2636,12 +2581,3 @@ msgstr "Monitor volum output bunyi"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Monitor volum"
-
-#~ msgid "Gnome Volume Control"
-#~ msgstr "Kawalan Volum Gnome"
-
-#~ msgid "Copyright (C) 2001, 2002"
-#~ msgstr "Copyright (C) 2001, 2002"
-
-#~ msgid "A GNOME cd player"
-#~ msgstr "Pemain CD GNOME"
