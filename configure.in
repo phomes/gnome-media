@@ -2,7 +2,7 @@ AC_PREREQ(2.52)
 AC_INIT(gmix)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-media, 2.2.0)
+AM_INIT_AUTOMAKE(gnome-media, 2.2.1)
 AM_MAINTAINER_MODE
 
 AC_PROG_INTLTOOL([0.21])
@@ -308,7 +308,7 @@ AC_SUBST(PROGRAMS_GRECORD)
 # FIXME: COMMON_MODULES should go because it is silly ...
 # ... and I'm sure we can narrow down some of these dependencies because
 # ... they depend on each other
-COMMON_MODULES="gtk+-2.0 gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer-0.5 gstreamer-libs-0.5"
+COMMON_MODULES="gtk+-2.0 gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR"
 PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
 		  PROGRAMS_GSTPROPS="gstreamer-properties",
 		  PROGRAMS_GSTPROPS="")
