@@ -2,7 +2,7 @@
 # need this to force these directories to be distributed, even if
 # maintainer doesnt have required libraries for the conditional components
 #
-DIST_SUBDIRS = po intl macros gmix tcd vumeter cddbslave 
+DIST_SUBDIRS = po intl macros gmix tcd vumeter cddbslave gnomovision extace
 
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
