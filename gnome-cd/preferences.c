@@ -53,13 +53,10 @@
 #include <libgnome/gnome-i18n.h>
 #include <gnome.h>
 
-#include <gconf/gconf-client.h>
 #include <nautilus-burn-drive-selection.h>
 
 #include "gnome-cd.h"
 #include "preferences.h"
-
-static GConfClient *client = NULL;
 
 static void
 do_device_changed (GnomeCDPreferences *prefs,

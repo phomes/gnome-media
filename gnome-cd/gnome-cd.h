@@ -14,6 +14,7 @@
 #include <pango/pango.h>
 
 #include <cddb-slave-client.h>
+#include <gconf/gconf-client.h>
 
 #include "gnome-cd-type.h"
 #include "cd-selection.h"
@@ -125,5 +126,6 @@ void make_popup_menu (GnomeCD *gcd,
                 GdkEventButton *event);
 
 void tray_icon_create (GnomeCD *gcd);
+GConfClient *client;
 
 #endif

@@ -40,6 +40,9 @@ static gboolean cd_option_play = FALSE;
 /* Popup Menu*/
 static GtkWidget *popup_menu = NULL;
 
+/* Gconf ID */
+static guint volume_notify_id; 
+
 /* if env var GNOME_CD_DEBUG is set,
  * g_warning the given message, and if there was an error, the error message
  */
@@ -337,6 +340,8 @@ window_destroy_cb (GtkWidget *window,
 	/* And the track editor */
 	destroy_track_editor ();
 	
+	/* Remove the gconf volume notify*/
+	gconf_client_notify_remove (client, volume_notify_id);
 	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
 }
@@ -479,6 +484,50 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event)
 }
 
 static void
+set_volume (GnomeCD *gcd)
+{
+	GError *error = NULL;
+	GtkTooltips *volume_level_tooltip;
+	gchar *volume_level;
+	gint scaled_volume;
+	double volume;
+	
+	scaled_volume = gconf_client_get_int (client, "/apps/gnome-cd/volume", NULL);
+	/* On error set the Key */	
+	if (scaled_volume < 0) {
+		scaled_volume = 0;
+		gconf_client_set_int (client, "/apps/gnome-cd/volume", 0, NULL);
+	}	
+	else if (scaled_volume > 100) {
+		scaled_volume = 100;
+		gconf_client_set_int (client, "/apps/gnome-cd/volume", 100, NULL);
+	}
+	volume = ((double)scaled_volume/100)*255;
+        
+	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, &error) == FALSE) {
+		gcd_warning ("Error setting volume: %s", error);
+		g_error_free (error);
+	}
+	
+	/* Set the value in the slider */	
+	gtk_range_set_value (GTK_RANGE (gcd->slider), volume);
+	/* Set the tooltip */
+	volume_level = g_strdup_printf (_("Volume %d%%"), scaled_volume);
+	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider), volume_level, NULL);
+	g_free (volume_level);
+}
+
+static void
+volume_changed_cb (GConfClient *_client,
+		guint cnxn_id,
+		GConfEntry *entry,
+		gpointer user_data)
+{
+	GnomeCD *gcd = user_data;
+	set_volume (gcd);
+}
+
+static void
 show_error (GtkWidget	*dialog,
 	    GError 	*error,
 	    GError	*detailed_error,
@@ -523,7 +572,6 @@ static GnomeCD *
 init_player (const char *device_override)
 {
 	GnomeCD *gcd;
-	GnomeCDRomStatus *status;
 	GtkWidget *display_box;
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button;
@@ -675,9 +723,6 @@ init_player (const char *device_override)
 	gtk_range_set_inverted(GTK_RANGE(gcd->slider), TRUE);
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
 	
-	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider),
-			      _("Volume control"), NULL);
-
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 	
 	
@@ -727,16 +772,14 @@ init_player (const char *device_override)
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), option_hbox, FALSE, FALSE, 0);
 	
-	/* Get the initial volume */
-	if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) == TRUE) {
-		gtk_range_set_value (GTK_RANGE (gcd->slider),
-				     (double) status->volume);
-		g_free (status);
-	} else {
-		g_free (status);
-		gcd_warning ("Error getting status: %s", NULL);
+	/* Set the initial volume */
+	set_volume (gcd);
+	volume_notify_id = gconf_client_notify_add (client,
+			"/apps/gnome-cd/volume", volume_changed_cb,
+			gcd, NULL, &error);
+	if (error != NULL) {
+		g_warning ("Error: %s", error->message);
 	}
-
 	g_signal_connect (G_OBJECT (gcd->slider), "value-changed",
 			  G_CALLBACK (volume_changed), gcd);
 	

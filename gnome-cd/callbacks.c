@@ -1136,12 +1136,21 @@ volume_changed (GtkRange *range,
 {
 	double volume;
 	GError *error = NULL;
+	GtkTooltips *volume_level_tooltip;
+	gchar *volume_level;
+	gint scaled_volume;
 
 	volume = gtk_range_get_value (range);
 	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, &error) == FALSE) {
 		gcd_warning ("Error setting volume: %s", error);
 		g_error_free (error);
 	}
+	/* Set the Tooltip */
+	scaled_volume = (volume/255)*100;
+	volume_level = g_strdup_printf (_("Volume %d%%"), scaled_volume);
+	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider), volume_level, NULL);
+	gconf_client_set_int (client, "/apps/gnome-cd/volume", scaled_volume, NULL);
+	g_free (volume_level);
 }
 
 void

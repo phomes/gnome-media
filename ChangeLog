@@ -1,3 +1,16 @@
+2005-03-28  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	* gnome-cd/callbacks.c (volume_changed): Update the tooltip.
+	Read the volume from gconf.
+	* gnome-cd/gnome-cd.c (init_player): Created a new gconf
+	key "volume"
+	(volume_changed_cb): callback for gconf notify
+	(set_volume): Setting the volume when gconf notifies and also to
+	intialise.
+	* gnome-cd/gnome-cd.h:
+	* gnome-cd/preferences.c:
+	* gnome-cd/gnome-cd.schemas.in.in: Added the new key "volume"
+
 2005-03-25  Pedro Villavicencio Garrido  <pvillavi@gnome.org>
 
 	* gst-mixer/src/window.c (cb_about): use GtkAboutDialog instead
