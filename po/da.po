@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 22:11-0700\n"
-"PO-Revision-Date: 2004-02-23 22:08+0100\n"
+"POT-Creation-Date: 2004-03-08 16:51+0100\n"
+"PO-Revision-Date: 2004-03-08 16:52+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "Ukendt/ukendt"
 #. Attempts to get length ran out.
 #: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
-#: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1075
+#: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1078
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -1281,7 +1281,7 @@ msgid "Record sound clips"
 msgstr "Optag lydklip"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:960
-#: grecord/src/gsr-window.c:1284
+#: grecord/src/gsr-window.c:1287
 msgid "Sound Recorder"
 msgstr "Lydoptager"
 
@@ -1480,8 +1480,8 @@ msgstr "sekunder"
 msgid "second"
 msgstr "sekund"
 
-#: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1236
-#: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1239
+#: grecord/src/gsr-window.c:1404 grecord/src/gsr-window.c:1659
 msgid "Ready"
 msgstr "Klar"
 
@@ -1535,7 +1535,7 @@ msgstr "Oplysninger om %s"
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: grecord/src/gsr-window.c:843 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:843 grecord/src/gsr-window.c:1591
 msgid "Filename:"
 msgstr "Filnavn:"
 
@@ -1567,32 +1567,32 @@ msgstr "Bitrate:"
 msgid "A sound recorder for GNOME"
 msgstr "En lydoptager til Gnome"
 
-#: grecord/src/gsr-window.c:1221
+#: grecord/src/gsr-window.c:1224
 msgid "Playing..."
 msgstr "Afspiller..."
 
-#: grecord/src/gsr-window.c:1280
+#: grecord/src/gsr-window.c:1283
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - lydoptager"
 
-#: grecord/src/gsr-window.c:1372
+#: grecord/src/gsr-window.c:1375
 msgid "Recording..."
 msgstr "Optager..."
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1559
 msgid "Record as"
 msgstr "Optag som"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1576
 msgid "File information"
 msgstr "Filoplysninger"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1598
 msgid "<none>"
 msgstr "<ingen>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1607
 msgid "Length:"
 msgstr "Længde:"
 
@@ -1600,7 +1600,9 @@ msgstr "Længde:"
 msgid "Adjust the volume level"
 msgstr "Justér lydstyrken"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:545
 msgid "Volume Control"
 msgstr "Lydstyrkekontrol"
 
@@ -1646,26 +1648,21 @@ msgstr "Optag"
 msgid "%s Record"
 msgstr "%s-optag"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-msgid "GStreamer Volume Control"
-msgstr "Lydstyrkekontrol til GStreamer"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Et Gnome/GStreamer-baseret mixerprogram"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:562
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Desværre, ingen mixerelementer eller -enheder fundet"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:271
+#: gstreamer-properties/gstreamer-properties.c:269
 msgid "Failure instantiating main window"
 msgstr "Fejl ved oprettelse af hovedvindue"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:311
+#: gstreamer-properties/gstreamer-properties.c:307
 #, c-format
 msgid "Could not load UI resource %s"
 msgstr "Kunne ikke indlæse grænsefladeresursen %s"
@@ -1675,8 +1672,8 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Konfigurér forvalgte værdier for GStreamer-programmer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "Multimediesystem"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -2036,18 +2033,6 @@ msgstr "Overvåg afspilningslydstyrken"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Lydstyrkeovervåger"
-
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "Futuristisk"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b>Filen '%s' eksisterer allerede.</b>\n"
-#~ "Ønsker du at overskrive den?"
 
 #~ msgid "Unknown extension, doing nothing"
 #~ msgstr "Ukendt endelse, gør ingenting"
