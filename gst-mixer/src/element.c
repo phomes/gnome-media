@@ -237,7 +237,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
       gnome_volume_control_track_add_option }
   };
   gvc_whitelist list[] = whitelist_init_list;
-  gint i;
+  gint i, n = 0;
   const GList *item;
   GstMixer *mixer;
 
@@ -376,7 +376,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_widget_show (view);
     gtk_widget_show (label);
 
-    update_tab_visibility (el, i);
+    update_tab_visibility (el, n++);
   }
 
   /* refresh fix */
