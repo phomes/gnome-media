@@ -21,5 +21,3 @@ EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 
 dist-hook: gnome-media.spec
 	cp gnome-media.spec $(distdir)
-
-ACLOCAL_AMFLAGS = -I m4
