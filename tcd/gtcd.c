@@ -586,7 +586,7 @@ gint slow_timer( gpointer *data )
 
     /* is a cddb operation going on? */
     cddb = g_file_test(gnome_util_home_file(".cddbstatus_lock"), G_FILE_TEST_EXISTS);
-
+    
     draw_status(); 
     return 1;
 }
@@ -896,6 +896,7 @@ void create_warning(char *message_text, char *type)
 void reload_info(int signal)
 {
     tcd_post_init(&cd);
+    tcd_readdiskinfo(&cd);
     if(cd.isplayable)
     {
 	make_goto_menu();
