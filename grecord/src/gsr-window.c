@@ -733,7 +733,7 @@ fill_in_information (GSRWindow *window,
 	/* filename */
 	name = g_path_get_basename (window->priv->filename);
 	if (window->priv->dirty) {
-		text = g_strdup_printf (_("%s (Has not been saved"), name);
+		text = g_strdup_printf (_("%s (Has not been saved)"), name);
 	} else {
 		text = g_strdup (name);
 	}
