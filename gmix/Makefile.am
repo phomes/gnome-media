@@ -1,7 +1,7 @@
 Audiodir = $(datadir)/gnome/apps/Multimedia
 pixmapdir = $(datadir)/pixmaps
 
-EXTRA_DIST = README TODO NEWS gmix.desktop gnome-mixer.png \
+EXTRA_DIST = README TODO NEWS gmix.desktop.in gnome-mixer.png \
 	device_labels_linux.sed device_labels_linux.h \
 	device_labels_alsa.sed device_labels_alsa.h
 
@@ -20,6 +20,8 @@ gmix_SOURCES =	\
 gmix_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) $(GMIX_LIBS)
 
-Audio_DATA = gmix.desktop
+Audio_in_files = gmix.desktop.in
+Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 pixmap_DATA = gnome-mixer.png

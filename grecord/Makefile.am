@@ -1,12 +1,14 @@
 SUBDIRS = src
 
 EXTRA_DIST = \
-	Soundrecorder.desktop README COPYING AUTHORS INSTALL \
+	Soundrecorder.desktop.in README COPYING AUTHORS INSTALL \
 	pixmaps/gnome_mixer.xpm grecord.keys.in grecord.mime \
 	gnome-grecord.png
 
 Applicationsdir = $(datadir)/gnome/apps/Multimedia
-Applications_DATA = Soundrecorder.desktop 
+Applications_in_files = Soundrecorder.desktop.in 
+Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 Mimedir = $(datadir)/mime-info
 Mime_DATA = grecord.keys grecord.mime
