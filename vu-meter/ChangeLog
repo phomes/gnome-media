@@ -1,3 +1,12 @@
+Tue Apr 27 11:06:00 1999 Dave J. Andruczyk <dave@techdev.buffalostate.edu>
+
+	* main.c Removed the timeout for updateing the display and modified
+	the update_levels routine to change the display when a new level is
+	reached.  Seemed to lessen the smount of flicker, and lower cpu use.
+	Also changed lag factor to 2 to fix time sync due to changes in 
+	esd 0.2.12.   Will prolly add a graphical panel to change it on the 
+	fly and allow it to be saved.
+
 Wed Apr 14 10:09:00 1999 Dave J. Andruczyk <dave@techdev.buffalostate.edu>
 
 	* main.c  Fixed the missing peaks problem, in which the vu-meter

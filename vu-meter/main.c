@@ -53,7 +53,7 @@ GtkWidget   *dial[2];
 GtkWidget   *window;
 gchar       *esd_host = NULL;
 gint 	    curbuf = 0;
-gint 	    lag = 7;
+gint 	    lag = 2;
 gint 	    locount = 0;
 gint 	    plevel_l = 0;
 gint 	    plevel_r = 0;
@@ -165,16 +165,22 @@ update_levels(gpointer data)
     meter->meter_stat = TRUE;
 
 				    // updates display RIGHT AWAY if a new
-				    // peack has arrived.  Fixes the "lost
+				    // peak has arrived.  Fixes the "lost
 				    // peaks" problem that happens with fast
 				    // transient music. Also reduced the MAIN
-				    // update rate to lower cpu use. make it 
+				    // update rate to lower cpu use. Makes it 
 				    // work a bit better too..
-    if(plevel_l < meter->l_level)
+    if(plevel_l != meter->l_level)
+    {
 	update_display(meter);
+	goto done;
+    }
 
-    if(plevel_r < meter->r_level)
+    if(plevel_r != meter->r_level)
+    {
 	update_display(meter);
+    }
+done:
 
     plevel_l = meter->l_level;
     plevel_r = meter->r_level;
@@ -307,7 +313,7 @@ main (int argc, char *argv[])
 
     if(sound > 0) /* TPG: Make sure we have a valid fd... */
 	gdk_input_add (sound, GDK_INPUT_READ, handle_read, meter);
-      time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter);
+//      time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter);
 
     gtk_main ();
     gtk_object_unref (GTK_OBJECT (client));
