@@ -15,7 +15,7 @@ gmix_LDADD = \
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/libgnomeui/libgnomeui.la 	\
 	$(GTK_LIBS)                                     \
-        $(X_LIBS) $(x_libs)
+        $(X_LIBS) $(x_libs) $(INTLLIBS)
 
 Audio_DATA = gmix.desktop
 
