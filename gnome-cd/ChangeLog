@@ -1,3 +1,13 @@
+2002-02-16  Iain <iain@ximian.com>
+
+	* preferences.c (apply_clicked_cb): Don't return if prefs->device is
+	NULL.
+
+	* gnome-cd.c (init_player): Change the title on the window.
+
+	* linux-cdrom.c (gnome_cdrom_new): Close the CD device if opening it
+	succeeded.
+
 2002-02-14  Iain <iain@ximian.com>
 
 	* gnome-cd.c (init_player): Only dereference the error if it isn't 

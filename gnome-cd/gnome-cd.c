@@ -381,7 +381,7 @@ init_player (void)
 		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
 					_("Set device"), 1, NULL);
 		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
-		gtk_window_set_title (GTK_WINDOW (dialog), _("No CD device"));
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Invalid CD device"));
 		
 		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
 		case 1:

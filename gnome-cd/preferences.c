@@ -296,13 +296,17 @@ apply_clicked_cb (GtkWidget *apply,
 	char *new_device;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (pd->cd_device));
-	if (new_device == NULL || pd->gcd->preferences->device == NULL) {
+	
+	if (new_device == NULL) {
 		return;
+	}
+
+	if (pd->gcd->preferences->device != NULL) {
+		if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
+			return;
+		}
 	}
 	
-	if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
-		return;
-	}
 	gconf_client_set_string (client, "/apps/gnome-cd/device", new_device, NULL);
 	gtk_widget_set_sensitive (pd->apply, FALSE);
 }

@@ -1166,8 +1166,8 @@ gnome_cdrom_new (const char *cdrom_device,
 	priv->update = update;
 
 	if (linux_cdrom_open (cdrom, error) == FALSE) {
-		linux_cdrom_close (cdrom);
 	}
+	linux_cdrom_close (cdrom);
 	
 	/* Force an update so that a status will always exist */
 	update_cd (cdrom);
