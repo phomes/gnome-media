@@ -640,12 +640,17 @@ record_sound (void)
 	gint func = ESD_RECORD;
 	esd_format_t format = 0;
 
-	gchar* host = NULL;
-	gchar* name = NULL;
+	char *host = NULL;
+	char *name = NULL;
 
 	FILE *target = NULL;
 
 	/* Open the file for writing */
+	if (temp_dir == NULL) {
+		g_warning ("temp_dir == NULL\nFixing to /tmp");
+		temp_dir = g_strdup ("/tmp");
+	}
+	
 	tfile = g_build_filename (temp_dir, temp_filename_record, NULL);
 	target = fopen (tfile, "w");
 	g_free (tfile);
@@ -1336,17 +1341,15 @@ soundfile_supported (const gchar* filename)
 gboolean
 check_if_sounddevice_ready ()
 {
-	/* Reset errno */
-	errno = 0;
-
+	int fd;
+	
 	/* Check if the sounddevice is ready */
-	esd_audio_open ();
+	fd = esd_open_sound (NULL);
 	 
 	/* Sounddevice not ready, tell the user */
-	if (errno != 0) {
+	if (fd < 0) {
 		GtkWidget* mess;
 
-		esd_audio_close ();
 		mess = gtk_message_dialog_new (NULL, 0,
 					       GTK_MESSAGE_ERROR,
 					       GTK_BUTTONS_OK,
@@ -1356,7 +1359,6 @@ check_if_sounddevice_ready ()
 		return FALSE;
 	}
 
-	esd_audio_close ();
-
+	esd_close (fd);
 	return TRUE;
 }

@@ -276,9 +276,6 @@ main (int argc,
 
 	gtk_main ();
 	
-	/* This funtions free's som strings */
-	free_vars ();
-	
 	return 0;
 }
 

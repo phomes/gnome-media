@@ -38,6 +38,7 @@
 #include "prog.h"
 
 static GConfClient *client = NULL;
+static void prefs_help_cb (GtkWidget *widget, gpointer data);
 
 static GnomeUIInfo arkiv1_menu_uiinfo[] =
 {
@@ -191,6 +192,7 @@ create_grecord_window (void)
 
 	grecord_window = gnome_app_new ("gnome-sound-recorder", "gnome-sound-recorder");
 	gtk_window_set_title (GTK_WINDOW (grecord_window), _("Sound Recorder"));
+	gtk_window_set_resizable (GTK_WINDOW (grecord_window), FALSE);
 	
 	if (!audioformat)
 		audioformat_string = g_strdup (_("16bit PCM"));
@@ -448,6 +450,10 @@ response_cb (GtkDialog *dialog,
 	     int response_id,
 	     gpointer data)
 {
+	if (response_id == GTK_RESPONSE_HELP) {
+		prefs_help_cb (NULL, NULL);
+		return;
+	}
 	gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
@@ -700,7 +706,9 @@ create_grecord_propertybox (void)
 							   GTK_WINDOW (grecord_widgets.grecord_window),
 							   GTK_DIALOG_DESTROY_WITH_PARENT,
 							   GTK_STOCK_CLOSE,
-							   GTK_RESPONSE_CLOSE, NULL);
+							   GTK_RESPONSE_CLOSE,
+							   GTK_STOCK_HELP,
+							   GTK_RESPONSE_HELP,NULL);
 	gtk_window_set_title (GTK_WINDOW (grecord_propertybox), _("Sound Recorder Preferences"));
 	g_signal_connect (G_OBJECT (grecord_propertybox), "response",
 			  G_CALLBACK (response_cb), NULL);
@@ -1204,4 +1212,17 @@ add_paired_relations (GtkWidget* target1, AtkRelationType target1_type,
 	
 	target2_relation_set = atk_object_ref_relation_set (atk_target2);
 	add_relation (target2_relation_set, target2_type, atk_target1);
+}
+
+static void
+prefs_help_cb (GtkWidget *widget,
+	       gpointer data)
+{
+	GError *error = NULL;
+	gnome_help_display ("grecord", "grecord-prefs", &error);
+
+	if (error) {
+		g_warning ("help error: %s\n", error->message);
+		g_error_free (error);
+	}
 }

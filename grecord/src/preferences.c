@@ -327,16 +327,6 @@ load_config_file    (void)
 				 channels_changed, NULL, NULL, NULL);
 }
 
-void
-free_vars                  (void)
-{
-	g_free (sox_command);
-	g_free (mixer_command);
-	g_free (temp_dir);
-	g_free (samplerate);
-}
-
-
 /* Callbacks --------------------------------------------------------- */
 
 void
