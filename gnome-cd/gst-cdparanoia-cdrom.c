@@ -267,8 +267,10 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	    gst_element_factory_make ("cdparanoia", "cdparanoia");
 	g_assert (priv->cdparanoia != 0);	/* TBD: GError */
 
-	g_object_set (G_OBJECT (priv->cdparanoia), "location",
-		      priv->cd_device, NULL);
+	if (priv->cd_device) {
+		g_object_set (G_OBJECT (priv->cdparanoia), "location",
+			      priv->cd_device, NULL);
+	}
 	g_signal_connect (G_OBJECT (priv->cdparanoia), "eos",
 			  G_CALLBACK (eos), priv);
 
@@ -1457,8 +1459,29 @@ gst_cdparanoia_cdrom_is_cdrom_device (GnomeCDRom * cdrom,
 
 	close (fd);
 
-	priv->cd_device = g_strdup (device);
 	return TRUE;
+}
+
+static gboolean
+gst_cdparanoia_cdrom_set_device (GnomeCDRom *cdrom,
+				 const char *dev,
+				 GError **err)
+{
+	GstCdparanoiaCDRom *lcd;
+	GstCdparanoiaCDRomPrivate *priv;
+
+	lcd = GST_CDPARANOIA_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (priv->cd_device)
+		g_free (priv->cd_device);
+	priv->cd_device = g_strdup (dev);
+	if (priv->cdparanoia) {
+		g_object_set (G_OBJECT (priv->cdparanoia), "location",
+			      priv->cd_device, NULL);
+	}
+
+	return parent_class->set_device (cdrom, dev, err);
 }
 
 static gboolean
@@ -1531,6 +1554,7 @@ gst_cdparanoia_cdrom_class_init (GstCdparanoiaCDRomClass * klass)
 	cdrom_class->get_status = gst_cdparanoia_cdrom_get_status;
 	cdrom_class->close_tray = gst_cdparanoia_cdrom_close_tray;
 	cdrom_class->set_volume = gst_cdparanoia_cdrom_set_volume;
+	cdrom_class->set_device = gst_cdparanoia_cdrom_set_device;
 	cdrom_class->is_cdrom_device =
 	    gst_cdparanoia_cdrom_is_cdrom_device;
 	cdrom_class->update_cd = gst_cdparanoia_cdrom_update_cd;

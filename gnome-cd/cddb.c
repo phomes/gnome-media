@@ -22,7 +22,7 @@
 #include "cdrom.h"
 #include "cddb.h"
 
-static GHashTable *cddb_cache;
+static GHashTable *cddb_cache = NULL;
 static CDDBSlaveClient *slave_client = NULL;
 void freekey(gpointer key, gpointer value,gpointer userdata);
 static int
@@ -213,18 +213,18 @@ cddb_get_query (GnomeCD *gcd)
 
 	info = g_hash_table_lookup (cddb_cache, discid);
 
-	if (info != NULL) {
+	/*if (info != NULL) {
 		gcd->disc_info = info;
 
 		gnome_cd_build_track_list_menu (gcd);
 		return;
-	} else {
+	} else {*/
 		info = cddb_make_disc_info (data);
 		// g_strdup is added so that the key will persist
 		g_hash_table_insert (cddb_cache, g_strdup(info->discid), info);
 		gcd->disc_info = info;
 		gnome_cd_build_track_list_menu (gcd);
-	}
+	/*}*/
 
 	/* Remove the last space */
 	offsets[strlen (offsets) - 1] = 0;
