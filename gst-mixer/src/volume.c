@@ -477,9 +477,9 @@ cb_volume_changed (GtkAdjustment *_adj,
     if (gnome_volume_control_button_get_active (
             GNOME_VOLUME_CONTROL_BUTTON (vol->button))) {
       gtk_adjustment_set_value (adj, gtk_adjustment_get_value (_adj));
-      volumes[i++] = gtk_adjustment_get_value (_adj);
+      volumes[i++] = lrint (gtk_adjustment_get_value (_adj));
     } else {
-      volumes[i++] = gtk_adjustment_get_value (adj);
+      volumes[i++] = lrint (gtk_adjustment_get_value (adj));
     }
   }
 
@@ -551,7 +551,7 @@ gnome_volume_control_volume_ask (GnomeVolumeControlVolume * vol,
        scales != NULL; scales = scales->next, n++) {
     GtkAdjustment *adj = gtk_range_get_adjustment (scales->data);
                                                                                 
-    if (gtk_adjustment_get_value (adj) != 0) {
+    if (lrint (gtk_adjustment_get_value (adj)) != 0) {
       *slider_zero = FALSE;
       break;
     }
