@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-libs-0.20\n"
-"POT-Creation-Date: 2000-04-22 14:57+0200\n"
+"POT-Creation-Date: 2000-04-24 05:59+0200\n"
 "PO-Revision-Date: 1999-09-27 20:30+0100\n"
 "Last-Translator: Andreas Hyden  <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -722,75 +722,72 @@ msgstr "Ange en fil att börja spela upp"
 msgid "GNOME Sound recorder"
 msgstr "GNOME ljudinspelaren"
 
-#: grecord/src/grec.c:45
+#: grecord/src/grec.c:46
 msgid "GNOME Sound recorder:"
 msgstr "GNOME ljudinspelaren:"
 
 #. Couldn't record
-#: grecord/src/grec.c:75
+#: grecord/src/grec.c:76
 msgid "Couldn't record!"
 msgstr "Kunde inte spela in!"
 
-#: grecord/src/grec.c:78 grecord/src/grec.c:108
+#: grecord/src/grec.c:79 grecord/src/grec.c:109
 msgid "Could not fork child process"
 msgstr "Kunde inte \"forka\" barnprocessen"
 
 #. Should never ever, in the name of love, get here
-#: grecord/src/grec.c:105
+#: grecord/src/grec.c:106
+#, c-format
 msgid "Error playing %s"
 msgstr "Fel vid uppspelning av %s"
 
-#: grecord/src/grec.c:156
+#: grecord/src/grec.c:157
 msgid "Converting file..."
 msgstr "Konverterar fil..."
 
-#: grecord/src/grec.c:212 grecord/src/grec.c:631 grecord/src/gui.c:330
+#: grecord/src/grec.c:213 grecord/src/grec.c:633 grecord/src/gui.c:330
 #: grecord/src/preferences.c:305
 msgid "Audioformat: "
 msgstr "Ljudformat: "
 
-#: grecord/src/grec.c:216 grecord/src/grec.c:617 grecord/src/gui.c:337
+#: grecord/src/grec.c:217 grecord/src/grec.c:619 grecord/src/gui.c:337
 #: grecord/src/preferences.c:309
 msgid "Sample rate: "
 msgstr "Samplingsfrekvens: "
 
-#: grecord/src/grec.c:226 grecord/src/grec.c:621 grecord/src/gui.c:344
+#: grecord/src/grec.c:227 grecord/src/grec.c:623 grecord/src/gui.c:344
 #: grecord/src/preferences.c:313
 msgid "Channels: "
 msgstr "Kanaler: "
 
-#: grecord/src/grec.c:256
-msgid "Select a .wav file"
-msgstr "Välj en .wav-fil"
+#: grecord/src/grec.c:257
+msgid "Select a sound file"
+msgstr "Välj en ljudfil"
 
-#: grecord/src/grec.c:285
-msgid "Error saving . wav file"
-msgstr "Fel vid sparning av .wav-fil"
+#: grecord/src/grec.c:286 grecord/src/grec.c:650
+msgid "Error saving sound file"
+msgstr "Fel vid sparning av ljudfil"
 
-#: grecord/src/grec.c:373
+#: grecord/src/grec.c:374
 msgid "GNOME Sound recorder web page"
 msgstr "GNOME ljudinspelarens webbsida"
 
-#: grecord/src/grec.c:585
-msgid "You must select a .wav file."
-msgstr "Du måste välja en .wav-fil"
+#: grecord/src/grec.c:585 grecord/src/gui.c:415
+msgid "File '%s' isn't a valid soundfile."
+msgstr "Filen \"%s\" är inte en giltig ljudfil; använder standard."
 
-#: grecord/src/grec.c:648
-msgid "Error saving wav file"
-msgstr "Fel vid sparning av wav-fil"
+#: grecord/src/grec.c:680
+msgid "File not saved. Do you want to save it?"
+msgstr "Filen inte sparad. Vill du spara den?"
 
-#: grecord/src/grec.c:801
+#: grecord/src/grec.c:803
 #, c-format
 msgid "The size of the current sample is more than %i MB!"
 msgstr "Storleken på det aktuella ljudklippet är mer än %i MB!"
 
-#: grecord/src/grec.c:848
-msgid "Save .wav file"
-msgstr "Spara .wav-fil"
-
-#: grecord/src/grec.c:853
-msgid "untitled.wav"
-msgstr "namnlös.wav"
+#: grecord/src/grec.c:851
+msgid "Save sound file"
+msgstr "Spara ljudfil"
 
 #: grecord/src/gui.c:42
 msgid "_New"
@@ -912,11 +909,6 @@ msgstr "Info"
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Filen \"%s\" existerar inte; använder standard."
-
-#: grecord/src/gui.c:415
-#, c-format
-msgid "File '%s' isn't a .wav file; using default."
-msgstr "Filen \"%s\" är inte en .wav-fil; använder standard."
 
 #: grecord/src/gui.c:450
 msgid "Copyright (C)  2000 Andreas Hydén"
@@ -1105,6 +1097,18 @@ msgstr ""
 #: grecord/src/preferences.c:291
 msgid "Error! Wrong page number. (shouldn't happen)\n"
 msgstr "Fel! Ogiltigt sidonummer. (borde inte hända)\n"
+
+#~ msgid "Select a .wav file"
+#~ msgstr "Välj en .wav-fil"
+
+#~ msgid "Error saving . wav file"
+#~ msgstr "Fel vid sparning av .wav-fil"
+
+#~ msgid "You must select a .wav file."
+#~ msgstr "Du måste välja en .wav-fil"
+
+#~ msgid "untitled.wav"
+#~ msgstr "namnlös.wav"
 
 #~ msgid "_Help"
 #~ msgstr "_Hjälp"
