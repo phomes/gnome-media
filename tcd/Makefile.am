@@ -36,6 +36,6 @@ tcd_LDADD = -lm -lncurses
 
 CLEANFILES = *.o core *~ libcdrom.a
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) #-DTCD_CHANGER_ENABLED
+INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -DTCD_CHANGER_ENABLED
 
 Audio_data = gtcd.desktop
