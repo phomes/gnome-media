@@ -10,22 +10,27 @@
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
 #include "gtv.h"
+#include <gnome.h>
 
 static void gtk_tv_class_init(GtkTVClass *tvclass);
 static void gtk_tv_init(GtkTV *tv);
 static void gtk_tv_realize(GtkTV *tv);
 static void gtk_tv_unrealize(GtkTV *tv);
-static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event);
+static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event,
+			       gboolean is_our_window);
 static void gtk_tv_destroy(GtkWidget *widget);
 static void gtk_tv_map(GtkTV *widget);
 static void gtk_tv_unmap(GtkTV *widget);
 static void gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition);
-static void gtk_tv_toplevel_configure(GtkWidget *widget,
-				      GdkEventConfigure *event,
+static void gtk_tv_size_allocate(GtkWidget *widget, GtkAllocation *allocation);
+static gboolean gtk_tv_rootwin_event(GtkWidget *widget,
+				     GdkEvent *event,
+				     GtkTV *tv);
+static gboolean gtk_tv_toplevel_relay(GtkWidget *widget,
+				      GdkEvent *event,
 				      GtkWidget *tv);
 static void gtk_tv_configure_event(GtkWidget *widget,
 				   GdkEventConfigure *event);
-static void gtk_tv_size_allocate(GtkWidget *widget, GtkAllocation *allocation);
 
 guint
 gtk_tv_get_type(void)
@@ -61,9 +66,6 @@ gtk_tv_class_init(GtkTVClass *tvclass)
   widget_class->map = (gpointer)gtk_tv_map;
   widget_class->size_request = (gpointer)gtk_tv_size_request;
   widget_class->size_allocate = (gpointer)gtk_tv_size_allocate;
-  widget_class->configure_event = (gpointer)gtk_tv_configure_event;
-  widget_class->visibility_notify_event = (gpointer)gtk_tv_do_clipping;
-  widget_class->expose_event = (gpointer)gtk_tv_do_clipping;
 }
 
 static void
@@ -73,7 +75,15 @@ gtk_tv_init(GtkTV *tv)
   tv->toplevel_config_id = -1;
 
   GTK_WIDGET_SET_FLAGS (GTK_WIDGET(tv), GTK_NO_WINDOW);
-  gtk_widget_set_events(tv, GDK_ALL_EVENTS_MASK);
+
+  tv->rootwin = gnome_rootwin_new();
+  gtk_signal_connect(GTK_OBJECT(tv->rootwin), "event",
+		     GTK_SIGNAL_FUNC(gtk_tv_rootwin_event), tv);
+  gtk_widget_set_events(tv->rootwin, gtk_widget_get_events(tv->rootwin)
+			|GDK_STRUCTURE_MASK
+			|GDK_EXPOSURE_MASK
+			|GDK_SUBSTRUCTURE_MASK);
+  gtk_widget_realize(tv->rootwin);
 }
 
 GtkWidget*
@@ -245,6 +255,7 @@ gtk_tv_new(int video_num)
 static void
 gtk_tv_destroy(GtkWidget *widget)
 {
+  gtk_widget_destroy(GTK_TV(widget)->rootwin);
   close(GTK_TV(widget)->fd);
 }
 
@@ -252,9 +263,9 @@ static void
 gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition)
 {
   GtkTV *tv = GTK_TV(widget);
-  widget->requisition.width = tv->vcap.minwidth;
-  widget->requisition.height = tv->vcap.minheight;
-  *requisition = widget->requisition;
+  requisition->width = tv->vcap.minwidth;
+  requisition->height = tv->vcap.minheight;
+  widget->requisition = *requisition;
   g_print("gtk_tv_size_request to %d x %d\n", requisition->width,
 	  requisition->height);
 }
@@ -270,28 +281,97 @@ gtk_tv_size_allocate(GtkWidget *widget,
 					   same thing twice */
 }
 
-static void
+static gboolean
 gtk_tv_toplevel_relay(GtkWidget *widget,
-		      GdkEventConfigure *event,
+		      GdkEvent *event,
 		      GtkWidget *tv)
 {
   switch(event->type)
     {
-    case GDK_CONFIGURE:
-      gtk_tv_configure_event(tv, event);
-      break;
-    case GDK_VISIBILITY_NOTIFY:
     case GDK_EXPOSE:
-      gtk_tv_do_clipping(GTK_WIDGET(tv), (GdkEvent *)event);
+      gdk_window_clear_area(event->expose.window,
+			    event->expose.area.x,
+			    event->expose.area.y,
+			    event->expose.area.width,
+			    event->expose.area.height);
+    case GDK_VISIBILITY_NOTIFY:
+      gtk_tv_do_clipping(GTK_TV(tv), event, TRUE);
+      ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow);
       break;
+    case GDK_CONFIGURE:
+      gtk_tv_configure_event(GTK_WIDGET(tv), (GdkEventConfigure *)event);
+      return FALSE;
+      break;
+    default:
+      g_print("toplevel: Don't know how to handle event %d\n", event->type);
+      return FALSE;
     }
+
+  return TRUE;
+}
+
+static gboolean
+gtk_tv_rootwin_event(GtkWidget *widget,
+		     GdkEvent *event,
+		     GtkTV *tv)
+{
+  switch(event->type)
+    {
+    case GDK_MAP:
+    case GDK_UNMAP:
+    case GDK_DESTROY:
+      gtk_tv_do_clipping(GTK_TV(tv), (GdkEvent *)event, FALSE);
+      ioctl(GTK_TV(tv)->fd, VIDIOCSWIN, &GTK_TV(tv)->vwindow);
+      break;
+    case GDK_CONFIGURE:
+      {
+	GdkRectangle r;
+	gint x, y;
+
+	gdk_window_get_origin(tv->oldtoplevel->window,
+			      &x, &y);
+	r.x = x; r.y = y;
+	gdk_window_get_size(tv->oldtoplevel->window,
+			    &x, &y);
+	r.width = x; r.height = y;
+
+	r.x = MAX(event->configure.x, r.x);
+	r.y = MAX(event->configure.y, r.y);
+	r.width = MAX(event->configure.x + event->configure.width,
+		      r.x + r.width) - r.x;
+	r.height = MAX(event->configure.y + event->configure.height,
+		       r.y + r.height) - r.y;
+
+	r.x-=20; r.y-=20; r.width+=20; r.height+=20;
+
+	g_print("Clearing area (%d, %d) +%d +%d\n",
+		(int)r.x, (int)r.y, (int)r.width, (int)r.height);
+	gdk_window_clear_area(GDK_ROOT_PARENT(),
+			      r.x, r.y, r.width, r.height);
+      }
+      gtk_tv_do_clipping(GTK_TV(tv), (GdkEvent *)event, FALSE);
+      gtk_tv_configure_event(GTK_WIDGET(tv), (GdkEventConfigure *)event);
+      break;
+    case GDK_EXPOSE:
+      /* xrefresh in miniature ;-) */
+      gdk_window_clear_area(event->expose.window,
+			    event->expose.area.x,
+			    event->expose.area.y,
+			    event->expose.area.width,
+			    event->expose.area.height);
+      break;
+    default:
+      g_print("rootwin: Don't know how to handle event %d\n", event->type);
+      return FALSE;
+    }
+
+  return TRUE;
 }
 
 static void
 gtk_tv_configure_event(GtkWidget *widget,
 		       GdkEventConfigure *event)
 {
-  GtkWidget *tl = gtk_widget_get_toplevel(widget);
   GtkTV *tv;
   tv = GTK_TV(widget);
 
@@ -308,19 +388,14 @@ gtk_tv_configure_event(GtkWidget *widget,
   tv->vwindow.height = MAX(MIN(widget->allocation.height, tv->vcap.maxheight),
 			   tv->vcap.minheight);
 
-  if(GTK_WIDGET_VISIBLE(tv))
+  if(tv->visible)
     ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
-  g_print("[%d] Window goes to %d, %d x %d %d\n",
-	  tv->vwindow.x, tv->vwindow.y,
-	  widget->allocation.width,
-	  widget->allocation.height);  
 }
 
 
 static void
 gtk_tv_map(GtkTV *tv)
 {
-  g_print("Mapping it in with visible = %d\n", tv->visible);
   if(tv->visible == FALSE)
     {
       tv->visible = TRUE;
@@ -332,7 +407,6 @@ gtk_tv_map(GtkTV *tv)
 static void
 gtk_tv_unmap(GtkTV *tv)
 {
-  g_print("Unmapping it with visible = %d\n", tv->visible);
   if(tv->visible == TRUE)
     {
       tv->visible = FALSE;
@@ -340,7 +414,277 @@ gtk_tv_unmap(GtkTV *tv)
     }
 }
 
-static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event)
+/* Copied almost directly from xtvscreen */
+static int getclip(GtkTV *w)
+{
+  int ncr=0;
+  int x,y,x2,y2,wx,wy;
+  uint ww,wh;
+  struct video_window vwin;
+  Display *disp;
+  XWindowAttributes wts;
+  Window parent,win,parent2, root, rroot, *children, swin;
+  uint nchildren, i;
+  struct video_clip *cr; 
+  GtkWidget *widpar;
+
+  g_print("getclip()\n");
+
+  if (!GTK_WIDGET_REALIZED(w))
+    return;
+
+  disp=GDK_DISPLAY();
+  vwin=w->vwindow;
+
+  widpar=(GtkWidget *) w;
+  while(widpar->parent) widpar=widpar->parent;
+  if((win=GDK_WINDOW_XWINDOW(widpar->window))==None) return;
+
+  XQueryTree(disp,win, &rroot, &parent, &children, &nchildren);
+  if(nchildren) XFree((char *)children);
+
+  cr=w->clips;
+
+  wx=vwin.x; wy=vwin.y;
+  wh=vwin.height; ww=vwin.width;
+    
+  root=DefaultRootWindow(disp);
+  swin=win;
+  while (parent!=root) {
+    swin=parent;
+    XQueryTree(disp, swin, &rroot, &parent, &children, &nchildren);
+    if (nchildren)
+      XFree((char *) children);
+  }
+  XQueryTree(disp, root, &rroot, &parent2, &children, &nchildren);
+  for (i=0; i<nchildren;i++) 
+    if (children[i]==swin) break;
+  i++;
+  for (; i<nchildren; i++) {
+    
+    XGetWindowAttributes(disp, children[i], &wts);
+    if (!(wts.map_state & IsViewable))  continue;
+    
+    x=wts.x-vwin.x; y=wts.y-vwin.y;
+    x2=x+wts.width+2*wts.border_width-1;
+    y2=y+wts.height+2*wts.border_width-1;
+    if ((x2 < 0) || (x >= (int)ww) ||
+	(y2 < 0) || (y >= (int)wh))
+      continue;
+
+    if (x<0)
+      x=0;
+    if (y<0)
+      y=0;
+    if (x2>=(int)ww)
+      x2=ww-1;
+    if (y2>=(int)wh)
+      y2=wh-1;
+    g_print("Adding clip #%d at (%d, %d) + %dx%d)\n",
+	    ncr, x, y, x2-x, y2-y);
+    cr[ncr].x = x;
+    cr[ncr].y = y;
+    cr[ncr].width = x2-x;
+    cr[ncr++].height = y2-y;
+  }
+  XFree((char *) children);
+
+  w->vwindow.clipcount = ncr;
+  w->vwindow.clips = w->clips;
+  
+  return ncr;
+}
+
+#ifdef X11_IS_PERFECT /* until that day, I think you'll just have to
+			 live w/o clipping ;-) */
+
+/* This needs improvement - it should know how to add 
+   more clipping area(s) if the overlap between the exposed area
+   and clipping area(s) is not perfect */
+
+static void
+gtk_tv_clipping_expose(GtkTV *tv,
+		       GdkEventExpose *event)
+{
+  int i;
+  GdkRegion *rclip, *rempty, *rexpose, *rtmp, *rtmp2, *rtmp3;
+  GdkRectangle rect, area = event->area;
+  
+  rempty = gdk_region_new();
+
+  rexpose = gdk_region_union_with_rect(rempty, &area);
+
+
+  for(i = 0; i < tv->vwindow.clipcount; i++)
+    {
+      rect.x = tv->clips[i].x;
+      rect.y = tv->clips[i].y;
+      rect.width = tv->clips[i].width;
+      rect.height = tv->clips[i].height;
+
+      rtmp = gdk_region_union_with_rect(rempty, &rect);
+
+      if(gdk_region_rect_in(rtmp, &area) != GDK_OVERLAP_RECTANGLE_OUT)
+	{
+	  rtmp2 = gdk_region_union_with_rect(rempty, &area);
+	  rtmp3 = gdk_regions_subtract(rtmp, rtmp2);
+	  gdk_region_get_clipbox(rtmp3, &rect);
+	  tv->clips[i].x = rect.x;
+	  tv->clips[i].y = rect.y;
+	  tv->clips[i].width = rect.width;
+	  tv->clips[i].height = rect.height;
+	  gdk_region_destroy(rtmp2);
+	  gdk_region_destroy(rtmp3);
+	}
+
+      gdk_region_destroy(rtmp);
+    }
+
+  gdk_region_destroy(rexpose);
+  gdk_region_destroy(rempty);
+  ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+}
+
+static void
+gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
+{
+  Window *childrenlist, *boguswl, ourwin, parentwin, bogus;
+  unsigned int nchildren, nc2;
+  gint ourx, oury, ourwidth, ourheight, ourdepth;
+
+  int xret, yret;
+  unsigned int widthret, heightret, tmpui;
+
+  int i, j;
+
+  GdkRegion *ourregion, *t;
+  GdkRectangle owrect, arect;
+  GList *parentlist = NULL;
+  GtkAllocation *a;
+
+  /* end vars */
+
+  tv->vwindow.clipcount = 0; /* Reset the clipcount */
+
+  gdk_window_get_origin(GTK_WIDGET(tv)->parent->window, &ourx, &oury);
+  a = &(GTK_WIDGET(tv)->allocation);
+  owrect.x = ourx + a->x;
+  owrect.y = oury + a->y;
+  owrect.width = a->width;
+  owrect.height = a->height;
+
+  t = gdk_region_new();
+  ourregion = gdk_region_union_with_rect(t, &owrect);
+
+  /* Now we have a region and/or rectangle for the
+     window. We need to find all windows that could overlap it */
+  
+  ourwin = GDK_WINDOW_XWINDOW(GTK_WIDGET(tv)->window);
+
+  g_print("We ourself are %#x (on root %#x) at (%d, %d) x %d %d\n", ourwin,
+	  GDK_ROOT_WINDOW(),
+	  owrect.x, owrect.y, owrect.width, owrect.height);
+
+  /* The idea here is to find out what the real
+     toplevel window is for our toplevel (i.e. getting around
+     window manager stuff) */
+  while(1)
+    {
+      XQueryTree(GDK_DISPLAY(), ourwin, &bogus, &parentwin,
+		 &boguswl, &nc2);
+      
+      if(nc2 > 0)
+	XFree(boguswl);
+      
+      if(parentwin == None || parentwin == ourwin)
+	{
+	  g_print("Breaking because parentwin = %#x\n",
+		  parentwin);
+	  break;
+	}
+
+      g_print("Appended %#x to parentlist\n", ourwin);
+      parentlist = g_list_append(parentlist, (gpointer)ourwin);
+
+      ourwin = parentwin;
+    }
+
+  parentlist = g_list_append(parentlist, (gpointer)GDK_ROOT_WINDOW());
+
+  for(j = 0; j < g_list_length(parentlist); j++)
+    {
+      XQueryTree(GDK_DISPLAY(), (Window)(g_list_nth(parentlist, j)->data),
+		 &bogus, &bogus,
+		 &childrenlist, &nchildren);
+
+      g_print("Checking children of window %#x - has %d children\n",
+	      g_list_nth(parentlist, j)->data,
+	      nchildren);
+      
+      for(i = 0; i < nchildren; i++)
+	{
+	  if(g_list_find(parentlist, (gpointer)childrenlist[i]))
+	    {
+	      g_print("Skipping window %#x - it's our parent\n",
+		      childrenlist[i]);
+	      continue;
+	    }
+
+	  ourwidth = 0; ourheight = 0;
+
+	  XGetGeometry(GDK_DISPLAY(), childrenlist[i], &bogus,
+		       &ourx, &oury, &ourwidth,
+		       &ourheight, &ourdepth, &ourdepth);
+
+	  if(ourwidth == 0 && ourheight == 0)
+	    g_warning("XGetGeometry didn't change width or height!\n");
+
+	  XTranslateCoordinates(GDK_DISPLAY(), childrenlist[i],
+				GDK_ROOT_WINDOW(),
+				0, 0, &ourx, &oury, &bogus);
+
+	  arect.x = ourx; arect.y = oury;
+	  arect.width = ourwidth; arect.height = ourheight;
+	  
+	  if(gdk_region_rect_in(ourregion, &arect) != GDK_OVERLAP_RECTANGLE_OUT)
+	    {
+	      if(arect.x < owrect.x)
+		arect.x = owrect.x;
+	      if(arect.y < owrect.y)
+		arect.y = owrect.y;
+	      if(arect.width > owrect.width)
+		arect.width = owrect.width;
+	      if(arect.height > owrect.height)
+		arect.height = owrect.height;
+
+	      g_print("Window %#x is inside our region - clipping off (%d, %d) - %d %d\n",
+		      childrenlist[i],
+		      arect.x, arect.y, arect.width, arect.height);
+		      
+	      tv->clips[tv->vwindow.clipcount].x = arect.x;
+	      tv->clips[tv->vwindow.clipcount].y = arect.y;
+	      tv->clips[tv->vwindow.clipcount].width = arect.width;
+	      tv->clips[tv->vwindow.clipcount++].height = arect.height;
+	    }
+	}
+      
+      if(nchildren > 0)
+	XFree(childrenlist);
+    }
+  gdk_region_destroy(t);
+  gdk_region_destroy(ourregion);
+  g_print("           TOTAL CLIPS: %d\n", tv->vwindow.clipcount);
+  tv->vwindow.clips = tv->clips;
+  tv->clips[0].x = 1;
+  tv->clips[0].y = 1;
+  tv->clips[0].width = 200;
+  tv->clips[0].height = 200;
+  ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+}
+#endif /* X11_IS_PERFECT */
+
+static void
+gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event, gboolean is_our_window)
 {
   if(event == NULL)
     return;
@@ -348,6 +692,9 @@ static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event)
   switch(event->type)
     {
     case GDK_VISIBILITY_NOTIFY:
+      g_print("do_clipping on vis with state = %d\n",
+	      event->visibility.state);
+	      
       switch(event->visibility.state)
 	{
 	case GDK_VISIBILITY_UNOBSCURED:
@@ -356,16 +703,27 @@ static void gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event)
 	  break;
 	case GDK_VISIBILITY_PARTIAL:
 	  /* Do the dew here */
-	  tv->vwindow.clipcount = 0;
-	  tv->visible = FALSE;
+	  tv->visible = TRUE;
+	  getclip(tv);
 	  break;
 	case GDK_VISIBILITY_FULLY_OBSCURED:
 	  tv->visible = FALSE;
 	  tv->vwindow.clipcount = 0;
 	  break;
 	}
+      ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
       ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible);
+      break;
+    case GDK_EXPOSE:
+    case GDK_MAP:
+    case GDK_UNMAP:
+    case GDK_CONFIGURE:
+      getclip(tv);
+      ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+      break;
     default:
+      g_print("do_clipping couldn't handle event type %d\n",
+	      event->type);
     }
 }
 
@@ -411,6 +769,7 @@ gtk_tv_set_sound(GtkTV *tv,
   g_return_if_fail(ioctl(tv->fd, VIDIOCSAUDIO, &tv->vaudio) != -1);
 }
 
+
 void
 gtk_tv_set_toplevel(GtkTV *tv)
 {
@@ -426,13 +785,71 @@ gtk_tv_set_toplevel(GtkTV *tv)
 
   tv->oldtoplevel = gtk_widget_get_toplevel(GTK_WIDGET(tv));
   gtk_widget_set_events(tv->oldtoplevel,
-			GDK_ALL_EVENTS_MASK);
+			GDK_VISIBILITY_NOTIFY_MASK
+			|GDK_STRUCTURE_MASK
+			|GDK_EXPOSURE_MASK
+			|gtk_widget_get_events(tv->oldtoplevel));
+#if 0
   tv->toplevel_visibility_id = gtk_signal_connect(GTK_OBJECT(tv->oldtoplevel),
 						  "visibility_notify_event",
-						  gtk_tv_toplevel_relay,
+						  GTK_SIGNAL_FUNC(gtk_tv_toplevel_relay),
 						  tv);
+#endif
   tv->toplevel_config_id = gtk_signal_connect(GTK_OBJECT(tv->oldtoplevel),
-					      "configure_event",
-					      gtk_tv_toplevel_relay,
+					      "event",
+					      GTK_SIGNAL_FUNC(gtk_tv_toplevel_relay),
 					      tv);
+}
+
+GdkImlibImage *
+gtk_tv_grab_image(GtkTV *tv,
+		  gint width, gint height)
+{
+  GdkImlibImage *retval;
+  gpointer membuf;
+  int abool = 0;
+
+  g_return_if_fail(tv != NULL);
+  g_return_if_fail(GTK_IS_TV(tv));
+
+  tv->cbuf.base = g_malloc(width * height * 3 /* 24bpp */);
+  membuf = g_malloc(width * height * 3 /* 24bpp */);
+  tv->cbuf.width = MIN(MAX(width, tv->vcap.minwidth),
+		       tv->vcap.maxwidth);
+  tv->cbuf.height = MIN(MAX(height, tv->vcap.minheight),
+			tv->vcap.maxheight);
+  tv->cbuf.depth = 24;
+  tv->cbuf.bytesperline = width * 3;
+
+  tv->cpic = tv->vpic;
+  tv->cpic.depth = 24;
+
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+  ioctl(tv->fd, VIDIOCSFBUF, &tv->cbuf);
+  ioctl(tv->fd, VIDIOCSPICT, &tv->cpic);
+  ioctl(tv->fd, VIDIOCSWIN, &tv->cwin);
+  abool = 1;
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+
+  g_print("Attempting to read %d bytes\n",
+	  tv->cbuf.width * tv->cbuf.height * 3);
+
+  g_print("read it: %d\n",
+	  read(tv->fd, membuf, tv->cbuf.width * tv->cbuf.height * 3)
+	  );
+
+  abool = 0;
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+  ioctl(tv->fd, VIDIOCSPICT, &tv->vpic);
+  ioctl(tv->fd, VIDIOCSFBUF, &tv->vbuf);
+  ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow);
+  abool = 1;
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+
+  retval = gdk_imlib_create_image_from_data(membuf, NULL,
+					    (int)tv->cbuf.width,
+					    (int)tv->cbuf.height);
+
+  g_free(membuf);
+  g_free(tv->cbuf.base);
 }

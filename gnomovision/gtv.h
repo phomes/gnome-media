@@ -2,6 +2,7 @@
 #define __GTK_TV_H__
 
 #include <gdk/gdk.h>
+#include <gdk_imlib.h>
 #include <gtk/gtkwidget.h>
 #include <linux/types.h>
 #include <linux/videodev.h>
@@ -42,14 +43,17 @@ struct _GtkTV
 
   guint curinput;
 
+  struct video_clip clips[256];
+  GtkWidget *rootwin;
+
   GtkWidget *oldtoplevel;
   gint toplevel_config_id; /* The signal id for
 				 telling us when our toplevel has moved
 				 around or whatever */
   gint toplevel_visibility_id;
-
-  struct video_clip clips[256];
-  
+  struct video_buffer cbuf;
+  struct video_window cwin;
+  struct video_picture cpic;
 };
 
 struct _GtkTVClass
@@ -78,6 +82,8 @@ void           gtk_tv_set_sound      (GtkTV *tv,
 				      gfloat treble,
 				      gint flags /* VIDEO_AUDIO_* */,
 				      gint mode /* VIDEO_MODE_* */);
+
+GdkImlibImage *gtk_tv_grab_image(GtkTV *tv, gint width, gint height);
 
 /* To do the DGA stuff, you need root privs. This is here to remind you to
    be security-concious and release them ASAP */

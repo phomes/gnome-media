@@ -1209,7 +1209,7 @@ void make_tv_set(void)
 	 	
 	hbox = tv = gtk_event_box_new();
 	gtk_widget_set_usize(tv, xsize, ysize);
-	gtk_signal_connect(GTK_WIDGET(tv), "drag_request_event",
+	gtk_signal_connect(GTK_OBJECT(tv), "drag_request_event",
 			   GTK_SIGNAL_FUNC(dnd_drag_request),
 			   NULL);
 	gtk_widget_dnd_drag_set(GTK_WIDGET(tv), TRUE, (char **)&possible_drag_type,
