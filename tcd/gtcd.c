@@ -97,7 +97,7 @@ int timeonly = FALSE, status_height, status_width, playid=-1;
 int configured = FALSE, old_status=-1, max,tfont_height;
 unsigned int cur_goto_id, release_t=0, roll_t=0;
 tcd_prefs prefs;
-int cddb=0;
+int cddb=0, max_title_width;
 
 /* prototypes */
 void status_changed(void);
@@ -113,7 +113,6 @@ void setup_colors(void);
 void draw_time_playing(void);
 void draw_titles(void);
 void draw_time_scanning(void);
-void adjust_status(void);
 gint volume_changed(GtkWidget *widget, gpointer *data);
 gint launch_gmix(GtkWidget *widget, GdkEvent *event, gpointer data);
 gint fast_timer(gpointer *data);
@@ -128,6 +127,7 @@ void reload_info(int signal);
 void exit_action(void);
 void start_action(void);
 void setup_keys(void);
+void adjust_status_size(void);
 
 /* functions */
 gint roll_timer(gpointer *data)
@@ -432,8 +432,33 @@ void draw_titles(void)
 		  strlen(cd.artist));
     gdk_draw_text(status_db,tfont,gc,4,39+inc, cd.album, 
 		  strlen(cd.album));
-    gdk_draw_text(status_db,tfont,gc,4,39+inc+inc, cd.trk[cd.cur_t].name, 
-		  strlen(cd.trk[cd.cur_t].name));
+    
+    /* make sure the title fits */
+    {
+	char tmp[512], tmp2[512], tmp3[512];
+	int width;
+
+	width = strlen(cd.trk[cd.cur_t].name);
+	
+	if(width > 25)
+	{
+	    strncpy(tmp, cd.trk[cd.cur_t].name, 11);
+	    tmp[11] = 0;
+	    strncpy(tmp2, cd.trk[cd.cur_t].name+(width-11), 11);
+	    tmp2[11] = 0;
+	    
+	    g_snprintf(tmp3, 511, "%s...%s", tmp, tmp2);
+
+	    gdk_draw_text(status_db,tfont,gc,4,39+inc+inc,
+			  tmp3, strlen(tmp3));
+	}
+	else
+	{
+	    gdk_draw_text(status_db,tfont,gc,4,39+inc+inc, 
+			  cd.trk[cd.cur_t].name,
+			  strlen(cd.trk[cd.cur_t].name));
+	}
+    }
     if (cd.cur_t == 0)
       gtk_window_set_title(GTK_WINDOW(window), cd.dtitle);
     else
@@ -540,31 +565,9 @@ void draw_status(void)
 		    status_area->allocation.height);
 }
 
-void adjust_status(void)
-{
-    int oldmax, len;
-    oldmax = max;
-
-    max = 0;
-    len = gdk_string_width(tfont, cd.album);
-    if( len > max ) max = len;
-    len = gdk_string_width(tfont, cd.artist);
-    if( len > max ) max = len;
-    len = gdk_string_width(tfont, cd.trk[cd.cur_t].name);
-    if( len > max ) max = len;
-    if( max != oldmax )
-    {
-	if( max < 102 ) 
-	    max=102;
-
-	gtk_widget_set_usize( status_area, max+8, tfont_height+27 );
-    }
-}
-
 gint slow_timer( gpointer *data )
 {
     tcd_post_init(&cd);
-    adjust_status();
 
     /* see if we need to make a new menu */
     if(cd.cddb_id != cur_goto_id)
@@ -580,33 +583,6 @@ gint slow_timer( gpointer *data )
 	if( cd.play_method == REPEAT_CD )
 	    tcd_playtracks( &cd, cd.first_t, cd.last_t, prefs.only_use_trkind);
     }
-
-    /* see if we need to scan for a new disc */
-/*    if(cd.isplayable) 
-    {
-	tcd_post_init(&cd);
-	adjust_status();
-
-	if(cd.err) 
-	{
-	    cd.isplayable = FALSE;
-	    cd.play_method = NORMAL;
-	    cd.repeat_track = -1;
-	}
-    }
-    else
-    {
-	tcd_post_init(&cd);
-	if(!cd.err)
-	    tcd_readdiskinfo(&cd);
-	else
-	{
-	    cd.isplayable = TRUE;
-	    cd.play_method = NORMAL;
-	    cd.repeat_track = -1;    
-	    update_editor();
-	}
-    }*/
 
     /* is a cddb operation going on? */
     cddb = g_file_test(gnome_util_home_file(".cddbstatus_lock"), G_FILE_TEST_EXISTS);
@@ -677,7 +653,7 @@ void make_goto_menu()
 
     gotomenu = gtk_menu_new();
 
-    for( i=1; i <= cd.last_t; i++ )
+    for(i=1; i <= cd.last_t; i++)
     {
 	g_snprintf(buf, TRK_NAME_LEN-1, "%2d - %s", i, cd.trk[C(i)].name);
 	item = gtk_menu_item_new_with_label(buf);
@@ -685,24 +661,35 @@ void make_goto_menu()
 	gtk_menu_append(GTK_MENU(gotomenu), item);
 	gtk_signal_connect(GTK_OBJECT(item), "activate",
 			   GTK_SIGNAL_FUNC(goto_track_cb), GINT_TO_POINTER(i));
-   }
+    }
     if(gotoi) gtk_signal_disconnect(GTK_OBJECT(gotobutton), gotoi);
     gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",
 				      GTK_SIGNAL_FUNC(button_press), GTK_OBJECT(gotomenu));
 
     cur_goto_id = cd.cddb_id;
+    adjust_status_size();
+}
+
+void adjust_status_size(void)
+{
+    int i, t;
+    max_title_width = 0;
+
+    t = gdk_string_width(tfont, cd.artist);
+    if(max_title_width < t)
+	max_title_width = t;
+    t = gdk_string_width(tfont, cd.album);
+    if(max_title_width < t)
+	max_title_width = t;
+    t = gdk_string_width(tfont, " ") * 25;
+    if(max_title_width < t) max_title_width = t;
+    gtk_widget_set_usize(status_area, max_title_width+8, tfont_height+27);
 }
 
 gint fast_timer( gpointer *data )
 {
-    if(cd.isplayable) {
-	tcd_gettime(&cd);
-	if( cd.err ) {
-/*	   cd.isplayable = FALSE;
-	   cd.play_method = NORMAL;
-	   cd.repeat_track = -1;*/
-	}
-    }
+    tcd_gettime(&cd);
+
     status_changed();
     if((cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track))
 	tcd_playtracks(&cd, cd.repeat_track, -1, prefs.only_use_trkind);
@@ -800,6 +787,7 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 
 void setup_time_display(GtkWidget *table)
 {
+    int width;
     GtkWidget *handle1, *frame;
     GtkWidget *box;
 
@@ -1006,10 +994,10 @@ int main (int argc, char *argv[])
     table = create_buttons();
     gtk_box_pack_start(GTK_BOX(main_box), table, FALSE, FALSE, 0);
     
-    make_goto_menu();
     setup_time_display(table);
     setup_colors();
     led_init(window);
+    make_goto_menu();
 
     setup_popup_menu(status_area, &cd);
     
@@ -1021,7 +1009,7 @@ int main (int argc, char *argv[])
     titlelabel_f = TRUE;
 	
     gnome_app_set_contents(GNOME_APP(window), main_box);
-    adjust_status();	
+    adjust_status_size();
     gtk_widget_show_all(window);
     
     signal(SIGUSR2, reload_info);

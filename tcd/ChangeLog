@@ -3,6 +3,9 @@
 	* tcd.c: Ditch isdisk and hopefully fix tcd.
 	* linux-cdrom.c: Various policy changes..will probably break tcd (not gtcd).
 	* gtcd.c: Remove isdisk
+	* gtcd.c: Changed window size policy. Now it sizes to fit the largest of either
+	album title or artist, or 25 characters, whichever is smaller. Wraps song names
+	like "This is...long song".
 
 1999-01-28  Tim P. Gerla  <timg@means.net>
 

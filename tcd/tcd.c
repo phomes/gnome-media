@@ -152,7 +152,6 @@ int main(int argc, char **argv)
 		tcd_gettime(cd);
 		if( cd->err ) {
 			cd->isplayable = FALSE;
-			cd->isdisk = FALSE;
 			cd->play_method = NORMAL;
 			cd->repeat_track = -1;
 		}
