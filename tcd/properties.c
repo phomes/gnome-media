@@ -559,20 +559,23 @@ void properties_cb( GtkWidget *widget, void *data )
     page1	= create_page1();
     label   = gtk_label_new("General");
     gtk_widget_show(page1);
-    gnome_property_box_append_page( GNOME_PROPERTY_BOX(propbox),
-				    page1, label );
+    gtk_notebook_append_page(
+    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
+	page1, label);
     
     page2 	= create_page2();
     label   = gtk_label_new("HTTP/Proxy");
     gtk_widget_show(page2);
-    gnome_property_box_append_page( GNOME_PROPERTY_BOX(propbox),
-				    page2, label );
+    gtk_notebook_append_page(
+    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
+	page2, label);
     
     page3 = create_page3();
     label = gtk_label_new("Interface");
     gtk_widget_show(page3);
-    gnome_property_box_append_page( GNOME_PROPERTY_BOX(propbox),
-				    page3, label );
+    gtk_notebook_append_page(
+    	GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
+	page3, label);
     
     gtk_signal_connect( GTK_OBJECT(propbox), 
 			"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
