@@ -279,7 +279,7 @@ device_info *open_device(int num)
 	}
 	new_device->fd=open(device_name, O_RDWR, 0);
 	if (new_device->fd<0) {
-		free(new_device);
+		g_free(new_device);
 		return NULL;
 	}
 	/*
@@ -296,7 +296,7 @@ device_info *open_device(int num)
 	 */
 	res=ioctl(new_device->fd, SOUND_MIXER_INFO, &new_device->info);
 	if (res!=0) {
-		free(new_device);
+		g_free(new_device);
 		return NULL;
 	}
 	if(!isalpha(new_device->info.name[0]))
@@ -310,7 +310,7 @@ device_info *open_device(int num)
         res|=ioctl(new_device->fd, SOUND_MIXER_READ_STEREODEVS, &new_device->stereodevs);
         res|=ioctl(new_device->fd, SOUND_MIXER_READ_CAPS, &new_device->caps);
 	if (res!=0) {
-		free(new_device);
+		g_free(new_device);
 		return NULL;
 	}
 
