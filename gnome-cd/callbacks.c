@@ -534,6 +534,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
 		
 	case GNOME_CDROM_STATUS_NO_DISC:
+		if (gcd->disc_info != NULL) {
+			cddb_free_disc_info (gcd->disc_info);
+			gcd->disc_info = NULL;
+		}
+		
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc"));
@@ -541,6 +546,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		break;
 
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
+		if (gcd->disc_info != NULL) {
+			cddb_free_disc_info (gcd->disc_info);
+			gcd->disc_info = NULL;
+		}
+
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive open"));
@@ -548,6 +558,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		break;
 
 	default:
+		if (gcd->disc_info != NULL) {
+			cddb_free_disc_info (gcd->disc_info);
+			gcd->disc_info = NULL;
+		}
+
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 		cd_display_clear (CD_DISPLAY (gcd->display));
 		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive Error"));

@@ -1,4 +1,12 @@
+2002-03-23 Iain <iain@ximian.com>
+
+	* cddb.c (cddb_free_disc_info): Free an info struct.
+
+	* callbacks.c (cd)status_changed_cb): In the Not OK sections, free the
+	old disc info so that we won't access it.
+
 2002-03-21 Jayaraj Rajappan <jayaraj.rajappan@wipro.com>
+
 	* access/pangoaccessiblefactory.c - return correct factory type
 	* access/cddisplayaccessiblefactory.c - return correct factory type
 

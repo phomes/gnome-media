@@ -91,6 +91,17 @@ cddb_listener_event_cb (BonoboListener *listener,
 	}
 }
 
+void
+cddb_free_disc_info (GnomeCDDiscInfo *info)
+{
+	g_free (info->discid);
+	g_free (info->title);
+	g_free (info->artist);
+
+	cddb_slave_client_free_track_info (info->track_info);
+	g_free (info);
+}
+
 static GnomeCDDiscInfo *
 cddb_make_disc_info (GnomeCDRomCDDBData *data)
 {
