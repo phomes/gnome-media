@@ -62,7 +62,7 @@
 
 enum { PLAY=0, PAUSE, STOP, EJECT,
        FF, RW, NEXT_T, PREV_T,
-       CDDB, TRACKLIST, GOTO, QUIT, ABOUT };
+       CDDB, TRACKLIST, GOTO, QUIT, ABOUT, PROPS };
 
 char *play_methods[] =
 {
@@ -88,7 +88,7 @@ GtkWidget *tracklabel, *titlelabel, *trackeditor;
 GtkWidget *tracktime_label, *trackcur_label;
 GtkWidget *cdtime_label, *changer_box;
 GtkWidget *status_table, *status_area, *sep;
-GtkWidget *volume, *window, *aboutbutton;
+GtkWidget *volume, *window, *aboutbutton, *propsbutton;
 GtkWidget *gotomenu = NULL, *gotobutton, *lowerbox;
 GdkPixmap *status_db;
 GtkWidget **changer_buttons, *cddbbutton;
@@ -173,6 +173,8 @@ void callback (GtkWidget *widget, gpointer *data)
 		case CDDB:
 			gcddb( cddbbutton );
 			break;
+		case PROPS:
+			properties_cb(NULL, NULL);
 		default:
 	}
 	draw_status();
@@ -581,7 +583,7 @@ static gint status_configure_event(GtkWidget *widget, GdkEventConfigure *event)
 	status_db = gdk_pixmap_new( widget->window, 
 				    widget->allocation.width,
 				    widget->allocation.height,
-				    -1 );
+				    gtk_widget_get_visual(status_area)->depth );
 	gdk_draw_rectangle( status_db, 
 			    widget->style->black_gc,
 			    TRUE, 0,0,
@@ -745,7 +747,7 @@ void setup_time_display( void )
 
 void setup_rows( void )
 {
-	GtkWidget *plug;
+	GtkWidget *pixmap;
 	GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
 	sep = gtk_hseparator_new();
 
@@ -783,10 +785,23 @@ void setup_rows( void )
 
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
 
-	aboutbutton = make_button_with_pixmap( "cdrom", bottom_box, ABOUT, FALSE, FALSE, TT_ABOUT );
-        gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
-        gtk_container_add (GTK_CONTAINER (window), vbox);
+	aboutbutton = gtk_button_new();
+	pixmap = gnome_pixmap_new_from_file(gnome_pixmap_file("tcd/cdrom.xpm"));
+	gtk_container_add(GTK_CONTAINER(aboutbutton), pixmap );
+	gtk_signal_connect(GTK_OBJECT(aboutbutton), "clicked",
+		GTK_SIGNAL_FUNC(callback), (gpointer*)ABOUT );
+        gtk_box_pack_start(GTK_BOX(bottom_box), aboutbutton, FALSE, FALSE, 0);
+
+	propsbutton = gtk_button_new();
+	pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
+	gtk_container_add(GTK_CONTAINER(propsbutton), pixmap );
+	gtk_signal_connect(GTK_OBJECT(propsbutton), "clicked",
+		GTK_SIGNAL_FUNC(callback), (gpointer*)PROPS );
+        gtk_box_pack_start(GTK_BOX(bottom_box), propsbutton, FALSE, FALSE, 0);
+	                        
+        gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
+        gtk_container_add(GTK_CONTAINER (window), vbox);
 
 	return;
 }
@@ -846,7 +861,7 @@ int main (int argc, char *argv[])
 	gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
 
-        gnome_app_set_contents( GNOME_APP(window), vbox);
+        gnome_app_set_contents( GNOME_APP(window), vbox );
 	
         gtk_widget_show_all(window);
 	

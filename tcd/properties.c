@@ -54,7 +54,7 @@ void save_properties( tcd_properties *prop )
 {
 	gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
 	gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
-	gnome_config_set_int("/gtcd/cddb/port", prop->cddbport );
+	gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport );
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
 	gnome_config_set_string("/gtcd/ui/timefont", prop->timefont );
@@ -72,10 +72,7 @@ void changed_cb( GtkWidget *widget, void *data )
 
 void port_changed_cb( GtkWidget *widget, GtkWidget *spin )
 {
-	int t;
-	
-	t = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
-	props.cddbport = t;
+	props.cddbport = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 	
@@ -172,7 +169,10 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 
 void check_changed_cb( GtkWidget *widget, gboolean *data )
 {
-	*data = ~(*data);
+	if( *data )
+		*data = FALSE;
+	else	
+		*data = TRUE;
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 

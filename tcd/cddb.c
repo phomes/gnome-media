@@ -33,7 +33,7 @@
 #include <errno.h>
 #include <pwd.h>
 #include <sys/socket.h>
-#include <utsnamelen.h>
+//#include <utsnamelen.h>
 
 
 #ifdef linux

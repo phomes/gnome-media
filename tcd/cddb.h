@@ -27,7 +27,7 @@
 #ifndef TCD_CDDB_H
 #define TCD_CDDB_H
 
-#define HOSTNAME_MAX	50
+#define HOSTNAME_MAX	256
 #define VERSION_MAX	10
 #define CATEG_MAX	20	
 #define DISCID_MAX	10
