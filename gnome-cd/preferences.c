@@ -765,6 +765,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
 	
 	pd->theme_list = gtk_tree_view_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->theme_list);
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (pd->theme_list), FALSE);
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->theme_list));
 
