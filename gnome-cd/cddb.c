@@ -24,7 +24,7 @@
 
 static GHashTable *cddb_cache;
 static CDDBSlaveClient *slave = NULL;
-
+void freekey(gpointer key, gpointer value,gpointer userdata);
 static int
 count_tracks (CDDBSlaveClientTrackInfo **info)
 {
@@ -144,6 +144,21 @@ cddb_close_client (void)
 	if (slave != NULL)
 		g_object_unref (G_OBJECT (slave));
 }
+// when the CD is ejected we need to destroy the cddb_cache hashTable
+void destroy_cache_hashTable()
+{
+	g_hash_table_foreach(cddb_cache,freekey,NULL); //first free the key
+	g_hash_table_destroy(cddb_cache); //destroy the table
+	cddb_cache = NULL;
+}
+
+//this will only free the keys in hashtable, the values are already freed.
+void freekey(gpointer key, gpointer value,gpointer userdata)
+{
+		if(key != NULL)
+			g_free(key);
+		key = NULL;
+}
 
 void
 cddb_get_query (GnomeCD *gcd)
@@ -156,7 +171,7 @@ cddb_get_query (GnomeCD *gcd)
 	int i;
 
 	if (cddb_cache == NULL) {
-		cddb_cache = g_hash_table_new (g_str_hash, g_str_equal);
+		cddb_cache = g_hash_table_new (g_str_hash, g_str_equal); 
 	}
 
 	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
@@ -185,7 +200,8 @@ cddb_get_query (GnomeCD *gcd)
 		return;
 	} else {
 		info = cddb_make_disc_info (data);
-		g_hash_table_insert (cddb_cache, info->discid, info);
+		// g_strdup is added so that the key will persist
+		g_hash_table_insert (cddb_cache, g_strdup(info->discid), info);
 		gcd->disc_info = info;
 		gnome_cd_build_track_list_menu (gcd);
 	}
