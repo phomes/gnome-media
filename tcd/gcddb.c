@@ -23,8 +23,10 @@
    timg@means.net
 */
 
+#include <config.h>
+#include <gnome.h>
+
 #include <stdio.h>
-#include <gtk/gtk.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>

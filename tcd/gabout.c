@@ -1,6 +1,3 @@
-#define PACKAGE "TCD"                                             
-#define VERSION "2.0"                                             
-
 /* This file is part of TCD 2.0.
    gabout.c - About dialog for gtcd.
    
@@ -26,6 +23,7 @@
    timg@means.net
 */
 
+#include <config.h>
 #include <gnome.h>
 
 void about_cb(GtkWidget *widget, void *data)

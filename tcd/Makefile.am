@@ -26,7 +26,8 @@ gtcd_SOURCES = 		\
 	tooltips.h	\
 	properties.c	\
 	led.h		\
-	led.c
+	led.c		\
+	linux-cdrom.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\
@@ -35,7 +36,7 @@ tcd_SOURCES = 		\
 	linux-cdrom.c 	\
 	cddb.h 		\
 	socket.h 	\
-	cdrom.h		\
+	linux-cdrom.h	\
 	tcd.h		\
 	tracked.h	\
 	tracked.c
@@ -48,5 +49,7 @@ tcd_LDADD = -lm $(CURSES_LIBS)
 
 CLEANFILES = *.o core *~ libcdrom.a
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR)
+INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) \
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
+
 Audio_DATA = gtcd.desktop
