@@ -322,8 +322,29 @@ on_propertybox_apply_activate (GtkWidget* widget,
 				else
 					gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
 			}
-			else  /* Exists and is a directory */
-				temp_dir = g_strdup (temp_file);
+			else  { /* Exists and is a directory */
+				gint ok;
+
+				/* Check if you have rw permissions */
+				ok = access (temp_file, W_OK | R_OK);
+
+				if (ok == -1) {
+					show_mess = g_strdup_printf (_("You don't have the correct permissions (read & write) for temp directory %s.\nDo you want to use it anyway?"), temp_file);
+					mess = gnome_message_box_new (show_mess,
+								      GNOME_MESSAGE_BOX_QUESTION,
+								      GNOME_STOCK_BUTTON_YES,
+								      GNOME_STOCK_BUTTON_NO,
+								      NULL);
+					g_free (show_mess);
+					choice = gnome_dialog_run (GNOME_DIALOG (mess));
+					if (choice == 0)
+						temp_dir = g_strdup (temp_file);
+					else
+						gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
+				}
+				else
+					temp_dir = g_strdup (temp_file);
+			}
 		}
 		else if (errno == ENOENT) {                  /* Does not exist */
 			show_mess = g_strdup_printf (_("Directory %s does not exist.\nDo want to use it anyway?"), temp_file);
