@@ -8,6 +8,7 @@ INCLUDES =					\
 	$(GAILUTIL_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
+	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"	\
 	-DTHEME_DIR=\""$(datadir)/pixmaps/gnome-cd/themes"\"
 
 Audiodir = $(datadir)/applications

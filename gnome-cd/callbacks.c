@@ -834,13 +834,18 @@ about_cb (GtkWidget *widget,
 	  gpointer data)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf *pixbuf = NULL;
 	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
 	
 	if (about == NULL) {
+		pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/gnome-cd.png", NULL);
 		about = gnome_about_new (_("CD Player"), VERSION,
 					 "Copyright \xc2\xa9 2001-2002 Iain Holmes",
 					 _("A CD player for GNOME"),
-					 authors, NULL, NULL, NULL);
+					authors, NULL, NULL, pixbuf);
+		if (pixbuf != NULL)
+			gdk_pixbuf_unref (pixbuf);
+		
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
 		gtk_widget_show (about);

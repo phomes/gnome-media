@@ -990,16 +990,22 @@ help_about (BonoboUIComponent *uic,
 	    const char *path)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf *pixbuf = NULL;
 	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
 
 	if (about != NULL) {
 		gdk_window_raise (about->window);
 		gdk_window_show (about->window);
 	} else {
+		pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/gnome-grecord.png", NULL);
 		about = gnome_about_new (_("Sound Recorder"), VERSION,
 					 "Copyright \xc2\xa9 2002 Iain Holmes",
 					 _("A sound recorder for GNOME"),
-					 authors, NULL, NULL, NULL);
+					 authors, NULL, NULL, pixbuf);
+
+		if (pixbuf != NULL)
+			gdk_pixbuf_unref (pixbuf);
+
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
 		gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));

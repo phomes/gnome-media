@@ -1734,6 +1734,7 @@ about_cb (GtkWidget *widget,
 	  gpointer data)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf *pixbuf;
 	
 	static const char *authors[] = {
 		"Jens Ch. Restemeier",
@@ -1745,13 +1746,17 @@ about_cb (GtkWidget *widget,
 		gdk_window_show (about->window);
 		gdk_window_raise (about->window);
 	} else {
+		pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/gnome-mixer.png", NULL);
 		about = gnome_about_new ( _("GNOME Volume Control"), VERSION,
 					  "Copyright \xc2\xa9 1998-2000 Jens Ch. Restemeier\n"
 					  "Copyright \xc2\xa9 2001-2002 Iain Holmes",
 					  _("A mixer for sound devices"),
 					  authors,
 					  NULL, NULL,
-					  NULL);
+					  pixbuf);
+		
+		if (pixbuf != NULL)
+			gdk_pixbuf_unref (pixbuf);
 
 		g_signal_connect (G_OBJECT (about), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &about);
