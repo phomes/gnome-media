@@ -16,8 +16,6 @@
 #include <unistd.h>
 #include <string.h>
 
-#include <gtk/gtk.h>
-
 #include <bonobo/bonobo-object.h>
 #include <bonobo/bonobo-event-source.h>
 #include <bonobo/bonobo-main.h>

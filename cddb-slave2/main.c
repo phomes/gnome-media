@@ -13,7 +13,7 @@
 
 #include <libgnome/libgnome.h>
 #include <bonobo-activation/bonobo-activation.h>
-#include <bonobo.h>
+#include <libbonobo.h>
 
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <gconf/gconf-client.h>
@@ -27,18 +27,19 @@
 static int running_objects = 0;
 
 static void
-cddb_destroy_cb (GtkObject *cddb,
+cddb_destroy_cb (GObject *cddb,
 		 gpointer data)
 {
 	running_objects--;
 
 	if (running_objects <= 0) {
-		gtk_main_quit ();
+		bonobo_main_quit ();
 	}
 }
 
 static BonoboObject *
 factory_fn (BonoboGenericFactory *factory,
+	    const char *component_id,
 	    void *closure)
 {
 	GConfClient *client;
@@ -73,7 +74,7 @@ factory_fn (BonoboGenericFactory *factory,
 	/* Keep track of our objects */
 	running_objects++;
 	g_signal_connect (G_OBJECT (cddb), "destroy",
-			  GTK_SIGNAL_FUNC (cddb_destroy_cb), NULL);
+			  G_CALLBACK (cddb_destroy_cb), NULL);
 
 	return BONOBO_OBJECT (cddb);
 }
@@ -110,7 +111,7 @@ main (int argc,
 #endif
 /*  	gnome_program_init ("CDDBSlave-2", VERSION, &libgnome_module_info, */
 /*  			    argc, argv, NULL); */
-	bonobo_ui_init ("CDDBSlave2", VERSION, &argc, argv);
+	bonobo_init (&argc, argv);
 
 	cddbslave_init ();
 	bonobo_main ();

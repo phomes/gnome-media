@@ -1,5 +1,19 @@
 2001-11-17  Iain Holmes  <iain@ximian.com>
 
+	* cddb-slave.c: Remove gtk.h include
+
+	* cddb-slave.h: Replace GtkType with GType and GTK_CHECK macros with
+	the G_TYPE ones.
+
+	* main.c: Replace bonobo.h with libbonobo.h
+	(cddb_destroy_cb): Replace GtkObject with GObject and gtk_main_quit with
+	bonobo_main_quit.
+	(factory_fn): Add the component_id parameter. Replace GTK_SIGNAL_FUNC
+	with G_CALLBACK.
+	(main): Replace bonobo_ui_init with bonobo_init.
+	
+2001-11-17  Iain Holmes  <iain@ximian.com>
+
 	* cddb-slave-client.c (cddb_slave_client_remove_listener): Correct the
 	return type. Fix the inline docs too.
 
