@@ -706,7 +706,8 @@ fill_in_information (GSRWindow *window,
 		char *human;
 		human = gnome_vfs_format_file_size_for_display (buf.st_size);
 
-		text = g_strdup_printf ("%s (%llu bytes)", human, buf.st_size);
+		text = g_strdup_printf (ngettext ("%s (%llu byte)", "%s (%llu bytes)", 
+						   buf.st_size), human, buf.st_size);
 		g_free (human);
 	} else {
 		text = g_strdup (_("Unknown size"));
