@@ -74,7 +74,7 @@ void load_prefs(tcd_prefs *prop)
 	prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
 	prop->mixer_cmd=gnome_config_get_string    ("/gtcd/ui/mixer=gmix");
 
-	s = g_strconcat("/gtcd/ui/trackfont=", _("-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"), NULL);
+	s = g_strconcat("/gtcd/ui/trackfont=", DEFAULT_FONT, NULL);
 	prop->trackfont=gnome_config_get_string(s);
 	g_free(s);
 

@@ -1,6 +1,9 @@
 #ifndef PROPERTIES_H__
 #define PROPERTIES_H__
 
+#define DEFAULT_FONT _("-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*")
+#define EMERGENCY_FONT _("-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*")
+
 typedef enum
 {
     DoNothing=0, 

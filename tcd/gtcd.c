@@ -499,6 +499,8 @@ void draw_titles(void)
 
 void draw_time_scanning(void)
 {
+	if (!tfont)
+		return;
 	gdk_gc_set_foreground( gc, &track_color );
 	gdk_draw_text(status_db,tfont,gc,4,39+(tfont->ascent+tfont->descent)-2, 
 		      _("(Scanning)"),
@@ -727,6 +729,8 @@ void adjust_status_size(void)
 	int t;
 	max_title_width = 0;
 
+	if (!tfont)
+		return;
 	t = gdk_string_width(tfont, cd.artist);
 	if(max_title_width < t)
 		max_title_width = t;
@@ -905,6 +909,9 @@ void setup_time_display(GtkWidget *table)
 
 void setup_fonts(void)
 {
+	GtkWidget *dialog;
+	GdkFont *tmp;
+
 	if(tfont)
 		gdk_font_unref(tfont);
 
@@ -912,6 +919,40 @@ void setup_fonts(void)
 		tfont = gdk_fontset_load( prefs->trackfont );
 	else
 		tfont = NULL;
+
+	if (!tfont)
+	{
+		prefs->trackfont = g_strdup(DEFAULT_FONT);
+		tfont = gdk_fontset_load( prefs->trackfont );
+		tfont = 0;
+		if (tfont)
+		{
+			dialog = gnome_warning_dialog(
+				_("Cannot load requested font. Reloading default font."));
+			gtk_widget_show(dialog);
+		}
+		else
+		{
+			prefs->trackfont = g_strdup(EMERGENCY_FONT);
+			tfont = gdk_fontset_load( prefs->trackfont );
+			tfont = 0;
+			if (tfont)
+			{
+				dialog = gnome_warning_dialog(
+					_("Cannot load default Helvetica font. Loading any fixed width font."));
+				gtk_widget_show(dialog);
+			}
+			else
+			{
+				configured = FALSE; // Don't update status in the background.
+				dialog = gnome_error_dialog(
+					_("Cannot load fixed width font. Exiting."));
+				gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
+				gnome_dialog_run(GNOME_DIALOG(dialog));
+				exit(1);
+			}
+		}
+	}
 
 	if(sfont)
 		gdk_font_unref(sfont);
