@@ -10,7 +10,10 @@ sine_LDADD = -lm
 
 bin_PROGRAMS = extace
 
-extace_SOURCES =	\
+extace_SOURCES = \
+        logo.xpm \
+        stars.c \
+	stars.h \
 	extace.c
 
 extace_LDADD = \

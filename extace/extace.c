@@ -33,6 +33,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
+#include "logo.xpm"
 
 GtkWidget     *disp=NULL;
 GdkWindow     *win=NULL;
@@ -62,7 +63,7 @@ guint          auval[NSAMP];
 gint           sound=-1;
 gint           freq=1;
 gint           curbuf=0;
-gint           lag=5;
+gint           lag=7;
 
 void 
 open_sound(void)
@@ -121,7 +122,6 @@ GetFFT(void)
    
    curbuf++;
    if (curbuf>=BUFS) curbuf=0;
-   read(sound, aubuf[curbuf], NSAMP*2);
    
    buf=((BUFS*2)+curbuf-lag)%BUFS;
    if ((curbuf%2)>0) return 0;
@@ -463,6 +463,8 @@ leave(GtkWidget *widget, gpointer *data)
 gint 
 button_3d_fft(GtkWidget *widget, gpointer *data)
 {
+  if (mode == 4)
+    kt_stars_stop(disp);
    gdk_draw_rectangle( pixmap,
 		      disp->style->black_gc,
 		      TRUE, 0,0,
@@ -476,6 +478,8 @@ button_3d_fft(GtkWidget *widget, gpointer *data)
 gint 
 button_2d_fft(GtkWidget *widget, gpointer *data)
 {
+  if (mode == 4)
+    kt_stars_stop(disp);
    gdk_draw_rectangle( pixmap,
 		      disp->style->black_gc,
 		      TRUE, 0,0,
@@ -489,6 +493,8 @@ button_2d_fft(GtkWidget *widget, gpointer *data)
 gint 
 button_oscilloscope(GtkWidget *widget, gpointer *data)
 {
+  if (mode == 4)
+    kt_stars_stop(disp);
    gdk_draw_rectangle( pixmap,
 		      disp->style->black_gc,
 		      TRUE, 0,0,
@@ -502,6 +508,8 @@ button_oscilloscope(GtkWidget *widget, gpointer *data)
 gint 
 button_3d_detailed(GtkWidget *widget, gpointer *data)
 {
+  if (mode == 4)
+    kt_stars_stop(disp);
    gdk_draw_rectangle( pixmap,
 		      disp->style->black_gc,
 		      TRUE, 0,0,
@@ -510,6 +518,64 @@ button_3d_detailed(GtkWidget *widget, gpointer *data)
    mode=3;
 
    return 0;
+}
+
+gint 
+button_about(GtkWidget *widget, gpointer *data)
+{
+  static GtkWidget *stars = NULL;
+  
+  if (mode == 4)
+    {
+      gtk_object_set_data(GTK_OBJECT(disp), "reset", 1);
+      kt_stars_stop(disp);
+    }
+  gdk_draw_rectangle( pixmap,
+		     disp->style->black_gc,
+		     TRUE, 0,0,
+		     width,height);
+  gdk_window_clear(win);
+  if (!stars)
+    {
+      GdkPixmap *pm = NULL, *mk = NULL;
+      GdkColor cl;
+
+      stars = kt_stars_new(disp, pixmap);
+      pm = gdk_pixmap_create_from_xpm_d(stars->window, &mk, NULL, logo_xpm);
+      kt_stars_set_logo_pixmp(stars, pm, mk);
+    }
+  mode=4;
+  kt_stars_start(stars, stars->allocation.width, stars->allocation.height);
+  return 0;
+}
+
+gint 
+button_quit(GtkWidget *widget, gpointer *data)
+{
+  exit(0);
+}
+
+void
+handle_read(gpointer data, gint source, GdkInputCondition condition)
+{
+  static gint pos = 0;
+  static gint to_get = NSAMP*2;
+  gint count;
+  
+  count = read(sound, aubuf[curbuf] + pos, to_get);
+  if (count < 0)
+    exit(1);
+  else
+    {
+      pos += count;
+      to_get -= count;
+    }
+  if (to_get == 0)
+    {
+      to_get = NSAMP*2;
+      pos = 0;
+      draw();
+    }
 }
 
 int 
@@ -539,30 +605,42 @@ main(int argc, char **argv)
    hbox=gtk_hbox_new(TRUE,0);
    gtk_widget_show(hbox);
    
-   button=gtk_button_new_with_label("3D FFT");
+   button=gtk_button_new_with_label("3D");
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_3d_fft),NULL);
 
-   button=gtk_button_new_with_label("Flat FFT");
+   button=gtk_button_new_with_label("Flat");
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_2d_fft),NULL);
 
-   button=gtk_button_new_with_label("Oscilloscope");
+   button=gtk_button_new_with_label("Oscill");
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_oscilloscope),NULL);
 
-   button=gtk_button_new_with_label("3D Detailed FFT");
+   button=gtk_button_new_with_label("Spikes");
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_3d_detailed),NULL);
-   
+
+   button=gtk_button_new_with_label("About");
+   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
+   gtk_widget_show(button);
+   gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		      GTK_SIGNAL_FUNC(button_about),NULL);
+
+   button=gtk_button_new_with_label("Close");
+   gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
+   gtk_widget_show(button);
+   gtk_signal_connect(GTK_OBJECT(button),"clicked",
+		      GTK_SIGNAL_FUNC(button_quit),NULL);
+  
    gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
    disp=gtk_drawing_area_new();
    gtk_widget_show(disp);
@@ -571,7 +649,7 @@ main(int argc, char **argv)
    gtk_box_pack_start(GTK_BOX(vbox),disp,TRUE,TRUE,0);
    gtk_widget_realize(disp);
    height = 256;
-   width  = 512;
+   width  = 360;
    gtk_widget_set_usize(disp,width,height);
    win=disp->window;
    gc=gdk_gc_new(win);
@@ -586,10 +664,9 @@ main(int argc, char **argv)
    setup_datawindow();
    init_colortab();
    open_sound();
-   for (;;)
-     {
-	while (gtk_events_pending()) gtk_main_iteration();
-	draw();
-     }
+  fcntl(sound, F_SETFL, O_NONBLOCK);
+  gdk_input_add(sound, GDK_INPUT_READ | GDK_INPUT_EXCEPTION,
+		handle_read, NULL);
+  gtk_main();
    return 0;
 }
