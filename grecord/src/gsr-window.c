@@ -77,6 +77,7 @@ struct _GSRWindowPrivate {
 	gboolean seek_in_progress;
 
 	guint32 tick_id; /* tick_callback timeout ID */
+	guint32 record_id; /* record idle callback timeout ID */
 };
 
 static BonoboWindowClass *parent_class = NULL;
@@ -109,13 +110,21 @@ finalize (GObject *object)
 		g_source_remove (priv->tick_id);
 	}
 
+	if (priv->record_id > 0) {
+		g_source_remove (priv->record_id);
+	}
+
 	g_idle_remove_by_data (window);
 
-	shutdown_pipeline (priv->play);
-	g_free (priv->play);
+	if (priv->play != NULL) {
+		shutdown_pipeline (priv->play);
+		g_free (priv->play);
+	}
 
-	shutdown_pipeline (priv->record);
-	g_free (priv->record);
+	if (priv->record != NULL) {
+		shutdown_pipeline (priv->record);
+		g_free (priv->record);
+	}
 
 	unlink (priv->record_filename);
 	g_free (priv->record_filename);
@@ -1022,8 +1031,16 @@ media_play (BonoboUIComponent *uic,
 		return;
 	}
 
+	if (window->priv->record == NULL) {
+		return;
+	}
+
 	if (gst_element_get_state (window->priv->record->pipeline) == GST_STATE_PLAYING) {
 		gst_element_set_state (window->priv->record->pipeline, GST_STATE_READY);
+	}
+
+	if (window->priv->play == NULL) {
+		return;
 	}
 
 	gst_element_set_state (window->priv->play->pipeline, GST_STATE_PLAYING);
@@ -1059,6 +1076,10 @@ media_record (BonoboUIComponent *uic,
 	      GSRWindow *window,
 	      const char *path)
 {
+	if (window->priv->record == NULL) {
+		return;
+	}
+
 	gst_element_set_state (window->priv->record->pipeline, GST_STATE_PLAYING);
 }
 
@@ -1214,7 +1235,12 @@ tick_callback (GSRWindow *window)
 static gboolean
 play_iterate (GSRWindow *window)
 {
-	return gst_bin_iterate (GST_BIN (window->priv->play->pipeline));
+	gboolean ret;
+	ret =  gst_bin_iterate (GST_BIN (window->priv->play->pipeline));
+
+	if (!ret)
+		gst_element_set_state (window->priv->play->pipeline, GST_STATE_NULL);
+	return ret;
 }
 
 static void
@@ -1358,15 +1384,9 @@ make_play_pipeline (GSRWindow *window)
 	return pipeline;
 }
 
-static void
-record_state_changed (GstElement *element,
-		      GstElementState old,
-		      GstElementState state,
-		      GSRWindow *window)
-{
-	
-	switch (state) {
-	case GST_STATE_PLAYING:
+static gboolean
+record_start(gpointer user_data) {
+	GSRWindow *window = GSR_WINDOW (user_data);
 #if 0 /* Don't need this yet...but we will eventually I think */
 		if (window->priv->len_secs == 0) {
 			window->priv->get_length_attempts = 16;
@@ -1392,10 +1412,13 @@ record_state_changed (GstElement *element,
 		bonobo_ui_component_set_status (window->priv->ui_component,
 						_("Recording..."), NULL);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
-		break;
+		window->priv->record_id = 0;
+		return FALSE;
+}
 
-	case GST_STATE_PAUSED:
-	case GST_STATE_READY:
+static gboolean
+record_ready_or_pause(gpointer user_data) {
+	GSRWindow *window = GSR_WINDOW (user_data);
 		bonobo_ui_component_set_prop (window->priv->ui_component,
 					      "/commands/MediaStop", 
 					      "sensitive", "0", NULL);
@@ -1414,6 +1437,24 @@ record_state_changed (GstElement *element,
 		bonobo_ui_component_set_status (window->priv->ui_component,
 						_("Ready"), NULL);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
+		window->priv->record_id = 0;
+		return FALSE;
+}
+
+static void
+record_state_changed (GstElement *element,
+		      GstElementState old,
+		      GstElementState state,
+		      GSRWindow *window)
+{
+	switch (state) {
+	case GST_STATE_PLAYING:
+		window->priv->record_id = g_idle_add (record_start, window);
+		break;
+
+	case GST_STATE_PAUSED:
+	case GST_STATE_READY:
+		window->priv->record_id = g_idle_add (record_ready_or_pause, window);
 		break;
 	default:
 		break;
@@ -1439,7 +1480,7 @@ make_record_pipeline (GSRWindow *window)
 	if (encoder == NULL) {
 		g_warning ("You do not have a new enough gst-plugins.\n"
 			   "You really need CVS after 20-Oct-2002");
-		return;
+		return NULL;
 	}
 	pipeline->sink = gst_element_factory_make ("filesink", "sink");
 
@@ -1497,6 +1538,8 @@ init (GSRWindow *window)
 	priv->len_secs = 0;
 	priv->get_length_attempts = 16;
 	priv->dirty = FALSE;
+
+	return;
 }
 
 GType
@@ -1572,9 +1615,11 @@ gsr_window_new (const char *filename)
 		window->priv->working_file = g_strdup (filename);
 	}
 
-	g_object_set (G_OBJECT (window->priv->record->sink),
-		      "location", window->priv->record_filename,
-		      NULL);
+	if (window->priv->record != NULL) {
+		g_object_set (G_OBJECT (window->priv->record->sink),
+			      "location", window->priv->record_filename,
+			      NULL);
+	}
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 512, 200);
 	hbox = gtk_hbox_new (FALSE, 6);
