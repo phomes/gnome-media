@@ -122,7 +122,6 @@ typedef struct device_info {
 	int volume_left[32], volume_right[32]; /* volume, mono only left */
 
 	int mute_bitmask; /* which channels are muted */
-	int record_bitmask; /* which channels have recording enabled */
 	int lock_bitmask; /* which channels have the L/R sliders linked together */
 	int enabled_bitmask; /* which channels should be visible in the GUI ? */
 	GList *channels;
@@ -467,7 +466,6 @@ device_info *open_device(int num)
 	 * get current volume
 	 */
 	new_device->mute_bitmask=0;				/* not muted */
-	new_device->record_bitmask=0;				/* no recording */
 	new_device->lock_bitmask=new_device->stereodevs;	/* all locked */
 	new_device->enabled_bitmask=new_device->devmask;	/* all enabled */
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
@@ -491,7 +489,7 @@ device_info *open_device(int num)
 	printf("%s\n", new_device->info.name);
 	
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
-		if (new_device->devmask & (1<<cnt)) {
+		if ((new_device->devmask | new_device->recmask) & (1<<cnt)) {
 			printf("%s:", device_labels[cnt]);
 			if (new_device->recmask & (1<<cnt)) {
 				printf("recmask ");
@@ -499,10 +497,12 @@ device_info *open_device(int num)
 			if (new_device->recsrc & (1<<cnt)) {
 				printf("recsrc ");
 			}
-			if (new_device->stereodevs & (1<<cnt)) {
-				printf("stereo %i/%i", new_device->volume_left[cnt], new_device->volume_right[cnt]);
-			} else {
-				printf("mono %i", new_device->volume_left[cnt]);
+			if ((new_device->devmask) & (1<<cnt)) {
+				if (new_device->stereodevs & (1<<cnt)) {
+					printf("stereo %i/%i", new_device->volume_left[cnt], new_device->volume_right[cnt]);
+				} else {
+					printf("mono %i", new_device->volume_left[cnt]);
+				}
 			}
 			printf("\n");
 		}
@@ -517,7 +517,7 @@ GList *make_channels(device_info *device)
 	GList *channels;
 	channels=NULL;
 	for (i=0; i<SOUND_MIXER_NRDEVICES; i++) {
-		if (device->devmask & (1<<i)) {
+		if ((device->devmask | device->recmask) & (1<<i)) {
 			channel_info *new_channel;
 			new_channel=(channel_info *)malloc(sizeof(channel_info));
 			new_channel->device=device;
@@ -564,7 +564,7 @@ void init_one_device(gpointer a, gpointer b)
 	int c;
 	
 	device_info *info = (device_info *)a;
-	ioctl(info->fd, SOUND_MIXER_WRITE_RECSRC, &info->record_bitmask);
+	ioctl(info->fd, SOUND_MIXER_WRITE_RECSRC, &info->recsrc);
 
 	for (c=0; c<SOUND_MIXER_NRDEVICES; c++) {
 		if (info->devmask & (1<<c)) {
@@ -599,11 +599,6 @@ void get_one_device_config(gpointer a, gpointer b)
 				(info->mute_bitmask & (1<<cc))?"true":"false");
 			info->mute_bitmask&=~(1<<cc);
 			info->mute_bitmask|= gnome_config_get_bool(name) ? (1<<cc) : 0;
-			if (info->recmask & (1<<cc)) {
-				sprintf(name, "/gmix/%s_%s/recsrc=%s", info->info.id, device_names[cc], (info->record_bitmask & (1<<cc))?"true":"false");
-				info->record_bitmask&=~(1<<cc);
-				info->record_bitmask|=gnome_config_get_bool(name) ? (1<<cc) : 0;
-			}
 			if (info->stereodevs & (1<<cc)) {
 				sprintf(name, "/gmix/%s_%s/lock=%s", info->info.id, device_names[cc], (info->lock_bitmask & (1<<cc))?"true":"false");
 				info->lock_bitmask&=~(1<<cc);
@@ -616,6 +611,11 @@ void get_one_device_config(gpointer a, gpointer b)
 				sprintf(name, "/gmix/%s_%s/volume=%i", info->info.id, device_names[cc], info->volume_left[cc]);
 				info->volume_left[cc]=gnome_config_get_int(name);
 			}
+		}
+		if (info->recmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/recsrc=%s", info->info.id, device_names[cc], (info->recsrc & (1<<cc))?"true":"false");
+			info->recsrc&=~(1<<cc);
+			info->recsrc|=gnome_config_get_bool(name) ? (1<<cc) : 0;
 		}
 	}
 }
@@ -637,10 +637,6 @@ void put_one_device_config(gpointer a, gpointer b)
 		if (info->devmask & (1<<cc)) {
 			sprintf(name, "/gmix/%s_%s/mute", info->info.id, device_names[cc]);
 			gnome_config_set_bool(name, (info->mute_bitmask & (1<<cc))!=0);
-			if (info->recmask & (1<<cc)) {
-				sprintf(name, "/gmix/%s_%s/recsrc", info->info.id, device_names[cc]);
-				gnome_config_set_bool(name, (info->record_bitmask & (1<<cc))!=0);
-			}
 			if (info->stereodevs & (1<<cc)) {
 				sprintf(name, "/gmix/%s_%s/lock", info->info.id, device_names[cc]);
 				gnome_config_set_bool(name, (info->lock_bitmask & (1<<cc))!=0);
@@ -652,6 +648,10 @@ void put_one_device_config(gpointer a, gpointer b)
 				sprintf(name, "/gmix/%s_%s/volume", info->info.id, device_names[cc]);
 				gnome_config_set_int(name, info->volume_left[cc]);
 			}
+		}
+		if (info->recmask & (1<<cc)) {
+			sprintf(name, "/gmix/%s_%s/recsrc", info->info.id, device_names[cc]);
+			gnome_config_set_bool(name, (info->recsrc & (1<<cc))!=0);
 		}
 	}
 }
@@ -688,24 +688,25 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 
 	hbox=gtk_hbox_new(FALSE,1);
 
-	/* Left channel */
-	ci->left=gtk_adjustment_new (-ci->device->volume_left[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
-	gtk_signal_connect(GTK_OBJECT(ci->left), "value_changed", (GtkSignalFunc)adj_left_cb, (gpointer)ci);
-	scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->left));
-	gtk_range_set_update_policy (GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
-	gtk_scale_set_draw_value(GTK_SCALE(scale), FALSE);
-	gtk_box_pack_start (GTK_BOX (hbox), scale, TRUE, TRUE, 0);
-	gtk_widget_show (scale);
-
-	if (di->stereodevs & (1<<ci->channel)) {
-		/* Right channel, display only if we have stereo */
-		ci->right=gtk_adjustment_new (-ci->device->volume_right[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
-		gtk_signal_connect(GTK_OBJECT(ci->right), "value_changed", (GtkSignalFunc)adj_right_cb, (gpointer)ci);
-		scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->right));
+	if (di->devmask & (1<<ci->channel)) {
+	/* Left channel, display only if we have mixable device */
+		ci->left=gtk_adjustment_new (-ci->device->volume_left[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
+		gtk_signal_connect(GTK_OBJECT(ci->left), "value_changed", (GtkSignalFunc)adj_left_cb, (gpointer)ci);
+		scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->left));
 		gtk_range_set_update_policy (GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
-		gtk_scale_set_draw_value (GTK_SCALE(scale), FALSE);
-		gtk_box_pack_start (GTK_BOX(hbox), scale, TRUE, TRUE, 0);
+		gtk_scale_set_draw_value(GTK_SCALE(scale), FALSE);
+		gtk_box_pack_start (GTK_BOX (hbox), scale, TRUE, TRUE, 0);
 		gtk_widget_show (scale);
+		if (di->stereodevs & (1<<ci->channel)) {
+			/* Right channel, display only if we have stereo */
+			ci->right=gtk_adjustment_new (-ci->device->volume_right[ci->channel], -101.0, 0.0, 1.0, 1.0, 0.0);
+			gtk_signal_connect(GTK_OBJECT(ci->right), "value_changed", (GtkSignalFunc)adj_right_cb, (gpointer)ci);
+			scale = gtk_vscale_new (GTK_ADJUSTMENT(ci->right));
+			gtk_range_set_update_policy (GTK_RANGE(scale), GTK_UPDATE_CONTINUOUS);
+			gtk_scale_set_draw_value (GTK_SCALE(scale), FALSE);
+			gtk_box_pack_start (GTK_BOX(hbox), scale, TRUE, TRUE, 0);
+			gtk_widget_show (scale);
+		}
 	}
 
 	return hbox;
@@ -773,7 +774,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 			 */
 			if (ci->device->recmask & (1<<ci->channel)) {
 				ci->rec = gtk_check_button_new_with_label (_("Rec."));
-				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->recsrc & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->rec), "toggled", (GtkSignalFunc) rec_cb, (gpointer)ci);
 				/* David: changed TOP_ATTACH to 7 and
 				 * BOTTOM_ATTACH to 8   06/04/1999
@@ -789,11 +790,13 @@ void fill_in_device_guis(GtkWidget *notebook){
 				ci->rec = NULL;
 			}
 	
-			ci->mute=gtk_check_button_new_with_label(_("Mute"));
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
-			gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
-			gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-			gtk_widget_show (ci->mute);
+			if (ci->device->devmask & (1<<ci->channel)) {
+				ci->mute=gtk_check_button_new_with_label(_("Mute"));
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
+				gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
+				gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_widget_show (ci->mute);
+			}
 
 			separator = gtk_vseparator_new ();
 			/* BOTTOM_ATTACH changed to 8 */
@@ -892,19 +895,19 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 	if (data==NULL) return;
 	if (data->passive) return;
 
-	data->device->record_bitmask&=~(1<<data->channel);
+	data->device->recsrc&=~(1<<data->channel);
 
 	if (GTK_TOGGLE_BUTTON (data->rec)->active) {
 		if (data->device->caps & SOUND_CAP_EXCL_INPUT) {
-			data->device->record_bitmask=1<<data->channel;
+			data->device->recsrc=1<<data->channel;
 		} else {
-			data->device->record_bitmask|=(1<<data->channel);
+			data->device->recsrc|=(1<<data->channel);
 		}
 	}
 
-	ioctl(data->device->fd,SOUND_MIXER_WRITE_RECSRC, &data->device->record_bitmask);
+	ioctl(data->device->fd,SOUND_MIXER_WRITE_RECSRC, &data->device->recsrc);
 	
-	ioctl(data->device->fd,SOUND_MIXER_READ_RECSRC, &data->device->record_bitmask);
+	ioctl(data->device->fd,SOUND_MIXER_READ_RECSRC, &data->device->recsrc);
 
 	for (c=data->device->channels; c; c=c->next) {
 		channel_info *info;
@@ -912,7 +915,7 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 		info->passive=1;
 		/* check to see if channel can record */
 		if( info->rec != NULL )
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->record_bitmask & (1<<info->channel))!=0);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->recsrc & (1<<info->channel))!=0);
 		info->passive=0;
 	}
 
