@@ -33,6 +33,8 @@
 #include <errno.h>
 #include <pwd.h>
 #include <sys/socket.h>
+#include <utsnamelen.h>
+
 
 #ifdef linux
 # include <linux/cdrom.h>
@@ -70,10 +72,10 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 		return -2;
 	if( string == NULL )
 		return -1;
-		
-	while( !feof( fp ) ) 
+	
+	/* AC: dont feof.. feof is only true _after_ eof is read */	
+	while(fgets( string, 80, fp )!=NULL)
 	{
-		fgets( string, 80, fp );
 		string[strlen(string)-1] = 0;
 		// If it's a comment, ignore.
 		if( string[0] == '#' )
@@ -157,9 +159,10 @@ int tcd_sendhandshake( 	cddb_server *server,
 			char* clientname, 
 			char* version )
 {
-	char tmp[200];
+	char tmp[512];
 	
-	sprintf( tmp, "cddb hello %s %s %s %s\n", username,
+	/* length sanity - AC */
+	snprintf( tmp, 512, "cddb hello %s %s %s %s\n", username,
 						  hostname,
 						  clientname,
 						  version );
@@ -168,16 +171,32 @@ int tcd_sendhandshake( 	cddb_server *server,
 	return 0;
 }
 
+/*
+ *	Corrupt reply - gets you ???? 
+ */
+ 
+static char *if_strtok(char *p, const char *p2)
+{
+	p=strtok(p,p2);
+	if(p==NULL)
+		return("????");
+	return p;
+}
+
 int tcd_getquery( cddb_server *server, cddb_query_str *query )
 {
-	char s[81];
-	fgetsock( s, 80, server->socket );
-
-	/* Fill in query info */
+	char s[512];
+	fgetsock( s, 511, server->socket );
+	s[511]=0;
+	
+	/* Fill in query info  - watch lengths - AC */
 	query->code = atoi(strtok( s, " " ));
-	strcpy(	query->categ, strtok(NULL, " ") );
-	strcpy( query->discid, strtok( NULL, " ") );
-	strcpy( query->dtitle, strtok( NULL, "\0") );
+	strncpy(query->categ, if_strtok(NULL, " ") , CATEG_MAX);
+	query->categ[CATEG_MAX-1]=0;
+	strncpy(query->discid, if_strtok( NULL, " "), DISCID_MAX);
+	query->discid[DISCID_MAX-1]=0;
+	strncpy(query->dtitle, if_strtok( NULL, "\0"), DTITLE_MAX);
+	query->dtitle[DTITLE_MAX-1]=0;
 	return 0;
 }
 
@@ -222,10 +241,14 @@ unsigned long cddb_discid( cd_struct *cd )
         return ((n % 0xff) << 24 | t << 8 | (cd->last_t));
 }
 
-void tcd_formatquery( cd_struct *cd, char *buf )
+/*
+ *	The caller passes us a buffer length constraint now - AC
+ */
+ 
+void tcd_formatquery( cd_struct *cd, char *buf , int blen)
 {
 	char tmp[10];
-	int i,n;
+	int i,n,l;
 		
 	sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
 	for( i = cd->first_t; i <= cd->last_t; i++ )
@@ -236,13 +259,18 @@ void tcd_formatquery( cd_struct *cd, char *buf )
 		sec = cd->trk[i].toc.cdte_addr.msf.second;
 	
 		n = (min*60)+sec;
-		sprintf( tmp, "%u ", (n*75)+cd->trk[i].toc.cdte_addr.msf.frame );
-		strcat( buf, tmp );
+		l=sprintf( tmp, "%u ", (n*75)+cd->trk[i].toc.cdte_addr.msf.frame );
+		if(blen>=l)
+		{
+			strcat( buf, tmp );
+			blen-=l;
+		}
 	}
-        sprintf( tmp, "%i\n",
+        l=sprintf( tmp, "%i\n",
                         (cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
                         +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
-	strcat( buf,tmp );                                                                               
+        if(blen>=l)
+		strcat( buf,tmp );                                                                               
 }
 
 int tcd_open_cddb( cddb_server *server )
@@ -250,12 +278,20 @@ int tcd_open_cddb( cddb_server *server )
 	struct passwd* pw;
 	int code;
 	char s[200];
-	char hostname[30];
 	
-	gethostname(hostname, 30);
+	/* FIXME - is there a 'right' way to set this portably */
+	char hostname[65];
+	
+	gethostname(hostname, 65);
 	if( strcmp(hostname, "") == 0)
 		strcpy( hostname, "generic" );
 	pw = getpwuid(getuid());
+	/* Password entry gone - eg crashed NIS servers */
+	if(pw==NULL)
+	{
+		strcpy(server->error, "Your username isnt available." );
+		return -1;
+	}
 	if( strcmp(pw->pw_name, "") == 0)
 		strcpy( pw->pw_name, "user" );
 

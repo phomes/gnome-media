@@ -162,7 +162,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.2);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	tcd_formatquery( &cd, qs );
+	tcd_formatquery( &cd, qs , sizeof(qs));
 	gtk_label_set( GTK_LABEL(label), "Sending query..." );
 	r = send( server.socket, qs, strlen(qs), 0 );
 #ifdef DEBUG

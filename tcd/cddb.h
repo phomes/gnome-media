@@ -59,7 +59,7 @@ int 		tcd_sendhandshake(  cddb_server *server,
                 		        char* clientname,
                 		        char* version );
 int 		tcd_getquery( cddb_server *server, cddb_query_str *query );
-void 		tcd_formatquery( cd_struct *cd, char *buf );
+void 		tcd_formatquery( cd_struct *cd, char *buf , int blen);
 int 		tcd_open_cddb( cddb_server *server );
 
 

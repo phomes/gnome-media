@@ -673,7 +673,7 @@ void tcd_get_cddb( void )
 	}
 	mvwprintw( win, maxy-1, 2, "Connected. Searching for album.      " );refresh();	
 
-	tcd_formatquery( cd, test );
+	tcd_formatquery( cd, test ,sizeof(test));
         r = send( server.socket, test, strlen(test), 0 );
 	
         tcd_getquery( &server, &query );
