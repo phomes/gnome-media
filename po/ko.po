@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2001-06-04 00:04+0900\n"
+"POT-Creation-Date: 2001-06-12 08:06-0400\n"
 "PO-Revision-Date: 2001-06-04 00:05+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -379,6 +379,45 @@ msgstr "그믹스 - 그놈 믹서"
 #: gmix/gmix.c:1399
 msgid "This is a mixer for OSS sound-devices."
 msgstr "OSS 사운드장치를 위한 믹서입니다."
+
+#. start frame
+#: gmix/prefs.c:98 tcd/prefs.c:561
+msgid "On startup"
+msgstr "시작할 때"
+
+#. Set on start
+#: gmix/prefs.c:104
+msgid "Restore saved mixer levels on startup"
+msgstr ""
+
+#: gmix/prefs.c:110
+msgid "Hide menu on start"
+msgstr ""
+
+#: gmix/prefs.c:125
+msgid "GUI"
+msgstr ""
+
+#: gmix/prefs.c:129
+msgid "Use mixer icons"
+msgstr ""
+
+#: gmix/prefs.c:137
+#, fuzzy
+msgid "Use mixer labels"
+msgstr "사용자 인터페이스"
+
+#: gmix/prefs.c:409
+msgid "Defaults"
+msgstr ""
+
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+msgid "Preferences"
+msgstr "선택사항"
+
+#: gmix/prefs.c:489
+msgid "Labels"
+msgstr ""
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
@@ -843,8 +882,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory %"
-"s.\n"
+"You don't have the correct permissions (read & write) for temp directory "
+"%s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "임시 디렉토리 %s 에 대한 올바른 권한(읽기와 쓰기)를 가지고있지 않습니다. \n"
@@ -878,8 +917,8 @@ msgid ""
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
 "GTCD는 그놈 씨디 재생 프로그램입니다. 이 프로그램은 CDDB 기능을 포함합니다. "
-"이 프로그램을 만드는 데 도움을 준 사람들은 같이 배포되는 'Thanks' 파일에 들"
-"어 있습니다."
+"이 프로그램을 만드는 데 도움을 준 사람들은 같이 배포되는 'Thanks' 파일에 "
+"들어 있습니다."
 
 #: tcd/cddb_props.c:72
 msgid "Disc ID"
@@ -1038,10 +1077,6 @@ msgstr "앞으로 넘어가기"
 msgid "Open track editor"
 msgstr "트랙 편집기 열기"
 
-#: tcd/gtcd.c:490 tcd/prefs.c:751
-msgid "Preferences"
-msgstr "선택사항"
-
 #: tcd/gtcd.c:491 tcd/popup.c:25
 msgid "Quit"
 msgstr "끝내기"
@@ -1171,7 +1206,7 @@ msgstr "수신자: "
 msgid "Category: "
 msgstr "분류: "
 
-#: tcd/linux-cdrom.c:675
+#: tcd/linux-cdrom.c:678
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1188,11 +1223,11 @@ msgstr ""
 "\n"
 "이유: %s\n"
 
-#: tcd/linux-cdrom.c:768
+#: tcd/linux-cdrom.c:771
 msgid "Unknown / Unknown"
 msgstr "모름 / 모름"
 
-#: tcd/linux-cdrom.c:774
+#: tcd/linux-cdrom.c:777
 #, c-format
 msgid "Track %d"
 msgstr "%d번 트랙"
@@ -1279,11 +1314,6 @@ msgstr "CD를 재생하는 데 별도의 방법 사용"
 msgid "Use squared law volume control"
 msgstr ""
 
-#. start frame
-#: tcd/prefs.c:561
-msgid "On startup"
-msgstr "시작할 때"
-
 #. exit frame
 #: tcd/prefs.c:567
 msgid "On exit"
@@ -1310,14 +1340,6 @@ msgstr "키 바인딩"
 #: tcd/prefs.c:759
 msgid "CDDB Settings"
 msgstr "CDDB 설정"
-
-#: tcd/prefs.h:4
-msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*,*-r-*"
-
-#: tcd/prefs.h:5
-msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
-msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*,*-r-*"
 
 #: vu-meter/main.c:118
 msgid ""
@@ -1391,3 +1413,9 @@ msgstr "음향 녹음기"
 #: gmix/gmix.desktop.in.h:1
 msgid "Audio Mixer"
 msgstr "오디오 믹서"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*,*-r-*"
+
+#~ msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+#~ msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*,*-r-*"
