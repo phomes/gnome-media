@@ -30,6 +30,24 @@ static void destroy_window (GtkWidget *widget, gboolean save)
     return;
 }
 
+void update_editor(void)
+{
+    GtkWidget *clist, *dtitle, *track;
+
+    if(!trwin)
+	return;			/* return if there is no tracked editor open */
+
+    clist = gtk_object_get_data(GTK_OBJECT(trwin), "clist");
+    dtitle= gtk_object_get_data(GTK_OBJECT(trwin), "dtitle");
+    track = gtk_object_get_data(GTK_OBJECT(trwin), "track");
+
+    gtk_clist_clear(GTK_CLIST(clist));
+    fill_list(clist);
+
+    gtk_entry_set_text(GTK_ENTRY(dtitle), cd.dtitle);
+    gtk_entry_set_text(GTK_ENTRY(track), "");
+}
+
 static void update_list( GtkWidget *list, int track )
 {
     gtk_clist_freeze(GTK_CLIST(list));
@@ -161,7 +179,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     track_vbox  = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
     entry_box   = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
     track_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(track_entry), cd.trk[1].name);
     track_list = gtk_clist_new(3);
     for (i=0 ; i < 3 ; i++)
 	gtk_clist_set_column_title(GTK_CLIST(track_list), i, _(titles[i]));
@@ -176,8 +193,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_clist_column_titles_passive(GTK_CLIST(track_list));
     gtk_widget_set_usize(track_list, 150, 225 );
     fill_list(track_list);
-    gtk_clist_select_row(GTK_CLIST(track_list), 0, 0);
-
 
     track_list_window = gtk_scrolled_window_new(GTK_CLIST(track_list)->hadjustment,
 						GTK_CLIST(track_list)->vadjustment);
@@ -186,6 +201,10 @@ void edit_window(GtkWidget *widget, gpointer data)
 				   GTK_POLICY_AUTOMATIC);
 
     gtk_container_add(GTK_CONTAINER(track_list_window), track_list);
+
+    gtk_object_set_data(GTK_OBJECT(trwin), "dtitle", disc_entry);
+    gtk_object_set_data(GTK_OBJECT(trwin), "clist", track_list);
+    gtk_object_set_data(GTK_OBJECT(trwin), "track", track_entry);
 
     /* ... */
     track_frame = gtk_frame_new(_("Track Information"));

@@ -554,8 +554,10 @@ void adjust_status(void)
 gint slow_timer( gpointer *data )
 {
     if( cd.cddb_id != cur_goto_id )
+    {
 	make_goto_menu();
-
+	update_editor();
+    }
     if( cd.sc.cdsc_audiostatus != CDROM_AUDIO_PLAY &&
 	cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
     {
@@ -586,6 +588,7 @@ gint slow_timer( gpointer *data )
 	    cd.isdisk = TRUE;
 	    cd.play_method = NORMAL;
 	    cd.repeat_track = -1;    
+	    update_editor();
 	}
     }
     draw_status(); 
@@ -887,7 +890,12 @@ void create_warning(char *message_text, char *type)
 void reload_info(int signal)
 {
     tcd_post_init(&cd);
-    if( cd.isplayable ) make_goto_menu();
+    if(cd.isplayable)
+    {
+	make_goto_menu();
+	update_editor();
+    }
+
     draw_status();
 }
 
@@ -905,7 +913,11 @@ void exit_action(void)
     case CloseTray:
 	cd.isdisk = FALSE;
 	tcd_ejectcd(&cd);
-	if( cd.isplayable ) make_goto_menu();
+	if(cd.isplayable)
+	{
+	    make_goto_menu();
+	    update_editor();
+	}
 	break;
     case DoNothing:
     default:
@@ -918,13 +930,21 @@ void start_action(void)
     if(prefs.close_tray_on_start) {
 	cd.isdisk = FALSE;
 	tcd_ejectcd(&cd);
-	if( cd.isplayable ) make_goto_menu();
+	if(cd.isplayable)
+	{
+	    make_goto_menu();
+	    update_editor();
+	}
     }
     switch(prefs.start_action)
     {
     case StartPlaying:
 	tcd_playtracks(&cd, cd.first_t, cd.last_t);
-	if( cd.isplayable ) make_goto_menu();
+	if(cd.isplayable)
+	{
+	    make_goto_menu();
+	    update_editor();
+	}
 	break;
     case StopPlaying:
 	tcd_stopcd(&cd);

@@ -50,20 +50,34 @@ void eject_cb(GtkWidget *widget, gpointer data)
     cd.repeat_track = -1;
     /* SDH: Make sure play/pause state change is noticed */
     cd.sc.cdsc_audiostatus = -1;
-    if( cd.isplayable ) make_goto_menu();
-
+    if(cd.isplayable)
+    {
+	make_goto_menu();
+	update_editor();
+    }
     draw_status();
     return;
 }
 
+static GtkWidget *about;
+
+void destroy_about(GtkWidget *widget, gpointer data);
+
+void destroy_about(GtkWidget *widget, gpointer data)
+{
+    about=NULL;
+}
+
 void about_cb(GtkWidget *widget, gpointer data)
 {
-    GtkWidget *about;
     gchar *authors[] = {
 	"Tim P. Gerla",
 	NULL
     };  
-    
+
+    if(about)
+	return;
+
     about = gnome_about_new ( 
 	_("TCD - The Gnome CD Player"), 
 	"2.2 (CVS)",
@@ -73,6 +87,12 @@ void about_cb(GtkWidget *widget, gpointer data)
 	  " Please see the \'Thanks\' file included with the"
 	  " distribution for more credits."),
 	NULL);
+
+    gtk_signal_connect(GTK_OBJECT(about), "delete_event",
+		       destroy_about, NULL);
+    gtk_signal_connect(GTK_OBJECT(about), "destroy",
+		       destroy_about, NULL);
+
     gtk_widget_show(about);
     
     return;
@@ -101,8 +121,11 @@ void changer_cb(GtkWidget *widget, gpointer data)
     tcd_change_disc(&cd, GPOINTER_TO_INT(data));
     tcd_post_init(&cd);
     cd.play_method = NORMAL;
-    if( cd.isplayable ) make_goto_menu();
-
+    if(cd.isplayable)
+    {
+	make_goto_menu();
+	update_editor();
+    }
     return;
 }
 
