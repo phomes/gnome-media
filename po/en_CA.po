@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 10:58-0500\n"
-"PO-Revision-Date: 2005-01-25 14:42-0500\n"
+"POT-Creation-Date: 2005-01-28 04:19-0500\n"
+"PO-Revision-Date: 2005-01-28 14:42-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Unknown / Unknown"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
-#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
-#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:738
+#: grecord/src/gsr-window.c:747 grecord/src/gsr-window.c:756
+#: grecord/src/gsr-window.c:766 grecord/src/gsr-window.c:1082
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -956,7 +956,7 @@ msgid "Paused"
 msgstr "Paused"
 
 #: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:801 gnome-cd/gnome-cd.c:804
+#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD Player"
@@ -1162,19 +1162,19 @@ msgstr "Eject CD"
 msgid "Eject"
 msgstr "Eject"
 
-#: gnome-cd/gnome-cd.c:893
+#: gnome-cd/gnome-cd.c:905
 msgid "CD device to use"
 msgstr "CD device to use"
 
-#: gnome-cd/gnome-cd.c:895
+#: gnome-cd/gnome-cd.c:907
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Only start if there isn't already a CD player application running"
 
-#: gnome-cd/gnome-cd.c:897
+#: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
 msgstr "Play the CD on startup"
 
-#: gnome-cd/gnome-cd.c:930 grecord/src/gnome-recorder.c:190
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:190
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1184,7 +1184,7 @@ msgstr ""
 "register"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:947
+#: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
 msgstr "Cannot create player"
 
@@ -1277,8 +1277,8 @@ msgstr "_Select a theme:"
 msgid "Record sound clips"
 msgstr "Record sound clips"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
-#: grecord/src/gsr-window.c:1275
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:955
+#: grecord/src/gsr-window.c:1291
 msgid "Sound Recorder"
 msgstr "Sound Recorder"
 
@@ -1306,7 +1306,7 @@ msgstr "Create a new sample"
 msgid "Display help for Sound Recorder"
 msgstr "Display help for Sound Recorder"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:824
 msgid "File Information"
 msgstr "File Information"
 
@@ -1477,119 +1477,124 @@ msgstr "seconds"
 msgid "second"
 msgstr "second"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
-#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1243
+#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1677
 msgid "Ready"
 msgstr "Ready"
 
-#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#: grecord/src/gsr-window.c:513
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr "Could not save the file \" %s\""
+
+#: grecord/src/gsr-window.c:522
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Could not save the file \"%s\""
 
-#: grecord/src/gsr-window.c:553
+#: grecord/src/gsr-window.c:569
 msgid "Save file as"
 msgstr "Save file as"
 
-#: grecord/src/gsr-window.c:609
+#: grecord/src/gsr-window.c:625
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s is not installed in the path."
 
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:635
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "There was an error starting %s: %s"
 
-#: grecord/src/gsr-window.c:696
+#: grecord/src/gsr-window.c:712
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Has not been saved)"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:725
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: grecord/src/gsr-window.c:713
+#: grecord/src/gsr-window.c:729
 msgid "Unknown size"
 msgstr "Unknown size"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:749
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:742
+#: grecord/src/gsr-window.c:758
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:754
+#: grecord/src/gsr-window.c:770
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:774
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:803
 #, c-format
 msgid "%s Information"
 msgstr "%s Information"
 
-#: grecord/src/gsr-window.c:822
+#: grecord/src/gsr-window.c:838
 msgid "Folder:"
 msgstr "Folder:"
 
-#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
+#: grecord/src/gsr-window.c:844 grecord/src/gsr-window.c:1609
 msgid "Filename:"
 msgstr "Filename:"
 
-#: grecord/src/gsr-window.c:834
+#: grecord/src/gsr-window.c:850
 msgid "File size:"
 msgstr "File size:"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:859
 msgid "Audio Information"
 msgstr "Audio Information"
 
-#: grecord/src/gsr-window.c:857
+#: grecord/src/gsr-window.c:873
 msgid "File duration:"
 msgstr "File duration:"
 
-#: grecord/src/gsr-window.c:863
+#: grecord/src/gsr-window.c:879
 msgid "Number of channels:"
 msgstr "Number of channels:"
 
-#: grecord/src/gsr-window.c:869
+#: grecord/src/gsr-window.c:885
 msgid "Sample rate:"
 msgstr "Sample rate:"
 
-#: grecord/src/gsr-window.c:875
+#: grecord/src/gsr-window.c:891
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:941
+#: grecord/src/gsr-window.c:957
 msgid "A sound recorder for GNOME"
 msgstr "A sound recorder for GNOME"
 
-#: grecord/src/gsr-window.c:1212
+#: grecord/src/gsr-window.c:1228
 msgid "Playing..."
 msgstr "Playing..."
 
-#: grecord/src/gsr-window.c:1271
+#: grecord/src/gsr-window.c:1287
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Sound Recorder"
 
-#: grecord/src/gsr-window.c:1362
+#: grecord/src/gsr-window.c:1378
 msgid "Recording..."
 msgstr "Recording..."
 
-#: grecord/src/gsr-window.c:1422
+#: grecord/src/gsr-window.c:1438
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1597,16 +1602,16 @@ msgstr ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 
-#: grecord/src/gsr-window.c:1437
+#: grecord/src/gsr-window.c:1453
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Failed to create GStreamer encoder elements - check your encoding setup"
 
-#: grecord/src/gsr-window.c:1447
+#: grecord/src/gsr-window.c:1463
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Could not find GStreamer filesink plugin - please install it"
 
-#: grecord/src/gsr-window.c:1455
+#: grecord/src/gsr-window.c:1471
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1614,19 +1619,19 @@ msgstr ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 
-#: grecord/src/gsr-window.c:1561
+#: grecord/src/gsr-window.c:1577
 msgid "Record as"
 msgstr "Record as"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1594
 msgid "File information"
 msgstr "File information"
 
-#: grecord/src/gsr-window.c:1600
+#: grecord/src/gsr-window.c:1616
 msgid "<none>"
 msgstr "<none>"
 
-#: grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1625
 msgid "Length:"
 msgstr "Length:"
 
