@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-06 15:21+0100\n"
-"PO-Revision-Date: 2004-01-06 17:04+0100\n"
+"POT-Creation-Date: 2004-01-12 04:31+0100\n"
+"PO-Revision-Date: 2004-01-12 10:09+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1430,6 +1430,10 @@ msgstr "_Zaznamenávat"
 msgid "_Save"
 msgstr "_Uložit"
 
+#: grecord/src/gnome-recorder.c:152
+msgid "Dummy option"
+msgstr "Zbytečný přepínač"
+
 #: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:284
 #: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:294
 msgid "hours"
@@ -1706,35 +1710,36 @@ msgstr "_Test"
 msgid "Custom"
 msgstr "Vlastní"
 
+#: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nemohu vytvořit testovací pipeline pro '%s'"
 
-#: profiles/audio-profile-edit.c:201
+#: profiles/audio-profile-edit.c:185
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Při zobrazování nápovědy došlo k chybě: %s"
 
-#: profiles/audio-profile-edit.c:406
+#: profiles/audio-profile-edit.c:387
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Upravuji profil \"%s\""
 
-#: profiles/audio-profile.c:100
+#: profiles/audio-profile.c:101
 msgid "<not named>"
 msgstr "<nepojmenován>"
 
-#: profiles/audio-profile.c:101
+#: profiles/audio-profile.c:102
 msgid "<not described>"
 msgstr "<není popsán>"
 
-#: profiles/audio-profile.c:216
+#: profiles/audio-profile.c:217
 #, c-format
 msgid "There was an error getting the list of audio profiles. (%s)\n"
 msgstr "Při získávání seznamu profilů zvuku došlo k chybě. (%s)\n"
 
-#: profiles/audio-profile.c:717
+#: profiles/audio-profile.c:718
 #, c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
@@ -1743,46 +1748,46 @@ msgstr ""
 "Při přihlašování se k upozornění na změny seznamu profilů terminálu došlo k "
 "chybě. (%s)\n"
 
-#: profiles/audio-profile.c:907
+#: profiles/audio-profile.c:908
 #, c-format
 msgid "There was an error forgetting profile dir %s. (%s)\n"
 msgstr "Při zahazování adresáře profilu %s došlo k chybě. (%s)\n"
 
-#: profiles/audio-profile.c:999
+#: profiles/audio-profile.c:1000
 msgid "<no description>"
 msgstr "<žádný popis>"
 
-#: profiles/audio-profile.c:1010
+#: profiles/audio-profile.c:1011
 msgid "identity"
 msgstr "identita"
 
-#: profiles/audio-profile.c:1021
+#: profiles/audio-profile.c:1022
 msgid "wav"
 msgstr "wav"
 
-#: profiles/audio-profiles-edit.c:112
+#: profiles/audio-profiles-edit.c:113
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: profiles/audio-profiles-edit.c:450
+#: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
 msgstr "Musíte vybrat jeden nebo více profilů, které odstranit."
 
-#: profiles/audio-profiles-edit.c:460
+#: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
 msgstr "Odstranit tyto dva profily?\n"
 
-#: profiles/audio-profiles-edit.c:462
+#: profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete these %d profiles?\n"
 msgstr "Odstranit těchto %d profilů?\n"
 
-#: profiles/audio-profiles-edit.c:480
+#: profiles/audio-profiles-edit.c:481
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Odstranit profil \"%s\"?"
 
-#: profiles/audio-profiles-edit.c:502
+#: profiles/audio-profiles-edit.c:503
 msgid "Delete Profile"
 msgstr "Odstranit profil"
 
@@ -1798,20 +1803,20 @@ msgstr "Odstranit profil"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: profiles/audio-profiles-edit.c:596
+#: profiles/audio-profiles-edit.c:597
 msgid "Edit Audio Profiles"
 msgstr "Upravit profily zvuku"
 
-#: profiles/audio-profiles-edit.c:649
+#: profiles/audio-profiles-edit.c:650
 msgid "_Profiles:"
 msgstr "_Profily:"
 
-#: profiles/audio-profiles-edit.c:877
+#: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Již máte profil zvuku nazvaný \"%s\""
 
-#: profiles/audio-profiles-edit.c:902
+#: profiles/audio-profiles-edit.c:903
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Chyba GConf (FIXME): %s\n"
@@ -2456,9 +2461,6 @@ msgstr "Sledování hlasitosti"
 
 #~ msgid "Sound"
 #~ msgstr "Zvuk"
-
-#~ msgid "Sound options"
-#~ msgstr "Volby zvuku"
 
 #~ msgid ""
 #~ "Note: These options only take effect whenever a new sound sample\n"
