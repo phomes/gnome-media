@@ -46,8 +46,8 @@ dnl
 dnl extace
 dnl
 PROGRAMS_EXTACE=""
-AC_CHECK_LIB(esd, main, PROGRAMS_EXTACE=extace,,-lm)
-AC_CHECK_LIB(gslfft, main, PROGRAMS_EXTACE=extace, PROGRAMS_EXTACE="")
+AC_CHECK_LIB(esd,main,[
+  AC_CHECK_LIB(gslfft,gsl_fft_real,PROGRAMS_EXTACE=extace)],,-lm)
 AC_SUBST(PROGRAMS_EXTACE)
 
 dnl
