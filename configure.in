@@ -88,7 +88,7 @@ PKG_CHECK_MODULES(GSR, \
 if test "x$HAVE_GST" = "xno"; then
   AC_MSG_WARN(you need GStreamer installed for the mixer and recorder to work)
 else
-  PROGRAMS_GSTRECORD="grecord"
+  PROGRAMS_GRECORD="grecord"
 fi
 AC_SUBST(PROGRAMS_GRECORD)
 
@@ -361,6 +361,11 @@ if test x$PROGRAMS_GSTPROPS != x; then
   echo "GStreamer capplet:      yes"
 else
   echo "GStreamer capplet:      no"
+fi
+if test x$PROGRAMS_GRECORD != x; then
+  echo "Sound Recorder:         yes"
+else
+  echo "Sound Recorder:         no"
 fi
 echo "------------------------------------------- "
 
