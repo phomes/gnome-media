@@ -1,3 +1,16 @@
+2002-03-23  Iain <iain@ximian.com>
+
+	* src/main.c (main): If sox_command is NULL (gconf error) set it to
+	sox.
+
+	* grec.c (store_filename): Fix warning.
+
+2002-03-22  Iain <iain@ximian.com>
+
+	* Makefile.am: Add media-volume-16.xpm to the EXTRA_DIST
+
+	* src/gui.c: Use media-volume-16.xpm
+
 2002-03-22  Iain <iain@ximian.com>
 
 	* src/grec.c (check_if_loading_finished): Clear the appbar stack.

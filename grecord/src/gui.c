@@ -37,8 +37,6 @@
 #include "sound.h"
 #include "prog.h"
 
-#include "../pixmaps/gnome_mixer.xpm"
-
 static GConfClient *client = NULL;
 
 static GnomeUIInfo arkiv1_menu_uiinfo[] =
@@ -54,7 +52,7 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 		GNOME_APP_UI_ITEM, N_("Run mixer"),
 		N_("Run GNOME Volume Control"),
 		on_runmixer_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_DATA, gnome_mixer_xpm,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_VOLUME,
 		0, 0, NULL
 	},
 	GNOMEUIINFO_SEPARATOR,

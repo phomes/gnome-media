@@ -237,7 +237,7 @@ main (int argc,
 	
 	/* Check if the sox command is a path */
 	if (sox_command == NULL) {
-		g_error (_("GConf file is incorrectly installed."));
+		sox_command = g_strdup ("sox");
 	}
 
 	p = g_find_program_in_path (sox_command);

@@ -605,13 +605,14 @@ void
 store_filename (GtkFileSelection* selector, gpointer file_selector)
 {
 	GtkWidget* mess;
-	gchar* string = NULL;
-	gchar* temp_string = NULL;
+	char* string = NULL;
+	char* temp_string = NULL;
 	AFfilehandle filename;
 	gint in_audioformat, in_channels, in_rate, in_width;
 	struct stat file;
-	
-	gchar* tempfile = gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector));
+	const char* tempfile;
+
+	tempfile = gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector));
 
 	if (!stat(tempfile, &file)) {
 		if (S_ISDIR (file.st_mode)) {
@@ -1177,7 +1178,7 @@ check_if_sounddevice_ready ()
 					       GTK_BUTTONS_OK,
 					       _("The sound device is not ready. Please check that there "
 						 "isn't\nanother program running that is using the device."));
-		gtk_dialog_run (GNOME_DIALOG (mess));
+		gtk_dialog_run (GTK_DIALOG (mess));
 		return FALSE;
 	}
 
