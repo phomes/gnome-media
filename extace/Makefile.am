@@ -1,0 +1,20 @@
+Audiodir = $(datadir)/apps/Audio
+
+INCLUDES = \
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	$(GNOME_INCLUDEDIR)
+
+noinst_PROGRAMS = sine
+
+sine_LDADD = -lm
+
+bin_PROGRAMS = extace
+
+extace_SOURCES =	\
+	extace.c
+
+extace_LDADD = \
+	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) -lesd \
+	-lgslfft -lgslerr
+
+Audio_DATA = extace.desktop
