@@ -81,9 +81,11 @@ fi
 AC_SUBST(path_to_sox)
 
 # Check for esound library
+got_esd=no
 AM_PATH_ESD(0.2.7, we_have_esd=true)
 if test -n "$we_have_esd"; then
-AC_DEFINE(HAVE_ESD)
+  got_esd=yes
+  AC_DEFINE(HAVE_ESD)
 fi
 
 # Check for ScrollKeeper
@@ -161,12 +163,20 @@ AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 
 # Everything OK for gnome-cd?
 PROGRAMS_GNOME_CD=""
-AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_GNOME_CD=gnome-cd])
-AC_CHECK_HEADERS(linux/ucdrom.h)
-AC_CHECK_HEADERS(sys/cdio.h,[PROGRAMS_GNOME_CD=gnome-cd])
-AC_CHECK_HEADERS(sun/dkio.h,[PROGRAMS_GNOME_CD=gnome-cd])
+cdrom_header=""
+AC_CHECK_HEADERS(linux/cdrom.h,[
+  PROGRAMS_GNOME_CD=gnome-cd
+  cdrom_header=linux/cdrom.h])
+AC_CHECK_HEADERS(linux/ucdrom.h,[
+  cdrom_header=linux/ucdrom.h])
+AC_CHECK_HEADERS(sys/cdio.h,[
+  PROGRAMS_GNOME_CD=gnome-cd
+  cdrom_header=sys/cdio.h])
+AC_CHECK_HEADERS(sun/dkio.h,[
+  PROGRAMS_GNOME_CD=gnome-cd
+  cdrom_header=sun/dkio.h])
 
-AC_MSG_CHECKING([whether to use cd changer support (Linux 2.1.x headers required)])
+AC_MSG_CHECKING([whether to use cd changer support])
 AC_EGREP_CPP(answer_affirmatively,
 [#include <linux/cdrom.h>
  #ifdef CDROM_CHANGER_NSLOTS
@@ -176,10 +186,23 @@ AC_EGREP_CPP(answer_affirmatively,
 if test "$cd_changer" = "yes"; then
 	USE_CD_CHANGER="-DTCD_CHANGER_ENABLED"
 fi
-AC_MSG_RESULT("$cd_changer")
+AC_MSG_RESULT($cd_changer)
 
 AC_SUBST(USE_CD_CHANGER)
 AC_SUBST(PROGRAMS_GNOME_CD)
+
+close_tray=no
+AC_MSG_CHECKING([whether OS supports the CDROMCLOSETRAY ioctl])
+AC_EGREP_CPP(answer_affirmatively,
+[#include <$cdrom_header>
+ #ifdef CDROMCLOSETRAY
+ 	answer_affirmatively
+ #endif
+], close_tray=yes)
+if test "$close_tray" = "yes"; then
+	AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL)
+fi
+AC_MSG_RESULT($close_tray)
 
 host=`uname -s`
 
@@ -231,18 +254,29 @@ version.h])
 echo ""
 echo "Gnome-Media has been configured as follows: "
 echo "------------------------------------------- "
-echo "Architecture:         ${CDROM_HOST}"
-echo "Source code location: ${srcdir}"
-echo "Compiler:             ${CC}"
-echo "Default CD device:    ${default_cd_device}"
-if test x$SOX_PATH = xno; then
-  echo ""
-  echo "sox is not installed on this machine. This means that"
-  echo "gnome-sound-recorder will be unable to record."
-  echo ""
-  echo "sox is available from http://sox.sourceforge.net"
+echo "Architecture:           ${CDROM_HOST}"
+echo "Source code location:   ${srcdir}"
+echo "Compiler:               ${CC}"
+echo "System CDRom header:    ${cdrom_header}"
+echo "Default CD device:      ${default_cd_device}"
+echo "OS supports close tray: ${close_tray}"
+if test x$got_esd = xyes; then
+  echo "ESD support:            ${got_esd} (Building gnome-sound-recorder and vumeter.)"
+  if test x$SOX_PATH = xno; then
+    echo ""
+    echo "sox is not installed on this machine. This means that"
+    echo "gnome-sound-recorder will be unable to record."
+    echo ""
+    echo "sox is available from http://sox.sourceforge.net"
+  else
+    echo "Sox path:               ${path_to_sox}"
+  fi
 else
-  echo "Sox path:             ${path_to_sox}"
+  echo ""
+  echo "ESD was not found."
+  echo "vumeter and gnome-sound-recorder will not be built."
+  echo ""
+  echo "ESD is available from ftp://ftp.gnome.org"
 fi
 echo "------------------------------------------- "
 echo ""
