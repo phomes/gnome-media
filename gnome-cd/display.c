@@ -150,12 +150,6 @@ expose_event (GtkWidget *drawing_area,
 
 	area = &event->area;
 
-	/* Cover the area with a black square */
-  	gdk_draw_rectangle (drawing_area->window, 
-  			    drawing_area->style->black_gc, TRUE, 
-  			    area->x, area->y, 
-  			    area->width, area->height); 
-
 	/* Check corners and draw them */
 	for (i = 0; i < 4; i++) {
 		GdkRectangle inter;
