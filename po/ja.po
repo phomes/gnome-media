@@ -11,13 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 12:48+0200\n"
-"PO-Revision-Date: 2004-03-09 00:44+0900\n"
+"POT-Creation-Date: 2004-06-03 21:28+0900\n"
+"PO-Revision-Date: 2004-06-03 21:28+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -196,14 +197,12 @@ msgid "Unknown track"
 msgstr "不明なトラック"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
-#, fuzzy
 msgid "CD Database Server"
-msgstr "CD データベース"
+msgstr "CD データベース・サーバ"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
-#, fuzzy
 msgid "Modify your CD database server preferences"
-msgstr "CD データベースの設定を変更します"
+msgstr "CD データベース・サーバの設定を変更します"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -1187,28 +1186,27 @@ msgstr "デバイスへのパス"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "Eject the CD when CD player quits?"
-msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
+msgstr "CD プレイヤーを終了したら CD をイジェクトするかどうか"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Play when the CD player starts?"
-msgstr "CD プレイヤーが起動したら演奏するかどうか。"
+msgstr "CD プレイヤーが起動したら演奏するかどうか"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD be ejected when the CD player quits?"
-msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
+msgstr "CD プレイヤーを終了したら CD をイジェクトするかどうかです。"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr "CD の再生に利用する CD ドライブへのパスです。"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-#, fuzzy
 msgid "What theme should the CD player use for its appearance"
-msgstr "CD プレイヤーの外観としてどのテーマを利用するか。"
+msgstr "CD プレイヤーの外観として利用するテーマです。"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "When the CD player is started, should it start playing the CD?"
-msgstr "CD プレイヤーが起動した際に CD の演奏を開始するかどうか。"
+msgstr "CD プレイヤーを起動したら CD の演奏を開始するかどうかです。"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1753,20 +1751,21 @@ msgstr "<説明なし>"
 #: profiles/audio-profile.c:217
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "gm_audio プロファイルの一覧を取得する際にエラーが発生しました。(%s)\n"
+msgstr "gm_audio プロファイルの一覧を取得する際にエラーが発生しました (%s)。\n"
 
 #: profiles/audio-profile.c:718
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
-"端末プロファイル一覧の変更の通知を登録する際にエラーが発生しました。(%s)\n"
+"オーディオ・プロファイル一覧の変更通知を登録する際にエラーが発生しました (%"
+"s)。\n"
 
 #: profiles/audio-profile.c:908
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
-msgstr "プロファイルのフォルダ %s を記憶する際にエラーが発生しました。(%s)\n"
+msgstr "プロファイルのフォルダ %s を破棄する際にエラーが発生しました (%s)。\n"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
@@ -1790,10 +1789,10 @@ msgstr "削除するプロファイルを一つ以上選択して下さい。"
 
 #. the first argument will never be used since we only run for count > 1
 #: profiles/audio-profiles-edit.c:460
-#, fuzzy, c-format
+#, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "これら %d 個のプロファイルを削除しますか？\n"
+msgstr[0] "このプロファイルを削除しますか？\n"
 msgstr[1] "これら %d 個のプロファイルを削除しますか？\n"
 
 #: profiles/audio-profiles-edit.c:479
@@ -1869,7 +1868,6 @@ msgid "Profile _name:"
 msgstr "プロファイル名(_N):"
 
 #: profiles/gnome-audio-profiles.glade2.h:8
-#, fuzzy
 msgid "_Active?"
 msgstr "有効にする(_A)"
 
@@ -1922,11 +1920,11 @@ msgstr ""
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, Lossless"
-msgstr ""
+msgstr "CD の品質 (Lossless)"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "CD Quality, Lossy"
-msgstr ""
+msgstr "CD の品質 (Lossy)"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
@@ -1953,22 +1951,28 @@ msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
+"CD-クォリティのオーディオへ変換する際に使用しますが、劣化のない圧縮コーデック"
+"を用います。あとでファイルを編集したり CD へ書き込む可能性がある場合にセット"
+"して下さい。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
+"CD-クォリティのオーディオへ変換する際に使用しますが、劣化のある圧縮コーデック"
+"を用います。CD からの抽出やラジオの記録を行う場合にセットして下さい。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""
 "Used for converting to voice-quality audio. Use this for recording speech."
 msgstr ""
+"音声-クォリティのオーディオへ変換する際に使用します。音声を記録する場合にセッ"
+"トして下さい。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid "Voice"
-msgstr "ビデオ"
+msgstr "音声"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid "Whether or not this profile is to be used"
@@ -2046,12 +2050,3 @@ msgstr "音声出力音量のモニタです"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量モニタ"
-
-#~ msgid "Delete these two profiles?\n"
-#~ msgstr "これら 2 個のプロファイルを削除しますか？\n"
-
-#~ msgid "Unknown artist"
-#~ msgstr "演奏者が不明です"
-
-#~ msgid "Unknown disc"
-#~ msgstr "ディスクが不明です"
