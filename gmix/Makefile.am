@@ -2,8 +2,7 @@ Audiodir = $(datadir)/apps/Audio
 
 #EXTRA_DIST = README TODO NEWS gmix.desktop
 
-INCLUDES = 				\
-	-I$(includedir)
+INCLUDES = -I$(includedir)
 
 bin_PROGRAMS = gmix
 

@@ -39,16 +39,26 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+dnl
 dnl gmix
+dnl
 PROGRAMS_GMIX=""
 AC_CHECK_HEADERS(linux/soundcard.h,[PROGRAMS_GMIX=gmix],[
   AC_CHECK_HEADERS(machine/soundcard.h, [PROGRAMS_GMIX=gmix])])
 AC_SUBST(PROGRAMS_GMIX)
 
+dnl
+dnl Find out if we can compile gnomovision on this system
+dnl
+PROGRAMS_GNOMOVISION=""
+AC_CHECK_HEADERS(linux/videodev.h,[PROGRAMS_GNOMOVISION=gnomovision])
+AC_SUBST(PROGRAMS_GNOMOVISION)
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
 gmix/Makefile
+gnomovision/Makefile
 intl/Makefile
 version.h
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
