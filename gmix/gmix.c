@@ -188,9 +188,6 @@ void create_dialog()
 	gtk_signal_connect(GTK_OBJECT(window),
 			   "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
-	gtk_signal_connect(GTK_OBJECT(window),
-			   "destroy",
-			   GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
 	gtk_window_set_title (GTK_WINDOW(window), "G-MIX 2.0");
 #ifdef WE_HAVE_FIXED_DISALLOWED_SHRINKING_BETWEEN_SESSIONS
