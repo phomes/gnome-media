@@ -1,5 +1,16 @@
 2002-01-18  Iain Holmes  <iain@ximian.com>
 
+	* cddb-slave.c: Remove some of the debugging crap.
+	(do_read_response): If 409 is returned, call do_hello.
+	(do_query_response): Ditto
+
+2002-01-18  Iain Holmes  <iain@ximian.com>
+
+	* cddb-slave.c (do_open_response): Close the connection if we haven't
+	been able to log on.
+
+2002-01-18  Iain Holmes  <iain@ximian.com>
+
 	* cddb-slave.c (do_query_response): If response is 211, but only one
 	match was returned, then just automatically select it.
 

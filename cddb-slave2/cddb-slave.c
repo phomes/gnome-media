@@ -91,6 +91,7 @@ typedef struct _ConnectionData {
 
 static GHashTable *pending_requests = NULL;
 
+static void do_hello (ConnectionData *cd);
 
 #define CDDB_SLAVE_CDDB_FINISHED "GNOME_Media_CDDBSlave2:CDDB-Finished"
 
@@ -176,7 +177,6 @@ do_goodbye (ConnectionData *cd)
 	/* Send quit command */
 	status = gnet_io_channel_writen (cd->iochannel, "quit\n",
 					 5, &bytes_writen);
-	g_print ("status: %d bytes_writen: %d\n", status, bytes_writen);
 	cd->mode = CONNECTION_MODE_NEED_GOODBYE;
 }
 
@@ -258,6 +258,9 @@ do_read_response (ConnectionData *cd,
 	case 409:
 		g_print ("No handshake\n");
 		g_print ("%s\n", response);
+
+		/* Handshake */
+		do_hello (cd);
 		more = FALSE;
 		break;
 
@@ -282,10 +285,8 @@ do_read (ConnectionData *cd,
 	
 	/* Send read command */
 	query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
-	g_print ("Sending %s\n", query);
 	status = gnet_io_channel_writen (cd->iochannel, query,
 					 strlen (query), &bytes_writen);
-	g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
 	g_free (query);
 	cd->mode = CONNECTION_MODE_NEED_READ_RESPONSE;
 }
@@ -499,9 +500,10 @@ do_query_response (ConnectionData *cd,
 		break;
 
 	case 409:
-		/* Should probably go back to the start here... */
 		g_print ("No handshake\n");
 		g_print ("%s\n", response);
+
+		do_hello (cd);
 		more = FALSE;
 		break;
 
@@ -536,7 +538,6 @@ do_query (ConnectionData *cd)
 	query = g_strdup_printf ("cddb query %s %d %s %d\n",
 				 cd->discid, cd->ntrks, 
 				 cd->offsets, cd->nsecs);
-	g_print ("Sending %s\n", query);
 	status = gnet_io_channel_writen (cd->iochannel, query,
 					 strlen (query), &bytes_writen);
 	g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
@@ -595,7 +596,6 @@ do_hello (ConnectionData *cd)
 	   but that seems to be a privacy issue */
 	hello = g_strconcat ("cddb hello johnsmith 198.172.174.22 ",
 			     cd->name, " ", cd->version, "\n", NULL);
-	g_print ("Sending %s\n", hello);
 	
 	/* Need to check the return of this one */
 	status = gnet_io_channel_writen (cd->iochannel, hello,
@@ -657,6 +657,8 @@ do_open_response (ConnectionData *cd,
 		do_hello (cd);
 	} else {
 		/* Do something to indicate that we can't contact server */
+		/* Close connection to tell listeners we're not doing anything */
+		do_goodbye (cd);
 	}
 
 	return FALSE;
