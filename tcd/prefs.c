@@ -32,26 +32,30 @@
 #include "prefs.h"
 #include "cddb_props.h"
 
-static GtkWidget *pref_window=NULL;
+static GtkWidget *pref_window;
 
+/* private functions */
+static void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb);
+static void start_toggle_cb(GtkWidget *widget, gpointer data);
+static void check_changed_cb(GtkWidget *widget, gboolean *data);
+static GtkWidget *create_start_frame(void);
+static void exit_toggle_cb(GtkWidget *widget, gpointer data);
+static GtkWidget *create_exit_frame(void);
+static void dev_entry_changed_cb(GtkWidget *widget, gpointer data);
+static void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs);
+static void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs);
+static void font_button_cb(GtkWidget *widget, gpointer *data);
+static GtkWidget *create_general_frame(void);
+static GtkWidget *create_page(void);
+static void apply_cb(GtkWidget *widget, void *data);
+static GtkWidget *key_page(void);
+static int entry_changed(GtkWidget *widget, GdkEvent *ev, KeyBinding *kb);
+
+/* public functions */
 void load_prefs(tcd_prefs *prop);
 void save_prefs(tcd_prefs *prop);
 void changed_cb(GtkWidget *widget, void *data);
-void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb);
-void start_toggle_cb(GtkWidget *widget, gpointer data);
-void check_changed_cb(GtkWidget *widget, gboolean *data);
-GtkWidget *create_start_frame(void);
-void exit_toggle_cb(GtkWidget *widget, gpointer data);
-GtkWidget *create_exit_frame(void);
-void dev_entry_changed_cb(GtkWidget *widget, gpointer data);
-void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs);
-void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs);
-void font_button_cb(GtkWidget *widget, gpointer *data);
-GtkWidget *create_general_frame(void);
-GtkWidget *create_page(void);
-void apply_cb(GtkWidget *widget, void *data);
 void preferences(GtkWidget *widget, void *data);
-GtkWidget *key_page(void);
 
 void load_prefs(tcd_prefs *prop)
 {
@@ -125,7 +129,7 @@ void changed_cb(GtkWidget *widget, void *data)
     gnome_property_box_changed(GNOME_PROPERTY_BOX(pref_window));
 }
 
-void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
+static void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
 {
     prefs.trackcolor_r = pr / 256;
     prefs.trackcolor_g = pg / 256;
@@ -134,13 +138,13 @@ void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
     changed_cb(NULL, NULL);
 }
 
-void start_toggle_cb(GtkWidget *widget, gpointer data)
+static void start_toggle_cb(GtkWidget *widget, gpointer data)
 {
     prefs.start_action = GPOINTER_TO_INT(data);
     changed_cb(NULL, NULL);
 }
 
-void check_changed_cb(GtkWidget *widget, gboolean *data)
+static void check_changed_cb(GtkWidget *widget, gboolean *data)
 {
     if( *data )
         *data = FALSE;
@@ -149,7 +153,7 @@ void check_changed_cb(GtkWidget *widget, gboolean *data)
     changed_cb(NULL, NULL);
 }
 
-GtkWidget *create_start_frame()
+static GtkWidget *create_start_frame()
 {
     GtkWidget *start_playing;
     GtkWidget *stop_playing;
@@ -198,13 +202,13 @@ GtkWidget *create_start_frame()
     return vbox;
 }
 
-void exit_toggle_cb(GtkWidget *widget, gpointer data)
+static void exit_toggle_cb(GtkWidget *widget, gpointer data)
 {
     prefs.exit_action = GPOINTER_TO_INT(data);
     changed_cb(NULL, NULL);
 }
 
-GtkWidget *create_exit_frame()
+static GtkWidget *create_exit_frame()
 {
     GtkWidget *stop_playing;
     GtkWidget *open_tray;
@@ -254,13 +258,13 @@ GtkWidget *create_exit_frame()
     return vbox;
 }	
 
-void dev_entry_changed_cb(GtkWidget *widget, gpointer data)
+static void dev_entry_changed_cb(GtkWidget *widget, gpointer data)
 {
     prefs.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
     changed_cb(NULL, NULL);
 }
 
-void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs)
+static void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 {
         prefs.trackfont = g_strdup(gtk_font_selection_dialog_get_font_name(
                 GTK_FONT_SELECTION_DIALOG(fs)));
@@ -268,12 +272,12 @@ void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 	changed_cb(NULL, NULL);
 }
 
-void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs)
+static void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 {
         gtk_widget_destroy(fs);
 }       
         
-void font_button_cb(GtkWidget *widget, gpointer *data)
+static void font_button_cb(GtkWidget *widget, gpointer *data)
 {
         GtkWidget *fs;
         
@@ -352,7 +356,7 @@ GtkWidget *create_general_frame()
     return vbox;
 }
 
-GtkWidget *create_page()
+static GtkWidget *create_page()
 {
     GtkWidget *table;
     GtkWidget *start_frame;
@@ -387,7 +391,6 @@ GtkWidget *create_page()
 static void fill_list(KeyBinding *kb, GtkWidget *clist)
 {
     char *tmp[2];
-    GHashTable *h;
 
     tmp[0] = g_malloc(64);	/* key */
     tmp[1] = g_malloc(256);	/* desc */
@@ -402,7 +405,7 @@ static void fill_list(KeyBinding *kb, GtkWidget *clist)
     g_free(tmp[1]);
 }	
 
-int entry_changed(GtkWidget *widget, GdkEvent *ev, KeyBinding *kb)
+static int entry_changed(GtkWidget *widget, GdkEvent *ev, KeyBinding *kb)
 {
     char tmp[64];
     if(ev->type != GDK_KEY_PRESS)
@@ -414,6 +417,7 @@ int entry_changed(GtkWidget *widget, GdkEvent *ev, KeyBinding *kb)
     g_snprintf(tmp, 63, "%c", toupper(kb->key->key));
     gtk_object_set_data(GTK_OBJECT(kb->data), tmp, kb);
     gtk_clist_set_text(GTK_CLIST(kb->data), kb->data2, 0, tmp);
+    changed_cb(NULL, NULL);
 
     return 1;
 }
@@ -459,7 +463,7 @@ static void select_row_cb(GtkCList *clist,
 		       GTK_SIGNAL_FUNC(check_changed_cb), &kb->key->shift);
 }
 
-GtkWidget *key_page(void)
+static GtkWidget *key_page(void)
 {
     GtkWidget *clist, *frame, *box, *scrolled, *mod_box;
     GtkWidget *alt_check, *ctrl_check, *shift_check;
@@ -495,17 +499,19 @@ GtkWidget *key_page(void)
     mod_box = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 
     entry = gtk_entry_new_with_max_length(1);
-    label = gtk_label_new("Change Here:");
+    label = gtk_label_new("Click here to change:");
 
     ctrl_check = gtk_check_button_new_with_label("Control");
     alt_check = gtk_check_button_new_with_label("Alt");
     shift_check = gtk_check_button_new_with_label("Shift");
 
-    gtk_box_pack_start_defaults(GTK_BOX(mod_box), label);
-    gtk_box_pack_start_defaults(GTK_BOX(mod_box), entry);
+    gtk_box_pack_start(GTK_BOX(mod_box), label, FALSE, FALSE, GNOME_PAD);
+    gtk_box_pack_start(GTK_BOX(mod_box), entry, TRUE, TRUE, GNOME_PAD);
+#if 0				/* Not yet implemented */
     gtk_box_pack_start_defaults(GTK_BOX(mod_box), ctrl_check);
     gtk_box_pack_start_defaults(GTK_BOX(mod_box), alt_check);
     gtk_box_pack_start_defaults(GTK_BOX(mod_box), shift_check);
+#endif
 
     gtk_box_pack_start(GTK_BOX(box), mod_box, FALSE, FALSE, 0);
 
@@ -523,7 +529,7 @@ GtkWidget *key_page(void)
     return frame;
 }    
 
-void apply_cb( GtkWidget *widget, void *data )
+static void apply_cb(GtkWidget *widget, void *data)
 {       
 /* Do stuff here if needed */
  
@@ -536,9 +542,17 @@ void apply_cb( GtkWidget *widget, void *data )
     save_prefs(&prefs);
 }
 
+static void cancel_cb(void)
+{
+    pref_window = NULL;
+}
+
 void preferences(GtkWidget *widget, void *data)
 {
     GtkWidget *label;
+
+    if(pref_window)
+	return;
 
     pref_window = gnome_property_box_new();
     gtk_widget_realize(pref_window);
@@ -555,8 +569,12 @@ void preferences(GtkWidget *widget, void *data)
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
     			     create_cddb_page(), label);
 	
-    gtk_signal_connect(GTK_OBJECT(pref_window),
-		       "apply", GTK_SIGNAL_FUNC(apply_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(pref_window), "apply",
+		       GTK_SIGNAL_FUNC(apply_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(pref_window), "destroy",
+		       GTK_SIGNAL_FUNC(cancel_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(pref_window), "delete_event",
+		      GTK_SIGNAL_FUNC(cancel_cb), NULL);
 
     gtk_widget_show_all(pref_window);	
 }    

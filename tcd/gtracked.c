@@ -116,13 +116,13 @@ void edit_window(GtkWidget *widget, gpointer data)
     char tmp[64];
     int i;
 
-    GtkWidget *disc_entry, *disc_ext, *track_list_window;
+    GtkWidget *disc_entry, *track_list_window;
     GtkWidget *label, *disc_frame, *button_box;
     GtkWidget *main_box, *disc_table, *button;
 
     GtkWidget *track_list, *track_frame;
     GtkWidget *track_vbox, *track_entry;
-    GtkWidget *track_ext, *entry_box;
+    GtkWidget *entry_box;
 	
     if( trwin )
 	return;

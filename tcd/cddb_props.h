@@ -4,7 +4,8 @@
 typedef struct
 {
     GtkWidget *window;
-    FILE *fp;
+    GtkWidget *gl;
+    gchar *filename;
 } EditWindow;
 
 GtkWidget *create_cddb_page(void);

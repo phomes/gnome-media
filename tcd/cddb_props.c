@@ -33,8 +33,8 @@ static EditWindow *create_edit_window(GtkWidget *clist);
 static void refresh_cb(GtkWidget *widget, GtkWidget *clist);
 static void remove_cb(GtkWidget *widget, GtkWidget *clist);
 static void msg_callback(gint reply, GtkCList *clist);
-static entry_cb(GtkWidget *widget, gpointer data);
-static port_cb(GtkObject *adj, gpointer data);
+static void entry_cb(GtkWidget *widget, gpointer data);
+static void port_cb(GtkObject *adj, gpointer data);
 
 /* code */
 static void select_row_cb(GtkCList *clist,
@@ -59,7 +59,7 @@ static void select_row_cb(GtkCList *clist,
 
 static GtkWidget *create_local_db(void)
 {
-    const gchar *titles[] = {N_("Disc ID"), N_("Disc Title")};
+    gchar *titles[] = {N_("Disc ID"), N_("Disc Title")};
     GtkWidget *clist, *refresh_button, *edit_button, *hsep;
     GtkWidget *hbox, *bbox, *scw, *remove_button;
 
@@ -137,7 +137,6 @@ GtkWidget *create_cddb_page(void)
 
     label = gtk_label_new("Address");
     entry = gtk_entry_new();
-    g_print("%s\n", prefs.cddb_server);
     gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_server);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, 0, 1);
@@ -150,8 +149,6 @@ GtkWidget *create_cddb_page(void)
     entry = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 2, 3, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), entry, 3, 4, 0, 1);
-    gtk_signal_connect(GTK_OBJECT(adj), "changed",
-		       GTK_SIGNAL_FUNC(port_cb), NULL);
     gtk_signal_connect(GTK_OBJECT(adj), "value_changed",
 		       GTK_SIGNAL_FUNC(port_cb), NULL);
 
@@ -173,8 +170,8 @@ GtkWidget *create_cddb_page(void)
 static void edit_destroy_cb(GtkWidget *widget, EditWindow *w)
 {
     /* FIXME implement saving here */
-    if(w->fp)
-	fclose(w->fp);
+    if(strncmp(gtk_object_get_data(GTK_OBJECT(widget), "save"), "y", 1) == 0)
+	gnome_less_write_file(GNOME_LESS(w->gl), w->filename);
 
     gtk_widget_destroy(w->window);
     g_free(w);
@@ -190,14 +187,9 @@ static void edit_cb(GtkWidget *widget, GtkWidget *clist)
 static EditWindow *create_edit_window(GtkWidget *clist)
 {
     EditWindow *w;
-    GtkWidget *text, *frame;
+    GtkWidget *frame;
     GtkWidget *button;
     GtkWidget *vbox, *bbox;
-    GtkWidget *table, *vscrollbar, *hscrollbar;
-
-    gchar *data;
-    guint len;
-    gchar *filename;
 
     w = g_new0(EditWindow, 1);
 
@@ -210,75 +202,30 @@ static EditWindow *create_edit_window(GtkWidget *clist)
     gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 0);
 
     /* TEXT WINDOW */
-    /* table */
-    table = gtk_table_new(2, 2, FALSE);
  
-    /* text widget */
-    text = gtk_text_new(NULL, NULL);
-    gtk_text_set_editable(GTK_TEXT(text), TRUE);
-    gtk_text_set_word_wrap(GTK_TEXT(text), FALSE);
-    gtk_table_attach(GTK_TABLE(table), text, 0, 1, 0, 1,
-		     GTK_EXPAND | GTK_SHRINK | GTK_FILL,
-		     GTK_EXPAND | GTK_SHRINK | GTK_FILL, 0, 0);
-    gtk_widget_grab_focus(text);
-    gtk_widget_set_usize(text, 300, 400);
+    /* gnome-less widget */
+    w->gl = gnome_less_new();
+    w->filename = gtk_object_get_data(GTK_OBJECT(clist), "filename");
+    gnome_less_show_file(GNOME_LESS(w->gl), w->filename);
+    gtk_text_set_editable(GNOME_LESS(w->gl)->text, TRUE);
     
-    /* scrollbars */
-    hscrollbar = gtk_hscrollbar_new(GTK_TEXT(text)->hadj);
-    gtk_table_attach(GTK_TABLE(table), hscrollbar, 0, 1, 1, 2,
-		     GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL, 0, 0);
-    gtk_widget_show(hscrollbar);
-    
-    vscrollbar = gtk_vscrollbar_new(GTK_TEXT(text)->vadj);
-    gtk_table_attach(GTK_TABLE(table), vscrollbar, 1, 2, 0, 1,
-		      GTK_FILL, GTK_EXPAND | GTK_SHRINK | GTK_FILL, 0, 0);
-    gtk_widget_show(vscrollbar);
-    
-
-    gtk_container_add(GTK_CONTAINER(frame), table);
+    gtk_container_add(GTK_CONTAINER(frame), w->gl);
 
     /* BUTTONS */
     bbox = gtk_hbutton_box_new();
     gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_SPREAD);
 
     button = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
+    gtk_object_set_data(GTK_OBJECT(button), "save", "y");
     gtk_box_pack_start_defaults(GTK_BOX(bbox), button);
-/*    gtk_signal_connect(GTK_OBJECT(button), "clicked",
-      GTK_SIGNAL_FUNC(destroy_window), (gpointer)TRUE);*/
+    gtk_signal_connect(GTK_OBJECT(button), "clicked",
+      		       GTK_SIGNAL_FUNC(edit_destroy_cb), w);
     button = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+    gtk_object_set_data(GTK_OBJECT(button), "save", "n");
     gtk_box_pack_start_defaults(GTK_BOX(bbox), button);
-/*    gtk_signal_connect(GTK_OBJECT(button), "clicked",
-      GTK_SIGNAL_FUNC(destroy_window), (gpointer)FALSE);*/
+    gtk_signal_connect(GTK_OBJECT(button), "clicked",
+      		       GTK_SIGNAL_FUNC(edit_destroy_cb), w);
     gtk_box_pack_start(GTK_BOX(vbox), bbox, FALSE, FALSE, 0);
-
-    /* open file and send to text widget */
-    filename = gtk_object_get_data(GTK_OBJECT(clist), "filename");
-    if(!(w->fp = fopen(filename, "rw")))
-    {
-	/* FIXME create dialog here warning user of error */
-	g_print("can't open %s\n", filename);
-	gtk_widget_destroy(vbox);
-	g_free(w);
-	return NULL;
-    }
-    fseek(w->fp, 0, SEEK_END);	/* find file length */
-    len = ftell(w->fp);
-    fseek(w->fp, 0, SEEK_SET);
-
-    data = g_malloc(len);
-    if(!fread(data, 1, len, w->fp))
-    {
-	/* FIXME create dialog here */
-	gtk_widget_destroy(vbox);
-	fclose(w->fp);
-	g_free(w);
-	return NULL;
-    }
-
-    gtk_text_freeze(GTK_TEXT(text));
-    gtk_text_insert(GTK_TEXT(text), NULL, NULL, NULL,
-		    data, len);
-    gtk_text_thaw(GTK_TEXT(text));
 
     /* main window */
     w->window = gtk_window_new(GTK_WINDOW_DIALOG);
@@ -297,7 +244,7 @@ static EditWindow *create_edit_window(GtkWidget *clist)
 /* fill a clist with cddb entries */
 static void fill_list(GtkWidget *clist)
 {
-    const gchar *error_item[] = {"0", N_("Error reading $HOME/.cddbslave.")};
+    gchar *error_item[] = {"0", N_("Error reading $HOME/.cddbslave.")};
     char *dname;
     gchar *tmp[2];
     DIR *d;
@@ -323,7 +270,7 @@ static void fill_list(GtkWidget *clist)
 	tmp[0] = de->d_name;
 	tmp[1] = get_dtitle(filename);
 
-	gtk_clist_append(GTK_CLIST(clist), (const gchar**)tmp);
+	gtk_clist_append(GTK_CLIST(clist), tmp);
 
 	g_free(filename);
 	g_free(tmp[1]);
@@ -427,13 +374,13 @@ static void remove_cb(GtkWidget *widget, GtkWidget *clist)
     gtk_widget_show(msg);
 }
 
-static entry_cb(GtkWidget *widget, gpointer data)
+static void entry_cb(GtkWidget *widget, gpointer data)
 {
     prefs.cddb_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
     changed_cb(NULL, NULL);
 }
 
-static port_cb(GtkObject *adj, gpointer data)
+static void port_cb(GtkObject *adj, gpointer data)
 {
     prefs.cddb_port = (gint)GTK_ADJUSTMENT(adj)->value;
     changed_cb(NULL, NULL);

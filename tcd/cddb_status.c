@@ -32,7 +32,6 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
 {
     GtkWidget *main_box, *gl;
     GtkWidget *button;
-    GtkWidget *label;
 
     if(csw)
 	return;
