@@ -517,14 +517,13 @@ load_new_track_data (TrackEditorDialog *td,
 	/* Does the CORBA stuff need to be strduped? */
 	info->discid = g_strdup (discid);
         /* The CDDB slave is responsible for making sure that entries exist
-         * for new discids.  It marks them as valid when they are valid,
+         * for new discids.
+         * This is done by is_valid, which will create an entry if necessary.
+	 * The CDDB slave marks entries as valid when they are valid,
          * either through successful lookup or through a save from the editor.
          * If the entry is not valid, we fill in dummy values here.
          * Invalid entries can still return useful info like ntrks and
          * track_info, which we need for filling in dummy values. */
-
-	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
-	info->track_info = cddb_slave_client_get_tracks (client, discid);
 
 	if (cddb_slave_client_is_valid (client, discid)) {
 		info->artist = cddb_slave_client_get_artist (client, discid);
@@ -539,6 +538,8 @@ load_new_track_data (TrackEditorDialog *td,
 		info->genre = NULL;
 		info->year = 0;
 	}
+	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
+	info->track_info = cddb_slave_client_get_tracks (client, discid);
 
 	title = g_strdup_printf (_("Editing Disc ID: %s"), info->discid);
 	gtk_label_set_text (GTK_LABEL (td->discid), title);
@@ -945,10 +946,13 @@ impl_GNOME_Media_CDDBTrackEditor_setDiscID (PortableServer_Servant servant,
 
 	if (editor->td != NULL) {
 		if (editor->td->info != NULL) {
+			/* FIXME: we still have data, so we should
+                         * throw up a dialog, instead of freeing old info
+			 * see #105703 */
 			free_track_info (editor->td);
 		}
 		load_new_track_data (editor->td, discid);
-	}	       
+	}
 }
 
 static void

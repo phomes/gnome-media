@@ -988,7 +988,10 @@ cddb_entry_is_valid (const char *discid)
 	CDDBEntry *entry;
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
-	if (!entry) return FALSE;
+	if (!entry) {
+		clear_entry_from_cache (discid);
+		return FALSE;
+	}
 	return entry->is_valid;
 }
 

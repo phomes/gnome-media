@@ -1,5 +1,13 @@
 2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
 
+	* cddb-slave.c: (cddb_entry_is_valid):
+	  make this function create a dummy entry if it didn't exist
+	* cddb-track-editor.c: (load_new_track_data),
+	  first use is_valid, so an entry exists.  Fixes crasher part of
+	  #105703
+
+2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
+
 	* GNOME_Media_CDDBSlave2.idl:
 	* cddb-parser.c: (cddb_entry_parse_file):
 	* cddb-slave-client.c: (cddb_slave_client_is_valid):
