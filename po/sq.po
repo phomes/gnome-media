@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-29 20:13+0100\n"
-"PO-Revision-Date: 2004-11-11 11:19+0100\n"
+"POT-Creation-Date: 2004-12-17 04:18+0100\n"
+"PO-Revision-Date: 2004-12-17 12:26+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1236,13 +1236,12 @@ msgid "CD Player Preferences"
 msgstr "Preferimet për lexuesin e CD"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "_Ndrysho dispozitivin"
+msgstr "_Dispozitivi:"
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "Sjellja"
 
 #: gnome-cd/preferences.c:652
 msgid "Start _playing CD when CD Player starts"
@@ -1262,12 +1261,11 @@ msgstr "Përpiqet të hapë karrelin e CD mbasi lexuesi i CD përfundon"
 
 #: gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr ""
+msgstr "Temat"
 
 #: gnome-cd/preferences.c:694
-#, fuzzy
 msgid "_Select a theme:"
-msgstr "_Zgjidh pistën e dukshme:"
+msgstr "_Zgjidh një temë:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1625,19 +1623,23 @@ msgid "Adjust the volume level"
 msgstr "Rregullo nivelin e volumit"
 
 #: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:368
+#: gst-mixer/src/window.c:374
 msgid "Volume Control"
 msgstr "Kontrolli i Volumit"
 
-#: gst-mixer/src/element.c:155
+#: gst-mixer/src/element.c:187
 msgid "Playback"
 msgstr "Playback"
 
-#: gst-mixer/src/element.c:157
+#: gst-mixer/src/element.c:189
 msgid "Capture"
 msgstr "Regjistrim"
 
-#: gst-mixer/src/element.c:159
+#: gst-mixer/src/element.c:191
+msgid "Switches"
+msgstr "Ndryshues"
+
+#: gst-mixer/src/element.c:193
 msgid "Options"
 msgstr "Opcionet"
 
@@ -1657,26 +1659,26 @@ msgid "No volume control elements and/or devices found."
 msgstr "Nuk u gjet asnjë element dhe/apo dispozitiv kontrolli."
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:107
+#: gst-mixer/src/preferences.c:108
 msgid "Volume Control Preferences"
 msgstr "Preferimet e Kontrollit të Volumit"
 
-#: gst-mixer/src/preferences.c:120
+#: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
 msgstr "_Zgjidh pistën e dukshme:"
 
-#: gst-mixer/src/track.c:193
+#: gst-mixer/src/track.c:210
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: gst-mixer/src/track.c:233
+#: gst-mixer/src/track.c:250
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Pa zë/me zë %s"
 
-#: gst-mixer/src/track.c:248
+#: gst-mixer/src/track.c:265
 #, c-format
 msgid "Track %s: mute"
 msgstr "Track %s: pa zë"
@@ -1686,17 +1688,17 @@ msgstr "Track %s: pa zë"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:328
+#: gst-mixer/src/track.c:345
 #, c-format
 msgid "Toggle audio capture from %s"
 msgstr "Kavo regjistrimi zërit nga %s"
 
-#: gst-mixer/src/track.c:343
+#: gst-mixer/src/track.c:360
 #, c-format
 msgid "Track %s: audio capture"
 msgstr "Track %s: regjistrim audio"
 
-#: gst-mixer/src/track.c:391
+#: gst-mixer/src/track.c:439
 #, c-format
 msgid "%s Option Selection"
 msgstr "Zgjedhja e opcionit %s"
@@ -1791,12 +1793,12 @@ msgstr "Ndrysho dispozitivin në %s"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
+#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Kontrolli i Volumit: %s"
 
-#: gst-mixer/src/window.c:371
+#: gst-mixer/src/window.c:377
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Një aplikativ për kontrollin e volumit i bazuar në GNOME/GStreamer"
 
@@ -1921,8 +1923,7 @@ msgstr "Gabim gjatë marrjes së listës me profilet gm_audio. (%s)\n"
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
-msgstr ""
-"Gabim gjatë regjistrimit të ndryshimeve të listës së profilit audio. (%s)\n"
+msgstr "Gabim gjatë regjistrimit të ndryshimeve të listës së profilit audio. (%s)\n"
 
 #: profiles/audio-profile.c:911
 #, c-format
@@ -2058,8 +2059,7 @@ msgstr ""
 "përshkruan kur duhet përdorur ky profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "Një mbrapashtesë e emrit të file që duhet përdorur kur ruhen files e koduar "
 "me këtë profil."
@@ -2127,8 +2127,7 @@ msgstr ""
 "radio."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to voice-quality audio. Use this for recording speech."
+msgid "Used for converting to voice-quality audio. Use this for recording speech."
 msgstr ""
 "Përdoret për konvertim në kualitet audio e folur. Përdore për regjistrime të "
 "zërit."
@@ -2214,11 +2213,3 @@ msgstr "Monitor i volumit në dalje të zërit"
 msgid "Volume monitor"
 msgstr "Monitor i Volumit"
 
-#~ msgid "CD Player De_vice:"
-#~ msgstr "Dispoziti_vi i lexuesit CD:"
-
-#~ msgid "CD Player Behaviour:"
-#~ msgstr "Sjellja e CD Player:"
-
-#~ msgid "_Available Themes:"
-#~ msgstr "Temat në _dispozicion:"
