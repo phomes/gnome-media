@@ -1,4 +1,4 @@
-Audiodir = $(datadir)/gnome/apps/Multimedia
+Audiodir = $(datadir)/applications
 
 pixmapdir = $(datadir)/pixmaps
 
@@ -25,6 +25,7 @@ pixmap_DATA = $(BITMAPS)
 
 EXTRA_DIST = $(BITMAPS) vumeter.desktop.in reclevel.desktop.in README TODO
 
-#Audio_in_files = vumeter.desktop.in reclevel.desktop.in
-#Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
-@INTLTOOL_SERVER_RULE@
+@INTLTOOL_DESKTOP_RULE@
+Audio_in_files = vumeter.desktop.in reclevel.desktop.in
+Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+
