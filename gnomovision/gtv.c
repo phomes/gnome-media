@@ -293,8 +293,10 @@ gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition)
   requisition->width = tv->vcap.minwidth;
   requisition->height = tv->vcap.minheight;
   widget->requisition = *requisition;
+#ifdef DEBUG_GTV
   g_print("gtk_tv_size_request to %d x %d\n", requisition->width,
 	  requisition->height);
+#endif
 }
 
 static void
@@ -331,7 +333,9 @@ gtk_tv_toplevel_relay(GtkWidget *widget,
       return FALSE;
       break;
     default:
+#ifdef DEBUG_GTV
       g_print("toplevel: Don't know how to handle event %d\n", event->type);
+#endif
       return FALSE;
     }
 
@@ -373,8 +377,10 @@ gtk_tv_rootwin_event(GtkWidget *widget,
 
 	r.x-=20; r.y-=20; r.width+=20; r.height+=20;
 
+#ifdef DEBUG_GTV
 	g_print("Clearing area (%d, %d) +%d +%d\n",
 		(int)r.x, (int)r.y, (int)r.width, (int)r.height);
+#endif
 	gdk_window_clear_area(GDK_ROOT_PARENT(),
 			      r.x, r.y, r.width, r.height);
       }
@@ -390,7 +396,9 @@ gtk_tv_rootwin_event(GtkWidget *widget,
 			    event->expose.area.height);
       break;
     default:
+#ifdef DEBUG_GTV
       g_print("rootwin: Don't know how to handle event %d\n", event->type);
+#endif
       return FALSE;
     }
 
@@ -427,7 +435,9 @@ gtk_tv_map(GtkTV *tv)
 {
   if(tv->visible == FALSE)
     {
+#ifdef DEBUG_GTV
       g_print("Showing TV\n");
+#endif
       tv->visible = TRUE;
       if(ioctl(tv->fd, VIDIOCSWIN, &tv->vwindow))
 	g_warning("VIDIOCSWIN failed in map\n");
@@ -441,7 +451,9 @@ gtk_tv_unmap(GtkTV *tv)
 {
   if(tv->visible == TRUE)
     {
+#ifdef DEBUG_GTV
       g_print("Showing TV\n");
+#endif
       tv->visible = FALSE;
       if(ioctl(tv->fd, VIDIOCCAPTURE, &tv->visible))
 	g_warning("VIDIOCCAPTURE failed in unmap\n");
@@ -462,7 +474,9 @@ static int getclip(GtkTV *w)
   struct video_clip *cr; 
   GtkWidget *widpar;
 
+#ifdef DEBUG_GTV
   g_print("getclip()\n");
+#endif
 
   if (!GTK_WIDGET_REALIZED(w))
     return;
@@ -514,8 +528,10 @@ static int getclip(GtkTV *w)
       x2=ww-1;
     if (y2>=(int)wh)
       y2=wh-1;
+#ifdef DEBUG_GTV
     g_print("Adding clip #%d at (%d, %d) + %dx%d)\n",
 	    ncr, x, y, x2-x, y2-y);
+#endif
     cr[ncr].x = x;
     cr[ncr].y = y;
     cr[ncr].width = x2-x;
@@ -615,9 +631,11 @@ gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
   
   ourwin = GDK_WINDOW_XWINDOW(GTK_WIDGET(tv)->window);
 
+#ifdef DEBUG_GTV
   g_print("We ourself are %#x (on root %#x) at (%d, %d) x %d %d\n", ourwin,
 	  GDK_ROOT_WINDOW(),
 	  owrect.x, owrect.y, owrect.width, owrect.height);
+#endif
 
   /* The idea here is to find out what the real
      toplevel window is for our toplevel (i.e. getting around
@@ -632,12 +650,16 @@ gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
       
       if(parentwin == None || parentwin == ourwin)
 	{
+#ifdef DEBUG_GTV
 	  g_print("Breaking because parentwin = %#x\n",
 		  parentwin);
+#endif
 	  break;
 	}
 
+#ifdef DEBUG_GTV
       g_print("Appended %#x to parentlist\n", ourwin);
+#endif
       parentlist = g_list_append(parentlist, (gpointer)ourwin);
 
       ourwin = parentwin;
@@ -651,16 +673,20 @@ gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
 		 &bogus, &bogus,
 		 &childrenlist, &nchildren);
 
+#ifdef DEBUG_GTV
       g_print("Checking children of window %#x - has %d children\n",
 	      g_list_nth(parentlist, j)->data,
 	      nchildren);
+#endif
       
       for(i = 0; i < nchildren; i++)
 	{
 	  if(g_list_find(parentlist, (gpointer)childrenlist[i]))
 	    {
+#ifdef DEBUG_GTV
 	      g_print("Skipping window %#x - it's our parent\n",
 		      childrenlist[i]);
+#endif
 	      continue;
 	    }
 
@@ -691,9 +717,11 @@ gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
 	      if(arect.height > owrect.height)
 		arect.height = owrect.height;
 
+#ifdef DEBUG_GTV
 	      g_print("Window %#x is inside our region - clipping off (%d, %d) - %d %d\n",
 		      childrenlist[i],
 		      arect.x, arect.y, arect.width, arect.height);
+#endif
 		      
 	      tv->clips[tv->vwindow.clipcount].x = arect.x;
 	      tv->clips[tv->vwindow.clipcount].y = arect.y;
@@ -707,7 +735,9 @@ gtk_tv_clipping_partialvis(GtkTV *tv, GdkEventVisibility *event)
     }
   gdk_region_destroy(t);
   gdk_region_destroy(ourregion);
+#ifdef DEBUG_GTV
   g_print("           TOTAL CLIPS: %d\n", tv->vwindow.clipcount);
+#endif
   tv->vwindow.clips = tv->clips;
   tv->clips[0].x = 1;
   tv->clips[0].y = 1;
@@ -726,8 +756,10 @@ gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event, gboolean is_our_window)
   switch(event->type)
     {
     case GDK_VISIBILITY_NOTIFY:
+#ifdef DEBUG_GTV
       g_print("do_clipping on vis with state = %d\n",
 	      event->visibility.state);
+#endif
 	      
       switch(event->visibility.state)
 	{
@@ -759,8 +791,10 @@ gtk_tv_do_clipping(GtkTV *tv, GdkEvent *event, gboolean is_our_window)
 	g_warning("VIDIOCSWIN failed in do_clipping expose etc.\n");
       break;
     default:
+#ifdef DEBUG_GTV
       g_print("do_clipping couldn't handle event type %d\n",
 	      event->type);
+#endif
     }
 }
 
@@ -841,7 +875,6 @@ gtk_tv_set_toplevel(GtkTV *tv)
 GdkImlibImage *
 gdk_get_RGB_from_16(GdkWindow *w, int xx, int yy, int width, int height)
 {
-<<<<<<< gtv.c
    GdkImlibImage *im;
    GdkImage *i;
    gint ww,hh;
@@ -881,15 +914,25 @@ GdkImlibImage *
 gtk_tv_grab_image(GtkTV *tv,
 		  gint width, gint height)
 {
-   g_return_if_fail(tv != NULL);
-   g_return_if_fail(GTK_IS_TV(tv));
-
-   return gdk_get_RGB_from_16(tv->window,tv->allocation.x,tv->allocation.y
-			      tv->allocation.width,tv->allocation.height);
-=======
   GdkImlibImage *retval;
   gpointer membuf;
   int abool;
+  GtkWidget *w = GTK_WIDGET(tv);
+
+  g_return_if_fail(tv != NULL);
+  g_return_if_fail(GTK_IS_TV(tv));
+
+  abool = 0;
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+
+  usleep(50000);
+
+  retval = gdk_get_RGB_from_16(w->window,w->allocation.x,w->allocation.y,
+			       w->allocation.width,w->allocation.height);
+
+  abool = tv->visible;
+  ioctl(tv->fd, VIDIOCCAPTURE, &abool);
+  return retval;
 
   g_return_if_fail(tv != NULL);
   g_return_if_fail(GTK_IS_TV(tv));
@@ -929,8 +972,10 @@ gtk_tv_grab_image(GtkTV *tv,
 		       ioctl(tv->fd, VIDIOCCAPTURE, &abool) == 0,
 		       NULL);
 
+#ifdef DEBUG_GTV
   g_print("Attempting to read %d bytes\n",
 	  tv->cbuf.width * tv->cbuf.height * 3);
+#endif
 
   // #define LOOPIT
   #define SLEEPIT
