@@ -466,6 +466,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 			freebsd_cdrom_close (lcd);
 			return FALSE;
 		}
+		break;
 
 	case GNOME_CDROM_AUDIO_NOTHING:
 	case GNOME_CDROM_AUDIO_COMPLETE:
