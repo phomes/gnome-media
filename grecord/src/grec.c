@@ -716,7 +716,7 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 		gchar* tempstring;
 		gchar* string = g_strdup ((char *) strrchr (active_file, '/'));
 		string[1] = ' ';
-		temp_string = g_strconcat (_(maintopic), string, NULL);
+		tempstring = g_strconcat (_(maintopic), string, NULL);
 		gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), tempstring);
 		g_free (tempstring);
 		g_free (string);

@@ -24,6 +24,7 @@
 #endif
 
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "gui.h"
 #include "grec.h"

@@ -1,3 +1,13 @@
+2001-05-29  Peter Teichman  <peter@ximian.com>
+
+	* src/grec.c: fix a reference to a wrong variable
+	* src/main.c: #include libgnomeui/gnome-window-icon.h
+	* src/preferences.c: fix a couple printfs that had more arguments
+	than they wanted
+	* src/sound.c: remove g_free of an uninitialized variable.
+	* These four changes are from a patch by 
+	David Hampton <hampton@employees.org>
+	
 2001-05-28  Peter Teichman  <peter@ximian.com>
 
 	* preferences.c: search the full path for the sox and gmix

@@ -132,7 +132,6 @@ add_echo (gchar* filename, gboolean overwrite)
 {
 	static gboolean first_time = TRUE;
 	gchar* backup_file;
-	gchar* temp_file;
 
 	gchar* command;
 	gchar* command_plus_make_backup;
@@ -151,7 +150,6 @@ add_echo (gchar* filename, gboolean overwrite)
 		run_command (command, _("Adding echo to sample..."));
 
 	g_free (backup_file);
-	g_free (temp_file);
 	g_free (command);
 	g_free (command_plus_make_backup);
 }
