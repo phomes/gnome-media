@@ -461,6 +461,7 @@ theme_selection_changed_cb (GtkTreeSelection *selection,
 
 		gtk_tree_model_get (model, &iter, 0, &theme_name, -1);
 		gconf_client_set_string (client, "/apps/gnome-cd/theme-name", theme_name, NULL);
+		g_free (theme_name);
 	}
 }
 
@@ -494,6 +495,8 @@ change_theme_selection_widget (GConfClient *client,
 							   0, 0, NULL,
 							   G_CALLBACK (theme_selection_changed_cb), pd);
 		}
+		g_free (name);
+
 	} while (gtk_tree_model_iter_next (model, &iter));
 }
 
@@ -524,7 +527,7 @@ create_theme_model (PropertyDialog *pd,
 		}
 
 		gtk_list_store_append (store, &iter);
-		gtk_list_store_set (store, &iter, 0, g_strdup (d->d_name), -1);
+		gtk_list_store_set (store, &iter, 0, d->d_name, -1);
 
 		/*
 		if (strcmp (d->d_name, pd->gcd->preferences->theme_name) == 0) {

@@ -166,18 +166,22 @@ cddb_get_query (GnomeCD *gcd)
 
 	discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 	for (i = 0; i < data->ntrks; i++) {
-		char *tmp;
+		char *tmp, *tmp2;
 
 		tmp = g_strdup_printf ("%u ", data->offsets[i]);
 		if (offsets == NULL) {
 			offsets = tmp;
 		} else {
-			offsets = g_strconcat (offsets, tmp, NULL);
+			tmp2 = g_strconcat (offsets, tmp, NULL);
 			g_free (tmp);
+			offsets = g_strdup (tmp2);
+			g_free (tmp2);
 		}
 	}
 
 	info = g_hash_table_lookup (cddb_cache, discid);
+	g_free (discid);
+
 	if (info != NULL) {
 		gcd->disc_info = info;
 
