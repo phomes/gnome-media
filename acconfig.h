@@ -11,6 +11,9 @@
 #undef HAVE_PROGRAM_INVOCATION_SHORT_NAME
 #undef HAVE_PROGRAM_INVOCATION_NAME
 
+/* Have the libghttp library on the system */
+#undef WITH_LIBGHTTP
+
 /*=== Curses version detection defines ===*/
 /* Found some version of curses that we're going to use */
 #undef HAS_CURSES

@@ -7,6 +7,7 @@ cddbslave_SOURCES = 	socket.c main.c socket.h cddb.h
 
 cddbslave_LDADD =    	$(GNOME_LIBDIR) \
                 	$(GNOMEUI_LIBS) \
+			$(GHTTP_LIB) \
                 	$(INTLLIBS)
 
 CLEANFILES=*~

@@ -37,6 +37,8 @@ typedef struct
 
     gchar *cddb_server;
     guint cddb_port;
+    gboolean cddb_http;
+    gchar *cddb_httpproxy;
 
     gboolean only_use_trkind;
 } tcd_prefs;

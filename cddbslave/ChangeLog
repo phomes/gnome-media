@@ -1,3 +1,11 @@
+1999-04-17  James Henstridge <james@daa.com.au>
+
+	* main.c: added code to do lookups via cddb over http protocol.  It
+	also allows use of http proxies for people behind firewalls.
+
+	* Makefile.am (cddbslave_LDADD): link against GHTTP_LIB (empty if
+	libghttp not found).
+
 1998-12-22  Tim P. Gerla  <timg@means.net>
 
 	* main.c: SIGUSR2 not 1.

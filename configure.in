@@ -84,6 +84,17 @@ AC_CHECK_HEADERS(linux/soundcard.h,[PROGRAMS_GMIX=gmix],[
   AC_CHECK_HEADERS(machine/soundcard.h, [PROGRAMS_GMIX=gmix])])
 AC_SUBST(PROGRAMS_GMIX)
 
+
+dnl
+dnl cddbslave
+dnl
+GNOME_GHTTP_CHECK
+if test -n "`echo x$GHTTP_LIB | grep ghttp`"; then
+  AC_DEFINE(WITH_LIBGHTTP)
+else
+  GHTTP_LIB=
+fi
+
 dnl
 dnl Everything OK for tcd?
 dnl

@@ -35,6 +35,8 @@ static void remove_cb(GtkWidget *widget, GtkWidget *clist);
 static void msg_callback(gint reply, GtkCList *clist);
 static void entry_cb(GtkWidget *widget, gpointer data);
 static void port_cb(GtkObject *adj, gpointer data);
+static void use_http_cb(GtkWidget *widget, GtkWidget *entry);
+static void httpproxy_cb(GtkWidget *widget, gpointer data);
 
 /* code */
 static void select_row_cb(GtkCList *clist,
@@ -122,9 +124,11 @@ static GtkWidget *create_local_db(void)
     return hbox;
 }
 
+static GtkWidget *portw;
+
 GtkWidget *create_cddb_page(void)
 {
-    GtkWidget *vbox, *frame, *label;
+    GtkWidget *vbox, *frame, *label, *cbutton;
     GtkWidget *table, *entry;
     GtkObject *adj;
 
@@ -136,7 +140,7 @@ GtkWidget *create_cddb_page(void)
 
     gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-    table = gtk_table_new(2, 4, FALSE);
+    table = gtk_table_new(2, 5, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
     gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 
@@ -144,18 +148,39 @@ GtkWidget *create_cddb_page(void)
     entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_server);
     gtk_table_attach_defaults(GTK_TABLE(table), label, 0, 1, 0, 1);
-    gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 2, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), entry, 1, 3, 0, 1);
     gtk_signal_connect(GTK_OBJECT(entry), "changed",
 		       GTK_SIGNAL_FUNC(entry_cb), NULL);
 
     adj = gtk_adjustment_new(8880, 0, 65536, 1, 100, 10);
     gtk_adjustment_set_value(GTK_ADJUSTMENT(adj), prefs.cddb_port);
     label = gtk_label_new(_("Port"));
-    entry = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
-    gtk_table_attach_defaults(GTK_TABLE(table), label, 2, 3, 0, 1);
-    gtk_table_attach_defaults(GTK_TABLE(table), entry, 3, 4, 0, 1);
+    portw = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
+    gtk_table_attach_defaults(GTK_TABLE(table), label, 3, 4, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), portw, 4, 5, 0, 1);
     gtk_signal_connect(GTK_OBJECT(adj), "value_changed",
 		       GTK_SIGNAL_FUNC(port_cb), NULL);
+
+    cbutton = gtk_check_button_new_with_label(_("Use HTTP"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cbutton), prefs.cddb_http);
+    gtk_table_attach_defaults(GTK_TABLE(table), cbutton, 0,1, 1,2);
+
+    label = gtk_label_new(_("Proxy"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label, 1,2, 1,2);
+    entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(entry), prefs.cddb_httpproxy);
+    gtk_table_attach_defaults(GTK_TABLE(table), entry, 2,5, 1,2);
+    if (!prefs.cddb_http) gtk_widget_set_sensitive(entry, FALSE);
+    gtk_signal_connect(GTK_OBJECT(entry), "changed",
+		       GTK_SIGNAL_FUNC(httpproxy_cb), NULL);
+
+#ifndef WITH_LIBGHTTP
+    gtk_widget_set_sensitive(cbutton, FALSE);
+#endif
+	      
+
+    gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_http_cb), entry);
 
     gtk_container_add(GTK_CONTAINER(frame), table);
 
@@ -391,5 +416,25 @@ static void entry_cb(GtkWidget *widget, gpointer data)
 static void port_cb(GtkObject *adj, gpointer data)
 {
     prefs.cddb_port = (gint)GTK_ADJUSTMENT(adj)->value;
+    changed_cb(NULL, NULL);
+}
+
+static void use_http_cb(GtkWidget *widget, GtkWidget *entry) {
+    gint val;
+
+    prefs.cddb_http = GTK_TOGGLE_BUTTON(widget)->active;
+    gtk_widget_set_sensitive(entry, prefs.cddb_http);
+    changed_cb(NULL, NULL);
+
+    val = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(portw));
+    /* if the port number is set at the default for the opposite setting of
+     * use_http, set it to the default for this setting */
+    if (prefs.cddb_http && val == 8880)
+      gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 80);
+    if (!prefs.cddb_http && val == 80)
+      gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 8880);
+}
+static void httpproxy_cb(GtkWidget *widget, gpointer data) {
+    prefs.cddb_httpproxy = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
     changed_cb(NULL, NULL);
 }

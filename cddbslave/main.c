@@ -15,6 +15,11 @@
 #include "socket.h"
 #include "cddb.h"
 
+#ifdef WITH_LIBGHTTP
+#  include <ghttp.h>
+int do_httprequest(char *req);
+#endif
+
 void read_query(char *s, int fd, int len);
 int check_response(char *buf);
 void disconnect(int fd);
@@ -38,6 +43,11 @@ int pid;
 
 gchar *server;
 gint port;
+
+#ifdef WITH_LIBGHTTP
+gboolean use_http;
+gchar *proxy = NULL;
+#endif
 
 const gchar *status_msg[] = {
     N_("Ready for command: %s\n"),
@@ -79,6 +89,14 @@ int main(int argc, char *argv[])
     gnomelib_init("cddbslave", VERSION);
     server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
     port = gnome_config_get_int("/cddbslave/server/port=8880");
+#ifdef WITH_LIBGHTTP
+    use_http = gnome_config_get_bool("/cddbslave/server/use_http=false");
+    proxy = gnome_config_get_string("/cddbslave/server/http_proxy=");
+    if (proxy && proxy[0] == '\0') {
+      g_free(proxy);
+      proxy = NULL;
+    }
+#endif
 
     gethostname_safe(hostname, 512);
     getusername_safe(username, 512);
@@ -95,6 +113,9 @@ int main(int argc, char *argv[])
 	DIR *d;
 	struct dirent *de;
 
+#ifdef WITH_LIBGHTTP
+	if (!use_http) {
+#endif
 	/* connect to cddb server */
 	g_req = req;
 	set_status(STATUS_CONNECTING, server);
@@ -107,17 +128,31 @@ int main(int argc, char *argv[])
 	    remove_cache(req);
 	    return(-1);
 	}
+#ifdef WITH_LIBGHTTP
+	}
+#endif
 	set_status(STATUS_QUERYING, server);
 
 	/* grab directory name */
 	dname = get_file_name("");
 	if(!dname)
 	{
+#ifdef WITH_LIBGHTTP
+	  if (!use_http) {
+#endif
 	    if(do_request(req, fd) < 0)
 		sleep(5);
 	    set_status(STATUS_NONE, "");
 	    remove_cache(req);
 	    disconnect(fd);
+#ifdef WITH_LIBGHTTP
+	  } else {
+	    if (do_httprequest(req) < 0)
+	      sleep(5);
+	    set_status(STATUS_NONE, "");
+	    remove_cache(req);
+	  }
+#endif
 	    my_exit(-1);
 	}
 
@@ -125,11 +160,22 @@ int main(int argc, char *argv[])
 	d = opendir(dname);
 	if(!d)
 	{
+#ifdef WITH_LIBGHTTP
+	  if (!use_http) {
+#endif
 	    if(do_request(req, fd) < 0)
 		sleep(5);
 	    set_status(STATUS_NONE, "");
 	    remove_cache(req);
 	    disconnect(fd);
+#ifdef WITH_LIBGHTTP
+	  } else {
+	    if (do_httprequest(req) < 0)
+	      sleep(5);
+	    set_status(STATUS_NONE, "");
+	    remove_cache(req);
+	  }
+#endif
 	    my_exit(-1);
 	}
 
@@ -150,6 +196,12 @@ int main(int argc, char *argv[])
 		
 		fgets(buf, 512, fp);
 		fclose(fp);
+#ifdef WITH_LIBGHTTP
+		if (use_http) {
+		  if (do_httprequest(buf) < 0)
+		    sleep(5);
+		} else
+#endif
 		if(do_request(buf, fd) < 0)
 		    sleep(5);	/* sleep for a bit so client can get error code */
 		remove_cache(buf);
@@ -159,11 +211,209 @@ int main(int argc, char *argv[])
 	/* clean up */
 	set_status(STATUS_NONE, "");
 	g_free(dname);
-	disconnect(fd);
+#ifdef WITH_LIBGHTTP
+	if (!use_http)
+#endif
+	  disconnect(fd);
 	my_exit(EXIT_SUCCESS);
     }
     exit(EXIT_SUCCESS);
 }
+
+#ifdef WITH_LIBGHTTP
+char *uri_encode(char *string) {
+  GString *str = g_string_sized_new(strlen(string));
+  gchar *ret;
+
+  while (*string) {
+    if (*string == ' ')
+      g_string_append_c(str, '+');
+    else if ((*string >= 'A' && *string <= 'Z') ||
+	     (*string >= 'a' && *string <= 'z') ||
+	     (*string >= '0' && *string <= '9') ||
+	     *string == '-' || *string == '_' || *string == '.')
+      g_string_append_c(str, *string);
+    else {
+      gint8 a = *string >> 4, b = *string & 0xf;
+      gchar hex[] = "%xx";
+
+      if (a < 10) hex[1] = a + '0';
+      else hex[1] = a - 10 + 'a';
+      if (b < 10) hex[2] = b + '0';
+      else hex[2] = b - 10 + 'b';
+      g_string_append(str, hex);
+    }
+    string++;
+  }
+  ret = str->str;
+  g_string_free(str, FALSE);
+  return ret;
+}
+
+gchar *assemble_url(char *req) {
+  gchar *enc_req = uri_encode(req);
+  gchar *enc_username = uri_encode(username);
+  gchar *enc_hostname = uri_encode(hostname);
+  gchar *enc_clientname = uri_encode(client_name);
+  gchar *enc_clientver = uri_encode(client_ver);
+  /* we use protocol version 3 because I haven't written code to handle
+   * multiple exact matches.  This means we don't have to deal with it */
+  gchar *url = g_strdup_printf(
+	"http://%s:%d/~cddb/cddb.cgi?cmd=%s&hello=%s+%s+%s+%s&proto=3",
+	server, port, enc_req, enc_username, enc_hostname,
+	enc_clientname, enc_clientver);
+  g_free(enc_req);
+  g_free(enc_username);
+  g_free(enc_hostname);
+  g_free(enc_clientname);
+  g_free(enc_clientver);
+  return url;
+}
+
+int do_httprequest(char *req)
+{
+  ghttp_request *request;
+  gchar *url, *s;
+  gchar buf[512];
+  gchar categ[CATEG_MAX];
+  gchar discid[DISCID_MAX];
+  gchar dtitle[DTITLE_MAX];
+  gchar *fname;
+  gint code, len;
+  FILE *fp;
+
+  request = ghttp_request_new();
+  if (!request)
+    return -1;
+  if (proxy && ghttp_set_proxy(request, proxy) != 0) {
+    ghttp_request_destroy(request);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
+  url = assemble_url(req);
+  if (ghttp_set_uri(request, url) != 0) {
+    ghttp_request_destroy(request);
+    g_free(url);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
+  g_free(url);
+  ghttp_set_header(request, http_hdr_Connection, "close");
+  if (ghttp_prepare(request) != 0) {
+    ghttp_request_destroy(request);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
+  set_status(STATUS_READING, server);
+  if (ghttp_process(request) == ghttp_error) {
+    g_message("processing error: %s", ghttp_get_error(request));
+    set_status(ERR_QUERYING, server);
+    ghttp_request_destroy(request);
+    return -1;
+  }
+  if ((code = ghttp_status_code(request)) != 200) {
+    g_message("failed due to bad return code %d", code);
+    set_status(ERR_QUERYING, "disc");
+    ghttp_request_destroy(request);
+    return -code;
+  }
+
+  s = ghttp_get_body(request);
+  len = ghttp_get_body_len(request);
+
+  code = atoi(strtok(s, " " ));         
+  strncpy(categ, if_strtok(NULL, " ") , CATEG_MAX);
+  categ[CATEG_MAX-1]=0;
+  strncpy(discid, if_strtok( NULL, " "), DISCID_MAX);
+  discid[DISCID_MAX-1]=0;
+  strncpy(dtitle, if_strtok( NULL, "\0"), DTITLE_MAX);
+  dtitle[DTITLE_MAX-1]=0;
+
+  if (code != 200) {
+    /* not found */
+    set_status(ERR_NOMATCH, "disc");
+    ghttp_request_destroy(request);
+    return -code;
+  }
+
+  ghttp_request_destroy(request);
+
+  request = ghttp_request_new();
+  if (!request)
+    return -1;
+  if (proxy && ghttp_set_proxy(request, proxy) != 0) {
+    ghttp_request_destroy(request);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
+
+  g_snprintf(buf, 511, "cddb read %s %s\n", categ, discid);
+  url = assemble_url(buf);
+  
+  if (ghttp_set_uri(request, url) != 0) {
+    g_free(url);
+    set_status(ERR_CONNECTING, server);
+    ghttp_request_destroy(request);
+    return;
+  }
+  g_free(url);
+  ghttp_set_header(request, http_hdr_Connection, "close");
+  if (ghttp_prepare(request) != 0) {
+    set_status(ERR_CONNECTING, server);
+    ghttp_request_destroy(request);
+    return -1;
+  }
+  set_status(STATUS_READING, server);
+  if (ghttp_process(request) == ghttp_error) {
+    g_print("processing error: %s", ghttp_get_error(request));
+    set_status(ERR_READING, server);
+    ghttp_request_destroy(request);
+    return -1;
+  }
+  if ((code = ghttp_status_code(request)) != 200) {
+    set_status(ERR_READING, server);
+    ghttp_request_destroy(request);
+    return -code;
+  }
+  s = ghttp_get_body(request);
+  if ((code = check_response(s)) != 210) {
+    set_status(ERR_NOMATCH, "disc");
+    ghttp_request_destroy(request);
+    return -code;
+  }
+  /* skip first line ... */
+  while (*s != '\r' && *s != '\n' && *s != '\0') s++;
+  while (*s == '\r' || *s == '\n') s++;
+
+  fname = get_file_name(discid);
+  if (!fname) {
+    ghttp_request_destroy(request);
+    return -1;
+  }
+
+  fp = fopen(fname, "w");
+  g_free(fname);
+
+  if (fp == NULL) {
+    set_status(ERR_READING, "disc");
+    ghttp_request_destroy(request);
+    return -1;
+  }
+  /* write body to file, skip \r's, and stop before the final dot */
+  while (*s) {
+    if (*s != '\r') {
+      fprintf(fp, "%c", *s);
+      if (s[0] == '\n' && s[1] == '.') break;
+    }
+    s++;
+  }
+  fclose(fp);
+
+  kill(pid, SIGUSR2);
+  ghttp_request_destroy(request);
+  set_status(STATUS_NONE, "");
+}
+#endif
 
 int do_request(char *req, int fd)
 {
