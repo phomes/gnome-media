@@ -13,7 +13,8 @@ SUBDIRS = po $(always_built_SUBDIRS) \
 DIST_SUBDIRS = po $(always_built_SUBDIRS) \
 	       vu-meter grecord gst-mixer gnome-cd gstreamer-properties
 
-EXTRA_DIST = config.rpath  gnome-media.spec.in configure acinclude.m4 COPYING-DOCS \
+EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
+		acinclude.m4 COPYING-DOCS \
 		sgmldocs.make xmldocs.make omf.make \
 		intltool-extract.in intltool-merge.in intltool-update.in
 
