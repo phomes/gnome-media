@@ -233,6 +233,7 @@ expose_event (GtkWidget *drawing_area,
 	PangoContext *context;
 	PangoDirection base_dir;
 	GdkRectangle *area;
+	GtkStateType state;
 	int height = 0;
 	int i;
 
@@ -244,6 +245,7 @@ expose_event (GtkWidget *drawing_area,
 	
 	area = &event->area;
 
+	state = GTK_WIDGET_STATE (drawing_area);
 	if (theme->need_resize == TRUE) {
 		cd_display_resize_images (disp, NULL);
 	}
@@ -407,7 +409,7 @@ expose_event (GtkWidget *drawing_area,
 						    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
 
 			gdk_draw_layout_with_colors (drawing_area->window,
-						     drawing_area->style->black_gc,
+						     drawing_area->style->text_gc[state],
 						     X_OFFSET, 
 						     Y_OFFSET + height,
 						     priv->layout[i]->layout,

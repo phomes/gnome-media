@@ -484,6 +484,9 @@ init_player (void)
 	gtk_range_set_inverted (GTK_RANGE (gcd->slider), TRUE);
 	gtk_scale_set_draw_value (GTK_SCALE (gcd->slider), FALSE);
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
+	
+	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider),
+			      _("Volume Control"), NULL);
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 
@@ -508,6 +511,8 @@ init_player (void)
 	gcd->tracks = gtk_option_menu_new ();
 	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
 			  G_CALLBACK (skip_to_track), gcd);
+	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->tracks), 
+			      _("Track List"), NULL );
 	gnome_cd_build_track_list_menu (gcd);
 	gtk_box_pack_start (GTK_BOX (option_hbox), gcd->tracks, FALSE, FALSE, 0);
 
