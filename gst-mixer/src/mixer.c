@@ -305,10 +305,12 @@ create_mixer_collection (GtkWidget *notebook)
   for ( ; elements != NULL; elements = elements->next) {
     GstElementFactory *factory = GST_ELEMENT_FACTORY (elements->data);
     gchar *title, *name;
+    const gchar *klass;
     GstElement *element;
 
     /* check category */
-    if (strcmp (factory->details->klass, "Generic/Audio"))
+    klass = gst_element_factory_get_klass (factory);
+    if (strcmp (klass, "Generic/Audio"))
       continue;
 
     /* create element */
@@ -448,9 +450,11 @@ main (gint   argc,
   gnome_app_create_menus (GNOME_APP (window), main_menu);
  
   /* Set appicon image */ 
-   file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP, PIX_DIR"/mixer.png", TRUE, NULL);
+  if ((file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
+					 PIX_DIR "/mixer.png", TRUE, NULL))) {
     gnome_window_icon_set_default_from_file (file);
     g_free (file);
+  }
 
   /* create all mixers */
   notebook = gtk_notebook_new ();

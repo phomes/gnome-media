@@ -262,12 +262,12 @@ AC_SUBST(GNOMECC_DESKTOP_DIR)
 AC_SUBST(PROGRAMS_GSTPROPS)
 
 # gst-mixer
-COMMON_MODULES="libgnomeui-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR"
+COMMON_MODULES="libgnomeui-2.0 gstreamer-$GST_MAJORMINOR gstreamer-interfaces-$GST_MAJORMINOR"
 PKG_CHECK_MODULES(GSTMIX, $COMMON_MODULES,
                   PROGRAMS_GSTMIX="gst-mixer",
                   PROGRAMS_GSTMIX="")
                                                                                          
-GSTMIX_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-$GST_MAJORMINOR"
+GSTMIX_LIBS="$GSTMIX_LIBS $x_libs"
 AC_SUBST(GSTMIX_LIBS)
 AC_SUBST(GSTMIX_CFLAGS)
 AC_SUBST(PROGRAMS_GSTMIX)

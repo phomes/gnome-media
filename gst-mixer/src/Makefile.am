@@ -10,4 +10,4 @@ gst_mixer_SOURCES = \
 	mixer.c
 
 gst_mixer_LDFLAGS = \
-	$(GSTMIX_LIBS) -lgstmixer
+	$(GSTMIX_LIBS)
