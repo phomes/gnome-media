@@ -314,7 +314,7 @@ make_popup_menu (GnomeCD *gcd)
 	for (i = 0; menuitems[i].name != NULL; i++) {
 		GtkWidget *item, *image;
 
-		item = gtk_image_menu_item_new_with_mnemonic (menuitems[i].name);
+		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
 		if (menuitems[i].icon != NULL) {
 			char *ext = strrchr (menuitems[i].icon, '.');
 

@@ -616,8 +616,8 @@ init (CDDisplay *disp)
 		
 		priv->layout[i] = g_new (GnomeCDText, 1);
 		
-		priv->layout[i]->text = g_strdup (default_text[i]);
-		priv->layout[i]->length = strlen (default_text[i]);
+		priv->layout[i]->text = g_strdup (_(default_text[i]));
+		priv->layout[i]->length = strlen (_(default_text[i]));
 		priv->layout[i]->layout = gtk_widget_create_pango_layout (GTK_WIDGET (disp), priv->layout[i]->text);
 		pango_layout_set_text (priv->layout[i]->layout,
 				       priv->layout[i]->text,

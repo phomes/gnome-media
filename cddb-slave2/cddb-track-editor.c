@@ -311,7 +311,7 @@ make_genre_list (void)
 	int i;
 	
 	for (i = 0; genres[i]; i++) {
-		genre_list = g_list_prepend (genre_list, genres[i]);
+		genre_list = g_list_prepend (genre_list, _(genres[i]));
 	}
 
 	genre_list = g_list_sort (genre_list, (GCompareFunc) strcmp);
