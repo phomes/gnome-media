@@ -570,7 +570,8 @@ cd_image_new (const char *filename,
 	image = g_new (CDImage, 1);
 
 	if (filename[0] != '/') {
-		fullname = gnome_pixmap_file (filename);
+		fullname = gnome_program_locate_file (NULL,
+			   GNOME_FILE_DOMAIN_PIXMAP, filename, TRUE, NULL);
 		if (fullname == NULL) {
 			g_warning ("Error loading %s", filename);
 			g_free (image);
@@ -750,11 +751,9 @@ static inline char *
 make_fullname (const char *theme_name,
 	       const char *name)
 {
-	char *loc, *image;
+	char *image;
 
-	loc = g_concat_dir_and_file (theme_name, name);
-	image = g_concat_dir_and_file (THEME_DIR, loc);
-	g_free (loc);
+	image = g_build_filename (THEME_DIR, theme_name, name, NULL);
 	
 	return image;
 }

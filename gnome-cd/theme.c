@@ -35,11 +35,9 @@ static char *
 make_fullname (const char *theme_name,
 	       const char *name)
 {
-	char *loc, *image;
+	char *image;
 
-	loc = g_concat_dir_and_file (theme_name, name);
-	image = g_concat_dir_and_file (THEME_DIR, loc);
-	g_free (loc);
+	image = g_build_filename (THEME_DIR, theme_name, name, NULL);
 
 	return image;
 }
@@ -127,7 +125,7 @@ theme_load (GnomeCD *gcd,
 	g_return_val_if_fail (gcd != NULL, NULL);
 	g_return_val_if_fail (theme_name != NULL, NULL);
 
-	theme_path = g_concat_dir_and_file (THEME_DIR, theme_name);
+	theme_path = g_build_filename (THEME_DIR, theme_name, NULL);
 	if (g_file_test (theme_path, G_FILE_TEST_IS_DIR) == FALSE) {
 		/* Theme dir isn't a dir */
 
@@ -137,7 +135,7 @@ theme_load (GnomeCD *gcd,
 	}
 
 	tmp = g_strconcat (theme_name, ".theme", NULL);
-	xml_file = g_concat_dir_and_file (theme_path, tmp);
+	xml_file = g_build_filename (theme_path, tmp, NULL);
 	g_free (tmp);
 
 	if (g_file_test (xml_file,

@@ -106,7 +106,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 			g_free (title);
 			gtk_widget_show (item);
 
-			gtk_menu_append (menu, item);
+			gtk_menu_shell_append ((GtkMenu *)(menu), item);
 		}
 	} else {
 		GnomeCDRomCDDBData *data;
@@ -128,7 +128,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 							
 							gtk_widget_show (item);
 							
-							gtk_menu_append (menu, item);
+							gtk_menu_shell_append ((GtkMenuShell*)(menu), item);
 						}
 						
 						g_free (data);
@@ -182,7 +182,8 @@ make_button_from_file (GnomeCD *gcd,
 	GtkWidget *pixmap;
 	char *fullname;
 
-	fullname = gnome_pixmap_file (filename);
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
+		   filename, TRUE, NULL);
 	g_return_val_if_fail (fullname != NULL, NULL);
 
 	pixmap = gtk_image_new_from_file (fullname);
@@ -211,7 +212,8 @@ pixbuf_from_file (const char *filename)
 	GdkPixbuf *pixbuf;
 	char *fullname;
 
-	fullname = gnome_pixmap_file (filename);
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+                   filename, TRUE, NULL);
 	g_return_val_if_fail (fullname != NULL, NULL);
 
 	pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
@@ -294,7 +296,9 @@ make_popup_menu (GnomeCD *gcd)
 			} else {
 				char *fullname;
 
-				fullname = gnome_pixmap_file (menuitems[i].icon);
+				fullname = gnome_program_locate_file (NULL, 
+				GNOME_FILE_DOMAIN_PIXMAP, menuitems[i].icon,
+                                TRUE, NULL);
 				if (fullname != NULL) {
 					image = gtk_image_new_from_file (fullname);
 				} else {
@@ -312,7 +316,7 @@ make_popup_menu (GnomeCD *gcd)
 				
 		gtk_widget_show (item);
 
-		gtk_menu_append (GTK_MENU (menu), item);
+		gtk_menu_shell_append ((GtkMenuShell *)(menu), item);
 		if (menuitems[i].callback != NULL) {
 			g_signal_connect (G_OBJECT (item), "activate",
 					  G_CALLBACK (menuitems[i].callback), gcd);
@@ -486,12 +490,14 @@ init_player (void)
 
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
-	fullname = gnome_pixmap_file ("gnome-cd/a-play.png");
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
+                   "gnome-cd/a-play.png", TRUE, NULL);
 	gcd->play_image = gtk_image_new_from_file (fullname);
 	g_object_ref (gcd->play_image);
 	g_free (fullname);
 
-	fullname = gnome_pixmap_file ("gnome-cd/a-pause.png");
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+                   "gnome-cd/a-pause.png", TRUE, NULL);
 	gcd->pause_image = gtk_image_new_from_file (fullname);
 	gtk_widget_show (gcd->pause_image);
 	g_object_ref (gcd->pause_image);
