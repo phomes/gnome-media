@@ -30,6 +30,7 @@
 #include <netdb.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <time.h>
 #include <stdarg.h>
 #include <sys/types.h>
@@ -53,7 +54,6 @@ int opensocket( char *hostname, int port )
         if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
         	return -1;
 	}
-        
         their_addr.sin_family = AF_INET;      /* host byte order */
         their_addr.sin_port = htons(port);    /* short, network byte order */
         their_addr.sin_addr = *((struct in_addr *)he->h_addr);
@@ -67,7 +67,7 @@ int opensocket( char *hostname, int port )
 	return sockfd;
 }
 
-int fgetsock( char* s, int size, int socket )
+int fgetsock( char* s, int size, int socket, PeriodicFunc func )
 {
 	int i=0, r;
         char c;
@@ -82,6 +82,7 @@ int fgetsock( char* s, int size, int socket )
                 	break;
                 s[i] = c;
 		i++;
+//		if( func ) func();
 	}
         s[i] = 0;
 	recv(socket, &c, 1, 0 );

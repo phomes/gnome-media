@@ -64,7 +64,15 @@ enum { PLAY=0, PAUSE, STOP, EJECT,
        CDDB, TRACKLIST, GOTO, QUIT, ABOUT, PROPS };
 
 /* time display types */
-enum { TRACK_ASC, TRACK_DEC, DISC_ASC };
+enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
+
+char *display_types[] = 
+{
+	"trk-e",
+	"trk-r",
+	"dsc-e",
+	"dsc-r"
+};
 
 char *play_methods[] =
 {
@@ -165,7 +173,7 @@ void callback (GtkWidget *widget, gpointer *data)
                         	tcd_playtracks( &cd, cd.cur_t, cd.last_t );
                         break;
 		case TRACKLIST:
-			gtracked();
+			edit_window();
 			break;
 		case QUIT:
 			delete_event(NULL,NULL);
@@ -407,11 +415,11 @@ void draw_time_playing( GdkGC *gc )
 	int pos, end, cur, min, sec;
 	switch( time_display_type )
 	{
-		case TRACK_ASC: /* track time ascending */
+		case TRACK_E: /* track time ascending */
 			led_draw_time(status_db, status_area,
 				32,4, cd.t_min, cd.t_sec);
 			break;
-		case TRACK_DEC: /* track time decending */
+		case TRACK_R: /* track time decending */
 			cur = cd.cur_pos_rel;
 			end = (cd.trk[cd.cur_t].tot_min*60)+
 			       cd.trk[cd.cur_t].tot_sec;
@@ -419,11 +427,21 @@ void draw_time_playing( GdkGC *gc )
 			min = pos/60;
 			sec = pos-(pos/60)*60;
 			led_draw_time(status_db, status_area,
-				32,4, min, sec );
+				32,4, min, sec);
 			break;
-		case DISC_ASC: /* disc time ascending */
+		case DISC_E: /* disc time ascending */
 			led_draw_time(status_db, status_area,
 				32,4, cd.cd_min, cd.cd_sec);
+			break;
+		case DISC_R:
+			cur = cd.cur_pos_abs;
+			end = (cd.trk[cd.last_t+1].toc.cdte_addr.msf.minute
+			       *60)+cd.trk[cd.last_t+1].toc.cdte_addr.msf.second;
+			pos = end-cur;
+			min = pos/60;
+			sec = pos-(pos/60)*60;
+			led_draw_time(status_db, status_area,
+				32, 4, min, sec);
 			break;
 		default:
 			break;
@@ -433,11 +451,11 @@ void draw_time_playing( GdkGC *gc )
 void draw_titles( GdkGC *gc )
 {
 	gdk_gc_set_foreground( gc, &red );
-	gdk_draw_text(status_db,sfont,gc,4,32, cd.artist, 
+	gdk_draw_text(status_db,sfont,gc,4,39, cd.artist, 
 		strlen(cd.artist));
-	gdk_draw_text( status_db,sfont,gc,4,32+12, cd.album, 
+	gdk_draw_text( status_db,sfont,gc,4,39+10, cd.album, 
 		strlen(cd.album));
-	gdk_draw_text( status_db,sfont,gc,4,32+24, cd.trk[cd.cur_t].name, 
+	gdk_draw_text( status_db,sfont,gc,4,39+20, cd.trk[cd.cur_t].name, 
 		strlen(cd.trk[cd.cur_t].name));
         gtk_window_set_title( GTK_WINDOW(window), cd.trk[cd.cur_t].name );
 }
@@ -445,7 +463,7 @@ void draw_titles( GdkGC *gc )
 void draw_time_scanning( GdkGC *gc )
 {
 	gdk_gc_set_foreground( gc, &red );
-	gdk_draw_text(status_db,sfont,gc,4,32, "(Scanning)", 
+	gdk_draw_text(status_db,sfont,gc,4,39, "(Scanning)", 
 		10);
         gtk_window_set_title( GTK_WINDOW(window), "(Scanning)" );
 }
@@ -471,9 +489,13 @@ void draw_status( void )
 
 	gdk_gc_set_foreground( gc, &darkgrey );
 
-	gdk_draw_line( status_db,gc,0,22,status_area->allocation.width,22 );
-	gdk_draw_line( status_db,gc,28,0,28,22 );
-	gdk_draw_line( status_db,gc,79,0,79,22 );
+	gdk_draw_text( status_db,sfont,gc,32,26, 
+		display_types[time_display_type], 
+		strlen(display_types[time_display_type]));
+
+	gdk_draw_line( status_db,gc,0,27,status_area->allocation.width,27 );
+	gdk_draw_line( status_db,gc,28,0,28,27 );
+	gdk_draw_line( status_db,gc,79,0,79,27 );
 
 	if( !cd.err )
 	{
@@ -481,7 +503,7 @@ void draw_status( void )
 		{
 			case CDROM_AUDIO_INVALID:
 				strcpy( tmp,"No Disc" );
-				gdk_draw_text( status_db,sfont,gc,4,32,tmp, strlen(tmp) );
+				gdk_draw_text( status_db,sfont,gc,4,39,tmp, strlen(tmp) );
 				draw_time_scanning(gc);
 				break;
 			case CDROM_AUDIO_PLAY:
@@ -509,7 +531,7 @@ void draw_status( void )
 				break;
 			case CDROM_AUDIO_ERROR:
 				strcpy( tmp,"Error" );
-				gdk_draw_text( status_db,sfont,gc,4,32,tmp, strlen(tmp) );
+				gdk_draw_text( status_db,sfont,gc,4,39,tmp, strlen(tmp) );
 				draw_time_scanning(gc);
 				break;
 			default:
@@ -522,10 +544,10 @@ void draw_status( void )
 		led_stop_track(status_db, status_area, 4,4 );
 		strcpy( tmp, cd.errmsg );
 		gdk_draw_text( status_db,sfont,gc,
-			4, 32, tmp, strlen(tmp) );
+			4, 39, tmp, strlen(tmp) );
 		draw_time_scanning(gc);
 	}
-	
+
 	gdk_draw_pixmap(status_db,
 			status_area->style->fg_gc[GTK_WIDGET_STATE(status_area)],
 		        GNOME_PIXMAP(play_method_pixmap[cd.play_method])->pixmap,
@@ -721,7 +743,7 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 		if( e->button > 1 )
 		{
 			about_cb(NULL, NULL);
-			return FALSE;
+			return TRUE;
 		}
 		if( x > 80 &&
 		    y > 0 &&
@@ -735,7 +757,21 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 				cd.repeat_track = cd.cur_t;
 
 			draw_status();
+			return TRUE;
 		}
+		if( x > 28 &&
+		    y > 0 &&
+		    x < 79 &&
+		    y < 27 )
+		{
+			time_display_type++;
+			if( time_display_type >= TIME_LAST )
+				time_display_type = TIME_FIRST+1;
+			draw_status();
+			return TRUE;
+		}
+			
+		
 	}
 	
 	return FALSE;
@@ -771,28 +807,28 @@ void setup_time_display( void )
  					   | GDK_LEAVE_NOTIFY_MASK
                                            | GDK_BUTTON_PRESS_MASK
                                            | GDK_POINTER_MOTION_MASK
-                                           | GDK_POINTER_MOTION_HINT_MASK);	
+                                           | GDK_POINTER_MOTION_HINT_MASK);
 
 	frame = gtk_frame_new(NULL);
 	gtk_frame_set_shadow_type( GTK_FRAME(frame), GTK_SHADOW_IN );
 	gtk_container_add(GTK_CONTAINER(frame), status_area);
-	status_table = gtk_vbox_new( FALSE, 4 );
+	status_table = gtk_vbox_new( FALSE, 2 );
 
 #ifdef TCD_CHANGER_ENABLED
 	gtk_box_pack_start( GTK_BOX(main_box), changer_box, FALSE, FALSE, 0 );
 #endif
-	gtk_box_pack_end( GTK_BOX(status_table), volume, FALSE, FALSE, 5 );
+	gtk_box_pack_end( GTK_BOX(status_table), volume, FALSE, FALSE, 2 );
 
 	if( props.handle )
 	{
 		handle1 = gtk_handle_box_new();
 		gtk_container_add(GTK_CONTAINER(handle1), frame );
-		gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
+		gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 2 );
 	}
 	else
-		gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 4);
+		gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 2);
 		                
-	gtk_box_pack_start( GTK_BOX(main_box), status_table, TRUE, TRUE, 4 );
+	gtk_box_pack_start(GTK_BOX(main_box), status_table, TRUE, TRUE, 2);
 	gtk_widget_show_all(status_table);
 	return;
 }
@@ -895,7 +931,7 @@ int main (int argc, char *argv[])
 	setup_pixmaps();
 	led_init(window);
 	
-	time_display_type = TRACK_DEC;
+	time_display_type = TRACK_R;
 	/* Initialize some timers */
 	if( cd.isplayable ) tcd_gettime(&cd);
 

@@ -667,7 +667,7 @@ void tcd_get_cddb( void )
 	server.port = 888;
 	                
 	mvwprintw( win, maxy-1, 2, "Connecting to cddb.cddb.com:888...   " );refresh();	
-	if( tcd_open_cddb( &server ) != 0 )
+	if( tcd_open_cddb( &server, NULL ) != 0 )
 	{
 		mvwprintw( win, maxy-1, 2, "Error: %s                    ", server.error );refresh();	
 		sleep(2);
@@ -678,7 +678,7 @@ void tcd_get_cddb( void )
 	tcd_formatquery( cd, test ,sizeof(test));
         r = send( server.socket, test, strlen(test), 0 );
 	
-        tcd_getquery( &server, &query );
+        tcd_getquery( &server, &query, NULL );
 	
 	mvwprintw( win, maxy-1, 2, "Album found. Downloading information." );refresh();	
  
@@ -691,7 +691,7 @@ void tcd_get_cddb( void )
 	i=0;
 	do
 	{
-		fgetsock( s, 80, server.socket );
+		fgetsock( s, 80, server.socket,NULL );
 	        fprintf( outfile, "%s\n", s );
 		mvwprintw( win, maxy-1, 2, "Downloading line %3d...             ",i++ );refresh();
 	} while( strcmp( ".", s ) );

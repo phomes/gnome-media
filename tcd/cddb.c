@@ -196,7 +196,7 @@ static char *if_strtok(char *p, const char *p2)
 	return p;
 }
 
-int tcd_getquery_http(cddb_server *server, cddb_query_str *query) 
+int tcd_getquery_http(cddb_server *server, cddb_query_str *query, PeriodicFunc func) 
 {
 	char s[512];
 	int i;
@@ -206,10 +206,10 @@ int tcd_getquery_http(cddb_server *server, cddb_query_str *query)
 #endif
 
 	do {
-		fgetsock(s,511,server->socket);
+		fgetsock(s,511,server->socket, func);
 	} while (strncmp(s,"Content-Type:",13));
-	fgetsock(s,511,server->socket);
-	fgetsock(s,511,server->socket);
+	fgetsock(s,511,server->socket, func);
+	fgetsock(s,511,server->socket, func);
 
 	/* different from cddb.howto? maybe not*/
 	if (!strncmp(s,"200",3) || !strncmp(s,"201",3)) {
@@ -227,10 +227,10 @@ int tcd_getquery_http(cddb_server *server, cddb_query_str *query)
 	return(i);
 }
 
-int tcd_getquery( cddb_server *server, cddb_query_str *query )
+int tcd_getquery( cddb_server *server, cddb_query_str *query, PeriodicFunc func )
 {
 	char s[512];
-	fgetsock( s, 511, server->socket );
+	fgetsock( s, 511, server->socket, func );
 	s[511]=0;
 	
 	/* Fill in query info  - watch lengths - AC */
@@ -399,7 +399,7 @@ int tcd_open_cddb_http(cddb_server *server)
 }
 
   
-int tcd_open_cddb( cddb_server *server )
+int tcd_open_cddb( cddb_server *server, PeriodicFunc func )
 {
 	struct passwd* pw;
 	int code;
@@ -428,7 +428,7 @@ int tcd_open_cddb( cddb_server *server )
 		strcpy( server->error, strerror(errno) );
 		return -1;
 	}
-	fgetsock( s, 80, server->socket );
+	fgetsock( s, 80, server->socket, func );
 	if( sscanf( s, "%d", &code ) != 1 )
 	{
 		strcpy( server->error, "CDDB Server returned garbled information." );
@@ -461,7 +461,7 @@ int tcd_open_cddb( cddb_server *server )
 			        	"TCD",
 			        	"2.0" );
 
-	fgetsock( s, 80, server->socket );
+	fgetsock( s, 80, server->socket, func );
 	if( sscanf( s, "%d", &code ) != 1 )
 	{
 		strcpy( server->error, "CDDB Server returned garbled information." );

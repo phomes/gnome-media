@@ -51,6 +51,18 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
+void debug( const char *fmt, ...)
+{
+#ifdef DEBUG
+	va_list ap;
+
+	va_start(ap, fmt);
+	vfprintf(stderr, fmt, ap);
+	va_end(ap);
+#endif
+	return;
+}
+
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
 	char tcd_dir[60];
@@ -58,9 +70,7 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 	struct stat fs;
 	struct cdrom_volctrl vol;
 
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_init_disc(%p) top\n", cd );
-#endif
+	debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
 	tcd_opencddev( cd, msg_cb );
 
 #ifdef DATABASE_SUPPORT
@@ -75,9 +85,8 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 				snprintf( tmp, 255, "Error creating %s. Reason: %s\n", tcd_dir, strerror(errno) );
 				if( msg_cb )
 					msg_cb(tmp,"error");
-#ifdef DEBUG
-				fprintf( stderr, "cdrom.c: tcd_init_disc exiting early.\n" );
-#endif
+
+				debug( "cdrom.c: tcd_init_disc exiting early.\n" );
 				return -1;
 			}
 			if( msg_cb )
@@ -99,9 +108,7 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 #endif
 	if( cd->err )
 	{
-#ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_init_disc exiting early (!cd->err)\n" );
-#endif
+		debug( "cdrom.c: tcd_init_disc exiting early (!cd->err)\n" );
 		return(-1);
 	}
 
@@ -114,21 +121,15 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 	ioctl( cd->cd_dev, CDROMVOLREAD, &vol );
 	cd->volume = vol.channel0;
 
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_init_disc exiting normally\n" );
-#endif
+	debug("cdrom.c: tcd_init_disc exiting normally\n" );
 	return(0);
 }
 
 int tcd_close_disc( cd_struct *cd )
 {
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_close_disc(%p) top\n", cd );
-#endif
+	debug("cdrom.c: tcd_close_disc(%p) top\n", cd );
 	close( cd->cd_dev );
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_close_disc exiting normally\n" );
-#endif
+	debug("cdrom.c: tcd_close_disc exiting normally\n" );
 	return 0;
 }
 
@@ -137,9 +138,7 @@ int tcd_readtoc( cd_struct *cd )
 	int tmp,i;
 	int delsecs;
 
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_readtoc(%p) top\n", cd );
-#endif
+	debug("cdrom.c: tcd_readtoc(%p) top\n", cd );
 	cd->err = FALSE;
 	cd->isplayable=FALSE;
 	
@@ -148,9 +147,7 @@ int tcd_readtoc( cd_struct *cd )
 	{
 		strcpy( cd->errmsg, "Can't read disc." );
 		cd->err = TRUE;
-#ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCHDR ioctl error.\n" );
-#endif
+		debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCHDR ioctl error.\n" );
 		cd->cur_t = 0;
 		return(-1);		
 	}
@@ -173,9 +170,7 @@ int tcd_readtoc( cd_struct *cd )
 		strcpy( cd->errmsg, "Can't read disc." );
                 cd->err = TRUE;
 
-#ifdef DEBUG
-                fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
-#endif
+                debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 		cd->cur_t = 0;
 		return(-1);
         }                                         
@@ -190,9 +185,7 @@ int tcd_readtoc( cd_struct *cd )
 		{
 			strcpy( cd->errmsg, "Can't read disc." );
                   	cd->err = TRUE;
-#ifdef DEBUG
-	                fprintf( stderr, "cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
-#endif
+	                debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
 			cd->cur_t = 0;
 			return(-1);
                 }
@@ -233,9 +226,7 @@ int tcd_readtoc( cd_struct *cd )
 #endif
 
 	cd->isplayable=TRUE;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_readtoc exiting normally\n" );
-#endif
+	debug("cdrom.c: tcd_readtoc exiting normally\n" );
 	return tmp;
 }
 
@@ -255,9 +246,7 @@ void tcd_gettime( cd_struct *cd )
 		{
 			strcpy( cd->errmsg, "Can't read disc." );
 	               	cd->err = TRUE;
-#ifdef DEBUG
-			fprintf( stderr, "cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
-#endif
+			debug("cdrom.c: tcd_gettime exiting early. CDROMSUBCHNL ioctl error.\n" );
 			cd->cur_t = 0;
 			return;
 	        }
@@ -307,58 +296,42 @@ void tcd_gettime( cd_struct *cd )
 	                                   
 int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 {
+	struct cdrom_msf msf;
 	int tmp;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_playtracks( %p, %d, %d )\n", cd, start_t, end_t );
-#endif
+	debug("cdrom.c: tcd_playtracks( %p, %d, %d )\n", cd, start_t, end_t );
 	cd->err = FALSE;
 	cd->isplayable=FALSE;
 	cd->isdisk=FALSE;
 	
 	if( cd->trk[C(start_t)].status == TRK_DATA )
 	{
-#ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_playtracks error. trying to play data track.\n" );
-#endif
+		debug("cdrom.c: tcd_playtracks error. trying to play data track.\n" );
 		return -1;
 	}
 	
-        cd->ti.cdti_trk0 = start_t;   /* start track */
-   	cd->ti.cdti_ind0 = 1;   /* start index */
-        cd->ti.cdti_trk1 = end_t;  /* end track */
-        cd->ti.cdti_ind1 = 1;   /* end index */
-                                
-        tmp = ioctl( cd->cd_dev, CDROMPLAYTRKIND, &cd->ti );
-   	if( tmp < 0 )
-	{
-		struct cdrom_msf msf;
-		msf.cdmsf_min0 = cd->trk[start_t].toc.cdte_addr.msf.minute;
-		msf.cdmsf_sec0 = cd->trk[start_t].toc.cdte_addr.msf.second;
-		msf.cdmsf_frame0 = cd->trk[start_t].toc.cdte_addr.msf.frame;
+	msf.cdmsf_min0 = cd->trk[start_t].toc.cdte_addr.msf.minute;
+	msf.cdmsf_sec0 = cd->trk[start_t].toc.cdte_addr.msf.second;
+	msf.cdmsf_frame0 = cd->trk[start_t].toc.cdte_addr.msf.frame;
 	
-		msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
-		msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
-		msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
+	msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
+	msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
+	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
 	
-		msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
-		msf.cdmsf_sec1 %= 60;
-		tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );
+	msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
+	msf.cdmsf_sec1 %= 60;
+	tmp = ioctl( cd->cd_dev, CDROMPLAYMSF, &msf );
 		
-		if( tmp < 0 )
-		{
-			strcpy( cd->errmsg, "Error playing disc" );
-			cd->err = TRUE;
-#ifdef DEBUG
-			fprintf( stderr, "cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n" );
-#endif
-			return -1;
-		}
+	if( tmp < 0 )
+	{
+		strcpy( cd->errmsg, "Error playing disc" );
+		cd->err = TRUE;
+		debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error.\n" );
+		return -1;
 	}
    	cd->isplayable=TRUE;                                                 
 	cd->isdisk=TRUE;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_playtracks exiting normally\n" );
-#endif
+
+	debug("cdrom.c: tcd_playtracks exiting normally\n" );
    	return tmp;
 }       
 
@@ -366,9 +339,9 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 {
 	struct cdrom_msf msf;
 	int tmp;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_playseconds( %p, %ld )\n", cd, offset );
-#endif
+
+	debug("cdrom.c: tcd_playseconds( %p, %ld )\n", cd, offset );
+
 	cd->err = FALSE;
 	cd->isplayable=FALSE;
 	cd->isdisk=FALSE;
@@ -391,25 +364,23 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
 	{
 		strcpy( cd->errmsg, "Error playing disc." );
                	cd->err = TRUE;
-#ifdef DEBUG
-		fprintf( stderr, "cdrom.c: tcd_play_seconds error. CDROMPLAYMSF ioctl error.\n" );
-#endif
+
+		debug("cdrom.c: tcd_play_seconds error. CDROMPLAYMSF ioctl error.\n" );
 		return(-1);
         }
    	cd->isplayable=TRUE;                                                 
 	cd->isdisk=TRUE;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_playseconds exiting normally\n" );
-#endif
+
+	debug("cdrom.c: tcd_playseconds exiting normally\n" );
    	return tmp;
 }       
 
 int tcd_ejectcd( cd_struct *cd )
 {
 	int tmp;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_eject(%p) top\n", cd );
-#endif
+
+	debug("cdrom.c: tcd_eject(%p) top\n", cd );
+
 	cd->err = FALSE;
 
 	tmp = ioctl( cd->cd_dev, CDROMEJECT );
@@ -421,18 +392,16 @@ int tcd_ejectcd( cd_struct *cd )
 	{
 		strcpy( cd->errmsg, "Can't eject disc." );
                	cd->err = TRUE;
-#ifdef DEBUG
-		perror( "ioctl" );
-		fprintf( stderr, "cdrom.c: tcd_eject exiting early. eject error.\n", cd );
-#endif
+
+		debug("cdrom.c: tcd_eject exiting early. eject error. %s\n", cd, 
+			strerror(errno) );
+
 		return(-1);
         }
 	cd->isplayable=FALSE;
 	cd->isdisk=FALSE;
 
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_eject exiting normally\n" );
-#endif
+	debug("cdrom.c: tcd_eject exiting normally\n" );
    	return 0;
 }       
 
@@ -440,24 +409,21 @@ int tcd_stopcd( cd_struct *cd )
 {
 	int tmp;
 	cd->err = FALSE;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_stopcd(%p)\n", cd );
-#endif
+
+	debug("cdrom.c: tcd_stopcd(%p)\n", cd );
 
         tmp = ioctl( cd->cd_dev, CDROMSTOP );
    	if( tmp < 0 )
 	{
 		strcpy( cd->errmsg, "Can't stop disc." );
                	cd->err = TRUE;
-#ifdef DEBUG
-	fprintf( stderr, "cdrom.c: tcd_stopcd exiting early. CDROMSTOP ioctl error.\n" );
-#endif
+
+		debug("cdrom.c: tcd_stopcd exiting early. CDROMSTOP ioctl error.\n" );
 		return(-1);
         }
-#ifdef DEBUG
-        fprintf( stderr, "cdrom.c: tcd_stopcd exiting normally\n" );
-#endif
-           	return tmp;
+
+	debug("cdrom.c: tcd_stopcd exiting normally\n" );
+        return tmp;
 }       
 
 int tcd_pausecd( cd_struct *cd )
@@ -504,7 +470,7 @@ int tcd_change_disc( cd_struct *cd, int disc )
 	close(fd);
    	return tmp;
 #else
-	fprintf( stderr, "tcd_change_disc called, but changer support isn't compiled in. Ickyblah.\n" );
+	debug("tcd_change_disc called, but changer support isn't compiled in. Ickyblah.\n" );
 	return 0;
 #endif
 }
@@ -557,7 +523,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 		fclose(fp);
 		if( (res = tcd_readcddb( cd, fn ))<0 )
 		{
-			fprintf( stderr, "tcd_readcddb returned an error, %d\n", res );
+			debug("tcd_readcddb returned an error, %d\n", res );
 			sleep(2);
 			return -1;
 		}
@@ -575,10 +541,10 @@ int tcd_readdiskinfo( cd_struct *cd )
 	{
 
 		sprintf( fn, "%s%ld.tcd", tcd_dir, cd->old_id );
-#ifdef DEBUG
-		fprintf( stderr,"Warning, can't open new format \'%s\', trying old.\n", fn );
-		fprintf( stderr, "opening...%s\n", fn );
-#endif
+
+		debug("Warning, can't open new format \'%s\', trying old.\n", fn );
+		debug("opening...%s\n", fn );
+
 		if( !stat(fn, &fs) )
 		{
 			fp = fopen( fn, "r" );
@@ -607,9 +573,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 		else 
 		{		
 
-#ifdef DEBUG
-			fprintf( stderr,"Warning, can't open \'%s\' \n", fn );
-#endif
+			debug("Warning, can't open \'%s\' \n", fn );
 			strcpy( cd->dtitle, "Unknown / Unknown" );
 		
 			for( i = cd->first_t; i <= cd->last_t; i++ )

@@ -27,6 +27,8 @@
 #ifndef TCD_CDDB_H
 #define TCD_CDDB_H
 
+#include "socket.h"
+
 #define HOSTNAME_MAX	256
 #define VERSION_MAX	10
 #define CATEG_MAX	20	
@@ -63,15 +65,19 @@ int 		tcd_sendhandshake(  cddb_server *server,
                 			char* hostname,
                 		        char* clientname,
                 		        char* version );
-int 		tcd_getquery( cddb_server *server, cddb_query_str *query );
+int 		tcd_getquery_http(cddb_server *server, 
+			cddb_query_str *query, 
+			PeriodicFunc func);
+
 void 		tcd_formatquery( cd_struct *cd, char *buf , int blen);
-int 		tcd_open_cddb( cddb_server *server );
+int 		tcd_open_cddb( cddb_server *server, PeriodicFunc func );
 
 int             tcd_formatread_http( cd_struct *cd, char *buf, int blen,
 				     char *hostname, int port, char *path,
 				     char *categ, char *discid);
 int             tcd_formatquery_http( cd_struct *cd, char *buf, int blen,
 				      char *hostname, int port, char *path);
+int tcd_getquery( cddb_server *server, cddb_query_str *query, PeriodicFunc func );
 
 
 #endif /* TCD_CDDB_H */

@@ -1,130 +1,188 @@
-/* This file is part of TCD 2.0.
-   gtracked.c - Track editor window for GTK+ interface.
-   
-   Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
-   
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-               
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-                           
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-                                    
-   Tim P. Gerla
-   RR 1, Box 40
-   Climax, MN  56523
-   timg@means.net
-*/
-                                                
-#include <gtk/gtk.h>
+#include <gnome.h>
 #include <sys/types.h>
-
-#ifdef linux
-# include <linux/cdrom.h>
-# include "linux-cdrom.h"
-#else
-# error TCD currently only builds under Linux systems.
-#endif
-
-#include "gtracked.h"
+#include <linux/cdrom.h>
+#include "linux-cdrom.h"
 
 GtkWidget *trwin;
-GtkWidget *box, *namebox;
-GtkWidget *entry[50], *title;
+static int current_track;
 extern cd_struct cd;
-extern int titlelabel_f;
 
-void destroy_window (GtkWidget *widget, GtkWidget **window)
+void destroy_window (GtkWidget *widget, gboolean save)
 {
-	int i;
-	for( i=1; i <= cd.last_t; i++ )
-	{
-		strcpy( cd.trk[i].name, (char*)gtk_entry_get_text(GTK_ENTRY(entry[i])) );
-	}
-	strcpy( cd.dtitle, (char*)gtk_entry_get_text(GTK_ENTRY(title)));
-	tcd_writediskinfo(&cd);
-	gtk_widget_destroy( trwin );
+	if( save )
+		tcd_writediskinfo(&cd);
+        gtk_widget_destroy(trwin);
 	trwin = NULL;
-	titlelabel_f = -100; /* Invalidate the labels */
+	return;
 }
 
+void update_list( GtkWidget *list, int track )
+{
+	gtk_clist_freeze(GTK_CLIST(list));
+	gtk_clist_set_text(GTK_CLIST(list), track-1, 2, cd.trk[track].name );
+	gtk_clist_thaw(GTK_CLIST(list));
+	return;
+}
 
-void gtracked()
+void fill_list( GtkWidget *list )
 {
 	int i;
-	char buf[64];
-	/* FIXME don't hardcode number of entries! */
-	GtkWidget *label, *tmp, *button, *table;
+	gchar *tmp[4];
 
+	for( i=0; i < 3; i++ )
+		tmp[i] = malloc(255);
+		
+	gtk_clist_freeze(GTK_CLIST(list));
+
+	for( i=1; i <= cd.last_t; i++ )
+	{
+		g_snprintf(tmp[0], 255, "%d", i);
+		g_snprintf(tmp[1], 255, "%2d:%02d",
+			cd.trk[i].tot_min, cd.trk[i].tot_sec);
+		strcpy(tmp[2], cd.trk[i].name);
+		tmp[3] = NULL;
+	
+		gtk_clist_append(GTK_CLIST(list), tmp );
+	}
+
+	gtk_clist_thaw(GTK_CLIST(list));
+	return;
+}
+
+void dtitle_changed( GtkWidget *widget, gpointer data )
+{
+	strcpy(cd.dtitle, gtk_entry_get_text(GTK_ENTRY(widget)));
+	return;
+}
+
+void activate_entry( GtkWidget *widget, GtkWidget *list )
+{
+	strcpy(cd.trk[current_track].name, 
+		gtk_entry_get_text(GTK_ENTRY(widget)));
+	update_list(list, current_track);
+	gtk_clist_select_row(GTK_CLIST(list), 0, current_track);
+	return;
+}
+
+void select_row_cb( GtkCList *clist,
+		    gint row,
+                    gint column,
+                    GdkEventButton *event,
+                    GtkWidget *entry)
+{
+	gtk_entry_set_text(GTK_ENTRY(entry), cd.trk[row+1].name);
+	current_track = row+1;
+	if( event->type == GDK_2BUTTON_PRESS )
+		tcd_playtracks(&cd, row+1, cd.last_t);
+
+	return;
+}
+	
+void edit_window( void )
+{
+	char *titles[] = {"Trk","Time","Title"};
+	
+	GtkWidget *disc_entry, *disc_ext;
+	GtkWidget *label, *disc_frame, *button_box;
+	GtkWidget *main_box, *disc_table, *button;
+
+	GtkWidget *track_list, *track_frame;
+	GtkWidget *track_vbox, *track_entry;
+	GtkWidget *track_ext, *entry_box;
+	
 	if( trwin )
 		return;
 
-	trwin = gtk_window_new( GTK_WINDOW_DIALOG );
-	gtk_window_set_title( GTK_WINDOW(trwin), "TCD 2.0 - Track Editor" );
-        gtk_window_set_wmclass( GTK_WINDOW(trwin), "track_editor","gtcd" );
-         		
-	gtk_signal_connect (GTK_OBJECT (trwin), "delete_event",
-		GTK_SIGNAL_FUNC (destroy_window), &trwin);
+	trwin = gtk_window_new(GTK_WINDOW_DIALOG);
+	gtk_container_border_width(GTK_CONTAINER(trwin), 5);
+	gtk_window_set_title(GTK_WINDOW(trwin), "Track Editor");
+	gtk_window_set_wmclass(GTK_WINDOW(trwin), "track_editor","gtcd");
 
-	/* sets the border width of the window. */
-	gtk_container_border_width (GTK_CONTAINER (trwin), 5);          
-
-	box = gtk_vbox_new( TRUE,4 );		
-	table = gtk_table_new( 1, 2, FALSE );
-
-	label = gtk_label_new("Disc Title:   ");
-	gtk_widget_show(label);
-		
-	title = gtk_entry_new();
-	gtk_entry_set_text( GTK_ENTRY(title), cd.dtitle );
-	gtk_widget_show(title);
-	gtk_table_attach_defaults( GTK_TABLE(table), label, 0,1,0,1 );
-	gtk_table_attach_defaults( GTK_TABLE(table), title, 1,2,0,1 );
-	gtk_widget_show( table );
-
-	gtk_box_pack_start( GTK_BOX(box), table, TRUE, TRUE, 0 );
+	gtk_signal_connect(GTK_OBJECT(trwin), "delete_event",
+		GTK_SIGNAL_FUNC(destroy_window), trwin);
 	
-	tmp = gtk_hseparator_new();
-	gtk_widget_show( tmp );
-	gtk_box_pack_start( GTK_BOX(box), tmp, TRUE, TRUE, 0 );
+	main_box = gtk_vbox_new(FALSE, 4);
 	
-	for( i=1; i <= cd.last_t; i++ )
-	{
-		table = gtk_table_new( 1, 2, FALSE );
-		sprintf( buf, "Track %2d:   ", i );
-		
-		label = gtk_label_new( buf );
-		gtk_widget_show(label);
-		
-		entry[i] = gtk_entry_new();
-		gtk_entry_set_text( GTK_ENTRY(entry[i]), cd.trk[i].name );
-		gtk_widget_show(entry[i]);
-		gtk_table_attach_defaults( GTK_TABLE(table), label, 0,1,0,1 );
-		gtk_table_attach_defaults( GTK_TABLE(table), entry[i], 1,2,0,1 );
+	/* Disc area */
+	disc_table  = gtk_table_new(2, 2, FALSE);
+	disc_frame = gtk_frame_new("Disc Information");
+	label 	   = gtk_label_new("Artist / Title");
+	disc_ext   = gtk_button_new_with_label("Ext Data");
+	gtk_widget_set_sensitive(disc_ext, FALSE);
+	disc_entry = gtk_entry_new();
+	gtk_entry_set_text(GTK_ENTRY(disc_entry), cd.dtitle);
 
-		gtk_widget_show( table );
-		
-		gtk_box_pack_start( GTK_BOX(box), table, TRUE, TRUE, 0 );
-	}
-	tmp = gtk_hseparator_new();
-	gtk_widget_show( tmp );
-	gtk_box_pack_start( GTK_BOX(box), tmp, TRUE, TRUE, 0 );
+	gtk_table_attach_defaults(GTK_TABLE(disc_table), label, 
+		0,1, 0,1 );
+	gtk_table_attach_defaults(GTK_TABLE(disc_table), disc_entry, 
+		0,1, 1,2 );
+	gtk_table_attach_defaults(GTK_TABLE(disc_table), disc_ext, 
+		1,2, 1,2 );
 
-	button = gtk_button_new_with_label( "Done" );
-	gtk_widget_show( button );
-	gtk_box_pack_start( GTK_BOX(box), button, TRUE, TRUE, 0 );
+	gtk_container_add(GTK_CONTAINER(disc_frame), disc_table);
+	gtk_box_pack_start_defaults(GTK_BOX(main_box), disc_frame);
+	/* END Disc area */
+	
+	/* Track area */
+	track_vbox  = gtk_vbox_new(FALSE, 2);
+	entry_box   = gtk_hbox_new(FALSE, 2);
+	track_entry = gtk_entry_new();
+	gtk_entry_set_text(GTK_ENTRY(track_entry), cd.trk[1].name);
+	track_ext   = gtk_button_new_with_label("Ext Data");
+	gtk_widget_set_sensitive(track_ext, FALSE);
+	track_list  = gtk_clist_new_with_titles(3, titles);
+	current_track = 1;
+	gtk_clist_set_border(GTK_CLIST(track_list), GTK_SHADOW_NONE);
+	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 18);
+	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
+	gtk_clist_set_policy(GTK_CLIST(track_list), GTK_POLICY_AUTOMATIC,
+						    GTK_POLICY_AUTOMATIC);
+	gtk_clist_set_selection_mode(GTK_CLIST(track_list), 
+						    GTK_SELECTION_BROWSE);
+	gtk_clist_column_titles_passive(GTK_CLIST(track_list));
+	gtk_widget_set_usize(track_list, 150, 225 );
+	fill_list(track_list);
+	track_frame = gtk_frame_new("Track Information");
+	
+	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
+	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_ext);
+	gtk_box_pack_start_defaults(GTK_BOX(track_vbox), entry_box);
+	gtk_box_pack_start_defaults(GTK_BOX(track_vbox), track_list);
+	gtk_container_add(GTK_CONTAINER(track_frame), track_vbox);
+	gtk_box_pack_start_defaults(GTK_BOX(main_box), track_frame);	
+	/* END Track area */
 
-	gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		GTK_SIGNAL_FUNC (destroy_window), &trwin);
+	button_box = gtk_hbox_new(FALSE,2);
+	button = gtk_button_new_with_label("CDDB Get");
+	gtk_widget_set_sensitive(button, FALSE);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	button = gtk_button_new_with_label("Clear All");
+	gtk_widget_set_sensitive(button, FALSE);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	button = gtk_button_new_with_label("Submit");
+	gtk_widget_set_sensitive(button, FALSE);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
 
-	gtk_container_add( GTK_CONTAINER(trwin), box );
-	gtk_widget_show( box );
-	gtk_widget_show( trwin ); 
+	button_box = gtk_hbox_new(TRUE,2);
+	button = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		GTK_SIGNAL_FUNC(destroy_window), (gpointer)TRUE);
+	button = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		GTK_SIGNAL_FUNC(destroy_window), (gpointer)FALSE);
+	gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
+
+	gtk_signal_connect(GTK_OBJECT(track_list), "select_row",
+		GTK_SIGNAL_FUNC(select_row_cb), track_entry);
+	gtk_signal_connect(GTK_OBJECT(disc_entry), "changed",
+		GTK_SIGNAL_FUNC(dtitle_changed), NULL);
+	gtk_signal_connect(GTK_OBJECT(track_entry), "activate",
+		GTK_SIGNAL_FUNC(activate_entry), track_list);
+	
+	gtk_container_add(GTK_CONTAINER(trwin), main_box);
+	gtk_widget_show_all(trwin);
+	return;
 }

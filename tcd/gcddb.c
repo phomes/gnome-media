@@ -114,7 +114,13 @@ void gcddb()
                         GTK_SIGNAL_FUNC(close_cddb), NULL);
 
 	gtk_container_add( GTK_CONTAINER(win), box );
+
 	gtk_widget_show_all(win);
+}
+
+void periodic(void)
+{
+	while(gtk_events_pending()) gtk_main_iteration();
 }
 
 int do_cddb( GtkWidget *widget, gpointer data )
@@ -145,13 +151,13 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	while(gtk_events_pending()) gtk_main_iteration();
 
 	if (server.http) {
-		if(tcd_open_cddb_http(&server)) {
+		if(tcd_open_cddb_http(&server, periodic)) {
 			sprintf(tmp,"Eror: %s", server.error);
 			gtk_label_set(GTK_LABEL(label),tmp);
 			return(0);
 		}
 	} else {
-		if( tcd_open_cddb( &server ) != 0 )
+		if( tcd_open_cddb( &server, periodic ) != 0 )
 		{
 			sprintf( tmp, "Error: %s", server.error );
 			gtk_label_set( GTK_LABEL(label), tmp );
@@ -177,12 +183,12 @@ int do_cddb( GtkWidget *widget, gpointer data )
 
 	gtk_label_set( GTK_LABEL(label), "Reading results..." );
 	if (server.http) {
-		if (tcd_getquery_http(&server,&query)) {
+		if (tcd_getquery_http(&server,&query, periodic)) {
 			gtk_label_set(GTK_LABEL(label),"Error: Unable to open cddb read socket\n");
 			return(0);
 		}
 	} else {
-		tcd_getquery( &server, &query );
+		tcd_getquery( &server, &query, periodic );
 	}
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.6);
 	while(gtk_events_pending()) gtk_main_iteration();
@@ -206,12 +212,12 @@ int do_cddb( GtkWidget *widget, gpointer data )
 
 	if (server.http) {
 		do {
-			fgetsock(s,127,server.socket);
+			fgetsock(s,127,server.socket, periodic);
 		} while (strncmp(s,"Content-Type:",13));
-		fgetsock(s,127,server.socket);
+		fgetsock(s,127,server.socket, periodic);
 	}
 
-	fgetsock( s, 80, server.socket );
+	fgetsock( s, 80, server.socket,periodic );
 	sscanf( s, "%d ", &result );
 #ifdef DEBUG
 	g_print( "%d\n", result );
@@ -228,7 +234,7 @@ int do_cddb( GtkWidget *widget, gpointer data )
 	i=0;
 	do
 	{
-		fgetsock( s, 80, server.socket );
+		fgetsock( s, 80, server.socket, periodic );
 #ifdef DEBUG
 		g_print( "<- %s\n", s );
 #endif
