@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2003-05-05 04:16+0200\n"
-"PO-Revision-Date: 2003-05-05 13:12+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-15 12:55+0200\n"
+"PO-Revision-Date: 2003-07-15 21:08+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,31 +19,52 @@ msgstr ""
 msgid "Address of the server to contact for CD queries"
 msgstr "Adresa serveru, který kontaktovat pro dotazy o CD"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:798
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Info to send to server"
+msgstr "Informace, které poslat serveru"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:801
 msgid "Port"
 msgstr "Port"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "Jméno serveru"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Typ serveru"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
 msgstr "Jméno počítače, které se bude posílat se všemi dotazy"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
 msgstr "Port, na kterém běží server databáze"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "Typ serveru, který kontaktovat s dotazy na CD. Možné hodnoty jsou 0 (round robin server FreeDB), 1 (jiný server freedb) a 2 (jiný server)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "Jméno uživatele"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
 msgstr "Jméno uživatele, které se bude posílat se všemi dotazy"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user info will be sent to the server to contact for "
+"CD queries. Possible values are 0 (no info), 1 (real info) and 3 (other "
+"info)."
+msgstr "Tento klíč určuje, jaké informace o uživately budou odeslány serveru, který kontaktovat s dotazy o CD. Možné hodnoty jsou 0 (žádné informace), 1 (skutečné informace) a 3 (jiné informace)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr "Název vašeho počítače"
 
@@ -64,64 +86,64 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:670
+#: cddb-slave2/cddb-slave-capplet.c:671
 msgid "Log on information"
 msgstr "Přihlašovací údaje"
 
-#: cddb-slave2/cddb-slave-capplet.c:679
+#: cddb-slave2/cddb-slave-capplet.c:680
 msgid "Send _no info"
 msgstr "_Neposílat žádné informace"
 
-#: cddb-slave2/cddb-slave-capplet.c:688
+#: cddb-slave2/cddb-slave-capplet.c:689
 msgid "Send real _info"
 msgstr "Posílat skutečné _informace"
 
-#: cddb-slave2/cddb-slave-capplet.c:697
+#: cddb-slave2/cddb-slave-capplet.c:698
 msgid "Send _other info..."
 msgstr "P_osílat jiné informace..."
 
-#: cddb-slave2/cddb-slave-capplet.c:714
+#: cddb-slave2/cddb-slave-capplet.c:715
 msgid "N_ame:"
 msgstr "_Jméno:"
 
-#: cddb-slave2/cddb-slave-capplet.c:733
+#: cddb-slave2/cddb-slave-capplet.c:735
 msgid "_Hostname:"
 msgstr "Ná_zev počítače:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
+#: cddb-slave2/cddb-slave-capplet.c:758 cddb-slave2/cddb-slave-capplet.c:798
 msgid "Server"
 msgstr "Server"
 
-#: cddb-slave2/cddb-slave-capplet.c:763
+#: cddb-slave2/cddb-slave-capplet.c:766
 msgid "FreeDB _round robin server"
 msgstr "_Round robin server FreeDB"
 
-#: cddb-slave2/cddb-slave-capplet.c:769
+#: cddb-slave2/cddb-slave-capplet.c:772
 msgid "Other _FreeDB server..."
 msgstr "Jiný server _FreeDB..."
 
-#: cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/cddb-slave-capplet.c:804
 msgid "Location"
 msgstr "Umístění"
 
-#: cddb-slave2/cddb-slave-capplet.c:807
+#: cddb-slave2/cddb-slave-capplet.c:810
 msgid "Update server list"
 msgstr "Aktualizovat seznam serverů"
 
-#: cddb-slave2/cddb-slave-capplet.c:814
+#: cddb-slave2/cddb-slave-capplet.c:817
 msgid "Other _server..."
 msgstr "Jiný _server..."
 
-#: cddb-slave2/cddb-slave-capplet.c:826
+#: cddb-slave2/cddb-slave-capplet.c:829
 msgid "Hostname:"
 msgstr "Název počítače:"
 
-#: cddb-slave2/cddb-slave-capplet.c:838
+#: cddb-slave2/cddb-slave-capplet.c:842
 msgid "_Port:"
 msgstr "_Port:"
 
-#: cddb-slave2/cddb-slave-capplet.c:888
+#: cddb-slave2/cddb-slave-capplet.c:892
 msgid "CD Database Preferences"
 msgstr "Nastavení databáze CD"
 
@@ -130,9 +152,9 @@ msgid "Unknown / Unknown"
 msgstr "Neznámý / Neznámý"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:777
-#: grecord/src/gsr-window.c:786 grecord/src/gsr-window.c:795
-#: grecord/src/gsr-window.c:805 grecord/src/gsr-window.c:1125
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:778
+#: grecord/src/gsr-window.c:787 grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:806 grecord/src/gsr-window.c:1133
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -173,676 +195,676 @@ msgstr "Databáze CD"
 msgid "Modify your CD database preferences"
 msgstr "Upravte nastavení vaší databáze CD"
 
-#: cddb-slave2/cddb-track-editor.c:78
+#: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
 msgstr "Blues"
 
-#: cddb-slave2/cddb-track-editor.c:79
+#: cddb-slave2/cddb-track-editor.c:80
 msgid "Classical Rock"
 msgstr "Klasický rock"
 
-#: cddb-slave2/cddb-track-editor.c:80
+#: cddb-slave2/cddb-track-editor.c:81
 msgid "Country"
 msgstr "Country"
 
-#: cddb-slave2/cddb-track-editor.c:81
+#: cddb-slave2/cddb-track-editor.c:82
 msgid "Dance"
 msgstr "Dance"
 
-#: cddb-slave2/cddb-track-editor.c:82
+#: cddb-slave2/cddb-track-editor.c:83
 msgid "Disco"
 msgstr "Disko"
 
-#: cddb-slave2/cddb-track-editor.c:83
+#: cddb-slave2/cddb-track-editor.c:84
 msgid "Funk"
 msgstr "Funk"
 
-#: cddb-slave2/cddb-track-editor.c:84
+#: cddb-slave2/cddb-track-editor.c:85
 msgid "Grunge"
 msgstr "Grunge"
 
-#: cddb-slave2/cddb-track-editor.c:85
+#: cddb-slave2/cddb-track-editor.c:86
 msgid "Hip-Hop"
 msgstr "Hip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:86
+#: cddb-slave2/cddb-track-editor.c:87
 msgid "Jazz"
 msgstr "Jazz"
 
-#: cddb-slave2/cddb-track-editor.c:87
+#: cddb-slave2/cddb-track-editor.c:88
 msgid "Metal"
 msgstr "Metal"
 
-#: cddb-slave2/cddb-track-editor.c:88
+#: cddb-slave2/cddb-track-editor.c:89
 msgid "New Age"
 msgstr "New Age"
 
-#: cddb-slave2/cddb-track-editor.c:89
+#: cddb-slave2/cddb-track-editor.c:90
 msgid "Oldies"
 msgstr "Oldies"
 
-#: cddb-slave2/cddb-track-editor.c:90
+#: cddb-slave2/cddb-track-editor.c:91
 msgid "Other"
 msgstr "Jiná"
 
-#: cddb-slave2/cddb-track-editor.c:91
+#: cddb-slave2/cddb-track-editor.c:92
 msgid "Pop"
 msgstr "Pop"
 
-#: cddb-slave2/cddb-track-editor.c:92
+#: cddb-slave2/cddb-track-editor.c:93
 msgid "R&B"
 msgstr "R&B"
 
-#: cddb-slave2/cddb-track-editor.c:93
+#: cddb-slave2/cddb-track-editor.c:94
 msgid "Rap"
 msgstr "Rap"
 
-#: cddb-slave2/cddb-track-editor.c:94
+#: cddb-slave2/cddb-track-editor.c:95
 msgid "Reggae"
 msgstr "Regé"
 
-#: cddb-slave2/cddb-track-editor.c:95
+#: cddb-slave2/cddb-track-editor.c:96
 msgid "Rock"
 msgstr "Rock"
 
-#: cddb-slave2/cddb-track-editor.c:96
+#: cddb-slave2/cddb-track-editor.c:97
 msgid "Techno"
 msgstr "Techno"
 
-#: cddb-slave2/cddb-track-editor.c:97
+#: cddb-slave2/cddb-track-editor.c:98
 msgid "Industrial"
 msgstr "Industrial"
 
-#: cddb-slave2/cddb-track-editor.c:98
+#: cddb-slave2/cddb-track-editor.c:99
 msgid "Alternative"
 msgstr "Alternativní"
 
-#: cddb-slave2/cddb-track-editor.c:99
+#: cddb-slave2/cddb-track-editor.c:100
 msgid "Ska"
 msgstr "Ska"
 
-#: cddb-slave2/cddb-track-editor.c:100
+#: cddb-slave2/cddb-track-editor.c:101
 msgid "Death Metal"
 msgstr "Death Metal"
 
-#: cddb-slave2/cddb-track-editor.c:101
+#: cddb-slave2/cddb-track-editor.c:102
 msgid "Pranks"
 msgstr "Pranks"
 
-#: cddb-slave2/cddb-track-editor.c:102
+#: cddb-slave2/cddb-track-editor.c:103
 msgid "Soundtrack"
 msgstr "Soundtrack"
 
-#: cddb-slave2/cddb-track-editor.c:103
+#: cddb-slave2/cddb-track-editor.c:104
 msgid "Euro-Techno"
 msgstr "Euro-Techno"
 
-#: cddb-slave2/cddb-track-editor.c:104
+#: cddb-slave2/cddb-track-editor.c:105
 msgid "Ambient"
 msgstr "Ambient"
 
-#: cddb-slave2/cddb-track-editor.c:105
+#: cddb-slave2/cddb-track-editor.c:106
 msgid "Trip-Hop"
 msgstr "Trip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:106
+#: cddb-slave2/cddb-track-editor.c:107
 msgid "Vocal"
 msgstr "Vokál"
 
-#: cddb-slave2/cddb-track-editor.c:107
+#: cddb-slave2/cddb-track-editor.c:108
 msgid "Jazz+Funk"
 msgstr "Jazz+Funk"
 
-#: cddb-slave2/cddb-track-editor.c:108
+#: cddb-slave2/cddb-track-editor.c:109
 msgid "Fusion"
 msgstr "Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:109
+#: cddb-slave2/cddb-track-editor.c:110
 msgid "Trance"
 msgstr "Trance"
 
-#: cddb-slave2/cddb-track-editor.c:110
+#: cddb-slave2/cddb-track-editor.c:111
 msgid "Classical"
 msgstr "Klasika"
 
-#: cddb-slave2/cddb-track-editor.c:111
+#: cddb-slave2/cddb-track-editor.c:112
 msgid "Instrumental"
 msgstr "Instrumentální"
 
-#: cddb-slave2/cddb-track-editor.c:112
+#: cddb-slave2/cddb-track-editor.c:113
 msgid "Acid"
 msgstr "Acid"
 
-#: cddb-slave2/cddb-track-editor.c:113
+#: cddb-slave2/cddb-track-editor.c:114
 msgid "House"
 msgstr "House"
 
-#: cddb-slave2/cddb-track-editor.c:114
+#: cddb-slave2/cddb-track-editor.c:115
 msgid "Game"
 msgstr "Game"
 
-#: cddb-slave2/cddb-track-editor.c:115
+#: cddb-slave2/cddb-track-editor.c:116
 msgid "Sound Clip"
 msgstr "Zvukový klip"
 
-#: cddb-slave2/cddb-track-editor.c:116
+#: cddb-slave2/cddb-track-editor.c:117
 msgid "Gospel"
 msgstr "Gospel"
 
-#: cddb-slave2/cddb-track-editor.c:117
+#: cddb-slave2/cddb-track-editor.c:118
 msgid "Noise"
 msgstr "Noise"
 
-#: cddb-slave2/cddb-track-editor.c:118
+#: cddb-slave2/cddb-track-editor.c:119
 msgid "Alt"
 msgstr "Alt"
 
 #. groups
 #. max 24 chars
-#: cddb-slave2/cddb-track-editor.c:119 gmix/device_labels_alsa.h:37
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Basy"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#: cddb-slave2/cddb-track-editor.c:121
 msgid "Soul"
 msgstr "Soul"
 
-#: cddb-slave2/cddb-track-editor.c:121
+#: cddb-slave2/cddb-track-editor.c:122
 msgid "Punk"
 msgstr "Punk"
 
-#: cddb-slave2/cddb-track-editor.c:122
+#: cddb-slave2/cddb-track-editor.c:123
 msgid "Space"
 msgstr "Space"
 
-#: cddb-slave2/cddb-track-editor.c:123
+#: cddb-slave2/cddb-track-editor.c:124
 msgid "Meditative"
 msgstr "Meditativní"
 
-#: cddb-slave2/cddb-track-editor.c:124
+#: cddb-slave2/cddb-track-editor.c:125
 msgid "Instrumental Pop"
 msgstr "Instrumentální Pop"
 
-#: cddb-slave2/cddb-track-editor.c:125
+#: cddb-slave2/cddb-track-editor.c:126
 msgid "Instrumental Rock"
 msgstr "Instrumentální Rock"
 
-#: cddb-slave2/cddb-track-editor.c:126
+#: cddb-slave2/cddb-track-editor.c:127
 msgid "Ethnic"
 msgstr "Etnická"
 
-#: cddb-slave2/cddb-track-editor.c:127
+#: cddb-slave2/cddb-track-editor.c:128
 msgid "Gothic"
 msgstr "Gotická"
 
-#: cddb-slave2/cddb-track-editor.c:128
+#: cddb-slave2/cddb-track-editor.c:129
 msgid "Darkwave"
 msgstr "Darkwave"
 
-#: cddb-slave2/cddb-track-editor.c:129
+#: cddb-slave2/cddb-track-editor.c:130
 msgid "Techno-Industrial"
 msgstr "Techno-Industrial"
 
-#: cddb-slave2/cddb-track-editor.c:130
+#: cddb-slave2/cddb-track-editor.c:131
 msgid "Electronic"
 msgstr "Elektronická"
 
-#: cddb-slave2/cddb-track-editor.c:131
+#: cddb-slave2/cddb-track-editor.c:132
 msgid "Pop-Folk"
 msgstr "Pop-Folk"
 
-#: cddb-slave2/cddb-track-editor.c:132
+#: cddb-slave2/cddb-track-editor.c:133
 msgid "Eurodance"
 msgstr "Eurodance"
 
-#: cddb-slave2/cddb-track-editor.c:133
+#: cddb-slave2/cddb-track-editor.c:134
 msgid "Dream"
 msgstr "Dream"
 
-#: cddb-slave2/cddb-track-editor.c:134
+#: cddb-slave2/cddb-track-editor.c:135
 msgid "Southern Rock"
 msgstr "Jižanský Rock"
 
-#: cddb-slave2/cddb-track-editor.c:135
+#: cddb-slave2/cddb-track-editor.c:136
 msgid "Comedy"
 msgstr "Komedie"
 
-#: cddb-slave2/cddb-track-editor.c:136
+#: cddb-slave2/cddb-track-editor.c:137
 msgid "Cult"
 msgstr "Kultovní"
 
-#: cddb-slave2/cddb-track-editor.c:137
+#: cddb-slave2/cddb-track-editor.c:138
 msgid "Gangsta Rap"
 msgstr "Gangsta Rap"
 
-#: cddb-slave2/cddb-track-editor.c:138
+#: cddb-slave2/cddb-track-editor.c:139
 msgid "Top 40"
 msgstr "Top 40"
 
-#: cddb-slave2/cddb-track-editor.c:139
+#: cddb-slave2/cddb-track-editor.c:140
 msgid "Christian Rap"
 msgstr "Křesťanský Rap"
 
-#: cddb-slave2/cddb-track-editor.c:140
+#: cddb-slave2/cddb-track-editor.c:141
 msgid "Pop/Funk"
 msgstr "Pop/Funk"
 
-#: cddb-slave2/cddb-track-editor.c:141
+#: cddb-slave2/cddb-track-editor.c:142
 msgid "Jungle"
 msgstr "Jungle"
 
-#: cddb-slave2/cddb-track-editor.c:142
+#: cddb-slave2/cddb-track-editor.c:143
 msgid "Native American"
 msgstr "Původní Americká"
 
-#: cddb-slave2/cddb-track-editor.c:143
+#: cddb-slave2/cddb-track-editor.c:144
 msgid "Cabaret"
 msgstr "Kabaret"
 
-#: cddb-slave2/cddb-track-editor.c:144
+#: cddb-slave2/cddb-track-editor.c:145
 msgid "New Wave"
 msgstr "New Wave"
 
-#: cddb-slave2/cddb-track-editor.c:145
+#: cddb-slave2/cddb-track-editor.c:146
 msgid "Psychedelic"
 msgstr "Psychedelická"
 
-#: cddb-slave2/cddb-track-editor.c:146
+#: cddb-slave2/cddb-track-editor.c:147
 msgid "Rave"
 msgstr "Rave"
 
-#: cddb-slave2/cddb-track-editor.c:147
+#: cddb-slave2/cddb-track-editor.c:148
 msgid "Showtunes"
 msgstr "Showtunes"
 
-#: cddb-slave2/cddb-track-editor.c:148
+#: cddb-slave2/cddb-track-editor.c:149
 msgid "Trailer"
 msgstr "Trailer"
 
-#: cddb-slave2/cddb-track-editor.c:149
+#: cddb-slave2/cddb-track-editor.c:150
 msgid "Lo-Fi"
 msgstr "Lo-Fi"
 
-#: cddb-slave2/cddb-track-editor.c:150
+#: cddb-slave2/cddb-track-editor.c:151
 msgid "Tribal"
 msgstr "Tribal"
 
-#: cddb-slave2/cddb-track-editor.c:151
+#: cddb-slave2/cddb-track-editor.c:152
 msgid "Acid Punk"
 msgstr "Acid Punk"
 
-#: cddb-slave2/cddb-track-editor.c:152
+#: cddb-slave2/cddb-track-editor.c:153
 msgid "Acid Jazz"
 msgstr "Acid Jazz"
 
-#: cddb-slave2/cddb-track-editor.c:153
+#: cddb-slave2/cddb-track-editor.c:154
 msgid "Polka"
 msgstr "Polka"
 
-#: cddb-slave2/cddb-track-editor.c:154
+#: cddb-slave2/cddb-track-editor.c:155
 msgid "Retro"
 msgstr "Retro"
 
-#: cddb-slave2/cddb-track-editor.c:155
+#: cddb-slave2/cddb-track-editor.c:156
 msgid "Musical"
 msgstr "Muzikál"
 
-#: cddb-slave2/cddb-track-editor.c:156
+#: cddb-slave2/cddb-track-editor.c:157
 msgid "Rock & Roll"
 msgstr "Rock & Roll"
 
-#: cddb-slave2/cddb-track-editor.c:157
+#: cddb-slave2/cddb-track-editor.c:158
 msgid "Hard Rock"
 msgstr "Hard Rock"
 
-#: cddb-slave2/cddb-track-editor.c:158
+#: cddb-slave2/cddb-track-editor.c:159
 msgid "Folk"
 msgstr "Folk"
 
-#: cddb-slave2/cddb-track-editor.c:159
+#: cddb-slave2/cddb-track-editor.c:160
 msgid "Folk/Rock"
 msgstr "Folk/Rock"
 
-#: cddb-slave2/cddb-track-editor.c:160
+#: cddb-slave2/cddb-track-editor.c:161
 msgid "National Folk"
 msgstr "Národní Folk"
 
-#: cddb-slave2/cddb-track-editor.c:161
+#: cddb-slave2/cddb-track-editor.c:162
 msgid "Swing"
 msgstr "Swing"
 
-#: cddb-slave2/cddb-track-editor.c:162
+#: cddb-slave2/cddb-track-editor.c:163
 msgid "Fast-Fusion"
 msgstr "Fast-Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:163
+#: cddb-slave2/cddb-track-editor.c:164
 msgid "Bebop"
 msgstr "Bebob"
 
-#: cddb-slave2/cddb-track-editor.c:164
+#: cddb-slave2/cddb-track-editor.c:165
 msgid "Latin"
 msgstr "Latinská"
 
-#: cddb-slave2/cddb-track-editor.c:165
+#: cddb-slave2/cddb-track-editor.c:166
 msgid "Revival"
 msgstr "Revival"
 
-#: cddb-slave2/cddb-track-editor.c:166
+#: cddb-slave2/cddb-track-editor.c:167
 msgid "Celtic"
 msgstr "Keltská"
 
-#: cddb-slave2/cddb-track-editor.c:167
+#: cddb-slave2/cddb-track-editor.c:168
 msgid "Bluegrass"
 msgstr "Bluegrass"
 
-#: cddb-slave2/cddb-track-editor.c:168
+#: cddb-slave2/cddb-track-editor.c:169
 msgid "Avantgarde"
 msgstr "Avantgardní"
 
-#: cddb-slave2/cddb-track-editor.c:169
+#: cddb-slave2/cddb-track-editor.c:170
 msgid "Gothic Rock"
 msgstr "Gotický Rock"
 
-#: cddb-slave2/cddb-track-editor.c:170
+#: cddb-slave2/cddb-track-editor.c:171
 msgid "Progressive Rock"
 msgstr "Progresivní Rock"
 
-#: cddb-slave2/cddb-track-editor.c:171
+#: cddb-slave2/cddb-track-editor.c:172
 msgid "Psychedelic Rock"
 msgstr "Psychedelický Rock"
 
-#: cddb-slave2/cddb-track-editor.c:172
+#: cddb-slave2/cddb-track-editor.c:173
 msgid "Symphonic Rock"
 msgstr "Symfonický Rock"
 
-#: cddb-slave2/cddb-track-editor.c:173
+#: cddb-slave2/cddb-track-editor.c:174
 msgid "Slow Rock"
 msgstr "Pomalý Rock"
 
-#: cddb-slave2/cddb-track-editor.c:174
+#: cddb-slave2/cddb-track-editor.c:175
 msgid "Big Band"
 msgstr "Big Band"
 
-#: cddb-slave2/cddb-track-editor.c:175
+#: cddb-slave2/cddb-track-editor.c:176
 msgid "Chorus"
 msgstr "Chór"
 
-#: cddb-slave2/cddb-track-editor.c:176
+#: cddb-slave2/cddb-track-editor.c:177
 msgid "Easy Listening"
 msgstr "Nenáročný poslech"
 
-#: cddb-slave2/cddb-track-editor.c:177
+#: cddb-slave2/cddb-track-editor.c:178
 msgid "Acoustic"
 msgstr "Akustická"
 
-#: cddb-slave2/cddb-track-editor.c:178
+#: cddb-slave2/cddb-track-editor.c:179
 msgid "Humour"
 msgstr "Humor"
 
-#: cddb-slave2/cddb-track-editor.c:179
+#: cddb-slave2/cddb-track-editor.c:180
 msgid "Speech"
 msgstr "Proslov"
 
-#: cddb-slave2/cddb-track-editor.c:180
+#: cddb-slave2/cddb-track-editor.c:181
 msgid "Chanson"
 msgstr "Šanson"
 
-#: cddb-slave2/cddb-track-editor.c:181
+#: cddb-slave2/cddb-track-editor.c:182
 msgid "Opera"
 msgstr "Opera"
 
-#: cddb-slave2/cddb-track-editor.c:182
+#: cddb-slave2/cddb-track-editor.c:183
 msgid "Chamber Music"
 msgstr "Komorní hudba"
 
-#: cddb-slave2/cddb-track-editor.c:183
+#: cddb-slave2/cddb-track-editor.c:184
 msgid "Sonata"
 msgstr "Sonáta"
 
-#: cddb-slave2/cddb-track-editor.c:184
+#: cddb-slave2/cddb-track-editor.c:185
 msgid "Symphony"
 msgstr "Symfonie"
 
-#: cddb-slave2/cddb-track-editor.c:185
+#: cddb-slave2/cddb-track-editor.c:186
 msgid "Booty Bass"
 msgstr "Booty Bass"
 
-#: cddb-slave2/cddb-track-editor.c:186
+#: cddb-slave2/cddb-track-editor.c:187
 msgid "Primus"
 msgstr "Primus"
 
-#: cddb-slave2/cddb-track-editor.c:187
+#: cddb-slave2/cddb-track-editor.c:188
 msgid "Porn Groove"
 msgstr "Porn Groove"
 
-#: cddb-slave2/cddb-track-editor.c:188
+#: cddb-slave2/cddb-track-editor.c:189
 msgid "Satire"
 msgstr "Satira"
 
-#: cddb-slave2/cddb-track-editor.c:189
+#: cddb-slave2/cddb-track-editor.c:190
 msgid "Slow Jam"
 msgstr "Pomalý Jam"
 
-#: cddb-slave2/cddb-track-editor.c:190
+#: cddb-slave2/cddb-track-editor.c:191
 msgid "Club"
 msgstr "Klubová"
 
-#: cddb-slave2/cddb-track-editor.c:191
+#: cddb-slave2/cddb-track-editor.c:192
 msgid "Tango"
 msgstr "Tango"
 
-#: cddb-slave2/cddb-track-editor.c:192
+#: cddb-slave2/cddb-track-editor.c:193
 msgid "Samba"
 msgstr "Samba"
 
-#: cddb-slave2/cddb-track-editor.c:193
+#: cddb-slave2/cddb-track-editor.c:194
 msgid "Folklore"
 msgstr "Folklór"
 
-#: cddb-slave2/cddb-track-editor.c:194
+#: cddb-slave2/cddb-track-editor.c:195
 msgid "Ballad"
 msgstr "Balada"
 
-#: cddb-slave2/cddb-track-editor.c:195
+#: cddb-slave2/cddb-track-editor.c:196
 msgid "Power Ballad"
 msgstr "Silná balada"
 
-#: cddb-slave2/cddb-track-editor.c:196
+#: cddb-slave2/cddb-track-editor.c:197
 msgid "Rhythmic Soul"
 msgstr "Rytmický Soul"
 
-#: cddb-slave2/cddb-track-editor.c:197
+#: cddb-slave2/cddb-track-editor.c:198
 msgid "Freestyle"
 msgstr "Freestyle"
 
-#: cddb-slave2/cddb-track-editor.c:198
+#: cddb-slave2/cddb-track-editor.c:199
 msgid "Duet"
 msgstr "Duet"
 
-#: cddb-slave2/cddb-track-editor.c:199
+#: cddb-slave2/cddb-track-editor.c:200
 msgid "Punk Rock"
 msgstr "Punk Rock"
 
-#: cddb-slave2/cddb-track-editor.c:200
+#: cddb-slave2/cddb-track-editor.c:201
 msgid "Drum Solo"
 msgstr "Sólo na bubny"
 
-#: cddb-slave2/cddb-track-editor.c:201
+#: cddb-slave2/cddb-track-editor.c:202
 msgid "A Cappella"
 msgstr "Kapela"
 
-#: cddb-slave2/cddb-track-editor.c:202
+#: cddb-slave2/cddb-track-editor.c:203
 msgid "Euro-House"
 msgstr "Euro-House"
 
-#: cddb-slave2/cddb-track-editor.c:203
+#: cddb-slave2/cddb-track-editor.c:204
 msgid "Dance Hall"
 msgstr "Dance Hall"
 
-#: cddb-slave2/cddb-track-editor.c:204
+#: cddb-slave2/cddb-track-editor.c:205
 msgid "Goa"
 msgstr "Goa"
 
-#: cddb-slave2/cddb-track-editor.c:205
+#: cddb-slave2/cddb-track-editor.c:206
 msgid "Drum & Bass"
 msgstr "Drum & Bass"
 
-#: cddb-slave2/cddb-track-editor.c:206
+#: cddb-slave2/cddb-track-editor.c:207
 msgid "Club-House"
 msgstr "Club-House"
 
-#: cddb-slave2/cddb-track-editor.c:207
+#: cddb-slave2/cddb-track-editor.c:208
 msgid "Hardcore"
 msgstr "Hardcore"
 
-#: cddb-slave2/cddb-track-editor.c:208
+#: cddb-slave2/cddb-track-editor.c:209
 msgid "Terror"
 msgstr "Teror"
 
-#: cddb-slave2/cddb-track-editor.c:209
+#: cddb-slave2/cddb-track-editor.c:210
 msgid "Indie"
 msgstr "Indie"
 
-#: cddb-slave2/cddb-track-editor.c:210
+#: cddb-slave2/cddb-track-editor.c:211
 msgid "BritPop"
 msgstr "BritPop"
 
-#: cddb-slave2/cddb-track-editor.c:211
+#: cddb-slave2/cddb-track-editor.c:212
 msgid "Negerpunk"
 msgstr "Negerpunk"
 
-#: cddb-slave2/cddb-track-editor.c:212
+#: cddb-slave2/cddb-track-editor.c:213
 msgid "Polsk Punk"
 msgstr "Polský Punk"
 
-#: cddb-slave2/cddb-track-editor.c:213
+#: cddb-slave2/cddb-track-editor.c:214
 msgid "Beat"
 msgstr "Beat"
 
-#: cddb-slave2/cddb-track-editor.c:214
+#: cddb-slave2/cddb-track-editor.c:215
 msgid "Christian Gangsta Rap"
 msgstr "Křesťanský Gangsta Rap"
 
-#: cddb-slave2/cddb-track-editor.c:215
+#: cddb-slave2/cddb-track-editor.c:216
 msgid "Heavy Metal"
 msgstr "Heavy Metal"
 
-#: cddb-slave2/cddb-track-editor.c:216
+#: cddb-slave2/cddb-track-editor.c:217
 msgid "Black Metal"
 msgstr "Black Metal"
 
-#: cddb-slave2/cddb-track-editor.c:217
+#: cddb-slave2/cddb-track-editor.c:218
 msgid "Crossover"
 msgstr "Crossover"
 
-#: cddb-slave2/cddb-track-editor.c:218
+#: cddb-slave2/cddb-track-editor.c:219
 msgid "Contemporary Christian"
 msgstr "Současná křesťanská"
 
-#: cddb-slave2/cddb-track-editor.c:219
+#: cddb-slave2/cddb-track-editor.c:220
 msgid "Christian Rock"
 msgstr "Křesťanský Rock"
 
-#: cddb-slave2/cddb-track-editor.c:220
+#: cddb-slave2/cddb-track-editor.c:221
 msgid "Merengue"
 msgstr "Merengue"
 
-#: cddb-slave2/cddb-track-editor.c:221
+#: cddb-slave2/cddb-track-editor.c:222
 msgid "Salsa"
 msgstr "Salsa"
 
-#: cddb-slave2/cddb-track-editor.c:222
+#: cddb-slave2/cddb-track-editor.c:223
 msgid "Thrash Metal"
 msgstr "Thrash Metal"
 
-#: cddb-slave2/cddb-track-editor.c:223
+#: cddb-slave2/cddb-track-editor.c:224
 msgid "Anime"
 msgstr "Anime"
 
-#: cddb-slave2/cddb-track-editor.c:224
+#: cddb-slave2/cddb-track-editor.c:225
 msgid "JPop"
 msgstr "JPop"
 
-#: cddb-slave2/cddb-track-editor.c:225
+#: cddb-slave2/cddb-track-editor.c:226
 msgid "Synthpop"
 msgstr "Synthpop"
 
-#: cddb-slave2/cddb-track-editor.c:226
+#: cddb-slave2/cddb-track-editor.c:227
 msgid "Nu-Metal"
 msgstr "Nu-Metal"
 
-#: cddb-slave2/cddb-track-editor.c:227
+#: cddb-slave2/cddb-track-editor.c:228
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: cddb-slave2/cddb-track-editor.c:525
+#: cddb-slave2/cddb-track-editor.c:526
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Úprava disku s ID: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:615
+#: cddb-slave2/cddb-track-editor.c:616
 msgid "Editing Disc ID: "
 msgstr "Úprava disku s ID: "
 
-#: cddb-slave2/cddb-track-editor.c:626
+#: cddb-slave2/cddb-track-editor.c:627
 msgid "_Artist:"
 msgstr "_Umělec:"
 
-#: cddb-slave2/cddb-track-editor.c:640
+#: cddb-slave2/cddb-track-editor.c:641
 msgid "Disc _Title:"
 msgstr "_Titul disku:"
 
-#: cddb-slave2/cddb-track-editor.c:650
+#: cddb-slave2/cddb-track-editor.c:651
 msgid "Show advanced disc options"
 msgstr "Ukázat pokročilé volby pro disk"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:652
 msgid "Hide advanced disc options"
 msgstr "Skrýt pokročilé volby pro disk"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:663
+#: cddb-slave2/cddb-track-editor.c:664
 msgid "_Disc comments:"
 msgstr "Komentář k _disku:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:678
+#: cddb-slave2/cddb-track-editor.c:679
 msgid "_Genre:"
 msgstr "Žán_r:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:694
+#: cddb-slave2/cddb-track-editor.c:695
 msgid "_Year:"
 msgstr "Ro_k:"
 
-#: cddb-slave2/cddb-track-editor.c:733
+#: cddb-slave2/cddb-track-editor.c:734
 msgid "Title"
 msgstr "Titul"
 
-#: cddb-slave2/cddb-track-editor.c:740
+#: cddb-slave2/cddb-track-editor.c:741
 msgid "Length"
 msgstr "Délka"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:751
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Show advanced track options"
 msgstr "Ukázat pokročilé volby pro skladbu"
 
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:753
 msgid "Hide advanced track options"
 msgstr "Skrýt pokročilé volby pro skladbu"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:760
+#: cddb-slave2/cddb-track-editor.c:761
 msgid "_Extra track data:"
 msgstr "_Extra data ke skladbě:"
 
-#: cddb-slave2/cddb-track-editor.c:887
+#: cddb-slave2/cddb-track-editor.c:888
 msgid "CDDB Track Editor"
 msgstr "Editor skladeb CDDB"
 
-#: cddb-slave2/cddb-track-editor.c:1018
+#: cddb-slave2/cddb-track-editor.c:1022
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -883,7 +905,7 @@ msgid "CD"
 msgstr "CD"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "Video"
 
@@ -1134,7 +1156,7 @@ msgstr "Po_drobnosti"
 msgid "Invalid mixer device"
 msgstr "Neplatné zařízení mixéru"
 
-#: gmix/gmix.c:626
+#: gmix/gmix.c:633
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1145,7 +1167,7 @@ msgstr ""
 "s OSS verze %d.%d.%d. a tento systém běží\n"
 "s verzí nižší než 3.6.0.\n"
 
-#: gmix/gmix.c:634
+#: gmix/gmix.c:641
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1157,53 +1179,53 @@ msgstr ""
 "s OSS verze %d.%d.%d. a tento systém běží\n"
 "s verzí %d.%d.%d.\n"
 
-#: gmix/gmix.c:1088
+#: gmix/gmix.c:1114
 #, c-format
 msgid "left %s"
 msgstr "Levý %s"
 
-#: gmix/gmix.c:1114
+#: gmix/gmix.c:1140
 #, c-format
 msgid "Right %s"
 msgstr "Pravý %s"
 
-#: gmix/gmix.c:1207
+#: gmix/gmix.c:1233
 msgid "Lock"
 msgstr "Spř"
 
-#: gmix/gmix.c:1220
+#: gmix/gmix.c:1246
 #, c-format
 msgid "%s Lock"
 msgstr "%s Spř"
 
-#: gmix/gmix.c:1231
+#: gmix/gmix.c:1257
 msgid "Mute"
 msgstr "Umlč"
 
-#: gmix/gmix.c:1244
+#: gmix/gmix.c:1270
 #, c-format
 msgid "%s Mute"
 msgstr "%s Umlč"
 
-#: gmix/gmix.c:1258
+#: gmix/gmix.c:1284
 msgid "Rec."
 msgstr "Zázn"
 
-#: gmix/gmix.c:1270
+#: gmix/gmix.c:1296
 #, c-format
 msgid "%s Record"
 msgstr "%s Záznam"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1368 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Ovládání hlasitosti"
 
-#: gmix/gmix.c:1748
+#: gmix/gmix.c:1776
 msgid "GNOME Volume Control"
 msgstr "GNOME Ovládání hlasitosti"
 
-#: gmix/gmix.c:1751
+#: gmix/gmix.c:1779
 msgid "A mixer for sound devices"
 msgstr "Mixér pro zvuková zařízení"
 
@@ -1306,7 +1328,7 @@ msgid "Paused"
 msgstr "Pozastaveno"
 
 #. Update tray icon tooltip
-#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:840 gnome-cd/gnome-cd.c:55
+#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:842 gnome-cd/gnome-cd.c:55
 #: gnome-cd/gnome-cd.c:475 gnome-cd/gnome-cd.c:652
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
@@ -1343,7 +1365,7 @@ msgstr "Žádný CD-ROM"
 msgid "Drive Error"
 msgstr "Chyba zařízení"
 
-#: gnome-cd/callbacks.c:842
+#: gnome-cd/callbacks.c:844
 msgid "A CD player for GNOME"
 msgstr "Přehrávač CD pro GNOME"
 
@@ -1619,8 +1641,8 @@ msgstr "_Dostupná témata:"
 msgid "Record sound clips"
 msgstr "Vytváření zvukových záznamů"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:997
-#: grecord/src/gsr-window.c:1551 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1001
+#: grecord/src/gsr-window.c:1559 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Záznamník zvuků"
 
@@ -1649,11 +1671,11 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "Nelze větvit proces potomka"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1385
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1393
 msgid "Recording..."
 msgstr "Nahrává se..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1244
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1252
 msgid "Playing..."
 msgstr "Přehrává se..."
 
@@ -1835,8 +1857,8 @@ msgstr "sekunda"
 msgid "Open a file"
 msgstr "Otevřít soubor"
 
-#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1268
-#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1480
+#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1276
+#: grecord/src/gsr-window.c:1415 grecord/src/gsr-window.c:1488
 msgid "Ready"
 msgstr "Připraven"
 
@@ -1859,87 +1881,87 @@ msgstr "%s není nainstalován v cestě."
 msgid "%s (Has not been saved)"
 msgstr "%s (Nebylo uloženo)"
 
-#: grecord/src/gsr-window.c:768
+#: grecord/src/gsr-window.c:769
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
-#: grecord/src/gsr-window.c:788
+#: grecord/src/gsr-window.c:789
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:797
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:809
+#: grecord/src/gsr-window.c:810
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:813
+#: grecord/src/gsr-window.c:814
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:842
+#: grecord/src/gsr-window.c:843
 #, c-format
 msgid "%s Information"
 msgstr "Informace o %s"
 
-#: grecord/src/gsr-window.c:862 grecord/gsr.xml.h:7
+#: grecord/src/gsr-window.c:864 grecord/gsr.xml.h:7
 msgid "File Information"
 msgstr "Informace o souboru"
 
-#: grecord/src/gsr-window.c:876
+#: grecord/src/gsr-window.c:878
 msgid "Folder:"
 msgstr "Adresář:"
 
-#: grecord/src/gsr-window.c:882 grecord/src/gsr-window.c:1610
+#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1618
 msgid "Filename:"
 msgstr "Jméno souboru:"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:890
 msgid "File size:"
 msgstr "Velikost souboru:"
 
-#: grecord/src/gsr-window.c:897
+#: grecord/src/gsr-window.c:899
 msgid "Audio Information"
 msgstr "Informace o zvuku"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:913
 msgid "Song length:"
 msgstr "Délka písně:"
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:919
 msgid "Number of channels:"
 msgstr "Počet kanálů:"
 
-#: grecord/src/gsr-window.c:923
+#: grecord/src/gsr-window.c:925
 msgid "Sample rate:"
 msgstr "Vzorkovací kmitočet: "
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:931
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:999
+#: grecord/src/gsr-window.c:1003
 msgid "A sound recorder for GNOME"
 msgstr "Záznamník zvuků pro GNOME"
 
-#: grecord/src/gsr-window.c:1547 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1555 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Záznamník zvuků"
 
-#: grecord/src/gsr-window.c:1595
+#: grecord/src/gsr-window.c:1603
 msgid "File information"
 msgstr "Informace o souboru"
 
-#: grecord/src/gsr-window.c:1616
+#: grecord/src/gsr-window.c:1624
 msgid "<none>"
 msgstr "<žádný>"
 
-#: grecord/src/gsr-window.c:1625
+#: grecord/src/gsr-window.c:1633
 msgid "Length:"
 msgstr "Délka:"
 
@@ -2214,24 +2236,24 @@ msgstr "Zadání souboru ke spuštění přehrávání"
 msgid "Sound recorder"
 msgstr "Záznamník zvuků"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 8bit PCM"
 msgstr "Zvukový formát: 8bitový PCM"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 16bit PCM"
 msgstr "Zvukový formát: 16bitový PCM"
 
-#: grecord/src/preferences.c:222
+#: grecord/src/preferences.c:223
 #, c-format
 msgid "Sample rate: %s"
 msgstr "Vzorkovací kmitočet: %s"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: mono"
 msgstr "Kanály: mono"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: stereo"
 msgstr "Kanály: stereo"
 
@@ -2395,56 +2417,56 @@ msgid "*"
 msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Implicitní spotřebič</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "<b>Default Source</b>"
+msgstr "<b>Implicitní zdroj</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">Testuji...</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:3
+#: gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Audio"
 msgstr "Zvuk"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio _Input:"
-msgstr "V_stup zvuku:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr "V_ýstup zvuku:"
-
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
-msgstr "Dokončete kliknutím na Ok."
+msgid "Click Ok to finish."
+msgstr "Dokončete kliknutím na Budiž."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "Default Sink"
-msgstr "Implicitní spotřebič"
+msgid "GStreamer Preferences"
+msgstr "Nastavení GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Default Source"
-msgstr "Implicitní zdroj"
+msgid "Pipe_line:"
+msgstr "Pipe_line:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "GStreamer Properties"
-msgstr "Vlastnosti GStreamer"
+msgid "Te_st"
+msgstr "Te_st"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeline:"
-msgstr "Pipeline:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Test..."
-msgstr "Test..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
 msgstr "Testuji pipeline"
 
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "V_stup:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "V_ýstup:"
+
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr "V_stup videa:"
+msgid "_Pipeline:"
+msgstr "_Pipeline:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
-msgstr "V_ýstup videa:"
+msgid "_Test"
+msgstr "_Test"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
