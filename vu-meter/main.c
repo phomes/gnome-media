@@ -176,7 +176,7 @@ handle_read (gpointer data,
 	static int to_get = NSAMP*2;
 	static int count;
 
-	count = read(source, aubuf[curbuf] + pos, to_get);
+	count = read(source, ((char *) aubuf[curbuf]) + pos, to_get);
 	if (count <0) {
 		exit(1);		/* no data */
 	} else {
