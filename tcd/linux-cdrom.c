@@ -531,12 +531,25 @@ void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 	cd->isdisk=TRUE;
 }
 
+void parse_dtitle(cd_struct *cd)
+{
+  char tmp[DISC_INFO_LEN], *tmp2;
+
+  /* Parse out the individual title elements. Help from Alec M. */
+  strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
+  strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
+  tmp2 = strtok(NULL, "\0");
+  if(tmp2)
+    strncpy(cd->album, tmp2+1, DISC_INFO_LEN);
+  else
+    strncpy(cd->album, "", DISC_INFO_LEN);
+}
+
 int tcd_readdiskinfo( cd_struct *cd )
 {
     int i, res;
     FILE *fp;
     char fn[60];
-    char tmp[DISC_INFO_LEN], *tmp2;
     char *homedir=NULL;
     char tcd_dir[128];
     struct passwd *pw=NULL;
@@ -571,14 +584,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	    return -1;
 	}
 
-	/* Parse out the individual title elements. Help from Alec M. */
-	strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
-	strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
-	tmp2 = strtok(NULL, "\0");
-	if(tmp2)
-	    strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
-	else
-	    strncpy(cd->album, "", DISC_INFO_LEN);
+        parse_dtitle(cd);
 	strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
 	return 0;
     }
@@ -596,14 +602,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	}
 	strcpy( cd->trk[0].name, "--" );
 
-	/* Parse out the individual title elements. Help from Alec M. */
-	strncpy(tmp, cd->dtitle, DISC_INFO_LEN);
-	strncpy(cd->artist, strtok(tmp, "/"), DISC_INFO_LEN);
-	tmp2 = strtok(NULL, "\0");
-	if(tmp2)
-	    strncpy( cd->album, tmp2+1, DISC_INFO_LEN);
-	else
-	    strncpy(cd->album, "", DISC_INFO_LEN);
+	parse_dtitle(cd);
 	strncpy(cd->trk[0].name, "--", TRK_NAME_LEN);
 
 	return 0;

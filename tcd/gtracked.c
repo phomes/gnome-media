@@ -71,6 +71,7 @@ void fill_list( GtkWidget *list )
 void dtitle_changed( GtkWidget *widget, gpointer data )
 {
 	strncpy(cd.dtitle, gtk_entry_get_text(GTK_ENTRY(widget)), DISC_INFO_LEN);
+	parse_dtitle(&cd);
 	return;
 }
 
