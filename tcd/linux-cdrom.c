@@ -122,51 +122,6 @@ int tcd_readtoc( cd_struct *cd )
 {
     int tmp,i;
     int delsecs;
-    static int allocated_members;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     debug("cdrom.c: tcd_readtoc(%p) top\n", cd );
     cd->err = FALSE;
@@ -186,16 +141,6 @@ int tcd_readtoc( cd_struct *cd )
     /* grab first & last tracks */
     cd->first_t = cd->tochdr.cdth_trk0;
     cd->last_t = cd->tochdr.cdth_trk1;
-
-    if(allocated_members < ((cd->last_t - cd->first_t)+3))
-    {
-	if(cd->trk)
-	{
-	    g_free(cd->trk);
-	}
-	cd->trk = g_new(struct cd_track, (cd->last_t - cd->first_t)+3);
-	allocated_members = (cd->last_t - cd->first_t)+3;
-    }
 
     /* read the leadout track */
     cd->trk[C(cd->last_t+1)].toc.cdte_track = CDROM_LEADOUT;

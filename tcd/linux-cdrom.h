@@ -121,7 +121,7 @@ typedef struct
 	unsigned long cddb_id;		/* cddb id */
 	unsigned long old_cddb_id;
 
-	struct cd_track *trk;	/* Track info, to be allocated 
+	struct cd_track trk[MAXTRACKS];	/* Track info, to be allocated 
                			   	   after cd_tchdr is read */
 
 	int first_t, last_t;		/* first and last track numbers

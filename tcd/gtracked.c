@@ -64,7 +64,7 @@ static void fill_list( GtkWidget *list )
 {
     int i;
     char *tmp[4];
-	
+
     for(i=0; i < 4; i++)
 	tmp[i] = g_malloc(TRK_NAME_LEN);
 
