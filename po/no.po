@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 1998-11-07 00:29+0100\n"
+"POT-Creation-Date: 1998-11-21 15:59+0100\n"
 "PO-Revision-Date: 1998-11-07 00:30+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -71,11 +71,11 @@ msgstr "GMIX - Gnome mikser"
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mikser for OSS lyd-enheter."
 
-#: tcd/callbacks.c:61
+#: tcd/callbacks.c:69
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome CD-spiller"
 
-#: tcd/callbacks.c:65
+#: tcd/callbacks.c:73
 msgid ""
 "Gnome CD player application with CDDB support. Please see the 'Thanks' file "
 "included with the distribution for more credits."
@@ -108,152 +108,154 @@ msgstr "Informasjon om plate (%02u:%02u minutter)"
 msgid "Artist / Title"
 msgstr "Artist / Tittel"
 
-#: tcd/gtracked.c:149 tcd/gtracked.c:170
-msgid "Ext Data"
-msgstr "Ext data"
-
-#: tcd/gtracked.c:189
+#. ...
+#: tcd/gtracked.c:190
 msgid "Track Information"
 msgstr "Informasjon om spor"
 
 #. Clear button
-#: tcd/gtracked.c:201
+#: tcd/gtracked.c:203
 msgid "Clear"
 msgstr "Blank ut"
 
 #. Playlist button
-#: tcd/gtracked.c:205
+#: tcd/gtracked.c:208
 msgid "Playlist"
 msgstr "Spilleliste"
 
+#. CDDB Status  button
+#: tcd/gtracked.c:213
+msgid "CDDB Status"
+msgstr "CDDB-status"
+
 #. do nothing
-#: tcd/prefs.c:130 tcd/prefs.c:185
+#: tcd/prefs.c:146 tcd/prefs.c:201
 msgid "Do Nothing"
 msgstr "Ikke gjør noe"
 
-#: tcd/prefs.c:136
+#: tcd/prefs.c:152
 msgid "Start Playing"
 msgstr "Start avspilling"
 
-#: tcd/prefs.c:142 tcd/prefs.c:191
+#: tcd/prefs.c:158 tcd/prefs.c:207
 msgid "Stop Playing"
 msgstr "Stopp avspilling"
 
 #. close tray
-#: tcd/prefs.c:146 tcd/prefs.c:203
+#: tcd/prefs.c:162 tcd/prefs.c:219
 msgid "Close Tray"
 msgstr "Lukk skuff"
 
-#: tcd/prefs.c:197
+#: tcd/prefs.c:213
 msgid "Open Tray"
 msgstr "Åpne skuff"
 
 #. device entry
-#: tcd/prefs.c:276
+#: tcd/prefs.c:292
 msgid "CDROM Device"
 msgstr "CDROM-enhet"
 
 #. Color picker
-#: tcd/prefs.c:285
+#: tcd/prefs.c:301
 msgid "Track/Title Color"
 msgstr "Spor-/tittelfarge"
 
 #. font picker
-#: tcd/prefs.c:297
+#: tcd/prefs.c:313
 msgid "Track/Title Font"
 msgstr "Spor-/tittelskrifttype"
 
-#: tcd/prefs.c:298
+#: tcd/prefs.c:314
 msgid "Change Font"
 msgstr "Endre skrifttype"
 
 #. show handles
-#: tcd/prefs.c:305
+#: tcd/prefs.c:321
 msgid "Show Handles (Restart of TCD required)"
 msgstr "Vis håndtak (Omstart av TCD nødvendig)"
 
 #. show tooltips
-#: tcd/prefs.c:312
+#: tcd/prefs.c:328
 msgid "Show Tooltips"
 msgstr "Vis verktøystips"
 
 #. start frame
-#: tcd/prefs.c:332
+#: tcd/prefs.c:348
 msgid "On Startup"
 msgstr "Ved oppstart"
 
 #. exit frame
-#: tcd/prefs.c:337
+#: tcd/prefs.c:354
 msgid "On Exit"
 msgstr "Ved avslutning"
 
 #. general frame
-#: tcd/prefs.c:342
+#: tcd/prefs.c:360
 msgid "General"
 msgstr "Generelt"
 
-#: tcd/prefs.c:377
+#: tcd/prefs.c:459
 msgid "Key"
 msgstr "Tast"
 
-#: tcd/prefs.c:378
+#: tcd/prefs.c:460
 msgid "Action"
 msgstr "Handling"
 
 #. Frame
-#: tcd/prefs.c:390
-msgid "Keybindings (not editable YET)"
-msgstr "Tastaturbindinger (ikke redigerbare ENNÅ)"
-
-#: tcd/gtcd.c:304 tcd/prefs.c:416
-msgid "Preferences"
-msgstr "Innstillinger"
-
-#: tcd/prefs.c:421
+#: tcd/prefs.c:498 tcd/prefs.c:530
 msgid "Keybindings"
 msgstr "Tastaturbindinger"
 
-#: tcd/gtcd.c:303
+#: tcd/gtcd.c:301 tcd/prefs.c:525
+msgid "Preferences"
+msgstr "Innstillinger"
+
+#: tcd/gtcd.c:300
 msgid "Open track editor"
 msgstr "Åpne sporredigering"
 
-#: tcd/gtcd.c:305 tcd/popup.c:23
+#: tcd/gtcd.c:302 tcd/popup.c:23
 msgid "Quit"
 msgstr "Avslutt"
 
 #. TOP ROW
-#: tcd/gtcd.c:326 tcd/popup.c:15
-msgid "Play"
-msgstr "Spill"
+#: tcd/gtcd.c:323
+msgid "Play/Pause"
+msgstr "Spill/pause"
 
-#: tcd/gtcd.c:330 tcd/popup.c:16
+#: tcd/gtcd.c:327 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stopp"
 
-#: tcd/gtcd.c:331 tcd/popup.c:17
+#: tcd/gtcd.c:328 tcd/popup.c:17
 msgid "Eject"
 msgstr "Løs ut"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:338 tcd/gtcd.c:346
+#: tcd/gtcd.c:335 tcd/gtcd.c:343
 msgid "Skip backwards"
 msgstr "Hopp bakover"
 
-#: tcd/gtcd.c:339 tcd/gtcd.c:347
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip forwards"
 msgstr "Hopp fremover"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:444 tcd/gtcd.c:445 tcd/gtcd.c:446
 msgid "(Scanning)"
 msgstr "(Søker)"
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:468
 msgid "No Disc"
 msgstr "Ingen plate"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:496
 msgid "Error"
 msgstr "Feil"
+
+#: tcd/popup.c:15
+msgid "Play"
+msgstr "Spill"
 
 #: tcd/popup.c:19
 msgid "Preferences..."
