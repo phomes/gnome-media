@@ -1,4 +1,4 @@
-pixmapdir = $(datadir)/pixmaps
+pixmapdir = $(pkgdatadir)/pixmaps
 
 pixmap_DATA = \
 	mixer.png \

@@ -1,8 +1,8 @@
 INCLUDES = \
 	$(GSTMIXER_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-DDATA_DIR=\""$(datadir)"\"			\
-	-DPIX_DIR=\""$(datadir)/pixmaps"\"
+	-DDATA_DIR=\""$(pkgdatadir)"\"			\
+	-DPIX_DIR=\""$(pkgdatadir)/pixmaps"\"
 
 bin_PROGRAMS = gst-mixer
 

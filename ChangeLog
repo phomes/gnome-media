@@ -1,3 +1,15 @@
+2003-12-21  Ronald Bultje <rbultje@ronald.bitfreak.net>
+
+	* configure.in: fix detection of mixer/interface headers
+	* gst-mixer/src/Makefile.am:
+	* gst-mixer/pixmaps/Makefile.am: change installation directory
+	  for pixmaps so that it goes in pkgdatadir instead of datadir.
+	  datadir is being cluttered with icons that don't belong there.
+	* gst-mixer/src/mixer.c: add a scrollbar so that it won't fill
+	  up your whole screen (which happens with ALSA, for example).
+	  Patch from Leif Johnson. Since he wrote ALSA mixer support in
+	  GStreamer too, I've added him to the about dialog, too.
+
 2003-12-17  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* profiles/audio-profiles-edit.c: (profile_activated_callback),

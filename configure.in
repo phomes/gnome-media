@@ -269,8 +269,11 @@ then
   PKG_CHECK_MODULES(GSTMIXER, $COMMON_MODULES, [
     OLD_CPPFLAGS=$CPPFLAGS
     CPPFLAGS="$CPPFLAGS $GSTMIXER_CFLAGS"
-    AC_CHECK_HEADERS([gst/mixer/mixer.h gst/propertyprobe/propertyprobe.h],
-                   PROGRAMS_GSTMIX="gst-mixer")
+    PROGRAMS_GSTMIXER="gst-mixer"
+    AC_CHECK_HEADER(gst/mixer/mixer.h, , PROGRAMS_GSTMIXER="")
+    if test x$PROGRAMS_GSTMIXER != x; then
+      AC_CHECK_HEADER(gst/propertyprobe/propertyprobe.h, , PROGRAMS_GSTMIXER="")
+    fi
     CPPFLAGS=$OLD_CPPFLAGS
   ],
   [])

@@ -180,9 +180,9 @@ create_track_widget (GstMixer      *mixer,
   if (str != NULL) {
     if ((image = gtk_image_new_from_stock (str, GTK_ICON_SIZE_MENU)) != NULL) {
       gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.5);
-      gtk_table_attach_defaults (GTK_TABLE (table), image,
-				 column_pos, column_pos + track->num_channels,
-				 0, 1);
+      gtk_table_attach (GTK_TABLE (table), image,
+			column_pos, column_pos + track->num_channels,
+			0, 1, 5, 0, 0, 0);
     }
   }
 
@@ -190,9 +190,9 @@ create_track_widget (GstMixer      *mixer,
   label = gtk_label_new (track->label);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
   gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
-  gtk_table_attach_defaults (GTK_TABLE (table), label,
-			     column_pos, column_pos + track->num_channels,
-			     1, 2);
+  gtk_table_attach (GTK_TABLE (table), label,
+		    column_pos, column_pos + track->num_channels,
+		    1, 2, 5, 0, 0, 0);
 
   /* now sliders for each of the tracks */
   gst_mixer_get_volume (mixer, track, volumes);
@@ -217,9 +217,9 @@ create_track_widget (GstMixer      *mixer,
   /* buttons (lock, mute, rec) */
   if (track->num_channels > 1) {
     button = gtk_check_button_new_with_label (_("Lock"));
-    gtk_table_attach_defaults (GTK_TABLE (table), button,
-			       column_pos, column_pos + track->num_channels,
-			       3, 4);
+    gtk_table_attach (GTK_TABLE (table), button,
+		      column_pos, column_pos + track->num_channels,
+		      3, 4, 5, 0, 0, 0);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
     ctrl->lock = button;
     g_signal_connect (G_OBJECT (button), "toggled",
@@ -227,9 +227,9 @@ create_track_widget (GstMixer      *mixer,
   }
 
   button = gtk_check_button_new_with_label (_("Mute"));
-  gtk_table_attach_defaults (GTK_TABLE (table), button,
-			     column_pos, column_pos + track->num_channels,
-			     4, 5);
+  gtk_table_attach (GTK_TABLE (table), button,
+		    column_pos, column_pos + track->num_channels,
+		    4, 5, 5, 0, 0, 0);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
 				GST_MIXER_TRACK_HAS_FLAG (track,
 						GST_MIXER_TRACK_MUTE));
@@ -239,9 +239,9 @@ create_track_widget (GstMixer      *mixer,
 
   if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)) {
     button = gtk_check_button_new_with_label (_("Rec."));
-    gtk_table_attach_defaults (GTK_TABLE (table), button,
-			       column_pos, column_pos + track->num_channels,
-			       5, 6);
+    gtk_table_attach (GTK_TABLE (table), button,
+		      column_pos, column_pos + track->num_channels,
+		      5, 6, 5, 0, 0, 0);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
 				  GST_MIXER_TRACK_HAS_FLAG (track,
 						GST_MIXER_TRACK_RECORD));
@@ -256,6 +256,7 @@ create_track_widget (GstMixer      *mixer,
 static GtkWidget *
 create_mixer_widget (GstMixer *mixer)
 {
+  GtkWidget *view;
   GtkWidget *table;
   gint tablepos = 0;
   const GList *tracks;
@@ -289,7 +290,14 @@ create_mixer_widget (GstMixer *mixer)
     }
   }
 
-  return table;
+  /* put table in a scrollview for handling lots of tracks */
+  view = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (view),
+				  GTK_POLICY_AUTOMATIC,
+				  GTK_POLICY_NEVER);
+  gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (view), table);
+
+  return view;
 }
 
 static GList *
@@ -389,6 +397,7 @@ cb_about (GtkWidget *widget,
 {
   GtkWidget *about;
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
+			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
 
   about = gnome_about_new (_("GStreamer Volume Control"),
