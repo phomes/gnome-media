@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-28 15:00+0100\n"
-"PO-Revision-Date: 2003-11-28 21:12+0100\n"
+"POT-Creation-Date: 2003-12-14 03:50+0100\n"
+"PO-Revision-Date: 2003-12-14 16:00+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2143,10 +2143,159 @@ msgid "Custom"
 msgstr "Vlastní"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:111
+#: gstreamer-properties/pipeline-tests.c:110
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nemohu vytvořit testovací pipeline pro '%s'"
+
+#: profiles/audio-profile.c:100
+msgid "<not named>"
+msgstr "<nepojmenován>"
+
+#: profiles/audio-profile.c:101
+msgid "<not described>"
+msgstr "<není popsán>"
+
+#: profiles/audio-profile.c:216
+#, c-format
+msgid "There was an error getting the list of audio profiles. (%s)\n"
+msgstr "Při získávání seznamu profilů zvuku došlo k chybě. (%s)\n"
+
+#: profiles/audio-profile.c:717
+#, c-format
+msgid ""
+"There was an error subscribing to notification of terminal profile list "
+"changes. (%s)\n"
+msgstr "Při přihlašování se k upozornění na změny seznamu profilů terminálu došlo k chybě. (%s)\n"
+
+#: profiles/audio-profile.c:907
+#, c-format
+msgid "There was an error forgetting profile dir %s. (%s)\n"
+msgstr "Při zahazování adresáře profilu %s došlo k chybě. (%s)\n"
+
+#: profiles/audio-profile.c:999
+msgid "<no description>"
+msgstr "<žádný popis>"
+
+#: profiles/audio-profile.c:1010
+msgid "identity"
+msgstr "identita"
+
+#: profiles/audio-profile.c:1021
+msgid "wav"
+msgstr "wav"
+
+#: profiles/audio-profile-edit.c:201
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Při zobrazování nápovědy došlo k chybě: %s"
+
+#: profiles/audio-profile-edit.c:406
+#, c-format
+msgid "Editing profile \"%s\""
+msgstr "Upravuji profil \"%s\""
+
+#: profiles/audio-profiles-edit.c:112
+msgid "_Edit"
+msgstr "_Upravit"
+
+#: profiles/audio-profiles-edit.c:453
+msgid "You must select one or more profiles to delete."
+msgstr "Musíte vybrat jeden nebo více profilů, které odstranit."
+
+#: profiles/audio-profiles-edit.c:463
+msgid "Delete these two profiles?\n"
+msgstr "Odstranit tyto dva profily?\n"
+
+#: profiles/audio-profiles-edit.c:465
+#, c-format
+msgid "Delete these %d profiles?\n"
+msgstr "Odstranit těchto %d profilů?\n"
+
+#: profiles/audio-profiles-edit.c:483
+#, c-format
+msgid "Delete profile \"%s\"?"
+msgstr "Odstranit profil \"%s\"?"
+
+#: profiles/audio-profiles-edit.c:505
+msgid "Delete Profile"
+msgstr "Odstranit profil"
+
+#.
+#. dialog =
+#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
+#. NULL,
+#. GTK_DIALOG_DESTROY_WITH_PARENT,
+#. GTK_STOCK_HELP,
+#. GTK_RESPONSE_HELP,
+#. GTK_STOCK_CLOSE,
+#. GTK_RESPONSE_ACCEPT,
+#. NULL);
+#.
+#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
+#: profiles/audio-profiles-edit.c:599
+msgid "Edit Audio Profiles"
+msgstr "Upravit profily zvuku"
+
+#: profiles/audio-profiles-edit.c:652
+msgid "_Profiles:"
+msgstr "_Profily:"
+
+#: profiles/audio-profiles-edit.c:880
+#, c-format
+msgid "You already have a profile called \"%s\""
+msgstr "Již máte profil zvuku nazvaný \"%s\""
+
+#: profiles/audio-profiles-edit.c:905
+#, c-format
+msgid "GConf Error (FIXME): %s\n"
+msgstr "Chyba GConf (FIXME): %s\n"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:1
+msgid "A description for the audio profile"
+msgstr "Popis profilu zvuku"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:2
+msgid ""
+"A description of the profile, containing more information and describing "
+"when to use this profile."
+msgstr "Popis profilu obsahující více informací a popisující, kdy používat tento profil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:3
+msgid "A partial GStreamer pipeline to use for this profile."
+msgstr "Částečná pipeline GStreameru, kterou používat pro tento profil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:4
+msgid "A short name for the audio profile"
+msgstr "Krátký název profilu zvuku"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:5
+msgid ""
+"A short name for the audio profile, to be used in selections and uniquely "
+"identifying the profile."
+msgstr "Krátký název profilu zvuku používaný ve výběrech a jedinečně identifikující profil."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:6
+msgid ""
+"List of audio recording profiles. The list contains strings naming "
+"subdirectories relative to /system/gstreamer/record/profiles."
+msgstr "Seznam profilů záznamu zvuku. Seznam obsahuje řetězce s názvy poadresářů relativně k /system/gstreamer/record/profiles."
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "List of profiles"
+msgstr "Seznam profilů"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "The partial GStreamer pipeline used"
+msgstr "Používaná částečná pipeline GStreameru"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+msgid "Whether or not this profile is to be used"
+msgstr "Jestli se má tento profil používat"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "Whether or not to use and display this profile."
+msgstr "Jestli používat a zobrazovat tento profil."
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2404,16 +2553,6 @@ msgstr "Sledování hlasitosti"
 #~ msgid ""
 #~ "Warning: This version of the Gnome Volume Control was compiled with\n"
 #~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Varování: Tato verze programu Ovládání hlasitosti pro GNOME byla "
-#~ "přeložena\n"
-#~ "s OSS verze %d.%d.%d. a tento systém běží\n"
-#~ "s verzí nižší než 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
 #~ "version %d.%d.%d.\n"
 #~ msgstr ""
 #~ "Upozornění: Tato verze programu Ovládání hlasitosti pro GNOME byla "
@@ -2447,6 +2586,3 @@ msgstr "Sledování hlasitosti"
 
 #~ msgid "_Reset labels to their defaults"
 #~ msgstr "V_rátit nadpisy na původní hodnoty"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Nastavení Ovládání hlasitosti pro GNOME"
