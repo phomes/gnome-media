@@ -22,7 +22,7 @@ Icondir = $(datadir)/pixmaps
 Icon_DATA = gnome-grecord.png
 
 pixmapdir = $(datadir)/pixmaps/gnome-media/gnome-sound-recorder
-pixmap_DATA = media-rec.png		\
+pixmap_DATA = media-record.png		\
 	      media-play.png		\
 	      media-stop.png
 
