@@ -37,6 +37,9 @@
 static CDDBSlaveClient *client = NULL;
 static int running_objects = 0;
 
+/* accessibility support */
+static void set_relation (GtkWidget *widget, GtkWidget *label);
+
 typedef struct _CDDBInfo {
 	char *discid;
 	
@@ -558,6 +561,8 @@ make_track_editor_control (void)
 	g_signal_connect (G_OBJECT (td->artist), "changed",
 			  G_CALLBACK (artist_changed), td);
 	gtk_box_pack_start (GTK_BOX (hbox), td->artist, TRUE, TRUE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->artist);
+	set_relation (td->artist, label);
 
 	/* Disc title */
 	hbox = gtk_hbox_new (FALSE, 4);
@@ -570,6 +575,8 @@ make_track_editor_control (void)
 	g_signal_connect (G_OBJECT (td->disctitle), "changed",
 			  G_CALLBACK (disctitle_changed), td);
 	gtk_box_pack_start (GTK_BOX (hbox), td->disctitle, TRUE, TRUE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->disctitle);
+	set_relation (td->disctitle, label);
 
 	advanced = cddb_disclosure_new (_("Show advanced disc options"),
 					_("Hide advanced disc options"));
@@ -585,20 +592,22 @@ make_track_editor_control (void)
 	gtk_box_pack_start (GTK_BOX (ad_vbox), hbox, FALSE, FALSE, 0);
 
 	/* Top box: Disc comments. Maybe should be a GtkText? */
-	label = gtk_label_new (_("Disc comments:"));
+	label = gtk_label_new_with_mnemonic (_("_Disc comments:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	td->disccomments = gtk_entry_new ();
 	g_signal_connect (G_OBJECT (td->disccomments), "changed",
 			  G_CALLBACK (comment_changed), td);
 	gtk_box_pack_start (GTK_BOX (hbox), td->disccomments, TRUE, TRUE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->disccomments);
+	set_relation (td->disccomments, label);
 
 	/* Bottom box */
 	hbox = gtk_hbox_new (FALSE, 4);
 	gtk_box_pack_start (GTK_BOX (ad_vbox), hbox, FALSE, FALSE, 0);
 
 	/* Genre */
-	label = gtk_label_new (_("Genre:"));
+	label = gtk_label_new_with_mnemonic (_("_Genre:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	td->genre = gtk_combo_new ();
@@ -609,15 +618,20 @@ make_track_editor_control (void)
 	gtk_combo_set_value_in_list (GTK_COMBO (td->genre), FALSE, TRUE);
 	
 	gtk_box_pack_start (GTK_BOX (hbox), td->genre, TRUE, TRUE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label),
+				       GTK_COMBO (td->genre)->entry);
+	set_relation (td->genre, label);
 
 	/* Year */
-	label = gtk_label_new (_("Year:"));
+	label = gtk_label_new_with_mnemonic (_("_Year:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	td->year = gtk_entry_new ();
 	g_signal_connect (G_OBJECT (td->year), "changed",
 			  G_CALLBACK (year_changed), td);
 	gtk_box_pack_start (GTK_BOX (hbox), td->year, FALSE, FALSE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->year);
+	set_relation (td->year, label);
 
 	sep = gtk_hseparator_new ();
 	gtk_box_pack_start (GTK_BOX (td->parent), sep, FALSE, FALSE, 0);
@@ -673,7 +687,7 @@ make_track_editor_control (void)
 	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox2);
 	
 	/* Extra data */
-	label = gtk_label_new (_("Extra track data:"));
+	label = gtk_label_new_with_mnemonic (_("_Extra track data:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (ad_vbox2), label, FALSE, FALSE, 0);
 
@@ -682,6 +696,8 @@ make_track_editor_control (void)
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (td->extra_info),
 				     GTK_WRAP_WORD);
 	gtk_box_pack_start (GTK_BOX (ad_vbox2), td->extra_info, TRUE, TRUE, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->extra_info);
+	set_relation (td->extra_info, label);
 	
 	/* Special show hide all the stuff we want */
 	gtk_widget_show_all (td->parent);
@@ -872,6 +888,39 @@ track_editor_init (gpointer data)
 
 	bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
 	return FALSE;
+}
+
+/*
+ * set_relation
+ * @widget : The Gtk widget which is labelled by @label
+ * @label : The label for the @widget.
+ * Description : This function establishes atk relation
+ * between a gtk widget and a label.
+ */
+static void
+set_relation (GtkWidget *widget, GtkWidget *label)
+{
+	AtkObject *aobject;
+	AtkRelationSet *relation_set;
+	AtkRelation *relation;
+	AtkObject *targets[1];
+
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_IS_WIDGET (label));
+
+	aobject = gtk_widget_get_accessible (widget);
+
+	/* Return if GAIL is not loaded */
+	if (! GTK_IS_ACCESSIBLE (aobject))
+		return;
+
+	targets[0] = gtk_widget_get_accessible (label);
+
+	relation_set = atk_object_ref_relation_set (aobject);
+
+	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
+	atk_relation_set_add (relation_set, relation);
+	g_object_unref (G_OBJECT (relation));
 }
 
 int
