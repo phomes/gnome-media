@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 1999-09-18 21:26+0200\n"
-"PO-Revision-Date: 1999-09-16 15:56+02:00\n"
+"POT-Creation-Date: 1999-09-19 09:31-0500\n"
+"PO-Revision-Date: 1999-09-22 00:29+02:00\n"
 "Last-Translator: Kenneth Christiansen <kenneth@ripen.dk>\n"
 "Language-Team: Dansk/Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Kontakter [%s]\n"
 #: cddbslave/main.c:55
 #, c-format
 msgid "Querying server [%s]\n"
-msgstr "Forespørger server [%s]\n"
+msgstr "Undersøger server [%s]\n"
 
 #: cddbslave/main.c:56
 #, c-format
@@ -51,7 +51,7 @@ msgstr "Fejl ved forbindelse [%s]\n"
 #: cddbslave/main.c:60
 #, c-format
 msgid "Error querying [%s]\n"
-msgstr "Fejl under forespørgsel [%s]\n"
+msgstr "Fejl ved undersøgelse [%s]\n"
 
 #: cddbslave/main.c:61
 #, c-format
@@ -66,7 +66,7 @@ msgstr "Ingen match for %s\n"
 #: cddbslave/main.c:63
 #, c-format
 msgid "Timeout: %s\n"
-msgstr "Timeout: %s\n"
+msgstr "Tidsudløb: %s\n"
 
 #: cddbslave/main.c:64
 #, c-format
@@ -78,8 +78,8 @@ msgid "_About"
 msgstr "_Om..."
 
 #: gmix/gmix.c:99
-msgid "_Properties"
-msgstr ""
+msgid "_Preferences..."
+msgstr "_Indstillinger..."
 
 #: gmix/gmix.c:105
 msgid "_Program"
@@ -94,76 +94,75 @@ msgid "don't restore mixer-settings from configuration"
 msgstr "gendan ikke mixerværdiene fra konfigurationen"
 
 #: gmix/gmix.c:157
-#, fuzzy
 msgid "restore mixer-settings from configuration"
-msgstr "gendan ikke mixerværdiene fra konfigurationen"
+msgstr "gendan mixerværdiene fra konfigurationen"
 
 #: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
-msgstr "initialiser mixeren(e) fra lagret konfiguration og afslut"
+msgstr "initialisere mixeren(e) fra lagret konfiguration og afslut"
 
 #: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "gem ikke (modificerede) mixerværdier til konfigurationen"
 
 #. start frame
-#: gmix/gmix.c:278 tcd/prefs.c:388
+#: gmix/gmix.c:278 tcd/prefs.c:387
 msgid "On startup"
 msgstr "Ved opstart"
 
 #. Set on start
 #: gmix/gmix.c:284
 msgid "Restore saved mixer levels on startup"
-msgstr ""
+msgstr "Gendan gemte mixerindstillinger ved opstart"
 
 #: gmix/gmix.c:290
 msgid "Hide menu on start"
-msgstr ""
+msgstr "Gem menu ved start"
 
-#: gmix/gmix.c:306
+#: gmix/gmix.c:305
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #: gmix/gmix.c:309
 msgid "Use Mixer Icons"
-msgstr ""
+msgstr "Brug mixerikoner"
 
 #: gmix/gmix.c:317
 msgid "Use Mixer Labels"
-msgstr ""
+msgstr "Brug mixernavne"
 
-#: gmix/gmix.c:340 tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Prefærencer..."
+#: gmix/gmix.c:340 tcd/gtcd.c:326 tcd/prefs.c:590
+msgid "Preferences"
+msgstr "Indstillinger"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:775
+#: gmix/gmix.c:765
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:785
+#: gmix/gmix.c:775
 msgid "Rec."
 msgstr "Optag"
 
-#: gmix/gmix.c:802
+#: gmix/gmix.c:792
 msgid "Mute"
 msgstr "Dæmp"
 
-#: gmix/gmix.c:825
+#: gmix/gmix.c:815
 msgid "GMIX 3.0"
 msgstr "GNOME Mixer 3.0"
 
-#: gmix/gmix.c:994
+#: gmix/gmix.c:984
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMix - Gnome mixeren"
 
-#: gmix/gmix.c:997
+#: gmix/gmix.c:987
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mixer for OSS lyd-enheder."
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
-msgstr "GNOME CD-spiller"
+msgstr "TCD - GNOME CD-afspiller"
 
 #: tcd/callbacks.c:86
 msgid ""
@@ -175,15 +174,15 @@ msgstr ""
 
 #: tcd/cddb_props.c:64
 msgid "Disc ID"
-msgstr "Disc ID"
+msgstr "Disk ID"
 
 #: tcd/cddb_props.c:64
 msgid "Disc Title"
-msgstr "Disc titel"
+msgstr "Disk titel"
 
 #: tcd/cddb_props.c:79
 msgid "Edit"
-msgstr "Rediger"
+msgstr "Redigér"
 
 #: tcd/cddb_props.c:83
 msgid "Remove"
@@ -191,7 +190,7 @@ msgstr "Fjern"
 
 #: tcd/cddb_props.c:89
 msgid "Refresh List"
-msgstr "Opdater liste"
+msgstr "Opdatér liste"
 
 #. server settings
 #: tcd/cddb_props.c:140
@@ -242,7 +241,7 @@ msgid "Delete CDDB Entry?"
 msgstr "Slet CDDB punkt?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:308
+#: tcd/cddb_status.c:50 tcd/gtracked.c:307
 msgid "CDDB Status"
 msgstr "CDDB status"
 
@@ -283,65 +282,61 @@ msgstr "normal"
 msgid "random"
 msgstr "tilfældig"
 
-#: tcd/gtcd.c:326
+#: tcd/gtcd.c:325
 msgid "Open track editor"
-msgstr "Åben sporredigering"
+msgstr "Åben sporredigéring"
 
-#: tcd/gtcd.c:327 tcd/prefs.c:586
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: tcd/gtcd.c:328 tcd/popup.c:23
+#: tcd/gtcd.c:327 tcd/popup.c:24
 msgid "Quit"
 msgstr "Afslut"
 
 #. TOP ROW
-#: tcd/gtcd.c:348
+#: tcd/gtcd.c:347
 msgid "Play/Pause"
 msgstr "Spil/Pause"
 
-#: tcd/gtcd.c:352 tcd/popup.c:16
+#: tcd/gtcd.c:351 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
 
-#: tcd/gtcd.c:353 tcd/popup.c:17
+#: tcd/gtcd.c:352 tcd/popup.c:17
 msgid "Eject"
 msgstr "Skub ud"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:360 tcd/gtcd.c:368
+#: tcd/gtcd.c:359 tcd/gtcd.c:367
 msgid "Skip backwards"
 msgstr "Hop tilbage"
 
-#: tcd/gtcd.c:361 tcd/gtcd.c:369
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip forwards"
 msgstr "Hop fremad"
 
-#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
+#: tcd/gtcd.c:519 tcd/gtcd.c:520 tcd/gtcd.c:521
 msgid "(Scanning)"
 msgstr "(Søger)"
 
-#: tcd/gtcd.c:544
+#: tcd/gtcd.c:543
 msgid "No Disc"
-msgstr "Ingen disc"
+msgstr "Ingen disk"
 
-#: tcd/gtcd.c:579
+#: tcd/gtcd.c:578
 msgid "Error"
 msgstr "Fejl"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:856
 msgid "Volume"
 msgstr "Volume"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "Filename of the CD device"
 msgstr "Filnavn for CD enheden"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "FILE"
 msgstr "FILE"
 
-#: tcd/gtcd.c:1027
+#: tcd/gtcd.c:1030
 msgid "Play CD on startup"
 msgstr "Spil CD ved opstart"
 
@@ -365,7 +360,7 @@ msgstr "Sporredigering"
 #: tcd/gtracked.c:208
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Disc Information (%02u:%02u minutter)"
+msgstr "Disk information (%02u:%02u minutter)"
 
 #: tcd/gtracked.c:217
 msgid "Artist / Title"
@@ -378,24 +373,24 @@ msgid "Track Information"
 msgstr "Spor information"
 
 #. Clear button
-#: tcd/gtracked.c:297
+#: tcd/gtracked.c:296
 msgid "Clear"
 msgstr "Blank"
 
 #. Playlist button
-#: tcd/gtracked.c:302
+#: tcd/gtracked.c:301
 msgid "Playlist"
 msgstr "Spilleliste"
 
-#: tcd/gtracked.c:314
+#: tcd/gtracked.c:313
 msgid "Submit"
 msgstr "Indsend"
 
-#: tcd/gtracked.c:375
+#: tcd/gtracked.c:374
 msgid "Submit Information"
 msgstr "Indsend information"
 
-#: tcd/gtracked.c:381
+#: tcd/gtracked.c:380
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -404,12 +399,12 @@ msgstr ""
 "Indsend information om\n"
 "'%s'"
 
-#: tcd/gtracked.c:390
+#: tcd/gtracked.c:389
 msgid "To: "
 msgstr "Til: "
 
 #. end of service menu
-#: tcd/gtracked.c:422
+#: tcd/gtracked.c:421
 msgid "Category: "
 msgstr "Kategori: "
 
@@ -443,93 +438,101 @@ msgstr "Spor %d"
 msgid "Play"
 msgstr "Spil"
 
+#: tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Indstillinger..."
+
 #: tcd/popup.c:20
 msgid "Track Editor..."
 msgstr "Sporredigering..."
 
 #: tcd/popup.c:21
-msgid "About..."
+msgid "Help"
+msgstr "Hjælp"
+
+#: tcd/popup.c:22
+msgid "About"
 msgstr "Om..."
 
 #. do nothing
-#: tcd/prefs.c:179 tcd/prefs.c:234
+#: tcd/prefs.c:178 tcd/prefs.c:233
 msgid "Do nothing"
 msgstr "Gør ingenting"
 
-#: tcd/prefs.c:185
+#: tcd/prefs.c:184
 msgid "Start playing"
 msgstr "Start afspilning"
 
-#: tcd/prefs.c:191 tcd/prefs.c:240
+#: tcd/prefs.c:190 tcd/prefs.c:239
 msgid "Stop playing"
 msgstr "Stop afspilning"
 
 #. close tray
-#: tcd/prefs.c:195 tcd/prefs.c:252
+#: tcd/prefs.c:194 tcd/prefs.c:251
 msgid "Close tray"
 msgstr "Luk skuffe"
 
-#: tcd/prefs.c:246
+#: tcd/prefs.c:245
 msgid "Open tray"
 msgstr "Åben skuffe"
 
 #. device entry
-#: tcd/prefs.c:325
+#: tcd/prefs.c:324
 msgid "CDROM device"
 msgstr "CDROM-enhed"
 
 #. Color picker
-#: tcd/prefs.c:334
+#: tcd/prefs.c:333
 msgid "Track/title color"
 msgstr "Spor-/titelfarve"
 
 #. font picker
-#: tcd/prefs.c:346
+#: tcd/prefs.c:345
 msgid "Track/title font"
-msgstr "Spor-/titelskrifttype"
+msgstr "Spor-/titelskrift"
 
-#: tcd/prefs.c:347
+#: tcd/prefs.c:346
 msgid "Change font"
 msgstr "Ændre skrifttype"
 
 #. show handles
-#: tcd/prefs.c:354
+#: tcd/prefs.c:353
 msgid "Show handles (restart required)"
-msgstr "Vis Handles (Genstart krævet)"
+msgstr "Vis Handles (genstart påkrævet)"
 
 #. show tooltips
-#: tcd/prefs.c:361
+#: tcd/prefs.c:360
 msgid "Show tooltips"
 msgstr "Vis værktøjstips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:368
+#: tcd/prefs.c:367
 msgid "Use alternate method to play CD"
 msgstr "Brug alternativ metode til at afspille CD'er"
 
 #. exit frame
-#: tcd/prefs.c:394
+#: tcd/prefs.c:393
 msgid "On exit"
 msgstr "Ved afslutning"
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:501
 msgid "Key"
 msgstr "Tast"
 
-#: tcd/prefs.c:503
+#: tcd/prefs.c:502
 msgid "Action"
 msgstr "Handling"
 
-#: tcd/prefs.c:523
+#: tcd/prefs.c:522
 msgid "Click here to change (restart required):"
-msgstr "Klik her for at ændre (Genstart krævet):"
+msgstr "Klik her for at ændre (genstart påkrævet):"
 
 #. Frame
-#: tcd/prefs.c:545 tcd/prefs.c:590
+#: tcd/prefs.c:544 tcd/prefs.c:594
 msgid "Keybindings"
-msgstr "Tastaturbindinger"
+msgstr "Tastegenveje"
 
-#: tcd/prefs.c:594
+#: tcd/prefs.c:598
 msgid "CDDB Settings"
 msgstr "CDDB opsætning"
 
@@ -578,7 +581,10 @@ msgstr "Vært er %s\n"
 msgid "Volume Meter"
 msgstr "Volumenmeter"
 
-#~ msgid "About"
+#~ msgid "_Properties"
+#~ msgstr "_Indstillinger"
+
+#~ msgid "About..."
 #~ msgstr "Om..."
 
 #~ msgid "Close"
