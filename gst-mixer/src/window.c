@@ -370,12 +370,18 @@ cb_about (GtkWidget *widget,
 			     NULL };
   const gchar *documentors[] = { "Sun Microsystems",
 				 NULL};
+  /* Translators comment: put your own name here to appear in the
+   * about dialog. */
+  const gchar *translators = _("translator-credits");
+
+  if (!strcmp (translators, "translator-credits"))
+    translators = NULL;
 
   about = gnome_about_new (_("Volume Control"),
 			   VERSION,
 			   "(c) 2003-2004 Ronald Bultje",
 			   _("A GNOME/GStreamer-based volume control application"),
-			   authors, documentors, NULL,
+			   authors, documentors, translators,
 			   NULL);
 
   gtk_widget_show (about);
