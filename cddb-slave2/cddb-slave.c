@@ -1012,17 +1012,21 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 
 	*names_list = GNOME_Media_CDDBSlave2_StringList__alloc ();
 	(*names_list)->_length = 0;
-	(*names_list)->_maximum = entry->ntrks;
+	(*names_list)->_maximum = entry->ntrks + 1;
 	(*names_list)->_buffer = CORBA_sequence_CORBA_string_allocbuf (entry->ntrks);
-	
+
 	for (ntrk = 0; ntrk < entry->ntrks; ntrk++) {
 		char *name;
 		GString *ttitle;
 
-		name = g_strdup_printf ("TTITLE%d", ntrk + 1);
+		name = g_strdup_printf ("TTITLE%d", ntrk);
 		ttitle = g_hash_table_lookup (entry->fields, name);
-		(*names_list)->_buffer[ntrk] = CORBA_string_dup (ttitle->str ? ttitle->str : "");
-		(*names_list)->_maximum++;
+		if (ttitle != NULL) {
+			(*names_list)->_buffer[ntrk] = CORBA_string_dup (ttitle->str ? ttitle->str : "");
+		} else {
+			(*names_list)->_buffer[ntrk] = CORBA_string_dup ("");
+		}
+		(*names_list)->_length++;
 
 		g_free (name);
 	}

@@ -1,5 +1,17 @@
 2002-02-10  Iain <iain@ximian.com>
 
+	* cddb-slave-client.c (cddb_slave_client_get_disc_title): Do the CORBA
+	stuff for getDiscTitle.
+	(cddb_slave_client_get_artist): Ditto.
+	(cddb_slave_client_get_ntrks): Ditto.
+	(cddb_slave_client_get_track_title): Ditto.
+	(cddb_slave_client_get_tracks): Ditto.
+
+	* cddb-slave.c (impl_GNOME_Media_CDDBSlave2_getAllTracks): Fix some
+	issues.
+
+2002-02-10  Iain <iain@ximian.com>
+
 	* cddb-parser.c (cddb_entry_parse_file): fix typo.
 
 	* cddb-slave.c (impl_GNOME_Media_CDDBSlave2_getAllTracks): Get all the

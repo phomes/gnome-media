@@ -300,5 +300,148 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 	return;
 }
 
-
+/**
+ * cddb_slave_client_get_disc_title:
+ *
+ */
+char *
+cddb_slave_client_get_disc_title (CDDBSlaveClient *client,
+				  const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_char *ret;
 	
+	g_return_val_if_fail (client != NULL, NULL);
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	ret = GNOME_Media_CDDBSlave2_getDiscTitle (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting disc title\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+char *
+cddb_slave_client_get_artist (CDDBSlaveClient *client,
+			      const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_char *ret;
+
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	ret = GNOME_Media_CDDBSlave2_getArtist (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting artist\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+int
+cddb_slave_client_get_ntrks (CDDBSlaveClient *client,
+			     const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_short ret;
+
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), -1);
+	g_return_val_if_fail (discid != NULL, -1);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	ret = GNOME_Media_CDDBSlave2_getNTrks (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting ntrks\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return -1;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+char *
+cddb_slave_client_get_track_title (CDDBSlaveClient *client,
+				   const char *discid,
+				   int track)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_char *ret;
+
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+
+	ret = GNOME_Media_CDDBSlave2_getTrackTitle (objref, discid, track, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting track title\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+char **
+cddb_slave_client_get_tracks (CDDBSlaveClient *client,
+			      const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	GNOME_Media_CDDBSlave2_StringList *list;
+	char **ret;
+	int i;
+	
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+
+	GNOME_Media_CDDBSlave2_getAllTracks (objref, discid, &list, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting tracks\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+	CORBA_exception_free (&ev);
+
+	ret = g_new (char *, list->_length);
+	for (i = 0; i < list->_length; i++) {
+		ret[i] = g_strdup (list->_buffer[i]);
+	}
+
+	CORBA_free (list);
+	return ret;
+}
