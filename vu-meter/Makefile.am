@@ -14,7 +14,7 @@ vumeter_SOURCES = \
 	main.c
 
 vumeter_LDADD = \
-	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) 
+	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 BITMAPS = gnome-vumeter.png
 

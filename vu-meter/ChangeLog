@@ -1,3 +1,11 @@
+1999-08-20  Tim Gerla  <timg@means.net>
+
+	* Makefile.am: Added $(INTLLIBS) (David Kaelbling patch)
+	* main.c: Various IRIX compatibility patches from David KAELBLING <drk@sgi.com>:
+                  Don't use C++ comments in C code.
+                  Initialize with static values for ANSI compilers.
+                  Remove call to gtk_timeout_remove() that passed a bogus time_id.
+	
 1999-08-14  Matthias Warkus  <mawa@iname.com>
 
 	* gnome-vumeter.png: Icon by Ben Frantzdale added.

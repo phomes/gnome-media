@@ -164,12 +164,13 @@ update_levels(gpointer data)
     led_bar_light_percent (dial[1], meter->r_level);
     meter->meter_stat = TRUE;
 
-				    // updates display RIGHT AWAY if a new
-				    // peak has arrived.  Fixes the "lost
-				    // peaks" problem that happens with fast
-				    // transient music. Also reduced the MAIN
-				    // update rate to lower cpu use. Makes it 
-				    // work a bit better too..
+    /* updates display RIGHT AWAY if a new
+       peak has arrived.  Fixes the "lost
+       peaks" problem that happens with fast
+       transient music. Also reduced the MAIN
+       update rate to lower cpu use. Makes it 
+       work a bit better too.. */
+
     if(plevel_l != meter->l_level)
     {
 	update_display(meter);
@@ -198,7 +199,7 @@ handle_read (gpointer data, gint source, GdkInputCondition condition)
 
     count = read(source, aubuf[curbuf] + pos, to_get);
     if (count <0)
-	exit(1);		// no data
+      exit(1);		/* no data */
     else
     {
 	pos += count;
@@ -241,21 +242,26 @@ main (int argc, char *argv[])
     gint          session_ypos = -1;
     gint          orient = 0;
 
-    const struct poptOption options[] = 
+    struct poptOption options[] = 
     {
-	{ NULL, 'x', POPT_ARG_INT, &session_xpos, 0, 
-	    N_("Specify the X position of the meter."), 
-	    N_("X-Position") },
-	{ NULL, 'y', POPT_ARG_INT, &session_ypos, 0, 
-	    N_("Specify the Y position of the meter."), 
-	    N_("Y-Position") },
-	{ NULL, 's', POPT_ARG_STRING, &esd_host, 0, 
-	    N_("Connect to the esd server on this host."), 
-	    N_("ESD Server Host") },
-	{ NULL, 'v', POPT_ARG_NONE, &orient, 0, 
-	    N_("Open a vertical version of the meter."), NULL },
+	{ NULL, 'x', POPT_ARG_INT, NULL, 0, 
+	  N_("Specify the X position of the meter."), 
+	  N_("X-Position") },
+	{ NULL, 'y', POPT_ARG_INT, NULL, 0, 
+	  N_("Specify the Y position of the meter."), 
+	  N_("Y-Position") },
+	{ NULL, 's', POPT_ARG_STRING, NULL, 0, 
+	  N_("Connect to the esd server on this host."), 
+	  N_("ESD Server Host") },
+	{ NULL, 'v', POPT_ARG_NONE, NULL, 0, 
+	  N_("Open a vertical version of the meter."), NULL },
 	{ NULL, '\0', 0, NULL, 0 }
     };
+    options[0].arg = &session_xpos;
+    options[1].arg = &session_ypos;
+    options[2].arg = &esd_host;
+    options[3].arg = &orient;
+
     bindtextdomain (PACKAGE, GNOMELOCALEDIR);
     textdomain (PACKAGE);
     gnome_init_with_popt_table ("Volume Meter", "0.1", argc, argv, options, 
@@ -313,13 +319,11 @@ main (int argc, char *argv[])
 
     if(sound > 0) /* TPG: Make sure we have a valid fd... */
 	gdk_input_add (sound, GDK_INPUT_READ, handle_read, meter);
-//      time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter);
+    /* time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter); */
 
     gtk_main ();
     gtk_object_unref (GTK_OBJECT (client));
-    gtk_timeout_remove (time_id);
+    /*   gtk_timeout_remove (time_id); */
     g_free (meter);
     return 0;
-
 }
-
