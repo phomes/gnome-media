@@ -1037,7 +1037,8 @@ put_one_device_config (gpointer a,
 		
 		key = g_strdup_printf("%s/mute", key_base);
 		gconf_client_set_bool (client, key, channel->is_muted, NULL);
-		
+		g_free (key);
+	
 		if (channel->is_stereo == TRUE) {
 			key = g_strdup_printf ("%s/lock", key_base);
 			gconf_client_set_bool(client, key, channel->is_locked, NULL);
