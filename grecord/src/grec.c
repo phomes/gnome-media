@@ -154,7 +154,7 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 	gchar* temp_string1 = NULL;
 	gchar* temp_string2 = NULL;
 
-	gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+	gnome_appbar_clear_stack (GNOME_APPBAR (grecord_widgets.appbar));
 
 	if (RecEng.is_running) {
 		temp_string1 = g_strconcat ("-r ", samplerate, NULL);
@@ -1128,7 +1128,7 @@ check_if_loading_finished (gint pid)
 		set_min_sec_time (get_play_time (active_file));
 		
 		/* Remove the comment from the appbar, because we're finished */
-		gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+		gnome_appbar_clear_stack (GNOME_APPBAR (grecord_widgets.appbar));
 
 		/* Make widgets sensitive again */
 		grecord_set_sensitive_file ();
@@ -1177,7 +1177,7 @@ check_if_sounddevice_ready ()
 					       GTK_BUTTONS_OK,
 					       _("The sound device is not ready. Please check that there "
 						 "isn't\nanother program running that is using the device."));
-		gnome_dialog_run (GNOME_DIALOG (mess));
+		gtk_dialog_run (GNOME_DIALOG (mess));
 		return FALSE;
 	}
 
