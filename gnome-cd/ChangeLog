@@ -1,3 +1,11 @@
+2002-03-19 Iain Holmes <iain@ximian.com>
+
+	* linux-cdrom.c (linux_cdrom_rewind): Check that the CD status is 
+	GNOME_CDROM_STATUS_OK before trying to rewind.
+	(linux_cdrom_back): Ditto.
+	(linux_cdrom_ffwd): Ditto.
+	(linux_cdrom_next): Ditto.
+
 2002-03-14 Jayaraj Rajappan <jayaraj.rajappan@wipro.com>
 
 	* pangoaccessible.c - pango_accessible_get_text() : fix to get

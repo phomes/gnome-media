@@ -331,6 +331,13 @@ linux_cdrom_next (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		linux_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
+	}
+
 	track = status->track + 1;
 	g_free (status);
 	if (track > lcd->priv->number_tracks) {
@@ -377,6 +384,13 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
 		return FALSE;
+	}
+
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		linux_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
 	}
 
 	msf = &status->absolute;
@@ -690,6 +704,13 @@ linux_cdrom_rewind (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		linux_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
+	}
+	
 	msf = &status->absolute;
 
 	frames = msf_to_frames (msf);
@@ -747,6 +768,13 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
 		return FALSE;
+	}
+
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		linux_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
 	}
 
 	/* If we're > 0:00 on the track go back to the start of it, 
