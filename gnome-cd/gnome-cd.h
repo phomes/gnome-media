@@ -23,6 +23,16 @@
 
 #define NUMBER_OF_DISPLAY_LINES 5
 
+/* Stock icons */
+#define GNOME_CD_PLAY "media-play"
+#define GNOME_CD_PAUSE "media-pause"
+#define GNOME_CD_STOP "media-stop"
+#define GNOME_CD_PREVIOUS "media-prev"
+#define GNOME_CD_NEXT "media-next"
+#define GNOME_CD_FFWD "media-ffwd"
+#define GNOME_CD_REWIND "media-rewind"
+#define GNOME_CD_EJECT "media-eject"
+
 typedef struct _GnomeCDDiscInfo {
 	char *discid;
 	char *title;
@@ -42,15 +52,6 @@ typedef struct _GnomeCDText {
 
 typedef struct _GCDTheme {
 	char *name;
-	
-	GdkPixbuf *previous, *previous_menu;
-	GdkPixbuf *rewind;
-	GdkPixbuf *play, *play_menu;
-	GdkPixbuf *pause;
-	GdkPixbuf *stop, *stop_menu;
-	GdkPixbuf *forward;
-	GdkPixbuf *next, *next_menu;
-	GdkPixbuf *eject, *eject_menu;
 } GCDTheme;
 
 struct _GnomeCD {

@@ -297,11 +297,11 @@ struct _MenuItem {
 };
 
 struct _MenuItem menuitems[] = {
-	{N_("P_revious track"), "gnome-cd/a-first-menu.png", G_CALLBACK (back_cb)},
-	{N_("_Stop"), "gnome-cd/a-stop-menu.png", G_CALLBACK (stop_cb)},
-	{N_("_Play / Pause"), "gnome-cd/a-play-menu.png", G_CALLBACK (play_cb)},
-	{N_("_Next track"), "gnome-cd/a-last-menu.png", G_CALLBACK (next_cb)},
-	{N_("_Eject disc"), "gnome-cd/a-eject-menu.png", G_CALLBACK (eject_cb)},
+	{N_("P_revious track"), GNOME_CD_PREVIOUS, G_CALLBACK (back_cb)},
+	{N_("_Stop"), GNOME_CD_STOP, G_CALLBACK (stop_cb)},
+	{N_("_Play / Pause"), GNOME_CD_PLAY, G_CALLBACK (play_cb)},
+	{N_("_Next track"), GNOME_CD_NEXT, G_CALLBACK (next_cb)},
+	{N_("_Eject disc"), GNOME_CD_EJECT, G_CALLBACK (eject_cb)},
 	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
 	{N_("_About CD player"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{NULL, NULL, NULL}
@@ -586,11 +586,11 @@ init_player (const char *device_override)
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
 	
-  	button = make_button_from_pixbuf (gcd, gcd->theme->previous, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+  	button = make_button_from_stock (gcd, GNOME_CD_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->back_b = button;
 
-	button = make_button_from_pixbuf (gcd, gcd->theme->rewind, NULL, _("Rewind"), _("Rewind"));
+	button = make_button_from_stock (gcd, GNOME_CD_REWIND, NULL, _("Rewind"), _("Rewind"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (rewind_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -600,10 +600,10 @@ init_player (const char *device_override)
 
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
-	gcd->play_image = gtk_image_new_from_pixbuf (gcd->theme->play);
+	gcd->play_image = gtk_image_new_from_stock (GNOME_CD_PLAY, GTK_ICON_SIZE_BUTTON);
 	g_object_ref (gcd->play_image);
 
-	gcd->pause_image = gtk_image_new_from_pixbuf (gcd->theme->pause);
+	gcd->pause_image = gtk_image_new_from_stock (GNOME_CD_PAUSE, GTK_ICON_SIZE_BUTTON);
 	gtk_widget_show (gcd->pause_image);
 	g_object_ref (gcd->pause_image);
 
@@ -612,11 +612,11 @@ init_player (const char *device_override)
 	gcd->play_b = button;
 	gcd->current_image = gcd->play_image;
 	
-	button = make_button_from_pixbuf (gcd, gcd->theme->stop, G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
+	button = make_button_from_stock (gcd, GNOME_CD_STOP, G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->stop_b = button;
 
-	button = make_button_from_pixbuf (gcd, gcd->theme->forward, NULL, _("Fast forward"), _("Fast forward"));
+	button = make_button_from_stock (gcd, GNOME_CD_FFWD, NULL, _("Fast forward"), _("Fast forward"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (ffwd_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -624,11 +624,11 @@ init_player (const char *device_override)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->ffwd_b = button;
 
-	button = make_button_from_pixbuf (gcd, gcd->theme->next, G_CALLBACK (next_cb), _("Next track"), _("Next track"));
+	button = make_button_from_stock (gcd, GNOME_CD_NEXT, G_CALLBACK (next_cb), _("Next track"), _("Next track"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->next_b = button;
 	
-	button = make_button_from_pixbuf (gcd, gcd->theme->eject, G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
+	button = make_button_from_stock (gcd, GNOME_CD_EJECT, G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->eject_b = button;
 
@@ -683,6 +683,49 @@ static gint client_die(GnomeClient *client,
 	gtk_main_quit ();
 }
 
+static const char *items [] =
+{
+	GNOME_CD_PLAY,
+	GNOME_CD_STOP,
+	GNOME_CD_PAUSE,
+	GNOME_CD_PREVIOUS,
+	GNOME_CD_NEXT,
+	GNOME_CD_FFWD,
+	GNOME_CD_REWIND,
+	GNOME_CD_EJECT
+};
+
+static void
+register_stock_icons (void)
+{
+	GtkIconFactory *factory;
+	int i;
+
+	factory = gtk_icon_factory_new ();
+	gtk_icon_factory_add_default (factory);
+
+	for (i = 0; i < (int) G_N_ELEMENTS (items); i++) {
+		GtkIconSet *icon_set;
+		GdkPixbuf *pixbuf;
+		char *filename, *fullname;
+
+		filename = g_strconcat ("gnome-cd/", items[i], ".png", NULL);
+		fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, filename, TRUE, NULL);
+		g_free (filename);
+
+		pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
+		g_free (fullname);
+
+		icon_set = gtk_icon_set_new_from_pixbuf (pixbuf);
+		gtk_icon_factory_add (factory, items[i], icon_set);
+		gtk_icon_set_unref (icon_set);
+
+		g_object_unref (G_OBJECT (pixbuf));
+	}
+
+	g_object_unref (G_OBJECT (factory));
+}
+
 static const struct poptOption cd_popt_options [] = {
 	{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
 	  N_("CD device to use"), NULL },
@@ -719,6 +762,7 @@ main (int argc, char *argv[])
 			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
 			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
+	register_stock_icons ();
 	client = gnome_master_client ();
     	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);
