@@ -203,6 +203,9 @@ static void
 other_freedb_toggled (GtkToggleButton *tb,
 		      PropertyDialog *pd)
 {
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	GtkTreeSelection *selection;
 	if (gtk_toggle_button_get_active (tb) == FALSE) {
 		return;
 	}
@@ -211,7 +214,17 @@ other_freedb_toggled (GtkToggleButton *tb,
 	gtk_widget_set_sensitive (pd->other_box, FALSE);
 
 	gconf_client_set_int (client, "/apps/CDDB-Slave2/server-type", CDDB_OTHER_FREEDB, NULL);
-	/* Set it to the default selection */
+	/* Set the selection */
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->freedb_server));
+
+	if (gtk_tree_selection_get_selected (selection, &model, &iter) == TRUE) {
+		char *server;
+		char *port;
+		
+		gtk_tree_model_get (model, &iter, 0, &server, 1, &port, -1);
+		gconf_client_set_string (client, "/apps/CDDB-Slave2/server", server, NULL);
+		gconf_client_set_int (client, "/apps/CDDB-Slave2/port", atoi (port), NULL);
+	}
 }
 
 static void
