@@ -13,13 +13,15 @@ INCLUDES =					\
 
 Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
-EXTRA_DIST = solaris-cdrom.c		\
-	     solaris-cdrom.h		\
-	     bsd-cdrom.c		\
-	     bsd-cdrom.h		\
-	     linux-cdrom.c		\
-	     linux-cdrom.h		\
-	     gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
+EXTRA_DIST = \
+	HACKING \
+	solaris-cdrom.c		\
+	solaris-cdrom.h		\
+	bsd-cdrom.c		\
+	bsd-cdrom.h		\
+	linux-cdrom.c		\
+	linux-cdrom.h		\
+	gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
 ### intermediate libtool library generated from IDL source
 IDLS = $(top_srcdir)/cddb-slave2/GNOME_Media_CDDBSlave2.idl
