@@ -42,6 +42,8 @@
 #include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
+#include <libgnorba/gnorba.h>
+
 #include "linux-cdrom.h"
 
 #include "gtracked.h"
@@ -50,6 +52,7 @@
 #include "callbacks.h"
 #include "gtcd_public.h"
 #include "keybindings.h"
+#include "gtcd.h"
 
 /* time display types */
 enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
@@ -90,6 +93,7 @@ GdkFont *sfont, *tfont;
 GdkColor track_color, darkgrey, timecolor, blue;
 GdkGC *gc;
 GtkAccelGroup *accel;
+guint slow_timeout=0, fast_timeout=0;
 
 GtkTooltips *tooltips;
 
@@ -1060,6 +1064,85 @@ void setup_keys()
 	accel = gtk_accel_group_get_default();
 }    
 
+/*
+ * CORBA glue
+ */
+
+/*** App-specific servant structures ***/
+typedef struct {
+	POA_GNOME_GTcd servant;
+	PortableServer_POA poa;
+} impl_POA_GNOME_GTcd;
+
+/*** Implementation stub prototypes ***/
+static void impl_GNOME_GTcd__destroy(impl_POA_GNOME_GTcd * servant,
+				     CORBA_Environment * ev);
+static void
+impl_GNOME_GTcd_open_new_cd(impl_POA_GNOME_GTcd * servant,
+			    CORBA_Environment * ev);
+
+/*** epv structures ***/
+static PortableServer_ServantBase__epv impl_GNOME_GTcd_base_epv =
+{
+	NULL,                      /* _private data */
+	NULL,                      /* finalize routine */
+	NULL,                      /* default_POA routine */
+};
+static POA_GNOME_GTcd__epv impl_GNOME_GTcd_epv =
+{
+	NULL,                      /* _private */
+	(gpointer) & impl_GNOME_GTcd_open_new_cd,
+};
+ 
+/*** vepv structures ***/
+static POA_GNOME_GTcd__vepv impl_GNOME_GTcd_vepv =
+{
+	&impl_GNOME_GTcd_base_epv,
+	&impl_GNOME_GTcd_epv,
+};
+ 
+/*** Stub implementations ***/
+static GNOME_GTcd 
+impl_GNOME_GTcd__create(PortableServer_POA poa, CORBA_Environment * ev)
+{
+	GNOME_GTcd retval;
+	impl_POA_GNOME_GTcd *newservant;
+	PortableServer_ObjectId *objid;
+
+	newservant = g_new0(impl_POA_GNOME_GTcd, 1);
+	newservant->servant.vepv = &impl_GNOME_GTcd_vepv;
+	newservant->poa = poa;
+	POA_GNOME_GTcd__init((PortableServer_Servant) newservant, ev);
+	objid = PortableServer_POA_activate_object(poa, newservant, ev);
+	CORBA_free(objid);
+	retval = PortableServer_POA_servant_to_reference(poa, newservant, ev);
+	
+	return retval;
+}
+
+static void
+impl_GNOME_GTcd__destroy(impl_POA_GNOME_GTcd * servant, CORBA_Environment * ev)
+{
+	PortableServer_ObjectId *objid;
+	objid = PortableServer_POA_servant_to_id(servant->poa, servant, ev);
+	PortableServer_POA_deactivate_object(servant->poa, objid, ev);
+	CORBA_free(objid);
+
+	POA_GNOME_GTcd__fini((PortableServer_Servant) servant, ev);
+	g_free(servant);
+}
+
+static void
+impl_GNOME_GTcd_open_new_cd(impl_POA_GNOME_GTcd * servant,
+			    CORBA_Environment * ev)
+{
+	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs->only_use_trkind);
+}
+
+/*
+ * Main
+ */
+
 static char *CD_device = NULL;
 poptContext ctx;
 
@@ -1077,11 +1160,35 @@ int main (int argc, char *argv[])
 {
 	GtkWidget *table;
 	GdkColor black;
+	CORBA_ORB orb;
+	CORBA_Environment ev;
+	PortableServer_POA poa;
+	GNOME_GTcd gtcd_server;
 
 	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
 	textdomain(PACKAGE);
 
-	gnome_init_with_popt_table("gtcd", VERSION, argc, argv, gtcd_popt_options, 0, &ctx);
+	CORBA_exception_init(&ev);
+	orb = gnome_CORBA_init_with_popt_table("gtcd", VERSION, &argc, argv, 
+					       gtcd_popt_options, 0, &ctx, 
+					       GNORBA_INIT_SERVER_FUNC, &ev);
+ 
+	/* Check for existing instance */
+	gtcd_server = goad_server_activate_with_id (NULL,
+						    "GOAD:gtcd:19990918",
+						    GOAD_ACTIVATE_EXISTING_ONLY,
+						    NULL);
+	
+	
+	if (gtcd_server != CORBA_OBJECT_NIL) {
+		GNOME_GTcd_open_new_cd(gtcd_server, &ev);
+		exit(0);
+	}
+
+	poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
+	goad_server_register(CORBA_OBJECT_NIL,
+			     impl_GNOME_GTcd__create(poa, &ev),
+			     "GOAD:gtcd:19990918", "object", &ev);
 
 	cd.play_method = NORMAL;
 
@@ -1115,8 +1222,8 @@ int main (int argc, char *argv[])
 	/* Initialize some timers */
 	if(cd.isplayable) tcd_gettime(&cd);
     
-	gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
-	gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
+	slow_timeout = gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
+	fast_timeout = gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
 	
 	gnome_app_set_contents(GNOME_APP(window), main_box);
@@ -1127,6 +1234,9 @@ int main (int argc, char *argv[])
 	gdk_window_set_background( status_area->window, &black);
     
 	signal(SIGUSR2, reload_info);
+
+	PortableServer_POAManager_activate
+		(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);
     
 	gtk_main();
 	return 0;

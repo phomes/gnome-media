@@ -2,6 +2,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnorba/gnorba.h>
 #include <sys/types.h>
 
 #include "linux-cdrom.h"
@@ -107,6 +108,8 @@ gint goto_track_cb(GtkWidget *widget, gpointer data)
 
 extern int time_display;
 extern GdkGC *gc;
+extern guint slow_timeout;
+extern guint fast_timeout;
 extern void exit_action(void);
 void quit_cb(GtkWidget *widget, gpointer data)
 {
@@ -114,16 +117,27 @@ void quit_cb(GtkWidget *widget, gpointer data)
 	gnome_config_set_int("/gtcd/ui/time_display", time_display);
 	gnome_config_sync();
 
+	gtk_timeout_remove (slow_timeout);
+	gtk_timeout_remove (fast_timeout);
+
 	gtk_widget_set_sensitive (widget, FALSE);
 
 	/* Let widgets redraw */
 	while (g_main_iteration (FALSE))
 		;
 
-	gdk_gc_destroy(gc);
 	exit_action();
 	tcd_close_disc(&cd);
 	
+	{
+		CORBA_Environment ev;
+		CORBA_exception_init(&ev);
+		goad_server_unregister(NULL, "GOAD:gtcd:19990918",
+				       "object", &ev);
+		CORBA_exception_free(&ev);
+	}
+
+	gdk_gc_destroy(gc);
 	gtk_main_quit();
 }
 

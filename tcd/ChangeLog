@@ -1,5 +1,12 @@
 2001-05-28  Peter Teichman  <peter@ximian.com>
 
+	* callbacks.c (quit_cb): remove the two timeouts while shutting
+	down. this fixes a race condition where the gc was destroyed
+	before the slow timeout ran
+
+	* gtcd.c: Create a corba interface for gtcd, to ensure that only
+	one copy is running at a time
+
 	* gtcd.c, prefs.h, prefs.c: Try much harder to load a font. Patch
 	from David Hampton <hampton@employees.org>
 
