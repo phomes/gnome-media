@@ -87,7 +87,7 @@ GtkWidget **changer_buttons;
 GtkObject *vol;
 GdkColormap *colormap;
 GdkFont *sfont, *tfont;
-GdkColor track_color, darkgrey, timecolor, trackcolor;
+GdkColor track_color, darkgrey, timecolor, blue;
 GdkGC *gc;
 GtkAccelGroup *accel;
 
@@ -97,6 +97,7 @@ int timeonly = FALSE, status_height, status_width, playid=-1;
 int configured = FALSE, old_status=-1, max,tfont_height;
 unsigned int cur_goto_id, release_t=0, roll_t=0;
 tcd_prefs prefs;
+int cddb=0;
 
 /* prototypes */
 void status_changed(void);
@@ -369,6 +370,9 @@ void setup_colors( void )
     gdk_color_parse("#888888", &darkgrey);
     gdk_color_alloc(colormap, &darkgrey);
 
+    gdk_color_parse("#0000ff", &blue);
+    gdk_color_alloc(colormap, &blue);
+
     g_snprintf(tmp, 15, "#%02X%02X%02X", 
 	       prefs.trackcolor_r,
 	       prefs.trackcolor_g,
@@ -449,7 +453,7 @@ void draw_status(void)
 {
     char tmp[128];
 
-    if( !configured )
+    if(!configured)
 	return;
 
     /* Erase Rectangle */
@@ -465,7 +469,7 @@ void draw_status(void)
 	{
 	case CDROM_AUDIO_INVALID:
 	    strcpy(tmp, _("No Disc"));
-	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
+	    gdk_draw_text(status_db,tfont,gc,4,39,tmp, strlen(tmp));
 	    draw_time_scanning();
 	    break;
 	case CDROM_AUDIO_PLAY:
@@ -493,7 +497,7 @@ void draw_status(void)
 	    break;
 	case CDROM_AUDIO_ERROR:
 	    strcpy( tmp, _("Error") );
-	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
+	    gdk_draw_text(status_db,tfont,gc,4,39,tmp, strlen(tmp));
 	    draw_time_scanning();
 	    break;
 	default:
@@ -518,6 +522,12 @@ void draw_status(void)
 	gdk_draw_text(status_db,tfont,gc,
 		      4, 39, tmp, strlen(tmp));
 	gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
+    }
+    if(cddb)
+    {
+	gdk_gc_set_foreground(gc, &blue);
+	gdk_draw_text(status_db,sfont,gc,
+		      82, 26, "CDDB", 4);
     }
 
     /* Finally, update the display */
@@ -553,17 +563,22 @@ void adjust_status(void)
 
 gint slow_timer( gpointer *data )
 {
+    /* see if we need to make a new menu */
     if( cd.cddb_id != cur_goto_id )
     {
 	make_goto_menu();
 	update_editor();
     }
+
+    /* see if we need to repeat */
     if( cd.sc.cdsc_audiostatus != CDROM_AUDIO_PLAY &&
 	cd.sc.cdsc_audiostatus != CDROM_AUDIO_PAUSED )
     {
 	if( cd.play_method == REPEAT_CD )
 	    tcd_playtracks( &cd, cd.first_t, cd.last_t );
     }
+
+    /* see if we need to scan for a new disc */
     if(cd.isplayable) 
     {
 	tcd_gettime(&cd);
@@ -591,6 +606,10 @@ gint slow_timer( gpointer *data )
 	    update_editor();
 	}
     }
+
+    /* is a cddb operation going on? */
+    cddb = g_file_test(gnome_util_home_file(".cddbstatus_lock"), G_FILE_TEST_EXISTS);
+
     draw_status(); 
     return 1;
 }
@@ -895,7 +914,6 @@ void reload_info(int signal)
 	make_goto_menu();
 	update_editor();
     }
-
     draw_status();
 }
 
@@ -983,7 +1001,6 @@ int main (int argc, char *argv[])
     tcd_init_disc(&cd, (WarnFunc)create_warning);
 
     start_action();
-    signal(SIGUSR1, reload_info);
     
     setup_keys();
     init_window();
@@ -1008,7 +1025,9 @@ int main (int argc, char *argv[])
     gnome_app_set_contents(GNOME_APP(window), main_box);
     adjust_status();	
     gtk_widget_show_all(window);
-	
+    
+    signal(SIGUSR2, reload_info);
+    
     gtk_main ();
     save_prefs(&prefs);
     gnome_config_sync();

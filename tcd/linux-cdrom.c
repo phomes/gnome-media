@@ -644,7 +644,7 @@ int tcd_readdiskinfo( cd_struct *cd )
     else
     {
 	/* Here's where we want to send a request to our slave */
-	tcd_call_cddb_slave(cd, "TCD", "3.0");
+	tcd_call_cddb_slave(cd, "TCD", "1.0");
 	debug("Warning, can't open \'%s\' \n", fn );
 	strcpy( cd->dtitle, _("Unknown / Unknown") );
 	

@@ -19,7 +19,7 @@ static void destroy_window(GtkWidget *widget, gpointer data)
 
 static void init_status_file (void)
 {
-	status_file = gnome_util_home_file ("cddbstatus");
+	status_file = gnome_util_home_file (".cddbstatus");
 }
 
 static int status_timer(GtkWidget *gl)
@@ -27,14 +27,14 @@ static int status_timer(GtkWidget *gl)
     if (!status_file)
 	    init_status_file ();
     
-    if(!gnome_less_show_file(GNOME_LESS(gl), status_file));
+    if(gnome_less_show_file(GNOME_LESS(gl), status_file) == FALSE)
     	gnome_less_clear(GNOME_LESS(gl));
     return TRUE;
 }
 
 static void call_slave(GtkWidget *widget, gpointer data)
 {
-    tcd_call_cddb_slave(&cd, "TCD (Gnome)", "1.0");
+    tcd_call_cddb_slave(&cd, "TCD", "1.0");
 }
 
 void cddb_status_dialog(GtkWidget *widget, gpointer data)

@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
 
     info = GNOME_CDAudio_init_cd(cdaudio_client, "/dev/cdrom", &rv, &ev);
     g_print("%s\n%d\n%d\n", info->path, info->fd, info->status);
-//    GNOME_CDAudio_play_cd(cdaudio_client, 1, 2, &rv, &ev);
-//    g_print("%ld\n", rv);
+    GNOME_CDAudio_play_cd(cdaudio_client, 1, 2, &rv, &ev);
+    g_print("%ld\n", rv);
  
-//    CORBA_Object_release(cdaudio_client, &ev);
-//    CORBA_Object_release((CORBA_Object)orb, &ev);
+    CORBA_Object_release(cdaudio_client, &ev);
+    CORBA_Object_release((CORBA_Object)orb, &ev);
 
     return 0;
 }
