@@ -15,8 +15,8 @@ Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
 EXTRA_DIST = solaris-cdrom.c		\
 	     solaris-cdrom.h		\
-	     freebsd-cdrom.c		\
-	     freebsd-cdrom.h		\
+	     bsd-cdrom.c		\
+	     bsd-cdrom.h		\
 	     linux-cdrom.c		\
 	     linux-cdrom.h		\
 	     gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
@@ -38,8 +38,8 @@ noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
 libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 
 
-if CDROM_HOST_FREEBSD
-cd_sources = freebsd-cdrom.c freebsd-cdrom.h
+if CDROM_HOST_BSD
+cd_sources = bsd-cdrom.c bsd-cdrom.h
 endif
 if CDROM_HOST_LINUX
 cd_sources = linux-cdrom.c linux-cdrom.h

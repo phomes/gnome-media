@@ -222,14 +222,19 @@ AC_MSG_RESULT($close_tray)
 
 host=`uname -s`
 
-CDROM_HOST_FREEBSD=false
+CDROM_HOST_BSD=false
 CDROM_HOST_LINUX=false
 CDROM_HOST_SOLARIS=false
 case "$host" in
 *FreeBSD*)
-	CDROM_HOST=freebsd
-	CDROM_HOST_FREEBSD=true
+	CDROM_HOST=bsd
+	CDROM_HOST_BSD=true
 	default_cd_device="/dev/acd0c"
+	;;
+*NetBSD*)
+	CDROM_HOST=bsd
+	CDROM_HOST_BSD=true
+	default_cd_device="/dev/rcd0d"
 	;;
 *Linux*) 
 	CDROM_HOST=linux
@@ -244,10 +249,10 @@ case "$host" in
 esac
 
 AC_SUBST(CDROM_HOST)
-AC_SUBST(CDROM_HOST_FREEBSD)
+AC_SUBST(CDROM_HOST_BSD)
 AC_SUBST(CDROM_HOST_LINUX)
 AC_SUBST(CDROM_HOST_SOLARIS)
-AM_CONDITIONAL(CDROM_HOST_FREEBSD, test "x$CDROM_HOST_FREEBSD" = "xtrue")
+AM_CONDITIONAL(CDROM_HOST_BSD, test "x$CDROM_HOST_BSD" = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
 

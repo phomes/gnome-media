@@ -1,5 +1,18 @@
 2004-05-09  Thomas Vander Stichele  <thomas at apestaart dot org>
 
+	patch by: Julio M. Merino Vidal <jmmv at menta dot net>
+
+	* configure.in:
+	* gnome-cd/Makefile.am:
+	* gnome-cd/bsd-cdrom.c: (bsd_cdrom_finalize), (msf_to_frames),
+	(frames_to_msf), (add_msf), (bsd_cdrom_open), (bsd_cdrom_close),
+	(bsd_cdrom_invalidate), (calculate_track_lengths):
+	* gnome-cd/bsd-cdrom.h:
+          add NetBSD support.
+          rename FREEBSD functions/variables to BSD
+
+2004-05-09  Thomas Vander Stichele  <thomas at apestaart dot org>
+
 	* cddb-slave2/cddb-slave.desktop.in:
           change name and comment.  Fixes #130651.
 
