@@ -23,9 +23,20 @@
 #include "gst-cdparanoia-cdrom.h"
 #include "cddb.h"
 
-#include <gconf/gconf-client.h>
+#include <gst/gconf/gconf.h>
 #include <gst/gst.h>
+#ifdef __linux__
 #include <linux/cdrom.h>
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#include <sys/cdio.h>
+#if defined(__FreeBSD__)
+#include <sys/cdrio.h>
+#endif
+#define CD_FRAMES		75
+#define CD_MSF_OFFSET		150
+#define CDROM_DATA_TRACK	0x04
+#define CDROM_LEADOUT		0xAA
+#endif
 
 static GnomeCDRomClass *parent_class = NULL;
 
@@ -40,7 +51,11 @@ typedef struct _GstCdparanoiaCDRomTrackInfo {
 struct _GstCdparanoiaCDRomPrivate {
 	GnomeCDRomUpdate update;
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	struct ioc_toc_header *tochdr;
+#else
 	struct cdrom_tochdr *tochdr;
+#endif
 	int number_tracks;
 	unsigned char track0, track1;
 	char *cd_device;
@@ -89,6 +104,23 @@ static gboolean gst_cdparanoia_cdrom_close_tray (GnomeCDRom * cdrom,
 
 static GnomeCDRomMSF blank_msf = { 0, 0, 0 };
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+static guint64
+msf_struct_to_frames (struct ioc_play_msf *msf, int entry)
+{
+	guint64 frames;
+	if (entry == 0) {
+		frames =
+		    (msf->start_m * 60 * CD_FRAMES) +
+		    (msf->start_s * CD_FRAMES) + msf->start_f;
+	} else {
+		frames =
+		    (msf->end_m * 60 * CD_FRAMES) +
+		    (msf->end_s * CD_FRAMES) + msf->end_f;
+	}
+	return (frames - CD_MSF_OFFSET);
+}
+#else
 static guint64
 msf_struct_to_frames (struct cdrom_msf *msf, int entry)
 {
@@ -104,6 +136,7 @@ msf_struct_to_frames (struct cdrom_msf *msf, int entry)
 	}
 	return (frames - CD_MSF_OFFSET);
 }
+#endif
 
 static int
 msf_to_frames (GnomeCDRomMSF * msf)
@@ -124,6 +157,19 @@ frames_to_msf (GnomeCDRomMSF * msf, int frames)
 	msf->frame = frames;
 }
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+static void
+frames_to_msf_struct (union msf_lba *msflba, int frames)
+{
+	/* Now convert the difference in frame lengths back into MSF
+	   format */
+	msflba->msf.minute = frames / (60 * CD_FRAMES);
+	frames -= (msflba->msf.minute * 60 * CD_FRAMES);
+	msflba->msf.second = frames / CD_FRAMES;
+	frames -= (msflba->msf.second * CD_FRAMES);
+	msflba->msf.frame = frames;
+}
+#else
 static void
 frames_to_msf_struct (struct cdrom_msf0 *msf, int frames)
 {
@@ -135,6 +181,7 @@ frames_to_msf_struct (struct cdrom_msf0 *msf, int frames)
 	frames -= (msf->second * CD_FRAMES);
 	msf->frame = frames;
 }
+#endif
 
 static void
 add_msf (GnomeCDRomMSF * msf1, GnomeCDRomMSF * msf2, GnomeCDRomMSF * dest)
@@ -190,7 +237,6 @@ static void
 build_pipeline (GstCdparanoiaCDRom * lcd)
 {
 	GstCdparanoiaCDRomPrivate *priv;
-	static GConfClient *client = NULL;
 	static int pipeline_built = 0;
 	char *sink;
 	char *sink_options_start = NULL;
@@ -199,7 +245,6 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 		return; 
 
 	priv = lcd->priv;
-	client = gconf_client_get_default ();
 
 	priv->play_thread = gst_thread_new ("play_thread");
 	g_assert (priv->play_thread != 0);	/* TBD: GError */
@@ -221,17 +266,7 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	priv->cdp_pad = gst_element_get_pad (priv->cdparanoia, "src");
 	g_assert (priv->cdp_pad != 0);	/* TBD: GError */
 
-	sink =
-	    gconf_client_get_string (client,
-				     "/system/gstreamer/default/audiosink",
-				     NULL);
-	sink_options_start = strrchr (sink, ' ');
-	if (sink_options_start != NULL) {
-		/* TODO: actually parse the options and set them in the plugin
-		 */
-		*sink_options_start = '\0';
-	}
-	priv->audio_sink = gst_element_factory_make (sink, "audio_sink");
+	priv->audio_sink = gst_gconf_get_default_audio_sink ();
 	g_assert (priv->audio_sink != 0);	/* TBD: GError */
 
 	/* Now build the pipeline */
@@ -311,7 +346,14 @@ gst_cdparanoia_cdrom_update_cd (GnomeCDRom * cdrom)
 {
 	GstCdparanoiaCDRom *lcd = GST_CDPARANOIA_CDROM (cdrom);
 	GstCdparanoiaCDRomPrivate *priv;
+#if defined(__FreeBSD__)
+	struct ioc_read_toc_single_entry tocentry;
+#elif defined(__NetBSD__) || defined(__OpenBSD__)
+	struct ioc_read_toc_entry tocentries;
+	struct cd_toc_entry tocentry;
+#else
 	struct cdrom_tocentry tocentry;
+#endif
 	int i, j;
 	GError *error;
 
@@ -322,21 +364,64 @@ gst_cdparanoia_cdrom_update_cd (GnomeCDRom * cdrom)
 		return;
 	}
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	if (ioctl (cdrom->fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
+#else
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
+#endif
 		g_warning ("Error reading CD header");
 		gst_cdparanoia_cdrom_close (lcd);
 
 		return;
 	}
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	priv->track0 = priv->tochdr->starting_track;
+	priv->track1 = priv->tochdr->ending_track;
+#else
 	priv->track0 = priv->tochdr->cdth_trk0;
 	priv->track1 = priv->tochdr->cdth_trk1;
+#endif
 	priv->number_tracks = priv->track1 - priv->track0 + 1;
 
 	gst_cdparanoia_cdrom_invalidate (lcd);
 	priv->track_info =
 	    g_malloc ((priv->number_tracks +
 		       1) * sizeof (GstCdparanoiaCDRomTrackInfo));
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(__FreeBSD__)
+	for (i = 0, j = priv->track0; i < priv->number_tracks; i++, j++) {
+		tocentry.track = j;
+		tocentry.address_format = CD_MSF_FORMAT;
+#else
+	tocentries.data_len = sizeof(tocentry);
+	tocentries.data = &tocentry;
+	for (i = 0, j = priv->track0; i < priv->number_tracks; i++, j++) {
+		tocentries.starting_track = j;
+		tocentries.address_format = CD_MSF_FORMAT;
+#endif
+
+#if defined(__FreeBSD__)
+		if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
+#else
+		if (ioctl (cdrom->fd, CDIOREADTOCENTRYS, &tocentries) < 0) {
+#endif
+			g_warning ("IOCtl failed");
+			continue;
+		}
+
+		priv->track_info[i].track = j;
+#if defined(__FreeBSD__)
+		priv->track_info[i].audio_track =
+		    tocentry.entry.control != CDROM_DATA_TRACK ? 1 : 0;
+		ASSIGN_MSF (priv->track_info[i].address,
+			    tocentry.entry.addr.msf);
+#else
+		priv->track_info[i].audio_track =
+		    tocentry.control != CDROM_DATA_TRACK ? 1 : 0;
+		ASSIGN_MSF (priv->track_info[i].address, tocentry.addr.msf);
+#endif
+#else
 	for (i = 0, j = priv->track0; i < priv->number_tracks; i++, j++) {
 		tocentry.cdte_track = j;
 		tocentry.cdte_format = CDROM_MSF;
@@ -351,7 +436,30 @@ gst_cdparanoia_cdrom_update_cd (GnomeCDRom * cdrom)
 		    tocentry.cdte_ctrl != CDROM_DATA_TRACK ? 1 : 0;
 		ASSIGN_MSF (priv->track_info[i].address,
 			    tocentry.cdte_addr.msf);
+#endif
 	}
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(__FreeBSD__)
+	tocentry.track = CDROM_LEADOUT;
+	tocentry.address_format = CD_MSF_FORMAT;
+	if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
+#else
+	tocentries.starting_track = 0xAA;
+	tocentries.address_format = CD_MSF_FORMAT;
+	if (ioctl (cdrom->fd, CDIOREADTOCENTRYS, &tocentries) < 0) {
+#endif
+		g_warning ("Error getting leadout");
+		gst_cdparanoia_cdrom_invalidate (lcd);
+		return;
+	}
+#if defined(__FreeBSD__)
+	ASSIGN_MSF (priv->track_info[priv->number_tracks].address,
+		    tocentry.entry.addr.msf);
+#else
+	ASSIGN_MSF (priv->track_info[priv->number_tracks].address,
+		    tocentry.addr.msf);
+#endif
+#else
 
 	tocentry.cdte_track = CDROM_LEADOUT;
 	tocentry.cdte_format = CDROM_MSF;
@@ -362,6 +470,7 @@ gst_cdparanoia_cdrom_update_cd (GnomeCDRom * cdrom)
 	}
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address,
 		    tocentry.cdte_addr.msf);
+#endif
 	calculate_track_lengths (lcd);
 
 	gst_cdparanoia_cdrom_close (lcd);
@@ -387,7 +496,11 @@ gst_cdparanoia_cdrom_eject (GnomeCDRom * cdrom, GError ** error)
 	}
 
 	if (status->cd != GNOME_CDROM_STATUS_TRAY_OPEN) {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+		if (ioctl (cdrom->fd, CDIOCEJECT, 0) < 0) {
+#else
 		if (ioctl (cdrom->fd, CDROMEJECT, 0) < 0) {
+#endif
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -555,7 +668,11 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *status;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	struct ioc_play_msf msf;
+#else
 	struct cdrom_msf msf;
+#endif
 	gboolean ret;
 	guint64 frames;
 
@@ -630,9 +747,15 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 	default:
 		/* Start playing */
 		if (start == NULL) {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+			msf.start_m = status->absolute.minute;
+			msf.start_s = status->absolute.second;
+			msf.start_f =  status->absolute.frame;
+#else
 			msf.cdmsf_min0 = status->absolute.minute;
 			msf.cdmsf_sec0 = status->absolute.second;
 			msf.cdmsf_frame0 = status->absolute.frame;
+#endif
 		} else {
 			if (start_track > 0 &&
 			    priv && priv->track_info &&
@@ -642,19 +765,43 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 					 track_info[start_track -
 						    1].address, start,
 					 &tmpmsf);
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+
+				msf.start_m = tmpmsf.minute;
+				msf.start_s = tmpmsf.second;
+				msf.start_f = tmpmsf.frame;
+#else
 				msf.cdmsf_min0 = tmpmsf.minute;
 				msf.cdmsf_sec0 = tmpmsf.second;
 				msf.cdmsf_frame0 = tmpmsf.frame;
+#endif
 			} else {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+				msf.start_m = start->minute;
+				msf.start_s = start->second;
+				msf.start_f = start->frame;
+#else
 				msf.cdmsf_min0 = start->minute;
 				msf.cdmsf_sec0 = start->second;
 				msf.cdmsf_frame0 = start->frame;
+#endif
 			}
 		}
 
 		if (finish == NULL) {
 			if (priv && priv->track_info &&
 			    priv->number_tracks > 0) {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+				msf.end_m =
+				    priv->track_info[priv->number_tracks].
+				    address.minute;
+				msf.end_s =
+				    priv->track_info[priv->number_tracks].
+				    address.second;
+				msf.end_f =
+				    priv->track_info[priv->number_tracks].
+				    address.frame;
+#else
 				msf.cdmsf_min1 =
 				    priv->track_info[priv->number_tracks].
 				    address.minute;
@@ -664,10 +811,17 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 				msf.cdmsf_frame1 =
 				    priv->track_info[priv->number_tracks].
 				    address.frame;
+#endif
 			} else {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+				msf.end_m = 0;
+				msf.end_s = 0;
+				msf.end_f = 0;
+#else
 				msf.cdmsf_min1 = 0;
 				msf.cdmsf_sec1 = 0;
 				msf.cdmsf_frame1 = 0;
+#endif
 			}
 		} else {
 			if (finish_track > 0 &&
@@ -679,13 +833,25 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 					 track_info[finish_track -
 						    1].address, finish,
 					 &tmpmsf);
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+				msf.end_m = tmpmsf.minute;
+				msf.end_s = tmpmsf.second;
+				msf.end_f = tmpmsf.frame;
+#else
 				msf.cdmsf_min1 = tmpmsf.minute;
 				msf.cdmsf_sec1 = tmpmsf.second;
 				msf.cdmsf_frame1 = tmpmsf.frame;
+#endif
 			} else {
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+				msf.end_m = finish->minute;
+				msf.end_s = finish->second;
+				msf.end_f = finish->frame;
+#else
 				msf.cdmsf_min1 = finish->minute;
 				msf.cdmsf_sec1 = finish->second;
 				msf.cdmsf_frame1 = finish->frame;
+#endif
 			}
 		}
 
@@ -795,8 +961,9 @@ gst_cdparanoia_cdrom_stop (GnomeCDRom * cdrom, GError ** error)
 	}
 #endif
 
-	gst_element_set_state (GST_ELEMENT (priv->play_thread),
-			       GST_STATE_NULL);
+	if (priv->play_thread)
+		gst_element_set_state (GST_ELEMENT (priv->play_thread),
+				       GST_STATE_NULL);
 
 	gst_cdparanoia_cdrom_close (lcd);
 	return TRUE;
@@ -944,7 +1111,11 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	struct cd_sub_channel_position_data subchnl;
+#else
 	struct cdrom_subchnl subchnl;
+#endif
 	int cur_gst_status;
 	int cd_status;
 	guint64 value = 0;
@@ -966,6 +1137,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 		return FALSE;
 	}
 
+#if !defined(__FreeBSD__) && !defined(__NetBSD__) && !defined(__OpenBSD__)
 	cd_status = ioctl (cdrom->fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
 	if (cd_status != -1) {
 		switch (cd_status) {
@@ -1019,6 +1191,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 		*status = NULL;
 		return FALSE;
 	}
+#endif
 
 	/* Get the volume */
 	/* TODO: get the mixer volume */
@@ -1058,21 +1231,37 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 		    msf_to_frames (&priv->track_info[priv->cur_track - 1].
 				   address) + CD_MSF_OFFSET;
 	}
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	subchnl.track_number = priv->cur_track;
+	frames_to_msf_struct (&subchnl.reladdr,
+			      priv->cur_rel_frame);
+	frames_to_msf_struct (&subchnl.absaddr,
+			      priv->cur_abs_frame);
+#else
 	subchnl.cdsc_trk = priv->cur_track;
 	frames_to_msf_struct (&subchnl.cdsc_reladdr.msf,
 			      priv->cur_rel_frame);
 	frames_to_msf_struct (&subchnl.cdsc_absaddr.msf,
 			      priv->cur_abs_frame);
+#endif
 
 	realstatus->track = 1;
 	switch (cur_gst_status) {
 	case GST_STATE_PLAYING:
 		realstatus->audio = GNOME_CDROM_AUDIO_PLAY;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+		ASSIGN_MSF (realstatus->relative,
+			    subchnl.reladdr.msf);
+		ASSIGN_MSF (realstatus->absolute,
+			    subchnl.absaddr.msf);
+		realstatus->track = subchnl.track_number;
+#else
 		ASSIGN_MSF (realstatus->relative,
 			    subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute,
 			    subchnl.cdsc_absaddr.msf);
 		realstatus->track = subchnl.cdsc_trk;
+#endif
 		if (priv && realstatus->track > 0 &&
 		    realstatus->track <= priv->number_tracks) {
 			/* track_info may not be initialized */
@@ -1084,11 +1273,19 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 
 	case GST_STATE_PAUSED:
 		realstatus->audio = GNOME_CDROM_AUDIO_PAUSE;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+		ASSIGN_MSF (realstatus->relative,
+			    subchnl.reladdr.msf);
+		ASSIGN_MSF (realstatus->absolute,
+			    subchnl.absaddr.msf);
+		realstatus->track = subchnl.track_number;
+#else
 		ASSIGN_MSF (realstatus->relative,
 			    subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute,
 			    subchnl.cdsc_absaddr.msf);
 		realstatus->track = subchnl.cdsc_trk;
+#endif
 		if (priv && realstatus->track > 0 &&
 		    realstatus->track <= priv->number_tracks) {
 			/* track_info may not be initialized */
@@ -1101,11 +1298,20 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	case GST_STATE_NULL:
 	case GST_STATE_READY:
 		realstatus->audio = GNOME_CDROM_AUDIO_COMPLETE;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+		ASSIGN_MSF (realstatus->relative,
+			    subchnl.reladdr.msf);
+
+		ASSIGN_MSF (realstatus->absolute,
+			    subchnl.absaddr.msf);
+		realstatus->track = subchnl.track_number;
+#else
 		ASSIGN_MSF (realstatus->relative,
 			    subchnl.cdsc_reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute,
 			    subchnl.cdsc_absaddr.msf);
 		realstatus->track = subchnl.cdsc_trk;
+#endif
 		if (priv && realstatus->track > 0 &&
 		    realstatus->track <= priv->number_tracks) {
 			/* track_info may not be initialized */
@@ -1133,7 +1339,11 @@ gst_cdparanoia_cdrom_close_tray (GnomeCDRom * cdrom, GError ** error)
 		return FALSE;
 	}
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	if (ioctl (cdrom->fd, CDIOCCLOSE) < 0) {
+#else
 	if (ioctl (cdrom->fd, CDROMCLOSETRAY) < 0) {
+#endif
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -1155,7 +1365,11 @@ gst_cdparanoia_cdrom_set_volume (GnomeCDRom * cdrom,
 {
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	struct ioc_vol vol;
+#else
 	struct cdrom_volctrl vol;
+#endif
 
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
@@ -1164,10 +1378,19 @@ gst_cdparanoia_cdrom_set_volume (GnomeCDRom * cdrom,
 		return FALSE;
 	}
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	vol.vol[0] = volume;
+	vol.vol[1] = vol.vol[2] = vol.vol[3] = volume;
+#else
 	vol.channel0 = volume;
 	vol.channel1 = vol.channel2 = vol.channel3 = volume;
+#endif
 
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	if (ioctl (cdrom->fd, CDIOCSETVOL, &vol) < 0) {
+#else
 	if (ioctl (cdrom->fd, CDROMVOLCTRL, &vol) < 0) {
+#endif
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
@@ -1204,7 +1427,13 @@ gst_cdparanoia_cdrom_is_cdrom_device (GnomeCDRom * cdrom,
 	}
 
 	/* Fire a harmless ioctl at the device. */
+#if defined(__FreeBSD__)
+	if (ioctl (fd, CDIOCCAPABILITY, 0) < 0) {
+#elif defined(__NetBSD__) || defined(__OpenBSD__)
+	if (ioctl (fd, CDIOCGETVOL, 0) < 0) {
+#else
 	if (ioctl (fd, CDROM_GET_CAPABILITY, 0) < 0) {
+#endif
 		/* Failed, it's not a CDROM drive */
 		close (fd);
 
@@ -1302,7 +1531,11 @@ static void
 gst_cdparanoia_cdrom_init (GstCdparanoiaCDRom * cdrom)
 {
 	cdrom->priv = g_new0 (GstCdparanoiaCDRomPrivate, 1);
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	cdrom->priv->tochdr = g_new0 (struct ioc_toc_header, 1);
+#else
 	cdrom->priv->tochdr = g_new0 (struct cdrom_tochdr, 1);
+#endif
 	cdrom->priv->track_info = NULL;
 	cdrom->priv->cd_device = NULL;
 	cdrom->priv->cur_track = 1;

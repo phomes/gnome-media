@@ -209,13 +209,16 @@ linux_cdrom_update_cd (GnomeCDRom *cdrom)
 		g_warning ("Error getting leadout");
 		linux_cdrom_invalidate (lcd);
 		g_free (priv->track_info);
+		priv->track_info = NULL;
 		return;
 	}
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address, tocentry.cdte_addr.msf);
 	calculate_track_lengths (lcd);
 
 	linux_cdrom_close (lcd);
-	g_free (priv->track_info);
+	//g_free (priv->track_info);
+	//priv->track_info = NULL;
+
 	return;
 }
 

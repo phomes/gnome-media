@@ -948,6 +948,8 @@ bsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 	ASSIGN_MSF (realstatus->relative, blank_msf);
 	ASSIGN_MSF (realstatus->absolute, blank_msf);
+	ASSIGN_MSF (realstatus->length, blank_msf);
+
 	realstatus->track = 1;
 	switch (subchnl.data->header.audio_status) {
 	case CD_AS_PLAY_IN_PROGRESS:
@@ -955,6 +957,11 @@ bsd_cdrom_get_status (GnomeCDRom *cdrom,
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
 		realstatus->track = subchnl.data->what.position.track_number;
+		if(priv && realstatus->track>0 &&
+		   realstatus->track<=priv->number_tracks){
+			/* track_info may not be initialized */
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 
 	case CD_AS_PLAY_PAUSED:
@@ -962,6 +969,11 @@ bsd_cdrom_get_status (GnomeCDRom *cdrom,
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
 		realstatus->track = subchnl.data->what.position.track_number;
+		if(priv && realstatus->track>0 &&
+		   realstatus->track<=priv->number_tracks){
+			/* track_info may not be initialized */
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 
 	case CD_AS_PLAY_COMPLETED:
@@ -969,6 +981,11 @@ bsd_cdrom_get_status (GnomeCDRom *cdrom,
 		ASSIGN_MSF (realstatus->relative, subchnl.data->what.position.reladdr.msf);
 		ASSIGN_MSF (realstatus->absolute, subchnl.data->what.position.absaddr.msf);
 		realstatus->track = subchnl.data->what.position.track_number;
+		if(priv && realstatus->track>0 &&
+		   realstatus->track<=priv->number_tracks){
+			/* track_info may not be initialized */
+			ASSIGN_MSF (realstatus->length, priv->track_info[realstatus->track-1].length);
+		}
 		break;
 
 	case CD_AS_AUDIO_INVALID:

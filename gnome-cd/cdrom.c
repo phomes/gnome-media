@@ -803,7 +803,7 @@ timeout_update_cd (gpointer data)
 		if (priv->update != GNOME_CDROM_UPDATE_NEVER)
 			gnome_cdrom_status_changed (GNOME_CDROM (cdrom), priv->recent_status);
 
-		g_free (status);
+		//g_free (status);
 
 	} else {
 		if (gnome_cdrom_status_equal (status, priv->recent_status)) {
