@@ -494,7 +494,7 @@ do_save_file (GSRWindow *window,
 	if (!g_spawn_command_line_sync (command,  NULL, NULL, &status, &error)) {
 		gchar *error_message;
 
-		error_message = g_strdup_printf (_("Could not save the file \" %s\""), error->message);
+		error_message = g_strdup_printf (_("Could not save the file \"%s\""), error->message);
 		show_error_dialog (GTK_WINDOW (window), error_message);
 		g_free (error_message);
 	}
@@ -502,7 +502,7 @@ do_save_file (GSRWindow *window,
 	if (status) {
 		gchar *error_message;
 
-		error_message = g_strdup_printf (_("Could not save the file \" %s\""), tmp);
+		error_message = g_strdup_printf (_("Could not save the file \"%s\""), tmp);
 		show_error_dialog (GTK_WINDOW (window), error_message);
 		g_free (error_message);
 	}
