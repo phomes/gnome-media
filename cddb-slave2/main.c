@@ -127,7 +127,7 @@ cddbslave_init (gpointer data)
 	BonoboGenericFactory *factory;
 	char *display_iid;
 
-	factory = bonobo_activation_activate_from_id (CDDBSLAVE_IID, Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, NULL);
+	factory = (BonoboGenericFactory*)bonobo_activation_activate_from_id (CDDBSLAVE_IID, Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, NULL);
 
 	if (!factory) {
 		display_iid = bonobo_activation_make_registration_id (CDDBSLAVE_IID, DisplayString (gdk_display));
