@@ -140,20 +140,29 @@ play_cb (GtkButton *button,
 
 	switch (status->audio) {
 	case GNOME_CDROM_AUDIO_PLAY:
-		if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
-			gcd_warning ("%s", error);
-			g_error_free (error);
-
-			g_free (status);
-			return;
-		}
-
-		if (gcd->current_image == gcd->pause_image) {
+		if (gcd->current_image == gcd->play_image) {
 			aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
-			atk_object_set_name (aob, _("Play"));
+			atk_object_set_name (aob, _("Pause"));
 			gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
-			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->play_image);
-			gcd->current_image = gcd->play_image;
+			gtk_container_add (GTK_CONTAINER (gcd->play_b), gcd->pause_image);
+			gcd->current_image = gcd->pause_image;
+		} else { 
+			if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
+				gcd_warning ("%s", error);
+				g_error_free (error);
+
+				g_free (status);
+				return;
+			}
+
+			if (gcd->current_image == gcd->pause_image) {
+				aob = gtk_widget_get_accessible (GTK_WIDGET (gcd->play_b));
+				atk_object_set_name (aob, _("Play"));
+				gtk_container_remove (GTK_CONTAINER (gcd->play_b), gcd->current_image);
+				gtk_container_add (GTK_CONTAINER (gcd->play_b),
+						   gcd->play_image);
+				gcd->current_image = gcd->play_image;
+			}
 		}
 		break;
 
