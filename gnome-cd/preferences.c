@@ -54,7 +54,7 @@
 #include <gnome.h>
 
 #include <gconf/gconf-client.h>
-#include <bacon-cd-selection.h>
+#include <nautilus-burn-drive-selection.h>
 
 #include "gnome-cd.h"
 #include "preferences.h"
@@ -329,7 +329,7 @@ prefs_destroy_cb (GtkDialog *dialog,
 }
 
 static void
-device_changed_cb (BaconCdSelection *bcs,
+device_changed_cb (NautilusBurnDriveSelection *bcs,
 		   const char *device_path,
 		   PropertyDialog *pd)
 {
@@ -625,8 +625,8 @@ preferences_dialog_show (GnomeCD *gcd)
 	label = gtk_label_new_with_mnemonic (_("_Device:"));
 	gtk_box_pack_start (GTK_BOX (inner_hbox), label, FALSE, FALSE, 0);
 	
-	pd->cd_device = bacon_cd_selection_new ();
-	bacon_cd_selection_set_device (BACON_CD_SELECTION (pd->cd_device), gcd->preferences->device);
+	pd->cd_device = nautilus_burn_drive_selection_new ();
+	nautilus_burn_drive_selection_set_device (NAUTILUS_BURN_DRIVE_SELECTION (pd->cd_device), gcd->preferences->device);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->cd_device);
 	
 	g_signal_connect (pd->cd_device, "device_changed",
