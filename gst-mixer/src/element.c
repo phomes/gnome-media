@@ -151,11 +151,13 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 						    GtkWidget     *left_sep,
 						    GtkWidget     *right_sep,
 						    GnomeAppBar   *appbar);
-  } content[3] = {
+  } content[4] = {
     { _("Playback"), NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_playback },
     { _("Capture"),  NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_capture },
+    { _("Switches"), NULL, NULL, NULL, FALSE, 0, 1, 3,
+      gnome_volume_control_track_add_switch },
     { _("Options"),  NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
@@ -186,10 +188,10 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   gst_object_replace ((GstObject **) &el->mixer, GST_OBJECT (element));
 
   /* content pages */
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 4; i++) {
     content[i].page = gtk_table_new (content[i].width, content[i].height, FALSE);
     gtk_container_set_border_width (GTK_CONTAINER (content[i].page), 6);
-    if (i == 2)
+    if (i >= 2)
       gtk_table_set_row_spacings (GTK_TABLE (content[i].page), 6);
     gtk_table_set_col_spacings (GTK_TABLE (content[i].page), 6);
   }
@@ -205,6 +207,8 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gboolean active = TRUE;
 
     if (GST_IS_MIXER_OPTIONS (track))
+      i = 3;
+    else if (track->num_channels == 0)
       i = 2;
     else if (track->flags & GST_MIXER_TRACK_INPUT)
       i = 1;
@@ -216,10 +220,12 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
      *     _of this type_. We currently destroy it at the
      *     end, so it's not critical, but not nice either.
      */
-    if (i == 2) {
+    if (i == 3) {
       content[i].new_sep = gtk_hseparator_new ();
-    } else {
+    } else if (i < 2) {
       content[i].new_sep = gtk_vseparator_new ();
+    } else {
+      content[i].new_sep = NULL;
     }
 
     /* visible? */
@@ -231,7 +237,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     g_free (key);
 
     /* Show left separator if we're not the first track */
-    if (active && content[i].use)
+    if (active && content[i].use && content[i].old_sep)
       gtk_widget_show (content[i].old_sep);
 
     /* widget */
@@ -245,8 +251,8 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 		       "gnome-volume-control-trkw", trkw);
 
     /* separator */
-    if (item->next != NULL) {
-      if (i == 2) {
+    if (item->next != NULL && content[i].new_sep) {
+      if (i >= 2) {
         gtk_table_attach (GTK_TABLE (content[i].page), content[i].new_sep,
 			  0, 3, content[i].pos, content[i].pos + 1,
 			  GTK_EXPAND | GTK_FILL, 0, 0, 0);
@@ -263,7 +269,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   }
 
   /* show */
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 4; i++) {
     GtkWidget *label, *view, *viewport;
     GtkAdjustment *hadjustment, *vadjustment;
 
@@ -274,14 +280,15 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
 
     /* don't show last separator */
-    gtk_widget_destroy (content[i].new_sep);
+    if (content[i].new_sep)
+      gtk_widget_destroy (content[i].new_sep);
 
     /* viewport for lots of tracks */
     view = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (view),
-				    i == 2 ? GTK_POLICY_NEVER :
+				    i >= 2 ? GTK_POLICY_NEVER :
 					     GTK_POLICY_AUTOMATIC,
-				    i == 2 ? GTK_POLICY_AUTOMATIC :
+				    i >= 2 ? GTK_POLICY_AUTOMATIC :
 					     GTK_POLICY_NEVER);
 
     hadjustment = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (view));
@@ -298,6 +305,12 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_widget_show (viewport);
     gtk_widget_show (view);
     gtk_widget_show (label);
+  }
+
+  /* refresh fix */
+  for (i = gtk_notebook_get_n_pages (GTK_NOTEBOOK (el)) - 1;
+       i >= 0; i--) {
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (el), i);
   }
 }
 
@@ -330,7 +343,7 @@ cb_gconf (GConfClient *client,
 
         if (value->type == GCONF_VALUE_BOOL) {
           gboolean active = gconf_value_get_bool (value),
-		   first[3] = { TRUE, TRUE, TRUE };
+		   first[4] = { TRUE, TRUE, TRUE, TRUE };
           gint n;
 
           gnome_volume_control_track_show (trkw, active);
@@ -343,6 +356,8 @@ cb_gconf (GConfClient *client,
 	      g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
 
             if (GST_IS_MIXER_OPTIONS (track))
+              n = 3;
+            else if (track->num_channels == 0)
               n = 2;
             else if (track->flags & GST_MIXER_TRACK_INPUT)
               n = 1;
@@ -350,10 +365,11 @@ cb_gconf (GConfClient *client,
               n = 0;
 
             if (trkw->visible && !first[n]) {
-              g_assert (trkw->left_separator);
-              gtk_widget_show (trkw->left_separator);
-            } else if (trkw->left_separator) {
-              gtk_widget_hide (trkw->left_separator);
+              if (trkw->left_separator)
+                gtk_widget_show (trkw->left_separator);
+            } else {
+              if (trkw->left_separator)
+                gtk_widget_hide (trkw->left_separator);
             }
 
             if (trkw->visible && first[n])

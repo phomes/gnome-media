@@ -1,3 +1,17 @@
+2004-12-11  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* gst-mixer/src/element.c: (gnome_volume_control_element_change),
+	(cb_gconf):
+	* gst-mixer/src/track.c: (cb_toggle_changed),
+	(gnome_volume_control_track_put_switch),
+	(gnome_volume_control_track_add_playback),
+	(gnome_volume_control_track_add_switch),
+	(gnome_volume_control_track_show):
+	* gst-mixer/src/track.h:
+	  Add checkboxes in a separate tab. They now take less space and
+	  actually look somewhat integrated (#159428). Also workaround a
+	  GtkTable redraw problem (#157117).
+
 2004-11-29  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:

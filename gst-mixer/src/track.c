@@ -74,6 +74,16 @@ cb_record_toggled (GnomeVolumeControlButton *button,
 }
 
 static void
+cb_toggle_changed (GtkToggleButton *button,
+		   gpointer         data)
+{
+  GnomeVolumeControlTrack *ctrl = data;
+
+  gst_mixer_set_mute (ctrl->mixer, ctrl->track,
+		      !gtk_toggle_button_get_active (button));
+}
+
+static void
 cb_option_changed (GtkComboBox *box,
 		   gpointer     data)
 {
@@ -213,7 +223,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
 }
 
 static void
-gnome_volume_control_track_add_switch (GtkTable *table,
+gnome_volume_control_track_put_switch (GtkTable *table,
 				       gint      tab_pos,
 				       GnomeVolumeControlTrack *ctrl,
 				       GnomeAppBar *appbar)
@@ -280,7 +290,7 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 
   /* switch exception (no sliders) */
   if (track->num_channels == 0) {
-    gnome_volume_control_track_add_switch (table, tab_pos, ctrl, appbar);
+    gnome_volume_control_track_put_switch (table, tab_pos, ctrl, appbar);
     return ctrl;
   }
 
@@ -293,7 +303,7 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
   gtk_widget_show (ctrl->sliderbox);
 
   /* mute button */
-  gnome_volume_control_track_add_switch (table, tab_pos, ctrl, appbar);
+  gnome_volume_control_track_put_switch (table, tab_pos, ctrl, appbar);
 
   return ctrl;
 }
@@ -352,6 +362,37 @@ gnome_volume_control_track_add_capture (GtkTable *table,
   gtk_widget_show (button);
 
   return ctrl;
+}
+
+GnomeVolumeControlTrack *
+gnome_volume_control_track_add_switch (GtkTable *table,
+				       gint      tab_pos,
+				       GstMixer *mixer,
+				       GstMixerTrack *track,
+				       GtkWidget *l_sep,
+				       GtkWidget *r_sep,
+				       GnomeAppBar *appbar)
+{
+  GnomeVolumeControlTrack *ctrl;
+
+  /* image, title */
+  ctrl = gnome_volume_control_track_add_title (table, tab_pos,
+					       GTK_ORIENTATION_HORIZONTAL,
+					       mixer, track, l_sep, r_sep);
+  ctrl->toggle = gtk_check_button_new ();
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
+				!GST_MIXER_TRACK_HAS_FLAG (ctrl->track,
+					GST_MIXER_TRACK_MUTE));
+
+  /* attach'n'show */
+  gtk_table_attach (GTK_TABLE (table), ctrl->toggle,
+                    2, 3, tab_pos, tab_pos + 1,
+                    GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
+  g_signal_connect (ctrl->toggle, "toggled",
+		    G_CALLBACK (cb_toggle_changed), ctrl);
+  gtk_widget_show (ctrl->toggle);
+                                                                                
+  return ctrl;  
 }
 
 GnomeVolumeControlTrack *
@@ -437,6 +478,7 @@ gnome_volume_control_track_show (GnomeVolumeControlTrack *track,
   func (track->image);
   func (track->sliderbox);
   func (track->buttonbox);
+  func (track->toggle);
   func (track->options);
 
   track->visible = visible;
@@ -448,7 +490,7 @@ gnome_volume_control_track_show (GnomeVolumeControlTrack *track,
 				 track->pos, 6);
       gtk_table_set_row_spacing (track->table,
 				 track->pos - 1, 6);
-    } else {
+    } else if (!track->toggle) {
       gtk_table_set_col_spacing (track->table,
 				 track->pos, 6);
       gtk_table_set_col_spacing (track->table,
@@ -460,7 +502,7 @@ gnome_volume_control_track_show (GnomeVolumeControlTrack *track,
 				 track->pos, 0);
       gtk_table_set_row_spacing (track->table,
 				 track->pos - 1, 0);
-    } else {
+    } else if (!track->toggle) {
       gtk_table_set_col_spacing (track->table,
 				 track->pos, 0);
       gtk_table_set_col_spacing (track->table,

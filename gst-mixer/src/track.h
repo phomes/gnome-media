@@ -46,6 +46,7 @@ typedef struct _GnomeVolumeControlTrack {
 	    *image,
 	    *sliderbox,
 	    *buttonbox,
+	    *toggle,
 	    *options;
 
   GnomeVolumeControlButton *mute, *record;
@@ -80,6 +81,16 @@ GnomeVolumeControlTrack *
 						 GtkWidget *l_sep,
 						 GtkWidget *r_sep,
 						 GnomeAppBar *appbar);
+
+GnomeVolumeControlTrack *
+	gnome_volume_control_track_add_switch	(GtkTable *table,
+						 gint      tab_pos,
+						 GstMixer *mixer,
+						 GstMixerTrack *track,
+						 GtkWidget *l_sep,
+						 GtkWidget *r_sep,
+						 GnomeAppBar *appbar);
+
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_option	(GtkTable *table,
 						 gint      tab_pos,
