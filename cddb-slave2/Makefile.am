@@ -5,7 +5,8 @@ INCLUDES =					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DG_LOG_DOMAIN=\"CDDBSlave2\"
 
-bin_PROGRAMS = CDDBSlave2
+bin_PROGRAMS = CDDBSlave2 cddb-slave2-properties
+
 lib_LTLIBRARIES = libcddb-slave2.la
 
 IDLS = GNOME_Media_CDDBSlave2.idl
@@ -50,6 +51,9 @@ CDDBSlave2_LDADD =				\
 	$(CDDBSLAVE_LIBS)				\
 	$(INTLLIBS)
 
+cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
+cddb_slave2_properties_SOURCES = cddb-slave-capplet.s
+
 libcddb_slave2includedir = $(includedir)/cddb-slave2
 libcddb_slave2_la_SOURCES =			\
 	$(IDL_GENERATED)			\
@@ -66,8 +70,13 @@ oaf_in_files = GNOME_Media_CDDBSlave2.server.in
 oaf_DATA = $(oaf_in_files:.server.in=.server)
 
 @INTLTOOL_SERVER_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = $(oaf_in_files) $(oaf_DATA) $(IDLS) $(schema_DATA)
+desktopdir = $(datadir)/control-center-2/capplets
+Desktop_in_files = cddb-slave.desktop.in
+desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
+	
+EXTRA_DIST = $(oaf_in_files) $(Desktop_in_files) $(oaf_DATA) $(IDLS) $(schema_DATA)
 
 install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
