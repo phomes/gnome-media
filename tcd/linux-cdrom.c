@@ -42,6 +42,9 @@
 #include <math.h>
 #include <sys/ioctl.h>
 
+/* For _() */
+#include <gnome.h>
+
 #include "linux-cdrom.h"
 
 #include "cddb.h"
@@ -652,7 +655,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	/* Here's where we want to send a request to our slave */
 	tcd_call_cddb_slave(cd, "TCD", "3.0");
 	debug("Warning, can't open \'%s\' \n", fn );
-	strcpy( cd->dtitle, "Unknown / Unknown" );
+	strcpy( cd->dtitle, _("Unknown / Unknown") );
 	
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 	{

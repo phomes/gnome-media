@@ -4,17 +4,17 @@
 
 char *status_string[] = 
 {
-    "No status.",
-    "Connecting.",
-    "Querying server.",
-    "Waiting for reply.",
-    "Reading reply.",
-    "Disconnecting.",
-    "Error connecting.",
-    "Error querying.",
-    "Error reading reply.",
-    "No exact match found.",
-    "No status.",
+    N_("No status."),
+    N_("Connecting."),
+    N_("Querying server."),
+    N_("Waiting for reply."),
+    N_("Reading reply."),
+    N_("Disconnecting."),
+    N_("Error connecting."),
+    N_("Error querying."),
+    N_("Error reading reply."),
+    N_("No exact match found."),
+    N_("No status."),
 };
 
 GtkWidget *csw;			/* cddb status window */
@@ -45,7 +45,7 @@ static char *read_status(void)
 
 static int status_timer(GtkWidget *label)
 {
-    gtk_label_set(GTK_LABEL(label), read_status());
+    gtk_label_set(GTK_LABEL(label), _(read_status()));
     return TRUE;
 }
 
@@ -75,11 +75,11 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
     gtk_container_add(GTK_CONTAINER(csw), main_box);
 		  
     /* status line */
-    label = gtk_label_new("No status.");
+    label = gtk_label_new(_("No status."));
     gtk_box_pack_start_defaults(GTK_BOX(main_box), label);
 
     /* grab button */
-    button = gtk_button_new_with_label("Get CDDB Now");
+    button = gtk_button_new_with_label(_("Get CDDB Now"));
     gtk_box_pack_start_defaults(GTK_BOX(main_box), button);
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		       GTK_SIGNAL_FUNC(call_slave), NULL);
