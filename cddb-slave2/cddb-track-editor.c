@@ -522,7 +522,7 @@ load_new_track_data (TrackEditorDialog *td,
 	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
 	info->track_info = cddb_slave_client_get_tracks (client, discid);
 
-	title = g_strdup_printf (_("Editting discid: %s"), info->discid);
+	title = g_strdup_printf (_("Editing Disc ID: %s"), info->discid);
 	gtk_label_set_text (GTK_LABEL (td->discid), title);
 	g_free (title);
 
@@ -612,7 +612,7 @@ make_track_editor_control (void)
 	gtk_container_set_border_width (GTK_CONTAINER (td->parent), 2);
 
 	/* Info label */
-	td->discid = gtk_label_new (_("Editting discid: "));
+	td->discid = gtk_label_new (_("Editing Disc ID: "));
 	gtk_misc_set_alignment (GTK_MISC (td->discid), 0.0, 0.5);
 	gtk_box_pack_start (GTK_BOX (td->parent), td->discid, FALSE, FALSE, 0);
 
