@@ -5,70 +5,70 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.0\n"
-"POT-Creation-Date: 1999-09-18 21:26+0200\n"
-"PO-Revision-Date: 1998-02-26 03:33+0900\n"
+"POT-Creation-Date: 1999-10-02 14:54+0900\n"
+"PO-Revision-Date: 1998-10-02 14:55+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-kr\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cddbslave/main.c:53
+#: cddbslave/main.c:56
 #, c-format
 msgid "Ready for command: %s\n"
 msgstr "명령어 준비: %s\n"
 
-#: cddbslave/main.c:54
+#: cddbslave/main.c:57
 #, c-format
 msgid "Connecting [%s]\n"
 msgstr "연결 [%s]\n"
 
-#: cddbslave/main.c:55
+#: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
 msgstr "서비스 요청 [%s]\n"
 
-#: cddbslave/main.c:56
+#: cddbslave/main.c:59
 #, c-format
 msgid "Waiting for reply [%s]\n"
 msgstr "응답 기다리는 중 [%s]\n"
 
-#: cddbslave/main.c:57
+#: cddbslave/main.c:60
 #, c-format
 msgid "Reading reply [%s]\n"
 msgstr "응답을 읽는 중 [%s]\n"
 
-#: cddbslave/main.c:58
+#: cddbslave/main.c:61
 #, c-format
 msgid "Disconnecting [%s]\n"
 msgstr "연결 끊기 [%s]\n"
 
-#: cddbslave/main.c:59
+#: cddbslave/main.c:62
 #, c-format
 msgid "Error connecting [%s]\n"
 msgstr "연결에서 오류 [%s]\n"
 
-#: cddbslave/main.c:60
+#: cddbslave/main.c:63
 #, c-format
 msgid "Error querying [%s]\n"
 msgstr "서비스 요청에서 오류 [%s]\n"
 
-#: cddbslave/main.c:61
+#: cddbslave/main.c:64
 #, c-format
 msgid "Error reading [%s]\n"
 msgstr "응답을 읽는데 오류 [%s]\n"
 
-#: cddbslave/main.c:62
+#: cddbslave/main.c:65
 #, c-format
 msgid "No match found for %s\n"
 msgstr "%s에 맞는 게 없음\n"
 
-#: cddbslave/main.c:63
+#: cddbslave/main.c:66
 #, c-format
 msgid "Timeout: %s\n"
 msgstr "타임아웃: %s\n"
 
-#: cddbslave/main.c:64
+#: cddbslave/main.c:67
 #, c-format
 msgid "Inactive. %s\n"
 msgstr "사용불가. %s\n"
@@ -78,8 +78,8 @@ msgid "_About"
 msgstr "이 프로그램은(_A)"
 
 #: gmix/gmix.c:99
-msgid "_Properties"
-msgstr ""
+msgid "_Preferences..."
+msgstr "선택사항...(_P)"
 
 #: gmix/gmix.c:105
 msgid "_Program"
@@ -89,75 +89,74 @@ msgstr "프로그램(_P)"
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: gmix/gmix.c:156
+#: gmix/gmix.c:155
 msgid "don't restore mixer-settings from configuration"
-msgstr "믹서 설정상태를 읽어오지 않음"
+msgstr "볼륨조정 믹서상태를 읽어오지 않음"
+
+#: gmix/gmix.c:156
+msgid "restore mixer-settings from configuration"
+msgstr "설정에서 믹서 상태를 복구"
 
 #: gmix/gmix.c:157
-#, fuzzy
-msgid "restore mixer-settings from configuration"
-msgstr "믹서 설정상태를 읽어오지 않음"
+msgid "initialise the mixer(s) from stored configuration and exit"
+msgstr "저장된 설정상태에서부터 믹서 초기화하고 끝내기"
 
 #: gmix/gmix.c:158
-msgid "initialise the mixer(s) from stored configuration and exit"
-msgstr "저장된 설정상태에서부터 믹서를 초기화하고 끝내기"
-
-#: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "믹서 설정상태를 저장하지 않음"
 
 #. start frame
-#: gmix/gmix.c:278 tcd/prefs.c:388
+#: gmix/gmix.c:277 tcd/prefs.c:393
 msgid "On startup"
 msgstr "시작할 때"
 
 #. Set on start
-#: gmix/gmix.c:284
+#: gmix/gmix.c:283
 msgid "Restore saved mixer levels on startup"
-msgstr ""
+msgstr "시작할 때 저장된 믹서 상태를 복구하기"
 
-#: gmix/gmix.c:290
+#: gmix/gmix.c:289
 msgid "Hide menu on start"
-msgstr ""
+msgstr "시작할 때 메뉴 감추기"
 
-#: gmix/gmix.c:306
+#: gmix/gmix.c:304
 msgid "GUI"
-msgstr ""
+msgstr "그래픽 인터페이스"
 
-#: gmix/gmix.c:309
-msgid "Use Mixer Icons"
-msgstr ""
+#: gmix/gmix.c:308
+msgid "Use mixer icons"
+msgstr "믹서 아이콘 사용"
 
-#: gmix/gmix.c:317
-msgid "Use Mixer Labels"
-msgstr ""
+#: gmix/gmix.c:316
+msgid "Use mixer labels"
+msgstr "믹서 레이블 사용"
 
-#: gmix/gmix.c:340 tcd/popup.c:19
-msgid "Preferences..."
-msgstr "선택사항..."
+#: gmix/gmix.c:339 tcd/gtcd.c:326 tcd/prefs.c:596
+msgid "Preferences"
+msgstr "선택사항"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:775
+#: gmix/gmix.c:766
 msgid "Lock"
 msgstr "잠금"
 
-#: gmix/gmix.c:785
+#: gmix/gmix.c:776
 msgid "Rec."
 msgstr "녹음"
 
-#: gmix/gmix.c:802
+#: gmix/gmix.c:794
 msgid "Mute"
 msgstr "조용"
 
-#: gmix/gmix.c:825
+#: gmix/gmix.c:818
 msgid "GMIX 3.0"
 msgstr "그믹스 3.0"
 
-#: gmix/gmix.c:994
+#: gmix/gmix.c:987
 msgid "GMIX - The Gnome Mixer"
 msgstr "그믹스 - 그놈 믹서"
 
-#: gmix/gmix.c:997
+#: gmix/gmix.c:990
 msgid "This is a mixer for OSS sound-devices."
 msgstr "OSS 사운드장치를 위한 믹서입니다."
 
@@ -174,76 +173,88 @@ msgstr ""
 "이 프로그램을 만드는 데 도움을 준 사람들은 같이 배포되는 'Thanks' 파일에 "
 "들어 있습니다."
 
-#: tcd/cddb_props.c:64
+#: tcd/cddb_props.c:69
 msgid "Disc ID"
 msgstr "디스크 아이디"
 
-#: tcd/cddb_props.c:64
+#: tcd/cddb_props.c:69
 msgid "Disc Title"
 msgstr "디스크 제목"
 
-#: tcd/cddb_props.c:79
+#: tcd/cddb_props.c:84
 msgid "Edit"
 msgstr "편집"
 
-#: tcd/cddb_props.c:83
+#: tcd/cddb_props.c:88
 msgid "Remove"
 msgstr "삭제"
 
-#: tcd/cddb_props.c:89
+#: tcd/cddb_props.c:94
 msgid "Refresh List"
 msgstr "리스트 갱신"
 
 #. server settings
-#: tcd/cddb_props.c:140
+#: tcd/cddb_props.c:145
 msgid "Server Settings"
 msgstr "서버 설정"
 
-#: tcd/cddb_props.c:149
+#: tcd/cddb_props.c:154
 msgid "Address"
 msgstr "주소"
 
-#: tcd/cddb_props.c:159
+#: tcd/cddb_props.c:164
 msgid "Port"
 msgstr "포트"
 
-#: tcd/cddb_props.c:168
-msgid "Use HTTP"
-msgstr ""
-
 #: tcd/cddb_props.c:173
+msgid "Use HTTP"
+msgstr "HTTP 사용"
+
+#: tcd/cddb_props.c:178
 msgid "Proxy"
-msgstr ""
+msgstr "프록시"
+
+#: tcd/cddb_props.c:196
+msgid "Use proxy authentication"
+msgstr "프록시 인증 사용"
+
+#: tcd/cddb_props.c:204
+msgid "Username"
+msgstr "사용자명"
+
+#: tcd/cddb_props.c:224
+msgid "Password"
+msgstr "암호"
 
 #. local db
-#: tcd/cddb_props.c:193
+#: tcd/cddb_props.c:247
 msgid "Local Database"
 msgstr "로칼 데이타베이스"
 
 #. frame
-#: tcd/cddb_props.c:235
+#: tcd/cddb_props.c:289
 msgid "CDDB Data"
 msgstr "CDDB 데이타"
 
-#: tcd/cddb_props.c:267
+#: tcd/cddb_props.c:321
 msgid "CDDB Editor"
 msgstr "CDDB 편집기"
 
-#: tcd/cddb_props.c:281
+#: tcd/cddb_props.c:335
 msgid "Error reading $HOME/.cddbslave."
 msgstr "%HOME/.cddbslave를 읽는데 오류."
 
-#: tcd/cddb_props.c:397
+#: tcd/cddb_props.c:451
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "파일을 지울 수 없습니다: %s\n"
 
-#: tcd/cddb_props.c:409
+#: tcd/cddb_props.c:463
 msgid "Delete CDDB Entry?"
 msgstr "CDDB 항목을 지울까요?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:308
+#: tcd/cddb_status.c:50 tcd/gtracked.c:307
 msgid "CDDB Status"
 msgstr "CDDB 상태"
 
@@ -284,68 +295,63 @@ msgstr "보통"
 msgid "random"
 msgstr "아무거나"
 
-#: tcd/gtcd.c:326
+#: tcd/gtcd.c:325
 msgid "Open track editor"
 msgstr "트랙 편집기 열기"
 
-#: tcd/gtcd.c:327 tcd/prefs.c:586
-msgid "Preferences"
-msgstr "선택사항"
-
-#: tcd/gtcd.c:328 tcd/popup.c:23
+#: tcd/gtcd.c:327 tcd/popup.c:24
 msgid "Quit"
 msgstr "끝내기"
 
 #. TOP ROW
-#: tcd/gtcd.c:348
+#: tcd/gtcd.c:347
 msgid "Play/Pause"
 msgstr "재생/일시정지"
 
-#: tcd/gtcd.c:352 tcd/popup.c:16
+#: tcd/gtcd.c:351 tcd/popup.c:16
 msgid "Stop"
 msgstr "멈춤"
 
-#: tcd/gtcd.c:353 tcd/popup.c:17
+#: tcd/gtcd.c:352 tcd/popup.c:17
 msgid "Eject"
 msgstr "빼기"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:360 tcd/gtcd.c:368
+#: tcd/gtcd.c:359 tcd/gtcd.c:367
 msgid "Skip backwards"
 msgstr "뒤로 넘어가기"
 
-#: tcd/gtcd.c:361 tcd/gtcd.c:369
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip forwards"
 msgstr "앞으로 넘어가기"
 
-#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
+#: tcd/gtcd.c:519 tcd/gtcd.c:520 tcd/gtcd.c:521
 msgid "(Scanning)"
 msgstr "(읽는중)"
 
-#: tcd/gtcd.c:544
+#: tcd/gtcd.c:543
 msgid "No Disc"
 msgstr "디스크 없음"
 
-#: tcd/gtcd.c:579
+#: tcd/gtcd.c:578
 msgid "Error"
 msgstr "오류"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:856
 msgid "Volume"
-msgstr ""
+msgstr "볼륨"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "Filename of the CD device"
-msgstr ""
+msgstr "CD 장치의 파일이름"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "FILE"
-msgstr ""
+msgstr "파일"
 
-#: tcd/gtcd.c:1027
-#, fuzzy
+#: tcd/gtcd.c:1030
 msgid "Play CD on startup"
-msgstr "시작할 때"
+msgstr "시작할 때 CD 플레이"
 
 #: tcd/gtracked.c:169
 msgid "Trk"
@@ -380,40 +386,40 @@ msgid "Track Information"
 msgstr "트랙 정보"
 
 #. Clear button
-#: tcd/gtracked.c:297
+#: tcd/gtracked.c:296
 msgid "Clear"
 msgstr "지우기"
 
 #. Playlist button
-#: tcd/gtracked.c:302
+#: tcd/gtracked.c:301
 msgid "Playlist"
 msgstr "재생 리스트"
 
-#: tcd/gtracked.c:314
-#, fuzzy
+#: tcd/gtracked.c:313
 msgid "Submit"
-msgstr "끝내기"
+msgstr "제출"
 
-#: tcd/gtracked.c:375
-#, fuzzy
+#: tcd/gtracked.c:374
 msgid "Submit Information"
-msgstr "트랙 정보"
+msgstr "정보 제출하기"
 
-#: tcd/gtracked.c:381
+#: tcd/gtracked.c:380
 #, c-format
 msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr ""
+"'%s'에 관한 정보\n"
+"제출"
 
-#: tcd/gtracked.c:390
+#: tcd/gtracked.c:389
 msgid "To: "
-msgstr ""
+msgstr "수신자: "
 
 #. end of service menu
-#: tcd/gtracked.c:422
+#: tcd/gtracked.c:421
 msgid "Category: "
-msgstr ""
+msgstr "분류: "
 
 #: tcd/linux-cdrom.c:616
 #, c-format
@@ -445,94 +451,102 @@ msgstr "%d번 트랙"
 msgid "Play"
 msgstr "재생"
 
+#: tcd/popup.c:19
+msgid "Preferences..."
+msgstr "선택사항..."
+
 #: tcd/popup.c:20
 msgid "Track Editor..."
 msgstr "트랙 편집기..."
 
 #: tcd/popup.c:21
-msgid "About..."
-msgstr "이 프로그램은..."
+msgid "Help"
+msgstr "도움말"
+
+#: tcd/popup.c:22
+msgid "About"
+msgstr "이 프로그램은"
 
 #. do nothing
-#: tcd/prefs.c:179 tcd/prefs.c:234
+#: tcd/prefs.c:184 tcd/prefs.c:239
 msgid "Do nothing"
 msgstr "아무것도 안 함"
 
-#: tcd/prefs.c:185
+#: tcd/prefs.c:190
 msgid "Start playing"
 msgstr "재생 시작"
 
-#: tcd/prefs.c:191 tcd/prefs.c:240
+#: tcd/prefs.c:196 tcd/prefs.c:245
 msgid "Stop playing"
 msgstr "재생 정지"
 
 #. close tray
-#: tcd/prefs.c:195 tcd/prefs.c:252
+#: tcd/prefs.c:200 tcd/prefs.c:257
 msgid "Close tray"
 msgstr "트레이 닫기"
 
-#: tcd/prefs.c:246
+#: tcd/prefs.c:251
 msgid "Open tray"
 msgstr "트레이 열기"
 
 #. device entry
-#: tcd/prefs.c:325
+#: tcd/prefs.c:330
 msgid "CDROM device"
 msgstr "씨디롬 장치"
 
 #. Color picker
-#: tcd/prefs.c:334
+#: tcd/prefs.c:339
 msgid "Track/title color"
 msgstr "트랙/제목 색깔"
 
 #. font picker
-#: tcd/prefs.c:346
+#: tcd/prefs.c:351
 msgid "Track/title font"
 msgstr "트랙/제목 글꼴"
 
-#: tcd/prefs.c:347
+#: tcd/prefs.c:352
 msgid "Change font"
 msgstr "글꼴 변경"
 
 #. show handles
-#: tcd/prefs.c:354
+#: tcd/prefs.c:359
 msgid "Show handles (restart required)"
 msgstr "핸들 보여주기 (재시작해야 함)"
 
 #. show tooltips
-#: tcd/prefs.c:361
+#: tcd/prefs.c:366
 msgid "Show tooltips"
 msgstr "툴팁 보여주기"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:368
+#: tcd/prefs.c:373
 msgid "Use alternate method to play CD"
 msgstr "CD를 재생하는 데 별도의 방법 사용"
 
 #. exit frame
-#: tcd/prefs.c:394
+#: tcd/prefs.c:399
 msgid "On exit"
 msgstr "끝날 때"
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:507
 msgid "Key"
 msgstr "키"
 
-#: tcd/prefs.c:503
+#: tcd/prefs.c:508
 msgid "Action"
 msgstr "동작"
 
-#: tcd/prefs.c:523
-#, fuzzy
+# (FIXME) ?? 
+#: tcd/prefs.c:528
 msgid "Click here to change (restart required):"
-msgstr "핸들 보여주기 (재시작해야 함)"
+msgstr "바꿀 사항 클릭 (다시 시작해야 효과가 있음)"
 
 #. Frame
-#: tcd/prefs.c:545 tcd/prefs.c:590
+#: tcd/prefs.c:550 tcd/prefs.c:600
 msgid "Keybindings"
 msgstr "키 바인딩"
 
-#: tcd/prefs.c:594
+#: tcd/prefs.c:604
 msgid "CDDB Settings"
 msgstr "CDDB 설정"
 
@@ -541,10 +555,12 @@ msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
+"사운드 데몬에 연결할 수 없습니다.\n"
+"셸 명령으로 'esd'를 실행하세요."
 
 #: vu-meter/main.c:248
 msgid "Specify the X position of the meter."
-msgstr "이 미터의 가로 위치 지정"
+msgstr "측정기의 가로 위치 지정"
 
 #: vu-meter/main.c:249
 msgid "X-Position"
@@ -552,7 +568,7 @@ msgstr "가로-위치"
 
 #: vu-meter/main.c:251
 msgid "Specify the Y position of the meter."
-msgstr "이 미터의 세로 위치 지정"
+msgstr "측정기의 세로 위치 지정"
 
 #: vu-meter/main.c:252
 msgid "Y-Position"
@@ -568,24 +584,13 @@ msgstr "ESD 서버 호스트"
 
 #: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
-msgstr "이 미터의 아래위로 길쭉한 버전 열기."
+msgstr "측정기의 아래위로 길쭉한 버전 열기."
 
 #: vu-meter/main.c:270
 #, c-format
 msgid "Host is %s\n"
-msgstr ""
+msgstr "호스트는 %s입니다\n"
 
 #: vu-meter/main.c:291
 msgid "Volume Meter"
-msgstr ""
-
-#~ msgid "Click here to change:"
-#~ msgstr "바꾸려면 여기를 딸깍 누르세요:"
-
-#, fuzzy
-#~ msgid "About"
-#~ msgstr "이 프로그램은(_A)"
-
-#, fuzzy
-#~ msgid "Close"
-#~ msgstr "트레이 닫기"
+msgstr "볼륨 측정기"
