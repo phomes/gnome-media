@@ -3,7 +3,7 @@ INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 
 bin_PROGRAMS = cddbslave cddbsubmit
 
-cddbslave_SOURCES = 	socket.c main.c socket.h cddb.h
+cddbslave_SOURCES = 	socket.c main.c socket.h socks4.c cddb.h socks4.h
 
 cddbslave_LDADD =    	$(GNOME_LIBDIR) \
                 	$(GNOME_LIBS) \

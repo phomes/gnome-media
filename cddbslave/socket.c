@@ -38,12 +38,16 @@
 
 #include "socket.h"
 #include "cddb.h"
+#include "socks4.h"
 
 void die(int signal);
 int remove_cache(char *req);
 void my_exit(int errorcode);
 
 extern char *g_req;
+gchar *socks_server;
+gboolean use_socks;
+gboolean use_http;
 
 void die(int signal)
 {
@@ -80,15 +84,29 @@ int opensocket( char *hostname, int port )
     their_addr.sin_port = htons(port);    /* short, network byte order */
     their_addr.sin_addr = *((struct in_addr *)he->h_addr);
     bzero(&(their_addr.sin_zero), 8);     /* zero the rest of the struct */
-    
+
+    use_socks = gnome_config_get_bool_with_default("/cddbslave/server/use_socks=false", NULL);
+    socks_server = gnome_config_get_string("/cddbslave/server/socks_server=socks");
+
+    if(use_socks && !use_http) {
+        set_socks4_server(socks_server, 1080);
+        if(socks4connect(sockfd, (struct sockaddr *)&their_addr,
+            sizeof(struct sockaddr)) == -1)
+        {
+            alarm(0);
+            signal(SIGALRM, SIG_DFL);
+            return -1;
+        }
+    }    
+    else {
     if (connect(sockfd, (struct sockaddr *)&their_addr,
 		sizeof(struct sockaddr)) == -1) 
-    {
-	alarm(0);
-	signal(SIGALRM, SIG_DFL);
-	return -1;
+        {
+	    alarm(0);
+	    signal(SIGALRM, SIG_DFL);
+   	    return -1;
+        }
     }
-    
     alarm(0);
     signal(SIGALRM, SIG_DFL);
     return sockfd;
