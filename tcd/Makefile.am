@@ -2,35 +2,37 @@ Audiodir = $(datadir)/apps/Audio
 
 bin_PROGRAMS = gtcd tcd
 
-gtcd_SOURCES = 			\
+gtcd_SOURCES = 		\
 	gtcd.c 		\
 	cddb.c 		\
-	socket.c 		\
-	cdrom.c 		\
-	gtracked.c 		\
-	gabout.c 		\
-	gcddb.c 		\
+	socket.c 	\
+	cdrom.c 	\
+	gtracked.c 	\
+	gabout.c 	\
+	gcddb.c 	\
 	cddb.h 		\
-	socket.h 		\
-	gtracked.h 		\
-	gabout.h 		\
+	socket.h 	\
+	gtracked.h 	\
+	gabout.h 	\
 	gcddb.h		\
 	tooltips.h	\
 	properties.c
 
-tcd_SOURCES = 			\
+tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
-	socket.c 		\
-	cdrom.c 		\
+	socket.c 	\
+	cdrom.c 	\
 	cddb.h 		\
-	socket.h 		\
+	socket.h 	\
 	cdrom.h		\
 	tcd.h		\
-	tracked.h		\
+	tracked.h	\
 	tracked.c
 
-gtcd_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+gtcd_LDADD = 	$(GNOME_LIBDIR) \
+		$(GNOMEUI_LIBS) \
+		$(INTLLIBS)
 
 tcd_LDADD = -lm -lncurses
 

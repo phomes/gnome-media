@@ -210,8 +210,10 @@ GtkWidget *create_status_frame( GtkWidget *box )
 
 	status_table = gtk_table_new( 4, 2, FALSE );
 
-	time_gcs  = gnome_color_selector_new( color_changed_cb, &props.timecolor );
-	track_gcs = gnome_color_selector_new( color_changed_cb, &props.trackcolor );
+	time_gcs  = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
+					      &props.timecolor );
+	track_gcs = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
+					      &props.trackcolor );
 	timebutton_f  = gtk_button_new_with_label( "Font" );
 	trackbutton_f = gtk_button_new_with_label( "Font" );
 

@@ -45,9 +45,6 @@
 #include <linux/cdrom.h>
 #include <linux/soundcard.h>
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-
 #include "cdrom.h"
 #include "tcd.h"
 #include "tracked.h"
@@ -101,7 +98,8 @@ GdkColor darkgrey, timecolor, trackcolor;
 GtkTooltips *tooltips;
 
 int timeonly = FALSE, status_height, status_width;
-int configured = FALSE;
+int configured = FALSE, applet_id;
+guint32 winid;
 tcd_properties props;
 
 /* Prototypes */
@@ -253,7 +251,7 @@ GtkWidget* make_changer_buttons( void )
 	int i;
 
 	box = gtk_hbox_new( FALSE, 0 );
-	changer_buttons = malloc( sizeof(GtkWidget)*cd.nslots );
+	changer_buttons = g_malloc( sizeof(GtkWidget)*cd.nslots );
 		
 	for( i=0; i < cd.nslots && i < 12; i++ )
 	{
@@ -285,7 +283,7 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 GtkWidget* make_row1( void )
 {
 	GtkWidget *box, *handle;
-
+	
 	box = gtk_hbox_new( TRUE, 0 );
 	handle = gtk_handle_box_new();
 
@@ -733,7 +731,7 @@ void setup_time_display( void )
 #ifdef TCD_CHANGER_ENABLED
 	gtk_box_pack_start( GTK_BOX(lowerbox), changer_box, FALSE, FALSE, 0 );
 #endif
-//	aboutbutton = make_button_with_pixmap( "cdrom", lowerbox, ABOUT, FALSE, FALSE, TT_ABOUT );
+	aboutbutton = make_button_with_pixmap( "cdrom", lowerbox, ABOUT, FALSE, FALSE, TT_ABOUT );
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
 	handle1 = gtk_handle_box_new();
@@ -746,6 +744,7 @@ void setup_time_display( void )
 
 void setup_rows( void )
 {
+	GtkWidget *plug;
 	GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
 	sep = gtk_hseparator_new();
 
@@ -755,7 +754,8 @@ void setup_rows( void )
 	button_box = gtk_vbox_new( TRUE, 0 );
 
         row = make_row1();
-	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 );
+
+	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 ); 
 	gtk_widget_show(row);
 	
         row = make_row2();
@@ -781,6 +781,7 @@ void setup_rows( void )
         gtk_box_pack_start(GTK_BOX(ttbox), titlelabel, TRUE, FALSE, 0);
 
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
+
 	aboutbutton = make_button_with_pixmap( "cdrom", bottom_box, ABOUT, FALSE, FALSE, TT_ABOUT );
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
@@ -815,10 +816,16 @@ int main (int argc, char *argv[])
 {
 	char *homedir;
 	char rcfile[64];
+	char *myinvoc;
+	char *result;
+        char *cfgpath;
+        char *globcfgpath;
+	GtkWidget *plug;
 
         argp_program_version = VERSION;
+
  	gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
-        
+
         homedir = getenv("HOME");
         sprintf( rcfile, "%s/.tcd/gtcdrc", homedir );
 	gtk_rc_parse( rcfile );
@@ -843,9 +850,19 @@ int main (int argc, char *argv[])
 	gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
         gnome_app_set_contents( GNOME_APP(window), vbox);
+	
         gtk_widget_show_all(window); /* Make sure window is shown last */
-	gdk_window_set_decorations( window->window, GDK_DECOR_ALL|GDK_DECOR_TITLE|GDK_DECOR_RESIZEH );
-        gtk_main ();
+//	applet_corba_gtk_main("IDL:GNOME/Applet:1.0");
+	
+	gtk_main ();
 	gnome_config_sync();
         return 0;
+}
+
+void change_orient(int id, int orient)
+{
+} 
+        
+void session_save(int id, const char *cfgpath, const char *globcfgpath)
+{
 }
