@@ -296,6 +296,10 @@ apply_clicked_cb (GtkWidget *apply,
 	char *new_device;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (pd->cd_device));
+	if (new_device == NULL || pd->gcd->preferences->device == NULL) {
+		return;
+	}
+	
 	if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
 		return;
 	}
@@ -314,10 +318,12 @@ device_changed_cb (GtkWidget *entry,
 		gtk_widget_set_sensitive (pd->apply, FALSE);
 		return;
 	}
-	
-	if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
-		gtk_widget_set_sensitive (pd->apply, FALSE);
-		return;
+
+	if (pd->gcd->preferences->device != NULL) {
+		if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
+			gtk_widget_set_sensitive (pd->apply, FALSE);
+			return;
+		}
 	}
 
 	gtk_widget_set_sensitive (pd->apply, TRUE);
