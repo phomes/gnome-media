@@ -237,6 +237,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 	else
 		sox_command = g_strdup (temp_file);
 	
+	fullpath = FALSE;
 	g_free (temp_file);
 	temp_file   = g_strdup (gtk_entry_get_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v)))));
 	
