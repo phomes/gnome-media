@@ -1,5 +1,13 @@
 2002-02-11  Iain <iain@ximian.com>
 
+	* linux-cdrom.c (gnome_cdrom_new): Don't return NULL if the cd device
+	can't be opened.
+
+	* gnome-cd.c (init_player): Only connect to the cdrom if it exists.
+	Display the preferences dialog if it can't.
+
+2002-02-11  Iain <iain@ximian.com>
+
 	* preferences.c (device_changed_cb): Don't strcmp on NULL
 	(apply_clicked_cb): Don't strcmp on NULL.
 	

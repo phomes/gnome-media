@@ -1014,7 +1014,7 @@ linux_cdrom_set_device (GnomeCDRom *cdrom,
 		return TRUE;
 	}
 	
-	if (linux_cdrom_get_status (cdrom, &status, &error) == FALSE) {
+	if (linux_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
 		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
 			if (linux_cdrom_stop (cdrom, &error) == FALSE) {
 				return FALSE;
@@ -1168,29 +1168,25 @@ gnome_cdrom_new (const char *cdrom_device,
 	priv->cdrom_device = g_strdup (cdrom_device);
 	priv->update = update;
 
-	/* Do a test open to see if we have CD stuff working */
-	if (linux_cdrom_open (cdrom, error) == TRUE) {
-
-		/* Force an update so that a status will always exist */
-		update_cd (cdrom);
-		
-		/* All worked, start the counter */
-		switch (update) {
-		case GNOME_CDROM_UPDATE_NEVER:
-			break;
-			
-		case GNOME_CDROM_UPDATE_WHEN_CHANGED:
-		case GNOME_CDROM_UPDATE_CONTINOUS:
-			priv->update_id = g_timeout_add (1000, update_cd, cdrom);
-			break;
-			
-		default:
-			break;
-		}
-		
+	if (linux_cdrom_open (cdrom, error) == FALSE) {
 		linux_cdrom_close (cdrom);
-	} else {
-		return NULL;
+	}
+	
+	/* Force an update so that a status will always exist */
+	update_cd (cdrom);
+	
+	/* All worked, start the counter */
+	switch (update) {
+	case GNOME_CDROM_UPDATE_NEVER:
+		break;
+		
+	case GNOME_CDROM_UPDATE_WHEN_CHANGED:
+	case GNOME_CDROM_UPDATE_CONTINOUS:
+		priv->update_id = g_timeout_add (1000, update_cd, cdrom);
+		break;
+		
+	default:
+		break;
 	}
 
 	return GNOME_CDROM (cdrom);

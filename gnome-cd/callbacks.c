@@ -421,6 +421,10 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 {
 	char *text;
 	int track;
+
+	if (gcd->not_ready == TRUE) {
+		return;
+	}
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:

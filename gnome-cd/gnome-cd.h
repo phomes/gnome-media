@@ -60,6 +60,7 @@ struct _GnomeCD {
 
 	GtkWidget *trackeditor_b, *properties_b;
 
+	gboolean not_ready;
 	/* FIXME: Make this a control */
 	GtkWidget *back_b, *rewind_b;
 	GtkWidget *play_b, *stop_b;

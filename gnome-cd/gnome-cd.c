@@ -116,20 +116,22 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 			if (status->cd == GNOME_CDROM_STATUS_OK) {
 				if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) != FALSE) {
 					int i;
-				
-					for (i = 0; i < data->ntrks; i++) {
-						char *label;
-						
-						label = g_strdup_printf (_("%d - Unknown"), i + 1);
-						item = gtk_menu_item_new_with_label (label);
-						g_free (label);
 
-						gtk_widget_show (item);
+					if (data != NULL) {
+						for (i = 0; i < data->ntrks; i++) {
+							char *label;
+							
+							label = g_strdup_printf (_("%d - Unknown"), i + 1);
+							item = gtk_menu_item_new_with_label (label);
+							g_free (label);
+							
+							gtk_widget_show (item);
+							
+							gtk_menu_append (menu, item);
+						}
 						
-						gtk_menu_append (menu, item);
+						g_free (data);
 					}
-					
-					g_free (data);
 				}
 			}
 
@@ -321,11 +323,12 @@ init_player (void)
 	GtkWidget *top_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow;
 	GdkPixbuf *pixbuf;
-	GError *error;
+	GError *error = NULL;
 	char *fullname;
 
 	gcd = g_new0 (GnomeCD, 1);
 
+	gcd->not_ready = TRUE;
 	gcd->preferences = preferences_new (gcd);
 	if (gcd->preferences->device == NULL || gcd->preferences->device[0] == 0) {
 		GtkWidget *dialog;
@@ -360,13 +363,42 @@ init_player (void)
 	if (gcd->cdrom == NULL) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
-
-		g_free (gcd);
-		return NULL;
+	} else {
+		g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
+				  G_CALLBACK (cd_status_changed_cb), gcd);
 	}
-	g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
-			  G_CALLBACK (cd_status_changed_cb), gcd);
-	
+
+	if (error != NULL) {
+		GtkWidget *dialog;
+		
+		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_NONE,
+						 _("The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+						   "will be unable to run correctly. Press Set device to go to a dialog\n"
+						   "where you can set the device, or click Quit to quit GnomeCD"));
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
+					_("Set device"), 1, NULL);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
+		gtk_window_set_title (GTK_WINDOW (dialog), _("No CD device"));
+		
+		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+		case 1:
+			gtk_widget_destroy (dialog);
+			dialog = preferences_dialog_show (gcd, TRUE);
+
+			/* Don't care what it returns */
+			gtk_dialog_run (GTK_DIALOG (dialog));
+			gtk_widget_destroy (dialog);
+
+			break;
+
+		default:
+			exit (0);
+		}
+
+		g_error_free (error);
+	}
+		
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
@@ -496,6 +528,7 @@ init_player (void)
 	gtk_container_add (GTK_CONTAINER (gcd->window), gcd->vbox);
 	gtk_widget_show_all (gcd->vbox);
 
+	gcd->not_ready = FALSE;
 	return gcd;
 }
 
