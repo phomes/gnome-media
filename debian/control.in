@@ -1,12 +1,12 @@
-Source: gnome-media@SUFFIX@
+Source: @SNAP@gnome-media
 Section: sound
 Priority: optional
-Maintainer: Jim Pick <jim@jimpick.com>
-Standards-Version: 2.4.0.0
+Maintainer: James LewisMoss <dres@debian.org>
+Standards-Version: 3.0.0
 
-Package: gnome-media@SUFFIX@
+Package: @SNAP@gnome-media
 Architecture: any
-Depends: gnome-core@SUFFIX@ (>= ${Source-Version}), ${shlibs:Depends}
+Depends: @SNAP@gnome-core (>= 1.0.7-0), ${shlibs:Depends}
 Conflicts: tcd
 Replaces: tcd
 Provides: tcd
@@ -20,3 +20,4 @@ Description: Gnome Media Utilities (gmix, gtcd)
  .
    gmix - a mixer 
    gtcd - a cd player
+   vumeter - watch sound output
