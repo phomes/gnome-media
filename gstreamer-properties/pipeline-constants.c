@@ -32,7 +32,7 @@
 /* Test specified inputs for pipelines */
 /* static const gchar audiosink_test_pipe[] = "afsrc location=\"" TEST_MEDIA_FILE "\""; FIXME*/
 static gchar audiosink_test_pipe[] = "sinesrc freq=512";
-static gchar videosink_test_pipe[] = "videotestsrc ! colorspace";
+static gchar videosink_test_pipe[] = "videotestsrc ! ffcolorspace";
 
 static gchar GSTPROPS_KEY_DEFAULT_VIDEOSINK[] = "/system/gstreamer/default/videosink";
 static gchar GSTPROPS_KEY_DEFAULT_VIDEOSRC[] = "/system/gstreamer/default/videosrc";
@@ -69,9 +69,9 @@ GSTPPipelineDescription videosink_pipelines[] = {
 	{PIPE_TYPE_VIDEOSINK, 0,"SDL - Simple DirectMedia Layer", "sdlvideosink",
 	 FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (No Xv)",
-	 "xvideosink disable-xv=true", FALSE, TEST_PIPE_SUPPLIED,
+	 "ximagesink", FALSE, TEST_PIPE_SUPPLIED,
 	 videosink_test_pipe, FALSE},
-	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (X11/XShm/Xv)", "xvideosink", FALSE,
+	{PIPE_TYPE_VIDEOSINK, 0,"XWindows (X11/XShm/Xv)", "xvimagesink", FALSE,
 	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 	{PIPE_TYPE_VIDEOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
 	 videosink_test_pipe, TRUE}
