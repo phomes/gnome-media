@@ -54,41 +54,41 @@
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
 	char tcd_dir[60];
+	char tmp[256];
 	struct stat fs;
 	struct cdrom_volctrl vol;
 
 #ifdef DEBUG
 	fprintf( stderr, "cdrom.c: tcd_init_disc(%p) top\n", cd );
 #endif
-	tcd_opencddev( cd );
+	tcd_opencddev( cd, msg_cb );
 
 #ifdef DATABASE_SUPPORT
 	strcpy( tcd_dir, getenv("HOME"));
 	strcat( tcd_dir, "/.tcd/" );
-	if( stat( tcd_dir, &fs ) < 0 )
+	if( stat( tcd_dir, &fs ) < 0 ) 
 	{
 		if( errno == ENOENT )
 		{
-/*			fprintf( stderr, "Can't open \'%s\'\n", tcd_dir );
-			fprintf( stderr, "TCD will now attempt to create %s to store it's files.\n", tcd_dir);
-*/
-		        if (msg_cb)
-			        msg_cb();
 			if( mkdir(tcd_dir,S_IRWXU) )
 			{
-				/* FIXME, let it continue, but without database support. */
-				fprintf( stderr,"Error creating TCD directory!\n" );
-				perror( "mkdir" );	
+				snprintf( tmp, 255, "Error creating %s. Reason: %s\n", tcd_dir, strerror(errno) );
+				if( msg_cb )
+					msg_cb(tmp,"error");
 #ifdef DEBUG
 				fprintf( stderr, "cdrom.c: tcd_init_disc exiting early.\n" );
 #endif
 				return -1;
 			}
-			fprintf( stderr,"Succesful.\n" );
+			if( msg_cb )
+				msg_cb("Created directory ~/.tcd/ for cddb files.", "info" );
 		}
-		else {
-			fprintf( stderr,"Error opening \'~/.tcd/\'. Please correct permissions.\n" );
-			perror( "stat" );
+		else 
+		{
+			snprintf( tmp, 255, "Error accessing %s. Reason: %s\n", tcd_dir, strerror(errno) );
+			if( msg_cb )
+				msg_cb(tmp,"error");
+			return -1;
 		}
 	}
 #endif
@@ -485,8 +485,9 @@ int tcd_change_disc( cd_struct *cd, int disc )
 #endif
 }
 	                   
-void tcd_opencddev( cd_struct *cd )
+void tcd_opencddev( cd_struct *cd, WarnFunc msg_cb )
 {
+	char tmp[256];
 	cd->err = FALSE;
 	cd->isdisk=FALSE;
 
@@ -497,7 +498,12 @@ void tcd_opencddev( cd_struct *cd )
  
         if( cd->cd_dev < 0 )
         {
-		strcpy( cd->errmsg, "Can't open drive." );
+		snprintf( tmp, 255, "Error accessing cdrom device.\n\
+			Please check to make sure cdrom drive support\n\
+			is compiled into the kernel, and that you have\n\
+			permission to access the device.\n\nReason: %s\n", strerror(errno));
+		if( msg_cb )
+			msg_cb(tmp,"error");
 		cd->err = TRUE;
                 return;
         }
@@ -532,9 +538,12 @@ int tcd_readdiskinfo( cd_struct *cd )
 	}
 	else
 	{
-		fprintf( stderr,"Warning, can't open new format \'%s\', trying old.\n", fn );
+
 		sprintf( fn, "%s%ld.tcd", tcd_dir, cd->old_id );
+#ifdef DEBUG
+		fprintf( stderr,"Warning, can't open new format \'%s\', trying old.\n", fn );
 		fprintf( stderr, "opening...%s\n", fn );
+#endif
 		if( !stat(fn, &fs) )
 		{
 			fp = fopen( fn, "r" );
@@ -562,7 +571,10 @@ int tcd_readdiskinfo( cd_struct *cd )
 		}	                                                                                       			
 		else 
 		{		
+
+#ifdef DEBUG
 			fprintf( stderr,"Warning, can't open \'%s\' \n", fn );
+#endif
 			strcpy( cd->dtitle, "Unknown / Unknown" );
 		
 			for( i = cd->first_t; i <= cd->last_t; i++ )

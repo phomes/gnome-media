@@ -237,7 +237,8 @@ int main( int argc, char **argv )
 			case '4':
 				tcd_close_disc(cd);
 				tcd_change_disc( cd, c-49 );
-				tcd_init_disc(cd, NULL);
+				tcd_init_disc(cd,NULL);
+
 			        wclear(win);
 		                wrefresh(win);
 				draw_not_always();

@@ -107,7 +107,7 @@ tcd_properties props;
 /* Prototypes */
 void draw_status( void );
 void delete_event (GtkWidget *widget, gpointer *data);
-void create_warn(void);
+void create_warn( char *, char * );
 
 void callback (GtkWidget *widget, gpointer *data)
 {
@@ -866,12 +866,10 @@ void init_window(void)
 		gtk_tooltips_disable(tooltips);
 }
 
-void create_warn(void)
+void create_warn( char *message_text, char *type )
 {
-	GtkWidget *msg;
-	msg = gnome_message_box_new( "TCD has created the directory ~/.tcd/ where it will store it's cddb files.",
-			"question");
-	gtk_widget_show(msg);
+	gtk_widget_show(gnome_message_box_new(message_text, type,
+		GNOME_STOCK_BUTTON_OK, NULL));
 }
 	
 int main (int argc, char *argv[])
@@ -882,8 +880,6 @@ int main (int argc, char *argv[])
         argp_program_version = VERSION;
 
  	gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
-
-	create_warn();
 
         homedir = getenv("HOME");
         sprintf( rcfile, "%s/.tcd/gtcdrc", homedir );
