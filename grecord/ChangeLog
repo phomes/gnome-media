@@ -1,3 +1,25 @@
+2001-12-09  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+
+	install .desktop files into datadir/applications
+
+	Use INTL_DESKTOP_RULE rather than SERVER_RULE
+
+	Don't deal with .keys and .mime files.
+	
+	* Soundrecorder.desktop.in:
+
+	Add categories field.
+	
+	* grecord.keys.in:
+	* grecord.mime:
+
+	Whenever possible, applications should not install
+	MIME or Keys files but should have types registered
+	in the central registry. WAV has been in both KDE
+	and GnomeVFS registries for a while. Remove these files.
+	
 2001-12-02  Iain Holmes <iain@ximian.com>
 
 	* Makefile.am: Comment out the .desktop lines.
