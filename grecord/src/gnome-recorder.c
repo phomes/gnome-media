@@ -167,6 +167,7 @@ main (int argc,
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
 
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
 	/* Init GStreamer */
 	gst_init (&argc, &argv);
 
