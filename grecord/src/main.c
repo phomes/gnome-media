@@ -99,7 +99,7 @@ main (int argc, char *argv[])
 	gchar** args = NULL;
 	
 	/* i18n stuff ---------------------------------- */
-	bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
+	bindtextdomain (PACKAGE, "");
 	textdomain (PACKAGE);
 	
 	gnome_init_with_popt_table (_("GNOME Sound recorder"), VERSION, argc, argv,
