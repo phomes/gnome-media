@@ -17,4 +17,6 @@ extace_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) -lesd \
 	-lgslfft -lgslerr
 
+EXTRA_DIST = extace.desktop README NEWS TODO
+
 Audio_DATA = extace.desktop
