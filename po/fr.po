@@ -5,8 +5,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media VERSION\n"
-"POT-Creation-Date: 1999-09-18 21:26+0200\n"
+"Project-Id-Version: gnome-media 1.0.40\n"
+"POT-Creation-Date: 1999-09-22 19:35+0200\n"
 "PO-Revision-Date: 1998-02-22 19:26+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: Gnome French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -79,8 +79,8 @@ msgid "_About"
 msgstr "_À propos..."
 
 #: gmix/gmix.c:99
-msgid "_Properties"
-msgstr ""
+msgid "_Preferences..."
+msgstr "_Préférences..."
 
 #: gmix/gmix.c:105
 msgid "_Program"
@@ -97,11 +97,8 @@ msgstr ""
 "configuration"
 
 #: gmix/gmix.c:157
-#, fuzzy
 msgid "restore mixer-settings from configuration"
-msgstr ""
-"Ne pas restaurer les réglages de la table de mixage à partir de la "
-"configuration"
+msgstr "Restaurer les réglages de la table de mixage à partir de la configuration"
 
 #: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
@@ -115,57 +112,57 @@ msgstr ""
 "configuration"
 
 #. start frame
-#: gmix/gmix.c:278 tcd/prefs.c:388
+#: gmix/gmix.c:278 tcd/prefs.c:387
 msgid "On startup"
 msgstr "Au démarrage"
 
 #. Set on start
 #: gmix/gmix.c:284
 msgid "Restore saved mixer levels on startup"
-msgstr ""
+msgstr "Restaurer les réglages de la table de mixage au démarrage"
 
 #: gmix/gmix.c:290
 msgid "Hide menu on start"
-msgstr ""
+msgstr "Cacher le menu au démarrage"
 
-#: gmix/gmix.c:306
+#: gmix/gmix.c:305
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #: gmix/gmix.c:309
 msgid "Use Mixer Icons"
-msgstr ""
+msgstr "Utiliser des icônes"
 
 #: gmix/gmix.c:317
 msgid "Use Mixer Labels"
-msgstr ""
+msgstr "Utiliser des labels"
 
-#: gmix/gmix.c:340 tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Préférences..."
+#: gmix/gmix.c:340 tcd/gtcd.c:326 tcd/prefs.c:590
+msgid "Preferences"
+msgstr "Préférences"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:775
+#: gmix/gmix.c:765
 msgid "Lock"
 msgstr "Verrouiller"
 
-#: gmix/gmix.c:785
+#: gmix/gmix.c:775
 msgid "Rec."
 msgstr "Enreg."
 
-#: gmix/gmix.c:802
+#: gmix/gmix.c:792
 msgid "Mute"
 msgstr "Sourdine"
 
-#: gmix/gmix.c:825
+#: gmix/gmix.c:815
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:994
+#: gmix/gmix.c:984
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - La table de mixage GNOME"
 
-#: gmix/gmix.c:997
+#: gmix/gmix.c:987
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ce programme est une table de mixage pour les pilotes de son OSS"
 
@@ -250,7 +247,7 @@ msgid "Delete CDDB Entry?"
 msgstr "Effacer l'entrée CDDB ?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:308
+#: tcd/cddb_status.c:50 tcd/gtracked.c:307
 msgid "CDDB Status"
 msgstr "Etat CDDB"
 
@@ -291,68 +288,63 @@ msgstr "normal"
 msgid "random"
 msgstr "aléatoire"
 
-#: tcd/gtcd.c:326
+#: tcd/gtcd.c:325
 msgid "Open track editor"
 msgstr "Ouvrir l'éditeur de piste"
 
-#: tcd/gtcd.c:327 tcd/prefs.c:586
-msgid "Preferences"
-msgstr "Préférences"
-
-#: tcd/gtcd.c:328 tcd/popup.c:23
+#: tcd/gtcd.c:327 tcd/popup.c:24
 msgid "Quit"
 msgstr "Quitter"
 
 #. TOP ROW
-#: tcd/gtcd.c:348
+#: tcd/gtcd.c:347
 msgid "Play/Pause"
 msgstr "Jouer / pause"
 
-#: tcd/gtcd.c:352 tcd/popup.c:16
+#: tcd/gtcd.c:351 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
 
-#: tcd/gtcd.c:353 tcd/popup.c:17
+#: tcd/gtcd.c:352 tcd/popup.c:17
 msgid "Eject"
 msgstr "Éjecter"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:360 tcd/gtcd.c:368
+#: tcd/gtcd.c:359 tcd/gtcd.c:367
 msgid "Skip backwards"
 msgstr "Piste précédente"
 
-#: tcd/gtcd.c:361 tcd/gtcd.c:369
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip forwards"
 msgstr "Piste suivante"
 
-#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
+#: tcd/gtcd.c:519 tcd/gtcd.c:520 tcd/gtcd.c:521
 msgid "(Scanning)"
 msgstr "(Scan en cours)"
 
-#: tcd/gtcd.c:544
+#: tcd/gtcd.c:543
 msgid "No Disc"
 msgstr "Pas de disque"
 
-#: tcd/gtcd.c:579
+#: tcd/gtcd.c:578
 msgid "Error"
 msgstr "Erreur"
 
-#: tcd/gtcd.c:855
+#: tcd/gtcd.c:856
 msgid "Volume"
 msgstr "Volume"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "Filename of the CD device"
 msgstr "Nom du fichier de périphérique CD"
 
-#: tcd/gtcd.c:1025
+#: tcd/gtcd.c:1028
 msgid "FILE"
 msgstr "FICHIER"
 
-#: tcd/gtcd.c:1027
-#, fuzzy
+#: tcd/gtcd.c:1030
 msgid "Play CD on startup"
-msgstr "Au démarrage"
+msgstr "Jouer le CD au démarrage"
 
 #: tcd/gtracked.c:169
 msgid "Trk"
@@ -387,36 +379,36 @@ msgid "Track Information"
 msgstr "Informations sur la piste"
 
 #. Clear button
-#: tcd/gtracked.c:297
+#: tcd/gtracked.c:296
 msgid "Clear"
 msgstr "Effacer"
 
 #. Playlist button
-#: tcd/gtracked.c:302
+#: tcd/gtracked.c:301
 msgid "Playlist"
 msgstr "Liste de lecture"
 
-#: tcd/gtracked.c:314
+#: tcd/gtracked.c:313
 msgid "Submit"
 msgstr "Soumettre"
 
-#: tcd/gtracked.c:375
+#: tcd/gtracked.c:374
 msgid "Submit Information"
 msgstr "Soumettre les informations"
 
-#: tcd/gtracked.c:381
+#: tcd/gtracked.c:380
 #, c-format
 msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr "Soumettre les informations à propos de '%s'"
 
-#: tcd/gtracked.c:390
+#: tcd/gtracked.c:389
 msgid "To: "
 msgstr "À : "
 
 #. end of service menu
-#: tcd/gtracked.c:422
+#: tcd/gtracked.c:421
 msgid "Category: "
 msgstr "Catégorie : "
 
@@ -450,94 +442,101 @@ msgstr "Piste %d"
 msgid "Play"
 msgstr "Jouer"
 
+#: tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Préférences..."
+
 #: tcd/popup.c:20
 msgid "Track Editor..."
 msgstr "Éditeur de piste..."
 
 #: tcd/popup.c:21
-msgid "About..."
+msgid "Help"
+msgstr "Aide"
+
+#: tcd/popup.c:22
+msgid "About"
 msgstr "À propos..."
 
 #. do nothing
-#: tcd/prefs.c:179 tcd/prefs.c:234
+#: tcd/prefs.c:178 tcd/prefs.c:233
 msgid "Do nothing"
 msgstr "Ne rien faire"
 
-#: tcd/prefs.c:185
+#: tcd/prefs.c:184
 msgid "Start playing"
 msgstr "Commencer à jouer"
 
-#: tcd/prefs.c:191 tcd/prefs.c:240
+#: tcd/prefs.c:190 tcd/prefs.c:239
 msgid "Stop playing"
 msgstr "Arrêter de jouer"
 
 #. close tray
-#: tcd/prefs.c:195 tcd/prefs.c:252
+#: tcd/prefs.c:194 tcd/prefs.c:251
 msgid "Close tray"
 msgstr "Fermer le tiroir"
 
-#: tcd/prefs.c:246
+#: tcd/prefs.c:245
 msgid "Open tray"
 msgstr "Ouvrir le tiroir"
 
 #. device entry
-#: tcd/prefs.c:325
+#: tcd/prefs.c:324
 msgid "CDROM device"
 msgstr "Périphérique CD-ROM"
 
 #. Color picker
-#: tcd/prefs.c:334
+#: tcd/prefs.c:333
 msgid "Track/title color"
 msgstr "Couleur de piste / titre"
 
 #. font picker
-#: tcd/prefs.c:346
+#: tcd/prefs.c:345
 msgid "Track/title font"
 msgstr "Police de piste / titre"
 
-#: tcd/prefs.c:347
+#: tcd/prefs.c:346
 msgid "Change font"
 msgstr "Changer la police"
 
 #. show handles
-#: tcd/prefs.c:354
+#: tcd/prefs.c:353
 msgid "Show handles (restart required)"
 msgstr "Afficher les poignées (redémarrage requis)"
 
 #. show tooltips
-#: tcd/prefs.c:361
+#: tcd/prefs.c:360
 msgid "Show tooltips"
 msgstr "Afficher les bulles d'aide"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:368
+#: tcd/prefs.c:367
 msgid "Use alternate method to play CD"
 msgstr "Utiliser une méthode alternative pour jouer le CD"
 
 #. exit frame
-#: tcd/prefs.c:394
+#: tcd/prefs.c:393
 msgid "On exit"
 msgstr "En quittant"
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:501
 msgid "Key"
 msgstr "Touche"
 
-#: tcd/prefs.c:503
+#: tcd/prefs.c:502
 msgid "Action"
 msgstr "Action"
 
-#: tcd/prefs.c:523
-#, fuzzy
+#: tcd/prefs.c:522
 msgid "Click here to change (restart required):"
-msgstr "Afficher les poignées (redémarrage requis)"
+msgstr "Cliquer ici pour changer (redémarrage requis) :"
 
 #. Frame
-#: tcd/prefs.c:545 tcd/prefs.c:590
+#: tcd/prefs.c:544 tcd/prefs.c:594
 msgid "Keybindings"
 msgstr "Raccourcis clavier"
 
-#: tcd/prefs.c:594
+#: tcd/prefs.c:598
 msgid "CDDB Settings"
 msgstr "Paramètres CDDB"
 
@@ -585,6 +584,9 @@ msgstr "L'hôte est %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volume-mètre"
+
+#~ msgid "About..."
+#~ msgstr "À propos..."
 
 #~ msgid "Click here to change:"
 #~ msgstr "Cliquez ici pour changer :"
