@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 13:02+0100\n"
+"POT-Creation-Date: 2005-04-04 19:41+0200\n"
 "PO-Revision-Date: 2005-03-02 22:37+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -161,9 +161,9 @@ msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
-#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:957
+#: grecord/src/gsr-window.c:967 grecord/src/gsr-window.c:1282
 msgid "Unknown"
 msgstr "不明"
 
@@ -1278,8 +1278,7 @@ msgstr "テーマの選択(_S):"
 msgid "Record sound clips"
 msgstr "サウンド・クリップを記録します"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
-#: grecord/src/gsr-window.c:1473
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1156
 msgid "Sound Recorder"
 msgstr "サウンド・レコーダ"
 
@@ -1307,7 +1306,7 @@ msgstr "新しいサンプルを生成します"
 msgid "Display help for Sound Recorder"
 msgstr "サウンド・レコーダのヘルプを表示します"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1025
 msgid "File Information"
 msgstr "ファイル情報"
 
@@ -1456,8 +1455,8 @@ msgstr "保存(_S)"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
-#: grecord/src/gsr-window.c:1896
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:1891
 #, c-format
 msgid "Untitled"
 msgid_plural "Untitled-%d"
@@ -1499,8 +1498,8 @@ msgstr "秒"
 msgid "second"
 msgstr "秒"
 
-#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
-#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1444
+#: grecord/src/gsr-window.c:1586 grecord/src/gsr-window.c:1854
 msgid "Ready"
 msgstr "準備完了です"
 
@@ -1518,119 +1517,114 @@ msgstr ""
 "\"%s\" というファイルは既に存在します。\n"
 "保存するファイルで上書きしてもよろしいですか？"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:690
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr "ファイル \"%s\" を保存できませんでした"
 
-#: grecord/src/gsr-window.c:698
+#: grecord/src/gsr-window.c:699
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "ファイル \"%s\" を保存できませんでした"
 
-#: grecord/src/gsr-window.c:746
+#: grecord/src/gsr-window.c:747
 msgid "Save file as"
 msgstr "ファイルを別名で保存"
 
-#: grecord/src/gsr-window.c:807
+#: grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s はパス上にインストールされていません"
 
-#: grecord/src/gsr-window.c:817
+#: grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s の起動時にエラー: %s"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:913
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (未保存)"
 
-#: grecord/src/gsr-window.c:907
+#: grecord/src/gsr-window.c:926
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu バイト)"
 msgstr[1] "%s (%llu バイト)"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:930
 msgid "Unknown size"
 msgstr "未知のサイズ"
 
-#: grecord/src/gsr-window.c:931
+#: grecord/src/gsr-window.c:950
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:959
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/秒"
 
-#: grecord/src/gsr-window.c:952
+#: grecord/src/gsr-window.c:971
 msgid "1 (mono)"
 msgstr "1 (モノラル)"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:975
 msgid "2 (stereo)"
 msgstr "2 (ステレオ)"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:1004
 #, c-format
 msgid "%s Information"
 msgstr "%s 情報"
 
-#: grecord/src/gsr-window.c:1020
+#: grecord/src/gsr-window.c:1039
 msgid "Folder:"
 msgstr "フォルダ:"
 
-#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
+#: grecord/src/gsr-window.c:1045 grecord/src/gsr-window.c:1788
 msgid "Filename:"
 msgstr "ファイル名:"
 
-#: grecord/src/gsr-window.c:1032
+#: grecord/src/gsr-window.c:1051
 msgid "File size:"
 msgstr "ファイル・サイズ:"
 
-#: grecord/src/gsr-window.c:1041
+#: grecord/src/gsr-window.c:1060
 msgid "Audio Information"
 msgstr "オーディオ情報"
 
-#: grecord/src/gsr-window.c:1055
+#: grecord/src/gsr-window.c:1074
 msgid "File duration:"
 msgstr "所要時間:"
 
-#: grecord/src/gsr-window.c:1061
+#: grecord/src/gsr-window.c:1080
 msgid "Number of channels:"
 msgstr "チャネル数:"
 
-#: grecord/src/gsr-window.c:1067
+#: grecord/src/gsr-window.c:1086
 msgid "Sample rate:"
 msgstr "サンプリング・レート:"
 
-#: grecord/src/gsr-window.c:1073
+#: grecord/src/gsr-window.c:1092
 msgid "Bit rate:"
 msgstr "ビット・レート:"
 
-#: grecord/src/gsr-window.c:1139
+#: grecord/src/gsr-window.c:1158
 msgid "A sound recorder for GNOME"
 msgstr "GNOME 用サウンド・レコーダ"
 
-#: grecord/src/gsr-window.c:1409
+#: grecord/src/gsr-window.c:1428
 msgid "Playing..."
 msgstr "再生中..."
 
-#: grecord/src/gsr-window.c:1469
-#, c-format
-msgid "%s.%s - Sound Recorder"
-msgstr "%s.%s - サウンド・レコーダ"
-
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1557
 msgid "Recording..."
 msgstr "録音中..."
 
-#: grecord/src/gsr-window.c:1620
+#: grecord/src/gsr-window.c:1617
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1638,18 +1632,18 @@ msgstr ""
 "デフォルトの GStreamer オーディオ入力要素がセットされていません - GStreamer-"
 "Gconf スキーマをインストールするか、手動でセットして下さい"
 
-#: grecord/src/gsr-window.c:1635
+#: grecord/src/gsr-window.c:1632
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "GStreamer エンコーダ要素の生成に失敗しました - エンコーディングの設定をチェッ"
 "クして下さい"
 
-#: grecord/src/gsr-window.c:1645
+#: grecord/src/gsr-window.c:1642
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 "GStreamer filesink プラグインが見つかりませんでした - インストールして下さい"
 
-#: grecord/src/gsr-window.c:1653
+#: grecord/src/gsr-window.c:1650
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1657,19 +1651,19 @@ msgstr ""
 "エンコーダ要素とファイル出力要素のリンクに失敗しました - おそらく選択している"
 "エンコーダが正しくないようです"
 
-#: grecord/src/gsr-window.c:1759
+#: grecord/src/gsr-window.c:1756
 msgid "Record as"
 msgstr "録音の種類"
 
-#: grecord/src/gsr-window.c:1776
+#: grecord/src/gsr-window.c:1773
 msgid "File information"
 msgstr "ファイル情報"
 
-#: grecord/src/gsr-window.c:1798
+#: grecord/src/gsr-window.c:1795
 msgid "<none>"
 msgstr "<なし>"
 
-#: grecord/src/gsr-window.c:1807
+#: grecord/src/gsr-window.c:1804
 msgid "Length:"
 msgstr "長さ:"
 
@@ -1714,11 +1708,11 @@ msgid "No volume control elements and/or devices found."
 msgstr "音量コントロールの要素/デバイスが見つかりませんでした。"
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:108
+#: gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "音量コントロールの設定"
 
-#: gst-mixer/src/preferences.c:121
+#: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "表示するトラックの選択(_S):"
 
@@ -2284,3 +2278,6 @@ msgstr "音声出力音量のモニタです"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量モニタ"
+
+#~ msgid "%s.%s - Sound Recorder"
+#~ msgstr "%s.%s - サウンド・レコーダ"

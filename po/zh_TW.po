@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.9.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 13:02+0100\n"
+"POT-Creation-Date: 2005-04-04 19:41+0200\n"
 "PO-Revision-Date: 2005-03-07 14:19+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
 "Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
@@ -163,9 +163,9 @@ msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
-#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:957
+#: grecord/src/gsr-window.c:967 grecord/src/gsr-window.c:1282
 msgid "Unknown"
 msgstr "不明"
 
@@ -1314,8 +1314,7 @@ msgstr "選擇佈景主題(_S)："
 msgid "Record sound clips"
 msgstr "錄音"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
-#: grecord/src/gsr-window.c:1473
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1156
 msgid "Sound Recorder"
 msgstr "錄音程式"
 
@@ -1343,7 +1342,7 @@ msgstr "製作新的音效樣本"
 msgid "Display help for Sound Recorder"
 msgstr "顯示錄音程式的說明文件"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1025
 msgid "File Information"
 msgstr "檔案資訊"
 
@@ -1492,8 +1491,8 @@ msgstr "儲存(_S)"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
-#: grecord/src/gsr-window.c:1896
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:1891
 #, c-format
 msgid "Untitled"
 msgid_plural "Untitled-%d"
@@ -1535,8 +1534,8 @@ msgstr "秒"
 msgid "second"
 msgstr "秒"
 
-#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
-#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1444
+#: grecord/src/gsr-window.c:1586 grecord/src/gsr-window.c:1854
 msgid "Ready"
 msgstr "準備就緒"
 
@@ -1554,120 +1553,115 @@ msgstr ""
 "檔案名為 “%s”已經存在。\n"
 "要以您準備儲存的檔案取代它嗎？"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:690
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr "無法儲存檔案“%s”"
 
-#: grecord/src/gsr-window.c:698
+#: grecord/src/gsr-window.c:699
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "無法儲存檔案“%s”"
 
-#: grecord/src/gsr-window.c:746
+#: grecord/src/gsr-window.c:747
 msgid "Save file as"
 msgstr "將檔案另存為"
 
-#: grecord/src/gsr-window.c:807
+#: grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s 並未安裝在執行檔路徑中。"
 
-#: grecord/src/gsr-window.c:817
+#: grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "啟動 %s 時出現錯誤：%s"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:913
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (仍未儲存)"
 
-#: grecord/src/gsr-window.c:907
+#: grecord/src/gsr-window.c:926
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu 位元組)"
 msgstr[1] "%s (%llu 位元組)"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:930
 msgid "Unknown size"
 msgstr "大小不詳"
 
-#: grecord/src/gsr-window.c:931
+#: grecord/src/gsr-window.c:950
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:959
 #, c-format
 msgid "%.0f kb/s"
 msgstr "每秒 %.0f kb"
 
-#: grecord/src/gsr-window.c:952
+#: grecord/src/gsr-window.c:971
 msgid "1 (mono)"
 msgstr "1 (單聲道)"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:975
 msgid "2 (stereo)"
 msgstr "2 (立體聲)"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:1004
 #, c-format
 msgid "%s Information"
 msgstr "%s 資訊"
 
-#: grecord/src/gsr-window.c:1020
+#: grecord/src/gsr-window.c:1039
 msgid "Folder:"
 msgstr "資料夾："
 
-#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
+#: grecord/src/gsr-window.c:1045 grecord/src/gsr-window.c:1788
 msgid "Filename:"
 msgstr "檔案名稱："
 
-#: grecord/src/gsr-window.c:1032
+#: grecord/src/gsr-window.c:1051
 msgid "File size:"
 msgstr "檔案大小："
 
-#: grecord/src/gsr-window.c:1041
+#: grecord/src/gsr-window.c:1060
 msgid "Audio Information"
 msgstr "音效資訊"
 
-#: grecord/src/gsr-window.c:1055
+#: grecord/src/gsr-window.c:1074
 msgid "File duration:"
 msgstr "檔案長度："
 
-#: grecord/src/gsr-window.c:1061
+#: grecord/src/gsr-window.c:1080
 msgid "Number of channels:"
 msgstr "聲道數目："
 
-#: grecord/src/gsr-window.c:1067
+#: grecord/src/gsr-window.c:1086
 msgid "Sample rate:"
 msgstr "取樣率："
 
 # No good translation of bit rate can be found. -- Abel
-#: grecord/src/gsr-window.c:1073
+#: grecord/src/gsr-window.c:1092
 msgid "Bit rate:"
 msgstr "位元率："
 
-#: grecord/src/gsr-window.c:1139
+#: grecord/src/gsr-window.c:1158
 msgid "A sound recorder for GNOME"
 msgstr "適用於 GNOME 的錄音程式"
 
-#: grecord/src/gsr-window.c:1409
+#: grecord/src/gsr-window.c:1428
 msgid "Playing..."
 msgstr "播放中..."
 
-#: grecord/src/gsr-window.c:1469
-#, c-format
-msgid "%s.%s - Sound Recorder"
-msgstr "%s %s ─ 錄音程式"
-
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1557
 msgid "Recording..."
 msgstr "錄音中..."
 
-#: grecord/src/gsr-window.c:1620
+#: grecord/src/gsr-window.c:1617
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1675,33 +1669,33 @@ msgstr ""
 "沒有設定預設的 GStreamer 輸入元件 - 請安裝GStreamer-GConf 概要(schema)或自行"
 "設定一個"
 
-#: grecord/src/gsr-window.c:1635
+#: grecord/src/gsr-window.c:1632
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr "無法建立 GStreamer 編碼器元件 - 請檢查編碼器設定"
 
-#: grecord/src/gsr-window.c:1645
+#: grecord/src/gsr-window.c:1642
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "無法找到 GStreamer filesink 增效模組 -- 請安裝它"
 
-#: grecord/src/gsr-window.c:1653
+#: grecord/src/gsr-window.c:1650
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr "將編碼器元件連結到檔案輸出元件失敗 - 您可能選取了無效的編碼器"
 
-#: grecord/src/gsr-window.c:1759
+#: grecord/src/gsr-window.c:1756
 msgid "Record as"
 msgstr "記錄為"
 
-#: grecord/src/gsr-window.c:1776
+#: grecord/src/gsr-window.c:1773
 msgid "File information"
 msgstr "檔案資訊"
 
-#: grecord/src/gsr-window.c:1798
+#: grecord/src/gsr-window.c:1795
 msgid "<none>"
 msgstr "<無>"
 
-#: grecord/src/gsr-window.c:1807
+#: grecord/src/gsr-window.c:1804
 msgid "Length:"
 msgstr "長度："
 
@@ -1746,11 +1740,11 @@ msgid "No volume control elements and/or devices found."
 msgstr "找不到混音元件或裝置。"
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:108
+#: gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "音量控制偏好設定"
 
-#: gst-mixer/src/preferences.c:121
+#: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "選擇可視的聲道(_S)："
 
@@ -2307,6 +2301,9 @@ msgstr "監控輸出音量"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量計"
+
+#~ msgid "%s.%s - Sound Recorder"
+#~ msgstr "%s %s ─ 錄音程式"
 
 #~ msgid "Song length:"
 #~ msgstr "歌曲長度："

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 13:02+0100\n"
+"POT-Creation-Date: 2005-04-04 19:41+0200\n"
 "PO-Revision-Date: 2003-07-26 12:09+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "לא ידוע / לא ידוע"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
-#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:957
+#: grecord/src/gsr-window.c:967 grecord/src/gsr-window.c:1282
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -1282,8 +1282,7 @@ msgstr ""
 msgid "Record sound clips"
 msgstr "הקלט קטעי קול"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
-#: grecord/src/gsr-window.c:1473
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1156
 msgid "Sound Recorder"
 msgstr "רשמקול"
 
@@ -1311,7 +1310,7 @@ msgstr "צור דגימה חדשה"
 msgid "Display help for Sound Recorder"
 msgstr "מציג עזרה לרשמקול"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1025
 msgid "File Information"
 msgstr "מידע על הקובץ"
 
@@ -1460,8 +1459,8 @@ msgstr "_שמור"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
-#: grecord/src/gsr-window.c:1896
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:1891
 #, fuzzy, c-format
 msgid "Untitled"
 msgid_plural "Untitled-%d"
@@ -1504,8 +1503,8 @@ msgstr "שניות"
 msgid "second"
 msgstr "שניה"
 
-#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
-#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1444
+#: grecord/src/gsr-window.c:1586 grecord/src/gsr-window.c:1854
 msgid "Ready"
 msgstr "מוכן"
 
@@ -1524,153 +1523,148 @@ msgstr ""
 "<b>הקובץ '%s' כבר קיים.</b>\n"
 "האם ברצונך להחליף אותו?"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:690
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr ""
 
-#: grecord/src/gsr-window.c:698
+#: grecord/src/gsr-window.c:699
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr ""
 
-#: grecord/src/gsr-window.c:746
+#: grecord/src/gsr-window.c:747
 msgid "Save file as"
 msgstr "שמור קובץ בשם"
 
-#: grecord/src/gsr-window.c:807
+#: grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s .לא מותקן בנתיב"
 
-#: grecord/src/gsr-window.c:817
+#: grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "ארעה שגיאה בהפעלת %s: %s"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:913
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (טרם נשמר)"
 
-#: grecord/src/gsr-window.c:907
+#: grecord/src/gsr-window.c:926
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:930
 msgid "Unknown size"
 msgstr "גודל לא ידוע"
 
-#: grecord/src/gsr-window.c:931
+#: grecord/src/gsr-window.c:950
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:959
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:952
+#: grecord/src/gsr-window.c:971
 msgid "1 (mono)"
 msgstr "1 (מונו)"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:975
 msgid "2 (stereo)"
 msgstr "2 (סטריאו)"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:1004
 #, c-format
 msgid "%s Information"
 msgstr "מידע %s"
 
-#: grecord/src/gsr-window.c:1020
+#: grecord/src/gsr-window.c:1039
 msgid "Folder:"
 msgstr "תיקייה:"
 
-#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
+#: grecord/src/gsr-window.c:1045 grecord/src/gsr-window.c:1788
 msgid "Filename:"
 msgstr "שם הקובץ:"
 
-#: grecord/src/gsr-window.c:1032
+#: grecord/src/gsr-window.c:1051
 msgid "File size:"
 msgstr "גודל הקובץ:"
 
-#: grecord/src/gsr-window.c:1041
+#: grecord/src/gsr-window.c:1060
 msgid "Audio Information"
 msgstr "מידע שמע"
 
-#: grecord/src/gsr-window.c:1055
+#: grecord/src/gsr-window.c:1074
 #, fuzzy
 msgid "File duration:"
 msgstr "מידע על הקובץ"
 
-#: grecord/src/gsr-window.c:1061
+#: grecord/src/gsr-window.c:1080
 msgid "Number of channels:"
 msgstr "מספר ערוצים:"
 
-#: grecord/src/gsr-window.c:1067
+#: grecord/src/gsr-window.c:1086
 msgid "Sample rate:"
 msgstr "קצב דגימה:"
 
-#: grecord/src/gsr-window.c:1073
+#: grecord/src/gsr-window.c:1092
 msgid "Bit rate:"
 msgstr "קצב:"
 
-#: grecord/src/gsr-window.c:1139
+#: grecord/src/gsr-window.c:1158
 msgid "A sound recorder for GNOME"
 msgstr "רשמקול ל GNOME"
 
-#: grecord/src/gsr-window.c:1409
+#: grecord/src/gsr-window.c:1428
 msgid "Playing..."
 msgstr "מנגן..."
 
-#: grecord/src/gsr-window.c:1469
-#, fuzzy, c-format
-msgid "%s.%s - Sound Recorder"
-msgstr "%s - רשמקול"
-
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1557
 msgid "Recording..."
 msgstr "מקליט..."
 
-#: grecord/src/gsr-window.c:1620
+#: grecord/src/gsr-window.c:1617
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1635
+#: grecord/src/gsr-window.c:1632
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1645
+#: grecord/src/gsr-window.c:1642
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1653
+#: grecord/src/gsr-window.c:1650
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1759
+#: grecord/src/gsr-window.c:1756
 #, fuzzy
 msgid "Record as"
 msgstr "הקלט"
 
-#: grecord/src/gsr-window.c:1776
+#: grecord/src/gsr-window.c:1773
 msgid "File information"
 msgstr "מידע על הקובץ"
 
-#: grecord/src/gsr-window.c:1798
+#: grecord/src/gsr-window.c:1795
 msgid "<none>"
 msgstr "<ללא>"
 
-#: grecord/src/gsr-window.c:1807
+#: grecord/src/gsr-window.c:1804
 msgid "Length:"
 msgstr "אורך:"
 
@@ -1717,12 +1711,12 @@ msgid "No volume control elements and/or devices found."
 msgstr ""
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:108
+#: gst-mixer/src/preferences.c:107
 #, fuzzy
 msgid "Volume Control Preferences"
 msgstr "העדפות בקרת העוצמה של GNOME"
 
-#: gst-mixer/src/preferences.c:121
+#: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr ""
 
@@ -2285,6 +2279,10 @@ msgstr "מציג את עוצמת יציאת הקול"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "צג עוצמה"
+
+#, fuzzy
+#~ msgid "%s.%s - Sound Recorder"
+#~ msgstr "%s - רשמקול"
 
 #~ msgid "Song length:"
 #~ msgstr "אורך השיר:"
