@@ -360,11 +360,10 @@ GtkWidget* make_row1( void )
     box = gtk_hbox_new( TRUE, 0 );
     handle = gtk_handle_box_new();
     
-    playbutton = make_button_with_pixmap( "play", box, -1, TRUE, TRUE, TT_PLAY );
+    playbutton = make_button_with_pixmap( "play", box, -1, TRUE, TRUE, _(TT_PLAY) );
     status_changed();
-    
-    make_button_with_pixmap( "stop", box, STOP, TRUE, TRUE, TT_STOP );
-    make_button_with_pixmap( "eject", box, EJECT, TRUE, TRUE, TT_EJECT );
+    make_button_with_pixmap( "stop", box, STOP, TRUE, TRUE, _(TT_STOP) );
+    make_button_with_pixmap( "eject", box, EJECT, TRUE, TRUE, _(TT_EJECT) );
     
     propsbutton = gtk_button_new();
     pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
@@ -372,7 +371,7 @@ GtkWidget* make_row1( void )
     gtk_signal_connect(GTK_OBJECT(propsbutton), "clicked",
 		       GTK_SIGNAL_FUNC(callback), (gpointer*)PROPS );
     gtk_box_pack_start(GTK_BOX(box), propsbutton, TRUE, TRUE, 0);
-    gtk_tooltips_set_tip( tooltips, propsbutton, TT_PROPS, "" );
+    gtk_tooltips_set_tip( tooltips, propsbutton, _(TT_PROPS), "" );
     
     if( props.handle )
     {
@@ -392,10 +391,10 @@ GtkWidget* make_row2( void )
     box = gtk_hbox_new( TRUE, 0 );
     handle = gtk_handle_box_new();
 
-    make_button_with_pixmap("prev_t", box, PREV_T, TRUE, TRUE, TT_PREV_TRACK );
-    rw = make_button_with_pixmap("rw", box, -1, TRUE, TRUE, TT_REWIND );
-    ff = make_button_with_pixmap("ff", box, -1, TRUE, TRUE, TT_FF );
-    make_button_with_pixmap("next_t", box, NEXT_T, TRUE, TRUE, TT_NEXT_TRACK );
+    make_button_with_pixmap("prev_t", box, PREV_T, TRUE, TRUE, _(TT_PREV_TRACK) );
+    rw = make_button_with_pixmap("rw", box, -1, TRUE, TRUE, _(TT_REWIND) );
+    ff = make_button_with_pixmap("ff", box, -1, TRUE, TRUE, _(TT_FF) );
+    make_button_with_pixmap("next_t", box, NEXT_T, TRUE, TRUE, _(TT_NEXT_TRACK) );
 
     gtk_widget_set_events(rw, GDK_BUTTON_PRESS_MASK
                             | GDK_BUTTON_RELEASE_MASK);
@@ -428,11 +427,11 @@ GtkWidget* make_row3( void )
     bbox = gtk_vbox_new( FALSE, 0 );
     handle = gtk_handle_box_new();
 
-    cddbbutton = make_button_with_pixmap( "cddb", box, CDDB, TRUE, TRUE,  TT_CDDB );
-    trackeditor =make_button_with_pixmap( "edit", box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
+    cddbbutton = make_button_with_pixmap( _("cddb"), box, CDDB, TRUE, TRUE,  _(TT_CDDB) );
+    trackeditor =make_button_with_pixmap( _("edit"), box, TRACKLIST, TRUE, TRUE, _(TT_TRACKED) );
 
     gotobutton = gtk_button_new();
-    name = gnome_pixmap_file("tcd/goto.xpm");
+    name = gnome_pixmap_file(_("tcd/goto.xpm"));
     pixmap = gnome_pixmap_new_from_file(name);
     g_free (name);
     gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );

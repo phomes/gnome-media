@@ -111,7 +111,8 @@ void select_row_cb( GtkCList *clist,
 void edit_window( void )
 {
 	char *titles[] = {N_("Trk"),N_("Time"),N_("Title")};
-	
+	int i;
+
 	GtkWidget *disc_entry, *disc_ext;
 	GtkWidget *label, *disc_frame, *button_box;
 	GtkWidget *main_box, *disc_table, *button;
@@ -125,7 +126,7 @@ void edit_window( void )
 
 	trwin = gtk_window_new(GTK_WINDOW_DIALOG);
 	gtk_container_border_width(GTK_CONTAINER(trwin), 5);
-	gtk_window_set_title(GTK_WINDOW(trwin), N_("Track Editor"));
+	gtk_window_set_title(GTK_WINDOW(trwin), _("Track Editor"));
 	gtk_window_set_wmclass(GTK_WINDOW(trwin), "track_editor","gtcd");
 
 	gtk_signal_connect(GTK_OBJECT(trwin), "delete_event",
@@ -140,9 +141,9 @@ void edit_window( void )
 	
 	/* Disc area */
 	disc_table  = gtk_table_new(2, 2, FALSE);
-	disc_frame = gtk_frame_new(N_("Disc Information"));
-	label 	   = gtk_label_new(N_("Artist / Title"));
-	disc_ext   = gtk_button_new_with_label(N_("Ext Data"));
+	disc_frame = gtk_frame_new(_("Disc Information"));
+	label 	   = gtk_label_new(_("Artist / Title"));
+	disc_ext   = gtk_button_new_with_label(_("Ext Data"));
 	gtk_widget_set_sensitive(disc_ext, FALSE);
 	disc_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(disc_entry), cd.dtitle);
@@ -163,10 +164,15 @@ void edit_window( void )
 	entry_box   = gtk_hbox_new(FALSE, 2);
 	track_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(track_entry), cd.trk[1].name);
-	track_ext   = gtk_button_new_with_label(N_("Ext Data"));
+	track_ext   = gtk_button_new_with_label(_("Ext Data"));
 	gtk_widget_set_sensitive(track_ext, FALSE);
-	track_list  = gtk_clist_new_with_titles(3, titles);
+	track_list = gtk_clist_new(3);
+	for (i=0 ; i < 3 ; i++)
+		gtk_clist_set_column_title(GTK_CLIST(track_list), i, _(titles[i]));
+	gtk_clist_column_titles_show(GTK_CLIST(track_list));
 	gtk_clist_set_border(GTK_CLIST(track_list), GTK_SHADOW_NONE);
+	/* FIXME: Setting the column size needs to be redone in a way that
+	   supports i18n */
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 20);
 	gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
 	gtk_clist_set_policy(GTK_CLIST(track_list), GTK_POLICY_AUTOMATIC,
@@ -176,7 +182,7 @@ void edit_window( void )
 	gtk_clist_column_titles_passive(GTK_CLIST(track_list));
 	gtk_widget_set_usize(track_list, 150, 225 );
 	fill_list(track_list);
-	track_frame = gtk_frame_new(N_("Track Information"));
+	track_frame = gtk_frame_new(_("Track Information"));
 	
 	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
 	gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_ext);
@@ -187,16 +193,16 @@ void edit_window( void )
 	/* END Track area */
 
 	button_box = gtk_hbox_new(FALSE,2);
-	button = gtk_button_new_with_label(N_("CDDB Get"));
+	button = gtk_button_new_with_label(_("CDDB Get"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	button = gtk_button_new_with_label(N_("Submit"));
+	button = gtk_button_new_with_label(_("Submit"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	button = gtk_button_new_with_label(N_("Clear"));
+	button = gtk_button_new_with_label(_("Clear"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	button = gtk_button_new_with_label(N_("Playlist"));
+	button = gtk_button_new_with_label(_("Playlist"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
 	gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
