@@ -1,3 +1,12 @@
+2003-04-08 Padraig O'Briain <padraig.obriain@sun.com>
+
+	* access/cddisplayaccessible.c (cddisplay_accessible_ref_child):
+	Omit warning message if index is too large.
+
+	* access/pangoaccessible.c (pango_accessible_ref_state_set): New 
+	function to cause VISIBLE and SHOWING states to be reported.
+	Fixes bug #106711.
+
 2003-03-28 Iain <iain@prettypeople.org>
 
 	* access/cddisplayaccessiblefactory.h: Fix warnings

@@ -153,6 +153,8 @@ cddisplay_accessible_ref_child (AtkObject *obj,
 
 	display = CD_DISPLAY (widget);
 
+	if (i >= CD_DISPLAY_END)
+		return NULL;
 	/*
 	 * Create the factory for the children if it's the first time.
 	 */
@@ -174,8 +176,6 @@ cddisplay_accessible_ref_child (AtkObject *obj,
 		}
 		first_time--;
 	}
-
-	g_return_val_if_fail(i < CD_DISPLAY_END, NULL);
 
 	g_object_ref (pango_accessible[i]);
 	return pango_accessible[i];
