@@ -559,7 +559,11 @@ int main(int argc, char *argv[])
 	textdomain (PACKAGE);
 	gnome_init_with_popt_table("gmix", VERSION, argc, argv, options,
 				   0, NULL);
-	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-mixer.png");
+
+	if (g_file_exists (GNOME_ICONDIR"/gnome-volume.png"))
+		gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-volume.png");
+	else
+		gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-mixer.png");
 
 	if(mode_nosave) mode |= M_NOSAVE;
 	if(mode_initonly) mode |= M_INITONLY;
@@ -568,7 +572,7 @@ int main(int argc, char *argv[])
 	if (devices) {
 		if (~mode & M_INITONLY) {
 		        get_gui_config();
-			/* Beweare boolean bastardization */
+			/* Beware boolean bastardization */
 			if (!prefs.set_mixer_on_start)
 				mode |= M_NORESTORE;
 			  
@@ -596,7 +600,11 @@ int main(int argc, char *argv[])
 		free_devices();
 	} else {
 		GtkWidget *box;
-		box = gnome_error_dialog("No mixers found.\nMake sure you have sound support compiled into the kernel.");
+		box = gnome_error_dialog(
+			"I was not able to open your audio device.\n"
+			"Please check that you have permission to open /dev/mixer\n"
+			"and make sure you have sound support compiled into your kernel.");
+
 		gtk_signal_connect(GTK_OBJECT(box), "close",
 				   GTK_SIGNAL_FUNC(error_close_cb), NULL);
 		gtk_main();
