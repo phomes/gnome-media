@@ -1192,7 +1192,6 @@ solaris_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 
 	for (i = priv->track0 - 1; i < priv->track1; i++) {
 		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
-		g_print ("%d: %u\n", i, msf_to_frames (&priv->track_info[i].address));
 	}
 
 	solaris_cdrom_close (lcd);
