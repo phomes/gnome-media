@@ -10,7 +10,7 @@ DIST_SUBDIRS = po $(always_built_SUBDIRS) \
 	       vu-meter gmix grecord gnome-cd
 
 EXTRA_DIST = gnome-media.spec.in configure acinclude.m4 COPYING-DOCS \
-		sgmldocs.make \
+		sgmldocs.make xmldocs.make \
 		intltool-extract.in intltool-merge.in intltool-update.in
 
 dist-hook: gnome-media.spec
