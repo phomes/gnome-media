@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-06-05 01:30+0200\n"
-"PO-Revision-Date: 2002-06-05 01:30+0200\n"
+"POT-Creation-Date: 2002-06-25 01:28+0200\n"
+"PO-Revision-Date: 2002-06-25 01:29+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -801,11 +801,11 @@ msgstr "Dölj avancerade spåralternativ"
 msgid "_Extra track data:"
 msgstr "_Extra spårdata:"
 
-#: cddb-slave2/cddb-track-editor.c:867
+#: cddb-slave2/cddb-track-editor.c:891
 msgid "CDDB Track Editor"
 msgstr "CDDB-spårredigerare"
 
-#: cddb-slave2/cddb-track-editor.c:995
+#: cddb-slave2/cddb-track-editor.c:1021
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1067,7 +1067,7 @@ msgstr "initiera mixern (mixrarna) från sparade inställningar och avsluta"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "spara inte (modifierade) mixerinställningar till konfigurationen"
 
-#: gmix/gmix.c:378
+#: gmix/gmix.c:380
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -1077,7 +1077,7 @@ msgstr ""
 "Kontrollera att du har rättighet att öppna /dev/mixer\n"
 "och försäkra dig om att du har stöd för ljud kompilerat i din kärna."
 
-#: gmix/gmix.c:593
+#: gmix/gmix.c:595
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1088,7 +1088,7 @@ msgstr ""
 "OSS version %d.%d.%d, och ditt system använder\n"
 "en version äldre än 3.6.0.\n"
 
-#: gmix/gmix.c:601
+#: gmix/gmix.c:603
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1099,54 +1099,55 @@ msgstr ""
 "OSS version %d.%d.%d, och ditt system använder\n"
 "version %d.%d.%d.\n"
 
-#: gmix/gmix.c:1055
+#: gmix/gmix.c:1057
 #, c-format
 msgid "left %s"
 msgstr "vänster %s"
 
-#: gmix/gmix.c:1081
+#: gmix/gmix.c:1083
 #, c-format
 msgid "Right %s"
 msgstr "Höger %s"
 
-#: gmix/gmix.c:1174
+#: gmix/gmix.c:1176
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1187
+#: gmix/gmix.c:1189
 #, c-format
 msgid "%s Lock"
 msgstr "%s-lås"
 
-#: gmix/gmix.c:1198
+# jdahlin vill ha "tyst" istället för "tysta"
+#: gmix/gmix.c:1200
 msgid "Mute"
 msgstr "Tyst"
 
-#: gmix/gmix.c:1211
+#: gmix/gmix.c:1213
 #, c-format
 msgid "%s Mute"
 msgstr "%s tyst"
 
-#: gmix/gmix.c:1225
+#: gmix/gmix.c:1227
 msgid "Rec."
 msgstr "Insp."
 
-#: gmix/gmix.c:1237
+#: gmix/gmix.c:1239
 #, c-format
 msgid "%s Record"
 msgstr "%s-inspelning"
 
-#: gmix/gmix.c:1308 gmix/gnome-volume-control.desktop.in.in.h:2
-#: gnome-cd/gnome-cd.c:489
+#: gmix/gmix.c:1310 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-cd/gnome-cd.c:488
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Volymkontroll"
 
-#: gmix/gmix.c:1703
+#: gmix/gmix.c:1716
 msgid "Gnome Volume Control"
 msgstr "Gnome-volymkontroll"
 
-#: gmix/gmix.c:1706
+#: gmix/gmix.c:1719
 msgid "This is a mixer for sound devices"
 msgstr "Detta är en mixer för ljudenheter"
 
@@ -1193,7 +1194,7 @@ msgstr "_Återställ etiketter till deras standardvärden"
 msgid "Gnome Volume Control Preferences"
 msgstr "Inställningar för Gnome-volymkontroll"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:507
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:506
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -1246,7 +1247,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Rad för visning av namnet på albumet"
 
 #: gnome-cd/callbacks.c:76 gnome-cd/callbacks.c:163 gnome-cd/callbacks.c:262
-#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:556 grecord/src/gui.c:236
+#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:555 grecord/src/gui.c:236
 msgid "Play"
 msgstr "Spela"
 
@@ -1288,20 +1289,12 @@ msgstr "Copyright © 2001, 2002"
 msgid "A GNOME cd player"
 msgstr "En GNOME-cdspelare"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Okänd artist"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Okänd skiva"
-
-#: gnome-cd/cdrom.c:355
+#: gnome-cd/cdrom.c:362
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "Du verkar inte ha rättighet att komma åt %s."
 
-#: gnome-cd/cdrom.c:361
+#: gnome-cd/cdrom.c:368
 #, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
@@ -1314,7 +1307,15 @@ msgstr ""
 "b) Du har inte rätt rättigheter för att komma åt cd-enheten\n"
 "c) %s är inte cd-enheten.\n"
 
-#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
+#: gnome-cd/display.c:74
+msgid "Unknown artist"
+msgstr "Okänd artist"
+
+#: gnome-cd/display.c:75
+msgid "Unknown disc"
+msgstr "Okänd skiva"
+
+#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:440
 msgid "Gnome CD Player"
 msgstr "Cd-spelare för Gnome"
 
@@ -1357,7 +1358,7 @@ msgstr ""
 "Tryck på \"Ställ in enhet\" för att få en dialog där du kan ställa\n"
 "in enheten, eller klicka på \"Avsluta\" för att avsluta GnomeCD"
 
-#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:418
+#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:417
 msgid "Set device"
 msgstr "Ställ in enhet"
 
@@ -1365,7 +1366,7 @@ msgstr "Ställ in enhet"
 msgid "No CD device"
 msgstr "Ingen cd-enhet"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:413
 #, c-format
 msgid ""
 "%s\n"
@@ -1377,63 +1378,63 @@ msgstr ""
 "få en dialog där du kan ställa in enheten, eller klicka på \"Avsluta\" för "
 "att avsluta GnomeCD"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:419
 msgid "Invalid CD device"
 msgstr "Ogiltig cd-enhet"
 
-#: gnome-cd/gnome-cd.c:498
+#: gnome-cd/gnome-cd.c:497
 msgid "Open track editor"
 msgstr "Öppna spårredigerare"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:498
 msgid "Track editor"
 msgstr "Spårredigerare"
 
-#: gnome-cd/gnome-cd.c:506
+#: gnome-cd/gnome-cd.c:505
 msgid "Open preferences"
 msgstr "Öppna inställningar"
 
-#: gnome-cd/gnome-cd.c:515
+#: gnome-cd/gnome-cd.c:514
 msgid "Track List"
 msgstr "Spårlista"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous track"
 msgstr "Föregående spår"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous"
 msgstr "Föregående"
 
-#: gnome-cd/gnome-cd.c:539
+#: gnome-cd/gnome-cd.c:538
 msgid "Rewind"
 msgstr "Spola tillbaka"
 
-#: gnome-cd/gnome-cd.c:556
+#: gnome-cd/gnome-cd.c:555
 msgid "Play / Pause"
 msgstr "Spela/Paus"
 
-#: gnome-cd/gnome-cd.c:561 grecord/src/gui.c:250
+#: gnome-cd/gnome-cd.c:560 grecord/src/gui.c:250
 msgid "Stop"
 msgstr "Stopp"
 
-#: gnome-cd/gnome-cd.c:565
+#: gnome-cd/gnome-cd.c:564
 msgid "Fast forward"
 msgstr "Snabbspola"
 
-#: gnome-cd/gnome-cd.c:573
+#: gnome-cd/gnome-cd.c:572
 msgid "Next track"
 msgstr "Nästa spår"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject CD"
 msgstr "Mata ut cd"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject"
 msgstr "Mata ut"
 
-#: gnome-cd/gnome-cd.c:641
+#: gnome-cd/gnome-cd.c:640
 msgid "Cannot create player"
 msgstr "Kan inte skapa spelare"
 
@@ -1444,142 +1445,6 @@ msgstr "Cd-spelare"
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
 msgstr "Spela ljud-cd"
-
-# SUN CHANGED MESSAGE
-#: gnome-cd/linux-cdrom.c:175
-msgid "Error opening CD"
-msgstr "Fel vid öppnande av cd"
-
-# SUN CHANGED MESSAGE
-#: gnome-cd/linux-cdrom.c:180
-msgid "Error reading CD header"
-msgstr "Fel vid läsande av cd-huvud"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:197
-msgid "IOCtl failed"
-msgstr "IOCtl misslyckades"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:209
-msgid "Error getting leadout"
-msgstr "Ett fel inträffade då leadout skulle hämtas"
-
-# SUN NEW TRANSLATION
-#
-# Sun vill ha "Cd:n"
-# Jag vill ha "Cd-skivan"
-#
-#: gnome-cd/linux-cdrom.c:217
-#, c-format
-msgid ""
-"CD changed\n"
-"Track count: %d\n"
-"------------------\n"
-msgstr ""
-"Cd-skivan ändrades\n"
-"Spårnummer: %d\n"
-"------------------\n"
-
-# SUN NEW TRANSLATION
-#
-# Allmän kommentar till meddelandena nedan:
-# Det som är inom () är funktionsnamn (ja, det är korkat att de är markerade
-# för översättning, felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=83768 ). Sun har av misstag
-# översatt funktionsnamnen, jag har korrigerat detta.
-#
-#: gnome-cd/linux-cdrom.c:249
-#, c-format
-msgid "(eject): ioctl failed: %s"
-msgstr "(eject): ioctl misslyckades: %s"
-
-# SUN NEW TRANSLATION
-#
-# Sun vill ha "färdig"
-# Jag vill ha "redo"
-#
-#: gnome-cd/linux-cdrom.c:434
-msgid "(linux_cdrom_play): Drive not ready"
-msgstr "(linux_cdrom_play): Enheten är inte redo"
-
-# SUN NEW TRANSLATION
-#
-# Sun vill ha "färdig"
-# Jag vill ha "redo"
-#
-#: gnome-cd/linux-cdrom.c:454
-msgid "(linux_cdrom_play): Drive still not ready"
-msgstr "(linux_cdrom_play): Enheten är fortfarande inte redo"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:519
-#, c-format
-msgid "(linux_cdrom_play) ioctl failed %s"
-msgstr "(linux_cdrom_play) ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#
-# Sun vill ha "färdig"
-# Jag vill ha "redo"
-#
-#: gnome-cd/linux-cdrom.c:555
-msgid "(linux_cdrom_pause): Drive not ready"
-msgstr "(linux_cdrom_pause): Enheten är inte redo"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:568
-#, c-format
-msgid "(linux_cdrom_pause): Resume failed %s"
-msgstr "(linux_cdrom_pause): Det gick inte att återgå %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:587
-#, c-format
-msgid "(linux_cdrom_pause): ioctl failed %s"
-msgstr "(linux_cdrom_pause): ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:633
-#, c-format
-msgid "(linux_cdrom_stop) ioctl failed %s"
-msgstr "(linux_cdrom_stop) ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:849
-#, c-format
-msgid "(linux_cdrom_get_status): ioctl error %s"
-msgstr "(linux_cdrom_get_status): ioctl-fel %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:863
-#, c-format
-msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:874
-#, c-format
-msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:939
-#, c-format
-msgid "(linux_cdrom_close_tray): ioctl failed %s"
-msgstr "(linux_cdrom_close_tray): ioctl misslyckades %s"
-
-# SUN NEW TRANSLATION
-#: gnome-cd/linux-cdrom.c:974
-#, c-format
-msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-msgstr "(linux_cdrom_set_volume:1): ioctl misslyckades %s"
-
-#. Failed, it's not a CDROM drive
-#: gnome-cd/linux-cdrom.c:1005
-#, c-format
-msgid "%s is not a CDROM drive"
-msgstr "%s är ingen cdrom-enhet"
 
 #: gnome-cd/preferences.c:82
 #, c-format
@@ -1594,61 +1459,61 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Fel vid inställning av enhet"
 
-#: gnome-cd/preferences.c:771
+#: gnome-cd/preferences.c:793
 msgid "Gnome CD Player Preferences"
 msgstr "Inställningar för Gnome-cd-spelaren"
 
-#: gnome-cd/preferences.c:789
+#: gnome-cd/preferences.c:812
 msgid "CD player de_vice"
 msgstr "Cd-spelar_enhet"
 
-#: gnome-cd/preferences.c:804
+#: gnome-cd/preferences.c:827
 msgid "_Apply change"
 msgstr "_Verkställ ändring"
 
 #. left side
-#: gnome-cd/preferences.c:817
+#: gnome-cd/preferences.c:840
 msgid "When Gnome CD Player starts"
 msgstr "Då Gnome-cd-spelaren startar"
 
-#: gnome-cd/preferences.c:825
+#: gnome-cd/preferences.c:848
 msgid "Do _nothing"
 msgstr "Gör i_nget"
 
-#: gnome-cd/preferences.c:834
+#: gnome-cd/preferences.c:857
 msgid "Start _playing CD"
 msgstr "Börja s_pela cd"
 
-#: gnome-cd/preferences.c:843
+#: gnome-cd/preferences.c:866
 msgid "_Stop playing CD"
 msgstr "_Sluta spela cd"
 
-#: gnome-cd/preferences.c:856
+#: gnome-cd/preferences.c:879
 msgid "Attempt to _close CD tray"
 msgstr "Försök s_tänga cd-luckan"
 
 #. Right side
-#: gnome-cd/preferences.c:868
+#: gnome-cd/preferences.c:891
 msgid "When Gnome CD Player quits"
 msgstr "Då Gnome-cd-spelaren avslutas"
 
-#: gnome-cd/preferences.c:876
+#: gnome-cd/preferences.c:899
 msgid "Do not_hing"
 msgstr "Gör in_get"
 
-#: gnome-cd/preferences.c:885
+#: gnome-cd/preferences.c:908
 msgid "S_top playing CD"
 msgstr "S_luta spela cd"
 
-#: gnome-cd/preferences.c:894
+#: gnome-cd/preferences.c:917
 msgid "Attempt to _open CD tray"
 msgstr "Försök att _öppna cd-luckan"
 
-#: gnome-cd/preferences.c:904
+#: gnome-cd/preferences.c:927
 msgid "Attempt to c_lose CD tray"
 msgstr "Försök att st_änga cd-luckan"
 
-#: gnome-cd/preferences.c:935
+#: gnome-cd/preferences.c:958
 msgid "Theme name"
 msgstr "Temanamn"
 
@@ -2238,6 +2103,188 @@ msgstr "Övervaka ljudvolymen"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Volymmätare"
+
+# SUN CHANGED MESSAGE
+#~ msgid "Error opening CD"
+#~ msgstr "Fel vid öppnande av cd"
+
+# SUN CHANGED MESSAGE
+#~ msgid "Error reading CD header"
+#~ msgstr "Fel vid läsande av cd-huvud"
+
+# SUN NEW TRANSLATION
+#~ msgid "IOCtl failed"
+#~ msgstr "IOCtl misslyckades"
+
+# SUN NEW TRANSLATION
+#~ msgid "Error getting leadout"
+#~ msgstr "Ett fel inträffade då leadout skulle hämtas"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "Cd:n"
+# Jag vill ha "Cd-skivan"
+#
+#~ msgid ""
+#~ "CD changed\n"
+#~ "Track count: %d\n"
+#~ "------------------\n"
+#~ msgstr ""
+#~ "Cd-skivan ändrades\n"
+#~ "Spårnummer: %d\n"
+#~ "------------------\n"
+
+# SUN NEW TRANSLATION
+#
+# Allmän kommentar till meddelandena nedan:
+# Det som är inom () är funktionsnamn (ja, det är korkat att de är markerade
+# för översättning, felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=83768 ). Sun har av misstag
+# översatt funktionsnamnen, jag har korrigerat detta.
+#
+#~ msgid "(eject): ioctl failed: %s"
+#~ msgstr "(eject): ioctl misslyckades: %s"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(freebsd_cdrom_play): Drive not ready"
+#~ msgstr "(freebsd_cdrom_play): Enheten är inte redo"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(freebsd_cdrom_play): Drive still not ready"
+#~ msgstr "(freebsd_cdrom_play): Enheten är fortfarande inte redo"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_play) ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_play) ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(freebsd_cdrom_pause): Drive not ready"
+#~ msgstr "(freebsd_cdrom_pause): Enheten är inte redo"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_pause): Resume failed %s"
+#~ msgstr "(freebsd_cdrom_pause): Det gick inte att återgå %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_pause): ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_pause): ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_stop) ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_stop) ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_get_status): ioctl error %s"
+#~ msgstr "(freebsd_cdrom_get_status): ioctl-fel %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_close_tray): ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_close_tray): ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(freebsd_cdrom_set_volume:1): ioctl failed %s"
+#~ msgstr "(freebsd_cdrom_set_volume:1): ioctl misslyckades %s"
+
+#~ msgid "%s is not a CDROM drive\n"
+#~ msgstr "%s är ingen cdrom-enhet\n"
+
+#~ msgid "%s is a CDROM drive\n"
+#~ msgstr "%s är en cdrom-enhet\n"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(linux_cdrom_play): Drive not ready"
+#~ msgstr "(linux_cdrom_play): Enheten är inte redo"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(linux_cdrom_play): Drive still not ready"
+#~ msgstr "(linux_cdrom_play): Enheten är fortfarande inte redo"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_play) ioctl failed %s"
+#~ msgstr "(linux_cdrom_play) ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "färdig"
+# Jag vill ha "redo"
+#
+#~ msgid "(linux_cdrom_pause): Drive not ready"
+#~ msgstr "(linux_cdrom_pause): Enheten är inte redo"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_pause): Resume failed %s"
+#~ msgstr "(linux_cdrom_pause): Det gick inte att återgå %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_pause): ioctl failed %s"
+#~ msgstr "(linux_cdrom_pause): ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_stop) ioctl failed %s"
+#~ msgstr "(linux_cdrom_stop) ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_get_status): ioctl error %s"
+#~ msgstr "(linux_cdrom_get_status): ioctl-fel %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
+#~ msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
+#~ msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_close_tray): ioctl failed %s"
+#~ msgstr "(linux_cdrom_close_tray): ioctl misslyckades %s"
+
+# SUN NEW TRANSLATION
+#~ msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
+#~ msgstr "(linux_cdrom_set_volume:1): ioctl misslyckades %s"
+
+#~ msgid "%s is not a CDROM drive"
+#~ msgstr "%s är ingen cdrom-enhet"
+
+#~ msgid "(%s): ioctl failed: %s"
+#~ msgstr "(%s): ioctl misslyckades: %s"
+
+#~ msgid "(%s): Drive not ready"
+#~ msgstr "(%s): Enheten är inte redo"
+
+#~ msgid "(%s): Drive still not ready"
+#~ msgstr "(%s): Enheten är fortfarande inte redo"
+
+#~ msgid "(%s) ioctl failed %s"
+#~ msgstr "(%s) ioctl misslyckades %s"
 
 #~ msgid ""
 #~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
