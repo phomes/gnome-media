@@ -35,7 +35,7 @@ struct _CDDBDisclosurePrivate {
 	GtkWidget *container;
 	char *shown;
 	char *hidden;
-	
+
 	guint32 expand_id;
 	GtkExpanderStyle style;
 
@@ -59,7 +59,7 @@ finalize (GObject *object)
 	if (disclosure->priv->container != NULL) {
 		g_object_unref (G_OBJECT (disclosure->priv->container));
 	}
-	
+
 	g_free (disclosure->priv);
 	disclosure->priv = NULL;
 
@@ -83,17 +83,17 @@ get_x_y (CDDBDisclosure *disclosure,
 	GtkBin *bin = GTK_BIN (disclosure);
 	GtkRequisition child_requisition;
 	int width, height;
-	
+
 	if (GTK_WIDGET_VISIBLE (disclosure) &&
 	    GTK_WIDGET_MAPPED (disclosure)) {
 		check_button = GTK_CHECK_BUTTON (disclosure);
-		
+
 		gtk_widget_style_get (widget,
 				      "interior_focus", &interior_focus,
 				      "focus-line-width", &focus_width,
 				      "focus-padding", &focus_pad,
 				      NULL);
-		
+
 		*state_type = GTK_WIDGET_STATE (widget);
 		if ((*state_type != GTK_STATE_NORMAL) &&
 		    (*state_type != GTK_STATE_PRELIGHT)) {
@@ -105,7 +105,7 @@ get_x_y (CDDBDisclosure *disclosure,
 		} else {
 			width = widget->allocation.width;
 		}
-		
+
 		*x = widget->allocation.x + (width) / 2;
 		*y = widget->allocation.y + widget->allocation.height / 2;
 
@@ -133,10 +133,10 @@ expand_collapse_timeout (gpointer data)
 	CDDBDisclosure *disclosure = data;
 	GtkStateType state_type;
 	int x, y;
-	
+
 	gdk_window_invalidate_rect (widget->window, &widget->allocation, TRUE);
 	get_x_y (disclosure, &x, &y, &state_type);
-	
+
 	gtk_paint_expander (widget->style,
 			    widget->window,
 			    state_type,
@@ -227,12 +227,12 @@ class_init (CDDBDisclosureClass *klass)
 	GtkWidgetClass *widget_class;
 	GtkCheckButtonClass *button_class;
 	GtkToggleButtonClass *toggle_class;
-	
+
 	object_class = G_OBJECT_CLASS (klass);
 	widget_class = GTK_WIDGET_CLASS (klass);
 	button_class = GTK_CHECK_BUTTON_CLASS (klass);
 	toggle_class = GTK_TOGGLE_BUTTON_CLASS (klass);
-	
+
 	toggle_class->toggled = toggled;
 	button_class->draw_indicator = draw_indicator;
 

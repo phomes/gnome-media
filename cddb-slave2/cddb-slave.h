@@ -1,7 +1,7 @@
 /*
  * cddb-slave.h: Header for CDDBSlave object
  *
- * Copyright (C) 2001-2002 Iain Holmes 
+ * Copyright (C) 2001-2002 Iain Holmes
  *
  * Authors: Iain Holmes  <iain@ximian.com>
  */

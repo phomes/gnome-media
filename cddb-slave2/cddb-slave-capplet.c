@@ -46,7 +46,7 @@ typedef enum {
 
 typedef struct _PropertyDialog {
 	GtkWidget *dialog;
-	
+
 	GtkWidget *no_info;
 	GtkWidget *real_info;
 	GtkWidget *specific_info;
@@ -59,7 +59,7 @@ typedef struct _PropertyDialog {
 	GtkWidget *freedb_box;
 	GtkWidget *freedb_server;
 	GtkWidget *update;
-	
+
 	GtkWidget *other_server;
 	GtkWidget *other_box;
 	GtkWidget *other_host;
@@ -219,7 +219,7 @@ other_server_toggled (GtkToggleButton *tb,
 		      PropertyDialog *pd)
 {
 	const char *str;
-	
+
 	if (gtk_toggle_button_get_active (tb) == FALSE) {
 		return;
 	}
@@ -263,7 +263,7 @@ do_goodbye (PropertyDialog *pd)
 {
 	guint bytes_writen;
 	GIOError status;
-	
+
 	status = gnet_io_channel_writen (pd->iochannel, "quit\n",
 					 5, &bytes_writen);
 	pd->mode = CONNECTION_MODE_NEED_GOODBYE;
@@ -298,7 +298,7 @@ do_goodbye_response (PropertyDialog *pd,
 
 	pd->mode = CONNECTION_MODE_NEED_HELLO;
 	gtk_widget_set_sensitive (pd->update, TRUE);
-	
+
 	return FALSE;
 }
 
@@ -315,7 +315,7 @@ do_sites_response (PropertyDialog *pd,
 	} else {
 		code = atoi (response);
 	}
-	
+
 	switch (code) {
 	case 210:
 		if (response[0] == '.') {
@@ -335,7 +335,7 @@ do_sites_response (PropertyDialog *pd,
 			if (end != NULL) {
 				*end = 0;
 			}
-			
+
 			vector = g_strsplit (res, " ", 5);
 			g_free (res);
 			if (vector == NULL) {
@@ -372,7 +372,7 @@ do_sites_response (PropertyDialog *pd,
 	}
 	return more;
 }
-	
+
 static void
 do_sites (PropertyDialog *pd)
 {
@@ -528,7 +528,7 @@ read_from_server (GIOChannel *iochannel,
 			case CONNECTION_MODE_NEED_SITES_RESPONSE:
 				more = do_sites_response (pd, buffer);
 				break;
-				
+
 			case CONNECTION_MODE_NEED_GOODBYE:
 				more = do_goodbye_response (pd, buffer);
 				break;
@@ -586,12 +586,12 @@ update_clicked (GtkButton *update,
 {
 	GTcpSocketConnectAsyncID *sock;
 	GtkTreeIter iter;
-	
+
 	/* Clear the list and put the default there */
 	gtk_list_store_clear (GTK_LIST_STORE (pd->model));
 	gtk_list_store_append (GTK_LIST_STORE (pd->model), &iter);
 	gtk_list_store_set (GTK_LIST_STORE (pd->model), &iter, 0, "freedb.freedb.org", 1, "888", 2, "Random server", -1);
-	
+
 	gtk_widget_set_sensitive (pd->update, FALSE);
 	/* Should use the gconf values */
 	sock = gnet_tcp_socket_connect_async ("freedb.freedb.org", 888,
@@ -639,7 +639,7 @@ hig_category_new (GtkWidget *parent, gchar *title, gboolean expand, gboolean fil
 	GtkWidget *vbox, *vbox2, *hbox;
 	GtkWidget *label;
 	gchar *tmp;
-	
+
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (parent), vbox, expand, fill, 0);
 
@@ -676,11 +676,11 @@ create_dialog (GtkWidget *window)
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
 	GtkTreeSelection *selection;
-	
+
 	char *str;
 	int info = CDDB_SEND_FAKE_INFO;
 	int port;
-	
+
 	pd = g_new (PropertyDialog, 1);
 	pd->dialog = window;
 	g_signal_connect (G_OBJECT (window), "destroy",
@@ -721,14 +721,14 @@ create_dialog (GtkWidget *window)
 	if (info == CDDB_SEND_OTHER_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->specific_info), TRUE);
 	}
-	
+
 	g_signal_connect (G_OBJECT (pd->specific_info), "toggled",
 			  G_CALLBACK (specific_info_toggled), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->specific_info, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
-	
+
 	label = gtk_label_new ("    ");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
@@ -738,7 +738,7 @@ create_dialog (GtkWidget *window)
 	if (info != CDDB_SEND_OTHER_INFO) {
 		gtk_widget_set_sensitive (pd->name_box, FALSE);
 	}
-	
+
 	gtk_box_pack_start (GTK_BOX (hbox), pd->name_box, TRUE, TRUE, 0);
 
 	align = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
@@ -760,14 +760,14 @@ create_dialog (GtkWidget *window)
 	gtk_table_attach (GTK_TABLE (pd->name_box), pd->real_name,
 			  1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL,
 			  0, 0);
-	
+
 	align = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
 	label = gtk_label_new_with_mnemonic (_("Hostna_me:"));
 	gtk_container_add (GTK_CONTAINER (align), label);
 	gtk_table_attach (GTK_TABLE (pd->name_box), align,
 			  0, 1, 1, 2, GTK_FILL, GTK_FILL,
 			  0, 0);
-	
+
 	pd->real_host = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->real_host);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
@@ -801,10 +801,10 @@ create_dialog (GtkWidget *window)
 
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
-	
+
 	label = gtk_label_new ("    ");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	
+
 	pd->freedb_box = gtk_vbox_new (FALSE, 6);
 	gtk_widget_set_sensitive (pd->freedb_box, FALSE);
 	gtk_box_pack_start (GTK_BOX (hbox), pd->freedb_box, TRUE, TRUE, 0);
@@ -816,7 +816,7 @@ create_dialog (GtkWidget *window)
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
 					     GTK_SHADOW_IN);
 	gtk_box_pack_start (GTK_BOX (pd->freedb_box), sw, TRUE, TRUE, 2);
-	
+
 	pd->model = make_tree_model ();
 	pd->freedb_server = gtk_tree_view_new_with_model (pd->model);
 	g_object_unref (pd->model);
@@ -824,7 +824,7 @@ create_dialog (GtkWidget *window)
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->freedb_server));
 	g_signal_connect (G_OBJECT (selection), "changed",
 			  G_CALLBACK (server_selection_changed), pd);
-	
+
 	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("Server"), cell,
 							"text", 0, NULL);
@@ -835,7 +835,7 @@ create_dialog (GtkWidget *window)
 	col = gtk_tree_view_column_new_with_attributes (_("Location"), cell,
 							"text", 2, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pd->freedb_server), col);
-	
+
 	gtk_container_add (GTK_CONTAINER (sw), pd->freedb_server);
 
 	/* create the update server list button */
@@ -846,7 +846,7 @@ create_dialog (GtkWidget *window)
  			  G_CALLBACK (update_clicked), pd);
 
 	gtk_container_add (GTK_CONTAINER (align), pd->update);
- 	
+
 	gtk_box_pack_start (GTK_BOX (pd->freedb_box), align, FALSE, FALSE, 0);
 
 	/* ... and it's contents */
@@ -879,13 +879,13 @@ create_dialog (GtkWidget *window)
 
 	hbox3 = gtk_hbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (pd->other_box), hbox3, FALSE, FALSE, 0);
-	
+
 	label = gtk_label_new ("    ");
-	gtk_box_pack_start (GTK_BOX (hbox3), label, FALSE, FALSE, 0);	
+	gtk_box_pack_start (GTK_BOX (hbox3), label, FALSE, FALSE, 0);
 
 	hbox2 = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (hbox3), hbox2, FALSE, FALSE, 0);
-	
+
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (hbox2), hbox, FALSE, FALSE, 0);
 	label = gtk_label_new_with_mnemonic (_("Hos_tname:"));
@@ -915,7 +915,7 @@ create_dialog (GtkWidget *window)
 	str = g_strdup_printf ("%d", port);
 	gtk_entry_set_text (GTK_ENTRY (pd->other_port), str);
 	g_free (str);
-	
+
 	gtk_box_pack_start (GTK_BOX (hbox), pd->other_port, FALSE, FALSE, 0);
 
 	switch (info) {
@@ -942,7 +942,7 @@ pixbuf_from_file (const char *filename)
 	GdkPixbuf *pixbuf;
 	char *fullname;
 
-	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
                    filename, TRUE, NULL);
 	g_return_val_if_fail (fullname != NULL, NULL);
 
@@ -951,14 +951,14 @@ pixbuf_from_file (const char *filename)
 
 	return pixbuf;
 }
-	
+
 int
 main (int argc,
       char **argv)
 {
 	GtkWidget *dialog_win;
 	GdkPixbuf *pixbuf;
-	
+
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);

@@ -2,7 +2,7 @@
  * cddb-slave-client.c: Client side wrapper for accessing CDDBSlave really
  *                      easily.
  *
- * Copyright (C) 2001-2002 Iain Holmes 
+ * Copyright (C) 2001-2002 Iain Holmes
  *
  * Authors: Iain Holmes  <iain@ximian.com>
  */

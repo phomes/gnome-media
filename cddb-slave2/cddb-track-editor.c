@@ -43,20 +43,20 @@ static void set_relation (GtkWidget *widget, GtkWidget *label);
 
 typedef struct _CDDBInfo {
 	char *discid;
-	
+
 	char *title;
 	char *artist;
 	char *comment;
 	char *genre;
 	int year;
-	
+
 	int ntrks;
 	CDDBSlaveClientTrackInfo **track_info;
 } CDDBInfo;
 
 typedef struct _TrackEditorDialog {
 	gboolean dirty;
-	
+
 	GtkWidget *parent;
 	GtkWidget *artist;
 	GtkWidget *discid;
@@ -66,7 +66,7 @@ typedef struct _TrackEditorDialog {
 	GtkWidget *genre;
 	GtkWidget *tracks;
 	GtkWidget *extra_info;
-	
+
 	GtkTextBuffer *buffer;
 	GtkTreeModel *model;
 
@@ -240,7 +240,7 @@ make_tree_model (void)
 	GtkListStore *store;
 	GtkTreeIter iter;
 	int i;
-	
+
 	store = gtk_list_store_new (4, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 
 	return GTK_TREE_MODEL (store);
@@ -263,9 +263,9 @@ build_track_list (TrackEditorDialog *td)
 	GtkTreeIter iter;
 	GtkListStore *store = GTK_LIST_STORE (td->model);
 	int i;
-	
+
 	g_return_if_fail (td->info != NULL);
-	
+
 	for (i = 0; i < td->info->ntrks; i++) {
 		char *length;
 
@@ -292,7 +292,7 @@ free_track_info (TrackEditorDialog *td)
 	CDDBInfo *info;
 
 	info = td->info;
-	
+
 	g_free (info->discid);
 	g_free (info->title);
 	g_free (info->artist);
@@ -300,7 +300,7 @@ free_track_info (TrackEditorDialog *td)
 	g_free (info->genre);
 
 	cddb_slave_client_free_track_info (info->track_info);
-	
+
 	g_free (info);
 	td->info = NULL;
 }
@@ -310,13 +310,13 @@ make_genre_list (void)
 {
 	GList *genre_list = NULL;
 	int i;
-	
+
 	for (i = 0; genres[i]; i++) {
 		genre_list = g_list_prepend (genre_list, _(genres[i]));
 	}
 
 	genre_list = g_list_sort (genre_list, (GCompareFunc) strcmp);
-	
+
 	return genre_list;
 }
 
@@ -334,12 +334,12 @@ extra_info_changed (GtkTextBuffer *tb,
 	if (td->info->track_info[td->current_track]->comment != NULL) {
 		g_free (td->info->track_info[td->current_track]->comment);
 	}
-	
+
 	gtk_text_buffer_get_bounds (tb, &start, &end);
 	text = gtk_text_buffer_get_text (tb, &start, &end, FALSE);
 	td->info->track_info[td->current_track]->comment = text;
 }
-	
+
 static void
 track_selection_changed (GtkTreeSelection *selection,
 			 TrackEditorDialog *td)
@@ -350,7 +350,7 @@ track_selection_changed (GtkTreeSelection *selection,
 
 	if (gtk_tree_selection_get_selected (selection, &model, &iter) == TRUE) {
 		char *comment;
-		
+
 		gtk_tree_model_get (model, &iter, 0, &track, -1);
 		comment = td->info->track_info[track - 1]->comment;
 
@@ -386,7 +386,7 @@ artist_changed (GtkEntry *entry,
 	if (td->info == NULL) {
 		return;
 	}
-		       
+
 	artist = gtk_entry_get_text (entry);
 	if (td->info->artist != NULL) {
 		g_free (td->info->artist);
@@ -404,7 +404,7 @@ disctitle_changed (GtkEntry *entry,
 	if (td->info == NULL) {
 		return;
 	}
-	
+
 	title = gtk_entry_get_text (entry);
 	if (td->info->title != NULL) {
 		g_free (td->info->title);
@@ -423,7 +423,7 @@ year_changed (GtkEntry *entry,
 	if (td->info == NULL) {
 		return;
 	}
-		      
+
 	year = gtk_entry_get_text (entry);
 
 	if (year != NULL) {
@@ -444,7 +444,7 @@ genre_changed (GtkEntry *entry,
 	if (td->info == NULL) {
 		return;
 	}
-	
+
 	genre = gtk_entry_get_text (entry);
 
 	if (td->info->genre != NULL) {
@@ -464,7 +464,7 @@ comment_changed (GtkEntry *entry,
 	if (td->info == NULL) {
 		return;
 	}
-	
+
 	comment = gtk_entry_get_text (entry);
 
 	if (td->info->comment != NULL) {
@@ -600,7 +600,7 @@ load_new_track_data (TrackEditorDialog *td,
 	g_signal_handlers_unblock_matched (G_OBJECT (GTK_COMBO (td->genre)->entry),
 					   G_SIGNAL_MATCH_FUNC,
 					   0, 0, NULL, G_CALLBACK (genre_changed), td);
-	
+
 	/* Rebuild track list */
 	clear_track_list (td);
 	build_track_list (td);
@@ -620,13 +620,13 @@ make_track_editor_control (void)
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
 	GtkTreeSelection *selection;
-	
+
 	td = g_new0 (TrackEditorDialog, 1);
 
 	td->info = NULL;
 	td->current_track = -1;
 	td->dirty = FALSE;
-	
+
 	td->parent = gtk_vbox_new (FALSE, 12);
 	gtk_container_set_border_width (GTK_CONTAINER (td->parent), 12);
 
@@ -637,7 +637,7 @@ make_track_editor_control (void)
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_widget_show (inner_vbox);
 	gtk_box_pack_start (GTK_BOX (td->parent), inner_vbox, FALSE, FALSE, 0);
-	
+
 	/* Artist */
 	hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, FALSE, FALSE, 0);
@@ -703,7 +703,7 @@ make_track_editor_control (void)
 	gtk_combo_set_popdown_strings (GTK_COMBO (td->genre),
 				       make_genre_list ());
 	gtk_combo_set_value_in_list (GTK_COMBO (td->genre), FALSE, TRUE);
-	
+
 	gtk_box_pack_start (GTK_BOX (hbox), td->genre, TRUE, TRUE, 0);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label),
 				       GTK_COMBO (td->genre)->entry);
@@ -722,10 +722,10 @@ make_track_editor_control (void)
 
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (td->parent), inner_vbox, TRUE, TRUE, 0);
-	
+
 	hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
-	
+
 	/* Tracks */
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -740,7 +740,7 @@ make_track_editor_control (void)
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (td->tracks));
 	g_signal_connect (G_OBJECT (selection), "changed",
 			  G_CALLBACK (track_selection_changed), td);
-	
+
 	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (" ", cell,
 							"text", MODEL_TRACK_NO, NULL);
@@ -765,7 +765,7 @@ make_track_editor_control (void)
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 2);
 	gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
-	
+
 	/* More advanced options */
 	advanced = cddb_disclosure_new (_("Show advanced track options"),
 					_("Hide advanced track options"));
@@ -774,7 +774,7 @@ make_track_editor_control (void)
 	ad_vbox2 = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), ad_vbox2, TRUE, TRUE, 0);
 	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox2);
-	
+
 	/* Extra data */
 	label = gtk_label_new_with_mnemonic (_("_Extra track data:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
@@ -790,7 +790,7 @@ make_track_editor_control (void)
 	gtk_box_pack_start (GTK_BOX (ad_vbox2), td->extra_info, TRUE, TRUE, 0);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->extra_info);
 	set_relation (td->extra_info, label);
-	
+
 	/* Special show hide all the stuff we want */
 	gtk_widget_show_all (td->parent);
 	gtk_widget_hide (ad_vbox);
@@ -805,7 +805,7 @@ static BonoboObjectClass *parent_class = NULL;
 
 typedef struct _CDDBTrackEditor {
 	BonoboObject parent;
-	
+
 	TrackEditorDialog *td;
 	GtkWidget *dialog;
 	char *discid;
@@ -877,7 +877,7 @@ dialog_response (GtkDialog *dialog,
 			g_signal_connect (G_OBJECT (msg_dialog), "response",
 					  G_CALLBACK (gtk_widget_destroy),
 					  NULL);
-	
+
 			gtk_window_set_resizable (GTK_WINDOW (msg_dialog), FALSE);
 			gtk_widget_show (msg_dialog);
 			g_error_free (error);
@@ -903,7 +903,7 @@ impl_GNOME_Media_CDDBTrackEditor_showWindow (PortableServer_Servant servant,
 		if (editor->discid != NULL) {
 			load_new_track_data (editor->td, editor->discid);
 		}
-		
+
 		editor->dialog = gtk_dialog_new_with_buttons (_("CDDB Track Editor"),
 							      NULL,
 							      GTK_DIALOG_NO_SEPARATOR,
@@ -915,7 +915,7 @@ impl_GNOME_Media_CDDBTrackEditor_showWindow (PortableServer_Servant servant,
 							      1, NULL);
 		g_signal_connect (G_OBJECT (editor->dialog), "response",
 				  G_CALLBACK (dialog_response), editor);
-		
+
 		gtk_window_set_default_size (GTK_WINDOW (editor->dialog), 640, 400);
 		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (editor->dialog)->vbox),
 				    editor->td->parent, TRUE, TRUE, 0);
@@ -965,7 +965,7 @@ finalise (GObject *object)
 	if (editor->dialog == NULL) {
 		return;
 	}
-	
+
 	gtk_widget_destroy (editor->dialog);
 	editor->dialog = NULL;
 
@@ -1008,7 +1008,7 @@ track_editor_destroy_cb (GObject *editor,
 		if (client != NULL) {
 			g_object_unref (G_OBJECT (client));
 		}
-		
+
 		bonobo_main_quit ();
 	}
 }

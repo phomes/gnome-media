@@ -57,7 +57,7 @@ get_hostname (void)
 		return g_strdup (name);
 	}
 }
-	
+
 static BonoboObject *
 factory_fn (BonoboGenericFactory *factory,
 	    const char *component_id,
@@ -70,7 +70,7 @@ factory_fn (BonoboGenericFactory *factory,
 	int info, server_type;
 	char *name;
 	char *hostname;
-	
+
 	/* Get GConf db */
 	if (client == NULL) {
 		client = gconf_client_get_default ();
@@ -101,7 +101,7 @@ factory_fn (BonoboGenericFactory *factory,
 		break;
 	}
 
-	server = gconf_client_get_string (client, 
+	server = gconf_client_get_string (client,
 					  "/apps/CDDB-Slave2/server", NULL);
 	port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
 	g_object_unref (client);
@@ -150,7 +150,7 @@ cddbslave_init (gpointer data)
 	return FALSE;
 }
 
-int 
+int
 main (int argc,
       char **argv)
 {
@@ -178,7 +178,7 @@ main (int argc,
 		g_error ("~/.cddbslave needs to be a directory");
 	}
 	g_free (cddbdir);
-	
+
 	cddbslave_init (NULL);
 
 	exit (0);

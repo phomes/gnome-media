@@ -2,7 +2,7 @@
  * cddb-slave.c: Implementation for the GNOME/Media/CDDBSlave2 interface.
  *
  * Copyright (C) 2001-2002 Iain Holmes.
- * 
+ *
  * Authors: Iain Holmes  <iain@ximian.com>
  */
 
@@ -83,9 +83,9 @@ typedef struct _ConnectionData {
 	GTcpSocket *socket;
 	GIOChannel *iochannel;
 	guint tag;
-	
+
 	ConnectionMode mode;
-	
+
 	char *discid;
 	int ntrks;
 	char *offsets;
@@ -118,7 +118,7 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 	CORBA_any any;
 	GNOME_Media_CDDBSlave2_QueryResult qr;
 	GList *l;
-	
+
 	g_return_if_fail (cddb != NULL);
 	g_return_if_fail (IS_CDDB_SLAVE (cddb));
 
@@ -136,7 +136,7 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 		CDDBSlave *slave;
 
 		slave = CDDB_SLAVE (l->data);
-		
+
 		bonobo_event_source_notify_listeners (slave->priv->event_source,
 						      CDDB_SLAVE_CDDB_FINISHED,
 						      &any, NULL);
@@ -171,10 +171,10 @@ do_goodbye_response (ConnectionData *cd,
 	if (cd->tag) {
 		g_source_remove (cd->tag);
 	}
-	
+
   	gnet_tcp_socket_unref (cd->socket);
   	g_io_channel_unref (cd->iochannel);
-	
+
 	/* Notify listeners */
 	cddb_slave_notify_listeners (cddb, cd->discid, GNOME_Media_CDDBSlave2_OK);
 
@@ -195,7 +195,7 @@ do_goodbye_response (ConnectionData *cd,
 		g_list_free (cd->matches);
 	}
 	g_free (cd);
-	
+
 	return FALSE;
 }
 
@@ -229,7 +229,7 @@ do_goodbye (ConnectionData *cd)
 	char *quit;
 	guint bytes_writen;
 	GIOError status;
-	
+
 	/* Send quit command */
 	status = gnet_io_channel_writen (cd->iochannel, "quit\n",
 					 5, &bytes_writen);
@@ -251,7 +251,7 @@ do_read_response (ConnectionData *cd,
 	gboolean disconnect = FALSE;
 	static gboolean waiting_for_terminator = FALSE;
 	static FILE *handle = NULL;
-	
+
 	if (waiting_for_terminator == TRUE) {
 		code = 210;
 	} else {
@@ -264,7 +264,7 @@ do_read_response (ConnectionData *cd,
 			g_print ("CDDB: Received data.\n");
 			g_print ("CDDB: %s\n", response);
 		}
-		
+
 		if (waiting_for_terminator == FALSE) {
 			/* Open the file */
 			char *filename, *dirname;
@@ -276,9 +276,9 @@ do_read_response (ConnectionData *cd,
 			if (cddb_debugging == TRUE) {
 				g_print ("CDDB: Opening %s\n", filename);
 			}
-			
+
 			handle = fopen (filename, "w");
-			
+
 			if (handle == NULL) {
 				g_warning ("Could not open %s\n", filename);
 				g_free (filename);
@@ -290,33 +290,33 @@ do_read_response (ConnectionData *cd,
 		} else {
 
 			g_assert (handle != NULL);
-		
+
 			/* Write the line */
 			if (cddb_debugging == TRUE) {
 				g_print ("CDDB: Writing %s\n", response);
 			}
-			
+
 			fputs (response, handle);
 		}
 
 		if (response[0] == '.') {
 			CDDBEntry *entry;
 			char *filename, *dirname;
-			
+
 			/* Found terminator */
 			fclose (handle);
 
 			dirname = gnome_util_prepend_user_home (".cddbslave");
 			filename = g_concat_dir_and_file (dirname, cd->discid);
 			g_free (dirname);
-			
+
 			entry = g_hash_table_lookup (cddb_cache, cd->discid);
 			if (cddb_debugging == TRUE) {
 				g_print ("CDDB: Parsing %s\n", filename);
 			}
 			cddb_entry_parse_file (entry, filename);
 			g_free (filename);
-			
+
 			/* Reset the static variables for next time */
 			handle = NULL;
 			more = FALSE;
@@ -374,7 +374,7 @@ do_read_response (ConnectionData *cd,
 	if (disconnect == TRUE) {
 		do_goodbye (cd);
 	}
-		
+
 	return more;
 }
 
@@ -387,7 +387,7 @@ do_read (ConnectionData *cd,
 	char *query;
 	guint bytes_writen;
 	GIOError status;
-	
+
 	/* Send read command */
 	query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
 	status = gnet_io_channel_writen (cd->iochannel, query,
@@ -412,7 +412,7 @@ create_model_from_list (GList *list)
 	for (l = list; l; l = l->next) {
 		char **vector;
 		char *end;
-		
+
 		vector = (char **) l->data;
 		/* Strip newlines and \r */
 		vector[2][strlen (vector[2]) - 1] = 0;
@@ -420,14 +420,14 @@ create_model_from_list (GList *list)
 		if (end != NULL) {
 			*end = 0;
 		}
-		
+
 		gtk_list_store_append (store, &iter);
 		gtk_list_store_set (store, &iter, 0, vector[0], 1, vector[1], 2, vector[2], -1);
 	}
 
 	return GTK_TREE_MODEL (store);
 }
-		
+
 static char **
 display_results (ConnectionData *cd)
 {
@@ -439,7 +439,7 @@ display_results (ConnectionData *cd)
 	GtkTreeIter iter;
 	char **vector;
 	int i;
-	
+
 	window = gtk_dialog_new_with_buttons (_("Multiple matches..."),
 					      NULL, 0,
 					      GTK_STOCK_CANCEL, 0, GTK_STOCK_OK, 1, NULL);
@@ -450,7 +450,7 @@ display_results (ConnectionData *cd)
 				 "best match"));
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), label, FALSE, FALSE, 0);
 	gtk_widget_show (label);
-	
+
 	model = create_model_from_list (cd->matches);
 	list = gtk_tree_view_new_with_model (model);
 	g_object_unref (model);
@@ -459,15 +459,15 @@ display_results (ConnectionData *cd)
 	col = gtk_tree_view_column_new_with_attributes (_("Category"), cell,
 							"text", 0, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
-	
+
 	col = gtk_tree_view_column_new_with_attributes (_("Disc ID"), cell,
 							"text", 1, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
-	
+
 	col = gtk_tree_view_column_new_with_attributes (_("Artist and Title"), cell,
 							"text", 2, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (list), col);
-	
+
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 					GTK_POLICY_AUTOMATIC,
@@ -495,7 +495,7 @@ display_results (ConnectionData *cd)
 			gtk_widget_destroy (window);
 			return NULL;
 		}
-		
+
 		gtk_widget_destroy (window);
 		return NULL;
 
@@ -518,13 +518,13 @@ do_query_response (ConnectionData *cd,
 	char **vector;
 	static gboolean waiting_for_terminator = FALSE;
 	gboolean disconnect = FALSE;
-	
+
 	if (waiting_for_terminator == TRUE) {
 		code = 211;
 	} else {
 		code = atoi (response);
 	}
-	
+
 	switch (code) {
 	case 200:
 		if (cddb_debugging == TRUE) {
@@ -555,12 +555,12 @@ do_query_response (ConnectionData *cd,
 			g_print ("CDDB: Multiple matches found.\n");
 			g_print ("CDDB: %s\n", response);
 		}
-		
+
 		if (response[0] == '.') {
 			/* Terminator */
 			char **result;
 			GList *l;
-			
+
 			waiting_for_terminator = FALSE;
 			if (cd->matches && cd->matches->next == NULL) {
 				/* There is only one match, even though
@@ -578,7 +578,7 @@ do_query_response (ConnectionData *cd,
 					discid = result[1];
 					dtitle = result[2];
 					g_free (result);
-					
+
 				} else {
 				/* Need to disconnect here...
 				   none of our matches matched */
@@ -593,7 +593,7 @@ do_query_response (ConnectionData *cd,
 			}
 			g_list_free (cd->matches);
 			cd->matches = NULL;
-			
+
 			more = FALSE;
 			break;
 		}
@@ -606,7 +606,7 @@ do_query_response (ConnectionData *cd,
 				}
 				return FALSE;
 			}
-			
+
 			/* Add the vector to the list of matches */
 			cd->matches = g_list_append (cd->matches, vector);
 		}
@@ -665,7 +665,7 @@ do_query_response (ConnectionData *cd,
 		clear_entry_from_cache (cd->discid);
 		do_goodbye (cd);
 	}
-	
+
 	g_free (cat);
 	g_free (discid);
 	g_free (dtitle);
@@ -678,10 +678,10 @@ do_query (ConnectionData *cd)
 	char *query;
 	guint bytes_writen;
 	GIOError status;
-	
+
 	/* Send query command */
 	query = g_strdup_printf ("cddb query %s %d %s %d\n",
-				 cd->discid, cd->ntrks, 
+				 cd->discid, cd->ntrks,
 				 cd->offsets, cd->nsecs);
 	status = gnet_io_channel_writen (cd->iochannel, query,
 					 strlen (query), &bytes_writen);
@@ -748,7 +748,7 @@ do_hello (ConnectionData *cd)
 	char *hello;
 	guint bytes_writen;
 	GIOError status;
-	
+
 	/* Send the Hello command
 	   CDDB howto says these shouldn't be hardcoded,
 	   but that seems to be a privacy issue */
@@ -757,7 +757,7 @@ do_hello (ConnectionData *cd)
 				 cd->cddb->priv->hostname,
 				 cd->name,
 				 cd->version);
-	
+
 	/* Need to check the return of this one */
 	status = gnet_io_channel_writen (cd->iochannel, hello,
 					 strlen (hello), &bytes_writen);
@@ -785,10 +785,10 @@ do_open_response (ConnectionData *cd,
 			g_print ("CDDB: Hello ok - Read/Write access allowed\n");
 			g_print ("CDDB: %s\n", response);
 		}
-		
+
 		cddb->priv->access = CDDB_ACCESS_READWRITE;
 		break;
-		
+
 	case 201:
 		if (cddb_debugging == TRUE) {
 			g_print ("CDDB: Hello ok - Read only access\n");
@@ -796,7 +796,7 @@ do_open_response (ConnectionData *cd,
 		}
 		cddb->priv->access = CDDB_ACCESS_READONLY;
 		break;
-		
+
 	case 432:
 		if (cddb_debugging == TRUE) {
 			g_print ("CDDB: No more connections allowed\n");
@@ -841,7 +841,7 @@ do_open_response (ConnectionData *cd,
 
 	return FALSE;
 }
-	
+
 static gboolean
 read_from_server (GIOChannel *iochannel,
 		  GIOCondition condition,
@@ -864,7 +864,7 @@ read_from_server (GIOChannel *iochannel,
 		if (condition & G_IO_NVAL) {
 			g_print ("G_IO_NVAL\n");
 		}
-		
+
 		goto error;
 	}
 
@@ -877,7 +877,7 @@ read_from_server (GIOChannel *iochannel,
 						&bytes_read, NULL, NULL);
 		while (status == G_IO_STATUS_NORMAL) {
 			gboolean more = FALSE;
-			
+
 			switch (cd->mode) {
 			case CONNECTION_MODE_NEED_HELLO:
 				more = do_open_response (cd, buffer);
@@ -898,7 +898,7 @@ read_from_server (GIOChannel *iochannel,
 			case CONNECTION_MODE_NEED_GOODBYE:
 				more = do_goodbye_response (cd, buffer);
 				break;
-				
+
 			default:
 				g_print ("Dunno what to do with %s\n", buffer);
 				more = FALSE;
@@ -952,7 +952,7 @@ open_cb (GTcpSocket *sock,
 	if (cddb_debugging == TRUE) {
 		g_print ("CDDB: Opened connection, adding watch\n");
 	}
-	
+
 	cd->tag = g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
 				  read_from_server, data);
 }
@@ -967,7 +967,7 @@ cddb_send_cmd (ConnectionData *data)
 			 data->cddb->priv->server,
 			 data->cddb->priv->port);
 	}
-	
+
 	sock = gnet_tcp_socket_connect_async (data->cddb->priv->server,
 					      data->cddb->priv->port,
 					      open_cb, data);
@@ -1080,13 +1080,13 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	/* Make an entry */
 	entry = cddb_entry_new (discid, ntrks, offsets, nsecs);
 	g_hash_table_insert (cddb_cache, g_strdup (discid), entry);
-	
+
 	cd = g_new (ConnectionData, 1);
 	cd->cddb = cddb;
 	g_object_ref (cddb);
 
 	cd->tag = 0;
-	
+
 	cd->name = g_strdup_printf ("%s(CDDBSlave2)", name);
 	cd->version = g_strdup (version);
 	cd->discid = g_strdup (discid);
@@ -1107,7 +1107,7 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 	CDDBSlave *cddb;
 	CDDBEntry *entry;
 	gboolean write_ret;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1158,7 +1158,7 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 	char *split, *artist;
 	GString *dtitle;
 	CORBA_char *ret;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1182,7 +1182,7 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 		ret = CORBA_string_dup (artist);
 		g_free (artist);
 	}
-	
+
 	return ret;
 }
 
@@ -1218,7 +1218,7 @@ impl_GNOME_Media_CDDBSlave2_setArtist (PortableServer_Servant servant,
 		g_strfreev (split);
 	}
 }
-		
+
 static CORBA_char *
 impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 					  const CORBA_char *discid,
@@ -1311,7 +1311,7 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 {
 	CDDBEntry *entry;
 	int ntrk;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1353,7 +1353,7 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 		}
 
   		(*names_list)->_buffer[ntrk].length = entry->lengths[ntrk];
-		
+
 		(*names_list)->_length++;
 
 		g_free (name);
@@ -1386,7 +1386,7 @@ impl_GNOME_Media_CDDBSlave2_setAllTracks (PortableServer_Servant servant,
 {
 	CDDBEntry *entry;
 	int ntrks, i;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1399,7 +1399,7 @@ impl_GNOME_Media_CDDBSlave2_setAllTracks (PortableServer_Servant servant,
 	for (i = 0; i < ntrks; i++) {
 		char *name, *comment, *key;
 		GString *dentry;
-		
+
 		name = list->_buffer[i].name;
 		comment = list->_buffer[i].comment;
 
@@ -1424,7 +1424,7 @@ impl_GNOME_Media_CDDBSlave2_getComment (PortableServer_Servant servant,
 {
 	CDDBEntry *entry;
 	GString *dcomment;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1484,7 +1484,7 @@ impl_GNOME_Media_CDDBSlave2_getYear (PortableServer_Servant servant,
 		g_warning ("No entry %s", discid);
 		return -1;
 	}
-	
+
 	dyear = g_hash_table_lookup (entry->fields, "DYEAR");
 	if (dyear == NULL) {
 		return -1;
@@ -1501,7 +1501,7 @@ impl_GNOME_Media_CDDBSlave2_setYear (PortableServer_Servant servant,
 {
 	CDDBEntry *entry;
 	GString *dyear;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
@@ -1536,7 +1536,7 @@ impl_GNOME_Media_CDDBSlave2_getGenre (PortableServer_Servant servant,
 		g_warning ("No entry %s", discid);
 		return CORBA_string_dup ("");
 	}
-	
+
 	dgenre = g_hash_table_lookup (entry->fields, "DGENRE");
 	if (dgenre == NULL) {
 		return CORBA_string_dup ("");
@@ -1586,11 +1586,11 @@ finalize (GObject *object)
 
 	/* Remove this slave from our list */
 	cddb_slaves = g_list_remove (cddb_slaves, cddb);
-	
+
 	g_free (priv->server);
 	g_free (priv->name);
 	g_free (priv->hostname);
-	
+
 	g_free (priv);
 	cddb->priv = NULL;
 
@@ -1639,7 +1639,7 @@ cddb_slave_init (CDDBSlave *cddb)
 }
 
 BONOBO_TYPE_FUNC_FULL (CDDBSlave, GNOME_Media_CDDBSlave2, PARENT_TYPE, cddb_slave);
-			 
+
 
 #define CDDB_SERVER "freedb.freedb.org"
 #define CDDB_PORT 888
@@ -1650,7 +1650,7 @@ BONOBO_TYPE_FUNC_FULL (CDDBSlave, GNOME_Media_CDDBSlave2, PARENT_TYPE, cddb_slav
  * @port: Port on @server to connect to.
  * @event_source: #BonoboEventSource on which to emit events.
  *
- * Creates a new #CDDBSlave which will connect to @server:@port. Any events 
+ * Creates a new #CDDBSlave which will connect to @server:@port. Any events
  * that are created will be emitted on @event_source.
  * If @server is NULL, the default server (freedb.freedb.org) is used.
  * If @port is 0, the default port (888) is used.
@@ -1686,7 +1686,7 @@ cddb_slave_new_full (const char *server,
 
 	priv->name = g_strdup (name);
 	priv->hostname = g_strdup (hostname);
-	
+
 	priv->event_source = event_source;
 	bonobo_object_add_interface (BONOBO_OBJECT (cddb),
 				     BONOBO_OBJECT (priv->event_source));
@@ -1694,7 +1694,7 @@ cddb_slave_new_full (const char *server,
 
 	/* Add this slave to our global list of slaves */
 	cddb_slaves = g_list_prepend (cddb_slaves, cddb);
-	
+
 	return cddb;
 }
 /**
@@ -1702,7 +1702,7 @@ cddb_slave_new_full (const char *server,
  * @server: Address of server to connect to.
  * @port: Port on @server to connect to.
  *
- * Creates a new #CDDBSlave which will connect to @server:@port. Any events 
+ * Creates a new #CDDBSlave which will connect to @server:@port. Any events
  * that are created will be emitted on the default event source.
  * If @server is NULL, the default server (freedb.freedb.org) is used.
  * If @port is 0, the default port (888) is used.
@@ -1752,7 +1752,7 @@ cddb_slave_set_server (CDDBSlave *cddb,
 		       const char *server)
 {
 	g_return_if_fail (IS_CDDB_SLAVE (cddb));
-	
+
 	g_free (cddb->priv->server);
 	if (server == NULL) {
 		cddb->priv->server = g_strdup (CDDB_SERVER);
