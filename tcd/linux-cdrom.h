@@ -33,6 +33,19 @@
 
 #ifdef linux
 #include <linux/cdrom.h>
+
+/* This is a hack to determine whether or not we have an
+ * OPTI cdrom.  cdrom.h defines CDROMCLOSETRAY, but it only
+ * works for the OPTI, and should cause an Illegal Request
+ * for proper ATAPI drives.
+ * This is only tested for Linux 2.2
+ */
+
+#include <linux/autoconf.h>
+#if !defined(CONFIG_OPTICD) || !defined(CONFIG_OPTICD_MODULE)
+#undef CDROMCLOSETRAY
+#endif
+
 #endif
 
 #if defined(sun) || defined(__sun__)

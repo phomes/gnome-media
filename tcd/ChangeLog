@@ -1,3 +1,10 @@
+1999-03-15  Mark Crichton <crichton@gimp.org>
+	
+	* linux-cdrom.h: Fixed the annoying Illegal Request error popping
+	up on my machine.  CDROMCLOSETRAY is only for the OPTI series of
+	cdroms.  So we now check to see if CONFIG_OPTCD(_MODULE) is defined.
+	If it isn't, we undefine CDROMCLOSETRAY.  Works with Linux 2.2 only.
+
 1999-03-10  Ian Peters  <itp@gnu.org>
 
 	* gtcd.c: (main): Set the display area's background color to black,
