@@ -708,19 +708,9 @@ save_dont_or_cancel (void)
 gboolean
 save_sound_file (const gchar* file)
 {
-	if (!file_changed) {
-		gchar* tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
-		gchar* tfile2 = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
-		system (tfile2);
-		remove (tfile);
-		g_free (tfile2);
-		g_free (tfile);
-		tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
-		remove (tfile);
-		g_free (tfile);
-		return TRUE;
-	}
-	return FALSE;
+	/* No saving is needed, because the changes go directly to the active file; don't worry, */
+	/* the file is being saved first time it's edited, so you just have to do 'undo all' to restore it. */
+	return TRUE;
 }
 
 guint
