@@ -29,10 +29,13 @@ typedef struct _CDDBSlavePrivate CDDBSlavePrivate;
 typedef struct _CDDBSlaveClass CDDBSlaveClass;
 typedef struct _CDDBEntry {
 	char *discid;
-	char *offsets;
-	int ntrks, nsecs;
+	int ntrks;
+	int revision;
+	int disc_length;
 
 	char **topline;
+	int *offsets;
+	int *lengths;
 
 	GList *comments;
 	GHashTable *fields;

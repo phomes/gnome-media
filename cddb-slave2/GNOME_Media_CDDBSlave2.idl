@@ -12,6 +12,18 @@ module GNOME {
 
 module Media {
 
+	/* As a note, I hate making this a seperate interface
+	   but it seems that hiding and showing widgets inside
+	   Bonobo::Control's is not a good thing.
+
+	   Lots of love
+	   Iain */
+	interface CDDBTrackEditor : Bonobo::Unknown {
+		void setDiscID (in string discid);
+		
+		void showWindow ();
+	};
+	
 	interface CDDBSlave2 : Bonobo::Unknown {
 
 		enum Result {
@@ -28,7 +40,12 @@ module Media {
 			Result result;
 		};
 
-		typedef sequence<string> StringList;
+		struct TrackInfo {
+			string name;
+			short length;
+			string comment;
+		};
+		typedef sequence<TrackInfo> TrackList;
 		
 		/**
 		 * query: Queries the server for a CD
@@ -55,19 +72,34 @@ module Media {
 		 * Returns the artist of @discid
 		 */
 		string getArtist (in string discid);
+		void setArtist (in string discid,
+				in string artist);
 
 		/**
 		 * discid: CDDB disc id.
 		 */
 		string getDiscTitle (in string discid);
+		void setDiscTitle (in string discid,
+				   in string disctitle);
 
 		short getNTrks (in string discid);
 
-		string getTrackTitle (in string discid, 
-				      in short track);
-
 		void getAllTracks (in string discid,
-				   out StringList names);
+				   out TrackList names);
+		void setAllTracks (in string discid,
+				   in TrackList names);
+				   
+		string getComment (in string discid);
+		void setComment (in string discid,
+				 in string comment);
+				 
+		short getYear (in string discid);
+		void setYear (in string discid,
+			      in short year);
+			      
+		string getGenre (in string discid);
+		void setGenre (in string discid,
+			       in string genre);
 	};
 };
 };  

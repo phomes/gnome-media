@@ -333,6 +333,32 @@ cddb_slave_client_get_disc_title (CDDBSlaveClient *client,
 	return ret;
 }
 
+/**
+ * cddb_slave_client_set_disc_title:
+ *
+ */
+void
+cddb_slave_client_set_disc_title (CDDBSlaveClient *client,
+				  const char *discid,
+				  const char *title)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	GNOME_Media_CDDBSlave2_setDiscTitle (objref, discid, title, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting disc title\n%s",
+			   CORBA_exception_id (&ev));
+	}
+
+	CORBA_exception_free (&ev);
+}
+
 char *
 cddb_slave_client_get_artist (CDDBSlaveClient *client,
 			      const char *discid)
@@ -357,6 +383,28 @@ cddb_slave_client_get_artist (CDDBSlaveClient *client,
 
 	CORBA_exception_free (&ev);
 	return ret;
+}
+
+void
+cddb_slave_client_set_artist (CDDBSlaveClient *client,
+			      const char *discid,
+			      const char *artist)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	GNOME_Media_CDDBSlave2_setArtist (objref, discid, artist, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting artist\n%s",
+			   CORBA_exception_id (&ev));
+	}
+
+	CORBA_exception_free (&ev);
 }
 
 int
@@ -385,42 +433,14 @@ cddb_slave_client_get_ntrks (CDDBSlaveClient *client,
 	return ret;
 }
 
-char *
-cddb_slave_client_get_track_title (CDDBSlaveClient *client,
-				   const char *discid,
-				   int track)
-{
-	CORBA_Object objref;
-	CORBA_Environment ev;
-	CORBA_char *ret;
-
-	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
-	g_return_val_if_fail (discid != NULL, NULL);
-
-	objref = client->priv->objref;
-
-	CORBA_exception_init (&ev);
-
-	ret = GNOME_Media_CDDBSlave2_getTrackTitle (objref, discid, track, &ev);
-	if (BONOBO_EX (&ev)) {
-		g_warning ("Error getting track title\n%s",
-			   CORBA_exception_id (&ev));
-		CORBA_exception_free (&ev);
-		return NULL;
-	}
-
-	CORBA_exception_free (&ev);
-	return ret;
-}
-
-char **
+CDDBSlaveClientTrackInfo **
 cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 			      const char *discid)
 {
 	CORBA_Object objref;
 	CORBA_Environment ev;
-	GNOME_Media_CDDBSlave2_StringList *list;
-	char **ret;
+	GNOME_Media_CDDBSlave2_TrackList *list;
+	CDDBSlaveClientTrackInfo **ret;
 	int i;
 	
 	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
@@ -439,11 +459,200 @@ cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 	}
 	CORBA_exception_free (&ev);
 
-	ret = g_new (char *, list->_length);
+	ret = g_new (CDDBSlaveClientTrackInfo *, list->_length + 1);
 	for (i = 0; i < list->_length; i++) {
-		ret[i] = g_strdup (list->_buffer[i]);
+		ret[i] = g_new (CDDBSlaveClientTrackInfo, 1);
+		ret[i]->name = g_strdup (list->_buffer[i].name);
+		ret[i]->length = list->_buffer[i].length;
+		ret[i]->comment = g_strdup (list->_buffer[i].comment);
 	}
 
+	/* NULL terminator */
+	ret[++i] = NULL;
+	
 	CORBA_free (list);
 	return ret;
+}
+
+void
+cddb_slave_client_set_tracks (CDDBSlaveClient *client,
+			      const char *discid,
+			      CDDBSlaveClientTrackInfo **track_info)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	GNOME_Media_CDDBSlave2_TrackList *list;
+	int i;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	for (i = 0; *track_info != NULL; i++) {
+		; /* Count the number of tracks */
+	}
+	
+	list = GNOME_Media_CDDBSlave2_TrackList__alloc ();
+	list->_length = i;
+	list->_maximum = i;
+	list->_buffer = CORBA_sequence_GNOME_Media_CDDBSlave2_TrackInfo_allocbuf (i);
+	
+	for (i = 0; *track_info != NULL; i++) {
+		list->_buffer[i].name = CORBA_string_dup (track_info[i]->name ? track_info[i]->name : "");
+		list->_buffer[i].length = 0; /* We can't change the length of a track :) */
+		list->_buffer[i].comment = CORBA_string_dup (track_info[i]->comment ?
+							     track_info[i]->comment : "");
+	}
+	
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	GNOME_Media_CDDBSlave2_setAllTracks (objref, discid, list, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting all tracks\n%s", CORBA_exception_id (&ev));
+	}
+
+	CORBA_exception_free (&ev);
+	CORBA_free (list);
+}
+
+char *
+cddb_slave_client_get_comment (CDDBSlaveClient *client,
+			       const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_char *ret;
+	
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+	
+	objref = client->priv->objref;
+	
+	CORBA_exception_init (&ev);
+	
+	ret = GNOME_Media_CDDBSlave2_getComment (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting comment\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+void
+cddb_slave_client_set_comment (CDDBSlaveClient *client,
+			       const char *discid,
+			       const char *comment)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+
+	GNOME_Media_CDDBSlave2_setComment (objref, discid, comment, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting comment\n%s", CORBA_exception_id (&ev));
+	}
+	CORBA_exception_free (&ev);
+}
+
+int
+cddb_slave_client_get_year (CDDBSlaveClient *client,
+			    const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_short ret;
+	
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+	
+	objref = client->priv->objref;
+	
+	CORBA_exception_init (&ev);
+	
+	ret = GNOME_Media_CDDBSlave2_getYear (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting year\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+void
+cddb_slave_client_set_year (CDDBSlaveClient *client,
+			    const char *discid,
+			    int year)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	GNOME_Media_CDDBSlave2_setYear (objref, discid, year, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting year\n%s", CORBA_exception_id (&ev));
+	}
+	CORBA_exception_free (&ev);
+}
+
+char *
+cddb_slave_client_get_genre (CDDBSlaveClient *client,
+			     const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_char *ret;
+	
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
+	g_return_val_if_fail (discid != NULL, NULL);
+	
+	objref = client->priv->objref;
+	
+	CORBA_exception_init (&ev);
+	
+	ret = GNOME_Media_CDDBSlave2_getGenre (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error getting genre\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return NULL;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+void
+cddb_slave_client_set_genre (CDDBSlaveClient *client,
+			     const char *discid,
+			     const char *genre)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	GNOME_Media_CDDBSlave2_setGenre (objref, discid, genre, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error setting genre\n%s",
+			   CORBA_exception_id (&ev));
+	}
+	CORBA_exception_free (&ev);
 }

@@ -1,3 +1,53 @@
+2002-02-26  Iain <iain@ximian.com>
+
+	* GNOME_Media_CDDBSlave2.idl: Added a CDDBTrackEditor interface.
+	Added get and setters for all CDDB properties. Added a TrackInfo
+	struct to get all data related to a single track in one go.
+
+	* GNOME_Media_CDDBSlave.server.in: Added the track editor stuff.
+
+	* Makefile.am: Add the IDL stuff to the track editor.
+
+	* cddb-parser.c (parse_comments): Scan the comments for extra info
+	that really shouldn't have been in the comments. Dumb spec.
+	(calculate_lengths): Given the track offsets calculate the track
+	length.
+	(cddb_entry_new): Update for new structures.
+
+	* cddb-slave-client.c: Add getters and setters for all the new 
+	attributes.
+
+	* cddb-slave-client.h: Add a CDDBSlaveClientTrackInfo struct.
+
+	* cddb-slave.c (remove_entry_from_cache): Rename to
+	clear_entry_from_cache (crap name), and instead of removing the entry
+	it now sets the entry to a default of Unknown values.
+	(impl_GNOME_Media_CDDBSlave2_set/get): Implement the new set and get
+	methods.
+
+	* cddb-track-editor.c: Make it into a factory.
+	Add default genre names (Nicked from XMMS and added some they missed)
+	(make_tree_model): Just make the model, don't fill it yet.
+	(secs_to_string): Convert seconds into minutes and seconds.
+	(build_track_list): Take the CD data and build a track list.
+	(clear_track_list): Duh!
+	(load_new_track_data): Get the data from CDDBSlave for the discid
+	then build the list and set the values.
+	(make_genre_list): Make a GList out of all the genres.
+	(track_selection_changed): When the selection changes in the tracklist
+	change the comments text.
+	(artist_changed): Store the new artist, dirty the entry.
+	(disctitle_changed): ditto.
+	(year_changed): ditto ditto.
+	(genre_changed): ditto ditto ditto ditto.
+	(comment_changed): DITTO!
+	(make_track_editor_control): Connect signals, add an "Editting: "label
+	(cddb_track_editor_from_servant): Get object from servant.
+	(mipl_GNOME_Media_CDDBTrackEditor_showWindow): Open an editor window.
+	(impl_GNOME_Media_CDDBTrackEditor_setDiscID): Load a new disc id.
+	(finalise): Destroy the object.
+	Added other boilerplate GObject/BonoboObject code.
+	
 2002-02-20  Iain <iain@ximian.com>
 
 	* cddb-track-editor.c (main): Set the default size to 670x400 so it

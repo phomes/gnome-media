@@ -30,6 +30,12 @@ typedef struct _CDDBSlaveClient CDDBSlaveClient;
 typedef struct _CDDBSlaveClientPrivate CDDBSlaveClientPrivate;
 typedef struct _CDDBSlaveClientClass CDDBSlaveClientClass;
 
+typedef struct _CDDBSlaveClientTrackInfo {
+	char *name;
+	int length;
+	char *comment;
+} CDDBSlaveClientTrackInfo;
+
 struct _CDDBSlaveClient {
 	GObject parent;
 
@@ -62,11 +68,8 @@ char *cddb_slave_client_get_artist (CDDBSlaveClient *client,
 				    const char *discid);
 int cddb_slave_client_get_ntrks (CDDBSlaveClient *client,
 				 const char *discid);
-char *cddb_slave_client_get_track_title (CDDBSlaveClient *client,
-					 const char *discid,
-					 int track);
-char **cddb_slave_client_get_tracks (CDDBSlaveClient *client,
-				     const char *discid);
+CDDBSlaveClientTrackInfo **cddb_slave_client_get_tracks (CDDBSlaveClient *client,
+							 const char *discid);
 
 #ifdef __cplusplus
 }

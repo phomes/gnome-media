@@ -53,12 +53,16 @@ CDDBSlave2_LDADD =				\
 	$(CDDBSLAVE_LIBS)				\
 	$(INTLLIBS)
 
-cddb_track_editor_SOURCES = cddb-disclosure.c	\
+cddb_track_editor_SOURCES = 			\
+	$(IDL_GENERATED)			\
+	cddb-disclosure.c	\
 	cddb-disclosure.h			\
 	cddb-track-editor.c
 
 cddb_track_editor_LDADD =				\
-	$(CDDBSLAVE_LIBS)
+	$(CDDBSLAVE_LIBS)				\
+	libcddb-slave2.la
+
 cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
 cddb_slave2_properties_SOURCES = cddb-slave-capplet.c	\
 				 gnet.h			\

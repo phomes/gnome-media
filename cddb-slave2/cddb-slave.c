@@ -180,9 +180,26 @@ do_goodbye_response (ConnectionData *cd,
 }
 
 static void
-remove_entry_from_cache (const char *discid)
+clear_entry_from_cache (const char *discid)
 {
-	g_hash_table_remove (cddb_cache, discid);
+	CDDBEntry *entry;
+	int i;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	/* Set the fields of the entry to unknown */
+	entry->revision = 0;
+	entry->topline = NULL;
+
+	g_hash_table_insert (entry->fields, g_strdup ("DTITLE"),
+			     g_string_new (_("Unknown / Unknown")));
+	for (i = 0; i < entry->ntrks; i++) {
+		char *name;
+		GString *title;
+
+		name = g_strdup_printf ("TTITLE%d", i);
+		title = g_string_new (_("Unknown"));
+		g_hash_table_insert (entry->fields, name, title);
+	}
 }
 
 static void
@@ -273,7 +290,7 @@ do_read_response (ConnectionData *cd,
 		g_print ("%s\n", response);
 		more = FALSE;
 		disconnect = TRUE;
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		break;
 
 	case 402:
@@ -281,7 +298,7 @@ do_read_response (ConnectionData *cd,
 		g_print ("%s\n", response);
 		more = FALSE;
 		disconnect = TRUE;
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		break;
 
 	case 403:
@@ -289,7 +306,7 @@ do_read_response (ConnectionData *cd,
 		g_print ("%s\n", response);
 		more = FALSE;
 		disconnect = TRUE;
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		break;
 
 	case 409:
@@ -493,7 +510,7 @@ do_query_response (ConnectionData *cd,
 				} else {
 				/* Need to disconnect here...
 				   none of our matches matched */
-					remove_entry_from_cache (cd->discid);
+					clear_entry_from_cache (cd->discid);
 					do_goodbye (cd);
 				}
 			}
@@ -563,7 +580,7 @@ do_query_response (ConnectionData *cd,
 	}
 
 	if (disconnect == TRUE) {
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		do_goodbye (cd);
 	}
 	
@@ -610,7 +627,7 @@ do_hello_response (ConnectionData *cd,
 		g_print ("%s\n", response);
 
 		/* Disconnect here */
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		do_goodbye (cd);
 		break;
 
@@ -709,7 +726,7 @@ do_open_response (ConnectionData *cd,
 	} else {
 		/* Do something to indicate that we can't contact server */
 		/* Close connection to tell listeners we're not doing anything */
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		do_goodbye (cd);
 	}
 
@@ -794,7 +811,7 @@ read_from_server (GIOChannel *iochannel,
 	return TRUE;
 
  error:
-	remove_entry_from_cache (cd->discid);
+	clear_entry_from_cache (cd->discid);
 	return FALSE;
 }
 
@@ -814,7 +831,7 @@ open_cb (GTcpSocket *sock,
 			   cd->cddb->priv->port);
 
 		/* notify listeners */
-		remove_entry_from_cache (cd->discid);
+		clear_entry_from_cache (cd->discid);
 		return;
 	}
 
@@ -951,6 +968,36 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 	return ret;
 }
 
+static void
+impl_GNOME_Media_CDDBSlave2_setArtist (PortableServer_Servant servant,
+				       const CORBA_char *discid,
+				       const CORBA_char *artist,
+				       CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dtitle;
+	char **split;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
+	if (dtitle == NULL) {
+		/* Should a DTITLE be created? */
+		return;
+	}
+
+	split = g_strsplit (dtitle->str, " / ", 2);
+	if (split == NULL) {
+		g_string_printf (dtitle, "%s", artist);
+	} else {
+		g_string_printf (dtitle, "%s / %s", artist, split[1]);
+		g_strfreev (split);
+	}
+}
+		
 static CORBA_char *
 impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 					  const CORBA_char *discid,
@@ -970,11 +1017,41 @@ impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 		return NULL;
 	}
 
+	/* FIXME: use g_strsplit */
 	split = strstr (dtitle->str, " / ");
 	if (split == NULL) {
 		return CORBA_string_dup ("");
 	} else {
 		return CORBA_string_dup (split + 3);
+	}
+}
+
+static void
+impl_GNOME_Media_CDDBSlave2_setDiscTitle (PortableServer_Servant servant,
+					  const CORBA_char *discid,
+					  const CORBA_char *title,
+					  CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	char **split;
+	GString *dtitle;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
+	if (dtitle == NULL) {
+		return;
+	}
+
+	split = g_strsplit (dtitle->str, " / ", 2);
+	if (split == NULL) {
+		g_string_printf (dtitle, " / %s", title);
+	} else {
+		g_string_printf (dtitle, "%s / %s", split[0], title);
+		g_strfreev (split);
 	}
 }
 
@@ -993,35 +1070,10 @@ impl_GNOME_Media_CDDBSlave2_getNTrks (PortableServer_Servant servant,
 	return entry->ntrks;
 }
 
-static CORBA_char *
-impl_GNOME_Media_CDDBSlave2_getTrackTitle (PortableServer_Servant servant,
-					   const CORBA_char *discid,
-					   CORBA_short track,
-					   CORBA_Environment *ev)
-{
-	CDDBEntry *entry;
-	char *name;
-	GString *ttitle;
-	
-	entry = g_hash_table_lookup (cddb_cache, discid);
-	if (entry == NULL) {
-		return NULL;
-	}
-
-	name = g_strdup_printf ("TTITLE%d", track);
-	ttitle = g_hash_table_lookup (entry->fields, name);
-	g_free (name);
-	if (ttitle == NULL) {
-		return NULL;
-	}
-
-	return CORBA_string_dup (ttitle->str);
-}
-
 static void
 impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 					  const CORBA_char *discid,
-					  GNOME_Media_CDDBSlave2_StringList **names_list,
+					  GNOME_Media_CDDBSlave2_TrackList **names_list,
 					  CORBA_Environment *ev)
 {
 	CDDBEntry *entry;
@@ -1032,22 +1084,34 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 		return;
 	}
 
-	*names_list = GNOME_Media_CDDBSlave2_StringList__alloc ();
+	*names_list = GNOME_Media_CDDBSlave2_TrackList__alloc ();
 	(*names_list)->_length = 0;
 	(*names_list)->_maximum = entry->ntrks + 1;
-	(*names_list)->_buffer = CORBA_sequence_CORBA_string_allocbuf (entry->ntrks);
+	(*names_list)->_buffer = CORBA_sequence_GNOME_Media_CDDBSlave2_TrackInfo_allocbuf (entry->ntrks);
 
 	for (ntrk = 0; ntrk < entry->ntrks; ntrk++) {
 		char *name;
-		GString *ttitle;
+		GString *result;
 
 		name = g_strdup_printf ("TTITLE%d", ntrk);
-		ttitle = g_hash_table_lookup (entry->fields, name);
-		if (ttitle != NULL) {
-			(*names_list)->_buffer[ntrk] = CORBA_string_dup (ttitle->str ? ttitle->str : "");
+		result = g_hash_table_lookup (entry->fields, name);
+		if (result != NULL) {
+			(*names_list)->_buffer[ntrk].name = CORBA_string_dup (result->str ? result->str : "");
 		} else {
-			(*names_list)->_buffer[ntrk] = CORBA_string_dup ("");
+			(*names_list)->_buffer[ntrk].name = CORBA_string_dup ("");
 		}
+		g_free (name);
+
+		name = g_strdup_printf ("EXTT%d", ntrk);
+		result = g_hash_table_lookup (entry->fields, name);
+		if (result != NULL) {
+			(*names_list)->_buffer[ntrk].comment = CORBA_string_dup (result->str ? result->str : "");
+		} else {
+			(*names_list)->_buffer[ntrk].comment = CORBA_string_dup ("");
+		}
+
+  		(*names_list)->_buffer[ntrk].length = entry->lengths[ntrk];
+		
 		(*names_list)->_length++;
 
 		g_free (name);
@@ -1055,7 +1119,150 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 
 	return;
 }
+
+static void
+impl_GNOME_Media_CDDBSlave2_setAllTracks (PortableServer_Servant servant,
+					  const CORBA_char *discid,
+					  GNOME_Media_CDDBSlave2_TrackList *list,
+					  CORBA_Environment *ev)
+{
+}
+
+static CORBA_char *
+impl_GNOME_Media_CDDBSlave2_getComment (PortableServer_Servant servant,
+					const CORBA_char *discid,
+					CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dcomment;
 	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		/* Must do exceptions...*/
+		return NULL;
+	}
+
+	dcomment = g_hash_table_lookup (entry->fields, "EXTD");
+	if (dcomment == NULL) {
+		return CORBA_string_dup ("");
+	} else {
+		return CORBA_string_dup (dcomment->str ? dcomment->str : "");
+	}
+}
+
+static void
+impl_GNOME_Media_CDDBSlave2_setComment (PortableServer_Servant servant,
+					const CORBA_char *discid,
+					const CORBA_char *comment,
+					CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dcomment;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	dcomment = g_hash_table_lookup (entry->fields, "EXTD");
+	if (dcomment == NULL) {
+		dcomment = g_string_new (comment);
+		g_hash_table_insert (entry->fields, g_strdup ("EXTD"), dcomment);
+	} else {
+		g_string_printf (dcomment, "%s", comment);
+	}
+}
+
+static CORBA_short
+impl_GNOME_Media_CDDBSlave2_getYear (PortableServer_Servant servant,
+				     const CORBA_char *discid,
+				     CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dyear;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return -1;
+	}
+	
+	dyear = g_hash_table_lookup (entry->fields, "DYEAR");
+	if (dyear == NULL) {
+		return -1;
+	} else {
+		return atoi (dyear->str);
+	}
+}
+
+static void
+impl_GNOME_Media_CDDBSlave2_setYear (PortableServer_Servant servant,
+				     const CORBA_char *discid,
+				     CORBA_short year,
+				     CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dyear;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	dyear = g_hash_table_lookup (entry->fields, "DYEAR");
+	if (dyear == NULL) {
+		dyear = g_string_new ("");
+		g_string_printf (dyear, "%d", year);
+		g_hash_table_insert (entry->fields, g_strdup ("DYEAR"), dyear);
+	} else {
+		g_string_printf (dyear, "%d", year);
+	}
+}
+
+static CORBA_char *
+impl_GNOME_Media_CDDBSlave2_getGenre (PortableServer_Servant servant,
+				      const CORBA_char *discid,
+				      CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dgenre;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		/* Exception */
+		return NULL;
+	}
+	
+	dgenre = g_hash_table_lookup (entry->fields, "DGENRE");
+	if (dgenre == NULL) {
+		return CORBA_string_dup ("");
+	} else {
+		return CORBA_string_dup (dgenre->str ? dgenre->str : "");
+	}
+}
+
+static void
+impl_GNOME_Media_CDDBSlave2_setGenre (PortableServer_Servant servant,
+				      const CORBA_char *discid,
+				      const CORBA_char *genre,
+				      CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	GString *dgenre;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return;
+	}
+
+	dgenre = g_hash_table_lookup (entry->fields, "DGENRE");
+	if (dgenre == NULL) {
+		dgenre = g_string_new (genre);
+		g_hash_table_insert (entry->fields, g_strdup ("DGENRE"), dgenre);
+	} else {
+		g_string_printf (dgenre, "%s", genre);
+	}
+}
+
 
 static void
 finalize (GObject *object)
@@ -1091,10 +1298,18 @@ cddb_slave_class_init (CDDBSlaveClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 	epv->query = impl_GNOME_Media_CDDBSlave2_query;
 	epv->getArtist = impl_GNOME_Media_CDDBSlave2_getArtist;
+	epv->setArtist = impl_GNOME_Media_CDDBSlave2_setArtist;
 	epv->getDiscTitle = impl_GNOME_Media_CDDBSlave2_getDiscTitle;
+	epv->setDiscTitle = impl_GNOME_Media_CDDBSlave2_setDiscTitle;
 	epv->getNTrks = impl_GNOME_Media_CDDBSlave2_getNTrks;
-	epv->getTrackTitle = impl_GNOME_Media_CDDBSlave2_getTrackTitle;
 	epv->getAllTracks = impl_GNOME_Media_CDDBSlave2_getAllTracks;
+	epv->setAllTracks = impl_GNOME_Media_CDDBSlave2_setAllTracks;
+	epv->getComment = impl_GNOME_Media_CDDBSlave2_getComment;
+	epv->setComment = impl_GNOME_Media_CDDBSlave2_setComment;
+	epv->getYear = impl_GNOME_Media_CDDBSlave2_getYear;
+	epv->setYear = impl_GNOME_Media_CDDBSlave2_setYear;
+	epv->getGenre = impl_GNOME_Media_CDDBSlave2_getGenre;
+	epv->setGenre = impl_GNOME_Media_CDDBSlave2_setGenre;
 }
 
 static void
