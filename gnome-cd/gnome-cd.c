@@ -29,6 +29,9 @@
 gboolean debug_mode = FALSE;
 static char *cd_option_device = NULL;
 
+static gboolean cd_option_unique = FALSE;
+static gboolean cd_option_play = FALSE;
+
 void
 gcd_warning (const char *message,
 	     GError *error)
@@ -393,7 +396,7 @@ init_player (const char *device_override)
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button;
 	GdkPixbuf *pixbuf;
-	GError *error;
+	GError *error = NULL;
 	GError *detailed_error = NULL;
 
 	gcd = g_new0 (GnomeCD, 1);
@@ -456,13 +459,13 @@ init_player (const char *device_override)
 
 	if (error != NULL) {
 		GtkWidget *dialog;
-		
+
 		detailed_error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
 					      "GnomeCD is unable to run correctly.\n\n"
 					      "%s\n"
 					      "Press Set device to go to a dialog"
-					      " where you can set the device, or click Quit to quit GnomeCD", error->message);
+					      " where you can set the device, or click Quit to quit GnomeCD", error->message ? error->message : " ");
 
 		
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
@@ -485,6 +488,8 @@ init_player (const char *device_override)
 		goto nodevice;
 	}
 		
+	gcd->cd_selection = cd_selection_start (gcd->device_override ?
+						gcd->device_override : gcd->preferences->device);
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), _("Gnome CD Player"));
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
@@ -670,7 +675,16 @@ static const struct poptOption cd_popt_options [] = {
 int 
 main (int argc, char *argv[])
 {
+	static const struct poptOption cd_popt_options [] = {
+		{ "unique", '\0', POPT_ARG_NONE, &cd_option_unique, 0,
+		  N_("Only start if there isn't already a CD player application running"), NULL },
+		{ "play",   '\0', POPT_ARG_NONE, &cd_option_play, 0,
+		  N_("Play the CD on startup"), NULL },
+		{ NULL, '\0', 0, NULL, 0 },
+	};
+
 	GnomeCD *gcd;
+	CDSelection *cd_selection;
 	GnomeClient *client;
 
 	free (malloc (8)); /* -lefence */
@@ -687,6 +701,7 @@ main (int argc, char *argv[])
 			    argc, argv, 
 			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
 			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+
 	client = gnome_master_client ();
     	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);
@@ -707,7 +722,11 @@ main (int argc, char *argv[])
 		gnome_cdrom_close_tray (gcd->cdrom, NULL);
 	}
 #endif
-	
+
+	if (cd_option_play) {
+		/* Just fake a click on the button */
+		play_cb (NULL, gcd);
+	} else {
 	switch (gcd->preferences->start) {
 	case GNOME_CD_PREFERENCES_START_NOTHING:
 		break;
@@ -724,6 +743,11 @@ main (int argc, char *argv[])
 	default:
 		break;
 	}
+	}
+	
+	if (cd_option_unique &&
+	    !cd_selection_is_master (gcd->cd_selection))
+		return 0;
 	
 	gtk_widget_show (gcd->window);
 

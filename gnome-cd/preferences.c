@@ -87,6 +87,9 @@ do_device_changed (GnomeCDPreferences *prefs,
 			gtk_widget_show (dialog);
 			g_error_free (error);
 		}
+		
+		cd_selection_stop (prefs->gcd->cd_selection);
+		prefs->gcd->cd_selection = cd_selection_start (prefs->device);
 	}
 }
 

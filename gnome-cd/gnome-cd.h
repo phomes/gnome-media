@@ -16,6 +16,7 @@
 #include <cddb-slave-client.h>
 
 #include "gnome-cd-type.h"
+#include "cd-selection.h"
 #include "preferences.h"
 #include "cdrom.h"
 
@@ -87,6 +88,7 @@ struct _GnomeCD {
 
 	GCDTheme *theme;
 	GnomeCDPreferences *preferences;
+	CDSelection *cd_selection;
 
 	/* Set if if --device was given on the command line */
 	char *device_override;

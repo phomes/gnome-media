@@ -52,6 +52,8 @@ gnome_cd_SOURCES =		\
 	$(CDROM_HOST)-cdrom.h	\
 	preferences.c		\
 	preferences.h		\
+	cd-selection.c		\
+	cd-selection.h		\
 	theme.c
 
 ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
