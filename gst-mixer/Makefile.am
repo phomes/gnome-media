@@ -6,3 +6,4 @@ Desktop_in_files = gnome-volume-control.desktop.in
 Desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = $(Desktop_in_files)
+CLEANFILES = $(Desktop_DATA)
