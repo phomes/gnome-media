@@ -177,6 +177,7 @@ gnome_volume_control_window_new (GList *elements)
   for (count = 0, item = elements; item != NULL; item = item->next, count++) {
     cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
     cur_de_str = g_strdup_printf (_("Change device to %s"), cur_el_str);
+    cur_el_str = g_strdup_printf ("_%d: %s", count, cur_el_str);
     win->element_menu[count] = templ;
     win->element_menu[count].label = cur_el_str;
     win->element_menu[count].hint = cur_de_str;
@@ -310,9 +311,14 @@ cb_change (GtkWidget *widget,
   for (i = 0; win->element_menu[i].widget != NULL; i++) {
     if (win->element_menu[i].widget == widget) {
       GConfValue *value;
+      const gchar *label = win->element_menu[i].label;
+
+      /* skip mnemonic */
+      while (*label != ':') label++; label++;
+      while (*label == ' ') label++;
 
       value = gconf_value_new (GCONF_VALUE_STRING);
-      gconf_value_set_string (value, win->element_menu[i].label);
+      gconf_value_set_string (value, label);
       gconf_client_set (win->client,
 			GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
 			value, NULL);
