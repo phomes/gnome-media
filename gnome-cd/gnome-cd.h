@@ -19,6 +19,7 @@
 #include "cd-selection.h"
 #include "preferences.h"
 #include "cdrom.h"
+#include "eggtrayicon.h"
 
 #define NUMBER_OF_DISPLAY_LINES 5
 
@@ -53,6 +54,10 @@ typedef struct _GCDTheme {
 } GCDTheme;
 
 struct _GnomeCD {
+	GtkWidget *tray;
+	GtkWidget *tray_icon;
+	GtkWidget *tray_tips;
+
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *display;

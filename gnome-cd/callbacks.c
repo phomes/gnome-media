@@ -525,6 +525,11 @@ status_ok (GnomeCD *gcd,
 		g_free (text);
 		set_window_track_title (gcd, status);
 			
+		/* Update the tray icon tooltip */
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray,
+		g_strdup_printf (_("Playing %s - %s"),
+			gcd->disc_info->artist ? gcd->disc_info->artist : _("Unknown Artist"),
+			gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album")), NULL);
 		break;
 
 	case GNOME_CDROM_AUDIO_PAUSE:
@@ -540,6 +545,9 @@ status_ok (GnomeCD *gcd,
 		}
 
 		set_window_track_title (gcd, status);
+
+		/* Update the tray icon tooltip */
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("Paused"), NULL);
 		break;
 		
 	case GNOME_CDROM_AUDIO_COMPLETE:
@@ -582,6 +590,9 @@ status_ok (GnomeCD *gcd,
 			}
 
 			set_track_option_menu (GTK_OPTION_MENU (gcd->tracks), 1);
+
+			/* Update tray icon tooltip */
+			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
 		}		
 		break;
 		
@@ -597,6 +608,9 @@ status_ok (GnomeCD *gcd,
 		} else {
 			gnome_cd_set_window_title (gcd, NULL, NULL);
 		}
+
+		/* Update the tray icon tooltip */
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("Stopped"), NULL);
 		break;
 		
 	case GNOME_CDROM_AUDIO_ERROR:
@@ -611,6 +625,9 @@ status_ok (GnomeCD *gcd,
 		} else {
 			gnome_cd_set_window_title (gcd, NULL, NULL);
 		}
+
+		/* Update the tray icon tooltip */
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("No disc"), NULL);
 		break;
 		
 	default:
@@ -763,6 +780,9 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		cd_display_clear (CD_DISPLAY (gcd->display));
                 cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No Cdrom"));
                 gnome_cd_set_window_title (gcd, NULL, NULL);
+
+		/* Updated the tray icon tooltip */
+		gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("No Cdrom"), NULL);
                 break;
 
 	default:
@@ -840,6 +860,22 @@ playmode_changed_cb (GtkWidget *display,
 		     GnomeCD *gcd)
 {
 	gcd->cdrom->playmode = mode;
+}
+
+gboolean
+tray_icon_clicked (GtkWidget *widget, GdkEventButton *event, GnomeCD *gcd)
+{
+	if (event->button != 3) {
+		if (GTK_WIDGET_VISIBLE (gcd->window)) {
+			gtk_widget_hide (gcd->window);
+		} else {
+			gtk_widget_show (gcd->window);
+		}
+
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
 void

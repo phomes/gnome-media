@@ -396,6 +396,7 @@ init_player (const char *device_override)
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button;
 	GdkPixbuf *pixbuf;
+	GtkWidget *box;
 	GError *error = NULL;
 	GError *detailed_error = NULL;
 
@@ -637,6 +638,22 @@ init_player (const char *device_override)
 	gtk_widget_show_all (gcd->vbox);
 
 	gcd->not_ready = FALSE;
+
+	/* Tray icon */
+	gcd->tray = GTK_WIDGET (egg_tray_icon_new ("GnomeCD Tray Icon"));
+	box = gtk_event_box_new ();
+	g_signal_connect (G_OBJECT (box), "button_press_event",
+			 	G_CALLBACK (tray_icon_clicked), gcd);
+	gtk_container_add (GTK_CONTAINER (gcd->tray), box);
+	pixbuf = gdk_pixbuf_scale_simple (pixbuf_from_file ("gnome-cd/cd.png"),
+				16, 16, GDK_INTERP_BILINEAR);
+	gcd->tray_icon = gtk_image_new_from_pixbuf (pixbuf);
+	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
+	gcd->tray_tips = gtk_tooltips_new ();
+	gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
+	gnome_popup_menu_attach (make_popup_menu (gcd), box, NULL);
+	gtk_widget_show_all (gcd->tray);
+
 	return gcd;
 }
 
@@ -748,8 +765,6 @@ main (int argc, char *argv[])
 	if (cd_option_unique &&
 	    !cd_selection_is_master (gcd->cd_selection))
 		return 0;
-	
-	gtk_widget_show (gcd->window);
 
 	setup_a11y_factory ();
 
