@@ -23,9 +23,7 @@
 #include <bonobo/bonobo-exception.h>
 #include <libgnome/gnome-util.h>
 
-#include <libgnomevfs/gnome-vfs-async-ops.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-result.h>
+#include <gnet/gnet.h>
 
 #include <orbit/orbit.h>
 
@@ -36,18 +34,22 @@
 #define PARENT_TYPE BONOBO_OBJECT_TYPE
 static BonoboObjectClass *parent_class = NULL;
 
+typedef enum {
+	CDDB_ACCESS_READWRITE,
+	CDDB_ACCESS_READONLY,
+	CDDB_ACCESS_NONE
+} CDDBSlaveAccess;
+
 struct _CDDBSlavePrivate {
 	char *server; /* Server address */
 	int port; /* Server port */
 
+	CDDBSlaveAccess access;
 	BonoboEventSource *event_source;
 };
 
 struct _CDDBRequest {
 	CDDBSlave *cddb;
-
-	GnomeVFSAsyncHandle *handle;
-	GnomeVFSAsyncCloseCallback close_cb;
 
 	char *uri;
 	char *discid;
@@ -59,14 +61,38 @@ struct _CDDBRequest {
 	GString *bufstring;
 };
 
-static GHashTable *pending_requests = NULL;
+typedef enum _ConnectionMode {
+	CONNECTION_MODE_NEED_HELLO,
+	CONNECTION_MODE_NEED_HELLO_RESPONSE,
+	CONNECTION_MODE_NEED_QUERY_RESPONSE,
+	CONNECTION_MODE_NEED_READ_RESPONSE,
+	CONNECTION_MODE_NEED_GOODBYE
+} ConnectionMode;
 
-static void cddb_open_cb (GnomeVFSAsyncHandle *handle,
-			  GnomeVFSResult result,
-			  gpointer closure);
+typedef struct _ConnectionData {
+	CDDBSlave *cddb;
+
+	GTcpSocket *socket;
+	GIOChannel *iochannel;
+	
+	ConnectionMode mode;
+	
+	char *discid;
+	int ntrks;
+	char *offsets;
+	int nsecs;
+	char *name;
+	char *version;
+
+	/* A list of discs that match */
+	GList *matches;
+} ConnectionData;
+
+static GHashTable *pending_requests = NULL;
 
 
 #define CDDB_SLAVE_CDDB_FINISHED "GNOME_Media_CDDBSlave2:CDDB-Finished"
+
 /* Notify the listeners on the CDDBSlave that we've finished
    and that they can find the data for @discid in the .cddbslave directory. */
 static void
@@ -92,375 +118,505 @@ cddb_slave_notify_listeners (CDDBSlave *cddb,
 }
 
 static gboolean
-cddb_write_data (const char *discid,
-		 const char *data)
+do_goodbye (ConnectionData *cd,
+	    const char *response)
 {
-	char *pathname;
-	char *filename;
-	int fd, remaining;
+	CDDBSlave *cddb = cd->cddb;
+	int code;
 
-	pathname = gnome_util_prepend_user_home (".cddbslave");
-	filename = g_concat_dir_and_file (pathname, discid);
-	g_free (pathname);
+	code = atoi (response);
+	switch (code) {
+	case 230:
+		g_print ("Disconnected\n");
+		g_print ("%s\n", response);
+		break;
 
-	fd = open (filename, O_WRONLY | O_CREAT | O_TRUNC, 0775);
-	if (fd < 0) {
-		g_warning ("Error opening %s", filename);
-		g_free (filename);
-		return FALSE;
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		break;
 	}
-	g_free (filename);
 
-	remaining = strlen (data);
-	while (remaining > 0) {
-		int block_size = MIN (remaining, 8192);
+	/* Disconnect */
+  	gnet_tcp_socket_unref (cd->socket);
+  	g_io_channel_unref (cd->iochannel);
+	
+	/* Notify listeners */
+	cddb_slave_notify_listeners (cddb, cd->discid, GNOME_Media_CDDBSlave2_OK);
 
-		if (write (fd, data, block_size) != block_size) {
-			g_warning ("Error writing data");
-			close (fd);
+	/* Destroy data */
+	g_object_unref (cd->cddb);
+	g_free (cd->discid);
+	g_free (cd->offsets);
+	g_free (cd->name);
+	g_free (cd->version);
+
+	if (cd->matches != NULL) {
+		GList *p;
+
+		for (p = cd->matches; p; p = p->next) {
+			g_strfreev ((char **) p->data);
+		}
+
+		g_list_free (cd->matches);
+	}
+	g_free (cd);
+	
+	return FALSE;
+}
+
+static gboolean
+do_read_response (ConnectionData *cd,
+		  const char *response)
+{
+	CDDBSlave *cddb = cd->cddb;
+	int code;
+	gboolean more = FALSE;
+	static gboolean waiting_for_terminator = FALSE;
+	static FILE *handle = NULL;
+	
+	if (waiting_for_terminator == TRUE) {
+		code = 210;
+	} else {
+		code = atoi (response);
+	}
+
+	switch (code) {
+	case 210:
+		if (waiting_for_terminator == FALSE) {
+			/* Open the file */
+			char *filename, *dirname;
+
+			dirname = gnome_util_prepend_user_home (".cddbslave");
+			filename = g_concat_dir_and_file (dirname, cd->discid);
+			g_free (dirname);
+
+			g_print ("Opening %s\n", filename);
+			handle = fopen (filename, "w");
+			g_free (filename);
+			
+			if (handle == NULL) {
+				g_print ("Erk!\n");
+				return FALSE;
+			}
+
+			waiting_for_terminator = TRUE;
+		}
+
+		g_assert (handle != NULL);
+		
+		/* Write the line */
+		fputs (response, handle);
+
+		if (response[0] == '.') {
+			/* Found terminator */
+			fclose (handle);
+
+			/* Reset the static variables for next time */
+			handle = NULL;
+			more = FALSE;
+			waiting_for_terminator = FALSE;
+		} else {
+			more = TRUE;
+		}
+
+		break;
+
+	case 401:
+		g_print ("Specified CDDB entry not found\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	case 402:
+		g_print ("Server error\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	case 403:
+		g_print ("Database entry is corrupt\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	case 409:
+		g_print ("No handshake\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	}
+
+	if (more == FALSE) {
+		char *quit;
+		gsize bytes_writen;
+		GIOError status;
+
+		/* Send quit command */
+		status = gnet_io_channel_writen (cd->iochannel, "quit\n",
+						 5, &bytes_writen);
+		g_print ("status: %d bytes_writen: %d\n", status, bytes_writen);
+		cd->mode = CONNECTION_MODE_NEED_GOODBYE;
+	}
+		
+	return more;
+}
+
+static gboolean
+do_query_response (ConnectionData *cd,
+		   const char *response)
+{
+	CDDBSlave *cddb = cd->cddb;
+	int code;
+	gboolean more = FALSE;
+	char *cat = NULL, *discid = NULL, *dtitle = NULL;
+	char **vector;
+	static gboolean waiting_for_terminator = FALSE;
+
+	if (waiting_for_terminator == TRUE) {
+		code = 211;
+	} else {
+		code = atoi (response);
+	}
+	
+	switch (code) {
+	case 200:
+		g_print ("Exact match found.\n");
+		g_print ("%s\n", response);
+
+		vector = g_strsplit (response, " ", 4);
+		if (vector == NULL) {
+			g_print ("Erk!\n");
 			return FALSE;
 		}
 
-		data += block_size;
-		remaining -= 8192;
-	}
+		cat = g_strdup (vector[1]);
+		discid = g_strdup (vector[2]);
+		dtitle = g_strdup (vector[3]);
 
-	close (fd);
-	return TRUE;
-}
+		g_strfreev (vector);
 
-static void
-cddb_close_data_cb (GnomeVFSAsyncHandle *handle,
-		    GnomeVFSResult result,
-		    gpointer closure)
-{
-	struct _CDDBRequest *request = (struct _CDDBRequest *) closure;
-	char *cddb_result;
+		more = FALSE;
+		break;
 
-	if (request->handle == NULL) {
-		/* There was an error in the read callback
-		   Destroy the request and remove it from the pending table */
-		g_hash_table_remove (pending_requests, request->discid);
-		g_string_free (request->bufstring, TRUE);
-		g_free (request->buf);
-		g_free (request->uri);
-		g_free (request->name);
-		g_free (request->version);
+	case 211:
+		waiting_for_terminator = TRUE;
 
-		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_ERROR_RETRIEVING_DATA);
-		g_free (request->discid);
-
-		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
-		g_free (request);
+		if (response[0] == '.') {
+			/* Terminator */
+			waiting_for_terminator = FALSE;
+/*  			display_results (cd); */
+			more = FALSE;
+		}
 		
-		return;
+		vector = g_strsplit (response, " ", 3);
+		if (vector == NULL) {
+			g_print ("Erk!\n");
+			return FALSE;
+		}
+
+		/* Add the vector to the list of matches */
+		cd->matches = g_list_append (cd->matches, vector);
+		more = TRUE;
+
+		break;
+
+	case 202:
+		g_print ("No match found\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	case 403:
+		g_print ("Database entry is corrupt\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	case 409:
+		/* Should probably go back to the start here... */
+		g_print ("No handshake\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
 	}
 
-	cddb_result = request->bufstring->str;
-	g_string_free (request->bufstring, FALSE);
-	g_free (request->buf);
+	if (cat != NULL &&
+	    discid != NULL &&
+	    dtitle != NULL &&
+	    cddb->priv->access != CDDB_ACCESS_NONE) {
+		char *query;
+		gsize bytes_writen;
+		GIOError status;
 
-	/* Finalise everything. 
-	   Write data to disk, 
-	   Notify the listeners,
-	   Remove the pending request
-	   Free data */
-	if (cddb_write_data (request->discid, cddb_result) == TRUE) {
-		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_OK);
-	} else {
-		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_IO_ERROR);
+		/* Send read command */
+		query = g_strdup_printf ("cddb read %s %s\n", cat, discid);
+		g_print ("Sending %s\n", query);
+		status = gnet_io_channel_writen (cd->iochannel, query,
+						 strlen (query), &bytes_writen);
+		g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
+		g_free (query);
+		cd->mode = CONNECTION_MODE_NEED_READ_RESPONSE;
 	}
 
-	g_hash_table_remove (pending_requests, request->discid);
-	g_free (request->uri);
-	g_free (request->name);
-	g_free (request->discid);
-	g_free (request->version);
-
-	bonobo_object_unref (BONOBO_OBJECT (request->cddb));
-	g_free (request);
-
-	return;
+	return more;
 }
-
-static void
-cddb_send_read (struct _CDDBRequest *request,
-		const char *category,
-		const char *discid)
-{
-	CDDBSlave *cddb;
-	char *req, *safe_req;
-	char *name, *safe_name, *safe_version, *username, *hostname;
-
-	cddb = request->cddb;
-
-	req = g_strdup_printf ("cddb+read+%s+%s", category, discid);
-
-	name = g_strdup_printf ("%s(CDDBSlave2)", request->name);
-
-	/* Replace the uri */
-	g_free (request->uri);
-	request->uri = g_strdup_printf ("http://%s/~cddb/cddb.cgi?cmd=%s&hello=%s+%s+%s+%s&proto=3",
-					cddb->priv->server, req, 
-					"Destroy2000YearsofCulture",
-					"172.23.65.132",
-					name, request->version);
-	g_free (req);
-	g_free (name);
-
-	/* Set the close callback to the one that handles this request */
-	request->close_cb = cddb_close_data_cb;
-
-	gnome_vfs_async_open (&request->handle, request->uri,
-			      GNOME_VFS_OPEN_READ, GNOME_VFS_PRIORITY_MIN, cddb_open_cb, request);
-}
-
-/* Takes the string that the query returned, 
-   splits it up to see what it says, and acts on it.
-   Returns FALSE if there was no match, TRUE otherwise */
+		
 static gboolean
-cddb_parse_result (struct _CDDBRequest *request,
-		   const char *cddb_result)
+do_hello_response (ConnectionData *cd,
+		   const char *response)
 {
-	char *cddb_dup;
-	char *category, *discid, *title;
-	char *start, *end;
-	int result;
+	CDDBSlave *cddb = cd->cddb;
+	int code;
 
-	cddb_dup = g_strdup (cddb_result);
-	start = cddb_dup;
-	end = strchr (start, ' ');
-	if (end == NULL) {
-		/* Badly formed line */
-		g_free (cddb_dup);
-		return FALSE;
-	}
-	*end = 0;
+	code = atoi (response);
+	switch (code) {
+	case 200:
+		g_print ("Hello ok - Welcome\n");
+		g_print ("%s\n", response);
+		break;
 
-	result = atoi (start);
-	if (result != 200) {
-		/* Not found */
-		g_free (cddb_dup);
-		return FALSE;
-	}
-	start = end + 1;
-	if (*start == 0) {
-		/* Badly formed line */
-		g_free (cddb_dup);
-		return FALSE;
+	case 431:
+		g_print ("Hello unsuccessful\n");
+		g_print ("%s\n", response);
+
+		/* Disconnect here */
+		break;
+
+	case 402:
+		g_print ("Already shook hands\n");
+		g_print ("%s\n", response);
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		break;
 	}
 
-	end = strchr (start, ' ');
-	if (end == NULL) {
-		/* Badly formed line */
-		g_free (cddb_dup);
-		return FALSE;
+	if (cddb->priv->access != CDDB_ACCESS_NONE) {
+		char *query;
+		gsize bytes_writen;
+		GIOError status;
+		
+		/* Send query command */
+		query = g_strdup_printf ("cddb query %s %d %s %d\n",
+					 cd->discid, cd->ntrks, 
+					 cd->offsets, cd->nsecs);
+		g_print ("Sending %s\n", query);
+		status = gnet_io_channel_writen (cd->iochannel, query,
+						strlen (query), &bytes_writen);
+		g_print ("status: %d bytes_writen %d\n", status, bytes_writen);
+		g_free (query);
+		cd->mode = CONNECTION_MODE_NEED_QUERY_RESPONSE;
 	}
-	*end = 0;
 
-	if (*(end + 1) == 0) {
-		/* Badly formed line */
-		g_free (cddb_dup);
-		return FALSE;
+	return FALSE;
+}
+
+static gboolean
+do_hello (ConnectionData *cd,
+	  const char *response)
+{
+	CDDBSlave *cddb = cd->cddb;
+	int code;
+
+	/* did we get the hello? */
+	code = atoi (response);
+	switch (code) {
+	case 200:
+		g_print ("Hello ok - Read/Write access allowed\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_READWRITE;
+		break;
+		
+	case 201:
+		g_print ("Hello ok - Read only access\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_READONLY;
+		break;
+		
+	case 432:
+		g_print ("No more connections allowed\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_NONE;
+		break;
+
+	case 433:
+		g_print ("No connections allowed: X users allowed, Y currently active\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_NONE;
+		break;
+
+	case 434:
+		g_print ("No connections allowed: system load too high\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_NONE;
+		break;
+
+	default:
+		g_print ("Unknown response code: %d\n");
+		g_print ("%s\n", response);
+		cddb->priv->access = CDDB_ACCESS_NONE;
+		break;
 	}
+
+	if (cddb->priv->access != CDDB_ACCESS_NONE) {
+		char *hello;
+		gsize bytes_writen;
+		GIOError status;
+		
+		/* Send the Hello command
+		   CDDB howto says these shouldn't be hardcoded,
+		   but that seems to be a privacy issue */
+		hello = g_strconcat ("cddb hello johnsmith 198.172.174.22 ",
+				     cd->name, " ", cd->version, "\n", NULL);
+		g_print ("Sending %s\n", hello);
+
+		/* Need to check the return of this one */
+		status = gnet_io_channel_writen (cd->iochannel, hello,
+						 strlen (hello), &bytes_writen);
+		g_print ("Status: %d bytes_writen: %d\n", status, bytes_writen);
+		g_free (hello);
+	} else {
+		/* Do something to indicate that we can't contact server */
+	}
+
+	cd->mode = CONNECTION_MODE_NEED_HELLO_RESPONSE;
+	return FALSE;
+}
 	
-	category = g_strdup (start);
-	start = end + 1;
-	end = strchr (start, ' ');
-	if (end == NULL) {
-		/* Badly formed line */
-		g_free (category);
-		g_free (cddb_dup);
-		return FALSE;
+static gboolean
+read_from_server (GIOChannel *iochannel,
+		  GIOCondition condition,
+		  gpointer data)
+{
+	ConnectionData *cd = data;
+
+	if (condition & (G_IO_ERR | G_IO_HUP | G_IO_NVAL)) {
+		g_warning ("Socket error");
+
+		if (condition & G_IO_ERR) {
+			g_print ("G_IO_ERR\n");
+		}
+
+		if (condition & G_IO_HUP) {
+			g_print ("G_IO_HUP\n");
+		}
+
+		if (condition & G_IO_NVAL) {
+			g_print ("G_IO_NVAL\n");
+		}
+		
+		goto error;
 	}
-	*end = 0;
 
-	if (*(end + 1) == 0) {
-		/* Badly formed line */
-		g_free (category);
-		g_free (cddb_dup);
-		return FALSE;
+	if (condition & G_IO_IN) {
+		GIOError error;
+		char *buffer;
+		gsize bytes_read;
+
+		/* Read the data into our buffer */
+		error = g_io_channel_read_line (iochannel, &buffer,
+						&bytes_read, NULL, NULL);
+		while (error == G_IO_STATUS_NORMAL) {
+			gboolean more = FALSE;
+			
+			switch (cd->mode) {
+			case CONNECTION_MODE_NEED_HELLO:
+				more = do_hello (cd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_HELLO_RESPONSE:
+				more = do_hello_response (cd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_QUERY_RESPONSE:
+				more = do_query_response (cd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_READ_RESPONSE:
+				more = do_read_response (cd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_GOODBYE:
+				more = do_goodbye (cd, buffer);
+				break;
+				
+			default:
+				g_print ("Dunno what to do with %s\n", buffer);
+				more = FALSE;
+				break;
+			}
+
+			g_free (buffer);
+
+			if (more == TRUE) {
+				error = g_io_channel_read_line (iochannel, &buffer,
+								&bytes_read,
+								NULL, NULL);
+			} else {
+				break;
+			}
+		}
 	}
-
-	discid = g_strdup (start);
-	title = g_strdup (end + 1);
-	g_free (cddb_dup);
-
-	/* If we had multiple results, we could display them, but at the
-	   moment, we don't really care about the title and stuff */
-	g_warning ("Retrieving data for: %s(%s)", title, discid);
-
-	cddb_send_read (request, category, discid);
-
-	g_free (title);
-	g_free (category);
-	g_free (discid);
 
 	return TRUE;
+
+ error:
+	return FALSE;
 }
-		
+
 static void
-cddb_close_cb (GnomeVFSAsyncHandle *handle,
-	       GnomeVFSResult result,
-	       gpointer closure)
+open_cb (GTcpSocket *sock,
+	 GInetAddr *addr,
+	 GTcpSocketConnectAsyncStatus status,
+	 gpointer data)
 {
-	struct _CDDBRequest *request = (struct _CDDBRequest *) closure;
-	char *cddb_result;
+	ConnectionData *cd = data;
+	GIOChannel *sin;
 
-	if (request->handle == NULL) {
-		/* There was an error in the read callback 
-		   Destroy the request and remove it from the pending ht */
-		g_hash_table_remove (pending_requests, request->discid);
-		g_string_free (request->bufstring, TRUE);
-		g_free (request->buf);
-		g_free (request->uri);
-		g_free (request->name);
-		g_free (request->version);
+	cd->socket = sock;
+	if (status != GTCP_SOCKET_CONNECT_ASYNC_STATUS_OK) {
+		g_warning ("Error opening %s:%s",
+			   cd->cddb->priv->server,
+			   cd->cddb->priv->port);
 
-		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_ERROR_RETRIEVING_DATA);
-		g_free (request->discid);
-
-		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
-		g_free (request);
-
+		/* notify listeners */
 		return;
 	}
 
-	cddb_result = request->bufstring->str;
-	g_string_free (request->bufstring, FALSE);
-	g_free (request->buf);
-
-	if (cddb_parse_result (request, cddb_result) == FALSE) {
-		/* Disc not found */
-		g_hash_table_remove (pending_requests, request->discid);
-		g_free (request->uri);
-		g_free (request->name);
-		g_free (request->version);
-
-		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_MALFORMED_DATA);
-		g_free (request->discid);
-
-		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
-		g_free (request);
-	}
-
-	g_free (cddb_result);
-}
-
-/* Displays error to terminal.
-   If there is a GUI available, should display error in a dialog
-   FIXME  :) */
-static void
-cddb_slave_error (const char *error,
-		  struct _CDDBRequest *request)
-{
-	g_print ("CDDBSlave %s: %s", request->uri, error);
-}
-
-static void
-cddb_read_cb (GnomeVFSAsyncHandle *handle,
-	      GnomeVFSResult result,
-	      gpointer buffer,
-	      GnomeVFSFileSize bytes_requested,
-	      GnomeVFSFileSize bytes_read,
-	      gpointer closure)
-{
-	struct _CDDBRequest *request = (struct _CDDBRequest *) closure;
-
-	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
-		cddb_slave_error (gnome_vfs_result_to_string (result), request);
-		request->handle = NULL;
-		gnome_vfs_async_close (handle, request->close_cb, request);
-	}
-
-	if (bytes_read == 0) {
-		/* EOF */
-		gnome_vfs_async_close (handle, request->close_cb, request);
-	} else {
-		/* Add a NULL to the end */
-		*((char *) buffer + bytes_read) = 0;
-		g_string_append (request->bufstring, (const char *) buffer);
-		gnome_vfs_async_read (handle, buffer, 4095, cddb_read_cb,
-				      request);
-	}
-}
-		
-static void
-cddb_open_cb (GnomeVFSAsyncHandle *handle,
-	      GnomeVFSResult result,
-	      gpointer closure)
-{
-	struct _CDDBRequest *request = (struct _CDDBRequest *) closure;
-
-	if (result != GNOME_VFS_OK) {
-		cddb_slave_error (gnome_vfs_result_to_string (result), request);
-		g_hash_table_remove (pending_requests, request->discid);
-		g_free (request->discid);
-		g_free (request->name);
-		g_free (request->version);
-
-		cddb_slave_notify_listeners (request->cddb, request->uri, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
-		g_free (request->uri);
-
-		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
-		g_free (request);
-
-		return;
-	}
-
-	/* Next level */
-	request->buf = g_new (char, 4096);
-	request->bufstring = g_string_new ("");
+	sin = gnet_tcp_socket_get_iochannel (sock);
+	cd->iochannel = sin;
 	
-	gnome_vfs_async_read (handle, request->buf, 4095, cddb_read_cb, request);
+	g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
+			read_from_server, data);
 }
 
 static void
-cddb_send_cmd (CDDBSlave *cddb,
-	       const char *uri,
-	       const char *discid,
-	       const char *name,
-	       const char *version)
+cddb_send_cmd (ConnectionData *data)
 {
-	struct _CDDBRequest *request;
+	GTcpSocketConnectAsyncID *sock;
 
-	g_return_if_fail (cddb != NULL);
-	g_return_if_fail (IS_CDDB_SLAVE (cddb));
-	g_return_if_fail (uri != NULL);
-
-	if (pending_requests == NULL) {
-		pending_requests = g_hash_table_new (g_str_hash, g_str_equal);
-		request = NULL;
-	} else {
-		request = g_hash_table_lookup (pending_requests, discid);
-	}
-
-	if (request != NULL) {
-		/* Request is already happening. We don't want to send 2
-		   identical requests */	
-		cddb_slave_notify_listeners (request->cddb, discid, GNOME_Media_CDDBSlave2_REQUEST_PENDING);
+	sock = gnet_tcp_socket_connect_async (data->cddb->priv->server,
+					      data->cddb->priv->port,
+					      open_cb, data);
+	if (sock == NULL) {
+		g_warning ("Could not connect to %s:%s",
+			   data->cddb->priv->server,
+			   data->cddb->priv->port);
+		/* Notify listeners */
 		return;
 	}
-	
-	request = g_new (struct _CDDBRequest, 1);
-	/* Ref the cddb object, unref it when the request is complete */
-	request->cddb = cddb;
-	bonobo_object_ref (BONOBO_OBJECT (cddb));
-
-	request->uri = g_strdup (uri);
-	request->discid = g_strdup (discid);
-	request->name = g_strdup (name);
-	request->version = g_strdup (version);
-
-	/* Set the close callback to the one to deal with this request */
-	request->close_cb = cddb_close_cb;
-
-	g_hash_table_insert (pending_requests, request->discid, request);
-
-	gnome_vfs_async_open (&request->handle, request->uri,
-			      GNOME_VFS_OPEN_READ, GNOME_VFS_PRIORITY_MIN, cddb_open_cb, request);
 }
-
+	
 static gboolean
 cddb_check_cache (const char *discid)
 {
@@ -505,7 +661,8 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 				   CORBA_Environment *ev)
 {
 	CDDBSlave *cddb;
-	char *request, *safe_request, *safe_name, *safe_version;
+	ConnectionData *cd;
+	char *request, *safe_offsets;
 	char *username, *hostname, *fullname, *uri;
 
 	cddb = cddb_slave_from_servant (servant);
@@ -513,26 +670,25 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	g_warning ("Request: %s", discid);
 	/* Do stuff */
 	if (cddb_check_cache (discid) == TRUE) {
+		g_print ("In cache\n");
 		cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
 		return;
 	}
 
-	fullname = g_strdup_printf ("%s(CDDBSlave2)", name);
+	cd = g_new (ConnectionData, 1);
+	cd->cddb = cddb;
+	g_object_ref (cddb);
+	
+	cd->name = g_strdup_printf ("%s(CDDBSlave2)", name);
+	cd->version = g_strdup (version);
+	cd->discid = g_strdup (discid);
+	cd->ntrks = ntrks;
+	cd->offsets = g_strdup (offsets);
+	cd->nsecs = nsecs;
+	cd->mode = CONNECTION_MODE_NEED_HELLO;
 
-	request = g_strdup_printf ("cddb+query+%s+%d+%s+%d",
-				   discid, ntrks, offsets, nsecs);
-
-	uri = g_strdup_printf ("http://%s/~cddb/cddb.cgi?cmd=%s&hello=%s+%s+%s+%s&proto=3",
-			       cddb->priv->server, 
-			       request, 
-			       "Destroy2000YearsofCulture",
-			       "172.23.65.132",
-			       fullname, version);
-	g_free (request);
-	g_free (fullname);
-
-	cddb_send_cmd (cddb, uri, discid, name, version);
-	g_free (uri);
+	cd->matches = NULL;
+	cddb_send_cmd (cd);
 }
 
 

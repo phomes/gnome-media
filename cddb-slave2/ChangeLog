@@ -1,3 +1,24 @@
+2002-01-16  Iain Holmes  <iain@ximian.com>
+
+	* cddb-slave.c: Rewrite using gnet functions, rather than just
+	plain HTTP.
+
+	* COPYING.LIB: Gnet code license
+
+	* README.GNET: Readme about gnet.
+
+	* gnet.h
+	  gnet-private.[ch]
+	  inetaddr.[ch]
+	  iochannel.[ch]
+	  socks.[ch]
+	  socks-private.[ch]
+	  tcp.[ch]: Files from gnet.
+
+2002-01-11  Iain Holmes  <iain@ximian.com>
+
+	* main.c (main): Register everything in an idle loop.
+
 2001-12-02  Iain Holmes  <iain@ximian.com>
 
 	* cddb-slave.c (cddb_send_read): Update gnome_vfs_async_open.

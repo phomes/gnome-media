@@ -31,7 +31,20 @@ CDDBSlave2_SOURCES =				\
 	$(IDL_GENERATED)			\
 	cddb-slave.c				\
 	cddb-slave.h				\
-	main.c
+	gnet.h					\
+	gnet-private.c				\
+	gnet-private.h				\
+	iochannel.c				\
+	iochannel.h				\
+	inetaddr.c				\
+	inetaddr.h				\
+	main.c					\
+	socks.c					\
+	socks.h					\
+	socks-private.c				\
+	socks-private.h				\
+	tcp.c					\
+	tcp.h
 
 CDDBSlave2_LDADD =				\
 	$(CDDBSLAVE_LIBS)				\

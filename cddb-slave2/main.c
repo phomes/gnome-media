@@ -78,8 +78,8 @@ factory_fn (BonoboGenericFactory *factory,
 
 	return BONOBO_OBJECT (cddb);
 }
-static void
-cddbslave_init (void)
+static gboolean
+cddbslave_init (gpointer data)
 {
 	BonoboGenericFactory *factory;
 
@@ -90,6 +90,8 @@ cddbslave_init (void)
 	}
 
 	bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
+
+	return FALSE;
 }
 
 int 
@@ -113,7 +115,7 @@ main (int argc,
 /*  			    argc, argv, NULL); */
 	bonobo_init (&argc, argv);
 
-	cddbslave_init ();
+	g_idle_add (cddbslave_init, NULL);
 	bonobo_main ();
 
 	exit (0);
