@@ -30,6 +30,12 @@
       <type>int</type>
       <default>0</default>
       <locale name="C">
+	<short>Server type</short>
+	<long>
+	  The type of the server to contact for CD queries. Possible values
+	  are 0 (FreeDB round robin server), 1 (other freedb server) and 2
+	  (other server).
+	</long>
       </locale>
     </schema>
     <schema>
@@ -38,7 +44,14 @@
       <owner>CDDB-Slave2</owner>
       <type>int</type>
       <default>0</default>
-      <locale name="C"></locale>
+      <locale name="C">
+	<short>Info to send to server</short>
+	<long>
+	  This key specifies which user info will be sent to the server to
+	  contact for CD queries. Possible values are 0 (no info), 1 (real 
+	  info) and 3 (other info).
+	</long>
+      </locale>
     </schema>
     <schema>
       <key>/schemas/apps/CDDB-Slave2/name</key>
