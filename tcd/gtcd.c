@@ -286,7 +286,7 @@ GtkWidget* make_row1( void )
 {
 	GtkWidget *box, *handle;
 
-	box = gtk_hbox_new( TRUE, 5 );
+	box = gtk_hbox_new( TRUE, 0 );
 	handle = gtk_handle_box_new();
 
 	make_button_with_pixmap( "play", box, PLAY, TRUE, TRUE, TT_PLAY );
@@ -302,7 +302,7 @@ GtkWidget* make_row1( void )
 GtkWidget* make_row2( void )
 {
 	GtkWidget *box, *handle;
-	box = gtk_hbox_new (TRUE, 5);
+	box = gtk_hbox_new( TRUE, 0 );
 	handle = gtk_handle_box_new();
 
 	make_button_with_pixmap("prev_t", box, PREV_T, TRUE, TRUE, TT_PREV_TRACK );
@@ -321,7 +321,7 @@ GtkWidget* make_row3( void )
 	GtkWidget *button, *gotolabel;
 	GtkWidget *pixmap, *handle;
 	
-        box = gtk_hbox_new( TRUE, 5 );
+        box = gtk_hbox_new( TRUE, 0 );
 	bbox = gtk_vbox_new( FALSE, 0 );
 	handle = gtk_handle_box_new();
 
@@ -405,8 +405,8 @@ void draw_status( void )
 		cd.trk[C(cd.last_t+1)].toc.cdte_addr.msf.second  );
 	gdk_draw_text( status_db,sfont,gc,52,24,tmp,strlen(tmp) );
 
-	sprintf( tmp, " Vol: %d%%", (int)ceil(cd.volume*0.390625) );
-	gdk_draw_text( status_db,sfont, gc,88,54,tmp,strlen(tmp) );
+	sprintf( tmp, "%d%%", (int)ceil(cd.volume*0.390625) );
+	gdk_draw_text( status_db,sfont, gc,114,52,tmp,strlen(tmp) );
 	
 	if( !cd.err )
 	{
@@ -437,11 +437,11 @@ void draw_status( void )
 	else strcpy( tmp, cd.errmsg );
 
 	gdk_gc_set_foreground(gc, &trackcolor);
-	gdk_draw_text( status_db,sfont,gc,4,40,tmp,strlen(tmp) );
+	gdk_draw_text( status_db,sfont,gc,4,40,tmp, strlen(tmp) );
 	
-	gdk_draw_text( status_db,sfont,gc,4,54, play_methods[cd.play_method] ,
-		strlen( play_methods[cd.play_method] ) );
-	
+	gdk_draw_text( status_db,sfont,gc,4,52, play_methods[cd.play_method] ,
+		strlen(play_methods[cd.play_method]) );
+
 	/* Finally, update the display */
 	gdk_draw_pixmap(status_area->window,
         	status_area->style->fg_gc[GTK_WIDGET_STATE(status_area)],
@@ -717,7 +717,7 @@ void setup_time_display( void )
         	(GtkSignalFunc)status_configure_event, NULL);
 	gtk_signal_connect( GTK_OBJECT(status_area),"button_press_event",
         	(GtkSignalFunc)status_click_event, NULL);
-	gtk_widget_set_usize( status_area, 175, 59 );
+	gtk_widget_set_usize( status_area, 150, 59 );
 
 	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
         
@@ -733,6 +733,7 @@ void setup_time_display( void )
 #ifdef TCD_CHANGER_ENABLED
 	gtk_box_pack_start( GTK_BOX(lowerbox), changer_box, FALSE, FALSE, 0 );
 #endif
+//	aboutbutton = make_button_with_pixmap( "cdrom", lowerbox, ABOUT, FALSE, FALSE, TT_ABOUT );
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
 	handle1 = gtk_handle_box_new();
@@ -745,13 +746,13 @@ void setup_time_display( void )
 
 void setup_rows( void )
 {
-	GtkWidget *ttbox = gtk_vbox_new( FALSE, 5 );
+	GtkWidget *ttbox = gtk_vbox_new( FALSE, 1 );
 	sep = gtk_hseparator_new();
 
-	bottom_box = gtk_hbox_new( FALSE, 5 );
-	vbox = gtk_vbox_new( FALSE, 5 );
-	upper_box = gtk_hbox_new( TRUE, 5 );
-	button_box = gtk_vbox_new( TRUE, 5 );
+	bottom_box = gtk_hbox_new( FALSE, 4 );
+	vbox = gtk_vbox_new( FALSE, 4 );
+	upper_box = gtk_hbox_new( TRUE, 4 );
+	button_box = gtk_vbox_new( TRUE, 0 );
 
         row = make_row1();
 	gtk_box_pack_start( GTK_BOX(button_box), row, TRUE, TRUE, 0 );
@@ -777,20 +778,13 @@ void setup_rows( void )
 	titlelabel = gtk_label_new("-");
 	gtk_widget_show(titlelabel);
 	titlelabel_f = tracklabel_f = TRUE;
-
         gtk_box_pack_start(GTK_BOX(ttbox), titlelabel, TRUE, FALSE, 0);
+
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
 	aboutbutton = make_button_with_pixmap( "cdrom", bottom_box, ABOUT, FALSE, FALSE, TT_ABOUT );
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
         gtk_container_add (GTK_CONTAINER (window), vbox);
-
-	gtk_widget_show(sep);
-	gtk_widget_show(ttbox);
-	gtk_widget_show(bottom_box);
-	gtk_widget_show(vbox);
-	gtk_widget_show(upper_box);
-	gtk_widget_show(button_box);
 
 	return;
 }
@@ -849,7 +843,7 @@ int main (int argc, char *argv[])
 	gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
         gnome_app_set_contents( GNOME_APP(window), vbox);
-        gtk_widget_show(window); /* Make sure window is shown last */
+        gtk_widget_show_all(window); /* Make sure window is shown last */
 	gdk_window_set_decorations( window->window, GDK_DECOR_ALL|GDK_DECOR_TITLE|GDK_DECOR_RESIZEH );
         gtk_main ();
 	gnome_config_sync();

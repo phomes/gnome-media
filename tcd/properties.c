@@ -54,6 +54,7 @@ void save_properties( tcd_properties *prop )
 {
 	gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
 	gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
+	gnome_config_set_int("/gtcd/cddb/port", prop->cddbport );
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
 	gnome_config_set_string("/gtcd/ui/timefont", prop->timefont );

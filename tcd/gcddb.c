@@ -33,6 +33,7 @@
 #include "gcddb.h"
 #include "socket.h"
 #include "cddb.h"
+#include "properties.h"
 
 GtkWidget *win, *td, *label;
 GtkWidget *server_e, *port;
@@ -43,6 +44,8 @@ GtkWidget *pb;
 int val;
 int cancel_id, start_id, timeout;
 GtkWidget *cancelbutton, *startbutton;
+
+extern tcd_properties props;
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
@@ -62,7 +65,8 @@ void cancel_cddb( GtkWidget *widget, gpointer data )
 void gcddb( GtkWidget *button_td )
 {
 	GtkWidget *table, *tmp;
-
+	char ctmp[8];
+	
 	box = gtk_vbox_new( FALSE, 5 );
 	table = gtk_table_new( 2,4,TRUE );
 
@@ -84,8 +88,9 @@ void gcddb( GtkWidget *button_td )
 	gtk_widget_show( port );
 	gtk_table_attach_defaults( GTK_TABLE(table), server_e, 0,3,1,2 );
 	gtk_table_attach_defaults( GTK_TABLE(table), port, 3,4,1,2 );
-	gtk_entry_set_text( GTK_ENTRY(server_e), "cddb.cddb.com" );
-	gtk_entry_set_text( GTK_ENTRY(port), "888" );
+	gtk_entry_set_text( GTK_ENTRY(server_e), props.cddb );
+	sprintf( ctmp, "%d", props.cddbport );
+	gtk_entry_set_text( GTK_ENTRY(port), ctmp );
 	
 	gtk_widget_set_usize( table, 200, 50 );
 	gtk_widget_show(table);
