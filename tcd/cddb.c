@@ -58,12 +58,19 @@ struct toc {
                         
 struct toc cdtoc[100];
                         
+static int num_digits( int num)
+{
+	int count = 1;
+	
+	while ((num/=10) != 0)
+		count++;
+	return(count);
+}
 
 int tcd_readcddb( cd_struct* cd, char* filename )
 {
 	FILE* fp;
 	char string[100];
-	char num[80];
 	int trk;	
 	
 	fp = fopen( filename, "r" );
@@ -94,8 +101,10 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 		}
 		if( strncmp( string, "TTITLE", 6 ) == 0 )
 		{
-                       	if(sscanf( string, "TTITLE%d=%[ -z]", &trk, num ) == 2)
-                        	strncpy( cd->trk[trk+1].name, num, TRK_NAME_LEN );
+                       	if(sscanf( string, "TTITLE%d=", &trk ) == 1)
+                        	strncpy( cd->trk[trk+1].name, 
+                        	         string + 7 + num_digits(trk),
+                        	         TRK_NAME_LEN );
                 	else
                 		cd->trk[trk+1].name[0] = 0;
 		}				

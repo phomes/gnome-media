@@ -818,7 +818,7 @@ void init_window(void)
         gtk_signal_connect( GTK_OBJECT(window), "delete_event",
                 GTK_SIGNAL_FUNC(delete_event), NULL);
 
-        gtk_container_border_width( GTK_CONTAINER(window), 5 );
+        gtk_container_border_width( GTK_CONTAINER(window), 0 );
         gtk_widget_realize(window);
 
 	tooltips = gtk_tooltips_new();
