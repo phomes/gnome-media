@@ -16,6 +16,7 @@
 #include <libbonobo.h>
 
 #include <gconf/gconf-client.h>
+#include <gdk/gdkx.h>
 
 #include "cddb-slave.h"
 
@@ -124,14 +125,22 @@ static gboolean
 cddbslave_init (gpointer data)
 {
 	BonoboGenericFactory *factory;
+	char *display_iid;
 
-	factory = bonobo_generic_factory_new (CDDBSLAVE_IID, factory_fn, NULL);
-	if (factory == NULL) {
-		g_error ("Cannot create factory");
-		exit (1);
+	factory = bonobo_activation_activate_from_id (CDDBSLAVE_IID, Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, NULL);
+
+	if (!factory) {
+		display_iid = bonobo_activation_make_registration_id (CDDBSLAVE_IID, DisplayString (gdk_display));
+		factory = bonobo_generic_factory_new (display_iid, factory_fn, NULL);
+		g_free (display_iid);
+		if (factory == NULL) {
+			g_error ("Cannot create factory");
+			exit (1);
+		}
+
+		bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
+		bonobo_main ();
 	}
-
-	bonobo_running_context_auto_exit_unref (BONOBO_OBJECT (factory));
 
 	return FALSE;
 }
@@ -165,8 +174,7 @@ main (int argc,
 	}
 	g_free (cddbdir);
 	
-	g_idle_add (cddbslave_init, NULL);
-	bonobo_main ();
+	cddbslave_init (NULL);
 
 	exit (0);
 }
