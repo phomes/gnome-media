@@ -1471,28 +1471,6 @@ pipeline_deep_notify_cb (GstElement *element,
 	}
 }
 
-/* helper function to change the UI when file extension changes */
-static void
-set_extension (GSRWindow *window)
-{
-	gchar *short_name, *filename;
-        GMAudioProfile *profile;
-        g_object_get (window, "location", &filename, NULL);
-	short_name = g_path_get_basename (filename);
-        profile = gm_audio_profile_choose_get_active (window->priv->profile);
-        g_free (window->priv->extension);
-        window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
-	if (filename != NULL) {
-		char *title;
-		title = g_strdup_printf (_("%s.%s - Sound Recorder"), short_name, window->priv->extension);
-		gtk_window_set_title (GTK_WINDOW (window), title);
-		g_free (title);
-	} else {
-		gtk_window_set_title (GTK_WINDOW (window), _("Sound Recorder"));
-	}
-
-}
-
 /* callback for when the recording profile has been changed */
 static void
 profile_changed_cb (GObject *object, GSRWindow *window)
@@ -1509,8 +1487,6 @@ profile_changed_cb (GObject *object, GSRWindow *window)
   gconf_client_set_string (client, KEY_LAST_PROFILE_ID, id, NULL);
   g_object_unref (G_OBJECT (client));
   g_free (id);
-
-  set_extension (window);
 }
 
 static GSRWindowPipeline *
@@ -1714,7 +1690,7 @@ gsr_window_get_type (void)
 }
 
 GtkWidget *
-gsr_window_new (const char *filename, gboolean open)
+gsr_window_new (const char *filename)
 {
 	GSRWindow *window;
 	GtkWidget *hbox, *table, *label, *vbox;
@@ -1835,8 +1811,6 @@ gsr_window_new (const char *filename, gboolean open)
 			  1, 2, 1, 2,
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
-	if (!open)			       
-        set_extension (window);
 
 	gtk_widget_show_all (window->priv->main_vbox);
 	return GTK_WIDGET (window);

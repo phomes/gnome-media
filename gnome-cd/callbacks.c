@@ -1021,6 +1021,7 @@ tray_icon_destroyed (GtkWidget *widget, GnomeCD *gcd)
 		gtk_widget_show (gcd->window);
 	}
 	gtk_widget_destroy (gcd->tray);
+	gcd->tray = NULL;
 
 	tray_icon_create (gcd);
 
