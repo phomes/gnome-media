@@ -523,7 +523,7 @@ GList *make_channels(device_info *device)
 			new_channel->device=device;
 			new_channel->channel=i;
 	 		new_channel->pixmap = g_strdup (device_pixmap[i]);
-			new_channel->title= g_strdup(device_labels[i]);
+			new_channel->title= g_strdup(_(device_labels[i]));
 			new_channel->passive=0;
 			channels=g_list_append(channels, new_channel);
 		}
