@@ -6,6 +6,7 @@ bin_PROGRAMS = tvset about preferences
 
 tvset_SOURCES = \
 	xwindows.c	\
+	tv-set.c	\
 	tv-videodev.c	\
 	channels.h	\
 	channels.c
