@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 00:19-0700\n"
-"PO-Revision-Date: 2004-01-25 16:34+0100\n"
+"POT-Creation-Date: 2004-02-24 04:52+0100\n"
+"PO-Revision-Date: 2004-02-24 13:11+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Neznámý / Neznámý"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:974
-#: grecord/src/gsr-window.c:983 grecord/src/gsr-window.c:992
-#: grecord/src/gsr-window.c:1002 grecord/src/gsr-window.c:1341
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:856
+#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1223
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1265,8 +1265,8 @@ msgstr "_Dostupná témata:"
 msgid "Record sound clips"
 msgstr "Vytváření zvukových záznamů"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1197
-#: grecord/src/gsr-window.c:1593
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1079
+#: grecord/src/gsr-window.c:1475
 msgid "Sound Recorder"
 msgstr "Záznamník zvuků"
 
@@ -1294,7 +1294,7 @@ msgstr "Vytvořit nový vzorek"
 msgid "Display help for Sound Recorder"
 msgstr "Zobrazit nápovědu pro Záznamník zvuků"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1060
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:942
 msgid "File Information"
 msgstr "Informace o souboru"
 
@@ -1465,146 +1465,132 @@ msgstr "sekund"
 msgid "second"
 msgstr "sekunda"
 
-#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1521
-#: grecord/src/gsr-window.c:1692 grecord/src/gsr-window.c:1782
+#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1403
+#: grecord/src/gsr-window.c:1574 grecord/src/gsr-window.c:1664
 msgid "Ready"
 msgstr "Připraven"
 
-#: grecord/src/gsr-window.c:651
-#, fuzzy
-msgid "_Replace"
-msgstr "Space"
-
-#: grecord/src/gsr-window.c:668
-#, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists.\n"
-"Do you want to replace it with the one you are saving?"
-msgstr ""
-"<b>Soubor '%s' již existuje.</b>\n"
-"Chcete jej přepsat?"
-
-#: grecord/src/gsr-window.c:701
+#: grecord/src/gsr-window.c:583
 msgid "Unknown extension, doing nothing"
 msgstr "Neznámá přípona, nic nedělám"
 
-#: grecord/src/gsr-window.c:714
+#: grecord/src/gsr-window.c:596
 msgid "Could not build pipeline"
 msgstr "Nemohu vytvořit pipeline"
 
-#: grecord/src/gsr-window.c:755
+#: grecord/src/gsr-window.c:637
 #, c-format
 msgid "Saving %s..."
 msgstr "Ukládám %s..."
 
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:692
 msgid "Save file as"
 msgstr "Uložit soubor jako"
 
-#: grecord/src/gsr-window.c:867
+#: grecord/src/gsr-window.c:749
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s není nainstalován v cestě."
 
-#: grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:756
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Při spouštění %s došlo k chybě: %s"
 
-#: grecord/src/gsr-window.c:949
+#: grecord/src/gsr-window.c:831
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nebylo uloženo)"
 
-#: grecord/src/gsr-window.c:965
+#: grecord/src/gsr-window.c:847
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:867
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:994
+#: grecord/src/gsr-window.c:876
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:1006
+#: grecord/src/gsr-window.c:888
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:892
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:1039
+#: grecord/src/gsr-window.c:921
 #, c-format
 msgid "%s Information"
 msgstr "Informace o %s"
 
-#: grecord/src/gsr-window.c:1074
+#: grecord/src/gsr-window.c:956
 msgid "Folder:"
 msgstr "Adresář:"
 
-#: grecord/src/gsr-window.c:1080 grecord/src/gsr-window.c:1926
+#: grecord/src/gsr-window.c:962 grecord/src/gsr-window.c:1808
 msgid "Filename:"
 msgstr "Jméno souboru:"
 
-#: grecord/src/gsr-window.c:1086
+#: grecord/src/gsr-window.c:968
 msgid "File size:"
 msgstr "Velikost souboru:"
 
-#: grecord/src/gsr-window.c:1095
+#: grecord/src/gsr-window.c:977
 msgid "Audio Information"
 msgstr "Informace o zvuku"
 
-#: grecord/src/gsr-window.c:1109
+#: grecord/src/gsr-window.c:991
 msgid "Song length:"
 msgstr "Délka písně:"
 
-#: grecord/src/gsr-window.c:1115
+#: grecord/src/gsr-window.c:997
 msgid "Number of channels:"
 msgstr "Počet kanálů:"
 
-#: grecord/src/gsr-window.c:1121
+#: grecord/src/gsr-window.c:1003
 msgid "Sample rate:"
 msgstr "Vzorkovací kmitočet: "
 
-#: grecord/src/gsr-window.c:1127
+#: grecord/src/gsr-window.c:1009
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:1199
+#: grecord/src/gsr-window.c:1081
 msgid "A sound recorder for GNOME"
 msgstr "Záznamník zvuků pro GNOME"
 
-#: grecord/src/gsr-window.c:1497
+#: grecord/src/gsr-window.c:1379
 msgid "Playing..."
 msgstr "Přehrávám..."
 
-#: grecord/src/gsr-window.c:1589
+#: grecord/src/gsr-window.c:1471
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Záznamník zvuků"
 
-#: grecord/src/gsr-window.c:1667
+#: grecord/src/gsr-window.c:1549
 msgid "Recording..."
 msgstr "Nahrávám..."
 
-#: grecord/src/gsr-window.c:1901
+#: grecord/src/gsr-window.c:1783
 msgid "Record as"
 msgstr "Zaznamenávat jako"
 
-#: grecord/src/gsr-window.c:1911
+#: grecord/src/gsr-window.c:1793
 msgid "File information"
 msgstr "Informace o souboru"
 
-#: grecord/src/gsr-window.c:1933
+#: grecord/src/gsr-window.c:1815
 msgid "<none>"
 msgstr "<žádný>"
 
-#: grecord/src/gsr-window.c:1942
+#: grecord/src/gsr-window.c:1824
 msgid "Length:"
 msgstr "Délka:"
 
@@ -1619,17 +1605,17 @@ msgstr "Ovládání hlasitosti"
 #: gst-mixer/src/mixer.c:218
 #, c-format
 msgid "%s Slider"
-msgstr ""
+msgstr "Posuvník %s"
 
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr ""
+msgstr "Kanál %d posuvníku %s"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
 msgid "%s Slider %d"
-msgstr ""
+msgstr "Posuvník %s %d"
 
 #: gst-mixer/src/mixer.c:234
 msgid "Lock"
@@ -2316,6 +2302,13 @@ msgstr "Sledování hlasitosti"
 #~ msgstr ""
 #~ "'%s' je adresář.\n"
 #~ "Zvolte prosím jiný název souboru."
+
+#~ msgid ""
+#~ "<b>File '%s' already exists.</b>\n"
+#~ "Do you want to overwrite it?"
+#~ msgstr ""
+#~ "<b>Soubor '%s' již existuje.</b>\n"
+#~ "Chcete jej přepsat?"
 
 #~ msgid "Cancel save"
 #~ msgstr "Zrušit ukládání"
