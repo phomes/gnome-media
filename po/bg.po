@@ -1,12 +1,13 @@
 # Bulgarian translation for gnome-media for GNOME2.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Evgeni Boevski <linkej@yahoo.com>, 2002.
+# small updates for completeness, Yanko Kaneti <yaneti@declera.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-06-10 12:19+0200\n"
-"PO-Revision-Date: 2002-06-10 02:53+0200\n"
+"POT-Creation-Date: 2002-06-20 22:11+0200\n"
+"PO-Revision-Date: 2002-06-20 22:12+0200\n"
 "Last-Translator: Evgeni Boevski <linkej@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -1132,7 +1133,7 @@ msgid "%s Record"
 msgstr "%s Запис"
 
 #: gmix/gmix.c:1308 gmix/gnome-volume-control.desktop.in.in.h:2
-#: gnome-cd/gnome-cd.c:489
+#: gnome-cd/gnome-cd.c:488
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Настройки на Звука"
@@ -1188,7 +1189,7 @@ msgstr "Възстанови о_ригиналните етикети."
 msgid "Gnome Volume Control Preferences"
 msgstr "Настройки на Gnome Настройки на Звука"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:507
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:506
 msgid "Preferences"
 msgstr "Настройки"
 
@@ -1241,7 +1242,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Лента, показваща името на албума"
 
 #: gnome-cd/callbacks.c:76 gnome-cd/callbacks.c:163 gnome-cd/callbacks.c:262
-#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:556 grecord/src/gui.c:236
+#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:555 grecord/src/gui.c:236
 msgid "Play"
 msgstr "Възпр."
 
@@ -1283,20 +1284,12 @@ msgstr "Copyright (C) 2001, 2002"
 msgid "A GNOME cd player"
 msgstr "CD плеър за GNOME"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Неизвестен изпълнител"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Неизвестен диск"
-
-#: gnome-cd/cdrom.c:355
+#: gnome-cd/cdrom.c:362
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "Изглежда нямате достъп до %s."
 
-#: gnome-cd/cdrom.c:361
+#: gnome-cd/cdrom.c:368
 #, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
@@ -1305,11 +1298,119 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 "%s не сочи към валидно CD устройство. Възможно е да:\n"
-"а)нямате компилирана поддръжка на CD устр. в Linux\n"
+"а)нямате компилирана поддръжка на CD устройство в Linux\n"
 "б)нямате нужния достъп до CD устройството\n"
 "в)%s не е вашето CD устройство.\n"
 
-#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
+#: gnome-cd/display.c:74
+msgid "Unknown artist"
+msgstr "Неизвестен изпълнител"
+
+#: gnome-cd/display.c:75
+msgid "Unknown disc"
+msgstr "Неизвестен диск"
+
+#: gnome-cd/freebsd-cdrom.c:176 gnome-cd/linux-cdrom.c:175
+msgid "Error opening CD"
+msgstr "Грешка при отваряне на CD"
+
+#: gnome-cd/freebsd-cdrom.c:181 gnome-cd/linux-cdrom.c:180
+msgid "Error reading CD header"
+msgstr "Грешка при четене на CD хедъра"
+
+#: gnome-cd/freebsd-cdrom.c:198 gnome-cd/linux-cdrom.c:197
+msgid "IOCtl failed"
+msgstr "Провал на ВИКтл"
+
+#: gnome-cd/freebsd-cdrom.c:211 gnome-cd/linux-cdrom.c:209
+msgid "Error getting leadout"
+msgstr "Грешка при взимане на leadout"
+
+#: gnome-cd/freebsd-cdrom.c:219 gnome-cd/linux-cdrom.c:217
+#, c-format
+msgid ""
+"CD changed\n"
+"Track count: %d\n"
+"------------------\n"
+msgstr ""
+"CD е сменен\n"
+"Номер песни: %d\n"
+"------------------\n"
+
+#: gnome-cd/freebsd-cdrom.c:251 gnome-cd/linux-cdrom.c:249
+#, c-format
+msgid "(eject): ioctl failed: %s"
+msgstr "(извади): ioctl грешка: %s"
+
+#: gnome-cd/freebsd-cdrom.c:437
+msgid "(freebsd_cdrom_play): Drive not ready"
+msgstr "(freebsd_cdrom_play): Устройството не е готово"
+
+#: gnome-cd/freebsd-cdrom.c:457
+msgid "(freebsd_cdrom_play): Drive still not ready"
+msgstr "(freebsd_cdrom_play): Устройството все още не е готово"
+
+#: gnome-cd/freebsd-cdrom.c:522
+#, c-format
+msgid "(freebsd_cdrom_play) ioctl failed %s"
+msgstr "(freebsd_cdrom_play) ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:558
+msgid "(freebsd_cdrom_pause): Drive not ready"
+msgstr "(freebsd_cdrom_pause): Устройството не е готово"
+
+#: gnome-cd/freebsd-cdrom.c:571
+#, c-format
+msgid "(freebsd_cdrom_pause): Resume failed %s"
+msgstr "(freebsd_cdrom_pause): Възстановяването неуспешно %s"
+
+#: gnome-cd/freebsd-cdrom.c:590
+#, c-format
+msgid "(freebsd_cdrom_pause): ioctl failed %s"
+msgstr "(freebsd_cdrom_pause): ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:636
+#, c-format
+msgid "(freebsd_cdrom_stop) ioctl failed %s"
+msgstr "(frebsd_cdrom_stop) ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:854
+#, c-format
+msgid "(freebsd_cdrom_get_status): ioctl error %s"
+msgstr "(freebsd_cdrom_get_status): ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:874
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:885
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:948
+#, c-format
+msgid "(freebsd_cdrom_close_tray): ioctl failed %s"
+msgstr "(freebsd_cdrom_close_tray): ioctl грешка %s"
+
+#: gnome-cd/freebsd-cdrom.c:983
+#, c-format
+msgid "(freebsd_cdrom_set_volume:1): ioctl failed %s"
+msgstr "(freebsd_cdrom_set_volume:1): ioctl грешка %s"
+
+#. Failed, it's not a CDROM drive
+#: gnome-cd/freebsd-cdrom.c:1015
+#, c-format
+msgid "%s is not a CDROM drive\n"
+msgstr "%s не е CDROM устр\n"
+
+#: gnome-cd/freebsd-cdrom.c:1022
+#, c-format
+msgid "%s is a CDROM drive\n"
+msgstr "%s не е CDROM устройство\n"
+
+#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:440
 msgid "Gnome CD Player"
 msgstr "CD Плеър за Gnome"
 
@@ -1348,19 +1449,19 @@ msgid ""
 "will be unable to run. Press Set device to go to a dialog\n"
 "where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
-"Липсва настроено CD устр. Това означава, че GnomeCD\n"
-"няма да работи. Натиснете Настрой устр. за да настроите\n"
+"Липсва настроено CD устройство. Това означава, че GnomeCD\n"
+"няма да работи. Натиснете Настрой устройство за да настроите\n"
 "устройство или изберете Изход за да затворите GnomeCD"
 
-#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:418
+#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:417
 msgid "Set device"
-msgstr "Настрой устр."
+msgstr "Настрой устройство"
 
 #: gnome-cd/gnome-cd.c:380
 msgid "No CD device"
-msgstr "Няма CD устр."
+msgstr "Няма CD устройство"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:413
 #, c-format
 msgid ""
 "%s\n"
@@ -1368,66 +1469,67 @@ msgid ""
 "go to a dialog where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
 "%s\n"
-"Това означава, че GnomeCD няма да работи коректно. Натиснете Настрой устр. "
-"за да настроите устройство или изберете Изход за да затворите GnomeCD"
+"Това означава, че GnomeCD няма да работи коректно. Натиснете Настрой "
+"устройство за да настроите устройство или изберете Изход за да затворите "
+"GnomeCD"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:419
 msgid "Invalid CD device"
-msgstr "Невалидно CD устр."
+msgstr "Невалидно CD устройство"
 
-#: gnome-cd/gnome-cd.c:498
+#: gnome-cd/gnome-cd.c:497
 msgid "Open track editor"
 msgstr "Отвори редактора на песни"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:498
 msgid "Track editor"
 msgstr "Редактор на песни"
 
-#: gnome-cd/gnome-cd.c:506
+#: gnome-cd/gnome-cd.c:505
 msgid "Open preferences"
 msgstr "Отвори предпочитаните настройки"
 
-#: gnome-cd/gnome-cd.c:515
+#: gnome-cd/gnome-cd.c:514
 msgid "Track List"
 msgstr "Списък на песни"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous track"
 msgstr "Предишна песен"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous"
 msgstr "Предишна"
 
-#: gnome-cd/gnome-cd.c:539
+#: gnome-cd/gnome-cd.c:538
 msgid "Rewind"
 msgstr "Върни"
 
-#: gnome-cd/gnome-cd.c:556
+#: gnome-cd/gnome-cd.c:555
 msgid "Play / Pause"
 msgstr "Възпр./Пауза"
 
-#: gnome-cd/gnome-cd.c:561 grecord/src/gui.c:250
+#: gnome-cd/gnome-cd.c:560 grecord/src/gui.c:250
 msgid "Stop"
 msgstr "Спри"
 
-#: gnome-cd/gnome-cd.c:565
+#: gnome-cd/gnome-cd.c:564
 msgid "Fast forward"
 msgstr "Напред"
 
-#: gnome-cd/gnome-cd.c:573
+#: gnome-cd/gnome-cd.c:572
 msgid "Next track"
 msgstr "Следваща песен"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject CD"
 msgstr "Извади CD"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject"
 msgstr "Извади"
 
-#: gnome-cd/gnome-cd.c:641
+#: gnome-cd/gnome-cd.c:640
 msgid "Cannot create player"
 msgstr "Невъзможно създаване на плеър"
 
@@ -1439,54 +1541,22 @@ msgstr "CD Плеър"
 msgid "Play audio CDs"
 msgstr "Възпр. аудио CD-та"
 
-#: gnome-cd/linux-cdrom.c:175
-msgid "Error opening CD"
-msgstr "Грешка при отваряне на CD"
-
-#: gnome-cd/linux-cdrom.c:180
-msgid "Error reading CD header"
-msgstr "Грешка при четене на CD хедъра"
-
-#: gnome-cd/linux-cdrom.c:197
-msgid "IOCtl failed"
-msgstr "Провал на ВИКтл"
-
-#: gnome-cd/linux-cdrom.c:209
-msgid "Error getting leadout"
-msgstr "Грешка при взимане на leadout"
-
-#: gnome-cd/linux-cdrom.c:217
-#, c-format
-msgid ""
-"CD changed\n"
-"Track count: %d\n"
-"------------------\n"
-msgstr ""
-"CD е сменен\n"
-"Номер песни: %d\n"
-"------------------\n"
-
-#: gnome-cd/linux-cdrom.c:249
-#, c-format
-msgid "(eject): ioctl failed: %s"
-msgstr "(извади):виктл се провали: %s"
-
 #: gnome-cd/linux-cdrom.c:434
 msgid "(linux_cdrom_play): Drive not ready"
-msgstr "(linux_cdrom_play):Устр. не е готово"
+msgstr "(linux_cdrom_play):Устройството не е готово"
 
 #: gnome-cd/linux-cdrom.c:454
 msgid "(linux_cdrom_play): Drive still not ready"
-msgstr "(linux_cdrom_play): Устр. все още не е готово"
+msgstr "(linux_cdrom_play): Устройството все още не е готово"
 
 #: gnome-cd/linux-cdrom.c:519
 #, c-format
 msgid "(linux_cdrom_play) ioctl failed %s"
-msgstr "(linux_cdrom_play) виктл се провали %s"
+msgstr "(linux_cdrom_play) ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:555
 msgid "(linux_cdrom_pause): Drive not ready"
-msgstr "(linux_cdrom_pause): Устр. не е готово"
+msgstr "(linux_cdrom_pause): Устройството не е готово"
 
 #: gnome-cd/linux-cdrom.c:568
 #, c-format
@@ -1496,12 +1566,12 @@ msgstr "(linux_cdrom_pause): Възстановяването неуспешно
 #: gnome-cd/linux-cdrom.c:587
 #, c-format
 msgid "(linux_cdrom_pause): ioctl failed %s"
-msgstr "(linux_cdrom_pause): виктл се провали %s"
+msgstr "(linux_cdrom_pause): ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:633
 #, c-format
 msgid "(linux_cdrom_stop) ioctl failed %s"
-msgstr "(linux_cdrom_stop) виктл се провали %s"
+msgstr "(linux_cdrom_stop) ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:849
 #, c-format
@@ -1511,28 +1581,28 @@ msgstr "(linux_cdrom_get_status): виктл грешка %s"
 #: gnome-cd/linux-cdrom.c:863
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-msgstr "(linux_cdrom_get_status): CDROMСУБКАНАЛ виктл се провали %s"
+msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:874
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-msgstr "(linux_cdrom_get_status): CDROMЧЕТЕНЕНАРАЗМЕР виктл се провали %s"
+msgstr "(linux_cdrom_get_status): CDROMVOLREAD ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:939
 #, c-format
 msgid "(linux_cdrom_close_tray): ioctl failed %s"
-msgstr "(linux_cdrom_close_tray): виктл се провали %s"
+msgstr "(linux_cdrom_close_tray): ioctl грешка %s"
 
 #: gnome-cd/linux-cdrom.c:974
 #, c-format
 msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-msgstr "(linux_cdrom_set_volume:1): виктл се провали %s"
+msgstr "(linux_cdrom_set_volume:1): ioctl грешка %s"
 
 #. Failed, it's not a CDROM drive
 #: gnome-cd/linux-cdrom.c:1005
 #, c-format
 msgid "%s is not a CDROM drive"
-msgstr "%s не е CDROM устр."
+msgstr "%s не е CDROM устройство"
 
 #: gnome-cd/preferences.c:82
 #, c-format
@@ -1545,7 +1615,7 @@ msgstr ""
 
 #: gnome-cd/preferences.c:83
 msgid "Error setting device"
-msgstr "Грешка при установяване на устр."
+msgstr "Грешка при установяване на устройство"
 
 #: gnome-cd/preferences.c:771
 msgid "Gnome CD Player Preferences"
@@ -1553,7 +1623,7 @@ msgstr "Настройки на Gnome CD Плеър"
 
 #: gnome-cd/preferences.c:789
 msgid "CD player de_vice"
-msgstr "_Устр. на CD плеъра"
+msgstr "CD плеър _устройство"
 
 #: gnome-cd/preferences.c:804
 msgid "_Apply change"
