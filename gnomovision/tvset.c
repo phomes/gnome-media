@@ -1234,7 +1234,7 @@ void make_tv_set(void)
 	menubar = tv_menu_bar();
 	gnome_app_set_menus(GNOME_APP(window), GTK_MENU_BAR(menubar));
 	gnome_app_create_toolbar(GNOME_APP(window), tbar);
-//	gnome_app_toolbar_set_position(GNOME_APP(window), GNOME_APP_POS_BOTTOM);
+/*	gnome_app_toolbar_set_position(GNOME_APP(window), GNOME_APP_POS_BOTTOM); */
 	
 	gtk_container_border_width(GTK_CONTAINER(GNOME_APP(window)->menubar), 3);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);

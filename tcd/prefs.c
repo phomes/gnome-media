@@ -217,7 +217,7 @@ void load_prefs(tcd_prefs *prop)
 
 	if (gnome_config_has_section("/gtcd/keybindings"))
 	{
-	    // One time event: override with any old keybindings
+		/* One time event: override with any old keybindings */
 	    load_old_key(&prop->quit,    "/gtcd/keybindings/quit=81");
 	    load_old_key(&prop->play,    "/gtcd/keybindings/play=80");
 	    load_old_key(&prop->stop,    "/gtcd/keybindings/stop=83");

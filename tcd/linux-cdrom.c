@@ -706,15 +706,15 @@ void parse_dtitle(cd_struct *cd)
     {
 	len = tmp2 - tmp;
 	if (len > 0)
-	{				// Back up to first non-space
+	{				/* Back up to first non-space */
 	    while ((len > 0) && isspace(tmp[len-1]))
 		   len--;
 	}
 	strncpy(cd->artist, tmp, len);
-	cd->artist[len] = '\0';		// Tie off the string
+	cd->artist[len] = '\0';		/* Tie off the string */
 
-	tmp2++;				// Skip the '/'
-	while (isspace(*tmp2))		// Skip spaces
+	tmp2++;				/* Skip the '/' */
+	while (isspace(*tmp2))		/* Skip spaces */
 	    tmp2++;
 	strncpy(cd->album, tmp2, DISC_INFO_LEN);
     }

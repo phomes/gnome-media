@@ -233,8 +233,8 @@ static void labels_destroy_one_page(gpointer page, gpointer user_data)
 		gtk_object_get_user_data(GTK_OBJECT(GTK_NOTEBOOK_PAGE(page)));
 	g_assert(entry_list);
 	g_slist_free(entry_list);
-	// No need to free the data.  All items are gtk widgets
-	// that will be destroyed when the window is destroyed.
+	/* No need to free the data.  All items are gtk widgets */
+	/* that will be destroyed when the window is destroyed. */
 }
 
 /*
@@ -381,7 +381,7 @@ static void label_one_device_config(gpointer device, gpointer parent)
 	device_info *info = (device_info *)device;
 	label_create_args_t args;
 
-	// The page: A scrolled viewport (and a label)
+	/* The page: A scrolled viewport (and a label) */
 	label = gtk_label_new(info->info.name);
 	scrlwin = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrlwin),
@@ -391,19 +391,19 @@ static void label_one_device_config(gpointer device, gpointer parent)
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrlwin),
 					      ubervbox);
 
-	// Put a table into the window.  This will expand dynamically
-	// if there are more than eight rows for any given sound card.
+	/* Put a table into the window.  This will expand dynamically
+	  if there are more than eight rows for any given sound card. */
 	table = gtk_table_new(2, 8, FALSE);
 	gtk_container_add(GTK_CONTAINER(ubervbox), table);
 
-	// Fill the table.
+	/* Fill the table. */
 	args.row = 0;
 	args.table = table;
 	args.entry_list = NULL;
 	g_list_foreach(info->channels, labels_create_one_slider, &args);
 	gtk_object_set_user_data(GTK_OBJECT(scrlwin), args.entry_list);
 
-	// Add the label reset button
+	/* Add the label reset button */
 	bbox = gtk_hbutton_box_new();
 	gtk_container_add(GTK_CONTAINER(ubervbox), bbox);
 	button = gtk_button_new_with_label(_("Defaults"));

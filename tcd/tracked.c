@@ -111,7 +111,7 @@ void edit_trackdb( void )
 
 	while( !stop )
 	{
-		// Draw page	
+		/* Draw page */
 		for( i=0; i < maxlines; i++ )
 			mvwprintw( win, i+1, 5, "                                                       " );
 		for( i=1; i <= pages[cur_page][0].num_tracks; i++ )
@@ -292,7 +292,7 @@ void change_aort( void )
 		wgetnstr(win, cd->dtitle, DISC_INFO_LEN-2);
 	else
 		wgetnstr(win, cd->dtitle, maxx-11 );	
-//	mvwprintw( win,maxy-6,2,"                                           " );
+/*	mvwprintw( win,maxy-6,2,"                                           " ); */
 
 
 	nocbreak();

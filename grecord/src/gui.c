@@ -94,13 +94,13 @@ static GnomeUIInfo echo_effect_menu_uiinfo [] =
 static GnomeUIInfo effects_menu_uiinfo [] =
 {
 	GNOMEUIINFO_SUBTREE (N_("Echo"), echo_effect_menu_uiinfo),
-	//GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo),
+	/* GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo), */
 	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo edit_menu_uiinfo[] =
 {
-	//GNOMEUIINFO_MENU_UNDO_ITEM (on_undo_activate_cb, NULL),
+	/* GNOMEUIINFO_MENU_UNDO_ITEM (on_undo_activate_cb, NULL), */
 	{
 		GNOME_APP_UI_ITEM, N_("Undo all changes"),
 		N_("Undo all changes made on the current sample"),
@@ -108,7 +108,7 @@ static GnomeUIInfo edit_menu_uiinfo[] =
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO,
 		0, 0, NULL,
 	},
-	//GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL),
+	/* GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL), */
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_SUBTREE (N_("Effects"), effects_menu_uiinfo),
 	GNOMEUIINFO_END
@@ -137,7 +137,7 @@ static GnomeUIInfo alternativ1_menu_uiinfo[] =
 
 static GnomeUIInfo hj_lp1_menu_uiinfo[] =
 {
-	//GNOMEUIINFO_HELP ("grecord"),
+	/* GNOMEUIINFO_HELP ("grecord"), */
 	GNOMEUIINFO_MENU_ABOUT_ITEM (on_about_activate_cb, NULL),
 	GNOMEUIINFO_END
 };

@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 
     CORBA_exception_init(&ev);
     orb = gnome_CORBA_init("CDAudio Client", "0.0", &argc, argv, 0, &ev);
-    //  Exception(&ev);
+    /*  Exception(&ev); */
 
     cdaudio_client = goad_server_activate_with_repo_id(0, "IDL:GNOME/CDAudio:1.0", GOAD_ACTIVATE_REMOTE, NULL);
 
@@ -58,9 +58,9 @@ int main(int argc, char *argv[])
     g_print("%ld\n", rv);
 
     CORBA_Object_release(cdaudio_client, &ev);
-//    Exception(&ev);
+/*    Exception(&ev); */
     CORBA_Object_release((CORBA_Object)orb, &ev);
-//    Exception(&ev);
+/*    Exception(&ev); */
  
     return 0;
 }

@@ -1038,9 +1038,9 @@ gtk_tv_grab_image(GtkTV *tv,
 	  tv->cbuf.width * tv->cbuf.height * 3);
 #endif
 
-  // #define LOOPIT
+  /* #define LOOPIT */
   #define SLEEPIT
-  // #define READIT
+  /* #define READIT */
 #if defined(LOOPIT)
   while(((unsigned char *)tv->cbuf.base)[10] == 0
 	&& ((unsigned char *)tv->cbuf.base)[tv->cbuf.width * tv->cbuf.height] == 0)

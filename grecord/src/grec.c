@@ -64,8 +64,7 @@ gboolean file_changed = FALSE;
 static guint play_id;
 static guint record_id;
 
-///////////////////////////////////////////////////////////////////
-// ------------------- Callbacks ------------------------------- //
+/* ------------------- Callbacks ------------------------------- */
 void
 on_record_activate_cb (GtkWidget* widget, gpointer data)
 {
@@ -509,8 +508,7 @@ on_undoall_activate_cb (GtkWidget* widget, gpointer data)
 	g_free (temp_string);
 }
 
-///////////////////////////////////////////////////////////////
-// --------------------- Help functions -------------------- //
+/* --------------------- Help functions -------------------- */
 void
 record_sound (void)
 {

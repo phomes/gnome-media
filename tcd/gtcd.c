@@ -1085,7 +1085,7 @@ void setup_fonts(void)
 			}
 			else
 			{
-				configured = FALSE; // Don't update status in the background.
+				configured = FALSE; /* Don't update status in the background. */
 				dialog = gnome_error_dialog(
 					_("Cannot load fixed width font. Exiting."));
 				gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);

@@ -559,7 +559,7 @@ device_info *open_device(int num)
 	new_device->enabled_bitmask=new_device->devmask;	/* all enabled */
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
 		if (new_device->devmask & (1<<cnt)) {
-			unsigned long vol; // l: vol&0xff, r:(vol&0xff00)>>8
+			unsigned long vol; /* l: vol&0xff, r:(vol&0xff00)>>8 */
 			res=ioctl(new_device->fd, MIXER_READ(cnt), &vol);
 		                                                
 			new_device->volume_left[cnt]=vol & 0xff;

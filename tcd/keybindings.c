@@ -17,10 +17,10 @@ void add_key_binding(GtkWidget *widget, char *signal, char *desc, Shortcut *key)
 	kb->desc = desc;
 	kb->key = key;
 
-	// Add the accelerator both with and without the shift key.
-	// This is necessary to support keys that can only be typed by
-	// using the shift key.  It has the nice side effect of making
-	// case irrelevant for alphabetic accelerator keys.
+	/* Add the accelerator both with and without the shift key.
+	   This is necessary to support keys that can only be typed by
+	   using the shift key.  It has the nice side effect of making
+	   case irrelevant for alphabetic accelerator keys. */
 	gtk_widget_add_accelerator(widget, signal, accel, key->key,
 				   key->mods, GTK_ACCEL_VISIBLE);
 	gtk_widget_add_accelerator(widget, signal, accel, key->key,

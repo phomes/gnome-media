@@ -76,11 +76,11 @@ set_min_sec_time (gint sec, gboolean set_topic)
 	gchar* temp_string = NULL;
 	gchar* show_mess = NULL;
 
-        // Time in seconds -> time in seconds & minutes
+        /* Time in seconds -> time in seconds & minutes */
 	minutes = (int) sec / 60;
 	seconds = sec - (minutes * 60);
 
-        // Show it on the main window
+        /* Show it on the main window */
 	if (minutes <= 0)
 		temp_string = g_strdup ("00");
 	else if (minutes < 10)
@@ -112,7 +112,7 @@ set_min_sec_time (gint sec, gboolean set_topic)
 
 	gtk_label_set_text (GTK_LABEL (grecord_widgets.timesec_label), temp_string);
 
-	// Set topic
+	/* Set topic */
 	if (set_topic) {
 		gchar* temp;
 		temp = g_strconcat (show_mess, ":", temp_string, NULL);
