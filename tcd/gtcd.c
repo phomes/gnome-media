@@ -53,6 +53,7 @@
 #include "gtracked.h"
 #include "gabout.h"
 #include "gcddb.h"
+#include "properties.h"
 
 #include "icons/default/play.xpm"
 #include "icons/default/stop.xpm"
@@ -845,6 +846,7 @@ void init_window(void)
 
 int main (int argc, char *argv[])
 {
+	tcd_properties props;
 	char *homedir;
 	char rcfile[64];
 
@@ -857,8 +859,8 @@ int main (int argc, char *argv[])
 
 	cd.play_method = NORMAL;        
 
-	cd.cdpath = gnome_config_get_string("/gtcd/cdrom/device=/dev/cdrom"); 
-	g_print( "%s\n", cd.cdpath );
+	load_properties(&props);
+	cd.cdpath = props.cddev;
 	
         tcd_init_disc(&cd);
         
