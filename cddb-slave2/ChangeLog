@@ -1,3 +1,12 @@
+2003-07-09  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* cddb-parser.c: (cddb_entry_parse_file): Plug some leaks.
+	* cddb-slave-capplet.c: (dialog_button_clicked_cb),
+	(create_dialog): Make apply really apply changes.
+	* cddb-slave.c: (impl_GNOME_Media_CDDBSlave2_setYear): Use
+	g_string_new(NULL) instead of passing "". Fixes bug #116804
+	and bug #90788
+
 2003-05-07 Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* cddb-track-editor.c,main.c: Start CDDBSlave2 per display

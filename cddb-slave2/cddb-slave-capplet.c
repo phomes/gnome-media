@@ -108,6 +108,7 @@ dialog_button_clicked_cb (GtkDialog *dialog,
 		break;
 
 	default:
+		gconf_client_commit_change_set (client, changeset, TRUE, NULL);
 		gtk_widget_destroy (GTK_WIDGET (dialog));
 		break;
 	}
@@ -700,6 +701,7 @@ create_dialog (GtkWidget *window)
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/name", NULL);
 	if (str != NULL) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_name), str);
+		g_free (str);
 	}
 	g_signal_connect (G_OBJECT (pd->real_name), "changed",
 			  G_CALLBACK (real_name_changed), pd);
@@ -719,6 +721,7 @@ create_dialog (GtkWidget *window)
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
 	if (str != NULL) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_host), str);
+		g_free (str);
 	}
 	g_signal_connect (G_OBJECT (pd->real_host), "changed",
 			  G_CALLBACK (real_host_changed), pd);
@@ -810,6 +813,7 @@ create_dialog (GtkWidget *window)
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/server", NULL);
 	if (str != NULL) {
 		gtk_entry_set_text (GTK_ENTRY (pd->other_host), str);
+		g_free (str);
 	}
 	gtk_box_pack_start (GTK_BOX (hbox), pd->other_host, TRUE, TRUE, 0);
 

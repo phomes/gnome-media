@@ -1453,7 +1453,7 @@ impl_GNOME_Media_CDDBSlave2_setYear (PortableServer_Servant servant,
 
 	dyear = g_hash_table_lookup (entry->fields, "DYEAR");
 	if (dyear == NULL) {
-		dyear = g_string_new ("");
+		dyear = g_string_new (NULL);
 		g_string_printf (dyear, "%d", year);
 		g_hash_table_insert (entry->fields, g_strdup ("DYEAR"), dyear);
 	} else {
