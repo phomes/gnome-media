@@ -428,6 +428,11 @@ device_info *
 open_device (int num)
 {
 	device_info *new_device;
+	/*
+	 * This list is borrowed from GCONF_SOURCE/gconf/gconf.c
+	 */
+	gchar gconf_key_invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
+
 #ifdef ALSA
 	int device = 0, err; 
 	snd_mixer_info_t info; 
@@ -465,6 +470,7 @@ open_device (int num)
 	/* This is the name used thoughout all the config stuff
 	   Numerical part will probably change if you start adding more cards,
 	   screwing things up, but there's probably no way we can stop that. */
+	g_strdelimit (new_device->info.name, gconf_key_invalid_chars, '_');
 	new_device->card_name = g_strdup_printf ("alsa-%s-%d", new_device->info.name, num + 1);
 
 	if (!g_ascii_isalpha (new_device->info.name[0])) {
@@ -566,12 +572,6 @@ open_device (int num)
 	/* Masks for the channel data - OSS blows compared to ALSA */
 	int recmask, recsrc, stereodee;
 
-	/*
-	 * This list is borrowed from GCONF_SOURCE/gconf/gconf.c
-	 */
-	gchar gconf_key_invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
-
-	
 	/*
 	 * create new device configureation
 	 */
