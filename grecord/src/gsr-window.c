@@ -468,8 +468,16 @@ handle_ebusy_error (GSRWindow *window)
 {
 	GSRWindowPrivate *priv = window->priv;
 
-	gst_element_set_state (priv->play->pipeline, GST_STATE_NULL);
-	gst_element_set_state (priv->play->pipeline, GST_STATE_PLAYING);
+	/* FIXME: which pipeline to reset state on? */
+	if (priv->play) {
+		gst_element_set_state (priv->play->pipeline, GST_STATE_NULL);
+		gst_element_set_state (priv->play->pipeline, GST_STATE_PLAYING);
+	} else if (priv->record) {
+		gst_element_set_state (priv->record->pipeline, GST_STATE_NULL);
+		gst_element_set_state (priv->record->pipeline, GST_STATE_PLAYING);
+	} else {
+		g_warning ("Don't know which pipeline to reset");
+	}
 
 	/* Try only once */
 	return FALSE;

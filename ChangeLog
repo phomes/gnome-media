@@ -1,5 +1,11 @@
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* grecord/src/gsr-window.c: (handle_ebusy_error):
+	  Check which pipeline to change state on. Makes testcase in #162302
+	  work for me.
+
+2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* grecord/src/gsr-window.c: (media_record):
 	  Don´t segfault if pipeline creation failed.
 
