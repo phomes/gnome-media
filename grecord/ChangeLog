@@ -1,3 +1,12 @@
+2005-02-04  Archana Shah  <archana.shah@wipro.com>
+
+	* src/gsr-window.c (pipeline_error_cb), (play_state_changed_cb):	
+	Add timeout function of 3 seconds if we encounter EBUSY while trying to
+	get the device.
+	(handles_ebusy_error): Try to grab the device just once more
+	(is_set_timeout_exists), (set_timeout_exists): Use them
+	Fixes bug #160340
+
 2005-01-24  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* src/gnome-recorder.c (main): Check for the registry if its not there

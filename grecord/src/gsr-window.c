@@ -53,6 +53,7 @@ enum {
 #define KEY_SAVE_DIR        GCONF_DIR "system-state/save-file-directory"
 #define KEY_KVPS            GCONF_DIR "UIConf/kvps"
 #define KEY_LAST_PROFILE_ID GCONF_DIR "last-profile-id"
+#define EBUSY_TRY_AGAIN     3000    /* Empirical data */
 
 #define CMD_SET_SENSITIVE(window, key, value)               \
   bonobo_ui_component_set_prop (window->priv->ui_component, \
@@ -442,6 +443,33 @@ cb_iterate (GstBin  *bin,
 }
 #endif
 
+static gboolean
+is_set_ebusy_timeout (GSRWindow *window)
+{
+	if (g_object_get_data (G_OBJECT (window), "ebusy_timeout"))
+		return TRUE;
+
+	return FALSE;
+}
+
+static void
+set_ebusy_timeout (GSRWindow *window, gpointer data)
+{
+	g_object_set_data (G_OBJECT (window), "ebusy_timeout", data);
+}
+
+static gboolean
+handle_ebusy_error (GSRWindow *window)
+{
+	GSRWindowPrivate *priv = window->priv;
+
+	gst_element_set_state (priv->play->pipeline, GST_STATE_NULL);
+	gst_element_set_state (priv->play->pipeline, GST_STATE_PLAYING);
+
+	/* Try only once */
+	return FALSE;
+}
+
 static void
 pipeline_error_cb (GstElement *parent,
 		   GstElement *cause,
@@ -455,6 +483,21 @@ pipeline_error_cb (GstElement *parent,
 
 	g_return_if_fail (GTK_IS_WINDOW (window));
 	
+	if (error->code == GST_RESOURCE_ERROR_BUSY) {
+		if (! is_set_ebusy_timeout (window)) {
+			g_timeout_add (EBUSY_TRY_AGAIN, (GSourceFunc) handle_ebusy_error, window);
+			set_ebusy_timeout (window, GUINT_TO_POINTER (TRUE));
+
+			CMD_SET_SENSITIVE (window, "FileSave", "0");
+			CMD_SET_SENSITIVE (window, "FileSaveAs", "0");
+			CMD_SET_SENSITIVE (window, "MediaPlay", "0");
+			CMD_SET_SENSITIVE (window, "MediaRecord", "0");
+			return;
+		}
+	}
+
+	set_ebusy_timeout (window, NULL);
+
 	show_error_dialog (GTK_WINDOW (window), error->message);
 
 	ed = g_new (struct _eos_data, 1);
@@ -1348,6 +1391,7 @@ play_state_changed_cb (GstElement *element,
 		bonobo_ui_component_set_status (window->priv->ui_component,
 						_("Playing..."), NULL);
 		gtk_widget_set_sensitive (window->priv->scale, TRUE);
+		set_ebusy_timeout (window, NULL);
 		break;
 
 	case GST_STATE_READY:
