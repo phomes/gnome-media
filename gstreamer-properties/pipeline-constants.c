@@ -32,7 +32,8 @@
 /* Test specified inputs for pipelines */
 /* static const gchar audiosink_test_pipe[] = "afsrc location=\"" TEST_MEDIA_FILE "\""; FIXME*/
 static gchar audiosink_test_pipe[] = "sinesrc freq=512 ! audioconvert";
-static gchar videosink_test_pipe[] = "videotestsrc ! ffcolorspace";
+/* ffmpegcolorspace is the ripped colorspace element in gst-plugins */
+static gchar videosink_test_pipe[] = "videotestsrc ! ffmpegcolorspace";
 
 static gchar GSTPROPS_KEY_DEFAULT_VIDEOSINK[] = "default/videosink";
 static gchar GSTPROPS_KEY_DEFAULT_VIDEOSRC[] = "default/videosrc";
