@@ -436,7 +436,6 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 		choice = save_dont_or_cancel (_("Cancel"));
 		if (choice == SAVE) {
 			save_dialog ();
-			return;
 		}
 		else if (choice == CANCEL)
 			return;
@@ -880,6 +879,8 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 	file_changed = FALSE;
 	save_set_sensitive (FALSE);
 	file_selector = NULL;
+
+	gtk_main_quit ();
 }
 
 /* Yes I stole this from GEdit. */
@@ -1218,6 +1219,8 @@ save_dialog (void)
 	gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
 	
 	gtk_widget_show (filesel);
+
+	gtk_main ();
 
 	g_free (temp_file);
 }
