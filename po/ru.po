@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-06-06 20:06+0400\n"
-"PO-Revision-Date: 2002-06-06 20:06+0400\n"
+"POT-Creation-Date: 2002-06-30 21:06+0400\n"
+"PO-Revision-Date: 2002-06-30 21:10+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1286,14 +1286,6 @@ msgstr "Авторское право (С)  2001, 2002"
 msgid "A GNOME cd player"
 msgstr "Проигрыватель компакт-дисков для GNOME"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Неизвестный исполнитель"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Неизвестный диск"
-
 #: gnome-cd/cdrom.c:355
 #, c-format
 msgid "You do not seem to have permission to access %s."
@@ -1314,6 +1306,114 @@ msgstr ""
 "б) Отсутствуют необходимые права на доступ к устройству чтения компакт-"
 "дисков\n"
 "в) %s не является устройством чтения компакт-дисков.\n"
+
+#: gnome-cd/display.c:74
+msgid "Unknown artist"
+msgstr "Неизвестный исполнитель"
+
+#: gnome-cd/display.c:75
+msgid "Unknown disc"
+msgstr "Неизвестный диск"
+
+#: gnome-cd/freebsd-cdrom.c:176 gnome-cd/linux-cdrom.c:175
+msgid "Error opening CD"
+msgstr "Ошибка открытия устройства чтения компакт-дисков"
+
+#: gnome-cd/freebsd-cdrom.c:181 gnome-cd/linux-cdrom.c:180
+msgid "Error reading CD header"
+msgstr "Ошибка считывания заголовка компакт-диска"
+
+#: gnome-cd/freebsd-cdrom.c:198 gnome-cd/linux-cdrom.c:197
+msgid "IOCtl failed"
+msgstr "Сбой при вызове IOCtl"
+
+#: gnome-cd/freebsd-cdrom.c:211 gnome-cd/linux-cdrom.c:209
+msgid "Error getting leadout"
+msgstr "Ошибка получения leadout"
+
+#: gnome-cd/freebsd-cdrom.c:219 gnome-cd/linux-cdrom.c:217
+#, c-format
+msgid ""
+"CD changed\n"
+"Track count: %d\n"
+"------------------\n"
+msgstr ""
+"Компакт-диск был сменён\n"
+"Количество дорожек: %d\n"
+"------------------\n"
+
+#: gnome-cd/freebsd-cdrom.c:251 gnome-cd/linux-cdrom.c:249
+#, c-format
+msgid "(eject): ioctl failed: %s"
+msgstr "(извлечь): сбой при вызове ioctl: %s"
+
+#: gnome-cd/freebsd-cdrom.c:437
+msgid "(freebsd_cdrom_play): Drive not ready"
+msgstr "(freebsd_cdrom_play): Устройство не готово"
+
+#: gnome-cd/freebsd-cdrom.c:457
+msgid "(freebsd_cdrom_play): Drive still not ready"
+msgstr "(_cdrom_play): Устройство ешё не готово"
+
+#: gnome-cd/freebsd-cdrom.c:522
+#, c-format
+msgid "(freebsd_cdrom_play) ioctl failed %s"
+msgstr "(_cdrom_play) сбой при вызове ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:558
+msgid "(freebsd_cdrom_pause): Drive not ready"
+msgstr "(freebsd_cdrom_pause): Устройство не готово"
+
+#: gnome-cd/freebsd-cdrom.c:571
+#, c-format
+msgid "(freebsd_cdrom_pause): Resume failed %s"
+msgstr "(_cdrom_pause): Сбой продолжения %s"
+
+#: gnome-cd/freebsd-cdrom.c:590
+#, c-format
+msgid "(freebsd_cdrom_pause): ioctl failed %s"
+msgstr "(_cdrom_pause): сбой при вызове ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:636
+#, c-format
+msgid "(freebsd_cdrom_stop) ioctl failed %s"
+msgstr "(freebsd_cdrom_stop) сбой при вызове ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:854
+#, c-format
+msgid "(freebsd_cdrom_get_status): ioctl error %s"
+msgstr "(freebsd_cdrom_get_status): ошибка при вызове ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:874
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status): ошибка при вызове CDIOCREADSUBCHANNEL ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:885
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status): ошибка при вызове CDIOCGETVOL ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:948
+#, c-format
+msgid "(freebsd_cdrom_close_tray): ioctl failed %s"
+msgstr "(freebsd_cdrom_close_tray): ошибка при вызове ioctl %s"
+
+#: gnome-cd/freebsd-cdrom.c:983
+#, c-format
+msgid "(freebsd_cdrom_set_volume:1): ioctl failed %s"
+msgstr "(freebsd_cdrom_set_volume:1): ошибка при вызове ioctl %s"
+
+#. Failed, it's not a CDROM drive
+#: gnome-cd/freebsd-cdrom.c:1015
+#, c-format
+msgid "%s is not a CDROM drive\n"
+msgstr "%s не является устройством чтения компакт-дисков\n"
+
+#: gnome-cd/freebsd-cdrom.c:1022
+#, c-format
+msgid "%s is a CDROM drive\n"
+msgstr "%s не является устройством чтения компакт-дисков\n"
 
 #: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
 msgid "Gnome CD Player"
@@ -1446,38 +1546,6 @@ msgstr "Проигрыватель компакт-дисков"
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
 msgstr "Воспроизвести звуковые компакт-диски"
-
-#: gnome-cd/linux-cdrom.c:175
-msgid "Error opening CD"
-msgstr "Ошибка открытия устройства чтения компакт-дисков"
-
-#: gnome-cd/linux-cdrom.c:180
-msgid "Error reading CD header"
-msgstr "Ошибка считывания заголовка компакт-диска"
-
-#: gnome-cd/linux-cdrom.c:197
-msgid "IOCtl failed"
-msgstr "Сбой при вызове IOCtl"
-
-#: gnome-cd/linux-cdrom.c:209
-msgid "Error getting leadout"
-msgstr "Ошибка получения leadout"
-
-#: gnome-cd/linux-cdrom.c:217
-#, c-format
-msgid ""
-"CD changed\n"
-"Track count: %d\n"
-"------------------\n"
-msgstr ""
-"Компакт-диск был сменён\n"
-"Количество дорожек: %d\n"
-"------------------\n"
-
-#: gnome-cd/linux-cdrom.c:249
-#, c-format
-msgid "(eject): ioctl failed: %s"
-msgstr "(извлечь): сбой при вызове ioctl: %s"
 
 #: gnome-cd/linux-cdrom.c:434
 msgid "(linux_cdrom_play): Drive not ready"
