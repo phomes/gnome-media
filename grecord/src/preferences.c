@@ -36,6 +36,7 @@
 #include "prog.h"
 
 static GConfClient *client = NULL;
+extern gboolean default_file;
 
 static void
 record_timeout_changed (GConfClient *_client,
@@ -177,6 +178,12 @@ audio_format_changed (GConfClient *_client,
 		      gpointer data)
 {
 	audioformat = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/audio-format", NULL);
+	if (default_file == FALSE) {
+		return;
+	}
+	
+	gtk_label_set_text (GTK_LABEL (grecord_widgets.audio_format_label),
+			    audioformat ? _("Audio format: 8bit PCM") : _("Audio format: 16bit PCM"));
 }
 
 static void
@@ -186,11 +193,20 @@ sample_rate_changed (GConfClient *_client,
 		     gpointer data)
 {
 	const char *sample;
+	char *s;
 	GConfValue *value = gconf_entry_get_value (entry);
 	
 	g_free (samplerate);
 	sample = gconf_client_get_string (client, "/apps/gnome-sound-recorder/sample-rate", NULL);
 	samplerate = g_strdup (sample);
+
+	if (default_file == FALSE) {
+		return;
+	}
+
+	s = g_strdup_printf (_("Sample rate: %s"), samplerate);
+	gtk_label_set_text (GTK_LABEL (grecord_widgets.sample_rate_label), s);
+	g_free (s);
 }
 
 static void
@@ -200,6 +216,13 @@ channels_changed (GConfClient *_client,
 		  gpointer data)
 {
 	channels = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/channels", NULL);
+
+	if (default_file == FALSE) {
+		return;
+	}
+	
+	gtk_label_set_text (GTK_LABEL (grecord_widgets.nr_of_channels_label),
+			    channels ? _("Channels: mono") : _("Channels: stereo"));
 }
 
 static void

@@ -1,6 +1,17 @@
 2002-03-20  Iain <iain@ximian.com>
 
-	* grec.c (on_play_activate_cb): Remove the repeat stuff here. I've
+	* src/gui.c (create_grecord_window): Neaten some text.
+	(create_grecord_propertybox): Connect the sound widgets to their
+	callbacks.
+
+	* src/preferences.c (audio_format_changed): If the file is the default
+	file then change the info label.
+	(samepl_rate_changed): ditto.
+	(channels_changed): ditto.
+
+2002-03-20  Iain <iain@ximian.com>
+
+	* src/grec.c (on_play_activate_cb): Remove the repeat stuff here. I've
 	worked out how it works :)
 	(UpdateStatusbarPlay): Repeat the correct number of times.
 	: Make dialogs go away when Okay is clicked.

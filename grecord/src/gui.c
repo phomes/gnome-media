@@ -209,14 +209,14 @@ create_grecord_window (void)
 	gtk_window_set_title (GTK_WINDOW (grecord_window), _("Sound Recorder"));
 	
 	if (!audioformat)
-		audioformat_string = g_strdup ("16bit pcm");
+		audioformat_string = g_strdup (_("16bit PCM"));
 	else
-		audioformat_string = g_strdup ("8bit pcm");
+		audioformat_string = g_strdup (_("8bit PCM"));
 
 	if (!channels)
-		channels_string = g_strdup ("stereo");
+		channels_string = g_strdup (_("stereo"));
 	else
-		channels_string = g_strdup ("mono");
+		channels_string = g_strdup (_("mono"));
 
 	/* Set the size of the main window */
 	gtk_widget_set_uposition (GTK_WIDGET (grecord_window), mwin.x, mwin.y);
@@ -338,7 +338,7 @@ create_grecord_window (void)
 	gtk_widget_show (info_hbox);
 	gtk_box_pack_start (GTK_BOX (vbox4), info_hbox, TRUE, TRUE, 0);
 
-	temp_string = g_strconcat (_("Audioformat: "), audioformat_string, NULL);
+	temp_string = g_strconcat (_("Audio format: "), audioformat_string, NULL);
 	audio_format_label = gtk_label_new (temp_string);
 	g_free (temp_string);
 	gtk_box_pack_start (GTK_BOX (info_hbox), audio_format_label, TRUE, FALSE, 0);
@@ -626,7 +626,7 @@ audio_format_changed (GtkEntry *entry,
 	} else {
 		format = FALSE;
 	}
-	
+
 	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/audio-format", format, NULL);
 }
 
@@ -1025,6 +1025,8 @@ create_grecord_propertybox (void)
 	gtk_container_set_border_width (GTK_CONTAINER (Samplerate_combo), 7);
 	
 	Samplerate_combo_entry = GTK_COMBO (Samplerate_combo)->entry;
+	g_signal_connect (G_OBJECT (Samplerate_combo_entry), "changed",
+			  G_CALLBACK (sample_rate_changed), NULL);
 	gtk_widget_show (Samplerate_combo_entry);
 	gtk_entry_set_text (GTK_ENTRY (Samplerate_combo_entry), _(samplerate));
 	
@@ -1051,6 +1053,8 @@ create_grecord_propertybox (void)
 	NrChannel_combo_entry = GTK_COMBO (NrChannel_combo)->entry;
 	gtk_widget_show (NrChannel_combo_entry);
 	gtk_entry_set_editable (GTK_ENTRY (NrChannel_combo_entry), FALSE);
+	g_signal_connect (G_OBJECT (NrChannel_combo_entry), "changed",
+			  G_CALLBACK (channels_changed), NULL);
 	if (channels)
 		gtk_entry_set_text (GTK_ENTRY (NrChannel_combo_entry), _("Mono"));
 	else
