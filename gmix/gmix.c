@@ -897,7 +897,7 @@ get_one_device_config (gpointer a,
 		key = g_strdup_printf ("%s/mute", key_base);
 		channel->is_muted = get_bool_with_default (key, channel->is_muted);
 		g_free (key);
-		
+#ifdef WE_WANT_VOLUME_RESET		
 		if (channel->is_stereo) {
 			key = g_strdup_printf ("%s/lock", key_base);
 			channel->is_locked = get_bool_with_default (key, channel->is_locked);
@@ -918,7 +918,7 @@ get_one_device_config (gpointer a,
 								     channel->volume_left);
 			g_free (key);
 		}
-		
+#endif		
 		if (channel->record_source == TRUE) {
 			key = g_strdup_printf ("%s/recsrc", key_base);
 			channel->is_record_source = get_bool_with_default (key,
