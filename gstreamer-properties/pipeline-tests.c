@@ -165,7 +165,7 @@ user_test_pipeline(GladeXML * interface_xml,
   s_clock = gst_bin_get_clock(GST_BIN(gst_test_pipeline));
   /* Show the dialog */
   if (dialog) {
-    gtk_window_present(GTK_WIDGET(dialog));
+    gtk_window_present(GTK_WINDOW(dialog));
     timeout_tag = gtk_timeout_add(50, user_test_pipeline_timeout, WID("test_pipeline_progress"));    
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_timeout_remove( timeout_tag );

@@ -111,7 +111,7 @@ theme_load (GnomeCD *gcd,
 
 	while (ptr != NULL) {
 		if (xmlStrcmp (ptr->name, (const xmlChar *) "display") == 0) {
-			cd_display_parse_theme (gcd->display, theme, xml, ptr->xmlChildrenNode);
+			cd_display_parse_theme ((CDDisplay*)gcd->display, theme, xml, ptr->xmlChildrenNode);
 		}
 		
 		ptr = ptr->next;
