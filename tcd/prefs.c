@@ -279,10 +279,10 @@ GtkWidget *create_general_frame()
     GtkWidget *left_box, *right_box, *hbox, *vbox;
     GtkWidget *handles, *tooltips;
     
-    left_box = gtk_vbox_new(FALSE, 2);
-    right_box = gtk_vbox_new(FALSE, 2);
-    hbox = gtk_hbox_new(FALSE, 2);
-    vbox = gtk_vbox_new(FALSE, 2);
+    left_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+    right_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+    hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+    vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
     
     gtk_box_pack_start_defaults(GTK_BOX(hbox), left_box);
     gtk_box_pack_start_defaults(GTK_BOX(hbox), right_box);
@@ -346,19 +346,19 @@ GtkWidget *create_page()
     
     /* start frame */
     start_frame = gtk_frame_new(_("On Startup"));
-    gtk_container_border_width(GTK_CONTAINER(start_frame), 3);
+    gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(start_frame), create_start_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), start_frame, 0, 1, 0, 1);
     
     /* exit frame */
     exit_frame = gtk_frame_new(_("On Exit"));
-    gtk_container_border_width(GTK_CONTAINER(exit_frame), 3);
+    gtk_container_border_width(GTK_CONTAINER(exit_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(exit_frame), create_exit_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);
     
     /* general frame */
     general_frame = gtk_frame_new(_("General"));
-    gtk_container_border_width(GTK_CONTAINER(general_frame), 3);
+    gtk_container_border_width(GTK_CONTAINER(general_frame), GNOME_PAD_SMALL);
     gtk_container_add(GTK_CONTAINER(general_frame), create_general_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), general_frame, 1, 2, 0, 2);
     
@@ -468,11 +468,11 @@ GtkWidget *key_page(void)
     gtk_signal_connect(GTK_OBJECT(clist), "select_row",
 		       GTK_SIGNAL_FUNC(select_row_cb), NULL);
     /* Box */
-    box = gtk_vbox_new(FALSE, 2);
+    box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
     gtk_box_pack_start(GTK_BOX(box), scrolled, TRUE, TRUE, 0);
 
     /* key box */
-    mod_box = gtk_hbox_new(FALSE, 2);
+    mod_box = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 
     entry = gtk_entry_new_with_max_length(1);
     label = gtk_label_new("Change Here:");
@@ -497,7 +497,7 @@ GtkWidget *key_page(void)
     /* Frame */
     frame = gtk_frame_new(_("Keybindings"));
     gtk_container_add(GTK_CONTAINER(frame), box);
-    gtk_container_border_width(GTK_CONTAINER(frame), 3);
+    gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD_SMALL);
 
     gtk_widget_show_all(frame);
     return frame;

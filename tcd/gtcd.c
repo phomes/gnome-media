@@ -833,7 +833,7 @@ void init_window(void)
     gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 		       GTK_SIGNAL_FUNC(quit_cb), NULL);
 
-    gtk_container_border_width(GTK_CONTAINER(window), 3);
+    gtk_container_border_width(GTK_CONTAINER(window), GNOME_PAD_SMALL);
 
     gtk_widget_realize(window);
 
@@ -841,7 +841,7 @@ void init_window(void)
     gc = gdk_gc_new(window->window);
     gdk_gc_copy(gc, window->style->white_gc);
 
-    main_box = gtk_hbox_new(FALSE, 3);
+    main_box = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 
     tooltips = gtk_tooltips_new();
     if( prefs.tooltip )
