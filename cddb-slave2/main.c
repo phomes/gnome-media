@@ -11,11 +11,10 @@
 #include <config.h>
 #endif
 
-#include <libgnome/libgnome.h>
+#include <gnome.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <libbonobo.h>
 
-#include <libgnomevfs/gnome-vfs-init.h>
 #include <gconf/gconf-client.h>
 
 #include "cddb-slave.h"
@@ -103,18 +102,9 @@ main (int argc,
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	textdomain (GETTEXT_PACKAGE);
 
-#if 0
-	/* We don't really want an X connection
-	   This is a GUIless program */
-	gtk_type_init ();
-	gtk_signal_init ();
-
-	gnomelib_init ("CDDBSlave-2", VERSION);
-#endif
-/*  	gnome_program_init ("CDDBSlave-2", VERSION, &libgnome_module_info, */
-/*  			    argc, argv, NULL); */
-	bonobo_init (&argc, argv);
-
+	gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
+			    argc, argv, NULL);
+	
 	g_idle_add (cddbslave_init, NULL);
 	bonobo_main ();
 
