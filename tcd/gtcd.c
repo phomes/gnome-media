@@ -110,7 +110,7 @@ GdkColor track_color, darkgrey, timecolor, trackcolor;
 GtkTooltips *tooltips;
 
 int timeonly = FALSE, status_height, status_width, playid=-1;
-int configured = FALSE, old_status=-1, max;
+int configured = FALSE, old_status=-1, max,tfont_height;
 tcd_properties props;
 
 /* Prototypes */
@@ -607,7 +607,7 @@ void adjust_status(void)
 		if( max < 102 ) 
 			max=102;
 
-		gtk_widget_set_usize( status_area, max+8, 60 );
+		gtk_widget_set_usize( status_area, max+8, tfont_height+27 );
 	}
 }
 
@@ -906,6 +906,8 @@ void setup_fonts(void)
 		tfont = gdk_font_load( props.trackfont );
 	else
 		tfont = NULL;
+
+	tfont_height = (tfont->ascent+tfont->descent)*3;
 }
 
 void init_window(void)
@@ -982,15 +984,3 @@ int main (int argc, char *argv[])
 	gnome_config_sync();
         return 0;
 }
-
-void change_orient(int id, int orient)
-{
-} 
-        
-void session_save(int id, const char *cfgpath, const char *globcfgpath)
-{
-}
-
-
-
-

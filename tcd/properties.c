@@ -74,7 +74,6 @@ void save_properties( tcd_properties *prop )
     gnome_config_set_string("/gtcd/ui/statusfont",prop->statusfont);
     gnome_config_set_string("/gtcd/ui/trackcolor", prop->trackcolor);
     gnome_config_set_string("/gtcd/ui/statuscolor",prop->statuscolor);
-    g_print("%s %s\n", prop->trackcolor, prop->statuscolor );
     
     gnome_config_set_bool(  "/gtcd/cddb/use_http", prop->use_http);
     gnome_config_set_bool(  "/gtcd/cddb/use_proxy",prop->use_proxy);
