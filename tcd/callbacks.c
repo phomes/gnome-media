@@ -141,7 +141,7 @@ void changer_cb(GtkWidget *widget, gpointer data)
 
 void help(GtkWidget *widget, gpointer data)
 {
-	GnomeHelpMenuEntry help_entry = { "tcd",
+	GnomeHelpMenuEntry help_entry = { "gtcd",
                                           "index.html" };
         gnome_help_display(NULL, &help_entry);
 }
