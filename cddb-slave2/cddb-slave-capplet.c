@@ -27,8 +27,23 @@
 #include <gnome.h>
 #include <gconf/gconf-client.h>
 
+#include "gnet.h"
+
 static GConfClient *client = NULL;
 static GConfChangeSet *changeset;
+
+typedef enum {
+	CDDB_ACCESS_READWRITE,
+	CDDB_ACCESS_READONLY,
+	CDDB_ACCESS_NONE
+} CDDBSlaveAccess;
+
+typedef enum {
+	CONNECTION_MODE_NEED_HELLO,
+	CONNECTION_MODE_NEED_HELLO_RESPONSE,
+	CONNECTION_MODE_NEED_SITES_RESPONSE,
+	CONNECTION_MODE_NEED_GOODBYE
+} ConnectionMode;
 
 typedef struct _PropertyDialog {
 	GtkWidget *dialog;
@@ -50,6 +65,16 @@ typedef struct _PropertyDialog {
 	GtkWidget *other_box;
 	GtkWidget *other_host;
 	GtkWidget *other_port;
+
+	GtkTreeModel *model;
+
+	/* Connection stuff */
+	GTcpSocket *socket;
+	GIOChannel *iochannel;
+	guint tag;
+
+	ConnectionMode mode;
+	CDDBSlaveAccess access;
 } PropertyDialog;
 
 enum {
@@ -216,18 +241,349 @@ other_port_changed (GtkEntry *entry,
 	gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/port",
 				  atoi (gtk_entry_get_text (entry)));
 }
+
+static void
+do_goodbye (PropertyDialog *pd)
+{
+	gsize bytes_writen;
+	GIOError status;
 	
+	status = gnet_io_channel_writen (pd->iochannel, "quit\n",
+					 5, &bytes_writen);
+	pd->mode = CONNECTION_MODE_NEED_GOODBYE;
+}
+
+static gboolean
+do_goodbye_response (PropertyDialog *pd,
+		     const char *response)
+{
+	int code;
+
+	code = atoi (response);
+	switch (code) {
+	case 230:
+		g_print ("Disconnected\n");
+		g_print ("%s\n", response);
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		break;
+	}
+
+	/* Disconnect */
+	if (pd->tag) {
+		g_source_remove (pd->tag);
+	}
+
+	gnet_tcp_socket_unref (pd->socket);
+	g_io_channel_unref (pd->iochannel);
+
+	return FALSE;
+}
+
+static gboolean
+do_sites_response (PropertyDialog *pd,
+		   const char *response)
+{
+	int code;
+	static gboolean waiting_for_terminator = FALSE;
+	gboolean more = FALSE;
+
+	if (waiting_for_terminator == TRUE) {
+		code = 210;
+	} else {
+		code = atoi (response);
+	}
+	
+	switch (code) {
+	case 210:
+		if (response[0] == '.') {
+			/* Terminator */
+			waiting_for_terminator = FALSE;
+			more = FALSE;
+			break;
+		}
+
+		if (waiting_for_terminator == TRUE) {
+			char **vector, *res, *end;
+			GtkTreeIter iter;
+
+			res = g_strdup (response);
+			res[strlen (res) - 1] = 0;
+			end = strchr (res, '\r');
+			if (end != NULL) {
+				*end = 0;
+			}
+			
+			vector = g_strsplit (res, " ", 5);
+			g_free (res);
+			if (vector == NULL) {
+				g_print ("Erk!\n");
+				waiting_for_terminator = FALSE;
+				return FALSE;
+			}
+
+			gtk_list_store_append (GTK_LIST_STORE (pd->model), &iter);
+			gtk_list_store_set (GTK_LIST_STORE (pd->model), &iter, 0, vector[0], 1, vector[1], 2, vector[4], -1);
+			g_strfreev (vector);
+		}
+
+		waiting_for_terminator = TRUE;
+		more = TRUE;
+
+		break;
+
+	case 401:
+		g_print ("No site info available\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		more = FALSE;
+		break;
+	}
+
+	if (more == FALSE) {
+		do_goodbye (pd);
+	}
+	return more;
+}
+	
+static void
+do_sites (PropertyDialog *pd)
+{
+	gsize bytes_writen;
+	GIOError status;
+
+	status = gnet_io_channel_writen (pd->iochannel, "sites\n",
+					 6, &bytes_writen);
+	pd->mode = CONNECTION_MODE_NEED_SITES_RESPONSE;
+}
+
+static gboolean
+do_hello_response (PropertyDialog *pd,
+		   const char *response)
+{
+	int code;
+
+	code = atoi (response);
+	switch (code) {
+	case 200:
+		g_print ("Hello ok - Welcome\n");
+		g_print ("%s\n", response);
+		break;
+
+	case 431:
+		g_print ("Hello unsuccessful\n");
+		g_print ("%s\n", response);
+
+		do_goodbye (pd);
+		break;
+
+	case 402:
+		g_print ("Already shook hands\n");
+		g_print ("%s\n", response);
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		break;
+	}
+
+	if (pd->access != CDDB_ACCESS_NONE) {
+		do_sites (pd);
+	}
+
+	return FALSE;
+}
+
+static void
+do_hello (PropertyDialog *pd)
+{
+	char *hello;
+	gsize bytes_writen;
+	GIOError status;
+
+	/* Use the gconf values */
+	hello = g_strdup_printf ("cddb hello %s %s CDDBSlave2 %s\n", "johnsmith",
+				 "198.172.174.22", VERSION);
+	status = gnet_io_channel_writen (pd->iochannel, hello,
+					 strlen (hello), &bytes_writen);
+
+	pd->mode = CONNECTION_MODE_NEED_HELLO_RESPONSE;
+}
+
+static gboolean
+do_open_response (PropertyDialog *pd,
+		  const char *response)
+{
+	int code;
+
+	/* Did we get the hello? */
+	code = atoi (response);
+	switch (code) {
+	case 200:
+		g_print ("Hello ok - Read/Write access allowed\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_READWRITE;
+		break;
+
+	case 201:
+		g_print ("Hello ok - Read only access\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_READONLY;
+		break;
+
+	case 432:
+		g_print ("No more connections allowed\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_NONE;
+		break;
+
+	case 433:
+		g_print ("No connections allowed: X users allowed, Y currently active\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_NONE;
+		break;
+
+	case 434:
+		g_print ("No connections allowed: system load too high\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_NONE;
+		break;
+
+	default:
+		g_print ("Unknown response\n");
+		g_print ("%s\n", response);
+		pd->access = CDDB_ACCESS_NONE;
+		break;
+	}
+
+	if (pd->access != CDDB_ACCESS_NONE) {
+		do_hello (pd);
+	} else {
+		do_goodbye (pd);
+	}
+
+	return FALSE;
+}
+
+static gboolean
+read_from_server (GIOChannel *iochannel,
+		  GIOCondition condition,
+		  gpointer data)
+{
+	PropertyDialog *pd = data;
+
+	if (condition & (G_IO_ERR | G_IO_HUP | G_IO_NVAL)) {
+		g_warning ("Socket error");
+		goto error;
+	}
+
+	if (condition & G_IO_IN) {
+		GIOError error;
+		char *buffer;
+		gsize bytes_read;
+
+		/* Read the data into our buffer */
+		error = g_io_channel_read_line (iochannel, &buffer,
+						&bytes_read, NULL, NULL);
+		while (error == G_IO_STATUS_NORMAL) {
+			gboolean more = FALSE;
+
+			switch (pd->mode) {
+			case CONNECTION_MODE_NEED_HELLO:
+				more = do_open_response (pd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_HELLO_RESPONSE:
+				more = do_hello_response (pd, buffer);
+				break;
+
+			case CONNECTION_MODE_NEED_SITES_RESPONSE:
+				more = do_sites_response (pd, buffer);
+				break;
+				
+			case CONNECTION_MODE_NEED_GOODBYE:
+				more = do_goodbye_response (pd, buffer);
+				break;
+
+			default:
+				g_print ("Dunno what to do with %s\n", buffer);
+				more = FALSE;
+				break;
+			}
+
+			g_free (buffer);
+
+			if (more == TRUE) {
+				error = g_io_channel_read_line (iochannel, &buffer,
+								&bytes_read, NULL, NULL);
+			} else {
+				break;
+			}
+		}
+	}
+
+	return TRUE;
+
+ error:
+	return FALSE;
+}
+
+static void
+open_cb (GTcpSocket *sock,
+	 GInetAddr *addr,
+	 GTcpSocketConnectAsyncStatus status,
+	 gpointer data)
+{
+	PropertyDialog *pd = data;
+	GIOChannel *sin;
+
+	pd->socket = sock;
+	if (status != GTCP_SOCKET_CONNECT_ASYNC_STATUS_OK) {
+		g_warning ("Error updating server list");
+		return;
+	}
+
+	sin = gnet_tcp_socket_get_iochannel (sock);
+	pd->iochannel = sin;
+
+	pd->tag = g_io_add_watch (sin, G_IO_IN | G_IO_ERR | G_IO_HUP | G_IO_NVAL,
+				  read_from_server, data);
+}
+
+static void
+update_clicked (GtkButton *update,
+		PropertyDialog *pd)
+{
+	GTcpSocketConnectAsyncID *sock;
+
+	/* Should use the gconf values */
+	sock = gnet_tcp_socket_connect_async ("freedb.freedb.org", 888,
+					      open_cb, pd);
+	if (sock == NULL) {
+		g_warning ("Could not update server list");
+	}
+}
+					      
 static GtkTreeModel *
 make_tree_model (void)
 {
 	GtkListStore *store;
 	GtkTreeIter iter;
 
-	store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+	store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	/* Default */
 	gtk_list_store_append (store, &iter);
-	gtk_list_store_set (store, &iter, 0, "freedb.freedb.org", 1, "888", -1);
+	gtk_list_store_set (store, &iter, 0, "freedb.freedb.org", 1, "888", 2, "Random server", -1);
 
 	return GTK_TREE_MODEL (store);
 }
@@ -239,10 +595,9 @@ create_dialog (GtkWidget *window)
 	
 	GtkWidget *frame;
 	GtkWidget *vbox, *hbox;
-	GtkWidget *label;
+	GtkWidget *label, *sw;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
-	GtkTreeModel *model;
 
 	char *str;
 	int info = CDDB_SEND_FAKE_INFO;
@@ -353,9 +708,15 @@ create_dialog (GtkWidget *window)
 	gtk_widget_set_sensitive (pd->freedb_box, FALSE);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->freedb_box, TRUE, TRUE, 0);
 
-	model = make_tree_model ();
-	pd->freedb_server = gtk_tree_view_new_with_model (model);
-	g_object_unref (model);
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+	gtk_box_pack_start (GTK_BOX (pd->freedb_box), sw, TRUE, TRUE, 2);
+	
+	pd->model = make_tree_model ();
+	pd->freedb_server = gtk_tree_view_new_with_model (pd->model);
+	g_object_unref (pd->model);
 
 	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("Server"), cell,
@@ -364,10 +725,16 @@ create_dialog (GtkWidget *window)
 	col = gtk_tree_view_column_new_with_attributes (_("Port"), cell,
 							"text", 1, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pd->freedb_server), col);
+	col = gtk_tree_view_column_new_with_attributes (_("Location"), cell,
+							"text", 2, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (pd->freedb_server), col);
 	
-	gtk_box_pack_start (GTK_BOX (pd->freedb_box), pd->freedb_server, TRUE, TRUE, 2);
+	gtk_container_add (GTK_CONTAINER (sw), pd->freedb_server);
 
 	pd->update = gtk_button_new_with_label (_("Update server list"));
+	g_signal_connect (G_OBJECT (pd->update), "clicked",
+			  G_CALLBACK (update_clicked), pd);
+	
 	gtk_box_pack_start (GTK_BOX (pd->freedb_box), pd->update, FALSE, FALSE, 2);
 
 	pd->other_server = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->other_freedb),

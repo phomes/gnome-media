@@ -52,7 +52,20 @@ CDDBSlave2_LDADD =				\
 	$(INTLLIBS)
 
 cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
-cddb_slave2_properties_SOURCES = cddb-slave-capplet.c
+cddb_slave2_properties_SOURCES = cddb-slave-capplet.c	\
+				 gnet.h			\
+				 gnet-private.c		\
+				 gnet-private.h		\
+				 iochannel.c		\
+				 iochannel.h		\
+				 inetaddr.c		\
+				 inetaddr.h		\
+				 socks.c		\
+				 socks.h		\
+				 socks-private.c	\
+				 socks-private.h	\
+				 tcp.c			\
+				 tcp.h
 
 libcddb_slave2includedir = $(includedir)/cddb-slave2
 libcddb_slave2_la_SOURCES =			\

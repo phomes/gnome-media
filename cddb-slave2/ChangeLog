@@ -1,3 +1,24 @@
+2002-02-12  Iain <iain@ximian.com>
+
+	* Makefile.am (cddb_slave2_properties_SOURCES): Add all the gnet
+	stuff.
+
+	* cddb-slave-capplet.c: Include gnet.h. Define enums needed for the
+	network stuff.
+	(PropertyDialog): Add stuff for updating the model from the network.
+	(do_goodbye): Network code.
+	(do_goodbye_response): Ditto.
+	(do_sites_response): Update the server list from the received data.
+	(do_sites): Send the sites command.
+	(do_hello_response): Network code.
+	(do_hello): Do hello.
+	(do_open_response): Network code.
+	(read_from_server): Ditto.
+	(open_cb): Ditto.
+	(update_clicked): Start the network update
+	(make_tree_model): Add a location column.
+	(create_dialog): Put the list in a scrolled window.
+	
 2002-02-11  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am (cddb_slave2_properties_SOURCES): this looks like C
