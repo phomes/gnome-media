@@ -1,3 +1,22 @@
+1999-05-11  James Henstridge  <james@daa.com.au>
+
+	* prefs.c (load_prefs): set the default cddb host to freedb.
+
+	* cddb_props.c: small change to the logic for changing the default
+	port when switching between cddbp and http mode for lookups -- freedb
+	uses port 888 for cddbp, while cddb.com uses 8880.
+
+	* gtracked.c (gtracked_submit): use gnome_config_get_translated_string
+	to read the description of the submit service, so that translations
+	can be made.
+
+	* gtcd.c (setup_time_display): added a tooltip to the volume slider.
+
+	* cddb.c (tcd_readcddb, tcd_writecddb): now the DTITLE and TTITLEn
+	fields of an entry will be split onto multiple lines if they are too
+	long.  Without this change, CDs with long song titles would get
+	rejected when submited to one of the cddb databases.
+
 1999-05-02  James Henstridge  <james@daa.com.au>
 
 	* gtracked.c (gtracked_submit): was leaking the section names when

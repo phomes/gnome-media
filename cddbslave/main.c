@@ -87,8 +87,8 @@ int main(int argc, char *argv[])
     fgets(client, 511, stdin);	/* and then the client info */
     i = sscanf(client, "client %s %s %d %d\n", client_name, client_ver, &pid, &cddev);
     gnomelib_init("cddbslave", VERSION);
-    server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
-    port = gnome_config_get_int("/cddbslave/server/port=8880");
+    server = gnome_config_get_string("/cddbslave/server/address=freedb.freedb.org");
+    port = gnome_config_get_int("/cddbslave/server/port=888");
 #ifdef WITH_LIBGHTTP
     use_http = gnome_config_get_bool("/cddbslave/server/use_http=false");
     proxy = gnome_config_get_string("/cddbslave/server/http_proxy=");

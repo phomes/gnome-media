@@ -162,6 +162,7 @@ GtkWidget *create_cddb_page(void)
 		       GTK_SIGNAL_FUNC(port_cb), NULL);
 
     cbutton = gtk_check_button_new_with_label(_("Use HTTP"));
+    gtk_object_set_data(GTK_OBJECT(cbutton), "server-entry", entry);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cbutton), prefs.cddb_http);
     gtk_table_attach_defaults(GTK_TABLE(table), cbutton, 0,1, 1,2);
 
@@ -428,11 +429,19 @@ static void use_http_cb(GtkWidget *widget, GtkWidget *entry) {
 
     val = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(portw));
     /* if the port number is set at the default for the opposite setting of
-     * use_http, set it to the default for this setting */
-    if (prefs.cddb_http && val == 8880)
+     * use_http, set it to the default for this setting.  When switching off
+     * http usage, try to guess the cddbp port.  Freedb uses 888, while
+     * cddb.com uses 8880 */
+    if (prefs.cddb_http && (val == 8880 || val == 888))
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 80);
-    if (!prefs.cddb_http && val == 80)
-      gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 8880);
+    if (!prefs.cddb_http && val == 80) {
+      gchar *text = gtk_entry_get_text(GTK_ENTRY(gtk_object_get_data(
+				GTK_OBJECT(widget), "server-entry")));
+      if (!g_strcasecmp((text + strlen(text) - 10), "freedb.org"))
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 888);
+      else
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(portw), 8880);
+    }
 }
 static void httpproxy_cb(GtkWidget *widget, gpointer data) {
     prefs.cddb_httpproxy = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));

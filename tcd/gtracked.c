@@ -399,7 +399,7 @@ void gtracked_submit(void)
 	iter = gnome_config_init_iterator_sections(prefix);
 	while ((iter = gnome_config_iterator_next(iter, &sect, NULL))!=NULL) {
 		key = g_strconcat(prefix, "/", sect, "/description", NULL);
-		description = gnome_config_get_string(key);
+		description = gnome_config_get_translated_string(key);
 		g_free(key);
 		if (!description) {
 			g_free(sect);

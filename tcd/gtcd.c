@@ -797,6 +797,7 @@ void setup_time_display(GtkWidget *table)
 
     vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
     volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
+    gtk_tooltips_set_tip(tooltips, volume, _("Volume"), "");
     gtk_range_set_update_policy( GTK_RANGE(volume), GTK_UPDATE_CONTINUOUS );
     gtk_scale_set_draw_value( GTK_SCALE(volume), FALSE );
     gtk_signal_connect( GTK_OBJECT(vol), "value_changed",
@@ -813,7 +814,8 @@ void setup_time_display(GtkWidget *table)
 			(GtkSignalFunc)status_click_event, NULL);
     gtk_widget_set_usize( status_area, 102, 60 );
 
-    gtk_widget_set_events (status_area, GDK_EXPOSURE_MASK
+    gtk_widget_set_events (status_area, gtk_widget_get_events(status_area)
+			   | GDK_EXPOSURE_MASK
 			   | GDK_LEAVE_NOTIFY_MASK
 			   | GDK_BUTTON_PRESS_MASK
 			   | GDK_POINTER_MOTION_MASK

@@ -58,6 +58,51 @@ static int num_digits( int num)
 	return(count);
 }
 
+static void append_data(char *dest, char *data, int maxlen) {
+	/* data is modified by this function */
+	int i, j;
+
+	for (i = j = 0; data[i] != '\0'; i++, j++)
+		if (data[i] == '\\') {
+			if (data[i+1] == 'n') {
+				data[j] = '\n';
+				i++;
+			} else if (data[i+1] == 't') {
+				data[j] == '\t';
+				i++;
+			} else if (data[i+1] == '\\') {
+				data[j] == '\\';
+				i++;
+			} else
+				data[j] = data[i];
+		} else
+			data[j] = data[i];
+	data[j] = '\0';
+	strncat(dest, data, maxlen);
+}
+
+static void write_data(FILE *fp, char *key, char *data) {
+	int i = 0;
+
+	fprintf(fp, "%s=", key);
+	for (; data[0] != '\0'; data++) {
+		if (data[0] == '\n') {
+			putc('\\', fp); putc('n', fp); i++;
+		} else if (data[0] == '\t') {
+			putc('\\', fp); putc('t', fp); i++;
+		} else if (data[0] == '\\') {
+			putc('\\', fp); putc('\\', fp); i++;
+		} else
+			putc(data[0], fp);
+		i++;
+		if (i > 60) {
+			fprintf(fp, "\n%s=", key);
+			i = 0;
+		}
+	}
+	fprintf(fp, "\n");
+}
+
 int tcd_readcddb( cd_struct* cd, char* filename )
 {
 	FILE* fp;
@@ -67,9 +112,12 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 	
 	/* zero out the extended data sections ... */
 	cd->cddb_rev = 0;
+	cd->dtitle[0] = '\0';
 	cd->extd[0] = '\0';
-	for (trk = cd->first_t; trk <= cd->last_t; trk++)
+	for (trk = cd->first_t; trk <= cd->last_t; trk++) {
+		cd->trk[trk].name[0] = '\0';
 		cd->trk[trk].extd[0] = '\0';
+	}
 	
 	fp = fopen( filename, "r" );
 
@@ -92,64 +140,34 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 		/* If it's a comment, ignore. */
 		if( string[0] == '#' )
 			continue;		
-
+	
 		/* If it's the disc title, print it */
 		if( strncmp( string, "DTITLE", 6 ) == 0)
 		{
-			strncpy( cd->dtitle, string+7, DISC_INFO_LEN );
+			append_data(cd->dtitle, string+7, DISC_INFO_LEN);
 			continue;
 		}
 		if( strncmp( string, "TTITLE", 6 ) == 0 )
 		{
                        	if(sscanf( string, "TTITLE%d=", &trk ) == 1)
-                        	strncpy( cd->trk[trk+1].name, 
-                        	         string + 7 + num_digits(trk),
-                        	         TRK_NAME_LEN );
-                	else
-                		cd->trk[trk+1].name[0] = 0;
+				append_data(cd->trk[trk+1].name,
+					    string + 7 + num_digits(trk),
+					    TRK_NAME_LEN);
+			/*else
+			  cd->trk[trk+1].name[0] = 0;*/
 		}
 		/* extra data for the disc */
 		if (strncmp(string, "EXTD", 4) == 0)
 		{
-			char *tmp = &string[5];
-			int i, j;
-			/* convert embedded new lines */
-			for (i = j = 0; tmp[i] != '\0'; i++, j++)
-				if (tmp[i]=='\\' && tmp[i+1]=='n') {
-					tmp[j] = '\n';
-					i++;
-				} else if (tmp[i]=='\\' && tmp[i+1]=='t') {
-					tmp[j] = '\t';
-					i++;
-				} else if (tmp[i]=='\\' && tmp[i+1]=='\\') {
-					tmp[j] = '\\';
-					i++;
-				} else
-					tmp[j] = tmp[i];
-			tmp[j] = '\0';
-			strncat(cd->extd, tmp, EXT_DATA_LEN);
+			append_data(cd->extd, string+5, EXT_DATA_LEN);
 		}
 		/* extra data for a track */
 		if (strncmp(string, "EXTT", 4) == 0)
 		{
 			if (sscanf(string, "EXTT%d=", &trk) == 1) {
-				char *tmp = &string[5 + num_digits(trk)];
-				int i, j;
-				/* convert embedded new lines */
-				for (i = j = 0; tmp[i] != '\0'; i++, j++)
-					if (tmp[i]=='\\' && tmp[i+1]=='n') {
-						tmp[j] = '\n';
-						i++;
-					} else if(tmp[i]=='\\'&&tmp[i+1]=='t'){
-						tmp[j] = '\t';
-						i++;
-					}else if(tmp[i]=='\\'&&tmp[i+1]=='\\'){
-						tmp[j] = '\\';
-						i++;
-					} else
-						tmp[j] = tmp[i];
-				tmp[j] = '\0';
-				strncat(cd->trk[trk+1].extd, tmp,EXT_DATA_LEN);
+				append_data(cd->trk[trk+1].extd,
+					    string + 5 + num_digits(trk),
+					    EXT_DATA_LEN);
 			}
 		}
 		/* Otherwise ignore it */
@@ -162,8 +180,8 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 {
 	FILE *fp;
 	int n=0;
-	unsigned long trk, i;
-	char *tmp;
+	unsigned long trk;
+	char buf[20];
 	
 	fp = fopen( filename, "w" );
 	if( fp == NULL )
@@ -174,15 +192,15 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	fprintf( fp, "# Track frame offsets:\n" );
 	
 	/* Print the frame offsets */
-	for( i = cd->first_t; i <= cd->last_t; i++ )
+	for( trk = cd->first_t; trk <= cd->last_t; trk++ )
 	{
 		int min, sec;
 		
-		min = cd->trk[i].toc.cdte_addr.msf.minute;
-		sec = cd->trk[i].toc.cdte_addr.msf.second;
+		min = cd->trk[trk].toc.cdte_addr.msf.minute;
+		sec = cd->trk[trk].toc.cdte_addr.msf.second;
 	
 		n = (min*60)+sec;
-		fprintf( fp, "# %u\n", (n*75)+cd->trk[i].toc.cdte_addr.msf.frame );
+		fprintf( fp, "# %u\n", (n*75)+cd->trk[trk].toc.cdte_addr.msf.frame );
 	}
 	/* Print the number of seconds */
 	fprintf( fp, "#\n# Disc length: %i seconds\n", 
@@ -194,48 +212,16 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	fprintf( fp, "#\n" );
 
 	fprintf( fp, "DISCID=%08lx\n", cd->cddb_id );
-	fprintf( fp, "DTITLE=%s\n", cd->dtitle );
-	for( trk = cd->first_t; trk <= cd->last_t; trk++ )
-		fprintf( fp, "TTITLE%ld=%s\n", trk-1, cd->trk[trk].name );
-	/* FIXME print extended info here, instead of just dummy variables */
-
-	fprintf(fp, "EXTD=");
-	i = 0;
-	for (tmp = cd->extd; tmp[0] != '\0'; tmp++) {
-		if (tmp[0] == '\n') {
-			putc('\\', fp); putc('n', fp); i++;
-		} else if (tmp[0] == '\t') {
-			putc('\\', fp); putc('t', fp); i++;
-		} else if (tmp[0] == '\\') {
-			putc('\\', fp); putc('\\', fp); i++;
-		} else
-			putc(tmp[0], fp);
-		i++;
-		if (i > 60) {
-			fprintf(fp, "\nEXTD=");
-			i = 0;
-		}
+	write_data(fp, "DTITLE", cd->dtitle);
+	for( trk = cd->first_t; trk <= cd->last_t; trk++ ) {
+		sprintf(buf, "TTITLE%ld", trk-1);
+		write_data(fp, buf, cd->trk[trk].name);
 	}
-	fprintf(fp, "\n");
+
+	write_data(fp, "EXTD", cd->extd);
 	for( trk= cd->first_t; trk <= cd->last_t; trk++ ) {
-		fprintf( fp, "EXTT%ld=", trk-1);
-		i = 0;
-		for (tmp = cd->trk[trk].extd; tmp[0] != '\0'; tmp++) {
-			if (tmp[0] == '\n') {
-				putc('\\', fp); putc('n', fp); i++;
-			} else if (tmp[0] == '\t') {
-				putc('\\', fp); putc('t', fp); i++;
-			} else if (tmp[0] == '\\') {
-				putc('\\', fp); putc('\\', fp); i++;
-			} else
-				putc(tmp[0], fp);
-			i++;
-			if (i > 60) {
-				fprintf(fp, "\nEXTT%ld=", trk-1);
-				i = 0;
-			}
-		}
-		fprintf(fp, "\n");
+		sprintf(buf, "EXTT%ld", trk-1);
+		write_data(fp, buf, cd->trk[trk].extd);
 	}
 	fprintf( fp, "PLAYORDER=\n");
 	

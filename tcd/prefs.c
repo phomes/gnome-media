@@ -93,8 +93,8 @@ void load_prefs(tcd_prefs *prop)
 
     prop->only_use_trkind = gnome_config_get_bool("/gtcd/general/only_use_trkind=0");
 /* cddb stuff, used by cddbslave. */
-    prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
-    prop->cddb_port   = gnome_config_get_int("/cddbslave/server/port=8880");
+    prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=freedb.freedb.org");
+    prop->cddb_port   = gnome_config_get_int("/cddbslave/server/port=888");
     prop->cddb_http   = gnome_config_get_bool("/cddbslave/server/use_http=false");
     prop->cddb_httpproxy = gnome_config_get_string("/cddbslave/server/http_proxy=");
 }
