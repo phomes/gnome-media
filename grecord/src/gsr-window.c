@@ -619,10 +619,10 @@ file_mixer (BonoboUIComponent *uic,
 	gboolean ret;
 
 	/* Open the mixer */
-	mixer_path = g_find_program_in_path ("gst-mixer");
+	mixer_path = g_find_program_in_path ("gnome-volume-control");
 	if (mixer_path == NULL) {
 		char *tmp;
-		tmp = g_strdup_printf(_("%s is not installed in the path."), "gst-mixer");
+		tmp = g_strdup_printf(_("%s is not installed in the path."), "gnome-volume-control");
 		show_error_dialog (GTK_WINDOW (window), tmp);
 		g_free(tmp);
 		return;
