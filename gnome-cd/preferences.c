@@ -27,6 +27,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
+#include <atk/atk.h>
+
 #include <gtk/gtkdialog.h>
 #include <gtk/gtkstock.h>
 #include <gtk/gtkvbox.h>
@@ -687,7 +689,51 @@ create_theme_model (PropertyDialog *pd,
 
 	return GTK_TREE_MODEL (store);
 }
-	
+
+static void
+add_relation (AtkRelationSet *set,
+	      AtkRelationType type,
+	      AtkObject *target)
+{
+	AtkRelation *relation;
+
+	relation = atk_relation_set_get_relation_by_type (set, type);
+
+	if (relation != NULL) {
+		GPtrArray *array = atk_relation_get_target (relation);
+
+		g_ptr_array_remove (array, target);
+		g_ptr_array_add (array, target);
+	} else {
+		/* Relation hasn't been created yet */
+		relation = atk_relation_new (&target, 1, type);
+
+		atk_relation_set_add (set, relation);
+		g_object_unref (relation);
+	}
+}
+
+static void
+add_paired_relations (GtkWidget *target1,
+		      AtkRelationType target1_type,
+		      GtkWidget *target2,
+		      AtkRelationType target2_type)
+{
+	AtkObject *atk_target1;
+	AtkObject *atk_target2;
+	AtkRelationSet *set1;
+	AtkRelationSet *set2;
+
+	atk_target1 = gtk_widget_get_accessible (target1);
+	atk_target2 = gtk_widget_get_accessible (target2);
+
+	set1 = atk_object_ref_relation_set (atk_target1);
+	add_relation (set1, target1_type, atk_target2);
+
+	set2 = atk_object_ref_relation_set (atk_target2);
+	add_relation (set2, target2_type, atk_target1);
+}
+
 GtkWidget *
 preferences_dialog_show (GnomeCD *gcd,
 			 gboolean only_device)
@@ -736,6 +782,9 @@ preferences_dialog_show (GnomeCD *gcd,
 	pd->cd_device = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (pd->cd_device), gcd->preferences->device);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->cd_device);
+	add_paired_relations (label, ATK_RELATION_LABEL_FOR,
+			      pd->cd_device, ATK_RELATION_LABELLED_BY);
+	
 	g_signal_connect (G_OBJECT (pd->cd_device), "changed",
 			  G_CALLBACK (device_changed_cb), pd);
 	g_signal_connect (G_OBJECT (pd->cd_device), "activate",
