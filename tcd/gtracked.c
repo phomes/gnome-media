@@ -1,5 +1,3 @@
-#undef PIXMAPS
-
 #include <config.h>
 #include <gnome.h>
 #include <sys/types.h>
@@ -7,29 +5,17 @@
 #include <linux/cdrom.h>
 #include "linux-cdrom.h"
 
-#ifdef PIXMAPS
-#include "icons/data.xpm"
-#include "icons/music.xpm"
-#endif
+#include "gtcd_public.h"
 
 GtkWidget *trwin;
 
-#ifdef PIXMAPS
-GtkWidget *music, *data;
-#endif
-
-extern cd_struct cd;
-
-void make_gotomenu();
-void gcddb();
- 
 void destroy_window (GtkWidget *widget, gboolean save)
 {
 	if( save )
 		tcd_writediskinfo(&cd);
         gtk_widget_destroy(trwin);
 	trwin = NULL;
-	make_gotomenu();
+	make_goto_menu();
 	return;
 }
 
@@ -61,11 +47,6 @@ void fill_list( GtkWidget *list )
 	
 		gtk_clist_append(GTK_CLIST(list), tmp);
 		g_snprintf(tmp[0],255, "%d", i);
-#ifdef PIXMAPS
-		gtk_clist_set_pixtext(GTK_CLIST(list), i-1,0, tmp[0], 2, 
-			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->pixmap, 
-			GNOME_PIXMAP(cd.trk[i].status==TRK_DATA?data:music)->mask);
-#endif
 	}
 
 	gtk_clist_thaw(GTK_CLIST(list));
@@ -109,7 +90,7 @@ void select_row_cb( GtkCList *clist,
 	return;
 }
 	
-void edit_window( void )
+void edit_window(GtkWidget *widget, gpointer data)
 {
 	char *titles[] = {N_("Trk"),N_("Time"),N_("Title")};
 	int i;
@@ -135,11 +116,6 @@ void edit_window( void )
 	
 	main_box = gtk_vbox_new(FALSE, 4);
 
-#ifdef PIXMAPS
-	music = gnome_pixmap_new_from_xpm_d(music_xpm);
-	data = gnome_pixmap_new_from_xpm_d(data_xpm);
-#endif
-	
 	/* Disc area */
 	disc_table  = gtk_table_new(2, 2, FALSE);
 	disc_frame = gtk_frame_new(_("Disc Information"));
@@ -194,17 +170,20 @@ void edit_window( void )
 	/* END Track area */
 
 	button_box = gtk_hbox_new(FALSE,2);
+	/* CDDB Get button */
 	button = gtk_button_new_with_label(_("CDDB Get"));
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		GTK_SIGNAL_FUNC(gcddb), NULL);
-//	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	/* CDDB Submit button */
 	button = gtk_button_new_with_label(_("Submit"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	/* Clear button */
 	button = gtk_button_new_with_label(_("Clear"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	/* Playlist button */
 	button = gtk_button_new_with_label(_("Playlist"));
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);

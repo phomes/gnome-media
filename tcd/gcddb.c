@@ -1,5 +1,4 @@
 /* This file is part of TCD 2.0.
-   gabout.c - About dialog for gtcd.
    
    Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
    
@@ -40,19 +39,13 @@
 #include "socket.h"
 #include "cddb.h"
 #include "prefs.h"
+#include "gtcd_public.h"
 
 GtkWidget *cddbwin, *label, *pb;
 GtkWidget *cancelbutton, *startbutton;
         
-extern int titlelabel_f;
-extern cd_struct cd;
-extern tcd_prefs prefs;
-
 int val;
 int cancel_id, start_id, timeout;
-
-void create_warn( char *message_text, char *type );
-void make_gotomenu();
 
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
@@ -67,7 +60,7 @@ void cancel_cddb( GtkWidget *widget, gpointer data )
         	GTK_SIGNAL_FUNC(close_cddb), NULL);
 }
 
-void gcddb()
+void gcddb(GtkWidget *widget, gpointer *data)
 {
 	GtkWidget *box, *tmplabel, *infoframe, *infobox;
 	char tmp[255];
@@ -260,8 +253,8 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	gtk_label_set( GTK_LABEL(label), _("Done!") );
 
 	tcd_close_disc(&cd);
-        tcd_init_disc(&cd, create_warn);
-	make_gotomenu();
+        tcd_init_disc(&cd, create_warning);
+	make_goto_menu();
 
 	titlelabel_f = TRUE;
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0);

@@ -28,8 +28,7 @@
 #ifndef GTRACKED_H
 #define GTRACKED_H
 
-void edit_window( void );
 void destroy_window (GtkWidget *widget, GtkWidget **window);
-void gtracked();
+void edit_window(GtkWidget *widget, gpointer data);
 
 #endif /* GTRACKED_H */

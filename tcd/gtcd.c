@@ -50,14 +50,12 @@
 
 #include "cddb.h"
 #include "gtracked.h"
-#include "gabout.h"
 #include "gcddb.h"
 #include "prefs.h"
 #include "tooltips.h"
 #include "led.h"
-
-/* callback commands */
-enum { PLAY=0, PAUSE, STOP, EJECT, NEXT_T, PREV_T, CDDB, TRACKLIST, GOTO, QUIT, ABOUT, PROPS };
+#include "callbacks.h"
+#include "gtcd_public.h"
 
 /* time display types */
 enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
@@ -78,15 +76,11 @@ char *play_types[] =
     "random"
 };
 
-#define Connect( x,y ) gtk_signal_connect (GTK_OBJECT (x), "clicked", \
-					   GTK_SIGNAL_FUNC (callback), (gpointer*)y);
-
-/* Regular globals */
+/* globals */
 cd_struct cd;
 int titlelabel_f = 0;
 int gotoi;
 
-/* Gtk Globals */
 GtkWidget *row, *upper_box;
 GtkWidget *button_box;
 GtkWidget *tracktime_label, *trackcur_label;
@@ -109,227 +103,137 @@ int configured = FALSE, old_status=-1, max,tfont_height;
 unsigned int cur_goto_id, release_t=0, roll_t=0;
 tcd_prefs prefs;
 
-/* Prototypes */
-void draw_status( void );
-void delete_event (GtkWidget *widget, gpointer *data);
-void create_warn( char *, char * );
-void make_gotomenu();
+/* prototypes */
 void status_changed(void);
-gint slow_timer( gpointer *data );
+gint slow_timer(gpointer *data);
+gint roll_timer(gpointer *data);
+gint release_timer(gpointer *data);
+int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data);
+gint changer_callback(GtkWidget *widget, gpointer *data);
+GtkWidget* make_changer_buttons(void);
+GtkWidget* make_small_buttons();
+GtkWidget* create_buttons(void);
+void setup_colors(void);
+void draw_time_playing();
+void draw_titles();
+void draw_time_scanning();
+void adjust_status(void);
+gint volume_changed(GtkWidget *widget, gpointer *data);
+gint launch_gmix(GtkWidget *widget, GdkEvent *event, gpointer data);
+gint fast_timer(gpointer *data);
+void setup_time_display(GtkWidget *table);
+void setup_fonts(void);
+void init_window(void);
 
-void callback (GtkWidget *widget, gpointer *data)
-{
-    switch( (int)data )
-    {
-    case PLAY:
-	if( cd.sc.cdsc_audiostatus == CDROM_AUDIO_PAUSED )
-	    tcd_pausecd(&cd);
-	else 
-	    tcd_playtracks( &cd,cd.first_t,cd.last_t );
-	cd.repeat_track = cd.cur_t;
-	break;
-    case PAUSE:
-	tcd_pausecd(&cd);
-	break;
-    case STOP:
-	tcd_stopcd(&cd);
-	cd.play_method = NORMAL;
-	break;	                                                                                                        
-    case EJECT:
-    tcd_ejectcd(&cd);
-	cd.play_method = NORMAL;
-	cd.repeat_track = -1;
-	/* SDH: Make sure play/pause state change is noticed */
-	cd.sc.cdsc_audiostatus = -1;
-	break;
-    case NEXT_T:
-	if( cd.cur_t < cd.last_t ) 
-	{
-	    cd.cur_t++;
-	    tcd_playtracks( &cd,cd.cur_t, cd.last_t );
-	    if( cd.play_method==REPEAT_TRK )
-		cd.repeat_track = cd.cur_t;
-	}
-	break;
-    case PREV_T:
-	if( cd.cur_t > cd.first_t ) 
-	{
-	    if( (cd.t_sec+(cd.t_min*60)) < 10 )
-		cd.cur_t--;
-	    tcd_playtracks( &cd,cd.cur_t, cd.last_t );
-	    
-	    if( cd.play_method==REPEAT_TRK )
-		cd.repeat_track = cd.cur_t;
-	}
-	else
-	    tcd_playtracks( &cd, cd.cur_t, cd.last_t );
-	break;
-    case TRACKLIST:
-	edit_window();
-	break;
-    case QUIT:
-	delete_event(NULL,NULL);
-	break;		
-    case ABOUT:
-	about_cb(NULL,NULL);
-	break;	
-    case CDDB:
-	gcddb();
-	break;
-    case PROPS:
-	prefs_cb(NULL, NULL);
-    default:
-    }
-    draw_status();
-}
-
+/* functions */
 gint roll_timer(gpointer *data)
 {
-	tcd_play_seconds(&cd, GPOINTER_TO_INT(data));
-	tcd_gettime(&cd);
-	draw_status();
-	return TRUE;
+    tcd_play_seconds(&cd, GPOINTER_TO_INT(data));
+    tcd_gettime(&cd);
+    draw_status();
+    return TRUE;
 }
 
 gint release_timer(gpointer *data)
 {
-	roll_t = gtk_timeout_add(35, (GtkFunction)roll_timer, data);
-	release_t = 0;
-	return FALSE;
+    roll_t = gtk_timeout_add(35, (GtkFunction)roll_timer, data);
+    release_t = 0;
+    return FALSE;
 }
 
 int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data)
 {
-	GdkEventButton *e=(GdkEventButton*)event;
-
-	if(event->type == GDK_BUTTON_PRESS)
+    if(event->type == GDK_BUTTON_PRESS)
+    {
+	release_t = gtk_timeout_add(750, (GtkFunction)release_timer, data);
+    }
+    else if(event->type == GDK_BUTTON_RELEASE)
+    {
+	if(release_t)
 	{
-		release_t = gtk_timeout_add(750, (GtkFunction)release_timer, data);
-	}
-	else if(event->type == GDK_BUTTON_RELEASE)
-	{
-		if(release_t)
+	    gtk_timeout_remove(release_t);
+	    switch(GPOINTER_TO_INT(data))
+	    {
+		/* +track */
+	    case 2:
+		if(cd.cur_t < cd.last_t)
+		{   
+		    cd.cur_t++;
+		    tcd_playtracks(&cd,cd.cur_t, cd.last_t);
+		    if(cd.play_method==REPEAT_TRK)
+			cd.repeat_track = cd.cur_t;
+		}
+		break;
+		/* -track */
+	    case -2:
+		if( cd.cur_t > cd.first_t )
 		{
-			gtk_timeout_remove(release_t);
-			switch(GPOINTER_TO_INT(data))
-			{
-				/* +track */
-				case 1:
-					if(cd.cur_t < cd.last_t)
-					{   
-						cd.cur_t++;
-						tcd_playtracks(&cd,cd.cur_t, cd.last_t);
-						if(cd.play_method==REPEAT_TRK)
-                					cd.repeat_track = cd.cur_t;
-					}
-					break;
-				/* -track */
-				case -1:
-					if( cd.cur_t > cd.first_t )
-				        {
-				        	if( (cd.t_sec+(cd.t_min*60)) < 10 )
-				                	cd.cur_t--;
-				                tcd_playtracks( &cd,cd.cur_t, cd.last_t );
+		    if( (cd.t_sec+(cd.t_min*60)) < 10 )
+			cd.cur_t--;
+		    tcd_playtracks( &cd,cd.cur_t, cd.last_t );
 				                                                             
-				                if( cd.play_method==REPEAT_TRK )
-				                cd.repeat_track = cd.cur_t;
-					}
-					break;
-			}
-		}   
-		if(roll_t)
-			gtk_timeout_remove(roll_t);
+		    if( cd.play_method==REPEAT_TRK )
+			cd.repeat_track = cd.cur_t;
+		}
+		break;
+	    }
+	}   
+	if(roll_t)
+	    gtk_timeout_remove(roll_t);
 			
-		release_t = 0;
-		roll_t = 0;
-	}
+	release_t = 0;
+	roll_t = 0;
+    }
 	
-	return FALSE;	
-}
-	
-void delete_event (GtkWidget *widget, gpointer *data)
-{
-    gtk_main_quit();
+    return FALSE;	
 }
 
-GtkWidget* make_button( char *title, GtkWidget *box, int func, gchar *tooltip )
-{
-    GtkWidget *button;
-    
-    button = gtk_button_new_with_label (title);
-    gtk_label_set_justify(GTK_LABEL(GTK_BUTTON(button)->child), GTK_JUSTIFY_LEFT);
-    
-    if(box)
-	    gtk_box_pack_start (GTK_BOX (box), button, TRUE, TRUE, 0);
-    if(func > 0)
-	    Connect( button, func );
-    
-    gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
-    
-    return button;
-}	                        
-
-GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
-				    gint expand, gint fill, gchar *tooltip )
+GtkWidget* make_button_with_pixmap( char *pic, GtkSignalFunc func,
+				    gpointer data,  gchar *tooltip )
 {
     GtkWidget *button;
     GtkWidget *pixmap;
     char tmp[256];
     char *name;
-	
-    g_snprintf( tmp, 255, "tcd/%s.xpm", pic );
-    name = gnome_pixmap_file (tmp);
+    
+    g_snprintf( tmp, 255, "tcd/%s.xpm", pic);
+    name = gnome_pixmap_file(tmp);
 #ifdef DEBUG
     g_print( "loading: %s\n", name );
 #endif
     pixmap = gnome_pixmap_new_from_file(name);
-    g_free (name);
-	
+    g_free(name);
+    
     button = gtk_button_new();
     gtk_container_add( GTK_CONTAINER(button), pixmap );
-
-    if(box)
-	    gtk_box_pack_start(GTK_BOX(box), button, expand, fill, 0);
-	
-    if( func != -1 )
+    
+    if(func)
 	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
-			   GTK_SIGNAL_FUNC (callback), (gpointer*)func );
-	
-    gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
-	
+			   GTK_SIGNAL_FUNC(func), data );
+    
+    gtk_tooltips_set_tip(tooltips, button, tooltip, "");
+    
     return button;
 }	                        
 
-GtkWidget* make_button_stock( char *stock, GtkWidget *box, int func,
-				    gint expand, gint fill, gchar *tooltip )
+GtkWidget* make_button_stock( char *stock, GtkSignalFunc func,
+			      gpointer data, gchar *tooltip )
 {
     GtkWidget *button;
     GtkWidget *pixmap;
-
+    
     pixmap = gnome_stock_pixmap_widget_new(window,stock);
     button = gtk_button_new();
     gtk_container_add(GTK_CONTAINER(button), pixmap);
 
-    if(box)
-	    gtk_box_pack_start(GTK_BOX(box), button, expand, fill, 0);
-	
-    if( func != -1 )
+    if(func)
 	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
-			   GTK_SIGNAL_FUNC (callback), (gpointer*)func );
+			   GTK_SIGNAL_FUNC(func), data);
 	
     gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 	
     return button;
 }	                        
-
-gint changer_callback( GtkWidget *widget, gpointer *data )
-{
-    tcd_close_disc(&cd);
-    tcd_change_disc( &cd, (int)data );
-    tcd_init_disc(&cd,create_warn);
-    cd.play_method = NORMAL;
-    return 1;
-}
 
 GtkWidget* make_changer_buttons( void )
 {
@@ -356,7 +260,7 @@ GtkWidget* make_changer_buttons( void )
 
 	gtk_box_pack_start(GTK_BOX(box), changer_buttons[i], TRUE, TRUE, 0);
 	gtk_signal_connect(GTK_OBJECT(changer_buttons[i]), "clicked", \
-			    GTK_SIGNAL_FUNC(changer_callback), (gpointer*)i);
+			   GTK_SIGNAL_FUNC(changer_cb), GINT_TO_POINTER(i));
     }
     return box;
 }
@@ -378,27 +282,27 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 
 GtkWidget *make_small_buttons()
 {
-    GtkWidget *b1, *b2, *b3, *b4;
+    GtkWidget *b1, *b2, *b3;
     GtkWidget *table;
     
     table = gtk_table_new(TRUE, 6,1);
 
-    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, NULL, TRACKLIST, TRUE, TRUE, TT_TRACKED);
-    b3 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, NULL, PROPS, TRUE, TRUE, TT_PROPS);
-    b4 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, NULL, QUIT, TRUE, TRUE, _("Quit"));
+    b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, NULL, TT_TRACKED);
+    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, prefs_cb, NULL, TT_PROPS);
+    b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, NULL, _("Quit"));
 
-    gtk_table_attach_defaults(GTK_TABLE(table), b2, 0, 2, 0, 1);
-    gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 4, 0, 1);
-    gtk_table_attach_defaults(GTK_TABLE(table), b4, 4, 6, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), b2, 2, 4, 0, 1);
+    gtk_table_attach_defaults(GTK_TABLE(table), b3, 4, 6, 0, 1);
 
     return table;
 }
 
-GtkWidget* create_buttons( void )
+GtkWidget* create_buttons(void)
 {
-    GtkWidget *table, *handle;
-    GtkWidget *b1, *b2, *b3, *b4;
-    GtkWidget *pixmap, *bbox;
+    GtkWidget *table;
+    GtkWidget *b1, *b2, *b3;
+    GtkWidget *pixmap;
     GtkWidget *rw, *ff;
     char *name;
 
@@ -406,30 +310,30 @@ GtkWidget* create_buttons( void )
 
 /* TOP ROW */ 
      
-    playbutton = make_button_with_pixmap( "play", NULL, -1, TRUE, TRUE, TT_PLAY );
+    playbutton = make_button_with_pixmap("play", play_cb, NULL, TT_PLAY);
     status_changed();
     b1 = playbutton;
     
-    b2 = make_button_with_pixmap( "stop", NULL, STOP, FALSE, FALSE, TT_STOP );
-    b3 = make_button_with_pixmap( "eject", NULL, EJECT, FALSE, FALSE, TT_EJECT );
+    b2 = make_button_with_pixmap( "stop", stop_cb, NULL, TT_STOP );
+    b3 = make_button_with_pixmap( "eject", eject_cb, NULL, TT_EJECT );
     
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 3, 0, 1);
 
 /* MIDDLE ROW */
-    rw = make_button_with_pixmap("rw", NULL, -1, TRUE, TRUE, TT_REWIND);
-    ff = make_button_with_pixmap("ff", NULL, -1, TRUE, TRUE, TT_FF);
+    rw = make_button_with_pixmap("rw", NULL, NULL, TT_REWIND);
+    ff = make_button_with_pixmap("ff", NULL, NULL, TT_FF);
 
     gtk_widget_set_events(rw, GDK_BUTTON_PRESS_MASK
-                            | GDK_BUTTON_RELEASE_MASK);
+			  | GDK_BUTTON_RELEASE_MASK);
     gtk_widget_set_events(ff, GDK_BUTTON_PRESS_MASK
-                            | GDK_BUTTON_RELEASE_MASK);
+			  | GDK_BUTTON_RELEASE_MASK);
  
     gtk_signal_connect(GTK_OBJECT(ff), "event",
-	GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(2));
+		       GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(2));
     gtk_signal_connect(GTK_OBJECT(rw), "event",
-	GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(-2));
+		       GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(-2));
 
 /* Create goto button  */
     gotobutton = gtk_button_new();
@@ -629,7 +533,7 @@ void adjust_status(void)
 gint slow_timer( gpointer *data )
 {
     if( cd.cddb_id != cur_goto_id )
-	make_gotomenu();
+	make_goto_menu();
 
     if( cd.err || !cd.isplayable )
     {
@@ -656,10 +560,10 @@ void status_changed(void)
 	GtkWidget *pixmap;
 	char tmp[256];
 	char *name;
-
+	
 	old_status = cd.sc.cdsc_audiostatus;
-	g_snprintf( tmp, 255, "tcd/%s.xpm", 
-		 (old_status==CDROM_AUDIO_PLAY)?"pause":"play" );
+	g_snprintf(tmp, 255, "tcd/%s.xpm", 
+		    (old_status==CDROM_AUDIO_PLAY)?"pause":"play");
 
 	gtk_widget_destroy(GTK_BUTTON(playbutton)->child);
 	GTK_BUTTON(playbutton)->child = NULL;
@@ -670,11 +574,10 @@ void status_changed(void)
 	gtk_widget_show(pixmap);
 	gtk_container_add( GTK_CONTAINER(playbutton), pixmap );
 
-	if( playid > 0 )
+	if(playid > 0)
 	    gtk_signal_disconnect(GTK_OBJECT(playbutton), playid);
 	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
-				    GTK_SIGNAL_FUNC (callback),
-				    (old_status==CDROM_AUDIO_PLAY)?(gpointer*)PAUSE:(gpointer*)PLAY );
+				    GTK_SIGNAL_FUNC(old_status==CDROM_AUDIO_PLAY?pause_cb:play_cb), NULL );
     }
 }
 
@@ -683,7 +586,7 @@ gint volume_changed( GtkWidget *widget, gpointer *data )
     if( !data )
     {
 	cd.volume = (int)floor(GTK_ADJUSTMENT(vol)->value);
-	if( cd.isplayable ) tcd_gettime(&cd);
+	if(cd.isplayable) tcd_gettime(&cd);
     }
     draw_status();
     return 1;
@@ -691,21 +594,14 @@ gint volume_changed( GtkWidget *widget, gpointer *data )
 
 gint launch_gmix( GtkWidget *widget, GdkEvent *event, gpointer data ) 
 {
-    if ( event->type==GDK_2BUTTON_PRESS )
+    if(event->type==GDK_2BUTTON_PRESS)
         if (fork()==0)
             execlp("gmix","",NULL); 
 
-     return FALSE;
+    return FALSE;
 }
 
-gint gototrack( GtkWidget *widget, gpointer *data )
-{
-    tcd_playtracks( &cd, (int)data, cd.last_t );
-    cd.repeat_track = (int)data;
-    return 1;
-}
-
-void make_gotomenu()
+void make_goto_menu()
 {
     char buf[TRK_NAME_LEN];
     int i;
@@ -718,13 +614,13 @@ void make_gotomenu()
 	g_snprintf(buf, TRK_NAME_LEN-1, "%2d - %s", i, cd.trk[C(i)].name);
 	item = gtk_menu_item_new_with_label(buf);
 	gtk_widget_show(item);
-	gtk_menu_append(GTK_MENU (gotomenu), item);
+	gtk_menu_append(GTK_MENU(gotomenu), item);
 	gtk_signal_connect_object(GTK_OBJECT(item), "activate",
-				  GTK_SIGNAL_FUNC(gototrack), (gpointer)i );
+				  GTK_SIGNAL_FUNC(goto_track_cb), GINT_TO_POINTER(i));
     }
     if(gotoi) gtk_signal_disconnect(GTK_OBJECT(gotobutton), gotoi);
     gotoi = gtk_signal_connect_object(GTK_OBJECT(gotobutton), "event",
-	GTK_SIGNAL_FUNC(button_press), GTK_OBJECT(gotomenu));
+				      GTK_SIGNAL_FUNC(button_press), GTK_OBJECT(gotomenu));
 
     cur_goto_id = cd.cddb_id;
 }
@@ -733,8 +629,8 @@ gint fast_timer( gpointer *data )
 {
     tcd_gettime(&cd);
     status_changed();
-    if( (cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track) )
-	tcd_playtracks( &cd, cd.repeat_track, -1 );
+    if((cd.play_method==REPEAT_TRK) && (cd.cur_t != cd.repeat_track))
+	tcd_playtracks(&cd, cd.repeat_track, -1);
     return 1;
 }
 
@@ -916,7 +812,7 @@ void init_window(void)
     gtk_window_set_policy(GTK_WINDOW(window), TRUE, FALSE, TRUE);
 
     gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-		       GTK_SIGNAL_FUNC(delete_event), NULL);
+		       GTK_SIGNAL_FUNC(quit_cb), NULL);
 
     gtk_container_border_width(GTK_CONTAINER(window), 3);
     gtk_widget_realize(window);
@@ -933,7 +829,7 @@ void init_window(void)
 	gtk_tooltips_disable(tooltips);
 }
 
-void create_warn( char *message_text, char *type )
+void create_warning(char *message_text, char *type)
 {
     gtk_widget_show(gnome_message_box_new(message_text, type,
 					  GNOME_STOCK_BUTTON_OK, NULL));
@@ -950,25 +846,25 @@ int main (int argc, char *argv[])
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
 
-    gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
+    gnome_init("gtcd", NULL, argc, argv, 0, NULL);
 
     homedir = getenv("HOME");
     g_snprintf(rcfile, 255, "%s/.tcd/gtcdrc", homedir);
-    gtk_rc_parse( rcfile );
+    gtk_rc_parse(rcfile);
 
     cd.play_method = NORMAL;        
 
     load_prefs(&prefs);
     cd.cdpath = prefs.cddev;
 	
-    tcd_init_disc(&cd, (WarnFunc)create_warn);
+    tcd_init_disc(&cd, (WarnFunc)create_warning);
         
     init_window();
 
     table = create_buttons();
     gtk_box_pack_start(GTK_BOX(main_box), table, FALSE, FALSE, 0);
 
-    make_gotomenu();
+    make_goto_menu();
     setup_time_display(table);
     setup_colors();
     led_init(window);
@@ -980,7 +876,7 @@ int main (int argc, char *argv[])
     gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
     titlelabel_f = TRUE;
 	
-    gnome_app_set_contents( GNOME_APP(window), main_box );
+    gnome_app_set_contents(GNOME_APP(window), main_box);
     adjust_status();	
     gtk_widget_show_all(window);
 	
@@ -990,3 +886,23 @@ int main (int argc, char *argv[])
     gdk_gc_destroy(gc);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

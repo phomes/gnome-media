@@ -18,20 +18,20 @@ gtcd_SOURCES = 		\
 	socket.c 	\
 	linux-cdrom.c 	\
 	gtracked.c 	\
-	gabout.c 	\
 	gcddb.c 	\
 	cddb.h 		\
 	socket.h 	\
 	gtracked.h 	\
-	gabout.h 	\
 	gcddb.h		\
 	tooltips.h	\
-	prefs.c	\
-	prefs.h	\
+	prefs.c		\
+	prefs.h		\
 	led.h		\
 	led.c		\
-	led.xpm	\
-	linux-cdrom.h
+	led.xpm		\
+	linux-cdrom.h	\
+	callbacks.c	\
+	callbacks.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\

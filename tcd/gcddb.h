@@ -1,5 +1,4 @@
 /* This file is part of TCD 2.0.
-   gcddb.h - Header for cddb functions in the Gtk interface.
 
    Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
    
@@ -28,9 +27,9 @@
 #ifndef GCDDB_H
 #define GCDDB_H
 
-void cancel( GtkWidget *, GtkWidget ** );
-void gcddb();
-void do_cddb( GtkWidget *, gpointer );
+#include <gnome.h>
 
+void cancel( GtkWidget *, GtkWidget ** );
+void do_cddb( GtkWidget *, gpointer );
 
 #endif /* GCDDB_H */
