@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-04-05 23:21+0200\n"
-"PO-Revision-Date: 2002-04-05 23:27+0200\n"
+"POT-Creation-Date: 2002-04-09 23:42+0200\n"
+"PO-Revision-Date: 2002-04-09 23:51+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -857,8 +857,7 @@ msgstr "Radio"
 msgid "Phone"
 msgstr "Telefon"
 
-#: gmix/device_labels_alsa.h:1 grecord/src/gui.c:1 grecord/src/gui.c:1
-#: grecord/src/gui.c:1
+#: gmix/device_labels_alsa.h:1 grecord/src/gui.c:1
 msgid "Mono"
 msgstr "Mono"
 
@@ -1173,13 +1172,17 @@ msgid "Show mixer labels"
 msgstr "Wyświetlanie etykiet miksera"
 
 #: gmix/prefs.c:1 gmix/prefs.c:1
+msgid "Shown"
+msgstr "Widoczne"
+
+#: gmix/prefs.c:1 gmix/prefs.c:1
 msgid "Mixer label"
 msgstr "Etykieta miksera"
 
 #. Add the label reset button
 #: gmix/prefs.c:1
-msgid "Reset labels to their defaults"
-msgstr "Przywróć domyślne etykiety"
+msgid "_Reset labels to their defaults"
+msgstr "_Przywróć domyślne etykiety"
 
 #: gmix/prefs.c:1
 msgid "Gnome Volume Control Preferences"
@@ -1238,14 +1241,19 @@ msgid "Line for displaying the name of the album"
 msgstr "Wiersz zawierający nazwę albumu"
 
 #: gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1
-#: gnome-cd/gnome-cd.c:1 grecord/src/gui.c:1
+#: gnome-cd/callbacks.c:1 gnome-cd/gnome-cd.c:1 grecord/src/gui.c:1
 msgid "Play"
 msgstr "Odtwarzaj"
 
 #: gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1
 #: gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1
+#: gnome-cd/callbacks.c:1
 msgid "Pause"
 msgstr "Wstrzymaj"
+
+#: gnome-cd/callbacks.c:1
+msgid "Disc error"
+msgstr "Błąd przy odczycie płyty"
 
 #: gnome-cd/callbacks.c:1
 msgid "Unknown Artist"
@@ -1488,6 +1496,24 @@ msgstr "Rejestrator dźwięku"
 msgid "Sound Recorder:"
 msgstr "Rejestrator dźwięku:"
 
+#: grecord/src/grec.c:1 grecord/src/main.c:1
+msgid "Don't show this message again."
+msgstr "Bez wyświetlania tego komunikatu w przyszłości."
+
+#: grecord/src/grec.c:1 grecord/src/main.c:1
+#, c-format
+msgid ""
+"Could not find '%s'.\n"
+"Set the correct path to sox inpreferences under the tab 'paths'.\n"
+"\n"
+"If you don't have sox, you will not be able to record or do any effects."
+msgstr ""
+"Nie można odnaleźć \"%s\".\n"
+"Ustaw poprawną ścieżkę programu sox w zakładce \"Ścieżki\" preferencji.\n"
+"\n"
+"Jeśli w systemie nie ma programu sox, nagrywanie ani używanie efektów nie "
+"będzie możliwe."
+
 #: grecord/src/grec.c:1 grecord/src/grec.c:1 grecord/src/grec.c:1
 msgid "Could not fork child process"
 msgstr "Nie można stworzyć procesu potomnego"
@@ -1689,11 +1715,10 @@ msgstr "%s - Rejestrator dźwięku"
 msgid "Sound Recorder"
 msgstr "Rejestrator dźwięku"
 
-#: grecord/src/gui.c:1 grecord/src/gui.c:1 grecord/src/gui.c:1
+#: grecord/src/gui.c:1
 msgid "16bit PCM"
 msgstr "16-bitowy PCM"
 
-#: grecord/src/gui.c:1 grecord/src/gui.c:1 grecord/src/gui.c:1
 #: grecord/src/gui.c:1
 msgid "8bit PCM"
 msgstr "8-bitowy PCM"
@@ -1827,7 +1852,11 @@ msgid "_Repeat the sound"
 msgstr "_Powtarzanie dźwięku"
 
 #: grecord/src/gui.c:1
-msgid "_Forever"
+msgid "Play the sound _once only."
+msgstr "_Jednorazowe odtworzenie dźwięku"
+
+#: grecord/src/gui.c:1
+msgid "Repeat _forever"
 msgstr "_Bez końca"
 
 #: grecord/src/gui.c:1
@@ -1871,18 +1900,43 @@ msgid "Sound options"
 msgstr "Opcje dźwięku"
 
 #: grecord/src/gui.c:1
+msgid ""
+"Note: These options only take effect whenever a new sound sample\n"
+"is created. They do not operate on an existing sample."
+msgstr ""
+"Uwaga: opcje te są uwzględniane przy tworzeniu nowej próbki dźwiękowej.\n"
+"Nie odnoszą się one do istniejącej próbki."
+
+#: grecord/src/gui.c:1
 msgid "Audio format:"
 msgstr "Format dźwięku:"
 
+#: grecord/src/gui.c:1
+msgid "8 _bit PCM"
+msgstr "_8-bitowy PCM"
+
+#: grecord/src/gui.c:1
+msgid "16 b_it PCM"
+msgstr "_16-bitowy PCM"
+
+#. If only combos didn't suck!
 #: grecord/src/gui.c:1
 msgid "Sample rate:"
 msgstr "Częstotliwość próbkowania:"
 
 #: grecord/src/gui.c:1
-msgid "Mono/Stereo"
-msgstr "Mono/Stereo"
+msgid "Mono or Stereo:"
+msgstr "Mono lub stereo:"
 
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
+#: grecord/src/gui.c:1
+msgid "_Mono"
+msgstr "_Mono"
+
+#: grecord/src/gui.c:1
+msgid "_Stereo"
+msgstr "_Stereo"
+
+#: grecord/src/gui.c:1
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -1905,24 +1959,6 @@ msgstr "Określa plik, do którego należy rozpocząć zapis"
 #: grecord/src/main.c:1
 msgid "Specify a file to start playing"
 msgstr "Określa plik, którego odtwarzanie należy rozpocząć"
-
-#: grecord/src/main.c:1
-msgid "Don't show this message again."
-msgstr "Bez wyświetlania tego komunikatu w przyszłości."
-
-#: grecord/src/main.c:1
-#, c-format
-msgid ""
-"Could not find '%s'.\n"
-"Set the correct path to sox inpreferences under the tab 'paths'.\n"
-"\n"
-"If you don't have sox, you will not be able to record or do any effects."
-msgstr ""
-"Nie można odnaleźć \"%s\".\n"
-"Ustaw poprawną ścieżkę programu sox w zakładce \"Ścieżki\" preferencji.\n"
-"\n"
-"Jeśli w systemie nie ma programu sox, nagrywanie ani używanie efektów nie "
-"będzie możliwe."
 
 #: grecord/src/preferences.c:1
 msgid "Audio format: 8bit PCM"
