@@ -139,7 +139,7 @@ void callback (GtkWidget *widget, gpointer *data)
 	cd.play_method = NORMAL;
 	break;	                                                                                                        
     case EJECT:
-	tcd_ejectcd(&cd);
+    tcd_ejectcd(&cd);
 	cd.play_method = NORMAL;
 	cd.repeat_track = -1;
 	/* SDH: Make sure play/pause state change is noticed */
@@ -376,7 +376,7 @@ GtkWidget* make_row3( void )
     gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
     gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
 	
-    make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, N_("Quit") );
+    make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, _("Quit") );
 
     gtk_widget_show_all(box);
 	
@@ -501,9 +501,9 @@ void draw_time_scanning( GdkGC *gc )
 {
     gdk_gc_set_foreground( gc, &track_color );
     gdk_draw_text(status_db,tfont,gc,4,39+(tfont->ascent+tfont->descent)-2, 
-    		N_("(Scanning)"),
-		10);
-    gtk_window_set_title( GTK_WINDOW(window), N_("(Scanning)") );
+                  _("(Scanning)"),
+                  strlen( _("(Scanning)")));
+    gtk_window_set_title( GTK_WINDOW(window), _("(Scanning)") );
 }
 
 void draw_status( void )
@@ -529,7 +529,7 @@ void draw_status( void )
 	switch( cd.sc.cdsc_audiostatus )
 	{
 	case CDROM_AUDIO_INVALID:
-	    strcpy(tmp, N_("No Disc"));
+	    strcpy(tmp, _("No Disc"));
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
 	    draw_time_scanning(gc);
 	    break;
@@ -557,7 +557,7 @@ void draw_status( void )
 		draw_time_scanning(gc);
 	    break;
 	case CDROM_AUDIO_ERROR:
-	    strcpy( tmp,N_("Error") );
+	    strcpy( tmp, _("Error") );
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
 	    draw_time_scanning(gc);
 	    break;
@@ -924,7 +924,7 @@ void init_window(void)
 {
     setup_fonts();
 
-    window = gnome_app_new( "gtcd", _("TCD 2.0") );
+    window = gnome_app_new( "gtcd", "TCD 2.0" );
     gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
     gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd" );
     gtk_window_set_policy(GTK_WINDOW(window), TRUE, FALSE, TRUE);
@@ -957,9 +957,8 @@ int main (int argc, char *argv[])
 
     argp_program_version = VERSION;
 
-   bindtextdomain(PACKAGE, GNOMELOCALEDIR);
-   textdomain(PACKAGE);
-                
+    bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+    textdomain(PACKAGE);
 
     gnome_init( "gtcd", NULL, argc, argv, 0, NULL );
 

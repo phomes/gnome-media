@@ -28,18 +28,18 @@
 
 void about_cb(GtkWidget *widget, void *data)
 {
-        GtkWidget *about;
+  GtkWidget *about;
         gchar *authors[] = {
                 "Tim P. Gerla",
                 NULL
         };  
 
         about = gnome_about_new ( 
-        	N_("TCD - The Gnome CD Player"), 
+        	_("TCD - The Gnome CD Player"), 
         	"2.2 (CVS)",
                 "(C) 1997-98 Tim P. Gerla",
                 (const gchar**)authors,
-                N_("Gnome CD player application with CDDB support."
+                _("Gnome CD player application with CDDB support."
                    " Please see the \'Thanks\' file included with the"
                    " distribution for more credits."),
                 NULL);
