@@ -34,6 +34,7 @@ CDDBSlave2_SOURCES =				\
 	cddb-slave.c				\
 	cddb-slave.h				\
 	cddb-parser.c				\
+	cddb-parser.h				\
 	gnet.h					\
 	gnet-private.c				\
 	gnet-private.h				\
