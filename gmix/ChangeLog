@@ -1,3 +1,14 @@
+2001-05-28  Peter Teichman  <peter@ximian.com>
+
+	* gmix.c: Don't apply changes in preferences immediately. Wait
+	until 'apply' has been clicked. (patch from David Hampton
+	<hampton@employees.org>)
+
+2001-05-26  Peter Teichman  <peter@ximian.com>
+
+	* gmix.c: Don't g_error() if no mixers are found. The user has
+	already been warned with a dialog, so we just exit(1) instead.
+
 2001-01-16  Stanislav Brabec  <utx@penguin.cz> 
 
 	* device_labels_alsa.sed, device_labels_alsa.sed, gmix.c,

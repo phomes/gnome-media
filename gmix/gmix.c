@@ -101,6 +101,9 @@ typedef struct {
 
 mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
 
+#define PREFS_PAGE "Preferences Page"
+#define PREFS_COPY "Preferences Data Copy"
+
 /* Menus */
 static GnomeUIInfo help_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help, GNOME_STOCK_PIXMAP_HELP),
@@ -379,13 +382,30 @@ gboolean read_mixers ()
 
 static void error_close_cb(void)
 {
-        g_error("No mixers found.");
+	exit(1);
 }
 
-static void apply_cb(GtkWidget *widget, void *data)
+static void retrieve_prefs(GtkWidget *page)
+{
+	mixerprefs *prefs_copy;
+
+	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
+	prefs = *prefs_copy;
+}
+
+static void apply_cb(GtkWidget *widget, gint page_num, void *data)
 {       
+        GtkWidget *page;
+
         /* This is a sloppy way to re-draw the mixers */
         GList *d;
+
+	if (page_num != -1)
+		return;
+
+	/* Copy out the user's new preferences */
+	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
+	retrieve_prefs(page);
 
         put_gui_config();
 
@@ -399,8 +419,22 @@ static void apply_cb(GtkWidget *widget, void *data)
 	
 }
 
+static void destroy_prefs(GtkWidget *page)
+{
+	mixerprefs *prefs_copy;
+
+	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
+	g_free(prefs_copy);
+}
+
 static void cancel_cb(GtkWidget *widget, void *data)
 {       
+        GtkWidget *page;
+
+	/* Find and free the copy of the preferences data */
+	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
+	destroy_prefs(page);
+
 	gtk_widget_destroy (configwin);
         configwin=NULL;
 }
@@ -424,8 +458,14 @@ GtkWidget *optpage(void)
 	GtkWidget *start_frame, *gui_frame;
 	GtkWidget *ubervbox;
 	GtkWidget *vbox, *init_start, *menu_hide, *temp;
+	mixerprefs *prefs_copy;
 
 	ubervbox = gtk_vbox_new(TRUE, 0);
+
+	prefs_copy = g_malloc(sizeof(mixerprefs));
+	g_assert(prefs_copy);
+	*prefs_copy = prefs;
+	gtk_object_set_data(GTK_OBJECT(ubervbox), PREFS_COPY, prefs_copy);
 
 	start_frame = gtk_frame_new(_("On startup"));
 	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
@@ -435,15 +475,15 @@ GtkWidget *optpage(void)
 	/* Set on start */
 	init_start = gtk_check_button_new_with_label(_("Restore saved mixer levels on startup"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(init_start), \
-				     prefs.set_mixer_on_start);
+				     prefs_copy->set_mixer_on_start);
 	gtk_signal_connect(GTK_OBJECT(init_start), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.set_mixer_on_start);
+			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->set_mixer_on_start);
 
 	menu_hide = gtk_check_button_new_with_label(_("Hide menu on start"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(menu_hide), \
-				     prefs.hide_menu);
+				     prefs_copy->hide_menu);
 	gtk_signal_connect(GTK_OBJECT(menu_hide), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.hide_menu);
+			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->hide_menu);
 
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), init_start);
 	/*	gtk_box_pack_start_defaults(GTK_BOX(vbox), menu_hide);*/
@@ -460,17 +500,17 @@ GtkWidget *optpage(void)
 	vbox = gtk_vbox_new(TRUE, 0);
 	temp = gtk_check_button_new_with_label(_("Use mixer icons"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs.use_icons);
+				     prefs_copy->use_icons);
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.use_icons);
+			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_icons);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
 	
 	
 	temp = gtk_check_button_new_with_label(_("Use mixer labels"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs.use_labels);
+				     prefs_copy->use_labels);
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.use_labels);
+			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_labels);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
 	
 	
@@ -485,14 +525,17 @@ GtkWidget *optpage(void)
 
 void config_cb(GtkWidget *widget, gpointer data)
 {
-        GtkWidget *label;
+        GtkWidget *label, *page;
+
 	if (!configwin) {
 	        configwin=gnome_property_box_new();
 		gtk_widget_realize(configwin);
 		label = gtk_label_new(_("Preferences"));
+		page = optpage();
+		gtk_object_set_data(GTK_OBJECT(configwin), PREFS_PAGE, page);
 		gtk_notebook_append_page(
 			GTK_NOTEBOOK(
-			GNOME_PROPERTY_BOX(configwin)->notebook), optpage(), label);
+			GNOME_PROPERTY_BOX(configwin)->notebook), page, label);
 		
 		gtk_signal_connect(GTK_OBJECT(configwin), "apply",
 				   GTK_SIGNAL_FUNC(apply_cb), NULL);
