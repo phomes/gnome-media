@@ -1,3 +1,20 @@
+1999-04-30  James Henstridge  <james@daa.com.au>
+
+	* gtracked.c (gtracked_submit): coded the dialog used to submit
+	entries to cddb servers.
+
+	* cddb.h (tcd_call_cddb_submit): added function prototype.
+
+	* cddb.c (tcd_readcddb): read the revision number from the cddb file.
+	(tcd_writecddb): write the revision back to the file.
+
+	* linux-cdrom.c (tcd_readdiskinfo): set cd->cddb_rev to zero for
+	unknown discs.
+
+	* linux-cdrom.h (cd_struct): added cddb_rev field to hold the revision
+	of a cddb database file.  We need to worry about this for submission
+	purposes.
+
 1999-04-29  James Henstridge  <james@daa.com.au>
 
 	* gtracked.c: many changes to allow editing the extra information

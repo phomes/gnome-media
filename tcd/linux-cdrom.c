@@ -623,6 +623,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	debug("Warning, can't open \'%s\' \n", fn );
 	strcpy( cd->dtitle, _("Unknown / Unknown") );
 	cd->extd[0] = '\0';
+	cd->cddb_rev = 0;
 	
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 	{

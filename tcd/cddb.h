@@ -32,6 +32,7 @@ int 		tcd_writecddb( cd_struct* cd, char *filename );
 int 		cddb_sum(int n);
 unsigned long 	cddb_discid( cd_struct *cd );
 void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version);
+void tcd_call_cddb_submit(cd_struct *cd, char *category, char *service);
 int calc_offset(int minute, int second, int frame);
 
 #endif /* TCD_CDDB_H */

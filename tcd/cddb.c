@@ -62,9 +62,11 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 {
 	FILE* fp;
 	char string[256];
-	int trk;	
+	int trk;
+	unsigned long rev;
 	
 	/* zero out the extended data sections ... */
+	cd->cddb_rev = 0;
 	cd->extd[0] = '\0';
 	for (trk = cd->first_t; trk <= cd->last_t; trk++)
 		cd->trk[trk].extd[0] = '\0';
@@ -81,6 +83,12 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 	while(fgets( string, 255, fp )!=NULL)
 	{
 		string[strlen(string)-1] = 0;
+		if (strncmp(string, "# Revision:", 11) == 0)
+		{
+		        if (sscanf(string, "# Revision: %lu", &rev) == 1)
+				cd->cddb_rev = rev;
+		}
+			
 		/* If it's a comment, ignore. */
 		if( string[0] == '#' )
 			continue;		
@@ -181,8 +189,7 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 		(cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
                 +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
 
-	/* FIXME increment revision. sigh, lousy cddb */
-	fprintf( fp, "#\n# Revision: 0\n" );
+	fprintf( fp, "#\n# Revision: %lu\n", cd->cddb_rev );
 	fprintf( fp, "# Submitted via: tcd 2.0b\n" );
 	fprintf( fp, "#\n" );
 

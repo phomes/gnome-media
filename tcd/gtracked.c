@@ -23,6 +23,7 @@ static void next_entry(GtkWidget *widget, GtkWidget *list);
 
 static void edit_disc_extra(GtkWidget *widget);
 static void edit_track_extra(GtkWidget *widget, GtkWidget *list);
+static void gtracked_submit(void);
 
 static void destroy_window (GtkWidget *widget, gboolean save)
 {
@@ -314,8 +315,8 @@ void edit_window(GtkWidget *widget, gpointer data)
 
     button = gtk_button_new_with_label(_("Submit"));
     gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-    /* connect the signal.  Setting insensitive is temporary */
-    gtk_widget_set_sensitive(button, FALSE);
+    gtk_signal_connect(GTK_OBJECT(button), "clicked",
+		       GTK_SIGNAL_FUNC(gtracked_submit), NULL);
 
     button = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
     gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
@@ -346,4 +347,105 @@ void edit_window(GtkWidget *widget, gpointer data)
 
     gtk_widget_show_all(trwin);
     return;
+}
+
+void gtracked_submit(void)
+{
+	GtkWidget *dialog;
+	GtkWidget *hbox, *label, *item, *omenu, *menu, *combo;
+	GtkBox *vbox;
+	gchar *prefix, *sect, *key, *description;
+	void *iter;
+	/* these should not be translated -- otherwise the cddb server may
+	 * have troubles */
+	gchar *categories[] = {
+		"blues",
+		"classical",
+		"country",
+		"data",
+		"folk",
+		"jazz",
+		"misc",
+		"newage",
+		"reggae",
+		"rock",
+		"soundtrack"
+	};
+	gint i, ncategories = sizeof(categories)/sizeof(gchar *);
+
+	dialog = gnome_dialog_new(_("Submit Information"),
+				  GNOME_STOCK_BUTTON_OK,
+				  GNOME_STOCK_BUTTON_CANCEL, NULL);
+	gnome_dialog_close_hides(GNOME_DIALOG(dialog), TRUE);
+	vbox = GTK_BOX(GNOME_DIALOG(dialog)->vbox);
+
+	description = g_strdup_printf(_("Submit information about\n'%s'"),
+				      cd.dtitle);
+	label = gtk_label_new(description);
+	g_free(description);
+	gtk_box_pack_start(vbox, label, FALSE, TRUE, 0);
+
+	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(vbox, hbox, FALSE, TRUE, 0);
+
+	label = gtk_label_new(_("To: "));
+	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 0);
+
+	menu = gtk_menu_new();
+	key = gnome_datadir_file("gnome/cddb-submit-methods");
+	prefix = g_strconcat("=", key, "=/", NULL);
+	g_free(key);
+
+	iter = gnome_config_init_iterator_sections(prefix);
+	while ((iter = gnome_config_iterator_next(iter, &sect, NULL))!=NULL) {
+		key = g_strconcat(prefix, "/", sect, "/description", NULL);
+		description = gnome_config_get_string(key);
+		g_free(key);
+		if (!description)
+			continue;
+		item = gtk_menu_item_new_with_label(description);
+		g_free(description);
+		gtk_object_set_data_full(GTK_OBJECT(item), "service",
+					 g_strdup(sect),
+					 (GtkDestroyNotify)g_free);
+		gtk_menu_prepend(GTK_MENU(menu), item);
+		gtk_widget_show(item);
+	}
+	g_free(prefix);
+	omenu = gtk_option_menu_new();
+	gtk_option_menu_set_menu(GTK_OPTION_MENU(omenu), menu);
+	gtk_box_pack_start(GTK_BOX(hbox), omenu, TRUE, TRUE, 0);
+
+	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(vbox, hbox, FALSE, TRUE, 0);
+
+	label = gtk_label_new(_("Category: "));
+	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, TRUE, 0);
+
+	combo = gtk_combo_new();
+	gtk_combo_set_value_in_list(GTK_COMBO(combo), FALSE, TRUE);
+	for (i = 0; i < ncategories; i++) {
+		item = gtk_list_item_new_with_label(categories[i]);
+		gtk_container_add(GTK_CONTAINER(GTK_COMBO(combo)->list), item);
+		gtk_widget_show(item);
+	}
+	gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
+
+	gtk_widget_show_all(GTK_WIDGET(vbox));
+
+	if (gnome_dialog_run_and_close(GNOME_DIALOG(dialog)) == 0) {
+		gchar *service, *category;
+		/* should do a test to make sure that some fields have
+		 * been filled in*/
+		/* increment revision before submitting */
+		cd.cddb_rev++;
+		tcd_writediskinfo(&cd);
+		service = gtk_object_get_data(
+		    GTK_OBJECT(GTK_OPTION_MENU(omenu)->menu_item), "service");
+		category = gtk_entry_get_text(
+		    GTK_ENTRY(GTK_COMBO(combo)->entry));
+		tcd_call_cddb_submit(&cd, category, service);
+	}
+
+	gtk_widget_destroy(dialog);
 }

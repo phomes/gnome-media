@@ -107,7 +107,7 @@
 struct cd_track
 {
 	char name[TRK_NAME_LEN+1];
-	char extd[EXT_DATA_LEN+1];
+	char extd[EXT_DATA_LEN+1];      /* extra information for this track */
 	struct cdrom_tocentry toc;
 	int titled;
 	int start, length;
@@ -122,6 +122,7 @@ typedef struct
 	int cur_t;			/* current track */
 	unsigned long cddb_id;		/* cddb id */
 	unsigned long old_cddb_id;
+	unsigned long cddb_rev;         /* the revision of this entry */
 
 	struct cd_track trk[MAXTRACKS];	/* Track info, to be allocated 
                			   	   after cd_tchdr is read */
@@ -131,7 +132,7 @@ typedef struct
 
 	char dtitle[DISC_INFO_LEN+1];	/* Disc title */
 	char album[DISC_INFO_LEN+1], artist[DISC_INFO_LEN+1];
-	char extd[EXT_DATA_LEN+1];
+	char extd[EXT_DATA_LEN+1];      /* extra information for this disc */
 
 	/* See /usr/src/linux/include/linux/cdrom.h */
 	struct cdrom_ti ti;		/* Track info */
