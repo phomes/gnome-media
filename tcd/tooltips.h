@@ -17,5 +17,6 @@
 #define TT_TRACKED	"Open track editor"
 
 #define TT_ABOUT	"About TCD"
+#define TT_PROPS	"Preferences"
 
 #endif

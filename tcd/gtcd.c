@@ -295,10 +295,16 @@ GtkWidget* make_row1( void )
 	make_button_with_pixmap( "pause", box, PAUSE, TRUE, TRUE, TT_PAUSE );
 	make_button_with_pixmap( "stop", box, STOP, TRUE, TRUE, TT_STOP );
 	make_button_with_pixmap( "eject", box, EJECT, TRUE, TRUE, TT_EJECT );
-	gtk_widget_show(box);
-	gtk_container_add( GTK_CONTAINER(handle), box );
-
-	return row1=handle;
+	
+	if( props.handle )
+	{
+		gtk_widget_show(box);
+		gtk_container_add( GTK_CONTAINER(handle), box );
+		row1=handle;
+	}
+	else
+		row1=box;
+	return row1;
 }
 
 GtkWidget* make_row2( void )
@@ -311,11 +317,18 @@ GtkWidget* make_row2( void )
 	make_button_with_pixmap("rw", box, RW, TRUE, TRUE, TT_REWIND );
 	make_button_with_pixmap("ff", box, FF, TRUE, TRUE, TT_FF );
 	make_button_with_pixmap("next_t", box, NEXT_T, TRUE, TRUE, TT_NEXT_TRACK );
-	gtk_widget_show(box);
-	gtk_container_add(GTK_CONTAINER(handle), box );
 
-	return row2=handle;
+	if( props.handle )
+	{
+		gtk_widget_show(box);
+		gtk_container_add( GTK_CONTAINER(handle), box );
+		row2=handle;
+	}
+	else
+		row2=box;
+	return row2;
 }
+
 GtkWidget* make_row3( void )
 {
 	char tmp[128];
@@ -341,10 +354,16 @@ GtkWidget* make_row3( void )
 	button = make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
 
 	gtk_widget_show_all(box);
-
-	gtk_container_add(GTK_CONTAINER(handle), box);
 	
-	return row3=handle;
+	if( props.handle )
+	{
+		gtk_widget_show(box);
+		gtk_container_add( GTK_CONTAINER(handle), box );
+		row3=handle;
+	}
+	else
+		row3=box;
+	return row3;
 }
 
 void setup_colors( void )
@@ -356,10 +375,10 @@ void setup_colors( void )
 	gdk_color_parse("#353535", &darkgrey);
 	gdk_color_alloc(colormap, &darkgrey);
 
-	gdk_color_parse(props.timecolor, &timecolor);
+	gdk_color_parse(props.trackcolor, &timecolor);
 	gdk_color_alloc (colormap, &timecolor);
 
-	gdk_color_parse(props.trackcolor, &trackcolor);
+	gdk_color_parse(props.statuscolor, &trackcolor);
 	gdk_color_alloc (colormap, &trackcolor);
 	draw_status();
 }
@@ -457,7 +476,7 @@ void draw_status( void )
 
 gint slow_timer( gpointer *data )
 {
-	if( cd.err )
+	if( cd.err || !cd.isdisk )
         {
 		tcd_readtoc(&cd);
 		tcd_readdiskinfo(&cd);
@@ -737,9 +756,15 @@ void setup_time_display( void )
 #endif
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
-	handle1 = gtk_handle_box_new();
-	gtk_container_add(GTK_CONTAINER(handle1), status_area );
-	gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
+	if( props.handle )
+	{
+		handle1 = gtk_handle_box_new();
+		gtk_container_add(GTK_CONTAINER(handle1), status_area );
+		gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
+	}
+	else
+		gtk_box_pack_start( GTK_BOX(status_table), status_area, TRUE, TRUE, 4);
+		                
 	gtk_box_pack_start( GTK_BOX(status_table), lowerbox, FALSE, FALSE, 4 );
 	gtk_widget_show_all(status_table);
 	return;
@@ -792,13 +817,15 @@ void setup_rows( void )
 	gtk_signal_connect(GTK_OBJECT(aboutbutton), "clicked",
 		GTK_SIGNAL_FUNC(callback), (gpointer*)ABOUT );
         gtk_box_pack_start(GTK_BOX(bottom_box), aboutbutton, FALSE, FALSE, 0);
-
+        gtk_tooltips_set_tip( tooltips, aboutbutton, TT_ABOUT, "" );
+        
 	propsbutton = gtk_button_new();
 	pixmap = gnome_stock_pixmap_widget( window, GNOME_STOCK_PIXMAP_PREFERENCES );
 	gtk_container_add(GTK_CONTAINER(propsbutton), pixmap );
 	gtk_signal_connect(GTK_OBJECT(propsbutton), "clicked",
 		GTK_SIGNAL_FUNC(callback), (gpointer*)PROPS );
         gtk_box_pack_start(GTK_BOX(bottom_box), propsbutton, FALSE, FALSE, 0);
+        gtk_tooltips_set_tip( tooltips, propsbutton, TT_PROPS, "" );
 	                        
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
         gtk_container_add(GTK_CONTAINER (window), vbox);
@@ -806,10 +833,20 @@ void setup_rows( void )
 	return;
 }
 
+void setup_fonts(void)
+{
+        if( tfont )
+		gdk_font_unref(tfont);
+        if( sfont )
+		gdk_font_unref(sfont);
+		
+        tfont = gdk_font_load( props.statusfont );
+	sfont = gdk_font_load( props.trackfont );
+}
+
 void init_window(void)
 {
-        sfont = gdk_font_load( props.timefont );
-        tfont = gdk_font_load( props.trackfont );
+	setup_fonts();
 
         window = gnome_app_new( "gtcd", "TCD 2.0" );
         gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
@@ -818,7 +855,7 @@ void init_window(void)
         gtk_signal_connect( GTK_OBJECT(window), "delete_event",
                 GTK_SIGNAL_FUNC(delete_event), NULL);
 
-        gtk_container_border_width( GTK_CONTAINER(window), 0 );
+        gtk_container_border_width( GTK_CONTAINER(window), 1 );
         gtk_widget_realize(window);
 
 	tooltips = gtk_tooltips_new();

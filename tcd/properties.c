@@ -34,6 +34,14 @@ extern GtkTooltips *tooltips;
 
 /* from gtcd.c */
 void setup_colors(void);
+void setup_fonts(void);
+
+struct font_str
+{
+	GtkWidget *fs;
+	char **font;
+};
+
 
 void load_properties( tcd_properties *prop )
 {
@@ -42,12 +50,12 @@ void load_properties( tcd_properties *prop )
 	prop->cddbport  = gnome_config_get_int(   "/gtcd/cddb/port=888");
 	prop->handle    = gnome_config_get_bool(  "/gtcd/ui/handle=1");
 	prop->tooltip   = gnome_config_get_bool(  "/gtcd/ui/tooltip=1");
-	prop->timefont  = gnome_config_get_string(
-		"/gtcd/ui/timefont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
-	prop->trackfont = gnome_config_get_string(
-		"/gtcd/ui/trackfont=-adobe-helvetica-*-r-*-*-14-*-*-*-*-*-*-*" );
-	prop->timecolor = gnome_config_get_string( "/gtcd/ui/timecolor=blue" );
-	prop->trackcolor = gnome_config_get_string( "/gtcd/ui/trackcolor=green" );
+	prop->trackfont  = gnome_config_get_string(
+		"/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
+	prop->statusfont = gnome_config_get_string(
+		"/gtcd/ui/statusfont=-adobe-helvetica-*-r-*-*-14-*-*-*-*-*-*-*" );
+	prop->trackcolor = gnome_config_get_string( "/gtcd/ui/trackcolor=#FF0000" );
+	prop->statuscolor = gnome_config_get_string( "/gtcd/ui/statuscolor=#FFFF00" );
 }
 
 void save_properties( tcd_properties *prop )
@@ -57,11 +65,10 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport );
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
-	gnome_config_set_string("/gtcd/ui/timefont", prop->timefont );
-	gnome_config_set_string("/gtcd/ui/trackfont",prop->trackfont );
-
-	gnome_config_set_string("/gtcd/ui/timecolor", prop->timecolor );
-	gnome_config_set_string("/gtcd/ui/trackcolor",prop->trackcolor );
+	gnome_config_set_string("/gtcd/ui/trackfont", prop->trackfont );
+	gnome_config_set_string("/gtcd/ui/statusfont",prop->statusfont );
+	gnome_config_set_string("/gtcd/ui/trackcolor", prop->trackcolor );
+	gnome_config_set_string("/gtcd/ui/statuscolor",prop->statuscolor );
 	gnome_config_sync();
 }
 
@@ -192,55 +199,85 @@ void color_changed_cb( GnomeColorSelector *widget, gchar **color )
 	
 	sprintf( tmp, "#%02x%02x%02x", r, g, b );
 	*color = tmp;
+// 	free(color);
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
+void font_changed_cb( GtkWidget *widget, struct font_str *str )
+{
+	*str->font = g_strdup(gnome_font_selector_get_selected(GNOME_FONT_SELECTOR(str->fs)));
+	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+//	free(str);
+}
+
+void font_cb( GtkWidget *widget, gchar **font )
+{
+	GtkWidget *fs;
+	struct font_str *str;
+
+	if( !(str = malloc(sizeof(struct font_str))))
+		g_warning("cannot allocate %d bytes..things will die quickly\n", sizeof(struct font_str));
+
+	fs = gnome_font_selector_new();
+	str->fs = fs;
+	str->font = font;
+
+	gtk_widget_show(fs);
+        gtk_signal_connect( GTK_OBJECT(GNOME_FONT_SELECTOR(fs)->ok_button), "clicked",
+		GTK_SIGNAL_FUNC(font_changed_cb), str );
+}	
+
 GtkWidget *create_status_frame( GtkWidget *box )
 {
-	GtkWidget *timebutton_c, *trackbutton_c;
-	GtkWidget *timebutton_f, *trackbutton_f;
-	GtkWidget *time_l, *track_l;
-	GnomeColorSelector *time_gcs, *track_gcs;
+	GtkWidget *trackbutton_c, *statusbutton_c;
+	GtkWidget *trackbutton_f, *statusbutton_f;
+	GtkWidget *track_l, *status_l;
+	GnomeColorSelector *track_gcs, *status_gcs;
 	int tr,tg,tb, rr,rg,rb;
 	
 	GtkWidget *frame, *status_table;
 
-	sscanf( props.timecolor, "#%02x%02x%02x", &tr,&tg,&tb );
-	sscanf( props.trackcolor, "#%02x%02x%02x", &rr,&rg,&rb );
+	sscanf( props.trackcolor, "#%02x%02x%02x", &tr,&tg,&tb );
+	sscanf( props.statuscolor, "#%02x%02x%02x", &rr,&rg,&rb );
 
 	status_table = gtk_table_new( 4, 2, FALSE );
 
-	time_gcs  = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
-					      &props.timecolor );
-	track_gcs = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
+	track_gcs  = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
 					      &props.trackcolor );
-	timebutton_f  = gtk_button_new_with_label( "Font" );
-	trackbutton_f = gtk_button_new_with_label( "Font" );
+	status_gcs = gnome_color_selector_new( (SetColorFunc)color_changed_cb, 
+					      &props.statuscolor );
+	trackbutton_f  = gtk_button_new_with_label( "Time Font" );
+	statusbutton_f = gtk_button_new_with_label( "Track Font" );
+	
+	gtk_signal_connect( GTK_OBJECT(trackbutton_f), "clicked",
+		GTK_SIGNAL_FUNC(font_cb), &props.trackfont );
+	gtk_signal_connect( GTK_OBJECT(statusbutton_f), "clicked",
+		GTK_SIGNAL_FUNC(font_cb), &props.statusfont );
 
-	gnome_color_selector_set_color_int( time_gcs, tr, tg, tb, 255 );
-	gnome_color_selector_set_color_int( track_gcs, rr, rg, rb, 255 );
+	gnome_color_selector_set_color_int( track_gcs, tr, tg, tb, 255 );
+	gnome_color_selector_set_color_int( status_gcs, rr, rg, rb, 255 );
 
-	timebutton_c = gnome_color_selector_get_button( time_gcs );
 	trackbutton_c = gnome_color_selector_get_button( track_gcs );
+	statusbutton_c = gnome_color_selector_get_button( status_gcs );
 
-	time_l  = gtk_label_new("Time Display");
-	track_l = gtk_label_new("Track Display");
+	track_l  = gtk_label_new("Track Display");
+	status_l = gtk_label_new("Status Display");
 	
 	frame = gtk_frame_new("Fonts & Colors");
 
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                time_l, 0,2,0,1 );
+	                                track_l, 0,2,0,1 );
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                track_l, 0,2,1,2 );
+	                                status_l, 0,2,1,2 );
 
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                timebutton_c, 2,3,0,1 );
+	                                trackbutton_c, 2,3,0,1 );
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                timebutton_f, 3,4,0,1 );
+	                                trackbutton_f, 3,4,0,1 );
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                trackbutton_c, 2,3,1,2 );
+	                                statusbutton_c, 2,3,1,2 );
 	gtk_table_attach_defaults( GTK_TABLE(status_table),
-	                                trackbutton_f, 3,4,1,2 );
+	                                statusbutton_f, 3,4,1,2 );
 
 	gtk_container_add( GTK_CONTAINER(frame), status_table );
 
@@ -263,7 +300,7 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 	ui_l_box= gtk_vbox_new( FALSE, 2 );
 	ui_box  = gtk_hbox_new( TRUE, 2 );
 
-	handle_i = gtk_check_button_new_with_label("Show Handles");
+	handle_i = gtk_check_button_new_with_label("Show Handles (Restart of TCD required)");
 	tooltips_i = gtk_check_button_new_with_label("Show Tooltips");
 
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), props.handle );
@@ -332,6 +369,7 @@ void apply_cb( GtkWidget *widget, void *data )
 	else
 		gtk_tooltips_disable(tooltips);
 	setup_colors();		
+	setup_fonts();
 	save_properties(&props);
 }
 
