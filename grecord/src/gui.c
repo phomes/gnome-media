@@ -55,7 +55,7 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 		N_("Run GNOME Volume Control"),
 		on_runmixer_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_VOLUME,
-		0, 0, NULL
+		'r',GDK_CONTROL_MASK, NULL
 	},
 	GNOMEUIINFO_SEPARATOR,
 #endif
@@ -162,7 +162,6 @@ GtkWidget*
 create_grecord_window (void)
 {
 	GtkWidget* vbox;
-	GtkWidget* menubar;
 	GtkWidget* toolbar;
 	GtkWidget* tmp_toolbar_icon;
 	GtkWidget* hbox1;
@@ -204,10 +203,8 @@ create_grecord_window (void)
 	else
 		channels_string = g_strdup (_("mono"));
 
-	menubar = gtk_menu_bar_new ();
-	gtk_widget_show (menubar);
-	gnome_app_fill_menu (GTK_MENU_SHELL (menubar), menubar1_uiinfo,
-			     NULL, FALSE, 0);
+	/* Create menus */
+	gnome_app_create_menus (GNOME_APP (grecord_window), menubar1_uiinfo);
 
 	toolbar = gtk_toolbar_new ();
 	gtk_widget_show (toolbar);
@@ -346,7 +343,6 @@ create_grecord_window (void)
 
 	/* Gnome stuff */
 	gnome_app_set_statusbar (GNOME_APP (grecord_window),  GTK_WIDGET (grecord_appbar));
-	gnome_app_set_menus (GNOME_APP (grecord_window), GTK_MENU_BAR (menubar));
 	gnome_app_set_toolbar (GNOME_APP (grecord_window), GTK_TOOLBAR (toolbar));
 	gnome_app_set_contents (GNOME_APP (grecord_window), GTK_WIDGET (vbox));
 
