@@ -5,6 +5,7 @@
 
 GtkWidget *csw;			/* cddb status window */
 guint timer=0;
+static char *status_file;
 
 static void destroy_window(GtkWidget *widget, gpointer data);
 static int status_timer(GtkWidget *gl);
@@ -16,9 +17,17 @@ static void destroy_window(GtkWidget *widget, gpointer data)
     csw = NULL;
 }
 
+static void init_status_file (void)
+{
+	status_file = gnome_util_home_file ("cddbstatus");
+}
+
 static int status_timer(GtkWidget *gl)
 {
-    if(!gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbstatus"))
+    if (!status_file)
+	    init_status_file ();
+    
+    if(!gnome_less_show_file(GNOME_LESS(gl), status_file));
     	gnome_less_clear(GNOME_LESS(gl));
     return TRUE;
 }
@@ -49,7 +58,9 @@ void cddb_status_dialog(GtkWidget *widget, gpointer data)
 		  
     /* status box */
     gl = gnome_less_new();
-    gnome_less_show_file(GNOME_LESS(gl), "/tmp/.cddbstatus");
+    if (!status_file)
+	    init_status_file ();
+    gnome_less_show_file(GNOME_LESS(gl), status_file);
 
     gtk_box_pack_start(GTK_BOX(main_box), gl, TRUE, TRUE, 0);
 
