@@ -385,7 +385,7 @@ main(int argc,
 					GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE, NULL);
 		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Invalid mixer device"));
-		show_error (dialog);
+		show_error GTK_DIALOG(dialog);
 	}
 
 	return 0;
