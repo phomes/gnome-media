@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-30 14:37+0200\n"
-"PO-Revision-Date: 2005-01-30 14:39+0200\n"
+"POT-Creation-Date: 2005-02-05 03:34+0200\n"
+"PO-Revision-Date: 2005-02-05 03:35+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Nežinomas / Nežinomas"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:738
-#: grecord/src/gsr-window.c:747 grecord/src/gsr-window.c:756
-#: grecord/src/gsr-window.c:766 grecord/src/gsr-window.c:1082
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:902
+#: grecord/src/gsr-window.c:911 grecord/src/gsr-window.c:920
+#: grecord/src/gsr-window.c:930 grecord/src/gsr-window.c:1246
 msgid "Unknown"
 msgstr "Nežinomas"
 
@@ -1249,11 +1249,11 @@ msgid "Behavior"
 msgstr "Elgesys"
 
 #: gnome-cd/preferences.c:652
-msgid "Start _playing CD when CD Player starts"
+msgid "Start _playback when CD Player starts"
 msgstr "Paleidus CD grotuvą _pradėti groti CD"
 
 #: gnome-cd/preferences.c:653
-msgid "Start playing CD when CD Player starts"
+msgid "Start playback when CD Player starts"
 msgstr "Paleidus CD grotuvą pradėti groti CD"
 
 #: gnome-cd/preferences.c:665
@@ -1276,8 +1276,8 @@ msgstr "Pa_sirinkite temą:"
 msgid "Record sound clips"
 msgstr "Rašyti garso klipus"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:955
-#: grecord/src/gsr-window.c:1291
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1119
+#: grecord/src/gsr-window.c:1456
 msgid "Sound Recorder"
 msgstr "Garso įrašymo programa"
 
@@ -1305,7 +1305,7 @@ msgstr "Sukurti naują semplą"
 msgid "Display help for Sound Recorder"
 msgstr "Rodyti garso įrašymo pagalbą"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:824
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:988
 msgid "File Information"
 msgstr "Bylos informacija"
 
@@ -1325,7 +1325,7 @@ msgstr "Naujas"
 msgid "Open"
 msgstr "Atidaryti"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:347
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:348
 msgid "Open a file"
 msgstr "Atidaryti bylą"
 
@@ -1445,72 +1445,86 @@ msgstr "_Išsaugoti"
 msgid "Dummy option"
 msgstr "Netikras nustatymas"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
+#: grecord/src/gsr-window.c:263 grecord/src/gsr-window.c:267
 msgid "hours"
 msgstr "valandos"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
+#: grecord/src/gsr-window.c:263 grecord/src/gsr-window.c:267
 msgid "hour"
 msgstr "valanda"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:258
+#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:278
 msgid "minutes"
 msgstr "minutės"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:258
+#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:278
 msgid "minute"
 msgstr "minutė"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:282
-#: grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:254 grecord/src/gsr-window.c:264
+#: grecord/src/gsr-window.c:275 grecord/src/gsr-window.c:283
+#: grecord/src/gsr-window.c:286
 msgid "seconds"
 msgstr "sekundės"
 
-#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:285
+#: grecord/src/gsr-window.c:254 grecord/src/gsr-window.c:264
+#: grecord/src/gsr-window.c:275 grecord/src/gsr-window.c:286
 msgid "second"
 msgstr "sekundė"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1243
-#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1677
+#: grecord/src/gsr-window.c:400 grecord/src/gsr-window.c:1408
+#: grecord/src/gsr-window.c:1572 grecord/src/gsr-window.c:1842
 msgid "Ready"
 msgstr "Pasiruošta"
 
-#: grecord/src/gsr-window.c:513
+#. Add replace button
+#: grecord/src/gsr-window.c:606
+msgid "_Replace"
+msgstr "_Pakeisti"
+
+#: grecord/src/gsr-window.c:623
+#, c-format
+msgid ""
+"A file named \"%s\" already exists. \n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+"Byla pavadinta „%s“ jau egzistuoja.\n"
+"Ar norite ją pakeisti Jūsų saugoma byla?"
+
+#: grecord/src/gsr-window.c:676
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr "Nepavyko išsaugoti bylos „%s“"
 
-#: grecord/src/gsr-window.c:522
+#: grecord/src/gsr-window.c:685
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Nepavyko išsaugoti bylos „%s“"
 
-#: grecord/src/gsr-window.c:569
+#: grecord/src/gsr-window.c:733
 msgid "Save file as"
 msgstr "Išsaugoti bylą kaip"
 
-#: grecord/src/gsr-window.c:625
+#: grecord/src/gsr-window.c:789
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nėra įdiegtas kelyje."
 
-#: grecord/src/gsr-window.c:635
+#: grecord/src/gsr-window.c:799
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Paleidžiant %s įvyko klaida: %s"
 
-#: grecord/src/gsr-window.c:712
+#: grecord/src/gsr-window.c:876
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (buvo neišsaugotas)"
 
-#: grecord/src/gsr-window.c:725
+#: grecord/src/gsr-window.c:889
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1518,83 +1532,83 @@ msgstr[0] "%s (%llu baitas)"
 msgstr[1] "%s (%llu baitai)"
 msgstr[2] "%s (%llu baitų)"
 
-#: grecord/src/gsr-window.c:729
+#: grecord/src/gsr-window.c:893
 msgid "Unknown size"
 msgstr "Nežinomas dydis"
 
-#: grecord/src/gsr-window.c:749
+#: grecord/src/gsr-window.c:913
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:758
+#: grecord/src/gsr-window.c:922
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:770
+#: grecord/src/gsr-window.c:934
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:774
+#: grecord/src/gsr-window.c:938
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:803
+#: grecord/src/gsr-window.c:967
 #, c-format
 msgid "%s Information"
 msgstr "%s informacija"
 
-#: grecord/src/gsr-window.c:838
+#: grecord/src/gsr-window.c:1002
 msgid "Folder:"
 msgstr "Katalogas:"
 
-#: grecord/src/gsr-window.c:844 grecord/src/gsr-window.c:1609
+#: grecord/src/gsr-window.c:1008 grecord/src/gsr-window.c:1774
 msgid "Filename:"
 msgstr "Bylos vardas:"
 
-#: grecord/src/gsr-window.c:850
+#: grecord/src/gsr-window.c:1014
 msgid "File size:"
 msgstr "Bylos dydis:"
 
-#: grecord/src/gsr-window.c:859
+#: grecord/src/gsr-window.c:1023
 msgid "Audio Information"
 msgstr "Audio informacija"
 
-#: grecord/src/gsr-window.c:873
+#: grecord/src/gsr-window.c:1037
 msgid "File duration:"
 msgstr "Bylos trukmė:"
 
-#: grecord/src/gsr-window.c:879
+#: grecord/src/gsr-window.c:1043
 msgid "Number of channels:"
 msgstr "Kanalų kiekis:"
 
-#: grecord/src/gsr-window.c:885
+#: grecord/src/gsr-window.c:1049
 msgid "Sample rate:"
 msgstr "Semplo dažnis:"
 
-#: grecord/src/gsr-window.c:891
+#: grecord/src/gsr-window.c:1055
 msgid "Bit rate:"
 msgstr "Bitų dažnis:"
 
-#: grecord/src/gsr-window.c:957
+#: grecord/src/gsr-window.c:1121
 msgid "A sound recorder for GNOME"
 msgstr "GNOME garso įrašymo programa"
 
-#: grecord/src/gsr-window.c:1228
+#: grecord/src/gsr-window.c:1392
 msgid "Playing..."
 msgstr "Grojama..."
 
-#: grecord/src/gsr-window.c:1287
+#: grecord/src/gsr-window.c:1452
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Garso įrašymo programa"
 
-#: grecord/src/gsr-window.c:1378
+#: grecord/src/gsr-window.c:1543
 msgid "Recording..."
 msgstr "Įrašoma..."
 
-#: grecord/src/gsr-window.c:1438
+#: grecord/src/gsr-window.c:1603
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1602,17 +1616,17 @@ msgstr ""
 "Nenurodytas įprastas GStreamer audio įvesties elementas - prašau įdiegti "
 "GStreamer-GConf schemas arba nurodyti jį rankiniu būdu"
 
-#: grecord/src/gsr-window.c:1453
+#: grecord/src/gsr-window.c:1618
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Nepavyko sukurti GStreamer kodavimo programos elementų - patikrinkite Jūsų "
 "audio kodavimo nustatymus"
 
-#: grecord/src/gsr-window.c:1463
+#: grecord/src/gsr-window.c:1628
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Nepavyko rasti GStreamer „filesink“ įskiepio - prašau jį įdiegti"
 
-#: grecord/src/gsr-window.c:1471
+#: grecord/src/gsr-window.c:1636
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1620,19 +1634,19 @@ msgstr ""
 "Nepavyko susieti kodavimo programos elementų su bylos išvedimo elementu - "
 "Jūs tikriausiai pasirinkote blogą kodavimo programą"
 
-#: grecord/src/gsr-window.c:1577
+#: grecord/src/gsr-window.c:1742
 msgid "Record as"
 msgstr "Įrašyti kaip"
 
-#: grecord/src/gsr-window.c:1594
+#: grecord/src/gsr-window.c:1759
 msgid "File information"
 msgstr "Bylos informacija"
 
-#: grecord/src/gsr-window.c:1616
+#: grecord/src/gsr-window.c:1781
 msgid "<none>"
 msgstr "<nėra>"
 
-#: grecord/src/gsr-window.c:1625
+#: grecord/src/gsr-window.c:1790
 msgid "Length:"
 msgstr "Trukmė:"
 
@@ -1901,10 +1915,10 @@ msgstr "_Konvejeris:"
 msgid "_Test"
 msgstr "_Tikrinti"
 
-#: gstreamer-properties/pipeline-constants.c:61
-#: gstreamer-properties/pipeline-constants.c:83
-#: gstreamer-properties/pipeline-constants.c:100
-#: gstreamer-properties/pipeline-constants.c:115
+#: gstreamer-properties/pipeline-constants.c:63
+#: gstreamer-properties/pipeline-constants.c:85
+#: gstreamer-properties/pipeline-constants.c:104
+#: gstreamer-properties/pipeline-constants.c:119
 msgid "Custom"
 msgstr "Parinkti"
 
