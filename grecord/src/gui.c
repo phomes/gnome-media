@@ -587,7 +587,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (vbox7);
 	gtk_container_add (GTK_CONTAINER (frame4), vbox7);
 	
-	PopupWarnMessSize_checkbox = gtk_check_button_new_with_label (_("Popup warning message if size (MB) of sample becomes bigger than:"));
+	PopupWarnMessSize_checkbox = gtk_check_button_new_with_label (_("Popup warning message if size (Mb) of sample becomes bigger than:"));
 	gtk_widget_show (PopupWarnMessSize_checkbox);
 	gtk_box_pack_start (GTK_BOX (vbox7), PopupWarnMessSize_checkbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (PopupWarnMessSize_checkbox), 3);
@@ -597,7 +597,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (WarningSize_spinbutton);
 	gtk_container_add (GTK_CONTAINER (vbox7), WarningSize_spinbutton);
 	
-	StopRecordSize_checkbox = gtk_check_button_new_with_label (_("Stop recording if size (MB) of sample becomes bigger than:"));
+	StopRecordSize_checkbox = gtk_check_button_new_with_label (_("Stop recording if size (Mb) of sample becomes bigger than:"));
 	gtk_widget_show (StopRecordSize_checkbox);
 	gtk_box_pack_start (GTK_BOX (vbox7), StopRecordSize_checkbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (StopRecordSize_checkbox), 3);
