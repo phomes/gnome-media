@@ -1,12 +1,12 @@
 # Norwegian (bokmål dialect) translation of the gnome-media module.
 # Copyright (C) 1998 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@fib.hl.no>, 1998.
+# Kjartan Maraas <kmaraas@fib.hl.no>, 1998,1999.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 0.99.5\n"
-"POT-Creation-Date: 1999-02-03 00:19+0100\n"
-"PO-Revision-Date: 1999-02-03 00:25+0100\n"
+"Project-Id-Version: gnome-media 0.99.8\n"
+"POT-Creation-Date: 1999-02-16 19:56+0100\n"
+"PO-Revision-Date: 1999-02-16 00:25+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,48 +85,48 @@ msgstr "Program"
 msgid "_Help"
 msgstr "Hjelp"
 
-#: gmix/gmix.c:138
+#: gmix/gmix.c:139
 msgid "don't restore mixer-settings from configuration"
 msgstr "ikke les startverdiene for mikseren på nytt fra konfigurasjonen"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:140
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "initialiser mikseren(e) fra lagret konfigurasjon og avslutt"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:141
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ikke lagre (modifiserte) mikser-verdier til konfigurasjonen"
 
-#: gmix/gmix.c:524
+#: gmix/gmix.c:559
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:586
+#: gmix/gmix.c:626
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:597
+#: gmix/gmix.c:637
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:604
+#: gmix/gmix.c:644
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:763
+#: gmix/gmix.c:803
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:766
+#: gmix/gmix.c:806
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mikser for OSS lyd-enheter."
 
-#: tcd/callbacks.c:83
+#: tcd/callbacks.c:76
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome CD-spiller"
 
-#: tcd/callbacks.c:87
+#: tcd/callbacks.c:80
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
@@ -142,16 +142,60 @@ msgstr "Plate-ID"
 msgid "Disc Title"
 msgstr "Platetittel"
 
-#: tcd/cddb_props.c:233
+#: tcd/cddb_props.c:72
+msgid "Edit"
+msgstr "Rediger"
+
+#: tcd/cddb_props.c:76
+msgid "Remove"
+msgstr "Fjern"
+
+#: tcd/cddb_props.c:82
+msgid "Refresh List"
+msgstr "Gjenles listen"
+
+#. server settings
+#: tcd/cddb_props.c:129
+msgid "Server Settings"
+msgstr "Tjenerinnstillinger"
+
+#: tcd/cddb_props.c:138
+msgid "Address"
+msgstr "Adresse"
+
+#: tcd/cddb_props.c:148
+msgid "Port"
+msgstr "Port"
+
+#. local db
+#: tcd/cddb_props.c:158
+msgid "Local Database"
+msgstr "Lokal database"
+
+#. frame
+#: tcd/cddb_props.c:200
+msgid "CDDB Data"
+msgstr "CDDB-data"
+
+#: tcd/cddb_props.c:232
 msgid "CDDB Editor"
 msgstr "CDDB-redigering"
 
-#: tcd/cddb_props.c:247
+#: tcd/cddb_props.c:246
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Feil under lesing av $HOME/.cddbslave."
 
+#: tcd/cddb_props.c:358
+#, c-format
+msgid "Couldn't remove file: %s\n"
+msgstr "Kunne ikke fjerne filen: %s\n"
+
+#: tcd/cddb_props.c:370
+msgid "Delete CDDB Entry?"
+msgstr "Slett CDDB-oppføring?"
+
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:238
+#: tcd/cddb_status.c:50 tcd/gtracked.c:242
 msgid "CDDB Status"
 msgstr "CDDB-status"
 
@@ -226,63 +270,80 @@ msgstr "Hopp bakover"
 msgid "Skip forwards"
 msgstr "Hopp fremover"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
 msgid "(Scanning)"
 msgstr "(Søker)"
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:496
 msgid "No Disc"
 msgstr "Ingen plate"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:524
 msgid "Error"
 msgstr "Feil"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Trk"
 msgstr "Spor"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Time"
 msgstr "Tid"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Title"
 msgstr "Tittel"
 
-#: tcd/gtracked.c:153
+#: tcd/gtracked.c:157
 msgid "Track Editor"
 msgstr "Sporredigering"
 
-#: tcd/gtracked.c:164
+#: tcd/gtracked.c:168
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Informasjon om plate (%02u:%02u minutter)"
 
-#: tcd/gtracked.c:169
+#: tcd/gtracked.c:173
 msgid "Artist / Title"
 msgstr "Artist / Tittel"
 
 #. ...
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:217
 msgid "Track Information"
 msgstr "Informasjon om spor"
 
 #. Clear button
-#: tcd/gtracked.c:227
+#: tcd/gtracked.c:231
 msgid "Clear"
 msgstr "Blank ut"
 
 #. Playlist button
-#: tcd/gtracked.c:232
+#: tcd/gtracked.c:236
 msgid "Playlist"
 msgstr "Spilleliste"
 
-#: tcd/linux-cdrom.c:639
+#: tcd/linux-cdrom.c:555
+#, c-format
+msgid ""
+"Error accessing cdrom device.\n"
+"Please check to make sure cdrom drive support\n"
+"is compiled into the kernel, and that you have\n"
+"permission to access the device.\n"
+"\n"
+"Reason: %s\n"
+msgstr ""
+"Feil ved tilgang til cdrom enheten.\n"
+"Vær snill å forsikre deg om at støtte for CDROM\n"
+"er kompilert inn i kjernen, og at du har\n"
+"tilgangsrettigheter til enheten.\n"
+"\n"
+"Årsak: %s\n"
+
+#: tcd/linux-cdrom.c:624
 msgid "Unknown / Unknown"
 msgstr "Ukjent / Ukjent"
 
-#: tcd/linux-cdrom.c:643
+#: tcd/linux-cdrom.c:628
 #, c-format
 msgid "Track %d"
 msgstr "Spor %d"
@@ -377,6 +438,10 @@ msgstr "Tast"
 msgid "Action"
 msgstr "Handling"
 
+#: tcd/prefs.c:512
+msgid "Click here to change:"
+msgstr "Klikk her for å endre:"
+
 #. Frame
 #: tcd/prefs.c:534 tcd/prefs.c:578
 msgid "Keybindings"
@@ -386,30 +451,30 @@ msgstr "Tastaturbindinger"
 msgid "CDDB Settings"
 msgstr "CDDB-innstillinger"
 
-#: vu-meter/main.c:139
+#: vu-meter/main.c:164
 msgid "Specify the X position of the meter."
 msgstr "Spesifiser X-posisjonen til måleren."
 
-#: vu-meter/main.c:140
+#: vu-meter/main.c:165
 msgid "X-Position"
 msgstr "X-posisjon"
 
-#: vu-meter/main.c:142
+#: vu-meter/main.c:167
 msgid "Specify the Y position of the meter."
 msgstr "Spesifiser Y-posisjonen til måleren."
 
-#: vu-meter/main.c:143
+#: vu-meter/main.c:168
 msgid "Y-Position"
 msgstr "Y-posisjon"
 
-#: vu-meter/main.c:145
+#: vu-meter/main.c:170
 msgid "Connect to the esd server on this host."
 msgstr "Koble til esd-tjeneren på denne verten."
 
-#: vu-meter/main.c:146
+#: vu-meter/main.c:171
 msgid "ESD Server Host"
 msgstr "ESD-tjener vert"
 
-#: vu-meter/main.c:148
+#: vu-meter/main.c:173
 msgid "Open a vertical version of the meter."
 msgstr "Åpne en vertikal utgave av måleren."
