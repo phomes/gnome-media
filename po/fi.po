@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media (gnome-2-6)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 22:11-0700\n"
+"POT-Creation-Date: 2004-03-06 00:25+0200\n"
 "PO-Revision-Date: 2004-01-06 17:31+0200\n"
 "Last-Translator: Jarkko Ranta <jjranta@cc.joensuu.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -1606,24 +1606,26 @@ msgstr "Pituus:"
 msgid "Adjust the volume level"
 msgstr "Säädä äänenvoimakkuutta"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:545
 msgid "Volume Control"
 msgstr "Äänenhallinta"
 
 #: gst-mixer/src/mixer.c:218
 #, c-format
 msgid "%s Slider"
-msgstr ""
+msgstr "%s-säädin"
 
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr ""
+msgstr "%2$s-säätimen kanava %1$d"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
 msgid "%s Slider %d"
-msgstr ""
+msgstr "%s-säädin %d"
 
 #: gst-mixer/src/mixer.c:234
 msgid "Lock"
@@ -1653,16 +1655,11 @@ msgstr "Äänitys"
 msgid "%s Record"
 msgstr "%s Äänitys"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-msgid "GStreamer Volume Control"
-msgstr "GStreamer Äänenhallinta"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "GNOME/Gstreamer-pohjainen mikserisovellus"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:562
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Valitettavasti mikserielementtejä ja/tai -laitteita ei löytynyt"
 
@@ -1682,8 +1679,8 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Aseta GStreamer-sovellusten oletusarvot"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "Multimediajärjestelmien valitsimet"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1696,7 +1693,7 @@ msgstr "<b>Oletuskohde</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Source</b>"
-msgstr "<b>Oletuslähde&lt</b>"
+msgstr "<b>Oletuslähde</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2045,592 +2042,3 @@ msgstr "Tarkkaile ulostulon äänenvoimakkuutta"
 msgid "Volume monitor"
 msgstr "Äänenvoimakkuusmonitori"
 
-#, fuzzy
-#~ msgid "_Replace"
-#~ msgstr "Space"
-
-#, fuzzy
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "<b>Tiedosto \"%s\" on jo olemassa.</b>\n"
-#~ "Haluatko kirjoittaa sen yli?"
-
-#~ msgid "Unknown extension, doing nothing"
-#~ msgstr "Tuntematon pääte. Ei tehty mitään."
-
-#~ msgid "Could not build pipeline"
-#~ msgstr "Putken rakentaminen ei onnistunut"
-
-#~ msgid "Saving %s..."
-#~ msgstr "Tallennetaan %s..."
-
-#~ msgid "Synth"
-#~ msgstr "Synth"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "DSP Input"
-
-#~ msgid "Line"
-#~ msgstr "Linja"
-
-#~ msgid "MIC"
-#~ msgstr "Mic"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Puhelin"
-
-#~ msgid "Mono"
-#~ msgstr "Mono"
-
-#~ msgid "PC Speaker"
-#~ msgstr "PC-Speaker"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Center Input"
-#~ msgstr "Center Input"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Woofer Input"
-
-#~ msgid "Surround Input"
-#~ msgstr "Surround Input"
-
-#~ msgid "Master"
-#~ msgstr "Master"
-
-#~ msgid "Master Mono"
-#~ msgstr "Master Mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Master Digital"
-
-#~ msgid "Headphone"
-#~ msgstr "Kuulokkeet"
-
-#~ msgid "Phone Output"
-#~ msgstr "Puhelin, Output"
-
-#~ msgid "Woofer"
-#~ msgstr "Woofer"
-
-#~ msgid "Surround"
-#~ msgstr "Surround"
-
-#~ msgid "DSP Output"
-#~ msgstr "DSP Output"
-
-#~ msgid "Treble"
-#~ msgstr "Diskantti"
-
-#~ msgid "Equalizer"
-#~ msgstr "Taajuuskorjain"
-
-#~ msgid "Fader"
-#~ msgstr "Fader"
-
-#
-#~ msgid "Effect"
-#~ msgstr "Efekti"
-
-#
-#~ msgid "3D Effect"
-#~ msgstr "3D Efekti"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Mic Gain"
-
-#~ msgid "Input Gain"
-#~ msgstr "Input Gain"
-
-#~ msgid "Output Gain"
-#~ msgstr "Output Gain"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analog Loopback"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digital Loopback"
-
-#~ msgid "Vol  "
-#~ msgstr "Äänenvoim"
-
-#~ msgid "Bass "
-#~ msgstr "Basso"
-
-#~ msgid "Trebl"
-#~ msgstr "Diskantti"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Kaiutin "
-
-#~ msgid "Line "
-#~ msgstr "Linja "
-
-#~ msgid "Mic  "
-#~ msgstr "Mic"
-
-#~ msgid "CD   "
-#~ msgstr "CD"
-
-#~ msgid "Mix  "
-#~ msgstr "Mikseri "
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2 "
-
-#~ msgid "Rec  "
-#~ msgstr "Äänitys "
-
-#~ msgid "IGain"
-#~ msgstr "IGain"
-
-#~ msgid "OGain"
-#~ msgstr "OGain"
-
-#~ msgid "Line1"
-#~ msgstr "Linja1"
-
-#~ msgid "Line2"
-#~ msgstr "Linja2"
-
-#~ msgid "Line3"
-#~ msgstr "Linja3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digital1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digital2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digital3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "PuhSisään"
-
-#~ msgid "PhoneOut"
-#~ msgstr "PuhUlos"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitori"
-
-#~ msgid "Help"
-#~ msgstr "Ohje"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Käytettävä miksauslaite"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Äänenhallintaa ei voida suorittaa kunnolla.\n"
-#~ "\n"
-#~ "Äänilaitetta \"%s\" ei löytynyt.\n"
-#~ "Varmista että sinulla on oikeus avata \"%s\"\n"
-#~ "ja että sinulla on äänituki käännettynä kerneliisi."
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Äänenhallintaa ei voida suorittaa kunnolla.\n"
-#~ "\n"
-#~ "Paina \"Lisätietoja\"-painiketta saadaksesi lisätietoja virheen syystä.\n"
-#~ "\n"
-#~ "Paina \"Lopeta\" poistuaksesi äänenhallinnasta."
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Epäkelpo miksauslaite"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Varoitus: Tämä Gnomen äänenhallinnan versio on käännetty OSS:n\n"
-#~ "versionumerolle %d.%d.%d, ja järjestelmäsi versio\n"
-#~ "on aikaisempi kuin 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Varoitus: Tämä Gnomen äänenhallinnan versio on käännetty OSS:n\n"
-#~ "versionumerolle %d.%d.%d, ja järjestelmäsi versio\n"
-#~ "on %d.%d.%d.\n"
-
-#~ msgid "left %s"
-#~ msgstr "Vasen %s"
-
-#~ msgid "Right %s"
-#~ msgstr "Oikea %s"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Gnomen äänenhallinta"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Mikseri äänilaitteille"
-
-#
-#~ msgid "Shown"
-#~ msgstr "Näytettynä"
-
-#~ msgid "Mixer label"
-#~ msgstr "Mikseriotsikko"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "Aseta otsikkoasetukset _oletusarvoihinsa"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Gnomen äänenhallinnan asetukset"
-
-#~ msgid "Sound Recorder:"
-#~ msgstr "Ääninauhuri:"
-
-#~ msgid "Don't show this message again."
-#~ msgstr "Älä näytä tätä viestiä uudestaan."
-
-#~ msgid ""
-#~ "Could not find '%s'.\n"
-#~ "Set the correct path to sox inpreferences under the tab 'paths'.\n"
-#~ "\n"
-#~ "If you don't have sox, you will not be able to record or do any effects."
-#~ msgstr ""
-#~ "\"%s\" ei löytynyt.\n"
-#~ "Aseta polku oikein asetusten kohdasta \"polut\".\n"
-#~ "\n"
-#~ "Jos sinulla ei ole sox:ia, et pysty äänittämään tai käyttämään efektejä."
-
-#~ msgid "Converting file..."
-#~ msgstr "Muunnetaan tiedostoa..."
-
-#~ msgid "Cancel"
-#~ msgstr "Peruuta"
-
-#~ msgid "Audioformat: "
-#~ msgstr "Äänimuoto: "
-
-#~ msgid "Sample rate: "
-#~ msgstr "Äänitaajuus: "
-
-#~ msgid "Channels: "
-#~ msgstr "Kanavia: "
-
-#~ msgid "Cancel open"
-#~ msgstr "Peruuta avaus"
-
-#~ msgid "%s is not installed in the path"
-#~ msgstr "%s ei ole asennettuna polussa"
-
-#~ msgid "Undoing all changes..."
-#~ msgstr "Kumotaan tehdyt muutokset..."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please select a sound file to be opened."
-#~ msgstr ""
-#~ "\"%s\" on hakemisto.\n"
-#~ "Valitse äänitiedosto avattavaksi."
-
-#~ msgid ""
-#~ "File '%s' doesn't exist.\n"
-#~ "Please select an existing sound file to be opened."
-#~ msgstr ""
-#~ "Tiedostoa \"%s\" ei ole olemassa.\n"
-#~ "Valitse olemassaoleva äänitiedosto avattavaksi."
-
-#~ msgid "File '%s isn't a valid sound file."
-#~ msgstr "Tiedosto \"%s\" ei ole kelvollinen äänitiedosto."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please enter another filename."
-#~ msgstr ""
-#~ "\"%s\" on hakemisto.\n"
-#~ "Anna toinen tiedostonimi."
-
-#~ msgid "Cancel save"
-#~ msgstr "Peruuta tallennus"
-
-#~ msgid "Overwrite"
-#~ msgstr "Kirjoita yli"
-
-#~ msgid "Error saving '%s'"
-#~ msgstr "Virhe tallennettaessa tiedostoa '%s'"
-
-#~ msgid ""
-#~ "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "<b>Haluatko tallentaa kohteeseen \"%s\" tehdyt muutokset?</b>\n"
-#~ "\n"
-#~ "Muutoksesi menetetään jollet tallenna niitä."
-
-#~ msgid "Do_n't save"
-#~ msgstr "Ä_lä tallenna"
-
-#~ msgid "Save %s?"
-#~ msgstr "Tallennetaanko %s?"
-
-#~ msgid "Saving..."
-#~ msgstr "Tallennetaan..."
-
-#~ msgid ""
-#~ "The size of the current sample is more than\n"
-#~ "%i Mb!"
-#~ msgstr ""
-#~ "Äänitiedoston koko on enemmän kuin\n"
-#~ "%i Mt!"
-
-#~ msgid "Save sound file"
-#~ msgstr "Tallenna äänitiedosto"
-
-#~ msgid ""
-#~ "The sound device is not ready. Please check that there isn't\n"
-#~ "another program running that is using the device."
-#~ msgstr ""
-#~ "Äänilaite ei ole valmiina. Varmista, ettei\n"
-#~ "toinen ohjelma käytä samaa äänilaitetta."
-
-#~ msgid "Run GNOME Volume Control"
-#~ msgstr "Aja Gnomen äänenhallinta"
-
-#~ msgid "Add echo"
-#~ msgstr "Lisää kaiku"
-
-#~ msgid "Add echo to the current sample"
-#~ msgstr "Lisää kaiku nykyiseen ääneen"
-
-#~ msgid "Echo"
-#~ msgstr "Kaiku"
-
-#~ msgid "_Undo All"
-#~ msgstr "K_umoa kaikki"
-
-#~ msgid "Undo all changes made on the current sample"
-#~ msgstr "Kumoa kaikki ääneen tehdyt muutokset"
-
-#
-#~ msgid "Effects"
-#~ msgstr "Efektit"
-
-#~ msgid "16bit PCM"
-#~ msgstr "16-bittinen PCM"
-
-#~ msgid "8bit PCM"
-#~ msgstr "8-bittinen PCM"
-
-#~ msgid "stereo"
-#~ msgstr "stereo"
-
-#~ msgid "mono"
-#~ msgstr "mono"
-
-#~ msgid "Create new sample"
-#~ msgstr "Luo uusi ääni"
-
-#~ msgid "Play current sample"
-#~ msgstr "Soita nykyinen ääni"
-
-#
-#~ msgid "Stop playing/recording"
-#~ msgstr "Lakkaa soittamasta/äänittämästä"
-
-#
-#~ msgid "Start recording"
-#~ msgstr "Käynnistä äänitys"
-
-#~ msgid "Audio format: "
-#~ msgstr "Äänimuoto: "
-
-#~ msgid "File '%s' doesn't exist; using default."
-#~ msgstr "Tiedostoa \"%s\" ei ole; käytetään oletusta."
-
-#~ msgid "File '%s' isn't a supported soundfile."
-#~ msgstr "Tiedosto \"%s\" ei ole tuettu äänitiedosto."
-
-#~ msgid "translator_credits"
-#~ msgstr ""
-#~ "Jarkko Ranta, 2000-2003\n"
-#~ "Mikko Rauhala, 1999\n"
-#~ "Tuomas J. Lukka, 1998\n"
-#~ "\n"
-#~ "http://gnome-fi.org/"
-
-#~ msgid "GNOME Sound Recorder"
-#~ msgstr "Gnomen ääninauhuri"
-
-#~ msgid ""
-#~ "A simple soundrecorder and soundplayer for GNOME.\n"
-#~ "Dedicated to my cat, Malte."
-#~ msgstr ""
-#~ "Yksinkertainen nauhuri ja soitin Gnomelle.\n"
-#~ "Omistettu kissalleni, Maltelle."
-
-#~ msgid "Gnome Sound Recorder Preferences"
-#~ msgstr "Gnomen ääninauhurin asetukset"
-
-#~ msgid "Sound Recorder Preferences"
-#~ msgstr "Ääninauhurin asetukset"
-
-#~ msgid "Recording"
-#~ msgstr "Äänitetään"
-
-#~ msgid "Time"
-#~ msgstr "Aika"
-
-#~ msgid "_Recording timeout: "
-#~ msgstr "Äänityksen ai_kakatkaisu: "
-
-#~ msgid "_Stop recording on timeout"
-#~ msgstr "_Lakkaa äänittämästä aikakatkaisun kohdalla"
-
-#~ msgid "_Open save dialog when recording is finished"
-#~ msgstr "_Avaa tallennusikkuna äänityksen päätyttyä"
-
-#~ msgid "Size"
-#~ msgstr "Koko"
-
-#~ msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-#~ msgstr "Näytä _varoitus, jos äänitteen koko (Mt) tulee suuremmaksi kuin:"
-
-#~ msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-#~ msgstr ""
-#~ "_Lakkaa äänittämästä, jos äänitteen koko (Mt) tulee suuremmaksi kuin:"
-
-#~ msgid "Repetition"
-#~ msgstr "Toisto"
-
-#~ msgid "_Repeat the sound"
-#~ msgstr "_Toista ääni"
-
-#~ msgid "Play the sound _once only."
-#~ msgstr "Soita ääni vain _kerran."
-
-#~ msgid "Repeat _forever"
-#~ msgstr "Toista _ikuisesti"
-
-#~ msgid "_Number of times:"
-#~ msgstr "_Kertaa: "
-
-#~ msgid "Paths"
-#~ msgstr "Polut"
-
-#~ msgid "_Path to sox:"
-#~ msgstr "_Polku sox:iin:"
-
-#~ msgid "_Apply"
-#~ msgstr "_Toteuta"
-
-#~ msgid "Folders"
-#~ msgstr "Kansiot"
-
-#~ msgid "_Temporary folder:"
-#~ msgstr "_Väliaikaishakemisto:"
-
-#~ msgid "Apply"
-#~ msgstr "Toteuta"
-
-#~ msgid "Sound"
-#~ msgstr "Ääni"
-
-#~ msgid ""
-#~ "Note: These options only take effect whenever a new sound sample\n"
-#~ "is created. They do not operate on an existing sample."
-#~ msgstr ""
-#~ "Huom: Nämä asetukset tulevat voimaan vasta kun uusi äänitiedosto\n"
-#~ "luodaan. Ne eivät ole voimassa olemassaolevien äänien kohdalla."
-
-#~ msgid "Audio format:"
-#~ msgstr "Äänimuoto:"
-
-#~ msgid "8 _bit PCM"
-#~ msgstr "8 _bit PCM"
-
-#~ msgid "16 b_it PCM"
-#~ msgstr "16 b_it PCM"
-
-#~ msgid "S_ample rate:"
-#~ msgstr "Äänit_aajuus:"
-
-#~ msgid "Mono or Stereo:"
-#~ msgstr "Mono vai Stereo:"
-
-#~ msgid "_Mono"
-#~ msgstr "_Mono"
-
-#~ msgid "_Stereo"
-#~ msgstr "_Stereo"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#
-#~ msgid "Specify the geometry of the main window"
-#~ msgstr "Anna pääikkunan mitat"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "MITAT"
-
-#~ msgid "Specify a file to be opened"
-#~ msgstr "Määritä avattava tiedosto"
-
-#~ msgid "Specify a file to start recording"
-#~ msgstr "Määritä tiedosto äänitystä varten"
-
-#~ msgid "Specify a file to start playing"
-#~ msgstr "Määritä tiedosto soittamista varten"
-
-#~ msgid "Sound recorder"
-#~ msgstr "Ääninauhuri"
-
-#~ msgid "Audio format: 8bit PCM"
-#~ msgstr "Äänimuoto: 8-bittinen PCM"
-
-#~ msgid "Audio format: 16bit PCM"
-#~ msgstr "Äänimuoto: 16-bittinen PCM"
-
-#~ msgid "Sample rate: %s"
-#~ msgstr "Näytteenottotaajuus: %s"
-
-#~ msgid "Channels: mono"
-#~ msgstr "Kanavat: mono"
-
-#~ msgid "Channels: stereo"
-#~ msgstr "Kanavat: stereo"
-
-#~ msgid "Adding echo to sample..."
-#~ msgstr "Lisätään kaikua..."
