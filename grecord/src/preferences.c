@@ -170,6 +170,7 @@ sox_command_changed (GConfClient *_client,
 		g_free (sox_command);
 		sox_command = sox;
 	}
+	g_free (s);
 }
 
 static void
