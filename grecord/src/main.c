@@ -106,7 +106,7 @@ main (int argc, char *argv[])
 	
 	gnome_init_with_popt_table (_("GNOME Sound recorder"), VERSION, argc, argv,
 				    grec_options, 0, &pctx);
-	
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
 	args = (gchar**) poptGetArgs (pctx);
 	
 	mwin.x = -1;

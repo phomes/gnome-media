@@ -1,6 +1,7 @@
 Audiodir = $(datadir)/gnome/apps/Multimedia
+Pixmapdir = $(datadir)/pixmaps
 
-EXTRA_DIST = README TODO NEWS gtcd.desktop
+EXTRA_DIST = README TODO NEWS gtcd.desktop gtcd.png
 
 # Should make sure that tcd will work with all flavors of curses.
 # Make sure it can support curses w/o color and old versions.
@@ -54,6 +55,8 @@ tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS) $(INTLLIBS)
 CLEANFILES = *~
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)	\
+	-DGNOME_ICONDIR=\""$(Pixmapdir)"\"
 
 Audio_DATA = gtcd.desktop
+Pixmap_DATA = gtcd.png

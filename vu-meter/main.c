@@ -288,6 +288,8 @@ main (int argc, char *argv[])
     }
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    gnome_window_icon_set_from_file (GTK_WINDOW (window),
+				     GNOME_ICONDIR"/gnome-vumeter.png");
     gtk_window_set_title (GTK_WINDOW (window), _("Volume Meter"));
     if (session_xpos >=0 && session_ypos >= 0)
 	gtk_widget_set_uposition (window, session_xpos, session_ypos);

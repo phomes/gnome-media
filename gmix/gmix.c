@@ -511,6 +511,7 @@ int main(int argc, char *argv[])
 	textdomain (PACKAGE);
 	gnome_init_with_popt_table("gmix", VERSION, argc, argv, options,
 				   0, NULL);
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-mixer.png");
 
 	if(mode_nosave) mode |= M_NOSAVE;
 	if(mode_initonly) mode |= M_INITONLY;

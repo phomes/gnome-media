@@ -1,8 +1,11 @@
 Audiodir = $(datadir)/gnome/apps/Multimedia
 
+pixmapdir = $(datadir)/pixmaps
+
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)			\
+	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
 bin_PROGRAMS = vumeter
 
@@ -17,8 +20,6 @@ vumeter_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 BITMAPS = gnome-vumeter.png
-
-pixmapdir = $(datadir)/pixmaps
 
 pixmap_DATA = $(BITMAPS)
 

@@ -190,6 +190,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     }
     
     trwin = gtk_window_new(GTK_WINDOW_DIALOG);
+    gnome_window_icon_set_from_default (GTK_WINDOW (trwin));
     gtk_container_border_width(GTK_CONTAINER(trwin), GNOME_PAD_SMALL);
     gtk_window_set_title(GTK_WINDOW(trwin), _("Track Editor"));
     gtk_window_set_wmclass(GTK_WINDOW(trwin), "track_editor","gtcd");

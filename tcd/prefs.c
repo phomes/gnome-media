@@ -307,6 +307,7 @@ static void font_button_cb(GtkWidget *widget, gpointer *data)
         GtkWidget *fs;
         
         fs = gtk_font_selection_dialog_new("Font");
+	gnome_window_icon_set_from_default (GTK_WINDOW (fs));
         gtk_font_selection_dialog_set_font_name(GTK_FONT_SELECTION_DIALOG(fs), prefs->trackfont);
 
         gtk_signal_connect(GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(fs)->ok_button), "clicked",

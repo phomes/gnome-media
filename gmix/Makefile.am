@@ -6,7 +6,8 @@ EXTRA_DIST = README TODO NEWS gmix.desktop gnome-mixer.png \
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR) 				\
+	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
 bin_PROGRAMS = gmix
 

@@ -3,7 +3,8 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(top_srcdir)/intl \
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)	\
+	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
 
 bin_PROGRAMS = grecord
 

@@ -336,6 +336,7 @@ static EditWindow *create_edit_window(GtkWidget *clist)
 
     /* main window */
     w->window = gtk_window_new(GTK_WINDOW_DIALOG);
+    gnome_window_icon_set_from_default (GTK_WINDOW (w->window));
     gtk_container_border_width(GTK_CONTAINER(w->window), GNOME_PAD_SMALL);
     gtk_window_set_title(GTK_WINDOW(w->window), _("CDDB Editor"));
     gtk_window_set_wmclass(GTK_WINDOW(w->window), "cddb_editor","gtcd");   

@@ -53,8 +53,8 @@ load_config_file    (void)
 	gnome_config_pop_prefix ();
 
 	gnome_config_push_prefix ("/grecord/Paths/");
-	sox_command          = gnome_config_get_string ("soxcommand=/usr/bin/sox");
-	mixer_command        = gnome_config_get_string ("mixercommand=/usr/bin/gmix");
+	sox_command          = gnome_config_get_string ("soxcommand=sox");
+	mixer_command        = gnome_config_get_string ("mixercommand=gmix");
 	temp_dir             = gnome_config_get_string ("tempdir=/tmp/");
 	gnome_config_pop_prefix ();
 

@@ -1029,6 +1029,7 @@ int main (int argc, char *argv[])
 
 	cd.play_method = NORMAL;
 
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gtcd.png");
 	prefs = g_new0(tcd_prefs, 1);
 	load_prefs(prefs);
 	time_display = gnome_config_get_int("/gtcd/ui/time_display=0");
