@@ -110,7 +110,8 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 	}
 
 	menu = GTK_MENU(gtk_menu_new ());
-	if (gcd->disc_info != NULL) {
+	if (gcd->disc_info != NULL &&
+	    gcd->disc_info->track_info) {
 		int i;
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
 			char *title;
@@ -635,6 +636,8 @@ main (int argc,
 {
 	GnomeCD *gcd;
 	GnomeClient *client;
+
+	free (malloc (8)); /* -lefence */
 
 	if (g_getenv ("GNOME_CD_DEBUG")) {
 		debug_mode = TRUE;
