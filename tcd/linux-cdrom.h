@@ -33,76 +33,93 @@
 
 #ifdef linux
 #include <linux/cdrom.h>
+
+typedef struct cdrom_msf0 cd_min_sec_frame;
+
 #endif
 
 #if defined(sun) || defined(__sun__)
-#if defined(SVR4) || defined(__svr4__)
+# if defined(SVR4) || defined(__svr4__)
 
-#include <sys/cdio.h>
+#  include <sys/cdio.h>
 
-#else
+# else
 
-#include <sys/buf.h>
-#include <sun/dkio.h>
-#include <scsi/targets/srdef.h>
+#  include <sys/buf.h>
+#  include <sun/dkio.h>
+#  include <scsi/targets/srdef.h>
 
 /* This is a hack to work around a bug in SunOS 4.x's _IO macro family
  * in <sys/ioccom.h> which makes it incompatible with ANSI compilers.
  * If Sun ever changes the definition of these then this will have
  * to change...
  */
-#undef _IO
-#undef _IOR
-#undef _IOW
-#undef _IOWR
-#undef CDROMPAUSE
-#undef CDROMRESUME
-#undef CDROMPLAYMSF
-#undef CDROMPLAYTRKIND
-#undef CDROMREADTOCHDR
-#undef CDROMREADTOCENTRY
-#undef CDROMSTOP
-#undef CDROMSTART
-#undef CDROMEJECT
-#undef CDROMVOLCTRL
-#undef CDROMSUBCHNL
+#  undef _IO
+#  undef _IOR
+#  undef _IOW
+#  undef _IOWR
+#  undef CDROMPAUSE
+#  undef CDROMRESUME
+#  undef CDROMPLAYMSF
+#  undef CDROMPLAYTRKIND
+#  undef CDROMREADTOCHDR
+#  undef CDROMREADTOCENTRY
+#  undef CDROMSTOP
+#  undef CDROMSTART
+#  undef CDROMEJECT
+#  undef CDROMVOLCTRL
+#  undef CDROMSUBCHNL
+   
+#  define _IO(x,y)	(_IOC_VOID | ((x) << 8) | (y))
+#  define _IOR(x,y,t)	( \
+   				  _IOC_OUT | \
+   				  ((sizeof(t) & _IOCPARM_MASK) << 16) | \
+   				  ((x) << 8 ) | (y) \
+   			  )
+#  define _IOW(x,y,t)	( \
+   				  _IOC_IN | \
+   				  ((sizeof(t) & _IOCPARM_MASK) << 16) | \
+   				  ((x) << 8) | (y) \
+   			  )
+#  define _IOWR(x,y,t)	( \
+   				  _IOC_INOUT | \
+   				  ((sizeof(t) & _IOCPARM_MASK) << 16) | \
+   				  ((x) << 8) | (y) \
+   			  )
+   
+#  define CDROMPAUSE		_IO('c', 10)
+#  define CDROMRESUME		_IO('c', 11)
+#  define CDROMPLAYMSF		_IOW('c', 12, struct cdrom_msf)
+#  define CDROMPLAYTRKIND		_IOW('c', 13, struct cdrom_ti)
+#  define CDROMREADTOCHDR		_IOR('c', 103, struct cdrom_tochdr)
+#  define CDROMREADTOCENTRY	_IOWR('c', 104, struct cdrom_tocentry)
+#  define CDROMSTOP		_IO('c', 105)
+#  define CDROMSTART		_IO('c', 106)
+#  define CDROMEJECT		_IO('c', 107)
+#  define CDROMVOLCTRL		_IOW('c', 14, struct cdrom_volctrl)
+#  define CDROMSUBCHNL		_IOWR('c', 108, struct cdrom_subchnl)
 
-#define _IO(x,y)	(_IOC_VOID | ((x) << 8) | (y))
-#define _IOR(x,y,t)	( \
-				_IOC_OUT | \
-				((sizeof(t) & _IOCPARM_MASK) << 16) | \
-				((x) << 8 ) | (y) \
-			)
-#define _IOW(x,y,t)	( \
-				_IOC_IN | \
-				((sizeof(t) & _IOCPARM_MASK) << 16) | \
-				((x) << 8) | (y) \
-			)
-#define _IOWR(x,y,t)	( \
-				_IOC_INOUT | \
-				((sizeof(t) & _IOCPARM_MASK) << 16) | \
-				((x) << 8) | (y) \
-			)
+# endif	/* SVR4 */
 
-#define CDROMPAUSE		_IO('c', 10)
-#define CDROMRESUME		_IO('c', 11)
-#define CDROMPLAYMSF		_IOW('c', 12, struct cdrom_msf)
-#define CDROMPLAYTRKIND		_IOW('c', 13, struct cdrom_ti)
-#define CDROMREADTOCHDR		_IOR('c', 103, struct cdrom_tochdr)
-#define CDROMREADTOCENTRY	_IOWR('c', 104, struct cdrom_tocentry)
-#define CDROMSTOP		_IO('c', 105)
-#define CDROMSTART		_IO('c', 106)
-#define CDROMEJECT		_IO('c', 107)
-#define CDROMVOLCTRL		_IOW('c', 14, struct cdrom_volctrl)
-#define CDROMSUBCHNL		_IOWR('c', 108, struct cdrom_subchnl)
+/* Duplicate struct from anonymous struct used in sys/cdio.h.  */
+typedef struct
+{
+	unsigned char minute;
+	unsigned char second;
+	unsigned char frame;
+} cd_min_sec_frame;
 
-#endif	/* SVR4 */
 #endif	/* sun __sun__ */
 
 #define TRK_NAME_LEN 	512
 #define DISC_INFO_LEN	512
 #define EXT_DATA_LEN    1024
 #define MAXTRACKS	111
+
+#ifndef CD_FRAMES
+#define CD_FRAMES 75  /* frames / sec */
+#define CD_SECS 60    /* secs / min */
+#endif
 
 struct cd_track
 {

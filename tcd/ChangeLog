@@ -1,3 +1,15 @@
+1999-07-11  Raja R Harinath  <harinath@cs.umn.edu>
+
+	Fix compile problems on Solaris. 
+	* linux-cdrom.h (cd_min_sec_frame): New typedef.  Equivalent to 
+	the type used for cdrom_tocentry::cdte_addr.msf.  
+	(CD_FRAMES, CD_SECS): Define if not already defined.
+	* linux-cdrom.c (msf_2_frame): Use cd_min_sec_frame instead of
+	cdrom_msf0.
+	(frame_2_msf): Likewise.
+	(tcd_play_seconds): Likewise.
+	Reported by "Brandon S. Allbery" <allbery@ece.cmu.edu>.
+	
 1999-05-25  Tim Gerla  <timg@means.net>
 
 	* Added patch from AJG to allow --device=/dev/whatever to be passed
@@ -31,7 +43,6 @@
 	long.  Without this change, CDs with long song titles would get
 	rejected when submited to one of the cddb databases.
 
->>>>>>> 1.64
 1999-05-02  James Henstridge  <james@daa.com.au>
 
 	* gtracked.c (gtracked_submit): was leaking the section names when
@@ -150,11 +161,13 @@
 1999-02-08  Tim P. Gerla  <timg@means.net>
 
 	* tcd.c: Ditch isdisk and hopefully fix tcd.
-	* linux-cdrom.c: Various policy changes..will probably break tcd (not gtcd).
+	* linux-cdrom.c: Various policy changes..will probably break tcd
+	(not gtcd). 
 	* gtcd.c: Remove isdisk
-	* gtcd.c: Changed window size policy. Now it sizes to fit the largest of either
-	album title or artist, or 25 characters, whichever is smaller. Wraps song names
-	like "This is...long song".
+	* gtcd.c: Changed window size policy. Now it sizes to fit the
+	largest of either album title or artist, or 25 characters,
+	whichever is smaller. Wraps song names like "This is...long
+	song". 
 
 1999-01-28  Tim P. Gerla  <timg@means.net>
 
@@ -164,12 +177,13 @@
 
 1999-01-28  Tim P. Gerla  <timg@means.net>
 
-	* prefs.c/gtracked.c: Clicking on Track Editor or Preferences when a window is already
-	  open, closes the respective window.
+	* prefs.c/gtracked.c: Clicking on Track Editor or Preferences when
+	  a window is already open, closes the respective window.
 
 1999-01-28  Tim P. Gerla  <timg@means.net>
 
-	* gtcd.c/linux-cdrom.c: Fixed disc change checking logic. Still a bit messy, but it works.
+	* gtcd.c/linux-cdrom.c: Fixed disc change checking logic. Still a
+	bit messy, but it works. 
 
 1999-01-22  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 
@@ -202,7 +216,8 @@ Sun Dec 27 00:42:53 CST 1998  Tim P. Gerla  <timg@means.net>
 
 1998-12-13  Tim P. Gerla  <timg@means.net>
 
-	* gtracked.c (edit_window): Select a track on open so that the user isn't confused.
+	* gtracked.c (edit_window): Select a track on open so that the
+	user isn't confused.
 	Also update track editor when disc is changed.
 
 	* cddb_props.c: Various fixes.
@@ -237,7 +252,8 @@ Sun Dec 27 00:42:53 CST 1998  Tim P. Gerla  <timg@means.net>
 
 	* gtcd.c (setup_colors): Brightened up the dark grey color.
 
-	* linux-cdrom.c (tcd_ejectcd): More breakage dealing with eject controls.
+	* linux-cdrom.c (tcd_ejectcd): More breakage dealing with eject
+	controls. 
 
 	* gtcd.c (slow_timer): Fixed some breakage.
 
@@ -283,6 +299,7 @@ Fri Nov 27 20:38:47 CST 1998  Tim P. Gerla  <timg@means.net>
 	* Added a popup menu on the status area. 
 
 1998-09-18  Max Valianskiy <maxcom@maxcom.ml.org>
+
 	* gtracked.c, linux-cdrom.c: now track editor updates track title
 	and artist in main window
 
@@ -341,7 +358,8 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
 	
 	* callbacks.[ch]: New files.
 
-	* gtcd_public.h: New File. Contains prototypes and externs for public functions/vars.
+	* gtcd_public.h: New File. Contains prototypes and externs for
+	public functions/vars. 
 
 	* gcddb.c: Various fixes.
 
@@ -353,7 +371,7 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
 	
 	* gtcd.c: Interface changes...let me know if they are bad or good.
 
-        * socket.c: Added a select to make things a bit more
+	* socket.c: Added a select to make things a bit more
 	  responsive...Still not quite right.
 
 1998-08-26  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
@@ -368,23 +386,22 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
 
 1998-08-24  Tim P. Gerla  <timg@means.net>
 
-	* gtcd.c: Fastforward/rewind buttons now work as a real CD player would. Click                        
-          and release to change track, hold to skip seconds.                                   
-
+	* gtcd.c: Fastforward/rewind buttons now work as a real CD player
+	  would. Click and release to change track, hold to skip seconds. 
 	* linux-cdrom.c: Split tcd_gettime() into two parts.
 
 	* TODO: a few changes.
 
 1998-08-24  Tim P. Gerla  <timg@means.net>
+	
+	* tcd/Makefile.am: Support for above. 
 
-        * tcd/Makefile.am: Support for above.
+	* tcd/gcddb.c: Changed sprintfs to g_snprintfs.
 
-        * tcd/gcddb.c: Changed sprintfs to g_snprintfs.
-
-        * tcd/gtracked.c: Fixed some silly bug that manifested itself when I
+	* tcd/gtracked.c: Fixed some silly bug that manifested itself when I
 	  enabled changer support.
 
-        * tcd/gtcd.c: Changed sprintfs to g_snprintfs, and removed several
+	* tcd/gtcd.c: Changed sprintfs to g_snprintfs, and removed several
           superfluous gtk_show_widgets. Fixed changer box packing order.
 	  Also set volume widget to fill&expand.
 
@@ -403,13 +420,15 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
 	(help_cb): Made void, as it had no return type.
 	#include <string.h>
 
-	* gcddb.c (do_cddb): Do not pass more than one parameter to tcd_open_cddb_http().
+	* gcddb.c (do_cddb): Do not pass more than one parameter to
+	tcd_open_cddb_http(). 
 	#include <stdlib.h> and <string.h>
 	(do_cddb): Made void, as the function is not supposed to return
 
 	* gtracked.c: #include <string.h>
 
-	* linux-cdrom.c (tcd_readdiskinfo): Return 0 when the disk is not playable.
+	* linux-cdrom.c (tcd_readdiskinfo): Return 0 when the disk is not
+	playable. 
 
 	* cddb.h: Added prototype for tcd_open_cddb_http().
 
@@ -431,9 +450,9 @@ Sun Aug 30 13:58:45 1998  Tim P. Gerla  <timg@means.net>
 	string returned by gnome_pixmap_file().
 
 Mon Aug  3 17:17:08 CEST 1998  Tim P. Gerla  <timg@means.net>
-	* gtracked.c: Fixed silly clist bug. Now the tracks won't be
-corrupted.
 
+	* gtracked.c: Fixed silly clist bug. Now the tracks won't be
+	corrupted. 
 
 1998-07-02  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
 

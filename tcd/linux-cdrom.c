@@ -373,13 +373,13 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     return tmp;
 }       
 
-static int msf_2_frame( struct cdrom_msf0 *msf )
+static int msf_2_frame( cd_min_sec_frame *msf )
 {
 	return( ( msf->minute * CD_SECS + msf->second )
 			* CD_FRAMES + msf->frame );
 }
 
-static void frame_2_msf( int frame, struct cdrom_msf0 *msf )
+static void frame_2_msf( int frame, cd_min_sec_frame *msf )
 {
 	msf->frame = frame % CD_FRAMES;
 	frame /= CD_FRAMES;
@@ -390,7 +390,7 @@ static void frame_2_msf( int frame, struct cdrom_msf0 *msf )
 int tcd_play_seconds( cd_struct *cd, long int offset )
 {
     struct cdrom_msf msf;
-    struct cdrom_msf0 msf0;
+    cd_min_sec_frame msf0;
     int cur_frame, start_frame, end_frame;
 
     debug("cdrom.c: tcd_play_seconds( %p, %ld )\n", cd, offset );
