@@ -2,7 +2,7 @@ AC_PREREQ(2.52)
 AC_INIT(gmix)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-media, 2.1.5)
+AM_INIT_AUTOMAKE(gnome-media, 2.2.0)
 AM_MAINTAINER_MODE
 
 AC_PROG_INTLTOOL([0.21])
@@ -43,7 +43,7 @@ AM_PROG_LIBTOOL
 # Start of pkg-config checks
 PKG_CHECK_MODULES(MEDIA, glib-2.0 >= 1.3.7 gmodule-2.0 >= 1.3.7 \
 		  libgnomeui-2.0 >= 1.102.0\
-		  esound >= 0.2.23 gstreamer-0.5 >= 0.5.1)
+		  esound >= 0.2.23)
 host=`uname -s`
 case "$host" in
 *SunOS*)
@@ -71,6 +71,30 @@ PKG_CHECK_MODULES(VUMETER, glib-2.0 >= 1.3.7 gtk+-2.0 >= 1.3.7 \
 		  esound >= 0.2.23 libgnomeui-2.0 > 1.102.0)
 AC_SUBST(VUMETER_CFLAGS)
 AC_SUBST(VUMETER_LIBS)
+
+# Check for GStreamer stuff
+HAVE_GST=no
+
+GST_MAJORMINOR=0.6
+PKG_CHECK_MODULES(GSR, \
+  gstreamer-$GST_MAJORMINOR >= 0.5.2 gstreamer-libs-$GST_MAJORMINOR >= 0.5.2 \
+		  libgnomeui-2.0 >= 1.102.0,
+		  HAVE_GST=yes,HAVE_GST=no)
+
+if test "x$HAVE_GST" = "xno"; then
+  GST_MAJORMINOR=0.5
+  PKG_CHECK_MODULES(GSR, \
+		    gstreamer-$GST_MAJORMINOR >= 0.5.2 gstreamer-libs-$GST_MAJORMINOR >= 0.5.2 \
+		    libgnomeui-2.0 >= 1.102.0,
+		    HAVE_GST=yes,HAVE_GST=no)
+fi
+
+if test "x$HAVE_GST" = "xno"; then
+  AC_MSG_ERROR(you need GStreamer installed)
+fi
+
+AC_SUBST(GSR_CFLAGS)
+AC_SUBST(GSR_LIBS)
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
