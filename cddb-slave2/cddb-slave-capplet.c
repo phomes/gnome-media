@@ -640,6 +640,35 @@ make_tree_model (void)
 	return GTK_TREE_MODEL (store);
 }
 
+static GtkWidget *
+hig_category_new (GtkWidget *parent, gchar *title, gboolean expand, gboolean fill)
+{
+	GtkWidget *vbox, *vbox2, *hbox;
+	GtkWidget *label;
+	gchar *tmp;
+	
+	vbox = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (parent), vbox, expand, fill, 0);
+
+	tmp = g_strdup_printf ("<b>%s</b>", _(title));
+	label = gtk_label_new (NULL);
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	gtk_label_set_markup (GTK_LABEL (label), tmp);
+	g_free (tmp);
+	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
+
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+
+	label = gtk_label_new ("    ");
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+	vbox2 = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
+
+	return vbox2;
+}
+
 static void
 create_dialog (GtkWidget *window)
 {
@@ -648,7 +677,7 @@ create_dialog (GtkWidget *window)
 	GtkWidget *main_vbox;
 	GtkWidget *frame;
 	GtkWidget *align;
-	GtkWidget *vbox, *hbox;
+	GtkWidget *vbox, *hbox, *hbox2, *hbox3;
 	GtkWidget *label, *sw;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
@@ -663,23 +692,20 @@ create_dialog (GtkWidget *window)
 	g_signal_connect (G_OBJECT (window), "destroy",
 			  G_CALLBACK (destroy_window), pd);
 
-	main_vbox = gtk_vbox_new (FALSE, 5);
-	gtk_button_box_set_spacing (GTK_BUTTON_BOX (main_vbox), 18);
+	main_vbox = gtk_vbox_new (FALSE, 0);
+	gtk_box_set_spacing (GTK_BOX (main_vbox), 18);
 	gtk_container_set_border_width (GTK_CONTAINER (main_vbox), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (window)->vbox), 2);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, TRUE, TRUE, 0);
 
 	/* Log on info */
-	frame = gtk_frame_new (_("Log on information"));
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-	gtk_box_pack_start (GTK_BOX (main_vbox), frame, FALSE, FALSE, 0);
-
-	vbox = gtk_vbox_new (FALSE, 4);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+	frame = hig_category_new (main_vbox, _("Log On Information"), FALSE, FALSE);
+	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 
 	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
 	g_print ("info: %d\n", info);
-	pd->no_info = gtk_radio_button_new_with_mnemonic (NULL, _("Send _no information"));
+	pd->no_info = gtk_radio_button_new_with_mnemonic (NULL, _("Sen_d no information"));
 	if (info == CDDB_SEND_FAKE_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->no_info), TRUE);
 	}
@@ -697,7 +723,7 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (vbox), pd->real_info, FALSE, FALSE, 0);
 
 	pd->specific_info = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->real_info),
-									    _("Send _other information..."));
+									    _("Send _other information:"));
 	if (info == CDDB_SEND_OTHER_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->specific_info), TRUE);
 	}
@@ -706,15 +732,23 @@ create_dialog (GtkWidget *window)
 			  G_CALLBACK (specific_info_toggled), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->specific_info, FALSE, FALSE, 0);
 
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+	
+	label = gtk_label_new ("    ");
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
 	pd->name_box = gtk_table_new (2, 2, FALSE);
+	gtk_table_set_row_spacings (GTK_TABLE (pd->name_box), 6);
+	gtk_table_set_col_spacings (GTK_TABLE (pd->name_box), 12);
 	if (info != CDDB_SEND_OTHER_INFO) {
 		gtk_widget_set_sensitive (pd->name_box, FALSE);
 	}
 	
-	gtk_box_pack_start (GTK_BOX (vbox), pd->name_box, FALSE, FALSE, 0);
-	
-	align = gtk_alignment_new (1.0, 0.5, 0.0, 0.0);
-	label = gtk_label_new_with_mnemonic (_("N_ame:"));
+	gtk_box_pack_start (GTK_BOX (hbox), pd->name_box, TRUE, TRUE, 0);
+
+	align = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+	label = gtk_label_new_with_mnemonic (_("_Name:"));
 	gtk_container_add (GTK_CONTAINER (align), label);
 	gtk_table_attach (GTK_TABLE (pd->name_box), align,
 			  0, 1, 0, 1, GTK_FILL, GTK_FILL,
@@ -732,9 +766,9 @@ create_dialog (GtkWidget *window)
 	gtk_table_attach (GTK_TABLE (pd->name_box), pd->real_name,
 			  1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL,
 			  0, 0);
-
-	align = gtk_alignment_new (1.0, 0.5, 0.0, 0.0);
-	label = gtk_label_new_with_mnemonic (_("_Hostname:"));
+	
+	align = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+	label = gtk_label_new_with_mnemonic (_("Hostna_me:"));
 	gtk_container_add (GTK_CONTAINER (align), label);
 	gtk_table_attach (GTK_TABLE (pd->name_box), align,
 			  0, 1, 1, 2, GTK_FILL, GTK_FILL,
@@ -757,12 +791,9 @@ create_dialog (GtkWidget *window)
 	gtk_table_set_col_spacings (GTK_TABLE (pd->name_box), GNOME_PAD_SMALL);
 
 	/* Server info */
-	frame = gtk_frame_new (_("Server"));
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-	gtk_box_pack_start (GTK_BOX (main_vbox), frame, TRUE, TRUE, 0);
+	frame = hig_category_new (main_vbox, _("Server"), TRUE, TRUE);
 
-	vbox = gtk_vbox_new (FALSE, 4);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 
 	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/server-type", NULL);
@@ -772,14 +803,20 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (vbox), pd->round_robin, FALSE, FALSE, 0);
 
 	pd->other_freedb = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->round_robin),
-									   _("Other _FreeDB server..."));
+									   _("Other _FreeDB server:"));
 	g_signal_connect (G_OBJECT (pd->other_freedb), "toggled",
 			  G_CALLBACK (other_freedb_toggled), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->other_freedb, FALSE, FALSE, 0);
 
-	pd->freedb_box = gtk_vbox_new (FALSE, 0);
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+	
+	label = gtk_label_new ("    ");
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	
+	pd->freedb_box = gtk_vbox_new (FALSE, 6);
 	gtk_widget_set_sensitive (pd->freedb_box, FALSE);
-	gtk_box_pack_start (GTK_BOX (vbox), pd->freedb_box, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), pd->freedb_box, TRUE, TRUE, 0);
 
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
@@ -810,14 +847,14 @@ create_dialog (GtkWidget *window)
 	
 	gtk_container_add (GTK_CONTAINER (sw), pd->freedb_server);
 
-	pd->update = gtk_button_new_with_label (_("Update server list"));
+	pd->update = gtk_button_new_with_mnemonic (_("_Update Server List"));
 	g_signal_connect (G_OBJECT (pd->update), "clicked",
 			  G_CALLBACK (update_clicked), pd);
 	
 	gtk_box_pack_start (GTK_BOX (pd->freedb_box), pd->update, FALSE, FALSE, 2);
 
 	pd->other_server = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->other_freedb),
-									   _("Other _server..."));
+									   _("Other _server:"));
 	g_signal_connect (G_OBJECT (pd->other_server), "toggled",
 			  G_CALLBACK (other_server_toggled), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->other_server, FALSE, FALSE, 0);
@@ -826,13 +863,22 @@ create_dialog (GtkWidget *window)
 	gtk_widget_set_sensitive (pd->other_box, FALSE);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->other_box, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 4);
-	gtk_box_pack_start (GTK_BOX (pd->other_box), hbox, TRUE, TRUE, 0);
+	hbox3 = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (pd->other_box), hbox3, FALSE, FALSE, 0);
 	
-	label = gtk_label_new (_("Hostname:"));
+	label = gtk_label_new ("    ");
+	gtk_box_pack_start (GTK_BOX (hbox3), label, FALSE, FALSE, 0);	
+
+	hbox2 = gtk_hbox_new (FALSE, 12);
+	gtk_box_pack_start (GTK_BOX (hbox3), hbox2, FALSE, FALSE, 0);
+	
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (hbox2), hbox, FALSE, FALSE, 0);
+	label = gtk_label_new_with_mnemonic (_("Hos_tname:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	pd->other_host = gtk_entry_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->other_host);
 	g_signal_connect (G_OBJECT (pd->other_host), "changed",
 			  G_CALLBACK (other_host_changed), pd);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/server", NULL);
@@ -842,9 +888,11 @@ create_dialog (GtkWidget *window)
 	}
 	gtk_box_pack_start (GTK_BOX (hbox), pd->other_host, TRUE, TRUE, 0);
 
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (hbox2), hbox, FALSE, FALSE, 0);
+
 	label = gtk_label_new_with_mnemonic (_("_Port:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
 	pd->other_port = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->other_port);
 	g_signal_connect (G_OBJECT (pd->other_port), "changed",
@@ -873,12 +921,29 @@ create_dialog (GtkWidget *window)
 		break;
 	}
 }
+
+static GdkPixbuf *
+pixbuf_from_file (const char *filename)
+{
+	GdkPixbuf *pixbuf;
+	char *fullname;
+
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+                   filename, TRUE, NULL);
+	g_return_val_if_fail (fullname != NULL, NULL);
+
+	pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
+	g_free (fullname);
+
+	return pixbuf;
+}
 	
 int
 main (int argc,
       char **argv)
 {
 	GtkWidget *dialog_win;
+	GdkPixbuf *pixbuf;
 	
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -908,6 +973,14 @@ main (int argc,
 
   	g_signal_connect (G_OBJECT (dialog_win), "response",
   			  G_CALLBACK (dialog_button_clicked_cb), changeset);
+
+	pixbuf = pixbuf_from_file ("gnome-cd/cd.png");
+	if (pixbuf == NULL) {
+		g_warning ("Error finding gnome-cd/cd.png");
+	} else {
+		gtk_window_set_icon (GTK_WINDOW (dialog_win), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+	}
 
 	gtk_widget_show_all (dialog_win);
 
