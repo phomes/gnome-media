@@ -1045,6 +1045,19 @@ solaris_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 			       GError **error)
 {
 	int fd;
+	int vol_fd;
+	int volume;
+	struct audio_info audioinfo;
+	struct cdrom_volctrl vol;
+
+	vol_fd = open ( "/dev/audioctl", O_RDWR);
+	if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
+			g_warning ("(solaris_cdrom_is_cdrom_device): AUDIO_GETINFO ioctl failed %s",
+                                   strerror (errno));
+	} else {
+                volume = audioinfo.play.gain;
+	}
+	close (vol_fd);
 
 	if (device == NULL || *device == 0) {
 		return FALSE;
@@ -1055,8 +1068,10 @@ solaris_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	vol.channel0 = volume;
+	vol.channel1 = vol.channel2 = vol.channel3 = volume;
 	/* Fire a harmless ioctl at the device. */
-	if (ioctl (fd, CDROMSTOP, 0) < 0) {
+	if (ioctl (fd, CDROMVOLCTRL, &vol) < 0) {
 		/* Failed, it's not a CDROM drive */
 		g_print ("%s is not a CDROM drive", device);
 		close (fd);
