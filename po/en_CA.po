@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-02 15:29-0500\n"
-"PO-Revision-Date: 2004-11-02 14:42-0500\n"
+"POT-Creation-Date: 2004-11-06 11:40-0500\n"
+"PO-Revision-Date: 2004-11-06 14:42-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "Unknown / Unknown"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:698
-#: grecord/src/gsr-window.c:707 grecord/src/gsr-window.c:716
-#: grecord/src/gsr-window.c:726 grecord/src/gsr-window.c:1042
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:721
+#: grecord/src/gsr-window.c:730 grecord/src/gsr-window.c:739
+#: grecord/src/gsr-window.c:749 grecord/src/gsr-window.c:1065
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -1264,8 +1264,8 @@ msgstr "_Available Themes:"
 msgid "Record sound clips"
 msgstr "Record sound clips"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:915
-#: grecord/src/gsr-window.c:1251
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:1274
 msgid "Sound Recorder"
 msgstr "Sound Recorder"
 
@@ -1293,7 +1293,7 @@ msgstr "Create a new sample"
 msgid "Display help for Sound Recorder"
 msgstr "Display help for Sound Recorder"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:784
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:807
 msgid "File Information"
 msgstr "File Information"
 
@@ -1464,107 +1464,112 @@ msgstr "seconds"
 msgid "second"
 msgstr "second"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1203
-#: grecord/src/gsr-window.c:1367 grecord/src/gsr-window.c:1637
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1226
+#: grecord/src/gsr-window.c:1390 grecord/src/gsr-window.c:1660
 msgid "Ready"
 msgstr "Ready"
 
-#: grecord/src/gsr-window.c:530
+#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr "Could not save the file \" %s\""
+
+#: grecord/src/gsr-window.c:553
 msgid "Save file as"
 msgstr "Save file as"
 
-#: grecord/src/gsr-window.c:586
+#: grecord/src/gsr-window.c:609
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s is not installed in the path."
 
-#: grecord/src/gsr-window.c:596
+#: grecord/src/gsr-window.c:619
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "There was an error starting %s: %s"
 
-#: grecord/src/gsr-window.c:673
+#: grecord/src/gsr-window.c:696
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Has not been saved)"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:712
 msgid "Unknown size"
 msgstr "Unknown size"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:732
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:718
+#: grecord/src/gsr-window.c:741
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:730
+#: grecord/src/gsr-window.c:753
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:734
+#: grecord/src/gsr-window.c:757
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:763
+#: grecord/src/gsr-window.c:786
 #, c-format
 msgid "%s Information"
 msgstr "%s Information"
 
-#: grecord/src/gsr-window.c:798
+#: grecord/src/gsr-window.c:821
 msgid "Folder:"
 msgstr "Folder:"
 
-#: grecord/src/gsr-window.c:804 grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:827 grecord/src/gsr-window.c:1592
 msgid "Filename:"
 msgstr "Filename:"
 
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:833
 msgid "File size:"
 msgstr "File size:"
 
-#: grecord/src/gsr-window.c:819
+#: grecord/src/gsr-window.c:842
 msgid "Audio Information"
 msgstr "Audio Information"
 
-#: grecord/src/gsr-window.c:833
+#: grecord/src/gsr-window.c:856
 msgid "Song length:"
 msgstr "Song length:"
 
-#: grecord/src/gsr-window.c:839
+#: grecord/src/gsr-window.c:862
 msgid "Number of channels:"
 msgstr "Number of channels:"
 
-#: grecord/src/gsr-window.c:845
+#: grecord/src/gsr-window.c:868
 msgid "Sample rate:"
 msgstr "Sample rate:"
 
-#: grecord/src/gsr-window.c:851
+#: grecord/src/gsr-window.c:874
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:940
 msgid "A sound recorder for GNOME"
 msgstr "A sound recorder for GNOME"
 
-#: grecord/src/gsr-window.c:1188
+#: grecord/src/gsr-window.c:1211
 msgid "Playing..."
 msgstr "Playing..."
 
-#: grecord/src/gsr-window.c:1247
+#: grecord/src/gsr-window.c:1270
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Sound Recorder"
 
-#: grecord/src/gsr-window.c:1338
+#: grecord/src/gsr-window.c:1361
 msgid "Recording..."
 msgstr "Recording..."
 
-#: grecord/src/gsr-window.c:1398
+#: grecord/src/gsr-window.c:1421
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1572,16 +1577,16 @@ msgstr ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 
-#: grecord/src/gsr-window.c:1413
+#: grecord/src/gsr-window.c:1436
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Failed to create GStreamer encoder elements - check your encoding setup"
 
-#: grecord/src/gsr-window.c:1423
+#: grecord/src/gsr-window.c:1446
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Could not find GStreamer filesink plugin - please install it"
 
-#: grecord/src/gsr-window.c:1431
+#: grecord/src/gsr-window.c:1454
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1589,19 +1594,19 @@ msgstr ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 
-#: grecord/src/gsr-window.c:1537
+#: grecord/src/gsr-window.c:1560
 msgid "Record as"
 msgstr "Record as"
 
-#: grecord/src/gsr-window.c:1554
+#: grecord/src/gsr-window.c:1577
 msgid "File information"
 msgstr "File information"
 
-#: grecord/src/gsr-window.c:1576
+#: grecord/src/gsr-window.c:1599
 msgid "<none>"
 msgstr "<none>"
 
-#: grecord/src/gsr-window.c:1585
+#: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Length:"
 
@@ -1762,8 +1767,8 @@ msgid "Track %s: lock channels together"
 msgstr "Track %s: lock channels together"
 
 #: gst-mixer/src/window.c:109
-msgid "_Change device"
-msgstr "_Change device"
+msgid "_Change Device"
+msgstr "_Change Device"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
