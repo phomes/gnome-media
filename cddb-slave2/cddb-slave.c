@@ -429,7 +429,7 @@ display_results (ConnectionData *cd)
 	label = gtk_label_new (_("There were multiple matches found in the database.\n"
 				 "Below is a list of possible matches, please choose the "
 				 "best match"));
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), label, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), label, FALSE, FALSE, 0);
 	gtk_widget_show (label);
 	
 	model = create_model_from_list (cd->matches);
