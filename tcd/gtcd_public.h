@@ -17,6 +17,7 @@ void setup_colors(void);
 void setup_fonts(void);
 void setup_popup_menu(GtkWidget *w, cd_struct *data);
 void edit_window(GtkWidget *widget, gpointer data);
+void cddb_status_dialog(GtkWidget *widget, gpointer data);
 
 GnomeClient *new_client(void);
 void session_die (gpointer client_data);

@@ -30,7 +30,8 @@ gtcd_SOURCES = 		\
 	popup.c		\
 	keybindings.c	\
 	keybindings.h	\
-	gtcd_public.h
+	gtcd_public.h	\
+	cddb_status.c
 	
 tcd_SOURCES = 		\
 	tcd.c 		\
