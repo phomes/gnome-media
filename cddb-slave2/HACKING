@@ -1,0 +1,13 @@
+Hacking notes for cddb-slave2
+
+* ChangeLog entries go in this directory until we merge all of them with
+  the toplevel one
+
+DEBUGGING CDDB lookups
+----------------------
+* kill the CDDBSlave2 component
+* set CDDB_SLAVE_DEBUG env var
+* start up CDDBSlave2 from the command line
+
+* cddb info is cached in $HOME/.cddbslave/ with files with the discid as
+  name
