@@ -31,8 +31,9 @@ short          aubuf[NSAMP];
 GtkWidget   *dial[2];
 GtkWidget   *window;
 void update (void);
-
-char *itoa (int i)
+gchar       *esd_host = NULL;
+char 
+*itoa (int i)
 {
   static char ret[ 30 ];
   sprintf (ret, "%d", i);
@@ -77,7 +78,7 @@ void
 open_sound (void)
 {
   sound = esd_monitor_stream (ESD_BITS16|ESD_STEREO|ESD_STREAM|ESD_PLAY,
-			      RATE, NULL, "volume_meter");
+			      RATE, esd_host, "volume_meter");
   if (sound < 0)
     {
       g_error ("Cannot connect to EsoundD\n");
@@ -125,11 +126,14 @@ main (int argc, char *argv[])
   {
      { NULL, 'x', POPT_ARG_INT, &session_xpos, 0, NULL, NULL },
      { NULL, 'y', POPT_ARG_INT, &session_ypos, 0, NULL, NULL },
+     { NULL, 's', POPT_ARG_STRING, &esd_host, 0, NULL, NULL },
      { NULL, 'v', POPT_ARG_NONE, &orient, 0, NULL, NULL },
      { NULL, '\0', 0, NULL, 0 }
   };
   gnome_init_with_popt_table ("Volume Meter", "0.1", argc, argv, options, 
                               0, NULL);
+  if (esd_host)
+    g_print ("Host is %s\n", esd_host);
   client = gnome_master_client ();
   gtk_object_ref (GTK_OBJECT (client));
   gtk_object_sink (GTK_OBJECT (client));
