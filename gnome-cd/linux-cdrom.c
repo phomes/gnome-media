@@ -1052,14 +1052,13 @@ linux_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	/* Fire a harmless ioctl at the device. */
 	if (ioctl (fd, CDROM_GET_CAPABILITY, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
-		g_print (_("%s is not a CDROM drive\n"), device);
+		g_warning (_("%s is not a CDROM drive"), device);
 		g_print ("Strerror reports: %s\n", strerror (errno));
 		close (fd);
 		
 		return FALSE;
 	}
 	
-	g_print (_("%s is a CDROM drive\n"), device);
 	close (fd);
 
 	return TRUE;
@@ -1230,7 +1229,7 @@ update_cd (gpointer data)
 
 	/* Do an update */
 	if (linux_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		
 		g_error_free (error);
 		return TRUE;

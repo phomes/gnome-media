@@ -38,7 +38,7 @@ maybe_close_tray (GnomeCD *gcd)
 	GError *error;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error->message);
 		g_error_free (error);
 		
 		return;
@@ -46,7 +46,7 @@ maybe_close_tray (GnomeCD *gcd)
 
 	if (status->cd == GNOME_CDROM_STATUS_TRAY_OPEN) {
 		if (gnome_cdrom_close_tray (gcd->cdrom, &error) == FALSE) {
-			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+			gcd_warning ("%s", error);
 			g_error_free (error);
 		}
 	}
@@ -62,7 +62,7 @@ eject_cb (GtkButton *button,
 	GError *error;
 
 	if (gnome_cdrom_eject (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 	}
 
@@ -90,7 +90,7 @@ play_cb (GtkButton *button,
 	GnomeCDRomMSF *endmsf;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 		return;
 
@@ -99,7 +99,7 @@ play_cb (GtkButton *button,
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
 		if (gnome_cdrom_close_tray (gcd->cdrom, &error) == FALSE) {
-			g_warning ("Cannot close tray: %s", error->message);
+			gcd_warning ("Cannot close tray: %s", error);
 			g_error_free (error);
 
 			g_free (status);
@@ -128,7 +128,7 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
-		g_warning ("Drive not ready");
+		gcd_warning ("Drive not ready: %s", NULL);
 
 		g_free (status);
 		return;
@@ -141,7 +141,7 @@ play_cb (GtkButton *button,
 	switch (status->audio) {
 	case GNOME_CDROM_AUDIO_PLAY:
 		if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
-			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+			gcd_warning ("%s", error);
 			g_error_free (error);
 
 			g_free (status);
@@ -170,7 +170,7 @@ play_cb (GtkButton *button,
 		}
 		if (gnome_cdrom_play (gcd->cdrom, status->track,
 				      &status->relative, end_track, endmsf, &error) == FALSE) {
-			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+			gcd_warning ("%s", error);
 			g_error_free (error);
 			
 			g_free (status);
@@ -200,7 +200,7 @@ play_cb (GtkButton *button,
 			endmsf = &msf;
 		}
 		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
-			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+			gcd_warning ("%s", error);
 			g_error_free (error);
 
 			g_free (status);
@@ -217,7 +217,7 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_AUDIO_ERROR:
-		g_warning ("Error playing CD");
+		gcd_warning ("Error playing CD: %s", NULL);
 		g_free (status);
 		return;
 
@@ -239,7 +239,7 @@ stop_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_stop (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 	}
 
@@ -262,7 +262,7 @@ ffwd_timeout_cb (gpointer data)
 	GnomeCD *gcd = data;
 
 	if (gnome_cdrom_fast_forward (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 		return FALSE;
 	}
@@ -321,7 +321,7 @@ next_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_next (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 	}
 
@@ -345,7 +345,7 @@ back_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_back (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 	}
 
@@ -367,7 +367,7 @@ rewind_timeout_cb (gpointer data)
 	GnomeCD *gcd = data;
 	
 	if (gnome_cdrom_rewind (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+		gcd_warning ("%s", error);
 		g_error_free (error);
 		return FALSE;
 	}
@@ -416,29 +416,6 @@ rewind_release_cb (GtkButton *button,
 	return FALSE;
 }
 	
-void
-mixer_cb (GtkButton *button,
-	  GnomeCD *gcd)
-{
-	char *mixer_path;
-	char *argv[2] = {NULL, NULL};
-	GError *error = NULL;
-	gboolean ret;
-
-	/* Open the mixer */
-	mixer_path = g_find_program_in_path ("gmix");
-
-	argv[0] = mixer_path;
-	ret = g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, NULL, &error);
-	if (ret == FALSE) {
-		g_warning ("There was an error starting %s: %s", mixer_path,
-			   error->message);
-		g_error_free (error);
-	}
-
-	g_free (mixer_path);
-}
-
 /* Do all the stuff for when the status is ok */
 static void
 status_ok (GnomeCD *gcd,
@@ -562,7 +539,7 @@ status_ok (GnomeCD *gcd,
 				
 				if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
 						      end_track, &msf, &error) == FALSE) {
-					g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+					gcd_warning ("%s", error);
 					g_error_free (error);
 					
 					g_free (status);
@@ -787,7 +764,6 @@ restart_track_editor (gpointer data)
 {
 	CORBA_Environment ev;
 	
-	g_print ("Trackeditor died. Restarting\n");
 	CORBA_exception_init (&ev);
 	track_editor = bonobo_activation_activate_from_id (CDDBSLAVE_TRACK_EDITOR_IID, 0, NULL, &ev);
 	if (BONOBO_EX (&ev)) {
@@ -815,12 +791,14 @@ void
 open_track_editor (GtkWidget *widget,
 		   GnomeCD *gcd)
 {
+	GError *error;
 	GnomeCDRomCDDBData *data;
 	CORBA_Environment ev;
 	char *discid;
 	
-	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
-		g_print ("gnome_cdrom_get_cddb_data returned FALSE\n");
+	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, &error) == FALSE) {
+		gcd_warning ("gnome_cdrom_get_cddb_data returned FALSE: %s", error);
+		g_error_free (error);
 		return;
 	}
 	
@@ -869,10 +847,12 @@ volume_changed (GtkRange *range,
 		GnomeCD *gcd)
 {
 	double volume;
+	GError *error;
 
 	volume = gtk_range_get_value (range);
 
-	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, NULL) == FALSE) {
-		g_warning ("Error setting volume");
+	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, &error) == FALSE) {
+		gcd_warning ("Error setting volume: %s", error);
+		g_error_free (error);
 	}
 }

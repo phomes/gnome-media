@@ -23,6 +23,20 @@
 
 #define DEFAULT_THEME "lcd"
 
+/* Debugging? */
+gboolean debug_mode = FALSE;
+
+inline void
+gcd_warning (const char *message,
+	     GError *error)
+{
+	if (debug_mode == FALSE) {
+		return;
+	}
+	
+	g_warning (message, error ? error->message : "(None)");
+}
+
 void
 gnome_cd_set_window_title (GnomeCD *gcd,
 			   const char *artist,
@@ -76,7 +90,7 @@ skip_to_track (GtkWidget *item,
 	}
 	
 	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), track + 1, &msf, end_track, endmsf, &error) == FALSE) {
-		g_warning ("Error skipping %s", error->message);
+		gcd_warning ("Error skipping %s", error);
 		g_error_free (error);
 	}
 }
@@ -404,7 +418,7 @@ init_player (void)
 	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		if (error != NULL) {
-			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
+			gcd_warning ("%s", error->message);
 			g_error_free (error);
 		}
 	} else {
@@ -515,7 +529,7 @@ init_player (void)
 				     (double) status->volume);
 		g_free (status);
 	} else {
-		g_warning ("Error getting status");
+		gcd_warning ("Error getting status: %s", NULL);
 	}
 
 	g_signal_connect (G_OBJECT (gcd->slider), "value-changed",
@@ -613,6 +627,10 @@ main (int argc,
 	GnomeCD *gcd;
 	GnomeClient *client;
 
+	if (g_getenv ("GNOME_CD_DEBUG")) {
+		debug_mode = TRUE;
+	}
+	
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
