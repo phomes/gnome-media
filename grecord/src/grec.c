@@ -321,7 +321,6 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	
 	default_file = TRUE;
 	
-	
 	if (active_file != NULL) {
 		g_free (active_file);
 	}
@@ -1236,7 +1235,7 @@ void grecord_set_sensitive_file (void)
 
 void grecord_set_sensitive_nofile (void)
 {
-	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Record_button), TRUE);
+	gtk_widget_set_sensitive (grecord_widgets.Record_button, able_to_record);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Play_button), FALSE);
 	gtk_widget_set_sensitive (GTK_WIDGET (grecord_widgets.Stop_button), FALSE);
 }
