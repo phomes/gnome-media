@@ -2,7 +2,8 @@ Audiodir = $(datadir)/gnome/apps/Multimedia
 pixmapdir = $(datadir)/pixmaps
 
 EXTRA_DIST = README TODO NEWS gmix.desktop gnome-mixer.png \
-	device_labels_linux.sed device_labels_linux.h
+	device_labels_linux.sed device_labels_linux.h \
+	device_labels_alsa.sed device_labels_alsa.h
 
 SUBDIRS = doc
 
