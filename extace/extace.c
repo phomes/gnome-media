@@ -11,6 +11,7 @@
  * No warranty is made or implied. You use this program at your own risk.
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -34,6 +35,25 @@
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
 #include "logo.xpm"
+
+#ifdef ENABLE_NLS
+#    include <libintl.h>
+#    define _(String) gettext (String)
+#    ifdef gettext_noop
+#        define N_(String) gettext_noop (String)
+#    else
+#        define N_(String) (String)
+#    endif
+#else
+/* Stubs that do something close enough.  */
+#    define textdomain(String) (String)
+#    define gettext(String) (String)
+#    define dgettext(Domain,Message) (Message)
+#    define dcgettext(Domain,Message,Type) (Message)
+#    define bindtextdomain(Domain,Directory) (Domain)
+#    define _(String) (String)
+#    define N_(String) (String)
+#endif  
 
 GtkWidget     *disp=NULL;
 GdkWindow     *win=NULL;
@@ -71,7 +91,7 @@ open_sound(void)
    sound=esd_monitor_stream(ESD_BITS16|ESD_MONO|ESD_STREAM|ESD_PLAY,RATE,NULL,"extace");
    if (sound<0)
      {
-	g_error("Cannot connect to EsounD\n");
+	g_error(_("Cannot connect to EsounD\n"));
 	exit(1);
      }
 }
@@ -585,6 +605,9 @@ main(int argc, char **argv)
    GtkWidget *hbox;
    GtkWidget *window;
    GtkWidget *button;
+
+   bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+   textdomain(PACKAGE); 
    
    gtk_init(&argc, &argv);
    gdk_imlib_init();
@@ -605,37 +628,37 @@ main(int argc, char **argv)
    hbox=gtk_hbox_new(TRUE,0);
    gtk_widget_show(hbox);
    
-   button=gtk_button_new_with_label("3D");
+   button=gtk_button_new_with_label(_("3D"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_3d_fft),NULL);
 
-   button=gtk_button_new_with_label("Flat");
+   button=gtk_button_new_with_label(_("Flat"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_2d_fft),NULL);
 
-   button=gtk_button_new_with_label("Oscill");
+   button=gtk_button_new_with_label(_("Oscill"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_oscilloscope),NULL);
 
-   button=gtk_button_new_with_label("Spikes");
+   button=gtk_button_new_with_label(_("Spikes"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_3d_detailed),NULL);
 
-   button=gtk_button_new_with_label("About");
+   button=gtk_button_new_with_label(_("About"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
 		      GTK_SIGNAL_FUNC(button_about),NULL);
 
-   button=gtk_button_new_with_label("Close");
+   button=gtk_button_new_with_label(_("Close"));
    gtk_box_pack_start(GTK_BOX(hbox),button,TRUE,TRUE,0);
    gtk_widget_show(button);
    gtk_signal_connect(GTK_OBJECT(button),"clicked",
