@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-03-03 22:17+0100\n"
-"PO-Revision-Date: 2002-03-03 22:24+0100\n"
+"POT-Creation-Date: 2002-03-05 21:16+0100\n"
+"PO-Revision-Date: 2002-03-06 00:54+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1421,8 +1421,7 @@ msgstr "Nazwa motywu"
 msgid "Record sound clips"
 msgstr "Rejestracja i odtwarzanie dźwięków"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1 grecord/src/gui.c:1
-#: grecord/src/main.c:1
+#: grecord/gnome-sound-recorder.desktop.in.h:1 grecord/src/main.c:1
 msgid "Sound recorder"
 msgstr "Rejestrator dźwięku"
 
@@ -1446,6 +1445,10 @@ msgstr "Odtwarzanie..."
 msgid "Converting file..."
 msgstr "Konwertowanie pliku..."
 
+#: grecord/src/grec.c:1
+msgid "Cancel"
+msgstr "Anuluj"
+
 #: grecord/src/grec.c:1 grecord/src/grec.c:1 grecord/src/gui.c:1
 #: grecord/src/preferences.c:1
 msgid "Audioformat: "
@@ -1462,8 +1465,16 @@ msgid "Channels: "
 msgstr "Kanały: "
 
 #: grecord/src/grec.c:1
+msgid "Cancel open"
+msgstr "Anuluj otwarcie"
+
+#: grecord/src/grec.c:1
 msgid "Select a sound file"
 msgstr "Wybór pliku dźwiękowego"
+
+#: grecord/src/grec.c:1
+msgid "Don't quit"
+msgstr "Nie kończ"
 
 #: grecord/src/grec.c:1
 msgid "Undoing all changes..."
@@ -1472,8 +1483,8 @@ msgstr "Wycofywanie wszystkich zmian..."
 #: grecord/src/grec.c:1
 #, c-format
 msgid ""
-"'%s' is a directory.\n"
-"Please select a soundfile to be opened."
+"'%s is a directory.\n"
+"Please select a sound file to be opened."
 msgstr ""
 "\"%s\" jest katalogiem.\n"
 "Wybierz plik dźwiękowy, który chcesz otworzyć."
@@ -1482,17 +1493,15 @@ msgstr ""
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
-"Please select a existing soundfile to be opened."
+"Please select an existing sound file to be opened."
 msgstr ""
 "Plik \"%s\" nie istnieje.\n"
 "Wybierz plik dźwiękowy, który chcesz otworzyć."
 
 #: grecord/src/grec.c:1
 #, c-format
-msgid "File '%s' isn't a valid soundfile."
-msgstr ""
-"Plik \"%s\" nie jest poprawnym plikiem dźwiękowym.\n"
-"Wybierz plik dźwiękowy, który chcesz otworzyć."
+msgid "File '%s isn't a valid sound file."
+msgstr "Plik \"%s\" nie jest poprawnym plikiem dźwiękowym."
 
 #: grecord/src/grec.c:1
 #, c-format
@@ -1506,19 +1515,46 @@ msgstr ""
 #: grecord/src/grec.c:1
 #, c-format
 msgid ""
-"File '%s' already exists.\n"
+"<b>File '%s' already exists.</b>\n"
 "Do you want to overwrite it?"
 msgstr ""
-"Plik \"%s\" już istnieje.\n"
+"<b>Plik \"%s\" już istnieje.</b>\n"
 "Czy chcesz go nadpisać?"
 
 #: grecord/src/grec.c:1
-msgid "Error saving sound file"
-msgstr "Błąd przy zapisywaniu pliku dźwiękowego"
+msgid "Cancel save"
+msgstr "Anuluj zapis"
 
 #: grecord/src/grec.c:1
-msgid "File not saved. Do you want to save it?"
-msgstr "Pllik nie został zapisany. Czy chcesz go zapisać?"
+msgid "Overwrite"
+msgstr "Nadpisz"
+
+#: grecord/src/grec.c:1
+#, c-format
+msgid "Error saving '%s'"
+msgstr "Błąd przy zapisie \"%s\""
+
+#: grecord/src/grec.c:1
+#, c-format
+msgid ""
+"<b>Save the changes to %s?</b>\n"
+"If you don't save, these changes will be discarded."
+msgstr ""
+"<b>Czy zapisać zmiany w %s?</b>\n"
+"Jeśli zrezygnujesz z zapisu, zmiany zostaną utracone."
+
+#: grecord/src/grec.c:1
+msgid "Don't save"
+msgstr "Nie zapisuj"
+
+#: grecord/src/grec.c:1
+msgid "Save"
+msgstr "Zapisz"
+
+#: grecord/src/grec.c:1
+#, c-format
+msgid "Save %s?"
+msgstr "Potwierdzenie zapisu %s"
 
 #. Save the file
 #: grecord/src/grec.c:1
@@ -1527,8 +1563,10 @@ msgstr "Zapisywanie..."
 
 #: grecord/src/grec.c:1
 #, c-format
-msgid "The size of the current sample is more than %i Mb!"
-msgstr "ROzmiar bieżącej próbki jest większy niż %i MB!"
+msgid ""
+"The size of the current sample is more than\n"
+"%i Mb!"
+msgstr "Rozmiar bieżącej próbki przekracza %i MB!"
 
 #: grecord/src/grec.c:1
 msgid "Save sound file"
@@ -1536,8 +1574,8 @@ msgstr "Zapis pliku dźwiękowego"
 
 #: grecord/src/grec.c:1
 msgid ""
-"Sounddevice not ready! Please check that there isn't\n"
-"another program running that's using the sounddevice."
+"The sound device is not ready. Please check that there isn't\n"
+"another program running that is using the device."
 msgstr ""
 "Urządzenie dźwiękowe nie jest gotowe! Upewnij się, że\n"
 "nie wykorzystuje go inny uruchomiony program."
@@ -1551,12 +1589,12 @@ msgid "Create a new sample"
 msgstr "Tworzy nowy plik dźwiękowy"
 
 #: grecord/src/gui.c:1
-msgid "Run mixer..."
-msgstr "Uruchom mikser..."
+msgid "Run mixer"
+msgstr "Uruchom mikser"
 
 #: grecord/src/gui.c:1
-msgid "Run GNOME mixer"
-msgstr "Uruchamia Mikser GNOME"
+msgid "Run GNOME Volume Control"
+msgstr "Uruchamia Kontrolę głośności dla GNOME"
 
 #: grecord/src/gui.c:1
 msgid "Add echo"
@@ -1593,6 +1631,15 @@ msgstr "Wyświetlanie informacji o dźwięku"
 #: grecord/src/gui.c:1 grecord/src/gui.c:1
 msgid "Show sound information"
 msgstr "Wyświetlanie informacji o dźwięku"
+
+#: grecord/src/gui.c:1
+#, c-format
+msgid "%s - Sound Recorder"
+msgstr "%s - Rejestrator dźwięku"
+
+#: grecord/src/gui.c:1
+msgid "Sound Recorder"
+msgstr "Rejestrator dźwięku"
 
 #: grecord/src/gui.c:1
 msgid "New"
@@ -1637,6 +1684,10 @@ msgstr "Plik \"%s\" nie jest obsługiwanym plikiem dźwiękowym."
 #: grecord/src/gui.c:1
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
+
+#: grecord/src/gui.c:1
+msgid "Gnome Sound Recorder"
+msgstr "Rejestrator dźwięku dla GNOME"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -1890,10 +1941,6 @@ msgid ""
 msgstr ""
 "Katalog %s nie istnieje.\n"
 "Czy pomimo tego chcesz go użyć?"
-
-#: grecord/src/sound.c:1
-msgid " untitled.wav"
-msgstr " beznazwy.wav"
 
 #: grecord/src/sound.c:1 grecord/src/sound.c:1
 msgid "Adding echo to sample..."
