@@ -841,6 +841,23 @@ main (int argc, char *argv[])
 			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
 			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
+#ifdef HAVE_GST
+	if (!gst_scheduler_factory_get_default_name ()) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		exit (1);
+	}
+#endif
+
 	register_stock_icons ();
 	client = gnome_master_client ();
 	g_signal_connect (client, "save_yourself",

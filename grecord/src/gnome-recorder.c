@@ -180,6 +180,21 @@ main (int argc,
 				      "GNOME Sound Recorder",
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
+	if (!gst_scheduler_factory_get_default_name ()) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		exit (1);
+	}
+
 	conf = gconf_client_get_default ();
 
 	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),

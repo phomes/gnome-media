@@ -218,6 +218,23 @@ main (gint   argc,
 		      GNOME_PARAM_POPT_TABLE, options,
 		      GNOME_PARAM_APP_DATADIR, DATA_DIR, NULL);
 
+   if (!gst_scheduler_factory_get_default_name ()) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		exit (1);
+	}
+
+		
+
   /* init ourselves */
   register_stock_icons ();
 
