@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 1999-01-31 20:32-0600\n"
+"POT-Creation-Date: 1999-02-25 11:55+0100\n"
 "PO-Revision-Date: 1998-11-07 00:30+0100\n"
 "Last-Translator: Tuomas J. Lukka <lukka@iki.fi>\n"
 "MIME-Version: 1.0\n"
@@ -85,52 +85,48 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: gmix/gmix.c:138
+#: gmix/gmix.c:139
 msgid "don't restore mixer-settings from configuration"
 msgstr "‰l‰ palauta miksaajan asetuksia varastoituihin arvoihin"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:140
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "Alusta miksaaja varastoituihin arvoihin ja poistu"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:141
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "‰l‰ talleta (muutettuja) miksaajan asetuksia"
 
-#: gmix/gmix.c:524
+#: gmix/gmix.c:562
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:586
+#: gmix/gmix.c:629
 msgid "Lock"
 msgstr "Lukko"
 
-#: gmix/gmix.c:597
+#: gmix/gmix.c:640
 msgid "Rec."
 msgstr "Nauh."
 
-#: gmix/gmix.c:604
+#: gmix/gmix.c:647
 msgid "Mute"
 msgstr "Hiljaa"
 
-#: gmix/gmix.c:763
+#: gmix/gmix.c:797
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome-miksaajan"
 
-#: gmix/gmix.c:766
+#: gmix/gmix.c:800
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Miksaaja OSS ‰‰nikorteille."
 
-#: gnomovision/tvset.c:1412
-msgid "FILE ..."
-msgstr ""
-
-#: tcd/callbacks.c:83
+#: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnomen CD-soitin"
 
-#: tcd/callbacks.c:87
+#: tcd/callbacks.c:86
 #, fuzzy
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
@@ -146,17 +142,64 @@ msgstr ""
 msgid "Disc Title"
 msgstr "Nimi"
 
-#: tcd/cddb_props.c:233
+#: tcd/cddb_props.c:72
+#, fuzzy
+msgid "Edit"
+msgstr "Poistuttaessa"
+
+#: tcd/cddb_props.c:76
+msgid "Remove"
+msgstr ""
+
+#: tcd/cddb_props.c:82
+msgid "Refresh List"
+msgstr ""
+
+#. server settings
+#: tcd/cddb_props.c:129
+#, fuzzy
+msgid "Server Settings"
+msgstr "CDDB-Tila"
+
+#: tcd/cddb_props.c:138
+msgid "Address"
+msgstr ""
+
+#: tcd/cddb_props.c:148
+msgid "Port"
+msgstr ""
+
+#. local db
+#: tcd/cddb_props.c:158
+msgid "Local Database"
+msgstr ""
+
+#. frame
+#: tcd/cddb_props.c:200
+#, fuzzy
+msgid "CDDB Data"
+msgstr "CDDB-Tila"
+
+#: tcd/cddb_props.c:232
 #, fuzzy
 msgid "CDDB Editor"
 msgstr "Tietoeditori"
 
-#: tcd/cddb_props.c:247
+#: tcd/cddb_props.c:246
 msgid "Error reading $HOME/.cddbslave."
 msgstr ""
 
+#: tcd/cddb_props.c:358
+#, c-format
+msgid "Couldn't remove file: %s\n"
+msgstr ""
+
+#: tcd/cddb_props.c:370
+msgid "Delete CDDB Entry?"
+msgstr ""
+
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:238
+#: tcd/cddb_status.c:50 tcd/gtracked.c:242
 msgid "CDDB Status"
 msgstr "CDDB-Tila"
 
@@ -202,7 +245,7 @@ msgstr "seka"
 msgid "Open track editor"
 msgstr "Avaa uraeditori"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:574
+#: tcd/gtcd.c:298 tcd/prefs.c:578
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -232,63 +275,74 @@ msgstr "Hypp‰‰ taaksep‰in"
 msgid "Skip forwards"
 msgstr "Hypp‰‰ eteenp‰in"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
 msgid "(Scanning)"
 msgstr "(Skannaa)"
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:496
 msgid "No Disc"
 msgstr "Ei levy‰"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:524
 msgid "Error"
 msgstr "Vika"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Trk"
 msgstr "Ura"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Time"
 msgstr "Aika"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Title"
 msgstr "Nimi"
 
-#: tcd/gtracked.c:153
+#: tcd/gtracked.c:157
 msgid "Track Editor"
 msgstr "Tietoeditori"
 
-#: tcd/gtracked.c:164
+#: tcd/gtracked.c:168
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Levyn tiedot (%02u:%02u minuuttia)"
 
-#: tcd/gtracked.c:169
+#: tcd/gtracked.c:173
 msgid "Artist / Title"
 msgstr "Taiteilija / Nimi"
 
 #. ...
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:217
 msgid "Track Information"
 msgstr "Uratiedot"
 
 #. Clear button
-#: tcd/gtracked.c:227
+#: tcd/gtracked.c:231
 msgid "Clear"
 msgstr "Tyhjenn‰"
 
 #. Playlist button
-#: tcd/gtracked.c:232
+#: tcd/gtracked.c:236
 msgid "Playlist"
 msgstr "Soittolista"
 
-#: tcd/linux-cdrom.c:639
+#: tcd/linux-cdrom.c:555
+#, c-format
+msgid ""
+"Error accessing cdrom device.\n"
+"Please check to make sure cdrom drive support\n"
+"is compiled into the kernel, and that you have\n"
+"permission to access the device.\n"
+"\n"
+"Reason: %s\n"
+msgstr ""
+
+#: tcd/linux-cdrom.c:624
 msgid "Unknown / Unknown"
 msgstr "Tuntematon / Tuntematon"
 
-#: tcd/linux-cdrom.c:643
+#: tcd/linux-cdrom.c:628
 #, fuzzy, c-format
 msgid "Track %d"
 msgstr "Ura %d"
@@ -310,133 +364,133 @@ msgid "About..."
 msgstr "Tietoja..."
 
 #. do nothing
-#: tcd/prefs.c:170 tcd/prefs.c:225
+#: tcd/prefs.c:174 tcd/prefs.c:229
 #, fuzzy
 msgid "Do nothing"
 msgstr "ƒl‰ tee mit‰‰n"
 
-#: tcd/prefs.c:176
+#: tcd/prefs.c:180
 #, fuzzy
 msgid "Start playing"
 msgstr "Ala soittaa"
 
-#: tcd/prefs.c:182 tcd/prefs.c:231
+#: tcd/prefs.c:186 tcd/prefs.c:235
 #, fuzzy
 msgid "Stop playing"
 msgstr "Lakkaa soittamasta"
 
 #. close tray
-#: tcd/prefs.c:186 tcd/prefs.c:243
+#: tcd/prefs.c:190 tcd/prefs.c:247
 #, fuzzy
 msgid "Close tray"
 msgstr "Sulje luukku"
 
-#: tcd/prefs.c:237
+#: tcd/prefs.c:241
 #, fuzzy
 msgid "Open tray"
 msgstr "Avaa luukku"
 
 #. device entry
-#: tcd/prefs.c:316
+#: tcd/prefs.c:320
 #, fuzzy
 msgid "CDROM device"
 msgstr "CDROM-laite"
 
 #. Color picker
-#: tcd/prefs.c:325
+#: tcd/prefs.c:329
 #, fuzzy
 msgid "Track/title color"
 msgstr "Ura-/Otsikkov‰ri"
 
 #. font picker
-#: tcd/prefs.c:337
+#: tcd/prefs.c:341
 #, fuzzy
 msgid "Track/title font"
 msgstr "Ura-/otsikkokirjasinlaji"
 
-#: tcd/prefs.c:338
+#: tcd/prefs.c:342
 #, fuzzy
 msgid "Change font"
 msgstr "Vaihda kirjasinlajia"
 
 #. show handles
-#: tcd/prefs.c:345
+#: tcd/prefs.c:349
 #, fuzzy
 msgid "Show handles (restart required)"
 msgstr "N‰yt‰ kahvat (TCD t‰ytyy k‰ynnist‰‰ uudelleen)"
 
 #. show tooltips
-#: tcd/prefs.c:352
+#: tcd/prefs.c:356
 #, fuzzy
 msgid "Show tooltips"
 msgstr "N‰yt‰ ilmapalloapu"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:359
+#: tcd/prefs.c:363
 msgid "Use alternate method to play CD"
 msgstr ""
 
 #. start frame
-#: tcd/prefs.c:379
+#: tcd/prefs.c:383
 #, fuzzy
 msgid "On startup"
 msgstr "Alussa"
 
 #. exit frame
-#: tcd/prefs.c:385
+#: tcd/prefs.c:389
 #, fuzzy
 msgid "On exit"
 msgstr "Poistuttaessa"
 
-#: tcd/prefs.c:493
+#: tcd/prefs.c:497
 msgid "Key"
 msgstr "N‰pp‰in"
 
-#: tcd/prefs.c:494
+#: tcd/prefs.c:498
 msgid "Action"
 msgstr "Toiminta"
 
+#: tcd/prefs.c:516
+msgid "Click here to change:"
+msgstr ""
+
 #. Frame
-#: tcd/prefs.c:534 tcd/prefs.c:578
+#: tcd/prefs.c:538 tcd/prefs.c:582
 msgid "Keybindings"
 msgstr "N‰pp‰imet"
 
-#: tcd/prefs.c:582
+#: tcd/prefs.c:586
 #, fuzzy
 msgid "CDDB Settings"
 msgstr "CDDB-Tila"
 
-#: vu-meter/main.c:139
+#: vu-meter/main.c:164
 msgid "Specify the X position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:140
+#: vu-meter/main.c:165
 msgid "X-Position"
 msgstr ""
 
-#: vu-meter/main.c:142
+#: vu-meter/main.c:167
 msgid "Specify the Y position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:143
+#: vu-meter/main.c:168
 msgid "Y-Position"
 msgstr ""
 
-#: vu-meter/main.c:145
+#: vu-meter/main.c:170
 msgid "Connect to the esd server on this host."
 msgstr ""
 
-#: vu-meter/main.c:146
+#: vu-meter/main.c:171
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:148
+#: vu-meter/main.c:173
 msgid "Open a vertical version of the meter."
 msgstr ""
-
-#, fuzzy
-#~ msgid "E_xit"
-#~ msgstr "Poistuttaessa"
 
 #~ msgid "File/Exit"
 #~ msgstr "Tiedosto/Poistu"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.30\n"
-"POT-Creation-Date: 1999-01-31 20:32-0600\n"
+"POT-Creation-Date: 1999-02-25 11:55+0100\n"
 "PO-Revision-Date: 1998-10-10 16:25+09:00\n"
 "Last-Translator: Mitsuru Oka <95i44@is.kochi-u.ac.jp>\n"
 "Language-Team: \n"
@@ -87,52 +87,48 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: gmix/gmix.c:138
+#: gmix/gmix.c:139
 msgid "don't restore mixer-settings from configuration"
 msgstr "設定ファイルからミキサー調節を復元しない"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:140
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "保存されている設定ファイルでミキサーを初期化し終了"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:141
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "設定ファイルに (変更された) ミキサー調節を保存しない"
 
-#: gmix/gmix.c:524
+#: gmix/gmix.c:562
 msgid "GMIX 3.0"
 msgstr ""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:586
+#: gmix/gmix.c:629
 msgid "Lock"
 msgstr "連動"
 
-#: gmix/gmix.c:597
+#: gmix/gmix.c:640
 msgid "Rec."
 msgstr "録音"
 
-#: gmix/gmix.c:604
+#: gmix/gmix.c:647
 msgid "Mute"
 msgstr "消音"
 
-#: gmix/gmix.c:763
+#: gmix/gmix.c:797
 msgid "GMIX - The Gnome Mixer"
 msgstr ""
 
-#: gmix/gmix.c:766
+#: gmix/gmix.c:800
 msgid "This is a mixer for OSS sound-devices."
 msgstr "OSS サウンドデバイス用ミキサーです。"
 
-#: gnomovision/tvset.c:1412
-msgid "FILE ..."
-msgstr ""
-
-#: tcd/callbacks.c:83
+#: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
 msgstr ""
 
-#: tcd/callbacks.c:87
+#: tcd/callbacks.c:86
 #, fuzzy
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
@@ -150,17 +146,63 @@ msgstr ""
 msgid "Disc Title"
 msgstr "アーティスト / タイトル"
 
-#: tcd/cddb_props.c:233
+#: tcd/cddb_props.c:72
+#, fuzzy
+msgid "Edit"
+msgstr "終了時"
+
+#: tcd/cddb_props.c:76
+msgid "Remove"
+msgstr ""
+
+#: tcd/cddb_props.c:82
+msgid "Refresh List"
+msgstr ""
+
+#. server settings
+#: tcd/cddb_props.c:129
+msgid "Server Settings"
+msgstr ""
+
+#: tcd/cddb_props.c:138
+msgid "Address"
+msgstr ""
+
+#: tcd/cddb_props.c:148
+msgid "Port"
+msgstr ""
+
+#. local db
+#: tcd/cddb_props.c:158
+msgid "Local Database"
+msgstr ""
+
+#. frame
+#: tcd/cddb_props.c:200
+#, fuzzy
+msgid "CDDB Data"
+msgstr "トラックエディタ"
+
+#: tcd/cddb_props.c:232
 #, fuzzy
 msgid "CDDB Editor"
 msgstr "トラックエディタ"
 
-#: tcd/cddb_props.c:247
+#: tcd/cddb_props.c:246
 msgid "Error reading $HOME/.cddbslave."
 msgstr ""
 
+#: tcd/cddb_props.c:358
+#, c-format
+msgid "Couldn't remove file: %s\n"
+msgstr ""
+
+#: tcd/cddb_props.c:370
+msgid "Delete CDDB Entry?"
+msgstr ""
+
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:238
+#: tcd/cddb_status.c:50 tcd/gtracked.c:242
 msgid "CDDB Status"
 msgstr ""
 
@@ -206,7 +248,7 @@ msgstr ""
 msgid "Open track editor"
 msgstr "トラックエディタを開く"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:574
+#: tcd/gtcd.c:298 tcd/prefs.c:578
 msgid "Preferences"
 msgstr "設定"
 
@@ -236,63 +278,74 @@ msgstr "後ろにスキップ"
 msgid "Skip forwards"
 msgstr "前にスキップ"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
 msgid "(Scanning)"
 msgstr ""
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:496
 msgid "No Disc"
 msgstr "ディスク無し"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:524
 msgid "Error"
 msgstr "エラー"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Trk"
 msgstr ""
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Time"
 msgstr ""
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Title"
 msgstr ""
 
-#: tcd/gtracked.c:153
+#: tcd/gtracked.c:157
 msgid "Track Editor"
 msgstr "トラックエディタ"
 
-#: tcd/gtracked.c:164
+#: tcd/gtracked.c:168
 #, fuzzy, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "ディスク情報"
 
-#: tcd/gtracked.c:169
+#: tcd/gtracked.c:173
 msgid "Artist / Title"
 msgstr "アーティスト / タイトル"
 
 #. ...
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:217
 msgid "Track Information"
 msgstr "トラック情報"
 
 #. Clear button
-#: tcd/gtracked.c:227
+#: tcd/gtracked.c:231
 msgid "Clear"
 msgstr "消去"
 
 #. Playlist button
-#: tcd/gtracked.c:232
+#: tcd/gtracked.c:236
 msgid "Playlist"
 msgstr "演奏リスト"
 
-#: tcd/linux-cdrom.c:639
+#: tcd/linux-cdrom.c:555
+#, c-format
+msgid ""
+"Error accessing cdrom device.\n"
+"Please check to make sure cdrom drive support\n"
+"is compiled into the kernel, and that you have\n"
+"permission to access the device.\n"
+"\n"
+"Reason: %s\n"
+msgstr ""
+
+#: tcd/linux-cdrom.c:624
 msgid "Unknown / Unknown"
 msgstr ""
 
-#: tcd/linux-cdrom.c:643
+#: tcd/linux-cdrom.c:628
 #, fuzzy, c-format
 msgid "Track %d"
 msgstr "トラックエディタ"
@@ -315,132 +368,132 @@ msgid "About..."
 msgstr "情報..."
 
 #. do nothing
-#: tcd/prefs.c:170 tcd/prefs.c:225
+#: tcd/prefs.c:174 tcd/prefs.c:229
 #, fuzzy
 msgid "Do nothing"
 msgstr "何もしない"
 
-#: tcd/prefs.c:176
+#: tcd/prefs.c:180
 #, fuzzy
 msgid "Start playing"
 msgstr "演奏開始"
 
-#: tcd/prefs.c:182 tcd/prefs.c:231
+#: tcd/prefs.c:186 tcd/prefs.c:235
 #, fuzzy
 msgid "Stop playing"
 msgstr "演奏停止"
 
 #. close tray
-#: tcd/prefs.c:186 tcd/prefs.c:243
+#: tcd/prefs.c:190 tcd/prefs.c:247
 #, fuzzy
 msgid "Close tray"
 msgstr "トレイを閉じる"
 
-#: tcd/prefs.c:237
+#: tcd/prefs.c:241
 #, fuzzy
 msgid "Open tray"
 msgstr "トレイを開く"
 
 #. device entry
-#: tcd/prefs.c:316
+#: tcd/prefs.c:320
 #, fuzzy
 msgid "CDROM device"
 msgstr "CDROM デバイス"
 
 #. Color picker
-#: tcd/prefs.c:325
+#: tcd/prefs.c:329
 #, fuzzy
 msgid "Track/title color"
 msgstr "トラック/タイトルの色"
 
 #. font picker
-#: tcd/prefs.c:337
+#: tcd/prefs.c:341
 #, fuzzy
 msgid "Track/title font"
 msgstr "トラック/タイトルのフォント"
 
-#: tcd/prefs.c:338
+#: tcd/prefs.c:342
 #, fuzzy
 msgid "Change font"
 msgstr "フォント変更"
 
 #. show handles
-#: tcd/prefs.c:345
+#: tcd/prefs.c:349
 #, fuzzy
 msgid "Show handles (restart required)"
 msgstr "ハンドルを表示 (TCD の再起動が必要)"
 
 #. show tooltips
-#: tcd/prefs.c:352
+#: tcd/prefs.c:356
 #, fuzzy
 msgid "Show tooltips"
 msgstr "ツールティプスの表示"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:359
+#: tcd/prefs.c:363
 msgid "Use alternate method to play CD"
 msgstr ""
 
 #. start frame
-#: tcd/prefs.c:379
+#: tcd/prefs.c:383
 #, fuzzy
 msgid "On startup"
 msgstr "起動時"
 
 #. exit frame
-#: tcd/prefs.c:385
+#: tcd/prefs.c:389
 #, fuzzy
 msgid "On exit"
 msgstr "終了時"
 
-#: tcd/prefs.c:493
+#: tcd/prefs.c:497
 msgid "Key"
 msgstr ""
 
-#: tcd/prefs.c:494
+#: tcd/prefs.c:498
 msgid "Action"
 msgstr ""
 
+#: tcd/prefs.c:516
+msgid "Click here to change:"
+msgstr ""
+
 #. Frame
-#: tcd/prefs.c:534 tcd/prefs.c:578
+#: tcd/prefs.c:538 tcd/prefs.c:582
 msgid "Keybindings"
 msgstr "キーバインディング"
 
-#: tcd/prefs.c:582
+#: tcd/prefs.c:586
 msgid "CDDB Settings"
 msgstr ""
 
-#: vu-meter/main.c:139
+#: vu-meter/main.c:164
 msgid "Specify the X position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:140
+#: vu-meter/main.c:165
 msgid "X-Position"
 msgstr ""
 
-#: vu-meter/main.c:142
+#: vu-meter/main.c:167
 msgid "Specify the Y position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:143
+#: vu-meter/main.c:168
 msgid "Y-Position"
 msgstr ""
 
-#: vu-meter/main.c:145
+#: vu-meter/main.c:170
 msgid "Connect to the esd server on this host."
 msgstr ""
 
-#: vu-meter/main.c:146
+#: vu-meter/main.c:171
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:148
+#: vu-meter/main.c:173
 msgid "Open a vertical version of the meter."
 msgstr ""
-
-#, fuzzy
-#~ msgid "E_xit"
-#~ msgstr "終了時"
 
 #~ msgid "File/Exit"
 #~ msgstr "ファイル/終了"

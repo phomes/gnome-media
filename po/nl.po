@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.5\n"
-"POT-Creation-Date: 1999-01-31 20:32-0600\n"
+"POT-Creation-Date: 1999-02-25 11:55+0100\n"
 "PO-Revision-Date: 1999-02-04 13:31+0100\n"
 "Last-Translator: Wing Tung Leung <tg@skynet.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -85,58 +85,54 @@ msgstr "_Programma"
 msgid "_Help"
 msgstr "_Help"
 
-#: gmix/gmix.c:138
+#: gmix/gmix.c:139
 msgid "don't restore mixer-settings from configuration"
 msgstr "de mengpaneel-instellingen niet herstellen van de configuratie"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:140
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "mengpane(e)l(en) initialiseren van bewaarde configuratie en verlaten"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:141
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "de (veranderede) mengpaneel-instellingen niet in configuratie bewaren"
 
-#: gmix/gmix.c:524
+#: gmix/gmix.c:562
 msgid "GMIX 3.0"
 msgstr ""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:586
+#: gmix/gmix.c:629
 msgid "Lock"
 msgstr "Slot"
 
-#: gmix/gmix.c:597
+#: gmix/gmix.c:640
 msgid "Rec."
 msgstr ""
 
-#: gmix/gmix.c:604
+#: gmix/gmix.c:647
 msgid "Mute"
 msgstr ""
 
-#: gmix/gmix.c:763
+#: gmix/gmix.c:797
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome Mengpaneel"
 
-#: gmix/gmix.c:766
+#: gmix/gmix.c:800
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dit is een mengpaneel voor OSS geluidsapparaten"
 
-#: gnomovision/tvset.c:1412
-msgid "FILE ..."
-msgstr "BESTAND ..."
-
-#: tcd/callbacks.c:83
+#: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome CD speler"
 
-#: tcd/callbacks.c:87
+#: tcd/callbacks.c:86
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
-"GTCD is de Gnome CD speler. Bevat CDDB ondersteuning. Kijk naar "
-"het 'Thanks' bestand uit de distributie voor meer credits."
+"GTCD is de Gnome CD speler. Bevat CDDB ondersteuning. Kijk naar het 'Thanks' "
+"bestand uit de distributie voor meer credits."
 
 #: tcd/cddb_props.c:62
 msgid "Disc ID"
@@ -146,16 +142,61 @@ msgstr "CD ID"
 msgid "Disc Title"
 msgstr "CD Titel"
 
-#: tcd/cddb_props.c:233
+#: tcd/cddb_props.c:72
+msgid "Edit"
+msgstr ""
+
+#: tcd/cddb_props.c:76
+msgid "Remove"
+msgstr ""
+
+#: tcd/cddb_props.c:82
+msgid "Refresh List"
+msgstr ""
+
+#. server settings
+#: tcd/cddb_props.c:129
+#, fuzzy
+msgid "Server Settings"
+msgstr "CDDB Instellingen"
+
+#: tcd/cddb_props.c:138
+msgid "Address"
+msgstr ""
+
+#: tcd/cddb_props.c:148
+msgid "Port"
+msgstr ""
+
+#. local db
+#: tcd/cddb_props.c:158
+msgid "Local Database"
+msgstr ""
+
+#. frame
+#: tcd/cddb_props.c:200
+msgid "CDDB Data"
+msgstr ""
+
+#: tcd/cddb_props.c:232
 msgid "CDDB Editor"
 msgstr ""
 
-#: tcd/cddb_props.c:247
+#: tcd/cddb_props.c:246
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Fout bij het lezen van $HOME/.cddbslave."
 
+#: tcd/cddb_props.c:358
+#, c-format
+msgid "Couldn't remove file: %s\n"
+msgstr ""
+
+#: tcd/cddb_props.c:370
+msgid "Delete CDDB Entry?"
+msgstr ""
+
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:238
+#: tcd/cddb_status.c:50 tcd/gtracked.c:242
 msgid "CDDB Status"
 msgstr ""
 
@@ -200,7 +241,7 @@ msgstr "random"
 msgid "Open track editor"
 msgstr "Nummers wijzigen"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:574
+#: tcd/gtcd.c:298 tcd/prefs.c:578
 msgid "Preferences"
 msgstr "Voorkeuren"
 
@@ -230,63 +271,74 @@ msgstr "Achteruit"
 msgid "Skip forwards"
 msgstr "Vooruit"
 
-#: tcd/gtcd.c:447 tcd/gtcd.c:448 tcd/gtcd.c:449
+#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
 msgid "(Scanning)"
 msgstr "(Bezig met scannen)"
 
-#: tcd/gtcd.c:471
+#: tcd/gtcd.c:496
 msgid "No Disc"
 msgstr "Geen CD"
 
-#: tcd/gtcd.c:499
+#: tcd/gtcd.c:524
 msgid "Error"
 msgstr "Fout"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Trk"
 msgstr ""
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Time"
 msgstr "Tijd"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:137
 msgid "Title"
 msgstr "Titel"
 
-#: tcd/gtracked.c:153
+#: tcd/gtracked.c:157
 msgid "Track Editor"
 msgstr "Nummers wijzigen"
 
-#: tcd/gtracked.c:164
+#: tcd/gtracked.c:168
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "CD Informatie (%02u:%02u minuten)"
 
-#: tcd/gtracked.c:169
+#: tcd/gtracked.c:173
 msgid "Artist / Title"
 msgstr "Artist / Titel"
 
 #. ...
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:217
 msgid "Track Information"
 msgstr "Nummer informatie"
 
 #. Clear button
-#: tcd/gtracked.c:227
+#: tcd/gtracked.c:231
 msgid "Clear"
 msgstr "Wissen"
 
 #. Playlist button
-#: tcd/gtracked.c:232
+#: tcd/gtracked.c:236
 msgid "Playlist"
 msgstr "Speellijst"
 
-#: tcd/linux-cdrom.c:639
+#: tcd/linux-cdrom.c:555
+#, c-format
+msgid ""
+"Error accessing cdrom device.\n"
+"Please check to make sure cdrom drive support\n"
+"is compiled into the kernel, and that you have\n"
+"permission to access the device.\n"
+"\n"
+"Reason: %s\n"
+msgstr ""
+
+#: tcd/linux-cdrom.c:624
 msgid "Unknown / Unknown"
 msgstr "Onbekend / Onbekend"
 
-#: tcd/linux-cdrom.c:643
+#: tcd/linux-cdrom.c:628
 #, c-format
 msgid "Track %d"
 msgstr "Nummer %d"
@@ -308,112 +360,119 @@ msgid "About..."
 msgstr "Over..."
 
 #. do nothing
-#: tcd/prefs.c:170 tcd/prefs.c:225
+#: tcd/prefs.c:174 tcd/prefs.c:229
 msgid "Do nothing"
 msgstr "Niets doen"
 
-#: tcd/prefs.c:176
+#: tcd/prefs.c:180
 msgid "Start playing"
 msgstr "Begin het spelen"
 
-#: tcd/prefs.c:182 tcd/prefs.c:231
+#: tcd/prefs.c:186 tcd/prefs.c:235
 msgid "Stop playing"
 msgstr "Stop het spelen"
 
 #. close tray
-#: tcd/prefs.c:186 tcd/prefs.c:243
+#: tcd/prefs.c:190 tcd/prefs.c:247
 msgid "Close tray"
 msgstr "Lader sluiten"
 
-#: tcd/prefs.c:237
+#: tcd/prefs.c:241
 msgid "Open tray"
 msgstr "Lader openen"
 
 #. device entry
-#: tcd/prefs.c:316
+#: tcd/prefs.c:320
 msgid "CDROM device"
 msgstr "CDROM apparaat"
 
 #. Color picker
-#: tcd/prefs.c:325
+#: tcd/prefs.c:329
 msgid "Track/title color"
 msgstr "Nummer/titel kleur"
 
 #. font picker
-#: tcd/prefs.c:337
+#: tcd/prefs.c:341
 msgid "Track/title font"
 msgstr "Nummer/titel lettertype"
 
-#: tcd/prefs.c:338
+#: tcd/prefs.c:342
 msgid "Change font"
 msgstr "Lettertype wijzigen"
 
 #. show handles
-#: tcd/prefs.c:345
+#: tcd/prefs.c:349
 msgid "Show handles (restart required)"
 msgstr "Toon handgrepen (heropstarten nodig)"
 
 #. show tooltips
-#: tcd/prefs.c:352
+#: tcd/prefs.c:356
 msgid "Show tooltips"
 msgstr "Toon gereedschaptips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:359
+#: tcd/prefs.c:363
 msgid "Use alternate method to play CD"
 msgstr "Alternatieve methode voor spelen can Cd gebruiken"
 
 #. start frame
-#: tcd/prefs.c:379
+#: tcd/prefs.c:383
 msgid "On startup"
 msgstr "Bij opstarten"
 
 #. exit frame
-#: tcd/prefs.c:385
+#: tcd/prefs.c:389
 msgid "On exit"
 msgstr "Bij verlaten"
 
-#: tcd/prefs.c:493
+#: tcd/prefs.c:497
 msgid "Key"
 msgstr "Toets"
 
-#: tcd/prefs.c:494
+#: tcd/prefs.c:498
 msgid "Action"
 msgstr "Actie"
 
+#: tcd/prefs.c:516
+msgid "Click here to change:"
+msgstr ""
+
 #. Frame
-#: tcd/prefs.c:534 tcd/prefs.c:578
+#: tcd/prefs.c:538 tcd/prefs.c:582
 msgid "Keybindings"
 msgstr "Toetsbindingen"
 
-#: tcd/prefs.c:582
+#: tcd/prefs.c:586
 msgid "CDDB Settings"
 msgstr "CDDB Instellingen"
 
-#: vu-meter/main.c:139
+#: vu-meter/main.c:164
 msgid "Specify the X position of the meter."
 msgstr "De X-positie van de meter specifiëren."
 
-#: vu-meter/main.c:140
+#: vu-meter/main.c:165
 msgid "X-Position"
 msgstr "X-positie"
 
-#: vu-meter/main.c:142
+#: vu-meter/main.c:167
 msgid "Specify the Y position of the meter."
 msgstr "De Y-positie van de meter specifiëren."
 
-#: vu-meter/main.c:143
+#: vu-meter/main.c:168
 msgid "Y-Position"
 msgstr "Y-positie"
 
-#: vu-meter/main.c:145
+#: vu-meter/main.c:170
 msgid "Connect to the esd server on this host."
 msgstr "Verbinding maken met de esd server op deze host."
 
-#: vu-meter/main.c:146
+#: vu-meter/main.c:171
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:148
+#: vu-meter/main.c:173
 msgid "Open a vertical version of the meter."
 msgstr "Open een verticale versie van de meter."
+
+#~ msgid "FILE ..."
+#~ msgstr "BESTAND ..."
