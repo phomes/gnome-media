@@ -1,0 +1,44 @@
+GMIX 1.5
+--------
+
+This is a XMIX replacement that uses GTK+ to create a user-interface. It uses
+the /dev/mixer* devices from the Linux sound-driver.
+
+This is my first bigger program for un*x, and all my documentation was
+looking into xmix and soundcard.h. Maybe I've not everything correct, but
+it's more flexible (better ?) than xmix already:
+
+- It asks the driver about the number of supported devices and their
+configuration. The complete dialog is created from this information.
+
+- The names for the controls are taken as #defined by the soundcard.h.
+
+- You can start gmix for every mixer in your system. The driver for my GUS
+MAX creates /dev/mixer /dev/mixer1. One of them seems to be the normal mixer,
+the other one seems to be the mixer from the extra audio-codec.
+
+Usage:
+	gmix [device]
+
+This version suports gnome_get/set_config calls. These are the supported
+sections:
+
+[geometry] ; width and height of the gmix window 
+height=200 
+width=-1
+
+[_device_] ; One of these sections for each device present on your mixer
+titel=Wave ; Titel above the sliders. Default name is as #define'd in
+           ; soundcard.h
+left=25	   ; left / mono value
+right=25   ; right value. ignored for mono channels
+recsrc=0   ; if available as recording-source: 1 - enabled, 0 - disabled
+
+[setup]
+device=/dev/mixer ; your mixer-device
+
+I'll add more keys, when I get time to do a config-dialog. I hate to edit
+dotfiles :-).
+
+		Jens Ch. Restemeier
+		<jchrr@hrz.uni-bielefeld.de>
