@@ -99,6 +99,7 @@ $(server_in_files:.server.in.in=.server.in): $(server_in_files)
 	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $< > $@
 @INTLTOOL_SERVER_RULE@
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_SCHEMAS_RULE@
 
 desktopdir = $(datadir)/control-center-2.0/capplets
 Desktop_in_files = cddb-slave.desktop.in

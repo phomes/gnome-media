@@ -25,6 +25,7 @@ gnome_volume_control_LDADD = \
 endif
 
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_SCHEMAS_RULE@
 
 Audio_in_files = gnome-volume-control.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)

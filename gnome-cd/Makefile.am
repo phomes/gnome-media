@@ -63,6 +63,8 @@ gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(ACCESS_LT_LIB)
 
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_SCHEMAS_RULE@
+
 Audio_in_files = gnome-cd.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
 Pixmap_DATA = gnome-cd.png

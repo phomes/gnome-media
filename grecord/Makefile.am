@@ -9,6 +9,8 @@ EXTRA_DIST = \
 	gnome-sound-recorder.schemas.in
 
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_SCHEMAS_RULE@
+
 Applicationsdir = $(datadir)/applications
 Applications_in_files = gnome-sound-recorder.desktop.in 
 Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
