@@ -327,6 +327,35 @@ init_player (void)
 	gcd = g_new0 (GnomeCD, 1);
 
 	gcd->preferences = preferences_new (gcd);
+	if (gcd->preferences->device == NULL || gcd->preferences->device[0] == 0) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_NONE,
+						 _("There is no CD device set. This means that GnomeCD\n"
+						   "will be unable to run. Press Set device to go to a dialog\n"
+						   "where you can set the device, or click Quit to quit GnomeCD"));
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
+					_("Set device"), 1, NULL);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
+		gtk_window_set_title (GTK_WINDOW (dialog), _("No CD device"));
+		
+		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+		case 1:
+			gtk_widget_destroy (dialog);
+			dialog = preferences_dialog_show (gcd, TRUE);
+
+			/* Don't care what it returns */
+			gtk_dialog_run (GTK_DIALOG (dialog));
+			gtk_widget_destroy (dialog);
+
+			break;
+
+		default:
+			exit (0);
+		}
+	}
+		
 	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);

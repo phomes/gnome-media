@@ -579,7 +579,7 @@ open_preferences (GtkWidget *widget,
 	static GtkWidget *dialog = NULL;
 
 	if (dialog == NULL) {
-		dialog = preferences_dialog_show (gcd);
+		dialog = preferences_dialog_show (gcd, FALSE);
 		g_signal_connect (G_OBJECT (dialog), "destroy",
 				  G_CALLBACK (gtk_widget_destroyed), &dialog);
 	} else {

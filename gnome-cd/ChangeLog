@@ -1,3 +1,21 @@
+2002-02--7  Iain <iain@ximian.com>
+
+	* callbacks.c (open_preferences): Update for the new args.
+
+	* gnome-cd.c (init_player): If the cdrom device gets set to blank,
+	inform the user and give them the option of opening the prefs dialog
+	to fix the problem.
+
+	* preferences.c (do_device_changed): Only set a new device is cdrom !=
+	NULL.
+	(preferences_free): Remove the theme_id notify.
+	(prefs_destroy_cb): Remove the theme_id notify.
+	(theme_selection_changed_cb): Set the new theme.
+	(change_theme_selection_widget): Change the theme to the new one.
+	(create_tree_model): Create a list of themes.
+	(preferences_dialog_show): Take a gboolean to set only the device.
+	set widgets sensitive depending on that gboolean.
+
 2002-02-02  Iain Holmes  <iain@ximian.com>
 
 	* preferences.[ch]: New file for preferences.

@@ -24,6 +24,9 @@
 #include <config.h>
 #endif
 
+#include <sys/types.h>
+#include <dirent.h>
+
 #include <gtk/gtkdialog.h>
 #include <gtk/gtkstock.h>
 #include <gtk/gtkvbox.h>
@@ -33,6 +36,12 @@
 #include <gtk/gtklabel.h>
 #include <gtk/gtkentry.h>
 #include <gtk/gtkbutton.h>
+#include <gtk/gtkliststore.h>
+#include <gtk/gtkcellrenderer.h>
+#include <gtk/gtktreeviewcolumn.h>
+#include <gtk/gtktreeview.h>
+
+#include <gtk/gtkscrolledwindow.h>
 
 #include <libgnome/gnome-i18n.h>
 
@@ -52,7 +61,9 @@ do_device_changed (GnomeCDPreferences *prefs,
 	}
 
 	prefs->device = g_strdup (device);
-	gnome_cdrom_set_device (prefs->gcd->cdrom, prefs->device, NULL);
+	if (prefs->gcd->cdrom != NULL) {
+		gnome_cdrom_set_device (prefs->gcd->cdrom, prefs->device, NULL);
+	}
 }
 
 static void
@@ -200,6 +211,7 @@ preferences_free (GnomeCDPreferences *prefs)
 	gconf_client_notify_remove (client, prefs->start_id);
 	gconf_client_notify_remove (client, prefs->close_id);
 	gconf_client_notify_remove (client, prefs->stop_id);
+	gconf_client_notify_remove (client, prefs->theme_id);
 
 	g_free (prefs);
 }
@@ -236,10 +248,13 @@ typedef struct _PropertyDialog {
 	GtkWidget *stop_open;
 	GtkWidget *stop_close;
 
+	GtkWidget *theme_list;
+	
 	guint start_id;
 	guint device_id;
 	guint close_id;
 	guint stop_id;
+	guint theme_id;
 } PropertyDialog;
 
 static void
@@ -269,6 +284,7 @@ prefs_destroy_cb (GtkDialog *dialog,
 	gconf_client_notify_remove (client, pd->start_id);
 	gconf_client_notify_remove (client, pd->stop_id); 
 	gconf_client_notify_remove (client, pd->close_id);
+	gconf_client_notify_remove (client, pd->theme_id);
 	
 	g_free (pd);
 }
@@ -294,6 +310,11 @@ device_changed_cb (GtkWidget *entry,
 	char *new_device;
 
 	new_device = gtk_entry_get_text (GTK_ENTRY (entry));
+	if (new_device == NULL || *new_device == 0) {
+		gtk_widget_set_sensitive (pd->apply, FALSE);
+		return;
+	}
+	
 	if (strcmp (new_device, pd->gcd->preferences->device) == 0) {
 		gtk_widget_set_sensitive (pd->apply, FALSE);
 		return;
@@ -509,9 +530,9 @@ start_close_toggled_cb (GtkToggleButton *tb,
 
 static void
 change_start_close_widget (GConfClient *client,
-			    guint cnxn,
-			    GConfEntry *entry,
-			    gpointer user_data)
+			   guint cnxn,
+			   GConfEntry *entry,
+			   gpointer user_data)
 {
 	PropertyDialog *pd = user_data;
 	GConfValue *value = gconf_entry_get_value (entry);
@@ -524,22 +545,129 @@ change_start_close_widget (GConfClient *client,
 					   0, 0, NULL, G_CALLBACK (start_close_toggled_cb), pd);
 }
 
+static void
+theme_selection_changed_cb (GtkTreeSelection *selection,
+			    PropertyDialog *pd)
+{
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+
+	g_print ("Hello?\n");
+	if (gtk_tree_selection_get_selected (selection, &model, &iter) == TRUE) {
+		char *theme_name;
+
+		gtk_tree_model_get (model, &iter, 0, &theme_name, -1);
+		g_print ("Boink!\n");
+		gconf_client_set_string (client, "/apps/gnome-cd/theme-name", theme_name, NULL);
+	}
+}
+
+static void
+change_theme_selection_widget (GConfClient *client,
+			       guint cnxn,
+			       GConfEntry *entry,
+			       gpointer user_data)
+{
+	PropertyDialog *pd = user_data;
+	GConfValue *value = gconf_entry_get_value (entry);
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreeIter iter;
+
+	model = gtk_tree_view_get_model (GTK_TREE_VIEW (pd->theme_list));
+	gtk_tree_model_get_iter_root (model, &iter);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->theme_list));
+	
+	do {
+		char *name;
+		
+		gtk_tree_model_get (model, &iter, 0, &name, -1);
+		g_print ("Name: %s\n", name);
+		
+		if (strcmp (name, gconf_value_get_string (value)) == 0) {
+			g_signal_handlers_block_matched (G_OBJECT (selection), G_SIGNAL_MATCH_FUNC,
+							 0, 0, NULL,
+							 G_CALLBACK (theme_selection_changed_cb), pd);
+			gtk_tree_selection_select_iter (selection, &iter);
+			g_signal_handlers_unblock_matched (G_OBJECT (selection), G_SIGNAL_MATCH_FUNC,
+							   0, 0, NULL,
+							   G_CALLBACK (theme_selection_changed_cb), pd);
+		}
+	} while (gtk_tree_model_iter_next (model, &iter));
+}
+
+static GtkTreeModel *
+create_theme_model (PropertyDialog *pd,
+		    GtkTreeView *view,
+		    GtkTreeSelection *selection)
+{
+	GtkListStore *store;
+	GtkTreeIter iter;
+	DIR *dir;
+	struct dirent *d;
+
+	dir = opendir (THEME_DIR);
+	if (dir == NULL) {
+		g_warning ("No theme dir; %s", THEME_DIR);
+		return NULL;
+	}
+	
+	store = gtk_list_store_new (1, G_TYPE_STRING);
+	gtk_tree_view_set_model (view, GTK_TREE_MODEL (store));
+	
+	while ((d = readdir (dir))) {
+
+		/* Can't have a theme with a . as the first char */
+		if (d->d_name[0] == '.') {
+			continue;
+		}
+
+		gtk_list_store_append (store, &iter);
+		gtk_list_store_set (store, &iter, 0, g_strdup (d->d_name), -1);
+
+		/*
+		if (strcmp (d->d_name, pd->gcd->preferences->theme_name) == 0) {
+			g_print ("Match\n");
+			gtk_tree_selection_select_iter (selection, &iter);
+		}
+		*/
+	}
+
+	return GTK_TREE_MODEL (store);
+}
+	
 GtkWidget *
-preferences_dialog_show (GnomeCD *gcd)
+preferences_dialog_show (GnomeCD *gcd,
+			 gboolean only_device)
 {
 	PropertyDialog *pd;
+	GtkWindow *windy;
 	GtkWidget *hbox, *vbox, *label, *frame;
-
+	GtkWidget *sw;
+	GtkCellRenderer *cell;
+	GtkTreeViewColumn *col;
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreeIter sel_iter;
+	
 	pd = g_new (PropertyDialog, 1);
 	
 	pd->gcd = gcd;
+
+	if (gcd->window != NULL) {
+		windy = GTK_WINDOW (gcd->window);
+	} else {
+		windy = NULL;
+	}
 	
 	pd->window = gtk_dialog_new_with_buttons (_("Gnome-CD Preferences"),
-						  GTK_WINDOW (gcd->window),
+						  windy,
 						  GTK_DIALOG_DESTROY_WITH_PARENT,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
-	g_signal_connect (G_OBJECT (pd->window), "response",
-			  G_CALLBACK (prefs_response_cb), pd);
+	if (only_device == FALSE) {
+		g_signal_connect (G_OBJECT (pd->window), "response",
+				  G_CALLBACK (prefs_response_cb), pd);
+	}
 	g_signal_connect (G_OBJECT (pd->window), "destroy",
 			  G_CALLBACK (prefs_destroy_cb), pd);
 
@@ -571,7 +699,7 @@ preferences_dialog_show (GnomeCD *gcd)
 						 "/apps/gnome-cd/device",
 						 change_device_widget, pd, NULL, NULL);
 	hbox = gtk_hbox_new (TRUE, 2);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pd->window)->vbox), hbox, TRUE, TRUE, 4);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pd->window)->vbox), hbox, FALSE, FALSE, 4);
 
 	/* left side */
 	frame = gtk_frame_new (_("When Gnome-CD starts"));
@@ -669,7 +797,46 @@ preferences_dialog_show (GnomeCD *gcd)
 	pd->stop_id = gconf_client_notify_add (client,
 					       "/apps/gnome-cd/on-stop",
 					       change_stop_widget, pd, NULL, NULL);
+
+	if (only_device == TRUE) {
+		gtk_widget_set_sensitive (hbox, FALSE);
+	}
+	
+	/* Theme selector */
+	pd->theme_list = gtk_tree_view_new ();
+	selection = gtk_tree_view_get_selection (pd->theme_list);
+
+	model = create_theme_model (pd, pd->theme_list, selection);
+	if (model == NULL) {
+		/* Should free stuff here */
+		return NULL;
+	}
+
+	gtk_tree_view_set_model (GTK_TREE_VIEW (pd->theme_list), model);
+	g_object_unref (model);
+
+	cell = gtk_cell_renderer_text_new ();
+	col = gtk_tree_view_column_new_with_attributes (_("Theme name"), cell,
+							"text", 0, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (pd->theme_list), col);
+	
+	g_signal_connect (G_OBJECT (selection), "changed",
+			  G_CALLBACK (theme_selection_changed_cb), pd);
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (sw), pd->theme_list);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pd->window)->vbox), sw, TRUE, TRUE, 4);
+
+	pd->theme_id = gconf_client_notify_add (client,
+						"/apps/gnome-cd/theme-name",
+						change_theme_selection_widget, pd, NULL, NULL);
 	gtk_widget_show_all (pd->window);
 
+	if (only_device == TRUE) {
+		gtk_widget_set_sensitive (sw, FALSE);
+	}
+	
 	return pd->window;
 }
