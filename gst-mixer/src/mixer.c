@@ -51,13 +51,15 @@ static const struct {
 } pix[] = {
   { "cd",         GTK_STOCK_CDROM       },
   { "line",       GNOME_STOCK_LINE_IN   },
-  { "microphone", GNOME_STOCK_MIC       },
-  { "mixer",      GST_MIXER_STOCK_MIXER },
+  { "mic",        GNOME_STOCK_MIC       },
+  { "mix",        GST_MIXER_STOCK_MIXER },
   { "pcm",        GST_MIXER_STOCK_TONE  },
+  { "headphone",  NULL                  },
   { "phone",      GST_MIXER_STOCK_PHONE },
   { "speaker",    GNOME_STOCK_VOLUME    },
   { "video",      GST_MIXER_STOCK_VIDEO },
   { "volume",     GST_MIXER_STOCK_TONE  },
+  { "master",     GST_MIXER_STOCK_TONE  },
   { NULL, NULL }
 };
 
@@ -150,6 +152,7 @@ create_track_widget (GstMixer      *mixer,
   GList *adjlist = NULL;
   MyMixerControls *ctrl = g_new0 (MyMixerControls, 1);
   gchar *str = NULL;
+  gboolean found = FALSE;
   AtkObject *accessible;
   gchar *accessible_name;
 
@@ -160,7 +163,7 @@ create_track_widget (GstMixer      *mixer,
   ctrl->locked = FALSE;
 
   /* image (optional) */
-  for (i = 0; str == NULL && pix[i].label != NULL; i++) {
+  for (i = 0; !found && pix[i].label != NULL; i++) {
     /* we dup the string to make the comparison case-insensitive */
     gchar *label_l = g_strdup (track->label),
 	  *needle_l = g_strdup (pix[i].label);
@@ -172,8 +175,10 @@ create_track_widget (GstMixer      *mixer,
     for (pos = 0; needle_l[pos] != '\0'; pos++)
       needle_l[pos] = g_ascii_tolower (needle_l[pos]);
 
-    if (g_strrstr (label_l, needle_l) != NULL)
+    if (g_strrstr (label_l, needle_l) != NULL) {
       str = pix[i].pixmap;
+      found = TRUE;
+    }
 
     g_free (label_l);
     g_free (needle_l);
