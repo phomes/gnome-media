@@ -759,7 +759,7 @@ save_dont_or_cancel (const char *quit_text)
 				_("Save"), SAVE, NULL);
 	gtk_dialog_set_default_response (GTK_DIALOG (mess), 0);
 
-	title = g_strconcat (_("Save "), filename, "?", NULL);
+	title = g_strdup_printf (_("Save %s?"), filename);
 	gtk_window_set_title (GTK_WINDOW (mess), title);
 	g_free (title);
 	g_free (filename);
