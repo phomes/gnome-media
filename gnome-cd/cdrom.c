@@ -766,7 +766,7 @@ not_ready_status_new (void)
 static gboolean
 timeout_update_cd (gpointer data)
 {
-	GError *error;
+	GError *error = NULL;
 	GnomeCDRom *cdrom = data;
 	GnomeCDRomStatus *status;
 	GnomeCDRomPrivate *priv;
