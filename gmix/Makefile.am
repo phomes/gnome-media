@@ -4,7 +4,7 @@ Audiodir = $(datadir)/apps/Audio
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(includedir)
+	$(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = gmix
 

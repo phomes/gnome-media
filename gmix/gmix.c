@@ -388,7 +388,7 @@ int main (int argc, char *argv[])
 {
 	int res;
 
-	gnome_init ("gmix", &argc, &argv);
+	gnome_init ("gmix", NULL, argc, argv, 0, NULL);
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
