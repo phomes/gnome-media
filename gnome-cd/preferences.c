@@ -649,8 +649,8 @@ preferences_dialog_show (GnomeCD *gcd)
 	action_vbox = gtk_vbox_new (TRUE, 6);
 	gtk_box_pack_start (GTK_BOX (hbox), action_vbox, TRUE, TRUE, 0);
 
-	pd->start_play = gtk_check_button_new_with_mnemonic (_("Start _playing CD when CD Player starts"));
-	add_description (pd->start_play, _("Start playing CD when CD Player starts"));
+	pd->start_play = gtk_check_button_new_with_mnemonic (_("Start _playback when CD Player starts"));
+	add_description (pd->start_play, _("Start playback when CD Player starts"));
 	if (gcd->preferences->start_play) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->start_play), TRUE);
 	}
