@@ -264,6 +264,10 @@ ffwd_press_cb (GtkButton *button,
 	       GdkEvent *ev,
 	       GnomeCD *gcd)
 {
+	if (gcd->timeout > 0) {
+		return FALSE;
+	}
+	
 	maybe_close_tray (gcd);
 
 	ffwd_timeout_cb (gcd);
@@ -291,6 +295,7 @@ ffwd_release_cb (GtkButton *button,
 {
 	if (gcd->timeout > 0) {
 		gtk_timeout_remove (gcd->timeout);
+		gcd->timeout = 0;
 	}
 
 	return FALSE;
@@ -364,6 +369,10 @@ rewind_press_cb (GtkButton *button,
 		 GdkEvent *ev,
 		 GnomeCD *gcd)
 {
+	if (gcd->timeout > 0) {
+		return FALSE;
+	}
+	
 	maybe_close_tray (gcd);
 
 	/* Call it so a click will activate it */
@@ -390,6 +399,7 @@ rewind_release_cb (GtkButton *button,
 {
 	if (gcd->timeout > 0) {
 		gtk_timeout_remove (gcd->timeout);
+		gcd->timeout = 0;
 	}
 	
 	return FALSE;
