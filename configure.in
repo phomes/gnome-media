@@ -43,6 +43,14 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 dnl
+dnl extace
+dnl
+PROGRAMS_EXTACE=""
+AC_CHECK_LIB(esd, main, PROGRAMS_EXTACE=extace,,-lm)
+AC_CHECK_LIB(gslfft, main, PROGRAMS_EXTACE=extace, PROGRAMS_EXTACE="")
+AC_SUBST(PROGRAMS_EXTACE)
+
+dnl
 dnl gmix
 dnl
 PROGRAMS_GMIX=""
@@ -67,6 +75,7 @@ AC_SUBST(PROGRAMS_TCD)
 AC_OUTPUT([
 Makefile
 po/Makefile.in
+extace/Makefile
 gmix/Makefile
 gnomovision/Makefile
 intl/Makefile

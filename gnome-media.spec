@@ -16,6 +16,11 @@ Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
 
+# these needed for extace
+Requires: gsl
+Requires: esound
+
+
 %description
 GNOME media programs.
 
