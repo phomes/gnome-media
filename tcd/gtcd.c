@@ -282,7 +282,7 @@ GtkWidget* make_changer_buttons( void )
 
 		style = gtk_widget_get_style(GTK_BUTTON(changer_buttons[i])->child);
 		gdk_font_unref(style->font);
-		style->font = gdk_font_load("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-iso8859-1");
+		style->font = gdk_fontset_load(_("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"));
 		gdk_font_ref(style->font);
 		gtk_widget_set_style(GTK_BUTTON(changer_buttons[i])->child, style);
 		gdk_font_unref(style->font);
@@ -893,14 +893,14 @@ void setup_fonts(void)
 		gdk_font_unref(tfont);
 
 	if(prefs->trackfont)
-		tfont = gdk_font_load( prefs->trackfont );
+		tfont = gdk_fontset_load( prefs->trackfont );
 	else
 		tfont = NULL;
 
 	if(sfont)
 		gdk_font_unref(sfont);
     
-	sfont = gdk_font_load("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-iso8859-1");
+	sfont = gdk_fontset_load(_("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"));
     
 	tfont_height = (tfont->ascent+tfont->descent)*3;
 }

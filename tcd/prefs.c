@@ -60,6 +60,7 @@ void preferences(GtkWidget *widget, void *data);
 
 void load_prefs(tcd_prefs *prop)
 {
+	char *s;
 #if defined(sun) || defined(__sun__)
 #if defined(SVR4) || defined(__svr4__)
 	prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/vol/dev/aliases/cdrom0");
@@ -72,7 +73,10 @@ void load_prefs(tcd_prefs *prop)
 	prop->handle=gnome_config_get_bool     ("/gtcd/ui/handle=false");
 	prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
 	prop->mixer_cmd=gnome_config_get_string    ("/gtcd/ui/mixer=gmix");
-	prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-iso8859-1");
+
+	s = g_strconcat("/gtcd/ui/trackfont=", _("-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"), NULL);
+	prop->trackfont=gnome_config_get_string(s);
+	g_free(s);
 
 	prop->trackcolor_r=gnome_config_get_int("/gtcd/ui/trackcolor_r=255" );
 	prop->trackcolor_g=gnome_config_get_int("/gtcd/ui/trackcolor_g=0" );
