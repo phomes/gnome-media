@@ -62,3 +62,5 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/bin/*
 %{prefix}/share/locale/*/*/*
 %{prefix}/share/apps/*
+%{prefix}/share/pixmaps/*
+
