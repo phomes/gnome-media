@@ -6,7 +6,7 @@ EXTRA_DIST = \
 	gnome-grecord.png
 
 @INTLTOOL_DESKTOP_RULE@
-Applicationsdir = $(datadir)/gnome/applications
+Applicationsdir = $(datadir)/applications
 Applications_in_files = Soundrecorder.desktop.in 
 Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
 
