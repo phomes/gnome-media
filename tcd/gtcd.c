@@ -641,7 +641,7 @@ gint slow_timer( gpointer *data )
 
 void status_changed(void)
 {
-    if( old_status != cd.sc.cdsc_audiostatus || 1)
+    if( old_status != cd.sc.cdsc_audiostatus)
     {
 	GtkWidget *pixmap;
 	char tmp[256];
