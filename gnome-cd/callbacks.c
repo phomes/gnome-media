@@ -629,6 +629,12 @@ status_ok (GnomeCD *gcd,
 			/* Update tray icon tooltip */
 			if (gcd->tray_tips)	
 				gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
+
+			/* Initialise the display time to 0:00 in stopped state*/
+			cd_display_set_line (CD_DISPLAY (gcd->display),
+					     CD_DISPLAY_LINE_TIME, "0:00");
+			/* Update the position of the slider */
+			gtk_adjustment_set_value (GTK_ADJUSTMENT(gcd->position_adj), 0);
 		}		
 		break;
 		
