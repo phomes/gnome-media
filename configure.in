@@ -2,7 +2,7 @@ AC_PREREQ(2.52)
 AC_INIT(gmix)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-media, 1.112.0)
+AM_INIT_AUTOMAKE(gnome-media, 1.176.0)
 AM_MAINTAINER_MODE
 
 AC_PROG_INTLTOOL
@@ -53,6 +53,7 @@ AC_SUBST(CDDBSLAVE_CFLAGS)
 AC_SUBST(CDDBSLAVE_LIBS)
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir libbonobo-2.0`"
 AC_SUBST(BONOBO_IDLDIR)
@@ -177,6 +178,8 @@ cddb-slave2/Makefile
 gnome-cd/Makefile
 gnome-cd/images/Makefile
 gnome-cd/images/lcd-theme/Makefile
+gnome-cd/images/red-lcd-theme/Makefile
 grecord/Makefile
 grecord/src/Makefile
+volume-control/Makefile
 version.h])

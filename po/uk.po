@@ -5,13 +5,35 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.51\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2000-01-11 14:18+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+msgid "Category"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:387
+msgid "Artist and Title"
+msgstr ""
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -273,7 +295,7 @@ msgstr "╕н╕ц╕ал╕зувати м╕кшер(и) з╕ збережено╖ конф╕гурац╕╖ та вийти"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "не збер╕гати (зм╕нен╕) установки м╕кшера в конф╕гурац╕ю"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -283,7 +305,7 @@ msgstr ""
 "Переконайтесь, що ви ма╓те права на в╕дкривання /dev/mixer\n"
 "╕ у вашому ядр╕ ув╕мкнено п╕дтримку звуку."
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -294,7 +316,7 @@ msgstr ""
 "верс╕╖ %d.%d.%d, а у ваш╕й систем╕ запущено\n"
 "верс╕ю б╕льш ранню н╕ж 3.6.0.\n"
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -305,31 +327,54 @@ msgstr ""
 "верс╕╖ %d.%d.%d, а у ваш╕й систем╕ запущено\n"
 "попередню верс╕ю %d.%d.%d.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Блок."
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Запис"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Запис"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Н╕мий"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 #, fuzzy
 msgid "Volume Control"
 msgstr "╤ндикатор гучност╕"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - м╕кшер Gnome"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 msgid "This is a mixer for sound devices"
 msgstr "М╕кшер для звукових пристро╖в."
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -360,7 +405,7 @@ msgstr "Використовувати п╕дписи"
 msgid "Defaults"
 msgstr "Типов╕"
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Налаштування"
 
@@ -368,9 +413,235 @@ msgstr "Налаштування"
 msgid "Labels"
 msgstr "Позначки"
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "В╕дтворити"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "Шляхи"
+
+#: gnome-cd/callbacks.c:568
+#, fuzzy
+msgid "Copyright (C) 2001, 2002"
+msgstr "Copyright ©  2000 Andreas Hyden"
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, c-format
+msgid "%d - Unknown"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "Зупинити"
+
+#: gnome-cd/gnome-cd.c:263
+msgid "_Play / Pause"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+msgid "_Eject disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+msgid "Set device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+msgid "No CD device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Track editor"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:493
+msgid "Play / Pause"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Зупинити"
+
+#: gnome-cd/gnome-cd.c:502
+msgid "Fast forward"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject"
+msgstr "Ефект"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "Запустити м╕кшер..."
+
+#: gnome-cd/gnome-cd.c:519
+msgid "Open Mixer"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Change volume"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Volume"
+msgstr "╤ндикатор гучност╕"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+#, fuzzy
+msgid "CD Player"
+msgstr "В╕дтворити"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Налаштування"
+
+#: gnome-cd/preferences.c:687
+msgid "CD player de_vice"
+msgstr ""
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+msgid "Do _nothing"
+msgstr ""
+
+#: gnome-cd/preferences.c:728
+msgid "Start _playing CD"
+msgstr ""
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Зупинити в╕дтворення/запис"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+msgid "Do not_hing"
+msgstr ""
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Зупинити в╕дтворення/запис"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "Записувач звуку"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "GNOME Записувач звуку:"
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "Записувач звуку"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -542,17 +813,9 @@ msgstr "Новий"
 msgid "Create new sample"
 msgstr "Створити новий семпл"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "В╕дтворити"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "В╕дтворити поточний семпл"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Зупинити"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -593,10 +856,6 @@ msgstr "Файлу \"%s\" неп╕дтримуваний звуковий файл."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "GNOME Записувач звуку"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -756,11 +1015,15 @@ msgstr "Вказу╓ файл для початку запису"
 msgid "Specify a file to start playing"
 msgstr "Вказу╓ файл для початку в╕дтворення"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "GNOME Записувач звуку"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "Не показувати це пов╕домлення знову."
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -896,21 +1159,21 @@ msgstr "В╕дкрити вертикальну верс╕ю ╕ндикатора"
 msgid "Act as recording level meter."
 msgstr "Працювати в якост╕в ╕ндикатора р╕вня запису."
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "Хостом ╓ %s\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "Р╕вень запису"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "╤ндикатор гучност╕"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -927,17 +1190,8 @@ msgstr ""
 msgid "Volume Monitor"
 msgstr "╤ндикатор гучност╕"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "Записувач звуку"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "GNOME Записувач звуку:"
 
 #~ msgid "GMIX 3.0"
 #~ msgstr "GMIX 3.0"

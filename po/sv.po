@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-01-27 20:44+0100\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2002-01-27 20:44+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cddb-slave2/cddb-slave.c:327
+#: cddb-slave2/cddb-slave.c:364
 msgid "Multiple matches..."
 msgstr "Flera träffar..."
 
-#: cddb-slave2/cddb-slave.c:331
+#: cddb-slave2/cddb-slave.c:368
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -29,15 +29,15 @@ msgstr ""
 "Flera träffar hittades i databasen.\n"
 "Nedan finns en lista med möjliga träffar, välj den bästa träffen"
 
-#: cddb-slave2/cddb-slave.c:342
+#: cddb-slave2/cddb-slave.c:379
 msgid "Category"
 msgstr "Kategori"
 
-#: cddb-slave2/cddb-slave.c:346
+#: cddb-slave2/cddb-slave.c:383
 msgid "Disc ID"
 msgstr "Skiv-ID"
 
-#: cddb-slave2/cddb-slave.c:350
+#: cddb-slave2/cddb-slave.c:387
 msgid "Artist and Title"
 msgstr "Artist och titel"
 
@@ -333,30 +333,53 @@ msgstr ""
 "OSS version %d.%d.%d, och ditt system använder\n"
 "version %d.%d.%d.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1016
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1026
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Insp."
 
-#: gmix/gmix.c:1044
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Insp."
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Tyst"
 
-#: gmix/gmix.c:1087 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Volymkontroll"
 
-#: gmix/gmix.c:1418
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Mixer för Gnome"
 
-#: gmix/gmix.c:1420
+#: gmix/gmix.c:1466
 msgid "This is a mixer for sound devices"
 msgstr "Detta är en mixer för ljudenheter"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "Justera nivån på volymen"
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -387,7 +410,7 @@ msgstr "Använd mixeretiketter"
 msgid "Defaults"
 msgstr "Standardalternativ"
 
-#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:344
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -396,20 +419,20 @@ msgid "Labels"
 msgstr "Etiketter"
 
 #: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
-#: gnome-cd/gnome-cd.c:408 grecord/src/gui.c:245
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
 msgid "Play"
 msgstr "Spela"
 
-#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:275
-#: gnome-cd/callbacks.c:314 gnome-cd/callbacks.c:338 gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
 msgid "Pause"
 msgstr "Paus"
 
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:568
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright ©  2001, 2002"
 
-#: gnome-cd/callbacks.c:551
+#: gnome-cd/callbacks.c:569
 msgid "A GNOME cd player"
 msgstr "En GNOME-cdspelare"
 
@@ -421,96 +444,120 @@ msgstr "Okänd artist"
 msgid "Unknown disc"
 msgstr "Okänd skiva"
 
-#: gnome-cd/gnome-cd.c:123
+#: gnome-cd/gnome-cd.c:124
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - okänd"
 
-#: gnome-cd/gnome-cd.c:237
+#: gnome-cd/gnome-cd.c:261
 msgid "P_revious track"
 msgstr "F_öregående spår"
 
-#: gnome-cd/gnome-cd.c:238
+#: gnome-cd/gnome-cd.c:262
 msgid "_Stop"
 msgstr "_Stopp"
 
-#: gnome-cd/gnome-cd.c:239
+#: gnome-cd/gnome-cd.c:263
 msgid "_Play / Pause"
 msgstr "S_pela/Paus"
 
-#: gnome-cd/gnome-cd.c:240
+#: gnome-cd/gnome-cd.c:264
 msgid "_Next track"
 msgstr "_Nästa spår"
 
-#: gnome-cd/gnome-cd.c:241
+#: gnome-cd/gnome-cd.c:265
 msgid "_Eject disc"
 msgstr "_Mata ut skiva"
 
-#: gnome-cd/gnome-cd.c:242
+#: gnome-cd/gnome-cd.c:266
 msgid "_About Gnome-CD"
 msgstr "_Om Gnome-CD"
 
-#: gnome-cd/gnome-cd.c:339
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "CDROM-enhet"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "CDROM-enhet"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
 msgid "Open track editor"
 msgstr "Öppna spårredigerare"
 
-#: gnome-cd/gnome-cd.c:339
+#: gnome-cd/gnome-cd.c:425
 msgid "Track editor"
 msgstr "Spårredigerare"
 
-#: gnome-cd/gnome-cd.c:383
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous track"
 msgstr "Föregående spår"
 
-#: gnome-cd/gnome-cd.c:383
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous"
 msgstr "Föregående"
 
-#: gnome-cd/gnome-cd.c:387
+#: gnome-cd/gnome-cd.c:472
 msgid "Rewind"
 msgstr "Spola tillbaka"
 
-#: gnome-cd/gnome-cd.c:408
+#: gnome-cd/gnome-cd.c:493
 msgid "Play / Pause"
 msgstr "Spela/Paus"
 
-#: gnome-cd/gnome-cd.c:413 grecord/src/gui.c:257
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
 msgid "Stop"
 msgstr "Stopp"
 
-#: gnome-cd/gnome-cd.c:417
+#: gnome-cd/gnome-cd.c:502
 msgid "Fast forward"
 msgstr "Snabbspola"
 
-#: gnome-cd/gnome-cd.c:425
+#: gnome-cd/gnome-cd.c:510
 msgid "Next track"
 msgstr "Nästa spår"
 
-#: gnome-cd/gnome-cd.c:429
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject CD"
 msgstr "Mata ut cd"
 
-#: gnome-cd/gnome-cd.c:429
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject"
 msgstr "Mata ut"
 
-#: gnome-cd/gnome-cd.c:434
+#: gnome-cd/gnome-cd.c:519
 msgid "Open mixer"
 msgstr "Öppna mixer"
 
-#: gnome-cd/gnome-cd.c:434
+#: gnome-cd/gnome-cd.c:519
 msgid "Open Mixer"
 msgstr "Öppna mixer"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:524
 msgid "Change volume"
 msgstr "Ändra volym"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:524
 msgid "Volume"
 msgstr "Volym"
 
-#: gnome-cd/gnome-cd.c:465
+#: gnome-cd/gnome-cd.c:552
 msgid "Cannot create player"
 msgstr "Kan inte skapa spelare"
 
@@ -522,9 +569,83 @@ msgstr "CD-spelare"
 msgid "Play audio CDs"
 msgstr "Spela ljud-cd"
 
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Inställningar"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "CDROM-enhet"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "Gör inget"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "Börja spela"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Sluta spela"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "Gör inget"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Sluta spela"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "Spela in ljudklipp"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "Ljudinspelare"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "GNOME-ljudinspelaren:"
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "Ljudinspelare"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -740,10 +861,6 @@ msgstr "Filen \"%s\" är inte en ljudfil som stöds."
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:454 grecord/src/main.c:111
-msgid "GNOME Sound recorder"
-msgstr "GNOME-ljudinspelaren"
-
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
 #: grecord/src/gui.c:457
@@ -901,6 +1018,10 @@ msgstr "Ange en fil att börja spela in till"
 #: grecord/src/main.c:81
 msgid "Specify a file to start playing"
 msgstr "Ange en fil att börja spela upp"
+
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "GNOME-ljudinspelaren"
 
 #: grecord/src/main.c:177
 msgid "Don't show this message again."
@@ -1074,17 +1195,8 @@ msgstr "Övervaka ljudvolymen"
 msgid "Volume Monitor"
 msgstr "Volymmätare"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "Spela in ljudklipp"
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "Ljudinspelare"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Justera nivån på volymen"
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "GNOME-ljudinspelaren:"
 
 #~ msgid "Monitor the recording intput volume"
 #~ msgstr "Övervaka inspelningsvolymen"
@@ -1337,23 +1449,11 @@ msgstr "Justera nivån på volymen"
 #~ msgid "About"
 #~ msgstr "Om"
 
-#~ msgid "Do nothing"
-#~ msgstr "Gör inget"
-
-#~ msgid "Start playing"
-#~ msgstr "Börja spela"
-
-#~ msgid "Stop playing"
-#~ msgstr "Sluta spela"
-
 #~ msgid "Close tray"
 #~ msgstr "Stäng luckan"
 
 #~ msgid "Open tray"
 #~ msgstr "Öppna luckan"
-
-#~ msgid "CDROM device"
-#~ msgstr "CDROM-enhet"
 
 #~ msgid "Mixer Command"
 #~ msgstr "Mixerkommando"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-01-16 07:30-0500\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2002-01-18 05:53+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <hornet@navigators.lv>\n"
@@ -13,8 +13,29 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gmix/device_labels_alsa.h:7
-#: gmix/device_labels_linux.h:7
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+msgid "Category"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:387
+msgid "Artist and Title"
+msgstr ""
+
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
 msgstr "Sintez"
 
@@ -46,13 +67,11 @@ msgstr "MIC"
 msgid "CD"
 msgstr "CD"
 
-#: gmix/device_labels_alsa.h:15
-#: gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
 msgid "Video"
 msgstr "Video"
 
-#: gmix/device_labels_alsa.h:16
-#: gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
 msgid "Radio"
 msgstr "Radio"
 
@@ -276,7 +295,7 @@ msgstr "inicializēt mekšeri(us) no saglabātās konfigurācijas un iziet"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "nesaglabāt (izmainītos) mikšera uzstādījumus konfigurācijā"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -286,57 +305,75 @@ msgstr ""
 "Please check that you have permission to open /dev/mixer\n"
 "and make sure you have sound support compiled into your kernel."
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
-""
 msgstr ""
 "Brīdinājums: Šī gmix versija tika kompilēta ar\n"
 "OSS versiju %d.%d.%d, un jūsu sistēma darbojas ar\n"
 "versiju vecāku par 3.6.0.\n"
-""
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
-""
 msgstr ""
 "Brīdinājums: Šī gmix versija tika kompilēta ar\n"
 "OSS versiju %d.%d.%d, un jūsu sistēma darbojas ar\n"
 "versiju vecāku par %d.%d.%d.\n"
-""
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Slēgt"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Ierak."
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Ierak."
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Kluss"
 
-#: gmix/gmix.c:1086
-#: gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Skaļuma Kontrole"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome Mikšeris"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 msgid "This is a mixer for sound devices"
 msgstr "Šis ir skaņas iekārtu mikšeris"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr "Noregulēt skaļuma līmeni"
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -367,7 +404,7 @@ msgstr "Lietot mikšeru uzrakstus"
 msgid "Defaults"
 msgstr "Noklusētie"
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Rekvizīti"
 
@@ -375,13 +412,237 @@ msgstr "Rekvizīti"
 msgid "Labels"
 msgstr "Nosaukumi"
 
-#: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "GNOME Skaņas ierakstītājs:"
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "Atskaņot"
 
-#: grecord/src/grec.c:90
-#: grecord/src/grec.c:120
-#: grecord/src/grec.c:1032
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "Ceļi"
+
+#: gnome-cd/callbacks.c:568
+#, fuzzy
+msgid "Copyright (C) 2001, 2002"
+msgstr "Kopēšanas tiesības (C)  2000 Andreas Hyden"
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, c-format
+msgid "%d - Unknown"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "Stop"
+
+#: gnome-cd/gnome-cd.c:263
+msgid "_Play / Pause"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+msgid "_Eject disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+msgid "Set device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+msgid "No CD device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Track editor"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:493
+msgid "Play / Pause"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Stop"
+
+#: gnome-cd/gnome-cd.c:502
+msgid "Fast forward"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject"
+msgstr "Efekts"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "Palaist mikšeri..."
+
+#: gnome-cd/gnome-cd.c:519
+msgid "Open Mixer"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Change volume"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Volume"
+msgstr "Skaļuma mērītājs"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+#, fuzzy
+msgid "CD Player"
+msgstr "Atskaņot"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Rekvizīti"
+
+#: gnome-cd/preferences.c:687
+msgid "CD player de_vice"
+msgstr ""
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+msgid "Do _nothing"
+msgstr ""
+
+#: gnome-cd/preferences.c:728
+msgid "Start _playing CD"
+msgstr ""
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Pārtraukt atskaņošsanu/ierakstīšanu"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+msgid "Do not_hing"
+msgstr ""
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Pārtraukt atskaņošsanu/ierakstīšanu"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr "Ierakstīt skaņas klipus"
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "Skaņas Ierakstītājs"
+
+#: grecord/src/grec.c:51
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "Skaņas Ierakstītājs"
+
+#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
 msgstr "Nevarēja sadalīt bērna procesu"
 
@@ -397,23 +658,17 @@ msgstr "Atskaņoju..."
 msgid "Converting file..."
 msgstr "Konvertēju failu..."
 
-#: grecord/src/grec.c:241
-#: grecord/src/grec.c:654
-#: grecord/src/gui.c:334
+#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:334
 #: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Audioformāts: "
 
-#: grecord/src/grec.c:245
-#: grecord/src/grec.c:640
-#: grecord/src/gui.c:341
+#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:341
 #: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Parauga kvalitāte:"
 
-#: grecord/src/grec.c:255
-#: grecord/src/grec.c:644
-#: grecord/src/gui.c:348
+#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:348
 #: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Kanāli:"
@@ -537,9 +792,7 @@ msgstr "Atcelt visas konkretajā parugā izdarītās izmaiņas"
 msgid "Effects"
 msgstr "Efekti"
 
-#: grecord/src/gui.c:122
-#: grecord/src/gui.c:123
-#: grecord/src/gui.c:876
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:876
 msgid "Show time"
 msgstr "Parādīt laiku"
 
@@ -547,8 +800,7 @@ msgstr "Parādīt laiku"
 msgid "Show soundinfo"
 msgstr "Parādīt skaņas info"
 
-#: grecord/src/gui.c:130
-#: grecord/src/gui.c:881
+#: grecord/src/gui.c:130 grecord/src/gui.c:881
 msgid "Show sound information"
 msgstr "Parādīt skaņas informāciju"
 
@@ -560,17 +812,9 @@ msgstr "Jauns"
 msgid "Create new sample"
 msgstr "Izveidot jaunu paraugu"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "Atskaņot"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Atskaņot pašreizējo paraugu"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Stop"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -611,11 +855,6 @@ msgstr "Fails '%s' nav atbalsīts skaņas fails."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:454
-#: grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "GNOME Skaņas Ierakstītājs"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -719,13 +958,11 @@ msgstr "Skaņas opcijas"
 msgid "Audioformat:"
 msgstr "Audioformāts:"
 
-#: grecord/src/gui.c:785
-#: grecord/src/gui.c:795
+#: grecord/src/gui.c:785 grecord/src/gui.c:795
 msgid "8bit pcm"
 msgstr "8bit pcm"
 
-#: grecord/src/gui.c:786
-#: grecord/src/gui.c:797
+#: grecord/src/gui.c:786 grecord/src/gui.c:797
 msgid "16bit pcm"
 msgstr "16bit pcm"
 
@@ -737,13 +974,11 @@ msgstr "Parauga kvalitāte:"
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:844
-#: grecord/src/gui.c:854
+#: grecord/src/gui.c:844 grecord/src/gui.c:854
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:845
-#: grecord/src/gui.c:856
+#: grecord/src/gui.c:845 grecord/src/gui.c:856
 msgid "stereo"
 msgstr "stereo"
 
@@ -779,11 +1014,15 @@ msgstr "Norādi failu, lai sālktu ierakstīšanu"
 msgid "Specify a file to start playing"
 msgstr "Norādi failu, kuru atskaņot"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "GNOME Skaņas Ierakstītājs"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "Nerādīt šo paziņojumu vēlreiz."
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -815,7 +1054,8 @@ msgstr ""
 
 #: grecord/src/preferences.c:263
 msgid ""
-"You havn't entered a mixer command; you will not be able to start the mixer.\n"
+"You havn't entered a mixer command; you will not be able to start the "
+"mixer.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Tu neesi ievadījis mikšera komandu; tu nevarēsi palaist mikšeri.\n"
@@ -853,7 +1093,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory %s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Tev nav īstās temp direktorija %s atļaujas (rakstīt & lasīt).\n"
@@ -873,8 +1114,7 @@ msgstr ""
 msgid " untitled.wav"
 msgstr " beznosaukuma.wav"
 
-#: grecord/src/sound.c:146
-#: grecord/src/sound.c:150
+#: grecord/src/sound.c:146 grecord/src/sound.c:150
 msgid "Adding echo to sample..."
 msgstr "Pievienoju paraugam atbalsi..."
 
@@ -918,25 +1158,22 @@ msgstr "Atvērt mērītāja vertikālo versiju."
 msgid "Act as recording level meter."
 msgstr "Darboties kā ieraksta līmeņa mērītājs."
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
-msgid ""
-"Host is %s\n"
-""
-msgstr ""
-"Resursdators ir %s\n"
-""
+msgid "Host is %s\n"
+msgstr "Resursdators ir %s\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "Ieraksta līmenis"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "Skaļuma mērītājs"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+#, fuzzy
+msgid "Monitor the recording input volume"
 msgstr "Novērot ieraksta ievades skaļumu"
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -951,15 +1188,5 @@ msgstr "Novērot skaņas izvades skaļumu"
 msgid "Volume Monitor"
 msgstr "Skaļuma Novērotājs"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "Ierakstīt skaņas klipus"
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "Skaņas Ierakstītājs"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Noregulēt skaļuma līmeni"
-
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "GNOME Skaņas ierakstītājs:"

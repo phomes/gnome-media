@@ -5,13 +5,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2001-06-04 00:05+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-kr\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+#, fuzzy
+msgid "Category"
+msgstr "분류: "
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr "디스크 아이디"
+
+#: cddb-slave2/cddb-slave.c:387
+#, fuzzy
+msgid "Artist and Title"
+msgstr "가수 / 제목"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -273,14 +297,14 @@ msgstr "저장된 설정상태에서부터 믹서 초기화하고 끝내기"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "(변경된) 믹서 설정상태를 저장하지 않음"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
 "and make sure you have sound support compiled into your kernel."
 msgstr ""
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -291,7 +315,7 @@ msgstr ""
 "컴파일 되었고 이 시스템에서는 3.6.0 이전의 \n"
 "버젼이 실행되고 있습니다.\n"
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -302,32 +326,55 @@ msgstr ""
 "컴파일 되었고 이 시스템에서는 %d.%d.%d 버젼이\n"
 "실행되고 있습니다.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "잠금"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "녹음"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "녹음"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "조용"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 #, fuzzy
 msgid "Volume Control"
 msgstr "볼륨 낮춤"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "그믹스 - 그놈 믹서"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 #, fuzzy
 msgid "This is a mixer for sound devices"
 msgstr "OSS 사운드장치를 위한 믹서입니다."
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -359,7 +406,7 @@ msgstr "사용자 인터페이스"
 msgid "Defaults"
 msgstr ""
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "선택사항"
 
@@ -367,9 +414,245 @@ msgstr "선택사항"
 msgid "Labels"
 msgstr ""
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "재생"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "재생/일시정지"
+
+#: gnome-cd/callbacks.c:568
+msgid "Copyright (C) 2001, 2002"
+msgstr ""
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, fuzzy, c-format
+msgid "%d - Unknown"
+msgstr "모름 / 모름"
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "멈춤"
+
+#: gnome-cd/gnome-cd.c:263
+#, fuzzy
+msgid "_Play / Pause"
+msgstr "재생/일시정지"
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+#, fuzzy
+msgid "_Eject disc"
+msgstr "빼기"
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "씨디롬 장치"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "씨디롬 장치"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr "트랙 편집기 열기"
+
+#: gnome-cd/gnome-cd.c:425
+#, fuzzy
+msgid "Track editor"
+msgstr "트랙 편집기"
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr "되감기"
+
+#: gnome-cd/gnome-cd.c:493
+#, fuzzy
+msgid "Play / Pause"
+msgstr "재생/일시정지"
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "멈춤"
+
+#: gnome-cd/gnome-cd.c:502
+#, fuzzy
+msgid "Fast forward"
+msgstr "빨리 감기"
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject CD"
+msgstr "빼기"
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject"
+msgstr "빼기"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "믹서 실행..."
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open Mixer"
+msgstr "믹서"
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Change volume"
+msgstr "글꼴 변경"
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Volume"
+msgstr "볼륨"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD 재생기"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "선택사항"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "씨디롬 장치"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "아무것도 안 함"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "재생 시작"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "재생 정지"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "아무것도 안 함"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "재생 정지"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "음향 녹음기"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "그놈 음향 녹음기:"
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "음향 녹음기"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -541,17 +824,9 @@ msgstr "새로운"
 msgid "Create new sample"
 msgstr "새로운 샘플을 생성합니다"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "재생"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "현재 샘플을 재생합니다"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "멈춤"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -592,10 +867,6 @@ msgstr "'%s'파일은 지원하지 않는 음향파일입니다."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr ""
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "그놈 음향 녹음기"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -755,11 +1026,15 @@ msgstr "녹음을 시작할 파일을 지정"
 msgid "Specify a file to start playing"
 msgstr "연주를 시작할 파일을 지정"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "그놈 음향 녹음기"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "이 메세지를 다음에 보이지 않음"
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -895,22 +1170,22 @@ msgstr "측정기를 아래위로 길게 열기."
 msgid "Act as recording level meter."
 msgstr ""
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "호스트는 %s입니다\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 #, fuzzy
 msgid "Recording level"
 msgstr "녹음중"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "볼륨 측정기"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -927,17 +1202,8 @@ msgstr ""
 msgid "Volume Monitor"
 msgstr "볼륨 측정기"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "음향 녹음기"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "그놈 음향 녹음기:"
 
 #~ msgid "Ready for command: %s\n"
 #~ msgstr "명령어 준비: %s\n"
@@ -988,9 +1254,6 @@ msgstr ""
 #~ "GTCD는 그놈 씨디 재생 프로그램입니다. 이 프로그램은 CDDB 기능을 포함합니"
 #~ "다. 이 프로그램을 만드는 데 도움을 준 사람들은 같이 배포되는 'Thanks' 파일"
 #~ "에 들어 있습니다."
-
-#~ msgid "Disc ID"
-#~ msgstr "디스크 아이디"
 
 #~ msgid "Disc Title"
 #~ msgstr "디스크 제목"
@@ -1085,32 +1348,14 @@ msgstr ""
 #~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*,*-r-*"
 
-#~ msgid "Play/Pause"
-#~ msgstr "재생/일시정지"
-
-#~ msgid "Eject"
-#~ msgstr "빼기"
-
 #~ msgid "Skip backwards"
 #~ msgstr "뒤로 넘어가기"
 
 #~ msgid "Skip forwards"
 #~ msgstr "앞으로 넘어가기"
 
-#~ msgid "Open track editor"
-#~ msgstr "트랙 편집기 열기"
-
 #~ msgid "Quit"
 #~ msgstr "끝내기"
-
-#~ msgid "Mixer"
-#~ msgstr "믹서"
-
-#~ msgid "Fast Forward"
-#~ msgstr "빨리 감기"
-
-#~ msgid "Rewind"
-#~ msgstr "되감기"
 
 #~ msgid "Volume Up"
 #~ msgstr "볼륨 높임"
@@ -1123,9 +1368,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "오류"
-
-#~ msgid "Volume"
-#~ msgstr "볼륨"
 
 #~ msgid "Cannot load requested font. Reloading default font."
 #~ msgstr "요청한 글꼴을 읽을 수 없음. 기본 글꼴을 다시 읽음."
@@ -1151,14 +1393,8 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "제목"
 
-#~ msgid "Track Editor"
-#~ msgstr "트랙 편집기"
-
 #~ msgid "Disc Information (%02u:%02u minutes)"
 #~ msgstr "디스크 정보 (%02u:%02u 분)"
-
-#~ msgid "Artist / Title"
-#~ msgstr "가수 / 제목"
 
 #~ msgid "Track Information"
 #~ msgstr "트랙 정보"
@@ -1185,9 +1421,6 @@ msgstr ""
 #~ msgid "To: "
 #~ msgstr "수신자: "
 
-#~ msgid "Category: "
-#~ msgstr "분류: "
-
 #~ msgid ""
 #~ "Error accessing cdrom device.\n"
 #~ "Please check to make sure cdrom drive support\n"
@@ -1202,9 +1435,6 @@ msgstr ""
 #~ "접근 권한이 설정되어 있는지 확인하세요.\n"
 #~ "\n"
 #~ "이유: %s\n"
-
-#~ msgid "Unknown / Unknown"
-#~ msgstr "모름 / 모름"
 
 #~ msgid "Track %d"
 #~ msgstr "%d번 트랙"
@@ -1221,23 +1451,11 @@ msgstr ""
 #~ msgid "About"
 #~ msgstr "이 프로그램은"
 
-#~ msgid "Do nothing"
-#~ msgstr "아무것도 안 함"
-
-#~ msgid "Start playing"
-#~ msgstr "재생 시작"
-
-#~ msgid "Stop playing"
-#~ msgstr "재생 정지"
-
 #~ msgid "Close tray"
 #~ msgstr "트레이 닫기"
 
 #~ msgid "Open tray"
 #~ msgstr "트레이 열기"
-
-#~ msgid "CDROM device"
-#~ msgstr "씨디롬 장치"
 
 #~ msgid "Mixer Command"
 #~ msgstr "믹서 명령"
@@ -1247,9 +1465,6 @@ msgstr ""
 
 #~ msgid "Track/title font"
 #~ msgstr "트랙/제목 글꼴"
-
-#~ msgid "Change font"
-#~ msgstr "글꼴 변경"
 
 #~ msgid "Show handles (restart required)"
 #~ msgstr "핸들 보여주기 (재시작해야 함)"
@@ -1284,9 +1499,6 @@ msgstr ""
 
 #~ msgid "ESD Volume Meter"
 #~ msgstr "ESD 볼륨 측정기"
-
-#~ msgid "CD Player"
-#~ msgstr "CD 재생기"
 
 #~ msgid "Gnome CD Player"
 #~ msgstr "그놈 CD 재생기"

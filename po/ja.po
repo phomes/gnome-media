@@ -7,13 +7,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS-20001116\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2000-11-16 02:29+0900\n"
 "Last-Translator: Akira TAGOH <tagoh@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+#, fuzzy
+msgid "Category"
+msgstr "カテゴリ: "
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr "ディスクID"
+
+#: cddb-slave2/cddb-slave.c:387
+#, fuzzy
+msgid "Artist and Title"
+msgstr "アーティスト / タイトル"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -289,14 +313,14 @@ msgstr "保存されている設定ファイルでミキサーを初期化し終了"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "設定ファイルに (変更された) ミキサー調節を保存しない"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
 "and make sure you have sound support compiled into your kernel."
 msgstr ""
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -304,7 +328,7 @@ msgid ""
 "a version prior to 3.6.0.\n"
 msgstr ""
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -312,32 +336,55 @@ msgid ""
 "version %d.%d.%d.\n"
 msgstr ""
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "連動"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "録音"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "録音"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "消音"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 #, fuzzy
 msgid "Volume Control"
 msgstr "音量"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - GNOME版ミキサー"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 #, fuzzy
 msgid "This is a mixer for sound devices"
 msgstr "OSS サウンドデバイス用ミキサーです。"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -368,7 +415,7 @@ msgstr "ミキサーラベルを使用"
 msgid "Defaults"
 msgstr ""
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "設定"
 
@@ -376,9 +423,247 @@ msgstr "設定"
 msgid "Labels"
 msgstr ""
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "演奏"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "演奏/停止"
+
+#: gnome-cd/callbacks.c:568
+#, fuzzy
+msgid "Copyright (C) 2001, 2002"
+msgstr "Copyright (C)  2000 Andreas Hyden"
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, fuzzy, c-format
+msgid "%d - Unknown"
+msgstr "未知 / 未知"
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "停止"
+
+#: gnome-cd/gnome-cd.c:263
+#, fuzzy
+msgid "_Play / Pause"
+msgstr "演奏/停止"
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+#, fuzzy
+msgid "_Eject disc"
+msgstr "イジェクト"
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "CDROM デバイス"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "CDROM デバイス"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr "トラックエディタを開く"
+
+#: gnome-cd/gnome-cd.c:425
+#, fuzzy
+msgid "Track editor"
+msgstr "トラックエディタ"
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:493
+#, fuzzy
+msgid "Play / Pause"
+msgstr "演奏/停止"
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "停止"
+
+#: gnome-cd/gnome-cd.c:502
+#, fuzzy
+msgid "Fast forward"
+msgstr "前にスキップ"
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject CD"
+msgstr "イジェクト"
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject"
+msgstr "イジェクト"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "ミキサの実行..."
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open Mixer"
+msgstr "オーディオミキサー"
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Change volume"
+msgstr "フォント変更"
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Volume"
+msgstr "音量"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CDプレーヤー"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "設定"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "CDROM デバイス"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "何もしない"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "演奏開始"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "演奏停止"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "何もしない"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "演奏停止"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+#, fuzzy
+msgid "Sound recorder"
+msgstr "GNOME サウンドレコーダ"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "GNOME サウンドレコーダ:"
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "GNOME サウンドレコーダ"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -550,17 +835,9 @@ msgstr "新規"
 msgid "Create new sample"
 msgstr "新規サンプルを作成する"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "演奏"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "現在のサンプルを演奏する"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "停止"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -601,10 +878,6 @@ msgstr "ファイル '%s' はサウンドファイルをサポートしていません"
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr ""
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "GNOME サウンドレコーダ"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -764,11 +1037,15 @@ msgstr "指定されたファイルへ録音を開始する"
 msgid "Specify a file to start playing"
 msgstr "指定されたファイルを演奏する"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "GNOME サウンドレコーダ"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "再度このメッセージを表示しない"
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -904,22 +1181,22 @@ msgstr "縦向きのメーターを開く。"
 msgid "Act as recording level meter."
 msgstr ""
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "ホストは%sです。\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 #, fuzzy
 msgid "Recording level"
 msgstr "録音中"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "ボリュームメーター"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -936,18 +1213,8 @@ msgstr ""
 msgid "Volume Monitor"
 msgstr "ボリュームメーター"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-#, fuzzy
-msgid "Sound recorder"
-msgstr "GNOME サウンドレコーダ"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "GNOME サウンドレコーダ:"
 
 #~ msgid "Ready for command: %s\n"
 #~ msgstr "命令実行準備完了: %s\n"
@@ -997,9 +1264,6 @@ msgstr ""
 #~ msgstr ""
 #~ "GTCDはCDDBをサポートしたGnome版CDプレーヤーです。作者に関しては配布物にあ"
 #~ "る'Thanks'ファイルを参照して下さい。"
-
-#~ msgid "Disc ID"
-#~ msgstr "ディスクID"
 
 #~ msgid "Disc Title"
 #~ msgstr "ディスクタイトル"
@@ -1094,27 +1358,11 @@ msgstr ""
 #~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 #~ msgstr "-misc-fixed-medium-r-normal-*-*-100-*-*-c-*-iso8859-1,*-r-*"
 
-#~ msgid "Play/Pause"
-#~ msgstr "演奏/停止"
-
-#~ msgid "Eject"
-#~ msgstr "イジェクト"
-
 #~ msgid "Skip backwards"
 #~ msgstr "後ろにスキップ"
 
-#~ msgid "Skip forwards"
-#~ msgstr "前にスキップ"
-
-#~ msgid "Open track editor"
-#~ msgstr "トラックエディタを開く"
-
 #~ msgid "Quit"
 #~ msgstr "終了"
-
-#, fuzzy
-#~ msgid "Mixer"
-#~ msgstr "オーディオミキサー"
 
 #, fuzzy
 #~ msgid "Volume Up"
@@ -1128,9 +1376,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "エラー"
-
-#~ msgid "Volume"
-#~ msgstr "音量"
 
 #~ msgid "Filename of the CD device"
 #~ msgstr "CD デバイスのファイル名"
@@ -1147,14 +1392,8 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "タイトル"
 
-#~ msgid "Track Editor"
-#~ msgstr "トラックエディタ"
-
 #~ msgid "Disc Information (%02u:%02u minutes)"
 #~ msgstr "ディスク情報(%02u:%02u 分)"
-
-#~ msgid "Artist / Title"
-#~ msgstr "アーティスト / タイトル"
 
 #~ msgid "Track Information"
 #~ msgstr "トラック情報"
@@ -1181,9 +1420,6 @@ msgstr ""
 #~ msgid "To: "
 #~ msgstr "宛先: "
 
-#~ msgid "Category: "
-#~ msgstr "カテゴリ: "
-
 #~ msgid ""
 #~ "Error accessing cdrom device.\n"
 #~ "Please check to make sure cdrom drive support\n"
@@ -1198,9 +1434,6 @@ msgstr ""
 #~ "かどうか、確かめて下さい。\n"
 #~ "\n"
 #~ "理由: %s\n"
-
-#~ msgid "Unknown / Unknown"
-#~ msgstr "未知 / 未知"
 
 #~ msgid "Track %d"
 #~ msgstr "トラック %d"
@@ -1218,32 +1451,17 @@ msgstr ""
 #~ msgid "About"
 #~ msgstr "情報"
 
-#~ msgid "Do nothing"
-#~ msgstr "何もしない"
-
-#~ msgid "Start playing"
-#~ msgstr "演奏開始"
-
-#~ msgid "Stop playing"
-#~ msgstr "演奏停止"
-
 #~ msgid "Close tray"
 #~ msgstr "トレイを閉じる"
 
 #~ msgid "Open tray"
 #~ msgstr "トレイを開く"
 
-#~ msgid "CDROM device"
-#~ msgstr "CDROM デバイス"
-
 #~ msgid "Track/title color"
 #~ msgstr "トラック/タイトルの色"
 
 #~ msgid "Track/title font"
 #~ msgstr "トラック/タイトルのフォント"
-
-#~ msgid "Change font"
-#~ msgstr "フォント変更"
 
 #~ msgid "Show handles (restart required)"
 #~ msgstr "把手を表示 (再起動が必要)"
@@ -1277,9 +1495,6 @@ msgstr ""
 
 #~ msgid "ESD Volume Meter"
 #~ msgstr "ESDボリュームメーター"
-
-#~ msgid "CD Player"
-#~ msgstr "CDプレーヤー"
 
 #~ msgid "Gnome CD Player"
 #~ msgstr "Gnome版CDプレーヤー"

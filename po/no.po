@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2002-02-10 13:53+0100\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2002-02-10 13:56+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: cddb-slave2/cddb-slave.c:358
+#: cddb-slave2/cddb-slave.c:364
 msgid "Multiple matches..."
 msgstr "Flere treff..."
 
-#: cddb-slave2/cddb-slave.c:362
+#: cddb-slave2/cddb-slave.c:368
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -25,15 +25,15 @@ msgstr ""
 "Flere treff funnet i databasen.\n"
 "Under finner du en liste med mulige treff; velg det som passer best"
 
-#: cddb-slave2/cddb-slave.c:373
+#: cddb-slave2/cddb-slave.c:379
 msgid "Category"
 msgstr "Kategori"
 
-#: cddb-slave2/cddb-slave.c:377
+#: cddb-slave2/cddb-slave.c:383
 msgid "Disc ID"
 msgstr "Plate-ID"
 
-#: cddb-slave2/cddb-slave.c:381
+#: cddb-slave2/cddb-slave.c:387
 msgid "Artist and Title"
 msgstr "Artist og tittel"
 
@@ -329,29 +329,46 @@ msgstr ""
 "OSS versjon %d.%d.%d, og ditt system kjører\n"
 "versjon %d.%d.%d.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1016
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1026
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:1044
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Innsp."
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:1087 gmix/gnome-volume-control.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Volumkontroll"
 
-#: gmix/gmix.c:1418
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:1420
+#: gmix/gmix.c:1466
 msgid "This is a mixer for sound devices"
 msgstr "Dette er en mikser for lydenheter"
 
@@ -389,7 +406,7 @@ msgstr "Bruk mikseretiketter"
 msgid "Defaults"
 msgstr "Forvalg"
 
-#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:396
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Innstillinger"
 
@@ -398,20 +415,20 @@ msgid "Labels"
 msgstr "Etiketter"
 
 #: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
-#: gnome-cd/gnome-cd.c:459 grecord/src/gui.c:245
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
 msgid "Play"
 msgstr "Spill"
 
-#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:275
-#: gnome-cd/callbacks.c:314 gnome-cd/callbacks.c:338 gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:568
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright © 2000, 2002"
 
-#: gnome-cd/callbacks.c:551
+#: gnome-cd/callbacks.c:569
 msgid "A GNOME cd player"
 msgstr "En GNOME CD-spiller"
 
@@ -423,36 +440,36 @@ msgstr "Ukjent artist"
 msgid "Unknown disc"
 msgstr "Ukjent plate"
 
-#: gnome-cd/gnome-cd.c:123
+#: gnome-cd/gnome-cd.c:124
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - ukjent"
 
-#: gnome-cd/gnome-cd.c:259
+#: gnome-cd/gnome-cd.c:261
 msgid "P_revious track"
 msgstr "Fo_rrige spor"
 
-#: gnome-cd/gnome-cd.c:260
+#: gnome-cd/gnome-cd.c:262
 msgid "_Stop"
 msgstr "_Stopp"
 
-#: gnome-cd/gnome-cd.c:261
+#: gnome-cd/gnome-cd.c:263
 msgid "_Play / Pause"
 msgstr "S_pill / pause"
 
-#: gnome-cd/gnome-cd.c:262
+#: gnome-cd/gnome-cd.c:264
 msgid "_Next track"
 msgstr "_Neste spor"
 
-#: gnome-cd/gnome-cd.c:263
+#: gnome-cd/gnome-cd.c:265
 msgid "_Eject disc"
 msgstr "_Løs ut plate"
 
-#: gnome-cd/gnome-cd.c:264
+#: gnome-cd/gnome-cd.c:266
 msgid "_About Gnome-CD"
 msgstr "_Om GNOME-CD"
 
-#: gnome-cd/gnome-cd.c:335
+#: gnome-cd/gnome-cd.c:338
 msgid ""
 "There is no CD device set. This means that GnomeCD\n"
 "will be unable to run. Press Set device to go to a dialog\n"
@@ -462,75 +479,86 @@ msgstr ""
 "ikke vil kunne starte. Trykk «Sett enhet» for å gå til en dialog\n"
 "hvor du kan sette enheten, eller klikk Avslutt for å avslutte GNOME-CD"
 
-#: gnome-cd/gnome-cd.c:339
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
 msgid "Set device"
 msgstr "Sett enhet"
 
-#: gnome-cd/gnome-cd.c:341
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
 msgid "No CD device"
 msgstr "Ingen CD-enhet"
 
-#: gnome-cd/gnome-cd.c:391
+#: gnome-cd/gnome-cd.c:378
+#, fuzzy
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+"Ingen CD-enhet er satt. Dette betyr at GNOME-CD\n"
+"ikke vil kunne starte. Trykk «Sett enhet» for å gå til en dialog\n"
+"hvor du kan sette enheten, eller klikk Avslutt for å avslutte GNOME-CD"
+
+#: gnome-cd/gnome-cd.c:425
 msgid "Open track editor"
 msgstr "Åpne sporredigering"
 
-#: gnome-cd/gnome-cd.c:391
+#: gnome-cd/gnome-cd.c:425
 msgid "Track editor"
 msgstr "Sporredigering"
 
-#: gnome-cd/gnome-cd.c:434
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous track"
 msgstr "Forrige spor"
 
-#: gnome-cd/gnome-cd.c:434
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous"
 msgstr "Forrige"
 
-#: gnome-cd/gnome-cd.c:438
+#: gnome-cd/gnome-cd.c:472
 msgid "Rewind"
 msgstr "Spol tilbake"
 
-#: gnome-cd/gnome-cd.c:459
+#: gnome-cd/gnome-cd.c:493
 msgid "Play / Pause"
 msgstr "Spill / pause"
 
-#: gnome-cd/gnome-cd.c:464 grecord/src/gui.c:257
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
 msgid "Stop"
 msgstr "Stopp"
 
-#: gnome-cd/gnome-cd.c:468
+#: gnome-cd/gnome-cd.c:502
 msgid "Fast forward"
 msgstr "Spol fremover"
 
-#: gnome-cd/gnome-cd.c:476
+#: gnome-cd/gnome-cd.c:510
 msgid "Next track"
 msgstr "Neste spor"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject CD"
 msgstr "Løs ut CD"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject"
 msgstr "Løs ut"
 
-#: gnome-cd/gnome-cd.c:485
+#: gnome-cd/gnome-cd.c:519
 msgid "Open mixer"
 msgstr "Åpne mikser"
 
-#: gnome-cd/gnome-cd.c:485
+#: gnome-cd/gnome-cd.c:519
 msgid "Open Mixer"
 msgstr "Åpne mikser"
 
-#: gnome-cd/gnome-cd.c:490
+#: gnome-cd/gnome-cd.c:524
 msgid "Change volume"
 msgstr "Endre volum"
 
-#: gnome-cd/gnome-cd.c:490
+#: gnome-cd/gnome-cd.c:524
 msgid "Volume"
 msgstr "Volum"
 
-#: gnome-cd/gnome-cd.c:517
+#: gnome-cd/gnome-cd.c:552
 msgid "Cannot create player"
 msgstr "Kan ikke opprette spiller"
 
@@ -542,61 +570,61 @@ msgstr "CD-spiller"
 msgid "Play audio CDs"
 msgstr "Spil lyd-CDer"
 
-#: gnome-cd/preferences.c:663
+#: gnome-cd/preferences.c:669
 msgid "Gnome-CD Preferences"
 msgstr "GNOME-CD brukervalg"
 
-#: gnome-cd/preferences.c:681
+#: gnome-cd/preferences.c:687
 msgid "CD player de_vice"
 msgstr "CD-spiller en_het"
 
-#: gnome-cd/preferences.c:692
+#: gnome-cd/preferences.c:698
 msgid "_Apply change"
 msgstr "_Aktiver endring"
 
 #. left side
-#: gnome-cd/preferences.c:705
+#: gnome-cd/preferences.c:711
 msgid "When Gnome-CD starts"
 msgstr "Når GNOME-CD starter"
 
-#: gnome-cd/preferences.c:713
+#: gnome-cd/preferences.c:719
 msgid "Do _nothing"
 msgstr "Ikke gjør _noe"
 
-#: gnome-cd/preferences.c:722
+#: gnome-cd/preferences.c:728
 msgid "Start _playing CD"
 msgstr "Start avs_pilling av CD"
 
-#: gnome-cd/preferences.c:731
+#: gnome-cd/preferences.c:737
 msgid "_Stop playing CD"
 msgstr "_Stopp avspilling av CD"
 
-#: gnome-cd/preferences.c:743
+#: gnome-cd/preferences.c:749
 msgid "Attempt to _close CD tray"
 msgstr "Prøv å _lukke CD-skuffen"
 
 #. Right side
-#: gnome-cd/preferences.c:754
+#: gnome-cd/preferences.c:760
 msgid "When Gnome-CD quits"
 msgstr "Når GNOME-CD avslutter"
 
-#: gnome-cd/preferences.c:762
+#: gnome-cd/preferences.c:768
 msgid "Do not_hing"
 msgstr "I_kke gjør noe"
 
-#: gnome-cd/preferences.c:771
+#: gnome-cd/preferences.c:777
 msgid "S_top playing CD"
 msgstr "S_topp avspilling av CD"
 
-#: gnome-cd/preferences.c:780
+#: gnome-cd/preferences.c:786
 msgid "Attempt to _open CD tray"
 msgstr "Prøv å _åpne CD-skuffen"
 
-#: gnome-cd/preferences.c:789
+#: gnome-cd/preferences.c:795
 msgid "Attempt to c_lose CD tray"
 msgstr "Prøv å _lukke CD-skuffen"
 
-#: gnome-cd/preferences.c:819
+#: gnome-cd/preferences.c:825
 msgid "Theme name"
 msgstr "Temanavn"
 

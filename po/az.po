@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2000-09-16 17:16GMT +0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkish <linuxaz@azerimal.net>\n"
@@ -13,6 +13,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.8\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+#, fuzzy
+msgid "Category"
+msgstr "Kateqoriya: "
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr "Cd ID-si"
+
+#: cddb-slave2/cddb-slave.c:387
+#, fuzzy
+msgid "Artist and Title"
+msgstr "Sənətkar / Ad"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -274,7 +298,7 @@ msgstr "mixer(ləri) qeyd edilmiş qurğularla başlat və çıx"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "(dəyişdirilmiş) mixer-qurğularını qurğulara qeyd etmə"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -284,7 +308,7 @@ msgstr ""
 "Xahil edirik, /dev/mixer avadanlığını açma izniniz olub olmaduğunu\n"
 "və çəkirdək içindi səs dəstəyinin dərlənib dərlənmədiyini yoxlayın."
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -295,7 +319,7 @@ msgstr ""
 "OSS buraxılış %d.%d.%d ilə dərlənibdir, və sizin siztemdə də\n"
 "3.6.0 buraxılışına uyğun gələni var.\n"
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -306,32 +330,55 @@ msgstr ""
 "OSS buraxılış %d.%d.%d ilə dərlənibdir, və sizin siztemdə də\n"
 "%d.%d.%d buraxılışına uyğun gələni var.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Qıfılla"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Qeyd"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Qeyd"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Səssiz"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 #, fuzzy
 msgid "Volume Control"
 msgstr "Səsi Alçalt"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome Mixer-i"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 #, fuzzy
 msgid "This is a mixer for sound devices"
 msgstr "Bu OSS səs-avadanlıqları üçün bir mixer-dir"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -362,7 +409,7 @@ msgstr "İstifadəçi mikser etiketləri"
 msgid "Defaults"
 msgstr "Əsaslar"
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Seçənəklər"
 
@@ -370,9 +417,246 @@ msgstr "Seçənəklər"
 msgid "Labels"
 msgstr "Etiketlər"
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "Çal"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "Çal/Fasilə"
+
+#: gnome-cd/callbacks.c:568
+#, fuzzy
+msgid "Copyright (C) 2001, 2002"
+msgstr "Təlif haqqı (C) 2000 Andreas Hydén"
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, fuzzy, c-format
+msgid "%d - Unknown"
+msgstr "Namə'lum / Namə'lum"
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "Dayan"
+
+#: gnome-cd/gnome-cd.c:263
+#, fuzzy
+msgid "_Play / Pause"
+msgstr "Çal/Fasilə"
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+#, fuzzy
+msgid "_Eject disc"
+msgstr "Çıxart"
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "Cd-sürücüsü"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "Cd-sürücüsü"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr "Parça düzəldicisini aç"
+
+#: gnome-cd/gnome-cd.c:425
+#, fuzzy
+msgid "Track editor"
+msgstr "Parça Düzəldicisi"
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr "Yenidən Çevir"
+
+#: gnome-cd/gnome-cd.c:493
+#, fuzzy
+msgid "Play / Pause"
+msgstr "Çal/Fasilə"
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Dayan"
+
+#: gnome-cd/gnome-cd.c:502
+#, fuzzy
+msgid "Fast forward"
+msgstr "Sür'ətli Qabağa"
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject CD"
+msgstr "Çıxart"
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject"
+msgstr "Çıxart"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "Mikseri işə sal..."
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open Mixer"
+msgstr "Mikser"
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Change volume"
+msgstr "Yazı növünü dəyişdir"
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Volume"
+msgstr "Səs səviyyəsi"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD Çalğıcı"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Seçənəklər"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "Cd-sürücüsü"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "Heç bir şey etmə"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "Çalmağa başla"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Çalmanı dayandır"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "Heç bir şey etmə"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Çalmanı dayandır"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "GNOME qeydiyyatcısı"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "GNOME Səs Qeydiyyatcısı : "
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "GNOME qeydiyyatcısı"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -544,17 +828,9 @@ msgstr "Yeni"
 msgid "Create new sample"
 msgstr "Yeni bir parça yarat"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "Çal"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Hazırkı parçanı çal"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Dayan"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -595,10 +871,6 @@ msgstr "`%s' dəstəklanən növdən bir səs faylı deyildir ."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "GNOME Səs Qeydiyyatcısı"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -759,11 +1031,15 @@ msgstr "Qeydi başlayacaq bir fayl göstər"
 msgid "Specify a file to start playing"
 msgstr "Çalınacaq bir fayl göstər"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "GNOME Səs Qeydiyyatcısı"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "Bu xəbəri bir də göstərmə."
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -900,21 +1176,21 @@ msgstr "Səs göstərgəsinin şaquli növünü aç"
 msgid "Act as recording level meter."
 msgstr "Qeydiyyat səviyyəsi ölçücüsü olaraq davran."
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "%s vericimizdir\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "Qeydiyyat Səviyyəsi"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "Səs göstərgəsi"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -931,17 +1207,8 @@ msgstr ""
 msgid "Volume Monitor"
 msgstr "Səs göstərgəsi"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "GNOME qeydiyyatcısı"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "GNOME Səs Qeydiyyatcısı : "
 
 #~ msgid "Ready for command: %s\n"
 #~ msgstr "Əmrə hazırdır: %s\n"
@@ -991,9 +1258,6 @@ msgstr ""
 #~ msgstr ""
 #~ "GTCD Gnome Cd-çalma proqramıdı rvə CDDB-dəstəyi də vardır. Lütfən ´Thanks"
 #~ "´ faylında bizə kömək edənlərin adlarını öyrənin."
-
-#~ msgid "Disc ID"
-#~ msgstr "Cd ID-si"
 
 #~ msgid "Disc Title"
 #~ msgstr "Cd Adı"
@@ -1088,32 +1352,14 @@ msgstr ""
 #~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
-#~ msgid "Play/Pause"
-#~ msgstr "Çal/Fasilə"
-
-#~ msgid "Eject"
-#~ msgstr "Çıxart"
-
 #~ msgid "Skip backwards"
 #~ msgstr "Bir parça arxaya"
 
 #~ msgid "Skip forwards"
 #~ msgstr "Bir parça irəli"
 
-#~ msgid "Open track editor"
-#~ msgstr "Parça düzəldicisini aç"
-
 #~ msgid "Quit"
 #~ msgstr "Çıx"
-
-#~ msgid "Mixer"
-#~ msgstr "Mikser"
-
-#~ msgid "Fast Forward"
-#~ msgstr "Sür'ətli Qabağa"
-
-#~ msgid "Rewind"
-#~ msgstr "Yenidən Çevir"
 
 #~ msgid "Volume Up"
 #~ msgstr "Səsi Artır"
@@ -1126,9 +1372,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "Xəta"
-
-#~ msgid "Volume"
-#~ msgstr "Səs səviyyəsi"
 
 #~ msgid "Cannot load requested font. Reloading default font."
 #~ msgstr "Sorğulanan yazı növü yüklənə bilmir. Ana yazı növü yüklənir."
@@ -1156,14 +1399,8 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "Ad"
 
-#~ msgid "Track Editor"
-#~ msgstr "Parça Düzəldicisi"
-
 #~ msgid "Disc Information (%02u:%02u minutes)"
 #~ msgstr "Disk Bilgiləri ( %02u:%02u dəqiqə )"
-
-#~ msgid "Artist / Title"
-#~ msgstr "Sənətkar / Ad"
 
 #~ msgid "Track Information"
 #~ msgstr "Parça Bilgisi"
@@ -1190,9 +1427,6 @@ msgstr ""
 #~ msgid "To: "
 #~ msgstr "Buraya: "
 
-#~ msgid "Category: "
-#~ msgstr "Kateqoriya: "
-
 #~ msgid ""
 #~ "Error accessing cdrom device.\n"
 #~ "Please check to make sure cdrom drive support\n"
@@ -1207,9 +1441,6 @@ msgstr ""
 #~ "haqqın olub olmadığını yoxla.\n"
 #~ "\n"
 #~ "Niyə: %s\n"
-
-#~ msgid "Unknown / Unknown"
-#~ msgstr "Namə'lum / Namə'lum"
 
 #~ msgid "Track %d"
 #~ msgstr "Parça %d"
@@ -1226,23 +1457,11 @@ msgstr ""
 #~ msgid "About"
 #~ msgstr "Haqqında"
 
-#~ msgid "Do nothing"
-#~ msgstr "Heç bir şey etmə"
-
-#~ msgid "Start playing"
-#~ msgstr "Çalmağa başla"
-
-#~ msgid "Stop playing"
-#~ msgstr "Çalmanı dayandır"
-
 #~ msgid "Close tray"
 #~ msgstr "Cığırı Qapat"
 
 #~ msgid "Open tray"
 #~ msgstr "Cığırı Aç"
-
-#~ msgid "CDROM device"
-#~ msgstr "Cd-sürücüsü"
 
 #~ msgid "Mixer Command"
 #~ msgstr "Mikser Əmri"
@@ -1252,9 +1471,6 @@ msgstr ""
 
 #~ msgid "Track/title font"
 #~ msgstr "Parça/Ad yazı növü"
-
-#~ msgid "Change font"
-#~ msgstr "Yazı növünü dəyişdir"
 
 #~ msgid "Show handles (restart required)"
 #~ msgstr "Məqamları göstər ( təzədən başlamaq lazımdır)"
@@ -1300,9 +1516,6 @@ msgstr ""
 
 #~ msgid "ESD Volume Meter"
 #~ msgstr "ESD Səs Ölçücüsü"
-
-#~ msgid "CD Player"
-#~ msgstr "CD Çalğıcı"
 
 #~ msgid "Gnome CD Player"
 #~ msgstr "Gnome Cd Çalğıcısı"

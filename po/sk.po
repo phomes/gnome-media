@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.2\n"
-"POT-Creation-Date: 2002-02-04 12:40+0100\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2002-02-04 12:44+0100\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: cddb-slave2/cddb-slave.c:332
+#: cddb-slave2/cddb-slave.c:364
 msgid "Multiple matches..."
 msgstr "Viac odpovedajúcich..."
 
-#: cddb-slave2/cddb-slave.c:336
+#: cddb-slave2/cddb-slave.c:368
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -26,15 +26,15 @@ msgstr ""
 "V databáze bolo nájdených viac odpovedajúcich záznamov.\n"
 "Dole je ich zoznam, vyberte najlepší z nich."
 
-#: cddb-slave2/cddb-slave.c:347
+#: cddb-slave2/cddb-slave.c:379
 msgid "Category"
 msgstr "Kategória"
 
-#: cddb-slave2/cddb-slave.c:351
+#: cddb-slave2/cddb-slave.c:383
 msgid "Disc ID"
 msgstr "ID disku"
 
-#: cddb-slave2/cddb-slave.c:355
+#: cddb-slave2/cddb-slave.c:387
 msgid "Artist and Title"
 msgstr "Autor a titul"
 
@@ -330,30 +330,53 @@ msgstr ""
 "OSS %d.%d.%d, a váš systém používa verziu\n"
 "staršiu ako %d.%d.%d.\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1016
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Zamknúť"
 
-#: gmix/gmix.c:1026
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Nahr."
 
-#: gmix/gmix.c:1044
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Nahr."
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Potichu"
 
-#: gmix/gmix.c:1087
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Nastavenie hlasitosti"
 
-#: gmix/gmix.c:1418
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome Mixér"
 
-#: gmix/gmix.c:1420
+#: gmix/gmix.c:1466
 msgid "This is a mixer for sound devices"
 msgstr "Toto je mixér pre zvukové zariadenia"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -384,7 +407,7 @@ msgstr "Použiť popisy mixéru"
 msgid "Defaults"
 msgstr "Štandardné"
 
-#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:367
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Nastavenie"
 
@@ -393,20 +416,20 @@ msgid "Labels"
 msgstr "Popisy"
 
 #: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
-#: gnome-cd/gnome-cd.c:430 grecord/src/gui.c:245
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
 msgid "Play"
 msgstr "Hrať"
 
-#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:275
-#: gnome-cd/callbacks.c:314 gnome-cd/callbacks.c:338 gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
 msgid "Pause"
 msgstr "Pauza"
 
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:568
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:551
+#: gnome-cd/callbacks.c:569
 msgid "A GNOME cd player"
 msgstr "Prehrávač CD pre GNOME"
 
@@ -418,96 +441,118 @@ msgstr "Neznámy autor"
 msgid "Unknown disc"
 msgstr "Neznámy disk"
 
-#: gnome-cd/gnome-cd.c:123
+#: gnome-cd/gnome-cd.c:124
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - neznámy"
 
-#: gnome-cd/gnome-cd.c:259
+#: gnome-cd/gnome-cd.c:261
 msgid "P_revious track"
 msgstr "_Predchádzajúca stopa"
 
-#: gnome-cd/gnome-cd.c:260
+#: gnome-cd/gnome-cd.c:262
 msgid "_Stop"
 msgstr "Za_staviť"
 
-#: gnome-cd/gnome-cd.c:261
+#: gnome-cd/gnome-cd.c:263
 msgid "_Play / Pause"
 msgstr "_Hrať/Pauza"
 
-#: gnome-cd/gnome-cd.c:262
+#: gnome-cd/gnome-cd.c:264
 msgid "_Next track"
 msgstr "_Nasledujúca stopa"
 
-#: gnome-cd/gnome-cd.c:263
+#: gnome-cd/gnome-cd.c:265
 msgid "_Eject disc"
 msgstr "_Vysunúť disk"
 
-#: gnome-cd/gnome-cd.c:264
+#: gnome-cd/gnome-cd.c:266
 msgid "_About Gnome-CD"
 msgstr "_O Gnome-CD"
 
-#: gnome-cd/gnome-cd.c:362
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+msgid "Set device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+msgid "No CD device"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
 msgid "Open track editor"
 msgstr "Otvorí editor stôp"
 
-#: gnome-cd/gnome-cd.c:362
+#: gnome-cd/gnome-cd.c:425
 msgid "Track editor"
 msgstr "Editor stôp"
 
-#: gnome-cd/gnome-cd.c:405
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous track"
 msgstr "Predchádzajúca stopa"
 
-#: gnome-cd/gnome-cd.c:405
+#: gnome-cd/gnome-cd.c:468
 msgid "Previous"
 msgstr "Predchádzajúca"
 
-#: gnome-cd/gnome-cd.c:409
+#: gnome-cd/gnome-cd.c:472
 msgid "Rewind"
 msgstr "Pretočiť"
 
-#: gnome-cd/gnome-cd.c:430
+#: gnome-cd/gnome-cd.c:493
 msgid "Play / Pause"
 msgstr "Hrať/Pauza"
 
-#: gnome-cd/gnome-cd.c:435 grecord/src/gui.c:257
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
 msgid "Stop"
 msgstr "Stop"
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:502
 msgid "Fast forward"
 msgstr "Pretočiť dopredu"
 
-#: gnome-cd/gnome-cd.c:447
+#: gnome-cd/gnome-cd.c:510
 msgid "Next track"
 msgstr "Nasledujúca stopa"
 
-#: gnome-cd/gnome-cd.c:451
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject CD"
 msgstr "Vysunúť CD"
 
-#: gnome-cd/gnome-cd.c:451
+#: gnome-cd/gnome-cd.c:514
 msgid "Eject"
 msgstr "Vysunúť"
 
-#: gnome-cd/gnome-cd.c:456
+#: gnome-cd/gnome-cd.c:519
 msgid "Open mixer"
 msgstr "Spustiť mixér"
 
-#: gnome-cd/gnome-cd.c:456
+#: gnome-cd/gnome-cd.c:519
 msgid "Open Mixer"
 msgstr "Spustiť mixér"
 
-#: gnome-cd/gnome-cd.c:461
+#: gnome-cd/gnome-cd.c:524
 msgid "Change volume"
 msgstr "Zmeniť hlasitosť"
 
-#: gnome-cd/gnome-cd.c:461
+#: gnome-cd/gnome-cd.c:524
 msgid "Volume"
 msgstr "Hlasitosť"
 
-#: gnome-cd/gnome-cd.c:488
+#: gnome-cd/gnome-cd.c:552
 msgid "Cannot create player"
 msgstr "Nepodarilo sa vytvoriť prehrávač"
 
@@ -518,6 +563,76 @@ msgstr "CD prehrávač"
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
 msgstr "Prehráva zvukové CD"
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Nastavenie"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "CD prehrávač"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+msgid "Do _nothing"
+msgstr ""
+
+#: gnome-cd/preferences.c:728
+msgid "Start _playing CD"
+msgstr ""
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Zastaví prehrávanie/nahrávanie"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+msgid "Do not_hing"
+msgstr ""
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Zastaví prehrávanie/nahrávanie"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "Záznam zvuku"
 
 #: grecord/src/grec.c:51
 msgid "Sound Recorder:"
@@ -736,10 +851,6 @@ msgstr "Súbor '%s' nie je podporovaný zvukový súbor."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:454
-msgid "Sound recorder"
-msgstr "Záznam zvuku"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -1071,4 +1182,3 @@ msgstr "Monitorovať hlasitosť zvukového výstupu"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor hlasitosti"
-

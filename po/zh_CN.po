@@ -1,13 +1,36 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.99.5\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 1999-02-10 20:30+0800\n"
 "Last-Translator: Dillion Chen <dillon.chen@turbolinux.com.cn>\n"
 "Language-Team: TLDN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+msgid "Category"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr "碟片的 ID"
+
+#: cddb-slave2/cddb-slave.c:387
+#, fuzzy
+msgid "Artist and Title"
+msgstr "表演者 / 标题"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -274,14 +297,14 @@ msgstr "依已有的设定文件来起始混音设定後离开"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "不要把现行的混音设定值存入设定文件"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
 "and make sure you have sound support compiled into your kernel."
 msgstr ""
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -289,7 +312,7 @@ msgid ""
 "a version prior to 3.6.0.\n"
 msgstr ""
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -297,31 +320,54 @@ msgid ""
 "version %d.%d.%d.\n"
 msgstr ""
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "锁住"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "录音"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "录音"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "静音"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr ""
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome 混音器"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 #, fuzzy
 msgid "This is a mixer for sound devices"
 msgstr "这是给 OSS 音效周边用的混音器"
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -352,7 +398,7 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "偏好设定"
 
@@ -360,8 +406,244 @@ msgstr "偏好设定"
 msgid "Labels"
 msgstr ""
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "播放"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "播放/暂停"
+
+#: gnome-cd/callbacks.c:568
+msgid "Copyright (C) 2001, 2002"
+msgstr ""
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, fuzzy, c-format
+msgid "%d - Unknown"
+msgstr "不明了"
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "停止"
+
+#: gnome-cd/gnome-cd.c:263
+#, fuzzy
+msgid "_Play / Pause"
+msgstr "播放/暂停"
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+#, fuzzy
+msgid "_Eject disc"
+msgstr "退片"
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "CDROM 周边"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "CDROM 周边"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr "开启音轨编辑器"
+
+#: gnome-cd/gnome-cd.c:425
+#, fuzzy
+msgid "Track editor"
+msgstr "音轨编辑器"
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:493
+#, fuzzy
+msgid "Play / Pause"
+msgstr "播放/暂停"
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "停止"
+
+#: gnome-cd/gnome-cd.c:502
+#, fuzzy
+msgid "Fast forward"
+msgstr "向前跳选一首"
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject CD"
+msgstr "退片"
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject"
+msgstr "退片"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "打开入片口"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open Mixer"
+msgstr "打开入片口"
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Change volume"
+msgstr "改变字体"
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Volume"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+#, fuzzy
+msgid "CD Player"
+msgstr "播放"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "偏好设定"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "CDROM 周边"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "动都没动"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "开始播放"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "播放停止"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "动都没动"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "播放停止"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr ""
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
+msgid "Sound Recorder:"
 msgstr ""
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
@@ -526,17 +808,9 @@ msgstr ""
 msgid "Create new sample"
 msgstr ""
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "播放"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr ""
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "停止"
 
 #: grecord/src/gui.c:258
 #, fuzzy
@@ -579,10 +853,6 @@ msgstr ""
 #. *  by an "eacute" (U00E9)
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-msgstr ""
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
 msgstr ""
 
 #. if your charset allows it, replace the
@@ -744,11 +1014,15 @@ msgstr ""
 msgid "Specify a file to start playing"
 msgstr ""
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr ""
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr ""
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -862,21 +1136,21 @@ msgstr "采用直式指示表"
 msgid "Act as recording level meter."
 msgstr ""
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr ""
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr ""
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -889,18 +1163,6 @@ msgstr ""
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr ""
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
 msgstr ""
 
 #~ msgid "Ready for command: %s\n"
@@ -952,9 +1214,6 @@ msgstr ""
 #~ "GTCD 是 Gnome 的 CD 播放程序. 包括支持 CDDB. 请看随这个 distribution 附的 "
 #~ "'致谢' 档, 里面有更多的内容"
 
-#~ msgid "Disc ID"
-#~ msgstr "碟片的 ID"
-
 #~ msgid "Disc Title"
 #~ msgstr "碟片的 Title"
 
@@ -1002,20 +1261,8 @@ msgstr ""
 #~ msgid "random"
 #~ msgstr "随机"
 
-#~ msgid "Play/Pause"
-#~ msgstr "播放/暂停"
-
-#~ msgid "Eject"
-#~ msgstr "退片"
-
 #~ msgid "Skip backwards"
 #~ msgstr "向後跳选一首"
-
-#~ msgid "Skip forwards"
-#~ msgstr "向前跳选一首"
-
-#~ msgid "Open track editor"
-#~ msgstr "开启音轨编辑器"
 
 #~ msgid "Quit"
 #~ msgstr "离开"
@@ -1043,14 +1290,8 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "标题"
 
-#~ msgid "Track Editor"
-#~ msgstr "音轨编辑器"
-
 #~ msgid "Disc Information (%02u:%02u minutes)"
 #~ msgstr "碟片数据(%02u:%02u 分)"
-
-#~ msgid "Artist / Title"
-#~ msgstr "表演者 / 标题"
 
 #~ msgid "Track Information"
 #~ msgstr "音轨数据"
@@ -1069,9 +1310,6 @@ msgstr ""
 #~ msgid "Submit Information"
 #~ msgstr "音轨数据"
 
-#~ msgid "Unknown / Unknown"
-#~ msgstr "不明了"
-
 #~ msgid "Track %d"
 #~ msgstr "第 %d 音轨"
 
@@ -1085,32 +1323,14 @@ msgstr ""
 #~ msgid "About"
 #~ msgstr "关于 (_A)"
 
-#~ msgid "Do nothing"
-#~ msgstr "动都没动"
-
-#~ msgid "Start playing"
-#~ msgstr "开始播放"
-
-#~ msgid "Stop playing"
-#~ msgstr "播放停止"
-
 #~ msgid "Close tray"
 #~ msgstr "关闭入片口"
-
-#~ msgid "Open tray"
-#~ msgstr "打开入片口"
-
-#~ msgid "CDROM device"
-#~ msgstr "CDROM 周边"
 
 #~ msgid "Track/title color"
 #~ msgstr "音轨/标题 颜色"
 
 #~ msgid "Track/title font"
 #~ msgstr "音轨/标题 字体"
-
-#~ msgid "Change font"
-#~ msgstr "改变字体"
 
 #~ msgid "Show handles (restart required)"
 #~ msgstr "显示动作(须要重新开始)"
@@ -1139,10 +1359,6 @@ msgstr ""
 
 #~ msgid "CDDB Settings"
 #~ msgstr "CDDB 设定"
-
-#, fuzzy
-#~ msgid "CD Player"
-#~ msgstr "播放"
 
 #, fuzzy
 #~ msgid "Gnome CD Player"

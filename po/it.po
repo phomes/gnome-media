@@ -5,13 +5,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2002-01-21 13:24+0000\n"
+"POT-Creation-Date: 2002-02-15 02:06+0000\n"
 "PO-Revision-Date: 2001-09-27 14:18+0200\n"
 "Last-Translator: Salvo Isaja <salvois@it.gnome.org>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: cddb-slave2/cddb-slave.c:364
+msgid "Multiple matches..."
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:368
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+
+#: cddb-slave2/cddb-slave.c:379
+#, fuzzy
+msgid "Category"
+msgstr "Categoria: "
+
+#: cddb-slave2/cddb-slave.c:383
+msgid "Disc ID"
+msgstr "ID del disco"
+
+#: cddb-slave2/cddb-slave.c:387
+#, fuzzy
+msgid "Artist and Title"
+msgstr "Artista / Titolo"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -273,7 +297,7 @@ msgstr "inizializza il/i mixer in base alla configurazione salvata e esci"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "non salvare i settaggi del mixer (modificati) nella configurazione"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -283,7 +307,7 @@ msgstr ""
 "Controlla di avere i permessi per aprire /dev/mixer\n"
 "e assicurati di avere il supporto audio compilato nel kernel."
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -294,7 +318,7 @@ msgstr ""
 "con OSS versione %d.%d.%d, e su questo sistema gira\n"
 "una versione precedente alla 3.6.0\n"
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -305,32 +329,55 @@ msgstr ""
 "con OSS versione %d.%d.%d, e su questo sistema gira\n"
 "la versione %d.%d.%d\n"
 
-#. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:946 gmix/gmix.c:966
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#: gmix/gmix.c:948
+msgid "left "
+msgstr ""
+
+#: gmix/gmix.c:967
+msgid "right "
+msgstr ""
+
+#: gmix/gmix.c:1034 gmix/gmix.c:1041
 msgid "Lock"
 msgstr "Blocca"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1052
 msgid "Rec."
 msgstr "Registra"
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1062
+#, fuzzy
+msgid "Rec"
+msgstr "Registra"
+
+#: gmix/gmix.c:1078 gmix/gmix.c:1085
 msgid "Mute"
 msgstr "Muto"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1133 gmix/gnome-volume-control.desktop.in.h:2
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 #, fuzzy
 msgid "Volume Control"
 msgstr "Abbassa volume"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1464
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Il mixer di Gnome"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1466
 #, fuzzy
 msgid "This is a mixer for sound devices"
 msgstr "Un mixer per le periferiche audio OSS."
+
+#: gmix/gnome-volume-control.desktop.in.h:1
+#: gnome-volume-control/gnome-volume-control.desktop.in.h:1
+msgid "Adjust the volume level"
+msgstr ""
 
 #: gmix/prefs.c:100
 msgid "On startup"
@@ -361,7 +408,7 @@ msgstr "Usa le etichette del mixer"
 msgid "Defaults"
 msgstr "Impostazioni predefinite"
 
-#: gmix/prefs.c:484
+#: gmix/prefs.c:484 gnome-cd/gnome-cd.c:430
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -369,9 +416,246 @@ msgstr "Preferenze"
 msgid "Labels"
 msgstr "Etichette"
 
+#: gnome-cd/callbacks.c:62 gnome-cd/callbacks.c:142 gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:493 grecord/src/gui.c:245
+msgid "Play"
+msgstr "Riproduci"
+
+#: gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:201 gnome-cd/callbacks.c:281
+#: gnome-cd/callbacks.c:321 gnome-cd/callbacks.c:345 gnome-cd/callbacks.c:386
+#, fuzzy
+msgid "Pause"
+msgstr "Play/Pausa"
+
+#: gnome-cd/callbacks.c:568
+#, fuzzy
+msgid "Copyright (C) 2001, 2002"
+msgstr "Copyright (C)  2000 Andreas Hydén"
+
+#: gnome-cd/callbacks.c:569
+msgid "A GNOME cd player"
+msgstr ""
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr ""
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:124
+#, fuzzy, c-format
+msgid "%d - Unknown"
+msgstr "Sconosciuto / Sconosciuto"
+
+#: gnome-cd/gnome-cd.c:261
+msgid "P_revious track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:262
+#, fuzzy
+msgid "_Stop"
+msgstr "Stop"
+
+#: gnome-cd/gnome-cd.c:263
+#, fuzzy
+msgid "_Play / Pause"
+msgstr "Play/Pausa"
+
+#: gnome-cd/gnome-cd.c:264
+msgid "_Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:265
+#, fuzzy
+msgid "_Eject disc"
+msgstr "Espelli"
+
+#: gnome-cd/gnome-cd.c:266
+msgid "_About Gnome-CD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:338
+msgid ""
+"There is no CD device set. This means that GnomeCD\n"
+"will be unable to run. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:342 gnome-cd/gnome-cd.c:382
+#, fuzzy
+msgid "Set device"
+msgstr "Periferica CDROM"
+
+#: gnome-cd/gnome-cd.c:344 gnome-cd/gnome-cd.c:384
+#, fuzzy
+msgid "No CD device"
+msgstr "Periferica CDROM"
+
+#: gnome-cd/gnome-cd.c:378
+msgid ""
+"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
+"will be unable to run correctly. Press Set device to go to a dialog\n"
+"where you can set the device, or click Quit to quit GnomeCD"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Open track editor"
+msgstr "Apri l'editor delle tracce"
+
+#: gnome-cd/gnome-cd.c:425
+#, fuzzy
+msgid "Track editor"
+msgstr "Editor delle tracce"
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:468
+msgid "Previous"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:472
+msgid "Rewind"
+msgstr "Riavvolgi"
+
+#: gnome-cd/gnome-cd.c:493
+#, fuzzy
+msgid "Play / Pause"
+msgstr "Play/Pausa"
+
+#: gnome-cd/gnome-cd.c:498 grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Stop"
+
+#: gnome-cd/gnome-cd.c:502
+#, fuzzy
+msgid "Fast forward"
+msgstr "Avanza"
+
+#: gnome-cd/gnome-cd.c:510
+msgid "Next track"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:514
+#, fuzzy
+msgid "Eject CD"
+msgstr "Espelli"
+
+#: gnome-cd/gnome-cd.c:514
+msgid "Eject"
+msgstr "Espelli"
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open mixer"
+msgstr "Esegui il mixer..."
+
+#: gnome-cd/gnome-cd.c:519
+#, fuzzy
+msgid "Open Mixer"
+msgstr "Mixer"
+
+#: gnome-cd/gnome-cd.c:524
+#, fuzzy
+msgid "Change volume"
+msgstr "Cambia font"
+
+#: gnome-cd/gnome-cd.c:524
+msgid "Volume"
+msgstr "Volume"
+
+#: gnome-cd/gnome-cd.c:552
+msgid "Cannot create player"
+msgstr ""
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "Lettore CD"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr ""
+
+#: gnome-cd/preferences.c:669
+#, fuzzy
+msgid "Gnome-CD Preferences"
+msgstr "Preferenze"
+
+#: gnome-cd/preferences.c:687
+#, fuzzy
+msgid "CD player de_vice"
+msgstr "Periferica CDROM"
+
+#: gnome-cd/preferences.c:698
+msgid "_Apply change"
+msgstr ""
+
+#. left side
+#: gnome-cd/preferences.c:711
+msgid "When Gnome-CD starts"
+msgstr ""
+
+#: gnome-cd/preferences.c:719
+#, fuzzy
+msgid "Do _nothing"
+msgstr "Non fare nulla"
+
+#: gnome-cd/preferences.c:728
+#, fuzzy
+msgid "Start _playing CD"
+msgstr "Inizia la riproduzione"
+
+#: gnome-cd/preferences.c:737
+#, fuzzy
+msgid "_Stop playing CD"
+msgstr "Ferma la riproduzione"
+
+#: gnome-cd/preferences.c:749
+msgid "Attempt to _close CD tray"
+msgstr ""
+
+#. Right side
+#: gnome-cd/preferences.c:760
+msgid "When Gnome-CD quits"
+msgstr ""
+
+#: gnome-cd/preferences.c:768
+#, fuzzy
+msgid "Do not_hing"
+msgstr "Non fare nulla"
+
+#: gnome-cd/preferences.c:777
+#, fuzzy
+msgid "S_top playing CD"
+msgstr "Ferma la riproduzione"
+
+#: gnome-cd/preferences.c:786
+msgid "Attempt to _open CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:795
+msgid "Attempt to c_lose CD tray"
+msgstr ""
+
+#: gnome-cd/preferences.c:825
+msgid "Theme name"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:1
+msgid "Record sound clips"
+msgstr ""
+
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:454
+msgid "Sound recorder"
+msgstr "Registratore di suoni"
+
 #: grecord/src/grec.c:51
-msgid "GNOME Soundrecorder:"
-msgstr "Registratore di suoni di GNOME:"
+#, fuzzy
+msgid "Sound Recorder:"
+msgstr "Registratore di suoni"
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
@@ -543,17 +827,9 @@ msgstr "Nuovo"
 msgid "Create new sample"
 msgstr "Crea un nuovo campione"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "Riproduci"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Riproduci il campione corrente"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Stop"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -594,10 +870,6 @@ msgstr "Il formato audio del file '%s' non è supportato."
 #: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:454 grecord/src/main.c:110
-msgid "GNOME Sound recorder"
-msgstr "Registratore di suoni di GNOME"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
@@ -759,11 +1031,15 @@ msgstr "Specificare un file per iniziare la registrazione"
 msgid "Specify a file to start playing"
 msgstr "Specifica un file da iniziare a riprodurre"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:111
+msgid "GNOME Sound recorder"
+msgstr "Registratore di suoni di GNOME"
+
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "Non mostrare più questo messaggio."
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -901,21 +1177,21 @@ msgstr "Apre una versione verticale del meter."
 msgid "Act as recording level meter."
 msgstr "Funziona come indicatore del livello di registrazione."
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
 msgid "Host is %s\n"
 msgstr "L'host è %s\n"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "Livello di registrazione"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "Volume Meter"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr ""
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -932,17 +1208,8 @@ msgstr ""
 msgid "Volume Monitor"
 msgstr "Volume Meter"
 
-#: grecord/Soundrecorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/Soundrecorder.desktop.in.h:2
-msgid "Sound recorder"
-msgstr "Registratore di suoni"
-
-#: gmix/gmix.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
+#~ msgid "GNOME Soundrecorder:"
+#~ msgstr "Registratore di suoni di GNOME:"
 
 #~ msgid "Ready for command: %s\n"
 #~ msgstr "Pronto per comando: %s\n"
@@ -993,9 +1260,6 @@ msgstr ""
 #~ "GTCD è l'applicazione Gnome per riprodurre i CD. Include il supporto "
 #~ "CDDB. Vedi il file 'Thanks' incluso con la distribuzione per ulteriori "
 #~ "crediti."
-
-#~ msgid "Disc ID"
-#~ msgstr "ID del disco"
 
 #~ msgid "Disc Title"
 #~ msgstr "Titolo del disco"
@@ -1090,32 +1354,14 @@ msgstr ""
 #~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
-#~ msgid "Play/Pause"
-#~ msgstr "Play/Pausa"
-
-#~ msgid "Eject"
-#~ msgstr "Espelli"
-
 #~ msgid "Skip backwards"
 #~ msgstr "Brano precedente"
 
 #~ msgid "Skip forwards"
 #~ msgstr "Brano successivo"
 
-#~ msgid "Open track editor"
-#~ msgstr "Apri l'editor delle tracce"
-
 #~ msgid "Quit"
 #~ msgstr "Esci"
-
-#~ msgid "Mixer"
-#~ msgstr "Mixer"
-
-#~ msgid "Fast Forward"
-#~ msgstr "Avanza"
-
-#~ msgid "Rewind"
-#~ msgstr "Riavvolgi"
 
 #~ msgid "Volume Up"
 #~ msgstr "Alza volume"
@@ -1128,9 +1374,6 @@ msgstr ""
 
 #~ msgid "Error"
 #~ msgstr "Errore"
-
-#~ msgid "Volume"
-#~ msgstr "Volume"
 
 #~ msgid "Cannot load requested font. Reloading default font."
 #~ msgstr ""
@@ -1159,14 +1402,8 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "Titolo"
 
-#~ msgid "Track Editor"
-#~ msgstr "Editor delle tracce"
-
 #~ msgid "Disc Information (%02u:%02u minutes)"
 #~ msgstr "Informazioni sul disco (%02u:%02u minuti)"
-
-#~ msgid "Artist / Title"
-#~ msgstr "Artista / Titolo"
 
 #~ msgid "Track Information"
 #~ msgstr "Informazioni sulla traccia"
@@ -1193,9 +1430,6 @@ msgstr ""
 #~ msgid "To: "
 #~ msgstr "A: "
 
-#~ msgid "Category: "
-#~ msgstr "Categoria: "
-
 #~ msgid ""
 #~ "Error accessing cdrom device.\n"
 #~ "Please check to make sure cdrom drive support\n"
@@ -1210,9 +1444,6 @@ msgstr ""
 #~ "di accedere alla periferica.\n"
 #~ "\n"
 #~ "Motivo: %s\n"
-
-#~ msgid "Unknown / Unknown"
-#~ msgstr "Sconosciuto / Sconosciuto"
 
 #~ msgid "Track %d"
 #~ msgstr "Traccia %d"
@@ -1229,23 +1460,11 @@ msgstr ""
 #~ msgid "About"
 #~ msgstr "Informazioni su"
 
-#~ msgid "Do nothing"
-#~ msgstr "Non fare nulla"
-
-#~ msgid "Start playing"
-#~ msgstr "Inizia la riproduzione"
-
-#~ msgid "Stop playing"
-#~ msgstr "Ferma la riproduzione"
-
 #~ msgid "Close tray"
 #~ msgstr "Chiudi il carrello"
 
 #~ msgid "Open tray"
 #~ msgstr "Apri il carrello"
-
-#~ msgid "CDROM device"
-#~ msgstr "Periferica CDROM"
 
 #~ msgid "Mixer Command"
 #~ msgstr "Comando mixer"
@@ -1255,9 +1474,6 @@ msgstr ""
 
 #~ msgid "Track/title font"
 #~ msgstr "Font traccia/titolo"
-
-#~ msgid "Change font"
-#~ msgstr "Cambia font"
 
 #~ msgid "Show handles (restart required)"
 #~ msgstr "Visualizza maniglie (riavvio richiesto)"
@@ -1303,9 +1519,6 @@ msgstr ""
 
 #~ msgid "ESD Volume Meter"
 #~ msgstr "Volume Meter di ESD"
-
-#~ msgid "CD Player"
-#~ msgstr "Lettore CD"
 
 #~ msgid "Gnome CD Player"
 #~ msgstr "Lettore CD di Gnome"
