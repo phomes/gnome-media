@@ -36,6 +36,8 @@
 void
 load_config_file    (void)
 {
+	char *s;
+
 	gnome_config_push_prefix ("/grecord/Recording/");
 	record_timeout       = gnome_config_get_int ("recordtimeout=2");
 	stop_on_timeout      = gnome_config_get_bool ("stopontimeout=TRUE");
@@ -53,8 +55,23 @@ load_config_file    (void)
 	gnome_config_pop_prefix ();
 
 	gnome_config_push_prefix ("/grecord/Paths/");
-	sox_command          = gnome_config_get_string ("soxcommand=sox");
-	mixer_command        = gnome_config_get_string ("mixercommand=gmix");
+
+	s                    = gnome_config_get_string ("soxcommand=sox");
+	sox_command          = gnome_is_program_in_path (s);
+	if (sox_command == NULL) {
+		sox_command = s;
+	} else {
+		g_free (s);
+	}
+
+	s                    = gnome_config_get_string ("mixercommand=gmix");
+	mixer_command        = gnome_is_program_in_path (s);
+	if (mixer_command == NULL) {
+		mixer_command = s;
+	} else {
+		g_free (s);
+	}
+
 	temp_dir             = gnome_config_get_string ("tempdir=/tmp/");
 	gnome_config_pop_prefix ();
 
