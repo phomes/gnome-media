@@ -359,6 +359,7 @@ void setup_colors( void )
 
 	gdk_color_parse(props.trackcolor, &trackcolor);
 	gdk_color_alloc (colormap, &trackcolor);
+	draw_status();
 }
 
 void draw_status( void )

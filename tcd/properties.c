@@ -32,6 +32,9 @@ tcd_properties props;
 GtkWidget *propbox;
 extern GtkTooltips *tooltips;
 
+/* from gtcd.c */
+void setup_colors(void);
+
 void load_properties( tcd_properties *prop )
 {
 	prop->cddev 	= gnome_config_get_string("/gtcd/cdrom/device=/dev/cdrom");
@@ -56,8 +59,6 @@ void save_properties( tcd_properties *prop )
 	gnome_config_set_string("/gtcd/ui/timefont", prop->timefont );
 	gnome_config_set_string("/gtcd/ui/trackfont",prop->trackfont );
 
-	g_print( "%s %s\n", prop->timecolor, prop->trackcolor );
-	
 	gnome_config_set_string("/gtcd/ui/timecolor", prop->timecolor );
 	gnome_config_set_string("/gtcd/ui/trackcolor",prop->trackcolor );
 	gnome_config_sync();
@@ -190,7 +191,6 @@ void color_changed_cb( GnomeColorSelector *widget, gchar **color )
 	
 	sprintf( tmp, "#%02x%02x%02x", r, g, b );
 	*color = tmp;
-	g_print( "color=%s\n", *color ); 
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
@@ -328,7 +328,7 @@ void apply_cb( GtkWidget *widget, void *data )
 		gtk_tooltips_enable(tooltips);
 	else
 		gtk_tooltips_disable(tooltips);
-		
+	setup_colors();		
 	save_properties(&props);
 }
 
