@@ -1,6 +1,6 @@
 pixmapdir = $(datadir)/pixmaps/tcd
 
-BITMAPS = 
+BITMAPS = 		\
 	cdrom.xpm	\
 	eject.xpm	\
 	ff.xpm		\
@@ -9,13 +9,14 @@ BITMAPS =
 	play.xpm	\
 	prev_t.xpm	\
 	rw.xpm		\
-	stop.xpm
+	stop.xpm	\
+	goto.xpm
 
-pixmap_DATA = $(BITMAPS)
-
-EXTRA_DIST = $(BITMAPS) \
+MORE_BITMAPS = 		\
 	play_m.xpm	\
 	stop_m.xpm	\
 	eject_m.xpm
 
+pixmap_DATA = $(BITMAPS)
 
+EXTRA_DIST = $(BITMAPS) $(MORE_BITMAPS)
