@@ -1,6 +1,6 @@
 #include <gtk/gtk.h>
 #include "led.h"
-#include "icons/led.xpm"
+#include "led.xpm"
 
 static GdkPixmap *led_pixmap;
 

@@ -1,5 +1,7 @@
 Audiodir = $(datadir)/apps/Audio
 
+EXTRA_DIST = README TODO NEWS gtcd.desktop
+
 # Should make sure that tcd will work with all flavors of curses.
 # Make sure it can support curses w/o color and old versions.
 if HAS_CURSES
@@ -25,8 +27,10 @@ gtcd_SOURCES = 		\
 	gcddb.h		\
 	tooltips.h	\
 	properties.c	\
+	properties.h	\
 	led.h		\
 	led.c		\
+	led.xpm	\
 	linux-cdrom.h
 
 tcd_SOURCES = 		\
