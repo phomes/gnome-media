@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 00:19-0700\n"
+"POT-Creation-Date: 2004-02-25 22:11-0700\n"
 "PO-Revision-Date: 2004-02-20 21:54+0100\n"
 "Last-Translator: Sanlig Badral <badral@openmn.org>\n"
 "Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
@@ -162,9 +162,9 @@ msgid "Unknown / Unknown"
 msgstr "Нэрлэгдээгүй/ Нэрлэгдээгүй"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:974
-#: grecord/src/gsr-window.c:983 grecord/src/gsr-window.c:992
-#: grecord/src/gsr-window.c:1002 grecord/src/gsr-window.c:1341
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
+#: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1075
 msgid "Unknown"
 msgstr "Нэрлэгдээгүй"
 
@@ -1268,8 +1268,8 @@ msgstr "_Байгаа хэлбэрүүд:"
 msgid "Record sound clips"
 msgstr "Дууны клипуудыг бичих"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1197
-#: grecord/src/gsr-window.c:1593
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:960
+#: grecord/src/gsr-window.c:1284
 msgid "Sound Recorder"
 msgstr "Дуу Бичигч"
 
@@ -1297,7 +1297,7 @@ msgstr "Шинэ жишээ үүсгэх"
 msgid "Display help for Sound Recorder"
 msgstr "Дуу бичигчид зориулсан тусламж дүрслэх"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1060
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
 msgid "File Information"
 msgstr "Файлын мэдээлэл"
 
@@ -1317,7 +1317,7 @@ msgstr "Үүсгэх"
 msgid "Open"
 msgstr "Нээх"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:386
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
 msgid "Open a file"
 msgstr "Файл нээх"
 
@@ -1433,181 +1433,154 @@ msgstr "Бичих"
 msgid "_Save"
 msgstr "Хадгалах"
 
-#: grecord/src/gnome-recorder.c:153
+#: grecord/src/gnome-recorder.c:155
 msgid "Dummy option"
 msgstr "Хоосон сонголт"
 
-#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
 msgid "hours"
 msgstr "цаг"
 
-#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
 msgid "hour"
 msgstr "цаг"
 
-#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
-#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
+#: grecord/src/gsr-window.c:248 grecord/src/gsr-window.c:253
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:273
 msgid "minutes"
 msgstr "минут"
 
-#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
-#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
+#: grecord/src/gsr-window.c:248 grecord/src/gsr-window.c:253
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:273
 msgid "minute"
 msgstr "минут"
 
-#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
-#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:314
-#: grecord/src/gsr-window.c:317
+#: grecord/src/gsr-window.c:249 grecord/src/gsr-window.c:259
+#: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:281
 msgid "seconds"
 msgstr "секунд"
 
-#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
-#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:317
+#: grecord/src/gsr-window.c:249 grecord/src/gsr-window.c:259
+#: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "секунд"
 
-#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1521
-#: grecord/src/gsr-window.c:1692 grecord/src/gsr-window.c:1782
+#: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1236
+#: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1661
 msgid "Ready"
 msgstr "Бэлэн"
 
-#: grecord/src/gsr-window.c:651
-#, fuzzy
-msgid "_Replace"
-msgstr "Спейс"
-
-#: grecord/src/gsr-window.c:668
-#, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists.\n"
-"Do you want to replace it with the one you are saving?"
-msgstr ""
-"<b> \"%s\"  файл нь өмнө нь үүсгэгдсэн байна.</b>\n"
-"Та түүнийг дарж бичих уу?"
-
-#: grecord/src/gsr-window.c:701
-msgid "Unknown extension, doing nothing"
-msgstr "Мэдэгдэхгүй өргөтгөл, юу ч хийсэнгүй"
-
-#: grecord/src/gsr-window.c:714
-msgid "Could not build pipeline"
-msgstr "Шугам үүсгэх боломжгүй"
-
-#: grecord/src/gsr-window.c:755
-#, c-format
-msgid "Saving %s..."
-msgstr "Хадгалж байна %s..."
-
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:569
 msgid "Save file as"
 msgstr "Файлыг хадгалах"
 
-#: grecord/src/gsr-window.c:867
+#: grecord/src/gsr-window.c:625
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s нь замдаа суулгагдсангүй"
 
-#: grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:635
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s эхлүүлэх үед алдаа гарлаа: %s"
 
-#: grecord/src/gsr-window.c:949
+#: grecord/src/gsr-window.c:712
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (хадгалагдсангүй)"
 
-#: grecord/src/gsr-window.c:965
+#: grecord/src/gsr-window.c:728
 msgid "Unknown size"
 msgstr "Мэдэгдээгүй хэмжээ"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:748
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kб/с"
 
-#: grecord/src/gsr-window.c:994
+#: grecord/src/gsr-window.c:757
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kб/с"
 
-#: grecord/src/gsr-window.c:1006
+#: grecord/src/gsr-window.c:769
 msgid "1 (mono)"
 msgstr "1 (моно)"
 
-#: grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:773
 msgid "2 (stereo)"
 msgstr "2 (стерео)"
 
-#: grecord/src/gsr-window.c:1039
+#: grecord/src/gsr-window.c:802
 #, c-format
 msgid "%s Information"
 msgstr "%s Мэдээлэл"
 
-#: grecord/src/gsr-window.c:1074
+#: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Сангууд:"
 
-#: grecord/src/gsr-window.c:1080 grecord/src/gsr-window.c:1926
+#: grecord/src/gsr-window.c:843 grecord/src/gsr-window.c:1593
 msgid "Filename:"
 msgstr "Файлын нэр:"
 
-#: grecord/src/gsr-window.c:1086
+#: grecord/src/gsr-window.c:849
 msgid "File size:"
 msgstr "Файлын хэмжээ:"
 
-#: grecord/src/gsr-window.c:1095
+#: grecord/src/gsr-window.c:858
 msgid "Audio Information"
 msgstr "Дууны мэдээлэл"
 
-#: grecord/src/gsr-window.c:1109
+#: grecord/src/gsr-window.c:872
 msgid "Song length:"
 msgstr "Дууны урт:"
 
-#: grecord/src/gsr-window.c:1115
+#: grecord/src/gsr-window.c:878
 msgid "Number of channels:"
 msgstr "Сувгуудын тоо:"
 
-#: grecord/src/gsr-window.c:1121
+#: grecord/src/gsr-window.c:884
 msgid "Sample rate:"
 msgstr "Жишээний үнэлэмж:"
 
-#: grecord/src/gsr-window.c:1127
+#: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Бит үнэлэмж:"
 
-#: grecord/src/gsr-window.c:1199
+#: grecord/src/gsr-window.c:962
 msgid "A sound recorder for GNOME"
 msgstr "GNOME-д зориулсан дуу бичигч"
 
-#: grecord/src/gsr-window.c:1497
+#: grecord/src/gsr-window.c:1221
 msgid "Playing..."
 msgstr "Тоглуулж байна..."
 
-#: grecord/src/gsr-window.c:1589
+#: grecord/src/gsr-window.c:1280
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Дуу Бичигч"
 
-#: grecord/src/gsr-window.c:1667
+#: grecord/src/gsr-window.c:1372
 msgid "Recording..."
 msgstr "Бичлэг хийж байна..."
 
-#: grecord/src/gsr-window.c:1901
+#: grecord/src/gsr-window.c:1561
 msgid "Record as"
 msgstr "Бичлэг ...р"
 
-#: grecord/src/gsr-window.c:1911
+#: grecord/src/gsr-window.c:1578
 msgid "File information"
 msgstr "Файлын мэдээлэл"
 
-#: grecord/src/gsr-window.c:1933
+#: grecord/src/gsr-window.c:1600
 msgid "<none>"
 msgstr "<байхгүй>"
 
-#: grecord/src/gsr-window.c:1942
+#: grecord/src/gsr-window.c:1609
 msgid "Length:"
 msgstr "Урт"
 
@@ -2051,6 +2024,27 @@ msgstr "Дуу авиа гаргалтыг илэрхийлэгч"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Дуу илэрхийлэгч"
+
+#, fuzzy
+#~ msgid "_Replace"
+#~ msgstr "Спейс"
+
+#, fuzzy
+#~ msgid ""
+#~ "A file named \"%s\" already exists.\n"
+#~ "Do you want to replace it with the one you are saving?"
+#~ msgstr ""
+#~ "<b> \"%s\"  файл нь өмнө нь үүсгэгдсэн байна.</b>\n"
+#~ "Та түүнийг дарж бичих уу?"
+
+#~ msgid "Unknown extension, doing nothing"
+#~ msgstr "Мэдэгдэхгүй өргөтгөл, юу ч хийсэнгүй"
+
+#~ msgid "Could not build pipeline"
+#~ msgstr "Шугам үүсгэх боломжгүй"
+
+#~ msgid "Saving %s..."
+#~ msgstr "Хадгалж байна %s..."
 
 #~ msgid "Synth"
 #~ msgstr "Нийлэг"

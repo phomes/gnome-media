@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 00:19-0700\n"
+"POT-Creation-Date: 2004-02-25 22:11-0700\n"
 "PO-Revision-Date: 2003-12-20 20:27+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -160,9 +160,9 @@ msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:974
-#: grecord/src/gsr-window.c:983 grecord/src/gsr-window.c:992
-#: grecord/src/gsr-window.c:1002 grecord/src/gsr-window.c:1341
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
+#: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1075
 msgid "Unknown"
 msgstr "不明"
 
@@ -1266,8 +1266,8 @@ msgstr "利用可能なテーマ(_A):"
 msgid "Record sound clips"
 msgstr "サウンド・クリップを記録します"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1197
-#: grecord/src/gsr-window.c:1593
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:960
+#: grecord/src/gsr-window.c:1284
 msgid "Sound Recorder"
 msgstr "サウンド・レコーダ"
 
@@ -1295,7 +1295,7 @@ msgstr "新しいサンプルを生成します"
 msgid "Display help for Sound Recorder"
 msgstr "サウンド・レコーダのヘルプを表示します"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1060
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
 msgid "File Information"
 msgstr "ファイル情報"
 
@@ -1315,7 +1315,7 @@ msgstr "新規"
 msgid "Open"
 msgstr "開く"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:386
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
 msgid "Open a file"
 msgstr "ファイルを開きます"
 
@@ -1431,184 +1431,156 @@ msgstr "録音(_R)"
 msgid "_Save"
 msgstr "保存(_S)"
 
-#: grecord/src/gnome-recorder.c:153
+#: grecord/src/gnome-recorder.c:155
 #, fuzzy
 msgid "Dummy option"
 msgstr "サウンドのオプション"
 
-#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
 msgid "hours"
 msgstr "時間"
 
-#: grecord/src/gsr-window.c:283 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:294 grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:247 grecord/src/gsr-window.c:252
+#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:262
 msgid "hour"
 msgstr "時間"
 
-#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
-#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
+#: grecord/src/gsr-window.c:248 grecord/src/gsr-window.c:253
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:273
 msgid "minutes"
 msgstr "分"
 
-#: grecord/src/gsr-window.c:284 grecord/src/gsr-window.c:289
-#: grecord/src/gsr-window.c:305 grecord/src/gsr-window.c:309
+#: grecord/src/gsr-window.c:248 grecord/src/gsr-window.c:253
+#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:273
 msgid "minute"
 msgstr "分"
 
-#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
-#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:314
-#: grecord/src/gsr-window.c:317
+#: grecord/src/gsr-window.c:249 grecord/src/gsr-window.c:259
+#: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:281
 msgid "seconds"
 msgstr "秒"
 
-#: grecord/src/gsr-window.c:285 grecord/src/gsr-window.c:295
-#: grecord/src/gsr-window.c:306 grecord/src/gsr-window.c:317
+#: grecord/src/gsr-window.c:249 grecord/src/gsr-window.c:259
+#: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "秒"
 
-#: grecord/src/gsr-window.c:472 grecord/src/gsr-window.c:1521
-#: grecord/src/gsr-window.c:1692 grecord/src/gsr-window.c:1782
+#: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1236
+#: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1661
 msgid "Ready"
 msgstr "準備完了です"
 
-#: grecord/src/gsr-window.c:651
-#, fuzzy
-msgid "_Replace"
-msgstr "スペース"
-
-#: grecord/src/gsr-window.c:668
-#, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists.\n"
-"Do you want to replace it with the one you are saving?"
-msgstr ""
-"<b>ファイル '%s' はすでに存在しています。</b>\n"
-"上書きしてもいいですか?"
-
-#: grecord/src/gsr-window.c:701
-msgid "Unknown extension, doing nothing"
-msgstr ""
-
-#: grecord/src/gsr-window.c:714
-#, fuzzy
-msgid "Could not build pipeline"
-msgstr "子プロセスを fork できませんでした"
-
-#: grecord/src/gsr-window.c:755
-#, c-format
-msgid "Saving %s..."
-msgstr "%s を保存中..."
-
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:569
 msgid "Save file as"
 msgstr "ファイルを別名で保存"
 
-#: grecord/src/gsr-window.c:867
+#: grecord/src/gsr-window.c:625
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s はパス上にインストールされていません"
 
-#: grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:635
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s の起動時にエラー: %s"
 
-#: grecord/src/gsr-window.c:949
+#: grecord/src/gsr-window.c:712
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (未保存)"
 
-#: grecord/src/gsr-window.c:965
+#: grecord/src/gsr-window.c:728
 msgid "Unknown size"
 msgstr "未知のサイズ"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:748
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:994
+#: grecord/src/gsr-window.c:757
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:1006
+#: grecord/src/gsr-window.c:769
 msgid "1 (mono)"
 msgstr "1 (モノラル)"
 
-#: grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:773
 msgid "2 (stereo)"
 msgstr "2 (ステレオ)"
 
-#: grecord/src/gsr-window.c:1039
+#: grecord/src/gsr-window.c:802
 #, c-format
 msgid "%s Information"
 msgstr "%s 情報"
 
-#: grecord/src/gsr-window.c:1074
+#: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "フォルダ:"
 
-#: grecord/src/gsr-window.c:1080 grecord/src/gsr-window.c:1926
+#: grecord/src/gsr-window.c:843 grecord/src/gsr-window.c:1593
 msgid "Filename:"
 msgstr "ファイル名:"
 
-#: grecord/src/gsr-window.c:1086
+#: grecord/src/gsr-window.c:849
 msgid "File size:"
 msgstr "ファイル・サイズ:"
 
-#: grecord/src/gsr-window.c:1095
+#: grecord/src/gsr-window.c:858
 msgid "Audio Information"
 msgstr "オーディオ情報"
 
-#: grecord/src/gsr-window.c:1109
+#: grecord/src/gsr-window.c:872
 msgid "Song length:"
 msgstr "曲の長さ:"
 
-#: grecord/src/gsr-window.c:1115
+#: grecord/src/gsr-window.c:878
 msgid "Number of channels:"
 msgstr "チャネル数:"
 
-#: grecord/src/gsr-window.c:1121
+#: grecord/src/gsr-window.c:884
 msgid "Sample rate:"
 msgstr "サンプリング・レート:"
 
-#: grecord/src/gsr-window.c:1127
+#: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "ビット・レート:"
 
-#: grecord/src/gsr-window.c:1199
+#: grecord/src/gsr-window.c:962
 msgid "A sound recorder for GNOME"
 msgstr "GNOME 用サウンド・レコーダ"
 
-#: grecord/src/gsr-window.c:1497
+#: grecord/src/gsr-window.c:1221
 msgid "Playing..."
 msgstr "再生中..."
 
-#: grecord/src/gsr-window.c:1589
+#: grecord/src/gsr-window.c:1280
 #, fuzzy, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s - サウンド・レコーダ"
 
-#: grecord/src/gsr-window.c:1667
+#: grecord/src/gsr-window.c:1372
 msgid "Recording..."
 msgstr "録音中..."
 
-#: grecord/src/gsr-window.c:1901
+#: grecord/src/gsr-window.c:1561
 #, fuzzy
 msgid "Record as"
 msgstr "録音"
 
-#: grecord/src/gsr-window.c:1911
+#: grecord/src/gsr-window.c:1578
 msgid "File information"
 msgstr "ファイル情報"
 
-#: grecord/src/gsr-window.c:1933
+#: grecord/src/gsr-window.c:1600
 msgid "<none>"
 msgstr "<なし>"
 
-#: grecord/src/gsr-window.c:1942
+#: grecord/src/gsr-window.c:1609
 msgid "Length:"
 msgstr "長さ:"
 
@@ -2053,6 +2025,25 @@ msgstr "音声出力音量のモニタです"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量モニタ"
+
+#, fuzzy
+#~ msgid "_Replace"
+#~ msgstr "スペース"
+
+#, fuzzy
+#~ msgid ""
+#~ "A file named \"%s\" already exists.\n"
+#~ "Do you want to replace it with the one you are saving?"
+#~ msgstr ""
+#~ "<b>ファイル '%s' はすでに存在しています。</b>\n"
+#~ "上書きしてもいいですか?"
+
+#, fuzzy
+#~ msgid "Could not build pipeline"
+#~ msgstr "子プロセスを fork できませんでした"
+
+#~ msgid "Saving %s..."
+#~ msgstr "%s を保存中..."
 
 #~ msgid "Synth"
 #~ msgstr "シンセ"
