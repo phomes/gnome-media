@@ -14,7 +14,6 @@ REQUIRED_AUTOMAKE_VERSION=1.7
     exit 1
 }
 
-
 which gnome-autogen.sh || {
     echo "You need to install gnome-common 2.4.0 or higher"
     exit 1
@@ -22,4 +21,5 @@ which gnome-autogen.sh || {
 
 # fix doc build before turning on common doc build
 # USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
-USE_GNOME2_MACROS=1 . gnome-autogen.sh
+# set ACLOCAL_AMFLAGS
+USE_GNOME2_MACROS=1 ACLOCAL_FLAGS="-I m4" . gnome-autogen.sh

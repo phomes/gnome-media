@@ -1,3 +1,11 @@
+2004-06-01  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* Makefile.am:
+	* configure.in:
+	* m4/as-compiler-flag.m4:
+	* m4/as-version.m4:
+	  adding m4 files for compiler flags and versioning
+
 2004-05-29  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "tk" to ALL_LINGUAS.
@@ -7,6 +15,26 @@
 	* gst-mixer/src/mixer.c: (create_mixer_widget):
 	  Workaround for not showing options without depending on a CVS
 	  version of GStreamer.
+
+2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* cddb-slave2/cddb-disclosure.c: (get_x_y),
+	(expand_collapse_timeout), (do_animation):
+	* cddb-slave2/cddb-disclosure.h:
+	* cddb-slave2/cddb-parser.c:
+	* cddb-slave2/cddb-parser.h:
+	* cddb-slave2/cddb-slave-client.h:
+	* cddb-slave2/cddb-slave.c: (do_goodbye), (do_read_response),
+	(display_results), (read_from_server),
+	(impl_GNOME_Media_CDDBSlave2_query),
+	(impl_GNOME_Media_CDDBSlave2_isValid),
+	(impl_GNOME_Media_CDDBSlave2_setAllTracks):
+	* cddb-slave2/cddb-track-editor.c: (make_tree_model),
+	(load_new_track_data), (make_track_editor_control), (main):
+	* cddb-slave2/main.c: (factory_fn), (main):
+	  fix loads of -Wall -Werror-related bugs
+	* configure.in:
+	  turn on -Wall -Werror for CDDBSLAVE
 
 2004-05-09  Thomas Vander Stichele  <thomas at apestaart dot org>
 
