@@ -193,7 +193,7 @@ static char *genres[] = {
 	N_("Folklore"),
 	N_("Ballad"),
 	N_("Power Ballad"),
-	N_("Rythmic Soul"),
+	N_("Rhythmic Soul"),
 	N_("Freestyle"),
 	N_("Duet"),
 	N_("Punk Rock"),
