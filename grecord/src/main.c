@@ -96,6 +96,8 @@ int
 main (int argc, char *argv[])
 {
 	GtkWidget* grecord_window;
+	GValue value = { 0, };
+    	GnomeProgram *program;
 	poptContext pctx;
 	GnomeClient* client;
 	gchar** args = NULL;
@@ -108,9 +110,19 @@ main (int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	
-	gnome_init_with_popt_table (_("GNOME Sound recorder"), VERSION, argc, argv,
-				    grec_options, 0, &pctx);
+	program = gnome_program_init ("grecord", VERSION,
+			    LIBGNOMEUI_MODULE, argc, argv,
+			    GNOME_PARAM_POPT_TABLE, grec_options,
+			    GNOME_PARAM_HUMAN_READABLE_NAME,
+		            _("Sound recorder"),
+			    NULL);
+	
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
+	g_value_init (&value, G_TYPE_POINTER);
+    	g_object_get_property (G_OBJECT (program), GNOME_PARAM_POPT_CONTEXT, &value);
+    	pctx = g_value_get_pointer (&value);
+    	g_value_unset (&value);
+
 	args = (gchar**) poptGetArgs (pctx);
 	
 	mwin.x = -1;

@@ -172,7 +172,6 @@ create_grecord_window (void)
 	GtkWidget* Record_button;
 	GtkWidget* Play_button;
 	GtkWidget* Stop_button;
-	GtkWidget* Exit_button;
 	GtkWidget* grecord_window;
 	GtkWidget* Statusbar;
 	GtkWidget* audio_format_label;
@@ -269,17 +268,6 @@ create_grecord_window (void)
 						    tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Record_button);
       
-	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar1));
-
-	tmp_toolbar_icon = gtk_image_new_from_stock (GTK_STOCK_QUIT,
-						     GTK_ICON_SIZE_BUTTON);
-	Exit_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-						  GTK_TOOLBAR_CHILD_BUTTON,
-						  NULL,
-						  _("Exit"),
-						  _("Exit this program"), NULL,
-						  tmp_toolbar_icon, NULL, NULL);
-	
 	vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (vbox1);
 
@@ -366,7 +354,6 @@ create_grecord_window (void)
 	grecord_widgets.Record_button = Record_button;
 	grecord_widgets.Play_button = Play_button;
 	grecord_widgets.Stop_button = Stop_button;
-	grecord_widgets.Exit_button = Exit_button;
 	grecord_widgets.grecord_window = grecord_window;
 	grecord_widgets.Statusbar = Statusbar;
 	grecord_widgets.appbar = grecord_appbar;
@@ -431,7 +418,6 @@ create_grecord_window (void)
 	gtk_signal_connect (GTK_OBJECT (Record_button), "clicked", GTK_SIGNAL_FUNC (on_record_activate_cb), NULL);
 	gtk_signal_connect (GTK_OBJECT (Play_button), "clicked", GTK_SIGNAL_FUNC (on_play_activate_cb), NULL);
 	gtk_signal_connect (GTK_OBJECT (Stop_button), "clicked", GTK_SIGNAL_FUNC (on_stop_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (Exit_button), "clicked", GTK_SIGNAL_FUNC (on_exit_activate_cb), NULL);
 	
 	return grecord_window;
 }

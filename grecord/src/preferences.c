@@ -64,7 +64,7 @@ load_config_file    (void)
 		g_free (s);
 	}
 
-	s                    = gnome_config_get_string ("mixercommand=gmix");
+	s                    = gnome_config_get_string ("mixercommand=gnome-sound-recorder");
 	mixer_command        = gnome_is_program_in_path (s);
 	if (mixer_command == NULL) {
 		mixer_command = s;

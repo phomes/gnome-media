@@ -392,20 +392,16 @@ on_about_activate_cb (GtkWidget* widget, gpointer data)
 	static GtkWidget* about = NULL;
 
 	if (about) {
-		if (about->window == NULL)
-			return;
-		
-		gdk_window_show (about->window);
-		gdk_window_raise (about->window);
+		gtk_window_present (GTK_WINDOW (about));
 		return;
 	}
 	
 	about = create_about ();
 
-	gtk_signal_connect (GTK_OBJECT (about),
-			    "destroy",
-			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-			    &about);
+	g_signal_connect (G_OBJECT (about),
+			  "destroy",
+			  G_CALLBACK (gtk_widget_destroyed),
+			  &about);
 
 	gtk_widget_show (about);
 }
