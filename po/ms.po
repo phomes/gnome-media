@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.100 HEAD\n"
-"POT-Creation-Date: 2002-10-09 01:38+0100\n"
-"PO-Revision-Date: 2002-05-12 02:02+0800\n"
+"POT-Creation-Date: 2002-11-05 20:53+0800\n"
+"PO-Revision-Date: 2002-11-05 20:51+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,38 +15,35 @@ msgstr ""
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "Alamat bagi pelayan untuk dihubungi bagi kueri CD"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
 msgstr "Liang"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#, fuzzy
 msgid "Server name"
-msgstr "Pelayan"
+msgstr "Nama pelayan"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgstr "Namahos yang akan dihantar dengan semua kueri"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr ""
+msgstr "Liang pada pelayan yang dilaksana oleh pangkalan data"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-#, fuzzy
 msgid "The username"
-msgstr "Nama Tema"
+msgstr "Nama pengguna"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "Nama pengguna yang akan dihantar dengan semua kueri"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-#, fuzzy
 msgid "Your hostname"
-msgstr "Namahos:"
+msgstr "Namahos anda"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -1081,10 +1078,10 @@ msgstr "Bantuan"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Peranti mixer untuk digunakan"
 
 #: gmix/gmix.c:327
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Volume control is unable to run correctly.\n"
 "\n"
@@ -1094,9 +1091,13 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
+"Kawalan volum tak dapat dilaksanakan dengan betul.\n"
+"\n"
 "Saya tak boleh membuka peranti audio.\n"
 "Sila periksa samada anda mempunyai keizinan untuk membuka /dev/mixer\n"
-"dan pastikan anda mempunyai sokongan bunyi yang dikompil pada kernel"
+"dan pastikan anda mempunyai sokongan bunyi yang dikompil pada kernel.\n"
+"\n"
+"Tekan Keluar untuk keluar Kawalan Volum"
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1106,16 +1107,19 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"Kawalan volum tak dapat dilaksanakan dengan betul.\n"
+"\n"
+"Tekan butang Perincuian untuk maklumat lanjut berkenaan alasan kegagalan.\n"
+"\n"
+"Tekan Keluar untuk keluar Kawalan Volum"
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:477
-#, fuzzy
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 msgid "_Details"
-msgstr "Metal"
+msgstr "_Perincian"
 
 #: gmix/gmix.c:387
-#, fuzzy
 msgid "Invalid mixer device"
-msgstr "Peranti CD tak sah"
+msgstr "Peranti mixer tak sah"
 
 #: gmix/gmix.c:626
 #, c-format
@@ -1256,53 +1260,76 @@ msgid "Line for displaying the name of the album"
 msgstr "Baris bagi memapar nama album"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:532 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
+#: gnome-cd/callbacks.c:538 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
 msgid "Play"
 msgstr "Putar"
 
 #: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226
 #: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:498
+#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
 msgid "Pause"
 msgstr "Kaku"
 
-#: gnome-cd/callbacks.c:604
-msgid "Disc error"
-msgstr "Ralat cakera"
+#: gnome-cd/callbacks.c:530
+#, c-format
+msgid "Playing %s - %s"
+msgstr "Memain %s - %s"
 
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:648
+#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:655 gnome-cd/callbacks.c:666
 msgid "Unknown Artist"
 msgstr "Artis tidak dikenali"
 
-#: gnome-cd/callbacks.c:640 gnome-cd/callbacks.c:652
+#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:658 gnome-cd/callbacks.c:670
 msgid "Unknown Album"
 msgstr "Album tidak diketahui"
 
-#: gnome-cd/callbacks.c:691
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:550
+msgid "Paused"
+msgstr "Kaku"
+
+#. Update tray icon tooltip
+#: gnome-cd/callbacks.c:595 gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:495
+#: gnome-cd/gnome-cd.c:653 gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "Pemain CD"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:613
+msgid "Stopped"
+msgstr "Berhenti"
+
+#: gnome-cd/callbacks.c:619
+msgid "Disc error"
+msgstr "Ralat cakera"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:709
 msgid "No disc"
 msgstr "Tiada Cakera"
 
-#: gnome-cd/callbacks.c:717
+#: gnome-cd/callbacks.c:735
 msgid "Drive open"
 msgstr "Pemacu dibuka"
 
-#: gnome-cd/callbacks.c:741
+#: gnome-cd/callbacks.c:759
 msgid "Data CD"
 msgstr "CD Data"
 
-#: gnome-cd/callbacks.c:763
+#. Updated the tray icon tooltip
+#: gnome-cd/callbacks.c:781 gnome-cd/callbacks.c:785
 msgid "No Cdrom"
 msgstr "Tiada CDROM"
 
-#: gnome-cd/callbacks.c:775
+#: gnome-cd/callbacks.c:796
 msgid "Drive Error"
 msgstr "Ralat Pemacu"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:817
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:797
+#: gnome-cd/callbacks.c:818
 msgid "A GNOME cd player"
 msgstr "Pemain CD GNOME"
 
@@ -1312,7 +1339,7 @@ msgid "You do not seem to have permission to access %s."
 msgstr "Anda nampaknya tidak mempunyai keizinan untuk mengakses %s"
 
 #: gnome-cd/cdrom.c:373
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not present in your machine\n"
@@ -1322,7 +1349,7 @@ msgstr ""
 "%s tidak menuding ke peranti CDROM yang sah. Ini mungkin disebabkan oleh:\n"
 "a) Sokongan CD tidak dikompil ke dalam Kernel\n"
 "b) Anda tidak mempunyai keizinan untuk mengakses pemacu CD\n"
-"c) %s adalah bukan pemacu CD\n"
+"c) %s adalah bukan pemacu CD.\n"
 
 #: gnome-cd/display.c:74
 msgid "Unknown artist"
@@ -1331,10 +1358,6 @@ msgstr "Artis tidak dikenali"
 #: gnome-cd/display.c:75
 msgid "Unknown disc"
 msgstr "Cakera tidak diketahui"
-
-#: gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:494
-msgid "Gnome CD Player"
-msgstr "Pemain CD GNOME"
 
 #: gnome-cd/gnome-cd.c:156
 #, c-format
@@ -1362,138 +1385,131 @@ msgid "_Eject disc"
 msgstr "_Eject cakera"
 
 #: gnome-cd/gnome-cd.c:305
-#, fuzzy
 msgid "_Help"
-msgstr "Bantuan"
+msgstr "_Bantuan"
 
 #: gnome-cd/gnome-cd.c:306
-msgid "_About Gnome-CD"
-msgstr "Perih_al Gnome-CD"
+msgid "_About CD player"
+msgstr "_Perihal CD GNOME"
 
-#: gnome-cd/gnome-cd.c:413
+#: gnome-cd/gnome-cd.c:414
 msgid ""
-"There is no CD device set. This means that GnomeCD\n"
-"will be unable to run. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
-"Tiada peranti CD ditetapkan. Ini bermaksud GnomeCD tak dapat \n"
-"dilaksanakan.  tekan Tetapkan Peranti untuk pergi ke dialog yang anda\n"
-" boleh tetapkan peranti CD, atau klik Keluar untuk keluar GnomeCD"
+"Tiada peranti CD ditetapkan. Ini bermaksud Pemain CD tak dapat \n"
+"dilaksanakan.  tekan 'Tetapkan Peranti' untuk pergi ke dialog yang anda\n"
+" boleh tetapkan peranti CD, atau klik 'Keluar' untuk keluar GnomeCD"
 
-#: gnome-cd/gnome-cd.c:417
+#: gnome-cd/gnome-cd.c:418
 msgid "Set device"
 msgstr "Tetapkan peranti"
 
-#: gnome-cd/gnome-cd.c:419
+#: gnome-cd/gnome-cd.c:420
 msgid "No CD device"
 msgstr "Tiada Peranti CD"
 
-#: gnome-cd/gnome-cd.c:473
-#, fuzzy
+#: gnome-cd/gnome-cd.c:474
 msgid ""
-"GnomeCD is unable to run correctly.\n"
+"The CD player is unable to run correctly.\n"
 "\n"
-"Press Details button for more details on reasons for failure.\n"
+"Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press Set device to go to a dialog where you can set the device, or click "
-"Quit to quit GnomeCD"
+"Press 'Set device' to go to a dialog where you can set the device, or press "
+"'Quit' to quit the CD player"
 msgstr ""
-"%s\n"
-"Ini bermaksud GnomeCD tak dpaat dilaksanakan dengan betul.tekan Tetapkan "
-"Peranti untuk pergi ke dialog yang anda boleh tetapkan peranti CD, atau klik "
-"Keluar untuk keluar GnomeCD"
+"Ini bermaksud Pemain CD  tak dapat dilaksanakan dengan betul.\n"
+"\n"
+"Tekan 'Perincian' untuk mendapatkan maklumat alasan kegagalan itu.\n"
+"\n"
+" Tekan 'Tetapkan Peranti' untuk pergi ke dialog dimana anda boleh menetapkan "
+"peranti, atau tekan 'Keluar' untuk keluar Pemain CD"
 
-#: gnome-cd/gnome-cd.c:478
-#, fuzzy
+#: gnome-cd/gnome-cd.c:479
 msgid "_Set device"
-msgstr "Tetapkan peranti"
+msgstr "_Tetapkan peranti"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
 msgstr "Peranti CD tak sah"
 
-#: gnome-cd/gnome-cd.c:541
+#: gnome-cd/gnome-cd.c:542
 msgid "Volume control"
 msgstr "Kawalan volum"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:551
 msgid "Open track editor"
 msgstr "Buka editor trek"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:552
 msgid "Track editor"
 msgstr "Editor Trek"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:559
 msgid "Open preferences"
 msgstr "Buka keutamaan"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
 msgstr "Keutamaan"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:568
 msgid "Track List"
 msgstr "Senarai Trek"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous track"
 msgstr "Trek terdahulu"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous"
 msgstr "Terdahulu"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:593
 msgid "Rewind"
 msgstr "Rewind"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:610
 msgid "Play / Pause"
 msgstr "Putar / Kaku"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247
+#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Berhenti"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:619
 msgid "Fast forward"
 msgstr "Maju Pantas"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:627
 msgid "Next track"
 msgstr "Trek seterusnya"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject CD"
 msgstr "Eject CD"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject"
 msgstr "Eject"
 
-#: gnome-cd/gnome-cd.c:671
-#, fuzzy
+#: gnome-cd/gnome-cd.c:688
 msgid "CD device to use"
-msgstr "Tiada Peranti CD"
+msgstr "Peranti CD untuk digunakan"
 
-#: gnome-cd/gnome-cd.c:680
+#: gnome-cd/gnome-cd.c:697
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Hanya bermula jika tiada aplikasi pemain CD dilaksanakan"
 
-#: gnome-cd/gnome-cd.c:682
+#: gnome-cd/gnome-cd.c:699
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Mainkan CD pada permulaan"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:712
+#: gnome-cd/gnome-cd.c:729
 msgid "Cannot create player"
 msgstr "Gagal mencipta pemain"
-
-#: gnome-cd/gnome-cd.desktop.in.h:1
-#, fuzzy
-msgid "CD Player"
-msgstr "Pemain CD"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1501,28 +1517,27 @@ msgstr "Putar CD audio"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr ""
+msgstr "Aksi pada aplikasi keluar"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Action on start"
-msgstr ""
+msgstr "Aksi pada permulaan"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
 msgid "CD player theme"
-msgstr "Pemain CD"
+msgstr "Tema pemain CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
-msgstr ""
+msgstr "Path Peranti"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgstr "Patutkan Pemain CD cuba menutup Pemacu CD pada permulaan?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr ""
+msgstr "Tutup dulang CD pada permulaan"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
@@ -1548,100 +1563,94 @@ msgstr ""
 #, c-format
 msgid ""
 "%s\n"
-"This means that Gnome-CD will not be able to run."
+"This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
-"Ini bermaksud Gnome-CD tak boleh dilaksanakan."
+"Ini bermaksud Pemain CD tak boleh dilaksanakan."
 
 #: gnome-cd/preferences.c:84
 msgid "Error setting device"
 msgstr "Ralat menetapkan peranti"
 
-#: gnome-cd/preferences.c:822
-msgid "Gnome CD Player Preferences"
-msgstr "Keutamaan Pemain CD Gnome"
+#: gnome-cd/preferences.c:824
+msgid "CD Player Preferences"
+msgstr "Keutamaan Pemain CD"
 
-#: gnome-cd/preferences.c:851
-#, fuzzy
+#: gnome-cd/preferences.c:853
 msgid "CD player de_vice:"
-msgstr "Pe_ranti Pemain CD"
+msgstr "Pe_ranti Pemain CD:"
 
-#: gnome-cd/preferences.c:866
+#: gnome-cd/preferences.c:868
 msgid "_Apply change"
 msgstr "Ter_apkan perubahan"
 
 #. left side
-#: gnome-cd/preferences.c:879
-msgid "When Gnome CD Player starts"
-msgstr "Bila Pemain CD Gnome dimulakan"
+#: gnome-cd/preferences.c:881
+msgid "When CD player starts"
+msgstr "Bila Pemain CD dimulakan"
 
-#: gnome-cd/preferences.c:887
+#: gnome-cd/preferences.c:889
 msgid "Do _nothing"
 msgstr "Berdiam _diri"
 
-#: gnome-cd/preferences.c:888
-#, fuzzy
+#: gnome-cd/preferences.c:890
 msgid "Do nothing when CD Player starts"
-msgstr "Bila Pemain CD Gnome dimulakan"
+msgstr "Berdiam diri bila Pemain CD dimulakan"
 
-#: gnome-cd/preferences.c:898
+#: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
 msgstr "Mula me_main CD"
 
-#: gnome-cd/preferences.c:899
-#, fuzzy
+#: gnome-cd/preferences.c:901
 msgid "Start playing CD when CD Player starts"
-msgstr "Bila Pemain CD Gnome dimulakan"
+msgstr "Mula memain CD bila Pemain CD dimulakan"
 
-#: gnome-cd/preferences.c:908
+#: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
 msgstr "Hen_ti memainkan CD"
 
-#: gnome-cd/preferences.c:909
-#, fuzzy
+#: gnome-cd/preferences.c:911
 msgid "Stop playing CD when CD Player starts"
-msgstr "Bila Pemain CD Gnome dimulakan"
+msgstr "Henti memain CD bila Pemain CD dimulakan"
 
-#: gnome-cd/preferences.c:923
+#: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
 msgstr "Cuba menu_tup dulang CD"
 
 #. Right side
-#: gnome-cd/preferences.c:935
-msgid "When Gnome CD Player quits"
-msgstr "Bila Pemain CD Gnome keluar"
+#: gnome-cd/preferences.c:937
+msgid "When CD player quits"
+msgstr "Bila Pemain CD keluar"
 
-#: gnome-cd/preferences.c:943
+#: gnome-cd/preferences.c:945
 msgid "Do not_hing"
 msgstr "Ber_diam diri"
 
-#: gnome-cd/preferences.c:944
-#, fuzzy
+#: gnome-cd/preferences.c:946
 msgid "Do nothing when CD Player exits"
-msgstr "Bila Pemain CD Gnome keluar"
+msgstr "Berdiam diri bila Pemain CD keluar"
 
-#: gnome-cd/preferences.c:953
+#: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
 msgstr "Hen_ti memainkan CD"
 
-#: gnome-cd/preferences.c:954
+#: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
-msgstr ""
+msgstr "Henti memainkan CD bila pemain CD keluar"
 
-#: gnome-cd/preferences.c:964
+#: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "Cuba Mem_buka dulang CD"
 
-#: gnome-cd/preferences.c:965
-#, fuzzy
+#: gnome-cd/preferences.c:967
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "Cuba Mem_buka dulang CD"
+msgstr "Cuba Membuka dulang CD bila Peman CD keluar"
 
-#: gnome-cd/preferences.c:975
+#: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
 msgstr "Cuba menu_tup dulang CD"
 
-#: gnome-cd/preferences.c:1006
+#: gnome-cd/preferences.c:1008
 msgid "Theme name"
 msgstr "Nama Tema"
 
@@ -1675,7 +1684,7 @@ msgstr ""
 "Jika anda tidak mempunyai sox, anda tidak akan boleh merekod atau membuat "
 "sebarang kesan."
 
-#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1359
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
 msgid "Could not fork child process"
 msgstr "Tak dapat sepit proses anak"
 
@@ -1695,15 +1704,15 @@ msgstr "Menukar fail..."
 msgid "Cancel"
 msgstr "Batal"
 
-#: grecord/src/grec.c:345 grecord/src/grec.c:793
+#: grecord/src/grec.c:345 grecord/src/grec.c:795
 msgid "Audioformat: "
 msgstr "Format audio:"
 
-#: grecord/src/grec.c:349 grecord/src/grec.c:779 grecord/src/gui.c:308
+#: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
 msgid "Sample rate: "
 msgstr "Kadar sampel: "
 
-#: grecord/src/grec.c:359 grecord/src/grec.c:783 grecord/src/gui.c:315
+#: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
 msgid "Channels: "
 msgstr "Saluran"
 
@@ -1752,7 +1761,7 @@ msgstr ""
 msgid "File '%s isn't a valid sound file."
 msgstr "Fail '%s' bukanlah fail bunyi yang sah."
 
-#: grecord/src/grec.c:817
+#: grecord/src/grec.c:819
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1761,7 +1770,7 @@ msgstr ""
 "'%s' adalah folder.\n"
 " Sila masukkan namafail lain."
 
-#: grecord/src/grec.c:829
+#: grecord/src/grec.c:831
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1770,21 +1779,21 @@ msgstr ""
 "<b>Fail %s sudah wujud.<b>\n"
 "Adakah anda ingin menindihnya?"
 
-#: grecord/src/grec.c:832
+#: grecord/src/grec.c:834
 msgid "Cancel save"
 msgstr "batal simpan"
 
-#: grecord/src/grec.c:833
+#: grecord/src/grec.c:835
 msgid "Overwrite"
 msgstr "Tindih"
 
-#: grecord/src/grec.c:860
+#: grecord/src/grec.c:862
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Ralat menyimpan '%s'"
 
-#: grecord/src/grec.c:974
-#, fuzzy, c-format
+#: grecord/src/grec.c:976
+#, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
 "\n"
@@ -1794,21 +1803,21 @@ msgstr ""
 "\n"
 "Perubahan anda akan hilang jika anda tidak menyimpannya."
 
-#: grecord/src/grec.c:979
+#: grecord/src/grec.c:981
 msgid "Do_n't save"
 msgstr "Ja_ngan simpan"
 
-#: grecord/src/grec.c:986
+#: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
 msgstr "Simpan %s?"
 
 #. Save the file
-#: grecord/src/grec.c:1010
+#: grecord/src/grec.c:1012
 msgid "Saving..."
 msgstr "Menyimpan..."
 
-#: grecord/src/grec.c:1140
+#: grecord/src/grec.c:1142
 #, c-format
 msgid ""
 "The size of the current sample is more than\n"
@@ -1817,11 +1826,11 @@ msgstr ""
 "Saiz sampel semasa adalah lebih \n"
 "daripada %i Mb!"
 
-#: grecord/src/grec.c:1196
+#: grecord/src/grec.c:1198
 msgid "Save sound file"
 msgstr "Simpan fail bunyi"
 
-#: grecord/src/grec.c:1425
+#: grecord/src/grec.c:1429
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -2148,7 +2157,7 @@ msgstr "Saluran: mono"
 msgid "Channels: stereo"
 msgstr "Saluran: stereo"
 
-#: grecord/src/sound.c:136
+#: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Menambah gema pada sampel..."
 
@@ -2220,267 +2229,3 @@ msgstr "Monitor volum output bunyi"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Monitor volum"
-
-#~ msgid "don't restore mixer-settings from configuration"
-#~ msgstr "jangan pulihkan tetapan-mixer daripada konfigurasi"
-
-#~ msgid "restore mixer-settings from configuration"
-#~ msgstr "pulihkan tetapan-mixer daripada konfigurasi"
-
-#~ msgid "initialise the mixer(s) from stored configuration and exit"
-#~ msgstr "initialisasian mixer daripada konfigurasi tersimpan dan keluar"
-
-#~ msgid "don't save (modified) mixer-settings into configuration"
-#~ msgstr "Jangan simpan tetapan-mixer (berubah) ke konfigurasi"
-
-#~ msgid "On startup"
-#~ msgstr "Pada permulaan"
-
-#~ msgid "Restore saved mixer levels on startup"
-#~ msgstr "Pulihkan aras mixer tersimpan pada permulaan"
-
-#~ msgid "GUI"
-#~ msgstr "GUI"
-
-#~ msgid "Show mixer icons"
-#~ msgstr "Papar ikon mixer"
-
-#~ msgid "Show mixer labels"
-#~ msgstr "Papar label mixer"
-
-#~ msgid "Labels"
-#~ msgstr "Label"
-
-#~ msgid "CDDBSlave 2 Properties"
-#~ msgstr "Ciri-ciri CDDBSlave 2"
-
-#~ msgid "CDDB"
-#~ msgstr "CDDB"
-
-#~ msgid "CDDB Properties"
-#~ msgstr "Ciri-ciri CDDB"
-
-#~ msgid "Error opening CD"
-#~ msgstr "Ralat membuka CD"
-
-#~ msgid "Error reading CD header"
-#~ msgstr "Ralat membaca pengelapa CD"
-
-#~ msgid "IOCtl failed"
-#~ msgstr "IOCtl gagal"
-
-#~ msgid "Error getting leadout"
-#~ msgstr "Ralat mendapatkan leadout"
-
-#~ msgid ""
-#~ "CD changed\n"
-#~ "Track count: %d\n"
-#~ "------------------\n"
-#~ msgstr ""
-#~ "CD ditukar\n"
-#~ "Bilangan trek: %d\n"
-#~ "------------------\n"
-
-#~ msgid "(eject): ioctl failed: %s"
-#~ msgstr "(eject): ioctl gagal: %s"
-
-#~ msgid "(linux_cdrom_play): Drive not ready"
-#~ msgstr "(linux_cdrom_play): Pemacu tidak bersedia"
-
-#~ msgid "(linux_cdrom_play): Drive still not ready"
-#~ msgstr "(linux_cdrom_play): Pemasih masih tidak bersedia"
-
-#~ msgid "(linux_cdrom_play) ioctl failed %s"
-#~ msgstr "(linux_cdrom_play) ioctl gagal %s"
-
-#~ msgid "(linux_cdrom_pause): Drive not ready"
-#~ msgstr "(linux_cdrom_pause): Pemacu tidak bersedia"
-
-#~ msgid "(linux_cdrom_pause): Resume failed %s"
-#~ msgstr "(linux_cdrom_pause): Resume gagal %s"
-
-#~ msgid "(linux_cdrom_pause): ioctl failed %s"
-#~ msgstr "(linux_cdrom_pause): ioctl gagal %s"
-
-#~ msgid "(linux_cdrom_stop) ioctl failed %s"
-#~ msgstr "(linux_cdrom_stop) ioctl gagal %s"
-
-#~ msgid "(linux_cdrom_get_status): ioctl error %s"
-#~ msgstr "(linux_cdrom_get_status): ralat ioctl %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): ioctl CDROMSUBCHNL gagal %s"
-
-#~ msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-#~ msgstr "(linux_cdrom_get_status): ioctl CDROMVOLREAD gagal %s"
-
-#~ msgid "(linux_cdrom_close_tray): ioctl failed %s"
-#~ msgstr "(linux_cdrom_close_tray): ioctl gagal %s"
-
-#~ msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-#~ msgstr "(linux_cdrom_set_volume:1): ioctl gagal %s"
-
-#~ msgid "%s is not a CDROM drive"
-#~ msgstr "%s adalah bukan pemacu CDROM"
-
-#~ msgid ""
-#~ "%s does not appear to point to a valid CDRom device. This may be "
-#~ "because:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s tidak menuding ke peranti CDROM yang sah. Ini mungkin disebabkan "
-#~ "oleh:\n"
-#~ "a) Sokongan CD tidak dikompil ke dalam Kernel\n"
-#~ "b) Anda tidak mempunyai keizinan untuk mengakses pemacu CD\n"
-#~ "c) %s adalah bukan pemacu CD\n"
-
-#~ msgid ""
-#~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
-#~ "will be unable to run correctly. Press Set device to go to a dialog\n"
-#~ "where you can set the device, or click Quit to quit GnomeCD"
-#~ msgstr ""
-#~ "Peranti CD yang ditetapkan adalah bukan pemacu CDROM. Ini bermaksud "
-#~ "GnomeCD\n"
-#~ "tidak akan boleh dilaksanakan dengan betul. Tekan Tetapkan Peranti untuk "
-#~ "pergi ke \n"
-#~ "dialog dimana anda boleh menetapkan peranti, atau klik Keluar untuk "
-#~ "keluar GnomeCD"
-
-#~ msgid ""
-#~ "Unable to open %s. This may be caused by:\n"
-#~ "a) CD support is not compiled into Linux\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "Tak dapat membuka %s. Ini mungkin disebabkan oleh:\n"
-#~ "a) Sokongan CD tidak dikompil ke dalam Kernel\n"
-#~ "b) Anda tidak mempunyai keizinan untuk mengakses pemacu CD\n"
-#~ "c) %s adalah bukan pemacu CD\n"
-
-#~ msgid "%s is a CDROM drive\n"
-#~ msgstr "%s adalah pemacu CDROM\n"
-
-#~ msgid "%s%s"
-#~ msgstr "%s%s"
-
-#~ msgid "Rec"
-#~ msgstr "Rek"
-
-#~ msgid "Open mixer"
-#~ msgstr "Buka mixer"
-
-#~ msgid "Open Mixer"
-#~ msgstr "Buka Mixer"
-
-#~ msgid "Change volume"
-#~ msgstr "Tukar Volum"
-
-#~ msgid "Volume"
-#~ msgstr "Volum"
-
-#~ msgid "Don't quit"
-#~ msgstr "Jangan keluar"
-
-#~ msgid ""
-#~ "<b>Save the changes to %s?</b>\n"
-#~ "If you don't save, these changes will be discarded."
-#~ msgstr ""
-#~ "<b>Simpan perubahan ke %s<b>\n"
-#~ "Jika anda tidak simpan, perubahan akan diabaikan."
-
-#~ msgid "Save"
-#~ msgstr "Simpan"
-
-#~ msgid "Undo all changes"
-#~ msgstr "Nyajcara semua perubahan"
-
-#~ msgid "Show time"
-#~ msgstr "Papar masa"
-
-#~ msgid "Show soundinfo"
-#~ msgstr "Papar maklumat bunyi"
-
-#~ msgid "Show sound information"
-#~ msgstr "Papar maklumat bunyi"
-
-#~ msgid "Info"
-#~ msgstr "Maklumat"
-
-#~ msgid "Forever"
-#~ msgstr "Selamanya"
-
-#~ msgid "Directories"
-#~ msgstr "Direktori"
-
-#~ msgid "User interface"
-#~ msgstr "Antaramuka pengguna"
-
-#~ msgid "Main window"
-#~ msgstr "Tetingkap utama"
-
-#~ msgid "Play-repeating"
-#~ msgstr "Putar berulang"
-
-#~ msgid "Path to mixer:"
-#~ msgstr "Parh ke mixer:"
-
-#~ msgid ""
-#~ "You havn't entered a sox command; you will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Anda tidak memasukkan arahan sox; anda tidak akan boleh merekod.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "File %s in 'sox command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Fail %s pada 'arahan sox' tidak wujud.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "You havn't entered a mixer command; you will not be able to start the "
-#~ "mixer.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Anda tidak memasukkan arahan mixer; anda tidak boleh memulakan mixer.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "File %s in 'mixer command' does not exist.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Fail %s pada 'arahan mixer' tidak wujud.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "You havn't entered a temp dir. You will not be able to record.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Anda tidak memasukkan dir temp. Anda tidak akan boleh merekod.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "Temp directory %s is a file.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Direktori temp %s adalah fail.\n"
-#~ "Adakah anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "You don't have the correct permissions (read & write) for temp directory %"
-#~ "s.\n"
-#~ "Do you want to use it anyway?"
-#~ msgstr ""
-#~ "Anda tidka mempunyai keizinan yang betul (baca & tulis) pada direktori "
-#~ "temp %s.\n"
-#~ "Anda ingin menggunakannya juga?"
-
-#~ msgid ""
-#~ "Directory %s does not exist.\n"
-#~ "Do want to use it anyway?"
-#~ msgstr ""
-#~ "Direktori %s tidak wujud.\n"
-#~ "Anda ingin menggunakannya juga?"
