@@ -34,6 +34,7 @@
 static void pango_accessible_class_init       (PangoAccessibleClass *klass);
 
 static gint pango_accessible_get_n_children   (AtkObject       *obj);
+static gint pango_accessible_get_index_in_parent   (AtkObject       *obj);
 
 static void pango_accessible_real_initialize  (AtkObject *obj, gpointer data);
 static void pango_accessible_finalize         (GObject        *object);
@@ -160,6 +161,7 @@ pango_accessible_class_init (PangoAccessibleClass *klass)
 	gobject_class->finalize = pango_accessible_finalize;
 
 	class->get_n_children = pango_accessible_get_n_children;
+	class->get_index_in_parent = pango_accessible_get_index_in_parent;
 	class->initialize = pango_accessible_real_initialize;
 }
 
@@ -208,6 +210,18 @@ static gint
 pango_accessible_get_n_children (AtkObject* obj)
 {
 	return 0;
+}
+
+static gint
+pango_accessible_get_index_in_parent (AtkObject* obj)
+{
+	gint i;
+
+	for (i = 0; i < CD_DISPLAY_END; i++) {
+		if (pango_accessible [i] == obj)
+			return i;
+	}
+	return -1;
 }
 
 static void
