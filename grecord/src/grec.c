@@ -666,40 +666,54 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 		gint choice;
 
 		if (S_ISDIR (file.st_mode)) {
-			show_mess = g_strdup_printf (_("'%s' is a directory.\nPlease enter another filename."), new_file);
-			mess = gnome_message_box_new (show_mess,
-						      GNOME_MESSAGE_BOX_ERROR,
-						      GNOME_STOCK_BUTTON_OK,
-						      NULL);
-			g_free (show_mess);
-			gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+			mess = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
+						       GTK_MESSAGE_ERROR,
+						       GTK_BUTTONS_OK,
+						       _("'%s' is a directory.\nPlease enter another filename."),
+						       new_file);
+
 			gtk_widget_show (mess);
 			g_free (new_file);
 			return;
 		}
-		show_mess = g_strdup_printf (_("File '%s' already exists.\nDo you want to overwrite it?"), new_file);
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_WARNING,
-					      GNOME_STOCK_BUTTON_YES,
-					      GNOME_STOCK_BUTTON_NO,
-					      GNOME_STOCK_BUTTON_CANCEL,
-					      NULL);
-		choice = gnome_dialog_run (GNOME_DIALOG (mess));
-		g_free (show_mess);
-		if (choice == 2 || choice == 1) {
+		mess = gtk_message_dialog_new (NULL, 0,
+					       GTK_MESSAGE_WARNING,
+					       GTK_BUTTONS_NONE,
+					       _("<b>File '%s' already exists.</b>\nDo you want to overwrite it?"),
+					       new_file);
+		gtk_dialog_add_buttons (GTK_DIALOG (mess),
+					_("Cancel save"), 0,
+					_("Overwrite"), 1,
+					NULL);
+
+		/* Bad hack usage #2 */
+		gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), TRUE);
+		gtk_label_set_line_wrap (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), FALSE);
+		gtk_label_set_justify (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), GTK_JUSTIFY_LEFT);
+
+		switch (gtk_dialog_run (GTK_DIALOG (mess))) {
+		case 0:
+			gtk_widget_destroy (mess);
 			g_free (new_file);
 			return;
+
+		default:
+			gtk_widget_destroy (mess);
+			break;
 		}
 	}
 
 	/* Check if the soundfile is supported */
 	if (!save_sound_file (new_file)) {
-		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
-							 GNOME_MESSAGE_BOX_ERROR,
-							 GNOME_STOCK_BUTTON_OK,
-							 NULL);
-		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+		GtkWidget *mess;
+
+		mess = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_ERROR,
+					       GTK_BUTTONS_OK,
+					       _("Error saving '%s'"),
+					       new_file);
 		gtk_widget_show (mess);
+		
 		g_free (new_file);
 		return;
 	}
