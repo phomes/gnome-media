@@ -1,3 +1,5 @@
+SUBDIRS = lcd-theme
+
 pixmapdir = $(datadir)/pixmaps/gnome-cd
 
 BITMAPS = 		\

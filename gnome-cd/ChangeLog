@@ -1,3 +1,13 @@
+2002-01-13  Iain Holmes  <iain@ximian.com>
+
+	* display.c (size_allocate): Resize the images depending on the
+	display size.
+	(size_request): Play around with size.
+	(expose_event): Loop through all the images, drawing the ones that
+	are needed. Draw text in black gc.
+	(cd_image_new): Create a new CDImage structure.
+	(init): Load the images.
+
 2002-01-12  Iain Holmes  <iain@ximian.com>
 
 	* gnome-cd.c (gnome_cd_build_track_list_menu): Print the track number

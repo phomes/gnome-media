@@ -6,6 +6,7 @@
  * Authors: Iain Holmes  <iain@ximian.com>
  */
 
+#include <libgnome/gnome-util.h>
 #include "gnome-cd.h"
 #include "display.h"
 
@@ -14,6 +15,21 @@
 
 static GtkDrawingAreaClass *parent_class = NULL;
 
+#define LEFT 0
+#define RIGHT 1
+#define TOP 2
+#define BOTTOM 3
+
+#define TOPLEFT 0
+#define TOPRIGHT 1
+#define BOTTOMLEFT 2
+#define BOTTOMRIGHT 3
+
+typedef struct _CDImage {
+	GdkPixbuf *pixbuf;
+	GdkRectangle rect;
+} CDImage;
+
 struct _CDDisplayPrivate {
 	GdkColor red;
 	GdkColor blue;
@@ -21,11 +37,16 @@ struct _CDDisplayPrivate {
 	GnomeCDText *layout[CD_DISPLAY_END];
 	int max_width;
 	int height;
+	int need_height;
+
+	CDImage *corners[4];
+	CDImage *straights[4];
+	CDImage *middle;
 };
 
 static char *default_text[CD_DISPLAY_END] = {
 	" ",
-	"---------------",
+	" ",
 	" ",
 	" "
 };
@@ -47,7 +68,7 @@ size_allocate (GtkWidget *drawing_area,
 	CDDisplayPrivate *priv;
 	PangoContext *context;
 	PangoDirection base_dir;
-	int i;
+	int i, mod;
 	
 	disp = CD_DISPLAY (drawing_area);
 	priv = disp->priv;
@@ -65,6 +86,23 @@ size_allocate (GtkWidget *drawing_area,
 		priv->layout[i]->height = rect.height / 1000;
 	}
 
+	/* Resize and position pixbufs */
+	priv->corners[TOPRIGHT]->rect.x = allocation->width - 16;
+	priv->corners[BOTTOMLEFT]->rect.y = allocation->height - 16;
+	priv->corners[BOTTOMRIGHT]->rect.x = allocation->width - 16;
+	priv->corners[BOTTOMRIGHT]->rect.y = allocation->height - 16;
+
+	priv->straights[BOTTOM]->rect.y = allocation->height - 16;
+	priv->straights[RIGHT]->rect.x = allocation->width - 16;
+
+	priv->straights[TOP]->rect.width = allocation->width - 32;
+	priv->straights[BOTTOM]->rect.width = allocation->width - 32;
+	priv->straights[LEFT]->rect.height = allocation->height - 32;
+	priv->straights[RIGHT]->rect.height = allocation->height - 32;
+
+	priv->middle->rect.width = allocation->width - 32;
+	priv->middle->rect.height = allocation->height - 32;
+	
 	GTK_WIDGET_CLASS (parent_class)->size_allocate (drawing_area, allocation);
 }
 
@@ -74,24 +112,25 @@ size_request (GtkWidget *widget,
 {
 	CDDisplay *disp;
 	CDDisplayPrivate *priv;
-	int i, height = 0, width = 0;
+	int i, height = 0, width = 0, mod;
 	
 	disp = CD_DISPLAY (widget);
 	priv = disp->priv;
 
+	GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
+	
 	for (i = 0; i < CD_DISPLAY_END; i++) {
 		PangoRectangle rect;
 		
 		pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
-		if (i == 0) {
-			height = (rect.height / 1000);
-		}
+		height += (rect.height / 1000);
 		
 		width = MAX (width, rect.width / 1000);
 	}
 
 	requisition->width = width + (2 * X_OFFSET);
-	requisition->height = (height * 4) + (2 * Y_OFFSET);
+
+	requisition->height = height + (2 * Y_OFFSET);
 }
 
 static gboolean
@@ -112,11 +151,169 @@ expose_event (GtkWidget *drawing_area,
 	area = &event->area;
 
 	/* Cover the area with a black square */
-	gdk_draw_rectangle (drawing_area->window,
-			    drawing_area->style->black_gc, TRUE,
-			    area->x, area->y,
-			    area->width, area->height);
+  	gdk_draw_rectangle (drawing_area->window, 
+  			    drawing_area->style->black_gc, TRUE, 
+  			    area->x, area->y, 
+  			    area->width, area->height); 
 
+	/* Check corners and draw them */
+	for (i = 0; i < 4; i++) {
+		GdkRectangle inter;
+		
+		if (gdk_rectangle_intersect (area, &priv->corners[i]->rect, &inter) == TRUE) {
+			GdkGC *gc;
+
+			gc = gdk_gc_new (drawing_area->window);
+			gdk_pixbuf_render_to_drawable (priv->corners[i]->pixbuf,
+						       drawing_area->window, gc,
+						       inter.x - priv->corners[i]->rect.x,
+						       inter.y - priv->corners[i]->rect.y,
+						       inter.x, inter.y,
+						       inter.width, inter.height,
+						       GDK_RGB_DITHER_NORMAL,
+						       0, 0);
+			gdk_gc_unref (gc);
+		}
+	}
+
+	for (i = TOP; i <= BOTTOM; i++) {
+		GdkRectangle inter;
+
+		if (gdk_rectangle_intersect (area, &priv->straights[i]->rect, &inter) == TRUE) {
+			GdkGC *gc;
+			GdkPixbuf *line;
+			
+			gc = gdk_gc_new (drawing_area->window);
+
+			/* Rescale pixbuf */
+			line = gdk_pixbuf_scale_simple (priv->straights[i]->pixbuf,
+							priv->straights[i]->rect.width,
+							priv->straights[i]->rect.height,
+							GDK_INTERP_BILINEAR);
+
+			/* Draw */
+			gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
+						       inter.x - priv->straights[i]->rect.x,
+						       inter.y - priv->straights[i]->rect.y,
+						       inter.x + 16, inter.y,
+						       inter.width, inter.height,
+						       GDK_RGB_DITHER_NORMAL,
+						       0, 0);
+
+			gdk_pixbuf_unref (line);
+			gdk_gc_unref (gc);
+		}
+	}
+
+	for (i = LEFT; i <= RIGHT; i++) {
+		GdkRectangle inter;
+		if (gdk_rectangle_intersect (area, &priv->straights[i]->rect, &inter) == TRUE) {
+			GdkGC *gc;
+			int repeats, extra_s, extra_end, d, j;
+
+			d = inter.y / 16;
+			extra_s = inter.y - (d * 16);
+			
+			gc = gdk_gc_new (drawing_area->window);
+			if (extra_s > 0) {
+				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
+							       drawing_area->window, gc,
+							       inter.x - priv->straights[i]->rect.x,
+							       16 - extra_s,
+							       inter.x, inter.y + 16,
+							       inter.width, extra_s,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			repeats = (inter.height - extra_s) / 16;
+			extra_end = (inter.height - extra_s) % 16;
+			
+			for (j = 0; j < repeats; j++) {
+				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
+							       drawing_area->window, gc,
+							       inter.x - priv->straights[i]->rect.x,
+							       0,
+							       inter.x,
+							       inter.y + 16 + (j * 16) + extra_s,
+							       inter.width, 16,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			if (extra_end > 0) {
+				gdk_pixbuf_render_to_drawable (priv->straights[i]->pixbuf,
+							       drawing_area->window, gc,
+							       inter.x - priv->straights[i]->rect.x,
+							       0,
+							       inter.x,
+							       inter.y + 16 + (repeats * 16) + extra_s,
+							       inter.width, extra_end,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			gdk_gc_unref (gc);
+		}
+	}
+							       
+	/* Do the middle - combination of the above */
+	{
+		GdkRectangle inter;
+		if (gdk_rectangle_intersect (area, &priv->middle->rect, &inter) == TRUE) {
+			GdkGC *gc;
+			GdkPixbuf *line;
+			int repeats, extra_s, extra_end, j, d;
+
+			/* Rescale pixbuf - Keep height at 16 */
+			line = gdk_pixbuf_scale_simple (priv->middle->pixbuf,
+							priv->middle->rect.width,
+							16, GDK_INTERP_BILINEAR);
+
+			d = inter.y / 16;
+			extra_s = inter.y - (d * 16);
+			
+			gc = gdk_gc_new (drawing_area->window);
+			if (extra_s > 0) {
+				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
+							       inter.x - priv->middle->rect.x,
+							       16 - extra_s,
+							       inter.x + 16, inter.y + 16,
+							       inter.width, extra_s,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			repeats = (inter.height - extra_s) / 16;
+			extra_end = (inter.height - extra_s) % 16;
+			
+			for (j = 0; j < repeats; j++) {
+				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
+							       inter.x - priv->middle->rect.x,
+							       0,
+							       inter.x + 16,
+							       inter.y + 16 + (j * 16) + extra_s,
+							       inter.width, 16,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			if (extra_end > 0) {
+				gdk_pixbuf_render_to_drawable (line, drawing_area->window, gc,
+							       inter.x - priv->middle->rect.x,
+							       0,
+							       inter.x + 16,
+							       inter.y + 16 + (repeats * 16) + extra_s,
+							       inter.width, extra_end,
+							       GDK_RGB_DITHER_NORMAL,
+							       0, 0);
+			}
+
+			gdk_pixbuf_unref (line);
+			gdk_gc_unref (gc);
+		}
+	}
+	
 	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], area);
 
 	context = pango_layout_get_context (priv->layout[0]->layout);
@@ -127,8 +324,9 @@ expose_event (GtkWidget *drawing_area,
 		if (height + priv->layout[i]->height >= Y_OFFSET + area->y) {
 			pango_layout_set_alignment (priv->layout[i]->layout,
 						    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
+
 			gdk_draw_layout_with_colors (drawing_area->window,
-						     drawing_area->style->white_gc,
+						     drawing_area->style->black_gc,
 						     X_OFFSET, 
 						     Y_OFFSET + height,
 						     priv->layout[i]->layout,
@@ -210,6 +408,40 @@ class_init (CDDisplayClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 }
 
+static CDImage *
+cd_image_new (const char *filename,
+	      int x,
+	      int y)
+{
+	CDImage *image;
+	char *fullname;
+	
+	image = g_new (CDImage, 1);
+
+	fullname = gnome_pixmap_file (filename);
+	if (fullname == NULL) {
+		g_warning ("Error loading %s", filename);
+		g_free (image);
+		return NULL;
+	}
+	
+	image->pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
+	g_free (fullname);
+	
+	if (image->pixbuf == NULL) {
+		g_warning ("Error loading %s", filename);
+		g_free (image);
+		return NULL;
+	}
+	
+	image->rect.x = 0;
+	image->rect.y = 0;
+	image->rect.width = gdk_pixbuf_get_width (image->pixbuf);
+	image->rect.height = gdk_pixbuf_get_height (image->pixbuf);
+
+	return image;
+}
+
 static void
 init (CDDisplay *disp)
 {
@@ -243,6 +475,19 @@ init (CDDisplay *disp)
 	priv->height += (Y_OFFSET * 2);
 	priv->max_width += (X_OFFSET * 2);
 	gtk_widget_queue_resize (GTK_WIDGET (disp));
+
+	/* Load pixbufs */
+	priv->corners[TOPLEFT] = cd_image_new ("gnome-cd/lcd-theme/top-left.png", 0, 0);
+	priv->corners[TOPRIGHT] = cd_image_new ("gnome-cd/lcd-theme/top-right.png", 48, 0);
+	priv->corners[BOTTOMLEFT] = cd_image_new ("gnome-cd/lcd-theme/bottom-left.png", 0, 48);
+	priv->corners[BOTTOMRIGHT] = cd_image_new ("gnome-cd/lcd-theme/bottom-right.png", 48, 48);
+
+	priv->straights[LEFT] = cd_image_new ("gnome-cd/lcd-theme/middle-left.png", 0, 16);
+	priv->straights[RIGHT] = cd_image_new ("gnome-cd/lcd-theme/middle-right.png", 48, 16);
+	priv->straights[TOP] = cd_image_new ("gnome-cd/lcd-theme/top.png", 16, 0);
+	priv->straights[BOTTOM] = cd_image_new ("gnome-cd/lcd-theme/bottom.png", 16, 48);
+
+	priv->middle = cd_image_new ("gnome-cd/lcd-theme/middle.png", 16, 16);
 }
 
 GType
