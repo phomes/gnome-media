@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.8.1\n"
-"POT-Creation-Date: 2000-06-02 16:34+0200\n"
-"PO-Revision-Date: 2001-01-24 15:15+0100\n"
-"Last-Translator: Shooby Ban <bansz@szif.hu>\n"
+"POT-Creation-Date: 2001-02-12 16:27+0100\n"
+"PO-Revision-Date: 2001-02-12 14:15+0100\n"
+"Last-Translator: Gergely Nagy <greg@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8559-2\n"
@@ -23,11 +23,13 @@ msgstr "Kész a parancsra: %s\n"
 msgid "Connecting [%s]\n"
 msgstr "Csatlakozás [%s]\n"
 
+# cddbslave/main.c:58
 #: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
 msgstr "Kiszolgáló lekérdezése [%s]\n"
 
+# cddbslave/main.c:59
 #: cddbslave/main.c:59
 #, c-format
 msgid "Waiting for reply [%s]\n"
@@ -73,21 +75,169 @@ msgstr "Idõkorlát: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Nem aktív. %s\n"
 
+#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Synth"
+
+#: gmix/device_labels_alsa.h:8
+msgid "PCM"
+msgstr "PCM"
+
+#: gmix/device_labels_alsa.h:9
+msgid "DAC"
+msgstr "DAC"
+
+#: gmix/device_labels_alsa.h:10
+msgid "FM"
+msgstr "FM"
+
+#: gmix/device_labels_alsa.h:11
+msgid "DSP Input"
+msgstr "DSP Bemenet"
+
+#: gmix/device_labels_alsa.h:12
+msgid "Line"
+msgstr "Vonal"
+
+#: gmix/device_labels_alsa.h:13
+msgid "MIC"
+msgstr "MIC"
+
+#: gmix/device_labels_alsa.h:14
+msgid "CD"
+msgstr "CD"
+
+#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+msgid "Video"
+msgstr "Videó"
+
+#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+msgid "Radio"
+msgstr "Rádió"
+
+#: gmix/device_labels_alsa.h:17
+msgid "Phone"
+msgstr "Telefon"
+
+#: gmix/device_labels_alsa.h:18
+msgid "Mono"
+msgstr "Mono"
+
+#: gmix/device_labels_alsa.h:19
+msgid "PC Speaker"
+msgstr "Belsõ Hangszóró"
+
+#: gmix/device_labels_alsa.h:20
+msgid "Aux"
+msgstr "KI"
+
+#: gmix/device_labels_alsa.h:21
+msgid "Center Input"
+msgstr "Középsõ Kimenet"
+
+#: gmix/device_labels_alsa.h:22
+msgid "Woofer Input"
+msgstr "Mélynyomó kimenet"
+
+#: gmix/device_labels_alsa.h:23
+msgid "Surround Input"
+msgstr "Térhangszóró Kimenet"
+
+#. outputs
+#. max 24 chars
+#: gmix/device_labels_alsa.h:26
+msgid "Master"
+msgstr "Mester"
+
+#: gmix/device_labels_alsa.h:27
+msgid "Master Mono"
+msgstr "Mester Mono"
+
+#: gmix/device_labels_alsa.h:28
+msgid "Master Digital"
+msgstr "Mester DigitIn"
+
+#: gmix/device_labels_alsa.h:29
+msgid "Headphone"
+msgstr "Fülhallgató"
+
+#: gmix/device_labels_alsa.h:30
+msgid "Phone Output"
+msgstr "PhoneOut"
+
+#: gmix/device_labels_alsa.h:31
+msgid "Center"
+msgstr "Közép"
+
+#: gmix/device_labels_alsa.h:32
+msgid "Woofer"
+msgstr "Mélynyomó"
+
+#: gmix/device_labels_alsa.h:33
+msgid "Surround"
+msgstr "Térhatás"
+
+#: gmix/device_labels_alsa.h:34
+msgid "DSP Output"
+msgstr "DSP Bemenet"
+
+#. groups
+#. max 24 chars
+#: gmix/device_labels_alsa.h:37
+msgid "Bass"
+msgstr "Basszus"
+
+#: gmix/device_labels_alsa.h:38
+msgid "Treble"
+msgstr "Magas"
+
+#: gmix/device_labels_alsa.h:39
+msgid "Equalizer"
+msgstr "Hangszín"
+
+#: gmix/device_labels_alsa.h:40
+msgid "Fader"
+msgstr "Elhaló"
+
+#: gmix/device_labels_alsa.h:41
+msgid "Effect"
+msgstr "Effekt"
+
+#: gmix/device_labels_alsa.h:42
+msgid "3D Effect"
+msgstr "3D Effektek"
+
+#: gmix/device_labels_alsa.h:43
+msgid "Mic Gain"
+msgstr "Mic  Áteresztés"
+
+#: gmix/device_labels_alsa.h:44
+msgid "Input Gain"
+msgstr "Bemeneti Áteresztés"
+
+#: gmix/device_labels_alsa.h:45
+msgid "Output Gain"
+msgstr "Kimeneti Áteresztés"
+
+#: gmix/device_labels_alsa.h:46
+msgid "Analog Loopback"
+msgstr "Analóg visszacsatolás"
+
+#: gmix/device_labels_alsa.h:47
+msgid "Digital Loopback"
+msgstr "Digitális Visszacsatolás"
+
 #: gmix/device_labels_linux.h:7
 msgid "Vol  "
 msgstr "Vol  "
 
 #: gmix/device_labels_linux.h:7
 msgid "Bass "
-msgstr "Basszus"
+msgstr "Basszus "
 
 #: gmix/device_labels_linux.h:7
 msgid "Trebl"
 msgstr "Trebl"
-
-#: gmix/device_labels_linux.h:7
-msgid "Synth"
-msgstr "Synth"
 
 #: gmix/device_labels_linux.h:7
 msgid "Pcm  "
@@ -162,85 +312,81 @@ msgid "PhoneOut"
 msgstr "PhoneOut"
 
 #: gmix/device_labels_linux.h:10
-msgid "Video"
-msgstr "Videó"
-
-#: gmix/device_labels_linux.h:10
-msgid "Radio"
-msgstr "Rádió"
-
-#: gmix/device_labels_linux.h:10
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:187
+#: gmix/gmix.c:106 tcd/popup.c:21
+msgid "Help"
+msgstr "Súgó"
+
+#: gmix/gmix.c:190
 msgid "don't restore mixer-settings from configuration"
 msgstr "ne állítsa vissza a beállított mixer-értékeket"
 
-#: gmix/gmix.c:188
+#: gmix/gmix.c:191
 msgid "restore mixer-settings from configuration"
 msgstr "állítsa vissza a beállított mixer-értékeket"
 
-#: gmix/gmix.c:189
+#: gmix/gmix.c:192
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "a mixer beállítja az elmentett értékeket, majd kilép  "
 
-#: gmix/gmix.c:190
+#: gmix/gmix.c:193
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ne mentse a módosított mixer-értékeket a beállításokba"
 
 #. start frame
-#: gmix/gmix.c:427 tcd/prefs.c:402
+#: gmix/gmix.c:430 tcd/prefs.c:411
 msgid "On startup"
 msgstr "Indításnál"
 
 #. Set on start
-#: gmix/gmix.c:433
+#: gmix/gmix.c:436
 msgid "Restore saved mixer levels on startup"
 msgstr "Állítsa vissza a mentett értékeket indításnál"
 
-#: gmix/gmix.c:439
+#: gmix/gmix.c:442
 msgid "Hide menu on start"
 msgstr "Menü elrejtése indításnál"
 
-#: gmix/gmix.c:454
+#: gmix/gmix.c:457
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:458
+#: gmix/gmix.c:461
 msgid "Use mixer icons"
 msgstr "Mixer ikonok használata "
 
-#: gmix/gmix.c:466
+#: gmix/gmix.c:469
 msgid "Use mixer labels"
 msgstr "Mixer cimkék használata"
 
-#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:605
+#: gmix/gmix.c:492 tcd/gtcd.c:364 tcd/prefs.c:614
 msgid "Preferences"
 msgstr "Tulajdonságok"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1176
+#: gmix/gmix.c:1181
 msgid "Lock"
 msgstr "Rögzít"
 
-#: gmix/gmix.c:1186
+#: gmix/gmix.c:1191
 msgid "Rec."
 msgstr "Felv."
 
-#: gmix/gmix.c:1204
+#: gmix/gmix.c:1209
 msgid "Mute"
 msgstr "Némít"
 
-#: gmix/gmix.c:1228
+#: gmix/gmix.c:1233
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1529
+#: gmix/gmix.c:1548
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome keverõpult"
 
-#: gmix/gmix.c:1532
+#: gmix/gmix.c:1551
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ez egy keverõpult az OSS hangeszközökhöz."
 
@@ -402,7 +548,7 @@ msgstr "Mindent mûvelet visszavonása a mostani mintán"
 msgid "Effects"
 msgstr "Effektek"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:861
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:867
 msgid "Show time"
 msgstr "Idõ mutatása"
 
@@ -410,7 +556,7 @@ msgstr "Idõ mutatása"
 msgid "Show soundinfo"
 msgstr "Hanginfó mutatása"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:866
+#: grecord/src/gui.c:130 grecord/src/gui.c:872
 msgid "Show sound information"
 msgstr "Hang információ mutatása"
 
@@ -468,15 +614,22 @@ msgstr "%s nem létezik; Alapfile használata."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "%s egy nem támogatott hangfile."
 
-#: grecord/src/gui.c:441 grecord/src/main.c:109
+#. if your language allows it, replace the "e" of Hyden by an "eacute"
+#: grecord/src/gui.c:437
+msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
+msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
+
+#: grecord/src/gui.c:445 grecord/src/main.c:109
 msgid "GNOME Sound recorder"
 msgstr "GNOME Hangrögzítõ"
 
-#: grecord/src/gui.c:442
-msgid "Copyright (C)  2000 Andreas Hydén"
+#. if your language allows it, replace the
+#. "e" of Hyden by an "eacute"
+#: grecord/src/gui.c:448
+msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hydén"
 
-#: grecord/src/gui.c:444
+#: grecord/src/gui.c:450
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -484,127 +637,127 @@ msgstr ""
 "Egy sima hangrögzítõ és lejátszó GNOME-hoz\n"
 "A macskámnak, Malte-nak."
 
-#: grecord/src/gui.c:535 tcd/gtracked.c:171
+#: grecord/src/gui.c:541 tcd/gtracked.c:171
 msgid "Time"
 msgstr "Idõ"
 
-#: grecord/src/gui.c:548
+#: grecord/src/gui.c:554
 msgid "Recording timeout: "
 msgstr "Felvétel idõtartama"
 
-#: grecord/src/gui.c:559
+#: grecord/src/gui.c:565
 msgid "minutes"
 msgstr "Perc:"
 
-#: grecord/src/gui.c:564
+#: grecord/src/gui.c:570
 msgid "Stop recording on timeout"
 msgstr "Felvétel vége idõtúllépésnél"
 
-#: grecord/src/gui.c:569
+#: grecord/src/gui.c:575
 msgid "Popup save dialog when recording is finished"
 msgstr "Mentés felkínálása, ha véget ért a felvétel"
 
-#: grecord/src/gui.c:578
+#: grecord/src/gui.c:584
 msgid "Size"
 msgstr "Méret"
 
-#: grecord/src/gui.c:587
+#: grecord/src/gui.c:593
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Figyelmeztessen, ha a felvétel mérete (MB-ban) nagyobb, mint:"
 
-#: grecord/src/gui.c:597
+#: grecord/src/gui.c:603
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Felvétel vége ha a minta mérete nagyobb, mint:"
 
-#: grecord/src/gui.c:608
+#: grecord/src/gui.c:614
 msgid "Recording"
 msgstr "Felvétel"
 
-#: grecord/src/gui.c:617
+#: grecord/src/gui.c:623
 msgid "Play-repeating"
 msgstr "Folyamatos lejatszás"
 
-#: grecord/src/gui.c:626
+#: grecord/src/gui.c:632
 msgid "Repeat"
 msgstr "Ismétlés"
 
-#: grecord/src/gui.c:635
+#: grecord/src/gui.c:641
 msgid "Forever"
 msgstr "Állandó"
 
-#: grecord/src/gui.c:640
+#: grecord/src/gui.c:646
 msgid "Nr of times:"
 msgstr "Hányszor:"
 
-#: grecord/src/gui.c:651
+#: grecord/src/gui.c:657
 msgid "Playing"
 msgstr "Lejátszás"
 
-#: grecord/src/gui.c:660
+#: grecord/src/gui.c:666
 msgid "Program files"
 msgstr "Program fájlok"
 
-#: grecord/src/gui.c:677
+#: grecord/src/gui.c:683
 msgid "Path to sox:"
 msgstr "Sox elérési útja"
 
-#: grecord/src/gui.c:693
+#: grecord/src/gui.c:699
 msgid "Path to mixer:"
 msgstr "Mixer elérési útja"
 
-#: grecord/src/gui.c:709
+#: grecord/src/gui.c:715
 msgid "Directories"
 msgstr "Könyvtárak"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:728
 msgid "Temp dir:"
 msgstr "Ideiglenes könyvtár:"
 
-#: grecord/src/gui.c:738
+#: grecord/src/gui.c:744
 msgid "Paths"
 msgstr "Elérési utak"
 
-#: grecord/src/gui.c:746
+#: grecord/src/gui.c:752
 msgid "Sound options"
 msgstr "Hang beállítások"
 
-#: grecord/src/gui.c:759
+#: grecord/src/gui.c:765
 msgid "Audioformat:"
 msgstr "Hangformátum:"
 
-#: grecord/src/gui.c:770 grecord/src/gui.c:780
+#: grecord/src/gui.c:776 grecord/src/gui.c:786
 msgid "8bit pcm"
 msgstr "8bit pcm"
 
-#: grecord/src/gui.c:771 grecord/src/gui.c:782
+#: grecord/src/gui.c:777 grecord/src/gui.c:788
 msgid "16bit pcm"
 msgstr "16bit pcm"
 
-#: grecord/src/gui.c:788
+#: grecord/src/gui.c:794
 msgid "Sample rate:"
 msgstr "Minta ráta"
 
-#: grecord/src/gui.c:818
+#: grecord/src/gui.c:824
 msgid "mono/stereo"
 msgstr "mono/sztereo"
 
-#: grecord/src/gui.c:829 grecord/src/gui.c:839
+#: grecord/src/gui.c:835 grecord/src/gui.c:845
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:830 grecord/src/gui.c:841
+#: grecord/src/gui.c:836 grecord/src/gui.c:847
 msgid "stereo"
 msgstr "sztereo"
 
-#: grecord/src/gui.c:844
+#: grecord/src/gui.c:850
 msgid "Sound"
 msgstr "Hang"
 
-#: grecord/src/gui.c:852
+#: grecord/src/gui.c:858
 msgid "Main window"
 msgstr "Fõablak"
 
-#: grecord/src/gui.c:871
+#: grecord/src/gui.c:877
 msgid "User interface"
 msgstr "Felhasználói felület"
 
@@ -759,11 +912,13 @@ msgstr "Eltávolít"
 msgid "Refresh List"
 msgstr "Listát frissít"
 
+# tcd/cddb_props.c:147
 #. server settings
 #: tcd/cddb_props.c:147
 msgid "Server Settings"
 msgstr "Kiszolgáló beállításai"
 
+# tcd/cddb_props.c:156
 #: tcd/cddb_props.c:156
 msgid "Address"
 msgstr "Cím"
@@ -792,10 +947,12 @@ msgstr "Felhasználónév"
 msgid "Password"
 msgstr "Jelszó"
 
+# tcd/cddb_props.c:246
 #: tcd/cddb_props.c:246
 msgid "SOCKS Server"
 msgstr "SOCKS kiszolgáló"
 
+# tcd/cddb_props.c:253
 #: tcd/cddb_props.c:253
 msgid "Use SOCKS"
 msgstr "SOCKS használata"
@@ -869,7 +1026,7 @@ msgstr "Sima"
 msgid "random"
 msgstr "Véletlenszerû"
 
-#: tcd/gtcd.c:285 tcd/gtcd.c:904
+#: tcd/gtcd.c:285 tcd/gtcd.c:919
 msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
@@ -911,19 +1068,19 @@ msgstr "Nincs Lemez"
 msgid "Error"
 msgstr "Hiba"
 
-#: tcd/gtcd.c:840
+#: tcd/gtcd.c:855
 msgid "Volume"
 msgstr "Kötet"
 
-#: tcd/gtcd.c:1012
+#: tcd/gtcd.c:1027
 msgid "Filename of the CD device"
 msgstr "A CD meghajtóra mutató file"
 
-#: tcd/gtcd.c:1012
+#: tcd/gtcd.c:1027
 msgid "FILE"
 msgstr "FILE"
 
-#: tcd/gtcd.c:1014
+#: tcd/gtcd.c:1029
 msgid "Play CD on startup"
 msgstr "CD játszása indításkor"
 
@@ -991,7 +1148,7 @@ msgstr "To: "
 msgid "Category: "
 msgstr "Kategória:"
 
-#: tcd/linux-cdrom.c:618
+#: tcd/linux-cdrom.c:641
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1008,11 +1165,12 @@ msgstr ""
 "\n"
 "Hiba: %s\n"
 
-#: tcd/linux-cdrom.c:687
+# tcd/linux-cdrom.c:687
+#: tcd/linux-cdrom.c:710
 msgid "Unknown / Unknown"
 msgstr "Ismeretlen / Ismeretlen"
 
-#: tcd/linux-cdrom.c:693
+#: tcd/linux-cdrom.c:716
 #, c-format
 msgid "Track %d"
 msgstr "%d. sáv"
@@ -1025,10 +1183,6 @@ msgstr "Tulajdonságok..."
 msgid "Track Editor..."
 msgstr "Sáv szerkesztõ..."
 
-#: tcd/popup.c:21
-msgid "Help"
-msgstr "Súgó"
-
 #: tcd/popup.c:22
 msgid "About"
 msgstr "Névjegy"
@@ -1038,84 +1192,89 @@ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 
 #. do nothing
-#: tcd/prefs.c:192 tcd/prefs.c:247
+#: tcd/prefs.c:194 tcd/prefs.c:249
 msgid "Do nothing"
 msgstr "Ne csinalj semmit"
 
-#: tcd/prefs.c:198
+#: tcd/prefs.c:200
 msgid "Start playing"
 msgstr "Lejátszás megkezdése"
 
-#: tcd/prefs.c:204 tcd/prefs.c:253
+#: tcd/prefs.c:206 tcd/prefs.c:255
 msgid "Stop playing"
 msgstr "Lejátszás megszakítása"
 
 #. close tray
-#: tcd/prefs.c:208 tcd/prefs.c:265
+#: tcd/prefs.c:210 tcd/prefs.c:267
 msgid "Close tray"
 msgstr "Tálca zárása"
 
-#: tcd/prefs.c:259
+#: tcd/prefs.c:261
 msgid "Open tray"
 msgstr "Tálca nyitása"
 
 #. device entry
-#: tcd/prefs.c:339
+#: tcd/prefs.c:341
 msgid "CDROM device"
 msgstr "CDROM eszköz"
 
 #. Color picker
-#: tcd/prefs.c:348
+#: tcd/prefs.c:350
 msgid "Track/title color"
 msgstr "Sáv/cím színe"
 
 #. font picker
-#: tcd/prefs.c:360
+#: tcd/prefs.c:362
 msgid "Track/title font"
 msgstr "Sáv/cím betûtípus"
 
-#: tcd/prefs.c:361
+#: tcd/prefs.c:363
 msgid "Change font"
 msgstr "Betûkészlet cseréje"
 
 #. show handles
-#: tcd/prefs.c:368
+#: tcd/prefs.c:370
 msgid "Show handles (restart required)"
 msgstr "Fülek mutatása (újraindítás szükséges)"
 
 #. show tooltips
-#: tcd/prefs.c:375
+#: tcd/prefs.c:377
 msgid "Show tooltips"
 msgstr "Tippek megjelenítése"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:382
+#: tcd/prefs.c:384
 msgid "Use alternate method to play CD"
 msgstr "CD lejátszása máshogyan"
 
+#. use squared law volume
+#: tcd/prefs.c:391
+msgid "Use squared law volume control"
+msgstr "Négyszöges hangerõszabályozás"
+
 #. exit frame
-#: tcd/prefs.c:408
+#: tcd/prefs.c:417
 msgid "On exit"
 msgstr "Kilépéskor"
 
-#: tcd/prefs.c:516
+#: tcd/prefs.c:525
 msgid "Key"
 msgstr "Billentyû"
 
-#: tcd/prefs.c:517
+#: tcd/prefs.c:526
 msgid "Action"
 msgstr "Esemény"
 
-#: tcd/prefs.c:537
+#: tcd/prefs.c:546
 msgid "Click here to change (restart required):"
 msgstr "Kattint ide a váltáshoz (ujraindítás szükséges)"
 
 #. Frame
-#: tcd/prefs.c:559 tcd/prefs.c:609
+#: tcd/prefs.c:568 tcd/prefs.c:618
 msgid "Keybindings"
 msgstr "Billentyûk"
 
-#: tcd/prefs.c:613
+#: tcd/prefs.c:622
 msgid "CDDB Settings"
 msgstr "CDDB beállítások"
 
@@ -1147,10 +1306,12 @@ msgstr "Y Pozíció"
 msgid "Connect to the esd server on this host."
 msgstr "Kapcsolódás a gép esd szerveréhez."
 
+# vu-meter/main.c:255
 #: vu-meter/main.c:255
 msgid "ESD Server Host"
 msgstr "ESD kiszolgáló"
 
+# vu-meter/main.c:257
 #: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
 msgstr "Vertikális verzió "
