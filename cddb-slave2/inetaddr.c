@@ -387,7 +387,7 @@ gnet_inetaddr_new (const gchar* name, gint port)
   g_return_val_if_fail(name != NULL, NULL);
 
   /* Try to read the name as if were dotted decimal */
-  if (inet_aton(name, &inaddr) != 0)
+  if (inet_pton(AF_INET, name, &inaddr) > 0)
     {
       ia = g_new0(GInetAddr, 1);
 
@@ -723,7 +723,7 @@ gnet_inetaddr_new_nonblock (const gchar* name, gint port)
 
   /* Try to read the name as if were dotted decimal */
  try_again:
-  if (inet_aton(name, &inaddr) != 0)
+  if (inet_pton(AF_INET, name, &inaddr) > 0)
     {
       ia = g_new0(GInetAddr, 1);
 
@@ -1132,7 +1132,7 @@ gnet_inetaddr_is_canonical (const gchar* name)
 
   g_return_val_if_fail (name, FALSE);
 
-  return (inet_aton(name, &inaddr) != 0);
+  return (inet_pton(AF_INET, name, &inaddr) > 0);
 }
 
 
