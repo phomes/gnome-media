@@ -104,7 +104,7 @@ dialog_button_clicked_cb (GtkDialog *dialog,
 	switch (response_id) {
 	case GTK_RESPONSE_HELP:
 		gnome_help_display_desktop (NULL, "user-guide",
-					    "wgoscustlookandfeel.xml",
+					    "user-guide.xml",
 					    "goscustlookandfeel-39", &error);
 		if (error) {
 			GtkWidget *msg_dialog;
