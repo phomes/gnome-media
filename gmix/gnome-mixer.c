@@ -9,7 +9,7 @@
 #include <config.h>
 #endif
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include <glib.h>
 
 #include "gnome-mixer.h"

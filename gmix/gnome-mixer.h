@@ -9,7 +9,7 @@
 #define __GNOME_MIXER_H__
 
 #include <glib/gerror.h>
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 #include "gnome-fader.h"
 

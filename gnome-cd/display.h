@@ -8,7 +8,7 @@
 #ifndef __DISPLAY_H__
 #define __DISPLAY_H__
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include <gtk/gtkdrawingarea.h>
 
 G_BEGIN_DECLS

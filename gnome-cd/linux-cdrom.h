@@ -9,7 +9,7 @@
 #define __LINUX_CDROM_H__
 
 #include <glib/gerror.h>
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 #include "cdrom.h"
 G_BEGIN_DECLS

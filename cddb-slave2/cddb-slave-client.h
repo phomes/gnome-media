@@ -10,7 +10,7 @@
 #ifndef __CDDB_SLAVE_CLIENT_H__
 #define __CDDB_SLAVE_CLIENT_H__
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 #include <bonobo/bonobo-listener.h>
 
 #ifdef __cplusplus
