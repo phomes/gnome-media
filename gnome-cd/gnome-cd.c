@@ -726,16 +726,12 @@ register_stock_icons (void)
 	g_object_unref (G_OBJECT (factory));
 }
 
-static const struct poptOption cd_popt_options [] = {
-	{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
-	  N_("CD device to use"), NULL },
-	{ NULL, '\0', 0, NULL, 0 },
-};
-
 int 
 main (int argc, char *argv[])
 {
 	static const struct poptOption cd_popt_options [] = {
+		{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
+		  N_("CD device to use"), NULL },
 		{ "unique", '\0', POPT_ARG_NONE, &cd_option_unique, 0,
 		  N_("Only start if there isn't already a CD player application running"), NULL },
 		{ "play",   '\0', POPT_ARG_NONE, &cd_option_play, 0,
