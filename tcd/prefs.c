@@ -97,6 +97,9 @@ void load_prefs(tcd_prefs *prop)
 	prop->cddb_server = gnome_config_get_string("/cddbslave/server/address=freedb.freedb.org");
 	prop->cddb_port   = gnome_config_get_int("/cddbslave/server/port=888");
 	prop->cddb_http   = gnome_config_get_bool("/cddbslave/server/use_http=false");
+	prop->cddb_httpproxy_need_auth = gnome_config_get_bool("/cddbslave/server/need_http_proxy_auth=false");
+	prop->cddb_httpproxy_auth_name = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_name=");
+	prop->cddb_httpproxy_auth_passwd = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_passwd=");
 	prop->cddb_httpproxy = gnome_config_get_string("/cddbslave/server/http_proxy=");
 }
 
@@ -129,6 +132,9 @@ void save_prefs(tcd_prefs *prop)
 	gnome_config_set_int("/cddbslave/server/port=8880", prop->cddb_port);
 	gnome_config_set_bool("/cddbslave/server/use_http", prop->cddb_http);
 	gnome_config_set_string("/cddbslave/server/http_proxy", prop->cddb_httpproxy);
+	gnome_config_set_bool("/cddbslave/server/need_http_proxy_auth", prop->cddb_httpproxy_need_auth);
+	gnome_config_private_set_string("/cddbslave/server/http_proxy_auth_name", prop->cddb_httpproxy_auth_name);
+	gnome_config_private_set_string("/cddbslave/server/http_proxy_auth_passwd", prop->cddb_httpproxy_auth_passwd);
 
 	gnome_config_set_bool("/gtcd/general/only_use_trkind", prop->only_use_trkind);
         

@@ -38,6 +38,9 @@ typedef struct
     guint cddb_port;
     gboolean cddb_http;
     gchar *cddb_httpproxy;
+    gboolean cddb_httpproxy_need_auth;
+    gchar *cddb_httpproxy_auth_name;
+    gchar *cddb_httpproxy_auth_passwd;
 
     gboolean only_use_trkind;
 } tcd_prefs;

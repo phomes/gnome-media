@@ -47,6 +47,9 @@ gint port;
 #ifdef WITH_LIBGHTTP
 gboolean use_http;
 gchar *proxy = NULL;
+gboolean need_proxy_auth;
+gchar *proxy_auth_name = NULL;
+gchar *proxy_auth_passwd = NULL;
 #endif
 
 const gchar *status_msg[] = {
@@ -95,6 +98,17 @@ int main(int argc, char *argv[])
     if (proxy && proxy[0] == '\0') {
       g_free(proxy);
       proxy = NULL;
+    }
+    need_proxy_auth = gnome_config_get_bool("/cddbslave/server/need_http_proxy_auth=false");
+    proxy_auth_name = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_name=");
+    if (proxy_auth_name && proxy_auth_name[0] == '\0') {
+      g_free(proxy_auth_name);
+      proxy_auth_name = NULL;
+    }
+    proxy_auth_passwd = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_passwd=");
+    if (proxy_auth_passwd && proxy_auth_passwd[0] == '\0') {
+      g_free(proxy_auth_passwd);
+      proxy_auth_passwd = NULL;
     }
 #endif
 
@@ -290,6 +304,11 @@ int do_httprequest(char *req)
     set_status(ERR_CONNECTING, server);
     return -1;
   }
+  if (need_proxy_auth && ghttp_set_proxy_authinfo(request, proxy_auth_name, proxy_auth_passwd) != 0) {
+    ghttp_request_destroy(request);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
   url = assemble_url(req);
   if (ghttp_set_uri(request, url) != 0) {
     ghttp_request_destroy(request);
@@ -320,7 +339,7 @@ int do_httprequest(char *req)
 
   s = ghttp_get_body(request);
   len = ghttp_get_body_len(request);
-
+  
   code = atoi(strtok(s, " " ));         
   strncpy(categ, if_strtok(NULL, " ") , CATEG_MAX);
   categ[CATEG_MAX-1]=0;
@@ -342,6 +361,11 @@ int do_httprequest(char *req)
   if (!request)
     return -1;
   if (proxy && ghttp_set_proxy(request, proxy) != 0) {
+    ghttp_request_destroy(request);
+    set_status(ERR_CONNECTING, server);
+    return -1;
+  }
+  if (need_proxy_auth && ghttp_set_proxy_authinfo(request, proxy_auth_name, proxy_auth_passwd) != 0) {
     ghttp_request_destroy(request);
     set_status(ERR_CONNECTING, server);
     return -1;

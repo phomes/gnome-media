@@ -37,6 +37,11 @@ static void entry_cb(GtkWidget *widget, gpointer data);
 static void port_cb(GtkObject *adj, gpointer data);
 static void use_http_cb(GtkWidget *widget, GtkWidget *entry);
 static void httpproxy_cb(GtkWidget *widget, gpointer data);
+static void use_httpproxy_auth_cb(GtkWidget *widget, GtkWidget *entry);
+static void use_httpproxy_auth_cb2(GtkWidget *widget, GtkWidget *entry);
+static void use_httpproxy_auth_cb3(GtkWidget *widget, GtkWidget *entry);
+static void httpproxyauthname_cb(GtkWidget *widget, gpointer data);
+static void httpproxyauthpasswd_cb(GtkWidget *widget, gpointer data);
 
 /* code */
 static void select_row_cb(GtkCList *clist,
@@ -130,7 +135,7 @@ static GtkWidget *portw;
 
 GtkWidget *create_cddb_page(void)
 {
-    GtkWidget *vbox, *frame, *label, *cbutton;
+    GtkWidget *vbox, *frame, *label, *cbutton, *pbutton;
     GtkWidget *table, *entry;
     GtkObject *adj;
 
@@ -142,7 +147,7 @@ GtkWidget *create_cddb_page(void)
 
     gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-    table = gtk_table_new(2, 5, FALSE);
+    table = gtk_table_new(5, 3, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
     gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 
@@ -181,11 +186,59 @@ GtkWidget *create_cddb_page(void)
 
 #ifndef WITH_LIBGHTTP
     gtk_widget_set_sensitive(cbutton, FALSE);
+    gtk_widget_set_sensitive(entry, FALSE);
 #endif
 	      
-
     gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
 		       GTK_SIGNAL_FUNC(use_http_cb), entry);
+
+    pbutton = gtk_check_button_new_with_label(_("Use proxy authentication"));
+    gtk_object_set_data(GTK_OBJECT(cbutton), "server-entry", entry);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pbutton), prefs->cddb_httpproxy_need_auth);
+    gtk_table_attach_defaults(GTK_TABLE(table), pbutton, 0,1, 2,3);
+    if (!prefs->cddb_http) gtk_widget_set_sensitive(pbutton, FALSE);
+    gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb2), pbutton);
+
+    label = gtk_label_new(_("Username"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label, 1,2, 2,3);
+    entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(entry), prefs->cddb_httpproxy_auth_name);
+    gtk_table_attach_defaults(GTK_TABLE(table), entry, 2,3, 2,3);
+    if (!prefs->cddb_http || !prefs->cddb_httpproxy_need_auth)
+        gtk_widget_set_sensitive(entry, FALSE);
+    gtk_signal_connect(GTK_OBJECT(entry), "changed",
+		       GTK_SIGNAL_FUNC(httpproxyauthname_cb), NULL);
+
+#ifndef WITH_LIBGHTTP
+    gtk_widget_set_sensitive(pbutton, FALSE);
+    gtk_widget_set_sensitive(entry, FALSE);
+#endif
+	      
+    gtk_signal_connect(GTK_OBJECT(pbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb), entry);
+    gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb3), entry);
+
+    label = gtk_label_new(_("Password"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label, 1,2, 3,4);
+    entry = gtk_entry_new();
+    gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
+    gtk_entry_set_text(GTK_ENTRY(entry), prefs->cddb_httpproxy_auth_passwd);
+    gtk_table_attach_defaults(GTK_TABLE(table), entry, 2,3, 3,4);
+    if (!prefs->cddb_http || !prefs->cddb_httpproxy_need_auth)
+        gtk_widget_set_sensitive(entry, FALSE);
+    gtk_signal_connect(GTK_OBJECT(entry), "changed",
+		       GTK_SIGNAL_FUNC(httpproxyauthpasswd_cb), NULL);
+    
+#ifndef WITH_LIBGHTTP
+    gtk_widget_set_sensitive(entry, FALSE);
+#endif
+
+    gtk_signal_connect(GTK_OBJECT(pbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb), entry);
+    gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb3), entry);
 
     gtk_container_add(GTK_CONTAINER(frame), table);
 
@@ -451,3 +504,31 @@ static void httpproxy_cb(GtkWidget *widget, gpointer data) {
     prefs->cddb_httpproxy = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
     changed_cb(NULL, NULL);
 }
+static void use_httpproxy_auth_cb(GtkWidget *widget, GtkWidget *entry) {
+    gint val;
+
+    prefs->cddb_httpproxy_need_auth = GTK_TOGGLE_BUTTON(widget)->active;
+    gtk_widget_set_sensitive(entry, prefs->cddb_httpproxy_need_auth);
+    changed_cb(NULL, NULL);
+}
+static void use_httpproxy_auth_cb2(GtkWidget *widget, GtkWidget *entry) {
+    gint val;
+
+    gtk_widget_set_sensitive(entry, prefs->cddb_http);
+    changed_cb(NULL, NULL);
+}
+static void use_httpproxy_auth_cb3(GtkWidget *widget, GtkWidget *entry) {
+    gint val;
+
+    gtk_widget_set_sensitive(entry, prefs->cddb_http && prefs->cddb_httpproxy_need_auth);
+    changed_cb(NULL, NULL);
+}
+static void httpproxyauthname_cb(GtkWidget *widget, gpointer data) {
+    prefs->cddb_httpproxy_auth_name = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+    changed_cb(NULL, NULL);
+}
+static void httpproxyauthpasswd_cb(GtkWidget *widget, gpointer data) {
+    prefs->cddb_httpproxy_auth_passwd = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+    changed_cb(NULL, NULL);
+}
+

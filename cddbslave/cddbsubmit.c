@@ -59,6 +59,7 @@ int submitByMail(char *category, char *ID) {
 int submitByHTTP(char *category, char *ID) {
   ghttp_request *request;
   char *url, *proxy, buf[1024];
+  gchar *proxy_auth_name = NULL, *proxy_auth_passwd = NULL;
   GString *data;
   FILE *fd;
   
@@ -70,7 +71,10 @@ int submitByHTTP(char *category, char *ID) {
   request = ghttp_request_new();
   if (!request)
     return -1;
-  proxy = gnome_config_get_string("/cddbslave/server/http_proxy");
+  if (gnome_config_get_bool("/cddbslave/server/use_http"))
+    proxy = gnome_config_get_string("/cddbslave/server/http_proxy");
+  else
+    proxy = NULL;
   if (proxy && proxy[0] == '\0') g_free(proxy);
   if (proxy && ghttp_set_proxy(request, proxy) != 0) {
     ghttp_request_destroy(request);
@@ -79,6 +83,29 @@ int submitByHTTP(char *category, char *ID) {
     return -1;
   }
   if (proxy) g_free(proxy);
+
+  if (gnome_config_get_bool("/cddbslave/server/need_http_proxy_auth=false")) {
+    proxy_auth_name = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_name=");
+    if (proxy_auth_name && proxy_auth_name[0] == '\0') {
+      g_free(proxy_auth_name);
+      proxy_auth_name = NULL;
+    }
+    proxy_auth_passwd = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_passwd=");
+    if (proxy_auth_passwd && proxy_auth_passwd[0] == '\0') {
+      g_free(proxy_auth_passwd);
+      proxy_auth_passwd = NULL;
+    }
+    if (ghttp_set_proxy_authinfo(request, proxy_auth_name, proxy_auth_passwd) != 0) {
+      ghttp_request_destroy(request);
+      g_printerr("cddbsubmit: could not set proxy authorization for HTTP request\n");
+      g_free(proxy_auth_name);
+      g_free(proxy_auth_passwd);
+      return -1;
+    }
+    g_free(proxy_auth_name);
+    g_free(proxy_auth_passwd);
+  }
+
   if (ghttp_set_uri(request, url) != 0) {
     ghttp_request_destroy(request);
     g_printerr("cddbsubmit: could not set uri for HTTP request\n");
