@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.0.40\n"
-"POT-Creation-Date: 1999-09-21 23:20-0500\n"
-"PO-Revision-Date: 1999-09-24 23:27+0200\n"
-"Last-Translator: Andreas Persenius <ndap@swipnet.se>\n"
+"Project-Id-Version: gnome-libs-0.20\n"
+"POT-Creation-Date: 1999-09-27 20:40+0200\n"
+"PO-Revision-Date: 1999-09-27 20:30+0100\n"
+"Last-Translator: Richard Hult <rhult@hem2.passagen.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -46,7 +46,7 @@ msgstr "Kopplar ner [%s]\n"
 #: cddbslave/main.c:59
 #, c-format
 msgid "Error connecting [%s]\n"
-msgstr "Fel vid ansluter [%s]\n"
+msgstr "Fel vid anslutning [%s]\n"
 
 #: cddbslave/main.c:60
 #, c-format
@@ -113,11 +113,11 @@ msgstr "Vid start"
 #. Set on start
 #: gmix/gmix.c:284
 msgid "Restore saved mixer levels on startup"
-msgstr "Återställ sparade mixernivåer vid start"
+msgstr "Återställ sparade mixernivåer vid uppstart"
 
 #: gmix/gmix.c:290
 msgid "Hide menu on start"
-msgstr "Göm meny vid start"
+msgstr "Göm menyn vid uppstart"
 
 #: gmix/gmix.c:305
 msgid "GUI"
@@ -125,11 +125,11 @@ msgstr "Gränssnitt"
 
 #: gmix/gmix.c:309
 msgid "Use Mixer Icons"
-msgstr "Visa mixerikoner"
+msgstr "Använd mixerikoner"
 
 #: gmix/gmix.c:317
 msgid "Use Mixer Labels"
-msgstr "Visa mixeretiketter"
+msgstr "Använd mixeretiketter"
 
 #: gmix/gmix.c:340 tcd/gtcd.c:326 tcd/prefs.c:590
 msgid "Preferences"
@@ -142,7 +142,7 @@ msgstr "Lås"
 
 #: gmix/gmix.c:775
 msgid "Rec."
-msgstr "Sp. In."
+msgstr "Insp."
 
 #: gmix/gmix.c:792
 msgid "Mute"
@@ -150,27 +150,28 @@ msgstr "Tyst"
 
 #: gmix/gmix.c:815
 msgid "GMIX 3.0"
-msgstr "GMix 3.0"
+msgstr "GMIX 3.0"
 
 #: gmix/gmix.c:984
 msgid "GMIX - The Gnome Mixer"
-msgstr "GMix - Gnome Mixern"
+msgstr "GMIX - Mixer för Gnome"
 
 #: gmix/gmix.c:987
 msgid "This is a mixer for OSS sound-devices."
-msgstr "Detta är en mixer för OSS ljud-enheter."
+msgstr "Detta är en mixer för OSS-ljudenheter."
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
-msgstr "TCD - Gnome CD-spelaren"
+msgstr "TCD - Gnome CD-spelare"
 
 #: tcd/callbacks.c:86
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
-"GTCD är Gnome CD-spelar programmet. Inkluderar CDDB-stöd. För information om "
-"de som hjälpt till med programmet, se filen 'Thanks' i distributionen."
+"GTCD är ett CD-spelarprogram för Gnome. Inkluderar CDDB-stöd. För "
+"information om de som hjälpt till med programmet, se filen 'Thanks' i "
+"distributionen."
 
 #: tcd/cddb_props.c:64
 msgid "Disc ID"
@@ -243,7 +244,7 @@ msgstr "Ta bort CDDB-post?"
 #. CDDB Status  button
 #: tcd/cddb_status.c:50 tcd/gtracked.c:307
 msgid "CDDB Status"
-msgstr "CDDB status"
+msgstr "CDDB-status"
 
 #. grab button
 #: tcd/cddb_status.c:68
@@ -284,7 +285,7 @@ msgstr "slump"
 
 #: tcd/gtcd.c:325
 msgid "Open track editor"
-msgstr "Öppna låteditor"
+msgstr "Öppna spåreditor"
 
 #: tcd/gtcd.c:327 tcd/popup.c:24
 msgid "Quit"
@@ -338,7 +339,7 @@ msgstr "FIL"
 
 #: tcd/gtcd.c:1030
 msgid "Play CD on startup"
-msgstr "Spela CD vid start"
+msgstr "Spela CD vid uppstart"
 
 #: tcd/gtracked.c:169
 msgid "Trk"
@@ -354,7 +355,7 @@ msgstr "Titel"
 
 #: tcd/gtracked.c:192
 msgid "Track Editor"
-msgstr "Spår-editor"
+msgstr "Spåreditor"
 
 #. Disc area
 #: tcd/gtracked.c:208
@@ -370,7 +371,7 @@ msgstr "Artist / Titel"
 #. Track area
 #: tcd/gtracked.c:240
 msgid "Track Information"
-msgstr "Spår-information"
+msgstr "Spårinformation"
 
 #. Clear button
 #: tcd/gtracked.c:296
@@ -380,7 +381,7 @@ msgstr "Rensa"
 #. Playlist button
 #: tcd/gtracked.c:301
 msgid "Playlist"
-msgstr "Spela-lista"
+msgstr "Spellista"
 
 #: tcd/gtracked.c:313
 msgid "Submit"
@@ -444,7 +445,7 @@ msgstr "Inställningar..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
-msgstr "Spår-editor..."
+msgstr "Spåreditor..."
 
 #: tcd/popup.c:21
 msgid "Help"
@@ -484,12 +485,12 @@ msgstr "CDROM-enhet"
 #. Color picker
 #: tcd/prefs.c:333
 msgid "Track/title color"
-msgstr "Spår/titel färg"
+msgstr "Färg spår/titel"
 
 #. font picker
 #: tcd/prefs.c:345
 msgid "Track/title font"
-msgstr "Spår/titel typsnitt"
+msgstr "Typsnitt spår/titel"
 
 #: tcd/prefs.c:346
 msgid "Change font"
@@ -498,12 +499,12 @@ msgstr "Ändra typsnitt"
 #. show handles
 #: tcd/prefs.c:353
 msgid "Show handles (restart required)"
-msgstr "Visa handtag (omstart krävs)"
+msgstr "Visa handtag (kräver omstart)"
 
 #. show tooltips
 #: tcd/prefs.c:360
 msgid "Show tooltips"
-msgstr "Visa hjälpbubblor"
+msgstr "Visa verktygstips"
 
 #. use alternate play ioctl
 #: tcd/prefs.c:367
@@ -517,7 +518,7 @@ msgstr "Vid avslut"
 
 #: tcd/prefs.c:501
 msgid "Key"
-msgstr "Knapp"
+msgstr "Tangent"
 
 #: tcd/prefs.c:502
 msgid "Action"
@@ -525,16 +526,16 @@ msgstr "Händelse"
 
 #: tcd/prefs.c:522
 msgid "Click here to change (restart required):"
-msgstr "Klicka här för att ändra (omstart krävs)"
+msgstr "Visa handtag (kräver omstart):"
 
 #. Frame
 #: tcd/prefs.c:544 tcd/prefs.c:594
 msgid "Keybindings"
-msgstr "Knappkombinationer"
+msgstr "Tangentkombinationer"
 
 #: tcd/prefs.c:598
 msgid "CDDB Settings"
-msgstr "CDDB inställningar"
+msgstr "CDDB-inställningar"
 
 #: vu-meter/main.c:125
 msgid ""
@@ -542,11 +543,11 @@ msgid ""
 "Please run 'esd' at a command prompt."
 msgstr ""
 "Kan ej koppla upp mot ljud-daemonen.\n"
-"Var god kör 'esd' vid kommandoprompten."
+"Var god kör 'esd' vid kommandoraden."
 
 #: vu-meter/main.c:248
 msgid "Specify the X position of the meter."
-msgstr "Specifiera X-positionen för mätaren."
+msgstr "Ange X-position för mätaren."
 
 #: vu-meter/main.c:249
 msgid "X-Position"
@@ -554,7 +555,7 @@ msgstr "X-position"
 
 #: vu-meter/main.c:251
 msgid "Specify the Y position of the meter."
-msgstr "Specifiera Y-positionen för mätaren."
+msgstr "Ange Y-position för mätaren."
 
 #: vu-meter/main.c:252
 msgid "Y-Position"
@@ -566,11 +567,11 @@ msgstr "Koppla upp mot esd-servern på denna dator."
 
 #: vu-meter/main.c:255
 msgid "ESD Server Host"
-msgstr "ESD server dator"
+msgstr "ESD serverdator"
 
 #: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
-msgstr "Öppna en vertikal version av mätaren."
+msgstr "Öppna en lodrät version av mätaren."
 
 #: vu-meter/main.c:270
 #, c-format
@@ -580,9 +581,3 @@ msgstr "Värddatorn är %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volymmätare"
-
-#~ msgid "About..."
-#~ msgstr "Om..."
-
-#~ msgid "Click here to change:"
-#~ msgstr "Tryck här för att ändra:"
