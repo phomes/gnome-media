@@ -283,11 +283,14 @@ window_destroy_cb (GtkWidget *window,
 {
 	GnomeCD *gcd = data;
 
+	/* Make sure we stop playing the cdrom first */
+	gnome_cdrom_stop(gcd->cdrom, NULL);
+
 	/* Before killing the cdrom object, do the shutdown on it */
 	if (gcd->preferences->stop_eject) {
 		gnome_cdrom_eject (gcd->cdrom, NULL);
 	}
-		
+
 	/* Unref the cddb slave */
 	cddb_close_client ();
 
