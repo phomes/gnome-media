@@ -479,13 +479,12 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (top_hbox), display_box, TRUE, TRUE, 0);
 
 	/* Volume slider */
-	gcd->slider = gtk_vscale_new_with_range (0.0, 255.0, 1.0);
-	gtk_range_set_inverted (GTK_RANGE (gcd->slider), TRUE);
+	gcd->slider = gtk_vscale_new_with_range (-255.0, 0.0, 1.0);
 	gtk_scale_set_draw_value (GTK_SCALE (gcd->slider), FALSE);
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
 	
 	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider),
-			      _("Volume Control"), NULL);
+			      _("Volume control"), NULL);
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 

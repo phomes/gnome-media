@@ -1,6 +1,13 @@
+2002-08-01  Iain <iain@prettypeople.org>
+
+	* callbacks.c (volume_changed): Handle the value as being negative.
+
+	* gnome-cd.c (init_player): Don't invert the slider, make it take
+	values from -255.0 to 0.
+
 2002-08-01  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
-	* preferences.c(apply_clicked_cb) : Allow users to Change
+	* preferences.c (apply_clicked_cb): Allow users to Change
 	the default device
 	
 2002-07-01 Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
