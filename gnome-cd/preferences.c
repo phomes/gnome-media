@@ -738,6 +738,8 @@ create_theme_model (PropertyDialog *pd,
 		*/
 	}
 
+	closedir (dir);
+	
 	return GTK_TREE_MODEL (store);
 }
 
