@@ -1,5 +1,17 @@
 2002-01-11  Iain Holmes  <iain@ximian.com>
 
+	* gnome-cd.c (window_destroy_cb): Unref the cdrom to stop it emitting
+	signals while the rest of the window is being destroyed.
+	(gnome_cd_build_track_list_menu): Block the changed signal while we
+	change the tracklist menu.
+	(make_button_from_widget): Set the border width around the buttons to
+	2.
+
+	* callbacks.c (cd_status_changed_cb): Block the signal again.
+	
+	
+2002-01-11  Iain Holmes  <iain@ximian.com>
+
 	* gnome-cd.c (skip_to_track): Skip to the currently selected track.
 	(init_player): Connect skip_to_track to the option menu signal.
 

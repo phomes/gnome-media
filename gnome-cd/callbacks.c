@@ -400,7 +400,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
 		track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 		if (track + 1 != status->track) {
+			g_signal_handlers_block_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC,
+							 0, 0, NULL, G_CALLBACK (skip_to_track), gcd);
 			gtk_option_menu_set_history (GTK_OPTION_MENU (gcd->tracks), status->track - 1);
+			g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC,
+							   0, 0, NULL, G_CALLBACK (skip_to_track), gcd);
 		}
 		
 		if (gcd->last_status == NULL || gcd->last_status->cd != GNOME_CDROM_STATUS_OK) {

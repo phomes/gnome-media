@@ -67,6 +67,8 @@ typedef struct _GnomeCD {
 	GnomeCDDiscInfo *disc_info;
 } GnomeCD;
 
+void skip_to_track (GtkWidget *item,
+		    GnomeCD *gcd);
 void gnome_cd_set_window_title (GnomeCD *gcd,
 				const char *artist,
 				const char *track);

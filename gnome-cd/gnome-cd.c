@@ -40,16 +40,28 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 	g_free (title);
 }
 
-static void
+/* Can't be static because it ends up being referenced from another file */
+void
 skip_to_track (GtkWidget *item,
 	       GnomeCD *gcd)
 {
 	int track;
+	GnomeCDRomStatus *status = NULL;
 	GnomeCDRomMSF msf;
 	GError *error;
 	
 	track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
 
+	if (gnome_cdrom_get_status (GNOME_CDROM (gcd->cdrom), &status, NULL) == FALSE) {
+		return;
+	}
+
+	if (status->track - 1 == track && status->audio == GNOME_CDROM_AUDIO_PLAY) {
+		g_free (status);
+		return;
+	}
+
+	g_free (status);
 	msf.minute = 0;
 	msf.second = 0;
 	msf.frame = 0;
@@ -65,12 +77,14 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 	GtkMenu *menu;
 	GtkWidget *item;
 
+	/* Block the changed signal */
+	g_signal_handlers_block_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
+					 G_CALLBACK (skip_to_track), gcd);
 	if (gcd->menu != NULL) {
 		menu = GTK_MENU (gcd->menu);
 		gtk_option_menu_remove_menu (GTK_OPTION_MENU (gcd->tracks));
 	}
 
-	
 	menu = gtk_menu_new ();
 	if (gcd->disc_info != NULL) {
 		int i;
@@ -112,6 +126,9 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 
 	gtk_option_menu_set_menu (GTK_OPTION_MENU (gcd->tracks), GTK_WIDGET (menu));
 	gcd->menu = menu;
+
+	g_signal_handlers_unblock_matched (G_OBJECT (gcd->tracks), G_SIGNAL_MATCH_FUNC, 0, 0, NULL,
+					   G_CALLBACK (skip_to_track), gcd);
 }
 
 static GtkWidget *
@@ -126,7 +143,8 @@ make_button_from_widget (GnomeCD *gcd,
 
 	button = gtk_button_new ();
 	gtk_container_add (GTK_CONTAINER (button), widget);
-
+	gtk_container_set_border_width (GTK_CONTAINER (button), 2);
+	
 	if (func) {
 		g_signal_connect (G_OBJECT (button), "clicked",
 				  G_CALLBACK (func), gcd);
@@ -186,11 +204,13 @@ pixbuf_from_file (const char *filename)
 	return pixbuf;
 }
 
-static int
-window_delete_cb (GtkWidget *window,
-		  GdkEvent *ev,
-		  gpointer data)
+static void
+window_destroy_cb (GtkWidget *window,
+		   gpointer data)
 {
+	GnomeCD *gcd = data;
+	
+	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
 }
 
@@ -231,8 +251,8 @@ init_player (void)
 		g_object_unref (G_OBJECT (pixbuf));
 	}
 
-	g_signal_connect (G_OBJECT (gcd->window), "delete_event",
-			  G_CALLBACK (window_delete_cb), NULL);
+	g_signal_connect (G_OBJECT (gcd->window), "destroy",
+			  G_CALLBACK (window_destroy_cb), gcd);
 	gcd->vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
 	gcd->tooltips = gtk_tooltips_new ();
 	top_hbox = gtk_hbox_new (FALSE, 0);
