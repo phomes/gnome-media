@@ -768,7 +768,7 @@ fill_in_information (GSRWindow *window,
 	if (window->priv->samplerate == 0) {
 		text = g_strdup (_("Unknown"));
 	} else {
-		text = g_strdup_printf (_("%.1f khz/s"), (float) window->priv->samplerate / 1000);
+		text = g_strdup_printf (_("%.1f kHz"), (float) window->priv->samplerate / 1000);
 	}
 	gtk_label_set_text (GTK_LABEL (fp->samplerate), text);
 	g_free (text);
