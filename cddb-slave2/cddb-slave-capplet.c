@@ -664,11 +664,13 @@ create_dialog (GtkWidget *window)
 			  G_CALLBACK (destroy_window), pd);
 
 	main_vbox = gtk_vbox_new (FALSE, 5);
+	gtk_button_box_set_spacing (GTK_BUTTON_BOX (main_vbox), 18);
 	gtk_container_set_border_width (GTK_CONTAINER (main_vbox), 5);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, TRUE, TRUE, 0);
 
 	/* Log on info */
 	frame = gtk_frame_new (_("Log on information"));
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), frame, FALSE, FALSE, 0);
 
 	vbox = gtk_vbox_new (FALSE, 4);
@@ -756,6 +758,7 @@ create_dialog (GtkWidget *window)
 
 	/* Server info */
 	frame = gtk_frame_new (_("Server"));
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), frame, TRUE, TRUE, 0);
 
 	vbox = gtk_vbox_new (FALSE, 4);
@@ -895,6 +898,9 @@ main (int argc,
 						  GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);
+	gtk_dialog_set_has_separator (GTK_DIALOG (dialog_win), FALSE);
+	gtk_container_set_border_width (GTK_CONTAINER (dialog_win), 5);
+
 	gtk_window_set_default_size (GTK_WINDOW (dialog_win), 440, 570);
 	create_dialog (dialog_win);
 
