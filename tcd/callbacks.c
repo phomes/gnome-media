@@ -72,6 +72,7 @@ void about_cb(GtkWidget *widget, gpointer data)
 {
     gchar *authors[] = {
 	"Tim P. Gerla",
+	"Icons by Straylight and Tigert",
 	NULL
     };  
 
@@ -83,7 +84,7 @@ void about_cb(GtkWidget *widget, gpointer data)
 	"2.2 (CVS)",
 	"(C) 1997-98 Tim P. Gerla",
 	(const gchar**)authors,
-	_("Gnome CD player application with CDDB support."
+	_("GTCD is the Gnome CD player application. Includes CDDB support."
 	  " Please see the \'Thanks\' file included with the"
 	  " distribution for more credits."),
 	NULL);
