@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-03-24 13:02+0100\n"
-"PO-Revision-Date: 2002-03-24 13:04+0100\n"
+"POT-Creation-Date: 2002-04-05 23:21+0200\n"
+"PO-Revision-Date: 2002-04-05 23:27+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,6 +122,11 @@ msgstr "ID płyty"
 #: cddb-slave2/cddb-slave.c:1
 msgid "Artist and Title"
 msgstr "Wykonawca i tytuł"
+
+#: cddb-slave2/cddb-slave.c:1 cddb-slave2/cddb-slave.c:1
+#: gnome-cd/gnome-cd.c:1
+msgid "Unknown track"
+msgstr "Nieznana ścieżka"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
 msgid "CDDB"
@@ -1091,34 +1096,42 @@ msgstr ""
 "z OSS w wersji %d.%d.%d, natomiast w systemie\n"
 "zainstalowana jest wersja %d.%d.%d.\n"
 
-#: gmix/gmix.c:1 gmix/gmix.c:1
+#: gmix/gmix.c:1
 #, c-format
-msgid "%s%s"
-msgstr "%s%s"
+msgid "left %s"
+msgstr "lewy %s"
 
 #: gmix/gmix.c:1
-msgid "left "
-msgstr "lewy "
+#, c-format
+msgid "Right %s"
+msgstr "prawy %s"
 
 #: gmix/gmix.c:1
-msgid "right "
-msgstr "prawy "
-
-#: gmix/gmix.c:1 gmix/gmix.c:1
 msgid "Lock"
 msgstr "Razem"
 
-#: gmix/gmix.c:1 gmix/gmix.c:1
+#: gmix/gmix.c:1
+#, c-format
+msgid "%s Lock"
+msgstr "%s Razem"
+
+#: gmix/gmix.c:1
 msgid "Mute"
 msgstr "Cisza"
+
+#: gmix/gmix.c:1
+#, c-format
+msgid "%s Mute"
+msgstr "%s Cisza"
 
 #: gmix/gmix.c:1
 msgid "Rec."
 msgstr "Zapis"
 
 #: gmix/gmix.c:1
-msgid "Rec"
-msgstr "Zapis"
+#, c-format
+msgid "%s Record"
+msgstr "%s Zapis"
 
 #: gmix/gmix.c:1 gmix/gnome-volume-control.desktop.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
@@ -1491,7 +1504,7 @@ msgstr "Odtwarzanie..."
 msgid "Converting file..."
 msgstr "Konwertowanie pliku..."
 
-#: grecord/src/grec.c:1
+#: grecord/src/grec.c:1 grecord/src/grec.c:1
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1516,12 +1529,9 @@ msgid "Select a sound file"
 msgstr "Wybór pliku dźwiękowego"
 
 #: grecord/src/grec.c:1
-msgid "Don't quit"
-msgstr "Nie kończ"
-
-#: grecord/src/grec.c:1
-msgid "Gnome Volume Control is not installed in the path"
-msgstr "Na ścieżce nie odnaleziono programu Kontroli głośności dla GNOME"
+#, c-format
+msgid "%s is not installed in the path"
+msgstr "Nie odnaleziono %s na ścieżce"
 
 #: grecord/src/grec.c:1
 #, c-format
@@ -1535,10 +1545,10 @@ msgstr "Wycofywanie wszystkich zmian..."
 #: grecord/src/grec.c:1
 #, c-format
 msgid ""
-"'%s is a directory.\n"
+"'%s is a folder.\n"
 "Please select a sound file to be opened."
 msgstr ""
-"\"%s\" jest katalogiem.\n"
+"\"%s\" jest folderem.\n"
 "Wybierz plik dźwiękowy, który chcesz otworzyć."
 
 #: grecord/src/grec.c:1
@@ -1558,10 +1568,10 @@ msgstr "Plik \"%s\" nie jest poprawnym plikiem dźwiękowym."
 #: grecord/src/grec.c:1
 #, c-format
 msgid ""
-"'%s' is a directory.\n"
+"'%s' is a folder.\n"
 "Please enter another filename."
 msgstr ""
-"\"%s\" jest katalogiem.\n"
+"\"%s\" jest folderem.\n"
 "Wprowadź inną nazwę pliku."
 
 #: grecord/src/grec.c:1
@@ -1589,19 +1599,17 @@ msgstr "Błąd przy zapisie \"%s\""
 #: grecord/src/grec.c:1
 #, c-format
 msgid ""
-"<b>Save the changes to %s?</b>\n"
-"If you don't save, these changes will be discarded."
+"<b>Do you want to save the changes you made to \"%s\"?</b>\n"
+"\n"
+"Your changes will be lost is you don't save them."
 msgstr ""
-"<b>Czy zapisać zmiany w %s?</b>\n"
-"Jeśli zrezygnujesz z zapisu, zmiany zostaną utracone."
+"<b>Czy chcesz zapisać zmiany wykonane w \"%s\"?</b>\n"
+"\n"
+"Przy rezygnacji z zapisu wszystkie zmiany zostaną utracone."
 
 #: grecord/src/grec.c:1
-msgid "Don't save"
-msgstr "Nie zapisuj"
-
-#: grecord/src/grec.c:1
-msgid "Save"
-msgstr "Zapisz"
+msgid "Do_n't save"
+msgstr "_Nie zapisuj"
 
 #: grecord/src/grec.c:1
 #, c-format
@@ -1641,8 +1649,8 @@ msgid "Create a new sample"
 msgstr "Tworzy nowy plik dźwiękowy"
 
 #: grecord/src/gui.c:1
-msgid "Run mixer"
-msgstr "Uruchom mikser"
+msgid "Run _Mixer"
+msgstr "Uruchom _mikser"
 
 #: grecord/src/gui.c:1
 msgid "Run GNOME Volume Control"
@@ -1661,8 +1669,8 @@ msgid "Echo"
 msgstr "Echo"
 
 #: grecord/src/gui.c:1
-msgid "Undo all changes"
-msgstr "Wycofaj wszystkie zmiany"
+msgid "_Undo All"
+msgstr "_Cofnij wszystko"
 
 #: grecord/src/gui.c:1
 msgid "Undo all changes made on the current sample"
@@ -1671,18 +1679,6 @@ msgstr "Wycofuje wszystkie zmiany dokonane na bieżącej próbce"
 #: grecord/src/gui.c:1
 msgid "Effects"
 msgstr "Efekty"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "Show time"
-msgstr "Wyświetlanie czasu"
-
-#: grecord/src/gui.c:1
-msgid "Show soundinfo"
-msgstr "Wyświetlanie informacji o dźwięku"
-
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
-msgid "Show sound information"
-msgstr "Wyświetlanie informacji o dźwięku"
 
 #: grecord/src/gui.c:1
 #, c-format
@@ -1735,10 +1731,6 @@ msgid "Start recording"
 msgstr "Rozpoczyna nagrywanie"
 
 #: grecord/src/gui.c:1
-msgid "Info"
-msgstr "Informacje"
-
-#: grecord/src/gui.c:1
 msgid "Audio format: "
 msgstr "Format dźwięku: "
 
@@ -1781,6 +1773,10 @@ msgid "Gnome Sound Recorder Preferences"
 msgstr "Ustawienia Rejestratora dźwięku dla GNOME"
 
 #: grecord/src/gui.c:1
+msgid "Sound Recorder Preferences"
+msgstr "Ustawienia Rejestratora dźwięku"
+
+#: grecord/src/gui.c:1
 msgid "Recording"
 msgstr "Nagrywanie"
 
@@ -1789,34 +1785,34 @@ msgid "Time"
 msgstr "Czas"
 
 #: grecord/src/gui.c:1
-msgid "Recording timeout: "
-msgstr "Czas przeznaczony na nagrywanie: "
+msgid "_Recording timeout: "
+msgstr "_Czas przeznaczony na nagrywanie: "
 
 #: grecord/src/gui.c:1
 msgid "minutes"
 msgstr "minut"
 
 #: grecord/src/gui.c:1
-msgid "Stop recording on timeout"
-msgstr "Zatrzymywanie nagrywania po upłynięciu przeznaczonego na nie czasu"
+msgid "_Stop recording on timeout"
+msgstr "_Zatrzymywanie nagrywania po upłynięciu czasu"
 
 #: grecord/src/gui.c:1
-msgid "Popup save dialog when recording is finished"
-msgstr "Wyświetlanie okna zapisu po zakończeniu nagrywania"
+msgid "_Open save dialog when recording is finished"
+msgstr "_Wyświetlanie okna zapisu po zakończeniu nagrywania"
 
 #: grecord/src/gui.c:1
 msgid "Size"
 msgstr "Rozmiar"
 
 #: grecord/src/gui.c:1
-msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
+msgid "Show warning _message if size (Mb) of sample becomes bigger than:"
 msgstr ""
-"Wyświetlanie komunikatu ostrzegawczego, jeśli rozmiar próbki (w MB) "
+"Wyświetlanie _komunikatu ostrzegawczego, jeśli rozmiar próbki (w MB) "
 "przekroczy:"
 
 #: grecord/src/gui.c:1
-msgid "Stop recording if size (Mb) of sample becomes bigger than:"
-msgstr "Zatrzymywanie nagrywania, jeśli rozmiar próbki (w MB) przekroczy:"
+msgid "Sto_p recording if size (Mb) of sample becomes bigger than:"
+msgstr "Z_atrzymywanie nagrywania, jeśli rozmiar próbki (w MB) przekroczy:"
 
 #: grecord/src/gui.c:1
 msgid "Playing"
@@ -1827,16 +1823,16 @@ msgid "Repetition"
 msgstr "Powtarzanie"
 
 #: grecord/src/gui.c:1
-msgid "Repeat the sound"
-msgstr "Powtarzanie dźwięku"
+msgid "_Repeat the sound"
+msgstr "_Powtarzanie dźwięku"
 
 #: grecord/src/gui.c:1
-msgid "Forever"
-msgstr "Bez końca"
+msgid "_Forever"
+msgstr "_Bez końca"
 
 #: grecord/src/gui.c:1
-msgid "Nr of times:"
-msgstr "Liczba powtórzeń:"
+msgid "_Number of times:"
+msgstr "_Liczba powtórzeń:"
 
 #: grecord/src/gui.c:1
 msgid "Paths"
@@ -1847,20 +1843,24 @@ msgid "Program files"
 msgstr "Pliki programów"
 
 #: grecord/src/gui.c:1
-msgid "Path to sox:"
-msgstr "Ścieżka programu sox:"
+msgid "_Path to sox:"
+msgstr "Ś_cieżka programu sox:"
 
-#: grecord/src/gui.c:1 grecord/src/gui.c:1
+#: grecord/src/gui.c:1
+msgid "_Apply"
+msgstr "_Zastosuj"
+
+#: grecord/src/gui.c:1
+msgid "Folders"
+msgstr "Fadery"
+
+#: grecord/src/gui.c:1
+msgid "_Temporary folder:"
+msgstr "Katalog _tymczasowy:"
+
+#: grecord/src/gui.c:1
 msgid "Apply"
 msgstr "Zastosuj"
-
-#: grecord/src/gui.c:1
-msgid "Directories"
-msgstr "Katalogi"
-
-#: grecord/src/gui.c:1
-msgid "Temporary directory:"
-msgstr "Katalog tymczasowy:"
 
 #: grecord/src/gui.c:1
 msgid "Sound"
@@ -1885,14 +1885,6 @@ msgstr "Mono/Stereo"
 #: grecord/src/gui.c:1 grecord/src/gui.c:1
 msgid "Stereo"
 msgstr "Stereo"
-
-#: grecord/src/gui.c:1
-msgid "User interface"
-msgstr "Interfejs użytkownika"
-
-#: grecord/src/gui.c:1
-msgid "Main window"
-msgstr "Główne okno"
 
 #: grecord/src/main.c:1
 msgid "Specify the geometry of the main window"
