@@ -142,7 +142,8 @@ theme_load (GnomeCD *gcd,
 		
 		g_print ("Not a dir %s\n", theme_path);
 		g_free (theme_path);
-		return NULL;
+		theme_name = g_strdup ("lcd");
+		theme_path = g_build_filename (THEME_DIR, theme_name, NULL);
 	}
 	
 	tmp = g_strconcat (theme_name, ".theme", NULL);
