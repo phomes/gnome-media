@@ -49,9 +49,9 @@
 #include <string.h>
 #include <signal.h>
 #include <ctype.h>
-#ifdef HAVE_LINUX_SOUNDCARD_H
+#ifdef HAVE_LINUX_SOUNDCARD_H 
 #include <linux/soundcard.h>
-#else
+#else 
 #include <machine/soundcard.h>
 #endif
 
@@ -94,21 +94,21 @@ static GnomeUIInfo help_menu[] = {
 			       GNOME_STOCK_MENU_ABOUT),
 	GNOMEUIINFO_END
 };
-
+ 
 static GnomeUIInfo program_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("_Preferences..."),NULL,config_cb,GNOME_STOCK_MENU_PREF),
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb, NULL),
 	GNOMEUIINFO_END
-};
+};      
 
 static GnomeUIInfo main_menu[] = {
         GNOMEUIINFO_SUBTREE(N_("_Program"), &program_menu),
         GNOMEUIINFO_SUBTREE(N_("_Help"), &help_menu),
         GNOMEUIINFO_END
 };
-/* End of menus */
+/* End of menus */ 
 
-/*
+/* 
  * All, that is known about a mixer-device
  */
 typedef struct device_info {
@@ -232,7 +232,7 @@ static void error_close_cb(void)
 }
 
 static void apply_cb(GtkWidget *widget, void *data)
-{
+{       
         /* This is a sloppy way to re-draw the mixers */
         GList *d;
 
@@ -240,16 +240,16 @@ static void apply_cb(GtkWidget *widget, void *data)
 
 	gtk_widget_hide(slidernotebook);
 	/* Assumes that the number of devices is static... */
-	for (d=devices; d; d=d->next)
+	for (d=devices; d; d=d->next) 
 		gtk_notebook_remove_page(GTK_NOTEBOOK(slidernotebook),0);
 	gtk_widget_show(slidernotebook);
 
 	fill_in_device_guis(slidernotebook);
-
+	
 }
 
 static void cancel_cb(GtkWidget *widget, void *data)
-{
+{       
         configwin=NULL;
 }
 
@@ -257,7 +257,7 @@ static void bool_changed_cb(GtkWidget *widget, gboolean *data)
 {
 	if( *data )
 		*data = FALSE;
-	else
+	else        
 		*data = TRUE;
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(configwin));
 }
@@ -276,7 +276,7 @@ GtkWidget *optpage()
 
 	start_frame = gtk_frame_new(_("On startup"));
 	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
-
+    
 	vbox = gtk_vbox_new(TRUE, 0);
 
 	/* Set on start */
@@ -311,20 +311,20 @@ GtkWidget *optpage()
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
 			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.use_icons);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
-
-
+	
+	
 	temp = gtk_check_button_new_with_label(_("Use mixer labels"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
 				     prefs.use_labels);
 	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
 			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs.use_labels);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
-
-
+	
+	
 	gtk_container_add(GTK_CONTAINER(gui_frame), vbox);
-
+	
 	gtk_container_add(GTK_CONTAINER(ubervbox), gui_frame);
-
+	
 	gtk_widget_show_all(ubervbox);
 
 	return ubervbox;
@@ -340,7 +340,7 @@ void config_cb(GtkWidget *widget, void *data)
 		gtk_notebook_append_page(
 			GTK_NOTEBOOK(
 			GNOME_PROPERTY_BOX(configwin)->notebook), optpage(), label);
-
+		
 		gtk_signal_connect(GTK_OBJECT(configwin), "apply",
 				   GTK_SIGNAL_FUNC(apply_cb), NULL);
 		gtk_signal_connect(GTK_OBJECT(configwin), "destroy",
@@ -348,12 +348,12 @@ void config_cb(GtkWidget *widget, void *data)
 		gtk_signal_connect(GTK_OBJECT(configwin), "delete_event",
 				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
 
-		gtk_widget_show_all(configwin);
-
+		gtk_widget_show_all(configwin);	
+    
 	};
 };
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) 
 {
 	mode=0;
 
@@ -372,7 +372,7 @@ int main(int argc, char *argv[])
 			/* Beweare boolean bastardization */
 			if (!prefs.set_mixer_on_start)
 				mode |= M_NORESTORE;
-
+			  
 		}
 		/* Command line always overrides */
 		if(mode_norestore) mode |= M_NORESTORE;
@@ -381,7 +381,7 @@ int main(int argc, char *argv[])
 		if (~mode & M_NORESTORE) {
 			get_device_config();
 			init_devices();
-		}
+		} 
 
 		if (~mode & M_INITONLY) {
 
@@ -449,7 +449,7 @@ device_info *open_device(int num)
 	}
 	if(!isalpha(new_device->info.name[0]))
 		g_snprintf(new_device->info.name, 31, "Card %d", num+1);
-	/*
+	/* 
 	 * several bitmasks describing the mixer
 	 */
 	res=ioctl(new_device->fd, SOUND_MIXER_READ_DEVMASK, &new_device->devmask);
@@ -472,7 +472,7 @@ device_info *open_device(int num)
 		if (new_device->devmask & (1<<cnt)) {
 			unsigned long vol; // l: vol&0xff, r:(vol&0xff00)>>8
 			res=ioctl(new_device->fd, MIXER_READ(cnt), &vol);
-
+		                                                
 			new_device->volume_left[cnt]=vol & 0xff;
 			if (new_device->stereodevs & (1<<cnt)) {
 				new_device->volume_right[cnt]=(vol&0xff00)>>8;
@@ -487,7 +487,7 @@ device_info *open_device(int num)
 	 */
 	printf("%s\n", new_device->info.id);
 	printf("%s\n", new_device->info.name);
-
+	
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
 		if ((new_device->devmask | new_device->recmask) & (1<<cnt)) {
 			printf("%s:", device_labels[cnt]);
@@ -523,7 +523,7 @@ GList *make_channels(device_info *device)
 			new_channel->device=device;
 			new_channel->channel=i;
 	 		new_channel->pixmap = g_strdup (device_pixmap[i]);
-			new_channel->title= g_strdup(_(device_labels[i]));
+			new_channel->title= g_strdup(device_labels[i]);
 			new_channel->passive=0;
 			channels=g_list_append(channels, new_channel);
 		}
@@ -562,7 +562,7 @@ void init_one_device(gpointer a, gpointer b)
 {
 	unsigned long vol;
 	int c;
-
+	
 	device_info *info = (device_info *)a;
 	ioctl(info->fd, SOUND_MIXER_WRITE_RECSRC, &info->recsrc);
 
@@ -590,7 +590,7 @@ void get_one_device_config(gpointer a, gpointer b)
 	int cc;
 	/*
 	 * restore mixer-configuration
-	 */
+	 */ 
 	char name[255];
 	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
@@ -631,7 +631,7 @@ void put_one_device_config(gpointer a, gpointer b)
 	int cc;
 	/*
 	 * save mixer-configuration
-	 */
+	 */ 
 	char name[255];
 	for (cc=0; cc<SOUND_MIXER_NRDEVICES; cc++) {
 		if (info->devmask & (1<<cc)) {
@@ -726,12 +726,12 @@ void fill_in_device_guis(GtkWidget *notebook){
 			j+=2;
 		}
 
-		/*
+		/* 
 		 * David: changed 7 to 8 for table rows (06/04/1999)
 		 */
 		table=gtk_table_new(i*2, 8, FALSE);
 		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-					 table,
+					 table, 
 					 gtk_label_new(di->info.name));
 		gtk_table_set_row_spacings (GTK_TABLE (table), 0);
 		gtk_table_set_col_spacings (GTK_TABLE (table), 0);
@@ -781,15 +781,15 @@ void fill_in_device_guis(GtkWidget *notebook){
 				 */
 				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 7, 8, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
-			} else { /*
+			} else { /* 
 				  * David: need to init it to null
 				  * otherwise we get a segfault when
 				  * trying to toggle
-				  * the buttons
+				  * the buttons 
 				  */
 				ci->rec = NULL;
 			}
-
+	
 			if (ci->device->devmask & (1<<ci->channel)) {
 				ci->mute=gtk_check_button_new_with_label(_("Mute"));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
@@ -802,7 +802,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 			/* BOTTOM_ATTACH changed to 8 */
 			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 8, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (separator);
-			i+=2;
+			i+=2; 
 		}
 	}
 
@@ -812,7 +812,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 void open_dialog(void)
 {
 	GList *d, *c;
-
+	
 	int i,j;
 
 	app = gnome_app_new ("gmix", _("GMIX 3.0") );
@@ -838,7 +838,7 @@ void open_dialog(void)
 
 	/*
 	 * Build table with sliders
-	 */
+	 */	
 	slidernotebook = gtk_notebook_new();
 	gtk_widget_show(slidernotebook);
 	gnome_app_set_contents(GNOME_APP (app), slidernotebook);
@@ -906,7 +906,7 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 	}
 
 	ioctl(data->device->fd,SOUND_MIXER_WRITE_RECSRC, &data->device->recsrc);
-
+	
 	ioctl(data->device->fd,SOUND_MIXER_READ_RECSRC, &data->device->recsrc);
 
 	for (c=data->device->channels; c; c=c->next) {
@@ -925,7 +925,7 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 {
 	unsigned long vol;
 	if (data==NULL) return;
-
+	
 	if (data->device->stereodevs & (1<<data->channel)) {
 		if (data->device->lock_bitmask & (1<<data->channel)) {
 			data->device->volume_right[data->channel]=data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->left)->value;
@@ -953,7 +953,7 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 {
 	unsigned long vol;
 	if (data==NULL) return;
-
+	
 	if (data->device->stereodevs & (1<<data->channel)) {
 		if (data->device->lock_bitmask & (1<<data->channel)) {
 			data->device->volume_right[data->channel]=data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->right)->value;
