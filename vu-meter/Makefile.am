@@ -1,8 +1,8 @@
 Audiodir = $(datadir)/apps/Audio
 
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	$(GNOME_INCLUDEDIR) -I$(topsrcdir)
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+	$(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = vumeter
 
