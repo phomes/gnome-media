@@ -82,11 +82,11 @@ build_test_pipeline(GSTPPipelineDescription * pipeline_desc)
   switch (pipeline_desc->type) {
     case PIPE_TYPE_AUDIOSINK:
     case PIPE_TYPE_VIDEOSINK:
-      full_pipeline_str = g_strdup_printf("{ %s ! spider ! %s }", test_pipeline_str, pipeline_desc->pipeline);
+      full_pipeline_str = g_strdup_printf("{ %s ! %s }", test_pipeline_str, pipeline_desc->pipeline);
       break;
     case PIPE_TYPE_AUDIOSRC:
     case PIPE_TYPE_VIDEOSRC:
-      full_pipeline_str = g_strdup_printf("{ %s ! spider ! %s }", pipeline_desc->pipeline, test_pipeline_str);
+      full_pipeline_str = g_strdup_printf("{ %s ! %s }", pipeline_desc->pipeline, test_pipeline_str);
       break;
   }
   if (full_pipeline_str) {
