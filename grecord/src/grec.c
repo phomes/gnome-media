@@ -972,7 +972,7 @@ save_dont_or_cancel (const char *quit_text)
 				       GTK_MESSAGE_WARNING,
 				       GTK_BUTTONS_NONE,
 				       _("<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-					 "\nYour changes will be lost is you don't save them."),
+					 "\nYour changes will be lost if you don't save them."),
 				       filename);
 	
 	grec_dialog_add_button (GTK_DIALOG (mess),
