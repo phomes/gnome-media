@@ -203,7 +203,7 @@ void create_dialog()
 		gnome_config_get_int("/gmix/geometry/xpos=-2"),
 		gnome_config_get_int("/gmix/geometry/ypos=-2"));
 #else
-	gtk_container_disable_resize(GTK_CONTAINER(window));
+	gtk_window_set_policy (GTK_WINDOW (window), FALSE, FALSE, FALSE);
 #endif
 	
 	box=gtk_hbox_new(FALSE, 5);
