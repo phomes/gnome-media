@@ -9,27 +9,30 @@ gtcd_SOURCES = 		\
 	cddb.c 		\
 	socket.c 	\
 	linux-cdrom.c 	\
+	linux-cdrom.h	\
 	gtracked.c 	\
 	gabout.c 	\
 	gcddb.c 	\
+	gcddb.h		\
 	cddb.h 		\
 	socket.h 	\
 	gtracked.h 	\
 	gabout.h 	\
-	gcddb.h		\
 	tooltips.h	\
-	properties.c	
+	properties.c	\
+	properties.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\
 	cddb.c 		\
+	cddb.h 		\
 	socket.c 	\
 	linux-cdrom.c 	\
-	cddb.h 		\
+	linux-cdrom.h	\
 	socket.h 	\
 	tcd.h		\
-	tracked.h	\
-	tracked.c
+	tracked.c	\
+	tracked.h
 
 gtcd_LDADD = 	$(GNOME_LIBDIR) \
 		$(GNOMEUI_LIBS) \
