@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.8.1\n"
-"POT-Creation-Date: 1999-05-31 22:28-0500\n"
+"POT-Creation-Date: 1999-09-18 21:26+0200\n"
 "PO-Revision-Date: 1999-02-23 15:44+01:00\n"
 "Last-Translator: Shooby Ban <bansz@szif.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -73,52 +73,90 @@ msgstr "Idõkorlát: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Nem aktív. %s\n"
 
-#: gmix/gmix.c:77
+#: gmix/gmix.c:93
 msgid "_About"
 msgstr "_Névjegy"
 
-#: gmix/gmix.c:88
+#: gmix/gmix.c:99
+msgid "_Properties"
+msgstr ""
+
+#: gmix/gmix.c:105
 msgid "_Program"
 msgstr ""
 
-#: gmix/gmix.c:89
+#: gmix/gmix.c:106
 msgid "_Help"
 msgstr "_Súgó"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:156
 msgid "don't restore mixer-settings from configuration"
 msgstr ""
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:157
+msgid "restore mixer-settings from configuration"
+msgstr ""
+
+#: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr ""
 
-#: gmix/gmix.c:141
+#: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr ""
 
-#: gmix/gmix.c:562
-msgid "GMIX 3.0"
+#. start frame
+#: gmix/gmix.c:278 tcd/prefs.c:388
+msgid "On startup"
 msgstr ""
 
+#. Set on start
+#: gmix/gmix.c:284
+msgid "Restore saved mixer levels on startup"
+msgstr ""
+
+#: gmix/gmix.c:290
+msgid "Hide menu on start"
+msgstr ""
+
+#: gmix/gmix.c:306
+msgid "GUI"
+msgstr ""
+
+#: gmix/gmix.c:309
+msgid "Use Mixer Icons"
+msgstr ""
+
+#: gmix/gmix.c:317
+msgid "Use Mixer Labels"
+msgstr ""
+
+#: gmix/gmix.c:340 tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Tulajdonságok..."
+
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:632
+#: gmix/gmix.c:775
 msgid "Lock"
 msgstr "Rögzít"
 
-#: gmix/gmix.c:642
+#: gmix/gmix.c:785
 msgid "Rec."
 msgstr "Felv."
 
-#: gmix/gmix.c:659
+#: gmix/gmix.c:802
 msgid "Mute"
 msgstr "Némít"
 
-#: gmix/gmix.c:812
+#: gmix/gmix.c:825
+msgid "GMIX 3.0"
+msgstr ""
+
+#: gmix/gmix.c:994
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome keverõpult"
 
-#: gmix/gmix.c:815
+#: gmix/gmix.c:997
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ez egy keverõpult az OOS hangeszközökhöz."
 
@@ -153,56 +191,56 @@ msgid "Refresh List"
 msgstr ""
 
 #. server settings
-#: tcd/cddb_props.c:138
+#: tcd/cddb_props.c:140
 msgid "Server Settings"
 msgstr ""
 
-#: tcd/cddb_props.c:147
+#: tcd/cddb_props.c:149
 msgid "Address"
 msgstr ""
 
-#: tcd/cddb_props.c:157
+#: tcd/cddb_props.c:159
 msgid "Port"
 msgstr ""
 
-#: tcd/cddb_props.c:164
+#: tcd/cddb_props.c:168
 msgid "Use HTTP"
 msgstr ""
 
-#: tcd/cddb_props.c:169
+#: tcd/cddb_props.c:173
 msgid "Proxy"
 msgstr ""
 
 #. local db
-#: tcd/cddb_props.c:189
+#: tcd/cddb_props.c:193
 msgid "Local Database"
 msgstr ""
 
 #. frame
-#: tcd/cddb_props.c:231
+#: tcd/cddb_props.c:235
 #, fuzzy
 msgid "CDDB Data"
 msgstr "CDDB státusz"
 
-#: tcd/cddb_props.c:263
+#: tcd/cddb_props.c:267
 msgid "CDDB Editor"
 msgstr "CDDB szerkesztõ"
 
-#: tcd/cddb_props.c:277
+#: tcd/cddb_props.c:281
 msgid "Error reading $HOME/.cddbslave."
 msgstr ""
 
-#: tcd/cddb_props.c:393
+#: tcd/cddb_props.c:397
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr ""
 
-#: tcd/cddb_props.c:405
+#: tcd/cddb_props.c:409
 msgid "Delete CDDB Entry?"
 msgstr ""
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:310
+#: tcd/cddb_status.c:50 tcd/gtracked.c:308
 msgid "CDDB Status"
 msgstr "CDDB státusz"
 
@@ -243,62 +281,66 @@ msgstr ""
 msgid "random"
 msgstr ""
 
-#: tcd/gtcd.c:297
+#: tcd/gtcd.c:326
 msgid "Open track editor"
 msgstr "Sávszerkeszõ"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:582
+#: tcd/gtcd.c:327 tcd/prefs.c:586
 msgid "Preferences"
 msgstr "Tulajdonságok"
 
-#: tcd/gtcd.c:299 tcd/popup.c:23
+#: tcd/gtcd.c:328 tcd/popup.c:23
 msgid "Quit"
 msgstr "Kilépés"
 
 #. TOP ROW
-#: tcd/gtcd.c:320
+#: tcd/gtcd.c:348
 msgid "Play/Pause"
 msgstr ""
 
-#: tcd/gtcd.c:324 tcd/popup.c:16
+#: tcd/gtcd.c:352 tcd/popup.c:16
 msgid "Stop"
 msgstr ""
 
-#: tcd/gtcd.c:325 tcd/popup.c:17
+#: tcd/gtcd.c:353 tcd/popup.c:17
 msgid "Eject"
 msgstr "Kiadás"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:332 tcd/gtcd.c:340
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip backwards"
 msgstr "Visszalép"
 
-#: tcd/gtcd.c:333 tcd/gtcd.c:341
+#: tcd/gtcd.c:361 tcd/gtcd.c:369
 msgid "Skip forwards"
 msgstr "Következõ"
 
-#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
+#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
 msgid "(Scanning)"
 msgstr "(Keresés)"
 
-#: tcd/gtcd.c:496
+#: tcd/gtcd.c:544
 msgid "No Disc"
 msgstr "Nincs Lemez"
 
-#: tcd/gtcd.c:524
+#: tcd/gtcd.c:579
 msgid "Error"
 msgstr "Hiba"
 
-#: tcd/gtcd.c:800
+#: tcd/gtcd.c:855
 msgid "Volume"
 msgstr ""
 
-#: tcd/gtcd.c:979
+#: tcd/gtcd.c:1025
 msgid "Filename of the CD device"
 msgstr ""
 
-#: tcd/gtcd.c:979
+#: tcd/gtcd.c:1025
 msgid "FILE"
+msgstr ""
+
+#: tcd/gtcd.c:1027
+msgid "Play CD on startup"
 msgstr ""
 
 #: tcd/gtracked.c:169
@@ -334,41 +376,42 @@ msgid "Track Information"
 msgstr "Sáv információ"
 
 #. Clear button
-#: tcd/gtracked.c:299
+#: tcd/gtracked.c:297
 msgid "Clear"
 msgstr "Töröl"
 
 #. Playlist button
-#: tcd/gtracked.c:304
+#: tcd/gtracked.c:302
 msgid "Playlist"
 msgstr ""
 
-#: tcd/gtracked.c:316
+#: tcd/gtracked.c:314
 #, fuzzy
 msgid "Submit"
 msgstr "Kilépés"
 
-#: tcd/gtracked.c:376
+#: tcd/gtracked.c:375
 #, fuzzy
 msgid "Submit Information"
 msgstr "Sáv információ"
 
-#: tcd/gtracked.c:382
+#: tcd/gtracked.c:381
 #, c-format
 msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr ""
 
-#: tcd/gtracked.c:391
+#: tcd/gtracked.c:390
 msgid "To: "
 msgstr ""
 
-#: tcd/gtracked.c:424
+#. end of service menu
+#: tcd/gtracked.c:422
 msgid "Category: "
 msgstr ""
 
-#: tcd/linux-cdrom.c:571
+#: tcd/linux-cdrom.c:616
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -379,11 +422,11 @@ msgid ""
 "Reason: %s\n"
 msgstr ""
 
-#: tcd/linux-cdrom.c:640
+#: tcd/linux-cdrom.c:685
 msgid "Unknown / Unknown"
 msgstr "Nem ismert"
 
-#: tcd/linux-cdrom.c:646
+#: tcd/linux-cdrom.c:691
 #, c-format
 msgid "Track %d"
 msgstr "%d. sáv"
@@ -391,10 +434,6 @@ msgstr "%d. sáv"
 #: tcd/popup.c:15
 msgid "Play"
 msgstr ""
-
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Tulajdonságok..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
@@ -405,89 +444,84 @@ msgid "About..."
 msgstr "Névjegy..."
 
 #. do nothing
-#: tcd/prefs.c:178 tcd/prefs.c:233
+#: tcd/prefs.c:179 tcd/prefs.c:234
 msgid "Do nothing"
 msgstr "Semmit ne csinálj"
 
-#: tcd/prefs.c:184
+#: tcd/prefs.c:185
 msgid "Start playing"
 msgstr "Lejátszás megkezdése"
 
-#: tcd/prefs.c:190 tcd/prefs.c:239
+#: tcd/prefs.c:191 tcd/prefs.c:240
 msgid "Stop playing"
 msgstr "Lejátszás megszakítása"
 
 #. close tray
-#: tcd/prefs.c:194 tcd/prefs.c:251
+#: tcd/prefs.c:195 tcd/prefs.c:252
 msgid "Close tray"
 msgstr "Tálca zárása"
 
-#: tcd/prefs.c:245
+#: tcd/prefs.c:246
 msgid "Open tray"
 msgstr "Tálca nyitása"
 
 #. device entry
-#: tcd/prefs.c:324
+#: tcd/prefs.c:325
 msgid "CDROM device"
 msgstr "CDROM eszköz"
 
 #. Color picker
-#: tcd/prefs.c:333
+#: tcd/prefs.c:334
 msgid "Track/title color"
 msgstr "Sáv/cím színe"
 
 #. font picker
-#: tcd/prefs.c:345
+#: tcd/prefs.c:346
 msgid "Track/title font"
 msgstr "Sáv/cím betûtípus"
 
-#: tcd/prefs.c:346
+#: tcd/prefs.c:347
 msgid "Change font"
 msgstr "Betûkészlet cseréje"
 
 #. show handles
-#: tcd/prefs.c:353
+#: tcd/prefs.c:354
 msgid "Show handles (restart required)"
 msgstr ""
 
 #. show tooltips
-#: tcd/prefs.c:360
+#: tcd/prefs.c:361
 msgid "Show tooltips"
 msgstr "Hintszövegek mutatása"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:367
+#: tcd/prefs.c:368
 msgid "Use alternate method to play CD"
 msgstr ""
 
-#. start frame
-#: tcd/prefs.c:387
-msgid "On startup"
-msgstr ""
-
 #. exit frame
-#: tcd/prefs.c:393
+#: tcd/prefs.c:394
 msgid "On exit"
 msgstr ""
 
-#: tcd/prefs.c:501
+#: tcd/prefs.c:502
 msgid "Key"
 msgstr ""
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:503
 msgid "Action"
 msgstr ""
 
-#: tcd/prefs.c:520
-msgid "Click here to change:"
+#: tcd/prefs.c:523
+msgid "Click here to change (restart required):"
 msgstr ""
 
 #. Frame
-#: tcd/prefs.c:542 tcd/prefs.c:586
+#: tcd/prefs.c:545 tcd/prefs.c:590
 msgid "Keybindings"
 msgstr ""
 
-#: tcd/prefs.c:590
+#: tcd/prefs.c:594
 msgid "CDDB Settings"
 msgstr ""
 
@@ -497,40 +531,40 @@ msgid ""
 "Please run 'esd' at a command prompt."
 msgstr ""
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:248
 msgid "Specify the X position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:249
 msgid "X-Position"
 msgstr ""
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:251
 msgid "Specify the Y position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:251
+#: vu-meter/main.c:252
 msgid "Y-Position"
 msgstr ""
 
-#: vu-meter/main.c:253
+#: vu-meter/main.c:254
 msgid "Connect to the esd server on this host."
 msgstr ""
 
-#: vu-meter/main.c:254
+#: vu-meter/main.c:255
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:256
+#: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
 msgstr ""
 
-#: vu-meter/main.c:264
+#: vu-meter/main.c:270
 #, c-format
 msgid "Host is %s\n"
 msgstr ""
 
-#: vu-meter/main.c:285
+#: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr ""
 

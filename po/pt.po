@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.27\n"
-"POT-Creation-Date: 1999-05-31 22:28-0500\n"
+"POT-Creation-Date: 1999-09-18 21:26+0200\n"
 "PO-Revision-Date: 1998-11-26 01:38+00:00\n"
 "Last-Translator: Nuno Ferreira <nmrf@rnl.ist.utl.pt>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -69,53 +69,93 @@ msgstr ""
 msgid "Inactive. %s\n"
 msgstr ""
 
-#: gmix/gmix.c:77
+#: gmix/gmix.c:93
 #, fuzzy
 msgid "_About"
 msgstr "Acerca de..."
 
-#: gmix/gmix.c:88
+#: gmix/gmix.c:99
+msgid "_Properties"
+msgstr ""
+
+#: gmix/gmix.c:105
 msgid "_Program"
 msgstr ""
 
-#: gmix/gmix.c:89
+#: gmix/gmix.c:106
 msgid "_Help"
 msgstr ""
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:156
 msgid "don't restore mixer-settings from configuration"
 msgstr "não utilizar os parâmetros de mistura guardados na configuração"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:157
+#, fuzzy
+msgid "restore mixer-settings from configuration"
+msgstr "não utilizar os parâmetros de mistura guardados na configuração"
+
+#: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "inicializar os parâmetros de mistura com os valores guadados e sair"
 
-#: gmix/gmix.c:141
+#: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "não gravar os parâmetros de mistura (modificados) na configuração"
 
-#: gmix/gmix.c:562
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
+#. start frame
+#: gmix/gmix.c:278 tcd/prefs.c:388
+#, fuzzy
+msgid "On startup"
+msgstr "Ao iniciar"
+
+#. Set on start
+#: gmix/gmix.c:284
+msgid "Restore saved mixer levels on startup"
+msgstr ""
+
+#: gmix/gmix.c:290
+msgid "Hide menu on start"
+msgstr ""
+
+#: gmix/gmix.c:306
+msgid "GUI"
+msgstr ""
+
+#: gmix/gmix.c:309
+msgid "Use Mixer Icons"
+msgstr ""
+
+#: gmix/gmix.c:317
+msgid "Use Mixer Labels"
+msgstr ""
+
+#: gmix/gmix.c:340 tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Preferências..."
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:632
+#: gmix/gmix.c:775
 msgid "Lock"
 msgstr "Trancar"
 
-#: gmix/gmix.c:642
+#: gmix/gmix.c:785
 msgid "Rec."
 msgstr "Gravar"
 
-#: gmix/gmix.c:659
+#: gmix/gmix.c:802
 msgid "Mute"
 msgstr "Mudo"
 
-#: gmix/gmix.c:812
+#: gmix/gmix.c:825
+msgid "GMIX 3.0"
+msgstr "GMIX 3.0"
+
+#: gmix/gmix.c:994
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - A mesa de mistura GNOME"
 
-#: gmix/gmix.c:815
+#: gmix/gmix.c:997
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Isto é uma mesa de mistura para dispositivos de som OSS"
 
@@ -155,58 +195,58 @@ msgid "Refresh List"
 msgstr ""
 
 #. server settings
-#: tcd/cddb_props.c:138
+#: tcd/cddb_props.c:140
 #, fuzzy
 msgid "Server Settings"
 msgstr "Estado CDDB"
 
-#: tcd/cddb_props.c:147
+#: tcd/cddb_props.c:149
 msgid "Address"
 msgstr ""
 
-#: tcd/cddb_props.c:157
+#: tcd/cddb_props.c:159
 msgid "Port"
 msgstr ""
 
-#: tcd/cddb_props.c:164
+#: tcd/cddb_props.c:168
 msgid "Use HTTP"
 msgstr ""
 
-#: tcd/cddb_props.c:169
+#: tcd/cddb_props.c:173
 msgid "Proxy"
 msgstr ""
 
 #. local db
-#: tcd/cddb_props.c:189
+#: tcd/cddb_props.c:193
 msgid "Local Database"
 msgstr ""
 
 #. frame
-#: tcd/cddb_props.c:231
+#: tcd/cddb_props.c:235
 #, fuzzy
 msgid "CDDB Data"
 msgstr "Estado CDDB"
 
-#: tcd/cddb_props.c:263
+#: tcd/cddb_props.c:267
 #, fuzzy
 msgid "CDDB Editor"
 msgstr "Editor de Faixas"
 
-#: tcd/cddb_props.c:277
+#: tcd/cddb_props.c:281
 msgid "Error reading $HOME/.cddbslave."
 msgstr ""
 
-#: tcd/cddb_props.c:393
+#: tcd/cddb_props.c:397
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr ""
 
-#: tcd/cddb_props.c:405
+#: tcd/cddb_props.c:409
 msgid "Delete CDDB Entry?"
 msgstr ""
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:310
+#: tcd/cddb_status.c:50 tcd/gtracked.c:308
 msgid "CDDB Status"
 msgstr "Estado CDDB"
 
@@ -247,63 +287,68 @@ msgstr "normal"
 msgid "random"
 msgstr "aleator"
 
-#: tcd/gtcd.c:297
+#: tcd/gtcd.c:326
 msgid "Open track editor"
 msgstr "Abrir editor de faixas"
 
-#: tcd/gtcd.c:298 tcd/prefs.c:582
+#: tcd/gtcd.c:327 tcd/prefs.c:586
 msgid "Preferences"
 msgstr "Preferências"
 
-#: tcd/gtcd.c:299 tcd/popup.c:23
+#: tcd/gtcd.c:328 tcd/popup.c:23
 msgid "Quit"
 msgstr "Sair"
 
 #. TOP ROW
-#: tcd/gtcd.c:320
+#: tcd/gtcd.c:348
 msgid "Play/Pause"
 msgstr "Tocar/Pausa"
 
-#: tcd/gtcd.c:324 tcd/popup.c:16
+#: tcd/gtcd.c:352 tcd/popup.c:16
 msgid "Stop"
 msgstr "Parar"
 
-#: tcd/gtcd.c:325 tcd/popup.c:17
+#: tcd/gtcd.c:353 tcd/popup.c:17
 msgid "Eject"
 msgstr "Ejectar"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:332 tcd/gtcd.c:340
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip backwards"
 msgstr "Recuar"
 
-#: tcd/gtcd.c:333 tcd/gtcd.c:341
+#: tcd/gtcd.c:361 tcd/gtcd.c:369
 msgid "Skip forwards"
 msgstr "Avançar"
 
-#: tcd/gtcd.c:472 tcd/gtcd.c:473 tcd/gtcd.c:474
+#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
 msgid "(Scanning)"
 msgstr "(Procurando)"
 
-#: tcd/gtcd.c:496
+#: tcd/gtcd.c:544
 msgid "No Disc"
 msgstr "Nenhum disco"
 
-#: tcd/gtcd.c:524
+#: tcd/gtcd.c:579
 msgid "Error"
 msgstr "Erro"
 
-#: tcd/gtcd.c:800
+#: tcd/gtcd.c:855
 msgid "Volume"
 msgstr ""
 
-#: tcd/gtcd.c:979
+#: tcd/gtcd.c:1025
 msgid "Filename of the CD device"
 msgstr ""
 
-#: tcd/gtcd.c:979
+#: tcd/gtcd.c:1025
 msgid "FILE"
 msgstr ""
+
+#: tcd/gtcd.c:1027
+#, fuzzy
+msgid "Play CD on startup"
+msgstr "Ao iniciar"
 
 #: tcd/gtracked.c:169
 msgid "Trk"
@@ -338,41 +383,42 @@ msgid "Track Information"
 msgstr "Informação da Faixa"
 
 #. Clear button
-#: tcd/gtracked.c:299
+#: tcd/gtracked.c:297
 msgid "Clear"
 msgstr "Apagar"
 
 #. Playlist button
-#: tcd/gtracked.c:304
+#: tcd/gtracked.c:302
 msgid "Playlist"
 msgstr "Lista de preferidos"
 
-#: tcd/gtracked.c:316
+#: tcd/gtracked.c:314
 #, fuzzy
 msgid "Submit"
 msgstr "Sair"
 
-#: tcd/gtracked.c:376
+#: tcd/gtracked.c:375
 #, fuzzy
 msgid "Submit Information"
 msgstr "Informação da Faixa"
 
-#: tcd/gtracked.c:382
+#: tcd/gtracked.c:381
 #, c-format
 msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr ""
 
-#: tcd/gtracked.c:391
+#: tcd/gtracked.c:390
 msgid "To: "
 msgstr ""
 
-#: tcd/gtracked.c:424
+#. end of service menu
+#: tcd/gtracked.c:422
 msgid "Category: "
 msgstr ""
 
-#: tcd/linux-cdrom.c:571
+#: tcd/linux-cdrom.c:616
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -383,11 +429,11 @@ msgid ""
 "Reason: %s\n"
 msgstr ""
 
-#: tcd/linux-cdrom.c:640
+#: tcd/linux-cdrom.c:685
 msgid "Unknown / Unknown"
 msgstr ""
 
-#: tcd/linux-cdrom.c:646
+#: tcd/linux-cdrom.c:691
 #, fuzzy, c-format
 msgid "Track %d"
 msgstr "Editor de Faixas"
@@ -395,10 +441,6 @@ msgstr "Editor de Faixas"
 #: tcd/popup.c:15
 msgid "Play"
 msgstr "Tocar"
-
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Preferências..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
@@ -409,102 +451,97 @@ msgid "About..."
 msgstr "Acerca de..."
 
 #. do nothing
-#: tcd/prefs.c:178 tcd/prefs.c:233
+#: tcd/prefs.c:179 tcd/prefs.c:234
 #, fuzzy
 msgid "Do nothing"
 msgstr "Nada"
 
-#: tcd/prefs.c:184
+#: tcd/prefs.c:185
 #, fuzzy
 msgid "Start playing"
 msgstr "Começar a tocar"
 
-#: tcd/prefs.c:190 tcd/prefs.c:239
+#: tcd/prefs.c:191 tcd/prefs.c:240
 #, fuzzy
 msgid "Stop playing"
 msgstr "Parar de tocar"
 
 #. close tray
-#: tcd/prefs.c:194 tcd/prefs.c:251
+#: tcd/prefs.c:195 tcd/prefs.c:252
 #, fuzzy
 msgid "Close tray"
 msgstr "Fechar gaveta"
 
-#: tcd/prefs.c:245
+#: tcd/prefs.c:246
 #, fuzzy
 msgid "Open tray"
 msgstr "Abrir gaveta"
 
 #. device entry
-#: tcd/prefs.c:324
+#: tcd/prefs.c:325
 #, fuzzy
 msgid "CDROM device"
 msgstr "Dispositivo CDROM"
 
 #. Color picker
-#: tcd/prefs.c:333
+#: tcd/prefs.c:334
 #, fuzzy
 msgid "Track/title color"
 msgstr "Cor do Título/Faixa"
 
 #. font picker
-#: tcd/prefs.c:345
+#: tcd/prefs.c:346
 #, fuzzy
 msgid "Track/title font"
 msgstr "Fonte do Título/Faixa"
 
-#: tcd/prefs.c:346
+#: tcd/prefs.c:347
 #, fuzzy
 msgid "Change font"
 msgstr "Mudar fonte"
 
 #. show handles
-#: tcd/prefs.c:353
+#: tcd/prefs.c:354
 #, fuzzy
 msgid "Show handles (restart required)"
 msgstr "Mostrar \"Handles\" (é necessário re-executar o GTCD)"
 
 #. show tooltips
-#: tcd/prefs.c:360
+#: tcd/prefs.c:361
 #, fuzzy
 msgid "Show tooltips"
 msgstr "Mostrar ajudas de balão"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:367
+#: tcd/prefs.c:368
 msgid "Use alternate method to play CD"
 msgstr ""
 
-#. start frame
-#: tcd/prefs.c:387
-#, fuzzy
-msgid "On startup"
-msgstr "Ao iniciar"
-
 #. exit frame
-#: tcd/prefs.c:393
+#: tcd/prefs.c:394
 #, fuzzy
 msgid "On exit"
 msgstr "Ao sair"
 
-#: tcd/prefs.c:501
+#: tcd/prefs.c:502
 msgid "Key"
 msgstr "Tecla"
 
-#: tcd/prefs.c:502
+#: tcd/prefs.c:503
 msgid "Action"
 msgstr "Acção"
 
-#: tcd/prefs.c:520
-msgid "Click here to change:"
-msgstr ""
+#: tcd/prefs.c:523
+#, fuzzy
+msgid "Click here to change (restart required):"
+msgstr "Mostrar \"Handles\" (é necessário re-executar o GTCD)"
 
 #. Frame
-#: tcd/prefs.c:542 tcd/prefs.c:586
+#: tcd/prefs.c:545 tcd/prefs.c:590
 msgid "Keybindings"
 msgstr "Teclas aceleradoras"
 
-#: tcd/prefs.c:590
+#: tcd/prefs.c:594
 #, fuzzy
 msgid "CDDB Settings"
 msgstr "Estado CDDB"
@@ -515,40 +552,40 @@ msgid ""
 "Please run 'esd' at a command prompt."
 msgstr ""
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:248
 msgid "Specify the X position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:249
 msgid "X-Position"
 msgstr ""
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:251
 msgid "Specify the Y position of the meter."
 msgstr ""
 
-#: vu-meter/main.c:251
+#: vu-meter/main.c:252
 msgid "Y-Position"
 msgstr ""
 
-#: vu-meter/main.c:253
+#: vu-meter/main.c:254
 msgid "Connect to the esd server on this host."
 msgstr ""
 
-#: vu-meter/main.c:254
+#: vu-meter/main.c:255
 msgid "ESD Server Host"
 msgstr ""
 
-#: vu-meter/main.c:256
+#: vu-meter/main.c:257
 msgid "Open a vertical version of the meter."
 msgstr ""
 
-#: vu-meter/main.c:264
+#: vu-meter/main.c:270
 #, c-format
 msgid "Host is %s\n"
 msgstr ""
 
-#: vu-meter/main.c:285
+#: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr ""
 

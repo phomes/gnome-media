@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 1999-09-15 21:00+0200\n"
+"POT-Creation-Date: 1999-09-18 21:26+0200\n"
 "PO-Revision-Date: 1999-09-16 15:56+02:00\n"
 "Last-Translator: Kenneth Christiansen <kenneth@ripen.dk>\n"
 "Language-Team: Dansk/Danish <da@li.org>\n"
@@ -73,52 +73,91 @@ msgstr "Timeout: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Inaktiv. %s\n"
 
-#: gmix/gmix.c:77
+#: gmix/gmix.c:93
 msgid "_About"
 msgstr "_Om..."
 
-#: gmix/gmix.c:88
+#: gmix/gmix.c:99
+msgid "_Properties"
+msgstr ""
+
+#: gmix/gmix.c:105
 msgid "_Program"
 msgstr "_Program"
 
-#: gmix/gmix.c:89
+#: gmix/gmix.c:106
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:156
 msgid "don't restore mixer-settings from configuration"
 msgstr "gendan ikke mixerværdiene fra konfigurationen"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:157
+#, fuzzy
+msgid "restore mixer-settings from configuration"
+msgstr "gendan ikke mixerværdiene fra konfigurationen"
+
+#: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "initialiser mixeren(e) fra lagret konfiguration og afslut"
 
-#: gmix/gmix.c:141
+#: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "gem ikke (modificerede) mixerværdier til konfigurationen"
 
-#: gmix/gmix.c:562
-msgid "GMIX 3.0"
-msgstr "GNOME Mixer 3.0"
+#. start frame
+#: gmix/gmix.c:278 tcd/prefs.c:388
+msgid "On startup"
+msgstr "Ved opstart"
+
+#. Set on start
+#: gmix/gmix.c:284
+msgid "Restore saved mixer levels on startup"
+msgstr ""
+
+#: gmix/gmix.c:290
+msgid "Hide menu on start"
+msgstr ""
+
+#: gmix/gmix.c:306
+msgid "GUI"
+msgstr ""
+
+#: gmix/gmix.c:309
+msgid "Use Mixer Icons"
+msgstr ""
+
+#: gmix/gmix.c:317
+msgid "Use Mixer Labels"
+msgstr ""
+
+#: gmix/gmix.c:340 tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Prefærencer..."
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:632
+#: gmix/gmix.c:775
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:642
+#: gmix/gmix.c:785
 msgid "Rec."
 msgstr "Optag"
 
-#: gmix/gmix.c:659
+#: gmix/gmix.c:802
 msgid "Mute"
 msgstr "Dæmp"
 
-#: gmix/gmix.c:812
+#: gmix/gmix.c:825
+msgid "GMIX 3.0"
+msgstr "GNOME Mixer 3.0"
+
+#: gmix/gmix.c:994
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMix - Gnome mixeren"
 
-#: gmix/gmix.c:815
+#: gmix/gmix.c:997
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mixer for OSS lyd-enheder."
 
@@ -404,10 +443,6 @@ msgstr "Spor %d"
 msgid "Play"
 msgstr "Spil"
 
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Prefærencer..."
-
 #: tcd/popup.c:20
 msgid "Track Editor..."
 msgstr "Sporredigering..."
@@ -471,11 +506,6 @@ msgstr "Vis værktøjstips"
 #: tcd/prefs.c:368
 msgid "Use alternate method to play CD"
 msgstr "Brug alternativ metode til at afspille CD'er"
-
-#. start frame
-#: tcd/prefs.c:388
-msgid "On startup"
-msgstr "Ved opstart"
 
 #. exit frame
 #: tcd/prefs.c:394
