@@ -170,8 +170,6 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 
 		RecEng.is_running = FALSE;
 
-		g_print ("Hejsan");
-
 		run_command (command, _("Converting file..."));
 
 		temp_string = g_concat_dir_and_file (temp_dir, temp_filename_play);
@@ -1008,7 +1006,6 @@ run_command (const gchar* command, const gchar* appbar_comment)
 {
 	gint load_pid;
 
-	g_print ("Svejsan");
 	/* Make the widgets insensitive */
 	grecord_set_sensitive_loading ();
 

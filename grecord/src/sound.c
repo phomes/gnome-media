@@ -26,6 +26,7 @@
 #include <gnome.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <audiofile.h>
 
 #include "sound.h"
 #include "gui.h"
@@ -34,43 +35,37 @@
 gdouble
 get_play_time (const gchar* filename)
 {
-	struct stat fileinfo;
-	gdouble size;
-	gdouble play_time = 0;
-	gchar* fname = NULL;
-	gint soundchannels = 0;
-	gint soundformat = 0;
+	gdouble play_time;
 	gboolean nofile = FALSE;
 
+	/* Check if there is an active file or not */
 	if (!g_file_exists (filename))
 		nofile = TRUE;
-
-	fname = g_strdup (filename);
-	stat(fname, &fileinfo);
-
-	if (channels)
-		soundchannels = 1;
-	else
-		soundchannels = 2;
-
-	if (!audioformat)
-		soundformat = 1;
-	else
-		audioformat = 2;
-
-	/* Playtime */
+	
 	if (!nofile) {
-		size = (double) fileinfo.st_size;
-		size = size / 100000;
-		play_time = size / (soundchannels * soundformat);
+		AFframecount framecount;
+		AFfilehandle file;
+		AFfilesetup setup;
+		gint samplerate;
+		
+		/* Audiofile setup */
+		setup = afNewFileSetup ();
+		file = afOpenFile (filename, "r", setup);
+		
+		/* Get some info from the soundfile */
+		framecount  = afGetFrameCount (file, AF_DEFAULT_TRACK);
+		samplerate  = afGetRate (file, AF_DEFAULT_TRACK);
+
+		/* Play time */
+		play_time = (int) framecount / samplerate;
+		
+		afFreeFileSetup (setup);
 	}
 	else
 		play_time = 0;
-
-	g_free (fname);
-
-	return play_time;
-}
+       
+	  return play_time;
+}    
 
 void
 set_min_sec_time (gint sec, gboolean set_topic)
