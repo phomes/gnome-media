@@ -1,5 +1,19 @@
 2002-04-08 Iain <iain@ximian.com>
 
+	* cdrom.[ch]: Added a is_cdrom_device method to check if a device path
+	is really a CDRom device.
+
+	* linux-cdrom.c (linux_cdrom_is_cdrom_device): Send a CDROMSTOP ioctl
+	to the path.
+	(linux_cdrom_set_device): Check if the device is a CDRom device.
+	(gnome_cdrom_new): Ditto.
+
+	* solaris-cdrom.c: As above.
+
+	* freebsd-cdrom.c: As above.
+
+2002-04-08 Iain <iain@ximian.com>
+
 	* callbacks.c (status_ok): Change the album/artist at the right time.
 
 2002-04-08 Iain <iain@ximian.com>

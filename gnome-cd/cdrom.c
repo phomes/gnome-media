@@ -240,6 +240,24 @@ cdrom_set_volume (GnomeCDRom *cdrom,
 				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
+
+	return FALSE;
+}
+
+static gboolean
+cdrom_is_cdrom_device (GnomeCDRom *cdrom,
+		       const char *device,
+		       GError **error)
+{
+	if (error) {
+		*error = g_error_new (GNOME_CDROM_ERROR,
+				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
+				      "%s has not been implemented in %s",
+				      G_GNUC_FUNCTION,
+				      G_OBJECT_TYPE_NAME (cdrom));
+	}
+
+	return FALSE;
 }
 
 static void
@@ -261,6 +279,7 @@ class_init (GnomeCDRomClass *klass)
 	klass->get_status = cdrom_get_status;
 	klass->close_tray = cdrom_close_tray;
 	klass->set_volume = cdrom_set_volume;
+	klass->is_cdrom_device = cdrom_is_cdrom_device;
 	
 	/* CDDB stuff */
 	klass->get_cddb_data = cdrom_get_cddb_data;
@@ -515,4 +534,15 @@ gnome_cdrom_set_volume (GnomeCDRom *cdrom,
 
 	klass = GNOME_CDROM_GET_CLASS (cdrom);
 	return klass->set_volume (cdrom, volume, error);
+}
+
+gboolean
+gnome_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
+			     const char *device,
+			     GError **error)
+{
+	GnomeCDRomClass *klass;
+
+	klass = GNOME_CDROM_GET_CLASS (cdrom);
+	return klass->is_cdrom_device (cdrom, device, error);
 }

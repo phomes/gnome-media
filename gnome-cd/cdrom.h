@@ -133,6 +133,10 @@ struct _GnomeCDRomClass {
 	gboolean (*set_volume) (GnomeCDRom *cdrom,
 				int volume,
 				GError **error);
+	gboolean (*is_cdrom_device) (GnomeCDRom *cdrom,
+				     const char *device,
+				     GError **error);
+	
 	/* For CDDB */
 	gboolean (*get_cddb_data) (GnomeCDRom *cdrom,
 				   GnomeCDRomCDDBData **data,
@@ -181,6 +185,9 @@ gboolean gnome_cdrom_close_tray (GnomeCDRom *cdrom,
 gboolean gnome_cdrom_set_volume (GnomeCDRom *cdrom,
 				 int volume,
 				 GError **error);
+gboolean gnome_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
+				      const char *device,
+				      GError **error);
 gboolean gnome_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 				    GnomeCDRomCDDBData **data,
 				    GError **error);

@@ -959,6 +959,37 @@ solaris_cdrom_close_tray (GnomeCDRom *cdrom,
 }
 
 static gboolean
+solaris_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
+			       const char *device,
+			       GError **error)
+{
+	int fd;
+
+	if (device == NULL || *device == 0) {
+		return FALSE;
+	}
+	
+	fd = open (device, O_RDONLY | O_NONBLOCK);
+	if (fd < 0) {
+		return FALSE;
+	}
+
+	/* Fire a harmless ioctl at the device. */
+	if (ioctl (fd, CDROMSTOP, 0) < 0) {
+		/* Failed, it's not a CDROM drive */
+		g_print ("%s is not a CDROM drive", device);
+		close (fd);
+		
+		return FALSE;
+	}
+	
+	g_print ("%s is a CDROM drive", device);
+	close (fd);
+
+	return TRUE;
+}
+
+static gboolean
 solaris_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 			   GnomeCDRomCDDBData **data,
 			   GError **error)
@@ -1033,6 +1064,19 @@ solaris_cdrom_set_device (GnomeCDRom *cdrom,
 		g_free (priv->cdrom_device);
 	}
 	priv->cdrom_device = g_strdup (device);
+	
+	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
+					 priv->cdrom_device, error) == FALSE) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      "%s does not point to a valid CDRom device. This may be caused by:\n"
+					      "a) CD support is not compiled into Linux\n"
+					      "b) You do not have the correct permissions to access the CD drive\n"
+					      "c) %s is not the CD drive.\n",					     
+					      priv->cdrom_device, priv->cdrom_device);
+		}
+	}
 
 	/* Force the new CD to be scanned at next update cycle */
 	g_free (priv->recent_status);
@@ -1062,7 +1106,8 @@ class_init (SolarisCDRomClass *klass)
 	cdrom_class->back = solaris_cdrom_back;
 	cdrom_class->get_status = solaris_cdrom_get_status;
 	cdrom_class->close_tray = solaris_cdrom_close_tray;
-
+	cdrom_class->is_cdrom_device = solaris_cdrom_is_cdrom_device;
+	
 	/* For CDDB */
   	cdrom_class->get_cddb_data = solaris_cdrom_get_cddb_data;
 
@@ -1172,8 +1217,20 @@ gnome_cdrom_new (const char *cdrom_device,
 	priv->cdrom_device = g_strdup (cdrom_device);
 	priv->update = update;
 
-	if (solaris_cdrom_open (cdrom, error) == FALSE) {
-		solaris_cdrom_close (cdrom);
+	solaris_cdrom_open (cdrom, error);
+	solaris_cdrom_close (cdrom);
+	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (cdrom),
+					 cdrom->priv->cdrom_device,
+					 error) == FALSE) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      "%s does not point to a valid CDRom device. This may be caused by:\n"
+					      "a) CD support is not compiled into Linux\n"
+					      "b) You do not have the correct permissions to access the CD drive\n"
+					      "c) %s is not the CD drive.\n",					     
+					      cdrom->priv->cdrom_device, cdrom->priv->cdrom_device);
+		}
 	}
 	
 	/* Force an update so that a status will always exist */
