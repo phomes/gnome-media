@@ -563,7 +563,7 @@ void properties_cb( GtkWidget *widget, void *data )
     label   = gtk_label_new("HTTP/Proxy");
     gtk_widget_show(page2);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    page3, label);
+				    page2, label);
     
     page3 = create_page3();
     label = gtk_label_new("Interface");

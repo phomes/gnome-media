@@ -923,7 +923,7 @@ void init_window(void)
 {
     setup_fonts();
 
-    window = gnome_app_new( "gtcd", "TCD 2.0" );
+    window = gnome_app_new( "gtcd", _("TCD 2.0") );
     gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
     gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd" );
     gtk_window_set_policy(GTK_WINDOW(window), TRUE, FALSE, TRUE);

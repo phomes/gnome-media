@@ -1,3 +1,5 @@
+#undef PIXMAPS
+
 #include <gnome.h>
 #include <sys/types.h>
 #include <linux/cdrom.h>
