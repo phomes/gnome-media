@@ -1,6 +1,16 @@
 2002-02-15  Seth Nickell  <snickell@stanford.edu>
 
 	* alsa-device.c: (get_mixers):
+	* alsa-mixer.c: (alsa_error), (open_device):
+	* device-module.h:
+	* gnome-volume-control.c: (get_mixer), (main):
+	* oss-device.c: (get_mixers):
+
+	Make dynamically loaded devices work better.
+	
+2002-02-15  Seth Nickell  <snickell@stanford.edu>
+
+	* alsa-device.c: (get_mixers):
 	* oss-device.c: (get_mixers):
 
 	Add devices to CVS (oops)

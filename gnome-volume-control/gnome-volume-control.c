@@ -18,20 +18,21 @@
 static GnomeMixer *
 get_mixer (void)
 {
-  static char *devices[] = {"oink", "alsa", "oss", NULL};
+  static char *devices[] = {"oss", "alsa", NULL};
   int i;
 
   for (i = 0; devices[i] != NULL; i++) {
     GList *mixers;
     char *module_name;
-    GetMixersFunc *get_mixers_func = NULL;
+    GetMixersFunc get_mixers_func = NULL;
     GModule *module;
     gboolean success;
+    GError *error = NULL;
 
     module_name = g_module_build_path (GNOME_VOLUME_CONTROL_DEVICE_PATH,
 				       devices[i]);
     
-    module = g_module_open (module_name, 0 /*G_MODULE_BIND_LAZY*/);
+    module = g_module_open (module_name, G_MODULE_BIND_LAZY);
     if (module == NULL) {
       g_warning ("Cannot load module `%s' (%s)", module_name, g_module_error ());
       continue;
@@ -44,17 +45,27 @@ get_mixer (void)
       g_warning ("Could not load module `%s`, couldn't find mixers function", module_name);
       continue;
     }
-    printf ("about to call\n");
-    g_warning ("Errors? %s: %s", module_name, g_module_error ());
-    mixers = (*get_mixers_func) (NULL);
-    printf ("kablamo!\n");
+    mixers = (get_mixers_func) (&error);
+    if (error != NULL) {
+      g_warning ("Error loading mixers for %s was %s\n", 
+		 devices[i], error->message);
+      g_error_free (error);
+      error = NULL;
+    } else {
+      printf ("Warning was blank\n");
+    }
+
     if (mixers == NULL) {
+      printf ("Mixers was null for %s, trying next device\n", module_name);
       continue;
     } else {
+      printf ("Found a mixer on %s, returning\n", module_name);
       return GNOME_MIXER (mixers->data);
     }
   }
-  
+
+  g_error ("Didn't find a mixer I could use\n");
+  return NULL;
 }
 
 int
@@ -111,12 +122,13 @@ main (int argc, char **argv)
 					 GTK_TABLE (table), i);
   }
 
+  /*
   channel = GNOME_CHANNEL (gnome_channel_group_new (channels, "Foo", "none"));
   channel_widget = gnome_channel_widget_new (channel);
   gtk_table_resize (GTK_TABLE (table), 3, i + 1);
   gnome_channel_widget_place_in_table (GNOME_CHANNEL_WIDGET (channel_widget), 
 				       GTK_TABLE (table), i + 1);
-
+  */
   gtk_table_set_col_spacings (GTK_TABLE (table), 10);
 
   gtk_widget_show_all (window);

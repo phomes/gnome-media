@@ -33,24 +33,16 @@ struct _AlsaMixerPrivate {
 };
 
 static void
-build_channel_list (AlsaMixer *mixer)
+alsa_error (GError **error, int err)
 {
-  int i;
-  GObject *channel;
-
-  //for (i=0; i<SOUND_MIXER_NRDEVICES; i++) {
-  //  if ((mixer->private->devmask | mixer->private->recmask) & (1<<i)) {
-      //channel = alsa_channel_new (mixer->private->fd, /* device file descriptor */
-      //				 i, /* channel number */
-      //				 mixer->private->stereodevs & (1<<i) /* stereo channel? */
-      //				 );
-      //mixer->private->channels = g_list_append (mixer->private->channels, channel);
-
-  // }
-  //}
+  if (error) {
+    *error = g_error_new (GNOME_MIXER_ERROR,
+			  GNOME_MIXER_ERROR_UNKNOWN,
+			  "Couldn't open mixer, alsa error: %s",
+			  snd_strerror (err)
+			  );
+  }
 }
-
-
 
 static gboolean
 open_device (AlsaMixer *mixer, int device_number, GError **error)
@@ -72,11 +64,13 @@ open_device (AlsaMixer *mixer, int device_number, GError **error)
 
 	if ((err = snd_ctl_open(&handle, card, 0)) < 0) {
 		g_warning ("Control device %i open error: %s", card, snd_strerror(err));
+		alsa_error (error, err);
 		return err;
 	}
 	
 	if ((err = snd_ctl_card_info(handle, info)) < 0) {
 		g_warning ("Control device %i hw info error: %s", card, snd_strerror(err));
+		alsa_error (error, err);
 		return err;
 	}
 
@@ -86,10 +80,12 @@ open_device (AlsaMixer *mixer, int device_number, GError **error)
 
 	if ((err = snd_mixer_open(&mhandle, 0)) < 0) {
 		g_warning ("Mixer %s open error: %s", card, snd_strerror(err));
+		alsa_error (error, err);
 		return err;
 	}
 	if ((err = snd_mixer_attach(mhandle, card)) < 0) {
 		g_warning ("Mixer attach %s error: %s", card, snd_strerror(err));
+		alsa_error (error, err);
 		snd_mixer_close(mhandle);
 		return err;
 	}
@@ -101,6 +97,7 @@ open_device (AlsaMixer *mixer, int device_number, GError **error)
 	err = snd_mixer_load(mhandle);
 	if (err < 0) {
 		g_warning ("Mixer load error: %s", card, snd_strerror(err));
+		alsa_error (error, err);
 		snd_mixer_close(mhandle);
 		return err;
 	}
