@@ -32,7 +32,7 @@ void track_buttons(GtkWidget *w, gpointer p)
 
 	mw = gtk_window_new(GTK_WINDOW_DIALOG);
 	gtk_container_border_width(GTK_CONTAINER(mw), GNOME_PAD_SMALL);
-	gtk_window_set_title(GTK_WINDOW(mw), _("Quick Track Acess"));
+	gtk_window_set_title(GTK_WINDOW(mw), _("Quick track access"));
 	gtk_window_set_wmclass(GTK_WINDOW(mw), "track_access","gtcd");
 	gtk_signal_connect(GTK_OBJECT(mw), "delete_event",
 			   GTK_SIGNAL_FUNC(destroy_window), NULL);
@@ -45,7 +45,7 @@ void track_buttons(GtkWidget *w, gpointer p)
 
 	row = 0;
 	col = 0;
-	for(i = 1; i < cd.last_t; i++)
+	for(i = 1; i <= cd.last_t; i++)
 	{
 		GtkWidget *b;
 
