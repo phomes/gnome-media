@@ -149,6 +149,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_container_border_width(GTK_CONTAINER(trwin), 5);
     gtk_window_set_title(GTK_WINDOW(trwin), _("Track Editor"));
     gtk_window_set_wmclass(GTK_WINDOW(trwin), "track_editor","gtcd");
+    gtk_widget_set_usize(trwin, 250, 420);
 
     gtk_signal_connect(GTK_OBJECT(trwin), "delete_event",
 		       GTK_SIGNAL_FUNC(destroy_window), trwin);
@@ -191,7 +192,6 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_clist_set_selection_mode(GTK_CLIST(track_list), 
 				 GTK_SELECTION_BROWSE);
     gtk_clist_column_titles_passive(GTK_CLIST(track_list));
-    gtk_widget_set_usize(track_list, 150, 225 );
     fill_list(track_list);
 
     track_list_window = gtk_scrolled_window_new(GTK_CLIST(track_list)->hadjustment,
@@ -219,6 +219,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     button_box = gtk_hbox_new(TRUE, GNOME_PAD_SMALL);
     gtk_box_pack_start(GTK_BOX(main_box), button_box, FALSE, FALSE, 0);
 
+#if 0
     /* Clear button */
     button = gtk_button_new_with_label(_("Clear"));
     gtk_widget_set_sensitive(button, FALSE);
@@ -228,6 +229,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     button = gtk_button_new_with_label(_("Playlist"));
     gtk_widget_set_sensitive(button, FALSE);
     gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+#endif
 
     /* CDDB Status  button */
     button = gtk_button_new_with_label(_("CDDB Status"));

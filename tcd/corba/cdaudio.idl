@@ -54,4 +54,14 @@ module GNOME
 		ErrorType	get_disc_titles(in CD cd, out string artist, out string album, out string title);
 		ErrorType	get_track_title(in CD cd, in short track, out short title);
 	};
+
+	interface cdp 
+	{
+		void notify_name (in long tag, in string cd_name);
+	};
+
+	interface cddb_backend
+	{
+		void query (in string specifier, in cdp parent);
+	};
 };

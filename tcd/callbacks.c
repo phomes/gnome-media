@@ -120,12 +120,14 @@ void changer_cb(GtkWidget *widget, gpointer data)
 {
     tcd_change_disc(&cd, GPOINTER_TO_INT(data));
     tcd_post_init(&cd);
+    if(cd.err)
+    	perror("accessing cdrom drive");
     cd.play_method = NORMAL;
     if(cd.isplayable)
     {
+        tcd_readdiskinfo(&cd);
 	make_goto_menu();
 	update_editor();
     }
     return;
 }
-
