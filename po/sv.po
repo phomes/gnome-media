@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-libs-0.20\n"
-"POT-Creation-Date: 2000-05-15 01:17+0200\n"
+"POT-Creation-Date: 2000-05-16 22:18+0200\n"
 "PO-Revision-Date: 1999-09-27 20:30+0100\n"
 "Last-Translator: Andreas Hyden  <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -249,7 +249,7 @@ msgstr "Detta är en mixer för OSS-ljudenheter."
 msgid "GNOME Sound recorder:"
 msgstr "GNOME ljudinspelaren:"
 
-#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:974
+#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:1038
 msgid "Could not fork child process"
 msgstr "Kunde inte \"forka\" barnprocessen"
 
@@ -265,17 +265,17 @@ msgstr "Spelar upp..."
 msgid "Converting file..."
 msgstr "Konverterar fil..."
 
-#: grecord/src/grec.c:240 grecord/src/grec.c:658 grecord/src/gui.c:330
+#: grecord/src/grec.c:240 grecord/src/grec.c:682 grecord/src/gui.c:330
 #: grecord/src/preferences.c:394
 msgid "Audioformat: "
 msgstr "Ljudformat: "
 
-#: grecord/src/grec.c:244 grecord/src/grec.c:644 grecord/src/gui.c:337
+#: grecord/src/grec.c:244 grecord/src/grec.c:668 grecord/src/gui.c:337
 #: grecord/src/preferences.c:398
 msgid "Sample rate: "
 msgstr "Samplingsfrekvens: "
 
-#: grecord/src/grec.c:254 grecord/src/grec.c:648 grecord/src/gui.c:344
+#: grecord/src/grec.c:254 grecord/src/grec.c:672 grecord/src/gui.c:344
 #: grecord/src/preferences.c:402
 msgid "Channels: "
 msgstr "Kanaler: "
@@ -284,46 +284,75 @@ msgstr "Kanaler: "
 msgid "Select a sound file"
 msgstr "Välj en ljudfil"
 
-#: grecord/src/grec.c:313
-msgid "Error saving sound file!"
-msgstr "Fel vid sparning av ljudfil!"
-
-#: grecord/src/grec.c:401
+#: grecord/src/grec.c:397
 msgid "GNOME Sound recorder web page"
 msgstr "GNOME ljudinspelarens webbsida"
 
-#: grecord/src/grec.c:507
+#: grecord/src/grec.c:503
 msgid "Undoing all..."
 msgstr "Ångrar alla ändringar..."
 
-#: grecord/src/grec.c:610
+#: grecord/src/grec.c:609
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please select a soundfile to be opened."
+msgstr ""
+"\"%s\" är en katalog.\n"
+"Vänligen välj en ljudfil att öppnas."
+
+#: grecord/src/grec.c:621
+msgid ""
+"File '%s' doesn't exist.\n"
+"Please select a existing soundfile to be opened."
+msgstr ""
+"Filen \"%s\" finns inte.\n"
+"Vänligen välj en existerande ljudfil att öppna."
+
+#: grecord/src/grec.c:633
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Filen \"%s\" är inte en giltig ljudfil; använder standard."
 
-#: grecord/src/grec.c:675
+#: grecord/src/grec.c:706
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please enter another filename."
+msgstr ""
+"\"%s\" är en katalog.\n"
+"Vänligen ange ett annat filnamn."
+
+#: grecord/src/grec.c:716
+msgid ""
+"File '%s' already exists.\n"
+"Do you want to overwrite it?"
+msgstr "Filen \"%s\" finns redan.\n"
+"Vill du skriva över den?"
+
+#: grecord/src/grec.c:731
 msgid "Error saving sound file"
 msgstr "Fel vid sparning av ljudfil"
 
-#: grecord/src/grec.c:705
+#: grecord/src/grec.c:767
 msgid "File not saved. Do you want to save it?"
 msgstr "Filen inte sparad. Vill du spara den?"
 
 #. Save the file
-#: grecord/src/grec.c:724
+#: grecord/src/grec.c:786
 msgid "Saving..."
 msgstr "Sparar..."
 
-#: grecord/src/grec.c:835
+#: grecord/src/grec.c:897
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "Storleken på det aktuella ljudklippet är mer än %i Mb!"
 
-#: grecord/src/grec.c:883
+#: grecord/src/grec.c:945
 msgid "Save sound file"
 msgstr "Spara ljudfil"
 
-#: grecord/src/grec.c:1033
+#: grecord/src/grec.c:1097
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -682,13 +711,14 @@ msgstr ""
 "Vill du använda den ändå?"
 
 #: grecord/src/preferences.c:332
+#, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory "
 "%s.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Du har inte tillräckliga rättigheter (läs & skriv) för den temporära katalogen "
-"%s.\n"
+"Du har inte tillräckliga rättigheter (läs & skriv) för den temporära "
+"katalogen %s.\n"
 "Vill du använda den ändå?"
 
 #. Does not exist
@@ -1154,6 +1184,9 @@ msgstr "Värddatorn är %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volymmätare"
+
+#~ msgid "Error saving sound file!"
+#~ msgstr "Fel vid sparning av ljudfil!"
 
 #~ msgid "# of channels"
 #~ msgstr "Antal kanaler"
