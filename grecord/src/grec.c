@@ -129,7 +129,6 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 	gchar* temp_string2 = NULL;
 
 	gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
-	grecord_set_sensitive_file ();
 
 	if (RecEng.is_running) {
 		temp_string1 = g_strconcat ("-r ", samplerate, NULL);
@@ -138,9 +137,12 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 			temp_string2 = g_strdup ("-c 1");
 		else
 			temp_string2 = g_strdup ("-c 2");
+
+		grecord_set_sensitive_file ();
 	}
 
 	if (PlayEng.is_running) {
+
 		kill (PlayEng.pid, SIGKILL);
 		waitpid (PlayEng.pid, NULL, WUNTRACED);
 
@@ -182,6 +184,9 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	gint choice;
 	gchar* string = NULL;
 	gchar* temp_string = NULL;
+	gchar* file1 = g_concat_dir_and_file (temp_dir, temp_filename_record);
+	gchar* file2 = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	gchar* file3 = g_concat_dir_and_file (temp_dir, temp_filename_backup);
 
 	if (PlayEng.is_running || RecEng.is_running)
 		on_stop_activate_cb (widget, data);
@@ -195,6 +200,15 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 		else if (choice == CANCEL)
 			return;
 	}
+
+	/* Remove old files (if any) */
+	remove (file1);
+	remove (file2);
+	remove (file3);
+
+	g_free (file1);
+	g_free (file2);
+	g_free (file3);
 
 	default_file = TRUE;
 
@@ -741,6 +755,7 @@ UpdateStatusbarPlay (gboolean begin)
 			
 			counter = 0;
 			PlayEng.is_running = FALSE;
+			grecord_set_sensitive_file ();
 			on_stop_activate_cb (NULL, NULL);
 			return FALSE;
 		}
@@ -778,6 +793,7 @@ UpdateStatusbarRecord (gpointer data)
 	if (waitpid (RecEng.pid, NULL, WNOHANG | WUNTRACED)) {
 		counter = 0;
 		RecEng.is_running = FALSE;
+		grecord_set_sensitive_file ();
 		on_stop_activate_cb (NULL, NULL);
 
 		if (save_when_finished)
@@ -946,7 +962,7 @@ run_command (const gchar* command, const gchar* appbar_comment)
 		g_error (_("Could not fork child process"));
 
 	/* Add a function for checking when process has died */
-	gtk_timeout_add (250, (GtkFunction) check_if_loading_finished, (gpointer) load_pid);
+	gtk_timeout_add (100, (GtkFunction) check_if_loading_finished, (gpointer) load_pid);
 }
 
 guint
@@ -960,6 +976,9 @@ check_if_loading_finished (gint pid)
 		
 		/* Remove the comment from the appbar, becase we're finished */
 		gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+
+		/* Make widgets sensitive again */
+		grecord_set_sensitive_file ();
 
 		return FALSE;
 	}
