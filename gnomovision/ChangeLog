@@ -1,3 +1,16 @@
+1998-12-31  Mark Crichton  <crichton@gimp.org>
+
+	* xwindows.c: got bored...replaced some X calls with GDK
+	calls.  Wheeeee!
+
+	* tgtv.c: ifdef'ed out the dnd code.  I need to revamp
+	DND for the latest gtk-dnd stuff
+
+	* gtv.c: fixed some v4l errors with the ioclts, but it 
+	still starts capturing befire the device is fully
+	set up.  Also, signals for moving the widget aren't getting
+	through, leaving an unsightly mess.
+
 1998-12-28  Mark Crichton  <crichton@gimp.org>
 
 	* xwindows.c: added better check for 32 bit X displays.

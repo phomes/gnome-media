@@ -27,7 +27,6 @@ int video_ll_mapping(struct video_buffer *vb)
 	Display *disp;
 	Screen *scr;
 	Window root;
-	XWindowAttributes xwa;
 	XPixmapFormatValues *pf;
 
 	unsigned int rwidth;
@@ -53,10 +52,8 @@ int video_ll_mapping(struct video_buffer *vb)
 	 * different.  Following code fixes this...
   	 */
 
-	scr = DefaultScreenOfDisplay (disp);
-	root = DefaultRootWindow (disp);
-	XGetWindowAttributes (disp, root, &xwa);
-	vb->depth = xwa.depth;
+	vb->depth = gdk_visual_get_system()->depth;
+	g_print("%d\n",vb->depth);
 	
 	pf = XListPixmapFormats (disp, &ram);	
 	for (bank = 0; bank < ram; bank++) {

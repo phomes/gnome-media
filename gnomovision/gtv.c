@@ -100,6 +100,8 @@ gtk_tv_new(int video_num)
   char buffer[32];
   GtkTV *retval = GTK_TV(gtk_type_new(gtk_tv_get_type()));
   int major, minor, rwidth, bank, ram; /* For getting the info from DGA */
+  XPixmapFormatValues *pf;
+  int temp, i;
 
   if(!XF86DGAQueryVersion(GDK_DISPLAY(), &major, &minor))
     goto new_error_exit;
@@ -107,7 +109,21 @@ gtk_tv_new(int video_num)
   XF86DGAGetVideoLL(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()),
 		    (int *)&(retval->vbuf.base), &rwidth, &bank, &ram);
   retval->vbuf.depth = gdk_visual_get_best_depth();
-  retval->vbuf.bytesperline = rwidth * (retval->vbuf.depth >> 3 /* / 8 */);
+
+  /* We need this magic code here to fix 32 bit displays */
+  /* Code is a near copy of the code from xawtv */
+
+  pf = XListPixmapFormats (GDK_DISPLAY(), &temp);
+
+  for (i = 0; i < temp; i++) {
+	if (pf[i].depth == retval->vbuf.depth) {
+		retval->vbuf.depth = pf[i].bits_per_pixel;
+		break;
+	}
+  }
+  
+  
+  retval->vbuf.bytesperline = rwidth * (retval->vbuf.depth / 8);
   gdk_window_get_size(GDK_ROOT_PARENT(),
 		      &retval->vbuf.width,
 		      &retval->vbuf.height);
@@ -118,9 +134,6 @@ gtk_tv_new(int video_num)
     goto new_error_exit;
 
   retval->visible = 0;
-
-  if(ioctl(retval->fd, VIDIOCCAPTURE, &retval->visible))
-    goto new_error_exit;
 
   if(ioctl(retval->fd, VIDIOCGCAP, &retval->vcap))
     goto new_error_exit;
@@ -274,6 +287,9 @@ gtk_tv_new(int video_num)
   }
   
   return GTK_WIDGET(retval);
+
+  if(ioctl(retval->fd, VIDIOCCAPTURE, &retval->visible))
+    goto new_error_exit;
 
  new_error_exit:
   g_warning("Error creating TV widget.\n");
@@ -843,7 +859,9 @@ gtk_tv_set_input(GtkTV *tv,
   g_return_if_fail(tv != NULL);
   g_return_if_fail(GTK_IS_TV(tv));
   g_return_if_fail(inputnum < gtk_tv_get_num_inputs(tv));
-  g_return_if_fail(ioctl(tv->fd, VIDIOCSCHAN, &inputnum) == 0);
+  g_print("%d\n", inputnum);
+  GTK_TV(tv)->vtuner.tuner = inputnum;
+  g_return_if_fail(ioctl(tv->fd, VIDIOCSCHAN, &GTK_TV(tv)->vtuner) == 0);
   tv->curinput = inputnum;
 }
 

@@ -7,7 +7,7 @@
 GtkTV *tv;
 
 void show_preferences_dialog(void);
-
+#if 0
 static void tv_drag_request(GtkWidget *widget,
 			    GdkEventDragRequest *event);
 
@@ -33,7 +33,7 @@ tv_drag_request(GtkWidget *widget,
 	  gdk_imlib_save_image(g, fn, NULL), g);
   gtk_widget_dnd_data_set(widget, (GdkEvent *)event, fn, strlen(fn)+1);
 }
-
+#endif
 GnomeUIInfo menu_file[] = {
   GNOMEUIINFO_ITEM("Preferences", "Change the settings for the TV set",
 		   show_preferences_dialog, NULL),
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 {
 	GtkWidget *w, *tv, *eb;
 
-	gnome_init("tgtv", NULL, argc, argv, 0, NULL);
+	gnome_init("tgtv", "0.1", argc, argv);
 
 	signal(SIGINT, (gpointer)gtk_main_quit);
 	signal(SIGTERM, (gpointer)gtk_main_quit);
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	gtk_widget_set_usize(GTK_WIDGET(w), 320, 240);
 	gtk_container_add(GTK_CONTAINER(eb), tv);
 	gtk_tv_set_toplevel(GTK_TV(tv));
-	tv_drag_setup(eb);
+	/*tv_drag_setup(eb);*/
 	gtk_widget_show(w);
 	gtk_widget_show(eb);
 	gtk_widget_show(tv);
