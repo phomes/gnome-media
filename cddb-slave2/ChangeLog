@@ -1,3 +1,9 @@
+2002-04-15  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
+
+	* inetaddr.c (gnet_inetaddr_new_async): state structure is
+	getting allocated twice, so when gnome-cd is started bonobo-
+	activation-server is killed
+
 2002-04-14  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am: add cddb-parser.h to sources

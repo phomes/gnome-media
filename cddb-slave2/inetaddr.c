@@ -550,7 +550,6 @@ gnet_inetaddr_new_async (const gchar* name, gint port,
   sa_in->sin_port = g_htons(port);
 
   /* Create a structure for the call back */
-  state = g_new0(GInetAddrAsyncState, 1);
   state->ia = ia;
   state->func = func;
   state->data = data;
