@@ -39,6 +39,12 @@ AC_FUNC_MMAP
 AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
 AM_PROG_LIBTOOL
 
+dnl
+dnl Check for esound library
+dnl
+AM_PATH_ESD(0.2.5, AC_DEFINE(HAVE_ESD))
+
+
 ALL_LINGUAS="da fi ko de fr it ja es no ga pt ru_RU"
 AM_GNU_GETTEXT
 
@@ -47,18 +53,18 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 dnl
-dnl extace
+dnl extace - currently disabled
 dnl
-PROGRAMS_EXTACE=""
-AC_CHECK_LIB(esd,main,[
-  AC_CHECK_LIB(gslfft,gsl_fft_real,PROGRAMS_EXTACE=extace,,-lm -lgslerr)],,$GNOME_LIBS $LIBS -lm)
-AC_SUBST(PROGRAMS_EXTACE)
+dnl PROGRAMS_EXTACE=""
+dnl AC_CHECK_LIB(esd,main,[
+dnl   AC_CHECK_LIB(gslfft,gsl_fft_real,PROGRAMS_EXTACE=extace,,-lm -lgslerr)],,$GNOME_LIBS $LIBS -lm)
+dnl AC_SUBST(PROGRAMS_EXTACE)
 
 dnl
 dnl vu-meter
 dnl
 PROGRAMS_VUMETER=""
-AC_CHECK_LIB(esd,main,PROGRAMS_VUMETER=vu-meter)
+AC_CHECK_LIB(esd,main,PROGRAMS_VUMETER=vu-meter,,[$ESD_LIBS])
 AC_SUBST(PROGRAMS_VUMETER)
 
 dnl

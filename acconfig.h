@@ -1,3 +1,5 @@
+#undef HAVE_ESD
+
 #undef HAVE_LC_MESSAGES
 #undef HAVE_STPCPY
 #undef PACKAGE
