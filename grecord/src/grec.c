@@ -437,9 +437,9 @@ on_runmixer_activate_cb (GtkWidget* widget, gpointer data)
 	gboolean ret;
 
 	/* Open the mixer */
-	mixer_path = g_find_program_in_path ("gnome-volume-control");
+	mixer_path = g_find_program_in_path (DEFAULT_MIXER);
 	if (mixer_path == NULL) {
-		g_warning (_("Gnome Volume Control is not installed in the path"));
+		g_warning (_("%s is not installed in the path"), DEFAULT_MIXER);
 		return;
 	}
 	
