@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-16 12:23+0200\n"
-"PO-Revision-Date: 2003-05-28 02:01+0100\n"
+"POT-Creation-Date: 2003-08-06 20:26+0200\n"
+"PO-Revision-Date: 2003-08-07 01:21+0100\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,10 +24,10 @@ msgid "Address of the server to contact for CD queries"
 msgstr "Adres van de voor CD-aanvragen te benaderen server"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Info to send to server"
-msgstr ""
+msgid "Information to send to server"
+msgstr "Informatie om naar server te sturen"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
 msgid "Port"
 msgstr "Poort"
 
@@ -36,9 +36,8 @@ msgid "Server name"
 msgstr "Servernaam"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-#, fuzzy
 msgid "Server type"
-msgstr "Servernaam"
+msgstr "Servertype"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
@@ -53,6 +52,9 @@ msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
+"Het servertype om contact mee op te nemen voor CD-aanvragen. Mogelijke "
+"waarden zijn 0 (FreeDB round robin server), 1 (andere freedb-server) en 2 "
+"(andere server)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -64,10 +66,13 @@ msgstr "De gebruikersnaam die met alle aanvragen wordt meegestuurd"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:11
 msgid ""
-"This key specifies which user info will be sent to the server to contact for "
-"CD queries. Possible values are 0 (no info), 1 (real info) and 3 (other "
-"info)."
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
 msgstr ""
+"Deze sleutel geeft aan welke gebruikersinformatie naar de server te zenden "
+"die voor CD-aanvragen gebruikt wordt. Mogelijke waaden zijn (geen "
+"informatie), 1 (echte informatie) en 3 (andere informatie)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -81,7 +86,7 @@ msgstr "Uitschuivergrootte"
 msgid "Size of the expander arrow"
 msgstr "Grootte van de uitschuiverpijl"
 
-#: cddb-slave2/cddb-slave-capplet.c:117
+#: cddb-slave2/cddb-slave-capplet.c:115
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -91,64 +96,64 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:671
-msgid "Log on information"
+#: cddb-slave2/cddb-slave-capplet.c:696
+msgid "Login Information"
 msgstr "Aanmeldingsinformatie"
 
-#: cddb-slave2/cddb-slave-capplet.c:680
-msgid "Send _no info"
-msgstr "Gee_n informatie sturen"
+#: cddb-slave2/cddb-slave-capplet.c:702
+msgid "Sen_d no information"
+msgstr "Geen in_formatie sturen"
 
-#: cddb-slave2/cddb-slave-capplet.c:689
-msgid "Send real _info"
+#: cddb-slave2/cddb-slave-capplet.c:711
+msgid "Send real _information"
 msgstr "Echte _informatie sturen"
 
-#: cddb-slave2/cddb-slave-capplet.c:698
-msgid "Send _other info..."
-msgstr "Andere inf_ormatie sturen..."
+#: cddb-slave2/cddb-slave-capplet.c:720
+msgid "Send _other information:"
+msgstr "Andere inf_ormatie sturen:"
 
-#: cddb-slave2/cddb-slave-capplet.c:715
-msgid "N_ame:"
+#: cddb-slave2/cddb-slave-capplet.c:745
+msgid "_Name:"
 msgstr "N_aam:"
 
-#: cddb-slave2/cddb-slave-capplet.c:735
-msgid "_Hostname:"
-msgstr "_Hostnaam:"
+#: cddb-slave2/cddb-slave-capplet.c:765
+msgid "Hostna_me:"
+msgstr "Hostnaa_m:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
+#: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
 msgid "Server"
 msgstr "Server"
 
-#: cddb-slave2/cddb-slave-capplet.c:766
+#: cddb-slave2/cddb-slave-capplet.c:791
 msgid "FreeDB _round robin server"
 msgstr "FreeDB _round robin server"
 
-#: cddb-slave2/cddb-slave-capplet.c:772
-msgid "Other _FreeDB server..."
-msgstr "Andere _FreeDB-server..."
+#: cddb-slave2/cddb-slave-capplet.c:797
+msgid "Other _FreeDB server:"
+msgstr "Andere _FreeDB-server:"
 
-#: cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
 msgstr "Lokatie"
 
-#: cddb-slave2/cddb-slave-capplet.c:810
-msgid "Update server list"
-msgstr "Serverlijst verversen"
+#: cddb-slave2/cddb-slave-capplet.c:867
+msgid "_Update Server List"
+msgstr "Ser_verlijst verversen"
 
-#: cddb-slave2/cddb-slave-capplet.c:817
-msgid "Other _server..."
-msgstr "Andere _server..."
+#: cddb-slave2/cddb-slave-capplet.c:874
+msgid "Other _server:"
+msgstr "Andere _server:"
 
-#: cddb-slave2/cddb-slave-capplet.c:829
-msgid "Hostname:"
-msgstr "Hostnaam:"
+#: cddb-slave2/cddb-slave-capplet.c:894
+msgid "Hos_tname:"
+msgstr "Hos_tnaam:"
 
-#: cddb-slave2/cddb-slave-capplet.c:842
+#: cddb-slave2/cddb-slave-capplet.c:911
 msgid "_Port:"
 msgstr "_Poort:"
 
-#: cddb-slave2/cddb-slave-capplet.c:892
+#: cddb-slave2/cddb-slave-capplet.c:975
 msgid "CD Database Preferences"
 msgstr "CD Database-voorkeuren"
 
@@ -1522,7 +1527,7 @@ msgstr "Terugspoelen"
 msgid "Play / Pause"
 msgstr "Afspelen/Pauzeren"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:614 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Stoppen"
 
@@ -2411,12 +2416,12 @@ msgid "Adding echo to sample..."
 msgstr "Toevoegen van echo aan geluidsbestand..."
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:263
+#: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
 msgstr "Hoofdvenster instantiëren mislukt"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:303
+#: gstreamer-properties/gstreamer-properties.c:311
 #, c-format
 msgid "Could not load UI resource %s"
 msgstr "Kon UI-bron %s niet laden"
@@ -2434,14 +2439,12 @@ msgid "*"
 msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Sink</b>"
-msgstr "Standaardafvoer"
+msgstr "<b>Standaardafvoer</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Source</b>"
-msgstr "Standaardbron"
+msgstr "<b>Standaardbron</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2452,56 +2455,47 @@ msgid "Audio"
 msgstr "Audio"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-#, fuzzy
 msgid "Click Ok to finish."
 msgstr "Klik op OK om te voltooien"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-#, fuzzy
 msgid "GStreamer Preferences"
 msgstr "GStreamer-eigenschappen"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-#, fuzzy
 msgid "Pipe_line:"
-msgstr "Pijplijn:"
+msgstr "Pijp_lijn:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-#, fuzzy
 msgid "Te_st"
-msgstr "Test..."
+msgstr "Te_st"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Testing Pipeline"
 msgstr "Test-pijplijn"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
-#, fuzzy
 msgid "_Input:"
-msgstr "Video-_invoer:"
+msgstr "_Invoer:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:13
-#, fuzzy
 msgid "_Output:"
-msgstr "Audi_o-uitvoer:"
+msgstr "Uitv_oer:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-#, fuzzy
 msgid "_Pipeline:"
-msgstr "Pijplijn:"
+msgstr "_Pijplijn:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-#, fuzzy
 msgid "_Test"
-msgstr "Test..."
+msgstr "_Test"
 
 #: gstreamer-properties/pipeline-constants.c:58
 #: gstreamer-properties/pipeline-constants.c:76
 #: gstreamer-properties/pipeline-constants.c:93
 #: gstreamer-properties/pipeline-constants.c:110
-#, fuzzy
 msgid "Custom"
-msgstr "Cult"
+msgstr "Aangepast"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
@@ -2514,7 +2508,7 @@ msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
-"Kan niet verbinden met sound deamon.\n"
+"Kan niet verbinden met geluidsvoorziening.\n"
 "Start alstublieft 'esd' vanaf de opdrachtregel."
 
 #: vu-meter/main.c:246
@@ -2577,6 +2571,12 @@ msgstr "Geluidsuitvoervolume bijhouden"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Volumemeter"
+
+#~ msgid "Send _no info"
+#~ msgstr "Gee_n informatie sturen"
+
+#~ msgid "_Hostname:"
+#~ msgstr "_Hostnaam:"
 
 #~ msgid "Audio _Input:"
 #~ msgstr "Aud_io-invoer:"
