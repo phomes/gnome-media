@@ -159,6 +159,11 @@ restore_preferences (GnomeCDPreferences *prefs)
 	
 	prefs->device = gconf_client_get_string (client,
 						 "/apps/gnome-cd/device", NULL);
+	if (prefs->device == NULL) {
+		g_warning ("GConf schemas are not correctly installed.");
+		prefs->device = g_strdup ("/dev/cdrom");
+	}
+	
 	prefs->device_id = gconf_client_notify_add (client,
 						    "/apps/gnome-cd/device", device_changed,
 						    prefs, NULL, &error);
@@ -190,6 +195,11 @@ restore_preferences (GnomeCDPreferences *prefs)
 
 	prefs->theme_name = gconf_client_get_string (client,
 						     "/apps/gnome-cd/theme-name", NULL);
+	if (prefs->theme_name == NULL) {
+		g_warning ("GConf schemas are not correctly installed");
+		prefs->theme_name = g_strdup ("lcd");
+	}
+	
 	prefs->theme_id = gconf_client_notify_add (client,
 						   "/apps/gnome-cd/theme-name",
 						   theme_changed, prefs,
