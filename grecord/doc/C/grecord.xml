@@ -3,8 +3,8 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "1.547.0">
-  <!ENTITY manrevision "2.1">
-  <!ENTITY date "June 2002">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
   <!ENTITY app "Sound Recorder">
 ]>
 <!-- 
@@ -13,6 +13,7 @@
   http://developer.gnome.org/projects/gdp
   Template version: 2.0 beta
   Template last modified Apr 11, 2002
+  
 -->
 <!-- =============Document Header ============================= -->
 <article id="index" lang="en">
@@ -68,6 +69,16 @@
       <revision> 
 	<revnumber>&app; Manual V&manrevision;</revnumber> 
 	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOME Documentation Team
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOME Documentation Project</para>
+	</revdescription> 
+      </revision>
+      <revision> 
+	<revnumber>Sound Recorder Manual V2.1</revnumber> 
+	<date>June 2002</date> 
 	<revdescription> 
 	  <para role="author">Sun GNOME Documentation Team
 	    <email>gdocteam@sun.com</email>
@@ -198,17 +209,16 @@
     
   </sect1>
 
-<!-- ================ Settings ================================ -->
+<!-- ================ Preferences ================================ -->
 
   <sect1 id="grecord-prefs"> 
-    <title>Settings</title>
+    <title>Preferences</title>
     <para>To configure <application>&app;</application>, choose 
 		<menuchoice> 
 		<guimenu>Edit</guimenu>
 		<guimenuitem>Preferences</guimenuitem> 
 		</menuchoice>.
-	</para>
-	<para>The <guilabel>&app; Preferences</guilabel> dialog contains the following
+	The <guilabel>&app; Preferences</guilabel> dialog contains the following
 	tabbed sections:</para>
 	<itemizedlist> 
 		<listitem><para><xref linkend="grecord-prefs-recording"/></para>
@@ -308,7 +318,7 @@
 			<application>&app;</application> uses <application>sox</application> to play back recordings. To determine
 			the location of <application>sox</application>, type <command>which sox</command> at a command line. 
 			To apply a change to the field, click <guibutton>Apply</guibutton>.</para>
-			<para>Default: The default location depends on your operating system.</para>
+			<para>Default: depends on your operating system.</para>
 			</listitem>
 		  	</varlistentry>
 		  	<varlistentry> 
@@ -316,7 +326,7 @@
 			<listitem> 
 			<para>Use this field to specify the directory in which to temporarily save sound files while <application>&app;</application> 
 			is recording the files. To apply a change to the field, click <guibutton>Apply</guibutton>.</para>
-			<para>Default: The default location depends on your operating system.</para>
+			<para>Default: depends on your operating system.</para>
 			</listitem>
 		  	</varlistentry>
 	</variablelist>
@@ -340,14 +350,14 @@
 				<para>Select this option to save the sound files using 16-bit PCM.</para>
 				</listitem>
 				</itemizedlist>
-			<para>Default: <guilabel>8-bit PCM</guilabel></para>
+			<para>Default: <guilabel>8-bit PCM</guilabel>.</para>
 			</listitem>
 		  	</varlistentry>
 		  	<varlistentry> 
 	 		<term><guilabel>Sample rate</guilabel> </term> 
 			<listitem> 
 			<para>Use this field to specify the number of samples per second.</para>
-			<para>Default: 11025</para>
+			<para>Default: 11025.</para>
 			</listitem>
 		  	</varlistentry>
 		  	<varlistentry> 
@@ -365,7 +375,7 @@
 				results in a larger sound file.</para>
 				</listitem>
 				</itemizedlist>
-			<para>Default: <guilabel>Stereo</guilabel></para>
+			<para>Default: <guilabel>Stereo</guilabel>.</para>
 			</listitem>
 		  	</varlistentry>
 	</variablelist>
