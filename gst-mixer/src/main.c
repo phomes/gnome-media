@@ -121,6 +121,7 @@ create_mixer_collection (void)
 
       name = g_strdup_printf ("%s (%s)", devname ? devname : title,
 			      gst_element_factory_get_longname (factory));
+      g_free (devname);
       g_object_set_data (G_OBJECT (element), "gnome-volume-control-name",
 			 name);
 
