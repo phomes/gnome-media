@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52\n"
-"POT-Creation-Date: 2000-04-08 04:20+0200\n"
-"PO-Revision-Date: 2000-04-06 02:02+0100\n"
+"POT-Creation-Date: 2000-05-07 18:03+0200\n"
+"PO-Revision-Date: 2000-05-07 01:37+0100\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
-"Language-Team: Lithuanian\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-13\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,12 +74,20 @@ msgid "Inactive. %s\n"
 msgstr "Neaktyvus. %s\n"
 
 #: gmix/device_labels_linux.h:7
+msgid "Vol  "
+msgstr "Gars "
+
+#: gmix/device_labels_linux.h:7
 msgid "Bass "
 msgstr "Þemi "
 
 #: gmix/device_labels_linux.h:7
-msgid "Line "
-msgstr "Line "
+msgid "Trebl"
+msgstr "Aukðt"
+
+#: gmix/device_labels_linux.h:7
+msgid "Synth"
+msgstr "Synth"
 
 #: gmix/device_labels_linux.h:7
 msgid "Pcm  "
@@ -90,36 +98,20 @@ msgid "Spkr "
 msgstr "Spkr "
 
 #: gmix/device_labels_linux.h:7
-msgid "Synth"
-msgstr "Synth"
-
-#: gmix/device_labels_linux.h:7
-msgid "Trebl"
-msgstr "Aukðt"
-
-#: gmix/device_labels_linux.h:7
-msgid "Vol  "
-msgstr "Gars "
-
-#: gmix/device_labels_linux.h:8
-msgid "CD   "
-msgstr "CD   "
-
-#: gmix/device_labels_linux.h:8
-msgid "IGain"
-msgstr "IGain"
+msgid "Line "
+msgstr "Line "
 
 #: gmix/device_labels_linux.h:8
 msgid "Mic  "
 msgstr "Mic  "
 
 #: gmix/device_labels_linux.h:8
-msgid "Mix  "
-msgstr "Mix  "
+msgid "CD   "
+msgstr "CD   "
 
 #: gmix/device_labels_linux.h:8
-msgid "OGain"
-msgstr "OGain"
+msgid "Mix  "
+msgstr "Mix  "
 
 #: gmix/device_labels_linux.h:8
 msgid "Pcm2 "
@@ -129,17 +121,13 @@ msgstr "Pcm2 "
 msgid "Rec  "
 msgstr "Rec  "
 
-#: gmix/device_labels_linux.h:9
-msgid "Digital1"
-msgstr "Skaitm1"
+#: gmix/device_labels_linux.h:8
+msgid "IGain"
+msgstr "IGain"
 
-#: gmix/device_labels_linux.h:9
-msgid "Digital2"
-msgstr "Skaitm2"
-
-#: gmix/device_labels_linux.h:9
-msgid "Digital3"
-msgstr "Skaitm3"
+#: gmix/device_labels_linux.h:8
+msgid "OGain"
+msgstr "OGain"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line1"
@@ -153,9 +141,17 @@ msgstr "Line2"
 msgid "Line3"
 msgstr "Line3"
 
-#: gmix/device_labels_linux.h:10
-msgid "Monitor"
-msgstr "Monitor"
+#: gmix/device_labels_linux.h:9
+msgid "Digital1"
+msgstr "Skaitm1"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital2"
+msgstr "Skaitm2"
+
+#: gmix/device_labels_linux.h:9
+msgid "Digital3"
+msgstr "Skaitm3"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneIn"
@@ -166,95 +162,535 @@ msgid "PhoneOut"
 msgstr "PhoneOut"
 
 #: gmix/device_labels_linux.h:10
+msgid "Video"
+msgstr "Video"
+
+#: gmix/device_labels_linux.h:10
 msgid "Radio"
 msgstr "Radio"
 
 #: gmix/device_labels_linux.h:10
-msgid "Video"
-msgstr "Video"
+msgid "Monitor"
+msgstr "Monitor"
 
-#: gmix/gmix.c:104
-msgid "_About"
-msgstr "_Apie"
-
-#: gmix/gmix.c:110
-msgid "_Preferences..."
-msgstr "_Nustatymai..."
-
-#: gmix/gmix.c:116
-msgid "_Program"
-msgstr "_Programa"
-
-#: gmix/gmix.c:183
+#: gmix/gmix.c:187
 msgid "don't restore mixer-settings from configuration"
-msgstr "neatstatyti mikðerio bûsenos ið nustatymø"
+msgstr "neatstatyti mikðerio bûsenos ið nuostatø"
 
-#: gmix/gmix.c:184
+#: gmix/gmix.c:188
 msgid "restore mixer-settings from configuration"
-msgstr "atstatyti mikðerio bûsenà ið nustatymø"
+msgstr "atstatyti mikðerio bûsenà ið nuostatø"
 
-#: gmix/gmix.c:185
+#: gmix/gmix.c:189
 msgid "initialise the mixer(s) from stored configuration and exit"
-msgstr "inicializuoti mikðerá(ius) ið áraðytø nustatymø ir iðeiti"
+msgstr "inicializuoti mikðerá(ius) ið áraðytø nuostatø ir iðeiti"
 
-#: gmix/gmix.c:186
+#: gmix/gmix.c:190
 msgid "don't save (modified) mixer-settings into configuration"
-msgstr "neiðsaugoti (pakeistos) mikðerio bûsenos á nustatymus"
+msgstr "neiðsaugoti (pakeistos) mikðerio bûsenos á nuostatas"
 
 #. start frame
-#: gmix/gmix.c:423 tcd/prefs.c:393
+#: gmix/gmix.c:427 tcd/prefs.c:397
 msgid "On startup"
 msgstr "Paleidus"
 
 #. Set on start
-#: gmix/gmix.c:429
+#: gmix/gmix.c:433
 msgid "Restore saved mixer levels on startup"
 msgstr "Atstatyti iðsaugotus mikðerio lygius paleidus"
 
-#: gmix/gmix.c:435
+#: gmix/gmix.c:439
 msgid "Hide menu on start"
 msgstr "Paslëpti meniu paleidus"
 
-#: gmix/gmix.c:450
+#: gmix/gmix.c:454 grecord/src/gui.c:879
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/gmix.c:454
+#: gmix/gmix.c:458
 msgid "Use mixer icons"
 msgstr "Rodyti mikðeriø ikonas"
 
-#: gmix/gmix.c:462
+#: gmix/gmix.c:466
 msgid "Use mixer labels"
 msgstr "Rodyti mikðeriø etiketes"
 
-#: gmix/gmix.c:485 tcd/gtcd.c:363 tcd/prefs.c:596
+#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:600
 msgid "Preferences"
-msgstr "Nustatymai"
+msgstr "Nuostatos"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1171
+#: gmix/gmix.c:1175
 msgid "Lock"
 msgstr "Spyna"
 
-#: gmix/gmix.c:1181
+#: gmix/gmix.c:1185
 msgid "Rec."
 msgstr "Árað."
 
-#: gmix/gmix.c:1199
+#: gmix/gmix.c:1203
 msgid "Mute"
 msgstr "Tyla"
 
-#: gmix/gmix.c:1223
+#: gmix/gmix.c:1227
 msgid "GMIX 3.0"
-msgstr ""
+msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1522
+#: gmix/gmix.c:1528
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - GNOME Mikðeris"
 
-#: gmix/gmix.c:1525
+#: gmix/gmix.c:1531
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Èia yra mikðeris OSS garso árenginiams."
+
+#: grecord/src/grec.c:51
+msgid "GNOME Sound recorder:"
+msgstr "GNOME garso áraðytuvas:"
+
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:952
+msgid "Could not fork child process"
+msgstr "Nepavyko fork'inti vaikinio proceso"
+
+#: grecord/src/grec.c:86
+msgid "Recording..."
+msgstr "Áraðoma..."
+
+#: grecord/src/grec.c:117
+msgid "Playing..."
+msgstr "Grojama..."
+
+#: grecord/src/grec.c:167
+msgid "Converting file..."
+msgstr "Konvertuojama byla..."
+
+#: grecord/src/grec.c:233 grecord/src/grec.c:651 grecord/src/gui.c:330
+#: grecord/src/preferences.c:373
+msgid "Audioformat: "
+msgstr "Garso formatas: "
+
+#: grecord/src/grec.c:237 grecord/src/grec.c:637 grecord/src/gui.c:337
+#: grecord/src/preferences.c:377
+msgid "Sample rate: "
+msgstr "Iðrankos daþnis: "
+
+#: grecord/src/grec.c:247 grecord/src/grec.c:641 grecord/src/gui.c:344
+#: grecord/src/preferences.c:381
+msgid "Channels: "
+msgstr "Kanalai: "
+
+#: grecord/src/grec.c:277
+msgid "Select a sound file"
+msgstr "Pasirink garso bylà"
+
+#: grecord/src/grec.c:306
+msgid "Error saving sound file!"
+msgstr "Klaida iðsaugant garso bylà!"
+
+#: grecord/src/grec.c:394
+msgid "GNOME Sound recorder web page"
+msgstr "GNOME Garso áraðytuvo svetainë"
+
+#: grecord/src/grec.c:500
+msgid "Undoing all..."
+msgstr "Atðaukiama viskas..."
+
+#: grecord/src/grec.c:603 grecord/src/gui.c:415
+#, c-format
+msgid "File '%s' isn't a valid soundfile."
+msgstr "Byla ¥%s´ nëra galiojanti garso byla."
+
+#: grecord/src/grec.c:668
+msgid "Error saving sound file"
+msgstr "Klaida saugant garso bylà"
+
+#: grecord/src/grec.c:698
+msgid "File not saved. Do you want to save it?"
+msgstr "Byla neiðsaugota. Ar nori jà iðsaugoti?"
+
+#: grecord/src/grec.c:813
+#, c-format
+msgid "The size of the current sample is more than %i MB!"
+msgstr "Esamo semplo dydis yra daugiau nei %i MB!"
+
+#: grecord/src/grec.c:861
+msgid "Save sound file"
+msgstr "Iðsaugoti garso bylà"
+
+#: grecord/src/grec.c:1011
+msgid ""
+"Sounddevice not ready! Please check that there isn't\n"
+"another program running that's using the sounddevice."
+msgstr ""
+"Garso árenginys nepasiruoðæs! Praðau, patikrink, kad\n"
+"nebûtø jokios kitos bëganèios programos, kuri naudoja\n"
+"garso árenginá."
+
+#: grecord/src/gui.c:42
+msgid "_New"
+msgstr "_Naujas"
+
+#: grecord/src/gui.c:43
+msgid "Create a new sample"
+msgstr "Sukurti naujà semplà"
+
+#: grecord/src/gui.c:50
+msgid "Run mixer..."
+msgstr "Paleisti mikðerá..."
+
+#: grecord/src/gui.c:51
+msgid "Run GNOME mixer"
+msgstr "Paleisti GNOME mikðerá"
+
+#: grecord/src/gui.c:64
+msgid "Add echo"
+msgstr "Pridëti aidà"
+
+#: grecord/src/gui.c:65
+msgid "Adds echo to the current sample"
+msgstr "Pridedà aidà esamam semplui"
+
+#: grecord/src/gui.c:71
+msgid "Remove echo"
+msgstr "Paðalinti aidà"
+
+#: grecord/src/gui.c:72
+msgid "Removes echo from the current sample"
+msgstr "Paðalina aidà ið esamo semplo"
+
+#: grecord/src/gui.c:83
+msgid "Increase speed"
+msgstr "Pagreitinti"
+
+#: grecord/src/gui.c:84
+msgid "Increases the speed of the current sample"
+msgstr "Padidina esamo semplo greitá"
+
+#: grecord/src/gui.c:90
+msgid "Decrease speed"
+msgstr "Sulëtinti"
+
+#: grecord/src/gui.c:91
+msgid "Decreases the speed of the current sample"
+msgstr "Sumaþinti esamo semplo greitá"
+
+#: grecord/src/gui.c:101
+msgid "Echo"
+msgstr "Aidas"
+
+#: grecord/src/gui.c:102
+msgid "Speed"
+msgstr "Greitis"
+
+#: grecord/src/gui.c:110
+msgid "Undo all changes"
+msgstr "Atðaukti visus pakeitimus"
+
+#: grecord/src/gui.c:111
+msgid "Undo all changes made on the current sample"
+msgstr "Atðaukti visus pakeitimus, atliktus ðiam semplui"
+
+#: grecord/src/gui.c:118
+msgid "Effects"
+msgstr "Efektai"
+
+#: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:869
+msgid "Show time"
+msgstr "Rodyti laikà"
+
+#: grecord/src/gui.c:134
+msgid "Show soundinfo"
+msgstr "Rodyti garso info"
+
+#: grecord/src/gui.c:135 grecord/src/gui.c:874
+msgid "Show sound information"
+msgstr "Pateikti garso informacijà"
+
+#: grecord/src/gui.c:235
+msgid "New"
+msgstr "Naujas"
+
+#: grecord/src/gui.c:236
+msgid "Create new sample"
+msgstr "Sukurti naujà semplà"
+
+#: grecord/src/gui.c:246 tcd/popup.c:15
+msgid "Play"
+msgstr "Groti"
+
+#: grecord/src/gui.c:247
+msgid "Play current sample"
+msgstr "Groti esamà semplà"
+
+#: grecord/src/gui.c:255 tcd/gtcd.c:328 tcd/popup.c:16
+msgid "Stop"
+msgstr "Sustoti"
+
+#: grecord/src/gui.c:256
+msgid "Stop playing/recording"
+msgstr "Sustoti groti/áraðyti"
+
+#: grecord/src/gui.c:264
+msgid "Record"
+msgstr "Áraðyti"
+
+#: grecord/src/gui.c:265
+msgid "Start recording"
+msgstr "Pradëti áraðymà"
+
+#: grecord/src/gui.c:275
+msgid "Exit"
+msgstr "Iðeiti"
+
+#: grecord/src/gui.c:276
+msgid "Exit this program"
+msgstr "Iðeiti ið ðios programos"
+
+#: grecord/src/gui.c:290
+msgid "Info"
+msgstr "Info"
+
+#: grecord/src/gui.c:394
+#, c-format
+msgid "File '%s' doesn't exist; using default."
+msgstr "Byla ¥%s´ neegzistuoja; naudoju áprastà."
+
+#: grecord/src/gui.c:449 grecord/src/main.c:105
+msgid "GNOME Sound recorder"
+msgstr "GNOME garso áraðytuvas"
+
+#: grecord/src/gui.c:450
+msgid "Copyright (C)  2000 Andreas Hydén"
+msgstr "Copyright (C)  2000 Andreas Hydén"
+
+#: grecord/src/gui.c:452
+msgid ""
+"A simple soundrecorder and soundplayer for GNOME.\n"
+"Dedicated to my cat, Malte."
+msgstr ""
+"Paprastas garso áraðytuvas ir grotuvas, skirtas GNOME.\n"
+"Dedikuojamas mano katei, Malte."
+
+#: grecord/src/gui.c:543 tcd/gtracked.c:171
+msgid "Time"
+msgstr "Laikas"
+
+#: grecord/src/gui.c:556
+msgid "Recording timeout: "
+msgstr "Áraðymo laiko riba: "
+
+#: grecord/src/gui.c:567
+msgid "minutes"
+msgstr "minutës"
+
+#: grecord/src/gui.c:572
+msgid "Stop recording on timeout"
+msgstr "Sustoti áraðinëti priëjus laiko ribà"
+
+#: grecord/src/gui.c:577
+msgid "Popup save dialog when recording is finished"
+msgstr "Pateikti iðsaugojimo dialogà, kai áraðymas baigtas"
+
+#: grecord/src/gui.c:586
+msgid "Size"
+msgstr "Dydis"
+
+#: grecord/src/gui.c:595
+msgid "Popup warning message if size (MB) of sample becomes bigger than:"
+msgstr "Perspëti, jei semplo dydis tampa didesnis nei: [MB]"
+
+#: grecord/src/gui.c:605
+msgid "Stop recording if size (MB) of sample becomes bigger than:"
+msgstr "Sustoti áraðinëti, kai semplo dydis tampa didesnis nei: [MB]"
+
+#: grecord/src/gui.c:616
+msgid "Recording"
+msgstr "Áraðymas"
+
+#: grecord/src/gui.c:625
+msgid "Play-repeating"
+msgstr "Grojimo kartojimas"
+
+#: grecord/src/gui.c:634
+msgid "Repeat"
+msgstr "Kartoti"
+
+#: grecord/src/gui.c:643
+msgid "Forever"
+msgstr "Amþinai"
+
+#: grecord/src/gui.c:648
+msgid "Nr of times:"
+msgstr "Tiek kartø:"
+
+#: grecord/src/gui.c:659
+msgid "Playing"
+msgstr "Grojimas"
+
+#: grecord/src/gui.c:668
+msgid "Program files"
+msgstr "Programø bylos"
+
+#: grecord/src/gui.c:685
+msgid "Path to sox:"
+msgstr "Kelias iki sox:"
+
+#: grecord/src/gui.c:701
+msgid "Path to mixer:"
+msgstr "Kelias iki mikðerio:"
+
+#: grecord/src/gui.c:717
+msgid "Directories"
+msgstr "Katalogai"
+
+#: grecord/src/gui.c:730
+msgid "Temp dir:"
+msgstr "Laikinas katalogas:"
+
+#: grecord/src/gui.c:746
+msgid "Paths"
+msgstr "Keliai"
+
+#: grecord/src/gui.c:754
+msgid "Sound options"
+msgstr "Garso pasirinktys"
+
+#: grecord/src/gui.c:767
+msgid "Audioformat:"
+msgstr "Garso formatas:"
+
+#: grecord/src/gui.c:778 grecord/src/gui.c:788
+msgid "8bit pcm"
+msgstr "8 bitø pcm"
+
+#: grecord/src/gui.c:779 grecord/src/gui.c:790
+msgid "16bit pcm"
+msgstr "16 bitø pcm"
+
+#: grecord/src/gui.c:796
+msgid "Sample rate:"
+msgstr "Iðrankos daþnis:"
+
+#: grecord/src/gui.c:826
+msgid "mono/stereo"
+msgstr "mono/stereo"
+
+#: grecord/src/gui.c:837 grecord/src/gui.c:847
+msgid "mono"
+msgstr "mono"
+
+#: grecord/src/gui.c:838 grecord/src/gui.c:849
+msgid "stereo"
+msgstr "stereo"
+
+#: grecord/src/gui.c:852
+msgid "Sound"
+msgstr "Garsas"
+
+#: grecord/src/gui.c:860
+msgid "Main window"
+msgstr "Pagrindinis langas"
+
+#: grecord/src/main.c:52
+msgid "Specify the geometry of the main window"
+msgstr "Nurodyti pagrindinio lango geometrijà"
+
+#: grecord/src/main.c:53
+msgid "GEOMETRY"
+msgstr "GEOMETRIJA"
+
+#: grecord/src/main.c:61
+msgid "Specify a file to be opened"
+msgstr "Nurodyti, kurià bylà atidaryti"
+
+#: grecord/src/main.c:70
+msgid "Specify a file to start recording"
+msgstr "Nurodyti, á kurià bylà áraðyti"
+
+#: grecord/src/main.c:79
+msgid "Specify a file to start playing"
+msgstr "Nurodyti, kurià bylà pradëti groti"
+
+#: grecord/src/preferences.c:196
+msgid ""
+"You havn't entered a sox command; you will not be able to record.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Tu neávedei ¥sox komandos´; todël tu negalësi áraðinëti.\n"
+"Ar vis tiek nori jà naudoti?"
+
+#: grecord/src/preferences.c:221
+#, c-format
+msgid ""
+"File %s in 'sox command' does not exist.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Byla %s ¥sox komandoje´ neegzistuoja.\n"
+"Ar vis tiek nori jà naudoti?"
+
+#: grecord/src/preferences.c:245
+msgid ""
+"You havn't entered a mixer command; you will not be able to start the "
+"mixer.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Tu neávedei ¥mikðerio komandos´; todël tu negalësi paleisti mikðerio.\n"
+"Ar vis tiek nori já naudoti?"
+
+#: grecord/src/preferences.c:270
+#, c-format
+msgid ""
+"File %s in 'mixer command' does not exist.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Byla %s ¥mikðerio komandoje´ neegzistuoja.\n"
+"Ar vis tiek nori jà naudoti?"
+
+#: grecord/src/preferences.c:293
+msgid ""
+"You havn't entered a temp dir. You will not be able to record.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Tu neávedei laikino katalogo; todël tu áraðinëti.\n"
+"Ar vis tiek nori já naudoti?"
+
+#. Check if the given temp directory exists --------------------
+#. Exists
+#. Not a directory
+#: grecord/src/preferences.c:312
+#, c-format
+msgid ""
+"Temp directory %s is a file.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Laikinas katalogas %s yra byla.\n"
+"Ar vis tiek nori já naudoti?"
+
+#. Does not exist
+#: grecord/src/preferences.c:329
+#, c-format
+msgid ""
+"Directory %s does not exist.\n"
+"Do want to use it anyway?"
+msgstr ""
+"Katalogas %s neegzistuoja.\n"
+"Ar vis tiek nori já naudoti?"
+
+#: grecord/src/sound.c:102
+msgid " untitled.wav"
+msgstr " bevardis.wav"
+
+#: grecord/src/sound.c:156
+msgid "Making backup..."
+msgstr "Darau atsarginæ kopijà..."
+
+#: grecord/src/sound.c:157
+msgid "Adding echo to sample..."
+msgstr "Pridedu aidà á semplà..."
+
+#: grecord/src/sound.c:158
+msgid "Please wait..."
+msgstr "Praðau palaukti..."
 
 #: tcd/callbacks.c:82
 msgid "TCD - The Gnome CD Player"
@@ -291,7 +727,7 @@ msgstr "Atnaujinti"
 #. server settings
 #: tcd/cddb_props.c:145
 msgid "Server Settings"
-msgstr "Serverio nustatymai"
+msgstr "Serverio nuostatos"
 
 #: tcd/cddb_props.c:154
 msgid "Address"
@@ -349,7 +785,7 @@ msgid "Delete CDDB Entry?"
 msgstr "Paðalinti CDDB áraðà?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:312
+#: tcd/cddb_status.c:50 tcd/gtracked.c:309
 msgid "CDDB Status"
 msgstr "CDDB bûsena"
 
@@ -390,115 +826,111 @@ msgstr "normal"
 msgid "random"
 msgstr "random"
 
+#: tcd/gtcd.c:285 tcd/gtcd.c:903
+msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+
 #. TOP ROW
-#: tcd/gtcd.c:323
+#: tcd/gtcd.c:324
 msgid "Play/Pause"
 msgstr "Groti/Pauzë"
 
-#: tcd/gtcd.c:327 tcd/popup.c:16
-msgid "Stop"
-msgstr "Sustoti"
-
-#: tcd/gtcd.c:328 tcd/popup.c:17
+#: tcd/gtcd.c:329 tcd/popup.c:17
 msgid "Eject"
 msgstr "Iðmesti"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:335 tcd/gtcd.c:343
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip backwards"
 msgstr "Atsukti atgal"
 
-#: tcd/gtcd.c:336 tcd/gtcd.c:344
+#: tcd/gtcd.c:337 tcd/gtcd.c:345
 msgid "Skip forwards"
 msgstr "Prasukti tolyn"
 
-#: tcd/gtcd.c:362
+#: tcd/gtcd.c:363
 msgid "Open track editor"
 msgstr "Atidaryti takeliø taisiklá"
 
-#: tcd/gtcd.c:364 tcd/popup.c:24
+#: tcd/gtcd.c:365 tcd/popup.c:24
 msgid "Quit"
 msgstr "Iðeiti"
 
-#: tcd/gtcd.c:502 tcd/gtcd.c:503 tcd/gtcd.c:504
+#: tcd/gtcd.c:503 tcd/gtcd.c:504 tcd/gtcd.c:505
 msgid "(Scanning)"
 msgstr "(Skanuoju)"
 
-#: tcd/gtcd.c:526
+#: tcd/gtcd.c:527
 msgid "No Disc"
 msgstr "Nëra disko"
 
-#: tcd/gtcd.c:561
+#: tcd/gtcd.c:562
 msgid "Error"
 msgstr "Klaida"
 
-#: tcd/gtcd.c:836
+#: tcd/gtcd.c:839
 msgid "Volume"
 msgstr "Garsumas"
 
-#: tcd/gtcd.c:1008
-msgid "FILE"
-msgstr "BYLA"
-
-#: tcd/gtcd.c:1008
+#: tcd/gtcd.c:1011
 msgid "Filename of the CD device"
 msgstr "CD árenginio byla"
 
-#: tcd/gtcd.c:1010
+#: tcd/gtcd.c:1011
+msgid "FILE"
+msgstr "BYLA"
+
+#: tcd/gtcd.c:1013
 msgid "Play CD on startup"
 msgstr "Groti CD paleidus"
 
-#: tcd/gtracked.c:174
-msgid "Time"
-msgstr "Laikas"
-
-#: tcd/gtracked.c:174
-msgid "Title"
-msgstr "Pavadinimas"
-
-#: tcd/gtracked.c:174
+#: tcd/gtracked.c:171
 msgid "Trk"
 msgstr "Num"
 
-#: tcd/gtracked.c:197
+#: tcd/gtracked.c:171
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: tcd/gtracked.c:194
 msgid "Track Editor"
 msgstr "Takeliø taisiklis"
 
 #. Disc area
-#: tcd/gtracked.c:213
+#: tcd/gtracked.c:210
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Disko informacija (%02u:%02u minutës)"
 
-#: tcd/gtracked.c:222
+#: tcd/gtracked.c:219
 msgid "Artist / Title"
 msgstr "Atlikëjas / Pavadinimas"
 
 #. END Disc area
 #. Track area
-#: tcd/gtracked.c:245
+#: tcd/gtracked.c:242
 msgid "Track Information"
 msgstr "Takeliø informacija"
 
 #. Clear button
-#: tcd/gtracked.c:301
+#: tcd/gtracked.c:298
 msgid "Clear"
 msgstr "Iðvalyti"
 
 #. Playlist button
-#: tcd/gtracked.c:306
+#: tcd/gtracked.c:303
 msgid "Playlist"
 msgstr "Grojaraðtis"
 
-#: tcd/gtracked.c:318
+#: tcd/gtracked.c:315
 msgid "Submit"
 msgstr "Pateikti"
 
-#: tcd/gtracked.c:380
+#: tcd/gtracked.c:377
 msgid "Submit Information"
 msgstr "Pateikti informacijà á CDDB"
 
-#: tcd/gtracked.c:386
+#: tcd/gtracked.c:383
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -507,12 +939,12 @@ msgstr ""
 "Pateikti informacijà apie\n"
 "¥%s´"
 
-#: tcd/gtracked.c:395
+#: tcd/gtracked.c:392
 msgid "To: "
 msgstr "Kam: "
 
 #. end of service menu
-#: tcd/gtracked.c:427
+#: tcd/gtracked.c:424
 msgid "Category: "
 msgstr "Kategorija: "
 
@@ -542,13 +974,9 @@ msgstr "Neþinomas / Neþinomas"
 msgid "Track %d"
 msgstr "Takelis %d"
 
-#: tcd/popup.c:15
-msgid "Play"
-msgstr "Groti"
-
 #: tcd/popup.c:19
 msgid "Preferences..."
-msgstr "Nustatymai..."
+msgstr "Nuostatos..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
@@ -562,87 +990,91 @@ msgstr "Pagalba"
 msgid "About"
 msgstr "Apie"
 
+#: tcd/prefs.c:77
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
 #. do nothing
-#: tcd/prefs.c:184 tcd/prefs.c:239
+#: tcd/prefs.c:188 tcd/prefs.c:243
 msgid "Do nothing"
 msgstr "Nieko nedaryti"
 
-#: tcd/prefs.c:190
+#: tcd/prefs.c:194
 msgid "Start playing"
 msgstr "Pradëti groti"
 
-#: tcd/prefs.c:196 tcd/prefs.c:245
+#: tcd/prefs.c:200 tcd/prefs.c:249
 msgid "Stop playing"
 msgstr "Sustoti groti"
 
 #. close tray
-#: tcd/prefs.c:200 tcd/prefs.c:257
+#: tcd/prefs.c:204 tcd/prefs.c:261
 msgid "Close tray"
 msgstr "Uþdaryti dureles"
 
-#: tcd/prefs.c:251
+#: tcd/prefs.c:255
 msgid "Open tray"
 msgstr "Atidaryti dureles"
 
 #. device entry
-#: tcd/prefs.c:330
+#: tcd/prefs.c:334
 msgid "CDROM device"
 msgstr "CDROM árenginys"
 
 #. Color picker
-#: tcd/prefs.c:339
+#: tcd/prefs.c:343
 msgid "Track/title color"
 msgstr "Takelio/pavadinimo spalva"
 
 #. font picker
-#: tcd/prefs.c:351
+#: tcd/prefs.c:355
 msgid "Track/title font"
 msgstr "Takelio/Pavadinimo ðriftas"
 
-#: tcd/prefs.c:352
+#: tcd/prefs.c:356
 msgid "Change font"
 msgstr "Keisti ðriftà"
 
 #. show handles
-#: tcd/prefs.c:359
+#: tcd/prefs.c:363
 msgid "Show handles (restart required)"
 msgstr "Rodyti rodykles (perleidimas reikalingas)"
 
 #. show tooltips
-#: tcd/prefs.c:366
+#: tcd/prefs.c:370
 msgid "Show tooltips"
 msgstr "Rodyti paaiðkinimus"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:373
+#: tcd/prefs.c:377
 msgid "Use alternate method to play CD"
 msgstr "Naudoti alternatyvø metodà CD grojimui"
 
 #. exit frame
-#: tcd/prefs.c:399
+#: tcd/prefs.c:403
 msgid "On exit"
 msgstr "Iðeinant"
 
-#: tcd/prefs.c:507
+#: tcd/prefs.c:511
 msgid "Key"
 msgstr "Klaviðas"
 
-#: tcd/prefs.c:508
+#: tcd/prefs.c:512
 msgid "Action"
 msgstr "Veiksmas"
 
-#: tcd/prefs.c:528
+#: tcd/prefs.c:532
 msgid "Click here to change (restart required):"
 msgstr "Paspausk èia, kad pakeistum (perleidimas reikalingas):"
 
 #. Frame
-#: tcd/prefs.c:550 tcd/prefs.c:600
+#: tcd/prefs.c:554 tcd/prefs.c:604
 msgid "Keybindings"
 msgstr "Klaviðø susiejimai"
 
-#: tcd/prefs.c:604
+#: tcd/prefs.c:608
 msgid "CDDB Settings"
-msgstr "CDDB nustatymai"
+msgstr "CDDB nuostatos"
 
 #: vu-meter/main.c:125
 msgid ""
