@@ -708,6 +708,21 @@ save_dont_or_cancel (void)
 gboolean
 save_sound_file (const gchar* file)
 {
+	/* Check if the file is default (if it's been recorded) */
+	if (default_file) {
+		gchar* tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
+		gchar* command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
+		
+		/* Save the file */
+		run_command (command, _("Saving..."));
+
+		g_free (tfile);
+		g_free (command);
+
+		/* It's saved now */
+		default_file = FALSE;
+	}
+
 	/* No saving is needed, because the changes go directly to the active file; don't worry, */
 	/* the file is being saved first time it's edited, so you just have to do 'undo all' to restore it. */
 	return TRUE;
@@ -810,7 +825,7 @@ UpdateStatusbarRecord (gpointer data)
 		g_free (filename);
 		
 		if (fileinfo.st_size >= (maxfilesize * 1000000) && show_message) {
-			gchar* message = g_strdup_printf (N_("The size of the current sample is more than %i MB!"),
+			gchar* message = g_strdup_printf (N_("The size of the current sample is more than %i Mb!"),
 							  (int) (fileinfo.st_size / 1000000) /* In MB */);
 			GtkWidget* mess = gnome_message_box_new (_(message),
 								 GNOME_MESSAGE_BOX_WARNING,
