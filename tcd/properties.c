@@ -501,6 +501,20 @@ GtkWidget *create_page1()
 
 	return box;
 }
+about_image_help_cb(GtkWidget *widget, void *data)
+{
+   gchar *file,*file2;
+
+   file=gnome_help_file_path("gnome-intro","f01.html");
+   if (file)
+     {
+        file2=alloca(strlen(file)+10);
+        strcpy(file2,"file:");
+        strcat(file2,file);
+        gnome_help_goto(NULL,file2);
+        g_free(file);
+     }
+}
 
 void apply_cb( GtkWidget *widget, void *data )
 {	
@@ -546,6 +560,8 @@ void properties_cb( GtkWidget *widget, void *data )
 
 	gtk_signal_connect( GTK_OBJECT(propbox), 
 		"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
+	gtk_signal_connect( GTK_OBJECT(propbox),
+		"apply", GTK_SIGNAL_FUNC(help_cb), NULL );
 
 	gtk_widget_show_all(propbox);
 	return;
