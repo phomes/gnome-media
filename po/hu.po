@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS\n"
-"POT-Creation-Date: 2001-08-24 15:50+0200\n"
-"PO-Revision-Date: 2001-08-24 16:32+0200\n"
-"Last-Translator: András Tímár <timar@gnome.hu>\n"
+"POT-Creation-Date: 2001-10-29 17:47+0100\n"
+"PO-Revision-Date: 2001-10-29 17:48+0100\n"
+"Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
@@ -337,7 +337,18 @@ msgstr "a mixer beállítja az elmentett értékeket, majd kilép  "
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ne mentse a módosított mixer-értékeket a beállításokba"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Nem sikerült megnyitni az hangeszközt.\n"
+"Ellenõrizd, hogy van-e jogod megnyitni a /dev/mixert-t,\n"
+"és gyõzõdj meg arról, hogy a hang támogatása bele van \n"
+"fordítva a rendszermagba."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -349,7 +360,7 @@ msgstr ""
 "de a te rendszered egy 3.6.0 elõtti változattal \n"
 "rendelkezik.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -362,27 +373,27 @@ msgstr ""
 "egy %d.%d.%d elõtti változattal rendelkezik.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Rögzít"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Felv."
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Némít"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome keverõpult"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ez egy keverõpult az OSS hangeszközökhöz."
 
@@ -848,7 +859,8 @@ msgstr ""
 
 #: grecord/src/preferences.c:263
 msgid ""
-"You havn't entered a mixer command; you will not be able to start the mixer.\n"
+"You havn't entered a mixer command; you will not be able to start the "
+"mixer.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Nem írtál be mixer utasítást, így nem tudod futtatni a mixert.\n"
@@ -886,10 +898,12 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory %s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Nincs meg a megfelelõ jogosultságod (írás és olvasás) a %s temp könyvtárhoz.\n"
+"Nincs meg a megfelelõ jogosultságod (írás és olvasás) a %s temp "
+"könyvtárhoz.\n"
 "Használni akarod mindenképp?"
 
 #. Does not exist
@@ -918,7 +932,9 @@ msgstr "TCD - Gnome CD-lejátszó"
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
-msgstr "A GTCD a Gnome CD lejátszója, CDDB támogatással Több információ a 'Thanks' fájlban olvasható."
+msgstr ""
+"A GTCD a Gnome CD lejátszója, CDDB támogatással Több információ a 'Thanks' "
+"fájlban olvasható."
 
 #: tcd/cddb_props.c:72
 msgid "Disc ID"
@@ -1125,8 +1141,8 @@ msgstr "Kötet"
 #: tcd/gtcd.c:1072
 msgid "Cannot load requested font. Reloading default font."
 msgstr ""
-"Nem lehet betölteni a kért betûkészletet. Az alapértelmezett betûkészlet lesz "
-"használva."
+"Nem lehet betölteni a kért betûkészletet. Az alapértelmezett betûkészlet "
+"lesz használva."
 
 #: tcd/gtcd.c:1083
 msgid "Cannot load default Helvetica font. Loading any fixed width font."
