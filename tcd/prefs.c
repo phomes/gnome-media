@@ -26,6 +26,7 @@
 #include <gnome.h>
 #include <string.h>
 #include <ctype.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "gtcd_public.h"
 #include "keybindings.h"

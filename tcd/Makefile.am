@@ -80,7 +80,6 @@ goad_DATA = gtcd.goad
 
 BUILT_SOURCES = $(GTCD_GENERATED)
 
-gtcd.c: my-gtcd-idl
 gtcd.h: my-gtcd-idl
 gtcd-stubs.c: my-gtcd-idl
 gtcd-skels.c: my-gtcd-idl

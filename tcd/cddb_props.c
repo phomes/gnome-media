@@ -12,6 +12,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <pwd.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "gtcd_public.h"
 #include "cddb_props.h"

@@ -136,9 +136,9 @@ int tcd_close_disc( cd_struct *cd )
     return 0;
 }
 
-int tcd_readtoc( cd_struct *cd )
+void tcd_readtoc( cd_struct *cd )
 {
-    int tmp,i;
+    int i;
     int delsecs;
 
     if(cd->time_lock)
@@ -159,7 +159,7 @@ int tcd_readtoc( cd_struct *cd )
 	cd->cur_t = 0;
 	cd->cddb_id = 0;
 	tcd_close_disc ( cd );
-	return(-1);		
+	return;
     }
 
     /* grab first & last tracks */
@@ -180,7 +180,7 @@ int tcd_readtoc( cd_struct *cd )
 	cd->cur_t = 0;
 	cd->cddb_id = 0;
 	tcd_close_disc ( cd );
-	return(-1);
+	return;
     }                                         
 
     /* read the rest of the tocs */
@@ -197,7 +197,7 @@ int tcd_readtoc( cd_struct *cd )
 	    cd->cur_t = 0;
 	    cd->cddb_id = 0;
 	    tcd_close_disc ( cd );
-	    return(-1);
+	    return;
 	}
 
 	cd->trk[C(i)].type = cd->trk[C(i)].toc.cdte_ctrl;
@@ -234,12 +234,12 @@ int tcd_readtoc( cd_struct *cd )
     cd->isplayable=TRUE;
     tcd_close_disc ( cd );
     debug("cdrom.c: tcd_readtoc exiting normally\n" );
-    return tmp;
+    return;
 }
 
 void tcd_recalculate(cd_struct *cd)
 {
-    int result;
+    int result=0;
     if(cd->time_lock)
 	    return;
 
@@ -273,7 +273,7 @@ void tcd_recalculate(cd_struct *cd)
 
 void tcd_recalculate_fake(cd_struct *cd, gint abs_pos, gint track)
 {
-    int result;
+    int result=0;
 
     /* calculate various timing values */
     cd->cur_t = track;
@@ -375,11 +375,10 @@ int tcd_get_volume(cd_struct *cd)
 #endif
 }	
 	                                  
-int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
+void tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
 {
     struct cdrom_msf msf;
     struct cdrom_ti trkind;
-    int tmp;
     debug("cdrom.c: tcd_playtracks( %p, %d, %d )\n", cd, start_t, end_t );
     cd->err = FALSE;
 	
@@ -393,7 +392,7 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
 	if(cd->err) 
 	{
 	    debug("cdrom.c: tcd_playtracks - error while fetching disc.\n");
-	    return -1;
+	    return;
 	}
     }
 
@@ -459,14 +458,14 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
 	    cd->err = TRUE;
 	    debug("cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n");
 	    tcd_close_disc ( cd );
-	    return -1;
+	    return;
 	}
     }
     tcd_close_disc ( cd );
 
     cd->isplayable = TRUE;
     debug("cdrom.c: tcd_playtracks exiting normally\n" );
-    return tmp;
+    return;
 }       
 
 static int msf_2_frame( cd_min_sec_frame *msf )

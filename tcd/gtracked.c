@@ -2,6 +2,8 @@
 #include <gnome.h>
 #include <sys/types.h>
 #include <string.h>
+#include <libgnomeui/gnome-window-icon.h>
+
 #include "linux-cdrom.h"
 
 #include "gtcd_public.h"

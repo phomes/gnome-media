@@ -1,5 +1,25 @@
 2001-05-29  Peter Teichman  <peter@ximian.com>
 
+	* Makefile.am: remove the explicit gtcd.c rule. it was breaking
+	distcheck.
+
+	* cddb.c: fix some comparisons that should have been assignments
+
+	* cddb_props.c: 
+	  cddb_status.c:
+	  gtcd.c:
+	  gtracked.c:
+	  prefs.c:
+	#include <libgnomeui/gnome-window-icon.h>
+
+	* gtcd.c: define calculate_title() before it is used, remove a
+	reference to an unused variable
+
+	* linux-cdrom.h: make tcd_readtoc, tcd_playtracks return void. the
+	return values were never checked anyway
+	
+2001-05-29  Peter Teichman  <peter@ximian.com>
+
 	* Recognize data tracks in various places. Patch from 
 	David Hampton <hampton@employees.org>
 

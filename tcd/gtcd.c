@@ -43,6 +43,7 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <libgnorba/gnorba.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "linux-cdrom.h"
 
@@ -127,6 +128,7 @@ gint volume_changed(GtkWidget *widget, gpointer *data);
 gint launch_gmix(GtkWidget *widget, GdkEvent *event, gpointer data);
 gint fast_timer(gpointer *data);
 void setup_time_display(GtkWidget *table);
+void calculate_title(int maxwidth, int inc);
 void setup_fonts(void);
 void init_window(void);
 GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
@@ -921,7 +923,6 @@ void setup_time_display(GtkWidget *table)
 void setup_fonts(void)
 {
 	GtkWidget *dialog;
-	GdkFont *tmp;
 
 	if(tfont)
 		gdk_font_unref(tfont);

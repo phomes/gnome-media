@@ -68,10 +68,10 @@ static void append_data(char *dest, char *data, int maxlen) {
 				data[j] = '\n';
 				i++;
 			} else if (data[i+1] == 't') {
-				data[j] == '\t';
+				data[j] = '\t';
 				i++;
 			} else if (data[i+1] == '\\') {
-				data[j] == '\\';
+				data[j] = '\\';
 				i++;
 			} else
 				data[j] = data[i];

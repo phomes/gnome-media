@@ -1,5 +1,7 @@
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
+
 #include "gtcd_public.h"
 #include "cddb.h"
 
