@@ -85,7 +85,7 @@ PKG_CHECK_MODULES(GSR, \
 		  HAVE_GST=yes,HAVE_GST=no)
 
 if test "x$HAVE_GST" = "xno"; then
-  AC_MSG_ERROR(you need GStreamer installed)
+  AC_MSG_WARN(you need GStreamer installed for the mixer and recorder to work)
 fi
 
 AC_SUBST(GSR_CFLAGS)
@@ -242,39 +242,44 @@ AC_SUBST(GAILUTIL_LIBS)
 PROGRAMS_GRECORD="grecord"
 AC_SUBST(PROGRAMS_GRECORD)
 
+
 # gstreamer-properties
-#x_libs="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
+PROGRAMS_GSTPROPS=""
+if test "x$HAVE_GST" = "xyes";
+then
+  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR"
+  PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
+  		  PROGRAMS_GSTPROPS="gstreamer-properties")
+  GSTPROPS_LIBS="$GSTPROPS_LIBS -lgstgconf-$GST_MAJORMINOR"
+  AC_SUBST(GSTPROPS_LIBS)
+  AC_SUBST(GSTPROPS_CFLAGS)
 
-COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR"
-PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
-		  PROGRAMS_GSTPROPS="gstreamer-properties",
-		  PROGRAMS_GSTPROPS="")
-
-GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-$GST_MAJORMINOR"
-AC_SUBST(GSTPROPS_LIBS)
-AC_SUBST(GSTPROPS_CFLAGS)
-
-GNOMECC_DESKTOP_DIR=${datadir}/control-center-2.0/capplets
-AS_AC_EXPAND(GNOMECC_DESKTOP_DIR, $GNOMECC_DESKTOP_DIR)
-AC_DEFINE_UNQUOTED(GNOMECC_DESKTOP_DIR, "$GNOMECC_DESKTOP_DIR", 
-                   [Install path for Gnome control-center integration])
-AC_SUBST(GNOMECC_DESKTOP_DIR)
-AC_SUBST(PROGRAMS_GSTPROPS)
+  GNOMECC_DESKTOP_DIR=${datadir}/control-center-2.0/capplets
+  AS_AC_EXPAND(GNOMECC_DESKTOP_DIR, $GNOMECC_DESKTOP_DIR)
+  AC_DEFINE_UNQUOTED(GNOMECC_DESKTOP_DIR, "$GNOMECC_DESKTOP_DIR", 
+                     [Install path for Gnome control-center integration])
+  AC_SUBST(GNOMECC_DESKTOP_DIR)
+  AC_SUBST(PROGRAMS_GSTPROPS)
+fi
 
 # gst-mixer
-PROGRAMS_GSTMIX=""
-COMMON_MODULES="libgnomeui-2.0 gstreamer-$GST_MAJORMINOR gstreamer-interfaces-$GST_MAJORMINOR"
-PKG_CHECK_MODULES(GSTMIX, $COMMON_MODULES, [
-  OLD_CPPFLAGS=$CPPFLAGS
-  CPPFLAGS="$CPPFLAGS $GSTMIX_CFLAGS"
-  AC_CHECK_HEADERS([gst/mixer/mixer.h gst/propertyprobe/propertyprobe.h],
+if test "x$HAVE_GST" = "xyes";
+then
+  PROGRAMS_GSTMIX=""
+  COMMON_MODULES="libgnomeui-2.0 gstreamer-$GST_MAJORMINOR gstreamer-interfaces-$GST_MAJORMINOR"
+  PKG_CHECK_MODULES(GSTMIXER, $COMMON_MODULES, [
+    OLD_CPPFLAGS=$CPPFLAGS
+    CPPFLAGS="$CPPFLAGS $GSTMIXER_CFLAGS"
+    AC_CHECK_HEADERS([gst/mixer/mixer.h gst/propertyprobe/propertyprobe.h],
                    PROGRAMS_GSTMIX="gst-mixer")
-  CPPFLAGS=$OLD_CPPFLAGS ])
+    CPPFLAGS=$OLD_CPPFLAGS
+  ],
+  [])
 
-GSTMIX_LIBS="$GSTMIX_LIBS $x_libs"
-AC_SUBST(GSTMIX_LIBS)
-AC_SUBST(GSTMIX_CFLAGS)
-AC_SUBST(PROGRAMS_GSTMIX)
+  AC_SUBST(GSTMIXER_LIBS)
+  AC_SUBST(GSTMIXER_CFLAGS)
+  AC_SUBST(PROGRAMS_GSTMIXER)
+fi
 
 # profiles
 PKG_CHECK_MODULES(GMP, gconf-2.0 gtk+-2.0 libglade-2.0 libgnome-2.0,
@@ -343,7 +348,11 @@ echo "Source code location:   ${srcdir}"
 echo "Compiler:               ${CC}"
 echo "System CDRom header:    ${cdrom_header}"
 echo "Default CD device:      ${default_cd_device}"
-echo "Default mixer program:  gst-mixer"
+if test x$PROGRAMS_GSTMIXER != x; then
+  echo "GStreamer mixer:        yes"
+else
+  echo "GStreamer mixer:        no"
+fi
 echo "OS supports close tray: ${close_tray}"
 if test x$PROGRAMS_GSTPROPS != x; then
   echo "GStreamer capplet:      yes"

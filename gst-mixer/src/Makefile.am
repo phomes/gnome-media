@@ -1,5 +1,5 @@
 INCLUDES = \
-	$(GSTMIX_CFLAGS)				\
+	$(GSTMIXER_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)"\"			\
 	-DPIX_DIR=\""$(datadir)/pixmaps"\"
@@ -10,4 +10,4 @@ gst_mixer_SOURCES = \
 	mixer.c
 
 gst_mixer_LDFLAGS = \
-	$(GSTMIX_LIBS)
+	$(GSTMIXER_LIBS)
