@@ -78,32 +78,32 @@ void gcddb()
 	label = gtk_label_new("");
 	box = gtk_vbox_new( FALSE, 5 );
 	infobox = gtk_vbox_new( FALSE, 0 );
-	infoframe = gtk_frame_new("Configuration:");
+	infoframe = gtk_frame_new(N_("Configuration:"));
 	gtk_frame_set_shadow_type(GTK_FRAME(infoframe),GTK_SHADOW_ETCHED_IN);
 	gtk_container_add(GTK_CONTAINER(infoframe), infobox);
 
-	cddbwin = gtk_window_new( GTK_WINDOW_DIALOG );
+	cddbwin = gtk_window_new(GTK_WINDOW_DIALOG);
 	gtk_container_border_width (GTK_CONTAINER (cddbwin), 5);
-	gtk_window_set_title( GTK_WINDOW(cddbwin), "CDDB Remote" );
+	gtk_window_set_title( GTK_WINDOW(cddbwin), N_("CDDB Remote") );
 	gtk_window_set_wmclass( GTK_WINDOW(cddbwin), "cddb","gtcd" );
 	
 	/* cancel button */
-	cancelbutton = gtk_button_new_with_label( "Close" );
+	cancelbutton = gtk_button_new_with_label(N_("Close"));
 	cancel_id = gtk_signal_connect (GTK_OBJECT (cancelbutton), "clicked",
 		GTK_SIGNAL_FUNC(close_cddb), NULL);
 
 	/* go button */
-	startbutton = gtk_button_new_with_label( "Go" );
+	startbutton = gtk_button_new_with_label(N_("Go"));
 	start_id = gtk_signal_connect (GTK_OBJECT (startbutton), "clicked",
 		GTK_SIGNAL_FUNC(do_cddb), NULL);
 
-	g_snprintf( tmp, 255, "Server: %s:%d\n", props.cddb, props.cddbport );
+	g_snprintf( tmp, 255, N_("Server: %s:%d\n"), props.cddb, props.cddbport );
         tmplabel = gtk_label_new(tmp);
 	gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
 	if( props.use_http )
 	{
-		g_snprintf( tmp, 255, "HTTP %s Enabled\n", 
-			props.use_proxy?"and Proxy":"" );
+		g_snprintf( tmp, 255, N_("HTTP %s Enabled\n"), 
+			props.use_proxy?N_("and Proxy"):"" );
 	        tmplabel = gtk_label_new(tmp);
 		gtk_box_pack_start( GTK_BOX(infobox), tmplabel, FALSE, TRUE, 0 );
 	}
@@ -152,7 +152,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 		strcpy(server.remote_path, props.remote_path);
 	}
 	
-	gtk_label_set( GTK_LABEL(label), "Connecting..." );
+	gtk_label_set(GTK_LABEL(label), N_("Connecting..."));
 	while(gtk_events_pending()) gtk_main_iteration();
 
 	if (server.http) {
@@ -164,12 +164,12 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	} else {
 		if( tcd_open_cddb( &server, periodic ) != 0 )
 		{
-			sprintf( tmp, "Error: %s", server.error );
+			sprintf( tmp, N_("Error: %s"), server.error );
 			gtk_label_set( GTK_LABEL(label), tmp );
 			return;
 		}
 	}
-	gtk_label_set( GTK_LABEL(label), "Connected!" );
+	gtk_label_set( GTK_LABEL(label), N_("Connected!") );
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.2);
 	while(gtk_events_pending()) gtk_main_iteration();
 
@@ -178,7 +178,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	} else {
 		tcd_formatquery( &cd, qs, sizeof(qs) );
 	}
-	gtk_label_set( GTK_LABEL(label), "Sending query..." );
+	gtk_label_set( GTK_LABEL(label), N_("Sending query...") );
 	r = send( server.socket, qs, strlen(qs), 0 );
 #ifdef DEBUG
 	g_print( "-> %s\n", qs );
@@ -186,10 +186,10 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.4);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	gtk_label_set( GTK_LABEL(label), "Reading results..." );
+	gtk_label_set( GTK_LABEL(label), N_("Reading results...") );
 	if (server.http) {
 		if (tcd_getquery_http(&server,&query, periodic)) {
-			gtk_label_set(GTK_LABEL(label),"Error: Unable to open cddb read socket\n");
+			gtk_label_set(GTK_LABEL(label),N_("Error: Unable to open cddb read socket\n"));
 			return;
 		}
 	} else {
@@ -198,7 +198,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	gtk_progress_bar_update( GTK_PROGRESS_BAR(pb), 0.6);
 	while(gtk_events_pending()) gtk_main_iteration();
 
-	gtk_label_set( GTK_LABEL(label), "Downloading data..." );
+	gtk_label_set( GTK_LABEL(label), N_("Downloading data...") );
 	if (server.http) {
 		tcd_formatread_http(&cd,qs,sizeof(qs),server.hostname,server.port,server.remote_path,query.categ,query.discid); 
 		send( server.socket, qs, strlen(qs), 0 );
@@ -216,7 +216,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	outfile = fopen( qs, "w" );
 	if (outfile == NULL)
 	{
-		gtk_label_set( GTK_LABEL(label), "Can't open local file." );
+		gtk_label_set( GTK_LABEL(label), N_("Can't open local file.") );
 	        close(server.socket);
 	        return;
 	}
@@ -236,7 +236,7 @@ void do_cddb( GtkWidget *widget, gpointer data )
 /* Urk. cddb.howto is broken. */
 	if( result != 200 && result != 210 )
 	{
-		gtk_label_set( GTK_LABEL(label), "Exact match not found." );
+		gtk_label_set(GTK_LABEL(label), N_("Exact match not found."));
 		fclose(outfile);
 		close(server.socket);
 		return;
@@ -250,14 +250,14 @@ void do_cddb( GtkWidget *widget, gpointer data )
 		g_print( "<- %s\n", s );
 #endif
 		fprintf( outfile, "%s\n", s );
-		sprintf( tmp, "Downloading line %3d...",i++ );
+		sprintf( tmp, N_("Downloading line %3d..."),i++ );
 		gtk_label_set( GTK_LABEL(label), tmp );
 		while(gtk_events_pending()) gtk_main_iteration();
 	} while( strcmp( ".", s ) );
 
 	fclose(outfile);
 	close(server.socket);
-	gtk_label_set( GTK_LABEL(label), "Done!" );
+	gtk_label_set( GTK_LABEL(label), N_("Done!") );
 
 	tcd_close_disc(&cd);
         tcd_init_disc(&cd, create_warn);
@@ -270,4 +270,4 @@ void do_cddb( GtkWidget *widget, gpointer data )
 	gtk_signal_disconnect( GTK_OBJECT(cancelbutton), cancel_id );
 	cancel_id = gtk_signal_connect (GTK_OBJECT(cancelbutton), "clicked",
         	GTK_SIGNAL_FUNC(close_cddb), NULL);
-}        	                                                                          
+}

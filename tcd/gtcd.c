@@ -376,7 +376,7 @@ GtkWidget* make_row3( void )
     gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
     gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
 	
-    make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
+    make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, N_("Quit") );
 
     gtk_widget_show_all(box);
 	
@@ -500,9 +500,10 @@ void draw_titles( GdkGC *gc )
 void draw_time_scanning( GdkGC *gc )
 {
     gdk_gc_set_foreground( gc, &track_color );
-    gdk_draw_text(status_db,tfont,gc,4,39+(tfont->ascent+tfont->descent)-2, "(Scanning)", 
-		  10);
-    gtk_window_set_title( GTK_WINDOW(window), "(Scanning)" );
+    gdk_draw_text(status_db,tfont,gc,4,39+(tfont->ascent+tfont->descent)-2, 
+    		N_("(Scanning)"),
+		10);
+    gtk_window_set_title( GTK_WINDOW(window), N_("(Scanning)") );
 }
 
 void draw_status( void )
@@ -528,7 +529,7 @@ void draw_status( void )
 	switch( cd.sc.cdsc_audiostatus )
 	{
 	case CDROM_AUDIO_INVALID:
-	    strcpy( tmp,"No Disc" );
+	    strcpy(tmp, N_("No Disc"));
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
 	    draw_time_scanning(gc);
 	    break;
@@ -556,7 +557,7 @@ void draw_status( void )
 		draw_time_scanning(gc);
 	    break;
 	case CDROM_AUDIO_ERROR:
-	    strcpy( tmp,"Error" );
+	    strcpy( tmp,N_("Error") );
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
 	    draw_time_scanning(gc);
 	    break;
@@ -815,8 +816,6 @@ static gint status_click_event(GtkWidget *widget, GdkEvent *event)
 	    draw_status();
 	    return TRUE;
 	}
-			
-		
     }
 	
     return FALSE;

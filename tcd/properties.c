@@ -149,7 +149,7 @@ GtkWidget *create_http_frame()
     proxy_l_box	= gtk_vbox_new(FALSE,2);
     
     /* http checkbox */
-    http_check = gtk_check_button_new_with_label("Use HTTP");
+    http_check = gtk_check_button_new_with_label(N_("Use HTTP"));
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(http_check), props.use_http);
     gtk_signal_connect(GTK_OBJECT(http_check),"toggled",
 		       GTK_SIGNAL_FUNC(http_checked),NULL);  
@@ -161,7 +161,7 @@ GtkWidget *create_http_frame()
     gtk_container_add(GTK_CONTAINER(httpframe), http_box);
     
     /* remote path entry & label */
-    label = gtk_label_new("Path:");
+    label = gtk_label_new(N_("Path:"));
     path_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(path_entry), props.remote_path );
     props.remote_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(path_entry)));
@@ -172,19 +172,19 @@ GtkWidget *create_http_frame()
     gtk_box_pack_start(GTK_BOX(path_box), path_entry, TRUE, TRUE, 0);
     
     /* proxy checkbox */
-    proxy_check = gtk_check_button_new_with_label("Use Proxy Server");
+    proxy_check = gtk_check_button_new_with_label(N_("Use Proxy Server"));
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(proxy_check), props.use_proxy);
     gtk_signal_connect(GTK_OBJECT(proxy_check),"toggled",
 		       GTK_SIGNAL_FUNC(proxy_checked),NULL);  
     
     /* proxy frame */
-    proxyframe = gtk_frame_new("Proxy");
+    proxyframe = gtk_frame_new(N_("Proxy"));
     gtk_widget_set_sensitive(proxyframe,props.use_proxy);
     gtk_frame_set_shadow_type(GTK_FRAME(proxyframe),GTK_SHADOW_ETCHED_IN);
     gtk_container_add(GTK_CONTAINER(proxyframe), proxy_box);
     
     /* proxy server */
-    label = gtk_label_new("Server:");
+    label = gtk_label_new(N_("Server:"));
     proxy_server_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(proxy_server_entry), props.proxy_server );
     gtk_box_pack_start(GTK_BOX(proxy_l_box), label, TRUE, TRUE, 0);
@@ -194,7 +194,7 @@ GtkWidget *create_http_frame()
 		       GTK_SIGNAL_FUNC(changed_cb), NULL );
     
     /* proxy port */
-    label = gtk_label_new("Port:");
+    label = gtk_label_new(N_("Port:"));
     adj = gtk_adjustment_new( props.proxy_port, 1, 9999, 1, 10, 10 );
     proxy_port_spin  = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
     gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(proxy_port_spin),
@@ -231,10 +231,10 @@ GtkWidget *create_cddb_frame()
     cddb_r_box = gtk_vbox_new( FALSE, 2 );
     cddb_l_box = gtk_vbox_new( FALSE, 2 );
     cddb_box   = gtk_hbox_new( FALSE, 2 );
-    cddb_frame = gtk_frame_new("CDDB Access");
+    cddb_frame = gtk_frame_new(N_("CDDB Access"));
     
     /* server entry */
-    label = gtk_label_new("Server:");
+    label = gtk_label_new(N_("Server:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddb_i = gtk_entry_new();
     gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
@@ -245,7 +245,7 @@ GtkWidget *create_cddb_frame()
     gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i,TRUE, TRUE, 0 );
     
     /* port spinner */
-    label = gtk_label_new("Port:");
+    label = gtk_label_new(N_("Port:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     adj = gtk_adjustment_new( props.cddbport, 1, 9999, 1, 10, 10 );
     port_i = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
@@ -281,10 +281,10 @@ GtkWidget *create_cdrom_frame()
     cdrom_r_box= gtk_vbox_new( FALSE, 2 );
     cdrom_l_box= gtk_vbox_new( FALSE, 2 );
     cdrom_box  = gtk_hbox_new( FALSE, 2 );
-    cdrom_frame = gtk_frame_new("CDROM Drive");
+    cdrom_frame = gtk_frame_new(N_("CDROM Drive"));
     
     /* cdrom device */
-    label = gtk_label_new("Device:");
+    label = gtk_label_new(N_("Device:"));
     gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
     cddev_i = gtk_entry_new();
     gtk_entry_set_text( GTK_ENTRY(cddev_i), props.cddev );
@@ -383,31 +383,21 @@ GtkWidget *create_status_frame()
     status_table = gtk_table_new( 4, 2, FALSE );
     
     track_gcs  = gnome_color_selector_new((SetColorFunc)track_color_changed_cb, NULL );
-    status_gcs = gnome_color_selector_new((SetColorFunc)track_color_changed_cb,NULL );
-    trackbutton_f  = gtk_button_new_with_label( "Title/Track Font" );
-    statusbutton_f = gtk_button_new_with_label( "fsdafd Font" );
+    trackbutton_f  = gtk_button_new_with_label( N_("Title/Track Font") );
     
     gtk_signal_connect( GTK_OBJECT(trackbutton_f), "clicked",
 			GTK_SIGNAL_FUNC(track_font_cb), NULL );
-    gtk_signal_connect( GTK_OBJECT(statusbutton_f), "clicked",
-			GTK_SIGNAL_FUNC(status_font_cb), NULL );
     
     gnome_color_selector_set_color_int( track_gcs, tr, tg, tb, 255 );
-    gnome_color_selector_set_color_int( status_gcs, rr, rg, rb, 255 );
     
     trackbutton_c = gnome_color_selector_get_button( track_gcs );
-    statusbutton_c = gnome_color_selector_get_button( status_gcs );
     
-    track_l  = gtk_label_new("Title/Track Display");
-    status_l = gtk_label_new("fasdfasdf Display");
+    track_l  = gtk_label_new(N_("Title/Track Display"));
     
-    frame = gtk_frame_new("Fonts & Colors");
+    frame = gtk_frame_new(N_("Fonts & Colors"));
     
     gtk_table_attach_defaults( GTK_TABLE(status_table),
 			       track_l, 0,2,0,1 );
-/*    gtk_table_attach_defaults( GTK_TABLE(status_table),
-			       status_l, 0,2,1,2 );
- */   
     gtk_table_attach( GTK_TABLE(status_table),
 		      trackbutton_c, 2,3,0,1,
 		      0,0,2,2 );
@@ -415,13 +405,6 @@ GtkWidget *create_status_frame()
 		      trackbutton_f, 3,4,0,1,
 		      GTK_EXPAND,0,2,2 );
 
-/*    gtk_table_attach( GTK_TABLE(status_table),
-		      statusbutton_c, 2,3,1,2,
-		      0,0,2,2 );
-    gtk_table_attach( GTK_TABLE(status_table),
-		      statusbutton_f, 3,4,1,2,
-		      GTK_EXPAND,0,2,2 );
-*/    
     gtk_container_add( GTK_CONTAINER(frame), status_table );
     
     gtk_widget_show_all(frame);
@@ -443,13 +426,13 @@ GtkWidget *create_ui_frame()
     ui_l_box= gtk_vbox_new( FALSE, 2 );
     ui_box  = gtk_hbox_new( TRUE, 2 );
     
-    handle_i = gtk_check_button_new_with_label("Show Handles (Restart of TCD required)");
-    tooltips_i = gtk_check_button_new_with_label("Show Tooltips");
+    handle_i = gtk_check_button_new_with_label(N_("Show Handles (Restart of TCD required)"));
+    tooltips_i = gtk_check_button_new_with_label(N_("Show Tooltips"));
     
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), props.handle );
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), props.tooltip );
     
-    ui_frame = gtk_frame_new("General");
+    ui_frame = gtk_frame_new(N_("General"));
     
     gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
 			GTK_SIGNAL_FUNC(check_changed_cb), &props.handle );
@@ -550,19 +533,19 @@ void properties_cb( GtkWidget *widget, void *data )
     gtk_window_set_title( GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window), "TCD Settings" );
     
     page1	= create_page1();
-    label   = gtk_label_new("General");
+    label   = gtk_label_new(N_("General"));
     gtk_widget_show(page1);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
 				    page1, label);
     
     page2 	= create_page2();
-    label   = gtk_label_new("HTTP/Proxy");
+    label   = gtk_label_new(N_("HTTP/Proxy"));
     gtk_widget_show(page2);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
 				    page2, label);
     
     page3 = create_page3();
-    label = gtk_label_new("Interface");
+    label = gtk_label_new(N_("Interface"));
     gtk_widget_show(page3);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
 				    page3, label);
