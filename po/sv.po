@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2001-06-02 02:15+0200\n"
-"PO-Revision-Date: 2001-06-02 02:47+0200\n"
+"POT-Creation-Date: 2001-06-03 21:27+0200\n"
+"PO-Revision-Date: 2001-06-03 21:30+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -336,6 +336,28 @@ msgstr "initiera mixern (mixrarna) från sparade inställningar och avsluta"
 #: gmix/gmix.c:145
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "spara inte (modifierade) mixerinställningar till konfigurationen"
+
+#: gmix/gmix.c:520
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"a version prior to 3.6.0.\n"
+msgstr ""
+"Varning: Denna version av gmix kompilerades med\n"
+"OSS version %d.%d.%d, och ditt system använder\n"
+"en version äldre än 3.6.0.\n"
+
+#: gmix/gmix.c:528
+#, c-format
+msgid ""
+"Warning: This version of gmix was compiled with\n"
+"OSS version %d.%d.%d, and your system is running\n"
+"version %d.%d.%d.\n"
+msgstr ""
+"Varning: Denna version av gmix kompilerades med\n"
+"OSS version %d.%d.%d, och ditt system använder\n"
+"version %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
 #: gmix/gmix.c:1013
@@ -853,11 +875,11 @@ msgstr " namnlös.wav"
 msgid "Adding echo to sample..."
 msgstr "Lägger till eko till ljudklippet..."
 
-#: tcd/callbacks.c:83
+#: tcd/callbacks.c:85
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Gnome-CD-spelaren"
 
-#: tcd/callbacks.c:87
+#: tcd/callbacks.c:89
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
@@ -1158,7 +1180,7 @@ msgstr "Till: "
 msgid "Category: "
 msgstr "Kategori: "
 
-#: tcd/linux-cdrom.c:675
+#: tcd/linux-cdrom.c:678
 #, c-format
 msgid ""
 "Error accessing cdrom device.\n"
@@ -1175,11 +1197,11 @@ msgstr ""
 "\n"
 "Anledning: %s\n"
 
-#: tcd/linux-cdrom.c:768
+#: tcd/linux-cdrom.c:771
 msgid "Unknown / Unknown"
 msgstr "Okänd / Okänd"
 
-#: tcd/linux-cdrom.c:774
+#: tcd/linux-cdrom.c:777
 #, c-format
 msgid "Track %d"
 msgstr "Spår %d"
@@ -1342,18 +1364,33 @@ msgstr "Värddatorn är %s\n"
 msgid "Volume Meter"
 msgstr "Volymmätare"
 
-#~ msgid ""
-#~ "Warning: This version of gmix was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ msgstr ""
-#~ "Varning: Denna version av gmix kompilerades med\n"
-#~ "OSS version %d.%d.%d, och ditt system använder\n"
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "A Volume Unit Meter for ESD "
+msgstr "En volymenhetsmätare för ESD"
 
-#~ msgid "a version prior to 3.6.0.\n"
-#~ msgstr "en tidigare version än 3.6.0.\n"
+#: vu-meter/vumeter.desktop.in.h:2
+msgid "ESD Volume Meter"
+msgstr "ESD-volymmätare"
 
-#~ msgid "version %d.%d.%d.\n"
-#~ msgstr "version %d.%d.%d.\n"
+#: tcd/gtcd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD-spelare"
+
+#: tcd/gtcd.desktop.in.h:2
+msgid "Gnome CD Player"
+msgstr "CD-spelare för Gnome"
+
+#: grecord/Soundrecorder.desktop.in.h:1
+msgid "A simple soundrecording program for GNOME"
+msgstr "Ett enkelt ljudinspelningsprogram för GNOME"
+
+#: grecord/Soundrecorder.desktop.in.h:2
+msgid "Sound recorder"
+msgstr "Ljudinspelare"
+
+#: gmix/gmix.desktop.in.h:1
+msgid "Audio Mixer"
+msgstr "Ljudmixer"
 
 #~ msgid "Speed"
 #~ msgstr "Hastighet"
@@ -1445,38 +1482,8 @@ msgstr "Volymmätare"
 #~ msgid "_Help"
 #~ msgstr "_Hjälp"
 
-#: vu-meter/vumeter.desktop.in:3
-msgid "ESD Volume Meter"
-msgstr "ESD-volymmätare"
+#~ msgid "TV set"
+#~ msgstr "Teve"
 
-#: vu-meter/vumeter.desktop.in:4
-msgid "A Volume Unit Meter for ESD "
-msgstr "En volymenhetsmätare för ESD"
-
-#: tcd/gtcd.desktop.in:3
-msgid "CD Player"
-msgstr "CD-spelare"
-
-#: tcd/gtcd.desktop.in:4
-msgid "Gnome CD Player"
-msgstr "CD-spelare för Gnome"
-
-#: grecord/Soundrecorder.desktop.in:3
-msgid "Sound recorder"
-msgstr "Ljudinspelare"
-
-#: grecord/Soundrecorder.desktop.in:4
-msgid "A simple soundrecording program for GNOME"
-msgstr "Ett enkelt ljudinspelningsprogram för GNOME"
-
-#: gnomovision/gnomovision.desktop.in:3
-msgid "TV set"
-msgstr "Teve"
-
-#: gnomovision/gnomovision.desktop.in:4
-msgid "Gnomovision applications"
-msgstr "Gnomovision-program"
-
-#: gmix/gmix.desktop.in:3
-msgid "Audio Mixer"
-msgstr "Ljudmixer"
+#~ msgid "Gnomovision applications"
+#~ msgstr "Gnomovision-program"
