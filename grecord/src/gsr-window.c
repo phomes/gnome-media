@@ -1205,13 +1205,12 @@ media_record (BonoboUIComponent *uic,
 		g_object_unref (priv->record->pipeline);
 	}
 	priv->record = make_record_pipeline (window);
+	if (!priv->record)
+		return;
 
-	if (priv->record != NULL) {
-		g_object_set (G_OBJECT (priv->record->sink),
-			      "location", priv->record_filename,
-			      NULL);
-	}
-	
+	g_object_set (G_OBJECT (priv->record->sink),
+		      "location", priv->record_filename,
+		      NULL);
 	window->priv->len_secs = 0;
 	gst_element_set_state (priv->record->pipeline, GST_STATE_PLAYING);
 }
