@@ -374,7 +374,7 @@ init_player (void)
 	GnomeCD *gcd;
 	GnomeCDRomStatus *status;
 	GtkWidget *display_box;
-	GtkWidget *top_hbox, *button_hbox, *side_vbox;
+	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button, *arrow;
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
@@ -472,22 +472,9 @@ init_player (void)
 
 	g_signal_connect (G_OBJECT (gcd->window), "destroy",
 			  G_CALLBACK (window_destroy_cb), gcd);
-	gcd->vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+	gcd->vbox = gtk_vbox_new (FALSE, 1);
 	gcd->tooltips = gtk_tooltips_new ();
-	top_hbox = gtk_hbox_new (FALSE, 0);
-
-	/* Create app controls */
-	side_vbox = gtk_vbox_new (FALSE, 0);
-	button = make_button_from_stock (gcd, GTK_STOCK_INDEX, G_CALLBACK(open_track_editor), _("Open track editor"), _("Track editor"));
-	gtk_widget_set_sensitive (button, FALSE);
-	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
-	gcd->trackeditor_b = button;
-
-	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, G_CALLBACK(open_preferences), _("Preferences"), _("Preferences"));
-	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
-	gcd->properties_b = button;
-
-	gtk_box_pack_start (GTK_BOX (top_hbox), side_vbox, FALSE, FALSE, 0);
+	top_hbox = gtk_hbox_new (FALSE, 1);
 
 	/* Create the display */
 	display_box = gtk_vbox_new (FALSE, 1);
@@ -519,13 +506,33 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
-	
+
+	option_hbox = gtk_hbox_new (FALSE, 2);
+
+	/* Create app controls */
+	button = make_button_from_stock (gcd, GTK_STOCK_INDEX,
+					 G_CALLBACK(open_track_editor),
+					 _("Open track editor"),
+					 _("Track editor"));
+	gtk_widget_set_sensitive (button, FALSE);
+	gtk_box_pack_start (GTK_BOX (option_hbox), button, FALSE, FALSE, 0);
+	gcd->trackeditor_b = button;
+
+	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES,
+					 G_CALLBACK(open_preferences),
+					 _("Open preferences"),
+					 _("Preferences"));
+	gtk_box_pack_start (GTK_BOX (option_hbox), button, FALSE, FALSE, 0);
+	gcd->properties_b = button;
+
 	gcd->tracks = gtk_option_menu_new ();
 	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
 			  G_CALLBACK (skip_to_track), gcd);
 	gnome_cd_build_track_list_menu (gcd);
-	gtk_box_pack_start (GTK_BOX (gcd->vbox), gcd->tracks, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (option_hbox), gcd->tracks, FALSE, FALSE, 0);
 
+	gtk_box_pack_start (GTK_BOX (gcd->vbox), option_hbox, FALSE, FALSE, 0);
+	
 	/* Get the initial volume */
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) == TRUE) {
 		gtk_range_set_value (GTK_RANGE (gcd->slider),
