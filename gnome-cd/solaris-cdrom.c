@@ -892,19 +892,14 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	/* get initial volume */
 	vol_fd = open ( "/dev/audioctl", O_RDWR);
 	if (ioctl (vol_fd, AUDIO_GETINFO, &audioinfo) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-                                              "(solaris_cdrom_get_status): AUDIO_GETINFO ioctl failed %s",
-					      strerror (errno));
-		 }
-
-		close (vol_fd);
-		g_free (realstatus);
-		return FALSE;
+			g_warning ("(solaris_cdrom_get_status): AUDIO_GETINFO ioctl failed %s",
+				   strerror (errno));
+			realstatus->volume = -1;
+	} else {
+		realstatus->volume = audioinfo.play.gain;
 	}
+
 	close (vol_fd);
-	realstatus->volume = audioinfo.play.gain;
 
 	solaris_cdrom_close (lcd);
 

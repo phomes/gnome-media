@@ -916,18 +916,12 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	/* Get the volume */
 	if (ioctl (priv->cdrom_fd, CDROMVOLREAD, &vol) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      _("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"),
-					      strerror (errno));
-		}
-
-		linux_cdrom_close (lcd);
-		g_free (realstatus);
-		return FALSE;
+		g_warning (_("(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"),
+			   strerror (errno));
+		realstatus->volume = -1; /* -1 means no volume command */
+	} else {
+		realstatus->volume = vol.channel0;
 	}
-	realstatus->volume = vol.channel0;
 
 	linux_cdrom_close (lcd);
 
