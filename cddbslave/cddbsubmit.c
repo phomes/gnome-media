@@ -194,14 +194,14 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
   if (!strcmp(service_type, "mail"))
-    submitByMail(category, ID);
+    return (submitByMail(category, ID) != 0);
 #if WITH_LIBGHTTP
   else if (!strcmp(service_type, "http"))
-    submitByHTTP(category, ID);
+    return (submitByHTTP(category, ID) != 0);
 #endif
   else {
     g_printerr("cddbsubmit: unknown service type '%s' for service '%s'\n",
 	       service_type, service);
-    exit(1);
+    return 1;
   }
 }
