@@ -10,6 +10,7 @@
 # kostas: 583 messages, 06Jan2003, updated translation for Gnome 2.1x
 # kostas: 05Jan2003, one more update
 # kostas: 03Aug2003, update for Gnome 2.4
+# nikos: 07Sep2003, Review translation
 # Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
 # Nikos Charonitakis <florix68@yahoo.com>, 2002.
 # AARG! Anonymous <remailer@aarg.net>, 2002.
@@ -18,30 +19,30 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2003-08-03 19:28+0300\n"
-"PO-Revision-Date: 2003-08-03 19:42+0300\n"
-"Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
+"POT-Creation-Date: 2003-09-07 03:30+0300\n"
+"PO-Revision-Date: 2003-09-07 03:47-0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr "Διεύθυνση εξυπηρετητή επικοινωνίας για αναζητήσεις CD "
+msgstr "Διεύθυνση εξυπηρετητή επικοινωνίας για αναζητήσεις CD"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2
 msgid "Information to send to server"
 msgstr "Πληροφορίες που θα αποσταλούν στον εξυπηρετητή"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:839
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/cddb-slave-capplet.c:832
 msgid "Port"
 msgstr "Θύρα"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
-msgstr "Όνομα Εξυπηρετητή"
+msgstr "Όνομα εξυπηρετητή"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "Server type"
@@ -53,15 +54,11 @@ msgstr "Το όνομα του συστήματος όπου θα στέλνον
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
-msgstr "Η θύρα στην οποία ο εξυπηρετητής τρέχει την βάση δεδομένων"
+msgstr "Η θύρα στην οποία ο εξυπηρετητής τρέχει τη βάση δεδομένων"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Ο τύπος του εξυπηρετητή για επικοινωνία για ερωτήματα CD. Οι πιθανές τιμες είναι  0 "
-"(FreeDB round robin server), 1 (άλλος εξυπηρετητής freedb) και 2 (άλλος εξυπηρετητής)."
+msgid "The type of the server to contact for CD queries. Possible values are 0 (FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "Ο τύπος του εξυπηρετητή για επικοινωνία για ερωτήματα CD. Οι πιθανές τιμές είναι  0 (FreeDB round robin server), 1 (άλλος εξυπηρετητής freedb) και 2 (άλλος εξυπηρετητής)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -72,14 +69,8 @@ msgid "The username that will be sent with all queries"
 msgstr "Το όνομα χρήστη που θα στέλνεται σε όλες τις αναζητήσεις"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Αυτό το κλειδί καθορίζει ποιές πληροφορίες χρήστνθα αποσταλούν στον εξυπηρετητή για "
-"ερωτήματα CD. Οι πιθανές τιμές είναι 0 (όχι πληροφορίες), 1 (αληθινές "
-"πληροφορίες) και 3 (άλλες πληροφορίες)."
+msgid "This key specifies which user information will be sent to the server to contact for CD queries. Possible values are 0 (no information), 1 (real information) and 3 (other information)."
+msgstr "Αυτό το κλειδί καθορίζει ποιές πληροφορίες χρήστη θα αποσταλούν στον εξυπηρετητή για ερωτήματα CD. Οι πιθανές τιμές είναι 0 (όχι πληροφορίες), 1 (αληθινές πληροφορίες) και 3 (άλλες πληροφορίες)."
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -93,7 +84,7 @@ msgstr "Μέγεθος Expander"
 msgid "Size of the expander arrow"
 msgstr "Μέγεθος του expander arrow"
 
-#: cddb-slave2/cddb-slave-capplet.c:117
+#: cddb-slave2/cddb-slave-capplet.c:115
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -103,64 +94,65 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:703
+#: cddb-slave2/cddb-slave-capplet.c:696
 msgid "Login Information"
 msgstr "Πληροφορίες σύνδεσης"
 
-#: cddb-slave2/cddb-slave-capplet.c:709
+#: cddb-slave2/cddb-slave-capplet.c:702
 msgid "Sen_d no information"
 msgstr "Να μην απο_σταλούν πληροφορίες"
 
-#: cddb-slave2/cddb-slave-capplet.c:718
+#: cddb-slave2/cddb-slave-capplet.c:711
 msgid "Send real _information"
 msgstr "Αποστολή _πραγματικών πληροφοριών"
 
-#: cddb-slave2/cddb-slave-capplet.c:727
+#: cddb-slave2/cddb-slave-capplet.c:720
 msgid "Send _other information:"
 msgstr "Αποστολή _άλλων πληροφοριών:"
 
-#: cddb-slave2/cddb-slave-capplet.c:752
+#: cddb-slave2/cddb-slave-capplet.c:745
 msgid "_Name:"
 msgstr "Ό_νομα:"
 
-#: cddb-slave2/cddb-slave-capplet.c:772
+#: cddb-slave2/cddb-slave-capplet.c:765
 msgid "Hostna_me:"
 msgstr "Όνομα συ_στήματος:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:792 cddb-slave2/cddb-slave-capplet.c:836
+#: cddb-slave2/cddb-slave-capplet.c:785
+#: cddb-slave2/cddb-slave-capplet.c:829
 msgid "Server"
 msgstr "Εξυπηρετητής"
 
-#: cddb-slave2/cddb-slave-capplet.c:798
+#: cddb-slave2/cddb-slave-capplet.c:791
 msgid "FreeDB _round robin server"
 msgstr "Εξυπηρετητής FreeDB _round robin"
 
-#: cddb-slave2/cddb-slave-capplet.c:804
+#: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Άλλος εξυπηρετητής  _FreeDB:"
 
-#: cddb-slave2/cddb-slave-capplet.c:842
+#: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: cddb-slave2/cddb-slave-capplet.c:874
+#: cddb-slave2/cddb-slave-capplet.c:867
 msgid "_Update Server List"
 msgstr "Ενη_μέρωση λίστας εξυπηρετητών"
 
-#: cddb-slave2/cddb-slave-capplet.c:881
+#: cddb-slave2/cddb-slave-capplet.c:874
 msgid "Other _server:"
 msgstr "Άλλος _εξυπηρετητής:"
 
-#: cddb-slave2/cddb-slave-capplet.c:901
+#: cddb-slave2/cddb-slave-capplet.c:894
 msgid "Hos_tname:"
 msgstr "Όνομα συ_στήματος:"
 
-#: cddb-slave2/cddb-slave-capplet.c:918
+#: cddb-slave2/cddb-slave-capplet.c:911
 msgid "_Port:"
 msgstr "_Θύρα:"
 
-#: cddb-slave2/cddb-slave-capplet.c:984
+#: cddb-slave2/cddb-slave-capplet.c:975
 msgid "CD Database Preferences"
 msgstr "Προτιμήσεις Βάσης Δεδομένων CD"
 
@@ -169,9 +161,12 @@ msgid "Unknown / Unknown"
 msgstr "Άγνωστο / Άγνωστο"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:778
-#: grecord/src/gsr-window.c:787 grecord/src/gsr-window.c:796
-#: grecord/src/gsr-window.c:806 grecord/src/gsr-window.c:1133
+#: cddb-slave2/cddb-slave.c:219
+#: grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:815
+#: grecord/src/gsr-window.c:1154
 msgid "Unknown"
 msgstr "Άγνωστο"
 
@@ -199,7 +194,8 @@ msgstr "ID Δίσκου"
 msgid "Artist and Title"
 msgstr "Καλλιτέχνης και Τίτλος"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
+#: cddb-slave2/cddb-slave.c:1282
+#: cddb-slave2/cddb-slave.c:1284
 #: gnome-cd/gnome-cd.c:130
 msgid "Unknown track"
 msgstr "Άγνωστο κομμάτι"
@@ -380,7 +376,8 @@ msgstr "Alt"
 #  max 24 chars
 #. groups
 #. max 24 chars
-#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
+#: cddb-slave2/cddb-track-editor.c:120
+#: gmix/device_labels_alsa.h:37
 msgid "Bass"
 msgstr "Μπάσα "
 
@@ -889,10 +886,10 @@ msgid ""
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
 "Αδυναμία δημιουργίας CDDBTrackEditor factory.\n"
-"Αυτλο μπορεί να οφείλεται στο ότι εκτελείται ένα άλλο αντίγραφο του cddb-"
-"track-editor.\n"
+"Αυτλο μπορεί να οφείλεται στο ότι εκτελείται ένα άλλο αντίγραφο του cddb-track-editor.\n"
 
-#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+#: gmix/device_labels_alsa.h:7
+#: gmix/device_labels_linux.h:7
 msgid "Synth"
 msgstr "Synth"
 
@@ -924,12 +921,14 @@ msgstr "MIC"
 msgid "CD"
 msgstr "CD"
 
-#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:15
+#: gmix/device_labels_linux.h:10
 #: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "Βίντεο"
 
-#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:16
+#: gmix/device_labels_linux.h:10
 msgid "Radio"
 msgstr "Ράδιο"
 
@@ -937,7 +936,8 @@ msgstr "Ράδιο"
 msgid "Phone"
 msgstr "Ακουστικό"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
+#: gmix/device_labels_alsa.h:18
+#: grecord/src/gui.c:1087
 msgid "Mono"
 msgstr "Μονοφωνικό"
 
@@ -965,19 +965,19 @@ msgstr "Είσοδος Σαράουντ"
 #. max 24 chars
 #: gmix/device_labels_alsa.h:26
 msgid "Master"
-msgstr "Πρωτεύων"
+msgstr "Master"
 
 #: gmix/device_labels_alsa.h:27
 msgid "Master Mono"
-msgstr "Πρωτεύον Μονοφωνικό"
+msgstr "Master Μονοφωνικό"
 
 #: gmix/device_labels_alsa.h:28
 msgid "Master Digital"
-msgstr "Πρωτεύων Ψηφιακό"
+msgstr "Master Ψηφιακό"
 
 #: gmix/device_labels_alsa.h:29
 msgid "Headphone"
-msgstr "Ακουστικά"
+msgstr "Ακουστικό"
 
 #: gmix/device_labels_alsa.h:30
 msgid "Phone Output"
@@ -1168,7 +1168,8 @@ msgstr ""
 "\n"
 "Πατήστε Έξοδος για να βγείτε από τον Έλεγχο Ήχου"
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:458
+#: gmix/gmix.c:384
+#: gnome-cd/gnome-cd.c:469
 msgid "_Details"
 msgstr "_Λεπτομέρειες"
 
@@ -1176,7 +1177,7 @@ msgstr "_Λεπτομέρειες"
 msgid "Invalid mixer device"
 msgstr "Μη έγκυρη συσκευή μίκτη"
 
-#: gmix/gmix.c:633
+#: gmix/gmix.c:632
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1187,7 +1188,7 @@ msgstr ""
 "με την έκδοση %d.%d.%d του OSS και το σύστημά σας \n"
 "εκτελεί μια έκδοση παλαιότερη του 3.6.0.\n"
 
-#: gmix/gmix.c:641
+#: gmix/gmix.c:639
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1198,53 +1199,54 @@ msgstr ""
 "με την έκδοση %d.%d.%d του OSS και το σύστημά σας \n"
 "εκτελεί την έκδοση %d.%d.%d.\n"
 
-#: gmix/gmix.c:1114
+#: gmix/gmix.c:1112
 #, c-format
 msgid "left %s"
 msgstr "αριστερά %s"
 
-#: gmix/gmix.c:1140
+#: gmix/gmix.c:1138
 #, c-format
 msgid "Right %s"
 msgstr "Δεξιά %s"
 
-#: gmix/gmix.c:1233
+#: gmix/gmix.c:1231
 msgid "Lock"
 msgstr "Κλείδ."
 
-#: gmix/gmix.c:1246
+#: gmix/gmix.c:1244
 #, c-format
 msgid "%s Lock"
 msgstr "%s Κλείδωμα"
 
-#: gmix/gmix.c:1257
+#: gmix/gmix.c:1255
 msgid "Mute"
 msgstr "Σίγαση"
 
-#: gmix/gmix.c:1270
+#: gmix/gmix.c:1268
 #, c-format
 msgid "%s Mute"
 msgstr "%s Σίγαση"
 
-#: gmix/gmix.c:1284
+#: gmix/gmix.c:1282
 msgid "Rec."
 msgstr "Rec."
 
-#: gmix/gmix.c:1296
+#: gmix/gmix.c:1294
 #, c-format
 msgid "%s Record"
 msgstr "%s Ηχογράφηση"
 
-#: gmix/gmix.c:1368 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1366
+#: gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "'Ελεγχος έντασης ήχου"
 
-#: gmix/gmix.c:1776
+#: gmix/gmix.c:1774
 msgid "GNOME Volume Control"
-msgstr "'Ελεγχος έντασης ήχου του Gnome"
+msgstr "'Ελεγχος Έντασης Ήχου του Gnome"
 
-#: gmix/gmix.c:1779
+#: gmix/gmix.c:1777
 msgid "A mixer for sound devices"
 msgstr "Ένας μίκτης για συσκευές ήχου"
 
@@ -1253,11 +1255,13 @@ msgstr "Ένας μίκτης για συσκευές ήχου"
 msgid "Adjust the volume level"
 msgstr "Ρύθμιση επιπέδου έντασης"
 
-#: gmix/prefs.c:193 gmix/prefs.c:196
+#: gmix/prefs.c:193
+#: gmix/prefs.c:196
 msgid "Shown"
 msgstr "Εμφανίζεται"
 
-#: gmix/prefs.c:204 gmix/prefs.c:207
+#: gmix/prefs.c:204
+#: gmix/prefs.c:207
 msgid "Mixer label"
 msgstr "Χρήση ετικετών μίκτη"
 
@@ -1275,12 +1279,8 @@ msgid "CD Display"
 msgstr "Οθόνη CD"
 
 #: gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Προβάλλει πληροφορίες για το άλμπουμ που παίζεατι, τον καλλιτέχνη και τον "
-"χρόνο που πέρασε"
+msgid "Displays information about the currently playing album, artist and time elapsed"
+msgstr "Προβάλλει πληροφορίες για το άλμπουμ που παίζεατι, τον καλλιτέχνη και τον χρόνο που πέρασε"
 
 #: gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -1314,15 +1314,24 @@ msgstr "Γραμμή Δίσκου"
 msgid "Line for displaying the name of the album"
 msgstr "Γραμμή εμφάνισης του ονόματος του δίσκου"
 
-#: gnome-cd/callbacks.c:80 gnome-cd/callbacks.c:168 gnome-cd/callbacks.c:267
-#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:609 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:80
+#: gnome-cd/callbacks.c:168
+#: gnome-cd/callbacks.c:267
+#: gnome-cd/callbacks.c:562
+#: gnome-cd/gnome-cd.c:620
+#: grecord/gsr.xml.h:13
 #: grecord/src/gui.c:233
 msgid "Play"
 msgstr "Αναπαραγωγή"
 
-#: gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:199 gnome-cd/callbacks.c:229
-#: gnome-cd/callbacks.c:309 gnome-cd/callbacks.c:349 gnome-cd/callbacks.c:373
-#: gnome-cd/callbacks.c:414 gnome-cd/callbacks.c:502
+#: gnome-cd/callbacks.c:153
+#: gnome-cd/callbacks.c:199
+#: gnome-cd/callbacks.c:229
+#: gnome-cd/callbacks.c:309
+#: gnome-cd/callbacks.c:349
+#: gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:414
+#: gnome-cd/callbacks.c:502
 msgid "Pause"
 msgstr "Ανάπαυλα"
 
@@ -1331,69 +1340,74 @@ msgstr "Ανάπαυλα"
 msgid "Playing %s - %s"
 msgstr "Αναπαραγωγή %s - %s"
 
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:679 gnome-cd/callbacks.c:690
+#: gnome-cd/callbacks.c:548
+#: gnome-cd/callbacks.c:683
+#: gnome-cd/callbacks.c:694
 msgid "Unknown Artist"
 msgstr "Άγνωστος Καλλιτέχνης"
 
-#: gnome-cd/callbacks.c:549 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:694
+#: gnome-cd/callbacks.c:549
+#: gnome-cd/callbacks.c:686
+#: gnome-cd/callbacks.c:698
 msgid "Unknown Album"
 msgstr "Άγνωστος Δίσκος"
 
-#: gnome-cd/callbacks.c:551 grecord/src/gui.c:824
+#: gnome-cd/callbacks.c:551
+#: grecord/src/gui.c:824
 msgid "Playing"
 msgstr "Αναπαραγωγή"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:575
 msgid "Paused"
 msgstr "Παύση"
 
-#. Update tray icon tooltip
-#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:842 gnome-cd/gnome-cd.c:55
-#: gnome-cd/gnome-cd.c:475 gnome-cd/gnome-cd.c:652
+#: gnome-cd/callbacks.c:621
+#: gnome-cd/callbacks.c:847
+#: gnome-cd/gnome-cd.c:55
+#: gnome-cd/gnome-cd.c:486
+#: gnome-cd/gnome-cd.c:667
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Αναγνώστης CD"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:637
+#: gnome-cd/callbacks.c:640
 msgid "Stopped"
 msgstr "Διακόπηκε"
 
-#: gnome-cd/callbacks.c:643
+#: gnome-cd/callbacks.c:646
 msgid "Disc error"
 msgstr "Σφάλμα δίσκου"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:654 gnome-cd/callbacks.c:733
+#: gnome-cd/callbacks.c:658
+#: gnome-cd/callbacks.c:737
 msgid "No disc"
 msgstr "Χωρίς δίσκο"
 
-#: gnome-cd/callbacks.c:759
+#: gnome-cd/callbacks.c:763
 msgid "Drive open"
 msgstr "Ανοικτός  οδηγός "
 
-#: gnome-cd/callbacks.c:783
+#: gnome-cd/callbacks.c:787
 msgid "Data CD"
-msgstr "CD δεδομένων"
+msgstr "CD Δεδομένων"
 
-#. Updated the tray icon tooltip
-#: gnome-cd/callbacks.c:805 gnome-cd/callbacks.c:809
+#: gnome-cd/callbacks.c:809
+#: gnome-cd/callbacks.c:814
 msgid "No Cdrom"
 msgstr "Δεν υπάρχει  Cdrom"
 
-#: gnome-cd/callbacks.c:820
+#: gnome-cd/callbacks.c:825
 msgid "Drive Error"
 msgstr "Σφάλμα Οδηγού"
 
-#: gnome-cd/callbacks.c:844
+#: gnome-cd/callbacks.c:849
 msgid "A CD player for GNOME"
 msgstr "Έφαρμογή αναπαραγωγής CD για το GNOME"
 
 #: gnome-cd/cdrom.c:368
 #, c-format
 msgid "You do not seem to have permission to access %s."
-msgstr "Δεν φαίνεται να έχετε τα απαραίτητα δικαιώματα πρόσβασης στο  %s."
+msgstr "Δε φαίνεται να έχετε τα απαραίτητα δικαιώματα πρόσβασης στο  %s."
 
 #: gnome-cd/cdrom.c:374
 #, c-format
@@ -1403,8 +1417,7 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"Το %s δεν φαίνεται να καταλήγει σε έγκυρη συσκευή CD. Αυτό μπορεί να "
-"οφείλεται:\n"
+"Το %s δε φαίνεται να καταλήγει σε έγκυρη συσκευή CD. Αυτό μπορεί να οφείλεται:\n"
 "α) Η υποστήριξη CD δεν είναι παρούσα στο σύστημα σας\n"
 "β) Δεν έχετε τα απαραίτητα δικαιώματα πρόσβασης στον οδηγό CD\n"
 "γ) Το %s δεν είναι ο οδηγός CD.\n"
@@ -1426,7 +1439,8 @@ msgstr "%d - Άγνωστο"
 msgid "P_revious track"
 msgstr "Π_ροηγούμενο κομμάτι"
 
-#: gnome-cd/gnome-cd.c:282 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:282
+#: grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Διακοπή"
 
@@ -1442,7 +1456,8 @@ msgstr "_Επόμενο κομμάτι"
 msgid "_Eject disc"
 msgstr "_Εκβολή δίσκου"
 
-#: gnome-cd/gnome-cd.c:286 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:286
+#: grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Βοήθεια"
 
@@ -1450,7 +1465,7 @@ msgstr "_Βοήθεια"
 msgid "_About CD player"
 msgstr "_Περί εφαρμογής CD"
 
-#: gnome-cd/gnome-cd.c:395
+#: gnome-cd/gnome-cd.c:406
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1458,120 +1473,118 @@ msgid ""
 msgstr ""
 "Δεν έχει ορισθεί συσκευή CD. Αυτό σημαίνει ότι η εφαρμογή αναπαραγωγής CD\n"
 "δεν θα μπορεί να εκτελείται. Πιέστε το κουμπί ορισμού συσκευής\n"
-"για να μεταβείτε σε ένα διάλογο όπου μπορείτε να ορίσετε την συσκευή ή "
-"πατήστε έξοδος για να εγκαταλείψετε την εφαρμογή αναπαραγωγής CD."
+"για να μεταβείτε σε ένα διάλογο όπου μπορείτε να ορίσετε την συσκευή ή πατήστε έξοδος για να εγκαταλείψετε την εφαρμογή αναπαραγωγής CD."
 
-#: gnome-cd/gnome-cd.c:399
+#: gnome-cd/gnome-cd.c:410
 msgid "Set device"
 msgstr "Ορισμός συσκευής"
 
-#: gnome-cd/gnome-cd.c:401
+#: gnome-cd/gnome-cd.c:412
 msgid "No CD device"
 msgstr "Απουσία συσκευής CDROM"
 
-#: gnome-cd/gnome-cd.c:454
+#: gnome-cd/gnome-cd.c:465
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
 "Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
+"Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player"
 msgstr ""
 "Η εφαρμογή αναπαραγωγής CD δεν μπορεί να εκτελεστεί σωστά.\n"
 "\n"
 "Πατήστε το κουμπί λεπτομέρειες για τους λόγους της αποτυχίας.\n"
 "\n"
-"Πατήστε το κουμπί ορισμού συσκευής για να μεταβείτε σε ένα διάλογο όπου "
-"μπορείτε να ορίσετε την συσκευή ή πατήστε έξοδος για να εγκαταλείψετε ττην "
-"εφαρμογή αναπαραγωγής CD."
+"Πατήστε το κουμπί ορισμού συσκευής για να μεταβείτε σε ένα διάλογο όπου μπορείτε να ορίσετε την συσκευή ή πατήστε έξοδος για να εγκαταλείψετε ττην εφαρμογή αναπαραγωγής CD."
 
-#: gnome-cd/gnome-cd.c:459
+#: gnome-cd/gnome-cd.c:470
 msgid "_Set device"
 msgstr "Ορι_σμός συσκευής"
 
-#: gnome-cd/gnome-cd.c:461
+#: gnome-cd/gnome-cd.c:472
 msgid "Invalid CD device"
 msgstr "Μη έγκυρη συσκευή CDROM"
 
-#: gnome-cd/gnome-cd.c:522
+#: gnome-cd/gnome-cd.c:533
 msgid "Volume control"
 msgstr "Ρυθμιστικό_ Έντασης"
 
-#: gnome-cd/gnome-cd.c:533
+#: gnome-cd/gnome-cd.c:544
 msgid "Position"
 msgstr "Θέση"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:561
 msgid "Open track editor"
-msgstr "Εκκίνηση επεξεργαστή τροχιάς"
+msgstr "Εκκίνηση επεξεργαστή κομματιών"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:562
 msgid "Track editor"
 msgstr "Επεξεργαστής κομματιών"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:569
 msgid "Open preferences"
 msgstr "Άνοιγμα προτιμήσεων"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:570
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:578
 msgid "Track List"
 msgstr "Λίστα Κομματιών"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:599
 msgid "Previous track"
 msgstr "Προηγούμενο κομμάτι"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:599
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:603
 msgid "Rewind"
 msgstr "Μετακίνηση στην αρχή"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:620
 msgid "Play / Pause"
 msgstr "Αναπαραγωγή / Ανάπαυλα"
 
-#: gnome-cd/gnome-cd.c:614 grecord/gsr.xml.h:30 grecord/src/gui.c:247
+#: gnome-cd/gnome-cd.c:625
+#: grecord/gsr.xml.h:30
+#: grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Διακοπή"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:629
 msgid "Fast forward"
 msgstr "Ταχεία κίνηση μπροστά"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:637
 msgid "Next track"
 msgstr "Επόμενο κομμάτι"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:641
 msgid "Eject CD"
 msgstr "Εκβολή CD"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:641
 msgid "Eject"
 msgstr "Εκβολή"
 
-#: gnome-cd/gnome-cd.c:733
+#: gnome-cd/gnome-cd.c:748
 msgid "CD device to use"
 msgstr "Συσκευή CDROM προς χρήση"
 
-#: gnome-cd/gnome-cd.c:735
+#: gnome-cd/gnome-cd.c:750
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Να γίνεται μόνο εκκίνηση αν εκτελείται ήδη μια εφαρμογή αναπαραγωγής CD "
 
-#: gnome-cd/gnome-cd.c:737
+#: gnome-cd/gnome-cd.c:752
 msgid "Play the CD on startup"
-msgstr "Αναπαραγωγή του CD κατ'α την εκκίνηση"
+msgstr "Αναπαραγωγή του CD κατά την εκκίνηση"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:767
+#: gnome-cd/gnome-cd.c:782
 msgid "Cannot create player"
 msgstr "Αδυναμία δημιουργίας συσκευής αναπαραγωγής"
 
@@ -1589,21 +1602,19 @@ msgstr "Διαδρομή συσκευής"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "Eject the CD when CD player quits?"
-msgstr "Εκβολή του CD όταν η εφαρμογή CD τερματίζεται?"
+msgstr "Εκβολή του CD όταν η εφαρμογή CD τερματίζεται;"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Play when the CD player starts?"
-msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD?"
+msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Εκβολή του CD όταν η εφαρμογή CD τερματίζεται?"
+msgstr "Εκβολή του CD όταν η εφαρμογή CD τερματίζεται;"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Η διαδρομή στον οδηγό CD που θα χρησιμοποεί η εφαρμογή για την αναπαραγωγή "
-"CDs"
+msgstr "Η διαδρομή στον οδηγό CD που θα χρησιμοποιεί η εφαρμογή για την αναπαραγωγή CDs"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "What theme should the CD player use for it's appearance"
@@ -1611,7 +1622,7 @@ msgstr "Ποιό θέμα θα χρησιμοποιεί η εφαρμογή γι
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD?"
+msgstr "Να γίνεται αναπαραγωγή όταν ξεκινάει η εφαρμογή αναπαραγωγής CD;"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1620,7 +1631,7 @@ msgid ""
 "This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
-"Αυτό σημαίνει ότι η εφαρμογή αναπαραγωγής CD δεν θα μπορεί να εκτελείται."
+"Αυτό σημαίνει ότι η εφαρμογή αναπαραγωγής CD δε θα μπορεί να εκτελείται."
 
 #: gnome-cd/preferences.c:85
 msgid "Error setting device"
@@ -1628,11 +1639,11 @@ msgstr "Σφάλμα κατά τον ορισμό της συσκευής"
 
 #: gnome-cd/preferences.c:635
 msgid "CD Player Preferences"
-msgstr "Προτιμήσεις της εφαρμογής CD "
+msgstr "Προτιμήσεις της Εφαρμογής CD "
 
 #: gnome-cd/preferences.c:669
 msgid "CD Player De_vice:"
-msgstr "Συ_σκευή αναπαραγωγής CD:"
+msgstr "Συ_σκευή Αναπαραγωγής CD:"
 
 #: gnome-cd/preferences.c:693
 msgid "_Apply change"
@@ -1666,8 +1677,10 @@ msgstr "Δια_θέσιμα θέματα:"
 msgid "Record sound clips"
 msgstr "Ηχογράφηση ηχητικών κλιπ"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1001
-#: grecord/src/gsr-window.c:1559 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2
+#: grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:1602
+#: grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Εγγραφέας Ήχου"
 
@@ -1687,7 +1700,8 @@ msgstr "Κλείσιμο αυτού του παραθύρου"
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
+#: grecord/gsr.xml.h:5
+#: grecord/src/gui.c:46
 msgid "Create a new sample"
 msgstr "Δημιουργία νέου δείγματος"
 
@@ -1695,7 +1709,8 @@ msgstr "Δημιουργία νέου δείγματος"
 msgid "Display help for Sound Recorder"
 msgstr "Προβολή βοήθειας για τον Εγγραφέα Ήχου"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:864
+#: grecord/gsr.xml.h:7
+#: grecord/src/gsr-window.c:873
 msgid "File Information"
 msgstr "Πληροφορίες αρχείου"
 
@@ -1707,7 +1722,8 @@ msgstr "Πληρο_φορίες αρχείου"
 msgid "Main toolbar"
 msgstr "Κύρια εργαλειοθήκη"
 
-#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
+#: grecord/gsr.xml.h:10
+#: grecord/src/gui.c:217
 msgid "New"
 msgstr "Νέο"
 
@@ -1715,7 +1731,8 @@ msgstr "Νέο"
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:384
+#: grecord/gsr.xml.h:12
+#: grecord/src/gsr-window.c:393
 msgid "Open a file"
 msgstr "Άνοιγμα ενός αρχείου"
 
@@ -1733,9 +1750,10 @@ msgstr "Έξοδος από την εφαρμογή"
 
 #: grecord/gsr.xml.h:17
 msgid "Recent _Files"
-msgstr "Πρόσφατα Αρ_χεία"
+msgstr "Πρόσφατα _Αρχεία"
 
-#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
+#: grecord/gsr.xml.h:18
+#: grecord/src/gui.c:261
 msgid "Record"
 msgstr "Ηχογράφηση"
 
@@ -1747,7 +1765,8 @@ msgstr "Ηχογράφηση ήχου"
 msgid "Run Mixer"
 msgstr "Άνοιγμα Mίκτη"
 
-#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
+#: grecord/gsr.xml.h:21
+#: grecord/src/gui.c:54
 msgid "Run _Mixer"
 msgstr "Άνοιγμα  _Mίκτη"
 
@@ -1807,7 +1826,8 @@ msgstr "_Έλεγχος"
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
+#: grecord/gsr.xml.h:38
+#: grecord/src/gui.c:45
 msgid "_New"
 msgstr "_Νέο"
 
@@ -1835,11 +1855,13 @@ msgstr "Αποθήκευ_ση"
 msgid "Sound Recorder:"
 msgstr "Εγγραφέας Ήχου:"
 
-#: grecord/src/grec.c:108 grecord/src/main.c:248
+#: grecord/src/grec.c:108
+#: grecord/src/main.c:248
 msgid "Don't show this message again."
 msgstr "Να μην εμφανιστεί αυτό το μήνυμα ξανά."
 
-#: grecord/src/grec.c:110 grecord/src/main.c:250
+#: grecord/src/grec.c:110
+#: grecord/src/main.c:250
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -1848,20 +1870,23 @@ msgid ""
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
 "Δε βρέθηκε το '%s'.\n"
-"Ορίστε το σωστό μονοπάτι για το sox στις προτιμήσεις κάτω από την στήλη  "
-"'διαδρομές'.\n"
+"Ορίστε το σωστό μονοπάτι για το sox στις προτιμήσεις κάτω από την στήλη  'διαδρομές'.\n"
 "\n"
 "Αν δεν έχετε το sox, δε θα μπορέσετε να κάνετε ηχογραφήσεις ή διάφορα εφφέ."
 
-#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
+#: grecord/src/grec.c:171
+#: grecord/src/grec.c:218
+#: grecord/src/grec.c:1361
 msgid "Could not fork child process"
 msgstr "Αδύνατη η διχάλωση θυγατρικής διεργασίας"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1393
+#: grecord/src/grec.c:173
+#: grecord/src/gsr-window.c:1413
 msgid "Recording..."
 msgstr "Σε ηχογράφηση..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1252
+#: grecord/src/grec.c:220
+#: grecord/src/gsr-window.c:1278
 msgid "Playing..."
 msgstr "Σε αναπαραγωγή..."
 
@@ -1869,19 +1894,25 @@ msgstr "Σε αναπαραγωγή..."
 msgid "Converting file..."
 msgstr "Μετατροπή αρχείου..."
 
-#: grecord/src/grec.c:302 grecord/src/grec.c:436
+#: grecord/src/grec.c:302
+#: grecord/src/grec.c:436
 msgid "Cancel"
 msgstr "Άκυρο "
 
-#: grecord/src/grec.c:345 grecord/src/grec.c:795
+#: grecord/src/grec.c:345
+#: grecord/src/grec.c:795
 msgid "Audioformat: "
 msgstr "Μορφή Ήχου: "
 
-#: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
+#: grecord/src/grec.c:349
+#: grecord/src/grec.c:781
+#: grecord/src/gui.c:308
 msgid "Sample rate: "
 msgstr "Ρυθμός δειγματοληψίας: "
 
-#: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
+#: grecord/src/grec.c:359
+#: grecord/src/grec.c:785
+#: grecord/src/gui.c:315
 msgid "Channels: "
 msgstr "Κανάλια: "
 
@@ -1898,7 +1929,8 @@ msgstr "Επιλογή αρχείου ήχου"
 msgid "%s is not installed in the path"
 msgstr "%s δεν έχει εγκατασταθεί στο μονοπάτι"
 
-#: grecord/src/grec.c:523 grecord/src/gsr-window.c:678
+#: grecord/src/grec.c:523
+#: grecord/src/gsr-window.c:687
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Υπήρξε σφάλμα εκκίνησης %s: %s"
@@ -1944,7 +1976,9 @@ msgstr ""
 msgid ""
 "<b>File '%s' already exists.</b>\n"
 "Do you want to overwrite it?"
-msgstr "<b>Το αρχείο '%s' υπάρχει ήδη..</b>\\nΘέλετε να το αντικαταστήσετε;"
+msgstr ""
+"<b>Το αρχείο '%s' υπάρχει ήδη..</b>\\n"
+"Θέλετε να το αντικαταστήσετε;"
 
 #: grecord/src/grec.c:834
 msgid "Cancel save"
@@ -1966,7 +2000,7 @@ msgid ""
 "\n"
 "Your changes will be lost if you don't save them."
 msgstr ""
-"<b>Θέλετε να αποθηκεύσετε τις αλλαγές στο \"%s\"?</b>\n"
+"<b>Θέλετε να αποθηκεύσετε τις αλλαγές στο \"%s\";</b>\n"
 "\n"
 "Οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε."
 
@@ -2005,139 +2039,155 @@ msgstr ""
 "Η συσκευή ήχου δεν είναι έτοιμη! Παρακαλώ ελέγξτε ότι\n"
 "δεν εκτελείται  άλλο πρόγραμμα που κάνει χρήση αυτής της συσκευής."
 
-#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287
+#: grecord/src/gsr-window.c:291
 msgid "hours"
 msgstr "ώρες"
 
-#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287
+#: grecord/src/gsr-window.c:291
 msgid "hour"
 msgstr "ώρα"
 
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
-#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
+#: grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:302
 #: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "λεπτά"
 
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
-#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
+#: grecord/src/gsr-window.c:277
+#: grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298
+#: grecord/src/gsr-window.c:302
 msgid "minute"
 msgstr "λεπτό"
 
-#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:298
-#: grecord/src/gsr-window.c:301
+#: grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299
+#: grecord/src/gsr-window.c:307
+#: grecord/src/gsr-window.c:310
 msgid "seconds"
 msgstr "δευτερόλεπτα"
 
-#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:301
+#: grecord/src/gsr-window.c:278
+#: grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299
+#: grecord/src/gsr-window.c:310
 msgid "second"
 msgstr "δευτερόλεπτο"
 
-#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1276
-#: grecord/src/gsr-window.c:1415 grecord/src/gsr-window.c:1488
+#: grecord/src/gsr-window.c:471
+#: grecord/src/gsr-window.c:1302
+#: grecord/src/gsr-window.c:1438
+#: grecord/src/gsr-window.c:1529
 msgid "Ready"
 msgstr "Έτοιμο"
 
-#: grecord/src/gsr-window.c:558
+#: grecord/src/gsr-window.c:567
 #, c-format
 msgid "Saving %s..."
 msgstr "Αποθήκευση %s..."
 
-#: grecord/src/gsr-window.c:617
+#: grecord/src/gsr-window.c:626
 msgid "Save file as"
 msgstr "Αποθήκευση αρχείου ως"
 
-#: grecord/src/gsr-window.c:671
+#: grecord/src/gsr-window.c:680
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s δεν έχει εγκατασταθεί στην διαδρομή"
 
-#: grecord/src/gsr-window.c:753
+#: grecord/src/gsr-window.c:762
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (δεν αποθηκεύτηκε)"
 
-#: grecord/src/gsr-window.c:769
+#: grecord/src/gsr-window.c:778
 msgid "Unknown size"
 msgstr "Άγνωστο μέγεθος"
 
-#: grecord/src/gsr-window.c:789
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:798
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:819
 msgid "1 (mono)"
 msgstr "1 (μονοφωνικό)"
 
-#: grecord/src/gsr-window.c:814
+#: grecord/src/gsr-window.c:823
 msgid "2 (stereo)"
 msgstr "2 (στερεοφωνικό)"
 
-#: grecord/src/gsr-window.c:843
+#: grecord/src/gsr-window.c:852
 #, c-format
 msgid "%s Information"
 msgstr "%s Πληροφορίες"
 
-#: grecord/src/gsr-window.c:878
+#: grecord/src/gsr-window.c:887
 msgid "Folder:"
 msgstr "Φάκελος:"
 
-#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1618
+#: grecord/src/gsr-window.c:893
+#: grecord/src/gsr-window.c:1663
 msgid "Filename:"
 msgstr "Όνομα Αρχείου: "
 
-#: grecord/src/gsr-window.c:890
+#: grecord/src/gsr-window.c:899
 msgid "File size:"
 msgstr "Μέγεθος αρχείου:"
 
-#: grecord/src/gsr-window.c:899
+#: grecord/src/gsr-window.c:908
 msgid "Audio Information"
 msgstr "Πληροφορίες Ήχου"
 
-#: grecord/src/gsr-window.c:913
+#: grecord/src/gsr-window.c:922
 msgid "Song length:"
 msgstr "Διάρκεια τραγουδιού:"
 
-#: grecord/src/gsr-window.c:919
+#: grecord/src/gsr-window.c:928
 msgid "Number of channels:"
 msgstr "Αριθμός καναλιών:"
 
-#: grecord/src/gsr-window.c:925
+#: grecord/src/gsr-window.c:934
 msgid "Sample rate:"
 msgstr "Ρυθμός δειγματοληψίας: "
 
-#: grecord/src/gsr-window.c:931
+#: grecord/src/gsr-window.c:940
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:1003
+#: grecord/src/gsr-window.c:1012
 msgid "A sound recorder for GNOME"
 msgstr "Εγγραφέας ήχου για το GNOME"
 
-#: grecord/src/gsr-window.c:1555 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1598
+#: grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Εγγραφέας Ήχου"
 
-#: grecord/src/gsr-window.c:1603
+#: grecord/src/gsr-window.c:1648
 msgid "File information"
 msgstr "Πληροφορίες αρχείου"
 
-#: grecord/src/gsr-window.c:1624
+#: grecord/src/gsr-window.c:1669
 msgid "<none>"
 msgstr "<κενό>"
 
-#: grecord/src/gsr-window.c:1633
+#: grecord/src/gsr-window.c:1678
 msgid "Length:"
 msgstr "Διάρκεια:"
 
@@ -2336,7 +2386,7 @@ msgid ""
 "is created. They do not operate on an existing sample."
 msgstr ""
 "Σημείωση: Αυτές οι επιλογές πραγματοποιούνται μόνο όταν ένα νέο δείγμα ήχου\n"
-"δημιουργείται. Δεν λειτουργούν  σε ήδη υπάρχον δείγμα."
+"δημιουργείται. Δε λειτουργούν  σε ήδη υπάρχον δείγμα."
 
 #: grecord/src/gui.c:992
 msgid "Audio format:"
@@ -2577,115 +2627,4 @@ msgstr "Παρακολούθηση της έντασης εξόδου ήχου"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Μετρητής Έντασης Ήχου"
-
-#~ msgid "Send _no info"
-#~ msgstr "Να μήν _αποστέλλονται πληροφορίες"
-
-#~ msgid "_Hostname:"
-#~ msgstr "_Όνομα συστήματος:"
-
-#~ msgid "Action on application exit"
-#~ msgstr "Ενέργεια κατά την έξοδο από την εφαρμογή"
-
-#~ msgid "Action on start"
-#~ msgstr "Ενέργεια κατά την εκκίνηση"
-
-#~ msgid "Should the CD player attempt to shut the CD drive on start up?"
-#~ msgstr ""
-#~ "Να προσπαθεί η εφαρμογή CD να κλείνει τον οδηγό CD κατά την εκκίνηση?"
-
-#~ msgid "Shut the CD tray on start"
-#~ msgstr "Κλείσιμο του συρταριού CD κατά την εκκίνηση"
-
-#~ msgid ""
-#~ "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
-#~ "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-#~ msgstr ""
-#~ "Ποιά ενέργεια θα πρέπει να εκτελεί η εφαρμογή κατά την έξοδο? 0 = Καμμία, "
-#~ "1 = Διακοπήαναπαραγωγής, 2 = Εκβολή του CD, 3 = Προσπάθεια κλεισίματος "
-#~ "του συρταριού"
-
-#~ msgid ""
-#~ "What action should the CD player perform on start up? 0 = Nothing, 1 = "
-#~ "Start playing, 2 = Stop playing"
-#~ msgstr ""
-#~ "Ποιά ενέργεια θα πρέπει να εκτελεί η εφαρμογή κατά την εκκίνηση? 0 = "
-#~ "Καμμία, 1 = Έναρξηαναπαραγωγής, 2 = Διακοπήαναπαραγωγής "
-
-#~ msgid "Do _nothing"
-#~ msgstr "Καμία _ενέργεια"
-
-#~ msgid "Do nothing when CD Player starts"
-#~ msgstr "Να μην γίνεται τίποτα όταν ξεκινάει η εφαρμογή CD "
-
-#~ msgid "Start _playing CD"
-#~ msgstr "Εκκίνηση αναπαραγωγής CD"
-
-#~ msgid "_Stop playing CD"
-#~ msgstr "_Διακοπή αναπαραγωγής CD"
-
-#~ msgid "Stop playing CD when CD Player starts"
-#~ msgstr "Διακοπή αναπαραγωγής CD όταν ξεκινάει η εφαρμογή CD "
-
-#~ msgid "Attempt to _close CD tray"
-#~ msgstr "Προσπάθεια _κλεισίματος συρταριού του CD "
-
-#~ msgid "When CD player quits"
-#~ msgstr "Όταν η εφαρμογή CD  τερματίζεται"
-
-#~ msgid "Do not_hing"
-#~ msgstr "Καμία ενέ_ργεια"
-
-#~ msgid "Do nothing when CD Player exits"
-#~ msgstr "Καμία ενέργεια όταν η εφαρμογή CD  τερματίζεται"
-
-#~ msgid "S_top playing CD"
-#~ msgstr "Δ_ιακοπή αναπαραγωγής CD"
-
-#~ msgid "Attempt to _open CD tray"
-#~ msgstr "Προσπάθεια _ανοίγματος συρταριού του CD"
-
-#~ msgid "Attempt to c_lose CD tray"
-#~ msgstr "Προσπάθεια κ_λεισίματος συρταριού του CD"
-
-#~ msgid "Theme name"
-#~ msgstr "Όνομα θέματος"
-
-#~ msgid "Video _Input:"
-#~ msgstr "Εί_σοδος Video "
-
-#~ msgid "Video _Output:"
-#~ msgstr "Έξ_οδος Video"
-
-#~ msgid "Gnome Volume Control"
-#~ msgstr "Ρυθμιστικό Έντασης του Gnome"
-
-#~ msgid "Copyright (C) 2001, 2002"
-#~ msgstr "Πνευματικά Δικαιώματα (C) 2001, 2002"
-
-#~ msgid "A GNOME cd player"
-#~ msgstr "Πρόγραμμα αναπαραγωγής CD του GNOME"
-
-#~ msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-#~ msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
-
-#~ msgid "Copyright (C)  2000 Andreas Hyden"
-#~ msgstr "Πνευματικά Δικαιώματα (C) 2000 Andreas Hyden"
-
-#~ msgid "don't restore mixer-settings from configuration"
-#~ msgstr "να μην ανακτηθούν οι ρυθμίσεις μίκτη από τη διαμόρφωση"
-
-#~ msgid "restore mixer-settings from configuration"
-#~ msgstr "ανάκτηση των ρυθμίσεων μίκτη από τη διαμόρφωση"
-
-#~ msgid "initialise the mixer(s) from stored configuration and exit"
-#~ msgstr ""
-#~ "αρχικοποίηση του μίκτη/μικτών από αποθηκευμένη διαμόρφωση και έξοδος"
-
-#~ msgid "don't save (modified) mixer-settings into configuration"
-#~ msgstr ""
-#~ "να μη αποθηκευθούν οι (τροποποιημένες) ρυθμίσεις μίκτη στη διαμόρφωση"
-
-#~ msgid "_About Gnome-CD"
-#~ msgstr "_Περί Gnome-CD"
 
