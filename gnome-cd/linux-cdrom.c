@@ -310,6 +310,8 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 	}
 
 	g_free (status);
+
+	lcd->priv->ref_count = 0;
 	linux_cdrom_close (lcd);
 	return TRUE;
 }
@@ -1049,9 +1051,10 @@ linux_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	}
 
 	/* Fire a harmless ioctl at the device. */
-	if (ioctl (fd, CDROMSTOP, 0) < 0) {
+	if (ioctl (fd, CDROM_GET_CAPABILITY, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
 		g_print (_("%s is not a CDROM drive\n"), device);
+		g_print ("Strerror reports: %s\n", strerror (errno));
 		close (fd);
 		
 		return FALSE;
