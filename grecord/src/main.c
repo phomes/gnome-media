@@ -26,6 +26,8 @@
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 
+#include <gconf/gconf-client.h>
+
 #include "gui.h"
 #include "grec.h"
 #include "prog.h"
@@ -35,14 +37,6 @@ static gchar* geometry = NULL;
 static gboolean sfiles = FALSE;
 static gboolean srecord = FALSE;
 static gboolean splay = FALSE;
-
-static gint grec_save_session (GnomeClient* client, gint phase,
-			       GnomeSaveStyle save_stype,
-			       gint is_shutdown, GnomeInteractStyle interact_style,
-			       gint is_fast, gpointer client_data);
-
-static gint grec_kill_session (GnomeClient* client, gpointer client_data);
-static gint on_dontshowagain_dialog_destroy_activate (GtkWidget* widget, gpointer checkbutton);
 
 struct poptOption grec_options[] = {
 	{
@@ -91,31 +85,90 @@ struct poptOption grec_options[] = {
 		NULL
 	}
 };
+static int
+grec_save_session (GnomeClient* client, int phase,
+		   GnomeSaveStyle save_stype,
+		   int is_shutdown, GnomeInteractStyle interact_style,
+		   int is_fast, gpointer client_data)
+{
+	char **argv;
+	guint argc;
+
+	argv = g_new0 (char *, 4);
+	argc = 1;
+
+	argv[0] = client_data;
+
+	if (sfiles && active_file != NULL) {
+		argv[1] = "--file";
+		argv[2] = active_file;
+		argc = 3;
+	}
+
+	gnome_client_set_clone_command (client, argc, argv);
+	gnome_client_set_restart_command (client, argc, argv);
+
+	return TRUE;
+}
+
+static int
+grec_kill_session (GnomeClient* client,
+		   gpointer client_data)
+{
+	char* file1 = g_build_filename (temp_dir, temp_filename_record, NULL);
+	char* file2 = g_build_filename (temp_dir, temp_filename_play, NULL);
+	char* file3 = g_build_filename (temp_dir, temp_filename_backup, NULL);
+
+	remove (file1);
+	remove (file2);
+	remove (file3);
+
+	g_free (file1);
+	g_free (file2);
+	g_free (file3);
+
+	gtk_main_quit ();
+
+	return TRUE;
+}
+
+static void
+on_dontshowagain_dialog_destroy_activate (GtkWidget* widget,
+					  gpointer checkbutton)
+{
+	GConfClient *client;
+	gboolean stat = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton));
+	
+	client = gconf_client_get_default ();
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-warning-messages", !stat, NULL);
+	g_object_unref (client);
+}
 
 int
-main (int argc, char *argv[])
+main (int argc,
+      char *argv[])
 {
 	GtkWidget* grecord_window;
 	GValue value = { 0, };
     	GnomeProgram *program;
 	poptContext pctx;
 	GnomeClient* client;
-	gchar** args = NULL;
-	gboolean dont_show_warningmess;
-	gint temp_count;
-	gboolean fullpath = FALSE;
+	gchar **args = NULL;
+	gboolean show_warningmess;
+	GConfClient *gconf_client;
+	char *p;
 	
 	/* i18n stuff ---------------------------------- */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	
-	program = gnome_program_init ("grecord", VERSION,
-			    LIBGNOMEUI_MODULE, argc, argv,
-			    GNOME_PARAM_POPT_TABLE, grec_options,
-			    GNOME_PARAM_HUMAN_READABLE_NAME,
-		            _("Sound recorder"),
-			    NULL);
+	program = gnome_program_init ("gnome-sound-recorder", VERSION,
+				      LIBGNOMEUI_MODULE, argc, argv,
+				      GNOME_PARAM_POPT_TABLE, grec_options,
+				      GNOME_PARAM_HUMAN_READABLE_NAME,
+				      _("Sound recorder"),
+				      NULL);
 	
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-audio2.png");
 	g_value_init (&value, G_TYPE_POINTER);
@@ -175,31 +228,31 @@ main (int argc, char *argv[])
 	
 	gtk_widget_show (grecord_window);
 
-	dont_show_warningmess = gnome_config_get_bool ("/grecord/Misc/dontshowwarningmess=FALSE");
-
+	gconf_client = gconf_client_get_default ();
+	show_warningmess = gconf_client_get_bool (gconf_client,
+						  "/apps/gnome-sound-recorder/show-warning-messages", NULL);
+	g_object_unref (gconf_client);
+	
 	/* Check if the sox command is a path */
-	temp_count = 0;
 	if (sox_command == NULL) {
 		g_error (_("GConf file is incorrectly installed."));
 	}
-	
-	while (sox_command[temp_count] != '\0') {
-		if (sox_command[temp_count] == '/')
-			fullpath = TRUE;
-		temp_count++;
-	}
 
-	/* Check for program 'sox' ------------------- */
-	if (fullpath) {
-		if (!g_file_test (sox_command, G_FILE_TEST_EXISTS) && !dont_show_warningmess) {
+	p = g_find_program_in_path (sox_command);
+	if (p == NULL) {
+		if (show_warningmess) {
 			GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
 			
-			gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences under the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
+			gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in"
+							      "preferences under the tab 'paths'.\n\nIf you don't have"
+							      " sox, you will not be able to record or do any effects."),
+							    sox_command);
 			GtkWidget* mess = gtk_message_dialog_new (NULL,
 								  GTK_DIALOG_MODAL,	
 								  GTK_MESSAGE_WARNING,
 								  GTK_BUTTONS_OK,
 								  show_mess);
+			g_free (show_mess);
 			
 			gtk_widget_show (dont_show_again_checkbutton);
 			gtk_container_add (GTK_CONTAINER (GTK_DIALOG (mess)->vbox), dont_show_again_checkbutton);
@@ -211,9 +264,12 @@ main (int argc, char *argv[])
 			gtk_dialog_run (GTK_DIALOG (mess));
 			gtk_widget_destroy (mess);
 			
-			g_free (show_mess);
 			on_preferences_activate_cb (NULL, NULL);
+		} else {
 		}
+		
+	} else {
+		g_free (p);
 	}
 
 	gtk_main ();
@@ -224,58 +280,3 @@ main (int argc, char *argv[])
 	return 0;
 }
 
-static gint grec_save_session (GnomeClient* client, gint phase,
-			       GnomeSaveStyle save_stype,
-			       gint is_shutdown, GnomeInteractStyle interact_style,
-			       gint is_fast, gpointer client_data)
-{
-	gchar** argv;
-	guint argc;
-
-	argv = g_malloc0(sizeof(gchar*)*4);
-	argc = 1;
-
-	argv[0] = client_data;
-
-	if (sfiles && active_file != NULL) {
-		argv[1] = "--file";
-		argv[2] = active_file;
-		argc = 3;
-	}
-
-	gnome_client_set_clone_command (client, argc, argv);
-	gnome_client_set_restart_command (client, argc, argv);
-
-	return TRUE;
-}
-
-static gint grec_kill_session (GnomeClient* client, gpointer client_data)
-{
-	gchar* file1 = g_build_filename (temp_dir, temp_filename_record, NULL);
-	gchar* file2 = g_build_filename (temp_dir, temp_filename_play, NULL);
-	gchar* file3 = g_build_filename (temp_dir, temp_filename_backup, NULL);
-
-	remove (file1);
-	remove (file2);
-	remove (file3);
-
-	g_free (file1);
-	g_free (file2);
-	g_free (file3);
-
-	gtk_main_quit ();
-
-	return TRUE;
-}
-
-static gint on_dontshowagain_dialog_destroy_activate (GtkWidget* widget, gpointer checkbutton)
-{
-	gboolean stat = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (checkbutton));
-	gnome_config_set_bool ("/grecord/Misc/dontshowwarningmess", stat);
-
-	/* Save it */
-	gnome_config_sync ();
-
-	/* Exit the dialog */
-	return TRUE;
-}

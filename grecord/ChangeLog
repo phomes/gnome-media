@@ -1,3 +1,16 @@
+2002-03-22  Iain <iain@ximian.com>
+
+	* gnome-sound-recorder.schemas.in: Add schema for
+	show-warning-messages.
+
+	* src/main.c (main): Remove extra vars.
+	Change the official name from grecord to gnome-sound-recorder.
+	Get the config from gconf.
+	Replace the check for sox in path.
+	(on_dontshowagain_dialog_destroy_activate): Use gconf.
+
+	* src/preferences.c (on_propertybox_apply_activate): Remove.
+	
 2002-03-21  Jagadeesh B. G  <jagadeesh.bana@wipro.com>
 
 	* src/gui.c (create_grecord_window): Enable expansion of Info frame
