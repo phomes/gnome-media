@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2002-04-17 01:07+0100\n"
-"PO-Revision-Date: 2002-04-15 13:47+0200\n"
+"POT-Creation-Date: 2002-04-23 21:02+0200\n"
+"PO-Revision-Date: 2002-04-23 21:11+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,19 +87,19 @@ msgstr "_Port:"
 msgid "CDDBSlave 2 Properties"
 msgstr "Egenskaper for CDDBSlave 2"
 
-#: cddb-slave2/cddb-slave.c:194
+#: cddb-slave2/cddb-slave.c:204
 msgid "Unknown / Unknown"
 msgstr "Ukjent - Ukjent"
 
-#: cddb-slave2/cddb-slave.c:200
+#: cddb-slave2/cddb-slave.c:210
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: cddb-slave2/cddb-slave.c:382
+#: cddb-slave2/cddb-slave.c:425
 msgid "Multiple matches..."
 msgstr "Flere treff..."
 
-#: cddb-slave2/cddb-slave.c:386
+#: cddb-slave2/cddb-slave.c:429
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -107,19 +107,19 @@ msgstr ""
 "Flere treff funnet i databasen.\n"
 "Under finner du en liste med mulige treff; velg det som passer best"
 
-#: cddb-slave2/cddb-slave.c:397
+#: cddb-slave2/cddb-slave.c:440
 msgid "Category"
 msgstr "Kategori"
 
-#: cddb-slave2/cddb-slave.c:401
+#: cddb-slave2/cddb-slave.c:444
 msgid "Disc ID"
 msgstr "Plate-ID"
 
-#: cddb-slave2/cddb-slave.c:405
+#: cddb-slave2/cddb-slave.c:448
 msgid "Artist and Title"
 msgstr "Artist og tittel"
 
-#: cddb-slave2/cddb-slave.c:1151 cddb-slave2/cddb-slave.c:1153
+#: cddb-slave2/cddb-slave.c:1256 cddb-slave2/cddb-slave.c:1258
 #: gnome-cd/gnome-cd.c:108
 msgid "Unknown track"
 msgstr "Ukjent spor"
@@ -1410,6 +1410,10 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
+"Kan ikke åpne %s. Dette kan forårsakes av:\n"
+"a) CD-støtte er ikke kompilert inn i Linux\n"
+"b) Du har ikke rettigheter til å aksessere CD-stasjonen\n"
+"c) %s er ikke CD-stasjonen.\n"
 
 #: gnome-cd/linux-cdrom.c:219
 msgid "Error opening CD"
@@ -1417,15 +1421,15 @@ msgstr "Feil under åpning av CD"
 
 #: gnome-cd/linux-cdrom.c:224
 msgid "Error reading CD header"
-msgstr ""
+msgstr "Feil under lesing av header fra CD"
 
 #: gnome-cd/linux-cdrom.c:241
 msgid "IOCtl failed"
-msgstr ""
+msgstr "IOCtl feilet"
 
 #: gnome-cd/linux-cdrom.c:253
 msgid "Error getting leadout"
-msgstr ""
+msgstr "Feil under henting av «leadout»"
 
 #: gnome-cd/linux-cdrom.c:261
 #, c-format
@@ -1434,81 +1438,84 @@ msgid ""
 "Track count: %d\n"
 "------------------\n"
 msgstr ""
+"CD endret\n"
+"Antall spor: %d\n"
+"------------------\n"
 
 #: gnome-cd/linux-cdrom.c:293
 #, c-format
 msgid "(eject): ioctl failed: %s"
-msgstr ""
+msgstr "(eject): ioctl feilet: %s"
 
-#: gnome-cd/linux-cdrom.c:477
+#: gnome-cd/linux-cdrom.c:479
 msgid "(linux_cdrom_play): Drive not ready"
-msgstr ""
+msgstr "(linux_cdrom_play): Stasjonen er ikke klar"
 
-#: gnome-cd/linux-cdrom.c:497
+#: gnome-cd/linux-cdrom.c:499
 msgid "(linux_cdrom_play): Drive still not ready"
-msgstr ""
+msgstr "(linux_cdrom_play): Stasjonen er fremdeles ikke klar"
 
-#: gnome-cd/linux-cdrom.c:562
+#: gnome-cd/linux-cdrom.c:564
 #, c-format
 msgid "(linux_cdrom_play) ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_play): ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:598
+#: gnome-cd/linux-cdrom.c:600
 msgid "(linux_cdrom_pause): Drive not ready"
-msgstr ""
+msgstr "(linux_cdrom_pause): Stasjonen er ikke klar"
 
-#: gnome-cd/linux-cdrom.c:611
+#: gnome-cd/linux-cdrom.c:613
 #, c-format
 msgid "(linux_cdrom_pause): Resume failed %s"
-msgstr ""
+msgstr "(linux_cdrom_pause): Gjennoppta feilet %s"
 
-#: gnome-cd/linux-cdrom.c:630
+#: gnome-cd/linux-cdrom.c:632
 #, c-format
 msgid "(linux_cdrom_pause): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_pause): ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:676
+#: gnome-cd/linux-cdrom.c:678
 #, c-format
 msgid "(linux_cdrom_stop) ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_stop): ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:892
+#: gnome-cd/linux-cdrom.c:894
 #, c-format
 msgid "(linux_cdrom_get_status): ioctl error %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status): ioctl feil %s"
 
-#: gnome-cd/linux-cdrom.c:906
+#: gnome-cd/linux-cdrom.c:908
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status): CDROMSUBCHNL ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:920
+#: gnome-cd/linux-cdrom.c:919
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status): CDROMVOLREAD ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:988
+#: gnome-cd/linux-cdrom.c:984
 #, c-format
 msgid "(linux_cdrom_close_tray): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_close_tray): ioctl feilet %s"
 
-#: gnome-cd/linux-cdrom.c:1023
+#: gnome-cd/linux-cdrom.c:1019
 #, c-format
 msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_set_volume:1): ioctl feilet %s"
 
 #. Failed, it's not a CDROM drive
-#: gnome-cd/linux-cdrom.c:1054
+#: gnome-cd/linux-cdrom.c:1050
 #, c-format
 msgid "%s is not a CDROM drive\n"
-msgstr ""
+msgstr "%s er ikke en CDROM-stasjon\n"
 
-#: gnome-cd/linux-cdrom.c:1060
+#: gnome-cd/linux-cdrom.c:1057
 #, c-format
 msgid "%s is a CDROM drive\n"
-msgstr ""
+msgstr "%s er en CDROM-stasjon\n"
 
-#: gnome-cd/linux-cdrom.c:1146 gnome-cd/linux-cdrom.c:1302
+#: gnome-cd/linux-cdrom.c:1143 gnome-cd/linux-cdrom.c:1299
 #, c-format
 msgid ""
 "%s does not point to a valid CDRom device. This may be caused by:\n"
@@ -1516,62 +1523,66 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
+"%s peker ikke til en gyldig CDROM-enhet. Dette kan være forårsaket av:\n"
+"a) CD-støtte er ikke kompilert inn i Linux\n"
+"b) Du har ikke rettigheter til å aksessere CD-stasjonen\n"
+"c) %s er ikke CD-stasjonen.\n"
 
-#: gnome-cd/preferences.c:715
+#: gnome-cd/preferences.c:761
 msgid "Gnome-CD Preferences"
 msgstr "GNOME-CD brukervalg"
 
-#: gnome-cd/preferences.c:733
+#: gnome-cd/preferences.c:779
 msgid "CD player de_vice"
 msgstr "CD-spiller en_het"
 
-#: gnome-cd/preferences.c:745
+#: gnome-cd/preferences.c:794
 msgid "_Apply change"
 msgstr "_Aktiver endring"
 
 #. left side
-#: gnome-cd/preferences.c:758
+#: gnome-cd/preferences.c:807
 msgid "When Gnome-CD starts"
 msgstr "Når GNOME-CD starter"
 
-#: gnome-cd/preferences.c:766
+#: gnome-cd/preferences.c:815
 msgid "Do _nothing"
 msgstr "Ikke gjør _noe"
 
-#: gnome-cd/preferences.c:775
+#: gnome-cd/preferences.c:824
 msgid "Start _playing CD"
 msgstr "Start avs_pilling av CD"
 
-#: gnome-cd/preferences.c:784
+#: gnome-cd/preferences.c:833
 msgid "_Stop playing CD"
 msgstr "_Stopp avspilling av CD"
 
-#: gnome-cd/preferences.c:797
+#: gnome-cd/preferences.c:846
 msgid "Attempt to _close CD tray"
 msgstr "Prøv å _lukke CD-skuffen"
 
 #. Right side
-#: gnome-cd/preferences.c:809
+#: gnome-cd/preferences.c:858
 msgid "When Gnome-CD quits"
 msgstr "Når GNOME-CD avslutter"
 
-#: gnome-cd/preferences.c:817
+#: gnome-cd/preferences.c:866
 msgid "Do not_hing"
 msgstr "I_kke gjør noe"
 
-#: gnome-cd/preferences.c:826
+#: gnome-cd/preferences.c:875
 msgid "S_top playing CD"
 msgstr "S_topp avspilling av CD"
 
-#: gnome-cd/preferences.c:835
+#: gnome-cd/preferences.c:884
 msgid "Attempt to _open CD tray"
 msgstr "Prøv å _åpne CD-skuffen"
 
-#: gnome-cd/preferences.c:845
+#: gnome-cd/preferences.c:894
 msgid "Attempt to c_lose CD tray"
 msgstr "Prøv å _lukke CD-skuffen"
 
-#: gnome-cd/preferences.c:876
+#: gnome-cd/preferences.c:925
 msgid "Theme name"
 msgstr "Temanavn"
 
@@ -1659,12 +1670,12 @@ msgid "Undoing all changes..."
 msgstr "Forkaster alle endringer..."
 
 #: grecord/src/grec.c:704
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "'%s' is a folder.\n"
 "Please select a sound file to be opened."
 msgstr ""
-"«%s» er en katalog.\n"
+"«%s» er en mappe.\n"
 "Vennligst velg en lydfil som skal åpnes."
 
 #: grecord/src/grec.c:716
@@ -1947,7 +1958,7 @@ msgstr "_Gjenta lyden"
 
 #: grecord/src/gui.c:841
 msgid "Play the sound _once only."
-msgstr ""
+msgstr "Spill lyden k_un én gang."
 
 #: grecord/src/gui.c:847
 msgid "Repeat _forever"
@@ -1998,6 +2009,8 @@ msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
 msgstr ""
+"Merk: Disse alternativene blir kun brukt når en ny lydsample\n"
+"opprettes. De opererer ikke på en eksisterende sample."
 
 #: grecord/src/gui.c:986
 msgid "Audio format:"
