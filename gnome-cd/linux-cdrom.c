@@ -30,16 +30,19 @@ typedef struct _LinuxCDRomTrackInfo {
 
 struct _LinuxCDRomPrivate {
 	char *cdrom_device;
+	guint32 update_id;
 	int cdrom_fd;
-	
-	gboolean init;
-	gboolean paused;
+	int ref_count;
+
+	GnomeCDRomUpdate update;
 
 	struct cdrom_tochdr *tochdr;
 	int number_tracks;
 	unsigned char track0, track1;
 
 	LinuxCDRomTrackInfo *track_info;
+	
+	GnomeCDRomStatus *recent_status;
 };
 
 static gboolean linux_cdrom_eject (GnomeCDRom *cdrom,
@@ -62,6 +65,8 @@ static gboolean linux_cdrom_back (GnomeCDRom *cdrom,
 				  GError **error);
 static gboolean linux_cdrom_get_status (GnomeCDRom *cdrom,
 					GnomeCDRomStatus **status,
+					GError **error);
+static gboolean linux_cdrom_close_tray (GnomeCDRom *cdrom,
 					GError **error);
 
 static void
@@ -111,9 +116,72 @@ frames_to_msf (GnomeCDRomMSF *msf,
 }
 
 static void
+add_msf (GnomeCDRomMSF *msf1,
+	 GnomeCDRomMSF *msf2,
+	 GnomeCDRomMSF *dest)
+{
+	int frames1, frames2, total;
+
+	frames1 = msf_to_frames (msf1);
+	frames2 = msf_to_frames (msf2);
+
+	total = frames1 + frames2;
+
+	frames_to_msf (dest, total);
+}
+
+static gboolean
+linux_cdrom_open (LinuxCDRom *lcd,
+		  GError **error)
+{
+	if (lcd->priv->cdrom_fd != -1) {
+		lcd->priv->ref_count++;
+		return TRUE;
+	}
+
+	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
+	if (lcd->priv->cdrom_fd < 0) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      "Unable to open %s. This may be caused by:\n"
+					      "a) CD support is not compiled into Linux\n"
+					      "b) You do not have the correct permissions to access the CD drive\n"
+					      "c) %s is not the CD drive.\n",					     
+					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
+		}
+
+		return FALSE;
+	}
+
+	lcd->priv->ref_count = 1;
+	return TRUE;
+}
+
+static void
+linux_cdrom_close (LinuxCDRom *lcd)
+{
+	if (lcd->priv->cdrom_fd == -1) {
+		return;
+	}
+
+	lcd->priv->ref_count--;
+
+	if (lcd->priv->ref_count <= 0) {
+		close (lcd->priv->cdrom_fd);
+		lcd->priv->cdrom_fd = -1;
+	}
+
+	return;
+}
+
+static void
 linux_cdrom_invalidate (LinuxCDRom *lcd)
 {
-	
+	if (lcd->priv->track_info == NULL) {
+		g_free (lcd->priv->track_info);
+		lcd->priv->track_info = NULL;
+	}
 }
 
 static void
@@ -133,141 +201,72 @@ calculate_track_lengths (LinuxCDRom *lcd)
 		/* Convert all addresses to frames */
 		f1 = msf_to_frames (msf1);
 		f2 = msf_to_frames (msf2);
-		df = f2 - f1;
 
+		df = f2 - f1;
 		frames_to_msf (&priv->track_info[i].length, df);
 	}
 }
 
-static gboolean
-linux_cdrom_close (LinuxCDRom *lcd)
-{
-	close (lcd->priv->cdrom_fd);
-	lcd->priv->cdrom_fd = -1;
-}
-
-static gboolean
-linux_cdrom_read_track_info (LinuxCDRom *lcd,
-			     GError **error)
+static void
+linux_cdrom_update_cd (LinuxCDRom *lcd)
 {
 	LinuxCDRomPrivate *priv;
 	struct cdrom_tocentry tocentry;
 	int i, j;
+	GError *error;
 
 	priv = lcd->priv;
-	priv->cdrom_fd = open (priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (priv->cdrom_fd < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      "(%s) %s could not be opened",
-					      __FUNCTION__,
-					      priv->cdrom_device);
-		}
-		return FALSE;
+
+	if (linux_cdrom_open (lcd, &error) == FALSE) {
+		g_warning ("Error opening CD");
+		return;
 	}
 
 	if (ioctl (priv->cdrom_fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed: %s",
-					      __FUNCTION__,
-					      strerror (errno));
-		}
-
+		g_warning ("Error reading CD header");
 		linux_cdrom_close (lcd);
-		return FALSE;
-	}
 
+		return;
+	}
+	
 	priv->track0 = priv->tochdr->cdth_trk0;
 	priv->track1 = priv->tochdr->cdth_trk1;
 	priv->number_tracks = priv->track1 - priv->track0 + 1;
 
-	if (priv->number_tracks <= 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_IO,
-					      "(%s) IO Error. Number of tracks is %d",
-					      __FUNCTION__,
-					      priv->number_tracks);
-		}
-
-		linux_cdrom_close (lcd);
-		return FALSE;
-	}
-
+	linux_cdrom_invalidate (lcd);
 	priv->track_info = g_malloc ((priv->number_tracks + 1) * sizeof (LinuxCDRomTrackInfo));
 	for (i = 0, j = priv->track0; i < priv->number_tracks; i++, j++) {
 		tocentry.cdte_track = j;
 		tocentry.cdte_format = CDROM_MSF;
 
 		if (ioctl (priv->cdrom_fd, CDROMREADTOCENTRY, &tocentry) < 0) {
-			if (error) {
-				*error = g_error_new (GNOME_CDROM_ERROR,
-						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(%s) ioctl failed %s",
-						      __FUNCTION__,
-						      strerror (errno));
-			}
-			
-			linux_cdrom_invalidate (lcd);
-			return FALSE;
+			g_warning ("IOCtl failed");
+			continue;
 		}
 
 		priv->track_info[i].track = j;
-		priv->track_info[i].audio_track = tocentry.cdte_ctrl != 
-			CDROM_DATA_TRACK ? 1 : 0;
+		priv->track_info[i].audio_track = tocentry.cdte_ctrl != CDROM_DATA_TRACK ? 1 : 0;
 		ASSIGN_MSF (priv->track_info[i].address, tocentry.cdte_addr.msf);
 	}
 
 	tocentry.cdte_track = CDROM_LEADOUT;
 	tocentry.cdte_format = CDROM_MSF;
 	if (ioctl (priv->cdrom_fd, CDROMREADTOCENTRY, &tocentry) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed %s",
-					      __FUNCTION__,
-					      strerror (errno));
-		}
-
+		g_warning ("Error getting leadout");
 		linux_cdrom_invalidate (lcd);
-		return FALSE;
+		return;
 	}
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address, tocentry.cdte_addr.msf);
-
 	calculate_track_lengths (lcd);
 
+#ifdef DEBUG
+	g_print ("CD changed\n"
+		 "Track count: %d\n------------------\n",
+		 priv->number_tracks);
+#endif
+	
 	linux_cdrom_close (lcd);
-	return TRUE;
-}
-
-static gboolean
-linux_cdrom_check (LinuxCDRom *lcd,
-		   GError **error)
-{
-	if (lcd->priv->init == FALSE) {
-		lcd->priv->init = TRUE;
-		if (linux_cdrom_read_track_info (lcd, error) == FALSE) {
-			g_error_free (*error);
-			lcd->priv->init = FALSE;
-		}
-	}
-
-	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
-	if (lcd->priv->cdrom_fd < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      "(%s) %s could not be opened",
-					      __FUNCTION__,
-					      lcd->priv->cdrom_device);
-		}
-		return FALSE;
-	}
-
-	return TRUE;
+	return;
 }
 
 static gboolean
@@ -278,7 +277,7 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 
 	lcd = LINUX_CDROM (cdrom);
 
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
@@ -286,18 +285,17 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed: %s",
-					      __FUNCTION__,
+					      "(eject): ioctl failed: %s",
 					      strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
 		return FALSE;
 	}
-	
+
 	return TRUE;
 }
-	
+
 static gboolean
 linux_cdrom_next (GnomeCDRom *cdrom,
 		  GError **error)
@@ -308,30 +306,32 @@ linux_cdrom_next (GnomeCDRom *cdrom,
 	int track;
 
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
-	track = status->track - 1;
-	if (track >= lcd->priv->number_tracks - 1) {
+	track = status->track + 1;
+	g_free (status);
+	if (track > lcd->priv->number_tracks) {
 		/* Do nothing */
+		linux_cdrom_close (lcd);
 		return TRUE;
 	}
 
 	msf.minute = 0;
 	msf.second = 0;
 	msf.frame = 0;
-	if (linux_cdrom_play (cdrom, track + 1, &msf, error) == FALSE) {
-		g_free (status);
+	if (linux_cdrom_play (cdrom, track, &msf, error) == FALSE) {
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
-	g_free (status);
-
+	linux_cdrom_close (lcd);
 	return TRUE;
 }
 
@@ -342,38 +342,46 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 	LinuxCDRom *lcd;
 	GnomeCDRomStatus *status;
 	GnomeCDRomMSF *msf;
-	int frames;
-
+	int discend, frames;
+	
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
 	msf = &status->absolute;
+	/* Convert MSF to frames to do calculations on it */
+	frames = msf_to_frames (msf);
+	/* Add a second */
+	frames += CD_FRAMES;
 
-	msf->second++;
-	if (msf->second >= 60) {
-		msf->minute++;
-		msf->second = 0;
-	}
-	msf->frame = 0;
-
-	if (msf->minute >= lcd->priv->track_info[lcd->priv->number_tracks].address.minute &&
-	    msf->second >= lcd->priv->track_info[lcd->priv->number_tracks].address.second) {
+	/* Check if we've skipped past the end */
+	discend = msf_to_frames (&lcd->priv->track_info[lcd->priv->number_tracks].address);
+	if (frames >= discend) {
+		/* Do nothing */
 		g_free (status);
+		linux_cdrom_close (lcd);
 		return TRUE;
 	}
+	
+	/* Convert back to MSF */
+	frames_to_msf (msf, frames);
+	/* Zero the frames */
+	msf->frame = 0;
 
 	if (linux_cdrom_play (cdrom, -1, msf, error) == FALSE) {
 		g_free (status);
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
 	g_free (status);
+	linux_cdrom_close (lcd);
 
 	return TRUE;
 }
@@ -381,68 +389,113 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 static gboolean
 linux_cdrom_play (GnomeCDRom *cdrom,
 		  int track,
-		  GnomeCDRomMSF *pos,
+		  GnomeCDRomMSF *position,
 		  GError **error)
 {
 	LinuxCDRom *lcd;
 	LinuxCDRomPrivate *priv;
+	GnomeCDRomStatus *status;
 	struct cdrom_msf msf;
 	int minutes, seconds, frames;
 
 	lcd = LINUX_CDROM (cdrom);
 	priv = lcd->priv;
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open(lcd, error) == FALSE) {
 		return FALSE;
 	}
 
-	if (lcd->priv->paused) {
-		if (ioctl (lcd->priv->cdrom_fd, CDROMRESUME, 0) < 0) {
+	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		if (status->cd == GNOME_CDROM_STATUS_TRAY_OPEN) {
+			if (linux_cdrom_close_tray (cdrom, error) == FALSE) {
+				linux_cdrom_close (lcd);
+				g_free (status);
+				return FALSE;
+			}
+		} else {
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
-						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(%s) ioctl failed %s",
-						      __FUNCTION__,
-						      strerror (errno));
+						      GNOME_CDROM_ERROR_NOT_READY,
+						      "(linux_cdrom_play): Drive not ready");
 			}
+
+			linux_cdrom_close (lcd);
+			g_free (status);
+			return FALSE;
+		}
+	}
+
+	/* Get the status again: It might have changed */
+	if (gnome_cdrom_get_status (GNOME_CDROM (lcd), &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		/* Stuff if :) */
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_READY,
+					      "(linux_cdrom_play): Drive still not ready");
+		}
+
+		linux_cdrom_close (lcd);
+		g_free (status);
+		return FALSE;
+	}
+
+	switch (status->audio) {
+	case GNOME_CDROM_AUDIO_PAUSE:
+		if (gnome_cdrom_pause (GNOME_CDROM (lcd), error) == FALSE) {
+			g_free (status);
 			linux_cdrom_close (lcd);
 			return FALSE;
 		}
 
-		lcd->priv->paused = FALSE;
+	case GNOME_CDROM_AUDIO_NOTHING:
+	case GNOME_CDROM_AUDIO_COMPLETE:
+	case GNOME_CDROM_AUDIO_STOP:
+	case GNOME_CDROM_AUDIO_ERROR:
+	default:
+		/* Start playing */
+		if (track >= 0) {
+			GnomeCDRomMSF tmpmsf;
 
-		linux_cdrom_close (lcd);
-		return TRUE;
-	}
-
-	if (track >= 0) {
-		msf.cdmsf_min0 = priv->track_info[track].address.minute + pos->minute;
-		msf.cdmsf_sec0 = priv->track_info[track].address.second + pos->second;
-		msf.cdmsf_frame0 = priv->track_info[track].address.frame + pos->frame;
-	} else {
-		msf.cdmsf_min0 = pos->minute;
-		msf.cdmsf_sec0 = pos->second;
-		msf.cdmsf_frame0 = pos->frame;
-	}
-
-	/* Set the end to be the start of the lead out track */
-	msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
-	msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
-	msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
-
-	if (ioctl (priv->cdrom_fd, CDROMPLAYMSF, &msf) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed %s",
-					      __FUNCTION__,
-					      strerror (errno));
+			add_msf (&priv->track_info[track - 1].address, position, &tmpmsf);
+			msf.cdmsf_min0 = tmpmsf.minute;
+			msf.cdmsf_sec0 = tmpmsf.second;
+			msf.cdmsf_frame0 = tmpmsf.frame;
+		} else {
+			msf.cdmsf_min0 = position->minute;
+			msf.cdmsf_sec0 = position->second;
+			msf.cdmsf_frame0 = position->frame;
 		}
 
-		linux_cdrom_close (lcd);
-		return FALSE;
+		/* Set the end to be the start of the lead out track */
+		msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
+		msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
+		msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
+
+		/* PLAY IT AGAIN */
+		if (ioctl (priv->cdrom_fd, CDROMPLAYMSF, &msf) < 0) {
+			if (error) {
+				*error = g_error_new (GNOME_CDROM_ERROR,
+						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+						      "(linux_cdrom_play) ioctl failed %s",
+						      strerror (errno));
+			}
+
+			linux_cdrom_close (lcd);
+			g_free (status);
+			return FALSE;
+		}
 	}
 
 	linux_cdrom_close (lcd);
+	g_free (status);
 	return TRUE;
 }
 
@@ -451,32 +504,65 @@ linux_cdrom_pause (GnomeCDRom *cdrom,
 		   GError **error)
 {
 	LinuxCDRom *lcd;
+	GnomeCDRomStatus *status;
 
 	lcd = LINUX_CDROM (cdrom);
-
-	if (lcd->priv->paused == TRUE) {
-		return;
-	}
-
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
-	if (ioctl (lcd->priv->cdrom_fd, CDROMPAUSE, 0) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed %s",
-					      __FUNCTION__,
-					      strerror (errno));
-		}
-
+	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
-	lcd->priv->paused = TRUE;
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_READY,
+					      "(linux_cdrom_pause): Drive not ready");
+		}
 
+		g_free (status);
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+
+	if (status->audio == GNOME_CDROM_AUDIO_PAUSE) {
+		if (ioctl (lcd->priv->cdrom_fd, CDROMRESUME) < 0) {
+			if (error) {
+				*error = g_error_new (GNOME_CDROM_ERROR,
+						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+						      "(linux_cdrom_pause): Resume failed %s",
+						      strerror (errno));
+			}
+
+			g_free (status);
+			linux_cdrom_close (lcd);
+			return FALSE;
+		}
+
+		linux_cdrom_close (lcd);
+		g_free (status);
+		return TRUE;
+	}
+
+	if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
+		if (ioctl (lcd->priv->cdrom_fd, CDROMPAUSE, 0) < 0) {
+			if (error) {
+				*error = g_error_new (GNOME_CDROM_ERROR,
+						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+						      "(linux_cdrom_pause): ioctl failed %s",
+						      strerror (errno));
+			}
+
+			g_free (status);
+			linux_cdrom_close (lcd);
+			return FALSE;
+		}
+	}
+
+	g_free (status);
 	linux_cdrom_close (lcd);
 	return TRUE;
 }
@@ -486,26 +572,43 @@ linux_cdrom_stop (GnomeCDRom *cdrom,
 		  GError **error)
 {
 	LinuxCDRom *lcd;
+	GnomeCDRomStatus *status;
 
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
+
+	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+
+#if 0
+	if (status->audio == GNOME_CDROM_AUDIO_PAUSE) {
+		if (linux_cdrom_pause (cdrom, error) == FALSE) {
+			linux_cdrom_close (lcd);
+			g_free (status);
+			return FALSE;
+		}
+	}
+#endif
 
 	if (ioctl (lcd->priv->cdrom_fd, CDROMSTOP, 0) < 0) {
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed %s",
-					      __FUNCTION__,
+					      "(linux_cdrom_stop) ioctl failed %s",
 					      strerror (errno));
 		}
 
 		linux_cdrom_close (lcd);
+		g_free (status);
 		return FALSE;
 	}
 
 	linux_cdrom_close (lcd);
+	g_free (status);
 	return TRUE;
 }
 
@@ -514,39 +617,44 @@ linux_cdrom_rewind (GnomeCDRom *cdrom,
 		    GError **error)
 {
 	LinuxCDRom *lcd;
-	GnomeCDRomMSF *msf;
+	GnomeCDRomMSF *msf, tmpmsf;
 	GnomeCDRomStatus *status;
-	int track;
+	int discstart, frames;
 
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
 	msf = &status->absolute;
 
-	msf->second--;
-	msf->frame = 0;
+	frames = msf_to_frames (msf);
+	frames -= CD_FRAMES; /* Back one second */
 
-	if (msf->second <= 0) {
-		msf->minute--;
-		if (msf->minute <= 0) {
-			g_free (status);
-			return TRUE;
-		}
-
-		msf->second = 59;
+	/* Check we've not run back past the start */
+	discstart = msf_to_frames (&lcd->priv->track_info[0].address);
+	if (frames < discstart) {
+		g_free (status);
+		linux_cdrom_close (lcd);
+		return TRUE;
 	}
 
-	if (linux_cdrom_play (cdrom, -1, msf, error) == FALSE) {
+	frames_to_msf (&tmpmsf, frames);
+	tmpmsf.frame = 0; /* Zero the frames */
+
+	if (linux_cdrom_play (cdrom, -1, &tmpmsf, error) == FALSE) {
 		g_free (status);
+		
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
+	linux_cdrom_close (lcd);
 	g_free (status);
 
 	return TRUE;
@@ -562,23 +670,27 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	int track;
 
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
 	if (linux_cdrom_get_status (cdrom, &status, error) == FALSE) {
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
+	/* If we're > 0:00 on the track go back to the start of it, 
+	   otherwise go to the previous track */
 	if (status->relative.minute != 0 || status->relative.second != 0) {
-		track = status->track - lcd->priv->track0;
+		track = status->track;
 	} else {
-		track = status->track - lcd->priv->track0 - 1;
+		track = status->track - 1;
 	}
 
-	if (track < 0) {
-		/* Do nothing */
+	if (track <= 0) {
+		/* nothing */
 		g_free (status);
+		linux_cdrom_close (lcd);
 		return TRUE;
 	}
 
@@ -587,11 +699,12 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	msf.frame = 0;
 	if (linux_cdrom_play (cdrom, track, &msf, error) == FALSE) {
 		g_free (status);
+		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
 	g_free (status);
-
+	linux_cdrom_close (lcd);
 	return TRUE;
 }
 
@@ -606,19 +719,18 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	struct cdrom_subchnl subchnl;
 	int cd_status;
 
-	g_return_val_if_fail (status != NULL, FALSE);
-
+	g_return_val_if_fail (status != NULL, TRUE);
+	
 	lcd = LINUX_CDROM (cdrom);
 	priv = lcd->priv;
 
 	*status = g_new (GnomeCDRomStatus, 1);
 	realstatus = *status;
 
-	if (linux_cdrom_check (lcd, error) == FALSE) {
-		realstatus->cd = GNOME_CDROM_STATUS_NO_DISC;
-		realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
-		realstatus->track = -1;
-		return TRUE;
+	if (linux_cdrom_open (lcd, error) == FALSE) {
+		g_free (realstatus);
+		linux_cdrom_close (lcd);
+		return FALSE;
 	}
 
 	cd_status = ioctl (priv->cdrom_fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
@@ -628,18 +740,33 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 			realstatus->cd = GNOME_CDROM_STATUS_TRAY_OPEN;
 			realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
 			realstatus->track = -1;
+
+			linux_cdrom_close (lcd);
 			return TRUE;
 
 		case CDS_DRIVE_NOT_READY:
 			realstatus->cd = GNOME_CDROM_STATUS_DRIVE_NOT_READY;
 			realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
 			realstatus->track = -1;
+			
+			linux_cdrom_close (lcd);
 			return TRUE;
 
 		default:
 			realstatus->cd = GNOME_CDROM_STATUS_OK;
 			break;
 		}
+	} else {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(linux_cdrom_get_status): ioctl error %s",
+					      strerror (errno));
+		}
+
+		linux_cdrom_close (lcd);
+		g_free (realstatus);
+		return FALSE;
 	}
 
 	subchnl.cdsc_format = CDROM_MSF;
@@ -647,21 +774,16 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s:%d) ioctl failed: %s",
-					      __FUNCTION__, __LINE__,
+					      "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s",
 					      strerror (errno));
 		}
 
-		realstatus->cd = GNOME_CDROM_STATUS_NO_DISC;
-		realstatus->audio = GNOME_CDROM_AUDIO_NOTHING;
-		realstatus->track = -1;
-
 		linux_cdrom_close (lcd);
-		return TRUE;
+		g_free (realstatus);
+		return FALSE;
 	}
 
 	linux_cdrom_close (lcd);
-
 	switch (subchnl.cdsc_audiostatus) {
 	case CDROM_AUDIO_PLAY:
 		realstatus->audio = GNOME_CDROM_AUDIO_PLAY;
@@ -677,12 +799,13 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	case CDROM_AUDIO_INVALID:
 	case CDROM_AUDIO_NO_STATUS:
-	case CDROM_AUDIO_ERROR:
 		realstatus->audio = GNOME_CDROM_AUDIO_STOP;
 		break;
 
+	case CDROM_AUDIO_ERROR:
 	default:
 		realstatus->audio = GNOME_CDROM_AUDIO_ERROR;
+		break;
 	}
 
 	realstatus->track = subchnl.cdsc_trk;
@@ -693,53 +816,13 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 }
 
 static gboolean
-linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
-			   GnomeCDRomCDDBData **data,
-			   GError **error)
-{
-	LinuxCDRom *lcd;
-	LinuxCDRomPrivate *priv;
-	int i, t = 0, n = 0;
-	
-	lcd = LINUX_CDROM (cdrom);
-	priv = lcd->priv;
-
-	if (linux_cdrom_check (lcd, error) == FALSE) {
-		return FALSE;
-	}
-
-	*data = g_new (GnomeCDRomCDDBData, 1);
-
-	for (i = 0; i < priv->number_tracks; i++) {
-		n += cddb_sum ((priv->track_info[i].address.minute * 60) +
-			       priv->track_info[i].address.second);
-		t += ((priv->track_info[i + 1].address.minute * 60) +
-		      priv->track_info[i + 1].address.second) -
-			((priv->track_info[i].address.minute * 60) + 
-			 priv->track_info[i].address.second);
-	}
-
-	(*data)->discid = ((n % 0xff) << 24 | t << 8 | (priv->track1));
-	(*data)->ntrks = priv->track1;
-	(*data)->nsecs = (priv->track_info[priv->track1].address.minute * 60) + (priv->track_info[priv->track1].address.second);
-	(*data)->offsets = g_new (unsigned int, priv->track1 + 1);
-	
-	for (i = priv->track0; i <= priv->track1; i++) {
-		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
-	}
-		
-	linux_cdrom_close (lcd);
-	return TRUE;
-}
-
-static gboolean
 linux_cdrom_close_tray (GnomeCDRom *cdrom,
 			GError **error)
 {
 	LinuxCDRom *lcd;
 
 	lcd = LINUX_CDROM (cdrom);
-	if (linux_cdrom_check (lcd, error) == FALSE) {
+	if (linux_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
 
@@ -747,8 +830,7 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(%s) ioctl failed %s",
-					      __FUNCTION__,
+					      "(linux_cdrom_close_tray): ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -758,7 +840,8 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 
 	linux_cdrom_close (lcd);
 	return TRUE;
-}	
+}
+
 
 static void
 class_init (LinuxCDRomClass *klass)
@@ -783,7 +866,7 @@ class_init (LinuxCDRomClass *klass)
 	cdrom_class->close_tray = linux_cdrom_close_tray;
 
 	/* For CDDB */
-	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
+/*  	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data; */
 
 	parent_class = g_type_class_peek_parent (klass);
 }
@@ -793,9 +876,65 @@ init (LinuxCDRom *cdrom)
 {
 	cdrom->priv = g_new (LinuxCDRomPrivate, 1);
 	cdrom->priv->tochdr = g_new (struct cdrom_tochdr, 1);
-	cdrom->priv->paused = FALSE;
+	cdrom->priv->cdrom_fd = -1;
+	cdrom->priv->ref_count = 0;
+	cdrom->priv->update_id = -1;
+	cdrom->priv->recent_status = NULL;
+	cdrom->priv->track_info = NULL;
 }
 
+static gboolean
+update_cd (gpointer data)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
+	GnomeCDRomStatus *status;
+	GError *error;
+
+	lcd = data;
+	priv = lcd->priv;
+
+	/* Do an update */
+	if (linux_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
+		g_warning ("%s: %s", __FUNCTION__, error->message);
+
+		g_error_free (error);
+		return TRUE;
+	}
+
+	if (priv->recent_status == NULL) {
+		priv->recent_status = status;
+		
+		/* emit changed signal */
+		linux_cdrom_update_cd (lcd);
+		if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
+			gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
+		}
+	} else {
+		if (gnome_cdrom_status_equal (status, priv->recent_status) == TRUE) {
+			if (priv->update == GNOME_CDROM_UPDATE_CONTINOUS) {
+				/* emit changed signal */
+				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
+			}
+		} else {
+			if (priv->recent_status->cd != GNOME_CDROM_STATUS_OK &&
+			    status->cd == GNOME_CDROM_STATUS_OK) {
+				linux_cdrom_update_cd (lcd);
+			}
+
+			g_free (priv->recent_status);
+			priv->recent_status = status;
+
+			if (priv->update != GNOME_CDROM_UPDATE_NEVER) {
+				/* emit changed signal */
+				gnome_cdrom_status_changed (GNOME_CDROM (lcd), priv->recent_status);
+			}
+		}
+	}
+
+	return TRUE;
+}
+	
 /* API */
 GType
 linux_cdrom_get_type (void)
@@ -820,18 +959,42 @@ linux_cdrom_get_type (void)
    GnomeCDRom */
 GnomeCDRom *
 gnome_cdrom_new (const char *cdrom_device,
+		 GnomeCDRomUpdate update,
 		 GError **error)
 {
 	LinuxCDRom *cdrom;
 	LinuxCDRomPrivate *priv;
+	int fd;
 
 	g_return_val_if_fail (cdrom_device != NULL, NULL);
+	g_return_val_if_fail (*cdrom_device != 0, NULL);
 
 	cdrom = g_object_new (linux_cdrom_get_type (), NULL);
 	priv = cdrom->priv;
 
 	priv->cdrom_device = g_strdup (cdrom_device);
-	priv->init = FALSE;
+	priv->update = update;
+
+	/* Do a test open to see if we have CD stuff working */
+	if (linux_cdrom_open (cdrom, error) == TRUE) {
+		/* All worked, start the counter */
+		switch (update) {
+		case GNOME_CDROM_UPDATE_NEVER:
+			break;
+			
+		case GNOME_CDROM_UPDATE_WHEN_CHANGED:
+		case GNOME_CDROM_UPDATE_CONTINOUS:
+			priv->update_id = g_timeout_add (1000, update_cd, cdrom);
+			break;
+			
+		default:
+			break;
+		}
+		
+		linux_cdrom_close (cdrom);
+	} else {
+		return NULL;
+	}
 
 	return GNOME_CDROM (cdrom);
 }

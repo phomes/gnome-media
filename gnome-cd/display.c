@@ -52,7 +52,6 @@ size_allocate (GtkWidget *drawing_area,
 	disp = CD_DISPLAY (drawing_area);
 	priv = disp->priv;
 
-	g_print ("Size allocate: %d,%d\n", allocation->width, allocation->height);
 	context = pango_layout_get_context (priv->layout[0]->layout);
 	base_dir = pango_context_get_base_dir (context);
 
@@ -79,7 +78,6 @@ size_request (GtkWidget *widget,
 	disp = CD_DISPLAY (widget);
 	priv = disp->priv;
 
-	g_print ("Size request: %d,%d\n", priv->max_width, priv->height);
 	requisition->width = priv->max_width;
 	requisition->height = priv->height;
 }

@@ -1,3 +1,21 @@
+2001-12-31  Iain Holmes  <iain@ximian.com>
+
+	* callbacks.[ch] (play_cb): Update for new cd stuff.
+	(update_cb): Remove.
+	(cd_status_changed_cb): New callback function.
+	
+	* cdrom.[ch] (class_init): Add a signal.
+	(gnome_cdrom_status_changed): Function to emit the signal.
+	(msf_equals): Check if 2 GnomeCDRomMSFs are equal.
+	(gnome_cdrom_status_equal): Check if 2 GnomeCDRomStatus are equal.
+
+	* display.c: Remove some debugging spewage.
+
+	* gnome-cd.c (init_player): Use the new GnomeCDRom stuff.
+
+	* linux-cdrom.c: Rewrite to be more careful about opening and closing
+	the device, do things better and generally work.
+
 2001-12-09  Seth Nickell  <snickell@stanford.edu>
 
 	* Makefile.am:

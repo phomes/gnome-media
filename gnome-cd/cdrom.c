@@ -16,6 +16,13 @@
 
 static GObjectClass *parent_class = NULL;
 
+enum {
+	STATUS_CHANGED,
+	LAST_SIGNAL
+};
+
+static gulong gnome_cdrom_signals[LAST_SIGNAL] = { 0, };
+
 struct _GnomeCDRomPrivate {
 	int dummy;
 };
@@ -240,6 +247,15 @@ class_init (GnomeCDRomClass *klass)
 	/* CDDB stuff */
 	klass->get_cddb_data = cdrom_get_cddb_data;
 
+	/* Signals */
+	gnome_cdrom_signals[STATUS_CHANGED] = g_signal_new ("status-changed",
+							    G_TYPE_FROM_CLASS (klass),
+							    G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
+							    G_STRUCT_OFFSET (GnomeCDRomClass, status_changed),
+							    NULL, NULL,
+							    g_cclosure_marshal_VOID__POINTER,
+							    G_TYPE_NONE,
+							    1, G_TYPE_POINTER);
 	parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -387,4 +403,56 @@ gnome_cdrom_free_cddb_data (GnomeCDRomCDDBData *data)
 {
 	g_free (data->offsets);
 	g_free (data);
+}
+
+void
+gnome_cdrom_status_changed (GnomeCDRom *cdrom,
+			    GnomeCDRomStatus *new_status)
+{
+	g_signal_emit (G_OBJECT (cdrom), gnome_cdrom_signals[STATUS_CHANGED], 0, new_status);
+}
+
+static gboolean
+msf_equals (GnomeCDRomMSF *msf1,
+	    GnomeCDRomMSF *msf2)
+{
+	if (msf1 == msf2) {
+		return TRUE;
+	}
+
+	if (msf1->minute == msf2->minute &&
+	    msf1->second == msf2->second &&
+	    msf1->frame == msf2->frame) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean
+gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
+			  GnomeCDRomStatus *status2)
+{
+	if (status1 == status2) {
+		return TRUE;
+	}
+
+	if (status1->cd != status2->cd) {
+		return FALSE;
+	}
+
+	if (status1->audio != status2->audio) {
+		return FALSE;
+	}
+
+	if (status1->track != status2->track) {
+		return FALSE;
+	}
+
+	if (msf_equals (&status1->relative, &status2->relative) &&
+	    msf_equals (&status1->absolute, &status2->absolute)) {
+		return TRUE;
+	}
+
+	return FALSE;
 }

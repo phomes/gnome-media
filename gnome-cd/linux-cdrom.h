@@ -37,9 +37,6 @@ struct _LinuxCDRomClass {
 
 GType linux_cdrom_get_type (void) G_GNUC_CONST;
 
-GnomeCDRom *gnome_cdrom_new (const char *cdrom_device, 
-			     GError **error);
-
 G_END_DECLS
 
 #endif

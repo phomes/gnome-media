@@ -35,5 +35,7 @@ int rewind_release_cb (GtkButton *button,
 void mixer_cb (GtkButton *button,
 	       GnomeCD *gcd);
 
-int update_cb (gpointer data);
+void cd_status_changed_cb (GnomeCDRom *cdrom,
+			   GnomeCDRomStatus *status,
+			   GnomeCD *gcd);
 #endif

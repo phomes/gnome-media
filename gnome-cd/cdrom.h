@@ -26,7 +26,8 @@ typedef enum {
 	GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 	GNOME_CDROM_ERROR_NOT_OPENED,
 	GNOME_CDROM_ERROR_SYSTEM_ERROR,
-	GNOME_CDROM_ERROR_IO
+	GNOME_CDROM_ERROR_IO,
+	GNOME_CDROM_ERROR_NOT_READY
 } GnomeCDRomError;
 
 typedef struct _GnomeCDRom GnomeCDRom;
@@ -49,6 +50,12 @@ typedef enum _GnomeCDRomAudioStatus {
 	GNOME_CDROM_AUDIO_STOP,
 	GNOME_CDROM_AUDIO_ERROR
 } GnomeCDRomAudioStatus;
+
+typedef enum _GnomeCDRomUpdate {
+	GNOME_CDROM_UPDATE_NEVER,
+	GNOME_CDROM_UPDATE_WHEN_CHANGED,
+	GNOME_CDROM_UPDATE_CONTINOUS
+} GnomeCDRomUpdate;
 
 typedef struct _GnomeCDRomMSF {
 	int minute;
@@ -108,6 +115,10 @@ struct _GnomeCDRomClass {
 	gboolean (*get_cddb_data) (GnomeCDRom *cdrom,
 				   GnomeCDRomCDDBData **data,
 				   GError **error);
+
+	/* Signals */
+	void (*status_changed) (GnomeCDRom *cdrom,
+				GnomeCDRomStatus *status);
 };
 
 GQuark gnome_cdrom_error_quark (void);
@@ -148,7 +159,14 @@ void gnome_cdrom_free_cddb_data (GnomeCDRomCDDBData *data);
    so that the main program does not need to know about the architecture
    specific headers */
 GnomeCDRom *gnome_cdrom_new (const char *cdrom_device,
+			     GnomeCDRomUpdate update,
 			     GError **error);
+
+
+void gnome_cdrom_status_changed (GnomeCDRom *cdrom,
+				 GnomeCDRomStatus *new_status);
+gboolean gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
+				   GnomeCDRomStatus *status2);
 
 G_END_DECLS
 

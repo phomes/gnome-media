@@ -63,7 +63,7 @@ play_cb (GtkButton *button,
 		msf.minute = 0;
 		msf.second = 0;
 		msf.frame = 0;
-		if (gnome_cdrom_play (gcd->cdrom, 0, &msf, &error) == FALSE) {
+		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, &error) == FALSE) {
 			g_warning ("%s: %s", __FUNCTION__, error->message);
 			g_error_free (error);
 
@@ -123,7 +123,7 @@ play_cb (GtkButton *button,
 		msf.second = 0;
 		msf.frame = 0;
 
-		if (gnome_cdrom_play (gcd->cdrom, 0, &msf, &error) == FALSE) {
+		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, &error) == FALSE) {
 			g_warning ("%s: %s", __FUNCTION__, error->message);
 			g_error_free (error);
 
@@ -314,106 +314,19 @@ mixer_cb (GtkButton *button,
 	g_free (mixer_path);
 }
 
-int
-update_cb (gpointer data)
+void
+cd_status_changed_cb (GnomeCDRom *cdrom,
+		      GnomeCDRomStatus *status,
+		      GnomeCD *gcd)
 {
-	GnomeCDRomStatus *status;
-	GnomeCD *gcd = data;
-	GError *error;
-
-	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
-		g_warning ("No disc");
-		g_error_free (error);
-		return TRUE;
-	}
-
-	switch (status->cd) {
-	case GNOME_CDROM_STATUS_TRAY_OPEN:
-		g_warning ("Tray open");
-
-		gcd->last_cd = status->cd;
-		gcd->last_audio = status->audio;
-
-		g_free (status);
-		return TRUE;
-
-	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
-		g_warning ("Drive not ready");
-
-		gcd->last_cd = status->cd;
-		gcd->last_audio = status->audio;
-
-		g_free (status);
-		return TRUE;
-
-	case GNOME_CDROM_STATUS_NO_DISC:
-		g_warning ("No disc");
-
-		gcd->last_cd = status->cd;
-		gcd->last_audio = status->audio;
-
-		return TRUE;
-
-	case GNOME_CDROM_STATUS_OK:
-		g_warning ("Drive OK");
-
-		if (gcd->last_cd != GNOME_CDROM_STATUS_OK) {
-			/* Disc has just been inserted. */
-			cddb_get_query (gcd);
-		}
-
-		gcd->last_cd = status->cd;
-		gcd->last_audio = status->audio;
-
-		break;
-
-	default:
-		g_warning ("Unknown status: %d", status->cd);
-		break;
-	}
-
-	switch (status->audio) {
-	case GNOME_CDROM_AUDIO_NOTHING:
-		break;
-
-	case GNOME_CDROM_AUDIO_PLAY:
-	{
-		char *str;
-
-		str = g_strdup_printf ("%d:%d", status->relative.minute,
-				       status->relative.second);
-		cd_display_set_line (CD_DISPLAY (gcd->display), 
-				     CD_DISPLAY_LINE_TIME, str);
-		g_free (str);
-
-		str = g_strdup_printf ("Track %d", status->track);
-		cd_display_set_line (CD_DISPLAY (gcd->display),
-				     CD_DISPLAY_LINE_TRACK, str);
-		g_free (str);
-		break;
-	}
-
-	case GNOME_CDROM_AUDIO_PAUSE:
-
-		break;
-
-	case GNOME_CDROM_AUDIO_COMPLETE:
-		
-		break;
-
-	case GNOME_CDROM_AUDIO_STOP:
-
-		break;
-
-	case GNOME_CDROM_AUDIO_ERROR:
-		
-		break;
-
-	default:
-		break;
-	}
-
-	g_free (status);
-	return TRUE;
+#ifdef DEBUG
+	g_print ("Status changed\n"
+		 "Device: %d\nAudio %d\n"
+		 "Track: %d (%d:%d:%d)\n"
+		 "--------------------\n",
+		 status->cd, status->audio,
+		 status->track, status->relative.minute,
+		 status->relative.second, status->relative.frame);
+#endif
 }
+		 

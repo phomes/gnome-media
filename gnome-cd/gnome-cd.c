@@ -91,7 +91,7 @@ init_player (void)
 
 	gcd = g_new0 (GnomeCD, 1);
 
-	gcd->cdrom = gnome_cdrom_new ("/dev/cdrom", &error);
+	gcd->cdrom = gnome_cdrom_new ("/dev/cdrom", GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
@@ -99,6 +99,8 @@ init_player (void)
 		g_free (gcd);
 		return NULL;
 	}
+	g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
+			  G_CALLBACK (cd_status_changed_cb), gcd);
 
 	gcd->last_cd = GNOME_CDROM_STATUS_NOTHING;
 	gcd->last_audio = GNOME_CDROM_AUDIO_NOTHING;
@@ -228,7 +230,6 @@ main (int argc,
 
 	gtk_widget_show (gcd->window);
 
-	gcd->display_timeout = gtk_timeout_add (1000, update_cb, gcd);
 	bonobo_main ();
 	return 0;
 }
