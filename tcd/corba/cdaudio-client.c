@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
     g_print("location_info:\t%s\n", chosen->location_info);
     g_print("type:\t%d\n", chosen->type);
 
-    cdaudio_client = goad_server_activate(chosen, 0);
-//    cdaudio_client = goad_server_activate_with_id(NULL, "cdaudio", 0);
+    cdaudio_client = goad_server_activate(chosen, 0, NULL);
+//    cdaudio_client = goad_server_activate_with_id(NULL, "cdaudio", 0, NULL);
 
 //    cdaudio_client = CORBA_ORB_string_to_object(orb, argv[1], &ev);
 
