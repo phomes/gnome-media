@@ -30,6 +30,7 @@
 #include <gst/mixer/mixer.h>
 #include <gst/propertyprobe/propertyprobe.h>
 
+#include "keys.h"
 #include "stock.h"
 #include "window.h"
 
@@ -192,6 +193,19 @@ cb_destroy (GtkWidget *widget,
   gtk_main_quit ();
 }
 
+void
+cb_check_resize (GtkContainer    *container,
+      		  gpointer         user_data)
+{
+  GConfClient *client;
+  gint width, height;
+
+  client = gconf_client_get_default();
+  gtk_window_get_size (GTK_WINDOW (container), &width, &height);
+  gconf_client_set_int (client, PREF_UI_WINDOW_WIDTH, width, NULL);
+  gconf_client_set_int (client, PREF_UI_WINDOW_HEIGHT, height, NULL);
+}
+
 gint
 main (gint   argc,
       gchar *argv[])
@@ -260,6 +274,8 @@ main (gint   argc,
   /* window contains everything automagically */
   win = gnome_volume_control_window_new (elements);
   g_signal_connect (win, "destroy", G_CALLBACK (cb_destroy), NULL);
+  g_signal_connect (win, "check_resize", G_CALLBACK (cb_check_resize), NULL);
+
   gtk_widget_show (win);
   gtk_main ();
 

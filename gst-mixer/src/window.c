@@ -25,6 +25,7 @@
 
 #include <gtk/gtk.h>
 #include <gnome.h>
+#include <gconf/gconf-client.h>
 
 #include "keys.h"
 #include "preferences.h"
@@ -145,8 +146,10 @@ gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
   gnome_app_construct (GNOME_APP (win),
 		       "gnome-volume-control", _("Volume Control"));
 
-  /* reasonable (...) default size */
-  gtk_widget_set_size_request (GTK_WIDGET (win), 500, -1);
+  /* To set the window according to previous geomtery */
+  gtk_window_set_default_size (GTK_WINDOW (win),
+                               gconf_client_get_int (win->client,PREF_UI_WINDOW_WIDTH, NULL),
+                               gconf_client_get_int (win->client,PREF_UI_WINDOW_HEIGHT, NULL));
 }
 
 GtkWidget *
