@@ -6,6 +6,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
 	$(GAILUTIL_CFLAGS)			\
+	$(GSR_CFLAGS)                           \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"	\
@@ -21,6 +22,8 @@ EXTRA_DIST = \
 	bsd-cdrom.h		\
 	linux-cdrom.c		\
 	linux-cdrom.h		\
+	gst-cdparanoia-cdrom.c	\
+	gst-cdparanoia-cdrom.h	\
 	gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
 ### intermediate libtool library generated from IDL source
@@ -39,7 +42,9 @@ $(IDL_GENERATED): $(IDLS)
 noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
 libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 
-
+if HAVE_GSTREAMER
+cd_sources = gst-cdparanoia-cdrom.c
+else
 if CDROM_HOST_BSD
 cd_sources = bsd-cdrom.c bsd-cdrom.h
 endif
@@ -49,7 +54,7 @@ endif
 if CDROM_HOST_SOLARIS
 cd_sources = solaris-cdrom.c solaris-cdrom.h
 endif
-
+endif
 
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
@@ -80,6 +85,7 @@ gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 libgnomemedia-cddbslave2.la \
 		 $(INTLLIBS)		\
 		 $(GAILUTIL_LIBS)	\
+		 $(GSR_LIBS)	\
 		 $(ACCESS_LT_LIB)
 
 @INTLTOOL_DESKTOP_RULE@
@@ -102,3 +108,5 @@ install-data-local:
 endif
 
 CLEANFILES = $(Audio_DATA) $(schema_DATA)
+
+CDROM_HOST = gst-cdparanoia
