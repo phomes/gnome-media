@@ -293,8 +293,11 @@ create_mixer_widget (GstMixer *mixer)
   /* put table in a scrollview for handling lots of tracks */
   view = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (view),
-				  GTK_POLICY_AUTOMATIC,
+				  tablepos <= 30 ?
+				  GTK_POLICY_NEVER : GTK_POLICY_AUTOMATIC,
 				  GTK_POLICY_NEVER);
+  if (tablepos > 30)
+    gtk_widget_set_size_request (view, 600, -1);
   gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (view), table);
 
   return view;
