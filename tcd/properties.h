@@ -5,10 +5,9 @@ typedef struct
 {
 	gchar *cddev;
 	gchar *cddb;
-	gchar *iconset;
 	gint  cddbport;
 	gboolean handle;
-	gboolean tooltips;
+	gboolean tooltip;
 } tcd_properties;
 
 void load_properties( tcd_properties *prop );

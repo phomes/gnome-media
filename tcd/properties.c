@@ -10,7 +10,7 @@
    the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
                
-   This program is distributed in the hope that it will be useful,
+  This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
@@ -30,23 +30,23 @@
 
 tcd_properties props;
 GtkWidget *propbox;
+extern GtkTooltips *tooltips;
 
 void load_properties( tcd_properties *prop )
 {
 	prop->cddev 	= gnome_config_get_string("/gtcd/cdrom/device=/dev/cdrom");
 	prop->cddb  	= gnome_config_get_string("/gtcd/cddb/server=cddb.cddb.com");
 	prop->cddbport  = gnome_config_get_int(   "/gtcd/cddb/port=888");
-	prop->iconset  	= gnome_config_get_string("/gtcd/ui/iconset=BlackBevel");
 	prop->handle    = gnome_config_get_bool(  "/gtcd/ui/handle=1");
+	prop->tooltip   = gnome_config_get_bool(  "/gtcd/ui/tooltip=1");
 }
 
 void save_properties( tcd_properties *prop )
 {
 	gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
 	gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
-	gnome_config_set_string("/gtcd/ui/iconset", prop->iconset);
-	gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport);
 	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
+	gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
 	gnome_config_sync();
 }
 
@@ -87,18 +87,15 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 	
 	gtk_entry_set_text( GTK_ENTRY(cddb_i), props.cddb );
 
-	props.cddb     = gtk_entry_get_text(GTK_ENTRY(cddb_i));
+	props.cddb = gtk_entry_get_text(GTK_ENTRY(cddb_i));
 
-	cddb_l     = gtk_label_new("Default CDDB Server");
-	port_l     = gtk_label_new("Default CDDB Port");
+	cddb_l = gtk_label_new("Server");
+	port_l = gtk_label_new("Port");
+	gtk_label_set_justify( GTK_LABEL(cddb_l), GTK_JUSTIFY_RIGHT );
+	gtk_label_set_justify( GTK_LABEL(port_l), GTK_JUSTIFY_RIGHT );
 
 	cddb_frame = gtk_frame_new("CDDB Access");
 	gtk_container_border_width( GTK_CONTAINER(cddb_frame), 5 );
-
-	gtk_widget_show(cddb_i);
-	gtk_widget_show(cddb_l);
-	gtk_widget_show(port_i);
-	gtk_widget_show(port_l);
 
 	gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
 		GTK_SIGNAL_FUNC(changed_cb), NULL );
@@ -115,10 +112,7 @@ GtkWidget *create_cddb_frame( GtkWidget *box )
 
 	gtk_container_add( GTK_CONTAINER(cddb_frame), cddb_box );
 
-	gtk_widget_show(cddb_r_box);
-	gtk_widget_show(cddb_l_box);
-	gtk_widget_show(cddb_frame);
-	gtk_widget_show(cddb_box);
+	gtk_widget_show_all(cddb_box);
 
 	return cddb_frame;
 }
@@ -135,7 +129,8 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 	cdrom_l_box= gtk_vbox_new( FALSE, 2 );
 	cdrom_box  = gtk_hbox_new( FALSE, 2 );
 
-	cddev_l = gtk_label_new("CDROM Drive Device");
+	cddev_l = gtk_label_new("Device");
+	gtk_label_set_justify( GTK_LABEL(cddev_l), GTK_JUSTIFY_RIGHT );
 	cddev_i = gtk_entry_new();
 
 	gtk_entry_set_text( GTK_ENTRY(cddev_i), props.cddev );
@@ -143,9 +138,6 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 
 	cdrom_frame = gtk_frame_new("CDROM Drive");
 	gtk_container_border_width( GTK_CONTAINER(cdrom_frame), 5 );
-
-	gtk_widget_show(cddev_i);
-	gtk_widget_show(cddev_l);
 
 	gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
 		GTK_SIGNAL_FUNC(changed_cb), NULL );
@@ -158,12 +150,15 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 	
 	gtk_container_add( GTK_CONTAINER(cdrom_frame), cdrom_box );
 
-	gtk_widget_show(cdrom_r_box);
-	gtk_widget_show(cdrom_l_box);
-	gtk_widget_show(cdrom_frame);
-	gtk_widget_show(cdrom_box);
+	gtk_widget_show_all(cdrom_box);
 	
 	return cdrom_frame;
+}
+
+void check_changed_cb( GtkWidget *widget, gboolean *data )
+{
+	*data = ~(*data);
+	gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
 GtkWidget *create_ui_frame( GtkWidget *box )
@@ -183,15 +178,17 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 	handle_i = gtk_check_button_new_with_label("Show Handles");
 	tooltips_i = gtk_check_button_new_with_label("Show Tooltips");
 
-	ui_frame = gtk_frame_new("");
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), props.handle );
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), props.tooltip );
+
+	ui_frame = gtk_frame_new("General");
 	gtk_container_border_width( GTK_CONTAINER(ui_frame), 5 );
 
-	gtk_widget_show(handle_i);
-	gtk_widget_show(tooltips_i);
+	gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
+		GTK_SIGNAL_FUNC(check_changed_cb), &props.handle );
+	gtk_signal_connect( GTK_OBJECT(tooltips_i), "clicked",
+		GTK_SIGNAL_FUNC(check_changed_cb), &props.tooltip );
 
-/*	gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
-		GTK_SIGNAL_FUNC(changed_cb), NULL );
-*/
 	gtk_box_pack_start( GTK_BOX(ui_l_box), handle_i, FALSE, FALSE, 4 );
 	gtk_box_pack_start( GTK_BOX(ui_l_box), tooltips_i, FALSE, FALSE, 4 );
 
@@ -200,10 +197,7 @@ GtkWidget *create_ui_frame( GtkWidget *box )
 	
 	gtk_container_add( GTK_CONTAINER(ui_frame), ui_box );
 
-	gtk_widget_show(ui_r_box);
-	gtk_widget_show(ui_l_box);
-	gtk_widget_show(ui_frame);
-	gtk_widget_show(ui_box);
+	gtk_widget_show_all(ui_box);
 	
 	return ui_frame;
 }
@@ -242,6 +236,12 @@ GtkWidget *create_page1()
 
 void apply_cb( GtkWidget *widget, void *data )
 {	
+/* Do stuff here if needed */
+	if( props.tooltip )
+		gtk_tooltips_enable(tooltips);
+	else
+		gtk_tooltips_disable(tooltips);
+		
 	save_properties(&props);
 }
 
@@ -269,8 +269,6 @@ void properties_cb( GtkWidget *widget, void *data )
 	gtk_signal_connect( GTK_OBJECT(propbox), 
 		"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
 
-	gtk_widget_show(label);
-	gtk_widget_show(page1);
-	gtk_widget_show(propbox);
+	gtk_widget_show_all(propbox);
 	return;
 }

@@ -192,8 +192,7 @@ GtkWidget* make_button( char *title, GtkWidget *box, int func, gchar *tooltip )
 	gtk_widget_show (button);
 	Connect( button, func );
 
-        if( props.tooltips )
-        	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
+	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 
 	return button;
 }	                        
@@ -206,20 +205,20 @@ GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
 	char tmp[256];
 	
 	sprintf( tmp, "tcd/%s.xpm", pic );
+#ifdef DEBUG
 	g_print( "loading: %s\n", gnome_pixmap_file(tmp) );
+#endif
 	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
-	gtk_widget_show(pixmap);
 
 	button = gtk_button_new();
 	gtk_container_add( GTK_CONTAINER(button), pixmap );
 	gtk_box_pack_start( GTK_BOX (box), button, expand, fill, 0 );
-	gtk_widget_show(button);
 	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
 	        GTK_SIGNAL_FUNC (callback), (gpointer*)func );
 	
-	if( props.tooltips )
-		gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
+	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 
+	gtk_widget_show_all(button);
 	return button;
 }	                        
 
@@ -333,15 +332,14 @@ GtkWidget* make_row3( void )
 
 	sprintf( tmp, "tcd/%s.xpm", "goto" );
 	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
-	gtk_widget_show(pixmap);
 	gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );
         gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
 	gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
 	
-	gtk_widget_show(bbox);
-	gtk_widget_show(gotobutton);
 	button = make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
-	gtk_widget_show(box);
+
+	gtk_widget_show_all(box);
+
 	gtk_container_add(GTK_CONTAINER(handle), box);
 	
 	return row3=handle;
@@ -699,7 +697,6 @@ void setup_time_display( void )
 	GtkWidget *handle1;
 	
 	lowerbox = gtk_hbox_new( FALSE, 5 );
-	gtk_widget_show( lowerbox );
 	
 	vol = gtk_adjustment_new (0.0, 0.0, 256.0, 0.1, 1.0, 1.0);
 	volume = gtk_hscale_new(GTK_ADJUSTMENT(vol));
@@ -707,11 +704,9 @@ void setup_time_display( void )
         gtk_scale_set_draw_value( GTK_SCALE(volume), FALSE );
 	gtk_signal_connect( GTK_OBJECT(vol), "value_changed",
         	(GtkSignalFunc)volume_changed, NULL);
-        gtk_widget_show(volume);
 
 #ifdef TCD_CHANGER_ENABLED
 	changer_box = make_changer_buttons();
-	gtk_widget_show( changer_box );
 #endif
 
 	status_area = gtk_drawing_area_new();
@@ -723,8 +718,7 @@ void setup_time_display( void )
         	(GtkSignalFunc)status_click_event, NULL);
 	gtk_widget_set_usize( status_area, 175, 59 );
 
-        if( props.tooltips )
-        	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
+	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
         
         gtk_widget_set_events (status_area, GDK_EXPOSURE_MASK
  					   | GDK_LEAVE_NOTIFY_MASK
@@ -742,11 +736,9 @@ void setup_time_display( void )
 
 	handle1 = gtk_handle_box_new();
 	gtk_container_add(GTK_CONTAINER(handle1), status_area );
-	gtk_widget_show(handle1);
 	gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
 	gtk_box_pack_start( GTK_BOX(status_table), lowerbox, FALSE, FALSE, 4 );
-	gtk_widget_show(status_table);
-	gtk_widget_show(status_area);
+	gtk_widget_show_all(status_table);
 	return;
 }
 
@@ -810,7 +802,6 @@ void init_window(void)
         window = gnome_app_new( "gtcd", "TCD 2.0" );
         gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
         gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd" );
-//        gtk_window_set_policy( GTK_WINDOW(window),FALSE,FALSE,TRUE);
 
         gtk_signal_connect (GTK_OBJECT (window), "delete_event",
                 GTK_SIGNAL_FUNC (delete_event), NULL);
@@ -818,8 +809,11 @@ void init_window(void)
         gtk_container_border_width (GTK_CONTAINER (window), 5);
         gtk_widget_realize(window);
 
-        if( props.tooltips )
-	        tooltips = gtk_tooltips_new();
+	tooltips = gtk_tooltips_new();
+	if( props.tooltip )
+		gtk_tooltips_enable(tooltips);
+	else
+		gtk_tooltips_disable(tooltips);
 }
 
 int main (int argc, char *argv[])
