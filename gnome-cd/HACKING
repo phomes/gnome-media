@@ -11,15 +11,4 @@ DEBUGGING gnome-cd
 
 DEBUGGING CDDB lookups
 ----------------------
-* kill the CDDBSlave2 component
-* set CDDB_SLAVE_DEBUG env var
-* start up CDDBSlave2 from the command line
-
-* cddb info is cached in $HOME/.cddbslave/ with files with the discid as
-  name
-* FIXME: maybe make it use $HOME/.cddb as well ?
-
-* first failed lookup will return NULL data, causing a correct window title
-  subsequent lookups (for the lifetime of CDDBSlave2) cause it to return
-  Unknown
-  restarting the CDDBSlave2 component causes it to return NULL again
+* see cddb-slave2/HACKING
