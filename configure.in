@@ -246,10 +246,10 @@ AC_SUBST(GAILUTIL_LIBS)
 PROGRAMS_GSTPROPS=""
 if test "x$HAVE_GST" = "xyes";
 then
-  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR"
+  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR gstreamer-gconf-$GST_MAJORMINOR"
   PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
   		  PROGRAMS_GSTPROPS="gstreamer-properties")
-  GSTPROPS_LIBS="$GSTPROPS_LIBS -lgstgconf-$GST_MAJORMINOR"
+  GSTPROPS_LIBS="$GSTPROPS_LIBS"
   AC_SUBST(GSTPROPS_LIBS)
   AC_SUBST(GSTPROPS_CFLAGS)
 
