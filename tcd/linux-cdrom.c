@@ -313,9 +313,9 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	}
 	
         cd->ti.cdti_trk0 = start_t;   /* start track */
-   	cd->ti.cdti_ind0 = 0;   /* start index */
+   	cd->ti.cdti_ind0 = 1;   /* start index */
         cd->ti.cdti_trk1 = end_t;  /* end track */
-        cd->ti.cdti_ind1 = 0;   /* end index */
+        cd->ti.cdti_ind1 = 1;   /* end index */
                                 
         tmp = ioctl( cd->cd_dev, CDROMPLAYTRKIND, &cd->ti );
    	if( tmp < 0 )
