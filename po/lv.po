@@ -6,68 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2003-01-06 23:14+0200\n"
 "Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Servera adrese, ar kuru kontaktēties CD pieprasījumiem"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-#, fuzzy
-msgid "Information to send to server"
-msgstr "Parādīt informāciju Skaņu Ierakstītājam"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Ports"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Servera nosukums"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-#, fuzzy
-msgid "Server type"
-msgstr "Servera nosukums"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "Hostdatora vārds, kas tiks sūtīts visos pieprasījumos"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "Ports, uz kura serveris darbina datu bāzi"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Lietotājvārds"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "Lietotājvārds, kas tiks sūtīts visos pieprasījumos"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Jūsu hostdatora vārds"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -128,6 +73,10 @@ msgstr "FreeDB ne_oficiāls serveris"
 #, fuzzy
 msgid "Other _FreeDB server:"
 msgstr "Cits _FreeDB serveris..."
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Ports"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -195,14 +144,6 @@ msgstr "Mākslinieks un Virsraksts"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Nezināms celiņš"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "CD Datubāze"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "Mainīt jūsu CD datubāzes preferences"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -935,7 +876,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Rinda albuma nosaukuma attēlošanai"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "Atskaņot"
 
@@ -960,7 +901,6 @@ msgstr "Pauzēts"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD Atskaņotājs"
 
@@ -1023,7 +963,7 @@ msgstr "%d - Nezināms"
 msgid "P_revious track"
 msgstr "Iep_riekšējais celiņš"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "S_top"
 
@@ -1039,7 +979,7 @@ msgstr "_Nākošais celiņš"
 msgid "_Eject disc"
 msgstr "_Izlikt disku"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "_Palīdzība"
 
@@ -1139,7 +1079,7 @@ msgstr "Atpakaļ"
 msgid "Play / Pause"
 msgstr "Spēlēt / Pauze"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "Stop"
 
@@ -1175,45 +1115,6 @@ msgstr "Aatskaņot CD pie sāknēšanas"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Nevaru izveidot spēlētāju"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "Spēlēt audio CDs"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "CD atskaņotāja tēma"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "Iekārtas ceļš"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
-msgid "Eject the CD when CD player quits?"
-msgstr "Apturēt CD atskaņošanu, kad CD atskaņotājs iziet"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-#, fuzzy
-msgid "Play when the CD player starts?"
-msgstr "Kad CD Atskaņotājs startējas"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-#, fuzzy
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Apturēt CD atskaņošanu, kad CD atskaņotājs iziet"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Ceļš uz CD iekārtu, ko CD atskaņotājam lietot, lai atskaņotu CD"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr "Kādu tēmu CD atkaņotājam lietot tā izskatam"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr ""
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1269,175 +1170,6 @@ msgstr "Mēģināt atvērt CD iekārtu, kad CD Atskaņotājs iziet"
 msgid "_Available Themes:"
 msgstr ""
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "Ierakstīt skaņas klipus"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Skaņu Ierakstītājs"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Par"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Aizvērt"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "Aizvērt šo logu"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Saturs"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Izveidot jaunu paraugu"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "Parādīt Skaņu Ierakstītāja palīdzību"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Faila Informācija"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "Faila _Informācija"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Galvenā rīkjosla"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Jauns"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Atvērt"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Atvēt failu"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Atskaņot skaņu"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Iziet"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Iziet no aplikācijas"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "Nesenie _Faili"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Ierakstīt"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Ierakstīt skaņu"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Palaist Mikseri"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "Palaist _Mikseri"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "Palaist audio mikseri"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Saglabāt"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Saglabāt Kā"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Saglabāt _Kā..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "Saglabāt pašreizējo failu"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "Saglabāt pašreizējo failu ar citu nosaukumu"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "Parādīt informāciju par pašreizējo failu"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "Parādīt informāciju Skaņu Ierakstītājam"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Apturēt Skaņu"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Par"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Aizvērt Logu"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Saturs"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Kontrole"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fails"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_Jauns"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Atvērt..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Atskaņot"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Iziet"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_Ierakstīt"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_Saglabāt"
-
 #: grecord/src/gnome-recorder.c:156
 #, fuzzy
 msgid "Dummy option"
@@ -1473,6 +1205,10 @@ msgstr "sekundes"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "sekunde"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Atvēt failu"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1525,6 +1261,10 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "%s Informācija"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Faila Informācija"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Mape:"
@@ -1556,6 +1296,10 @@ msgstr "Nolases kavalitāte:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Bit ātrums:"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Skaņu Ierakstītājs"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1590,16 +1334,6 @@ msgstr "<nekas>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Garums:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Noregulēt skaļuma līmeni"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Skaļuma Kontrole"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1643,6 +1377,11 @@ msgstr "Ierak."
 msgid "%s Record"
 msgstr "%s Ieraksts"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Skaļuma Kontrole"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr ""
@@ -1662,84 +1401,91 @@ msgstr "Kļūme izveidojot galveno logu"
 msgid "Could not load UI resource %s"
 msgstr "Nevarēju ielādēt UI resursu %s"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "Konfigurācijas noklusējumi GStreamer aplikācijām"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
-msgid "<b>Default Sink</b>"
-msgstr "Noklusētai Datu saņēmējs"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
-msgid "<b>Default Source</b>"
-msgstr "Noklusētais Avots"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Testēju...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "Audio"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-#, fuzzy
-msgid "Click Ok to finish."
-msgstr "Klikšķiniet Labi, lai beigtu"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 #, fuzzy
 msgid "GStreamer Preferences"
 msgstr "GStreamer Rekvizīti"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
 #, fuzzy
-msgid "Pipe_line:"
-msgstr "Konveijers:"
+msgid "<b>Default Sink</b>"
+msgstr "Noklusētai Datu saņēmējs"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-#, fuzzy
-msgid "Te_st"
-msgstr "Testēt..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "Testēju Konveijeru"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Video"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-#, fuzzy
-msgid "_Input:"
-msgstr "Audio _Ievade:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 #, fuzzy
 msgid "_Output:"
 msgstr "Audio _Izvade:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 #, fuzzy
 msgid "_Pipeline:"
 msgstr "Konveijers:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 #, fuzzy
 msgid "_Test"
 msgstr "Testēt..."
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+#, fuzzy
+msgid "<b>Default Source</b>"
+msgstr "Noklusētais Avots"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+#, fuzzy
+msgid "_Input:"
+msgstr "Audio _Ievade:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+#, fuzzy
+msgid "Pipe_line:"
+msgstr "Konveijers:"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+#, fuzzy
+msgid "Te_st"
+msgstr "Testēt..."
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "Audio"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "Video"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "Testēju Konveijeru"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Testēju...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+#, fuzzy
+msgid "Click Ok to finish."
+msgstr "Klikšķiniet Labi, lai beigtu"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1869,104 +1615,49 @@ msgid ""
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
-msgid "File _Extension:"
-msgstr "Faila izmērs:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
-msgid "Profile _name:"
-msgstr "Faila nosaukums:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 #, fuzzy
 msgid "_Create"
 msgstr "Centrālais"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
+#: profiles/gnome-audio-profiles.glade2:138
 #, fuzzy
-msgid "_GStreamer Pipeline:"
-msgstr "GStreamer Rekvizīti"
+msgid "Profile _name:"
+msgstr "Faila nosaukums:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2:273
 #, fuzzy
 msgid "_Profile name:"
 msgstr "Faila nosaukums:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:326
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "GStreamer Rekvizīti"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:351
+#, fuzzy
+msgid "File _Extension:"
+msgstr "Faila izmērs:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
 msgstr ""
 
 #: vu-meter/main.c:120
@@ -2022,21 +1713,202 @@ msgstr "Ieraksta līmenis"
 msgid "Volume Meter"
 msgstr "Skaļuma mērītājs"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Monitorēt ieraksta ievades skaļumu"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Servera adrese, ar kuru kontaktēties CD pieprasījumiem"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "Ieraksta līmeņa novērotājs"
+#, fuzzy
+#~ msgid "Information to send to server"
+#~ msgstr "Parādīt informāciju Skaņu Ierakstītājam"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Novērot skaņas izvades skaļumu"
+#~ msgid "Server name"
+#~ msgstr "Servera nosukums"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "Skaļuma monitors"
+#, fuzzy
+#~ msgid "Server type"
+#~ msgstr "Servera nosukums"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "Hostdatora vārds, kas tiks sūtīts visos pieprasījumos"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "Ports, uz kura serveris darbina datu bāzi"
+
+#~ msgid "The username"
+#~ msgstr "Lietotājvārds"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "Lietotājvārds, kas tiks sūtīts visos pieprasījumos"
+
+#~ msgid "Your hostname"
+#~ msgstr "Jūsu hostdatora vārds"
+
+#~ msgid "CD Database"
+#~ msgstr "CD Datubāze"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "Mainīt jūsu CD datubāzes preferences"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Spēlēt audio CDs"
+
+#~ msgid "CD player theme"
+#~ msgstr "CD atskaņotāja tēma"
+
+#~ msgid "Device path"
+#~ msgstr "Iekārtas ceļš"
+
+#, fuzzy
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Apturēt CD atskaņošanu, kad CD atskaņotājs iziet"
+
+#, fuzzy
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Kad CD Atskaņotājs startējas"
+
+#, fuzzy
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "Apturēt CD atskaņošanu, kad CD atskaņotājs iziet"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr "Ceļš uz CD iekārtu, ko CD atskaņotājam lietot, lai atskaņotu CD"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr "Kādu tēmu CD atkaņotājam lietot tā izskatam"
+
+#~ msgid "Record sound clips"
+#~ msgstr "Ierakstīt skaņas klipus"
+
+#~ msgid "About"
+#~ msgstr "Par"
+
+#~ msgid "Close"
+#~ msgstr "Aizvērt"
+
+#~ msgid "Close this window"
+#~ msgstr "Aizvērt šo logu"
+
+#~ msgid "Contents"
+#~ msgstr "Saturs"
+
+#~ msgid "Create a new sample"
+#~ msgstr "Izveidot jaunu paraugu"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "Parādīt Skaņu Ierakstītāja palīdzību"
+
+#~ msgid "File _Information"
+#~ msgstr "Faila _Informācija"
+
+#~ msgid "Main toolbar"
+#~ msgstr "Galvenā rīkjosla"
+
+#~ msgid "New"
+#~ msgstr "Jauns"
+
+#~ msgid "Open"
+#~ msgstr "Atvērt"
+
+#~ msgid "Play sound"
+#~ msgstr "Atskaņot skaņu"
+
+#~ msgid "Quit"
+#~ msgstr "Iziet"
+
+#~ msgid "Quit the application"
+#~ msgstr "Iziet no aplikācijas"
+
+#~ msgid "Recent _Files"
+#~ msgstr "Nesenie _Faili"
+
+#~ msgid "Record"
+#~ msgstr "Ierakstīt"
+
+#~ msgid "Record sound"
+#~ msgstr "Ierakstīt skaņu"
+
+#~ msgid "Run Mixer"
+#~ msgstr "Palaist Mikseri"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "Palaist _Mikseri"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "Palaist audio mikseri"
+
+#~ msgid "Save"
+#~ msgstr "Saglabāt"
+
+#~ msgid "Save As"
+#~ msgstr "Saglabāt Kā"
+
+#~ msgid "Save _As..."
+#~ msgstr "Saglabāt _Kā..."
+
+#~ msgid "Save the current file"
+#~ msgstr "Saglabāt pašreizējo failu"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Saglabāt pašreizējo failu ar citu nosaukumu"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "Parādīt informāciju par pašreizējo failu"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "Parādīt informāciju Skaņu Ierakstītājam"
+
+#~ msgid "Stop sound"
+#~ msgstr "Apturēt Skaņu"
+
+#~ msgid "_About"
+#~ msgstr "_Par"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Aizvērt Logu"
+
+#~ msgid "_Contents"
+#~ msgstr "_Saturs"
+
+#~ msgid "_Control"
+#~ msgstr "_Kontrole"
+
+#~ msgid "_File"
+#~ msgstr "_Fails"
+
+#~ msgid "_New"
+#~ msgstr "_Jauns"
+
+#~ msgid "_Open..."
+#~ msgstr "_Atvērt..."
+
+#~ msgid "_Play"
+#~ msgstr "_Atskaņot"
+
+#~ msgid "_Quit"
+#~ msgstr "_Iziet"
+
+#~ msgid "_Record"
+#~ msgstr "_Ierakstīt"
+
+#~ msgid "_Save"
+#~ msgstr "_Saglabāt"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Noregulēt skaļuma līmeni"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "Konfigurācijas noklusējumi GStreamer aplikācijām"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Monitorēt ieraksta ievades skaļumu"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "Ieraksta līmeņa novērotājs"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Novērot skaņas izvades skaļumu"
+
+#~ msgid "Volume monitor"
+#~ msgstr "Skaļuma monitors"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Nezināms mākslinieks"

@@ -11,70 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2004-03-09 00:44+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "CD 検索で使用するサーバのアドレスです。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "サーバへ送信する情報"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "ポート"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "サーバ名"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "サーバの種類"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "全ての問い合わせで使用するホスト名です。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "サーバがデータベースを実行しているポート番号です。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"CD の問い合わせを行うサーバの種類です。設定可能な値は 0 (FreeDB ラウンド・ロ"
-"ビン・サーバ)、1 (その他の FreeDB サーバ) と 2 (その他のサーバ) です。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "ユーザ名"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "全ての問い合わせで使用するユーザ名です。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"このキーは、どのユーザ情報が CD の問い合わせを行うサーバへ送信されるかを表し"
-"ます。設定可能な値は 0 (情報なし)、1 (実際の情報) と 3 (その他の情報) です。"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "ホスト名"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -130,6 +73,10 @@ msgstr "FreeDB ラウンド・ロビン・サーバ(_R)"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "他の FreeDB サーバ(_F):"
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "ポート"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -194,14 +141,6 @@ msgstr "演奏者 / タイトル"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "不明なトラック"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "CD データベース"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "CD データベースの設定を変更します"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -931,7 +870,7 @@ msgid "Line for displaying the name of the album"
 msgstr "アルバムの名前を表示する行"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "演奏"
 
@@ -956,7 +895,6 @@ msgstr "一時停止"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD プレイヤー"
 
@@ -1019,7 +957,7 @@ msgstr "%d - 不明"
 msgid "P_revious track"
 msgstr "前のトラック(_R)"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "停止(_S)"
 
@@ -1035,7 +973,7 @@ msgstr "次のトラック(_N)"
 msgid "_Eject disc"
 msgstr "イジェクト(_E)"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -1134,7 +1072,7 @@ msgstr "巻き戻します"
 msgid "Play / Pause"
 msgstr "演奏/停止します"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "停止"
 
@@ -1170,42 +1108,6 @@ msgstr "起動時に CD を再生する"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "プレイヤーを作成できません"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "オーディオ CD を演奏します"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "CD プレイヤーのテーマ"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "デバイスへのパス"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "CD プレイヤーが起動したら演奏するかどうか。"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "CD の再生に利用する CD ドライブへのパスです。"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr "CD プレイヤーの外観としてどのテーマを利用するか。"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "CD プレイヤーが起動した際に CD の演奏を開始するかどうか。"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1256,175 +1158,6 @@ msgstr "CD プレイヤーの終了時に CD をイジェクトします"
 msgid "_Available Themes:"
 msgstr "利用可能なテーマ(_A):"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "サウンド・クリップを記録します"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "サウンド・レコーダ"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "情報"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "閉じる"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "このウィンドウを閉じます"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "目次"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "新しいサンプルを生成します"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "サウンド・レコーダのヘルプを表示します"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "ファイル情報"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "ファイル情報 (_I)"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "メイン・ツールバー"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "新規"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "開く"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "ファイルを開きます"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "サウンドを再生します"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "終了"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "アプリケーションを終了します"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "最近実行したファイル(_F)"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "録音"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "サウンドを保存します"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "ミキサの実行"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "ミキサの実行(_M)"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "オーディオ・ミキサを起動します"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "保存"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "別名で保存"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "別名で保存...(_A)"
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "このファイルを保存します"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "このファイルを別名で保存します"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "このファイルの情報を表示します"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "サウンド・レコーダの情報を表示します"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "録音/再生を停止します"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "情報(_A)"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "ウィンドウを閉じる(_C)"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "目次(_C)"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "コントロール(_C)"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "ファイル(_F)"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "新規(_N)"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "開く...(_O)"
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "再生(_P)"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "終了(_Q)"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "録音(_R)"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "保存(_S)"
-
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "ダミー・オプション"
@@ -1459,6 +1192,10 @@ msgstr "秒"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "秒"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "ファイルを開きます"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1511,6 +1248,10 @@ msgstr "2 (ステレオ)"
 msgid "%s Information"
 msgstr "%s 情報"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "ファイル情報"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "フォルダ:"
@@ -1542,6 +1283,10 @@ msgstr "サンプリング・レート:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "ビット・レート:"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "サウンド・レコーダ"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1575,16 +1320,6 @@ msgstr "<なし>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "長さ:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "音量レベルを調整します"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "音量コントロール"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1628,6 +1363,11 @@ msgstr "録音"
 msgid "%s Record"
 msgstr "%s 録音"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "音量コントロール"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "GNOME/GStreamer ベースのミキサー・アプリケーション"
@@ -1647,74 +1387,81 @@ msgstr "メイン・ウィンドウのインスタンス化に失敗"
 msgid "Could not load UI resource %s"
 msgstr "UI リソース %s を読み込めませんでした"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "GStreamer アプリケーションのデフォルト値を設定します"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr "マルチメディア・システム・セレクタ"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>デフォルトの Sink</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>デフォルトのソース</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">テスト中...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "オーディオ"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr "終了する場合は [OK] をクリックして下さい。"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr "GStreamer の設定"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "パイプライン(_L):"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
+msgstr "<b>デフォルトの Sink</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr "テスト(_S)"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "パイプラインのテスト"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "ビデオ"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "入力(_I):"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 msgid "_Output:"
 msgstr "出力(_O):"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr "パイプライン(_P):"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
 msgstr "テスト(_T)"
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+msgid "<b>Default Source</b>"
+msgstr "<b>デフォルトのソース</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+msgid "_Input:"
+msgstr "入力(_I):"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr "パイプライン(_L):"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr "テスト(_S)"
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "オーディオ"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "ビデオ"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "パイプラインのテスト"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">テスト中...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
+msgstr "終了する場合は [OK] をクリックして下さい。"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1842,108 +1589,45 @@ msgstr ""
 "ファイル \"%s\" がありません。アプリケーションが正しくインストールされていな"
 "いので、ダイアログを表示できません。"
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr "オーディオ・プロファイルの編集"
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "ファイルの拡張子(_E):"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr "新しいプロファイル"
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "プロファイルの説明:"
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr "プロファイルの説明(_D):"
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "プロファイル名(_N):"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr "有効にする(_A)"
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 msgid "_Create"
 msgstr "生成する(_C)"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
-msgstr "GStreamer パイプライン(_G):"
+#: profiles/gnome-audio-profiles.glade2:138
+msgid "Profile _name:"
+msgstr "プロファイル名(_N):"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr "オーディオ・プロファイルの編集"
+
+#: profiles/gnome-audio-profiles.glade2:273
 msgid "_Profile name:"
 msgstr "プロファイル名(_P):"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
-msgstr "オーディオ・プロファイルの説明"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
+msgstr "プロファイルの説明(_D):"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
-msgstr ""
-"プロファイルの説明で、このプロファイルを使用する際のさらに詳細な情報が含まれ"
-"ています。"
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
+msgstr "プロファイルの説明:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
-"格納するファイルをこのプロファイルでエンコーディングした際に使用するファイル"
-"名の拡張子です。"
+#: profiles/gnome-audio-profiles.glade2:326
+msgid "_GStreamer Pipeline:"
+msgstr "GStreamer パイプライン(_G):"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr "このプロファイルで使用する GStreamer のパイプライン部です。"
+#: profiles/gnome-audio-profiles.glade2:351
+msgid "File _Extension:"
+msgstr "ファイルの拡張子(_E):"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr "オーディオ・プロファイルの短い名前"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-"オーディオ・プロファイルの短い名前で、選択で使用したりプロファイルを識別する"
-"ための重複しない文字列です。"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"オーディオ録音プロファイルの一覧です。この一覧には /system/gstreamer/audio/"
-"profiles に対するサブフォルダ名の文字列が含まれています。"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr "プロファイルの一覧"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr "プロファイルのデフォルトの拡張子"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr "使用する GStreamer パイプライン部"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr "プロファイルを使用するかどうか"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
-msgstr "このプロファイルを使用したり表示するかどうかを指定します。"
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
+msgstr "有効にする(_A)"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1998,21 +1682,271 @@ msgstr "録音レベル"
 msgid "Volume Meter"
 msgstr "音量メータ"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "録音入力音量のモニタです"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "CD 検索で使用するサーバのアドレスです。"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "録音レベル・モニタ"
+#~ msgid "Information to send to server"
+#~ msgstr "サーバへ送信する情報"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "音声出力音量のモニタです"
+#~ msgid "Server name"
+#~ msgstr "サーバ名"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "音量モニタ"
+#~ msgid "Server type"
+#~ msgstr "サーバの種類"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "全ての問い合わせで使用するホスト名です。"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "サーバがデータベースを実行しているポート番号です。"
+
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "CD の問い合わせを行うサーバの種類です。設定可能な値は 0 (FreeDB ラウンド・"
+#~ "ロビン・サーバ)、1 (その他の FreeDB サーバ) と 2 (その他のサーバ) です。"
+
+#~ msgid "The username"
+#~ msgstr "ユーザ名"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "全ての問い合わせで使用するユーザ名です。"
+
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "このキーは、どのユーザ情報が CD の問い合わせを行うサーバへ送信されるかを表"
+#~ "します。設定可能な値は 0 (情報なし)、1 (実際の情報) と 3 (その他の情報) で"
+#~ "す。"
+
+#~ msgid "Your hostname"
+#~ msgstr "ホスト名"
+
+#~ msgid "CD Database"
+#~ msgstr "CD データベース"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "CD データベースの設定を変更します"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "オーディオ CD を演奏します"
+
+#~ msgid "CD player theme"
+#~ msgstr "CD プレイヤーのテーマ"
+
+#~ msgid "Device path"
+#~ msgstr "デバイスへのパス"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "CD プレイヤーが起動したら演奏するかどうか。"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "CD プレイヤーが終了したら CD をイジェクトするかどうか。"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr "CD の再生に利用する CD ドライブへのパスです。"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr "CD プレイヤーの外観としてどのテーマを利用するか。"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "CD プレイヤーが起動した際に CD の演奏を開始するかどうか。"
+
+#~ msgid "Record sound clips"
+#~ msgstr "サウンド・クリップを記録します"
+
+#~ msgid "About"
+#~ msgstr "情報"
+
+#~ msgid "Close"
+#~ msgstr "閉じる"
+
+#~ msgid "Close this window"
+#~ msgstr "このウィンドウを閉じます"
+
+#~ msgid "Contents"
+#~ msgstr "目次"
+
+#~ msgid "Create a new sample"
+#~ msgstr "新しいサンプルを生成します"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "サウンド・レコーダのヘルプを表示します"
+
+#~ msgid "File _Information"
+#~ msgstr "ファイル情報 (_I)"
+
+#~ msgid "Main toolbar"
+#~ msgstr "メイン・ツールバー"
+
+#~ msgid "New"
+#~ msgstr "新規"
+
+#~ msgid "Open"
+#~ msgstr "開く"
+
+#~ msgid "Play sound"
+#~ msgstr "サウンドを再生します"
+
+#~ msgid "Quit"
+#~ msgstr "終了"
+
+#~ msgid "Quit the application"
+#~ msgstr "アプリケーションを終了します"
+
+#~ msgid "Recent _Files"
+#~ msgstr "最近実行したファイル(_F)"
+
+#~ msgid "Record"
+#~ msgstr "録音"
+
+#~ msgid "Record sound"
+#~ msgstr "サウンドを保存します"
+
+#~ msgid "Run Mixer"
+#~ msgstr "ミキサの実行"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "ミキサの実行(_M)"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "オーディオ・ミキサを起動します"
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+#~ msgid "Save As"
+#~ msgstr "別名で保存"
+
+#~ msgid "Save _As..."
+#~ msgstr "別名で保存...(_A)"
+
+#~ msgid "Save the current file"
+#~ msgstr "このファイルを保存します"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "このファイルを別名で保存します"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "このファイルの情報を表示します"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "サウンド・レコーダの情報を表示します"
+
+#~ msgid "Stop sound"
+#~ msgstr "録音/再生を停止します"
+
+#~ msgid "_About"
+#~ msgstr "情報(_A)"
+
+#~ msgid "_Close Window"
+#~ msgstr "ウィンドウを閉じる(_C)"
+
+#~ msgid "_Contents"
+#~ msgstr "目次(_C)"
+
+#~ msgid "_Control"
+#~ msgstr "コントロール(_C)"
+
+#~ msgid "_File"
+#~ msgstr "ファイル(_F)"
+
+#~ msgid "_New"
+#~ msgstr "新規(_N)"
+
+#~ msgid "_Open..."
+#~ msgstr "開く...(_O)"
+
+#~ msgid "_Play"
+#~ msgstr "再生(_P)"
+
+#~ msgid "_Quit"
+#~ msgstr "終了(_Q)"
+
+#~ msgid "_Record"
+#~ msgstr "録音(_R)"
+
+#~ msgid "_Save"
+#~ msgstr "保存(_S)"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "音量レベルを調整します"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "GStreamer アプリケーションのデフォルト値を設定します"
+
+#~ msgid "Multimedia Systems Selector"
+#~ msgstr "マルチメディア・システム・セレクタ"
+
+#~ msgid "A description for the audio profile"
+#~ msgstr "オーディオ・プロファイルの説明"
+
+#~ msgid ""
+#~ "A description of the profile, containing more information and describing "
+#~ "when to use this profile."
+#~ msgstr ""
+#~ "プロファイルの説明で、このプロファイルを使用する際のさらに詳細な情報が含ま"
+#~ "れています。"
+
+#~ msgid ""
+#~ "A filename extension to be used when storing files encoded with this "
+#~ "profile."
+#~ msgstr ""
+#~ "格納するファイルをこのプロファイルでエンコーディングした際に使用するファイ"
+#~ "ル名の拡張子です。"
+
+#~ msgid "A partial GStreamer pipeline to use for this profile."
+#~ msgstr "このプロファイルで使用する GStreamer のパイプライン部です。"
+
+#~ msgid "A short name for the audio profile"
+#~ msgstr "オーディオ・プロファイルの短い名前"
+
+#~ msgid ""
+#~ "A short name for the audio profile, to be used in selections and uniquely "
+#~ "identifying the profile."
+#~ msgstr ""
+#~ "オーディオ・プロファイルの短い名前で、選択で使用したりプロファイルを識別す"
+#~ "るための重複しない文字列です。"
+
+#~ msgid ""
+#~ "List of audio recording profiles. The list contains strings naming "
+#~ "subdirectories relative to /system/gstreamer/audio/profiles."
+#~ msgstr ""
+#~ "オーディオ録音プロファイルの一覧です。この一覧には /system/gstreamer/"
+#~ "audio/profiles に対するサブフォルダ名の文字列が含まれています。"
+
+#~ msgid "List of profiles"
+#~ msgstr "プロファイルの一覧"
+
+#~ msgid "The default file extension for this profile"
+#~ msgstr "プロファイルのデフォルトの拡張子"
+
+#~ msgid "The partial GStreamer pipeline used"
+#~ msgstr "使用する GStreamer パイプライン部"
+
+#~ msgid "Whether or not this profile is to be used"
+#~ msgstr "プロファイルを使用するかどうか"
+
+#~ msgid "Whether or not to use and display this profile."
+#~ msgstr "このプロファイルを使用したり表示するかどうかを指定します。"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "録音入力音量のモニタです"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "録音レベル・モニタ"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "音声出力音量のモニタです"
+
+#~ msgid "Volume monitor"
+#~ msgstr "音量モニタ"
 
 #~ msgid "Unknown artist"
 #~ msgstr "演奏者が不明です"

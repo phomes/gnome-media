@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2004-03-13 17:52+0200\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -15,64 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Адрэса паслужніка для запытаў CD"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Зьвесткі для адсылкі на паслужнік"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Порт"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Назва паслужніка"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Від паслужніка"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "Вузел які будзе дасылацца з усімі запытамі"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "Порт на якім працуе база даньняў паслужніка"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Від паслужніка для запытаў пра CD. Магчымыя занчэньні: 0 (цыклічны паслужнік "
-"FreeDB), 1 (іншы freedb паслужнік) і 2 (іншы паслужнік)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Уліковае імя"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "Уліковае імя, якое будзе дасылацца з усімі запытамі"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Гэты ключ вызначае, якія зьвесткі пра карыстальніка будуць дасланыя на "
-"паслужнік для запытаў пра CD. Магчымыя значэньні: 0 (ніякіх зьвестак), 1 "
-"(сапраўдныя зьвесткі) і 3 (іншыя зьвесткі)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Назва вашага вузла"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -128,6 +70,10 @@ msgstr "_Цыклічны паслужнік FreeDB"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Іншы _паслужнік FreeDB:"
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Порт"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -192,14 +138,6 @@ msgstr "Выканаўца й назва"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Невядомы запіс"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "База даньняў дыскаў"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "Зьмяняе наладкі вашае базы даньняў дыскаў"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -932,7 +870,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Радок для адлюстраваньня назвы альбома"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "Граць"
 
@@ -957,7 +895,6 @@ msgstr "Паўза"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Прайгравальнік дыскаў"
 
@@ -1021,7 +958,7 @@ msgstr "%d - Невядомы"
 msgid "P_revious track"
 msgstr "_Папярэдні запіс"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "_Спыніць"
 
@@ -1037,7 +974,7 @@ msgstr "_Наступны запіс"
 msgid "_Eject disc"
 msgstr "_Вызваліць дыск"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "_Даведка"
 
@@ -1136,7 +1073,7 @@ msgstr "Пераматаць назад"
 msgid "Play / Pause"
 msgstr "Граць / Прыпыніць"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "Спыніць"
 
@@ -1172,47 +1109,6 @@ msgstr "Граць дыск пад час запуску"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Немагчыма стварыць прайгравальнік"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "Граць кампакт-дыскі"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "Тэма прайгравальніка кампакт-дыскаў"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "Шлях да прылады"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr "Вызваліць дыск пад час выхаду з прайгравальніка?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "Пачынаць граць дыск пад час запуску прайгравальніка?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr ""
-"Ці мусіць быць вызвалены дыск пад час выхаду з праграмы-прайгравальніка "
-"музычных дыскаў?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Шлях да прылады прайграваньня дыскаў, якую мусіць выкарыстоўваць "
-"прайгравальнік"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr ""
-"Якую тэму мусіць выкарыстоўваць прайгравальнік для свайго вонкавага выгляду"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Калі запускаецца прайгравальнік CD, ці мусіць ён пачынаць граць CD?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1263,175 +1159,6 @@ msgstr "Спрабаваць вызваліь дыск пад час выхад�
 msgid "_Available Themes:"
 msgstr "На_яўныя тэмы:"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "Запісаць гукавы кліп"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Праграма гуказапісу"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Пра праграму"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Закрыць"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "Закрыць гэтае акно"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Зьмест"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Стварыць новы ўзор"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "Адлюстраваць дапамогу для праграмы гуказапісу"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Інфармацыя аб файле"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "_Інфармацыя аб файле"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Мая панэля інструмэнта"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Новы"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Адкрыць"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Адчыніць файл"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Граць гук"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Выйсьці"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Выйсьці з дастасаваньня"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "Апошнія _файлы"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Запіс"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Запісаць гук"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Запусьціць мікшар"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "Запусьціць _мікшар"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "Запусьціць мікшар"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Захаваць"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Захаваць як"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Захаваць _як..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "Захаваць бягучы файл"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "Захаваць бягучы файл пад іншай назвай"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "Адлюстраваць інфармацыю пра бягучы файл"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "Адлюстраваць інфармацыю для праграмы гуказапісу"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Спыніць гук"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Пра праграму"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Закрыць акно"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Зьмест"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Кіраваньне"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Файл"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_Новы"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Адкрыць..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Граць"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "В_ыйсьці"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_Запісаць"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_Захаваць"
-
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Несапраўдная акалічнасьць"
@@ -1466,6 +1193,10 @@ msgstr "сэкунды"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "сэкунда"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Адчыніць файл"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1518,6 +1249,10 @@ msgstr "2 (стэрэа)"
 msgid "%s Information"
 msgstr "%s Інфармацыя"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Інфармацыя аб файле"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Тэчка:"
@@ -1549,6 +1284,10 @@ msgstr "Часьціня сэмляваньня:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Шырыня пляні:"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Праграма гуказапісу"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1582,16 +1321,6 @@ msgstr "<няма>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Працягласьць:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Усталяваць гучнасьць"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Кіраваньне гучнасьцю"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1635,6 +1364,11 @@ msgstr "Запіс"
 msgid "%s Record"
 msgstr "%s Запіс"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Кіраваньне гучнасьцю"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Мікшар, заснаваны на GNOME/GStreamer"
@@ -1654,74 +1388,81 @@ msgstr "Памылка пад час стварэньня асноўнага а�
 msgid "Could not load UI resource %s"
 msgstr "Немагчыма загрузіць рэсурсы ІК %s"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "Канфігурацыя падрабязнасьцяў для дастасаваньняў GStreamer"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr "Вылучальнік мультымэдыйных сыстэмаў"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>Дапомная батлейка</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>Дапомная крыніца</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Праверка...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "Аўдыё"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr "Націсьніце \"Добра\", каб скончыць"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr "Перавагі GStreamer"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "Труба_правод:"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
+msgstr "<b>Дапомная батлейка</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr "Пра_верка..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "Праверка трубаправоду"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Відэа"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "_Увод:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 msgid "_Output:"
 msgstr "_Вывад:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr "_Трубаправод:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
 msgstr "_Праверыць"
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+msgid "<b>Default Source</b>"
+msgstr "<b>Дапомная крыніца</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+msgid "_Input:"
+msgstr "_Увод:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr "Труба_правод:"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr "Пра_верка..."
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "Аўдыё"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "Відэа"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "Праверка трубаправоду"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Праверка...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
+msgstr "Націсьніце \"Добра\", каб скончыць"
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1850,107 +1591,45 @@ msgstr ""
 "Прапушчаны файл \"%s\". Гэта сьведчыць аб няправільным усталяваньні "
 "дастасаваньня; дыялёг ня можа быць адлюстраваны."
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr "Рэдагаваньне аўдыё профіля"
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "Па_шырэньне файла:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr "Новы профіль"
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "Апісаньне профіля:"
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr "Апіс_аньне профіля:"
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "Наз_ва профіля:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr "_Актыўны ?"
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 msgid "_Create"
 msgstr "С_тварыць"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
-msgstr "Трубаправод _GStreamer:"
+#: profiles/gnome-audio-profiles.glade2:138
+msgid "Profile _name:"
+msgstr "Наз_ва профіля:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr "Рэдагаваньне аўдыё профіля"
+
+#: profiles/gnome-audio-profiles.glade2:273
 msgid "_Profile name:"
 msgstr "Назва _профіля:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
-msgstr "Апісаньне аўдыё профіля"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
+msgstr "Апіс_аньне профіля:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
-msgstr ""
-"Апісаньне аўдыё профіля ўтрымлівае зьвесткі пра прызначэньне й выкарыстаньне "
-"профіля."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
+msgstr "Апісаньне профіля:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
-"Пашырэньне файлаў, якое выкарыстоўваецца пры кадаваньні ў гэтым профілі."
+#: profiles/gnome-audio-profiles.glade2:326
+msgid "_GStreamer Pipeline:"
+msgstr "Трубаправод _GStreamer:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr "Частковы GStreamer трубаправод для выкарыстаньня з гэтым профілям."
+#: profiles/gnome-audio-profiles.glade2:351
+msgid "File _Extension:"
+msgstr "Па_шырэньне файла:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr "Каротка назва аўдыёпрофілю"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-"Кароткая назва для аўдыёпрофілю (будзе выкарыстоўвацца ў вылучэньнях для "
-"непаўторнага ідэнтыфікаваньня профілю)."
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"Сьпіс профіляў гуказапісу. Сьпіс зьмяшчае радкі з назвамі падтэчак адносна /"
-"system/gstreamer/audio/profiles."
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr "Сьпіс профіляў"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr "Дапомнае пашырэньне файла для гэтага профіля"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr "Выкарыстоўваецца частковы трубаправод GStreamer"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr "Ці будзе выкарыстоўвацца гэты профіль"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
-msgstr "Выкарыстоўваць/адлюстроўваць ці не гэты профіль."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
+msgstr "_Актыўны ?"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2005,21 +1684,276 @@ msgstr "Узровень запісу"
 msgid "Volume Meter"
 msgstr "Індыкатар гучнасьці"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Індыкатар узроўню запісу"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Адрэса паслужніка для запытаў CD"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "Індыкатар узроўню запісу"
+#~ msgid "Information to send to server"
+#~ msgstr "Зьвесткі для адсылкі на паслужнік"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Індыкатар узроўню ўводу"
+#~ msgid "Server name"
+#~ msgstr "Назва паслужніка"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "Індыкатар гучнасьці"
+#~ msgid "Server type"
+#~ msgstr "Від паслужніка"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "Вузел які будзе дасылацца з усімі запытамі"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "Порт на якім працуе база даньняў паслужніка"
+
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "Від паслужніка для запытаў пра CD. Магчымыя занчэньні: 0 (цыклічны "
+#~ "паслужнік FreeDB), 1 (іншы freedb паслужнік) і 2 (іншы паслужнік)."
+
+#~ msgid "The username"
+#~ msgstr "Уліковае імя"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "Уліковае імя, якое будзе дасылацца з усімі запытамі"
+
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Гэты ключ вызначае, якія зьвесткі пра карыстальніка будуць дасланыя на "
+#~ "паслужнік для запытаў пра CD. Магчымыя значэньні: 0 (ніякіх зьвестак), 1 "
+#~ "(сапраўдныя зьвесткі) і 3 (іншыя зьвесткі)."
+
+#~ msgid "Your hostname"
+#~ msgstr "Назва вашага вузла"
+
+#~ msgid "CD Database"
+#~ msgstr "База даньняў дыскаў"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "Зьмяняе наладкі вашае базы даньняў дыскаў"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Граць кампакт-дыскі"
+
+#~ msgid "CD player theme"
+#~ msgstr "Тэма прайгравальніка кампакт-дыскаў"
+
+#~ msgid "Device path"
+#~ msgstr "Шлях да прылады"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Вызваліць дыск пад час выхаду з прайгравальніка?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Пачынаць граць дыск пад час запуску прайгравальніка?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr ""
+#~ "Ці мусіць быць вызвалены дыск пад час выхаду з праграмы-прайгравальніка "
+#~ "музычных дыскаў?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "Шлях да прылады прайграваньня дыскаў, якую мусіць выкарыстоўваць "
+#~ "прайгравальнік"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr ""
+#~ "Якую тэму мусіць выкарыстоўваць прайгравальнік для свайго вонкавага "
+#~ "выгляду"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "Калі запускаецца прайгравальнік CD, ці мусіць ён пачынаць граць CD?"
+
+#~ msgid "Record sound clips"
+#~ msgstr "Запісаць гукавы кліп"
+
+#~ msgid "About"
+#~ msgstr "Пра праграму"
+
+#~ msgid "Close"
+#~ msgstr "Закрыць"
+
+#~ msgid "Close this window"
+#~ msgstr "Закрыць гэтае акно"
+
+#~ msgid "Contents"
+#~ msgstr "Зьмест"
+
+#~ msgid "Create a new sample"
+#~ msgstr "Стварыць новы ўзор"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "Адлюстраваць дапамогу для праграмы гуказапісу"
+
+#~ msgid "File _Information"
+#~ msgstr "_Інфармацыя аб файле"
+
+#~ msgid "Main toolbar"
+#~ msgstr "Мая панэля інструмэнта"
+
+#~ msgid "New"
+#~ msgstr "Новы"
+
+#~ msgid "Open"
+#~ msgstr "Адкрыць"
+
+#~ msgid "Play sound"
+#~ msgstr "Граць гук"
+
+#~ msgid "Quit"
+#~ msgstr "Выйсьці"
+
+#~ msgid "Quit the application"
+#~ msgstr "Выйсьці з дастасаваньня"
+
+#~ msgid "Recent _Files"
+#~ msgstr "Апошнія _файлы"
+
+#~ msgid "Record"
+#~ msgstr "Запіс"
+
+#~ msgid "Record sound"
+#~ msgstr "Запісаць гук"
+
+#~ msgid "Run Mixer"
+#~ msgstr "Запусьціць мікшар"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "Запусьціць _мікшар"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "Запусьціць мікшар"
+
+#~ msgid "Save"
+#~ msgstr "Захаваць"
+
+#~ msgid "Save As"
+#~ msgstr "Захаваць як"
+
+#~ msgid "Save _As..."
+#~ msgstr "Захаваць _як..."
+
+#~ msgid "Save the current file"
+#~ msgstr "Захаваць бягучы файл"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Захаваць бягучы файл пад іншай назвай"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "Адлюстраваць інфармацыю пра бягучы файл"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "Адлюстраваць інфармацыю для праграмы гуказапісу"
+
+#~ msgid "Stop sound"
+#~ msgstr "Спыніць гук"
+
+#~ msgid "_About"
+#~ msgstr "_Пра праграму"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Закрыць акно"
+
+#~ msgid "_Contents"
+#~ msgstr "_Зьмест"
+
+#~ msgid "_Control"
+#~ msgstr "_Кіраваньне"
+
+#~ msgid "_File"
+#~ msgstr "_Файл"
+
+#~ msgid "_New"
+#~ msgstr "_Новы"
+
+#~ msgid "_Open..."
+#~ msgstr "_Адкрыць..."
+
+#~ msgid "_Play"
+#~ msgstr "_Граць"
+
+#~ msgid "_Quit"
+#~ msgstr "В_ыйсьці"
+
+#~ msgid "_Record"
+#~ msgstr "_Запісаць"
+
+#~ msgid "_Save"
+#~ msgstr "_Захаваць"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Усталяваць гучнасьць"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "Канфігурацыя падрабязнасьцяў для дастасаваньняў GStreamer"
+
+#~ msgid "Multimedia Systems Selector"
+#~ msgstr "Вылучальнік мультымэдыйных сыстэмаў"
+
+#~ msgid "A description for the audio profile"
+#~ msgstr "Апісаньне аўдыё профіля"
+
+#~ msgid ""
+#~ "A description of the profile, containing more information and describing "
+#~ "when to use this profile."
+#~ msgstr ""
+#~ "Апісаньне аўдыё профіля ўтрымлівае зьвесткі пра прызначэньне й "
+#~ "выкарыстаньне профіля."
+
+#~ msgid ""
+#~ "A filename extension to be used when storing files encoded with this "
+#~ "profile."
+#~ msgstr ""
+#~ "Пашырэньне файлаў, якое выкарыстоўваецца пры кадаваньні ў гэтым профілі."
+
+#~ msgid "A partial GStreamer pipeline to use for this profile."
+#~ msgstr "Частковы GStreamer трубаправод для выкарыстаньня з гэтым профілям."
+
+#~ msgid "A short name for the audio profile"
+#~ msgstr "Каротка назва аўдыёпрофілю"
+
+#~ msgid ""
+#~ "A short name for the audio profile, to be used in selections and uniquely "
+#~ "identifying the profile."
+#~ msgstr ""
+#~ "Кароткая назва для аўдыёпрофілю (будзе выкарыстоўвацца ў вылучэньнях для "
+#~ "непаўторнага ідэнтыфікаваньня профілю)."
+
+#~ msgid ""
+#~ "List of audio recording profiles. The list contains strings naming "
+#~ "subdirectories relative to /system/gstreamer/audio/profiles."
+#~ msgstr ""
+#~ "Сьпіс профіляў гуказапісу. Сьпіс зьмяшчае радкі з назвамі падтэчак "
+#~ "адносна /system/gstreamer/audio/profiles."
+
+#~ msgid "List of profiles"
+#~ msgstr "Сьпіс профіляў"
+
+#~ msgid "The default file extension for this profile"
+#~ msgstr "Дапомнае пашырэньне файла для гэтага профіля"
+
+#~ msgid "The partial GStreamer pipeline used"
+#~ msgstr "Выкарыстоўваецца частковы трубаправод GStreamer"
+
+#~ msgid "Whether or not this profile is to be used"
+#~ msgstr "Ці будзе выкарыстоўвацца гэты профіль"
+
+#~ msgid "Whether or not to use and display this profile."
+#~ msgstr "Выкарыстоўваць/адлюстроўваць ці не гэты профіль."
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Індыкатар узроўню запісу"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "Індыкатар узроўню запісу"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Індыкатар узроўню ўводу"
+
+#~ msgid "Volume monitor"
+#~ msgstr "Індыкатар гучнасьці"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Невядомы выканаўца"

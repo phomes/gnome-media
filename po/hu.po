@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2004-04-14 17:58+0200\n"
 "Last-Translator: Gabor Kelemen <kg0021@stud.unideb.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
@@ -20,67 +20,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "A CD-lekérdezésekhez használt kiszolgáló neve"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "A kiszolgálónak küldendő adatok"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Port"
-
-# tcd/cddb_props.c:246
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Kiszolgáló neve"
-
-# tcd/cddb_props.c:246
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Kiszolgáló típusa"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "A gépnév, amelyre a lekérdezések lesznek küldve"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "A port, amelyen a kiszolgáló adatbázisa elérhető"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"A CD-lekérdezésekhez használt kiszolgáló típusa. Lehetséges értékek: 0 "
-"(FreeDB round robin kiszolgáló), 1 (egyéb freedb kiszolgáló) és 2 (egyéb "
-"kiszolgáló)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Felhasználó neve"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "A felhasználói név, amely minden lekérdezéskor el lesz küldve"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Ez a kulcs megadja, mely felhasználói információk lesznek elküldve a "
-"kiszolgálónak, amelyhez CD-lekérdezésekkor kapcsolódik. Lehetséges értékek: "
-"0 (semmilyen információ), 1 (valós információk) és 3 (egyéb információk)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Gépének neve"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -137,6 +76,10 @@ msgstr "FreeDB _round robin kiszolgáló"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Más _FreeDB kiszolgáló:"
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Port"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -203,14 +146,6 @@ msgstr "Előadó és cím"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Ismeretlen szám"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "CD-adatbázis"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "A CD-adatbázis beállításainak módosítása"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -941,7 +876,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Az album nevét megjelenítő sor"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "Lejátszás"
 
@@ -966,7 +901,6 @@ msgstr "Szünet"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD-lejátszó"
 
@@ -1030,7 +964,7 @@ msgstr "%d - Ismeretlen"
 msgid "P_revious track"
 msgstr "_Előző szám"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "_Leállítás"
 
@@ -1046,7 +980,7 @@ msgstr "_Következő szám"
 msgid "_Eject disc"
 msgstr "Le_mez kiadása"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -1146,7 +1080,7 @@ msgstr "Vissza"
 msgid "Play / Pause"
 msgstr "Lejátszás / Szünet"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "Leállítás"
 
@@ -1182,44 +1116,6 @@ msgstr "CD lejátszása indításkor"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Lejátszó létrehozása sikertelen"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "Audio CD-k lejátszására"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "CD-lejátszó témája"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "Eszköz elérési útja"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "Lejátssza a CD-t a CD-lejátszó elindulásakor?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Annak a CD-meghajtónak az elérési útja, amelyet a CD-lejátszó CD-lejátszásra "
-"használ"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr "Milyen témával jelenjen meg a CD-lejátszó?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "A CD-lejátszó indításakor kezdje el lejátszani a CD-t?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1270,175 +1166,6 @@ msgstr "Próbálja meg kinyitni a CD tálcáját, amikor a CD-lejátszó kilép"
 msgid "_Available Themes:"
 msgstr "_Elérhető témák:"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "Hangfelvétel készítése"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Hangrögzítő"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Névjegy"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Bezárás"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "A jelenlegi ablak bezárása"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Tartalom"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Új hangminta"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "A Hangrögzítő súgójának megjelenítése"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Fájl adatai"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "Fájl _adatai"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Fő eszköztár"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Új"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Megnyitás"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Fájl megnyitása"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Hanglejátszás"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Kilépés"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Kilépés az alkalmazásból"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "Legutóbbi _fájlok"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Felvétel"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Hangfelvétel készítése"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Mixer futtatása"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "_Mixer futtatása"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "A keverőpult futtatása"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Mentés"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Mentés másként"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Men_tés másként..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "A jelenlegi fájl mentése"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "A jelenlegi fájl mentése más néven"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "A jelenlegi fájl adatai"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "A Hangrögzítő adatai"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Hang leállítása"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Névjegy"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Ablak bezárása"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Tartalom"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Vezérlés"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fájl"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "Ú_j"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Megnyitás..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Lejátszás"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Kilépés"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_Felvétel"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "M_entés"
-
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Üres opció"
@@ -1473,6 +1200,10 @@ msgstr "másodperc"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "másodperc"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Fájl megnyitása"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1525,6 +1256,10 @@ msgstr "2 (sztereó)"
 msgid "%s Information"
 msgstr "%s adatai"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Fájl adatai"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Mappa:"
@@ -1556,6 +1291,10 @@ msgstr "Mintavételezés:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Bitráta:"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Hangrögzítő"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1589,16 +1328,6 @@ msgstr "<nincs>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Hossz:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Hangerő beállítása"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Hangerőszabályozó"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1642,6 +1371,11 @@ msgstr "Felv."
 msgid "%s Record"
 msgstr "%s Felvétel"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Hangerőszabályozó"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Egy GNOME/GStreamer-alapú mixer alkalmazás"
@@ -1661,74 +1395,81 @@ msgstr "Nem sikerült létrehozni a főablakot"
 msgid "Could not load UI resource %s"
 msgstr "Nem lehet betölteni a felhasználói felületet: %s"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "A GStreamer-alkalmazások alapbeállításainak módosítása"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr "Multimédia rendszer választó"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>Alapértelmezett nyelő</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>Alapértelmezett forrás</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Tesztelés...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "Audio"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr "Kattintson az OK gombra a befejezéshez."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr "A GStreamer tulajdonságai"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "_Csővezeték:"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
+msgstr "<b>Alapértelmezett nyelő</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr "_Teszt..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "Csővezeték tesztelése"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Videó"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "_bemenet:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 msgid "_Output:"
 msgstr "_Kimenet:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr "_Csővezeték:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
 msgstr "_Teszt"
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+msgid "<b>Default Source</b>"
+msgstr "<b>Alapértelmezett forrás</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+msgid "_Input:"
+msgstr "_bemenet:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr "_Csővezeték:"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr "_Teszt..."
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "Audio"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "Videó"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "Csővezeték tesztelése"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Tesztelés...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
+msgstr "Kattintson az OK gombra a befejezéshez."
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1857,108 +1598,45 @@ msgstr ""
 "A(z) \"%s\" fájl hiányzik. Ez azt jelzi, hogy az alkalmazás nem megfelelően "
 "lett telepítve, így a párbeszédablak nem jeleníthető meg."
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr "Audio profil szerkesztése"
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "Fájl _kiterjesztése:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr "Új profil"
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "Profil leírás:"
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr "Profil _leírás:"
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "Profil_név:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr "_Aktív?"
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 msgid "_Create"
 msgstr "_Létrehozás"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
-msgstr "_GStreamer csővezeték:"
+#: profiles/gnome-audio-profiles.glade2:138
+msgid "Profile _name:"
+msgstr "Profil_név:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr "Audio profil szerkesztése"
+
+#: profiles/gnome-audio-profiles.glade2:273
 msgid "_Profile name:"
 msgstr "Profil_név:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
-msgstr "Az audio profil leírása"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
+msgstr "Profil _leírás:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
-msgstr ""
-"A profil több információt tartalmazó leírása, amely megadja, mikor "
-"használadó ez a profil."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
+msgstr "Profil leírás:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
-"Az ezzel a profillal kódolt fájlok tárolásakor használt fájlnévkiterjesztés."
+#: profiles/gnome-audio-profiles.glade2:326
+msgid "_GStreamer Pipeline:"
+msgstr "_GStreamer csővezeték:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr "Az ezzel a profillal használandó, részleges GStreamer csővezeték."
+#: profiles/gnome-audio-profiles.glade2:351
+msgid "File _Extension:"
+msgstr "Fájl _kiterjesztése:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr "Az audio profil rövid neve"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-"A profil rövid, a profil egyedi azonosítására és kiválasztásokkor "
-"használandó neve"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"A felvételre használt audio profilok listája.A lista karakterláncokat "
-"tartalmaz, amelyek alkönyvtárakat neveznek meg /system/gstreamer/audio/"
-"profiles-hoz képest"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr "Profilok listája"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr "Az alapértelmezett fájl kiterjesztés ehhez a profilhoz"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr "A használt részleges GStreamer csővezeték"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr "Ez a profil használatban van-e vagy sem?"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
-msgstr "Használja és jelenítse-e meg ezt a profilt."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
+msgstr "_Aktív?"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2015,21 +1693,278 @@ msgstr "Felvétel hangereje"
 msgid "Volume Meter"
 msgstr "Hangerőmérő"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "A felvétel bemeneti hangerejét figyeli"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "A CD-lekérdezésekhez használt kiszolgáló neve"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "Felvétel-hangerőmérő"
+#~ msgid "Information to send to server"
+#~ msgstr "A kiszolgálónak küldendő adatok"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "A kimenet hangerejét figyeli"
+# tcd/cddb_props.c:246
+#~ msgid "Server name"
+#~ msgstr "Kiszolgáló neve"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "Hangerőmérő"
+# tcd/cddb_props.c:246
+#~ msgid "Server type"
+#~ msgstr "Kiszolgáló típusa"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "A gépnév, amelyre a lekérdezések lesznek küldve"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "A port, amelyen a kiszolgáló adatbázisa elérhető"
+
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "A CD-lekérdezésekhez használt kiszolgáló típusa. Lehetséges értékek: 0 "
+#~ "(FreeDB round robin kiszolgáló), 1 (egyéb freedb kiszolgáló) és 2 (egyéb "
+#~ "kiszolgáló)."
+
+#~ msgid "The username"
+#~ msgstr "Felhasználó neve"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "A felhasználói név, amely minden lekérdezéskor el lesz küldve"
+
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Ez a kulcs megadja, mely felhasználói információk lesznek elküldve a "
+#~ "kiszolgálónak, amelyhez CD-lekérdezésekkor kapcsolódik. Lehetséges "
+#~ "értékek: 0 (semmilyen információ), 1 (valós információk) és 3 (egyéb "
+#~ "információk)."
+
+#~ msgid "Your hostname"
+#~ msgstr "Gépének neve"
+
+#~ msgid "CD Database"
+#~ msgstr "CD-adatbázis"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "A CD-adatbázis beállításainak módosítása"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Audio CD-k lejátszására"
+
+#~ msgid "CD player theme"
+#~ msgstr "CD-lejátszó témája"
+
+#~ msgid "Device path"
+#~ msgstr "Eszköz elérési útja"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Lejátssza a CD-t a CD-lejátszó elindulásakor?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "Annak a CD-meghajtónak az elérési útja, amelyet a CD-lejátszó CD-"
+#~ "lejátszásra használ"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr "Milyen témával jelenjen meg a CD-lejátszó?"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "A CD-lejátszó indításakor kezdje el lejátszani a CD-t?"
+
+#~ msgid "Record sound clips"
+#~ msgstr "Hangfelvétel készítése"
+
+#~ msgid "About"
+#~ msgstr "Névjegy"
+
+#~ msgid "Close"
+#~ msgstr "Bezárás"
+
+#~ msgid "Close this window"
+#~ msgstr "A jelenlegi ablak bezárása"
+
+#~ msgid "Contents"
+#~ msgstr "Tartalom"
+
+#~ msgid "Create a new sample"
+#~ msgstr "Új hangminta"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "A Hangrögzítő súgójának megjelenítése"
+
+#~ msgid "File _Information"
+#~ msgstr "Fájl _adatai"
+
+#~ msgid "Main toolbar"
+#~ msgstr "Fő eszköztár"
+
+#~ msgid "New"
+#~ msgstr "Új"
+
+#~ msgid "Open"
+#~ msgstr "Megnyitás"
+
+#~ msgid "Play sound"
+#~ msgstr "Hanglejátszás"
+
+#~ msgid "Quit"
+#~ msgstr "Kilépés"
+
+#~ msgid "Quit the application"
+#~ msgstr "Kilépés az alkalmazásból"
+
+#~ msgid "Recent _Files"
+#~ msgstr "Legutóbbi _fájlok"
+
+#~ msgid "Record"
+#~ msgstr "Felvétel"
+
+#~ msgid "Record sound"
+#~ msgstr "Hangfelvétel készítése"
+
+#~ msgid "Run Mixer"
+#~ msgstr "Mixer futtatása"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "_Mixer futtatása"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "A keverőpult futtatása"
+
+#~ msgid "Save"
+#~ msgstr "Mentés"
+
+#~ msgid "Save As"
+#~ msgstr "Mentés másként"
+
+#~ msgid "Save _As..."
+#~ msgstr "Men_tés másként..."
+
+#~ msgid "Save the current file"
+#~ msgstr "A jelenlegi fájl mentése"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "A jelenlegi fájl mentése más néven"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "A jelenlegi fájl adatai"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "A Hangrögzítő adatai"
+
+#~ msgid "Stop sound"
+#~ msgstr "Hang leállítása"
+
+#~ msgid "_About"
+#~ msgstr "_Névjegy"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Ablak bezárása"
+
+#~ msgid "_Contents"
+#~ msgstr "_Tartalom"
+
+#~ msgid "_Control"
+#~ msgstr "_Vezérlés"
+
+#~ msgid "_File"
+#~ msgstr "_Fájl"
+
+#~ msgid "_New"
+#~ msgstr "Ú_j"
+
+#~ msgid "_Open..."
+#~ msgstr "_Megnyitás..."
+
+#~ msgid "_Play"
+#~ msgstr "_Lejátszás"
+
+#~ msgid "_Quit"
+#~ msgstr "_Kilépés"
+
+#~ msgid "_Record"
+#~ msgstr "_Felvétel"
+
+#~ msgid "_Save"
+#~ msgstr "M_entés"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Hangerő beállítása"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "A GStreamer-alkalmazások alapbeállításainak módosítása"
+
+#~ msgid "Multimedia Systems Selector"
+#~ msgstr "Multimédia rendszer választó"
+
+#~ msgid "A description for the audio profile"
+#~ msgstr "Az audio profil leírása"
+
+#~ msgid ""
+#~ "A description of the profile, containing more information and describing "
+#~ "when to use this profile."
+#~ msgstr ""
+#~ "A profil több információt tartalmazó leírása, amely megadja, mikor "
+#~ "használadó ez a profil."
+
+#~ msgid ""
+#~ "A filename extension to be used when storing files encoded with this "
+#~ "profile."
+#~ msgstr ""
+#~ "Az ezzel a profillal kódolt fájlok tárolásakor használt "
+#~ "fájlnévkiterjesztés."
+
+#~ msgid "A partial GStreamer pipeline to use for this profile."
+#~ msgstr "Az ezzel a profillal használandó, részleges GStreamer csővezeték."
+
+#~ msgid "A short name for the audio profile"
+#~ msgstr "Az audio profil rövid neve"
+
+#~ msgid ""
+#~ "A short name for the audio profile, to be used in selections and uniquely "
+#~ "identifying the profile."
+#~ msgstr ""
+#~ "A profil rövid, a profil egyedi azonosítására és kiválasztásokkor "
+#~ "használandó neve"
+
+#~ msgid ""
+#~ "List of audio recording profiles. The list contains strings naming "
+#~ "subdirectories relative to /system/gstreamer/audio/profiles."
+#~ msgstr ""
+#~ "A felvételre használt audio profilok listája.A lista karakterláncokat "
+#~ "tartalmaz, amelyek alkönyvtárakat neveznek meg /system/gstreamer/audio/"
+#~ "profiles-hoz képest"
+
+#~ msgid "List of profiles"
+#~ msgstr "Profilok listája"
+
+#~ msgid "The default file extension for this profile"
+#~ msgstr "Az alapértelmezett fájl kiterjesztés ehhez a profilhoz"
+
+#~ msgid "The partial GStreamer pipeline used"
+#~ msgstr "A használt részleges GStreamer csővezeték"
+
+#~ msgid "Whether or not this profile is to be used"
+#~ msgstr "Ez a profil használatban van-e vagy sem?"
+
+#~ msgid "Whether or not to use and display this profile."
+#~ msgstr "Használja és jelenítse-e meg ezt a profilt."
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "A felvétel bemeneti hangerejét figyeli"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "Felvétel-hangerőmérő"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "A kimenet hangerejét figyeli"
+
+#~ msgid "Volume monitor"
+#~ msgstr "Hangerőmérő"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Ismeretlen előadó"

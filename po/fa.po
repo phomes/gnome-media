@@ -6,68 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2003-02-21 15:01+0330\n"
 "Last-Translator: Roozbeh Pournader <roozbeh@sharif.edu>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "نشانی خادمی که برای پرس‌وجو در مورد سی‌دی با آن تماس گرفته شود"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-#, fuzzy
-msgid "Information to send to server"
-msgstr "نمایش اطلاعات ضبط‌کننده‌ی صدا"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "درگاه"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "نام خادم"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-#, fuzzy
-msgid "Server type"
-msgstr "نام خادم"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "نام کاربر"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr ""
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -125,6 +70,10 @@ msgstr ""
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr ""
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "درگاه"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -187,14 +136,6 @@ msgstr ""
 #: cddb-slave2/cddb-slave.c:1341 cddb-slave2/cddb-slave.c:1343
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
-msgstr ""
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "پایگاه‌داده‌ی سی‌دی"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
 msgstr ""
 
 #: cddb-slave2/cddb-track-editor.c:79
@@ -923,7 +864,7 @@ msgid "Line for displaying the name of the album"
 msgstr ""
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "پخش"
 
@@ -948,7 +889,6 @@ msgstr ""
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr ""
 
@@ -1007,7 +947,7 @@ msgstr ""
 msgid "P_revious track"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "توقف"
 
@@ -1023,7 +963,7 @@ msgstr ""
 msgid "_Eject disc"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "راهنما"
 
@@ -1112,7 +1052,7 @@ msgstr ""
 msgid "Play / Pause"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr ""
 
@@ -1147,42 +1087,6 @@ msgstr ""
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
-msgstr ""
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
 msgstr ""
 
 #: gnome-cd/preferences.c:84
@@ -1232,175 +1136,6 @@ msgstr ""
 msgid "_Available Themes:"
 msgstr ""
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr ""
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "درباره"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "بستن"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "بستن این پنجره"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr ""
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr ""
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "اطلاعات پرونده"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr ""
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr ""
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "جدید"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "باز کردن"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "باز کردن پرونده"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "پخش صدا"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "خروج"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "خروج از برنامه"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "پرونده‌های اخیر"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "ضبط"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "ضبط صدا"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "اجرای میکسر"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr ""
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "اجرای میکسر صوتی"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "ذخیره"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr ""
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr ""
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "ذخیره‌ی پرونده‌ی فعلی"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "ذخیره‌ی پرونده‌ی فعلی با یک نام دیگر"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "نمایش اطلاعات درباره‌ی پرونده‌ی فعلی"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "نمایش اطلاعات ضبط‌کننده‌ی صدا"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "توقف صدا"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "درباره"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "بستن پنجره"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "محتویات"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "کنترل"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "پرونده"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "جدید"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "باز کردن..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "پخش"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "خروج"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "ضبط"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "ذخیره"
-
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr ""
@@ -1435,6 +1170,10 @@ msgstr "ثانیه"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "ثانیه"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "باز کردن پرونده"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1488,6 +1227,10 @@ msgstr "استریو"
 msgid "%s Information"
 msgstr ""
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "اطلاعات پرونده"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "پوشه:"
@@ -1518,6 +1261,10 @@ msgstr ""
 
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
+msgstr ""
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
 msgstr ""
 
 #: grecord/src/gsr-window.c:963
@@ -1553,16 +1300,6 @@ msgstr ""
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "طول:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr ""
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1606,6 +1343,11 @@ msgstr ""
 msgid "%s Record"
 msgstr ""
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr ""
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr ""
@@ -1625,76 +1367,83 @@ msgstr ""
 msgid "Could not load UI resource %s"
 msgstr ""
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
-msgid "<b>Default Source</b>"
-msgstr "منبع پیش‌فرض"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "صوت"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr ""
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
 msgstr ""
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "ویدیو"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-#, fuzzy
-msgid "_Input:"
-msgstr "ورودی صوت:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 #, fuzzy
 msgid "_Output:"
 msgstr "خروجی صوت:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr ""
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+#, fuzzy
+msgid "<b>Default Source</b>"
+msgstr "منبع پیش‌فرض"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+#, fuzzy
+msgid "_Input:"
+msgstr "ورودی صوت:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "صوت"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "ویدیو"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
 msgstr ""
 
 #: gstreamer-properties/pipeline-constants.c:61
@@ -1821,104 +1570,49 @@ msgid ""
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
-msgid "File _Extension:"
-msgstr "اندازه‌ی پرونده:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
-msgid "Profile _name:"
-msgstr "نام پرونده:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 #, fuzzy
 msgid "_Create"
 msgstr "مرکز"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
+#: profiles/gnome-audio-profiles.glade2:138
 #, fuzzy
-msgid "_GStreamer Pipeline:"
-msgstr "GStreamer"
+msgid "Profile _name:"
+msgstr "نام پرونده:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2:273
 #, fuzzy
 msgid "_Profile name:"
 msgstr "نام پرونده:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:326
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "GStreamer"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:351
+#, fuzzy
+msgid "File _Extension:"
+msgstr "اندازه‌ی پرونده:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
 msgstr ""
 
 #: vu-meter/main.c:120
@@ -1972,21 +1666,115 @@ msgstr "سطح ضبط"
 msgid "Volume Meter"
 msgstr ""
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr ""
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "نشانی خادمی که برای پرس‌وجو در مورد سی‌دی با آن تماس گرفته شود"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr ""
+#, fuzzy
+#~ msgid "Information to send to server"
+#~ msgstr "نمایش اطلاعات ضبط‌کننده‌ی صدا"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr ""
+#~ msgid "Server name"
+#~ msgstr "نام خادم"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr ""
+#, fuzzy
+#~ msgid "Server type"
+#~ msgstr "نام خادم"
+
+#~ msgid "The username"
+#~ msgstr "نام کاربر"
+
+#~ msgid "CD Database"
+#~ msgstr "پایگاه‌داده‌ی سی‌دی"
+
+#~ msgid "About"
+#~ msgstr "درباره"
+
+#~ msgid "Close"
+#~ msgstr "بستن"
+
+#~ msgid "Close this window"
+#~ msgstr "بستن این پنجره"
+
+#~ msgid "New"
+#~ msgstr "جدید"
+
+#~ msgid "Open"
+#~ msgstr "باز کردن"
+
+#~ msgid "Play sound"
+#~ msgstr "پخش صدا"
+
+#~ msgid "Quit"
+#~ msgstr "خروج"
+
+#~ msgid "Quit the application"
+#~ msgstr "خروج از برنامه"
+
+#~ msgid "Recent _Files"
+#~ msgstr "پرونده‌های اخیر"
+
+#~ msgid "Record"
+#~ msgstr "ضبط"
+
+#~ msgid "Record sound"
+#~ msgstr "ضبط صدا"
+
+#~ msgid "Run Mixer"
+#~ msgstr "اجرای میکسر"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "اجرای میکسر صوتی"
+
+#~ msgid "Save"
+#~ msgstr "ذخیره"
+
+#~ msgid "Save the current file"
+#~ msgstr "ذخیره‌ی پرونده‌ی فعلی"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "ذخیره‌ی پرونده‌ی فعلی با یک نام دیگر"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "نمایش اطلاعات درباره‌ی پرونده‌ی فعلی"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "نمایش اطلاعات ضبط‌کننده‌ی صدا"
+
+#~ msgid "Stop sound"
+#~ msgstr "توقف صدا"
+
+#~ msgid "_About"
+#~ msgstr "درباره"
+
+#~ msgid "_Close Window"
+#~ msgstr "بستن پنجره"
+
+#~ msgid "_Contents"
+#~ msgstr "محتویات"
+
+#~ msgid "_Control"
+#~ msgstr "کنترل"
+
+#~ msgid "_File"
+#~ msgstr "پرونده"
+
+#~ msgid "_New"
+#~ msgstr "جدید"
+
+#~ msgid "_Open..."
+#~ msgstr "باز کردن..."
+
+#~ msgid "_Play"
+#~ msgstr "پخش"
+
+#~ msgid "_Quit"
+#~ msgstr "خروج"
+
+#~ msgid "_Record"
+#~ msgstr "ضبط"
+
+#~ msgid "_Save"
+#~ msgstr "ذخیره"
 
 #~ msgid "Unknown disc"
 #~ msgstr "دیسک نامعلوم"

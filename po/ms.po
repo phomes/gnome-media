@@ -6,71 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.3.x HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2004-02-20 19:01+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@my-penguin.org>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Alamat bagi pelayan untuk dihubungi bagi kueri CD"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Maklumat untuk dihantar ke pelayan"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "Liang"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Nama pelayan"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Jenis pelayan"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "Namahos yang akan dihantar dengan semua kueri"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "Liang pada pelayan yang dilaksana oleh pangkalan data"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Jenis pelayan untuk dihubungi bagi kueri CD. Nilai yang boleh adalah 0 "
-"(pelayan FreeDB round robin), 1 (pelayan freedb lain) and 2 (pelayan lain)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Nama pengguna"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "Nama pengguna yang akan dihantar dengan semua kueri"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Kekunci ini menyatakan maklumat pengguna mana yang akan dihantar ke pelayan "
-"untuk dihubungi bagi kueri CD. Nilai yang boleh adalah 0 (tiada maklumat), 1 "
-"(maklumat sebenar) and 3 (maklumat lain)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Namahos anda"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -126,6 +68,10 @@ msgstr "Pelayan _round robin FreeDB"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "Pelayan _FreeDB lain:"
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "Liang"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -190,14 +136,6 @@ msgstr "Artis dan Tajuk"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Trek tidak diketahui"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "Pangkalan data CD"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "Ubahsuai keutamaan pangkalan data CD anda"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -930,7 +868,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Baris bagi memapar nama album"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "Putar"
 
@@ -955,7 +893,6 @@ msgstr "Kaku"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Pemain CD"
 
@@ -1018,7 +955,7 @@ msgstr "%d - Entah"
 msgid "P_revious track"
 msgstr "Trek Ter_dahulu"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "_Henti"
 
@@ -1034,7 +971,7 @@ msgstr "Trek Se_terusnya"
 msgid "_Eject disc"
 msgstr "_Eject cakera"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "_Bantuan"
 
@@ -1132,7 +1069,7 @@ msgstr "Rewind"
 msgid "Play / Pause"
 msgstr "Putar / Kaku"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "Berhenti"
 
@@ -1168,42 +1105,6 @@ msgstr "Mainkan CD pada permulaan"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Gagal mencipta pemain"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "Putar CD audio"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "Tema pemain CD"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "Path Peranti"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr "Buka dulang CD bila pemain CD keluar"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "Main CD bila Pemain CD dimulakan?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Patutkan dulang CD dibuka bila pemain CD keluar"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Path di pemacu CD yang Pemain CD akan gunakan untuk memain CD"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr "Apakah tema yang patut Pemain CD gunakan untuk penambilannya"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Bila Pemain Cd bermula, patutkah ia memainkan CD?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1254,175 +1155,6 @@ msgstr "Cuba Membuka dulang CD bila Peman CD keluar"
 msgid "_Available Themes:"
 msgstr "Tema yang _Ada:"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "klip bunyi Rekod"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "Perekod Bunyi"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Perihal"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Tutup"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "Tutup tetingkap ini"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Kandungan"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Cipta sampel baru"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "Papar bantuan bagi Perekod Bunyi"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "Maklumat Fail"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "_Maklumat Fail"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Toolbar utama"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Yang Baru"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Buka"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "Buka fail"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Mainkan bunyi"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Keluar"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Keluar aplikasi"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "_Fail Kebelakangan"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Rekod"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Rekod Bunyi"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Laksanakan Pengadun"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "Laksanakan Peng_adun"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "Laksanakan pengadun audio"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Simpan"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Simpan Sebagai"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Simpan Seb_agai..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "Simpan fail semasa"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "Simpan fail semasa dengan nama lain"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "Papar maklumat perihal fail semasa"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "Papar maklumat bagi Perekod Bunyi"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Henti bunyi"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Perihal"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Tutup Tetingkap"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Kandungan"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Kawalan"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fail"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "Yang _Baru"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Buka..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Main"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_Rekod"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_Simpan"
-
 #: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr "Opsyen Buduh"
@@ -1457,6 +1189,10 @@ msgstr "saat"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "saat"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "Buka fail"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1509,6 +1245,10 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Maklumat %s"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "Maklumat Fail"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "Folder:"
@@ -1540,6 +1280,10 @@ msgstr "Kadar sampel:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "Kadar bit"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "Perekod Bunyi"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1573,16 +1317,6 @@ msgstr "<tiada>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Panjang:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "Ubahsuai aras volum"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "Kawalan Volum"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1626,6 +1360,11 @@ msgstr "Rek."
 msgid "%s Record"
 msgstr "Rekod"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "Kawalan Volum"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Aplikasi pengadun berasaskan GNOME/Gstreamer"
@@ -1645,74 +1384,81 @@ msgstr "Gagal menginstans tetingkap utama"
 msgid "Could not load UI resource %s"
 msgstr "Tak dapat memuatkan sumber UI %s"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "Konfigurasi default bagi aplikasi GStreamer"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>Sinki Default</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>Sumber Default</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">menguji...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "Audio"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr "Klik Ok untuk selesai."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr "Keutamaan GStreamer"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "_Barispaip:"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
+msgstr "<b>Sinki Default</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr "_Uji"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "Menguji Barispaip"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "Video"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "_Input:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 msgid "_Output:"
 msgstr "_Output:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr "Baris_paip:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
 msgstr "_Uji"
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+msgid "<b>Default Source</b>"
+msgstr "<b>Sumber Default</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+msgid "_Input:"
+msgstr "_Input:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr "_Barispaip:"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr "_Uji"
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "Audio"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "Video"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "Menguji Barispaip"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">menguji...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
+msgstr "Klik Ok untuk selesai."
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1841,108 +1587,45 @@ msgstr ""
 "Fail \"%s\" hilang. Ini menunjukkan aplikasi tidak dipasang dengan betul, "
 "menyebabkan dialog tak dapat dipaparkan."
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr "Edit Profil Audio"
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "_Sambungan Fail:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr "Profil Baru"
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "Keterangan Profil:"
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr "_Keterangan Profil:"
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "_Nama profil:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr "_Aktif?"
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 msgid "_Create"
 msgstr "_Cipta"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
-msgstr "Barispaip _GStreamer:"
+#: profiles/gnome-audio-profiles.glade2:138
+msgid "Profile _name:"
+msgstr "_Nama profil:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr "Edit Profil Audio"
+
+#: profiles/gnome-audio-profiles.glade2:273
 msgid "_Profile name:"
 msgstr "_Nama profil: "
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
-msgstr "Huraian bagi profil audio"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
+msgstr "_Keterangan Profil:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
-msgstr ""
-"Keterangan bagi profil, mengandungi lebih maklumat dan menerangkan bila "
-"menggunakan profil ini."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
+msgstr "Keterangan Profil:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
-"Sambungan namafail untuk digunakan bila menyimpan fail yang dienkod dengan "
-"profil ini."
+#: profiles/gnome-audio-profiles.glade2:326
+msgid "_GStreamer Pipeline:"
+msgstr "Barispaip _GStreamer:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr "Sebahagian barispaip GStreamer untuk digunakan bagi profil ini."
+#: profiles/gnome-audio-profiles.glade2:351
+msgid "File _Extension:"
+msgstr "_Sambungan Fail:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr "Nama pendek bagi profil audio"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-"Nama pendek bagi profil audio, untuk digunakan pada pemilihan dan unik "
-"menunjukkan profil."
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"Senarai profil perekodan audio. Senarai ini mengandungi subdirektori "
-"penamaan rentetan  relatif kepada /system/gstreamer/audio/profiles."
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr "Senarai profil"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr "Sambungan fail default bagi profil ini"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr "Sebahagian barispaip GStreamer digunakan"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr "Samada profile ini akan digunakan"
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
-msgstr "Samada mengguna dan memapar profil ini."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
+msgstr "_Aktif?"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -1997,21 +1680,269 @@ msgstr "Tahap Perekodan"
 msgid "Volume Meter"
 msgstr "Meter Volum"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Monitor volum input bagi perekodan"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Alamat bagi pelayan untuk dihubungi bagi kueri CD"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "Monitor aras perekodan"
+#~ msgid "Information to send to server"
+#~ msgstr "Maklumat untuk dihantar ke pelayan"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Monitor volum output bunyi"
+#~ msgid "Server name"
+#~ msgstr "Nama pelayan"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "Monitor volum"
+#~ msgid "Server type"
+#~ msgstr "Jenis pelayan"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "Namahos yang akan dihantar dengan semua kueri"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "Liang pada pelayan yang dilaksana oleh pangkalan data"
+
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "Jenis pelayan untuk dihubungi bagi kueri CD. Nilai yang boleh adalah 0 "
+#~ "(pelayan FreeDB round robin), 1 (pelayan freedb lain) and 2 (pelayan "
+#~ "lain)."
+
+#~ msgid "The username"
+#~ msgstr "Nama pengguna"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "Nama pengguna yang akan dihantar dengan semua kueri"
+
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Kekunci ini menyatakan maklumat pengguna mana yang akan dihantar ke "
+#~ "pelayan untuk dihubungi bagi kueri CD. Nilai yang boleh adalah 0 (tiada "
+#~ "maklumat), 1 (maklumat sebenar) and 3 (maklumat lain)."
+
+#~ msgid "Your hostname"
+#~ msgstr "Namahos anda"
+
+#~ msgid "CD Database"
+#~ msgstr "Pangkalan data CD"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "Ubahsuai keutamaan pangkalan data CD anda"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Putar CD audio"
+
+#~ msgid "CD player theme"
+#~ msgstr "Tema pemain CD"
+
+#~ msgid "Device path"
+#~ msgstr "Path Peranti"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Buka dulang CD bila pemain CD keluar"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Main CD bila Pemain CD dimulakan?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "Patutkan dulang CD dibuka bila pemain CD keluar"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr "Path di pemacu CD yang Pemain CD akan gunakan untuk memain CD"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr "Apakah tema yang patut Pemain CD gunakan untuk penambilannya"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "Bila Pemain Cd bermula, patutkah ia memainkan CD?"
+
+#~ msgid "Record sound clips"
+#~ msgstr "klip bunyi Rekod"
+
+#~ msgid "About"
+#~ msgstr "Perihal"
+
+#~ msgid "Close"
+#~ msgstr "Tutup"
+
+#~ msgid "Close this window"
+#~ msgstr "Tutup tetingkap ini"
+
+#~ msgid "Contents"
+#~ msgstr "Kandungan"
+
+#~ msgid "Create a new sample"
+#~ msgstr "Cipta sampel baru"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "Papar bantuan bagi Perekod Bunyi"
+
+#~ msgid "File _Information"
+#~ msgstr "_Maklumat Fail"
+
+#~ msgid "Main toolbar"
+#~ msgstr "Toolbar utama"
+
+#~ msgid "New"
+#~ msgstr "Yang Baru"
+
+#~ msgid "Open"
+#~ msgstr "Buka"
+
+#~ msgid "Play sound"
+#~ msgstr "Mainkan bunyi"
+
+#~ msgid "Quit"
+#~ msgstr "Keluar"
+
+#~ msgid "Quit the application"
+#~ msgstr "Keluar aplikasi"
+
+#~ msgid "Recent _Files"
+#~ msgstr "_Fail Kebelakangan"
+
+#~ msgid "Record"
+#~ msgstr "Rekod"
+
+#~ msgid "Record sound"
+#~ msgstr "Rekod Bunyi"
+
+#~ msgid "Run Mixer"
+#~ msgstr "Laksanakan Pengadun"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "Laksanakan Peng_adun"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "Laksanakan pengadun audio"
+
+#~ msgid "Save"
+#~ msgstr "Simpan"
+
+#~ msgid "Save As"
+#~ msgstr "Simpan Sebagai"
+
+#~ msgid "Save _As..."
+#~ msgstr "Simpan Seb_agai..."
+
+#~ msgid "Save the current file"
+#~ msgstr "Simpan fail semasa"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "Simpan fail semasa dengan nama lain"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "Papar maklumat perihal fail semasa"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "Papar maklumat bagi Perekod Bunyi"
+
+#~ msgid "Stop sound"
+#~ msgstr "Henti bunyi"
+
+#~ msgid "_About"
+#~ msgstr "_Perihal"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Tutup Tetingkap"
+
+#~ msgid "_Contents"
+#~ msgstr "_Kandungan"
+
+#~ msgid "_Control"
+#~ msgstr "_Kawalan"
+
+#~ msgid "_File"
+#~ msgstr "_Fail"
+
+#~ msgid "_New"
+#~ msgstr "Yang _Baru"
+
+#~ msgid "_Open..."
+#~ msgstr "_Buka..."
+
+#~ msgid "_Play"
+#~ msgstr "_Main"
+
+#~ msgid "_Quit"
+#~ msgstr "_Keluar"
+
+#~ msgid "_Record"
+#~ msgstr "_Rekod"
+
+#~ msgid "_Save"
+#~ msgstr "_Simpan"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Ubahsuai aras volum"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "Konfigurasi default bagi aplikasi GStreamer"
+
+#~ msgid "A description for the audio profile"
+#~ msgstr "Huraian bagi profil audio"
+
+#~ msgid ""
+#~ "A description of the profile, containing more information and describing "
+#~ "when to use this profile."
+#~ msgstr ""
+#~ "Keterangan bagi profil, mengandungi lebih maklumat dan menerangkan bila "
+#~ "menggunakan profil ini."
+
+#~ msgid ""
+#~ "A filename extension to be used when storing files encoded with this "
+#~ "profile."
+#~ msgstr ""
+#~ "Sambungan namafail untuk digunakan bila menyimpan fail yang dienkod "
+#~ "dengan profil ini."
+
+#~ msgid "A partial GStreamer pipeline to use for this profile."
+#~ msgstr "Sebahagian barispaip GStreamer untuk digunakan bagi profil ini."
+
+#~ msgid "A short name for the audio profile"
+#~ msgstr "Nama pendek bagi profil audio"
+
+#~ msgid ""
+#~ "A short name for the audio profile, to be used in selections and uniquely "
+#~ "identifying the profile."
+#~ msgstr ""
+#~ "Nama pendek bagi profil audio, untuk digunakan pada pemilihan dan unik "
+#~ "menunjukkan profil."
+
+#~ msgid ""
+#~ "List of audio recording profiles. The list contains strings naming "
+#~ "subdirectories relative to /system/gstreamer/audio/profiles."
+#~ msgstr ""
+#~ "Senarai profil perekodan audio. Senarai ini mengandungi subdirektori "
+#~ "penamaan rentetan  relatif kepada /system/gstreamer/audio/profiles."
+
+#~ msgid "List of profiles"
+#~ msgstr "Senarai profil"
+
+#~ msgid "The default file extension for this profile"
+#~ msgstr "Sambungan fail default bagi profil ini"
+
+#~ msgid "The partial GStreamer pipeline used"
+#~ msgstr "Sebahagian barispaip GStreamer digunakan"
+
+#~ msgid "Whether or not this profile is to be used"
+#~ msgstr "Samada profile ini akan digunakan"
+
+#~ msgid "Whether or not to use and display this profile."
+#~ msgstr "Samada mengguna dan memapar profil ini."
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Monitor volum input bagi perekodan"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "Monitor aras perekodan"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Monitor volum output bunyi"
+
+#~ msgid "Volume monitor"
+#~ msgstr "Monitor volum"
 
 #~ msgid "Unknown artist"
 #~ msgstr "Artis tidak dikenali"

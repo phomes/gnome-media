@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-05-09 17:46+0200\n"
 "PO-Revision-Date: 2003-07-26 12:09+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -17,63 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.1\n"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "כתובת השרת להתחברות לשאילתות תקליטורים"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "מידע לשליחה לשרת"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
-msgid "Port"
-msgstr "פתחה"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "שם השרת"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "סוג השרת"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "שם השרת אליו ישלחו כל השאילתות"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "הפתחה שעליה השרת מריץ את מסד הנתונים"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"סוג השרת ליצירת קשר לשאילתות תקליטור. ערכים אפשריים הם 0 (שרת FreeDB round "
-"robin), 1 (שרת freedb אחר) ו 2 (שרת אחר)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "שם המשתמש"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "שם המשתמש שישלח עם כל השאילתות"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"מפתח זה מציין איזה מידע משתמש ישלח לשרת ליצירת קשר לשאילתות תקליטור. ערכים "
-"אפשריים הם 0 (אף מידע), 1 (מידע אמיתי) ו 3 (מידע אחר)."
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "שם המארח שלך"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -129,6 +72,10 @@ msgstr "שרת FreeDB _round robin"
 #: cddb-slave2/cddb-slave-capplet.c:797
 msgid "Other _FreeDB server:"
 msgstr "שרת _FreeDB אחר:"
+
+#: cddb-slave2/cddb-slave-capplet.c:832
+msgid "Port"
+msgstr "פתחה"
 
 #: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
@@ -193,14 +140,6 @@ msgstr "אמן וכותרת"
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "מסילה לא ידועה"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
-msgstr "מסד נתוני תקליטורים"
-
-#: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
-msgstr "ערוך את העדפות מסד נתוני התקליטורים של"
 
 #: cddb-slave2/cddb-track-editor.c:79
 msgid "Blues"
@@ -930,7 +869,7 @@ msgid "Line for displaying the name of the album"
 msgstr "קו להצגת שם האלבום"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688
 msgid "Play"
 msgstr "נגן"
 
@@ -955,7 +894,6 @@ msgstr "מופסק"
 
 #: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
-#: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "נגן תקליטורים"
 
@@ -1018,7 +956,7 @@ msgstr "%d - לא ידוע"
 msgid "P_revious track"
 msgstr "מסילה _קודמת"
 
-#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "_עצור"
 
@@ -1034,7 +972,7 @@ msgstr "מסילה _הבאה"
 msgid "_Eject disc"
 msgstr "ה_וצא דיסק"
 
-#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351
 msgid "_Help"
 msgstr "_עזרה"
 
@@ -1132,7 +1070,7 @@ msgstr "הרץ אחורה"
 msgid "Play / Pause"
 msgstr "נגן / הפסק"
 
-#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693
 msgid "Stop"
 msgstr "עצור"
 
@@ -1168,43 +1106,6 @@ msgstr "נגן את התקליטור בהפעלה"
 #: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "לא ניתן ליצור נגן"
-
-#: gnome-cd/gnome-cd.desktop.in.h:2
-msgid "Play audio CDs"
-msgstr "נגן תקליטורי שמע"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
-msgstr "ערכת נושא לנגן התקליטורים"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "Device path"
-msgstr "נתיב ההתקן"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Eject the CD when CD player quits?"
-msgstr "האם להוציא את התקליטור כאשר נגן התקליטורים מסתיים?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "האם לנגן כאשר נגן התקליטורים מתחיל?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "האם יש להוציא את התקליטור כאשר נגן התקליטורים מסתיים?"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"הנתיב לכונן התקליטורים שבו נגן התקליטורים צריך להשתמש כדי לנגן תקליטורים"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
-msgstr "באיזו ערכת נושא נגן התקליטורים צריך להשתמש למראה שלו"
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "כאשר נגן התקליטורים מתחיל, האם עליו להתחיל לנגן את התקליטור?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1255,175 +1156,6 @@ msgstr "נסה להוציא את התקליטור כאשר נגן התקליטו
 msgid "_Available Themes:"
 msgstr "ערכות נושא _זמינות:"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:1
-msgid "Record sound clips"
-msgstr "הקלט קטעי קול"
-
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:961
-#: grecord/src/gsr-window.c:1288
-msgid "Sound Recorder"
-msgstr "רשמקול"
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "אודות"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "סגור"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "סוגר את החלון הזה"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "תכנים"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "צור דגימה חדשה"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "מציג עזרה לרשמקול"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:823
-msgid "File Information"
-msgstr "מידע על הקובץ"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "_מידע על הקובץ"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "סרגל כלים ראשי"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "חדש"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "פתח"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:343
-msgid "Open a file"
-msgstr "פותח קובץ"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "מנגן קול"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "יציאה"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "יציאה מהיישום"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "_קבצים אחרונים"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "הקלט"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "הקלט קול"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "הפעל מערבל"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "הפעל _מערבל"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "מפעיל את מערבל השמע"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "שמור"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "שמור בשם"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "שמור _בשם..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "שומר את הקובץ הנוכחי"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "שמירת הקובץ הנוכחי עם שם אחר"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "מציג מידע על הקובץ הנוכחי"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "מציג מידע על הרשמקול"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "מפסיק קול"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_אודות"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_סגור חלון"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_תכנים"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_בקרה"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_קובץ"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_חדש"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_פתיחה..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_נגן"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_יציאה"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_הקלט"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_שמור"
-
 #: grecord/src/gnome-recorder.c:156
 #, fuzzy
 msgid "Dummy option"
@@ -1459,6 +1191,10 @@ msgstr "שניות"
 #: grecord/src/gsr-window.c:270 grecord/src/gsr-window.c:281
 msgid "second"
 msgstr "שניה"
+
+#: grecord/src/gsr-window.c:343
+msgid "Open a file"
+msgstr "פותח קובץ"
 
 #: grecord/src/gsr-window.c:420 grecord/src/gsr-window.c:1240
 #: grecord/src/gsr-window.c:1405 grecord/src/gsr-window.c:1660
@@ -1511,6 +1247,10 @@ msgstr "2 (סטריאו)"
 msgid "%s Information"
 msgstr "מידע %s"
 
+#: grecord/src/gsr-window.c:823
+msgid "File Information"
+msgstr "מידע על הקובץ"
+
 #: grecord/src/gsr-window.c:837
 msgid "Folder:"
 msgstr "תיקייה:"
@@ -1542,6 +1282,10 @@ msgstr "קצב דגימה:"
 #: grecord/src/gsr-window.c:890
 msgid "Bit rate:"
 msgstr "קצב:"
+
+#: grecord/src/gsr-window.c:961 grecord/src/gsr-window.c:1288
+msgid "Sound Recorder"
+msgstr "רשמקול"
 
 #: grecord/src/gsr-window.c:963
 msgid "A sound recorder for GNOME"
@@ -1576,16 +1320,6 @@ msgstr "<ללא>"
 #: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "אורך:"
-
-#: gst-mixer/gnome-volume-control.desktop.in.h:1
-msgid "Adjust the volume level"
-msgstr "קבע את רמת העוצמה"
-
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
-msgid "Volume Control"
-msgstr "בקרת עוצמה"
 
 #: gst-mixer/src/mixer.c:223
 #, c-format
@@ -1629,6 +1363,11 @@ msgstr "הקלט"
 msgid "%s Record"
 msgstr "%s מקליט"
 
+#. create main window + menus
+#: gst-mixer/src/mixer.c:458 gst-mixer/src/mixer.c:551
+msgid "Volume Control"
+msgstr "בקרת עוצמה"
+
 #: gst-mixer/src/mixer.c:461
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr ""
@@ -1648,74 +1387,81 @@ msgstr "שגיאה ביצירת עותק של החלון הראשי"
 msgid "Could not load UI resource %s"
 msgstr "לא ניתן לטעון משאב ממשק משתמש %s"
 
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "הגדר ברירות מחדל ליישומי GStreamer"
-
-#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "Multimedia Systems Selector"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:1
-#: profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>קולט ברירת מחדל</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>מקור ברירת מחדל</b>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">בודק...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio"
-msgstr "שמע"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish."
-msgstr "לחץ אישור לסיום."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
+#: gstreamer-properties/gstreamer-properties.glade:10
 msgid "GStreamer Preferences"
 msgstr "העדפות GStreamer"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "צי_נור:"
+#: gstreamer-properties/gstreamer-properties.glade:91
+#: gstreamer-properties/gstreamer-properties.glade:633
+msgid "<b>Default Sink</b>"
+msgstr "<b>קולט ברירת מחדל</b>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "Te_st"
-msgstr "_בדוק"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Testing Pipeline"
-msgstr "בודק צינור"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Video"
-msgstr "וידאו"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "_קלט:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade:150
+#: gstreamer-properties/gstreamer-properties.glade:692
 msgid "_Output:"
 msgstr "_פלט:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:14
+#: gstreamer-properties/gstreamer-properties.glade:191
+#: gstreamer-properties/gstreamer-properties.glade:733
 msgid "_Pipeline:"
 msgstr "_צינור:"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:15
+#: gstreamer-properties/gstreamer-properties.glade:228
+#: gstreamer-properties/gstreamer-properties.glade:483
+#: gstreamer-properties/gstreamer-properties.glade:770
+#: gstreamer-properties/gstreamer-properties.glade:1025
+#: profiles/gnome-audio-profiles.glade2:166
+#: profiles/gnome-audio-profiles.glade2:382
+#: profiles/gnome-audio-profiles.glade2:404
+#: profiles/gnome-audio-profiles.glade2:426
+#: profiles/gnome-audio-profiles.glade2:448
+msgid "*"
+msgstr "*"
+
+#: gstreamer-properties/gstreamer-properties.glade:278
+#: gstreamer-properties/gstreamer-properties.glade:820
 msgid "_Test"
 msgstr "_בדוק"
+
+#: gstreamer-properties/gstreamer-properties.glade:346
+#: gstreamer-properties/gstreamer-properties.glade:888
+msgid "<b>Default Source</b>"
+msgstr "<b>מקור ברירת מחדל</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade:405
+#: gstreamer-properties/gstreamer-properties.glade:947
+msgid "_Input:"
+msgstr "_קלט:"
+
+#: gstreamer-properties/gstreamer-properties.glade:446
+#: gstreamer-properties/gstreamer-properties.glade:988
+msgid "Pipe_line:"
+msgstr "צי_נור:"
+
+#: gstreamer-properties/gstreamer-properties.glade:533
+#: gstreamer-properties/gstreamer-properties.glade:1075
+msgid "Te_st"
+msgstr "_בדוק"
+
+#: gstreamer-properties/gstreamer-properties.glade:598
+msgid "Audio"
+msgstr "שמע"
+
+#: gstreamer-properties/gstreamer-properties.glade:1140
+msgid "Video"
+msgstr "וידאו"
+
+#: gstreamer-properties/gstreamer-properties.glade:1170
+msgid "Testing Pipeline"
+msgstr "בודק צינור"
+
+#: gstreamer-properties/gstreamer-properties.glade:1219
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">בודק...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade:1254
+msgid "Click Ok to finish."
+msgstr "לחץ אישור לסיום."
 
 #: gstreamer-properties/pipeline-constants.c:61
 #: gstreamer-properties/pipeline-constants.c:83
@@ -1847,104 +1593,49 @@ msgid ""
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:2
-msgid "Edit Audio Profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:3
-#, fuzzy
-msgid "File _Extension:"
-msgstr "גודל הקובץ:"
-
-#: profiles/gnome-audio-profiles.glade2.h:4
+#: profiles/gnome-audio-profiles.glade2:10
 msgid "New Profile"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:7
-#, fuzzy
-msgid "Profile _name:"
-msgstr "שם הקובץ:"
-
-#: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.glade2.h:9
+#: profiles/gnome-audio-profiles.glade2:84
 #, fuzzy
 msgid "_Create"
 msgstr "מרכז"
 
-#: profiles/gnome-audio-profiles.glade2.h:10
+#: profiles/gnome-audio-profiles.glade2:138
 #, fuzzy
-msgid "_GStreamer Pipeline:"
-msgstr "העדפות GStreamer"
+msgid "Profile _name:"
+msgstr "שם הקובץ:"
 
-#: profiles/gnome-audio-profiles.glade2.h:11
+#: profiles/gnome-audio-profiles.glade2:203
+msgid "Edit Audio Profile"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.glade2:273
 #, fuzzy
 msgid "_Profile name:"
 msgstr "שם הקובץ:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:1
-msgid "A description for the audio profile"
+#: profiles/gnome-audio-profiles.glade2:298
+msgid "Profile _Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
+#: profiles/gnome-audio-profiles.glade2:310
+msgid "Profile Description:"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:326
+#, fuzzy
+msgid "_GStreamer Pipeline:"
+msgstr "העדפות GStreamer"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:4
-msgid "A partial GStreamer pipeline to use for this profile."
-msgstr ""
+#: profiles/gnome-audio-profiles.glade2:351
+#, fuzzy
+msgid "File _Extension:"
+msgstr "גודל הקובץ:"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:5
-msgid "A short name for the audio profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:7
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
-msgid "List of profiles"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid "The default file extension for this profile"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "The partial GStreamer pipeline used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid "Whether or not this profile is to be used"
-msgstr ""
-
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
-msgid "Whether or not to use and display this profile."
+#: profiles/gnome-audio-profiles.glade2:480
+msgid "_Active ?"
 msgstr ""
 
 #: vu-meter/main.c:120
@@ -2000,21 +1691,216 @@ msgstr "רמת הקלטה"
 msgid "Volume Meter"
 msgstr "מד עוצמה"
 
-#: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "מציג את עוצמת כניסת ההקלטה"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "כתובת השרת להתחברות לשאילתות תקליטורים"
 
-#: vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
-msgstr "צג רמת ההקלטה"
+#~ msgid "Information to send to server"
+#~ msgstr "מידע לשליחה לשרת"
 
-#: vu-meter/vumeter.desktop.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "מציג את עוצמת יציאת הקול"
+#~ msgid "Server name"
+#~ msgstr "שם השרת"
 
-#: vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
-msgstr "צג עוצמה"
+#~ msgid "Server type"
+#~ msgstr "סוג השרת"
+
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "שם השרת אליו ישלחו כל השאילתות"
+
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "הפתחה שעליה השרת מריץ את מסד הנתונים"
+
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "סוג השרת ליצירת קשר לשאילתות תקליטור. ערכים אפשריים הם 0 (שרת FreeDB "
+#~ "round robin), 1 (שרת freedb אחר) ו 2 (שרת אחר)."
+
+#~ msgid "The username"
+#~ msgstr "שם המשתמש"
+
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "שם המשתמש שישלח עם כל השאילתות"
+
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "מפתח זה מציין איזה מידע משתמש ישלח לשרת ליצירת קשר לשאילתות תקליטור. "
+#~ "ערכים אפשריים הם 0 (אף מידע), 1 (מידע אמיתי) ו 3 (מידע אחר)."
+
+#~ msgid "Your hostname"
+#~ msgstr "שם המארח שלך"
+
+#~ msgid "CD Database"
+#~ msgstr "מסד נתוני תקליטורים"
+
+#~ msgid "Modify your CD database preferences"
+#~ msgstr "ערוך את העדפות מסד נתוני התקליטורים של"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "נגן תקליטורי שמע"
+
+#~ msgid "CD player theme"
+#~ msgstr "ערכת נושא לנגן התקליטורים"
+
+#~ msgid "Device path"
+#~ msgstr "נתיב ההתקן"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "האם להוציא את התקליטור כאשר נגן התקליטורים מסתיים?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "האם לנגן כאשר נגן התקליטורים מתחיל?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "האם יש להוציא את התקליטור כאשר נגן התקליטורים מסתיים?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "הנתיב לכונן התקליטורים שבו נגן התקליטורים צריך להשתמש כדי לנגן תקליטורים"
+
+#~ msgid "What theme should the CD player use for it's appearance"
+#~ msgstr "באיזו ערכת נושא נגן התקליטורים צריך להשתמש למראה שלו"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "כאשר נגן התקליטורים מתחיל, האם עליו להתחיל לנגן את התקליטור?"
+
+#~ msgid "Record sound clips"
+#~ msgstr "הקלט קטעי קול"
+
+#~ msgid "About"
+#~ msgstr "אודות"
+
+#~ msgid "Close"
+#~ msgstr "סגור"
+
+#~ msgid "Close this window"
+#~ msgstr "סוגר את החלון הזה"
+
+#~ msgid "Contents"
+#~ msgstr "תכנים"
+
+#~ msgid "Create a new sample"
+#~ msgstr "צור דגימה חדשה"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "מציג עזרה לרשמקול"
+
+#~ msgid "File _Information"
+#~ msgstr "_מידע על הקובץ"
+
+#~ msgid "Main toolbar"
+#~ msgstr "סרגל כלים ראשי"
+
+#~ msgid "New"
+#~ msgstr "חדש"
+
+#~ msgid "Open"
+#~ msgstr "פתח"
+
+#~ msgid "Play sound"
+#~ msgstr "מנגן קול"
+
+#~ msgid "Quit"
+#~ msgstr "יציאה"
+
+#~ msgid "Quit the application"
+#~ msgstr "יציאה מהיישום"
+
+#~ msgid "Recent _Files"
+#~ msgstr "_קבצים אחרונים"
+
+#~ msgid "Record"
+#~ msgstr "הקלט"
+
+#~ msgid "Record sound"
+#~ msgstr "הקלט קול"
+
+#~ msgid "Run Mixer"
+#~ msgstr "הפעל מערבל"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "הפעל _מערבל"
+
+#~ msgid "Run the audio mixer"
+#~ msgstr "מפעיל את מערבל השמע"
+
+#~ msgid "Save"
+#~ msgstr "שמור"
+
+#~ msgid "Save As"
+#~ msgstr "שמור בשם"
+
+#~ msgid "Save _As..."
+#~ msgstr "שמור _בשם..."
+
+#~ msgid "Save the current file"
+#~ msgstr "שומר את הקובץ הנוכחי"
+
+#~ msgid "Save the current file with a different name"
+#~ msgstr "שמירת הקובץ הנוכחי עם שם אחר"
+
+#~ msgid "Show information about the current file"
+#~ msgstr "מציג מידע על הקובץ הנוכחי"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "מציג מידע על הרשמקול"
+
+#~ msgid "Stop sound"
+#~ msgstr "מפסיק קול"
+
+#~ msgid "_About"
+#~ msgstr "_אודות"
+
+#~ msgid "_Close Window"
+#~ msgstr "_סגור חלון"
+
+#~ msgid "_Contents"
+#~ msgstr "_תכנים"
+
+#~ msgid "_Control"
+#~ msgstr "_בקרה"
+
+#~ msgid "_File"
+#~ msgstr "_קובץ"
+
+#~ msgid "_New"
+#~ msgstr "_חדש"
+
+#~ msgid "_Open..."
+#~ msgstr "_פתיחה..."
+
+#~ msgid "_Play"
+#~ msgstr "_נגן"
+
+#~ msgid "_Quit"
+#~ msgstr "_יציאה"
+
+#~ msgid "_Record"
+#~ msgstr "_הקלט"
+
+#~ msgid "_Save"
+#~ msgstr "_שמור"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "קבע את רמת העוצמה"
+
+#~ msgid "Configure defaults for GStreamer applications"
+#~ msgstr "הגדר ברירות מחדל ליישומי GStreamer"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "מציג את עוצמת כניסת ההקלטה"
+
+#~ msgid "Recording level monitor"
+#~ msgstr "צג רמת ההקלטה"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "מציג את עוצמת יציאת הקול"
+
+#~ msgid "Volume monitor"
+#~ msgstr "צג עוצמה"
 
 #~ msgid "Unknown artist"
 #~ msgstr "אמן לא ידוע"
