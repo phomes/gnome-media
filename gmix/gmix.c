@@ -400,7 +400,7 @@ recsrc_from_channels (device_info *device)
 		channel_info *channel = c->data;
 
 		if (channel->is_record_source == TRUE) {
-			recsrc |= (channel->channel << 1);
+			recsrc |= (1 << channel->channel);
 		}
 	}
 
