@@ -126,9 +126,9 @@ void changed_cb(GtkWidget *widget, void *data)
 
 void color_set_cb(GnomeColorPicker *cp, guint pr, guint pg, guint pb)
 {
-    prefs.trackcolor_r = pr;
-    prefs.trackcolor_g = pg;
-    prefs.trackcolor_b = pb;
+    prefs.trackcolor_r = pr / 256;
+    prefs.trackcolor_g = pg / 256;
+    prefs.trackcolor_b = pb / 256; 
 
     changed_cb(NULL, NULL);
 }
