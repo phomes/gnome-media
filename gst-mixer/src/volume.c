@@ -139,6 +139,10 @@ cb_mouseover (GtkScale *scale,
       case 2:  chan = _("rear left"); break;
       case 3:  chan = _("rear right"); break;
       case 4:  chan = _("front center"); break;
+      /* Translators: This is the name of a surround sound channel. It
+       * stands for "Low-Frequency Effects". If you're not sure that
+       * this has an established and different translation in your
+       * language, leave it unchanged. */
       case 5:  chan = _("LFE"); break;
       case 6:  chan = _("side left"); break;
       case 7:  chan = _("side right"); break;
