@@ -11,25 +11,277 @@
 #define X_OFFSET 2
 #define Y_OFFSET 2
 
-static char *default_text[NUMBER_OF_DISPLAY_LINES] = {
-	"14:52",
-	"---------------",
-	"Godspeed You Black Emperor!",
-	"Slow Riot For New Zer0 Kanada",
-	"Blaize Bailey Finnigan 3"
+static GtkDrawingAreaClass *parent_class = NULL;
+
+struct _CDDisplayPrivate {
+	GdkColor red;
+	GdkColor blue;
+
+	GnomeCDText *layout[NUMBER_OF_DISPLAY_LINES];
+	int max_width;
+	int height;
 };
 
+static char *default_text[NUMBER_OF_DISPLAY_LINES] = {
+	" ",
+	"---------------",
+	" ",
+	" ",
+	" "
+};
+
+static void
+free_cd_text (GnomeCDText *text)
+{
+	g_free (text->text);
+	g_object_unref (text->layout);
+
+	g_free (text);
+}
+
+static void
+size_allocate (GtkWidget *drawing_area,
+	       GtkAllocation *allocation)
+{
+	CDDisplay *disp;
+	CDDisplayPrivate *priv;
+	PangoContext *context;
+	PangoDirection base_dir;
+	int i;
+	
+	disp = CD_DISPLAY (drawing_area);
+	priv = disp->priv;
+
+	g_print ("Size allocate: %d,%d\n", allocation->width, allocation->height);
+	context = pango_layout_get_context (priv->layout[0]->layout);
+	base_dir = pango_context_get_base_dir (context);
+
+	for (i = 0; i < NUMBER_OF_DISPLAY_LINES; i++) {
+		PangoRectangle rect;
+
+		pango_layout_set_alignment (priv->layout[i]->layout,
+					    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
+		pango_layout_set_width (priv->layout[i]->layout, allocation->width * 1000);
+		pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
+		priv->layout[i]->height = rect.height / 1000;
+	}
+
+	GTK_WIDGET_CLASS (parent_class)->size_allocate (drawing_area, allocation);
+}
+
+static void
+size_request (GtkWidget *widget,
+	      GtkRequisition *requisition)
+{
+	CDDisplay *disp;
+	CDDisplayPrivate *priv;
+
+	disp = CD_DISPLAY (widget);
+	priv = disp->priv;
+
+	g_print ("Size request: %d,%d\n", priv->max_width, priv->height);
+	requisition->width = priv->max_width;
+	requisition->height = priv->height;
+}
+
+static gboolean
+expose_event (GtkWidget *drawing_area,
+	      GdkEventExpose *event)
+{
+	CDDisplay *disp;
+	CDDisplayPrivate *priv;
+	PangoContext *context;
+	PangoDirection base_dir;
+	GdkRectangle *area;
+	int height = 0;
+	int i;
+
+	disp = CD_DISPLAY (drawing_area);
+	priv = disp->priv;
+
+	area = &event->area;
+
+	/* Cover the area with a black square */
+	gdk_draw_rectangle (drawing_area->window,
+			    drawing_area->style->black_gc, TRUE,
+			    area->x, area->y,
+			    area->width, area->height);
+
+	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], area);
+
+	context = pango_layout_get_context (priv->layout[0]->layout);
+	base_dir = pango_context_get_base_dir (context);
+
+	for (i = 0; i < NUMBER_OF_DISPLAY_LINES &&
+		     height < area->y + area->height + Y_OFFSET; i++) {
+		if (height + priv->layout[i]->height >= Y_OFFSET + area->y) {
+			pango_layout_set_alignment (priv->layout[i]->layout,
+						    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
+			gdk_draw_layout_with_colors (drawing_area->window,
+						     drawing_area->style->white_gc,
+						     X_OFFSET, 
+						     Y_OFFSET + height,
+						     priv->layout[i]->layout,
+						     &priv->red, NULL);
+		}
+		height += priv->layout[i]->height;
+	}
+
+	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], NULL);
+
+	return TRUE;
+}
+
+static void
+finalize (GObject *object)
+{
+	CDDisplay *disp;
+	CDDisplayPrivate *priv;
+	int i;
+
+	disp = CD_DISPLAY (object);
+	priv = disp->priv;
+
+	if (priv == NULL) {
+		return;
+	}
+
+	for (i = 0; i < NUMBER_OF_DISPLAY_LINES; i++) {
+		free_cd_text (priv->layout[i]);
+	}
+
+	g_free (priv);
+
+	disp->priv = NULL;
+
+	G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+static void
+realize (CDDisplay *disp)
+{
+	GdkColormap *cmap;
+
+	cmap = gtk_widget_get_colormap (GTK_WIDGET (disp));
+	disp->priv->red.red = 65535;
+	disp->priv->red.green = 0;
+	disp->priv->red.blue = 0;
+	gdk_color_alloc (cmap, &disp->priv->red);
+
+	disp->priv->blue.red = 0;
+	disp->priv->blue.green = 0;
+	disp->priv->blue.blue = 65535;
+	gdk_color_alloc (cmap, &disp->priv->blue);
+
+	GTK_WIDGET_CLASS (parent_class)->realize (disp);
+}
+
+static void
+class_init (CDDisplayClass *klass)
+{
+	GObjectClass *object_class;
+	GtkWidgetClass *widget_class;
+
+	object_class = G_OBJECT_CLASS (klass);
+	widget_class = GTK_WIDGET_CLASS (klass);
+
+	object_class->finalize = finalize;
+
+	widget_class->size_allocate = size_allocate;
+	widget_class->size_request = size_request;
+	widget_class->expose_event = expose_event;
+  	widget_class->realize = realize;
+
+	parent_class = g_type_class_peek_parent (klass);
+}
+
+static void
+init (CDDisplay *disp)
+{
+	int i;
+	CDDisplayPrivate *priv;
+
+	disp->priv = g_new0 (CDDisplayPrivate, 1);
+	priv = disp->priv;
+
+	GTK_WIDGET_UNSET_FLAGS (disp, GTK_NO_WINDOW);
+
+	for (i = 0; i < NUMBER_OF_DISPLAY_LINES; i++) {
+		PangoRectangle rect;
+		
+		priv->layout[i] = g_new (GnomeCDText, 1);
+		
+		priv->layout[i]->text = g_strdup (default_text[i]);
+		priv->layout[i]->length = strlen (default_text[i]);
+		priv->layout[i]->layout = gtk_widget_create_pango_layout (disp, priv->layout[i]->text);
+		pango_layout_set_text (priv->layout[i]->layout,
+				       priv->layout[i]->text,
+				       priv->layout[i]->length);
+		
+		pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
+		priv->layout[i]->height = rect.height / 1000;
+		
+		priv->max_width = MAX (priv->max_width, rect.width / 1000);
+		priv->height += priv->layout[i]->height;
+	}
+
+	gtk_widget_queue_resize (GTK_WIDGET (disp));
+}
+
+GType
+cd_display_get_type (void)
+{
+	static GType type = 0;
+
+	if (type == 0) {
+		GTypeInfo info = {
+			sizeof (CDDisplayClass), NULL, NULL,
+			(GClassInitFunc) class_init, NULL, NULL,
+			sizeof (CDDisplay), 0, (GInstanceInitFunc) init,
+		};
+
+		type = g_type_register_static (GTK_TYPE_DRAWING_AREA, "CDDisplay", &info, 0);
+	}
+
+	return type;
+}
+
+CDDisplay *
+cd_display_new (void)
+{
+	CDDisplay *disp;
+
+	disp = g_object_new (cd_display_get_type (), NULL);
+	return CD_DISPLAY (disp);
+}
+
+const char *
+cd_display_get_line (CDDisplay *disp,
+		     int line)
+{
+	CDDisplayPrivate *priv;
+	GnomeCDText *text;
+
+	priv = disp->priv;
+	text = priv->layout[line];
+
+	return text->text;
+}
+
 void
-display_change_line (GnomeCD *gcd,
+cd_display_set_line (CDDisplay *disp,
 		     int line,
 		     const char *new_str)
 {
+	CDDisplayPrivate *priv;
 	GnomeCDText *text;
 	PangoRectangle rect;
 	int height, max_width;
-
-	text = gcd->layout[line];
-	height = gcd->height - text->height;
+	
+	priv = disp->priv;
+	
+	text = priv->layout[line];
+	height = priv->height - text->height;
 	
 	g_free (text->text);
 	text->text = g_strdup (new_str);
@@ -38,168 +290,8 @@ display_change_line (GnomeCD *gcd,
 	pango_layout_get_extents (text->layout, NULL, &rect);
 	text->height = rect.height / 1000;
 	
-	gcd->height = height + text->height;
-	gcd->max_width = MAX (gcd->max_width, rect.width / 1000);
+	priv->height = height + text->height;
+	priv->max_width = MAX (priv->max_width, rect.width / 1000);
 
-	gtk_widget_set_usize (gcd->display, gcd->max_width, gcd->height + (Y_OFFSET * 2));
+	gtk_widget_queue_resize (GTK_WIDGET (disp));
 }
-
-void
-display_size_allocate_cb (GtkWidget *drawing_area,
-			  GtkAllocation *allocation,
-			  GnomeCD *gcd)
-{
-	PangoDirection base_dir;
-	int i;
-
-	base_dir = pango_context_get_base_dir (gcd->pango_context);
-
-	for (i = 0; i < NUMBER_OF_DISPLAY_LINES; i++) {
-		PangoRectangle rect;
-
-		pango_layout_set_alignment (gcd->layout[i]->layout,
-					    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
-		pango_layout_set_width (gcd->layout[i]->layout, gcd->display->allocation.width * 1000);
-		pango_layout_get_extents (gcd->layout[i]->layout, NULL, &rect);
-		gcd->layout[i]->height = rect.height / 1000;
-	}
-}
-
-gboolean
-display_expose_cb (GtkWidget *drawing_area,
-		   GdkEventExpose *event,
-		   GnomeCD *gcd)
-{
-	PangoDirection base_dir;
-	GdkRectangle *area;
-	int height = 0;
-	int i;
-
-	area = &event->area;
-
-	gdk_draw_rectangle (drawing_area->window,
-			    drawing_area->style->black_gc, TRUE,
-			    area->x, area->y,
-			    area->width, area->height);
-
-	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], area);
-
-	base_dir = pango_context_get_base_dir (gcd->pango_context);
-
-	for (i = 0; i < NUMBER_OF_DISPLAY_LINES &&
-		     height < area->y + area->height + Y_OFFSET; i++) {
-		if (height + gcd->layout[i]->height >= Y_OFFSET + area->y) {
-			pango_layout_set_alignment (gcd->layout[i]->layout,
-						    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
-			gdk_draw_layout_with_colors (drawing_area->window,
-						     drawing_area->style->white_gc,
-						     X_OFFSET, 
-						     Y_OFFSET + height,
-						     gcd->layout[i]->layout,
-						     NULL, NULL);
-		}
-		height += gcd->layout[i]->height;
-	}
-
-	gdk_gc_set_clip_rectangle (drawing_area->style->text_gc[GTK_STATE_NORMAL], NULL);
-}
-
-int
-display_update_cb (gpointer data)
-{
-	GnomeCDRomStatus *status;
-	GnomeCD *gcd = data;
-	GError *error;
-
-	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
-		g_error_free (error);
-		return TRUE;
-	}
-
-	switch (status->cd) {
-	case GNOME_CDROM_STATUS_TRAY_OPEN:
-		/* Do something to indicate the tray is open */
-
-		g_free (status);
-		return;
-
-	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
-		/* Do something to indicate drive not ready */
-
-		g_free (status);
-		return;
-
-	case GNOME_CDROM_STATUS_OK:
-	default:
-		break;
-	}
-
-	switch (status->audio) {
-	case GNOME_CDROM_AUDIO_NOTHING:
-		break;
-
-	case GNOME_CDROM_AUDIO_PLAY:
-	{
-		char *str;
-		
-		str = g_strdup_printf ("%d:%d", status->relative.minute,
-				       status->relative.second);
-		display_change_line (gcd, DISPLAY_LINE_TIME, str);
-		g_free (str);
-
-		str = g_strdup_printf ("Track %d", status->track);
-		display_change_line (gcd, DISPLAY_LINE_TRACK, str);
-		g_free (str);
-		break;
-	}
-
-	case GNOME_CDROM_AUDIO_PAUSE:
-		/* Flash display */
-		break;
-
-	case GNOME_CDROM_AUDIO_COMPLETE:
-		/* ? */
-		break;
-
-	case GNOME_CDROM_AUDIO_STOP:
-		break;
-
-	case GNOME_CDROM_AUDIO_ERROR:
-		break;
-
-	default:
-		break;
-	}
-
-	g_free (status);
-	return TRUE;
-}
-
-void
-display_setup_layout (GnomeCD *gcd)
-{
-	int i;
-	
-	for (i = 0; i < NUMBER_OF_DISPLAY_LINES; i++) {
-		PangoRectangle rect;
-		
-		gcd->layout[i] = g_new (GnomeCDText, 1);
-		
-		gcd->layout[i]->text = g_strdup (default_text[i]);
-		gcd->layout[i]->length = strlen (default_text[i]);
-		gcd->layout[i]->layout = gtk_widget_create_pango_layout (gcd->display, gcd->layout[i]->text);
-		pango_layout_set_text (gcd->layout[i]->layout,
-				       gcd->layout[i]->text,
-				       gcd->layout[i]->length);
-
-		pango_layout_get_extents (gcd->layout[i]->layout, NULL, &rect);
-		gcd->layout[i]->height = rect.height / 1000;
-
-		gcd->max_width = MAX (gcd->max_width, rect.width / 1000);
-		gcd->height += gcd->layout[i]->height;
-	}
-
-  	gtk_widget_set_usize (gcd->display, gcd->max_width, gcd->height + (Y_OFFSET * 2));
-}
-

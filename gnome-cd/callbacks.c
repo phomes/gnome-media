@@ -13,6 +13,7 @@
 #include <glib/gerror.h>
 
 #include "cdrom.h"
+#include "display.h"
 #include "gnome-cd.h"
 
 void
@@ -258,4 +259,91 @@ mixer_cb (GtkButton *button,
 	}
 
 	g_free (mixer_path);
+}
+
+int
+update_cb (gpointer data)
+{
+	GnomeCDRomStatus *status;
+	GnomeCD *gcd = data;
+	GError *error;
+
+	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
+		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("No disc");
+		g_error_free (error);
+		return TRUE;
+	}
+
+	switch (status->cd) {
+	case GNOME_CDROM_STATUS_TRAY_OPEN:
+		g_warning ("Tray open");
+
+		g_free (status);
+		return TRUE;
+
+	case GNOME_CDROM_STATUS_DRIVE_NOT_READY:
+		g_warning ("Drive not ready");
+
+		g_free (status);
+		return TRUE;
+
+	case GNOME_CDROM_STATUS_NO_DISC:
+		g_warning ("No disc");
+
+		return TRUE;
+
+	case GNOME_CDROM_STATUS_OK:
+		g_warning ("Drive OK");
+		
+		break;
+
+	default:
+		g_warning ("Unknown status: %d", status->cd);
+		break;
+	}
+
+	switch (status->audio) {
+	case GNOME_CDROM_AUDIO_NOTHING:
+		break;
+
+	case GNOME_CDROM_AUDIO_PLAY:
+	{
+		char *str;
+
+		str = g_strdup_printf ("%d:%d", status->relative.minute,
+				       status->relative.second);
+		cd_display_set_line (CD_DISPLAY (gcd->display), 
+				     CD_DISPLAY_LINE_TIME, str);
+		g_free (str);
+
+		str = g_strdup_printf ("Track %d", status->track);
+		cd_display_set_line (CD_DISPLAY (gcd->display),
+				     CD_DISPLAY_LINE_TRACK, str);
+		g_free (str);
+		break;
+	}
+
+	case GNOME_CDROM_AUDIO_PAUSE:
+
+		break;
+
+	case GNOME_CDROM_AUDIO_COMPLETE:
+		
+		break;
+
+	case GNOME_CDROM_AUDIO_STOP:
+
+		break;
+
+	case GNOME_CDROM_AUDIO_ERROR:
+		
+		break;
+
+	default:
+		break;
+	}
+
+	g_free (status);
+	return TRUE;
 }

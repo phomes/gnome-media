@@ -1375,7 +1375,7 @@ help(GtkWidget *widget,
 	gboolean ret;
 	
 	program = gnome_program_get ();
-        ret = gnome_help_display(program, "index.html", NULL, &error);
+        ret = gnome_help_display ("index.html", NULL, &error);
 	if (ret == FALSE) {
 		g_warning ("Error displaying document: %s", error->message);
 		g_error_free (error);
@@ -1391,7 +1391,7 @@ help_cb(GtkWidget *widget,
 	gboolean ret;
 
 	program = gnome_program_get ();
-        ret = gnome_help_display(program, "gmix-prefs.html", NULL, &error);
+        ret = gnome_help_display("gmix-prefs.html", NULL, &error);
 	if (ret == FALSE) {
 		g_warning ("Error displaying document: %s", error->message);
 		g_error_free (error);

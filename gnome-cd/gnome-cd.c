@@ -86,7 +86,6 @@ init_player (void)
 	GnomeCD *gcd;
 	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow, *frame;
-	PangoLanguage *language;
 	GError *error;
 
 	gcd = g_new0 (GnomeCD, 1);
@@ -100,8 +99,6 @@ init_player (void)
 		g_free (gcd);
 		return NULL;
 	}
-
-	gcd->pango_context = pango_ft2_get_context ();
 
 	gcd->window = bonobo_window_new ("Gnome-CD", "Gnome-CD "VERSION);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
@@ -130,19 +127,7 @@ init_player (void)
 	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
 
-	language = pango_language_from_string ("en_US");
-	pango_context_set_language (gcd->pango_context, language);
-	pango_context_set_base_dir (gcd->pango_context, PANGO_DIRECTION_LTR);
-
-	gcd->font_desc = pango_font_description_new ();
-	pango_context_set_font_description (gcd->pango_context, gcd->font_desc);
-	
-	gcd->display = gtk_drawing_area_new ();
-	g_signal_connect (G_OBJECT (gcd->display), "expose-event",
-			  G_CALLBACK (display_expose_cb), gcd);
-	g_signal_connect (G_OBJECT (gcd->display), "size-allocate",
-			  G_CALLBACK (display_size_allocate_cb), gcd);
-	display_setup_layout (gcd);
+	gcd->display = cd_display_new ();
 
 	gtk_container_add (GTK_CONTAINER (frame), gcd->display);
 
@@ -226,7 +211,7 @@ main (int argc,
 
 	gtk_widget_show (gcd->window);
 
-	gcd->display_timeout = gtk_timeout_add (1000, display_update_cb, gcd);
+	gcd->display_timeout = gtk_timeout_add (1000, update_cb, gcd);
 	bonobo_main ();
 	return 0;
 }

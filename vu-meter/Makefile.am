@@ -27,4 +27,4 @@ EXTRA_DIST = $(BITMAPS) vumeter.desktop.in reclevel.desktop.in README TODO
 
 Audio_in_files = vumeter.desktop.in reclevel.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_SERVER_RULE@

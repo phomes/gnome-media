@@ -22,6 +22,6 @@ gmix_LDADD = \
 
 Audio_in_files = gmix.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_SERVER_RULE@
 
 pixmap_DATA = gnome-mixer.png

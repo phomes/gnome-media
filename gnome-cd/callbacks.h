@@ -34,4 +34,6 @@ int rewind_release_cb (GtkButton *button,
 		       GnomeCD *gcd);
 void mixer_cb (GtkButton *button,
 	       GnomeCD *gcd);
+
+int update_cb (gpointer data);
 #endif
