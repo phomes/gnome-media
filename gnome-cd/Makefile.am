@@ -1,4 +1,4 @@
-SUBDIRS = images access
+SUBDIRS = images access doc
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	$(GNOME_INCLUDEDIR)			\
