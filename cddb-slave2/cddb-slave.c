@@ -441,6 +441,7 @@ display_results (ConnectionData *cd)
 	window = gtk_dialog_new_with_buttons (_("Multiple matches..."),
 					      NULL, 0,
 					      GTK_STOCK_CANCEL, 0, GTK_STOCK_OK, 1, NULL);
+	gtk_window_set_default_size (GTK_WINDOW (window), 280, 256);
 
 	label = gtk_label_new (_("There were multiple matches found in the database.\n"
 				 "Below is a list of possible matches, please choose the "
