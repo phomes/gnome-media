@@ -32,6 +32,7 @@ BITMAPS = 		\
 	    media-fwd.png	\
 	    media-next.png	\
 	    media-rec.png	\
+	    media-eject.png	\
 	    repeat.png		\
 	    once.png		\
 	    disc.png		\
