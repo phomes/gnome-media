@@ -57,6 +57,13 @@ PROGRAMS_GNOMOVISION=""
 AC_CHECK_HEADERS(linux/videodev.h,[PROGRAMS_GNOMOVISION=gnomovision])
 AC_SUBST(PROGRAMS_GNOMOVISION)
 
+dnl
+dnl Everything OK for tcd?
+dnl
+PROGRAMS_TCD=""
+AC_CHECK_HEADERS(linux/cdrom.h,[PROGRAMS_GNOMOVISION=tcd])
+AC_SUBST(PROGRAMS_TCD)
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
@@ -64,5 +71,6 @@ gmix/Makefile
 gnomovision/Makefile
 intl/Makefile
 macros/Makefile
+tcd/Makefile
 version.h
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
