@@ -96,4 +96,6 @@ void gnome_cd_set_window_title (GnomeCD *gcd,
 				const char *track);
 void gnome_cd_build_track_list_menu (GnomeCD *gcd);
 
+G_INLINE_FUNC void gcd_warning (const char *message, GError *error);
+
 #endif
