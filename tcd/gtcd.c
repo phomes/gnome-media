@@ -731,7 +731,6 @@ void setup_time_display( void )
 #ifdef TCD_CHANGER_ENABLED
 	gtk_box_pack_start( GTK_BOX(lowerbox), changer_box, FALSE, FALSE, 0 );
 #endif
-	aboutbutton = make_button_with_pixmap( "cdrom", lowerbox, ABOUT, FALSE, FALSE, TT_ABOUT );
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
 	handle1 = gtk_handle_box_new();
