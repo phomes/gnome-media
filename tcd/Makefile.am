@@ -1,6 +1,12 @@
 Audiodir = $(datadir)/apps/Audio
 
-bin_PROGRAMS = gtcd tcd
+# Should make sure that tcd will work with all flavors of curses.
+# Make sure it can support curses w/o color and old versions.
+if HAS_CURSES
+CURSES_TCD=tcd
+endif
+
+bin_PROGRAMS = gtcd $(CURSES_TCD)
 
 SUBDIRS = icons
 
@@ -38,9 +44,9 @@ gtcd_LDADD = 	$(GNOME_LIBDIR) \
 		$(GNOMEUI_LIBS) \
 		$(INTLLIBS)
 
-tcd_LDADD = -lm -lncurses
+tcd_LDADD = -lm $(CURSES_LIBS)
 
 CLEANFILES = *.o core *~ libcdrom.a
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) -I/usr/include/ncurses
+INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR)
 Audio_DATA = gtcd.desktop

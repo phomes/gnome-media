@@ -16,6 +16,10 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
+dnl Look for some version of curses (keeping AM_'s out of curses.m4)
+AC_CHECK_CURSES
+AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
+
 dnl Checks for libraries.
 
 dnl Checks for header files.

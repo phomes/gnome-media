@@ -28,7 +28,11 @@
    
 
 #include <fcntl.h>
+#if defined(USE_NCURSES) && !defined(RENAMED_NCURSES)
+#include <ncurses.h>
+#else
 #include <curses.h>
+#endif
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
