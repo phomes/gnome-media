@@ -108,12 +108,12 @@ gint release_timer(gpointer *data);
 int skip_cb(GtkWidget *widget, GdkEvent *event, gpointer *data);
 gint changer_callback(GtkWidget *widget, gpointer *data);
 GtkWidget* make_changer_buttons(void);
-GtkWidget* make_small_buttons();
+GtkWidget* make_small_buttons(void);
 GtkWidget* create_buttons(void);
 void setup_colors(void);
-void draw_time_playing();
-void draw_titles();
-void draw_time_scanning();
+void draw_time_playing(void);
+void draw_titles(void);
+void draw_time_scanning(void);
 void adjust_status(void);
 gint volume_changed(GtkWidget *widget, gpointer *data);
 gint launch_gmix(GtkWidget *widget, GdkEvent *event, gpointer data);
@@ -121,6 +121,11 @@ gint fast_timer(gpointer *data);
 void setup_time_display(GtkWidget *table);
 void setup_fonts(void);
 void init_window(void);
+GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
+				   gpointer data,  gchar *tooltip);
+GtkWidget* make_button_stock(char *stock, GtkSignalFunc func,
+			     gpointer data, gchar *tooltip);
+void reload_info(int signal);
 
 /* functions */
 gint roll_timer(gpointer *data)
@@ -277,7 +282,7 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
     return FALSE;
 }
 
-GtkWidget *make_small_buttons()
+GtkWidget *make_small_buttons(void)
 {
     GtkWidget *b1, *b2, *b3;
     GtkWidget *table;
@@ -367,7 +372,7 @@ void setup_colors( void )
     draw_status();
 }
 
-void draw_time_playing()
+void draw_time_playing(void)
 {
     int pos, end, cur, min, sec;
     switch( prefs.time_display )
@@ -405,7 +410,7 @@ void draw_time_playing()
     }		
 }
 
-void draw_titles()
+void draw_titles(void)
 {
     int inc;
 
@@ -421,7 +426,7 @@ void draw_titles()
     gtk_window_set_title( GTK_WINDOW(window), cd.trk[cd.cur_t].name );
 }
 
-void draw_time_scanning()
+void draw_time_scanning(void)
 {
     gdk_gc_set_foreground( gc, &track_color );
     gdk_draw_text(status_db,tfont,gc,4,39+(tfont->ascent+tfont->descent)-2, 
@@ -451,42 +456,42 @@ void draw_status(void)
 	case CDROM_AUDIO_INVALID:
 	    strcpy(tmp, _("No Disc"));
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
-	    draw_time_scanning(gc);
+	    draw_time_scanning();
 	    break;
 	case CDROM_AUDIO_PLAY:
 	    if( cd.isplayable ) /* we can't be playing if we can't play */
 	    {
-		draw_time_playing(gc);
-		draw_titles(gc);
+		draw_time_playing();
+		draw_titles();
 		led_draw_track(status_db, status_area, 
 			       4,4, cd.cur_t);
 	    }
 	    else
-		draw_time_scanning(gc);
+		draw_time_scanning();
 	    break;
 	case CDROM_AUDIO_PAUSED:
-	    draw_titles(gc);
+	    draw_titles();
 	    break;
 	case CDROM_AUDIO_COMPLETED:
 	case CDROM_AUDIO_NO_STATUS:
 	    led_stop_time(status_db, status_area, 34,4 );
 	    led_stop_track(status_db, status_area, 4,4 );
-	    if( cd.isplayable )
-		draw_titles(gc);
+	    if(cd.isplayable)
+		draw_titles();
 	    else
-		draw_time_scanning(gc);
+		draw_time_scanning();
 	    break;
 	case CDROM_AUDIO_ERROR:
 	    strcpy( tmp, _("Error") );
 	    gdk_draw_text( status_db,tfont,gc,4,39,tmp, strlen(tmp) );
-	    draw_time_scanning(gc);
+	    draw_time_scanning();
 	    break;
 	default:
 	    break;
 	}
 	if(cd.isplayable)
 	{		
-	    gdk_gc_set_foreground( gc, &darkgrey );
+	    gdk_gc_set_foreground(gc, &darkgrey);
 	    gdk_draw_text( status_db,sfont,gc,48,26, 
 			   display_types[prefs.time_display], 
 			   strlen(display_types[prefs.time_display]));
@@ -497,9 +502,9 @@ void draw_status(void)
     }
     else
     {
-	strcpy( tmp, cd.errmsg );
-	gdk_draw_text( status_db,tfont,gc,
-		       4, 39, tmp, strlen(tmp) );
+	strncpy(tmp, cd.errmsg, sizeof(tmp));
+	gdk_draw_text(status_db,tfont,gc,
+		      4, 39, tmp, strlen(tmp));
     }
 
     /* Finally, update the display */
@@ -561,6 +566,7 @@ void status_changed(void)
     if( old_status != cd.sc.cdsc_audiostatus)
     {
 	GtkWidget *pixmap;
+	GtkSignalFunc func;
 	char tmp[256];
 	char *name;
 	
@@ -577,10 +583,15 @@ void status_changed(void)
 	gtk_widget_show(pixmap);
 	gtk_container_add( GTK_CONTAINER(playbutton), pixmap );
 
+	if(old_status == CDROM_AUDIO_PLAY)
+	    func = GTK_SIGNAL_FUNC(pause_cb);
+	else
+	    func = GTK_SIGNAL_FUNC(play_cb);
+
 	if(playid > 0)
 	    gtk_signal_disconnect(GTK_OBJECT(playbutton), playid);
-	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
-				    GTK_SIGNAL_FUNC(old_status==CDROM_AUDIO_PLAY?pause_cb:play_cb), NULL );
+	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked",
+				    func, NULL );
     }
 }
 

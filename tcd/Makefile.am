@@ -44,7 +44,7 @@ gtcd_LDADD = 	$(GNOME_LIBDIR) \
 
 tcd_LDADD = -lm $(CURSES_LIBS)
 
-CLEANFILES = *.o core *~ libcdrom.a
+CLEANFILES = *~
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)

@@ -9,6 +9,18 @@
 
 GtkWidget *trwin;
 
+void destroy_window(GtkWidget *widget, gboolean save);
+void update_list(GtkWidget *list, int track);
+void fill_list(GtkWidget *list);
+void dtitle_changed(GtkWidget *widget, gpointer data);
+void activate_entry(GtkWidget *widget, GtkWidget *list);
+void select_row_cb(GtkCList *clist,
+		   gint row,
+		   gint column,
+		   GdkEventButton *event,
+		   GtkWidget *entry);
+void edit_window(GtkWidget *widget, gpointer data);
+
 void destroy_window (GtkWidget *widget, gboolean save)
 {
 	if( save )

@@ -70,10 +70,13 @@ char *play_methods[] =
     "Random"
 };
 
-void draw_not_always();
 void reload_info(int signal);          
+void draw_not_always(void);
+void print_help(void);
+int get_i_track(void);
+void init_colors(void);
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
     int quit=FALSE, track, i;
     char c;

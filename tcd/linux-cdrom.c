@@ -54,6 +54,9 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
+/* make gcc happy */
+void debug( const char *fmt, ...);
+
 void debug( const char *fmt, ...)
 {
 #ifdef DEBUG

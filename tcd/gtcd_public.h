@@ -8,7 +8,7 @@
 #include "linux-cdrom.h"
 #include "prefs.h"
 
-void make_goto_menu();
+void make_goto_menu(void);
 void create_warning(char *message_text, char *type);
 void draw_status(void);
 void gcddb(GtkWidget *widget, gpointer *data);

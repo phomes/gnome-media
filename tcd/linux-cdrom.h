@@ -112,6 +112,7 @@ int 	tcd_stopcd( cd_struct *cd );
 int	tcd_close_disc( cd_struct *cd );
 int	tcd_change_disc( cd_struct *cd, int disc );	
 int 	tcd_play_seconds( cd_struct *cd, long int offset );
+void    tcd_recalculate(cd_struct *cd);
 
 /* Some constants */
 enum { STOPPED=0, PLAYING, PAUSED, NODISC, STATUS_END } DriveStatus;

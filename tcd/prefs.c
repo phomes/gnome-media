@@ -31,6 +31,24 @@
 
 static GtkWidget *pref_window=NULL;
 
+void load_prefs(tcd_prefs *prop);
+void save_prefs(tcd_prefs *prop);
+void changed_cb(GtkWidget *widget, void *data);
+void color_set_cb(GnomeColorPicker *cp, int pr, int pg, int pb);
+void start_toggle_cb(GtkWidget *widget, gpointer data);
+void check_changed_cb(GtkWidget *widget, gboolean *data);
+GtkWidget *create_start_frame(void);
+void exit_toggle_cb(GtkWidget *widget, gpointer data);
+GtkWidget *create_exit_frame(void);
+void dev_entry_changed_cb(GtkWidget *widget, gpointer data);
+void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs);
+void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs);
+void font_button_cb(GtkWidget *widget, gpointer *data);
+GtkWidget *create_general_frame(void);
+GtkWidget *create_page(void);
+void apply_cb(GtkWidget *widget, void *data);
+void preferences(GtkWidget *widget, void *data);
+
 void load_prefs(tcd_prefs *prop)
 {
     prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/dev/cdrom");
