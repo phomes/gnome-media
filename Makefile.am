@@ -6,7 +6,7 @@ else
 gnomovision =
 endif
 
-SUBDIRS = po intl macros	\
+SUBDIRS = po macros	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_TCD@		\
 	@PROGRAMS_VUMETER@	\

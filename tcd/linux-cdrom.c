@@ -329,6 +329,7 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
 	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame - 1;
 
+#ifdef UNSIGNED_NUMBERS_CAN_BE_NEGATIVE
 	if(msf.cdmsf_frame1 < 0)
 	{
 	    msf.cdmsf_sec1 += msf.cdmsf_frame1;
@@ -343,6 +344,7 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 	{
 	    msf.cdmsf_min1 = 0;
 	}
+#endif
     }
     msf.cdmsf_min1 += (msf.cdmsf_sec1 / 60);
     msf.cdmsf_sec1 %= 60;
@@ -390,6 +392,7 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
     msf.cdmsf_sec1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.second;
     msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame - 1;
 
+#ifdef UNSIGNED_NUMBERS_CAN_BE_NEGATIVE
     if(msf.cdmsf_frame1 < 0)
     {
 	msf.cdmsf_sec1 += msf.cdmsf_frame1;
@@ -404,6 +407,7 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
     {
 	msf.cdmsf_min1 = 0;
     }
+#endif
 	
     if( msf.cdmsf_sec0 > 60 && (offset<0) )
     {

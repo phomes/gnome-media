@@ -631,11 +631,6 @@ void quit_cb (GtkWidget *widget, void *data)
 	gtk_main_quit();
 }
 
-void options_cb (GtkWidget *widget, void *data)
-{
-	/* Nothing, yet... */
-}
-
 void lock_cb (GtkWidget *widget, channel_info *data)
 {
 	if (data==NULL) return;

@@ -12,6 +12,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -75,7 +76,6 @@ setup_datawindow(void)
    gint i;
    double *w;
    double sumw;
-   FILE *f;
    
    w = g_malloc(NSAMP*sizeof(double));
    
@@ -187,7 +187,6 @@ void
 draw(void)
 {
    gint i,j,k;
-   gint x1,y1,x2,y2,x3,y3,x4,y4;
    static double levels[LEVELS]=
      {
 	0,0,0,0,0,0,0,0,
@@ -465,6 +464,8 @@ button_3d_fft(GtkWidget *widget, gpointer *data)
 		      width,height);
    gdk_window_clear(win);
    mode=0;
+
+   return 0;
 }
 
 gint 
@@ -476,6 +477,8 @@ button_2d_fft(GtkWidget *widget, gpointer *data)
 		      width,height);
    gdk_window_clear(win);
    mode=1;
+
+   return 0;
 }
 
 gint 
@@ -487,6 +490,8 @@ button_oscilloscope(GtkWidget *widget, gpointer *data)
 		      width,height);
    gdk_window_clear(win);
    mode=2;
+
+   return 0;
 }
 
 gint 
@@ -498,6 +503,8 @@ button_3d_detailed(GtkWidget *widget, gpointer *data)
 		      width,height);
    gdk_window_clear(win);
    mode=3;
+
+   return 0;
 }
 
 int 
