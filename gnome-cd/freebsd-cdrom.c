@@ -802,6 +802,8 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 	if (freebsd_cdrom_open (lcd, error) == FALSE) {
 		freebsd_cdrom_close (lcd);
+		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 
@@ -855,6 +857,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 		freebsd_cdrom_close (lcd);
 		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 #endif
@@ -875,6 +878,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 		freebsd_cdrom_close (lcd);
 		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 

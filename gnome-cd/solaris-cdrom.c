@@ -934,6 +934,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 
 		solaris_cdrom_close (lcd);
 		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 #else
@@ -941,7 +942,14 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	tocentry.cdte_format = CDROM_MSF;
 	if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
 		g_warning ("Error getting leadout");
+		if (error)
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(solaris_cdrom_get_status): CDROMREADTOCENTRY ioctl failed");
+
 		solaris_cdrom_invalidate (lcd);
+		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 	if (tocentry.cdte_ctrl == CDROM_DATA_TRACK)
@@ -961,6 +969,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 
 		solaris_cdrom_close (lcd);
 		g_free (realstatus);
+		*status = NULL;
 		return FALSE;
 	}
 	/* get initial volume */
@@ -1265,6 +1274,20 @@ gnome_cdrom_new (const char      *cdrom_device,
 		 GnomeCDRomUpdate update,
 		 GError         **error)
 {
+	int i=-1;
+	if (!solaris_cdrom_is_cdrom_device (NULL, cdrom_device, NULL)) {
+		sscanf (cdrom_device, "/vol/dev/aliases/cdrom%d", &i);
+		if (i < 0) {
+			if (error != NULL) {
+				*error = g_error_new (
+					GNOME_CDROM_ERROR,
+					GNOME_CDROM_ERROR_NOT_OPENED,
+					("%s does not appear to point to a valid CD device.\n"),cdrom_device);
+			}
+			return NULL;
+		}
+	}
+
 	return gnome_cdrom_construct (
 		g_object_new (solaris_cdrom_get_type (), NULL),
 		cdrom_device, update, GNOME_CDROM_DEVICE_TRANSIENT, error);

@@ -80,7 +80,7 @@ do_device_changed (GnomeCDPreferences *prefs,
 			dialog = gtk_message_dialog_new (NULL, 0,
 							 GTK_MESSAGE_ERROR,
 							 GTK_BUTTONS_OK,
-							 _("%s\nThis means that Gnome-CD will not be able to run."), error->message);
+							 _("%s\nThis means that the CD player will not be able to run."), error->message);
 			gtk_window_set_title (GTK_WINDOW (dialog), _("Error setting device"));
 			g_signal_connect (G_OBJECT (dialog), "response",
 					  G_CALLBACK (gtk_widget_destroy), dialog);
@@ -199,7 +199,7 @@ restore_preferences (GnomeCDPreferences *prefs)
 						 "/apps/gnome-cd/device", NULL);
 	if (prefs->device == NULL) {
 		g_warning ("GConf schemas are not correctly installed.");
-		prefs->device = g_strdup ("/dev/cdrom");
+		prefs->device = g_strdup (default_cd_device);
 	}
 	
 	prefs->device_id = gconf_client_notify_add (client,
@@ -819,7 +819,7 @@ preferences_dialog_show (GnomeCD *gcd,
 		windy = NULL;
 	}
 	
-	pd->window = gtk_dialog_new_with_buttons (_("Gnome CD Player Preferences"),
+	pd->window = gtk_dialog_new_with_buttons (_("CD Player Preferences"),
 						  windy,
 						  GTK_DIALOG_DESTROY_WITH_PARENT,
 						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,

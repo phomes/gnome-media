@@ -306,6 +306,8 @@ cdrom_set_device (GnomeCDRom *cdrom,
 
 	gnome_cdrom_close_dev (cdrom, TRUE);
 	
+	g_free (priv->device);
+	priv->device = g_strdup (device);
 	if (gnome_cdrom_get_status (cdrom, &status, NULL) == TRUE) {
 		if (status->audio == GNOME_CDROM_AUDIO_PLAY) {
 			if (gnome_cdrom_stop (cdrom, error) == FALSE) {
@@ -317,11 +319,10 @@ cdrom_set_device (GnomeCDRom *cdrom,
 		g_free (status);
 	}
 
-	g_free (priv->device);
-	priv->device = g_strdup (device);
 
 	switch (cdrom->lifetime) {
 		case  GNOME_CDROM_DEVICE_STATIC :
+		case  GNOME_CDROM_DEVICE_TRANSIENT :
 			if (!gnome_cdrom_open_dev (cdrom, error))
 				return FALSE;
 			gnome_cdrom_close_dev (cdrom, FALSE);
@@ -342,7 +343,6 @@ cdrom_set_device (GnomeCDRom *cdrom,
 					      "c) %s is not the CD drive.\n",					     
 					      cdrom->priv->device, cdrom->priv->device);
 		}
-		if (cdrom->lifetime == GNOME_CDROM_DEVICE_STATIC)
 			return FALSE;
 	}
 
@@ -454,7 +454,7 @@ cdrom_init (GnomeCDRom *cdrom)
 	cdrom->priv = g_new0 (GnomeCDRomPrivate, 1);
 	cdrom->playmode = GNOME_CDROM_WHOLE_CD;
 	cdrom->loopmode = GNOME_CDROM_PLAY_ONCE;
-	cdrom->priv->device = g_strdup ("/dev/cdrom");
+	cdrom->priv->device = g_strdup (default_cd_device);
 }
 
 /* API */
@@ -780,6 +780,12 @@ timeout_update_cd (gpointer data)
 	if (gnome_cdrom_get_status (GNOME_CDROM (cdrom), &status, &error) == FALSE) {
 		g_free (priv->recent_status);
 		priv->recent_status = not_ready_status_new ();
+		if (status != NULL) {
+			if (status->cd == GNOME_CDROM_STATUS_NO_DISC ||
+			    status->cd == GNOME_CDROM_STATUS_NO_CDROM )
+				priv->recent_status->cd = status->cd;
+			g_free (status);
+		}
 		if (priv->update != GNOME_CDROM_UPDATE_NEVER)
 			gnome_cdrom_status_changed (GNOME_CDROM (cdrom), priv->recent_status);
 		gcd_warning ("%s", error);
@@ -833,7 +839,8 @@ gnome_cdrom_construct (GnomeCDRom      *cdrom,
 	cdrom->lifetime = lifetime;
 	cdrom->priv->update = update;
 
-	if (!gnome_cdrom_set_device (cdrom, device, error)) {
+	if (!gnome_cdrom_set_device (cdrom, device, error) &&
+	    lifetime != GNOME_CDROM_DEVICE_TRANSIENT) {
 		g_object_unref (cdrom);
 		return NULL;
 	}

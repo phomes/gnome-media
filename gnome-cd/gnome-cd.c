@@ -54,7 +54,7 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 	    track == NULL) {
 		title = g_strdup (_("Gnome CD Player"));
 	} else {
-		title = g_strconcat (artist, " - ", track, NULL);
+		title = g_strconcat (track, " - ", artist, NULL);
 	}
 
 	gtk_window_set_title (GTK_WINDOW (gcd->window), title);
@@ -303,7 +303,7 @@ struct _MenuItem menuitems[] = {
 	{N_("_Next track"), "gnome-cd/a-last-menu.png", G_CALLBACK (next_cb)},
 	{N_("_Eject disc"), "gnome-cd/a-eject-menu.png", G_CALLBACK (eject_cb)},
 	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
-	{N_("_About Gnome-CD"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
+	{N_("_About CD player"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{NULL, NULL, NULL}
 };
 
@@ -410,9 +410,9 @@ init_player (const char *device_override)
 
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_NONE,
-						 _("There is no CD device set. This means that GnomeCD\n"
-						   "will be unable to run. Press Set device to go to a dialog\n"
-						   "where you can set the device, or click Quit to quit GnomeCD"));
+						 _("There is no CD device set. This means that the CD player\n"
+						   "will be unable to run. Click 'Set device' to go to a dialog\n"
+						   "where you can set the device, or click 'Quit' to quit the CD player."));
 		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
 					_("Set device"), 1, NULL);
 		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
@@ -462,18 +462,18 @@ init_player (const char *device_override)
 
 		detailed_error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      "GnomeCD is unable to run correctly.\n\n"
+					      "The CD player is unable to run correctly.\n\n"
 					      "%s\n"
-					      "Press Set device to go to a dialog"
-					      " where you can set the device, or click Quit to quit GnomeCD", error->message ? error->message : " ");
+					      "Press 'Set device' to go to a dialog"
+					      " where you can set the device, or press 'Quit' to quit the CD player", error->message ? error->message : " ");
 
 		
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_NONE,
-						 _("GnomeCD is unable to run correctly.\n\n"
-						 "Press Details button for more details on reasons for failure.\n\n" 
-						 "Press Set device to go to a dialog"
-						 " where you can set the device, or click Quit to quit GnomeCD"));
+						 _("The CD player is unable to run correctly.\n\n"
+						 "Press 'Details' for more details on reasons for the failure.\n\n" 
+						 "Press 'Set device' to go to a dialog"
+						 " where you can set the device, or press 'Quit' to quit the CD player"));
 		gtk_dialog_add_buttons (GTK_DIALOG (dialog), _("_Details"), 1, GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
 					_("_Set device"), 2, NULL);
 		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 2);

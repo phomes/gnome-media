@@ -454,7 +454,8 @@ set_window_track_title (GnomeCD *gcd,
 	const char *track_name = "";
 
 	if (gcd->disc_info) {
-		if (idx >= 0 && idx < gcd->disc_info->ntracks)
+		if (idx >= 0 && idx < gcd->disc_info->ntracks &&
+		    gcd->disc_info->track_info)
 			track_name = gcd->disc_info->track_info [idx]->name;
 
 		artist = gcd->disc_info->artist ? gcd->disc_info->artist : "";
@@ -792,7 +793,7 @@ about_cb (GtkWidget *widget,
 	const char *authors[2] = {"Iain Holmes", NULL};
 	
 	if (about == NULL) {
-		about = gnome_about_new ("Gnome CD", VERSION,
+		about = gnome_about_new ("CD Player", VERSION,
 					 _("Copyright (C) 2001, 2002"),
 					 _("A GNOME cd player"),
 					 authors, NULL, NULL, NULL);
