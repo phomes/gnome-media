@@ -33,6 +33,7 @@ cddb_entry_parse_file (CDDBEntry *entry,
 {
 	FILE *handle;
 	char line[4096];
+	char *prev_vector[2] = {NULL, NULL};
 	
 	handle = fopen (filename, "r");
 	if (handle == NULL) {
@@ -71,7 +72,25 @@ cddb_entry_parse_file (CDDBEntry *entry,
 		if (vector == NULL) {
 			continue;
 		}
-		
+
+                if (*line == '\0'|| vector[1] == NULL) {
+			vector[1] = g_strjoin (NULL, "\n", vector[0], NULL);
+			g_free (vector[0]);
+                        vector[0] = g_strdup (prev_vector[0]);
+                }
+	
+		if (vector [0] != NULL)	{
+			if (prev_vector [0] != NULL)
+				g_free (prev_vector[0]);
+			prev_vector[0] = g_strdup (vector[0]);
+		}
+		if (vector [1] != NULL)	{
+			if (prev_vector [1] != NULL)
+				g_free (prev_vector[1]);
+			prev_vector[1] = g_strdup (vector[1]);
+		}
+
+
 		/* See if we have this ID */
 		string = g_hash_table_lookup (entry->fields, vector[0]);
 		if (string == NULL) {
@@ -81,9 +100,12 @@ cddb_entry_parse_file (CDDBEntry *entry,
 			g_string_append (string, vector[1]);
 		}
 
-		g_strfreev (vector);
+		g_free (vector[0]);
+		g_free (vector[1]);
 	}
 
+	g_free (prev_vector[0]);
+	g_free (prev_vector[1]);
 	return TRUE;
 }
 
