@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-03-03 19:59+0100\n"
+"POT-Creation-Date: 2002-03-07 12:29+0100\n"
 "PO-Revision-Date: 2000-05-02 02:49+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -1070,6 +1070,7 @@ msgstr ""
 "prevedli podporo za zvok."
 
 #: gmix/gmix.c:520
+#, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
@@ -1080,6 +1081,7 @@ msgstr ""
 "teče različica starejša od 3.6.0.\n"
 
 #: gmix/gmix.c:528
+#, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
@@ -1174,7 +1176,7 @@ msgid "Labels"
 msgstr "Nazivi"
 
 #: gnome-cd/callbacks.c:72 gnome-cd/callbacks.c:152 gnome-cd/callbacks.c:249
-#: gnome-cd/gnome-cd.c:500 grecord/src/gui.c:244
+#: gnome-cd/gnome-cd.c:500 grecord/src/gui.c:257
 msgid "Play"
 msgstr "Igraj"
 
@@ -1306,7 +1308,7 @@ msgstr "Previj"
 msgid "Play / Pause"
 msgstr "Predvajaj / Premor"
 
-#: gnome-cd/gnome-cd.c:505 grecord/src/gui.c:256
+#: gnome-cd/gnome-cd.c:505 grecord/src/gui.c:269
 msgid "Stop"
 msgstr "Ustavi"
 
@@ -1362,53 +1364,53 @@ msgstr "Nastavitve Gnome-CD"
 msgid "CD player de_vice"
 msgstr "Napra_va CDROM"
 
-#: gnome-cd/preferences.c:702
+#: gnome-cd/preferences.c:703
 msgid "_Apply change"
 msgstr "_Uveljavi spremembe"
 
 #. left side
-#: gnome-cd/preferences.c:715
+#: gnome-cd/preferences.c:716
 msgid "When Gnome-CD starts"
 msgstr "Ko se začene Gnome-CD"
 
-#: gnome-cd/preferences.c:723
+#: gnome-cd/preferences.c:724
 msgid "Do _nothing"
 msgstr "Ne stori ničesar"
 
-#: gnome-cd/preferences.c:732
+#: gnome-cd/preferences.c:733
 msgid "Start _playing CD"
 msgstr "Začni predvajanje CDja"
 
-#: gnome-cd/preferences.c:741
+#: gnome-cd/preferences.c:742
 msgid "_Stop playing CD"
 msgstr "Končaj predvajanje CDja"
 
-#: gnome-cd/preferences.c:753
+#: gnome-cd/preferences.c:754
 msgid "Attempt to _close CD tray"
 msgstr "Poskusi _zapreti predalček za CD"
 
 #. Right side
-#: gnome-cd/preferences.c:764
+#: gnome-cd/preferences.c:765
 msgid "When Gnome-CD quits"
 msgstr "Ob izhodu iz Gnome-CD"
 
-#: gnome-cd/preferences.c:772
+#: gnome-cd/preferences.c:773
 msgid "Do not_hing"
 msgstr "Ne stori _ničesar"
 
-#: gnome-cd/preferences.c:781
+#: gnome-cd/preferences.c:782
 msgid "S_top playing CD"
 msgstr "Končaj predvajanje"
 
-#: gnome-cd/preferences.c:790
+#: gnome-cd/preferences.c:791
 msgid "Attempt to _open CD tray"
 msgstr "Poskusi _odpreti predalček za CD"
 
-#: gnome-cd/preferences.c:799
+#: gnome-cd/preferences.c:800
 msgid "Attempt to c_lose CD tray"
 msgstr "Poskusi _zapreti predalček za CD"
 
-#: gnome-cd/preferences.c:829
+#: gnome-cd/preferences.c:830
 msgid "Theme name"
 msgstr "Ime teme"
 
@@ -1416,8 +1418,7 @@ msgstr "Ime teme"
 msgid "Record sound clips"
 msgstr "Posnami zvočne vzorce"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:438
-#: grecord/src/main.c:117
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/main.c:117
 msgid "Sound recorder"
 msgstr "Snemalnik zvoka"
 
@@ -1425,7 +1426,7 @@ msgstr "Snemalnik zvoka"
 msgid "Sound Recorder:"
 msgstr "Snemalnik zvoka:"
 
-#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1028
+#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1060
 msgid "Could not fork child process"
 msgstr "Ne morem razvejiti 'otroka' procesa"
 
@@ -1441,53 +1442,62 @@ msgstr "Igram..."
 msgid "Converting file..."
 msgstr "Pretvarjam datoteko..."
 
-#: grecord/src/grec.c:241 grecord/src/grec.c:650 grecord/src/gui.c:322
+#: grecord/src/grec.c:203
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: grecord/src/grec.c:244 grecord/src/grec.c:651 grecord/src/gui.c:335
 #: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Audio zapis: "
 
-#: grecord/src/grec.c:245 grecord/src/grec.c:636 grecord/src/gui.c:329
+#: grecord/src/grec.c:248 grecord/src/grec.c:637 grecord/src/gui.c:342
 #: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Frekvenca vzorčenja: "
 
-#: grecord/src/grec.c:255 grecord/src/grec.c:640 grecord/src/gui.c:336
+#: grecord/src/grec.c:258 grecord/src/grec.c:641 grecord/src/gui.c:349
 #: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Kanalov: "
 
-#: grecord/src/grec.c:285
+#: grecord/src/grec.c:279
+msgid "Cancel open"
+msgstr "Prekliči odpiranje"
+
+#: grecord/src/grec.c:288
 msgid "Select a sound file"
 msgstr "Izberite zvočno datoteko"
 
-#: grecord/src/grec.c:500
+#: grecord/src/grec.c:339
+msgid "Don't quit"
+msgstr "Ne končaj"
+
+#: grecord/src/grec.c:503
 msgid "Undoing all changes..."
 msgstr "Razveljavi vse spremembe..."
 
-#: grecord/src/grec.c:577
-#, c-format
+#: grecord/src/grec.c:583
 msgid ""
-"'%s' is a directory.\n"
-"Please select a soundfile to be opened."
+"'%s is a directory.\n"
+"Please select a sound file to be opened."
 msgstr ""
 "'%s' je imenik.\n"
-"Prosim izberite zvočno datoteko."
+"Prosim izberite zvočno datoteko, ki naj se odpre."
 
-#: grecord/src/grec.c:589
-#, c-format
+#: grecord/src/grec.c:593
 msgid ""
 "File '%s' doesn't exist.\n"
-"Please select a existing soundfile to be opened."
+"Please select an existing sound file to be opened."
 msgstr ""
 "Datoteka '%s' ne obstaja.\n"
-"Prosim izberite obstoječo zvočno datoteko."
+"Prosim izberite obstoječo zvočno datoteko, ki naj se odpre."
 
-#: grecord/src/grec.c:601
-#, c-format
-msgid "File '%s' isn't a valid soundfile."
+#: grecord/src/grec.c:604
+msgid "File '%s isn't a valid sound file."
 msgstr "Datoteka '%s' ni veljavna zvočna datoteka."
 
-#: grecord/src/grec.c:674
+#: grecord/src/grec.c:675
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -1496,44 +1506,70 @@ msgstr ""
 "'%s' je imenik.\n"
 "Prosim vnesite drugačno ime datoteke."
 
-#: grecord/src/grec.c:684
-#, c-format
+#: grecord/src/grec.c:685
 msgid ""
-"File '%s' already exists.\n"
+"<b>File '%s' already exists.</b>\n"
 "Do you want to overwrite it?"
 msgstr ""
-"Datoteka '%s' že obstaja.\n"
+"<b>Datoteka '%s' že obstaja.</b>\n"
 "Ali jo želite prepisati?"
 
-#: grecord/src/grec.c:699
-msgid "Error saving sound file"
-msgstr "Napaka pri shranjevanju zvočne datoteke"
+#: grecord/src/grec.c:688
+msgid "Cancel save"
+msgstr "Prekliči shranjevanje"
 
-#: grecord/src/grec.c:735
-msgid "File not saved. Do you want to save it?"
-msgstr "Datoteka ni shranjena. Jo želite shraniti sedaj?"
+#: grecord/src/grec.c:689
+msgid "Overwrite"
+msgstr "Prepiši"
+
+#: grecord/src/grec.c:716
+msgid "Error saving '%s'"
+msgstr "Napaka ob shranjevanju '%s'"
+
+#: grecord/src/grec.c:753
+#, c-format
+msgid ""
+"<b>Save the changes to %s?</b>\n"
+"If you don't save, these changes will be discarded."
+msgstr ""
+"<b>Shrani spremembe v %s</b>\n"
+"Če jih ne boste shranili, bodo izgubljene."
+
+#: grecord/src/grec.c:757
+msgid "Don't save"
+msgstr "Ne shrani"
+
+#: grecord/src/grec.c:759
+msgid "Save"
+msgstr "Shrani"
+
+#: grecord/src/grec.c:762
+#, c-format
+msgid "Save %s?"
+msgstr "Shrani %s?"
 
 #. Save the file
-#: grecord/src/grec.c:754
+#: grecord/src/grec.c:786
 msgid "Saving..."
 msgstr "Shranjujem..."
 
-#: grecord/src/grec.c:875
-#, c-format
-msgid "The size of the current sample is more than %i Mb!"
-msgstr "Velikost trenutnega vzorca je večja kot %i Mb!"
+#: grecord/src/grec.c:912
+msgid ""
+"The size of the current sample is more than\n"
+"%i Mb!"
+msgstr "Velikost trenutnega vzorca je večja \nkot %i Mb!"
 
-#: grecord/src/grec.c:923
+#: grecord/src/grec.c:955
 msgid "Save sound file"
 msgstr "Shrani zvočno datoteko"
 
-#: grecord/src/grec.c:1091
+#: grecord/src/grec.c:1125
 msgid ""
-"Sounddevice not ready! Please check that there isn't\n"
-"another program running that's using the sounddevice."
+"The sound device is not ready. Please check that there isn't\n"
+"another program running that is using the device."
 msgstr ""
-"Zvočna kartica ni pripravljena! Prosim, preverite\n"
-"ali teče še kakšen pogram, ki uporablja zvočno kartico."
+"Zvočna naprava ni pripravljena! Prosim, preverite, da ne\n"
+"teče kak drug pogram, ki uporablja zvočno napravo."
 
 #: grecord/src/gui.c:42
 msgid "_New"
@@ -1544,12 +1580,12 @@ msgid "Create a new sample"
 msgstr "Ustvari nov vzorec"
 
 #: grecord/src/gui.c:50
-msgid "Run mixer..."
-msgstr "Poženi mešalko..."
+msgid "Run mixer"
+msgstr "Poženi mešalko"
 
 #: grecord/src/gui.c:51
-msgid "Run GNOME mixer"
-msgstr "Poženi mešalko GNOME"
+msgid "Run GNOME Volume Control"
+msgstr "Poženi Kontrolo glasnosti GNOME"
 
 #: grecord/src/gui.c:64
 msgid "Add echo"
@@ -1575,7 +1611,7 @@ msgstr "Razveljavi vse spremembe na trenutnem vzorcu"
 msgid "Effects"
 msgstr "Učinki"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:860
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:873
 msgid "Show time"
 msgstr "Kaži čas"
 
@@ -1583,61 +1619,73 @@ msgstr "Kaži čas"
 msgid "Show soundinfo"
 msgstr "Kaži podatke o zvoku"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:865
+#: grecord/src/gui.c:130 grecord/src/gui.c:878
 msgid "Show sound information"
 msgstr "Kaži podatke o zvoku"
 
-#: grecord/src/gui.c:230
+#: grecord/src/gui.c:162
+msgid "%s - Sound Recorder"
+msgstr "Snemalnik zvoka - %s"
+
+#: grecord/src/gui.c:205
+msgid "Sound Recorder"
+msgstr "Snemalnik zvoka"
+
+#: grecord/src/gui.c:243
 msgid "New"
 msgstr "Nova"
 
-#: grecord/src/gui.c:231
+#: grecord/src/gui.c:244
 msgid "Create new sample"
 msgstr "Ustvari nov vzorec"
 
-#: grecord/src/gui.c:245
+#: grecord/src/gui.c:258
 msgid "Play current sample"
 msgstr "Igraj trenutni vzorec"
 
-#: grecord/src/gui.c:257
+#: grecord/src/gui.c:270
 msgid "Stop playing/recording"
 msgstr "Končaj z igranjem/snemanjem"
 
-#: grecord/src/gui.c:266
+#: grecord/src/gui.c:279
 msgid "Record"
 msgstr "Snemaj"
 
-#: grecord/src/gui.c:267
+#: grecord/src/gui.c:280
 msgid "Start recording"
 msgstr "Začni snemati"
 
-#: grecord/src/gui.c:282
+#: grecord/src/gui.c:295
 msgid "Info"
 msgstr "Podatki"
 
-#: grecord/src/gui.c:380
+#: grecord/src/gui.c:393
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Datoteka '%s' ne obstaja: uporabljam privzeto."
 
-#: grecord/src/gui.c:401
+#: grecord/src/gui.c:414
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Datoteka '%s' ni podprta zvočna datoteka."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:431
+#: grecord/src/gui.c:444
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
+#: grecord/src/gui.c:451
+msgid "Gnome Sound Recorder"
+msgstr "Snemalnik zvoka Gnome"
+
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:441
+#: grecord/src/gui.c:454
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Avtorske pravice pridržane (C)  2000 Andreas Hyden"
 
-#: grecord/src/gui.c:442
+#: grecord/src/gui.c:455
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -1645,127 +1693,127 @@ msgstr ""
 "Enostaven snemalnik in predvajalnik zvoka za GNOME.\n"
 "Posvečen moji mački, Malte-i."
 
-#: grecord/src/gui.c:534
+#: grecord/src/gui.c:547
 msgid "Time"
 msgstr "Čas"
 
-#: grecord/src/gui.c:547
+#: grecord/src/gui.c:560
 msgid "Recording timeout: "
 msgstr "Prekoračen čas za snemanje: "
 
-#: grecord/src/gui.c:558
+#: grecord/src/gui.c:571
 msgid "minutes"
 msgstr "minut"
 
-#: grecord/src/gui.c:563
+#: grecord/src/gui.c:576
 msgid "Stop recording on timeout"
 msgstr "Ustavi snemanje ob prekoračitvi časa"
 
-#: grecord/src/gui.c:568
+#: grecord/src/gui.c:581
 msgid "Popup save dialog when recording is finished"
 msgstr "Prikaži dialog za shranjevanje, ko je snemanje končano"
 
-#: grecord/src/gui.c:577
+#: grecord/src/gui.c:590
 msgid "Size"
 msgstr "Velikost"
 
-#: grecord/src/gui.c:586
+#: grecord/src/gui.c:599
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Prikaži opozorilo, če velikost (Mb) vzorca postane večja od:"
 
-#: grecord/src/gui.c:596
+#: grecord/src/gui.c:609
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Ustavi snemanje če velikost (Mb) vzorca postane večja od:"
 
-#: grecord/src/gui.c:607
+#: grecord/src/gui.c:620
 msgid "Recording"
 msgstr "Snemam"
 
-#: grecord/src/gui.c:616
+#: grecord/src/gui.c:629
 msgid "Play-repeating"
 msgstr "Igraj ponavljajoče se"
 
-#: grecord/src/gui.c:625
+#: grecord/src/gui.c:638
 msgid "Repeat"
 msgstr "Ponavljaj"
 
-#: grecord/src/gui.c:634
+#: grecord/src/gui.c:647
 msgid "Forever"
 msgstr "Vseskozi"
 
-#: grecord/src/gui.c:639
+#: grecord/src/gui.c:652
 msgid "Nr of times:"
 msgstr "Kolikokrat:"
 
-#: grecord/src/gui.c:650
+#: grecord/src/gui.c:663
 msgid "Playing"
 msgstr "Igram"
 
-#: grecord/src/gui.c:659
+#: grecord/src/gui.c:672
 msgid "Program files"
 msgstr "Datoteke programa"
 
-#: grecord/src/gui.c:676
+#: grecord/src/gui.c:689
 msgid "Path to sox:"
 msgstr "Pod do programa sox:"
 
-#: grecord/src/gui.c:692
+#: grecord/src/gui.c:705
 msgid "Path to mixer:"
 msgstr "Pot do programa mixer:"
 
-#: grecord/src/gui.c:708
+#: grecord/src/gui.c:721
 msgid "Directories"
 msgstr "Imeniki"
 
-#: grecord/src/gui.c:721
+#: grecord/src/gui.c:734
 msgid "Temp dir:"
 msgstr "Začasni imenik:"
 
-#: grecord/src/gui.c:737
+#: grecord/src/gui.c:750
 msgid "Paths"
 msgstr "Poti"
 
-#: grecord/src/gui.c:745
+#: grecord/src/gui.c:758
 msgid "Sound options"
 msgstr "Nastavitve zvoka"
 
-#: grecord/src/gui.c:758
+#: grecord/src/gui.c:771
 msgid "Audioformat:"
 msgstr "Audio zapis:"
 
-#: grecord/src/gui.c:769 grecord/src/gui.c:779
+#: grecord/src/gui.c:782 grecord/src/gui.c:792
 msgid "8bit pcm"
 msgstr "8 bitni pcm"
 
-#: grecord/src/gui.c:770 grecord/src/gui.c:781
+#: grecord/src/gui.c:783 grecord/src/gui.c:794
 msgid "16bit pcm"
 msgstr "16 bitni pcm"
 
-#: grecord/src/gui.c:787
+#: grecord/src/gui.c:800
 msgid "Sample rate:"
 msgstr "Frekvenca vzorčenja:"
 
-#: grecord/src/gui.c:817
+#: grecord/src/gui.c:830
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:828 grecord/src/gui.c:838
+#: grecord/src/gui.c:841 grecord/src/gui.c:851
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:829 grecord/src/gui.c:840
+#: grecord/src/gui.c:842 grecord/src/gui.c:853
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:843
+#: grecord/src/gui.c:856
 msgid "Sound"
 msgstr "Zvok"
 
-#: grecord/src/gui.c:851
+#: grecord/src/gui.c:864
 msgid "Main window"
 msgstr "Glavno okno"
 
-#: grecord/src/gui.c:870
+#: grecord/src/gui.c:883
 msgid "User interface"
 msgstr "Uporabniški vmesnik"
 
@@ -1881,11 +1929,7 @@ msgstr ""
 "Imenik %s ne obstaja.\n"
 "Ali ga želite vseeno uporabiti?"
 
-#: grecord/src/sound.c:101
-msgid " untitled.wav"
-msgstr " neimenovan.wav"
-
-#: grecord/src/sound.c:146 grecord/src/sound.c:150
+#: grecord/src/sound.c:126 grecord/src/sound.c:130
 msgid "Adding echo to sample..."
 msgstr "K vzorcu dodajam odmev..."
 
@@ -1958,6 +2002,18 @@ msgstr "Meri izhodno glasnost zvoka"
 msgid "Volume Monitor"
 msgstr "Kazalec glasnosti"
 
+#~ msgid "Error saving sound file"
+#~ msgstr "Napaka pri shranjevanju zvočne datoteke"
+
+#~ msgid "File not saved. Do you want to save it?"
+#~ msgstr "Datoteka ni shranjena. Jo želite shraniti sedaj?"
+
+#~ msgid "Run GNOME mixer"
+#~ msgstr "Poženi mešalko GNOME"
+
+#~ msgid " untitled.wav"
+#~ msgstr " neimenovan.wav"
+
 #~ msgid "GMIX - The Gnome Mixer"
 #~ msgstr "GMIX - Mešalka GNOME"
 
@@ -2014,9 +2070,6 @@ msgstr "Kazalec glasnosti"
 
 #~ msgid "Error querying [%s]\n"
 #~ msgstr "Napaka pri poizvedovanju [%s]\n"
-
-#~ msgid "Error reading [%s]\n"
-#~ msgstr "Napaka pri branju [%s]\n"
 
 #~ msgid "No match found for %s\n"
 #~ msgstr "Ni najdenih zadetkov za %s\n"
