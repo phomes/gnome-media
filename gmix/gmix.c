@@ -806,21 +806,23 @@ static gboolean
 get_bool_with_default (const char *key,
 		       gboolean default_result)
 {
-	GError *err = NULL;
 	GConfClient *client;
-	gboolean result;
+	GConfValue *value = NULL;
 	
 	client = gconf_client_get_default ();
-	result = gconf_client_get_bool (client, key, &err);
+	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 	
 	g_print ("Result for %s is - ", key);
-	if (err == NULL) {
+	if (value != NULL) {
+		gboolean result;
+		
+		result = gconf_value_get_bool (value);
 		g_print ("%s\n", result ? "true" : "false");
+		gconf_value_free (value);
 		return result;
 	} else {
 		g_print ("%s (default)\n", default_result ? "true" : "false");
-		g_error_free (err);
 		return default_result;
 	}
 }
@@ -829,21 +831,24 @@ static int
 get_int_with_default (const char *key,
 		      int default_result)
 {
-	GError *err = NULL;
 	GConfClient *client;
-	int result;
+	GConfValue *value = NULL;
 
 	client = gconf_client_get_default ();
-	result = gconf_client_get_int (client, key, &err);
+	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 
 	g_print ("Result for %s is - ", key);
-	if (err == NULL) {
+	if (value != NULL) {
+		int result;
+
+		result = gconf_value_get_int (value);
 		g_print ("%d\n", result);
+		gconf_value_free (value);
+		
 		return result;
 	} else {
 		g_print ("%d (default)\n", default_result);
-		g_error_free (err);
 		return default_result;
 	}
 }
@@ -852,21 +857,23 @@ static char *
 get_string_with_default (const char *key,
 			 const char *default_result)
 {
-	GError *err = NULL;
 	GConfClient *client;
-	char *result;
-
+	GConfValue *value = NULL;
+	
 	client = gconf_client_get_default ();
-	result = gconf_client_get_string (client, key, &err);
+	value = gconf_client_get (client, key, NULL);
 	g_object_unref (G_OBJECT (client));
 
 	g_print ("Result for %s is - ", key);
-	if (err == NULL) {
+	if (value != NULL) {
+		char *result;
+
+		result = g_strdup (gconf_value_get_string (value));
 		g_print ("%s\n", result);
+		gconf_value_free (value);
 		return result;
 	} else {
 		g_print ("%s (default)\n", default_result);
-		g_error_free (err);
 		return g_strdup (default_result);
 	}
 }

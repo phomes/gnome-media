@@ -1,3 +1,8 @@
+2002-04-10 Iain <iain@ximian.com>
+
+	* gmix.c (get_*_with_default): Use gconf_client_get so that we can
+	track when a key doesn't exist correctly.
+
 2002-04-09 Iain <iain@ximian.com>
 
 	* gmix.c (get_one_device_config): If the cards directory doesn't exist
