@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media-0.13\n"
-"POT-Creation-Date: 2000-03-02 22:13+0100\n"
-"PO-Revision-Date: 2000-03-02 22:53+01:00\n"
+"POT-Creation-Date: 2000-04-02 21:54+0200\n"
+"PO-Revision-Date: 2000-04-02 21:59+02:00\n"
 "Last-Translator: Birger Langkjer <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Kontakter [%s]\n"
 #: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
-msgstr "Forespørger server [%s]\n"
+msgstr "Spørger server [%s]\n"
 
 #: cddbslave/main.c:59
 #, c-format
@@ -99,7 +99,7 @@ msgstr "opstart mixer(ne) fra gemt konfiguration og afslut"
 
 #: gmix/gmix.c:186
 msgid "don't save (modified) mixer-settings into configuration"
-msgstr "gem ikke (modificerede) mixerværdier til konfigurationen"
+msgstr "gem ikke (ændrede) mixerværdier i konfigurationen"
 
 #. start frame
 #: gmix/gmix.c:423 tcd/prefs.c:393
@@ -127,7 +127,7 @@ msgstr "Brug mixerikoner"
 msgid "Use mixer labels"
 msgstr "Brug mixernavne"
 
-#: gmix/gmix.c:485 tcd/gtcd.c:321 tcd/prefs.c:596
+#: gmix/gmix.c:485 tcd/gtcd.c:363 tcd/prefs.c:596
 msgid "Preferences"
 msgstr "Indstillinger"
 
@@ -264,7 +264,9 @@ msgstr "TCD - GNOME CD-afspiller"
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
-msgstr "GTCD er en GNOME CD-spillerapplikation med CDDB understøttelse. Vær venlig at se i 'Thanks'-filen som er inkluderet i distributionen for flere navne."
+msgstr ""
+"GTCD er en GNOME CD-spillerapplikation med CDDB understøttelse. Vær venlig "
+"at se i 'Thanks'-filen som er inkluderet i distributionen for flere navne."
 
 #: tcd/cddb_props.c:69
 msgid "Disc ID"
@@ -388,61 +390,61 @@ msgstr "normal"
 msgid "random"
 msgstr "tilfældig"
 
-#: tcd/gtcd.c:320
-msgid "Open track editor"
-msgstr "Åbn sporredigering"
-
-#: tcd/gtcd.c:322 tcd/popup.c:24
-msgid "Quit"
-msgstr "Afslut"
-
 #. TOP ROW
-#: tcd/gtcd.c:342
+#: tcd/gtcd.c:323
 msgid "Play/Pause"
 msgstr "Spil/Pause"
 
-#: tcd/gtcd.c:346 tcd/popup.c:16
+#: tcd/gtcd.c:327 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stop"
 
-#: tcd/gtcd.c:347 tcd/popup.c:17
+#: tcd/gtcd.c:328 tcd/popup.c:17
 msgid "Eject"
 msgstr "Skub ud"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:354 tcd/gtcd.c:362
+#: tcd/gtcd.c:335 tcd/gtcd.c:343
 msgid "Skip backwards"
 msgstr "Forrige spor"
 
-#: tcd/gtcd.c:355 tcd/gtcd.c:363
+#: tcd/gtcd.c:336 tcd/gtcd.c:344
 msgid "Skip forwards"
 msgstr "Næste spor"
 
-#: tcd/gtcd.c:514 tcd/gtcd.c:515 tcd/gtcd.c:516
+#: tcd/gtcd.c:362
+msgid "Open track editor"
+msgstr "Åbn sporredigering"
+
+#: tcd/gtcd.c:364 tcd/popup.c:24
+msgid "Quit"
+msgstr "Afslut"
+
+#: tcd/gtcd.c:502 tcd/gtcd.c:503 tcd/gtcd.c:504
 msgid "(Scanning)"
 msgstr "(Søger)"
 
-#: tcd/gtcd.c:538
+#: tcd/gtcd.c:526
 msgid "No Disc"
 msgstr "Ingen disk"
 
-#: tcd/gtcd.c:573
+#: tcd/gtcd.c:561
 msgid "Error"
 msgstr "Fejl"
 
-#: tcd/gtcd.c:848
+#: tcd/gtcd.c:836
 msgid "Volume"
 msgstr "Lydstyrke"
 
-#: tcd/gtcd.c:1020
+#: tcd/gtcd.c:1008
 msgid "Filename of the CD device"
-msgstr "Filnavn for CD enheden"
+msgstr "Filnavn for CD-enheden"
 
-#: tcd/gtcd.c:1020
+#: tcd/gtcd.c:1008
 msgid "FILE"
 msgstr "FILE"
 
-#: tcd/gtcd.c:1022
+#: tcd/gtcd.c:1010
 msgid "Play CD on startup"
 msgstr "Spil CD ved opstart"
 
@@ -466,7 +468,7 @@ msgstr "Sporredigering"
 #: tcd/gtracked.c:213
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Disk information (%02u:%02u minutter)"
+msgstr "Diskinformation (%02u:%02u minutter)"
 
 #: tcd/gtracked.c:222
 msgid "Artist / Title"
@@ -476,7 +478,7 @@ msgstr "Kunstner / Titel"
 #. Track area
 #: tcd/gtracked.c:245
 msgid "Track Information"
-msgstr "Spor information"
+msgstr "Sporinformation"
 
 #. Clear button
 #: tcd/gtracked.c:301
@@ -686,4 +688,3 @@ msgstr "Vært er %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volumenmeter"
-
