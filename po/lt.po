@@ -1,838 +1,849 @@
 # Lithuanian translation of gnome-media
 # Copyright (C) 2000-2001 Free Software Foundation, Inc.
 # Gediminas Paulauskas <menesis@delfi.lt>, 2000-2001.
+# Žygimantas Beručka <uid0@tuxfamily.org>, 2003.
+# 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.2.2\n"
-"POT-Creation-Date: 2002-12-07 15:16+0000\n"
-"PO-Revision-Date: 2001-06-05 21:03+0200\n"
-"Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
+"Project-Id-Version: gnome-media\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-09 11:48+0200\n"
+"PO-Revision-Date: 2003-10-11 16:41+0300\n"
+"Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "Serverio adresas prie kurio jungiamasi dėl CD užklausų"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Informacija siunčiama į serverį"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
 msgid "Port"
-msgstr "Portas"
-
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#, fuzzy
-msgid "Server name"
-msgstr "SOCKS serveris"
+msgstr "Prievadas"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgid "Server name"
+msgstr "Serverio vardas"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "The port that the server is running the database on"
-msgstr ""
+msgid "Server type"
+msgstr "Serverio tipas"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-#, fuzzy
+msgid "The hostname that will be sent with all queries"
+msgstr "Kompiuterio vardas kuris bus siunčiamas su visomis užklausomis"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "Prievadas kuriuo serveryje veikia duomenų bazė"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+"Serverio tipas, CD užklausų prisijungimui. Galimos reikšmės yra: 0 "
+"(FreeDB round robin serveris), 1 (kitas freedb serveris) ir 2 (kitas serveris)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "Vartotojo vardas"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "Vartotojo vardas kuris bus siunčiamas su visomis užklausomis"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid "Your hostname"
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
 msgstr ""
+"Šis raktas nurodo kuri vartotojo informacija bus siunčiama serveriui "
+"dėl CD užklausų. Galimos rekšmės yra: 0 (jokios informacijos), 1 (tikra "
+"informacija) ir 3 (kita informacija)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Tavo kompiuterio vardas"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
-msgstr ""
+msgstr "Plėtiklio dydis"
 
 #: cddb-slave2/cddb-disclosure.c:246
 msgid "Size of the expander arrow"
+msgstr "Plėtiklio strėliukės dydis"
+
+#: cddb-slave2/cddb-slave-capplet.c:115
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
 msgstr ""
+"Rodant pagalbą įvyko klaida: \n"
+"%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:648
-#, fuzzy
-msgid "Log on information"
-msgstr "Pateikti garso informaciją"
+#: cddb-slave2/cddb-slave-capplet.c:696
+msgid "Login Information"
+msgstr "Prisijungimo informacija"
 
-#: cddb-slave2/cddb-slave-capplet.c:657
-msgid "Send _no info"
-msgstr ""
-
-#: cddb-slave2/cddb-slave-capplet.c:666
-msgid "Send real _info"
-msgstr ""
-
-#: cddb-slave2/cddb-slave-capplet.c:675
-msgid "Send _other info..."
-msgstr ""
-
-#: cddb-slave2/cddb-slave-capplet.c:692
-msgid "N_ame:"
-msgstr ""
+#: cddb-slave2/cddb-slave-capplet.c:702
+msgid "Sen_d no information"
+msgstr "_Nesiųsti informacijos"
 
 #: cddb-slave2/cddb-slave-capplet.c:711
-msgid "_Hostname:"
-msgstr ""
+msgid "Send real _information"
+msgstr "Siųsti _tikrą informaciją"
+
+#: cddb-slave2/cddb-slave-capplet.c:720
+msgid "Send _other information:"
+msgstr "Siųsti _kitą informaciją:"
+
+#: cddb-slave2/cddb-slave-capplet.c:745
+msgid "_Name:"
+msgstr "_Vardas:"
+
+#: cddb-slave2/cddb-slave-capplet.c:765
+msgid "Hostna_me:"
+msgstr "Kompiuterio _vardas:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:733 cddb-slave2/cddb-slave-capplet.c:773
-#, fuzzy
+#: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
 msgid "Server"
-msgstr "SOCKS serveris"
+msgstr "Serveris"
 
-#: cddb-slave2/cddb-slave-capplet.c:741
+#: cddb-slave2/cddb-slave-capplet.c:791
 msgid "FreeDB _round robin server"
-msgstr ""
+msgstr "FreeDB _round robin serveris"
 
-#: cddb-slave2/cddb-slave-capplet.c:747
-msgid "Other _FreeDB server..."
-msgstr ""
+#: cddb-slave2/cddb-slave-capplet.c:797
+msgid "Other _FreeDB server:"
+msgstr "Kitas _FreeDB serveris:"
 
-#: cddb-slave2/cddb-slave-capplet.c:779
-#, fuzzy
+#: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
-msgstr "Veiksmas"
+msgstr "Vieta"
 
-#: cddb-slave2/cddb-slave-capplet.c:785
-msgid "Update server list"
-msgstr ""
+#: cddb-slave2/cddb-slave-capplet.c:864
+msgid "_Update Server List"
+msgstr "_Atnaujinti serverių sąrašą"
 
-#: cddb-slave2/cddb-slave-capplet.c:792
-msgid "Other _server..."
-msgstr ""
+#: cddb-slave2/cddb-slave-capplet.c:871
+msgid "Other _server:"
+msgstr "Kitas _serveris:"
 
-#: cddb-slave2/cddb-slave-capplet.c:804
-msgid "Hostname:"
-msgstr ""
+#: cddb-slave2/cddb-slave-capplet.c:891
+msgid "Hos_tname:"
+msgstr "Kompiu_terio vardas:"
 
-#: cddb-slave2/cddb-slave-capplet.c:816
-#, fuzzy
+#: cddb-slave2/cddb-slave-capplet.c:908
 msgid "_Port:"
-msgstr "Portas"
+msgstr "_Prievadas:"
 
-#: cddb-slave2/cddb-slave-capplet.c:866
-#, fuzzy
+#: cddb-slave2/cddb-slave-capplet.c:972
 msgid "CD Database Preferences"
-msgstr "Nuostatos"
+msgstr "CD duomenų bazės nuostatos"
 
 #: cddb-slave2/cddb-slave.c:213
-#, fuzzy
 msgid "Unknown / Unknown"
 msgstr "Nežinomas / Nežinomas"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:760
-#: grecord/src/gsr-window.c:769 grecord/src/gsr-window.c:778
-#: grecord/src/gsr-window.c:788 grecord/src/gsr-window.c:1108
-#, fuzzy
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:796 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:815 grecord/src/gsr-window.c:1154
 msgid "Unknown"
-msgstr "Nežinomas / Nežinomas"
+msgstr "Nežinomas"
 
 #: cddb-slave2/cddb-slave.c:441
 msgid "Multiple matches..."
-msgstr ""
+msgstr "Keletas atitikimų..."
 
 #: cddb-slave2/cddb-slave.c:446
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
+"Duomenų bazėje buvo rasta keletas atitikimų.\n"
+"Žemiau yra galimų atitikimų sąrašas, prašom pasirinkti geriausią"
+"atitikmenį."
 
 #: cddb-slave2/cddb-slave.c:457
-#, fuzzy
 msgid "Category"
-msgstr "Kategorija: "
+msgstr "Kategorija"
 
 #: cddb-slave2/cddb-slave.c:461
 msgid "Disc ID"
 msgstr "Disko ID"
 
 #: cddb-slave2/cddb-slave.c:465
-#, fuzzy
 msgid "Artist and Title"
-msgstr "Atlikėjas / Pavadinimas"
+msgstr "Atlikėjas ir Pavadinimas"
 
 #: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:130
+#: gnome-cd/gnome-cd.c:135
 msgid "Unknown track"
-msgstr ""
+msgstr "Nežinomas takelis"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
-#, fuzzy
 msgid "CD Database"
-msgstr "Vietinė duomenų bazė"
+msgstr "CD duomenų bazė"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
 msgid "Modify your CD database preferences"
-msgstr ""
-
-#: cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr ""
+msgstr "Keisk savo CD duomų bazės nuostatas"
 
 #: cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr ""
+msgid "Blues"
+msgstr "Blues"
 
 #: cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr ""
+msgid "Classical Rock"
+msgstr "Classical Rock"
 
 #: cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr ""
+msgid "Country"
+msgstr "Country"
 
 #: cddb-slave2/cddb-track-editor.c:82
-#, fuzzy
-msgid "Disco"
-msgstr "Disko ID"
+msgid "Dance"
+msgstr "Dance"
 
 #: cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr ""
+msgid "Disco"
+msgstr "Disco"
 
 #: cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr ""
+msgid "Funk"
+msgstr "Funk"
 
 #: cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr ""
+msgid "Grunge"
+msgstr "Grunge"
 
 #: cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr ""
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
 
 #: cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr ""
+msgid "Jazz"
+msgstr "Jazz"
 
 #: cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr ""
+msgid "Metal"
+msgstr "Metal"
 
 #: cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr ""
+msgid "New Age"
+msgstr "New Age"
 
 #: cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr ""
+msgid "Oldies"
+msgstr "Oldies"
 
 #: cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr ""
+msgid "Other"
+msgstr "Kitas"
 
 #: cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr ""
+msgid "Pop"
+msgstr "Pop"
 
 #: cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr ""
+msgid "R&B"
+msgstr "R&B"
 
 #: cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr ""
+msgid "Rap"
+msgstr "Rap"
 
 #: cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr ""
+msgid "Reggae"
+msgstr "Reggae"
 
 #: cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr ""
+msgid "Rock"
+msgstr "Rock"
 
 #: cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr ""
+msgid "Techno"
+msgstr "Techno"
 
 #: cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr ""
+msgid "Industrial"
+msgstr "Industrial"
 
 #: cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr ""
+msgid "Alternative"
+msgstr "Alternative"
 
 #: cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr ""
+msgid "Ska"
+msgstr "Ska"
 
 #: cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr ""
+msgid "Death Metal"
+msgstr "Death Metal"
 
 #: cddb-slave2/cddb-track-editor.c:102
-#, fuzzy
-msgid "Soundtrack"
-msgstr "Garsas"
+msgid "Pranks"
+msgstr "Pranks"
 
 #: cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr ""
+msgid "Soundtrack"
+msgstr "Soundtrack"
 
 #: cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr ""
+msgid "Euro-Techno"
+msgstr "Euro-Techno"
 
 #: cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr ""
+msgid "Ambient"
+msgstr "Ambient"
 
 #: cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr ""
+msgid "Trip-Hop"
+msgstr "Trip-Hop"
 
 #: cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr ""
+msgid "Vocal"
+msgstr "Vocal"
 
 #: cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr ""
+msgid "Jazz+Funk"
+msgstr "Jazz+Funk"
 
 #: cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr ""
+msgid "Fusion"
+msgstr "Fusion"
 
 #: cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr ""
+msgid "Trance"
+msgstr "Trance"
 
 #: cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr ""
+msgid "Classical"
+msgstr "Classical"
 
 #: cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr ""
+msgid "Instrumental"
+msgstr "Instrumental"
 
 #: cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr ""
+msgid "Acid"
+msgstr "Acid"
 
 #: cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr ""
+msgid "House"
+msgstr "House"
 
 #: cddb-slave2/cddb-track-editor.c:115
-#, fuzzy
-msgid "Sound Clip"
-msgstr "Garsas"
+msgid "Game"
+msgstr "Game"
 
 #: cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr ""
+msgid "Sound Clip"
+msgstr "Sound Clip"
 
 #: cddb-slave2/cddb-track-editor.c:117
-#, fuzzy
-msgid "Noise"
-msgstr "Nėra disko"
+msgid "Gospel"
+msgstr "Gospel"
 
 #: cddb-slave2/cddb-track-editor.c:118
+msgid "Noise"
+msgstr "Noise"
+
+#: cddb-slave2/cddb-track-editor.c:119
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #. groups
 #. max 24 chars
-#: cddb-slave2/cddb-track-editor.c:119 gmix/device_labels_alsa.h:37
+#: cddb-slave2/cddb-track-editor.c:120 gmix/device_labels_alsa.h:37
 msgid "Bass"
-msgstr ""
-
-#: cddb-slave2/cddb-track-editor.c:120
-#, fuzzy
-msgid "Soul"
-msgstr "Garsas"
+msgstr "Bass"
 
 #: cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr ""
+msgid "Soul"
+msgstr "Soul"
 
 #: cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr ""
+msgid "Punk"
+msgstr "Punk"
 
 #: cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr ""
+msgid "Space"
+msgstr "Space"
 
 #: cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr ""
+msgid "Meditative"
+msgstr "Meditative"
 
 #: cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr ""
+msgid "Instrumental Pop"
+msgstr "Instrumental Pop"
 
 #: cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr ""
+msgid "Instrumental Rock"
+msgstr "Instrumental Rock"
 
 #: cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr ""
+msgid "Ethnic"
+msgstr "Ethnic"
 
 #: cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr ""
+msgid "Gothic"
+msgstr "Gothic"
 
 #: cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr ""
+msgid "Darkwave"
+msgstr "Darkwave"
 
 #: cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr ""
+msgid "Techno-Industrial"
+msgstr "Techno-Industrial"
 
 #: cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr ""
+msgid "Electronic"
+msgstr "Electronic"
 
 #: cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr ""
+msgid "Pop-Folk"
+msgstr "Pop-Folk"
 
 #: cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr ""
+msgid "Eurodance"
+msgstr "Eurodance"
 
 #: cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr ""
+msgid "Dream"
+msgstr "Dream"
 
 #: cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr ""
+msgid "Southern Rock"
+msgstr "Southern Rock"
 
 #: cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr ""
+msgid "Comedy"
+msgstr "Comedy"
 
 #: cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr ""
+msgid "Cult"
+msgstr "Cult"
 
 #: cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr ""
+msgid "Gangsta Rap"
+msgstr "Gangsta Rap"
 
 #: cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr ""
+msgid "Top 40"
+msgstr "Top 40"
 
 #: cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr ""
+msgid "Christian Rap"
+msgstr "Christian Rap"
 
 #: cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr ""
+msgid "Pop/Funk"
+msgstr "Pop/Funk"
 
 #: cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr ""
+msgid "Jungle"
+msgstr "Jungle"
 
 #: cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr ""
+msgid "Native American"
+msgstr "Native American"
 
 #: cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr ""
+msgid "Cabaret"
+msgstr "Cabaret"
 
 #: cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr ""
+msgid "New Wave"
+msgstr "New Wave"
 
 #: cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr ""
+msgid "Psychedelic"
+msgstr "Psychedelic"
 
 #: cddb-slave2/cddb-track-editor.c:147
-#, fuzzy
-msgid "Showtunes"
-msgstr "Rodyti laiką"
+msgid "Rave"
+msgstr "Rave"
 
 #: cddb-slave2/cddb-track-editor.c:148
-#, fuzzy
-msgid "Trailer"
-msgstr "Pavadinimas"
+msgid "Showtunes"
+msgstr "Showtunes"
 
 #: cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr ""
+msgid "Trailer"
+msgstr "Trailer"
 
 #: cddb-slave2/cddb-track-editor.c:150
-#, fuzzy
-msgid "Tribal"
-msgstr "Aukšt"
+msgid "Lo-Fi"
+msgstr "Lo-Fi"
 
 #: cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr ""
+msgid "Tribal"
+msgstr "Tribal"
 
 #: cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr ""
+msgid "Acid Punk"
+msgstr "Acid Punk"
 
 #: cddb-slave2/cddb-track-editor.c:153
-#, fuzzy
-msgid "Polka"
-msgstr "Groti"
+msgid "Acid Jazz"
+msgstr "Acid Jazz"
 
 #: cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr ""
+msgid "Polka"
+msgstr "Polka"
 
 #: cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr ""
+msgid "Retro"
+msgstr "Retro"
 
 #: cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr ""
+msgid "Musical"
+msgstr "Musical"
 
 #: cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr ""
+msgid "Rock & Roll"
+msgstr "Rock & Roll"
 
 #: cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr ""
+msgid "Hard Rock"
+msgstr "Hard Rock"
 
 #: cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr ""
+msgid "Folk"
+msgstr "Folk"
 
 #: cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr ""
+msgid "Folk/Rock"
+msgstr "Folk/Rock"
 
 #: cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr ""
+msgid "National Folk"
+msgstr "National Folk"
 
 #: cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr ""
+msgid "Swing"
+msgstr "Swing"
 
 #: cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr ""
+msgid "Fast-Fusion"
+msgstr "Fast-Fusion"
 
 #: cddb-slave2/cddb-track-editor.c:164
-#, fuzzy
-msgid "Latin"
-msgstr "Line"
+msgid "Bebop"
+msgstr "Bebop"
 
 #: cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr ""
+msgid "Latin"
+msgstr "Latin"
 
 #: cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr ""
+msgid "Revival"
+msgstr "Revival"
 
 #: cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr ""
+msgid "Celtic"
+msgstr "Celtic"
 
 #: cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr ""
+msgid "Bluegrass"
+msgstr "Bluegrass"
 
 #: cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr ""
+msgid "Avantgarde"
+msgstr "Avantgarde"
 
 #: cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr ""
+msgid "Gothic Rock"
+msgstr "Gothic Rock"
 
 #: cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr ""
+msgid "Progressive Rock"
+msgstr "Progressive Rock"
 
 #: cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr ""
+msgid "Psychedelic Rock"
+msgstr "Psychedelic Rock"
 
 #: cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr ""
+msgid "Symphonic Rock"
+msgstr "Symphonic Rock"
 
 #: cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr ""
+msgid "Slow Rock"
+msgstr "Slow Rock"
 
 #: cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr ""
+msgid "Big Band"
+msgstr "Big Band"
 
 #: cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr ""
+msgid "Chorus"
+msgstr "Chorus"
 
 #: cddb-slave2/cddb-track-editor.c:177
-#, fuzzy
-msgid "Acoustic"
-msgstr "Apie"
+msgid "Easy Listening"
+msgstr "Easy Listening"
 
 #: cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr ""
+msgid "Acoustic"
+msgstr "Acoustic"
 
 #: cddb-slave2/cddb-track-editor.c:179
-#, fuzzy
-msgid "Speech"
-msgstr "Greitis"
+msgid "Humour"
+msgstr "Humour"
 
 #: cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr ""
+msgid "Speech"
+msgstr "Speech"
 
 #: cddb-slave2/cddb-track-editor.c:181
-#, fuzzy
-msgid "Opera"
-msgstr "Atidaryti dureles"
+msgid "Chanson"
+msgstr "Chanson"
 
 #: cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr ""
+msgid "Opera"
+msgstr "Opera"
 
 #: cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr ""
+msgid "Chamber Music"
+msgstr "Chamber Music"
 
 #: cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr ""
+msgid "Sonata"
+msgstr "Sonata"
 
 #: cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr ""
+msgid "Symphony"
+msgstr "Symphony"
 
 #: cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr ""
+msgid "Booty Bass"
+msgstr "Booty Bass"
 
 #: cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr ""
+msgid "Primus"
+msgstr "Primus"
 
 #: cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr ""
+msgid "Porn Groove"
+msgstr "Porn Groove"
 
 #: cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr ""
+msgid "Satire"
+msgstr "Satire"
 
 #: cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr ""
+msgid "Slow Jam"
+msgstr "Slow Jam"
 
 #: cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr ""
+msgid "Club"
+msgstr "Club"
 
 #: cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr ""
+msgid "Tango"
+msgstr "Tango"
 
 #: cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr ""
+msgid "Samba"
+msgstr "Samba"
 
 #: cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr ""
+msgid "Folklore"
+msgstr "Folklore"
 
 #: cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr ""
+msgid "Ballad"
+msgstr "Ballad"
 
 #: cddb-slave2/cddb-track-editor.c:196
-msgid "Rythmic Soul"
-msgstr ""
+msgid "Power Ballad"
+msgstr "Power Ballad"
 
 #: cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr ""
+msgid "Rhythmic Soul"
+msgstr "Rhythmic Soul"
 
 #: cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr ""
+msgid "Freestyle"
+msgstr "Freestyle"
 
 #: cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr ""
+msgid "Duet"
+msgstr "Duet"
 
 #: cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr ""
+msgid "Punk Rock"
+msgstr "Punk Rock"
 
 #: cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr ""
+msgid "Drum Solo"
+msgstr "Drum Solo"
 
 #: cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr ""
+msgid "A Cappella"
+msgstr "A Cappella"
 
 #: cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr ""
+msgid "Euro-House"
+msgstr "Euro-House"
 
 #: cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr ""
+msgid "Dance Hall"
+msgstr "Dance Hall"
 
 #: cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr ""
+msgid "Goa"
+msgstr "Goa"
 
 #: cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr ""
+msgid "Drum & Bass"
+msgstr "Drum & Bass"
 
 #: cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr ""
+msgid "Club-House"
+msgstr "Club-House"
 
 #: cddb-slave2/cddb-track-editor.c:208
-#, fuzzy
-msgid "Terror"
-msgstr "Klaida"
+msgid "Hardcore"
+msgstr "Hardcore"
 
 #: cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr ""
+msgid "Terror"
+msgstr "Terror"
 
 #: cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr ""
+msgid "Indie"
+msgstr "Indie"
 
 #: cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr ""
+msgid "BritPop"
+msgstr "BritPop"
 
 #: cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr ""
+msgid "Negerpunk"
+msgstr "Negerpunk"
 
 #: cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr ""
+msgid "Polsk Punk"
+msgstr "Polsk Punk"
 
 #: cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr ""
+msgid "Beat"
+msgstr "Beat"
 
 #: cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr ""
+msgid "Christian Gangsta Rap"
+msgstr "Christian Gangsta Rap"
 
 #: cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr ""
+msgid "Heavy Metal"
+msgstr "Heavy Metal"
 
 #: cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr ""
+msgid "Black Metal"
+msgstr "Black Metal"
 
 #: cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr ""
+msgid "Crossover"
+msgstr "Crossover"
 
 #: cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr ""
+msgid "Contemporary Christian"
+msgstr "Contemporary Christian"
 
 #: cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr ""
+msgid "Christian Rock"
+msgstr "Christian Rock"
 
 #: cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr ""
+msgid "Merengue"
+msgstr "Merengue"
 
 #: cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr ""
+msgid "Salsa"
+msgstr "Salsa"
 
 #: cddb-slave2/cddb-track-editor.c:223
-#, fuzzy
-msgid "Anime"
-msgstr "Trukmė"
+msgid "Thrash Metal"
+msgstr "Thrash Metal"
 
 #: cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr ""
+msgid "Anime"
+msgstr "Anime"
 
 #: cddb-slave2/cddb-track-editor.c:225
-#, fuzzy
-msgid "Synthpop"
-msgstr "Sustoti"
+msgid "JPop"
+msgstr "JPop"
 
 #: cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr ""
+msgid "Synthpop"
+msgstr "Synthpop"
 
 #: cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr ""
+msgid "Nu-Metal"
+msgstr "Nu-Metal"
 
-#: cddb-slave2/cddb-track-editor.c:525
+#: cddb-slave2/cddb-track-editor.c:228
+msgid "Art Rock"
+msgstr "Art Rock"
+
+#: cddb-slave2/cddb-track-editor.c:526
 #, c-format
 msgid "Editing Disc ID: %s"
-msgstr ""
+msgstr "Redaguojamas disko ID: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:615
+#: cddb-slave2/cddb-track-editor.c:616
 msgid "Editing Disc ID: "
-msgstr ""
+msgstr "Redaguojamas disko ID: "
 
-#: cddb-slave2/cddb-track-editor.c:626
+#: cddb-slave2/cddb-track-editor.c:627
 msgid "_Artist:"
-msgstr ""
+msgstr "_Atlikėjas:"
 
-#: cddb-slave2/cddb-track-editor.c:640
-#, fuzzy
+#: cddb-slave2/cddb-track-editor.c:641
 msgid "Disc _Title:"
-msgstr "Disko pavadinimas"
-
-#: cddb-slave2/cddb-track-editor.c:650
-#, fuzzy
-msgid "Show advanced disc options"
-msgstr "Garso parinktys"
+msgstr "Disko _pavadinimas:"
 
 #: cddb-slave2/cddb-track-editor.c:651
+msgid "Show advanced disc options"
+msgstr "Rodyti papildomas disko parinktis"
+
+#: cddb-slave2/cddb-track-editor.c:652
 msgid "Hide advanced disc options"
-msgstr ""
+msgstr "Paslėpti papildomas disko parinktis"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
 #: cddb-slave2/cddb-track-editor.c:664
 msgid "_Disc comments:"
-msgstr ""
+msgstr "_Disko komentarai:"
 
 #. Genre
 #: cddb-slave2/cddb-track-editor.c:679
 msgid "_Genre:"
-msgstr ""
+msgstr "_Žanras:"
 
 #. Year
 #: cddb-slave2/cddb-track-editor.c:695
 msgid "_Year:"
-msgstr ""
+msgstr "_Metai:"
 
 #: cddb-slave2/cddb-track-editor.c:734
 msgid "Title"
@@ -840,36 +851,37 @@ msgstr "Pavadinimas"
 
 #: cddb-slave2/cddb-track-editor.c:741
 msgid "Length"
-msgstr ""
+msgstr "Trukmė"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:755
+#: cddb-slave2/cddb-track-editor.c:752
 msgid "Show advanced track options"
-msgstr ""
+msgstr "Rodyti papildomas takelio parinktis"
 
-#: cddb-slave2/cddb-track-editor.c:756
+#: cddb-slave2/cddb-track-editor.c:753
 msgid "Hide advanced track options"
-msgstr ""
+msgstr "Paslėpti papildomas takelio parinktis"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:764
+#: cddb-slave2/cddb-track-editor.c:761
 msgid "_Extra track data:"
-msgstr ""
+msgstr "_Papildoma takelio informacija:"
 
-#: cddb-slave2/cddb-track-editor.c:891
-#, fuzzy
+#: cddb-slave2/cddb-track-editor.c:888
 msgid "CDDB Track Editor"
-msgstr "CDDB redaktorius"
+msgstr "CDDB takelių redaktorius"
 
-#: cddb-slave2/cddb-track-editor.c:1021
+#: cddb-slave2/cddb-track-editor.c:1022
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
+"Negaliu sukurti CDDBTrackEditor gamyklos.\n"
+"To sukelėja gali būti dar viena šiuo metu veikianti cddb-track-editor programa.\n"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
-msgstr ""
+msgstr "Synth"
 
 #: gmix/device_labels_alsa.h:8
 msgid "PCM"
@@ -885,40 +897,40 @@ msgstr "FM"
 
 #: gmix/device_labels_alsa.h:11
 msgid "DSP Input"
-msgstr ""
+msgstr "DSP įvestis"
 
 #: gmix/device_labels_alsa.h:12
 msgid "Line"
-msgstr "Line"
+msgstr "Linija"
 
 #: gmix/device_labels_alsa.h:13
 msgid "MIC"
-msgstr "MIC"
+msgstr "MIK"
 
 #: gmix/device_labels_alsa.h:14
 msgid "CD"
 msgstr "CD"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
 msgid "Radio"
-msgstr ""
+msgstr "Radijas"
 
 #: gmix/device_labels_alsa.h:17
 msgid "Phone"
-msgstr ""
+msgstr "Telefonas"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1090
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
 msgid "Mono"
 msgstr "Mono"
 
 #: gmix/device_labels_alsa.h:19
 msgid "PC Speaker"
-msgstr ""
+msgstr "PC garsiakalbis"
 
 #: gmix/device_labels_alsa.h:20
 msgid "Aux"
@@ -926,29 +938,29 @@ msgstr "Aux"
 
 #: gmix/device_labels_alsa.h:21
 msgid "Center Input"
-msgstr ""
+msgstr "Centrinė įvestis"
 
 #: gmix/device_labels_alsa.h:22
 msgid "Woofer Input"
-msgstr ""
+msgstr "Woofer įvestis"
 
 #: gmix/device_labels_alsa.h:23
 msgid "Surround Input"
-msgstr ""
+msgstr "Apsupties įvestis"
 
 #. outputs
 #. max 24 chars
 #: gmix/device_labels_alsa.h:26
 msgid "Master"
-msgstr ""
+msgstr "Pagrindinis"
 
 #: gmix/device_labels_alsa.h:27
 msgid "Master Mono"
-msgstr ""
+msgstr "Pagrindinis mono"
 
 #: gmix/device_labels_alsa.h:28
 msgid "Master Digital"
-msgstr ""
+msgstr "Pagrindinis skaitmeninis"
 
 #: gmix/device_labels_alsa.h:29
 msgid "Headphone"
@@ -956,27 +968,27 @@ msgstr "Ausinės"
 
 #: gmix/device_labels_alsa.h:30
 msgid "Phone Output"
-msgstr ""
+msgstr "Telefono išvestis"
 
 #: gmix/device_labels_alsa.h:31
 msgid "Center"
-msgstr ""
+msgstr "Centrinis"
 
 #: gmix/device_labels_alsa.h:32
 msgid "Woofer"
-msgstr ""
+msgstr "Woofer"
 
 #: gmix/device_labels_alsa.h:33
 msgid "Surround"
-msgstr ""
+msgstr "Apsuptis"
 
 #: gmix/device_labels_alsa.h:34
 msgid "DSP Output"
-msgstr ""
+msgstr "DSP išvestis"
 
 #: gmix/device_labels_alsa.h:38
 msgid "Treble"
-msgstr ""
+msgstr "Aukšti"
 
 #: gmix/device_labels_alsa.h:39
 msgid "Equalizer"
@@ -984,7 +996,7 @@ msgstr "Ekvalaizeris"
 
 #: gmix/device_labels_alsa.h:40
 msgid "Fader"
-msgstr ""
+msgstr "Fader"
 
 #: gmix/device_labels_alsa.h:41
 msgid "Effect"
@@ -996,27 +1008,27 @@ msgstr "3D efektas"
 
 #: gmix/device_labels_alsa.h:43
 msgid "Mic Gain"
-msgstr ""
+msgstr "Mic Gain"
 
 #: gmix/device_labels_alsa.h:44
 msgid "Input Gain"
-msgstr ""
+msgstr "Input Gain"
 
 #: gmix/device_labels_alsa.h:45
 msgid "Output Gain"
-msgstr ""
+msgstr "Output Gain"
 
 #: gmix/device_labels_alsa.h:46
 msgid "Analog Loopback"
-msgstr ""
+msgstr "Analog Loopback"
 
 #: gmix/device_labels_alsa.h:47
 msgid "Digital Loopback"
-msgstr ""
+msgstr "Digital Loopback"
 
 #: gmix/device_labels_linux.h:7
 msgid "Vol  "
-msgstr "Gars "
+msgstr "Gars  "
 
 #: gmix/device_labels_linux.h:7
 msgid "Bass "
@@ -1028,19 +1040,19 @@ msgstr "Aukšt"
 
 #: gmix/device_labels_linux.h:7
 msgid "Pcm  "
-msgstr ""
+msgstr "Pcm  "
 
 #: gmix/device_labels_linux.h:7
 msgid "Spkr "
-msgstr ""
+msgstr "Spkr "
 
 #: gmix/device_labels_linux.h:7
 msgid "Line "
-msgstr ""
+msgstr "Lini "
 
 #: gmix/device_labels_linux.h:8
 msgid "Mic  "
-msgstr ""
+msgstr "Mik  "
 
 #: gmix/device_labels_linux.h:8
 msgid "CD   "
@@ -1060,23 +1072,23 @@ msgstr "Rec  "
 
 #: gmix/device_labels_linux.h:8
 msgid "IGain"
-msgstr ""
+msgstr "IGain"
 
 #: gmix/device_labels_linux.h:8
 msgid "OGain"
-msgstr ""
+msgstr "OGain"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line1"
-msgstr ""
+msgstr "Lini1"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line2"
-msgstr ""
+msgstr "Lini2"
 
 #: gmix/device_labels_linux.h:9
 msgid "Line3"
-msgstr ""
+msgstr "Lini3"
 
 #: gmix/device_labels_linux.h:9
 msgid "Digital1"
@@ -1092,15 +1104,15 @@ msgstr "Skaitm3"
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneIn"
-msgstr ""
+msgstr "TelefĮv "
 
 #: gmix/device_labels_linux.h:10
 msgid "PhoneOut"
-msgstr ""
+msgstr "TelefIšv"
 
 #: gmix/device_labels_linux.h:10
 msgid "Monitor"
-msgstr ""
+msgstr "Ekranas"
 
 #: gmix/gmix.c:115
 msgid "Help"
@@ -1108,7 +1120,7 @@ msgstr "Pagalba"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Naudojamas mikserio įrenginys"
 
 #: gmix/gmix.c:327
 #, c-format
@@ -1121,6 +1133,13 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
+"\"Garso valdymas\" negali teisingai veikti.\n"
+"\n"
+"Negaliu atidaryti audio įrenginio '%s'.\n"
+"Prašau patikrinti ar tu turi leidimą atidaryt '%s'\n"
+"ir ar turi garso palaikymą OS branduolyje.\n"
+"\n"
+"Spausk Išeiti, kad išeiti iš \"Garso valdymo\""
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1130,259 +1149,234 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"\"Garso valdymas\" negali veikti teisingai.\n"
+"\n"
+"Spausk detalių mygtuką, kad gautum išsamesnę informacija apie nesėkmę.\n"
+"\n"
+"Spausk Išeiti, kad išeiti iš \"Garso valdymo\""
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:487
 msgid "_Details"
-msgstr ""
+msgstr "_Detalės"
 
 #: gmix/gmix.c:387
-#, fuzzy
 msgid "Invalid mixer device"
-msgstr "CDROM įrenginys"
+msgstr "Netinkamas mikserio įrenginys"
 
-#: gmix/gmix.c:626
-#, fuzzy, c-format
+#: gmix/gmix.c:632
+#, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
 msgstr ""
-"Dėmesio: ši gmix versija buvo sukompiliuota su\n"
+"Dėmesio: ši Gnome Garso Valdiklio versija buvo sukompiliuota su\n"
 "OSS versija %d.%d.%d, bet tavo kompiuteryje veikia\n"
 "versija, senesnė nei 3.6.0.\n"
 
-#: gmix/gmix.c:634
-#, fuzzy, c-format
+#: gmix/gmix.c:639
+#, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
 msgstr ""
-"Dėmesio: ši gmix versija buvo sukompiliuota su\n"
+"Dėmesio: ši Gnome Garso Valdiklio versija buvo sukompiliuota su\n"
 "OSS versija %d.%d.%d, bet tavo kompiuteryje veikia\n"
 "versija %d.%d.%d.\n"
 
-#: gmix/gmix.c:1088
+#: gmix/gmix.c:1112
 #, c-format
 msgid "left %s"
-msgstr ""
+msgstr "Kairė %s"
 
-#: gmix/gmix.c:1114
+#: gmix/gmix.c:1138
 #, c-format
 msgid "Right %s"
-msgstr ""
-
-#: gmix/gmix.c:1207
-msgid "Lock"
-msgstr ""
-
-#: gmix/gmix.c:1220
-#, c-format
-msgid "%s Lock"
-msgstr ""
+msgstr "Dešinė %s"
 
 #: gmix/gmix.c:1231
-msgid "Mute"
-msgstr ""
+msgid "Lock"
+msgstr "Užrakinta"
 
 #: gmix/gmix.c:1244
 #, c-format
+msgid "%s Lock"
+msgstr "%s užrakinta"
+
+#: gmix/gmix.c:1255
+msgid "Mute"
+msgstr "Tyla"
+
+#: gmix/gmix.c:1268
+#, c-format
 msgid "%s Mute"
-msgstr ""
+msgstr "%s tyli"
 
-#: gmix/gmix.c:1258
+#: gmix/gmix.c:1282
 msgid "Rec."
-msgstr ""
+msgstr "Rec."
 
-#: gmix/gmix.c:1270
-#, fuzzy, c-format
+#: gmix/gmix.c:1294
+#, c-format
 msgid "%s Record"
-msgstr "Įrašyti"
+msgstr "%s rašymas"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
-#, fuzzy
 msgid "Volume Control"
-msgstr "Patylinti"
+msgstr "Garso valdymas"
 
-#: gmix/gmix.c:1748
-#, fuzzy
+#: gmix/gmix.c:1774
 msgid "GNOME Volume Control"
-msgstr "Patylinti"
+msgstr "GNOME garso valdymas"
 
-#: gmix/gmix.c:1749
-msgid ""
-"(C) 1998 Jens Ch. Restemeier\n"
-"(C) 2001 Iain Holmes"
-msgstr ""
-
-#: gmix/gmix.c:1751
-#, fuzzy
+#: gmix/gmix.c:1777
 msgid "A mixer for sound devices"
-msgstr "Tai yra mikšeris OSS garso įrenginiams."
+msgstr "Garso įrenginių mikseris"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
-msgstr ""
+msgstr "Nustatyti garsumo lygį"
 
 #: gmix/prefs.c:193 gmix/prefs.c:196
 msgid "Shown"
-msgstr ""
+msgstr "Rodomas"
 
 #: gmix/prefs.c:204 gmix/prefs.c:207
-#, fuzzy
 msgid "Mixer label"
-msgstr "Rodyti mikšerių etiketes"
+msgstr "Mikserio etiketė"
 
 #. Add the label reset button
 #: gmix/prefs.c:216
 msgid "_Reset labels to their defaults"
-msgstr ""
+msgstr "_Atkurti etiketes į pradines reikšmes"
 
 #: gmix/prefs.c:313
-#, fuzzy
 msgid "Gnome Volume Control Preferences"
-msgstr "Nuostatos"
+msgstr "Gnome garso valdymo nuostatos"
 
-#: gnome-cd/access/cddisplayaccessible.c:117
-#, fuzzy
+#: gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
-msgstr "CD grotuvas"
+msgstr "CD Ekranas"
 
-#: gnome-cd/access/cddisplayaccessible.c:119
+#: gnome-cd/access/cddisplayaccessible.c:120
 msgid ""
 "Displays information about the currently playing album, artist and time "
 "elapsed"
 msgstr ""
-
-#: gnome-cd/access/cddisplayaccessible.c:188
-#, fuzzy
-msgid "Time Line"
-msgstr "Line"
+"Rodo informaciją apie dabar grojamą albumą, atlikėją ir praėjusį laiką"
 
 #: gnome-cd/access/cddisplayaccessible.c:189
-msgid "Line for displaying the time elapsed for the current track"
-msgstr ""
+msgid "Time Line"
+msgstr "Laiko Linija"
 
-#: gnome-cd/access/cddisplayaccessible.c:192
-#, fuzzy
-msgid "Info Line"
-msgstr "Line"
+#: gnome-cd/access/cddisplayaccessible.c:190
+msgid "Line for displaying the time elapsed for the current track"
+msgstr "Linija rodyti takelio praėjusį laiką"
 
 #: gnome-cd/access/cddisplayaccessible.c:193
-#, fuzzy
-msgid "Line for displaying information"
-msgstr "Pateikti garso informaciją"
+msgid "Info Line"
+msgstr "Info Linija"
 
-#: gnome-cd/access/cddisplayaccessible.c:196
-#, fuzzy
-msgid "Artist Line"
-msgstr "Atlikėjas / Pavadinimas"
+#: gnome-cd/access/cddisplayaccessible.c:194
+msgid "Line for displaying information"
+msgstr "Linija informacijos rodymui"
 
 #: gnome-cd/access/cddisplayaccessible.c:197
-msgid "Line for displaying the name of the artist"
-msgstr ""
+msgid "Artist Line"
+msgstr "Atlikėjo Linija"
 
-#: gnome-cd/access/cddisplayaccessible.c:200
-msgid "Album Line"
-msgstr ""
+#: gnome-cd/access/cddisplayaccessible.c:198
+msgid "Line for displaying the name of the artist"
+msgstr "Linija atlikėjo vardo rodymui"
 
 #: gnome-cd/access/cddisplayaccessible.c:201
-msgid "Line for displaying the name of the album"
-msgstr ""
+msgid "Album Line"
+msgstr "Albumo Linija"
 
-#: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
-#: grecord/gsr.xml.h:13
+#: gnome-cd/access/cddisplayaccessible.c:202
+msgid "Line for displaying the name of the album"
+msgstr "Linija albumo pavadinimui rodyti"
+
+#: gnome-cd/callbacks.c:80 gnome-cd/callbacks.c:168 gnome-cd/callbacks.c:267
+#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:638 grecord/gsr.xml.h:13
+#: grecord/src/gui.c:233
 msgid "Play"
 msgstr "Groti"
 
-#: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226
-#: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
-#, fuzzy
+#: gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:199 gnome-cd/callbacks.c:229
+#: gnome-cd/callbacks.c:309 gnome-cd/callbacks.c:349 gnome-cd/callbacks.c:373
+#: gnome-cd/callbacks.c:414 gnome-cd/callbacks.c:502
 msgid "Pause"
-msgstr "Groti/Pauzė"
+msgstr "Pauzė"
 
-#: gnome-cd/callbacks.c:530
-#, fuzzy, c-format
+#: gnome-cd/callbacks.c:547
+#, c-format
 msgid "Playing %s - %s"
-msgstr "Grojimas"
+msgstr "Grojama %s - %s"
 
-#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:662 gnome-cd/callbacks.c:673
+#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:683 gnome-cd/callbacks.c:694
 msgid "Unknown Artist"
-msgstr ""
+msgstr "Nežinomas atlikėjas"
 
-#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:677
+#: gnome-cd/callbacks.c:549 gnome-cd/callbacks.c:686 gnome-cd/callbacks.c:698
 msgid "Unknown Album"
-msgstr ""
+msgstr "Nežinomas albumas"
 
-#: gnome-cd/callbacks.c:534 grecord/src/gui.c:827
+#: gnome-cd/callbacks.c:551 grecord/src/gui.c:824
 msgid "Playing"
-msgstr "Grojimas"
+msgstr "Grojama"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:557
-#, fuzzy
+#: gnome-cd/callbacks.c:575
 msgid "Paused"
-msgstr "Groti/Pauzė"
+msgstr "Pauzė"
 
-#. Update tray icon tooltip
-#: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55
-#: gnome-cd/gnome-cd.c:495 gnome-cd/gnome-cd.c:653
+#: gnome-cd/callbacks.c:621 gnome-cd/callbacks.c:847 gnome-cd/gnome-cd.c:56
+#: gnome-cd/gnome-cd.c:504 gnome-cd/gnome-cd.c:685
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD grotuvas"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:620
-#, fuzzy
+#: gnome-cd/callbacks.c:640
 msgid "Stopped"
-msgstr "Sustoti"
+msgstr "Sustabdyta"
 
-#: gnome-cd/callbacks.c:626
+#: gnome-cd/callbacks.c:646
 msgid "Disc error"
-msgstr ""
+msgstr "Disko klaida"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:716
-#, fuzzy
+#: gnome-cd/callbacks.c:658 gnome-cd/callbacks.c:737
 msgid "No disc"
 msgstr "Nėra disko"
 
-#: gnome-cd/callbacks.c:742
+#: gnome-cd/callbacks.c:763
 msgid "Drive open"
-msgstr ""
+msgstr "Diskas išmestas"
 
-#: gnome-cd/callbacks.c:766
+#: gnome-cd/callbacks.c:787
 msgid "Data CD"
-msgstr ""
+msgstr "Duomenų CD"
 
-#. Updated the tray icon tooltip
-#: gnome-cd/callbacks.c:788 gnome-cd/callbacks.c:792
+#: gnome-cd/callbacks.c:809 gnome-cd/callbacks.c:814
 msgid "No Cdrom"
-msgstr ""
-
-#: gnome-cd/callbacks.c:803
-#, fuzzy
-msgid "Drive Error"
-msgstr "Klaida"
-
-#: gnome-cd/callbacks.c:824
-msgid "(C) 2001 Iain Holmes"
-msgstr ""
+msgstr "Nėra CD įrenginio"
 
 #: gnome-cd/callbacks.c:825
-msgid "A CD player for GNOME"
-msgstr ""
+msgid "Drive Error"
+msgstr "Diskų įrenginio klaida"
 
-#: gnome-cd/cdrom.c:367
+#: gnome-cd/callbacks.c:849
+msgid "A CD player for GNOME"
+msgstr "GNOME CD grotuvas"
+
+#: gnome-cd/cdrom.c:368
 #, c-format
 msgid "You do not seem to have permission to access %s."
-msgstr ""
+msgstr "Atrodo tu neturi laidimo prieiti prie %s."
 
-#: gnome-cd/cdrom.c:373
+#: gnome-cd/cdrom.c:374
 #, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
@@ -1390,71 +1384,71 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
+"%s nerodo į tinkamą CD įrenginį. Taip gali būti dėl šių priežasčių:\n"
+"a) tavo kompiuteryje nėra CD palaikymo;\n"
+"b) tu neturi reikiamo leidimo prieiti prie CD įrenginio;\n"
+"c) %s nėra CD įrenginys.\n"
 
 #: gnome-cd/display.c:74
 msgid "Unknown artist"
-msgstr ""
+msgstr "Nežinomas atlikėjas"
 
 #: gnome-cd/display.c:75
 msgid "Unknown disc"
-msgstr ""
+msgstr "Nežinomas diskas"
 
-#: gnome-cd/gnome-cd.c:156
-#, fuzzy, c-format
+#: gnome-cd/gnome-cd.c:174
+#, c-format
 msgid "%d - Unknown"
-msgstr "Nežinomas / Nežinomas"
+msgstr "%d - Nežinomas"
 
-#: gnome-cd/gnome-cd.c:300
+#: gnome-cd/gnome-cd.c:299
 msgid "P_revious track"
-msgstr ""
+msgstr "_Ankstesnis takelis"
 
-#: gnome-cd/gnome-cd.c:301 grecord/gsr.xml.h:44
-#, fuzzy
+#: gnome-cd/gnome-cd.c:300 grecord/gsr.xml.h:44
 msgid "_Stop"
-msgstr "Sustoti"
+msgstr "_Sustoti"
+
+#: gnome-cd/gnome-cd.c:301
+msgid "_Play / Pause"
+msgstr "_Groti / Pauzė"
 
 #: gnome-cd/gnome-cd.c:302
-#, fuzzy
-msgid "_Play / Pause"
-msgstr "Groti/Pauzė"
+msgid "_Next track"
+msgstr "_Sekantis takelis"
 
 #: gnome-cd/gnome-cd.c:303
-msgid "_Next track"
-msgstr ""
-
-#: gnome-cd/gnome-cd.c:304
-#, fuzzy
 msgid "_Eject disc"
-msgstr "Išmesti"
+msgstr "_Išmesti diską"
 
-#: gnome-cd/gnome-cd.c:305 grecord/gsr.xml.h:37
-#, fuzzy
+#: gnome-cd/gnome-cd.c:304 grecord/gsr.xml.h:37
 msgid "_Help"
-msgstr "Pagalba"
+msgstr "_Pagalba"
 
-#: gnome-cd/gnome-cd.c:306
-#, fuzzy
+#: gnome-cd/gnome-cd.c:305
 msgid "_About CD player"
-msgstr "Gnome CD grotuvas"
+msgstr "_Apie CD grotuvą"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:424
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
+"Nėra parinkto CD įrenginio. Tai reiškia, kad CD grotuvas neveiks.\n"
+"Spragtelk 'Parinkti įrenginį', tam, kad nueiti į dialogą kur tu galėsi \n"
+"parinkti įrenginį, arba spragtelk 'Išeiti', kad išeiti iš CD grotuvo."
 
-#: gnome-cd/gnome-cd.c:418
-#, fuzzy
+#: gnome-cd/gnome-cd.c:428
 msgid "Set device"
-msgstr "CDROM įrenginys"
+msgstr "Parinkti įrenginį"
 
-#: gnome-cd/gnome-cd.c:420
-#, fuzzy
+#: gnome-cd/gnome-cd.c:430
 msgid "No CD device"
-msgstr "CDROM įrenginys"
+msgstr "Nėra CD įrenginio"
 
-#: gnome-cd/gnome-cd.c:474
+#: gnome-cd/gnome-cd.c:483
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1463,298 +1457,386 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
+"CD grotuvas negali teisingai veikti.\n"
+"\n"
+"Spausk 'Detalės', kad gauti daugiau informacijos apie nesėkmę.\n"
+"\n"
+"Spausk 'Parinkti įrenginį', tam, kad nueitį į dialogą kur galėsi parinkti "
+"įrenginį, arba spausk 'Išeiti', kad išeiti iš CD grotuvo"
 
-#: gnome-cd/gnome-cd.c:479
-#, fuzzy
+#: gnome-cd/gnome-cd.c:488
 msgid "_Set device"
-msgstr "CDROM įrenginys"
+msgstr "_Parinkti įrenginį"
 
-#: gnome-cd/gnome-cd.c:481
-#, fuzzy
+#: gnome-cd/gnome-cd.c:490
 msgid "Invalid CD device"
-msgstr "CDROM įrenginys"
-
-#: gnome-cd/gnome-cd.c:542
-#, fuzzy
-msgid "Volume control"
-msgstr "Patylinti"
+msgstr "Netinkamas CD įrenginys"
 
 #: gnome-cd/gnome-cd.c:551
+msgid "Volume control"
+msgstr "Garso valdymas"
+
+#: gnome-cd/gnome-cd.c:562
+msgid "Position"
+msgstr "Vieta"
+
+#: gnome-cd/gnome-cd.c:579
 msgid "Open track editor"
 msgstr "Atidaryti takelių redaktorių"
 
-#: gnome-cd/gnome-cd.c:552
-#, fuzzy
+#: gnome-cd/gnome-cd.c:580
 msgid "Track editor"
 msgstr "Takelių redaktorius"
 
-#: gnome-cd/gnome-cd.c:559
-#, fuzzy
+#: gnome-cd/gnome-cd.c:587
 msgid "Open preferences"
-msgstr "Nuostatos"
+msgstr "Atidaryti nuostatas"
 
-#: gnome-cd/gnome-cd.c:560
+#: gnome-cd/gnome-cd.c:588
 msgid "Preferences"
 msgstr "Nuostatos"
 
-#: gnome-cd/gnome-cd.c:568
-#, fuzzy
+#: gnome-cd/gnome-cd.c:596
 msgid "Track List"
-msgstr "Takelių redaktorius"
+msgstr "Takelių sąrašas"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:617
 msgid "Previous track"
-msgstr ""
+msgstr "Ankstesnis takelis"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:617
 msgid "Previous"
-msgstr ""
+msgstr "Ankstesnis"
 
-#: gnome-cd/gnome-cd.c:593
+#: gnome-cd/gnome-cd.c:621
 msgid "Rewind"
 msgstr "Atsukti"
 
-#: gnome-cd/gnome-cd.c:610
-#, fuzzy
+#: gnome-cd/gnome-cd.c:638
 msgid "Play / Pause"
-msgstr "Groti/Pauzė"
+msgstr "Groti / Pauzė"
 
-#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:643 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Sustoti"
 
-#: gnome-cd/gnome-cd.c:619
-#, fuzzy
+#: gnome-cd/gnome-cd.c:647
 msgid "Fast forward"
 msgstr "Prasukti"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:655
 msgid "Next track"
-msgstr ""
+msgstr "Sekantis takelis"
 
-#: gnome-cd/gnome-cd.c:631
-#, fuzzy
+#: gnome-cd/gnome-cd.c:659
 msgid "Eject CD"
-msgstr "Išmesti"
+msgstr "Išmesti CD"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:659
 msgid "Eject"
 msgstr "Išmesti"
 
-#: gnome-cd/gnome-cd.c:731
-#, fuzzy
+#: gnome-cd/gnome-cd.c:766
 msgid "CD device to use"
-msgstr "CDROM įrenginys"
+msgstr "Naudojamas CD įrenginys"
 
-#: gnome-cd/gnome-cd.c:740
+#: gnome-cd/gnome-cd.c:768
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Startuoti tik tada jeigu tuo metu neveikią joks kitas CD grotuvas"
 
-#: gnome-cd/gnome-cd.c:742
-#, fuzzy
+#: gnome-cd/gnome-cd.c:770
 msgid "Play the CD on startup"
-msgstr "Groti CD paleidus"
+msgstr "Groti CD paleidimo metu"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:773
+#: gnome-cd/gnome-cd.c:800
 msgid "Cannot create player"
-msgstr ""
+msgstr "Negaliu sukurti grotuvo"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
-msgstr ""
+msgstr "Groti audio CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "Action on application exit"
-msgstr ""
+msgid "CD player theme"
+msgstr "CD grotuvo tema"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
-#, fuzzy
-msgid "Action on start"
-msgstr "Paslėpti meniu paleidus"
+msgid "Device path"
+msgstr "Įrenginio kelias"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
-msgid "CD player theme"
-msgstr "CDROM įrenginys"
+msgid "Eject the CD when CD player quits?"
+msgstr "Išmesti CD kai išeinama iš CD grotuvo?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Device path"
-msgstr ""
+msgid "Play when the CD player starts?"
+msgstr "Groti kai paleidžiamas CD grotuvas?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "Ar CD turėtų būti išmetamas, kad išeinama iš CD grotuvo?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "Shut the CD tray on start"
-msgstr ""
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "Kelias iki CD įrenginio kurį CD grotuvas turėtu naudoti CD grojimui"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
+msgid "What theme should the CD player use for it's appearance"
+msgstr "Kokią temą CD grotuvas turėtų naudoti savo išvaizdai"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid ""
-"What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
-"playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr ""
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Kai CD grotuvas paleidžiamas, ar jis turi pradėti groti CD?"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid ""
-"What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
-"playing, 2 = Stop playing"
-msgstr ""
-
-#: gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for it's appearance"
-msgstr ""
-
-#: gnome-cd/preferences.c:83
+#: gnome-cd/preferences.c:84
 #, c-format
 msgid ""
 "%s\n"
 "This means that the CD player will not be able to run."
 msgstr ""
+"%s\n"
+"Tai reiškia, kad CD grotuvas nepasileis."
 
-#: gnome-cd/preferences.c:84
-#, fuzzy
+#: gnome-cd/preferences.c:85
 msgid "Error setting device"
-msgstr "Klaida saugant garso bylą"
+msgstr "Klaida parenkant įrenginį"
 
-#: gnome-cd/preferences.c:824
-#, fuzzy
+#: gnome-cd/preferences.c:635
 msgid "CD Player Preferences"
-msgstr "Nuostatos"
+msgstr "CD grotuvo nuostatos"
 
-#: gnome-cd/preferences.c:853
-#, fuzzy
-msgid "CD player de_vice:"
-msgstr "CDROM įrenginys"
+#: gnome-cd/preferences.c:669
+msgid "CD Player De_vice:"
+msgstr "CD grotuvo į_renginys:"
 
-#: gnome-cd/preferences.c:868
+#: gnome-cd/preferences.c:693
 msgid "_Apply change"
-msgstr ""
+msgstr "_Pritaikyti pakeitimą"
 
-#. left side
-#: gnome-cd/preferences.c:881
-#, fuzzy
-msgid "When CD player starts"
-msgstr "Gnome CD grotuvas"
+#: gnome-cd/preferences.c:705
+msgid "CD Player Behaviour:"
+msgstr "CD grotuvo elgsena:"
 
-#: gnome-cd/preferences.c:889
-#, fuzzy
-msgid "Do _nothing"
-msgstr "Nieko nedaryti"
+#: gnome-cd/preferences.c:718
+msgid "Start _playing CD when CD Player starts"
+msgstr "Kai paleidžiamas CD grotuvas _pradėti groti CD"
 
-#: gnome-cd/preferences.c:890
-msgid "Do nothing when CD Player starts"
-msgstr ""
-
-#: gnome-cd/preferences.c:900
-#, fuzzy
-msgid "Start _playing CD"
-msgstr "Pradėti groti"
-
-#: gnome-cd/preferences.c:901
+#: gnome-cd/preferences.c:719
 msgid "Start playing CD when CD Player starts"
-msgstr ""
+msgstr "Pradėti groti CD kai paleidžiamas CD grotuvas"
 
-#: gnome-cd/preferences.c:910
-#, fuzzy
-msgid "_Stop playing CD"
-msgstr "Sustoti groti"
+#: gnome-cd/preferences.c:731
+msgid "Attempt to _eject CD when CD Player exits"
+msgstr "Bandyti _išmesti CD kai išeinama iš CD grotuvo"
 
-#: gnome-cd/preferences.c:911
-msgid "Stop playing CD when CD Player starts"
-msgstr ""
+#: gnome-cd/preferences.c:732
+msgid "Attempt to eject CD when CD Player exits"
+msgstr "Bandyti išmesti CD kai išeinama iš CD grotuvo"
 
-#: gnome-cd/preferences.c:925
-msgid "Attempt to _close CD tray"
-msgstr ""
-
-#. Right side
-#: gnome-cd/preferences.c:937
-#, fuzzy
-msgid "When CD player quits"
-msgstr "Gnome CD grotuvas"
-
-#: gnome-cd/preferences.c:945
-#, fuzzy
-msgid "Do not_hing"
-msgstr "Nieko nedaryti"
-
-#: gnome-cd/preferences.c:946
-msgid "Do nothing when CD Player exits"
-msgstr ""
-
-#: gnome-cd/preferences.c:955
-#, fuzzy
-msgid "S_top playing CD"
-msgstr "Sustoti groti"
-
-#: gnome-cd/preferences.c:956
-msgid "Stop playing CD when CD player quits"
-msgstr ""
-
-#: gnome-cd/preferences.c:966
-msgid "Attempt to _open CD tray"
-msgstr ""
-
-#: gnome-cd/preferences.c:967
-msgid "Attempt to open CD tray when CD Player exits"
-msgstr ""
-
-#: gnome-cd/preferences.c:977
-msgid "Attempt to c_lose CD tray"
-msgstr ""
-
-#: gnome-cd/preferences.c:1008
-msgid "Theme name"
-msgstr ""
+#: gnome-cd/preferences.c:752
+msgid "_Available Themes:"
+msgstr "_Prieinamos temos:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
-msgstr ""
+msgstr "Rašyti garso klipus"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:980
-#: grecord/src/gsr-window.c:1507 grecord/src/gui.c:193
-#, fuzzy
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:1602 grecord/src/gui.c:193
 msgid "Sound Recorder"
-msgstr "Garso įrašymas"
+msgstr "Garso įrašinėtojas"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "Apie"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Uždaryti"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Uždaryti šį langą"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Turinys"
+
+#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
+msgid "Create a new sample"
+msgstr "Sukurti naują semplą"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Rodyti garso įrašymo pagalbą"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:873
+msgid "File Information"
+msgstr "Bylos informacija"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "Bylos _informacija"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Pagrindinė įrankių juosta"
+
+#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
+msgid "New"
+msgstr "Naujas"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Atidaryti"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:393
+msgid "Open a file"
+msgstr "Atidaryti bylą"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Groti garsą"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Išeiti"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Išeiti iš programos"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "Nesenos _bylos"
+
+#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
+msgid "Record"
+msgstr "Įrašyti"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Įrašyti garsą"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Paleisti mikserį"
+
+#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
+msgid "Run _Mixer"
+msgstr "Paleisti _mikserį"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Paleisti audio mikserį"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Išsaugoti"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Išsaugoti kaip"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "Išsaugoti _kaip..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Išsaugoti dabartinę bylą"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Išsaugoti dabartinę bylą kitu vardu"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Rodyti informaciją apie dabartinę bylą"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Rodyti garso įrašymo informaciją"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Stabdyti garsą"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_Apie"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Uždaryti langą"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Turinys"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Valdymas"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_Byla"
+
+#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
+msgid "_New"
+msgstr "_Naujas"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Atidaryti..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "_Groti"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "_Išeiti"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "Į_rašyti"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_Išsaugoti"
 
 #: grecord/src/grec.c:56
-#, fuzzy
 msgid "Sound Recorder:"
-msgstr "Garso įrašymas"
+msgstr "Garso įrašymas:"
 
 #: grecord/src/grec.c:108 grecord/src/main.c:248
 msgid "Don't show this message again."
 msgstr "Daugiau nerodyti šio pranešimo."
 
 #: grecord/src/grec.c:110 grecord/src/main.c:250
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not find '%s'.\n"
 "Set the correct path to sox inpreferences under the tab 'paths'.\n"
 "\n"
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
-"Negalėjau rasti „%s“.\n"
-"Nurodyk teisingą kelią iki sox nuostatų kortelėje „Keliai“.\n"
+"Negalėjau rasti '%s'.\n"
+"Nurodyk teisingą kelią iki sox nuostatų kortelėje 'Keliai'.\n"
 "\n"
-"Jei neturi sox, tu negalėsi įrašinėti garsų nei daryti jokių efektų."
+"Jei neturi sox, tu negalėsi nei įrašinėti garsų, nei daryti kokius efektus."
 
 #: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
-#, fuzzy
 msgid "Could not fork child process"
-msgstr "Nepavyko fork'inti vaikinio proceso"
+msgstr "Nepavyko atšakoti antrinio proceso"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1342
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1413
 msgid "Recording..."
 msgstr "Įrašoma..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1221
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1278
 msgid "Playing..."
 msgstr "Grojama..."
 
@@ -1763,17 +1845,16 @@ msgid "Converting file..."
 msgstr "Konvertuojama byla..."
 
 #: grecord/src/grec.c:302 grecord/src/grec.c:436
-#, fuzzy
 msgid "Cancel"
-msgstr "Kanalai: "
+msgstr "Atšaukti"
 
 #: grecord/src/grec.c:345 grecord/src/grec.c:795
 msgid "Audioformat: "
-msgstr "Garso formatas: "
+msgstr "Audio formatas: "
 
 #: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
 msgid "Sample rate: "
-msgstr "Išrankos dažnis: "
+msgstr "Semplo dažnis: "
 
 #: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
 msgid "Channels: "
@@ -1781,7 +1862,7 @@ msgstr "Kanalai: "
 
 #: grecord/src/grec.c:381
 msgid "Cancel open"
-msgstr ""
+msgstr "Atšaukti atidarymą"
 
 #: grecord/src/grec.c:390
 msgid "Select a sound file"
@@ -1790,70 +1871,70 @@ msgstr "Pasirink garso bylą"
 #: grecord/src/grec.c:516
 #, c-format
 msgid "%s is not installed in the path"
-msgstr ""
+msgstr "%s nėra įdiegtas kelyje"
 
-#: grecord/src/grec.c:523 grecord/src/gsr-window.c:661
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:687
 #, c-format
 msgid "There was an error starting %s: %s"
-msgstr ""
+msgstr "Paleidžiant %s įvyko klaida: %s"
 
 #: grecord/src/grec.c:615
 msgid "Undoing all changes..."
 msgstr "Atšaukiu visus pakeitimus..."
 
 #: grecord/src/grec.c:718
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "'%s' is a folder.\n"
 "Please select a sound file to be opened."
 msgstr ""
-"„%s“ yra katalogas.\n"
+"'%s' yra katalogas.\n"
 "Nurodyk norimą atidaryti garso bylą."
 
 #: grecord/src/grec.c:730
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
 "Please select an existing sound file to be opened."
 msgstr ""
-"Byla „%s“ neegzistuoja.\n"
-"Pasirink egzistuojančią bylą atidarymui."
+"Byla '%s' neegzistuoja.\n"
+"Pasirink egzistuojančią garso bylą atidarymui."
 
 #: grecord/src/grec.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "File '%s isn't a valid sound file."
-msgstr "Byla „%s“ nėra galiojanti garso byla."
+msgstr "Byla '%s' nėra tinkama garso byla."
 
 #: grecord/src/grec.c:819
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "'%s' is a folder.\n"
 "Please enter another filename."
 msgstr ""
-"„%s“ yra katalogas.\n"
-"Prašom nurodyti kitą bylą."
+"'%s' yra katalogas.\n"
+"Prašom nurodyti kitą bylos vardą."
 
 #: grecord/src/grec.c:831
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
 "Do you want to overwrite it?"
 msgstr ""
-"Jau yra tokia byla „%s“.\n"
-"Ar nori užrašyti ant viršaus?"
+"<b>Byla '%s' jau egzistuoja.</b>\n"
+"Ar nori ją perrašyti?"
 
 #: grecord/src/grec.c:834
 msgid "Cancel save"
-msgstr ""
+msgstr "Atšaukti saugojimą"
 
 #: grecord/src/grec.c:835
 msgid "Overwrite"
-msgstr ""
+msgstr "Perrašyti"
 
 #: grecord/src/grec.c:862
-#, fuzzy, c-format
+#, c-format
 msgid "Error saving '%s'"
-msgstr "Klaida skaitant [%s]\n"
+msgstr "Klaida saugant '%s'"
 
 #: grecord/src/grec.c:976
 #, c-format
@@ -1862,15 +1943,18 @@ msgid ""
 "\n"
 "Your changes will be lost if you don't save them."
 msgstr ""
+"<b>Ar nori išsaugoti pakeitimus kuriuos padarei \"%s\"?</b>\n"
+"\n"
+"Jeigu tu neišsaugosi tavo pakeitimai bus prarasti."
 
 #: grecord/src/grec.c:981
 msgid "Do_n't save"
-msgstr ""
+msgstr "_Nesaugoti"
 
 #: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
-msgstr ""
+msgstr "Išsaugoti %s?"
 
 #. Save the file
 #: grecord/src/grec.c:1012
@@ -1878,205 +1962,166 @@ msgid "Saving..."
 msgstr "Saugau..."
 
 #: grecord/src/grec.c:1142
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The size of the current sample is more than\n"
 "%i Mb!"
-msgstr "Esamo semplo dydis yra didesnis nei %i MB!"
+msgstr ""
+"Esamo semplo dydis yra didesnis nei\n"
+"%i Mb!"
 
 #: grecord/src/grec.c:1198
 msgid "Save sound file"
 msgstr "Išsaugoti garso bylą"
 
 #: grecord/src/grec.c:1429
-#, fuzzy
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
 msgstr ""
 "Garso įrenginys nepasiruošęs! Prašau, patikrink, kad\n"
-"nebūtų jokios kitos bėgančios programos, kuri naudoja\n"
+"nebūtų jokios kitos veikiančios programos, kuri naudoja\n"
 "garso įrenginį."
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
 msgid "hours"
-msgstr ""
+msgstr "valandos"
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
 msgid "hour"
-msgstr ""
+msgstr "valanda"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#: grecord/src/gui.c:756
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
+#: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "minutės"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#, fuzzy
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
 msgid "minute"
-msgstr "minutės"
+msgstr "minutė"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
-#: grecord/src/gsr-window.c:284
-#, fuzzy
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:307
+#: grecord/src/gsr-window.c:310
 msgid "seconds"
-msgstr "Įrašyti"
+msgstr "sekundės"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
-#, fuzzy
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:310
 msgid "second"
-msgstr "Įrašyti"
+msgstr "sekundė"
 
-#: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
-#, fuzzy
-msgid "Open a file"
-msgstr "Paleisti mikšerį..."
-
-#: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
-#: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
+#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1302
+#: grecord/src/gsr-window.c:1438 grecord/src/gsr-window.c:1529
 msgid "Ready"
-msgstr ""
+msgstr "Pasiruošęs"
 
-#: grecord/src/gsr-window.c:541
-#, fuzzy, c-format
+#: grecord/src/gsr-window.c:567
+#, c-format
 msgid "Saving %s..."
-msgstr "Saugau..."
+msgstr "Saugau %s..."
 
-#: grecord/src/gsr-window.c:600
-#, fuzzy
+#: grecord/src/gsr-window.c:626
 msgid "Save file as"
-msgstr "Išsaugoti garso bylą"
+msgstr "Išsaugoti bylą kaip"
 
-#: grecord/src/gsr-window.c:654
+#: grecord/src/gsr-window.c:680
 #, c-format
 msgid "%s is not installed in the path."
-msgstr ""
+msgstr "%s nėra įdiegtas kelyje."
 
-#: grecord/src/gsr-window.c:736
+#: grecord/src/gsr-window.c:762
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr ""
+msgstr "%s (Nebuvo išsaugotas)"
 
-#: grecord/src/gsr-window.c:751
-#, fuzzy
+#: grecord/src/gsr-window.c:778
 msgid "Unknown size"
-msgstr "Nežinomas / Nežinomas"
+msgstr "Nežinomas dydis"
 
-#: grecord/src/gsr-window.c:771
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.1f kHz"
-msgstr ""
+msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:780
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%.0f kb/s"
-msgstr ""
+msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:792
-#, fuzzy
+#: grecord/src/gsr-window.c:819
 msgid "1 (mono)"
-msgstr "mono"
+msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:796
-#, fuzzy
+#: grecord/src/gsr-window.c:823
 msgid "2 (stereo)"
-msgstr "stereo"
+msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:825
-#, fuzzy, c-format
+#: grecord/src/gsr-window.c:852
+#, c-format
 msgid "%s Information"
-msgstr "Takelių informacija"
+msgstr "%s informacija"
 
-#: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
-#, fuzzy
-msgid "File Information"
-msgstr "Pateikti informaciją į CDDB"
-
-#: grecord/src/gsr-window.c:859
+#: grecord/src/gsr-window.c:887
 msgid "Folder:"
-msgstr ""
+msgstr "Katalogas:"
 
-#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
+#: grecord/src/gsr-window.c:893 grecord/src/gsr-window.c:1663
 msgid "Filename:"
-msgstr ""
+msgstr "Bylos vardas:"
 
-#: grecord/src/gsr-window.c:871
+#: grecord/src/gsr-window.c:899
 msgid "File size:"
-msgstr ""
+msgstr "Bylos dydis:"
 
-#: grecord/src/gsr-window.c:880
-#, fuzzy
+#: grecord/src/gsr-window.c:908
 msgid "Audio Information"
-msgstr "Garso formatas:"
+msgstr "Audio informacija"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:922
 msgid "Song length:"
-msgstr ""
+msgstr "Dainos trukmė:"
 
-#: grecord/src/gsr-window.c:900
-#, fuzzy
+#: grecord/src/gsr-window.c:928
 msgid "Number of channels:"
-msgstr "Tiek kartų:"
+msgstr "Kanalų kiekis:"
 
-#: grecord/src/gsr-window.c:906
-#, fuzzy
+#: grecord/src/gsr-window.c:934
 msgid "Sample rate:"
-msgstr "Išrankos dažnis: "
+msgstr "Semplo dažnis:"
 
-#: grecord/src/gsr-window.c:912
+#: grecord/src/gsr-window.c:940
 msgid "Bit rate:"
-msgstr ""
+msgstr "Bitų dažnis:"
 
-#: grecord/src/gsr-window.c:981
-msgid "(C) 2002 Iain Holmes"
-msgstr ""
-
-#: grecord/src/gsr-window.c:982
-#, fuzzy
+#: grecord/src/gsr-window.c:1012
 msgid "A sound recorder for GNOME"
-msgstr "Paprasta garso įrašymo programa"
+msgstr "GNOME garso įrašinėtojas"
 
-#: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
-#, fuzzy, c-format
+#: grecord/src/gsr-window.c:1598 grecord/src/gui.c:155
+#, c-format
 msgid "%s - Sound Recorder"
-msgstr "Garso įrašymas"
+msgstr "%s - Garso įrašinėtojas"
 
-#: grecord/src/gsr-window.c:1548
-#, fuzzy
+#: grecord/src/gsr-window.c:1648
 msgid "File information"
-msgstr "Pateikti garso informaciją"
+msgstr "Bylos informacija"
 
-#: grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:1669
 msgid "<none>"
-msgstr ""
+msgstr "<nėra>"
 
-#: grecord/src/gsr-window.c:1578
+#: grecord/src/gsr-window.c:1678
 msgid "Length:"
-msgstr ""
-
-#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_Naujas"
-
-#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Sukurti naują semplą"
-
-#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
-#, fuzzy
-msgid "Run _Mixer"
-msgstr "Paleisti mikšerį..."
+msgstr "Trukmė:"
 
 #: grecord/src/gui.c:55
-#, fuzzy
 msgid "Run GNOME Volume Control"
-msgstr "Patylinti"
+msgstr "Paleisti GNOME garso valdymą"
 
 #: grecord/src/gui.c:69
 msgid "Add echo"
@@ -2084,16 +2129,15 @@ msgstr "Pridėti aidą"
 
 #: grecord/src/gui.c:70
 msgid "Add echo to the current sample"
-msgstr "Pridėti aidą į esamą semplą"
+msgstr "Pridėti aidą į šį semplą"
 
 #: grecord/src/gui.c:103
 msgid "Echo"
 msgstr "Aidas"
 
 #: grecord/src/gui.c:112
-#, fuzzy
 msgid "_Undo All"
-msgstr "Atšaukiama viskas..."
+msgstr "_Atšaukti viską"
 
 #: grecord/src/gui.c:113
 msgid "Undo all changes made on the current sample"
@@ -2104,14 +2148,12 @@ msgid "Effects"
 msgstr "Efektai"
 
 #: grecord/src/gui.c:197
-#, fuzzy
 msgid "16bit PCM"
-msgstr "16 bitų pcm"
+msgstr "16 bitų PCM"
 
 #: grecord/src/gui.c:199
-#, fuzzy
 msgid "8bit PCM"
-msgstr "8 bitų pcm"
+msgstr "8 bitų PCM"
 
 #: grecord/src/gui.c:202
 msgid "stereo"
@@ -2121,229 +2163,192 @@ msgstr "stereo"
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Naujas"
-
 #: grecord/src/gui.c:218
 msgid "Create new sample"
 msgstr "Sukurti naują semplą"
 
 #: grecord/src/gui.c:234
 msgid "Play current sample"
-msgstr "Groti esamą semplą"
+msgstr "Groti šį semplą"
 
 #: grecord/src/gui.c:248
 msgid "Stop playing/recording"
-msgstr "Sustoti groti/įrašyti"
-
-#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Įrašyti"
+msgstr "Sustabdyti grojimą/rašymą"
 
 #: grecord/src/gui.c:262
 msgid "Start recording"
 msgstr "Pradėti įrašymą"
 
 #: grecord/src/gui.c:301
-#, fuzzy
 msgid "Audio format: "
-msgstr "Garso formatas: "
+msgstr "Audio formatas:"
 
 #: grecord/src/gui.c:358
 #, c-format
 msgid "File '%s' doesn't exist; using default."
-msgstr "Byla „%s“ neegzistuoja; naudoju įprastą."
+msgstr "Byla '%s' neegzistuoja; naudoju įprastą."
 
 #: grecord/src/gui.c:382
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
-msgstr "Byla „%s“ nėra palaikoma garso byla."
+msgstr "Byla '%s' nėra palaikoma garso byla."
 
-#. if your charset allows it, replace the "e" of "Hyden"
-#. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
-msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:427
+#: grecord/src/gui.c:425
 msgid "translator_credits"
-msgstr ""
+msgstr "Žygimantas Beručka <uid0@tuxfamily.org>"
+
+#: grecord/src/gui.c:429
+msgid "GNOME Sound Recorder"
+msgstr "GNOME garso įrašinėtojas"
 
 #: grecord/src/gui.c:431
-#, fuzzy
-msgid "GNOME Sound Recorder"
-msgstr "GNOME garso įrašytuvas"
-
-#. if your charset allows it, replace the
-#. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
-#, fuzzy
-msgid "(C) 2000 Andreas Hyden"
-msgstr "Copyright (C)  2000 Andreas Hydén"
-
-#: grecord/src/gui.c:435
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
 msgstr ""
-"Paprastas garso įrašytuvas ir grotuvas, skirtas GNOME.\n"
+"Paprastas garso įrašinėtojas ir grotuvas, skirtas GNOME.\n"
 "Dedikuojamas mano katei, Malte."
 
-#: grecord/src/gui.c:703
-#, fuzzy
+#: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
-msgstr "Nuostatos"
+msgstr "Gnome garso įrašinėtojo įnuostatos"
 
-#: grecord/src/gui.c:710
-#, fuzzy
+#: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
-msgstr "Garso įrašymas"
+msgstr "Garso įrašinėtojo nuostatos"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:719
 msgid "Recording"
 msgstr "Įrašymas"
 
-#: grecord/src/gui.c:727
+#: grecord/src/gui.c:724
 msgid "Time"
-msgstr "Trukmė"
+msgstr "Laikas"
 
-#: grecord/src/gui.c:740
-#, fuzzy
+#: grecord/src/gui.c:737
 msgid "_Recording timeout: "
-msgstr "Įrašymo laiko riba: "
+msgstr "Į_rašymo laiko limitas: "
 
-#: grecord/src/gui.c:763
-#, fuzzy
+#: grecord/src/gui.c:760
 msgid "_Stop recording on timeout"
-msgstr "Sustoti įrašinėti priėjus laiko ribą"
+msgstr "_Sustabdyti įrašinėjimą priėjus laiko limitą"
 
-#: grecord/src/gui.c:771
-#, fuzzy
+#: grecord/src/gui.c:768
 msgid "_Open save dialog when recording is finished"
-msgstr "Pateikti išsaugojimo dialogą, kai įrašymas baigtas"
+msgstr "_Atidaryti išsaugojimo dialogą, kai įrašymas baigtas"
 
-#: grecord/src/gui.c:778
+#: grecord/src/gui.c:775
 msgid "Size"
 msgstr "Dydis"
 
-#: grecord/src/gui.c:787
-#, fuzzy
+#: grecord/src/gui.c:784
 msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-msgstr "Perspėti žinute, jei semplo dydis tampa didesnis nei: [MB]"
+msgstr "_Perspėti žinute, jei semplo dydis (MB) tampa didesnis nei:"
 
-#: grecord/src/gui.c:805
-#, fuzzy
+#: grecord/src/gui.c:802
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-msgstr "Sustoti įrašinėti, kai semplo dydis tampa didesnis nei: [MB]"
+msgstr "Sustabdyti įrašinėjimą, kai semplo dydis (MB) tampa didesnis nei:"
 
-#: grecord/src/gui.c:832
-#, fuzzy
+#: grecord/src/gui.c:829
 msgid "Repetition"
 msgstr "Kartoti"
 
-#: grecord/src/gui.c:842
+#: grecord/src/gui.c:839
 msgid "_Repeat the sound"
-msgstr ""
+msgstr "_Kartoti garsą"
 
-#: grecord/src/gui.c:849
+#: grecord/src/gui.c:846
 msgid "Play the sound _once only."
-msgstr ""
+msgstr "Groti garsą tik _vieną kartą."
 
-#: grecord/src/gui.c:855
+#: grecord/src/gui.c:852
 msgid "Repeat _forever"
-msgstr ""
+msgstr "Kartoto _amžinai"
 
-#: grecord/src/gui.c:866
-#, fuzzy
+#: grecord/src/gui.c:863
 msgid "_Number of times:"
-msgstr "Tiek kartų:"
+msgstr "K_iek kartų:"
 
-#: grecord/src/gui.c:888
+#: grecord/src/gui.c:885
 msgid "Paths"
 msgstr "Keliai"
 
-#: grecord/src/gui.c:893
+#: grecord/src/gui.c:890
 msgid "Program files"
 msgstr "Programų bylos"
 
-#: grecord/src/gui.c:906
-#, fuzzy
+#: grecord/src/gui.c:903
 msgid "_Path to sox:"
-msgstr "Kelias iki sox:"
+msgstr "_Kelias iki sox:"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:917
 msgid "_Apply"
-msgstr ""
+msgstr "_Pritaikyti"
 
-#: grecord/src/gui.c:929
+#: grecord/src/gui.c:926
 msgid "Folders"
-msgstr ""
+msgstr "Katalogai"
 
-#: grecord/src/gui.c:942
+#: grecord/src/gui.c:939
 msgid "_Temporary folder:"
-msgstr ""
+msgstr "_Laikinas katalogas:"
 
-#: grecord/src/gui.c:956
+#: grecord/src/gui.c:953
 msgid "Apply"
-msgstr ""
+msgstr "Pritaikyti"
 
-#: grecord/src/gui.c:968
+#: grecord/src/gui.c:965
 msgid "Sound"
 msgstr "Garsas"
 
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:970
 msgid "Sound options"
 msgstr "Garso parinktys"
 
-#: grecord/src/gui.c:982
+#: grecord/src/gui.c:979
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
 msgstr ""
+"Pastaba: šios parinktys pradės veikti tik tada kai bus sukurtas naujas\n"
+"garso semplas. Jos neveiks su jau egzistuojančiu semplu."
 
-#: grecord/src/gui.c:995
-#, fuzzy
+#: grecord/src/gui.c:992
 msgid "Audio format:"
-msgstr "Garso formatas:"
+msgstr "Audio formatas:"
 
-#: grecord/src/gui.c:1004
+#: grecord/src/gui.c:1001
 msgid "8 _bit PCM"
-msgstr ""
+msgstr "8 _bitų PCM"
 
-#: grecord/src/gui.c:1010
+#: grecord/src/gui.c:1007
 msgid "16 b_it PCM"
-msgstr ""
+msgstr "16 b_itų PCM"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1024
-#, fuzzy
+#: grecord/src/gui.c:1021
 msgid "S_ample rate:"
-msgstr "Išrankos dažnis:"
+msgstr "S_amplo dažnis:"
 
-#: grecord/src/gui.c:1055
-#, fuzzy
+#: grecord/src/gui.c:1052
 msgid "Mono or Stereo:"
-msgstr "mono/stereo"
+msgstr "Mono ar Stereo:"
 
-#: grecord/src/gui.c:1064
-#, fuzzy
+#: grecord/src/gui.c:1061
 msgid "_Mono"
-msgstr "Mono"
+msgstr "_Mono"
 
-#: grecord/src/gui.c:1070
-#, fuzzy
+#: grecord/src/gui.c:1067
 msgid "_Stereo"
-msgstr "stereo"
+msgstr "_Stereo"
 
-#: grecord/src/gui.c:1091
-#, fuzzy
+#: grecord/src/gui.c:1088
 msgid "Stereo"
-msgstr "stereo"
+msgstr "Stereo"
 
 #: grecord/src/main.c:50
 msgid "Specify the geometry of the main window"
-msgstr "Nurodyti pagrindinio lango geometriją"
+msgstr "Nurodyk pagrindinio lango geometriją"
 
 #: grecord/src/main.c:51
 msgid "GEOMETRY"
@@ -2351,279 +2356,132 @@ msgstr "GEOMETRIJA"
 
 #: grecord/src/main.c:59
 msgid "Specify a file to be opened"
-msgstr "Nurodyti, kurią bylą atidaryti"
+msgstr "Nurodyk, kurią bylą atidaryti"
 
 #: grecord/src/main.c:68
 msgid "Specify a file to start recording"
-msgstr "Nurodyti, į kurią bylą įrašyti"
+msgstr "Nurodyk, į kurią bylą įrašyti"
 
 #: grecord/src/main.c:77
 msgid "Specify a file to start playing"
-msgstr "Nurodyti, kurią bylą pradėti groti"
+msgstr "Nurodyk, kurią bylą pradėti groti"
 
 #: grecord/src/main.c:172
 msgid "Sound recorder"
-msgstr "Garso įrašymas"
+msgstr "Garso įrašinėtojas"
 
-#: grecord/src/preferences.c:201
-#, fuzzy
+#: grecord/src/preferences.c:202
 msgid "Audio format: 8bit PCM"
-msgstr "Garso formatas: "
+msgstr "Audio formatas: 8bitų PCM"
 
-#: grecord/src/preferences.c:201
-#, fuzzy
+#: grecord/src/preferences.c:202
 msgid "Audio format: 16bit PCM"
-msgstr "Garso formatas: "
+msgstr "Audio formatas: 16bitų PCM"
 
-#: grecord/src/preferences.c:222
-#, fuzzy, c-format
+#: grecord/src/preferences.c:223
+#, c-format
 msgid "Sample rate: %s"
-msgstr "Išrankos dažnis: "
+msgstr "Sample dažnis: %s"
 
-#: grecord/src/preferences.c:240
-#, fuzzy
+#: grecord/src/preferences.c:241
 msgid "Channels: mono"
-msgstr "Kanalai: "
+msgstr "Kanalai: mono"
 
-#: grecord/src/preferences.c:240
-#, fuzzy
+#: grecord/src/preferences.c:241
 msgid "Channels: stereo"
-msgstr "Kanalai: "
+msgstr "Kanalai: stereo"
 
 #: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Pridedu aidą į semplą..."
 
-#: grecord/gsr.xml.h:1
-#, fuzzy
-msgid "About"
-msgstr "Apie"
-
-#: grecord/gsr.xml.h:2
-#, fuzzy
-msgid "Close"
-msgstr "Uždaryti dureles"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr ""
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr ""
-
-#: grecord/gsr.xml.h:6
-#, fuzzy
-msgid "Display help for Sound Recorder"
-msgstr "Garso įrašymas"
-
-#: grecord/gsr.xml.h:8
-#, fuzzy
-msgid "File _Information"
-msgstr "Pateikti informaciją į CDDB"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr ""
-
-#: grecord/gsr.xml.h:11
-#, fuzzy
-msgid "Open"
-msgstr "Atidaryti dureles"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr ""
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Išeiti"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr ""
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr ""
-
-#: grecord/gsr.xml.h:19
-#, fuzzy
-msgid "Record sound"
-msgstr "Įrašyti"
-
-#: grecord/gsr.xml.h:20
-#, fuzzy
-msgid "Run Mixer"
-msgstr "Paleisti mikšerį..."
-
-#: grecord/gsr.xml.h:22
-#, fuzzy
-msgid "Run the audio mixer"
-msgstr "Kelias iki mikšerio:"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr ""
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr ""
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr ""
-
-#: grecord/gsr.xml.h:26
-#, fuzzy
-msgid "Save the current file"
-msgstr "Išsaugoti garso bylą"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr ""
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr ""
-
-#: grecord/gsr.xml.h:29
-#, fuzzy
-msgid "Show information for Sound Recorder"
-msgstr "Garso įrašymas"
-
-#: grecord/gsr.xml.h:31
-#, fuzzy
-msgid "Stop sound"
-msgstr "Garsas"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr ""
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr ""
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr ""
-
-#: grecord/gsr.xml.h:35
-#, fuzzy
-msgid "_Control"
-msgstr "Patylinti"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr ""
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr ""
-
-#: grecord/gsr.xml.h:40
-#, fuzzy
-msgid "_Play"
-msgstr "Groti"
-
-#: grecord/gsr.xml.h:41
-#, fuzzy
-msgid "_Quit"
-msgstr "Išeiti"
-
-#: grecord/gsr.xml.h:42
-#, fuzzy
-msgid "_Record"
-msgstr "Įrašyti"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr ""
-
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:249
+#: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
-msgstr ""
+msgstr "Nesėkmė rodant pagrindinį langą"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:289
-#, fuzzy, c-format
+#: gstreamer-properties/gstreamer-properties.c:311
+#, c-format
 msgid "Could not load UI resource %s"
-msgstr "Nepavyko fork'inti vaikinio proceso"
+msgstr "Negaliu įkelti UI resurso %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr ""
+msgstr "Konfigūruoti įprastus GStreamer programoms"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "GStreamer"
-msgstr ""
+msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
+msgid "<b>Default Sink</b>"
+msgstr "<b>Įprasta kriauklė</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
-msgid "Audio"
-msgstr "Garso mikšeris"
+msgid "<b>Default Source</b>"
+msgstr "<b>Įprastas šaltinis</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
-#, fuzzy
-msgid "Audio _Input:"
-msgstr "Garso formatas:"
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Tikrinama...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr ""
+msgid "Audio"
+msgstr "Audio"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
-msgstr ""
+msgid "Click Ok to finish."
+msgstr "Spragtelk Ok, kad baigti."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "Default Sink"
-msgstr ""
+msgid "GStreamer Preferences"
+msgstr "GStreamer nuostatos"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Default Source"
-msgstr ""
+msgid "Pipe_line:"
+msgstr "Pipe_line:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
-#, fuzzy
-msgid "GStreamer Properties"
-msgstr "CDDB nuostatos"
+msgid "Te_st"
+msgstr "Ti_krinti"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeline:"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Test..."
-msgstr ""
+msgid "Testing Pipeline"
+msgstr "Tikrinama pipeline"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr ""
+msgid "_Input:"
+msgstr "Į_vestis:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "_Išvestis:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr ""
+msgid "_Pipeline:"
+msgstr "_Pipeline:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
-msgstr ""
+msgid "_Test"
+msgstr "_Tikrinti"
+
+#: gstreamer-properties/pipeline-constants.c:58
+#: gstreamer-properties/pipeline-constants.c:76
+#: gstreamer-properties/pipeline-constants.c:93
+#: gstreamer-properties/pipeline-constants.c:110
+msgid "Custom"
+msgstr "Parinkti"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr ""
+msgstr "Nepavyko '%s' sukurti pipeline"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2631,11 +2489,11 @@ msgid ""
 "Please run 'esd' at a command prompt."
 msgstr ""
 "Negaliu prisijungti prie garso demono.\n"
-"Paleisk „esd“ iš komandinės eilutės."
+"Paleisk 'esd' iš komandinės eilutės."
 
 #: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
-msgstr "Nurodyti matuoklio X poziciją"
+msgstr "Nurodyk matuoklio X poziciją."
 
 #: vu-meter/main.c:247
 msgid "X-Position"
@@ -2643,7 +2501,7 @@ msgstr "X-Vieta"
 
 #: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
-msgstr "Nurodyti matuoklio Y poziciją"
+msgstr "Nurodyk matuoklio Y poziciją."
 
 #: vu-meter/main.c:250
 msgid "Y-Position"
@@ -2651,11 +2509,11 @@ msgstr "Y-Vieta"
 
 #: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
-msgstr "Prisijungti prie esd serverio šiame hoste"
+msgstr "Prisijungti prie esd serverio šiame hoste."
 
 #: vu-meter/main.c:253
 msgid "ESD Server Host"
-msgstr "ESD serverio prievadas"
+msgstr "ESD serverio hostas"
 
 #: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
@@ -2663,7 +2521,7 @@ msgstr "Atidaryti vertikalią matuoklio versiją."
 
 #: vu-meter/main.c:257
 msgid "Act as recording level meter."
-msgstr ""
+msgstr "Veikti kaip irašymo lygio matuokliui."
 
 #: vu-meter/main.c:274
 #, c-format
@@ -2671,31 +2529,59 @@ msgid "Host is %s\n"
 msgstr "Hostas yra %s\n"
 
 #: vu-meter/main.c:291
-#, fuzzy
 msgid "Recording level"
-msgstr "Įrašymas"
+msgstr "Įrašymo lygis"
 
 #: vu-meter/main.c:291
 msgid "Volume Meter"
-msgstr "Garsumo matuoklis"
+msgstr "Garso matuoklis"
 
 #: vu-meter/reclevel.desktop.in.h:1
 msgid "Monitor the recording input volume"
-msgstr ""
+msgstr "Rodyti įrašomo garso garsumą"
 
 #: vu-meter/reclevel.desktop.in.h:2
-#, fuzzy
 msgid "Recording level monitor"
-msgstr "Įrašymo laiko riba: "
+msgstr "Įrašymo lygio matuoklis"
 
 #: vu-meter/vumeter.desktop.in.h:1
 msgid "Monitor the sound output volume"
-msgstr ""
+msgstr "Rodyti išvedamo garso garsumą"
 
 #: vu-meter/vumeter.desktop.in.h:2
-#, fuzzy
 msgid "Volume monitor"
-msgstr "Garsumo matuoklis"
+msgstr "Garso matuoklis"
+
+#, fuzzy
+#~ msgid "Action on start"
+#~ msgstr "Paslėpti meniu paleidus"
+
+#, fuzzy
+#~ msgid "Do _nothing"
+#~ msgstr "Nieko nedaryti"
+
+#, fuzzy
+#~ msgid "Start _playing CD"
+#~ msgstr "Pradėti groti"
+
+#, fuzzy
+#~ msgid "_Stop playing CD"
+#~ msgstr "Sustoti groti"
+
+#, fuzzy
+#~ msgid "Do not_hing"
+#~ msgstr "Nieko nedaryti"
+
+#, fuzzy
+#~ msgid "S_top playing CD"
+#~ msgstr "Sustoti groti"
+
+#~ msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
+#~ msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
+
+#, fuzzy
+#~ msgid "(C) 2000 Andreas Hyden"
+#~ msgstr "Copyright (C)  2000 Andreas Hydén"
 
 #, fuzzy
 #~ msgid "Gnome Volume Control"
