@@ -334,7 +334,7 @@ GtkWidget* create_buttons(void)
 
 /* Create goto button  */
     gotobutton = gtk_button_new();
-    name = gnome_pixmap_file(_("tcd/goto.xpm"));
+    name = gnome_pixmap_file("tcd/goto.xpm");
     pixmap = gnome_pixmap_new_from_file(name);
     g_free(name);
     gtk_container_add(GTK_CONTAINER(gotobutton), pixmap);

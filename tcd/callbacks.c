@@ -1,5 +1,6 @@
 /* Various callbacks for gtcd. */
 
+#include <config.h>
 #include <gnome.h>
 #include <sys/types.h>
 #include <linux/cdrom.h>

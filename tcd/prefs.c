@@ -1,6 +1,3 @@
-#define PACKAGE "TCD"                                             
-#define VERSION "2.0"                                             
-
 /* This file is part of TCD 2.0.
    
    Copyright (C) 1997-98 Tim P. Gerla <timg@means.net>
@@ -25,6 +22,7 @@
    timg@means.net
 */
 
+#include <config.h>
 #include <gnome.h>
 #include <string.h>
 #include "prefs.h"
