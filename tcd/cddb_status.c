@@ -1,3 +1,4 @@
+#include <config.h>
 #include <gnome.h>
 #include "gtcd_public.h"
 #include "cddb.h"

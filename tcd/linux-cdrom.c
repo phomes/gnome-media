@@ -43,6 +43,7 @@
 #include <sys/ioctl.h>
 
 /* For _() */
+#include <config.h>
 #include <gnome.h>
 
 #include "linux-cdrom.h"
@@ -659,7 +660,7 @@ int tcd_readdiskinfo( cd_struct *cd )
 	
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 	{
-	    sprintf( cd->trk[C(i)].name, "Track %d", i );
+	    sprintf( cd->trk[C(i)].name, _("Track %d"), i );
 	    cd->trk[C(i)].titled = FALSE;
 	}
 	strcpy( cd->trk[0].name, "--" );
