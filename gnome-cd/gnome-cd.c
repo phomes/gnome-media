@@ -48,7 +48,7 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 
 	if (artist == NULL ||
 	    track == NULL) {
-		title = g_strdup ("Gnome-CD " VERSION);
+		title = g_strdup (_("Gnome CD Player"));
 	} else {
 		title = g_strconcat (artist, " - ", track, NULL);
 	}
@@ -438,7 +438,7 @@ init_player (void)
 	}
 		
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
+	gtk_window_set_title (GTK_WINDOW (gcd->window), _("Gnome CD Player"));
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
 	gtk_window_set_default_size (GTK_WINDOW (gcd->window), 350, 129);
 	

@@ -768,7 +768,7 @@ preferences_dialog_show (GnomeCD *gcd,
 		windy = NULL;
 	}
 	
-	pd->window = gtk_dialog_new_with_buttons (_("Gnome-CD Preferences"),
+	pd->window = gtk_dialog_new_with_buttons (_("Gnome CD Player Preferences"),
 						  windy,
 						  GTK_DIALOG_DESTROY_WITH_PARENT,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
@@ -814,7 +814,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pd->window)->vbox), hbox, FALSE, FALSE, 4);
 
 	/* left side */
-	frame = gtk_frame_new (_("When Gnome-CD starts"));
+	frame = gtk_frame_new (_("When Gnome CD Player starts"));
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
 	gtk_box_pack_start (GTK_BOX (hbox), frame, TRUE, TRUE, 0);
 	
@@ -865,7 +865,7 @@ preferences_dialog_show (GnomeCD *gcd,
 						change_start_close_widget, pd, NULL, NULL);
 #endif
 	/* Right side */
-	frame = gtk_frame_new (_("When Gnome-CD quits"));
+	frame = gtk_frame_new (_("When Gnome CD Player quits"));
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
 	gtk_box_pack_start (GTK_BOX (hbox), frame, TRUE, TRUE, 0);
 
