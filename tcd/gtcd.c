@@ -277,6 +277,8 @@ GtkWidget* make_changer_buttons( void )
 	int i;
     
 	box = gtk_hbox_new(FALSE, 0);
+	if(cd.nslots < 0 || cd.nslots > 12)
+		return box;
 	changer_buttons = g_new(GtkWidget *, cd.nslots);
     
 	for(i=0; i < cd.nslots && i < 12; i++)

@@ -97,6 +97,8 @@ static GtkWidget *create_local_db(void)
     gtk_clist_set_selection_mode(GTK_CLIST(clist), 
                                  GTK_SELECTION_BROWSE); 
     gtk_clist_column_titles_passive(GTK_CLIST(clist));
+    gtk_clist_set_column_auto_resize(GTK_CLIST(clist), 0, TRUE);
+    gtk_clist_set_column_auto_resize(GTK_CLIST(clist), 1, TRUE);
     gtk_clist_set_sort_column(GTK_CLIST(clist), 1);
     gtk_clist_set_auto_sort(GTK_CLIST(clist), TRUE);
 
@@ -159,6 +161,8 @@ GtkWidget *create_cddb_page(void)
     gtk_table_attach_defaults(GTK_TABLE(table), label, 3, 4, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), portw, 4, 5, 0, 1);
     gtk_signal_connect(GTK_OBJECT(adj), "value_changed",
+		       GTK_SIGNAL_FUNC(port_cb), NULL);
+    gtk_signal_connect(GTK_OBJECT(adj), "changed",
 		       GTK_SIGNAL_FUNC(port_cb), NULL);
 
     cbutton = gtk_check_button_new_with_label(_("Use HTTP"));

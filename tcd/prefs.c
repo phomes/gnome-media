@@ -503,6 +503,8 @@ static GtkWidget *key_page(void)
 	gtk_clist_set_column_title(GTK_CLIST(clist), 1, _("Action"));
 	gtk_clist_column_titles_show(GTK_CLIST(clist));
 	gtk_clist_column_titles_passive(GTK_CLIST(clist));
+	gtk_clist_set_column_auto_resize(GTK_CLIST(clist), 0, TRUE);
+	gtk_clist_set_column_auto_resize(GTK_CLIST(clist), 1, TRUE);
 	gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_NONE);
         
 	g_list_foreach(keys, (GFunc)fill_list, clist);

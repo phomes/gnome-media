@@ -263,14 +263,12 @@ void edit_window(GtkWidget *widget, gpointer data)
     /* END Track area */
 
     track_list = gtk_clist_new(3);
-    for (i=0 ; i < 3 ; i++)
+    for (i=0 ; i < 3 ; i++) {
 	gtk_clist_set_column_title(GTK_CLIST(track_list), i, _(titles[i]));
+        gtk_clist_set_column_auto_resize(GTK_CLIST(track_list), i, TRUE);
+    }
     gtk_clist_column_titles_show(GTK_CLIST(track_list));
     gtk_clist_set_shadow_type(GTK_CLIST(track_list), GTK_SHADOW_NONE);
-    /* FIXME: Setting the column size needs to be redone in a way that
-       supports i18n */
-    gtk_clist_set_column_width(GTK_CLIST(track_list), 0, 20);
-    gtk_clist_set_column_width(GTK_CLIST(track_list), 1, 36);
     gtk_clist_set_selection_mode(GTK_CLIST(track_list), 
 				 GTK_SELECTION_BROWSE);
     gtk_clist_column_titles_passive(GTK_CLIST(track_list));
