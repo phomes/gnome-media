@@ -72,7 +72,8 @@ int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 /*			fprintf( stderr, "Can't open \'%s\'\n", tcd_dir );
 			fprintf( stderr, "TCD will now attempt to create %s to store it's files.\n", tcd_dir);
 */
-			msg_cb();
+		        if (msg_cb)
+			        msg_cb();
 			if( mkdir(tcd_dir,S_IRWXU) )
 			{
 				/* FIXME, let it continue, but without database support. */

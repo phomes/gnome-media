@@ -102,7 +102,7 @@ int main( int argc, char **argv )
 	else
         	strcpy( cd->cdpath, argv[1] );
 		
-	tcd_init_disc(cd);
+	tcd_init_disc(cd, NULL);
 	draw_not_always();
         t1 = time(NULL);
         t2 = t1;
@@ -237,7 +237,7 @@ int main( int argc, char **argv )
 			case '4':
 				tcd_close_disc(cd);
 				tcd_change_disc( cd, c-49 );
-				tcd_init_disc(cd);
+				tcd_init_disc(cd, NULL);
 			        wclear(win);
 		                wrefresh(win);
 				draw_not_always();
@@ -259,7 +259,7 @@ int main( int argc, char **argv )
         				strcpy( cd->cdpath, argv[1] );
 
 				cd->play_method = NORMAL;
-				tcd_init_disc(cd);
+				tcd_init_disc(cd, NULL);
 			        wclear(win);
 		                wrefresh(win);
 				draw_not_always();
