@@ -286,7 +286,7 @@ GtkWidget* make_changer_buttons( void )
 
 		style = gtk_widget_get_style(GTK_BUTTON(changer_buttons[i])->child);
 		gdk_font_unref(style->font);
-		style->font = gdk_font_load("-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*");
+		style->font = gdk_font_load("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-iso8859-1");
 		gdk_font_ref(style->font);
 		gtk_widget_set_style(GTK_BUTTON(changer_buttons[i])->child, style);
 		gdk_font_unref(style->font);
@@ -447,6 +447,49 @@ void draw_time_playing(void)
 	}		
 }
 
+char *calculate_title(int maxwidth, int inc)
+{
+	int start = 0, end = 0;
+	int width, slen, w;
+	char t[512];
+
+	width = gdk_string_width(tfont, cd.trk[cd.cur_t].name);
+	slen = strlen(cd.trk[cd.cur_t].name);
+
+	if(width < maxwidth)
+	{
+		gdk_draw_text(status_db,tfont,gc,4,39+inc+inc,
+			      cd.trk[cd.cur_t].name, strlen(cd.trk[cd.cur_t].name));
+	}
+	else
+	{
+		for(;;) 
+		{
+			start++, end++;
+			
+			strncpy(t, cd.trk[cd.cur_t].name, start);
+			t[start] = 0;
+			strcat(t, "...");
+			strcat(t, cd.trk[cd.cur_t].name+(slen-end));
+			
+			w = gdk_string_width(tfont, t); /* are we too long yet? */
+			
+			if(w > maxwidth) {
+				start--, end--; /* grab our last match */
+				break;
+			}
+		}
+		/* use it */
+		strncpy(t, cd.trk[cd.cur_t].name, start);
+		t[start] = 0;
+		strcat(t, "...");
+		strcat(t, cd.trk[cd.cur_t].name+(slen-end));
+		
+		gdk_draw_text(status_db,tfont,gc,4,39+inc+inc,
+			      t, strlen(t));
+	}
+}
+
 void draw_titles(void)
 {
 	int inc;
@@ -460,31 +503,8 @@ void draw_titles(void)
 		      strlen(cd.album));
     
 	/* make sure the title fits */
-	{
-		char tmp[512], tmp2[512], tmp3[512];
-		int width;
+	calculate_title(120, inc);
 
-		width = strlen(cd.trk[cd.cur_t].name);
-	
-		if(width > 25)
-		{
-			strncpy(tmp, cd.trk[cd.cur_t].name, 11);
-			tmp[11] = 0;
-			strncpy(tmp2, cd.trk[cd.cur_t].name+(width-11), 11);
-			tmp2[11] = 0;
-	    
-			g_snprintf(tmp3, 511, "%s...%s", tmp, tmp2);
-
-			gdk_draw_text(status_db,tfont,gc,4,39+inc+inc,
-				      tmp3, strlen(tmp3));
-		}
-		else
-		{
-			gdk_draw_text(status_db,tfont,gc,4,39+inc+inc, 
-				      cd.trk[cd.cur_t].name,
-				      strlen(cd.trk[cd.cur_t].name));
-		}
-	}
 	if (cd.cur_t == 0)
 		gtk_window_set_title(GTK_WINDOW(window), cd.dtitle);
 	else
@@ -720,7 +740,7 @@ void adjust_status_size(void)
 		max_title_width = t;
 	t = gdk_string_width(tfont, " ") * 25;
 	if(max_title_width < t) max_title_width = t;
-	if(max_title_width < 100) max_title_width = 100; /* make sure we can fit time */
+	if(max_title_width < 120) max_title_width = 120; /* make sure we can fit time */
 	gtk_widget_set_usize(status_area, max_title_width+8, tfont_height+27);
 }
 
@@ -893,7 +913,7 @@ void setup_fonts(void)
 	if(sfont)
 		gdk_font_unref(sfont);
     
-	sfont = gdk_font_load("-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*");
+	sfont = gdk_font_load("-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-iso8859-1");
     
 	tfont_height = (tfont->ascent+tfont->descent)*3;
 }
