@@ -56,7 +56,7 @@ dialog_response (GtkDialog * widget, gint response_id, GladeXML * dialog)
 static void
 test_button_clicked (GtkButton * button, gpointer user_data)
 {
-	GSTPPipelineEditor* editor = (GSTPPipelineEditor*)(editor);
+	GSTPPipelineEditor* editor = (GSTPPipelineEditor*)(user_data);
 	GSTPPipelineDescription *pipeline_desc = editor->pipeline_desc + editor->cur_pipeline_index;
 	if (pipeline_desc->is_custom) {
 		GtkEntry* entry = editor->entry;
