@@ -679,6 +679,7 @@ create_dialog (GtkWidget *window)
 	GtkWidget *align;
 	GtkWidget *vbox, *hbox, *hbox2, *hbox3;
 	GtkWidget *label, *sw;
+	GtkWidget *icon;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
 	GtkTreeSelection *selection;
@@ -699,7 +700,7 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, TRUE, TRUE, 0);
 
 	/* Log on info */
-	frame = hig_category_new (main_vbox, _("Log On Information"), FALSE, FALSE);
+	frame = hig_category_new (main_vbox, _("Login Information"), FALSE, FALSE);
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 
@@ -787,9 +788,6 @@ create_dialog (GtkWidget *window)
 			  1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL,
 			  0, 0);
 
-	gtk_table_set_row_spacings (GTK_TABLE (pd->name_box), GNOME_PAD_SMALL);
-	gtk_table_set_col_spacings (GTK_TABLE (pd->name_box), GNOME_PAD_SMALL);
-
 	/* Server info */
 	frame = hig_category_new (main_vbox, _("Server"), TRUE, TRUE);
 
@@ -847,11 +845,37 @@ create_dialog (GtkWidget *window)
 	
 	gtk_container_add (GTK_CONTAINER (sw), pd->freedb_server);
 
-	pd->update = gtk_button_new_with_mnemonic (_("_Update Server List"));
 	g_signal_connect (G_OBJECT (pd->update), "clicked",
 			  G_CALLBACK (update_clicked), pd);
-	
-	gtk_box_pack_start (GTK_BOX (pd->freedb_box), pd->update, FALSE, FALSE, 2);
+
+	/* create the update server list button */
+	align = gtk_alignment_new (1.0, 0.5, 0.0, 0.0);
+
+	pd->update = gtk_button_new ();
+ 	g_signal_connect (G_OBJECT (pd->update), "clicked",
+ 			  G_CALLBACK (update_clicked), pd);
+
+	gtk_container_add (GTK_CONTAINER (align), pd->update);
+ 	
+	gtk_box_pack_start (GTK_BOX (pd->freedb_box), align, FALSE, FALSE, 0);
+
+	/* ... and it's contents */
+	align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+	gtk_container_add (GTK_CONTAINER (pd->update), align);
+
+	hbox = gtk_hbox_new (FALSE, 2);
+
+	gtk_container_add (GTK_CONTAINER (align), hbox);
+
+	icon = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_BUTTON);
+
+	gtk_box_pack_start (GTK_BOX (hbox), icon, FALSE, FALSE, 0);
+
+	label = gtk_label_new_with_mnemonic (_("_Update Server List"));
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->update);
+
+	gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	pd->other_server = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->other_freedb),
 									   _("Other _server:"));
@@ -872,7 +896,7 @@ create_dialog (GtkWidget *window)
 	hbox2 = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (hbox3), hbox2, FALSE, FALSE, 0);
 	
-	hbox = gtk_hbox_new (FALSE, 6);
+	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (hbox2), hbox, FALSE, FALSE, 0);
 	label = gtk_label_new_with_mnemonic (_("Hos_tname:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -888,7 +912,7 @@ create_dialog (GtkWidget *window)
 	}
 	gtk_box_pack_start (GTK_BOX (hbox), pd->other_host, TRUE, TRUE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 6);
+	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (hbox2), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new_with_mnemonic (_("_Port:"));
