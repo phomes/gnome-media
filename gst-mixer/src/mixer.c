@@ -1,0 +1,490 @@
+/* GStreamer Mixer
+ * Copyright (C) 2003 Ronald Bultje <rbultje@ronald.bitfreak.net>
+ *
+ * mixer.c: sample mixer application
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include <string.h>
+#include <glib.h>
+#include <gnome.h>
+#include <gst/gst.h>
+#include <gst/mixer/mixer.h>
+
+typedef struct _MyMixerControls {
+  GstMixer *mixer;
+  GstMixerTrack *track;
+  GList *adjustments;
+  GtkWidget *lock, *mute, *record;
+  gboolean locked;
+} MyMixerControls;
+
+/* private stock icons */
+#define GST_MIXER_STOCK_PHONE "gst-mixer-phone"
+#define GST_MIXER_STOCK_VIDEO "gst-mixer-video"
+#define GST_MIXER_STOCK_TONE  "gst-mixer-tone"
+#define GST_MIXER_STOCK_MIXER "gst-mixer-mixer"
+
+static const struct {
+  gchar *label,
+	*pixmap;
+} pix[] = {
+  { "cd",         GTK_STOCK_CDROM       },
+  { "line",       GNOME_STOCK_LINE_IN   },
+  { "microphone", GNOME_STOCK_MIC       },
+  { "mixer",      GST_MIXER_STOCK_MIXER },
+  { "pcm",        GST_MIXER_STOCK_TONE  },
+  { "phone",      GST_MIXER_STOCK_PHONE },
+  { "speaker",    GNOME_STOCK_VOLUME    },
+  { "video",      GST_MIXER_STOCK_VIDEO },
+  { "volume",     GST_MIXER_STOCK_TONE  },
+  { NULL, NULL }
+};
+
+static void
+cb_volume_changed (GtkAdjustment *adj,
+		   gpointer       data)
+{
+  MyMixerControls *ctrl = (MyMixerControls *) data;
+  gint *volumes, i = 0;
+  GList *adjustments = ctrl->adjustments;
+
+  if (ctrl->locked)
+    return;
+  ctrl->locked = TRUE;
+  volumes = g_malloc (sizeof (gint) * g_list_length (adjustments));
+
+  for ( ; adjustments != NULL; adjustments = adjustments->next) {
+    GtkAdjustment *adj2 = (GtkAdjustment *) adjustments->data;
+
+    if (ctrl->lock != NULL &&
+        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (ctrl->lock))) {
+      gtk_adjustment_set_value (adj2, gtk_adjustment_get_value (adj));
+      volumes[i++] = gtk_adjustment_get_value (adj);
+    } else {
+      volumes[i++] = gtk_adjustment_get_value (adj2);
+    }
+  }
+
+  gst_mixer_set_volume (ctrl->mixer, ctrl->track, volumes);
+
+  g_free (volumes);
+  ctrl->locked = FALSE;
+}
+
+static void
+cb_lock_toggled (GtkWidget *button,
+		 gpointer   data)
+{
+  MyMixerControls *ctrl = (MyMixerControls *) data;
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button))) {
+    /* get the mean value, and set it on the first adjustment.
+     * the cb_olume_changed () callback will take care of the
+     * rest */
+    gint volume = 0, num = 0;
+    GList *adjustments = ctrl->adjustments;
+
+    for ( ; adjustments != NULL; adjustments = adjustments->next) {
+      GtkAdjustment *adj = (GtkAdjustment *) adjustments->data;
+
+      num++;
+      volume += gtk_adjustment_get_value (adj);
+    }
+
+    /* safety check */
+    if (ctrl->adjustments != NULL) {
+      gtk_adjustment_set_value ((GtkAdjustment *) ctrl->adjustments->data,
+				volume / num);
+    }
+  }
+}
+
+static void
+cb_mute_toggled (GtkWidget *button,
+		 gpointer   data)
+{
+  MyMixerControls *ctrl = (MyMixerControls *) data;
+  gst_mixer_set_mute (ctrl->mixer, ctrl->track,
+		      gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+}
+
+static void
+cb_record_toggled (GtkWidget *button,
+		   gpointer   data)
+{
+  MyMixerControls *ctrl = (MyMixerControls *) data;
+  gst_mixer_set_record (ctrl->mixer, ctrl->track,
+		        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
+}
+
+static void
+create_track_widget (GstMixer      *mixer,
+		     GtkWidget     *table,
+		     gint           column_pos,
+		     GstMixerTrack *track)
+{
+  GtkWidget *label, *slider, *button, *image;
+  GtkObject *adj;
+  gint i, *volumes;
+  GList *adjlist = NULL;
+  MyMixerControls *ctrl = g_new0 (MyMixerControls, 1);
+  gchar *str = NULL;
+
+  volumes = g_malloc (sizeof (gint) * track->num_channels);
+
+  ctrl->mixer = mixer;
+  ctrl->track = track;
+  ctrl->locked = FALSE;
+
+  /* image (optional) */
+  for (i = 0; str == NULL && pix[i].label != NULL; i++) {
+    /* we dup the string to make the comparison case-insensitive */
+    gchar *label_l = g_strdup (track->label),
+	  *needle_l = g_strdup (pix[i].label);
+    gint pos;
+
+    /* make case insensitive */
+    for (pos = 0; label_l[pos] != '\0'; pos++)
+      label_l[pos] = g_ascii_tolower (label_l[pos]);
+    for (pos = 0; needle_l[pos] != '\0'; pos++)
+      needle_l[pos] = g_ascii_tolower (needle_l[pos]);
+
+    if (g_strrstr (label_l, needle_l) != NULL)
+      str = pix[i].pixmap;
+
+    g_free (label_l);
+    g_free (needle_l);
+  }
+
+  if (str != NULL) {
+    if ((image = gtk_image_new_from_stock (str, GTK_ICON_SIZE_MENU)) != NULL) {
+      gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.5);
+      gtk_table_attach_defaults (GTK_TABLE (table), image,
+				 column_pos, column_pos + track->num_channels,
+				 0, 1);
+    }
+  }
+
+  /* label */
+  label = gtk_label_new (track->label);
+  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
+  gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
+  gtk_table_attach_defaults (GTK_TABLE (table), label,
+			     column_pos, column_pos + track->num_channels,
+			     1, 2);
+
+  /* now sliders for each of the tracks */
+  gst_mixer_get_volume (mixer, track, volumes);
+  for (i = 0; i < track->num_channels; i++) {
+    adj = gtk_adjustment_new (volumes[i],
+			      track->min_volume, track->max_volume,
+			      1.0, 1.0, 0.0);
+    adjlist = g_list_append (adjlist, (gpointer) adj);
+    g_signal_connect (G_OBJECT (adj), "value_changed",
+		      G_CALLBACK (cb_volume_changed), (gpointer) ctrl);
+    slider = gtk_vscale_new (GTK_ADJUSTMENT (adj));
+    gtk_scale_set_draw_value (GTK_SCALE (slider), FALSE);
+    gtk_range_set_inverted (GTK_RANGE (slider), TRUE);
+    gtk_widget_set_size_request (slider, -1, 100);
+    gtk_table_attach_defaults (GTK_TABLE (table), slider,
+			       column_pos + i, column_pos + i + 1,
+			       2, 3);
+  }
+
+  ctrl->adjustments = adjlist;
+
+  /* buttons (lock, mute, rec) */
+  if (track->num_channels > 1) {
+    button = gtk_check_button_new_with_label (_("Lock"));
+    gtk_table_attach_defaults (GTK_TABLE (table), button,
+			       column_pos, column_pos + track->num_channels,
+			       3, 4);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
+    ctrl->lock = button;
+    g_signal_connect (G_OBJECT (button), "toggled",
+		      G_CALLBACK (cb_lock_toggled), (gpointer) ctrl);
+  }
+
+  button = gtk_check_button_new_with_label (_("Mute"));
+  gtk_table_attach_defaults (GTK_TABLE (table), button,
+			     column_pos, column_pos + track->num_channels,
+			     4, 5);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+				GST_MIXER_TRACK_HAS_FLAG (track,
+						GST_MIXER_TRACK_MUTE));
+  g_signal_connect (G_OBJECT (button), "toggled",
+		    G_CALLBACK (cb_mute_toggled), (gpointer) ctrl);
+  ctrl->mute = button;
+
+  if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)) {
+    button = gtk_check_button_new_with_label (_("Rec."));
+    gtk_table_attach_defaults (GTK_TABLE (table), button,
+			       column_pos, column_pos + track->num_channels,
+			       5, 6);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
+				  GST_MIXER_TRACK_HAS_FLAG (track,
+						GST_MIXER_TRACK_RECORD));
+    g_signal_connect (G_OBJECT (button), "toggled",
+		      G_CALLBACK (cb_record_toggled), (gpointer) ctrl);
+    ctrl->record = button;
+  }
+
+  g_free (volumes);
+}
+
+static GtkWidget *
+create_mixer_widget (GstMixer *mixer)
+{
+  GtkWidget *table;
+  gint tablepos = 0;
+  const GList *tracks;
+
+  /* count number of tracks */
+  tracks = gst_mixer_list_tracks (mixer);
+  for ( ; tracks != NULL; tracks = tracks->next) {
+    tablepos += ((GstMixerTrack *) tracks->data)->num_channels;
+    if (tracks->next != NULL)
+      tablepos++;
+  }
+
+  /* create table for all single tracks */
+  table = gtk_table_new (6, tablepos, FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (table), 4);
+  gtk_table_set_row_spacings (GTK_TABLE (table), 2);
+  gtk_table_set_col_spacings (GTK_TABLE (table), 2);
+
+  /* add each */
+  tablepos = 0;
+  tracks = gst_mixer_list_tracks (mixer);
+  for ( ; tracks != NULL; tracks = tracks->next) {
+    create_track_widget (mixer, table, tablepos,
+			 (GstMixerTrack *) tracks->data);
+    tablepos += ((GstMixerTrack *) tracks->data)->num_channels;
+    if (tracks->next != NULL) {
+      GtkWidget *sep = gtk_vseparator_new ();
+      gtk_table_attach_defaults (GTK_TABLE (table), sep,
+				 tablepos, tablepos+1, 0, 6);
+      tablepos++;
+    }
+  }
+
+  return table;
+}
+
+static GList *
+create_mixer_collection (GtkWidget *notebook)
+{
+  GtkWidget *page, *label;
+  const GList *elements;
+  GList *collection = NULL;
+  gint num = 0;
+
+  /* go through all elements of a certain class and check whether
+   * they implement a mixer. If so, add a page */
+  elements = gst_registry_pool_feature_list (GST_TYPE_ELEMENT_FACTORY);
+  for ( ; elements != NULL; elements = elements->next) {
+    GstElementFactory *factory = GST_ELEMENT_FACTORY (elements->data);
+    gchar *title, *name;
+    GstElement *element;
+
+    /* check category */
+    if (strcmp (factory->details->klass, "Generic/Audio"))
+      continue;
+
+    /* create element */
+    title = g_strdup_printf ("gst-mixer-%d", num);
+    element = gst_element_factory_create (factory, title);
+    if (!element) {
+      g_free (title);
+      continue;
+    }
+
+    /* check whether it implements a mixer  */
+    if (!gst_element_set_state (element, GST_STATE_READY) ||
+        !GST_IS_MIXER (element)) {
+      gst_element_set_state (element, GST_STATE_NULL);
+      g_object_unref (G_OBJECT (element));
+      g_free (title);
+      continue;
+    }
+
+    /* create mixer UI object */
+    page = create_mixer_widget (GST_MIXER (element));
+    if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (element)),
+				      "device-name")) {
+      g_object_get (element, "device-name", &name, NULL);
+    } else {
+      name = title;
+    }
+    label = gtk_label_new (name);
+
+    /* add new notebook page + keep track */
+    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
+    collection = g_list_append (collection, element);
+    num++;
+    g_free (title);
+  }
+
+  return collection;
+}
+
+static void
+cb_about (GtkWidget *widget,
+	  gpointer   data)
+{
+  GtkWidget *about;
+  const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
+			     NULL };
+
+  about = gnome_about_new (_("GStreamer Volume Control"),
+			   VERSION,
+			   "(c) 2003 Ronald Bultje",
+			   _("A GNOME/GStreamer-based mixer application"),
+			   authors, NULL, NULL,
+			   NULL);
+
+  gtk_widget_show (about);
+}
+
+static void
+cb_destroy (GtkWidget *widget,
+            gpointer   data)
+{
+  gtk_main_quit();
+}
+
+static GnomeUIInfo file_menu[] = {
+  GNOMEUIINFO_MENU_EXIT_ITEM (cb_destroy, NULL),
+  GNOMEUIINFO_END
+};
+
+static GnomeUIInfo help_menu[] = {
+  GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about, NULL),
+  GNOMEUIINFO_HELP (PACKAGE),
+  GNOMEUIINFO_END
+};
+
+static GnomeUIInfo main_menu[] = {
+  GNOMEUIINFO_MENU_FILE_TREE (file_menu),
+  GNOMEUIINFO_MENU_HELP_TREE (help_menu),
+  GNOMEUIINFO_END
+};
+
+static void
+register_stock_icons (void)
+{
+  GtkIconFactory *icon_factory;
+  struct {
+    gchar *filename,
+	  *stock_id;
+  } list[] = {
+    { "mixer.png", GST_MIXER_STOCK_MIXER },
+    { "phone.png", GST_MIXER_STOCK_PHONE },
+    { "tone.png",  GST_MIXER_STOCK_TONE  },
+    { "video.png", GST_MIXER_STOCK_VIDEO },
+    { NULL, NULL }
+  };
+  gint num;
+ 
+  icon_factory = gtk_icon_factory_new ();
+  gtk_icon_factory_add_default (icon_factory);
+
+  for (num = 0; list[num].filename != NULL; num++) {
+    gchar *filename = gnome_program_locate_file (NULL,
+						 GNOME_FILE_DOMAIN_APP_PIXMAP,
+						 list[num].filename, TRUE, NULL);
+    if (filename) {
+      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
+      GtkIconSet *icon_set = gtk_icon_set_new_from_pixbuf (pixbuf);
+      gtk_icon_factory_add (icon_factory, list[num].stock_id, icon_set);
+      g_free (filename);
+    }
+  }
+}
+
+gint
+main (gint   argc,
+      gchar *argv[])
+{
+  gchar *appfile;
+  GtkWidget *window, *notebook;
+  GList *mixers, *item;
+  struct poptOption options[] = {
+    {NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL},
+    POPT_TABLEEND
+  };
+
+  /* init gstreamer/gnome */
+  options[0].arg = (void *) gst_init_get_popt_table();
+  gnome_program_init (PACKAGE, VERSION, LIBGNOMEUI_MODULE,
+		      argc, argv,
+		      GNOME_PARAM_POPT_TABLE, options,
+		      GNOME_PARAM_APP_DATADIR, DATA_DIR,
+		      NULL);
+  register_stock_icons ();
+
+  appfile = gnome_program_locate_file (NULL,
+				       GNOME_FILE_DOMAIN_APP_PIXMAP,
+				       "mixer.png", TRUE, NULL);
+  if (appfile) {
+    gnome_window_icon_set_default_from_file (appfile);
+    g_free (appfile);
+  }
+
+  /* create main window + menus */
+  window = gnome_app_new (PACKAGE, _("GStreamer Volume Control"));
+  gnome_app_create_menus (GNOME_APP (window), main_menu);
+
+  /* create all mixers */
+  notebook = gtk_notebook_new ();
+  if (!(mixers = create_mixer_collection (notebook))) {
+    GtkWidget *dialog =
+	gtk_message_dialog_new (NULL, 0,
+				GTK_MESSAGE_ERROR,
+				GTK_BUTTONS_CLOSE,
+				_("Sorry, no mixer elements and/or devices found"));
+    gtk_widget_show (dialog);
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    return 0;
+  }
+  if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) == 1)
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+
+  /* add to window */
+  gnome_app_set_contents (GNOME_APP (window), notebook);
+  g_signal_connect (G_OBJECT (window), "destroy",
+                    G_CALLBACK (cb_destroy), NULL);
+
+  /* show off and run */
+  gtk_widget_show_all (window);
+  gtk_main ();
+
+  /* unref */
+  for (item = mixers; item != NULL; item = item->next) {
+    GstElement *element = GST_ELEMENT (item->data);
+
+    gst_element_set_state (element, GST_STATE_NULL);
+    gst_object_unref (GST_OBJECT (element));
+  }
+
+  return 0;
+}

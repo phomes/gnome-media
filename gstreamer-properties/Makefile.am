@@ -8,13 +8,13 @@ gstreamer_properties_SOURCES = \
 	
 @INTLTOOL_DESKTOP_RULE@
 
-iconsdir   = $(GSTPROPS_ICONS_DIR)
+iconsdir   = $(datadir)/gstreamer-properties/icons
 icons_DATA = gstreamer-properties.png
 
 desktop_iconsdir = $(datadir)/pixmaps
 desktop_icons_DATA = gstreamer-properties.png
 
-gladedir   = $(GSTPROPS_GLADE_DIR)
+gladedir   = $(datadir)/gstreamer-properties/glade
 glade_DATA = gstreamer-properties.glade 
 
 #desktopdir = $(GNOMECC_DESKTOP_DIR)
