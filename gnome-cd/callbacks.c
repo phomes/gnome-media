@@ -1107,13 +1107,12 @@ open_track_editor (GtkWidget *widget,
 		gboolean same_cd;
 		same_cd = g_str_equal(discid,discid_prev);
 		if (!same_cd) {
-
+			GtkWidget *dialog;
 			gchar *text = g_strdup_printf ("<b>%s</b>\n\n%s\n%s",
-            	   				    _("Contents in the CDDB has Changed"),
+            	   				    _("Contents in the CDDB have changed"),
 		                                    _("Choosing 'Yes' will delete the previous contents in CDDB."),
-                		                    _("Do u wish to Continue"));
+                		                    _("Do you wish to continue?"));
 
-			GtkWidget *dialog ;
 			dialog = gtk_message_dialog_new (NULL, 0,
                 		                         GTK_MESSAGE_WARNING,
                 					 GTK_BUTTONS_YES_NO,
@@ -1121,7 +1120,6 @@ open_track_editor (GtkWidget *widget,
 			gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label), TRUE);
 			result = gtk_dialog_run (GTK_DIALOG (dialog));
 			gtk_widget_destroy(dialog);
-
    		}
 	}
 	
