@@ -60,6 +60,9 @@ gchar* active_file = NULL;
 gboolean default_file = FALSE;
 gboolean file_changed = FALSE;
 
+static guint play_id;
+static guint record_id;
+
 ///////////////////////////////////////////////////////////////////
 // ------------------- Callbacks ------------------------------- //
 void
@@ -86,9 +89,9 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _("Recording..."));
 	RecEng.is_running = TRUE;
 
-	gtk_timeout_add (1000,
-			 (GtkFunction) UpdateStatusbarRecord,
-			 NULL);
+	record_id = gtk_timeout_add (1000,
+				     (GtkFunction) UpdateStatusbarRecord,
+				     NULL);
 }
 
 void
@@ -117,9 +120,9 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _("Playing..."));
 	PlayEng.is_running = TRUE;
 	
-	gtk_timeout_add (1000,
-			 (GtkFunction) UpdateStatusbarPlay,
-			 (gpointer) FALSE);
+	play_id = gtk_timeout_add (1000,
+				   (GtkFunction) UpdateStatusbarPlay,
+				   (gpointer) FALSE);
 }
 
 void
@@ -143,10 +146,14 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 
 	if (PlayEng.is_running) {
 
+		gtk_timeout_remove (play_id);
+
 		kill (PlayEng.pid, SIGKILL);
 		waitpid (PlayEng.pid, NULL, WUNTRACED);
 
 		PlayEng.is_running = FALSE;
+
+		grecord_set_sensitive_file ();
 	}
 
 	if (RecEng.is_running) {
