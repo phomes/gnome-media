@@ -185,6 +185,7 @@ GtkWidget *create_cddb_page(void)
 		       GTK_SIGNAL_FUNC(httpproxy_cb), NULL);
 
 #ifndef WITH_LIBGHTTP
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cbutton), FALSE);
     gtk_widget_set_sensitive(cbutton, FALSE);
     gtk_widget_set_sensitive(entry, FALSE);
 #endif
@@ -505,20 +506,17 @@ static void httpproxy_cb(GtkWidget *widget, gpointer data) {
     changed_cb(NULL, NULL);
 }
 static void use_httpproxy_auth_cb(GtkWidget *widget, GtkWidget *entry) {
-    gint val;
 
     prefs->cddb_httpproxy_need_auth = GTK_TOGGLE_BUTTON(widget)->active;
     gtk_widget_set_sensitive(entry, prefs->cddb_httpproxy_need_auth);
     changed_cb(NULL, NULL);
 }
 static void use_httpproxy_auth_cb2(GtkWidget *widget, GtkWidget *entry) {
-    gint val;
 
     gtk_widget_set_sensitive(entry, prefs->cddb_http);
     changed_cb(NULL, NULL);
 }
 static void use_httpproxy_auth_cb3(GtkWidget *widget, GtkWidget *entry) {
-    gint val;
 
     gtk_widget_set_sensitive(entry, prefs->cddb_http && prefs->cddb_httpproxy_need_auth);
     changed_cb(NULL, NULL);

@@ -107,6 +107,7 @@ gint goto_track_cb(GtkWidget *widget, gpointer data)
 
 extern int time_display;
 extern GdkGC *gc;
+extern void exit_action(void);
 void quit_cb(GtkWidget *widget, gpointer data)
 {
 	save_prefs(prefs);
@@ -136,8 +137,6 @@ void changer_cb(GtkWidget *widget, gpointer data)
     }
     return;
 }
-
-static GnomeHelpMenuEntry help_ref = {"gnome-terminal", "options.html"};
 
 void help(GtkWidget *widget, gpointer data)
 {
