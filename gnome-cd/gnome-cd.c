@@ -27,6 +27,7 @@
 
 /* Debugging? */
 gboolean debug_mode = FALSE;
+static char *cd_option_device = NULL;
 
 void
 gcd_warning (const char *message,
@@ -384,7 +385,7 @@ show_error (GtkWidget	*dialog,
 }
 
 static GnomeCD *
-init_player (void) 
+init_player (const char *device_override)
 {
 	GnomeCD *gcd;
 	GnomeCDRomStatus *status;
@@ -392,13 +393,15 @@ init_player (void)
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button;
 	GdkPixbuf *pixbuf;
-	GError *error = NULL;
+	GError *error;
 	GError *detailed_error = NULL;
 
 	gcd = g_new0 (GnomeCD, 1);
 
 	gcd->not_ready = TRUE;
 	gcd->preferences = (GnomeCDPreferences *)preferences_new (gcd);
+	gcd->device_override = g_strdup (device_override);
+	
 	if (gcd->preferences->device == NULL || gcd->preferences->device[0] == 0) {
 		GtkWidget *dialog;
 
@@ -427,14 +430,24 @@ init_player (void)
 			exit (0);
 		}
 	}
-		
-	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, 
+
+ nodevice:		
+	gcd->cdrom = gnome_cdrom_new (gcd->device_override ? gcd->device_override : gcd->preferences->device, 
 				      GNOME_CDROM_UPDATE_CONTINOUS, &error);
 
- nodevice:
 	if (gcd->cdrom == NULL) {
+
 		if (error != NULL) {
 			gcd_warning ("%s", error);
+		}
+		if (gcd->device_override) {
+			g_free (gcd->device_override);
+			gcd->device_override = NULL;
+
+			g_error_free (error);
+			error = NULL;
+
+			goto nodevice;
 		}
 	} else {
 		g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
@@ -469,12 +482,7 @@ init_player (void)
 		error = NULL;
 		detailed_error = NULL;
 
-		gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, 
-					      GNOME_CDROM_UPDATE_CONTINOUS, 
-					      &error);
-		if (gcd->cdrom == NULL) {
-			goto nodevice;
-		}
+		goto nodevice;
 	}
 		
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -653,6 +661,11 @@ static gint client_die(GnomeClient *client,
 	gtk_main_quit ();
 }
 
+static const struct poptOption cd_popt_options [] = {
+	{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
+	  N_("CD device to use"), NULL },
+	{ NULL, '\0', 0, NULL, 0 },
+};
 
 int 
 main (int argc, char *argv[])
@@ -671,13 +684,16 @@ main (int argc, char *argv[])
 	textdomain (GETTEXT_PACKAGE);
 
 	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
-			    argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+			    argc, argv, 
+			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
+			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 	client = gnome_master_client ();
     	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);
 
-	gcd = init_player ();
+	gcd = init_player (cd_option_device);
 	if (gcd == NULL) {
+		/* Stick a message box here? */
 		g_error (_("Cannot create player"));
 		exit (0);
 	}

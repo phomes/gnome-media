@@ -71,7 +71,8 @@ do_device_changed (GnomeCDPreferences *prefs,
 	}
 
 	prefs->device = g_strdup (device);
-	if (prefs->gcd->cdrom != NULL) {
+	if (prefs->gcd->cdrom != NULL &&
+	    prefs->gcd->device_override == NULL) {
 		ret = gnome_cdrom_set_device (prefs->gcd->cdrom, prefs->device, &error);
 		if (ret == FALSE) {
 			GtkWidget *dialog;

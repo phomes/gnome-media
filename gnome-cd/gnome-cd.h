@@ -87,6 +87,9 @@ struct _GnomeCD {
 
 	GCDTheme *theme;
 	GnomeCDPreferences *preferences;
+
+	/* Set if if --device was given on the command line */
+	char *device_override;
 };
 
 void skip_to_track (GtkWidget *item,
