@@ -892,7 +892,7 @@ void setup_time_display(GtkWidget *table)
 	else
 		gtk_box_pack_start( GTK_BOX(status_table), frame, TRUE, TRUE, 0);
 		                
-	gtk_box_pack_start(GTK_BOX(main_box), status_table, FALSE, FALSE, 2);
+	gtk_box_pack_start(GTK_BOX(main_box), status_table, TRUE, TRUE, 0);
 	return;
 }
 
@@ -921,12 +921,12 @@ void init_window(void)
 	window = gnome_app_new("gtcd", "TCD 2.0");
 	gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
 	gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd");
-	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, TRUE);
+	gtk_window_set_policy(GTK_WINDOW(window), FALSE, TRUE, TRUE);
 
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_cb), NULL);
 
-	gtk_container_border_width(GTK_CONTAINER(window), GNOME_PAD_SMALL);
+	gtk_container_set_border_width(GTK_CONTAINER(window), GNOME_PAD_SMALL);
 
 	gtk_widget_realize(window);
 
