@@ -32,6 +32,7 @@
 #include <audiofile.h>
 #include <esd.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #include "grec.h"
 #include "gui.h"
@@ -42,6 +43,10 @@
 
 #define READ 0
 #define WRITE 1
+
+#define SAVE 0
+#define DONTSAVE 1
+#define CANCEL 2
 
 const gchar* maintopic = N_("GNOME Sound recorder:");
 const gchar* temp_filename_record = "untitled.raw";
@@ -60,8 +65,11 @@ gboolean file_changed = FALSE;
 void
 on_record_activate_cb (GtkWidget* widget, gpointer data)
 {
-	grecord_set_sensitive_progress ();
+	/* Check if the sounddevice is ready */
+	if (!check_if_sounddevice_ready ())
+		return;
 
+	grecord_set_sensitive_progress ();
 	file_changed = TRUE;
 
 	RecEng.pid = fork ();
@@ -71,13 +79,11 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 		record_sound ();
 
 		_exit (0);
-	       
-		/* Couldn't record */
-		g_error (_("Couldn't record!"));
 	}
 	else if (RecEng.pid == -1)
 		g_error (_("Could not fork child process"));
 
+	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _("Recording..."));
 	RecEng.is_running = TRUE;
 
 	gtk_timeout_add (1000,
@@ -88,8 +94,11 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 void
 on_play_activate_cb (GtkWidget* widget, gpointer data)
 {
-	grecord_set_sensitive_progress ();
+	/* Check if the sounddevice is ready */
+	if (!check_if_sounddevice_ready ())
+		return;
 
+	grecord_set_sensitive_progress ();
 	PlayEng.is_running = TRUE;
 
 	/* Show play-time and stuff */
@@ -101,13 +110,11 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 		play_sound (active_file);
 
 		_exit (0);
-
-		/* Should never ever, in the name of love, get here */
-		g_error (_("Error playing %s"), active_file);
 	}
 	else if (PlayEng.pid == -1)
 		g_error (_("Could not fork child process"));
 	
+	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _("Playing..."));
 	PlayEng.is_running = TRUE;
 	
 	gtk_timeout_add (1000,
@@ -121,6 +128,7 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 	gchar* temp_string1 = NULL;
 	gchar* temp_string2 = NULL;
 
+	gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
 	grecord_set_sensitive_file ();
 
 	if (RecEng.is_running) {
@@ -157,8 +165,6 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 		run_command (command, _("Converting file..."));
 
 		temp_string = g_concat_dir_and_file (temp_dir, temp_filename_play);
-
-		set_min_sec_time (get_play_time (temp_string), TRUE);
 
 		g_free (temp_string);
 		g_free (command);
@@ -283,7 +289,7 @@ on_save_activate_cb (GtkWidget* widget, gpointer data)
 	}
 
 	if (!save_sound_file (active_file)) {
-		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
+		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file!"),
 							 GNOME_MESSAGE_BOX_WARNING,
 							 GNOME_STOCK_BUTTON_OK,
 							 NULL);
@@ -353,7 +359,7 @@ void
 on_about_activate_cb (GtkWidget* widget, gpointer data)
 {
 	static GtkWidget* about = NULL;
-	static GtkWidget* href;
+	//static GtkWidget* href;
 	if (about) {
 		if (about->window == NULL)
 			return;
@@ -370,12 +376,12 @@ on_about_activate_cb (GtkWidget* widget, gpointer data)
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 			    &about);
 
-	href = gnome_href_new ("http://w1.462.telia.com/~u46703521",
-			       _("GNOME Sound recorder web page"));
+	//href = gnome_href_new ("http://w1.462.telia.com/~u46703521",
+	//_("GNOME Sound recorder web page"));
 
-	gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (about)->vbox),
-			    href, FALSE, FALSE, 0);
-	gtk_widget_show (href);
+	//(gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (about)->vbox),
+	//		    href, FALSE, FALSE, 0);
+	//gtk_widget_show (href);
 	gtk_widget_show (about);
 }
 
@@ -477,9 +483,7 @@ on_undoall_activate_cb (GtkWidget* widget, gpointer data)
 
 	if (g_file_exists (temp_string)) {
 		gchar* t = g_strconcat ("cp -f ", temp_string, " ", active_file, NULL);
-		g_print ("\n%s\n", t);
-		system (t);
-		remove (temp_string);
+		run_command (t, _("Undoing all..."));
 		g_free (t);
 	}
 
@@ -922,20 +926,45 @@ grecord_set_sensitive_loading (void)
 void
 run_command (const gchar* command, const gchar* appbar_comment)
 {
+	gint load_pid;
+
 	/* Make the widgets insensitive */
 	grecord_set_sensitive_loading ();
 
 	/* Add a comment do the appbar about what is going on */
 	gnome_appbar_push (GNOME_APPBAR (grecord_widgets.appbar), _(appbar_comment));
 
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
+        load_pid = fork ();
+	if (load_pid == 0) {
+		/* Run the command */
+		system (command);
 
-	/* Run the command */
-	system (command);
+		/* Finished, exit child process */
+		_exit (0);
+	}
+	else if (load_pid == -1)
+		g_error (_("Could not fork child process"));
 
-	/* Remove the comment from the appbar, becase we're finished */
-	gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+	/* Add a function for checking when process has died */
+	gtk_timeout_add (250, (GtkFunction) check_if_loading_finished, (gpointer) load_pid);
+}
+
+guint
+check_if_loading_finished (gint pid)
+{
+	/* Check if process still alive */
+	if (waitpid (pid, NULL, WNOHANG | WUNTRACED)) {
+		
+		/* Show the playtime of the file */
+		set_min_sec_time (get_play_time (active_file), TRUE);
+		
+		/* Remove the comment from the appbar, becase we're finished */
+		gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
+
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 gboolean
@@ -944,11 +973,41 @@ soundfile_supported (const gchar* filename)
 	AFfilehandle filetype  = afOpenFile (filename, "r", NULL);
 	gint soundtype = afGetFileFormat (filetype, NULL);
 
+	/* Check if the file exists */
 	if (!g_file_exists (filename))
 		return FALSE;
 
+	/* Check if the file is a valid soundfile */
 	if (soundtype == AF_FILE_UNKNOWN)
 		return FALSE;
+
+	return TRUE;
+}
+
+gboolean
+check_if_sounddevice_ready ()
+{
+	/* Reset errno */
+	errno = 0;
+
+	/* Check if the sounddevice is ready */
+	esd_audio_open ();
+	 
+	/* Sounddevice not ready, tell the user */
+	if (errno != 0) {
+		GtkWidget* mess;
+
+		esd_audio_close ();
+
+		mess = gnome_message_box_new (_("Sounddevice not ready! Please check that there isn't\nanother program running that's using the sounddevice."),
+					      GNOME_MESSAGE_BOX_ERROR,
+					      GNOME_STOCK_BUTTON_OK,
+					      NULL);
+		gnome_dialog_run (GNOME_DIALOG (mess));
+		return FALSE;
+	}
+
+	esd_audio_close ();
 
 	return TRUE;
 }

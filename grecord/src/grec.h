@@ -19,12 +19,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
 */
 
-#include <gnome.h>
-
-#define SAVE 0
-#define DONTSAVE 1
-#define CANCEL 2
-
 /* Callbacks ---------------------------------------------------------------- */
 void on_record_activate_cb (GtkWidget* widget, gpointer data);
 void on_play_activate_cb (GtkWidget* widget, gpointer data);
@@ -48,7 +42,7 @@ void on_redo_activate_cb (GtkWidget* widget, gpointer data);
 void on_undoall_activate_cb (GtkWidget* widget, gpointer data);
 gint delete_event_cb (GtkWidget* widget, GdkEventAny event, gpointer data);
 
-/* Help functions --------------------------------------------------------- */
+/* Help functions ----------------------------------------------------------- */
 void record_sound (void);
 void play_sound (const gchar* filename);
 void store_filename (GtkFileSelection* selector, gpointer file_selector);
@@ -64,4 +58,6 @@ void grecord_set_sensitive_nofile (void);
 void grecord_set_sensitive_progress (void);
 void grecord_set_sensitive_loading (void);
 void run_command (const gchar* command, const gchar* appbar_comment);
+guint check_if_loading_finished (gint pid);
 gboolean soundfile_supported (const gchar* filename);
+gboolean check_if_sounddevice_ready (void);

@@ -1,3 +1,36 @@
+2000-04-28  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/grec.c:
+	  The function that checks if the sounddevice is ready or not,
+	  now works (it calls esd_audio_open () and checks errno).
+
+2000-04-24  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/grec.c:
+	  The undoall function now uses the internal function
+	  run_command ().
+
+2000-04-24  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/sound.c:
+	  It now also shows the time in the mainwindow when set_title is TRUE.
+
+	* src/grec.c:
+	  Update the new time when the recording is finished, instead of
+	  just after the forking.
+	
+2000-04-24  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/grec.c:
+	  Added some statusbar-messages used when recording/playing.
+
+2000-04-24  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/grec.c src/grec.h:
+	  Added function check_if_loading_finished ().
+	  The loading process now get forked, instead of just
+	  blocking the main loop.
+
 2000-04-24  Andreas Hyden  <a.hyden@cyberpoint.se>
 
 	* src/grec.c src/grec.h:

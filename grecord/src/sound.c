@@ -38,10 +38,11 @@ get_play_time (const gchar* filename)
 	gint soundformat = 0;
 	gboolean nofile = FALSE;
 
-	fname = g_strdup (filename);
-
-	if (stat(fname, &fileinfo))
+	if (!g_file_exists (filename))
 		nofile = TRUE;
+
+	fname = g_strdup (filename);
+	stat(fname, &fileinfo);
 
 	if (channels)
 		soundchannels = 1;
@@ -70,8 +71,8 @@ get_play_time (const gchar* filename)
 void
 set_min_sec_time (gint sec, gboolean set_topic)
 {
-	static gint minutes = 0;
-	static gint seconds = 0;
+	gint minutes = 0;
+	gint seconds = 0;
 	
 	gchar* temp_string = NULL;
 	gchar* show_mess = NULL;
@@ -88,10 +89,7 @@ set_min_sec_time (gint sec, gboolean set_topic)
 	else
 		temp_string = g_strdup_printf ("%i", minutes);
 
-	if (set_topic)
-		gtk_label_set_text (GTK_LABEL (grecord_widgets.timemin_label), "00");
-	else
-		gtk_label_set_text (GTK_LABEL (grecord_widgets.timemin_label), temp_string);
+	gtk_label_set_text (GTK_LABEL (grecord_widgets.timemin_label), temp_string);
 
 	if (sec != 0 && set_topic) {
 		gchar* temp_string2;
@@ -113,10 +111,7 @@ set_min_sec_time (gint sec, gboolean set_topic)
 	else
 		temp_string = g_strdup_printf ("%i", seconds);
 
-	if (set_topic)
-		gtk_label_set_text (GTK_LABEL (grecord_widgets.timesec_label), "00");
-	else
-		gtk_label_set_text (GTK_LABEL (grecord_widgets.timesec_label), temp_string);
+	gtk_label_set_text (GTK_LABEL (grecord_widgets.timesec_label), temp_string);
 
 	// Set topic
 	if (set_topic) {
