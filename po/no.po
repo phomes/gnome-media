@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 22:11-0700\n"
-"PO-Revision-Date: 2004-02-24 09:35+0100\n"
+"POT-Creation-Date: 2004-03-01 17:41+0100\n"
+"PO-Revision-Date: 2004-03-01 17:41+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -1581,7 +1581,9 @@ msgstr "Lengde:"
 msgid "Adjust the volume level"
 msgstr "Juster volumets nivå"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:540
 msgid "Volume Control"
 msgstr "Volumkontroll"
 
@@ -1627,16 +1629,11 @@ msgstr "Opptak"
 msgid "%s Record"
 msgstr "%s Ta opp"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-msgid "GStreamer Volume Control"
-msgstr "GStreamer volumkontroll"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "En mikser basert på GNOME/GStreamer"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:557
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Beklager, ingen mikserelementer og/eller enheter funnet"
 
@@ -1656,8 +1653,8 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Konfigurer standardverdier for GStreamer-applikasjoner"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "Valg av multimediesystem"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1770,15 +1767,15 @@ msgstr ""
 msgid "There was an error forgetting profile dir %s. (%s)\n"
 msgstr "En feil oppsto under fjerning av profilkatalog %s. (%s)\n"
 
-#: profiles/audio-profile.c:1000
+#: profiles/audio-profile.c:1001
 msgid "<no description>"
 msgstr "<ingen beskrivelse>"
 
-#: profiles/audio-profile.c:1011
+#: profiles/audio-profile.c:1012
 msgid "identity"
 msgstr "identitet"
 
-#: profiles/audio-profile.c:1022
+#: profiles/audio-profile.c:1023
 msgid "wav"
 msgstr "wav"
 
@@ -2017,6 +2014,12 @@ msgstr "Overvåk utgangsnivå for volum"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Måler for volumnivå"
+
+#~ msgid "GStreamer Volume Control"
+#~ msgstr "GStreamer volumkontroll"
+
+#~ msgid "GStreamer"
+#~ msgstr "GStreamer"
 
 #~ msgid "_Replace"
 #~ msgstr "E_rstatt"
