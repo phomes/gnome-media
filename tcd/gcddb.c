@@ -40,7 +40,7 @@
 #include "cddb.h"
 #include "properties.h"
 
-GtkWidget *win, *td, *label;
+GtkWidget *win, *label;
 GtkWidget *server_e, *port;
 extern int tracklabel_f, titlelabel_f;
 extern cd_struct cd;
@@ -56,8 +56,6 @@ void create_warn(void);
 void close_cddb(GtkWidget *widget, GtkWidget **window)
 {
 	gtk_widget_destroy(win);
-        gtk_widget_set_sensitive( td, TRUE );
-        gtk_widget_grab_focus( td );
 }
 
 void cancel_cddb( GtkWidget *widget, gpointer data )
@@ -68,16 +66,17 @@ void cancel_cddb( GtkWidget *widget, gpointer data )
 	
 }
 
-void gcddb( GtkWidget *button_td )
+void gcddb()
 {
 	GtkWidget *table, *tmp;
 	char ctmp[8];
+
+	if( win )
+		return;
 	
 	box = gtk_vbox_new( FALSE, 5 );
 	table = gtk_table_new( 2,4,TRUE );
 
-	td = button_td;
-	gtk_widget_set_sensitive( button_td, FALSE );
 	win = gtk_window_new( GTK_WINDOW_TOPLEVEL );
 	gtk_container_border_width (GTK_CONTAINER (win), 5);
 

@@ -163,7 +163,7 @@ void callback (GtkWidget *widget, gpointer *data)
                         	tcd_playtracks( &cd, cd.cur_t, cd.last_t );
                         break;
 		case TRACKLIST:
-			gtracked(trackeditor);
+			gtracked();
 			break;
 		case QUIT:
 			delete_event(NULL,NULL);
@@ -172,7 +172,7 @@ void callback (GtkWidget *widget, gpointer *data)
 			about_cb(NULL,NULL);
 			break;	
 		case CDDB:
-			gcddb( cddbbutton );
+			gcddb();
 			break;
 		case PROPS:
 			properties_cb(NULL, NULL);

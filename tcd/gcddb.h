@@ -29,7 +29,7 @@
 #define GCDDB_H
 
 void cancel( GtkWidget *, GtkWidget ** );
-void gcddb( GtkWidget *);
+void gcddb();
 int do_cddb( GtkWidget *, gpointer );
 
 

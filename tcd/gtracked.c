@@ -35,7 +35,7 @@
 
 #include "gtracked.h"
 
-GtkWidget *trwin, *td;
+GtkWidget *trwin;
 GtkWidget *box, *namebox;
 GtkWidget *entry[50], *title;
 extern cd_struct cd;
@@ -51,22 +51,20 @@ void destroy_window (GtkWidget *widget, GtkWidget **window)
 	strcpy( cd.dtitle, (char*)gtk_entry_get_text(GTK_ENTRY(title)));
 	tcd_writediskinfo(&cd);
 	gtk_widget_destroy( trwin );
-	trwin = NULL;
-	tracklabel_f = titlelabel_f = -100;
-	gtk_widget_set_sensitive( td, TRUE );
-        gtk_widget_grab_focus( td );
+	tracklabel_f = titlelabel_f = -100; /* Invalidate the labels */
 }
 
 
-void gtracked( GtkWidget *button_td )
+void gtracked()
 {
 	int i;
 	char buf[64];
 	/* FIXME don't hardcode number of entries! */
 	GtkWidget *label, *tmp, *button, *table;
 
-	td = button_td;
-	gtk_widget_set_sensitive( button_td, FALSE );	
+	if( trwin )
+		return;
+
 	trwin = gtk_window_new( GTK_WINDOW_TOPLEVEL );
 	gtk_window_set_title( GTK_WINDOW(trwin), "TCD 2.0 - Track Editor" );
         gtk_window_set_wmclass( GTK_WINDOW(trwin), "track_editor","gtcd" );

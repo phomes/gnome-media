@@ -377,6 +377,9 @@ void properties_cb( GtkWidget *widget, void *data )
 {
 	GtkWidget *page1, *page2, *label;
 
+	if( propbox )
+		return;
+
 	load_properties(&props);
 		
 	propbox = gnome_property_box_new();
