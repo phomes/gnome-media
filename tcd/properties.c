@@ -96,17 +96,17 @@ void cddb_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
 
-GtkWidget *httpframe, *proxyframe;
+GtkWidget *http_box, *proxy_box;
 
 void http_checked( GtkWidget *widget, gpointer data )
 {
     if (GTK_TOGGLE_BUTTON(widget)->active) {
 	props.use_http=TRUE;
-	gtk_widget_set_sensitive(httpframe,TRUE);
+	gtk_widget_set_sensitive(http_box,TRUE);
     } 
     else {
 	props.use_http=FALSE;
-	gtk_widget_set_sensitive(httpframe,FALSE);
+	gtk_widget_set_sensitive(http_box,FALSE);
     }
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
 }
@@ -115,11 +115,11 @@ void proxy_checked( GtkWidget *widget, gpointer data )
 {
     if (GTK_TOGGLE_BUTTON(widget)->active) {
 	props.use_proxy=TRUE;
-	gtk_widget_set_sensitive(proxyframe,TRUE);
+	gtk_widget_set_sensitive(proxy_box,TRUE);
     } 
     else {
 	props.use_proxy=FALSE;
-	gtk_widget_set_sensitive(proxyframe,FALSE);
+	gtk_widget_set_sensitive(proxy_box,FALSE);
     }
     
     gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
@@ -134,14 +134,13 @@ void proxy_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
 GtkWidget *create_http_frame()
 {
     GtkWidget *vbox, *http_check, *proxy_check;
-    GtkWidget *http_box, *proxy_box;
     GtkWidget *proxy_l_box, *proxy_r_box;
     GtkWidget *label;
     GtkWidget *path_entry, *path_box;
     GtkWidget *proxy_server_entry, *proxy_port_spin;
     GtkObject *adj;
     
-    vbox		= gtk_vbox_new(FALSE,2);
+    vbox	= gtk_vbox_new(FALSE,2);
     http_box	= gtk_vbox_new(FALSE,2);
     proxy_box	= gtk_hbox_new(FALSE,2);
     path_box	= gtk_hbox_new(FALSE,2);
@@ -154,11 +153,7 @@ GtkWidget *create_http_frame()
     gtk_signal_connect(GTK_OBJECT(http_check),"toggled",
 		       GTK_SIGNAL_FUNC(http_checked),NULL);  
     
-    /* http frame */
-    httpframe = gtk_frame_new("HTTP");
-    gtk_widget_set_sensitive(httpframe,props.use_http);
-    gtk_frame_set_shadow_type(GTK_FRAME(httpframe),GTK_SHADOW_ETCHED_IN);
-    gtk_container_add(GTK_CONTAINER(httpframe), http_box);
+    gtk_widget_set_sensitive(http_box,props.use_http);
     
     /* remote path entry & label */
     label = gtk_label_new(N_("Path:"));
@@ -177,11 +172,7 @@ GtkWidget *create_http_frame()
     gtk_signal_connect(GTK_OBJECT(proxy_check),"toggled",
 		       GTK_SIGNAL_FUNC(proxy_checked),NULL);  
     
-    /* proxy frame */
-    proxyframe = gtk_frame_new(N_("Proxy"));
-    gtk_widget_set_sensitive(proxyframe,props.use_proxy);
-    gtk_frame_set_shadow_type(GTK_FRAME(proxyframe),GTK_SHADOW_ETCHED_IN);
-    gtk_container_add(GTK_CONTAINER(proxyframe), proxy_box);
+    gtk_widget_set_sensitive(proxy_box,props.use_proxy);
     
     /* proxy server */
     label = gtk_label_new(N_("Server:"));
@@ -210,13 +201,13 @@ GtkWidget *create_http_frame()
     gtk_box_pack_start(GTK_BOX(http_box), path_box, TRUE, TRUE, 0);
     
     gtk_box_pack_start(GTK_BOX(http_box), proxy_check, FALSE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(http_box), proxyframe, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(http_box), proxy_box, FALSE, TRUE, 0);
     
     gtk_box_pack_start(GTK_BOX(proxy_box), proxy_l_box, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(proxy_box), proxy_r_box, TRUE, TRUE, 0);
     
     gtk_box_pack_start(GTK_BOX(vbox), http_check, FALSE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), httpframe, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), http_box, FALSE, TRUE, 0);
     
     return vbox;	
 }
@@ -224,14 +215,13 @@ GtkWidget *create_http_frame()
 GtkWidget *create_cddb_frame()
 {
     GtkWidget *cddb_r_box, *cddb_l_box;
-    GtkWidget *cddb_frame, *cddb_box;
+    GtkWidget *cddb_box;
     GtkWidget *cddb_i, *port_i, *label;
     GtkObject *adj;
     
     cddb_r_box = gtk_vbox_new( FALSE, 2 );
     cddb_l_box = gtk_vbox_new( FALSE, 2 );
     cddb_box   = gtk_hbox_new( FALSE, 2 );
-    cddb_frame = gtk_frame_new(N_("CDDB Access"));
     
     /* server entry */
     label = gtk_label_new(N_("Server:"));
@@ -241,8 +231,8 @@ GtkWidget *create_cddb_frame()
     props.cddb = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddb_i)));
     gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
 			GTK_SIGNAL_FUNC(changed_cb), NULL );
-    gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i,TRUE, TRUE, 0 );
+    gtk_box_pack_start( GTK_BOX(cddb_l_box), label, TRUE, TRUE, 0 );
+    gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i, TRUE, TRUE, 0 );
     
     /* port spinner */
     label = gtk_label_new(N_("Port:"));
@@ -264,10 +254,9 @@ GtkWidget *create_cddb_frame()
     gtk_box_pack_start( GTK_BOX(cddb_box), cddb_l_box, TRUE, TRUE, 0 );
     gtk_box_pack_start( GTK_BOX(cddb_box), cddb_r_box, TRUE, TRUE, 0 );
     
-    gtk_container_add( GTK_CONTAINER(cddb_frame), cddb_box );
-    gtk_widget_show_all(cddb_frame);
+    gtk_widget_show_all(cddb_box);
     
-    return cddb_frame;
+    return cddb_box;
 }
 
 GtkWidget *create_cdrom_frame()
@@ -432,7 +421,7 @@ GtkWidget *create_ui_frame()
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), props.handle );
     gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), props.tooltip );
     
-    ui_frame = gtk_frame_new(N_("General"));
+    ui_frame = gtk_frame_new(N_("Interface"));
     
     gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
 			GTK_SIGNAL_FUNC(check_changed_cb), &props.handle );
@@ -454,17 +443,27 @@ GtkWidget *create_ui_frame()
 
 GtkWidget *create_page2()
 {
-    GtkWidget *box;
-    GtkWidget *http_frame;
+    GtkWidget *box, *frame1;
+    GtkWidget *http, *cddb, *frame2;
     
     box = gtk_vbox_new( FALSE,4 );	
-    http_frame = create_http_frame();
-    gtk_box_pack_start(GTK_BOX(box), http_frame,TRUE, TRUE, 0);
+
+    cddb = create_cddb_frame();
+    http = create_http_frame();
+
+    frame1 = gtk_frame_new(N_("CDDB Access"));
+    frame2 = gtk_frame_new(N_("HTTP Preferences"));
+
+    gtk_container_add(GTK_CONTAINER(frame1), cddb);
+    gtk_container_add(GTK_CONTAINER(frame2), http);
+
+    gtk_box_pack_start(GTK_BOX(box), frame1, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(box), frame2, TRUE, TRUE, 0);
     
     return box;
 }	
 
-GtkWidget *create_page3()
+GtkWidget *create_interface()
 {
     GtkWidget *box;
     GtkWidget *ui_frame, *status_frame;
@@ -482,18 +481,11 @@ GtkWidget *create_page3()
 
 GtkWidget *create_page1()
 {
-    GtkWidget *box;
-    GtkWidget *cdrom_frame, *cddb_frame;
+    GtkWidget *cdrom_frame;
     
-    box = gtk_vbox_new( FALSE,4 );	
-    
-    cddb_frame = create_cddb_frame();
     cdrom_frame= create_cdrom_frame();
     
-    gtk_box_pack_start( GTK_BOX(box), cddb_frame,TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(box), cdrom_frame,TRUE, TRUE, 0 );
-    
-    return box;
+    return cdrom_frame;
 }
 
 void help_cb(GtkWidget *widget, void *data)
@@ -525,30 +517,31 @@ void apply_cb( GtkWidget *widget, void *data )
 
 void properties_cb( GtkWidget *widget, void *data )
 {
-    GtkWidget *page1, *page2, *label, *page3;
+    GtkWidget *general, *page2, *label, *interface;
+    GtkWidget *box1;
     
     load_properties(&props);
     
     propbox = gnome_property_box_new();
     gtk_window_set_title( GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window), "TCD Settings" );
     
-    page1	= create_page1();
-    label   = gtk_label_new(N_("General"));
-    gtk_widget_show(page1);
+    box1 = gtk_vbox_new(FALSE,2);
+    general = create_page1();
+    interface = create_interface();
+
+    gtk_box_pack_start_defaults(GTK_BOX(box1), general);
+    gtk_box_pack_start_defaults(GTK_BOX(box1), interface);
+
+    label = gtk_label_new(N_("General"));
+    gtk_widget_show_all(box1);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    page1, label);
+				    box1, label);
     
     page2 	= create_page2();
     label   = gtk_label_new(N_("HTTP/Proxy"));
     gtk_widget_show(page2);
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
 				    page2, label);
-    
-    page3 = create_page3();
-    label = gtk_label_new(N_("Interface"));
-    gtk_widget_show(page3);
-    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    page3, label);
     
     gtk_signal_connect( GTK_OBJECT(propbox), 
 			"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
