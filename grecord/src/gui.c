@@ -62,14 +62,14 @@ static GnomeUIInfo echo_effect_menu_uiinfo [] =
 {
 	{
 		GNOME_APP_UI_ITEM, N_("Add echo"),
-		N_("Adds echo to the current sample"),
+		N_("Add echo to the current sample"),
 		on_add_echo_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL,
 		0, 0, NULL,
 	},
 	{
 		GNOME_APP_UI_ITEM, N_("Remove echo"),
-		N_("Removes echo from the current sample"),
+		N_("Remove echo from the current sample"),
 		on_remove_echo_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL,
 		0, 0, NULL,
@@ -81,14 +81,14 @@ static GnomeUIInfo speed_effect_menu_uiinfo [] =
 {
 	{
 		GNOME_APP_UI_ITEM, N_("Increase speed"),
-		N_("Increases the speed of the current sample"),
+		N_("Increase the speed of the current sample"),
 		on_increase_speed_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL,
 		0, 0, NULL,
 	},
 	{
 		GNOME_APP_UI_ITEM, N_("Decrease speed"),
-		N_("Decreases the speed of the current sample"),
+		N_("Decrease the speed of the current sample"),
 		on_decrease_speed_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL,
 		0, 0, NULL,
@@ -99,21 +99,21 @@ static GnomeUIInfo speed_effect_menu_uiinfo [] =
 static GnomeUIInfo effects_menu_uiinfo [] =
 {
 	GNOMEUIINFO_SUBTREE (N_("Echo"), echo_effect_menu_uiinfo),
-	//GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo),
+	GNOMEUIINFO_SUBTREE (N_("Speed"), speed_effect_menu_uiinfo),
 	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo edit_menu_uiinfo[] =
 {
-	GNOMEUIINFO_MENU_UNDO_ITEM (on_undo_activate_cb, NULL),
+	//GNOMEUIINFO_MENU_UNDO_ITEM (on_undo_activate_cb, NULL),
 	{
 		GNOME_APP_UI_ITEM, N_("Undo all changes"),
 		N_("Undo all changes made on the current sample"),
 		on_undoall_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO,
 		0, 0, NULL,
 	},
-	GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL),
+	//GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_SUBTREE (N_("Effects"), effects_menu_uiinfo),
 	GNOMEUIINFO_END
@@ -380,11 +380,6 @@ create_grecord_window (void)
 	gnome_app_set_contents (GNOME_APP (grecord_window), GTK_WIDGET (vbox1));
 
 	gnome_app_install_menu_hints (GNOME_APP (grecord_window), menubar1_uiinfo);
-
-	/* Disable some widgets */
-	gtk_widget_set_sensitive (edit_menu_uiinfo[0].widget, FALSE);
-	gtk_widget_set_sensitive (edit_menu_uiinfo[2].widget, FALSE);
-	gtk_widget_set_sensitive (echo_effect_menu_uiinfo[1].widget, FALSE);
 	
 	/* Initiate mainwindow and set the topic */
 	is_file_default ();
@@ -412,7 +407,7 @@ create_grecord_window (void)
 	}
 	
 	if ((found_file || default_file) && unsupported_soundfile) {
-		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a valid soundfile."), active_file);
+		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a supported soundfile."), active_file);
 		mess = gnome_message_box_new (show_mess,
 					      GNOME_MESSAGE_BOX_WARNING,
 					      GNOME_STOCK_BUTTON_OK,
