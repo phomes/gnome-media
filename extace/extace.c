@@ -23,8 +23,8 @@
 #include <sys/ioctl.h>
 #include <sys/time.h>
 #include <esd.h>
-#include <gsl_errno.h>
-#include <gsl_fft_real.h>
+#include <gsl/gsl_errno.h>
+#include <gsl/gsl_fft_real.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
