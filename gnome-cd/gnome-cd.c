@@ -466,6 +466,8 @@ init_player (void)
 
 		g_error_free (error);
 		g_error_free (detailed_error);
+		error = NULL;
+		detailed_error = NULL;
 
 		gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, 
 					      GNOME_CDROM_UPDATE_CONTINOUS, 
