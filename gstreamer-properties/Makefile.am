@@ -22,7 +22,7 @@ Desktop_in_files = gstreamer-properties.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
 INCLUDES   = $(GSTPROPS_CFLAGS)
-CFLAGS	   = -DG_LOG_DOMAIN="gstreamer-properties" \
+AM_CFLAGS  = -DG_LOG_DOMAIN="gstreamer-properties" \
              -DGNOMELOCALEDIR="${prefix}/${DATADIRNAME}/locale"
 
 CLEANFILES = $(GSTPROPS_CLEANFILES)
