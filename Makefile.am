@@ -1,4 +1,6 @@
-SUBDIRS = @PROGRAMS_GMIX@ @PROGRAMS_GNOMOVISION@ po intl macros
+SUBDIRS = po intl macros	\
+	@PROGRAMS_GMIX@		\
+	@PROGRAMS_GNOMOVISION@
 
 ## to automatically rebuild aclocal.m4 if any of the macros in `macros/' change
 @MAINT@include macros/macros.dep
