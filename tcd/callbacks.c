@@ -11,6 +11,8 @@
 
 void play_cb(GtkWidget *widget, gpointer data)
 {
+    if(!cd.isplayable)
+	return;
     if(cd.sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
 	tcd_pausecd(&cd);
     else
