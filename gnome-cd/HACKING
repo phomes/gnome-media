@@ -2,6 +2,24 @@ Hacking notes for gnome-cd
 
 * ChangeLog entries go in this directory until we merge all of them with
   the toplevel one
+
+DEBUGGING gnome-cd
+------------------
 * to debug gnome-cd, set GNOME_CD_DEBUG env var
 * to print warning messages from code, use gcd_warning
 * to print debugging messages from code, use gcd_debug (g_print-like)
+
+DEBUGGING CDDB lookups
+----------------------
+* kill the CDDBSlave2 component
+* set CDDB_SLAVE_DEBUG env var
+* start up CDDBSlave2 from the command line
+
+* cddb info is cached in $HOME/.cddbslave/ with files with the discid as
+  name
+* FIXME: maybe make it use $HOME/.cddb as well ?
+
+* first failed lookup will return NULL data, causing a correct window title
+  subsequent lookups (for the lifetime of CDDBSlave2) cause it to return
+  Unknown
+  restarting the CDDBSlave2 component causes it to return NULL again

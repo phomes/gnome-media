@@ -1,6 +1,19 @@
 2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* HACKING:
+	* callbacks.c: (set_window_track_title), (status_ok):
+          do not pass "" strings for display, but use NULL.
+	* display.c:
+          replace unknown strings with others also used for translation
+          so they match and don't seem to change
+	* gnome-cd.c: (gnome_cd_set_window_title):
+	  when either artist or track is NULL, display the other.
+          Only display app name when both are NULL.
+	  Fixes #114015
+
+2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* HACKING:
           adding hacking notes
 	* callbacks.c: (status_ok):
 	* cddb.c: (get_disc_info), (cddb_sum):

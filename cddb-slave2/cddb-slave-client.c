@@ -326,6 +326,40 @@ cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 }
 
 /**
+ * cddb_slave_client_is_valid:
+ *
+ * Checks if an entry is marked as valid in the CDDB slave cache.
+ *
+ * Returns: %TRUE if the given discid is a valid entry in the cache.
+ */
+gboolean
+cddb_slave_client_is_valid (CDDBSlaveClient *client,
+                            const char *discid)
+{
+	CORBA_Object objref;
+	CORBA_Environment ev;
+	CORBA_boolean ret;
+
+	g_return_val_if_fail (client != NULL, FALSE);
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), FALSE);
+	g_return_val_if_fail (discid != NULL, FALSE);
+
+	objref = client->priv->objref;
+
+	CORBA_exception_init (&ev);
+	ret = GNOME_Media_CDDBSlave2_isValid (objref, discid, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Error checking if the discid is a valid entry\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		return FALSE;
+	}
+
+	CORBA_exception_free (&ev);
+	return ret;
+}
+
+/**
  * cddb_slave_client_get_disc_title:
  *
  */

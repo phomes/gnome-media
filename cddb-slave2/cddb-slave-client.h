@@ -64,6 +64,10 @@ void cddb_slave_client_add_listener (CDDBSlaveClient *client,
 				     BonoboListener *listener);
 void cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 					BonoboListener *listener);
+
+gboolean cddb_slave_client_is_valid (CDDBSlaveClient *client,
+                                     const char *discid);
+
 char *cddb_slave_client_get_disc_title (CDDBSlaveClient *client,
 					const char *discid);
 char *cddb_slave_client_get_artist (CDDBSlaveClient *client,

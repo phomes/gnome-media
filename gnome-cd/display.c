@@ -71,8 +71,8 @@ static gulong display_signals[LAST_SIGNAL] = { 0, };
 static char *default_text[CD_DISPLAY_END] = {
 	"0:00",
 	" ",
-	N_("Unknown artist"),
-	N_("Unknown disc")
+	N_("Unknown Artist"),
+	N_("Unknown Album")
 };
 
 static void

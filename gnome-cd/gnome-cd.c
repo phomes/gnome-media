@@ -68,7 +68,9 @@ gcd_debug (const gchar *format,
 
 /*
  * Sets the window title based on the passed artist and track name.
- * If either artist or track is NULL, then "CD Player" is displayed.
+ * If artist and track is NULL, then "CD Player" is displayed.
+ * If either one is NULL, display the other.
+ * If neither are NULL, display "(artist) - (title)"
  *
  * FIXME: it might be nice to change this function so that it takes
  * artist, track, album, status, so we can decide better what to display.
@@ -82,11 +84,14 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 	char *title;
 	const char *old_title;
 
-	if (artist == NULL ||
-	    track == NULL) {
+	if (artist == NULL && track == NULL) {
 		title = g_strdup (_("CD Player"));
+	} else if (artist == NULL) {
+		title = g_strdup (track);
+	} else if (track == NULL) {
+		title = g_strdup (artist);
 	} else {
-		title = g_strconcat (track, " - ", artist, NULL);
+		title = g_strconcat (artist, " - ", track, NULL);
 	}
 	/*
 	 * Call gtk_window_set_title only if the title has changed

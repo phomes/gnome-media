@@ -76,6 +76,14 @@ module Media {
 		/**
 		 * discid: CDDB disc id.
 		 * 
+		 * checks if the slave has the entry marked as valid.
+		 */
+		boolean isValid (in string discid)
+			raises (UnknownDiscID);
+
+		/**
+		 * discid: CDDB disc id.
+		 * 
 		 * Returns the artist of @discid
 		 */
 		string getArtist (in string discid)

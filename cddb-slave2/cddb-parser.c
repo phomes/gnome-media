@@ -90,6 +90,8 @@ cddb_entry_parse_file (CDDBEntry *entry,
 			prev_vector[1] = g_strdup (vector[1]);
 		}
 
+		/* We read this from a file, so we consider it valid */
+		entry->is_valid = TRUE;
 
 		/* See if we have this ID */
 		string = g_hash_table_lookup (entry->fields, vector[0]);
@@ -450,6 +452,7 @@ write_body (CDDBEntry *entry,
 	write_field (entry, "PLAYORDER", handle);
 }
 
+/* Write the given entry to a file in $HOME/.cddbslave */
 gboolean
 cddb_entry_write_to_file (CDDBEntry *entry)
 {

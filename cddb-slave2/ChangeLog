@@ -1,3 +1,22 @@
+2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* GNOME_Media_CDDBSlave2.idl:
+	* cddb-parser.c: (cddb_entry_parse_file):
+	* cddb-slave-client.c: (cddb_slave_client_is_valid):
+	* cddb-slave-client.h:
+	* cddb-slave.c: (clear_entry_from_cache), (cddb_entry_is_valid),
+	(impl_GNOME_Media_CDDBSlave2_query),
+	(impl_GNOME_Media_CDDBSlave2_save),
+	(impl_GNOME_Media_CDDBSlave2_isValid), (cddb_slave_class_init):
+	* cddb-slave.h:
+	* cddb-track-editor.c: (load_new_track_data), (sync_cddb_info):
+          add a boolean to entries to mark them as valid, which they become
+          either on a successful file/CDDB lookup or by a save from the editor.
+          As long as they're not valid, they don't get dummy information,
+          which used to get sent to the listeners, causing Unknown Artist
+          to be in the gnome-cd window title.
+          Part of fix to #114015
+
 2004-04-16  Kaushal Kumar  <kaushal.kumar@wipro.com>
 
 	* cddb-slave-capplet.c (dialog_button_clicked_cb): 

@@ -199,17 +199,19 @@ do_goodbye_response (ConnectionData *cd,
 	return FALSE;
 }
 
+/* clears the entry from the cache by marking it as invalid, which causes
+ * the editor to fill in dummy values */
 static void
 clear_entry_from_cache (const char *discid)
 {
 	CDDBEntry *entry;
 	int i;
-	
+
 	entry = g_hash_table_lookup (cddb_cache, discid);
-	/* Set the fields of the entry to unknown */
+        entry->is_valid = FALSE;
 	entry->revision = 0;
 
-	g_hash_table_insert (entry->fields, g_strdup ("DTITLE"),
+        g_hash_table_insert (entry->fields, g_strdup ("DTITLE"),
 			     g_string_new (_("Unknown / Unknown")));
 	for (i = 0; i < entry->ntrks; i++) {
 		char *name;
@@ -977,7 +979,23 @@ cddb_send_cmd (ConnectionData *data)
 		return;
 	}
 }
-	
+
+/* checks if the given discid is a valid entry.
+ */
+static gboolean
+cddb_entry_is_valid (const char *discid)
+{
+	CDDBEntry *entry;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (!entry) return FALSE;
+	return entry->is_valid;
+}
+
+/* checks if the given discid lives in the cache.
+ * if it does not, try reading it from the .cddbslave directory.
+ * FIXME: try reading it from the .cddb dir as well ?
+ */
 static gboolean
 cddb_check_cache (const char *discid)
 {
@@ -1031,6 +1049,12 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	cddb = cddb_slave_from_servant (servant);
 
 	if (cddb_check_cache (discid) == TRUE) {
+		if (!cddb_entry_is_valid (discid)) {
+			if (cddb_debugging == TRUE) {
+				g_print ("CDDB: Found %s in cache but invalid\n", discid);
+			}
+			return;
+		}
 		if (cddb_debugging == TRUE) {
 			g_print ("CDDB: Found %s in cache\n", discid);
 		}
@@ -1078,6 +1102,8 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 		return;
 	}
 
+	/* since we're asked to save, we should keep this entry as valid */
+	entry->is_valid = TRUE;
 	write_ret = cddb_entry_write_to_file (entry);
 	if (write_ret == FALSE) {
 		/* Exception */
@@ -1088,6 +1114,25 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 	/* FIXME: Should we only emit the changed signal here,
 	   or in the set* calls? */
 	cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
+}
+
+static CORBA_boolean
+impl_GNOME_Media_CDDBSlave2_isValid (PortableServer_Servant servant,
+				     const CORBA_char *discid,
+				     CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	CORBA_char *ret;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
+		g_warning ("No entry %s", discid);
+		return FALSE;
+	}
+        return entry->is_valid;
 }
 
 static CORBA_char *
@@ -1550,6 +1595,7 @@ cddb_slave_class_init (CDDBSlaveClass *klass)
 	parent_class = g_type_class_peek_parent (klass);
 	epv->query = impl_GNOME_Media_CDDBSlave2_query;
 	epv->save = impl_GNOME_Media_CDDBSlave2_save;
+	epv->isValid = impl_GNOME_Media_CDDBSlave2_isValid;
 	epv->getArtist = impl_GNOME_Media_CDDBSlave2_getArtist;
 	epv->setArtist = impl_GNOME_Media_CDDBSlave2_setArtist;
 	epv->getDiscTitle = impl_GNOME_Media_CDDBSlave2_getDiscTitle;

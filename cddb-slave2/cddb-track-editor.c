@@ -505,7 +505,8 @@ load_new_track_data (TrackEditorDialog *td,
 {
 	CDDBInfo *info;
 	char *title;
-	
+        int i;
+
 	if (client == NULL) {
 		client = cddb_slave_client_new ();
 	}
@@ -515,13 +516,29 @@ load_new_track_data (TrackEditorDialog *td,
 
 	/* Does the CORBA stuff need to be strduped? */
 	info->discid = g_strdup (discid);
-	info->title = cddb_slave_client_get_disc_title (client, discid);
-	info->artist = cddb_slave_client_get_artist (client, discid);
-	info->comment = cddb_slave_client_get_comment (client, discid);
-	info->genre = cddb_slave_client_get_genre (client, discid);
-	info->year = cddb_slave_client_get_year (client, discid);
+        /* The CDDB slave is responsible for making sure that entries exist
+         * for new discids.  It marks them as valid when they are valid,
+         * either through successful lookup or through a save from the editor.
+         * If the entry is not valid, we fill in dummy values here.
+         * Invalid entries can still return useful info like ntrks and
+         * track_info, which we need for filling in dummy values. */
+
 	info->ntrks = cddb_slave_client_get_ntrks (client, discid);
 	info->track_info = cddb_slave_client_get_tracks (client, discid);
+
+	if (cddb_slave_client_is_valid (client, discid)) {
+		info->artist = cddb_slave_client_get_artist (client, discid);
+		info->title = cddb_slave_client_get_disc_title (client, discid);
+		info->comment = cddb_slave_client_get_comment (client, discid);
+		info->genre = cddb_slave_client_get_genre (client, discid);
+		info->year = cddb_slave_client_get_year (client, discid);
+	} else {
+		info->artist = g_strdup (_("Unknown Artist"));
+		info->title = g_strdup (_("Unknown Title"));
+		info->comment = NULL;
+		info->genre = NULL;
+		info->year = 0;
+	}
 
 	title = g_strdup_printf (_("Editing Disc ID: %s"), info->discid);
 	gtk_label_set_text (GTK_LABEL (td->discid), title);
@@ -810,6 +827,7 @@ sync_cddb_info (CDDBInfo *info)
 {
 	g_return_if_fail (info != NULL);
 
+	g_print ("DEBUG: sync: setting disc title: %s\n", info->title);
 	cddb_slave_client_set_disc_title (client, info->discid, info->title);
 	cddb_slave_client_set_artist (client, info->discid, info->artist);
 

@@ -39,6 +39,7 @@ typedef struct _CDDBEntry {
 
 	GList *comments;
 	GHashTable *fields;
+	gboolean is_valid; /* TRUE when result of a good lookup or editor save */
 } CDDBEntry;
 
 
