@@ -12,6 +12,6 @@ gmix_SOURCES =	\
 	gmix.c
 
 gmix_LDADD = \
-	$(GNOMEUI_LIBS) $(INTLLIBS)
+	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 Audio_DATA = gmix.desktop
