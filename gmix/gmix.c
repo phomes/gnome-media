@@ -120,6 +120,7 @@ typedef struct channel_info {
 	int channel;		/* which channel of that device am I ? */
 	/* GUI info */
 	char *title; /* or char *titel ? */
+	char *pixmap;
 	/* here are the widgets... */
 	GtkObject *left, *right;
 	GtkWidget *lock, *rec, *mute;
@@ -151,6 +152,39 @@ static const struct poptOption options[] = {
  */
 const char *device_labels[] = SOUND_DEVICE_LABELS;
 const char *device_names[]  = SOUND_DEVICE_NAMES;
+#ifndef GNOME_STOCK_PIXMAP_BLANK
+#define GNOME_STOCK_PIXMAP_BLANK NULL
+#endif
+const char *device_pixmap[] = {
+   GNOME_STOCK_PIXMAP_VOLUME,               /* Master Volume */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Bass */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Treble */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Synth */
+   GNOME_STOCK_PIXMAP_BLANK,                /* PCM */
+   GNOME_STOCK_PIXMAP_VOLUME,               /* Speaker */
+   GNOME_STOCK_PIXMAP_LINE_IN,              /* Line In */
+   GNOME_STOCK_PIXMAP_MIC,                  /* Microphone */
+   GNOME_STOCK_PIXMAP_CDROM,                /* CD-Rom */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Recording monitor ? */
+   GNOME_STOCK_PIXMAP_BLANK,                /* ALT PCM */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Rec Level? */
+   GNOME_STOCK_PIXMAP_BLANK,                /* In Gain */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Out Gain */
+   GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 1 */
+   GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 2 */
+   GNOME_STOCK_PIXMAP_LINE_IN,              /* Line */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 1 ? */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 2 ? */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 3 ? */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Phone in */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Phone Out */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Video */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Radio */
+   GNOME_STOCK_PIXMAP_BLANK,                /* Monitor (usually mic) vol */
+   GNOME_STOCK_PIXMAP_BLANK,                /* 3d Depth/space param */
+   GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
+   GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
+};
 
 /*
  * GMIX version, for version-checking the config-file
@@ -333,6 +367,7 @@ GList *make_channels(device_info *device)
 			new_channel=(channel_info *)malloc(sizeof(channel_info));
 			new_channel->device=device;
 			new_channel->channel=i;
+	 		new_channel->pixmap = g_strdup (device_pixmap[i]);
 			new_channel->title=strdup(device_labels[i]);
 			new_channel->passive=0;
 			channels=g_list_append(channels, new_channel);
@@ -516,7 +551,7 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 
 void open_dialog(void)
 {
-	GtkWidget *table, *notebook;
+	GtkWidget *table, *notebook, *spixmap;
 	GList *d, *c;
 	
 	int i,j;
@@ -558,7 +593,7 @@ void open_dialog(void)
 			j+=2;
 		}
 
-		table=gtk_table_new(i*2, 6, FALSE);
+		table=gtk_table_new(i*2, 7, FALSE);
 		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
 			table, 
 			gtk_label_new(di->info.name));
@@ -571,14 +606,19 @@ void open_dialog(void)
 			GtkWidget *label, *mixer, *separator;
 			channel_info *ci;
 			ci=c->data;
-				
+			if (ci->pixmap)
+			 {
+			  spixmap = gnome_stock_pixmap_widget (app, ci->pixmap);
+                          gtk_table_attach (GTK_TABLE (table), spixmap, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+			  gtk_widget_show (spixmap);
+			 }
 			label=gtk_label_new(ci->title);
 			gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
-			gtk_table_attach (GTK_TABLE (table), label, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+			gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 			gtk_widget_show(label);
 
 			mixer=make_slider_mixer(ci);
-			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1, 3, 4, GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (mixer);
 
 			if (ci->device->stereodevs & (1<<ci->channel)) {
@@ -586,7 +626,7 @@ void open_dialog(void)
 				ci->lock = gtk_check_button_new_with_label(_("Lock"));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->lock), (ci->device->lock_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->lock), "toggled", (GtkSignalFunc) lock_cb, (gpointer)ci);
-				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 3, 4, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->lock);
 			}
 #if 0
@@ -597,18 +637,18 @@ void open_dialog(void)
 				ci->rec = gtk_check_button_new_with_label (_("Rec."));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->rec), "toggled", (GtkSignalFunc) rec_cb, (gpointer)ci);
-				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
 			}
 #endif	
 			ci->mute=gtk_check_button_new_with_label(_("Mute"));
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
 			gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
-			gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 5, 6, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+			gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 			gtk_widget_show (ci->mute);
 
 			separator = gtk_vseparator_new ();
-			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 6, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 7, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (separator);
 			i+=2; 
 		}
