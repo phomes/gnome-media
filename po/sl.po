@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-06-09 20:24+0200\n"
+"POT-Creation-Date: 2002-06-25 19:27+0200\n"
 "PO-Revision-Date: 2000-05-02 02:49+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -735,6 +735,7 @@ msgid "Art Rock"
 msgstr "Umetniški rock"
 
 #: cddb-slave2/cddb-track-editor.c:525
+#, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Urejam ID ploščka: %s"
 
@@ -796,11 +797,11 @@ msgstr "Skrij napredne možnosti pesmi"
 msgid "_Extra track data:"
 msgstr "_Dodatni podatki pesmi:"
 
-#: cddb-slave2/cddb-track-editor.c:867
+#: cddb-slave2/cddb-track-editor.c:891
 msgid "CDDB Track Editor"
 msgstr "Urejevalnik pesmi CDDB"
 
-#: cddb-slave2/cddb-track-editor.c:995
+#: cddb-slave2/cddb-track-editor.c:1021
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1062,7 +1063,7 @@ msgstr "inicializiraj mešalko(e) iz shranjenih nastavitev in zaključi"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ne shrani (spremenjenih) nastavitev mešalca v nastavitve "
 
-#: gmix/gmix.c:378
+#: gmix/gmix.c:380
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -1073,7 +1074,7 @@ msgstr ""
 "/dev/mixer in se prepričajte, da ste v jedro\n"
 "prevedli podporo za zvok."
 
-#: gmix/gmix.c:593
+#: gmix/gmix.c:595
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1084,7 +1085,7 @@ msgstr ""
 "prevedena z OSS različico %d.%d.%d. in na vašem sistemu\n"
 "teče različica starejša od 3.6.0.\n"
 
-#: gmix/gmix.c:601
+#: gmix/gmix.c:603
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1095,54 +1096,54 @@ msgstr ""
 "prevedena z OSS različico %d.%d.%d. in na vašem sistemu\n"
 "teče različica starejša od %d.%d.%d.\n"
 
-#: gmix/gmix.c:1055
+#: gmix/gmix.c:1057
 #, c-format
 msgid "left %s"
 msgstr "levo %s"
 
-#: gmix/gmix.c:1081
+#: gmix/gmix.c:1083
 #, c-format
 msgid "Right %s"
 msgstr "desno %s"
 
-#: gmix/gmix.c:1174
+#: gmix/gmix.c:1176
 msgid "Lock"
 msgstr "Zakleni"
 
-#: gmix/gmix.c:1187
+#: gmix/gmix.c:1189
 #, c-format
 msgid "%s Lock"
 msgstr "Zakleni %s"
 
-#: gmix/gmix.c:1198
+#: gmix/gmix.c:1200
 msgid "Mute"
 msgstr "Tišina"
 
-#: gmix/gmix.c:1211
+#: gmix/gmix.c:1213
 #, c-format
 msgid "%s Mute"
 msgstr "Tišina %s"
 
-#: gmix/gmix.c:1225
+#: gmix/gmix.c:1227
 msgid "Rec."
 msgstr "Snemaj."
 
-#: gmix/gmix.c:1237
+#: gmix/gmix.c:1239
 #, c-format
 msgid "%s Record"
 msgstr "Snemaj %s"
 
-#: gmix/gmix.c:1308 gmix/gnome-volume-control.desktop.in.in.h:2
-#: gnome-cd/gnome-cd.c:489
+#: gmix/gmix.c:1310 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-cd/gnome-cd.c:488
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Kontrola glasnosti"
 
-#: gmix/gmix.c:1703
+#: gmix/gmix.c:1716
 msgid "Gnome Volume Control"
 msgstr "Kontrola glasnosti"
 
-#: gmix/gmix.c:1706
+#: gmix/gmix.c:1719
 msgid "This is a mixer for sound devices"
 msgstr "To je mešalka za zvočne naprave"
 
@@ -1189,7 +1190,7 @@ msgstr "_Povrni oznake na privzete"
 msgid "Gnome Volume Control Preferences"
 msgstr "Nastavitve Kontrole glasnosti GNOME"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:507
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:506
 msgid "Preferences"
 msgstr "Nastavitve"
 
@@ -1240,7 +1241,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Vrstica za prikaz imena albuma"
 
 #: gnome-cd/callbacks.c:76 gnome-cd/callbacks.c:163 gnome-cd/callbacks.c:262
-#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:556 grecord/src/gui.c:236
+#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:555 grecord/src/gui.c:236
 msgid "Play"
 msgstr "Igraj"
 
@@ -1282,20 +1283,13 @@ msgstr "Avtorske pravice pridržane (C) 2001, 2002"
 msgid "A GNOME cd player"
 msgstr "Predvajalnik CDjev GNOME"
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Neznan izvajalec"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Neznana plošča"
-
-#: gnome-cd/cdrom.c:355
+#: gnome-cd/cdrom.c:362
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "Nimate dovoljenj za dostop do %s."
 
-#: gnome-cd/cdrom.c:361
+#: gnome-cd/cdrom.c:368
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not compiled into Linux\n"
@@ -1307,7 +1301,15 @@ msgstr ""
 "b) Nimate ustreznih dovoljenj za dostop do pogona CDRom\n"
 "c) %s ni pogon CDRom.\n"
 
-#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
+#: gnome-cd/display.c:74
+msgid "Unknown artist"
+msgstr "Neznan izvajalec"
+
+#: gnome-cd/display.c:75
+msgid "Unknown disc"
+msgstr "Neznana plošča"
+
+#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:440
 msgid "Gnome CD Player"
 msgstr "CD predvajalnik GNOME"
 
@@ -1351,7 +1353,7 @@ msgstr ""
 "šli na dialog, kjer boste lahko nastavili napravo ali \n"
 "kliknite \"Izhod\" za izhd iz GnomeCD"
 
-#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:418
+#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:417
 msgid "Set device"
 msgstr "Nastavi napravo"
 
@@ -1359,73 +1361,75 @@ msgstr "Nastavi napravo"
 msgid "No CD device"
 msgstr "Ni CD naprave"
 
-#: gnome-cd/gnome-cd.c:414
+#: gnome-cd/gnome-cd.c:413
+#, c-format
 msgid ""
 "%s\n"
 "This means that GnomeCD will be unable to run correctly. Press Set device to "
 "go to a dialog where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
 "%s\n"
-"To pomeni, da se GnomeCD ne more pravilno pognati. Pritisnite \"Nastavi napravo\", da boste"
-"šli na dialog, kjer boste lahko nastavili napravo ali kliknite \"Izhod\" za izhod iz GnomeCD"
+"To pomeni, da se GnomeCD ne more pravilno pognati. Pritisnite \"Nastavi "
+"napravo\", da bostešli na dialog, kjer boste lahko nastavili napravo ali "
+"kliknite \"Izhod\" za izhod iz GnomeCD"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:419
 msgid "Invalid CD device"
 msgstr "Neveljavna naprava CD"
 
-#: gnome-cd/gnome-cd.c:498
+#: gnome-cd/gnome-cd.c:497
 msgid "Open track editor"
 msgstr "Odpri urejevalnik pesmi"
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:498
 msgid "Track editor"
 msgstr "Urejevalnik pesmi"
 
-#: gnome-cd/gnome-cd.c:506
+#: gnome-cd/gnome-cd.c:505
 msgid "Open preferences"
 msgstr "Odpri nastavitve"
 
-#: gnome-cd/gnome-cd.c:515
+#: gnome-cd/gnome-cd.c:514
 msgid "Track List"
 msgstr "Seznam pesmi"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous track"
 msgstr "Prejšnja pesem"
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:534
 msgid "Previous"
 msgstr "Prejšnja"
 
-#: gnome-cd/gnome-cd.c:539
+#: gnome-cd/gnome-cd.c:538
 msgid "Rewind"
 msgstr "Previj"
 
-#: gnome-cd/gnome-cd.c:556
+#: gnome-cd/gnome-cd.c:555
 msgid "Play / Pause"
 msgstr "Predvajaj / Premor"
 
-#: gnome-cd/gnome-cd.c:561 grecord/src/gui.c:250
+#: gnome-cd/gnome-cd.c:560 grecord/src/gui.c:250
 msgid "Stop"
 msgstr "Ustavi"
 
-#: gnome-cd/gnome-cd.c:565
+#: gnome-cd/gnome-cd.c:564
 msgid "Fast forward"
 msgstr "Hitro naprej"
 
-#: gnome-cd/gnome-cd.c:573
+#: gnome-cd/gnome-cd.c:572
 msgid "Next track"
 msgstr "Naslednja pesem"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject CD"
 msgstr "Izvrzi CD"
 
-#: gnome-cd/gnome-cd.c:577
+#: gnome-cd/gnome-cd.c:576
 msgid "Eject"
 msgstr "Izvrzi"
 
-#: gnome-cd/gnome-cd.c:641
+#: gnome-cd/gnome-cd.c:640
 msgid "Cannot create player"
 msgstr "Ne morem ustvariti predvajalnika"
 
@@ -1436,100 +1440,6 @@ msgstr "Predvajalnik CD"
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
 msgstr "Predvajaj glasbene CDje"
-
-#: gnome-cd/linux-cdrom.c:175
-msgid "Error opening CD"
-msgstr "Napaka pri odpiranju CD"
-
-#: gnome-cd/linux-cdrom.c:180
-msgid "Error reading CD header"
-msgstr "Napaka pri branju glave plošče"
-
-#: gnome-cd/linux-cdrom.c:197
-msgid "IOCtl failed"
-msgstr "IOCtl ni uspel"
-
-#: gnome-cd/linux-cdrom.c:209
-msgid "Error getting leadout"
-msgstr "Napaka ob pridobivanju izteka"
-
-#: gnome-cd/linux-cdrom.c:217
-#, c-format
-msgid ""
-"CD changed\n"
-"Track count: %d\n"
-"------------------\n"
-msgstr ""
-"Plošča zamenjana\n"
-"Številka pesmi: %d\n"
-"------------------\n"
-
-#: gnome-cd/linux-cdrom.c:249
-#, c-format
-msgid "(eject): ioctl failed: %s"
-msgstr "(izmet): ioctl ni uspel: %s"
-
-#: gnome-cd/linux-cdrom.c:434
-msgid "(linux_cdrom_play): Drive not ready"
-msgstr "(linux_cdrom_play): Pogon ni pripravljen"
-
-#: gnome-cd/linux-cdrom.c:454
-msgid "(linux_cdrom_play): Drive still not ready"
-msgstr "(linux_cdrom_play): Pogon še vedno ni pripravljen"
-
-#: gnome-cd/linux-cdrom.c:519
-#, c-format
-msgid "(linux_cdrom_play) ioctl failed %s"
-msgstr "(linux_cdrom_play): ioctl ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:555
-msgid "(linux_cdrom_pause): Drive not ready"
-msgstr "(linux_cdrom_pause): Pogon ni pripravljen"
-
-#: gnome-cd/linux-cdrom.c:568
-#, c-format
-msgid "(linux_cdrom_pause): Resume failed %s"
-msgstr "(linux_cdrom_pause): Nadaljevanje ni uspelo %s"
-
-#: gnome-cd/linux-cdrom.c:587
-#, c-format
-msgid "(linux_cdrom_pause): ioctl failed %s"
-msgstr "(linux_cdrom_pause): ioctl ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:633
-#, c-format
-msgid "(linux_cdrom_stop) ioctl failed %s"
-msgstr "(linux_cdrom_stop): ioctl ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:849
-#, c-format
-msgid "(linux_cdrom_get_status): ioctl error %s"
-msgstr "(linux_cdrom_get_status): ioctl ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:863
-#, c-format
-msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-msgstr "(linux_cdrom_get_status): ioctl CDROMSUBCHNL ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:874
-#, c-format
-msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-msgstr "(linux_cdrom_get_status): ioctl CDROMVOLREAD ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:939
-#, c-format
-msgid "(linux_cdrom_close_tray): ioctl failed %s"
-msgstr "(linux_cdrom_close_tray): ioctl ni uspel %s"
-
-#: gnome-cd/linux-cdrom.c:974
-#, c-format
-msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-msgstr "(linux_cdrom_set_volume:1): ioctl ni uspel %s"
-
-#. Failed, it's not a CDROM drive
-#: gnome-cd/linux-cdrom.c:1005
-msgid "%s is not a CDROM drive"
-msgstr "%s ni pogon CDROM"
 
 #: gnome-cd/preferences.c:82
 #, c-format
@@ -1544,61 +1454,61 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Napaka ob nastavljanju naprave"
 
-#: gnome-cd/preferences.c:771
+#: gnome-cd/preferences.c:793
 msgid "Gnome CD Player Preferences"
 msgstr "Nastavitve GNOME predvajalnika CD"
 
-#: gnome-cd/preferences.c:789
+#: gnome-cd/preferences.c:812
 msgid "CD player de_vice"
 msgstr "Napra_va CDROM"
 
-#: gnome-cd/preferences.c:804
+#: gnome-cd/preferences.c:827
 msgid "_Apply change"
 msgstr "_Uveljavi spremembe"
 
 #. left side
-#: gnome-cd/preferences.c:817
+#: gnome-cd/preferences.c:840
 msgid "When Gnome CD Player starts"
 msgstr "Ko se zažene predvajalnik CD GNOME"
 
-#: gnome-cd/preferences.c:825
+#: gnome-cd/preferences.c:848
 msgid "Do _nothing"
 msgstr "Ne stori ničesar"
 
-#: gnome-cd/preferences.c:834
+#: gnome-cd/preferences.c:857
 msgid "Start _playing CD"
 msgstr "Začni predvajanje CDja"
 
-#: gnome-cd/preferences.c:843
+#: gnome-cd/preferences.c:866
 msgid "_Stop playing CD"
 msgstr "Končaj predvajanje CDja"
 
-#: gnome-cd/preferences.c:856
+#: gnome-cd/preferences.c:879
 msgid "Attempt to _close CD tray"
 msgstr "Poskusi _zapreti predalček za CD"
 
 #. Right side
-#: gnome-cd/preferences.c:868
+#: gnome-cd/preferences.c:891
 msgid "When Gnome CD Player quits"
 msgstr "Ob izhodu iz predvajalnika CD Gnome"
 
-#: gnome-cd/preferences.c:876
+#: gnome-cd/preferences.c:899
 msgid "Do not_hing"
 msgstr "Ne stori _ničesar"
 
-#: gnome-cd/preferences.c:885
+#: gnome-cd/preferences.c:908
 msgid "S_top playing CD"
 msgstr "Končaj predvajanje"
 
-#: gnome-cd/preferences.c:894
+#: gnome-cd/preferences.c:917
 msgid "Attempt to _open CD tray"
 msgstr "Poskusi _odpreti predalček za CD"
 
-#: gnome-cd/preferences.c:904
+#: gnome-cd/preferences.c:927
 msgid "Attempt to c_lose CD tray"
 msgstr "Poskusi _zapreti predalček za CD"
 
-#: gnome-cd/preferences.c:935
+#: gnome-cd/preferences.c:958
 msgid "Theme name"
 msgstr "Ime teme"
 
@@ -2174,6 +2084,69 @@ msgstr "Meri izhodno glasnost zvoka"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Kazalec glasnosti"
+
+#~ msgid "Error opening CD"
+#~ msgstr "Napaka pri odpiranju CD"
+
+#~ msgid "Error reading CD header"
+#~ msgstr "Napaka pri branju glave plošče"
+
+#~ msgid "IOCtl failed"
+#~ msgstr "IOCtl ni uspel"
+
+#~ msgid "Error getting leadout"
+#~ msgstr "Napaka ob pridobivanju izteka"
+
+#~ msgid ""
+#~ "CD changed\n"
+#~ "Track count: %d\n"
+#~ "------------------\n"
+#~ msgstr ""
+#~ "Plošča zamenjana\n"
+#~ "Številka pesmi: %d\n"
+#~ "------------------\n"
+
+#~ msgid "(eject): ioctl failed: %s"
+#~ msgstr "(izmet): ioctl ni uspel: %s"
+
+#~ msgid "(linux_cdrom_play): Drive not ready"
+#~ msgstr "(linux_cdrom_play): Pogon ni pripravljen"
+
+#~ msgid "(linux_cdrom_play): Drive still not ready"
+#~ msgstr "(linux_cdrom_play): Pogon še vedno ni pripravljen"
+
+#~ msgid "(linux_cdrom_play) ioctl failed %s"
+#~ msgstr "(linux_cdrom_play): ioctl ni uspel %s"
+
+#~ msgid "(linux_cdrom_pause): Drive not ready"
+#~ msgstr "(linux_cdrom_pause): Pogon ni pripravljen"
+
+#~ msgid "(linux_cdrom_pause): Resume failed %s"
+#~ msgstr "(linux_cdrom_pause): Nadaljevanje ni uspelo %s"
+
+#~ msgid "(linux_cdrom_pause): ioctl failed %s"
+#~ msgstr "(linux_cdrom_pause): ioctl ni uspel %s"
+
+#~ msgid "(linux_cdrom_stop) ioctl failed %s"
+#~ msgstr "(linux_cdrom_stop): ioctl ni uspel %s"
+
+#~ msgid "(linux_cdrom_get_status): ioctl error %s"
+#~ msgstr "(linux_cdrom_get_status): ioctl ni uspel %s"
+
+#~ msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
+#~ msgstr "(linux_cdrom_get_status): ioctl CDROMSUBCHNL ni uspel %s"
+
+#~ msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
+#~ msgstr "(linux_cdrom_get_status): ioctl CDROMVOLREAD ni uspel %s"
+
+#~ msgid "(linux_cdrom_close_tray): ioctl failed %s"
+#~ msgstr "(linux_cdrom_close_tray): ioctl ni uspel %s"
+
+#~ msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
+#~ msgstr "(linux_cdrom_set_volume:1): ioctl ni uspel %s"
+
+#~ msgid "%s is not a CDROM drive"
+#~ msgstr "%s ni pogon CDROM"
 
 #~ msgid ""
 #~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
