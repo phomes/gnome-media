@@ -37,6 +37,7 @@
 #include <sys/socket.h>
 
 #include "socket.h"
+#include "cddb.h"
 
 void die(int signal);
 int remove_cache(char *req);
@@ -45,6 +46,7 @@ extern char *g_req;
 
 void die(int signal)
 {
+    set_status(STATUS_NONE);
     remove_cache(g_req);
     exit(signal);
 }
@@ -94,7 +96,7 @@ int fgetsock(char* s, int size, int socket)
     int i=0, r;
     char c;
 
-    alarm(15);
+    alarm(20);
     signal(SIGALRM, die);
     
     while( (r=recv(socket, &c, 1, 0)) != 00 )

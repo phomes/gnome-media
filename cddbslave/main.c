@@ -59,18 +59,23 @@ int main(int argc, char *argv[])
 
 	/* connect to cddb server */
 	g_req = req;
+	set_status(STATUS_CONNECTING);
 	fd = opensocket("cddb.cddb.com", 888);
 	if(fd < 0)
 	{
+	    set_status(STATUS_NONE);
 	    remove_cache(req);
 	    return(-1);
 	}
+	set_status(STATUS_QUERYING);
 
 	/* grab directory name */
 	dname = get_file_name("");
 	if(!dname)
 	{
-	    do_request(req, fd);
+	    if(do_request(req, fd) < 0)
+		sleep(5);
+	    set_status(STATUS_NONE);
 	    remove_cache(req);
 	    disconnect(fd);
 	    exit(-1);
@@ -80,7 +85,9 @@ int main(int argc, char *argv[])
 	d = opendir(dname);
 	if(!d)
 	{
-	    do_request(req, fd);
+	    if(do_request(req, fd) < 0)
+		sleep(5);
+	    set_status(STATUS_NONE);
 	    remove_cache(req);
 	    disconnect(fd);
 	    exit(-1);
@@ -103,16 +110,17 @@ int main(int argc, char *argv[])
 		
 		fgets(buf, 512, fp);
 		fclose(fp);
-		do_request(buf, fd);
+		if(do_request(buf, fd) < 0)
+		    sleep(5);	/* sleep for a bit so client can get error code */
 		remove_cache(buf);
 		g_free(fname);
 	    }
 	}
 	/* clean up */
+	set_status(STATUS_NONE);
 	g_free(dname);
 	disconnect(fd);
     }
-
     exit(EXIT_SUCCESS);
 }
 
@@ -127,7 +135,7 @@ int do_request(char *req, int fd)
     fgetsock(buf, 511, fd);
     
     if((i=check_response(buf)) > 400)
-	return i;
+	return -i;
 
     /* send handshake */
     g_snprintf(buf, 511, "cddb hello %s %s %s %s\n", 
@@ -139,22 +147,29 @@ int do_request(char *req, int fd)
     fgetsock(buf, 511, fd);
     
     if((i=check_response(buf)) != 200)
-	return i;
-    
+    {
+	set_status(ERR_QUERYING);
+	return -i;
+    }
     /* we're connected and identified. */
     /* now we send our query */
     g_snprintf(buf, 511, "%s\n", req);
     send(fd, buf, strlen(buf), 0);
-    
+
+    set_status(STATUS_READING);
     /* receive query result */
     fgetsock(buf, 511, fd);
     
     if((i=check_response(buf)) != 200)
-	return -1;
-    
+    {
+	set_status(ERR_NOMATCH);
+
+	return -i;
+    }
+    printf("%d\n", i);
     /* alright, our query response was positive, now send the read request. */
     read_query(buf, fd, 512);
-
+    set_status(STATUS_NONE);
     kill(pid, SIGUSR1);
     return 0;
 }
@@ -370,3 +385,19 @@ int remove_cache(char *req)
     return TRUE;
 }
 
+/* FIXME: this assumes that /tmp is your temp dir. */
+void set_status(int status)
+{
+    FILE *fp;
+    remove("/tmp/.cddbstatus");	/* erase old status, just in case */
+
+    if(status == STATUS_NONE)	/* just return if we don't have a status. */
+	return;
+    
+    fp = fopen("/tmp/.cddbstatus", "w");
+    if(!fp)
+	return;
+    
+    fprintf(fp, "%03d\n", status);
+    fclose(fp);
+}
