@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	/* connect to cddb server */
 	g_req = req;
 	set_status(STATUS_CONNECTING);
-	fd = opensocket("cddb.cddb.com", 888);
+	fd = opensocket("us.cddb.com", 8880);
 	if(fd < 0)
 	{
 	    set_status(STATUS_NONE);
@@ -157,7 +157,6 @@ int do_request(char *req, int fd)
     /* now we send our query */
     g_snprintf(buf, 511, "%s\n", req);
     send(fd, buf, strlen(buf), 0);
-
     set_status(STATUS_READING);
     /* receive query result */
     fgetsock(buf, 511, fd);
@@ -168,7 +167,6 @@ int do_request(char *req, int fd)
 
 	return -i;
     }
-    printf("%d\n", i);
     /* alright, our query response was positive, now send the read request. */
     read_query(buf, fd, 512);
     set_status(STATUS_NONE);
