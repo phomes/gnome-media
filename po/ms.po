@@ -5,15 +5,40 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.100 HEAD\n"
-"POT-Creation-Date: 2001-12-29 14:23+0000\n"
-"PO-Revision-Date: 2002-01-18 07:12+0800\n"
+"POT-Creation-Date: 2002-01-29 04:27+0800\n"
+"PO-Revision-Date: 2002-01-29 04:35+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
+#: cddb-slave2/cddb-slave.c:327
+msgid "Multiple matches..."
+msgstr "Pelbagai Padanan..."
+
+#: cddb-slave2/cddb-slave.c:331
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+"Terdapat pelbagai padanan dijumpai pada pangkalan data.\n"
+" Dibawah adalah senarai padanan yang boleh, sila pilih padanan terbaik"
+
+#: cddb-slave2/cddb-slave.c:342
+msgid "Category"
+msgstr "Kategori"
+
+#: cddb-slave2/cddb-slave.c:346
+msgid "Disc ID"
+msgstr "ID Cakera"
+
+#: cddb-slave2/cddb-slave.c:350
+msgid "Artist and Title"
+msgstr "Artis dan Tajuk"
+
+#: gmix/device_labels_alsa.h:7
+#: gmix/device_labels_linux.h:7
 msgid "Synth"
 msgstr "Synth"
 
@@ -45,11 +70,13 @@ msgstr "MIC"
 msgid "CD"
 msgstr "CD"
 
-#: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:15
+#: gmix/device_labels_linux.h:10
 msgid "Video"
 msgstr "Video"
 
-#: gmix/device_labels_alsa.h:16 gmix/device_labels_linux.h:10
+#: gmix/device_labels_alsa.h:16
+#: gmix/device_labels_linux.h:10
 msgid "Radio"
 msgstr "Radio"
 
@@ -273,7 +300,7 @@ msgstr "initialisasian mixer daripada konfigurasi tersimpan dan keluar"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "Jangan simpan tetapan-mixer (berubah) ke konfigurasi"
 
-#: gmix/gmix.c:365
+#: gmix/gmix.c:366
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -283,50 +310,55 @@ msgstr ""
 "Sila periksa samada anda mempunyai keizinan untuk membuka /dev/mixer\n"
 "dan pastikan anda mempunyai sokongan bunyi yang dikompil pada kernel"
 
-#: gmix/gmix.c:519
+#: gmix/gmix.c:520
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
+""
 msgstr ""
 "Amaran: versi gmix telah dikompil dengan\n"
 "OSS versi %d.%d.%d, dan sistem anda melaksanakan\n"
 "versi selepas 2.6.0 .\n"
+""
 
-#: gmix/gmix.c:527
+#: gmix/gmix.c:528
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
+""
 msgstr ""
 "Amaran: Versi gmix ini telah dikompil dengan\n"
 "Versi %d.%d.%d OSS, dan sistem anda melaksanakan\n"
 "versi %d.%d.%d \n"
+""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1015
+#: gmix/gmix.c:1016
 msgid "Lock"
 msgstr "Kunci"
 
-#: gmix/gmix.c:1025
+#: gmix/gmix.c:1026
 msgid "Rec."
 msgstr "Rek."
 
-#: gmix/gmix.c:1043
+#: gmix/gmix.c:1044
 msgid "Mute"
 msgstr "Mute"
 
-#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#: gmix/gmix.c:1087
+#: gmix/gmix.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Kawalan Volum"
 
-#: gmix/gmix.c:1417
+#: gmix/gmix.c:1418
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Mixer GNOME"
 
-#: gmix/gmix.c:1419
+#: gmix/gmix.c:1420
 msgid "This is a mixer for sound devices"
 msgstr "Mixer ini untuk peranti bunyi"
 
@@ -360,6 +392,7 @@ msgid "Defaults"
 msgstr "Default"
 
 #: gmix/prefs.c:484
+#: gnome-cd/gnome-cd.c:344
 msgid "Preferences"
 msgstr "Keutamaan"
 
@@ -367,11 +400,148 @@ msgstr "Keutamaan"
 msgid "Labels"
 msgstr "Label"
 
+#: gnome-cd/callbacks.c:62
+#: gnome-cd/callbacks.c:142
+#: gnome-cd/callbacks.c:239
+#: gnome-cd/gnome-cd.c:408
+#: grecord/src/gui.c:245
+msgid "Play"
+msgstr "Putar"
+
+#: gnome-cd/callbacks.c:171
+#: gnome-cd/callbacks.c:201
+#: gnome-cd/callbacks.c:275
+#: gnome-cd/callbacks.c:314
+#: gnome-cd/callbacks.c:338
+#: gnome-cd/callbacks.c:373
+msgid "Pause"
+msgstr "Pause"
+
+#: gnome-cd/callbacks.c:550
+msgid "Copyright (C) 2001, 2002"
+msgstr "Copyright (C) 2001, 2002"
+
+#: gnome-cd/callbacks.c:551
+msgid "A GNOME cd player"
+msgstr "Pemain CD GNOME"
+
+#: gnome-cd/display.c:76
+msgid "Unknown artist"
+msgstr "Artis tidak dikenali"
+
+#: gnome-cd/display.c:77
+msgid "Unknown disc"
+msgstr "Cakera tidak diketahui"
+
+#: gnome-cd/gnome-cd.c:123
+#, c-format
+msgid "%d - Unknown"
+msgstr "%d - Entah"
+
+#: gnome-cd/gnome-cd.c:237
+msgid "P_revious track"
+msgstr "Trek Ter_dahulu"
+
+#: gnome-cd/gnome-cd.c:238
+msgid "_Stop"
+msgstr "_Henti"
+
+#: gnome-cd/gnome-cd.c:239
+msgid "_Play / Pause"
+msgstr "_Putar / Kaku"
+
+#: gnome-cd/gnome-cd.c:240
+msgid "_Next track"
+msgstr "Trek Se_terusnya"
+
+#: gnome-cd/gnome-cd.c:241
+msgid "_Eject disc"
+msgstr "_Eject cakera"
+
+#: gnome-cd/gnome-cd.c:242
+msgid "_About Gnome-CD"
+msgstr "Perih_al Gnome-CD"
+
+#: gnome-cd/gnome-cd.c:339
+msgid "Open track editor"
+msgstr "Buka editor trek"
+
+#: gnome-cd/gnome-cd.c:339
+msgid "Track editor"
+msgstr "Editor Trek"
+
+#: gnome-cd/gnome-cd.c:383
+msgid "Previous track"
+msgstr "Trek terdahulu"
+
+#: gnome-cd/gnome-cd.c:383
+msgid "Previous"
+msgstr "Terdahulu"
+
+#: gnome-cd/gnome-cd.c:387
+msgid "Rewind"
+msgstr "Rewind"
+
+#: gnome-cd/gnome-cd.c:408
+msgid "Play / Pause"
+msgstr "Putar / Kaku"
+
+#: gnome-cd/gnome-cd.c:413
+#: grecord/src/gui.c:257
+msgid "Stop"
+msgstr "Berhenti"
+
+#: gnome-cd/gnome-cd.c:417
+msgid "Fast forward"
+msgstr "Maju Pantas"
+
+#: gnome-cd/gnome-cd.c:425
+msgid "Next track"
+msgstr "Trek seterusnya"
+
+#: gnome-cd/gnome-cd.c:429
+msgid "Eject CD"
+msgstr "Eject CD"
+
+#: gnome-cd/gnome-cd.c:429
+msgid "Eject"
+msgstr "Eject"
+
+#: gnome-cd/gnome-cd.c:434
+msgid "Open mixer"
+msgstr "Buka mixer"
+
+#: gnome-cd/gnome-cd.c:434
+msgid "Open Mixer"
+msgstr "Buka Mixer"
+
+#: gnome-cd/gnome-cd.c:439
+msgid "Change volume"
+msgstr "Tukar Volum"
+
+#: gnome-cd/gnome-cd.c:439
+msgid "Volume"
+msgstr "Volum"
+
+#: gnome-cd/gnome-cd.c:465
+msgid "Cannot create player"
+msgstr "Gagal mencipta pemain"
+
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "Pemain CD"
+
+#: gnome-cd/gnome-cd.desktop.in.h:2
+msgid "Play audio CDs"
+msgstr "Putar CD audio"
+
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
 msgstr "Perekod bunyi GNOME:"
 
-#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
+#: grecord/src/grec.c:90
+#: grecord/src/grec.c:120
+#: grecord/src/grec.c:1032
 msgid "Could not fork child process"
 msgstr "Tak dapat sepit proses anak"
 
@@ -387,17 +557,23 @@ msgstr "Memutar..."
 msgid "Converting file..."
 msgstr "Menukar fail..."
 
-#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:334
+#: grecord/src/grec.c:241
+#: grecord/src/grec.c:654
+#: grecord/src/gui.c:334
 #: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Format audio:"
 
-#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:341
+#: grecord/src/grec.c:245
+#: grecord/src/grec.c:640
+#: grecord/src/gui.c:341
 #: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Kadar sampel: "
 
-#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:348
+#: grecord/src/grec.c:255
+#: grecord/src/grec.c:644
+#: grecord/src/gui.c:348
 #: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Saluran"
@@ -521,7 +697,9 @@ msgstr "Nyahcara semua perubahan pada sampel semasa"
 msgid "Effects"
 msgstr "Kesan"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:876
+#: grecord/src/gui.c:122
+#: grecord/src/gui.c:123
+#: grecord/src/gui.c:876
 msgid "Show time"
 msgstr "Papar masa"
 
@@ -529,7 +707,8 @@ msgstr "Papar masa"
 msgid "Show soundinfo"
 msgstr "Papar maklumat bunyi"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:881
+#: grecord/src/gui.c:130
+#: grecord/src/gui.c:881
 msgid "Show sound information"
 msgstr "Papar maklumat bunyi"
 
@@ -541,17 +720,9 @@ msgstr "Yang Baru"
 msgid "Create new sample"
 msgstr "Cipta sampel baru"
 
-#: grecord/src/gui.c:245
-msgid "Play"
-msgstr "Putar"
-
 #: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Putar sampel semasa"
-
-#: grecord/src/gui.c:257
-msgid "Stop"
-msgstr "Berhenti"
 
 #: grecord/src/gui.c:258
 msgid "Stop playing/recording"
@@ -593,7 +764,8 @@ msgstr "Fail '%s' bukanlah failbunyi yang disokong."
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:454 grecord/src/main.c:110
+#: grecord/src/gui.c:454
+#: grecord/src/main.c:111
 msgid "GNOME Sound recorder"
 msgstr "Perekod Bunyi GNOME"
 
@@ -699,11 +871,13 @@ msgstr "Opsyen Bunyi"
 msgid "Audioformat:"
 msgstr "Format Audio:"
 
-#: grecord/src/gui.c:785 grecord/src/gui.c:795
+#: grecord/src/gui.c:785
+#: grecord/src/gui.c:795
 msgid "8bit pcm"
 msgstr "8bit pcm"
 
-#: grecord/src/gui.c:786 grecord/src/gui.c:797
+#: grecord/src/gui.c:786
+#: grecord/src/gui.c:797
 msgid "16bit pcm"
 msgstr "16bit pcm"
 
@@ -715,11 +889,13 @@ msgstr "Kadar sampel:"
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:844 grecord/src/gui.c:854
+#: grecord/src/gui.c:844
+#: grecord/src/gui.c:854
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:845 grecord/src/gui.c:856
+#: grecord/src/gui.c:845
+#: grecord/src/gui.c:856
 msgid "stereo"
 msgstr "stereo"
 
@@ -755,11 +931,11 @@ msgstr "Pilih fail supaya mula merekod"
 msgid "Specify a file to start playing"
 msgstr "Pilih fail untuk mula memutar"
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:177
 msgid "Don't show this message again."
 msgstr "Jangan papar mesej ini lagilah"
 
-#: grecord/src/main.c:178
+#: grecord/src/main.c:179
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -770,8 +946,7 @@ msgstr ""
 "Tak dapat menjumpai '%s'.\n"
 "tetapkan path ke sox pada keutamaan yang dibawah tan 'path'.\n"
 "\n"
-"Jika anda tidak mempunyai sox, anda tidak akan boleh merekod atau membuat "
-"sebarang kesan."
+"Jika anda tidak mempunyai sox, anda tidak akan boleh merekod atau membuat sebarang kesan."
 
 #: grecord/src/preferences.c:213
 msgid ""
@@ -792,8 +967,7 @@ msgstr ""
 
 #: grecord/src/preferences.c:263
 msgid ""
-"You havn't entered a mixer command; you will not be able to start the "
-"mixer.\n"
+"You havn't entered a mixer command; you will not be able to start the mixer.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Anda tidak memasukkan arahan mixer; anda tidak boleh memulakan mixer.\n"
@@ -831,12 +1005,10 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory %"
-"s.\n"
+"You don't have the correct permissions (read & write) for temp directory %s.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Anda tidka mempunyai keizinan yang betul (baca & tulis) pada direktori temp %"
-"s.\n"
+"Anda tidka mempunyai keizinan yang betul (baca & tulis) pada direktori temp %s.\n"
 "Anda ingin menggunakannya juga?"
 
 #. Does not exist
@@ -853,7 +1025,8 @@ msgstr ""
 msgid " untitled.wav"
 msgstr "Takbertajuk.wav"
 
-#: grecord/src/sound.c:146 grecord/src/sound.c:150
+#: grecord/src/sound.c:146
+#: grecord/src/sound.c:150
 msgid "Adding echo to sample..."
 msgstr "Menambah gema pada sampel..."
 
@@ -897,21 +1070,25 @@ msgstr "Buka versi menegak bagi meter."
 msgid "Act as recording level meter."
 msgstr "Bertindak sebagai meter aras perekodan"
 
-#: vu-meter/main.c:284
+#: vu-meter/main.c:285
 #, c-format
-msgid "Host is %s\n"
-msgstr "Hos adalah %s\n"
+msgid ""
+"Host is %s\n"
+""
+msgstr ""
+"Hos adalah %s\n"
+""
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Recording level"
 msgstr "Tahap Perekodan"
 
-#: vu-meter/main.c:310
+#: vu-meter/main.c:311
 msgid "Volume Meter"
 msgstr "Meter Volum"
 
 #: vu-meter/reclevel.desktop.in.h:1
-msgid "Monitor the recording intput volume"
+msgid "Monitor the recording input volume"
 msgstr "Monitor volum input bagi perekodan"
 
 #: vu-meter/reclevel.desktop.in.h:2
@@ -937,3 +1114,4 @@ msgstr "Perekod Bunyi"
 #: gmix/gmix.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "Ubahsuai aras volum"
+
