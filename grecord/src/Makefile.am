@@ -11,14 +11,6 @@ INCLUDES = \
 
 bin_PROGRAMS = gnome-sound-recorder
 
-#gnome_sound_recorder_SOURCES = \
-#	main.c \
-#	gui.c gui.h \
-#	grec.c grec.h \
-#	preferences.c preferences.h \
-#	sound.c sound.h \
-#	prog.h
-
 gnome_sound_recorder_SOURCES = \
 	gnome-recorder.c	\
 	gnome-recorder.h	\
@@ -26,5 +18,3 @@ gnome_sound_recorder_SOURCES = \
 	gsr-window.h
 
 gnome_sound_recorder_LDADD = $(GSR_LIBS) $(INTLLIBS) $(top_builddir)/profiles/libgnome-media-profiles.la
-
-
