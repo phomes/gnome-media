@@ -1,3 +1,12 @@
+2002-04-10 Theo van Klaveren <t.vanklaveren@student.utwente.nl>
+
+	Sync with gnome-cd changes.
+
+	* freebsd-cdrom.[ch]: Add extra safeguards for CDROM status.
+	(freebsd_cdrom_is_cdrom_device): CDROMSTOP -> CDIOCSTOP.
+	(freebsd_cdrom_set_volume): Impl.
+	(class_init): Add new methods.
+
 2002-04-08 Iain <iain@ximian.com>
 
 	* cdrom.[ch]: Added a is_cdrom_device method to check if a device path

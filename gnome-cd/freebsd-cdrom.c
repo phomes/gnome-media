@@ -337,6 +337,13 @@ freebsd_cdrom_next (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		freebsd_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
+	}
+
 	track = status->track + 1;
 	g_free (status);
 	if (track > lcd->priv->number_tracks) {
@@ -696,6 +703,13 @@ freebsd_cdrom_rewind (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		freebsd_cdrom_close (lcd);
+		g_free (status);
+
+		return TRUE;
+	}
+
 	msf = &status->absolute;
 
 	frames = msf_to_frames (msf);
@@ -753,6 +767,13 @@ freebsd_cdrom_back (GnomeCDRom *cdrom,
 	if (freebsd_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		freebsd_cdrom_close (lcd);
 		return FALSE;
+	}
+
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		freebsd_cdrom_close (lcd);
+		g_free (status);
+
+		return TRUE;
 	}
 
 	/* If we're > 0:00 on the track go back to the start of it, 
@@ -963,6 +984,41 @@ freebsd_cdrom_close_tray (GnomeCDRom *cdrom,
 }
 
 static gboolean
+freebsd_cdrom_set_volume (GnomeCDRom *cdrom,
+			int volume,
+			GError **error)
+{
+	FreeBSDCDRom *lcd;
+	FreeBSDCDRomPrivate *priv;
+	struct ioc_vol vol;
+
+	lcd = FREEBSD_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (freebsd_cdrom_open (lcd, error) == FALSE) {
+		return FALSE;
+	}
+	
+	vol.vol[0] = (u_char)volume;
+	vol.vol[1] = vol.vol[2] = vol.vol[3] = vol.vol[0];
+	
+	if (ioctl (priv->cdrom_fd, CDIOCSETVOL, &vol) < 0) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(freebsd_cdrom_set_volume:1): ioctl failed %s",
+					      strerror (errno));
+		}
+
+		freebsd_cdrom_close (lcd);
+		return FALSE;
+	}
+
+	freebsd_cdrom_close (lcd);
+	return TRUE;
+}
+
+static gboolean
 freebsd_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 			       const char *device,
 			       GError **error)
@@ -979,7 +1035,7 @@ freebsd_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	}
 
 	/* Fire a harmless ioctl at the device. */
-	if (ioctl (fd, CDROMSTOP, 0) < 0) {
+	if (ioctl (fd, CDIOCSTOP, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
 		g_print ("%s is not a CDROM drive", device);
 		close (fd);
@@ -1109,6 +1165,7 @@ class_init (FreeBSDCDRomClass *klass)
 	cdrom_class->back = freebsd_cdrom_back;
 	cdrom_class->get_status = freebsd_cdrom_get_status;
 	cdrom_class->close_tray = freebsd_cdrom_close_tray;
+	cdrom_class->set_volume = freebsd_cdrom_set_volume;
 	cdrom_class->is_cdrom_device = freebsd_cdrom_is_cdrom_device;
 	
 	/* For CDDB */
