@@ -16,6 +16,6 @@ vumeter_SOURCES = \
 vumeter_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) 
 
-EXTRA_DIST = vumeter.desktop README NEWS TODO
+EXTRA_DIST = vumeter.desktop README TODO
 
 Audio_DATA = vumeter.desktop

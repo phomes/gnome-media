@@ -11,7 +11,7 @@ SUBDIRS = po intl macros	\
 # broken too
 # 	@PROGRAMS_GNOMOVISION
 
-EXTRA_DIST = gnome-media.spec
+EXTRA_DIST = gnome-media.spec configure
 
 ## to automatically rebuild aclocal.m4 if any of the macros in `macros/' change
 @MAINT@include macros/macros.dep
