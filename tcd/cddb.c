@@ -80,7 +80,8 @@ static void append_data(char *dest, char *data, int maxlen) {
 	data[j] = '\0';
 
 	i = strlen(dest);
-	strncpy(&dest[i], data, maxlen - i);
+	if (maxlen > i)
+		strncpy(&dest[i], data, maxlen - i);
 }
 
 static void write_data(FILE *fp, char *key, char *data) {
