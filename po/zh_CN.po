@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-22 12:23+0100\n"
-"PO-Revision-Date: 2005-01-22 21:42+0800\n"
+"POT-Creation-Date: 2005-01-25 04:27+0100\n"
+"PO-Revision-Date: 2005-01-25 16:59+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -1196,8 +1196,15 @@ msgstr "仅当没有任何 CD 播放机应用程序在运行时才启用"
 msgid "Play the CD on startup"
 msgstr "在启动后播放 CD"
 
+#: gnome-cd/gnome-cd.c:852 grecord/src/gnome-recorder.c:190
+#: gst-mixer/src/main.c:228
+msgid ""
+"Registry is not present or it is corrupted, please update it by running gst-"
+"register"
+msgstr "注册表不存在，或者已经损坏，请运行 gst-register 进行更新"
+
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:852
+#: gnome-cd/gnome-cd.c:869
 msgid "Cannot create player"
 msgstr "无法创建播放器"
 
@@ -1676,7 +1683,7 @@ msgstr "选项"
 msgid "Unknown Volume Control %d"
 msgstr "未知音量控制 %d"
 
-#: gst-mixer/src/main.c:236
+#: gst-mixer/src/main.c:253
 msgid "No volume control elements and/or devices found."
 msgstr "没有找到音量控制元素和/或设备。"
 
@@ -2227,4 +2234,3 @@ msgstr "监视声音输出音量"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量监视器"
-
