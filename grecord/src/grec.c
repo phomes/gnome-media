@@ -141,7 +141,6 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 		else
 			temp_string2 = g_strdup ("-c 2");
 
-		grecord_set_sensitive_file ();
 	}
 
 	if (PlayEng.is_running) {
@@ -170,6 +169,8 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 		waitpid (RecEng.pid, NULL, WUNTRACED);
 
 		RecEng.is_running = FALSE;
+
+		g_print ("Hejsan");
 
 		run_command (command, _("Converting file..."));
 
@@ -832,11 +833,14 @@ UpdateStatusbarRecord (gpointer data)
 			on_stop_activate_cb (NULL, NULL);
 			return TRUE;
 		}
-		
+
 		counter /= 2;
 	}
 	
 	if (waitpid (RecEng.pid, NULL, WNOHANG | WUNTRACED)) {
+		if (convert_is_running)
+			return FALSE;
+
 		counter = 0;
 		RecEng.is_running = FALSE;
 		grecord_set_sensitive_file ();
@@ -1004,6 +1008,7 @@ run_command (const gchar* command, const gchar* appbar_comment)
 {
 	gint load_pid;
 
+	g_print ("Svejsan");
 	/* Make the widgets insensitive */
 	grecord_set_sensitive_loading ();
 
@@ -1021,6 +1026,8 @@ run_command (const gchar* command, const gchar* appbar_comment)
 	else if (load_pid == -1)
 		g_error (_("Could not fork child process"));
 
+	convert_is_running = TRUE;
+
 	/* Add a function for checking when process has died */
 	gtk_timeout_add (100, (GtkFunction) check_if_loading_finished, (gpointer) load_pid);
 }
@@ -1034,11 +1041,13 @@ check_if_loading_finished (gint pid)
 		/* Show the playtime of the file */
 		set_min_sec_time (get_play_time (active_file), TRUE);
 		
-		/* Remove the comment from the appbar, becase we're finished */
+		/* Remove the comment from the appbar, because we're finished */
 		gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
 
 		/* Make widgets sensitive again */
 		grecord_set_sensitive_file ();
+
+		convert_is_running = FALSE;
 
 		return FALSE;
 	}

@@ -1,5 +1,24 @@
 2000-05-18  Andreas Hyden  <a.hyden@cyberpoint.se>
 
+	* src/prog.h:
+	  Added 'gboolean convert_is_running'.
+
+	* src/grec.c:
+	  Use the varible in UpdateStatusbarRecord ()
+	  to check if the converter is running. Just
+	  return FALSE, instead of changing the sensitivity
+	  of the widgets.
+
+2000-05-18  Andreas Hyden  <a.hyden@cyberpoint.se>
+
+	* src/gui.c: Commented out increase/decrease stuff
+	  from effects (will finish that another day).
+	
+	  Fixed a spelling error in one of the comments.
+	  Thanks to Fredrik Andersson for pointing this out.
+
+2000-05-18  Andreas Hyden  <a.hyden@cyberpoint.se>
+
 	* src/grec.c in function on_exit_activate_cb ():
 	  Don't try to copy backupfile if it doesn't exist.
 

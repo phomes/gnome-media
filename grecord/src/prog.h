@@ -23,8 +23,10 @@
 #define _PROG_H_
 
 #include <gnome.h>
+#include <config.h>
 
-extern const gchar* maintopic;
+extern gchar* maintopic;
+
 extern const gchar* temp_filename_record;
 extern const gchar* temp_filename_play;
 extern const gchar* temp_filename_backup;
@@ -47,6 +49,8 @@ struct RecordEngine
 	pid_t pid;
 	gboolean is_running;
 } RecEng;
+
+gboolean convert_is_running;
 
 struct EffectEngine
 {
