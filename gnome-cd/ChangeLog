@@ -1,3 +1,16 @@
+2004-05-10  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* callbacks.c: (cd_status_changed_cb):
+	* cddb.c: (get_disc_info), (cddb_listener_event_cb),
+	(cddb_close_client), (cddb_get_query):
+	  - add debugging
+	  - rename slave to slave_client since that's what it really is
+	  - check the discid from the listener callback against the one
+            we stored internally for lookup so we only use discid's we
+	    asked to look up
+	* gnome-cd.h:
+	  add discid
+
 2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* HACKING:

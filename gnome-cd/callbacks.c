@@ -717,10 +717,11 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
+		g_assert (gcd->disc_info);
                 /* does everything when the state is ok */
 		status_ok (gcd, status);
                 /* next is sensitive when this is not the last track */
-		if (status->track >= gcd->disc_info->ntracks)
+		if (gcd->disc_info && status->track >= gcd->disc_info->ntracks)
                        gtk_widget_set_sensitive (gcd->next_b, FALSE);
 		else
                        gtk_widget_set_sensitive (gcd->next_b, TRUE);

@@ -100,6 +100,8 @@ struct _GnomeCD {
 
 	/* Set if if --device was given on the command line */
 	char *device_override;
+
+	char *discid;	/* used to track which one we're looking up */
 };
 
 void skip_to_track (GtkWidget *item,
