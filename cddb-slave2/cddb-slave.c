@@ -435,18 +435,28 @@ do_query_response (ConnectionData *cd,
 			GList *l;
 			
 			waiting_for_terminator = FALSE;
-  			result = display_results (cd);
+			if (cd->matches && cd->matches->next == NULL) {
+				/* There is only one match, even though
+				   cddb returned 211 */
 
-			if (result != NULL) {
-				cat = result[0];
-				discid = result[1];
-				dtitle = result[2];
-				g_free (result);
-
+				result = cd->matches->data;
+				cat = g_strdup (result[0]);
+				discid = g_strdup (result[1]);
+				dtitle = g_strdup (result[2]);
 			} else {
+				result = display_results (cd);
+
+				if (result != NULL) {
+					cat = result[0];
+					discid = result[1];
+					dtitle = result[2];
+					g_free (result);
+					
+				} else {
 				/* Need to disconnect here...
 				   none of our matches matched */
-				do_goodbye (cd);
+					do_goodbye (cd);
+				}
 			}
 
 			/* Free the vector list */

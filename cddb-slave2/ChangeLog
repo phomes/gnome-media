@@ -1,5 +1,10 @@
 2002-01-18  Iain Holmes  <iain@ximian.com>
 
+	* cddb-slave.c (do_query_response): If response is 211, but only one
+	match was returned, then just automatically select it.
+
+2002-01-18  Iain Holmes  <iain@ximian.com>
+
 	* cddb-slave.c: Modularise the commands and the responses.
 	(display_results): Create a GUI to display multiple results.
 	(create_model_from_list): Create a GtkTreeModel from a list of
