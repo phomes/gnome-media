@@ -738,7 +738,9 @@ free_devices (void)
 	g_list_free(devices);
 }
 
-void init_one_device(gpointer a, gpointer b)
+void
+init_one_device (gpointer a,
+		 gpointer b)
 {
 	device_info *info = (device_info *)a;
 	GList *p;
@@ -785,8 +787,10 @@ void init_one_device(gpointer a, gpointer b)
 			vol = channel->volume_left;
 			vol |= channel->volume_right << 8;
 		}
-		
+
+#ifdef WE_WANT_VOLUME_RESET
 		ioctl (info->fd, MIXER_WRITE (channel->channel), &vol);
+#endif
 	}
 	
 #endif
