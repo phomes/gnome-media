@@ -158,7 +158,7 @@ main (int argc, char *argv[])
 	dont_show_warningmess = gnome_config_get_bool ("/grecord/Misc/dontshowwarningmess=FALSE");
 
 	/* Check for program 'sox' ------------------- */
-	if (!g_file_exists (sox_command) && !dont_show_warningmess) {
+	if (1==2) {
 		GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
 
 		gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences under the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
