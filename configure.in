@@ -78,16 +78,6 @@ AC_CHECK_HEADERS(linux/soundcard.h,[PROGRAMS_GMIX=gmix],[
 AC_SUBST(PROGRAMS_GMIX)
 
 dnl
-dnl Find out if we can compile gnomovision on this system
-dnl [disabled]
-dnl
-dnl PROGRAMS_GNOMOVISION=""
-dnl AC_CHECK_HEADERS(linux/videodev.h,[PROGRAMS_GNOMOVISION=gnomovision])
-dnl AC_SUBST(PROGRAMS_GNOMOVISION)
-dnl AC_CHECK_LIB(Xxf86dga, XF86DGAQueryExtension,[GNOMOVISION_LIBS=-lXxf86dga],,[$GNOME_LIBDIR $GNOMEUI_LIBS])
-dnl AC_SUBST(GNOMOVISION_LIBS)
-
-dnl
 dnl Everything OK for tcd?
 dnl
 PROGRAMS_TCD=""
@@ -116,7 +106,6 @@ po/Makefile.in
 extace/Makefile
 gmix/Makefile
 vu-meter/Makefile
-dnl gnomovision/Makefile
 macros/Makefile
 tcd/Makefile
 tcd/icons/Makefile
