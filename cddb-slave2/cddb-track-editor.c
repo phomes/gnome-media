@@ -257,6 +257,7 @@ main (int argc,
 			    LIBGNOMEUI_MODULE, argc, argv, NULL);
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_default_size (GTK_WINDOW (window), 670, 400);
 	td = make_track_editor_control ();
 	gtk_container_add (GTK_CONTAINER (window), td->parent);
 
