@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-06 14:48+0100\n"
+"POT-Creation-Date: 2005-02-12 15:02+0100\n"
 "PO-Revision-Date: 2005-02-06 16:59+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -161,9 +161,9 @@ msgid "Unknown / Unknown"
 msgstr "Neznámý / Neznámý"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:907
-#: grecord/src/gsr-window.c:916 grecord/src/gsr-window.c:925
-#: grecord/src/gsr-window.c:935 grecord/src/gsr-window.c:1251
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
+#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1175,7 +1175,7 @@ msgstr "Spustit jen, když ještě neběží aplikace přehrávače CD"
 msgid "Play the CD on startup"
 msgstr "Přehrávat CD při spuštění"
 
-#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:194
+#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1278,8 +1278,8 @@ msgstr "_Zvolte téma:"
 msgid "Record sound clips"
 msgstr "Vytváření zvukových záznamů"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1124
-#: grecord/src/gsr-window.c:1461
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
+#: grecord/src/gsr-window.c:1473
 msgid "Sound Recorder"
 msgstr "Záznamník zvuků"
 
@@ -1307,7 +1307,7 @@ msgstr "Vytvořit nový vzorek"
 msgid "Display help for Sound Recorder"
 msgstr "Zobrazit nápovědu pro Záznamník zvuků"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:993
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
 msgid "File Information"
 msgstr "Informace o souboru"
 
@@ -1443,7 +1443,29 @@ msgstr "_Zaznamenávat"
 msgid "_Save"
 msgstr "_Uložit"
 
-#: grecord/src/gnome-recorder.c:166
+#. Translator comment: untitled here implies that
+#. * there is no active sound sample. Any newly
+#. * recorded samples will be saved to disk with this
+#. * name as default value.
+#. Translator comment: Untitled here implies a track without a
+#. * name. See also the translation in gnome-recorder.c:94. Those
+#. * two strings should match! If the track is unnamed, we will
+#. * open the save-as dialog here, else we´ll use the given file
+#. * to save to.
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:1896
+#, c-format
+msgid "Untitled"
+msgid_plural "Untitled-%d"
+msgstr[0] "Nepojmenovaný"
+msgstr[1] "Nepojmenovaný-%d"
+msgstr[2] "Nepojmenovaný-%d"
+
+#: grecord/src/gnome-recorder.c:168
 msgid "Dummy option"
 msgstr "Zbytečný přepínač"
 
@@ -1478,17 +1500,17 @@ msgstr "sekund"
 msgid "second"
 msgstr "sekunda"
 
-#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1413
-#: grecord/src/gsr-window.c:1577 grecord/src/gsr-window.c:1847
+#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
+#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
 msgid "Ready"
 msgstr "Připraven"
 
 #. Add replace button
-#: grecord/src/gsr-window.c:611
+#: grecord/src/gsr-window.c:619
 msgid "_Replace"
 msgstr "Na_hradit"
 
-#: grecord/src/gsr-window.c:628
+#: grecord/src/gsr-window.c:636
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1497,36 +1519,36 @@ msgstr ""
 "Soubor nazvaný \"%s\" již existuje.\n"
 "Chcete jej nahradit souborem, který ukládáte?"
 
-#: grecord/src/gsr-window.c:681
+#: grecord/src/gsr-window.c:689
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr "Nemohu uložit soubor \" %s\""
 
-#: grecord/src/gsr-window.c:690
+#: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Nemohu uložit soubor \"%s\""
 
-#: grecord/src/gsr-window.c:738
+#: grecord/src/gsr-window.c:746
 msgid "Save file as"
 msgstr "Uložit soubor jako"
 
-#: grecord/src/gsr-window.c:794
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s není nainstalován v cestě."
 
-#: grecord/src/gsr-window.c:804
+#: grecord/src/gsr-window.c:817
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Při spouštění %s došlo k chybě: %s"
 
-#: grecord/src/gsr-window.c:881
+#: grecord/src/gsr-window.c:894
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nebylo uloženo)"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:907
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1534,83 +1556,83 @@ msgstr[0] "%s (%llu bajt)"
 msgstr[1] "%s (%llu bajty)"
 msgstr[2] "%s (%llu bajtů)"
 
-#: grecord/src/gsr-window.c:898
+#: grecord/src/gsr-window.c:911
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
-#: grecord/src/gsr-window.c:918
+#: grecord/src/gsr-window.c:931
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:927
+#: grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:952
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:943
+#: grecord/src/gsr-window.c:956
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:972
+#: grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s Information"
 msgstr "Informace o %s"
 
-#: grecord/src/gsr-window.c:1007
+#: grecord/src/gsr-window.c:1020
 msgid "Folder:"
 msgstr "Adresář:"
 
-#: grecord/src/gsr-window.c:1013 grecord/src/gsr-window.c:1779
+#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
 msgid "Filename:"
 msgstr "Jméno souboru:"
 
-#: grecord/src/gsr-window.c:1019
+#: grecord/src/gsr-window.c:1032
 msgid "File size:"
 msgstr "Velikost souboru:"
 
-#: grecord/src/gsr-window.c:1028
+#: grecord/src/gsr-window.c:1041
 msgid "Audio Information"
 msgstr "Informace o zvuku"
 
-#: grecord/src/gsr-window.c:1042
+#: grecord/src/gsr-window.c:1055
 msgid "File duration:"
 msgstr "Trvání souboru:"
 
-#: grecord/src/gsr-window.c:1048
+#: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
 msgstr "Počet kanálů:"
 
-#: grecord/src/gsr-window.c:1054
+#: grecord/src/gsr-window.c:1067
 msgid "Sample rate:"
 msgstr "Vzorkovací kmitočet: "
 
-#: grecord/src/gsr-window.c:1060
+#: grecord/src/gsr-window.c:1073
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: grecord/src/gsr-window.c:1126
+#: grecord/src/gsr-window.c:1139
 msgid "A sound recorder for GNOME"
 msgstr "Záznamník zvuků pro GNOME"
 
-#: grecord/src/gsr-window.c:1397
+#: grecord/src/gsr-window.c:1409
 msgid "Playing..."
 msgstr "Přehrávám..."
 
-#: grecord/src/gsr-window.c:1457
+#: grecord/src/gsr-window.c:1469
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Záznamník zvuků"
 
-#: grecord/src/gsr-window.c:1548
+#: grecord/src/gsr-window.c:1560
 msgid "Recording..."
 msgstr "Nahrávám..."
 
-#: grecord/src/gsr-window.c:1608
+#: grecord/src/gsr-window.c:1620
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1618,18 +1640,18 @@ msgstr ""
 "Není nastaven implicitní element GStreamer pro vstup zvuku - nainstalujte "
 "prosím schémata GStreamer-GConf nebo jej nastavte ručně"
 
-#: grecord/src/gsr-window.c:1623
+#: grecord/src/gsr-window.c:1635
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Nemohu vytvořit elementy GStreameru pro kódování - zkontrolujte vaše "
 "nastavení kódování"
 
-#: grecord/src/gsr-window.c:1633
+#: grecord/src/gsr-window.c:1645
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 "Nemohu najít zásuvný modul GStreameru filesink - nainstalujte jej prosím"
 
-#: grecord/src/gsr-window.c:1641
+#: grecord/src/gsr-window.c:1653
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1637,19 +1659,19 @@ msgstr ""
 "Nemohu spojit elementy enkodéru s elementem výstupu do souboru - "
 "pravděpodobně jste zvolili neplatný enkodér"
 
-#: grecord/src/gsr-window.c:1747
+#: grecord/src/gsr-window.c:1759
 msgid "Record as"
 msgstr "Zaznamenávat jako"
 
-#: grecord/src/gsr-window.c:1764
+#: grecord/src/gsr-window.c:1776
 msgid "File information"
 msgstr "Informace o souboru"
 
-#: grecord/src/gsr-window.c:1786
+#: grecord/src/gsr-window.c:1798
 msgid "<none>"
 msgstr "<žádný>"
 
-#: grecord/src/gsr-window.c:1795
+#: grecord/src/gsr-window.c:1807
 msgid "Length:"
 msgstr "Délka:"
 
@@ -1968,15 +1990,15 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Při zahazování cesty k profilu %s došlo k chybě. (%s)\n"
 
-#: profiles/audio-profile.c:1003
+#: profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr "<žádný popis>"
 
-#: profiles/audio-profile.c:1014
+#: profiles/audio-profile.c:1013
 msgid "identity"
 msgstr "identita"
 
-#: profiles/audio-profile.c:1025
+#: profiles/audio-profile.c:1024
 msgid "wav"
 msgstr "wav"
 
