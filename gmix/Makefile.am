@@ -11,6 +11,8 @@ INCLUDES = \
 	$(MEDIA_CFLAGS) 				\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
+SUBDIRS = doc
+
 bin_PROGRAMS = gnome-volume-control
 
 gnome_volume_control_SOURCES =	\

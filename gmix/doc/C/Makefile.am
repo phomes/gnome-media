@@ -4,7 +4,7 @@ figs = \
 docname = gmix
 lang = C
 omffile = gmix-C.omf
-sgml_ents =
-include $(top_srcdir)/sgmldocs.make
+entities = legal.xml
+include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
 

@@ -1,4 +1,4 @@
-SUBDIRS = src
+SUBDIRS = src doc
 
 EXTRA_DIST = \
 	gnome-sound-recorder.desktop.in README COPYING AUTHORS INSTALL \
