@@ -87,12 +87,14 @@ gsr_open_window (const char *filename)
 	if (filename == NULL) {
 		static int sample_count = 1;
 
-		if (sample_count != 1) {
-			name = g_strdup_printf ("Untitled-%d", sample_count);
-		} else {
-			name = g_strdup ("Untitled");
-		}
-
+		/* Translator comment: untitled here implies that
+		 * there is no active sound sample. Any newly
+		 * recorded samples will be saved to disk with this
+		 * name as default value. */
+		name = g_strdup_printf (ngettext("Untitled",
+						 "Untitled-%d",
+						 sample_count),
+						 sample_count);
 		sample_count++;
 	} else {
 		name = g_strdup (filename);

@@ -770,7 +770,12 @@ file_save (BonoboUIComponent *uic,
 	   const char *path)
 {
 	if (window->priv->filename == NULL ||
-	    strncmp (window->priv->filename, "Untitled", 8) == 0) {
+	    /* Translator comment: Untitled here implies a track without a
+	     * name. See also the translation in gnome-recorder.c:94. Those
+	     * two strings should match! If the track is unnamed, we will
+	     * open the save-as dialog here, else we´ll use the given file
+	     * to save to. */
+	    g_strrstr (window->priv->filename, _("Untitled")) == 0) {
 		file_save_as (uic, window, NULL);
 	} else {
 		do_save_file (window, window->priv->filename);
@@ -1877,7 +1882,11 @@ gsr_window_class_init (GSRWindowClass *klass)
 					 g_param_spec_string ("location",
 							      "Location",
 							      "",
-							      "Untitled",
+	/* Translator comment: default trackname is 'untitled', which
+	 * has as effect that the user cannot save to this file. The
+	 * 'save' action will open the save-as dialog instead to give
+	 * a proper filename. See gnome-record.c:94. */
+							      _("Untitled"),
 							      G_PARAM_READWRITE));
 }
 
