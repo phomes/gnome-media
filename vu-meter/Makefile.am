@@ -3,7 +3,7 @@ Audiodir = $(datadir)/applications
 pixmapdir = $(datadir)/pixmaps
 
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	$(VUMETER_CFLAGS)			\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 

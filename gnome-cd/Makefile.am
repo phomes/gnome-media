@@ -6,7 +6,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/cddb-slave2		\
 	$(MEDIA_CFLAGS)				\
 	$(GAILUTIL_CFLAGS)			\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
 	-DTHEME_DIR=\""$(datadir)/pixmaps/gnome-cd/themes"\"
 

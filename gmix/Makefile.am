@@ -7,7 +7,7 @@ EXTRA_DIST = README TODO NEWS gnome-volume-control.desktop.in gnome-mixer.png \
 	gnome-volume-control.schemas
 
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	$(MEDIA_CFLAGS) 				\
 	-DDATADIR=\""$(datadir)"\"			\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"

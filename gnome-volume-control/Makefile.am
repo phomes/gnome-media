@@ -4,7 +4,7 @@ pixmapdir = $(datadir)/pixmaps
 EXTRA_DIST = gnome-volume-control.desktop.in gnome-volume-control.png
 
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	$(MEDIA_CFLAGS) 				\
 	-DGNOME_VOLUME_CONTROL_DEVICE_PATH=\""$(libdir)/gnome-volume-control/devices"\"		\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
