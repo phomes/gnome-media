@@ -22,110 +22,25 @@
 #include "cddb.h"
 
 static GHashTable *cddb_cache;
+static CDDBSlaveClient *slave = NULL;
 
 static void
-load_cddb_data (GnomeCD *gcd,
-		const char *discid)
+get_disc_info (GnomeCD *gcd,
+	       const char *discid)
 {
 	GnomeCDDiscInfo *info;
-	char *filename, *pathname;
-	char line[4096];
-	FILE *handle;
-
-	pathname = gnome_util_prepend_user_home (".cddbslave");
-	filename = g_concat_dir_and_file (pathname, discid);
-	g_free (pathname);
-
+	
 	info = g_hash_table_lookup (cddb_cache, discid);
 	if (info == NULL) {
-		g_warning ("No cache for %s\n", discid);
+		g_warning ("No cache for %s", discid);
 		return;
 	} else {
 		gcd->disc_info = info;
 	}
 
-	handle = fopen (filename, "r");
-	if (handle == NULL) {
-		g_warning ("No such file %s", filename);
-		g_free (filename);
-		return;
-	}
-
-	while (fgets (line, 4096, handle)) {
-		char *end;
-
-		if (*line == 0 || *line == '#') {
-			continue;
-		}
-
-		if (*line == '.') {
-			break;
-		}
-
-		/* Strip newlines */
-		line[strlen (line) - 1] = 0;
-		/* Check for \r */
-		end = strchr (line, '\r');
-		if (end != NULL) {
-			*end = 0;
-		}
-		
-		if (strncmp (line, "DISCID", 6) == 0) {
-			g_print ("Found discid: %s\n", discid);
-		} else if (strncmp (line, "DTITLE", 6) == 0) {
-			char *title = line + 7;
-			char *album, *artist, *div;
-
-			div = strstr (title, " / ");
-			if (div == NULL) {
-				g_print ("Duff line? %s\n", line);
-				continue;
-			}
-
-			*div = 0;
-			info->artist = g_strdup (title);
-			info->title = g_strdup (div + 3);
-		} else if (strncmp (line, "TTITLE", 6) == 0) {
-			char *name;
-			int number;
-
-			name = strchr (line+6, '=');
-			if (name == NULL) {
-				g_print ("Duff line...? %s\n", line);
-				continue;
-			}
-
-			*name = 0;
-			name = name + 1;
-			number = atoi (line + 6);
-
-			if (number > info->ntracks) {
-				continue;
-			}
-
-			info->tracknames[number] = g_strdup (name);
-		} else if (strncmp (line, "EXTD", 4) == 0) {
-		} else if (strncmp (line, "EXTT", 4) == 0) {
-		} else if (strncmp (line, "PLAYORDER", 9) == 0) {
-		} else if (isdigit (*line)) {
-			char *space;
-
-			space = strchr (line, ' ');
-			if (space != NULL) {
-				*space = 0;
-			}
-
-			if (atoi (line) == 210) {
-				g_print ("All ok\n");
-			} else {
-				g_print ("Error %d\n", atoi (line));
-				gcd->disc_info = NULL;
-			}
-		}
-	}
-
-	fclose (handle);
-	g_free (filename);
+	info->title = cddb_slave_client_get_disc_title (slave, discid);
+	info->artist = cddb_slave_client_get_artist (slave, discid);
+	info->tracknames = cddb_slave_client_get_tracks (slave, discid);
 
 	gnome_cd_build_track_list_menu (gcd);
 }
@@ -139,13 +54,11 @@ cddb_listener_event_cb (BonoboListener *listener,
 {
 	GNOME_Media_CDDBSlave2_QueryResult *qr;
 
-	g_print ("Got CDDB data\n");
 	qr = arg->_value;
 
-	g_print ("Got results for %s, %d\n", qr->discid, qr->result);
 	switch (qr->result) {
 	case GNOME_Media_CDDBSlave2_OK:
-		load_cddb_data (gcd, qr->discid);
+		get_disc_info (gcd, qr->discid);
 		break;
 
 	case GNOME_Media_CDDBSlave2_REQUEST_PENDING:
@@ -188,7 +101,7 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 	discinfo->title = NULL;
 	discinfo->artist = NULL;
 	discinfo->ntracks = data->ntrks;
-	discinfo->tracknames = g_new0 (char *, data->ntrks);
+	discinfo->tracknames = NULL;
 
 	return discinfo;
 }
@@ -198,7 +111,6 @@ cddb_get_query (GnomeCD *gcd)
 {
 	GnomeCDRomCDDBData *data;
 	GnomeCDDiscInfo *info;
-	CDDBSlaveClient *slave;
 	BonoboListener *listener;
 	char *discid;
 	char *offsets = NULL;
@@ -210,7 +122,7 @@ cddb_get_query (GnomeCD *gcd)
 	}
 
 	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
-		g_print ("Eeeeek");
+		g_print ("gnome_cdrom_get_cddb_data returned FALSE");
 		return;
 	}
 
@@ -247,10 +159,6 @@ cddb_get_query (GnomeCD *gcd)
 			  G_CALLBACK (cddb_listener_event_cb), gcd);
 
 	cddb_slave_client_add_listener (slave, listener);
-
-	g_print ("Sending Query:-------\n");
-	g_print ("Disc ID: %s\nNTrks: %d\n", discid, data->ntrks);
-	g_print ("Offsets: %s\nNSecs: %d\n", offsets, data->nsecs);
 
 	cddb_slave_client_query (slave, discid, data->ntrks, offsets, 
 				 data->nsecs, "GnomeCD", VERSION);
