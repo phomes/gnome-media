@@ -4,10 +4,10 @@ INCLUDES = \
 	-DDATA_DIR=\""$(pkgdatadir)"\"			\
 	-DPIX_DIR=\""$(pkgdatadir)/pixmaps"\"
 
-bin_PROGRAMS = gst-mixer
+bin_PROGRAMS = gnome-volume-control
 
-gst_mixer_SOURCES = \
+gnome_volume_control_SOURCES = \
 	mixer.c
 
-gst_mixer_LDFLAGS = \
+gnome_volume_control_LDFLAGS = \
 	$(GSTMIXER_LIBS)
