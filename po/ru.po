@@ -1,13 +1,13 @@
-# Copyright (C) 1998-2000 Free Software Foundation, Inc.
+# Copyright (C) 1998-2001 Free Software Foundation, Inc.
 #
 # Max Valianskiy <maxcom@vinchi.ru> 1998-99
 # Sergey Panov <sipan@mit.edu> 1999
-#
+# Valek Filippov <frob@df.ru>, 2000-2001
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2001-06-12 08:06-0400\n"
-"PO-Revision-Date: 2001-02-15 19:12+03:00\n"
+"POT-Creation-Date: 2001-10-08 11:47+0400\n"
+"PO-Revision-Date: 2001-10-08 11:54+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -334,49 +334,65 @@ msgstr "инициализировать микшер(ы) из сохраненной конфигурации и выйти"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "не сохранять (измененные) настройки микшера в конфигурацию"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Не удалось открыть аудиоустройство.\n"
+"Проверьте, что у вас есть права на доступ к /dev/mixer\n"
+"и убедитесь, что поддержка звука скомпилирована в вашем ядре."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
 msgstr ""
+"Внимание: эта версия gmix была скомпилирована\n"
+"с OSS версии  %d.%d.%d, а ваша система запущена\n"
+"с версией младше 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
 msgstr ""
+"Внимание: эта версия gmix была скомпилирована\n"
+"с OSS версии  %d.%d.%d, а ваша система запущена\n"
+"с версией %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Фикс."
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Запись"
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Выкл."
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome микшер"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Микшер для звуковых устройств OSS."
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "При запуске"
 
@@ -403,15 +419,15 @@ msgstr "Использовать метки микшера"
 
 #: gmix/prefs.c:409
 msgid "Defaults"
-msgstr ""
+msgstr "По умолчанию"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Настройки"
 
 #: gmix/prefs.c:489
 msgid "Labels"
-msgstr ""
+msgstr "Метки"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
@@ -876,8 +892,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory "
-"%s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "У вас нет необходимых прав (чтение и запись) для временного каталога\n"
@@ -1077,27 +1093,24 @@ msgstr "Выход"
 
 #. INVISIBLE BUTTONS
 #: tcd/gtcd.c:498
-#, fuzzy
 msgid "Mixer"
-msgstr "Аудио Микшер"
+msgstr "Микшер"
 
 #: tcd/gtcd.c:503
 msgid "Fast Forward"
-msgstr ""
+msgstr "Перемотка вперёд"
 
 #: tcd/gtcd.c:504
 msgid "Rewind"
-msgstr ""
+msgstr "Перемотка назад"
 
 #: tcd/gtcd.c:505
-#, fuzzy
 msgid "Volume Up"
-msgstr "Том"
+msgstr "Громче"
 
 #: tcd/gtcd.c:506
-#, fuzzy
 msgid "Volume Down"
-msgstr "Том"
+msgstr "Тише"
 
 #: tcd/gtcd.c:642 tcd/gtcd.c:643 tcd/gtcd.c:644
 msgid "(Scanning)"
@@ -1117,15 +1130,15 @@ msgstr "Том"
 
 #: tcd/gtcd.c:1072
 msgid "Cannot load requested font. Reloading default font."
-msgstr ""
+msgstr "Не удалось загрузить запрошенный шрифт. Перезагрузка шрифта по умолчанию."
 
 #: tcd/gtcd.c:1083
 msgid "Cannot load default Helvetica font. Loading any fixed width font."
-msgstr ""
+msgstr "Не удалось загрузить шрифт без засечек по умолчанию. Загружается любой фиксированный шрифт."
 
 #: tcd/gtcd.c:1090
 msgid "Cannot load fixed width font. Exiting."
-msgstr ""
+msgstr "Не удалось загрузить фиксированный шрифт. Выход."
 
 #: tcd/gtcd.c:1288
 msgid "Filename of the CD device"
@@ -1238,107 +1251,114 @@ msgid "Track Editor..."
 msgstr "Редактор Треков..."
 
 #: tcd/popup.c:21
-#, fuzzy
 msgid "Mixer..."
-msgstr "Запустить микшер..."
+msgstr "Микшер..."
 
 #: tcd/popup.c:23
 msgid "About"
 msgstr "О программе"
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Ничего не делать"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Начать проигрывание"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Остановить проигрывание"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Закрыть лоток"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Открыть лоток"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "Устройство CDROM"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
-msgstr ""
+msgstr "Команда микшера"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Цвет трека/заглавия"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Шрифт трека/заглавия"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Изменить шрифт"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Показывать ручки (Требуется перезапуск TCD)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Показывать подсказки"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Использовать альтернативный метод проигрывания CD"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Использовать квадратичный закон управления громкостью"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "При выходе"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Клавиша"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Действие"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Щелкните здесь чтобы изменить (требуется перезапуск):"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Назначение клавиш"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "Настройки CDDB"
 
-#: vu-meter/main.c:118
+#: tcd/prefs.h:4
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-*-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#: tcd/prefs.h:5
+msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1346,46 +1366,62 @@ msgstr ""
 "Невозможно установить соединение с сервером звука.\n"
 "Пожалуйста, запустите 'esd' с командной строки."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Указать Х-координату индикатора"
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "Х-координата"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
 msgstr "Указать Y-координату индикатора."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Y-координата"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Установить соединение с esd-сервером на этой системе"
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
 msgstr "Хост ESD Сервера"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
 msgstr "Открыть вертикальную версию индикатора"
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Действует как измеритель уровня записи."
+
+#: vu-meter/main.c:271
 #, c-format
 msgid "Host is %s\n"
 msgstr "Имя машины: %s\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Уровень запись"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Индикатор громкости"
 
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "Модуль измерения уровня записи для ESD"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "Уровень записи ESD"
+
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD "
-msgstr "Модуль измерителя громкости ESD"
+msgid "A Volume Unit Meter for ESD"
+msgstr "Модуль измерителя громкости для ESD"
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "ESD Volume Meter"
@@ -1401,25 +1437,12 @@ msgstr "Проигрыватель CD Gnome"
 
 #: grecord/Soundrecorder.desktop.in.h:1
 msgid "A simple soundrecording program for GNOME"
-msgstr ""
+msgstr "Простая программа звукозаписи для GNOME"
 
 #: grecord/Soundrecorder.desktop.in.h:2
-#, fuzzy
 msgid "Sound recorder"
 msgstr "Звукозапись GNOME"
 
 #: gmix/gmix.desktop.in.h:1
 msgid "Audio Mixer"
 msgstr "Аудио Микшер"
-
-#~ msgid "Speed"
-#~ msgstr "Скорость"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
-#~ msgid "TV set"
-#~ msgstr "Телевизор"
-
-#~ msgid "Gnomovision applications"
-#~ msgstr "Телевизор-Гномовизор"
