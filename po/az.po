@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2001-06-10 18:21+0200\n"
-"PO-Revision-Date: 2000-06-19 17:16GMT +0200\n"
+"Project-Id-Version: gnome-media 1.2.3\n"
+"POT-Creation-Date: 2001-09-13 11:44+0200\n"
+"PO-Revision-Date: 2000-09-16 17:16GMT +0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkish <linuxaz@azerimal.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,42 +22,42 @@ msgstr "Əmrə hazırdır: %s\n"
 #: cddbslave/main.c:57
 #, c-format
 msgid "Connecting [%s]\n"
-msgstr "Bağlanılır [ %s ]\n"
+msgstr "Bağlanılır [%s]\n"
 
 #: cddbslave/main.c:58
 #, c-format
 msgid "Querying server [%s]\n"
-msgstr "Vericiyi soruşuram [ %s ]\n"
+msgstr "Vericiyi soruşuram [%s]\n"
 
 #: cddbslave/main.c:59
 #, c-format
 msgid "Waiting for reply [%s]\n"
-msgstr "Cavab gözləyirəm [ %s ]\n"
+msgstr "Cavab gözləyirəm [%s]\n"
 
 #: cddbslave/main.c:60
 #, c-format
 msgid "Reading reply [%s]\n"
-msgstr "Cavabı oxuyuram [ %s ]\n"
+msgstr "Cavabı oxuyuram [%s]\n"
 
 #: cddbslave/main.c:61
 #, c-format
 msgid "Disconnecting [%s]\n"
-msgstr "Ayrılıram[ %s ]\n"
+msgstr "Ayrılıram [%s]\n"
 
 #: cddbslave/main.c:62
 #, c-format
 msgid "Error connecting [%s]\n"
-msgstr "Bağlanırkən xəta oldu [ %s ]\n"
+msgstr "Bağlanırkən xəta oldu [%s]\n"
 
 #: cddbslave/main.c:63
 #, c-format
 msgid "Error querying [%s]\n"
-msgstr "Sorğulayarkən xəta oldu [ %s ]\n"
+msgstr "Sorğulayarkən xəta oldu [%s]\n"
 
 #: cddbslave/main.c:64
 #, c-format
 msgid "Error reading [%s]\n"
-msgstr "Oxuyarkan xəta oldu [ %s ]\n"
+msgstr "Oxuyarkan xəta oldu [%s]\n"
 
 #: cddbslave/main.c:65
 #, c-format
@@ -316,7 +316,7 @@ msgstr "Ekran"
 
 #: gmix/gmix.c:111 tcd/popup.c:22
 msgid "Help"
-msgstr "Kömək"
+msgstr "Yardım"
 
 #: gmix/gmix.c:142
 msgid "don't restore mixer-settings from configuration"
@@ -332,9 +332,19 @@ msgstr "mixer(ləri) qeyd edilmiş qurğularla başlat və çıx"
 
 #: gmix/gmix.c:145
 msgid "don't save (modified) mixer-settings into configuration"
-msgstr "( dəyişdirilmiş ) mixer-qurğularını qurğulara qeyd etmə"
+msgstr "(dəyişdirilmiş) mixer-qurğularını qurğulara qeyd etmə"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Audio avadanlığı aça bilmədim.\n"
+"Xahil edirik, /dev/mixer avadanlığını açma izniniz olub olmaduğunu\n"
+"və çəkirdək içindi səs dəstəyinin dərlənib dərlənmədiyini yoxlayın."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -345,7 +355,7 @@ msgstr ""
 "OSS buraxılış %d.%d.%d ilə dərlənibdir, və sizin siztemdə də\n"
 "3.6.0 buraxılışına uyğun gələni var.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -357,32 +367,32 @@ msgstr ""
 "%d.%d.%d buraxılışına uyğun gələni var.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Qıfılla"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Qeyd"
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Səssiz"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
-msgstr "GMIX - Gnome Mixer'i"
+msgstr "GMIX - Gnome Mixer-i"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
-msgstr "Bu OSS səs-avadanlıqları üçün bir mixer'dir"
+msgstr "Bu OSS səs-avadanlıqları üçün bir mixer-dir"
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "Başlanğıcda"
 
@@ -411,7 +421,7 @@ msgstr "İstifadəçi mikser etiketləri"
 msgid "Defaults"
 msgstr "Əsaslar"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Seçənəklər"
 
@@ -425,7 +435,7 @@ msgstr "GNOME Səs Qeydiyyatcısı : "
 
 #: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1032
 msgid "Could not fork child process"
-msgstr "Alt əmaəiyyatı çəngəlləyə bilmədim"
+msgstr "Alt əməliyyatı çəngəlləyə bilmədim"
 
 #: grecord/src/grec.c:92
 msgid "Recording..."
@@ -437,7 +447,7 @@ msgstr "Çalınır ..."
 
 #: grecord/src/grec.c:175
 msgid "Converting file..."
-msgstr "Dosye dönüşdürülür ..."
+msgstr "Fayl dönüşdürülür ..."
 
 #: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:327
 #: grecord/src/preferences.c:412
@@ -456,7 +466,7 @@ msgstr "Kanal : "
 
 #: grecord/src/grec.c:285
 msgid "Select a sound file"
-msgstr "Bir səs dosyesini seç"
+msgstr "Bir səs faylını seç"
 
 #: grecord/src/grec.c:504
 msgid "Undoing all changes..."
@@ -469,7 +479,7 @@ msgid ""
 "Please select a soundfile to be opened."
 msgstr ""
 "`%s' bir qovluqdur.\n"
-"Lütfən açılacaq bir səs dosyesini göstərin."
+"Lütfən açılacaq bir səs faylını göstərin."
 
 #: grecord/src/grec.c:593
 #, c-format
@@ -478,12 +488,12 @@ msgid ""
 "Please select a existing soundfile to be opened."
 msgstr ""
 "`%s' dosyesi yoxdur .\n"
-"Mövcud olan bir səs dosyesini açmaq üçün seç ."
+"Mövcud olan bir səs faylını açmaq üçün seç ."
 
 #: grecord/src/grec.c:605
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
-msgstr "`%s' keçərli bir səs dosyesi deyildir ."
+msgstr "`%s' hökmlü bir səs faylı deyildir ."
 
 #: grecord/src/grec.c:678
 #, c-format
@@ -492,7 +502,7 @@ msgid ""
 "Please enter another filename."
 msgstr ""
 "`%s' bir qovluqdur.\n"
-"Lütfən başqa bir dosya adı ver."
+"Lütfən başqa bir fayl adı ver."
 
 #: grecord/src/grec.c:688
 #, c-format
@@ -501,15 +511,15 @@ msgid ""
 "Do you want to overwrite it?"
 msgstr ""
 "`%s' onsuz da vardır.\n"
-"Üstüne yazmaq istəyirsiniz mi ?"
+"Üstüne yazmaq istəyirsinizmi ?"
 
 #: grecord/src/grec.c:703
 msgid "Error saving sound file"
-msgstr "Səs dosyesini qeyd edərkən xəta oldu"
+msgstr "Səs faylını qeyd edərkən xəta oldu"
 
 #: grecord/src/grec.c:739
 msgid "File not saved. Do you want to save it?"
-msgstr "Dosye qeyd edilməmişdir Qeyd etmək istəyirsiniz mi?"
+msgstr "Fayl qeyd edilməmişdir. Qeyd etmək istəyirsinizmi?"
 
 #. Save the file
 #: grecord/src/grec.c:758
@@ -519,27 +529,27 @@ msgstr "Qeyd Edilir ..."
 #: grecord/src/grec.c:879
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
-msgstr "Keçərli parçanın böyüklüyü %i MB'dan böyükdür!"
+msgstr "Hazırkı parçanın böyüklüyü %i MB*dan böyükdür!"
 
 #: grecord/src/grec.c:927
 msgid "Save sound file"
-msgstr "Səs dosyesini qeyd et"
+msgstr "Səs faylını qeyd et"
 
 #: grecord/src/grec.c:1095
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
 msgstr ""
-"səs avadanlığı hazır deyildir ! Lütfən başqa bir uyğulama \n"
+"səs avadanlığı hazır deyildir ! Lütfən başqa bir təminat\n"
 "tərəfindən avadanlığın qıfıllı olmadığını yoxla."
 
 #: grecord/src/gui.c:42
 msgid "_New"
-msgstr "_Təzə"
+msgstr "_Yeni"
 
 #: grecord/src/gui.c:43
 msgid "Create a new sample"
-msgstr "Təzə bir parça yarat"
+msgstr "Yeni bir parça yarat"
 
 #: grecord/src/gui.c:50
 msgid "Run mixer..."
@@ -587,11 +597,11 @@ msgstr "Səs mə'lumatını göndər"
 
 #: grecord/src/gui.c:232
 msgid "New"
-msgstr "Təzə"
+msgstr "Yeni"
 
 #: grecord/src/gui.c:233
 msgid "Create new sample"
-msgstr "Təzə bir parça yarat"
+msgstr "Yeni bir parça yarat"
 
 #: grecord/src/gui.c:243 tcd/popup.c:15
 msgid "Play"
@@ -599,7 +609,7 @@ msgstr "Çal"
 
 #: grecord/src/gui.c:244
 msgid "Play current sample"
-msgstr "Hazırkı parçayı çal"
+msgstr "Hazırkı parçanı çal"
 
 #: grecord/src/gui.c:252 tcd/gtcd.c:456 tcd/popup.c:16
 msgid "Stop"
@@ -607,7 +617,7 @@ msgstr "Dayan"
 
 #: grecord/src/gui.c:253
 msgid "Stop playing/recording"
-msgstr "Çalmayı/Qeydi dayandır"
+msgstr "Çalmanı/Qeydi dayandır"
 
 #: grecord/src/gui.c:261
 msgid "Record"
@@ -632,12 +642,12 @@ msgstr "Mə'lumat"
 #: grecord/src/gui.c:386
 #, c-format
 msgid "File '%s' doesn't exist; using default."
-msgstr "`%s' dosyesi yoxdur; əsas olanı istifadə edirəm."
+msgstr "`%s' faylı yoxdur; əsas olanı istifadə edirəm."
 
 #: grecord/src/gui.c:407
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
-msgstr "`%s' dəstəklanən növdən bir səs dosyesi deyildir ."
+msgstr "`%s' dəstəklanən növdən bir səs faylı deyildir ."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
@@ -661,7 +671,7 @@ msgid ""
 "Dedicated to my cat, Malte."
 msgstr ""
 "GNOME'un balaca bir səs qeyd edicisidir .\n"
-"Pişiyim Malte üçün yazılmışdır .Mən də Həyat yoldaşım üçün tərcümə etdim "
+"Pişiyim Malte üçün yazılmışdır. Mən də Həyat yoldaşım üçün tərcümə etdim "
 "(Vİ)."
 
 #: grecord/src/gui.c:542 tcd/gtracked.c:173
@@ -682,7 +692,7 @@ msgstr "Vaxt dolmasında qeydi dayandır"
 
 #: grecord/src/gui.c:576
 msgid "Popup save dialog when recording is finished"
-msgstr "Qeyd qurtaranda dosyenin qeyd diyaloqunu aç"
+msgstr "Qeyd qurtaranda faylın qeyd dialoqunu aç"
 
 #: grecord/src/gui.c:585
 msgid "Size"
@@ -690,11 +700,11 @@ msgstr "Böyüklük"
 
 #: grecord/src/gui.c:594
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
-msgstr "Parçanın böyüklüyü MB'lik sərhədi aşarsa xəbərdar et: "
+msgstr "Parçanın böyüklüyü MB-lıq sərhədi aşarsa xəbərdar et: "
 
 #: grecord/src/gui.c:604
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
-msgstr "Parçanın böyüklüyü MB'lik sərhədi aşarsa qeydi dayandır : "
+msgstr "Parçanın böyüklüyü MB-lıq sərhədi aşarsa qeydi dayandır : "
 
 #: grecord/src/gui.c:615
 msgid "Recording"
@@ -722,11 +732,11 @@ msgstr "Çalınır"
 
 #: grecord/src/gui.c:667
 msgid "Program files"
-msgstr "Proqram  dosyeləri"
+msgstr "Proqram  faylları"
 
 #: grecord/src/gui.c:684
 msgid "Path to sox:"
-msgstr "Sox'un yolu: "
+msgstr "Soks yolu: "
 
 #: grecord/src/gui.c:700
 msgid "Path to mixer:"
@@ -738,11 +748,11 @@ msgstr "Qovluqlar"
 
 #: grecord/src/gui.c:729
 msgid "Temp dir:"
-msgstr "Keçici dosyelar qovluğu: "
+msgstr "Müvəqqəti fayllar qovluğu: "
 
 #: grecord/src/gui.c:745
 msgid "Paths"
-msgstr "Yollar"
+msgstr "Cığırlar"
 
 #: grecord/src/gui.c:753
 msgid "Sound options"
@@ -762,7 +772,7 @@ msgstr "16bit pcm"
 
 #: grecord/src/gui.c:795
 msgid "Sample rate:"
-msgstr "Çalma saviyyəsi : "
+msgstr "Çalma səviyyəsi : "
 
 #: grecord/src/gui.c:825
 msgid "mono/stereo"
@@ -798,15 +808,15 @@ msgstr "GEOMETRY"
 
 #: grecord/src/main.c:63
 msgid "Specify a file to be opened"
-msgstr "Açılacaq dosyeyi göstər"
+msgstr "Açılacaq faylı göstər"
 
 #: grecord/src/main.c:72
 msgid "Specify a file to start recording"
-msgstr "Qeydi başlayacaq bir dosye göstər"
+msgstr "Qeydi başlayacaq bir fayl göstər"
 
 #: grecord/src/main.c:81
 msgid "Specify a file to start playing"
-msgstr "Çalınacaq bir dosye göstər"
+msgstr "Çalınacaq bir fayl göstər"
 
 #: grecord/src/main.c:174
 msgid "Don't show this message again."
@@ -821,9 +831,9 @@ msgid ""
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
 "`%s''yi tapa bilmədim.\n"
-"Qurğular'da 'yollar' bölməsində sox'un düzgün yolu göstər.\n"
+"Qurğularda 'cığırlar' bölməsində soksun düzgün cığırını göstər.\n"
 "\n"
-"Sox'un yoxsa, qeyd və effekt xüsusiyyətlərinə qovuşmayacqsan ."
+"Soks yoxsa, qeyd və effekt xüsusiyyətlərinə qovuşmayacqsan."
 
 #: grecord/src/preferences.c:213
 msgid ""
@@ -831,7 +841,7 @@ msgid ""
 "Do you want to use it anyway?"
 msgstr ""
 "'sox əmrini' vermədin; qeyd xüsusiyyətinə sahib olmayacaqsan.\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Yenə də bunu istifadə etmək istəyirsənmi ?"
 
 #: grecord/src/preferences.c:238
 #, c-format
@@ -839,8 +849,8 @@ msgid ""
 "File %s in 'sox command' does not exist.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"'sox əmri''ndəki %s dosyesi yoxdur .\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"'sox əmri''ndəki %s faylı yoxdur .\n"
+"Yenə də bunu istifadə etmək istəyirsənmi ?"
 
 #: grecord/src/preferences.c:263
 msgid ""
@@ -850,7 +860,7 @@ msgid ""
 msgstr ""
 "mikser əmrini tapa bilmədim; mikserin qeyd etmə xüsusiyyətinə sahib "
 "olmayacaqsan.\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Yenə də bunu istifadə etmək istəyirsənmi ?"
 
 #: grecord/src/preferences.c:288
 #, c-format
@@ -858,16 +868,16 @@ msgid ""
 "File %s in 'mixer command' does not exist.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"'mikser əmri''ndəki %s dosyesi yoxdur .\n"
-"Yenə də bunu istifadə etmək istəyirsən mi?"
+"'mikser əmri'-ndəki %s faylı yoxdur .\n"
+"Yenə də bunu istifadə etmək istəyirsənmi?"
 
 #: grecord/src/preferences.c:311
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Keçici dosyelər qovluğuu tapa bilmədim. Qeyd özelliyin olmyacaq.\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Müvəqqəti fayllar qovluğunu tapa bilmədim. Qeyd xüsusiyyətin olmayacaq.\n"
+"Yenə də bunu istifadə etmək istəyirsənmi?"
 
 #. Check if the given temp directory exists --------------------
 #. Exists
@@ -878,8 +888,8 @@ msgid ""
 "Temp directory %s is a file.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Keçici dosyelər qovluğu %s bir dosyedir .\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Müvəqqəti fayllar qovluğu %s bir fayldır .\n"
+"Yenə də bunu istifadə etmək istəyirsənmi?"
 
 #: grecord/src/preferences.c:350
 #, c-format
@@ -888,8 +898,8 @@ msgid ""
 "s.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Keçici qovluq %s üçün lazımi haqlara sanib deyilsən( oxuma + yazma ) .\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Müvəqqəti qovluq %s üçün lazımi haqlara sahib deyilsən ( oxuma + yazma ) .\n"
+"Yenə də bunu istifadə etmək istəyirsənmi?"
 
 #. Does not exist
 #: grecord/src/preferences.c:368
@@ -899,7 +909,7 @@ msgid ""
 "Do want to use it anyway?"
 msgstr ""
 "%s qovluq yoxdur .\n"
-"Yenə də bunu istifadə etmək istəyirsən mi ?"
+"Yenə də bunu istifadə etmək istəyirsənmi?"
 
 #: grecord/src/sound.c:101
 msgid " untitled.wav"
@@ -911,19 +921,19 @@ msgstr "Parçaya exo əlavə edirəm..."
 
 #: tcd/callbacks.c:85
 msgid "TCD - The Gnome CD Player"
-msgstr "TCD - Gnome cd-çalğıcısı"
+msgstr "TCD - Gnome CD Çalğıcısı"
 
 #: tcd/callbacks.c:89
 msgid ""
 "GTCD is the Gnome CD player application. Includes CDDB support. Please see "
 "the 'Thanks' file included with the distribution for more credits."
 msgstr ""
-"GTCD Gnome Cd-çalma proqramıdırvə CDDB-dəstəyi də vardır. Lütfən ´Thanks´ "
-"dosyesində bizə kömək edənlərin adlarını öyrənin."
+"GTCD Gnome Cd-çalma proqramıdı rvə CDDB-dəstəyi də vardır. Lütfən ´Thanks´ "
+"faylında bizə kömək edənlərin adlarını öyrənin."
 
 #: tcd/cddb_props.c:72
 msgid "Disc ID"
-msgstr "Cd ID'si"
+msgstr "Cd ID-si"
 
 #: tcd/cddb_props.c:72
 msgid "Disc Title"
@@ -935,11 +945,11 @@ msgstr "Düzəlt"
 
 #: tcd/cddb_props.c:91
 msgid "Remove"
-msgstr "Ləğv Et"
+msgstr "Çıxart"
 
 #: tcd/cddb_props.c:97
 msgid "Refresh List"
-msgstr "Siyahıyı Təzələ"
+msgstr "Siyahını Yenilə"
 
 #. server settings
 #: tcd/cddb_props.c:148
@@ -956,7 +966,7 @@ msgstr "Qapı"
 
 #: tcd/cddb_props.c:176
 msgid "Use HTTP"
-msgstr "Http istifadə et"
+msgstr "HTTP istifadə et"
 
 #: tcd/cddb_props.c:181
 msgid "Proxy"
@@ -985,7 +995,7 @@ msgstr "SOCKS istifadə et"
 #. local db
 #: tcd/cddb_props.c:267
 msgid "Local Database"
-msgstr "Yerli Database"
+msgstr "Yerli Verilənlər Bazası"
 
 #. frame
 #: tcd/cddb_props.c:309
@@ -998,12 +1008,12 @@ msgstr "CDDB Düzəldicisi"
 
 #: tcd/cddb_props.c:356
 msgid "Error reading $HOME/.cddbslave."
-msgstr "$HOME/.cddbslave'i oxurkən xəta oldu ."
+msgstr "$HOME/.cddbslave-i oxurkən xəta oldu ."
 
 #: tcd/cddb_props.c:472
 #, c-format
 msgid "Couldn't remove file: %s\n"
-msgstr "Dosyeyi silə bilmədim : %s\n"
+msgstr "Faylı silə bilmədim : %s\n"
 
 #: tcd/cddb_props.c:484
 msgid "Delete CDDB Entry?"
@@ -1017,7 +1027,7 @@ msgstr "CDDB Vəziyyəti"
 #. grab button
 #: tcd/cddb_status.c:71
 msgid "Get CDDB Now"
-msgstr "CDDB'yə indi bax"
+msgstr "CDDB-yə indi bax"
 
 #: tcd/gtcd.c:63
 msgid "trk-e"
@@ -1134,15 +1144,15 @@ msgstr "Sabit yazı növü yüklənə bilmir. Çıxılır."
 
 #: tcd/gtcd.c:1288
 msgid "Filename of the CD device"
-msgstr "Cd-sürücüsünün dosyesinin adı"
+msgstr "Cd-sürücüsünün faylının adı"
 
 #: tcd/gtcd.c:1288
 msgid "FILE"
-msgstr "DOSYE"
+msgstr "FAYL"
 
 #: tcd/gtcd.c:1290
 msgid "Play CD on startup"
-msgstr "Başlarkən Cd'yi çal"
+msgstr "Başlarkən Cd-ni çal"
 
 #: tcd/gtracked.c:173
 msgid "Trk"
@@ -1160,7 +1170,7 @@ msgstr "Parça Düzəldicisi"
 #: tcd/gtracked.c:213
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Cd bilgiləri ( %02u:%02u dəqiqə )"
+msgstr "Disk Bilgiləri ( %02u:%02u dəqiqə )"
 
 #: tcd/gtracked.c:222
 msgid "Artist / Title"
@@ -1170,7 +1180,7 @@ msgstr "Sənətkar / Ad"
 #. Track area
 #: tcd/gtracked.c:245
 msgid "Track Information"
-msgstr "Parça bilgisi"
+msgstr "Parça Bilgisi"
 
 #. Clear button
 #: tcd/gtracked.c:301
@@ -1196,7 +1206,7 @@ msgid ""
 "Submit information about\n"
 "'%s'"
 msgstr ""
-"`%s''nin bilgilərini\n"
+"`%s'-nin bilgilərini\n"
 "göndər "
 
 #: tcd/gtracked.c:395
@@ -1251,94 +1261,94 @@ msgid "About"
 msgstr "Haqqında"
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Heç bir şey etmə"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
-msgstr "Çalmaya başla"
+msgstr "Çalmağa başla"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
-msgstr "Çalmayı dayandır"
+msgstr "Çalmanı dayandır"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Cığırı Qapat"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Cığırı Aç"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "Cd-sürücüsü"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
 msgstr "Mikser Əmri"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Parça/Ad rəngi"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Parça/Ad yazı növü"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Yazı növünü dəyişdir"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Məqamları göstər ( təzədən başlamaq lazımdır)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
-msgstr "Balon kömaklərini göstər"
+msgstr "Balon köməklərini göstər"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
-msgstr "Cd'yi çalmaq üçün başqa bir yol seç"
+msgstr "Cd-ni çalmaq üçün başqa bir yol seç"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Kcadrat qaydalı səs idarəsi işlət"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "Çıxışda"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Açar"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Əməliyyat"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Dəyişdirmək üçün buraya tıqla ( təzədən başlamaq lazımdır):"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Açar bağları"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "CDDB Qurğuları"
 
@@ -1350,54 +1360,70 @@ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
 msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
 
-#: vu-meter/main.c:118
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
 "Səs vericisinə bağlanabilmədim .\n"
-"Lütfən bir əmr sətirindən ´esd´'yi işə sal."
+"Lütfən bir əmr sətirindən ´esd´-ni işə sal."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Səs göstərgəsinin X-Yerini göstər."
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "X-Yeri"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
-msgstr "Səs göstergəsinin Y-Yerini göstər."
+msgstr "Səs göstərgəsinin Y-Yerini göstər."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Y-Yeri"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Bu vericidəki esd-vericisinə bağlan ."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
-msgstr "ESD Verici"
+msgstr "ESD Verici Qovşağı"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
-msgstr "Səs göstergəsinin şaquli növünü aç"
+msgstr "Səs göstərgəsinin şaquli növünü aç"
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Qeydiyyat səviyyəsi ölçücüsü olaraq davran."
+
+#: vu-meter/main.c:271
 #, c-format
 msgid "Host is %s\n"
 msgstr "%s vericimizdir\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Qeydiyyat Səviyyəsi"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Səs göstərgəsi"
 
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "ESD üçün Qeydiyyat Səviyyəsi Ölçücüsü"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "ESD Qeydiyyat Səviyyəsi"
+
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD "
-msgstr "ESD üçün Səs Vahidi Ölçücüsü"
+msgid "A Volume Unit Meter for ESD"
+msgstr "ESD üçün Səs Həcmi Vahidi Ölçücüsü"
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "ESD Volume Meter"
