@@ -1,11 +1,12 @@
 # Swedish translation of the gnome-libs module.
 # Copyright (C) 1998-1999 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998-1999.
-# Andreas Hyden <a.hyden@cyberpoint.se>
+# Andreas Hyden <a.hyden@cyberpoint.se>, 2000.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-libs-0.20\n"
-"POT-Creation-Date: 2000-04-29 21:16+0200\n"
+"POT-Creation-Date: 2000-05-06 18:46+0200\n"
 "PO-Revision-Date: 1999-09-27 20:30+0100\n"
 "Last-Translator: Andreas Hyden  <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -248,7 +249,7 @@ msgstr "Detta är en mixer för OSS-ljudenheter."
 msgid "GNOME Sound recorder:"
 msgstr "GNOME ljudinspelaren:"
 
-#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:946
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:952
 msgid "Could not fork child process"
 msgstr "Kunde inte \"forka\" barnprocessen"
 
@@ -260,64 +261,64 @@ msgstr "Spelar in..."
 msgid "Playing..."
 msgstr "Spelar upp..."
 
-#: grecord/src/grec.c:165
+#: grecord/src/grec.c:167
 msgid "Converting file..."
 msgstr "Konverterar fil..."
 
-#: grecord/src/grec.c:219 grecord/src/grec.c:637 grecord/src/gui.c:330
-#: grecord/src/preferences.c:297
+#: grecord/src/grec.c:233 grecord/src/grec.c:651 grecord/src/gui.c:330
+#: grecord/src/preferences.c:373
 msgid "Audioformat: "
 msgstr "Ljudformat: "
 
-#: grecord/src/grec.c:223 grecord/src/grec.c:623 grecord/src/gui.c:337
-#: grecord/src/preferences.c:301
+#: grecord/src/grec.c:237 grecord/src/grec.c:637 grecord/src/gui.c:337
+#: grecord/src/preferences.c:377
 msgid "Sample rate: "
 msgstr "Samplingsfrekvens: "
 
-#: grecord/src/grec.c:233 grecord/src/grec.c:627 grecord/src/gui.c:344
-#: grecord/src/preferences.c:305
+#: grecord/src/grec.c:247 grecord/src/grec.c:641 grecord/src/gui.c:344
+#: grecord/src/preferences.c:381
 msgid "Channels: "
 msgstr "Kanaler: "
 
-#: grecord/src/grec.c:263
+#: grecord/src/grec.c:277
 msgid "Select a sound file"
 msgstr "Välj en ljudfil"
 
-#: grecord/src/grec.c:292
+#: grecord/src/grec.c:306
 msgid "Error saving sound file!"
 msgstr "Fel vid sparning av ljudfil!"
 
-#: grecord/src/grec.c:380
+#: grecord/src/grec.c:394
 msgid "GNOME Sound recorder web page"
 msgstr "GNOME ljudinspelarens webbsida"
 
-#: grecord/src/grec.c:486
+#: grecord/src/grec.c:500
 msgid "Undoing all..."
 msgstr "Ångrar alla ändringar..."
 
-#: grecord/src/grec.c:589 grecord/src/gui.c:415
+#: grecord/src/grec.c:603 grecord/src/gui.c:415
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Filen \"%s\" är inte en giltig ljudfil; använder standard."
 
-#: grecord/src/grec.c:654
+#: grecord/src/grec.c:668
 msgid "Error saving sound file"
 msgstr "Fel vid sparning av ljudfil"
 
-#: grecord/src/grec.c:684
+#: grecord/src/grec.c:698
 msgid "File not saved. Do you want to save it?"
 msgstr "Filen inte sparad. Vill du spara den?"
 
-#: grecord/src/grec.c:807
+#: grecord/src/grec.c:813
 #, c-format
 msgid "The size of the current sample is more than %i MB!"
 msgstr "Storleken på det aktuella ljudklippet är mer än %i MB!"
 
-#: grecord/src/grec.c:855
+#: grecord/src/grec.c:861
 msgid "Save sound file"
 msgstr "Spara ljudfil"
 
-#: grecord/src/grec.c:1002
+#: grecord/src/grec.c:1011
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -610,7 +611,15 @@ msgstr "Ange en fil att börja spela in på"
 msgid "Specify a file to start playing"
 msgstr "Ange en fil att börja spela upp"
 
-#: grecord/src/preferences.c:192
+#: grecord/src/preferences.c:196
+msgid ""
+"You havn't entered a sox command; you will not be able to record.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Du har inte angivit ett sox kommando; du kommer inte att kunna spela in.\n"
+"Vill du använda det ändå?"
+
+#: grecord/src/preferences.c:221
 #, c-format
 msgid ""
 "File %s in 'sox command' does not exist.\n"
@@ -619,7 +628,17 @@ msgstr ""
 "Filen %s i \"sox kommando\" existerar inte.\n"
 "Vill du använda det ändå?"
 
-#: grecord/src/preferences.c:214
+#: grecord/src/preferences.c:245
+msgid ""
+"You havn't entered a mixer command; you will not be able to start the "
+"mixer.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Du har inte angivit ett mixer kommando; du kommer inte att kunna starta "
+"mixern.\n"
+"Vill du använda det ändå?"
+
+#: grecord/src/preferences.c:270
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -628,26 +647,32 @@ msgstr ""
 "Filen %s i \"mixer kommando\" existerar inte.\n"
 "Vill du använda det ändå?"
 
+#: grecord/src/preferences.c:293
+msgid ""
+"You havn't entered a temp dir. You will not be able to record.\n"
+"Do you want to use it anyway?"
+msgstr ""
+"Du har inte angivit en temp-katalog. Du kommer inte att kunna spela in.\n"
+"Vill du använda det ändå?"
+
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:237
-#, c-format
+#: grecord/src/preferences.c:312
 msgid ""
 "Temp directory %s is a file.\n"
-"Do you still want to use it anyway?"
+"Do you want to use it anyway?"
 msgstr ""
-"Temp katalogen %s är en fil.\n"
+"Temp-katalogen %s är en fil.\n"
 "Vill du använda den ändå?"
 
 #. Does not exist
-#: grecord/src/preferences.c:254
-#, c-format
+#: grecord/src/preferences.c:329
 msgid ""
 "Directory %s does not exist.\n"
-"Do you still want to use it?"
+"Do want to use it anyway?"
 msgstr ""
-"Katalogen %s existerar inte.\n"
+"Katalogen %s finns inte.\n"
 "Vill du använda den ändå?"
 
 #: grecord/src/sound.c:102
