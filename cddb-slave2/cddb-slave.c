@@ -821,7 +821,7 @@ do_open_response (ConnectionData *cd,
 
 	default:
 		if (cddb_debugging == TRUE) {
-			g_print ("CDDB: Unknown response code: %d\n");
+			g_print ("CDDB: Unknown response code: %d\n",code);
 			g_print ("CDDB: %s\n", response);
 		}
 		cddb->priv->access = CDDB_ACCESS_NONE;
@@ -970,7 +970,7 @@ cddb_send_cmd (ConnectionData *data)
 					      data->cddb->priv->port,
 					      open_cb, data);
 	if (sock == NULL) {
-		g_warning ("Could not connect to %s:%s",
+		g_warning ("Could not connect to %s:%d",
 			   data->cddb->priv->server,
 			   data->cddb->priv->port);
 		/* Notify listeners */
