@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.3.0\n"
-"POT-Creation-Date: 2003-06-04 14:44+0200\n"
-"PO-Revision-Date: 2003-06-04 14:48+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-27 21:18+0200\n"
+"PO-Revision-Date: 2003-07-27 21:23+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,31 +20,52 @@ msgstr ""
 msgid "Address of the server to contact for CD queries"
 msgstr "Adreça del servidor a contactar per a consultes de CD"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:798
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Informació a enviar al servidor"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:839
 msgid "Port"
 msgstr "Port"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "Nom del servidor"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Tipus de servidor"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
 msgstr "El nom de la màquina que s'enviarà amb totes les consultes"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
 msgstr "El port en el que el servidor està executant la base de dades"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "El tipus de servidor a contactar per a consultes de CD. Els valors possibles són 0 (servidor round robin de FreeDB), 1 (altre servidor de freedb) i 2 (altre servidor)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "El nom d'usuari"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
 msgstr "El nom d'usuari que s'enviarà amb totes les consultes"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr "Aquesta clau especifica quina informació d'usuari s'enviarà al servidor a contactar per a les consultes de CD. Els valors possibles són 0 (cap informació), 1 (informació real) i 3 (altra informació)."
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr "Nom del vostre ordinador central:"
 
@@ -65,64 +87,64 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:670
-msgid "Log on information"
+#: cddb-slave2/cddb-slave-capplet.c:703
+msgid "Login Information"
 msgstr "Informació d'entrada"
 
-#: cddb-slave2/cddb-slave-capplet.c:679
-msgid "Send _no info"
-msgstr "No envia _cap informació"
+#: cddb-slave2/cddb-slave-capplet.c:709
+msgid "Sen_d no information"
+msgstr "No en_via cap informació"
 
-#: cddb-slave2/cddb-slave-capplet.c:688
-msgid "Send real _info"
+#: cddb-slave2/cddb-slave-capplet.c:718
+msgid "Send real _information"
 msgstr "Envia _informació real"
 
-#: cddb-slave2/cddb-slave-capplet.c:697
-msgid "Send _other info..."
-msgstr "Envia un _altra informació..."
+#: cddb-slave2/cddb-slave-capplet.c:727
+msgid "Send _other information:"
+msgstr "Envia una _altra informació:"
 
-#: cddb-slave2/cddb-slave-capplet.c:714
-msgid "N_ame:"
+#: cddb-slave2/cddb-slave-capplet.c:752
+msgid "_Name:"
 msgstr "_Nom:"
 
-#: cddb-slave2/cddb-slave-capplet.c:733
-msgid "_Hostname:"
-msgstr "Nom de l'ordinador _central:"
+#: cddb-slave2/cddb-slave-capplet.c:772
+msgid "Hostna_me:"
+msgstr "No_m del servidor:"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
+#: cddb-slave2/cddb-slave-capplet.c:792 cddb-slave2/cddb-slave-capplet.c:836
 msgid "Server"
 msgstr "Servidor"
 
-#: cddb-slave2/cddb-slave-capplet.c:763
+#: cddb-slave2/cddb-slave-capplet.c:798
 msgid "FreeDB _round robin server"
 msgstr "Servidor «_round robin» de la FreeDB"
 
-#: cddb-slave2/cddb-slave-capplet.c:769
-msgid "Other _FreeDB server..."
-msgstr "Un _altre servidor de la FreeDB..."
+#: cddb-slave2/cddb-slave-capplet.c:804
+msgid "Other _FreeDB server:"
+msgstr "Un altre servidor de _FreeDB:"
 
-#: cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/cddb-slave-capplet.c:842
 msgid "Location"
 msgstr "Ubicació"
 
-#: cddb-slave2/cddb-slave-capplet.c:807
-msgid "Update server list"
-msgstr "Actualitzar la llista de servidors"
+#: cddb-slave2/cddb-slave-capplet.c:874
+msgid "_Update Server List"
+msgstr "_Actualitza la llista de servidors"
 
-#: cddb-slave2/cddb-slave-capplet.c:814
-msgid "Other _server..."
-msgstr "Un altre _servidor..."
+#: cddb-slave2/cddb-slave-capplet.c:881
+msgid "Other _server:"
+msgstr "Un altre _servidor:"
 
-#: cddb-slave2/cddb-slave-capplet.c:826
-msgid "Hostname:"
-msgstr "Nom de l'ordinador _central:"
+#: cddb-slave2/cddb-slave-capplet.c:901
+msgid "Hos_tname:"
+msgstr "Nom del _servidor:"
 
-#: cddb-slave2/cddb-slave-capplet.c:838
+#: cddb-slave2/cddb-slave-capplet.c:918
 msgid "_Port:"
 msgstr "_Port:"
 
-#: cddb-slave2/cddb-slave-capplet.c:888
+#: cddb-slave2/cddb-slave-capplet.c:984
 msgid "CD Database Preferences"
 msgstr "Preferències de la base de dades de CD"
 
@@ -131,9 +153,9 @@ msgid "Unknown / Unknown"
 msgstr "Desconegut / Desconegut"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:777
-#: grecord/src/gsr-window.c:786 grecord/src/gsr-window.c:795
-#: grecord/src/gsr-window.c:805 grecord/src/gsr-window.c:1125
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:778
+#: grecord/src/gsr-window.c:787 grecord/src/gsr-window.c:796
+#: grecord/src/gsr-window.c:806 grecord/src/gsr-window.c:1133
 msgid "Unknown"
 msgstr "Desconegut"
 
@@ -884,7 +906,7 @@ msgid "CD"
 msgstr "CD"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "Vídeo"
 
@@ -1136,7 +1158,7 @@ msgstr "_Detalls"
 msgid "Invalid mixer device"
 msgstr "Dispositiu de mesclador invàlid"
 
-#: gmix/gmix.c:626
+#: gmix/gmix.c:633
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1147,7 +1169,7 @@ msgstr ""
 "la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
 "una versó anterior a la 3.6.0.\n"
 
-#: gmix/gmix.c:634
+#: gmix/gmix.c:641
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1158,53 +1180,53 @@ msgstr ""
 "la versió de l'OSS %d.%d.%d, i el vostre sistema està executant\n"
 "la versió %d.%d.%d.\n"
 
-#: gmix/gmix.c:1088
+#: gmix/gmix.c:1114
 #, c-format
 msgid "left %s"
 msgstr "esquerra %s"
 
-#: gmix/gmix.c:1114
+#: gmix/gmix.c:1140
 #, c-format
 msgid "Right %s"
 msgstr "Dreta %s"
 
-#: gmix/gmix.c:1207
+#: gmix/gmix.c:1233
 msgid "Lock"
 msgstr "Bloqueja"
 
-#: gmix/gmix.c:1220
+#: gmix/gmix.c:1246
 #, c-format
 msgid "%s Lock"
 msgstr "%s Bloqueja"
 
-#: gmix/gmix.c:1231
+#: gmix/gmix.c:1257
 msgid "Mute"
 msgstr "Mute"
 
-#: gmix/gmix.c:1244
+#: gmix/gmix.c:1270
 #, c-format
 msgid "%s Mute"
 msgstr "%s Mute"
 
-#: gmix/gmix.c:1258
+#: gmix/gmix.c:1284
 msgid "Rec."
 msgstr "Rec."
 
-#: gmix/gmix.c:1270
+#: gmix/gmix.c:1296
 #, c-format
 msgid "%s Record"
 msgstr "%s Enregistrar"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1368 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Control del volum"
 
-#: gmix/gmix.c:1748
+#: gmix/gmix.c:1776
 msgid "GNOME Volume Control"
 msgstr "Control de Volum del GNOME"
 
-#: gmix/gmix.c:1751
+#: gmix/gmix.c:1779
 msgid "A mixer for sound devices"
 msgstr "Un mesclador per dispositius de so"
 
@@ -1275,8 +1297,8 @@ msgid "Line for displaying the name of the album"
 msgstr "Línia per mostrar el nom de l'album"
 
 #: gnome-cd/callbacks.c:80 gnome-cd/callbacks.c:168 gnome-cd/callbacks.c:267
-#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
-#: grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:609 grecord/gsr.xml.h:13
+#: grecord/src/gui.c:233
 msgid "Play"
 msgstr "Reprodueix"
 
@@ -1309,7 +1331,7 @@ msgid "Paused"
 msgstr "Pausat"
 
 #. Update tray icon tooltip
-#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:840 gnome-cd/gnome-cd.c:55
+#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:842 gnome-cd/gnome-cd.c:55
 #: gnome-cd/gnome-cd.c:475 gnome-cd/gnome-cd.c:652
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
@@ -1346,7 +1368,7 @@ msgstr "No hi ha cap CDROM"
 msgid "Drive Error"
 msgstr "Error a l'unitat"
 
-#: gnome-cd/callbacks.c:842
+#: gnome-cd/callbacks.c:844
 msgid "A CD player for GNOME"
 msgstr "Un reproductor de CD per al GNOME"
 
@@ -1497,7 +1519,7 @@ msgstr "Endarrera"
 msgid "Play / Pause"
 msgstr "Reproduir / Pausa"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:614 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Parar"
 
@@ -1572,7 +1594,8 @@ msgstr ""
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Quan s'inicia el reproductor de CD, hauria de començar a reproduir el CD?"
+msgstr ""
+"Quan s'inicia el reproductor de CD, hauria de començar a reproduir el CD?"
 
 #: gnome-cd/preferences.c:84
 #, c-format
@@ -1627,10 +1650,170 @@ msgstr "_Temes disponibles:"
 msgid "Record sound clips"
 msgstr "Enregistrar talls de so"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:997
-#: grecord/src/gsr-window.c:1551 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1001
+#: grecord/src/gsr-window.c:1559 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Enregistrador de so"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "Quant a"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "Tanca"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "Tanca aquesta finestra"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "Continguts"
+
+#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
+msgid "Create a new sample"
+msgstr "Crea una nova mostra"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr "Mostra ajuda per al enregistrador de so"
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:864
+msgid "File Information"
+msgstr "Informació sobre el fitxer"
+
+#: grecord/gsr.xml.h:8
+msgid "File _Information"
+msgstr "_Informació sobre el fitxer"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "Barra d'eines principal"
+
+#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
+msgid "New"
+msgstr "Nou"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "Obre"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:384
+msgid "Open a file"
+msgstr "Obre un fitxer"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr "Reprodueix un so"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "Surt"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "Surt d'aquesta aplicació"
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr "_Fitxers recents"
+
+#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
+msgid "Record"
+msgstr "Enregistra"
+
+#: grecord/gsr.xml.h:19
+msgid "Record sound"
+msgstr "Enregistra so"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr "Executa el mesclador"
+
+#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
+msgid "Run _Mixer"
+msgstr "Executar _Mesclador"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr "Executa el mesclador d'àudio"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "Desa"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "Desa com?"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "_Anomena i desa..."
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "Desa el fitxer actual"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "Desa el fitxer actual amb un nom diferent"
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr "Mostra informació sobre el fitxer actual"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr "Mostra informació sobre l'enregistrador de so"
+
+#: grecord/gsr.xml.h:31
+msgid "Stop sound"
+msgstr "Para el so"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "_Quant a"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "_Tanca la finestra"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "_Continguts"
+
+#: grecord/gsr.xml.h:35
+msgid "_Control"
+msgstr "_Control"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "_Fitxer"
+
+#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
+msgid "_New"
+msgstr "_Nou"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "_Obre..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "_Reprodueix"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "_Surt"
+
+#: grecord/gsr.xml.h:42
+msgid "_Record"
+msgstr "En_registra"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "_Desa"
 
 #: grecord/src/grec.c:56
 msgid "Sound Recorder:"
@@ -1658,11 +1841,11 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "No s'ha pogut bifurcar el proces fill"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1385
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1393
 msgid "Recording..."
 msgstr "S'està enregistrant..."
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1244
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1252
 msgid "Playing..."
 msgstr "S'està reproduint..."
 
@@ -1840,12 +2023,8 @@ msgstr "segons"
 msgid "second"
 msgstr "segon"
 
-#: grecord/src/gsr-window.c:384 grecord/gsr.xml.h:12
-msgid "Open a file"
-msgstr "Obre un fitxer"
-
-#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1268
-#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1480
+#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1276
+#: grecord/src/gsr-window.c:1415 grecord/src/gsr-window.c:1488
 msgid "Ready"
 msgstr "Preparat"
 
@@ -1868,101 +2047,85 @@ msgstr "%s no esta instal·lat al camí."
 msgid "%s (Has not been saved)"
 msgstr "%s (no s'ha desat)"
 
-#: grecord/src/gsr-window.c:768
+#: grecord/src/gsr-window.c:769
 msgid "Unknown size"
 msgstr "Mida desconeguda"
 
-#: grecord/src/gsr-window.c:788
+#: grecord/src/gsr-window.c:789
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:797
+#: grecord/src/gsr-window.c:798
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:809
+#: grecord/src/gsr-window.c:810
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:813
+#: grecord/src/gsr-window.c:814
 msgid "2 (stereo)"
 msgstr "2 (estèreo)"
 
-#: grecord/src/gsr-window.c:842
+#: grecord/src/gsr-window.c:843
 #, c-format
 msgid "%s Information"
 msgstr "Informació de %s"
 
-#: grecord/src/gsr-window.c:862 grecord/gsr.xml.h:7
-msgid "File Information"
-msgstr "Informació sobre el fitxer"
-
-#: grecord/src/gsr-window.c:876
+#: grecord/src/gsr-window.c:878
 msgid "Folder:"
 msgstr "Carpeta:"
 
-#: grecord/src/gsr-window.c:882 grecord/src/gsr-window.c:1610
+#: grecord/src/gsr-window.c:884 grecord/src/gsr-window.c:1618
 msgid "Filename:"
 msgstr "Nom del fitxer:"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:890
 msgid "File size:"
 msgstr "Mida del fitxer:"
 
-#: grecord/src/gsr-window.c:897
+#: grecord/src/gsr-window.c:899
 msgid "Audio Information"
 msgstr "Informació sobre l'àudio"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:913
 msgid "Song length:"
 msgstr "Duració de la cançò:"
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:919
 msgid "Number of channels:"
 msgstr "Número de canals:"
 
-#: grecord/src/gsr-window.c:923
+#: grecord/src/gsr-window.c:925
 msgid "Sample rate:"
 msgstr "Ritme de mostreig:"
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:931
 msgid "Bit rate:"
 msgstr "Ritme de bit:"
 
-#: grecord/src/gsr-window.c:999
+#: grecord/src/gsr-window.c:1003
 msgid "A sound recorder for GNOME"
 msgstr "Un enregistrador de so per al GNOME"
 
-#: grecord/src/gsr-window.c:1547 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1555 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Enregistrador de so"
 
-#: grecord/src/gsr-window.c:1595
+#: grecord/src/gsr-window.c:1603
 msgid "File information"
 msgstr "Informació sobre el fitxer"
 
-#: grecord/src/gsr-window.c:1616
+#: grecord/src/gsr-window.c:1624
 msgid "<none>"
 msgstr "<cap>"
 
-#: grecord/src/gsr-window.c:1625
+#: grecord/src/gsr-window.c:1633
 msgid "Length:"
 msgstr "Mida:"
-
-#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_Nou"
-
-#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Crea una nova mostra"
-
-#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "Executar _Mesclador"
 
 #: grecord/src/gui.c:55
 msgid "Run GNOME Volume Control"
@@ -2008,10 +2171,6 @@ msgstr "estèreo"
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Nou"
-
 #: grecord/src/gui.c:218
 msgid "Create new sample"
 msgstr "Crea una mostra nova"
@@ -2023,10 +2182,6 @@ msgstr "Reprodueix la mosta actual"
 #: grecord/src/gui.c:248
 msgid "Stop playing/recording"
 msgstr "Para reproduir/enregistrar"
-
-#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Enregistra"
 
 #: grecord/src/gui.c:262
 msgid "Start recording"
@@ -2227,162 +2382,30 @@ msgstr "Especifiqueu un fitxer per començar a reproduir-lo"
 msgid "Sound recorder"
 msgstr "Enregistrador de so"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 8bit PCM"
 msgstr "Format d'àudio: 8bit PCM"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 16bit PCM"
 msgstr "Format d'àudio: 16bit PCM"
 
-#: grecord/src/preferences.c:222
+#: grecord/src/preferences.c:223
 #, c-format
 msgid "Sample rate: %s"
 msgstr "Velocitat de mostrieg: %s"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: mono"
 msgstr "Canals: mono"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: stereo"
 msgstr "Canals: estèreo"
 
 #: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "S'està afegir ressò a la mostra..."
-
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Quant a"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Tanca"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "Tanca aquesta finestra"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Continguts"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "Mostra ajuda per al enregistrador de so"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "_Informació sobre el fitxer"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Barra d'eines principal"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Obre"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Reprodueix un so"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Surt"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Surt d'aquesta aplicació"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "_Fitxers recents"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Enregistra so"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Executa el mesclador"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "Executa el mesclador d'àudio"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Desa"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Desa com?"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "_Anomena i desa..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "Desa el fitxer actual"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "Desa el fitxer actual amb un nom diferent"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "Mostra informació sobre el fitxer actual"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "Mostra informació sobre l'enregistrador de so"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Para el so"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Quant a"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Tanca la finestra"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Continguts"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Control"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fitxer"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Obre..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Reprodueix"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Surt"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "En_registra"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_Desa"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:263
@@ -2407,26 +2430,6 @@ msgstr "GStreamer"
 msgid "*"
 msgstr "*"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">S'està provant...</span>"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "Audio"
-msgstr "Àudio"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio _Input:"
-msgstr "Entrada d'àud_io:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr "S_ortida d'àudio:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
-msgstr "Feu click en «D'acord» per sortir"
-
 # Sink és difícil d'explicar
 # [17:35] > Does anyone know what a "Sink" is in GStreamer context?
 # [17:36] <alp> Oskuro: an element that does output
@@ -2439,37 +2442,64 @@ msgstr "Feu click en «D'acord» per sortir"
 # [17:38] <alp> Oskuro: yes. there are oss and also audio output sinks, for
 #         example
 # Així que de moment deixe «Sistema de sortida». jm
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Sink</b>"
+msgstr "<b>Sistema de sortida per defecte</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "<b>Default Source</b>"
+msgstr "<b>Font per defecte</b>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">S'està provant...</span>"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Audio"
+msgstr "Àudio"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
+msgid "Click Ok to finish."
+msgstr "Feu click en «D'acord» per finalitzar."
+
 #: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "Default Sink"
-msgstr "Sistema de sortida per defecte"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Default Source"
-msgstr "Font per defecte"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "GStreamer Properties"
+msgid "GStreamer Preferences"
 msgstr "Propietats de GStreamer"
 
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Pipe_line:"
+msgstr "_Conducte:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "Te_st"
+msgstr "Pro_va"
+
 #: gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeline:"
-msgstr "Conducte:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Test..."
-msgstr "Prova..."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
 msgstr "S'està provant el conducte"
 
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "_Input:"
+msgstr "_Entrada:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "_Output:"
+msgstr "S_ortida:"
+
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr "_Entrada de vídeo:"
+msgid "_Pipeline:"
+msgstr "_Conducte:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
-msgstr "S_ortida de vídeo:"
+msgid "_Test"
+msgstr "_Prova"
+
+#: gstreamer-properties/pipeline-constants.c:58
+#: gstreamer-properties/pipeline-constants.c:76
+#: gstreamer-properties/pipeline-constants.c:93
+#: gstreamer-properties/pipeline-constants.c:110
+msgid "Custom"
+msgstr "Personalitzat"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
@@ -2545,6 +2575,15 @@ msgstr "Monitorar el volum de so de sortida"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Monitor de volum"
+
+#~ msgid "_Hostname:"
+#~ msgstr "Nom de l'ordinador _central:"
+
+#~ msgid "Audio _Input:"
+#~ msgstr "Entrada d'àud_io:"
+
+#~ msgid "Video _Output:"
+#~ msgstr "S_ortida de vídeo:"
 
 #~ msgid "Action on application exit"
 #~ msgstr "Acció en la sortida de l'aplicació"
