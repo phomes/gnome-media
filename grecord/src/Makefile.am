@@ -24,6 +24,6 @@ gnome_sound_recorder_SOURCES = \
 	gsr-window.c		\
 	gsr-window.h
 
-gnome_sound_recorder_LDADD = $(GSR_LIBS) $(INTLLIBS)
+gnome_sound_recorder_LDADD = $(GSR_LIBS) $(INTLLIBS) $(top_builddir)/profiles/libgnome-media-profiles.la
 
 

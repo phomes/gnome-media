@@ -33,6 +33,8 @@
 #include <gst/gst.h>
 #include <bonobo/bonobo-ui-util.h>
 
+#include <profiles/gnome-media-profiles.h>
+
 #include "gnome-recorder.h"
 #include "gsr-window.h"
 
@@ -51,6 +53,7 @@ typedef struct _GSRWindowPipeline {
 struct _GSRWindowPrivate {
 	GtkWidget *main_vbox, *ev;
 	GtkWidget *scale;
+	GtkWidget *profile;
 	GtkWidget *rate, *time_sec, *format, *channels;
 	GtkWidget *name, *length;
 
@@ -62,6 +65,7 @@ struct _GSRWindowPrivate {
 	/* Pipelines */
 	GSRWindowPipeline *play, *record;
 	char *filename, *record_filename;
+        char *extension;
 	char *working_file; /* Working file: Operations only occur on the
 			       working file. The result of that operation then
 			       becomes the new working file. */
@@ -1461,6 +1465,46 @@ error_handler (GObject *object, GstObject *orig, gchar *error, GtkWidget *window
 	gtk_widget_destroy (dialog);
 }
 
+/* helper function to change the UI when file extension changes */
+static void
+set_extension (GSRWindow *window)
+{
+	gchar *short_name, *filename;
+        GMAudioProfile *profile;
+
+        g_object_get (window, "location", &filename, NULL);
+	short_name = g_path_get_basename (filename);
+        profile = gm_audio_profile_choose_get_active (window->priv->profile);
+        g_free (window->priv->extension);
+        window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
+	if (filename != NULL) {
+		char *title;
+
+		title = g_strdup_printf (_("%s.%s - Sound Recorder"), short_name, window->priv->extension);
+		gtk_window_set_title (GTK_WINDOW (window), title);
+		g_free (title);
+	} else {
+		gtk_window_set_title (GTK_WINDOW (window), _("Sound Recorder"));
+	}
+
+}
+
+/* callback for when the recording profile has been changed */
+static void
+profile_changed (GObject *object, GSRWindow *window)
+{
+  GMAudioProfile *profile;
+  gchar *partial_pipeline;
+  gchar *extension;
+
+  g_return_if_fail (GTK_IS_COMBO_BOX (object));
+  profile = gm_audio_profile_choose_get_active (GTK_WIDGET (object));
+  partial_pipeline = g_strdup (gm_audio_profile_get_pipeline (profile));
+
+  set_extension (window);
+
+  
+}
 
 static GSRWindowPipeline *
 make_play_pipeline (GSRWindow *window)
@@ -1690,25 +1734,16 @@ gsr_window_new (const char *filename)
 	struct stat buf;
 	char *short_name;
 
+        /* filename has been changed to be without extension */
 	window = g_object_new (GSR_WINDOW_TYPE, 
 			       "location", filename,
 			       NULL);
+        /* FIXME: check extension too */
 	window->priv->filename = g_strdup (filename);
 	if (stat (filename, &buf) == 0) {
 		window->priv->has_file = TRUE;
 	} else {
 		window->priv->has_file = FALSE;
-	}
-
-	short_name = g_path_get_basename (filename);
-	if (filename != NULL) {
-		char *title;
-
-		title = g_strdup_printf (_("%s - Sound Recorder"), short_name);
-		gtk_window_set_title (GTK_WINDOW (window), title);
-		g_free (title);
-	} else {
-		gtk_window_set_title (GTK_WINDOW (window), _("Sound Recorder"));
 	}
 
 	window->priv->record_filename = g_strdup_printf ("%s/gsr-record-%s-%d.XXXXXX",
@@ -1751,8 +1786,21 @@ gsr_window_new (const char *filename)
 	gtk_widget_show (window->priv->scale);
 	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), window->priv->scale, TRUE, TRUE, 0);
 
-	vbox = gtk_vbox_new (FALSE, 6);
+	vbox = gtk_vbox_new (FALSE, 7);
 	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), vbox, TRUE, TRUE, 0);
+
+	hbox = gtk_hbox_new (FALSE, 2);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+
+	label = gtk_label_new (_("Record as"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+        window->priv->profile = gm_audio_profile_choose_new ();
+	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile,
+                            FALSE, FALSE, 0);
+        gtk_widget_show (window->priv->profile);
+        g_signal_connect (G_OBJECT (window->priv->profile), "changed",
+                          G_CALLBACK (profile_changed), window);
 
 	label = gtk_label_new (_("File information"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
@@ -1775,6 +1823,7 @@ gsr_window_new (const char *filename)
 			  0, 1, 0, 1,
 			  GTK_FILL, GTK_FILL, 0, 0);
 
+        short_name = g_path_get_basename (filename);
 	window->priv->name = gtk_label_new (short_name ? short_name : _("<none>"));
 	gtk_label_set_selectable (GTK_LABEL (window->priv->name), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (window->priv->name), GTK_WRAP_WORD);
@@ -1798,6 +1847,8 @@ gsr_window_new (const char *filename)
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
 			       
+        set_extension (window);
+
 	gtk_widget_show_all (window->priv->main_vbox);
 	return GTK_WIDGET (window);
 }

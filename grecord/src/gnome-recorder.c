@@ -79,9 +79,9 @@ gsr_open_window (const char *filename)
 		static int sample_count = 1;
 
 		if (sample_count != 1) {
-			name = g_strdup_printf ("Untitled-%d.wav", sample_count);
+			name = g_strdup_printf ("Untitled-%d", sample_count);
 		} else {
-			name = g_strdup ("Untitled.wav");
+			name = g_strdup ("Untitled");
 		}
 
 		sample_count++;
@@ -147,6 +147,7 @@ main (int argc,
 	poptContext pctx;
 	GValue value = {0, };
 	char **args = NULL;
+
 	static struct poptOption gsr_options[] = {
 		{ NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
 		{ NULL, 'p', POPT_ARG_NONE, NULL, 1, N_("Dummy option"), NULL },
@@ -176,6 +177,9 @@ main (int argc,
 
 	/* Init the icons */
 	init_stock_icons ();
+
+        /* init gnome-media-profiles */
+        gnome_media_profiles_init (NULL);
 
 	/* Get the args */
 	g_value_init (&value, G_TYPE_POINTER);
