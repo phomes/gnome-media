@@ -16,10 +16,13 @@ void preferences(GtkWidget *widget, void *data);
 void setup_colors(void);
 void setup_fonts(void);
 void setup_popup_menu(GtkWidget *w, cd_struct *data);
+void edit_window(GtkWidget *widget, gpointer data);
 
 extern int titlelabel_f;
 extern cd_struct cd;
 extern tcd_prefs prefs;
 extern GtkTooltips *tooltips;
+extern GtkAccelGroup *accel;
+extern GList *keys;
 
 #endif

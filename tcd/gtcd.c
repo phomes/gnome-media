@@ -53,6 +53,7 @@
 #include "led.h"
 #include "callbacks.h"
 #include "gtcd_public.h"
+#include "keybindings.h"
 
 /* time display types */
 enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
@@ -214,7 +215,7 @@ GtkWidget* make_button_with_pixmap(char *pic, GtkSignalFunc func,
     gtk_container_add( GTK_CONTAINER(button), pixmap );
 
     if(key != -1)
-	gtk_widget_add_accelerator(button, "clicked", accel, key, 0, GTK_ACCEL_VISIBLE);
+	add_key_binding(button, "clicked", tooltip, key);
 
     if(func)
 	gtk_signal_connect(GTK_OBJECT (button), "clicked",
@@ -236,7 +237,7 @@ GtkWidget* make_button_stock(char *stock, GtkSignalFunc func,
     gtk_container_add(GTK_CONTAINER(button), pixmap);
 
     if(key != -1)
-	gtk_widget_add_accelerator(button, "clicked", accel, key, 0, GTK_ACCEL_VISIBLE);
+	add_key_binding(button, "clicked", tooltip, key);
 
     if(func)
 	gtk_signal_connect(GTK_OBJECT (button), "clicked",
@@ -342,8 +343,8 @@ GtkWidget* create_buttons(void)
     gtk_widget_set_events(ff, GDK_BUTTON_PRESS_MASK
 			  | GDK_BUTTON_RELEASE_MASK);
 
-    gtk_widget_add_accelerator(rw, "clicked", accel, '-', 0, GTK_ACCEL_VISIBLE);
-    gtk_widget_add_accelerator(ff, "clicked", accel, '+', 0, GTK_ACCEL_VISIBLE);
+    add_key_binding(rw, "clicked", _("Skip backwards"), '-');
+    add_key_binding(rw, "clicked", _("Skip forwards"), '+');
 
     gtk_signal_connect(GTK_OBJECT(ff), "event",
 		       GTK_SIGNAL_FUNC(skip_cb), GINT_TO_POINTER(2));
@@ -908,7 +909,7 @@ void setup_keys()
 
 int main (int argc, char *argv[])
 {
-    GtkWidget *table, *menu;
+    GtkWidget *table;
     char *homedir;
     char rcfile[256];
 

@@ -27,6 +27,7 @@
 #include <string.h>
 
 #include "gtcd_public.h"
+#include "keybindings.h"
 #include "prefs.h"
 
 static GtkWidget *pref_window=NULL;
@@ -347,6 +348,53 @@ GtkWidget *create_page()
     return table;
 }
 
+static void fill_list(KeyBinding *kb, GtkWidget *clist)
+{
+    char *tmp[2];
+    
+    tmp[0] = g_malloc(64);	/* key */
+    tmp[1] = g_malloc(256);	/* desc */
+
+    g_snprintf(tmp[0], 63, "\'%c\'", kb->key);
+    g_snprintf(tmp[1], 255, "%s", kb->desc);
+    
+    gtk_clist_append(GTK_CLIST(clist), tmp);
+
+    g_free(tmp[0]);
+    g_free(tmp[1]);
+}	
+
+GtkWidget *key_page(void)
+{
+    GtkWidget *list, *frame, *box;
+
+    /* List */
+    list = gtk_clist_new(2);
+    gtk_clist_set_column_width(GTK_CLIST(list), 0, 20);
+    gtk_clist_set_policy(GTK_CLIST(list), GTK_POLICY_AUTOMATIC,
+			 GTK_POLICY_AUTOMATIC);
+    gtk_clist_set_selection_mode(GTK_CLIST(list),
+				 GTK_SELECTION_BROWSE);
+    gtk_clist_set_column_title(GTK_CLIST(list), 0, _("Key"));
+    gtk_clist_set_column_title(GTK_CLIST(list), 1, _("Action"));
+    gtk_clist_column_titles_show(GTK_CLIST(list));
+
+    gtk_clist_column_titles_passive(GTK_CLIST(list));
+
+    g_list_foreach(keys, (GFunc)fill_list, list);
+
+    /* Box */
+    box = gtk_hbox_new(FALSE, 2);
+    gtk_box_pack_start_defaults(GTK_BOX(box), list);
+
+    /* Frame */
+    frame = gtk_frame_new(_("Keybindings (not editable YET)"));
+    gtk_container_add(GTK_CONTAINER(frame), box);
+
+    gtk_widget_show_all(frame);
+    return frame;
+}    
+
 void apply_cb( GtkWidget *widget, void *data )
 {       
 /* Do stuff here if needed */
@@ -373,7 +421,7 @@ void preferences(GtkWidget *widget, void *data)
     
     label = gtk_label_new(_("Keybindings"));
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
-    			     gtk_label_new("This is not implemented yet."), label);
+    			     key_page(), label);
 	
     gtk_signal_connect(GTK_OBJECT(pref_window),
 		       "apply", GTK_SIGNAL_FUNC(apply_cb), NULL);

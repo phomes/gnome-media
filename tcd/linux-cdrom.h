@@ -116,6 +116,7 @@ int 	tcd_play_seconds( cd_struct *cd, long int offset );
 void    tcd_recalculate(cd_struct *cd);
 int 	tcd_set_volume(cd_struct *cd, int volume);
 int 	tcd_get_volume(cd_struct *cd);
+void 	parse_dtitle(cd_struct *cd);
 
 /* Some constants */
 enum { STOPPED=0, PLAYING, PAUSED, NODISC, STATUS_END } DriveStatus;

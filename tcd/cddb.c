@@ -81,11 +81,11 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 	while(fgets( string, 80, fp )!=NULL)
 	{
 		string[strlen(string)-1] = 0;
-		// If it's a comment, ignore.
+		/* If it's a comment, ignore. */
 		if( string[0] == '#' )
 			continue;		
 
-		// If it's the disc title, print it
+		/* If it's the disc title, print it */
 		if( strncmp( string, "DTITLE", 6 ) == 0)
 		{
 			strncpy( cd->dtitle, string+7, DISC_INFO_LEN );

@@ -9,19 +9,19 @@
 
 GtkWidget *trwin;
 
-void destroy_window(GtkWidget *widget, gboolean save);
-void update_list(GtkWidget *list, int track);
-void fill_list(GtkWidget *list);
-void dtitle_changed(GtkWidget *widget, gpointer data);
-void activate_entry(GtkWidget *widget, GtkWidget *list);
-void select_row_cb(GtkCList *clist,
+static void destroy_window(GtkWidget *widget, gboolean save);
+static void update_list(GtkWidget *list, int track);
+static void fill_list(GtkWidget *list);
+static void dtitle_changed(GtkWidget *widget, gpointer data);
+static void activate_entry(GtkWidget *widget, GtkWidget *list);
+static void select_row_cb(GtkCList *clist,
 		   gint row,
 		   gint column,
 		   GdkEventButton *event,
 		   GtkWidget *entry);
-void edit_window(GtkWidget *widget, gpointer data);
+static void next_entry(GtkWidget *widget, GtkWidget *list);
 
-void destroy_window (GtkWidget *widget, gboolean save)
+static void destroy_window (GtkWidget *widget, gboolean save)
 {
 	if( save )
 		tcd_writediskinfo(&cd);
@@ -31,7 +31,7 @@ void destroy_window (GtkWidget *widget, gboolean save)
 	return;
 }
 
-void update_list( GtkWidget *list, int track )
+static void update_list( GtkWidget *list, int track )
 {
 	gtk_clist_freeze(GTK_CLIST(list));
 	gtk_clist_set_text(GTK_CLIST(list), track-1, 2, cd.trk[track].name );
@@ -39,7 +39,7 @@ void update_list( GtkWidget *list, int track )
 	return;
 }
 
-void fill_list( GtkWidget *list )
+static void fill_list( GtkWidget *list )
 {
 	int i;
 	char *tmp[4];
@@ -68,14 +68,14 @@ void fill_list( GtkWidget *list )
 	return;
 }
 
-void dtitle_changed( GtkWidget *widget, gpointer data )
+static void dtitle_changed( GtkWidget *widget, gpointer data )
 {
 	strncpy(cd.dtitle, gtk_entry_get_text(GTK_ENTRY(widget)), DISC_INFO_LEN);
 	parse_dtitle(&cd);
 	return;
 }
 
-void activate_entry( GtkWidget *widget, GtkWidget *list )
+static void activate_entry( GtkWidget *widget, GtkWidget *list )
 {
 	int trk = GPOINTER_TO_INT(gtk_object_get_user_data(GTK_OBJECT(list)));
 	strncpy(cd.trk[trk].name, 
@@ -84,7 +84,7 @@ void activate_entry( GtkWidget *widget, GtkWidget *list )
 	return;
 }
 
-void next_entry( GtkWidget *widget, GtkWidget *list )
+static void next_entry( GtkWidget *widget, GtkWidget *list )
 {
 	int trk = GPOINTER_TO_INT(gtk_object_get_user_data(GTK_OBJECT(list)));
 
@@ -92,7 +92,7 @@ void next_entry( GtkWidget *widget, GtkWidget *list )
            gtk_clist_select_row(GTK_CLIST(list), trk, 0);
 }
 
-void select_row_cb( GtkCList *clist,
+static void select_row_cb( GtkCList *clist,
 		    gint row,
                     gint column,
                     GdkEventButton *event,
@@ -110,7 +110,7 @@ void select_row_cb( GtkCList *clist,
 
 	return;
 }
-	
+
 void edit_window(GtkWidget *widget, gpointer data)
 {
 	char *titles[] = {N_("Trk"),N_("Time"),N_("Title")};

@@ -27,7 +27,9 @@ gtcd_SOURCES = 		\
 	linux-cdrom.h	\
 	callbacks.c	\
 	callbacks.h	\
-	popup.c
+	popup.c		\
+	keybindings.c	\
+	keybindings.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\
