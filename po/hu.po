@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS\n"
-"POT-Creation-Date: 2002-12-07 15:16+0000\n"
-"PO-Revision-Date: 2002-10-19 13:35+0200\n"
-"Last-Translator: Emese Kovacs <emese@gnome.hu>\n"
+"POT-Creation-Date: 2002-12-12 15:19+0100\n"
+"PO-Revision-Date: 2002-12-12 15:55+0100\n"
+"Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "A CD-lekérdezésekhez használt kiszolgáló neve"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
@@ -30,11 +30,11 @@ msgstr "Kiszolgáló neve"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgstr "A gépnév, amelyre a lekérdezések lesznek küldve"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr ""
+msgstr "A port, amelyen a kiszolgáló adatbázisa elérhető"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The username"
@@ -42,7 +42,7 @@ msgstr "Felhasználó neve"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "A felhasználói név, amely minden lekérdezéskor el lesz küldve"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
 msgid "Your hostname"
@@ -1087,7 +1087,7 @@ msgstr "Súgó"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "A használandó keverőeszköz"
 
 #: gmix/gmix.c:327
 #, fuzzy, c-format
@@ -1183,24 +1183,13 @@ msgstr "Felv."
 msgid "%s Record"
 msgstr "%s Felvétel"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1342 gmix/gmix.c:1748
+#: gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Hangerőszabályozó"
 
-#: gmix/gmix.c:1748
-#, fuzzy
-msgid "GNOME Volume Control"
-msgstr "GNOME Hangerőszabályozó futtatása"
-
-#: gmix/gmix.c:1749
-msgid ""
-"(C) 1998 Jens Ch. Restemeier\n"
-"(C) 2001 Iain Holmes"
-msgstr ""
-
 #: gmix/gmix.c:1751
-#, fuzzy
 msgid "A mixer for sound devices"
 msgstr "Ez egy keverőpult hangeszközökhöz."
 
@@ -1282,9 +1271,9 @@ msgid "Pause"
 msgstr "Szünet"
 
 #: gnome-cd/callbacks.c:530
-#, fuzzy, c-format
+#, c-format
 msgid "Playing %s - %s"
-msgstr "Lejátszás"
+msgstr "%s - %s lejátszása"
 
 #: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:662 gnome-cd/callbacks.c:673
 msgid "Unknown Artist"
@@ -1300,7 +1289,6 @@ msgstr "Lejátszás"
 
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:557
-#, fuzzy
 msgid "Paused"
 msgstr "Szünet"
 
@@ -1313,9 +1301,8 @@ msgstr "CD-lejátszó"
 
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:620
-#, fuzzy
 msgid "Stopped"
-msgstr "Állj"
+msgstr "Leállítva"
 
 #: gnome-cd/callbacks.c:626
 msgid "Disc error"
@@ -1343,13 +1330,9 @@ msgstr "Nincs CDROM"
 msgid "Drive Error"
 msgstr "Meghajtóhiba"
 
-#: gnome-cd/callbacks.c:824
-msgid "(C) 2001 Iain Holmes"
-msgstr ""
-
 #: gnome-cd/callbacks.c:825
-msgid "A CD player for GNOME"
-msgstr ""
+msgid "A CD player"
+msgstr "CD-lejátszó"
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1357,7 +1340,7 @@ msgid "You do not seem to have permission to access %s."
 msgstr "Úgy tűnik nincs jogod a következő használatához: %s."
 
 #: gnome-cd/cdrom.c:373
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not present in your machine\n"
@@ -1365,9 +1348,9 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 "%s nem tűnik érvényes CD-eszköznek. Ennek okai lehetnek:\n"
-"a) a CD támogatás nincs belefordítva a Linux rendszermagba\n"
-"b) nincs jogod használni a CDROM olvasót\n"
-"c) %s nem CDROM olvasó\n"
+"a) nincs CD-támogatás a gépeden\n"
+"b) nincs jogod használni a CD-meghajtót\n"
+"c) %s nem CD-meghajtó\n"
 
 #: gnome-cd/display.c:74
 msgid "Unknown artist"
@@ -1412,16 +1395,15 @@ msgid "_About CD player"
 msgstr "CD-lejátszó _névjegye"
 
 #: gnome-cd/gnome-cd.c:414
-#, fuzzy
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
-"Nincs CD-eszköz megadva. Ez azt jelenti, hogy a GNOME CD\n"
-"nem fog tudni működni. Kérlek nyomd meg az \"Eszköz megadása\"\n"
-"gombot, amely egy párbeszédablakot nyit meg, ahol beállíthatod\n"
-"a CD-eszközt. A Kilépés gombbal kiléphetsz a GNOME CD-ből."
+"Nincs CD-eszköz megadva. Ez azt jelenti, hogy a CD-lejátszó\n"
+"nem fog tudni működni. Nyomd meg az \"Eszköz megadása\" gombot,\n"
+"amely egy párbeszédablakot nyit meg, ahol beállíthatod\n"
+"a CD-eszközt. A \"Kilépés\" gombbal kiléphetsz a CD-lejátszóból."
 
 #: gnome-cd/gnome-cd.c:418
 msgid "Set device"
@@ -1432,7 +1414,6 @@ msgid "No CD device"
 msgstr "Nincs CD-eszköz"
 
 #: gnome-cd/gnome-cd.c:474
-#, fuzzy
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1441,11 +1422,13 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
-"%s\n"
-"Ez azt jelenti, hogy a GNOME CD nem tud majd rendesen működni. Nyomd meg az "
-"\"Eszköz beállítása\" gombot, amely egy párbeszédablakot jelenít meg, ahol "
-"beállíthatod a CD-eszközt. A Kilépés gombbal kiléphetsz a GNOME CD "
-"programból."
+"A CD-lejátszó nem képes helyesen működni.\n"
+"\n"
+"A hiba okainak részletei a \"Részletek\" gomb segítségével nézhetőek meg.\n"
+"\n"
+"Nyomd meg az \"Eszköz megadása\" gombot, amely egy párbeszédablakot jelenít "
+"meg, ahol beállíthatod a CD-eszközt. A Kilépés gombbal kiléphetsz a CD-"
+"lejátszó programból."
 
 #: gnome-cd/gnome-cd.c:479
 msgid "_Set device"
@@ -1521,11 +1504,11 @@ msgstr "Használandó CD-eszköz"
 
 #: gnome-cd/gnome-cd.c:740
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Csak akkor induljon el, ha még nem fut másik CD-lejátszó alkalmazás"
 
 #: gnome-cd/gnome-cd.c:742
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "CD lejátszása indításkor"
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:773
@@ -1538,11 +1521,11 @@ msgstr "Audió CD-k lejátszására"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr ""
+msgstr "Művelet az alkalmazásból való kilépéskor"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Action on start"
-msgstr ""
+msgstr "Művelet az indításkor"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "CD player theme"
@@ -1550,15 +1533,15 @@ msgstr "CD-lejátszó témája"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
-msgstr ""
+msgstr "Eszköz elérési útja"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgstr "Bezárja-e a CD-lejátszó a CD-meghajtó tálcáját az elindításkor?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr ""
+msgstr "CD-tálca bezárása indításkor"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
@@ -1607,9 +1590,8 @@ msgstr "_Alkalmaz"
 
 #. left side
 #: gnome-cd/preferences.c:881
-#, fuzzy
 msgid "When CD player starts"
-msgstr "Amikor a Gnome CD-lejátszó elindul"
+msgstr "Amikor a CD-lejátszó elindul"
 
 #: gnome-cd/preferences.c:889
 msgid "Do _nothing"
@@ -1641,9 +1623,8 @@ msgstr "Próbálja meg _behúzni a CD tálcáját"
 
 #. Right side
 #: gnome-cd/preferences.c:937
-#, fuzzy
 msgid "When CD player quits"
-msgstr "Amikor a Gnome CD-lejátszó kilép"
+msgstr "Amikor a CD-lejátszó kilép"
 
 #: gnome-cd/preferences.c:945
 msgid "Do not_hing"
@@ -1659,16 +1640,15 @@ msgstr "S_zakítsa meg a lejátszást"
 
 #: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
-msgstr ""
+msgstr "A CD-lejátszás megszakítása a CD-lejátszó bezárásakor"
 
 #: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "Próbálja meg _kinyitni a CD tálcáját"
 
 #: gnome-cd/preferences.c:967
-#, fuzzy
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "Próbálja meg _kinyitni a CD tálcáját"
+msgstr "Próbálja meg kinyitni a CD tálcáját, amikor a CD-lejátszó kilép"
 
 #: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
@@ -1865,14 +1845,13 @@ msgstr ""
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
-#, fuzzy
 msgid "hours"
-msgstr "Kórus"
+msgstr "óra"
 
 #: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
 #: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
 msgid "hour"
-msgstr ""
+msgstr "óra"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
@@ -1882,131 +1861,114 @@ msgstr "perc"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#, fuzzy
 msgid "minute"
 msgstr "perc"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
 #: grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "seconds"
-msgstr "%s Felvétel"
+msgstr "másodperc"
 
 #: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
 #: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
-#, fuzzy
 msgid "second"
-msgstr "%s Felvétel"
+msgstr "másodperc"
 
 #: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
 msgid "Open a file"
-msgstr ""
+msgstr "Fájl megnyitása"
 
 #: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
 #: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
 msgid "Ready"
-msgstr ""
+msgstr "Kész"
 
 #: grecord/src/gsr-window.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "Saving %s..."
-msgstr "Mentés folyamatban..."
+msgstr "%s mentése..."
 
 #: grecord/src/gsr-window.c:600
-#, fuzzy
 msgid "Save file as"
-msgstr "Hangfájl mentése"
+msgstr "Fájl mentése másként"
 
 #: grecord/src/gsr-window.c:654
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nem található az elérési útvonalon"
 
 #: grecord/src/gsr-window.c:736
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr ""
+msgstr "%s (Nincs mentve)"
 
 #: grecord/src/gsr-window.c:751
-#, fuzzy
 msgid "Unknown size"
-msgstr "Ismeretlen lemez"
+msgstr "Ismeretlen méret"
 
 #: grecord/src/gsr-window.c:771
 #, c-format
 msgid "%.1f kHz"
-msgstr ""
+msgstr "%.1f kHz"
 
 #: grecord/src/gsr-window.c:780
 #, c-format
 msgid "%.0f kb/s"
-msgstr ""
+msgstr "%.0f kb/s"
 
 #: grecord/src/gsr-window.c:792
-#, fuzzy
 msgid "1 (mono)"
-msgstr "mono"
+msgstr "1 (monó)"
 
 #: grecord/src/gsr-window.c:796
-#, fuzzy
 msgid "2 (stereo)"
-msgstr "sztereo"
+msgstr "2 (sztereó)"
 
 #: grecord/src/gsr-window.c:825
-#, fuzzy, c-format
+#, c-format
 msgid "%s Information"
-msgstr "Bejelentkezéshez szükséges adatok"
+msgstr "%s adatai"
 
 #: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
-#, fuzzy
 msgid "File Information"
-msgstr "Bejelentkezéshez szükséges adatok"
+msgstr "Fájl adatai"
 
 #: grecord/src/gsr-window.c:859
-#, fuzzy
 msgid "Folder:"
-msgstr "Mappák"
+msgstr "Mappa:"
 
 #: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
 msgid "Filename:"
-msgstr ""
+msgstr "Fájlnév:"
 
 #: grecord/src/gsr-window.c:871
 msgid "File size:"
-msgstr ""
+msgstr "Fájlméret:"
 
 #: grecord/src/gsr-window.c:880
-#, fuzzy
 msgid "Audio Information"
-msgstr "Hangformátum:"
+msgstr "Hanginformáció"
 
 #: grecord/src/gsr-window.c:894
 msgid "Song length:"
-msgstr ""
+msgstr "Zeneszám hossza:"
 
 #: grecord/src/gsr-window.c:900
-#, fuzzy
 msgid "Number of channels:"
-msgstr "Ismétlés s_záma:"
+msgstr "Csatornák száma:"
 
 #: grecord/src/gsr-window.c:906
-#, fuzzy
 msgid "Sample rate:"
-msgstr "Mintavételezés: "
+msgstr "Mintavételezés:"
 
 #: grecord/src/gsr-window.c:912
 msgid "Bit rate:"
-msgstr ""
-
-#: grecord/src/gsr-window.c:981
-msgid "(C) 2002 Iain Holmes"
-msgstr ""
+msgstr "Bitráta:"
 
 #: grecord/src/gsr-window.c:982
-#, fuzzy
-msgid "A sound recorder for GNOME"
-msgstr "Hangrögzítő"
+msgid "A sound recorder program"
+msgstr "Hangrögzítő program"
 
 #: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
 #, c-format
@@ -2014,18 +1976,16 @@ msgid "%s - Sound Recorder"
 msgstr "%s - Hangrögzítő"
 
 #: grecord/src/gsr-window.c:1548
-#, fuzzy
 msgid "File information"
-msgstr "Bejelentkezéshez szükséges adatok"
+msgstr "Fájl adatai"
 
 #: grecord/src/gsr-window.c:1569
 msgid "<none>"
-msgstr ""
+msgstr "<nincs>"
 
 #: grecord/src/gsr-window.c:1578
-#, fuzzy
 msgid "Length:"
-msgstr "Hossz"
+msgstr "Hossz:"
 
 #: grecord/src/gui.c:45 grecord/gsr.xml.h:38
 msgid "_New"
@@ -2077,11 +2037,11 @@ msgstr "8bit PCM"
 
 #: grecord/src/gui.c:202
 msgid "stereo"
-msgstr "sztereo"
+msgstr "sztereó"
 
 #: grecord/src/gui.c:204
 msgid "mono"
-msgstr "mono"
+msgstr "monó"
 
 #: grecord/src/gui.c:217 grecord/gsr.xml.h:10
 msgid "New"
@@ -2136,16 +2096,14 @@ msgstr ""
 "Tímár András <timar@gnome.hu>"
 
 #: grecord/src/gui.c:431
-#, fuzzy
 msgid "GNOME Sound Recorder"
-msgstr "Hangrögzítő"
+msgstr "GNOME Hangrögzítő"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
 #: grecord/src/gui.c:434
-#, fuzzy
 msgid "(C) 2000 Andreas Hyden"
-msgstr "Copyright (C)  2000 Andreas Hydén"
+msgstr "(C)  2000 Andreas Hydén"
 
 #: grecord/src/gui.c:435
 msgid ""
@@ -2278,19 +2236,19 @@ msgstr "Minta_vételezés:"
 
 #: grecord/src/gui.c:1055
 msgid "Mono or Stereo:"
-msgstr "Mono vagy sztereo:"
+msgstr "Monó vagy sztereó:"
 
 #: grecord/src/gui.c:1064
 msgid "_Mono"
-msgstr "_Mono"
+msgstr "_Monó"
 
 #: grecord/src/gui.c:1070
 msgid "_Stereo"
-msgstr "_Sztereo"
+msgstr "_Sztereó"
 
 #: grecord/src/gui.c:1091
 msgid "Stereo"
-msgstr "Sztereo"
+msgstr "Sztereó"
 
 #: grecord/src/main.c:50
 msgid "Specify the geometry of the main window"
@@ -2331,249 +2289,228 @@ msgstr "Mintavételezés: %s"
 
 #: grecord/src/preferences.c:240
 msgid "Channels: mono"
-msgstr "Csatornák: mono"
+msgstr "Csatornák: monó"
 
 #: grecord/src/preferences.c:240
 msgid "Channels: stereo"
-msgstr "Csatornák: sztereo"
+msgstr "Csatornák: sztereó"
 
 #: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Visszhangosítás..."
 
 #: grecord/gsr.xml.h:1
-#, fuzzy
 msgid "About"
-msgstr "Akusztikus"
+msgstr "Névjegy"
 
 #: grecord/gsr.xml.h:2
-#, fuzzy
 msgid "Close"
-msgstr "Club-House"
+msgstr "Bezárás"
 
 #: grecord/gsr.xml.h:3
 msgid "Close this window"
-msgstr ""
+msgstr "Ablak bezárása"
 
 #: grecord/gsr.xml.h:4
 msgid "Contents"
-msgstr ""
+msgstr "Tartalom"
 
 #: grecord/gsr.xml.h:6
-#, fuzzy
 msgid "Display help for Sound Recorder"
-msgstr "%s - Hangrögzítő"
+msgstr "A Hangrögzítő súgójának megjelenítése"
 
 #: grecord/gsr.xml.h:8
-#, fuzzy
 msgid "File _Information"
-msgstr "Bejelentkezéshez szükséges adatok"
+msgstr "Fájl _adatai"
 
 #: grecord/gsr.xml.h:9
 msgid "Main toolbar"
-msgstr ""
+msgstr "Fő eszköztár"
 
 #: grecord/gsr.xml.h:11
-#, fuzzy
 msgid "Open"
-msgstr "Opera"
+msgstr "Megnyitás"
 
 #: grecord/gsr.xml.h:14
 msgid "Play sound"
-msgstr ""
+msgstr "Hanglejátszás"
 
 #: grecord/gsr.xml.h:15
 msgid "Quit"
-msgstr ""
+msgstr "Kilépés"
 
 #: grecord/gsr.xml.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "Kilépés az alkalmazásból"
 
 #: grecord/gsr.xml.h:17
 msgid "Recent _Files"
-msgstr ""
+msgstr "Legutóbbi _fájlok"
 
 #: grecord/gsr.xml.h:19
-#, fuzzy
 msgid "Record sound"
 msgstr "Hangfelvétel készítése"
 
 #: grecord/gsr.xml.h:20
-#, fuzzy
 msgid "Run Mixer"
-msgstr "_Mixer futtatása"
+msgstr "Mixer futtatása"
 
 #: grecord/gsr.xml.h:22
 msgid "Run the audio mixer"
-msgstr ""
+msgstr "A keverőpult futtatása"
 
 #: grecord/gsr.xml.h:23
-#, fuzzy
 msgid "Save"
-msgstr "Rave"
+msgstr "Mentés"
 
 #: grecord/gsr.xml.h:24
-#, fuzzy
 msgid "Save As"
-msgstr "%s mentése?"
+msgstr "Mentés másként"
 
 #: grecord/gsr.xml.h:25
-#, fuzzy
 msgid "Save _As..."
-msgstr "%s mentése?"
+msgstr "Mentés másként..."
 
 #: grecord/gsr.xml.h:26
-#, fuzzy
 msgid "Save the current file"
-msgstr "Hangfájl mentése"
+msgstr "Az aktuális fájl mentése"
 
 #: grecord/gsr.xml.h:27
 msgid "Save the current file with a different name"
-msgstr ""
+msgstr "Az aktuális fájl mentése más néven"
 
 #: grecord/gsr.xml.h:28
 msgid "Show information about the current file"
-msgstr ""
+msgstr "Az aktuális fájl adatai"
 
 #: grecord/gsr.xml.h:29
-#, fuzzy
 msgid "Show information for Sound Recorder"
-msgstr "GNOME Hangrögzítő"
+msgstr "A Hangrögzítő adatai"
 
 #: grecord/gsr.xml.h:31
-#, fuzzy
 msgid "Stop sound"
-msgstr "Hang"
+msgstr "Hang leállítása"
 
 #: grecord/gsr.xml.h:32
 msgid "_About"
-msgstr ""
+msgstr "_Névjegy"
 
 #: grecord/gsr.xml.h:33
 msgid "_Close Window"
-msgstr ""
+msgstr "_Ablak bezárása"
 
 #: grecord/gsr.xml.h:34
 msgid "_Contents"
-msgstr ""
+msgstr "_Tartalom"
 
 #: grecord/gsr.xml.h:35
-#, fuzzy
 msgid "_Control"
-msgstr "Country"
+msgstr "_Vezérlés"
 
 #: grecord/gsr.xml.h:36
 msgid "_File"
-msgstr ""
+msgstr "_Fájl"
 
 #: grecord/gsr.xml.h:39
 msgid "_Open..."
-msgstr ""
+msgstr "_Megnyitás..."
 
 #: grecord/gsr.xml.h:40
-#, fuzzy
 msgid "_Play"
-msgstr "Lejátszás"
+msgstr "_Lejátszás"
 
 #: grecord/gsr.xml.h:41
 msgid "_Quit"
-msgstr ""
+msgstr "_Kilépés"
 
 #: grecord/gsr.xml.h:42
-#, fuzzy
 msgid "_Record"
-msgstr "Felvétel"
+msgstr "_Felvétel"
 
 #: grecord/gsr.xml.h:43
-#, fuzzy
 msgid "_Save"
-msgstr "Rave"
+msgstr "_Mentés"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:249
 msgid "Failure instantiating main window"
-msgstr ""
+msgstr "Nem sikerült létrehozni a főablakot"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:289
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load UI resource %s"
-msgstr "Nem sikerült a gyermekfolyamatot létrehozni"
+msgstr "Nem sikerült betölteni a felhasználói felületet: %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr ""
+msgstr "A GStreamer-alkalmazások alapbeállításainak módosítása"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-#, fuzzy
 msgid "GStreamer"
-msgstr "Játék"
+msgstr "GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" size=\"x-large\">Tesztelés...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
-#, fuzzy
 msgid "Audio _Input:"
-msgstr "Hangformátum:"
+msgstr "Audio_bemenet:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
-#, fuzzy
 msgid "Audio _Output:"
-msgstr "Fejhallgató kimenet"
+msgstr "Audio_kimenet:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish"
-msgstr ""
+msgstr "Kattints az OK gombra a befejezéshez."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Default Sink"
-msgstr ""
+msgstr "Alapértelmezett nyelő"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Default Source"
-msgstr ""
+msgstr "Alapértelmezett forrás"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
 msgid "GStreamer Properties"
-msgstr ""
+msgstr "GStreamer tulajdonságai"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Pipeline:"
-msgstr ""
+msgstr "Csővezeték:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Test..."
-msgstr ""
+msgstr "Teszt..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
-msgstr ""
+msgstr "Csővezeték tesztelése"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "Video _Input:"
-msgstr ""
+msgstr "Video_bemenet:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-#, fuzzy
 msgid "Video _Output:"
-msgstr "Fejhallgató kimenet"
+msgstr "Video_kimenet:"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr ""
+msgstr "Nem sikerült létrehozni a tesztcsővezetéket '%s' számára"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2645,30 +2582,3 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
-
-#~ msgid "Gnome Volume Control"
-#~ msgstr "GNOME Hangerőszabályozó"
-
-#~ msgid "Copyright (C) 2001, 2002"
-#~ msgstr "Copyright (C) 2001, 2002"
-
-#~ msgid "A GNOME cd player"
-#~ msgstr "GNOME CD-lejátszó"
-
-#~ msgid "Gnome CD Player"
-#~ msgstr "GNOME CD-lejátszó"
-
-#~ msgid "don't restore mixer-settings from configuration"
-#~ msgstr "ne állítsa vissza a beállított mixer-értékeket"
-
-#~ msgid "restore mixer-settings from configuration"
-#~ msgstr "állítsa vissza a beállított mixer-értékeket"
-
-#~ msgid "initialise the mixer(s) from stored configuration and exit"
-#~ msgstr "a mixer beállítja az elmentett értékeket, majd kilép  "
-
-#~ msgid "don't save (modified) mixer-settings into configuration"
-#~ msgstr "ne mentse a módosított mixer-értékeket a beállításokba"
-
-#~ msgid "_About Gnome-CD"
-#~ msgstr "A GNOME-CD _névjegye"
