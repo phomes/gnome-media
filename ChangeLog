@@ -1,3 +1,32 @@
+2005-03-21  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* configure.in:
+	* grecord/src/Makefile.am:
+	  Add grecord/src/gst/.
+	* grecord/src/gnome-recorder.c: (main):
+	* grecord/src/gsr-window.c: (cb_rec_eos), (media_stop),
+	(tick_callback), (play_state_changed_cb), (make_play_pipeline),
+	(make_record_pipeline):
+	  Add EOS handling to recording, stolen from cupid. On 'stop' while
+	  recording, send EOS in pipeline rather than just stopping the
+	  pipeline. This results in valid wav- and ogg-files.
+	  Besides that, always read the length at every iteration, similar
+	  to Totem.
+	* grecord/src/gst/Makefile.am:
+	* grecord/src/gst/assistant.c: (gst_rec_assistant_get_type),
+	(gst_rec_assistant_base_init), (gst_rec_assistant_class_init),
+	(gst_rec_assistant_init), (gst_rec_assistant_chain),
+	(gst_rec_assistant_src_event), (gst_rec_assistant_change_state):
+	* grecord/src/gst/assistant.h:
+	* grecord/src/gst/manager.c: (gst_rec_manager_get_type),
+	(gst_rec_manager_base_init), (gst_rec_manager_class_init),
+	(gst_rec_manager_init), (gst_rec_manager_dispose),
+	(gst_rec_manager_child_eos), (gst_rec_manager_child_add),
+	(gst_rec_manager_child_del), (gst_rec_register_elements),
+	(gst_rec_elements_init):
+	* grecord/src/gst/manager.h:
+	  Recorder EOS managing code stolen from cupid.
+
 2005-03-20  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* gnome-cd/callbacks.c: (maybe_close_tray), (eject_cb), (play_cb),

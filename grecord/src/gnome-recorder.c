@@ -33,6 +33,7 @@
 #include <gst/gst.h>
 
 #include "gnome-recorder.h"
+#include "gst/manager.h"
 
 extern void gsr_window_close (GSRWindow *window);
 extern GtkWidget * gsr_window_new (const char *filename);
@@ -202,6 +203,7 @@ main (int argc,
 
 		exit (1);
 	}
+	gst_rec_elements_init ();
 
 	conf = gconf_client_get_default ();
 

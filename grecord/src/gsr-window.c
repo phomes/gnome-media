@@ -1197,6 +1197,26 @@ media_play (BonoboUIComponent *uic,
 }
 
 static void
+cb_rec_eos (GstElement * element,
+	    GSRWindow * window)
+{
+	GSRWindowPrivate *priv = window->priv;
+
+	gst_element_set_state (priv->record->pipeline, GST_STATE_READY);
+
+	g_free (priv->working_file);
+	priv->working_file = g_strdup (priv->record_filename);
+
+	g_free (priv->filename);
+	priv->filename = g_strdup (priv->record_filename);
+
+	priv->dirty = TRUE;
+	priv->has_file = TRUE;
+
+	g_print ("eos received\n");
+}
+
+static void
 media_stop (BonoboUIComponent *uic,
 	    GSRWindow *window,
 	    const char *path)
@@ -1207,6 +1227,7 @@ media_stop (BonoboUIComponent *uic,
 	if (priv->play && gst_element_get_state (priv->play->pipeline) == GST_STATE_PLAYING) {
 		gst_element_set_state (priv->play->pipeline, GST_STATE_READY);
 	} else if (priv->record && gst_element_get_state (priv->record->pipeline) == GST_STATE_PLAYING) {
+#if 0
 		gst_element_set_state (priv->record->pipeline, GST_STATE_READY);
 
 		g_free (priv->working_file);
@@ -1217,6 +1238,13 @@ media_stop (BonoboUIComponent *uic,
 
 		priv->dirty = TRUE;
 		priv->has_file = TRUE;
+#endif
+g_print ("Sending EOS\n");
+		g_signal_connect (priv->record->pipeline, "eos",
+				  G_CALLBACK (cb_rec_eos), window);
+		gboolean res = gst_pad_send_event (gst_element_get_pad (priv->record->src, "src"),
+					gst_event_new (GST_EVENT_EOS));
+g_print ("Res: %d\n", res);
 	}
 }
 
@@ -1333,6 +1361,7 @@ tick_callback (GSRWindow *window)
 		return FALSE;
 	}
 
+#if 0
 	if (window->priv->len_secs == 0) {
 		/* Check if we've exhausted the length check yet */
 		if (window->priv->get_length_attempts == 0) {
@@ -1341,6 +1370,8 @@ tick_callback (GSRWindow *window)
 			return TRUE;
 		}
 	}
+#endif
+	get_length (window);
 
 	if (window->priv->seek_in_progress)
 		return TRUE;
@@ -1348,7 +1379,7 @@ tick_callback (GSRWindow *window)
 	query_worked = gst_element_query (window->priv->play->sink,
 					  GST_QUERY_POSITION, 
 					  &format, &value);
-	if (query_worked) {
+	if (query_worked && window->priv->len_secs != 0) {
 		double percentage;
 		secs = value / GST_SECOND;
 		
@@ -1413,10 +1444,10 @@ play_state_changed_cb (GstElement *element,
 	case GST_STATE_PLAYING:
 		g_idle_add ((GSourceFunc) play_iterate, window);
 		window->priv->tick_id = g_timeout_add (200, (GSourceFunc) tick_callback, window);
-		if (window->priv->len_secs == 0) {
-			window->priv->get_length_attempts = 16;
-			g_timeout_add (200, (GSourceFunc) get_length, window);
-		}
+		//if (window->priv->len_secs == 0) {
+		//	window->priv->get_length_attempts = 16;
+		//	g_timeout_add (200, (GSourceFunc) get_length, window);
+		//}
 		
 		CMD_SET_SENSITIVE (window, "MediaStop", "1");
 		CMD_SET_SENSITIVE (window, "MediaPlay", "0");
@@ -1495,7 +1526,7 @@ make_play_pipeline (GSRWindow *window)
 	GSRWindowPipeline *obj;
 	GstElement *pipeline;
 	guint32 id;
-	GstElement *spider;
+	GstElement *spider, *conv, *scale;
 
 	pipeline = gst_pipeline_new ("play-pipeline");
 	g_signal_connect (pipeline, "deep-notify",
@@ -1521,7 +1552,9 @@ make_play_pipeline (GSRWindow *window)
 		g_error ("Could not find element spider");
 		return NULL;
 	}
-	
+
+	conv = gst_element_factory_make ("audioconvert", "conf");
+	scale = gst_element_factory_make ("audioscale", "scale");
 	obj->sink = gst_gconf_get_default_audio_sink ();
 	if (!obj->sink)
 	{
@@ -1529,8 +1562,9 @@ make_play_pipeline (GSRWindow *window)
 		return NULL;
 	}
 
-	gst_bin_add_many (GST_BIN (pipeline), obj->src, spider, obj->sink, NULL);
-	gst_element_link_many (obj->src, spider, obj->sink, NULL);
+	gst_bin_add_many (GST_BIN (pipeline),
+			  obj->src, spider, conv, scale, obj->sink, NULL);
+	gst_element_link_many (obj->src, spider, conv, scale, obj->sink, NULL);
 
 	return obj;
 }
@@ -1611,7 +1645,7 @@ make_record_pipeline (GSRWindow *window)
 	gint32 id;
 	GMAudioProfile *profile;
 	gchar *pipeline_desc, *source;
-	GstElement *encoder;
+	GstElement *esource = NULL, *encoder, *manager;
 	
 	pipeline = g_new (GSRWindowPipeline, 1);
 	pipeline->pipeline = gst_thread_new ("record-pipeline");
@@ -1626,16 +1660,22 @@ make_record_pipeline (GSRWindow *window)
 	
         profile = gm_audio_profile_choose_get_active (window->priv->profile);
 	source = gst_gconf_get_string ("default/audiosrc");
-	if (!source) {
+	if (source) {
+		esource = gst_gconf_render_bin_from_description (source);
+	}
+	if (!esource) {
 		show_error_dialog (NULL, _("There is no default GStreamer "
 				   "audio input element set - please install "
 				   "the GStreamer-GConf schemas or set one "
 				   "manually"));
 		return NULL;
 	}
+	pipeline->src = manager =
+		gst_element_factory_make ("manager", "manager");
+	gst_bin_add (GST_BIN (manager), esource);
+	gst_bin_add (GST_BIN (pipeline->pipeline), manager);
 
-	pipeline_desc = g_strdup_printf ("%s ! audioconvert ! %s",
-					 gst_gconf_get_string ("default/audiosrc"),
+	pipeline_desc = g_strdup_printf ("audioconvert ! %s",
 					 gm_audio_profile_get_pipeline (profile));
 	g_free (source);
 	
@@ -1658,7 +1698,8 @@ make_record_pipeline (GSRWindow *window)
 	}
 	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
 	
-	if (!gst_element_link (encoder, pipeline->sink))
+	if (!gst_element_link (manager, encoder) ||
+	    !gst_element_link (encoder, pipeline->sink))
 	{
 		show_error_dialog (NULL, _("Failed to link encoder elements "
 				   "with file output element - you probably "
