@@ -1,5 +1,12 @@
 2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
 
+	* cddb-slave.c: (cddb_check_cache):
+	  also check .cddb for entries as a fallback, and write them out
+	  immediately to our .cddbslave directory
+	  fixes #141985
+
+2004-05-07  Thomas Vander Stichele  <thomas at apestaart dot org>
+
 	* cddb-slave.c: (cddb_entry_is_valid):
 	  make this function create a dummy entry if it didn't exist
 	* cddb-track-editor.c: (load_new_track_data),

@@ -995,9 +995,9 @@ cddb_entry_is_valid (const char *discid)
 	return entry->is_valid;
 }
 
-/* checks if the given discid lives in the cache.
- * if it does not, try reading it from the .cddbslave directory.
- * FIXME: try reading it from the .cddb dir as well ?
+/* Checks if the given discid lives in the cache.
+ * If it does not, try reading it from the .cddbslave directory.
+ * If it doesn't live there, try .cddb as well.
  */
 static gboolean
 cddb_check_cache (const char *discid)
@@ -1012,7 +1012,18 @@ cddb_check_cache (const char *discid)
 		entry = cddb_entry_new_from_file (filename);
 		g_free (filename);
 		if (entry == NULL) {
-			return FALSE;
+			/* as a backup, try reading from $HOME/.cddb */
+			filename = g_build_filename (g_get_home_dir (),
+						     ".cddb",
+						     discid, NULL);
+			entry = cddb_entry_new_from_file (filename);
+			/* also write it to our .cddbslave dir */
+			cddb_entry_write_to_file (entry);
+			g_free (filename);
+
+			if (entry == NULL) {
+				return FALSE;
+			}
 		}
 
 		g_hash_table_insert (cddb_cache, g_strdup (discid), entry);
