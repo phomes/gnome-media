@@ -3,7 +3,6 @@
 */
 
 #include <stdio.h>
-#include <stdinc.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -22,6 +21,9 @@
 
 #include <linux/types.h>
 #include <linux/videodev.h>
+#include <gdk_imlib.h>
+
+#include "gtktv.h"
 
 struct _GtkTVPrivate {
   GdkGC *painter_gc;
@@ -56,8 +58,13 @@ struct _GtkTVPrivate {
 
   int sanity1;
   int sanity2;
+  GdkImage *capture;
   gint capture_h, capture_w;
 };
+
+static void gtk_tv_class_init(GtkTVClass *tvclass);
+static void gtk_tv_init(GtkTV *tv);
+static void gtk_tv_destroy(GtkTV *tv);
 
 static GtkWidget *window;
 static GtkWidget *tv;
@@ -88,7 +95,7 @@ static void make_palette_grey(GtkTV *tv, int num)
     {
       c.pixel = gdk_imlib_best_color_match(&i, &i, &i);
       c.red = c.green = c.blue = i;
-      gdk_color_alloc(gdk_imlib_get_colormap(), &colourmap[x]);
+      gdk_color_alloc(gdk_imlib_get_colormap(), &tv->p->colourmap[x]);
     }
 
   tv->p->colourmap_size = num;
@@ -103,7 +110,7 @@ static void make_colour_cube(GtkTV *tv)
   tv->p->private_colourmap = gdk_colormap_new(gdk_imlib_get_visual(), 256);
   for(i=0;i<16;i++)
     {
-      gdk_color_black(private_colourmap, &colourmap[i]);
+      gdk_color_black(tv->p->private_colourmap, &tv->p->colourmap[i]);
     }
   for(i=0;i<225;i++)
     {
@@ -113,15 +120,15 @@ static void make_colour_cube(GtkTV *tv)
       n1 = (65535*(r/5)/4);
       n2 = (65535*(i/25)/8);
       n3 = (65535*rr/4);
-      colourmap[i+16].red = n1;
-      colourmap[i+16].green = n2;
-      colourmap[i+16].blue = n3;
-      colourmap[i+16].pixel = gdk_imlib_best_color_match(&n1, &n2, &n3);
-      gdk_color_alloc(private_colourmap, &colourmap[i+16]);
+      tv->p->colourmap[i+16].red = n1;
+      tv->p->colourmap[i+16].green = n2;
+      tv->p->colourmap[i+16].blue = n3;
+      tv->p->colourmap[i+16].pixel = gdk_imlib_best_color_match(&n1, &n2, &n3);
+      gdk_color_alloc(tv->p->private_colourmap, &tv->p->colourmap[i+16]);
     }
-  colourmap_size=225;
-  colourmap_base=16;
-  gdk_window_set_colormap(tv->window, private_colourmap);
+  tv->p->colourmap_size=225;
+  tv->p->colourmap_base=16;
+  gdk_window_set_colormap(GTK_WIDGET(tv)->window, tv->p->private_colourmap);
 }
 
 static char *probe_tv_set(int n)
@@ -173,7 +180,7 @@ gtk_tv_class_init(GtkTVClass *tvclass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(tvclass);
 
-  widget_class->destroy = gtk_tv_destroy;
+  widget_class->destroy_event = gtk_tv_destroy;
 }
 
 static void
@@ -190,7 +197,7 @@ gtk_tv_new(int video_num)
   static char buf[64];
   GtkWidget *widget;
   GtkTV *tv;
-  Display *d;
+  Display *disp;
   unsigned int rwidth;
   int bank, ram, major, minor;
 
@@ -324,7 +331,7 @@ gtk_tv_new(int video_num)
        *	For SHM we can do post processing.
        */
 		 
-      if(!use_shm)
+      if(!tv->p->use_shm)
 	{
 	  gtk_widget_destroy(widget);
 	  return NULL;
@@ -432,11 +439,11 @@ gtk_tv_new(int video_num)
 	  /* Depth mismatch is fatal on overlay */
 	  g_error("set depth");
 	  gtk_widget_destroy(widget);
-	  return NULLx;
+	  return NULL;
 	}
     }
 		
-  if(ioctl(fd, VIDIOCGPICT, &errorvpic)==-1)
+  if(ioctl(fd, VIDIOCGPICT, &tv->p->vpic)==-1)
     g_error("get picture");
 			
   tv->p->grabber_format = tv->p->vpic.palette;
@@ -527,9 +534,9 @@ gtk_tv_card_destroy(GtkTV *tv)
 									\
 		case  8:	/* FIXME: Mono only right now */	\
 			lum = ((3*(r) + 5*(g) + 2*(b)) / (10 * 256/colourmap_size)) >> 8;	\
-			if (lum >= colourmap_size)			\
-				lum = colourmap_size;			\
-			buf[0] = colourmap[lum+colourmap_base].pixel;	\
+			if (lum >= tv->p->colourmap_size)			\
+				lum = tv->p->colourmap_size;			\
+			buf[0] = tv->p->colourmap[lum+tv->p->colourmap_base].pixel;	\
 			buf += (bpp);					\
 			break;						\
 		case 15:						\
@@ -643,21 +650,21 @@ static void do_painting(void)
 		
         gdk_window_get_geometry(painter->window, &x, &y, &w, &h, &d);
 
-	if(use_shm && capture && capture_running && !capture_hidden)
+	if(tv->p->use_shm && tv->p->capture && tv->p->capture_running && !tv->p->capture_hidden)
 	{
-		if(widescreen)
+		if(tv->p->widescreen)
 		{
-			gdk_draw_image(painter->window, painter_gc, capture,
-				0, capture_h/10, 
+			gdk_draw_image(tv->p->painter->window, tv->p->painter_gc, tv->p->capture,
+				0, tv->p->capture_h/10, 
 				0, 0,
-				capture_w,
-				widescreen_h);
+				tv->p->capture_w,
+				tv->p->widescreen_h);
 		}
 		else
 		{
-			gdk_draw_image(painter->window, painter_gc, capture,
+			gdk_draw_image(tv->p->painter->window, tv->p->painter_gc, tv->p->capture,
 				0,0,0,0, 
-				capture_w, capture_h);
+				tv->p->capture_w, tv->p->capture_h);
 		}
 	}
 	else
@@ -668,7 +675,7 @@ static void do_painting(void)
 
 static void tv_grabber(void)
 {
-	grab_image(capture->mem, 0, 0);
+	grab_image(tv->p->capture->mem, 0, 0);
 	do_painting();
 }
 
@@ -676,15 +683,15 @@ static void tv_capture(int handle, int onoff)
 {
 	int old_state = onoff;
 	
-	if(use_shm==0)
+	if(tv->p->use_shm==0)
 	{
 		/*
 		 *	Dont capture if unmapped
 		 */
 
-		capture_running = onoff;
+		tv->p->capture_running = onoff;
 
-		if(capture_hidden)
+		if(tv->p->capture_hidden)
 			onoff=0;
 			
 		if(ioctl(handle, VIDIOCCAPTURE, &onoff)==-1)
@@ -694,7 +701,7 @@ static void tv_capture(int handle, int onoff)
 	else
 	{
 		static gint capture_tag;
-		if(capture_running && capture && capture->mem)
+		if(tv->p->capture_running && tv->p->capture && tv->p->capture->mem)
 			grab_image(capture->mem, 0,0);
 		if(onoff)
 			capture_tag = gtk_idle_add(tv_grabber, 0);
@@ -704,11 +711,50 @@ static void tv_capture(int handle, int onoff)
 	}
 }
 
-
-static void tv_set_window(int handle)
+static void
+gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition)
 {
-	gint x,y,w,h,d;
-	GdkWindow *t=painter->window;
+  widget->requisition.width = 
+  *requisition = widget->requisition;
+}
+
+static void
+gtk_tv_size_allocate(GtkWidget *widget, GtkAllocation *allocation)
+{
+  widget->allocation = *allocation;
+  if(GTK_WIDGET_REALIZED(widget))
+    {
+      GtkTV *tv;
+      
+      tv = GTK_TV(widget);
+
+      tv->p->vwin.x = x;
+      tv->p->vwin.y = y;
+      tv->p->vwin.width = w;
+      tv->p->vwin.height = h;
+      tv->p->vwin.clips = NULL; 
+      tv->p->vwin.flags = 0;
+      tv->p->vwin.clipcount = 0;
+
+      if(ioctl(tv->p->tv_fd, VIDIOCSWIN, &tv->p->vwin)==-1)
+	g_warning("set video window");
+
+      if(ioctl(tv->p->tv_fd, VIDIOCGWIN, &tv->p->vwin)==-1)
+	g_warning("get video window");
+
+      /* x,y,h,w are now the values that were chosen by the
+	 device to be as close as possible - eg the quickcam only
+	 has 3 sizes */
+      widget->allocation.width = tv->p->vwin.width;
+      widget->allocation.height = tv->p->vwin.height;
+    }
+}
+
+static void
+tv_set_window(GtkTV *tv)
+{
+	gint x,y,w,h,d, origx, origy, origw, origh;
+	GdkWindow *t=tv->p->painter->window;
 	
 	/*
 	 *	GDK holds the window positioning
@@ -724,7 +770,8 @@ static void tv_set_window(int handle)
          */
         
         gdk_window_get_origin(t, &x, &y);
-        if(x==window_x && y==window_y && h==window_h && w==window_w)
+	gdk_window_get_origin(tv->window, &origx, &origy);
+        if(x==origx && y==origy && h==tv->allocation.height && w==tv->allocation.width)
         	return;
 
 /*        printf("SET Window :: Window is %d by %d at %d,%d\n", w,h,x,y);*/
@@ -732,7 +779,7 @@ static void tv_set_window(int handle)
 	if(w < xmin || h < ymin)
 	{
 		/* Too small, turn it off */
-		tv_capture(handle,0);
+		tv_capture(tv,0);
 	}
 	
 	/* Constrain the window */

@@ -1165,10 +1165,20 @@ static GnomeUIInfo tbar[] =
 };
 
 
+void
+dnd_drag_request(GtkWidget *tv, GdkEvent *event)
+{
+#ifdef FINISHED
+	char *data;
+	gtk_widget_dnd_data_set(tv, event, NULL, 0);
+#endif
+}
+
 void make_tv_set(void)
 {
 	GtkWidget *menubar;
 	GtkWidget *hbox, *vbox, *frame;
+	const char *possible_drag_type = "image/ppm";
 
 	window = gnome_app_new("gnomovision", "Televison Gnome");
 	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, TRUE);
@@ -1199,6 +1209,11 @@ void make_tv_set(void)
 	 	
 	hbox = tv = gtk_event_box_new();
 	gtk_widget_set_usize(tv, xsize, ysize);
+	gtk_signal_connect(GTK_WIDGET(tv), "drag_request_event",
+			   GTK_SIGNAL_FUNC(dnd_drag_request),
+			   NULL);
+	gtk_widget_dnd_drag_set(GTK_WIDGET(tv), TRUE, (char **)&possible_drag_type,
+				1);
 	
 	painter=gtk_drawing_area_new();
 	gtk_drawing_area_size(GTK_DRAWING_AREA(painter), xsize, ysize);
