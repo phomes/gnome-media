@@ -157,7 +157,7 @@ main (int argc,
 	cddbdir = g_build_filename (g_get_home_dir (),
 				    ".cddbslave", NULL);
 	if (g_file_test (cddbdir, G_FILE_TEST_EXISTS) == FALSE) {
-		mkdir (cddbdir, 0775);
+		mkdir (cddbdir, 0755);
 	}
 
 	if (g_file_test (cddbdir, G_FILE_TEST_IS_DIR) == FALSE) {
