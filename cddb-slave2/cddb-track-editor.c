@@ -592,7 +592,7 @@ load_new_track_data (TrackEditorDialog *td,
 static TrackEditorDialog *
 make_track_editor_control (void)
 {
-	GtkWidget *hbox, *vbox, *ad_vbox, *ad_vbox2;
+	GtkWidget *hbox, *vbox, *inner_vbox, *ad_vbox, *ad_vbox2;
 	GtkWidget *label;
 	GtkWidget *sep;
 	GtkWidget *advanced;
@@ -608,20 +608,20 @@ make_track_editor_control (void)
 	td->current_track = -1;
 	td->dirty = FALSE;
 	
-	td->parent = gtk_vbox_new (FALSE, 4);
-	gtk_container_set_border_width (GTK_CONTAINER (td->parent), 2);
+	td->parent = gtk_vbox_new (FALSE, 12);
+	gtk_container_set_border_width (GTK_CONTAINER (td->parent), 12);
 
 	/* Info label */
 	td->discid = gtk_label_new (_("Editing Disc ID: "));
 	gtk_misc_set_alignment (GTK_MISC (td->discid), 0.0, 0.5);
-	gtk_box_pack_start (GTK_BOX (td->parent), td->discid, FALSE, FALSE, 0);
 
-	sep = gtk_hseparator_new ();
-	gtk_box_pack_start (GTK_BOX (td->parent), sep, FALSE, FALSE, 0);
-
+	inner_vbox = gtk_vbox_new (FALSE, 6);
+	gtk_widget_show (inner_vbox);
+	gtk_box_pack_start (GTK_BOX (td->parent), inner_vbox, FALSE, FALSE, 0);
+	
 	/* Artist */
-	hbox = gtk_hbox_new (FALSE, 4);
-	gtk_box_pack_start (GTK_BOX (td->parent), hbox, FALSE, FALSE, 0);
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new_with_mnemonic (_("_Artist:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -634,8 +634,8 @@ make_track_editor_control (void)
 	set_relation (td->artist, label);
 
 	/* Disc title */
-	hbox = gtk_hbox_new (FALSE, 4);
-	gtk_box_pack_start (GTK_BOX (td->parent), hbox, FALSE, FALSE, 0);
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new_with_mnemonic (_("Disc _Title:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -649,15 +649,14 @@ make_track_editor_control (void)
 
 	advanced = cddb_disclosure_new (_("Show advanced disc options"),
 					_("Hide advanced disc options"));
-	gtk_box_pack_start (GTK_BOX (td->parent), advanced, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), advanced, FALSE, FALSE, 0);
 
 	/* Advanced disc options */
-	ad_vbox = gtk_vbox_new (FALSE, 4);
-	gtk_container_set_border_width (GTK_CONTAINER (ad_vbox), 2);
-	gtk_box_pack_start (GTK_BOX (td->parent), ad_vbox, FALSE, FALSE, 0);
+	ad_vbox = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), ad_vbox, FALSE, FALSE, 0);
 	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox);
 
-	hbox = gtk_hbox_new (FALSE, 4);
+	hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (ad_vbox), hbox, FALSE, FALSE, 0);
 
 	/* Top box: Disc comments. Maybe should be a GtkText? */
@@ -672,7 +671,7 @@ make_track_editor_control (void)
 	set_relation (td->disccomments, label);
 
 	/* Bottom box */
-	hbox = gtk_hbox_new (FALSE, 4);
+	hbox = gtk_hbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (ad_vbox), hbox, FALSE, FALSE, 0);
 
 	/* Genre */
@@ -702,11 +701,11 @@ make_track_editor_control (void)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), td->year);
 	set_relation (td->year, label);
 
-	sep = gtk_hseparator_new ();
-	gtk_box_pack_start (GTK_BOX (td->parent), sep, FALSE, FALSE, 0);
-
-	hbox = gtk_hbox_new (FALSE, 4);
-	gtk_box_pack_start (GTK_BOX (td->parent), hbox, TRUE, TRUE, 0);
+	inner_vbox = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (td->parent), inner_vbox, TRUE, TRUE, 0);
+	
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	
 	/* Tracks */
 	sw = gtk_scrolled_window_new (NULL, NULL);
@@ -744,10 +743,7 @@ make_track_editor_control (void)
 
 	gtk_container_add (GTK_CONTAINER (sw), td->tracks);
 
-	sep = gtk_vseparator_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), sep, FALSE, FALSE, 0);
-
-	vbox = gtk_vbox_new (FALSE, 4);
+	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 2);
 	gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 	
@@ -756,7 +752,7 @@ make_track_editor_control (void)
 					_("Hide advanced track options"));
 	gtk_box_pack_start (GTK_BOX (vbox), advanced, FALSE, FALSE, 0);
 
-	ad_vbox2 = gtk_vbox_new (FALSE, 4);
+	ad_vbox2 = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), ad_vbox2, TRUE, TRUE, 0);
 	cddb_disclosure_set_container (CDDB_DISCLOSURE (advanced), ad_vbox2);
 	
@@ -889,7 +885,8 @@ impl_GNOME_Media_CDDBTrackEditor_showWindow (PortableServer_Servant servant,
 		}
 		
 		editor->dialog = gtk_dialog_new_with_buttons (_("CDDB Track Editor"),
-							      NULL, 0,
+							      NULL,
+							      GTK_DIALOG_NO_SEPARATOR,
 							      GTK_STOCK_HELP,
 							      GTK_RESPONSE_HELP,
 							      GTK_STOCK_CANCEL,
