@@ -28,12 +28,6 @@
 #ifndef GTRACKED_H
 #define GTRACKED_H
 
-struct pass_str
-{
-	cd_struct *cd;
-	GtkWidget *window;	
-};
-
 void edit_window( void );
 void destroy_window (GtkWidget *widget, GtkWidget **window);
 void gtracked();
