@@ -48,7 +48,7 @@ void save_filename (GtkFileSelection* selector, gpointer file_selector);
 gint save_dont_or_cancel (void);
 gboolean save_sound_file (const gchar* filename);
 guint UpdateStatusbarPlay (gboolean begin);
-guint UpdateStatusbarRecord (gpointer data);
+guint UpdateStatusbarRecord (gboolean begin);
 void save_dialog (void);
 void is_file_default (void);
 void grecord_set_sensitive_file (void);

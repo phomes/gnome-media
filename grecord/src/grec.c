@@ -76,6 +76,9 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 	grecord_set_sensitive_progress ();
 	file_changed = TRUE;
 
+	/* Reset record-time and stuff */
+	UpdateStatusbarRecord (TRUE);
+
 	RecEng.pid = fork ();
 	if (RecEng.pid == 0) {
 		
@@ -92,7 +95,7 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 
 	record_id = gtk_timeout_add (1000,
 				     (GtkFunction) UpdateStatusbarRecord,
-				     NULL);
+				     FALSE);
 }
 
 void
@@ -819,11 +822,18 @@ UpdateStatusbarPlay (gboolean begin)
 }
 
 guint
-UpdateStatusbarRecord (gpointer data)
+UpdateStatusbarRecord (gboolean begin)
 {
 	static gint counter = 0;
 	static gint timeout = 0;
 	static gint countersec = 0;
+
+	if (begin) {
+		counter = 0.00;
+		timeout = 0;
+		countersec = 0;
+		return TRUE;
+	}
 
 	/* Timeout */
 	if (counter >= 1000) {
