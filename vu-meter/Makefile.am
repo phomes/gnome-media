@@ -16,6 +16,12 @@ vumeter_SOURCES = \
 vumeter_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) 
 
-EXTRA_DIST = vumeter.desktop README TODO
+BITMAPS = gnome-vumeter.png
+
+pixmapdir = $(datadir)/pixmaps
+
+pixmap_DATA = $(BITMAPS)
+
+EXTRA_DIST = $(BITMAPS) vumeter.desktop README TODO
 
 Audio_DATA = vumeter.desktop

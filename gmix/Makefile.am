@@ -1,6 +1,7 @@
 Audiodir = $(datadir)/gnome/apps/Multimedia
+pixmapdir = $(datadir)/pixmaps
 
-EXTRA_DIST = README TODO NEWS gmix.desktop
+EXTRA_DIST = README TODO NEWS gmix.desktop gnome-mixer.png
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
@@ -15,3 +16,5 @@ gmix_LDADD = \
 	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 Audio_DATA = gmix.desktop
+
+pixmap_DATA = gnome-mixer.png
