@@ -380,6 +380,7 @@ static void labels_create_one_slider(gpointer channel_p, gpointer user_data)
 static void label_one_device_config(gpointer device, gpointer parent)
 {
 	GtkWidget *ubervbox, *label, *table, *bbox, *button, *scrlwin;
+	GtkWidget *topvbox;
 	device_info *info = (device_info *)device;
 	label_create_args_t args;
 
@@ -388,7 +389,12 @@ static void label_one_device_config(gpointer device, gpointer parent)
 	scrlwin = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrlwin),
 				       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-	gtk_notebook_append_page(GTK_NOTEBOOK(parent), scrlwin, label);
+
+	topvbox = gtk_vbox_new (FALSE, 5);
+	gtk_box_pack_start (GTK_BOX (topvbox), scrlwin, TRUE, TRUE, 0);
+	
+	gtk_notebook_append_page(GTK_NOTEBOOK(parent), topvbox, label);
+	
 	ubervbox = gtk_vbox_new(FALSE, 5);
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrlwin),
 					      ubervbox);
@@ -407,7 +413,7 @@ static void label_one_device_config(gpointer device, gpointer parent)
 
 	/* Add the label reset button */
 	bbox = gtk_hbutton_box_new();
-	gtk_container_add(GTK_CONTAINER(ubervbox), bbox);
+	gtk_container_add(GTK_CONTAINER(topvbox), bbox);
 	button = gtk_button_new_with_label(_("Defaults"));
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",

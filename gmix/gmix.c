@@ -980,6 +980,10 @@ void fill_in_device_guis(GtkWidget *notebook){
 	int i,j;
 
 	i=0;
+	if (num_mixers == 1) {
+		gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+	}
+	
 	for (d=devices; d; d=d->next) {
 		device_info *di;
 		GList *table_focus_chain = NULL;
@@ -992,37 +996,39 @@ void fill_in_device_guis(GtkWidget *notebook){
 		/* 
 		 * David: changed 7 to 8 for table rows (06/04/1999)
 		 */
-		table = gtk_table_new (i*2, 8, FALSE);
+		table = gtk_table_new (i*2, 5, FALSE);
 		gtk_notebook_append_page (GTK_NOTEBOOK(notebook),
 					  table, 
 					  gtk_label_new(di->info.name));
 		gtk_table_set_row_spacings (GTK_TABLE (table), 0);
 		gtk_table_set_col_spacings (GTK_TABLE (table), 0);
 		gtk_container_border_width (GTK_CONTAINER (table), 0);
-		gtk_widget_show (table);
 
 		for (c= ((device_info *)d->data)->channels; c; c=c->next) {
 			GtkWidget *label, *mixer, *separator;
+			GtkWidget *hbox;
 			channel_info *ci;
 
 			ci=c->data;
 
+			hbox = gtk_hbox_new (FALSE, 2);
+			gtk_table_attach (GTK_TABLE (table), hbox, i, i+1,
+					  0, 1, GTK_EXPAND | GTK_FILL,
+					  GTK_FILL, 0, 0);
 			if ((ci->pixmap) && (prefs.use_icons)) {
 				spixmap = gtk_image_new_from_stock (ci->pixmap,
 								    GTK_ICON_SIZE_BUTTON);
-				gtk_table_attach (GTK_TABLE (table), spixmap, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-				gtk_widget_show (spixmap);
+				gtk_box_pack_start (GTK_BOX (hbox), spixmap, FALSE, FALSE, 0);
 			}
 			if (prefs.use_labels) {
-				label=gtk_label_new(ci->user_title);
-				gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
-				gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-				gtk_widget_show(label);
+				label = gtk_label_new (ci->user_title);
+				gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+				gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 			}
 
 			mixer=make_slider_mixer(ci);
 			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1,\
-					  3, 4, GTK_EXPAND | GTK_FILL,\
+					  1, 2, GTK_EXPAND | GTK_FILL,\
 					  GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (mixer);
 			table_focus_chain = g_list_prepend (table_focus_chain, mixer);
@@ -1034,7 +1040,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 				ci->lock = gtk_check_button_new_with_label(_("Lock"));ci->lock = gtk_check_button_new_with_label(_("Lock"));			  
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->lock), (ci->device->lock_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->lock), "toggled", (GtkSignalFunc) lock_cb, (gpointer)ci);
-				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->lock);
 				table_focus_chain = g_list_prepend (table_focus_chain, ci->lock);
 				accessible_name = g_strdup_printf ("%s %s",
@@ -1043,6 +1049,23 @@ void fill_in_device_guis(GtkWidget *notebook){
 				atk_object_set_name (accessible, accessible_name);
 				g_free (accessible_name);
 			}
+
+			if (ci->device->devmask & (1<<ci->channel)) {
+				AtkObject *accessible;
+				gchar *accessible_name;
+				ci->mute=gtk_check_button_new_with_label(_("Mute"));
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
+				gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
+				gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_widget_show (ci->mute);
+				table_focus_chain = g_list_prepend (table_focus_chain, ci->mute);
+				accessible_name = g_strdup_printf ("%s %s",
+								   ci->user_title, _("Mute"));
+				accessible = gtk_widget_get_accessible (ci->mute);
+				atk_object_set_name (accessible, accessible_name);
+				g_free (accessible_name);
+			}
+
 			/*
 			 * recording sources
 			 */
@@ -1055,7 +1078,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 				/* David: changed TOP_ATTACH to 7 and
 				 * BOTTOM_ATTACH to 8   06/04/1999
 				 */
-				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 7, 8, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 5, 6, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
 				table_focus_chain = g_list_prepend (table_focus_chain, ci->rec);
 				accessible_name = g_strdup_printf ("%s %s",
@@ -1072,27 +1095,13 @@ void fill_in_device_guis(GtkWidget *notebook){
 				ci->rec = NULL;
 			}
 	
-			if (ci->device->devmask & (1<<ci->channel)) {
-				AtkObject *accessible;
-				gchar *accessible_name;
-				ci->mute=gtk_check_button_new_with_label(_("Mute"));
-				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
-				gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
-				gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 6, 7, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-				gtk_widget_show (ci->mute);
-				table_focus_chain = g_list_prepend (table_focus_chain, ci->mute);
-				accessible_name = g_strdup_printf ("%s %s",
-								   ci->user_title, _("Mute"));
-				accessible = gtk_widget_get_accessible (ci->mute);
-				atk_object_set_name (accessible, accessible_name);
-				g_free (accessible_name);
-			}
-
 			separator = gtk_vseparator_new ();
 			/* BOTTOM_ATTACH changed to 8 */
-			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 1, 8, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			gtk_table_attach (GTK_TABLE (table), separator, i+1, i+2, 0, 6, GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 			gtk_widget_show (separator);
 			i+=2; 
+
+			gtk_widget_show_all (table);
 		}
 	
 		/* Set the new focus chain for the table */
