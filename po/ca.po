@@ -5,9 +5,9 @@
 # Traducció per Softcatalà <info@softcatala.org>
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.0.52\n"
-"POT-Creation-Date: 2001-06-12 08:06-0400\n"
-"PO-Revision-Date: 2001-06-11 14:09+0200\n"
+"Project-Id-Version: gnome-media 1.2.3\n"
+"POT-Creation-Date: 2001-09-13 11:44+0200\n"
+"PO-Revision-Date: 2001-09-13 15:03+0200\n"
 "Last-Translator: Softcatalà <tradgnome@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -335,7 +335,17 @@ msgstr ""
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "no desa els paràmetres del mesclador (modificats) en la configuració"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"No he pogut obrir el vostre dipositiu d'àudio.\n"
+"Si us plau, comproveu que teniu autorització per obrir /dev/mixer\n"
+"i assegureu-vos que teniu el suport per a so compilat dins del nucli."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -346,7 +356,7 @@ msgstr ""
 "l'OSS versió %d.%d.%d, i el sistema està treballant amb\n"
 "una versió anterior a la 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -358,32 +368,32 @@ msgstr ""
 "la versió %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Bloca"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Enreg."
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Silenci"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - El Mesclador del Gnome"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Aquest és un mesclador per a dispositius de so OSS"
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "En engegar"
 
@@ -410,15 +420,15 @@ msgstr "Utilitza les etiquetes del mesclador"
 
 #: gmix/prefs.c:409
 msgid "Defaults"
-msgstr ""
+msgstr "Valors per defecte"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Preferències"
 
 #: gmix/prefs.c:489
 msgid "Labels"
-msgstr ""
+msgstr "Etiquetes"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
@@ -884,8 +894,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory "
-"%s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "No teniu els permisos adequats (lectura i escriptura) per al directori "
@@ -1256,98 +1266,106 @@ msgid "About"
 msgstr "Quant a"
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "No facis res"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Inicia la reproducció"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Atura la reproducció"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Tanca la safata"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Obre la safata"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "Dispositiu CDROM"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
 msgstr "Ordre del mesclador"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Color del nom de la peça/títol"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Tipus de lletra del nom de la peça/títol"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Canvia el tipus de lletra"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Mostra les associacions (cal reiniciar)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Mostra la informació de les eines"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Utilitza el mètode alternatiu per reproduir el CD"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Utilitza el control de volum de llei quadrada"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "En sortir"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Clau"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Acció"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Feu clic aquí per canviar-ho (cal reiniciar)"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Camps obligatoris"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "Paràmetres de la CDDB"
 
-#: vu-meter/main.c:118
+#: tcd/prefs.h:4
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#: tcd/prefs.h:5
+msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-"
+
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1355,46 +1373,62 @@ msgstr ""
 "No és possible connectar el dimoni del so.\n"
 "Si us plau, executeu 'esd' en la línia d'ordres."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Especifiqueu la posició X del meter."
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "Posició-X"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
 msgstr "Especifiqueu la posició Y del meter."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Posició-Y"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Connecta amb el servidor esd en aquest ordinador central."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
 msgstr "Servidor central ESD"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
 msgstr "Obre una versió vertical del meter."
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Comporta't com a un mesurador de nivell d'enregistrament."
+
+#: vu-meter/main.c:271
 #, c-format
 msgid "Host is %s\n"
 msgstr "L'ordinador central és %s\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Nivell d'enregistrament"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Volum del Meter"
 
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "Vúmetre per a l'ESD"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "Nivell d'enregistrament ESD"
+
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD "
-msgstr "Vúmetre per a l'ESD "
+msgid "A Volume Unit Meter for ESD"
+msgstr "Vúmetre per a l'ESD"
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "ESD Volume Meter"
@@ -1419,12 +1453,6 @@ msgstr "Enregistradora de so"
 #: gmix/gmix.desktop.in.h:1
 msgid "Audio Mixer"
 msgstr "Mesclador d'àudio"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
-#~ msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
-#~ msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-"
 
 #~ msgid "Speed"
 #~ msgstr "Velocitat"
