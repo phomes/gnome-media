@@ -1,0 +1,66 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(src/cddb.c)
+
+PACKAGE=TCD
+VERSION=2.0
+
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+
+AM_INIT_AUTOMAKE(TCD, 2.0)
+
+OPTIONS=""
+
+dnl -- do we want changer support?
+sup=no
+AC_ARG_ENABLE(cdchanger,
+ [ --enable-cdchanger	  enables ATAPI CDROM changer support in TCD],
+	sup=yes, sup=no)
+
+if test "$sup" = yes; then
+	AC_MSG_WARN("including cdrom changer support.")
+	OPTIONS="$OPTIONS -DTCD_CHANGER_ENABLED"
+fi
+
+dnl -- how about debug?
+sup=no
+AC_ARG_ENABLE(debug,
+ [ --enable-debug	  enables debugging messages],
+	sup=yes, sup=no)
+
+if test "$sup" = yes; then
+	AC_MSG_WARN("including debugging support")
+	OPTIONS="$OPTIONS -DDEBUG"
+fi
+
+dnl -- tooltips?
+sup=no
+AC_ARG_ENABLE(notooltips,
+ [ --enable-notooltips    turns off all tooltips],
+	sup=yes, sup=no)
+
+if test "$sup" = yes; then
+	AC_MSG_WARN("disabling tooltips")
+	OPTIONS="$OPTIONS -DNOTOOLTIPS"
+fi
+
+AM_PATH_GTK(0.99.5,
+	[LIBS="$LIBS"
+	CFLAGS="$CFLAGS"],
+	AC_MSG_ERROR(Cannot find GTK: Is gtk-config in path?))
+ 
+COMMON_LIBS="-lm"
+CURSES_LIBS="-lncurses"
+
+AC_SUBST(COMMON_LIBS)
+AC_SUBST(CURSES_LIBS)
+AC_SUBST(OTHER_LIBS)
+AC_SUBST(OPTIONS)
+
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_PROG_INSTALL
+AC_STDC_HEADERS
+AC_ARG_PROGRAM
+
+AC_OUTPUT(Makefile src/Makefile)
