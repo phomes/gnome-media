@@ -138,12 +138,8 @@ void setup_keys(void);
 gint roll_timer(gpointer *data)
 {
 	int track, abs_pos;
-	if(skip_first = TRUE)
-	{
-		skip_pos = cd.cur_pos_abs;
-		skip_first = FALSE;
-	}
 
+	skip_pos = cd.cur_pos_abs;
 	skip_offset += GPOINTER_TO_INT(data);
 
 	/* make sure we display the correct time */
