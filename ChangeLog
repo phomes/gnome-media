@@ -1,5 +1,10 @@
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* profiles/audio-profile.c: (gm_audio_profile_create):
+	  Fix double free (resulting in crash when creating new profile).
+
+2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* gnome-cd/gst-cdparanoia-cdrom.c: (build_pipeline):
 	  Implement basic buffering (should prevent hickups) and add
 	  a max. speed of 2 so that it doesn´t get too loud (#164857).
