@@ -7,6 +7,7 @@ typedef struct
 	gchar *cddb;
 	gint  cddbport;
 	gboolean handle;
+	gboolean tooltips;
 } tcd_properties;
 
 void load_properties( tcd_properties *prop );

@@ -164,6 +164,63 @@ GtkWidget *create_cdrom_frame( GtkWidget *box )
 	return cdrom_frame;
 }
 
+GtkWidget *create_ui_frame( GtkWidget *box )
+{
+	GtkWidget *ui_r_box;
+	GtkWidget *ui_l_box;
+	GtkWidget *ui_frame;
+	GtkWidget *ui_box;
+
+	GtkWidget *handle_i;
+	GtkWidget *tooltips_i;
+
+	ui_r_box= gtk_vbox_new( FALSE, 2 );
+	ui_l_box= gtk_vbox_new( FALSE, 2 );
+	ui_box  = gtk_hbox_new( TRUE, 2 );
+
+	handle_i = gtk_check_button_new_with_label("Show Handles");
+	tooltips_i = gtk_check_button_new_with_label("Show Tooltips");
+
+	ui_frame = gtk_frame_new("");
+	gtk_container_border_width( GTK_CONTAINER(ui_frame), 5 );
+
+	gtk_widget_show(handle_i);
+	gtk_widget_show(tooltips_i);
+
+/*	gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
+		GTK_SIGNAL_FUNC(changed_cb), NULL );
+*/
+	gtk_box_pack_start( GTK_BOX(ui_l_box), handle_i, FALSE, FALSE, 4 );
+	gtk_box_pack_start( GTK_BOX(ui_l_box), tooltips_i, FALSE, FALSE, 4 );
+
+	gtk_box_pack_start( GTK_BOX(ui_box), ui_l_box, FALSE, FALSE, 0 );
+	gtk_box_pack_start( GTK_BOX(ui_box), ui_r_box, FALSE, FALSE, 0 );
+	
+	gtk_container_add( GTK_CONTAINER(ui_frame), ui_box );
+
+	gtk_widget_show(ui_r_box);
+	gtk_widget_show(ui_l_box);
+	gtk_widget_show(ui_frame);
+	gtk_widget_show(ui_box);
+	
+	return ui_frame;
+}
+
+GtkWidget *create_page2()
+{
+	GtkWidget *box;
+	GtkWidget *ui_frame;
+	GtkWidget *sep;
+
+	box = gtk_vbox_new( FALSE,4 );	
+
+	ui_frame = create_ui_frame( box );
+
+	gtk_box_pack_start( GTK_BOX(box), ui_frame,TRUE, TRUE, 0 );
+
+	return box;
+}
+
 GtkWidget *create_page1()
 {
 	GtkWidget *box;
@@ -188,7 +245,7 @@ void apply_cb( GtkWidget *widget, void *data )
 
 void properties_cb( GtkWidget *widget, void *data )
 {
-	GtkWidget *page1, *label;
+	GtkWidget *page1, *page2, *label;
 
 	load_properties(&props);
 		
@@ -197,13 +254,15 @@ void properties_cb( GtkWidget *widget, void *data )
 
 	page1	= create_page1();
 	label   = gtk_label_new("General");
+	gtk_widget_show(page1);
 	gnome_property_box_append_page( GNOME_PROPERTY_BOX(propbox),
 		page1, label );
 
-/*	page1 = blah */
+	page2 	= create_page2();
         label   = gtk_label_new("Interface");
+	gtk_widget_show(page2);
 	gnome_property_box_append_page( GNOME_PROPERTY_BOX(propbox),
-		label, label );
+		page2, label );
 
 	gtk_signal_connect( GTK_OBJECT(propbox), 
 		"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );

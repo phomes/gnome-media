@@ -89,8 +89,6 @@ char *play_methods[] =
 #define Connect( x,y ) gtk_signal_connect (GTK_OBJECT (x), "clicked", \
 	        GTK_SIGNAL_FUNC (callback), (gpointer*)y);
       
-GdkColor Green = { 0x0000, 0xFFFE, 0x0000, 0 };
-
 /* Regular globals */
 cd_struct cd;
 int tracklabel_f = 0, titlelabel_f = 0;
@@ -112,12 +110,11 @@ GdkColormap *colormap;
 GdkFont *sfont, *tfont;
 GdkColor darkgrey, green, blue;
 
-#ifndef NOTOOLTIPS
 GtkTooltips *tooltips;
-#endif
 
 int timeonly = FALSE, status_height, status_width;
 int configured = FALSE;
+tcd_properties props;
 
 /* Prototypes */
 void draw_status( void );
@@ -206,9 +203,9 @@ GtkWidget* make_button( char *title, GtkWidget *box, int func, gchar *tooltip )
 	gtk_box_pack_start (GTK_BOX (box), button, TRUE, TRUE, 0);
 	gtk_widget_show (button);
 	Connect( button, func );
-#ifndef NOTOOLTIPS
-	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
-#endif
+
+        if( props.tooltips )
+        	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
 
 	return button;
 }	                        
@@ -229,14 +226,16 @@ GtkWidget* make_button_with_pixmap( char **pic, GtkWidget *box, int func,
 	pixmapwid = gtk_pixmap_new( pixmap, mask );
         gtk_widget_show( pixmapwid );
         
-	button = gtk_button_new ();
+	button = gtk_button_new();
 	gtk_container_add( GTK_CONTAINER(button), pixmapwid );
-	gtk_box_pack_start (GTK_BOX (box), button, expand, fill, 0);
-	gtk_widget_show (button);
-	Connect( button, func );
-#ifndef NOTOOLTIPS
-	gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
-#endif
+	gtk_box_pack_start( GTK_BOX (box), button, expand, fill, 0 );
+	gtk_widget_show(button);
+	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
+	        GTK_SIGNAL_FUNC (callback), (gpointer*)func );
+	
+	if( props.tooltips )
+		gtk_tooltips_set_tip( tooltips, button, tooltip, "" );
+
 	return button;
 }	                        
 
@@ -304,15 +303,15 @@ GtkWidget* make_row1( void )
 {
 	GtkWidget *box, *handle;
 
-	box = gtk_hbox_new (TRUE, 5);
+	box = gtk_hbox_new( TRUE, 5 );
 	handle = gtk_handle_box_new();
 
-	make_button_with_pixmap(play_xpm, box, PLAY, TRUE, TRUE, TT_PLAY );
-	make_button_with_pixmap(pause_xpm, box, PAUSE, TRUE, TRUE, TT_PAUSE );
-	make_button_with_pixmap(stop_xpm, box, STOP, TRUE, TRUE, TT_STOP );
-	make_button_with_pixmap(eject_xpm, box, EJECT, TRUE, TRUE, TT_EJECT );
+	make_button_with_pixmap( play_xpm, box, PLAY, TRUE, TRUE, TT_PLAY );
+	make_button_with_pixmap( pause_xpm, box, PAUSE, TRUE, TRUE, TT_PAUSE );
+	make_button_with_pixmap( stop_xpm, box, STOP, TRUE, TRUE, TT_STOP );
+	make_button_with_pixmap( eject_xpm, box, EJECT, TRUE, TRUE, TT_EJECT );
 	gtk_widget_show(box);
-	gtk_container_add(GTK_CONTAINER(handle), box );
+	gtk_container_add( GTK_CONTAINER(handle), box );
 
 	return row1=handle;
 }
@@ -745,9 +744,10 @@ void setup_time_display( void )
 	gtk_signal_connect( GTK_OBJECT(status_area),"button_press_event",
         	(GtkSignalFunc)status_click_event, NULL);
 	gtk_widget_set_usize( status_area, 175, 59 );
-#ifndef NOTOOLTIPS
-	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
-#endif	
+
+        if( props.tooltips )
+        	gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
+        
         gtk_widget_set_events (status_area, GDK_EXPOSURE_MASK
  					   | GDK_LEAVE_NOTIFY_MASK
                                            | GDK_BUTTON_PRESS_MASK
@@ -839,14 +839,13 @@ void init_window(void)
 
         gtk_container_border_width (GTK_CONTAINER (window), 5);
         gtk_widget_realize(window);
-#ifndef NOTOOLTIPS
-        tooltips = gtk_tooltips_new();
-#endif
+
+        if( props.tooltips )
+	        tooltips = gtk_tooltips_new();
 }
 
 int main (int argc, char *argv[])
 {
-	tcd_properties props;
 	char *homedir;
 	char rcfile[64];
 
