@@ -1,3 +1,13 @@
+Tue Apr 18 13:40:42 2000  George Lebl <jirka@5z.com>
+
+	* gtcd.c: apply a patch that tim approved about 3 months ago and
+	  I forgot to apply it: change cur_goto_id to unsigned long, and
+	  free the gotomenu when redoing it.  This fixes tcd on alpha.
+
+	* gtracked.c: use static buffers instead of dynamic for printing
+	  into the clist.  It was mallocing a constant amount here anyway.
+	  (part of the above patch as well)
+
 2000-04-16  Karl EICHWALDER  <ke@suse.de>
 
 	* gtcd.desktop: Add `de'.

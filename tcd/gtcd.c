@@ -95,7 +95,8 @@ GtkTooltips *tooltips;
 
 int timeonly = FALSE, status_height, status_width, playid=-1;
 int configured = FALSE, old_status=-1, max,tfont_height;
-unsigned int cur_goto_id, release_t=0, roll_t=0;
+unsigned long cur_goto_id=0;
+unsigned int release_t=0, roll_t=0;
 tcd_prefs *prefs;
 int cddb=0, max_title_width;
 int time_display;
@@ -691,11 +692,13 @@ void make_goto_menu()
 	int i;
 	GtkWidget *item;
 
+	if(gotomenu)
+		gtk_widget_destroy(gotomenu);
 	gotomenu = gtk_menu_new();
 
 	for(i=1; i <= cd.last_t; i++)
 	{
-		g_snprintf(buf, TRK_NAME_LEN-1, "%2d - %s", i, cd.trk[C(i)].name);
+		g_snprintf(buf, TRK_NAME_LEN, "%2d - %s", i, cd.trk[C(i)].name);
 		item = gtk_menu_item_new_with_label(buf);
 		gtk_widget_show(item);
 		gtk_menu_append(GTK_MENU(gotomenu), item);

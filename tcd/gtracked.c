@@ -68,28 +68,25 @@ static void update_list( GtkWidget *list, int track )
 static void fill_list( GtkWidget *list )
 {
     int i;
-    char *tmp[4];
+    char *tmp[3];
+    char one[TRK_NAME_LEN], two[TRK_NAME_LEN];
 
-    for(i=0; i < 4; i++)
-	tmp[i] = g_malloc(TRK_NAME_LEN);
+    tmp[0] = one;
+    tmp[1] = two;
 
     gtk_clist_freeze(GTK_CLIST(list));
 
     for( i=cd.first_t; i <= cd.last_t; i++ )
     {
-	g_snprintf(tmp[0], TRK_NAME_LEN-1, "%d", i);
-	g_snprintf(tmp[1], TRK_NAME_LEN-1, "%2d:%02d",
+	g_snprintf(tmp[0], TRK_NAME_LEN, "%d", i);
+	g_snprintf(tmp[1], TRK_NAME_LEN, "%2d:%02d",
 		   cd.trk[i].tot_min, cd.trk[i].tot_sec);
-	g_snprintf(tmp[2], TRK_NAME_LEN-1, "%s", cd.trk[i].name);
-	tmp[3] = NULL;
+	tmp[2] = cd.trk[i].name;
 	
 	gtk_clist_append(GTK_CLIST(list), tmp);
-	g_snprintf(tmp[0],255, "%d", i);
     }
 
     gtk_clist_thaw(GTK_CLIST(list));
-    for(i=0; i < 4; i++)
-	g_free(tmp[i]);
 		
     return;
 }
