@@ -13,10 +13,6 @@ AM_CONFIG_HEADER(config.h)
 
 AC_PROG_INTLTOOL([0.25])
 
-GETTEXT_PACKAGE=gnome-media-2.0
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
-
 AC_PROG_CC
 AC_ISC_POSIX
 
@@ -41,7 +37,6 @@ AC_TYPE_SIZE_T
 AC_PROG_GCC_TRADITIONAL
 AC_FUNC_MMAP
 #AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
-AM_PROG_LIBTOOL
 
 AC_DEFINE_UNQUOTED(DEFAULT_MIXER, gst-mixer, [default mixer to use])
 
@@ -165,6 +160,11 @@ fi
 AM_CONDITIONAL(HAVE_JW, test "x$HAVE_JW" = "xyes")
 AC_SUBST(HAVE_JW)
 
+GETTEXT_PACKAGE=gnome-media-2.0
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
+
+AM_PROG_LIBTOOL
 ALL_LINGUAS="am ar az be bg bn bs ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ko lt lv mk ml mn ms nb nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tk tr uk vi wa zh_CN zh_TW"
 
 AM_GLIB_GNU_GETTEXT
