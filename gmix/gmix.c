@@ -80,25 +80,25 @@ GtkWidget *configwin;
 GtkWidget  *slidernotebook;
 
 typedef struct {
-  gboolean set_mixer_on_start;
-  gboolean hide_menu;
-  gboolean use_icons;
-  gboolean use_labels;
+	gboolean set_mixer_on_start;
+	gboolean hide_menu;
+	gboolean use_icons;
+	gboolean use_labels;
 } mixerprefs;
 
 mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-    GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
-                           GNOME_STOCK_MENU_ABOUT),
-    GNOMEUIINFO_END
+	GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
+			       GNOME_STOCK_MENU_ABOUT),
+	GNOMEUIINFO_END
 };
  
 static GnomeUIInfo program_menu[] = {
-    GNOMEUIINFO_ITEM_STOCK(N_("_Properties"),NULL,config_cb,GNOME_STOCK_MENU_PROP),
-    GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb, NULL),
-    GNOMEUIINFO_END
+	GNOMEUIINFO_ITEM_STOCK(N_("_Preferences..."),NULL,config_cb,GNOME_STOCK_MENU_PREF),
+	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb, NULL),
+	GNOMEUIINFO_END
 };      
 
 static GnomeUIInfo main_menu[] = {
@@ -153,11 +153,11 @@ int mode=0, mode_norestore=0, mode_initonly=0, mode_nosave=0, num_mixers, mode_r
 #define M_NOSAVE	4
 
 static const struct poptOption options[] = {
-  {"norestore", 'r', POPT_ARG_NONE, &mode_norestore, 0, N_("don't restore mixer-settings from configuration"), NULL},
-  {"restore", 'R', POPT_ARG_NONE, &mode_restore, 0, N_("restore mixer-settings from configuration"), NULL},
-  {"initonly", 'i', POPT_ARG_NONE, &mode_initonly, 0, N_("initialise the mixer(s) from stored configuration and exit"), NULL},
-  {"nosave", 's', POPT_ARG_NONE, &mode_nosave, 0, N_("don't save (modified) mixer-settings into configuration"), NULL},
-  {NULL, '\0', 0, NULL, 0}
+	{"norestore", 'r', POPT_ARG_NONE, &mode_norestore, 0, N_("don't restore mixer-settings from configuration"), NULL},
+	{"restore", 'R', POPT_ARG_NONE, &mode_restore, 0, N_("restore mixer-settings from configuration"), NULL},
+	{"initonly", 'i', POPT_ARG_NONE, &mode_initonly, 0, N_("initialise the mixer(s) from stored configuration and exit"), NULL},
+	{"nosave", 's', POPT_ARG_NONE, &mode_nosave, 0, N_("don't save (modified) mixer-settings into configuration"), NULL},
+	{NULL, '\0', 0, NULL, 0}
 };
 
 /*
@@ -174,34 +174,34 @@ const char *device_names[]  = SOUND_DEVICE_NAMES;
 #define GNOME_STOCK_PIXMAP_BLANK NULL
 #endif
 const char *device_pixmap[] = {
-   GNOME_STOCK_PIXMAP_VOLUME,               /* Master Volume */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Bass */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Treble */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Synth */
-   GNOME_STOCK_PIXMAP_BLANK,                /* PCM */
-   GNOME_STOCK_PIXMAP_VOLUME,               /* Speaker */
-   GNOME_STOCK_PIXMAP_LINE_IN,              /* Line In */
-   GNOME_STOCK_PIXMAP_MIC,                  /* Microphone */
-   GNOME_STOCK_PIXMAP_CDROM,                /* CD-Rom */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Recording monitor ? */
-   GNOME_STOCK_PIXMAP_BLANK,                /* ALT PCM */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Rec Level? */
-   GNOME_STOCK_PIXMAP_BLANK,                /* In Gain */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Out Gain */
-   GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 1 */
-   GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 2 */
-   GNOME_STOCK_PIXMAP_LINE_IN,              /* Line */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 1 ? */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 2 ? */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Digital 3 ? */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Phone in */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Phone Out */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Video */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Radio */
-   GNOME_STOCK_PIXMAP_BLANK,                /* Monitor (usually mic) vol */
-   GNOME_STOCK_PIXMAP_BLANK,                /* 3d Depth/space param */
-   GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
-   GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
+	GNOME_STOCK_PIXMAP_VOLUME,               /* Master Volume */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Bass */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Treble */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Synth */
+	GNOME_STOCK_PIXMAP_BLANK,                /* PCM */
+	GNOME_STOCK_PIXMAP_VOLUME,               /* Speaker */
+	GNOME_STOCK_PIXMAP_LINE_IN,              /* Line In */
+	GNOME_STOCK_PIXMAP_MIC,                  /* Microphone */
+	GNOME_STOCK_PIXMAP_CDROM,                /* CD-Rom */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Recording monitor ? */
+	GNOME_STOCK_PIXMAP_BLANK,                /* ALT PCM */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Rec Level? */
+	GNOME_STOCK_PIXMAP_BLANK,                /* In Gain */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Out Gain */
+	GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 1 */
+	GNOME_STOCK_PIXMAP_LINE_IN,              /* Aux 2 */
+	GNOME_STOCK_PIXMAP_LINE_IN,              /* Line */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Digital 1 ? */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Digital 2 ? */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Digital 3 ? */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Phone in */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Phone Out */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Video */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Radio */
+	GNOME_STOCK_PIXMAP_BLANK,                /* Monitor (usually mic) vol */
+	GNOME_STOCK_PIXMAP_BLANK,                /* 3d Depth/space param */
+	GNOME_STOCK_PIXMAP_BLANK,                /* 3d center param */
+	GNOME_STOCK_PIXMAP_BLANK                 /* Midi */
 };
 
 /*
@@ -242,7 +242,7 @@ static void apply_cb(GtkWidget *widget, void *data)
 	gtk_widget_hide(slidernotebook);
 	/* Assumes that the number of devices is static... */
 	for (d=devices; d; d=d->next) 
-	  gtk_notebook_remove_page(GTK_NOTEBOOK(slidernotebook),0);
+		gtk_notebook_remove_page(GTK_NOTEBOOK(slidernotebook),0);
 	gtk_widget_show(slidernotebook);
 
 	fill_in_device_guis(slidernotebook);
@@ -269,14 +269,14 @@ GtkWidget *make_config_win()
 
 GtkWidget *optpage()
 {
-  GtkWidget *start_frame, *gui_frame;
-  GtkWidget *ubervbox;
-  GtkWidget *vbox,*init_start,*menu_hide,*temp;
+	GtkWidget *start_frame, *gui_frame;
+	GtkWidget *ubervbox;
+	GtkWidget *vbox, *init_start, *menu_hide, *temp;
 
-  ubervbox = gtk_vbox_new(TRUE, 0);
+	ubervbox = gtk_vbox_new(TRUE, 0);
 
-  start_frame = gtk_frame_new(_("On startup"));
-  gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
+	start_frame = gtk_frame_new(_("On startup"));
+	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
     
 	vbox = gtk_vbox_new(TRUE, 0);
 
@@ -300,10 +300,10 @@ GtkWidget *optpage()
 
 
 	gtk_container_add(GTK_CONTAINER(start_frame), vbox);
-
 	gtk_container_add(GTK_CONTAINER(ubervbox), start_frame);
 
 	gui_frame = gtk_frame_new(_("GUI"));
+	gtk_container_border_width(GTK_CONTAINER(gui_frame), GNOME_PAD_SMALL);
 
 	vbox = gtk_vbox_new(TRUE, 0);
 	temp = gtk_check_button_new_with_label(_("Use Mixer Icons"));
@@ -337,20 +337,10 @@ void config_cb(GtkWidget *widget, void *data)
 	if (!configwin) {
 	        configwin=gnome_property_box_new();
 		gtk_widget_realize(configwin);
-		label = gtk_label_new(_("Preferences..."));
-		gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(configwin)->notebook),
-					 optpage(), label);
-		/*    
-		      label = gtk_label_new(_("Devicenames"));
-		      gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(configwin)->notebook),
-		      NULL, label);
-		*/
-		
-		/*    
-		      label = gtk_label_new(_("Icon Selection"));
-		      gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(configwin)->notebook),
-		      NULL, label);
-		*/
+		label = gtk_label_new(_("Preferences"));
+		gtk_notebook_append_page(
+			GTK_NOTEBOOK(
+			GNOME_PROPERTY_BOX(configwin)->notebook), optpage(), label);
 		
 		gtk_signal_connect(GTK_OBJECT(configwin), "apply",
 				   GTK_SIGNAL_FUNC(apply_cb), NULL);
@@ -382,7 +372,7 @@ int main(int argc, char *argv[])
 		        get_gui_config();
 			/* Beweare boolean bastardization */
 			if (!prefs.set_mixer_on_start)
-			  mode |= M_NORESTORE;
+				mode |= M_NORESTORE;
 			  
 		}
 		/* Command line always overrides */
@@ -407,11 +397,11 @@ int main(int argc, char *argv[])
 		gnome_config_sync();
 		free_devices();
 	} else {
-	    GtkWidget *box;
-	    box = gnome_error_dialog("No mixers found.\nMake sure you have sound support compiled into the kernel.");
-	    gtk_signal_connect(GTK_OBJECT(box), "close",
-			       GTK_SIGNAL_FUNC(error_close_cb), NULL);
-	    gtk_main();
+		GtkWidget *box;
+		box = gnome_error_dialog("No mixers found.\nMake sure you have sound support compiled into the kernel.");
+		gtk_signal_connect(GTK_OBJECT(box), "close",
+				   GTK_SIGNAL_FUNC(error_close_cb), NULL);
+		gtk_main();
 	}
 	return 0;
 }
@@ -482,7 +472,7 @@ device_info *open_device(int num)
 	new_device->enabled_bitmask=new_device->devmask;	/* all enabled */
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
 		if (new_device->devmask & (1<<cnt)) {
-		    unsigned long vol; // l: vol&0xff, r:(vol&0xff00)>>8
+			unsigned long vol; // l: vol&0xff, r:(vol&0xff00)>>8
 			res=ioctl(new_device->fd, MIXER_READ(cnt), &vol);
 		                                                
 			new_device->volume_left[cnt]=vol & 0xff;
@@ -570,7 +560,7 @@ void free_devices(void)
 
 void init_one_device(gpointer a, gpointer b)
 {
-    unsigned long vol;
+	unsigned long vol;
 	int c;
 	
 	device_info *info = (device_info *)a;
@@ -581,8 +571,8 @@ void init_one_device(gpointer a, gpointer b)
 			if (info->mute_bitmask & (1<<c)) {
 				vol=0;
 			} else {
-			    vol = info->volume_left[c];
-			    vol |= info->volume_right[c]<<8;
+				vol = info->volume_left[c];
+				vol |= info->volume_right[c]<<8;
 			}
 			ioctl(info->fd, MIXER_WRITE(c), &vol);
 		}
@@ -740,8 +730,8 @@ void fill_in_device_guis(GtkWidget *notebook){
 		 */
 		table=gtk_table_new(i*2, 8, FALSE);
 		gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-			table, 
-			gtk_label_new(di->info.name));
+					 table, 
+					 gtk_label_new(di->info.name));
 		gtk_table_set_row_spacings (GTK_TABLE (table), 0);
 		gtk_table_set_col_spacings (GTK_TABLE (table), 0);
 		gtk_container_border_width (GTK_CONTAINER (table), 0);
@@ -752,16 +742,16 @@ void fill_in_device_guis(GtkWidget *notebook){
 			channel_info *ci;
 			ci=c->data;
 			if ((ci->pixmap)&&(prefs.use_icons))
-			 {
-			  spixmap = gnome_stock_pixmap_widget (app, ci->pixmap);
-                          gtk_table_attach (GTK_TABLE (table), spixmap, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-			  gtk_widget_show (spixmap);
-			 }
+			{
+				spixmap = gnome_stock_pixmap_widget (app, ci->pixmap);
+				gtk_table_attach (GTK_TABLE (table), spixmap, i, i+1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_widget_show (spixmap);
+			}
 			if (prefs.use_labels) {
-			  label=gtk_label_new(ci->title);
-			  gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
-			  gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
-			  gtk_widget_show(label);
+				label=gtk_label_new(ci->title);
+				gtk_misc_set_alignment (GTK_MISC(label), 0.1, 0.5);
+				gtk_table_attach (GTK_TABLE (table), label, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+				gtk_widget_show(label);
 			}
 
 			mixer=make_slider_mixer(ci);
@@ -778,9 +768,9 @@ void fill_in_device_guis(GtkWidget *notebook){
 				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->lock);
 			}
-	/*
-	 * recording sources
-	 */
+			/*
+			 * recording sources
+			 */
 			if (ci->device->recmask & (1<<ci->channel)) {
 				ci->rec = gtk_check_button_new_with_label (_("Rec."));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
@@ -791,11 +781,11 @@ void fill_in_device_guis(GtkWidget *notebook){
 				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 7, 8, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
 			} else { /* 
-				* David: need to init it to null
-				* otherwise we get a segfault when
-				* trying to toggle
-				* the buttons 
-				*/
+				  * David: need to init it to null
+				  * otherwise we get a segfault when
+				  * trying to toggle
+				  * the buttons 
+				  */
 				ci->rec = NULL;
 			}
 	
@@ -825,8 +815,8 @@ void open_dialog(void)
 	app = gnome_app_new ("gmix", _("GMIX 3.0") );
 	gtk_widget_realize (app);
 	gtk_signal_connect (GTK_OBJECT (app), "delete_event",
-		GTK_SIGNAL_FUNC (quit_cb),
-		NULL);
+			    GTK_SIGNAL_FUNC (quit_cb),
+			    NULL);
 
 	/*
 	 * Build main menue
@@ -882,7 +872,7 @@ void lock_cb (GtkWidget *widget, channel_info *data)
 
 void mute_cb (GtkWidget *widget, channel_info *data)
 {
-    unsigned long vol;
+	unsigned long vol;
 	if (data==NULL) return;
 	data->device->mute_bitmask&=~(1<<data->channel);
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
@@ -930,7 +920,7 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 
 void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 {
-    unsigned long vol;
+	unsigned long vol;
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -958,7 +948,7 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 
 void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 {
-    unsigned long vol;
+	unsigned long vol;
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -992,9 +982,9 @@ void about_cb (GtkWidget *widget, void *data)
 		NULL
 	};
 	about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
-		"(C) 1998 Jens Ch. Restemeier",
-		(const gchar**)authors,
-		_("This is a mixer for OSS sound-devices."),
-		NULL);
+				  "(C) 1998 Jens Ch. Restemeier",
+				  (const gchar**)authors,
+				  _("This is a mixer for OSS sound-devices."),
+				  NULL);
 	gtk_widget_show (about);
 }
