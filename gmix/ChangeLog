@@ -1,3 +1,17 @@
+2000-02-14  Jason Leach  <leach@wam.umd.edu>
+
+	* gmix.c (main_menu): Switched the help menu from a
+	GNOMEUIINFO_SUBTREE to a GNOMEUIINFO_MENU_HELP_TREE
+	(cancel_cb): fixed a minor mem leak: configwin wasn't getting
+	destroyed when 'cancel' was pressed on the prefs.
+	(about_cb): just because it's a small, easy change: prevent user
+	from opening more than one about window at a time.
+
+	* gmix.c (gmix_save_window_size),
+	(gmix_restore_window_size): new functions that save and restore
+	the size of the gmix window (some people might like it to be
+	taller so changes in volume are less drastic).  Closes bug #2581.
+
 2000-01-08  Tim Gerla  <timg@means.net>
 
 	* gmix.c: Fixed default mixer preferences. Bool type is 0 or 1, not

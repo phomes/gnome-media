@@ -65,9 +65,9 @@
 
 #include <gnome.h>
 
-static void about_cb (GtkWidget *widget, void *data);
-static void quit_cb (GtkWidget *widget, void *data);
-static void config_cb (GtkWidget *widget, void *data);
+static void about_cb (GtkWidget *widget, gpointer data);
+static void quit_cb (GtkWidget *widget, gpointer data);
+static void config_cb (GtkWidget *widget, gpointer data);
 void fill_in_device_guis(GtkWidget *notebook);
 
 static void get_device_config(void);
@@ -79,6 +79,9 @@ void free_devices(void);
 void init_devices(void);
 void open_dialog(void);
 GtkWidget *optpage(void);
+
+static void gmix_restore_window_size (void);
+static void gmix_save_window_size (void);
 
 /*
  * Gnome info:
@@ -111,7 +114,7 @@ static GnomeUIInfo program_menu[] = {
 
 static GnomeUIInfo main_menu[] = {
         GNOMEUIINFO_SUBTREE(N_("_Program"), &program_menu),
-        GNOMEUIINFO_SUBTREE(N_("_Help"), &help_menu),
+        GNOMEUIINFO_MENU_HELP_TREE (help_menu),
         GNOMEUIINFO_END
 };
 /* End of menus */ 
@@ -391,6 +394,7 @@ static void apply_cb(GtkWidget *widget, void *data)
 
 static void cancel_cb(GtkWidget *widget, void *data)
 {       
+	gtk_widget_destroy (configwin);
         configwin=NULL;
 }
 
@@ -472,7 +476,7 @@ GtkWidget *optpage(void)
 	return ubervbox;
 }
 
-void config_cb(GtkWidget *widget, void *data)
+void config_cb(GtkWidget *widget, gpointer data)
 {
         GtkWidget *label;
 	if (!configwin) {
@@ -1222,8 +1226,11 @@ void open_dialog(void)
 			    GTK_SIGNAL_FUNC (quit_cb),
 			    NULL);
 
+
+	gmix_restore_window_size ();
+
 	/*
-	 * Build main menue
+	 * Build main menu
 	 */
 	gnome_app_create_menus(GNOME_APP(app), main_menu);
 
@@ -1254,11 +1261,33 @@ void open_dialog(void)
 	gtk_main();
 }
 
+static void gmix_restore_window_size (void)
+{
+	gint width = 0, height = 0;
+
+	width = gnome_config_get_int ("/gmix/gui/width=0");
+	height = gnome_config_get_int ("/gmix/gui/height=0");
+
+	if (width!=0 && height!=0)
+		gtk_window_set_default_size (GTK_WINDOW (app), width, height);
+}
+
+static void gmix_save_window_size (void)
+{
+	gint width, height;
+
+	gdk_window_get_size (app->window, &width, &height);
+
+	gnome_config_set_int ("/gmix/gui/width", width);
+	gnome_config_set_int ("/gmix/gui/height", height);
+}
+
 /*
  * GTK Callbacks:
  */
-void quit_cb (GtkWidget *widget, void *data)
+static void quit_cb (GtkWidget *widget, gpointer data)
 {
+	gmix_save_window_size ();
 	gtk_main_quit();
 }
 
@@ -1477,17 +1506,27 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	}
 }
 
-void about_cb (GtkWidget *widget, void *data)
+static void about_cb (GtkWidget *widget, gpointer data)
 {
-	GtkWidget *about;
+	static GtkWidget *about = NULL;
+
 	static const char *authors[] = {
 		"Jens Ch. Restemeier",
 		NULL
 	};
-	about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
-				  "(C) 1998 Jens Ch. Restemeier",
-				  (const gchar**)authors,
-				  _("This is a mixer for OSS sound-devices."),
-				  NULL);
-	gtk_widget_show (about);
+
+	if ( about != NULL )
+		return;
+	else
+	{
+		about = gnome_about_new ( _("GMIX - The Gnome Mixer"), VERSION,
+					  "(C) 1998 Jens Ch. Restemeier",
+					  authors,
+					  _("This is a mixer for OSS sound-devices."),
+					  NULL);
+
+		gtk_signal_connect (GTK_OBJECT (about), "destroy",
+				    GTK_SIGNAL_FUNC (gtk_widget_destroyed), &about);
+		gtk_widget_show (about);
+	}
 }
