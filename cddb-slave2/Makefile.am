@@ -52,7 +52,7 @@ CDDBSlave2_LDADD =				\
 	$(INTLLIBS)
 
 cddb_slave2_properties_LDADD = $(CDDBSLAVE_LIBS)
-cddb_slave2_properties_SOURCES = cddb-slave-capplet.s
+cddb_slave2_properties_SOURCES = cddb-slave-capplet.c
 
 libcddb_slave2includedir = $(includedir)/cddb-slave2
 libcddb_slave2_la_SOURCES =			\
@@ -75,10 +75,10 @@ oaf_DATA = $(oaf_in_files:.server.in=.server)
 desktopdir = $(datadir)/control-center-2/capplets
 Desktop_in_files = cddb-slave.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
-	
+
 EXTRA_DIST = $(oaf_in_files) $(Desktop_in_files) $(oaf_DATA) $(IDLS) $(schema_DATA)
 
 install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
- 
+
 install-data-local: install-schemas
