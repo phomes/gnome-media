@@ -90,7 +90,6 @@ do_device_changed (GnomeCDPreferences *prefs,
 		}
 		
 		cd_selection_stop (prefs->gcd->cd_selection);
-		//cddb_get_query (prefs->gcd);
 		prefs->gcd->last_status->cd = GNOME_CDROM_STATUS_NOTHING;
 		prefs->gcd->cd_selection = cd_selection_start (prefs->device);
 	}
@@ -623,10 +622,6 @@ preferences_dialog_show (GnomeCD *gcd)
 	
 	pd->cd_device = bacon_cd_selection_new ();
 	bacon_cd_selection_set_device (BACON_CD_SELECTION (pd->cd_device), gcd->preferences->device);
-/*	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (pd->cd_device));
-	add_paired_relations (label, ATK_RELATION_LABEL_FOR,
-			      GTK_WIDGET (pd->cd_device),
-ATK_RELATION_LABELLED_BY);*/
 	
 	g_signal_connect (pd->cd_device, "device_changed",
 			  G_CALLBACK (device_changed_cb), pd);
