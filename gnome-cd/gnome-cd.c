@@ -242,7 +242,10 @@ pixbuf_from_file (const char *filename)
 
 	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
                    filename, TRUE, NULL);
-	g_return_val_if_fail (fullname != NULL, NULL);
+	if (fullname == NULL) {
+		/* If the elegant way doesn't work, try and brute force it */
+		fullname = g_strconcat(GNOME_ICONDIR, "/", filename, NULL);
+	}
 
 	pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
 	g_free (fullname);
@@ -725,6 +728,9 @@ register_stock_icons (void)
 
 		filename = g_strconcat ("gnome-cd/", items[i], ".png", NULL);
 		fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, filename, TRUE, NULL);
+		if (fullname == NULL) {
+			fullname = g_strconcat(GNOME_ICONDIR, "/", filename, NULL);
+		}
 		g_free (filename);
 
 		pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);

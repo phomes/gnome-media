@@ -711,6 +711,10 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 	switch (status->cd) {
 	case GNOME_CDROM_STATUS_OK:
 		status_ok (gcd, status);
+		if (status->track >= gcd->disc_info->ntracks)
+                       gtk_widget_set_sensitive (gcd->next_b, FALSE);
+               if (status->track <= 1 && (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio == GNOME_CDROM_AUDIO_COMPLETE))
+                       gtk_widget_set_sensitive (gcd->back_b, FALSE);
 		break;
 		
 	case GNOME_CDROM_STATUS_NO_DISC:

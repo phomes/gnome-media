@@ -579,11 +579,9 @@ cd_image_new (const char *filename,
 		fullname = gnome_program_locate_file (NULL,
 			   GNOME_FILE_DOMAIN_PIXMAP, filename, TRUE, NULL);
 		if (fullname == NULL) {
-			g_warning ("Error loading %s", filename);
-			g_free (image);
-			return NULL;
+			/* If the elegant way doesn't work, try and brute force it */
+			fullname = g_strconcat(GNOME_ICONDIR, "/", filename, NULL);
 		}
-		
 		image->pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
 		g_free (fullname);
 	} else {
