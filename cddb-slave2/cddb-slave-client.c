@@ -353,7 +353,7 @@ cddb_slave_client_get_disc_title (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return *ret == 0 ? NULL : g_strdup (ret);
+	return g_locale_to_utf8 (ret, -1, NULL, NULL, NULL);
 }
 
 /**
@@ -406,7 +406,7 @@ cddb_slave_client_get_artist (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return *ret == 0 ? NULL : g_strdup (ret);
+	return g_locale_to_utf8 (ret, -1, NULL, NULL, NULL);
 }
 
 void
@@ -487,9 +487,11 @@ cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 	ret = g_new (CDDBSlaveClientTrackInfo *, list->_length + 1);
 	for (i = 0; i < list->_length; i++) {
 		ret[i] = g_new (CDDBSlaveClientTrackInfo, 1);
-		ret[i]->name = g_strdup (list->_buffer[i].name);
+		ret[i]->name = g_locale_to_utf8 (list->_buffer[i].name, -1,
+						 NULL, NULL, NULL);
 		ret[i]->length = list->_buffer[i].length;
-		ret[i]->comment = g_strdup (list->_buffer[i].comment);
+		ret[i]->comment = g_locale_to_utf8 (list->_buffer[i].comment,
+						    -1, NULL, NULL, NULL);
 	}
 
 	/* NULL terminator */
@@ -576,7 +578,7 @@ cddb_slave_client_get_comment (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return *ret == 0 ? NULL : g_strdup (ret);
+	return g_locale_to_utf8 (ret, -1, NULL, NULL, NULL);
 }
 
 void
@@ -672,7 +674,7 @@ cddb_slave_client_get_genre (CDDBSlaveClient *client,
 	}
 
 	CORBA_exception_free (&ev);
-	return *ret == 0 ? NULL : g_strdup (ret);
+	return g_locale_to_utf8 (ret, -1, NULL, NULL, NULL);
 }
 
 void
