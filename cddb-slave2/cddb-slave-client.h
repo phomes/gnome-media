@@ -11,6 +11,7 @@
 #define __CDDB_SLAVE_CLIENT_H__
 
 #include <bonobo/bonobo-object-client.h>
+#include <bonobo/bonobo-listener.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,7 +52,10 @@ gboolean cddb_slave_client_query (CDDBSlaveClient *client,
 				  int nsecs,
 				  const char *name,
 				  const char *version);
-
+void cddb_slave_client_add_listener (CDDBSlaveClient *client,
+				     BonoboListener *listener);
+void cddb_slave_client_remove_listener (CDDBSlaveClient *client,
+					BonoboListener *listener);
 #ifdef __cplusplus
 }
 #endif

@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
 #include <gtk/gtk.h>
 
@@ -72,18 +73,20 @@ static void cddb_open_cb (GnomeVFSAsyncHandle *handle,
    and that they can find the data for @discid in the .cddbslave directory. */
 static void
 cddb_slave_notify_listeners (CDDBSlave *cddb,
-			     const char *discid)
+			     const char *discid,
+			     GNOME_Media_CDDBSlave2_Result result)
 {
 	CORBA_any any;
-	CORBA_short s;
+	GNOME_Media_CDDBSlave2_QueryResult qr;
 
 	g_return_if_fail (cddb != NULL);
 	g_return_if_fail (IS_CDDB_SLAVE (cddb));
 
-	s = 0;
+	qr.discid = CORBA_string_dup (discid ? discid : "");
+	qr.result = result;
 
-	any._type = (CORBA_TypeCode) TC_CORBA_short;
-	any._value = &s;
+	any._type = (CORBA_TypeCode) TC_GNOME_Media_CDDBSlave2_QueryResult;
+	any._value = &qr;
 
 	bonobo_event_source_notify_listeners (cddb->priv->event_source,
 					      CDDB_SLAVE_CDDB_FINISHED,
@@ -142,12 +145,13 @@ cddb_close_data_cb (GnomeVFSAsyncHandle *handle,
 		g_hash_table_remove (pending_requests, request->discid);
 		g_string_free (request->bufstring, TRUE);
 		g_free (request->buf);
-		g_free (request->discid);
 		g_free (request->uri);
 		g_free (request->name);
 		g_free (request->version);
 
-		cddb_slave_notify_listeners (request->cddb, NULL);
+		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_ERROR_RETRIEVING_DATA);
+		g_free (request->discid);
+
 		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
 		g_free (request);
 		
@@ -164,8 +168,9 @@ cddb_close_data_cb (GnomeVFSAsyncHandle *handle,
 	   Remove the pending request
 	   Free data */
 	if (cddb_write_data (request->discid, cddb_result) == TRUE) {
-		/* Only notify listeners if we were able to write it out */
-		cddb_slave_notify_listeners (request->cddb, request->discid);
+		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_OK);
+	} else {
+		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_IO_ERROR);
 	}
 
 	g_hash_table_remove (pending_requests, request->discid);
@@ -310,12 +315,13 @@ cddb_close_cb (GnomeVFSAsyncHandle *handle,
 		g_hash_table_remove (pending_requests, request->discid);
 		g_string_free (request->bufstring, TRUE);
 		g_free (request->buf);
-		g_free (request->discid);
 		g_free (request->uri);
 		g_free (request->name);
 		g_free (request->version);
 
-		cddb_slave_notify_listeners (request->cddb, NULL);
+		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_ERROR_RETRIEVING_DATA);
+		g_free (request->discid);
+
 		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
 		g_free (request);
 
@@ -329,12 +335,13 @@ cddb_close_cb (GnomeVFSAsyncHandle *handle,
 	if (cddb_parse_result (request, cddb_result) == FALSE) {
 		/* Disc not found */
 		g_hash_table_remove (pending_requests, request->discid);
-		g_free (request->discid);
 		g_free (request->uri);
 		g_free (request->name);
 		g_free (request->version);
 
-		cddb_slave_notify_listeners (request->cddb, NULL);
+		cddb_slave_notify_listeners (request->cddb, request->discid, GNOME_Media_CDDBSlave2_MALFORMED_DATA);
+		g_free (request->discid);
+
 		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
 		g_free (request);
 	}
@@ -391,11 +398,12 @@ cddb_open_cb (GnomeVFSAsyncHandle *handle,
 		cddb_slave_error (gnome_vfs_result_to_string (result), request);
 		g_hash_table_remove (pending_requests, request->discid);
 		g_free (request->discid);
-		g_free (request->uri);
 		g_free (request->name);
 		g_free (request->version);
 
-		cddb_slave_notify_listeners (request->cddb, NULL);
+		cddb_slave_notify_listeners (request->cddb, request->uri, GNOME_Media_CDDBSlave2_ERROR_CONTACTING_SERVER);
+		g_free (request->uri);
+
 		bonobo_object_unref (BONOBO_OBJECT (request->cddb));
 		g_free (request);
 
@@ -403,7 +411,6 @@ cddb_open_cb (GnomeVFSAsyncHandle *handle,
 	}
 
 	/* Next level */
-	
 	request->buf = g_new (char, 4096);
 	request->bufstring = g_string_new ("");
 	
@@ -433,7 +440,7 @@ cddb_send_cmd (CDDBSlave *cddb,
 	if (request != NULL) {
 		/* Request is already happening. We don't want to send 2
 		   identical requests */	
-		cddb_slave_notify_listeners (request->cddb, NULL);
+		cddb_slave_notify_listeners (request->cddb, discid, GNOME_Media_CDDBSlave2_REQUEST_PENDING);
 		return;
 	}
 	
@@ -508,7 +515,7 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	g_warning ("Request: %s", discid);
 	/* Do stuff */
 	if (cddb_check_cache (discid) == TRUE) {
-		cddb_slave_notify_listeners (cddb, discid);
+		cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
 		return;
 	}
 

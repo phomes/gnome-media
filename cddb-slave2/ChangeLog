@@ -1,0 +1,23 @@
+2001-11-17  Iain Holmes  <iain@ximian.com>
+
+	* cddb-slave-client.c (cddb_slave_client_remove_listener): Correct the
+	return type. Fix the inline docs too.
+
+	* cddb-slave-client.h: Add some more function prototypes.
+
+	* Makefile.am: Use the CDDBSLAVE link line
+
+	* GNOME_Media_CDDBSlave2.idl: Add a Result enum and a QueryResult
+	structure so that clients can get better error reporting.
+
+	* cddb-slave.c (cddb_slave_notify_listeners): Take a result value as 
+	well, and create a QueryResult structure to pass to the listeners.
+	(cddb_close_data_cb): Pass the discid and result.
+	(cddb_close_cb): Pass the discid and result.
+	(cddb_open_cb): Pass the discid and result.
+	(cddb_send_cmd): Pass the discid and result.
+	(impl_GNOME_Media_CDDBSlave2_query): Pass the discid and result.
+	
+2001-11-03  Iain Holmes  <iain@ximian.com>
+
+	* main.c (main): Updated for new glib-gettext

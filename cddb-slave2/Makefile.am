@@ -2,7 +2,7 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	-I$(includedir)				\
-	$(MEDIA_CFLAGS)			\
+	$(CDDBSLAVE_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DG_LOG_DOMAIN=\"CDDBSlave2\"
 
@@ -33,7 +33,7 @@ CDDBSlave2_SOURCES =				\
 	main.c
 
 CDDBSlave2_LDADD =				\
-	$(MEDIA_LIBS)				\
+	$(CDDBSLAVE_LIBS)				\
 	$(INTLLIBS)
 
 libcddb_slave2includedir = $(includedir)/cddb-slave2

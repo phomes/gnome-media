@@ -256,11 +256,11 @@ cddb_slave_client_add_listener (CDDBSlaveClient *client,
 /**
  * cddb_slave_client_remove_listener:
  * @client: Client of the CDDBSlave to remove a listener from.
- * @listenerID: ID of the listener to remove.
+ * @listener: The listener to remove.
  *
  * Removes a listener from the CDDBSlave that belongs to @client.
  */
-int
+void
 cddb_slave_client_remove_listener (CDDBSlaveClient *client,
 				   BonoboListener *listener)
 {

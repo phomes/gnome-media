@@ -14,6 +14,20 @@ module Media {
 
 	interface CDDBSlave2 : Bonobo::Unknown {
 
+		enum Result {
+			OK,
+			REQUEST_PENDING,
+			ERROR_CONTACTING_SERVER,
+			ERROR_RETRIEVING_DATA,
+			MALFORMED_DATA,
+			IO_ERROR
+		};
+
+		struct QueryResult {
+			string discid;
+			Result result;
+		};
+
 		/**
 		 * query: Queries the server for a CD
  		 * @discid: CDDB disc id.
