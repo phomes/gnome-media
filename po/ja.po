@@ -6,106 +6,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.30\n"
-"POT-Creation-Date: 1999-09-18 21:26+0200\n"
-"PO-Revision-Date: 1999-05-19 07:44+09:00\n"
+"POT-Creation-Date: 1999-09-17 01:28+0900\n"
+"PO-Revision-Date: 1999-09-17 03:40+09:00\n"
 "Last-Translator: Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Language-Team: <gnome@lists.hypercore.co.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddbslave/main.c:53
-#, c-format
-msgid "Ready for command: %s\n"
-msgstr "命令実行準備完了: %s\n"
-
-#: cddbslave/main.c:54
-#, c-format
-msgid "Connecting [%s]\n"
-msgstr "接続中 [%s]\n"
-
-#: cddbslave/main.c:55
-#, c-format
-msgid "Querying server [%s]\n"
-msgstr "サーバーに問い合わせ中 [%s]\n"
-
-#: cddbslave/main.c:56
-#, c-format
-msgid "Waiting for reply [%s]\n"
-msgstr "返答待ち [%s]\n"
-
-#: cddbslave/main.c:57
-#, c-format
-msgid "Reading reply [%s]\n"
-msgstr "返答読み込み中 [%s]\n"
-
-#: cddbslave/main.c:58
-#, c-format
-msgid "Disconnecting [%s]\n"
-msgstr "切断中 [%s]\n"
-
-#: cddbslave/main.c:59
-#, c-format
-msgid "Error connecting [%s]\n"
-msgstr "接続エラー [%s]\n"
-
-#: cddbslave/main.c:60
-#, c-format
-msgid "Error querying [%s]\n"
-msgstr "問い合わせエラー [%s]\n"
-
-#: cddbslave/main.c:61
-#, c-format
-msgid "Error reading [%s]\n"
-msgstr "読み込みエラー [%s]\n"
-
-#: cddbslave/main.c:62
-#, c-format
-msgid "No match found for %s\n"
-msgstr "%s に一致する物は見つかりません\n"
-
-#: cddbslave/main.c:63
-#, c-format
-msgid "Timeout: %s\n"
-msgstr "タイムアウト: %s\n"
-
-#: cddbslave/main.c:64
-#, c-format
-msgid "Inactive. %s\n"
-msgstr "停止。 %s\n"
-
-#: gmix/gmix.c:93
-msgid "_About"
-msgstr "情報(_A)"
-
-#: gmix/gmix.c:99
-msgid "_Properties"
-msgstr ""
-
-#: gmix/gmix.c:105
-msgid "_Program"
-msgstr "プログラム(_P)"
-
-#: gmix/gmix.c:106
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#: gmix/gmix.c:156
-msgid "don't restore mixer-settings from configuration"
-msgstr "設定ファイルからミキサー調節を復元しない"
-
-#: gmix/gmix.c:157
-#, fuzzy
-msgid "restore mixer-settings from configuration"
-msgstr "設定ファイルからミキサー調節を復元しない"
-
-#: gmix/gmix.c:158
-msgid "initialise the mixer(s) from stored configuration and exit"
-msgstr "保存されている設定ファイルでミキサーを初期化し終了"
-
-#: gmix/gmix.c:159
-msgid "don't save (modified) mixer-settings into configuration"
-msgstr "設定ファイルに (変更された) ミキサー調節を保存しない"
 
 #. start frame
 #: gmix/gmix.c:278 tcd/prefs.c:388
@@ -115,11 +22,11 @@ msgstr "起動時"
 #. Set on start
 #: gmix/gmix.c:284
 msgid "Restore saved mixer levels on startup"
-msgstr ""
+msgstr "起動時に以前のミキサーレベルへ復帰"
 
 #: gmix/gmix.c:290
 msgid "Hide menu on start"
-msgstr ""
+msgstr "起動時にメニューを隠す"
 
 #: gmix/gmix.c:306
 msgid "GUI"
@@ -127,13 +34,13 @@ msgstr ""
 
 #: gmix/gmix.c:309
 msgid "Use Mixer Icons"
-msgstr ""
+msgstr "ミキサーアイコンを使用"
 
 #: gmix/gmix.c:317
 msgid "Use Mixer Labels"
-msgstr ""
+msgstr "ミキサーラベルを使用"
 
-#: gmix/gmix.c:340 tcd/popup.c:19
+#: gmix/gmix.c:340
 msgid "Preferences..."
 msgstr "設定..."
 
@@ -173,14 +80,6 @@ msgid ""
 msgstr ""
 "GTCDはCDDBをサポートしたGnome版CDプレーヤーです。作者に関しては配布物にある'T"
 "hanks'ファイルを参照して下さい。"
-
-#: tcd/cddb_props.c:64
-msgid "Disc ID"
-msgstr "ディスクID"
-
-#: tcd/cddb_props.c:64
-msgid "Disc Title"
-msgstr "ディスクタイトル"
 
 #: tcd/cddb_props.c:79
 msgid "Edit"
@@ -229,10 +128,6 @@ msgstr "CDDBデータ"
 msgid "CDDB Editor"
 msgstr "CDDBエディタ"
 
-#: tcd/cddb_props.c:281
-msgid "Error reading $HOME/.cddbslave."
-msgstr "$HOME/.cddbslave の読み込みに失敗"
-
 #: tcd/cddb_props.c:397
 #, c-format
 msgid "Couldn't remove file: %s\n"
@@ -252,38 +147,6 @@ msgstr "CDDB状態"
 msgid "Get CDDB Now"
 msgstr "CDDBにアクセス"
 
-#: tcd/gtcd.c:59
-msgid "trk-e"
-msgstr ""
-
-#: tcd/gtcd.c:60
-msgid "trk-r"
-msgstr ""
-
-#: tcd/gtcd.c:61
-msgid "dsc-e"
-msgstr ""
-
-#: tcd/gtcd.c:62
-msgid "dsc-r"
-msgstr ""
-
-#: tcd/gtcd.c:67
-msgid "loop-cd"
-msgstr ""
-
-#: tcd/gtcd.c:68
-msgid "loop-t"
-msgstr ""
-
-#: tcd/gtcd.c:69
-msgid "normal"
-msgstr ""
-
-#: tcd/gtcd.c:70
-msgid "random"
-msgstr ""
-
 #: tcd/gtcd.c:326
 msgid "Open track editor"
 msgstr "トラックエディタを開く"
@@ -292,7 +155,7 @@ msgstr "トラックエディタを開く"
 msgid "Preferences"
 msgstr "設定"
 
-#: tcd/gtcd.c:328 tcd/popup.c:23
+#: tcd/gtcd.c:328
 msgid "Quit"
 msgstr "終了"
 
@@ -301,11 +164,11 @@ msgstr "終了"
 msgid "Play/Pause"
 msgstr "演奏/停止"
 
-#: tcd/gtcd.c:352 tcd/popup.c:16
+#: tcd/gtcd.c:352
 msgid "Stop"
 msgstr "停止"
 
-#: tcd/gtcd.c:353 tcd/popup.c:17
+#: tcd/gtcd.c:353
 msgid "Eject"
 msgstr "イジェクト"
 
@@ -320,7 +183,7 @@ msgstr "前にスキップ"
 
 #: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
 msgid "(Scanning)"
-msgstr ""
+msgstr "(走査中)"
 
 #: tcd/gtcd.c:544
 msgid "No Disc"
@@ -333,31 +196,6 @@ msgstr "エラー"
 #: tcd/gtcd.c:855
 msgid "Volume"
 msgstr "音量"
-
-#: tcd/gtcd.c:1025
-msgid "Filename of the CD device"
-msgstr ""
-
-#: tcd/gtcd.c:1025
-msgid "FILE"
-msgstr ""
-
-#: tcd/gtcd.c:1027
-#, fuzzy
-msgid "Play CD on startup"
-msgstr "起動時"
-
-#: tcd/gtracked.c:169
-msgid "Trk"
-msgstr ""
-
-#: tcd/gtracked.c:169
-msgid "Time"
-msgstr ""
-
-#: tcd/gtracked.c:169
-msgid "Title"
-msgstr ""
 
 #: tcd/gtracked.c:192
 msgid "Track Editor"
@@ -408,12 +246,12 @@ msgstr ""
 
 #: tcd/gtracked.c:390
 msgid "To: "
-msgstr ""
+msgstr "宛先: "
 
 #. end of service menu
 #: tcd/gtracked.c:422
 msgid "Category: "
-msgstr ""
+msgstr "カテゴリ: "
 
 #: tcd/linux-cdrom.c:616
 #, c-format
@@ -440,18 +278,6 @@ msgstr ""
 #, c-format
 msgid "Track %d"
 msgstr "トラック %d"
-
-#: tcd/popup.c:15
-msgid "Play"
-msgstr "演奏"
-
-#: tcd/popup.c:20
-msgid "Track Editor..."
-msgstr "トラックエディタ..."
-
-#: tcd/popup.c:21
-msgid "About..."
-msgstr "情報..."
 
 #. do nothing
 #: tcd/prefs.c:179 tcd/prefs.c:234
@@ -523,9 +349,8 @@ msgid "Action"
 msgstr "動作"
 
 #: tcd/prefs.c:523
-#, fuzzy
 msgid "Click here to change (restart required):"
-msgstr "把手を表示 (再起動が必要)"
+msgstr "変更するにはここをクリック(再起動が必要):"
 
 #. Frame
 #: tcd/prefs.c:545 tcd/prefs.c:590
@@ -544,34 +369,6 @@ msgstr ""
 "サウンドデーモンに接続できません。\n"
 "'esd'をコマンド行から実行して下さい。"
 
-#: vu-meter/main.c:248
-msgid "Specify the X position of the meter."
-msgstr ""
-
-#: vu-meter/main.c:249
-msgid "X-Position"
-msgstr "X位置"
-
-#: vu-meter/main.c:251
-msgid "Specify the Y position of the meter."
-msgstr "メーターのY位置を指定して下さい。"
-
-#: vu-meter/main.c:252
-msgid "Y-Position"
-msgstr "Y位置"
-
-#: vu-meter/main.c:254
-msgid "Connect to the esd server on this host."
-msgstr "このホストのesdサーバーに接続。"
-
-#: vu-meter/main.c:255
-msgid "ESD Server Host"
-msgstr "ESDサーバーホスト"
-
-#: vu-meter/main.c:257
-msgid "Open a vertical version of the meter."
-msgstr "縦向きのメーターを開く。"
-
 #: vu-meter/main.c:270
 #, c-format
 msgid "Host is %s\n"
@@ -581,8 +378,98 @@ msgstr "ホストは%sです。\n"
 msgid "Volume Meter"
 msgstr "ボリュームメーター"
 
+#~ msgid "Ready for command: %s\n"
+#~ msgstr "命令実行準備完了: %s\n"
+
+#~ msgid "Connecting [%s]\n"
+#~ msgstr "接続中 [%s]\n"
+
+#~ msgid "Querying server [%s]\n"
+#~ msgstr "サーバーに問い合わせ中 [%s]\n"
+
+#~ msgid "Waiting for reply [%s]\n"
+#~ msgstr "返答待ち [%s]\n"
+
+#~ msgid "Reading reply [%s]\n"
+#~ msgstr "返答読み込み中 [%s]\n"
+
+#~ msgid "Disconnecting [%s]\n"
+#~ msgstr "切断中 [%s]\n"
+
+#~ msgid "Error connecting [%s]\n"
+#~ msgstr "接続エラー [%s]\n"
+
+#~ msgid "Error querying [%s]\n"
+#~ msgstr "問い合わせエラー [%s]\n"
+
+#~ msgid "Error reading [%s]\n"
+#~ msgstr "読み込みエラー [%s]\n"
+
+#~ msgid "No match found for %s\n"
+#~ msgstr "%s に一致する物は見つかりません\n"
+
+#~ msgid "Timeout: %s\n"
+#~ msgstr "タイムアウト: %s\n"
+
+#~ msgid "Inactive. %s\n"
+#~ msgstr "停止。 %s\n"
+
+#~ msgid "_About"
+#~ msgstr "情報(_A)"
+
+#~ msgid "_Program"
+#~ msgstr "プログラム(_P)"
+
+#~ msgid "_Help"
+#~ msgstr "ヘルプ(_H)"
+
+#~ msgid "don't restore mixer-settings from configuration"
+#~ msgstr "設定ファイルからミキサー調節を復元しない"
+
+#~ msgid "initialise the mixer(s) from stored configuration and exit"
+#~ msgstr "保存されている設定ファイルでミキサーを初期化し終了"
+
+#~ msgid "don't save (modified) mixer-settings into configuration"
+#~ msgstr "設定ファイルに (変更された) ミキサー調節を保存しない"
+
+#~ msgid "Disc ID"
+#~ msgstr "ディスクID"
+
+#~ msgid "Disc Title"
+#~ msgstr "ディスクタイトル"
+
+#~ msgid "Error reading $HOME/.cddbslave."
+#~ msgstr "$HOME/.cddbslave の読み込みに失敗"
+
+#~ msgid "Play"
+#~ msgstr "演奏"
+
+#~ msgid "Track Editor..."
+#~ msgstr "トラックエディタ..."
+
+#~ msgid "About..."
+#~ msgstr "情報..."
+
 #~ msgid "Click here to change:"
 #~ msgstr "変更はここをクリック:"
+
+#~ msgid "X-Position"
+#~ msgstr "X位置"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "メーターのY位置を指定して下さい。"
+
+#~ msgid "Y-Position"
+#~ msgstr "Y位置"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "このホストのesdサーバーに接続。"
+
+#~ msgid "ESD Server Host"
+#~ msgstr "ESDサーバーホスト"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "縦向きのメーターを開く。"
 
 #~ msgid "Cannot connect to EsounD\n"
 #~ msgstr "EsounDに接続できません\n"
