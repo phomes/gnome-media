@@ -767,6 +767,8 @@ timeout_update_cd (gpointer data)
 	if (gnome_cdrom_get_status (GNOME_CDROM (cdrom), &status, &error) == FALSE) {
 		g_free (priv->recent_status);
 		priv->recent_status = not_ready_status_new ();
+		if (priv->update != GNOME_CDROM_UPDATE_NEVER)
+			gnome_cdrom_status_changed (GNOME_CDROM (cdrom), priv->recent_status);
 		gcd_warning ("%s", error);
 		g_error_free (error);
 		g_object_unref (G_OBJECT (cdrom));
