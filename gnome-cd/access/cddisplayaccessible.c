@@ -51,7 +51,7 @@ cddisplay_accessible_get_type (void)
 
 	if (!type)
 	{
-		static const GTypeInfo tinfo =
+		static GTypeInfo tinfo =
 		{
 			sizeof (CDDisplayAccessibleClass),
 			(GBaseInitFunc) NULL, /* base init */
