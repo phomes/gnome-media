@@ -126,10 +126,10 @@ main (int argc, char *argv[])
   const struct poptOption options[] = 
   {
      { NULL, 'x', POPT_ARG_INT, &session_xpos, 0, 
-       N_("Specify the X postion of the meter."), 
+       N_("Specify the X position of the meter."), 
        N_("X-Position") },
      { NULL, 'y', POPT_ARG_INT, &session_ypos, 0, 
-       N_("Specify the Y postion of the meter."), 
+       N_("Specify the Y position of the meter."), 
        N_("Y-Position") },
      { NULL, 's', POPT_ARG_STRING, &esd_host, 0, 
        N_("Connect to the esd server on this host."), 

@@ -2,11 +2,10 @@
 # Copyright (C) 1998 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@waw.com>, 1998.
 #
-# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
-"POT-Creation-Date: 1998-11-14 00:36+0100\n"
+"POT-Creation-Date: 1998-11-29 05:29+0100\n"
 "PO-Revision-Date: 1998-02-22 19:26+0100\n"
 "Last-Translator: Vincent Renardias <vincent@waw.com>\n"
 "Language-Team: Vincent Renardias <vincent@waw.com>\n"
@@ -72,106 +71,273 @@ msgstr "GMIX - Le Mixeur Gnome"
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Ce programme est un mixeur pour les pilotes de son OSS"
 
-#: tcd/callbacks.c:61
+#: tcd/callbacks.c:68
 msgid "TCD - The Gnome CD Player"
 msgstr "TCD - Le Lecteur de CD Gnome"
 
-#: tcd/callbacks.c:65
+#: tcd/callbacks.c:72
 msgid ""
 "Gnome CD player application with CDDB support. Please see the 'Thanks' file "
 "included with the distribution for more credits."
-msgstr "Application Lecteur de CD Gnome avec gestion du CDDB. Regardez le fichier"
-"'Thanks' inclu dans la distribution pour la liste des contributeurs."
+msgstr ""
+"Application Lecteur de CD Gnome avec gestion du CDDB. Regardez le "
+"fichier'Thanks' inclu dans la distribution pour la liste des contributeurs."
 
-#: tcd/gtcd.c:300
-msgid "Open track editor"
-msgstr "Ouvrir l'éditeur de piste"
-
-#: tcd/gtcd.c:301 tcd/prefs.c:416
-msgid "Preferences"
-msgstr "Préférences"
-
-#: tcd/gtcd.c:302 tcd/popup.c:23
-msgid "Quit"
-msgstr "Quitter"
-
-#. TOP ROW
-#: tcd/gtcd.c:323 tcd/popup.c:15
-msgid "Play"
-msgstr "Jouer"
-
-#: tcd/gtcd.c:327 tcd/popup.c:16
-msgid "Stop"
-msgstr "Stop"
-
-#: tcd/gtcd.c:328 tcd/popup.c:17
-msgid "Eject"
-msgstr "Éjecter"
-
-#. MIDDLE ROW
-#: tcd/gtcd.c:335 tcd/gtcd.c:343
-msgid "Skip backwards"
-msgstr "Piste précédente"
-
-#: tcd/gtcd.c:336 tcd/gtcd.c:344
-msgid "Skip forwards"
-msgstr "Piste suivante"
-
-#: tcd/gtcd.c:444 tcd/gtcd.c:445 tcd/gtcd.c:446
-msgid "(Scanning)"
-msgstr "(Scan en cours)"
-
-#: tcd/gtcd.c:468
-msgid "No Disc"
-msgstr "Pas de Disque"
-
-#: tcd/gtcd.c:496
-msgid "Error"
-msgstr "Erreur"
-
-#: tcd/gtracked.c:116
+#: tcd/gtracked.c:115
 msgid "Trk"
 msgstr "Pst"
 
-#: tcd/gtracked.c:116
+#: tcd/gtracked.c:115
 msgid "Time"
 msgstr "Temps"
 
-#: tcd/gtracked.c:116
+#: tcd/gtracked.c:115
 msgid "Title"
 msgstr "Titre"
 
-#: tcd/gtracked.c:133
+#: tcd/gtracked.c:132
 msgid "Track Editor"
 msgstr "Éditeur de piste"
 
-#: tcd/gtracked.c:143
+#: tcd/gtracked.c:142
 #, c-format
 msgid "Disc Information (%02u:%02u minutes)"
 msgstr "Informations Disque (%02u:%02u minutes)"
 
-#: tcd/gtracked.c:148
+#: tcd/gtracked.c:147
 msgid "Artist / Title"
 msgstr "Artiste / Titre"
 
-#: tcd/gtracked.c:149 tcd/gtracked.c:170
-msgid "Ext Data"
-msgstr "Données Ext"
-
 #. ...
-#: tcd/gtracked.c:196
+#: tcd/gtracked.c:189
 msgid "Track Information"
 msgstr "Informations sur la piste"
 
 #. Clear button
-#: tcd/gtracked.c:208
+#: tcd/gtracked.c:202
 msgid "Clear"
 msgstr "Effacer"
 
 #. Playlist button
-#: tcd/gtracked.c:212
+#: tcd/gtracked.c:207
 msgid "Playlist"
 msgstr ""
+
+#. CDDB Status  button
+#: tcd/cddb_status.c:69 tcd/gtracked.c:212
+msgid "CDDB Status"
+msgstr ""
+
+#. do nothing
+#: tcd/prefs.c:154 tcd/prefs.c:209
+msgid "Do Nothing"
+msgstr "Ne rien faire"
+
+#: tcd/prefs.c:160
+msgid "Start Playing"
+msgstr "Commencer à jouer"
+
+#: tcd/prefs.c:166 tcd/prefs.c:215
+msgid "Stop Playing"
+msgstr "Arrêter"
+
+#. close tray
+#: tcd/prefs.c:170 tcd/prefs.c:227
+msgid "Close Tray"
+msgstr "Fermer le tiroir"
+
+#: tcd/prefs.c:221
+msgid "Open Tray"
+msgstr "Ouvrir le tiroir"
+
+#. device entry
+#: tcd/prefs.c:300
+msgid "CDROM Device"
+msgstr "Périphérique CDROM"
+
+#. Color picker
+#: tcd/prefs.c:309
+msgid "Track/Title Color"
+msgstr "Couleur de Piste/Titre"
+
+#. font picker
+#: tcd/prefs.c:321
+msgid "Track/Title Font"
+msgstr "Police de Piste/Titre"
+
+#: tcd/prefs.c:322
+msgid "Change Font"
+msgstr "Changer la police"
+
+#. show handles
+#: tcd/prefs.c:329
+msgid "Show Handles (Restart of TCD required)"
+msgstr ""
+
+#. show tooltips
+#: tcd/prefs.c:336
+msgid "Show Tooltips"
+msgstr "Afficher les bulles d'aides"
+
+#. start frame
+#: tcd/prefs.c:356
+msgid "On Startup"
+msgstr "Au démarrage"
+
+#. exit frame
+#: tcd/prefs.c:362
+msgid "On Exit"
+msgstr "En quittant"
+
+#: tcd/prefs.c:468
+msgid "Key"
+msgstr "Touche"
+
+#: tcd/prefs.c:469
+msgid "Action"
+msgstr "Action"
+
+#. Frame
+#: tcd/prefs.c:507 tcd/prefs.c:539
+msgid "Keybindings"
+msgstr "Raccourcis clavier"
+
+#: tcd/gtcd.c:297 tcd/prefs.c:534
+msgid "Preferences"
+msgstr "Préférences"
+
+#. status line
+#: tcd/cddb_status.c:8 tcd/cddb_status.c:18 tcd/cddb_status.c:79
+msgid "No status."
+msgstr ""
+
+#: tcd/cddb_status.c:9
+msgid "Connecting."
+msgstr "Connexion."
+
+#: tcd/cddb_status.c:10
+msgid "Querying server."
+msgstr ""
+
+#: tcd/cddb_status.c:11
+msgid "Waiting for reply."
+msgstr ""
+
+#: tcd/cddb_status.c:12
+msgid "Reading reply."
+msgstr "Lecture de la réponse."
+
+#: tcd/cddb_status.c:13
+msgid "Disconnecting."
+msgstr "Connexion."
+
+#: tcd/cddb_status.c:14
+msgid "Error connecting."
+msgstr "Erreur de connexion."
+
+#: tcd/cddb_status.c:15
+msgid "Error querying."
+msgstr ""
+
+#: tcd/cddb_status.c:16
+msgid "Error reading reply."
+msgstr ""
+
+#: tcd/cddb_status.c:17
+msgid "No exact match found."
+msgstr ""
+
+#. grab button
+#: tcd/cddb_status.c:83
+msgid "Get CDDB Now"
+msgstr ""
+
+#: tcd/gtcd.c:59
+msgid "trk-e"
+msgstr ""
+
+#: tcd/gtcd.c:60
+msgid "trk-r"
+msgstr ""
+
+#: tcd/gtcd.c:61
+msgid "dsc-e"
+msgstr ""
+
+#: tcd/gtcd.c:62
+msgid "dsc-r"
+msgstr ""
+
+#: tcd/gtcd.c:67
+msgid "loop-cd"
+msgstr ""
+
+#: tcd/gtcd.c:68
+msgid "loop-t"
+msgstr ""
+
+#: tcd/gtcd.c:69
+msgid "normal"
+msgstr "normal"
+
+#: tcd/gtcd.c:70
+msgid "random"
+msgstr "aléatoire"
+
+#: tcd/gtcd.c:296
+msgid "Open track editor"
+msgstr "Ouvrir l'éditeur de piste"
+
+#: tcd/gtcd.c:298 tcd/popup.c:23
+msgid "Quit"
+msgstr "Quiter"
+
+#. TOP ROW
+#: tcd/gtcd.c:319
+msgid "Play/Pause"
+msgstr "Jouer/Pause"
+
+#: tcd/gtcd.c:323 tcd/popup.c:16
+msgid "Stop"
+msgstr "Stop"
+
+#: tcd/gtcd.c:324 tcd/popup.c:17
+msgid "Eject"
+msgstr "Éjecter"
+
+#. MIDDLE ROW
+#: tcd/gtcd.c:331 tcd/gtcd.c:339
+msgid "Skip backwards"
+msgstr "Piste précédente"
+
+#: tcd/gtcd.c:332 tcd/gtcd.c:340
+msgid "Skip forwards"
+msgstr "Piste suivante"
+
+#: tcd/gtcd.c:440 tcd/gtcd.c:441 tcd/gtcd.c:442
+msgid "(Scanning)"
+msgstr "(Scan en cours)"
+
+#: tcd/gtcd.c:464
+msgid "No Disc"
+msgstr "Pas de Disque"
+
+#: tcd/gtcd.c:492
+msgid "Error"
+msgstr "Erreur"
+
+#: tcd/linux-cdrom.c:649
+msgid "Unknown / Unknown"
+msgstr "Inconnu / Inconnu"
+
+#: tcd/linux-cdrom.c:653
+#, c-format
+msgid "Track %d"
+msgstr "Piste %d"
+
+#: tcd/popup.c:15
+msgid "Play"
+msgstr "Jouer"
 
 #: tcd/popup.c:19
 msgid "Preferences..."
@@ -185,139 +351,30 @@ msgstr "Éditeur de piste..."
 msgid "About..."
 msgstr "À Propos..."
 
-#. do nothing
-#: tcd/prefs.c:130 tcd/prefs.c:185
-msgid "Do Nothing"
-msgstr "Ne rien faire"
+#: vu-meter/main.c:129
+msgid "Specify the X position of the meter."
+msgstr "Spécifiez la position X du vue-métre."
 
-#: tcd/prefs.c:136
-msgid "Start Playing"
-msgstr "Commencer à jouer"
+#: vu-meter/main.c:130
+msgid "X-Position"
+msgstr "Position X"
 
-#: tcd/prefs.c:142 tcd/prefs.c:191
-msgid "Stop Playing"
-msgstr "Arrêter"
+#: vu-meter/main.c:132
+msgid "Specify the Y position of the meter."
+msgstr "Spécifiez la position Y du vue-métre."
 
-#. close tray
-#: tcd/prefs.c:146 tcd/prefs.c:203
-msgid "Close Tray"
-msgstr "Fermer le tiroir"
+#: vu-meter/main.c:133
+msgid "Y-Position"
+msgstr "Position-Y"
 
-#: tcd/prefs.c:197
-msgid "Open Tray"
-msgstr "Ouvrir le tiroir"
+#: vu-meter/main.c:135
+msgid "Connect to the esd server on this host."
+msgstr "Impossible de se connecter à un server esd sur cette machine."
 
-#. device entry
-#: tcd/prefs.c:276
-msgid "CDROM Device"
-msgstr "Périphérique CDROM"
+#: vu-meter/main.c:136
+msgid "ESD Server Host"
+msgstr "Machine Serveur ESD"
 
-#. Color picker
-#: tcd/prefs.c:285
-msgid "Track/Title Color"
-msgstr "Couleur de Piste/Titre"
-
-#. font picker
-#: tcd/prefs.c:297
-msgid "Track/Title Font"
-msgstr "Police de Piste/Titre"
-
-#: tcd/prefs.c:298
-msgid "Change Font"
-msgstr "Changer la police"
-
-#. show handles
-#: tcd/prefs.c:305
-msgid "Show Handles (Restart of TCD required)"
-msgstr ""
-
-#. show tooltips
-#: tcd/prefs.c:312
-msgid "Show Tooltips"
-msgstr "Afficher les bulles d'aides"
-
-#. start frame
-#: tcd/prefs.c:332
-msgid "On Startup"
-msgstr "Au démarrage"
-
-#. exit frame
-#: tcd/prefs.c:337
-msgid "On Exit"
-msgstr "En quittant"
-
-#. general frame
-#: tcd/prefs.c:342
-msgid "General"
-msgstr "Général"
-
-#: tcd/prefs.c:377
-msgid "Key"
-msgstr "Touche"
-
-#: tcd/prefs.c:378
-msgid "Action"
-msgstr "Action"
-
-#. Frame
-#: tcd/prefs.c:390
-msgid "Keybindings (not editable YET)"
-msgstr "Raccourcis clavier (pas ENCORE éditable)"
-
-#: tcd/prefs.c:421
-msgid "Keybindings"
-msgstr "Raccourcis clavier"
-
-#~ msgid "FILE ..."
-#~ msgstr "FICHIER ..."
-
-#~ msgid "Configuration:"
-#~ msgstr "Configuration :"
-
-#~ msgid "CDDB Remote"
-#~ msgstr "CDDB Distant"
-
-#~ msgid "Close"
-#~ msgstr "Fermer"
-
-#~ msgid "Go"
-#~ msgstr "Aller"
-
-#~ msgid "Server: %s:%d\n"
-#~ msgstr "Serveur: %s:%d\n"
-
-#~ msgid "HTTP %s Enabled\n"
-#~ msgstr "HTTP %s Activé\n"
-
-#~ msgid "and Proxy"
-#~ msgstr "et Proxy"
-
-#~ msgid "Connecting..."
-#~ msgstr "Connexion..."
-
-#~ msgid "Error: %s"
-#~ msgstr "Erreur : %s"
-
-#~ msgid "Connected!"
-#~ msgstr "Connecté !"
-
-#~ msgid "Sending query..."
-#~ msgstr "Envoi de la requête..."
-
-#~ msgid "Reading results..."
-#~ msgstr "Lecture des résultats..."
-
-#~ msgid "Error: Unable to open cddb read socket\n"
-#~ msgstr "Erreur: Impossible d'ouvrir la socket de lecture pour cddb\n"
-
-#~ msgid "Downloading data..."
-#~ msgstr "Téléchargement des données..."
-
-#~ msgid "Can't open local file."
-#~ msgstr "Impossible d'ouvrir le fichier local."
-
-#~ msgid "Downloading line %3d..."
-#~ msgstr "Téléchargement de la ligne %3d..."
-
-#~ msgid "Done!"
-#~ msgstr "Terminé !"
+#: vu-meter/main.c:138
+msgid "Open a vertical version of the meter."
+msgstr "Ouvrir une version verticale du vue-métre."
