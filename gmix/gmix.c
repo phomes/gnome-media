@@ -1778,6 +1778,10 @@ gmix_change_icons (gboolean show)
 		
 		for (q = di->channels; q; q = q->next) {
 			channel_info *ci = q->data;
+
+			if (ci->visible == FALSE) {
+				continue;
+			}
 			
 			if (ci->icon == NULL) {
 				continue;
@@ -1803,10 +1807,14 @@ gmix_change_labels (gboolean show)
 		for (q = di->channels; q; q = q->next) {
 			channel_info *ci = q->data;
 
-			if (ci->label == NULL) {
+			if (ci->visible == FALSE) {
 				continue;
 			}
 			
+			if (ci->label == NULL) {
+				continue;
+			}
+
 			if (show == TRUE) {
 				gtk_widget_show (ci->label);
 			} else {
