@@ -76,13 +76,34 @@ int cddb_slave_client_get_ntrks (CDDBSlaveClient *client,
 				 const char *discid);
 CDDBSlaveClientTrackInfo **cddb_slave_client_get_tracks (CDDBSlaveClient *client,
 							 const char *discid);
-void cddb_slave_client_free_track_info (CDDBSlaveClientTrackInfo **track_info);
 char *cddb_slave_client_get_comment (CDDBSlaveClient *client,
 				     const char *discid);
 int cddb_slave_client_get_year (CDDBSlaveClient *client,
 				const char *discid);
 char *cddb_slave_client_get_genre (CDDBSlaveClient *client,
 				   const char *discid);
+
+
+void cddb_slave_client_set_disc_title (CDDBSlaveClient *client,
+                                       const char *discid,
+                                       const char *title);
+void cddb_slave_client_set_artist (CDDBSlaveClient *client,
+                                   const char *discid,
+                                   const char *artist);
+void cddb_slave_client_set_tracks (CDDBSlaveClient *client,
+                                   const char *discid,
+                                   CDDBSlaveClientTrackInfo **track_info);
+void cddb_slave_client_set_comment (CDDBSlaveClient *client,
+                                    const char *discid,
+                                    const char *comment);
+void cddb_slave_client_set_year (CDDBSlaveClient *client,
+                                 const char *discid,
+                                 int year);
+void cddb_slave_client_set_genre (CDDBSlaveClient *client,
+                                  const char *discid,
+                                  const char *genre);
+
+void cddb_slave_client_free_track_info (CDDBSlaveClientTrackInfo **track_info);
 
 #ifdef __cplusplus
 }

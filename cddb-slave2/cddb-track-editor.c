@@ -238,8 +238,6 @@ static GtkTreeModel *
 make_tree_model (void)
 {
 	GtkListStore *store;
-	GtkTreeIter iter;
-	int i;
 
 	store = gtk_list_store_new (4, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 
@@ -505,7 +503,6 @@ load_new_track_data (TrackEditorDialog *td,
 {
 	CDDBInfo *info;
 	char *title;
-        int i;
 
 	if (client == NULL) {
 		client = cddb_slave_client_new ();
@@ -613,7 +610,6 @@ make_track_editor_control (void)
 {
 	GtkWidget *hbox, *vbox, *inner_vbox, *ad_vbox, *ad_vbox2;
 	GtkWidget *label;
-	GtkWidget *sep;
 	GtkWidget *advanced;
 	GtkWidget *sw;
 	TrackEditorDialog *td;
@@ -1087,8 +1083,6 @@ int
 main (int argc,
       char **argv)
 {
-	CORBA_ORB orb;
-
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);

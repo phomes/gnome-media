@@ -25,6 +25,7 @@
 #endif
 
 #include <string.h>
+#include <stdlib.h>
 #include "cddb-slave.h"
 
 gboolean

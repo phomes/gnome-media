@@ -64,10 +64,9 @@ factory_fn (BonoboGenericFactory *factory,
 	    void *closure)
 {
 	CDDBSlave *cddb;
-	gboolean auth;
 	char *server;
 	int port;
-	int info, server_type;
+	int info;
 	char *name;
 	char *hostname;
 
@@ -154,7 +153,6 @@ int
 main (int argc,
       char **argv)
 {
-	CORBA_ORB orb;
 	char *cddbdir;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);

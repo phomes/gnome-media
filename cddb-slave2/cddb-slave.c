@@ -35,8 +35,6 @@
 #include "GNOME_Media_CDDBSlave2.h"
 
 
-static GConfClient *client = NULL;
-
 #define PARENT_TYPE BONOBO_OBJECT_TYPE
 static BonoboObjectClass *parent_class = NULL;
 
@@ -97,7 +95,6 @@ typedef struct _ConnectionData {
 	GList *matches;
 } ConnectionData;
 
-static GHashTable *pending_requests = NULL;
 static GHashTable *cddb_cache = NULL;
 static GList *cddb_slaves = NULL;
 
@@ -226,7 +223,6 @@ clear_entry_from_cache (const char *discid)
 static void
 do_goodbye (ConnectionData *cd)
 {
-	char *quit;
 	guint bytes_writen;
 	GIOError status;
 
@@ -245,7 +241,6 @@ static gboolean
 do_read_response (ConnectionData *cd,
 		  const char *response)
 {
-	CDDBSlave *cddb = cd->cddb;
 	int code;
 	gboolean more = FALSE;
 	gboolean disconnect = FALSE;
@@ -434,11 +429,9 @@ display_results (ConnectionData *cd)
 	GtkWidget *window, *list, *sw, *label;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
-	GtkTreeModel *model, *selmodel;
+	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreeIter iter;
-	char **vector;
-	int i;
 
 	window = gtk_dialog_new_with_buttons (_("Multiple matches..."),
 					      NULL, 0,
@@ -847,7 +840,7 @@ read_from_server (GIOChannel *iochannel,
 		  GIOCondition condition,
 		  gpointer data)
 {
-	GIOStatus status;
+	GIOStatus status = G_IO_STATUS_NORMAL;
 	ConnectionData *cd = data;
 
 	if (condition & (G_IO_ERR | G_IO_HUP | G_IO_NVAL)) {
@@ -1054,8 +1047,6 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	CDDBSlave *cddb;
 	CDDBEntry *entry;
 	ConnectionData *cd;
-	char *request, *safe_offsets;
-	char *username, *hostname, *fullname, *uri;
 
 	if (cddb_debugging == TRUE) {
 		g_print ("CDDB: Querying for %s\n", discid);
@@ -1136,7 +1127,6 @@ impl_GNOME_Media_CDDBSlave2_isValid (PortableServer_Servant servant,
 				     CORBA_Environment *ev)
 {
 	CDDBEntry *entry;
-	CORBA_char *ret;
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
@@ -1398,7 +1388,6 @@ impl_GNOME_Media_CDDBSlave2_setAllTracks (PortableServer_Servant servant,
 	ntrks = list->_length;
 	for (i = 0; i < ntrks; i++) {
 		char *name, *comment, *key;
-		GString *dentry;
 
 		name = list->_buffer[i].name;
 		comment = list->_buffer[i].comment;
