@@ -30,6 +30,7 @@ CDDBSlave2_SOURCES =				\
 	$(IDL_GENERATED)			\
 	cddb-slave.c				\
 	cddb-slave.h				\
+	cddb-parser.c				\
 	gnet.h					\
 	gnet-private.c				\
 	gnet-private.h				\

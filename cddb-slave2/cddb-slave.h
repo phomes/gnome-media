@@ -27,6 +27,14 @@ extern "C" {
 typedef struct _CDDBSlave CDDBSlave;
 typedef struct _CDDBSlavePrivate CDDBSlavePrivate;
 typedef struct _CDDBSlaveClass CDDBSlaveClass;
+typedef struct _CDDBEntry {
+	char *discid;
+	char *offsets;
+	int ntrks, nsecs;
+	
+	GHashTable *fields;
+} CDDBEntry;
+
 
 struct _CDDBSlave {
 	BonoboObject parent;

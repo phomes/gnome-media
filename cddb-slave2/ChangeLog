@@ -1,3 +1,25 @@
+2002-02-10  Iain <iain@ximian.com>
+
+	* GNOME_Media_CDDBSlave2.idl: Add some fun methods.
+
+	* Makefile.am: Add cddb-parser.c
+
+	* cddbs-alave.c: Add a cddb_cache.
+	(remove_entry_from_cache): Remove the entry from the cache when
+	something fails.
+	(do_read_response): Parse the file into an entry.
+	(everywhere): Disconnect on errors.
+	(cddb_check_cache): Check the cddb_cache instead of the directory.
+	(impl_GNOME_Media_CDDBSlave2_query): Create an Entry. Remove some
+	debugging spew.
+	(impl_GNOME_Media_CDDBSlave2_getArtist): Get the artists name.
+	(impl_GNOME_Media_CDDBSlave2_getNTrks): Get NTrks.
+	(impl_GNOME_Media_CDDBSlave2_getDiscTitle): Get disc name.
+	(impl_GNOME_Media_CDDBSlave2_getTrackTitle): Get track title.
+	(cddb_slave_init): Create a cddb_cache hash table.
+
+	* cddb-slave.h: Make a CDDBEntry struct.
+	
 2002-02-03  Iain <iain@ximian.com>
 
 	* cddb-slave.c (impl_GNOME_Media_CDDBSlave2_query): Initialise the tag

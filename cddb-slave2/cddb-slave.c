@@ -91,6 +91,7 @@ typedef struct _ConnectionData {
 } ConnectionData;
 
 static GHashTable *pending_requests = NULL;
+static GHashTable *cddb_cache = NULL;
 
 static void do_hello (ConnectionData *cd);
 
@@ -173,6 +174,12 @@ do_goodbye_response (ConnectionData *cd,
 }
 
 static void
+remove_entry_from_cache (const char *discid)
+{
+	g_hash_table_remove (cddb_cache, discid);
+}
+
+static void
 do_goodbye (ConnectionData *cd)
 {
 	char *quit;
@@ -192,6 +199,7 @@ do_read_response (ConnectionData *cd,
 	CDDBSlave *cddb = cd->cddb;
 	int code;
 	gboolean more = FALSE;
+	gboolean disconnect = FALSE;
 	static gboolean waiting_for_terminator = FALSE;
 	static FILE *handle = NULL;
 	
@@ -229,12 +237,24 @@ do_read_response (ConnectionData *cd,
 		fputs (response, handle);
 
 		if (response[0] == '.') {
+			CDDBEntry *entry;
+			char *filename, *dirname;
+			
 			/* Found terminator */
 			fclose (handle);
 
+			dirname = gnome_util_prepend_user_home (".cddbslave");
+			filename = g_concat_dir_and_file (dirname, cd->discid);
+			g_free (dirname);
+			
+			entry = g_hash_table_lookup (cddb_cache, cd->discid);
+			cddb_entry_parse_file (entry, filename);
+			g_free (filename);
+			
 			/* Reset the static variables for next time */
 			handle = NULL;
 			more = FALSE;
+			disconnect = TRUE;
 			waiting_for_terminator = FALSE;
 		} else {
 			more = TRUE;
@@ -246,18 +266,24 @@ do_read_response (ConnectionData *cd,
 		g_print ("Specified CDDB entry not found\n");
 		g_print ("%s\n", response);
 		more = FALSE;
+		disconnect = TRUE;
+		remove_entry_from_cache (cd->discid);
 		break;
 
 	case 402:
 		g_print ("Server error\n");
 		g_print ("%s\n", response);
 		more = FALSE;
+		disconnect = TRUE;
+		remove_entry_from_cache (cd->discid);
 		break;
 
 	case 403:
 		g_print ("Database entry is corrupt\n");
 		g_print ("%s\n", response);
 		more = FALSE;
+		disconnect = TRUE;
+		remove_entry_from_cache (cd->discid);
 		break;
 
 	case 409:
@@ -271,7 +297,7 @@ do_read_response (ConnectionData *cd,
 
 	}
 
-	if (more == FALSE) {
+	if (disconnect == TRUE) {
 		do_goodbye (cd);
 	}
 		
@@ -461,6 +487,7 @@ do_query_response (ConnectionData *cd,
 				} else {
 				/* Need to disconnect here...
 				   none of our matches matched */
+					remove_entry_from_cache (cd->discid);
 					do_goodbye (cd);
 				}
 			}
@@ -496,12 +523,14 @@ do_query_response (ConnectionData *cd,
 		g_print ("No match found\n");
 		g_print ("%s\n", response);
 		more = FALSE;
+		disconnect = TRUE;
 		break;
 
 	case 403:
 		g_print ("Database entry is corrupt\n");
 		g_print ("%s\n", response);
 		more = FALSE;
+		disconnect = TRUE;
 		break;
 
 	case 409:
@@ -515,6 +544,7 @@ do_query_response (ConnectionData *cd,
 	default:
 		g_print ("Unknown response\n");
 		g_print ("%s\n", response);
+		disconnect = TRUE;
 		more = FALSE;
 		break;
 	}
@@ -526,6 +556,11 @@ do_query_response (ConnectionData *cd,
 		do_read (cd, cat, discid, dtitle);
 	}
 
+	if (disconnect == TRUE) {
+		remove_entry_from_cache (cd->discid);
+		do_goodbye (cd);
+	}
+	
 	g_free (cat);
 	g_free (discid);
 	g_free (dtitle);
@@ -569,6 +604,8 @@ do_hello_response (ConnectionData *cd,
 		g_print ("%s\n", response);
 
 		/* Disconnect here */
+		remove_entry_from_cache (cd->discid);
+		do_goodbye (cd);
 		break;
 
 	case 402:
@@ -663,6 +700,7 @@ do_open_response (ConnectionData *cd,
 	} else {
 		/* Do something to indicate that we can't contact server */
 		/* Close connection to tell listeners we're not doing anything */
+		remove_entry_from_cache (cd->discid);
 		do_goodbye (cd);
 	}
 
@@ -747,6 +785,7 @@ read_from_server (GIOChannel *iochannel,
 	return TRUE;
 
  error:
+	remove_entry_from_cache (cd->discid);
 	return FALSE;
 }
 
@@ -766,6 +805,7 @@ open_cb (GTcpSocket *sock,
 			   cd->cddb->priv->port);
 
 		/* notify listeners */
+		remove_entry_from_cache (cd->discid);
 		return;
 	}
 
@@ -796,27 +836,10 @@ cddb_send_cmd (ConnectionData *data)
 static gboolean
 cddb_check_cache (const char *discid)
 {
-	char *dirname, *discname;
-
-	g_return_val_if_fail (discid != NULL, FALSE);
-
-	dirname = gnome_util_prepend_user_home (".cddbslave");
-	if (g_file_test (dirname, G_FILE_TEST_IS_DIR) == FALSE) {
-		/* Cache dir doesn't exist */
-		g_free (dirname);
-
-		mkdir (dirname, S_IRWXU);
+	if (g_hash_table_lookup (cddb_cache, discid) == NULL) {
 		return FALSE;
-	}
-
-	discname = g_concat_dir_and_file (dirname, discid);
-	g_free (dirname);
-	if (g_file_test (discname, G_FILE_TEST_IS_REGULAR) == TRUE) {
-		g_free (discname);
-		return TRUE;
 	} else {
-		g_free (discname);
-		return FALSE;
+		return TRUE;
 	}
 }
 
@@ -839,20 +862,22 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 				   CORBA_Environment *ev)
 {
 	CDDBSlave *cddb;
+	CDDBEntry *entry;
 	ConnectionData *cd;
 	char *request, *safe_offsets;
 	char *username, *hostname, *fullname, *uri;
 
 	cddb = cddb_slave_from_servant (servant);
 
-	g_warning ("Request: %s", discid);
-	/* Do stuff */
 	if (cddb_check_cache (discid) == TRUE) {
-		g_print ("In cache\n");
 		cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
 		return;
 	}
 
+	/* Make an entry */
+	entry = cddb_entry_new (discid, ntrks, offsets, nsecs);
+	g_hash_table_insert (cddb_cache, g_strdup (discid), entry);
+	
 	cd = g_new (ConnectionData, 1);
 	cd->cddb = cddb;
 	g_object_ref (cddb);
@@ -869,6 +894,106 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 
 	cd->matches = NULL;
 	cddb_send_cmd (cd);
+}
+
+static CORBA_char *
+impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
+				       const CORBA_char *discid,
+				       CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	char *split, *artist;
+	GString *dtitle;
+	CORBA_char *ret;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		/* Should set an exception here */
+		return NULL;
+	}
+
+	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
+	if (dtitle == NULL) {
+		return NULL;
+	}
+
+	split = strstr (dtitle->str, " / ");
+	if (split == NULL) {
+		return NULL;
+	}
+
+	artist = g_strndup (dtitle->str, split - dtitle->str);
+	ret = CORBA_string_dup (artist);
+	g_free (artist);
+	
+	return ret;
+}
+
+static CORBA_char *
+impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
+					  const CORBA_char *discid,
+					  CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	char *split;
+	GString *dtitle;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return NULL;
+	}
+
+	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
+	if (dtitle == NULL) {
+		return NULL;
+	}
+
+	split = strstr (dtitle->str, " / ");
+	if (split == NULL) {
+		return NULL;
+	}
+
+	return CORBA_string_dup (split + 3);
+}
+
+static CORBA_short
+impl_GNOME_Media_CDDBSlave2_getNTrks (PortableServer_Servant servant,
+				      const CORBA_char *discid,
+				      CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return -1;
+	}
+
+	return entry->ntrks;
+}
+
+static CORBA_char *
+impl_GNOME_Media_CDDBSlave2_getTrackTitle (PortableServer_Servant servant,
+					   const CORBA_char *discid,
+					   CORBA_short track,
+					   CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	char *name;
+	GString *ttitle;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		return NULL;
+	}
+
+	name = g_strdup_printf ("TTITLE%d", track);
+	ttitle = g_hash_table_lookup (entry->fields, name);
+	g_free (name);
+	if (ttitle == NULL) {
+		return NULL;
+	}
+
+	return CORBA_string_dup (ttitle->str);
 }
 
 
@@ -912,6 +1037,10 @@ cddb_slave_init (CDDBSlave *cddb)
 
 	priv = g_new0 (CDDBSlavePrivate, 1);
 	cddb->priv = priv;
+
+	if (cddb_cache == NULL) {
+		cddb_cache = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+	}
 }
 
 BONOBO_TYPE_FUNC_FULL (CDDBSlave, GNOME_Media_CDDBSlave2, PARENT_TYPE, cddb_slave);
