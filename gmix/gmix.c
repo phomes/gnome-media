@@ -66,7 +66,6 @@
 #include <gnome.h>
 
 static void about_cb (GtkWidget *widget, void *data);
-static void options_cb (GtkWidget *widget, void *data);
 static void quit_cb (GtkWidget *widget, void *data);
 static void config_cb (GtkWidget *widget, void *data);
 void fill_in_device_guis(GtkWidget *notebook);
@@ -79,6 +78,7 @@ void scan_devices(void);
 void free_devices(void);
 void init_devices(void);
 void open_dialog(void);
+GtkWidget *optpage(void);
 
 /*
  * Gnome info:
@@ -403,11 +403,12 @@ static void bool_changed_cb(GtkWidget *widget, gboolean *data)
 	gnome_property_box_changed(GNOME_PROPERTY_BOX(configwin));
 }
 
-GtkWidget *make_config_win()
+GtkWidget *make_config_win(void)
 {
+	return NULL;
 }
 
-GtkWidget *optpage()
+GtkWidget *optpage(void)
 {
 	GtkWidget *start_frame, *gui_frame;
 	GtkWidget *ubervbox;
@@ -1055,10 +1056,10 @@ void put_device_config(void)
 
 void get_gui_config(void)
 {
-	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init=1");
-	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=0");
-	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=1");
-	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=1");
+	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init=true");
+	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=false");
+	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=true");
+	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=true");
 }
 
 void put_gui_config(void)
@@ -1213,7 +1214,7 @@ void open_dialog(void)
 {
 	GList *d, *c;
 	
-	int i,j;
+	int i;
 
 	app = gnome_app_new ("gmix", _("GMIX 3.0") );
 	gtk_widget_realize (app);
