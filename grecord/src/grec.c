@@ -1038,7 +1038,7 @@ UpdateStatusbarPlay (gboolean begin)
 		temp = 1000 / length;
 	} else {
 		if (waitpid (PlayEng.pid, NULL, WNOHANG | WUNTRACED)) {
-			if (playrepeat && playrepeatforever) {
+			if (playrepeatforever) {
 				on_play_activate_cb (NULL, NULL);
 				return FALSE;
 			}

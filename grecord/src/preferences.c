@@ -109,6 +109,15 @@ stop_recording_v_changed (GConfClient *_client,
 }
 
 static void
+play_once_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	play_once = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/play-once", NULL);
+}
+
+static void
 play_repeat_changed (GConfClient *_client,
 		     guint cnxn_id,
 		     GConfEntry *entry,
@@ -277,6 +286,12 @@ load_config_file    (void)
 					      "/apps/gnome-sound-recorder/stop-recording-v", NULL);
 	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/stop-recording-v",
 				 stop_recording_v_changed, NULL, NULL, NULL);
+
+	play_once = gconf_client_get_bool (client,
+					   "/apps/gnome-sound-recorder/play-once", NULL);
+
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/play-once",
+				 play_once_changed, NULL, NULL, NULL);
 
 	
 	playrepeat = gconf_client_get_bool (client,

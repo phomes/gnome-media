@@ -510,10 +510,10 @@ stop_recording_v_changed (GtkAdjustment *adj,
 }
 
 static void
-play_repeat_changed (GtkToggleButton *tb,
-		     gpointer data)
+play_once_changed (GtkToggleButton *tb,
+		   gpointer data)
 {
-	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/play-repeat",
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/play-once",
 			       gtk_toggle_button_get_active (tb), NULL);
 }
 
@@ -529,6 +529,8 @@ static void
 playxtimes_changed (GtkToggleButton *tb,
 		    gpointer data)
 {
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/play-repeat",
+			       gtk_toggle_button_get_active (tb), NULL);
 	gtk_widget_set_sensitive (propertywidgets.playxtimes_spinbutton_v,
 				  gtk_toggle_button_get_active (tb));
 }
@@ -684,7 +686,7 @@ create_grecord_propertybox (void)
 	GtkWidget* mainwindow_gui_vbox;
 	GtkWidget* show_time_checkbutton;
 	GtkWidget* show_soundinfo_checkbutton;
-	GtkWidget* playrepeat_radiobutton;
+	GtkWidget* playonce_radiobutton;
 	GtkWidget* playrepeatforever_radiobutton;
 	GtkWidget* playxtimes_radiobutton;
 	GtkWidget* playxtimes_spinbutton;
@@ -844,13 +846,13 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (inner_vbox), playrepeat_checkbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (playrepeat_checkbox), 3);
 #endif
-	playrepeat_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Play the sound _once only."));
-	gtk_box_pack_start (GTK_BOX (inner_vbox), playrepeat_radiobutton, FALSE, FALSE, 0);
-	gtk_widget_show (playrepeat_radiobutton);
-	g_signal_connect (G_OBJECT (playrepeat_radiobutton), "toggled",
-			  G_CALLBACK (play_repeat_changed), NULL);
+	playonce_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Play the sound _once only."));
+	gtk_box_pack_start (GTK_BOX (inner_vbox), playonce_radiobutton, FALSE, FALSE, 0);
+	gtk_widget_show (playonce_radiobutton);
+	g_signal_connect (G_OBJECT (playonce_radiobutton), "toggled",
+			  G_CALLBACK (play_once_changed), NULL);
 	
-	playrepeatforever_radiobutton = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (playrepeat_radiobutton), _("Repeat _forever"));
+	playrepeatforever_radiobutton = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (playonce_radiobutton), _("Repeat _forever"));
 	g_signal_connect (G_OBJECT (playrepeatforever_radiobutton), "toggled",
 			  G_CALLBACK (play_repeat_forever_changed), NULL);
 	
@@ -874,6 +876,7 @@ create_grecord_propertybox (void)
 	
 	playxtimes_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_adj), 1, 0);
 	gtk_widget_show (playxtimes_spinbutton);
+	gtk_widget_set_sensitive (playxtimes_spinbutton, FALSE);
 	gtk_box_pack_start (GTK_BOX (hbox), playxtimes_spinbutton, TRUE, TRUE, 0);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (playxtimes_spinbutton), TRUE);
 	
@@ -1105,7 +1108,7 @@ create_grecord_propertybox (void)
 	propertywidgets.StopRecordSize_checkbox_v = StopRecordSize_checkbox;
 	propertywidgets.StopRecordSize_spinbutton_v = StopRecordSize_spinbutton;
 
-	propertywidgets.playrepeat_checkbox_v = playrepeat_radiobutton;
+	propertywidgets.playonce_checkbox_v = playonce_radiobutton;
 	propertywidgets.playrepeatforever_radiobutton_v = playrepeatforever_radiobutton;
 	propertywidgets.playxtimes_radiobutton_v = playxtimes_radiobutton;
 	propertywidgets.playxtimes_spinbutton_v = playxtimes_spinbutton;
@@ -1126,14 +1129,15 @@ create_grecord_propertybox (void)
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (PopupSaveOnTimeout_checkbox), save_when_finished);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (PopupWarnMessSize_checkbox), popup_warn_mess);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (StopRecordSize_checkbox), stop_record);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playrepeat_radiobutton), playrepeat);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playonce_radiobutton), play_once);
 
 	if (playrepeat) {
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playrepeat_radiobutton), TRUE);
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playxtimes_radiobutton), TRUE);
+		gtk_widget_set_sensitive (playxtimes_spinbutton, TRUE);
 	} else if (playrepeatforever) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playrepeatforever_radiobutton), TRUE);
 	} else {
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playxtimes_radiobutton), TRUE);
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playonce_radiobutton), TRUE);
 	}
 	
 	if (!popup_warn_mess)
@@ -1141,8 +1145,6 @@ create_grecord_propertybox (void)
 	if (!stop_record)
 		gtk_widget_set_sensitive (StopRecordSize_spinbutton, FALSE);
 
-	if (playrepeatforever || playrepeat)
-		gtk_widget_set_sensitive (playxtimes_spinbutton, FALSE);
 
 	g_signal_connect (PopupWarnMessSize_checkbox, "clicked", 
 			  G_CALLBACK (on_checkbox_clicked_activate_cb), 

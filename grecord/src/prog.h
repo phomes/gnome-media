@@ -70,6 +70,7 @@ gboolean stop_record;
 gint popup_warn_mess_v;
 gint stop_record_v;
 
+gboolean play_once;
 gboolean playrepeat;
 gboolean playrepeatforever;
 gint playxtimes;

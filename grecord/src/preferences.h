@@ -30,7 +30,7 @@ struct gwidgets {
 	gpointer StopRecordSize_spinbutton_v;
 
 	/* Page 1 --------- */
-	gpointer playrepeat_checkbox_v;
+	gpointer playonce_checkbox_v;
 	gpointer playrepeatforever_radiobutton_v;
 	gpointer playxtimes_radiobutton_v;
 	gpointer playxtimes_spinbutton_v;
