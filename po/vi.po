@@ -3,18 +3,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media for gnome v.2.1.x\n"
-"POT-Creation-Date: 2003-01-04 06:01+0100\n"
-"PO-Revision-Date: 2003-01-05 13:32+0700\n"
-"Last-Translator: Trinh Minh Thanh <tmthanh@yahoo.com>\n"
-"Language-Team: Gnome-Vi <Gnomevi-list@lists.sourceforge.net>\n"
+"Project-Id-Version: gnome-media VERSION\n"
+"POT-Creation-Date: 2003-01-10 11:55+0100\n"
+"PO-Revision-Date: 2003-01-10 22:45+0700\n"
+"Last-Translator: Trinh Minh Thanh <tmthanh@linuxmail.org>\n"
+"Language-Team: Gnome-Vi Team <Gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr "Địa chỉ máy chủ để các tra vấn CD liên lạc"
+msgstr "Địa chỉ serve cần liên lạc để truy vấn CD"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
@@ -22,15 +22,15 @@ msgstr "Cổng"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3
 msgid "Server name"
-msgstr "Tên máy chủ"
+msgstr "Tên Server"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr "Hostname sẽ được gửi với toàn bộ tra vấn"
+msgstr "Tên máy sẽ được gửi cùng với truy vấn"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr "Cổng mà máy chủ chạy cơ sở dữ liệu tại đó"
+msgstr "Số hiệu cổng mà server đang chạy"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The username"
@@ -38,11 +38,11 @@ msgstr "Tên người dùng"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr "Tên người dùng sẽ được gửi với toàn bộ tra vấn"
+msgstr "Tên người dùng sẽ được gửi cùng với truy vấn"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
 msgid "Your hostname"
-msgstr "Hostname của bạn"
+msgstr "Tên máy chủ"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -1080,7 +1080,7 @@ msgstr "Trợ giúp"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr "Thiết bị bộ trộn để dùng"
+msgstr "Thiết bị mixer cần dùng"
 
 #: gmix/gmix.c:327
 #, c-format
@@ -1093,13 +1093,13 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
-"Bộ điều khiển âm lượng không thể chạy đúng.\n"
+"Điều khiển Âm lượng hoạt động không chính xác.\n"
 "\n"
-"Không thể mở thiết bị âm thanh '%s'.\n"
-"Hãy kiểm tra xem bạn có quyền mở '%s' hay không\n"
-"và đảm bảo là kernel của bạn hỗ trợ âm thanh.\n"
+"Không thể mở thiết bị audio '%s'.\n"
+"Vui lòng kiểm tra bạn có đủ quyền truy cập để mở '%s' hay không\n"
+"và chắc rằng bạn kernel của bạn hỗ trợ âm thanh.\n"
 "\n"
-"Hãy nhấn Thoát để ra khỏi Bộ điều khiển âm lượng"
+"Nhấn Thoát để thoát Điều khiển Âm lượng"
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1109,19 +1109,19 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
-"Bộ điều khiển âm lượng không thể chạy đúng.\n"
+"Điều khiển Âm lượng không thể hoạt động chính xác.\n"
 "\n"
-"Hãy nhấn nút chi tiết để biết thêm thông tin về trục trặc này.\n"
+"Nhấn nút Chi tiết để biết chi tiết nguyên nhân lỗi.\n"
 "\n"
-"Hãy nhấn Thoát để ra khỏi bộ điều khiển âm lượng"
+"Nhấn Thoát để thoát Điều khiển Âm lượng"
 
 #: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 msgid "_Details"
-msgstr "Chi ti_ết"
+msgstr "_Chi tiết"
 
 #: gmix/gmix.c:387
 msgid "Invalid mixer device"
-msgstr "Thiết bị bộ trộn không hợp lệ"
+msgstr "Thiết bị trộn (mixer) không hợp lệ"
 
 #: gmix/gmix.c:626
 #, c-format
@@ -1193,7 +1193,7 @@ msgstr "Bộ điều khiển âm lượng GNOME"
 
 #: gmix/gmix.c:1751
 msgid "A mixer for sound devices"
-msgstr "Bộ trộn cho các thiết bị âm thanh"
+msgstr "Đây là mixer của thiết bị âm thanh"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
@@ -1215,7 +1215,7 @@ msgstr "Đặt _lại nhãn mặc định"
 
 #: gmix/prefs.c:313
 msgid "Gnome Volume Control Preferences"
-msgstr "Tùy thích bộ điều khiển âm lượng Gnome"
+msgstr "Thông số Bộ điều khiển âm lượng Gnome"
 
 #: gnome-cd/access/cddisplayaccessible.c:117
 msgid "CD Display"
@@ -1293,7 +1293,7 @@ msgstr "Đang chơi"
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:557
 msgid "Paused"
-msgstr "Tạm dừng"
+msgstr "Tạm ngừng"
 
 #. Update tray icon tooltip
 #: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55
@@ -1305,7 +1305,7 @@ msgstr "Trình chơi CD"
 #. Update the tray icon tooltip
 #: gnome-cd/callbacks.c:620
 msgid "Stopped"
-msgstr "Đã dừng"
+msgstr "Dừng"
 
 #: gnome-cd/callbacks.c:626
 msgid "Disc error"
@@ -1335,7 +1335,7 @@ msgstr "Lỗi ổ đĩa"
 
 #: gnome-cd/callbacks.c:825
 msgid "A CD player for GNOME"
-msgstr "Một trình chơi CD cho GNOME"
+msgstr "Bộ chơi CD cho GNOME"
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1350,10 +1350,10 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"%s có vẻ không chỉ tới một thiết bị CD hợp lệ. Có thể do:\n"
-"a) Máy của bạn không hỗ trợ CD\n"
+"%s có vẻ không chỉ tới một thiết bị CD hợp lệ. Có thể là do:\n"
+"a) Máy bạn không hỗ trợ CD\n"
 "b) Bạn không có quyền truy cập ổ CD\n"
-"c) %s không phải là ổ CD.\n"
+"c> %s không phải là ổ CD.\n"
 
 #: gnome-cd/display.c:74
 msgid "Unknown artist"
@@ -1394,7 +1394,7 @@ msgstr "Trợ _giúp"
 
 #: gnome-cd/gnome-cd.c:306
 msgid "_About CD player"
-msgstr "Giới thiệ_u trình chơi CD"
+msgstr "_Giới thiệu Bộ chơi CD"
 
 #: gnome-cd/gnome-cd.c:414
 msgid ""
@@ -1402,9 +1402,9 @@ msgid ""
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
-"Không có bộ thiết bị CD. Bởi vậy không thể chạy trình chơi CD.\n"
-"Hãy nhấn \"Lập thiết bị\" để mở hộp thoại thiết lập thiết bị,\n"
-"hoặc nhấn \"Thoát\" để thoát khỏi trình chơi CD."
+"Chưa thiết lập thiết bị CD. Bởi vậy Bộ chơi CD không thể chạy.\n"
+"Bạn có thể nhấn \"Chọn thiết bị\" để mở hộp thoại chọn thiết\n"
+"bị hoặc nhấn \"Thoát\" để thoát khỏi Bộ chơi CD."
 
 #: gnome-cd/gnome-cd.c:418
 msgid "Set device"
@@ -1423,16 +1423,15 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
-"Trình chơi CD không thể chạy đúng.\n"
+"Bộ chơi CD hoạt động không chính xác.\n"
 "\n"
-"Hãy nhấn 'Chi tiết' để biết rõ lý do trục trặc.\n"
+"Nhấn 'Chi tiết' để biết chi tiết nguyên nhân lỗi.\n"
 "\n"
-"Hãy nhấn nút \"Lập thiết bị\" để mở hộp thoại thiết lập thiết bị hoặc nhấn "
-"'Thoát' để thoát khỏi trình chơi CD"
+"Nhấn nút \"Chọn thiết bị\" để mở hộp thoại chọn thiết bị hoặc nhấn \"Thoát\" để thoát khỏi Bộ chơi CD"
 
 #: gnome-cd/gnome-cd.c:479
 msgid "_Set device"
-msgstr "_Lập thiết bị"
+msgstr "_Chọn thiết bị"
 
 #: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
@@ -1452,11 +1451,11 @@ msgstr "Bộ biên soạn rãnh"
 
 #: gnome-cd/gnome-cd.c:559
 msgid "Open preferences"
-msgstr "Mở tùy thích"
+msgstr "Mở thông số"
 
 #: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
-msgstr "Tùy thích"
+msgstr "Thông số"
 
 #: gnome-cd/gnome-cd.c:568
 msgid "Track List"
@@ -1498,22 +1497,22 @@ msgstr "Đẩy CD ra"
 msgid "Eject"
 msgstr "Đẩy ra"
 
-#: gnome-cd/gnome-cd.c:731
+#: gnome-cd/gnome-cd.c:734
 msgid "CD device to use"
-msgstr "Thiết bị CD để dùng"
+msgstr "Thiết bị CD cần dùng"
 
-#: gnome-cd/gnome-cd.c:740
+#: gnome-cd/gnome-cd.c:736
 msgid "Only start if there isn't already a CD player application running"
-msgstr "Chỉ chạy nếu không có trình chơi CD khác đang chạy"
+msgstr "Chỉ khởi động nếu  chưa có bộ chơi CD nào khác đang chạy"
 
-#: gnome-cd/gnome-cd.c:742
+#: gnome-cd/gnome-cd.c:738
 msgid "Play the CD on startup"
-msgstr "Chơi CD khi khởi chạy"
+msgstr "Chơi CD lúc khởi động"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:773
+#: gnome-cd/gnome-cd.c:769
 msgid "Cannot create player"
-msgstr "Không thể tạo trình chơi CD"
+msgstr "Không thể tạo bộ chơi CD"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1521,7 +1520,7 @@ msgstr "Chơi CD Audio"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr "Hành động khi ra khỏi chương trình"
+msgstr "Hành động khi thoát"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Action on start"
@@ -1529,7 +1528,7 @@ msgstr "Hành động khi khởi động"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "CD player theme"
-msgstr "Theme cho trình chơi CD"
+msgstr "Them Bộ chơi CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
@@ -1537,35 +1536,31 @@ msgstr "Đường dẫn thiết bị"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr "Trình chơi CD có nên đóng ổ CD vào khi khởi chạy hay không?"
+msgstr "Nên đóng ổ CD khi khởi động?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr "Đóng khay CD khi khởi động"
+msgstr "Đóng khe CD khi khởi động"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Đường dẫn đến ổ CD mà trình chơi CD nên dùng"
+msgstr "Đường dẫn đến ổ CD mà bộ chơi CD sử dụng để chơi CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr ""
-"Hành động nào mà trình chơi CD thực hiện khi thoát ra? 0 = Không làm gì, 1 = "
-"Dừng chơi, 2 = Nhả CD ra, 3 = Cố đóng khay đĩa"
+msgstr "Hành động nào nên được thực hiện khi thoát? 0 = Không gì cả, 1 = Dừng chơi, 2 = Đẩy khe CD, 3 = Đóng khe CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
-msgstr ""
-"Hành động nào mà trình chơi CD thực hiện khi khởi chạy? 0 = Không làm gì, 1 = Bắt "
-"đầu chơi, 2 = Dừng chơi"
+msgstr "Hành động nào nên được thực hiện khi khởi động? 0 = Không gì cả, 1 = Chơi, 2 = Dừng chơi"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
-msgstr "Theme nào dùng cho diệm mạo của trình chơi CD"
+msgstr "Theme nào được dùng với CD player"
 
 #: gnome-cd/preferences.c:83
 #, c-format
@@ -1574,7 +1569,7 @@ msgid ""
 "This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
-"Nghĩa là không thể chạy trình chơi CD."
+"Do đó Bộ chơi CD không thể chạy."
 
 #: gnome-cd/preferences.c:84
 msgid "Error setting device"
@@ -1582,11 +1577,11 @@ msgstr "Lỗi thiết lập thiết bị"
 
 #: gnome-cd/preferences.c:824
 msgid "CD Player Preferences"
-msgstr "Tùy thích cho trình chơi CD"
+msgstr "Thông số Bộ chơi CD"
 
 #: gnome-cd/preferences.c:853
 msgid "CD player de_vice:"
-msgstr "Thiết bị của trình chơi CD:"
+msgstr "_Thiết bị chơi CD:"
 
 #: gnome-cd/preferences.c:868
 msgid "_Apply change"
@@ -1595,7 +1590,7 @@ msgstr "Á_p dụng"
 #. left side
 #: gnome-cd/preferences.c:881
 msgid "When CD player starts"
-msgstr "Khi trình chơi CD khởi động"
+msgstr "Khi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:889
 msgid "Do _nothing"
@@ -1603,7 +1598,7 @@ msgstr "_Không làm gì cả"
 
 #: gnome-cd/preferences.c:890
 msgid "Do nothing when CD Player starts"
-msgstr "Không làm gì khi trình chơi CD khởi động"
+msgstr "Không làm gì cả jhi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
@@ -1611,15 +1606,15 @@ msgstr "_Bắt đầu chơi CD"
 
 #: gnome-cd/preferences.c:901
 msgid "Start playing CD when CD Player starts"
-msgstr "Bắt đầu chơi CD khi trình chơi CD khởi động"
+msgstr "Bắt đầu chơi CD khi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
-msgstr "_Dừng chơi CD"
+msgstr "_Ngừng chơi CD"
 
 #: gnome-cd/preferences.c:911
 msgid "Stop playing CD when CD Player starts"
-msgstr "Dừng chơi CD khi trình chơi CD khởi động"
+msgstr "Ngừng chơi CD khi Bộ chơi CD khởi động"
 
 #: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
@@ -1628,7 +1623,7 @@ msgstr "_Thử đóng khay CD"
 #. Right side
 #: gnome-cd/preferences.c:937
 msgid "When CD player quits"
-msgstr "Khi thoát khỏi trình chơi CD"
+msgstr "Khi Bộ chơi CD thoát"
 
 #: gnome-cd/preferences.c:945
 msgid "Do not_hing"
@@ -1636,7 +1631,7 @@ msgstr "_Không làm gì cả"
 
 #: gnome-cd/preferences.c:946
 msgid "Do nothing when CD Player exits"
-msgstr "Không làm gì cả khi thoát ra trình chơi CD"
+msgstr "Không làm gì cả khi Bộ chơi CD thoát"
 
 #: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
@@ -1644,7 +1639,7 @@ msgstr "_Dừng chơi CD"
 
 #: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
-msgstr "Dừng chơi CD khi thoát khỏi trình chơi CD"
+msgstr "Dừng chơi CD khi thoát"
 
 #: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
@@ -1652,7 +1647,7 @@ msgstr "_Thử mở khay CD"
 
 #: gnome-cd/preferences.c:967
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "Thử mở khay CD khi ra khỏi trình chơi CD"
+msgstr "Thử mở khay CD khi Bộ chơi CD thoát"
 
 #: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
@@ -1688,7 +1683,7 @@ msgid ""
 "If you don't have sox, you will not be able to record or do any effects."
 msgstr ""
 "Không thể tìm thấy '%s'.\n"
-"Thiết lập đường dẫn đúng tới sox trong phần Tùy thích dưới tab 'Đường dẫn'.\n"
+"Thiết lập đường dẫn đúng tới sox trong phần Thông số dưới tab 'Đường dẫn'.\n"
 "\n"
 "Nếu bạn không có sox, bạn không thể thu âm hoặc tạp ra các hiệu ứng đặc biệt."
 
@@ -1809,7 +1804,7 @@ msgid ""
 msgstr ""
 "<b>Bạn có muốn lưu các thay đổi đã tạo ra vào \"%s\" không?</b>\n"
 "\n"
-"Các thay đổi của bạn sẽ mất nếu bạn không lưu chúng."
+"Các thay đổi của bạn sẽ mất nếu bạn không lưu."
 
 #: grecord/src/grec.c:981
 msgid "Do_n't save"
@@ -1904,11 +1899,11 @@ msgstr "%s không được cài đặt trong đường dẫn."
 #: grecord/src/gsr-window.c:736
 #, c-format
 msgid "%s (Has not been saved)"
-msgstr "%s (chưa được lưu)"
+msgstr "%s (Chưa được lưu)"
 
 #: grecord/src/gsr-window.c:751
 msgid "Unknown size"
-msgstr "Kích thước không xác định"
+msgstr "Không biết kích thước"
 
 #: grecord/src/gsr-window.c:771
 #, c-format
@@ -1951,23 +1946,23 @@ msgstr "Kích thước tập tin:"
 
 #: grecord/src/gsr-window.c:880
 msgid "Audio Information"
-msgstr "Thông tin Audio"
+msgstr "Thông tin Âm thanh"
 
 #: grecord/src/gsr-window.c:894
 msgid "Song length:"
-msgstr "Độ dài bài nhạc:"
+msgstr "Độ dài bài hát:"
 
 #: grecord/src/gsr-window.c:900
 msgid "Number of channels:"
-msgstr "Số các kênh:"
+msgstr "Số kênh:"
 
 #: grecord/src/gsr-window.c:906
 msgid "Sample rate:"
-msgstr "Mức mẫu: "
+msgstr "Tần số lấy mẫu:"
 
 #: grecord/src/gsr-window.c:912
 msgid "Bit rate:"
-msgstr "Mức bit:"
+msgstr "Tần số bit:"
 
 #: grecord/src/gsr-window.c:982
 msgid "A sound recorder for GNOME"
@@ -1988,7 +1983,7 @@ msgstr "<không>"
 
 #: grecord/src/gsr-window.c:1578
 msgid "Length:"
-msgstr "Độ dài:"
+msgstr "Dài:"
 
 #: grecord/src/gui.c:45 grecord/gsr.xml.h:38
 msgid "_New"
@@ -2097,16 +2092,16 @@ msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
 msgstr ""
-"Trình thu âm đơn giản và trình chơi âm thanh GNOME.\n"
-"Để tặng con mèo của tôi, Malte."
+"Bộ thu âm đơn giả và bộ phát âm cho GNOME.\n"
+"Dành tặng con mèo của tôi, Malte."
 
 #: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
-msgstr "Tùy thích cho trình thu âm Gnome"
+msgstr "Thông số Bộ thu âm Gnome"
 
 #: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
-msgstr "Tùy thích cho trình thu âm"
+msgstr "Thông số Bộ thu âm"
 
 #: grecord/src/gui.c:719
 msgid "Recording"
@@ -2304,11 +2299,11 @@ msgstr "Nội dung"
 
 #: grecord/gsr.xml.h:6
 msgid "Display help for Sound Recorder"
-msgstr "Hiển thị trợ giúp cho trình thu âm"
+msgstr "Hiện trợ giúp cho Bộ thu âm"
 
 #: grecord/gsr.xml.h:8
 msgid "File _Information"
-msgstr "T_hông tin tập tin"
+msgstr "Thông tin _tập tin"
 
 #: grecord/gsr.xml.h:9
 msgid "Main toolbar"
@@ -2320,7 +2315,7 @@ msgstr "Mở"
 
 #: grecord/gsr.xml.h:14
 msgid "Play sound"
-msgstr "Chơi âm thanh"
+msgstr "Mở nhạc"
 
 #: grecord/gsr.xml.h:15
 msgid "Quit"
@@ -2328,23 +2323,23 @@ msgstr "Thoát"
 
 #: grecord/gsr.xml.h:16
 msgid "Quit the application"
-msgstr "Thoát khỏi chương trình"
+msgstr "Thoát khỏi ứng dụng"
 
 #: grecord/gsr.xml.h:17
 msgid "Recent _Files"
-msgstr "Các _tập tin hiện thời"
+msgstr "Tập tin _gần đây"
 
 #: grecord/gsr.xml.h:19
 msgid "Record sound"
-msgstr "Thu đoạn âm thanh"
+msgstr "Thu âm"
 
 #: grecord/gsr.xml.h:20
 msgid "Run Mixer"
-msgstr "Chạy Bộ trộn"
+msgstr "Chạy _Mixer"
 
 #: grecord/gsr.xml.h:22
 msgid "Run the audio mixer"
-msgstr "Chạy bộ trộn audio"
+msgstr "Chạy bộ trộn âm"
 
 #: grecord/gsr.xml.h:23
 msgid "Save"
@@ -2356,7 +2351,7 @@ msgstr "Lưu là"
 
 #: grecord/gsr.xml.h:25
 msgid "Save _As..."
-msgstr "Lưu l_à..."
+msgstr "Lư_u là..."
 
 #: grecord/gsr.xml.h:26
 msgid "Save the current file"
@@ -2364,7 +2359,7 @@ msgstr "Lưu tập tin hiện thời"
 
 #: grecord/gsr.xml.h:27
 msgid "Save the current file with a different name"
-msgstr "Lưu tập tin hiện thời bằng tên khác"
+msgstr "Lưu tập tin hiện thời với tên khác"
 
 #: grecord/gsr.xml.h:28
 msgid "Show information about the current file"
@@ -2372,31 +2367,31 @@ msgstr "Hiện thông tin về tập tin hiện thời"
 
 #: grecord/gsr.xml.h:29
 msgid "Show information for Sound Recorder"
-msgstr "Hiện thông tin về trình thu âm Gnome"
+msgstr "Hiện thông tin về Bộ thu âm"
 
 #: grecord/gsr.xml.h:31
 msgid "Stop sound"
-msgstr "Dừng đoạn âm thanh"
+msgstr "Dừng thu"
 
 #: grecord/gsr.xml.h:32
 msgid "_About"
-msgstr "Giới t_hiệu"
+msgstr "_Giới thiệu"
 
 #: grecord/gsr.xml.h:33
 msgid "_Close Window"
-msgstr "Đó_ng cửa sổ"
+msgstr "Đón_g cửa sổ"
 
 #: grecord/gsr.xml.h:34
 msgid "_Contents"
-msgstr "Nội _dung"
+msgstr "_Nội dung"
 
 #: grecord/gsr.xml.h:35
 msgid "_Control"
-msgstr "_Điều khiển"
+msgstr "Điều _khiển"
 
 #: grecord/gsr.xml.h:36
 msgid "_File"
-msgstr "_Tệp"
+msgstr "_Tập tin"
 
 #: grecord/gsr.xml.h:39
 msgid "_Open..."
@@ -2408,11 +2403,11 @@ msgstr "_Chơi"
 
 #: grecord/gsr.xml.h:41
 msgid "_Quit"
-msgstr "Th_oát"
+msgstr "T_hoát"
 
 #: grecord/gsr.xml.h:42
 msgid "_Record"
-msgstr "Th_u âm"
+msgstr "_Thu"
 
 #: grecord/gsr.xml.h:43
 msgid "_Save"
@@ -2421,17 +2416,17 @@ msgstr "_Lưu"
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:263
 msgid "Failure instantiating main window"
-msgstr "Lỗi khi đang khởi tạo cửa sổ chính"
+msgstr "Lỗi tạo cửa sổ chính"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:303
 #, c-format
 msgid "Could not load UI resource %s"
-msgstr "Không thể nạp nguồn UI %s"
+msgstr "Không thể nạp tài nguyên UI %s"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
-msgstr "Cấu hình mặc định cho các ứng dụng GStreamer"
+msgstr "Cấu hình mặc định cho ứng dụng GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "GStreamer"
@@ -2443,23 +2438,23 @@ msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Đang thử...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Đang kiểm tra...</span>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "Audio"
-msgstr "Audio"
+msgstr "Âm thanh"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "Audio _Input:"
-msgstr "Audio _Input:"
+msgstr "Đầu _vào âm thanh:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Audio _Output:"
-msgstr "Audio _Output:"
+msgstr "Đầu _ra âm thanh:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish"
-msgstr "Nhấn OK để kết thúc"
+msgstr "Nhấn Đồng ý để hoàn tất"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Default Sink"
@@ -2475,29 +2470,29 @@ msgstr "Thuộc tính GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Pipeline:"
-msgstr "Pipeline:"
+msgstr "Ống dẫn:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Test..."
-msgstr "Thử..."
+msgstr "Kiểm tra..."
 
 #: gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
-msgstr "Đang thử Pipeline"
+msgstr "Đang kiểm tra ống dẫn"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "Video _Input:"
-msgstr "Video _Input:"
+msgstr "Đầu _vào hình ảnh:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
 msgid "Video _Output:"
-msgstr "Video _Output:"
+msgstr "Đầu _ra hình ảnh:"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:111
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr "Lỗi hướng dẫn chạy thử pipeline cho '%s'"
+msgstr "Lỗi khởi tạo kiểm tra ống dẫn cho '%s'"
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2694,4 +2689,3 @@ msgstr "Trình Theo Dõi Âm Lượng"
 #~ "a) Phiên bản Linux không có hỗ trợ CD\n"
 #~ "b) Bạn không có đủ quyền để truy cập ổ đĩa CD\n"
 #~ "c) %s không phải là ổ CD.\n"
-
