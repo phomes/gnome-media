@@ -776,7 +776,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (inner_vbox);
 	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
 	
-	PopupWarnMessSize_checkbox = gtk_check_button_new_with_mnemonic (_("Show warning _message if size (Mb) of sample becomes bigger than:"));
+	PopupWarnMessSize_checkbox = gtk_check_button_new_with_mnemonic (_("Show warning _message if size (MB) of sample becomes bigger than:"));
 	g_signal_connect (G_OBJECT (PopupWarnMessSize_checkbox), "toggled",
 			  G_CALLBACK (popup_warning_changed), NULL);
 			  
@@ -794,7 +794,7 @@ create_grecord_propertybox (void)
 	add_paired_relations (PopupWarnMessSize_checkbox, ATK_RELATION_CONTROLLER_FOR,
 			      WarningSize_spinbutton, ATK_RELATION_CONTROLLED_BY);
 	
-	StopRecordSize_checkbox = gtk_check_button_new_with_mnemonic (_("Sto_p recording if size (Mb) of sample becomes bigger than:"));
+	StopRecordSize_checkbox = gtk_check_button_new_with_mnemonic (_("Sto_p recording if size (MB) of sample becomes bigger than:"));
 	g_signal_connect (G_OBJECT (StopRecordSize_checkbox), "toggled",
 			  G_CALLBACK (stop_record_changed), NULL);
 	
