@@ -61,7 +61,7 @@ gint           lag=5;
 void 
 open_sound(void)
 {
-   sound=esd_monitor_stream(ESD_BITS16|ESD_MONO|ESD_STREAM|ESD_PLAY,RATE);
+   sound=esd_monitor_stream(ESD_BITS16|ESD_MONO|ESD_STREAM|ESD_PLAY,RATE,NULL,"extace");
    if (sound<0)
      {
 	g_error("Cannot connect to EsounD\n");
