@@ -613,10 +613,32 @@ open_preferences (GtkWidget *widget,
 }
 
 #define CDDBSLAVE_TRACK_EDITOR_IID "OAFIID:GNOME_Media_CDDBSlave2_TrackEditor"
+
+static void
+restart_track_editor (gpointer data)
+{
+	CORBA_Environment ev;
+	
+	g_print ("Trackeditor died. Restarting\n");
+	CORBA_exception_init (&ev);
+	track_editor = bonobo_activation_activate_from_id (CDDBSLAVE_TRACK_EDITOR_IID, 0, NULL, &ev);
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Could not reactivate track editor.\n%s", CORBA_exception_id (&ev));
+		track_editor = CORBA_OBJECT_NIL;
+		CORBA_exception_free (&ev);
+
+		return;
+	}
+
+	ORBit_small_listen_for_broken (track_editor, G_CALLBACK (restart_track_editor), &ev);
+	CORBA_exception_free (&ev);
+}
+
 void
 destroy_track_editor (void)
 {
 	if (track_editor != CORBA_OBJECT_NIL) {
+		ORBit_small_unlisten_for_broken (track_editor, G_CALLBACK (restart_track_editor));
 		bonobo_object_release_unref (track_editor, NULL);
 	}
 }
@@ -652,6 +674,10 @@ open_track_editor (GtkWidget *widget,
 			
 			return;
 		}
+
+		/* Listen for the trackeditor dying on us,
+		   then restart it */
+		ORBit_small_listen_for_broken (track_editor, G_CALLBACK (restart_track_editor), &ev);
 	}
 
 	if (data != NULL) {

@@ -1,3 +1,10 @@
+2002-03-06  Iain <iain@ximian.com>
+
+	* callbacks.c (restart_track_editor): Restart the track editor when
+	it dies unexpectedly.
+	(destroy_track_editor): Stop listening for the track editor death.
+	(open_track_editor): Listen for track editor death.
+
 2002-03-05  Iain <iain@ximian.com>
 
 	* preferences.c (preferences_dialog_show): Apply patch from
