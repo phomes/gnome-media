@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-09 16:44+0200\n"
+"POT-Creation-Date: 2004-06-01 12:48+0200\n"
 "PO-Revision-Date: 2004-03-09 00:44+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -76,11 +76,11 @@ msgstr ""
 msgid "Your hostname"
 msgstr "ホスト名"
 
-#: cddb-slave2/cddb-disclosure.c:245
+#: cddb-slave2/cddb-disclosure.c:241
 msgid "Expander Size"
 msgstr "取っ手のサイズ"
 
-#: cddb-slave2/cddb-disclosure.c:246
+#: cddb-slave2/cddb-disclosure.c:242
 msgid "Size of the expander arrow"
 msgstr "取っ手の矢印のサイズです。"
 
@@ -155,22 +155,22 @@ msgstr "ポート(_P):"
 msgid "CD Database Preferences"
 msgstr "CD データベースの設定"
 
-#: cddb-slave2/cddb-slave.c:215
+#: cddb-slave2/cddb-slave.c:221
 msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:221 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "不明"
 
-#: cddb-slave2/cddb-slave.c:443
+#: cddb-slave2/cddb-slave.c:272
 msgid "Multiple matches..."
 msgstr "複数に一致しました..."
 
-#: cddb-slave2/cddb-slave.c:448
+#: cddb-slave2/cddb-slave.c:277
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
@@ -178,29 +178,31 @@ msgstr ""
 "データベースの中に一致するものが複数見つかりました。\n"
 "次の一致する可能性のある一覧から、最も適切なものを選択して下さい。"
 
-#: cddb-slave2/cddb-slave.c:459
+#: cddb-slave2/cddb-slave.c:288
 msgid "Category"
 msgstr "カテゴリ"
 
-#: cddb-slave2/cddb-slave.c:463
+#: cddb-slave2/cddb-slave.c:292
 msgid "Disc ID"
 msgstr "ディスク ID"
 
-#: cddb-slave2/cddb-slave.c:467
+#: cddb-slave2/cddb-slave.c:296
 msgid "Artist and Title"
 msgstr "演奏者 / タイトル"
 
-#: cddb-slave2/cddb-slave.c:1341 cddb-slave2/cddb-slave.c:1343
+#: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
 #: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "不明なトラック"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
+#, fuzzy
+msgid "CD Database Server"
 msgstr "CD データベース"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
+#, fuzzy
+msgid "Modify your CD database server preferences"
 msgstr "CD データベースの設定を変更します"
 
 #: cddb-slave2/cddb-track-editor.c:79
@@ -803,84 +805,84 @@ msgstr "ニュー・メタル"
 msgid "Art Rock"
 msgstr "アート・ロック"
 
-#: cddb-slave2/cddb-track-editor.c:535 gnome-cd/callbacks.c:557
+#: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:557
 #: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "演奏者が不明です"
 
-#: cddb-slave2/cddb-track-editor.c:536 gnome-cd/callbacks.c:558
+#: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:558
 #: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "アルバムが不明です"
 
-#: cddb-slave2/cddb-track-editor.c:544
+#: cddb-slave2/cddb-track-editor.c:541
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "ディスク ID の編集: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:634
+#: cddb-slave2/cddb-track-editor.c:630
 msgid "Editing Disc ID: "
 msgstr "ディスク ID の編集:"
 
-#: cddb-slave2/cddb-track-editor.c:645
+#: cddb-slave2/cddb-track-editor.c:641
 msgid "_Artist:"
 msgstr "演奏者(_A):"
 
-#: cddb-slave2/cddb-track-editor.c:659
+#: cddb-slave2/cddb-track-editor.c:655
 msgid "Disc _Title:"
 msgstr "タイトル(_T)"
 
-#: cddb-slave2/cddb-track-editor.c:669
+#: cddb-slave2/cddb-track-editor.c:665
 msgid "Show advanced disc options"
 msgstr "拡張オプションの表示"
 
-#: cddb-slave2/cddb-track-editor.c:670
+#: cddb-slave2/cddb-track-editor.c:666
 msgid "Hide advanced disc options"
 msgstr "拡張オプションの非表示"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:682
+#: cddb-slave2/cddb-track-editor.c:678
 msgid "_Disc comments:"
 msgstr "コメント(_D):"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:697
+#: cddb-slave2/cddb-track-editor.c:693
 msgid "_Genre:"
 msgstr "ジャンル(_G):"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:713
+#: cddb-slave2/cddb-track-editor.c:709
 msgid "_Year:"
 msgstr "制作年(_Y):"
 
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:748
 msgid "Title"
 msgstr "タイトル"
 
-#: cddb-slave2/cddb-track-editor.c:759
+#: cddb-slave2/cddb-track-editor.c:755
 msgid "Length"
 msgstr "演奏時間"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:770
+#: cddb-slave2/cddb-track-editor.c:766
 msgid "Show advanced track options"
 msgstr "拡張トラック・オプションの表示"
 
-#: cddb-slave2/cddb-track-editor.c:771
+#: cddb-slave2/cddb-track-editor.c:767
 msgid "Hide advanced track options"
 msgstr "拡張トラック・オプションの非表示"
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:779
+#: cddb-slave2/cddb-track-editor.c:775
 msgid "_Extra track data:"
 msgstr "追加トラック・データ(_E):"
 
-#: cddb-slave2/cddb-track-editor.c:907
+#: cddb-slave2/cddb-track-editor.c:903
 msgid "CDDB Track Editor"
 msgstr "CDDB トラック・エディタ"
 
-#: cddb-slave2/cddb-track-editor.c:1044
+#: cddb-slave2/cddb-track-editor.c:1040
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -954,7 +956,7 @@ msgstr "再生"
 msgid "Paused"
 msgstr "一時停止"
 
-#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:869 gnome-cd/gnome-cd.c:88
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:872 gnome-cd/gnome-cd.c:88
 #: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
@@ -968,27 +970,27 @@ msgstr "停止"
 msgid "Disc error"
 msgstr "ディスク・エラー"
 
-#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:757
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:760
 msgid "No disc"
 msgstr "ディスク無し"
 
-#: gnome-cd/callbacks.c:785
+#: gnome-cd/callbacks.c:788
 msgid "Drive open"
 msgstr "ドライブが開いています"
 
-#: gnome-cd/callbacks.c:809
+#: gnome-cd/callbacks.c:812
 msgid "Data CD"
 msgstr "データ CD"
 
-#: gnome-cd/callbacks.c:831 gnome-cd/callbacks.c:836
+#: gnome-cd/callbacks.c:834 gnome-cd/callbacks.c:839
 msgid "No Cdrom"
 msgstr "CD-ROM がありません"
 
-#: gnome-cd/callbacks.c:847
+#: gnome-cd/callbacks.c:850
 msgid "Drive Error"
 msgstr "ドライブ・エラー"
 
-#: gnome-cd/callbacks.c:871
+#: gnome-cd/callbacks.c:874
 msgid "A CD player for GNOME"
 msgstr "GNOME 用 CD プレイヤー"
 
@@ -1200,7 +1202,8 @@ msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr "CD の再生に利用する CD ドライブへのパスです。"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
+#, fuzzy
+msgid "What theme should the CD player use for its appearance"
 msgstr "CD プレイヤーの外観としてどのテーマを利用するか。"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
@@ -1581,8 +1584,8 @@ msgid "Adjust the volume level"
 msgstr "音量レベルを調整します"
 
 #. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:458
-#: gst-mixer/src/mixer.c:551
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:463
+#: gst-mixer/src/mixer.c:556
 msgid "Volume Control"
 msgstr "音量コントロール"
 
@@ -1628,11 +1631,11 @@ msgstr "録音"
 msgid "%s Record"
 msgstr "%s 録音"
 
-#: gst-mixer/src/mixer.c:461
+#: gst-mixer/src/mixer.c:466
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "GNOME/GStreamer ベースのミキサー・アプリケーション"
 
-#: gst-mixer/src/mixer.c:568
+#: gst-mixer/src/mixer.c:573
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "申し訳ありません、ミキサーの要素と/またはデバイスが見つかりません"
 
@@ -1753,16 +1756,16 @@ msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr "gm_audio プロファイルの一覧を取得する際にエラーが発生しました。(%s)\n"
 
 #: profiles/audio-profile.c:718
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"There was an error subscribing to notification of terminal profile list "
+"There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
 "端末プロファイル一覧の変更の通知を登録する際にエラーが発生しました。(%s)\n"
 
 #: profiles/audio-profile.c:908
-#, c-format
-msgid "There was an error forgetting profile dir %s. (%s)\n"
+#, fuzzy, c-format
+msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "プロファイルのフォルダ %s を記憶する際にエラーが発生しました。(%s)\n"
 
 #: profiles/audio-profile.c:1000
@@ -1785,21 +1788,20 @@ msgstr "編集(_E)"
 msgid "You must select one or more profiles to delete."
 msgstr "削除するプロファイルを一つ以上選択して下さい。"
 
-#: profiles/audio-profiles-edit.c:461
-msgid "Delete these two profiles?\n"
-msgstr "これら 2 個のプロファイルを削除しますか？\n"
+#. the first argument will never be used since we only run for count > 1
+#: profiles/audio-profiles-edit.c:460
+#, fuzzy, c-format
+msgid "Delete this profile?\n"
+msgid_plural "Delete these %d profiles?\n"
+msgstr[0] "これら %d 個のプロファイルを削除しますか？\n"
+msgstr[1] "これら %d 個のプロファイルを削除しますか？\n"
 
-#: profiles/audio-profiles-edit.c:463
-#, c-format
-msgid "Delete these %d profiles?\n"
-msgstr "これら %d 個のプロファイルを削除しますか？\n"
-
-#: profiles/audio-profiles-edit.c:481
+#: profiles/audio-profiles-edit.c:479
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "プロファイル \"%s\" を削除しますか？"
 
-#: profiles/audio-profiles-edit.c:503
+#: profiles/audio-profiles-edit.c:501
 msgid "Delete Profile"
 msgstr "プロファイルの削除"
 
@@ -1815,20 +1817,20 @@ msgstr "プロファイルの削除"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: profiles/audio-profiles-edit.c:597
+#: profiles/audio-profiles-edit.c:595
 msgid "Edit GMAudio Profiles"
 msgstr "GMAudio プロファイルの編集"
 
-#: profiles/audio-profiles-edit.c:650
+#: profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr "プロファイル(_P):"
 
-#: profiles/audio-profiles-edit.c:878
+#: profiles/audio-profiles-edit.c:876
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "\"%s\" という名前のプロファイルが既に存在します"
 
-#: profiles/audio-profiles-edit.c:903
+#: profiles/audio-profiles-edit.c:901
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf エラー (FIXME): %s\n"
@@ -1867,7 +1869,8 @@ msgid "Profile _name:"
 msgstr "プロファイル名(_N):"
 
 #: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
+#, fuzzy
+msgid "_Active?"
 msgstr "有効にする(_A)"
 
 #: profiles/gnome-audio-profiles.glade2.h:9
@@ -1918,6 +1921,14 @@ msgstr ""
 "ための重複しない文字列です。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "CD Quality, Lossless"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "CD Quality, Lossy"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
@@ -1925,23 +1936,45 @@ msgstr ""
 "オーディオ録音プロファイルの一覧です。この一覧には /system/gstreamer/audio/"
 "profiles に対するサブフォルダ名の文字列が含まれています。"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
 msgstr "プロファイルの一覧"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "The default file extension for this profile"
 msgstr "プロファイルのデフォルトの拡張子"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "The partial GStreamer pipeline used"
 msgstr "使用する GStreamer パイプライン部"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: profiles/gnome-audio-profiles.schemas.in.in.h:13
+msgid ""
+"Used for converting to CD-quality audio, but with a lossless compression "
+"codec. Use this if you later want to edit the file or burn it to CD."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:14
+msgid ""
+"Used for converting to CD-quality audio, but with a lossy compression codec. "
+"Use this for CD extraction and radio recordings."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:15
+msgid ""
+"Used for converting to voice-quality audio. Use this for recording speech."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:16
+#, fuzzy
+msgid "Voice"
+msgstr "ビデオ"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid "Whether or not this profile is to be used"
 msgstr "プロファイルを使用するかどうか"
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Whether or not to use and display this profile."
 msgstr "このプロファイルを使用したり表示するかどうかを指定します。"
 
@@ -2013,6 +2046,9 @@ msgstr "音声出力音量のモニタです"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量モニタ"
+
+#~ msgid "Delete these two profiles?\n"
+#~ msgstr "これら 2 個のプロファイルを削除しますか？\n"
 
 #~ msgid "Unknown artist"
 #~ msgstr "演奏者が不明です"

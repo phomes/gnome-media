@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-02 19:45+0200\n"
+"POT-Creation-Date: 2004-06-01 12:48+0200\n"
 "PO-Revision-Date: 2004-05-25 17:45+0330\n"
 "Last-Translator: Gurban Mühemmet Tewekgeli <gmtavakkoli@yahoo.com>\n"
 "Language-Team: Turkmen <kakilikgroup@yahoo.com>\n"
@@ -71,11 +71,11 @@ msgstr ""
 msgid "Your hostname"
 msgstr "Siziň hojaýynyňyzyň ady"
 
-#: cddb-slave2/cddb-disclosure.c:245
+#: cddb-slave2/cddb-disclosure.c:241
 msgid "Expander Size"
 msgstr ""
 
-#: cddb-slave2/cddb-disclosure.c:246
+#: cddb-slave2/cddb-disclosure.c:242
 msgid "Size of the expander arrow"
 msgstr ""
 
@@ -150,50 +150,50 @@ msgstr "_Port:"
 msgid "CD Database Preferences"
 msgstr ""
 
-#: cddb-slave2/cddb-slave.c:213
+#: cddb-slave2/cddb-slave.c:221
 msgid "Unknown / Unknown"
 msgstr "Natanyş / Natanyş"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:737
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:737
 #: grecord/src/gsr-window.c:746 grecord/src/gsr-window.c:755
 #: grecord/src/gsr-window.c:765 grecord/src/gsr-window.c:1079
 msgid "Unknown"
 msgstr "Natanyş"
 
-#: cddb-slave2/cddb-slave.c:441
+#: cddb-slave2/cddb-slave.c:272
 msgid "Multiple matches..."
 msgstr ""
 
-#: cddb-slave2/cddb-slave.c:446
+#: cddb-slave2/cddb-slave.c:277
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
 
-#: cddb-slave2/cddb-slave.c:457
+#: cddb-slave2/cddb-slave.c:288
 msgid "Category"
 msgstr "Kategori"
 
-#: cddb-slave2/cddb-slave.c:461
+#: cddb-slave2/cddb-slave.c:292
 msgid "Disc ID"
 msgstr "Disk IDsi"
 
-#: cddb-slave2/cddb-slave.c:465
+#: cddb-slave2/cddb-slave.c:296
 msgid "Artist and Title"
 msgstr "Artist we Sözbaşy"
 
-#: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:141
+#: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Natanyş trak"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
-msgid "CD Database"
+msgid "CD Database Server"
 msgstr ""
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
-msgid "Modify your CD database preferences"
+msgid "Modify your CD database server preferences"
 msgstr ""
 
 #: cddb-slave2/cddb-track-editor.c:79
@@ -796,74 +796,84 @@ msgstr ""
 msgid "Art Rock"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:526
+#: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:557
+#: gnome-cd/callbacks.c:689 gnome-cd/callbacks.c:700 gnome-cd/display.c:74
+msgid "Unknown Artist"
+msgstr "Natanyş Artist"
+
+#: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:558
+#: gnome-cd/callbacks.c:692 gnome-cd/callbacks.c:704 gnome-cd/display.c:75
+msgid "Unknown Album"
+msgstr "Natanyş Album"
+
+#: cddb-slave2/cddb-track-editor.c:541
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Disk IDsi editlenýär: %s"
 
 #. Info label
-#: cddb-slave2/cddb-track-editor.c:616
+#: cddb-slave2/cddb-track-editor.c:630
 msgid "Editing Disc ID: "
 msgstr "Disk IDsi editlenýär:"
 
-#: cddb-slave2/cddb-track-editor.c:627
+#: cddb-slave2/cddb-track-editor.c:641
 msgid "_Artist:"
 msgstr "_Artist:"
 
-#: cddb-slave2/cddb-track-editor.c:641
+#: cddb-slave2/cddb-track-editor.c:655
 msgid "Disc _Title:"
 msgstr "Disk _Sözbaşy:"
 
-#: cddb-slave2/cddb-track-editor.c:651
+#: cddb-slave2/cddb-track-editor.c:665
 msgid "Show advanced disc options"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:652
+#: cddb-slave2/cddb-track-editor.c:666
 msgid "Hide advanced disc options"
 msgstr ""
 
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:664
+#: cddb-slave2/cddb-track-editor.c:678
 msgid "_Disc comments:"
 msgstr "_Disk şerhler:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:679
+#: cddb-slave2/cddb-track-editor.c:693
 msgid "_Genre:"
 msgstr ""
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:695
+#: cddb-slave2/cddb-track-editor.c:709
 msgid "_Year:"
 msgstr "_Ýyl:"
 
-#: cddb-slave2/cddb-track-editor.c:734
+#: cddb-slave2/cddb-track-editor.c:748
 msgid "Title"
 msgstr "Sözbaşy"
 
-#: cddb-slave2/cddb-track-editor.c:741
+#: cddb-slave2/cddb-track-editor.c:755
 msgid "Length"
 msgstr "Uzynlyk"
 
 #. More advanced options
-#: cddb-slave2/cddb-track-editor.c:752
+#: cddb-slave2/cddb-track-editor.c:766
 msgid "Show advanced track options"
 msgstr ""
 
-#: cddb-slave2/cddb-track-editor.c:753
+#: cddb-slave2/cddb-track-editor.c:767
 msgid "Hide advanced track options"
 msgstr ""
 
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:761
+#: cddb-slave2/cddb-track-editor.c:775
 msgid "_Extra track data:"
 msgstr "_Artyk trak maglumaty:"
 
-#: cddb-slave2/cddb-track-editor.c:888
+#: cddb-slave2/cddb-track-editor.c:903
 msgid "CDDB Track Editor"
 msgstr "CDDB Trak editçisi"
 
-#: cddb-slave2/cddb-track-editor.c:1022
+#: cddb-slave2/cddb-track-editor.c:1040
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -879,8 +889,7 @@ msgstr ""
 msgid ""
 "Displays information about the currently playing album, artist and time "
 "elapsed"
-msgstr ""
-"Häzirki album, artist we geçen zaman barda maglumat görkezýär."
+msgstr "Häzirki album, artist we geçen zaman barda maglumat görkezýär."
 
 #: gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -915,72 +924,64 @@ msgid "Line for displaying the name of the album"
 msgstr "Album adyny görkezmek üçin hat"
 
 #: gnome-cd/callbacks.c:81 gnome-cd/callbacks.c:169 gnome-cd/callbacks.c:268
-#: gnome-cd/callbacks.c:561 gnome-cd/gnome-cd.c:648 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:571 gnome-cd/gnome-cd.c:688 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Oýna"
 
 #: gnome-cd/callbacks.c:154 gnome-cd/callbacks.c:200 gnome-cd/callbacks.c:230
 #: gnome-cd/callbacks.c:310 gnome-cd/callbacks.c:350 gnome-cd/callbacks.c:374
-#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:501
+#: gnome-cd/callbacks.c:415 gnome-cd/callbacks.c:508
 msgid "Pause"
 msgstr "Sakla"
 
-#: gnome-cd/callbacks.c:546
+#: gnome-cd/callbacks.c:556
 #, c-format
 msgid "Playing %s - %s"
 msgstr ""
 
-#: gnome-cd/callbacks.c:547 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:693
-msgid "Unknown Artist"
-msgstr "Natanyş Artist"
-
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:685 gnome-cd/callbacks.c:697
-msgid "Unknown Album"
-msgstr "Natanyş Album"
-
-#: gnome-cd/callbacks.c:550
+#: gnome-cd/callbacks.c:560
 msgid "Playing"
 msgstr "Oýnalýar"
 
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:584
 msgid "Paused"
 msgstr "Saklanigili"
 
-#: gnome-cd/callbacks.c:620 gnome-cd/callbacks.c:856 gnome-cd/gnome-cd.c:57
-#: gnome-cd/gnome-cd.c:513 gnome-cd/gnome-cd.c:698 gnome-cd/gnome-cd.c:701
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:872 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:551 gnome-cd/gnome-cd.c:738 gnome-cd/gnome-cd.c:741
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "CD Oýinçisi"
 
-#: gnome-cd/callbacks.c:639
+#: gnome-cd/callbacks.c:648
 msgid "Stopped"
 msgstr "Dur"
 
-#: gnome-cd/callbacks.c:645
+#: gnome-cd/callbacks.c:654
 msgid "Disc error"
 msgstr "Disk hatasy"
 
-#: gnome-cd/callbacks.c:657 gnome-cd/callbacks.c:744
+#: gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:760
 msgid "No disc"
 msgstr "Disk ýok"
 
-#: gnome-cd/callbacks.c:772
+#: gnome-cd/callbacks.c:788
 msgid "Drive open"
 msgstr ""
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:812
 msgid "Data CD"
 msgstr "Maglumat CD"
 
-#: gnome-cd/callbacks.c:818 gnome-cd/callbacks.c:823
+#: gnome-cd/callbacks.c:834 gnome-cd/callbacks.c:839
 msgid "No Cdrom"
 msgstr "Cdrom ýok"
 
-#: gnome-cd/callbacks.c:834
+#: gnome-cd/callbacks.c:850
 msgid "Drive Error"
 msgstr ""
 
-#: gnome-cd/callbacks.c:858
+#: gnome-cd/callbacks.c:874
 msgid "A CD player for GNOME"
 msgstr "GNOME üçin CD oýinçisi"
 
@@ -998,63 +999,55 @@ msgid ""
 "c) %s is not the CD drive.\n"
 msgstr ""
 
-#: gnome-cd/display.c:74
-msgid "Unknown artist"
-msgstr "Natanyş artist"
-
-#: gnome-cd/display.c:75
-msgid "Unknown disc"
-msgstr "Natanyş disk"
-
-#: gnome-cd/gnome-cd.c:180
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Natanyş"
 
-#: gnome-cd/gnome-cd.c:308
+#: gnome-cd/gnome-cd.c:346
 msgid "P_revious track"
 msgstr "_Öňki träk"
 
-#: gnome-cd/gnome-cd.c:309 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:347 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Dur"
 
-#: gnome-cd/gnome-cd.c:310
+#: gnome-cd/gnome-cd.c:348
 msgid "_Play / Pause"
 msgstr "_Oýna / Sakla"
 
-#: gnome-cd/gnome-cd.c:311
+#: gnome-cd/gnome-cd.c:349
 msgid "_Next track"
 msgstr "_Indiki träk"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "Diski _çykar"
 
-#: gnome-cd/gnome-cd.c:313 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:351 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Ýardam"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:352
 msgid "_About CD player"
 msgstr "CD oýinçisi _Barada"
 
-#: gnome-cd/gnome-cd.c:433
+#: gnome-cd/gnome-cd.c:471
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:437
+#: gnome-cd/gnome-cd.c:475
 msgid "Set device"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:439
+#: gnome-cd/gnome-cd.c:477
 msgid "No CD device"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:492
+#: gnome-cd/gnome-cd.c:530
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1064,96 +1057,96 @@ msgid ""
 "'Quit' to quit the CD player"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:496
+#: gnome-cd/gnome-cd.c:534
 msgid "_Details"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:497
+#: gnome-cd/gnome-cd.c:535
 msgid "_Set device"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:499
+#: gnome-cd/gnome-cd.c:537
 msgid "Invalid CD device"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:561
+#: gnome-cd/gnome-cd.c:601
 msgid "Volume control"
 msgstr "Hejim kontroli"
 
-#: gnome-cd/gnome-cd.c:572
+#: gnome-cd/gnome-cd.c:612
 msgid "Position"
 msgstr "Ýer"
 
-#: gnome-cd/gnome-cd.c:589
+#: gnome-cd/gnome-cd.c:629
 msgid "Open track editor"
 msgstr "Träk editçisini aç"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:630
 msgid "Track editor"
 msgstr "Träk editçisi"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:637
 msgid "Open preferences"
 msgstr "Seçenekleri aç"
 
-#: gnome-cd/gnome-cd.c:598
+#: gnome-cd/gnome-cd.c:638
 msgid "Preferences"
 msgstr "Seçenekler"
 
-#: gnome-cd/gnome-cd.c:606
+#: gnome-cd/gnome-cd.c:646
 msgid "Track List"
 msgstr "Träk Listi"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous track"
 msgstr "Öňki träk"
 
-#: gnome-cd/gnome-cd.c:627
+#: gnome-cd/gnome-cd.c:667
 msgid "Previous"
 msgstr "Öňki"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:671
 msgid "Rewind"
 msgstr "Ize Git"
 
-#: gnome-cd/gnome-cd.c:648
+#: gnome-cd/gnome-cd.c:688
 msgid "Play / Pause"
 msgstr "Oýna / Sakla"
 
-#: gnome-cd/gnome-cd.c:653 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:693 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Dur"
 
-#: gnome-cd/gnome-cd.c:657
+#: gnome-cd/gnome-cd.c:697
 msgid "Fast forward"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:665
+#: gnome-cd/gnome-cd.c:705
 msgid "Next track"
 msgstr "Indiki träk"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject CD"
 msgstr "CDni çykar"
 
-#: gnome-cd/gnome-cd.c:669
+#: gnome-cd/gnome-cd.c:709
 msgid "Eject"
 msgstr "Çykar"
 
-#: gnome-cd/gnome-cd.c:785
+#: gnome-cd/gnome-cd.c:825
 msgid "CD device to use"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:787
+#: gnome-cd/gnome-cd.c:827
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Diňe başga bir CD oýinçisi işde däl bolsa işini başlaýar"
 
-#: gnome-cd/gnome-cd.c:789
+#: gnome-cd/gnome-cd.c:829
 msgid "Play the CD on startup"
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:819
+#: gnome-cd/gnome-cd.c:859
 msgid "Cannot create player"
 msgstr "Oýinçi bejerilip bilmedi"
 
@@ -1186,7 +1179,8 @@ msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr ""
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "What theme should the CD player use for it's appearance"
+#, fuzzy
+msgid "What theme should the CD player use for its appearance"
 msgstr "CD oýinçisi haýsy temden ullansyn?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
@@ -1409,7 +1403,7 @@ msgstr ""
 msgid "_Save"
 msgstr "_Gaýd Et"
 
-#: grecord/src/gnome-recorder.c:155
+#: grecord/src/gnome-recorder.c:156
 msgid "Dummy option"
 msgstr ""
 
@@ -1565,58 +1559,58 @@ msgid "Adjust the volume level"
 msgstr "Hejim derejesini tenzim et"
 
 #. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:453
-#: gst-mixer/src/mixer.c:546
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:463
+#: gst-mixer/src/mixer.c:556
 msgid "Volume Control"
 msgstr "Hejim Kontroli"
 
-#: gst-mixer/src/mixer.c:218
+#: gst-mixer/src/mixer.c:223
 #, c-format
 msgid "%s Slider"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:220
+#: gst-mixer/src/mixer.c:225
 #, c-format
 msgid "Channel %d of %s Slider"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:221
+#: gst-mixer/src/mixer.c:226
 #, c-format
 msgid "%s Slider %d"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:234
+#: gst-mixer/src/mixer.c:239
 msgid "Lock"
 msgstr "Gulpla"
 
-#: gst-mixer/src/mixer.c:244
+#: gst-mixer/src/mixer.c:249
 #, c-format
 msgid "%s Lock"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:250
+#: gst-mixer/src/mixer.c:255
 msgid "Mute"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:262
+#: gst-mixer/src/mixer.c:267
 #, c-format
 msgid "%s Mute"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:268
+#: gst-mixer/src/mixer.c:273
 msgid "Rec."
 msgstr ""
 
-#: gst-mixer/src/mixer.c:280
+#: gst-mixer/src/mixer.c:285
 #, c-format
 msgid "%s Record"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:456
+#: gst-mixer/src/mixer.c:466
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr ""
 
-#: gst-mixer/src/mixer.c:563
+#: gst-mixer/src/mixer.c:573
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr ""
 
@@ -1700,10 +1694,10 @@ msgstr ""
 msgid "_Test"
 msgstr "_Barla"
 
-#: gstreamer-properties/pipeline-constants.c:60
-#: gstreamer-properties/pipeline-constants.c:82
-#: gstreamer-properties/pipeline-constants.c:99
-#: gstreamer-properties/pipeline-constants.c:114
+#: gstreamer-properties/pipeline-constants.c:61
+#: gstreamer-properties/pipeline-constants.c:83
+#: gstreamer-properties/pipeline-constants.c:100
+#: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
 msgstr "Şahsy"
 
@@ -1739,14 +1733,14 @@ msgstr ""
 #: profiles/audio-profile.c:718
 #, c-format
 msgid ""
-"There was an error subscribing to notification of terminal profile list "
+"There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
 
 #: profiles/audio-profile.c:908
-#, c-format
-msgid "There was an error forgetting profile dir %s. (%s)\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "There was an error forgetting profile path %s. (%s)\n"
+msgstr "%s-i başlamada hata boldy: %s"
 
 #: profiles/audio-profile.c:1000
 msgid "<no description>"
@@ -1768,21 +1762,20 @@ msgstr "_Edit"
 msgid "You must select one or more profiles to delete."
 msgstr ""
 
-#: profiles/audio-profiles-edit.c:461
-msgid "Delete these two profiles?\n"
-msgstr ""
-
-#: profiles/audio-profiles-edit.c:463
+#. the first argument will never be used since we only run for count > 1
+#: profiles/audio-profiles-edit.c:460
 #, c-format
-msgid "Delete these %d profiles?\n"
-msgstr ""
+msgid "Delete this profile?\n"
+msgid_plural "Delete these %d profiles?\n"
+msgstr[0] ""
+msgstr[1] ""
 
-#: profiles/audio-profiles-edit.c:481
+#: profiles/audio-profiles-edit.c:479
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr ""
 
-#: profiles/audio-profiles-edit.c:503
+#: profiles/audio-profiles-edit.c:501
 msgid "Delete Profile"
 msgstr ""
 
@@ -1798,20 +1791,20 @@ msgstr ""
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: profiles/audio-profiles-edit.c:597
+#: profiles/audio-profiles-edit.c:595
 msgid "Edit GMAudio Profiles"
 msgstr ""
 
-#: profiles/audio-profiles-edit.c:650
+#: profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr ""
 
-#: profiles/audio-profiles-edit.c:878
+#: profiles/audio-profiles-edit.c:876
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr ""
 
-#: profiles/audio-profiles-edit.c:903
+#: profiles/audio-profiles-edit.c:901
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr ""
@@ -1848,7 +1841,8 @@ msgid "Profile _name:"
 msgstr ""
 
 #: profiles/gnome-audio-profiles.glade2.h:8
-msgid "_Active ?"
+#, fuzzy
+msgid "_Active?"
 msgstr "_Janly ?"
 
 #: profiles/gnome-audio-profiles.glade2.h:9
@@ -1893,28 +1887,58 @@ msgid ""
 msgstr ""
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "CD Quality, Lossless"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+msgid "CD Quality, Lossy"
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:8
+#: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:9
+#: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "The default file extension for this profile"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:10
+#: profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "The partial GStreamer pipeline used"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: profiles/gnome-audio-profiles.schemas.in.in.h:13
+msgid ""
+"Used for converting to CD-quality audio, but with a lossless compression "
+"codec. Use this if you later want to edit the file or burn it to CD."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:14
+msgid ""
+"Used for converting to CD-quality audio, but with a lossy compression codec. "
+"Use this for CD extraction and radio recordings."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:15
+msgid ""
+"Used for converting to voice-quality audio. Use this for recording speech."
+msgstr ""
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:16
+#, fuzzy
+msgid "Voice"
+msgstr "Galmagal"
+
+#: profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid "Whether or not this profile is to be used"
 msgstr ""
 
-#: profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Whether or not to use and display this profile."
 msgstr ""
 
@@ -1984,3 +2008,9 @@ msgstr ""
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr ""
+
+#~ msgid "Unknown artist"
+#~ msgstr "Natanyş artist"
+
+#~ msgid "Unknown disc"
+#~ msgstr "Natanyş disk"
