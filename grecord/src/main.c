@@ -138,14 +138,9 @@ main (int argc, char *argv[])
 
 	/* Session management ------------------------- */
 	client = gnome_master_client ();
-	gtk_signal_connect (GTK_OBJECT (client),
-			    "save_yourself",
-			    GTK_SIGNAL_FUNC (grec_save_session),
-			    argv[0]);
-	gtk_signal_connect (GTK_OBJECT (client),
-			    "die",
-			    GTK_SIGNAL_FUNC (grec_kill_session),
-			    NULL);
+	g_signal_connect (client, "save_yourself", 
+			  G_CALLBACK (grec_save_session), argv[0]);
+	g_signal_connect (client, "die", G_CALLBACK (grec_kill_session), NULL);
 
 	/* Load configuration */
 	load_config_file ();
@@ -161,7 +156,8 @@ main (int argc, char *argv[])
 	} else if (srecord) {
 		active_file = g_strdup (args[0]);
 	} else {
-		active_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
+		active_file = g_build_filename (temp_dir, 
+						temp_filename_play, NULL);
 	}
 
 	/* Popup mainwindow */
@@ -195,24 +191,25 @@ main (int argc, char *argv[])
 
 	/* Check for program 'sox' ------------------- */
 	if (fullpath) {
-		if (!g_file_exists (sox_command) && !dont_show_warningmess) {
+		if (!g_file_test (sox_command, G_FILE_TEST_EXISTS) && !dont_show_warningmess) {
 			GtkWidget* dont_show_again_checkbutton = gtk_check_button_new_with_label (_("Don't show this message again."));
 			
 			gchar* show_mess = g_strdup_printf (_("Could not find '%s'.\nSet the correct path to sox in preferences under the tab 'paths'.\n\nIf you don't have sox, you will not be able to record or do any effects."), sox_command);
-			
-			GtkWidget* mess = gnome_message_box_new (show_mess,
-								 GNOME_MESSAGE_BOX_WARNING,
-								 GNOME_STOCK_BUTTON_OK,
-								 NULL);
+			GtkWidget* mess = gtk_message_dialog_new (NULL,
+								  GTK_DIALOG_MODAL,	
+								  GTK_MESSAGE_WARNING,
+								  GTK_BUTTONS_OK,
+								  show_mess);
 			
 			gtk_widget_show (dont_show_again_checkbutton);
-			gtk_container_add (GTK_CONTAINER (GNOME_DIALOG (mess)->vbox), dont_show_again_checkbutton);
+			gtk_container_add (GTK_CONTAINER (GTK_DIALOG (mess)->vbox), dont_show_again_checkbutton);
 			
 			/* Connect a signal on ok-button, so we can get the stat on the checkbutton */
-			gtk_signal_connect (GTK_OBJECT (mess), "destroy",
-					    GTK_SIGNAL_FUNC (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
+			g_signal_connect (mess, "destroy",
+					  G_CALLBACK (on_dontshowagain_dialog_destroy_activate), dont_show_again_checkbutton);
 			
-			gnome_dialog_run (GNOME_DIALOG (mess));
+			gtk_dialog_run (GTK_DIALOG (mess));
+			gtk_widget_destroy (mess);
 			
 			g_free (show_mess);
 			on_preferences_activate_cb (NULL, NULL);
@@ -254,9 +251,9 @@ static gint grec_save_session (GnomeClient* client, gint phase,
 
 static gint grec_kill_session (GnomeClient* client, gpointer client_data)
 {
-	gchar* file1 = g_concat_dir_and_file (temp_dir, temp_filename_record);
-	gchar* file2 = g_concat_dir_and_file (temp_dir, temp_filename_play);
-	gchar* file3 = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	gchar* file1 = g_build_filename (temp_dir, temp_filename_record, NULL);
+	gchar* file2 = g_build_filename (temp_dir, temp_filename_play, NULL);
+	gchar* file3 = g_build_filename (temp_dir, temp_filename_backup, NULL);
 
 	remove (file1);
 	remove (file2);

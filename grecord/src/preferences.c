@@ -330,7 +330,7 @@ load_config_file    (void)
 	
 	s = gconf_client_get_string (client,
 				     "/apps/gnome-sound-recorder/sox-command", NULL);
-	sox_command = gnome_is_program_in_path (s);
+	sox_command = g_find_program_in_path (s);
 	if (sox_command == NULL) {
 		sox_command = s;
 	} else {
@@ -455,17 +455,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 	/* Check if the given sox command exists --------------------- */
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a sox command; you will not be able to record.\nDo you want to use it anyway?"));
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_QUESTION,
-					      GNOME_STOCK_BUTTON_YES,
-					      GNOME_STOCK_BUTTON_NO,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_QUESTION,
+					       GTK_BUTTONS_YES_NO,
+					       show_mess);
 		g_free (show_mess);
-		choice = gnome_dialog_run (GNOME_DIALOG (mess));
-		if (choice == 0) 
+		choice = gtk_dialog_run (GTK_DIALOG (mess));
+		if (choice == GTK_RESPONSE_YES) 
 			sox_command = g_strdup (temp_file);
 		else
 			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v))), sox_command);
+		gtk_widget_destroy (mess);
 	}
 	
 	/* Check whetever the specified command is a full path or just the name (check for a '/') */
@@ -478,19 +479,20 @@ on_propertybox_apply_activate (GtkWidget* widget,
 
 	if (fullpath) {
 		/* Check if the given mixer command exists -------------------- */
-		if (!g_file_exists (temp_file)) {
+		if (!g_file_test (temp_file, G_FILE_TEST_EXISTS)) {
 			show_mess = g_strdup_printf (_("File %s in 'sox command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (show_mess,
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
+			mess = gtk_message_dialog_new (NULL,
+						       GTK_DIALOG_MODAL,
+						       GTK_MESSAGE_QUESTION,
+						       GTK_BUTTONS_YES_NO,
+						       show_mess);
 			g_free (show_mess);
-			choice = gnome_dialog_run (GNOME_DIALOG (mess));
-			if (choice == 0)
+			choice = gtk_dialog_run (GTK_DIALOG (mess));
+			if (choice == GTK_RESPONSE_YES)
 				sox_command = g_strdup (temp_file);
 			else
 				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Sox_fileentry_v))), sox_command);
+				gtk_widget_destroy (mess);
 		}
 		else
 			sox_command = g_strdup (temp_file);
@@ -505,17 +507,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 	/* Check if the given mix command exists --------------------- */
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a mixer command; you will not be able to start the mixer.\nDo you want to use it anyway?"));
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_QUESTION,
-					      GNOME_STOCK_BUTTON_YES,
-					      GNOME_STOCK_BUTTON_NO,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_QUESTION,
+					       GTK_BUTTONS_YES_NO,
+					       show_mess);
 		g_free (show_mess);
-		choice = gnome_dialog_run (GNOME_DIALOG (mess));
-		if (choice == 0) 
+		choice = gtk_dialog_run (GTK_DIALOG (mess));
+		if (choice == GTK_RESPONSE_YES) 
 			mixer_command = g_strdup (temp_file);
 		else
 			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v))), mixer_command);
+			gtk_widget_destroy (mess);
 	}
 	
 	/* Check whetever the specified command is a full path or just the name (check for a '/') */
@@ -528,19 +531,20 @@ on_propertybox_apply_activate (GtkWidget* widget,
 
 	if (fullpath) {
 		/* Check if the given mixer command exists -------------------- */
-		if (!g_file_exists (temp_file)) {
+		if (!g_file_test (temp_file, G_FILE_TEST_EXISTS)) {
 			show_mess = g_strdup_printf (_("File %s in 'mixer command' does not exist.\nDo you want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (show_mess,
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
+			mess = gtk_message_dialog_new (NULL,
+						       GTK_DIALOG_MODAL,
+						       GTK_MESSAGE_QUESTION,
+						       GTK_BUTTONS_YES_NO,
+						       show_mess);
 			g_free (show_mess);
-			choice = gnome_dialog_run (GNOME_DIALOG (mess));
-			if (choice == 0)
+			choice = gtk_dialog_run (GTK_DIALOG (mess));
+			if (choice == GTK_RESPONSE_YES)
 				mixer_command = g_strdup (temp_file);
 			else
 				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.Mixer_fileentry_v))), mixer_command);
+			gtk_widget_destroy (mess);
 		}
 		else
 			mixer_command = g_strdup (temp_file);
@@ -553,17 +557,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 
 	if (!g_strcasecmp (temp_file, "")) {
 		show_mess = g_strdup_printf (_("You havn't entered a temp dir. You will not be able to record.\nDo you want to use it anyway?"));
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_QUESTION,
-					      GNOME_STOCK_BUTTON_YES,
-					      GNOME_STOCK_BUTTON_NO,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_QUESTION,
+					       GTK_BUTTONS_YES_NO,
+					       show_mess);
 		g_free (show_mess);
-		choice = gnome_dialog_run (GNOME_DIALOG (mess));
-		if (choice == 0) 
+		choice = gtk_dialog_run (GTK_DIALOG (mess));
+		if (choice == GTK_RESPONSE_YES) 
 			temp_dir = g_strdup (temp_file);
 		else
 			gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
+		gtk_widget_destroy (mess);
 		tempdir = TRUE;
 	}
 
@@ -572,17 +577,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		if (!stat (temp_file, &file_info)) {         /* Exists */
 			if (!S_ISDIR (file_info.st_mode)) {   /* Not a directory */
 				show_mess = g_strdup_printf (_("Temp directory %s is a file.\nDo you want to use it anyway?"), temp_file);
-				mess = gnome_message_box_new (show_mess,
-							      GNOME_MESSAGE_BOX_QUESTION,
-							      GNOME_STOCK_BUTTON_YES,
-							      GNOME_STOCK_BUTTON_NO,
-							      NULL);
+				mess = gtk_message_dialog_new (NULL,
+							       GTK_DIALOG_MODAL,
+							       GTK_MESSAGE_QUESTION,
+							       GTK_BUTTONS_YES_NO,
+							       show_mess);
 				g_free (show_mess);
-				choice = gnome_dialog_run (GNOME_DIALOG (mess));
-				if (choice == 0)
+				choice = gtk_dialog_run (GTK_DIALOG (mess));
+				if (choice == GTK_RESPONSE_YES)
 					temp_dir = g_strdup (temp_file);
 				else
 					gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
+				gtk_widget_destroy (mess);
 			}
 			else  { /* Exists and is a directory */
 				gint ok;
@@ -592,17 +598,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 
 				if (ok == -1) {
 					show_mess = g_strdup_printf (_("You don't have the correct permissions (read & write) for temp directory %s.\nDo you want to use it anyway?"), temp_file);
-					mess = gnome_message_box_new (show_mess,
-								      GNOME_MESSAGE_BOX_QUESTION,
-								      GNOME_STOCK_BUTTON_YES,
-								      GNOME_STOCK_BUTTON_NO,
-								      NULL);
+					mess = gtk_message_dialog_new (NULL,
+								       GTK_DIALOG_MODAL,
+								       GTK_MESSAGE_QUESTION,
+								       GTK_BUTTONS_YES_NO,
+								       show_mess);
 					g_free (show_mess);
-					choice = gnome_dialog_run (GNOME_DIALOG (mess));
-					if (choice == 0)
+					choice = gtk_dialog_run (GTK_DIALOG (mess));
+					if (choice == GTK_RESPONSE_YES)
 						temp_dir = g_strdup (temp_file);
 					else
 						gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
+					gtk_widget_destroy (mess);
 				}
 				else
 					temp_dir = g_strdup (temp_file);
@@ -610,17 +617,18 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		}
 		else if (errno == ENOENT) {                  /* Does not exist */
 			show_mess = g_strdup_printf (_("Directory %s does not exist.\nDo want to use it anyway?"), temp_file);
-			mess = gnome_message_box_new (show_mess,
-						      GNOME_MESSAGE_BOX_QUESTION,
-						      GNOME_STOCK_BUTTON_YES,
-						      GNOME_STOCK_BUTTON_NO,
-						      NULL);
+			mess = gtk_message_dialog_new (NULL,
+						       GTK_DIALOG_MODAL,
+						       GTK_MESSAGE_QUESTION,
+						       GTK_BUTTONS_YES_NO,
+						       show_mess);
 			g_free (show_mess);
-			choice = gnome_dialog_run (GNOME_DIALOG (mess));
-			if (choice == 0)
+			choice = gtk_dialog_run (GTK_DIALOG (mess));
+			if (choice == GTK_RESPONSE_YES)
 				temp_dir = g_strdup (temp_file);
 			else
 				gtk_entry_set_text (GTK_ENTRY (gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (propertywidgets.TempDir_fileentry_v))), temp_dir);
+			gtk_widget_destroy (mess);
 		}
 		else
 			temp_dir = g_strdup (temp_file);

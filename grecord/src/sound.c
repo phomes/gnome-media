@@ -39,7 +39,7 @@ get_play_time (const gchar* filename)
 	gboolean nofile = FALSE;
 
 	/* Check if there is an active file or not */
-	if (!g_file_exists (filename))
+	if (!g_file_test (filename, G_FILE_TEST_EXISTS))
 		nofile = TRUE;
 	
 	if (!nofile) {
@@ -116,7 +116,7 @@ add_echo (gchar* filename, gboolean overwrite)
 	gchar* command;
 	gchar* command_plus_make_backup;
 
-	backup_file = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	backup_file = g_build_filename (temp_dir, temp_filename_backup, NULL);
 
 	command = g_strconcat (sox_command, " ", backup_file, " ", active_file, " echo 0.8 0.88 60.0 0.4", NULL);
 	command_plus_make_backup = g_strconcat ("cp -f ", active_file, " ", backup_file, " ; ", command, NULL);

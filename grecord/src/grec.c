@@ -181,8 +181,10 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 	if (RecEng.is_running) {
 		gchar* command;
 		gchar* temp_string;
-		gchar* tfile1 = g_concat_dir_and_file (temp_dir, temp_filename_record);
-		gchar* tfile2 = g_concat_dir_and_file (temp_dir, temp_filename_play);
+		gchar* tfile1 = g_build_filename (temp_dir, 
+						  temp_filename_record, NULL);
+		gchar* tfile2 = g_build_filename (temp_dir, 
+						  temp_filename_play, NULL);
 		
 		command = g_strconcat (sox_command, " ", temp_string1, " ", temp_string2, " ",
 				       "-w ", "-s ", tfile1, " ",
@@ -195,7 +197,8 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 
 		run_command (command, _("Converting file..."));
 
-		temp_string = g_concat_dir_and_file (temp_dir, temp_filename_play);
+		temp_string = g_build_filename (temp_dir, 
+						temp_filename_play, NULL);
 
 		g_free (temp_string);
 		g_free (command);
@@ -213,9 +216,9 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	gint choice;
 	gchar* string = NULL;
 	gchar* temp_string = NULL;
-	gchar* file1 = g_concat_dir_and_file (temp_dir, temp_filename_record);
-	gchar* file2 = g_concat_dir_and_file (temp_dir, temp_filename_play);
-	gchar* file3 = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	gchar* file1 = g_build_filename (temp_dir, temp_filename_record, NULL);
+	gchar* file2 = g_build_filename (temp_dir, temp_filename_play, NULL);
+	gchar* file3 = g_build_filename (temp_dir, temp_filename_backup, NULL);
 
 	if (PlayEng.is_running || RecEng.is_running || convert_is_running)
 		on_stop_activate_cb (widget, data);
@@ -244,7 +247,7 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	if (active_file != NULL) {
 		g_free (active_file);
 	}
-	active_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	active_file = g_build_filename (temp_dir, temp_filename_play, NULL);
 	file_changed = FALSE;
 
 	set_min_sec_time (get_play_time (active_file));
@@ -308,20 +311,16 @@ on_open_activate_cb (GtkWidget* widget, gpointer data)
 
 	filesel = gtk_file_selection_new (_("Select a sound file"));
 
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
-			    "clicked", 
-			    GTK_SIGNAL_FUNC (store_filename),
-			    filesel);
+	g_signal_connect ((GTK_FILE_SELECTION (filesel)->ok_button),
+			  "clicked", G_CALLBACK (store_filename),
+			  filesel);
 
-	gtk_signal_connect (GTK_OBJECT (filesel),
-			    "destroy",
-			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-			    &filesel);
+	g_signal_connect (filesel, "destroy", G_CALLBACK (gtk_widget_destroyed),
+			  &filesel);
 
-	gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
-				   "clicked", 
-				   GTK_SIGNAL_FUNC (gtk_widget_destroy),
-				   (gpointer) filesel);
+	g_signal_connect_swapped ((GTK_FILE_SELECTION (filesel)->cancel_button),
+				  "clicked", G_CALLBACK (gtk_widget_destroy),
+				  (gpointer) filesel);
 
 	gtk_widget_show (filesel);
 }
@@ -367,9 +366,9 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 	}
 
 	/* User didn't want to save; copy the backup file to the changed file (active file) */
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	tfile = g_build_filename (temp_dir, temp_filename_backup, NULL);
 	
-	if (g_file_exists (tfile)) {
+	if (g_file_test (tfile, G_FILE_TEST_EXISTS)) {
 		command = g_strconcat ("cp -f ", tfile, " ", active_file, NULL);
 		system (command);
 		g_free (command);
@@ -380,10 +379,10 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 	remove (tfile);
 	g_free (tfile);
 
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
+	tfile = g_build_filename (temp_dir, temp_filename_record, NULL);
 	remove (tfile);
 	g_free (tfile);
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	tfile = g_build_filename (temp_dir, temp_filename_play, NULL);
 	remove (tfile);
 	g_free (tfile);
 }
@@ -403,10 +402,8 @@ on_preferences_activate_cb (GtkWidget* widget, gpointer data)
 	}
 	props = create_grecord_propertybox ();
 	
-	gtk_signal_connect (GTK_OBJECT (props),
-			    "destroy",
-			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-			    &props);
+	g_signal_connect (props, "destroy", G_CALLBACK (gtk_widget_destroyed),
+			  &props);
 	gtk_widget_show (props);
 }
 
@@ -470,7 +467,7 @@ on_decrease_speed_activate_cb (GtkWidget* widget, gpointer data)
 void
 on_add_echo_activate_cb (GtkWidget* widget, gpointer data)
 {
-	if (!g_file_exists (active_file))
+	if (!g_file_test (active_file, G_FILE_TEST_EXISTS))
 	    return;
 
 	file_changed = TRUE;
@@ -536,9 +533,10 @@ on_redo_activate_cb (GtkWidget* widget, gpointer data)
 void
 on_undoall_activate_cb (GtkWidget* widget, gpointer data)
 {
-	gchar* temp_string = g_concat_dir_and_file (temp_dir, temp_filename_backup);
+	gchar* temp_string = g_build_filename (temp_dir, 
+					       temp_filename_backup, NULL);
 
-	if (g_file_exists (temp_string)) {
+	if (g_file_test (temp_string, G_FILE_TEST_EXISTS)) {
 		gchar* t = g_strconcat ("cp -f ", temp_string, " ", active_file, NULL);
 		run_command (t, _("Undoing all changes..."));
 		g_free (t);
@@ -569,7 +567,7 @@ record_sound (void)
 	FILE *target = NULL;
 
 	/* Open the file for writing */
-	tfile = g_concat_dir_and_file (temp_dir, temp_filename_record);
+	tfile = g_build_filename (temp_dir, temp_filename_record, NULL);
 	target = fopen (tfile, "w");
 	g_free (tfile);
 
@@ -830,7 +828,8 @@ save_sound_file (const gchar* filename)
 {
 	/* Check if the file is default (if it's been recorded) */
 	if (default_file) {
-		gchar* tfile = g_concat_dir_and_file (temp_dir, temp_filename_play);
+		gchar* tfile = g_build_filename (temp_dir, 
+						 temp_filename_play, NULL);
 		gchar* command = g_strconcat ("cp -f ", tfile, " ", filename, NULL);
 		
 		/* Save the file */
@@ -943,7 +942,8 @@ UpdateStatusbarRecord (gboolean begin)
 		struct stat fileinfo;
 		static gint maxfilesize = -1;
 		static gboolean show_message = TRUE;
-		gchar* filename = g_concat_dir_and_file (temp_dir, temp_filename_record);
+		gchar* filename = g_build_filename (temp_dir, 
+						    temp_filename_record, NULL);
 		
 		if (maxfilesize == -1)
 			maxfilesize = popup_warn_mess_v;
@@ -970,7 +970,8 @@ UpdateStatusbarRecord (gboolean begin)
 	if (stop_record) {
 		struct stat fileinfo;
 		static gint maxfilesize = -1;
-		gchar* filename = g_concat_dir_and_file (temp_dir, temp_filename_record);
+		gchar* filename = g_build_filename (temp_dir, 
+						    temp_filename_record, NULL);
 
 		if (maxfilesize == -1)
 			maxfilesize = stop_record_v;
@@ -1001,13 +1002,16 @@ void
 save_dialog (void)
 {
 	GtkWidget* filesel = NULL;
-	gchar* temp_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	gchar* temp_file = g_build_filename (temp_dir, 
+					     temp_filename_play, NULL);
 
 	filesel = gtk_file_selection_new (_("Save sound file"));
 
 	if (!g_strcasecmp (active_file, temp_file)) {
 		gchar* home_dir = g_strdup (getenv ("HOME"));
-		gchar* default_file = g_concat_dir_and_file (home_dir, _(temp_filename_play));
+		gchar* default_file = g_build_filename (home_dir, 
+							_(temp_filename_play),
+							NULL);
 
 		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), default_file);
 
@@ -1017,15 +1021,12 @@ save_dialog (void)
 	else
 		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), active_file);
 		
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
-			    "clicked", 
-			    GTK_SIGNAL_FUNC (save_filename),
-			    filesel);
+	g_signal_connect ((GTK_FILE_SELECTION (filesel)->ok_button),
+			  "clicked", G_CALLBACK (save_filename), filesel);
 
-	gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
-				   "clicked", 
-				   GTK_SIGNAL_FUNC (gtk_widget_destroy),
-				   (gpointer) filesel);
+	g_signal_connect_swapped ((GTK_FILE_SELECTION (filesel)->cancel_button),
+				  "clicked", G_CALLBACK (gtk_widget_destroy),
+				  (gpointer) filesel);
 
 	gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
 	
@@ -1038,7 +1039,7 @@ void
 is_file_default (void)
 {
 	gchar* temp_string;
-	temp_string = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	temp_string = g_build_filename (temp_dir, temp_filename_play, NULL);
 
 	if (!g_strcasecmp (temp_string, active_file))
 	        default_file = TRUE;
@@ -1147,7 +1148,7 @@ soundfile_supported (const gchar* filename)
 	gint soundtype = afGetFileFormat (filetype, NULL);
 
 	/* Check if the file exists */
-	if (!g_file_exists (filename))
+	if (!g_file_test (filename, G_FILE_TEST_EXISTS))
 		return FALSE;
 
 	/* Check if the file is a valid soundfile */

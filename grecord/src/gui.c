@@ -109,7 +109,7 @@ static GnomeUIInfo edit_menu_uiinfo[] =
 		GNOME_APP_UI_ITEM, N_("Undo all changes"),
 		N_("Undo all changes made on the current sample"),
 		on_undoall_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO,
+		GNOME_APP_PIXMAP_STOCK, GTK_STOCK_UNDO,
 		0, 0, NULL,
 	},
 	/* GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL), */
@@ -251,7 +251,9 @@ create_grecord_window (void)
 
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 
-	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-play.png");
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
+					      "gnome-media/gnome-sound-recorder/media-play.png",
+					      TRUE, NULL);
 	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
 	g_free (fullname);
 
@@ -263,7 +265,9 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Play_button);
 
-	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-stop.png");
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
+					      "gnome-media/gnome-sound-recorder/media-stop.png",
+					      TRUE, NULL);
 	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
 	g_free (fullname);
 
@@ -275,7 +279,9 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Stop_button);
 
-	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-rec.png");
+	fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP,
+					      "gnome-media/gnome-sound-recorder/media-rec.png", 
+					      TRUE, NULL);
 	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
 	g_free (fullname);
 	
@@ -393,17 +399,20 @@ create_grecord_window (void)
 	
 	/* Initiate mainwindow and set the topic */
 	is_file_default ();
-	found_file = g_file_exists (active_file);
+	found_file = g_file_test (active_file, G_FILE_TEST_EXISTS);
 
 	if (!found_file && !default_file) {
 		gchar* show_mess = g_strdup_printf (_("File '%s' doesn't exist; using default."), active_file);
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_WARNING,
-					      GNOME_STOCK_BUTTON_OK,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_WARNING,
+					       GTK_BUTTONS_OK, 
+					       show_mess);
 		g_free (show_mess);
+		gtk_dialog_run (GTK_DIALOG(mess));
 		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
 		gtk_widget_show (mess);
+		gtk_widget_destroy (mess);
 
 		grecord_set_sensitive_nofile ();
 	}
@@ -418,13 +427,16 @@ create_grecord_window (void)
 	
 	if ((found_file || default_file) && unsupported_soundfile) {
 		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a supported soundfile."), active_file);
-		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_WARNING,
-					      GNOME_STOCK_BUTTON_OK,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_MODAL,
+					       GTK_MESSAGE_WARNING,
+					       GTK_BUTTONS_OK,
+					       show_mess);
 		g_free (show_mess);
+		gtk_dialog_run (GTK_DIALOG (mess));
 		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
 		gtk_widget_show (mess);
+		gtk_widget_destroy (mess);
 		
 		grecord_set_sensitive_nofile ();
 	}
@@ -432,11 +444,16 @@ create_grecord_window (void)
 	set_min_sec_time (get_play_time (active_file));
  
 	/* Setup some callbacks */
-	gtk_signal_connect (GTK_OBJECT (grecord_window), "delete_event", GTK_SIGNAL_FUNC (on_exit_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (New_button), "clicked", GTK_SIGNAL_FUNC (on_new_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (Record_button), "clicked", GTK_SIGNAL_FUNC (on_record_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (Play_button), "clicked", GTK_SIGNAL_FUNC (on_play_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (Stop_button), "clicked", GTK_SIGNAL_FUNC (on_stop_activate_cb), NULL);
+	g_signal_connect (grecord_window, "delete_event", 
+			  G_CALLBACK (on_exit_activate_cb), NULL);
+	g_signal_connect (New_button, "clicked", 
+			  G_CALLBACK (on_new_activate_cb), NULL);
+	g_signal_connect (Record_button, "clicked", 
+			  G_CALLBACK (on_record_activate_cb), NULL);
+	g_signal_connect (Play_button, "clicked", 
+			  G_CALLBACK (on_play_activate_cb), NULL);
+	g_signal_connect (Stop_button, "clicked", 
+			  G_CALLBACK (on_stop_activate_cb), NULL);
 	
 	return grecord_window;
 }
@@ -1152,10 +1169,17 @@ create_grecord_propertybox (void)
 		gtk_widget_set_sensitive (playxtimes_spinbutton, FALSE);
 
 	/* Callbacks ---------------------------------------------------------------------------- */
-	gtk_signal_connect (GTK_OBJECT (PopupWarnMessSize_checkbox), "clicked", GTK_SIGNAL_FUNC (on_checkbox_clicked_activate_cb), WarningSize_spinbutton);
-	gtk_signal_connect (GTK_OBJECT (StopRecordSize_checkbox), "clicked", GTK_SIGNAL_FUNC (on_checkbox_clicked_activate_cb), StopRecordSize_spinbutton);
-	gtk_signal_connect (GTK_OBJECT (playrepeat_checkbox), "clicked", GTK_SIGNAL_FUNC (on_repeat_activate_cb), NULL);
-	gtk_signal_connect (GTK_OBJECT (playxtimes_radiobutton), "toggled", GTK_SIGNAL_FUNC (on_checkbox_clicked_activate_cb), playxtimes_spinbutton);
+	g_signal_connect (PopupWarnMessSize_checkbox, "clicked", 
+			  G_CALLBACK (on_checkbox_clicked_activate_cb), 
+			  WarningSize_spinbutton);
+	g_signal_connect (StopRecordSize_checkbox, "clicked", 
+			  G_CALLBACK (on_checkbox_clicked_activate_cb), 
+			  StopRecordSize_spinbutton);
+	g_signal_connect (playrepeat_checkbox, "clicked", 
+			  G_CALLBACK (on_repeat_activate_cb), NULL);
+	g_signal_connect (playxtimes_radiobutton, "toggled", 
+			  G_CALLBACK (on_checkbox_clicked_activate_cb), 
+			  playxtimes_spinbutton);
 
 	return grecord_propertybox;
 }
