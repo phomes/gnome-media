@@ -517,17 +517,17 @@ device_info *open_device(int num)
 	if ((res==EINVAL) || (ver!=SOUND_VERSION)) {
 		if (res == EINVAL) {
 			fprintf(stderr, 
-				"Warning: This version of gmix was compiled with\n"
+				_("Warning: This version of gmix was compiled with\n"
 				"OSS version %d.%d.%d, and your system is running\n"
-				"a version prior to 3.6.0.\n", 
+				"a version prior to 3.6.0.\n"), 
 				SOUND_VERSION >> 16, 
 				(SOUND_VERSION >> 8) & 0xff, 
 				SOUND_VERSION & 0xff);
 		} else {
 			fprintf(stderr, 
-				"Warning: This version of gmix was compiled with\n"
+				_("Warning: This version of gmix was compiled with\n"
 				"OSS version %d.%d.%d, and your system is running\n"
-				"version %d.%d.%d.\n", 
+				"version %d.%d.%d.\n"), 
 				SOUND_VERSION >> 16, 
 				(SOUND_VERSION >> 8) & 0xff, 
 				SOUND_VERSION & 0xff,
