@@ -362,7 +362,7 @@ do_sites_response (PropertyDialog *pd,
 		break;
 
 	case 401:
-		g_print ("No site info available\n");
+		g_print ("No site information available\n");
 		g_print ("%s\n", response);
 		more = FALSE;
 		break;
@@ -677,7 +677,7 @@ create_dialog (GtkWidget *window)
 
 	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
 	g_print ("info: %d\n", info);
-	pd->no_info = gtk_radio_button_new_with_mnemonic (NULL, _("Send _no info"));
+	pd->no_info = gtk_radio_button_new_with_mnemonic (NULL, _("Send _no information"));
 	if (info == CDDB_SEND_FAKE_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->no_info), TRUE);
 	}
@@ -686,7 +686,7 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (vbox), pd->no_info, FALSE, FALSE, 0);
 
 	pd->real_info = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->no_info),
-									_("Send real _info"));
+									_("Send real _information"));
 	if (info == CDDB_SEND_REAL_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->real_info), TRUE);
 	}
@@ -695,7 +695,7 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (vbox), pd->real_info, FALSE, FALSE, 0);
 
 	pd->specific_info = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->real_info),
-									    _("Send _other info..."));
+									    _("Send _other information..."));
 	if (info == CDDB_SEND_OTHER_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->specific_info), TRUE);
 	}
