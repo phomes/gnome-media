@@ -41,6 +41,7 @@
 
 void die(int signal);
 int remove_cache(char *req);
+void my_exit(int errorcode);
 
 extern char *g_req;
 
@@ -50,7 +51,7 @@ void die(int signal)
     sleep(5); /* wait a bit */
     set_status(STATUS_NONE, "");
     remove_cache(g_req);
-    exit(signal);
+    my_exit(signal);
 }
 
 int opensocket( char *hostname, int port )

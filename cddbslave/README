@@ -17,7 +17,7 @@ version		Version of client
 pid		Process to signal when request has completed.
 
 The slave will then close the pipe connect, process the request, and then
-send a SIGUSR1 to <pid>, notifying it that the process has been completed.
+send a SIGUSR2 to <pid>, notifying it that the process has been completed.
 The application should then reload the relevent file, and update displays
 accordingly.
 

@@ -24,6 +24,7 @@ void getusername_safe(char *buf, int len);
 void gethostname_safe(char *buf, int len);
 void die(int signal);
 int do_request(char *req, int fd);
+void my_exit(int errorcode);
 
 int check_cache(char *req);
 int create_cache(char *req);
@@ -50,19 +51,32 @@ const gchar *status_msg[] = {
     N_("Error reading [%s]\n"),
     N_("No match found for %s\n"),
     N_("Timeout: %s\n"),
-    N_("Done. %s\n"),
+    N_("Inactive. %s\n"),
 };
+
+void my_exit(int errorcode)
+{
+    remove(gnome_util_home_file(".cddbstatus_lock"));
+    exit(errorcode);
+}
+
 
 int main(int argc, char *argv[])
 {
     char req[512], client[512];
     int cddev;
+    int i;
+    FILE *tf;
+
+    tf = fopen(gnome_util_home_file(".cddbstatus_lock"), "w");
+    fprintf(tf, "%p\n", tf);
+    if(tf)
+	fclose(tf);
+
 
     fgets(req, 511, stdin);	/* grab the cddb request */
     fgets(client, 511, stdin);	/* and then the client info */
-    
-    sscanf(client, "client %s %s %d %d\n", client_name, client_ver, &pid, &cddev);
-
+    i = sscanf(client, "client %s %s %d %d\n", client_name, client_ver, &pid, &cddev);
     gnomelib_init("cddbslave", VERSION);
     server = gnome_config_get_string("/cddbslave/server/address=us.cddb.com");
     port = gnome_config_get_int("/cddbslave/server/port=8880");
@@ -72,7 +86,7 @@ int main(int argc, char *argv[])
     close(cddev);
 
     if(check_cache(req))
-	exit(0);
+	my_exit(0);
     create_cache(req);
 
     if(fork()==0)
@@ -105,7 +119,7 @@ int main(int argc, char *argv[])
 	    set_status(STATUS_NONE, "");
 	    remove_cache(req);
 	    disconnect(fd);
-	    exit(-1);
+	    my_exit(-1);
 	}
 
 	/* open directory for scanning */
@@ -117,7 +131,7 @@ int main(int argc, char *argv[])
 	    set_status(STATUS_NONE, "");
 	    remove_cache(req);
 	    disconnect(fd);
-	    exit(-1);
+	    my_exit(-1);
 	}
 
 	/* scan for cached queries */
@@ -148,7 +162,8 @@ int main(int argc, char *argv[])
 	g_free(dname);
 	disconnect(fd);
     }
-    exit(EXIT_SUCCESS);
+    my_exit(EXIT_SUCCESS);
+    return 0; /* bah, silence gcc */
 }
 
 int do_request(char *req, int fd)
@@ -194,7 +209,6 @@ int do_request(char *req, int fd)
     /* alright, our query response was positive, now send the read request. */
     read_query(buf, fd, 512);
     set_status(STATUS_NONE, "");
-    kill(pid, SIGUSR1);
     return 0;
 }
 
@@ -276,6 +290,8 @@ void read_query(char *s, int fd, int len)
    
     fclose(fp);
     g_free(fname);
+
+    kill(pid, SIGUSR2);
     return;
 }
 
@@ -290,7 +306,6 @@ char *get_file_name(char *discid)
 
     /* Make our directory if it doesn't exist. */
     g_snprintf(fname, 511, "%s/.cddbslave", homedir);
-    g_print("Fname: %s\n", fname);
     if(stat(fname, &fs) < 0)
     {
 	if(errno == ENOENT)
@@ -393,15 +408,13 @@ int remove_cache(char *req)
     return TRUE;
 }
 
-/* FIXME: this assumes that /tmp is your temp dir. */
 void set_status(int status, gchar *info)
 {
-    char tmp[512];
     FILE *fp;
     static char *status_file;
 
     if (!status_file){
-	    status_file = gnome_util_home_file ("cddbstatus");
+	    status_file = gnome_util_home_file (".cddbstatus");
     }
 	    
     if(status == STATUS_NONE)
