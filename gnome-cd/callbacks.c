@@ -20,6 +20,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-help.h>
+#include <gtk/gtk.h>
 
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-control.h>
@@ -40,6 +41,7 @@ static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
 
 static gboolean position_auto_update=TRUE;
 static gboolean position_update_ignore_event=FALSE;
+static gchar* discid_prev;
 
 static void
 maybe_close_tray (GnomeCD *gcd)
@@ -1087,11 +1089,37 @@ open_track_editor (GtkWidget *widget,
 	GnomeCDRomCDDBData *data;
 	CORBA_Environment ev;
 	char *discid;
-	
+	gint result = GTK_RESPONSE_YES;
+
 	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, &error) == FALSE) {
 		gcd_warning ("gnome_cdrom_get_cddb_data returned FALSE: %s", error);
 		g_error_free (error);
 		return;
+	}
+	
+	discid = g_strdup_printf ("%08lx", (gulong) data->discid);
+
+	if (discid_prev != NULL) {
+		gint string_compare;
+		gboolean same_cd;
+		same_cd = g_str_equal(discid,discid_prev);
+		if (!same_cd) {
+
+			gchar *text = g_strdup_printf ("<b>%s</b>\n\n%s\n%s",
+            	   				    _("Contents in the CDDB has Changed"),
+		                                    _("Choosing 'Yes' will delete the previous contents in CDDB."),
+                		                    _("Do u wish to Continue"));
+
+			GtkWidget *dialog ;
+			dialog = gtk_message_dialog_new (NULL, 0,
+                		                         GTK_MESSAGE_WARNING,
+                					 GTK_BUTTONS_YES_NO,
+							 text);
+			gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label), TRUE);
+			result = gtk_dialog_run (GTK_DIALOG (dialog));
+			gtk_widget_destroy(dialog);
+
+   		}
 	}
 	
 	CORBA_exception_init (&ev);
@@ -1120,7 +1148,11 @@ open_track_editor (GtkWidget *widget,
 
 	if (data != NULL) {
 		discid = g_strdup_printf ("%08lx", (gulong) data->discid);
-		GNOME_Media_CDDBTrackEditor_setDiscID (track_editor, discid, &ev);
+		if (result == GTK_RESPONSE_NO) 
+		GNOME_Media_CDDBTrackEditor_setDiscID (track_editor, discid_prev, &ev);
+               if (result == GTK_RESPONSE_YES){
+               GNOME_Media_CDDBTrackEditor_setDiscID (track_editor, discid, &ev);
+		discid_prev = g_strdup (discid);}
 		g_free (discid);
 	}
 	
