@@ -395,7 +395,6 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
     {
 	msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
 	msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
-	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame - 1;
 	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
 	decrement_msf_end_by_one (&msf);
 
