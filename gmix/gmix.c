@@ -288,7 +288,7 @@ device_info *open_device(int num)
 #ifdef OSS_GETVERSION
 	res=ioctl(new_device->fd, OSS_GETVERSION, &ver);
 	if ((res!=EINVAL) && (ver!=SOUND_VERSION)) {
-		fprintf(stderr, "warning: this version of gmix was compiled with a different version of\nsoundcard.h.\n");
+		fprintf(stderr, "Warning: This version of gmix was compiled with a different version of\nsoundcard.h.\n");
 	}
 #endif
 	/*
@@ -323,17 +323,14 @@ device_info *open_device(int num)
 	new_device->enabled_bitmask=new_device->devmask;	/* all enabled */
 	for (cnt=0; cnt<SOUND_MIXER_NRDEVICES; cnt++) {
 		if (new_device->devmask & (1<<cnt)) {
-			struct {
-			        unsigned char l,r;
-			        unsigned char fillup[2];
-			} vol;
+		    unsigned long vol; // l: vol&0xff, r:(vol&0xff00)>>8
 			res=ioctl(new_device->fd, MIXER_READ(cnt), &vol);
 		                                                
-			new_device->volume_left[cnt]=vol.l;
+			new_device->volume_left[cnt]=vol & 0xff;
 			if (new_device->stereodevs & (1<<cnt)) {
-				new_device->volume_right[cnt]=vol.r;
+				new_device->volume_right[cnt]=(vol&0xff00)>>8;
 			} else {
-				new_device->volume_right[cnt]=vol.l;
+				new_device->volume_right[cnt]=vol&0xff;
 			}
 		}
 	}
@@ -414,10 +411,7 @@ void free_devices(void)
 
 void init_one_device(gpointer a, gpointer b)
 {
-	struct {
-	        unsigned char l,r;
-	        unsigned char fillup[2];
-	} vol;
+    unsigned long vol;
 	int c;
 	
 	device_info *info = (device_info *)a;
@@ -426,10 +420,10 @@ void init_one_device(gpointer a, gpointer b)
 	for (c=0; c<SOUND_MIXER_NRDEVICES; c++) {
 		if (info->devmask & (1<<c)) {
 			if (info->mute_bitmask & (1<<c)) {
-				vol.l=vol.r=0;
+				vol=0;
 			} else {
-				vol.l=info->volume_left[c];
-				vol.r=info->volume_right[c];
+			    vol = info->volume_left[c];
+			    vol |= info->volume_right[c]<<8;
 			}
 			ioctl(info->fd, MIXER_WRITE(c), &vol);
 		}
@@ -693,19 +687,16 @@ void lock_cb (GtkWidget *widget, channel_info *data)
 
 void mute_cb (GtkWidget *widget, channel_info *data)
 {
-	struct {
-	        unsigned char l,r;
-	        unsigned char fillup[2];
-	} vol;
+    unsigned long vol;
 	if (data==NULL) return;
 	data->device->mute_bitmask&=~(1<<data->channel);
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
 		data->device->mute_bitmask|=1<<data->channel;
-		vol.l=vol.r=0;
+		vol=0;
 		ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 	} else {
-		vol.l=data->device->volume_left[data->channel];
-		vol.r=data->device->volume_right[data->channel];
+		vol=data->device->volume_left[data->channel];
+		vol|=data->device->volume_right[data->channel] << 8;
 		ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 	}
 }
@@ -742,10 +733,7 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 #endif
 void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 {
-	struct {
-	        unsigned char l,r;
-	        unsigned char fillup[2];
-	} vol;
+    unsigned long vol;
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -762,8 +750,8 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 	} else {
 		data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->left)->value;
 	}
-	vol.l=data->device->volume_left[data->channel];
-	vol.r=data->device->volume_right[data->channel];
+	vol=data->device->volume_left[data->channel];
+	vol|=data->device->volume_right[data->channel] << 8;
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
@@ -773,10 +761,7 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 
 void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 {
-	struct {
-	        unsigned char l,r;
-	        unsigned char fillup[2];
-	} vol;
+    unsigned long vol;
 	if (data==NULL) return;
 	
 	if (data->device->stereodevs & (1<<data->channel)) {
@@ -793,8 +778,8 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	} else {
 		data->device->volume_left[data->channel]=-GTK_ADJUSTMENT(data->left)->value;
 	}
-	vol.l=data->device->volume_left[data->channel];
-	vol.r=data->device->volume_right[data->channel];
+	vol=data->device->volume_left[data->channel];
+	vol|=data->device->volume_right[data->channel] << 8;
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
