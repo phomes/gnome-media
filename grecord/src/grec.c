@@ -230,6 +230,7 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 {
 	gchar* temp_string1 = NULL;
 	gchar* temp_string2 = NULL;
+	mode_t old_mask;
 
 	gnome_appbar_clear_stack (GNOME_APPBAR (grecord_widgets.appbar));
 
@@ -267,8 +268,10 @@ on_stop_activate_cb (GtkWidget* widget, gpointer data)
 
 		RecEng.is_running = FALSE;
 
+		old_mask = umask(0077);
 		run_command (_("Converting file..."), sox_command, temp_string1,
 			     temp_string2, "-w", "-s", tfile1, tfile2, NULL);
+		umask(old_mask);
 
 		temp_string = g_build_filename (temp_dir, 
 						temp_filename_play, NULL);
@@ -646,6 +649,16 @@ record_sound (void)
 	
 	tfile = g_build_filename (temp_dir, temp_filename_record, NULL);
 	target = fopen (tfile, "w");
+	if(target == NULL) {
+		g_free (tfile);
+		return;
+	}
+
+	/* Set permissions on new file */
+	if(fchmod (fileno (target), 0600) != 0) {
+		g_free (tfile);
+		return;
+	}
 	g_free (tfile);
 
 	/* Set up bits, channels etc after the preferences */
