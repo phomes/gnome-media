@@ -137,6 +137,13 @@ GnomeUIInfo menubar1_uiinfo[] =
 gpointer main_menu = menubar1_uiinfo;
 
 void
+save_set_sensitive (gboolean sensitivity)
+{
+	gtk_widget_set_sensitive (arkiv1_menu_uiinfo[2].widget, sensitivity);
+	gtk_widget_set_sensitive (arkiv1_menu_uiinfo[3].widget, sensitivity);
+}
+
+void
 set_window_title (const char *filename)
 {
 	char *full, *base;
@@ -340,6 +347,8 @@ create_grecord_window (void)
 	gnome_app_set_contents (GNOME_APP (grecord_window), GTK_WIDGET (vbox));
 
 	gnome_app_install_menu_hints (GNOME_APP (grecord_window), menubar1_uiinfo);
+
+	save_set_sensitive (FALSE);
 	
 	/* Initiate mainwindow and set the topic */
 	is_file_default ();

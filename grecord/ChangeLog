@@ -1,3 +1,21 @@
+2002-04-04  Iain <iain@ximian.com>
+
+	* src/grec.c (on_record_activate_cb): Unghost the save buttons.
+	(on_new_activae_cb): Ghost them.
+	(on_add_echo_activatE_cb): Unghost.
+	(store_filename): ghost.
+	(save_filename): ghost.
+	(save_sound_file): Ghost.
+	(grec_button_new_with_stock_image): Steal code to make a pretty button
+	from Gedit.
+	(grec_dialog_add_button): Make a pretty button and add it to the
+	dialog.
+	(save_dont_or_cancel): Add pretty buttons to the dialog.
+
+	* gui.c (save_set_sensitive): Set the sensitivity on the save menu
+	items.
+	(create_grecord_window): Ghost the save items.
+
 2002-04-02  Iain <iain@ximian.com>
 
 	* src/grec.c (on_runmixer_activate_cb): USe DEFAULT_MIXER instead of

@@ -77,6 +77,7 @@ on_record_activate_cb (GtkWidget* widget, gpointer data)
 		return;
 
 	grecord_set_sensitive_progress ();
+	save_set_sensitive (TRUE);
 	file_changed = TRUE;
 
 	/* Reset record-time and stuff */
@@ -242,14 +243,17 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 	g_free (file2);
 	g_free (file3);
 
+	
 	default_file = TRUE;
-
+	
+	
 	if (active_file != NULL) {
 		g_free (active_file);
 	}
 	active_file = g_build_filename (temp_dir, temp_filename_play, NULL);
 	file_changed = FALSE;
-
+	save_set_sensitive (FALSE);
+	
 	set_min_sec_time (get_play_time (active_file));
 
 	grecord_set_sensitive_nofile ();
@@ -471,6 +475,7 @@ on_add_echo_activate_cb (GtkWidget* widget, gpointer data)
 	    return;
 
 	file_changed = TRUE;
+	save_set_sensitive (TRUE);
 	add_echo (active_file, TRUE);
 }
 
@@ -660,6 +665,7 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 	}
 	active_file = g_strdup (tempfile);
 	file_changed = FALSE;
+	save_set_sensitive (FALSE);
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
 	
 	grecord_set_sensitive_file ();
@@ -783,7 +789,79 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 
 	set_window_title (active_file);
 	file_changed = FALSE;
+	save_set_sensitive (FALSE);
 	file_selector = NULL;
+}
+
+/* Yes I stole this from GEdit. */
+static GtkWidget *
+grec_button_new_with_stock_image (const char *text,
+				  const char *stock_id)
+{
+	GtkWidget *button;
+	GtkStockItem item;
+	GtkWidget *label;
+	GtkWidget *image;
+	GtkWidget *hbox;
+	GtkWidget *align;
+
+	button = gtk_button_new ();
+
+	if (GTK_BIN (button)->child) {
+		gtk_container_remove (GTK_CONTAINER (button),
+				      GTK_BIN (button)->child);
+	}
+
+	if (gtk_stock_lookup (stock_id, &item)) {
+		label = gtk_label_new_with_mnemonic (text);
+		gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
+
+		image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+		hbox = gtk_hbox_new (FALSE, 2);
+		align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+		gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+		gtk_container_add (GTK_CONTAINER (button), align);
+		gtk_container_add (GTK_CONTAINER (align), hbox);
+		gtk_widget_show_all (align);
+
+		return button;
+	}
+
+	label = gtk_label_new_with_mnemonic (text);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
+	
+	gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
+	gtk_widget_show (label);
+	gtk_container_add (GTK_CONTAINER (button), label);
+
+	return button;
+}
+
+static GtkWidget *
+grec_dialog_add_button (GtkDialog *dialog,
+			const char *text,
+			const char *stock_id,
+			int response_id)
+{
+	GtkWidget *button;
+
+	g_return_val_if_fail (GTK_IS_DIALOG (dialog), NULL);
+	g_return_val_if_fail (text != NULL, NULL);
+	g_return_val_if_fail (stock_id != NULL, NULL);
+
+	button = grec_button_new_with_stock_image (text, stock_id);
+	g_return_val_if_fail (button != NULL, NULL);
+
+	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+
+	gtk_widget_show (button);
+
+	gtk_dialog_add_action_widget (dialog, button, response_id);
+
+	return button;
 }
 
 gint
@@ -803,13 +881,16 @@ save_dont_or_cancel (const char *quit_text)
 	mess = gtk_message_dialog_new (grecord_widgets.grecord_window, 0,
 				       GTK_MESSAGE_WARNING,
 				       GTK_BUTTONS_NONE,
-				       _("<b>Save the changes to %s?</b>\nIf you don't save, these changes will be discarded."),
+				       _("<b>Do you want to save the changes you made to \"%s\"?</b>\n"
+					 "\nYour changes will be lost is you don't save them."),
 				       filename);
 	
-	gtk_dialog_add_buttons (GTK_DIALOG (mess),
-				_("Don't save"), DONTSAVE,
-				quit_text, CANCEL,
-				_("Save"), SAVE, NULL);
+	grec_dialog_add_button (GTK_DIALOG (mess),
+				_("Do_n't save"), GTK_STOCK_NO, DONTSAVE);
+	grec_dialog_add_button (GTK_DIALOG (mess),
+				quit_text, GTK_STOCK_CANCEL, CANCEL);
+	gtk_dialog_add_button (GTK_DIALOG (mess),
+			       GTK_STOCK_SAVE, SAVE);
 	gtk_dialog_set_default_response (GTK_DIALOG (mess), 0);
 
 	title = g_strdup_printf (_("Save %s?"), filename);
@@ -844,6 +925,8 @@ save_sound_file (const gchar* filename)
 
 		/* It's saved now */
 		default_file = FALSE;
+		save_set_sensitive (FALSE);
+		file_changed = FALSE;
 	}
 
 	/* No saving is needed, because the changes go directly to the active file; don't worry, */
@@ -1023,14 +1106,14 @@ save_dialog (void)
 
 	if (!g_strcasecmp (active_file, temp_file)) {
 		gchar* home_dir = g_strdup (getenv ("HOME"));
-		gchar* default_file = g_build_filename (home_dir, 
-							_(temp_filename_play),
-							NULL);
+		gchar* d_file = g_build_filename (home_dir, 
+						  _(temp_filename_play),
+						  NULL);
 
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), default_file);
+		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), d_file);
 
 		g_free (home_dir);
-		g_free (default_file);
+		g_free (d_file);
 	}
 	else
 		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), active_file);
@@ -1055,10 +1138,11 @@ is_file_default (void)
 	gchar* temp_string;
 	temp_string = g_build_filename (temp_dir, temp_filename_play, NULL);
 
-	if (!g_strcasecmp (temp_string, active_file))
+	if (!g_strcasecmp (temp_string, active_file)) {
 	        default_file = TRUE;
-	else
+	} else {
 		default_file = FALSE;
+	}
 
 	g_free (temp_string);
 }
