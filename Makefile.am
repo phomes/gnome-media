@@ -14,7 +14,10 @@ SUBDIRS = $(always_built_SUBDIRS) $(extace) \
 DIST_SUBDIRS = $(always_built_SUBDIRS) extace \
 	       vu-meter gmix tcd
 
-EXTRA_DIST = gnome-media.spec configure
+EXTRA_DIST = gnome-media.spec.in configure
+
+dist-hook:
+	cp gnome-media.spec $(distdir)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in `macros/' change
 @MAINT@include macros/macros.dep
