@@ -106,7 +106,7 @@ static GnomeUIInfo radio_menu[] = {
 };
 
 static GnomeUIInfo file_menu[] = {
-  GNOMEUIINFO_SUBTREE_HINT (N_("Change device"),
+  GNOMEUIINFO_SUBTREE_HINT (N_("_Change device"),
 			    N_("Control volume on a different device"),
 			    radio_menu),
   GNOMEUIINFO_SEPARATOR,
