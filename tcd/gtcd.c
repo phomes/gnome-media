@@ -430,7 +430,10 @@ void draw_titles(void)
 		  strlen(cd.album));
     gdk_draw_text(status_db,tfont,gc,4,39+inc+inc, cd.trk[cd.cur_t].name, 
 		  strlen(cd.trk[cd.cur_t].name));
-    gtk_window_set_title( GTK_WINDOW(window), cd.trk[cd.cur_t].name );
+    if (cd.cur_t == 0)
+      gtk_window_set_title(GTK_WINDOW(window), cd.dtitle);
+    else
+      gtk_window_set_title(GTK_WINDOW(window), cd.trk[cd.cur_t].name);
 }
 
 void draw_time_scanning(void)
@@ -514,6 +517,7 @@ void draw_status(void)
 	strncpy(tmp, cd.errmsg, sizeof(tmp));
 	gdk_draw_text(status_db,tfont,gc,
 		      4, 39, tmp, strlen(tmp));
+	gtk_window_set_title(GTK_WINDOW(window), PACKAGE" "VERSION" ");
     }
 
     /* Finally, update the display */

@@ -76,6 +76,7 @@ GNOME_CDAudio create_cdaudio(PortableServer_POA poa, CORBA_Environment * ev)
 
 int main(int argc, char *argv[])
 {
+	FILE *fp;
     PortableServer_ObjectId objid = {0, sizeof("cdaudio_server"), "cdaudio_server"};
     PortableServer_POA poa;
     GNOME_CDAudio cdaudio;
@@ -101,19 +102,24 @@ int main(int argc, char *argv[])
 							     &ev);
 
     cdaudio = create_cdaudio(poa, &ev);
-//    g_print("getting name_service..\n");
+    g_print("getting name_service..\n");
     name_service = gnome_name_service_get();
-//    g_print("registering...\n");
+    g_print("registering...\n");
     goad_server_register(name_service, cdaudio, "CDAudio", "object", &ev);
-//    g_print("registered\n");
+    g_print("registered\n");
+
 
     retval = CORBA_ORB_object_to_string(orb, cdaudio, &ev);
-    fprintf(stderr, "\n%s\n", retval);
+    g_print("MYIOR: %s\n", retval);
+    fprintf(stdout, "\n%s\n", retval);
+    fflush(stdout);
 
     CORBA_free(retval);
-
+    g_print("running ORB\n");
     CORBA_ORB_run(orb, &ev);
-    
+    fp = fopen("/home/timg/cvs/gnome-media/tcd/corba/blah.log", "w");
+    fprintf(fp, "exiting...\n");   
+    fclose(fp);
     return 0;
 }
 

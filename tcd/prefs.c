@@ -29,6 +29,7 @@
 #include "gtcd_public.h"
 #include "keybindings.h"
 #include "prefs.h"
+#include "cddb_props.h"
 
 static GtkWidget *pref_window=NULL;
 
@@ -423,6 +424,8 @@ static void select_row_cb(GtkCList *clist,
     gtk_clist_get_text(clist, row, 0, &text);
     kb = gtk_object_get_data(GTK_OBJECT(clist), text);
     entry = gtk_object_get_data(GTK_OBJECT(clist), "entry");
+    if(!kb) /* FIXME this is broken...? */
+	return;
     ctrl_check = gtk_object_get_data(GTK_OBJECT(clist), "ctrl_check");
     alt_check = gtk_object_get_data(GTK_OBJECT(clist), "alt_check");
     shift_check = gtk_object_get_data(GTK_OBJECT(clist), "shift_check");
@@ -535,10 +538,13 @@ void preferences(GtkWidget *widget, void *data)
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
 			     create_page(), label);
     
-    
     label = gtk_label_new(_("Keybindings"));
     gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
     			     key_page(), label);
+
+    label = gtk_label_new(_("CDDB Settings"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
+    			     create_cddb_page(), label);
 	
     gtk_signal_connect(GTK_OBJECT(pref_window),
 		       "apply", GTK_SIGNAL_FUNC(apply_cb), NULL);

@@ -154,7 +154,7 @@ void edit_window(GtkWidget *widget, gpointer data)
 			      0,1, 1,2);
 
     gtk_container_add(GTK_CONTAINER(disc_frame), disc_table);
-    gtk_box_pack_start_defaults(GTK_BOX(main_box), disc_frame);
+    gtk_box_pack_start(GTK_BOX(main_box), disc_frame, FALSE, FALSE, 0);
     /* END Disc area */
 	
     /* Track area */
@@ -189,14 +189,14 @@ void edit_window(GtkWidget *widget, gpointer data)
     track_frame = gtk_frame_new(_("Track Information"));
 	
     gtk_box_pack_start_defaults(GTK_BOX(entry_box), track_entry);
-    gtk_box_pack_start_defaults(GTK_BOX(track_vbox), entry_box);
+    gtk_box_pack_start(GTK_BOX(track_vbox), entry_box, FALSE, FALSE, 0);
     gtk_box_pack_start_defaults(GTK_BOX(track_vbox), track_list_window);
     gtk_container_add(GTK_CONTAINER(track_frame), track_vbox);
     gtk_box_pack_start_defaults(GTK_BOX(main_box), track_frame);	
     /* END Track area */
 
     button_box = gtk_hbox_new(TRUE, GNOME_PAD_SMALL);
-    gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
+    gtk_box_pack_start(GTK_BOX(main_box), button_box, FALSE, FALSE, 0);
 
     /* Clear button */
     button = gtk_button_new_with_label(_("Clear"));
@@ -224,7 +224,7 @@ void edit_window(GtkWidget *widget, gpointer data)
     gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
     gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		       GTK_SIGNAL_FUNC(destroy_window), (gpointer)FALSE);
-    gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
+    gtk_box_pack_start(GTK_BOX(main_box), button_box, FALSE, FALSE, 0);
 
     gtk_signal_connect(GTK_OBJECT(track_list), "select_row",
 		       GTK_SIGNAL_FUNC(select_row_cb), track_entry);

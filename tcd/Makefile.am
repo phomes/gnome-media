@@ -31,7 +31,9 @@ gtcd_SOURCES = 		\
 	keybindings.c	\
 	keybindings.h	\
 	gtcd_public.h	\
-	cddb_status.c
+	cddb_status.c	\
+	cddb_props.c	\
+	cddb_props.h
 
 tcd_SOURCES = 		\
 	tcd.c 		\
