@@ -165,23 +165,23 @@ static GtkWidget *create_start_frame()
 
     /* do nothing */
     do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(do_nothing), (prefs.start_action==DoNothing)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.start_action==DoNothing)?1:0);
 
     /* start playing */
     start_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 	_("Start Playing"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(start_playing), (prefs.start_action==StartPlaying)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(start_playing), (prefs.start_action==StartPlaying)?1:0);
     
     /* stop playing */
     stop_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 	_("Stop Playing"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(stop_playing), (prefs.start_action==StopPlaying)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.start_action==StopPlaying)?1:0);
 	
     /* close tray */
     close_tray = gtk_check_button_new_with_label(_("Close Tray"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(close_tray), prefs.close_tray_on_start);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), prefs.close_tray_on_start);
 
     gtk_signal_connect(GTK_OBJECT(close_tray), "clicked",
 		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.close_tray_on_start);
@@ -220,25 +220,25 @@ static GtkWidget *create_exit_frame()
 
     /* do nothing */
     do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(do_nothing), (prefs.exit_action==DoNothing)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(do_nothing), (prefs.exit_action==DoNothing)?1:0);
     
     /* stop playing */
     stop_playing = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 	_("Stop Playing"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(stop_playing), (prefs.exit_action==StopPlaying)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(stop_playing), (prefs.exit_action==StopPlaying)?1:0);
 
     /* open tray */
     open_tray = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 	_("Open Tray"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(open_tray), (prefs.exit_action==OpenTray)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(open_tray), (prefs.exit_action==OpenTray)?1:0);
         
     /* close tray */
     close_tray = gtk_radio_button_new_with_label(
 	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
 	_("Close Tray"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(close_tray), (prefs.exit_action==CloseTray)?1:0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(close_tray), (prefs.exit_action==CloseTray)?1:0);
 
     gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
 		       GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(DoNothing));
@@ -340,14 +340,14 @@ GtkWidget *create_general_frame()
     
     /* show handles */
     handles = gtk_check_button_new_with_label(_("Show Handles (Restart of TCD required)"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handles), prefs.handle);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(handles), prefs.handle);
     gtk_signal_connect(GTK_OBJECT(handles), "clicked",
 		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle);
     gtk_box_pack_start_defaults(GTK_BOX(vbox), handles);
     
     /* show tooltips */
     tooltips = gtk_check_button_new_with_label(_("Show Tooltips"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips), prefs.tooltip);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tooltips), prefs.tooltip);
     gtk_signal_connect(GTK_OBJECT(tooltips), "clicked",
 		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip);
     gtk_box_pack_start_defaults(GTK_BOX(vbox), tooltips);
@@ -447,9 +447,9 @@ static void select_row_cb(GtkCList *clist,
     if(alt_cb > 0) gtk_signal_disconnect(GTK_OBJECT(alt_check), alt_cb);
     if(shift_cb > 0) gtk_signal_disconnect(GTK_OBJECT(shift_check), shift_cb);
 
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ctrl_check), kb->key->ctrl);
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(alt_check), kb->key->alt);
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(shift_check), kb->key->shift);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ctrl_check), kb->key->ctrl);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(alt_check), kb->key->alt);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(shift_check), kb->key->shift);
     
     kb->data = (GtkWidget*)clist;
     kb->data2 = row;

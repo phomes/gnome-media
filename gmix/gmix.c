@@ -585,7 +585,7 @@ void open_dialog(void)
 			if (ci->device->stereodevs & (1<<ci->channel)) {
 				/* lock-button, only useful for stereo */
 				ci->lock = gtk_check_button_new_with_label(_("Lock"));
-				gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ci->lock), (ci->device->lock_bitmask & (1<<ci->channel))!=0);
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->lock), (ci->device->lock_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->lock), "toggled", (GtkSignalFunc) lock_cb, (gpointer)ci);
 				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 3, 4, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->lock);
@@ -596,14 +596,14 @@ void open_dialog(void)
 	 */
 			if (ci->device->recmask & (1<<ci->channel)) {
 				ci->rec = gtk_check_button_new_with_label (_("Rec."));
-				gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
+				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->rec), (ci->device->record_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->rec), "toggled", (GtkSignalFunc) rec_cb, (gpointer)ci);
 				gtk_table_attach (GTK_TABLE (table), ci->rec, i, i+1, 4, 5, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 				gtk_widget_show (ci->rec);
 			}
 #endif	
 			ci->mute=gtk_check_button_new_with_label(_("Mute"));
-			gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->mute), (ci->device->mute_bitmask & (1<<ci->channel))!=0);
 			gtk_signal_connect (GTK_OBJECT (ci->mute), "toggled", (GtkSignalFunc) mute_cb, (gpointer)ci);
 			gtk_table_attach (GTK_TABLE (table), ci->mute, i, i+1, 5, 6, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 			gtk_widget_show (ci->mute);
@@ -686,7 +686,7 @@ void rec_cb(GtkWidget *widget, channel_info *data)
 		channel_info *info;
 		info=c->data;
 		info->passive=1;
-		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(info->rec), (data->device->record_bitmask & (1<<info->channel))!=0);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(info->rec), (data->device->record_bitmask & (1<<info->channel))!=0);
 		info->passive=0;
 	}
 */
@@ -719,7 +719,7 @@ void adj_left_cb (GtkAdjustment *adjustment, channel_info *data)
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
-		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(data->mute), FALSE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data->mute), FALSE);
 	}
 }
 
@@ -750,7 +750,7 @@ void adj_right_cb (GtkAdjustment *adjustment, channel_info *data)
 	ioctl(data->device->fd, MIXER_WRITE(data->channel), &vol);
 
 	if (GTK_TOGGLE_BUTTON (data->mute)->active) {
-		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(data->lock), FALSE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data->lock), FALSE);
 	}
 }
 
