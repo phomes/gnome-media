@@ -501,7 +501,8 @@ GtkWidget *create_page1()
 
 	return box;
 }
-about_image_help_cb(GtkWidget *widget, void *data)
+
+help_cb(GtkWidget *widget, void *data)
 {
    gchar *file,*file2;
 
