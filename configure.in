@@ -165,6 +165,22 @@ AC_MSG_RESULT("$cd_changer")
 AC_SUBST(USE_CD_CHANGER)
 AC_SUBST(PROGRAMS_GNOME_CD)
 
+host=`uname -s`
+
+case "$host" in
+*Linux*) 
+	CDROM_HOST=linux
+	default_cd_device="/dev/cdrom"
+	;;
+*SunOS*) 
+	CDROM_HOST=solaris
+	default_cd_device="/vol/dev/aliases/cdrom0"
+	;;
+esac
+
+AC_SUBST(CDROM_HOST)
+AC_SUBST(default_cd_device)
+
 # grecord
 PROGRAMS_GRECORD="grecord"
 AC_SUBST(PROGRAMS_GRECORD)
@@ -177,6 +193,7 @@ gmix/Makefile
 vu-meter/Makefile
 cddb-slave2/Makefile
 gnome-cd/Makefile
+gnome-cd/gnome-cd.schemas
 gnome-cd/images/Makefile
 gnome-cd/images/lcd-theme/Makefile
 gnome-cd/images/red-lcd-theme/Makefile
@@ -184,3 +201,14 @@ grecord/Makefile
 grecord/src/Makefile
 gnome-volume-control/Makefile
 version.h])
+
+echo ""
+echo "Gnome-Media has been configured as follows: "
+echo "------------------------------------------- "
+echo "Architecture:         ${CDROM_HOST}"
+echo "Source code location: ${srcdir}"
+echo "Compiler:             ${CC}"
+echo "Default CD device:    ${default_cd_device}"
+echo ""
+echo "Hope (n): Theological virtue defined as the desire and search for a future good,"
+echo "          difficult but not impossible to attain with God's help."

@@ -10,7 +10,11 @@ INCLUDES =					\
 
 Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
-EXTRA_DIST = gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas
+EXTRA_DIST = solaris-cdrom.c		\
+	     solaris-cdrom.h		\
+	     linux-cdrom.c		\
+	     linux-cdrom.h		\
+	     gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
 IDLS = ../cddb-slave2/GNOME_Media_CDDBSlave2.idl
 
@@ -40,8 +44,8 @@ gnome_cd_SOURCES =		\
 	cdrom.h			\
 	display.c		\
 	display.h		\
-	linux-cdrom.c		\
-	linux-cdrom.h		\
+	$(CDROM_HOST)-cdrom.c	\
+	$(CDROM_HOST)-cdrom.h	\
 	preferences.c		\
 	preferences.h		\
 	theme.c
