@@ -1,3 +1,17 @@
+2002-04-04 Iain <iain@ximian.com>
+
+	* callbacks.[ch] (volume_changed): Change the CD volume.
+
+	* cdrom.[ch] (cdrom_set_volume): Dummy "Not implemented" functions.
+	(class_init): Connect the dummy function.
+	(gnome_cdrom_set_volume): Call the real function.
+
+	* gnome-cd.[ch] (init_player): Hook up a volume control.
+
+	* linux-cdrom.c (linux_cdrom_get_status): Get the current volume.
+	(linux_cdrom_set_volume): Set the volume.
+	(class_init): Set the real method.
+
 2002-04-02 Iain <iain@ximian.com>
 
 	* cddb.c (count_tracks): Count the number of tracks in the info.

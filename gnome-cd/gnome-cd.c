@@ -341,11 +341,14 @@ static GnomeCD *
 init_player (void) 
 {
 	GnomeCD *gcd;
+	GnomeCDRomStatus *status;
 	GtkWidget *display_box;
 	GtkWidget *top_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow;
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
+	GtkAdjustment *adj;
+	GtkWidget *slider;
 	char *fullname;
 
 	gcd = g_new0 (GnomeCD, 1);
@@ -482,7 +485,25 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (display_box), gcd->tracks, FALSE, FALSE, 0);
 
 	gtk_box_pack_start (GTK_BOX (top_hbox), display_box, TRUE, TRUE, 0);
-	
+
+	/* Volume slider */
+	gcd->slider = gtk_vscale_new_with_range (0.0, 255.0, 1.0);
+	gtk_range_set_inverted (GTK_RANGE (gcd->slider), TRUE);
+	gtk_scale_set_draw_value (GTK_SCALE (gcd->slider), FALSE);
+	gtk_box_pack_start (GTK_BOX (top_hbox), gcd->slider, FALSE, FALSE, 0);
+
+	/* Get the initial volume */
+	if (gnome_cdrom_get_status (gcd->cdrom, &status, NULL) == TRUE) {
+		g_print ("volume: %d\n", status->volume);
+		gtk_range_set_value (GTK_RANGE (gcd->slider),
+				     (double) status->volume);
+		g_free (status);
+	} else {
+		g_warning ("Error getting status");
+	}
+
+	g_signal_connect (G_OBJECT (gcd->slider), "value-changed",
+			  G_CALLBACK (volume_changed), gcd);
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);

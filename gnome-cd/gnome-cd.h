@@ -57,6 +57,7 @@ struct _GnomeCD {
 	GtkWidget *display;
 	GtkWidget *tracks;
 	GtkWidget *menu;
+	GtkWidget *slider;
 	GtkTooltips *tooltips;
 
 	GtkWidget *trackeditor_b, *properties_b;

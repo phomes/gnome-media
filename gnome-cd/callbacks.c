@@ -12,6 +12,7 @@
 
 #include <gtk/gtkbutton.h>
 #include <gtk/gtkoptionmenu.h>
+#include <gtk/gtkrange.h>
 #include <glib/gerror.h>
 
 #include <libgnome/gnome-i18n.h>
@@ -709,4 +710,18 @@ open_track_editor (GtkWidget *widget,
 		return;
 	}
 	CORBA_exception_free (&ev);
+}
+
+void
+volume_changed (GtkRange *range,
+		GnomeCD *gcd)
+{
+	double volume;
+
+	volume = gtk_range_get_value (range);
+	g_print ("New volume: %d\n", (int) volume);
+
+	if (gnome_cdrom_set_volume (gcd->cdrom, (int) volume, NULL) == FALSE) {
+		g_warning ("Error setting volume");
+	}
 }

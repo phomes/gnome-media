@@ -83,6 +83,7 @@ typedef struct _GnomeCDRomStatus {
 	int track;
 	GnomeCDRomMSF relative;
 	GnomeCDRomMSF absolute;
+	int volume;
 } GnomeCDRomStatus;
 
 typedef struct _GnomeCDRomCDDBData {
@@ -129,10 +130,15 @@ struct _GnomeCDRomClass {
 	gboolean (*close_tray) (GnomeCDRom *cdrom,
 				GError **error);
 
+	gboolean (*set_volume) (GnomeCDRom *cdrom,
+				int volume,
+				GError **error);
 	/* For CDDB */
 	gboolean (*get_cddb_data) (GnomeCDRom *cdrom,
 				   GnomeCDRomCDDBData **data,
 				   GError **error);
+
+	/* Configuration */
 	gboolean (*set_device) (GnomeCDRom *cdrom,
 				const char *device,
 				GError **error);
@@ -171,6 +177,9 @@ gboolean gnome_cdrom_get_status (GnomeCDRom *cdrom,
 				 GnomeCDRomStatus **status,
 				 GError **error);
 gboolean gnome_cdrom_close_tray (GnomeCDRom *cdrom,
+				 GError **error);
+gboolean gnome_cdrom_set_volume (GnomeCDRom *cdrom,
+				 int volume,
 				 GError **error);
 gboolean gnome_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 				    GnomeCDRomCDDBData **data,

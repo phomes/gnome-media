@@ -826,8 +826,9 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	LinuxCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
 	struct cdrom_subchnl subchnl;
+	struct cdrom_volctrl vol;
 	int cd_status;
-
+	
 	g_return_val_if_fail (status != NULL, TRUE);
 	
 	lcd = LINUX_CDROM (cdrom);
@@ -835,7 +836,8 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 
 	*status = g_new (GnomeCDRomStatus, 1);
 	realstatus = *status;
-
+	realstatus->volume = 0;
+	
 	if (linux_cdrom_open (lcd, error) == FALSE) {
 		g_free (realstatus);
 		linux_cdrom_close (lcd);
@@ -908,6 +910,21 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
+	/* Get the volume */
+	if (ioctl (priv->cdrom_fd, CDROMVOLREAD, &vol) < 0) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s",
+					      strerror (errno));
+		}
+
+		linux_cdrom_close (lcd);
+		g_free (realstatus);
+		return FALSE;
+	}
+	realstatus->volume = vol.channel0;
+
 	linux_cdrom_close (lcd);
 
 	ASSIGN_MSF (realstatus->relative, blank_msf);
@@ -967,6 +984,41 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
 					      "(linux_cdrom_close_tray): ioctl failed %s",
+					      strerror (errno));
+		}
+
+		linux_cdrom_close (lcd);
+		return FALSE;
+	}
+
+	linux_cdrom_close (lcd);
+	return TRUE;
+}
+
+static gboolean
+linux_cdrom_set_volume (GnomeCDRom *cdrom,
+			int volume,
+			GError **error)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
+	struct cdrom_volctrl vol;
+
+	lcd = LINUX_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (linux_cdrom_open (lcd, error) == FALSE) {
+		return FALSE;
+	}
+	
+	vol.channel0 = volume;
+	vol.channel1 = vol.channel2 = vol.channel3 = volume;
+	
+	if (ioctl (priv->cdrom_fd, CDROMVOLCTRL, &vol) < 0) {
+		if (error) {
+			*error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+					      "(linux_cdrom_set_volume:1): ioctl failed %s",
 					      strerror (errno));
 		}
 
@@ -1081,7 +1133,8 @@ class_init (LinuxCDRomClass *klass)
 	cdrom_class->back = linux_cdrom_back;
 	cdrom_class->get_status = linux_cdrom_get_status;
 	cdrom_class->close_tray = linux_cdrom_close_tray;
-
+	cdrom_class->set_volume = linux_cdrom_set_volume;
+	
 	/* For CDDB */
   	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
 
