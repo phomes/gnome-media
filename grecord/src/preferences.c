@@ -231,45 +231,6 @@ channels_changed (GConfClient *_client,
 			    channels ? _("Channels: mono") : _("Channels: stereo"));
 }
 
-static void
-show_time_changed (GConfClient *_client,
-		   guint cnxn_id,
-		   GConfEntry *entry,
-		   gpointer data)
-{
-	show_time = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-time", NULL);
-	if (show_time) {
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timespace_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timemin_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timesec_label));
-	}
-	else {
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timespace_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timemin_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timesec_label));
-	}
-}
-
-static void
-show_sound_info_changed (GConfClient *_client,
-			 guint cnxn_id,
-			 GConfEntry *entry,
-			 gpointer data)
-{
-	show_soundinfo = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-sound-info", NULL);
-	
-	if (show_soundinfo) {
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.audio_format_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.sample_rate_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
-	}
-	else {
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.audio_format_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.sample_rate_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
-	}
-}
-
 void
 load_config_file    (void)
 {
@@ -364,16 +325,6 @@ load_config_file    (void)
 	channels = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/channels", NULL);
 	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/channels",
 				 channels_changed, NULL, NULL, NULL);
-
-	
-	show_time = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-time", NULL);
-	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/show-time",
-				 show_time_changed, NULL, NULL, NULL);
-	
-	show_soundinfo = gconf_client_get_bool (client,
-						"/apps/gnome-sound-recorder/show-sound-info", NULL);
-	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/show-sound-info",
-				 show_sound_info_changed, NULL, NULL, NULL);
 }
 
 void

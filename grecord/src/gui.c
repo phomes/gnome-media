@@ -49,7 +49,7 @@ static GnomeUIInfo arkiv1_menu_uiinfo[] =
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM (on_saveas_activate_cb, NULL),
 	GNOMEUIINFO_SEPARATOR,
 	{
-		GNOME_APP_UI_ITEM, N_("Run mixer"),
+		GNOME_APP_UI_ITEM, N_("Run _Mixer"),
 		N_("Run GNOME Volume Control"),
 		on_runmixer_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_VOLUME,
@@ -106,7 +106,7 @@ static GnomeUIInfo edit_menu_uiinfo[] =
 {
 	/* GNOMEUIINFO_MENU_UNDO_ITEM (on_undo_activate_cb, NULL), */
 	{
-		GNOME_APP_UI_ITEM, N_("Undo all changes"),
+		GNOME_APP_UI_ITEM, N_("_Undo All"),
 		N_("Undo all changes made on the current sample"),
 		on_undoall_activate_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GTK_STOCK_UNDO,
@@ -115,27 +115,7 @@ static GnomeUIInfo edit_menu_uiinfo[] =
 	/* GNOMEUIINFO_MENU_REDO_ITEM (on_redo_activate_cb, NULL), */
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_SUBTREE (N_("Effects"), effects_menu_uiinfo),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo alternativ1_menu_uiinfo[] =
-{
 	GNOMEUIINFO_MENU_PREFERENCES_ITEM (on_preferences_activate_cb, NULL),
-	GNOMEUIINFO_SEPARATOR,
-	{
-		GNOME_APP_UI_TOGGLEITEM, N_("Show time"),
-		N_("Show time"),
-		on_show_time_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
-		0, 0, NULL,
-	},
-	{
-		GNOME_APP_UI_TOGGLEITEM, N_("Show soundinfo"),
-		N_("Show sound information"),
-		on_show_soundinfo_activate_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
-		0, 0, NULL,
-	},
 	GNOMEUIINFO_END
 };
 
@@ -150,7 +130,6 @@ GnomeUIInfo menubar1_uiinfo[] =
 {
 	GNOMEUIINFO_MENU_FILE_TREE (arkiv1_menu_uiinfo),
 	GNOMEUIINFO_MENU_EDIT_TREE (edit_menu_uiinfo),
-	GNOMEUIINFO_MENU_SETTINGS_TREE (alternativ1_menu_uiinfo),
 	GNOMEUIINFO_MENU_HELP_TREE (hj_lp1_menu_uiinfo),
 	GNOMEUIINFO_END
 };
@@ -172,14 +151,10 @@ set_window_title (const char *filename)
 GtkWidget*
 create_grecord_window (void)
 {
-	GtkWidget* vbox1;
+	GtkWidget* vbox;
 	GtkWidget* menubar;
 	GtkWidget* toolbar;
 	GtkWidget* tmp_toolbar_icon;
-	GtkWidget* vbox2;
-	GtkWidget* vbox3;
-	GtkWidget* frame1;
-	GtkWidget* vbox4;
 	GtkWidget* hbox1;
 	GtkWidget* grecord_appbar;
 	GtkWidget* mess;
@@ -222,15 +197,6 @@ create_grecord_window (void)
 	gtk_widget_show (menubar);
 	gnome_app_fill_menu (GTK_MENU_SHELL (menubar), menubar1_uiinfo,
 			     NULL, FALSE, 0);
-
-	if (show_time) {
-		GtkCheckMenuItem* menu_item = GTK_CHECK_MENU_ITEM (alternativ1_menu_uiinfo[2].widget);
-		menu_item->active = TRUE;
-	}
-	if (show_soundinfo) {
-		GtkCheckMenuItem* menu_item = GTK_CHECK_MENU_ITEM (alternativ1_menu_uiinfo[3].widget);
-		menu_item->active = TRUE;
-	}
 
 	toolbar = gtk_toolbar_new ();
 	gtk_widget_show (toolbar);
@@ -292,30 +258,13 @@ create_grecord_window (void)
 	}
 	gtk_widget_show (Record_button);
       
-	vbox1 = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox1);
+	vbox = gtk_vbox_new (FALSE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 2);
+	gtk_widget_show (vbox);
 
-	vbox2 = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox2);
-	gtk_box_pack_start (GTK_BOX (vbox1), vbox2, TRUE, TRUE, 0);
-	
-	vbox3 = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox3);
-	gtk_box_pack_start (GTK_BOX (vbox2), vbox3, TRUE, TRUE, 0);
-	
-	frame1 = gtk_frame_new (_("Info"));
-	gtk_widget_show (frame1);
-	gtk_box_pack_start (GTK_BOX (vbox3), frame1, TRUE, TRUE, 0);
-	gtk_widget_set_usize (frame1, -2, 70);
-	gtk_container_set_border_width (GTK_CONTAINER (frame1), 10);
-	
-	vbox4 = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox4);
-	gtk_container_add (GTK_CONTAINER (frame1), vbox4);
-	
 	hbox1 = gtk_hbox_new (FALSE, 0);
 	gtk_widget_show (hbox1);
-	gtk_box_pack_start (GTK_BOX (vbox4), hbox1, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox1, FALSE, FALSE, 0);
 
 	Statusbar = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 1000, 1, 1, 0)));
 	gtk_widget_show (Statusbar);
@@ -333,42 +282,38 @@ create_grecord_window (void)
 	timesec_label = gtk_label_new ("00");
 	gtk_box_pack_start (GTK_BOX (hbox1), timesec_label, FALSE, TRUE, 4);
 
-	if (show_time) {
-		gtk_widget_show (timemin_label);
-		gtk_widget_show (timespace_label);
-		gtk_widget_show (timesec_label);
-	}
+	gtk_widget_show (timemin_label);
+	gtk_widget_show (timespace_label);
+	gtk_widget_show (timesec_label);
 
 	info_hbox = gtk_hbox_new (FALSE, 0);
 	gtk_widget_show (info_hbox);
-	gtk_box_pack_start (GTK_BOX (vbox4), info_hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), info_hbox, FALSE, FALSE, 0);
 
 	temp_string = g_strconcat (_("Audio format: "), audioformat_string, NULL);
 	audio_format_label = gtk_label_new (temp_string);
 	g_free (temp_string);
-	gtk_box_pack_start (GTK_BOX (info_hbox), audio_format_label, TRUE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (info_hbox), audio_format_label, TRUE, FALSE, 3);
 	gtk_label_set_justify (GTK_LABEL (audio_format_label), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (audio_format_label), TRUE);
 
 	temp_string = g_strconcat (_("Sample rate: "), samplerate, NULL);
 	sample_rate_label = gtk_label_new (temp_string);
 	g_free (temp_string);
-	gtk_box_pack_start (GTK_BOX (info_hbox), sample_rate_label, TRUE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (info_hbox), sample_rate_label, TRUE, FALSE, 3);
 	gtk_label_set_justify (GTK_LABEL (sample_rate_label), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (sample_rate_label), TRUE);
 
 	temp_string = g_strconcat (_("Channels: "), channels_string, NULL);
 	nr_of_channels_label = gtk_label_new (temp_string);
 	g_free (temp_string);
-	gtk_box_pack_start (GTK_BOX (info_hbox), nr_of_channels_label, TRUE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (info_hbox), nr_of_channels_label, TRUE, FALSE, 3);
 	gtk_label_set_justify (GTK_LABEL (nr_of_channels_label), GTK_JUSTIFY_LEFT);
 	gtk_label_set_line_wrap (GTK_LABEL (nr_of_channels_label), TRUE);
 
-	if (show_soundinfo) {
-		gtk_widget_show (audio_format_label);
-		gtk_widget_show (sample_rate_label);
-		gtk_widget_show (nr_of_channels_label);
-	}
+	gtk_widget_show (audio_format_label);
+	gtk_widget_show (sample_rate_label);
+	gtk_widget_show (nr_of_channels_label);
 
 	grecord_appbar = gnome_appbar_new (FALSE, TRUE, GNOME_PREFERENCES_NEVER);
 	gtk_widget_show (grecord_appbar);	
@@ -392,7 +337,7 @@ create_grecord_window (void)
 	gnome_app_set_statusbar (GNOME_APP (grecord_window),  GTK_WIDGET (grecord_appbar));
 	gnome_app_set_menus (GNOME_APP (grecord_window), GTK_MENU_BAR (menubar));
 	gnome_app_set_toolbar (GNOME_APP (grecord_window), GTK_TOOLBAR (toolbar));
-	gnome_app_set_contents (GNOME_APP (grecord_window), GTK_WIDGET (vbox1));
+	gnome_app_set_contents (GNOME_APP (grecord_window), GTK_WIDGET (vbox));
 
 	gnome_app_install_menu_hints (GNOME_APP (grecord_window), menubar1_uiinfo);
 	
@@ -671,22 +616,6 @@ channels_changed (GtkEntry *entry,
 	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/channels", channels, NULL);
 }
 
-static void
-show_time_changed (GtkToggleButton *tb,
-		   gpointer data)
-{
-	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-time",
-			       gtk_toggle_button_get_active (tb), NULL);
-}
-
-static void
-show_soundinfo_changed (GtkToggleButton *tb,
-			gpointer data)
-{
-	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-sound-info",
-			       gtk_toggle_button_get_active (tb), NULL);
-}
-
 GtkWidget*
 create_grecord_propertybox (void)
 {
@@ -734,6 +663,7 @@ create_grecord_propertybox (void)
 							   GTK_DIALOG_DESTROY_WITH_PARENT,
 							   GTK_STOCK_CLOSE,
 							   GTK_RESPONSE_CLOSE, NULL);
+	gtk_window_set_title (GTK_WINDOW (grecord_propertybox), _("Sound Recorder Preferences"));
 	g_signal_connect (G_OBJECT (grecord_propertybox), "response",
 			  G_CALLBACK (response_cb), NULL);
 
@@ -774,7 +704,7 @@ create_grecord_propertybox (void)
 	
 	RecordTimeout_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_adj), 1, 0);
 	gtk_widget_show (RecordTimeout_spinbutton);
-	gtk_container_add (GTK_CONTAINER (hbox), RecordTimeout_spinbutton);
+	gtk_box_pack_start (GTK_BOX (hbox), RecordTimeout_spinbutton, FALSE, FALSE, 0);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (RecordTimeout_spinbutton), TRUE);
 	
 	label = gtk_label_new (_("minutes"));
@@ -790,7 +720,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (inner_vbox), StopRecordOnTimeout_checkbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (StopRecordOnTimeout_checkbox), 3);
 	
-	PopupSaveOnTimeout_checkbox = gtk_check_button_new_with_label (_("Popup save dialog when recording is finished"));
+	PopupSaveOnTimeout_checkbox = gtk_check_button_new_with_label (_("Open save dialog when recording is finished"));
 	g_signal_connect (G_OBJECT (PopupSaveOnTimeout_checkbox), "toggled",
 			  G_CALLBACK (save_when_finished_changed), NULL);
 	gtk_widget_show (PopupSaveOnTimeout_checkbox);
@@ -806,7 +736,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (inner_vbox);
 	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
 	
-	PopupWarnMessSize_checkbox = gtk_check_button_new_with_label (_("Popup warning message if size (Mb) of sample becomes bigger than:"));
+	PopupWarnMessSize_checkbox = gtk_check_button_new_with_label (_("Show warning message if size (Mb) of sample becomes bigger than:"));
 	g_signal_connect (G_OBJECT (PopupWarnMessSize_checkbox), "toggled",
 			  G_CALLBACK (popup_warning_changed), NULL);
 			  
@@ -1079,35 +1009,6 @@ create_grecord_propertybox (void)
 	vbox = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (vbox);
 
-	label = gtk_label_new (_("User interface"));
-	gtk_widget_show (label);
-	
-	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
-
-	frame = gtk_frame_new (_("Main window"));
-	gtk_widget_show (frame);
-	gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
-	gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-
-	inner_vbox = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (inner_vbox);
-	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
-
-	show_time_checkbutton = gtk_check_button_new_with_label (_("Show time"));
-	g_signal_connect (G_OBJECT (show_time_checkbutton), "toggled",
-			  G_CALLBACK (show_time_changed), NULL);
-	gtk_widget_show (show_time_checkbutton);
-	gtk_box_pack_start (GTK_BOX (inner_vbox), show_time_checkbutton, FALSE, FALSE, 0);
-	gtk_container_set_border_width (GTK_CONTAINER (show_time_checkbutton), 3);
-
-	show_soundinfo_checkbutton = gtk_check_button_new_with_label (_("Show sound information"));
-	g_signal_connect (G_OBJECT (show_soundinfo_checkbutton), "toggled",
-			  G_CALLBACK (show_soundinfo_changed), NULL);
-	
-	gtk_widget_show (show_soundinfo_checkbutton);
-	gtk_box_pack_start (GTK_BOX (inner_vbox), show_soundinfo_checkbutton, FALSE, FALSE, 0);
-	gtk_container_set_border_width (GTK_CONTAINER (show_soundinfo_checkbutton), 3);
-
 	/* Define structure propertywidgets ---------------------------------------------------- */
 	propertywidgets.RecordTimeout_spinbutton_v = RecordTimeout_spinbutton;
 	propertywidgets.StopRecordOnTimeout_checkbox_v = StopRecordOnTimeout_checkbox;
@@ -1129,9 +1030,6 @@ create_grecord_propertybox (void)
 	propertywidgets.Samplerate_combo_entry_v = Samplerate_combo_entry;
 	propertywidgets.NrChannel_combo_entry_v = NrChannel_combo_entry;
 
-	propertywidgets.show_time_checkbutton_v = show_time_checkbutton;
-	propertywidgets.show_soundinfo_checkbutton_v = show_soundinfo_checkbutton;
-
 	/* Set default vaules from config file ------------------------------------------------- */
 	gtk_entry_set_text (GTK_ENTRY (path_to_sox_combo_entry), sox_command);
 	gtk_entry_set_text (GTK_ENTRY (TempDir_combo_entry), temp_dir);	
@@ -1144,8 +1042,6 @@ create_grecord_propertybox (void)
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (PopupSaveOnTimeout_checkbox), save_when_finished);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (PopupWarnMessSize_checkbox), popup_warn_mess);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (StopRecordSize_checkbox), stop_record);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (show_time_checkbutton), show_time);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (show_soundinfo_checkbutton), show_soundinfo);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (playrepeat_checkbox), playrepeat);
 
 	if (playrepeatforever)

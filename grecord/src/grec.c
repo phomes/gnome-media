@@ -356,7 +356,7 @@ on_exit_activate_cb (GtkWidget* widget, gpointer data)
 		on_stop_activate_cb (widget, data);
 
 	if (file_changed) {
-		choice = save_dont_or_cancel (_("Don't quit"));
+		choice = save_dont_or_cancel (_("Cancel"));
 		if (choice == SAVE) {
 			save_dialog ();
 			return;
@@ -917,6 +917,11 @@ UpdateStatusbarRecord (gboolean begin)
 	if (counter >= 1000) {
 		if (stop_on_timeout) {
 			on_stop_activate_cb (NULL, NULL);
+
+			if (save_when_finished == TRUE) {
+				save_dialog ();
+			}
+
 			return TRUE;
 		}
 
