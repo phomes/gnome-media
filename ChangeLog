@@ -1,3 +1,14 @@
+1999-03-09 Mark Crichton <crichton@gimp.org>
+
+	* configure.in: Fixed chicken-and-egg problem with the AM_ESD_PATH
+	macro.  That macro is now in acinclude.m4.  Also set up vu-meter and
+	extace to compile only if ESD is found.
+
+	* Makefile.am: changes to support above.  Also, if/when tcd becomes its
+	own module, we should remove this.
+
+	* acinclude.m4: Added AM_ESD_PATH.
+
 1999-02-25 Shooby Ban <bansz@szif.hu>
 
         * configure.in: Added hungarian po

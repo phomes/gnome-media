@@ -43,7 +43,10 @@ AM_PROG_LIBTOOL
 dnl
 dnl Check for esound library
 dnl
-AM_PATH_ESD(0.2.7, AC_DEFINE(HAVE_ESD))
+AM_PATH_ESD(0.2.7, we_have_esd=true)
+if $we_have_esd; then
+AC_DEFINE(HAVE_ESD)
+fi
 
 
 ALL_LINGUAS="da fi ko de fr it ja es no hu ga pt ru_RU nl"
@@ -57,16 +60,20 @@ dnl
 dnl extace
 dnl
 PROGRAMS_EXTACE=""
+if $we_have_esd; then
 AC_CHECK_LIB(gslfft, gsl_fft_real_radix2,
 	PROGRAMS_EXTACE=extace,,-lgslfft -lgslerr -lm)
 AC_CHECK_HEADERS(gsl/gsl.h, [USE_GSL_GSL_H=1])
-AM_CONDITIONAL(BUILD_EXTACE, test "$PROGRAMS_EXTACE" = "extace")
+fi
+AC_SUBST(PROGRAMS_EXTACE)
 
 dnl
 dnl vu-meter
 dnl
 PROGRAMS_VUMETER=""
-AC_CHECK_LIB(esd,main,PROGRAMS_VUMETER=vu-meter,,[$ESD_LIBS])
+if $we_have_esd; then
+PROGRAMS_VUMETER="vu-meter"
+fi
 AC_SUBST(PROGRAMS_VUMETER)
 
 dnl

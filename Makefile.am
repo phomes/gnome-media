@@ -3,18 +3,13 @@
 
 always_built_SUBDIRS = po macros cddbslave
 
-# always distribute extace even if we can't build it
-if BUILD_EXTACE
-extace = extace
-endif
-
-SUBDIRS = $(always_built_SUBDIRS) $(extace) \
+SUBDIRS = $(always_built_SUBDIRS) @PROGRAMS_EXTACE@ \
 	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_TCD@
 
 DIST_SUBDIRS = $(always_built_SUBDIRS) extace \
 	       vu-meter gmix tcd
 
-EXTRA_DIST = gnome-media.spec.in configure
+EXTRA_DIST = gnome-media.spec.in configure acinclude.m4
 
 dist-hook:
 	cp gnome-media.spec $(distdir)
