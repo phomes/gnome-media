@@ -12,8 +12,23 @@ Audiodir = $(datadir)/applications
 Pixmapdir = $(datadir)/pixmaps
 EXTRA_DIST = gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas
 
+IDLS = ../cddb-slave2/GNOME_Media_CDDBSlave2.idl
+
+IDL_GENERATED =				\
+	GNOME_Media_CDDBSlave2.h	\
+	GNOME_Media_CDDBSlave2-common.c	\
+	GNOME_Media_CDDBSlave2-skels.c	\
+	GNOME_Media_CDDBSlave2-stubs.c
+
+GNOME_Media_CDDBSlave2-impl.o: GNOME_Media_CDDBSlave.h
+
+$(IDL_GENERATED): $(IDLS)
+	$(ORBIT_IDL) -I $(BONOBO_IDLDIR) -I $(BONOBO_ACT_IDLDIR)	\
+	-I $(srcdir) -I $(datadir)/idl	$(IDLS)
+	
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
+	$(IDL_GENERATED)	\
 	gnome-cd.c		\
 	gnome-cd.h		\
 	gnome-cd-type.h		\

@@ -100,7 +100,7 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
 			char *title;
 
-			title = g_strdup_printf ("%d - %s", i + 1, gcd->disc_info->tracknames[i]);
+			title = g_strdup_printf ("%d - %s", i + 1, gcd->disc_info->track_info[i]->name);
 			item = gtk_menu_item_new_with_label (title);
 			g_free (title);
 			gtk_widget_show (item);
@@ -422,8 +422,7 @@ init_player (void)
 
 	/* Create app controls */
 	side_vbox = gtk_vbox_new (FALSE, 0);
-	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, NULL, _("Open track editor"), _("Track editor"));
-	gtk_widget_set_sensitive (button, FALSE);
+	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES, open_track_editor, _("Open track editor"), _("Track editor"));
 	gtk_box_pack_start (GTK_BOX (side_vbox), button, FALSE, FALSE, 0);
 	gcd->trackeditor_b = button;
 

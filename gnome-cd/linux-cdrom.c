@@ -16,7 +16,6 @@
 #include <linux/cdrom.h>
 #include <errno.h>
 
-#include "gnome-cd.h"
 #include "linux-cdrom.h"
 
 static GnomeCDRomClass *parent_class = NULL;

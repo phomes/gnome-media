@@ -48,4 +48,6 @@ void playmode_changed_cb (GtkWidget *widget,
 			  GnomeCD *gcd);
 void open_preferences (GtkWidget *widget,
 		       GnomeCD *gcd);
+void open_track_editor (GtkWidget *widget,
+			GnomeCD *gcd);
 #endif

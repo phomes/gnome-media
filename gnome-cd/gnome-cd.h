@@ -13,6 +13,8 @@
 
 #include <pango/pango.h>
 
+#include <cddb-slave-client.h>
+
 #include "gnome-cd-type.h"
 #include "display.h"
 #include "preferences.h"
@@ -25,7 +27,7 @@ typedef struct _GnomeCDDiscInfo {
 	char *title;
 	char *artist;
 	int ntracks;
-	char **tracknames;
+	CDDBSlaveClientTrackInfo **track_info;
 } GnomeCDDiscInfo;
 
 typedef struct _GnomeCDText {

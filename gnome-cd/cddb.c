@@ -40,7 +40,7 @@ get_disc_info (GnomeCD *gcd,
 
 	info->title = cddb_slave_client_get_disc_title (slave, discid);
 	info->artist = cddb_slave_client_get_artist (slave, discid);
-	info->tracknames = cddb_slave_client_get_tracks (slave, discid);
+	info->track_info = cddb_slave_client_get_tracks (slave, discid);
 
 	gnome_cd_build_track_list_menu (gcd);
 }
@@ -101,7 +101,7 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 	discinfo->title = NULL;
 	discinfo->artist = NULL;
 	discinfo->ntracks = data->ntrks;
-	discinfo->tracknames = NULL;
+	discinfo->track_info = NULL;
 
 	return discinfo;
 }

@@ -16,9 +16,17 @@
 
 #include <libgnome/gnome-i18n.h>
 
+#include <bonobo/bonobo-exception.h>
+#include <bonobo/bonobo-control.h>
+#include <bonobo/bonobo-widget.h>
+
+#include <bonobo-activation/bonobo-activation.h>
+
 #include "cdrom.h"
 #include "display.h"
 #include "gnome-cd.h"
+
+#include "GNOME_Media_CDDBSlave2.h"
 
 static void
 maybe_close_tray (GnomeCD *gcd)
@@ -513,7 +521,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
 			if (status->audio == GNOME_CDROM_AUDIO_PLAY ||
 			    status->audio == GNOME_CDROM_AUDIO_PAUSE) {
-				gnome_cd_set_window_title (gcd, info->artist, info->tracknames[status->track - 1]);
+				gnome_cd_set_window_title (gcd, info->artist,
+							   info->track_info[status->track - 1]->name);
 			} else {
 				gnome_cd_set_window_title (gcd, info->artist, info->title);
 			}
@@ -604,4 +613,51 @@ open_preferences (GtkWidget *widget,
 		gdk_window_show (dialog->window);
 		gdk_window_raise (dialog->window);
 	}
+}
+
+#define CDDBSLAVE_TRACK_EDITOR_IID "OAFIID:GNOME_Media_CDDBSlave2_TrackEditor"
+void
+open_track_editor (GtkWidget *widget,
+		   GnomeCD *gcd)
+{
+	GnomeCDRomCDDBData *data;
+	CORBA_Environment ev;
+	CORBA_Object object;
+	char *discid;
+	
+	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
+		g_print ("gnome_cdrom_get_cddb_data returned FALSE\n");
+		return;
+	}
+	
+	CORBA_exception_init (&ev);
+	object = bonobo_activation_activate_from_id (CDDBSLAVE_TRACK_EDITOR_IID, 0, NULL, &ev);
+	if (BONOBO_EX (&ev)) {
+		/* FIXME: Should be an error dialog */
+		g_warning ("Could not activate track editor.\n%s",
+			   CORBA_exception_id (&ev));
+		CORBA_exception_free (&ev);
+		
+		return;
+	}
+	
+	if (object == CORBA_OBJECT_NIL) {
+		/* FIXME: Should be an error dialog */
+		g_warning ("Could not start track editor.");
+		
+		return;
+	}
+
+	discid = g_strdup_printf ("%08lx", data->discid);
+	GNOME_Media_CDDBTrackEditor_setDiscID (object, discid, &ev);
+	g_free (discid);
+	
+	GNOME_Media_CDDBTrackEditor_showWindow (object, &ev);
+	if (BONOBO_EX (&ev)) {
+		/* FIXME: Should be an error dialog */
+		CORBA_exception_free (&ev);
+		bonobo_object_release_unref (object, NULL);
+		return;
+	}
+	CORBA_exception_free (&ev);
 }
