@@ -252,9 +252,9 @@ static void
 gtk_tv_size_request(GtkWidget *widget, GtkRequisition *requisition)
 {
   GtkTV *tv = GTK_TV(widget);
-  requisition->width = tv->vcap.minwidth;
-  requisition->height = tv->vcap.minheight;
-  widget->requisition = *requisition;
+  widget->requisition.width = tv->vcap.minwidth;
+  widget->requisition.height = tv->vcap.minheight;
+  *requisition = widget->requisition;
   g_print("gtk_tv_size_request to %d x %d\n", requisition->width,
 	  requisition->height);
 }
