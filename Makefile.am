@@ -4,7 +4,10 @@
 always_built_SUBDIRS = cddb-slave2
 
 SUBDIRS = po $(always_built_SUBDIRS) \
-	  @PROGRAMS_VUMETER@ @PROGRAMS_GMIX@ @PROGRAMS_GNOME_CD@ @PROGRAMS_GRECORD@
+	  @PROGRAMS_VUMETER@ \
+	  @PROGRAMS_GMIX@ \
+	  @PROGRAMS_GNOME_CD@ \
+	  @PROGRAMS_GRECORD@
 
 DIST_SUBDIRS = po $(always_built_SUBDIRS) \
 	       vu-meter gmix grecord gnome-cd
