@@ -29,6 +29,7 @@
 #include <libgnomeui/gnome-window-icon.h>
 #include <gst/gst.h>
 #include <gst/mixer/mixer.h>
+#include <gst/propertyprobe/propertyprobe.h>
 
 typedef struct _MyMixerControls {
   GstMixer *mixer;
@@ -304,46 +305,78 @@ create_mixer_collection (GtkWidget *notebook)
   elements = gst_registry_pool_feature_list (GST_TYPE_ELEMENT_FACTORY);
   for ( ; elements != NULL; elements = elements->next) {
     GstElementFactory *factory = GST_ELEMENT_FACTORY (elements->data);
-    gchar *title, *name;
+    gchar *title = NULL, *name;
     const gchar *klass;
-    GstElement *element;
+    GstElement *element = NULL;
+    const GParamSpec *devspec;
+    GstPropertyProbe *probe;
+    GValueArray *array = NULL;
+    gint n;
 
     /* check category */
     klass = gst_element_factory_get_klass (factory);
     if (strcmp (klass, "Generic/Audio"))
-      continue;
+      goto next;
 
     /* create element */
     title = g_strdup_printf ("gst-mixer-%d", num);
     element = gst_element_factory_create (factory, title);
-    if (!element) {
-      g_free (title);
-      continue;
+    if (!element)
+      goto next;
+
+    if (!GST_IS_PROPERTY_PROBE (element))
+      goto next;
+
+    probe = GST_PROPERTY_PROBE (element);
+    if (!(devspec = gst_property_probe_get_property (probe, "device")))
+      goto next;
+    array = gst_property_probe_probe_and_get_values (probe, devspec);
+
+    /* set all devices and test for mixer */
+    for (n = 0; n < array->n_values; n++) {
+      GValue *device = g_value_array_get_nth (array, n);
+
+      /* set this device */
+      g_object_set_property (G_OBJECT (element), "device", device);
+      if (gst_element_set_state (element,
+				 GST_STATE_READY) == GST_STATE_FAILURE)
+        continue;
+
+      /* is this device a mixer? */
+      if (!GST_IS_MIXER (element)) {
+        gst_element_set_state (element, GST_STATE_NULL);
+        continue;
+      }
+
+      /* create mixer UI object */
+      page = create_mixer_widget (GST_MIXER (element));
+      if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (element)),
+					"device-name")) {
+        gchar *devname;
+        g_object_get (element, "device-name", &devname, NULL);
+        name = g_strdup_printf ("%s [%s]", devname,
+				gst_element_factory_get_longname (factory));
+      } else {
+        name = g_strdup_printf ("%s [%s]", title,
+				gst_element_factory_get_longname (factory));
+      }
+      label = gtk_label_new (name);
+
+      /* add new notebook page + keep track */
+      gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
+      collection = g_list_append (collection, element);
+      num++;
+
+      /* and recreate this object, since we give it to the mixer */
+      title = g_strdup_printf ("gst-mixer-%d", num);
+      element = gst_element_factory_create (factory, title);
     }
 
-    /* check whether it implements a mixer  */
-    if (!gst_element_set_state (element, GST_STATE_READY) ||
-        !GST_IS_MIXER (element)) {
-      gst_element_set_state (element, GST_STATE_NULL);
-      g_object_unref (G_OBJECT (element));
-      g_free (title);
-      continue;
-    }
-
-    /* create mixer UI object */
-    page = create_mixer_widget (GST_MIXER (element));
-    if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (element)),
-				      "device-name")) {
-      g_object_get (element, "device-name", &name, NULL);
-    } else {
-      name = title;
-    }
-    label = gtk_label_new (name);
-
-    /* add new notebook page + keep track */
-    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
-    collection = g_list_append (collection, element);
-    num++;
+next:
+    if (element)
+      gst_object_unref (GST_OBJECT (element));
+    if (array)
+      g_value_array_free (array);
     g_free (title);
   }
 
