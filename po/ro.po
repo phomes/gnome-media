@@ -6,73 +6,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2001-06-12 08:06-0400\n"
+"POT-Creation-Date: 2001-12-29 14:23+0000\n"
 "PO-Revision-Date:  2001-02-14 17:41+0200\n"
 "Last-Translator: Dan Damian <dand@dnttm.ro>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: cddbslave/main.c:56
-#, c-format
-msgid "Ready for command: %s\n"
-msgstr "Gata pentru comanda: %s\n"
-
-#: cddbslave/main.c:57
-#, c-format
-msgid "Connecting [%s]\n"
-msgstr "Mã conectez la [%s]\n"
-
-#: cddbslave/main.c:58
-#, c-format
-msgid "Querying server [%s]\n"
-msgstr "Interoghez serverul [%s]\n"
-
-#: cddbslave/main.c:59
-#, c-format
-msgid "Waiting for reply [%s]\n"
-msgstr "Aºtept rãspunsul [%s]\n"
-
-#: cddbslave/main.c:60
-#, c-format
-msgid "Reading reply [%s]\n"
-msgstr "Citesc replica [%s]\n"
-
-#: cddbslave/main.c:61
-#, c-format
-msgid "Disconnecting [%s]\n"
-msgstr "Mã deconectez [%s]\n"
-
-#: cddbslave/main.c:62
-#, c-format
-msgid "Error connecting [%s]\n"
-msgstr "Eroare în conectarea la [%s]\n"
-
-#: cddbslave/main.c:63
-#, c-format
-msgid "Error querying [%s]\n"
-msgstr "Eroare la interogarea [%s]\n"
-
-#: cddbslave/main.c:64
-#, c-format
-msgid "Error reading [%s]\n"
-msgstr "Eroare la citirea [%s]\n"
-
-#: cddbslave/main.c:65
-#, c-format
-msgid "No match found for %s\n"
-msgstr "Nu s-au gãsit asemãnãri pentru :%s\n"
-
-#: cddbslave/main.c:66
-#, c-format
-msgid "Timeout: %s\n"
-msgstr "Expirã la: %s\n"
-
-#: cddbslave/main.c:67
-#, c-format
-msgid "Inactive. %s\n"
-msgstr "Inactiv. %s\n"
 
 #: gmix/device_labels_alsa.h:7 gmix/device_labels_linux.h:7
 msgid "Synth"
@@ -314,7 +254,7 @@ msgstr "TelefonOut"
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:111 tcd/popup.c:22
+#: gmix/gmix.c:111
 msgid "Help"
 msgstr "Ajutor"
 
@@ -334,7 +274,14 @@ msgstr "iniþializeazã mixerul/mixerele din configurarea stocatã ºi ieºi"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "nu salva setãrile mixerului (modificate) în configuraþie"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -342,7 +289,7 @@ msgid ""
 "a version prior to 3.6.0.\n"
 msgstr ""
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -351,65 +298,66 @@ msgid ""
 msgstr ""
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1015
 msgid "Lock"
 msgstr "Blocat"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1025
 msgid "Rec."
 msgstr "Înreg."
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1043
 msgid "Mute"
 msgstr "Mut"
 
-#: gmix/gmix.c:1084
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
+#: gmix/gmix.c:1086 gmix/gmix.desktop.in.h:2
+#, fuzzy
+msgid "Volume Control"
+msgstr "Volum"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1417
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Mixerul Gnome"
 
-#: gmix/gmix.c:1399
-msgid "This is a mixer for OSS sound-devices."
+#: gmix/gmix.c:1419
+#, fuzzy
+msgid "This is a mixer for sound devices"
 msgstr "Acesta este un mixer pentru dispozitivele de sunet OSS"
 
-#. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:100
 msgid "On startup"
 msgstr "La iniþializare"
 
 #. Set on start
-#: gmix/prefs.c:104
+#: gmix/prefs.c:106
 msgid "Restore saved mixer levels on startup"
 msgstr "Restaureazã la iniþializare nivelurile salvate ale mixerului"
 
-#: gmix/prefs.c:110
+#: gmix/prefs.c:112
 msgid "Hide menu on start"
 msgstr "Ascunde meniul la start"
 
-#: gmix/prefs.c:125
+#: gmix/prefs.c:127
 msgid "GUI"
 msgstr "GUI"
 
-#: gmix/prefs.c:129
+#: gmix/prefs.c:131
 msgid "Use mixer icons"
 msgstr "Utilizeazã iconurile mixerului"
 
-#: gmix/prefs.c:137
+#: gmix/prefs.c:139
 msgid "Use mixer labels"
 msgstr "Utilizeazã etichetele mixerului"
 
-#: gmix/prefs.c:409
+#: gmix/prefs.c:411
 msgid "Defaults"
 msgstr ""
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:484
 msgid "Preferences"
 msgstr "Opþiuni"
 
-#: gmix/prefs.c:489
+#: gmix/prefs.c:490
 msgid "Labels"
 msgstr ""
 
@@ -433,17 +381,17 @@ msgstr "Reproduc..."
 msgid "Converting file..."
 msgstr "Convertesc fiºierul..."
 
-#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:327
+#: grecord/src/grec.c:241 grecord/src/grec.c:654 grecord/src/gui.c:334
 #: grecord/src/preferences.c:412
 msgid "Audioformat: "
 msgstr "Format audio:"
 
-#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:334
+#: grecord/src/grec.c:245 grecord/src/grec.c:640 grecord/src/gui.c:341
 #: grecord/src/preferences.c:416
 msgid "Sample rate: "
 msgstr "Ratã sample:"
 
-#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:341
+#: grecord/src/grec.c:255 grecord/src/grec.c:644 grecord/src/gui.c:348
 #: grecord/src/preferences.c:420
 msgid "Channels: "
 msgstr "Canale:"
@@ -567,7 +515,7 @@ msgstr "Refã toate schimbãrile efectuate pe sample-ul curent"
 msgid "Effects"
 msgstr "Efecte"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:868
+#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:876
 msgid "Show time"
 msgstr "Afiºeazã timpul"
 
@@ -575,81 +523,81 @@ msgstr "Afiºeazã timpul"
 msgid "Show soundinfo"
 msgstr "Afiºeazã informaþiile de sunet"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:873
+#: grecord/src/gui.c:130 grecord/src/gui.c:881
 msgid "Show sound information"
 msgstr "Afiºeazã informaþiile de sunet"
 
-#: grecord/src/gui.c:232
+#: grecord/src/gui.c:231
 msgid "New"
 msgstr "Nou"
 
-#: grecord/src/gui.c:233
+#: grecord/src/gui.c:232
 msgid "Create new sample"
 msgstr "Creeazã nou sample"
 
-#: grecord/src/gui.c:243 tcd/popup.c:15
+#: grecord/src/gui.c:245
 msgid "Play"
 msgstr "Play"
 
-#: grecord/src/gui.c:244
+#: grecord/src/gui.c:246
 msgid "Play current sample"
 msgstr "Ascultã sample-ul curent"
 
-#: grecord/src/gui.c:252 tcd/gtcd.c:456 tcd/popup.c:16
+#: grecord/src/gui.c:257
 msgid "Stop"
 msgstr "Stop"
 
-#: grecord/src/gui.c:253
+#: grecord/src/gui.c:258
 msgid "Stop playing/recording"
 msgstr "Opreºte ascultarea/înregistrarea"
 
-#: grecord/src/gui.c:261
+#: grecord/src/gui.c:267
 msgid "Record"
 msgstr "Înregistrare"
 
-#: grecord/src/gui.c:262
+#: grecord/src/gui.c:268
 msgid "Start recording"
 msgstr "Start înregistrare"
 
-#: grecord/src/gui.c:272
+#: grecord/src/gui.c:279
 msgid "Exit"
 msgstr "Ieþire"
 
-#: grecord/src/gui.c:273
+#: grecord/src/gui.c:280
 msgid "Exit this program"
 msgstr "Ieºire program"
 
-#: grecord/src/gui.c:287
+#: grecord/src/gui.c:294
 msgid "Info"
 msgstr "Infor"
 
-#: grecord/src/gui.c:386
+#: grecord/src/gui.c:393
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Fiºierul '%s' nu existã; utilizez valorile implicite."
 
-#: grecord/src/gui.c:407
+#: grecord/src/gui.c:414
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Fiºierul '%s' nu este un fiºier de sunet suportat."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:438
+#: grecord/src/gui.c:445
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:446 grecord/src/main.c:110
+#: grecord/src/gui.c:454 grecord/src/main.c:110
 msgid "GNOME Sound recorder"
 msgstr "GNOME Sound recorder"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:449
+#: grecord/src/gui.c:457
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hyden"
 
-#: grecord/src/gui.c:451
+#: grecord/src/gui.c:458
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -657,128 +605,128 @@ msgstr ""
 "Un soundrecorder simplu þi un soundplayer pentru GNOME.\n"
 "Dedicat pisicuþei mele, Malte."
 
-#: grecord/src/gui.c:542 tcd/gtracked.c:173
+#: grecord/src/gui.c:550
 msgid "Time"
 msgstr "Timp"
 
-#: grecord/src/gui.c:555
+#: grecord/src/gui.c:563
 msgid "Recording timeout: "
 msgstr "Timeout înregistrare:"
 
-#: grecord/src/gui.c:566
+#: grecord/src/gui.c:574
 msgid "minutes"
 msgstr "minute"
 
-#: grecord/src/gui.c:571
+#: grecord/src/gui.c:579
 msgid "Stop recording on timeout"
 msgstr "Opreºte înregistrarea la timeout"
 
-#: grecord/src/gui.c:576
+#: grecord/src/gui.c:584
 msgid "Popup save dialog when recording is finished"
 msgstr "Afiºeazã dialogul de salvare când înregistrarea este gata"
 
-#: grecord/src/gui.c:585
+#: grecord/src/gui.c:593
 msgid "Size"
 msgstr "Dimensiune"
 
-#: grecord/src/gui.c:594
+#: grecord/src/gui.c:602
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr ""
 "Afiºeazã mesaj de avertizare dacã dimensiunea (Mb) sample-ului depãºeºte:"
 
-#: grecord/src/gui.c:604
+#: grecord/src/gui.c:612
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Opreºte înregistrarea dacã dimensiunea (Mb) sample-ului depãºeºte:"
 
-#: grecord/src/gui.c:615
+#: grecord/src/gui.c:623
 msgid "Recording"
 msgstr "Înregistrare"
 
-#: grecord/src/gui.c:624
+#: grecord/src/gui.c:632
 msgid "Play-repeating"
 msgstr "Ascultã-repetat"
 
-#: grecord/src/gui.c:633
+#: grecord/src/gui.c:641
 msgid "Repeat"
 msgstr "Repetã"
 
-#: grecord/src/gui.c:642
+#: grecord/src/gui.c:650
 msgid "Forever"
 msgstr "La infinit"
 
-#: grecord/src/gui.c:647
+#: grecord/src/gui.c:655
 msgid "Nr of times:"
 msgstr "Nr. de repetãri:"
 
-#: grecord/src/gui.c:658
+#: grecord/src/gui.c:666
 msgid "Playing"
 msgstr "Ascultare"
 
-#: grecord/src/gui.c:667
+#: grecord/src/gui.c:675
 msgid "Program files"
 msgstr "Fiºiere program"
 
-#: grecord/src/gui.c:684
+#: grecord/src/gui.c:692
 msgid "Path to sox:"
 msgstr "Calea cãtre sox:"
 
-#: grecord/src/gui.c:700
+#: grecord/src/gui.c:708
 msgid "Path to mixer:"
 msgstr "Calea cãtre mixer:"
 
-#: grecord/src/gui.c:716
+#: grecord/src/gui.c:724
 msgid "Directories"
 msgstr "Directoare"
 
-#: grecord/src/gui.c:729
+#: grecord/src/gui.c:737
 msgid "Temp dir:"
 msgstr "Director temporar:"
 
-#: grecord/src/gui.c:745
+#: grecord/src/gui.c:753
 msgid "Paths"
 msgstr "Cãi"
 
-#: grecord/src/gui.c:753
+#: grecord/src/gui.c:761
 msgid "Sound options"
 msgstr "Opþiuni sunet"
 
-#: grecord/src/gui.c:766
+#: grecord/src/gui.c:774
 msgid "Audioformat:"
 msgstr "Format audio:"
 
-#: grecord/src/gui.c:777 grecord/src/gui.c:787
+#: grecord/src/gui.c:785 grecord/src/gui.c:795
 msgid "8bit pcm"
 msgstr "8bit pcm"
 
-#: grecord/src/gui.c:778 grecord/src/gui.c:789
+#: grecord/src/gui.c:786 grecord/src/gui.c:797
 msgid "16bit pcm"
 msgstr "18bit pcm"
 
-#: grecord/src/gui.c:795
+#: grecord/src/gui.c:803
 msgid "Sample rate:"
 msgstr "Ratã sample:"
 
-#: grecord/src/gui.c:825
+#: grecord/src/gui.c:833
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:836 grecord/src/gui.c:846
+#: grecord/src/gui.c:844 grecord/src/gui.c:854
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:837 grecord/src/gui.c:848
+#: grecord/src/gui.c:845 grecord/src/gui.c:856
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:851
+#: grecord/src/gui.c:859
 msgid "Sound"
 msgstr "Sunet"
 
-#: grecord/src/gui.c:859
+#: grecord/src/gui.c:867
 msgid "Main window"
 msgstr "Fereastra principalã"
 
-#: grecord/src/gui.c:878
+#: grecord/src/gui.c:886
 msgid "User interface"
 msgstr "Interfaþã utilizator"
 
@@ -802,11 +750,11 @@ msgstr "Specificã un fiºier pentru începerea înregistrãrii"
 msgid "Specify a file to start playing"
 msgstr "Specificã un fiºier pentru începerea ascultãrii"
 
-#: grecord/src/main.c:174
+#: grecord/src/main.c:176
 msgid "Don't show this message again."
 msgstr "Nu afiºa acest mesaj din nou."
 
-#: grecord/src/main.c:176
+#: grecord/src/main.c:178
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -878,8 +826,8 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory "
-"%s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
 "Nu aveþi drepturi corecte (citire ºi scriere) pe directorul temporar\n"
@@ -904,443 +852,7 @@ msgstr " nedenumit.wav"
 msgid "Adding echo to sample..."
 msgstr "Adaug ecou la sample..."
 
-#: tcd/callbacks.c:85
-msgid "TCD - The Gnome CD Player"
-msgstr "TCD - CD Playerul Gnome"
-
-#: tcd/callbacks.c:89
-msgid ""
-"GTCD is the Gnome CD player application. Includes CDDB support. Please see "
-"the 'Thanks' file included with the distribution for more credits."
-msgstr ""
-"GTCD este CD-Player-ul Gnome. Include suport pentru CDDB. Vã rog uitaþi-vã "
-"fiºierul 'Thanks' inclusã cu distribuþia pentru informaþii despre autori."
-
-#: tcd/cddb_props.c:72
-msgid "Disc ID"
-msgstr "Disk ID"
-
-#: tcd/cddb_props.c:72
-msgid "Disc Title"
-msgstr "Titlul Discului"
-
-#: tcd/cddb_props.c:87
-msgid "Edit"
-msgstr "Editeazã"
-
-#: tcd/cddb_props.c:91
-msgid "Remove"
-msgstr "Eliminã"
-
-#: tcd/cddb_props.c:97
-msgid "Refresh List"
-msgstr "Reîmprospãteazã Lista"
-
-#. server settings
-#: tcd/cddb_props.c:148
-msgid "Server Settings"
-msgstr "Opþiunile Serverului"
-
-#: tcd/cddb_props.c:157
-msgid "Address"
-msgstr "Adresã"
-
-#: tcd/cddb_props.c:167
-msgid "Port"
-msgstr "Port"
-
-#: tcd/cddb_props.c:176
-msgid "Use HTTP"
-msgstr "Foloseºte HTTP"
-
-#: tcd/cddb_props.c:181
-msgid "Proxy"
-msgstr "Proxy"
-
-#: tcd/cddb_props.c:199
-msgid "Use proxy authentication"
-msgstr "Foloseºte identificarea proxy"
-
-#: tcd/cddb_props.c:207
-msgid "Username"
-msgstr "Numele user-ului"
-
-#: tcd/cddb_props.c:227
-msgid "Password"
-msgstr "Parola"
-
-#: tcd/cddb_props.c:247
-msgid "SOCKS Server"
-msgstr "Doriþi sã îl utilizaþi oricum?"
-
-#: tcd/cddb_props.c:254
-msgid "Use SOCKS"
-msgstr "Utilizeazã SOCKS"
-
-#. local db
-#: tcd/cddb_props.c:267
-msgid "Local Database"
-msgstr "Bazã de Date Localã"
-
-#. frame
-#: tcd/cddb_props.c:309
-msgid "CDDB Data"
-msgstr "Date CDDB"
-
-#: tcd/cddb_props.c:342
-msgid "CDDB Editor"
-msgstr "Editor CDDB"
-
-#: tcd/cddb_props.c:356
-msgid "Error reading $HOME/.cddbslave."
-msgstr "Eroare la citirea $HOME/.cddblsave."
-
-#: tcd/cddb_props.c:472
-#, c-format
-msgid "Couldn't remove file: %s\n"
-msgstr "Nu am putut înlãtura fiºierul: %s\n"
-
-#: tcd/cddb_props.c:484
-msgid "Delete CDDB Entry?"
-msgstr "ªterg Intrarea CDDB?"
-
-#. CDDB Status  button
-#: tcd/cddb_status.c:53 tcd/gtracked.c:312
-msgid "CDDB Status"
-msgstr "Starea CDDB"
-
-#. grab button
-#: tcd/cddb_status.c:71
-msgid "Get CDDB Now"
-msgstr "Citeºte acum CDDB"
-
-#: tcd/gtcd.c:63
-msgid "trk-e"
-msgstr "cnt-t"
-
-#: tcd/gtcd.c:64
-msgid "trk-r"
-msgstr "cnt-r"
-
-#: tcd/gtcd.c:65
-msgid "dsc-e"
-msgstr "dsc-t"
-
-#: tcd/gtcd.c:66
-msgid "dsc-r"
-msgstr "dsc-r"
-
-#: tcd/gtcd.c:71
-msgid "loop-cd"
-msgstr "loop-cd"
-
-#: tcd/gtcd.c:72
-msgid "loop-t"
-msgstr "loop-t"
-
-#: tcd/gtcd.c:73
-msgid "normal"
-msgstr "normal"
-
-#: tcd/gtcd.c:74
-msgid "random"
-msgstr "aleator"
-
-#: tcd/gtcd.c:368 tcd/gtcd.c:1101
-msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
-
-#. TOP ROW
-#: tcd/gtcd.c:452
-msgid "Play/Pause"
-msgstr "Play/Pauzã"
-
-#: tcd/gtcd.c:457 tcd/popup.c:17
-msgid "Eject"
-msgstr "Eject"
-
-#. MIDDLE ROW
-#: tcd/gtcd.c:464 tcd/gtcd.c:501
-msgid "Skip backwards"
-msgstr "Sari înapoi"
-
-#: tcd/gtcd.c:465 tcd/gtcd.c:502
-msgid "Skip forwards"
-msgstr "Sari înainte"
-
-#. BOTTOM ROW
-#: tcd/gtcd.c:489
-msgid "Open track editor"
-msgstr "Deschide editorul de piste"
-
-#: tcd/gtcd.c:491 tcd/popup.c:25
-msgid "Quit"
-msgstr "Ieºire"
-
-#. INVISIBLE BUTTONS
-#: tcd/gtcd.c:498
-#, fuzzy
-msgid "Mixer"
-msgstr "Mix  "
-
-#: tcd/gtcd.c:503
-msgid "Fast Forward"
-msgstr ""
-
-#: tcd/gtcd.c:504
-msgid "Rewind"
-msgstr ""
-
-#: tcd/gtcd.c:505
-#, fuzzy
-msgid "Volume Up"
-msgstr "Volum"
-
-#: tcd/gtcd.c:506
-#, fuzzy
-msgid "Volume Down"
-msgstr "Volum"
-
-#: tcd/gtcd.c:642 tcd/gtcd.c:643 tcd/gtcd.c:644
-msgid "(Scanning)"
-msgstr "(Scanez)"
-
-#: tcd/gtcd.c:666
-msgid "No Disc"
-msgstr "Fãrã Disk"
-
-#: tcd/gtcd.c:701
-msgid "Error"
-msgstr "Eroare"
-
-#: tcd/gtcd.c:1001
-msgid "Volume"
-msgstr "Volum"
-
-#: tcd/gtcd.c:1072
-msgid "Cannot load requested font. Reloading default font."
-msgstr ""
-
-#: tcd/gtcd.c:1083
-msgid "Cannot load default Helvetica font. Loading any fixed width font."
-msgstr ""
-
-#: tcd/gtcd.c:1090
-msgid "Cannot load fixed width font. Exiting."
-msgstr ""
-
-#: tcd/gtcd.c:1288
-msgid "Filename of the CD device"
-msgstr "Numele fiºierului CD-ROM"
-
-#: tcd/gtcd.c:1288
-msgid "FILE"
-msgstr "FIªIER"
-
-#: tcd/gtcd.c:1290
-msgid "Play CD on startup"
-msgstr "Ruleazã CD-ul la iniþializare"
-
-#: tcd/gtracked.c:173
-msgid "Trk"
-msgstr "Pis"
-
-#: tcd/gtracked.c:173
-msgid "Title"
-msgstr "Titlu"
-
-#: tcd/gtracked.c:197
-msgid "Track Editor"
-msgstr "Editor de Piste"
-
-#. Disc area
-#: tcd/gtracked.c:213
-#, c-format
-msgid "Disc Information (%02u:%02u minutes)"
-msgstr "Informaþiile Discului (%02u:%02u minute)"
-
-#: tcd/gtracked.c:222
-msgid "Artist / Title"
-msgstr "Artist / Titlu"
-
-#. END Disc area
-#. Track area
-#: tcd/gtracked.c:245
-msgid "Track Information"
-msgstr "Informaþii Piste"
-
-#. Clear button
-#: tcd/gtracked.c:301
-msgid "Clear"
-msgstr "ªterge"
-
-#. Playlist button
-#: tcd/gtracked.c:306
-msgid "Playlist"
-msgstr "Listã Muzicalã"
-
-#: tcd/gtracked.c:318
-msgid "Submit"
-msgstr "Subscrie"
-
-#: tcd/gtracked.c:380
-msgid "Submit Information"
-msgstr "Subscrie Informaþie"
-
-#: tcd/gtracked.c:386
-#, c-format
-msgid ""
-"Submit information about\n"
-"'%s'"
-msgstr ""
-"Subscrie informaþia despre\n"
-"'%s'"
-
-#: tcd/gtracked.c:395
-msgid "To: "
-msgstr "La: "
-
-#. end of service menu
-#: tcd/gtracked.c:427
-msgid "Category: "
-msgstr "Categorie: "
-
-#: tcd/linux-cdrom.c:678
-#, c-format
-msgid ""
-"Error accessing cdrom device.\n"
-"Please check to make sure cdrom drive support\n"
-"is compiled into the kernel, and that you have\n"
-"permission to access the device.\n"
-"\n"
-"Reason: %s\n"
-msgstr ""
-"Eroare la accesul aparatului CDROM.\n"
-"Te rog verificã ºi fii sigur cã suportul\n"
-"de cdrom e compilat în nucleu, ºi ca ai\n"
-"lãsat permisie pentru accesul aparatului\n"
-"\n"
-"Motivul: %s\n"
-
-#: tcd/linux-cdrom.c:771
-msgid "Unknown / Unknown"
-msgstr "Necunoscut / Necunoscut"
-
-#: tcd/linux-cdrom.c:777
-#, c-format
-msgid "Track %d"
-msgstr "Pista %d"
-
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Opþiuni..."
-
-#: tcd/popup.c:20
-msgid "Track Editor..."
-msgstr "Editor de Piste..."
-
-#: tcd/popup.c:21
-#, fuzzy
-msgid "Mixer..."
-msgstr "Ruleazã mixerul..."
-
-#: tcd/popup.c:23
-msgid "About"
-msgstr "Despre"
-
-#. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
-msgid "Do nothing"
-msgstr "Nu fã nimic"
-
-#: tcd/prefs.c:339
-msgid "Start playing"
-msgstr "Porneºte muzica"
-
-#: tcd/prefs.c:345 tcd/prefs.c:394
-msgid "Stop playing"
-msgstr "Opreºte muzica"
-
-#. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
-msgid "Close tray"
-msgstr "Închide CDROM-ul"
-
-#: tcd/prefs.c:400
-msgid "Open tray"
-msgstr "Deschide CDROM-ul"
-
-#. device entry
-#: tcd/prefs.c:482
-msgid "CDROM device"
-msgstr "Fiºierul CDROM"
-
-#. device entry
-#: tcd/prefs.c:491
-msgid "Mixer Command"
-msgstr ""
-
-#. Color picker
-#: tcd/prefs.c:500
-msgid "Track/title color"
-msgstr "Culoarea Pistei/Titlului"
-
-#. font picker
-#: tcd/prefs.c:512
-msgid "Track/title font"
-msgstr "Fontul Pistei/Titlului"
-
-#: tcd/prefs.c:513
-msgid "Change font"
-msgstr "Schimbã fontul"
-
-#. show handles
-#: tcd/prefs.c:520
-msgid "Show handles (restart required)"
-msgstr "Aratã handles-urile (trebuie restartat)"
-
-#. show tooltips
-#: tcd/prefs.c:527
-msgid "Show tooltips"
-msgstr "Aratã tooltips"
-
-#. use alternate play ioctl
-#: tcd/prefs.c:534
-msgid "Use alternate method to play CD"
-msgstr "Foloseºte metoda alternativã pentru play CD"
-
-#. use squared law volume
-#: tcd/prefs.c:541
-msgid "Use squared law volume control"
-msgstr "Utilizeazã controlul de volum 'squared law'"
-
-#. exit frame
-#: tcd/prefs.c:567
-msgid "On exit"
-msgstr "La ieºire"
-
-#: tcd/prefs.c:667
-msgid "Key"
-msgstr "Tastã"
-
-#: tcd/prefs.c:668
-msgid "Action"
-msgstr "Acþioneazã"
-
-#: tcd/prefs.c:691
-msgid "Click here to change (restart required):"
-msgstr "Click pentru schimbare (trebuie restartat):"
-
-#. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
-msgid "Keybindings"
-msgstr "Opþiuni Taste"
-
-#: tcd/prefs.c:759
-msgid "CDDB Settings"
-msgstr "Opþiuni CDDB"
-
-#: vu-meter/main.c:118
+#: vu-meter/main.c:131
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1348,65 +860,72 @@ msgstr ""
 "Nu m-am putut conecta la demonul de sunet.\n"
 "Vã rog sã rulaþi 'esd' la terminal."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:257
 msgid "Specify the X position of the meter."
 msgstr "Specificã poziþia X a meter-ului"
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:258
 msgid "X-Position"
 msgstr "Poziþia X"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:260
 msgid "Specify the Y position of the meter."
 msgstr "Specificã poziþia Y a meter-ului."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:261
 msgid "Y-Position"
 msgstr "Poziþia Y"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:263
 msgid "Connect to the esd server on this host."
 msgstr "Mã conectez la serverul esd la aceastã gazdã."
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:264
 msgid "ESD Server Host"
 msgstr "Gazdã Server ESD"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:266
 msgid "Open a vertical version of the meter."
 msgstr "Deschide meter pe verticalã."
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:268
+msgid "Act as recording level meter."
+msgstr ""
+
+#: vu-meter/main.c:284
 #, c-format
 msgid "Host is %s\n"
 msgstr "Gazda este %s\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:310
+#, fuzzy
+msgid "Recording level"
+msgstr "Înregistrare"
+
+#: vu-meter/main.c:310
 msgid "Volume Meter"
 msgstr "Mãrime Volum"
 
-#: vu-meter/vumeter.desktop.in.h:1
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "Monitor the recording intput volume"
+msgstr ""
+
+#: vu-meter/reclevel.desktop.in.h:2
 #, fuzzy
-msgid "A Volume Unit Meter for ESD "
-msgstr "Mãrime Volum"
+msgid "Recording Level Monitor"
+msgstr "Timeout înregistrare:"
+
+#: vu-meter/vumeter.desktop.in.h:1
+msgid "Monitor the sound output volume"
+msgstr ""
 
 #: vu-meter/vumeter.desktop.in.h:2
 #, fuzzy
-msgid "ESD Volume Meter"
+msgid "Volume Monitor"
 msgstr "Mãrime Volum"
 
-#: tcd/gtcd.desktop.in.h:1
-#, fuzzy
-msgid "CD Player"
-msgstr "Play"
-
-#: tcd/gtcd.desktop.in.h:2
-#, fuzzy
-msgid "Gnome CD Player"
-msgstr "TCD - CD Playerul Gnome"
-
 #: grecord/Soundrecorder.desktop.in.h:1
-msgid "A simple soundrecording program for GNOME"
+msgid "Record sound clips"
 msgstr ""
 
 #: grecord/Soundrecorder.desktop.in.h:2
@@ -1415,8 +934,351 @@ msgid "Sound recorder"
 msgstr "GNOME Sound recorder"
 
 #: gmix/gmix.desktop.in.h:1
-msgid "Audio Mixer"
+msgid "Adjust the volume level"
 msgstr ""
+
+#~ msgid "Ready for command: %s\n"
+#~ msgstr "Gata pentru comanda: %s\n"
+
+#~ msgid "Connecting [%s]\n"
+#~ msgstr "Mã conectez la [%s]\n"
+
+#~ msgid "Querying server [%s]\n"
+#~ msgstr "Interoghez serverul [%s]\n"
+
+#~ msgid "Waiting for reply [%s]\n"
+#~ msgstr "Aºtept rãspunsul [%s]\n"
+
+#~ msgid "Reading reply [%s]\n"
+#~ msgstr "Citesc replica [%s]\n"
+
+#~ msgid "Disconnecting [%s]\n"
+#~ msgstr "Mã deconectez [%s]\n"
+
+#~ msgid "Error connecting [%s]\n"
+#~ msgstr "Eroare în conectarea la [%s]\n"
+
+#~ msgid "Error querying [%s]\n"
+#~ msgstr "Eroare la interogarea [%s]\n"
+
+#~ msgid "Error reading [%s]\n"
+#~ msgstr "Eroare la citirea [%s]\n"
+
+#~ msgid "No match found for %s\n"
+#~ msgstr "Nu s-au gãsit asemãnãri pentru :%s\n"
+
+#~ msgid "Timeout: %s\n"
+#~ msgstr "Expirã la: %s\n"
+
+#~ msgid "Inactive. %s\n"
+#~ msgstr "Inactiv. %s\n"
+
+#~ msgid "GMIX 3.0"
+#~ msgstr "GMIX 3.0"
+
+#~ msgid "TCD - The Gnome CD Player"
+#~ msgstr "TCD - CD Playerul Gnome"
+
+#~ msgid ""
+#~ "GTCD is the Gnome CD player application. Includes CDDB support. Please "
+#~ "see the 'Thanks' file included with the distribution for more credits."
+#~ msgstr ""
+#~ "GTCD este CD-Player-ul Gnome. Include suport pentru CDDB. Vã rog uitaþi-"
+#~ "vã fiºierul 'Thanks' inclusã cu distribuþia pentru informaþii despre "
+#~ "autori."
+
+#~ msgid "Disc ID"
+#~ msgstr "Disk ID"
+
+#~ msgid "Disc Title"
+#~ msgstr "Titlul Discului"
+
+#~ msgid "Edit"
+#~ msgstr "Editeazã"
+
+#~ msgid "Remove"
+#~ msgstr "Eliminã"
+
+#~ msgid "Refresh List"
+#~ msgstr "Reîmprospãteazã Lista"
+
+#~ msgid "Server Settings"
+#~ msgstr "Opþiunile Serverului"
+
+#~ msgid "Address"
+#~ msgstr "Adresã"
+
+#~ msgid "Port"
+#~ msgstr "Port"
+
+#~ msgid "Use HTTP"
+#~ msgstr "Foloseºte HTTP"
+
+#~ msgid "Proxy"
+#~ msgstr "Proxy"
+
+#~ msgid "Use proxy authentication"
+#~ msgstr "Foloseºte identificarea proxy"
+
+#~ msgid "Username"
+#~ msgstr "Numele user-ului"
+
+#~ msgid "Password"
+#~ msgstr "Parola"
+
+#~ msgid "SOCKS Server"
+#~ msgstr "Doriþi sã îl utilizaþi oricum?"
+
+#~ msgid "Use SOCKS"
+#~ msgstr "Utilizeazã SOCKS"
+
+#~ msgid "Local Database"
+#~ msgstr "Bazã de Date Localã"
+
+#~ msgid "CDDB Data"
+#~ msgstr "Date CDDB"
+
+#~ msgid "CDDB Editor"
+#~ msgstr "Editor CDDB"
+
+#~ msgid "Error reading $HOME/.cddbslave."
+#~ msgstr "Eroare la citirea $HOME/.cddblsave."
+
+#~ msgid "Couldn't remove file: %s\n"
+#~ msgstr "Nu am putut înlãtura fiºierul: %s\n"
+
+#~ msgid "Delete CDDB Entry?"
+#~ msgstr "ªterg Intrarea CDDB?"
+
+#~ msgid "CDDB Status"
+#~ msgstr "Starea CDDB"
+
+#~ msgid "Get CDDB Now"
+#~ msgstr "Citeºte acum CDDB"
+
+#~ msgid "trk-e"
+#~ msgstr "cnt-t"
+
+#~ msgid "trk-r"
+#~ msgstr "cnt-r"
+
+#~ msgid "dsc-e"
+#~ msgstr "dsc-t"
+
+#~ msgid "dsc-r"
+#~ msgstr "dsc-r"
+
+#~ msgid "loop-cd"
+#~ msgstr "loop-cd"
+
+#~ msgid "loop-t"
+#~ msgstr "loop-t"
+
+#~ msgid "normal"
+#~ msgstr "normal"
+
+#~ msgid "random"
+#~ msgstr "aleator"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
+
+#~ msgid "Play/Pause"
+#~ msgstr "Play/Pauzã"
+
+#~ msgid "Eject"
+#~ msgstr "Eject"
+
+#~ msgid "Skip backwards"
+#~ msgstr "Sari înapoi"
+
+#~ msgid "Skip forwards"
+#~ msgstr "Sari înainte"
+
+#~ msgid "Open track editor"
+#~ msgstr "Deschide editorul de piste"
+
+#~ msgid "Quit"
+#~ msgstr "Ieºire"
+
+#, fuzzy
+#~ msgid "Mixer"
+#~ msgstr "Mix  "
+
+#, fuzzy
+#~ msgid "Volume Up"
+#~ msgstr "Volum"
+
+#~ msgid "(Scanning)"
+#~ msgstr "(Scanez)"
+
+#~ msgid "No Disc"
+#~ msgstr "Fãrã Disk"
+
+#~ msgid "Error"
+#~ msgstr "Eroare"
+
+#~ msgid "Volume"
+#~ msgstr "Volum"
+
+#~ msgid "Filename of the CD device"
+#~ msgstr "Numele fiºierului CD-ROM"
+
+#~ msgid "FILE"
+#~ msgstr "FIªIER"
+
+#~ msgid "Play CD on startup"
+#~ msgstr "Ruleazã CD-ul la iniþializare"
+
+#~ msgid "Trk"
+#~ msgstr "Pis"
+
+#~ msgid "Title"
+#~ msgstr "Titlu"
+
+#~ msgid "Track Editor"
+#~ msgstr "Editor de Piste"
+
+#~ msgid "Disc Information (%02u:%02u minutes)"
+#~ msgstr "Informaþiile Discului (%02u:%02u minute)"
+
+#~ msgid "Artist / Title"
+#~ msgstr "Artist / Titlu"
+
+#~ msgid "Track Information"
+#~ msgstr "Informaþii Piste"
+
+#~ msgid "Clear"
+#~ msgstr "ªterge"
+
+#~ msgid "Playlist"
+#~ msgstr "Listã Muzicalã"
+
+#~ msgid "Submit"
+#~ msgstr "Subscrie"
+
+#~ msgid "Submit Information"
+#~ msgstr "Subscrie Informaþie"
+
+#~ msgid ""
+#~ "Submit information about\n"
+#~ "'%s'"
+#~ msgstr ""
+#~ "Subscrie informaþia despre\n"
+#~ "'%s'"
+
+#~ msgid "To: "
+#~ msgstr "La: "
+
+#~ msgid "Category: "
+#~ msgstr "Categorie: "
+
+#~ msgid ""
+#~ "Error accessing cdrom device.\n"
+#~ "Please check to make sure cdrom drive support\n"
+#~ "is compiled into the kernel, and that you have\n"
+#~ "permission to access the device.\n"
+#~ "\n"
+#~ "Reason: %s\n"
+#~ msgstr ""
+#~ "Eroare la accesul aparatului CDROM.\n"
+#~ "Te rog verificã ºi fii sigur cã suportul\n"
+#~ "de cdrom e compilat în nucleu, ºi ca ai\n"
+#~ "lãsat permisie pentru accesul aparatului\n"
+#~ "\n"
+#~ "Motivul: %s\n"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Necunoscut / Necunoscut"
+
+#~ msgid "Track %d"
+#~ msgstr "Pista %d"
+
+#~ msgid "Preferences..."
+#~ msgstr "Opþiuni..."
+
+#~ msgid "Track Editor..."
+#~ msgstr "Editor de Piste..."
+
+#, fuzzy
+#~ msgid "Mixer..."
+#~ msgstr "Ruleazã mixerul..."
+
+#~ msgid "About"
+#~ msgstr "Despre"
+
+#~ msgid "Do nothing"
+#~ msgstr "Nu fã nimic"
+
+#~ msgid "Start playing"
+#~ msgstr "Porneºte muzica"
+
+#~ msgid "Stop playing"
+#~ msgstr "Opreºte muzica"
+
+#~ msgid "Close tray"
+#~ msgstr "Închide CDROM-ul"
+
+#~ msgid "Open tray"
+#~ msgstr "Deschide CDROM-ul"
+
+#~ msgid "CDROM device"
+#~ msgstr "Fiºierul CDROM"
+
+#~ msgid "Track/title color"
+#~ msgstr "Culoarea Pistei/Titlului"
+
+#~ msgid "Track/title font"
+#~ msgstr "Fontul Pistei/Titlului"
+
+#~ msgid "Change font"
+#~ msgstr "Schimbã fontul"
+
+#~ msgid "Show handles (restart required)"
+#~ msgstr "Aratã handles-urile (trebuie restartat)"
+
+#~ msgid "Show tooltips"
+#~ msgstr "Aratã tooltips"
+
+#~ msgid "Use alternate method to play CD"
+#~ msgstr "Foloseºte metoda alternativã pentru play CD"
+
+#~ msgid "Use squared law volume control"
+#~ msgstr "Utilizeazã controlul de volum 'squared law'"
+
+#~ msgid "On exit"
+#~ msgstr "La ieºire"
+
+#~ msgid "Key"
+#~ msgstr "Tastã"
+
+#~ msgid "Action"
+#~ msgstr "Acþioneazã"
+
+#~ msgid "Click here to change (restart required):"
+#~ msgstr "Click pentru schimbare (trebuie restartat):"
+
+#~ msgid "Keybindings"
+#~ msgstr "Opþiuni Taste"
+
+#~ msgid "CDDB Settings"
+#~ msgstr "Opþiuni CDDB"
+
+#, fuzzy
+#~ msgid "A Volume Unit Meter for ESD "
+#~ msgstr "Mãrime Volum"
+
+#, fuzzy
+#~ msgid "ESD Volume Meter"
+#~ msgstr "Mãrime Volum"
+
+#, fuzzy
+#~ msgid "CD Player"
+#~ msgstr "Play"
+
+#, fuzzy
+#~ msgid "Gnome CD Player"
+#~ msgstr "TCD - CD Playerul Gnome"
 
 #~ msgid "Speed"
 #~ msgstr "Vitezã"

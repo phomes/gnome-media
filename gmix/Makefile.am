@@ -5,8 +5,6 @@ EXTRA_DIST = README TODO NEWS gmix.desktop.in gnome-mixer.png \
 	device_labels_linux.sed device_labels_linux.h \
 	device_labels_alsa.sed device_labels_alsa.h
 
-SUBDIRS = doc
-
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	$(MEDIA_CFLAGS) 				\
