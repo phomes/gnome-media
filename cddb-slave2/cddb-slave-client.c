@@ -522,7 +522,7 @@ cddb_slave_client_set_tracks (CDDBSlaveClient *client,
 
 	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
 
-	for (i = 0; *track_info != NULL; i++) {
+	for (i = 0; track_info[i] != NULL; i++) {
 		; /* Count the number of tracks */
 	}
 	
