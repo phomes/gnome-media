@@ -359,6 +359,7 @@ void
 on_repeat_activate_cb (GtkWidget* widget,
 		       gpointer data)
 {
+#if 0
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
 		gtk_widget_set_sensitive (GTK_WIDGET (propertywidgets.playrepeatforever_radiobutton_v), TRUE);
 		gtk_widget_set_sensitive (GTK_WIDGET (propertywidgets.playxtimes_radiobutton_v), TRUE);
@@ -372,4 +373,5 @@ on_repeat_activate_cb (GtkWidget* widget,
 		gtk_widget_set_sensitive (GTK_WIDGET (propertywidgets.playxtimes_radiobutton_v), FALSE);
 		gtk_widget_set_sensitive (GTK_WIDGET (propertywidgets.playxtimes_spinbutton_v), FALSE);
 	}
+#endif
 }
