@@ -309,6 +309,7 @@ solaris_cdrom_eject (GnomeCDRom *cdrom,
 	}
 
 	g_free (status);
+	lcd->priv->ref_count = 0;
 	solaris_cdrom_close (lcd);
 	return TRUE;
 }
