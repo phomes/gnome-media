@@ -871,7 +871,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (mainwindow_gui_vbox), show_soundinfo_checkbutton, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (show_soundinfo_checkbutton), 3);
 
-	gui_label = gtk_label_new (_("GUI"));
+	gui_label = gtk_label_new (_("User interface"));
 	gtk_widget_show (gui_label);
 	gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 4), gui_label);
 
