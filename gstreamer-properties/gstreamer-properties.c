@@ -141,6 +141,8 @@ update_from_gconf(GSTPPipelineEditor* editor,
 		editor->cur_pipeline_index = custom_desc;
 		if (custom_desc >= 0) {
 			gtk_entry_set_text (editor->entry, pipeline_str);
+			if (pipeline_str == NULL || *pipeline_str = '\0')
+				gtk_widget_set_sensitive (GTK_WIDGET(editor->test_button), FALSE);
 		}
 	}
 	
@@ -174,7 +176,13 @@ entry_changed (GtkEditable *editable, gpointer user_data)
 {
 	GSTPPipelineEditor* editor = (GSTPPipelineEditor*)(user_data);
 	const gchar* new_text = gtk_entry_get_text(GTK_ENTRY(editable));
-	
+
+	if (new_text == NULL || *new_text == '\0') {
+		/* disable test button */
+		gtk_widget_set_sensitive (GTK_WIDGET(editor->test_button), FALSE);
+	} else {
+		gtk_widget_set_sensitive (GTK_WIDGET(editor->test_button), TRUE);
+	}
 	/* Update GConf */
 	gconf_client_set_string (client, editor->gconf_key, new_text, NULL);
 }
