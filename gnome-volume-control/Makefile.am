@@ -44,7 +44,7 @@ libalsa_la_SOURCES = 			\
 	alsa-mixer.c			\
 	alsa-mixer.h			\
 	alsa-channel.c			\
-	alsa-channel.h			\
+	alsa-channel.h
 libalsa_la_LDFLAGS = $(device_flags)
 libalsa_la_LIBADD = $(MEDIA_LIBS) $(GMIX_LIBS) -lasound
 
@@ -55,8 +55,8 @@ liboss_la_SOURCES =			\
 	oss-channel.h			\
 	oss-mixer.c			\
 	oss-mixer.h
-libalsa_la_LDFLAGS = $(device_flags)
-libalsa_la_LIBADD = $(MEDIA_LIBS) $(GMIX_LIBS)
+liboss_la_LDFLAGS = $(device_flags)
+liboss_la_LIBADD = $(MEDIA_LIBS) $(GMIX_LIBS)
 
 
 
