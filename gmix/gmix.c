@@ -1049,9 +1049,9 @@ GtkWidget *make_slider_mixer(channel_info *ci)
 	hbox = gtk_hbox_new (FALSE, 1);
 
 #ifdef ALSA
-	ci->left = gtk_adjustment_new (-ci->volume_left, -100.0, 0.0, 1.0, 1.0, 0.0);
+	ci->left = gtk_adjustment_new (-ci->volume_left, -100.0, 0.0, 5.0, 2.0, 0.0);
 #else
-	ci->left = gtk_adjustment_new (-ci->volume_left, -101.0, 0.0, 1.0, 1.0, 0.0);
+	ci->left = gtk_adjustment_new (-ci->volume_left, -101.0, 0.0, 5.0, 2.0, 0.0);
 #endif
 	
 	g_signal_connect (G_OBJECT (ci->left), "value_changed",
