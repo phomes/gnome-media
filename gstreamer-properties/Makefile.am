@@ -18,7 +18,7 @@ desktop_icons_DATA = gstreamer-properties.png
 gladedir   = $(datadir)/gstreamer-properties/glade
 glade_DATA = gstreamer-properties.glade 
 
-desktopdir = $(datadir)/applications
+desktopdir = $(datadir)/control-center-2.0/capplets
 Desktop_in_files = gstreamer-properties.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
