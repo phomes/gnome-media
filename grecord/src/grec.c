@@ -115,12 +115,14 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 
 	PlayEng.pid = fork ();
 	if (PlayEng.pid == 0) {
-		int i, ntimes;
+#if 0
+		int i;
 		
 		/* Play file */
 		if (playrepeat == TRUE &&
 		    playrepeatforever == FALSE) {
 			for (i = 0; i < playxtimes; i++) {
+				g_print ("%d of %d: Playing %s\n", i, playxtimes, active_file);
 				play_sound (active_file);
 			}
 		} else if (playrepeat == TRUE &&
@@ -131,7 +133,8 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 		} else if (playrepeat == FALSE) {
 			play_sound (active_file);
 		}
-
+#endif
+		play_sound (active_file);
 		_exit (0);
 	}
 	else if (PlayEng.pid == -1)
@@ -619,6 +622,8 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 						       GTK_BUTTONS_OK,
 						       _("'%s is a directory.\nPlease select a sound file to be opened."),
 						       tempfile);
+			g_signal_connect (G_OBJECT (mess), "response",
+					  G_CALLBACK (gtk_widget_destroy), NULL);
 
 			gtk_widget_show (mess);
 			return;
@@ -629,6 +634,8 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 					    GTK_BUTTONS_OK,
 					    _("File '%s' doesn't exist.\nPlease select an existing sound file to be opened."),
 					    tempfile);
+		g_signal_connect (G_OBJECT (mess), "response",
+				  G_CALLBACK (gtk_widget_destroy), NULL);
 
 		gtk_widget_show (mess);
 		return;
@@ -640,6 +647,8 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 					       GTK_BUTTONS_OK,
 					       _("File '%s isn't a valid sound file."),
 					       tempfile);
+		g_signal_connect (G_OBJECT (mess), "response",
+				  G_CALLBACK (gtk_widget_destroy), NULL);
 		gtk_widget_show (mess);
 		return;
 	}
@@ -711,7 +720,9 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 						       GTK_BUTTONS_OK,
 						       _("'%s' is a directory.\nPlease enter another filename."),
 						       new_file);
-
+			g_signal_connect (G_OBJECT (mess), "response",
+					  G_CALLBACK (gtk_widget_destroy), NULL);
+			
 			gtk_widget_show (mess);
 			g_free (new_file);
 			return;
@@ -752,6 +763,9 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 					       GTK_BUTTONS_OK,
 					       _("Error saving '%s'"),
 					       new_file);
+		g_signal_connect (G_OBJECT (mess), "response",
+				  G_CALLBACK (gtk_widget_destroy), NULL);
+		
 		gtk_widget_show (mess);
 		
 		g_free (new_file);
@@ -848,22 +862,20 @@ UpdateStatusbarPlay (gboolean begin)
 
 		length = get_play_time (active_file);
 		temp = 1000 / length;
-	}
-	else {
+	} else {
 		if (waitpid (PlayEng.pid, NULL, WNOHANG | WUNTRACED)) {
 			if (playrepeat && playrepeatforever) {
 				on_play_activate_cb (NULL, NULL);
 				return FALSE;
 			}
 			else if (playrepeat && !playrepeatforever) {
-				if (repeat_counter < playxtimes) {
+				if (repeat_counter < playxtimes - 1) {
 					on_play_activate_cb (NULL, NULL);
 					repeat_counter++;
 					return FALSE;
 				}
 				repeat_counter = 0;
 			}
-			
 			counter = 0;
 			PlayEng.is_running = FALSE;
 			grecord_set_sensitive_file ();
@@ -948,6 +960,8 @@ UpdateStatusbarRecord (gboolean begin)
 						       GTK_BUTTONS_OK,
 						       _("The size of the current sample is more than\n%i Mb!"),
 						       (int) (fileinfo.st_size / 1000000));
+			g_signal_connect (G_OBJECT (mess), "response",
+					  G_CALLBACK (gtk_widget_destroy), NULL);
 			gtk_widget_show (mess);
 			show_message = FALSE;
 	        }			
