@@ -11,6 +11,7 @@
 #include <config.h>
 #endif
 
+#include <libgnome/gnome-i18n.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
@@ -142,13 +143,18 @@ freebsd_cdrom_open (FreeBSDCDRom *lcd,
 
 	lcd->priv->cdrom_fd = open (lcd->priv->cdrom_device, O_RDONLY | O_NONBLOCK);
 	if (lcd->priv->cdrom_fd < 0) {
-		if (error) {
+		if (errno == EACCES & error != NULL) {
+			*error = g_error_new(GNOME_CDROM_ERROR,
+					     GNOME_CDROM_ERROR_NOT_OPENED,
+					     _("You do not seem to have permission to access %s."),
+					     lcd->priv->cdrom_device);
+		} else if (error != NULL) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      "Unable to open %s. This may be caused by:\n"
+					      _("Unable to open %s. This may be caused by:\n"
 					      "a) CD support is not compiled into the FreeBSD kernel\n"
 					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n",					     
+					      "c) %s is not the CD drive.\n"),					     
 					      lcd->priv->cdrom_device, lcd->priv->cdrom_device);
 		}
 
@@ -219,12 +225,12 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 	priv = lcd->priv;
 
 	if (freebsd_cdrom_open (lcd, &error) == FALSE) {
-		g_warning ("Error opening CD");
+		g_warning (_("Error opening CD"));
 		return;
 	}
 
 	if (ioctl (priv->cdrom_fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
-		g_warning ("Error reading CD header");
+		g_warning (_("Error reading CD header"));
 		freebsd_cdrom_close (lcd);
 
 		return;
@@ -262,8 +268,8 @@ freebsd_cdrom_update_cd (FreeBSDCDRom *lcd)
 	calculate_track_lengths (lcd);
 
 #ifdef DEBUG
-	g_print ("CD changed\n"
-		 "Track count: %d\n------------------\n",
+	g_print (_("CD changed\n"
+		 "Track count: %d\n------------------\n"),
 		 priv->number_tracks);
 #endif
 	
@@ -294,7 +300,7 @@ freebsd_cdrom_eject (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(eject): ioctl failed: %s",
+						      _("(eject): ioctl failed: %s"),
 						      strerror (errno));
 			}
 
@@ -314,6 +320,8 @@ freebsd_cdrom_eject (GnomeCDRom *cdrom,
 	}
 
 	g_free (status);
+
+	lcd->priv->ref_count = 0;
 	freebsd_cdrom_close (lcd);
 	return TRUE;
 }
@@ -390,6 +398,13 @@ freebsd_cdrom_ffwd (GnomeCDRom *cdrom,
 	if (freebsd_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		freebsd_cdrom_close (lcd);
 		return FALSE;
+	}
+
+	if (status->cd != GNOME_CDROM_STATUS_OK) {
+		freebsd_cdrom_close (lcd);
+		g_free (status);
+		
+		return TRUE;
 	}
 
 	msf = &status->absolute;
@@ -471,7 +486,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_NOT_READY,
-						      "(freebsd_cdrom_play): Drive not ready");
+						      _("(freebsd_cdrom_play): Drive not ready"));
 			}
 
 			freebsd_cdrom_close (lcd);
@@ -491,7 +506,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      "(freebsd_cdrom_play): Drive still not ready");
+					      _("(freebsd_cdrom_play): Drive still not ready"));
 		}
 
 		freebsd_cdrom_close (lcd);
@@ -556,7 +571,7 @@ freebsd_cdrom_play (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(freebsd_cdrom_play) ioctl failed %s",
+						      _("(freebsd_cdrom_play) ioctl failed %s"),
 						      strerror (errno));
 			}
 
@@ -592,7 +607,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_READY,
-					      "(freebsd_cdrom_pause): Drive not ready");
+					      _("(freebsd_cdrom_pause): Drive not ready"));
 		}
 
 		g_free (status);
@@ -605,7 +620,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(freebsd_cdrom_pause): Resume failed %s",
+						      _("(freebsd_cdrom_pause): Resume failed %s"),
 						      strerror (errno));
 			}
 
@@ -624,7 +639,7 @@ freebsd_cdrom_pause (GnomeCDRom *cdrom,
 			if (error) {
 				*error = g_error_new (GNOME_CDROM_ERROR,
 						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-						      "(freebsd_cdrom_pause): ioctl failed %s",
+						      _("(freebsd_cdrom_pause): ioctl failed %s"),
 						      strerror (errno));
 			}
 
@@ -670,7 +685,7 @@ freebsd_cdrom_stop (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(freebsd_cdrom_stop) ioctl failed %s",
+					      _("(freebsd_cdrom_stop) ioctl failed %s"),
 					      strerror (errno));
 		}
 
@@ -826,6 +841,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 	GnomeCDRomStatus *realstatus;
 	struct ioc_read_subchannel subchnl;
 	struct cd_sub_channel_info subchnl_info;
+	struct ioc_vol vol;
 	int cd_status;
 
 	g_return_val_if_fail (status != NULL, TRUE);
@@ -835,6 +851,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 
 	*status = g_new (GnomeCDRomStatus, 1);
 	realstatus = *status;
+	realstatus->volume = 0;
 
 	if (freebsd_cdrom_open (lcd, error) == FALSE) {
 		g_free (realstatus);
@@ -886,7 +903,7 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(freebsd_cdrom_get_status): ioctl error %s",
+					      _("(freebsd_cdrom_get_status): ioctl error %s"),
 					      strerror (errno));
 		}
 
@@ -906,13 +923,22 @@ freebsd_cdrom_get_status (GnomeCDRom *cdrom,
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s",
+					      _("(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"),
 					      strerror (errno));
 		}
 
 		freebsd_cdrom_close (lcd);
 		g_free (realstatus);
 		return FALSE;
+	}
+
+	/* Get the volume */
+	if (ioctl (priv->cdrom_fd, CDIOCGETVOL, &vol) < 0) {
+		g_warning (_("(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"),
+			   strerror (errno));
+		realstatus->volume = -1; /* -1 means no volume command */
+	} else {
+		realstatus->volume = vol.vol[0];
 	}
 
 	freebsd_cdrom_close (lcd);
@@ -1035,7 +1061,7 @@ freebsd_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 	}
 
 	/* Fire a harmless ioctl at the device. */
-	if (ioctl (fd, CDIOCSTOP, 0) < 0) {
+	if (ioctl (fd, CDIOCCAPABILITY, 0) < 0) {
 		/* Failed, it's not a CDROM drive */
 		g_print ("%s is not a CDROM drive", device);
 		close (fd);
@@ -1043,7 +1069,7 @@ freebsd_cdrom_is_cdrom_device (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 	
-	g_print ("%s is a CDROM drive", device);
+	g_print (_("%s is a CDROM drive"), device);
 	close (fd);
 
 	return TRUE;
@@ -1102,6 +1128,7 @@ freebsd_cdrom_set_device (GnomeCDRom *cdrom,
 	FreeBSDCDRom *lcd;
 	FreeBSDCDRomPrivate *priv;
 	GnomeCDRomStatus *status;
+	int fd;
 	
 	lcd = FREEBSD_CDROM (cdrom);
 	priv = lcd->priv;
@@ -1123,18 +1150,31 @@ freebsd_cdrom_set_device (GnomeCDRom *cdrom,
 		g_free (priv->cdrom_device);
 	}
 	priv->cdrom_device = g_strdup (device);
-	
-	if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
-					 priv->cdrom_device, error) == FALSE) {
+
+	/* Attempt an open to see if we have permission */
+	fd = open (priv->cdrom_device, O_RDONLY | O_NONBLOCK);
+	if (fd < 0 && errno == EACCES && error != NULL) {
+		*error = g_error_new (GNOME_CDROM_ERROR,
+				      GNOME_CDROM_ERROR_NOT_OPENED,
+				      _("You do not seem to have permission to acess %s."),
+				      priv->cdrom_device);
+		return FALSE;
+	} else if (gnome_cdrom_is_cdrom_device (GNOME_CDROM (lcd),
+						lcd->priv->cdrom_device, error) == FALSE) {
+		close (fd);
+
 		if (error) {
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
-					      "%s does not point to a valid CDRom device. This may be caused by:\n"
+					      _("%s does not point to a valid CDRom device. This may be caused by:\n"
 					      "a) CD support is not compiled into Linux\n"
 					      "b) You do not have the correct permissions to access the CD drive\n"
-					      "c) %s is not the CD drive.\n",					     
+					      "c) %s is not the CD drive.\n"),					     
 					      priv->cdrom_device, priv->cdrom_device);
 		}
+		return FALSE;
+	} else {
+		close (fd);
 	}
 
 	/* Force the new CD to be scanned at next update cycle */
