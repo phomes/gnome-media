@@ -93,8 +93,8 @@ libcddb_slave2_la_SOURCES =			\
 libcddb_slave2include_HEADERS =			\
 	cddb-slave-client.h
 
-schemadir=$(sysconfdir)/gconf/schemas
-schema_DATA=CDDB-Slave2.schemas
+schemadir   = @GCONF_SCHEMA_FILE_DIR@
+schema_DATA = CDDB-Slave2.schemas
 
 
 server_in_files = GNOME_Media_CDDBSlave2.server.in.in
@@ -103,6 +103,7 @@ serverdir = $(libdir)/bonobo/servers
 server_DATA = $(server_in_files:.server.in.in=.server)
 $(server_in_files:.server.in.in=.server.in): $(server_in_files)
 	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $< > $@
+
 @INTLTOOL_SERVER_RULE@
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
@@ -111,9 +112,14 @@ desktopdir = $(datadir)/control-center-2.0/capplets
 Desktop_in_files = cddb-slave.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
-EXTRA_DIST = $(server_in_files) $(Desktop_in_files) $(IDLS) $(schema_DATA)
+EXTRA_DIST = \
+	$(server_in_files) \
+	$(Desktop_in_files) \
+	$(IDLS) \
+	$(schema_DATA)
 
-install-schemas:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+install-schemas: $(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA) || true
 
 install-data-local: install-schemas
+

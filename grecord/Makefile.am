@@ -32,7 +32,7 @@ schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=gnome-sound-recorder.schemas
 
 install-schemas:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_DATA) || true
 
 install-data-local: install-schemas
 

@@ -275,22 +275,35 @@ AC_MSG_RESULT($close_tray)
 
 host=`uname -s`
 
+CDROM_HOST_FREEBSD=false
+CDROM_HOST_LINUX=false
+CDROM_HOST_SOLARIS=false
 case "$host" in
 *FreeBSD*)
 	CDROM_HOST=freebsd
+	CDROM_HOST_FREEBSD=true
 	default_cd_device="/dev/acd0c"
 	;;
 *Linux*) 
 	CDROM_HOST=linux
+	CDROM_HOST_LINUX=true
 	default_cd_device="/dev/cdrom"
 	;;
 *SunOS*) 
 	CDROM_HOST=solaris
+	CDROM_HOST_SOLARIS=true
 	default_cd_device="/vol/dev/aliases/cdrom0"
 	;;
 esac
 
 AC_SUBST(CDROM_HOST)
+AC_SUBST(CDROM_HOST_FREEBSD)
+AC_SUBST(CDROM_HOST_LINUX)
+AC_SUBST(CDROM_HOST_SOLARIS)
+AM_CONDITIONAL(CDROM_HOST_FREEBSD, test "x$CDROM_HOST_FREEBSD" = "xtrue")
+AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
+AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
+
 AC_SUBST(default_cd_device)
 AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device")
 

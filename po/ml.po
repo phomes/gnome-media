@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version:gnome-media.HEAD\n"
-"POT-Creation-Date: 2003-06-06 04:23+0200\n"
+"POT-Creation-Date: 2003-10-20 23:36-0700\n"
 "PO-Revision-Date: 2003-07-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -18,32 +18,54 @@ msgstr ""
 msgid "Address of the server to contact for CD queries"
 msgstr ""
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:798
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr ""
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
 #, fuzzy
 msgid "Port"
 msgstr "വഴി:"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
 msgstr "സ‌ര്‌വ‌ര് പേര‌്"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:4
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#, fuzzy
+msgid "Server type"
+msgstr "സ‌ര്‌വ‌ര് പേര‌്"
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
 msgstr ""
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:5
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
 msgstr ""
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:6
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid ""
+"The type of the server to contact for CD queries. Possible values are 0 "
+"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr ""
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
 msgstr "ഉപയോക്തൃ നാമം"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:7
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
 msgstr ""
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:8
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid ""
+"This key specifies which user information will be sent to the server to "
+"contact for CD queries. Possible values are 0 (no information), 1 (real "
+"information) and 3 (other information)."
+msgstr ""
+
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr ""
 
@@ -55,7 +77,7 @@ msgstr "വികസിതരൂപം"
 msgid "Size of the expander arrow"
 msgstr ""
 
-#: cddb-slave2/cddb-slave-capplet.c:117
+#: cddb-slave2/cddb-slave-capplet.c:115
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -65,70 +87,73 @@ msgstr ""
 "%s"
 
 #. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:670
+#: cddb-slave2/cddb-slave-capplet.c:696
 #, fuzzy
-msgid "Log on information"
+msgid "Login Information"
 msgstr "വിവരം"
 
-#: cddb-slave2/cddb-slave-capplet.c:679
-msgid "Send _no info"
-msgstr ""
-
-#: cddb-slave2/cddb-slave-capplet.c:688
+#: cddb-slave2/cddb-slave-capplet.c:702
 #, fuzzy
-msgid "Send real _info"
+msgid "Sen_d no information"
+msgstr "വിവരം"
+
+#: cddb-slave2/cddb-slave-capplet.c:711
+#, fuzzy
+msgid "Send real _information"
 msgstr "സേവന വിവരം"
 
-#: cddb-slave2/cddb-slave-capplet.c:697
+#: cddb-slave2/cddb-slave-capplet.c:720
 #, fuzzy
-msgid "Send _other info..."
+msgid "Send _other information:"
 msgstr "കംപ്യൂട്ടര് താല്‌ക്കാലികമായി നിര്‌ത്തിവയ്‌ക്കൂ"
 
-#: cddb-slave2/cddb-slave-capplet.c:714
-msgid "N_ame:"
+#: cddb-slave2/cddb-slave-capplet.c:745
+#, fuzzy
+msgid "_Name:"
 msgstr "നാമം:"
 
-#: cddb-slave2/cddb-slave-capplet.c:733
+#: cddb-slave2/cddb-slave-capplet.c:765
 #, fuzzy
-msgid "_Hostname:"
+msgid "Hostna_me:"
 msgstr "തലവന്റെ പേര‍‌്"
 
 #. Server info
-#: cddb-slave2/cddb-slave-capplet.c:755 cddb-slave2/cddb-slave-capplet.c:795
+#: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
 msgid "Server"
 msgstr "സ‍ര്‍വ്വര്"
 
-#: cddb-slave2/cddb-slave-capplet.c:763
+#: cddb-slave2/cddb-slave-capplet.c:791
 msgid "FreeDB _round robin server"
 msgstr ""
 
-#: cddb-slave2/cddb-slave-capplet.c:769
+#: cddb-slave2/cddb-slave-capplet.c:797
 #, fuzzy
-msgid "Other _FreeDB server..."
+msgid "Other _FreeDB server:"
 msgstr "മറ്റ് സ‍ര്‍വ്വര്..."
 
-#: cddb-slave2/cddb-slave-capplet.c:801
+#: cddb-slave2/cddb-slave-capplet.c:835
 msgid "Location"
 msgstr "സ്ഥാനം"
 
-#: cddb-slave2/cddb-slave-capplet.c:807
-msgid "Update server list"
+#: cddb-slave2/cddb-slave-capplet.c:864
+msgid "_Update Server List"
 msgstr ""
 
-#: cddb-slave2/cddb-slave-capplet.c:814
-msgid "Other _server..."
+#: cddb-slave2/cddb-slave-capplet.c:871
+#, fuzzy
+msgid "Other _server:"
 msgstr "മറ്റ് സ‍ര്‍വ്വര്..."
 
-#: cddb-slave2/cddb-slave-capplet.c:826
+#: cddb-slave2/cddb-slave-capplet.c:891
 #, fuzzy
-msgid "Hostname:"
+msgid "Hos_tname:"
 msgstr "തലവന്റെ പേര‍‌്"
 
-#: cddb-slave2/cddb-slave-capplet.c:838
+#: cddb-slave2/cddb-slave-capplet.c:908
 msgid "_Port:"
 msgstr "വഴി:"
 
-#: cddb-slave2/cddb-slave-capplet.c:888
+#: cddb-slave2/cddb-slave-capplet.c:972
 #, fuzzy
 msgid "CD Database Preferences"
 msgstr "സി.ഡി പ്ളേയര്‍ മുന്ഗണനകള്"
@@ -139,9 +164,9 @@ msgid "Unknown / Unknown"
 msgstr "അറിയാത്ത തരം ജോലി %u"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:777
-#: grecord/src/gsr-window.c:786 grecord/src/gsr-window.c:795
-#: grecord/src/gsr-window.c:805 grecord/src/gsr-window.c:1125
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:787
+#: grecord/src/gsr-window.c:796 grecord/src/gsr-window.c:805
+#: grecord/src/gsr-window.c:815 grecord/src/gsr-window.c:1154
 msgid "Unknown"
 msgstr "അറിയപ്പെടാത്ത"
 
@@ -170,7 +195,7 @@ msgid "Artist and Title"
 msgstr "ജാലക തലക്കുറി"
 
 #: cddb-slave2/cddb-slave.c:1282 cddb-slave2/cddb-slave.c:1284
-#: gnome-cd/gnome-cd.c:130
+#: gnome-cd/gnome-cd.c:135
 #, fuzzy
 msgid "Unknown track"
 msgstr "അറിയാത്ത ഇനം"
@@ -991,7 +1016,7 @@ msgid "CD"
 msgstr "സി.ഡി"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
-#: gstreamer-properties/gstreamer-properties.glade.h:13
+#: gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
 msgstr "ചലനചിത്രം"
 
@@ -1254,7 +1279,7 @@ msgid ""
 "Press Quit to quit Volume control"
 msgstr ""
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:458
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:490
 msgid "_Details"
 msgstr "വിശദാംശങ്ങള്"
 
@@ -1263,7 +1288,7 @@ msgstr "വിശദാംശങ്ങള്"
 msgid "Invalid mixer device"
 msgstr "സാധുതയില്ലാത്ത രചന നാമം"
 
-#: gmix/gmix.c:626
+#: gmix/gmix.c:632
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1271,7 +1296,7 @@ msgid ""
 "a version prior to 3.6.0.\n"
 msgstr ""
 
-#: gmix/gmix.c:634
+#: gmix/gmix.c:639
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1279,55 +1304,55 @@ msgid ""
 "version %d.%d.%d.\n"
 msgstr ""
 
-#: gmix/gmix.c:1088
+#: gmix/gmix.c:1112
 #, fuzzy, c-format
 msgid "left %s"
 msgstr "ഇടത്"
 
-#: gmix/gmix.c:1114
+#: gmix/gmix.c:1138
 #, fuzzy, c-format
 msgid "Right %s"
 msgstr "വലത്"
 
-#: gmix/gmix.c:1207
+#: gmix/gmix.c:1231
 msgid "Lock"
 msgstr "പൂട്ട്"
 
-#: gmix/gmix.c:1220
+#: gmix/gmix.c:1244
 #, fuzzy, c-format
 msgid "%s Lock"
 msgstr "പൂട്ട്"
 
-#: gmix/gmix.c:1231
+#: gmix/gmix.c:1255
 #, fuzzy
 msgid "Mute"
 msgstr "നിശബദമാക്കുക"
 
-#: gmix/gmix.c:1244
+#: gmix/gmix.c:1268
 #, fuzzy, c-format
 msgid "%s Mute"
 msgstr "നിശബദമാക്കുക"
 
-#: gmix/gmix.c:1258
+#: gmix/gmix.c:1282
 msgid "Rec."
 msgstr ""
 
-#: gmix/gmix.c:1270
+#: gmix/gmix.c:1294
 #, fuzzy, c-format
 msgid "%s Record"
 msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
 
-#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1366 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "ശബ്ദം ക്രമീകാരി"
 
-#: gmix/gmix.c:1748
+#: gmix/gmix.c:1774
 #, fuzzy
 msgid "GNOME Volume Control"
 msgstr "ശബ്ദം ക്രമീകാരി"
 
-#: gmix/gmix.c:1751
+#: gmix/gmix.c:1777
 msgid "A mixer for sound devices"
 msgstr ""
 
@@ -1406,8 +1431,8 @@ msgid "Line for displaying the name of the album"
 msgstr ""
 
 #: gnome-cd/callbacks.c:80 gnome-cd/callbacks.c:168 gnome-cd/callbacks.c:267
-#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
-#: grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:562 gnome-cd/gnome-cd.c:641 grecord/gsr.xml.h:13
+#: grecord/src/gui.c:233
 msgid "Play"
 msgstr "കളിക്കുക"
 
@@ -1422,12 +1447,12 @@ msgstr "ചെറിയ ഇടവേള"
 msgid "Playing %s - %s"
 msgstr "%s കേള്പ്പി‌ക്കുന്നു"
 
-#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:679 gnome-cd/callbacks.c:690
+#: gnome-cd/callbacks.c:548 gnome-cd/callbacks.c:683 gnome-cd/callbacks.c:694
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "<അറിയാത്ത പ്ര‌വൃത്തി‌>"
 
-#: gnome-cd/callbacks.c:549 gnome-cd/callbacks.c:682 gnome-cd/callbacks.c:694
+#: gnome-cd/callbacks.c:549 gnome-cd/callbacks.c:686 gnome-cd/callbacks.c:698
 #, fuzzy
 msgid "Unknown Album"
 msgstr "അറിയപ്പെടാത്ത"
@@ -1437,57 +1462,52 @@ msgstr "അറിയപ്പെടാത്ത"
 msgid "Playing"
 msgstr "പ്രതലമായ"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:574
+#: gnome-cd/callbacks.c:575
 #, fuzzy
 msgid "Paused"
 msgstr "ചെറിയ ഇടവേള"
 
-#. Update tray icon tooltip
-#: gnome-cd/callbacks.c:619 gnome-cd/callbacks.c:840 gnome-cd/gnome-cd.c:55
-#: gnome-cd/gnome-cd.c:475 gnome-cd/gnome-cd.c:652
+#: gnome-cd/callbacks.c:621 gnome-cd/callbacks.c:851 gnome-cd/gnome-cd.c:56
+#: gnome-cd/gnome-cd.c:507 gnome-cd/gnome-cd.c:688
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "സി.ഡി പ്ളേയര്‍"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:637
+#: gnome-cd/callbacks.c:640
 msgid "Stopped"
 msgstr "നിര്‍ത്തി"
 
-#: gnome-cd/callbacks.c:643
+#: gnome-cd/callbacks.c:646
 #, fuzzy
 msgid "Disc error"
 msgstr "പൊതു പിശക്"
 
-#. Update the tray icon tooltip
-#: gnome-cd/callbacks.c:654 gnome-cd/callbacks.c:733
+#: gnome-cd/callbacks.c:658 gnome-cd/callbacks.c:741
 #, fuzzy
 msgid "No disc"
 msgstr "നോര്ഡിക്"
 
-#: gnome-cd/callbacks.c:759
+#: gnome-cd/callbacks.c:767
 #, fuzzy
 msgid "Drive open"
 msgstr "വികസനം‌"
 
-#: gnome-cd/callbacks.c:783
+#: gnome-cd/callbacks.c:791
 #, fuzzy
 msgid "Data CD"
 msgstr "വസ്തുത"
 
-#. Updated the tray icon tooltip
-#: gnome-cd/callbacks.c:805 gnome-cd/callbacks.c:809
+#: gnome-cd/callbacks.c:813 gnome-cd/callbacks.c:818
 #, fuzzy
 msgid "No Cdrom"
 msgstr "പ്രശ്നം ഇല്ല"
 
-#: gnome-cd/callbacks.c:820
+#: gnome-cd/callbacks.c:829
 #, fuzzy
 msgid "Drive Error"
 msgstr "IO പിശക്"
 
-#: gnome-cd/callbacks.c:842
+#: gnome-cd/callbacks.c:853
 msgid "A CD player for GNOME"
 msgstr ""
 
@@ -1515,62 +1535,62 @@ msgstr "അറിയാത്ത ഇനം"
 msgid "Unknown disc"
 msgstr "അറിയപ്പെടാത്ത"
 
-#: gnome-cd/gnome-cd.c:156
+#: gnome-cd/gnome-cd.c:174
 #, fuzzy, c-format
 msgid "%d - Unknown"
 msgstr "അറിയപ്പെടാത്ത"
 
-#: gnome-cd/gnome-cd.c:281
+#: gnome-cd/gnome-cd.c:302
 #, fuzzy
 msgid "P_revious track"
 msgstr "മുന് ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:282 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:303 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "നിര്‌ത്തുക"
 
-#: gnome-cd/gnome-cd.c:283
+#: gnome-cd/gnome-cd.c:304
 #, fuzzy
 msgid "_Play / Pause"
 msgstr "പ്രവ‌ര്‍ത്തിപ്പിക്കുക / സ്തംഭിപ്പിക്കുക"
 
-#: gnome-cd/gnome-cd.c:284
+#: gnome-cd/gnome-cd.c:305
 #, fuzzy
 msgid "_Next track"
 msgstr "അടുത്ത ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:285
+#: gnome-cd/gnome-cd.c:306
 #, fuzzy
 msgid "_Eject disc"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:286 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:307 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "സഹായം"
 
-#: gnome-cd/gnome-cd.c:287
+#: gnome-cd/gnome-cd.c:308
 #, fuzzy
 msgid "_About CD player"
 msgstr "സി.ഡി പ്ളേയര്‍"
 
-#: gnome-cd/gnome-cd.c:395
+#: gnome-cd/gnome-cd.c:427
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:399
+#: gnome-cd/gnome-cd.c:431
 #, fuzzy
 msgid "Set device"
 msgstr "സേവനം"
 
-#: gnome-cd/gnome-cd.c:401
+#: gnome-cd/gnome-cd.c:433
 #, fuzzy
 msgid "No CD device"
 msgstr "നിവേശകസംവിധാനങ്ങള്‌ ഇല്ല"
 
-#: gnome-cd/gnome-cd.c:454
+#: gnome-cd/gnome-cd.c:486
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1580,105 +1600,105 @@ msgid ""
 "'Quit' to quit the CD player"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:459
+#: gnome-cd/gnome-cd.c:491
 #, fuzzy
 msgid "_Set device"
 msgstr "സേവനം"
 
-#: gnome-cd/gnome-cd.c:461
+#: gnome-cd/gnome-cd.c:493
 #, fuzzy
 msgid "Invalid CD device"
 msgstr "അസാധുവായ XBM ശേഖരം"
 
-#: gnome-cd/gnome-cd.c:522
+#: gnome-cd/gnome-cd.c:554
 #, fuzzy
 msgid "Volume control"
 msgstr "ശബ്ദം ക്രമീകാരി"
 
-#: gnome-cd/gnome-cd.c:533
+#: gnome-cd/gnome-cd.c:565
 msgid "Position"
 msgstr "സ്ഥാനം:"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:582
 #, fuzzy
 msgid "Open track editor"
 msgstr "അടയാളം ചിട്ടപ്പെടുത്തുക"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:583
 #, fuzzy
 msgid "Track editor"
 msgstr "പിന് ചരിത്രം"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:590
 #, fuzzy
 msgid "Open preferences"
 msgstr "അക്ഷരരൂപ മുന്‍ഗണനകള്‍"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:591
 msgid "Preferences"
 msgstr "മുന്‍ഗണനകള്‍"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:599
 #, fuzzy
 msgid "Track List"
 msgstr "അനുബന്ധ പട്ടിക"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:620
 #, fuzzy
 msgid "Previous track"
 msgstr "മുന് ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:620
 msgid "Previous"
 msgstr "പിന്നോട്ട്"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:624
 #, fuzzy
 msgid "Rewind"
 msgstr "റുവാണ്ട"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:641
 msgid "Play / Pause"
 msgstr "പ്രവ‌ര്‍ത്തിപ്പിക്കുക / സ്തംഭിപ്പിക്കുക"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:646 grecord/gsr.xml.h:30 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "നിര്‌ത്തുക"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:650
 #, fuzzy
 msgid "Fast forward"
 msgstr "മുന്നോട്ട്"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:658
 #, fuzzy
 msgid "Next track"
 msgstr "അടുത്ത ഭാഗം"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:662
 #, fuzzy
 msgid "Eject CD"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:662
 msgid "Eject"
 msgstr "പുറന്തള്ളുക"
 
-#: gnome-cd/gnome-cd.c:733
+#: gnome-cd/gnome-cd.c:772
 #, fuzzy
 msgid "CD device to use"
 msgstr "ഉപയോഗിക്കുന്നതിനായി X പ്രദര്ശനം"
 
-#: gnome-cd/gnome-cd.c:735
+#: gnome-cd/gnome-cd.c:774
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:737
+#: gnome-cd/gnome-cd.c:776
 msgid "Play the CD on startup"
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:767
+#: gnome-cd/gnome-cd.c:806
 #, fuzzy
 msgid "Cannot create player"
 msgstr "അരിപ്പ് ഉണ്ടാക്കാന്‌ കഴിയുന്നില്ല"
@@ -1775,11 +1795,183 @@ msgstr ""
 msgid "Record sound clips"
 msgstr ""
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:997
-#: grecord/src/gsr-window.c:1551 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1010
+#: grecord/src/gsr-window.c:1639 grecord/src/gui.c:193
 #, fuzzy
 msgid "Sound Recorder"
 msgstr "ക്രമീകരണ മുറ"
+
+#: grecord/gsr.xml.h:1
+msgid "About"
+msgstr "കുറിപ്പ്"
+
+#: grecord/gsr.xml.h:2
+msgid "Close"
+msgstr "അടയ്‍ക്കുക"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr "ഈ ജാലകം അടയ്‍ക്കുക"
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr "ഉള്ളടക്കം"
+
+#: grecord/gsr.xml.h:5 grecord/src/gui.c:46
+#, fuzzy
+msgid "Create a new sample"
+msgstr "പുതിയ ഒരു പ്രസ്താവം ഉണ്ടാക്കുക"
+
+#: grecord/gsr.xml.h:6
+msgid "Display help for Sound Recorder"
+msgstr ""
+
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:873
+#, fuzzy
+msgid "File Information"
+msgstr "വിവരം"
+
+#: grecord/gsr.xml.h:8
+#, fuzzy
+msgid "File _Information"
+msgstr "അക്ഷരരൂപ വിവരം"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr "പ്രധാന ആയുധപ്പട്ട"
+
+#: grecord/gsr.xml.h:10 grecord/src/gui.c:217
+msgid "New"
+msgstr "പുതിയ"
+
+#: grecord/gsr.xml.h:11
+msgid "Open"
+msgstr "തുറക്കുക"
+
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:393
+msgid "Open a file"
+msgstr "ഒരു രചന തുറക്കുക"
+
+#: grecord/gsr.xml.h:14
+#, fuzzy
+msgid "Play sound"
+msgstr "പോളണ്ട്"
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr "പുറത്ത് കടക്കുക"
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr "ഈ പ്രയോഗത്തിന്റെ പ്രവ‍ര്ത്തനം നിര്ത്തുക"
+
+#: grecord/gsr.xml.h:17
+#, fuzzy
+msgid "Recent _Files"
+msgstr "ഏറ്റവും കൂടിയ നവരചനകള്‌"
+
+#: grecord/gsr.xml.h:18 grecord/src/gui.c:261
+#, fuzzy
+msgid "Record"
+msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
+
+#: grecord/gsr.xml.h:19
+#, fuzzy
+msgid "Record sound"
+msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
+
+#: grecord/gsr.xml.h:20
+msgid "Run Mixer"
+msgstr ""
+
+#: grecord/gsr.xml.h:21 grecord/src/gui.c:54
+msgid "Run _Mixer"
+msgstr ""
+
+#: grecord/gsr.xml.h:22
+#, fuzzy
+msgid "Run the audio mixer"
+msgstr "ഉപേക്ഷിച്ച നീക്കം വീണ്ടും നടത്തുക"
+
+#: grecord/gsr.xml.h:23
+msgid "Save"
+msgstr "സംരംക്ഷിക്കുക"
+
+#: grecord/gsr.xml.h:24
+msgid "Save As"
+msgstr "പേ‍ര‍് മാറ്റി‌ സംരക്ഷിക്കുക"
+
+#: grecord/gsr.xml.h:25
+msgid "Save _As..."
+msgstr "പേ‍ര‍് മാറ്റി‌ സംരക്ഷിക്കുക"
+
+#: grecord/gsr.xml.h:26
+msgid "Save the current file"
+msgstr "ഇപ്പോഴത്തെ രചന സംരക്ഷിക്കുക"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr "സജീവ കാലികശേഖരം മറ്റൊരു പേരില്‌ സംരക്ഷിക്കൂ"
+
+#: grecord/gsr.xml.h:28
+#, fuzzy
+msgid "Show information about the current file"
+msgstr "ഇപ്പോഴത്തെ രചന അച്ചടിക്കുക"
+
+#: grecord/gsr.xml.h:29
+msgid "Show information for Sound Recorder"
+msgstr ""
+
+#: grecord/gsr.xml.h:31
+#, fuzzy
+msgid "Stop sound"
+msgstr "ശബ്ദം"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr "കുറിപ്പ്"
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr "ജാലകം അടയ്‍ക്കുക"
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr "ഉള്ളടക്കം"
+
+#: grecord/gsr.xml.h:35
+#, fuzzy
+msgid "_Control"
+msgstr "Control"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr "ശേഖരം"
+
+#: grecord/gsr.xml.h:38 grecord/src/gui.c:45
+msgid "_New"
+msgstr "പുതിയ"
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr "തുറക്കുക..."
+
+#: grecord/gsr.xml.h:40
+msgid "_Play"
+msgstr "കേള്പ്പിക്കുക"
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr "പുറത്ത് കടക്കുക"
+
+#: grecord/gsr.xml.h:42
+#, fuzzy
+msgid "_Record"
+msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
+
+#: grecord/gsr.xml.h:43
+msgid "_Save"
+msgstr "സംരംക്ഷിക്കുക"
 
 #: grecord/src/grec.c:56
 #, fuzzy
@@ -1805,12 +1997,12 @@ msgstr ""
 msgid "Could not fork child process"
 msgstr "ആര്‍ക്കേവ് പക‌ര്‍ത്താനായില്ല"
 
-#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1385
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1443
 #, fuzzy
 msgid "Recording..."
 msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
 
-#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1244
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1310
 #, fuzzy
 msgid "Playing..."
 msgstr "കാത്തിരിക്കൂ..."
@@ -1853,7 +2045,7 @@ msgstr "ശബ്ദരചന തെരഞ്ഞെടുക്കുക"
 msgid "%s is not installed in the path"
 msgstr ""
 
-#: grecord/src/grec.c:523 grecord/src/gsr-window.c:678
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:687
 #, fuzzy, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s പ്രവ‍ര്ത്തിക്കുന്നതില് തകരാറ്: %s"
@@ -1953,180 +2145,158 @@ msgid ""
 "another program running that is using the device."
 msgstr ""
 
-#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
 #, fuzzy
 msgid "hours"
 msgstr "തുള്ളിമഴ"
 
-#: grecord/src/gsr-window.c:267 grecord/src/gsr-window.c:272
-#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:276 grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:287 grecord/src/gsr-window.c:291
 #, fuzzy
 msgid "hour"
 msgstr "12 മണിക്കുര്"
 
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
-#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
 #: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "മിനിട്ട്"
 
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:273
-#: grecord/src/gsr-window.c:289 grecord/src/gsr-window.c:293
+#: grecord/src/gsr-window.c:277 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:298 grecord/src/gsr-window.c:302
 #, fuzzy
 msgid "minute"
 msgstr "മിനിട്ട്"
 
-#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:298
-#: grecord/src/gsr-window.c:301
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:307
+#: grecord/src/gsr-window.c:310
 msgid "seconds"
 msgstr "സെക്കന്റ്സ്"
 
-#: grecord/src/gsr-window.c:269 grecord/src/gsr-window.c:279
-#: grecord/src/gsr-window.c:290 grecord/src/gsr-window.c:301
+#: grecord/src/gsr-window.c:278 grecord/src/gsr-window.c:288
+#: grecord/src/gsr-window.c:299 grecord/src/gsr-window.c:310
 #, fuzzy
 msgid "second"
 msgstr "സെക്കന്റ്സ്"
 
-#: grecord/src/gsr-window.c:384 grecord/gsr.xml.h:12
-msgid "Open a file"
-msgstr "ഒരു രചന തുറക്കുക"
-
-#: grecord/src/gsr-window.c:462 grecord/src/gsr-window.c:1268
-#: grecord/src/gsr-window.c:1407 grecord/src/gsr-window.c:1480
+#: grecord/src/gsr-window.c:471 grecord/src/gsr-window.c:1334
+#: grecord/src/gsr-window.c:1468 grecord/src/gsr-window.c:1561
 #, fuzzy
 msgid "Ready"
 msgstr "വായിക്കുക"
 
-#: grecord/src/gsr-window.c:558
+#: grecord/src/gsr-window.c:567
 #, fuzzy, c-format
 msgid "Saving %s..."
 msgstr "%s നിറയ്‌ക്കുന്നു...‌"
 
-#: grecord/src/gsr-window.c:617
+#: grecord/src/gsr-window.c:626
 #, fuzzy
 msgid "Save file as"
 msgstr "രചന സംരക്ഷിക്കുക"
 
-#: grecord/src/gsr-window.c:671
+#: grecord/src/gsr-window.c:680
 #, c-format
 msgid "%s is not installed in the path."
 msgstr ""
 
-#: grecord/src/gsr-window.c:753
+#: grecord/src/gsr-window.c:762
 #, fuzzy, c-format
 msgid "%s (Has not been saved)"
 msgstr "രചന സംരക്ഷിക്കപ്പെട്ടിട്ടില്ല."
 
-#: grecord/src/gsr-window.c:768
+#: grecord/src/gsr-window.c:778
 #, fuzzy
 msgid "Unknown size"
 msgstr "അറിയാത്ത ഇനം"
 
-#: grecord/src/gsr-window.c:788
+#: grecord/src/gsr-window.c:798
 #, fuzzy, c-format
 msgid "%.1f kHz"
 msgstr "%.1f MB"
 
-#: grecord/src/gsr-window.c:797
+#: grecord/src/gsr-window.c:807
 #, c-format
 msgid "%.0f kb/s"
 msgstr ""
 
-#: grecord/src/gsr-window.c:809
+#: grecord/src/gsr-window.c:819
 #, fuzzy
 msgid "1 (mono)"
 msgstr "മോണോ"
 
-#: grecord/src/gsr-window.c:813
+#: grecord/src/gsr-window.c:823
 #, fuzzy
 msgid "2 (stereo)"
 msgstr "സ്റ്റീരിയോ‌"
 
-#: grecord/src/gsr-window.c:842
+#: grecord/src/gsr-window.c:852
 #, fuzzy, c-format
 msgid "%s Information"
 msgstr "വിവരം"
 
-#: grecord/src/gsr-window.c:862 grecord/gsr.xml.h:7
-#, fuzzy
-msgid "File Information"
-msgstr "വിവരം"
-
-#: grecord/src/gsr-window.c:876
+#: grecord/src/gsr-window.c:887
 #, fuzzy
 msgid "Folder:"
 msgstr "കൂട്:"
 
-#: grecord/src/gsr-window.c:882 grecord/src/gsr-window.c:1610
+#: grecord/src/gsr-window.c:893 grecord/src/gsr-window.c:1700
 msgid "Filename:"
 msgstr "രചനാനാമം"
 
-#: grecord/src/gsr-window.c:888
+#: grecord/src/gsr-window.c:899
 msgid "File size:"
 msgstr "രചനയുടെ വലിപ്പം:‌‌"
 
-#: grecord/src/gsr-window.c:897
+#: grecord/src/gsr-window.c:908
 #, fuzzy
 msgid "Audio Information"
 msgstr "അക്ഷരരൂപ വിവരം"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:922
 msgid "Song length:"
 msgstr ""
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:928
 #, fuzzy
 msgid "Number of channels:"
 msgstr "വരികളുടെ എണ്ണം"
 
-#: grecord/src/gsr-window.c:923
+#: grecord/src/gsr-window.c:934
 #, fuzzy
 msgid "Sample rate:"
 msgstr "മാതൃകാ പട്ടികപ്പട്ട:"
 
-#: grecord/src/gsr-window.c:929
+#: grecord/src/gsr-window.c:940
 #, fuzzy
 msgid "Bit rate:"
 msgstr "Bitrate"
 
-#: grecord/src/gsr-window.c:999
+#: grecord/src/gsr-window.c:1012
 msgid "A sound recorder for GNOME"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1547 grecord/src/gui.c:155
+#: grecord/src/gsr-window.c:1635 grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr ""
 
-#: grecord/src/gsr-window.c:1595
+#: grecord/src/gsr-window.c:1685
 #, fuzzy
 msgid "File information"
 msgstr "വിവരം"
 
-#: grecord/src/gsr-window.c:1616
+#: grecord/src/gsr-window.c:1706
 #, fuzzy
 msgid "<none>"
 msgstr "ഒന്നും"
 
-#: grecord/src/gsr-window.c:1625
+#: grecord/src/gsr-window.c:1715
 #, fuzzy
 msgid "Length:"
 msgstr "നീളം"
-
-#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "പുതിയ"
-
-#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
-#, fuzzy
-msgid "Create a new sample"
-msgstr "പുതിയ ഒരു പ്രസ്താവം ഉണ്ടാക്കുക"
-
-#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr ""
 
 #: grecord/src/gui.c:55
 #, fuzzy
@@ -2177,10 +2347,6 @@ msgstr "സ്റ്റീരിയോ‌"
 msgid "mono"
 msgstr "മോണോ"
 
-#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
-msgid "New"
-msgstr "പുതിയ"
-
 #: grecord/src/gui.c:218
 #, fuzzy
 msgid "Create new sample"
@@ -2194,11 +2360,6 @@ msgstr "ഇപ്പോഴുള്ള സന്ദേശം അച്ചടി�
 #: grecord/src/gui.c:248
 msgid "Stop playing/recording"
 msgstr ""
-
-#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
-#, fuzzy
-msgid "Record"
-msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
 
 #: grecord/src/gui.c:262
 #, fuzzy
@@ -2416,24 +2577,24 @@ msgstr "തുടങ്ങേണ്ട അവസ്ഥ ഏതെന്ന് വ
 msgid "Sound recorder"
 msgstr "ക്രമീകരണ മുറ"
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 8bit PCM"
 msgstr ""
 
-#: grecord/src/preferences.c:201
+#: grecord/src/preferences.c:202
 msgid "Audio format: 16bit PCM"
 msgstr ""
 
-#: grecord/src/preferences.c:222
+#: grecord/src/preferences.c:223
 #, fuzzy, c-format
 msgid "Sample rate: %s"
 msgstr "രചനാനാമം: %s"
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: mono"
 msgstr ""
 
-#: grecord/src/preferences.c:240
+#: grecord/src/preferences.c:241
 msgid "Channels: stereo"
 msgstr ""
 
@@ -2441,154 +2602,13 @@ msgstr ""
 msgid "Adding echo to sample..."
 msgstr ""
 
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "കുറിപ്പ്"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "അടയ്‍ക്കുക"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "ഈ ജാലകം അടയ്‍ക്കുക"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "ഉള്ളടക്കം"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:8
-#, fuzzy
-msgid "File _Information"
-msgstr "അക്ഷരരൂപ വിവരം"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "പ്രധാന ആയുധപ്പട്ട"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "തുറക്കുക"
-
-#: grecord/gsr.xml.h:14
-#, fuzzy
-msgid "Play sound"
-msgstr "പോളണ്ട്"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "പുറത്ത് കടക്കുക"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "ഈ പ്രയോഗത്തിന്റെ പ്രവ‍ര്ത്തനം നിര്ത്തുക"
-
-#: grecord/gsr.xml.h:17
-#, fuzzy
-msgid "Recent _Files"
-msgstr "ഏറ്റവും കൂടിയ നവരചനകള്‌"
-
-#: grecord/gsr.xml.h:19
-#, fuzzy
-msgid "Record sound"
-msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr ""
-
-#: grecord/gsr.xml.h:22
-#, fuzzy
-msgid "Run the audio mixer"
-msgstr "ഉപേക്ഷിച്ച നീക്കം വീണ്ടും നടത്തുക"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "സംരംക്ഷിക്കുക"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "പേ‍ര‍് മാറ്റി‌ സംരക്ഷിക്കുക"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "പേ‍ര‍് മാറ്റി‌ സംരക്ഷിക്കുക"
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "ഇപ്പോഴത്തെ രചന സംരക്ഷിക്കുക"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "സജീവ കാലികശേഖരം മറ്റൊരു പേരില്‌ സംരക്ഷിക്കൂ"
-
-#: grecord/gsr.xml.h:28
-#, fuzzy
-msgid "Show information about the current file"
-msgstr "ഇപ്പോഴത്തെ രചന അച്ചടിക്കുക"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr ""
-
-#: grecord/gsr.xml.h:31
-#, fuzzy
-msgid "Stop sound"
-msgstr "ശബ്ദം"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "കുറിപ്പ്"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "ജാലകം അടയ്‍ക്കുക"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "ഉള്ളടക്കം"
-
-#: grecord/gsr.xml.h:35
-#, fuzzy
-msgid "_Control"
-msgstr "Control"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "ശേഖരം"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "തുറക്കുക..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "കേള്പ്പിക്കുക"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "പുറത്ത് കടക്കുക"
-
-#: grecord/gsr.xml.h:42
-#, fuzzy
-msgid "_Record"
-msgstr "ലേഖനം ചെയ്യ‌ുന്നു"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "സംരംക്ഷിക്കുക"
-
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:263
+#: gstreamer-properties/gstreamer-properties.c:271
 msgid "Failure instantiating main window"
 msgstr ""
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:303
+#: gstreamer-properties/gstreamer-properties.c:311
 #, fuzzy, c-format
 msgid "Could not load UI resource %s"
 msgstr ""
@@ -2611,61 +2631,72 @@ msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 #, fuzzy
+msgid "<b>Default Sink</b>"
+msgstr "മുന്‌വിധി വിടവ്"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+#, fuzzy
+msgid "<b>Default Source</b>"
+msgstr "സ്വതേയുള്ള സെ‌ര്‌വ‌ര്"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
+#, fuzzy
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">തുറക്കുക</span>"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:3
+#: gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Audio"
 msgstr "ശബ്ദം"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio _Input:"
-msgstr ""
-
-#: gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Audio _Output:"
-msgstr ""
-
 #: gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "Click Ok to finish"
+msgid "Click Ok to finish."
 msgstr ""
 
 #: gstreamer-properties/gstreamer-properties.glade.h:7
 #, fuzzy
-msgid "Default Sink"
-msgstr "മുന്‌വിധി വിടവ്"
+msgid "GStreamer Preferences"
+msgstr "‌പാളി-ഗുണഗണങ്ങള്‌"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 #, fuzzy
-msgid "Default Source"
-msgstr "സ്വതേയുള്ള സെ‌ര്‌വ‌ര്"
+msgid "Pipe_line:"
+msgstr "പിക്സല് വലിപ്പം:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:9
 #, fuzzy
-msgid "GStreamer Properties"
-msgstr "‌പാളി-ഗുണഗണങ്ങള്‌"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:10
-#, fuzzy
-msgid "Pipeline:"
-msgstr "പിക്സല് വലിപ്പം:"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:11
-#, fuzzy
-msgid "Test..."
+msgid "Te_st"
 msgstr "പരീക്ഷിക്കുക"
 
-#: gstreamer-properties/gstreamer-properties.glade.h:12
+#: gstreamer-properties/gstreamer-properties.glade.h:10
 #, fuzzy
 msgid "Testing Pipeline"
 msgstr "ആര്‍ക്കേവ് പരിശോധിക്കുന്നു"
 
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+#, fuzzy
+msgid "_Input:"
+msgstr "നിവേശകം"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:13
+#, fuzzy
+msgid "_Output:"
+msgstr "അവസാന ഫലം"
+
 #: gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "Video _Input:"
-msgstr ""
+#, fuzzy
+msgid "_Pipeline:"
+msgstr "പിക്സല് വലിപ്പം:"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "Video _Output:"
+#, fuzzy
+msgid "_Test"
+msgstr "പരീക്ഷിക്കുക"
+
+#: gstreamer-properties/pipeline-constants.c:58
+#: gstreamer-properties/pipeline-constants.c:76
+#: gstreamer-properties/pipeline-constants.c:93
+#: gstreamer-properties/pipeline-constants.c:110
+msgid "Custom"
 msgstr ""
 
 #: gstreamer-properties/pipeline-test-old.c:215
@@ -2750,3 +2781,7 @@ msgstr "ശബ്ദം ക്രമീകരിക്കുക"
 #, fuzzy
 msgid "Volume monitor"
 msgstr "ശബ്ദം ക്രമീകാരി"
+
+#, fuzzy
+#~ msgid "_Hostname:"
+#~ msgstr "തലവന്റെ പേര‍‌്"

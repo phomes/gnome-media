@@ -41,6 +41,17 @@ $(IDL_GENERATED): $(IDLS)
 	$(ORBIT_IDL) -I $(BONOBO_IDLDIR) -I $(BONOBO_ACT_IDLDIR)	\
 	-I $(srcdir) -I $(datadir)/idl	$(IDLS)
 
+if CDROM_HOST_FREEBSD
+cd_sources = freebsd-cdrom.c freebsd-cdrom.h
+endif
+if CDROM_HOST_LINUX
+cd_sources = linux-cdrom.c linux-cdrom.h
+endif
+if CDROM_HOST_SOLARIS
+cd_sources = solaris-cdrom.c solaris-cdrom.h
+endif
+
+
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
 	$(IDL_GENERATED)	\
@@ -57,8 +68,7 @@ gnome_cd_SOURCES =		\
 	cdrom.h			\
 	display.c		\
 	display.h		\
-	$(CDROM_HOST)-cdrom.c	\
-	$(CDROM_HOST)-cdrom.h	\
+	$(cd_sources)		\
 	preferences.c		\
 	preferences.h		\
 	cd-selection.c		\
@@ -84,6 +94,6 @@ schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=gnome-cd.schemas
 
 install-schemas:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/gnome-cd/gnome-cd.schemas 
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/gnome-cd/gnome-cd.schemas || true
 
 install-data-local: install-schemas

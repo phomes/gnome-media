@@ -38,7 +38,7 @@ schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=gnome-volume-control.schemas
 
 install-schemas:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA) || true
 
 install-data-local: install-schemas
 endif
