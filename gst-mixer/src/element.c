@@ -164,6 +164,49 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track,
 }
 
 /*
+ * Hide/show notebook page.
+ */
+
+static gint
+get_page_num (GstMixerTrack *track)
+{
+  if (GST_IS_MIXER_OPTIONS (track))
+    return 3;
+  else if (track->num_channels == 0)
+    return 2;
+  else if (track->flags & GST_MIXER_TRACK_INPUT)
+    return 1;
+  else
+    return 0;
+}
+
+static void
+update_tab_visibility (GnomeVolumeControlElement *el, gint page)
+{
+  const GList *item;
+  gboolean visible = FALSE;
+  GtkWidget *t;
+
+  for (item = gst_mixer_list_tracks (el->mixer);
+       item != NULL; item = item->next) {
+    GstMixerTrack *track = item->data;
+    GnomeVolumeControlTrack *trkw =
+        g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw"); 
+
+    if (get_page_num (track) == page && trkw->visible) {
+      visible = TRUE;
+      break;
+    }
+  }
+
+  t = gtk_notebook_get_nth_page (GTK_NOTEBOOK (el), page);
+  if (visible)
+    gtk_widget_show (t);
+  else
+    gtk_widget_hide (t);
+}
+
+/*
  * Change the element. Basically recreates this object internally.
  */
 
@@ -239,14 +282,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     const GConfValue *value;
     gboolean active;
 
-    if (GST_IS_MIXER_OPTIONS (track))
-      i = 3;
-    else if (track->num_channels == 0)
-      i = 2;
-    else if (track->flags & GST_MIXER_TRACK_INPUT)
-      i = 1;
-    else
-      i = 0;
+    i = get_page_num (track);
 
     /* FIXME:
      * - do not create separator if there is no more track
@@ -339,6 +375,8 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_widget_show (viewport);
     gtk_widget_show (view);
     gtk_widget_show (label);
+
+    update_tab_visibility (el, i);
   }
 
   /* refresh fix */
@@ -378,7 +416,7 @@ cb_gconf (GConfClient *client,
         if (value->type == GCONF_VALUE_BOOL) {
           gboolean active = gconf_value_get_bool (value),
 		   first[4] = { TRUE, TRUE, TRUE, TRUE };
-          gint n;
+          gint n, page = get_page_num (track);
 
           gnome_volume_control_track_show (trkw, active);
 
@@ -389,15 +427,7 @@ cb_gconf (GConfClient *client,
             GnomeVolumeControlTrack *trkw =
 	      g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
 
-            if (GST_IS_MIXER_OPTIONS (track))
-              n = 3;
-            else if (track->num_channels == 0)
-              n = 2;
-            else if (track->flags & GST_MIXER_TRACK_INPUT)
-              n = 1;
-            else
-              n = 0;
-
+            n = get_page_num (track);
             if (trkw->visible && !first[n]) {
               if (trkw->left_separator)
                 gtk_widget_show (trkw->left_separator);
@@ -409,6 +439,7 @@ cb_gconf (GConfClient *client,
             if (trkw->visible && first[n])
               first[n] = FALSE;
           }
+          update_tab_visibility (el, page);
           break;
         }
       }
