@@ -23,6 +23,8 @@
 #include <gnome.h>
 #include <esd.h>
 #include <gtkledbar.h>
+#include <sys/time.h>
+#include <signal.h>
 
 gint sound = -1;
 #define RATE   44100
@@ -40,12 +42,24 @@ GtkWidget   *dial[2];
 GtkWidget   *window;
 gchar       *esd_host = NULL;
 
+#define DELAY (NSAMP*1000)/RATE
+
+struct itimerval timerval = {
+  {0, 0},
+  {0, DELAY*1000},
+};
+
 /* function prototypes to make gcc happy: */
 void update (void);
 char *itoa (int i);
 void open_sound (void);
 void  update_levels (gpointer data, gint source, GdkInputCondition condition);
 
+void sig_alarm (int sig)
+{
+  led_bar_light_percent (dial[0], (0.0));
+  led_bar_light_percent (dial[1], (0.0));
+}
 
 char 
 *itoa (int i)
