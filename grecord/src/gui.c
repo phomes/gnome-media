@@ -448,9 +448,7 @@ create_about (void)
 	};
 	GtkWidget* about;
 	
-#ifdef ENABLE_NLS
 	authors[0]=_(authors[0]);
-#endif
 	about = gnome_about_new (_("Sound recorder"), VERSION,
 				/* if your charset allows it, replace the
 				   "e" of Hyden by an "eacute" (U00E9) */
