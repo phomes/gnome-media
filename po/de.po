@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52pre1\n"
-"POT-Creation-Date: 2000-05-09 20:12+0200\n"
-"PO-Revision-Date: 2000-05-09 20:13+02:00\n"
+"POT-Creation-Date: 2000-05-13 05:13+0200\n"
+"PO-Revision-Date: 2000-05-13 05:21+02:00\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr ""
 
 #: gmix/device_labels_linux.h:10
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: gmix/device_labels_linux.h:10
 msgid "Radio"
@@ -192,10 +192,10 @@ msgstr "Mischpult(e) auf gespeicherte Konfiguration setzen und beenden"
 
 #: gmix/gmix.c:190
 msgid "don't save (modified) mixer-settings into configuration"
-msgstr "geänderte Mischpulteinstellungen nicht in Konfiguration speichern"
+msgstr "Geänderte Mischpulteinstellungen nicht als Konfiguration speichern"
 
 #. start frame
-#: gmix/gmix.c:427 tcd/prefs.c:397
+#: gmix/gmix.c:427 tcd/prefs.c:401
 msgid "On startup"
 msgstr "Beim Start"
 
@@ -221,7 +221,7 @@ msgstr "Mischpult-Icons verwenden"
 msgid "Use mixer labels"
 msgstr "Mischpult-Beschriftungen verwenden"
 
-#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:600
+#: gmix/gmix.c:489 tcd/gtcd.c:364 tcd/prefs.c:604
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -325,7 +325,7 @@ msgstr "Speichern..."
 #: grecord/src/grec.c:828
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
-msgstr "Das aktuelle Samples ist größer als %i MB!"
+msgstr "Das aktuelle Sample ist größer als %i MB!"
 
 #: grecord/src/grec.c:876
 msgid "Save sound file"
@@ -742,83 +742,91 @@ msgstr ""
 "CDDB-Unterstützung. Bitte lesen Sie die `Thanks'-Datei in der Distribution; "
 "in dieser Datei finden Sie weitere Danksagungen."
 
-#: tcd/cddb_props.c:69
+#: tcd/cddb_props.c:71
 msgid "Disc ID"
 msgstr "CD-Kennung"
 
-#: tcd/cddb_props.c:69
+#: tcd/cddb_props.c:71
 msgid "Disc Title"
 msgstr "CD-Titel"
 
-#: tcd/cddb_props.c:84
+#: tcd/cddb_props.c:86
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: tcd/cddb_props.c:88
+#: tcd/cddb_props.c:90
 msgid "Remove"
 msgstr "Entfernen"
 
-#: tcd/cddb_props.c:94
+#: tcd/cddb_props.c:96
 msgid "Refresh List"
 msgstr "Liste auffrischen"
 
 #. server settings
-#: tcd/cddb_props.c:145
+#: tcd/cddb_props.c:147
 msgid "Server Settings"
 msgstr "Servereinstellungen"
 
-#: tcd/cddb_props.c:154
+#: tcd/cddb_props.c:156
 msgid "Address"
 msgstr "Adresse"
 
-#: tcd/cddb_props.c:164
+#: tcd/cddb_props.c:166
 msgid "Port"
 msgstr "Port"
 
-#: tcd/cddb_props.c:173
+#: tcd/cddb_props.c:175
 msgid "Use HTTP"
-msgstr "HTTP benutzen"
+msgstr "HTTP verwenden"
 
-#: tcd/cddb_props.c:178
+#: tcd/cddb_props.c:180
 msgid "Proxy"
 msgstr "Proxy"
 
-#: tcd/cddb_props.c:196
+#: tcd/cddb_props.c:198
 msgid "Use proxy authentication"
 msgstr "Proxy-Authentisierung verwenden"
 
-#: tcd/cddb_props.c:204
+#: tcd/cddb_props.c:206
 msgid "Username"
 msgstr "Benutzername"
 
-#: tcd/cddb_props.c:224
+#: tcd/cddb_props.c:226
 msgid "Password"
 msgstr "Passwort"
 
+#: tcd/cddb_props.c:246
+msgid "SOCKS Server"
+msgstr "SOCKS-Server"
+
+#: tcd/cddb_props.c:253
+msgid "Use SOCKS"
+msgstr "SOCKS verwenden"
+
 #. local db
-#: tcd/cddb_props.c:247
+#: tcd/cddb_props.c:266
 msgid "Local Database"
 msgstr "Lokale Datenbank"
 
 #. frame
-#: tcd/cddb_props.c:289
+#: tcd/cddb_props.c:308
 msgid "CDDB Data"
 msgstr "CDDB-Daten"
 
-#: tcd/cddb_props.c:321
+#: tcd/cddb_props.c:340
 msgid "CDDB Editor"
 msgstr "CDDB-Editor"
 
-#: tcd/cddb_props.c:335
+#: tcd/cddb_props.c:354
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Fehler beim Lesen von $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:451
+#: tcd/cddb_props.c:470
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "Konnte Datei nicht löschen: %s\n"
 
-#: tcd/cddb_props.c:463
+#: tcd/cddb_props.c:482
 msgid "Delete CDDB Entry?"
 msgstr "CDDB-Eintrag löschen?"
 
@@ -864,7 +872,7 @@ msgstr "normal"
 msgid "random"
 msgstr "zufall"
 
-#: tcd/gtcd.c:285 tcd/gtcd.c:903
+#: tcd/gtcd.c:285 tcd/gtcd.c:904
 msgid "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-100-*-*-p-*-*-*"
 
@@ -894,31 +902,31 @@ msgstr "Titeleditor öffnen"
 msgid "Quit"
 msgstr "Beenden"
 
-#: tcd/gtcd.c:503 tcd/gtcd.c:504 tcd/gtcd.c:505
+#: tcd/gtcd.c:504 tcd/gtcd.c:505 tcd/gtcd.c:506
 msgid "(Scanning)"
 msgstr "(Suche)"
 
-#: tcd/gtcd.c:527
+#: tcd/gtcd.c:528
 msgid "No Disc"
 msgstr "Keine CD"
 
-#: tcd/gtcd.c:562
+#: tcd/gtcd.c:563
 msgid "Error"
 msgstr "Fehler"
 
-#: tcd/gtcd.c:839
+#: tcd/gtcd.c:840
 msgid "Volume"
 msgstr "Lautstärke"
 
-#: tcd/gtcd.c:1011
+#: tcd/gtcd.c:1012
 msgid "Filename of the CD device"
 msgstr "Dateiname des CD-Geräts"
 
-#: tcd/gtcd.c:1011
+#: tcd/gtcd.c:1012
 msgid "FILE"
 msgstr "DATEI"
 
-#: tcd/gtcd.c:1013
+#: tcd/gtcd.c:1014
 msgid "Play CD on startup"
 msgstr "Beim Start CD abspielen"
 
@@ -1034,85 +1042,85 @@ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
 
 #. do nothing
-#: tcd/prefs.c:188 tcd/prefs.c:243
+#: tcd/prefs.c:192 tcd/prefs.c:247
 msgid "Do nothing"
 msgstr "Nichts tun"
 
-#: tcd/prefs.c:194
+#: tcd/prefs.c:198
 msgid "Start playing"
 msgstr "Abspielen"
 
-#: tcd/prefs.c:200 tcd/prefs.c:249
+#: tcd/prefs.c:204 tcd/prefs.c:253
 msgid "Stop playing"
 msgstr "Stoppen"
 
 #. close tray
-#: tcd/prefs.c:204 tcd/prefs.c:261
+#: tcd/prefs.c:208 tcd/prefs.c:265
 msgid "Close tray"
 msgstr "Schublade öffnen"
 
-#: tcd/prefs.c:255
+#: tcd/prefs.c:259
 msgid "Open tray"
 msgstr "Schublade schließen"
 
 #. device entry
-#: tcd/prefs.c:334
+#: tcd/prefs.c:338
 msgid "CDROM device"
 msgstr "CDROM-Gerät"
 
 #. Color picker
-#: tcd/prefs.c:343
+#: tcd/prefs.c:347
 msgid "Track/title color"
 msgstr "Spur-/Titelfarbe"
 
 #. font picker
-#: tcd/prefs.c:355
+#: tcd/prefs.c:359
 msgid "Track/title font"
 msgstr "Spur-/Titelschriftart"
 
-#: tcd/prefs.c:356
+#: tcd/prefs.c:360
 msgid "Change font"
 msgstr "Schriftart ändern"
 
 #. show handles
-#: tcd/prefs.c:363
+#: tcd/prefs.c:367
 msgid "Show handles (restart required)"
 msgstr "Griffe anzeigen (Neustart notwendig)"
 
 #. show tooltips
-#: tcd/prefs.c:370
+#: tcd/prefs.c:374
 msgid "Show tooltips"
 msgstr "Minihilfen anzeigen"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:377
+#: tcd/prefs.c:381
 msgid "Use alternate method to play CD"
 msgstr "Andere Methode zum CD-Abspielen benutzen"
 
 #. exit frame
-#: tcd/prefs.c:403
+#: tcd/prefs.c:407
 msgid "On exit"
 msgstr "Beim Beenden"
 
-#: tcd/prefs.c:511
+#: tcd/prefs.c:515
 msgid "Key"
 msgstr "Taste"
 
-#: tcd/prefs.c:512
+#: tcd/prefs.c:516
 msgid "Action"
 msgstr "Aktion"
 
 # Checkit -ke-
-#: tcd/prefs.c:532
+#: tcd/prefs.c:536
 msgid "Click here to change (restart required):"
 msgstr "Hier klicken, um zu ändern (Neustart notwendig):"
 
 #. Frame
-#: tcd/prefs.c:554 tcd/prefs.c:604
+#: tcd/prefs.c:558 tcd/prefs.c:608
 msgid "Keybindings"
 msgstr "Tastaturbindungen"
 
-#: tcd/prefs.c:608
+#: tcd/prefs.c:612
 msgid "CDDB Settings"
 msgstr "CDDB-Einstellungen"
 
