@@ -696,6 +696,7 @@ create_dialog (GtkWidget *window)
 			  0, 0);
 
 	pd->real_name = gtk_entry_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->real_name);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/name", NULL);
 	if (str != NULL) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_name), str);
@@ -714,6 +715,7 @@ create_dialog (GtkWidget *window)
 			  0, 0);
 	
 	pd->real_host = gtk_entry_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->real_host);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
 	if (str != NULL) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_host), str);
@@ -815,6 +817,7 @@ create_dialog (GtkWidget *window)
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	pd->other_port = gtk_entry_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->other_port);
 	g_signal_connect (G_OBJECT (pd->other_port), "changed",
 			  G_CALLBACK (other_port_changed), pd);
 	port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
