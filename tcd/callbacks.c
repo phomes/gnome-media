@@ -129,6 +129,7 @@ void changer_cb(GtkWidget *widget, gpointer data)
         tcd_readdiskinfo(&cd);
 	make_goto_menu();
 	update_editor();
+	draw_status();
     }
     return;
 }
