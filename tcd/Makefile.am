@@ -15,7 +15,8 @@ gtcd_SOURCES = 			\
 	gtracked.h 		\
 	gabout.h 		\
 	gcddb.h		\
-	tooltips.h
+	tooltips.h	\
+	properties.c
 
 tcd_SOURCES = 			\
 	tcd.c 		\

@@ -641,7 +641,7 @@ static gint status_expose_event (GtkWidget *widget, GdkEventExpose *event)
 
 void no_buttons( GtkWidget *widget, gpointer *data )
 {
-	GtkWidget *win;
+/*	GtkWidget *win;
 	if( timeonly==FALSE )
 	{
 	        gtk_container_border_width (GTK_CONTAINER (window), 0);
@@ -659,7 +659,8 @@ void no_buttons( GtkWidget *widget, gpointer *data )
 		gtk_widget_show( bottom_box );
 		gtk_widget_show( sep );
 	}
-	timeonly = ~timeonly;
+	timeonly = ~timeonly;*/
+	properties_cb(NULL, NULL);
 }
 
 static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
@@ -871,7 +872,7 @@ int main (int argc, char *argv[])
 	if( cd.isplayable ) tcd_gettime(&cd);
 
 	gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
-	gtk_timeout_add(100, (GtkFunction)fast_timer, NULL);
+	gtk_timeout_add(500, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
         gnome_app_set_contents( GNOME_APP(window), vbox);
         gtk_widget_show(window); /* Make sure window is shown last */
