@@ -1,5 +1,12 @@
 2002-03-01  Iain <iain@ximian.com>
 
+	* cddb-track-editor.c (factory_fn): Keep track of our objects.
+	(track_editor_destroy_cb): Track objects and quit when they get to 0
+	(track_editor_init): Make a nicer error in case another track editor
+	is already running.
+
+2002-03-01  Iain <iain@ximian.com>
+
 	* cddb-slave-client.c (cddb_slave_client_add_listener): Unref and
 	release the event_source interface after we are done with it.
 	(cddb_slave_client_remove_listener): Unref and release the 

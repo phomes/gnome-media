@@ -35,6 +35,7 @@
 #define CDDBSLAVE_TRACK_EDITOR_IID "OAFIID:GNOME_Media_CDDBSlave2_TrackEditorFactory"
 
 static CDDBSlaveClient *client = NULL;
+static int running_objects = 0;
 
 typedef struct _CDDBInfo {
 	char *discid;
@@ -792,12 +793,36 @@ cddb_track_editor_init (CDDBTrackEditor *editor)
 BONOBO_TYPE_FUNC_FULL (CDDBTrackEditor, GNOME_Media_CDDBTrackEditor,
 		       PARENT_TYPE, cddb_track_editor);
 
+static void
+track_editor_destroy_cb (GObject *editor,
+			 gpointer data)
+{
+	running_objects--;
+
+	if (running_objects <= 0) {
+		if (client != NULL) {
+			g_object_unref (G_OBJECT (client));
+		}
+		
+		bonobo_main_quit ();
+	}
+}
+
 static BonoboObject *
 factory_fn (BonoboGenericFactory *factory,
 	    const char *component_id,
 	    void *closure)
 {
-	return g_object_new (cddb_track_editor_get_type (), NULL);
+	CDDBTrackEditor *editor;
+
+	editor = g_object_new (cddb_track_editor_get_type (), NULL);
+
+	/* Keep track of our objects */
+	running_objects++;
+	g_signal_connect (G_OBJECT (editor), "destroy",
+			  G_CALLBACK (track_editor_destroy_cb), NULL);
+
+	return BONOBO_OBJECT (editor);
 }
 
 static gboolean
@@ -808,7 +833,8 @@ track_editor_init (gpointer data)
 	factory = bonobo_generic_factory_new (CDDBSLAVE_TRACK_EDITOR_IID,
 					      factory_fn, NULL);
 	if (factory == NULL) {
-		g_error ("Cannot create factory");
+		g_print (_("Cannot create CDDBTrackEditor factory.\n"
+			   "This may be caused by another copy of cddb-track-editor already running.\n"));
 		exit (1);
 	}
 
