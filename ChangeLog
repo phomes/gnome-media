@@ -1,5 +1,11 @@
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* gnome-cd/gst-cdparanoia-cdrom.c: (build_pipeline):
+	  Implement basic buffering (should prevent hickups) and add
+	  a max. speed of 2 so that it doesn´t get too loud (#164857).
+
+2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* grecord/src/gsr-window.c: (handle_ebusy_error):
 	  Check which pipeline to change state on. Makes testcase in #162302
 	  work for me.

@@ -247,7 +247,7 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	static int pipeline_built = 0;
 	char *sink;
 	char *sink_options_start = NULL;
-	GstElement *conv, *scale;
+	GstElement *conv, *scale, *pthread, *queue;
 
 	if (pipeline_built == 1)
 		return; 
@@ -282,15 +282,19 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	priv->audio_sink = gst_gconf_get_default_audio_sink ();
 	g_assert (priv->audio_sink != 0);	/* TBD: GError */
 
+	pthread = gst_element_factory_make ("thread", "outthr");
+	queue = gst_element_factory_make ("queue", "q");
 	conv = gst_element_factory_make ("audioconvert", "conv");
 	scale = gst_element_factory_make ("audioscale", "scale");
 
 	/* Now build the pipeline */
+	gst_bin_add_many (GST_BIN (pthread), queue, conv,
+			  scale, priv->audio_sink, NULL);
 	gst_bin_add_many (GST_BIN (priv->play_thread), priv->cdparanoia,
-			  conv, scale, priv->audio_sink, NULL);
+			  pthread, NULL);
 
 	/* Link 'er up */
-	gst_element_link_many (priv->cdparanoia, conv, scale,
+	gst_element_link_many (priv->cdparanoia, queue, conv, scale,
 			       priv->audio_sink, NULL);
 
 	pipeline_built = 1;
@@ -695,6 +699,7 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
+	g_object_set (G_OBJECT (priv->cdparanoia), "read_speed", 2, NULL);
 	if (gst_cdparanoia_cdrom_open (lcd, error) == FALSE) {
 		return FALSE;
 	}
