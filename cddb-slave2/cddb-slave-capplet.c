@@ -572,7 +572,24 @@ update_clicked (GtkButton *update,
 		g_warning ("Could not update server list");
 	}
 }
-					      
+
+static void
+server_selection_changed (GtkTreeSelection *selection,
+			  PropertyDialog *pd)
+{
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+
+	if (gtk_tree_selection_get_selected (selection, &model, &iter) == TRUE) {
+		char *server;
+		char *port;
+
+		gtk_tree_model_get (model, &iter, 0, &server, 1, &port, -1);
+		gconf_change_set_set_string (changeset, "/apps/CDDB-Slave2/server", server);
+		gconf_change_set_set_int (changeset, "/apps/CDDB-Slave2/port", atoi (port));
+	}
+}
+
 static GtkTreeModel *
 make_tree_model (void)
 {
@@ -598,7 +615,8 @@ create_dialog (GtkWidget *window)
 	GtkWidget *label, *sw;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
-
+	GtkTreeSelection *selection;
+	
 	char *str;
 	int info = CDDB_SEND_FAKE_INFO;
 	int port;
@@ -718,6 +736,10 @@ create_dialog (GtkWidget *window)
 	pd->freedb_server = gtk_tree_view_new_with_model (pd->model);
 	g_object_unref (pd->model);
 
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pd->freedb_server));
+	g_signal_connect (G_OBJECT (selection), "changed",
+			  G_CALLBACK (server_selection_changed), pd);
+	
 	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("Server"), cell,
 							"text", 0, NULL);
