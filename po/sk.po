@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.2\n"
-"POT-Creation-Date: 2002-03-13 14:59+0100\n"
-"PO-Revision-Date: 2002-03-13 15:00+0100\n"
+"POT-Creation-Date: 2002-03-15 11:31+0100\n"
+"PO-Revision-Date: 2002-03-15 11:58+0100\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -849,7 +849,8 @@ msgstr "Rádio"
 msgid "Phone"
 msgstr "Telef"
 
-#: gmix/device_labels_alsa.h:18
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:647 grecord/src/gui.c:1043
+#: grecord/src/gui.c:1053
 msgid "Mono"
 msgstr "Mono"
 
@@ -1221,7 +1222,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Riadok pre zobrazenie mena alba"
 
 #: gnome-cd/callbacks.c:72 gnome-cd/callbacks.c:152 gnome-cd/callbacks.c:249
-#: gnome-cd/gnome-cd.c:506 grecord/src/gui.c:257
+#: gnome-cd/gnome-cd.c:506 grecord/src/gui.c:261
 msgid "Play"
 msgstr "Hrať"
 
@@ -1353,7 +1354,7 @@ msgstr "Pretočiť"
 msgid "Play / Pause"
 msgstr "Hrať/Pauza"
 
-#: gnome-cd/gnome-cd.c:511 grecord/src/gui.c:269
+#: gnome-cd/gnome-cd.c:511 grecord/src/gui.c:273
 msgid "Stop"
 msgstr "Stop"
 
@@ -1467,62 +1468,71 @@ msgstr "Nahrávanie zvukových klipov"
 msgid "Sound recorder"
 msgstr "Záznam zvuku"
 
-#: grecord/src/grec.c:51
+#: grecord/src/grec.c:55
 msgid "Sound Recorder:"
 msgstr "Záznam zvuku:"
 
-#: grecord/src/grec.c:90 grecord/src/grec.c:120 grecord/src/grec.c:1060
+#: grecord/src/grec.c:94 grecord/src/grec.c:124 grecord/src/grec.c:1084
 msgid "Could not fork child process"
 msgstr "Nie je možné vytvoriť proces potomka"
 
-#: grecord/src/grec.c:92
+#: grecord/src/grec.c:96
 msgid "Recording..."
 msgstr "Nahrávam..."
 
-#: grecord/src/grec.c:122
+#: grecord/src/grec.c:126
 msgid "Playing..."
 msgstr "Prehrávam..."
 
-#: grecord/src/grec.c:175
+#: grecord/src/grec.c:179
 msgid "Converting file..."
 msgstr "Prevádzam súbor..."
 
-#: grecord/src/grec.c:203
+#: grecord/src/grec.c:207
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: grecord/src/grec.c:244 grecord/src/grec.c:651 grecord/src/gui.c:335
-#: grecord/src/preferences.c:412
+#: grecord/src/grec.c:248 grecord/src/grec.c:674 grecord/src/gui.c:339
+#: grecord/src/preferences.c:629
 msgid "Audioformat: "
 msgstr "Audioformát: "
 
-#: grecord/src/grec.c:248 grecord/src/grec.c:637 grecord/src/gui.c:342
-#: grecord/src/preferences.c:416
+#: grecord/src/grec.c:252 grecord/src/grec.c:660 grecord/src/gui.c:346
+#: grecord/src/preferences.c:633
 msgid "Sample rate: "
 msgstr "Vzorkovacia frekvencia: "
 
-#: grecord/src/grec.c:258 grecord/src/grec.c:641 grecord/src/gui.c:349
-#: grecord/src/preferences.c:420
+#: grecord/src/grec.c:262 grecord/src/grec.c:664 grecord/src/gui.c:353
+#: grecord/src/preferences.c:637
 msgid "Channels: "
 msgstr "Kanále: "
 
-#: grecord/src/grec.c:279
+#: grecord/src/grec.c:283
 msgid "Cancel open"
 msgstr "Zrušiť otvorenie"
 
-#: grecord/src/grec.c:288
+#: grecord/src/grec.c:292
 msgid "Select a sound file"
 msgstr "Vyberte zvukový súbor"
 
-#: grecord/src/grec.c:339
+#: grecord/src/grec.c:343
 msgid "Don't quit"
 msgstr "Nekončiť"
 
-#: grecord/src/grec.c:503
+#: grecord/src/grec.c:428
+msgid "Gnome Volume Control is not installed in the path"
+msgstr "Ovládanie hlasitosti GNOME nie je nainštalované v ceste"
+
+#: grecord/src/grec.c:435
+#, c-format
+msgid "There was an error starting %s: %s"
+msgstr "Nedporilo sa spustiť %s: %s"
+
+#: grecord/src/grec.c:526
 msgid "Undoing all changes..."
 msgstr "Vraciam späť všetky zmeny...."
 
-#: grecord/src/grec.c:583
+#: grecord/src/grec.c:606
 #, c-format
 msgid ""
 "'%s is a directory.\n"
@@ -1531,7 +1541,7 @@ msgstr ""
 "'%s' je priečinok.\n"
 "Prosím, vyberte zvukový súbor."
 
-#: grecord/src/grec.c:593
+#: grecord/src/grec.c:616
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -1540,12 +1550,12 @@ msgstr ""
 "Súbor '%s' neexistuje.\n"
 "Prosím, vyberte existujúci zvukový súbor."
 
-#: grecord/src/grec.c:604
+#: grecord/src/grec.c:627
 #, c-format
 msgid "File '%s isn't a valid sound file."
 msgstr "Súbor '%s' nie je platný zvukový súbor."
 
-#: grecord/src/grec.c:675
+#: grecord/src/grec.c:698
 #, c-format
 msgid ""
 "'%s' is a directory.\n"
@@ -1554,7 +1564,7 @@ msgstr ""
 "'%s' je priečinok.\n"
 "Prosím, zadajte iné meno súboru."
 
-#: grecord/src/grec.c:685
+#: grecord/src/grec.c:708
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1563,20 +1573,20 @@ msgstr ""
 "<b>Súbor '%s' už existuje.</b>\n"
 "Naozaj ho chcete prepísať?"
 
-#: grecord/src/grec.c:688
+#: grecord/src/grec.c:711
 msgid "Cancel save"
 msgstr "Zrušiť ukladanie"
 
-#: grecord/src/grec.c:689
+#: grecord/src/grec.c:712
 msgid "Overwrite"
 msgstr "Prepísať"
 
-#: grecord/src/grec.c:716
+#: grecord/src/grec.c:739
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Chyba pri ukladaní '%s'"
 
-#: grecord/src/grec.c:753
+#: grecord/src/grec.c:776
 #, c-format
 msgid ""
 "<b>Save the changes to %s?</b>\n"
@@ -1585,36 +1595,36 @@ msgstr ""
 "<b>Uložiť zmeny do %s?</b>\n"
 "Ak ich neuložíte, budú stratené."
 
-#: grecord/src/grec.c:757
+#: grecord/src/grec.c:780
 msgid "Don't save"
 msgstr "Neukladať"
 
-#: grecord/src/grec.c:759
+#: grecord/src/grec.c:782
 msgid "Save"
 msgstr "Uložiť"
 
-#: grecord/src/grec.c:762
+#: grecord/src/grec.c:785
 #, c-format
 msgid "Save %s?"
 msgstr "Uložiť %s?"
 
 #. Save the file
-#: grecord/src/grec.c:786
+#: grecord/src/grec.c:809
 msgid "Saving..."
 msgstr "Ukladám..."
 
-#: grecord/src/grec.c:912
+#: grecord/src/grec.c:935
 #, c-format
 msgid ""
 "The size of the current sample is more than\n"
 "%i Mb!"
 msgstr "Veľkosť aktuálnej vzorky je viac ako %i Mb!"
 
-#: grecord/src/grec.c:955
+#: grecord/src/grec.c:978
 msgid "Save sound file"
 msgstr "Uložiť zvukový súbor"
 
-#: grecord/src/grec.c:1125
+#: grecord/src/grec.c:1149
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -1622,122 +1632,122 @@ msgstr ""
 "Zvukové zariadenie nie je pripravené! Prosím, overte, že\n"
 "nie je používané iným programom."
 
-#: grecord/src/gui.c:42
+#: grecord/src/gui.c:46
 msgid "_New"
 msgstr "_Nový"
 
-#: grecord/src/gui.c:43
+#: grecord/src/gui.c:47
 msgid "Create a new sample"
 msgstr "Vytvorí novú vzorku"
 
-#: grecord/src/gui.c:50
+#: grecord/src/gui.c:54
 msgid "Run mixer"
 msgstr "Spustiť mixér"
 
-#: grecord/src/gui.c:51
+#: grecord/src/gui.c:55
 msgid "Run GNOME Volume Control"
 msgstr "Spustiť Ovládanie hlasitosti GNOME"
 
-#: grecord/src/gui.c:64
+#: grecord/src/gui.c:68
 msgid "Add echo"
 msgstr "Pridať ozvenu"
 
-#: grecord/src/gui.c:65
+#: grecord/src/gui.c:69
 msgid "Add echo to the current sample"
 msgstr "Pridá ozvenu do aktuálnej vzorky"
 
-#: grecord/src/gui.c:96
+#: grecord/src/gui.c:100
 msgid "Echo"
 msgstr "Ozvena"
 
-#: grecord/src/gui.c:105
+#: grecord/src/gui.c:109
 msgid "Undo all changes"
 msgstr "Vrátiť späť všetky zmeny"
 
-#: grecord/src/gui.c:106
+#: grecord/src/gui.c:110
 msgid "Undo all changes made on the current sample"
 msgstr "Vráti späť všetky zmeny urobené na aktuálnej vzorke"
 
-#: grecord/src/gui.c:113
+#: grecord/src/gui.c:117
 msgid "Effects"
 msgstr "Efekty"
 
-#: grecord/src/gui.c:122 grecord/src/gui.c:123 grecord/src/gui.c:873
+#: grecord/src/gui.c:126 grecord/src/gui.c:127 grecord/src/gui.c:1074
 msgid "Show time"
 msgstr "Zobraziť čas"
 
-#: grecord/src/gui.c:129
+#: grecord/src/gui.c:133
 msgid "Show soundinfo"
 msgstr "Zobraziť zvukové informácie"
 
-#: grecord/src/gui.c:130 grecord/src/gui.c:878
+#: grecord/src/gui.c:134 grecord/src/gui.c:1081
 msgid "Show sound information"
 msgstr "Zobrazí zvukové informácie"
 
-#: grecord/src/gui.c:162
+#: grecord/src/gui.c:166
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Záznam zvuku"
 
-#: grecord/src/gui.c:205
+#: grecord/src/gui.c:209
 msgid "Sound Recorder"
 msgstr "Záznam zvuku"
 
-#: grecord/src/gui.c:243
+#: grecord/src/gui.c:247
 msgid "New"
 msgstr "Nový"
 
-#: grecord/src/gui.c:244
+#: grecord/src/gui.c:248
 msgid "Create new sample"
 msgstr "Vytvorí novú vzorku"
 
-#: grecord/src/gui.c:258
+#: grecord/src/gui.c:262
 msgid "Play current sample"
 msgstr "Prehrá aktuálnu vzorku"
 
-#: grecord/src/gui.c:270
+#: grecord/src/gui.c:274
 msgid "Stop playing/recording"
 msgstr "Zastaví prehrávanie/nahrávanie"
 
-#: grecord/src/gui.c:279
+#: grecord/src/gui.c:283
 msgid "Record"
 msgstr "Nahrávať"
 
-#: grecord/src/gui.c:280
+#: grecord/src/gui.c:284
 msgid "Start recording"
 msgstr "Spustí nahrávanie"
 
-#: grecord/src/gui.c:295
+#: grecord/src/gui.c:299
 msgid "Info"
 msgstr "Informácia"
 
-#: grecord/src/gui.c:393
+#: grecord/src/gui.c:397
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Súbor '%s' neexistuje, použijem štandardný."
 
-#: grecord/src/gui.c:414
+#: grecord/src/gui.c:418
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "Súbor '%s' nie je podporovaný zvukový súbor."
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:444
+#: grecord/src/gui.c:448
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:451
+#: grecord/src/gui.c:455
 msgid "Gnome Sound Recorder"
 msgstr "Záznam zvuku GNOME"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:454
+#: grecord/src/gui.c:458
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hyden"
 
-#: grecord/src/gui.c:455
+#: grecord/src/gui.c:459
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -1745,129 +1755,129 @@ msgstr ""
 "Jednoduchý záznam a prehrávanie zvukov pre GNOME.\n"
 "Venované mojej mačke Malte."
 
-#: grecord/src/gui.c:547
-msgid "Time"
-msgstr "Čas"
+#: grecord/src/gui.c:622 grecord/src/gui.c:985 grecord/src/gui.c:997
+msgid "8bit PCM"
+msgstr "8-bitový PCM"
 
-#: grecord/src/gui.c:560
-msgid "Recording timeout: "
-msgstr "Časový limit nahrávania: "
+#: grecord/src/gui.c:714
+msgid "Gnome Sound Recorder Preferences"
+msgstr "Nastavenie Záznam zvuku GNOME"
 
-#: grecord/src/gui.c:571
-msgid "minutes"
-msgstr "minút"
-
-#: grecord/src/gui.c:576
-msgid "Stop recording on timeout"
-msgstr "Zastaviť nahrávanie po časovom limite"
-
-#: grecord/src/gui.c:581
-msgid "Popup save dialog when recording is finished"
-msgstr "Zobraziť dialóg pre uloženie po dokončení nahrávania"
-
-#: grecord/src/gui.c:590
-msgid "Size"
-msgstr "Veľkosť"
-
-#: grecord/src/gui.c:599
-msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
-msgstr "Zobraziť varovanie ak je veľkosť vzorky väčšia ako (Mb):"
-
-#: grecord/src/gui.c:609
-msgid "Stop recording if size (Mb) of sample becomes bigger than:"
-msgstr "Zastaviť nahrávanie ak je veľkosť vzorky väčšia ako (Mb):"
-
-#: grecord/src/gui.c:620
+#: grecord/src/gui.c:730
 msgid "Recording"
 msgstr "Nahrávanie"
 
-#: grecord/src/gui.c:629
-msgid "Play-repeating"
-msgstr "Opakované prehrávanie"
+#: grecord/src/gui.c:735
+msgid "Time"
+msgstr "Čas"
 
-#: grecord/src/gui.c:638
-msgid "Repeat"
-msgstr "Opakovať"
+#: grecord/src/gui.c:748
+msgid "Recording timeout: "
+msgstr "Časový limit nahrávania: "
 
-#: grecord/src/gui.c:647
-msgid "Forever"
-msgstr "Donekonečna"
+#: grecord/src/gui.c:762
+msgid "minutes"
+msgstr "minút"
 
-#: grecord/src/gui.c:652
-msgid "Nr of times:"
-msgstr "Počet:"
+#: grecord/src/gui.c:767
+msgid "Stop recording on timeout"
+msgstr "Zastaviť nahrávanie po časovom limite"
 
-#: grecord/src/gui.c:663
+#: grecord/src/gui.c:775
+msgid "Popup save dialog when recording is finished"
+msgstr "Zobraziť dialóg pre uloženie po dokončení nahrávania"
+
+#: grecord/src/gui.c:782
+msgid "Size"
+msgstr "Veľkosť"
+
+#: grecord/src/gui.c:791
+msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
+msgstr "Zobraziť varovanie ak je veľkosť vzorky väčšia ako (Mb):"
+
+#: grecord/src/gui.c:809
+msgid "Stop recording if size (Mb) of sample becomes bigger than:"
+msgstr "Zastaviť nahrávanie ak je veľkosť vzorky väčšia ako (Mb):"
+
+#: grecord/src/gui.c:831
 msgid "Playing"
 msgstr "Prehrávanie"
 
-#: grecord/src/gui.c:672
-msgid "Program files"
-msgstr "Programy"
+#: grecord/src/gui.c:836
+msgid "Repetition"
+msgstr "Opakovanie"
 
-#: grecord/src/gui.c:689
-msgid "Path to sox:"
-msgstr "Cesta k sox:"
+#: grecord/src/gui.c:845
+msgid "Repeat the sound"
+msgstr "Opakovať zvuk"
 
-#: grecord/src/gui.c:705
-msgid "Path to mixer:"
-msgstr "Cesta k mixéru:"
+#: grecord/src/gui.c:856
+msgid "Forever"
+msgstr "Donekonečna"
 
-#: grecord/src/gui.c:721
-msgid "Directories"
-msgstr "Priečinky"
+#: grecord/src/gui.c:864
+msgid "Nr of times:"
+msgstr "Počet:"
 
-#: grecord/src/gui.c:734
-msgid "Temp dir:"
-msgstr "Dočasný:"
-
-#: grecord/src/gui.c:750
+#: grecord/src/gui.c:885
 msgid "Paths"
 msgstr "Cesty"
 
-#: grecord/src/gui.c:758
-msgid "Sound options"
-msgstr "Zvuk"
+#: grecord/src/gui.c:890
+msgid "Program files"
+msgstr "Programy"
 
-#: grecord/src/gui.c:771
-msgid "Audioformat:"
-msgstr "Audioformát:"
+#: grecord/src/gui.c:903
+msgid "Path to sox:"
+msgstr "Cesta k sox:"
 
-#: grecord/src/gui.c:782 grecord/src/gui.c:792
-msgid "8bit pcm"
-msgstr "8-bitový pcm"
+#: grecord/src/gui.c:914 grecord/src/gui.c:947
+msgid "Apply"
+msgstr "Použiť"
 
-#: grecord/src/gui.c:783 grecord/src/gui.c:794
-msgid "16bit pcm"
-msgstr "16-bitový pcm"
+#: grecord/src/gui.c:923
+msgid "Directories"
+msgstr "Priečinky"
 
-#: grecord/src/gui.c:800
-msgid "Sample rate:"
-msgstr "Vzorkovacia frekvencia:"
+#: grecord/src/gui.c:936
+msgid "Temporary directory:"
+msgstr "Dočasný priečinok:"
 
-#: grecord/src/gui.c:830
-msgid "mono/stereo"
-msgstr "mono/stereo"
-
-#: grecord/src/gui.c:841 grecord/src/gui.c:851
-msgid "mono"
-msgstr "mono"
-
-#: grecord/src/gui.c:842 grecord/src/gui.c:853
-msgid "stereo"
-msgstr "stereo"
-
-#: grecord/src/gui.c:856
+#: grecord/src/gui.c:959
 msgid "Sound"
 msgstr "Zvuk"
 
-#: grecord/src/gui.c:864
-msgid "Main window"
-msgstr "Hlavné okno"
+#: grecord/src/gui.c:964
+msgid "Sound options"
+msgstr "Zvuk"
 
-#: grecord/src/gui.c:883
+#: grecord/src/gui.c:977
+msgid "Audio format:"
+msgstr "Audioformát:"
+
+#: grecord/src/gui.c:986 grecord/src/gui.c:999
+msgid "16bit PCM"
+msgstr "16-bitový PCM"
+
+#: grecord/src/gui.c:1007
+msgid "Sample rate:"
+msgstr "Vzorkovacia frekvencia:"
+
+#: grecord/src/gui.c:1035
+msgid "Mono/Stereo"
+msgstr "Mono/Stereo"
+
+#: grecord/src/gui.c:1044 grecord/src/gui.c:1055
+msgid "Stereo"
+msgstr "Stereo"
+
+#: grecord/src/gui.c:1060
 msgid "User interface"
 msgstr "Používateľské rozhranie"
+
+#: grecord/src/gui.c:1065
+msgid "Main window"
+msgstr "Hlavné okno"
 
 #: grecord/src/main.c:54
 msgid "Specify the geometry of the main window"
@@ -1889,11 +1899,11 @@ msgstr "Nahrávať do súboru"
 msgid "Specify a file to start playing"
 msgstr "Prehrať súbor"
 
-#: grecord/src/main.c:189
+#: grecord/src/main.c:195
 msgid "Don't show this message again."
 msgstr "Túto správu nabudúce nezobrazovať."
 
-#: grecord/src/main.c:191
+#: grecord/src/main.c:197
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -1906,7 +1916,7 @@ msgstr ""
 "\n"
 "Ak nemáte sox, nebude možné nahrávať ani pridávať efekty."
 
-#: grecord/src/preferences.c:213
+#: grecord/src/preferences.c:430
 msgid ""
 "You havn't entered a sox command; you will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -1914,7 +1924,7 @@ msgstr ""
 "Nezadali ste príkaz pre sox, nebude možné nahrávať.\n"
 "Ste si istý týmto nastavením?"
 
-#: grecord/src/preferences.c:238
+#: grecord/src/preferences.c:455
 #, c-format
 msgid ""
 "File %s in 'sox command' does not exist.\n"
@@ -1923,7 +1933,7 @@ msgstr ""
 "Súbor %s v príkaze 'sox' neexistuje.\n"
 "Ste si istý týmto nastavením?"
 
-#: grecord/src/preferences.c:263
+#: grecord/src/preferences.c:480
 msgid ""
 "You havn't entered a mixer command; you will not be able to start the "
 "mixer.\n"
@@ -1932,7 +1942,7 @@ msgstr ""
 "Nezadali ste príkaz pre mixér, nebude možné spustiť mixér.\n"
 "Ste si istý týmto nastavením?"
 
-#: grecord/src/preferences.c:288
+#: grecord/src/preferences.c:505
 #, c-format
 msgid ""
 "File %s in 'mixer command' does not exist.\n"
@@ -1941,7 +1951,7 @@ msgstr ""
 "Súbor %s v 'mixér' neexistuje.\n"
 "Ste si istý týmto nastavením?"
 
-#: grecord/src/preferences.c:311
+#: grecord/src/preferences.c:528
 msgid ""
 "You havn't entered a temp dir. You will not be able to record.\n"
 "Do you want to use it anyway?"
@@ -1952,7 +1962,7 @@ msgstr ""
 #. Check if the given temp directory exists --------------------
 #. Exists
 #. Not a directory
-#: grecord/src/preferences.c:330
+#: grecord/src/preferences.c:547
 #, c-format
 msgid ""
 "Temp directory %s is a file.\n"
@@ -1961,7 +1971,7 @@ msgstr ""
 "Dočasný priečinok %s je súbor.\n"
 "Ste si istý týmto nastavením?"
 
-#: grecord/src/preferences.c:350
+#: grecord/src/preferences.c:567
 #, c-format
 msgid ""
 "You don't have the correct permissions (read & write) for temp directory %"
@@ -1972,7 +1982,7 @@ msgstr ""
 "Ste si istý týmto nastavením?"
 
 #. Does not exist
-#: grecord/src/preferences.c:368
+#: grecord/src/preferences.c:585
 #, c-format
 msgid ""
 "Directory %s does not exist.\n"
@@ -2053,6 +2063,15 @@ msgstr "Monitorovať hlasitosť zvukového výstupu"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor hlasitosti"
+
+#~ msgid "Play-repeating"
+#~ msgstr "Opakované prehrávanie"
+
+#~ msgid "Path to mixer:"
+#~ msgstr "Cesta k mixéru:"
+
+#~ msgid "mono"
+#~ msgstr "mono"
 
 #~ msgid "Hide menu on start"
 #~ msgstr "Skryť menu pri štarte"
