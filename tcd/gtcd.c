@@ -58,21 +58,6 @@
 #include "gcddb.h"
 #include "properties.h"
 
-#include "icons/default/play.xpm"
-#include "icons/default/stop.xpm"
-#include "icons/default/pause.xpm"
-#include "icons/default/ff.xpm"
-#include "icons/default/rw.xpm"
-#include "icons/default/prev_t.xpm"
-#include "icons/default/next_t.xpm"
-#include "icons/default/power.xpm"
-#include "icons/default/eject.xpm"
-#include "icons/default/menu.xpm"
-#include "icons/default/cdrom.xpm"
-#include "icons/default/cddb.xpm"
-#include "icons/default/edit.xpm"
-#include "icons/default/goto.xpm"
-
 #include "tooltips.h"
 
 
@@ -213,24 +198,20 @@ GtkWidget* make_button( char *title, GtkWidget *box, int func, gchar *tooltip )
 	return button;
 }	                        
 
-GtkWidget* make_button_with_pixmap( char **pic, GtkWidget *box, int func,
+GtkWidget* make_button_with_pixmap( char *pic, GtkWidget *box, int func,
 	gint expand, gint fill, gchar *tooltip )
 {
 	GtkWidget *button;
-	GtkWidget *pixmapwid;
-	GdkPixmap *pixmap;
-	GtkStyle *style;
-	GdkBitmap *mask;
+	GtkWidget *pixmap;
+	char tmp[256];
 	
-	style = gtk_widget_get_style( window );
-        pixmap = gdk_pixmap_create_from_xpm_d( window->window,  &mask,
-        	&style->bg[GTK_STATE_NORMAL],
-                (gchar **)pic );
-	pixmapwid = gtk_pixmap_new( pixmap, mask );
-        gtk_widget_show( pixmapwid );
-        
+	sprintf( tmp, "tcd/%s.xpm", pic );
+	g_print( "loading: %s\n", gnome_pixmap_file(tmp) );
+	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+	gtk_widget_show(pixmap);
+
 	button = gtk_button_new();
-	gtk_container_add( GTK_CONTAINER(button), pixmapwid );
+	gtk_container_add( GTK_CONTAINER(button), pixmap );
 	gtk_box_pack_start( GTK_BOX (box), button, expand, fill, 0 );
 	gtk_widget_show(button);
 	gtk_signal_connect(GTK_OBJECT (button), "clicked", \
@@ -309,10 +290,10 @@ GtkWidget* make_row1( void )
 	box = gtk_hbox_new( TRUE, 5 );
 	handle = gtk_handle_box_new();
 
-	make_button_with_pixmap( play_xpm, box, PLAY, TRUE, TRUE, TT_PLAY );
-	make_button_with_pixmap( pause_xpm, box, PAUSE, TRUE, TRUE, TT_PAUSE );
-	make_button_with_pixmap( stop_xpm, box, STOP, TRUE, TRUE, TT_STOP );
-	make_button_with_pixmap( eject_xpm, box, EJECT, TRUE, TRUE, TT_EJECT );
+	make_button_with_pixmap( "play", box, PLAY, TRUE, TRUE, TT_PLAY );
+	make_button_with_pixmap( "pause", box, PAUSE, TRUE, TRUE, TT_PAUSE );
+	make_button_with_pixmap( "stop", box, STOP, TRUE, TRUE, TT_STOP );
+	make_button_with_pixmap( "eject", box, EJECT, TRUE, TRUE, TT_EJECT );
 	gtk_widget_show(box);
 	gtk_container_add( GTK_CONTAINER(handle), box );
 
@@ -325,10 +306,10 @@ GtkWidget* make_row2( void )
 	box = gtk_hbox_new (TRUE, 5);
 	handle = gtk_handle_box_new();
 
-	make_button_with_pixmap(prev_t_xpm, box, PREV_T, TRUE, TRUE, TT_PREV_TRACK );
-	make_button_with_pixmap(rw_xpm, box, RW, TRUE, TRUE, TT_REWIND );
-	make_button_with_pixmap(ff_xpm, box, FF, TRUE, TRUE, TT_FF );
-	make_button_with_pixmap(next_t_xpm, box, NEXT_T, TRUE, TRUE, TT_NEXT_TRACK );
+	make_button_with_pixmap("prev_t", box, PREV_T, TRUE, TRUE, TT_PREV_TRACK );
+	make_button_with_pixmap("rw", box, RW, TRUE, TRUE, TT_REWIND );
+	make_button_with_pixmap("ff", box, FF, TRUE, TRUE, TT_FF );
+	make_button_with_pixmap("next_t", box, NEXT_T, TRUE, TRUE, TT_NEXT_TRACK );
 	gtk_widget_show(box);
 	gtk_container_add(GTK_CONTAINER(handle), box );
 
@@ -336,36 +317,30 @@ GtkWidget* make_row2( void )
 }
 GtkWidget* make_row3( void )
 {
-	GtkWidget *box, *bbox;
+	char tmp[128];
+	GtkWidget *box, *bbox, *pm;
 	GtkWidget *button, *gotolabel;
-	GtkWidget *pixmapwid, *handle;
-	GdkPixmap *pixmap;
-	GtkStyle *style;
-	GdkBitmap *mask;
+	GtkWidget *pixmap, *handle;
 	
         box = gtk_hbox_new( TRUE, 5 );
 	bbox = gtk_vbox_new( FALSE, 0 );
 	handle = gtk_handle_box_new();
 
-	cddbbutton = make_button_with_pixmap( cddb_xpm, box, CDDB, TRUE, TRUE,  TT_CDDB );
-	trackeditor =make_button_with_pixmap( edit_xpm, box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
+	cddbbutton = make_button_with_pixmap( "cddb", box, CDDB, TRUE, TRUE,  TT_CDDB );
+	trackeditor =make_button_with_pixmap( "edit", box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
 
 	gotobutton = gtk_button_new();
 
-	style = gtk_widget_get_style( window );
-        pixmap = gdk_pixmap_create_from_xpm_d( window->window,  &mask,
-        	&style->bg[GTK_STATE_NORMAL],
-                (gchar **)goto_xpm );
-	pixmapwid = gtk_pixmap_new( pixmap, mask );
-        gtk_widget_show( pixmapwid );
-	
-	gtk_box_pack_start( GTK_BOX(bbox), pixmapwid, FALSE, FALSE, 0 );
+	sprintf( tmp, "tcd/%s.xpm", "goto" );
+	pixmap = gnome_pixmap_new_from_file( gnome_pixmap_file(tmp) );
+	gtk_widget_show(pixmap);
+	gtk_box_pack_start( GTK_BOX(bbox), pixmap, FALSE, FALSE, 0 );
         gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
 	gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
 	
 	gtk_widget_show(bbox);
 	gtk_widget_show(gotobutton);
-	button = make_button_with_pixmap(power_xpm, box, QUIT, TRUE, TRUE, "Quit" );
+	button = make_button_with_pixmap( "power", box, QUIT, TRUE, TRUE, "Quit" );
 	gtk_widget_show(box);
 	gtk_container_add(GTK_CONTAINER(handle), box);
 	
@@ -812,7 +787,7 @@ void setup_rows( void )
 
         gtk_box_pack_start(GTK_BOX(ttbox), titlelabel, TRUE, FALSE, 0);
         gtk_box_pack_start(GTK_BOX(bottom_box), ttbox, TRUE, FALSE, 0);
-	aboutbutton = make_button_with_pixmap( cdrom_xpm, bottom_box, ABOUT, FALSE, FALSE, TT_ABOUT );
+	aboutbutton = make_button_with_pixmap( "cdrom", bottom_box, ABOUT, FALSE, FALSE, TT_ABOUT );
         gtk_box_pack_start(GTK_BOX(vbox), bottom_box, TRUE, FALSE, 0);
 
         gtk_container_add (GTK_CONTAINER (window), vbox);

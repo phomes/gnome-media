@@ -34,17 +34,19 @@ GtkWidget *propbox;
 void load_properties( tcd_properties *prop )
 {
 	prop->cddev 	= gnome_config_get_string("/gtcd/cdrom/device=/dev/cdrom");
-	prop->cddb  	= gnome_config_get_string("/gtcd/cdrom/cddb/server=cddb.cddb.com");
-	prop->cddbport  = gnome_config_get_int("/gtcd/cdrom/cddb/port=888");
-	prop->handle    = gnome_config_get_bool("/gtcd/cdrom/ui/handle=1");
+	prop->cddb  	= gnome_config_get_string("/gtcd/cddb/server=cddb.cddb.com");
+	prop->cddbport  = gnome_config_get_int(   "/gtcd/cddb/port=888");
+	prop->iconset  	= gnome_config_get_string("/gtcd/ui/iconset=BlackBevel");
+	prop->handle    = gnome_config_get_bool(  "/gtcd/ui/handle=1");
 }
 
 void save_properties( tcd_properties *prop )
 {
 	gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
-	gnome_config_set_string("/gtcd/cdrom/cddb/server", prop->cddb);
-	gnome_config_set_int("/gtcd/cdrom/cddb/port", prop->cddbport);
-	gnome_config_set_bool("/gtcd/cdrom/ui/handle", prop->handle);
+	gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
+	gnome_config_set_string("/gtcd/ui/iconset", prop->iconset);
+	gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport);
+	gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
 	gnome_config_sync();
 }
 

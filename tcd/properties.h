@@ -5,6 +5,7 @@ typedef struct
 {
 	gchar *cddev;
 	gchar *cddb;
+	gchar *iconset;
 	gint  cddbport;
 	gboolean handle;
 	gboolean tooltips;

@@ -27,14 +27,13 @@
 */
 
 #include <gnome.h>
-#include "icons/default/credit.h"
 
 void about_cb(GtkWidget *widget, void *data)
 {
         GtkWidget *about;
         gchar *authors[] = {
                 "Tim P. Gerla",
-                "Icon set by " CREDIT,
+/*                "Icon set by " CREDIT,*/
                 NULL
         };  
 
@@ -44,7 +43,7 @@ void about_cb(GtkWidget *widget, void *data)
                 "Gnome CD player application with CDDB support."
                 " Please see the \'Thanks\' file included with the"
                 " distribution for more credits.",
-                "icons/about.xpm");
+                gnome_pixmap_file("tcd/about.xpm"));
         gtk_widget_show(about);
 
         return;
