@@ -139,6 +139,7 @@ main (int argc,
       char **argv)
 {
 	CORBA_ORB orb;
+	char *cddbdir;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -147,9 +148,19 @@ main (int argc,
 	gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
 			    argc, argv, NULL);
 
+	cddbdir = g_build_filename (g_get_home_dir (),
+				    ".cddbslave", NULL);
+	if (g_file_test (cddbdir, G_FILE_TEST_EXISTS) == FALSE) {
+		mkdir (cddbdir, 0775);
+	}
+
+	if (g_file_test (cddbdir, G_FILE_TEST_IS_DIR) == FALSE) {
+		g_error ("~/.cddbslave needs to be a directory");
+	}
+	g_free (cddbdir);
+	
 	g_idle_add (cddbslave_init, NULL);
 	bonobo_main ();
 
 	exit (0);
 }
-	
