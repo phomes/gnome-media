@@ -46,9 +46,9 @@ struct _CDDisplayAccessibleFactoryClass
 	AtkObjectFactoryClass parent_class;
 };
 
-GType cddisplay_accessible_factory_get_type();
+GType cddisplay_accessible_factory_get_type(void);
 
-AtkObjectFactory *cddisplay_accessible_factory_new();
+AtkObjectFactory *cddisplay_accessible_factory_new(void);
 
 #ifdef __cplusplus
 }

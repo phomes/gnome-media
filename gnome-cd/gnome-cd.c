@@ -265,23 +265,6 @@ make_button_from_widget (GnomeCD *gcd,
 }
 
 static GtkWidget *
-make_button_from_pixbuf (GnomeCD *gcd,
-			 GdkPixbuf *pixbuf,
-			 GCallback func,
-			 const char *tooltip,
-			 const char *shortname)
-{
-	GtkWidget *pixmap;
-
-	g_return_val_if_fail (gcd != NULL, NULL);
-	g_return_val_if_fail (pixbuf != NULL, NULL);
-		
-	pixmap = gtk_image_new_from_pixbuf (pixbuf);
-
-	return make_button_from_widget (gcd, pixmap, func, tooltip, shortname);
-}
-
-static GtkWidget *
 make_button_from_stock (GnomeCD *gcd,
 			const char *stock,
 			GCallback func,
@@ -766,7 +749,7 @@ save_session(GnomeClient        *client,
     return TRUE;
 }
 
-static gint client_die(GnomeClient *client,
+static void client_die(GnomeClient *client,
 		       GnomeCD *gcd)
 {
 	gtk_widget_destroy (gcd->window);

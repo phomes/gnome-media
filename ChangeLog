@@ -1,3 +1,56 @@
+2004-08-29  Ronald S. Bultje  <Ronald S. Bultje <rbultje@ronald.bitfreak.net>>
+
+	* cddb-slave2/cddb-parser.c: (cddb_entry_new_from_file):
+	* cddb-slave2/cddb-slave.h:
+	* cddb-slave2/tcp.c: (gnet_tcp_socket_connect_inetaddr_cb):
+	* gnome-cd/access/cddisplayaccessiblefactory.c:
+	(cddisplay_accessible_factory_get_type),
+	(cddisplay_accessible_factory_new):
+	* gnome-cd/access/cddisplayaccessiblefactory.h:
+	* gnome-cd/access/pangoaccessiblefactory.h:
+	* gnome-cd/callbacks.c:
+	* gnome-cd/cdrom.c: (cdrom_set_device):
+	* gnome-cd/eggtrayicon.c: (egg_tray_icon_init),
+	(egg_tray_icon_class_init), (egg_tray_icon_get_property),
+	(egg_tray_icon_get_orientation_property),
+	(egg_tray_icon_manager_filter), (egg_tray_icon_unrealize),
+	(egg_tray_icon_send_manager_message),
+	(egg_tray_icon_update_manager_window), (egg_tray_icon_realize),
+	(egg_tray_icon_new_for_screen), (egg_tray_icon_new),
+	(egg_tray_icon_send_message), (egg_tray_icon_cancel_message),
+	(egg_tray_icon_get_orientation):
+	* gnome-cd/eggtrayicon.h:
+	* gnome-cd/gnome-cd.c: (client_die):
+	* gnome-cd/gst-cdparanoia-cdrom.c: (eos), (build_pipeline),
+	(gst_cdparanoia_cdrom_play), (gst_cdparanoia_cdrom_pause),
+	(gst_cdparanoia_cdrom_stop), (gst_cdparanoia_cdrom_get_status):
+	* gnome-cd/linux-cdrom.c: (linux_cdrom_update_cd):
+	* grecord/src/gnome-recorder.c: (main):
+	* grecord/src/gsr-window.c: (file_close):
+	* gst-mixer/src/mixer.c:
+	* gstreamer-properties/gstreamer-properties.c: (create_dialog),
+	(main):
+	* profiles/audio-profile-choose.c: (gm_audio_profile_choose_new),
+	(gm_audio_profile_choose_get_active),
+	(gm_audio_profile_choose_set_active):
+	* profiles/audio-profile-choose.h:
+	* profiles/audio-profile-edit.c: (gm_audio_profile_edit_init):
+	* profiles/audio-profile-private.h:
+	* profiles/audio-profile.c: (gm_audio_profile_create):
+	* profiles/audio-profile.h:
+	* profiles/audio-profiles-edit.c: (profile_activated_callback),
+	(on_profile_changed), (edit_button_clicked),
+	(gm_audio_profiles_edit_new), (new_profile_response_callback):
+	* profiles/gnome-audio-profiles-properties.c: (main):
+	* profiles/gnome-audio-profiles-test.c: (edit_cb), (test_cb),
+	(main):
+	* profiles/gnome-media-profiles.c:
+	* vu-meter/gtkled.c: (gtk_led_new):
+	* vu-meter/main.c: (main):
+	  Compile using -Wall -Werror and fix all. Also includes the cleanup
+	  patch from bug #151306 (thanks to Kjartan Maraas <kmaraas@gnome.org>)
+	  and updates the egg widgets to their latest version.
+
 2004-08-29  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* grecord/src/gsr-window.c: (seek_to):

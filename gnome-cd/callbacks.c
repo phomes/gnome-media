@@ -34,6 +34,8 @@
 
 #include "GNOME_Media_CDDBSlave2.h"
 
+extern void destroy_cache_hashTable (void);
+
 static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
 
 static gboolean position_auto_update=TRUE;

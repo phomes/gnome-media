@@ -40,6 +40,9 @@
 #include "gnome-recorder.h"
 #include "gsr-window.h"
 
+extern GtkWidget * gsr_open_window (const char *filename);
+extern void gsr_quit (void);
+
 enum {
 	PROP_0,
 	PROP_LOCATION
@@ -360,31 +363,6 @@ file_open (BonoboUIComponent *uic,
 	gtk_widget_show (file_chooser);
 }
 
-enum mimetype {
-	MIME_TYPE_WAV,
-	MIME_TYPE_MP3,
-	MIME_TYPE_OGG,
-	MIME_TYPE_FLAC
-};
-
-static GstElement *
-get_encoder_for_mimetype (enum mimetype mime)
-{
-	switch (mime) {
-	case MIME_TYPE_WAV:
-		return gst_element_factory_make ("wavenc", "encoder");
-
-	case MIME_TYPE_MP3:
-		return gst_element_factory_make ("lame", "encoder");
-
-	case MIME_TYPE_OGG:
-		return gst_element_factory_make ("vorbisenc", "encoder");
-
-	case MIME_TYPE_FLAC:
-		return gst_element_factory_make ("flacenc", "encoder");
-	}
-}
-
 struct _eos_data {
 	GSRWindow *window;
 	char *location;
@@ -422,24 +400,6 @@ eos_done (struct _eos_data *ed)
 	g_free (ed);
 
 	return FALSE;
-}
-
-static void
-save_sink_eos_cb (GstElement *element,
-		  GSRWindow *window)
-{
-	char *filename;
-	struct _eos_data *ed;
-
-	ed = g_new (struct _eos_data, 1);
-	ed->window = window;
-	ed->pipeline = GST_ELEMENT (gst_element_get_parent (element));
-	g_object_get (G_OBJECT (element),
-		      "location", &ed->location,
-		      NULL);
-
-	/*g_idle_add ((GSourceFunc) eos_done, ed);*/
-	eos_done (ed);
 }
 
 static GstElement *
@@ -907,13 +867,6 @@ static void
 file_close (BonoboUIComponent *uic,
 	    GSRWindow *window,
 	    const char *path)
-{
-	gsr_window_close (window);
-}
-
-static void
-close_window (GSRWindow *window,
-	      gpointer data)
 {
 	gsr_window_close (window);
 }

@@ -23,12 +23,17 @@
 #include <config.h>
 #endif
 
+#include <gconf/gconf-client.h>
 #include <gnome.h>
 
 #include <gst/gst.h>
 
 #include "gnome-recorder.h"
 
+extern void gsr_window_close (GSRWindow *window);
+extern GtkWidget * gsr_window_new (const char *filename);
+extern void gnome_media_profiles_init (GConfClient *conf);
+ 
 static GList *windows = NULL;
 
 static void
@@ -145,6 +150,7 @@ int
 main (int argc,
       char **argv)
 {
+	GConfClient *conf;
 	GnomeProgram *program;
 	GtkIconInfo *icon_info;
 	poptContext pctx;
@@ -174,6 +180,7 @@ main (int argc,
 				      "GNOME Sound Recorder",
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
+	conf = gconf_client_get_default ();
 
 	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
 						"gnome-audio2", 48, 0);
@@ -187,7 +194,7 @@ main (int argc,
 	init_stock_icons ();
 
         /* init gnome-media-profiles */
-        gnome_media_profiles_init (NULL);
+        gnome_media_profiles_init (conf);
 
 	/* Get the args */
 	g_value_init (&value, G_TYPE_POINTER);
@@ -210,5 +217,7 @@ main (int argc,
 	poptFreeContext (pctx);
 
 	gtk_main ();
+
+	return 0;
 }
 

@@ -86,7 +86,7 @@ gnet_tcp_socket_connect_inetaddr_cb (GInetAddr* inetaddr,
 
       state->inetaddr_id = NULL;
       state->tcp_id = gnet_tcp_socket_new_async(inetaddr,
-						gnet_tcp_socket_connect_tcp_cb,
+						(GTcpSocketNewAsyncFunc)gnet_tcp_socket_connect_tcp_cb,
 						state);
       /* Note that this call may delete the state. */
     }

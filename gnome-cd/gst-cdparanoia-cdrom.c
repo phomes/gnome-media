@@ -12,6 +12,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <libgnome/gnome-i18n.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
@@ -152,8 +153,8 @@ add_msf (GnomeCDRomMSF * msf1, GnomeCDRomMSF * msf2, GnomeCDRomMSF * dest)
 static void
 eos (GstElement * element, gpointer data)
 {
-	GstCdparanoiaCDRomPrivate *priv =
-	    (GstCdparanoiaCDRomPrivate *) data;
+	/*GstCdparanoiaCDRomPrivate *priv =
+	    (GstCdparanoiaCDRomPrivate *) data;*/
 }
 
 static void
@@ -185,7 +186,7 @@ check_playtime (GstBin * bin, gpointer data)
 	}
 }
 
-static
+static void
 build_pipeline (GstCdparanoiaCDRom * lcd)
 {
 	GstCdparanoiaCDRomPrivate *priv;
@@ -193,10 +194,9 @@ build_pipeline (GstCdparanoiaCDRom * lcd)
 	static int pipeline_built = 0;
 	char *sink;
 	char *sink_options_start = NULL;
-	int i;
 
 	if (pipeline_built == 1)
-		return;
+		return; 
 
 	priv = lcd->priv;
 	client = gconf_client_get_default ();
@@ -556,7 +556,6 @@ gst_cdparanoia_cdrom_play (GnomeCDRom * cdrom,
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *status;
 	struct cdrom_msf msf;
-	GstEvent *event;
 	gboolean ret;
 	guint64 frames;
 
@@ -727,7 +726,6 @@ gst_cdparanoia_cdrom_pause (GnomeCDRom * cdrom, GError ** error)
 	GstCdparanoiaCDRom *lcd;
 	GnomeCDRomStatus *status;
 	GstCdparanoiaCDRomPrivate *priv;
-	GstElementState cur_state;
 
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
@@ -767,7 +765,6 @@ gst_cdparanoia_cdrom_pause (GnomeCDRom * cdrom, GError ** error)
 	gst_cdparanoia_cdrom_close (lcd);
 	g_free (status);
 	return TRUE;
-	return TRUE;
 }
 
 static gboolean
@@ -776,7 +773,6 @@ gst_cdparanoia_cdrom_stop (GnomeCDRom * cdrom, GError ** error)
 	GstCdparanoiaCDRom *lcd;
 	GnomeCDRomStatus *status;
 	GstCdparanoiaCDRomPrivate *priv;
-
 
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
@@ -949,12 +945,10 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
 	struct cdrom_subchnl subchnl;
-	struct cdrom_volctrl vol;
 	int cur_gst_status;
 	int cd_status;
 	guint64 value = 0;
 	gboolean ret;
-
 
 	g_return_val_if_fail (status != NULL, TRUE);
 

@@ -259,7 +259,7 @@ init_pipeline_editor(GladeXML * dialog, GSTPPipelineEditor* editor)
 	}
 }
 
-void create_dialog ()
+void create_dialog (void)
 {
 	int i = 0;
 	GdkPixbuf* icon = NULL;
@@ -310,7 +310,7 @@ main (int argc, char **argv)
 	if (!interface_xml) {
 		/* Fatal error */
 		char *err = g_strdup_printf (_("Could not load UI resource %s"),"gstreamer-properties.glade");
-		g_print ("Error: could not load glade file:\n","gstreamer-properties.glade");
+		g_print ("Error: could not load glade file gstreamer-properties.glade\n");
 		gnome_app_error (GNOME_APP (gnome_program_get ()), err);
 		return 1;
 	}

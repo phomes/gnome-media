@@ -294,7 +294,7 @@ cdrom_set_device (GnomeCDRom *cdrom,
 		  const char *device,
 		  GError    **error)
 {
-	GnomeCDRomStatus *status;
+	/*GnomeCDRomStatus *status;*/
 	GnomeCDRomPrivate *priv;
 
 	g_return_val_if_fail (cdrom != NULL, FALSE);

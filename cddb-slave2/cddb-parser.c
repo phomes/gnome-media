@@ -270,7 +270,7 @@ cddb_entry_new_from_file (const char *filename)
 	if (cddb_entry_parse_file (entry, filename) == FALSE) {
 		g_hash_table_destroy (entry->fields);
 		g_free (entry);
-		return FALSE;
+		return NULL;
 	}
 
 	/* The data in the file may be for a different id than the file */
