@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-10-09 01:38+0100\n"
+"POT-Creation-Date: 2002-12-07 15:16+0000\n"
 "PO-Revision-Date: 2002-09-29 20:00+0300\n"
 "Last-Translator: Evgeni Boevski <linkej@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
@@ -123,7 +123,10 @@ msgstr "Настройки на CD база от данни"
 msgid "Unknown / Unknown"
 msgstr "Незнаен / Незнаен"
 
-#: cddb-slave2/cddb-slave.c:219
+#. Attempts to get length ran out.
+#: cddb-slave2/cddb-slave.c:219 grecord/src/gsr-window.c:760
+#: grecord/src/gsr-window.c:769 grecord/src/gsr-window.c:778
+#: grecord/src/gsr-window.c:788 grecord/src/gsr-window.c:1108
 msgid "Unknown"
 msgstr "Незнаен"
 
@@ -874,6 +877,7 @@ msgid "CD"
 msgstr "CD"
 
 #: gmix/device_labels_alsa.h:15 gmix/device_labels_linux.h:10
+#: gstreamer-properties/gstreamer-properties.glade.h:13
 msgid "Video"
 msgstr "Видео"
 
@@ -1107,7 +1111,7 @@ msgid ""
 "Press Quit to quit Volume control"
 msgstr ""
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:477
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 #, fuzzy
 msgid "_Details"
 msgstr "Метал"
@@ -1181,11 +1185,19 @@ msgid "Volume Control"
 msgstr "Настройки на Звука"
 
 #: gmix/gmix.c:1748
-msgid "Gnome Volume Control"
-msgstr "Gnome Настройки на Звука"
+#, fuzzy
+msgid "GNOME Volume Control"
+msgstr "Стартирай GNOME Настройки на Звука"
+
+#: gmix/gmix.c:1749
+msgid ""
+"(C) 1998 Jens Ch. Restemeier\n"
+"(C) 2001 Iain Holmes"
+msgstr ""
 
 #: gmix/gmix.c:1751
-msgid "This is a mixer for sound devices"
+#, fuzzy
+msgid "A mixer for sound devices"
 msgstr "Това е смесител за звукови устройства"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
@@ -1255,55 +1267,86 @@ msgid "Line for displaying the name of the album"
 msgstr "Лента, показваща името на албума"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:532 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
+#: gnome-cd/callbacks.c:545 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
+#: grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Възпр."
 
 #: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226
 #: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:498
+#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
 msgid "Pause"
 msgstr "Пауза"
 
-#: gnome-cd/callbacks.c:604
-msgid "Disc error"
-msgstr "Повреден диск"
+#: gnome-cd/callbacks.c:530
+#, fuzzy, c-format
+msgid "Playing %s - %s"
+msgstr "Възпроизвеждане"
 
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:648
+#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:662 gnome-cd/callbacks.c:673
 msgid "Unknown Artist"
 msgstr "Неизвестен Изпълнител"
 
-#: gnome-cd/callbacks.c:640 gnome-cd/callbacks.c:652
+#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:665 gnome-cd/callbacks.c:677
 msgid "Unknown Album"
 msgstr "Неизвестен Албум"
 
-#: gnome-cd/callbacks.c:691
+#: gnome-cd/callbacks.c:534 grecord/src/gui.c:827
+msgid "Playing"
+msgstr "Възпроизвеждане"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:557
+#, fuzzy
+msgid "Paused"
+msgstr "Пауза"
+
+#. Update tray icon tooltip
+#: gnome-cd/callbacks.c:602 gnome-cd/callbacks.c:823 gnome-cd/gnome-cd.c:55
+#: gnome-cd/gnome-cd.c:495 gnome-cd/gnome-cd.c:653
+#: gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD Плеър"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:620
+#, fuzzy
+msgid "Stopped"
+msgstr "Спри"
+
+#: gnome-cd/callbacks.c:626
+msgid "Disc error"
+msgstr "Повреден диск"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:716
 msgid "No disc"
 msgstr "Няма диск"
 
-#: gnome-cd/callbacks.c:717
+#: gnome-cd/callbacks.c:742
 msgid "Drive open"
 msgstr "Устройството е отворено"
 
-#: gnome-cd/callbacks.c:741
+#: gnome-cd/callbacks.c:766
 msgid "Data CD"
 msgstr "CD с данни"
 
-#: gnome-cd/callbacks.c:763
+#. Updated the tray icon tooltip
+#: gnome-cd/callbacks.c:788 gnome-cd/callbacks.c:792
 msgid "No Cdrom"
 msgstr "Няма Cdrom"
 
-#: gnome-cd/callbacks.c:775
+#: gnome-cd/callbacks.c:803
 msgid "Drive Error"
 msgstr "Грешка в Устройството"
 
-#: gnome-cd/callbacks.c:796
-msgid "Copyright (C) 2001, 2002"
-msgstr "Copyright (C) 2001, 2002"
+#: gnome-cd/callbacks.c:824
+msgid "(C) 2001 Iain Holmes"
+msgstr ""
 
-#: gnome-cd/callbacks.c:797
-msgid "A GNOME cd player"
-msgstr "CD плеър за GNOME"
+#: gnome-cd/callbacks.c:825
+msgid "A CD player for GNOME"
+msgstr ""
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1331,10 +1374,6 @@ msgstr "Неизвестен изпълнител"
 msgid "Unknown disc"
 msgstr "Неизвестен диск"
 
-#: gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:494
-msgid "Gnome CD Player"
-msgstr "CD Плеър за Gnome"
-
 #: gnome-cd/gnome-cd.c:156
 #, c-format
 msgid "%d - Unknown"
@@ -1344,7 +1383,7 @@ msgstr "%d - Неизвестно"
 msgid "P_revious track"
 msgstr "П_редишна песен"
 
-#: gnome-cd/gnome-cd.c:301
+#: gnome-cd/gnome-cd.c:301 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Спри"
 
@@ -1360,137 +1399,135 @@ msgstr "Следв. песен"
 msgid "_Eject disc"
 msgstr "_Извади диска"
 
-#: gnome-cd/gnome-cd.c:305
+#: gnome-cd/gnome-cd.c:305 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Помощ"
 
 #: gnome-cd/gnome-cd.c:306
-msgid "_About Gnome-CD"
-msgstr "_Относно Gnome-CD"
+#, fuzzy
+msgid "_About CD player"
+msgstr "CD Плеър за Gnome"
 
-#: gnome-cd/gnome-cd.c:413
+#: gnome-cd/gnome-cd.c:414
+#, fuzzy
 msgid ""
-"There is no CD device set. This means that GnomeCD\n"
-"will be unable to run. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 "Липсва настроено CD устройство. Това означава, че GnomeCD\n"
 "няма да работи. Натиснете Настрой устройство за да настроите\n"
 "устройство или изберете Изход за да затворите GnomeCD"
 
-#: gnome-cd/gnome-cd.c:417
+#: gnome-cd/gnome-cd.c:418
 msgid "Set device"
 msgstr "Настрой устройство"
 
-#: gnome-cd/gnome-cd.c:419
+#: gnome-cd/gnome-cd.c:420
 msgid "No CD device"
 msgstr "Няма CD устройство"
 
-#: gnome-cd/gnome-cd.c:473
+#: gnome-cd/gnome-cd.c:474
 #, fuzzy
 msgid ""
-"GnomeCD is unable to run correctly.\n"
+"The CD player is unable to run correctly.\n"
 "\n"
-"Press Details button for more details on reasons for failure.\n"
+"Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press Set device to go to a dialog where you can set the device, or click "
-"Quit to quit GnomeCD"
+"Press 'Set device' to go to a dialog where you can set the device, or press "
+"'Quit' to quit the CD player"
 msgstr ""
 "%s\n"
 "Това означава, че GnomeCD няма да работи коректно. Натиснете Настрой "
 "устройство за да настроите устройство или изберете Изход за да затворите "
 "GnomeCD"
 
-#: gnome-cd/gnome-cd.c:478
+#: gnome-cd/gnome-cd.c:479
 #, fuzzy
 msgid "_Set device"
 msgstr "Настрой устройство"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
 msgstr "Невалидно CD устройство"
 
-#: gnome-cd/gnome-cd.c:541
+#: gnome-cd/gnome-cd.c:542
 msgid "Volume control"
 msgstr "Настройки на силата на звука"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:551
 msgid "Open track editor"
 msgstr "Отвори редактора на песни"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:552
 msgid "Track editor"
 msgstr "Редактор на песни"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:559
 msgid "Open preferences"
 msgstr "Отвори предпочитаните настройки"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
 msgstr "Настройки"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:568
 msgid "Track List"
 msgstr "Списък на песни"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous track"
 msgstr "Предишна песен"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous"
 msgstr "Предишна"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:593
 msgid "Rewind"
 msgstr "Върни"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:610
 msgid "Play / Pause"
 msgstr "Възпр./Пауза"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247
+#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Спри"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:619
 msgid "Fast forward"
 msgstr "Напред"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:627
 msgid "Next track"
 msgstr "Следваща песен"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject CD"
 msgstr "Извади CD"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject"
 msgstr "Извади"
 
-#: gnome-cd/gnome-cd.c:671
+#: gnome-cd/gnome-cd.c:731
 #, fuzzy
 msgid "CD device to use"
 msgstr "Няма CD устройство"
 
-#: gnome-cd/gnome-cd.c:680
+#: gnome-cd/gnome-cd.c:740
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 
-#: gnome-cd/gnome-cd.c:682
+#: gnome-cd/gnome-cd.c:742
 msgid "Play the CD on startup"
 msgstr ""
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:712
+#: gnome-cd/gnome-cd.c:773
 msgid "Cannot create player"
 msgstr "Невъзможно създаване на плеър"
-
-#: gnome-cd/gnome-cd.desktop.in.h:1
-msgid "CD Player"
-msgstr "CD Плеър"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1542,10 +1579,10 @@ msgid "What theme should the CD player use for it's appearance"
 msgstr ""
 
 #: gnome-cd/preferences.c:83
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s\n"
-"This means that Gnome-CD will not be able to run."
+"This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
 "Това означава, че Gnome-CD няма да работи."
@@ -1554,90 +1591,93 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Грешка при установяване на устройство"
 
-#: gnome-cd/preferences.c:822
-msgid "Gnome CD Player Preferences"
+#: gnome-cd/preferences.c:824
+#, fuzzy
+msgid "CD Player Preferences"
 msgstr "Настройки на Gnome CD Плеър"
 
-#: gnome-cd/preferences.c:851
+#: gnome-cd/preferences.c:853
 msgid "CD player de_vice:"
 msgstr "CD плеър _устройство:"
 
-#: gnome-cd/preferences.c:866
+#: gnome-cd/preferences.c:868
 msgid "_Apply change"
 msgstr "_Приложи промените"
 
 #. left side
-#: gnome-cd/preferences.c:879
-msgid "When Gnome CD Player starts"
+#: gnome-cd/preferences.c:881
+#, fuzzy
+msgid "When CD player starts"
 msgstr "При стартиране на Gnome CD Плеър"
 
-#: gnome-cd/preferences.c:887
+#: gnome-cd/preferences.c:889
 msgid "Do _nothing"
 msgstr "Не прави _нищо"
 
-#: gnome-cd/preferences.c:888
+#: gnome-cd/preferences.c:890
 #, fuzzy
 msgid "Do nothing when CD Player starts"
 msgstr "При стартиране на Gnome CD Плеър"
 
-#: gnome-cd/preferences.c:898
+#: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
 msgstr "Започни въз_произвеждане на CD"
 
-#: gnome-cd/preferences.c:899
+#: gnome-cd/preferences.c:901
 #, fuzzy
 msgid "Start playing CD when CD Player starts"
 msgstr "При стартиране на Gnome CD Плеър"
 
-#: gnome-cd/preferences.c:908
+#: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
 msgstr "_Спри възпроизвеждане на CD"
 
-#: gnome-cd/preferences.c:909
+#: gnome-cd/preferences.c:911
 #, fuzzy
 msgid "Stop playing CD when CD Player starts"
 msgstr "При стартиране на Gnome CD Плеър"
 
-#: gnome-cd/preferences.c:923
+#: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
 msgstr "Опитай да затвориш вратичката на CD-то"
 
 #. Right side
-#: gnome-cd/preferences.c:935
-msgid "When Gnome CD Player quits"
+#: gnome-cd/preferences.c:937
+#, fuzzy
+msgid "When CD player quits"
 msgstr "При изход от Gnome CD"
 
-#: gnome-cd/preferences.c:943
+#: gnome-cd/preferences.c:945
 msgid "Do not_hing"
 msgstr "Не _прави нищо"
 
-#: gnome-cd/preferences.c:944
+#: gnome-cd/preferences.c:946
 #, fuzzy
 msgid "Do nothing when CD Player exits"
 msgstr "При изход от Gnome CD"
 
-#: gnome-cd/preferences.c:953
+#: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
 msgstr "Спри въ_зпроизвеждане на CD "
 
-#: gnome-cd/preferences.c:954
+#: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
 msgstr ""
 
-#: gnome-cd/preferences.c:964
+#: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "Опитай да _отвориш вратичката на CD"
 
-#: gnome-cd/preferences.c:965
+#: gnome-cd/preferences.c:967
 #, fuzzy
 msgid "Attempt to open CD tray when CD Player exits"
 msgstr "Опитай да _отвориш вратичката на CD"
 
-#: gnome-cd/preferences.c:975
+#: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
 msgstr "Опитай да затвориш в_ратичката на CD"
 
-#: gnome-cd/preferences.c:1006
+#: gnome-cd/preferences.c:1008
 msgid "Theme name"
 msgstr "Име на тема"
 
@@ -1645,7 +1685,8 @@ msgstr "Име на тема"
 msgid "Record sound clips"
 msgstr "Запиши звукови клипове"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gui.c:193
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:980
+#: grecord/src/gsr-window.c:1507 grecord/src/gui.c:193
 msgid "Sound Recorder"
 msgstr "Записвач на Звуци"
 
@@ -1670,15 +1711,15 @@ msgstr ""
 "\n"
 "Ако нямате sox Вие няма да може да записвате или да прилагате ефекти."
 
-#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1359
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
 msgid "Could not fork child process"
 msgstr "Неуспех при разклоняване на дъщерен процес"
 
-#: grecord/src/grec.c:173
+#: grecord/src/grec.c:173 grecord/src/gsr-window.c:1342
 msgid "Recording..."
 msgstr "Запис..."
 
-#: grecord/src/grec.c:220
+#: grecord/src/grec.c:220 grecord/src/gsr-window.c:1221
 msgid "Playing..."
 msgstr "Възпроизвеждане..."
 
@@ -1690,15 +1731,15 @@ msgstr "Преобразуване на файл..."
 msgid "Cancel"
 msgstr "Отказ"
 
-#: grecord/src/grec.c:345 grecord/src/grec.c:793
+#: grecord/src/grec.c:345 grecord/src/grec.c:795
 msgid "Audioformat: "
 msgstr "Аудиоформат:"
 
-#: grecord/src/grec.c:349 grecord/src/grec.c:779 grecord/src/gui.c:308
+#: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
 msgid "Sample rate: "
 msgstr "Честота на семплиране:"
 
-#: grecord/src/grec.c:359 grecord/src/grec.c:783 grecord/src/gui.c:315
+#: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
 msgid "Channels: "
 msgstr "Канали:"
 
@@ -1715,7 +1756,7 @@ msgstr "Изберете звуков файл"
 msgid "%s is not installed in the path"
 msgstr "%s не е инсталиран на посочения път"
 
-#: grecord/src/grec.c:523
+#: grecord/src/grec.c:523 grecord/src/gsr-window.c:661
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Грешка при стартиране на %s: %s"
@@ -1747,7 +1788,7 @@ msgstr ""
 msgid "File '%s isn't a valid sound file."
 msgstr "Файл '%s не е валиден звуков файл."
 
-#: grecord/src/grec.c:817
+#: grecord/src/grec.c:819
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1756,7 +1797,7 @@ msgstr ""
 "'%s' е папка.\n"
 "Моля, въведете друго име."
 
-#: grecord/src/grec.c:829
+#: grecord/src/grec.c:831
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1765,20 +1806,20 @@ msgstr ""
 "<b>Файл '%s' вече съществува.</b>\n"
 "Желаете ли да го презапишете?"
 
-#: grecord/src/grec.c:832
+#: grecord/src/grec.c:834
 msgid "Cancel save"
 msgstr "Откажи запазване"
 
-#: grecord/src/grec.c:833
+#: grecord/src/grec.c:835
 msgid "Overwrite"
 msgstr "Презапиши"
 
-#: grecord/src/grec.c:860
+#: grecord/src/grec.c:862
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Грешка при запазване на '%s'"
 
-#: grecord/src/grec.c:974
+#: grecord/src/grec.c:976
 #, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
@@ -1789,21 +1830,21 @@ msgstr ""
 "\n"
 "Промените ще бъдат изгубени ако не ги запазите."
 
-#: grecord/src/grec.c:979
+#: grecord/src/grec.c:981
 msgid "Do_n't save"
 msgstr "_Не запазвай"
 
-#: grecord/src/grec.c:986
+#: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
 msgstr "Запазване на %s?"
 
 #. Save the file
-#: grecord/src/grec.c:1010
+#: grecord/src/grec.c:1012
 msgid "Saving..."
 msgstr "Запазване..."
 
-#: grecord/src/grec.c:1140
+#: grecord/src/grec.c:1142
 #, c-format
 msgid ""
 "The size of the current sample is more than\n"
@@ -1812,11 +1853,11 @@ msgstr ""
 "Големината на текущата мостра е\n"
 "по-голяма от %i Mb!"
 
-#: grecord/src/grec.c:1196
+#: grecord/src/grec.c:1198
 msgid "Save sound file"
 msgstr "Запази звуков файл"
 
-#: grecord/src/grec.c:1425
+#: grecord/src/grec.c:1429
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -1824,15 +1865,179 @@ msgstr ""
 "Звуковото устройство не е готово. Моля, проверете има ли\n"
 "друга програма ползваща същото устройство."
 
-#: grecord/src/gui.c:45
+#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
+#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#, fuzzy
+msgid "hours"
+msgstr "Хор"
+
+#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
+#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+msgid "hour"
+msgstr ""
+
+#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
+#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gui.c:756
+msgid "minutes"
+msgstr "минути"
+
+#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
+#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#, fuzzy
+msgid "minute"
+msgstr "минути"
+
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
+#: grecord/src/gsr-window.c:284
+#, fuzzy
+msgid "seconds"
+msgstr "%s Запис"
+
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
+#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
+#, fuzzy
+msgid "second"
+msgstr "%s Запис"
+
+#: grecord/src/gsr-window.c:367 grecord/gsr.xml.h:12
+msgid "Open a file"
+msgstr ""
+
+#: grecord/src/gsr-window.c:445 grecord/src/gsr-window.c:1243
+#: grecord/src/gsr-window.c:1364 grecord/src/gsr-window.c:1436
+msgid "Ready"
+msgstr ""
+
+#: grecord/src/gsr-window.c:541
+#, fuzzy, c-format
+msgid "Saving %s..."
+msgstr "Запазване..."
+
+#: grecord/src/gsr-window.c:600
+#, fuzzy
+msgid "Save file as"
+msgstr "Запази звуков файл"
+
+#: grecord/src/gsr-window.c:654
+#, fuzzy, c-format
+msgid "%s is not installed in the path."
+msgstr "%s не е инсталиран на посочения път"
+
+#: grecord/src/gsr-window.c:736
+#, c-format
+msgid "%s (Has not been saved)"
+msgstr ""
+
+#: grecord/src/gsr-window.c:751
+#, fuzzy
+msgid "Unknown size"
+msgstr "Неизвестен диск"
+
+#: grecord/src/gsr-window.c:771
+#, c-format
+msgid "%.1f kHz"
+msgstr ""
+
+#: grecord/src/gsr-window.c:780
+#, c-format
+msgid "%.0f kb/s"
+msgstr ""
+
+#: grecord/src/gsr-window.c:792
+#, fuzzy
+msgid "1 (mono)"
+msgstr "моно"
+
+#: grecord/src/gsr-window.c:796
+#, fuzzy
+msgid "2 (stereo)"
+msgstr "стерео"
+
+#: grecord/src/gsr-window.c:825
+#, fuzzy, c-format
+msgid "%s Information"
+msgstr "Регистрирай информацията"
+
+#: grecord/src/gsr-window.c:845 grecord/gsr.xml.h:7
+#, fuzzy
+msgid "File Information"
+msgstr "Регистрирай информацията"
+
+#: grecord/src/gsr-window.c:859
+#, fuzzy
+msgid "Folder:"
+msgstr "Папки"
+
+#: grecord/src/gsr-window.c:865 grecord/src/gsr-window.c:1563
+msgid "Filename:"
+msgstr ""
+
+#: grecord/src/gsr-window.c:871
+msgid "File size:"
+msgstr ""
+
+#: grecord/src/gsr-window.c:880
+#, fuzzy
+msgid "Audio Information"
+msgstr "Аудио формат:"
+
+#: grecord/src/gsr-window.c:894
+msgid "Song length:"
+msgstr ""
+
+#: grecord/src/gsr-window.c:900
+#, fuzzy
+msgid "Number of channels:"
+msgstr "_Номер повторения:"
+
+#: grecord/src/gsr-window.c:906
+#, fuzzy
+msgid "Sample rate:"
+msgstr "Честота на семплиране:"
+
+#: grecord/src/gsr-window.c:912
+msgid "Bit rate:"
+msgstr ""
+
+#: grecord/src/gsr-window.c:981
+msgid "(C) 2002 Iain Holmes"
+msgstr ""
+
+#: grecord/src/gsr-window.c:982
+#, fuzzy
+msgid "A sound recorder for GNOME"
+msgstr "Записвач на звуци"
+
+#: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
+#, c-format
+msgid "%s - Sound Recorder"
+msgstr "%s - Записвач на Звуци"
+
+#: grecord/src/gsr-window.c:1548
+#, fuzzy
+msgid "File information"
+msgstr "Регистрирай информацията"
+
+#: grecord/src/gsr-window.c:1569
+msgid "<none>"
+msgstr ""
+
+#: grecord/src/gsr-window.c:1578
+#, fuzzy
+msgid "Length:"
+msgstr "Дължина"
+
+#: grecord/src/gui.c:45 grecord/gsr.xml.h:38
 msgid "_New"
 msgstr "_Нов"
 
-#: grecord/src/gui.c:46
+#: grecord/src/gui.c:46 grecord/gsr.xml.h:5
 msgid "Create a new sample"
 msgstr "Създай нова мостра"
 
-#: grecord/src/gui.c:54
+#: grecord/src/gui.c:54 grecord/gsr.xml.h:21
 msgid "Run _Mixer"
 msgstr "Стартирай С_месителя"
 
@@ -1864,11 +2069,6 @@ msgstr "Отмени всички промени по текущата мост�
 msgid "Effects"
 msgstr "Ефекти"
 
-#: grecord/src/gui.c:155
-#, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - Записвач на Звуци"
-
 #: grecord/src/gui.c:197
 msgid "16bit PCM"
 msgstr "16битов PCM"
@@ -1885,7 +2085,7 @@ msgstr "стерео"
 msgid "mono"
 msgstr "моно"
 
-#: grecord/src/gui.c:217
+#: grecord/src/gui.c:217 grecord/gsr.xml.h:10
 msgid "New"
 msgstr "Нов"
 
@@ -1901,7 +2101,7 @@ msgstr "Възпр. текущата мостра"
 msgid "Stop playing/recording"
 msgstr "Спри възпр./записа"
 
-#: grecord/src/gui.c:261
+#: grecord/src/gui.c:261 grecord/gsr.xml.h:18
 msgid "Record"
 msgstr "Запис"
 
@@ -1934,13 +2134,15 @@ msgid "translator_credits"
 msgstr "относно_преводача"
 
 #: grecord/src/gui.c:431
-msgid "Gnome Sound Recorder"
-msgstr "Gnome Записвач на Звуци"
+#, fuzzy
+msgid "GNOME Sound Recorder"
+msgstr "Записвач на Звуци"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
 #: grecord/src/gui.c:434
-msgid "Copyright (C)  2000 Andreas Hyden"
+#, fuzzy
+msgid "(C) 2000 Andreas Hyden"
 msgstr "Copyright (C)  2000 Andreas Hyden"
 
 #: grecord/src/gui.c:435
@@ -1971,10 +2173,6 @@ msgstr "Време"
 msgid "_Recording timeout: "
 msgstr "В_реме на запис:"
 
-#: grecord/src/gui.c:756
-msgid "minutes"
-msgstr "минути"
-
 #: grecord/src/gui.c:763
 msgid "_Stop recording on timeout"
 msgstr "_Спри записа при изтичане на времето на запис"
@@ -1994,10 +2192,6 @@ msgstr "Покажи предупреждение, ако размера (MB) з
 #: grecord/src/gui.c:805
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
 msgstr "Спри записа, ако размера (MB) на мострата надхвърли:"
-
-#: grecord/src/gui.c:827
-msgid "Playing"
-msgstr "Възпроизвеждане"
 
 #: grecord/src/gui.c:832
 msgid "Repetition"
@@ -2141,9 +2335,244 @@ msgstr "Канали: моно"
 msgid "Channels: stereo"
 msgstr "Канали: стерео"
 
-#: grecord/src/sound.c:136
+#: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Прибавяне на ехо към мострата..."
+
+#: grecord/gsr.xml.h:1
+#, fuzzy
+msgid "About"
+msgstr "Акустична"
+
+#: grecord/gsr.xml.h:2
+#, fuzzy
+msgid "Close"
+msgstr "Клуб-Хаус"
+
+#: grecord/gsr.xml.h:3
+msgid "Close this window"
+msgstr ""
+
+#: grecord/gsr.xml.h:4
+msgid "Contents"
+msgstr ""
+
+#: grecord/gsr.xml.h:6
+#, fuzzy
+msgid "Display help for Sound Recorder"
+msgstr "%s - Записвач на Звуци"
+
+#: grecord/gsr.xml.h:8
+#, fuzzy
+msgid "File _Information"
+msgstr "Регистрирай информацията"
+
+#: grecord/gsr.xml.h:9
+msgid "Main toolbar"
+msgstr ""
+
+#: grecord/gsr.xml.h:11
+#, fuzzy
+msgid "Open"
+msgstr "Опера"
+
+#: grecord/gsr.xml.h:14
+msgid "Play sound"
+msgstr ""
+
+#: grecord/gsr.xml.h:15
+msgid "Quit"
+msgstr ""
+
+#: grecord/gsr.xml.h:16
+msgid "Quit the application"
+msgstr ""
+
+#: grecord/gsr.xml.h:17
+msgid "Recent _Files"
+msgstr ""
+
+#: grecord/gsr.xml.h:19
+#, fuzzy
+msgid "Record sound"
+msgstr "Запиши звукови клипове"
+
+#: grecord/gsr.xml.h:20
+#, fuzzy
+msgid "Run Mixer"
+msgstr "Стартирай С_месителя"
+
+#: grecord/gsr.xml.h:22
+msgid "Run the audio mixer"
+msgstr ""
+
+#: grecord/gsr.xml.h:23
+#, fuzzy
+msgid "Save"
+msgstr "Рейв"
+
+#: grecord/gsr.xml.h:24
+#, fuzzy
+msgid "Save As"
+msgstr "Запазване на %s?"
+
+#: grecord/gsr.xml.h:25
+#, fuzzy
+msgid "Save _As..."
+msgstr "Запазване на %s?"
+
+#: grecord/gsr.xml.h:26
+#, fuzzy
+msgid "Save the current file"
+msgstr "Запази звуков файл"
+
+#: grecord/gsr.xml.h:27
+msgid "Save the current file with a different name"
+msgstr ""
+
+#: grecord/gsr.xml.h:28
+msgid "Show information about the current file"
+msgstr ""
+
+#: grecord/gsr.xml.h:29
+#, fuzzy
+msgid "Show information for Sound Recorder"
+msgstr "Gnome Записвач на Звуци"
+
+#: grecord/gsr.xml.h:31
+#, fuzzy
+msgid "Stop sound"
+msgstr "Звук"
+
+#: grecord/gsr.xml.h:32
+msgid "_About"
+msgstr ""
+
+#: grecord/gsr.xml.h:33
+msgid "_Close Window"
+msgstr ""
+
+#: grecord/gsr.xml.h:34
+msgid "_Contents"
+msgstr ""
+
+#: grecord/gsr.xml.h:35
+#, fuzzy
+msgid "_Control"
+msgstr "Кънтри"
+
+#: grecord/gsr.xml.h:36
+msgid "_File"
+msgstr ""
+
+#: grecord/gsr.xml.h:39
+msgid "_Open..."
+msgstr ""
+
+#: grecord/gsr.xml.h:40
+#, fuzzy
+msgid "_Play"
+msgstr "Възпр."
+
+#: grecord/gsr.xml.h:41
+msgid "_Quit"
+msgstr ""
+
+#: grecord/gsr.xml.h:42
+#, fuzzy
+msgid "_Record"
+msgstr "Запис"
+
+#: grecord/gsr.xml.h:43
+#, fuzzy
+msgid "_Save"
+msgstr "Рейв"
+
+#. Fatal error
+#: gstreamer-properties/gstreamer-properties.c:249
+msgid "Failure instantiating main window"
+msgstr ""
+
+#. Fatal error
+#: gstreamer-properties/gstreamer-properties.c:289
+#, fuzzy, c-format
+msgid "Could not load UI resource %s"
+msgstr "Неуспех при разклоняване на дъщерен процес"
+
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:1
+msgid "Configure defaults for GStreamer applications"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#, fuzzy
+msgid "GStreamer"
+msgstr "От Игра"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:1
+msgid "*"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "Audio"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:4
+#, fuzzy
+msgid "Audio _Input:"
+msgstr "Аудио формат:"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:5
+#, fuzzy
+msgid "Audio _Output:"
+msgstr "Изход телефон"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:6
+msgid "Click Ok to finish"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:7
+msgid "Default Sink"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "Default Source"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:9
+#, fuzzy
+msgid "GStreamer Properties"
+msgstr "CDDBSlave2 Свойства"
+
+#: gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Pipeline:"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Test..."
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "Testing Pipeline"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "Video _Input:"
+msgstr ""
+
+#: gstreamer-properties/gstreamer-properties.glade.h:15
+#, fuzzy
+msgid "Video _Output:"
+msgstr "Изход телефон"
+
+#: gstreamer-properties/pipeline-test-old.c:215
+#: gstreamer-properties/pipeline-tests.c:111
+#, c-format
+msgid "Failed to construct test pipeline for '%s'"
+msgstr ""
 
 #: vu-meter/main.c:120
 msgid ""
@@ -2213,6 +2642,18 @@ msgstr "Следи изходната сила на звука"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Монитор на силата на звука"
+
+#~ msgid "Gnome Volume Control"
+#~ msgstr "Gnome Настройки на Звука"
+
+#~ msgid "Copyright (C) 2001, 2002"
+#~ msgstr "Copyright (C) 2001, 2002"
+
+#~ msgid "A GNOME cd player"
+#~ msgstr "CD плеър за GNOME"
+
+#~ msgid "_About Gnome-CD"
+#~ msgstr "_Относно Gnome-CD"
 
 #~ msgid "0"
 #~ msgstr "0"
@@ -2285,9 +2726,6 @@ msgstr "Монитор на силата на звука"
 
 #~ msgid "Labels"
 #~ msgstr "Етикети"
-
-#~ msgid "CDDBSlave 2 Properties"
-#~ msgstr "CDDBSlave2 Свойства"
 
 #~ msgid "CDDB"
 #~ msgstr "CDDB"
