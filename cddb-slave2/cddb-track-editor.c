@@ -534,7 +534,7 @@ load_new_track_data (TrackEditorDialog *td,
 		info->year = cddb_slave_client_get_year (client, discid);
 	} else {
 		info->artist = g_strdup (_("Unknown Artist"));
-		info->title = g_strdup (_("Unknown Title"));
+		info->title = g_strdup (_("Unknown Album"));
 		info->comment = NULL;
 		info->genre = NULL;
 		info->year = 0;
