@@ -6,6 +6,7 @@ EXTRA_DIST = gnome-volume-control.desktop.in gnome-volume-control.png
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	$(MEDIA_CFLAGS) 				\
+	-DGNOME_VOLUME_CONTROL_DEVICE_PATH=\""$(libdir)/gnome-volume-control/devices"\"		\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"
 
 bin_PROGRAMS = gnome-volume-control

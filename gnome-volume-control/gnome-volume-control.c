@@ -13,8 +13,6 @@
 
 #include <gmodule.h>
 
-#define GNOME_VOLUME_CONTROL_DEVICE_PATH "/gnome/GNOME2/lib/gnome-volume-control/devices"
-
 static GnomeMixer *
 get_mixer (void)
 {
