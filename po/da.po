@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.0.52\n"
-"POT-Creation-Date: 2001-06-12 08:06-0400\n"
-"PO-Revision-Date: 2001-01-21 00:35+0100\n"
+"Project-Id-Version: gnome-media 1.2.3\n"
+"POT-Creation-Date: 2001-09-13 11:44+0200\n"
+"PO-Revision-Date: 2001-09-11 00:35+0100\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
@@ -334,49 +334,62 @@ msgstr "opstart mixer(ne) fra gemt konfiguration og afslut"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "gem ikke (ændrede) mixerværdier i konfigurationen"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "a version prior to 3.6.0.\n"
 msgstr ""
+"Advarsel: Denne version af gmix blev oversat med\n"
+"OSS version %d.%d.%d, og dit system kører\n"
+"en version før 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
 "OSS version %d.%d.%d, and your system is running\n"
 "version %d.%d.%d.\n"
 msgstr ""
+"Advarsel: Denne version af gmix blev oversat med\n"
+"OSS version %d.%d.%d, og dit system kører\n"
+"version %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Optag"
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Stum"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "Gnome mixer"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMix - Gnome mixeren"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mixer for OSS lyd-enheder."
 
 #. start frame
-#: gmix/prefs.c:98 tcd/prefs.c:561
+#: gmix/prefs.c:98 tcd/prefs.c:562
 msgid "On startup"
 msgstr "Ved opstart"
 
@@ -403,15 +416,15 @@ msgstr "Brug mixernavne"
 
 #: gmix/prefs.c:409
 msgid "Defaults"
-msgstr ""
+msgstr "Forvalgt"
 
-#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:752
 msgid "Preferences"
 msgstr "Indstillinger"
 
 #: gmix/prefs.c:489
 msgid "Labels"
-msgstr ""
+msgstr "Etiketter"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
@@ -877,12 +890,12 @@ msgstr ""
 #: grecord/src/preferences.c:350
 #, c-format
 msgid ""
-"You don't have the correct permissions (read & write) for temp directory "
-"%s.\n"
+"You don't have the correct permissions (read & write) for temp directory %"
+"s.\n"
 "Do you want to use it anyway?"
 msgstr ""
-"Du har ikke de korrekte tilladelser (læse- og skrive-) for temp kataloget "
-"%s.\n"
+"Du har ikke de korrekte tilladelser (læse- og skrive-) for temp kataloget %"
+"s.\n"
 "Vil du bruge det alligevel?"
 
 #. Does not exist
@@ -1078,27 +1091,24 @@ msgstr "Afslut"
 
 #. INVISIBLE BUTTONS
 #: tcd/gtcd.c:498
-#, fuzzy
 msgid "Mixer"
-msgstr "Lydmixer"
+msgstr "Mixer"
 
 #: tcd/gtcd.c:503
 msgid "Fast Forward"
-msgstr ""
+msgstr "Hurtigt frem"
 
 #: tcd/gtcd.c:504
 msgid "Rewind"
-msgstr ""
+msgstr "Spol tilbage"
 
 #: tcd/gtcd.c:505
-#, fuzzy
 msgid "Volume Up"
-msgstr "Lydstyrke"
+msgstr "Lydstyrke op"
 
 #: tcd/gtcd.c:506
-#, fuzzy
 msgid "Volume Down"
-msgstr "Lydstyrke"
+msgstr "Lydstyrke ned"
 
 #: tcd/gtcd.c:642 tcd/gtcd.c:643 tcd/gtcd.c:644
 msgid "(Scanning)"
@@ -1118,15 +1128,17 @@ msgstr "Lydstyrke"
 
 #: tcd/gtcd.c:1072
 msgid "Cannot load requested font. Reloading default font."
-msgstr ""
+msgstr "Kan ikke indlæse ønskede skrifttype. Genindlæser standard-skrifttype."
 
 #: tcd/gtcd.c:1083
 msgid "Cannot load default Helvetica font. Loading any fixed width font."
 msgstr ""
+"Kan ikke indlæse standard Helvetica skrifttype. Indlæser en fast-bredde "
+"skrifttype."
 
 #: tcd/gtcd.c:1090
 msgid "Cannot load fixed width font. Exiting."
-msgstr ""
+msgstr "Kan ikke indlæse fast-bredde skrifttype. Afslutter."
 
 #: tcd/gtcd.c:1288
 msgid "Filename of the CD device"
@@ -1239,107 +1251,114 @@ msgid "Track Editor..."
 msgstr "Sporredigering..."
 
 #: tcd/popup.c:21
-#, fuzzy
 msgid "Mixer..."
-msgstr "Kør mixer..."
+msgstr "Mixer..."
 
 #: tcd/popup.c:23
 msgid "About"
 msgstr "Om..."
 
 #. do nothing
-#: tcd/prefs.c:333 tcd/prefs.c:388
+#: tcd/prefs.c:334 tcd/prefs.c:389
 msgid "Do nothing"
 msgstr "Gør ingenting"
 
-#: tcd/prefs.c:339
+#: tcd/prefs.c:340
 msgid "Start playing"
 msgstr "Start afspilning"
 
-#: tcd/prefs.c:345 tcd/prefs.c:394
+#: tcd/prefs.c:346 tcd/prefs.c:395
 msgid "Stop playing"
 msgstr "Stop afspilning"
 
 #. close tray
-#: tcd/prefs.c:349 tcd/prefs.c:406
+#: tcd/prefs.c:350 tcd/prefs.c:407
 msgid "Close tray"
 msgstr "Luk skuffe"
 
-#: tcd/prefs.c:400
+#: tcd/prefs.c:401
 msgid "Open tray"
 msgstr "Åbn skuffe"
 
 #. device entry
-#: tcd/prefs.c:482
+#: tcd/prefs.c:483
 msgid "CDROM device"
 msgstr "Cdrom-enhed"
 
 #. device entry
-#: tcd/prefs.c:491
+#: tcd/prefs.c:492
 msgid "Mixer Command"
-msgstr ""
+msgstr "Kommando til mixer"
 
 #. Color picker
-#: tcd/prefs.c:500
+#: tcd/prefs.c:501
 msgid "Track/title color"
 msgstr "Spor/titelfarve"
 
 #. font picker
-#: tcd/prefs.c:512
+#: tcd/prefs.c:513
 msgid "Track/title font"
 msgstr "Spor/titelskrift"
 
-#: tcd/prefs.c:513
+#: tcd/prefs.c:514
 msgid "Change font"
 msgstr "Vælg skrifttype"
 
 #. show handles
-#: tcd/prefs.c:520
+#: tcd/prefs.c:521
 msgid "Show handles (restart required)"
 msgstr "Vis håndtag (genstart påkrævet)"
 
 #. show tooltips
-#: tcd/prefs.c:527
+#: tcd/prefs.c:528
 msgid "Show tooltips"
 msgstr "Vis værktøjstips"
 
 #. use alternate play ioctl
-#: tcd/prefs.c:534
+#: tcd/prefs.c:535
 msgid "Use alternate method to play CD"
 msgstr "Brug alternativ metode til at afspille cd'er"
 
 #. use squared law volume
-#: tcd/prefs.c:541
+#: tcd/prefs.c:542
 msgid "Use squared law volume control"
 msgstr "Brug kvadratisk orienteret volumenkontrol"
 
 #. exit frame
-#: tcd/prefs.c:567
+#: tcd/prefs.c:568
 msgid "On exit"
 msgstr "Ved afslutning"
 
-#: tcd/prefs.c:667
+#: tcd/prefs.c:668
 msgid "Key"
 msgstr "Tast"
 
-#: tcd/prefs.c:668
+#: tcd/prefs.c:669
 msgid "Action"
 msgstr "Handling"
 
-#: tcd/prefs.c:691
+#: tcd/prefs.c:692
 msgid "Click here to change (restart required):"
 msgstr "Klik her for at ændre (genstart påkrævet):"
 
 #. Frame
-#: tcd/prefs.c:705 tcd/prefs.c:755
+#: tcd/prefs.c:706 tcd/prefs.c:756
 msgid "Keybindings"
 msgstr "Tastegenveje"
 
-#: tcd/prefs.c:759
+#: tcd/prefs.c:760
 msgid "CDDB Settings"
 msgstr "CDDB opsætning"
 
-#: vu-meter/main.c:118
+#: tcd/prefs.h:4
+msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
+
+#: tcd/prefs.h:5
+msgid "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+msgstr "-*-fixed-*-*-*-*-*-*-*-*-*-*-*-*"
+
+#: vu-meter/main.c:122
 msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
@@ -1347,46 +1366,62 @@ msgstr ""
 "Kan ikke få forbindelse til lyd-dæmon.\n"
 "Kør venligst 'esd' på kommandolinien."
 
-#: vu-meter/main.c:241
+#: vu-meter/main.c:246
 msgid "Specify the X position of the meter."
 msgstr "Angiv målerens X-position."
 
-#: vu-meter/main.c:242
+#: vu-meter/main.c:247
 msgid "X-Position"
 msgstr "X-position"
 
-#: vu-meter/main.c:244
+#: vu-meter/main.c:249
 msgid "Specify the Y position of the meter."
 msgstr "Angiv målerens Y-position."
 
-#: vu-meter/main.c:245
+#: vu-meter/main.c:250
 msgid "Y-Position"
 msgstr "Y-position"
 
-#: vu-meter/main.c:247
+#: vu-meter/main.c:252
 msgid "Connect to the esd server on this host."
 msgstr "Kontakt esd serveren på denne vært"
 
-#: vu-meter/main.c:248
+#: vu-meter/main.c:253
 msgid "ESD Server Host"
 msgstr "ESD tjenervært"
 
-#: vu-meter/main.c:250
+#: vu-meter/main.c:255
 msgid "Open a vertical version of the meter."
 msgstr "Brug en lodret udgave af måleren."
 
-#: vu-meter/main.c:263
+#: vu-meter/main.c:257
+msgid "Act as recording level meter."
+msgstr "Handl som en måler for optagestyrke"
+
+#: vu-meter/main.c:271
 #, c-format
 msgid "Host is %s\n"
 msgstr "Vært er %s\n"
 
-#: vu-meter/main.c:286
+#: vu-meter/main.c:295
+msgid "Recording level"
+msgstr "Optageniveau"
+
+#: vu-meter/main.c:295
 msgid "Volume Meter"
 msgstr "Volumenmåler"
 
+#: vu-meter/reclevel.desktop.in.h:1
+msgid "A Recording Level Meter Unit for ESD"
+msgstr "En måler af optagestyrken for ESD"
+
+#: vu-meter/reclevel.desktop.in.h:2
+msgid "ESD Recording Level"
+msgstr "ESD optagestyrke"
+
 #: vu-meter/vumeter.desktop.in.h:1
-msgid "A Volume Unit Meter for ESD "
-msgstr "En volumenkontrol for ESD-dæmonen"
+msgid "A Volume Unit Meter for ESD"
+msgstr "En volumenkontrol for ESD"
 
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "ESD Volume Meter"
@@ -1411,27 +1446,3 @@ msgstr "Lydoptager"
 #: gmix/gmix.desktop.in.h:1
 msgid "Audio Mixer"
 msgstr "Lydmixer"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-*-120-*-*-p-*-*-*"
-
-#~ msgid "Speed"
-#~ msgstr "Hastighed"
-
-#~ msgid "Increase speed"
-#~ msgstr "Øg hastighed"
-
-#~ msgid "Increase the speed of the current sample"
-#~ msgstr "Øg hastigheden for aktive sample"
-
-#~ msgid "Decrease speed"
-#~ msgstr "Sænk hastighed"
-
-#~ msgid "Decrease the speed of the current sample"
-#~ msgstr "Sænke hastigheden for aktive sample"
-
-#~ msgid "TV set"
-#~ msgstr "Fjernsyn"
-
-#~ msgid "Gnomovision applications"
-#~ msgstr "Gnome fjernsyn"
