@@ -102,10 +102,10 @@ CDDBSlave2_SOURCES =				\
 	tcp.c
 
 CDDBSlave2_LDADD =				\
-	libgnomemedia-cddbslave2.la		\
-	libcddb-slave2-private.la		\
 	$(CDDBSLAVE_LIBS)			\
-	$(INTLLIBS)
+	$(INTLLIBS)				\
+	libgnomemedia-cddbslave2.la		\
+	libcddb-slave2-private.la
 
 cddb_track_editor_SOURCES = 			\
 	cddb-disclosure.c			\
