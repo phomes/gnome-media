@@ -943,7 +943,7 @@ soundtype_supported (const gchar* filename)
 	gint soundtype;
 	gint fd = open (filename, O_CREAT);
 
-	soundtype = afIdentifyFD (fd);
+	//soundtype = afIdentifyFD (fd);
 
 	if (soundtype == 0 ||
 	    soundtype == AF_FILE_UNKNOWN)
