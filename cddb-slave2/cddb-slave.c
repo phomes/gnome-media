@@ -572,8 +572,8 @@ do_query_response (ConnectionData *cd,
 		more = FALSE;
 		break;
 
+	case 210:
 	case 211:
-		/* Should this be 210 as well? */
 		cs_debug ("Multiple matches found\n<-- %s", response);
 
 		if (response[0] == '.') {
