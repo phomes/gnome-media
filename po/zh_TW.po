@@ -1,13 +1,13 @@
-# traditional Chinese translation for gnome-media
+# traditional Chinese translation of gnome-media.
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Fernando <bv1al@journalist.com.tw>, 1999.
 # Abel Cheung <maddog@linux.org.hk>, 2001-2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.287.113\n"
-"POT-Creation-Date: 2002-05-13 22:33+0100\n"
-"PO-Revision-Date: 2002-04-14 00:33+0800\n"
+"Project-Id-Version: gnome-media 2.0.0\n"
+"POT-Creation-Date: 2002-06-11 12:14+0800\n"
+"PO-Revision-Date: 2002-06-11 16:18+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -88,40 +88,40 @@ msgstr "連接埠(_P)："
 msgid "CDDBSlave 2 Properties"
 msgstr "CDDBSlave 2 屬性"
 
-#: cddb-slave2/cddb-slave.c:204
+#: cddb-slave2/cddb-slave.c:213
 msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
-#: cddb-slave2/cddb-slave.c:210
+#: cddb-slave2/cddb-slave.c:219
 msgid "Unknown"
 msgstr "不明"
 
-#: cddb-slave2/cddb-slave.c:425
+#: cddb-slave2/cddb-slave.c:441
 msgid "Multiple matches..."
 msgstr "符合多個項目..."
 
-#: cddb-slave2/cddb-slave.c:429
+#: cddb-slave2/cddb-slave.c:445
 msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
-"資料庫裡含有多個符合條件的項目。\n"
+"在資料庫中找到多個符合條件的項目。\n"
 "以下是所有可能的項目，請在其中揀選最適當的一個"
 
-#: cddb-slave2/cddb-slave.c:440
+#: cddb-slave2/cddb-slave.c:456
 msgid "Category"
 msgstr "分類"
 
-#: cddb-slave2/cddb-slave.c:444
+#: cddb-slave2/cddb-slave.c:460
 msgid "Disc ID"
 msgstr "碟片識別碼"
 
-#: cddb-slave2/cddb-slave.c:448
+#: cddb-slave2/cddb-slave.c:464
 msgid "Artist and Title"
 msgstr "藝人及標題"
 
-#: cddb-slave2/cddb-slave.c:1256 cddb-slave2/cddb-slave.c:1258
-#: gnome-cd/gnome-cd.c:122
+#: cddb-slave2/cddb-slave.c:1279 cddb-slave2/cddb-slave.c:1281
+#: gnome-cd/gnome-cd.c:125
 msgid "Unknown track"
 msgstr "不明的音軌"
 
@@ -737,13 +737,13 @@ msgstr ""
 
 #: cddb-slave2/cddb-track-editor.c:525
 #, c-format
-msgid "Editting discid: %s"
-msgstr "光碟識別號碼：%s"
+msgid "Editing Disc ID: %s"
+msgstr "準備編輯的光碟的識別碼：%s"
 
 #. Info label
 #: cddb-slave2/cddb-track-editor.c:615
-msgid "Editting discid: "
-msgstr "光碟識別號碼："
+msgid "Editing Disc ID: "
+msgstr "準備編輯的光碟的識別碼："
 
 #: cddb-slave2/cddb-track-editor.c:626
 msgid "_Artist:"
@@ -854,7 +854,7 @@ msgstr "Radio"
 msgid "Phone"
 msgstr "Phone"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1081
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1091
 msgid "Mono"
 msgstr "單聲道"
 
@@ -1044,23 +1044,27 @@ msgstr "Phone 輸出"
 msgid "Monitor"
 msgstr "Monitor"
 
-#: gmix/gmix.c:147
+#: gmix/gmix.c:114
+msgid "Help"
+msgstr ""
+
+#: gmix/gmix.c:146
 msgid "don't restore mixer-settings from configuration"
 msgstr "不要由設定檔讀入混音設定值"
 
-#: gmix/gmix.c:148
+#: gmix/gmix.c:147
 msgid "restore mixer-settings from configuration"
 msgstr "由設定檔讀入混音設定值"
 
-#: gmix/gmix.c:149
+#: gmix/gmix.c:148
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "根據已儲存的組態來初始化混音器並離開"
 
-#: gmix/gmix.c:150
+#: gmix/gmix.c:149
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "不要將（已修改的）混音設定值存入設定檔"
 
-#: gmix/gmix.c:379
+#: gmix/gmix.c:378
 msgid ""
 "I was not able to open your audio device.\n"
 "Please check that you have permission to open /dev/mixer\n"
@@ -1070,7 +1074,7 @@ msgstr ""
 "請檢查是否有足夠權限開啟 /dev/mixer\n"
 "及請確定核心裡已有音效支援。"
 
-#: gmix/gmix.c:594
+#: gmix/gmix.c:593
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1080,7 +1084,7 @@ msgstr ""
 "警告：此版本的 Gnome 音量控制程式是配合 OSS 版本 %d.%d.%d\n"
 "編譯的，但系統的 OSS 版本舊於 3.6.0。\n"
 
-#: gmix/gmix.c:602
+#: gmix/gmix.c:601
 #, c-format
 msgid ""
 "Warning: This version of the Gnome Volume Control was compiled with\n"
@@ -1090,57 +1094,58 @@ msgstr ""
 "警告：此版本的 Gnome 音量控制程式是配合 OSS 版本 %d.%d.%d\n"
 "編譯的，但系統的 OSS 版本是 %d.%d.%d。\n"
 
-#: gmix/gmix.c:1067
+#: gmix/gmix.c:1055
 #, c-format
 msgid "left %s"
 msgstr "左邊 %s"
 
-#: gmix/gmix.c:1093
+#: gmix/gmix.c:1081
 #, c-format
 msgid "Right %s"
 msgstr "右邊 %s"
 
-#: gmix/gmix.c:1186
+#: gmix/gmix.c:1174
 msgid "Lock"
 msgstr "鎖定"
 
-#: gmix/gmix.c:1199
+#: gmix/gmix.c:1187
 #, c-format
 msgid "%s Lock"
 msgstr "鎖定 %s"
 
-#: gmix/gmix.c:1210
+#: gmix/gmix.c:1198
 msgid "Mute"
 msgstr "靜音"
 
-#: gmix/gmix.c:1223
+#: gmix/gmix.c:1211
 #, c-format
 msgid "%s Mute"
 msgstr "%s 靜音"
 
-#: gmix/gmix.c:1237
+#: gmix/gmix.c:1225
 msgid "Rec."
 msgstr "錄音"
 
-#: gmix/gmix.c:1249
+#: gmix/gmix.c:1237
 #, c-format
 msgid "%s Record"
 msgstr "%s 錄音"
 
-#: gmix/gmix.c:1320 gmix/gnome-volume-control.desktop.in.h:2
+#: gmix/gmix.c:1308 gmix/gnome-volume-control.desktop.in.in.h:2
+#: gnome-cd/gnome-cd.c:489
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "音量控制"
 
-#: gmix/gmix.c:1716
+#: gmix/gmix.c:1703
 msgid "Gnome Volume Control"
 msgstr "Gnome 音量控制"
 
-#: gmix/gmix.c:1719
+#: gmix/gmix.c:1706
 msgid "This is a mixer for sound devices"
 msgstr "音效裝置用的混音器"
 
-#: gmix/gnome-volume-control.desktop.in.h:1
+#: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
 msgstr "調整音量"
@@ -1168,7 +1173,7 @@ msgstr "顯示混音器標籤"
 
 #: gmix/prefs.c:302 gmix/prefs.c:305
 msgid "Shown"
-msgstr ""
+msgstr "顯示"
 
 #: gmix/prefs.c:313 gmix/prefs.c:316
 msgid "Mixer label"
@@ -1177,13 +1182,13 @@ msgstr "混音器標籤"
 #. Add the label reset button
 #: gmix/prefs.c:325
 msgid "_Reset labels to their defaults"
-msgstr ""
+msgstr "將標籤名稱重設為預設值(_R)"
 
 #: gmix/prefs.c:382
 msgid "Gnome Volume Control Preferences"
 msgstr "Gnome 音量控制偏好設定"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:524
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:507
 msgid "Preferences"
 msgstr "偏好設定"
 
@@ -1193,7 +1198,7 @@ msgstr "標籤"
 
 #: gnome-cd/access/cddisplayaccessible.c:117
 msgid "CD Display"
-msgstr ""
+msgstr "CD 顯示畫面"
 
 #: gnome-cd/access/cddisplayaccessible.c:119
 msgid ""
@@ -1233,169 +1238,194 @@ msgstr ""
 msgid "Line for displaying the name of the album"
 msgstr ""
 
-#: gnome-cd/callbacks.c:73 gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:250
-#: gnome-cd/callbacks.c:502 gnome-cd/gnome-cd.c:571 grecord/src/gui.c:232
+#: gnome-cd/callbacks.c:76 gnome-cd/callbacks.c:163 gnome-cd/callbacks.c:262
+#: gnome-cd/callbacks.c:530 gnome-cd/gnome-cd.c:556 grecord/src/gui.c:236
 msgid "Play"
 msgstr "播放"
 
-#: gnome-cd/callbacks.c:182 gnome-cd/callbacks.c:212 gnome-cd/callbacks.c:292
-#: gnome-cd/callbacks.c:332 gnome-cd/callbacks.c:356 gnome-cd/callbacks.c:397
-#: gnome-cd/callbacks.c:452
+#: gnome-cd/callbacks.c:148 gnome-cd/callbacks.c:194 gnome-cd/callbacks.c:224
+#: gnome-cd/callbacks.c:304 gnome-cd/callbacks.c:344 gnome-cd/callbacks.c:368
+#: gnome-cd/callbacks.c:409 gnome-cd/callbacks.c:496
 msgid "Pause"
 msgstr "暫停"
 
-#: gnome-cd/callbacks.c:570
+#: gnome-cd/callbacks.c:602
 msgid "Disc error"
 msgstr "光碟出現錯誤"
 
-#: gnome-cd/callbacks.c:603 gnome-cd/callbacks.c:614
+#: gnome-cd/callbacks.c:635 gnome-cd/callbacks.c:646
 msgid "Unknown Artist"
 msgstr "藝人身份不詳"
 
-#: gnome-cd/callbacks.c:606 gnome-cd/callbacks.c:618
+#: gnome-cd/callbacks.c:638 gnome-cd/callbacks.c:650
 msgid "Unknown Album"
 msgstr "專輯標題不詳"
 
-#: gnome-cd/callbacks.c:660
+#: gnome-cd/callbacks.c:689
 msgid "No disc"
 msgstr "沒有光碟"
 
-#: gnome-cd/callbacks.c:686
+#: gnome-cd/callbacks.c:715
 msgid "Drive open"
 msgstr "光碟匣已開啟"
 
-#: gnome-cd/callbacks.c:698
+#: gnome-cd/callbacks.c:727
 msgid "Drive Error"
 msgstr "光碟機出現錯誤"
 
-#: gnome-cd/callbacks.c:719
+#: gnome-cd/callbacks.c:748
 msgid "Copyright (C) 2001, 2002"
 msgstr "版權所有 (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:720
+#: gnome-cd/callbacks.c:749
 msgid "A GNOME cd player"
 msgstr "GNOME CD 播放程式"
 
-#: gnome-cd/display.c:73
+#: gnome-cd/display.c:74
 msgid "Unknown artist"
 msgstr "藝人身份不詳"
 
-#: gnome-cd/display.c:74
+#: gnome-cd/display.c:75
 msgid "Unknown disc"
 msgstr "光碟內容不詳"
 
-#: gnome-cd/gnome-cd.c:148
+#: gnome-cd/cdrom.c:355
+#, c-format
+msgid "You do not seem to have permission to access %s."
+msgstr "似乎沒有存取 %s 的權限。"
+
+#: gnome-cd/cdrom.c:361
+#, c-format
+msgid ""
+"%s does not appear to point to a valid CD device. This may be because:\n"
+"a) CD support is not compiled into Linux\n"
+"b) You do not have the correct permissions to access the CD drive\n"
+"c) %s is not the CD drive.\n"
+msgstr ""
+"%s 似乎不是有效的 CD 裝置。可能的原因包括：\n"
+"a) 此 Linux 系統不支援 CD\n"
+"b) 沒有正確的權限存取光碟機\n"
+"c) %s 不是光碟機\n"
+
+#: gnome-cd/gnome-cd.c:51 gnome-cd/gnome-cd.c:441
+msgid "Gnome CD Player"
+msgstr "Gnome CD 播放程式"
+
+#: gnome-cd/gnome-cd.c:151
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - 不明"
 
-#: gnome-cd/gnome-cd.c:312
+#: gnome-cd/gnome-cd.c:295
 msgid "P_revious track"
 msgstr "上一個音軌(_R)"
 
-#: gnome-cd/gnome-cd.c:313
+#: gnome-cd/gnome-cd.c:296
 msgid "_Stop"
 msgstr "停止(_S)"
 
-#: gnome-cd/gnome-cd.c:314
+#: gnome-cd/gnome-cd.c:297
 msgid "_Play / Pause"
 msgstr "播放/暫停(_P)"
 
-#: gnome-cd/gnome-cd.c:315
+#: gnome-cd/gnome-cd.c:298
 msgid "_Next track"
 msgstr "下一個音軌(_N)"
 
-#: gnome-cd/gnome-cd.c:316
+#: gnome-cd/gnome-cd.c:299
 msgid "_Eject disc"
 msgstr "退片(_E)"
 
-#: gnome-cd/gnome-cd.c:317
+#: gnome-cd/gnome-cd.c:300
 msgid "_About Gnome-CD"
 msgstr "關於 Gnome-CD(_A)"
 
-#: gnome-cd/gnome-cd.c:394
+#: gnome-cd/gnome-cd.c:374
 msgid ""
 "There is no CD device set. This means that GnomeCD\n"
 "will be unable to run. Press Set device to go to a dialog\n"
 "where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
-"現時未有設定任何 CD 裝置。這表示 GnomeCD 不能執行。\n"
+"目前未有設定任何 CD 裝置。這表示 GnomeCD 無法執行。\n"
 "請按「設定裝置」跳至設定 CD 裝置的對話窗，\n"
 "或按「離開」退出 GnomeCD。"
 
-#: gnome-cd/gnome-cd.c:398 gnome-cd/gnome-cd.c:438
+#: gnome-cd/gnome-cd.c:378 gnome-cd/gnome-cd.c:418
 msgid "Set device"
 msgstr "設定裝置"
 
-#: gnome-cd/gnome-cd.c:400
+#: gnome-cd/gnome-cd.c:380
 msgid "No CD device"
 msgstr "沒有 CD 裝置"
 
-#: gnome-cd/gnome-cd.c:434
-#, fuzzy, c-format
+#: gnome-cd/gnome-cd.c:414
+#, c-format
 msgid ""
 "%s\n"
 "This means that GnomeCD will be unable to run correctly. Press Set device to "
 "go to a dialog where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
-"現時未有設定任何 CD 裝置。這表示 GnomeCD 不能執行。\n"
-"請按「設定裝置」跳至設定 CD 裝置的對話窗，\n"
-"或按「離開」退出 GnomeCD。"
+"%s\n"
+"這表示 GnomeCD 無法正常執行。請按「設定裝置」跳至設定 CD 裝置的對話窗，或按"
+"「離開」退出 GnomeCD。"
 
-#: gnome-cd/gnome-cd.c:440
+#: gnome-cd/gnome-cd.c:420
 msgid "Invalid CD device"
 msgstr "無效的 CD 裝置"
 
-#: gnome-cd/gnome-cd.c:515
+#: gnome-cd/gnome-cd.c:498
 msgid "Open track editor"
 msgstr "開啟音軌編輯器"
 
-#: gnome-cd/gnome-cd.c:516
+#: gnome-cd/gnome-cd.c:499
 msgid "Track editor"
 msgstr "音軌編輯器"
 
-#: gnome-cd/gnome-cd.c:523
-#, fuzzy
+#: gnome-cd/gnome-cd.c:506
 msgid "Open preferences"
-msgstr "偏好設定"
+msgstr "進行設定"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:515
+msgid "Track List"
+msgstr "音軌清單"
+
+#: gnome-cd/gnome-cd.c:535
 msgid "Previous track"
 msgstr "上一個音軌"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:535
 msgid "Previous"
 msgstr "上個音軌"
 
-#: gnome-cd/gnome-cd.c:554
+#: gnome-cd/gnome-cd.c:539
 msgid "Rewind"
 msgstr "倒捲"
 
-#: gnome-cd/gnome-cd.c:571
+#: gnome-cd/gnome-cd.c:556
 msgid "Play / Pause"
 msgstr "播放/暫停"
 
-#: gnome-cd/gnome-cd.c:576 grecord/src/gui.c:246
+#: gnome-cd/gnome-cd.c:561 grecord/src/gui.c:250
 msgid "Stop"
 msgstr "停止"
 
-#: gnome-cd/gnome-cd.c:580
+#: gnome-cd/gnome-cd.c:565
 msgid "Fast forward"
 msgstr "快轉"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:573
 msgid "Next track"
 msgstr "下一個音軌"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:577
 msgid "Eject CD"
 msgstr "退出 CD"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:577
 msgid "Eject"
 msgstr "退片"
 
-#: gnome-cd/gnome-cd.c:656
+#: gnome-cd/gnome-cd.c:641
 msgid "Cannot create player"
 msgstr "無法執行播放程式"
 
@@ -1407,190 +1437,169 @@ msgstr "CD 播放程式"
 msgid "Play audio CDs"
 msgstr "播放音樂 CD"
 
-#: gnome-cd/linux-cdrom.c:144 gnome-cd/linux-cdrom.c:1148
-#: gnome-cd/linux-cdrom.c:1315
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr ""
-
-#: gnome-cd/linux-cdrom.c:149
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not compiled into Linux\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-
-#: gnome-cd/linux-cdrom.c:224
-#, fuzzy
+#: gnome-cd/linux-cdrom.c:175 gnome-cd/freebsd-cdrom.c:176
 msgid "Error opening CD"
-msgstr "儲存‘%s’時發生問題"
+msgstr "開啟 CD 裝置時出現錯誤"
 
-#: gnome-cd/linux-cdrom.c:229
+#: gnome-cd/linux-cdrom.c:180 gnome-cd/freebsd-cdrom.c:181
 msgid "Error reading CD header"
-msgstr ""
+msgstr "讀取 CD 開始部份資料時出現錯誤"
 
-#: gnome-cd/linux-cdrom.c:246
+#: gnome-cd/linux-cdrom.c:197 gnome-cd/freebsd-cdrom.c:198
 msgid "IOCtl failed"
-msgstr ""
+msgstr "IOCtl 失敗"
 
-#: gnome-cd/linux-cdrom.c:258
+#: gnome-cd/linux-cdrom.c:209 gnome-cd/freebsd-cdrom.c:211
 msgid "Error getting leadout"
 msgstr ""
 
-#: gnome-cd/linux-cdrom.c:266
+#: gnome-cd/linux-cdrom.c:217 gnome-cd/freebsd-cdrom.c:219
 #, c-format
 msgid ""
 "CD changed\n"
 "Track count: %d\n"
 "------------------\n"
 msgstr ""
+"已替換 CD\n"
+"音軌數目：%d\n"
+"------------------\n"
 
-#: gnome-cd/linux-cdrom.c:298
+#: gnome-cd/linux-cdrom.c:249 gnome-cd/freebsd-cdrom.c:251
 #, c-format
 msgid "(eject): ioctl failed: %s"
-msgstr ""
+msgstr "(eject)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:484
+#: gnome-cd/linux-cdrom.c:434
 msgid "(linux_cdrom_play): Drive not ready"
 msgstr ""
 
-#: gnome-cd/linux-cdrom.c:504
+#: gnome-cd/linux-cdrom.c:454
 msgid "(linux_cdrom_play): Drive still not ready"
 msgstr ""
 
-#: gnome-cd/linux-cdrom.c:569
+#: gnome-cd/linux-cdrom.c:519
 #, c-format
 msgid "(linux_cdrom_play) ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_play)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:605
+#: gnome-cd/linux-cdrom.c:555
 msgid "(linux_cdrom_pause): Drive not ready"
 msgstr ""
 
-#: gnome-cd/linux-cdrom.c:618
+#: gnome-cd/linux-cdrom.c:568
 #, c-format
 msgid "(linux_cdrom_pause): Resume failed %s"
 msgstr ""
 
-#: gnome-cd/linux-cdrom.c:637
+#: gnome-cd/linux-cdrom.c:587
 #, c-format
 msgid "(linux_cdrom_pause): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_pause)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:683
+#: gnome-cd/linux-cdrom.c:633
 #, c-format
 msgid "(linux_cdrom_stop) ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_stop)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:899
+#: gnome-cd/linux-cdrom.c:849
 #, c-format
 msgid "(linux_cdrom_get_status): ioctl error %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:913
+#: gnome-cd/linux-cdrom.c:863
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMSUBCHNL ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status)：CDROMSUBCHNL ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:924
+#: gnome-cd/linux-cdrom.c:874
 #, c-format
 msgid "(linux_cdrom_get_status): CDROMVOLREAD ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_get_status)：CDROMVOLREAD ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:989
+#: gnome-cd/linux-cdrom.c:939
 #, c-format
 msgid "(linux_cdrom_close_tray): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_close_tray)：ioctl 失敗：%s"
 
-#: gnome-cd/linux-cdrom.c:1024
+#: gnome-cd/linux-cdrom.c:974
 #, c-format
 msgid "(linux_cdrom_set_volume:1): ioctl failed %s"
-msgstr ""
+msgstr "(linux_cdrom_set_volume:1)：ioctl 失敗：%s"
 
 #. Failed, it's not a CDROM drive
-#: gnome-cd/linux-cdrom.c:1055
+#: gnome-cd/linux-cdrom.c:1005
 #, c-format
 msgid "%s is not a CDROM drive"
-msgstr ""
+msgstr "%s 不是光碟機"
 
-#: gnome-cd/linux-cdrom.c:1157 gnome-cd/linux-cdrom.c:1325
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CDRom device. This may be because:\n"
-"a) CD support is not compiled into Linux\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-
-#: gnome-cd/preferences.c:78
+#: gnome-cd/preferences.c:82
 #, c-format
 msgid ""
 "%s\n"
 "This means that Gnome-CD will not be able to run."
 msgstr ""
+"%s\n"
+"這表示 Gnome-CD 將會無法執行。"
 
-#: gnome-cd/preferences.c:79
-#, fuzzy
+#: gnome-cd/preferences.c:83
 msgid "Error setting device"
-msgstr "儲存‘%s’時發生問題"
+msgstr "設定裝置時發生錯誤"
 
-#: gnome-cd/preferences.c:778
-msgid "Gnome-CD Preferences"
-msgstr "Gnome-CD 偏好設定"
+#: gnome-cd/preferences.c:771
+msgid "Gnome CD Player Preferences"
+msgstr "Gnome CD 播放程式偏好設定"
 
-#: gnome-cd/preferences.c:796
+#: gnome-cd/preferences.c:789
 msgid "CD player de_vice"
 msgstr "CD 播放裝置(_V)"
 
-#: gnome-cd/preferences.c:811
+#: gnome-cd/preferences.c:804
 msgid "_Apply change"
 msgstr "套用設定(_A)"
 
 #. left side
-#: gnome-cd/preferences.c:824
-msgid "When Gnome-CD starts"
-msgstr "當啟動 Gnome-CD 時"
+#: gnome-cd/preferences.c:817
+msgid "When Gnome CD Player starts"
+msgstr "當啟動 Gnome CD 播放程式時"
 
-#: gnome-cd/preferences.c:832
+#: gnome-cd/preferences.c:825
 msgid "Do _nothing"
 msgstr "不進行任何操作(_N)"
 
-#: gnome-cd/preferences.c:841
+#: gnome-cd/preferences.c:834
 msgid "Start _playing CD"
 msgstr "開始播放 CD(_P)"
 
-#: gnome-cd/preferences.c:850
+#: gnome-cd/preferences.c:843
 msgid "_Stop playing CD"
 msgstr "停止播放 CD(_S)"
 
-#: gnome-cd/preferences.c:863
+#: gnome-cd/preferences.c:856
 msgid "Attempt to _close CD tray"
 msgstr "嘗試關閉 CD 匣(_C)"
 
 #. Right side
-#: gnome-cd/preferences.c:875
-msgid "When Gnome-CD quits"
-msgstr "當 Gnome-CD 退出時"
+#: gnome-cd/preferences.c:868
+msgid "When Gnome CD Player quits"
+msgstr "當 Gnome CD 播放程式結束時"
 
-#: gnome-cd/preferences.c:883
+#: gnome-cd/preferences.c:876
 msgid "Do not_hing"
 msgstr "不進行任何操作(_H)"
 
-#: gnome-cd/preferences.c:892
+#: gnome-cd/preferences.c:885
 msgid "S_top playing CD"
 msgstr "停止播放 CD(_T)"
 
-#: gnome-cd/preferences.c:901
+#: gnome-cd/preferences.c:894
 msgid "Attempt to _open CD tray"
 msgstr "嘗試開啟 CD 匣(_O)"
 
-#: gnome-cd/preferences.c:911
+#: gnome-cd/preferences.c:904
 msgid "Attempt to c_lose CD tray"
 msgstr "嘗試關閉 CD 匣(_L)"
 
-#: gnome-cd/preferences.c:942
+#: gnome-cd/preferences.c:935
 msgid "Theme name"
 msgstr "佈景主題名稱"
 
@@ -1602,15 +1611,15 @@ msgstr "錄音"
 msgid "Sound recorder"
 msgstr "錄音程式"
 
-#: grecord/src/grec.c:55
+#: grecord/src/grec.c:56
 msgid "Sound Recorder:"
 msgstr "錄音程式："
 
-#: grecord/src/grec.c:107 grecord/src/main.c:248
+#: grecord/src/grec.c:108 grecord/src/main.c:248
 msgid "Don't show this message again."
-msgstr "不要再顯示此對話窗"
+msgstr "不要再顯示此對話窗。"
 
-#: grecord/src/grec.c:109 grecord/src/main.c:250
+#: grecord/src/grec.c:110 grecord/src/main.c:250
 #, c-format
 msgid ""
 "Could not find '%s'.\n"
@@ -1623,61 +1632,61 @@ msgstr ""
 "\n"
 "如果沒有安裝 sox，將不能錄音或製作任何效果。"
 
-#: grecord/src/grec.c:170 grecord/src/grec.c:217 grecord/src/grec.c:1288
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1343
 msgid "Could not fork child process"
 msgstr "無法衍生副程序"
 
-#: grecord/src/grec.c:172
+#: grecord/src/grec.c:173
 msgid "Recording..."
 msgstr "錄音中..."
 
-#: grecord/src/grec.c:219
+#: grecord/src/grec.c:220
 msgid "Playing..."
 msgstr "播放中..."
 
-#: grecord/src/grec.c:274
+#: grecord/src/grec.c:270
 msgid "Converting file..."
 msgstr "正在轉換檔案..."
 
-#: grecord/src/grec.c:303 grecord/src/grec.c:437
+#: grecord/src/grec.c:299 grecord/src/grec.c:433
 msgid "Cancel"
 msgstr "取消"
 
-#: grecord/src/grec.c:346 grecord/src/grec.c:779
+#: grecord/src/grec.c:342 grecord/src/grec.c:781
 msgid "Audioformat: "
 msgstr "音效格式："
 
-#: grecord/src/grec.c:350 grecord/src/grec.c:765 grecord/src/gui.c:307
+#: grecord/src/grec.c:346 grecord/src/grec.c:767 grecord/src/gui.c:311
 msgid "Sample rate: "
 msgstr "取樣率："
 
-#: grecord/src/grec.c:360 grecord/src/grec.c:769 grecord/src/gui.c:314
+#: grecord/src/grec.c:356 grecord/src/grec.c:771 grecord/src/gui.c:318
 msgid "Channels: "
 msgstr "聲道："
 
-#: grecord/src/grec.c:381
+#: grecord/src/grec.c:378
 msgid "Cancel open"
 msgstr "取消開啟"
 
-#: grecord/src/grec.c:390
+#: grecord/src/grec.c:387
 msgid "Select a sound file"
 msgstr "請選擇音效檔"
 
-#: grecord/src/grec.c:520
+#: grecord/src/grec.c:514
 #, c-format
 msgid "%s is not installed in the path"
 msgstr "在執行檔路徑中找不到 %s"
 
-#: grecord/src/grec.c:527
+#: grecord/src/grec.c:521
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "啟動 %s 時出現錯誤：%s"
 
-#: grecord/src/grec.c:620
+#: grecord/src/grec.c:613
 msgid "Undoing all changes..."
 msgstr "還原所有變更..."
 
-#: grecord/src/grec.c:704
+#: grecord/src/grec.c:706
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1686,7 +1695,7 @@ msgstr ""
 "‘%s’是一個資料夾。\n"
 "請選擇一個音效檔來開啟。"
 
-#: grecord/src/grec.c:716
+#: grecord/src/grec.c:718
 #, c-format
 msgid ""
 "File '%s' doesn't exist.\n"
@@ -1695,12 +1704,12 @@ msgstr ""
 "檔案‘%s’不存在。\n"
 "請選擇一個已存在的音效檔來開啟。"
 
-#: grecord/src/grec.c:729
+#: grecord/src/grec.c:731
 #, c-format
 msgid "File '%s isn't a valid sound file."
 msgstr "檔案‘%s’不是有效的音效檔。"
 
-#: grecord/src/grec.c:803
+#: grecord/src/grec.c:805
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1709,7 +1718,7 @@ msgstr ""
 "‘%s’是一個資料夾。\n"
 "請輸入另一個檔案名稱。"
 
-#: grecord/src/grec.c:815
+#: grecord/src/grec.c:817
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1718,20 +1727,20 @@ msgstr ""
 "<b>檔案‘%s’已存在。</b>\n"
 "是否要覆寫？"
 
-#: grecord/src/grec.c:818
+#: grecord/src/grec.c:820
 msgid "Cancel save"
 msgstr "取消儲存"
 
-#: grecord/src/grec.c:819
+#: grecord/src/grec.c:821
 msgid "Overwrite"
 msgstr "覆寫"
 
-#: grecord/src/grec.c:846
+#: grecord/src/grec.c:848
 #, c-format
 msgid "Error saving '%s'"
 msgstr "儲存‘%s’時發生問題"
 
-#: grecord/src/grec.c:958
+#: grecord/src/grec.c:960
 #, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
@@ -1742,17 +1751,17 @@ msgstr ""
 "\n"
 "如果不儲存，將會遺失所有修改的部份。"
 
-#: grecord/src/grec.c:963
+#: grecord/src/grec.c:965
 msgid "Do_n't save"
-msgstr "不要儲存"
+msgstr "不要儲存(_N)"
 
-#: grecord/src/grec.c:970
+#: grecord/src/grec.c:972
 #, c-format
 msgid "Save %s?"
 msgstr "是否儲存 %s？"
 
 #. Save the file
-#: grecord/src/grec.c:995
+#: grecord/src/grec.c:996
 msgid "Saving..."
 msgstr "儲存中..."
 
@@ -1769,136 +1778,138 @@ msgstr ""
 msgid "Save sound file"
 msgstr "儲存音效檔"
 
-#: grecord/src/grec.c:1353
+#: grecord/src/grec.c:1409
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
 msgstr "音效裝置無法提供服務。請確定沒有其它程式正在使用該音效裝置。"
 
-#: grecord/src/gui.c:44
+#: grecord/src/gui.c:45
 msgid "_New"
 msgstr "新增(_N)"
 
-#: grecord/src/gui.c:45
+#: grecord/src/gui.c:46
 msgid "Create a new sample"
 msgstr "建立新的音效樣本"
 
-#: grecord/src/gui.c:52
+#: grecord/src/gui.c:54
 msgid "Run _Mixer"
 msgstr "執行混音程式(_M)..."
 
-#: grecord/src/gui.c:53
+#: grecord/src/gui.c:55
 msgid "Run GNOME Volume Control"
 msgstr "執行 GNOME 音量控制程式"
 
-#: grecord/src/gui.c:66
+#: grecord/src/gui.c:69
 msgid "Add echo"
 msgstr "加入迴音"
 
-#: grecord/src/gui.c:67
+#: grecord/src/gui.c:70
 msgid "Add echo to the current sample"
 msgstr "在現時的音效樣本中加入迴音"
 
-#: grecord/src/gui.c:100
+#: grecord/src/gui.c:103
 msgid "Echo"
 msgstr "迴音"
 
-#: grecord/src/gui.c:109
+#: grecord/src/gui.c:112
 msgid "_Undo All"
 msgstr "全部還原(_U)"
 
-#: grecord/src/gui.c:110
+#: grecord/src/gui.c:113
 msgid "Undo all changes made on the current sample"
 msgstr "還原所有對現時的音效樣本的變更"
 
-#: grecord/src/gui.c:117
+#: grecord/src/gui.c:120
 msgid "Effects"
 msgstr "效果"
 
-#: grecord/src/gui.c:152
+#: grecord/src/gui.c:155
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s ─ 錄音程式："
 
-#: grecord/src/gui.c:191
+#: grecord/src/gui.c:194
 msgid "Sound Recorder"
 msgstr "錄音程式"
 
-#: grecord/src/gui.c:194
+#: grecord/src/gui.c:198
 msgid "16bit PCM"
 msgstr "16 位元 PCM"
 
-#: grecord/src/gui.c:196
+#: grecord/src/gui.c:200
 msgid "8bit PCM"
 msgstr "8 位元 PCM"
 
-#: grecord/src/gui.c:199
+#: grecord/src/gui.c:203
 msgid "stereo"
 msgstr "立體聲"
 
-#: grecord/src/gui.c:201
+#: grecord/src/gui.c:205
 msgid "mono"
 msgstr "單聲道"
 
-#: grecord/src/gui.c:216
+#: grecord/src/gui.c:220
 msgid "New"
 msgstr "新增"
 
-#: grecord/src/gui.c:217
+#: grecord/src/gui.c:221
 msgid "Create new sample"
 msgstr "建立新的音效樣本"
 
-#: grecord/src/gui.c:233
+#: grecord/src/gui.c:237
 msgid "Play current sample"
 msgstr "播放現時的音效樣本"
 
-#: grecord/src/gui.c:247
+#: grecord/src/gui.c:251
 msgid "Stop playing/recording"
 msgstr "停止播放或錄音"
 
-#: grecord/src/gui.c:260
+#: grecord/src/gui.c:264
 msgid "Record"
 msgstr "錄音"
 
-#: grecord/src/gui.c:261
+#: grecord/src/gui.c:265
 msgid "Start recording"
 msgstr "開始錄音"
 
-#: grecord/src/gui.c:300
+#: grecord/src/gui.c:304
 msgid "Audio format: "
 msgstr "音效格式："
 
-#: grecord/src/gui.c:358
+#: grecord/src/gui.c:362
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "檔案 '%s' 不存在；使用預設值。"
 
-#: grecord/src/gui.c:382
+#: grecord/src/gui.c:386
 #, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "檔案 '%s' 不是已支援的音效檔格式。"
 
 #. if your charset allows it, replace the "e" of "Hyden"
 #. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
+#: grecord/src/gui.c:424
 msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
 msgstr "Andreas Hyden <a.hyden@cyberpoint.se>"
 
-#: grecord/src/gui.c:427
-msgid "translator_credits"
-msgstr "Abel Cheung <maddog@linux.org.hk>"
-
 #: grecord/src/gui.c:431
+msgid "translator_credits"
+msgstr ""
+"Abel Cheung <maddog@linux.org.hk>, 2001-2002.\n"
+"Fernando <bv1al@journalist.com.tw>, 1999."
+
+#: grecord/src/gui.c:435
 msgid "Gnome Sound Recorder"
 msgstr "Gnome 錄音程式"
 
 #. if your charset allows it, replace the
 #. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
+#: grecord/src/gui.c:438
 msgid "Copyright (C)  2000 Andreas Hyden"
 msgstr "版權 (C)  2000 Andreas Hyden"
 
-#: grecord/src/gui.c:435
+#: grecord/src/gui.c:439
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -1906,111 +1917,111 @@ msgstr ""
 "GNOME 的一個簡單音效播放及錄音程式。\n"
 "奉獻給我的貓兒，Malte。"
 
-#: grecord/src/gui.c:697
+#: grecord/src/gui.c:705
 msgid "Gnome Sound Recorder Preferences"
 msgstr "Gnome 錄音程式偏好設定"
 
-#: grecord/src/gui.c:702
+#: grecord/src/gui.c:712
 msgid "Sound Recorder Preferences"
 msgstr "錄音程式偏好設定"
 
-#: grecord/src/gui.c:714
+#: grecord/src/gui.c:724
 msgid "Recording"
 msgstr "錄音"
 
-#: grecord/src/gui.c:719
+#: grecord/src/gui.c:729
 msgid "Time"
 msgstr "時間"
 
-#: grecord/src/gui.c:732
+#: grecord/src/gui.c:742
 msgid "_Recording timeout: "
 msgstr "錄音的逾時時限(_R)："
 
-#: grecord/src/gui.c:748
+#: grecord/src/gui.c:758
 msgid "minutes"
 msgstr "分鐘"
 
-#: grecord/src/gui.c:755
+#: grecord/src/gui.c:765
 msgid "_Stop recording on timeout"
 msgstr "逾時後停止錄音(_S)"
 
-#: grecord/src/gui.c:763
+#: grecord/src/gui.c:773
 msgid "_Open save dialog when recording is finished"
 msgstr "當錄音完成後顯示儲存檔案的對話窗(_O)"
 
-#: grecord/src/gui.c:770
+#: grecord/src/gui.c:780
 msgid "Size"
 msgstr "大小"
 
-#: grecord/src/gui.c:779
-msgid "Show warning _message if size (Mb) of sample becomes bigger than:"
+#: grecord/src/gui.c:789
+msgid "Show warning _message if size (MB) of sample becomes bigger than:"
 msgstr "如果音效樣本大於此數值時顯示警告對話窗 [以 Mb 計](_M)："
 
-#: grecord/src/gui.c:797
-msgid "Sto_p recording if size (Mb) of sample becomes bigger than:"
+#: grecord/src/gui.c:807
+msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
 msgstr "如果音效樣本大於此數值時停止錄音 [以 Mb 計](_P)："
 
-#: grecord/src/gui.c:819
+#: grecord/src/gui.c:829
 msgid "Playing"
 msgstr "播放"
 
-#: grecord/src/gui.c:824
+#: grecord/src/gui.c:834
 msgid "Repetition"
 msgstr "重覆"
 
-#: grecord/src/gui.c:834
+#: grecord/src/gui.c:844
 msgid "_Repeat the sound"
 msgstr "重覆播放音效(_R)"
 
-#: grecord/src/gui.c:841
+#: grecord/src/gui.c:851
 msgid "Play the sound _once only."
 msgstr "只播放音效一次。(_O)"
 
-#: grecord/src/gui.c:847
+#: grecord/src/gui.c:857
 msgid "Repeat _forever"
 msgstr "不斷重覆(_F)"
 
-#: grecord/src/gui.c:858
+#: grecord/src/gui.c:868
 msgid "_Number of times:"
 msgstr "重覆次數(_N)："
 
-#: grecord/src/gui.c:879
+#: grecord/src/gui.c:889
 msgid "Paths"
 msgstr "路徑"
 
-#: grecord/src/gui.c:884
+#: grecord/src/gui.c:894
 msgid "Program files"
 msgstr "程式"
 
-#: grecord/src/gui.c:897
+#: grecord/src/gui.c:907
 msgid "_Path to sox:"
 msgstr "sox 的路徑(_P)："
 
-#: grecord/src/gui.c:911
+#: grecord/src/gui.c:921
 msgid "_Apply"
 msgstr "套用(_A)"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:930
 msgid "Folders"
 msgstr "資料夾"
 
-#: grecord/src/gui.c:933
+#: grecord/src/gui.c:943
 msgid "_Temporary folder:"
 msgstr "暫存檔資料夾(_T)："
 
-#: grecord/src/gui.c:947
+#: grecord/src/gui.c:957
 msgid "Apply"
 msgstr "套用"
 
-#: grecord/src/gui.c:959
+#: grecord/src/gui.c:969
 msgid "Sound"
 msgstr "音效"
 
-#: grecord/src/gui.c:964
+#: grecord/src/gui.c:974
 msgid "Sound options"
 msgstr "音效選項"
 
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:983
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
@@ -2018,36 +2029,36 @@ msgstr ""
 "注意：這些選項只適用於新製作的音效樣本。\n"
 "　　　已存在的音效樣本不會有任何修改。"
 
-#: grecord/src/gui.c:986
+#: grecord/src/gui.c:996
 msgid "Audio format:"
 msgstr "音效格式："
 
-#: grecord/src/gui.c:995
+#: grecord/src/gui.c:1005
 msgid "8 _bit PCM"
 msgstr "8 位元 PCM(_B)"
 
-#: grecord/src/gui.c:1001
+#: grecord/src/gui.c:1011
 msgid "16 b_it PCM"
 msgstr "16 位元 PCM(_I)"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1015
+#: grecord/src/gui.c:1025
 msgid "S_ample rate:"
 msgstr "取樣率(_A)："
 
-#: grecord/src/gui.c:1046
+#: grecord/src/gui.c:1056
 msgid "Mono or Stereo:"
 msgstr "單聲道或立體聲："
 
-#: grecord/src/gui.c:1055
+#: grecord/src/gui.c:1065
 msgid "_Mono"
 msgstr "單聲道(_M)"
 
-#: grecord/src/gui.c:1061
+#: grecord/src/gui.c:1071
 msgid "_Stereo"
 msgstr "立體聲(_S)"
 
-#: grecord/src/gui.c:1082
+#: grecord/src/gui.c:1092
 msgid "Stereo"
 msgstr "立體聲"
 
@@ -2092,7 +2103,7 @@ msgstr "聲道：單聲道"
 msgid "Channels: stereo"
 msgstr "聲道：立體聲"
 
-#: grecord/src/sound.c:126 grecord/src/sound.c:130
+#: grecord/src/sound.c:136
 msgid "Adding echo to sample..."
 msgstr "在音效樣本中加入迴音..."
 
@@ -2164,6 +2175,74 @@ msgstr "監控輸出音量"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "音量計"
+
+#: gnome-cd/freebsd-cdrom.c:437
+msgid "(freebsd_cdrom_play): Drive not ready"
+msgstr ""
+
+#: gnome-cd/freebsd-cdrom.c:457
+msgid "(freebsd_cdrom_play): Drive still not ready"
+msgstr ""
+
+#: gnome-cd/freebsd-cdrom.c:522
+#, c-format
+msgid "(freebsd_cdrom_play) ioctl failed %s"
+msgstr "(freebsd_cdrom_play)：ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:558
+msgid "(freebsd_cdrom_pause): Drive not ready"
+msgstr ""
+
+#: gnome-cd/freebsd-cdrom.c:571
+#, c-format
+msgid "(freebsd_cdrom_pause): Resume failed %s"
+msgstr ""
+
+#: gnome-cd/freebsd-cdrom.c:590
+#, c-format
+msgid "(freebsd_cdrom_pause): ioctl failed %s"
+msgstr "(freebsd_cdrom_pause)：ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:636
+#, c-format
+msgid "(freebsd_cdrom_stop) ioctl failed %s"
+msgstr "(freebsd_cdrom_stop)：ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:854
+#, c-format
+msgid "(freebsd_cdrom_get_status): ioctl error %s"
+msgstr "(freebsd_cdrom_get_status)：ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:874
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCREADSUBCHANNEL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status)：CDIOCREADSUBCHANNEL ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:885
+#, c-format
+msgid "(freebsd_cdrom_get_status): CDIOCGETVOL ioctl failed %s"
+msgstr "(freebsd_cdrom_get_status)：CDIOCGETVOL ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:948
+#, c-format
+msgid "(freebsd_cdrom_close_tray): ioctl failed %s"
+msgstr "(freebsd_cdrom_close_tray)：ioctl 失敗：%s"
+
+#: gnome-cd/freebsd-cdrom.c:983
+#, c-format
+msgid "(freebsd_cdrom_set_volume:1): ioctl failed %s"
+msgstr "(freebsd_cdrom_set_volume:1)：ioctl 失敗：%s"
+
+#. Failed, it's not a CDROM drive
+#: gnome-cd/freebsd-cdrom.c:1015
+#, c-format
+msgid "%s is not a CDROM drive\n"
+msgstr "%s 不是光碟機\n"
+
+#: gnome-cd/freebsd-cdrom.c:1022
+#, c-format
+msgid "%s is a CDROM drive\n"
+msgstr "%s 是光碟機\n"
 
 #~ msgid ""
 #~ "The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
