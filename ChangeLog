@@ -1,3 +1,11 @@
+2004-11-02  Archana Shah <archana.shah@wipro.com>
+
+	reviewed by: Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* grecord/src/gsr-window.c: (do_save_file):
+	  use g_spawn_command_line_sync () instead of rename () to save
+	  the recorded file. Fixes #155088
+
 2004-11-02  Dennis Cranston <dennis_cranston at yahoo com>
 
 	reviewed by: Ronald S. Bultje  <rbultje@ronald.bitfreak.net>

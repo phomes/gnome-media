@@ -476,16 +476,39 @@ do_save_file (GSRWindow *window,
 {
 	GSRWindowPrivate *priv;
         GMAudioProfile *profile;
-	char *tmp;
+	char *tmp, *command;
+	GError *error;
+	int status;
 	
+	status = 0;
+
 	priv = window->priv;
 	
         profile = gm_audio_profile_choose_get_active (priv->profile);
 
 	tmp = g_strdup_printf ("%s.%s", name,
 			       gm_audio_profile_get_extension (profile));
-	rename (priv->record_filename, tmp);
+	
+	command = g_strdup_printf ("/bin/cp %s %s", priv->record_filename, tmp);
+
+	if (!g_spawn_command_line_sync (command,  NULL, NULL, &status, &error)) {
+		gchar *error_message;
+
+		error_message = g_strdup_printf (_("Could not save the file \" %s\""), error->message);
+		show_error_dialog (GTK_WINDOW (window), error_message);
+		g_free (error_message);
+	}
+	
+	if (status) {
+		gchar *error_message;
+
+		error_message = g_strdup_printf (_("Could not save the file \" %s\""), tmp);
+		show_error_dialog (GTK_WINDOW (window), error_message);
+		g_free (error_message);
+	}
+
 	g_free (tmp);		
+	g_free (command);		
 }
 
 static void
