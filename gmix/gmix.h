@@ -75,6 +75,8 @@ typedef struct channel_info {
 	/* here are the widgets... */
 	GtkObject *left, *right;
 	GtkWidget *lock, *rec, *mute;
+	GtkWidget *icon;
+	GtkWidget *label;
 
 	int passive; /* avoid recursive calls to event handler */
 } channel_info;
@@ -83,15 +85,6 @@ struct pixmap {
 	char *name;
 	const char *pixmap;
 };
-
-typedef struct _GMixMixer {
-	GtkWidget *icon;
-	GtkWidget *label;
-} GMixMixer;
-
-typedef struct _GMixMixerPage {
-	GList *items;
-} GMixMixerPage;
 
 extern GList *devices;
 

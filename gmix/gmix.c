@@ -105,11 +105,10 @@ static void about_cb (GtkWidget *widget, gpointer data);
  */
 GtkWidget *app;
 GtkWidget  *slidernotebook;
-GList *mixer_pages = NULL;
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help, GNOME_STOCK_PIXMAP_HELP),
+/*  	GNOMEUIINFO_ITEM_STOCK(N_("Help"), NULL, help, GNOME_STOCK_PIXMAP_HELP), */
 	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
@@ -133,6 +132,7 @@ static GnomeUIInfo main_menu[] = {
 /* End of menus */ 
 
 GList *devices;
+GHashTable *device_by_name = NULL;
 
 int mode=0, mode_norestore=0, mode_initonly=0, mode_nosave=0, num_mixers, mode_restore=0;
 #define M_NORESTORE	1
@@ -217,6 +217,7 @@ snd_mixer_callbacks_t read_cbs;
 static void rebuild_cb(void *data) {
 	fprintf(stderr, "gmix rebuild_cb()\n");
 }
+
 static void element_cb(void *data, int cmd, snd_mixer_eid_t *eid) {
 	device_info *device=(device_info *)data;
 	int err;
@@ -314,7 +315,9 @@ void config_cb(GtkWidget *widget, gpointer data)
 	prefs_make_window (app);
 };
 
-int main(int argc, char *argv[]) 
+int
+main(int argc,
+     char *argv[]) 
 {
 	mode=0;
 
@@ -676,19 +679,32 @@ GList *make_channels(device_info *device)
 	return channels;
 }
 
-void scan_devices(void)
+void
+scan_devices (void)
 {
 	int cnt;
 	device_info *new_device;
-	cnt=0; devices=NULL;
+	
+	cnt = 0;
+	devices = NULL;
+	device_by_name = g_hash_table_new (g_str_hash, g_str_equal);
+		
 	do {
-		new_device=open_device(cnt++);
+		new_device = open_device(cnt++);
 		if (new_device) {
-			new_device->channels=make_channels(new_device);
-			devices=g_list_append(devices, new_device);
+			new_device->channels = make_channels(new_device);
+			devices = g_list_append(devices, new_device);
+			g_hash_table_insert (device_by_name, new_device->info.name, new_device);
 		}
 	} while (new_device);
-	num_mixers=cnt-1;
+
+	num_mixers = cnt - 1;
+}
+
+device_info *
+device_from_name (const char *name)
+{
+	return g_hash_table_lookup (device_by_name, name);
 }
 
 #ifdef ALSA
@@ -988,7 +1004,6 @@ void fill_in_device_guis(GtkWidget *notebook){
 	}
 	
 	for (d=devices; d; d=d->next) {
-		GMixMixerPage *mixer_page;
 		device_info *di;
 		GList *table_focus_chain = NULL;
 
@@ -999,12 +1014,6 @@ void fill_in_device_guis(GtkWidget *notebook){
 			j+=2;
 		}
 
-		mixer_page = g_new0 (GMixMixerPage, 1);
-		mixer_pages = g_list_prepend (mixer_pages, mixer_page);
-		
-		/* 
-		 * David: changed 7 to 8 for table rows (06/04/1999)
-		 */
 		table = gtk_table_new (i*2, 5, FALSE);
 		gtk_notebook_append_page (GTK_NOTEBOOK(notebook),
 					  table, 
@@ -1014,16 +1023,12 @@ void fill_in_device_guis(GtkWidget *notebook){
 		gtk_container_border_width (GTK_CONTAINER (table), 0);
 
 		for (c= ((device_info *)d->data)->channels; c; c=c->next) {
-			GMixMixer *gmm;
 			GtkWidget *label, *mixer, *separator;
 			GtkWidget *hbox;
 			channel_info *ci;
 
 			ci = c->data;
 
-			gmm = g_new (GMixMixer, 1);
-			mixer_page->items = g_list_prepend (mixer_page->items, gmm);
-			
 			hbox = gtk_hbox_new (FALSE, 2);
 			gtk_widget_show (hbox);
 			gtk_table_attach (GTK_TABLE (table), hbox, i, i+1,
@@ -1037,19 +1042,20 @@ void fill_in_device_guis(GtkWidget *notebook){
 					gtk_widget_show (spixmap);
 				}
 				
-				gmm->icon = spixmap;
+				ci->icon = spixmap;
 			} else {
-				gmm->icon = NULL;
+				ci->icon = NULL;
 			}
 			
 			label = gtk_label_new (ci->user_title);
 			gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+			gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
 			gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 			
 			if (prefs.show_labels == TRUE) {
 				gtk_widget_show (label);
 			}
-			gmm->label = label;
+			ci->label = label;
 
 			mixer=make_slider_mixer(ci);
 			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1,\
@@ -1063,7 +1069,8 @@ void fill_in_device_guis(GtkWidget *notebook){
 				/* lock-button, only useful for stereo */
 				AtkObject *accessible;
 				gchar *accessible_name;
-				ci->lock = gtk_check_button_new_with_label(_("Lock"));ci->lock = gtk_check_button_new_with_label(_("Lock"));			  
+
+				ci->lock = gtk_check_button_new_with_label(_("Lock"));
 				gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ci->lock), (ci->device->lock_bitmask & (1<<ci->channel))!=0);
 				gtk_signal_connect (GTK_OBJECT (ci->lock), "toggled", (GtkSignalFunc) lock_cb, (gpointer)ci);
 				gtk_table_attach (GTK_TABLE (table), ci->lock, i, i+1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
@@ -1453,27 +1460,11 @@ help(GtkWidget *widget,
      gpointer data)
 {
 	GnomeProgram *program;
-	GError *error;
+	GError *error = NULL;
 	gboolean ret;
 	
 	program = gnome_program_get ();
         ret = gnome_help_display ("index.html", NULL, &error);
-	if (ret == FALSE) {
-		g_warning ("Error displaying document: %s", error->message);
-		g_error_free (error);
-	}
-}
-
-void 
-help_cb(GtkWidget *widget, 
-	gpointer data)
-{
-	GnomeProgram *program;
-	GError *error;
-	gboolean ret;
-
-	program = gnome_program_get ();
-        ret = gnome_help_display("gmix-prefs.html", NULL, &error);
 	if (ret == FALSE) {
 		g_warning ("Error displaying document: %s", error->message);
 		g_error_free (error);
@@ -1514,20 +1505,20 @@ gmix_change_icons (gboolean show)
 {
 	GList *p, *q;
 
-	for (p = mixer_pages; p; p = p->next) {
-		GMixMixerPage *page = p->data;
+	for (p = devices; p; p = p->next) {
+		device_info *di = p->data;
 		
-		for (q = page->items; q; q = q->next) {
-			GMixMixer *mix = q->data;
+		for (q = di->channels; q; q = q->next) {
+			channel_info *ci = q->data;
 			
-			if (mix->icon == NULL) {
+			if (ci->icon == NULL) {
 				continue;
 			}
 			
 			if (show == TRUE) {
-				gtk_widget_show (mix->icon);
+				gtk_widget_show (ci->icon);
 			} else {
-				gtk_widget_hide (mix->icon);
+				gtk_widget_hide (ci->icon);
 			}
 		}
 	}
@@ -1538,20 +1529,20 @@ gmix_change_labels (gboolean show)
 {
 	GList *p, *q;
 
-	for (p = mixer_pages; p; p = p->next) {
-		GMixMixerPage *page = p->data;
+	for (p = devices; p; p = p->next) {
+		device_info *di = p->data;
 		
-		for (q = page->items; q; q = q->next) {
-			GMixMixer *mix = q->data;
+		for (q = di->channels; q; q = q->next) {
+			channel_info *ci = q->data;
 
-			if (mix->label == NULL) {
+			if (ci->label == NULL) {
 				continue;
 			}
 			
 			if (show == TRUE) {
-				gtk_widget_show (mix->label);
+				gtk_widget_show (ci->label);
 			} else {
-				gtk_widget_hide (mix->label);
+				gtk_widget_hide (ci->label);
 			}
 		}
 	}

@@ -1,3 +1,33 @@
+2002-03-21 Iain <iain@ximian.com>
+
+	* gmix.c: Remove the mixer pages list; 
+	Comment out the help menu.
+	Add a hashtable to get a device_info from the device name.
+	(main): Realign the header :)
+	(scan_devices): Add the device to the hash table.
+	(device_from_name): Get the device_info given a name.
+	(fill_in_device_gui): Remove the crap GMixerPages stuff. Put all the
+	label and icon data in the channel_info struct.
+	Only create one lock checkbutton.
+	(help_cb): Remove.
+	(gmix_change_icons): Go through the device list instead.
+	(gmix_change_labels): Ditto.
+
+	* prefs.c (labels_retrueve_on_slider): Delete.
+	(reset_labels): Set the label to the default.
+	(labels_retrieve_one_page): delete.
+	(labels_reset_page_cb): Call reset_labels for each treeiter.
+	(labels_destroy_one_page): delete.
+	(make_label_model): Make a model for the treeview.
+	(edited): Set the new text.
+	(labels_destroy_all): Delete.
+	(labels_reset_one_slider): delete.
+	(labels_reset_page_cb): Delete.
+	(labels_changed_cb): Delete.
+	(labels_create_one_slider): Delete.
+	(label_one_device_config): Realign. Use a GtkTreeView instead of an
+	ugly GtkTable inside a scrolled window.
+
 2002-03-13 Theo van Klaveren <t.vanklaveren@student.utwente.nl>
 
 	* gmix.c: Set the minimum volume slider size to 100. Fixes bugzilla

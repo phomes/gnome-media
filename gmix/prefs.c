@@ -137,209 +137,86 @@ static GtkWidget *general_page(void)
 
 /******************** Label Name Page ********************/
 
-/*
- * This routine extracts the label for a single slider of a sound
- * device.  This routine simply extracts the label from the
- * corresponding GtkEntry widget and attaches it to the sound channel
- * data structure.
- *
- * @param entry A pointer to the GtkEntry widget.
- *
- * @param user_data Unused.
- */
-static void labels_retrieve_one_slider(gpointer entry, gpointer user_data)
+static gboolean
+reset_labels (GtkTreeModel *model,
+	      GtkTreePath *path,
+	      GtkTreeIter *iter,
+	      gpointer data)
 {
-	channel_info *channel;
+	char *original;
 
-	channel = gtk_object_get_user_data(GTK_OBJECT(entry));
-	channel->user_title = g_strdup( gtk_entry_get_text (GTK_ENTRY (entry)));
+	gtk_tree_model_get (model, iter, 1, &original, -1);
+	gtk_list_store_set (GTK_LIST_STORE (model), iter, 0, original, -1);
 }
 
-/*
- * This routine extracts all of the labels for a single sound device
- * (a single page in the labels notebook). This routine simply calls a
- * helper routine once for each label in the notebook page.
- *
- * @param page A pointer to the notebook label page for a single sound
- * device.
- *
- * @param user_data Unused.
- */
-static void 
-labels_retrieve_one_page (gpointer page, 
-			  gpointer user_data)
+static void
+labels_reset_page_cb(GtkWidget *button,
+		     GtkTreeModel *model)
 {
-	GSList *entry_list;
+	gtk_tree_model_foreach (model, reset_labels, NULL);
+}
+
+/********************/
+
+static GtkTreeModel *
+make_label_model (GList *in)
+{
+	GList *p;
+	GtkListStore *store;
+	GtkTreeIter iter;
+
+	store = gtk_list_store_new (5, G_TYPE_STRING, /* User title */
+				    G_TYPE_STRING, /* Real title (Not shown) */
+				    G_TYPE_STRING, /* Card name (Not shown */
+				    G_TYPE_BOOLEAN, /* Is fader shown? Not used yet */
+				    G_TYPE_BOOLEAN); /* Editable? */
+	for (p = in; p; p = p->next) {
+		channel_info *channel = (channel_info *) p->data;
+		
+		gtk_list_store_append (store, &iter);
+		gtk_list_store_set (store, &iter,
+				    0, channel->user_title,
+				    1, channel->title,
+				    2, channel->device->info.name,
+				    3, TRUE,
+				    4, TRUE,
+				    -1);
+	}
+
+	return GTK_TREE_MODEL (store);
+}
+
+static void
+edited (GtkCellRendererText *cell,
+	char *path_string,
+	char *new_text,
+	gpointer data)
+{
+	GtkTreeModel *model = GTK_TREE_MODEL (data);
+	GtkTreeIter iter;
+	GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
+	char *device_name, *channel_name;
+	device_info *di;
+	GList *p;
 	
-	entry_list = gtk_object_get_user_data (GTK_OBJECT (((GList *) page)->data));
-	g_assert (entry_list);
-	g_slist_foreach (entry_list, labels_retrieve_one_slider, NULL);
-}
+	gtk_tree_model_get_iter (model, &iter, path);
+	gtk_tree_model_get (GTK_TREE_MODEL (model), &iter, 1, &channel_name, 2, &device_name, -1);
+	di = device_from_name (device_name);
 
-/*
- * This routine extracts all of the labels from the preferences
- * dialog.  Labels are not written into the channel data structures as
- * they are changed to make it easy to cancel the preferences dialog.
- * Only when the apply signal is set are the labels extracted and the
- * channel data structures updated.  This routine simply calls a
- * helper routine once for each page in the label notebook.
- *
- * @param notebook A pointer to the notebook containing all the
- * labels.  Within this notebook is a page of labels for each sound
- * device.
- */
-static void labels_retrieve_all(GtkWidget *notebook)
-{
-	g_list_foreach(GTK_NOTEBOOK(notebook)->children,
-		       labels_retrieve_one_page, NULL);
-}
-
-/********************/
-
-/*
- * This routine destroys all of the non-widget data attached to the
- * label page for a single sound device (a single page in the labels
- * notebook).  Each page has a GSList threading all of the GtkEntry
- * objects on it for easy access.  The list itself must be freed, but
- * all of the list data are widgets that are part of the page layout
- * and will be automatically freed when the page is freed.
- *
- * @param page A pointer to the notebook label page for a single sound
- * device.
- *
- * @param user_data Unused.
- */
-static void labels_destroy_one_page(gpointer page, gpointer user_data)
-{
-	GSList *entry_list;
+	/* Use a hash table? */
+	for (p = di->channels; p; p = p->next) {
+		channel_info *ci = (channel_info *) p->data;
+		if (strcmp (ci->title, channel_name) == 0) {
+			gtk_label_set_text (GTK_LABEL (ci->label), new_text);
+			g_free (ci->user_title);
+			ci->user_title = g_strdup (new_text);
+			break;
+		}
+	}
 	
-	entry_list = gtk_object_get_user_data (GTK_OBJECT (((GList *) page)->data));
+	gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, new_text, -1);
 
-	g_assert(entry_list);
-	g_slist_free(entry_list);
-	/* No need to free the data.  All items are gtk widgets */
-	/* that will be destroyed when the window is destroyed. */
-}
-
-/*
- * This routine destroys all non-widget data attached to the labels
- * page of the preferences dialog.  This routine simply calls a helper
- * routine once for each page in the label notebook.
- *
- * @param notebook A pointer to the notebook containing all the
- * labels.  Within this notebook is a page of labels for each sound
- * device.
- */
-static void labels_destroy_all(GtkWidget *notebook)
-{
-	g_list_foreach(GTK_NOTEBOOK(notebook)->children,
-		       labels_destroy_one_page, NULL);
-}
-
-/********************/
-
-/*
- * This routine resets the label for a single slider of a sound
- * device.  This routine simply extracts the original label from the
- * sound channel data structure and overwrites anything in the
- * corresponding GtkEntry widget.  Since all the data is kept in the
- * GtkEntry widgets until OK or Apply is clicked, this is all that's
- * necessary.
- *
- * @param entry A pointer to the GtkEntry widget.
- *
- * @param user_data Unused.
- */
-static void labels_reset_one_slider(gpointer entry, gpointer user_data)
-{
-	channel_info *channel;
-
-	channel = gtk_object_get_user_data(GTK_OBJECT(entry));
-	gtk_entry_set_text(GTK_ENTRY(entry), channel->title);
-}
-
-/*
- * This routine resets all of the labels for a single sound device (a
- * single page in the labels notebook).  This routine simply calls a
- * helper routine once for each label in the notebook page.
- *
- * @param notebook A pointer to the notebook containing all the
- * labels.  Within this notebook is a page of labels for each sound
- * device.
- *
- * @param user_data Unused.
- */
-static void labels_reset_page_cb(GtkWidget *button, gpointer page)
-{
-	GSList *entry_list;
-
-	g_assert(page);
-	entry_list = gtk_object_get_user_data(GTK_OBJECT(page));
-	g_assert(entry_list);
-	g_slist_foreach(entry_list, labels_reset_one_slider, NULL);
-}
-
-/********************/
-
-/*
- * This routine sets the property box "changed" flag any time a label
- * is edited.  This routine ignores all its arguments and simply grabs
- * the global variable for the preferences window and goes for it.
- *
- * @param entry Unused
- *
- * @param user_data Unused.
- */
-static void labels_changed_cb(GtkWidget *entry, gboolean *user_data)
-{
-	gnome_property_box_changed(GNOME_PROPERTY_BOX(configwin));
-}
-
-/*
- * This routine creates the label for a single slider of a sound
- * device.  This routine creates one row in a table, adding a single
- * label containing the fixed system value, and an entry box
- * containing the current label.  It also strings the entry widget
- * onto a list for easy access later.
- *
- * @param channel_p A pointer to the channel information for a single
- * slider of a sound device.
- *
- * @param user_data A pointer to arguments passed in from the calling
- * routine.  These arguments contain pointers to the table, the list
- * of entries, and the current row number.
- *
- * Note: This table could have been built as a vbox containing one
- * hbox per row, where the hbox contained the label and the entry.  I
- * wasn't sure that all the labels would line up with this method and
- * I knew that they would line up with a table, this the table.  Its a
- * little harder having to pass in the row, but it looks good.
- */
-static void labels_create_one_slider(gpointer channel_p, gpointer user_data)
-{
-	channel_info *channel = (channel_info *)channel_p;
-	label_create_args_t *args = user_data;
-	GtkWidget *label, *entry;
-	gint cc;
-
-	cc=channel->channel;
-	if (!(channel->device->devmask & (1<<cc)))
-		return;
-
-	label = gtk_label_new(channel->title);
-	gtk_table_attach(GTK_TABLE(args->table), label,
-			 0, 1, args->row, args->row+1, LABEL_TABLE_OPTS);
-
-	entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(entry),
-			   channel->user_title);
-	gtk_table_attach(GTK_TABLE(args->table), entry,
-			 1, 2, args->row, args->row+1, LABEL_TABLE_OPTS);
-	gtk_signal_connect(GTK_OBJECT(entry), "changed",
-			   GTK_SIGNAL_FUNC(labels_changed_cb), NULL);
-	gtk_object_set_user_data(GTK_OBJECT(entry), channel);
-	args->entry_list = g_slist_prepend(args->entry_list, entry);
-	args->row++;
+	gtk_tree_path_free (path);
 }
 
 /*
@@ -359,12 +236,17 @@ static void labels_create_one_slider(gpointer channel_p, gpointer user_data)
  * @param parent A pointer to the parent notebook that contains a
  * single page for each sound device.
  */
-static void label_one_device_config(gpointer device, gpointer parent)
+static void
+label_one_device_config (gpointer device,
+			 gpointer parent)
 {
-	GtkWidget *ubervbox, *label, *table, *bbox, *button, *scrlwin;
+	GtkWidget *ubervbox, *label, *treeview, *bbox, *button, *scrlwin;
 	GtkWidget *topvbox;
-	device_info *info = (device_info *)device;
-	label_create_args_t args;
+	GtkTreeModel *model;
+	GtkCellRenderer *cell;
+	GtkTreeViewColumn *col;
+	
+	device_info *info = (device_info *) device;
 
 	/* The page: A scrolled viewport (and a label) */
 	label = gtk_label_new(info->info.name);
@@ -376,29 +258,29 @@ static void label_one_device_config(gpointer device, gpointer parent)
 	gtk_box_pack_start (GTK_BOX (topvbox), scrlwin, TRUE, TRUE, 0);
 	
 	gtk_notebook_append_page(GTK_NOTEBOOK(parent), topvbox, label);
+
+	model = make_label_model (info->channels);
+	treeview = gtk_tree_view_new_with_model (model);
+
+	cell = gtk_cell_renderer_text_new ();
+	g_signal_connect (G_OBJECT (cell), "edited",
+			  G_CALLBACK (edited), model);
+	col = gtk_tree_view_column_new_with_attributes (_("Mixer label"), cell,
+							"text", 0, NULL);
+	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview),
+						     -1, _("Mixer label"),
+						     cell,
+						     "text", 0,
+						     "editable", 3,
+						     NULL);
+
+	gtk_container_add (GTK_CONTAINER (scrlwin), treeview);
 	
-	ubervbox = gtk_vbox_new(FALSE, 5);
-	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrlwin),
-					      ubervbox);
-
-	/* Put a table into the window.  This will expand dynamically
-	  if there are more than eight rows for any given sound card. */
-	table = gtk_table_new(2, 8, FALSE);
-	gtk_container_add(GTK_CONTAINER(ubervbox), table);
-
-	/* Fill the table. */
-	args.row = 0;
-	args.table = table;
-	args.entry_list = NULL;
-	g_list_foreach(info->channels, labels_create_one_slider, &args);
-	gtk_object_set_user_data(GTK_OBJECT(scrlwin), args.entry_list);
-
 	/* Add the label reset button */
-	button = gtk_button_new_with_label(_("Reset labels to their defaults"));
+	button = gtk_button_new_with_label (_("Reset labels to their defaults"));
 	gtk_box_pack_start (GTK_BOX(topvbox), button, FALSE, FALSE, 0);
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-			   GTK_SIGNAL_FUNC(labels_reset_page_cb), scrlwin);
-
+	g_signal_connect (G_OBJECT(button), "clicked",
+			  G_CALLBACK (labels_reset_page_cb), model);
 }
 
 /*
