@@ -266,7 +266,7 @@ void tcd_recalculate_fake(cd_struct *cd, gint abs_pos, gint track)
 }
 
 /* finds the track the current second in teh album is in */
-inline int tcd_find_track(cd_struct *cd, gint abs_pos)
+int tcd_find_track(cd_struct *cd, gint abs_pos)
 {
 	int t;
 	
@@ -277,6 +277,7 @@ inline int tcd_find_track(cd_struct *cd, gint abs_pos)
 		else
 			return t-1;
 	}
+	return t;
 }
 
 void tcd_gettime( cd_struct *cd )

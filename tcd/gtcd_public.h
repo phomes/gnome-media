@@ -19,6 +19,7 @@ void edit_window(GtkWidget *widget, gpointer data);
 void cddb_status_dialog(GtkWidget *widget, gpointer data);
 void update_editor(void);
 void help(GtkWidget *widget, gpointer data);
+void adjust_status_size(void);
 
 GnomeClient *new_client(void);
 void session_die (gpointer client_data);

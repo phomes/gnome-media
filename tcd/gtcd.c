@@ -133,7 +133,6 @@ void reload_info(int signal);
 void exit_action(void);
 void start_action(void);
 void setup_keys(void);
-void adjust_status_size(void);
 
 /* functions */
 gint roll_timer(gpointer *data)

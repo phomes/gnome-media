@@ -26,7 +26,7 @@
 #define TCD_CDROM_H
 
 #include <sys/types.h>
-
+#include <glib.h>
 #if !defined(linux) && !defined(sun) && !defined(__sun__)
 #error TCD only builds on linux and Solaris/SunOs
 #endif
@@ -203,6 +203,8 @@ void    tcd_recalculate(cd_struct *cd);
 int 	tcd_set_volume(cd_struct *cd, int volume);
 int 	tcd_get_volume(cd_struct *cd);
 void 	parse_dtitle(cd_struct *cd);
+int 	tcd_find_track(cd_struct *cd, gint abs_pos);
+void	tcd_recalculate_fake(cd_struct *cd, gint abs_pos, gint track);
 
 /* Some constants */
 enum { STOPPED=0, PLAYING, PAUSED, NODISC, STATUS_END } DriveStatus;

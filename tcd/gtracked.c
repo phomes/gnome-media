@@ -5,6 +5,7 @@
 #include "linux-cdrom.h"
 
 #include "gtcd_public.h"
+#include "cddb.h"
 
 GtkWidget *trwin;
 static gint signal_id;
