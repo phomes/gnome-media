@@ -1,5 +1,19 @@
 2001-11-17  Iain Holmes  <iain@ximian.com>
 
+	* cddb-slave-client.c: Replace CORBA_Object with GNOME_Media_CDDBSlave2
+	(finalize): Destroy the objref if it is there.
+	(cddb_slave_client_get_type): Replace GtkObjectInitFunc with
+	GInstanceInitFunc.
+	(cddb_slave_client_construct): Remove the #warning.
+
+	* cddb-slave-client.h: Remove the bonobo-object-client.h include, add
+	gobject.h
+	Replace all the GTK_CHECK macros with G_TYPE ones.
+	Replace BonoboObjectClient with GObject.
+	Replace GtkType with GType.
+
+2001-11-17  Iain Holmes  <iain@ximian.com>
+
 	* cddb-slave.c: Remove gtk.h include
 
 	* cddb-slave.h: Replace GtkType with GType and GTK_CHECK macros with

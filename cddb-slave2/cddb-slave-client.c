@@ -26,7 +26,7 @@
 static GObjectClass *parent_class = NULL;
 
 struct _CDDBSlaveClientPrivate {
-	CORBA_Object objref;
+	GNOME_Media_CDDBSlave2 objref;
 };
 
 static void
@@ -37,6 +37,11 @@ finalize (GObject *object)
 	client = CDDB_SLAVE_CLIENT (object);
 	if (client->priv == NULL)
 		return;
+
+	if (client->priv->objref != CORBA_OBJECT_NIL) {
+		bonobo_object_release_unref (client->priv->objref, NULL);
+		client->priv->objref = CORBA_OBJECT_NIL;
+	}
 
 	g_free (client->priv);
 	client->priv = NULL;
@@ -72,7 +77,7 @@ cddb_slave_client_get_type (void)
 			sizeof (CDDBSlaveClientClass),
 			NULL, NULL, (GClassInitFunc) class_init, NULL, NULL,
 			sizeof (CDDBSlaveClient), 0,
-			(GtkObjectInitFunc) init,
+			(GInstanceInitFunc) init,
 		};
 
 		client_type = g_type_register_static (PARENT_TYPE, "CDDBSlaveClient", &client_info, 0);
@@ -97,7 +102,6 @@ cddb_slave_client_construct (CDDBSlaveClient *client,
 	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
 	g_return_if_fail (corba_object != CORBA_OBJECT_NIL);
 
-#warning ASK MICHAEL MEEKS ABOUT THIS
 	client->priv->objref = corba_object;
 }
 
