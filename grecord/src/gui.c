@@ -306,7 +306,7 @@ create_grecord_window (void)
 	
 	frame1 = gtk_frame_new (_("Info"));
 	gtk_widget_show (frame1);
-	gtk_box_pack_start (GTK_BOX (vbox3), frame1, FALSE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox3), frame1, TRUE, TRUE, 0);
 	gtk_widget_set_usize (frame1, -2, 70);
 	gtk_container_set_border_width (GTK_CONTAINER (frame1), 10);
 	
