@@ -1,5 +1,12 @@
 1999-04-29  James Henstridge  <james@daa.com.au>
 
+	* gtracked.c: many changes to allow editing the extra information
+	fields for the disc and track.  Now not only does gtcd not destroy
+	this information, it allows you to edit it.  The dialog is about
+	40% larger as a result, but still should fit on a 640x480 screen.
+	I have also added a submit button, for the submit code I have
+	almost finished.
+
 	* cddb.c (tcd_call_cddb_submit): new function to call cddbsubmit.
 
 	* cddb.c (tcd_readcddb): added code to read extended data from the
