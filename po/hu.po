@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS\n"
-"POT-Creation-Date: 2002-12-12 15:19+0100\n"
-"PO-Revision-Date: 2002-12-12 15:55+0100\n"
+"POT-Creation-Date: 2002-12-19 11:13+0100\n"
+"PO-Revision-Date: 2002-12-19 11:15+0100\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -891,7 +891,7 @@ msgstr "Rádió"
 msgid "Phone"
 msgstr "Fejhallgató"
 
-#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1090
+#: gmix/device_labels_alsa.h:18 grecord/src/gui.c:1087
 msgid "Mono"
 msgstr "Mono"
 
@@ -1090,7 +1090,7 @@ msgid "Mixer device to use"
 msgstr "A használandó keverőeszköz"
 
 #: gmix/gmix.c:327
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Volume control is unable to run correctly.\n"
 "\n"
@@ -1100,10 +1100,14 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
-"Nem sikerült megnyitni az hangeszközt.\n"
-"Ellenőrizd, hogy van-e jogod megnyitni a /dev/mixert-t,\n"
+"A Hangerőszabályzó nem képes helyesen működni.\n"
+"\n"
+"Nem sikerült megnyitni a hangeszközt: '%s'.\n"
+"Ellenőrizd, hogy van-e jogod megnyitni a '%s'-t,\n"
 "és győződj meg arról, hogy a hang támogatása bele van \n"
-"fordítva a rendszermagba."
+"fordítva a rendszermagba.\n"
+"\n"
+"A Kilépés gombbal kiléphetsz a Hangerőszabályzóból."
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1113,6 +1117,11 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"A Hangerőszabályzó nem képes helyesen működni.\n"
+"\n"
+"A Részletek gomb megnyomásával megkaphatod a hiba okait.\n"
+"\n"
+"A Kilépés gombbal kiléphetsz a Hangerőszabályzóból."
 
 #: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 msgid "_Details"
@@ -1183,15 +1192,18 @@ msgstr "Felv."
 msgid "%s Record"
 msgstr "%s Felvétel"
 
-#: gmix/gmix.c:1342 gmix/gmix.c:1748
-#: gmix/gnome-volume-control.desktop.in.in.h:2
+#: gmix/gmix.c:1342 gmix/gnome-volume-control.desktop.in.in.h:2
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:2
 msgid "Volume Control"
 msgstr "Hangerőszabályozó"
 
+#: gmix/gmix.c:1748
+msgid "GNOME Volume Control"
+msgstr "GNOME Hangerőszabályozó"
+
 #: gmix/gmix.c:1751
 msgid "A mixer for sound devices"
-msgstr "Ez egy keverőpult hangeszközökhöz."
+msgstr "Keverőpult hangeszközökhöz"
 
 #: gmix/gnome-volume-control.desktop.in.in.h:1
 #: gnome-volume-control/gnome-volume-control.desktop.in.h:1
@@ -1283,7 +1295,7 @@ msgstr "Ismeretlen előadó"
 msgid "Unknown Album"
 msgstr "Ismeretlen album"
 
-#: gnome-cd/callbacks.c:534 grecord/src/gui.c:827
+#: gnome-cd/callbacks.c:534 grecord/src/gui.c:824
 msgid "Playing"
 msgstr "Lejátszás"
 
@@ -1331,8 +1343,8 @@ msgid "Drive Error"
 msgstr "Meghajtóhiba"
 
 #: gnome-cd/callbacks.c:825
-msgid "A CD player"
-msgstr "CD-lejátszó"
+msgid "A CD player for GNOME"
+msgstr "CD-lejátszó program a GNOME-hoz"
 
 #: gnome-cd/cdrom.c:367
 #, c-format
@@ -1546,22 +1558,28 @@ msgstr "CD-tálca bezárása indításkor"
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr ""
+"Annak a CD-meghajtónak az elérési útja, amelyet a CD-lejátszó CD-lejátszásra "
+"használ"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
 msgstr ""
+"Milyen műveletet hajtson végre a CD-lejátszó kilépéskor? 0 = Semmi, 1 = "
+"Lejátszás elindítása, 2 = Lejátszás leállítása"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
 msgstr ""
+"Milyen műveletet hajtson végre a CD-lejátszó indításkor? 0 = Semmi, 1 = "
+"Lejátszás elindítása, 2 = Lejátszás leállítása"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
-msgstr ""
+msgstr "Milyen témával jelenjen meg a CD-lejátszó?"
 
 #: gnome-cd/preferences.c:83
 #, c-format
@@ -1599,7 +1617,7 @@ msgstr "_Ne csináljon semmit"
 
 #: gnome-cd/preferences.c:890
 msgid "Do nothing when CD Player starts"
-msgstr "Ne tegyen semmit, amikor a Gnome CD-lejátszó elindul"
+msgstr "Ne tegyen semmit, amikor a GNOME CD-lejátszó elindul"
 
 #: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
@@ -1855,7 +1873,7 @@ msgstr "óra"
 
 #: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
 #: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
-#: grecord/src/gui.c:756
+#: grecord/src/gui.c:753
 msgid "minutes"
 msgstr "perc"
 
@@ -1967,8 +1985,8 @@ msgid "Bit rate:"
 msgstr "Bitráta:"
 
 #: grecord/src/gsr-window.c:982
-msgid "A sound recorder program"
-msgstr "Hangrögzítő program"
+msgid "A sound recorder for GNOME"
+msgstr "Hangrögzítő program a GNOME-hoz"
 
 #: grecord/src/gsr-window.c:1503 grecord/src/gui.c:155
 #, c-format
@@ -2081,13 +2099,7 @@ msgstr "'%s' fájl nem létezik; alapértelmezés használata."
 msgid "File '%s' isn't a supported soundfile."
 msgstr "%s nem támogatott hangfájl."
 
-#. if your charset allows it, replace the "e" of "Hyden"
-#. *  by an "eacute" (U00E9)
-#: grecord/src/gui.c:420
-msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
-msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
-
-#: grecord/src/gui.c:427
+#: grecord/src/gui.c:425
 msgid "translator_credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -2095,17 +2107,11 @@ msgstr ""
 "Mik <mukka@freemail.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: grecord/src/gui.c:431
+#: grecord/src/gui.c:429
 msgid "GNOME Sound Recorder"
 msgstr "GNOME Hangrögzítő"
 
-#. if your charset allows it, replace the
-#. "e" of Hyden by an "eacute" (U00E9)
-#: grecord/src/gui.c:434
-msgid "(C) 2000 Andreas Hyden"
-msgstr "(C)  2000 Andreas Hydén"
-
-#: grecord/src/gui.c:435
+#: grecord/src/gui.c:431
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -2113,103 +2119,103 @@ msgstr ""
 "Egyszerű hangrögzítő és lejátszó GNOME-hoz.\n"
 "A macskámnak, Malte-nak."
 
-#: grecord/src/gui.c:703
+#: grecord/src/gui.c:700
 msgid "Gnome Sound Recorder Preferences"
 msgstr "GNOME Hangrögzítő beállítások"
 
-#: grecord/src/gui.c:710
+#: grecord/src/gui.c:707
 msgid "Sound Recorder Preferences"
 msgstr "Hangrögzítő beállítások"
 
-#: grecord/src/gui.c:722
+#: grecord/src/gui.c:719
 msgid "Recording"
 msgstr "Felvétel"
 
-#: grecord/src/gui.c:727
+#: grecord/src/gui.c:724
 msgid "Time"
 msgstr "Idő"
 
-#: grecord/src/gui.c:740
+#: grecord/src/gui.c:737
 msgid "_Recording timeout: "
 msgstr "_Felvétel időtúllépése: "
 
-#: grecord/src/gui.c:763
+#: grecord/src/gui.c:760
 msgid "_Stop recording on timeout"
 msgstr "Felvétel _megszakítása időtúllépésnél"
 
-#: grecord/src/gui.c:771
+#: grecord/src/gui.c:768
 msgid "_Open save dialog when recording is finished"
 msgstr "_Mentés felkínálása, amikor véget ér a felvétel"
 
-#: grecord/src/gui.c:778
+#: grecord/src/gui.c:775
 msgid "Size"
 msgstr "Méret"
 
-#: grecord/src/gui.c:787
+#: grecord/src/gui.c:784
 msgid "Show warning _message if size (MB) of sample becomes bigger than:"
 msgstr "Figyelmeztessen, ha a _felvétel mérete (MB-ban) nagyobb mint:"
 
-#: grecord/src/gui.c:805
+#: grecord/src/gui.c:802
 msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
 msgstr "Felvétel vége, ha a minta mérete _nagyobb mint:"
 
-#: grecord/src/gui.c:832
+#: grecord/src/gui.c:829
 msgid "Repetition"
 msgstr "Ismétlés"
 
-#: grecord/src/gui.c:842
+#: grecord/src/gui.c:839
 msgid "_Repeat the sound"
 msgstr "_Ismételje a hangot"
 
-#: grecord/src/gui.c:849
+#: grecord/src/gui.c:846
 msgid "Play the sound _once only."
 msgstr "Csak _egyszer játssza le a hangot"
 
-#: grecord/src/gui.c:855
+#: grecord/src/gui.c:852
 msgid "Repeat _forever"
 msgstr "Ismételje _mindörökké"
 
-#: grecord/src/gui.c:866
+#: grecord/src/gui.c:863
 msgid "_Number of times:"
 msgstr "Ismétlés s_záma:"
 
-#: grecord/src/gui.c:888
+#: grecord/src/gui.c:885
 msgid "Paths"
 msgstr "Útvonalak"
 
-#: grecord/src/gui.c:893
+#: grecord/src/gui.c:890
 msgid "Program files"
 msgstr "Programfájlok"
 
-#: grecord/src/gui.c:906
+#: grecord/src/gui.c:903
 msgid "_Path to sox:"
 msgstr "Sox elérési ú_tvonala:"
 
-#: grecord/src/gui.c:920
+#: grecord/src/gui.c:917
 msgid "_Apply"
 msgstr "_Alkalmaz"
 
-#: grecord/src/gui.c:929
+#: grecord/src/gui.c:926
 msgid "Folders"
 msgstr "Mappák"
 
-#: grecord/src/gui.c:942
+#: grecord/src/gui.c:939
 msgid "_Temporary folder:"
 msgstr "_Átmeneti mappa:"
 
-#: grecord/src/gui.c:956
+#: grecord/src/gui.c:953
 msgid "Apply"
 msgstr "Alkalmaz"
 
-#: grecord/src/gui.c:968
+#: grecord/src/gui.c:965
 msgid "Sound"
 msgstr "Hang"
 
-#: grecord/src/gui.c:973
+#: grecord/src/gui.c:970
 msgid "Sound options"
 msgstr "Hang beállításai"
 
-#: grecord/src/gui.c:982
+#: grecord/src/gui.c:979
 msgid ""
 "Note: These options only take effect whenever a new sound sample\n"
 "is created. They do not operate on an existing sample."
@@ -2217,36 +2223,36 @@ msgstr ""
 "Megjegyzés: ezek a beállítások csak az újonnan létrehozott hangmintákon "
 "lépnek érvénybe. Nem változtatják meg az aktuális mintát."
 
-#: grecord/src/gui.c:995
+#: grecord/src/gui.c:992
 msgid "Audio format:"
 msgstr "Hangformátum:"
 
-#: grecord/src/gui.c:1004
+#: grecord/src/gui.c:1001
 msgid "8 _bit PCM"
 msgstr "8 _bit PCM"
 
-#: grecord/src/gui.c:1010
+#: grecord/src/gui.c:1007
 msgid "16 b_it PCM"
 msgstr "16 b_it PCM"
 
 #. If only combos didn't suck!
-#: grecord/src/gui.c:1024
+#: grecord/src/gui.c:1021
 msgid "S_ample rate:"
 msgstr "Minta_vételezés:"
 
-#: grecord/src/gui.c:1055
+#: grecord/src/gui.c:1052
 msgid "Mono or Stereo:"
 msgstr "Monó vagy sztereó:"
 
-#: grecord/src/gui.c:1064
+#: grecord/src/gui.c:1061
 msgid "_Mono"
 msgstr "_Monó"
 
-#: grecord/src/gui.c:1070
+#: grecord/src/gui.c:1067
 msgid "_Stereo"
 msgstr "_Sztereó"
 
-#: grecord/src/gui.c:1091
+#: grecord/src/gui.c:1088
 msgid "Stereo"
 msgstr "Sztereó"
 
@@ -2432,12 +2438,12 @@ msgid "_Save"
 msgstr "_Mentés"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:249
+#: gstreamer-properties/gstreamer-properties.c:263
 msgid "Failure instantiating main window"
 msgstr "Nem sikerült létrehozni a főablakot"
 
 #. Fatal error
-#: gstreamer-properties/gstreamer-properties.c:289
+#: gstreamer-properties/gstreamer-properties.c:303
 #, c-format
 msgid "Could not load UI resource %s"
 msgstr "Nem sikerült betölteni a felhasználói felületet: %s"
@@ -2582,3 +2588,24 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
+
+#~ msgid "Gnome Volume Control"
+#~ msgstr "GNOME Hangerőszabályozó"
+
+#~ msgid "Copyright (C) 2001, 2002"
+#~ msgstr "Copyright © 2001, 2002"
+
+#~ msgid "A GNOME cd player"
+#~ msgstr "GNOME CD-lejátszó"
+
+#~ msgid "Gnome CD Player"
+#~ msgstr "GNOME CD-lejátszó"
+
+#~ msgid "Andreas Hyden <a.hyden@cyberpoint.se>"
+#~ msgstr "Andreas Hydén <a.hyden@cyberpoint.se>"
+
+#~ msgid "Gnome Sound Recorder"
+#~ msgstr "GNOME Hangrögzítő"
+
+#~ msgid "Copyright (C)  2000 Andreas Hyden"
+#~ msgstr "Copyright © 2000 Andreas Hydén"
