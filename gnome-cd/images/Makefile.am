@@ -5,20 +5,25 @@ pixmapdir = $(datadir)/pixmaps/gnome-cd
 BITMAPS = 		\
 	    a-eject.png	\
 	    a-eject-pressed.png	\
+	    a-eject-menu.png	\
 	    a-first.png	\
 	    a-first-pressed.png	\
+	    a-first-menu.png	\
 	    a-fwd.png	\
 	    a-fwd-pressed.png	\
 	    a-last.png	\
 	    a-last-pressed.png	\
+	    a-last-menu.png	\
 	    a-pause.png	\
 	    a-pause-pressed.png	\
 	    a-play.png	\
 	    a-play-pressed.png	\
+	    a-play-menu.png	\
 	    a-rwnd.png	\
 	    a-rwnd-pressed.png	\
 	    a-stop.png	\
 	    a-stop-pressed.png	\
+	    a-stop-menu.png	\
 	back.xpm	\
 	cdrom.xpm	\
 	cd.png		\

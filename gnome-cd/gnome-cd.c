@@ -225,12 +225,12 @@ struct _MenuItem {
 };
 
 struct _MenuItem menuitems[] = {
-	{N_("P_revious track"), NULL, G_CALLBACK (back_cb)},
-	{N_("_Stop"), NULL, G_CALLBACK (stop_cb)},
-	{N_("_Play / Pause"), NULL, G_CALLBACK (play_cb)},
-	{N_("_Next track"), NULL, G_CALLBACK (next_cb)},
-	{N_("_Eject disc"), NULL, G_CALLBACK (eject_cb)},
-	{N_("_About Gnome-CD"), NULL, G_CALLBACK (about_cb)},
+	{N_("P_revious track"), "gnome-cd/a-first-menu.png", G_CALLBACK (back_cb)},
+	{N_("_Stop"), "gnome-cd/a-stop-menu.png", G_CALLBACK (stop_cb)},
+	{N_("_Play / Pause"), "gnome-cd/a-play-menu.png", G_CALLBACK (play_cb)},
+	{N_("_Next track"), "gnome-cd/a-last-menu.png", G_CALLBACK (next_cb)},
+	{N_("_Eject disc"), "gnome-cd/a-eject-menu.png", G_CALLBACK (eject_cb)},
+	{N_("_About Gnome-CD"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{NULL, NULL, NULL}
 };
 
@@ -242,9 +242,34 @@ make_popup_menu (GnomeCD *gcd)
 
 	menu = gtk_menu_new ();
 	for (i = 0; menuitems[i].name != NULL; i++) {
-		GtkWidget *item;
+		GtkWidget *item, *image;
 
 		item = gtk_image_menu_item_new_with_mnemonic (menuitems[i].name);
+		if (menuitems[i].icon != NULL) {
+			char *ext = strrchr (menuitems[i].icon, '.');
+
+			if (ext == NULL) {
+				image = gtk_image_new_from_stock (menuitems[i].icon,
+								  GTK_ICON_SIZE_MENU);
+			} else {
+				char *fullname;
+
+				fullname = gnome_pixmap_file (menuitems[i].icon);
+				if (fullname != NULL) {
+					image = gtk_image_new_from_file (fullname);
+				} else {
+					image = NULL;
+				}
+				
+				g_free (fullname);
+			}
+
+			if (image != NULL) {
+				gtk_widget_show (image);
+				gtk_image_menu_item_set_image (item, image);
+			}
+		}
+				
 		gtk_widget_show (item);
 
 		gtk_menu_append (GTK_MENU (menu), item);
