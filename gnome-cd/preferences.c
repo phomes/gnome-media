@@ -377,7 +377,7 @@ apply_clicked_cb (GtkWidget *apply,
 		return;
 
 	if (pd->gcd->preferences->device &&
-	    !strcmp (new_device, pd->gcd->preferences->device) == 0)
+	    strcmp (new_device, pd->gcd->preferences->device) == 0)
 		return;
 	
 	gconf_client_set_string (client, "/apps/gnome-cd/device", new_device, NULL);
