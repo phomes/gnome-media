@@ -18,17 +18,28 @@ int check_response(char *buf);
 void disconnect(int fd);
 static char *if_strtok(char *p, const char *p2);
 char *get_file_name(char *discid);
+void getusername_safe(char *buf, int len);
+void gethostname_safe(char *buf, int len);
 
 int main(int argc, char *argv[])
 {
     char req[512], client[512];
+    char hostname[512], username[512];
     char client_ver[64], client_name[64];
     int pid;
-    
+
+    fprintf(stderr, "This program shouldn't be executed from the command line.\n");
+    fprintf(stderr, "Unless you really know what you are doing, press CTRL-C now.\n");
+
     fgets(req, 511, stdin);	/* grab the cddb request */
     fgets(client, 511, stdin);	/* and then the client info */
     
     sscanf(client, "client %s %s %d\n", client_name, client_ver, &pid);
+
+    gethostname_safe(hostname, 512);
+    getusername_safe(username, 512);
+
+    g_print("%s %s\n", hostname, username);
     
     if(fork()==0)
     {
@@ -51,7 +62,9 @@ int main(int argc, char *argv[])
 	}
 
 	/* send handshake */
-	g_snprintf(buf, 511, "cddb hello timg foozbar.org %s %s\n", client_name, client_ver);
+	g_snprintf(buf, 511, "cddb hello %s %s %s %s\n", 
+		   username, hostname, 
+		   client_name, client_ver);
 	send(fd, buf, strlen(buf), 0);
 
 	/* receive handshake result */
@@ -92,7 +105,6 @@ int check_response(char *buf)
 
     if(sscanf(buf, "%d", &code) != 1)
 	return -1;
-
     
     return code;
 }
@@ -207,3 +219,19 @@ char *get_file_name(char *discid)
     return fname;
 }
 
+void gethostname_safe(char *buf, int len)
+{
+    gethostname(buf, 512);
+    if(!buf || (strcmp(buf, "")==0))
+	strncpy(buf, "generic", len);
+}
+
+void getusername_safe(char *buf, int len)
+{
+    struct passwd *pw;
+    pw = getpwuid(getuid());
+    if(pw && (strcmp(pw->pw_name, "")!=0))
+	strncpy(buf, pw->pw_name, len);
+    else
+	strncpy(buf, "user", len);
+}
