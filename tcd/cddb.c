@@ -162,7 +162,7 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
     int i, l;
     FILE *fp;
     
-    sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
+    blen-=sprintf( buf, "cddb query %08lx %d ", cd->cddb_id, cd->last_t);
     for( i = cd->first_t; i <= cd->last_t; i++ )
     {
 	int min, sec;
@@ -172,7 +172,7 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
         
 	l=sprintf( tmp, "%u ", calc_offset(min,sec,cd->trk[i].toc.cdte_addr.msf.frame));
 	
-	if(blen>=l)
+	if(blen>l)
 	{
 	    strcat( buf, tmp );
 	    blen-=l;
@@ -181,7 +181,7 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
     l=sprintf( tmp, "%i\n",
 	       (cd->trk[cd->last_t+1].toc.cdte_addr.msf.minute*60)
 	       +(cd->trk[cd->last_t+1].toc.cdte_addr.msf.second) );
-    if(blen>=l)
+    if(blen>l)
 	strcat( buf,tmp );
 
     /* ok, buf now holds our query. */

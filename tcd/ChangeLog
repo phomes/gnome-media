@@ -1,3 +1,10 @@
+1998-12-16  Scott D. Heavner  <sdh@po.cwru.edu>
+
+	* cddb.c (tcd_call_cddb_slave): Decrement blen on 1st sprintf.
+	Change some >= to > to account for trailing 0 added by 1st
+	sprintf.  Should probably modify size of buf to allow for disc's
+	with 99 tracks!
+
 1998-12-13  Tim P. Gerla  <timg@means.net>
 
 	* gtracked.c (edit_window): Select a track on open so that the user isn't confused.
