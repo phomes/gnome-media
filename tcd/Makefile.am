@@ -19,7 +19,6 @@ gtcd_SOURCES = 		\
 	gtracked.c 	\
 	cddb.h 		\
 	gtracked.h 	\
-	tooltips.h	\
 	prefs.c		\
 	prefs.h		\
 	led.h		\

@@ -50,7 +50,6 @@
 
 #include "gtracked.h"
 #include "prefs.h"
-#include "tooltips.h"
 #include "led.h"
 #include "callbacks.h"
 #include "gtcd_public.h"
@@ -285,8 +284,8 @@ GtkWidget *make_small_buttons()
     
     table = gtk_table_new(TRUE, 6,1);
 
-    b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, NULL, TT_TRACKED);
-    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, prefs_cb, NULL, TT_PROPS);
+    b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, NULL, _("Open track editor"));
+    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, prefs_cb, NULL, _("Preferences"));
     b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, NULL, _("Quit"));
 
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
@@ -308,20 +307,20 @@ GtkWidget* create_buttons(void)
 
 /* TOP ROW */ 
      
-    playbutton = make_button_with_pixmap("play", play_cb, NULL, TT_PLAY);
+    playbutton = make_button_with_pixmap("play", play_cb, NULL, _("Play"));
     status_changed();
     b1 = playbutton;
     
-    b2 = make_button_with_pixmap( "stop", stop_cb, NULL, TT_STOP );
-    b3 = make_button_with_pixmap( "eject", eject_cb, NULL, TT_EJECT );
+    b2 = make_button_with_pixmap( "stop", stop_cb, NULL, _("Stop") );
+    b3 = make_button_with_pixmap( "eject", eject_cb, NULL, _("Eject") );
     
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 1, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b2, 1, 2, 0, 1);
     gtk_table_attach_defaults(GTK_TABLE(table), b3, 2, 3, 0, 1);
 
 /* MIDDLE ROW */
-    rw = make_button_with_pixmap("rw", NULL, NULL, TT_REWIND);
-    ff = make_button_with_pixmap("ff", NULL, NULL, TT_FF);
+    rw = make_button_with_pixmap("rw", NULL, NULL, _("Skip backwards"));
+    ff = make_button_with_pixmap("ff", NULL, NULL, _("Skip forwards"));
 
     gtk_widget_set_events(rw, GDK_BUTTON_PRESS_MASK
 			  | GDK_BUTTON_RELEASE_MASK);
@@ -746,8 +745,6 @@ void setup_time_display(GtkWidget *table)
 			(GtkSignalFunc)status_click_event, NULL);
     gtk_widget_set_usize( status_area, 102, 60 );
 
-    gtk_tooltips_set_tip( tooltips, status_area, TT_TIME, "" );
-        
     gtk_widget_set_events (status_area, GDK_EXPOSURE_MASK
 			   | GDK_LEAVE_NOTIFY_MASK
 			   | GDK_BUTTON_PRESS_MASK
@@ -894,23 +891,3 @@ int main (int argc, char *argv[])
     gdk_gc_destroy(gc);
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
