@@ -280,6 +280,9 @@ do_goodbye_response (PropertyDialog *pd,
 	gnet_tcp_socket_unref (pd->socket);
 	g_io_channel_unref (pd->iochannel);
 
+	pd->mode = CONNECTION_MODE_NEED_HELLO;
+	gtk_widget_set_sensitive (pd->update, TRUE);
+	
 	return FALSE;
 }
 
@@ -534,6 +537,7 @@ read_from_server (GIOChannel *iochannel,
 	return TRUE;
 
  error:
+	gtk_widget_set_sensitive (pd->update, TRUE);
 	return FALSE;
 }
 
@@ -549,6 +553,7 @@ open_cb (GTcpSocket *sock,
 	pd->socket = sock;
 	if (status != GTCP_SOCKET_CONNECT_ASYNC_STATUS_OK) {
 		g_warning ("Error updating server list");
+		gtk_widget_set_sensitive (pd->update, TRUE);
 		return;
 	}
 
@@ -565,6 +570,7 @@ update_clicked (GtkButton *update,
 {
 	GTcpSocketConnectAsyncID *sock;
 
+	gtk_widget_set_sensitive (pd->update, FALSE);
 	/* Should use the gconf values */
 	sock = gnet_tcp_socket_connect_async ("freedb.freedb.org", 888,
 					      open_cb, pd);

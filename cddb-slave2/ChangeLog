@@ -1,5 +1,13 @@
 2002-02-15  Iain <iain@ximian.com>
 
+	* cddb-slave-capplet.c (update_clicked): Disable the update button.
+	(do_goodbye_response): Enable the update button and reset the
+	connection.
+	(read_from_server): Enable the update button.
+	(open_cb): Enable the update button.
+
+2002-02-15  Iain <iain@ximian.com>
+
 	* cddb-slave-capplet.c (server_selection_changed): Set the server to
 	the newly selected one.
 	(create_dialog): Hook up the selection
