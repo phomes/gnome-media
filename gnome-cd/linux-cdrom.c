@@ -69,6 +69,8 @@ static gboolean linux_cdrom_get_status (GnomeCDRom *cdrom,
 static gboolean linux_cdrom_close_tray (GnomeCDRom *cdrom,
 					GError **error);
 
+static GnomeCDRomMSF blank_msf = { 0, 0, 0};
+
 static void
 finalize (GObject *object)
 {
@@ -87,14 +89,6 @@ finalize (GObject *object)
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
-
-#define ASSIGN_MSF(dest, src) \
-{ \
-  (dest).minute = (src).minute; \
-  (dest).second = (src).second; \
-  (dest).frame = (src).frame; \
-}
-
 
 static int
 msf_to_frames (GnomeCDRomMSF *msf)
@@ -274,6 +268,7 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 		   GError **error)
 {
 	LinuxCDRom *lcd;
+	GnomeCDRomStatus *status;
 
 	lcd = LINUX_CDROM (cdrom);
 
@@ -281,18 +276,37 @@ linux_cdrom_eject (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 
-	if (ioctl (lcd->priv->cdrom_fd, CDROMEJECT, 0) < 0) {
-		if (error) {
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(eject): ioctl failed: %s",
-					      strerror (errno));
-		}
-
+	if (gnome_cdrom_get_status (cdrom, &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
 		return FALSE;
 	}
 
+	if (status->cd != GNOME_CDROM_STATUS_TRAY_OPEN) {
+		if (ioctl (lcd->priv->cdrom_fd, CDROMEJECT, 0) < 0) {
+			if (error) {
+				*error = g_error_new (GNOME_CDROM_ERROR,
+						      GNOME_CDROM_ERROR_SYSTEM_ERROR,
+						      "(eject): ioctl failed: %s",
+						      strerror (errno));
+			}
+
+			g_free (status);
+			linux_cdrom_close (lcd);
+			return FALSE;
+		}
+	} else {
+		/* Try to close the tray if it's open */
+		if (gnome_cdrom_close_tray (cdrom, error) == FALSE) {
+			
+			g_free (status);
+			linux_cdrom_close (lcd);
+
+			return FALSE;
+		}
+	}
+
+	g_free (status);
+	linux_cdrom_close (lcd);
 	return TRUE;
 }
 
@@ -708,6 +722,9 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
+/* There should probably be 2 get_status functions. A public one and the private one.
+   The private one would get called by the update handler every second, and the
+   public one would just return a copy of the status */
 static gboolean
 linux_cdrom_get_status (GnomeCDRom *cdrom,
 			GnomeCDRomStatus **status,
@@ -784,24 +801,36 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	linux_cdrom_close (lcd);
+
+	ASSIGN_MSF (realstatus->relative, blank_msf);
+	ASSIGN_MSF (realstatus->absolute, blank_msf);
 	switch (subchnl.cdsc_audiostatus) {
 	case CDROM_AUDIO_PLAY:
 		realstatus->audio = GNOME_CDROM_AUDIO_PLAY;
+		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
+		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
+
 		break;
 
 	case CDROM_AUDIO_PAUSED:
 		realstatus->audio = GNOME_CDROM_AUDIO_PAUSE;
+		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
+		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
+
 		break;
 
 	case CDROM_AUDIO_COMPLETED:
 		realstatus->audio = GNOME_CDROM_AUDIO_COMPLETE;
+		ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
+		ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
+		
 		break;
-
+		
 	case CDROM_AUDIO_INVALID:
 	case CDROM_AUDIO_NO_STATUS:
 		realstatus->audio = GNOME_CDROM_AUDIO_STOP;
 		break;
-
+		
 	case CDROM_AUDIO_ERROR:
 	default:
 		realstatus->audio = GNOME_CDROM_AUDIO_ERROR;
@@ -809,9 +838,6 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 
 	realstatus->track = subchnl.cdsc_trk;
-	ASSIGN_MSF (realstatus->relative, subchnl.cdsc_reladdr.msf);
-	ASSIGN_MSF (realstatus->absolute, subchnl.cdsc_absaddr.msf);
-
 	return TRUE;
 }
 
@@ -842,6 +868,46 @@ linux_cdrom_close_tray (GnomeCDRom *cdrom,
 	return TRUE;
 }
 
+static gboolean
+linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
+			   GnomeCDRomCDDBData **data,
+			   GError **error)
+{
+	LinuxCDRom *lcd;
+	LinuxCDRomPrivate *priv;
+	int i, t = 0, n = 0;
+
+	lcd = LINUX_CDROM (cdrom);
+	priv = lcd->priv;
+
+	if (linux_cdrom_open (lcd, error) == FALSE) {
+		return FALSE;
+	}
+
+	*data = g_new (GnomeCDRomCDDBData, 1);
+
+	for (i = 0; i < priv->number_tracks; i++) {
+		n += cddb_sum ((priv->track_info[i].address.minute * 60) + 
+			       priv->track_info[i].address.second);
+		t += ((priv->track_info[i + 1].address.minute * 60) +
+		      priv->track_info[i + 1].address.second) - 
+			((priv->track_info[i].address.minute * 60) + 
+			 priv->track_info[i].address.second);
+	}
+
+	(*data)->discid = ((n % 0xff) << 24 | t << 8 | (priv->track1));
+	(*data)->ntrks = priv->track1;
+	(*data)->nsecs = (priv->track_info[priv->track1].address.minute * 60) + priv->track_info[priv->track1].address.second;
+	(*data)->offsets = g_new (unsigned int, priv->track1 + 1);
+
+	for (i = priv->track0 - 1; i < priv->track1; i++) {
+		(*data)->offsets[i] = msf_to_frames (&priv->track_info[i].address);
+		g_print ("%d: %u\n", i, msf_to_frames (&priv->track_info[i].address));
+	}
+
+	linux_cdrom_close (lcd);
+	return TRUE;
+}
 
 static void
 class_init (LinuxCDRomClass *klass)
@@ -866,7 +932,7 @@ class_init (LinuxCDRomClass *klass)
 	cdrom_class->close_tray = linux_cdrom_close_tray;
 
 	/* For CDDB */
-/*  	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data; */
+  	cdrom_class->get_cddb_data = linux_cdrom_get_cddb_data;
 
 	parent_class = g_type_class_peek_parent (klass);
 }

@@ -3,8 +3,10 @@ pixmapdir = $(datadir)/pixmaps/gnome-cd
 BITMAPS = 		\
 	back.xpm	\
 	cdrom.xpm	\
+	cd.png		\
 	eject.xpm	\
 	ffwd.xpm	\
+	mixer.png	\
 	next.xpm	\
 	pause.xpm	\
 	play.xpm	\

@@ -1,3 +1,37 @@
+2002-01-02  Iain Holmes  <iain@ximian.com>
+
+	* callbacks.c (maybe_close_tray): Function to try to close the CD
+	tray.
+	(stop_cb): Call maybe_close_tray.
+	(ffwd_cb): Ditto.
+	(next_cb): Ditto.
+	(back_cb): Ditto.
+	(rewind_cb): Ditto.
+	(cd_status_changed_cb): Update the display, get data from CDDB and
+	make the debugging spew silent.
+
+	* cddb.c (load_cddb_data): Stub function to load CDDB data.
+	(listener_event_cb): Work out what the event callback meant.
+	(cddb_make_disc_info): Create a new disc structure.
+	(cddb_get_query): Calculate the offsets correctly.
+
+	* cdrom.c (gnome_cdrom_copy_status): Clone a status.
+
+	* cdrom.h: Move ASSIGN_MSF here.
+
+	* display.c: Use the new enums.
+	(cd_display_clear): Clear the display.
+
+	* gnome-cd.c (pixbuf_from_file): Create a pixbuf from a file.
+	(init_player): Set the default window icon. Set a better icon on the
+	mixer button.
+
+	* linux-cdrom.c (linux_cdrom_eject): Try to close the tray if it's
+	open, otherwise eject.
+	(linux_cdrom_get_cddb_data): Calculate the CDDB data from the CD.
+
+	* images/Makefile.am: Add 2 new icons
+
 2001-12-31  Iain Holmes  <iain@ximian.com>
 
 	* callbacks.[ch] (play_cb): Update for new cd stuff.

@@ -456,3 +456,20 @@ gnome_cdrom_status_equal (GnomeCDRomStatus *status1,
 
 	return FALSE;
 }
+
+
+GnomeCDRomStatus *
+gnome_cdrom_copy_status (GnomeCDRomStatus *original)
+{
+	GnomeCDRomStatus *status;
+
+	status = g_new (GnomeCDRomStatus, 1);
+	status->cd = original->cd;
+	status->audio = original->audio;
+	status->track = status->track;
+
+	ASSIGN_MSF (status->relative, original->relative);
+	ASSIGN_MSF (status->absolute, original->absolute);
+
+	return status;
+}

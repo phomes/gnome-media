@@ -22,6 +22,13 @@ G_BEGIN_DECLS
 
 #define GNOME_CDROM_ERROR gnome_cdrom_error_quark ()
 
+#define ASSIGN_MSF(dest, src) \
+{ \
+  (dest).minute = (src).minute; \
+  (dest).second = (src).second; \
+  (dest).frame = (src).frame; \
+}
+
 typedef enum {
 	GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 	GNOME_CDROM_ERROR_NOT_OPENED,

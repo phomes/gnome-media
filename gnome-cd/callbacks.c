@@ -16,6 +16,30 @@
 #include "display.h"
 #include "gnome-cd.h"
 
+static void
+maybe_close_tray (GnomeCD *gcd)
+{
+	GnomeCDRomStatus *status;
+	GError *error;
+
+	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
+		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_error_free (error);
+		
+		return;
+	}
+
+	if (status->cd == GNOME_CDROM_STATUS_TRAY_OPEN) {
+		if (gnome_cdrom_close_tray (gcd->cdrom, &error) == FALSE) {
+			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_error_free (error);
+		}
+	}
+
+	g_free (status);
+	return;
+}
+
 void
 eject_cb (GtkButton *button,
 	  GnomeCD *gcd)
@@ -157,6 +181,9 @@ stop_cb (GtkButton *button,
 {
 	GError *error;
 
+	/* Close the tray if needed */
+	maybe_close_tray (gcd);
+
 	if (gnome_cdrom_stop (gcd->cdrom, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
@@ -189,6 +216,8 @@ ffwd_press_cb (GtkButton *button,
 	       GdkEvent *ev,
 	       GnomeCD *gcd)
 {
+	maybe_close_tray (gcd);
+
 	gcd->timeout = gtk_timeout_add (140, ffwd_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {
@@ -218,6 +247,8 @@ next_cb (GtkButton *button,
 {
 	GError *error;
 
+	maybe_close_tray (gcd);
+
 	if (gnome_cdrom_next (gcd->cdrom, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
 		g_error_free (error);
@@ -235,6 +266,8 @@ back_cb (GtkButton *button,
 	 GnomeCD *gcd)
 {
 	GError *error;
+
+	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_back (gcd->cdrom, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
@@ -268,6 +301,8 @@ rewind_press_cb (GtkButton *button,
 		 GdkEvent *ev,
 		 GnomeCD *gcd)
 {
+	maybe_close_tray (gcd);
+
 	gcd->timeout = gtk_timeout_add (140, rewind_timeout_cb, gcd);
 
 	if (gcd->current_image == gcd->play_image) {
@@ -319,6 +354,50 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		      GnomeCDRomStatus *status,
 		      GnomeCD *gcd)
 {
+	char *text;
+
+	switch (status->cd) {
+	case GNOME_CDROM_STATUS_OK:
+
+		if (gcd->last_status == NULL || gcd->last_status->cd != GNOME_CDROM_STATUS_OK) {
+			cddb_get_query (gcd);
+		}
+
+		cd_display_clear (CD_DISPLAY (gcd->display));
+		if (status->relative.second >= 10) {
+			text = g_strdup_printf ("%d:%d", status->relative.minute, status->relative.second);
+		} else {
+			text = g_strdup_printf ("%d:0%d", status->relative.minute, status->relative.second);
+		}
+
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, text);
+		g_free (text);
+
+		text = g_strdup_printf ("Track %d", status->track);
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TRACK, text);
+		g_free (text);
+
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
+		break;
+
+		
+	case GNOME_CDROM_STATUS_NO_DISC:
+		cd_display_clear (CD_DISPLAY (gcd->display));
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "No disc");
+		break;
+
+	case GNOME_CDROM_STATUS_TRAY_OPEN:
+		cd_display_clear (CD_DISPLAY (gcd->display));
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive open");
+		break;
+
+	default:
+		cd_display_clear (CD_DISPLAY (gcd->display));
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive Error");
+		break;
+	}
+
 #ifdef DEBUG
 	g_print ("Status changed\n"
 		 "Device: %d\nAudio %d\n"
@@ -328,5 +407,10 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		 status->track, status->relative.minute,
 		 status->relative.second, status->relative.frame);
 #endif
+	if (gcd->last_status != NULL) {
+		g_free (gcd->last_status);
+	}
+
+	gcd->last_status = gnome_cdrom_copy_status (status);
 }
 		 

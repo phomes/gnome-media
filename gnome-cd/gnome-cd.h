@@ -47,8 +47,7 @@ typedef struct _GnomeCD {
 
 	GnomeCDRom *cdrom;
 
-	GnomeCDRomDriveStatus last_cd;
-	GnomeCDRomAudioStatus last_audio;
+	GnomeCDRomStatus *last_status;
 
 	guint32 timeout;
 	guint32 display_timeout;

@@ -72,6 +72,21 @@ make_button_from_stock (GnomeCD *gcd,
 	return make_button_from_widget (gcd, pixmap, func, tooltip);
 }
 
+static GdkPixbuf *
+pixbuf_from_file (const char *filename)
+{
+	GdkPixbuf *pixbuf;
+	char *fullname;
+
+	fullname = gnome_pixmap_file (filename);
+	g_return_val_if_fail (fullname != NULL, NULL);
+
+	pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
+	g_free (fullname);
+
+	return pixbuf;
+}
+
 static int
 window_delete_cb (GtkWidget *window,
 		  GdkEvent *ev,
@@ -86,6 +101,7 @@ init_player (void)
 	GnomeCD *gcd;
 	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
 	GtkWidget *button, *arrow, *frame;
+	GdkPixbuf *pixbuf;
 	GError *error;
 	char *fullname;
 
@@ -102,13 +118,18 @@ init_player (void)
 	g_signal_connect (G_OBJECT (gcd->cdrom), "status-changed",
 			  G_CALLBACK (cd_status_changed_cb), gcd);
 
-	gcd->last_cd = GNOME_CDROM_STATUS_NOTHING;
-	gcd->last_audio = GNOME_CDROM_AUDIO_NOTHING;
-
 	gcd->window = bonobo_window_new ("Gnome-CD", "Gnome-CD "VERSION);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
 	gtk_window_set_policy (GTK_WINDOW (gcd->window), FALSE, TRUE, TRUE);
+
+	pixbuf = pixbuf_from_file ("gnome-cd/cd.png");
+	if (pixbuf == NULL) {
+		g_warning ("Error finding gnome-cd/cd.png");
+	} else {
+		gtk_window_set_icon (GTK_WINDOW (gcd->window), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+	}
 
 	g_signal_connect (G_OBJECT (gcd->window), "delete_event",
 			  G_CALLBACK (window_delete_cb), NULL);
@@ -194,7 +215,7 @@ init_player (void)
 	gcd->eject_b = button;
 	gtk_box_pack_start (GTK_BOX (bottom_hbox), button_hbox, FALSE, FALSE, 0);
 
-	button = make_button_from_file (gcd, "gnome-cd/volume.xpm", G_CALLBACK (mixer_cb), _("Open mixer"));
+	button = make_button_from_file (gcd, "gnome-cd/mixer.png", G_CALLBACK (mixer_cb), _("Open mixer"));
 	gtk_box_pack_start (GTK_BOX (bottom_hbox), button, FALSE, FALSE, 0);
 	gcd->mixer_b = button;
 
