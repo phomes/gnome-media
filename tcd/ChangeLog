@@ -1,3 +1,12 @@
+1999-05-24  James Henstridge  <james@daa.com.au>
+
+	* cddb.c (append_data): I was using the strncat function
+	incorrectly.  This caused buffer overruns for large ammounts of
+	extended data.  It now truncates the data like it was supposed to.
+	It may be a good idea to switch over to dynamically allocated
+	strings for this code, so that we don't loose information in these
+	situations.
+
 1999-05-11  James Henstridge  <james@daa.com.au>
 
 	* prefs.c (load_prefs): set the default cddb host to freedb.

@@ -78,7 +78,9 @@ static void append_data(char *dest, char *data, int maxlen) {
 		} else
 			data[j] = data[i];
 	data[j] = '\0';
-	strncat(dest, data, maxlen);
+
+	i = strlen(dest);
+	strncpy(&dest[i], data, maxlen - i);
 }
 
 static void write_data(FILE *fp, char *key, char *data) {
