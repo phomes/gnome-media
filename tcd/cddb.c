@@ -140,8 +140,12 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 	fprintf( fp, "DTITLE=%s\n", cd->dtitle );
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 		fprintf( fp, "TTITLE%ld=%s\n", i-1, cd->trk[i].name );
-	fprintf( fp, "PLAYLIST=\n");
-	/* FIXME print extended info here too */
+	/* FIXME print extended info here, instead of just dummy variables */
+	fprintf( fp, "EXTD=\n");
+	for( i= cd->first_t; i <= cd->last_t; i++ )
+		fprintf( fp, "EXTT%ld=\n", i-1);
+
+	fprintf( fp, "PLAYORDER=\n");
 	
 	fclose(fp);
 	return 0;

@@ -1,3 +1,11 @@
+1999-04-29  James Henstridge  <james@daa.com.au>
+
+	* cddb.c (tcd_writecddb): modified this function so that it outputs
+	valid cddb data files.  Basically just changed PLAYLIST= to PLAYORDER=
+	and added blank EXTD and EXTTn lines.  I will have to get it so that
+	these fields are read in properly, so that gtcd does not wipe this
+	data if it exists in the file.
+
 1999-04-17  James Henstridge <james@daa.com.au>
 
 	* prefs.[ch]: added some code to load and save http specific cddb
