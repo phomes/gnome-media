@@ -1,3 +1,12 @@
+1998-08-24  Tim P. Gerla  <timg@means.net>
+        * tcd/Makefile.am: Support for above.
+        * tcd/gcddb.c: Changed sprintfs to g_snprintfs.
+        * tcd/gtracked.c: Fixed some silly bug that manifested itself when I
+	  enabled changer support.
+        * tcd/gtcd.c: Changed sprintfs to g_snprintfs, and removed several
+          superfluous gtk_show_widgets. Fixed changer box packing order.
+	  Also set volume widget to fill&expand.
+
 1998-08-18  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
 
 	* gabout.c, gtcd.c, gcddb.c: Some i18n work.
