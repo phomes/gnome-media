@@ -38,13 +38,13 @@ void about_cb(GtkWidget *widget, void *data)
                 NULL
         };  
 
-        about = gnome_about_new ( PACKAGE, VERSION,
+        about = gnome_about_new ( NULL, NULL,
                 "(C) 1997-98 Tim P. Gerla",
                 authors,
                 "Gnome CD player application with CDDB support."
                 " Please see the \'Thanks\' file included with the"
                 " distribution for more credits.",
-                NULL);
+                "icons/about.xpm");
         gtk_widget_show(about);
 
         return;

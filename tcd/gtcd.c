@@ -45,6 +45,9 @@
 #include <linux/cdrom.h>
 #include <linux/soundcard.h>
 
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+
 #include "cdrom.h"
 #include "tcd.h"
 #include "tracked.h"
@@ -877,6 +880,7 @@ int main (int argc, char *argv[])
 	titlelabel_f = TRUE;
         gnome_app_set_contents( GNOME_APP(window), vbox);
         gtk_widget_show(window); /* Make sure window is shown last */
+	gdk_window_set_decorations( window->window, GDK_DECOR_ALL|GDK_DECOR_TITLE|GDK_DECOR_RESIZEH );
         gtk_main ();
 	gnome_config_sync();
         return 0;
