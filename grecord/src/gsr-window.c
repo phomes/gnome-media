@@ -1143,29 +1143,18 @@ help_about (BonoboUIComponent *uic,
 	    GSRWindow *window,
 	    const char *path)
 {
-	static GtkWidget *about = NULL;
-	GdkPixbuf *pixbuf = NULL;
 	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
 	const char *documentors[2] = {"Sun Microsystems", NULL};
 
-	if (about != NULL) {
-		gdk_window_raise (about->window);
-		gdk_window_show (about->window);
-	} else {
-		pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/gnome-grecord.png", NULL);
-		about = gnome_about_new (_("Sound Recorder"), VERSION,
-					 "Copyright \xc2\xa9 2002 Iain Holmes",
-					 _("A sound recorder for GNOME"),
-					 authors, documentors, NULL, pixbuf);
-
-		if (pixbuf != NULL)
-			gdk_pixbuf_unref (pixbuf);
-
-		g_signal_connect (G_OBJECT (about), "destroy",
-				  G_CALLBACK (gtk_widget_destroyed), &about);
-		gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (window));
-		gtk_widget_show (about);
-	}
+	gtk_show_about_dialog (NULL,
+			       "name", _("Sound Recorder"),
+			       "version", VERSION,
+			       "copyright", "Copyright \xc2\xa9 2002 Iain Holmes",
+			       "comments", _("A sound recorder for GNOME"),
+			       "authors", authors,
+			       "documenters", documentors,
+			       "logo-icon-name", "gnome-grecord",
+			       NULL);
 }
 
 static void
