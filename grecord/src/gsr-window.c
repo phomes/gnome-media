@@ -1233,6 +1233,39 @@ tick_callback (GSRWindow *window)
 }
 
 static gboolean
+record_tick_callback (GSRWindow *window)
+{
+	int secs;
+	gint64 value;
+	gboolean query_worked = FALSE;
+	GstFormat format = GST_FORMAT_TIME;
+
+	if (gst_element_get_state (window->priv->record->pipeline) != GST_STATE_PLAYING) {
+		/* This check stops us from doing an unnecessary query */
+		return FALSE;
+	}
+
+	if (window->priv->seek_in_progress)
+		return TRUE;
+
+	query_worked = gst_element_query (window->priv->record->sink,
+					  GST_QUERY_POSITION, 
+					  &format, &value);
+	if (query_worked) {
+		gchar* len_str;
+		secs = value / GST_SECOND;
+		
+		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, secs);
+		len_str = seconds_to_full_string (secs);
+		window->priv->len_secs = secs;
+		gtk_label_set (GTK_LABEL (window->priv->length), len_str);
+		g_free (len_str);
+	}
+
+	return (gst_element_get_state (window->priv->record->pipeline) == GST_STATE_PLAYING);
+}
+
+static gboolean
 play_iterate (GSRWindow *window)
 {
 	gboolean ret;
@@ -1385,35 +1418,33 @@ make_play_pipeline (GSRWindow *window)
 }
 
 static gboolean
-record_start(gpointer user_data) {
+record_start(gpointer user_data) 
+{
 	GSRWindow *window = GSR_WINDOW (user_data);
-#if 0 /* Don't need this yet...but we will eventually I think */
-		if (window->priv->len_secs == 0) {
-			window->priv->get_length_attempts = 16;
-			g_timeout_add (200, (GSourceFunc) get_length, window);
-			g_timeout_add (200, (GSourceFunc) tick_callback, window);
-		}
-#endif
-		bonobo_ui_component_set_prop (window->priv->ui_component,
-					      "/commands/MediaStop", 
-					      "sensitive", "1", NULL);
-		bonobo_ui_component_set_prop (window->priv->ui_component,
-					      "/commands/MediaPlay", 
-					      "sensitive", "0", NULL);
-		bonobo_ui_component_set_prop (window->priv->ui_component,
-					      "/commands/MediaRecord", 
-					      "sensitive", "0", NULL);
-		bonobo_ui_component_set_prop (window->priv->ui_component,
-					      "/commands/FileSave",
-					      "sensitive", "0", NULL);
-		bonobo_ui_component_set_prop (window->priv->ui_component,
-					      "/commands/FileSaveAs",
-					      "sensitive", "0", NULL);
-		bonobo_ui_component_set_status (window->priv->ui_component,
-						_("Recording..."), NULL);
-		gtk_widget_set_sensitive (window->priv->scale, FALSE);
-		window->priv->record_id = 0;
-		return FALSE;
+	if (window->priv->len_secs == 0) {
+		window->priv->get_length_attempts = 16;
+		g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
+	}
+	bonobo_ui_component_set_prop (window->priv->ui_component,
+				      "/commands/MediaStop", 
+				      "sensitive", "1", NULL);
+	bonobo_ui_component_set_prop (window->priv->ui_component,
+				      "/commands/MediaPlay", 
+				      "sensitive", "0", NULL);
+	bonobo_ui_component_set_prop (window->priv->ui_component,
+				      "/commands/MediaRecord", 
+				      "sensitive", "0", NULL);
+	bonobo_ui_component_set_prop (window->priv->ui_component,
+				      "/commands/FileSave",
+				      "sensitive", "0", NULL);
+	bonobo_ui_component_set_prop (window->priv->ui_component,
+				      "/commands/FileSaveAs",
+				      "sensitive", "0", NULL);
+	bonobo_ui_component_set_status (window->priv->ui_component,
+					_("Recording..."), NULL);
+	gtk_widget_set_sensitive (window->priv->scale, TRUE);
+	window->priv->record_id = 0;
+	return FALSE;
 }
 
 static gboolean
@@ -1452,8 +1483,10 @@ record_state_changed (GstElement *element,
 		window->priv->record_id = g_idle_add (record_start, window);
 		break;
 
-	case GST_STATE_PAUSED:
 	case GST_STATE_READY:
+		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
+		gtk_widget_set_sensitive (window->priv->scale, FALSE);
+	case GST_STATE_PAUSED:
 		window->priv->record_id = g_idle_add (record_ready_or_pause, window);
 		break;
 	default:
@@ -1569,8 +1602,13 @@ calculate_format_value (GtkScale *scale,
 {
 	int seconds;
 
-	seconds = window->priv->len_secs * (value / 100);
-	return seconds_to_string (seconds);
+	if (gst_element_get_state (window->priv->record->pipeline) == GST_STATE_PLAYING) {
+		seconds = value;
+		return seconds_to_string (seconds);
+	} else {
+		seconds = window->priv->len_secs * (value / 100);
+		return seconds_to_string (seconds);
+	}
 }
 	
 GtkWidget *
