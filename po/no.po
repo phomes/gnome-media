@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.0\n"
-"POT-Creation-Date: 2001-06-05 10:02+0200\n"
-"PO-Revision-Date: 2001-06-05 10:03+0200\n"
+"POT-Creation-Date: 2001-06-09 09:20+0200\n"
+"PO-Revision-Date: 2001-06-09 09:22+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,17 @@ msgstr "initialiser mikseren(e) fra lagret konfigurasjon og avslutt"
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ikke lagre (modifiserte) mikser-verdier til konfigurasjonen"
 
-#: gmix/gmix.c:520
+#: gmix/gmix.c:365
+msgid ""
+"I was not able to open your audio device.\n"
+"Please check that you have permission to open /dev/mixer\n"
+"and make sure you have sound support compiled into your kernel."
+msgstr ""
+"Kunne ikke åpne din lydenhet.\n"
+"Vennligst sjekk om du har rettigheter til å åpne /dev/mixer\n"
+"og sjekk også at du har kompilert inn lydstøtte i kjernen."
+
+#: gmix/gmix.c:519
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -344,7 +354,7 @@ msgstr ""
 "OSS versjon %d.%d.%d, og ditt system kjører en\n"
 "en tidligere versjon enn 3.6.0.\n"
 
-#: gmix/gmix.c:528
+#: gmix/gmix.c:527
 #, c-format
 msgid ""
 "Warning: This version of gmix was compiled with\n"
@@ -356,29 +366,67 @@ msgstr ""
 "versjon %d.%d.%d.\n"
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:1013
+#: gmix/gmix.c:1012
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:1023
+#: gmix/gmix.c:1022
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:1041
+#: gmix/gmix.c:1040
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:1084
+#: gmix/gmix.c:1083
 msgid "GMIX 3.0"
 msgstr "GMIX 3.0"
 
-#: gmix/gmix.c:1396
+#: gmix/gmix.c:1395
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:1399
+#: gmix/gmix.c:1398
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mikser for OSS lydenheter."
+
+#. start frame
+#: gmix/prefs.c:98 tcd/prefs.c:561
+msgid "On startup"
+msgstr "Ved oppstart"
+
+#. Set on start
+#: gmix/prefs.c:104
+msgid "Restore saved mixer levels on startup"
+msgstr "Gjenoprett lagrede mikserinnstillinger ved oppstart"
+
+#: gmix/prefs.c:110
+msgid "Hide menu on start"
+msgstr "Skjul meny ved start"
+
+#: gmix/prefs.c:125
+msgid "GUI"
+msgstr "GUI"
+
+#: gmix/prefs.c:129
+msgid "Use mixer icons"
+msgstr "Bruk mikserikoner"
+
+#: gmix/prefs.c:137
+msgid "Use mixer labels"
+msgstr "Bruk mikseretiketter"
+
+#: gmix/prefs.c:409
+msgid "Defaults"
+msgstr "Forvalg"
+
+#: gmix/prefs.c:483 tcd/gtcd.c:490 tcd/prefs.c:751
+msgid "Preferences"
+msgstr "Innstillinger"
+
+#: gmix/prefs.c:489
+msgid "Labels"
+msgstr "Etiketter"
 
 #: grecord/src/grec.c:51
 msgid "GNOME Soundrecorder:"
@@ -1037,10 +1085,6 @@ msgstr "Hopp fremover"
 msgid "Open track editor"
 msgstr "Åpne sporredigering"
 
-#: tcd/gtcd.c:490 tcd/prefs.c:751
-msgid "Preferences"
-msgstr "Innstillinger"
-
 #: tcd/gtcd.c:491 tcd/popup.c:25
 msgid "Quit"
 msgstr "Avslutt"
@@ -1279,11 +1323,6 @@ msgstr "Bruk alternativ metode for å spille CD"
 #: tcd/prefs.c:541
 msgid "Use squared law volume control"
 msgstr "Bruk \"squared law\" volumkontroll"
-
-#. start frame
-#: tcd/prefs.c:561
-msgid "On startup"
-msgstr "Ved oppstart"
 
 #. exit frame
 #: tcd/prefs.c:567
