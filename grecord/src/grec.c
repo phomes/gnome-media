@@ -595,17 +595,32 @@ play_sound (const gchar* filename)
 void
 store_filename (GtkFileSelection* selector, gpointer file_selector)
 {
-	gchar* tempfile = gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector));
 	GtkWidget* mess;
 	gchar* string = NULL;
 	gchar* temp_string = NULL;
 	AFfilehandle filename;
 	gint in_audioformat, in_channels, in_rate, in_width;
+	struct stat file;
+	
+	gchar* tempfile = gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector));
 
-	if (!soundfile_supported (tempfile)) {
-		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a valid soundfile."), tempfile);
+	if (!stat(tempfile, &file)) {
+		if (S_ISDIR (file.st_mode)) {
+			gchar* show_mess = g_strdup_printf (_("'%s' is a directory.\nPlease select a soundfile to be opened."), tempfile);
+			mess = gnome_message_box_new (show_mess,
+						      GNOME_MESSAGE_BOX_ERROR,
+						      GNOME_STOCK_BUTTON_OK,
+					      NULL);
+			g_free (show_mess);
+			gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+			gtk_widget_show (mess);
+			return;
+		}
+	}
+	else if (errno == ENOENT) {
+		gchar* show_mess = g_strdup_printf (_("File '%s' doesn't exist.\nPlease select a existing soundfile to be opened."), tempfile);
 		mess = gnome_message_box_new (show_mess,
-					      GNOME_MESSAGE_BOX_WARNING,
+					      GNOME_MESSAGE_BOX_ERROR,
 					      GNOME_STOCK_BUTTON_OK,
 					      NULL);
 		g_free (show_mess);
@@ -613,6 +628,19 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 		gtk_widget_show (mess);
 		return;
 	}
+
+	if (!soundfile_supported (tempfile)) {
+		gchar* show_mess = g_strdup_printf (_("File '%s' isn't a valid soundfile."), tempfile);
+		mess = gnome_message_box_new (show_mess,
+					      GNOME_MESSAGE_BOX_ERROR,
+					      GNOME_STOCK_BUTTON_OK,
+					      NULL);
+		g_free (show_mess);
+		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+		gtk_widget_show (mess);
+		return;
+	}
+
 	active_file = g_strdup (tempfile);
 	file_changed = FALSE;
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
@@ -664,23 +692,44 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 {
 	gchar* temp_string;
 	gchar* new_file;
+	struct stat file;
 
 	new_file = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (file_selector)));
 
-	if (!new_file) {
-		GtkWidget* mess = gnome_message_box_new (_("You havn't selected a file."),
-							 GNOME_MESSAGE_BOX_WARNING,
-							 GNOME_STOCK_BUTTON_OK,
-							 NULL);
-		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
-		gtk_widget_show (mess);
-		g_free (new_file);
-		return;
+	/* Check if the file already exists */
+	if (!stat(new_file, &file)) {
+		GtkWidget* mess;
+		gchar* show_mess;
+		gint choice;
+
+		if (S_ISDIR (file.st_mode)) {
+			show_mess = g_strdup_printf (_("'%s' is a directory.\nPlease enter another filename."), new_file);
+			mess = gnome_message_box_new (show_mess,
+						      GNOME_MESSAGE_BOX_ERROR,
+						      GNOME_STOCK_BUTTON_OK,
+						      NULL);
+			g_free (show_mess);
+			gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
+			gtk_widget_show (mess);
+			return;
+		}
+		show_mess = g_strdup_printf (_("File '%s' already exists.\nDo you want to overwrite it?"), new_file);
+		mess = gnome_message_box_new (show_mess,
+					      GNOME_MESSAGE_BOX_WARNING,
+					      GNOME_STOCK_BUTTON_YES,
+					      GNOME_STOCK_BUTTON_NO,
+					      GNOME_STOCK_BUTTON_CANCEL,
+					      NULL);
+		choice = gnome_dialog_run (GNOME_DIALOG (mess));
+		g_free (show_mess);
+		if (choice == 2 || choice == 1)
+			return;
 	}
 
+	/* Check if the soundfile is supported */
 	if (!save_sound_file (new_file)) {
 		GtkWidget* mess = gnome_message_box_new (_("Error saving sound file"),
-							 GNOME_MESSAGE_BOX_WARNING,
+							 GNOME_MESSAGE_BOX_ERROR,
 							 GNOME_STOCK_BUTTON_OK,
 							 NULL);
 		gtk_window_set_modal (GTK_WINDOW (mess), TRUE);
