@@ -186,6 +186,8 @@ cddb_get_query (GnomeCD *gcd)
 	} else {
 		info = cddb_make_disc_info (data);
 		g_hash_table_insert (cddb_cache, info->discid, info);
+		gcd->disc_info = info;
+		gnome_cd_build_track_list_menu (gcd);
 	}
 
 	/* Remove the last space */
