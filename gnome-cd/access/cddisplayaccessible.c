@@ -176,6 +176,7 @@ cddisplay_accessible_ref_child (AtkObject *obj,
 
 	g_return_val_if_fail(i < CD_DISPLAY_END, NULL);
 
+	g_object_ref (pango_accessible[i]);
 	return pango_accessible[i];
 }
 

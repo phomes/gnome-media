@@ -577,6 +577,7 @@ change_start_close_widget (GConfClient *client,
 					   0, 0, NULL, G_CALLBACK (start_close_toggled_cb), pd);
 }
 #endif
+
 static void
 theme_selection_changed_cb (GtkTreeSelection *selection,
 			    PropertyDialog *pd)

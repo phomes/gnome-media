@@ -79,6 +79,7 @@ static gint pango_accessible_get_offset_at_point (AtkText      *text,
 						  gint         y,
 						  AtkCoordType coords);
 static AtkAttributeSet* pango_accessible_get_default_attributes (AtkText *text);
+static gint pango_accessible_get_caret_offset (AtkText *text);
 
 
 /* AtkComponent Interfaces */
@@ -135,7 +136,7 @@ pango_accessible_get_type (void)
 			NULL
 		};
 
-		type = g_type_register_static (GTK_TYPE_ACCESSIBLE,
+		type = g_type_register_static (ATK_TYPE_OBJECT,
                                    	       "PangoAccessible", &tinfo, 0);
 		g_type_add_interface_static(type, ATK_TYPE_TEXT,
 					    &atk_text_info);
@@ -482,6 +483,12 @@ pango_accessible_get_default_attributes (AtkText *text)
 	return at_set;
 }
 
+static gint
+pango_accessible_get_caret_offset (AtkText *text)
+{
+	return 0;
+}
+
 /*
  * selection and caret related functions are not needed for PangoLayout.
  */
@@ -501,6 +508,7 @@ atk_text_interface_init (AtkTextIface *iface)
 	iface->get_default_attributes = pango_accessible_get_default_attributes;
 	iface->get_offset_at_point = pango_accessible_get_offset_at_point;
 	iface->get_character_extents = pango_accessible_get_character_extents;
+	iface->get_caret_offset = pango_accessible_get_caret_offset;
 }
 
 static void

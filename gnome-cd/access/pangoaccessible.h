@@ -39,7 +39,7 @@ typedef struct _PangoAccessibleClass              PangoAccessibleClass;
 
 struct _PangoAccessible
 {
-	GtkAccessible	parent;
+	AtkObject	parent;
 	GailTextUtil *textutil;
 	PangoLayout *playout;
 };
@@ -48,7 +48,7 @@ GType pango_accessible_get_type (void);
 
 struct _PangoAccessibleClass
 {
-	GtkAccessibleClass parent_class;
+	AtkObjectClass parent_class;
 };
 
 AtkObject* pango_accessible_new (PangoLayout *gobject);
