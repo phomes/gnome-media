@@ -26,6 +26,7 @@ INCLUDES   = \
 	$(GSTPROPS_CFLAGS) \
 	-DGSTPROPS_GLADEDIR=\""$(gladedir)"\" \
 	-DGSTPROPS_ICONDIR=\""$(iconsdir)"\" \
+	-DDATADIR=\""$(datadir)"\" \
 	-DGNOMELOCALEDIR="${prefix}/${DATADIRNAME}/locale" \
 	-DG_LOG_DOMAIN="gstreamer-properties"
 

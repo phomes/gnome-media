@@ -47,7 +47,7 @@ static void
 dialog_response (GtkDialog * widget, gint response_id, GladeXML * dialog)
 {
 	if (response_id == GTK_RESPONSE_HELP)
-		;		/* Launch help for the capplet */
+		gnome_help_display ("gstreamer-properties.xml", NULL, NULL);
 	else
 		gtk_main_quit ();
 }
@@ -296,7 +296,7 @@ main (int argc, char **argv)
 	textdomain (GETTEXT_PACKAGE);
 
 	gnome_program_init ("gstreamer-properties", VERSION, LIBGNOMEUI_MODULE,
-			    argc, argv, NULL);
+			    argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 	gst_init_with_popt_table (&argc, &argv, NULL);
 
 	/* FIXME: hardcode uninstalled path here */
