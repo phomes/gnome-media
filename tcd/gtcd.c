@@ -285,7 +285,7 @@ GtkWidget *make_small_buttons()
     table = gtk_table_new(TRUE, 6,1);
 
     b1 = make_button_stock(GNOME_STOCK_PIXMAP_PROPERTIES, edit_window, NULL, _("Open track editor"));
-    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, prefs_cb, NULL, _("Preferences"));
+    b2 = make_button_stock(GNOME_STOCK_PIXMAP_PREFERENCES, preferences, NULL, _("Preferences"));
     b3 = make_button_stock(GNOME_STOCK_PIXMAP_QUIT, quit_cb, NULL, _("Quit"));
 
     gtk_table_attach_defaults(GTK_TABLE(table), b1, 0, 2, 0, 1);
@@ -349,14 +349,20 @@ GtkWidget* create_buttons(void)
 
 void setup_colors( void )
 {
+    char tmp[16];
     GdkColormap *colormap;
     
     colormap = gtk_widget_get_colormap(status_area);
     
     gdk_color_parse("#555555", &darkgrey);
     gdk_color_alloc(colormap, &darkgrey);
-    
-    gdk_color_parse(prefs.trackcolor, &track_color);
+
+    g_snprintf(tmp, 15, "#%02X%02X%02X", 
+	       prefs.trackcolor_r,
+	       prefs.trackcolor_g,
+	       prefs.trackcolor_b);
+
+    gdk_color_parse(tmp, &track_color);
     gdk_color_alloc(colormap, &track_color);
     draw_status();
 }
@@ -481,10 +487,10 @@ void draw_status(void)
 	if(cd.isplayable)
 	{		
 	    gdk_gc_set_foreground( gc, &darkgrey );
-	    gdk_draw_text( status_db,tfont,gc,48,26, 
+	    gdk_draw_text( status_db,sfont,gc,48,26, 
 			   display_types[prefs.time_display], 
 			   strlen(display_types[prefs.time_display]));
-	    gdk_draw_text( status_db,tfont,gc,2,26, 
+	    gdk_draw_text( status_db,sfont,gc,2,26, 
 			   play_types[cd.play_method], 
 			   strlen(play_types[cd.play_method]));
 	}
@@ -781,19 +787,17 @@ void setup_fonts(void)
 {
     if( tfont )
 	gdk_font_unref(tfont);
-    if( sfont )
-	gdk_font_unref(sfont);
-
-    if(prefs.statusfont)
-	sfont = gdk_font_load( prefs.statusfont );
-    else
-	sfont = NULL;
 
     if(prefs.trackfont)
 	tfont = gdk_font_load( prefs.trackfont );
     else
 	tfont = NULL;
 
+    if(sfont)
+	gdk_font_unref(sfont);
+    
+    sfont = gdk_font_load("-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*");
+    
     tfont_height = (tfont->ascent+tfont->descent)*3;
 }
 

@@ -1,18 +1,27 @@
 #ifndef PROPERTIES_H__
 #define PROPERTIES_H__
 
+typedef enum
+{
+    DoNothing=0, 
+    StopPlaying, 
+    StartPlaying, 
+    OpenTray, 
+    CloseTray,
+} TCDAction;
+
 typedef struct
 {
-	gchar *cddev;
-	gchar *cddb, *remote_path, *proxy_server;
-	gint  cddbport, proxy_port, time_display;
-	gboolean handle;
-	gboolean tooltip;
-	gboolean use_http, use_proxy;
-	gchar *trackfont;
-	gchar *statusfont;
-	gchar *trackcolor;
-	gchar *statuscolor;
+    gchar *cddev;
+    gint time_display;
+    gboolean handle;
+    gboolean tooltip;
+    gchar *trackfont;
+
+    gint trackcolor_r, trackcolor_g, trackcolor_b;
+
+    TCDAction exit_action, start_action;
+    gboolean close_tray_on_start;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );

@@ -25,527 +25,337 @@
 #include <config.h>
 #include <gnome.h>
 #include <string.h>
+
+#include "gtcd_public.h"
 #include "prefs.h"
 
-tcd_prefs prefs;
-GtkWidget *propbox;
-extern GtkTooltips *tooltips;
+static GtkWidget *pref_window=NULL;
 
-/* from gtcd.c */
-void setup_colors(void);
-void setup_fonts(void);
-
-struct font_str
+void load_prefs(tcd_prefs *prop)
 {
-    GtkWidget *fs;
-    char **font;
-};
+    prop->cddev=gnome_config_get_string    ("/gtcd/cdrom/device=/dev/cdrom");
+    prop->handle=gnome_config_get_bool     ("/gtcd/ui/handle=false");
+    prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
+    prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
+    prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
 
-void load_prefs( tcd_prefs *prop )
-{
-    prop->cddev=gnome_config_get_string       ("/gtcd/cdrom/device=/dev/cdrom");
-    prop->cddb=gnome_config_get_string        ("/gtcd/cddb/server=cddb.cddb.com");
-    prop->cddbport=gnome_config_get_int       ("/gtcd/cddb/port=888");
-    prop->handle=gnome_config_get_bool        ("/gtcd/ui/handle=1");
-    prop->tooltip=gnome_config_get_bool       ("/gtcd/ui/tooltip=1");
-    prop->time_display=gnome_config_get_int   ("/gtcd/ui/time_display=0");
-    prop->trackfont=gnome_config_get_string   ("/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
-    prop->statusfont=gnome_config_get_string  ("/gtcd/ui/statusfont=-adobe-times-medium-*-*-*-20-*-*-*-*-*-*-*" );
-    prop->trackcolor=gnome_config_get_string  ("/gtcd/ui/trackcolor=#FF0000" );
-    prop->statuscolor=gnome_config_get_string ("/gtcd/ui/statuscolor=#8888FF" );
+    prop->trackcolor_r=gnome_config_get_int("/gtcd/ui/trackcolor_r=255" );
+    prop->trackcolor_g=gnome_config_get_int("/gtcd/ui/trackcolor_g=0" );
+    prop->trackcolor_b=gnome_config_get_int("/gtcd/ui/trackcolor_b=0" );
     
-    prop->use_http=gnome_config_get_bool      ("/cddb/use_http=0");
-    prop->use_proxy=gnome_config_get_bool     ("/cddb/use_proxy=0");
-    prop->proxy_server=gnome_config_get_string("/gtcd/cddb/proxy_server=proxy");
-    prop->proxy_port=gnome_config_get_int     ("/gtcd/cddb/proxy_port=80");
-    prop->remote_path=gnome_config_get_string ("/gtcd/cddb/remote_path=~cddb/cddb.cgi");
+    prop->exit_action=gnome_config_get_int         ("/gtcd/general/exit_action=0");
+    prop->start_action=gnome_config_get_int        ("/gtcd/general/start_action=0");
+    prop->close_tray_on_start=gnome_config_get_bool("/gtcd/general/close_tray_on_start=false");
+
 }
 
-void save_prefs( tcd_prefs *prop )
+void save_prefs(tcd_prefs *prop)
 {
     gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
-    gnome_config_set_string("/gtcd/cddb/server", prop->cddb);
-    gnome_config_set_int(   "/gtcd/cddb/port", prop->cddbport);
-    gnome_config_set_bool(  "/gtcd/ui/handle", prop->handle);
-    gnome_config_set_bool(  "/gtcd/ui/tooltip", prop->tooltip);
-    gnome_config_set_int(   "/gtcd/ui/time_display", prop->time_display);
+    gnome_config_set_bool  ("/gtcd/ui/handle", prop->handle);
+    gnome_config_set_bool  ("/gtcd/ui/tooltip", prop->tooltip);
+    gnome_config_set_int   ("/gtcd/ui/time_display", prop->time_display);
     gnome_config_set_string("/gtcd/ui/trackfont", prop->trackfont);
-    gnome_config_set_string("/gtcd/ui/statusfont",prop->statusfont);
-    gnome_config_set_string("/gtcd/ui/trackcolor", prop->trackcolor);
-    gnome_config_set_string("/gtcd/ui/statuscolor",prop->statuscolor);
-    
-    gnome_config_set_bool(  "/gtcd/cddb/use_http", prop->use_http);
-    gnome_config_set_bool(  "/gtcd/cddb/use_proxy",prop->use_proxy);
-    gnome_config_set_string("/gtcd/cddb/proxy_server", prop->proxy_server);
-    gnome_config_set_int(   "/gtcd/cddb/proxy_port",prop->proxy_port);
-    gnome_config_set_string("/gtcd/cddb/remote_path", prop->remote_path);
+
+    gnome_config_set_int("/gtcd/ui/trackcolor_r", prop->trackcolor_r);
+    gnome_config_set_int("/gtcd/ui/trackcolor_g", prop->trackcolor_g);
+    gnome_config_set_int("/gtcd/ui/trackcolor_b", prop->trackcolor_b);
+
+    gnome_config_set_int ("/gtcd/general/exit_action", prop->exit_action);
+    gnome_config_set_int ("/gtcd/general/start_action", prop->start_action);
+    gnome_config_set_bool("/gtcd/general/close_tray_on_start", prop->close_tray_on_start);
   
     gnome_config_sync();
 }
 
-void changed_cb( GtkWidget *widget, void *data )
+void changed_cb(GtkWidget *widget, void *data)
 {
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+    gnome_property_box_changed(GNOME_PROPERTY_BOX(pref_window));
 }
 
-void cddb_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
+void color_set_cb(GnomeColorPicker *cp, int pr, int pg, int pb)
 {
-    prefs.cddbport = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+    gnome_color_picker_get_i8(cp, 
+			      &prefs.trackcolor_r, 
+			      &prefs.trackcolor_g, 
+			      &prefs.trackcolor_b,
+			      NULL);
+    changed_cb(NULL, NULL);
 }
 
-GtkWidget *http_box, *proxy_box;
-
-void http_checked( GtkWidget *widget, gpointer data )
+void start_toggle_cb(GtkWidget *widget, gpointer data)
 {
-    if (GTK_TOGGLE_BUTTON(widget)->active) {
-	prefs.use_http=TRUE;
-	gtk_widget_set_sensitive(http_box,TRUE);
-    } 
-    else {
-	prefs.use_http=FALSE;
-	gtk_widget_set_sensitive(http_box,FALSE);
-    }
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+    prefs.start_action = GPOINTER_TO_INT(data);
+    changed_cb(NULL, NULL);
 }
 
-void proxy_checked( GtkWidget *widget, gpointer data )
-{
-    if (GTK_TOGGLE_BUTTON(widget)->active) {
-	prefs.use_proxy=TRUE;
-	gtk_widget_set_sensitive(proxy_box,TRUE);
-    } 
-    else {
-	prefs.use_proxy=FALSE;
-	gtk_widget_set_sensitive(proxy_box,FALSE);
-    }
-    
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
-}
-
-void proxy_port_changed_cb( GtkWidget *widget, GtkWidget *spin )
-{
-    prefs.proxy_port = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin));
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
-}
-
-GtkWidget *create_http_frame()
-{
-    GtkWidget *vbox, *http_check, *proxy_check;
-    GtkWidget *proxy_l_box, *proxy_r_box;
-    GtkWidget *label;
-    GtkWidget *path_entry, *path_box;
-    GtkWidget *proxy_server_entry, *proxy_port_spin;
-    GtkObject *adj;
-    
-    vbox	= gtk_vbox_new(FALSE,2);
-    http_box	= gtk_vbox_new(FALSE,2);
-    proxy_box	= gtk_hbox_new(FALSE,2);
-    path_box	= gtk_hbox_new(FALSE,2);
-    proxy_r_box	= gtk_vbox_new(FALSE,2);
-    proxy_l_box	= gtk_vbox_new(FALSE,2);
-    
-    /* http checkbox */
-    http_check = gtk_check_button_new_with_label(_("Use HTTP"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(http_check), prefs.use_http);
-    gtk_signal_connect(GTK_OBJECT(http_check),"toggled",
-		       GTK_SIGNAL_FUNC(http_checked),NULL);  
-    
-    gtk_widget_set_sensitive(http_box,prefs.use_http);
-    
-    /* remote path entry & label */
-    label = gtk_label_new(_("Path:"));
-    path_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(path_entry), prefs.remote_path );
-    prefs.remote_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(path_entry)));
-    gtk_signal_connect(GTK_OBJECT(path_entry), "changed",
-		       GTK_SIGNAL_FUNC(changed_cb), NULL );
-    
-    gtk_box_pack_start(GTK_BOX(path_box), label, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(path_box), path_entry, TRUE, TRUE, 0);
-    
-    /* proxy checkbox */
-    proxy_check = gtk_check_button_new_with_label(_("Use Proxy Server"));
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(proxy_check), prefs.use_proxy);
-    gtk_signal_connect(GTK_OBJECT(proxy_check),"toggled",
-		       GTK_SIGNAL_FUNC(proxy_checked),NULL);  
-    
-    gtk_widget_set_sensitive(proxy_box,prefs.use_proxy);
-    
-    /* proxy server */
-    label = gtk_label_new(_("Server:"));
-    proxy_server_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(proxy_server_entry), prefs.proxy_server );
-    gtk_box_pack_start(GTK_BOX(proxy_l_box), label, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(proxy_r_box), proxy_server_entry, TRUE, TRUE, 0);
-    prefs.proxy_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(proxy_server_entry)));
-    gtk_signal_connect(GTK_OBJECT(proxy_server_entry), "changed",
-		       GTK_SIGNAL_FUNC(changed_cb), NULL );
-    
-    /* proxy port */
-    label = gtk_label_new(_("Port:"));
-    adj = gtk_adjustment_new( prefs.proxy_port, 1, 9999, 1, 10, 10 );
-    proxy_port_spin  = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
-    gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(proxy_port_spin),
-				    GTK_SHADOW_NONE);
-    gtk_signal_connect( GTK_OBJECT(adj),"value_changed",
-			GTK_SIGNAL_FUNC(proxy_port_changed_cb),proxy_port_spin );
-    gtk_spin_button_set_update_policy( GTK_SPIN_BUTTON(proxy_port_spin),
-				       GTK_UPDATE_ALWAYS );
-    gtk_box_pack_start(GTK_BOX(proxy_l_box), label, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(proxy_r_box), proxy_port_spin, TRUE, TRUE, 0);
-    
-    /* put it all together */
-    gtk_box_pack_start(GTK_BOX(http_box), path_box, TRUE, TRUE, 0);
-    
-    gtk_box_pack_start(GTK_BOX(http_box), proxy_check, FALSE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(http_box), proxy_box, FALSE, TRUE, 0);
-    
-    gtk_box_pack_start(GTK_BOX(proxy_box), proxy_l_box, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(proxy_box), proxy_r_box, TRUE, TRUE, 0);
-    
-    gtk_box_pack_start(GTK_BOX(vbox), http_check, FALSE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), http_box, FALSE, TRUE, 0);
-    
-    return vbox;	
-}
-
-GtkWidget *create_cddb_frame()
-{
-    GtkWidget *cddb_r_box, *cddb_l_box;
-    GtkWidget *cddb_box;
-    GtkWidget *cddb_i, *port_i, *label;
-    GtkObject *adj;
-    
-    cddb_r_box = gtk_vbox_new( FALSE, 2 );
-    cddb_l_box = gtk_vbox_new( FALSE, 2 );
-    cddb_box   = gtk_hbox_new( FALSE, 2 );
-    
-    /* server entry */
-    label = gtk_label_new(_("Server:"));
-    gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
-    cddb_i = gtk_entry_new();
-    gtk_entry_set_text( GTK_ENTRY(cddb_i), prefs.cddb );
-    prefs.cddb = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddb_i)));
-    gtk_signal_connect( GTK_OBJECT(cddb_i), "changed",
-			GTK_SIGNAL_FUNC(changed_cb), NULL );
-    gtk_box_pack_start( GTK_BOX(cddb_l_box), label, TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cddb_r_box), cddb_i, TRUE, TRUE, 0 );
-    
-    /* port spinner */
-    label = gtk_label_new(_("Port:"));
-    gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
-    adj = gtk_adjustment_new( prefs.cddbport, 1, 9999, 1, 10, 10 );
-    port_i = gtk_spin_button_new( GTK_ADJUSTMENT(adj), 1,0 );
-    gtk_spin_button_set_shadow_type(GTK_SPIN_BUTTON(port_i),
-				    GTK_SHADOW_NONE);
-    gtk_signal_connect( GTK_OBJECT(adj),"value_changed",
-			GTK_SIGNAL_FUNC(cddb_port_changed_cb),port_i );
-    gtk_spin_button_set_update_policy( GTK_SPIN_BUTTON(port_i),
-				       GTK_UPDATE_ALWAYS );
-    gtk_signal_connect( GTK_OBJECT(port_i), "changed",
-			GTK_SIGNAL_FUNC(changed_cb), NULL );
-    gtk_box_pack_start( GTK_BOX(cddb_l_box), label,TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cddb_r_box), port_i,TRUE, TRUE, 0 );
-    
-    /* put it together */
-    gtk_box_pack_start( GTK_BOX(cddb_box), cddb_l_box, TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cddb_box), cddb_r_box, TRUE, TRUE, 0 );
-    
-    gtk_widget_show_all(cddb_box);
-    
-    return cddb_box;
-}
-
-GtkWidget *create_cdrom_frame()
-{
-    GtkWidget *cdrom_r_box;
-    GtkWidget *cdrom_l_box;
-    GtkWidget *cdrom_frame;
-    GtkWidget *cdrom_box;
-    GtkWidget *cddev_i, *label;
-    
-    cdrom_r_box= gtk_vbox_new( FALSE, 2 );
-    cdrom_l_box= gtk_vbox_new( FALSE, 2 );
-    cdrom_box  = gtk_hbox_new( FALSE, 2 );
-    cdrom_frame = gtk_frame_new(_("CDROM Drive"));
-    
-    /* cdrom device */
-    label = gtk_label_new(_("Device:"));
-    gtk_label_set_justify( GTK_LABEL(label), GTK_JUSTIFY_RIGHT );
-    cddev_i = gtk_entry_new();
-    gtk_entry_set_text( GTK_ENTRY(cddev_i), prefs.cddev );
-    prefs.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(cddev_i)));
-    gtk_signal_connect( GTK_OBJECT(cddev_i), "changed",
-			GTK_SIGNAL_FUNC(changed_cb), NULL );
-    gtk_box_pack_start( GTK_BOX(cdrom_l_box), label, TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cdrom_r_box), cddev_i, TRUE, TRUE, 0 );
-    
-    gtk_box_pack_start( GTK_BOX(cdrom_box), cdrom_l_box, TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(cdrom_box), cdrom_r_box, TRUE, TRUE, 0 );
-    
-    gtk_container_add( GTK_CONTAINER(cdrom_frame), cdrom_box );
-    gtk_widget_show_all(cdrom_frame);
-    
-    return cdrom_frame;
-}
-
-void check_changed_cb( GtkWidget *widget, gboolean *data )
+void check_changed_cb(GtkWidget *widget, gboolean *data)
 {
     if( *data )
-	*data = FALSE;
-    else	
-	*data = TRUE;
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+        *data = FALSE;
+    else        
+        *data = TRUE;
+    changed_cb(NULL, NULL);
 }
 
-void track_color_changed_cb( GnomeColorSelector *widget, void *data )
+GtkWidget *create_start_frame()
 {
-    int r,g,b;
-
-    gnome_color_selector_get_color_int( 
-	widget, &r, &g, &b, 255 );
+    GtkWidget *start_playing;
+    GtkWidget *stop_playing;
+    GtkWidget *close_tray;
+    GtkWidget *do_nothing;
+    GtkWidget *vbox;
     
-    snprintf( prefs.trackcolor, 24, "#%02x%02x%02x", r, g, b );
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+    vbox = gtk_vbox_new(TRUE, 0);
+
+    /* do nothing */
+    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(do_nothing), (prefs.start_action==DoNothing)?1:0);
+
+    /* start playing */
+    start_playing = gtk_radio_button_new_with_label(
+	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
+	_("Start Playing"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(start_playing), (prefs.start_action==StartPlaying)?1:0);
+    
+    /* stop playing */
+    stop_playing = gtk_radio_button_new_with_label(
+	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
+	_("Stop Playing"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(stop_playing), (prefs.start_action==StopPlaying)?1:0);
+	
+    /* close tray */
+    close_tray = gtk_check_button_new_with_label(_("Close Tray"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(close_tray), prefs.close_tray_on_start);
+
+    gtk_signal_connect(GTK_OBJECT(close_tray), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.close_tray_on_start);
+   
+    gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
+		       GTK_SIGNAL_FUNC(start_toggle_cb), GINT_TO_POINTER(DoNothing));
+    gtk_signal_connect(GTK_OBJECT(start_playing), "clicked",
+		       GTK_SIGNAL_FUNC(start_toggle_cb), GINT_TO_POINTER(StartPlaying));
+    gtk_signal_connect(GTK_OBJECT(stop_playing), "clicked",
+		       GTK_SIGNAL_FUNC(start_toggle_cb), GINT_TO_POINTER(StopPlaying));
+
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), do_nothing);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), start_playing);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), stop_playing);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), close_tray);
+
+    gtk_widget_show_all(vbox);
+    return vbox;
 }
 
-/* Track font functions */
-void track_font_changed_cb( GtkWidget *widget, GnomeFontSelector *fs )
+void exit_toggle_cb(GtkWidget *widget, gpointer data)
 {
-    strcpy(prefs.trackfont,gnome_font_selector_get_selected(fs));
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
+    prefs.exit_action = GPOINTER_TO_INT(data);
+    changed_cb(NULL, NULL);
 }
 
-void track_font_cb( GtkWidget *widget, gchar *data )
+GtkWidget *create_exit_frame()
 {
-    GtkWidget *fs;
+    GtkWidget *stop_playing;
+    GtkWidget *open_tray;
+    GtkWidget *close_tray;
+    GtkWidget *do_nothing;
+    GtkWidget *vbox;
     
-    fs = gnome_font_selector_new();
+    vbox = gtk_vbox_new(TRUE, 0);
+
+    /* do nothing */
+    do_nothing = gtk_radio_button_new_with_label(NULL, _("Do Nothing"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(do_nothing), (prefs.exit_action==DoNothing)?1:0);
     
-    gtk_widget_show(fs);
-    gtk_signal_connect( GTK_OBJECT(GNOME_FONT_SELECTOR(fs)->ok_button), "clicked",
-			GTK_SIGNAL_FUNC(track_font_changed_cb), fs );
+    /* stop playing */
+    stop_playing = gtk_radio_button_new_with_label(
+	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
+	_("Stop Playing"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(stop_playing), (prefs.exit_action==StopPlaying)?1:0);
+
+    /* open tray */
+    open_tray = gtk_radio_button_new_with_label(
+	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
+	_("Open Tray"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(open_tray), (prefs.exit_action==OpenTray)?1:0);
+        
+    /* close tray */
+    close_tray = gtk_radio_button_new_with_label(
+	gtk_radio_button_group(GTK_RADIO_BUTTON(do_nothing)),
+	_("Close Tray"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(close_tray), (prefs.exit_action==CloseTray)?1:0);
+
+    gtk_signal_connect(GTK_OBJECT(do_nothing), "clicked",
+		       GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(DoNothing));
+    gtk_signal_connect(GTK_OBJECT(stop_playing), "clicked",
+		       GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(StopPlaying));
+    gtk_signal_connect(GTK_OBJECT(open_tray), "clicked",
+		       GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(OpenTray));
+    gtk_signal_connect(GTK_OBJECT(close_tray), "clicked",
+		       GTK_SIGNAL_FUNC(exit_toggle_cb), GINT_TO_POINTER(CloseTray));
+
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), do_nothing);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), stop_playing);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), open_tray);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), close_tray);
+    
+    gtk_widget_show_all(vbox);
+    return vbox;
 }	
 
-/* Status font functions */
-void status_font_changed_cb( GtkWidget *widget, GnomeFontSelector *fs )
+void dev_entry_changed_cb(GtkWidget *widget, gpointer data)
 {
-    strcpy(prefs.statusfont,gnome_font_selector_get_selected(fs));
-    gnome_property_box_changed(GNOME_PROPERTY_BOX(propbox));
-}
-void status_font_cb( GtkWidget *widget, gchar *data )
-{
-    GtkWidget *fs;
-    
-    fs = gnome_font_selector_new();
-    
-    gtk_widget_show(fs);
-    gtk_signal_connect( GTK_OBJECT(GNOME_FONT_SELECTOR(fs)->ok_button), "clicked",
-			GTK_SIGNAL_FUNC(status_font_changed_cb), fs );
-} 
-
-GtkWidget *create_status_frame()
-{
-    GtkWidget *trackbutton_c, *statusbutton_c;
-    GtkWidget *trackbutton_f, *statusbutton_f;
-    GtkWidget *track_l, *status_l;
-    GnomeColorSelector *track_gcs, *status_gcs;
-    int tr,tg,tb, rr,rg,rb;
-    
-    GtkWidget *frame, *status_table;
-    
-    if(sscanf(prefs.trackcolor, "#%02x%02x%02x", &tr,&tg,&tb) != 3)
-    {
-	g_print("WARNING: Error parsing color: #%02X%02X%02X\n", tr, tg, tb);
-	strcpy(prefs.trackcolor, "#FF0000");
-    }   
- 
-    if(sscanf(prefs.statuscolor,"#%02x%02x%02x", &rr,&rg,&rb) != 3)
-    {
-	g_print("WARNING: Error parsing color: #%02X%02X%02X\n", tr, tg, tb);
-	strcpy(prefs.statuscolor,"#00FF00");
-    }
-
-    status_table = gtk_table_new( 4, 2, FALSE );
-    
-    track_gcs  = gnome_color_selector_new((SetColorFunc)track_color_changed_cb, NULL );
-    trackbutton_f  = gtk_button_new_with_label( _("Title/Track Font") );
-    
-    gtk_signal_connect( GTK_OBJECT(trackbutton_f), "clicked",
-			GTK_SIGNAL_FUNC(track_font_cb), NULL );
-    
-    gnome_color_selector_set_color_int( track_gcs, tr, tg, tb, 255 );
-    
-    trackbutton_c = gnome_color_selector_get_button( track_gcs );
-    
-    track_l  = gtk_label_new(_("Title/Track Display"));
-    
-    frame = gtk_frame_new(_("Fonts & Colors"));
-    
-    gtk_table_attach_defaults( GTK_TABLE(status_table),
-			       track_l, 0,2,0,1 );
-    gtk_table_attach( GTK_TABLE(status_table),
-		      trackbutton_c, 2,3,0,1,
-		      0,0,2,2 );
-    gtk_table_attach( GTK_TABLE(status_table),
-		      trackbutton_f, 3,4,0,1,
-		      GTK_EXPAND,0,2,2 );
-
-    gtk_container_add( GTK_CONTAINER(frame), status_table );
-    
-    gtk_widget_show_all(frame);
-    
-    return frame;
+    prefs.cddev = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+    changed_cb(NULL, NULL);
 }
 
-GtkWidget *create_ui_frame()
+void font_ok_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 {
-    GtkWidget *ui_r_box;
-    GtkWidget *ui_l_box;
-    GtkWidget *ui_frame;
-    GtkWidget *ui_box;
-    
-    GtkWidget *handle_i;
-    GtkWidget *tooltips_i;
-    
-    ui_r_box= gtk_vbox_new( FALSE, 2 );
-    ui_l_box= gtk_vbox_new( FALSE, 2 );
-    ui_box  = gtk_hbox_new( TRUE, 2 );
-    
-    handle_i = gtk_check_button_new_with_label(_("Show Handles (Restart of TCD required)"));
-    tooltips_i = gtk_check_button_new_with_label(_("Show Tooltips"));
-    
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handle_i), prefs.handle );
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips_i), prefs.tooltip );
-    
-    ui_frame = gtk_frame_new(_("Interface"));
-    
-    gtk_signal_connect( GTK_OBJECT(handle_i), "clicked",
-			GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle );
-    gtk_signal_connect( GTK_OBJECT(tooltips_i), "clicked",
-			GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip );
-    
-    gtk_box_pack_start( GTK_BOX(ui_l_box), handle_i, FALSE, FALSE, 4 );
-    gtk_box_pack_start( GTK_BOX(ui_l_box), tooltips_i, FALSE, FALSE, 4 );
-    
-    gtk_box_pack_start( GTK_BOX(ui_box), ui_l_box, FALSE, FALSE, 0 );
-    gtk_box_pack_start( GTK_BOX(ui_box), ui_r_box, FALSE, FALSE, 0 );
-    
-    gtk_container_add( GTK_CONTAINER(ui_frame), ui_box );
-    
-    gtk_widget_show_all(ui_frame);
-    
-    return ui_frame;
+        prefs.trackfont = g_strdup(gtk_font_selection_dialog_get_font_name(
+                GTK_FONT_SELECTION_DIALOG(fs)));
+        gtk_widget_destroy(fs);
+	changed_cb(NULL, NULL);
 }
 
-GtkWidget *create_page2()
+void font_cancel_clicked_cb(GtkWidget *widget, GtkWidget *fs)
 {
-    GtkWidget *box, *frame1;
-    GtkWidget *http, *cddb, *frame2;
-    
-    box = gtk_vbox_new( FALSE,4 );	
-
-    cddb = create_cddb_frame();
-    http = create_http_frame();
-
-    frame1 = gtk_frame_new(_("CDDB Access"));
-    frame2 = gtk_frame_new(_("HTTP Preferences"));
-
-    gtk_container_add(GTK_CONTAINER(frame1), cddb);
-    gtk_container_add(GTK_CONTAINER(frame2), http);
-
-    gtk_box_pack_start(GTK_BOX(box), frame1, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(box), frame2, TRUE, TRUE, 0);
-    
-    return box;
-}	
-
-GtkWidget *create_interface()
+        gtk_widget_destroy(fs);
+}       
+        
+void font_button_cb(GtkWidget *widget, gpointer *data)
 {
-    GtkWidget *box;
-    GtkWidget *ui_frame, *status_frame;
-    
-    box = gtk_vbox_new( FALSE,4 );	
-    
-    ui_frame = create_ui_frame();
-    status_frame = create_status_frame();
-    
-    gtk_box_pack_start( GTK_BOX(box), ui_frame,TRUE, TRUE, 0 );
-    gtk_box_pack_start( GTK_BOX(box), status_frame,TRUE, TRUE, 0 );
-    
-    return box;
+        GtkWidget *fs;
+        
+        fs = gtk_font_selection_dialog_new("Font");
+        gtk_font_selection_dialog_set_font_name(GTK_FONT_SELECTION_DIALOG(fs), prefs.trackfont);
+
+        gtk_signal_connect(GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(fs)->ok_button), "clicked",
+                GTK_SIGNAL_FUNC(font_ok_clicked_cb), fs);
+        gtk_signal_connect(GTK_OBJECT(GTK_FONT_SELECTION_DIALOG(fs)->cancel_button), "clicked",
+                GTK_SIGNAL_FUNC(font_cancel_clicked_cb), fs);
+
+        gtk_widget_show(fs);
 }
 
-GtkWidget *create_page1()
+GtkWidget *create_general_frame()
 {
-    GtkWidget *cdrom_frame;
+    GtkWidget *label;
+    GtkWidget *dev_entry;
+    GtkWidget *cp, *fs;
+    GtkWidget *left_box, *right_box, *hbox, *vbox;
+    GtkWidget *handles, *tooltips;
     
-    cdrom_frame= create_cdrom_frame();
+    left_box = gtk_vbox_new(FALSE, 2);
+    right_box = gtk_vbox_new(FALSE, 2);
+    hbox = gtk_hbox_new(FALSE, 2);
+    vbox = gtk_vbox_new(FALSE, 2);
     
-    return cdrom_frame;
+    gtk_box_pack_start_defaults(GTK_BOX(hbox), left_box);
+    gtk_box_pack_start_defaults(GTK_BOX(hbox), right_box);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), hbox);
+    
+    /* device entry */
+    label = gtk_label_new(_("CDROM Device"));
+    dev_entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(dev_entry), prefs.cddev);
+    gtk_signal_connect(GTK_OBJECT(dev_entry), "changed",
+		       GTK_SIGNAL_FUNC(dev_entry_changed_cb), NULL);
+    gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
+    gtk_box_pack_start_defaults(GTK_BOX(right_box), dev_entry);
+    
+    /* Color picker */
+    label = gtk_label_new(_("Track/Title Color"));
+    cp = gnome_color_picker_new();
+    gnome_color_picker_set_i8(GNOME_COLOR_PICKER(cp), 
+			      prefs.trackcolor_r, 
+			      prefs.trackcolor_g, 
+			      prefs.trackcolor_b, 0);
+    gtk_signal_connect(GTK_OBJECT(cp), "color_set",
+		       GTK_SIGNAL_FUNC(color_set_cb), NULL);
+    gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
+    gtk_box_pack_start(GTK_BOX(right_box), cp, TRUE, FALSE, 0);
+    
+    /* font picker */
+    label = gtk_label_new(_("Track/Title Font"));
+    fs = gtk_button_new_with_label(_("Change Font"));
+    gtk_signal_connect(GTK_OBJECT(fs), "clicked",
+		       GTK_SIGNAL_FUNC(font_button_cb), NULL);
+    gtk_box_pack_start_defaults(GTK_BOX(left_box), label);
+    gtk_box_pack_start(GTK_BOX(right_box), fs, TRUE, FALSE, 0);
+    
+    /* show handles */
+    handles = gtk_check_button_new_with_label(_("Show Handles (Restart of TCD required)"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(handles), prefs.handle);
+    gtk_signal_connect(GTK_OBJECT(handles), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.handle);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), handles);
+    
+    /* show tooltips */
+    tooltips = gtk_check_button_new_with_label(_("Show Tooltips"));
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(tooltips), prefs.tooltip);
+    gtk_signal_connect(GTK_OBJECT(tooltips), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &prefs.tooltip);
+    gtk_box_pack_start_defaults(GTK_BOX(vbox), tooltips);
+    
+    gtk_widget_show_all(vbox);
+    return vbox;
 }
 
-void help_cb(GtkWidget *widget, void *data)
+GtkWidget *create_page()
 {
-    gchar *file,*file2;
-/* fixme */
-    file=(gchar*)gnome_help_file_find_file("gnome-intro","c0205.html#GTCD");
-    if (file)
-    {
-        file2=alloca(strlen(file)+10);
-        strcpy(file2,"file:");
-        strcat(file2,file);
-        gnome_help_goto(NULL,file2);
-        g_free(file);
-    }
+    GtkWidget *table;
+    GtkWidget *start_frame;
+    GtkWidget *exit_frame;
+    GtkWidget *general_frame;
+    
+    table = gtk_table_new(2, 2, FALSE);
+    
+    /* start frame */
+    start_frame = gtk_frame_new(_("On Startup"));
+    gtk_container_add(GTK_CONTAINER(start_frame), create_start_frame());
+    gtk_widget_set_sensitive(start_frame, FALSE);
+    gtk_table_attach_defaults(GTK_TABLE(table), start_frame, 0, 1, 0, 1);
+    
+    /* exit frame */
+    exit_frame = gtk_frame_new(_("On Exit"));
+    gtk_container_add(GTK_CONTAINER(exit_frame), create_exit_frame());
+    gtk_widget_set_sensitive(exit_frame, FALSE);
+    gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);
+    
+    /* general frame */
+    general_frame = gtk_frame_new(_("General"));
+    gtk_container_add(GTK_CONTAINER(general_frame), create_general_frame());
+    gtk_table_attach_defaults(GTK_TABLE(table), general_frame, 1, 2, 0, 2);
+    
+    gtk_widget_show_all(table);
+    return table;
 }
 
 void apply_cb( GtkWidget *widget, void *data )
-{	
+{       
 /* Do stuff here if needed */
     if( prefs.tooltip )
-	gtk_tooltips_enable(tooltips);
+        gtk_tooltips_enable(tooltips);
     else
-	gtk_tooltips_disable(tooltips);
-    setup_colors();		
+        gtk_tooltips_disable(tooltips);
+    setup_colors();
     setup_fonts();
     save_prefs(&prefs);
 }
 
-void prefs_cb( GtkWidget *widget, void *data )
+void preferences(GtkWidget *widget, void *data)
 {
-    GtkWidget *general, *page2, *label, *interface;
-    GtkWidget *box1;
+    GtkWidget *label;
     
-    load_prefs(&prefs);
-    
-    propbox = gnome_property_box_new();
-    gtk_window_set_title(GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window), _("Preferences"));
-    
-    box1 = gtk_vbox_new(FALSE,2);
-    general = create_page1();
-    interface = create_interface();
+    pref_window = gnome_property_box_new();
+    gtk_widget_realize(pref_window);
 
-    gtk_box_pack_start_defaults(GTK_BOX(box1), general);
-    gtk_box_pack_start_defaults(GTK_BOX(box1), interface);
+    label = gtk_label_new(_("Preferences"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(pref_window)->notebook),
+			     create_page(), label);
+    
+    gtk_signal_connect(GTK_OBJECT(pref_window),
+		       "apply", GTK_SIGNAL_FUNC(apply_cb), NULL);
 
-    label = gtk_label_new(_("General"));
-    gtk_widget_show_all(box1);
-    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    box1, label);
-    
-/*    page2 	= create_page2();
-    label   = gtk_label_new(_("HTTP/Proxy"));
-    gtk_widget_show(page2);
-    gtk_notebook_append_page(GTK_NOTEBOOK(GNOME_PROPERTY_BOX(propbox)->notebook),
-				    page2, label);*/
-    
-    gtk_signal_connect( GTK_OBJECT(propbox), 
-			"apply", GTK_SIGNAL_FUNC(apply_cb), NULL );
-    gtk_signal_connect( GTK_OBJECT(propbox),
-			"help", GTK_SIGNAL_FUNC(help_cb), NULL );
-    
-    gtk_widget_show_all(propbox);
-    return;
-}
+    gtk_widget_show_all(pref_window);	
+}    
