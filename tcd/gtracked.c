@@ -23,7 +23,7 @@ static void next_entry(GtkWidget *widget, GtkWidget *list);
 
 static void destroy_window (GtkWidget *widget, gboolean save)
 {
-	if( save )
+	if(save)
 		tcd_writediskinfo(&cd);
         gtk_widget_destroy(trwin);
 	trwin = NULL;

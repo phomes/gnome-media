@@ -66,6 +66,14 @@ void load_prefs(tcd_prefs *prop)
     prop->exit_action=gnome_config_get_int         ("/gtcd/general/exit_action=0");
     prop->start_action=gnome_config_get_int        ("/gtcd/general/start_action=0");
     prop->close_tray_on_start=gnome_config_get_bool("/gtcd/general/close_tray_on_start=false");
+
+    prop->quit.key =    gnome_config_get_int("/gtcd/keybindings/quit=81");
+    prop->play.key =    gnome_config_get_int("/gtcd/keybindings/play=80");
+    prop->stop.key =    gnome_config_get_int("/gtcd/keybindings/stop=83");
+    prop->tracked.key = gnome_config_get_int("/gtcd/keybindings/tracked=84");
+    prop->eject.key =   gnome_config_get_int("/gtcd/keybindings/eject=69");
+    prop->back.key =    gnome_config_get_int("/gtcd/keybindings/back=45");
+    prop->forward.key = gnome_config_get_int("/gtcd/keybindings/forward=43");
 }
 
 void save_prefs(tcd_prefs *prop)
@@ -83,7 +91,15 @@ void save_prefs(tcd_prefs *prop)
     gnome_config_set_int ("/gtcd/general/exit_action", prop->exit_action);
     gnome_config_set_int ("/gtcd/general/start_action", prop->start_action);
     gnome_config_set_bool("/gtcd/general/close_tray_on_start", prop->close_tray_on_start);
-  
+
+    gnome_config_set_int("/gtcd/keybindings/quit", prop->quit.key);
+    gnome_config_set_int("/gtcd/keybindings/play", prop->play.key);
+    gnome_config_set_int("/gtcd/keybindings/stop", prop->stop.key);
+    gnome_config_set_int("/gtcd/keybindings/tracked", prop->tracked.key);
+    gnome_config_set_int("/gtcd/keybindings/eject", prop->eject.key);
+    gnome_config_set_int("/gtcd/keybindings/back", prop->back.key);
+    gnome_config_set_int("/gtcd/keybindings/forward", prop->forward.key);
+
     gnome_config_sync();
 }
 
@@ -330,16 +346,19 @@ GtkWidget *create_page()
     
     /* start frame */
     start_frame = gtk_frame_new(_("On Startup"));
+    gtk_container_border_width(GTK_CONTAINER(start_frame), 3);
     gtk_container_add(GTK_CONTAINER(start_frame), create_start_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), start_frame, 0, 1, 0, 1);
     
     /* exit frame */
     exit_frame = gtk_frame_new(_("On Exit"));
+    gtk_container_border_width(GTK_CONTAINER(exit_frame), 3);
     gtk_container_add(GTK_CONTAINER(exit_frame), create_exit_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), exit_frame, 0, 1, 1, 2);
     
     /* general frame */
     general_frame = gtk_frame_new(_("General"));
+    gtk_container_border_width(GTK_CONTAINER(general_frame), 3);
     gtk_container_add(GTK_CONTAINER(general_frame), create_general_frame());
     gtk_table_attach_defaults(GTK_TABLE(table), general_frame, 1, 2, 0, 2);
     
@@ -350,45 +369,135 @@ GtkWidget *create_page()
 static void fill_list(KeyBinding *kb, GtkWidget *clist)
 {
     char *tmp[2];
-    
+    GHashTable *h;
+
     tmp[0] = g_malloc(64);	/* key */
     tmp[1] = g_malloc(256);	/* desc */
 
-    g_snprintf(tmp[0], 63, "\'%c\'", kb->key);
+    g_snprintf(tmp[0], 63, "%c", toupper(kb->key->key));
     g_snprintf(tmp[1], 255, "%s", kb->desc);
     
     gtk_clist_append(GTK_CLIST(clist), tmp);
+    gtk_object_set_data(GTK_OBJECT(clist), tmp[0], kb);
 
     g_free(tmp[0]);
     g_free(tmp[1]);
 }	
 
+int entry_changed(GtkWidget *widget, GdkEvent *ev, KeyBinding *kb)
+{
+    char tmp[64];
+    if(ev->type != GDK_KEY_PRESS)
+	return 0;
+    g_snprintf(tmp, 63, "%c", toupper(kb->key->key));
+    gtk_object_remove_data(GTK_OBJECT(kb->data), tmp);
+    kb->key->key = *((GdkEventKey*)ev)->string;
+
+    g_snprintf(tmp, 63, "%c", toupper(kb->key->key));
+    gtk_object_set_data(GTK_OBJECT(kb->data), tmp, kb);
+    gtk_clist_set_text(GTK_CLIST(kb->data), kb->data2, 0, tmp);
+
+    return 1;
+}
+
+static void select_row_cb(GtkCList *clist,
+		    gint row,
+                    gint column,
+                    GdkEventButton *event,
+                    gpointer data)
+{
+    static int entry_cb=0, alt_cb=0, shift_cb=0, ctrl_cb=0;
+    GtkWidget *entry, *alt_check, *shift_check, *ctrl_check;
+    KeyBinding *kb;
+    gchar *text;
+
+    gtk_clist_get_text(clist, row, 0, &text);
+    kb = gtk_object_get_data(GTK_OBJECT(clist), text);
+    entry = gtk_object_get_data(GTK_OBJECT(clist), "entry");
+    ctrl_check = gtk_object_get_data(GTK_OBJECT(clist), "ctrl_check");
+    alt_check = gtk_object_get_data(GTK_OBJECT(clist), "alt_check");
+    shift_check = gtk_object_get_data(GTK_OBJECT(clist), "shift_check");
+
+    if(entry_cb > 0) gtk_signal_disconnect(GTK_OBJECT(entry), entry_cb);
+    if(ctrl_cb > 0) gtk_signal_disconnect(GTK_OBJECT(ctrl_check), ctrl_cb);
+    if(alt_cb > 0) gtk_signal_disconnect(GTK_OBJECT(alt_check), alt_cb);
+    if(shift_cb > 0) gtk_signal_disconnect(GTK_OBJECT(shift_check), shift_cb);
+
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ctrl_check), kb->key->ctrl);
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(alt_check), kb->key->alt);
+    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(shift_check), kb->key->shift);
+    
+    kb->data = clist;
+    kb->data2 = row;
+    entry_cb = gtk_signal_connect(GTK_OBJECT(entry), "event",
+				  GTK_SIGNAL_FUNC(entry_changed), kb);
+    ctrl_cb = gtk_signal_connect(GTK_OBJECT(ctrl_check), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &kb->key->ctrl);
+    alt_cb = gtk_signal_connect(GTK_OBJECT(alt_check), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &kb->key->alt);
+    shift_cb = gtk_signal_connect(GTK_OBJECT(shift_check), "clicked",
+		       GTK_SIGNAL_FUNC(check_changed_cb), &kb->key->shift);
+}
+
 GtkWidget *key_page(void)
 {
-    GtkWidget *list, *frame, *box;
+    GtkWidget *clist, *frame, *box, *scrolled, *mod_box;
+    GtkWidget *alt_check, *ctrl_check, *shift_check;
+    GtkWidget *label, *entry;
+
+    /* Scrolled Window */
+    scrolled = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
+				   GTK_POLICY_AUTOMATIC,
+				   GTK_POLICY_AUTOMATIC);
 
     /* List */
-    list = gtk_clist_new(2);
-    gtk_clist_set_column_width(GTK_CLIST(list), 0, 20);
-    gtk_clist_set_policy(GTK_CLIST(list), GTK_POLICY_AUTOMATIC,
-			 GTK_POLICY_AUTOMATIC);
-    gtk_clist_set_selection_mode(GTK_CLIST(list),
+    clist = gtk_clist_new(2);
+    gtk_clist_set_column_width(GTK_CLIST(clist), 0, 30);
+    gtk_clist_set_selection_mode(GTK_CLIST(clist),
 				 GTK_SELECTION_BROWSE);
-    gtk_clist_set_column_title(GTK_CLIST(list), 0, _("Key"));
-    gtk_clist_set_column_title(GTK_CLIST(list), 1, _("Action"));
-    gtk_clist_column_titles_show(GTK_CLIST(list));
+    gtk_clist_set_column_title(GTK_CLIST(clist), 0, _("Key"));
+    gtk_clist_set_column_title(GTK_CLIST(clist), 1, _("Action"));
+    gtk_clist_column_titles_show(GTK_CLIST(clist));
+    gtk_clist_column_titles_passive(GTK_CLIST(clist));
+    gtk_clist_set_border(GTK_CLIST(clist), GTK_SHADOW_NONE);
+        
+    g_list_foreach(keys, (GFunc)fill_list, clist);
 
-    gtk_clist_column_titles_passive(GTK_CLIST(list));
-
-    g_list_foreach(keys, (GFunc)fill_list, list);
-
+    gtk_container_add(GTK_CONTAINER(scrolled), clist);
+    gtk_signal_connect(GTK_OBJECT(clist), "select_row",
+		       GTK_SIGNAL_FUNC(select_row_cb), NULL);
     /* Box */
-    box = gtk_hbox_new(FALSE, 2);
-    gtk_box_pack_start_defaults(GTK_BOX(box), list);
+    box = gtk_vbox_new(FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(box), scrolled, TRUE, TRUE, 0);
+
+    /* key box */
+    mod_box = gtk_hbox_new(FALSE, 2);
+
+    entry = gtk_entry_new_with_max_length(1);
+    label = gtk_label_new("Change Here:");
+
+    ctrl_check = gtk_check_button_new_with_label("Control");
+    alt_check = gtk_check_button_new_with_label("Alt");
+    shift_check = gtk_check_button_new_with_label("Shift");
+
+    gtk_box_pack_start_defaults(GTK_BOX(mod_box), label);
+    gtk_box_pack_start_defaults(GTK_BOX(mod_box), entry);
+    gtk_box_pack_start_defaults(GTK_BOX(mod_box), ctrl_check);
+    gtk_box_pack_start_defaults(GTK_BOX(mod_box), alt_check);
+    gtk_box_pack_start_defaults(GTK_BOX(mod_box), shift_check);
+
+    gtk_box_pack_start(GTK_BOX(box), mod_box, FALSE, FALSE, 0);
+
+    gtk_object_set_data(GTK_OBJECT(clist), "entry", entry);
+    gtk_object_set_data(GTK_OBJECT(clist), "ctrl_check", ctrl_check);
+    gtk_object_set_data(GTK_OBJECT(clist), "alt_check", alt_check);
+    gtk_object_set_data(GTK_OBJECT(clist), "shift_check", shift_check);
 
     /* Frame */
-    frame = gtk_frame_new(_("Keybindings (not editable YET)"));
+    frame = gtk_frame_new(_("Keybindings"));
     gtk_container_add(GTK_CONTAINER(frame), box);
+    gtk_container_border_width(GTK_CONTAINER(frame), 3);
 
     gtk_widget_show_all(frame);
     return frame;

@@ -51,6 +51,6 @@ tcd_LDADD = -lm $(CURSES_LIBS)
 CLEANFILES = *~
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER) -g
 
 Audio_DATA = gtcd.desktop

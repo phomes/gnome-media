@@ -12,6 +12,12 @@ typedef enum
 
 typedef struct
 {
+    gint key;
+    gboolean ctrl, alt, shift;
+} Shortcut;
+
+typedef struct
+{
     gchar *cddev;
     gint time_display;
     gboolean handle;
@@ -24,6 +30,9 @@ typedef struct
     gboolean close_tray_on_start;
 
     int x,y,h,w;
+
+    Shortcut quit, play, stop, tracked;
+    Shortcut eject, back, forward;
 } tcd_prefs;
 
 void load_prefs( tcd_prefs *prop );
