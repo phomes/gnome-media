@@ -42,6 +42,9 @@ typedef struct
     gchar *cddb_httpproxy_auth_name;
     gchar *cddb_httpproxy_auth_passwd;
 
+    gboolean use_socks;
+    gchar *socks_server;
+
     gboolean only_use_trkind;
 } tcd_prefs;
 

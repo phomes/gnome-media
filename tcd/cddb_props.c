@@ -42,6 +42,8 @@ static void use_httpproxy_auth_cb2(GtkWidget *widget, GtkWidget *entry);
 static void use_httpproxy_auth_cb3(GtkWidget *widget, GtkWidget *entry);
 static void httpproxyauthname_cb(GtkWidget *widget, gpointer data);
 static void httpproxyauthpasswd_cb(GtkWidget *widget, gpointer data);
+static void use_socks_cb(GtkWidget *widget, GtkWidget *entry);
+static void set_socks_cb(GtkWidget *widget, GtkWidget *entry);
 
 /* code */
 static void select_row_cb(GtkCList *clist,
@@ -135,8 +137,8 @@ static GtkWidget *portw;
 
 GtkWidget *create_cddb_page(void)
 {
-    GtkWidget *vbox, *frame, *label, *cbutton, *pbutton;
-    GtkWidget *table, *entry;
+    GtkWidget *vbox, *frame, *label, *cbutton, *pbutton, *sbutton;
+    GtkWidget *table, *entry, *socksentry;
     GtkObject *adj;
 
     vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
@@ -147,7 +149,7 @@ GtkWidget *create_cddb_page(void)
 
     gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 
-    table = gtk_table_new(5, 3, FALSE);
+    table = gtk_table_new(5, 4, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
     gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
 
@@ -240,6 +242,23 @@ GtkWidget *create_cddb_page(void)
 		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb), entry);
     gtk_signal_connect(GTK_OBJECT(cbutton), "toggled",
 		       GTK_SIGNAL_FUNC(use_httpproxy_auth_cb3), entry);
+
+    label = gtk_label_new(_("SOCKS Server"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label, 1,2, 4,5);
+
+    socksentry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(socksentry), prefs->socks_server);
+    gtk_table_attach_defaults(GTK_TABLE(table), socksentry, 2,5, 4,5);
+
+    sbutton = gtk_check_button_new_with_label(_("Use SOCKS"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(sbutton), prefs->use_socks);
+    gtk_table_attach_defaults(GTK_TABLE(table), sbutton, 0,1, 4,5);
+
+    if (!prefs->use_socks) gtk_widget_set_sensitive(socksentry, FALSE);
+    gtk_signal_connect(GTK_OBJECT(socksentry), "changed",
+		       GTK_SIGNAL_FUNC(set_socks_cb), socksentry);
+    gtk_signal_connect(GTK_OBJECT(sbutton), "toggled",
+		       GTK_SIGNAL_FUNC(use_socks_cb), socksentry);
 
     gtk_container_add(GTK_CONTAINER(frame), table);
 
@@ -503,6 +522,15 @@ static void use_http_cb(GtkWidget *widget, GtkWidget *entry) {
 }
 static void httpproxy_cb(GtkWidget *widget, gpointer data) {
     prefs->cddb_httpproxy = g_strdup(gtk_entry_get_text(GTK_ENTRY(widget)));
+    changed_cb(NULL, NULL);
+}
+static void set_socks_cb(GtkWidget *widget, GtkWidget *entry) {
+    prefs->socks_server = g_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+    changed_cb(NULL, NULL);
+}
+static void use_socks_cb(GtkWidget *widget, GtkWidget *entry) {
+    prefs->use_socks = GTK_TOGGLE_BUTTON(widget)->active;
+    gtk_widget_set_sensitive(entry, prefs->use_socks);
     changed_cb(NULL, NULL);
 }
 static void use_httpproxy_auth_cb(GtkWidget *widget, GtkWidget *entry) {

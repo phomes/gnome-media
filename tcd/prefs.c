@@ -104,7 +104,9 @@ void load_prefs(tcd_prefs *prop)
 	prop->cddb_httpproxy_need_auth = gnome_config_get_bool("/cddbslave/server/need_http_proxy_auth=false");
 	prop->cddb_httpproxy_auth_name = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_name=");
 	prop->cddb_httpproxy_auth_passwd = gnome_config_private_get_string("/cddbslave/server/http_proxy_auth_passwd=");
-	prop->cddb_httpproxy = gnome_config_get_string("/cddbslave/server/http_proxy=");
+	prop->cddb_httpproxy = gnome_config_get_string("/cddbslave/server/http_proxy=proxy");
+	prop->use_socks = gnome_config_get_bool_with_default("/cddbslave/server/use_socks=false", NULL);
+	prop->socks_server = gnome_config_get_string("/cddbslave/server/socks_server=socks");
 }
 
 void save_prefs(tcd_prefs *prop)
@@ -141,6 +143,8 @@ void save_prefs(tcd_prefs *prop)
 	gnome_config_private_set_string("/cddbslave/server/http_proxy_auth_passwd", prop->cddb_httpproxy_auth_passwd);
 
 	gnome_config_set_bool("/gtcd/general/only_use_trkind", prop->only_use_trkind);
+	gnome_config_set_bool("/cddbslave/server/use_socks", prop->use_socks);
+	gnome_config_set_string("/cddbslave/server/socks_server", prop->socks_server);
         
 	gnome_config_sync();
 }
