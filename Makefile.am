@@ -10,7 +10,8 @@ DIST_SUBDIRS = intl po macros omf-install $(always_built_SUBDIRS) \
 	       vu-meter gmix tcd grecord
 
 EXTRA_DIST = gnome-media.spec.in configure acinclude.m4 COPYING-DOCS \
-		sgmldocs.make
+		sgmldocs.make xml-i18n-extract.in xml-i18n-merge.in \
+		xml-i18n-update.in
 
 dist-hook: gnome-media.spec
 	cp gnome-media.spec $(distdir)
