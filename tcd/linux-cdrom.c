@@ -301,6 +301,7 @@ void tcd_gettime( cd_struct *cd )
 int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 {
 	struct cdrom_msf msf;
+	struct cdrom_ti trkind;
 	int tmp;
 	debug("cdrom.c: tcd_playtracks( %p, %d, %d )\n", cd, start_t, end_t );
 	cd->err = FALSE;
@@ -337,10 +338,21 @@ int tcd_playtracks( cd_struct *cd, int start_t, int end_t )
 		
 	if( tmp < 0 )
 	{
-		strcpy( cd->errmsg, "Error playing disc" );
-		cd->err = TRUE;
-		debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error.\n" );
-		return -1;
+		debug("cdrom.c: tcd_playtracks error. CDROMPLAYMSF ioctl error. Trying PLAYTRKIND\n" );
+		/* Try alternate method of playing  FIXME: handle -1 end_t */
+		trkind.cdti_trk0 = start_t;     /* start track */
+		trkind.cdti_ind0 = 0;      	/* start index */
+		trkind.cdti_trk1 = end_t;      	/* end track */
+		trkind.cdti_ind1 = 0;      	/* end index */
+		                                
+		tmp = ioctl( cd->cd_dev, CDROMPLAYTRKIND, &trkind );
+		if( tmp < 0 )
+		{
+			strcpy( cd->errmsg, "Error playing disc" );
+			cd->err = TRUE;
+			debug("cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n" );
+			return -1;
+		}
 	}
    	cd->isplayable=TRUE;                                                 
 	cd->isdisk=TRUE;
