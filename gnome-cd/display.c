@@ -74,12 +74,24 @@ size_request (GtkWidget *widget,
 {
 	CDDisplay *disp;
 	CDDisplayPrivate *priv;
-
+	int i, height = 0, width = 0;
+	
 	disp = CD_DISPLAY (widget);
 	priv = disp->priv;
 
-	requisition->width = priv->max_width;
-	requisition->height = priv->height;
+	for (i = 0; i < CD_DISPLAY_END; i++) {
+		PangoRectangle rect;
+		
+		pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
+		if (i == 0) {
+			height = (rect.height / 1000);
+		}
+		
+		width = MAX (width, rect.width / 1000);
+	}
+
+	requisition->width = width + (2 * X_OFFSET);
+	requisition->height = (height * 4) + (2 * Y_OFFSET);
 }
 
 static gboolean

@@ -1,5 +1,13 @@
 2002-01-11  Iain Holmes  <iain@ximian.com>
 
+	* gnome-cd.c (init_player): Remove deprecated function use, set the
+	default size for the window.
+
+	* display.c (size_request): Recalculate the width/height in this
+	function. 
+
+2002-01-11  Iain Holmes  <iain@ximian.com>
+
 	* gnome-cd.h: s/rebuild/build/
 
 	* cddb.c (cddb_get_query): Rebuild the tracklist if the disc is

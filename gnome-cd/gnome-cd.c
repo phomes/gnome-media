@@ -202,8 +202,8 @@ init_player (void)
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (gcd->window), "Gnome-CD "VERSION);
 	gtk_window_set_wmclass (GTK_WINDOW (gcd->window), "main_window", "gnome-cd");
-	gtk_window_set_policy (GTK_WINDOW (gcd->window), FALSE, TRUE, TRUE);
-
+	gtk_window_set_default_size (GTK_WINDOW (gcd->window), 350, 129);
+	
 	pixbuf = pixbuf_from_file ("gnome-cd/cd.png");
 	if (pixbuf == NULL) {
 		g_warning ("Error finding gnome-cd/cd.png");

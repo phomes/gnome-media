@@ -44,7 +44,6 @@ load_cddb_data (GnomeCD *gcd,
 		gcd->disc_info = info;
 	}
 
-	g_print ("Loading %s\n", filename);
 	handle = fopen (filename, "r");
 	if (handle == NULL) {
 		g_warning ("No such file %s", filename);
@@ -63,14 +62,20 @@ load_cddb_data (GnomeCD *gcd,
 			break;
 		}
 
+		/* Strip newlines */
+		line[strlen (line) - 1] = 0;
+		/* Check for \r */
+		end = strchr (line, '\r');
+		if (end != NULL) {
+			*end = 0;
+		}
+		
 		if (strncmp (line, "DISCID", 6) == 0) {
 			g_print ("Found discid: %s\n", discid);
 		} else if (strncmp (line, "DTITLE", 6) == 0) {
 			char *title = line + 7;
 			char *album, *artist, *div;
 
-			g_print ("Found title %s\n", title);
-			
 			div = strstr (title, " / ");
 			if (div == NULL) {
 				g_print ("Duff line? %s\n", line);
@@ -98,7 +103,6 @@ load_cddb_data (GnomeCD *gcd,
 				continue;
 			}
 
-			g_print ("Found %d: %s\n", number, name);
 			info->tracknames[number] = g_strdup (name);
 		} else if (strncmp (line, "EXTD", 4) == 0) {
 		} else if (strncmp (line, "EXTT", 4) == 0) {
@@ -120,7 +124,6 @@ load_cddb_data (GnomeCD *gcd,
 		}
 	}
 
-	g_print ("Loaded\n");
 	fclose (handle);
 	g_free (filename);
 
