@@ -839,9 +839,54 @@ gtk_tv_set_toplevel(GtkTV *tv)
 }
 
 GdkImlibImage *
+gdk_get_RGB_from_16(GdkWindow *w, int xx, int yy, int width, int height)
+{
+<<<<<<< gtv.c
+   GdkImlibImage *im;
+   GdkImage *i;
+   gint ww,hh;
+   gint x,y;
+   unsigned char *data,*ptr;
+   unsigned short *ptr2,val;
+   
+   if (!w) return NULL;
+   ww=width;hh=height;
+   i=gdk_image_get(w,xx,yy,ww,hh);
+   if (!i) return NULL;
+   data=(unsigned char *)malloc(ww*hh*3);
+   if (!data)
+     {
+	gdk_image_destroy(i);
+	return NULL;
+     }
+   ptr=data;
+   ptr2=(unsigned short *)i->mem;
+   for(y=0;y<hh;y++)
+     {
+	for(x=0;x<ww;x++)
+	  {
+	     val=*ptr2++;
+	     *ptr++=(val&0xf800)>>8;
+	     *ptr++=(val&0x07e0)>>3;
+	     *ptr++=(val&0x001f)<<3;
+	  }
+     }
+   gdk_image_destroy(i);
+   im=gdk_imlib_create_image_from_data(data,NULL,ww,hh);
+   free(data);
+   return im;
+}
+
+GdkImlibImage *
 gtk_tv_grab_image(GtkTV *tv,
 		  gint width, gint height)
 {
+   g_return_if_fail(tv != NULL);
+   g_return_if_fail(GTK_IS_TV(tv));
+
+   return gdk_get_RGB_from_16(tv->window,tv->allocation.x,tv->allocation.y
+			      tv->allocation.width,tv->allocation.height);
+=======
   GdkImlibImage *retval;
   gpointer membuf;
   int abool;
