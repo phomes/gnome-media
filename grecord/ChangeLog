@@ -1,3 +1,10 @@
+2003-03-28 Iain <iain@prettypeople.org>
+
+	* src/gsr-window.c (shutdown_pipeline): Destroy the pipeline.
+	(finalize): Shutdown the pipelines. Turn off the tick id.
+	(make_play_pipeline): Store the state change ID.
+	(make_record_piipeline): Ditto.
+
 2003-01-22  Irene Ryan <irene.ryan@sun.com>
 
 	* help/C/gnome-sound-recorder.xml, record-C.omf: updated to reflect changes for 

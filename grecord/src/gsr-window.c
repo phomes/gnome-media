@@ -45,6 +45,7 @@ typedef struct _GSRWindowPipeline {
 	GstElement *pipeline;
 
 	GstElement *src, *sink;
+	guint32 state_change_id;
 } GSRWindowPipeline;
 
 struct _GSRWindowPrivate {
@@ -73,11 +74,24 @@ struct _GSRWindowPrivate {
 	int n_channels, bitrate, samplerate;
 	gboolean has_file;
 	gboolean dirty;
+
+	guint32 tick_id; /* tick_callback timeout ID */
 };
 
 static BonoboWindowClass *parent_class = NULL;
 
 static char *temppath = NULL;
+
+static void
+shutdown_pipeline (GSRWindowPipeline *pipe)
+{
+	if (pipe->state_change_id > 0) {
+		g_signal_handler_disconnect (G_OBJECT (pipe->pipeline),
+					     pipe->state_change_id);
+	}
+	gst_element_set_state (pipe->pipeline, GST_STATE_NULL);
+	gst_object_unref (GST_OBJECT (pipe->pipeline));	
+}
 
 static void
 finalize (GObject *object)
@@ -92,12 +106,14 @@ finalize (GObject *object)
 		return;
 	}
 
-	gst_element_set_state (priv->play->pipeline, GST_STATE_NULL);
-	gst_object_unref (GST_OBJECT (priv->play->pipeline));
+	if (priv->tick_id > 0) {
+		g_source_remove (priv->tick_id);
+	}
+
+	shutdown_pipeline (priv->play);
 	g_free (priv->play);
 
-	gst_element_set_state (priv->record->pipeline, GST_STATE_NULL);
-	gst_object_unref (GST_OBJECT (priv->record->pipeline));
+	shutdown_pipeline (priv->record);
 	g_free (priv->record);
 
 	unlink (priv->record_filename);
@@ -1196,7 +1212,7 @@ play_state_changed (GstElement *element,
 	switch (state) {
 	case GST_STATE_PLAYING:
 		g_idle_add ((GSourceFunc) play_iterate, window);
-		g_timeout_add (200, (GSourceFunc) tick_callback, window);
+		window->priv->tick_id = g_timeout_add (200, (GSourceFunc) tick_callback, window);
 		if (window->priv->len_secs == 0) {
 			window->priv->get_length_attempts = 16;
 			g_timeout_add (200, (GSourceFunc) get_length, window);
@@ -1288,8 +1304,10 @@ make_play_pipeline (GSRWindow *window)
 	GSRWindowPipeline *pipeline = g_new (GSRWindowPipeline, 1);
 
 	pipeline->pipeline = gst_pipeline_new ("play-pipeline");
-	g_signal_connect (G_OBJECT (pipeline->pipeline), "state-change",
-			  G_CALLBACK (play_state_changed), window);
+	pipeline->state_change_id = g_signal_connect (G_OBJECT (pipeline->pipeline),
+						      "state-change",
+						      G_CALLBACK (play_state_changed),
+						      window);
 	g_signal_connect (G_OBJECT (pipeline->pipeline), "deep-notify",
 			  G_CALLBACK (play_deep_notify), window);
 
@@ -1376,8 +1394,10 @@ make_record_pipeline (GSRWindow *window)
 	GSRWindowPipeline *pipeline = g_new (GSRWindowPipeline, 1);
 
 	pipeline->pipeline = gst_thread_new ("record-pipeline");
-	g_signal_connect (G_OBJECT (pipeline->pipeline), "state-change",
-			  G_CALLBACK (record_state_changed), window);
+	pipeline->state_change_id = g_signal_connect (G_OBJECT (pipeline->pipeline),
+						      "state-change",
+						      G_CALLBACK (record_state_changed),
+						      window);
 	pipeline->src = gst_element_factory_make ("osssrc", "src");
 	encoder = gst_element_factory_make ("wavenc", "encoder");
 	if (encoder == NULL) {
