@@ -37,7 +37,7 @@ AC_FUNC_MMAP
 #AC_CHECK_FUNCS(getcwd getwd putenv strdup strerror)
 AM_PROG_LIBTOOL
 
-AC_DEFINE_UNQUOTED(DEFAULT_MIXER, gst-mixer)
+AC_DEFINE_UNQUOTED(DEFAULT_MIXER, gst-mixer, [default mixer to use])
 
 # Start of pkg-config checks
 PKG_CHECK_MODULES(MEDIA, 				\
@@ -128,7 +128,7 @@ got_esd=no
 AM_PATH_ESD(0.2.7, we_have_esd=true)
 if test -n "$we_have_esd"; then
   got_esd=yes
-  AC_DEFINE(HAVE_ESD)
+  AC_DEFINE(HAVE_ESD, 1, [Defined if we have Esound])
 fi
 
 # Check for ScrollKeeper
@@ -172,7 +172,8 @@ elif test -f /usr/lib/sendmail; then
 else
   MAIL_TRANSFER_AGENT="rmail "
 fi
-AC_DEFINE_UNQUOTED(MAIL_TRANSFER_AGENT, "$MAIL_TRANSFER_AGENT")
+AC_DEFINE_UNQUOTED(MAIL_TRANSFER_AGENT, "$MAIL_TRANSFER_AGENT",
+  [mail transfer agent command to use])
 AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 
 # Everything OK for gnome-cd?
@@ -214,7 +215,8 @@ AC_EGREP_CPP(answer_affirmatively,
  #endif
 ], close_tray=yes)
 if test "$close_tray" = "yes"; then
-	AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL)
+	AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL, 1,
+          [Defined if have an ioctl to close the CD-rom tray])
 fi
 AC_MSG_RESULT($close_tray)
 
@@ -250,7 +252,8 @@ AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
 
 AC_SUBST(default_cd_device)
-AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device")
+AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device",
+  [Default CD device to use])
 
 PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
 
