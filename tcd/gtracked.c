@@ -167,10 +167,13 @@ void edit_window( void )
 	button = gtk_button_new_with_label("CDDB Get");
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	button = gtk_button_new_with_label("Clear All");
+	button = gtk_button_new_with_label("Submit");
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
-	button = gtk_button_new_with_label("Submit");
+	button = gtk_button_new_with_label("Clear");
+	gtk_widget_set_sensitive(button, FALSE);
+	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
+	button = gtk_button_new_with_label("Playlist");
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_box_pack_start_defaults(GTK_BOX(button_box), button);
 	gtk_box_pack_start_defaults(GTK_BOX(main_box), button_box);
