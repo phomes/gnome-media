@@ -8,6 +8,10 @@ INCLUDES =					\
 	$(MEDIA_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
+Audiodir = $(datadir)/applications
+Pixmapdir = $(datadir)/pixmaps
+EXTRA_DIST = gnome-cd.png gnome-cd.desktop.in
+
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
 	gnome-cd.c		\
@@ -26,3 +30,8 @@ gnome_cd_SOURCES =		\
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
 		 $(INTLLIBS)
+
+@INTLTOOL_DESKTOP_RULE@
+Audio_in_files = gnome-cd.desktop.in
+Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+Pixmap_DATA = gnome-cd.png
