@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sq\n"
+"Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-25 22:11-0700\n"
-"PO-Revision-Date: 2004-02-25 12:03+0100\n"
+"POT-Creation-Date: 2004-03-01 15:00+0100\n"
+"PO-Revision-Date: 2004-03-01 15:03+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -196,7 +196,7 @@ msgstr "Melodi e panjohur"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:1
 msgid "CD Database"
-msgstr "Batabazë e CD"
+msgstr "Databazë e CD"
 
 #: cddb-slave2/cddb-slave.desktop.in.h:2
 msgid "Modify your CD database preferences"
@@ -432,7 +432,7 @@ msgstr "Southern Rock"
 
 #: cddb-slave2/cddb-track-editor.c:136
 msgid "Comedy"
-msgstr "Komediale"
+msgstr "Komedi"
 
 #: cddb-slave2/cddb-track-editor.c:137
 msgid "Cult"
@@ -1588,7 +1588,9 @@ msgstr "Gjatësia:"
 msgid "Adjust the volume level"
 msgstr "Rregullo nivelin e volumit"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2
+#. create main window + menus
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:452
+#: gst-mixer/src/mixer.c:540
 msgid "Volume Control"
 msgstr "Kontrolli i Volumit"
 
@@ -1634,16 +1636,11 @@ msgstr "Regj."
 msgid "%s Record"
 msgstr "Regjistrimi %s"
 
-#. create main window + menus
-#: gst-mixer/src/mixer.c:439 gst-mixer/src/mixer.c:527
-msgid "GStreamer Volume Control"
-msgstr "Kontrolli i Volumit GStreamer"
-
-#: gst-mixer/src/mixer.c:442
+#: gst-mixer/src/mixer.c:455
 msgid "A GNOME/GStreamer-based mixer application"
 msgstr "Një aplikativ mixer i bazuar në GNOME/GStreamer"
 
-#: gst-mixer/src/mixer.c:544
+#: gst-mixer/src/mixer.c:557
 msgid "Sorry, no mixer elements and/or devices found"
 msgstr "Më vjen keq, nuk u gjet asnjë element dhe/ose periferike miksuese"
 
@@ -1663,8 +1660,8 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Sjellja e paracaktuar për aplikativët GStreamer"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
-msgid "GStreamer"
-msgstr "GStreamer"
+msgid "Multimedia Systems Selector"
+msgstr "Zgjedhësi i Sistemeve Multimedialë"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1907,8 +1904,7 @@ msgstr ""
 "përshkruan kur duhet përdorur ky profil."
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "Një mbrapashtesë e emrit të file që duhet përdorur kur ruhen files e koduar "
 "me këtë profil."
@@ -2026,21 +2022,3 @@ msgstr "Monitor i volumit në dalje të zërit"
 msgid "Volume monitor"
 msgstr "Monitor i Volumit"
 
-#~ msgid "_Replace"
-#~ msgstr "_Zëvendëso"
-
-#~ msgid ""
-#~ "A file named \"%s\" already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "Një file me emrin \"%s\" ekziston.\n"
-#~ "Dëshironi t'a zëvendësoni me file që jeni duke ruajtur?"
-
-#~ msgid "Unknown extension, doing nothing"
-#~ msgstr "Prapashtesë e panjohur, nuk po bëj asgjë"
-
-#~ msgid "Could not build pipeline"
-#~ msgstr "I pamundur krijimi i pipeline"
-
-#~ msgid "Saving %s..."
-#~ msgstr "Duke ruajtur %s..."
