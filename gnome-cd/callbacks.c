@@ -498,8 +498,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		g_free (text);
 
 		if (gcd->disc_info == NULL) {
-			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, "Unknown Artist");
-			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, "Unknown Album");
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ARTIST, _("Unknown Artist"));
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_ALBUM, _("Unknown Album"));
 			gnome_cd_set_window_title (gcd, NULL, NULL);
 		} else {
 			GnomeCDDiscInfo *info = gcd->disc_info;
@@ -523,19 +523,19 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		
 	case GNOME_CDROM_STATUS_NO_DISC:
 		cd_display_clear (CD_DISPLAY (gcd->display));
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "No disc");
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	case GNOME_CDROM_STATUS_TRAY_OPEN:
 		cd_display_clear (CD_DISPLAY (gcd->display));
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive open");
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive open"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 
 	default:
 		cd_display_clear (CD_DISPLAY (gcd->display));
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, "Drive Error");
+		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Drive Error"));
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 	}
