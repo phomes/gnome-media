@@ -489,6 +489,7 @@ status_ok (GnomeCD *gcd,
 	AtkObject *aob;
 	int track;
 	char *text;
+	char *current_time;
 	
 	/* Allow the track editor to work */
 	gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
@@ -532,6 +533,7 @@ status_ok (GnomeCD *gcd,
 		text = g_strdup_printf ("%d:%02d / %d:%02d", 
 					status->relative.minute, status->relative.second,
 					status->length.minute, status->length.second);
+		current_time = g_strdup_printf ("%d:%02d",status->relative.minute, status->relative.second);
 		
 		/* update position slider */
 		if(position_auto_update && (status->length.minute!=0 ||
@@ -557,11 +559,12 @@ status_ok (GnomeCD *gcd,
 			
 		/* Update the tray icon tooltip */
 		if (gcd->disc_info != NULL) {
-			text = g_strdup_printf (_("Playing %s - %s"),
+			text = g_strdup_printf (_("Playing %s - %s\nCurrent Time: %s"),
 						gcd->disc_info->artist ? gcd->disc_info->artist : _("Unknown Artist"),
-						gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album"));
+						gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album"),
+						current_time);
 		} else {
-			text = g_strdup (_("Playing"));
+			text = g_strdup_printf (_("Playing\nCurrent Time: %s"), current_time);
 		}
 		if (gcd->tray_tips)	
 			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, text, NULL);

@@ -872,7 +872,7 @@ tray_icon_create (GnomeCD *gcd)
 	atk_object_set_name (gtk_widget_get_accessible (box), _("CD Player"));
 	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
 	gcd->tray_tips = gtk_tooltips_new ();
-	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), box, _("CD Player"), NULL);
+	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), gcd->tray, _("CD Player"), NULL);
 	g_signal_connect (G_OBJECT (box), "popup_menu",
 	            G_CALLBACK (popup_menu_cb), gcd);
 	
