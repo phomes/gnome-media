@@ -1,5 +1,12 @@
 2002-04-25 Theo van Klaveren <t.vanklaveren@student.utwente.nl>
 
+	* freebsd-cdrom.c: Last remaining string translations and string
+	changes from linux-cdrom.c. Added one more permissions check.
+	(freebsd_cdrom_is_cdrom_device): Use CDIOCGETVOL instead of
+	CDIOCGETCAPABILITY, which wasn't supported by the ATAPI driver.
+
+2002-04-25 Theo van Klaveren <t.vanklaveren@student.utwente.nl>
+
 	* freebsd-cdrom.c: Translate some strings. Add extra permission/
 	status checks. 
 	(freebsd_cdrom_eject): Set refcount to to object to 0. 
