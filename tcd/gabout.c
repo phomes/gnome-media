@@ -37,13 +37,13 @@ void about_cb(GtkWidget *widget, void *data)
                 NULL
         };  
 
-        about = gnome_about_new ( NULL, NULL,
+        about = gnome_about_new ( "TCD", "2.2 (CVS)",
                 "(C) 1997-98 Tim P. Gerla",
                 authors,
                 "Gnome CD player application with CDDB support."
                 " Please see the \'Thanks\' file included with the"
                 " distribution for more credits.",
-                gnome_pixmap_file("tcd/about.xpm"));
+                NULL);
         gtk_widget_show(about);
 
         return;
