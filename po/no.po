@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.9\n"
-"POT-Creation-Date: 1999-08-19 01:34+0200\n"
-"PO-Revision-Date: 1999-08-26 20:56+02:00\n"
+"POT-Creation-Date: 1999-09-18 21:26+0200\n"
+"PO-Revision-Date: 1999-09-18 21:31+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,52 +73,90 @@ msgstr "Tidsavbrudd: %s\n"
 msgid "Inactive. %s\n"
 msgstr "Inaktiv. %s\n"
 
-#: gmix/gmix.c:77
+#: gmix/gmix.c:93
 msgid "_About"
 msgstr "_Om"
 
-#: gmix/gmix.c:88
+#: gmix/gmix.c:99
+msgid "_Properties"
+msgstr "_Egenskaper"
+
+#: gmix/gmix.c:105
 msgid "_Program"
 msgstr "_Program"
 
-#: gmix/gmix.c:89
+#: gmix/gmix.c:106
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: gmix/gmix.c:139
+#: gmix/gmix.c:156
 msgid "don't restore mixer-settings from configuration"
 msgstr "ikke les startverdiene for mikseren på nytt fra konfigurasjonen"
 
-#: gmix/gmix.c:140
+#: gmix/gmix.c:157
+msgid "restore mixer-settings from configuration"
+msgstr "legg tilbake instillingene for mikseren fra konfigurasjonen"
+
+#: gmix/gmix.c:158
 msgid "initialise the mixer(s) from stored configuration and exit"
 msgstr "initialiser mikseren(e) fra lagret konfigurasjon og avslutt"
 
-#: gmix/gmix.c:141
+#: gmix/gmix.c:159
 msgid "don't save (modified) mixer-settings into configuration"
 msgstr "ikke lagre (modifiserte) mikser-verdier til konfigurasjonen"
 
-#: gmix/gmix.c:562
-msgid "GMIX 3.0"
-msgstr "GMIX 3.0"
+#. start frame
+#: gmix/gmix.c:278 tcd/prefs.c:388
+msgid "On startup"
+msgstr "Ved oppstart"
+
+#. Set on start
+#: gmix/gmix.c:284
+msgid "Restore saved mixer levels on startup"
+msgstr "Gjenopprett lagrede miksernivåer ved oppstart"
+
+#: gmix/gmix.c:290
+msgid "Hide menu on start"
+msgstr "Skjul menyen ved oppstart"
+
+#: gmix/gmix.c:306
+msgid "GUI"
+msgstr "GUI"
+
+#: gmix/gmix.c:309
+msgid "Use Mixer Icons"
+msgstr "Bruk mikserikoner"
+
+#: gmix/gmix.c:317
+msgid "Use Mixer Labels"
+msgstr "Bruk mikseretiketter"
+
+#: gmix/gmix.c:340 tcd/popup.c:19
+msgid "Preferences..."
+msgstr "Innstillinger..."
 
 #. lock-button, only useful for stereo
-#: gmix/gmix.c:632
+#: gmix/gmix.c:775
 msgid "Lock"
 msgstr "Lås"
 
-#: gmix/gmix.c:642
+#: gmix/gmix.c:785
 msgid "Rec."
 msgstr "Innsp."
 
-#: gmix/gmix.c:659
+#: gmix/gmix.c:802
 msgid "Mute"
 msgstr "Demp"
 
-#: gmix/gmix.c:812
+#: gmix/gmix.c:825
+msgid "GMIX 3.0"
+msgstr "GMIX 3.0"
+
+#: gmix/gmix.c:994
 msgid "GMIX - The Gnome Mixer"
 msgstr "GMIX - Gnome mikser"
 
-#: gmix/gmix.c:815
+#: gmix/gmix.c:997
 msgid "This is a mixer for OSS sound-devices."
 msgstr "Dette er en mikser for OSS lydenheter."
 
@@ -155,55 +193,55 @@ msgid "Refresh List"
 msgstr "Gjenles listen"
 
 #. server settings
-#: tcd/cddb_props.c:138
+#: tcd/cddb_props.c:140
 msgid "Server Settings"
 msgstr "Tjenerinnstillinger"
 
-#: tcd/cddb_props.c:147
+#: tcd/cddb_props.c:149
 msgid "Address"
 msgstr "Adresse"
 
-#: tcd/cddb_props.c:157
+#: tcd/cddb_props.c:159
 msgid "Port"
 msgstr "Port"
 
-#: tcd/cddb_props.c:164
+#: tcd/cddb_props.c:168
 msgid "Use HTTP"
 msgstr "Bruk HTTP"
 
-#: tcd/cddb_props.c:169
+#: tcd/cddb_props.c:173
 msgid "Proxy"
 msgstr "Stedfortreder (proxy)"
 
 #. local db
-#: tcd/cddb_props.c:189
+#: tcd/cddb_props.c:193
 msgid "Local Database"
 msgstr "Lokal database"
 
 #. frame
-#: tcd/cddb_props.c:231
+#: tcd/cddb_props.c:235
 msgid "CDDB Data"
 msgstr "CDDB-data"
 
-#: tcd/cddb_props.c:263
+#: tcd/cddb_props.c:267
 msgid "CDDB Editor"
 msgstr "CDDB-redigering"
 
-#: tcd/cddb_props.c:277
+#: tcd/cddb_props.c:281
 msgid "Error reading $HOME/.cddbslave."
 msgstr "Feil under lesing av $HOME/.cddbslave."
 
-#: tcd/cddb_props.c:393
+#: tcd/cddb_props.c:397
 #, c-format
 msgid "Couldn't remove file: %s\n"
 msgstr "Kunne ikke fjerne filen: %s\n"
 
-#: tcd/cddb_props.c:405
+#: tcd/cddb_props.c:409
 msgid "Delete CDDB Entry?"
 msgstr "Slett CDDB-oppføring?"
 
 #. CDDB Status  button
-#: tcd/cddb_status.c:50 tcd/gtracked.c:310
+#: tcd/cddb_status.c:50 tcd/gtracked.c:308
 msgid "CDDB Status"
 msgstr "CDDB-status"
 
@@ -244,63 +282,67 @@ msgstr "normal"
 msgid "random"
 msgstr "vilkårlig"
 
-#: tcd/gtcd.c:324
+#: tcd/gtcd.c:326
 msgid "Open track editor"
 msgstr "Åpne sporredigering"
 
-#: tcd/gtcd.c:325 tcd/prefs.c:584
+#: tcd/gtcd.c:327 tcd/prefs.c:586
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: tcd/gtcd.c:326 tcd/popup.c:23
+#: tcd/gtcd.c:328 tcd/popup.c:23
 msgid "Quit"
 msgstr "Avslutt"
 
 #. TOP ROW
-#: tcd/gtcd.c:346
+#: tcd/gtcd.c:348
 msgid "Play/Pause"
 msgstr "Spill/pause"
 
-#: tcd/gtcd.c:350 tcd/popup.c:16
+#: tcd/gtcd.c:352 tcd/popup.c:16
 msgid "Stop"
 msgstr "Stopp"
 
-#: tcd/gtcd.c:351 tcd/popup.c:17
+#: tcd/gtcd.c:353 tcd/popup.c:17
 msgid "Eject"
 msgstr "Løs ut"
 
 #. MIDDLE ROW
-#: tcd/gtcd.c:358 tcd/gtcd.c:366
+#: tcd/gtcd.c:360 tcd/gtcd.c:368
 msgid "Skip backwards"
 msgstr "Hopp bakover"
 
-#: tcd/gtcd.c:359 tcd/gtcd.c:367
+#: tcd/gtcd.c:361 tcd/gtcd.c:369
 msgid "Skip forwards"
 msgstr "Hopp fremover"
 
-#: tcd/gtcd.c:518 tcd/gtcd.c:519 tcd/gtcd.c:520
+#: tcd/gtcd.c:520 tcd/gtcd.c:521 tcd/gtcd.c:522
 msgid "(Scanning)"
 msgstr "(Søker)"
 
-#: tcd/gtcd.c:542
+#: tcd/gtcd.c:544
 msgid "No Disc"
 msgstr "Ingen plate"
 
-#: tcd/gtcd.c:577
+#: tcd/gtcd.c:579
 msgid "Error"
 msgstr "Feil"
 
-#: tcd/gtcd.c:853
+#: tcd/gtcd.c:855
 msgid "Volume"
 msgstr "Volum"
 
-#: tcd/gtcd.c:1032
+#: tcd/gtcd.c:1025
 msgid "Filename of the CD device"
 msgstr "Filnavnet på CD-enheten"
 
-#: tcd/gtcd.c:1032
+#: tcd/gtcd.c:1025
 msgid "FILE"
 msgstr "FIL"
+
+#: tcd/gtcd.c:1027
+msgid "Play CD on startup"
+msgstr "Spill CD Ved oppstart"
 
 #: tcd/gtracked.c:169
 msgid "Trk"
@@ -335,24 +377,24 @@ msgid "Track Information"
 msgstr "Informasjon om spor"
 
 #. Clear button
-#: tcd/gtracked.c:299
+#: tcd/gtracked.c:297
 msgid "Clear"
 msgstr "Blank ut"
 
 #. Playlist button
-#: tcd/gtracked.c:304
+#: tcd/gtracked.c:302
 msgid "Playlist"
 msgstr "Spilleliste"
 
-#: tcd/gtracked.c:316
+#: tcd/gtracked.c:314
 msgid "Submit"
 msgstr "Send inn"
 
-#: tcd/gtracked.c:377
+#: tcd/gtracked.c:375
 msgid "Submit Information"
 msgstr "Send inn informasjonen"
 
-#: tcd/gtracked.c:383
+#: tcd/gtracked.c:381
 #, c-format
 msgid ""
 "Submit information about\n"
@@ -361,12 +403,12 @@ msgstr ""
 "Send inn informasjonen om\n"
 "'%s'"
 
-#: tcd/gtracked.c:392
+#: tcd/gtracked.c:390
 msgid "To: "
 msgstr "Til: "
 
 #. end of service menu
-#: tcd/gtracked.c:424
+#: tcd/gtracked.c:422
 msgid "Category: "
 msgstr "Kategori: "
 
@@ -399,10 +441,6 @@ msgstr "Spor %d"
 #: tcd/popup.c:15
 msgid "Play"
 msgstr "Spill"
-
-#: tcd/popup.c:19
-msgid "Preferences..."
-msgstr "Innstillinger..."
 
 #: tcd/popup.c:20
 msgid "Track Editor..."
@@ -468,11 +506,6 @@ msgstr "Vis verktøystips"
 msgid "Use alternate method to play CD"
 msgstr "Bruk alternativ metode for å spille CD"
 
-#. start frame
-#: tcd/prefs.c:388
-msgid "On startup"
-msgstr "Ved oppstart"
-
 #. exit frame
 #: tcd/prefs.c:394
 msgid "On exit"
@@ -486,16 +519,16 @@ msgstr "Tast"
 msgid "Action"
 msgstr "Handling"
 
-#: tcd/prefs.c:521
+#: tcd/prefs.c:523
 msgid "Click here to change (restart required):"
 msgstr "Klikk her for å endre (omstart nødvendig):"
 
 #. Frame
-#: tcd/prefs.c:543 tcd/prefs.c:588
+#: tcd/prefs.c:545 tcd/prefs.c:590
 msgid "Keybindings"
 msgstr "Tastaturbindinger"
 
-#: tcd/prefs.c:592
+#: tcd/prefs.c:594
 msgid "CDDB Settings"
 msgstr "CDDB-innstillinger"
 
