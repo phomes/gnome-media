@@ -55,6 +55,13 @@ AC_CHECK_LIB(esd,main,[
 AC_SUBST(PROGRAMS_EXTACE)
 
 dnl
+dnl vu-meter
+dnl
+PROGRAMS_VUMETER=""
+AC_CHECK_LIB(esd,main,PROGRAMS_VUMETER=vu-meter)
+AC_SUBST(PROGRAMS_VUMETER)
+
+dnl
 dnl gmix
 dnl
 PROGRAMS_GMIX=""
@@ -100,6 +107,7 @@ Makefile
 po/Makefile.in
 dnl extace/Makefile
 gmix/Makefile
+vu-meter/Makefile
 dnl gnomovision/Makefile
 intl/Makefile
 macros/Makefile

@@ -1,6 +1,7 @@
 SUBDIRS = po intl macros	\
 	@PROGRAMS_GMIX@		\
 	@PROGRAMS_TCD@		\
+	@PROGRAMS_VUMETER@	\
 	cddbslave
 #
 # broken with current esound
