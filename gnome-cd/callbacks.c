@@ -461,15 +461,15 @@ set_window_track_title (GnomeCD *gcd,
 			GnomeCDRomStatus *status)
 {
 	int idx = status->track - 1;
-	const char *artist = "";
-	const char *track_name = "";
+	const char *artist = NULL;
+	const char *track_name = NULL;
 
 	if (gcd->disc_info) {
 		if (idx >= 0 && idx < gcd->disc_info->ntracks &&
 		    gcd->disc_info->track_info)
 			track_name = gcd->disc_info->track_info [idx]->name;
 
-		artist = gcd->disc_info->artist ? gcd->disc_info->artist : "";
+		artist = gcd->disc_info->artist;
 	}
 
 	gcd_debug ("track_title: setting artist %s, track_name %s", artist, track_name);
@@ -724,15 +724,14 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
                        gtk_widget_set_sensitive (gcd->next_b, FALSE);
 		else
                        gtk_widget_set_sensitive (gcd->next_b, TRUE);
-                /* FIXME: EASYFIX: back is always insensitive ?
-                   should probably be "sensitive when this is not the
-                   first track" */
+                /* back is sensitive when it's not the first track and
+                   we're playing */
                if (status->track <= 1 && (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio == GNOME_CDROM_AUDIO_COMPLETE))
                        gtk_widget_set_sensitive (gcd->back_b, FALSE);
 		else
-                       gtk_widget_set_sensitive (gcd->back_b, FALSE);
+                       gtk_widget_set_sensitive (gcd->back_b, TRUE);
 		break;
-		
+
         /* everything below are states where we're not playing */
 	case GNOME_CDROM_STATUS_NO_DISC:
 		if (gcd->disc_info != NULL) {
