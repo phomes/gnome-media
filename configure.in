@@ -287,6 +287,48 @@ AC_SUBST(GAILUTIL_LIBS)
 PROGRAMS_GRECORD="grecord"
 AC_SUBST(PROGRAMS_GRECORD)
 
+# gstreamer-properties
+#x_libs="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
+
+# FIXME: COMMON_MODULES should go because it is silly ...
+# ... and I'm sure we can narrow down some of these dependencies because
+# ... they depend on each other
+COMMON_MODULES="gtk+-2.0 gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer gstreamer-libs"
+PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
+		  PROGRAMS_GSTPROPS="gstreamer-properties",
+		  PROGRAMS_GSTPROPS="")
+
+GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf"
+AC_SUBST(GSTPROPS_LIBS)
+AC_SUBST(GSTPROPS_CFLAGS)
+
+GNOMECC_DESKTOP_DIR=${datadir}/control-center-2.0/capplets
+AS_AC_EXPAND(GNOMECC_DESKTOP_DIR, $GNOMECC_DESKTOP_DIR)
+AC_DEFINE_UNQUOTED(GNOMECC_DESKTOP_DIR, "$GNOMECC_DESKTOP_DIR", 
+                   [Install path for Gnome control-center integration])
+AC_SUBST(GNOMECC_DESKTOP_DIR)
+
+GSTPROPS_DATADIR="${datadir}/${GETTEXT_PACKAGE}"
+AS_AC_EXPAND(GSTPROPS_DATADIR, $GSTPROPS_DATADIR)
+GSTPROPS_ICONS_DIR=$GSTPROPS_DATADIR/icons
+GSTPROPS_GLADE_DIR=$GSTPROPS_DATADIR/interfaces
+GSTPROPS_PIXMAPS_DIR=$GSTPROPS_DATADIR/pixmaps
+GSTPROPS_MEDIA_DIR=$GSTPROPS_DATADIR/media
+
+AC_DEFINE_UNQUOTED(GSTPROPS_ICONS_DIR, "$GSTPROPS_ICONS_DIR", 
+                   [Install path for package icons])
+AC_DEFINE_UNQUOTED(GSTPROPS_GLADE_DIR, "$GSTPROPS_GLADE_DIR",
+                   [Install path for package interfaces])
+AC_DEFINE_UNQUOTED(GSTPROPS_PIXMAPS_DIR, "$GSTPROPS_PIXMAPS_DIR", 
+                   [Install path for package pixmaps])
+AC_DEFINE_UNQUOTED(GSTPROPS_MEDIA_DIR, "$GSTPROPS_MEDIA_DIR", 
+                   [Install path for package media files])
+AC_SUBST(GSTPROPS_ICONS_DIR)
+AC_SUBST(GSTPROPS_GLADE_DIR)
+AC_SUBST(GSTPROPS_PIXMAPS_DIR)
+AC_SUBST(GSTPROPS_MEDIA_DIR)
+AC_SUBST(PROGRAMS_GSTPROPS)
+
 AC_OUTPUT([
 gnome-media.spec
 Makefile
@@ -311,6 +353,7 @@ grecord/gnome-sound-recorder.schemas.in
 grecord/src/Makefile
 grecord/doc/Makefile
 grecord/doc/C/Makefile
+gstreamer-properties/Makefile
 version.h])
 
 echo ""
@@ -323,6 +366,12 @@ echo "System CDRom header:    ${cdrom_header}"
 echo "Default CD device:      ${default_cd_device}"
 echo "Default mixer program:  ${DEFAULT_MIXER}"
 echo "OS supports close tray: ${close_tray}"
+if test x$PROGRAMS_GSTPROPS != x; then
+  echo "GStreamer capplet:      yes"
+else
+  echo "GStreamer capplet:      no"
+fi
+
 if test x$got_esd = xyes; then
   echo "ESD support:            ${got_esd} (Building gnome-sound-recorder and vumeter.)"
   if test x$SOX_PATH = xno; then
@@ -345,3 +394,5 @@ echo "------------------------------------------- "
 echo ""
 echo "Hope (n): Theological virtue defined as the desire and search for a future good,"
 echo "          difficult but not impossible to attain with God's help."
+
+
