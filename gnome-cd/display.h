@@ -53,6 +53,7 @@ struct _CDDisplayClass {
 
 GType cd_display_get_type (void);
 CDDisplay *cd_display_new (void);
+void cd_display_set_style (CDDisplay *disp);
 const char *cd_display_get_line (CDDisplay *disp,
 				 int line);
 void cd_display_set_line (CDDisplay *disp,

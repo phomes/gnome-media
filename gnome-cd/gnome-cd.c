@@ -540,6 +540,8 @@ init_player (const char *device_override)
 			  G_CALLBACK (loopmode_changed_cb), gcd);
 	g_signal_connect (G_OBJECT (gcd->display), "playmode-changed",
 			  G_CALLBACK (playmode_changed_cb), gcd);
+	g_signal_connect (G_OBJECT (gcd->display), "style_set",
+			  G_CALLBACK (cd_display_set_style), NULL);
 
 	/* Theme needs to be loaded after the display is created */
 	gcd->theme = (GCDTheme *)theme_load (gcd, gcd->preferences->theme_name);

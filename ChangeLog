@@ -1,3 +1,16 @@
+2004-04-24  Leena Gunda  <leena.gunda@wipro.com>
+
+	reviewed by: Ronald Bultje <rbultje@ronald.bitfreak.net>
+
+	* gnome-cd/ChangeLog:
+	* gnome-cd/display.c: (cd_display_set_style):
+	* gnome-cd/display.h:
+	  Callback to redraw the display text when the style changes. Fixes
+	  #125409.
+	* gnome-cd/gnome-cd.c: (init_player):
+	  Connect cd_display_set_style callback for the style_set signal
+	  of the CDDisplay.
+
 2004-04-24  Fernando Herrera  <fherrera@onirica.com>
 
 	reviewed by: Ronald Bultje <rbultje@ronald.bitfreak.net>

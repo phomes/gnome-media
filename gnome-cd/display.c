@@ -675,6 +675,33 @@ cd_display_new (void)
 	return CD_DISPLAY (disp);
 }
 
+void
+cd_display_set_style (CDDisplay *disp)
+{
+	CDDisplayPrivate *priv;
+	CDDisplayLine line;
+	GnomeCDText *text;
+	PangoRectangle rect;
+	int height, max_width = 0;
+
+	priv = disp->priv;
+
+	for (line = CD_DISPLAY_LINE_TIME; line < CD_DISPLAY_END; line++) {
+		text = priv->layout[line];
+		height = priv->height - text->height;
+
+		pango_layout_set_text (text->layout, text->text, text->length);
+		pango_layout_get_extents (text->layout, NULL, &rect);
+		text->height = rect.height / 1000;
+
+		priv->height = height + text->height;
+		max_width = MAX (priv->max_width, rect.width / 1000);
+	}
+
+	priv->max_width = max_width;
+	gtk_widget_queue_resize (GTK_WIDGET (disp));
+}
+
 const char *
 cd_display_get_line (CDDisplay *disp,
 		     int line)

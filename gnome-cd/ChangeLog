@@ -1,3 +1,11 @@
+2004-03-26  Leena Gunda  <leena.gunda@wipro.com>
+
+	* gnome-cd.c (init_player): Connect cd_display_set_style
+	callback for the style_set signal of the CDDisplay.
+	* display.h, display.c (cd_display_set_style): Callback
+	to redraw the display text when the style changes.
+	Fixes bug #125409.
+
 2004-04-23  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* linux-cdrom.c: Differentiate between a audio and a data cd
