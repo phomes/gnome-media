@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.56\n"
-"POT-Creation-Date: 2000-05-09 19:14+0200\n"
-"PO-Revision-Date: 2000-05-09 19:16+0200\n"
+"POT-Creation-Date: 2000-05-10 02:36+0200\n"
+"PO-Revision-Date: 2000-05-10 02:48+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Este é o mesturador para os dispositivos de son OSS"
 msgid "GNOME Sound recorder:"
 msgstr "Gravador de Son de GNOME:"
 
-#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:952
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:967
 msgid "Could not fork child process"
 msgstr "Non se puido crea-lo proceso fillo"
 
@@ -311,16 +311,21 @@ msgstr "Erro gardando o ficheiro de son"
 msgid "File not saved. Do you want to save it?"
 msgstr "Ficheiro non gardado. ¿Quere gardalo?"
 
-#: grecord/src/grec.c:813
-#, c-format
-msgid "The size of the current sample is more than %i MB!"
-msgstr "¡O tamaño da gravación actual é maior que %i MB!"
+#. Save the file
+#: grecord/src/grec.c:717
+msgid "Saving..."
+msgstr "Gardando..."
 
-#: grecord/src/grec.c:861
+#: grecord/src/grec.c:828
+#, c-format
+msgid "The size of the current sample is more than %i Mb!"
+msgstr "¡O tamaño da gravación actual é maior que %i Mb!"
+
+#: grecord/src/grec.c:876
 msgid "Save sound file"
 msgstr "Gardar ficheiro de son"
 
-#: grecord/src/grec.c:1011
+#: grecord/src/grec.c:1026
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -458,6 +463,7 @@ msgid "File '%s' doesn't exist; using default."
 msgstr "O ficheiro '%s' non existe; usarase o ficheiro por defecto."
 
 #: grecord/src/gui.c:410
+#, c-format
 msgid "File '%s' isn't a supported soundfile."
 msgstr "O ficheiro '%s' non é un ficheiro de son soportado."
 
@@ -503,8 +509,7 @@ msgstr "Tamaño"
 
 #: grecord/src/gui.c:590
 msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
-msgstr ""
-"Amosar mensaxe de aviso se o tamaño (Mb) da gravación faise maior que:"
+msgstr "Amosar mensaxe de aviso se o tamaño (Mb) da gravación faise maior que:"
 
 #: grecord/src/gui.c:600
 msgid "Stop recording if size (Mb) of sample becomes bigger than:"
