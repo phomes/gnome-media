@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52\n"
 "POT-Creation-Date: 2000-05-13 04:36+0200\n"
-"PO-Revision-Date: 2000-05-15 13:59+02:00\n"
+"PO-Revision-Date: 2000-05-16 11:59+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr "Dette er en mixer for OSS lyd-enheder."
 msgid "GNOME Sound recorder:"
 msgstr "Gnome lydoptager:"
 
-#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:974
+#: grecord/src/grec.c:87 grecord/src/grec.c:118 grecord/src/grec.c:1038
 msgid "Could not fork child process"
 msgstr "Kunne ikke udføre fork for underproces"
 
@@ -265,17 +265,17 @@ msgstr "Spiller..."
 msgid "Converting file..."
 msgstr "Konverterer fil..."
 
-#: grecord/src/grec.c:240 grecord/src/grec.c:658 grecord/src/gui.c:330
+#: grecord/src/grec.c:240 grecord/src/grec.c:682 grecord/src/gui.c:330
 #: grecord/src/preferences.c:394
 msgid "Audioformat: "
 msgstr "Lydformat: "
 
-#: grecord/src/grec.c:244 grecord/src/grec.c:644 grecord/src/gui.c:337
+#: grecord/src/grec.c:244 grecord/src/grec.c:668 grecord/src/gui.c:337
 #: grecord/src/preferences.c:398
 msgid "Sample rate: "
 msgstr "Samplerate: "
 
-#: grecord/src/grec.c:254 grecord/src/grec.c:648 grecord/src/gui.c:344
+#: grecord/src/grec.c:254 grecord/src/grec.c:672 grecord/src/gui.c:344
 #: grecord/src/preferences.c:402
 msgid "Channels: "
 msgstr "Kanaler: "
@@ -284,46 +284,78 @@ msgstr "Kanaler: "
 msgid "Select a sound file"
 msgstr "Vælg en lydfil"
 
-#: grecord/src/grec.c:313
-msgid "Error saving sound file!"
-msgstr "Fejl under gemning af lydfil!"
-
-#: grecord/src/grec.c:401
+#: grecord/src/grec.c:397
 msgid "GNOME Sound recorder web page"
 msgstr "Gnome lydoptager hjemmeside"
 
-#: grecord/src/grec.c:507
+#: grecord/src/grec.c:503
 msgid "Undoing all..."
 msgstr "Fortryder alt..."
 
-#: grecord/src/grec.c:610
+#: grecord/src/grec.c:609
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please select a soundfile to be opened."
+msgstr ""
+"'%s' er et katalog.\n"
+"Venligst vælg en lydfil der skal åbnes."
+
+#: grecord/src/grec.c:621
+#, c-format
+msgid ""
+"File '%s' doesn't exist.\n"
+"Please select a existing soundfile to be opened."
+msgstr ""
+"Filen '%s' eksisterer ikke.\n"
+"Venligst vælg en eksisterende lydfil der skal åbnes."
+
+#: grecord/src/grec.c:633
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Filen '%s' er ikke en gyldig lydfil."
 
-#: grecord/src/grec.c:675
+#: grecord/src/grec.c:706
+#, c-format
+msgid ""
+"'%s' is a directory.\n"
+"Please enter another filename."
+msgstr ""
+"'%s' er et katalog.\n"
+"Venligst vælg et andet filnavn."
+
+#: grecord/src/grec.c:716
+#, c-format
+msgid ""
+"File '%s' already exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+"Filen '%s' eksisterer allerede.\n"
+"Ønsker du at overskrive den?"
+
+#: grecord/src/grec.c:731
 msgid "Error saving sound file"
 msgstr "Fejl under gemning af lydfil"
 
-#: grecord/src/grec.c:705
+#: grecord/src/grec.c:767
 msgid "File not saved. Do you want to save it?"
 msgstr "Fil ikke gemt. Vil du gemme den?"
 
 #. Save the file
-#: grecord/src/grec.c:724
+#: grecord/src/grec.c:786
 msgid "Saving..."
 msgstr "Gemmer..."
 
-#: grecord/src/grec.c:835
+#: grecord/src/grec.c:897
 #, c-format
 msgid "The size of the current sample is more than %i Mb!"
 msgstr "Størrelsen på aktive sample er mere end %i Mb!"
 
-#: grecord/src/grec.c:883
+#: grecord/src/grec.c:945
 msgid "Save sound file"
 msgstr "Gem lydfil"
 
-#: grecord/src/grec.c:1033
+#: grecord/src/grec.c:1097
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -1154,3 +1186,6 @@ msgstr "Vært er %s\n"
 #: vu-meter/main.c:291
 msgid "Volume Meter"
 msgstr "Volumenmåler"
+
+#~ msgid "Error saving sound file!"
+#~ msgstr "Fejl under gemning af lydfil!"
