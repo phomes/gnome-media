@@ -361,6 +361,7 @@ struct _MenuItem menuitems[] = {
 	{N_("_Eject disc"), GNOME_CD_EJECT, G_CALLBACK (eject_cb)},
 	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
 	{N_("_About CD player"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
+	{N_("_Quit"), GTK_STOCK_QUIT, G_CALLBACK (window_destroy_cb)},
 	{NULL, NULL, NULL}
 };
 
@@ -393,7 +394,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
                                GTK_WIDGET (gcd->display),
                                popup_menu_detach);
 	if (iconify == TRUE)
-		no_of_menu_items = 4;
+		no_of_menu_items = 5;
 	else
 		no_of_menu_items = 6;
 	
@@ -401,6 +402,10 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		GtkWidget *item, *image;
 		gchar *icon_name;
 
+		/* Add Quit menu item if iconify popup */
+		if (i == 5 && iconify)
+			i = 7;
+		
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
 	        
 		/* If status is play, display the pause icon else display the play icon */
