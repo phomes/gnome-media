@@ -61,7 +61,7 @@ test -z "$srcdir" && srcdir=.
 (test -f $srcdir/configure.in \
   && test -d $srcdir/gmix) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level gnome-media directory"
+    echo " top-level gnome directory"
     exit 1
 }
 
@@ -71,18 +71,24 @@ if test -z "$*"; then
     echo \`$0\'" command line."
     echo
 fi
-top=`pwd`
 
-for i in . 
+for I in /usr /usr/local /opt /opt/gnome; do
+	if [ -f $I/lib/gnomeConf.sh ]; then
+		GNOMEINSTDIR="--with-gnome=$I"
+	fi
+done
+
+for i in .
 do 
     echo processing $srcdir/$i
     (cd $srcdir/$i; \
     libtoolize --copy --force; \
-    aclocal -I $top/macros;  \
+    if test -d macros; then aclocal -I macros; else aclocal; fi; \
     autoheader; \
     automake --add-missing; \
     automake --gnu; autoheader; autoconf)
 done
 
-echo running $srcdir/configure
-$srcdir/configure "$@" && echo Now type \`make\' to compile the Gnome Media 
+echo running $srcdir/configure --enable-maintainer-mode $GNOMEINSTDIR "$@"
+$srcdir/configure --enable-maintainer-mode $GNOMEINSTDIR "$@" \
+&& echo Now type \`make\' to compile the Gnome Libraries.
