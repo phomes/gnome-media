@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 21:41+0100\n"
-"PO-Revision-Date: 2005-01-07 22:45+0100\n"
+"POT-Creation-Date: 2005-01-21 21:09+0100\n"
+"PO-Revision-Date: 2005-01-21 21:09+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -187,9 +187,9 @@ msgstr "Desconocido / Desconocido"
 
 # tcd/linux-cdrom.c:771
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:721
-#: grecord/src/gsr-window.c:730 grecord/src/gsr-window.c:739
-#: grecord/src/gsr-window.c:749 grecord/src/gsr-window.c:1065
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:722
+#: grecord/src/gsr-window.c:731 grecord/src/gsr-window.c:740
+#: grecord/src/gsr-window.c:750 grecord/src/gsr-window.c:1066
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -945,11 +945,11 @@ msgid "_Extra track data:"
 msgstr "Datos _extra de pista:"
 
 # tcd/cddb_props.c:342
-#: cddb-slave2/cddb-track-editor.c:903
+#: cddb-slave2/cddb-track-editor.c:904
 msgid "CDDB Track Editor"
 msgstr "Editor de pistas CDDB"
 
-#: cddb-slave2/cddb-track-editor.c:1040
+#: cddb-slave2/cddb-track-editor.c:1041
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -1399,8 +1399,8 @@ msgid "Record sound clips"
 msgstr "Grabar clips de sonido"
 
 # grecord/Soundrecorder.desktop.in.h:2
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:1274
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:939
+#: grecord/src/gsr-window.c:1275
 msgid "Sound Recorder"
 msgstr "Grabador de sonido"
 
@@ -1433,7 +1433,7 @@ msgstr "Mostrar ayuda para el grabador de sonidos"
 
 # grecord/src/gui.c:130
 # grecord/src/gui.c:873
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:807
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:808
 msgid "File Information"
 msgstr "Información de archivo"
 
@@ -1623,14 +1623,14 @@ msgstr "segundos"
 msgid "second"
 msgstr "segundo"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1226
-#: grecord/src/gsr-window.c:1390 grecord/src/gsr-window.c:1660
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1227
+#: grecord/src/gsr-window.c:1391 grecord/src/gsr-window.c:1661
 msgid "Ready"
 msgstr "Preparado"
 
 #: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
 #, c-format
-msgid "Could not save the file \" %s\""
+msgid "Could not save the file \"%s\""
 msgstr "No se pudo guardar el archivo «%s»"
 
 # grecord/src/grec.c:927
@@ -1653,47 +1653,54 @@ msgstr "Hubo un error al iniciar %s: %s"
 msgid "%s (Has not been saved)"
 msgstr "%s (No ha sido guardado)"
 
-#: grecord/src/gsr-window.c:712
+#: grecord/src/gsr-window.c:709
+#, c-format
+msgid "%s (%llu byte)"
+msgid_plural "%s (%llu bytes)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: grecord/src/gsr-window.c:713
 msgid "Unknown size"
 msgstr "Tamaño desconocido"
 
-#: grecord/src/gsr-window.c:732
+#: grecord/src/gsr-window.c:733
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:741
+#: grecord/src/gsr-window.c:742
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 # gmix/device_labels_alsa.h:18
-#: grecord/src/gsr-window.c:753
+#: grecord/src/gsr-window.c:754
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
 # gmix/device_labels_alsa.h:26
-#: grecord/src/gsr-window.c:757
+#: grecord/src/gsr-window.c:758
 msgid "2 (stereo)"
 msgstr "2 (estéreo)"
 
 # grecord/src/gui.c:130
 # grecord/src/gui.c:873
-#: grecord/src/gsr-window.c:786
+#: grecord/src/gsr-window.c:787
 #, c-format
 msgid "%s Information"
 msgstr "Información %s"
 
 # gmix/device_labels_alsa.h:40
-#: grecord/src/gsr-window.c:821
+#: grecord/src/gsr-window.c:822
 msgid "Folder:"
 msgstr "Carpeta:"
 
-#: grecord/src/gsr-window.c:827 grecord/src/gsr-window.c:1592
+#: grecord/src/gsr-window.c:828 grecord/src/gsr-window.c:1593
 msgid "Filename:"
 msgstr "Nombre de archivo:"
 
-#: grecord/src/gsr-window.c:833
+#: grecord/src/gsr-window.c:834
 msgid "File size:"
 msgstr "Tamaño de archivo:"
 
@@ -1701,15 +1708,17 @@ msgstr "Tamaño de archivo:"
 # grecord/src/grec.c:654
 # grecord/src/gui.c:327
 # grecord/src/preferences.c:412
-#: grecord/src/gsr-window.c:842
+#: grecord/src/gsr-window.c:843
 msgid "Audio Information"
 msgstr "Información de audio:"
 
-#: grecord/src/gsr-window.c:856
-msgid "Song length:"
-msgstr "Longitud de canción:"
+# grecord/src/gui.c:130
+# grecord/src/gui.c:873
+#: grecord/src/gsr-window.c:857
+msgid "File duration:"
+msgstr "Duración del archivo:"
 
-#: grecord/src/gsr-window.c:862
+#: grecord/src/gsr-window.c:863
 msgid "Number of channels:"
 msgstr "Número de canales:"
 
@@ -1717,36 +1726,36 @@ msgstr "Número de canales:"
 # grecord/src/grec.c:640
 # grecord/src/gui.c:334
 # grecord/src/preferences.c:416
-#: grecord/src/gsr-window.c:868
+#: grecord/src/gsr-window.c:869
 msgid "Sample rate:"
 msgstr "Frec. de muestreo:"
 
-#: grecord/src/gsr-window.c:874
+#: grecord/src/gsr-window.c:875
 msgid "Bit rate:"
 msgstr "Frec. de bits:"
 
 # grecord/Soundrecorder.desktop.in.h:2
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:941
 msgid "A sound recorder for GNOME"
 msgstr "Grabador de sonido para Gnome"
 
 # grecord/src/grec.c:122
-#: grecord/src/gsr-window.c:1211
+#: grecord/src/gsr-window.c:1212
 msgid "Playing..."
 msgstr "Reproduciendo..."
 
 # grecord/Soundrecorder.desktop.in.h:2
-#: grecord/src/gsr-window.c:1270
+#: grecord/src/gsr-window.c:1271
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Grabador de sonido"
 
 # grecord/src/grec.c:92
-#: grecord/src/gsr-window.c:1361
+#: grecord/src/gsr-window.c:1362
 msgid "Recording..."
 msgstr "Grabando..."
 
-#: grecord/src/gsr-window.c:1421
+#: grecord/src/gsr-window.c:1422
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1754,18 +1763,18 @@ msgstr ""
 "No hay un conjunto predeterminado de elementos de entrada audio de "
 "GStreamer. Instale los esquemas GStreamer-GConf o configuro uno manualmente."
 
-#: grecord/src/gsr-window.c:1436
+#: grecord/src/gsr-window.c:1437
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Ha ocurrido un error al crear elementos de codificación GStreamer - "
 "compruebe su configuración de codificación."
 
-#: grecord/src/gsr-window.c:1446
+#: grecord/src/gsr-window.c:1447
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 "No se pudo encontrar el complemento GStreamer filesink - debe instalarlo"
 
-#: grecord/src/gsr-window.c:1454
+#: grecord/src/gsr-window.c:1455
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1774,21 +1783,21 @@ msgstr ""
 "de salida de archivo - probablemente ha seleccionado un codificador inválido."
 
 # grecord/src/grec.c:92
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1561
 msgid "Record as"
 msgstr "Grabar como"
 
 # grecord/src/gui.c:130
 # grecord/src/gui.c:873
-#: grecord/src/gsr-window.c:1577
+#: grecord/src/gsr-window.c:1578
 msgid "File information"
 msgstr "Información de archivo"
 
-#: grecord/src/gsr-window.c:1599
+#: grecord/src/gsr-window.c:1600
 msgid "<none>"
 msgstr "<ninguno>"
 
-#: grecord/src/gsr-window.c:1608
+#: grecord/src/gsr-window.c:1609
 msgid "Length:"
 msgstr "Longitud:"
 
@@ -1804,20 +1813,20 @@ msgstr "Control de volumen"
 
 # grecord/src/gui.c:243
 # tcd/popup.c:15
-#: gst-mixer/src/element.c:187
+#: gst-mixer/src/element.c:230
 msgid "Playback"
 msgstr "Reproducción"
 
 # grecord/src/gui.c:585
-#: gst-mixer/src/element.c:189
+#: gst-mixer/src/element.c:232
 msgid "Capture"
 msgstr "Captura"
 
-#: gst-mixer/src/element.c:191
+#: gst-mixer/src/element.c:234
 msgid "Switches"
 msgstr "Conmutadores"
 
-#: gst-mixer/src/element.c:193
+#: gst-mixer/src/element.c:236
 msgid "Options"
 msgstr "Opciones"
 
@@ -1847,19 +1856,19 @@ msgstr "Preferencias de control de volumen"
 msgid "_Select tracks to be visible:"
 msgstr "_Seleccione las pistas que serán visibles:"
 
-#: gst-mixer/src/track.c:210
+#: gst-mixer/src/track.c:220
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: gst-mixer/src/track.c:250
+#: gst-mixer/src/track.c:260
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Silenciar/dar voz %s"
 
 # tcd/gtracked.c:197
-#: gst-mixer/src/track.c:265
+#: gst-mixer/src/track.c:275
 #, c-format
 msgid "Track %s: mute"
 msgstr "Pista %s: silenciar"
@@ -1869,17 +1878,17 @@ msgstr "Pista %s: silenciar"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:345
+#: gst-mixer/src/track.c:355
 #, c-format
 msgid "Toggle audio capture from %s"
 msgstr "Conmutar captura de audio de %s"
 
-#: gst-mixer/src/track.c:360
+#: gst-mixer/src/track.c:370
 #, c-format
 msgid "Track %s: audio capture"
 msgstr "Pista %s: captura audio"
 
-#: gst-mixer/src/track.c:439
+#: gst-mixer/src/track.c:449
 #, c-format
 msgid "%s Option Selection"
 msgstr "Selección de opción %s"
@@ -2416,6 +2425,9 @@ msgstr "Monitorizar el volumen de salida de grabación."
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Monitor de volumen"
+
+#~ msgid "Song length:"
+#~ msgstr "Longitud de canción:"
 
 #~ msgid "GStreamer Preferences"
 #~ msgstr "Preferencias de Gstreamer"
