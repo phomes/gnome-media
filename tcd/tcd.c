@@ -299,6 +299,8 @@ int main(int argc, char **argv)
 	    tcd_play_seconds(cd, -4);
 	    cd->repeat_track = cd->cur_t;
 	    break;
+	case 12:
+	    werase(win);
 	case ERR:
 	    wrefresh(win);
 	    update_display();
