@@ -156,7 +156,8 @@ static void load_key(Shortcut *key, gchar *gconf_key)
 	c = check_for_mod(c,     key, "M4-", GDK_MOD4_MASK);
 	c = check_for_mod(c,     key, "M5-", GDK_MOD5_MASK);
 	key->key = c[0];
-	free(value);
+
+	g_free(value);
 }
 
 /*
