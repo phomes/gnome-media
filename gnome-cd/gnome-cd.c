@@ -352,6 +352,36 @@ make_popup_menu (GnomeCD *gcd)
 	return menu;
 }
 
+static void
+show_error (GtkWidget	*dialog,
+	    GError 	*error,
+	    GError	*detailed_error,
+	    GnomeCD 	*gcd)
+{
+	switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+	case 1:
+		gtk_label_set_text (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label),
+				    detailed_error->message);
+
+		gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog), 1, FALSE);
+		show_error (dialog, error, detailed_error, gcd);
+
+		break;
+
+	case 2:
+		gtk_widget_destroy (dialog);
+		dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		break;
+
+	default:
+		exit (0);
+	}
+}
+
 static GnomeCD *
 init_player (void) 
 {
@@ -362,6 +392,7 @@ init_player (void)
 	GtkWidget *button;
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
+	GError *detailed_error = NULL;
 
 	gcd = g_new0 (GnomeCD, 1);
 
@@ -409,32 +440,28 @@ init_player (void)
 	if (error != NULL) {
 		GtkWidget *dialog;
 		
+		detailed_error = g_error_new (GNOME_CDROM_ERROR,
+					      GNOME_CDROM_ERROR_NOT_OPENED,
+					      "GnomeCD is unable to run correctly.\n\n"
+					      "%s\n"
+					      "Press Set device to go to a dialog"
+					      " where you can set the device, or click Quit to quit GnomeCD", error->message);
+
+		
 		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_NONE,
-						 _("%s\nThis means that GnomeCD"
-						   " will be unable to run correctly. Press Set device to go to a dialog "
-						   "where you can set the device, or click Quit to quit GnomeCD"), error->message);
-		gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
-					_("Set device"), 1, NULL);
-		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 1);
+						 _("GnomeCD is unable to run correctly.\n\n"
+						 "Press Details button for more details on reasons for failure.\n\n" 
+						 "Press Set device to go to a dialog"
+						 " where you can set the device, or click Quit to quit GnomeCD"));
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog), _("_Details"), 1, GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
+					_("_Set device"), 2, NULL);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), 2);
 		gtk_window_set_title (GTK_WINDOW (dialog), _("Invalid CD device"));
-		
-		switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
-		case 1:
-			gtk_widget_destroy (dialog);
-			dialog = GTK_WIDGET(preferences_dialog_show (gcd, TRUE));
-
-			/* Don't care what it returns */
-			gtk_dialog_run (GTK_DIALOG (dialog));
-			gtk_widget_destroy (dialog);
-
-			break;
-
-		default:
-			exit (0);
-		}
+		show_error (dialog, error, detailed_error, gcd);
 
 		g_error_free (error);
+		g_error_free (detailed_error);
 	}
 		
 	gcd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);

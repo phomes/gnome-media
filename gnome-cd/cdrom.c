@@ -332,7 +332,7 @@ cdrom_set_device (GnomeCDRom *cdrom,
 			*error = g_error_new (GNOME_CDROM_ERROR,
 					      GNOME_CDROM_ERROR_NOT_OPENED,
 					      "%s does not point to a valid CDRom device. This may be caused by:\n"
-					      "a) CD support is not compiled into Linux\n"
+					      "a) CD support is not present in your machine\n"
 					      "b) You do not have the correct permissions to access the CD drive\n"
 					      "c) %s is not the CD drive.\n",					     
 					      cdrom->priv->device, cdrom->priv->device);
@@ -366,7 +366,7 @@ cdrom_open_dev (GnomeCDRom *cdrom,
 					GNOME_CDROM_ERROR,
 					GNOME_CDROM_ERROR_NOT_OPENED,
 					_("%s does not appear to point to a valid CD device. This may be because:\n"
-					  "a) CD support is not compiled into Linux\n"
+					  "a) CD support is not present in your machine\n"
 					  "b) You do not have the correct permissions to access the CD drive\n"
 					  "c) %s is not the CD drive.\n"),					     
 					cdrom->priv->device,
