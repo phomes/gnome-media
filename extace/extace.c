@@ -23,8 +23,13 @@
 #include <sys/ioctl.h>
 #include <sys/time.h>
 #include <esd.h>
+#ifdef USE_GSL_GSL_H
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_fft_real.h>
+#else /* USE_GSL_GSL_H */
+#include <gsl_errno.h>
+#include <gsl_fft_real.h>
+#endif /* USE_GSL_GSL_H */
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <gdk_imlib.h>
