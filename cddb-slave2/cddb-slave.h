@@ -34,7 +34,6 @@ typedef struct _CDDBEntry {
 	int revision;
 	int disc_length;
 
-	char **topline;
 	int *offsets;
 	int *lengths;
 

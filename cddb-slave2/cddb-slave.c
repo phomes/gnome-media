@@ -188,7 +188,6 @@ clear_entry_from_cache (const char *discid)
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	/* Set the fields of the entry to unknown */
 	entry->revision = 0;
-	entry->topline = NULL;
 
 	g_hash_table_insert (entry->fields, g_strdup ("DTITLE"),
 			     g_string_new (_("Unknown / Unknown")));
@@ -252,12 +251,13 @@ do_read_response (ConnectionData *cd,
 			}
 
 			waiting_for_terminator = TRUE;
-		}
+		} else {
 
-		g_assert (handle != NULL);
+			g_assert (handle != NULL);
 		
-		/* Write the line */
-		fputs (response, handle);
+			/* Write the line */
+			fputs (response, handle);
+		}
 
 		if (response[0] == '.') {
 			CDDBEntry *entry;
@@ -909,7 +909,8 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	cddb = cddb_slave_from_servant (servant);
 
 	if (cddb_check_cache (discid) == TRUE) {
-		cddb_slave_notify_listeners (cddb, discid, GNOME_Media_CDDBSlave2_OK);
+		cddb_slave_notify_listeners (cddb, discid,
+					     GNOME_Media_CDDBSlave2_OK);
 		return;
 	}
 
@@ -935,6 +936,26 @@ impl_GNOME_Media_CDDBSlave2_query (PortableServer_Servant servant,
 	cddb_send_cmd (cd);
 }
 
+static void
+impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
+				  const CORBA_char *discid,
+				  CORBA_Environment *ev)
+{
+	CDDBEntry *entry;
+	gboolean write_ret;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		/* Exception */
+		return;
+	}
+
+	write_ret = cddb_entry_write_to_file (entry);
+	if (write_ret == FALSE) {
+		/* Exception */
+	}
+}
+
 static CORBA_char *
 impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 				       const CORBA_char *discid,
@@ -948,12 +969,14 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		/* Should set an exception here */
-		return NULL;
+		g_warning ("No entry %s", discid);
+		return CORBA_string_dup ("Unknown artist");
 	}
 
 	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
 	if (dtitle == NULL) {
-		return NULL;
+		g_warning ("No field DTITLE %s", discid);
+		return CORBA_string_dup ("Unknown artist");
 	}
 
 	split = strstr (dtitle->str, " / ");
@@ -1009,12 +1032,14 @@ impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
-		return NULL;
+		g_warning ("No entry %s", discid);
+		return CORBA_string_dup ("Unknown disc");
 	}
 
 	dtitle = g_hash_table_lookup (entry->fields, "DTITLE");
 	if (dtitle == NULL) {
-		return NULL;
+		g_warning ("Entry has no DTITLE %s", discid);
+		return CORBA_string_dup ("Unknown disc");
 	}
 
 	/* FIXME: use g_strsplit */
@@ -1064,6 +1089,7 @@ impl_GNOME_Media_CDDBSlave2_getNTrks (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		g_warning ("No entry %s", discid);
 		return -1;
 	}
 
@@ -1081,6 +1107,7 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		g_warning ("No entry %s", discid);
 		return;
 	}
 
@@ -1089,6 +1116,11 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 	(*names_list)->_maximum = entry->ntrks + 1;
 	(*names_list)->_buffer = CORBA_sequence_GNOME_Media_CDDBSlave2_TrackInfo_allocbuf (entry->ntrks);
 
+	if (entry->ntrks == 0) {
+		g_warning ("No tracks\n");
+		return;
+	}
+
 	for (ntrk = 0; ntrk < entry->ntrks; ntrk++) {
 		char *name;
 		GString *result;
@@ -1096,9 +1128,9 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 		name = g_strdup_printf ("TTITLE%d", ntrk);
 		result = g_hash_table_lookup (entry->fields, name);
 		if (result != NULL) {
-			(*names_list)->_buffer[ntrk].name = CORBA_string_dup (result->str ? result->str : "");
+			(*names_list)->_buffer[ntrk].name = CORBA_string_dup (result->str ? result->str : _("Unknown track"));
 		} else {
-			(*names_list)->_buffer[ntrk].name = CORBA_string_dup ("");
+			(*names_list)->_buffer[ntrk].name = CORBA_string_dup (_("Unknown track"));
 		}
 		g_free (name);
 
@@ -1139,7 +1171,8 @@ impl_GNOME_Media_CDDBSlave2_getComment (PortableServer_Servant servant,
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		/* Must do exceptions...*/
-		return NULL;
+		g_warning ("No entry - %s", discid);
+		return CORBA_string_dup ("");
 	}
 
 	dcomment = g_hash_table_lookup (entry->fields, "EXTD");
@@ -1183,6 +1216,7 @@ impl_GNOME_Media_CDDBSlave2_getYear (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		g_warning ("No entry %s", discid);
 		return -1;
 	}
 	
@@ -1229,7 +1263,8 @@ impl_GNOME_Media_CDDBSlave2_getGenre (PortableServer_Servant servant,
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
 		/* Exception */
-		return NULL;
+		g_warning ("No entry %s", discid);
+		return CORBA_string_dup ("");
 	}
 	
 	dgenre = g_hash_table_lookup (entry->fields, "DGENRE");
@@ -1297,6 +1332,7 @@ cddb_slave_class_init (CDDBSlaveClass *klass)
 
 	parent_class = g_type_class_peek_parent (klass);
 	epv->query = impl_GNOME_Media_CDDBSlave2_query;
+	epv->save = impl_GNOME_Media_CDDBSlave2_save;
 	epv->getArtist = impl_GNOME_Media_CDDBSlave2_getArtist;
 	epv->setArtist = impl_GNOME_Media_CDDBSlave2_setArtist;
 	epv->getDiscTitle = impl_GNOME_Media_CDDBSlave2_getDiscTitle;

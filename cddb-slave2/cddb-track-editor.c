@@ -736,6 +736,15 @@ dialog_response (GtkDialog *dialog,
 		 int response_id,
 		 CDDBTrackEditor *editor)
 {
+	switch (response_id) {
+	case 1:
+		g_print ("Saving...\n");
+		cddb_slave_client_save (client, editor->discid);
+		break;
+
+	default:
+		break;
+	}
 	gtk_widget_destroy (GTK_WIDGET (dialog));
 	editor->dialog = NULL;
 }

@@ -58,6 +58,8 @@ gboolean cddb_slave_client_query (CDDBSlaveClient *client,
 				  int nsecs,
 				  const char *name,
 				  const char *version);
+void cddb_slave_client_save (CDDBSlaveClient *client,
+			     const char *discid);
 void cddb_slave_client_add_listener (CDDBSlaveClient *client,
 				     BonoboListener *listener);
 void cddb_slave_client_remove_listener (CDDBSlaveClient *client,

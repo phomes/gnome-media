@@ -213,6 +213,27 @@ cddb_slave_client_query (CDDBSlaveClient *client,
 	return result;
 }
 
+void
+cddb_slave_client_save (CDDBSlaveClient *client,
+			const char *discid)
+{
+	GNOME_Media_CDDBSlave2 cddb;
+	CORBA_Environment ev;
+
+	g_return_if_fail (IS_CDDB_SLAVE_CLIENT (client));
+	g_return_if_fail (discid != NULL);
+
+	CORBA_exception_init (&ev);
+	cddb = client->priv->objref;
+	GNOME_Media_CDDBSlave2_save (cddb, discid, &ev);
+
+	if (BONOBO_EX (&ev)) {
+		g_warning ("Could not save %s\n%s", discid, CORBA_exception_id (&ev));
+	}
+
+	CORBA_exception_free (&ev);
+}
+			
 /**
  * cddb_slave_client_add_listener:
  * @client: Client of the CDDBSlave to add a listener to.

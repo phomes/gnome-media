@@ -1,3 +1,17 @@
+2002-04-02  Iain <iain@ximian.com>
+
+	* GNOME_Media_CDDBSlave2.idl: Add a save method.
+
+	* cddb-parser.c (cddb_entry_parse_file): Don't look for the topline.
+	(cddb_entry_new_from_file): Remove the topline stuff.
+	(write_topline): Delete.
+
+	* cddb-slave-client.c (cddb_slave_client_save): Wrapper.
+
+	* cddb-slave.c (do_read_response): Don't write out the topline.
+	(impl_GNOME_Media_CDDBSlave2_save): Save the entry.
+	(impl_*): Don't return any NULLs to CORBA.
+
 2002-04-01  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
 
 	* Makefile.am: Fix desktopdir (Closes #74767)

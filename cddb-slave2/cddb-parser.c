@@ -33,7 +33,6 @@ cddb_entry_parse_file (CDDBEntry *entry,
 {
 	FILE *handle;
 	char line[4096];
-	gboolean need_topline = TRUE;
 	
 	handle = fopen (filename, "r");
 	if (handle == NULL) {
@@ -45,14 +44,6 @@ cddb_entry_parse_file (CDDBEntry *entry,
 		char **vector;
 		GString *string;
 
-		if (isdigit (*line) && need_topline == TRUE) {
-			/* Save topline so we can regenerate things later.
-			   and so we know the discid. */
-			entry->topline = g_strsplit (line, " ", 4);
-			need_topline = FALSE;
-			continue;
-		}
-
 		if (*line == '#') {
 			/* Save comments to rebuild the file later. */
 			entry->comments = g_list_append (entry->comments,
@@ -60,7 +51,7 @@ cddb_entry_parse_file (CDDBEntry *entry,
 			continue;
 		}
 		
-		if (*line == 0 || isdigit (*line)) {
+		if (*line == 0 || g_ascii_isdigit (*line)) {
 			continue;
 		}
 
@@ -242,31 +233,26 @@ CDDBEntry *
 cddb_entry_new_from_file (const char *filename)
 {
 	CDDBEntry *entry;
+	GString *did;
 
 	entry = g_new0 (CDDBEntry, 1);
 
 	entry->fields = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 	if (cddb_entry_parse_file (entry, filename) == FALSE) {
 		g_hash_table_destroy (entry->fields);
-		g_strfreev (entry->topline);
 		g_free (entry);
 		return FALSE;
 	}
 
 	/* The data in the file may be for a different id than the file */
 	entry->realdiscid = g_path_get_basename (filename);
-	if (entry->topline != NULL) {
-		entry->discid = g_strdup (entry->topline[2]);
+	
+	did = g_hash_table_lookup (entry->fields, "DISCID");
+	if (did == NULL) {
+		entry->discid = g_path_get_basename (filename);
 	} else {
-		GString *did;
-
-		did = g_hash_table_lookup (entry->fields, "DISCID");
-		if (did == NULL) {
-			entry->discid = g_path_get_basename (filename);
-		} else {
-			entry->discid = g_strndup (did->str, 8);
-			g_print ("**** Entry->discid = \"%s\"\n", entry->discid);
-		}
+		entry->discid = g_strndup (did->str, 8);
+		g_print ("**** Entry->discid = \"%s\"\n", entry->discid);
 	}
 	
 	entry->ntrks = count_tracks (entry);
@@ -295,6 +281,7 @@ write_line (FILE *handle,
 
 	if (key == NULL) {
 		str = g_strdup_printf ("%s\r\n", value);
+		g_print ("Writing: %s\n", str);
 		fputs (str, handle);
 	} else {
 		key_len = strlen (key) + 1 + 2; /* Length of "KEY=" + \r\n */
@@ -303,6 +290,7 @@ write_line (FILE *handle,
 
 		while (val_len > line_len) {
 			str = g_strdup_printf ("%s=%s\r\n", key, tv);
+			g_print ("Writing: %s\n", str);
 			fputs (str, handle);
 			g_free (str);
 			
@@ -312,24 +300,10 @@ write_line (FILE *handle,
 		
 		/* Last line */
 		str = g_strdup_printf ("%s=%s\r\n", key, tv);
+		g_print ("Writing: %s\n", str);
 		fputs (str, handle);
 		g_free (str);
 	}
-}
-
-static void
-write_topline (CDDBEntry *entry,
-	       FILE *handle)
-{
-	char *topline;
-
-	if (entry->topline == NULL) {
-		return;
-	}
-	
-	topline = g_strjoin (entry->topline, " ");
-	write_line (handle, NULL, topline);
-	g_free (topline);
 }
 
 static void
@@ -338,6 +312,7 @@ write_offsets (CDDBEntry *entry,
 {
 	int i;
 
+	g_print ("Writing offsets\n");
 	for (i = 0; i < entry->ntrks; i++) {
 		char *str;
 		
@@ -353,6 +328,7 @@ write_disc_length (CDDBEntry *entry,
 {
 	char *str;
 
+	g_print ("Writing disc length\n");
 	str = g_strdup_printf ("# Disc length: %d seconds", entry->disc_length);
 	write_line (handle, NULL, str);
 	g_free (str);
@@ -364,6 +340,7 @@ write_revision (CDDBEntry *entry,
 {
 	char *str;
 
+	g_print ("Writing revision\n");
 	str = g_strdup_printf ("# Revision: %d", entry->revision);
 	write_line (handle, NULL, str);
 	g_free (str);
@@ -375,6 +352,7 @@ write_version (CDDBEntry *entry,
 {
 	char *str;
 
+	g_print ("Writing version\n");
 	str = g_strdup_printf ("# Submitted via: CDDBSlave2 %s", VERSION);
 	write_line (handle, NULL, str);
 	g_free (str);
@@ -384,6 +362,7 @@ static void
 write_headers (CDDBEntry *entry,
 	       FILE *handle)
 {
+	g_print ("Writing headers\n");
 	write_line (handle, NULL, "# xmcd");
 	write_line (handle, NULL, "# Track frame offsets:");
 	
@@ -417,7 +396,8 @@ write_body (CDDBEntry *entry,
 	    FILE *handle)
 {
 	int i;
-	
+
+	g_print ("Writing body\n");
 	write_line (handle, "DISCID", entry->realdiscid);
 
 	write_field (entry, "DTITLE", handle);
@@ -454,6 +434,7 @@ cddb_entry_write_to_file (CDDBEntry *entry)
 	filename = g_build_filename (g_get_home_dir (),
 				     ".cddbslave",
 				     entry->realdiscid, NULL);
+	g_print ("Writing file %s\n", filename);
 	handle = fopen (filename, "w");
 	g_free (filename);
 	
@@ -464,7 +445,6 @@ cddb_entry_write_to_file (CDDBEntry *entry)
 	/* Update the revision */
 	entry->revision++;
 	
-	write_topline (entry, handle);
 	write_headers (entry, handle);
 	write_body (entry, handle);
 
