@@ -71,6 +71,15 @@ AC_SUBST(BONOBO_ACT_IDLDIR)
 ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
 AC_SUBST(ORBIT_IDL)
 
+# Check for sox
+AC_PATH_PROG(SOX_PATH, sox, no)
+if test "$SOX_PATH" = "no"; then
+  path_to_sox="sox"
+else
+  path_to_sox=$SOX_PATH
+fi
+AC_SUBST(path_to_sox)
+
 # Check for esound library
 AM_PATH_ESD(0.2.7, we_have_esd=true)
 if test -n "$we_have_esd"; then
@@ -215,6 +224,7 @@ gnome-cd/images/lcd-theme/Makefile
 gnome-cd/images/red-lcd-theme/Makefile
 gnome-cd/access/Makefile
 grecord/Makefile
+grecord/gnome-sound-recorder.schemas
 grecord/src/Makefile
 version.h])
 
@@ -225,6 +235,16 @@ echo "Architecture:         ${CDROM_HOST}"
 echo "Source code location: ${srcdir}"
 echo "Compiler:             ${CC}"
 echo "Default CD device:    ${default_cd_device}"
+if test x$SOX_PATH = xno; then
+  echo ""
+  echo "sox is not installed on this machine. This means that"
+  echo "gnome-sound-recorder will be unable to record."
+  echo ""
+  echo "sox is available from http://sox.sourceforge.net"
+else
+  echo "Sox path:             ${path_to_sox}"
+fi
+echo "------------------------------------------- "
 echo ""
 echo "Hope (n): Theological virtue defined as the desire and search for a future good,"
 echo "          difficult but not impossible to attain with God's help."

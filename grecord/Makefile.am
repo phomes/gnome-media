@@ -6,7 +6,7 @@ EXTRA_DIST = \
 	$(pixmap_DATA)		\
 	$(Icon_DATA)		\
 	gnome-grecord.png	\
-	gnome-sound-recorder.schemas
+	gnome-sound-recorder.schemas.in
 
 @INTLTOOL_DESKTOP_RULE@
 Applicationsdir = $(datadir)/applications
