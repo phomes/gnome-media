@@ -47,9 +47,6 @@ typedef struct _CDDisplayTheme {
 } CDDisplayTheme;
 
 struct _CDDisplayPrivate {
-	GdkColor red;
-	GdkColor blue;
-
 	GnomeCDText *layout[CD_DISPLAY_END];
 	int max_width;
 	int height;
@@ -413,7 +410,7 @@ expose_event (GtkWidget *drawing_area,
 						     X_OFFSET, 
 						     Y_OFFSET + height,
 						     priv->layout[i]->layout,
-						     &priv->red, NULL);
+						     NULL, NULL);
 		}
 
 		if (i == CD_DISPLAY_LINE_INFO) {
@@ -460,7 +457,7 @@ realize (GtkWidget *widget)
 	GdkColormap *cmap;
 
 	disp = CD_DISPLAY (widget);
-
+#if 0
 	cmap = gtk_widget_get_colormap (widget);
 	disp->priv->red.red = 65535;
 	disp->priv->red.green = 0;
@@ -473,7 +470,7 @@ realize (GtkWidget *widget)
 	disp->priv->blue.blue = 65535;
 	disp->priv->blue.pixel = 0;
 	gdk_color_alloc (cmap, &disp->priv->blue);
-
+#endif
 	gtk_widget_add_events (widget, GDK_BUTTON_PRESS_MASK |
 			       GDK_KEY_PRESS_MASK);
 
