@@ -398,13 +398,15 @@ void set_status(int status, gchar *info)
 {
     char tmp[512];
     FILE *fp;
+    static char *status_file;
 
-    g_snprintf(tmp, 511, "%s/.cddbstatus", g_get_tmp_dir());
-    g_print("tmp: %s\n", tmp);
+    if (!status_file){
+	    status_file = gnome_util_home_file ("cddbstatus");
+    }
+	    
     if(status == STATUS_NONE)
-	truncate(tmp, 0);
-    
-    fp = fopen(tmp, "a+");
+	truncate(status_file, 0);
+    fp = fopen(status_file, "a+");
     if(!fp)
     {
 	perror("fopen");
