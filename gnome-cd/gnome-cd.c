@@ -373,7 +373,7 @@ init_player (void)
 	gcd->cdrom = gnome_cdrom_new (gcd->preferences->device, GNOME_CDROM_UPDATE_CONTINOUS, &error);
 	if (gcd->cdrom == NULL) {
 		if (error != NULL) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 		}
 	} else {

@@ -1095,7 +1095,7 @@ update_cd (gpointer data)
 
 	/* Do an update */
 	if (solaris_cdrom_get_status (GNOME_CDROM (lcd), &status, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 
 		g_error_free (error);
 		return TRUE;

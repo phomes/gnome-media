@@ -37,7 +37,7 @@ maybe_close_tray (GnomeCD *gcd)
 	GError *error;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 		
 		return;
@@ -45,7 +45,7 @@ maybe_close_tray (GnomeCD *gcd)
 
 	if (status->cd == GNOME_CDROM_STATUS_TRAY_OPEN) {
 		if (gnome_cdrom_close_tray (gcd->cdrom, &error) == FALSE) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 		}
 	}
@@ -61,7 +61,7 @@ eject_cb (GtkButton *button,
 	GError *error;
 
 	if (gnome_cdrom_eject (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 	}
 
@@ -89,7 +89,7 @@ play_cb (GtkButton *button,
 	GnomeCDRomMSF *endmsf;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 		return;
 
@@ -118,7 +118,7 @@ play_cb (GtkButton *button,
 		}
 		
 		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 
 			g_free (status);
@@ -140,7 +140,7 @@ play_cb (GtkButton *button,
 	switch (status->audio) {
 	case GNOME_CDROM_AUDIO_PLAY:
 		if (gnome_cdrom_pause (gcd->cdrom, &error) == FALSE) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 
 			g_free (status);
@@ -169,7 +169,7 @@ play_cb (GtkButton *button,
 		}
 		if (gnome_cdrom_play (gcd->cdrom, status->track,
 				      &status->relative, end_track, endmsf, &error) == FALSE) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 			
 			g_free (status);
@@ -199,7 +199,7 @@ play_cb (GtkButton *button,
 			endmsf = &msf;
 		}
 		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
-			g_warning ("%s: %s", __FUNCTION__, error->message);
+			g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 			g_error_free (error);
 
 			g_free (status);
@@ -238,7 +238,7 @@ stop_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_stop (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 	}
 
@@ -261,7 +261,7 @@ ffwd_timeout_cb (gpointer data)
 	GnomeCD *gcd = data;
 
 	if (gnome_cdrom_fast_forward (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 		return FALSE;
 	}
@@ -320,7 +320,7 @@ next_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_next (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 	}
 
@@ -344,7 +344,7 @@ back_cb (GtkButton *button,
 	maybe_close_tray (gcd);
 
 	if (gnome_cdrom_back (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 	}
 
@@ -366,7 +366,7 @@ rewind_timeout_cb (gpointer data)
 	GnomeCD *gcd = data;
 	
 	if (gnome_cdrom_rewind (gcd->cdrom, &error) == FALSE) {
-		g_warning ("%s: %s", __FUNCTION__, error->message);
+		g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 		g_error_free (error);
 		return FALSE;
 	}
@@ -474,7 +474,7 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 					
 					if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
 							      end_track, &msf, &error) == FALSE) {
-						g_warning ("%s: %s", __FUNCTION__, error->message);
+						g_warning ("%s: %s", G_GNUC_FUNCTION, error->message);
 						g_error_free (error);
 						
 						g_free (status);

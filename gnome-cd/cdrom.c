@@ -63,7 +63,7 @@ cdrom_eject (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__, 
+				      G_GNUC_FUNCTION, 
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -78,7 +78,7 @@ cdrom_next (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -94,7 +94,7 @@ cdrom_ffwd (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -113,7 +113,7 @@ cdrom_play (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -128,7 +128,7 @@ cdrom_pause (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -143,7 +143,7 @@ cdrom_stop (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__, 
+				      G_GNUC_FUNCTION, 
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -158,7 +158,7 @@ cdrom_rewind (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -173,7 +173,7 @@ cdrom_back (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -189,7 +189,7 @@ cdrom_get_status (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -205,7 +205,7 @@ cdrom_close_tray (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
@@ -221,7 +221,7 @@ cdrom_get_cddb_data (GnomeCDRom *cdrom,
 		*error = g_error_new (GNOME_CDROM_ERROR,
 				      GNOME_CDROM_ERROR_NOT_IMPLEMENTED,
 				      "%s has not been implemented in %s",
-				      __FUNCTION__,
+				      G_GNUC_FUNCTION,
 				      G_OBJECT_TYPE_NAME (cdrom));
 	}
 
