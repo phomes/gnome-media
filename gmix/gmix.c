@@ -624,6 +624,8 @@ device_info *open_device(int num)
 	snd_mixer_groups_t groups;
 	snd_mixer_gid_t *group;
 	int cnt, chn;
+	char *card_name;
+
 	/*
 	 * create new device configureation
 	 */
@@ -644,7 +646,11 @@ device_info *open_device(int num)
 	/*
 	 * mixer-name
 	 */
-	strcpy(new_device->info.name, info.name);
+	if (snd_card_get_name(num, &card_name) == 0) {
+		strcpy(new_device->info.name, card_name);
+	} else {
+		strcpy(new_device->info.name, info.name);
+	}
 	if(!isalpha(new_device->info.name[0]))
 		g_snprintf(new_device->info.name, 31, "Card %d", num+1);
 	/* and id */
