@@ -240,10 +240,12 @@ window_destroy_cb (GtkWidget *window,
 	case GNOME_CD_PREFERENCES_STOP_OPEN:
 		gnome_cdrom_eject (gcd->cdrom, NULL);
 		break;
-
+		
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	case GNOME_CD_PREFERENCES_STOP_CLOSE:
 		gnome_cdrom_close_tray (gcd->cdrom, NULL);
 		break;
+#endif
 
 	default:
 		g_assert_not_reached ();
@@ -602,9 +604,12 @@ main (int argc,
 			  G_CALLBACK (client_die), gcd);
 
 	/* Do the start up stuff */
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	if (gcd->preferences->start_close) {
 		gnome_cdrom_close_tray (gcd->cdrom, NULL);
 	}
+#endif
+	
 	switch (gcd->preferences->start) {
 	case GNOME_CD_PREFERENCES_START_NOTHING:
 		break;

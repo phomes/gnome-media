@@ -92,6 +92,7 @@ on_start_changed (GConfClient *_client,
 	   so we don't need to do anything for it */
 }
 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 static void
 close_on_start_changed (GConfClient *_client,
 			guint cnxn_id,
@@ -104,6 +105,7 @@ close_on_start_changed (GConfClient *_client,
 	prefs->start_close = gconf_value_get_bool (value);
 	/* This doesn't take effect till next start either */
 }
+#endif
 
 static void
 on_stop_changed (GConfClient *_client,
@@ -170,13 +172,14 @@ restore_preferences (GnomeCDPreferences *prefs)
 						   "/apps/gnome-cd/on-start",
 						   on_start_changed, prefs,
 						   NULL, NULL);
-	
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL	
 	prefs->start_close = gconf_client_get_bool (client,
 						    "/apps/gnome-cd/close-on-start", NULL);
 	prefs->close_id = gconf_client_notify_add (client,
 						   "/apps/gnome-cd/close-on-start",
 						   close_on_start_changed, prefs,
 						   NULL, NULL);
+#endif
 	
 	prefs->stop = gconf_client_get_int (client,
 					    "/apps/gnome-cd/on-stop", NULL);
@@ -209,7 +212,9 @@ preferences_free (GnomeCDPreferences *prefs)
 	/* Remove the listeners */
 	gconf_client_notify_remove (client, prefs->device_id);
 	gconf_client_notify_remove (client, prefs->start_id);
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	gconf_client_notify_remove (client, prefs->close_id);
+#endif
 	gconf_client_notify_remove (client, prefs->stop_id);
 	gconf_client_notify_remove (client, prefs->theme_id);
 
@@ -241,18 +246,28 @@ typedef struct _PropertyDialog {
 	GtkWidget *start_nothing;
 	GtkWidget *start_play;
 	GtkWidget *start_stop;
+	
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	GtkWidget *start_close;
+#endif
 
 	GtkWidget *stop_nothing;
 	GtkWidget *stop_stop;
 	GtkWidget *stop_open;
+	
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	GtkWidget *stop_close;
+#endif
 
 	GtkWidget *theme_list;
 	
 	guint start_id;
 	guint device_id;
+	
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	guint close_id;
+#endif
+	
 	guint stop_id;
 	guint theme_id;
 } PropertyDialog;
@@ -283,7 +298,9 @@ prefs_destroy_cb (GtkDialog *dialog,
 	gconf_client_notify_remove (client, pd->device_id);
 	gconf_client_notify_remove (client, pd->start_id);
 	gconf_client_notify_remove (client, pd->stop_id); 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	gconf_client_notify_remove (client, pd->close_id);
+#endif
 	gconf_client_notify_remove (client, pd->theme_id);
 	
 	g_free (pd);
@@ -433,6 +450,7 @@ stop_open_toggled_cb (GtkToggleButton *tb,
 	set_stop (pd, GNOME_CD_PREFERENCES_STOP_OPEN);
 }
 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 static void
 stop_close_toggled_cb (GtkToggleButton *tb,
 		       PropertyDialog *pd)
@@ -443,6 +461,7 @@ stop_close_toggled_cb (GtkToggleButton *tb,
 
 	set_stop (pd, GNOME_CD_PREFERENCES_STOP_CLOSE);
 }
+#endif
 
 static void
 change_start_widget (GConfClient *client,
@@ -509,12 +528,14 @@ change_stop_widget (GConfClient *client,
 		tb = GTK_TOGGLE_BUTTON (pd->stop_open);
 		func = G_CALLBACK (stop_open_toggled_cb);
 		break;
-
+		
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	case GNOME_CD_PREFERENCES_STOP_CLOSE:
 		tb = GTK_TOGGLE_BUTTON (pd->stop_close);
 		func = G_CALLBACK (stop_close_toggled_cb);
 		break;
-
+#endif
+		
 	default:
 		g_warning ("Unknown stop value: %d", gconf_value_get_int (value));
 		return;
@@ -527,6 +548,7 @@ change_stop_widget (GConfClient *client,
 					   0, 0, NULL, func, pd);
 }
 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 static void
 start_close_toggled_cb (GtkToggleButton *tb,
 			PropertyDialog *pd)
@@ -554,7 +576,7 @@ change_start_close_widget (GConfClient *client,
 	g_signal_handlers_unblock_matched (G_OBJECT (pd->start_close), G_SIGNAL_MATCH_FUNC,
 					   0, 0, NULL, G_CALLBACK (start_close_toggled_cb), pd);
 }
-
+#endif
 static void
 theme_selection_changed_cb (GtkTreeSelection *selection,
 			    PropertyDialog *pd)
@@ -751,6 +773,7 @@ preferences_dialog_show (GnomeCD *gcd,
 						"/apps/gnome-cd/on-start",
 						change_start_widget, pd, NULL, NULL);
 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL	
 	pd->start_close = gtk_check_button_new_with_mnemonic (_("Attempt to _close CD tray"));
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->start_close),
 				      gcd->preferences->start_close);
@@ -761,6 +784,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	pd->close_id = gconf_client_notify_add (client,
 						"/apps/gnome-cd/close-on-start",
 						change_start_close_widget, pd, NULL, NULL);
+#endif
 	/* Right side */
 	frame = gtk_frame_new (_("When Gnome-CD quits"));
 	gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
@@ -796,6 +820,7 @@ preferences_dialog_show (GnomeCD *gcd,
 			  G_CALLBACK (stop_open_toggled_cb), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->stop_open, FALSE, FALSE, 0);
 
+#ifdef HAVE_CDROMCLOSETRAY_IOCTL
 	pd->stop_close = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (pd->stop_open),
 									 _("Attempt to c_lose CD tray"));
 	if (gcd->preferences->stop == GNOME_CD_PREFERENCES_STOP_CLOSE) {
@@ -804,11 +829,12 @@ preferences_dialog_show (GnomeCD *gcd,
 	g_signal_connect (G_OBJECT (pd->stop_close), "toggled",
 			  G_CALLBACK (stop_close_toggled_cb), pd);
 	gtk_box_pack_start (GTK_BOX (vbox), pd->stop_close, FALSE, FALSE, 0);
-
+#endif
+	
 	pd->stop_id = gconf_client_notify_add (client,
 					       "/apps/gnome-cd/on-stop",
 					       change_stop_widget, pd, NULL, NULL);
-
+	
 	if (only_device == TRUE) {
 		gtk_widget_set_sensitive (hbox, FALSE);
 	}
