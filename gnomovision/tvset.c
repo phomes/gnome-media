@@ -836,6 +836,7 @@ draw_it:
 static void set_channel(GtkObject *o, void *p)
 {
 	int channel=(int)p;
+	printf("set_channel to %d\n", channel);
 	if(ioctl(tv_fd, VIDIOCSCHAN, &channel)==-1)
 		perror("set channel");
 	/*
@@ -995,6 +996,7 @@ void channel_bar(GtkWidget *menubar)
 			perror("get channel");
 			continue;
 		}
+		printf("Got channel %s\n", chan.name);
 		menuitem = gtk_menu_item_new_with_label(chan.name);
 		gtk_menu_append(GTK_MENU(menu), menuitem);
 		gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
@@ -1220,7 +1222,7 @@ void make_tv_set(void)
 	
 	gtk_container_border_width(GTK_CONTAINER(GNOME_APP(window)->toolbar), 3);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
-	gtk_container_add(GTK_CONTAINER(window), vbox);
+/*	gtk_container_add(GTK_CONTAINER(window), vbox); */
 	
 	gtk_signal_connect(GTK_OBJECT(tv), "expose_event", 
 		(GtkSignalFunc)painting_event, NULL);

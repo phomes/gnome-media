@@ -1233,6 +1233,7 @@ void channel_bar(GtkWidget *menubar)
 			perror("get channel");
 			continue;
 		}
+		printf("Got channel %s\n", chan.name);
 		menuitem = gtk_menu_item_new_with_label(chan.name);
 		gtk_menu_append(GTK_MENU(menu), menuitem);
 		gtk_signal_connect(GTK_OBJECT(menuitem), "activate",

@@ -54,7 +54,7 @@ int xmax, ymax;
  
 unsigned long channel_compute(int freq)
 {
-	int i = PAL_UHF_GHI /*ch_type;*/;
+	int i = NTSC_BROADCAST /*ch_type;*/;
 	freq = tvtuner[freq].freq[i];
 	if (!freq)	/* no need to set invalid freq */
 	    return 0;

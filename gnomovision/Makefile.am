@@ -13,14 +13,14 @@ tvset_SOURCES = \
 	preferences.c   \
 	channels.c
 
-# preferences_SOURCES = \
+#preferences_SOURCES = \
 #	preferences.c
 
 LINK_FLAGS  = -lXxf86dga $(GNOMEUI_LIBS) $(GNOME_LIBDIR)
 
 tvset_LDADD = $(LINK_FLAGS)
 
-# preferences_LDADD = $(LINK_FLAGS)
+#preferences_LDADD = $(LINK_FLAGS)
 
 XPM_FILES = about.xpm audio.xpm capturer.xpm dummy.xpm quit.xpm tmp.xpm picture.xpm
 

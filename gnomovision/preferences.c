@@ -63,6 +63,7 @@ static gint colour_settings(GtkAdjustment *adj_data, void *ptr)
 			return TRUE;
 		case 6:
 			vchannel=adj_data->value;
+			printf("Setting channel to %d\n", vchannel);
 			vfrequency=vbase_freq=channel_compute(adj_data->value);
 			set_tv_frequency(vfrequency);
 			return TRUE;
@@ -87,7 +88,7 @@ static void slider_create(char *name, GtkWidget *vbox, int id, float value)
 	}
 	else if(id==6)
 	{
-		slider = gtk_adjustment_new(value, 0.0, 64.0, 1.0, 1.0, 0.0);
+		slider = gtk_adjustment_new(value, 0.0, 147.0, 1.0, 1.0, 0.0);
 	}
 	else
 	{
@@ -155,17 +156,7 @@ void frequency_setting(void)
 {
 	GtkWidget *main_vbox, *vbox, *hbox, *button;
 	
-	
-	if(tuner_widget)
-	{
-		gtk_widget_show(tuner_widget);
-		return;
-	}
-	
-	tuner_widget = gtk_dialog_new();
-	
-	gtk_window_set_title(GTK_WINDOW(tuner_widget),"Tuning");
-	main_vbox = GTK_DIALOG(tuner_widget)->vbox;
+	main_vbox = gtk_vbox_new(FALSE, 5);
 	
 	vbox = gtk_vbox_new(FALSE,5);
 	gtk_container_border_width(GTK_CONTAINER(vbox),3);
@@ -175,18 +166,16 @@ void frequency_setting(void)
 	slider_create("Channel", vbox, 6, (float)vchannel);
 	slider_create("Fine Tune", vbox, 5, 0);
 	
-	hbox = GTK_DIALOG(tuner_widget)->action_area;
-	
 	button = gtk_button_new_with_label("Dismiss");
 	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",
 		(GtkSignalFunc)done_tuner_settings, NULL);
-	gtk_box_pack_start(GTK_BOX(hbox), button, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(main_vbox), button, TRUE, TRUE, 0);
 	gtk_widget_show(button);
 	gtk_widget_grab_default(button);
 	
-	gtk_widget_show(hbox);
-	gtk_widget_show(tuner_widget);
+	gtk_widget_show(main_vbox);
+	gtk_container_add(GTK_CONTAINER(pref_channel), main_vbox);
 }
 
 
@@ -199,6 +188,7 @@ void create_country_selector(void)
 void create_channel_selector(void)
 {
 	pref_channel = gtk_frame_new("Channel");
+	frequency_setting();
 	gtk_widget_show(pref_channel);
 }
 
