@@ -1,3 +1,10 @@
+2002-03-01  Iain <iain@ximian.com>
+
+	* cddb.[ch] (close_cddb_client): Destroy the CDDBSlave as we don't
+	need it now.
+
+	* gnome-cd.c (window_destroy_cb): destror the cddbslave.
+
 2002-02-28  Iain <iain@ximian.com>
 
 	* Added accessibility stuff for the display widget from 

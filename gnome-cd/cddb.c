@@ -107,6 +107,13 @@ cddb_make_disc_info (GnomeCDRomCDDBData *data)
 }
 
 void
+close_cddb_client (void)
+{
+	if (slave != NULL) {
+		g_object_unref (G_OBJECT (slave));
+	}
+}
+void
 cddb_get_query (GnomeCD *gcd)
 {
 	GnomeCDRomCDDBData *data;
@@ -153,12 +160,14 @@ cddb_get_query (GnomeCD *gcd)
 	/* Remove the last space */
 	offsets[strlen (offsets) - 1] = 0;
 
-	slave = cddb_slave_client_new ();
-	listener = bonobo_listener_new (NULL, NULL);
-	g_signal_connect (G_OBJECT (listener), "event-notify",
-			  G_CALLBACK (cddb_listener_event_cb), gcd);
+	if (slave == NULL) {
+		slave = cddb_slave_client_new ();
+		listener = bonobo_listener_new (NULL, NULL);
+		g_signal_connect (G_OBJECT (listener), "event-notify",
+				  G_CALLBACK (cddb_listener_event_cb), gcd);
 
-	cddb_slave_client_add_listener (slave, listener);
+		cddb_slave_client_add_listener (slave, listener);
+	}
 
 	cddb_slave_client_query (slave, discid, data->ntrks, offsets, 
 				 data->nsecs, "GnomeCD", VERSION);

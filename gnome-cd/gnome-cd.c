@@ -247,7 +247,10 @@ window_destroy_cb (GtkWidget *window,
 		g_assert_not_reached ();
 		break;
 	}
-	
+
+	/* Unref the cddb slave */
+	close_cddb_client ();
+
 	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
 }
