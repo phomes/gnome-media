@@ -99,15 +99,19 @@ cddb_track_editor_LDADD =			\
 	libcddb-slave2.la
 
 ### GConf schema files
-schemadir   = @GCONF_SCHEMA_FILE_DIR@
+schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = CDDB-Slave2.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 
 install-schemas: $(schema_DATA)
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA) || true
 
+if GCONF_SCHEMAS_INSTALL
 # make sure we try to install schemas on make install
 install-data-local: install-schemas
+else
+install-data-local:
+endif
 
 ### Bonobo server files
 server_in_files = GNOME_Media_CDDBSlave2.server.in.in

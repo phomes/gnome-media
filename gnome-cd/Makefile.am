@@ -87,12 +87,16 @@ Audio_in_files = gnome-cd.desktop.in
 Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
 Pixmap_DATA = gnome-cd.png
 
-schemadir=$(sysconfdir)/gconf/schemas
+schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-cd.schemas
 
 install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/gnome-cd/gnome-cd.schemas || true
 
+if GCONF_SCHEMAS_INSTALL
 install-data-local: install-schemas
+else
+install-data-local:
+endif
 
 CLEANFILES = $(Audio_DATA) $(schema_DATA)

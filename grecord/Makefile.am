@@ -29,12 +29,16 @@ pixmap_DATA = media-record.png		\
 uidir = $(datadir)/gnome-sound-recorder/ui
 ui_DATA = gsr.xml
 
-schemadir=$(sysconfdir)/gconf/schemas
+schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-sound-recorder.schemas
 
 CLEANFILES=$(Applications_DATA) $(schema_DATA)
 install-schemas:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_DATA) || true
 
+if GCONF_SCHEMAS_INSTALL
 install-data-local: install-schemas
+else
+install-data-local:
+endif
 
