@@ -24,6 +24,7 @@
 #include "access/factory.h"
 
 #define DEFAULT_THEME "lcd"
+#define MAX_TRACKNAME_LENGTH 30
 
 /* Debugging? */
 gboolean debug_mode = FALSE;
@@ -120,21 +121,38 @@ gnome_cd_build_track_list_menu (GnomeCD *gcd)
 	if (gcd->disc_info != NULL &&
 	    gcd->disc_info->track_info) {
 		int i;
+		gchar *tmp;
 		for (i = 0; i < gcd->disc_info->ntracks; i++) {
 			char *title;
 			CDDBSlaveClientTrackInfo *info;
 
 			info = gcd->disc_info->track_info[i];
+			/* If statement 'returns' item, which is a menu item
+			   with all the info on the track that we have.  It will
+			   also truncate the name if it's too long. */
 			if (info == NULL) {
 				title = g_strdup_printf ("%d - %s", i + 1,
 							 _("Unknown track"));
+
+				item = gtk_menu_item_new_with_label (title);
+				g_free (title);
 			} else {
-				title = g_strdup_printf ("%d - %s", i + 1,
-							 info->name);
+				if (strlen(info->name) > MAX_TRACKNAME_LENGTH) {
+					tmp = g_strndup (info->name, 
+							 MAX_TRACKNAME_LENGTH);
+					title = g_strdup_printf ("%d - %s...", 
+								 i + 1, tmp);
+					g_free (tmp);
+				} else {
+					title = g_strdup_printf ("%d - %s ", 
+								 i + 1, info->name);
+				}
+
+				item = gtk_menu_item_new_with_label (title);
+				gtk_tooltips_set_tip (gcd->tooltips, item, info->name, NULL);
+				g_free (title);
 			}
 			
-			item = gtk_menu_item_new_with_label (title);
-			g_free (title);
 			gtk_widget_show (item);
 
 			gtk_menu_shell_append (GTK_MENU_SHELL(menu), item);
