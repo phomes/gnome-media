@@ -38,4 +38,4 @@ CLEANFILES = *.o core *~ libcdrom.a
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR)
 
-Audio_data = gtcd.desktop
+Audio_DATA = gtcd.desktop
