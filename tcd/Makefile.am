@@ -11,7 +11,7 @@ endif
 
 bin_PROGRAMS = gtcd $(CURSES_TCD)
 
-SUBDIRS = icons
+SUBDIRS = icons doc
 
 gtcd_SOURCES = 		\
 	gtcd.c 		\

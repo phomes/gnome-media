@@ -138,11 +138,11 @@ void changer_cb(GtkWidget *widget, gpointer data)
     return;
 }
 
+
 void help(GtkWidget *widget, gpointer data)
 {
-	gchar *file = gnome_help_file_path("users-guide", "gtcd-use.html");
-	gchar *path = g_strdup_printf("file:%s", file);
-	gnome_help_goto(NULL, path);
-	g_free(file);
-	g_free(path);
+	GnomeHelpMenuEntry help_entry = { "tcd",
+                                          "index.html" };
+        gnome_help_display(NULL, &help_entry);
 }
+
