@@ -18,6 +18,12 @@ IDL_GENERATED =					\
 	GNOME_Media_CDDBSlave2-skels.c		\
 	GNOME_Media_CDDBSlave2-stubs.c
 
+dist-hook:
+	-rm $(distdir)/GNOME_Media_CDDBSlave2.h
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-common.c
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-skels.c
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-stubs.c
+
 GNOME_Media_CDDBSlave2-impl.o: GNOME_Media_CDDBSlave.h
 
 $(IDL_GENERATED): $(IDLS)

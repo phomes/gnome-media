@@ -1,3 +1,23 @@
+2003-07-03  Ted Gould   <ted@gould.cx>
+	* configure.in:  Updating version number to 2.3.4
+
+	* configure.in:
+	* gnome-cd/images/None-theme/*:
+	* gnome-cd/images/Makefile.am:
+	* gnome-cd/gnome-cd.schemas.in.in:
+	Adding a new default theme for gnome-cd.  Basically this theme
+	is a NULL theme, in that it looks basically like the GTK theme
+	that is being used.  I called it 'None' because this is most
+	likely how a user will think about it.  Calum Benson contributed
+	the theme itself, and it was all discussed in bugzilla
+	bug 82190.
+
+	* cddb-slave2/Makefile.am:
+	* gnome-cd/Makefile.am:
+	Changed these so that the IDL generated files are not included
+	in a distribution.  These had some ripple through effects that made
+	distcheck not work, but those issues are resolved also.
+
 2003-06-30  Mohammad DAMT  <mdamt@bisnisweb.com>
 
 	* po/id.po: Added Indonesian translation

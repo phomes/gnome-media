@@ -21,13 +21,19 @@ EXTRA_DIST = solaris-cdrom.c		\
 	     linux-cdrom.h		\
 	     gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
-IDLS = ../cddb-slave2/GNOME_Media_CDDBSlave2.idl
+IDLS = $(top_srcdir)/cddb-slave2/GNOME_Media_CDDBSlave2.idl
 
 IDL_GENERATED =				\
 	GNOME_Media_CDDBSlave2.h	\
 	GNOME_Media_CDDBSlave2-common.c	\
 	GNOME_Media_CDDBSlave2-skels.c	\
 	GNOME_Media_CDDBSlave2-stubs.c
+
+dist-hook:
+	-rm $(distdir)/GNOME_Media_CDDBSlave2.h
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-common.c
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-skels.c
+	-rm $(distdir)/GNOME_Media_CDDBSlave2-stubs.c
 
 GNOME_Media_CDDBSlave2-impl.o: GNOME_Media_CDDBSlave.h
 
