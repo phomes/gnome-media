@@ -450,6 +450,9 @@ open_device (int num)
 	device_info *new_device;
 	/*
 	 * This list is borrowed from GCONF_SOURCE/gconf/gconf.c
+	 * FIXME: This should just be removed and switched to gconf_escape_key()
+	 * Reading the source for the invalid chars and not spotting that function
+	 * awards 10 points :-)
 	 */
 	gchar gconf_key_invalid_chars[] = " \t\r\n\"$&<>,+=#!()'|{}[]?~`;%\\";
 
