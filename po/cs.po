@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2002-10-09 05:19+0200\n"
-"PO-Revision-Date: 2002-10-11 00:54+0200\n"
+"POT-Creation-Date: 2002-11-28 11:33+0100\n"
+"PO-Revision-Date: 2002-11-28 11:33GMT\n"
 "Last-Translator: Michal Bukovjan <bukm@centrum.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1110,13 +1110,13 @@ msgid ""
 msgstr ""
 "Ovládání hlasitosti nemůže fungovat.\n"
 "\n"
-"Pro více detailů o důvodech selhání stiskněte tlačítko Detaily.\n"
+"Podrobnosti o důvodech selhání získáte stisknutím tlačítka 'Podrobnosti'.\n"
 "\n"
 "Ovládání hlasitosti ukončíte stisknutím Konec"
 
-#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:477
+#: gmix/gmix.c:384 gnome-cd/gnome-cd.c:478
 msgid "_Details"
-msgstr "_Detaily"
+msgstr "Po_drobnosti"
 
 #: gmix/gmix.c:387
 msgid "Invalid mixer device"
@@ -1260,53 +1260,76 @@ msgid "Line for displaying the name of the album"
 msgstr "Řádek zobrazující název alba"
 
 #: gnome-cd/callbacks.c:77 gnome-cd/callbacks.c:165 gnome-cd/callbacks.c:264
-#: gnome-cd/callbacks.c:532 gnome-cd/gnome-cd.c:609 grecord/src/gui.c:233
+#: gnome-cd/callbacks.c:538 gnome-cd/gnome-cd.c:610 grecord/src/gui.c:233
 msgid "Play"
 msgstr "Přehrávání"
 
 #: gnome-cd/callbacks.c:150 gnome-cd/callbacks.c:196 gnome-cd/callbacks.c:226
 #: gnome-cd/callbacks.c:306 gnome-cd/callbacks.c:346 gnome-cd/callbacks.c:370
-#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:498
+#: gnome-cd/callbacks.c:411 gnome-cd/callbacks.c:499
 msgid "Pause"
 msgstr "Pauza"
 
-#: gnome-cd/callbacks.c:604
-msgid "Disc error"
-msgstr "Chyba disku"
+#: gnome-cd/callbacks.c:530
+#, c-format
+msgid "Playing %s - %s"
+msgstr "Přehrává se %s - %s"
 
-#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:648
+#: gnome-cd/callbacks.c:531 gnome-cd/callbacks.c:655 gnome-cd/callbacks.c:666
 msgid "Unknown Artist"
 msgstr "Neznámý umělec"
 
-#: gnome-cd/callbacks.c:640 gnome-cd/callbacks.c:652
+#: gnome-cd/callbacks.c:532 gnome-cd/callbacks.c:658 gnome-cd/callbacks.c:670
 msgid "Unknown Album"
 msgstr "Neznámé album"
 
-#: gnome-cd/callbacks.c:691
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:550
+msgid "Paused"
+msgstr "Pozastaveno"
+
+#. Update tray icon tooltip
+#: gnome-cd/callbacks.c:595 gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:495
+#: gnome-cd/gnome-cd.c:653 gnome-cd/gnome-cd.desktop.in.h:1
+msgid "CD Player"
+msgstr "CD přehrávač"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:613
+msgid "Stopped"
+msgstr "Zastaveno"
+
+#: gnome-cd/callbacks.c:619
+msgid "Disc error"
+msgstr "Chyba disku"
+
+#. Update the tray icon tooltip
+#: gnome-cd/callbacks.c:630 gnome-cd/callbacks.c:709
 msgid "No disc"
 msgstr "Žádný disk"
 
-#: gnome-cd/callbacks.c:717
+#: gnome-cd/callbacks.c:735
 msgid "Drive open"
 msgstr "Zařízení otevřeno"
 
-#: gnome-cd/callbacks.c:741
+#: gnome-cd/callbacks.c:759
 msgid "Data CD"
 msgstr "Datové CD"
 
-#: gnome-cd/callbacks.c:763
+#. Updated the tray icon tooltip
+#: gnome-cd/callbacks.c:781 gnome-cd/callbacks.c:785
 msgid "No Cdrom"
 msgstr "Žádný CD-ROM"
 
-#: gnome-cd/callbacks.c:775
+#: gnome-cd/callbacks.c:796
 msgid "Drive Error"
 msgstr "Chyba zařízení"
 
-#: gnome-cd/callbacks.c:796
+#: gnome-cd/callbacks.c:817
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:797
+#: gnome-cd/callbacks.c:818
 msgid "A GNOME cd player"
 msgstr "Přehrávač CD pro prostředí GNOME"
 
@@ -1323,7 +1346,8 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"%s zřejmě neukazuje na platné zařízení CD. To může nastat z několika příčin:\n"
+"%s zřejmě neukazuje na platné zařízení CD. To může nastat z několika "
+"příčin:\n"
 "a) podpora CD není na vašem počítači k dispozici\n"
 "b) nemáte potřebná oprávnění k přístupu k CD mechanice\n"
 "c) %s není CD mechanika.\n"
@@ -1335,10 +1359,6 @@ msgstr "Neznámý umělec"
 #: gnome-cd/display.c:75
 msgid "Unknown disc"
 msgstr "Neznámý disk"
-
-#: gnome-cd/gnome-cd.c:55 gnome-cd/gnome-cd.c:494
-msgid "Gnome CD Player"
-msgstr "Přehrávač CD pro GNOME"
 
 #: gnome-cd/gnome-cd.c:156
 #, c-format
@@ -1370,130 +1390,127 @@ msgid "_Help"
 msgstr "_Nápověda"
 
 #: gnome-cd/gnome-cd.c:306
-msgid "_About Gnome-CD"
-msgstr "O _aplikaci GNOME-CD"
+msgid "_About CD player"
+msgstr "O přehráv_ači CD"
 
-#: gnome-cd/gnome-cd.c:413
+#: gnome-cd/gnome-cd.c:414
 msgid ""
-"There is no CD device set. This means that GnomeCD\n"
-"will be unable to run. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 "Není nastaveno žádné zařízení CD. To znamená, že program\n"
-"GNOMECD nebude fungovat. Stiskněte tlačítko Nastavit zařízení\n"
-"a nastavte toto zařízení, nebo tlačítko Ukončit a ukončete tuto aplikaci."
+"přehrávač CD nebude fungovat. Stiskněte tlačítko 'Nastavit zařízení'\n"
+"a nastavte toto zařízení, nebo tlačítko 'Ukončit' a ukončete přehrávač CD."
 
-#: gnome-cd/gnome-cd.c:417
+#: gnome-cd/gnome-cd.c:418
 msgid "Set device"
 msgstr "Nastavit zařízení"
 
-#: gnome-cd/gnome-cd.c:419
+#: gnome-cd/gnome-cd.c:420
 msgid "No CD device"
 msgstr "Žádné CD zařízení"
 
-#: gnome-cd/gnome-cd.c:473
+#: gnome-cd/gnome-cd.c:474
 msgid ""
-"GnomeCD is unable to run correctly.\n"
+"The CD player is unable to run correctly.\n"
 "\n"
-"Press Details button for more details on reasons for failure.\n"
+"Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press Set device to go to a dialog where you can set the device, or click "
-"Quit to quit GnomeCD"
+"Press 'Set device' to go to a dialog where you can set the device, or press "
+"'Quit' to quit the CD player"
 msgstr ""
-"GnomeCD nemůže fungovat.\n"
+"Přehrávač CD nemůže fungovat správně.\n"
 "\n"
-"Pro více detailů o důvodech selhání stiskněte tlačítko Detaily.\n"
+"Podrobnosti o důvodech selhání získáte stisknutím tlačítka 'Podrobnosti'.\n"
 "\n"
-"Stiskněte tlačítko Nastavit zařízení a nastavte zařízení, nebo ukončete GnomeCD stisknutím Konec"
+"Stiskněte tlačítko 'Nastavit zařízení' a nastavte zařízení, nebo ukončete "
+"přehrávač CD stisknutím Konec"
 
-#: gnome-cd/gnome-cd.c:478
+#: gnome-cd/gnome-cd.c:479
 msgid "_Set device"
 msgstr "_Nastavit zařízení"
 
-#: gnome-cd/gnome-cd.c:480
+#: gnome-cd/gnome-cd.c:481
 msgid "Invalid CD device"
 msgstr "Neplatné CD zařízení"
 
-#: gnome-cd/gnome-cd.c:541
+#: gnome-cd/gnome-cd.c:542
 msgid "Volume control"
 msgstr "Ovládání hlasitosti"
 
-#: gnome-cd/gnome-cd.c:550
+#: gnome-cd/gnome-cd.c:551
 msgid "Open track editor"
 msgstr "Otevřít editor skladeb"
 
-#: gnome-cd/gnome-cd.c:551
+#: gnome-cd/gnome-cd.c:552
 msgid "Track editor"
 msgstr "Editor skladeb"
 
-#: gnome-cd/gnome-cd.c:558
+#: gnome-cd/gnome-cd.c:559
 msgid "Open preferences"
 msgstr "Otevřít nastavení"
 
-#: gnome-cd/gnome-cd.c:559
+#: gnome-cd/gnome-cd.c:560
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: gnome-cd/gnome-cd.c:567
+#: gnome-cd/gnome-cd.c:568
 msgid "Track List"
 msgstr "Seznam skladeb"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous track"
 msgstr "Předchozí skladba"
 
-#: gnome-cd/gnome-cd.c:588
+#: gnome-cd/gnome-cd.c:589
 msgid "Previous"
 msgstr "Předchozí"
 
-#: gnome-cd/gnome-cd.c:592
+#: gnome-cd/gnome-cd.c:593
 msgid "Rewind"
 msgstr "Posun dozadu"
 
-#: gnome-cd/gnome-cd.c:609
+#: gnome-cd/gnome-cd.c:610
 msgid "Play / Pause"
 msgstr "Hrát / Pauza"
 
-#: gnome-cd/gnome-cd.c:614 grecord/src/gui.c:247
+#: gnome-cd/gnome-cd.c:615 grecord/src/gui.c:247
 msgid "Stop"
 msgstr "Stop"
 
-#: gnome-cd/gnome-cd.c:618
+#: gnome-cd/gnome-cd.c:619
 msgid "Fast forward"
 msgstr "Posun dopředu"
 
-#: gnome-cd/gnome-cd.c:626
+#: gnome-cd/gnome-cd.c:627
 msgid "Next track"
 msgstr "Následující skladba"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject CD"
 msgstr "Vysunout CD"
 
-#: gnome-cd/gnome-cd.c:630
+#: gnome-cd/gnome-cd.c:631
 msgid "Eject"
 msgstr "Vysunout"
 
-#: gnome-cd/gnome-cd.c:671
+#: gnome-cd/gnome-cd.c:688
 msgid "CD device to use"
 msgstr "Zařízení CD, které použít"
 
-#: gnome-cd/gnome-cd.c:680
+#: gnome-cd/gnome-cd.c:697
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Spustit jen, když ještě neběží aplikace přehrávače CD"
 
-#: gnome-cd/gnome-cd.c:682
+#: gnome-cd/gnome-cd.c:699
 msgid "Play the CD on startup"
 msgstr "Přehrávat CD při spuštění"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:712
+#: gnome-cd/gnome-cd.c:729
 msgid "Cannot create player"
 msgstr "Nelze vytvořit přehrávač"
-
-#: gnome-cd/gnome-cd.desktop.in.h:1
-msgid "CD Player"
-msgstr "CD přehrávač"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1531,13 +1548,17 @@ msgstr "Cesta k jednotce CD, kterou má přehrávač CD používat pro přehráv
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr "Jakou akci má přehrávač CD provést při ukončení? 0 = Nic, 1 = Zastavit přehrávání, 2 = Vysunout CD, 3 = Pokusit se zasunout mechaniku"
+msgstr ""
+"Jakou akci má přehrávač CD provést při ukončení? 0 = Nic, 1 = Zastavit "
+"přehrávání, 2 = Vysunout CD, 3 = Pokusit se zasunout mechaniku"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
-msgstr "Jakou akci má přehrávač CD provést při startu? 0 = Nic, 1 = Začít přehrávat, 2 = Zastavit přehrávání"
+msgstr ""
+"Jakou akci má přehrávač CD provést při startu? 0 = Nic, 1 = Začít přehrávat, "
+"2 = Zastavit přehrávání"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
@@ -1547,94 +1568,94 @@ msgstr "Jaké téma má přehrávač CD používat pro svůj vzhled"
 #, c-format
 msgid ""
 "%s\n"
-"This means that Gnome-CD will not be able to run."
+"This means that the CD player will not be able to run."
 msgstr ""
 "%s\n"
-"To znamená, že program GNOMECD nebude fungovat správně."
+"To znamená, že přehrávač CD nebude fungovat správně."
 
 #: gnome-cd/preferences.c:84
 msgid "Error setting device"
 msgstr "Chyba při nastavení zařízení"
 
-#: gnome-cd/preferences.c:822
-msgid "Gnome CD Player Preferences"
-msgstr "Nastavení Přehrávače CD pro GNOME"
+#: gnome-cd/preferences.c:824
+msgid "CD Player Preferences"
+msgstr "Nastavení Přehrávače CD"
 
-#: gnome-cd/preferences.c:851
+#: gnome-cd/preferences.c:853
 msgid "CD player de_vice:"
 msgstr "Zařízení pro přehrá_vání CD:"
 
-#: gnome-cd/preferences.c:866
+#: gnome-cd/preferences.c:868
 msgid "_Apply change"
 msgstr "_Aplikovat změnu"
 
 #. left side
-#: gnome-cd/preferences.c:879
-msgid "When Gnome CD Player starts"
-msgstr "Při spuštění Přehrávače CD pro GNOME"
+#: gnome-cd/preferences.c:881
+msgid "When CD player starts"
+msgstr "Při spuštění Přehrávače CD"
 
-#: gnome-cd/preferences.c:887
+#: gnome-cd/preferences.c:889
 msgid "Do _nothing"
 msgstr "Nedělat _nic"
 
-#: gnome-cd/preferences.c:888
+#: gnome-cd/preferences.c:890
 msgid "Do nothing when CD Player starts"
 msgstr "Při spuštění Přehrávače CD nedělat nic"
 
-#: gnome-cd/preferences.c:898
+#: gnome-cd/preferences.c:900
 msgid "Start _playing CD"
 msgstr "Začít _přehrávání CD"
 
-#: gnome-cd/preferences.c:899
+#: gnome-cd/preferences.c:901
 msgid "Start playing CD when CD Player starts"
 msgstr "Při spuštění Přehrávače CD začít přehrávat CD"
 
-#: gnome-cd/preferences.c:908
+#: gnome-cd/preferences.c:910
 msgid "_Stop playing CD"
 msgstr "Za_stavit přehrávání CD"
 
-#: gnome-cd/preferences.c:909
+#: gnome-cd/preferences.c:911
 msgid "Stop playing CD when CD Player starts"
 msgstr "Při spuštění Přehrávače CD zastavit přehrávání CD"
 
-#: gnome-cd/preferences.c:923
+#: gnome-cd/preferences.c:925
 msgid "Attempt to _close CD tray"
 msgstr "Pokusit se zasunout _CD mechaniku"
 
 #. Right side
-#: gnome-cd/preferences.c:935
-msgid "When Gnome CD Player quits"
-msgstr "Při ukončení Přehrávače CD pro GNOME"
+#: gnome-cd/preferences.c:937
+msgid "When CD player quits"
+msgstr "Při ukončení Přehrávače CD"
 
-#: gnome-cd/preferences.c:943
+#: gnome-cd/preferences.c:945
 msgid "Do not_hing"
 msgstr "Nedě_lat nic"
 
-#: gnome-cd/preferences.c:944
+#: gnome-cd/preferences.c:946
 msgid "Do nothing when CD Player exits"
 msgstr "Při ukončení Přehrávače CD nedělat nic"
 
-#: gnome-cd/preferences.c:953
+#: gnome-cd/preferences.c:955
 msgid "S_top playing CD"
 msgstr "Zas_tavit přehrávání CD"
 
-#: gnome-cd/preferences.c:954
+#: gnome-cd/preferences.c:956
 msgid "Stop playing CD when CD player quits"
 msgstr "Při ukončení přehrávače CD zastavit přehrávání CD"
 
-#: gnome-cd/preferences.c:964
+#: gnome-cd/preferences.c:966
 msgid "Attempt to _open CD tray"
 msgstr "P_okusit se vysunout CD mechaniku"
 
-#: gnome-cd/preferences.c:965
+#: gnome-cd/preferences.c:967
 msgid "Attempt to open CD tray when CD Player exits"
 msgstr "Při ukončení přehrávače CD se pokusit vysunout CD mechaniku"
 
-#: gnome-cd/preferences.c:975
+#: gnome-cd/preferences.c:977
 msgid "Attempt to c_lose CD tray"
 msgstr "Pokusit se _zasunout CD mechaniku"
 
-#: gnome-cd/preferences.c:1006
+#: gnome-cd/preferences.c:1008
 msgid "Theme name"
 msgstr "Název tématu"
 
@@ -1667,7 +1688,7 @@ msgstr ""
 "\n"
 "Nemáte-li sox, nemůžete nahrávat nebo provádět efekty."
 
-#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1359
+#: grecord/src/grec.c:171 grecord/src/grec.c:218 grecord/src/grec.c:1361
 msgid "Could not fork child process"
 msgstr "Nelze větvit proces potomka"
 
@@ -1687,15 +1708,15 @@ msgstr "Převádí se soubor..."
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: grecord/src/grec.c:345 grecord/src/grec.c:793
+#: grecord/src/grec.c:345 grecord/src/grec.c:795
 msgid "Audioformat: "
 msgstr "Zvukový formát: "
 
-#: grecord/src/grec.c:349 grecord/src/grec.c:779 grecord/src/gui.c:308
+#: grecord/src/grec.c:349 grecord/src/grec.c:781 grecord/src/gui.c:308
 msgid "Sample rate: "
 msgstr "Vzorkovací kmitočet: "
 
-#: grecord/src/grec.c:359 grecord/src/grec.c:783 grecord/src/gui.c:315
+#: grecord/src/grec.c:359 grecord/src/grec.c:785 grecord/src/gui.c:315
 msgid "Channels: "
 msgstr "Kanály: "
 
@@ -1744,7 +1765,7 @@ msgstr ""
 msgid "File '%s isn't a valid sound file."
 msgstr "Soubor '%s' není platný zvukový soubor."
 
-#: grecord/src/grec.c:817
+#: grecord/src/grec.c:819
 #, c-format
 msgid ""
 "'%s' is a folder.\n"
@@ -1753,7 +1774,7 @@ msgstr ""
 "'%s' je adresář.\n"
 "Zvolte prosím jiný název souboru."
 
-#: grecord/src/grec.c:829
+#: grecord/src/grec.c:831
 #, c-format
 msgid ""
 "<b>File '%s' already exists.</b>\n"
@@ -1762,20 +1783,20 @@ msgstr ""
 "<b>Soubor '%s' již existuje.</b>\n"
 "Chcete jej přepsat?"
 
-#: grecord/src/grec.c:832
+#: grecord/src/grec.c:834
 msgid "Cancel save"
 msgstr "Zrušit ukládání"
 
-#: grecord/src/grec.c:833
+#: grecord/src/grec.c:835
 msgid "Overwrite"
 msgstr "Přepsat"
 
-#: grecord/src/grec.c:860
+#: grecord/src/grec.c:862
 #, c-format
 msgid "Error saving '%s'"
 msgstr "Chyba při ukládání '%s'"
 
-#: grecord/src/grec.c:974
+#: grecord/src/grec.c:976
 #, c-format
 msgid ""
 "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
@@ -1786,21 +1807,21 @@ msgstr ""
 "\n"
 "Pokud je neuložíte, budou vaše změny ztraceny."
 
-#: grecord/src/grec.c:979
+#: grecord/src/grec.c:981
 msgid "Do_n't save"
 msgstr "_Neukládat"
 
-#: grecord/src/grec.c:986
+#: grecord/src/grec.c:988
 #, c-format
 msgid "Save %s?"
 msgstr "Uložit %s?"
 
 #. Save the file
-#: grecord/src/grec.c:1010
+#: grecord/src/grec.c:1012
 msgid "Saving..."
 msgstr "Ukládá se..."
 
-#: grecord/src/grec.c:1140
+#: grecord/src/grec.c:1142
 #, c-format
 msgid ""
 "The size of the current sample is more than\n"
@@ -1809,11 +1830,11 @@ msgstr ""
 "Velikost aktuálního vzorku přesahuje\n"
 "%i Mb!"
 
-#: grecord/src/grec.c:1196
+#: grecord/src/grec.c:1198
 msgid "Save sound file"
 msgstr "Uložit zvukový soubor"
 
-#: grecord/src/grec.c:1425
+#: grecord/src/grec.c:1429
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
@@ -2138,7 +2159,7 @@ msgstr "Kanály: mono"
 msgid "Channels: stereo"
 msgstr "Kanály: stereo"
 
-#: grecord/src/sound.c:136
+#: grecord/src/sound.c:137
 msgid "Adding echo to sample..."
 msgstr "Do vzorku se přidává ozvěna..."
 
@@ -2210,6 +2231,9 @@ msgstr "Sledování hlasitosti zvukového výstupu"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Sledování hlasitosti"
+
+#~ msgid "_About Gnome-CD"
+#~ msgstr "O _aplikaci GNOME-CD"
 
 #~ msgid "don't restore mixer-settings from configuration"
 #~ msgstr "nevracet nastavení mixáže z konfigurace"
