@@ -15,6 +15,11 @@ Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
 Icondir = $(datadir)/pixmaps
 Icon_DATA = gnome-grecord.png
 
+pixmapdir = $(datadir)/pixmaps/gnome-media/gnome-sound-recorder
+pixmap_DATA = media-rec.png		\
+	      media-play.png		\
+	      media-stop.png
+
 schemadir=$(sysconfdir)/gconf/schemas
 schema_DATA=gnome-sound-recorder.schemas
 

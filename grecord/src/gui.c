@@ -251,7 +251,7 @@ create_grecord_window (void)
 
 	gtk_toolbar_append_space (GTK_TOOLBAR (toolbar));
 
-	fullname = gnome_pixmap_file ("gnome-cd/play.xpm");
+	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-play.png");
 	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
 	g_free (fullname);
 
@@ -263,7 +263,7 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Play_button);
 
-	fullname = gnome_pixmap_file ("gnome-cd/stop.xpm");
+	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-stop.png");
 	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
 	g_free (fullname);
 
@@ -275,8 +275,10 @@ create_grecord_window (void)
 						  tmp_toolbar_icon, NULL, NULL);
 	gtk_widget_show (Stop_button);
 
-	tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_MIC,
-						     GTK_ICON_SIZE_BUTTON);
+	fullname = gnome_pixmap_file ("gnome-media/gnome-sound-recorder/media-rec.png");
+	tmp_toolbar_icon = gtk_image_new_from_file (fullname);
+	g_free (fullname);
+	
 	Record_button = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar),
 						    GTK_TOOLBAR_CHILD_BUTTON,
 						    NULL,
@@ -578,7 +580,7 @@ sox_button_clicked (GtkButton *button,
 	}
 
 	gconf_client_set_string (client, "/apps/gnome-sound-recorder/sox-command",
-			       text, NULL);
+				 text, NULL);
 }
 
 /* I don't like the idea of changing the temp path halfway through... */

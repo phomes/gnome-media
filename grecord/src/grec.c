@@ -115,8 +115,22 @@ on_play_activate_cb (GtkWidget* widget, gpointer data)
 
 	PlayEng.pid = fork ();
 	if (PlayEng.pid == 0) {
+		int i, ntimes;
+		
 		/* Play file */
-		play_sound (active_file);
+		if (playrepeat == TRUE &&
+		    playrepeatforever == FALSE) {
+			for (i = 0; i < playxtimes; i++) {
+				play_sound (active_file);
+			}
+		} else if (playrepeat == TRUE &&
+			   playrepeatforever == TRUE) {
+			while (1) {
+				play_sound (active_file);
+			}
+		} else if (playrepeat == FALSE) {
+			play_sound (active_file);
+		}
 
 		_exit (0);
 	}

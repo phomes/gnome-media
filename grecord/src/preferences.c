@@ -43,9 +43,9 @@ record_timeout_changed (GConfClient *_client,
 			GConfEntry *entry,
 			gpointer data)
 {
-	GConfValue *value = gconf_entry_get_value (entry);
+  	GConfValue *value = gconf_entry_get_value (entry);
 
-	record_timeout = gconf_value_get_int (value);
+	record_timeout = gconf_client_get_int (client, "/apps/gnome-sound-recorder/record-timeout", NULL);
 }
 
 static void
@@ -92,7 +92,7 @@ popup_warn_mess_v_changed (GConfClient *_client,
 {
 	GConfValue *value = gconf_entry_get_value (entry);
 
-	popup_warn_mess_v = gconf_value_get_int (value);
+	popup_warn_mess_v = gconf_client_get_int (client, "/apps/gnome-sound-recorder/popup-warning-v", NULL);
 }
 
 static void
@@ -103,7 +103,7 @@ stop_recording_v_changed (GConfClient *_client,
 {
 	GConfValue *value = gconf_entry_get_value (entry);
 
-	stop_record_v = gconf_value_get_int (value);
+	stop_record_v = gconf_client_get_int (client, "/apps/gnome-sound-recorder/stop-recording-v", NULL);
 }
 
 static void
@@ -132,7 +132,7 @@ play_x_times_changed (GConfClient *_client,
 {
 	GConfValue *value = gconf_entry_get_value (entry);
 
-	playxtimes = gconf_value_get_int (value);
+	playxtimes = gconf_client_get_int (client, "/apps/gnome-sound-recorder/play-x-times", NULL);
 }
 
 static void
@@ -145,7 +145,7 @@ sox_command_changed (GConfClient *_client,
 	char *sox;
 	GConfValue *value = gconf_entry_get_value (entry);
 
-	s = gconf_value_get_string (value);
+	s = gconf_client_get_string (client, "/apps/gnome-sound-recorder/sox-command", NULL);
 	sox = g_find_program_in_path (s);
 	if (sox == NULL) {
 		g_free (sox_command);
@@ -162,10 +162,12 @@ temp_dir_changed (GConfClient *_client,
 		  GConfEntry *entry,
 		  gpointer data)
 {
+	const char *t;
 	GConfValue *value = gconf_entry_get_value (entry);
 
 	g_free (temp_dir);
-	temp_dir = g_strdup (gconf_value_get_string (value));
+	t = gconf_client_get_string (client, "/apps/gnome-sound-recorder/tempdir", NULL);
+	temp_dir = g_strdup (t);
 }
 
 static void
@@ -183,10 +185,12 @@ sample_rate_changed (GConfClient *_client,
 		     GConfEntry *entry,
 		     gpointer data)
 {
+	const char *sample;
 	GConfValue *value = gconf_entry_get_value (entry);
 	
 	g_free (samplerate);
-	samplerate = g_strdup (gconf_value_get_string (value));
+	sample = gconf_client_get_string (client, "/apps/gnome-sound-recorder/sample-rate", NULL);
+	samplerate = g_strdup (sample);
 }
 
 static void
