@@ -35,7 +35,7 @@
 #include "gnome-recorder.h"
 
 extern void gsr_window_close (GSRWindow *window);
-extern GtkWidget * gsr_window_new (const char *filename);
+extern GtkWidget * gsr_window_new (const char *filename,gboolean open);
 extern void gnome_media_profiles_init (GConfClient *conf);
  
 static GList *windows = NULL;
@@ -100,7 +100,7 @@ gsr_open_window (const char *filename)
 		name = g_strdup (filename);
 	}
 
-	window = GTK_WIDGET (gsr_window_new (name));
+	window = GTK_WIDGET (gsr_window_new (name,TRUE));
 	g_free (name);
 	g_signal_connect (G_OBJECT (window), "destroy",
 			  G_CALLBACK (window_destroyed), NULL);

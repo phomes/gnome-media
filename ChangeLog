@@ -2,6 +2,15 @@
 
 	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
+	* grecord/src/gnome-recorder.c: (gsr_open_window):
+	* grecord/src/gsr-window.c: (set_extension), (gsr_window_new):
+	  Do not append the extension in the new window if we are opening
+	  a file. Fixes #170658.
+
+2005-03-20  Nirmal kumar  <nirmal_cool@rediffmail.com>
+
+	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
 	* grecord/src/gsr-window.c: (do_save_file), (file_save_as):
 	  Replace extension in the save-dialog if we changed the type
 	  of the file that we are trying to save (#170785).

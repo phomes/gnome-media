@@ -1484,7 +1484,6 @@ set_extension (GSRWindow *window)
         window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
 	if (filename != NULL) {
 		char *title;
-
 		title = g_strdup_printf (_("%s.%s - Sound Recorder"), short_name, window->priv->extension);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
@@ -1715,7 +1714,7 @@ gsr_window_get_type (void)
 }
 
 GtkWidget *
-gsr_window_new (const char *filename)
+gsr_window_new (const char *filename, gboolean open)
 {
 	GSRWindow *window;
 	GtkWidget *hbox, *table, *label, *vbox;
@@ -1836,7 +1835,7 @@ gsr_window_new (const char *filename)
 			  1, 2, 1, 2,
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
-			       
+	if (!open)			       
         set_extension (window);
 
 	gtk_widget_show_all (window->priv->main_vbox);
