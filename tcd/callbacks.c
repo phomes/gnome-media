@@ -52,6 +52,12 @@ void eject_cb(GtkWidget *widget, gpointer data)
     return;
 }
 
+void mixer_cb(GtkWidget *widget, gpointer data)
+{
+    gnome_execute_shell(NULL, prefs.mixer_cmd);
+    return;
+}
+
 static GtkWidget *about;
 
 void destroy_about(GtkWidget *widget, gpointer data);

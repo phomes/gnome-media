@@ -21,6 +21,7 @@ typedef struct
     gchar *cddev;
     gint time_display;
     gboolean handle;
+    gchar *mixer_cmd;
     gboolean tooltip;
     gchar *trackfont;
 
@@ -31,7 +32,7 @@ typedef struct
 
     int x,y,h,w;
 
-    Shortcut quit, play, stop, tracked;
+    Shortcut quit, play, stop, tracked, mixer;
     Shortcut eject, back, forward;
 
     gchar *cddb_server;

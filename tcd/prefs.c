@@ -70,6 +70,7 @@ void load_prefs(tcd_prefs *prop)
 #endif
     prop->handle=gnome_config_get_bool     ("/gtcd/ui/handle=false");
     prop->tooltip=gnome_config_get_bool    ("/gtcd/ui/tooltip=true");
+    prop->mixer_cmd=gnome_config_get_string    ("/gtcd/ui/mixer=gmix");
     prop->time_display=gnome_config_get_int("/gtcd/ui/time_display=0");
     prop->trackfont=gnome_config_get_string("/gtcd/ui/trackfont=-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*" );
 
@@ -85,6 +86,7 @@ void load_prefs(tcd_prefs *prop)
     prop->play.key =    gnome_config_get_int("/gtcd/keybindings/play=80");
     prop->stop.key =    gnome_config_get_int("/gtcd/keybindings/stop=83");
     prop->tracked.key = gnome_config_get_int("/gtcd/keybindings/tracked=84");
+    prop->mixer.key =   gnome_config_get_int("/gtcd/keybindings/mixer=109");
     prop->eject.key =   gnome_config_get_int("/gtcd/keybindings/eject=69");
     prop->back.key =    gnome_config_get_int("/gtcd/keybindings/back=45");
     prop->forward.key = gnome_config_get_int("/gtcd/keybindings/forward=43");
@@ -98,6 +100,7 @@ void load_prefs(tcd_prefs *prop)
 void save_prefs(tcd_prefs *prop)
 {
     gnome_config_set_string("/gtcd/cdrom/device", prop->cddev);
+    gnome_config_set_string("/gtcd/ui/mixer", prop->mixer_cmd);
     gnome_config_set_bool  ("/gtcd/ui/handle", prop->handle);
     gnome_config_set_bool  ("/gtcd/ui/tooltip", prop->tooltip);
     gnome_config_set_int   ("/gtcd/ui/time_display", prop->time_display);
@@ -115,6 +118,7 @@ void save_prefs(tcd_prefs *prop)
     gnome_config_set_int("/gtcd/keybindings/play", prop->play.key);
     gnome_config_set_int("/gtcd/keybindings/stop", prop->stop.key);
     gnome_config_set_int("/gtcd/keybindings/tracked", prop->tracked.key);
+    gnome_config_set_int("/gtcd/keybindings/mixer", prop->mixer.key);
     gnome_config_set_int("/gtcd/keybindings/eject", prop->eject.key);
     gnome_config_set_int("/gtcd/keybindings/back", prop->back.key);
     gnome_config_set_int("/gtcd/keybindings/forward", prop->forward.key);
