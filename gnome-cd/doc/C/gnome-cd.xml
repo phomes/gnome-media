@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.0.2.5">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "April 2003">
+  <!ENTITY appversion "2.3.5">
+  <!ENTITY manrevision "2.5">
+  <!ENTITY date "August 2003">
   <!ENTITY app "CD Player">
 ]>
 
@@ -24,7 +24,7 @@
     <title>&app; Manual V&manrevision;</title>       
 
     <copyright> 
-      <year>2002-2003</year> 
+      <year>2002</year>       <year>2003</year>
       <holder>Sun Microsystems</holder> 
     </copyright> 
 
@@ -69,44 +69,52 @@
  
     <revhistory>
       <revision> 
-	<revnumber>&app; Manual V&manrevision;</revnumber> 
-	<date>&date;</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team</para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>&app; Manual V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision>
       <revision> 
-	<revnumber>CD Player Manual V2.3</revnumber> 
-	<date>January 2003</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team</para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>CD Player Manual V2.4</revnumber> 
+			<date>April 2003</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision>
       <revision> 
-	<revnumber>CD Player Manual V2.2</revnumber> 
-	<date>August 2002</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team</para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>CD Player Manual V2.3</revnumber> 
+			<date>January 2003</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision>
       <revision> 
-	<revnumber>CD Player Manual V2.1</revnumber> 
-	<date>July 2002</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team</para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>CD Player Manual V2.2</revnumber> 
+			<date>August 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision>
+      <revision> 
+			<revnumber>CD Player Manual V2.1</revnumber> 
+			<date>July 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision> 
       <revision> 
-	<revnumber>CD Player Manual V2.0</revnumber> 
-	<date>May 2002</date> 
-	<revdescription> 
-	  <para role="author">Sun GNOME Documentation Team</para>
-	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+			<revnumber>CD Player Manual V2.0</revnumber> 
+			<date>May 2002</date> 
+			<revdescription> 
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
       </revision> 
     </revhistory> 
 
@@ -187,6 +195,9 @@ is displayed.</para>
 <!-- ==== End of Figure ==== -->
 <para>The <application>&app;</application> window contains the following elements:</para>
 <itemizedlist>
+<listitem><para>A display area that displays details about the CD that you are playing. </para></listitem>
+<listitem><para>A <guilabel>Volume control</guilabel> slider that enables you to control the output volume. </para></listitem>
+<listitem><para>A <guilabel>Position</guilabel> slider that displays the progress of the current track. You can move the slider forwards or backwards to move the play to a different position on the track. </para></listitem>
 <listitem><para>A 
 <inlinemediaobject>
 <imageobject>
@@ -200,8 +211,6 @@ is displayed.</para>
 </imageobject>
 <textobject><phrase>Shows Preferences button.</phrase></textobject>
 </inlinemediaobject> button that enables you to open the <guilabel>Preferences</guilabel> dialog. </para></listitem>
-<listitem><para>A display area that displays details about the CD that you are playing. </para></listitem>
-<listitem><para>A slider control that enables you to control the output volume. </para></listitem>
 <listitem><para>A drop-down list that enables you to view the names of the tracks on the CD and move to a track. </para></listitem>
 <listitem><para>A button area that enables you to play the tracks on the CD. </para></listitem>
 </itemizedlist>
@@ -379,61 +388,28 @@ then click on the arrow next to <guilabel>Show advanced track options</guilabel>
 <variablelist>
 
 <varlistentry>
-<term><guilabel>CD player device</guilabel> </term>
+<term><guilabel>CD Player Device</guilabel> </term>
 <listitem>
 <para>Use this text box to specify the name of the CDROM device. Click <guibutton>Apply change</guibutton> to save a change to this setting.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>When GNOME CD Player starts</guilabel> </term>
+<term><guilabel>Start playing CD when CD Player starts</guilabel> </term>
 <listitem>
-<para>Select one of the following radio buttons to determine the action that <application>CD Player</application> takes when you start the application:</para>
-<itemizedlist>
-<listitem>
-<para><guilabel>Do nothing</guilabel> </para>
-</listitem>
-<listitem>
-<para><guilabel>Start playing CD</guilabel> </para>
-</listitem>
-<listitem>
-<para><guilabel>Stop playing CD</guilabel> </para>
-</listitem>
-</itemizedlist>
+<para>Select this option to start playing the CD in the CD drive when you start the <application>&app;</application> application.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Attempt to close CD tray</guilabel> </term>
+<term><guilabel>Attempt to eject CD when CD Player exits</guilabel> </term>
 <listitem>
-<para>Select this option to close the CD tray when the <application>CD Player</application> application 
-starts.</para>
+<para>Select this option to automatically eject the CD in the CD drive when the <application>&app;</application> application exits.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>When GNOME CD Player quits</guilabel> </term>
-<listitem>
-<para>Select one of the following radio buttons to determine the action that <application>CD Player</application> takes when you quit the application:</para>
-<itemizedlist>
-<listitem>
-<para><guilabel>Do nothing</guilabel> </para>
-</listitem>
-<listitem>
-<para><guilabel>Stop playing CD</guilabel> </para>
-</listitem>
-<listitem>
-<para><guilabel>Attempt to open CD tray</guilabel> </para>
-</listitem>
-<listitem>
-<para><guilabel>Attempt to close CD tray</guilabel> </para>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Theme name</guilabel> </term>
+<term><guilabel>Available Themes</guilabel> </term>
 <listitem>
 <para>Use this list box to select a display theme for the <application>&app;</application>. The themes available are as follows:</para>
 <itemizedlist>
@@ -442,12 +418,12 @@ starts.</para>
 <para>Provides standard buttons and a gray background in the display area.</para>
 </listitem>
 <listitem>
-<para><guilabel>media</guilabel> </para>
-<para>Provides modified buttons and a red background in the display area.</para>
-</listitem>
-<listitem>
 <para><guilabel>red-lcd</guilabel> </para>
 <para>Provides standard buttons and a red background in the display area.</para>
+</listitem>
+<listitem>
+<para><guilabel>media</guilabel> </para>
+<para>Provides modified buttons and a red background in the display area.</para>
 </listitem>
 </itemizedlist>
 </listitem>
