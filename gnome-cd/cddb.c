@@ -130,6 +130,10 @@ cddb_listener_event_cb (BonoboListener *listener,
 void
 cddb_free_disc_info (GnomeCDDiscInfo *info)
 {
+	/* don't leave corrupted entry in hash */
+	if (cddb_cache)
+		g_hash_table_remove (cddb_cache, info->discid);
+
 	g_free (info->discid);
 	g_free (info->title);
 	g_free (info->artist);
@@ -213,18 +217,18 @@ cddb_get_query (GnomeCD *gcd)
 
 	info = g_hash_table_lookup (cddb_cache, discid);
 
-	/*if (info != NULL) {
+	if (info != NULL) {
 		gcd->disc_info = info;
 
 		gnome_cd_build_track_list_menu (gcd);
 		return;
-	} else {*/
+	} else {
 		info = cddb_make_disc_info (data);
 		// g_strdup is added so that the key will persist
 		g_hash_table_insert (cddb_cache, g_strdup(info->discid), info);
 		gcd->disc_info = info;
 		gnome_cd_build_track_list_menu (gcd);
-	/*}*/
+	}
 
 	/* Remove the last space */
 	offsets[strlen (offsets) - 1] = 0;
