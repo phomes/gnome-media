@@ -1,7 +1,10 @@
 #ifndef CDDB_SLAVE_CDDB_H
 #define CDDB_SLAVE_CDDB_H
 
-void set_status(int status);
+#include <config.h>
+#include <gnome.h>
+
+void set_status(int status, gchar *info);
 
 #define HOSTNAME_MAX    256
 #define VERSION_MAX     10

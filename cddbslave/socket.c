@@ -46,7 +46,7 @@ extern char *g_req;
 
 void die(int signal)
 {
-    set_status(STATUS_NONE);
+    set_status(STATUS_NONE, "");
     remove_cache(g_req);
     exit(signal);
 }
@@ -117,5 +117,3 @@ int fgetsock(char* s, int size, int socket)
     
     return r;
 }
-
-
