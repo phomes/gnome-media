@@ -66,6 +66,27 @@ void debug( const char *fmt, ...)
     return;
 }
 
+static void decrement_msf_end_by_one (struct cdrom_msf *msf)
+{
+    if (msf->cdmsf_frame1)
+	msf->cdmsf_frame1--;
+    else {
+	if (msf->cdmsf_sec1) {
+		msf->cdmsf_sec1--;
+		msf->cdmsf_frame1 = 74;
+	} else {
+		if (!msf->cdmsf_min1) {
+			/* This shouldn't happen. Log error and leave msf unchanged because I
+			   don't know how to handle this error. */
+			g_error ("linux-cdrom.c: Cannot decrement msf_end by one. cdmsf_min1:%d, cdmsf_sec1:%d, cdmsf_frame1:%d\n", msf->cdmsf_min1, msf->cdmsf_sec1, msf->cdmsf_frame1);
+		}
+		msf->cdmsf_min1--;
+		msf->cdmsf_sec1 = 59;
+		msf->cdmsf_frame1 = 0;
+	}
+    }
+}
+
 int tcd_init_disc( cd_struct *cd, WarnFunc msg_cb )
 {
     debug("cdrom.c: tcd_init_disc(%p) top\n", cd );
@@ -375,6 +396,8 @@ int tcd_playtracks(cd_struct *cd, int start_t, int end_t, int only_use_trkind)
 	msf.cdmsf_min1 = cd->trk[end_t+1].toc.cdte_addr.msf.minute;
 	msf.cdmsf_sec1 = cd->trk[end_t+1].toc.cdte_addr.msf.second;
 	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame - 1;
+	msf.cdmsf_frame1 = cd->trk[end_t+1].toc.cdte_addr.msf.frame;
+	decrement_msf_end_by_one (&msf);
 
 #ifdef UNSIGNED_NUMBERS_CAN_BE_NEGATIVE
 	if(msf.cdmsf_frame1 < 0)
@@ -464,7 +487,8 @@ int tcd_play_seconds( cd_struct *cd, long int offset )
     msf.cdmsf_frame0 = msf0.frame;
     msf.cdmsf_min1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.minute;
     msf.cdmsf_sec1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.second;
-    msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame - 1;
+    msf.cdmsf_frame1 = cd->trk[C(cd->last_t+1)].toc.cdte_addr.msf.frame;
+    decrement_msf_end_by_one (&msf);
  
 #ifdef UNSIGNED_NUMBERS_CAN_BE_NEGATIVE
     if(msf.cdmsf_frame1 < 0)
