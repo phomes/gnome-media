@@ -56,7 +56,8 @@ unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 # This is the recommended way of dealing with it for RH8
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
-rm -rf $RPM_BUILD_ROOT/var/scrollkeeper/*
+rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -81,48 +82,48 @@ scrollkeeper-update
 %{_prefix}/libexec/*
 %{_datadir}/idl/GNOME_Media_CDDBSlave2.idl
 %{_datadir}/applications/gnome-cd.desktop
-%{_datadir}/applications/gnome-sound-recorder.desktop
 %{_datadir}/applications/reclevel.desktop
 %{_datadir}/applications/vumeter.desktop
 %{_datadir}/applications/gnome-volume-control.desktop
 %{_datadir}/applications/gstreamer-properties.desktop
+%{_datadir}/gnome/help/gstreamer-properties
 %{_datadir}/pixmaps/gnome-cd.png
 %{_datadir}/pixmaps/gnome-cd
-%{_datadir}/pixmaps/gnome-grecord.png
-%{_datadir}/pixmaps/mixer.png
-%{_datadir}/pixmaps/gnome-mixer.png
-%{_datadir}/pixmaps/phone.png
-%{_datadir}/pixmaps/tone.png
-%{_datadir}/pixmaps/video.png
 %{_datadir}/pixmaps/gnome-reclevel.png
 %{_datadir}/pixmaps/gnome-vumeter.png
-%{_datadir}/pixmaps/gnome-media
 %{_datadir}/pixmaps/gstreamer-properties.png
 %{_datadir}/gstreamer-properties/icons/gstreamer-properties.png
 %{_datadir}/gstreamer-properties/glade/gstreamer-properties.glade
+%{_datadir}/gnome-media/glade/gnome-audio-profiles.glade2
 %{_datadir}/omf/gnome-media
 %{_datadir}/gnome/help/gnome-cd
-%{_datadir}/gnome/help/gnome-sound-recorder
-%{_datadir}/gnome/help/grecord
 %{_datadir}/gnome/help/gnome-volume-control
-%{_datadir}/gnome-sound-recorder/ui/gsr.xml
 %{_datadir}/control-center-2.0/capplets/cddb-slave.desktop
 %{_datadir}/locale/*
+%{_datadir}/gnome-media/pixmaps/*
 %{_libdir}/*.so.*
 %{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
+%{_libdir}libglade/2.0/*.so
 %{_bindir}/cddb-slave2-properties
 %{_bindir}/gnome-cd
 %{_bindir}/gst-mixer
-%{_bindir}/gnome-sound-recorder
 %{_bindir}/vumeter
 %{_bindir}/gstreamer-properties
+%{_bindir}/gnome-audio-profiles-properties
 %{_sysconfdir}/gconf/schemas/*.schemas
 
 # devel, if we had a devel
 %{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/gnome-media-profiles.pc
+
 
 %changelog
+* Sun Dec 21 2003 Christian Schaller <Uraeus@gnome.org>
+* Sun Dec 14 2003 Christian Schaller <Uraeus@gnome.org>
+- Add thomas new media properties
+- Add docs to gstreamer-properties
+
 * Sat Oct 25 2003 Christian Schaller <Uraeus@gnome.org>
 - Update for new gst-mixer package
 - Add gstreamer-properties capplet
