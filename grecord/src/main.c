@@ -183,6 +183,10 @@ main (int argc, char *argv[])
 
 	/* Check if the sox command is a path */
 	temp_count = 0;
+	if (sox_command == NULL) {
+		g_error (_("GConf file is incorrectly installed."));
+	}
+	
 	while (sox_command[temp_count] != '\0') {
 		if (sox_command[temp_count] == '/')
 			fullpath = TRUE;
