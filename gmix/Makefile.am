@@ -1,4 +1,4 @@
-Audiodir = $(datadir)/gnome/apps/Multimedia
+Audiodir = $(datadir)/applications
 pixmapdir = $(datadir)/pixmaps
 
 EXTRA_DIST = README TODO NEWS gmix.desktop.in gnome-mixer.png \
@@ -20,8 +20,10 @@ gmix_SOURCES =	\
 gmix_LDADD = \
 	$(MEDIA_LIBS) $(INTLLIBS) $(GMIX_LIBS)
 
-#Audio_in_files = gmix.desktop.in
-#Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
-@INTLTOOL_SERVER_RULE@
+@INTLTOOL_DESKTOP_RULE@
+
+Audio_in_files = gmix.desktop.in
+Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+
 
 pixmap_DATA = gnome-mixer.png
