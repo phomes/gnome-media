@@ -224,10 +224,16 @@ pango_accessible_get_text (AtkText *text,
 			   gint    start_pos,
 			   gint    end_pos)
 {
+	PangoAccessible *pango_accessible;
 	PangoLayout *playout;
 
-	playout = PANGO_ACCESSIBLE(text)->playout;
+	pango_accessible = PANGO_ACCESSIBLE(text);
+	playout = pango_accessible->playout;
 	g_return_val_if_fail(playout != NULL, NULL);
+
+	gail_text_util_text_setup(pango_accessible->textutil,
+				  pango_layout_get_text(playout));
+
 	return gail_text_util_get_substring (PANGO_ACCESSIBLE(text)->textutil,
 					     &start_pos, &end_pos);
 }
