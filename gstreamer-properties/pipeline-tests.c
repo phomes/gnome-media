@@ -66,6 +66,7 @@ build_test_pipeline(GSTPPipelineDescription * pipeline_desc)
   GError *error = NULL;
   gchar* test_pipeline_str = NULL;
   gchar* full_pipeline_str = NULL;
+  gchar *in_between = NULL;
 
   switch (pipeline_desc->test_type) {
     case TEST_PIPE_AUDIOSINK:
@@ -78,14 +79,22 @@ build_test_pipeline(GSTPPipelineDescription * pipeline_desc)
       test_pipeline_str = pipeline_desc->test_pipe;
       break;
   }
+  if (pipeline_desc->type == PIPE_TYPE_AUDIOSINK ||
+      pipeline_desc->type == PIPE_TYPE_AUDIOSRC) {
+    in_between = "audioconvert ! audioscale";
+  } else {
+    in_between = "ffmpegcolorspace";
+  }
   switch (pipeline_desc->type) {
     case PIPE_TYPE_AUDIOSINK:
     case PIPE_TYPE_VIDEOSINK:
-      full_pipeline_str = g_strdup_printf("{ %s ! %s }", test_pipeline_str, pipeline_desc->pipeline);
+      full_pipeline_str = g_strdup_printf("{ %s ! %s ! %s }",
+          test_pipeline_str, in_between, pipeline_desc->pipeline);
       break;
     case PIPE_TYPE_AUDIOSRC:
     case PIPE_TYPE_VIDEOSRC:
-      full_pipeline_str = g_strdup_printf("{ %s ! %s }", pipeline_desc->pipeline, test_pipeline_str);
+      full_pipeline_str = g_strdup_printf("{ %s ! %s ! %s }",
+          pipeline_desc->pipeline, in_between, test_pipeline_str);
       break;
   }
   if (full_pipeline_str) {

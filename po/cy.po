@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-11 23:08+0100\n"
+"POT-Creation-Date: 2004-11-01 08:34+0100\n"
 "PO-Revision-Date: 2004-03-17 10:24+0100\n"
 "Last-Translator: Dafydd Tomos <i10n@da.fydd.org>\n"
 "Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -162,9 +162,9 @@ msgid "Unknown / Unknown"
 msgstr "Anhysbys / Anhysbys"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:697
-#: grecord/src/gsr-window.c:706 grecord/src/gsr-window.c:715
-#: grecord/src/gsr-window.c:725 grecord/src/gsr-window.c:1032
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:698
+#: grecord/src/gsr-window.c:707 grecord/src/gsr-window.c:716
+#: grecord/src/gsr-window.c:726 grecord/src/gsr-window.c:1042
 msgid "Unknown"
 msgstr "Anhysbys"
 
@@ -194,7 +194,7 @@ msgid "Artist and Title"
 msgstr "Artist a Theitl"
 
 #: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
-#: gnome-cd/gnome-cd.c:178
+#: gnome-cd/gnome-cd.c:176
 msgid "Unknown track"
 msgstr "Trac anhysbys"
 
@@ -936,7 +936,7 @@ msgid "Line for displaying the name of the album"
 msgstr "Llinell i ddangos enw'r albwm"
 
 #: gnome-cd/callbacks.c:83 gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:270
-#: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:673 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:671 grecord/gsr.xml.h:13
 msgid "Play"
 msgstr "Chwarae"
 
@@ -959,8 +959,8 @@ msgstr "Yn chwarae"
 msgid "Paused"
 msgstr "Seibio"
 
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:873 gnome-cd/gnome-cd.c:90
-#: gnome-cd/gnome-cd.c:536 gnome-cd/gnome-cd.c:723 gnome-cd/gnome-cd.c:726
+#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:873 gnome-cd/gnome-cd.c:88
+#: gnome-cd/gnome-cd.c:534 gnome-cd/gnome-cd.c:721 gnome-cd/gnome-cd.c:724
 #: gnome-cd/gnome-cd.desktop.in.h:1
 msgid "CD Player"
 msgstr "Chwaraewr CD"
@@ -1015,40 +1015,49 @@ msgstr ""
 " b) Nid oes gennych y caniatadau cywir i gyrchu'r gyrrwr CD\n"
 " c) Nid %s mo'r gyrrwr CD.\n"
 
-#: gnome-cd/gnome-cd.c:217
+#: gnome-cd/eggtrayicon.c:118
+msgid "Orientation"
+msgstr ""
+
+#: gnome-cd/eggtrayicon.c:119
+#, fuzzy
+msgid "The orientation of the tray."
+msgstr "Penodwch safle X y mesurydd."
+
+#: gnome-cd/gnome-cd.c:215
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Anhysbys"
 
-#: gnome-cd/gnome-cd.c:331
+#: gnome-cd/gnome-cd.c:329
 msgid "P_revious track"
 msgstr "Trac _cynt"
 
-#: gnome-cd/gnome-cd.c:332 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:330 grecord/gsr.xml.h:44
 msgid "_Stop"
 msgstr "_Atal"
 
-#: gnome-cd/gnome-cd.c:333
+#: gnome-cd/gnome-cd.c:331
 msgid "_Play / Pause"
 msgstr "_Chwarae / Seibio"
 
-#: gnome-cd/gnome-cd.c:334
+#: gnome-cd/gnome-cd.c:332
 msgid "_Next track"
 msgstr "Trac _nesaf"
 
-#: gnome-cd/gnome-cd.c:335
+#: gnome-cd/gnome-cd.c:333
 msgid "_Eject disc"
 msgstr "_Allfwrw'r ddisg"
 
-#: gnome-cd/gnome-cd.c:336 grecord/gsr.xml.h:37
+#: gnome-cd/gnome-cd.c:334 grecord/gsr.xml.h:37
 msgid "_Help"
 msgstr "_Cymorth"
 
-#: gnome-cd/gnome-cd.c:337
+#: gnome-cd/gnome-cd.c:335
 msgid "_About CD player"
 msgstr "_Ynghylch Chwaraewr CD"
 
-#: gnome-cd/gnome-cd.c:456
+#: gnome-cd/gnome-cd.c:454
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1058,15 +1067,15 @@ msgstr ""
 "Cliciwch 'Gosod dyfais' i fynd i ymgom\n"
 "lle gallwch osod y ddyfais, neu cliciwch 'Gadael' i adael y chwaraewr CD."
 
-#: gnome-cd/gnome-cd.c:460
+#: gnome-cd/gnome-cd.c:458
 msgid "Set device"
 msgstr "Gosod dyfais"
 
-#: gnome-cd/gnome-cd.c:462
+#: gnome-cd/gnome-cd.c:460
 msgid "No CD device"
 msgstr "Dim dyfais CD"
 
-#: gnome-cd/gnome-cd.c:515
+#: gnome-cd/gnome-cd.c:513
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1082,96 +1091,96 @@ msgstr ""
 "Cliciwch 'Gosod dyfais' i fynd i ymgom\n"
 "lle gallwch osod y ddyfais, neu cliciwch 'Gadael' i adael y chwaraewr CD"
 
-#: gnome-cd/gnome-cd.c:519
+#: gnome-cd/gnome-cd.c:517
 msgid "_Details"
 msgstr "_Manylion"
 
-#: gnome-cd/gnome-cd.c:520
+#: gnome-cd/gnome-cd.c:518
 msgid "_Set device"
 msgstr "_Gosod dyfais"
 
-#: gnome-cd/gnome-cd.c:522
+#: gnome-cd/gnome-cd.c:520
 msgid "Invalid CD device"
 msgstr "Dyfais CD annilys"
 
-#: gnome-cd/gnome-cd.c:586
+#: gnome-cd/gnome-cd.c:584
 msgid "Volume control"
 msgstr "Rheolydd Lefel Sain"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:595
 msgid "Position"
 msgstr "Safle"
 
-#: gnome-cd/gnome-cd.c:614
+#: gnome-cd/gnome-cd.c:612
 msgid "Open track editor"
 msgstr "Agor golygydd traciau"
 
-#: gnome-cd/gnome-cd.c:615
+#: gnome-cd/gnome-cd.c:613
 msgid "Track editor"
 msgstr "Golygydd traciau"
 
-#: gnome-cd/gnome-cd.c:622
+#: gnome-cd/gnome-cd.c:620
 msgid "Open preferences"
 msgstr "Agor hoffterau"
 
-#: gnome-cd/gnome-cd.c:623
+#: gnome-cd/gnome-cd.c:621
 msgid "Preferences"
 msgstr "Hoffterau"
 
-#: gnome-cd/gnome-cd.c:631
+#: gnome-cd/gnome-cd.c:629
 msgid "Track List"
 msgstr "Rhestr draciau"
 
-#: gnome-cd/gnome-cd.c:652
+#: gnome-cd/gnome-cd.c:650
 msgid "Previous track"
 msgstr "Trac blaenorol"
 
-#: gnome-cd/gnome-cd.c:652
+#: gnome-cd/gnome-cd.c:650
 msgid "Previous"
 msgstr "Cynt"
 
-#: gnome-cd/gnome-cd.c:656
+#: gnome-cd/gnome-cd.c:654
 msgid "Rewind"
 msgstr "Ail-ddirwyn"
 
-#: gnome-cd/gnome-cd.c:673
+#: gnome-cd/gnome-cd.c:671
 msgid "Play / Pause"
 msgstr "Chwarae / Seibio"
 
-#: gnome-cd/gnome-cd.c:678 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:676 grecord/gsr.xml.h:30
 msgid "Stop"
 msgstr "Atal"
 
-#: gnome-cd/gnome-cd.c:682
+#: gnome-cd/gnome-cd.c:680
 msgid "Fast forward"
 msgstr "Ymlaen yn gyflym"
 
-#: gnome-cd/gnome-cd.c:690
+#: gnome-cd/gnome-cd.c:688
 msgid "Next track"
 msgstr "Trac nesaf"
 
-#: gnome-cd/gnome-cd.c:694
+#: gnome-cd/gnome-cd.c:692
 msgid "Eject CD"
 msgstr "Allfwrw'r CD"
 
-#: gnome-cd/gnome-cd.c:694
+#: gnome-cd/gnome-cd.c:692
 msgid "Eject"
 msgstr "Allfwrw"
 
-#: gnome-cd/gnome-cd.c:811
+#: gnome-cd/gnome-cd.c:808
 msgid "CD device to use"
 msgstr "Dyfais CD i'w defnyddio"
 
-#: gnome-cd/gnome-cd.c:813
+#: gnome-cd/gnome-cd.c:810
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Dechrau os nad oes cymhwysiad chwarae CDau yn rhedeg eisioes, yn unig."
 
-#: gnome-cd/gnome-cd.c:815
+#: gnome-cd/gnome-cd.c:812
 msgid "Play the CD on startup"
 msgstr "Chwarae'r CD ar ymgychwyn"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:846
+#: gnome-cd/gnome-cd.c:842
 msgid "Cannot create player"
 msgstr "Methu creu chwaraewr"
 
@@ -1225,39 +1234,35 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Gwall tra'n gosod dyfais"
 
-#: gnome-cd/preferences.c:638
+#: gnome-cd/preferences.c:586
 msgid "CD Player Preferences"
 msgstr "Hoffterau'r Chwaraewr CD"
 
-#: gnome-cd/preferences.c:672
+#: gnome-cd/preferences.c:611
 msgid "CD Player De_vice:"
 msgstr "_Dyfais Chwaraewr CD"
 
-#: gnome-cd/preferences.c:696
-msgid "_Apply change"
-msgstr "_Gweithredu newid"
-
-#: gnome-cd/preferences.c:708
+#: gnome-cd/preferences.c:633
 msgid "CD Player Behaviour:"
 msgstr "Ymddygiad y Chwaraewr CD:"
 
-#: gnome-cd/preferences.c:721
+#: gnome-cd/preferences.c:646
 msgid "Start _playing CD when CD Player starts"
 msgstr "Dechrau _chwarae CD pan ddechreua Chwaraewr CD"
 
-#: gnome-cd/preferences.c:722
+#: gnome-cd/preferences.c:647
 msgid "Start playing CD when CD Player starts"
 msgstr "Dechrau chwarae CD pan ddechreua Chwaraewr CD"
 
-#: gnome-cd/preferences.c:734
+#: gnome-cd/preferences.c:659
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Ceisio _allfwrw'r CD pan orffenna Chwaraewr CD"
 
-#: gnome-cd/preferences.c:735
+#: gnome-cd/preferences.c:660
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Ceisio allfwrw'r CD pan orffenna Chwaraewr CD"
 
-#: gnome-cd/preferences.c:755
+#: gnome-cd/preferences.c:676
 msgid "_Available Themes:"
 msgstr "Themâu ar _Gael:"
 
@@ -1265,8 +1270,8 @@ msgstr "Themâu ar _Gael:"
 msgid "Record sound clips"
 msgstr "Recordio darnau sain"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:914
-#: grecord/src/gsr-window.c:1241
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:915
+#: grecord/src/gsr-window.c:1251
 msgid "Sound Recorder"
 msgstr "Recordydd sain"
 
@@ -1294,7 +1299,7 @@ msgstr "Creu sampl newydd"
 msgid "Display help for Sound Recorder"
 msgstr "Dangos cymorth i'r Recordydd Sain"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:783
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:784
 msgid "File Information"
 msgstr "Gwybodaeth Ffeil"
 
@@ -1314,7 +1319,7 @@ msgstr "Newydd"
 msgid "Open"
 msgstr "Agor"
 
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:346
+#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:347
 msgid "Open a file"
 msgstr "Agor ffeil"
 
@@ -1434,138 +1439,138 @@ msgstr "_Cadw"
 msgid "Dummy option"
 msgstr "Dewis dymi"
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
+#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
 msgid "hours"
 msgstr "awr"
 
-#: grecord/src/gsr-window.c:250 grecord/src/gsr-window.c:255
-#: grecord/src/gsr-window.c:261 grecord/src/gsr-window.c:265
+#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
+#: grecord/src/gsr-window.c:262 grecord/src/gsr-window.c:266
 msgid "hour"
 msgstr "awr"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
+#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
 msgid "minutes"
 msgstr "munud"
 
-#: grecord/src/gsr-window.c:251 grecord/src/gsr-window.c:256
-#: grecord/src/gsr-window.c:272 grecord/src/gsr-window.c:276
+#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:257
+#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:277
 msgid "minute"
 msgstr "munud"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:281
-#: grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:282
+#: grecord/src/gsr-window.c:285
 msgid "seconds"
 msgstr "eiliad"
 
-#: grecord/src/gsr-window.c:252 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:273 grecord/src/gsr-window.c:284
+#: grecord/src/gsr-window.c:253 grecord/src/gsr-window.c:263
+#: grecord/src/gsr-window.c:274 grecord/src/gsr-window.c:285
 msgid "second"
 msgstr "eiliad"
 
-#: grecord/src/gsr-window.c:398 grecord/src/gsr-window.c:1193
-#: grecord/src/gsr-window.c:1357 grecord/src/gsr-window.c:1627
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1203
+#: grecord/src/gsr-window.c:1367 grecord/src/gsr-window.c:1637
 msgid "Ready"
 msgstr "Yn barod"
 
-#: grecord/src/gsr-window.c:529
+#: grecord/src/gsr-window.c:530
 msgid "Save file as"
 msgstr "Cadw'r ffeil fel"
 
-#: grecord/src/gsr-window.c:585
+#: grecord/src/gsr-window.c:586
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "Nid yw %s wedi'i osod ar y llwybr"
 
-#: grecord/src/gsr-window.c:595
+#: grecord/src/gsr-window.c:596
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Bu gwall yn dechrau %s: %s"
 
-#: grecord/src/gsr-window.c:672
+#: grecord/src/gsr-window.c:673
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (heb ei gadw)"
 
-#: grecord/src/gsr-window.c:688
+#: grecord/src/gsr-window.c:689
 msgid "Unknown size"
 msgstr "Maint anhysbys"
 
-#: grecord/src/gsr-window.c:708
+#: grecord/src/gsr-window.c:709
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:717
+#: grecord/src/gsr-window.c:718
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:729
+#: grecord/src/gsr-window.c:730
 msgid "1 (mono)"
 msgstr "1 (unsain)"
 
-#: grecord/src/gsr-window.c:733
+#: grecord/src/gsr-window.c:734
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:762
+#: grecord/src/gsr-window.c:763
 #, c-format
 msgid "%s Information"
 msgstr "Gwybodaeth %s"
 
-#: grecord/src/gsr-window.c:797
+#: grecord/src/gsr-window.c:798
 msgid "Folder:"
 msgstr "Plygell:"
 
-#: grecord/src/gsr-window.c:803 grecord/src/gsr-window.c:1559
+#: grecord/src/gsr-window.c:804 grecord/src/gsr-window.c:1569
 msgid "Filename:"
 msgstr "Enw Ffeil:"
 
-#: grecord/src/gsr-window.c:809
+#: grecord/src/gsr-window.c:810
 msgid "File size:"
 msgstr "Maint Ffeil:"
 
-#: grecord/src/gsr-window.c:818
+#: grecord/src/gsr-window.c:819
 msgid "Audio Information"
 msgstr "Gwybodaeth Sain"
 
-#: grecord/src/gsr-window.c:832
+#: grecord/src/gsr-window.c:833
 msgid "Song length:"
 msgstr "Hyd y gân:"
 
-#: grecord/src/gsr-window.c:838
+#: grecord/src/gsr-window.c:839
 msgid "Number of channels:"
 msgstr "Nifer sianeli:"
 
-#: grecord/src/gsr-window.c:844
+#: grecord/src/gsr-window.c:845
 msgid "Sample rate:"
 msgstr "Gradd samplo:"
 
-#: grecord/src/gsr-window.c:850
+#: grecord/src/gsr-window.c:851
 msgid "Bit rate:"
 msgstr "Gradd didau:"
 
-#: grecord/src/gsr-window.c:916
+#: grecord/src/gsr-window.c:917
 msgid "A sound recorder for GNOME"
 msgstr "Recordydd sain i GNOME"
 
-#: grecord/src/gsr-window.c:1178
+#: grecord/src/gsr-window.c:1188
 msgid "Playing..."
 msgstr "Yn chwarae..."
 
-#: grecord/src/gsr-window.c:1237
+#: grecord/src/gsr-window.c:1247
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - Recordydd Sain"
 
-#: grecord/src/gsr-window.c:1328
+#: grecord/src/gsr-window.c:1338
 msgid "Recording..."
 msgstr "Yn recordio..."
 
-#: grecord/src/gsr-window.c:1388
+#: grecord/src/gsr-window.c:1398
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1573,17 +1578,17 @@ msgstr ""
 "Does dim elfen mewnbwn sain GStreamer rhagosod wedi ei ddewid - sefydlwch y "
 "sgemàu GStreamer-GConf neu gosodwch un â llaw"
 
-#: grecord/src/gsr-window.c:1403
-msgid "Failed to create GStreamer encoder elements - check your encoding setup"
-msgstr "Methwyd creu elfennau amgodio GStreamer - gwiriwch eich cyfluniad "
-"amgodio"
-
 #: grecord/src/gsr-window.c:1413
-msgid "Could not find GStreamer filesink plugin - please install it"
-msgstr "Methwyd canfod ategyn \"filesink\" GStreamer - sefydlwch ef os "
-"gwelwch yn dda"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
+msgstr ""
+"Methwyd creu elfennau amgodio GStreamer - gwiriwch eich cyfluniad amgodio"
 
-#: grecord/src/gsr-window.c:1421
+#: grecord/src/gsr-window.c:1423
+msgid "Could not find GStreamer filesink plugin - please install it"
+msgstr ""
+"Methwyd canfod ategyn \"filesink\" GStreamer - sefydlwch ef os gwelwch yn dda"
+
+#: grecord/src/gsr-window.c:1431
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1591,19 +1596,19 @@ msgstr ""
 "Methwyd cysylltu elfennau amgodio gyda elfen algwn ffeil - mae'n debygol "
 "dewisoch amgodiwr annilys"
 
-#: grecord/src/gsr-window.c:1527
+#: grecord/src/gsr-window.c:1537
 msgid "Record as"
 msgstr "Recordio fel"
 
-#: grecord/src/gsr-window.c:1544
+#: grecord/src/gsr-window.c:1554
 msgid "File information"
 msgstr "Gwybodaeth ffeil"
 
-#: grecord/src/gsr-window.c:1566
+#: grecord/src/gsr-window.c:1576
 msgid "<none>"
 msgstr "<dim>"
 
-#: grecord/src/gsr-window.c:1575
+#: grecord/src/gsr-window.c:1585
 msgid "Length:"
 msgstr "Hyd:"
 
@@ -1611,62 +1616,191 @@ msgstr "Hyd:"
 msgid "Adjust the volume level"
 msgstr "Addasu'r lefel sain"
 
-#. create main window + menus
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/mixer.c:588
-#: gst-mixer/src/mixer.c:681
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
+#: gst-mixer/src/window.c:368
 msgid "Volume Control"
 msgstr "Rheolydd Lefel Sain"
 
-#: gst-mixer/src/mixer.c:258
-#, c-format
-msgid "%s Slider"
-msgstr "%s Llithrydd"
+#: gst-mixer/src/element.c:155
+#, fuzzy
+msgid "Playback"
+msgstr "Chwarae"
 
-#: gst-mixer/src/mixer.c:260
-#, c-format
-msgid "Channel %d of %s Slider"
-msgstr "Sianel %d o'r Llithrydd %s"
+#: gst-mixer/src/element.c:157
+#, fuzzy
+msgid "Capture"
+msgstr "Gwatwar"
 
-#: gst-mixer/src/mixer.c:261
-#, c-format
-msgid "%s Slider %d"
-msgstr "%s Llithrydd %d"
+#: gst-mixer/src/element.c:159
+msgid "Options"
+msgstr ""
 
-#: gst-mixer/src/mixer.c:274
-msgid "Lock"
-msgstr "Clo"
+#. FIXME:
+#. * - maybe we want to rename the element to its actual name
+#. *     if we've found that?
+#.
+#. create element
+#. and recreate this object, since we give it to the mixer
+#: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
+#, fuzzy, c-format
+msgid "Unknown Volume Control %d"
+msgstr "Rheolydd Lefel Sain"
 
-#: gst-mixer/src/mixer.c:284
+#: gst-mixer/src/main.c:236
+#, fuzzy
+msgid "No volume control elements and/or devices found."
+msgstr "Flin gen i, ni gafwyd hyd i unrhyw elfennau/dyfeisiadau cymysgu"
+
+#. make window look cute
+#: gst-mixer/src/preferences.c:107
+#, fuzzy
+msgid "Volume Control Preferences"
+msgstr "Hoffterau Rheolydd Lefel Sain Gnome"
+
+#: gst-mixer/src/preferences.c:120
+msgid "_Select tracks to be visible:"
+msgstr ""
+
+#: gst-mixer/src/track.c:193
 #, c-format
-msgid "%s Lock"
-msgstr "Clo %s"
+msgid "%s:"
+msgstr ""
 
 #. mute button
-#: gst-mixer/src/mixer.c:290 gst-mixer/src/mixer.c:386
-msgid "Mute"
-msgstr "Mudo"
-
-#: gst-mixer/src/mixer.c:302 gst-mixer/src/mixer.c:398
+#: gst-mixer/src/track.c:233
 #, c-format
-msgid "%s Mute"
-msgstr "%s Mud"
+msgid "Mute/unmute %s"
+msgstr ""
 
-#: gst-mixer/src/mixer.c:308
-msgid "Rec."
-msgstr "Rec."
+#: gst-mixer/src/track.c:248
+#, fuzzy, c-format
+msgid "Track %s: mute"
+msgstr "Rhestr draciau"
 
-#: gst-mixer/src/mixer.c:320
+#. FIXME:
+#. * - there's something fishy about this button, it
+#. *     is always FALSE.
+#.
+#. only the record button here
+#: gst-mixer/src/track.c:328
 #, c-format
-msgid "%s Record"
-msgstr "Recordio %s"
+msgid "Toggle audio capture from %s"
+msgstr ""
 
-#: gst-mixer/src/mixer.c:591
-msgid "A GNOME/GStreamer-based mixer application"
+#: gst-mixer/src/track.c:343
+#, c-format
+msgid "Track %s: audio capture"
+msgstr ""
+
+#: gst-mixer/src/track.c:391
+#, c-format
+msgid "%s Option Selection"
+msgstr ""
+
+#: gst-mixer/src/volume.c:132
+msgid "mono"
+msgstr "unsain"
+
+#: gst-mixer/src/volume.c:134
+#, fuzzy
+msgid "left"
+msgstr "%s Chwith"
+
+#: gst-mixer/src/volume.c:134
+#, fuzzy
+msgid "right"
+msgstr "%s De"
+
+#: gst-mixer/src/volume.c:137
+msgid "front left"
+msgstr ""
+
+#: gst-mixer/src/volume.c:138
+msgid "front right"
+msgstr ""
+
+#: gst-mixer/src/volume.c:139
+msgid "rear left"
+msgstr ""
+
+#: gst-mixer/src/volume.c:140
+msgid "rear right"
+msgstr ""
+
+#: gst-mixer/src/volume.c:141
+#, fuzzy
+msgid "front center"
+msgstr "Cynnwys"
+
+#: gst-mixer/src/volume.c:142
+msgid "LFE"
+msgstr ""
+
+#: gst-mixer/src/volume.c:143
+msgid "side left"
+msgstr ""
+
+#: gst-mixer/src/volume.c:144
+msgid "side right"
+msgstr ""
+
+#: gst-mixer/src/volume.c:145
+#, fuzzy
+msgid "unknown"
+msgstr "Anhysbys"
+
+#. Here, we can actually tell people that this
+#. * is a slider that will change channel X.
+#: gst-mixer/src/volume.c:151
+#, fuzzy, c-format
+msgid "Volume of %s channel on %s"
+msgstr "Nifer sianeli:"
+
+#: gst-mixer/src/volume.c:199
+#, fuzzy, c-format
+msgid "Track %s"
+msgstr "Rhestr draciau"
+
+#: gst-mixer/src/volume.c:202
+#, fuzzy, c-format
+msgid "Channel %d of track %s"
+msgstr "Sianel %d o'r Llithrydd %s"
+
+#: gst-mixer/src/volume.c:205
+#, c-format
+msgid "Track %s, channel %d"
+msgstr ""
+
+#: gst-mixer/src/volume.c:243
+#, c-format
+msgid "Track %s: lock channels together"
+msgstr ""
+
+#: gst-mixer/src/window.c:109
+#, fuzzy
+msgid "Change device"
+msgstr "Gosod dyfais"
+
+#: gst-mixer/src/window.c:110
+msgid "Control volume on a different device"
+msgstr ""
+
+#: gst-mixer/src/window.c:179
+#, fuzzy, c-format
+msgid "Change device to %s"
+msgstr "Dyfais CD i'w defnyddio"
+
+#. window title and menu selection
+#. change window title
+#: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
+#, fuzzy, c-format
+msgid "Volume Control: %s"
+msgstr "Rheolydd Lefel Sain"
+
+#: gst-mixer/src/window.c:371
+#, fuzzy
+msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Rhaglen gymysgydd wedi seilio ar GNOME/GStreamer"
-
-#: gst-mixer/src/mixer.c:698
-msgid "Sorry, no mixer elements and/or devices found"
-msgstr "Flin gen i, ni gafwyd hyd i unrhyw elfennau/dyfeisiadau cymysgu"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -1756,7 +1890,7 @@ msgid "Custom"
 msgstr "Addasiedig"
 
 #: gstreamer-properties/pipeline-test-old.c:215
-#: gstreamer-properties/pipeline-tests.c:110
+#: gstreamer-properties/pipeline-tests.c:119
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Methwyd adeiladu pibell brawf i '%s'"
@@ -1790,10 +1924,11 @@ msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
-"Roedd gwall wrth danysgrifio i hysbysiad newidiadau rhestr proffilau "
-"sain. (%s)\n"
+"Roedd gwall wrth danysgrifio i hysbysiad newidiadau rhestr proffilau sain. (%"
+"s)\n"
 
 #: profiles/audio-profile.c:910
+#, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Bu gwall wrth anghofio'r llwybr proffil %s. (%s)\n"
 
@@ -2092,6 +2227,33 @@ msgstr "Arsylwi lefel sain yr allbwn"
 msgid "Volume monitor"
 msgstr "Arsylwydd lefel sain"
 
+#~ msgid "_Apply change"
+#~ msgstr "_Gweithredu newid"
+
+#~ msgid "%s Slider"
+#~ msgstr "%s Llithrydd"
+
+#~ msgid "%s Slider %d"
+#~ msgstr "%s Llithrydd %d"
+
+#~ msgid "Lock"
+#~ msgstr "Clo"
+
+#~ msgid "%s Lock"
+#~ msgstr "Clo %s"
+
+#~ msgid "Mute"
+#~ msgstr "Mudo"
+
+#~ msgid "%s Mute"
+#~ msgstr "%s Mud"
+
+#~ msgid "Rec."
+#~ msgstr "Rec."
+
+#~ msgid "%s Record"
+#~ msgstr "Recordio %s"
+
 #~ msgid "Delete these two profiles?\n"
 #~ msgstr "Dileu'r ddau proffil yma?\n"
 
@@ -2355,12 +2517,6 @@ msgstr "Arsylwydd lefel sain"
 #~ "fersiwn %d.%d.%d o OSS, a mae'ch system\n"
 #~ "yn rhedeg fersiwn %d.%d.%d.\n"
 
-#~ msgid "left %s"
-#~ msgstr "%s Chwith"
-
-#~ msgid "Right %s"
-#~ msgstr "%s De"
-
 #~ msgid "GNOME Volume Control"
 #~ msgstr "Rheolydd Lefel Sain GNOME"
 
@@ -2375,9 +2531,6 @@ msgstr "Arsylwydd lefel sain"
 
 #~ msgid "_Reset labels to their defaults"
 #~ msgstr "_Ailosod labeli i'w rhagosodion"
-
-#~ msgid "Gnome Volume Control Preferences"
-#~ msgstr "Hoffterau Rheolydd Lefel Sain Gnome"
 
 #~ msgid "Sound Recorder:"
 #~ msgstr "Recordydd sain:"
@@ -2520,9 +2673,6 @@ msgstr "Arsylwydd lefel sain"
 
 #~ msgid "stereo"
 #~ msgstr "stereo"
-
-#~ msgid "mono"
-#~ msgstr "unsain"
 
 #~ msgid "Create new sample"
 #~ msgstr "Creu sampl newydd"
