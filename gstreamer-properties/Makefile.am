@@ -6,7 +6,7 @@ gstreamer_properties_SOURCES = \
 	gstreamer-properties.c gstreamer-properties-structs.h \
 	pipeline-tests.h pipeline-tests.c \
 	pipeline-constants.c
-	
+
 @INTLTOOL_DESKTOP_RULE@
 
 iconsdir   = $(datadir)/gstreamer-properties/icons
@@ -18,7 +18,7 @@ desktop_icons_DATA = gstreamer-properties.png
 gladedir   = $(datadir)/gstreamer-properties/glade
 glade_DATA = gstreamer-properties.glade 
 
-desktopdir = $(datadir)/control-center-2.0/capplets
+desktopdir = $(datadir)/applications
 Desktop_in_files = gstreamer-properties.desktop.in
 desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
 
