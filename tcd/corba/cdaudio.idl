@@ -1,24 +1,30 @@
 module GNOME
 {
-
-interface CDAudio
-{
-	enum TimeFormat
+	struct CDAudio_Info
 	{
-		TRACK_ELAPSED,
-		TRACK_REMAINING,
-		DISC_ELAPSED,
-		DISC_REMAINING
+		short fd;
+		string path;
+		
+		short status;
 	};
 
-	short	init_cd(in string path);
-	void	play_cd(in short start_track, in short end_track);
-	void 	pause_cd();
-	void	stop_cd();
-	void	eject_cd();
+	interface CDAudio
+	{
+		enum TimeFormat
+		{
+			TRACK_ELAPSED,
+			TRACK_REMAINING,
+			DISC_ELAPSED,
+			DISC_REMAINING
+		};
 	
-	void	get_time(in TimeFormat format, out short min, out short sec);
-	void	get_disc_info(out string artist, out string album, out string title);
-};
-
+		CDAudio_Info	init_cd(in string path, out long result);
+		void	play_cd(in short start_track, in short end_track, out long result);
+		void 	pause_cd();
+		void	stop_cd();
+		void	eject_cd();
+		
+		void	get_time(in TimeFormat format, out short min, out short sec);
+		void	get_disc_info(out string artist, out string album, out string title);
+	};
 };

@@ -7,11 +7,14 @@
 
 GNOME_CDAudio cdaudio_client = CORBA_OBJECT_NIL;
 
-static CORBA_Object do_cdaudio_init_cd(PortableServer_Servant servant,
+static GNOME_CDAudio_Info *do_cdaudio_init_cd(PortableServer_Servant servant,
 				       CORBA_char *path, 
+				       CORBA_long *result,
 				       CORBA_Environment *ev);
 static CORBA_Object do_cdaudio_play_cd(PortableServer_Servant servant,
-				       CORBA_long track, 
+				       CORBA_long start_track,
+				       CORBA_long end_track,
+				       CORBA_long *result,
 				       CORBA_Environment *ev);
 static CORBA_Object do_cdaudio_pause_cd(PortableServer_Servant servant,
 					CORBA_Environment *ev);
@@ -39,13 +42,13 @@ PortableServer_ServantBase__epv base_epv = {
 POA_GNOME_CDAudio__epv GNOME_CDAudio_epv = 
 { 
     NULL,
-    do_cdaudio_init_cd, 
-    do_cdaudio_play_cd,
-    do_cdaudio_pause_cd,
-    do_cdaudio_stop_cd,
-    do_cdaudio_eject_cd,
-    do_cdaudio_get_time,
-    do_cdaudio_get_disc_info
+    (gpointer) &do_cdaudio_init_cd, 
+    (gpointer) &do_cdaudio_play_cd,
+    (gpointer) &do_cdaudio_pause_cd,
+    (gpointer) &do_cdaudio_stop_cd,
+    (gpointer) &do_cdaudio_eject_cd,
+    (gpointer) &do_cdaudio_get_time,
+    (gpointer) &do_cdaudio_get_disc_info
 };
 
 POA_GNOME_CDAudio__vepv poa_GNOME_CDAudio_vepv = { &base_epv, &GNOME_CDAudio_epv };
@@ -74,76 +77,95 @@ GNOME_CDAudio create_cdaudio(PortableServer_POA poa, CORBA_Environment * ev)
     return retval;
 }    
 
-int main(int argc, char *argv[])
+void Exception (CORBA_Environment * ev);
+
+void
+Exception (CORBA_Environment * ev)
 {
-	FILE *fp;
-    PortableServer_ObjectId objid = {0, sizeof("cdaudio_server"), "cdaudio_server"};
-    PortableServer_POA poa;
-    GNOME_CDAudio cdaudio;
-
-    CORBA_Object name_service;
-    CORBA_Environment ev;
-    char *retval;
-    CORBA_ORB orb;
-
-    CORBA_exception_init(&ev);
-    orb = gnome_CORBA_init("GNOME_CDAudio Server", "1.0", &argc, argv, GNORBA_INIT_SERVER_FUNC, &ev);
-
-    POA_GNOME_CDAudio__init(&poa_GNOME_CDAudio_servant, &ev);
-    
-    poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
-    PortableServer_POAManager_activate(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);
-    
-    PortableServer_POA_activate_object_with_id(poa,
-					       &objid, &poa_GNOME_CDAudio_servant, &ev);
-    
-    cdaudio_client = PortableServer_POA_servant_to_reference(poa,
-							     &poa_GNOME_CDAudio_servant,
-							     &ev);
-
-    cdaudio = create_cdaudio(poa, &ev);
-    g_print("getting name_service..\n");
-    name_service = gnome_name_service_get();
-    g_print("registering...\n");
-    goad_server_register(name_service, cdaudio, "CDAudio", "object", &ev);
-    g_print("registered\n");
-
-
-    retval = CORBA_ORB_object_to_string(orb, cdaudio, &ev);
-    g_print("MYIOR: %s\n", retval);
-    fprintf(stdout, "\n%s\n", retval);
-    fflush(stdout);
-
-    CORBA_free(retval);
-    g_print("running ORB\n");
-    CORBA_ORB_run(orb, &ev);
-    fp = fopen("/home/timg/cvs/gnome-media/tcd/corba/blah.log", "w");
-    fprintf(fp, "exiting...\n");   
-    fclose(fp);
-    return 0;
+  switch (ev->_major)
+    {
+    case CORBA_SYSTEM_EXCEPTION:
+      g_log ("Gnome CD Audio Server", G_LOG_LEVEL_DEBUG, "CORBA system exception %s.\n",
+             CORBA_exception_id (ev));                                              
+      exit (1);
+    case CORBA_USER_EXCEPTION:
+      g_log ("Gnome CD Audio Server", G_LOG_LEVEL_DEBUG, "CORBA user exception: %s.\n",
+             CORBA_exception_id (ev));                                             
+      exit (1);
+    default:
+      break;
+    }
 }
 
-static CORBA_Object do_cdaudio_init_cd(PortableServer_Servant servant,
-				   CORBA_char *path, 
+
+int main(int argc, char *argv[])
+{
+        CORBA_ORB orb;
+        CORBA_Environment ev;
+        CORBA_Object server;
+        CORBA_Object name_server;
+        PortableServer_POA poa;
+        PortableServer_POAManager pm;
+        
+        CORBA_exception_init(&ev);
+        orb = gnome_CORBA_init("cdaudio", "0.0", &argc, argv, GNORBA_INIT_SERVER_FUNC, &ev);
+        Exception (&ev);
+
+        poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
+        Exception (&ev);
+
+        server = create_cdaudio(poa, &ev);
+        Exception (&ev);
+
+        pm = PortableServer_POA__get_the_POAManager (poa, &ev);
+        Exception (&ev);
+
+        PortableServer_POAManager_activate (pm, &ev);
+        Exception (&ev);
+
+        name_server = gnome_name_service_get ();
+        goad_server_register (name_server,
+                              server,
+                              "cdaudio",
+                              "object",
+                              &ev);
+	
+	CORBA_ORB_run(orb, &ev);
+	return 0;
+}
+
+static GNOME_CDAudio_Info *do_cdaudio_init_cd(PortableServer_Servant servant,
+				   CORBA_char *path,
+				   CORBA_long *result,
 				   CORBA_Environment *ev)
 {
+    GNOME_CDAudio_Info *info;
     g_print("do_cdaudio_init_cd stub\n");
-    return CORBA_Object_duplicate(cdaudio_client, ev);
+
+    info = GNOME_CDAudio_Info__alloc();
+    info->path = "Foozle";
+    info->fd = 42;
+    info->status = 0;
+
+    return info;
 }
 
 
 static CORBA_Object do_cdaudio_play_cd(PortableServer_Servant servant,
-				   CORBA_long track, 
+				   CORBA_long start_track,
+				   CORBA_long end_track,
+				   CORBA_long *result,
 				   CORBA_Environment *ev)
 {
     g_print("do_cdaudio_play_cd stub\n");
+    *result = 69;
     return CORBA_Object_duplicate(cdaudio_client, ev);
 }
 
 static CORBA_Object do_cdaudio_pause_cd(PortableServer_Servant servant,
 					CORBA_Environment *ev)
 {
-    g_print("do_cdaudio_pause_cd stub\n");
+    g_print("do_cdaudio_pause_cd stub\n");   
     return CORBA_Object_duplicate(cdaudio_client, ev);
 }
 

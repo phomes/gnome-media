@@ -9,36 +9,17 @@ int main(int argc, char *argv[])
 {
     CORBA_Environment ev;
     CORBA_ORB orb;
-    CORBA_long rv;
+    CORBA_long rv = 0, rv2;
+    GNOME_CDAudio_Info *info;
+    
     char buf[30];
-    GoadServer *servlist, *chosen = NULL;
+    GoadServerList *servlist, *chosen = NULL;
     int i;
 
     CORBA_exception_init(&ev);
     orb = gnome_CORBA_init("CDAudio Client", "0.0", &argc, argv, 0, &ev);
 
-    servlist = goad_server_list_get();
-    for(i = 0; servlist[i].repo_id; i++) 
-    {
-	g_print("ID %d: %s\n", i, servlist[i].server_id);
-	if(!strcmp(servlist[i].server_id, "cdaudio")) 
-	{
-	    g_print("Chosen: %s\n", servlist[i].server_id);
-	    chosen = &servlist[i];
-	    break;
-	}
-    }
-    
-    g_print("repo_id:\t%s\n", chosen->repo_id);
-    g_print("server_id:\t%s\n", chosen->server_id);
-    g_print("description:\t%s\n", chosen->description);
-    g_print("location_info:\t%s\n", chosen->location_info);
-    g_print("type:\t%d\n", chosen->type);
-
-    cdaudio_client = goad_server_activate(chosen, 0, NULL);
-//    cdaudio_client = goad_server_activate_with_id(NULL, "cdaudio", 0, NULL);
-
-//    cdaudio_client = CORBA_ORB_string_to_object(orb, argv[1], &ev);
+    cdaudio_client = goad_server_activate_with_repo_id(0, "IDL:GNOME/CDAudio:1.0", GOAD_ACTIVATE_REMOTE, NULL);
 
     if(cdaudio_client == CORBA_OBJECT_NIL)
     {
@@ -46,16 +27,13 @@ int main(int argc, char *argv[])
 	exit(1);
     }
 
-    fprintf(stderr,"client gets server at IOR='%s'\n",
-	    CORBA_ORB_object_to_string(orb, cdaudio_client, &ev));
-	          
-
-    g_print("%p\n", cdaudio_client);
-    GNOME_CDAudio_init_cd(cdaudio_client, "/dev/cdrom", &ev);
-    GNOME_CDAudio_play_cd(cdaudio_client, 1, 2, &ev);
+    info = GNOME_CDAudio_init_cd(cdaudio_client, "/dev/cdrom", &rv, &ev);
+    g_print("%s\n%d\n%d\n", info->path, info->fd, info->status);
+//    GNOME_CDAudio_play_cd(cdaudio_client, 1, 2, &rv, &ev);
+//    g_print("%ld\n", rv);
  
-    CORBA_Object_release(cdaudio_client, &ev);
-    CORBA_Object_release((CORBA_Object)orb, &ev);
+//    CORBA_Object_release(cdaudio_client, &ev);
+//    CORBA_Object_release((CORBA_Object)orb, &ev);
 
     return 0;
 }
