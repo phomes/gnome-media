@@ -13,6 +13,7 @@
 
 #include <pango/pango.h>
 
+#include "display.h"
 #include "cdrom.h"
 
 #define NUMBER_OF_DISPLAY_LINES 5

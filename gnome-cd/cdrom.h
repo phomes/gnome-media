@@ -64,6 +64,13 @@ typedef enum _GnomeCDRomUpdate {
 	GNOME_CDROM_UPDATE_CONTINOUS
 } GnomeCDRomUpdate;
 
+typedef enum _GnomeCDRomMode {
+	GNOME_CDROM_WHOLE_CD,
+	GNOME_CDROM_SINGLE_TRACK,
+	GNOME_CDROM_LOOP,
+	GNOME_CDROM_PLAY_ONCE
+} GnomeCDRomMode;
+
 typedef struct _GnomeCDRomMSF {
 	int minute;
 	int second;
@@ -88,6 +95,8 @@ typedef struct _GnomeCDRomCDDBData {
 struct _GnomeCDRom {
 	GObject object;
 
+	GnomeCDRomMode playmode, loopmode;
+	
 	GnomeCDRomPrivate *priv;
 };
 
@@ -101,8 +110,10 @@ struct _GnomeCDRomClass {
 	gboolean (*ffwd) (GnomeCDRom *cdrom,
 			  GError **error);
 	gboolean (*play) (GnomeCDRom *cdrom,
-			  int track,
-			  GnomeCDRomMSF *position,
+			  int start_track,
+			  GnomeCDRomMSF *start,
+			  int finish_track,
+			  GnomeCDRomMSF *finish,
 			  GError **error);
 	gboolean (*pause) (GnomeCDRom *cdrom,
 			   GError **error);
@@ -138,8 +149,10 @@ gboolean gnome_cdrom_next (GnomeCDRom *cdrom,
 gboolean gnome_cdrom_fast_forward (GnomeCDRom *cdrom,
 				   GError **error);
 gboolean gnome_cdrom_play (GnomeCDRom *cdrom,
-			   int track,
-			   GnomeCDRomMSF *position,
+			   int start_track,
+			   GnomeCDRomMSF *start,
+			   int finish_track,
+			   GnomeCDRomMSF *finish,
 			   GError **error);
 gboolean gnome_cdrom_pause (GnomeCDRom *cdrom,
 			    GError **error);

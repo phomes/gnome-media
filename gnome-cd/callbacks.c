@@ -75,6 +75,8 @@ play_cb (GtkButton *button,
 	GnomeCDRomStatus *status;
 	GnomeCDRomMSF msf;
 	AtkObject *aob;
+	int end_track;
+	GnomeCDRomMSF *endmsf;
 
 	if (gnome_cdrom_get_status (gcd->cdrom, &status, &error) == FALSE) {
 		g_warning ("%s: %s", __FUNCTION__, error->message);
@@ -97,7 +99,15 @@ play_cb (GtkButton *button,
 		msf.minute = 0;
 		msf.second = 0;
 		msf.frame = 0;
-		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, &error) == FALSE) {
+		if (gcd->cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+			end_track = -1;
+			endmsf = NULL;
+		} else {
+			end_track == 2;
+			endmsf = &msf;
+		}
+		
+		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
 			g_warning ("%s: %s", __FUNCTION__, error->message);
 			g_error_free (error);
 
@@ -137,8 +147,18 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_AUDIO_PAUSE:
+		if (gcd->cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+			end_track = -1;
+			endmsf = NULL;
+		} else {
+			end_track = status->track + 1;
+			msf.minute = 0;
+			msf.second = 0;
+			msf.frame = 0;
+			endmsf = &msf;
+		}
 		if (gnome_cdrom_play (gcd->cdrom, status->track,
-				      &status->relative, &error) == FALSE) {
+				      &status->relative, end_track, endmsf, &error) == FALSE) {
 			g_warning ("%s: %s", __FUNCTION__, error->message);
 			g_error_free (error);
 			
@@ -161,7 +181,14 @@ play_cb (GtkButton *button,
 		msf.second = 0;
 		msf.frame = 0;
 
-		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, &error) == FALSE) {
+		if (gcd->cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+			end_track = -1;
+			endmsf = NULL;
+		} else {
+			end_track = 2;
+			endmsf = &msf;
+		}
+		if (gnome_cdrom_play (gcd->cdrom, 1, &msf, end_track, endmsf, &error) == FALSE) {
 			g_warning ("%s: %s", __FUNCTION__, error->message);
 			g_error_free (error);
 
@@ -508,3 +535,20 @@ about_cb (GtkWidget *widget,
 		gtk_widget_show (about);
 	}
 }
+
+void
+loopmode_changed_cb (GtkWidget *display,
+		     GnomeCDRomMode mode,
+		     GnomeCD *gcd)
+{
+	gcd->cdrom->loopmode = mode;
+}
+
+void
+playmode_changed_cb (GtkWidget *display,
+		     GnomeCDRomMode mode,
+		     GnomeCD *gcd)
+{
+	gcd->cdrom->playmode = mode;
+}
+

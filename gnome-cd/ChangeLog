@@ -1,3 +1,37 @@
+2002-01-20  Iain Holmes  <iain@ximian.com>
+
+	* callbacks.c (play_cb): Play until the correct end track.
+	(loopmode_changed_cb): Change the loopmode.
+	(playmode_changed_cb): Change the playmode.
+
+	* cdrom.c (cdrom_play): Change the parameters.
+	(init): Init the loopmode and playmode.
+	(gnome_cdrom_play): Change the parameters.
+
+	* cdrom.h: Add GnomeCDRomMode;
+
+	* display.c (size_request): Calculate the height of the images.
+	(draw_pixbuf): Draw pixbuf using
+	gdk_pixbuf_render_to_drawable_with_alpha.
+	(expose_event): Draw the correct info icons.
+	(realize): Add the events to the widget.
+	(button_press_event): Check where the widget was clicked, change the
+	icon as appropriate.
+	(class_init): Create the signals and connect the
+	button_press_callback.
+	(init): Load the new icons.
+
+	* gnome-cd.c (skip_to_track): Set the end track correctly.
+	(init_player): Attach to the display signals.
+
+	* linux-cdrom.c (linux_cdrom_next): Set the end correctly.
+	(linux_cdrom_ffwd): Set the end correctly.
+	(linux_cdrom_play): Set the end of the play correctly.
+	(linux_cdrom_rewind): Set the end correctly.
+	(linux_cdrom_back): Set the end track correctly.
+
+	* images/Makefile.am: Add the new icons.
+
 2002-01-18  Iain Holmes  <iain@ximian.com>
 
 	* gnome-cd.c (make_popup_menu): Set the image for the menu, from

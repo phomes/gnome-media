@@ -7,7 +7,9 @@
  */
 
 #include <libgnome/gnome-util.h>
+#include <libgnome/gnome-i18n.h>
 #include "gnome-cd.h"
+#include "cdrom.h"
 #include "display.h"
 
 #define X_OFFSET 2
@@ -43,13 +45,25 @@ struct _CDDisplayPrivate {
 	CDImage *corners[4];
 	CDImage *straights[4];
 	CDImage *middle;
+
+	CDImage *cd, *track, *loop, *once;
+
+	GnomeCDRomMode playmode, loopmode;
 };
 
+enum {
+	PLAYMODE_CHANGED,
+	LOOPMODE_CHANGED,
+	LAST_SIGNAL
+};
+
+static gulong display_signals[LAST_SIGNAL] = { 0, };
+
 static char *default_text[CD_DISPLAY_END] = {
+	"0:00",
 	" ",
-	" ",
-	" ",
-	" "
+	N_("Unknown artist"),
+	N_("Unknown disc")
 };
 
 static void
@@ -138,11 +152,20 @@ size_request (GtkWidget *widget,
 	
 	for (i = 0; i < CD_DISPLAY_END; i++) {
 		PangoRectangle rect;
-		
-		pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
-		height += (rect.height / 1000);
-		
-		width = MAX (width, rect.width / 1000);
+
+		if (i == CD_DISPLAY_LINE_INFO) {
+			priv->track->rect.y = height;
+			priv->cd->rect.y = height;
+			priv->once->rect.y = height;
+			priv->loop->rect.y = height;
+
+			height += priv->track->rect.height;
+			width = MAX (width, priv->track->rect.width * 2);
+		} else {
+			pango_layout_get_extents (priv->layout[i]->layout, NULL, &rect);
+			height += (rect.height / 1000);
+			width = MAX (width, rect.width / 1000);
+		}
 	}
 
 	requisition->width = width + (2 * X_OFFSET);
@@ -158,25 +181,15 @@ draw_pixbuf (GdkPixbuf *pixbuf,
 	     int dest_x, int dest_y,
 	     int width, int height)
 {
-	if (gdk_pixbuf_get_has_alpha (pixbuf)) {
-		gdk_draw_rgb_32_image (drawable, gc,
-				       dest_x, dest_y,
-				       width, height,
-				       GDK_RGB_DITHER_MAX,
-				       gdk_pixbuf_get_pixels (pixbuf) +
-				       (src_y * gdk_pixbuf_get_rowstride (pixbuf)) +
-				       (src_x * gdk_pixbuf_get_n_channels (pixbuf)),
-				       gdk_pixbuf_get_rowstride (pixbuf));
-	} else {
-		gdk_draw_rgb_image (drawable, gc,
-				    dest_x, dest_y,
-				    width, height,
-				    GDK_RGB_DITHER_MAX,
-				    gdk_pixbuf_get_pixels (pixbuf) +
-				    (src_y * gdk_pixbuf_get_rowstride (pixbuf)) +
-				    (src_x * gdk_pixbuf_get_n_channels (pixbuf)),
-				    gdk_pixbuf_get_rowstride (pixbuf));
-	}
+	gdk_pixbuf_render_to_drawable_alpha (pixbuf,
+					     drawable,
+					     src_x, src_y,
+					     dest_x, dest_y,
+					     width, height,
+					     GDK_PIXBUF_ALPHA_FULL,
+					     128,
+					     GDK_RGB_DITHER_NORMAL,
+					     0, 0);
 }
 	     
 static gboolean
@@ -316,11 +329,41 @@ expose_event (GtkWidget *drawing_area,
 		}
 	}
 
+	/* Do the info line */
+	{
+		GdkRectangle inter;
+		CDImage *im;
+
+		/* Track / CD? */
+		im = (priv->playmode == GNOME_CDROM_SINGLE_TRACK ? priv->track : priv->cd);
+		if (gdk_rectangle_intersect (area, &im->rect, &inter) == TRUE) {
+			draw_pixbuf (im->pixbuf,
+				     drawing_area->window,
+				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
+				     inter.x - im->rect.x,
+				     inter.y - im->rect.y,
+				     inter.x, inter.y,
+				     inter.width, inter.height);
+		}
+
+		im = (priv->loopmode == GNOME_CDROM_PLAY_ONCE ? priv->once : priv->loop);
+		if (gdk_rectangle_intersect (area, &im->rect, &inter) == TRUE) {
+			draw_pixbuf (im->pixbuf,
+				     drawing_area->window,
+				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
+				     inter.x - im->rect.x,
+				     inter.y - im->rect.y,
+				     inter.x, inter.y,
+				     inter.width, inter.height);
+		}
+	}
+	
 	context = pango_layout_get_context (priv->layout[0]->layout);
 	base_dir = pango_context_get_base_dir (context);
 
 	for (i = 0; i < CD_DISPLAY_END &&
 		     height < area->y + area->height + Y_OFFSET; i++) {
+
 		if (height + priv->layout[i]->height >= Y_OFFSET + area->y) {
 			pango_layout_set_alignment (priv->layout[i]->layout,
 						    base_dir == PANGO_DIRECTION_LTR ? PANGO_ALIGN_LEFT : PANGO_ALIGN_RIGHT);
@@ -386,9 +429,57 @@ realize (GtkWidget *widget)
 	disp->priv->blue.pixel = 0;
 	gdk_color_alloc (cmap, &disp->priv->blue);
 
+	gtk_widget_add_events (widget, GDK_BUTTON_PRESS_MASK |
+			       GDK_KEY_PRESS_MASK);
 	GTK_WIDGET_CLASS (parent_class)->realize (widget);
 }
 
+static int
+button_press_event (GtkWidget *widget,
+		    GdkEventButton *ev)
+{
+	CDDisplay *disp = CD_DISPLAY (widget);
+	CDDisplayPrivate *priv = disp->priv;
+
+	if (ev->button != 1) {
+		return FALSE;
+	}
+	
+	/* Check the play mode */
+	if (ev->x >= priv->track->rect.x &&
+	    ev->x <= (priv->track->rect.x + priv->track->rect.width) &&
+	    ev->y >= priv->track->rect.y &&
+	    ev->y <= (priv->track->rect.y + priv->track->rect.height)) {
+		priv->playmode = (priv->playmode == GNOME_CDROM_SINGLE_TRACK ?
+				  GNOME_CDROM_WHOLE_CD : GNOME_CDROM_SINGLE_TRACK);
+		g_signal_emit (G_OBJECT (widget), display_signals[PLAYMODE_CHANGED],
+			       0, priv->playmode);
+		gtk_widget_queue_draw_area (widget, priv->track->rect.x,
+					    priv->track->rect.y,
+					    priv->track->rect.width,
+					    priv->track->rect.height);
+		return TRUE;
+	}
+
+	/* Check the loop mode */
+	if (ev->x >= priv->once->rect.x &&
+	    ev->x <= (priv->once->rect.x + priv->once->rect.width) &&
+	    ev->y >= priv->once->rect.y &&
+	    ev->y <= (priv->once->rect.y + priv->once->rect.height)) {
+		priv->loopmode = (priv->loopmode == GNOME_CDROM_PLAY_ONCE ?
+				  GNOME_CDROM_LOOP : GNOME_CDROM_PLAY_ONCE);
+		g_signal_emit (G_OBJECT (widget), display_signals[LOOPMODE_CHANGED],
+			       0, priv->loopmode);
+		gtk_widget_queue_draw_area (widget, priv->track->rect.x,
+					    priv->track->rect.y,
+					    priv->track->rect.width,
+					    priv->track->rect.height);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+		     
 static void
 class_init (CDDisplayClass *klass)
 {
@@ -404,7 +495,26 @@ class_init (CDDisplayClass *klass)
 	widget_class->size_request = size_request;
 	widget_class->expose_event = expose_event;
   	widget_class->realize = realize;
-
+	widget_class->button_press_event = button_press_event;
+	
+	/* Signals */
+	display_signals[PLAYMODE_CHANGED] = g_signal_new ("playmode-changed",
+							  G_TYPE_FROM_CLASS (klass),
+							  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
+							  G_STRUCT_OFFSET (CDDisplayClass, playmode_changed),
+							  NULL, NULL,
+							  g_cclosure_marshal_VOID__INT,
+							  G_TYPE_NONE,
+							  1, G_TYPE_INT);
+	display_signals[LOOPMODE_CHANGED] = g_signal_new ("loopmode-changed",
+							  G_TYPE_FROM_CLASS (klass),
+							  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
+							  G_STRUCT_OFFSET (CDDisplayClass, loopmode_changed),
+							  NULL, NULL,
+							  g_cclosure_marshal_VOID__INT,
+							  G_TYPE_NONE,
+							  1, G_TYPE_INT);
+	
 	parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -477,6 +587,9 @@ init (CDDisplay *disp)
 	priv->max_width += (X_OFFSET * 2);
 	gtk_widget_queue_resize (GTK_WIDGET (disp));
 
+	priv->playmode = GNOME_CDROM_WHOLE_CD;
+	priv->loopmode = GNOME_CDROM_PLAY_ONCE;
+	
 	/* Load pixbufs */
 	priv->corners[TOPLEFT] = cd_image_new ("gnome-cd/lcd-theme/top-left.png", 0, 0);
 	priv->corners[TOPRIGHT] = cd_image_new ("gnome-cd/lcd-theme/top-right.png", 48, 0);
@@ -489,6 +602,12 @@ init (CDDisplay *disp)
 	priv->straights[BOTTOM] = cd_image_new ("gnome-cd/lcd-theme/bottom.png", 16, 48);
 
 	priv->middle = cd_image_new ("gnome-cd/lcd-theme/middle.png", 16, 16);
+
+	/* Don't know where these are to be placed yet */
+	priv->track = cd_image_new ("gnome-cd/track.png", 16, 0);
+	priv->cd = cd_image_new ("gnome-cd/disc.png", 16, 0);
+	priv->loop = cd_image_new ("gnome-cd/repeat.png", 36, 0);
+	priv->once = cd_image_new ("gnome-cd/once.png", 36, 0);
 }
 
 GType

@@ -10,6 +10,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtkdrawingarea.h>
+#include "cdrom.h"
 
 G_BEGIN_DECLS
 
@@ -38,6 +39,11 @@ struct _CDDisplay {
 
 struct _CDDisplayClass {
 	GtkDrawingAreaClass parent_class;
+
+	void (*loopmode_changed) (CDDisplay *cd,
+				  GnomeCDRomMode mode);
+	void (*playmode_changed) (CDDisplay *cd,
+				  GnomeCDRomMode mode);
 };
 
 GType cd_display_get_type (void);

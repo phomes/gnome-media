@@ -45,9 +45,9 @@ void
 skip_to_track (GtkWidget *item,
 	       GnomeCD *gcd)
 {
-	int track;
+	int track, end_track;
 	GnomeCDRomStatus *status = NULL;
-	GnomeCDRomMSF msf;
+	GnomeCDRomMSF msf, *endmsf;
 	GError *error;
 	
 	track = gtk_option_menu_get_history (GTK_OPTION_MENU (gcd->tracks));
@@ -65,7 +65,16 @@ skip_to_track (GtkWidget *item,
 	msf.minute = 0;
 	msf.second = 0;
 	msf.frame = 0;
-	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), track + 1, &msf, &error) == FALSE) {
+
+	if (gcd->cdrom->playmode == GNOME_CDROM_SINGLE_TRACK) {
+		end_track = track + 2;
+		endmsf = NULL;
+	} else {
+		end_track = -1;
+		endmsf = &msf;
+	}
+	
+	if (gnome_cdrom_play (GNOME_CDROM (gcd->cdrom), track + 1, &msf, end_track, endmsf, &error) == FALSE) {
 		g_warning ("Error skipping %s", error->message);
 		g_error_free (error);
 	}
@@ -343,6 +352,12 @@ init_player (void)
 	display_box = gtk_vbox_new (FALSE, 1);
 
 	gcd->display = GTK_WIDGET (cd_display_new ());
+	GTK_WIDGET_SET_FLAGS (gcd->display, GTK_CAN_FOCUS | GTK_CAN_DEFAULT);
+	g_signal_connect (G_OBJECT (gcd->display), "loopmode-changed",
+			  G_CALLBACK (loopmode_changed_cb), gcd);
+	g_signal_connect (G_OBJECT (gcd->display), "playmode-changed",
+			  G_CALLBACK (playmode_changed_cb), gcd);
+	
 	gnome_popup_menu_attach (make_popup_menu (gcd), gcd->display, NULL);
 	
 	gtk_box_pack_start (GTK_BOX (display_box), gcd->display, TRUE, TRUE, 0);

@@ -53,8 +53,10 @@ static gboolean linux_cdrom_next (GnomeCDRom *cdrom,
 static gboolean linux_cdrom_ffwd (GnomeCDRom *cdrom,
 				  GError **error);
 static gboolean linux_cdrom_play (GnomeCDRom *cdrom,
-				  int track,
-				  GnomeCDRomMSF *msf,
+				  int start_track,
+				  GnomeCDRomMSF *start,
+				  int finish_track,
+				  GnomeCDRomMSF *finish,
 				  GError **error);
 static gboolean linux_cdrom_pause (GnomeCDRom *cdrom,
 				   GError **error);
@@ -317,8 +319,8 @@ linux_cdrom_next (GnomeCDRom *cdrom,
 {
 	LinuxCDRom *lcd;
 	GnomeCDRomStatus *status;
-	GnomeCDRomMSF msf;
-	int track;
+	GnomeCDRomMSF msf, *endmsf;
+	int track, end_track;
 
 	lcd = LINUX_CDROM (cdrom);
 	if (linux_cdrom_open (lcd, error) == FALSE) {
@@ -341,7 +343,16 @@ linux_cdrom_next (GnomeCDRom *cdrom,
 	msf.minute = 0;
 	msf.second = 0;
 	msf.frame = 0;
-	if (linux_cdrom_play (cdrom, track, &msf, error) == FALSE) {
+
+	if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+		end_track = -1;
+		endmsf = NULL;
+	} else {
+		end_track = track + 1;
+		endmsf = &msf;
+	}
+	
+	if (linux_cdrom_play (cdrom, track, &msf, end_track, endmsf, error) == FALSE) {
 		linux_cdrom_close (lcd);
 		return FALSE;
 	}
@@ -356,8 +367,8 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 {
 	LinuxCDRom *lcd;
 	GnomeCDRomStatus *status;
-	GnomeCDRomMSF *msf;
-	int discend, frames;
+	GnomeCDRomMSF *msf, *endmsf, end;
+	int discend, frames, end_track;
 	
 	lcd = LINUX_CDROM (cdrom);
 	if (linux_cdrom_open (lcd, error) == FALSE) {
@@ -389,7 +400,18 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 	/* Zero the frames */
 	msf->frame = 0;
 
-	if (linux_cdrom_play (cdrom, -1, msf, error) == FALSE) {
+	if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+		endmsf = NULL;
+		end_track = -1;
+	} else {
+		end.minute = 0;
+		end.second = 0;
+		end.frame = 0;
+		endmsf = &end;
+		end_track = status->track + 1;
+	}
+	
+	if (linux_cdrom_play (cdrom, -1, msf, end_track, endmsf, error) == FALSE) {
 		g_free (status);
 		linux_cdrom_close (lcd);
 		return FALSE;
@@ -403,8 +425,10 @@ linux_cdrom_ffwd (GnomeCDRom *cdrom,
 
 static gboolean
 linux_cdrom_play (GnomeCDRom *cdrom,
-		  int track,
-		  GnomeCDRomMSF *position,
+		  int start_track,
+		  GnomeCDRomMSF *start,
+		  int finish_track,
+		  GnomeCDRomMSF *finish,
 		  GError **error)
 {
 	LinuxCDRom *lcd;
@@ -444,6 +468,7 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 		}
 	}
 
+	g_free (status);
 	/* Get the status again: It might have changed */
 	if (gnome_cdrom_get_status (GNOME_CDROM (lcd), &status, error) == FALSE) {
 		linux_cdrom_close (lcd);
@@ -476,23 +501,43 @@ linux_cdrom_play (GnomeCDRom *cdrom,
 	case GNOME_CDROM_AUDIO_ERROR:
 	default:
 		/* Start playing */
-		if (track >= 0) {
-			GnomeCDRomMSF tmpmsf;
-
-			add_msf (&priv->track_info[track - 1].address, position, &tmpmsf);
-			msf.cdmsf_min0 = tmpmsf.minute;
-			msf.cdmsf_sec0 = tmpmsf.second;
-			msf.cdmsf_frame0 = tmpmsf.frame;
+		if (start == NULL) {
+			msf.cdmsf_min0 = status->absolute.minute;
+			msf.cdmsf_sec0 = status->absolute.second;
+			msf.cdmsf_frame0 = status->absolute.frame;
 		} else {
-			msf.cdmsf_min0 = position->minute;
-			msf.cdmsf_sec0 = position->second;
-			msf.cdmsf_frame0 = position->frame;
+			if (start_track >= 0) {
+				GnomeCDRomMSF tmpmsf;
+				
+				add_msf (&priv->track_info[start_track - 1].address, start, &tmpmsf);
+				msf.cdmsf_min0 = tmpmsf.minute;
+				msf.cdmsf_sec0 = tmpmsf.second;
+				msf.cdmsf_frame0 = tmpmsf.frame;
+			} else {
+				msf.cdmsf_min0 = start->minute;
+				msf.cdmsf_sec0 = start->second;
+				msf.cdmsf_frame0 = start->frame;
+			}
 		}
 
-		/* Set the end to be the start of the lead out track */
-		msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
-		msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
-		msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
+		if (finish == NULL) {
+			msf.cdmsf_min1 = priv->track_info[priv->number_tracks].address.minute;
+			msf.cdmsf_sec1 = priv->track_info[priv->number_tracks].address.second;
+			msf.cdmsf_frame1 = priv->track_info[priv->number_tracks].address.frame;
+		} else {
+			if (finish_track >= 0) {
+				GnomeCDRomMSF tmpmsf;
+
+				add_msf (&priv->track_info[finish_track - 1].address, finish, &tmpmsf);
+				msf.cdmsf_min1 = tmpmsf.minute;
+				msf.cdmsf_sec1 = tmpmsf.second;
+				msf.cdmsf_frame1 = tmpmsf.frame;
+			} else {
+				msf.cdmsf_min1 = finish->minute;
+				msf.cdmsf_sec1 = finish->second;
+				msf.cdmsf_frame1 = finish->frame;
+			}
+		}
 
 		/* PLAY IT AGAIN */
 		if (ioctl (priv->cdrom_fd, CDROMPLAYMSF, &msf) < 0) {
@@ -632,9 +677,9 @@ linux_cdrom_rewind (GnomeCDRom *cdrom,
 		    GError **error)
 {
 	LinuxCDRom *lcd;
-	GnomeCDRomMSF *msf, tmpmsf;
+	GnomeCDRomMSF *msf, tmpmsf, end, *endmsf;
 	GnomeCDRomStatus *status;
-	int discstart, frames;
+	int discstart, frames, end_track;
 
 	lcd = LINUX_CDROM (cdrom);
 	if (linux_cdrom_open (lcd, error) == FALSE) {
@@ -662,7 +707,18 @@ linux_cdrom_rewind (GnomeCDRom *cdrom,
 	frames_to_msf (&tmpmsf, frames);
 	tmpmsf.frame = 0; /* Zero the frames */
 
-	if (linux_cdrom_play (cdrom, -1, &tmpmsf, error) == FALSE) {
+	if (cdrom->playmode = GNOME_CDROM_WHOLE_CD) {
+		end_track = -1;
+		endmsf = NULL;
+	} else {
+		end_track = status->track + 1;
+		end.minute = 0;
+		end.second = 0;
+		end.frame = 0;
+		endmsf = &end;
+	}
+	
+	if (linux_cdrom_play (cdrom, -1, &tmpmsf, end_track, endmsf, error) == FALSE) {
 		g_free (status);
 		
 		linux_cdrom_close (lcd);
@@ -681,8 +737,8 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 {
 	LinuxCDRom *lcd;
 	GnomeCDRomStatus *status;
-	GnomeCDRomMSF msf;
-	int track;
+	GnomeCDRomMSF msf, *endmsf;
+	int track, end_track;
 
 	lcd = LINUX_CDROM (cdrom);
 	if (linux_cdrom_open (lcd, error) == FALSE) {
@@ -712,7 +768,15 @@ linux_cdrom_back (GnomeCDRom *cdrom,
 	msf.minute = 0;
 	msf.second = 0;
 	msf.frame = 0;
-	if (linux_cdrom_play (cdrom, track, &msf, error) == FALSE) {
+
+	if (cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
+		end_track = -1;
+		endmsf = NULL;
+	} else {
+		end_track = track + 1;
+		endmsf = &msf;
+	}
+	if (linux_cdrom_play (cdrom, track, &msf, end_track, endmsf, error) == FALSE) {
 		g_free (status);
 		linux_cdrom_close (lcd);
 		return FALSE;

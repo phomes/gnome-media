@@ -103,8 +103,10 @@ cdrom_ffwd (GnomeCDRom *cdrom,
 
 static gboolean
 cdrom_play (GnomeCDRom *cdrom,
-	    int track,
-	    GnomeCDRomMSF *pos,
+	    int start_track,
+	    GnomeCDRomMSF *start,
+	    int finish_track,
+	    GnomeCDRomMSF *finish,
 	    GError **error)
 {
 	if (error) {
@@ -264,6 +266,8 @@ static void
 init (GnomeCDRom *cdrom)
 {
 	cdrom->priv = g_new (GnomeCDRomPrivate, 1);
+	cdrom->playmode = GNOME_CDROM_WHOLE_CD;
+	cdrom->loopmode = GNOME_CDROM_PLAY_ONCE;
 }
 
 /* API */
@@ -317,14 +321,16 @@ gnome_cdrom_fast_forward (GnomeCDRom *cdrom,
 
 gboolean
 gnome_cdrom_play (GnomeCDRom *cdrom,
-		  int track,
-		  GnomeCDRomMSF *position,
+		  int start_track,
+		  GnomeCDRomMSF *start,
+		  int finish_track,
+		  GnomeCDRomMSF *finish,
 		  GError **error)
 {
 	GnomeCDRomClass *klass;
 
 	klass = GNOME_CDROM_GET_CLASS (cdrom);
-	return klass->play (cdrom, track, position, error);
+	return klass->play (cdrom, start_track, start, finish_track, finish, error);
 }
 
 gboolean

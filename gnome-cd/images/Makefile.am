@@ -24,6 +24,10 @@ BITMAPS = 		\
 	    a-stop.png	\
 	    a-stop-pressed.png	\
 	    a-stop-menu.png	\
+	    repeat.png		\
+	    once.png		\
+	    disc.png		\
+	    track.png		\
 	back.xpm	\
 	cdrom.xpm	\
 	cd.png		\
