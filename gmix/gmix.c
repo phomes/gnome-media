@@ -328,9 +328,11 @@ main(int argc,
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
-	gnome_init_with_popt_table("gmix", VERSION,
-				   argc, argv, options,
-				   0, NULL);
+	gnome_program_init("gnome-volume-control", VERSION,
+			   LIBGNOMEUI_MODULE, argc, argv,
+			   GNOME_PARAM_POPT_TABLE, options,
+			   GNOME_PARAM_POPT_FLAGS, 0,
+			   GNOME_PARAM_APP_DATADIR, DATADIR, NULL);		
 
 	if (g_file_exists (GNOME_ICONDIR"/gnome-volume.png"))
 		gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-volume.png");
@@ -1675,11 +1677,22 @@ help_cb (GtkWidget *widget,
 {
 	GError *error = NULL;
 	
-	gnome_help_display ("gmix", "gmix", &error);
+	gnome_help_display ("gnome-volume-control", NULL, &error);
 
 	if (error != NULL) {
-		/* FIXME: This is bad :) */
-		g_warning ("%s\n", error->message);
+		GtkWidget *dialog;
+		dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 ("There was an error displaying help: \n%s"),
+						 error->message);
+
+		g_signal_connect (G_OBJECT (dialog), "response",
+				  G_CALLBACK (gtk_widget_destroy),
+				  NULL);
+		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+		gtk_widget_show (dialog);
 		g_error_free (error);
 	}
 }

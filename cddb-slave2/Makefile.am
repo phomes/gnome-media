@@ -3,6 +3,7 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	$(CDDBSLAVE_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DDATADIR=\""$(datadir)"\"		\
 	-DG_LOG_DOMAIN=\"CDDBSlave2\"
 
 bin_PROGRAMS = CDDBSlave2 			\

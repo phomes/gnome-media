@@ -629,8 +629,8 @@ main (int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	gnome_program_init ("Gnome-CD", VERSION, LIBGNOMEUI_MODULE, 
-			    argc, argv, NULL);
+	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
+			    argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 	client = gnome_master_client ();
     	g_signal_connect (client, "save_yourself",
                          G_CALLBACK (save_session), (gpointer) argv[0]);

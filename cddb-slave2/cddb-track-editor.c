@@ -837,18 +837,42 @@ dialog_response (GtkDialog *dialog,
 		 int response_id,
 		 CDDBTrackEditor *editor)
 {
+	GError *error = NULL;
 	switch (response_id) {
 	case 1:
 		g_print ("Saving...\n");
 		sync_cddb_info (editor->td->info);
 		cddb_slave_client_save (client, editor->discid);
+
+		gtk_widget_destroy (GTK_WIDGET (dialog));
+		editor->dialog = NULL;
+		break;
+
+	case GTK_RESPONSE_HELP:
+		gnome_help_display ("gnome-cd", "gtcd_edit_info", &error);
+		if (error) {
+			GtkWidget *msg_dialog;
+			msg_dialog = gtk_message_dialog_new (GTK_WINDOW(dialog),
+							     GTK_DIALOG_DESTROY_WITH_PARENT,
+							     GTK_MESSAGE_ERROR,
+							     GTK_BUTTONS_CLOSE,
+							     ("There was an error displaying help: \n%s"),
+							     error->message);
+			g_signal_connect (G_OBJECT (msg_dialog), "response",
+					  G_CALLBACK (gtk_widget_destroy),
+					  NULL);
+	
+			gtk_window_set_resizable (GTK_WINDOW (msg_dialog), FALSE);
+			gtk_widget_show (msg_dialog);
+			g_error_free (error);
+		}
 		break;
 
 	default:
+		gtk_widget_destroy (GTK_WIDGET (dialog));
+		editor->dialog = NULL;
 		break;
 	}
-	gtk_widget_destroy (GTK_WIDGET (dialog));
-	editor->dialog = NULL;
 }
 
 static void
@@ -866,6 +890,8 @@ impl_GNOME_Media_CDDBTrackEditor_showWindow (PortableServer_Servant servant,
 		
 		editor->dialog = gtk_dialog_new_with_buttons (_("CDDB Track Editor"),
 							      NULL, 0,
+							      GTK_STOCK_HELP,
+							      GTK_RESPONSE_HELP,
 							      GTK_STOCK_CANCEL,
 							      GTK_RESPONSE_CANCEL,
 							      GTK_STOCK_SAVE,
@@ -1044,8 +1070,8 @@ main (int argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	gnome_program_init ("CDDBSlave2 Track Editor", VERSION, LIBGNOMEUI_MODULE,
-			    argc, argv, NULL);
+	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE,
+			    argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR,NULL);
 
 	g_idle_add (track_editor_init, NULL);
 	bonobo_main ();
