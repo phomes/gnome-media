@@ -795,6 +795,7 @@ preferences_dialog_show (GnomeCD *gcd,
 						  GTK_DIALOG_DESTROY_WITH_PARENT,
 						  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
+	gtk_window_set_default_size (GTK_WINDOW (pd->window), 390, 375);
 	if (only_device == FALSE) {
 		g_signal_connect (G_OBJECT (pd->window), "response",
 				  G_CALLBACK (prefs_response_cb), pd);
@@ -809,7 +810,7 @@ preferences_dialog_show (GnomeCD *gcd,
 	hbox = gtk_hbox_new (FALSE, 2);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pd->window)->vbox), hbox, FALSE, FALSE, 4);
 
-	label = gtk_label_new_with_mnemonic (_("CD player de_vice"));
+	label = gtk_label_new_with_mnemonic (_("CD player de_vice:"));
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	pd->cd_device = gtk_entry_new ();
