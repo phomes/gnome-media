@@ -4,9 +4,9 @@
 # Changwoo Ryu <cwryu@debian.org>, 2002.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 1.520.2\n"
-"POT-Creation-Date: 2002-04-26 12:37+0900\n"
-"PO-Revision-Date: 2002-04-26 12:41+0900\n"
+"Project-Id-Version: gnome-media 1.520.5\n"
+"POT-Creation-Date: 2002-05-06 23:19+0900\n"
+"PO-Revision-Date: 2002-05-06 23:19+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgid "Artist and Title"
 msgstr "음악가 및 제목"
 
 #: cddb-slave2/cddb-slave.c:1256 cddb-slave2/cddb-slave.c:1258
-#: gnome-cd/gnome-cd.c:108
+#: gnome-cd/gnome-cd.c:122
 msgid "Unknown track"
 msgstr "알 수 없는 트랙"
 
@@ -142,7 +142,7 @@ msgstr "클래식 락 (Classical Rock)"
 
 #: cddb-slave2/cddb-track-editor.c:80
 msgid "Country"
-msgstr "국가"
+msgstr "컨츄리 (Country)"
 
 #: cddb-slave2/cddb-track-editor.c:81
 msgid "Dance"
@@ -1187,7 +1187,7 @@ msgstr "레이블을 기본 값으로 리셋(_R)"
 msgid "Gnome Volume Control Preferences"
 msgstr "그놈 볼륨 조정 기본 설정"
 
-#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:472
+#: gmix/prefs.c:397 gnome-cd/gnome-cd.c:486
 msgid "Preferences"
 msgstr "기본 설정"
 
@@ -1238,45 +1238,45 @@ msgid "Line for displaying the name of the album"
 msgstr "앨범의 이름을 표시하는 라인"
 
 #: gnome-cd/callbacks.c:73 gnome-cd/callbacks.c:153 gnome-cd/callbacks.c:250
-#: gnome-cd/callbacks.c:522 gnome-cd/gnome-cd.c:548 grecord/src/gui.c:232
+#: gnome-cd/callbacks.c:502 gnome-cd/gnome-cd.c:564 grecord/src/gui.c:232
 msgid "Play"
 msgstr "재생"
 
 #: gnome-cd/callbacks.c:182 gnome-cd/callbacks.c:212 gnome-cd/callbacks.c:292
 #: gnome-cd/callbacks.c:332 gnome-cd/callbacks.c:356 gnome-cd/callbacks.c:397
-#: gnome-cd/callbacks.c:475
+#: gnome-cd/callbacks.c:452
 msgid "Pause"
 msgstr "일시 중지"
 
-#: gnome-cd/callbacks.c:584
+#: gnome-cd/callbacks.c:570
 msgid "Disc error"
 msgstr "디스크 오류"
 
-#: gnome-cd/callbacks.c:612
+#: gnome-cd/callbacks.c:603 gnome-cd/callbacks.c:614
 msgid "Unknown Artist"
 msgstr "알 수 없는 음악가"
 
-#: gnome-cd/callbacks.c:615
+#: gnome-cd/callbacks.c:606 gnome-cd/callbacks.c:618
 msgid "Unknown Album"
 msgstr "알 수 없는 앨범"
 
-#: gnome-cd/callbacks.c:667
+#: gnome-cd/callbacks.c:660
 msgid "No disc"
 msgstr "디스크 없음"
 
-#: gnome-cd/callbacks.c:693
+#: gnome-cd/callbacks.c:686
 msgid "Drive open"
 msgstr "드라이브 열림"
 
-#: gnome-cd/callbacks.c:705
+#: gnome-cd/callbacks.c:698
 msgid "Drive Error"
 msgstr "드라이브 오류"
 
-#: gnome-cd/callbacks.c:726
+#: gnome-cd/callbacks.c:719
 msgid "Copyright (C) 2001, 2002"
 msgstr "Copyright (C) 2001, 2002"
 
-#: gnome-cd/callbacks.c:727
+#: gnome-cd/callbacks.c:720
 msgid "A GNOME cd player"
 msgstr "그놈 CD 플레이어"
 
@@ -1288,36 +1288,36 @@ msgstr "알 수 없는 음악가"
 msgid "Unknown disc"
 msgstr "알 수 없는 디스크"
 
-#: gnome-cd/gnome-cd.c:134
+#: gnome-cd/gnome-cd.c:148
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - 알 수 없음"
 
-#: gnome-cd/gnome-cd.c:298
+#: gnome-cd/gnome-cd.c:312
 msgid "P_revious track"
 msgstr "이전 트랙(_R)"
 
-#: gnome-cd/gnome-cd.c:299
+#: gnome-cd/gnome-cd.c:313
 msgid "_Stop"
 msgstr "중지(_S)"
 
-#: gnome-cd/gnome-cd.c:300
+#: gnome-cd/gnome-cd.c:314
 msgid "_Play / Pause"
 msgstr "재생 / 일시 중지(_P)"
 
-#: gnome-cd/gnome-cd.c:301
+#: gnome-cd/gnome-cd.c:315
 msgid "_Next track"
 msgstr "다음 트랙(_N)"
 
-#: gnome-cd/gnome-cd.c:302
+#: gnome-cd/gnome-cd.c:316
 msgid "_Eject disc"
 msgstr "디스크 꺼내기(_E)"
 
-#: gnome-cd/gnome-cd.c:303
+#: gnome-cd/gnome-cd.c:317
 msgid "_About Gnome-CD"
 msgstr "그놈 CD 정보(_A)"
 
-#: gnome-cd/gnome-cd.c:380
+#: gnome-cd/gnome-cd.c:394
 msgid ""
 "There is no CD device set. This means that GnomeCD\n"
 "will be unable to run. Press Set device to go to a dialog\n"
@@ -1327,15 +1327,15 @@ msgstr ""
 "없습니다. 장치를 설정할 수 있는 대화 상자에서 장치를\n"
 "설정하시거나, \"끝내기\"를 클릭해 GnomeCD를 끝내십시오"
 
-#: gnome-cd/gnome-cd.c:384 gnome-cd/gnome-cd.c:424
+#: gnome-cd/gnome-cd.c:398 gnome-cd/gnome-cd.c:438
 msgid "Set device"
 msgstr "장치 설정"
 
-#: gnome-cd/gnome-cd.c:386
+#: gnome-cd/gnome-cd.c:400
 msgid "No CD device"
 msgstr "CD 장치가 없습니다"
 
-#: gnome-cd/gnome-cd.c:420
+#: gnome-cd/gnome-cd.c:434
 #, c-format
 msgid ""
 "%s\n"
@@ -1343,57 +1343,58 @@ msgid ""
 "go to a dialog where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
 "%s\n"
-"GnomeCD를 실행할 수 없습니다. 장치를 설정할 수 있는 대화 상자에서 장치를 설정하시거나, \"끝내기\"를 클릭해 GnomeCD를 끝내십시오"
+"GnomeCD를 실행할 수 없습니다. 장치를 설정할 수 있는 대화 상자에서 장치를 설정"
+"하시거나, \"끝내기\"를 클릭해 GnomeCD를 끝내십시오"
 
-#: gnome-cd/gnome-cd.c:426
+#: gnome-cd/gnome-cd.c:440
 msgid "Invalid CD device"
 msgstr "CD 장치가 잘못되었습니다"
 
-#: gnome-cd/gnome-cd.c:467
+#: gnome-cd/gnome-cd.c:481
 msgid "Open track editor"
 msgstr "트랙 편집기 열기"
 
-#: gnome-cd/gnome-cd.c:467
+#: gnome-cd/gnome-cd.c:481
 msgid "Track editor"
 msgstr "트랙 편집기"
 
-#: gnome-cd/gnome-cd.c:527
+#: gnome-cd/gnome-cd.c:543
 msgid "Previous track"
 msgstr "이전 트랙"
 
-#: gnome-cd/gnome-cd.c:527
+#: gnome-cd/gnome-cd.c:543
 msgid "Previous"
 msgstr "이전"
 
-#: gnome-cd/gnome-cd.c:531
+#: gnome-cd/gnome-cd.c:547
 msgid "Rewind"
 msgstr "되감기"
 
-#: gnome-cd/gnome-cd.c:548
+#: gnome-cd/gnome-cd.c:564
 msgid "Play / Pause"
 msgstr "재생 / 일시 중지"
 
-#: gnome-cd/gnome-cd.c:553 grecord/src/gui.c:246
+#: gnome-cd/gnome-cd.c:569 grecord/src/gui.c:246
 msgid "Stop"
 msgstr "중지"
 
-#: gnome-cd/gnome-cd.c:557
+#: gnome-cd/gnome-cd.c:573
 msgid "Fast forward"
 msgstr "앞으로 빨리 감기"
 
-#: gnome-cd/gnome-cd.c:565
+#: gnome-cd/gnome-cd.c:581
 msgid "Next track"
 msgstr "다음 트랙"
 
-#: gnome-cd/gnome-cd.c:569
+#: gnome-cd/gnome-cd.c:585
 msgid "Eject CD"
 msgstr "CD 꺼내기"
 
-#: gnome-cd/gnome-cd.c:569
+#: gnome-cd/gnome-cd.c:585
 msgid "Eject"
 msgstr "꺼내기"
 
-#: gnome-cd/gnome-cd.c:629
+#: gnome-cd/gnome-cd.c:649
 msgid "Cannot create player"
 msgstr "재생기를 만들 수 없습니다"
 
@@ -1405,7 +1406,8 @@ msgstr "CD 재생기"
 msgid "Play audio CDs"
 msgstr "오디오 CD를 재생합니다"
 
-#: gnome-cd/linux-cdrom.c:144 gnome-cd/linux-cdrom.c:1316
+#: gnome-cd/linux-cdrom.c:144 gnome-cd/linux-cdrom.c:1148
+#: gnome-cd/linux-cdrom.c:1315
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "%s에 접근할 권한이 없습니다."
@@ -1515,20 +1517,10 @@ msgstr "(linux_cdrom_set_volume:1): ioctl 실패 %s"
 #. Failed, it's not a CDROM drive
 #: gnome-cd/linux-cdrom.c:1055
 #, c-format
-msgid "%s is not a CDROM drive\n"
-msgstr "%s이(가) CDROM 드라이브가 아닙니다\n"
+msgid "%s is not a CDROM drive"
+msgstr "%s이(가) CDROM 드라이브가 아닙니다"
 
-#: gnome-cd/linux-cdrom.c:1062
-#, c-format
-msgid "%s is a CDROM drive\n"
-msgstr "%s이(가) CDROM 드라이브입니다\n"
-
-#: gnome-cd/linux-cdrom.c:1149
-#, c-format
-msgid "You do not seem to have permission to acess %s."
-msgstr "%s에 접근할 권한이 없습니다."
-
-#: gnome-cd/linux-cdrom.c:1158 gnome-cd/linux-cdrom.c:1326
+#: gnome-cd/linux-cdrom.c:1157 gnome-cd/linux-cdrom.c:1325
 #, c-format
 msgid ""
 "%s does not appear to point to a valid CDRom device. This may be because:\n"
@@ -1641,7 +1633,7 @@ msgstr ""
 "\n"
 "sox가 없으면, 녹음 혹은 여러가지 효과를 사용하지 못합니다."
 
-#: grecord/src/grec.c:170 grecord/src/grec.c:217 grecord/src/grec.c:1284
+#: grecord/src/grec.c:170 grecord/src/grec.c:217 grecord/src/grec.c:1288
 msgid "Could not fork child process"
 msgstr "자식 프로세스를 포크할수 없습니다"
 
@@ -1783,11 +1775,11 @@ msgstr ""
 "현재 샘플의 크기가\n"
 "%i Mb보다 큽니다!"
 
-#: grecord/src/grec.c:1178
+#: grecord/src/grec.c:1182
 msgid "Save sound file"
 msgstr "음향 파일 저장"
 
-#: grecord/src/grec.c:1349
+#: grecord/src/grec.c:1353
 msgid ""
 "The sound device is not ready. Please check that there isn't\n"
 "another program running that is using the device."
