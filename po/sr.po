@@ -1,5 +1,5 @@
 # Serbian translation of gnome-media
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
 #
 # This file is distributed under the same license as the gnome-media package.
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 13:55+0100\n"
-"PO-Revision-Date: 2004-10-15 23:44+0200\n"
+"POT-Creation-Date: 2005-03-06 15:30+0100\n"
+"PO-Revision-Date: 2005-03-06 15:40+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -938,7 +938,7 @@ msgstr "Линија у којој се приказује назив албум
 #: gnome-cd/callbacks.c:83 gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:270
 #: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:751 grecord/gsr.xml.h:13
 msgid "Play"
-msgstr "Репродукција"
+msgstr "Пусти"
 
 #: gnome-cd/callbacks.c:156 gnome-cd/callbacks.c:202 gnome-cd/callbacks.c:232
 #: gnome-cd/callbacks.c:312 gnome-cd/callbacks.c:352 gnome-cd/callbacks.c:376
@@ -949,11 +949,11 @@ msgstr "Пауза"
 #: gnome-cd/callbacks.c:557
 #, c-format
 msgid "Playing %s - %s"
-msgstr "Репродукција %s - %s"
+msgstr "Пушта %s — %s"
 
 #: gnome-cd/callbacks.c:561
 msgid "Playing"
-msgstr "Репродукција"
+msgstr "Пуштам"
 
 #: gnome-cd/callbacks.c:585
 msgid "Paused"
@@ -1144,11 +1144,11 @@ msgstr "Премотавање уназад"
 
 #: gnome-cd/gnome-cd.c:751
 msgid "Play / Pause"
-msgstr "Репродукција / Пауза"
+msgstr "Пусти / Пауза"
 
 #: gnome-cd/gnome-cd.c:756 grecord/gsr.xml.h:30
 msgid "Stop"
-msgstr "Заустави репродукцију"
+msgstr "Заустави"
 
 #: gnome-cd/gnome-cd.c:760
 msgid "Fast forward"
@@ -1176,27 +1176,27 @@ msgstr "Покрени само уколико већ није покренут 
 
 #: gnome-cd/gnome-cd.c:909
 msgid "Play the CD on startup"
-msgstr "Репродукуј ЦД по стартовању"
+msgstr "Пусти ЦД по покретању"
 
 #: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
 #: gst-mixer/src/main.c:228
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
-msgstr ""
+msgstr "Регистар није присутан или је оштећен, освежите га покретањем gst-register"
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:959
 msgid "Cannot create player"
-msgstr "Нејие могуће креирати плејер"
+msgstr "Не могу да направим плејер"
 
 #: gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
-msgstr "Репродукција аудио ЦД-ова"
+msgstr "Пуштање звучних ЦД-ова"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "CD player theme"
-msgstr "Тема"
+msgstr "Тема ЦД плејера"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Device path"
@@ -1244,23 +1244,20 @@ msgid "CD Player Preferences"
 msgstr "Подешавања ЦД плејера"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "Путања до уређаја"
+msgstr "_Уређај:"
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "Понашање"
 
 #: gnome-cd/preferences.c:652
-#, fuzzy
 msgid "Start _playback when CD Player starts"
-msgstr "Пусти ЦД када се покрене ЦД плејер"
+msgstr "Пусти _када се покрене ЦД плејер"
 
 #: gnome-cd/preferences.c:653
-#, fuzzy
 msgid "Start playback when CD Player starts"
-msgstr "Започни репродукцију ЦД-а када се покрене ЦД плејер"
+msgstr "Пусти када се покрене ЦД плејер"
 
 #: gnome-cd/preferences.c:665
 msgid "Attempt to _eject CD when CD Player exits"
@@ -1271,14 +1268,12 @@ msgid "Attempt to eject CD when CD Player exits"
 msgstr "Покушај да избациш ЦД при затварању ЦД плејера"
 
 #: gnome-cd/preferences.c:682
-#, fuzzy
 msgid "Themes"
-msgstr "Време"
+msgstr "Теме"
 
 #: gnome-cd/preferences.c:694
-#, fuzzy
 msgid "_Select a theme:"
-msgstr "Из_аберите нумере које приказати:"
+msgstr "Из_аберите тему:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1449,6 +1444,7 @@ msgstr "_Сними"
 msgid "_Save"
 msgstr "_Сачувај"
 
+# bug: this won't work
 #. Translator comment: untitled here implies that
 #. * there is no active sound sample. Any newly
 #. * recorded samples will be saved to disk with this
@@ -1464,12 +1460,12 @@ msgstr "_Сачувај"
 #. * a proper filename. See gnome-record.c:94.
 #: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
 #: grecord/src/gsr-window.c:1896
-#, fuzzy, c-format
+#, c-format
 msgid "Untitled"
 msgid_plural "Untitled-%d"
-msgstr[0] "Наслов"
-msgstr[1] "Наслов"
-msgstr[2] "Наслов"
+msgstr[0] "Неименовани"
+msgstr[1] "Неименовани-%d"
+msgstr[2] "Неименовани-%d"
 
 #: grecord/src/gnome-recorder.c:168
 msgid "Dummy option"
@@ -1519,9 +1515,8 @@ msgstr "Спреман"
 
 #. Add replace button
 #: grecord/src/gsr-window.c:619
-#, fuzzy
 msgid "_Replace"
-msgstr "Спејс"
+msgstr "_Замени"
 
 #: grecord/src/gsr-window.c:636
 #, c-format
@@ -1529,16 +1524,19 @@ msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
+"Датотека са именом „%s“ већ постоји.\n"
+"Желите ли да је замените овом коју чувате?"
 
+# bug: s/" %s"/"%s"/ (extra space after ")
 #: grecord/src/gsr-window.c:689
 #, c-format
 msgid "Could not save the file \" %s\""
-msgstr ""
+msgstr "Не могу да сачувам датотеку „%s“"
 
 #: grecord/src/gsr-window.c:698
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr ""
+msgstr "Не могу да сачувам датотеку „%s“"
 
 #: grecord/src/gsr-window.c:746
 msgid "Save file as"
@@ -1563,8 +1561,9 @@ msgstr "%s (није сачуван)"
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s (%llu бајт)"
+msgstr[1] "%s (%llu бајта)"
+msgstr[2] "%s (%llu бајтова)"
 
 #: grecord/src/gsr-window.c:911
 msgid "Unknown size"
@@ -1610,9 +1609,8 @@ msgid "Audio Information"
 msgstr "Подаци о снимку"
 
 #: grecord/src/gsr-window.c:1055
-#, fuzzy
 msgid "File duration:"
-msgstr "Подаци о датотеци"
+msgstr "Трајање датотеке:"
 
 #: grecord/src/gsr-window.c:1061
 msgid "Number of channels:"
@@ -1704,7 +1702,7 @@ msgstr "Снимање"
 
 #: gst-mixer/src/element.c:234
 msgid "Switches"
-msgstr ""
+msgstr "Прекидачи"
 
 #: gst-mixer/src/element.c:236
 msgid "Options"
@@ -1850,9 +1848,8 @@ msgid "Track %s: lock channels together"
 msgstr "Нумера %s: привежи канале заједно"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
 msgid "_Change Device"
-msgstr "Измени уређај"
+msgstr "_Промени уређај"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
@@ -1873,13 +1870,12 @@ msgstr "Управљање јачином звука: %s"
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
 #: gst-mixer/src/window.c:375
-#, fuzzy
 msgid "translator-credits"
 msgstr ""
 "Александар Урошевић <urke@users.sourceforge.net>\n"
 "Данило Шеган <danilo@prevod.org>\n"
 "\n"
-"http://www.prevod.org/"
+"Prevod.org — превод на српски језик."
 
 #: gst-mixer/src/window.c:383
 msgid "A GNOME/GStreamer-based volume control application"
