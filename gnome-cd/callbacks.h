@@ -38,4 +38,6 @@ void mixer_cb (GtkButton *button,
 void cd_status_changed_cb (GnomeCDRom *cdrom,
 			   GnomeCDRomStatus *status,
 			   GnomeCD *gcd);
+void about_cb (GtkWidget *widget,
+	       gpointer data);
 #endif

@@ -147,7 +147,7 @@ make_button_from_widget (GnomeCD *gcd,
 
 	button = gtk_button_new ();
 	gtk_container_add (GTK_CONTAINER (button), widget);
-	gtk_container_set_border_width (GTK_CONTAINER (button), 2);
+/*  	gtk_container_set_border_width (GTK_CONTAINER (button), 2); */
 	
 	if (func) {
 		g_signal_connect (G_OBJECT (button), "clicked",
@@ -218,13 +218,52 @@ window_destroy_cb (GtkWidget *window,
 	bonobo_main_quit ();
 }
 
+struct _MenuItem {
+	char *name;
+	char *icon;
+	GCallback callback;
+};
+
+struct _MenuItem menuitems[] = {
+	{N_("P_revious track"), NULL, G_CALLBACK (back_cb)},
+	{N_("_Stop"), NULL, G_CALLBACK (stop_cb)},
+	{N_("_Play / Pause"), NULL, G_CALLBACK (play_cb)},
+	{N_("_Next track"), NULL, G_CALLBACK (next_cb)},
+	{N_("_Eject disc"), NULL, G_CALLBACK (eject_cb)},
+	{N_("_About Gnome-CD"), NULL, G_CALLBACK (about_cb)},
+	{NULL, NULL, NULL}
+};
+
+static GtkWidget *
+make_popup_menu (GnomeCD *gcd)
+{
+	GtkWidget *menu;
+	int i;
+
+	menu = gtk_menu_new ();
+	for (i = 0; menuitems[i].name != NULL; i++) {
+		GtkWidget *item;
+
+		item = gtk_image_menu_item_new_with_mnemonic (menuitems[i].name);
+		gtk_widget_show (item);
+
+		gtk_menu_append (GTK_MENU (menu), item);
+		if (menuitems[i].callback != NULL) {
+			g_signal_connect (G_OBJECT (item), "activate",
+					  G_CALLBACK (menuitems[i].callback), gcd);
+		}
+	}
+
+	return menu;
+}
+
 static GnomeCD *
 init_player (void) 
 {
 	GnomeCD *gcd;
-	GtkWidget *container, *display_box;
-	GtkWidget *top_hbox, *bottom_hbox, *button_hbox, *side_vbox;
-	GtkWidget *button, *arrow, *frame;
+	GtkWidget *display_box;
+	GtkWidget *top_hbox, *button_hbox, *side_vbox;
+	GtkWidget *button, *arrow;
 	GdkPixbuf *pixbuf;
 	GError *error;
 	char *fullname;
@@ -278,14 +317,10 @@ init_player (void)
 	/* Create the display */
 	display_box = gtk_vbox_new (FALSE, 1);
 
-	frame = gtk_frame_new (NULL);
-	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-
 	gcd->display = GTK_WIDGET (cd_display_new ());
-
-	gtk_container_add (GTK_CONTAINER (frame), gcd->display);
-
-	gtk_box_pack_start (GTK_BOX (display_box), frame, TRUE, TRUE, 0);
+	gnome_popup_menu_attach (make_popup_menu (gcd), gcd->display, NULL);
+	
+	gtk_box_pack_start (GTK_BOX (display_box), gcd->display, TRUE, TRUE, 0);
 
 	gcd->tracks = gtk_option_menu_new ();
 	g_signal_connect (G_OBJECT (gcd->tracks), "changed",
@@ -297,14 +332,13 @@ init_player (void)
 	
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), top_hbox, TRUE, TRUE, 0);
 	
-	bottom_hbox = gtk_hbox_new (TRUE, 0);
-	button_hbox = gtk_hbox_new (TRUE, 0);
+	button_hbox = gtk_hbox_new (TRUE, 2);
 	
-	button = make_button_from_file (gcd, "gnome-cd/back.xpm", G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+	button = make_button_from_file (gcd, "gnome-cd/a-first.png", G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->back_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/rewind.xpm", NULL, _("Rewind"), _("Rewind"));
+	button = make_button_from_file (gcd, "gnome-cd/a-rwnd.png", NULL, _("Rewind"), _("Rewind"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (rewind_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -314,12 +348,12 @@ init_player (void)
 
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
-	fullname = gnome_pixmap_file ("gnome-cd/play.xpm");
+	fullname = gnome_pixmap_file ("gnome-cd/a-play.png");
 	gcd->play_image = gtk_image_new_from_file (fullname);
 	g_object_ref (gcd->play_image);
 	g_free (fullname);
 
-	fullname = gnome_pixmap_file ("gnome-cd/pause.xpm");
+	fullname = gnome_pixmap_file ("gnome-cd/a-pause.png");
 	gcd->pause_image = gtk_image_new_from_file (fullname);
 	gtk_widget_show (gcd->pause_image);
 	g_object_ref (gcd->pause_image);
@@ -330,11 +364,11 @@ init_player (void)
 	gcd->play_b = button;
 	gcd->current_image = gcd->play_image;
 	
-	button = make_button_from_file (gcd, "gnome-cd/stop.xpm", G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
+	button = make_button_from_file (gcd, "gnome-cd/a-stop.png", G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->stop_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/ffwd.xpm", NULL, _("Fast forward"), _("Fast forward"));
+	button = make_button_from_file (gcd, "gnome-cd/a-fwd.png", NULL, _("Fast forward"), _("Fast forward"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (ffwd_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -342,14 +376,13 @@ init_player (void)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->ffwd_b = button;
 
-	button = make_button_from_file (gcd, "gnome-cd/next.xpm", G_CALLBACK (next_cb), _("Next track"), _("Next track"));
+	button = make_button_from_file (gcd, "gnome-cd/a-last.png", G_CALLBACK (next_cb), _("Next track"), _("Next track"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->next_b = button;
 	
-	button = make_button_from_file (gcd, "gnome-cd/eject.xpm", G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
+	button = make_button_from_file (gcd, "gnome-cd/a-eject.png", G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->eject_b = button;
-	gtk_box_pack_start (GTK_BOX (bottom_hbox), button_hbox, TRUE, TRUE, 0);
 
 #if 0
 	button = make_button_from_file (gcd, "gnome-cd/mixer.png", G_CALLBACK (mixer_cb), _("Open mixer"), _("Open Mixer"));
@@ -361,7 +394,7 @@ init_player (void)
 	gcd->volume_b = button;
 	gtk_box_pack_start (GTK_BOX (bottom_hbox), button, FALSE, FALSE, 0);
 #endif
-	gtk_box_pack_start (GTK_BOX (gcd->vbox), bottom_hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gcd->vbox), button_hbox, FALSE, FALSE, 0);
 
 	gtk_container_add (GTK_CONTAINER (gcd->window), gcd->vbox);
 	gtk_widget_show_all (gcd->vbox);

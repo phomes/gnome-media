@@ -201,17 +201,13 @@ expose_event (GtkWidget *drawing_area,
 		GdkRectangle inter;
 		
 		if (gdk_rectangle_intersect (area, &priv->corners[i]->rect, &inter) == TRUE) {
-			GdkGC *gc;
-
-			gc = gdk_gc_new (drawing_area->window);
 			draw_pixbuf (priv->corners[i]->pixbuf,
 				     drawing_area->window,
-				     drawing_area->style->black_gc,
+				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 				     inter.x - priv->corners[i]->rect.x,
 				     inter.y - priv->corners[i]->rect.y,
 				     inter.x, inter.y,
 				     inter.width, inter.height);
-			g_object_unref (gc);
 		}
 	}
 
@@ -221,7 +217,7 @@ expose_event (GtkWidget *drawing_area,
 		if (gdk_rectangle_intersect (&priv->straights[i]->rect, area, &inter) == TRUE) {
 			draw_pixbuf (priv->straights[i]->scaled,
 				     drawing_area->window,
-				     drawing_area->style->black_gc,
+				     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 				     inter.x - priv->straights[i]->rect.x,
 				     inter.y - priv->straights[i]->rect.y,
 				     inter.x, inter.y,
@@ -232,17 +228,15 @@ expose_event (GtkWidget *drawing_area,
 	for (i = LEFT; i <= RIGHT; i++) {
 		GdkRectangle inter;
 		if (gdk_rectangle_intersect (area, &priv->straights[i]->rect, &inter) == TRUE) {
-			GdkGC *gc;
 			int repeats, extra_s, extra_end, d, j;
 
 			d = inter.y / 16;
 			extra_s = inter.y - (d * 16);
 			
-			gc = gdk_gc_new (drawing_area->window);
 			if (extra_s > 0) {
 				draw_pixbuf (priv->straights[i]->pixbuf,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->straights[i]->rect.x,
 					     16 - extra_s,
 					     inter.x, inter.y,
@@ -255,7 +249,7 @@ expose_event (GtkWidget *drawing_area,
 			for (j = 0; j < repeats; j++) {
 				draw_pixbuf (priv->straights[i]->pixbuf,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->straights[i]->rect.x,
 					     0,
 					     inter.x,
@@ -266,15 +260,13 @@ expose_event (GtkWidget *drawing_area,
 			if (extra_end > 0) {
 				draw_pixbuf (priv->straights[i]->pixbuf,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->straights[i]->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (repeats * 16) + extra_s,
 					     inter.width, extra_end);
 			}
-
-			g_object_unref (gc);
 		}
 	}
 							       
@@ -282,17 +274,15 @@ expose_event (GtkWidget *drawing_area,
 	{
 		GdkRectangle inter;
 		if (gdk_rectangle_intersect (area, &priv->middle->rect, &inter) == TRUE) {
-			GdkGC *gc;
 			int repeats, extra_s, extra_end, j, d;
 
 			d = inter.y / 16;
 			extra_s = inter.y - (d * 16);
 			
-			gc = gdk_gc_new (drawing_area->window);
 			if (extra_s > 0) {
 				draw_pixbuf (priv->middle->scaled,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->middle->rect.x,
 					     16 - extra_s,
 					     inter.x, inter.y,
@@ -305,7 +295,7 @@ expose_event (GtkWidget *drawing_area,
 			for (j = 0; j < repeats; j++) {
 				draw_pixbuf (priv->middle->scaled,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->middle->rect.x,
 					     0,
 					     inter.x,
@@ -316,15 +306,13 @@ expose_event (GtkWidget *drawing_area,
 			if (extra_end > 0) {
 				draw_pixbuf (priv->middle->scaled,
 					     drawing_area->window,
-					     drawing_area->style->black_gc,
+					     drawing_area->style->bg_gc[GTK_STATE_NORMAL],
 					     inter.x - priv->middle->rect.x,
 					     0,
 					     inter.x,
 					     inter.y + (repeats * 16) + extra_s,
 					     inter.width, extra_end);
 			}
-
-			g_object_unref (gc);
 		}
 	}
 

@@ -490,4 +490,21 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
 	gcd->last_status = gnome_cdrom_copy_status (status);
 }
-		 
+
+void
+about_cb (GtkWidget *widget,
+	  gpointer data)
+{
+	static GtkWidget *about = NULL;
+	const char *authors[2] = {"Iain Holmes", NULL};
+	
+	if (about == NULL) {
+		about = gnome_about_new ("Gnome CD", VERSION,
+					 _("Copyright (C) 2001, 2002"),
+					 _("A GNOME cd player"),
+					 authors, NULL, NULL, NULL);
+		g_signal_connect (G_OBJECT (about), "destroy",
+				  G_CALLBACK (gtk_widget_destroyed), &about);
+		gtk_widget_show (about);
+	}
+}
