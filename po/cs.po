@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.2.3\n"
-"POT-Creation-Date: 2002-10-09 01:38+0100\n"
-"PO-Revision-Date: 2002-09-29 12:46GMT\n"
+"POT-Creation-Date: 2002-10-09 05:19+0200\n"
+"PO-Revision-Date: 2002-10-11 00:54+0200\n"
 "Last-Translator: Michal Bukovjan <bukm@centrum.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,38 +17,35 @@ msgstr ""
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr ""
+msgstr "Adresa serveru, který kontaktovat pro dotazy o CD"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:2 cddb-slave2/cddb-slave-capplet.c:776
 msgid "Port"
 msgstr "Port"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#, fuzzy
 msgid "Server name"
-msgstr "Server"
+msgstr "Jméno serveru"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "The hostname that will be sent with all queries"
-msgstr ""
+msgstr "Jméno počítače, které se bude posílat se všemi dotazy"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "The port that the server is running the database on"
-msgstr ""
+msgstr "Port, na kterém běží server databáze"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:6
-#, fuzzy
 msgid "The username"
-msgstr "Název tématu"
+msgstr "Jméno uživatele"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The username that will be sent with all queries"
-msgstr ""
+msgstr "Jméno uživatele, které se bude posílat se všemi dotazy"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:8
-#, fuzzy
 msgid "Your hostname"
-msgstr "Název počítače:"
+msgstr "Název vašeho počítače"
 
 #: cddb-slave2/cddb-disclosure.c:245
 msgid "Expander Size"
@@ -1082,10 +1079,10 @@ msgstr "Nápověda"
 
 #: gmix/gmix.c:146
 msgid "Mixer device to use"
-msgstr ""
+msgstr "Zařízení mixéru, které použít"
 
 #: gmix/gmix.c:327
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Volume control is unable to run correctly.\n"
 "\n"
@@ -1095,9 +1092,13 @@ msgid ""
 "\n"
 "Press Quit to exit Volume control"
 msgstr ""
-"Nepodařilo se otevřít zvukové zařízení.\n"
-"Zkontrolujte práva pro otevření /dev/mixer a ujistěte se,\n"
-"máte-li v jádru zakompilovanou podporu zvuku."
+"Ovládání hlasitosti nemůže fungovat.\n"
+"\n"
+"Nemohu se otevřít zvukové zařízení '%s'.\n"
+"Zkontrolujte prosím, jestli máte oprávnění otevřít '%s'\n"
+"a jestli máte v jádře podporu zvuku.\n"
+"\n"
+"Ovládání hlasitosti ukončíte stisknutím Konec"
 
 #: gmix/gmix.c:381
 msgid ""
@@ -1107,16 +1108,19 @@ msgid ""
 "\n"
 "Press Quit to quit Volume control"
 msgstr ""
+"Ovládání hlasitosti nemůže fungovat.\n"
+"\n"
+"Pro více detailů o důvodech selhání stiskněte tlačítko Detaily.\n"
+"\n"
+"Ovládání hlasitosti ukončíte stisknutím Konec"
 
 #: gmix/gmix.c:384 gnome-cd/gnome-cd.c:477
-#, fuzzy
 msgid "_Details"
-msgstr "Metal"
+msgstr "_Detaily"
 
 #: gmix/gmix.c:387
-#, fuzzy
 msgid "Invalid mixer device"
-msgstr "Neplatné CD zařízení"
+msgstr "Neplatné zařízení mixéru"
 
 #: gmix/gmix.c:626
 #, c-format
@@ -1312,16 +1316,15 @@ msgid "You do not seem to have permission to access %s."
 msgstr "Zdá se, že nemáte oprávnění k přístupu na %s."
 
 #: gnome-cd/cdrom.c:373
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not present in your machine\n"
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"%s zřejmě neukazuje na platnou mechaniku CD. To může nastat z několika "
-"příčin:\n"
-"a) podpora CD není zakompilovaná v jádře Linuxu\n"
+"%s zřejmě neukazuje na platné zařízení CD. To může nastat z několika příčin:\n"
+"a) podpora CD není na vašem počítači k dispozici\n"
 "b) nemáte potřebná oprávnění k přístupu k CD mechanice\n"
 "c) %s není CD mechanika.\n"
 
@@ -1389,7 +1392,6 @@ msgid "No CD device"
 msgstr "Žádné CD zařízení"
 
 #: gnome-cd/gnome-cd.c:473
-#, fuzzy
 msgid ""
 "GnomeCD is unable to run correctly.\n"
 "\n"
@@ -1398,15 +1400,15 @@ msgid ""
 "Press Set device to go to a dialog where you can set the device, or click "
 "Quit to quit GnomeCD"
 msgstr ""
-"%s\n"
-"To znamená, že program GNOMECD nebude fungovat správně. Stiskněte tlačítko "
-"Nastavit zařízení a nastavte toto zařízení, nebo tlačítko Ukončit a ukončete "
-"tuto aplikaci"
+"GnomeCD nemůže fungovat.\n"
+"\n"
+"Pro více detailů o důvodech selhání stiskněte tlačítko Detaily.\n"
+"\n"
+"Stiskněte tlačítko Nastavit zařízení a nastavte zařízení, nebo ukončete GnomeCD stisknutím Konec"
 
 #: gnome-cd/gnome-cd.c:478
-#, fuzzy
 msgid "_Set device"
-msgstr "Nastavit zařízení"
+msgstr "_Nastavit zařízení"
 
 #: gnome-cd/gnome-cd.c:480
 msgid "Invalid CD device"
@@ -1473,17 +1475,16 @@ msgid "Eject"
 msgstr "Vysunout"
 
 #: gnome-cd/gnome-cd.c:671
-#, fuzzy
 msgid "CD device to use"
-msgstr "Žádné CD zařízení"
+msgstr "Zařízení CD, které použít"
 
 #: gnome-cd/gnome-cd.c:680
 msgid "Only start if there isn't already a CD player application running"
-msgstr ""
+msgstr "Spustit jen, když ještě neběží aplikace přehrávače CD"
 
 #: gnome-cd/gnome-cd.c:682
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Přehrávat CD při spuštění"
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:712
@@ -1500,48 +1501,47 @@ msgstr "Přehrávejte si zvuková CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "Action on application exit"
-msgstr ""
+msgstr "Akce při ukončení aplikace"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "Action on start"
-msgstr ""
+msgstr "Akce při startu"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:3
-#, fuzzy
 msgid "CD player theme"
-msgstr "Zařízení pro přehrá_vání CD:"
+msgstr "Téma přehrávače CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Device path"
-msgstr ""
+msgstr "Cesta k zařízení"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Should the CD player attempt to shut the CD drive on start up?"
-msgstr ""
+msgstr "Má se přehrávač CD při startu pokusit zasunout mechaniku?"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Shut the CD tray on start"
-msgstr ""
+msgstr "Zasunout mechaniku CD při startu"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
+msgstr "Cesta k jednotce CD, kterou má přehrávač CD používat pro přehrávání CD"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid ""
 "What action should the CD player perform on exit? 0 = Nothing, 1 = Stop "
 "playing, 2 = Eject the CD, 3 = Attempt to close the tray"
-msgstr ""
+msgstr "Jakou akci má přehrávač CD provést při ukončení? 0 = Nic, 1 = Zastavit přehrávání, 2 = Vysunout CD, 3 = Pokusit se zasunout mechaniku"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid ""
 "What action should the CD player perform on start up? 0 = Nothing, 1 = Start "
 "playing, 2 = Stop playing"
-msgstr ""
+msgstr "Jakou akci má přehrávač CD provést při startu? 0 = Nic, 1 = Začít přehrávat, 2 = Zastavit přehrávání"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for it's appearance"
-msgstr ""
+msgstr "Jaké téma má přehrávač CD používat pro svůj vzhled"
 
 #: gnome-cd/preferences.c:83
 #, c-format
@@ -1578,27 +1578,24 @@ msgid "Do _nothing"
 msgstr "Nedělat _nic"
 
 #: gnome-cd/preferences.c:888
-#, fuzzy
 msgid "Do nothing when CD Player starts"
-msgstr "Při spuštění Přehrávače CD pro GNOME"
+msgstr "Při spuštění Přehrávače CD nedělat nic"
 
 #: gnome-cd/preferences.c:898
 msgid "Start _playing CD"
 msgstr "Začít _přehrávání CD"
 
 #: gnome-cd/preferences.c:899
-#, fuzzy
 msgid "Start playing CD when CD Player starts"
-msgstr "Při spuštění Přehrávače CD pro GNOME"
+msgstr "Při spuštění Přehrávače CD začít přehrávat CD"
 
 #: gnome-cd/preferences.c:908
 msgid "_Stop playing CD"
 msgstr "Za_stavit přehrávání CD"
 
 #: gnome-cd/preferences.c:909
-#, fuzzy
 msgid "Stop playing CD when CD Player starts"
-msgstr "Při spuštění Přehrávače CD pro GNOME"
+msgstr "Při spuštění Přehrávače CD zastavit přehrávání CD"
 
 #: gnome-cd/preferences.c:923
 msgid "Attempt to _close CD tray"
@@ -1614,9 +1611,8 @@ msgid "Do not_hing"
 msgstr "Nedě_lat nic"
 
 #: gnome-cd/preferences.c:944
-#, fuzzy
 msgid "Do nothing when CD Player exits"
-msgstr "Při ukončení Přehrávače CD pro GNOME"
+msgstr "Při ukončení Přehrávače CD nedělat nic"
 
 #: gnome-cd/preferences.c:953
 msgid "S_top playing CD"
@@ -1624,16 +1620,15 @@ msgstr "Zas_tavit přehrávání CD"
 
 #: gnome-cd/preferences.c:954
 msgid "Stop playing CD when CD player quits"
-msgstr ""
+msgstr "Při ukončení přehrávače CD zastavit přehrávání CD"
 
 #: gnome-cd/preferences.c:964
 msgid "Attempt to _open CD tray"
 msgstr "P_okusit se vysunout CD mechaniku"
 
 #: gnome-cd/preferences.c:965
-#, fuzzy
 msgid "Attempt to open CD tray when CD Player exits"
-msgstr "P_okusit se vysunout CD mechaniku"
+msgstr "Při ukončení přehrávače CD se pokusit vysunout CD mechaniku"
 
 #: gnome-cd/preferences.c:975
 msgid "Attempt to c_lose CD tray"
