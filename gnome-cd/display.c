@@ -415,7 +415,12 @@ expose_event (GtkWidget *drawing_area,
 						     priv->layout[i]->layout,
 						     &priv->red, NULL);
 		}
-		height += priv->layout[i]->height;
+
+		if (i == CD_DISPLAY_LINE_INFO) {
+			height += 16;
+		} else {
+			height += priv->layout[i]->height;
+		}
 	}
 
 	return TRUE;
@@ -698,8 +703,13 @@ cd_display_set_line (CDDisplay *disp,
 	g_return_if_fail (new_str != NULL);
 
 	priv = disp->priv;
-	
+
 	text = priv->layout[line];
+	if (strcmp (new_str, text->text) == 0) {
+		/* Same, do nothing */
+		return;
+	}
+
 	height = priv->height - text->height;
 	
 	g_free (text->text);

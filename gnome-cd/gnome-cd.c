@@ -30,7 +30,7 @@ gnome_cd_set_window_title (GnomeCD *gcd,
 {
 	char *title;
 
-	if (artist == NULL &&
+	if (artist == NULL ||
 	    track == NULL) {
 		title = g_strdup ("Gnome-CD " VERSION);
 	} else {
