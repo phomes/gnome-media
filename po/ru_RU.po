@@ -1,6 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Max Valianskiy <maxcom@vinchi.ru> 1998-99
 #
 #, fuzzy
 msgid ""
@@ -78,6 +79,11 @@ msgstr ""
 msgid "_About"
 msgstr "_О Программе"
 
+#: gmix/gmix.c:83
+#, fuzzy
+msgid "E_xit"
+msgstr "В_ыход"
+
 #: gmix/gmix.c:88
 msgid "_Program"
 msgstr "_Программа"
@@ -100,7 +106,7 @@ msgstr "не сохранять (измененные) настройки микшера в конфигурацию"
 
 #: gmix/gmix.c:524
 msgid "GMIX 3.0"
-msgstr ""
+msgstr "GMIX 3.0"
 
 #. lock-button, only useful for stereo
 #: gmix/gmix.c:586
@@ -140,9 +146,17 @@ msgstr ""
 "Gnome CD-проигрыватель с поддержкой CDDB. Пожалуйста посмотрите 'Thanks' "
 "файл из поставки для дополнительной информации о авторах"
 
+#: tcd/gtracked.c:133
+msgid "Trk"
+msgstr "Трк"
+
+#: tcd/gtracked.c:133
+msgid "Time"
+msgstr "Время"
+
 #: tcd/cddb_props.c:62
 msgid "Disc ID"
-msgstr ""
+msgstr "ИД Диска"
 
 #: tcd/cddb_props.c:62
 #, fuzzy
@@ -154,9 +168,33 @@ msgstr "Заглавие"
 msgid "CDDB Editor"
 msgstr "Редактор Треков"
 
+#: tcd/gtracked.c:161
+#, fuzzy, c-format
+msgid "Disc Information (%02u:%02u minutes)"
+msgstr "Информация о Диске"
+
+#: tcd/gtracked.c:166
+msgid "Artist / Title"
+msgstr "Автор / Заглавие"
+
+#. ...
+#: tcd/gtracked.c:210
+msgid "Track Information"
+msgstr "Информация о Треке"
+
+#. Clear button
+#: tcd/gtracked.c:224
+msgid "Clear"
+msgstr "Очистить"
+
+#. Playlist button
+#: tcd/gtracked.c:229
+msgid "Playlist"
+msgstr "Список треков"
+
 #: tcd/cddb_props.c:247
 msgid "Error reading $HOME/.cddbslave."
-msgstr ""
+msgstr "Ошибка чтения $HOME/.cddbslave"
 
 #. CDDB Status  button
 #: tcd/cddb_status.c:50 tcd/gtracked.c:238
@@ -380,7 +418,7 @@ msgstr "Показать Подсказки"
 #. use alternate play ioctl
 #: tcd/prefs.c:359
 msgid "Use alternate method to play CD"
-msgstr ""
+msgstr "Использовать альтернативный метод проигрывания CD"
 
 #. start frame
 #: tcd/prefs.c:379
