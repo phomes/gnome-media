@@ -1,22 +1,22 @@
 # Brazilian Portuguese translation of gnome-media.
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
-# Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2001.
-# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002, 2003.
-# Raphael Higino <raphaelh@uai.com.br>, 2004.
+# Gustavo Maciel Dias Vieira <gustavo@sagui.org>, 2001.
+# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002-2003.
+# Raphael Higino <raphaelh@uai.com.br>, 2004-2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 2.8\n"
+"Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 12:11+0100\n"
-"PO-Revision-Date: 2004-07-14 15:03-0300\n"
+"POT-Creation-Date: 2005-01-27 20:25+0100\n"
+"PO-Revision-Date: 2005-01-29 13:37-0200\n"
 "Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -1015,12 +1015,11 @@ msgstr ""
 
 #: gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr ""
+msgstr "Orientação"
 
 #: gnome-cd/eggtrayicon.c:119
-#, fuzzy
 msgid "The orientation of the tray."
-msgstr "Especifique a posição X do medidor."
+msgstr "A orientação da bandeja."
 
 #: gnome-cd/gnome-cd.c:222
 #, c-format
@@ -1185,7 +1184,7 @@ msgstr "Reproduzir o CD ao iniciar"
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
-msgstr ""
+msgstr "O registro não está presente ou está corrompido. Por favor, atualize-o executando gst-register."
 
 #. Stick a message box here?
 #: gnome-cd/gnome-cd.c:947
@@ -1248,13 +1247,12 @@ msgid "CD Player Preferences"
 msgstr "Preferências do Reprodutor de CD"
 
 #: gnome-cd/preferences.c:625
-#, fuzzy
 msgid "_Device:"
-msgstr "Caminho para o dispositivo"
+msgstr "_Dispositivo:"
 
 #: gnome-cd/preferences.c:639
 msgid "Behavior"
-msgstr ""
+msgstr "Comportamento"
 
 #: gnome-cd/preferences.c:652
 msgid "Start _playing CD when CD Player starts"
@@ -1274,11 +1272,11 @@ msgstr "Tenta abrir a bandeja do CD quando o Reprodutor de CD sair"
 
 #: gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr ""
+msgstr "Temas"
 
 #: gnome-cd/preferences.c:694
 msgid "_Select a theme:"
-msgstr ""
+msgstr "_Selecione um tema:"
 
 #: grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1492,7 +1490,7 @@ msgstr "Pronto"
 #: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr ""
+msgstr "Não foi possível salvar o arquivo \"%s\""
 
 #: grecord/src/gsr-window.c:553
 msgid "Save file as"
@@ -1517,8 +1515,8 @@ msgstr "%s (Não foi salvo)"
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s (%llu byte)"
+msgstr[1] "%s (%llu bytes)"
 
 #: grecord/src/gsr-window.c:713
 msgid "Unknown size"
@@ -1564,9 +1562,8 @@ msgid "Audio Information"
 msgstr "Informações de Áudio"
 
 #: grecord/src/gsr-window.c:857
-#, fuzzy
 msgid "File duration:"
-msgstr "Informações do arquivo"
+msgstr "Duração do arquivo:"
 
 #: grecord/src/gsr-window.c:863
 msgid "Number of channels:"
@@ -1574,7 +1571,7 @@ msgstr "Número de canais:"
 
 #: grecord/src/gsr-window.c:869
 msgid "Sample rate:"
-msgstr "Taxa da amostra: "
+msgstr "Taxa da amostragem:"
 
 #: grecord/src/gsr-window.c:875
 msgid "Bit rate:"
@@ -1651,22 +1648,20 @@ msgid "Volume Control"
 msgstr "Controle de Volume"
 
 #: gst-mixer/src/element.c:230
-#, fuzzy
 msgid "Playback"
 msgstr "Reproduzir"
 
 #: gst-mixer/src/element.c:232
-#, fuzzy
 msgid "Capture"
-msgstr "Sátira"
+msgstr "Capturar"
 
 #: gst-mixer/src/element.c:234
 msgid "Switches"
-msgstr ""
+msgstr "Chaves"
 
 #: gst-mixer/src/element.c:236
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #. FIXME:
 #. * - maybe we want to rename the element to its actual name
@@ -1675,40 +1670,39 @@ msgstr ""
 #. create element
 #. and recreate this object, since we give it to the mixer
 #: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown Volume Control %d"
-msgstr "Controle de Volume"
+msgstr "Controle de Volume %d Desconhecido"
 
 #: gst-mixer/src/main.c:253
-#, fuzzy
 msgid "No volume control elements and/or devices found."
-msgstr "Desculpe, mas nenhum elemento e/ou dispositivo de mixer foi encontrado"
+msgstr "Nenhum elemento e/ou dispositivo controlador de volume foi encontrado."
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:108
-#, fuzzy
 msgid "Volume Control Preferences"
-msgstr "Controle de Volume"
+msgstr "Preferências do Controle de Volume"
 
 #: gst-mixer/src/preferences.c:121
 msgid "_Select tracks to be visible:"
-msgstr ""
+msgstr "_Selecione as faixas visíveis:"
 
 #: gst-mixer/src/track.c:220
 #, c-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
+# Não exite em mudar essa tradução se você tiver uma melhor =D
 #. mute button
 #: gst-mixer/src/track.c:260
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "%s sem/com som"
 
 #: gst-mixer/src/track.c:275
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s: mute"
-msgstr "Lista de faixas"
+msgstr "Faixa %s: muda"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1718,51 +1712,49 @@ msgstr "Lista de faixas"
 #: gst-mixer/src/track.c:355
 #, c-format
 msgid "Toggle audio capture from %s"
-msgstr ""
+msgstr "Alternar captura de áudio a partir de %s"
 
 #: gst-mixer/src/track.c:370
 #, c-format
 msgid "Track %s: audio capture"
-msgstr ""
+msgstr "Faixa %s: captura de áudio"
 
 #: gst-mixer/src/track.c:449
 #, c-format
 msgid "%s Option Selection"
-msgstr ""
+msgstr "Seleção de Opção de %s"
 
 #: gst-mixer/src/volume.c:132
-#, fuzzy
 msgid "mono"
-msgstr "1 (mono)"
+msgstr "mono"
 
 #: gst-mixer/src/volume.c:134
 msgid "left"
-msgstr ""
+msgstr "esquerda"
 
 #: gst-mixer/src/volume.c:134
 msgid "right"
-msgstr ""
+msgstr "direita"
 
 #: gst-mixer/src/volume.c:137
 msgid "front left"
-msgstr ""
+msgstr "frontal esquerda"
 
 #: gst-mixer/src/volume.c:138
 msgid "front right"
-msgstr ""
+msgstr "frontal direita"
 
 #: gst-mixer/src/volume.c:139
 msgid "rear left"
-msgstr ""
+msgstr "traseira esquerda"
 
 #: gst-mixer/src/volume.c:140
 msgid "rear right"
-msgstr ""
+msgstr "traseira esquerda"
 
 #: gst-mixer/src/volume.c:141
-#, fuzzy
 msgid "front center"
-msgstr "Conteúdo"
+msgstr "frontal central"
 
 #. Translators: This is the name of a surround sound channel. It
 #. * stands for "Low-Frequency Effects". If you're not sure that
@@ -1774,69 +1766,66 @@ msgstr ""
 
 #: gst-mixer/src/volume.c:147
 msgid "side left"
-msgstr ""
+msgstr "lateral esquerda"
 
 #: gst-mixer/src/volume.c:148
 msgid "side right"
-msgstr ""
+msgstr "lateral direita"
 
 #: gst-mixer/src/volume.c:149
-#, fuzzy
 msgid "unknown"
-msgstr "Desconhecido"
+msgstr "desconhecida"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
 #: gst-mixer/src/volume.c:155
-#, fuzzy, c-format
+#, c-format
 msgid "Volume of %s channel on %s"
-msgstr "Número de canais:"
+msgstr "Volume do canal %s em %s"
 
 #: gst-mixer/src/volume.c:203
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s"
-msgstr "Lista de faixas"
+msgstr "Faixa %s"
 
 #: gst-mixer/src/volume.c:206
-#, fuzzy, c-format
+#, c-format
 msgid "Channel %d of track %s"
-msgstr "Canal %d do volume %s"
+msgstr "Canal %d da faixa %s"
 
 #: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "Faixa %s, canal %d"
 
 #: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr ""
+msgstr "Faixa %s: travar canais juntos"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
 msgid "_Change Device"
-msgstr "Definir dispositivo"
+msgstr "_Alterar Dispositivo"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "Controla o volume em um dispositivo diferente"
 
 #: gst-mixer/src/window.c:179
-#, fuzzy, c-format
+#, c-format
 msgid "Change device to %s"
-msgstr "Dispositivo de CD a ser usado"
+msgstr "Alterar o dispositivo para %s"
 
 #. window title and menu selection
 #. change window title
 #: gst-mixer/src/window.c:223 gst-mixer/src/window.c:420
-#, fuzzy, c-format
+#, c-format
 msgid "Volume Control: %s"
-msgstr "Controle de Volume"
+msgstr "Controle de Volume: %s"
 
 #: gst-mixer/src/window.c:377
-#, fuzzy
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Uma aplicação de mixer baseada no GNOME/GStreamer"
+msgstr "Uma aplicação controladora de volume baseada no GNOME/GStreamer"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -1920,7 +1909,7 @@ msgstr "_Teste"
 #: gstreamer-properties/pipeline-constants.c:100
 #: gstreamer-properties/pipeline-constants.c:115
 msgid "Custom"
-msgstr "Customizado"
+msgstr "Personalizado"
 
 #: gstreamer-properties/pipeline-test-old.c:215
 #: gstreamer-properties/pipeline-tests.c:119
@@ -2000,7 +1989,7 @@ msgstr "Excluir o perfil \"%s\"?"
 
 #: profiles/audio-profiles-edit.c:502
 msgid "Delete Profile"
-msgstr "Exclir perfil"
+msgstr "Excluir Perfil"
 
 #.
 #. dialog =
