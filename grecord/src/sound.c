@@ -68,13 +68,12 @@ get_play_time (const gchar* filename)
 }    
 
 void
-set_min_sec_time (gint sec, gboolean set_topic)
+set_min_sec_time (gint sec)
 {
 	gint minutes = 0;
 	gint seconds = 0;
 	
 	gchar* temp_string = NULL;
-	gchar* show_mess = NULL;
 
         /* Time in seconds -> time in seconds & minutes */
 	minutes = (int) sec / 60;
@@ -90,17 +89,6 @@ set_min_sec_time (gint sec, gboolean set_topic)
 
 	gtk_label_set_text (GTK_LABEL (grecord_widgets.timemin_label), temp_string);
 
-	if (sec != 0 && set_topic) {
-		gchar* temp_string2;
-		temp_string2 = g_strdup (strrchr (active_file, '/'));
-		temp_string2[0] = ' ';
-		show_mess = g_strconcat (_(maintopic), temp_string2, " - ", temp_string, NULL);
-		g_free (temp_string2);
-	}
-	else if (sec == 0 && set_topic) {
-		show_mess = g_strconcat (_(maintopic), _(" untitled.wav"),  " - ", "00", NULL);
-	}
-
 	g_free (temp_string);
 
 	if (seconds <= 0)
@@ -112,15 +100,7 @@ set_min_sec_time (gint sec, gboolean set_topic)
 
 	gtk_label_set_text (GTK_LABEL (grecord_widgets.timesec_label), temp_string);
 
-	/* Set topic */
-	if (set_topic) {
-		gchar* temp;
-		temp = g_strconcat (show_mess, ":", temp_string, NULL);
-		gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), temp);
-		g_free (temp);
-	}
 	g_free (temp_string);
-	g_free (show_mess);
 }
 
 /******************************/

@@ -153,6 +153,18 @@ GnomeUIInfo menubar1_uiinfo[] =
 
 gpointer main_menu = menubar1_uiinfo;
 
+void
+set_window_title (const char *filename)
+{
+	char *full, *base;
+
+	base = g_path_get_basename (filename);
+	full = g_strdup_printf (_("%s - Sound Recorder"), base);
+	gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), full);
+	g_free (full);
+	g_free (base);
+}
+
 GtkWidget*
 create_grecord_window (void)
 {
@@ -189,8 +201,9 @@ create_grecord_window (void)
 	char *temp_string = NULL;
 	char *fullname;
 
-	grecord_window = gnome_app_new ("grecord", "grecord");
-
+	grecord_window = gnome_app_new ("gnome-sound-recorder", "gnome-sound-recorder");
+	gtk_window_set_title (GTK_WINDOW (grecord_window), _("Sound Recorder"));
+	
 	if (!audioformat)
 		audioformat_string = g_strdup ("16bit pcm");
 	else
@@ -410,7 +423,7 @@ create_grecord_window (void)
 		grecord_set_sensitive_nofile ();
 	}
 
-	set_min_sec_time (get_play_time (active_file), TRUE);
+	set_min_sec_time (get_play_time (active_file));
  
 	/* Setup some callbacks */
 	gtk_signal_connect (GTK_OBJECT (grecord_window), "delete_event", GTK_SIGNAL_FUNC (on_exit_activate_cb), NULL);
@@ -435,7 +448,7 @@ create_about (void)
 	GtkWidget* about;
 	
 	authors[0]=_(authors[0]);
-	about = gnome_about_new (_("Sound recorder"), VERSION,
+	about = gnome_about_new (_("Gnome Sound Recorder"), VERSION,
 				/* if your charset allows it, replace the
 				   "e" of Hyden by an "eacute" (U00E9) */
 				 _("Copyright (C)  2000 Andreas Hyden"),

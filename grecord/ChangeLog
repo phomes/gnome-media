@@ -1,5 +1,33 @@
 2002-03-04  Iain <iain@ximian.com>
 
+	* src/grec.c (check_if_sounddevice_ready): Use GtkMessageDialog again.
+	Make the error message read better.
+	(on_new_activate_cb): Use new sig for set_min_sec_time.
+	(store_filename): Ditto. Fix memory leak.
+	(UpdateStatusbarPlay): Ditto (not mem leak :).
+	(UpdateStatusbarRecord): Ditto.
+	(check_if_loading_fininshed): Ditto.
+	(save_filename): Fix memory leak.
+	Fix some other dialogs too.
+
+	* src/gui.c (set_window_title): Utility function to set the window
+	title properly.
+	(create_grecord_window): Set the default title.
+
+	* src/sound.[ch] (set_min_sec_time): Remove the crap to set the
+	window title.
+
+2002-03-04  Iain <iain@ximian.com>
+
+	* src/grec.c (save_dont_or_cancel): Display the current filename in
+	the error message.
+
+2002-03-04  Iain <iain@ximian.com>
+
+	* src/grec.c (save_dont_or_cancel): Set the parent window correctly
+
+2002-03-04  Iain <iain@ximian.com>
+
 	* src/grec.c (save_filename): Make all dialogs use gtk_message_dialog
 
 2002-03-04  Iain <iain@ximian.com>

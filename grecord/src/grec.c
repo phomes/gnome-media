@@ -220,10 +220,13 @@ on_new_activate_cb (GtkWidget* widget, gpointer data)
 
 	default_file = TRUE;
 
+	if (active_file != NULL) {
+		g_free (active_file);
+	}
 	active_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
 	file_changed = FALSE;
 
-	set_min_sec_time (get_play_time (active_file), TRUE);
+	set_min_sec_time (get_play_time (active_file));
 
 	grecord_set_sensitive_nofile ();
 
@@ -604,6 +607,9 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 		return;
 	}
 
+	if (active_file != NULL) {
+		g_free (active_file);
+	}
 	active_file = g_strdup (tempfile);
 	file_changed = FALSE;
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
@@ -620,7 +626,7 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 	afGetSampleFormat (filename, AF_DEFAULT_TRACK, &in_audioformat, &in_width);
 
 	/* Update mainwindow with the new values and set topic */
-	set_min_sec_time (get_play_time (active_file), TRUE);
+	set_min_sec_time (get_play_time (active_file));
 
 	samplerate = g_strdup_printf ("%d", in_rate);
 	if (in_channels == 2)
@@ -653,7 +659,6 @@ store_filename (GtkFileSelection* selector, gpointer file_selector)
 void
 save_filename (GtkFileSelection* selector, gpointer file_selector)
 {
-	gchar* temp_string;
 	gchar* new_file;
 	struct stat file;
 
@@ -662,8 +667,6 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 	/* Check if the file already exists */
 	if (!stat(new_file, &file)) {
 		GtkWidget* mess;
-		gchar* show_mess;
-		gint choice;
 
 		if (S_ISDIR (file.st_mode)) {
 			mess = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
@@ -718,25 +721,14 @@ save_filename (GtkFileSelection* selector, gpointer file_selector)
 		return;
 	}
 
-	if (active_file[1] == '/') {
-		gchar* tempstring;
-		gchar* string = g_strdup ((char *) strrchr (active_file, '/'));
-		string[1] = ' ';
-		tempstring = g_strconcat (_(maintopic), string, NULL);
-		gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), tempstring);
-		g_free (tempstring);
-		g_free (string);
+	if (active_file != NULL) {
+		g_free (active_file);
 	}
-
-	active_file = g_strdup (new_file);
-	g_free (new_file);
+	active_file = new_file;
 	
 	gtk_widget_destroy (GTK_WIDGET (file_selector));
 
-	temp_string = g_strconcat ((maintopic), active_file, NULL);
-	gtk_window_set_title (GTK_WINDOW (grecord_widgets.grecord_window), temp_string);
-	g_free (temp_string);
-
+	set_window_title (active_file);
 	file_changed = FALSE;
 	file_selector = NULL;
 }
@@ -745,18 +737,33 @@ gint
 save_dont_or_cancel (const char *quit_text)
 {
 	int result;
+	char *filename;
+	char *title;
+	GtkWidget *mess;
+
+	if (active_file == NULL) {
+		filename = g_strdup ("untitled.wav");
+	} else {
+		filename = g_path_get_basename (active_file);
+	}
 	
-	GtkWidget *mess = gtk_message_dialog_new (NULL, 0,
-						  GTK_MESSAGE_WARNING,
-						  GTK_BUTTONS_NONE,
-						  _("<b>Save the changes to this file?</b>\nIf you don't save, these changes will be discarded."));
+	mess = gtk_message_dialog_new (grecord_widgets.grecord_window, 0,
+				       GTK_MESSAGE_WARNING,
+				       GTK_BUTTONS_NONE,
+				       _("<b>Save the changes to %s?</b>\nIf you don't save, these changes will be discarded."),
+				       filename);
+	
 	gtk_dialog_add_buttons (GTK_DIALOG (mess),
 				_("Don't save"), DONTSAVE,
 				quit_text, CANCEL,
 				_("Save"), SAVE, NULL);
 	gtk_dialog_set_default_response (GTK_DIALOG (mess), 0);
-	gtk_window_set_title (GTK_WINDOW (mess), _("Save file?"));
 
+	title = g_strconcat (_("Save "), filename, "?", NULL);
+	gtk_window_set_title (GTK_WINDOW (mess), title);
+	g_free (title);
+	g_free (filename);
+	
 	/* This is a bad hack, it's marked private, but tough */
 	gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (GTK_MESSAGE_DIALOG (mess)->label), FALSE);
@@ -832,7 +839,7 @@ UpdateStatusbarPlay (gboolean begin)
 
 	countersec++;
 
-	set_min_sec_time (countersec, FALSE);
+	set_min_sec_time (countersec);
 
 	gtk_range_set_adjustment (GTK_RANGE (grecord_widgets.Statusbar), GTK_ADJUSTMENT (gtk_adjustment_new (counter, 0, 1000, 1, 1, 0)));
 /*  	gtk_range_slider_update (GTK_RANGE (grecord_widgets.Statusbar)); */
@@ -881,7 +888,7 @@ UpdateStatusbarRecord (gboolean begin)
 
 	countersec++;
 	
-	set_min_sec_time (countersec, FALSE);
+	set_min_sec_time (countersec);
 	
 	if (popup_warn_mess) {
 		struct stat fileinfo;
@@ -897,14 +904,14 @@ UpdateStatusbarRecord (gboolean begin)
 		g_free (filename);
 		
 		if (fileinfo.st_size >= (maxfilesize * 1000000) && show_message) {
-			gchar* message = g_strdup_printf (N_("The size of the current sample is more than %i Mb!"),
-							  (int) (fileinfo.st_size / 1000000) /* In MB */);
-			GtkWidget* mess = gnome_message_box_new (_(message),
-								 GNOME_MESSAGE_BOX_WARNING,
-								 GNOME_STOCK_BUTTON_OK,
-								 NULL);
+			GtkWidget *mess;
+			
+			mess = gtk_message_dialog_new (grecord_widgets.grecord_window,
+						       0, GTK_MESSAGE_WARNING,
+						       GTK_BUTTONS_OK,
+						       _("The size of the current sample is more than\n%i Mb!"),
+						       (int) (fileinfo.st_size / 1000000));
 			gtk_widget_show (mess);
-			g_free (message);
 			show_message = FALSE;
 	        }			
 	}
@@ -1065,7 +1072,7 @@ check_if_loading_finished (gint pid)
 	if (waitpid (pid, NULL, WNOHANG | WUNTRACED)) {
 		
 		/* Show the playtime of the file */
-		set_min_sec_time (get_play_time (active_file), TRUE);
+		set_min_sec_time (get_play_time (active_file));
 		
 		/* Remove the comment from the appbar, because we're finished */
 		gnome_appbar_pop (GNOME_APPBAR (grecord_widgets.appbar));
@@ -1112,11 +1119,11 @@ check_if_sounddevice_ready ()
 		GtkWidget* mess;
 
 		esd_audio_close ();
-
-		mess = gnome_message_box_new (_("Sounddevice not ready! Please check that there isn't\nanother program running that's using the sounddevice."),
-					      GNOME_MESSAGE_BOX_ERROR,
-					      GNOME_STOCK_BUTTON_OK,
-					      NULL);
+		mess = gtk_message_dialog_new (NULL, 0,
+					       GTK_MESSAGE_ERROR,
+					       GTK_BUTTONS_OK,
+					       _("The sound device is not ready. Please check that there "
+						 "isn't\nanother program running that is using the device."));
 		gnome_dialog_run (GNOME_DIALOG (mess));
 		return FALSE;
 	}
