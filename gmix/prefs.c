@@ -44,58 +44,48 @@
 
 #include <gnome.h>
 
+#include <gconf/gconf-client.h>
+
 #include "gmix.h"
 #include "prefs.h"
 
-/*
- * Gnome info:
- */
-GtkWidget *configwin;
-
 /******************** General Preferences Page ********************/
 
-mixerprefs prefs={FALSE,FALSE,TRUE,TRUE};
+mixerprefs prefs={TRUE, -1, TRUE, -1, TRUE, -1};
+static GtkWidget *configwin = NULL;
+static GConfClient *client = NULL;
 
-static void retrieve_prefs(GtkWidget *page)
+static void
+restore_toggled (GtkToggleButton *tb,
+		 gpointer data)
 {
-	mixerprefs *prefs_copy;
-
-	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
-	prefs = *prefs_copy;
+	gconf_client_set_bool (client, "/apps/gnome-volume-control/init-on-start",
+			       gtk_toggle_button_get_active (tb), NULL);
 }
 
-static void destroy_prefs(GtkWidget *page)
+static void
+show_icons_toggled (GtkToggleButton *tb,
+		    gpointer data)
 {
-	mixerprefs *prefs_copy;
-
-	prefs_copy = gtk_object_get_data(GTK_OBJECT(page), PREFS_COPY);
-	g_free(prefs_copy);
+	gconf_client_set_bool (client, "/apps/gnome-volume-control/show-icons",
+			       gtk_toggle_button_get_active (tb), NULL);
 }
 
-static void bool_changed_cb(GtkWidget *widget, gboolean *data)
+static void
+show_labels_toggled (GtkToggleButton *tb,
+		     gpointer data)
 {
-	if( *data )
-		*data = FALSE;
-	else        
-		*data = TRUE;
-	gnome_property_box_changed(GNOME_PROPERTY_BOX(configwin));
+	gconf_client_set_bool (client, "/apps/gnome-volume-control/show-labels",
+			       gtk_toggle_button_get_active (tb), NULL);
 }
-
+			       
 static GtkWidget *general_page(void)
 {
 	GtkWidget *start_frame, *gui_frame;
 	GtkWidget *ubervbox;
 	GtkWidget *vbox, *init_start, *menu_hide, *temp;
-	mixerprefs *prefs_copy;
 
-	ubervbox = gtk_vbox_new(TRUE, 0);
-
-	prefs_copy = g_malloc(sizeof(mixerprefs));
-	g_assert(prefs_copy);
-
-	*prefs_copy = prefs;
-	g_object_set_data_full (G_OBJECT(ubervbox), PREFS_COPY, 
-				prefs_copy, g_free);
+	ubervbox = gtk_vbox_new (FALSE, 0);
 
 	start_frame = gtk_frame_new(_("On startup"));
 	gtk_container_border_width(GTK_CONTAINER(start_frame), GNOME_PAD_SMALL);
@@ -104,49 +94,41 @@ static GtkWidget *general_page(void)
 
 	/* Set on start */
 	init_start = gtk_check_button_new_with_label(_("Restore saved mixer levels on startup"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(init_start), \
-				     prefs_copy->set_mixer_on_start);
-	gtk_signal_connect(GTK_OBJECT(init_start), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->set_mixer_on_start);
-
-	menu_hide = gtk_check_button_new_with_label(_("Hide menu on start"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(menu_hide), \
-				     prefs_copy->hide_menu);
-	gtk_signal_connect(GTK_OBJECT(menu_hide), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->hide_menu);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (init_start),
+				      prefs.set_mixer_on_start);
+	gtk_signal_connect(GTK_OBJECT(init_start), "toggled",
+			   GTK_SIGNAL_FUNC(restore_toggled), NULL);
 
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), init_start);
-	/*	gtk_box_pack_start_defaults(GTK_BOX(vbox), menu_hide);*/
-
 	gtk_widget_show_all(vbox);
 
 
-	gtk_container_add(GTK_CONTAINER(start_frame), vbox);
-	gtk_container_add(GTK_CONTAINER(ubervbox), start_frame);
+	gtk_container_add (GTK_CONTAINER(start_frame), vbox);
+	gtk_box_pack_start (GTK_BOX (ubervbox), start_frame, FALSE, FALSE, 0);
 
 	gui_frame = gtk_frame_new(_("GUI"));
 	gtk_container_border_width(GTK_CONTAINER(gui_frame), GNOME_PAD_SMALL);
 
 	vbox = gtk_vbox_new(TRUE, 0);
-	temp = gtk_check_button_new_with_label(_("Use mixer icons"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs_copy->use_icons);
-	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_icons);
+	temp = gtk_check_button_new_with_label(_("Show mixer icons"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp),
+				     prefs.show_icons);
+	gtk_signal_connect(GTK_OBJECT(temp), "toggled",
+			   GTK_SIGNAL_FUNC(show_icons_toggled), NULL);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
 	
 	
-	temp = gtk_check_button_new_with_label(_("Use mixer labels"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp), \
-				     prefs_copy->use_labels);
-	gtk_signal_connect(GTK_OBJECT(temp), "clicked",
-			   GTK_SIGNAL_FUNC(bool_changed_cb), &prefs_copy->use_labels);
+	temp = gtk_check_button_new_with_label(_("Show mixer labels"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(temp),
+				     prefs.show_labels);
+	gtk_signal_connect(GTK_OBJECT(temp), "toggled",
+			   GTK_SIGNAL_FUNC(show_labels_toggled), NULL);
 	gtk_box_pack_start_defaults(GTK_BOX(vbox), temp);
 	
 	
 	gtk_container_add(GTK_CONTAINER(gui_frame), vbox);
 	
-	gtk_container_add(GTK_CONTAINER(ubervbox), gui_frame);
+	gtk_box_pack_start (GTK_BOX (ubervbox), gui_frame, FALSE, FALSE, 0);
 	
 	gtk_widget_show_all(ubervbox);
 
@@ -412,10 +394,8 @@ static void label_one_device_config(gpointer device, gpointer parent)
 	gtk_object_set_user_data(GTK_OBJECT(scrlwin), args.entry_list);
 
 	/* Add the label reset button */
-	bbox = gtk_hbutton_box_new();
-	gtk_container_add(GTK_CONTAINER(topvbox), bbox);
-	button = gtk_button_new_with_label(_("Defaults"));
-	gtk_container_add(GTK_CONTAINER(bbox), button);
+	button = gtk_button_new_with_label(_("Reset labels to their defaults"));
+	gtk_box_pack_start (GTK_BOX(topvbox), button, FALSE, FALSE, 0);
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",
 			   GTK_SIGNAL_FUNC(labels_reset_page_cb), scrlwin);
 
@@ -438,94 +418,116 @@ static GtkWidget *labels_create_page(void)
 
 	notebook = gtk_notebook_new();
 	gtk_container_set_border_width(GTK_CONTAINER(notebook), 5);
+
+	if (devices->next == NULL) {
+		/* devices->next will only be NULL if there's only one device. */
+		gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+	}
+	
 	g_list_foreach(devices, label_one_device_config, notebook);
 	return(notebook);
 }
 
-/******************** Preferences Window ********************/
-
-static void apply_cb(GtkWidget *widget, gint page_num, void *data)
-{       
-        GtkWidget *page;
-
-	if (page_num != -1)
-		return;
-
-	/* Copy out the user's new preferences */
-	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
-	retrieve_prefs(page);
-
-	/* Copy out the user's new labels */
-	page = gtk_object_get_data(GTK_OBJECT(configwin), LABELS_PAGE);
-	labels_retrieve_all(page);
-
-        put_gui_config();
-
-	gmix_build_slidernotebook();
-}
-
-static void cancel_cb(GtkWidget *widget, void *data)
-{       
-        GtkWidget *page;
-
-	/* Find and free the copy of the preferences data */
-	page = gtk_object_get_data(GTK_OBJECT(configwin), PREFS_PAGE);
-
-	page = gtk_object_get_data(GTK_OBJECT(configwin), LABELS_PAGE);
-	labels_destroy_all(page);
-
-	gtk_widget_destroy (configwin);
-        configwin=NULL;
-}
-
-
-void prefs_make_window(void)
+static void
+prefs_response_cb (GtkDialog *dialog,
+		   guint response_id,
+		   gpointer data)
 {
-        GtkWidget *label, *page;
+	gtk_widget_destroy (GTK_WIDGET (dialog));
+}
 
-	if (!configwin) {
-	        configwin=gnome_property_box_new();
-		gtk_widget_realize(configwin);
+static void
+prefs_destroy_cb (GtkWidget *widget,
+		  gpointer data)
+{
+	/* nothing - yet :)*/
+}
 
-		label = gtk_label_new(_("Preferences"));
-		page = general_page();
-		gtk_object_set_data(GTK_OBJECT(configwin), PREFS_PAGE, page);
-		gnome_property_box_append_page(
-			GNOME_PROPERTY_BOX(configwin), page, label);
+void
+prefs_make_window (GtkWidget *toplevel)
+{
+	GtkWidget *label, *page, *notebook;
+
+	if (configwin != NULL) {
+		gdk_window_show (configwin->window);
+		gdk_window_raise (configwin->window);
+	} else {
+		configwin = gtk_dialog_new_with_buttons (_("Gnome Volume Control Preferences"),
+							 GTK_WINDOW (toplevel),
+							 GTK_DIALOG_DESTROY_WITH_PARENT,
+							 GTK_STOCK_CLOSE,
+							 GTK_RESPONSE_CLOSE, NULL);
+		g_signal_connect (G_OBJECT (configwin), "response",
+				  G_CALLBACK (prefs_response_cb), NULL);
+		g_signal_connect (G_OBJECT (configwin), "destroy",
+				  G_CALLBACK (prefs_destroy_cb), NULL);
+		g_signal_connect (G_OBJECT (configwin), "destroy",
+				  G_CALLBACK (gtk_widget_destroyed), &configwin);
+
+		notebook = gtk_notebook_new ();
+		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (configwin)->vbox), notebook, TRUE, TRUE, 0);
+
+		label = gtk_label_new (_("Preferences"));
+		page = general_page ();
+		gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
+
+		label = gtk_label_new (_("Labels"));
+		page = labels_create_page ();
+		gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, label);
 		
-		label = gtk_label_new(_("Labels"));
-		page = labels_create_page();
-		gtk_object_set_data(GTK_OBJECT(configwin), LABELS_PAGE, page);
-		gnome_property_box_append_page(
-			GNOME_PROPERTY_BOX(configwin), page, label);
-		
-		gtk_signal_connect(GTK_OBJECT(configwin), "apply",
-				   GTK_SIGNAL_FUNC(apply_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "destroy",
-				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "delete_event",
-				   GTK_SIGNAL_FUNC(cancel_cb), NULL);
-		gtk_signal_connect(GTK_OBJECT(configwin), "help",
-				   GTK_SIGNAL_FUNC(help_cb), NULL);
+		gtk_widget_show_all (configwin);
+	}
+}
 
-		gtk_widget_show_all(configwin);	
-    
-	};
-};
+static void
+init_on_start_changed (GConfClient *_client,
+		       guint cnxn_id,
+		       GConfEntry *entry,
+		       gpointer data)
+{
+	prefs.set_mixer_on_start = gconf_client_get_bool (client, "/apps/gnome-volume-control/init-on-start", NULL);
+}
+
+static void
+show_icons_changed (GConfClient *_client,
+		    guint cnxn_id,
+		    GConfEntry *entry,
+		    gpointer data)
+{
+	prefs.show_icons = gconf_client_get_bool (client, "/apps/gnome-volume-control/show-icons", NULL);
+	gmix_change_icons (prefs.show_icons);
+}
+
+static void
+show_labels_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	prefs.show_labels = gconf_client_get_bool (client, "/apps/gnome-volume-control/show-labels", NULL);
+	gmix_change_labels (prefs.show_labels);
+}
 
 void get_gui_config(void)
 {
-	prefs.set_mixer_on_start=gnome_config_get_bool("/gmix/startup/init=true");
-	prefs.hide_menu=gnome_config_get_bool("/gmix/gui/menu=false");
-	prefs.use_icons=gnome_config_get_bool("/gmix/gui/icons=true");
-	prefs.use_labels=gnome_config_get_bool("/gmix/gui/labels=true");
-}
+	if (client == NULL) {
+		client = gconf_client_get_default ();
+	}
 
-void put_gui_config(void)
-{
-	gnome_config_set_bool("/gmix/startup/init",prefs.set_mixer_on_start);
-	gnome_config_set_bool("/gmix/gui/menu",prefs.hide_menu);
-	gnome_config_set_bool("/gmix/gui/icons",prefs.use_icons);
-	gnome_config_set_bool("/gmix/gui/labels",prefs.use_labels);
-}
+	gconf_client_add_dir (client, "/apps/gnome-volume-control",
+			      GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+	prefs.set_mixer_on_start = gconf_client_get_bool (client, "/apps/gnome-volume-control/init-on-start", NULL);
+	prefs.mixer_id = gconf_client_notify_add (client,
+						  "/apps/gnome-volume-control/init-on-start",
+						  init_on_start_changed, NULL, NULL, NULL);
 
+	prefs.show_icons = gconf_client_get_bool (client, "/apps/gnome-volume-control/show-icons", NULL);
+	prefs.icons_id = gconf_client_notify_add (client,
+						  "/apps/gnome-volume-control/show-icons",
+						  show_icons_changed, NULL, NULL, NULL);
+	
+	prefs.show_labels = gconf_client_get_bool (client, "/apps/gnome-volume-control/show-labels", NULL);
+	prefs.labels_id = gconf_client_notify_add (client,
+						   "/apps/gnome-volume-control/show-labels",
+						   show_labels_changed, NULL, NULL, NULL);
+}

@@ -1,3 +1,28 @@
+2002-03-09 Iain <iain@ximian.com>
+
+	* gmix.[ch] (fill_in_device_guis): Create a GMixMixerPage with a list
+	of all the gui parts that we need to change later.
+	(gmix_change_icons): Show or hide all the icons.
+	(gmix_change_labels): Show or hide all the labels.
+
+	* prefs.c (restore_toggled): Set the gconf key.
+	(show_icons_toggled): Set the gconf key too.
+	(show_labels_toggled): And set this one as well.
+	(general_page): Hook up the new callbacks and make the widgets not 
+	resize stupidly.
+	(prefs_response_cb): Destroy the dialog.
+	(prefs_destroy_cb): Do nothing, yet.
+	(prefs_make_window): Use a GtkDialog instead of a GnomePropertyDialog.
+	(init_on_start_changed): Change the prefs setting.
+	(show_icons_changed): Hide or show the icons.
+	(show_labels_changed): Hide of show the labels.
+	(get_gui_config): Get the gconf client, cache the dir and get the
+	settings.
+	
+	* Makefile.am: Install the schemas.
+
+	* gnome-volume-control.schemas: GConf schema file.
+
 2002-03-08 Iain <iain@ximian.com>
 
 	* gmix.c (fill_in_device_guis): Changed the tab order so that the

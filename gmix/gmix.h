@@ -84,6 +84,15 @@ struct pixmap {
 	const char *pixmap;
 };
 
+typedef struct _GMixMixer {
+	GtkWidget *icon;
+	GtkWidget *label;
+} GMixMixer;
+
+typedef struct _GMixMixerPage {
+	GList *items;
+} GMixMixerPage;
+
 extern GList *devices;
 
 void help_cb(GtkWidget *widget, gpointer data);

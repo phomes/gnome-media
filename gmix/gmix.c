@@ -105,6 +105,7 @@ static void about_cb (GtkWidget *widget, gpointer data);
  */
 GtkWidget *app;
 GtkWidget  *slidernotebook;
+GList *mixer_pages = NULL;
 
 /* Menus */
 static GnomeUIInfo help_menu[] = {
@@ -310,7 +311,7 @@ static void error_close_cb(void)
 
 void config_cb(GtkWidget *widget, gpointer data)
 {
-	prefs_make_window();
+	prefs_make_window (app);
 };
 
 int main(int argc, char *argv[]) 
@@ -352,8 +353,6 @@ int main(int argc, char *argv[])
 		if (~mode & M_INITONLY) {
 
 			open_dialog();
-
-			put_gui_config();/* Do we need this*/
 		}
 
 		if (~mode & M_NOSAVE) {
@@ -985,14 +984,20 @@ void fill_in_device_guis(GtkWidget *notebook){
 	}
 	
 	for (d=devices; d; d=d->next) {
+		GMixMixerPage *mixer_page;
 		device_info *di;
 		GList *table_focus_chain = NULL;
+
 		di=d->data;
 		j=0;
+		
 		for (c=((device_info *)d->data)->channels;c;c=c->next) {
 			j+=2;
 		}
 
+		mixer_page = g_new0 (GMixMixerPage, 1);
+		mixer_pages = g_list_prepend (mixer_pages, mixer_page);
+		
 		/* 
 		 * David: changed 7 to 8 for table rows (06/04/1999)
 		 */
@@ -1005,26 +1010,42 @@ void fill_in_device_guis(GtkWidget *notebook){
 		gtk_container_border_width (GTK_CONTAINER (table), 0);
 
 		for (c= ((device_info *)d->data)->channels; c; c=c->next) {
+			GMixMixer *gmm;
 			GtkWidget *label, *mixer, *separator;
 			GtkWidget *hbox;
 			channel_info *ci;
 
-			ci=c->data;
+			ci = c->data;
 
+			gmm = g_new (GMixMixer, 1);
+			mixer_page->items = g_list_prepend (mixer_page->items, gmm);
+			
 			hbox = gtk_hbox_new (FALSE, 2);
+			gtk_widget_show (hbox);
 			gtk_table_attach (GTK_TABLE (table), hbox, i, i+1,
 					  0, 1, GTK_EXPAND | GTK_FILL,
 					  GTK_FILL, 0, 0);
-			if ((ci->pixmap) && (prefs.use_icons)) {
+			if (ci->pixmap) {
 				spixmap = gtk_image_new_from_stock (ci->pixmap,
 								    GTK_ICON_SIZE_BUTTON);
 				gtk_box_pack_start (GTK_BOX (hbox), spixmap, FALSE, FALSE, 0);
+				if (prefs.show_icons == TRUE) {
+					gtk_widget_show (spixmap);
+				}
+				
+				gmm->icon = spixmap;
+			} else {
+				gmm->icon = NULL;
 			}
-			if (prefs.use_labels) {
-				label = gtk_label_new (ci->user_title);
-				gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-				gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+			
+			label = gtk_label_new (ci->user_title);
+			gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+			gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+			
+			if (prefs.show_labels == TRUE) {
+				gtk_widget_show (label);
 			}
+			gmm->label = label;
 
 			mixer=make_slider_mixer(ci);
 			gtk_table_attach (GTK_TABLE (table), mixer, i, i+1,\
@@ -1101,7 +1122,7 @@ void fill_in_device_guis(GtkWidget *notebook){
 			gtk_widget_show (separator);
 			i+=2; 
 
-			gtk_widget_show_all (table);
+			gtk_widget_show (table);
 		}
 	
 		/* Set the new focus chain for the table */
@@ -1482,3 +1503,53 @@ static void about_cb (GtkWidget *widget, gpointer data)
 		gtk_widget_show (about);
 	}
 }
+
+void
+gmix_change_icons (gboolean show)
+{
+	GList *p, *q;
+
+	for (p = mixer_pages; p; p = p->next) {
+		GMixMixerPage *page = p->data;
+		
+		for (q = page->items; q; q = q->next) {
+			GMixMixer *mix = q->data;
+			
+			if (mix->icon == NULL) {
+				continue;
+			}
+			
+			if (show == TRUE) {
+				gtk_widget_show (mix->icon);
+			} else {
+				gtk_widget_hide (mix->icon);
+			}
+		}
+	}
+}
+
+void
+gmix_change_labels (gboolean show)
+{
+	GList *p, *q;
+
+	for (p = mixer_pages; p; p = p->next) {
+		GMixMixerPage *page = p->data;
+		
+		for (q = page->items; q; q = q->next) {
+			GMixMixer *mix = q->data;
+
+			if (mix->label == NULL) {
+				continue;
+			}
+			
+			if (show == TRUE) {
+				gtk_widget_show (mix->label);
+			} else {
+				gtk_widget_hide (mix->label);
+			}
+		}
+	}
+}
+
+		

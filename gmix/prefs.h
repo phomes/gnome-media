@@ -22,9 +22,13 @@
 
 typedef struct {
 	gboolean set_mixer_on_start;
-	gboolean hide_menu;
-	gboolean use_icons;
-	gboolean use_labels;
+	guint mixer_id;
+	
+	gboolean show_icons;
+	guint icons_id;
+	
+	gboolean show_labels;
+	guint labels_id;
 } mixerprefs;
 
 extern mixerprefs prefs;
@@ -48,6 +52,6 @@ struct label_create_args {
 };
 
 
-void prefs_make_window(void);
+void prefs_make_window(GtkWidget *toplevel);
 void get_gui_config(void);
 void put_gui_config(void);
