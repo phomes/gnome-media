@@ -28,6 +28,8 @@
 
 #include "GNOME_Media_CDDBSlave2.h"
 
+static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
+
 static void
 maybe_close_tray (GnomeCD *gcd)
 {
@@ -612,12 +614,19 @@ open_preferences (GtkWidget *widget,
 
 #define CDDBSLAVE_TRACK_EDITOR_IID "OAFIID:GNOME_Media_CDDBSlave2_TrackEditor"
 void
+destroy_track_editor (void)
+{
+	if (track_editor != CORBA_OBJECT_NIL) {
+		bonobo_object_release_unref (track_editor, NULL);
+	}
+}
+
+void
 open_track_editor (GtkWidget *widget,
 		   GnomeCD *gcd)
 {
 	GnomeCDRomCDDBData *data;
 	CORBA_Environment ev;
-	CORBA_Object object;
 	char *discid;
 	
 	if (gnome_cdrom_get_cddb_data (gcd->cdrom, &data, NULL) == FALSE) {
@@ -626,32 +635,36 @@ open_track_editor (GtkWidget *widget,
 	}
 	
 	CORBA_exception_init (&ev);
-	object = bonobo_activation_activate_from_id (CDDBSLAVE_TRACK_EDITOR_IID, 0, NULL, &ev);
-	if (BONOBO_EX (&ev)) {
-		/* FIXME: Should be an error dialog */
-		g_warning ("Could not activate track editor.\n%s",
-			   CORBA_exception_id (&ev));
-		CORBA_exception_free (&ev);
+	if (track_editor == CORBA_OBJECT_NIL) {
+		track_editor = bonobo_activation_activate_from_id (CDDBSLAVE_TRACK_EDITOR_IID, 0, NULL, &ev);
+		if (BONOBO_EX (&ev)) {
+			/* FIXME: Should be an error dialog */
+			g_warning ("Could not activate track editor.\n%s",
+				   CORBA_exception_id (&ev));
+			CORBA_exception_free (&ev);
+			
+			return;
+		}
 		
-		return;
-	}
-	
-	if (object == CORBA_OBJECT_NIL) {
-		/* FIXME: Should be an error dialog */
-		g_warning ("Could not start track editor.");
-		
-		return;
+		if (track_editor == CORBA_OBJECT_NIL) {
+			/* FIXME: Should be an error dialog */
+			g_warning ("Could not start track editor.");
+			
+			return;
+		}
 	}
 
-	discid = g_strdup_printf ("%08lx", data->discid);
-	GNOME_Media_CDDBTrackEditor_setDiscID (object, discid, &ev);
-	g_free (discid);
+	if (data != NULL) {
+		discid = g_strdup_printf ("%08lx", data->discid);
+		GNOME_Media_CDDBTrackEditor_setDiscID (track_editor, discid, &ev);
+		g_free (discid);
+	}
 	
-	GNOME_Media_CDDBTrackEditor_showWindow (object, &ev);
+	GNOME_Media_CDDBTrackEditor_showWindow (track_editor, &ev);
 	if (BONOBO_EX (&ev)) {
 		/* FIXME: Should be an error dialog */
 		CORBA_exception_free (&ev);
-		bonobo_object_release_unref (object, NULL);
+		bonobo_object_release_unref (track_editor, NULL);
 		return;
 	}
 	CORBA_exception_free (&ev);

@@ -251,6 +251,9 @@ window_destroy_cb (GtkWidget *window,
 	/* Unref the cddb slave */
 	close_cddb_client ();
 
+	/* And the track editor */
+	destroy_track_editor ();
+	
 	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
 }
