@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"POT-Creation-Date: 2002-04-18 12:15+0200\n"
-"PO-Revision-Date: 2002-04-18 12:27+0200\n"
+"POT-Creation-Date: 2002-05-08 00:45+0200\n"
+"PO-Revision-Date: 2002-05-08 00:46+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1255,11 +1255,11 @@ msgstr "Wstrzymaj"
 msgid "Disc error"
 msgstr "Błąd przy odczycie płyty"
 
-#: gnome-cd/callbacks.c:1
+#: gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1
 msgid "Unknown Artist"
 msgstr "Nieznany wykonawca"
 
-#: gnome-cd/callbacks.c:1
+#: gnome-cd/callbacks.c:1 gnome-cd/callbacks.c:1
 msgid "Unknown Album"
 msgstr "Nieznany album"
 
@@ -1340,15 +1340,17 @@ msgid "No CD device"
 msgstr "Brak urządzenia CD"
 
 #: gnome-cd/gnome-cd.c:1
+#, c-format
 msgid ""
-"The CD device that is set is not a CDRom drive. This means that GnomeCD\n"
-"will be unable to run correctly. Press Set device to go to a dialog\n"
-"where you can set the device, or click Quit to quit GnomeCD"
+"%s\n"
+"This means that GnomeCD will be unable to run correctly. Press Set device to "
+"go to a dialog where you can set the device, or click Quit to quit GnomeCD"
 msgstr ""
-"Ustawione urządzenie CD nie odnosi się do CD-ROM-u. Oznacza to, że\n"
-"nie będzie możliwe poprawne działanie Gnome-CD. Możesz wcisnąć\n"
-"\"Ustaw urządzenie\", aby przejść do okna pozwalającego na ustawienie\n"
-"urządzenia lub też wybrać \"Zakończ\", aby zakończyć działanie Gnome-CD."
+"%s\n"
+"Oznacza to, że poprawne działanie Gnome-CD nie będzie możliwe. Możesz "
+"wcisnąć \"Ustaw urządzenie\", aby przejść do okna pozwalającego na "
+"ustawienie urządzenia lub też wybrać \"Zakończ\", aby zakończyć działanie "
+"Gnome-CD."
 
 #: gnome-cd/gnome-cd.c:1
 msgid "Invalid CD device"
@@ -1410,15 +1412,21 @@ msgstr "Odtwarzacz CD"
 msgid "Play audio CDs"
 msgstr "Odtwarzacz muzycznych płyt CD"
 
+#: gnome-cd/linux-cdrom.c:1 gnome-cd/linux-cdrom.c:1
+#: gnome-cd/linux-cdrom.c:1
+#, c-format
+msgid "You do not seem to have permission to access %s."
+msgstr "Brak uprawnień dostępu do %s."
+
 #: gnome-cd/linux-cdrom.c:1
 #, c-format
 msgid ""
-"Unable to open %s. This may be caused by:\n"
+"%s does not appear to point to a valid CD device. This may be because:\n"
 "a) CD support is not compiled into Linux\n"
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"Nie można otworzyć %s. Oto możliwe przyczyny:\n"
+"%s nie wskazuje na poprawne urządzenie CD-ROM. Oto możliwe przyczyny:\n"
 "a) W jądro systemu nie wkompilowano obsługi napędów CD\n"
 "b) Brak uprawnień dostępu do napędu CD\n"
 "c) %s nie jest napędem CD.\n"
@@ -1517,18 +1525,13 @@ msgstr "(linux_cdrom_set_volume:1): Operacja ioctl nie powiodła się: %s"
 #. Failed, it's not a CDROM drive
 #: gnome-cd/linux-cdrom.c:1
 #, c-format
-msgid "%s is not a CDROM drive\n"
-msgstr "%s nie jest napędem CD-ROM\n"
-
-#: gnome-cd/linux-cdrom.c:1
-#, c-format
-msgid "%s is a CDROM drive\n"
-msgstr "%s jest napędem CD-ROM\n"
+msgid "%s is not a CDROM drive"
+msgstr "%s nie jest napędem CD-ROM"
 
 #: gnome-cd/linux-cdrom.c:1 gnome-cd/linux-cdrom.c:1
 #, c-format
 msgid ""
-"%s does not point to a valid CDRom device. This may be caused by:\n"
+"%s does not appear to point to a valid CDRom device. This may be because:\n"
 "a) CD support is not compiled into Linux\n"
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
@@ -1537,6 +1540,19 @@ msgstr ""
 "a) W jądro systemu nie wkompilowano obsługi napędów CD\n"
 "b) Brak uprawnień dostępu do napędu CD\n"
 "c) %s nie jest napędem CD.\n"
+
+#: gnome-cd/preferences.c:1
+#, c-format
+msgid ""
+"%s\n"
+"This means that Gnome-CD will not be able to run."
+msgstr ""
+"%s\n"
+"Oznacza to, że nie będzie możliwe uruchomienie GNOME-CD."
+
+#: gnome-cd/preferences.c:1
+msgid "Error setting device"
+msgstr "Błąd przy ustawianiu urządzenia"
 
 #: gnome-cd/preferences.c:1
 msgid "Gnome-CD Preferences"
