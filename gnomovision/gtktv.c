@@ -958,7 +958,7 @@ static void crap_eraser(void)
 	}
 	else
 	{
-		system("/usr/X11/bin/xrefresh");
+		system("/usr/X11R6/bin/xrefresh");
 /*		printf("RAN CRAPPER\n");*/
 		crap_eraser_lock = 0;
 		crap_eraser_delay = 1;

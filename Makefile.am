@@ -12,7 +12,7 @@ SUBDIRS = po intl macros	\
 	@PROGRAMS_VUMETER@	\
 	@PROGRAMS_EXTACE@	\
 	cddbslave		\
-	$(gnomovision)
+	@PROGRAMS_GNOMOVISION@
 
 EXTRA_DIST = gnome-media.spec configure
 

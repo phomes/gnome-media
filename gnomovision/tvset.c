@@ -361,7 +361,7 @@ static void do_painting(void)
         
         snprintf(buf,40,"%dx%d",w,h);
         
-//        gtk_label_set(size_label,buf);
+        gtk_label_set(size_label,buf);
 
 	if(use_shm && capture && capture_running && !capture_hidden)
 	{
@@ -625,7 +625,7 @@ static gint crap_eraser(gpointer trash)
 	}
 	else
 	{
-		system("/usr/X11/bin/xrefresh");
+		system("/usr/X11R6/bin/xrefresh");
 /*		printf("RAN CRAPPER\n");*/
 		crap_eraser_lock = 0;
 		crap_eraser_delay = 1;
@@ -1236,7 +1236,7 @@ void make_tv_set(void)
 	gnome_app_create_toolbar(GNOME_APP(window), tbar);
 //	gnome_app_toolbar_set_position(GNOME_APP(window), GNOME_APP_POS_BOTTOM);
 	
-	gtk_container_border_width(GTK_CONTAINER(GNOME_APP(window)->toolbar), 3);
+	gtk_container_border_width(GTK_CONTAINER(GNOME_APP(window)->menubar), 3);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 /*	gtk_container_add(GTK_CONTAINER(window), vbox); */
 	
@@ -1397,7 +1397,7 @@ static void choose_video_device(void)
  */
  
 
-
+#if 0
 static error_t parse_an_arg(int keycrap, char *argcrap, struct argp_state *fucked)
 {
 	if(keycrap!=ARGP_KEY_ARG)
@@ -1415,7 +1415,7 @@ static struct argp shite1=
 	NULL,
 	NULL
 };
-
+#endif
 /*
  *	Run the TV set
  */
@@ -1423,8 +1423,7 @@ static struct argp shite1=
 int main(int argc, char *argv[])
 {
 	int n=0;
-	gnome_init(argv[0], &shite1, argc, argv, 0 ,NULL);
-#ifdef THE_GNOME_PEOPLE_HAD_A_CLUE	
+	gnome_init("tvset", "0.1", argc, argv);
 	if(argv[1] && strcmp(argv[1], "-w")==0)
 	{
 		argv++;
@@ -1439,7 +1438,6 @@ int main(int argc, char *argv[])
 		make_tv_set();
 	}
 	else
-#endif
 		choose_video_device();
 	
 	gtk_main();
