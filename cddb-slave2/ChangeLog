@@ -1,5 +1,11 @@
 2002-02-10  Iain <iain@ximian.com>
 
+	* cddb-parser.c (cddb_entry_new): Create a full hashtable.
+	(cddb_entry_parse_file): Use g_strsplit to split the line, instead of
+	nasty strchr hacks.
+	
+2002-02-10  Iain <iain@ximian.com>
+
 	* GNOME_Media_CDDBSlave2.idl: Add some fun methods.
 
 	* Makefile.am: Add cddb-parser.c

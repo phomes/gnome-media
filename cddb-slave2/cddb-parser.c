@@ -41,7 +41,7 @@ cddb_entry_parse_file (CDDBEntry *entry,
 
 	while (fgets (line, 4096, handle)) {
 		char *end;
-		char *id, *data;
+		char **vector;
 		GString *string;
 		
 		if (*line == 0 || *line == '#' || isdigit (*line)) {
@@ -60,23 +60,21 @@ cddb_entry_parse_file (CDDBEntry *entry,
 			*end = 0;
 		}
 
-		end = strchr (line, '=');
-		if (end == NULL) {
+		vector = g_strplit (line, "=", 2);
+		if (vector == NULL) {
 			continue;
 		}
-		id = g_strndup (line, end - line);
+		
 		/* See if we have this ID */
-		string = g_hash_table_lookup (entry->fields, id);
+		string = g_hash_table_lookup (entry->fields, vector[0]);
 		if (string == NULL) {
-			string = g_string_new (end + 1);
-			g_hash_table_insert (entry->fields, id, string);
-
-			/* Don't want to free id here, as it's the key */
+			string = g_string_new (vector[1]);
+			g_hash_table_insert (entry->fields, g_strdup (vector[0]), string);
 		} else {
-			g_string_append (string, end + 1);
-			/* Free id here as we don't need it */
-			g_free (id);
+			g_string_append (string, vector[1]);
 		}
+
+		g_strfreev (vector);
 	}
 
 	return TRUE;
@@ -97,6 +95,6 @@ cddb_entry_new (const char *discid,
 	entry->offsets = g_strdup (offsets);
 	entry->nsecs = nsecs;
 	
-	entry->fields = g_hash_table_new (g_str_hash, g_str_equal);
+	entry->fields = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 	return entry;
 }
