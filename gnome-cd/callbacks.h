@@ -68,4 +68,10 @@ void position_slider_leave (GtkRange *range,
 gboolean tray_icon_clicked (GtkWidget *widget,
                            GdkEventButton *event,
                            GnomeCD *gcd);
+
+gboolean tray_icon_pressed (GtkWidget *widget,
+                           GdkEventKey *event,
+                           GnomeCD *gcd);
+gint tray_icon_expose (GtkWidget* widget,
+                      GdkEventExpose *event);
 #endif

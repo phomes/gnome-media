@@ -681,6 +681,8 @@ init_player (const char *device_override)
 	box = gtk_event_box_new ();
 	g_signal_connect (G_OBJECT (box), "button_press_event",
 			 	G_CALLBACK (tray_icon_clicked), gcd);
+	g_signal_connect (G_OBJECT (box), "key_press_event",
+			 	G_CALLBACK (tray_icon_pressed), gcd);
 
 	g_object_set_data_full (G_OBJECT (gcd->tray), "tray-action-data", gcd,
 				(GDestroyNotify) tray_object_destroyed);
@@ -689,9 +691,13 @@ init_player (const char *device_override)
 	pixbuf = gdk_pixbuf_scale_simple (pixbuf_from_file ("gnome-cd/cd.png"),
 				16, 16, GDK_INTERP_BILINEAR);
 	gcd->tray_icon = gtk_image_new_from_pixbuf (pixbuf);
+	g_signal_connect (G_OBJECT (gcd->tray_icon), "expose_event",
+			 	G_CALLBACK (tray_icon_expose), gcd);
+	GTK_WIDGET_SET_FLAGS (box, GTK_CAN_FOCUS);
+	atk_object_set_name (gtk_widget_get_accessible (box), _("CD Player"));
 	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
 	gcd->tray_tips = gtk_tooltips_new ();
-	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), gcd->tray, _("CD Player"), NULL);
+	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), box, _("CD Player"), NULL);
 	gnome_popup_menu_attach (make_popup_menu (gcd), box, NULL);
 	gtk_widget_show_all (gcd->tray);
 

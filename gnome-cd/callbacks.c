@@ -15,7 +15,8 @@
 #include <gtk/gtkrange.h>
 #include <gtk/gtkbutton.h>
 #include <gtk/gtkoptionmenu.h>
-#include <gtk/gtkmessagedialog.h> 
+#include <gtk/gtkmessagedialog.h>
+#include <gdk/gdkkeysyms.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-help.h>
@@ -918,6 +919,52 @@ tray_icon_clicked (GtkWidget *widget, GdkEventButton *event, GnomeCD *gcd)
 	} else {
 		return FALSE;
 	}
+}
+
+gboolean
+tray_icon_pressed (GtkWidget *widget, GdkEventKey *event, GnomeCD *gcd)
+{
+	if (event->keyval == GDK_space ||
+	    event->keyval == GDK_KP_Space ||
+	    event->keyval == GDK_Return ||
+	    event->keyval == GDK_KP_Enter) {
+		if (GTK_WIDGET_VISIBLE (gcd->window)) {
+			gtk_widget_hide (gcd->window);
+		} else {
+			gtk_widget_show (gcd->window);
+		}
+
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+gint
+tray_icon_expose (GtkWidget* widget, GdkEventExpose *event)
+{
+  /*
+   * Draw focus indication if the GtkEventBox has focus.
+   */
+  if (GTK_WIDGET_HAS_FOCUS (gtk_widget_get_parent (widget)))
+    {
+      gint focus_width, focus_pad;
+      gint x, y, width, height;
+
+      gtk_widget_style_get (widget,
+                            "focus-line-width", &focus_width,
+                            "focus-padding", &focus_pad,
+                            NULL);
+      x = widget->allocation.x + focus_pad;
+      y = widget->allocation.y + focus_pad;
+      width = widget->allocation.width -  2 * focus_pad;
+      height = widget->allocation.height - 2 * focus_pad;
+      gtk_paint_focus (widget->style, widget->window,
+                       GTK_STATE_NORMAL,
+                       &event->area, widget, "button",
+                       x, y, width, height);
+    }
+  return FALSE;
 }
 
 void
