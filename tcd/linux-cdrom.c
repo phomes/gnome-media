@@ -38,9 +38,14 @@
 #include <errno.h>
 #include <math.h>
 #include <sys/ioctl.h>
-#include <linux/cdrom.h>
 
-#include "cdrom.h"
+#ifdef linux
+# include <linux/cdrom.h>
+# include "linux-cdrom.h"
+#else
+# error TCD currently only builds under Linux systems.
+#endif
+
 #include "cddb.h"
 
 #define FALSE (0)

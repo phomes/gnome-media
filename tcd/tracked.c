@@ -38,7 +38,7 @@
 #include <sys/types.h>
 #include <linux/cdrom.h>
 
-#include "cdrom.h"
+#include "linux-cdrom.h"
 #include "tcd.h"
 #include "tracked.h"
 

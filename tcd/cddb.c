@@ -34,9 +34,13 @@
 #include <pwd.h>
 #include <sys/socket.h>
 
-#include <linux/cdrom.h>
+#ifdef linux
+# include <linux/cdrom.h>
+# include "linux-cdrom.h"
+#else
+# error TCD currently only builds under Linux systems.
+#endif
 
-#include "cdrom.h"
 #include "socket.h"
 #include "cddb.h"
 

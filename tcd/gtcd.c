@@ -42,12 +42,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/socket.h>
-#include <linux/cdrom.h>
-#include <linux/soundcard.h>
 
-#include "cdrom.h"
-#include "tcd.h"
-#include "tracked.h"
+#ifdef linux
+# include <linux/cdrom.h>
+# include "linux-cdrom.h"
+#else
+# error TCD currently only builds under Linux systems.
+#endif
+
 #include "cddb.h"
 
 #include "gtracked.h"
@@ -798,10 +800,10 @@ void init_window(void)
         gtk_window_set_title( GTK_WINDOW(window), PACKAGE" "VERSION" " );
         gtk_window_set_wmclass( GTK_WINDOW(window), "main_window","gtcd" );
 
-        gtk_signal_connect (GTK_OBJECT (window), "delete_event",
-                GTK_SIGNAL_FUNC (delete_event), NULL);
+        gtk_signal_connect( GTK_OBJECT(window), "delete_event",
+                GTK_SIGNAL_FUNC(delete_event), NULL);
 
-        gtk_container_border_width (GTK_CONTAINER (window), 5);
+        gtk_container_border_width( GTK_CONTAINER(window), 5 );
         gtk_widget_realize(window);
 
 	tooltips = gtk_tooltips_new();
@@ -815,11 +817,6 @@ int main (int argc, char *argv[])
 {
 	char *homedir;
 	char rcfile[64];
-	char *myinvoc;
-	char *result;
-        char *cfgpath;
-        char *globcfgpath;
-	GtkWidget *plug;
 
         argp_program_version = VERSION;
 
@@ -848,10 +845,10 @@ int main (int argc, char *argv[])
 	gtk_timeout_add(1000, (GtkFunction)slow_timer, NULL);
 	gtk_timeout_add(250, (GtkFunction)fast_timer, NULL);
 	titlelabel_f = TRUE;
+
         gnome_app_set_contents( GNOME_APP(window), vbox);
 	
-        gtk_widget_show_all(window); /* Make sure window is shown last */
-//	applet_corba_gtk_main("IDL:GNOME/Applet:1.0");
+        gtk_widget_show_all(window);
 	
 	gtk_main ();
 	gnome_config_sync();

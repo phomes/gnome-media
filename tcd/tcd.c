@@ -42,10 +42,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/socket.h>
-#include <linux/cdrom.h>
-#include <linux/soundcard.h>
 
-#include "cdrom.h"
+#ifdef linux
+# include <linux/cdrom.h>
+# include "linux-cdrom.h"
+#else
+# error TCD currently only builds under Linux systems.
+#endif
+
 #include "tcd.h"
 #include "tracked.h"
 #include "cddb.h"
