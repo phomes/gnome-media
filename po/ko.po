@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-22 16:49+0100\n"
+"POT-Creation-Date: 2005-01-10 21:41+0100\n"
 "PO-Revision-Date: 2004-08-01 02:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -802,12 +802,12 @@ msgid "Art Rock"
 msgstr "아트 락 (Art Rock)"
 
 #: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:558
-#: gnome-cd/callbacks.c:690 gnome-cd/callbacks.c:701 gnome-cd/display.c:74
+#: gnome-cd/callbacks.c:696 gnome-cd/callbacks.c:707 gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "알 수 없는 가수"
 
 #: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:559
-#: gnome-cd/callbacks.c:693 gnome-cd/callbacks.c:705 gnome-cd/display.c:75
+#: gnome-cd/callbacks.c:699 gnome-cd/callbacks.c:711 gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "알 수 없는 앨범"
 
@@ -952,41 +952,41 @@ msgstr "재생"
 msgid "Paused"
 msgstr "일시 중지"
 
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:873 gnome-cd/gnome-cd.c:92
+#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:92
 #: gnome-cd/gnome-cd.c:538 gnome-cd/gnome-cd.c:725 gnome-cd/gnome-cd.c:728
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD 플레이어"
 
-#: gnome-cd/callbacks.c:649
+#: gnome-cd/callbacks.c:655
 msgid "Stopped"
 msgstr "중지"
 
-#: gnome-cd/callbacks.c:655
+#: gnome-cd/callbacks.c:661
 msgid "Disc error"
 msgstr "디스크 오류"
 
-#: gnome-cd/callbacks.c:666 gnome-cd/callbacks.c:761
+#: gnome-cd/callbacks.c:672 gnome-cd/callbacks.c:767
 msgid "No disc"
 msgstr "디스크 없음"
 
-#: gnome-cd/callbacks.c:789
+#: gnome-cd/callbacks.c:795
 msgid "Drive open"
 msgstr "드라이브 열림"
 
-#: gnome-cd/callbacks.c:813
+#: gnome-cd/callbacks.c:819
 msgid "Data CD"
 msgstr "데이터 CD"
 
-#: gnome-cd/callbacks.c:835 gnome-cd/callbacks.c:840
+#: gnome-cd/callbacks.c:841 gnome-cd/callbacks.c:846
 msgid "No Cdrom"
 msgstr "CD-ROM 없음"
 
-#: gnome-cd/callbacks.c:851
+#: gnome-cd/callbacks.c:857
 msgid "Drive Error"
 msgstr "드라이브 오류"
 
-#: gnome-cd/callbacks.c:875
+#: gnome-cd/callbacks.c:881
 msgid "A CD player for GNOME"
 msgstr "그놈용 CD 플레이어"
 
@@ -1737,46 +1737,50 @@ msgstr ""
 msgid "front center"
 msgstr "차례"
 
-#: gst-mixer/src/volume.c:142
+#. Translators: This is the name of a surround sound channel. It
+#. * stands for "Low-Frequency Effects". If you're not sure that
+#. * this has an established and different translation in your
+#. * language, leave it unchanged.
+#: gst-mixer/src/volume.c:146
 msgid "LFE"
 msgstr ""
 
-#: gst-mixer/src/volume.c:143
+#: gst-mixer/src/volume.c:147
 msgid "side left"
 msgstr ""
 
-#: gst-mixer/src/volume.c:144
+#: gst-mixer/src/volume.c:148
 msgid "side right"
 msgstr ""
 
-#: gst-mixer/src/volume.c:145
+#: gst-mixer/src/volume.c:149
 #, fuzzy
 msgid "unknown"
 msgstr "모름"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: gst-mixer/src/volume.c:151
+#: gst-mixer/src/volume.c:155
 #, fuzzy, c-format
 msgid "Volume of %s channel on %s"
 msgstr "채널 개수:"
 
-#: gst-mixer/src/volume.c:199
+#: gst-mixer/src/volume.c:203
 #, fuzzy, c-format
 msgid "Track %s"
 msgstr "트랙 목록"
 
-#: gst-mixer/src/volume.c:202
+#: gst-mixer/src/volume.c:206
 #, fuzzy, c-format
 msgid "Channel %d of track %s"
 msgstr "%2$s 슬라이더의 채널 %1$d"
 
-#: gst-mixer/src/volume.c:205
+#: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
 msgstr ""
 
-#: gst-mixer/src/volume.c:243
+#: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr ""
@@ -1823,6 +1827,7 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "GStreamer 프로그램의 기본값을 설정합니다"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "멀티미디어 시스템 설정 프로그램"
 
@@ -1850,10 +1855,6 @@ msgstr "오디오"
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "마치려면 확인을 클릭하십시오."
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "GStreamer Preferences"
-msgstr "GStreamer 기본 설정"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
@@ -2216,6 +2217,9 @@ msgstr "사운드 출력 볼륨을 모니터합니다"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "볼륨 모니터"
+
+#~ msgid "GStreamer Preferences"
+#~ msgstr "GStreamer 기본 설정"
 
 #~ msgid "CD Player De_vice:"
 #~ msgstr "CD 플레이어 장치(_V):"

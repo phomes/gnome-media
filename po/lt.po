@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-22 16:49+0100\n"
+"POT-Creation-Date: 2005-01-10 21:41+0100\n"
 "PO-Revision-Date: 2004-12-03 17:27+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -804,12 +804,12 @@ msgid "Art Rock"
 msgstr "Art Rock"
 
 #: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:558
-#: gnome-cd/callbacks.c:690 gnome-cd/callbacks.c:701 gnome-cd/display.c:74
+#: gnome-cd/callbacks.c:696 gnome-cd/callbacks.c:707 gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "Nežinomas atlikėjas"
 
 #: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:559
-#: gnome-cd/callbacks.c:693 gnome-cd/callbacks.c:705 gnome-cd/display.c:75
+#: gnome-cd/callbacks.c:699 gnome-cd/callbacks.c:711 gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "Nežinomas albumas"
 
@@ -955,41 +955,41 @@ msgstr "Grojama"
 msgid "Paused"
 msgstr "Pauzė"
 
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:873 gnome-cd/gnome-cd.c:92
+#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:92
 #: gnome-cd/gnome-cd.c:538 gnome-cd/gnome-cd.c:725 gnome-cd/gnome-cd.c:728
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD grotuvas"
 
-#: gnome-cd/callbacks.c:649
+#: gnome-cd/callbacks.c:655
 msgid "Stopped"
 msgstr "Sustabdyta"
 
-#: gnome-cd/callbacks.c:655
+#: gnome-cd/callbacks.c:661
 msgid "Disc error"
 msgstr "Disko klaida"
 
-#: gnome-cd/callbacks.c:666 gnome-cd/callbacks.c:761
+#: gnome-cd/callbacks.c:672 gnome-cd/callbacks.c:767
 msgid "No disc"
 msgstr "Nėra disko"
 
-#: gnome-cd/callbacks.c:789
+#: gnome-cd/callbacks.c:795
 msgid "Drive open"
 msgstr "Diskas išmestas"
 
-#: gnome-cd/callbacks.c:813
+#: gnome-cd/callbacks.c:819
 msgid "Data CD"
 msgstr "Duomenų CD"
 
-#: gnome-cd/callbacks.c:835 gnome-cd/callbacks.c:840
+#: gnome-cd/callbacks.c:841 gnome-cd/callbacks.c:846
 msgid "No Cdrom"
 msgstr "Nėra CD įrenginio"
 
-#: gnome-cd/callbacks.c:851
+#: gnome-cd/callbacks.c:857
 msgid "Drive Error"
 msgstr "Diskų įrenginio klaida"
 
-#: gnome-cd/callbacks.c:875
+#: gnome-cd/callbacks.c:881
 msgid "A CD player for GNOME"
 msgstr "GNOME CD grotuvas"
 
@@ -1732,45 +1732,49 @@ msgstr "galinė dešinė"
 msgid "front center"
 msgstr "vidurinė priekinė"
 
-#: gst-mixer/src/volume.c:142
+#. Translators: This is the name of a surround sound channel. It
+#. * stands for "Low-Frequency Effects". If you're not sure that
+#. * this has an established and different translation in your
+#. * language, leave it unchanged.
+#: gst-mixer/src/volume.c:146
 msgid "LFE"
 msgstr "LFE"
 
-#: gst-mixer/src/volume.c:143
+#: gst-mixer/src/volume.c:147
 msgid "side left"
 msgstr "šoninė kairė"
 
-#: gst-mixer/src/volume.c:144
+#: gst-mixer/src/volume.c:148
 msgid "side right"
 msgstr "šoninė dešinė"
 
-#: gst-mixer/src/volume.c:145
+#: gst-mixer/src/volume.c:149
 msgid "unknown"
 msgstr "nežinoma"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: gst-mixer/src/volume.c:151
+#: gst-mixer/src/volume.c:155
 #, fuzzy, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s kanalo, esančio %s, garsumas"
 
-#: gst-mixer/src/volume.c:199
+#: gst-mixer/src/volume.c:203
 #, c-format
 msgid "Track %s"
 msgstr "Takelis %s"
 
-#: gst-mixer/src/volume.c:202
+#: gst-mixer/src/volume.c:206
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%2$s takelio %1$d kanalas"
 
-#: gst-mixer/src/volume.c:205
+#: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "Takelis %s, kanalas %d"
 
-#: gst-mixer/src/volume.c:243
+#: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "Takelis %s: užrakinti kanalus kartu"
@@ -1815,6 +1819,7 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Keisti įprastus GStreamer programų nustatymus"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Daugialypės terpės sistemų konfigūravimas"
 
@@ -1842,10 +1847,6 @@ msgstr "Audio"
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "Norėdami baigti spragtelkit „Gerai“"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "GStreamer Preferences"
-msgstr "GStreamer nustatymai"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
@@ -2212,3 +2213,6 @@ msgstr "Rodyti išvedamo garso garsumą"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Garsumo matuoklis"
+
+#~ msgid "GStreamer Preferences"
+#~ msgstr "GStreamer nustatymai"

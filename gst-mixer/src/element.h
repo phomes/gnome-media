@@ -76,15 +76,18 @@ typedef struct {
   gboolean done;
 } gvc_whitelist;
 
+/* Translator comment: the names below are a whitelist for which volume
+ * controls to show by default. Make sure that those match the translations
+ * of GStreamer-plugins' ALSA/OSS plugins. */
 #define whitelist_init_list { \
-    { "cd", FALSE }, \
-    { "line", FALSE }, \
-    { "mic", FALSE }, \
-    { "pcm", FALSE }, \
-    { "headphone", FALSE }, \
-    { "speaker", FALSE }, \
-    { "volume", FALSE }, \
-    { "master", FALSE }, \
+    { N_("cd"), FALSE }, \
+    { N_("line"), FALSE }, \
+    { N_("mic"), FALSE }, \
+    { N_("pcm"), FALSE }, \
+    { N_("headphone"), FALSE }, \
+    { N_("speaker"), FALSE }, \
+    { N_("volume"), FALSE }, \
+    { N_("master"), FALSE }, \
     { NULL, FALSE } \
   }
 

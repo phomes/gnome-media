@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-22 16:49+0100\n"
+"POT-Creation-Date: 2005-01-10 21:41+0100\n"
 "PO-Revision-Date: 2004-12-05 18:05+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -805,12 +805,12 @@ msgid "Art Rock"
 msgstr "アート・ロック"
 
 #: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:558
-#: gnome-cd/callbacks.c:690 gnome-cd/callbacks.c:701 gnome-cd/display.c:74
+#: gnome-cd/callbacks.c:696 gnome-cd/callbacks.c:707 gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "演奏者が不明です"
 
 #: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:559
-#: gnome-cd/callbacks.c:693 gnome-cd/callbacks.c:705 gnome-cd/display.c:75
+#: gnome-cd/callbacks.c:699 gnome-cd/callbacks.c:711 gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "アルバムが不明です"
 
@@ -955,41 +955,41 @@ msgstr "再生"
 msgid "Paused"
 msgstr "一時停止"
 
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:873 gnome-cd/gnome-cd.c:92
+#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:92
 #: gnome-cd/gnome-cd.c:538 gnome-cd/gnome-cd.c:725 gnome-cd/gnome-cd.c:728
 #: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD プレイヤー"
 
-#: gnome-cd/callbacks.c:649
+#: gnome-cd/callbacks.c:655
 msgid "Stopped"
 msgstr "停止"
 
-#: gnome-cd/callbacks.c:655
+#: gnome-cd/callbacks.c:661
 msgid "Disc error"
 msgstr "ディスク・エラー"
 
-#: gnome-cd/callbacks.c:666 gnome-cd/callbacks.c:761
+#: gnome-cd/callbacks.c:672 gnome-cd/callbacks.c:767
 msgid "No disc"
 msgstr "ディスク無し"
 
-#: gnome-cd/callbacks.c:789
+#: gnome-cd/callbacks.c:795
 msgid "Drive open"
 msgstr "ドライブが開いています"
 
-#: gnome-cd/callbacks.c:813
+#: gnome-cd/callbacks.c:819
 msgid "Data CD"
 msgstr "データ CD"
 
-#: gnome-cd/callbacks.c:835 gnome-cd/callbacks.c:840
+#: gnome-cd/callbacks.c:841 gnome-cd/callbacks.c:846
 msgid "No Cdrom"
 msgstr "CD-ROM がありません"
 
-#: gnome-cd/callbacks.c:851
+#: gnome-cd/callbacks.c:857
 msgid "Drive Error"
 msgstr "ドライブ・エラー"
 
-#: gnome-cd/callbacks.c:875
+#: gnome-cd/callbacks.c:881
 msgid "A CD player for GNOME"
 msgstr "GNOME 用 CD プレイヤー"
 
@@ -1734,45 +1734,49 @@ msgstr "リア右"
 msgid "front center"
 msgstr "フロント中央"
 
-#: gst-mixer/src/volume.c:142
+#. Translators: This is the name of a surround sound channel. It
+#. * stands for "Low-Frequency Effects". If you're not sure that
+#. * this has an established and different translation in your
+#. * language, leave it unchanged.
+#: gst-mixer/src/volume.c:146
 msgid "LFE"
 msgstr "LFE"
 
-#: gst-mixer/src/volume.c:143
+#: gst-mixer/src/volume.c:147
 msgid "side left"
 msgstr "左サイド"
 
-#: gst-mixer/src/volume.c:144
+#: gst-mixer/src/volume.c:148
 msgid "side right"
 msgstr "右サイド"
 
-#: gst-mixer/src/volume.c:145
+#: gst-mixer/src/volume.c:149
 msgid "unknown"
 msgstr "不明"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: gst-mixer/src/volume.c:151
+#: gst-mixer/src/volume.c:155
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%2$sの%1$s・チャンネルの音量"
 
-#: gst-mixer/src/volume.c:199
+#: gst-mixer/src/volume.c:203
 #, c-format
 msgid "Track %s"
 msgstr "トラック %s"
 
-#: gst-mixer/src/volume.c:202
+#: gst-mixer/src/volume.c:206
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "トラック %2$s のチャンネル %1$d"
 
-#: gst-mixer/src/volume.c:205
+#: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "トラック %s、チャンネル %d"
 
-#: gst-mixer/src/volume.c:243
+#: gst-mixer/src/volume.c:247
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "トラック %s: 両チャンネルのロック"
@@ -1817,6 +1821,7 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "GStreamer アプリケーションのデフォルト値を設定します"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#: gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "マルチメディア・システム・セレクタ"
 
@@ -1844,10 +1849,6 @@ msgstr "オーディオ"
 #: gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
 msgstr "終了する場合は [OK] をクリックして下さい。"
-
-#: gstreamer-properties/gstreamer-properties.glade.h:7
-msgid "GStreamer Preferences"
-msgstr "GStreamer の設定"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
@@ -2214,3 +2215,6 @@ msgstr "音声出力音量のモニタです"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "音量モニタ"
+
+#~ msgid "GStreamer Preferences"
+#~ msgstr "GStreamer の設定"
