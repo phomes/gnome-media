@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 1.0.52\n"
-"POT-Creation-Date: 2000-05-07 18:03+0200\n"
+"POT-Creation-Date: 2000-05-12 00:02+0200\n"
 "PO-Revision-Date: 2000-05-07 01:37+0100\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -203,7 +203,7 @@ msgstr "Atstatyti iðsaugotus mikðerio lygius paleidus"
 msgid "Hide menu on start"
 msgstr "Paslëpti meniu paleidus"
 
-#: gmix/gmix.c:454 grecord/src/gui.c:879
+#: gmix/gmix.c:454
 msgid "GUI"
 msgstr "GUI"
 
@@ -248,7 +248,7 @@ msgstr "Èia yra mikðeris OSS garso árenginiams."
 msgid "GNOME Sound recorder:"
 msgstr "GNOME garso áraðytuvas:"
 
-#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:952
+#: grecord/src/grec.c:84 grecord/src/grec.c:115 grecord/src/grec.c:967
 msgid "Could not fork child process"
 msgstr "Nepavyko fork'inti vaikinio proceso"
 
@@ -295,7 +295,7 @@ msgstr "GNOME Garso áraðytuvo svetainë"
 msgid "Undoing all..."
 msgstr "Atðaukiama viskas..."
 
-#: grecord/src/grec.c:603 grecord/src/gui.c:415
+#: grecord/src/grec.c:603
 #, c-format
 msgid "File '%s' isn't a valid soundfile."
 msgstr "Byla ¥%s´ nëra galiojanti garso byla."
@@ -308,16 +308,22 @@ msgstr "Klaida saugant garso bylà"
 msgid "File not saved. Do you want to save it?"
 msgstr "Byla neiðsaugota. Ar nori jà iðsaugoti?"
 
-#: grecord/src/grec.c:813
-#, c-format
-msgid "The size of the current sample is more than %i MB!"
+#. Save the file
+#: grecord/src/grec.c:717
+#, fuzzy
+msgid "Saving..."
+msgstr "Grojama..."
+
+#: grecord/src/grec.c:828
+#, fuzzy, c-format
+msgid "The size of the current sample is more than %i Mb!"
 msgstr "Esamo semplo dydis yra daugiau nei %i MB!"
 
-#: grecord/src/grec.c:861
+#: grecord/src/grec.c:876
 msgid "Save sound file"
 msgstr "Iðsaugoti garso bylà"
 
-#: grecord/src/grec.c:1011
+#: grecord/src/grec.c:1026
 msgid ""
 "Sounddevice not ready! Please check that there isn't\n"
 "another program running that's using the sounddevice."
@@ -347,7 +353,8 @@ msgid "Add echo"
 msgstr "Pridëti aidà"
 
 #: grecord/src/gui.c:65
-msgid "Adds echo to the current sample"
+#, fuzzy
+msgid "Add echo to the current sample"
 msgstr "Pridedà aidà esamam semplui"
 
 #: grecord/src/gui.c:71
@@ -355,7 +362,8 @@ msgid "Remove echo"
 msgstr "Paðalinti aidà"
 
 #: grecord/src/gui.c:72
-msgid "Removes echo from the current sample"
+#, fuzzy
+msgid "Remove echo from the current sample"
 msgstr "Paðalina aidà ið esamo semplo"
 
 #: grecord/src/gui.c:83
@@ -363,7 +371,8 @@ msgid "Increase speed"
 msgstr "Pagreitinti"
 
 #: grecord/src/gui.c:84
-msgid "Increases the speed of the current sample"
+#, fuzzy
+msgid "Increase the speed of the current sample"
 msgstr "Padidina esamo semplo greitá"
 
 #: grecord/src/gui.c:90
@@ -371,7 +380,8 @@ msgid "Decrease speed"
 msgstr "Sulëtinti"
 
 #: grecord/src/gui.c:91
-msgid "Decreases the speed of the current sample"
+#, fuzzy
+msgid "Decrease the speed of the current sample"
 msgstr "Sumaþinti esamo semplo greitá"
 
 #: grecord/src/gui.c:101
@@ -394,7 +404,7 @@ msgstr "Atðaukti visus pakeitimus, atliktus ðiam semplui"
 msgid "Effects"
 msgstr "Efektai"
 
-#: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:869
+#: grecord/src/gui.c:127 grecord/src/gui.c:128 grecord/src/gui.c:864
 msgid "Show time"
 msgstr "Rodyti laikà"
 
@@ -402,7 +412,7 @@ msgstr "Rodyti laikà"
 msgid "Show soundinfo"
 msgstr "Rodyti garso info"
 
-#: grecord/src/gui.c:135 grecord/src/gui.c:874
+#: grecord/src/gui.c:135 grecord/src/gui.c:869
 msgid "Show sound information"
 msgstr "Pateikti garso informacijà"
 
@@ -450,20 +460,25 @@ msgstr "Iðeiti ið ðios programos"
 msgid "Info"
 msgstr "Info"
 
-#: grecord/src/gui.c:394
+#: grecord/src/gui.c:389
 #, c-format
 msgid "File '%s' doesn't exist; using default."
 msgstr "Byla ¥%s´ neegzistuoja; naudoju áprastà."
 
-#: grecord/src/gui.c:449 grecord/src/main.c:105
+#: grecord/src/gui.c:410
+#, fuzzy, c-format
+msgid "File '%s' isn't a supported soundfile."
+msgstr "Byla ¥%s´ nëra galiojanti garso byla."
+
+#: grecord/src/gui.c:444 grecord/src/main.c:105
 msgid "GNOME Sound recorder"
 msgstr "GNOME garso áraðytuvas"
 
-#: grecord/src/gui.c:450
+#: grecord/src/gui.c:445
 msgid "Copyright (C)  2000 Andreas Hydén"
 msgstr "Copyright (C)  2000 Andreas Hydén"
 
-#: grecord/src/gui.c:452
+#: grecord/src/gui.c:447
 msgid ""
 "A simple soundrecorder and soundplayer for GNOME.\n"
 "Dedicated to my cat, Malte."
@@ -471,125 +486,132 @@ msgstr ""
 "Paprastas garso áraðytuvas ir grotuvas, skirtas GNOME.\n"
 "Dedikuojamas mano katei, Malte."
 
-#: grecord/src/gui.c:543 tcd/gtracked.c:171
+#: grecord/src/gui.c:538 tcd/gtracked.c:171
 msgid "Time"
 msgstr "Laikas"
 
-#: grecord/src/gui.c:556
+#: grecord/src/gui.c:551
 msgid "Recording timeout: "
 msgstr "Áraðymo laiko riba: "
 
-#: grecord/src/gui.c:567
+#: grecord/src/gui.c:562
 msgid "minutes"
 msgstr "minutës"
 
-#: grecord/src/gui.c:572
+#: grecord/src/gui.c:567
 msgid "Stop recording on timeout"
 msgstr "Sustoti áraðinëti priëjus laiko ribà"
 
-#: grecord/src/gui.c:577
+#: grecord/src/gui.c:572
 msgid "Popup save dialog when recording is finished"
 msgstr "Pateikti iðsaugojimo dialogà, kai áraðymas baigtas"
 
-#: grecord/src/gui.c:586
+#: grecord/src/gui.c:581
 msgid "Size"
 msgstr "Dydis"
 
-#: grecord/src/gui.c:595
-msgid "Popup warning message if size (MB) of sample becomes bigger than:"
+#: grecord/src/gui.c:590
+#, fuzzy
+msgid "Popup warning message if size (Mb) of sample becomes bigger than:"
 msgstr "Perspëti, jei semplo dydis tampa didesnis nei: [MB]"
 
-#: grecord/src/gui.c:605
-msgid "Stop recording if size (MB) of sample becomes bigger than:"
+#: grecord/src/gui.c:600
+#, fuzzy
+msgid "Stop recording if size (Mb) of sample becomes bigger than:"
 msgstr "Sustoti áraðinëti, kai semplo dydis tampa didesnis nei: [MB]"
 
-#: grecord/src/gui.c:616
+#: grecord/src/gui.c:611
 msgid "Recording"
 msgstr "Áraðymas"
 
-#: grecord/src/gui.c:625
+#: grecord/src/gui.c:620
 msgid "Play-repeating"
 msgstr "Grojimo kartojimas"
 
-#: grecord/src/gui.c:634
+#: grecord/src/gui.c:629
 msgid "Repeat"
 msgstr "Kartoti"
 
-#: grecord/src/gui.c:643
+#: grecord/src/gui.c:638
 msgid "Forever"
 msgstr "Amþinai"
 
-#: grecord/src/gui.c:648
+#: grecord/src/gui.c:643
 msgid "Nr of times:"
 msgstr "Tiek kartø:"
 
-#: grecord/src/gui.c:659
+#: grecord/src/gui.c:654
 msgid "Playing"
 msgstr "Grojimas"
 
-#: grecord/src/gui.c:668
+#: grecord/src/gui.c:663
 msgid "Program files"
 msgstr "Programø bylos"
 
-#: grecord/src/gui.c:685
+#: grecord/src/gui.c:680
 msgid "Path to sox:"
 msgstr "Kelias iki sox:"
 
-#: grecord/src/gui.c:701
+#: grecord/src/gui.c:696
 msgid "Path to mixer:"
 msgstr "Kelias iki mikðerio:"
 
-#: grecord/src/gui.c:717
+#: grecord/src/gui.c:712
 msgid "Directories"
 msgstr "Katalogai"
 
-#: grecord/src/gui.c:730
+#: grecord/src/gui.c:725
 msgid "Temp dir:"
 msgstr "Laikinas katalogas:"
 
-#: grecord/src/gui.c:746
+#: grecord/src/gui.c:741
 msgid "Paths"
 msgstr "Keliai"
 
-#: grecord/src/gui.c:754
+#: grecord/src/gui.c:749
 msgid "Sound options"
 msgstr "Garso pasirinktys"
 
-#: grecord/src/gui.c:767
+#: grecord/src/gui.c:762
 msgid "Audioformat:"
 msgstr "Garso formatas:"
 
-#: grecord/src/gui.c:778 grecord/src/gui.c:788
+#: grecord/src/gui.c:773 grecord/src/gui.c:783
 msgid "8bit pcm"
 msgstr "8 bitø pcm"
 
-#: grecord/src/gui.c:779 grecord/src/gui.c:790
+#: grecord/src/gui.c:774 grecord/src/gui.c:785
 msgid "16bit pcm"
 msgstr "16 bitø pcm"
 
-#: grecord/src/gui.c:796
+#: grecord/src/gui.c:791
 msgid "Sample rate:"
 msgstr "Iðrankos daþnis:"
 
-#: grecord/src/gui.c:826
+#: grecord/src/gui.c:821
 msgid "mono/stereo"
 msgstr "mono/stereo"
 
-#: grecord/src/gui.c:837 grecord/src/gui.c:847
+#: grecord/src/gui.c:832 grecord/src/gui.c:842
 msgid "mono"
 msgstr "mono"
 
-#: grecord/src/gui.c:838 grecord/src/gui.c:849
+#: grecord/src/gui.c:833 grecord/src/gui.c:844
 msgid "stereo"
 msgstr "stereo"
 
-#: grecord/src/gui.c:852
+#: grecord/src/gui.c:847
 msgid "Sound"
 msgstr "Garsas"
 
-#: grecord/src/gui.c:860
+#: grecord/src/gui.c:855
 msgid "Main window"
 msgstr "Pagrindinis langas"
+
+#: grecord/src/gui.c:874
+#, fuzzy
+msgid "User interface"
+msgstr "Vartotojo vardas"
 
 #: grecord/src/main.c:52
 msgid "Specify the geometry of the main window"
