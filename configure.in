@@ -81,7 +81,7 @@ HAVE_GST=no
 GST_MAJORMINOR=0.7
 PROGRAMS_GSTRECORD=""
 PKG_CHECK_MODULES(GSR, \
-  gstreamer-$GST_MAJORMINOR >= 0.7.2 gstreamer-libs-$GST_MAJORMINOR >= 0.7.2 \
+  gstreamer-$GST_MAJORMINOR >= 0.7.2 gstreamer-libs-$GST_MAJORMINOR >= 0.7.2 gstreamer-gconf-$GST_MAJORMINOR >= 0.7.2 \
 		  libgnomeui-2.0 >= 1.102.0,
 		  HAVE_GST=yes,HAVE_GST=no)
 
