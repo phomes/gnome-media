@@ -1415,7 +1415,7 @@ make_record_pipeline (GSRWindow *window)
 	GSRWindowPipeline *pipeline;
 	gint32 id;
 	GMAudioProfile *profile;
-	gchar *pipeline_desc;
+	gchar *pipeline_desc, *source;
 	GstElement *encoder;
 	
 	pipeline = g_new (GSRWindowPipeline, 1);
@@ -1430,14 +1430,26 @@ make_record_pipeline (GSRWindow *window)
 			  G_CALLBACK (pipeline_error_cb), window);
 	
         profile = gm_audio_profile_choose_get_active (window->priv->profile);
+	source = gst_gconf_get_string ("default/audiosrc");
+	if (!source) {
+		show_error_dialog (NULL, _("There is no default GStreamer "
+				   "audio input element set - please install "
+				   "the GStreamer-GConf schemas or set one "
+				   "manually"));
+		return NULL;
+	}
+
 	pipeline_desc = g_strdup_printf ("%s ! audioconvert ! %s",
 					 gst_gconf_get_string ("default/audiosrc"),
 					 gm_audio_profile_get_pipeline (profile));
+	g_free (source);
 	
 	encoder = gst_gconf_render_bin_from_description (pipeline_desc);
 	g_free (pipeline_desc);
 	if (!encoder) {
-		g_error ("Could not construct pipeline");
+		show_error_dialog (NULL, _("Failed to create GStreamer "
+				   "encoder elements - check your encoding "
+				   "setup"));
 		return NULL;
 	}
 	gst_bin_add (GST_BIN (pipeline->pipeline), encoder);
@@ -1445,14 +1457,17 @@ make_record_pipeline (GSRWindow *window)
 	pipeline->sink = gst_element_factory_make ("filesink", "sink");
 	if (!pipeline->sink)
 	{
-		g_error ("Could not find filesink element");
+		show_error_dialog (NULL, _("Could not find GStreamer filesink"
+				   " plugin - please install it"));
 		return NULL;
 	}
 	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
 	
 	if (!gst_element_link (encoder, pipeline->sink))
 	{
-		g_error ("Could not link elements");
+		show_error_dialog (NULL, _("Failed to link encoder elements "
+				   "with file output element - you probably "
+				   "selected an invalid encoder"));
 		return NULL;
 	}
 	

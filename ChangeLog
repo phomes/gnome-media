@@ -1,3 +1,12 @@
+2004-06-16  Ronald Bultje  <rbultje@ronald.bitfreak.net>
+
+	* grecord/src/gsr-window.c: (make_record_pipeline):
+	  Don't g_error() when common problems occur like a non-found
+	  element. Don't ever even use g_error() at all, basically. Also
+	  add a graphical error dialog instead and use this also if no
+	  audio source could be loaded (which appears to happen a lot on
+	  recent FC2/JDS installs...).
+
 2004-06-15  Ronald Bultje  <rbultje@ronald.bitfreak.net>
 
 	* cddb-slave2/gnet-private.h:
