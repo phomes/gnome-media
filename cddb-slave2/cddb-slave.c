@@ -31,6 +31,7 @@
 #include <orbit/orbit.h>
 
 #include "cddb-slave.h"
+#include "cddb-parser.h"
 #include "GNOME_Media_CDDBSlave2.h"
 
 
@@ -946,7 +947,9 @@ impl_GNOME_Media_CDDBSlave2_save (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
-		/* Exception */
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 
@@ -968,7 +971,9 @@ impl_GNOME_Media_CDDBSlave2_getArtist (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
-		/* Should set an exception here */
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return CORBA_string_dup ("Unknown artist");
 	}
@@ -1003,6 +1008,9 @@ impl_GNOME_Media_CDDBSlave2_setArtist (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 
@@ -1032,6 +1040,9 @@ impl_GNOME_Media_CDDBSlave2_getDiscTitle (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return CORBA_string_dup ("Unknown disc");
 	}
@@ -1063,6 +1074,9 @@ impl_GNOME_Media_CDDBSlave2_setDiscTitle (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 
@@ -1089,6 +1103,9 @@ impl_GNOME_Media_CDDBSlave2_getNTrks (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return -1;
 	}
@@ -1107,6 +1124,9 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return;
 	}
@@ -1153,11 +1173,58 @@ impl_GNOME_Media_CDDBSlave2_getAllTracks (PortableServer_Servant servant,
 }
 
 static void
+set_new_string (CDDBEntry *entry,
+		const char *key,
+		const char *new_contents)
+{
+	GString *dentry;
+
+	dentry = g_hash_table_lookup (entry->fields, key);
+	if (dentry == NULL) {
+		dentry = g_string_new (new_contents);
+		g_hash_table_insert (entry->fields, g_strdup (key), dentry);
+	} else {
+		g_string_printf (dentry, "%s", new_contents);
+	}
+}
+
+static void
 impl_GNOME_Media_CDDBSlave2_setAllTracks (PortableServer_Servant servant,
 					  const CORBA_char *discid,
-					  GNOME_Media_CDDBSlave2_TrackList *list,
+					  const GNOME_Media_CDDBSlave2_TrackList *list,
 					  CORBA_Environment *ev)
 {
+	CDDBEntry *entry;
+	int ntrks, i;
+	
+	entry = g_hash_table_lookup (cddb_cache, discid);
+	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
+		return;
+	}
+
+	ntrks = list->_length;
+	for (i = 0; i < ntrks; i++) {
+		char *name, *comment, *key;
+		GString *dentry;
+		
+		name = list->_buffer[i].name;
+		comment = list->_buffer[i].comment;
+
+		if (name != NULL && *name != 0) {
+			key = g_strdup_printf ("TTITLE%d", i);
+			set_new_string (entry, key, name);
+			g_free (key);
+		}
+
+		if (comment != NULL && *name != 0) {
+			key = g_strdup_printf ("EXTT%d", i);
+			set_new_string (entry, key, comment);
+			g_free (key);
+		}
+	}
 }
 
 static CORBA_char *
@@ -1170,7 +1237,9 @@ impl_GNOME_Media_CDDBSlave2_getComment (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
-		/* Must do exceptions...*/
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry - %s", discid);
 		return CORBA_string_dup ("");
 	}
@@ -1194,6 +1263,9 @@ impl_GNOME_Media_CDDBSlave2_setComment (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 
@@ -1216,6 +1288,9 @@ impl_GNOME_Media_CDDBSlave2_getYear (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return -1;
 	}
@@ -1239,6 +1314,9 @@ impl_GNOME_Media_CDDBSlave2_setYear (PortableServer_Servant servant,
 	
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 
@@ -1262,7 +1340,9 @@ impl_GNOME_Media_CDDBSlave2_getGenre (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
-		/* Exception */
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		g_warning ("No entry %s", discid);
 		return CORBA_string_dup ("");
 	}
@@ -1286,6 +1366,9 @@ impl_GNOME_Media_CDDBSlave2_setGenre (PortableServer_Servant servant,
 
 	entry = g_hash_table_lookup (cddb_cache, discid);
 	if (entry == NULL) {
+		CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
+				     ex_GNOME_Media_CDDBSlave2_UnknownDiscID,
+				     NULL);
 		return;
 	}
 

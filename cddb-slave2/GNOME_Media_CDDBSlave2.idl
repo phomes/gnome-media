@@ -47,6 +47,7 @@ module Media {
 		};
 		typedef sequence<TrackInfo> TrackList;
 		
+		exception UnknownDiscID {};
 		/**
 		 * query: Queries the server for a CD
  		 * @discid: CDDB disc id.
@@ -69,42 +70,56 @@ module Media {
 		/**
 		 * save: Writes a CDDB entry to disc.
 		 */
-		void save(in string discid);
+		void save(in string discid)
+			raises (UnknownDiscID);
 		
 		/**
 		 * discid: CDDB disc id.
 		 * 
 		 * Returns the artist of @discid
 		 */
-		string getArtist (in string discid);
+		string getArtist (in string discid)
+			raises (UnknownDiscID);
 		void setArtist (in string discid,
-				in string artist);
+				in string artist)
+			raises (UnknownDiscID);
 
 		/**
 		 * discid: CDDB disc id.
 		 */
-		string getDiscTitle (in string discid);
+		string getDiscTitle (in string discid)
+			raises (UnknownDiscID);
 		void setDiscTitle (in string discid,
-				   in string disctitle);
+				   in string disctitle)
+			raises (UnknownDiscID);
 
-		short getNTrks (in string discid);
+		short getNTrks (in string discid)
+			raises (UnknownDiscID);
 
 		void getAllTracks (in string discid,
-				   out TrackList names);
+				   out TrackList names)
+			raises (UnknownDiscID);
 		void setAllTracks (in string discid,
-				   in TrackList names);
+				   in TrackList names)
+			raises (UnknownDiscID);
 				   
-		string getComment (in string discid);
+		string getComment (in string discid)
+			raises (UnknownDiscID);
 		void setComment (in string discid,
-				 in string comment);
+				 in string comment)
+			raises (UnknownDiscID);
 				 
-		short getYear (in string discid);
+		short getYear (in string discid)
+			raises (UnknownDiscID);
 		void setYear (in string discid,
-			      in short year);
+			      in short year)
+			raises (UnknownDiscID);
 			      
-		string getGenre (in string discid);
+		string getGenre (in string discid)
+			raises (UnknownDiscID);
 		void setGenre (in string discid,
-			       in string genre);
+			       in string genre)
+			raises (UnknownDiscID);
 	};
 };
 };  

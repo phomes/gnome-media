@@ -1,3 +1,37 @@
+2002-04-14  Iain <iain@ximian.com>
+
+	* GNOME_Media_CDDBSlave2.idl: Add exceptions to everything.
+
+	* cddb-disclosure.c (draw_indicator): Fix warnings.
+
+	* cddb-parser.c: Fix warnings.
+
+	* cddb-slave-capplet.c: Fix warnings and reset the list when update is
+	pressed.
+
+	* cddb-slave-client.c: Fix warnings.
+
+	* cddb-slave.c: Set exceptions everywhere.
+	(set_new_string): Given a key and an entry, set the contents of that
+	key, or create a new field.
+	(impl_GNOME_MEdia_CDDBSlave2_set_AllTracks): Fill in the new track
+	data.
+
+	* cddb-track-editor.c (sync_cddb_info): Set the info in the
+	trackeditor to the cddb slave.
+
+	* main.c: Use better fake names.
+
+	* socks-private.c: Fix warnings.
+
+	* socks.c: Fix warnings.
+	
+2002-04-10  Iain <iain@ximian.com>
+
+	* cddb-track-editor.c (make_track_editor_control): Make a new cell
+	renderer for each column, so only one will be editable.
+	(build_track_list): Add the editable column to the model.
+
 2002-04-02  Iain <iain@ximian.com>
 
 	* GNOME_Media_CDDBSlave2.idl: Add a save method.

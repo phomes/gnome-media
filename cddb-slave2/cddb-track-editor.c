@@ -226,6 +226,11 @@ static char *genres[] = {
 	NULL
 };
 
+#define MODEL_TRACK_NO 0
+#define MODEL_NAME 1
+#define MODEL_LENGTH 2
+#define MODEL_EDITABLE 3
+
 static GtkTreeModel *
 make_tree_model (void)
 {
@@ -263,9 +268,11 @@ build_track_list (TrackEditorDialog *td)
 
 		length = secs_to_string (td->info->track_info[i]->length);
 		gtk_list_store_append (store, &iter);
-		gtk_list_store_set (store, &iter, 0, i + 1,
-				    1, td->info->track_info[i]->name,
-				    2, length, -1);
+		gtk_list_store_set (store, &iter,
+				    MODEL_TRACK_NO, i + 1,
+				    MODEL_NAME, td->info->track_info[i]->name,
+				    MODEL_LENGTH, length,
+				    MODEL_EDITABLE, TRUE, -1);
 		g_free (length);
 	}
 }
@@ -305,7 +312,7 @@ make_genre_list (void)
 		genre_list = g_list_prepend (genre_list, genres[i]);
 	}
 
-	genre_list = g_list_sort (genre_list, strcmp);
+	genre_list = g_list_sort (genre_list, (GCompareFunc) strcmp);
 	
 	return genre_list;
 }
@@ -414,7 +421,7 @@ static void
 comment_changed (GtkEntry *entry,
 		 TrackEditorDialog *td)
 {
-	char *comment;
+	const char *comment;
 
 	if (td->info == NULL) {
 		return;
@@ -650,22 +657,25 @@ make_track_editor_control (void)
 	td->tracks = gtk_tree_view_new_with_model (td->model);
 	g_object_unref (td->model);
 
-	selection = gtk_tree_view_get_selection (td->tracks);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (td->tracks));
 	g_signal_connect (G_OBJECT (selection), "changed",
 			  G_CALLBACK (track_selection_changed), td);
 	
 	cell = gtk_cell_renderer_text_new ();
-	col = gtk_tree_view_column_new_with_attributes (" ", cell, "text", 0, NULL);
+	col = gtk_tree_view_column_new_with_attributes (" ", cell,
+							"text", MODEL_TRACK_NO, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (td->tracks), col);
-	
+
+	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("Title"), cell,
-							"text", 1,
-							"editable", 3,
+							"text", MODEL_NAME,
+							"editable", MODEL_EDITABLE,
 							NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (td->tracks), col);
 
+	cell = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("Length"), cell,
-							"text", 2, NULL);
+							"text", MODEL_LENGTH, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (td->tracks), col);
 
 	gtk_container_add (GTK_CONTAINER (sw), td->tracks);
@@ -732,6 +742,30 @@ cddb_track_editor_from_servant (PortableServer_Servant servant)
 }
 
 static void
+sync_cddb_info (CDDBInfo *info)
+{
+	g_return_if_fail (info != NULL);
+
+	cddb_slave_client_set_disc_title (client, info->discid, info->title);
+	cddb_slave_client_set_artist (client, info->discid, info->artist);
+
+	/* Only set the comment if there is one */
+	if (info->comment != NULL && *(info->comment) != 0) {
+		cddb_slave_client_set_comment (client, info->discid, info->comment);
+	}
+
+	if (info->genre != NULL && *(info->genre) != 0) {
+		cddb_slave_client_set_genre (client, info->discid, info->genre);
+	}
+
+	if (info->year != -1) {
+		cddb_slave_client_set_year (client, info->discid, info->year);
+	}
+
+	cddb_slave_client_set_tracks (client, info->discid, info->track_info);
+}
+
+static void
 dialog_response (GtkDialog *dialog,
 		 int response_id,
 		 CDDBTrackEditor *editor)
@@ -739,6 +773,7 @@ dialog_response (GtkDialog *dialog,
 	switch (response_id) {
 	case 1:
 		g_print ("Saving...\n");
+		sync_cddb_info (editor->td->info);
 		cddb_slave_client_save (client, editor->discid);
 		break;
 

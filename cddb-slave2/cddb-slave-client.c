@@ -606,8 +606,8 @@ cddb_slave_client_get_year (CDDBSlaveClient *client,
 	CORBA_Environment ev;
 	CORBA_short ret;
 	
-	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), NULL);
-	g_return_val_if_fail (discid != NULL, NULL);
+	g_return_val_if_fail (IS_CDDB_SLAVE_CLIENT (client), -1);
+	g_return_val_if_fail (discid != NULL, -1);
 	
 	objref = client->priv->objref;
 	
@@ -618,7 +618,7 @@ cddb_slave_client_get_year (CDDBSlaveClient *client,
 		g_warning ("Error getting year\n%s",
 			   CORBA_exception_id (&ev));
 		CORBA_exception_free (&ev);
-		return NULL;
+		return -1;
 	}
 
 	CORBA_exception_free (&ev);

@@ -202,7 +202,7 @@ static void
 other_server_toggled (GtkToggleButton *tb,
 		      PropertyDialog *pd)
 {
-	char *str;
+	const char *str;
 	
 	if (gtk_toggle_button_get_active (tb) == FALSE) {
 		return;
@@ -569,7 +569,13 @@ update_clicked (GtkButton *update,
 		PropertyDialog *pd)
 {
 	GTcpSocketConnectAsyncID *sock;
-
+	GtkTreeIter iter;
+	
+	/* Clear the list and put the default there */
+	gtk_list_store_clear (GTK_LIST_STORE (pd->model));
+	gtk_list_store_append (GTK_LIST_STORE (pd->model), &iter);
+	gtk_list_store_set (GTK_LIST_STORE (pd->model), &iter, 0, "freedb.freedb.org", 1, "888", 2, "Random server", -1);
+	
 	gtk_widget_set_sensitive (pd->update, FALSE);
 	/* Should use the gconf values */
 	sock = gnet_tcp_socket_connect_async ("freedb.freedb.org", 888,

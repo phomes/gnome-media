@@ -83,7 +83,7 @@ gnet_socks_get_server(void)
   /* Auto-detect socks server */
   if (!socks_server)
     {
-      gchar* var;
+      const gchar* var;
 
       /* Check SOCKS_SERVER env variable */
       if ((var = g_getenv("SOCKS_SERVER"))) 

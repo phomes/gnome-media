@@ -276,7 +276,7 @@ write_line (FILE *handle,
 	    const char *value)
 {
 	int key_len, val_len, line_len;
-	char *tv = value;
+	char *tv = (char *) value;
 	char *str;
 
 	if (key == NULL) {

@@ -198,10 +198,11 @@ toggled (GtkToggleButton *tb)
 }
 
 static void
-draw_indicator (CDDBDisclosure *disclosure,
+draw_indicator (GtkCheckButton *check,
 		GdkRectangle *area)
 {
-	GtkWidget *widget = GTK_WIDGET (disclosure);
+	GtkWidget *widget = GTK_WIDGET (check);
+	CDDBDisclosure *disclosure = CDDB_DISCLOSURE (check);
 	GtkStateType state_type;
 	int x, y;
 

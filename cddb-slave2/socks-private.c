@@ -27,7 +27,7 @@ gnet_private_negotiate_socks_server (GTcpSocket *s, const GInetAddr *dst)
 {
   GIOChannel *ioc;
   int ver, ret;
-  char *verc;
+  const char *verc;
 
   if ((verc = g_getenv("SOCKS_VERSION"))) 
     ver = atoi(verc);

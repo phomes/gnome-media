@@ -76,12 +76,12 @@ factory_fn (BonoboGenericFactory *factory,
 	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
 	switch (info) {
 	case CDDB_SEND_FAKE_INFO:
-		name = g_strdup ("cddbslave2-user");
-		hostname = g_strdup ("192.168.77.77");
+		name = g_strdup ("unknown");
+		hostname = g_strdup ("localhost");
 		break;
 
 	case CDDB_SEND_REAL_INFO:
-		name = g_get_user_name ();
+		name = g_strdup (g_get_user_name ());
 		hostname = get_hostname ();
 		break;
 
