@@ -19,6 +19,7 @@
 
 #include <gtk/gtkbutton.h>
 #include <gtk/gtkaccessible.h>
+#include "pangoaccessible.h"
 #include "pangoaccessiblefactory.h"
 
 static void pango_accessible_factory_class_init (PangoAccessibleFactoryClass  *klass);
@@ -89,5 +90,5 @@ pango_accessible_factory_create_accessible (GObject     *obj)
 static GType
 pango_accessible_factory_get_accessible_type (void)
 {
-  return PANGO_TYPE_LAYOUT;
+    return PANGO_TYPE_ACCESSIBLE;
 }

@@ -19,6 +19,7 @@
 
 #include <gtk/gtkaccessible.h>
 #include "cddisplayaccessiblefactory.h"
+#include "cddisplayaccessible.h"
 #include "../display.h"
 
 static void cddisplay_accessible_factory_class_init(CDDisplayAccessibleFactoryClass        *klass);
@@ -90,5 +91,5 @@ cddisplay_accessible_factory_create_accessible (GObject     *obj)
 static GType
 cddisplay_accessible_factory_get_accessible_type (void)
 {
-	return CD_DISPLAY_TYPE;
+	return CDDISPLAY_TYPE_ACCESSIBLE;
 }
