@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-14 18:05+0800\n"
-"PO-Revision-Date: 2004-03-15 00:55+0800\n"
+"POT-Creation-Date: 2004-03-21 22:44+0800\n"
+"PO-Revision-Date: 2004-03-21 22:54+0800\n"
 "Last-Translator: Woodman Tuen <woodman@culturecom.com.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -231,11 +231,11 @@ msgstr "Disco"
 # 瘋克 is widely used in Taiwan - Woodman
 #: cddb-slave2/cddb-track-editor.c:84
 msgid "Funk"
-msgstr "瘋克(Funk)"
+msgstr "放客(Funk)"
 
 #: cddb-slave2/cddb-track-editor.c:85
 msgid "Grunge"
-msgstr "油漬搖滾(Grunge)"
+msgstr "車庫搖滾(Grunge)"
 
 # Some may use 嘻哈, but this is again from pronunciation, and not
 # appropriate enough in meaning. Untranslated here. -- Abel
@@ -249,7 +249,7 @@ msgstr "爵士樂"
 
 #: cddb-slave2/cddb-track-editor.c:88
 msgid "Metal"
-msgstr "金屬類音樂"
+msgstr "金屬"
 
 #: cddb-slave2/cddb-track-editor.c:89
 msgid "New Age"
@@ -287,7 +287,7 @@ msgstr "搖滾樂"
 
 #: cddb-slave2/cddb-track-editor.c:97
 msgid "Techno"
-msgstr "科技舞曲(Techno)"
+msgstr "電子舞曲(Techno)"
 
 #: cddb-slave2/cddb-track-editor.c:98
 msgid "Industrial"
@@ -317,7 +317,7 @@ msgstr "電影原聲大碟"
 
 #: cddb-slave2/cddb-track-editor.c:104
 msgid "Euro-Techno"
-msgstr "歐陸科技舞曲(Euro-Techno)"
+msgstr "歐陸電子舞曲(Euro-Techno)"
 
 #: cddb-slave2/cddb-track-editor.c:105
 msgid "Ambient"
@@ -334,7 +334,7 @@ msgstr "聲樂"
 # damn those who created these ID3 genres -- Abel
 #: cddb-slave2/cddb-track-editor.c:108
 msgid "Jazz+Funk"
-msgstr "爵士+瘋克(Jazz+Funk)"
+msgstr "爵士+放客(Jazz+Funk)"
 
 #: cddb-slave2/cddb-track-editor.c:109
 msgid "Fusion"
@@ -472,7 +472,7 @@ msgstr "基督饒舌樂"
 
 #: cddb-slave2/cddb-track-editor.c:141
 msgid "Pop/Funk"
-msgstr "流行樂/瘋克"
+msgstr "流行樂/放客"
 
 #: cddb-slave2/cddb-track-editor.c:142
 msgid "Jungle"
@@ -569,8 +569,6 @@ msgstr "Fast-Fusion"
 #
 # Many Chinese Jazz Web site mentioned this word
 # I think is ok to use "比咆勃" -- Woodman
-#
-# 
 # 
 #: cddb-slave2/cddb-track-editor.c:164
 msgid "Bebop"
@@ -731,7 +729,7 @@ msgstr "龐克搖滾(Punk Rock)"
 msgid "Drum Solo"
 msgstr "鼓手獨奏"
 
-# Althought 無伴奏合唱 maybe better, but 阿卡貝拉 is widly use。 - woodman
+# Although 無伴奏合唱 maybe better, but 阿卡貝拉 is widly use。 - woodman
 #: cddb-slave2/cddb-track-editor.c:202
 msgid "A Cappella"
 msgstr "阿卡貝拉(A Cappella)"
@@ -759,7 +757,7 @@ msgstr "Club-House"
 
 #: cddb-slave2/cddb-track-editor.c:208
 msgid "Hardcore"
-msgstr "硬心(Hardcore)"
+msgstr "硬蕊(Hardcore)"
 
 #: cddb-slave2/cddb-track-editor.c:209
 msgid "Terror"
@@ -1644,7 +1642,7 @@ msgstr "%s 推桿"
 #: gst-mixer/src/mixer.c:220
 #, c-format
 msgid "Channel %d of %s Slider"
-msgstr "%2$s 推桿的頻道 %1$d"
+msgstr "%2$s 推桿的第 %1$d 個頻道"
 
 #: gst-mixer/src/mixer.c:221
 #, c-format
@@ -1703,7 +1701,7 @@ msgstr "修改 GStreamer 應用程式的預設設定"
 
 #: gstreamer-properties/gstreamer-properties.desktop.in.h:2
 msgid "Multimedia Systems Selector"
-msgstr ""
+msgstr "多媒體系統選擇器"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:1
 #: profiles/gnome-audio-profiles.glade2.h:1
@@ -1712,7 +1710,9 @@ msgstr "*"
 
 # Copy from zh_CN's translation.   
 # Sink is one kind of input. So I think this translation is acceptable. - Woodman
-# FIXME: replace "sink" -> "接收器" with better translation. -- Abel
+#
+# FIXME: replace "sink" -> "接收器" with better translation. Upon
+# seeing 接收器 nobody can realize it's sink in gstreamer -- Abel
 #: gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<b>Default Sink</b>"
 msgstr "<b>預設的接收器</b>"
@@ -1801,16 +1801,16 @@ msgid "<not described>"
 msgstr "<沒有描述>"
 
 #: profiles/audio-profile.c:217
-#, fuzzy, c-format
+#, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr "讀取 gm_audio 設定組合時發生錯誤。(%s)\n"
+msgstr "讀取 gm_audio 設定組合的清單時發生錯誤。(%s)\n"
 
 #: profiles/audio-profile.c:718
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There was an error subscribing to notification of terminal profile list "
 "changes. (%s)\n"
-msgstr "通知音效設定組合列表已改變時發生錯誤。(%s)\n"
+msgstr "通知音效設定組合清單已改變時發生錯誤。(%s)\n"
 
 #: profiles/audio-profile.c:908
 #, c-format
@@ -1835,7 +1835,7 @@ msgstr "編輯(_E)"
 
 #: profiles/audio-profiles-edit.c:451
 msgid "You must select one or more profiles to delete."
-msgstr "你必須選擇至少一個設定組合來刪除"
+msgstr "您必須選擇至少一個設定組合來刪除"
 
 #: profiles/audio-profiles-edit.c:461
 msgid "Delete these two profiles?\n"
@@ -1878,7 +1878,7 @@ msgstr "設定組合(_P)："
 #: profiles/audio-profiles-edit.c:878
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr "你已經有一個設定組合稱為 \"%s\""
+msgstr "您已經有一個設定組合稱為 \"%s\""
 
 #: profiles/audio-profiles-edit.c:903
 #, c-format
@@ -1890,8 +1890,7 @@ msgstr "GConf 錯誤(FIXME): %s\n"
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
-msgstr ""
-"檔案 \"%s\" 不存在。這表示該應用程式沒有正確地安裝。所以對話盒不能顯示。"
+msgstr "檔案“%s”不存在。這表示該應用程式沒有正確地安裝。所以對話盒不能顯示。"
 
 #: profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
@@ -1967,12 +1966,12 @@ msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
 msgstr ""
-"錄音設定組合的列表。這列表列出了 /system/gstreamer/audio/profiles 以下的子目"
+"錄音設定組合的清單。這清單列出了 /system/gstreamer/audio/profiles 以下的子目"
 "錄。"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "List of profiles"
-msgstr "設定組合列表"
+msgstr "設定組合清單"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "The default file extension for this profile"
@@ -1980,7 +1979,7 @@ msgstr "這設定組合的預設延伸檔名"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "The partial GStreamer pipeline used"
-msgstr "所使用的部份 GStreamer·管線"
+msgstr "所使用的部份 GStreamer 管線"
 
 #: profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "Whether or not this profile is to be used"
@@ -2060,7 +2059,7 @@ msgid "Volume monitor"
 msgstr "音量計"
 
 #~ msgid "GStreamer Volume Control"
-#~ msgstr "GStreamer·音量控制"
+#~ msgstr "GStreamer 音量控制"
 
 #~ msgid "GStreamer"
 #~ msgstr "GStreamer"
