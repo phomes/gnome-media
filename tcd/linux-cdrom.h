@@ -101,11 +101,13 @@
 
 #define TRK_NAME_LEN 	512
 #define DISC_INFO_LEN	512
+#define EXT_DATA_LEN    1024
 #define MAXTRACKS	111
 
 struct cd_track
 {
 	char name[TRK_NAME_LEN+1];
+	char extd[EXT_DATA_LEN+1];
 	struct cdrom_tocentry toc;
 	int titled;
 	int start, length;
@@ -129,7 +131,8 @@ typedef struct
 
 	char dtitle[DISC_INFO_LEN+1];	/* Disc title */
 	char album[DISC_INFO_LEN+1], artist[DISC_INFO_LEN+1];
-	
+	char extd[EXT_DATA_LEN+1];
+
 	/* See /usr/src/linux/include/linux/cdrom.h */
 	struct cdrom_ti ti;		/* Track info */
 	struct cdrom_tochdr tochdr; 	/* TOC header */

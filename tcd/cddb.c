@@ -34,12 +34,11 @@
 #include <pwd.h>
 #include <dirent.h>
 
+#include <glib.h>
+
 #include "linux-cdrom.h"
 
 #include "cddb.h"
-
-#define TRUE 1
-#define FALSE 0
 
 /* Stuff for the disc_id generation */
 struct toc {
@@ -65,12 +64,18 @@ int tcd_readcddb( cd_struct* cd, char* filename )
 	char string[256];
 	int trk;	
 	
+	/* zero out the extended data sections ... */
+	cd->extd[0] = '\0';
+	for (trk = cd->first_t; trk <= cd->last_t; trk++)
+		cd->trk[trk].extd[0] = '\0';
+	
 	fp = fopen( filename, "r" );
 
 	if( fp == NULL )
 		return -2;
 	if( string == NULL )
 		return -1;
+
 	
 	/* AC: dont feof.. feof is only true _after_ eof is read */	
 	while(fgets( string, 255, fp )!=NULL)
@@ -94,7 +99,51 @@ int tcd_readcddb( cd_struct* cd, char* filename )
                         	         TRK_NAME_LEN );
                 	else
                 		cd->trk[trk+1].name[0] = 0;
-		}				
+		}
+		/* extra data for the disc */
+		if (strncmp(string, "EXTD", 4) == 0)
+		{
+			char *tmp = &string[5];
+			int i, j;
+			/* convert embedded new lines */
+			for (i = j = 0; tmp[i] != '\0'; i++, j++)
+				if (tmp[i]=='\\' && tmp[i+1]=='n') {
+					tmp[j] = '\n';
+					i++;
+				} else if (tmp[i]=='\\' && tmp[i+1]=='t') {
+					tmp[j] = '\t';
+					i++;
+				} else if (tmp[i]=='\\' && tmp[i+1]=='\\') {
+					tmp[j] = '\\';
+					i++;
+				} else
+					tmp[j] = tmp[i];
+			tmp[j] = '\0';
+			strncat(cd->extd, tmp, EXT_DATA_LEN);
+		}
+		/* extra data for a track */
+		if (strncmp(string, "EXTT", 4) == 0)
+		{
+			if (sscanf(string, "EXTT%d=", &trk) == 1) {
+				char *tmp = &string[5 + num_digits(trk)];
+				int i, j;
+				/* convert embedded new lines */
+				for (i = j = 0; tmp[i] != '\0'; i++, j++)
+					if (tmp[i]=='\\' && tmp[i+1]=='n') {
+						tmp[j] = '\n';
+						i++;
+					} else if(tmp[i]=='\\'&&tmp[i+1]=='t'){
+						tmp[j] = '\t';
+						i++;
+					}else if(tmp[i]=='\\'&&tmp[i+1]=='\\'){
+						tmp[j] = '\\';
+						i++;
+					} else
+						tmp[j] = tmp[i];
+				tmp[j] = '\0';
+				strncat(cd->trk[trk+1].extd, tmp,EXT_DATA_LEN);
+			}
+		}
 		/* Otherwise ignore it */
 	}
 	fclose(fp);
@@ -105,7 +154,8 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 {
 	FILE *fp;
 	int n=0;
-	unsigned long i;
+	unsigned long trk, i;
+	char *tmp;
 	
 	fp = fopen( filename, "w" );
 	if( fp == NULL )
@@ -138,13 +188,48 @@ int tcd_writecddb( cd_struct* cd, char *filename )
 
 	fprintf( fp, "DISCID=%08lx\n", cd->cddb_id );
 	fprintf( fp, "DTITLE=%s\n", cd->dtitle );
-	for( i = cd->first_t; i <= cd->last_t; i++ )
-		fprintf( fp, "TTITLE%ld=%s\n", i-1, cd->trk[i].name );
+	for( trk = cd->first_t; trk <= cd->last_t; trk++ )
+		fprintf( fp, "TTITLE%ld=%s\n", trk-1, cd->trk[trk].name );
 	/* FIXME print extended info here, instead of just dummy variables */
-	fprintf( fp, "EXTD=\n");
-	for( i= cd->first_t; i <= cd->last_t; i++ )
-		fprintf( fp, "EXTT%ld=\n", i-1);
 
+	fprintf(fp, "EXTD=");
+	i = 0;
+	for (tmp = cd->extd; tmp[0] != '\0'; tmp++) {
+		if (tmp[0] == '\n') {
+			putc('\\', fp); putc('n', fp); i++;
+		} else if (tmp[0] == '\t') {
+			putc('\\', fp); putc('t', fp); i++;
+		} else if (tmp[0] == '\\') {
+			putc('\\', fp); putc('\\', fp); i++;
+		} else
+			putc(tmp[0], fp);
+		i++;
+		if (i > 60) {
+			fprintf(fp, "\nEXTD=");
+			i = 0;
+		}
+	}
+	fprintf(fp, "\n");
+	for( trk= cd->first_t; trk <= cd->last_t; trk++ ) {
+		fprintf( fp, "EXTT%ld=", trk-1);
+		i = 0;
+		for (tmp = cd->trk[trk].extd; tmp[0] != '\0'; tmp++) {
+			if (tmp[0] == '\n') {
+				putc('\\', fp); putc('n', fp); i++;
+			} else if (tmp[0] == '\t') {
+				putc('\\', fp); putc('t', fp); i++;
+			} else if (tmp[0] == '\\') {
+				putc('\\', fp); putc('\\', fp); i++;
+			} else
+				putc(tmp[0], fp);
+			i++;
+			if (i > 60) {
+				fprintf(fp, "\nEXTT%ld=", trk-1);
+				i = 0;
+			}
+		}
+		fprintf(fp, "\n");
+	}
 	fprintf( fp, "PLAYORDER=\n");
 	
 	fclose(fp);
@@ -195,6 +280,16 @@ void tcd_call_cddb_slave(cd_struct *cd, char *package, char *version)
     pclose(fp);
 }
 
+void tcd_call_cddb_submit( cd_struct *cd, char *category, char *service )
+{
+	char buf[512];
+
+	if (service == NULL)
+		service = "freedb";
+	g_snprintf(buf, sizeof(buf), "cddbsubmit --service %s %s %08lx",
+		   service, category, cd->cddb_id);
+	system(buf);
+}
 
 unsigned long cddb_discid( cd_struct *cd )
 {

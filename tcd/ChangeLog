@@ -1,5 +1,23 @@
 1999-04-29  James Henstridge  <james@daa.com.au>
 
+	* cddb.c (tcd_call_cddb_submit): new function to call cddbsubmit.
+
+	* cddb.c (tcd_readcddb): added code to read extended data from the
+	cddbslave database files.  It recognises multiple line data, and
+	handles embedded new lines, tabs and back slashes correctly.
+	The PLAYORDER tag is still ignored, since gtcd doesn't use it (yet).
+	(tcd_writecddb): added code to write the extended data back to
+	cddbslave database files.  It handles breaking long lines and
+	escaping new lines, tabs and back slashes.
+	Now gtcd will preserve all the information in a cddb record.
+
+	* linux-cdrom.c (tcd_readdiskinfo): set the extd members to empty
+	strings when initialising the structure for a disc with no cddbslave
+	database entry.
+
+	* linux-cdrom.h (cd_track, cd_struct): added extended data fields to
+	these structures (the new extd members).
+
 	* cddb.c (tcd_writecddb): modified this function so that it outputs
 	valid cddb data files.  Basically just changed PLAYLIST= to PLAYORDER=
 	and added blank EXTD and EXTTn lines.  I will have to get it so that

@@ -622,11 +622,13 @@ int tcd_readdiskinfo( cd_struct *cd )
 	tcd_call_cddb_slave(cd, "TCD", "1.0");
 	debug("Warning, can't open \'%s\' \n", fn );
 	strcpy( cd->dtitle, _("Unknown / Unknown") );
+	cd->extd[0] = '\0';
 	
 	for( i = cd->first_t; i <= cd->last_t; i++ )
 	{
 	    sprintf( cd->trk[C(i)].name, _("Track %d"), i );
 	    cd->trk[C(i)].titled = FALSE;
+	    cd->trk[C(i)].extd[0] = '\0';
 	}
 	strcpy( cd->trk[0].name, "--" );
 
