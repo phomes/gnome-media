@@ -1,3 +1,12 @@
+2004-01-04  Ronald Bultje  <rbultje@ronald.bitfreak.net>
+
+	* grecord/src/gsr-window.c: (eos_done), (save_sink_eos),
+	(cb_iterate), (cb_error), (do_save_file), (make_play_pipeline),
+	(make_record_pipeline), (init):
+	  Fix crashes when saving file, add some checks in various places,
+	  and recording works again (well, a bit). Other bugs are likely
+	  GStreamer bugs, not GSR bugs.
+
 2004-01-03  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
         * configure.in: Added "hr" in ALL_LINGUAS.

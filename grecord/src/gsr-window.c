@@ -78,7 +78,10 @@ struct _GSRWindowPrivate {
 
 	guint32 tick_id; /* tick_callback timeout ID */
 	guint32 record_id; /* record idle callback timeout ID */
+	guint32 gstenc_id; /* encode idle callback iterator ID */
 };
+
+void error_handler (GObject *object, GstObject *orig, gchar *error, GtkWidget *window);
 
 static BonoboWindowClass *parent_class = NULL;
 
@@ -437,12 +440,17 @@ get_encoder_for_mimetype (enum mimetype mime)
 struct _eos_data {
 	GSRWindow *window;
 	char *location;
+	GstElement *pipeline;
 };
 
 static gboolean
 eos_done (struct _eos_data *ed)
 {
 	GSRWindow *window = ed->window;
+
+ 	gst_element_set_state (ed->pipeline, GST_STATE_NULL);
+	g_source_remove (window->priv->gstenc_id);
+	window->priv->gstenc_id = 0;
 
 	g_object_set (G_OBJECT (window),
 		      "location", ed->location,
@@ -470,7 +478,6 @@ eos_done (struct _eos_data *ed)
 	bonobo_ui_component_set_status (window->priv->ui_component,
 					_("Ready"), NULL);
 
-	g_free (ed->location);
 	g_free (ed);
 
 	return FALSE;
@@ -485,13 +492,78 @@ save_sink_eos (GstElement *element,
 
 	ed = g_new (struct _eos_data, 1);
 	ed->window = window;
+	ed->pipeline = GST_ELEMENT (gst_element_get_parent (element));
 	g_object_get (G_OBJECT (element),
 		      "location", &ed->location,
 		      NULL);
 
-	g_idle_add ((GSourceFunc) eos_done, ed);
- 	gst_element_set_state (GST_ELEMENT (gst_element_get_parent (element)),
-			       GST_STATE_NULL);
+	/*g_idle_add ((GSourceFunc) eos_done, ed);*/
+	eos_done (ed);
+}
+
+#if 0
+static gboolean
+cb_iterate (GstBin  *bin,
+	    gpointer data)
+{
+	GSRWindow *window = data;
+	const GList *kids = bin->children;
+	GstElement *src = NULL, *sink = NULL;
+
+	for (; kids; kids = kids->next) {
+		if (!(strcmp (gst_object_get_name (GST_OBJECT (kids->data)), "src")))
+			src = kids->data;
+		else if (!(strcmp (gst_object_get_name (GST_OBJECT (kids->data)), "sink")))
+			sink = kids->data;
+	}
+
+	if (src && sink) {
+		gint64 pos, tot, enc;
+		GstFormat fmt = GST_FORMAT_BYTES;
+
+		gst_element_query (src, GST_QUERY_POSITION,
+				   &fmt, &pos);
+		gst_element_query (src, GST_QUERY_TOTAL,
+				   &fmt, &tot);
+		gst_element_query (sink, GST_QUERY_POSITION,
+				   &fmt, &enc);
+
+		g_print ("Iterate: %lld/%lld -> %lld\n", pos, tot, enc);
+	} else
+		g_print ("Iterate ?\n");
+
+	/* we don't do anything here */
+	return FALSE;
+}
+#endif
+
+static void
+cb_error (GstElement *parent,
+	  GstElement *cause,
+	  gchar      *reason,
+	  gpointer    data)
+{
+	GSRWindow *window = data;
+	struct _eos_data *ed;
+	const GList *kids = GST_BIN (parent)->children;
+	GstElement *sink;
+
+	while (kids && !(strcmp (gst_object_get_name (GST_OBJECT (kids->data)), "sink")))
+		kids = kids->next;
+	g_assert (kids);
+	sink = kids->data;
+
+	error_handler (G_OBJECT (parent), GST_OBJECT (cause), reason, data);
+
+	ed = g_new (struct _eos_data, 1);
+	ed->window = window;
+	ed->pipeline = parent;
+	g_object_get (G_OBJECT (sink),
+		      "location", &ed->location,
+		      NULL);
+
+	/*g_idle_add ((GSourceFunc) eos_done, ed);*/
+	eos_done (ed);
 }
 
 static void
@@ -504,37 +576,42 @@ do_save_file (GSRWindow *window,
 	GstElement *pipeline, *src, *encoder, *spider, *sink;
 	GdkCursor *cursor;
 
-	ext = strrchr (name, '.');
-	if (ext == NULL || *ext == 0) {
+	ext = strrchr (name, '.') + 1;
+	if (strcmp ("wav", ext) == 0) {
 		mime = MIME_TYPE_WAV;
+	} else if (strcmp ("mp3", ext) == 0) {
+		mime = MIME_TYPE_MP3;
+	} else if (strcmp ("ogg", ext) == 0) {
+		mime = MIME_TYPE_OGG;
+	} else if (strcmp ("flac", ext) == 0) {
+		mime = MIME_TYPE_FLAC;
 	} else {
-		if (strcmp ("wav", ext + 1) == 0) {
-			mime = MIME_TYPE_WAV;
-		} else if (strcmp ("mp3", ext + 1) == 0) {
-			mime = MIME_TYPE_MP3;
-		} else if (strcmp ("ogg", ext + 1) == 0) {
-			mime = MIME_TYPE_OGG;
-		} else if (strcmp ("flac", ext + 1) == 0) {
-			mime = MIME_TYPE_FLAC;
-		}
+		error_handler (NULL, NULL,
+			       _("Unknown extension, doing nothing"),
+			       GTK_WIDGET (window));
+		return;
 	}
 
-	pipeline = gst_thread_new ("save-pipeline");
+	pipeline = gst_pipeline_new ("save-pipeline");
 	src = gst_element_factory_make ("filesrc", "src");
 	spider = gst_element_factory_make ("spider", "spider");
 	encoder = get_encoder_for_mimetype (mime);
 	sink = gst_element_factory_make ("filesink", "sink");
+	/* make this a cute error dialog */
+	if (!pipeline || !src || !spider || !encoder || !sink) {
+		error_handler (NULL, NULL,
+			       _("Could not build pipeline"),
+			       GTK_WIDGET (window));
+	}
 
-	gst_bin_add (GST_BIN (pipeline), src);
-	gst_bin_add (GST_BIN (pipeline), spider);
-	gst_bin_add (GST_BIN (pipeline), encoder);
-	gst_bin_add (GST_BIN (pipeline), sink);
+	gst_bin_add_many (GST_BIN (pipeline),
+			  src, spider, encoder, sink, NULL);
+	gst_element_link_many (src, spider, encoder, sink, NULL);
 
-	gst_element_connect (src, spider);
-	gst_element_connect (spider, encoder);
-	gst_element_connect (encoder, sink);
 	g_signal_connect (G_OBJECT (sink), "eos",
 			  G_CALLBACK (save_sink_eos), window);
+	g_signal_connect (G_OBJECT (pipeline), "error",
+			  G_CALLBACK (cb_error), window);
 
 	g_object_set (G_OBJECT (src), 
 		      "location", window->priv->working_file,
@@ -571,8 +648,8 @@ do_save_file (GSRWindow *window,
 	g_free (status_text);
 
 	gtk_widget_set_sensitive (window->priv->scale, FALSE);
-	
 	gst_element_set_state (pipeline, GST_STATE_PLAYING);
+	window->priv->gstenc_id = g_idle_add ((GSourceFunc) gst_bin_iterate, pipeline);
 }
 
 static void
@@ -1406,12 +1483,9 @@ make_play_pipeline (GSRWindow *window)
  	spider = gst_element_factory_make ("spider", "spider");
 	pipeline->sink = gst_element_factory_make ("osssink", "sink");
 
-	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->src);
- 	gst_bin_add (GST_BIN (pipeline->pipeline), spider); 
-	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
-
-	gst_element_connect (pipeline->src, spider);
-	gst_element_connect (spider, pipeline->sink);
+	gst_bin_add_many (GST_BIN (pipeline->pipeline),
+			  pipeline->src, spider, pipeline->sink, NULL);
+	gst_element_link_many (pipeline->src, spider, pipeline->sink, NULL);
 
 	return pipeline;
 }
@@ -1516,12 +1590,9 @@ make_record_pipeline (GSRWindow *window)
 	}
 	pipeline->sink = gst_element_factory_make ("filesink", "sink");
 
-	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->src);
-	gst_bin_add (GST_BIN (pipeline->pipeline), encoder);
-	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
-
-	gst_element_connect (pipeline->src, encoder);
-	gst_element_connect (encoder, pipeline->sink);
+	gst_bin_add_many (GST_BIN (pipeline->pipeline),
+			  pipeline->src, encoder, pipeline->sink, NULL);
+	gst_element_link_many (pipeline->src, encoder, pipeline->sink, NULL);
 
 	return pipeline;
 }
@@ -1570,6 +1641,7 @@ init (GSRWindow *window)
 	priv->len_secs = 0;
 	priv->get_length_attempts = 16;
 	priv->dirty = FALSE;
+	priv->gstenc_id = 0;
 
 	return;
 }
