@@ -1,7 +1,7 @@
 /* 
  * display.h
  *
- * Copyright (C) 2001 Iain Holmes
+ * Copyright (C) 2001, 2002 Iain Holmes
  * Authors: Iain Holmes  <iain@ximian.com>
  */
 
@@ -11,6 +11,7 @@
 #include <glib-object.h>
 #include <gtk/gtkdrawingarea.h>
 #include "cdrom.h"
+#include "gnome-cd.h"
 
 G_BEGIN_DECLS
 
@@ -55,7 +56,10 @@ void cd_display_set_line (CDDisplay *disp,
 			  const char *str);
 void cd_display_clear (CDDisplay *disp);
 
-PangoLayout *cd_display_get_pango_layout(CDDisplay *disp, int i);
+GnomeCDText *cd_display_get_layout (CDDisplay *disp,
+				    int i);
+PangoLayout *cd_display_get_pango_layout(CDDisplay *disp,
+					 int i);
 
 G_END_DECLS
 

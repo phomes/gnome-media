@@ -820,7 +820,8 @@ cd_display_parse_theme (CDDisplay *disp,
 }
 
 GnomeCDText *
-cd_display_get_layout(CDDisplay* disp, int i)
+cd_display_get_layout(CDDisplay* disp,
+		      int i)
 {
 	g_return_val_if_fail (disp != NULL, NULL);
 	g_return_val_if_fail (i < CD_DISPLAY_END, NULL);
@@ -829,7 +830,8 @@ cd_display_get_layout(CDDisplay* disp, int i)
 }
 
 PangoLayout *
-cd_display_get_pango_layout(CDDisplay *disp, int i)
+cd_display_get_pango_layout(CDDisplay *disp,
+			    int i)
 {
 	g_return_val_if_fail (disp != NULL, NULL);
 	g_return_val_if_fail (i < CD_DISPLAY_END, NULL);

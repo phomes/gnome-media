@@ -1,7 +1,7 @@
 /*
  * gnome-cd.h
  *
- * Copyright (C) 2001 Iain Holmes
+ * Copyright (C) 2001, 2002 Iain Holmes
  * Authors: Iain Holmes  <iain@ximian.com>
  */
 
@@ -16,7 +16,6 @@
 #include <cddb-slave-client.h>
 
 #include "gnome-cd-type.h"
-#include "display.h"
 #include "preferences.h"
 #include "cdrom.h"
 
