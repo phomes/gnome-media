@@ -17,13 +17,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-01 08:34+0100\n"
-"PO-Revision-Date: 2004-08-31 12:57+0200\n"
+"POT-Creation-Date: 2004-11-25 14:50+0100\n"
+"PO-Revision-Date: 2004-11-25 15:14+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -168,9 +169,9 @@ msgid "Unknown / Unknown"
 msgstr "Ukendt/ukendt"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:698
-#: grecord/src/gsr-window.c:707 grecord/src/gsr-window.c:716
-#: grecord/src/gsr-window.c:726 grecord/src/gsr-window.c:1042
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:721
+#: grecord/src/gsr-window.c:730 grecord/src/gsr-window.c:739
+#: grecord/src/gsr-window.c:749 grecord/src/gsr-window.c:1065
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -1022,12 +1023,11 @@ msgstr ""
 
 #: gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr ""
+msgstr "Orientering"
 
 #: gnome-cd/eggtrayicon.c:119
-#, fuzzy
 msgid "The orientation of the tray."
-msgstr "Angiv viserens vandrette position"
+msgstr "Statusfeltets orientering."
 
 #: gnome-cd/gnome-cd.c:215
 #, c-format
@@ -1281,8 +1281,8 @@ msgstr "_Tilgængelige temaer:"
 msgid "Record sound clips"
 msgstr "Optag lydklip"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:915
-#: grecord/src/gsr-window.c:1251
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:938
+#: grecord/src/gsr-window.c:1274
 msgid "Sound Recorder"
 msgstr "Lydoptager"
 
@@ -1310,7 +1310,7 @@ msgstr "Opret nyt lydklip"
 msgid "Display help for Sound Recorder"
 msgstr "Vis hjælpen til lydoptager"
 
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:784
+#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:807
 msgid "File Information"
 msgstr "Filoplysninger"
 
@@ -1481,107 +1481,112 @@ msgstr "sekunder"
 msgid "second"
 msgstr "sekund"
 
-#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1203
-#: grecord/src/gsr-window.c:1367 grecord/src/gsr-window.c:1637
+#: grecord/src/gsr-window.c:399 grecord/src/gsr-window.c:1226
+#: grecord/src/gsr-window.c:1390 grecord/src/gsr-window.c:1660
 msgid "Ready"
 msgstr "Klar"
 
-#: grecord/src/gsr-window.c:530
+#: grecord/src/gsr-window.c:497 grecord/src/gsr-window.c:505
+#, c-format
+msgid "Could not save the file \" %s\""
+msgstr "Kunne ikke gemme filen \"%s\""
+
+#: grecord/src/gsr-window.c:553
 msgid "Save file as"
 msgstr "Gem fil som"
 
-#: grecord/src/gsr-window.c:586
+#: grecord/src/gsr-window.c:609
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s er ikke installeret i stien til kørbare filer."
 
-#: grecord/src/gsr-window.c:596
+#: grecord/src/gsr-window.c:619
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Der opstod en fejl ved start af %s: %s"
 
-#: grecord/src/gsr-window.c:673
+#: grecord/src/gsr-window.c:696
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (er ikke blevet gemt)"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:712
 msgid "Unknown size"
 msgstr "Ukendt størrelse"
 
-#: grecord/src/gsr-window.c:709
+#: grecord/src/gsr-window.c:732
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:718
+#: grecord/src/gsr-window.c:741
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:730
+#: grecord/src/gsr-window.c:753
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: grecord/src/gsr-window.c:734
+#: grecord/src/gsr-window.c:757
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: grecord/src/gsr-window.c:763
+#: grecord/src/gsr-window.c:786
 #, c-format
 msgid "%s Information"
 msgstr "Oplysninger om %s"
 
-#: grecord/src/gsr-window.c:798
+#: grecord/src/gsr-window.c:821
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: grecord/src/gsr-window.c:804 grecord/src/gsr-window.c:1569
+#: grecord/src/gsr-window.c:827 grecord/src/gsr-window.c:1592
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: grecord/src/gsr-window.c:810
+#: grecord/src/gsr-window.c:833
 msgid "File size:"
 msgstr "Filstørrelse:"
 
-#: grecord/src/gsr-window.c:819
+#: grecord/src/gsr-window.c:842
 msgid "Audio Information"
 msgstr "Lydoplysninger"
 
-#: grecord/src/gsr-window.c:833
+#: grecord/src/gsr-window.c:856
 msgid "Song length:"
 msgstr "Længde af klip:"
 
-#: grecord/src/gsr-window.c:839
+#: grecord/src/gsr-window.c:862
 msgid "Number of channels:"
 msgstr "Antal kanaler:"
 
-#: grecord/src/gsr-window.c:845
+#: grecord/src/gsr-window.c:868
 msgid "Sample rate:"
 msgstr "Samplingsrate:"
 
-#: grecord/src/gsr-window.c:851
+#: grecord/src/gsr-window.c:874
 msgid "Bit rate:"
 msgstr "Bitrate:"
 
-#: grecord/src/gsr-window.c:917
+#: grecord/src/gsr-window.c:940
 msgid "A sound recorder for GNOME"
 msgstr "En lydoptager til Gnome"
 
-#: grecord/src/gsr-window.c:1188
+#: grecord/src/gsr-window.c:1211
 msgid "Playing..."
 msgstr "Afspiller..."
 
-#: grecord/src/gsr-window.c:1247
+#: grecord/src/gsr-window.c:1270
 #, c-format
 msgid "%s.%s - Sound Recorder"
 msgstr "%s.%s - lydoptager"
 
-#: grecord/src/gsr-window.c:1338
+#: grecord/src/gsr-window.c:1361
 msgid "Recording..."
 msgstr "Optager..."
 
-#: grecord/src/gsr-window.c:1398
+#: grecord/src/gsr-window.c:1421
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1589,18 +1594,18 @@ msgstr ""
 "Der er intet standard-GStreamer-lydinddataelementsæt - vær så venlig at "
 "installere GStreamer-GConf skemaer eller sæt et manuelt"
 
-#: grecord/src/gsr-window.c:1413
+#: grecord/src/gsr-window.c:1436
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Oprettelse af GStreamer-indkoderelementer fejlede - kontrollér din "
 "kodningsopsætning"
 
-#: grecord/src/gsr-window.c:1423
+#: grecord/src/gsr-window.c:1446
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 "Kunne ikke finde GStreamer-fildestinationudvidelsen - installér den venligst"
 
-#: grecord/src/gsr-window.c:1431
+#: grecord/src/gsr-window.c:1454
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1608,19 +1613,19 @@ msgstr ""
 "Fejlede ved lænkning af indkoderelementer med filuddataelement - du har "
 "sikkert valgt en ugyldig indkoder"
 
-#: grecord/src/gsr-window.c:1537
+#: grecord/src/gsr-window.c:1560
 msgid "Record as"
 msgstr "Optag som"
 
-#: grecord/src/gsr-window.c:1554
+#: grecord/src/gsr-window.c:1577
 msgid "File information"
 msgstr "Filoplysninger"
 
-#: grecord/src/gsr-window.c:1576
+#: grecord/src/gsr-window.c:1599
 msgid "<none>"
 msgstr "<ingen>"
 
-#: grecord/src/gsr-window.c:1585
+#: grecord/src/gsr-window.c:1608
 msgid "Length:"
 msgstr "Længde:"
 
@@ -1634,18 +1639,16 @@ msgid "Volume Control"
 msgstr "Lydstyrkekontrol"
 
 #: gst-mixer/src/element.c:155
-#, fuzzy
 msgid "Playback"
-msgstr "Afspil"
+msgstr "Playback"
 
 #: gst-mixer/src/element.c:157
-#, fuzzy
 msgid "Capture"
-msgstr "Satire"
+msgstr "Optag lyd"
 
 #: gst-mixer/src/element.c:159
 msgid "Options"
-msgstr ""
+msgstr "Valgmuligheder"
 
 #. FIXME:
 #. * - maybe we want to rename the element to its actual name
@@ -1654,40 +1657,38 @@ msgstr ""
 #. create element
 #. and recreate this object, since we give it to the mixer
 #: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown Volume Control %d"
-msgstr "Lydstyrkekontrol"
+msgstr "Ukendt lydstyrkekontrol %d"
 
 #: gst-mixer/src/main.c:236
-#, fuzzy
 msgid "No volume control elements and/or devices found."
-msgstr "Desværre, ingen mixerelementer eller -enheder fundet"
+msgstr "Ingen lydstyrkekontrolelementer og/eller enheder fundet."
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:107
-#, fuzzy
 msgid "Volume Control Preferences"
 msgstr "Indstillinger for lydstyrkekontrol"
 
 #: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
-msgstr ""
+msgstr "_Vælg spor der skal være synlige:"
 
 #: gst-mixer/src/track.c:193
 #, c-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #. mute button
 #: gst-mixer/src/track.c:233
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "Slå lyden på %s til/fra"
 
 #: gst-mixer/src/track.c:248
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s: mute"
-msgstr "Sporliste"
+msgstr "Spor %s: stum"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1697,12 +1698,12 @@ msgstr "Sporliste"
 #: gst-mixer/src/track.c:328
 #, c-format
 msgid "Toggle audio capture from %s"
-msgstr ""
+msgstr "Slå lydindspilning fra %s til/fra"
 
 #: gst-mixer/src/track.c:343
 #, c-format
 msgid "Track %s: audio capture"
-msgstr ""
+msgstr "Spor %s: lydindspilning"
 
 #: gst-mixer/src/track.c:391
 #, c-format
@@ -1714,105 +1715,99 @@ msgid "mono"
 msgstr "mono"
 
 #: gst-mixer/src/volume.c:134
-#, fuzzy
 msgid "left"
-msgstr "venstre %s"
+msgstr "venstre"
 
 #: gst-mixer/src/volume.c:134
-#, fuzzy
 msgid "right"
-msgstr "Højre %s"
+msgstr "højre"
 
 #: gst-mixer/src/volume.c:137
 msgid "front left"
-msgstr ""
+msgstr "venstre front"
 
 #: gst-mixer/src/volume.c:138
 msgid "front right"
-msgstr ""
+msgstr "højre front"
 
 #: gst-mixer/src/volume.c:139
 msgid "rear left"
-msgstr ""
+msgstr "venstre bagende"
 
 #: gst-mixer/src/volume.c:140
 msgid "rear right"
-msgstr ""
+msgstr "højre bagende"
 
 #: gst-mixer/src/volume.c:141
-#, fuzzy
 msgid "front center"
-msgstr "Indhold"
+msgstr "midt front"
 
 #: gst-mixer/src/volume.c:142
 msgid "LFE"
-msgstr ""
+msgstr "LFE"
 
 #: gst-mixer/src/volume.c:143
 msgid "side left"
-msgstr ""
+msgstr "venstre side"
 
 #: gst-mixer/src/volume.c:144
 msgid "side right"
-msgstr ""
+msgstr "højre side"
 
 #: gst-mixer/src/volume.c:145
-#, fuzzy
 msgid "unknown"
-msgstr "Ukendt"
+msgstr "ukendt"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
 #: gst-mixer/src/volume.c:151
-#, fuzzy, c-format
+#, c-format
 msgid "Volume of %s channel on %s"
-msgstr "Antal kanaler:"
+msgstr "Lydstyrke for kanal %s på %s"
 
 #: gst-mixer/src/volume.c:199
-#, fuzzy, c-format
+#, c-format
 msgid "Track %s"
-msgstr "Sporliste"
+msgstr "Spor %s"
 
 #: gst-mixer/src/volume.c:202
-#, fuzzy, c-format
+#, c-format
 msgid "Channel %d of track %s"
-msgstr "Kanal %d for %s-vælger"
+msgstr "Kanal %d på spor %s"
 
 #: gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "Spor %s, kanal %d"
 
 #: gst-mixer/src/volume.c:243
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr ""
+msgstr "Spor %s: lås kanaler sammen"
 
 #: gst-mixer/src/window.c:109
-#, fuzzy
-msgid "Change device"
-msgstr "Angiv enhed"
+msgid "_Change Device"
+msgstr "_Ændr enhed"
 
 #: gst-mixer/src/window.c:110
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "Kontrollér lydstyrke på en anden enhed"
 
 #: gst-mixer/src/window.c:179
-#, fuzzy, c-format
+#, c-format
 msgid "Change device to %s"
-msgstr "Cd-enhed der skal benyttes"
+msgstr "Ændr enhed til %s"
 
 #. window title and menu selection
 #. change window title
 #: gst-mixer/src/window.c:222 gst-mixer/src/window.c:414
-#, fuzzy, c-format
+#, c-format
 msgid "Volume Control: %s"
-msgstr "Lydstyrkekontrol"
+msgstr "Lydstyrkekontrol: %s"
 
 #: gst-mixer/src/window.c:371
-#, fuzzy
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Et Gnome/GStreamer-baseret mixerprogram"
+msgstr "Et Gnome/GStreamer-baseret lydstyrkekontrolprogram"
 
 #. Fatal error
 #: gstreamer-properties/gstreamer-properties.c:274
@@ -1939,20 +1934,20 @@ msgstr ""
 "Der opstod en fejl ved abonnering på bekendtgørelse af "
 "lydprofillisteændringer. (%s)\n"
 
-#: profiles/audio-profile.c:910
+#: profiles/audio-profile.c:911
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Der opstod en fejl ved glemning af profilstien %s. (%s)\n"
 
-#: profiles/audio-profile.c:1002
+#: profiles/audio-profile.c:1003
 msgid "<no description>"
 msgstr "<ingen beskrivelse>"
 
-#: profiles/audio-profile.c:1013
+#: profiles/audio-profile.c:1014
 msgid "identity"
 msgstr "identitet"
 
-#: profiles/audio-profile.c:1024
+#: profiles/audio-profile.c:1025
 msgid "wav"
 msgstr "wav"
 
@@ -2158,7 +2153,7 @@ msgid ""
 "Cannot connect to sound daemon.\n"
 "Please run 'esd' at a command prompt."
 msgstr ""
-"Kan ikke tilkoble til lyddæmon.\n"
+"Kan ikke tilkoble til lydserver.\n"
 "Kør venligst 'esd' fra en kommandolinje."
 
 #: vu-meter/main.c:228
