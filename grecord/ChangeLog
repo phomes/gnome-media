@@ -1,3 +1,32 @@
+2002-03-14  Iain <iain@ximian.com>
+
+	* src/grec-c: Include gconf-client.h
+	(on_runmixer_activate_cb): Use gspawn to get errors and not to suck.
+	(on_show_time_activete): Get GConfClient and set the value correctly.
+	(on_show_soundinfo_activate_cb): Ditto.
+
+	* src/gui.c: Include gconf-client.h
+	(create_grecord_window): Neaten some var names.
+	(response_cb): Callback to destroy the window.
+	(Lots of callbacks): Set the gconf values.
+	(create_grecord_propertybox): Make better variable names.
+	Set some accessibility things (based on a patch from
+	jagadeesh.bana@wipro.com.)
+	Hook everything back up to the gconf callbacks.
+	Add some buttons and neaten the dialog code :)
+	(add_relation): form a relation between widgets (from Jagadeesh)
+	(add_paired_relations): Ditto.
+	
+	* main.c (main): rearrange code so that gui functions don't get called
+	before the gui is created.
+
+	* preferences.c: Include gconf-client.h.
+	(Lots of callbacks): To set values from the gconf values.
+	(load_config_file): Use gconf instead of gnome-config.
+	(save_config_file): Not needed anymore.
+	
+	* Makefile.am: Install the schemas.
+
 2002-03-05  Iain <iain@ximian.com>
 	
 	* src/grec.c (save_dont_or_cancel): Fix i18n issues.

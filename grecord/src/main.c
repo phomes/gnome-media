@@ -150,27 +150,33 @@ main (int argc, char *argv[])
 	/* Load configuration */
 	load_config_file ();
 
-	if (sfiles)
-		active_file = g_strdup (args[0]);
-	else if (splay) {
-		active_file = g_strdup (args[0]);
-		on_play_activate_cb (NULL, NULL);
-	}
-	else if (srecord) {
-		active_file = g_strdup (args[0]);
-		on_record_activate_cb (NULL, NULL);
-	}
-	else
-		active_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
-
-	poptFreeContext (pctx);
-	
 	/* Initate some vars */
 	PlayEng.is_running = FALSE;
 	RecEng.is_running = FALSE;
-	
+
+	if (sfiles) {
+		active_file = g_strdup (args[0]);
+	} else if (splay) {
+		active_file = g_strdup (args[0]);
+	} else if (srecord) {
+		active_file = g_strdup (args[0]);
+	} else {
+		active_file = g_concat_dir_and_file (temp_dir, temp_filename_play);
+	}
+
 	/* Popup mainwindow */
 	grecord_window = create_grecord_window ();
+
+	poptFreeContext (pctx);
+	
+	if (splay) {
+		on_play_activate_cb (NULL, NULL);
+	}
+
+	if (srecord) {
+		on_record_activate_cb (NULL, NULL);
+	}
+	
 	gtk_widget_show (grecord_window);
 
 	dont_show_warningmess = gnome_config_get_bool ("/grecord/Misc/dontshowwarningmess=FALSE");

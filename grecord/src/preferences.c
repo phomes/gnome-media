@@ -23,6 +23,8 @@
 #  include <config.h>
 #endif
 
+#include <gconf/gconf-client.h>
+
 #include <gnome.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -33,97 +35,312 @@
 
 #include "prog.h"
 
+static GConfClient *client = NULL;
+
+static void
+record_timeout_changed (GConfClient *_client,
+			guint cnxn_id,
+			GConfEntry *entry,
+			gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	record_timeout = gconf_value_get_int (value);
+}
+
+static void
+stop_on_timeout_changed (GConfClient *_client,
+			 guint cnxn_id,
+			 GConfEntry *entry,
+			 gpointer data)
+{
+	stop_on_timeout = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/stop-on-timeout", NULL);
+}
+
+static void
+save_when_finished_changed (GConfClient *_client,
+			    guint cnxn_id,
+			    GConfEntry *entry,
+			    gpointer data)
+{
+	save_when_finished = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/save-when-finished", NULL);
+}
+
+static void
+popup_warning_changed (GConfClient *_client,
+		       guint cnxn_id,
+		       GConfEntry *entry,
+		       gpointer data)
+{
+	popup_warn_mess = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/popup-warning", NULL);
+}
+
+static void
+stop_record_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	stop_record = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/stop-record", NULL);
+}
+
+static void
+popup_warn_mess_v_changed (GConfClient *_client,
+			   guint cnxn_id,
+			   GConfEntry *entry,
+			   gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	popup_warn_mess_v = gconf_value_get_int (value);
+}
+
+static void
+stop_recording_v_changed (GConfClient *_client,
+			  guint cnxn_id,
+			  GConfEntry *entry,
+			  gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	stop_record_v = gconf_value_get_int (value);
+}
+
+static void
+play_repeat_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	playrepeat = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/play-repeat", NULL);
+}
+
+static void
+play_repeat_forever_changed (GConfClient *_client,
+			     guint cnxn_id,
+			     GConfEntry *entry,
+			     gpointer data)
+{
+	playrepeatforever = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/play-repeat-forever", NULL);
+}
+
+static void
+play_x_times_changed (GConfClient *_client,
+		      guint cnxn_id,
+		      GConfEntry *entry,
+		      gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	playxtimes = gconf_value_get_int (value);
+}
+
+static void
+sox_command_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	const char *s;
+	char *sox;
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	s = gconf_value_get_string (value);
+	sox = g_find_program_in_path (s);
+	if (sox == NULL) {
+		g_free (sox_command);
+		sox_command = g_strdup (s);
+	} else {
+		g_free (sox_command);
+		sox_command = sox;
+	}
+}
+
+static void
+temp_dir_changed (GConfClient *_client,
+		  guint cnxn_id,
+		  GConfEntry *entry,
+		  gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+
+	g_free (temp_dir);
+	temp_dir = g_strdup (gconf_value_get_string (value));
+}
+
+static void
+audio_format_changed (GConfClient *_client,
+		      guint cnxn_id,
+		      GConfEntry *entry,
+		      gpointer data)
+{
+	audioformat = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/audio-format", NULL);
+}
+
+static void
+sample_rate_changed (GConfClient *_client,
+		     guint cnxn_id,
+		     GConfEntry *entry,
+		     gpointer data)
+{
+	GConfValue *value = gconf_entry_get_value (entry);
+	
+	g_free (samplerate);
+	samplerate = g_strdup (gconf_value_get_string (value));
+}
+
+static void
+channels_changed (GConfClient *_client,
+		  guint cnxn_id,
+		  GConfEntry *entry,
+		  gpointer data)
+{
+	channels = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/channels", NULL);
+}
+
+static void
+show_time_changed (GConfClient *_client,
+		   guint cnxn_id,
+		   GConfEntry *entry,
+		   gpointer data)
+{
+	show_time = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-time", NULL);
+	if (show_time) {
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.timespace_label));
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.timemin_label));
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.timesec_label));
+	}
+	else {
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timespace_label));
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timemin_label));
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timesec_label));
+	}
+}
+
+static void
+show_sound_info_changed (GConfClient *_client,
+			 guint cnxn_id,
+			 GConfEntry *entry,
+			 gpointer data)
+{
+	show_soundinfo = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-sound-info", NULL);
+	
+	if (show_soundinfo) {
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.audio_format_label));
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.sample_rate_label));
+		gtk_widget_show (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
+	}
+	else {
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.audio_format_label));
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.sample_rate_label));
+		gtk_widget_hide (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
+	}
+}
+
 void
 load_config_file    (void)
 {
 	char *s;
 
-	gnome_config_push_prefix ("/grecord/Recording/");
-	record_timeout       = gnome_config_get_int ("recordtimeout=2");
-	stop_on_timeout      = gnome_config_get_bool ("stopontimeout=TRUE");
-	save_when_finished   = gnome_config_get_bool ("savewhenfinished=FALSE");
-	popup_warn_mess      = gnome_config_get_bool ("popupwarnmess=TRUE");
-	stop_record          = gnome_config_get_bool ("stoprecord=FALSE");
-	popup_warn_mess_v    = gnome_config_get_int ("popupwarnmess_v=100");
-	stop_record_v        = gnome_config_get_int ("stoprecord_v=200");
-	gnome_config_pop_prefix ();
+	if (client == NULL) {
+		client = gconf_client_get_default ();
+	}
 
-	gnome_config_push_prefix ("/grecord/Playing/");
-	playrepeat           = gnome_config_get_bool ("playrepeat=FALSE");
-	playrepeatforever    = gnome_config_get_bool ("playrepeatforever=TRUE");
-	playxtimes           = gnome_config_get_int ("playxtimes=2");
-	gnome_config_pop_prefix ();
+	gconf_client_add_dir (client, "/apps/gnome-sound-recorder",
+			      GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+	
+	record_timeout = gconf_client_get_int (client,
+					       "/apps/gnome-sound-recorder/record-timeout", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/record-timeout",
+				 record_timeout_changed, NULL, NULL, NULL);
+				 
+	stop_on_timeout = gconf_client_get_bool (client,
+						 "/apps/gnome-sound-recorder/stop-on-timeout", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/stop-on-timeout",
+				 stop_on_timeout_changed, NULL, NULL, NULL);
+	
+	save_when_finished = gconf_client_get_bool (client,
+						    "/apps/gnome-sound-recorder/save-when-finished", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/save-when-finished",
+				 save_when_finished_changed, NULL, NULL, NULL);
+	
+	popup_warn_mess = gconf_client_get_bool (client,
+						 "/apps/gnome-sound-recorder/popup-warning", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/popup-warning",
+				 popup_warning_changed, NULL, NULL, NULL);
+	
+	stop_record = gconf_client_get_bool (client,
+					     "/apps/gnome-sound-recorder/stop-record", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/stop-record",
+				 stop_record_changed, NULL, NULL, NULL);
+	
+	popup_warn_mess_v = gconf_client_get_int (client,
+						  "/apps/gnome-sound-recorder/popup-warning-v", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/popup-warning-v",
+				 popup_warn_mess_v_changed, NULL, NULL, NULL);
+	
+	stop_record_v = gconf_client_get_int (client,
+					      "/apps/gnome-sound-recorder/stop-recording-v", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/stop-recording-v",
+				 stop_recording_v_changed, NULL, NULL, NULL);
 
-	gnome_config_push_prefix ("/grecord/Paths/");
+	
+	playrepeat = gconf_client_get_bool (client,
+					    "/apps/gnome-sound-recorder/play-repeat", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/play-repeat",
+				 play_repeat_changed, NULL, NULL, NULL);
+	
+	playrepeatforever = gconf_client_get_bool (client,
+						   "/apps/gnome-sound-recorder/play-repeat-forever", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/play-repeat-forever",
+				 play_repeat_forever_changed, NULL, NULL, NULL);
+	
+	playxtimes = gconf_client_get_int (client,
+					   "/apps/gnome-sound-recorder/play-x-times", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/play-x-times",
+				 play_x_times_changed, NULL, NULL, NULL);
 
-	s                    = gnome_config_get_string ("soxcommand=sox");
-	sox_command          = gnome_is_program_in_path (s);
+	
+	s = gconf_client_get_string (client,
+				     "/apps/gnome-sound-recorder/sox-command", NULL);
+	sox_command = gnome_is_program_in_path (s);
 	if (sox_command == NULL) {
 		sox_command = s;
 	} else {
 		g_free (s);
 	}
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/sox-command",
+				 sox_command_changed, NULL, NULL, NULL);
+				 
+	
+	temp_dir = gconf_client_get_string (client, "/apps/gnome-sound-recorder/tempdir", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/tempdir",
+				 temp_dir_changed, NULL, NULL, NULL);
 
-	s                    = gnome_config_get_string ("mixercommand=gnome-volume-control");
-	mixer_command        = gnome_is_program_in_path (s);
-	if (mixer_command == NULL) {
-		mixer_command = s;
-	} else {
-		g_free (s);
-	}
 
-	temp_dir             = gnome_config_get_string ("tempdir=/tmp/");
-	gnome_config_pop_prefix ();
+	audioformat = gconf_client_get_bool (client,
+					     "/apps/gnome-sound-recorder/audio-format", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/audio-format",
+				 audio_format_changed, NULL, NULL, NULL);
+	
+	samplerate = gconf_client_get_string (client,
+					      "/apps/gnome-sound-recorder/sample-rate", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/sample-rate",
+				 sample_rate_changed, NULL, NULL, NULL);
+	
+	channels = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/channels", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/channels",
+				 channels_changed, NULL, NULL, NULL);
 
-	gnome_config_push_prefix ("/grecord/Soundoptions/");
-	audioformat          = gnome_config_get_bool ("audioformat=FALSE");
-	samplerate           = gnome_config_get_string ("samplerate=44100");
-	channels             = gnome_config_get_bool ("channels=FALSE");
-	gnome_config_pop_prefix ();
-
-	gnome_config_push_prefix ("/grecord/GUI Options/");
-	show_time            = gnome_config_get_bool ("showtime=TRUE");
-	show_soundinfo       = gnome_config_get_bool ("showsoundinfo=FALSE");
-	gnome_config_pop_prefix ();
-}
-
-void
-save_config_file  (void)
-{
-	gnome_config_push_prefix ("/grecord/Recording/");
-	gnome_config_set_int ("recordtimeout", record_timeout);
-	gnome_config_set_bool ("stopontimeout", stop_on_timeout);
-	gnome_config_set_bool ("savewhenfinished", save_when_finished);
-	gnome_config_set_bool ("popupwarnmess", popup_warn_mess);
-	gnome_config_set_bool ("stoprecord", stop_record);
-	gnome_config_set_int ("popupwarnmess_v", popup_warn_mess_v);
-	gnome_config_set_int ("stoprecord_v", stop_record_v);
-	gnome_config_pop_prefix ();
-
-	gnome_config_push_prefix ("/grecord/Playing/");
-	gnome_config_set_bool ("playrepeat", playrepeat);
-	gnome_config_set_bool ("playrepeatforever", playrepeatforever);
-	gnome_config_set_int ("playxtimes", playxtimes);
-	gnome_config_pop_prefix ();
-
-	gnome_config_push_prefix ("/grecord/Paths/");
-	gnome_config_set_string ("soxcommand", sox_command);
-	gnome_config_set_string ("mixercommand", mixer_command);
-	gnome_config_set_string ("tempdir", temp_dir);
-	gnome_config_pop_prefix ();
-
-	gnome_config_push_prefix ("/grecord/Soundoptions/");
-	gnome_config_set_bool ("audioformat", audioformat);
-	gnome_config_set_string ("samplerate", samplerate);
-	gnome_config_set_bool ("channels", channels);
-	gnome_config_pop_prefix ();
-
-	gnome_config_push_prefix ("/grecord/GUI Options/");
-	gnome_config_set_bool ("showtime", show_time);
-	gnome_config_set_bool ("showsoundinfo", show_soundinfo);
-	gnome_config_pop_prefix ();
-
-	gnome_config_sync ();
+	
+	show_time = gconf_client_get_bool (client, "/apps/gnome-sound-recorder/show-time", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/show-time",
+				 show_time_changed, NULL, NULL, NULL);
+	
+	show_soundinfo = gconf_client_get_bool (client,
+						"/apps/gnome-sound-recorder/show-sound-info", NULL);
+	gconf_client_notify_add (client, "/apps/gnome-sound-recorder/show-sound-info",
+				 show_sound_info_changed, NULL, NULL, NULL);
 }
 
 void
@@ -422,32 +639,7 @@ on_propertybox_apply_activate (GtkWidget* widget,
 		g_free (temp_string);
 	}
 
-	if (show_time) {
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timespace_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timemin_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.timesec_label));
-	}
-	else {
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timespace_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timemin_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.timesec_label));
-	}
-
-	if (show_soundinfo) {
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.audio_format_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.sample_rate_label));
-		gtk_widget_show (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
-	}
-	else {
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.audio_format_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.sample_rate_label));
-		gtk_widget_hide (GTK_WIDGET (grecord_widgets.nr_of_channels_label));
-	}
-
 	g_free (audioformat_string);
 	g_free (channels_string);
-
-	/* Save the configuration */
-	save_config_file ();
 }
 

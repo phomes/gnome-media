@@ -3,7 +3,8 @@ SUBDIRS = src
 EXTRA_DIST = \
 	gnome-sound-recorder.desktop.in README COPYING AUTHORS INSTALL \
 	pixmaps/gnome_mixer.xpm \
-	gnome-grecord.png
+	gnome-grecord.png	\
+	gnome-sound-recorder.schemas
 
 @INTLTOOL_DESKTOP_RULE@
 Applicationsdir = $(datadir)/applications
@@ -14,5 +15,11 @@ Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
 Icondir = $(datadir)/pixmaps
 Icon_DATA = gnome-grecord.png
 
+schemadir=$(sysconfdir)/gconf/schemas
+schema_DATA=gnome-sound-recorder.schemas
 
+install-schemas:
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+
+install-data-local: install-schemas
 

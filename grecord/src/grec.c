@@ -24,6 +24,10 @@
 #endif
 
 #include <gnome.h>
+
+
+#include <gconf/gconf-client.h>
+
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -409,12 +413,31 @@ on_about_activate_cb (GtkWidget* widget, gpointer data)
 	gtk_widget_show (about);
 }
 
+/* These need to bring up an error dialog */
 void
 on_runmixer_activate_cb (GtkWidget* widget, gpointer data)
 {
-	gchar* temp_string = g_strconcat (mixer_command, " &", NULL);
-	system (temp_string);
-	g_free (temp_string);
+	char *mixer_path;
+	char *argv[2] = {NULL, NULL};
+	GError *error = NULL;
+	gboolean ret;
+
+	/* Open the mixer */
+	mixer_path = g_find_program_in_path ("gnome-volume-control");
+	if (mixer_path == NULL) {
+		g_warning (_("Gnome Volume Control is not installed in the path"));
+		return;
+	}
+	
+	argv[0] = mixer_path;
+	ret = g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, NULL, &error);
+	if (ret == FALSE) {
+		g_warning (_("There was an error starting %s: %s"),
+			   mixer_path, error->message);
+		g_error_free (error);
+	}
+
+	g_free (mixer_path);
 }
 
 void 
@@ -440,6 +463,7 @@ on_add_echo_activate_cb (GtkWidget* widget, gpointer data)
 void
 on_show_time_activate_cb (GtkWidget* widget, gpointer data)
 {
+	GConfClient *client;
 	GtkCheckMenuItem* item = GTK_CHECK_MENU_ITEM (widget);
 	gboolean active = item->active;
 
@@ -454,15 +478,15 @@ on_show_time_activate_cb (GtkWidget* widget, gpointer data)
 		gtk_widget_hide (grecord_widgets.timemin_label);
 	}
 
-	show_time = active;
-
-	gnome_config_set_bool ("/grecord/GUI Options/showtime", show_time);
-	gnome_config_sync ();
+	client = gconf_client_get_default ();
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-time", active, NULL);
+	g_object_unref (G_OBJECT (client));
 }
 
 void
 on_show_soundinfo_activate_cb (GtkWidget* widget, gpointer data)
 {
+	GConfClient *client;
 	GtkCheckMenuItem* item = GTK_CHECK_MENU_ITEM (widget);
 	gboolean active = item->active;
 
@@ -477,10 +501,9 @@ on_show_soundinfo_activate_cb (GtkWidget* widget, gpointer data)
 		gtk_widget_hide (grecord_widgets.nr_of_channels_label);
 	}
 
-	show_soundinfo = active;
-
-	gnome_config_set_bool ("/grecord/GUI Options/showsoundinfo", show_soundinfo);
-	gnome_config_sync ();
+	client = gconf_client_get_default ();
+	gconf_client_set_bool (client, "/apps/gnome-sound-recorder/show-sound-info", active, NULL);
+	g_object_unref (G_OBJECT (client));
 }
 
 void
@@ -988,6 +1011,7 @@ is_file_default (void)
 {
 	gchar* temp_string;
 	temp_string = g_concat_dir_and_file (temp_dir, temp_filename_play);
+
 	if (!g_strcasecmp (temp_string, active_file))
 	        default_file = TRUE;
 	else
