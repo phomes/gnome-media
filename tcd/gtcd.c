@@ -658,6 +658,7 @@ gint status_changed(void)
 	playid = gtk_signal_connect(GTK_OBJECT(playbutton), "clicked", \
 				    GTK_SIGNAL_FUNC (callback),
 				    (old_status==CDROM_AUDIO_PLAY)?(gpointer*)PAUSE:(gpointer*)PLAY );
+    	gtk_widget_destroy(pixmap);
     }
 }
 
