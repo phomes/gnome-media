@@ -301,42 +301,48 @@ static gint button_press (GtkWidget *widget, GdkEvent *event)
 
 GtkWidget* make_row1( void )
 {
-	GtkWidget *box;
-	                                        
+	GtkWidget *box, *handle;
+
 	box = gtk_hbox_new (TRUE, 5);
+	handle = gtk_handle_box_new();
 
 	make_button_with_pixmap(play_xpm, box, PLAY, TRUE, TRUE, TT_PLAY );
 	make_button_with_pixmap(pause_xpm, box, PAUSE, TRUE, TRUE, TT_PAUSE );
 	make_button_with_pixmap(stop_xpm, box, STOP, TRUE, TRUE, TT_STOP );
 	make_button_with_pixmap(eject_xpm, box, EJECT, TRUE, TRUE, TT_EJECT );
+	gtk_widget_show(box);
+	gtk_container_add(GTK_CONTAINER(handle), box );
 
-	return row1=box;
+	return row1=handle;
 }
 
 GtkWidget* make_row2( void )
 {
-	GtkWidget *box;
-	                                        
+	GtkWidget *box, *handle;
 	box = gtk_hbox_new (TRUE, 5);
+	handle = gtk_handle_box_new();
 
 	make_button_with_pixmap(prev_t_xpm, box, PREV_T, TRUE, TRUE, TT_PREV_TRACK );
 	make_button_with_pixmap(rw_xpm, box, RW, TRUE, TRUE, TT_REWIND );
 	make_button_with_pixmap(ff_xpm, box, FF, TRUE, TRUE, TT_FF );
 	make_button_with_pixmap(next_t_xpm, box, NEXT_T, TRUE, TRUE, TT_NEXT_TRACK );
+	gtk_widget_show(box);
+	gtk_container_add(GTK_CONTAINER(handle), box );
 
-	return row2=box;
+	return row2=handle;
 }
 GtkWidget* make_row3( void )
 {
 	GtkWidget *box, *bbox;
 	GtkWidget *button, *gotolabel;
-	GtkWidget *pixmapwid;
+	GtkWidget *pixmapwid, *handle;
 	GdkPixmap *pixmap;
 	GtkStyle *style;
 	GdkBitmap *mask;
 	
         box = gtk_hbox_new( TRUE, 5 );
 	bbox = gtk_vbox_new( FALSE, 0 );
+	handle = gtk_handle_box_new();
 
 	cddbbutton = make_button_with_pixmap( cddb_xpm, box, CDDB, TRUE, TRUE,  TT_CDDB );
 	trackeditor =make_button_with_pixmap( edit_xpm, box, TRACKLIST, TRUE, TRUE, TT_TRACKED );
@@ -350,10 +356,6 @@ GtkWidget* make_row3( void )
 	pixmapwid = gtk_pixmap_new( pixmap, mask );
         gtk_widget_show( pixmapwid );
 	
-//	gotolabel = gtk_label_new("Goto");
-//	gtk_widget_show(gotolabel);
-
-//	gtk_box_pack_start( GTK_BOX(bbox), gotolabel, FALSE, FALSE, 0 );
 	gtk_box_pack_start( GTK_BOX(bbox), pixmapwid, FALSE, FALSE, 0 );
         gtk_container_add( GTK_CONTAINER(gotobutton), bbox);
 	gtk_box_pack_start( GTK_BOX(box), gotobutton, TRUE, TRUE, 0);
@@ -361,8 +363,10 @@ GtkWidget* make_row3( void )
 	gtk_widget_show(bbox);
 	gtk_widget_show(gotobutton);
 	button = make_button_with_pixmap(power_xpm, box, QUIT, TRUE, TRUE, "Quit" );
-
-	return row3=box;
+	gtk_widget_show(box);
+	gtk_container_add(GTK_CONTAINER(handle), box);
+	
+	return row3=handle;
 }
 
 void setup_colors( void )
@@ -713,6 +717,8 @@ static gint status_click_event (GtkWidget *widget, GdkEventButton *event)
 
 void setup_time_display( void )
 {
+	GtkWidget *handle1;
+	
 	lowerbox = gtk_hbox_new( FALSE, 5 );
 	gtk_widget_show( lowerbox );
 	
@@ -754,7 +760,10 @@ void setup_time_display( void )
 #endif
 	gtk_box_pack_end( GTK_BOX(lowerbox), volume, TRUE, TRUE, 5 );
 
-	gtk_box_pack_start( GTK_BOX(status_table), status_area, TRUE, TRUE, 4 );
+	handle1 = gtk_handle_box_new();
+	gtk_container_add(GTK_CONTAINER(handle1), status_area );
+	gtk_widget_show(handle1);
+	gtk_box_pack_start( GTK_BOX(status_table), handle1, TRUE, TRUE, 4 );
 	gtk_box_pack_start( GTK_BOX(status_table), lowerbox, FALSE, FALSE, 4 );
 	gtk_widget_show(status_table);
 	gtk_widget_show(status_area);
