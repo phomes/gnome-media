@@ -1535,11 +1535,13 @@ make_play_pipeline (GSRWindow *window)
 	return obj;
 }
 
+extern int sample_count;
+
 static gboolean
 record_start (gpointer user_data) 
 {
 	GSRWindow *window = GSR_WINDOW (user_data);
-
+	gchar *name;
 
 	window->priv->get_length_attempts = 16;
 	g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
@@ -1554,6 +1556,20 @@ record_start (gpointer user_data)
 					_("Recording..."), NULL);
 	gtk_widget_set_sensitive (window->priv->scale, FALSE);
 	window->priv->record_id = 0;
+
+	/* Translator comment: untitled here implies that
+	 * there is no active sound sample. Any newly
+	 * recorded samples will be saved to disk with this
+	 * name as default value. */
+	if (sample_count == 1) {
+		name = g_strdup (_("Untitled"));
+	} else {
+		name = g_strdup_printf (_("Untitled-%d"),
+					sample_count);
+	}
+	sample_count++;
+	gtk_window_set_title (GTK_WINDOW(window), name);
+
 	return FALSE;
 }
 

@@ -78,6 +78,8 @@ gsr_foreach_window (GSRForeachFunction func,
 	}
 }
 
+gint sample_count = 1;
+
 GtkWidget *
 gsr_open_window (const char *filename)
 {
@@ -85,16 +87,16 @@ gsr_open_window (const char *filename)
 	char *name;
 
 	if (filename == NULL) {
-		static int sample_count = 1;
-
 		/* Translator comment: untitled here implies that
 		 * there is no active sound sample. Any newly
 		 * recorded samples will be saved to disk with this
 		 * name as default value. */
-		name = g_strdup_printf (ngettext("Untitled",
-						 "Untitled-%d",
-						 sample_count),
-						 sample_count);
+		if (sample_count == 1) {
+			name = g_strdup (_("Untitled"));
+		} else {
+			name = g_strdup_printf (_("Untitled-%d"),
+						sample_count);
+		}
 		sample_count++;
 	} else {
 		name = g_strdup (filename);
