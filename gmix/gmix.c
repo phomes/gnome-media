@@ -389,6 +389,8 @@ int main (int argc, char *argv[])
 	int res;
 
 	gnome_init (&argc, &argv);
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
 
 	if (argc==2) {
 		gnome_config_set_string ("/gmix/setup/device", argv[1]);
