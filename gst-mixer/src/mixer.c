@@ -150,6 +150,8 @@ create_track_widget (GstMixer      *mixer,
   GList *adjlist = NULL;
   MyMixerControls *ctrl = g_new0 (MyMixerControls, 1);
   gchar *str = NULL;
+  AtkObject *accessible;
+  gchar *accessible_name;
 
   volumes = g_malloc (sizeof (gint) * track->num_channels);
 
@@ -210,6 +212,19 @@ create_track_widget (GstMixer      *mixer,
     gtk_table_attach_defaults (GTK_TABLE (table), slider,
 			       column_pos + i, column_pos + i + 1,
 			       2, 3);
+    accessible = gtk_widget_get_accessible (slider);
+    if (GTK_IS_ACCESSIBLE (accessible)) {
+       if (track->num_channels == 1)
+          accessible_name = g_strdup_printf (_("%s Slider"), ctrl->track->label);
+       else {
+          gchar *accessible_desc = g_strdup_printf (_("Channel %d of %s Slider"), i+1, ctrl->track->label);
+          accessible_name = g_strdup_printf (_("%s Slider %d"), ctrl->track->label, i+1);
+          atk_object_set_description (accessible, accessible_desc); 
+          g_free (accessible_desc);
+       }
+       atk_object_set_name (accessible, accessible_name);
+       g_free (accessible_name);
+    }
   }
 
   ctrl->adjustments = adjlist;
@@ -224,6 +239,12 @@ create_track_widget (GstMixer      *mixer,
     ctrl->lock = button;
     g_signal_connect (G_OBJECT (button), "toggled",
 		      G_CALLBACK (cb_lock_toggled), (gpointer) ctrl);
+    accessible = gtk_widget_get_accessible (ctrl->lock);
+    if (GTK_IS_ACCESSIBLE (accessible)) {
+       accessible_name = g_strdup_printf (_("%s Lock"), ctrl->track->label);
+       atk_object_set_name (accessible, accessible_name);
+       g_free (accessible_name);
+    }
   }
 
   button = gtk_check_button_new_with_label (_("Mute"));
@@ -236,6 +257,12 @@ create_track_widget (GstMixer      *mixer,
   g_signal_connect (G_OBJECT (button), "toggled",
 		    G_CALLBACK (cb_mute_toggled), (gpointer) ctrl);
   ctrl->mute = button;
+  accessible = gtk_widget_get_accessible (ctrl->mute);
+  if (GTK_IS_ACCESSIBLE (accessible)) {
+     accessible_name = g_strdup_printf (_("%s Mute"), ctrl->track->label);
+     atk_object_set_name (accessible, accessible_name);
+     g_free (accessible_name);
+  }
 
   if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)) {
     button = gtk_check_button_new_with_label (_("Rec."));
@@ -248,8 +275,13 @@ create_track_widget (GstMixer      *mixer,
     g_signal_connect (G_OBJECT (button), "toggled",
 		      G_CALLBACK (cb_record_toggled), (gpointer) ctrl);
     ctrl->record = button;
+    accessible = gtk_widget_get_accessible (ctrl->record);
+    if (GTK_IS_ACCESSIBLE (accessible)) {
+       accessible_name = g_strdup_printf (_("%s Record"), ctrl->track->label);
+       atk_object_set_name (accessible, accessible_name);
+       g_free (accessible_name);
+    }
   }
-
   g_free (volumes);
 }
 
