@@ -693,7 +693,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	
-	label = gtk_label_new (_("Recording timeout: "));
+	label = gtk_label_new_with_mnemonic (_("_Recording timeout: "));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_misc_set_padding (GTK_MISC (label), 5, 0);
@@ -703,6 +703,7 @@ create_grecord_propertybox (void)
 			  G_CALLBACK (record_timeout_changed), NULL);
 	
 	RecordTimeout_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton_adj), 1, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), RecordTimeout_spinbutton);
 	gtk_widget_show (RecordTimeout_spinbutton);
 	gtk_box_pack_start (GTK_BOX (hbox), RecordTimeout_spinbutton, FALSE, FALSE, 0);
 	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (RecordTimeout_spinbutton), TRUE);
@@ -712,7 +713,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_misc_set_padding (GTK_MISC (label), 5, 0);
 	
-	StopRecordOnTimeout_checkbox = gtk_check_button_new_with_label (_("Stop recording on timeout"));
+	StopRecordOnTimeout_checkbox = gtk_check_button_new_with_mnemonic (_("_Stop recording on timeout"));
 
 	g_signal_connect (G_OBJECT (StopRecordOnTimeout_checkbox), "toggled",
 			  G_CALLBACK (stop_on_timeout_changed), NULL);
@@ -720,7 +721,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (inner_vbox), StopRecordOnTimeout_checkbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (StopRecordOnTimeout_checkbox), 3);
 	
-	PopupSaveOnTimeout_checkbox = gtk_check_button_new_with_label (_("Open save dialog when recording is finished"));
+	PopupSaveOnTimeout_checkbox = gtk_check_button_new_with_mnemonic (_("_Open save dialog when recording is finished"));
 	g_signal_connect (G_OBJECT (PopupSaveOnTimeout_checkbox), "toggled",
 			  G_CALLBACK (save_when_finished_changed), NULL);
 	gtk_widget_show (PopupSaveOnTimeout_checkbox);
@@ -736,7 +737,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (inner_vbox);
 	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
 	
-	PopupWarnMessSize_checkbox = gtk_check_button_new_with_label (_("Show warning message if size (Mb) of sample becomes bigger than:"));
+	PopupWarnMessSize_checkbox = gtk_check_button_new_with_mnemonic (_("Show warning _message if size (Mb) of sample becomes bigger than:"));
 	g_signal_connect (G_OBJECT (PopupWarnMessSize_checkbox), "toggled",
 			  G_CALLBACK (popup_warning_changed), NULL);
 			  
@@ -754,7 +755,7 @@ create_grecord_propertybox (void)
 	add_paired_relations (PopupWarnMessSize_checkbox, ATK_RELATION_CONTROLLER_FOR,
 			      WarningSize_spinbutton, ATK_RELATION_CONTROLLED_BY);
 	
-	StopRecordSize_checkbox = gtk_check_button_new_with_label (_("Stop recording if size (Mb) of sample becomes bigger than:"));
+	StopRecordSize_checkbox = gtk_check_button_new_with_mnemonic (_("Sto_p recording if size (Mb) of sample becomes bigger than:"));
 	g_signal_connect (G_OBJECT (StopRecordSize_checkbox), "toggled",
 			  G_CALLBACK (stop_record_changed), NULL);
 	
@@ -790,7 +791,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (inner_vbox);
 	gtk_container_add (GTK_CONTAINER (frame), inner_vbox);
 
-	playrepeat_checkbox = gtk_check_button_new_with_label (_("Repeat the sound"));
+	playrepeat_checkbox = gtk_check_button_new_with_mnemonic (_("_Repeat the sound"));
 	g_signal_connect (G_OBJECT (playrepeat_checkbox), "toggled",
 			  G_CALLBACK (play_repeat_changed), NULL);
 	gtk_widget_show (playrepeat_checkbox);
@@ -801,7 +802,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_container_add (GTK_CONTAINER (inner_vbox), hbox);
 
-	playrepeatforever_radiobutton = gtk_radio_button_new_with_label (NULL, _("Forever"));
+	playrepeatforever_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("_Forever"));
 	g_signal_connect (G_OBJECT (playrepeatforever_radiobutton), "toggled",
 			  G_CALLBACK (play_repeat_forever_changed), NULL);
 	
@@ -809,7 +810,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (hbox), playrepeatforever_radiobutton, FALSE, FALSE, 20);
 	gtk_container_set_border_width (GTK_CONTAINER (playrepeatforever_radiobutton), 3);
 
-	playxtimes_radiobutton = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (playrepeatforever_radiobutton), _("Nr of times:"));
+	playxtimes_radiobutton = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (playrepeatforever_radiobutton), _("_Number of times:"));
 	gtk_widget_show (playxtimes_radiobutton);
 	gtk_box_pack_start (GTK_BOX (hbox), playxtimes_radiobutton, FALSE, FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER (playxtimes_radiobutton), 3);
@@ -848,7 +849,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 
-	label = gtk_label_new (_("Path to sox:"));
+	label = gtk_label_new_with_mnemonic (_("_Path to sox:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
@@ -857,9 +858,9 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (hbox), path_to_sox_fileentry, TRUE, TRUE, 0);
 
 	path_to_sox_combo_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (path_to_sox_fileentry));
-	gtk_widget_show (path_to_sox_combo_entry);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), path_to_sox_combo_entry);
 
-	button = gtk_button_new_with_label (_("Apply"));
+	button = gtk_button_new_with_mnemonic (_("_Apply"));
 	gtk_widget_show (button);
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 
@@ -881,7 +882,7 @@ create_grecord_propertybox (void)
 	gtk_widget_show (hbox);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 	
-	label = gtk_label_new (_("Temporary folder:"));
+	label = gtk_label_new_with_mnemonic (_("_Temporary folder:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	
@@ -890,7 +891,7 @@ create_grecord_propertybox (void)
 	gtk_box_pack_start (GTK_BOX (hbox), TempDir_fileentry, TRUE, TRUE, 0);
 	
 	TempDir_combo_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (TempDir_fileentry));
-	gtk_widget_show (TempDir_combo_entry);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), TempDir_combo_entry);
 
 	button = gtk_button_new_with_label (_("Apply"));
 	gtk_widget_show (button);
