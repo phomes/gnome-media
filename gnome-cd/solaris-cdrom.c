@@ -864,6 +864,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	struct audio_info audioinfo;
 	int vol_fd;
 	int cd_status;
+	int i, j;
 
 	g_return_val_if_fail (status != NULL, TRUE);
 	
@@ -941,24 +942,28 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 		return FALSE;
 	}
 #else
-	tocentry.cdte_track = CDROM_LEADOUT;
-	tocentry.cdte_format = CDROM_MSF;
-	if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
-		g_warning ("Error getting leadout");
-		if (error)
-			*error = g_error_new (GNOME_CDROM_ERROR,
-					      GNOME_CDROM_ERROR_SYSTEM_ERROR,
-					      "(solaris_cdrom_get_status): CDROMREADTOCENTRY ioctl failed");
-
-		solaris_cdrom_invalidate (lcd);
-		g_free (realstatus);
-		*status = NULL;
-		return FALSE;
+	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
+		g_warning ("Error reading CD header");
+		solaris_cdrom_close (lcd);
+		return FALSE; 
 	}
-	if (tocentry.cdte_ctrl == CDROM_DATA_TRACK)
-		realstatus->cd = GNOME_CDROM_STATUS_DATA_CD;
-	else
-		realstatus->cd = GNOME_CDROM_STATUS_OK;
+	realstatus->cd = GNOME_CDROM_STATUS_DATA_CD;
+
+	for (i = 0, j = priv->tochdr->cdth_trk0; i < (priv->tochdr->cdth_trk1 - priv->tochdr->cdth_trk0 + 1); i++, j++) {
+		tocentry.cdte_track = j;
+		tocentry.cdte_format = CDROM_MSF;
+
+		if (ioctl (cdrom->fd, CDROMREADTOCENTRY, &tocentry) < 0) {
+			g_warning ("IOCtl failed");
+			continue;
+		}
+
+		if (tocentry.cdte_ctrl != CDROM_DATA_TRACK) {
+			realstatus->cd = GNOME_CDROM_STATUS_OK;
+			break;
+		}
+	}
+
 #endif
 
 	subchnl.cdsc_format = CDROM_MSF;
