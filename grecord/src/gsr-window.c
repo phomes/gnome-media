@@ -1100,20 +1100,20 @@ seek_to (GtkRange *range,GdkEventButton *gdkevent,
 	gint64 time;
 	GstEvent *event;
 	GstElementState old_state;
-	gboolean ret;
 
 	old_state = gst_element_get_state (window->priv->play->pipeline);
-	if (old_state == GST_STATE_READY) {
-		return;
+	if (old_state == GST_STATE_READY || old_state == GST_STATE_NULL) {
+		return FALSE;
 	}
 
 	gst_element_set_state (window->priv->play->pipeline, GST_STATE_PAUSED);
 	time = ((value / 100) * window->priv->len_secs) * GST_SECOND;
 
 	event = gst_event_new_seek (GST_FORMAT_TIME | GST_SEEK_FLAG_FLUSH, time);
-	ret = gst_element_send_event (window->priv->play->sink, event);
+	gst_element_send_event (window->priv->play->sink, event);
 	gst_element_set_state (window->priv->play->pipeline, old_state);
 	window->priv->seek_in_progress = FALSE;
+
 	return FALSE;
 }
 
