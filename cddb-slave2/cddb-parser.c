@@ -309,6 +309,7 @@ write_line (FILE *handle,
 		str = g_strdup_printf ("%s\r\n", value);
 		g_print ("Writing: %s\n", str);
 		fputs (str, handle);
+		g_free (str);
 	} else {
 		key_len = strlen (key) + 1 + 2; /* Length of "KEY=" + \r\n */
 		val_len = strlen (value);
