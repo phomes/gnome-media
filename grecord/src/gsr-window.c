@@ -951,6 +951,7 @@ help_about (BonoboUIComponent *uic,
 	static GtkWidget *about = NULL;
 	GdkPixbuf *pixbuf = NULL;
 	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
+	const char *documentors[2] = {"Sun Microsystems", NULL};
 
 	if (about != NULL) {
 		gdk_window_raise (about->window);
@@ -960,7 +961,7 @@ help_about (BonoboUIComponent *uic,
 		about = gnome_about_new (_("Sound Recorder"), VERSION,
 					 "Copyright \xc2\xa9 2002 Iain Holmes",
 					 _("A sound recorder for GNOME"),
-					 authors, NULL, NULL, pixbuf);
+					 authors, documentors, NULL, pixbuf);
 
 		if (pixbuf != NULL)
 			gdk_pixbuf_unref (pixbuf);

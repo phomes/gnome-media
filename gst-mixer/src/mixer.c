@@ -448,12 +448,13 @@ cb_about (GtkWidget *widget,
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
+  const gchar *documentors[2] = {"Sun Microsystems", NULL};
 
   about = gnome_about_new (_("Volume Control"),
 			   VERSION,
 			   "(c) 2003 Ronald Bultje",
 			   _("A GNOME/GStreamer-based mixer application"),
-			   authors, NULL, NULL,
+			   authors, documentors, NULL,
 			   NULL);
 
   gtk_widget_show (about);
