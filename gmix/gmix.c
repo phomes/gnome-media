@@ -208,7 +208,12 @@ void init_devices(void);
 void get_one_device_config(gpointer a, gpointer b);
 void put_one_device_config(gpointer a, gpointer b);
 GtkWidget *make_slider_mixer(channel_info *ci);
- 
+
+static void error_close_cb(void)
+{
+    g_error("No mixers found.");
+}
+
 int main(int argc, char *argv[]) 
 {
 	mode=0;
@@ -243,7 +248,11 @@ int main(int argc, char *argv[])
 		gnome_config_sync();
 		free_devices();
 	} else {
-		fprintf(stderr, "no mixers found !\n");
+	    GtkWidget *box;
+	    box = gnome_error_dialog("No mixers found.\nMake sure you have sound support compiled into the kernel.");
+	    gtk_signal_connect(GTK_OBJECT(box), "close",
+			       GTK_SIGNAL_FUNC(error_close_cb), NULL);
+	    gtk_main();
 	}
 	return 0;
 }
