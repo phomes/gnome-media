@@ -1,3 +1,18 @@
+2002-04-13 Iain <iain@ximian.com>
+
+	* gnome-cd.c (make_button_from_pixbuf): Make-a-button-from-a-pixbuf.
+	duh!
+	(init_player): Make all the buttons from the theme pixbufs.
+
+	* prefereences.c (do_theme_changed): Change the widgets too.
+	Remove debugging spewage.
+
+	* theme.c (parse_theme): Ref all the pixbufs.
+	(theme_free): Free the theme.
+	(theme_change_widgets): Change the pixbufs in the widgets.
+
+	* images/media-theme: New theme to test the widgert change.
+	
 2002-04-12 Iain <iain@ximian.com>
 
 	* preferences.c (do_theme_changed): Change the theme.

@@ -24,6 +24,9 @@
 #include <config.h>
 #endif
 
+#include <gtk/gtkbin.h>
+#include <gtk/gtkimage.h>
+
 #include <libgnome/gnome-util.h>
 
 #include <libxml/tree.h>
@@ -54,35 +57,43 @@ parse_theme (GCDTheme *theme,
 			button = xmlGetProp (cur, (const xmlChar *) "button");
 			if (button != NULL) {
 				char *file, *full;
-
+				
 				file = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
 				full = make_fullname (theme->name, file);
-
+				
 				if (xmlStrcmp (button, "previous") == 0) {
 					theme->previous = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->previous));
 				} else if (xmlStrcmp (button, "rewind") == 0) {
 					theme->rewind = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->rewind));
 				} else if (xmlStrcmp (button, "play") == 0) {
 					theme->play = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->play));
 				} else if (xmlStrcmp (button, "pause") == 0) {
 					theme->pause = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->pause));
 				} else if (xmlStrcmp (button, "stop") == 0) {
 					theme->stop = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->stop));
 				} else if (xmlStrcmp (button, "forward") == 0) {
 					theme->forward = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->forward));
 				} else if (xmlStrcmp (button, "next") == 0) {
 					theme->next = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->next));
 				} else if (xmlStrcmp (button, "eject") == 0) {
 					theme->eject = gdk_pixbuf_new_from_file (full, NULL);
+					g_object_ref (G_OBJECT (theme->eject));
 				} else {
 					/* Hmmm */
 				}
-
+				
 				g_free (full);
 			} else {
 				/* Check for menu */
 				char *menu;
-
+				
 				menu = xmlGetProp (cur, (const xmlChar *) "menu");
 				if (menu != NULL) {
 					char *file, *full;
@@ -112,7 +123,7 @@ parse_theme (GCDTheme *theme,
 		cur = cur->next;
 	}
 }
-				
+
 GCDTheme *
 theme_load (GnomeCD *gcd,
 	    const char *theme_name)
@@ -128,12 +139,12 @@ theme_load (GnomeCD *gcd,
 	theme_path = g_build_filename (THEME_DIR, theme_name, NULL);
 	if (g_file_test (theme_path, G_FILE_TEST_IS_DIR) == FALSE) {
 		/* Theme dir isn't a dir */
-
+		
 		g_print ("Not a dir %s\n", theme_path);
 		g_free (theme_path);
 		return NULL;
 	}
-
+	
 	tmp = g_strconcat (theme_name, ".theme", NULL);
 	xml_file = g_build_filename (theme_path, tmp, NULL);
 	g_free (tmp);
@@ -196,9 +207,55 @@ theme_load (GnomeCD *gcd,
 			parse_theme (theme, xml, ptr->xmlChildrenNode);
 		} else {
 		}
-
+		
 		ptr = ptr->next;
 	}
-
+	
 	return theme;
+}
+
+void
+theme_free (GCDTheme *theme)
+{
+	g_return_if_fail (theme != NULL);
+	
+	g_free (theme->name);
+	g_object_unref (G_OBJECT (theme->previous));
+/* 	g_object_unref (G_OBJECT (theme->previous_menu)); */
+	g_object_unref (G_OBJECT (theme->rewind));
+	g_object_unref (G_OBJECT (theme->play));
+/* 	g_object_unref (G_OBJECT (theme->play_menu)); */
+	g_object_unref (G_OBJECT (theme->pause));
+	g_object_unref (G_OBJECT (theme->stop));
+/* 	g_object_unref (G_OBJECT (theme->stop_menu)); */
+	g_object_unref (G_OBJECT (theme->forward));
+	g_object_unref (G_OBJECT (theme->next));
+/* 	g_object_unref (G_OBJECT (theme->next_menu)); */
+	g_object_unref (G_OBJECT (theme->eject));
+/* 	g_object_unref (G_OBJECT (theme->eject_menu)); */
+	
+	g_free (theme);
+}
+
+void
+theme_change_widgets (GnomeCD *gcd)
+{
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->back_b)->child),
+				   gcd->theme->previous);
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->rewind_b)->child),
+				   gcd->theme->rewind);
+	
+	gtk_image_set_from_pixbuf (GTK_IMAGE (gcd->play_image),
+				   gcd->theme->play);
+	gtk_image_set_from_pixbuf (GTK_IMAGE (gcd->pause_image),
+				   gcd->theme->pause);
+	
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->stop_b)->child),
+				   gcd->theme->stop);
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->ffwd_b)->child),
+				   gcd->theme->forward);
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->next_b)->child),
+				   gcd->theme->next);
+	gtk_image_set_from_pixbuf (GTK_IMAGE (GTK_BIN (gcd->eject_b)->child),
+				   gcd->theme->eject);
 }

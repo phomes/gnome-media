@@ -134,9 +134,13 @@ do_theme_changed (GnomeCDPreferences *prefs,
 	old_theme = prefs->gcd->theme;
 	prefs->gcd->theme = theme_load (prefs->gcd, theme_name);
 
-	/*
-	theme_free (old_theme);
-	*/
+	/* Revert to the old theme if something messed up */
+	if (prefs->gcd->theme == NULL) {
+		prefs->gcd->theme = old_theme;
+	} else {
+		theme_change_widgets (prefs->gcd);
+		theme_free (old_theme);
+	}
 }
 
 static void
@@ -602,12 +606,10 @@ theme_selection_changed_cb (GtkTreeSelection *selection,
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 
-	g_print ("Hello?\n");
 	if (gtk_tree_selection_get_selected (selection, &model, &iter) == TRUE) {
 		char *theme_name;
 
 		gtk_tree_model_get (model, &iter, 0, &theme_name, -1);
-		g_print ("Boink!\n");
 		gconf_client_set_string (client, "/apps/gnome-cd/theme-name", theme_name, NULL);
 	}
 }

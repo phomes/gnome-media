@@ -1,4 +1,4 @@
-SUBDIRS = lcd-theme red-lcd-theme
+SUBDIRS = lcd-theme red-lcd-theme media-theme
 
 pixmapdir = $(datadir)/pixmaps/gnome-cd
 
