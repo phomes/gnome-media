@@ -1,3 +1,11 @@
+2005-04-08  Philip Langdale  <philipl@mail.utexas.edu>
+
+	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* gst-mixer/src/element.c: (gnome_volume_control_element_change):
+	  Numbering gets screwed up by destroying, so just hide it instead,
+	  fixes one more crash (#172697).
+
 2005-04-03  jylefort@brutele.be
 
 	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>

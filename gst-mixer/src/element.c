@@ -237,7 +237,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
       gnome_volume_control_track_add_option }
   };
   gvc_whitelist list[] = whitelist_init_list;
-  gint i, n = 0;
+  gint i;
   const GList *item;
   GstMixer *mixer;
 
@@ -343,12 +343,6 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     GtkWidget *label, *view, *viewport;
     GtkAdjustment *hadjustment, *vadjustment;
 
-    /* no empty pages */
-    if (!content[i].use) {
-      gtk_widget_destroy (content[i].page);
-      continue;
-    }
-
     /* don't show last separator */
     if (content[i].new_sep)
       gtk_widget_destroy (content[i].new_sep);
@@ -376,7 +370,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_widget_show (view);
     gtk_widget_show (label);
 
-    update_tab_visibility (el, n++);
+    update_tab_visibility (el, i);
   }
 
   /* refresh fix */
