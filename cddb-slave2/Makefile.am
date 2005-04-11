@@ -39,7 +39,7 @@ libcddb_slave2include_HEADERS = cddb-slave-client.h
 
 libcddb_slave2_la_SOURCES = cddb-slave-client.c
 libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la libcddb-slave2-private.la
-libcddb_slave2_la_LDFLAGS = -lORBit-2 -lbonobo-2 -lgobject-2.0 -lglib-2.0
+libcddb_slave2_la_LDFLAGS = $(CDDBSLAVE_LIBS)
 
 # since automake builds dependencies AFTER objects, and the object
 # needs a generated header, we add a hack to make sure the .h gets
