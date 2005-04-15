@@ -1,3 +1,13 @@
+2005-04-15  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gst-mixer/src/button.c: (gnome_volume_control_button_clicked):
+	Plug leaks.
+	* gst-mixer/src/main.c: (create_mixer_collection): Plug leaks
+	* gst-mixer/src/track.c: (cb_option_changed): Plug leaks
+	* gst-mixer/src/volume.c: #define _ISOC99_SOURCE to get rid of a
+	warning that lrint() was conflicting with a compiler internal
+	definition of it.
+
 2005-04-08  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:

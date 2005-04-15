@@ -171,6 +171,7 @@ gnome_volume_control_button_clicked (GtkButton *_button)
     if (filename) {
       GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
       gtk_image_set_from_pixbuf (button->image, pixbuf);
+      g_object_unref (pixbuf);
       g_free (filename);
     }
   } else {

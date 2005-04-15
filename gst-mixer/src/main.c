@@ -118,6 +118,7 @@ create_mixer_collection (void)
         g_object_get (element, "device-name", &devname, NULL);
         name = g_strdup_printf ("%s (%s)", devname,
 				gst_element_factory_get_longname (factory));
+	g_free (devname);
       } else {
         name = g_strdup_printf ("%s (%s)", title,
 				gst_element_factory_get_longname (factory));
@@ -131,6 +132,7 @@ create_mixer_collection (void)
       num++;
 
       /* and recreate this object, since we give it to the mixer */
+      g_free (title);
       title = g_strdup_printf (gettext("Unknown Volume Control %d"), num);
       element = gst_element_factory_create (factory, title);
     }

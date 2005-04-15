@@ -97,6 +97,7 @@ cb_option_changed (GtkComboBox *box,
     model = gtk_combo_box_get_model (box);
     gtk_tree_model_get (model, &iter, 0, &opt, -1);
     gst_mixer_set_option (ctrl->mixer, GST_MIXER_OPTIONS (ctrl->track), opt);
+    g_free (opt);
   }
 }
 
