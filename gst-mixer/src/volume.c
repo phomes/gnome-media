@@ -23,6 +23,9 @@
 #include "config.h"
 #endif
 
+#define _ISOC99_SOURCE
+
+#include <math.h>
 #include <gnome.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
