@@ -90,6 +90,19 @@ enum {
 	CDDB_OTHER_SERVER
 };
 
+/* Taken from cddb-slave2's main.c */
+static char *
+get_hostname (void)
+{
+	char name[4096];
+
+	if (gethostname (name, 4095) == -1) {
+		return g_strdup ("localhost");
+	} else {
+		return g_strdup (name);
+	}
+}
+
 static void
 destroy_window (GtkWidget *window,
 		PropertyDialog *pd)
@@ -144,6 +157,8 @@ no_info_toggled (GtkToggleButton *tb,
 
 	gtk_widget_set_sensitive (pd->name_box, FALSE);
 	gconf_client_set_int (client, "/apps/CDDB-Slave2/info", CDDB_SEND_FAKE_INFO, NULL);
+	gtk_entry_set_text (GTK_ENTRY (pd->real_name), "");
+	gtk_entry_set_text (GTK_ENTRY (pd->real_host), "");
 }
 
 static void
@@ -156,6 +171,8 @@ real_info_toggled (GtkToggleButton *tb,
 
 	gtk_widget_set_sensitive (pd->name_box, FALSE);
 	gconf_client_set_int (client, "/apps/CDDB-Slave2/info", CDDB_SEND_REAL_INFO, NULL);
+	gtk_entry_set_text (GTK_ENTRY (pd->real_name),g_get_user_name());
+	gtk_entry_set_text (GTK_ENTRY (pd->real_host),get_hostname());
 }
 
 static void
@@ -651,35 +668,6 @@ make_tree_model (void)
 	return GTK_TREE_MODEL (store);
 }
 
-static GtkWidget *
-hig_category_new (GtkWidget *parent, gchar *title, gboolean expand, gboolean fill)
-{
-	GtkWidget *vbox, *vbox2, *hbox;
-	GtkWidget *label;
-	gchar *tmp;
-
-	vbox = gtk_vbox_new (FALSE, 6);
-	gtk_box_pack_start (GTK_BOX (parent), vbox, expand, fill, 0);
-
-	tmp = g_strdup_printf ("<b>%s</b>", _(title));
-	label = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_label_set_markup (GTK_LABEL (label), tmp);
-	g_free (tmp);
-	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
-
-	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
-
-	label = gtk_label_new ("    ");
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
-	vbox2 = gtk_vbox_new (FALSE, 6);
-	gtk_box_pack_start (GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
-
-	return vbox2;
-}
-
 static void
 notify_cb (GConfClient *client,
 		guint cnxn_id,
@@ -781,12 +769,12 @@ create_dialog (GtkWidget *window)
 {
 	PropertyDialog *pd;
 
-	GtkWidget *main_vbox;
 	GtkWidget *frame;
 	GtkWidget *align;
 	GtkWidget *vbox, *hbox, *hbox2, *hbox3;
 	GtkWidget *label, *sw;
 	GtkWidget *icon;
+	GtkWidget *notebook, *login_page, *server_page;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *col;
 	GtkTreeSelection *selection;
@@ -800,19 +788,22 @@ create_dialog (GtkWidget *window)
 	g_signal_connect (G_OBJECT (window), "destroy",
 			  G_CALLBACK (destroy_window), pd);
 
-	main_vbox = gtk_vbox_new (FALSE, 0);
-	gtk_box_set_spacing (GTK_BOX (main_vbox), 18);
-	gtk_container_set_border_width (GTK_CONTAINER (main_vbox), 5);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (window)->vbox), 2);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), main_vbox, TRUE, TRUE, 0);
-
 	/* Log on info */
-	frame = hig_category_new (main_vbox, _("Login Information"), FALSE, FALSE);
+	notebook = gtk_notebook_new ();
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox),notebook, TRUE, TRUE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER (notebook), 5);
+	login_page = gtk_vbox_new (FALSE, 0);
+	gtk_box_set_spacing (GTK_BOX (login_page), 18);
+	gtk_container_set_border_width (GTK_CONTAINER (login_page), 5);
+	
+	frame = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (login_page), frame, TRUE, TRUE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER(frame), 5);
+
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 
 	info = gconf_client_get_int (client, "/apps/CDDB-Slave2/info", NULL);
-	g_print ("info: %d\n", info);
 	pd->no_info = gtk_radio_button_new_with_mnemonic (NULL, _("Sen_d no information"));
 	if (info == CDDB_SEND_FAKE_INFO) {
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->no_info), TRUE);
@@ -865,10 +856,14 @@ create_dialog (GtkWidget *window)
 	pd->real_name = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->real_name);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/name", NULL);
-	if (str != NULL) {
+	if (str != NULL && info == CDDB_SEND_OTHER_INFO) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_name), str);
 		g_free (str);
 	}
+	else if (info == CDDB_SEND_REAL_INFO) {
+		gtk_entry_set_text (GTK_ENTRY (pd->real_name),g_get_user_name());
+	}
+
 	g_signal_connect (G_OBJECT (pd->real_name), "changed",
 			  G_CALLBACK (real_name_changed), pd);
 	gtk_table_attach (GTK_TABLE (pd->name_box), pd->real_name,
@@ -885,18 +880,32 @@ create_dialog (GtkWidget *window)
 	pd->real_host = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pd->real_host);
 	str = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
-	if (str != NULL) {
+	if (str != NULL && info == CDDB_SEND_OTHER_INFO) {
 		gtk_entry_set_text (GTK_ENTRY (pd->real_host), str);
 		g_free (str);
 	}
+	else if (info == CDDB_SEND_REAL_INFO) {
+		gtk_entry_set_text (GTK_ENTRY (pd->real_host),get_hostname());
+	}
+
 	g_signal_connect (G_OBJECT (pd->real_host), "changed",
 			  G_CALLBACK (real_host_changed), pd);
 	gtk_table_attach (GTK_TABLE (pd->name_box), pd->real_host,
 			  1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL,
 			  0, 0);
+	
+	gtk_notebook_insert_page (GTK_NOTEBOOK (notebook), 
+			  login_page, gtk_label_new (_("Login Information")), -1);
 
 	/* Server info */
-	frame = hig_category_new (main_vbox, _("Server"), TRUE, TRUE);
+	server_page = gtk_vbox_new (FALSE, 0);
+	gtk_box_set_spacing (GTK_BOX (server_page), 18);
+	gtk_container_set_border_width (GTK_CONTAINER (server_page), 5);
+
+	
+	frame = gtk_vbox_new (FALSE, 6);
+	gtk_box_pack_start (GTK_BOX (server_page), frame, TRUE, TRUE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER(frame), 5);
 
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
@@ -1048,6 +1057,10 @@ create_dialog (GtkWidget *window)
 	default:
 		break;
 	}
+
+	gtk_notebook_insert_page (GTK_NOTEBOOK (notebook), server_page,
+				  gtk_label_new (_("Server")), -1);
+
 	/* Add Notify */
 	pd->notify_id =  gconf_client_notify_add (client,
 			"/apps/CDDB-Slave2", notify_cb,
@@ -1093,9 +1106,9 @@ main (int argc,
 						  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 						  NULL);
 	gtk_dialog_set_has_separator (GTK_DIALOG (dialog_win), FALSE);
-	gtk_container_set_border_width (GTK_CONTAINER (dialog_win), 5);
+	gtk_container_set_border_width (GTK_CONTAINER (dialog_win), 0);
 
-	gtk_window_set_default_size (GTK_WINDOW (dialog_win), 440, 570);
+	gtk_window_set_default_size (GTK_WINDOW (dialog_win), 440, 400);
 	create_dialog (dialog_win);
 
 	gtk_dialog_set_default_response(GTK_DIALOG (dialog_win), GTK_RESPONSE_CLOSE);
