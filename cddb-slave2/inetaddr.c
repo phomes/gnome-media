@@ -776,7 +776,7 @@ gnet_inetaddr_new_async_cb (GIOChannel* iochannel,
       char* buf;
       int length;
 
-      buf = &state->buffer[state->len];
+      buf = (char *)&state->buffer[state->len];
       length = sizeof(state->buffer) - state->len;
 
       if ((rv = read(state->fd, buf, length)) >= 0)
@@ -1206,7 +1206,7 @@ gnet_inetaddr_get_name_async_cb (GIOChannel* iochannel,
       char* buf;
       int length;
 
-      buf = &state->buffer[state->len];
+      buf = (char *)&state->buffer[state->len];
       length = sizeof(state->buffer) - state->len;
 
       if ((rv = read(state->fd, buf, length)) >= 0)
@@ -1219,7 +1219,7 @@ gnet_inetaddr_get_name_async_cb (GIOChannel* iochannel,
 
 	  /* Copy the name */
 	  name = g_new(gchar, state->buffer[0] + 1);
-	  strncpy(name, &state->buffer[1], state->buffer[0]);
+	  strncpy(name, (char *)&state->buffer[1], state->buffer[0]);
 	  name[state->buffer[0]] = '\0';
 	  state->ia->name = g_strdup(name);
 
@@ -1298,10 +1298,10 @@ gnet_inetaddr_get_canonical_name(const GInetAddr* ia)
     {
       guchar buffer6[INET6_ADDRSTRLEN];
 
-      if (inet_ntop (AF_INET6, &((GNET_SOCKADDR_IN6 (ia->sa)).sin6_addr), buffer6, sizeof (buffer6)))
+      if (inet_ntop (AF_INET6, &((GNET_SOCKADDR_IN6 (ia->sa)).sin6_addr), (char *)buffer6, sizeof (buffer6)))
 	return NULL;
 
-      return g_strdup (buffer6);
+      return g_strdup ((char *)buffer6);
     }
   else
 #endif

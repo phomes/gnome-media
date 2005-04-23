@@ -56,7 +56,7 @@ gnet_private_negotiate_socks5 (GIOChannel *ioc, const GInetAddr *dst)
 #ifdef ENABLE_IPV6
   struct sockaddr_in6 *sa_in6;
 #endif
-  int len;
+  guint len;
 
   s5r[0] = 5;
   s5r[1] = 1;	/* XXX no authentication yet */
@@ -109,7 +109,7 @@ gnet_private_negotiate_socks4 (GIOChannel *ioc, const GInetAddr *dst)
 #ifdef ENABLE_IPV6
   struct sockaddr_in6 *sa_in6;
 #endif
-  int len;
+  guint len;
 
 #ifdef ENABLE_IPV6
   if (GNET_INETADDR_FAMILY (dst) == AF_INET6)

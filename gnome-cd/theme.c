@@ -88,7 +88,7 @@ theme_load (GnomeCD *gcd,
 		xmlFreeDoc (xml);
 		return NULL;
 	}
-	if (xmlStrcmp (ptr->name, "gnome-cd")) {
+	if (xmlStrcmp (ptr->name, (guchar *)"gnome-cd")) {
 		g_print ("Not gnome-cd: %s\n", ptr->name);
 		g_free (theme_path);
 		xmlFreeDoc (xml);

@@ -600,7 +600,7 @@ replace_dialog (GtkWindow *parent,
 		const gchar *message,
 		const gchar *file_name)
 {
-	GtkWindow *message_dialog;
+	GtkWidget *message_dialog;
 	gint ret;
 
 	g_return_val_if_fail (file_name != NULL, FALSE);
@@ -1959,7 +1959,7 @@ gsr_window_set_property (GObject      *object,
 		g_free (priv->filename);
 		g_free (priv->working_file);
 
-		priv->filename = g_strdup (g_value_get_string (value));
+		priv->filename = g_value_dup_string (value);
 		priv->working_file = g_strdup (priv->filename);
 		priv->len_secs = 0;
 

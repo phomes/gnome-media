@@ -816,29 +816,30 @@ cd_display_parse_theme (CDDisplay *disp,
 
 			location = xmlGetProp (cur, (const xmlChar *) "location");
 			if (location != NULL) {
-				char *file, *full;
+				guchar *file;
+				char *full;
 
 				file = xmlNodeListGetString (doc, cur->xmlChildrenNode, 1);
-				full = make_fullname (cd_theme->name, file);
+				full = make_fullname (cd_theme->name, (char *)file);
 				xmlFree (file);
 				
-				if (xmlStrcmp (location, "top-left") == 0) {
+				if (xmlStrcmp (location, (guchar *)"top-left") == 0) {
 					theme->corners[TOPLEFT] = cd_image_new (full, 0, 0);
-				} else if (xmlStrcmp (location, "top-right") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"top-right") == 0) {
 					theme->corners[TOPRIGHT] = cd_image_new (full, 48, 0);
-				} else if (xmlStrcmp (location, "bottom-right") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"bottom-right") == 0) {
 					theme->corners[BOTTOMRIGHT] = cd_image_new (full, 48, 32);
-				} else if (xmlStrcmp (location, "bottom-left") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"bottom-left") == 0) {
 					theme->corners[BOTTOMLEFT] = cd_image_new (full, 0, 32);
-				} else if (xmlStrcmp (location, "left") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"left") == 0) {
 					theme->straights[LEFT] = cd_image_new (full, 0, 16);
-				} else if (xmlStrcmp (location, "right") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"right") == 0) {
 					theme->straights[RIGHT] = cd_image_new (full, 48, 16);
-				} else if (xmlStrcmp (location, "top") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"top") == 0) {
 					theme->straights[TOP] = cd_image_new (full, 16, 0);
-				} else if (xmlStrcmp (location, "bottom") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"bottom") == 0) {
 					theme->straights[BOTTOM] = cd_image_new (full, 16, 32);
-				} else if (xmlStrcmp (location, "middle") == 0) {
+				} else if (xmlStrcmp (location, (guchar *)"middle") == 0) {
 					theme->middle = cd_image_new (full, 16, 16);
 				} else {
 					/** Hmmmmm */

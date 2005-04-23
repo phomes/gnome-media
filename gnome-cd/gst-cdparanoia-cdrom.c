@@ -12,6 +12,8 @@
 #include <config.h>
 #endif
 
+#define _ISOC99_SOURCE
+
 #include <string.h>
 #include <libgnome/gnome-i18n.h>
 #include <sys/types.h>
@@ -19,6 +21,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
+#include <math.h>
 
 #include "gst-cdparanoia-cdrom.h"
 #include "cddb.h"
@@ -210,7 +213,7 @@ check_playtime (GstBin * bin, gpointer data)
 {
 	GstCdparanoiaCDRomPrivate *priv =
 	    (GstCdparanoiaCDRomPrivate *) data;
-	guint64 value = 0;
+	gint64 value = 0;
 	gboolean ret;
 	int i = 0;
 
@@ -1163,7 +1166,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 #endif
 	int cur_gst_status;
 	int cd_status;
-	guint64 value = 0;
+	gint64 value = 0;
 	gboolean ret;
 
 	g_return_val_if_fail (status != NULL, TRUE);
@@ -1517,7 +1520,7 @@ gst_cdparanoia_cdrom_get_cddb_data (GnomeCDRom * cdrom,
 	(*data)->nsecs =
 	    (priv->track_info[priv->track1].address.minute * 60) +
 	    priv->track_info[priv->track1].address.second;
-	(*data)->offsets = g_new0 (unsigned int, priv->track1 + 1);
+	(*data)->offsets = g_new0 (int, priv->track1 + 1);
 
 	for (i = priv->track0 - 1; i < priv->track1; i++) {
 		(*data)->offsets[i] =

@@ -1,3 +1,20 @@
+2005-04-23  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* cddb-slave2/inetaddr.c: (gnet_inetaddr_new_async_cb),
+	(gnet_inetaddr_get_name_async_cb),
+	(gnet_inetaddr_get_canonical_name):
+	* cddb-slave2/socks-private.c: (gnet_private_negotiate_socks5),
+	(gnet_private_negotiate_socks4):
+	* cddb-slave2/tcp.c: (gnet_tcp_socket_new_async_cb):
+	* gnome-cd/display.c: (cd_display_parse_theme):
+	* gnome-cd/gst-cdparanoia-cdrom.c: (check_playtime):
+	* gnome-cd/theme.c: (theme_load):
+	* grecord/src/gsr-window.c: (replace_dialog),
+	(gsr_window_set_property):
+	* gst-mixer/src/volume.c:
+	  GCC4 warning fixes, based on patch from Kjartan Maraas
+	  <kmaraas@gnome.org> (fixes #300658).
+
 2005-04-23  James Henstridge  <james@jamesh.id.au>
 
 	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>

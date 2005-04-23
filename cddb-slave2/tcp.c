@@ -345,7 +345,8 @@ gnet_tcp_socket_new_async_cb (GIOChannel* iochannel,
 			      gpointer data)
 {
   GTcpSocketAsyncState* state = (GTcpSocketAsyncState*) data;
-  gint error, len;
+  gint error;
+  guint len;
 
   /* Remove the watch now in case we don't return immediately */
   g_source_remove (state->connect_watch);
