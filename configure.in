@@ -136,7 +136,7 @@ PKG_CHECK_MODULES(GSR, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
-  libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
+  gtk+-2.0 >= 2.6.0 libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
   HAVE_GST=yes,HAVE_GST=no)
 
 dnl fall back to 0.8
@@ -146,7 +146,7 @@ if test "x$HAVE_GST" = "xno"; then
     gstreamer-$GST_MAJORMINOR >= $GST_REQ \
     gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
     gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
-    libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
+    gtk+-2.0 >= 2.6.0 libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
     HAVE_GST=yes,HAVE_GST=no)
 fi
 
@@ -157,7 +157,7 @@ if test "x$HAVE_GST" = "xno"; then
     gstreamer-$GST_MAJORMINOR >= $GST_REQ \
     gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
     gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
-    libgnomeui-2.0 >= 1.102.0,
+    gtk+-2.0 >= 2.6.0 libgnomeui-2.0 >= 1.102.0,
     HAVE_GST=yes,HAVE_GST=no)
 fi
 
