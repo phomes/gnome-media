@@ -28,28 +28,33 @@
 #ifndef __GSR_WINDOW_H__
 #define __GSR_WINDOW_H__
 
-#include <bonobo/bonobo-window.h>
+#include <gtk/gtkwindow.h>
 
-#define GSR_WINDOW_TYPE (gsr_window_get_type ())
-#define GSR_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSR_WINDOW_TYPE, GSRWindow))
-#define GSR_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GSR_WINDOW_TYPE, GSRWindowClass))
-#define IS_GSR_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSR_WINDOW_TYPE))
-#define IS_GSR_WINDOW_CLASS(klasS) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSRy_WINDOW_TYPE))
+#define GSR_TYPE_WINDOW (gsr_window_get_type ())
+#define GSR_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSR_TYPE_WINDOW, GSRWindow))
+#define GSR_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GSR_TYPE_WINDOW, GSRWindowClass))
+#define GSR_IS_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSR_TYPE_WINDOW))
+#define GSR_IS_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSR_TYPE_WINDOW))
 
 typedef struct _GSRWindow GSRWindow;
 typedef struct _GSRWindowClass GSRWindowClass;
 typedef struct _GSRWindowPrivate GSRWindowPrivate;
 
 struct _GSRWindow {
-        BonoboWindow app_parent;
+	GtkWindow parent;
 
-        GSRWindowPrivate *priv;
+	GSRWindowPrivate *priv;
 };
 
 struct _GSRWindowClass {
-        BonoboWindowClass parent_class;
+	GtkWindowClass parent_class;
 };
 
-GType gsr_window_get_type (void);
+
+GType		 gsr_window_get_type	(void);
+
+GtkWidget	*gsr_window_new		(const char *filename);
+
+void		 gsr_window_close	(GSRWindow *window);
 
 #endif

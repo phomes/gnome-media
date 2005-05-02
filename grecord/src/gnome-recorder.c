@@ -32,14 +32,14 @@
 
 #include <gst/gst.h>
 
-#include "gnome-recorder.h"
+#include "gsr-window.h"
 #include "gst/manager.h"
 
-extern void gsr_window_close (GSRWindow *window);
-extern GtkWidget * gsr_window_new (const char *filename);
 extern void gnome_media_profiles_init (GConfClient *conf);
  
 static GList *windows = NULL;
+
+GConfClient *gconf_client = NULL;
 
 static void
 window_destroyed (GtkWidget *window,
@@ -65,17 +65,6 @@ gsr_quit (void)
 		   p will be invalid */
 		p = p->next;
 		gsr_window_close (window);
-	}
-}
-
-void
-gsr_foreach_window (GSRForeachFunction func,
-		    gpointer closure)
-{
-	GList *p;
-
-	for (p = windows; p; p = p->next) {
-		func (p->data, closure);
 	}
 }
 
@@ -114,54 +103,11 @@ gsr_open_window (const char *filename)
 	return window;
 }
 
-static const char *stock_items[] =
-	{
-		GSR_STOCK_PLAY,
-		GSR_STOCK_RECORD,
-		GSR_STOCK_STOP
-	};
-
-static void
-init_stock_icons (void)
-{
-	GtkIconFactory *factory;
-	int i;
-
-	factory = gtk_icon_factory_new ();
-	gtk_icon_factory_add_default (factory);
-
-	for (i = 0; i < (int) G_N_ELEMENTS (stock_items); i++) {
-		GtkIconSet *icon_set;
-		GdkPixbuf *pixbuf;
-		char *filename, *fullname;
-
-		filename = g_strconcat ("gnome-media/gnome-sound-recorder/",
-					stock_items[i], ".png", NULL);
-		fullname = gnome_program_locate_file (NULL,
-						      GNOME_FILE_DOMAIN_APP_PIXMAP,
-						      filename, TRUE, NULL);
-		g_free (filename);
-
-		pixbuf = gdk_pixbuf_new_from_file (fullname, NULL);
-		g_free (fullname);
-
-		icon_set = gtk_icon_set_new_from_pixbuf (pixbuf);
-		gtk_icon_factory_add (factory, stock_items[i], icon_set);
-		gtk_icon_set_unref (icon_set);
-
-		g_object_unref (G_OBJECT (pixbuf));
-	}
-
-	g_object_unref (G_OBJECT (factory));
-}
-
 int
 main (int argc,
       char **argv)
 {
-	GConfClient *conf;
 	GnomeProgram *program;
-	GtkIconInfo *icon_info;
 	poptContext pctx;
 	GValue value = {0, };
 	char **args = NULL;
@@ -189,6 +135,7 @@ main (int argc,
 				      "GNOME Sound Recorder",
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
+
 	if (!gst_scheduler_factory_get_default_name ()) {
 		GtkWidget *dialog;
 
@@ -205,21 +152,13 @@ main (int argc,
 	}
 	gst_rec_elements_init ();
 
-	conf = gconf_client_get_default ();
+	/* use it like a singleton */
+	gconf_client = gconf_client_get_default ();
 
-	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
-						"gnome-audio2", 48, 0);
-	if (icon_info) {
-		gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
-		gtk_icon_info_free (icon_info);
-	}
-
-
-	/* Init the icons */
-	init_stock_icons ();
+	gtk_window_set_default_icon_name ("gnome-grecord");
 
         /* init gnome-media-profiles */
-        gnome_media_profiles_init (conf);
+        gnome_media_profiles_init (gconf_client);
 
 	/* Get the args */
 	g_value_init (&value, G_TYPE_POINTER);

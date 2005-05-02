@@ -4,11 +4,7 @@ EXTRA_DIST = \
 	README COPYING AUTHORS INSTALL \
 	gnome-sound-recorder.desktop.in \
 	pixmaps/gnome_mixer.xpm \
-	$(pixmap_DATA)		\
-	$(Icon_DATA)		\
-	gnome-grecord.png	\
-	gnome-sound-recorder.schemas.in	\
-	gsr.xml
+	gnome-sound-recorder.schemas.in
 
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
@@ -16,18 +12,6 @@ EXTRA_DIST = \
 Applicationsdir = $(datadir)/applications
 Applications_in_files = gnome-sound-recorder.desktop.in 
 Applications_DATA = $(Applications_in_files:.desktop.in=.desktop)
-
-
-Icondir = $(datadir)/pixmaps
-Icon_DATA = gnome-grecord.png
-
-pixmapdir = $(datadir)/pixmaps/gnome-media/gnome-sound-recorder
-pixmap_DATA = media-record.png		\
-	      media-play.png		\
-	      media-stop.png
-
-uidir = $(datadir)/gnome-sound-recorder/ui
-ui_DATA = gsr.xml
 
 schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-sound-recorder.schemas

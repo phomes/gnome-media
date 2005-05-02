@@ -9,15 +9,17 @@ INCLUDES = \
 	$(GSR_CFLAGS)		\
 	-DDATADIR=\""$(datadir)"\"		\
 	-DGSR_DATADIR=\""$(datadir)/gnome-sound-recorder"\"	\
-	-DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
+	-DGSR_UIDIR=\""$(datadir)/gnome-sound-recorder/ui/"\"
 
 bin_PROGRAMS = gnome-sound-recorder
 
-gnome_sound_recorder_SOURCES = \
+gnome_sound_recorder_SOURCES =	\
 	gnome-recorder.c	\
-	gnome-recorder.h	\
 	gsr-window.c		\
 	gsr-window.h
+
+uidir = $(datadir)/gnome-sound-recorder/ui
+ui_DATA = ui.xml
 
 gnome_sound_recorder_LDADD = \
 	$(GSR_LIBS) $(INTLLIBS) \

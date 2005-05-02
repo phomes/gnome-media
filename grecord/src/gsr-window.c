@@ -33,25 +33,22 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <gnome.h>
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+#include <libgnome/gnome-help.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
 #include <gst/gconf/gconf.h>
-#include <bonobo/bonobo-ui-util.h>
 
 #include <profiles/gnome-media-profiles.h>
 
-#include "gnome-recorder.h"
 #include "gsr-window.h"
 
 extern GtkWidget * gsr_open_window (const char *filename);
 extern void gsr_quit (void);
 
-enum {
-	PROP_0,
-	PROP_LOCATION
-};
+extern GConfClient *gconf_client;
 
 #define GCONF_DIR           "/apps/gnome-sound-recorder/"
 #define KEY_OPEN_DIR        GCONF_DIR "system-state/open-file-directory"
@@ -60,12 +57,6 @@ enum {
 #define KEY_LAST_PROFILE_ID GCONF_DIR "last-profile-id"
 #define EBUSY_TRY_AGAIN     3000    /* Empirical data */
 
-#define CMD_SET_SENSITIVE(window, key, value)               \
-  bonobo_ui_component_set_prop (window->priv->ui_component, \
-				"/commands/" key,           \
-				"sensitive", value, NULL)
-
-
 typedef struct _GSRWindowPipeline {
 	GstElement *pipeline;
 
@@ -73,17 +64,31 @@ typedef struct _GSRWindowPipeline {
 	guint32 state_change_id;
 } GSRWindowPipeline;
 
+enum {
+	PROP_0,
+	PROP_LOCATION
+};
+
+static GtkWindowClass *parent_class = NULL;
+
+#define GSR_WINDOW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GSR_TYPE_WINDOW, GSRWindowPrivate))
+
 struct _GSRWindowPrivate {
-	GtkWidget *main_vbox, *ev;
+	GtkWidget *main_vbox;
 	GtkWidget *scale;
 	GtkWidget *profile;
 	GtkWidget *rate, *time_sec, *format, *channels;
-	GtkWidget *name, *length;
-
+	GtkWidget *name_label;
+	GtkWidget *length_label;
 	gulong seek_id;
 
-	BonoboUIContainer *ui_container;
-	BonoboUIComponent *ui_component;
+	GtkUIManager *ui_manager;
+	GtkActionGroup *action_group;
+
+	/* statusbar */
+	GtkWidget *statusbar;
+	guint status_message_cid;
+	guint tip_message_cid;
 
 	/* Pipelines */
 	GSRWindowPipeline *play, *record;
@@ -110,90 +115,6 @@ struct _GSRWindowPrivate {
 
 static GSRWindowPipeline * make_record_pipeline    (GSRWindow         *window);
 static GSRWindowPipeline * make_play_pipeline      (GSRWindow         *window);
-static void                gsr_window_init         (GSRWindow         *window);
-static void                gsr_window_class_init   (GSRWindowClass    *klass);
-static void                gsr_window_finalize     (GObject           *object);
-static void                gsr_window_get_property (GObject           *object,
-						    guint              prop_id,
-						    GValue            *value,
-						    GParamSpec        *pspec);
-static void                gsr_window_set_property (GObject           *object,
-						    guint              prop_id,
-						    const GValue      *value,
-						    GParamSpec        *pspec);
-static void                file_new                (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_open               (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_save_as            (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_save               (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_mixer              (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_properties         (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_close              (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                file_quit               (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                media_play              (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                media_stop              (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                media_record            (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                help_contents           (BonoboUIComponent *component,
-						    GSRWindow         *window,
-						    const char        *path);
-static void                help_about              (BonoboUIComponent *uic,
-						    GSRWindow         *window,
-						    const char        *path);    
-
-static BonoboWindowClass *parent_class = NULL;
-
-
-static BonoboUIVerb file_verbs[] = {
-	BONOBO_UI_VERB ("FileNew",        (BonoboUIVerbFn) file_new),
-	BONOBO_UI_VERB ("FileOpen",       (BonoboUIVerbFn) file_open),
-	
-	BONOBO_UI_VERB ("FileSave",       (BonoboUIVerbFn) file_save),
-	BONOBO_UI_VERB ("FileSaveAs",     (BonoboUIVerbFn) file_save_as),
-
-	BONOBO_UI_VERB ("FileMixer",      (BonoboUIVerbFn) file_mixer),
-	BONOBO_UI_VERB ("FileProperties", (BonoboUIVerbFn) file_properties),
-
-	BONOBO_UI_VERB ("FileClose",      (BonoboUIVerbFn) file_close),
-	BONOBO_UI_VERB ("FileExit",       (BonoboUIVerbFn) file_quit),
-
-	BONOBO_UI_VERB_END
-};
-
-static BonoboUIVerb help_verbs[] = {
-	BONOBO_UI_VERB ("HelpContents",   (BonoboUIVerbFn) help_contents),
-	BONOBO_UI_VERB ("HelpAbout",      (BonoboUIVerbFn) help_about),
-
-	BONOBO_UI_VERB_END
-};
-
-static BonoboUIVerb media_verbs[] = {
-	BONOBO_UI_VERB ("MediaPlay",      (BonoboUIVerbFn) media_play),
-	BONOBO_UI_VERB ("MediaStop",      (BonoboUIVerbFn) media_stop),
-	BONOBO_UI_VERB ("MediaRecord",    (BonoboUIVerbFn) media_record),
-
-	BONOBO_UI_VERB_END
-};
 
 static void
 show_error_dialog (GtkWindow *window, gchar *error)
@@ -220,8 +141,6 @@ shutdown_pipeline (GSRWindowPipeline *pipe)
 	gst_element_set_state (pipe->pipeline, GST_STATE_NULL);
 	gst_object_unref (GST_OBJECT (pipe->pipeline));	
 }
-
-
 
 static char *
 seconds_to_string (guint seconds)
@@ -296,10 +215,18 @@ seconds_to_full_string (guint seconds)
 	return NULL;
 }
 
+set_action_sensitive (GSRWindow  *window,
+		      const char *name,
+		      gboolean    sensitive)
+{
+	GtkAction *action = gtk_action_group_get_action (window->priv->action_group,
+							 name);
+	gtk_action_set_sensitive (action, sensitive);
+}
+
 static void
-file_new (BonoboUIComponent *uic,
-	  GSRWindow *window,
-	  const char *path)
+file_new_cb (GtkAction *action,
+	     GSRWindow *window)
 {
 	gsr_open_window (NULL);
 }
@@ -309,7 +236,6 @@ file_chooser_open_response_cb (GtkDialog *file_chooser,
 			       int response_id,
 			       GSRWindow *window)
 {
-	GConfClient *client;
 	char *name;
 	char *dirname;
 
@@ -321,10 +247,7 @@ file_chooser_open_response_cb (GtkDialog *file_chooser,
 		goto out;
 		
 	dirname = g_path_get_dirname (name);
-		
-	client = gconf_client_get_default ();
-	gconf_client_set_string (client, KEY_OPEN_DIR, dirname, NULL);
-	g_object_unref (G_OBJECT (client));
+	gconf_client_set_string (gconf_client, KEY_OPEN_DIR, dirname, NULL);
 	g_free (dirname);
 
 	if (window->priv->has_file == TRUE) {
@@ -342,12 +265,10 @@ file_chooser_open_response_cb (GtkDialog *file_chooser,
 }
 
 static void
-file_open (BonoboUIComponent *uic,
-	   GSRWindow *window,
-	   const char *path)
+file_open_cb (GtkAction *action,
+	      GSRWindow *window)
 {
 	GtkWidget *file_chooser;
-	GConfClient *client;
 	char *directory;
 
 	file_chooser = gtk_file_chooser_dialog_new (_("Open a file"),
@@ -357,12 +278,10 @@ file_open (BonoboUIComponent *uic,
 						    GTK_STOCK_OPEN, GTK_RESPONSE_OK,
 						    NULL);
 
-	client = gconf_client_get_default ();
-	directory = gconf_client_get_string (client, KEY_OPEN_DIR, NULL);
+	directory = gconf_client_get_string (gconf_client, KEY_OPEN_DIR, NULL);
 	if (directory != NULL && *directory != 0) {
 		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), directory);
 	}
-	g_object_unref (G_OBJECT (client));
 	g_free (directory);
 
 	g_signal_connect (G_OBJECT (file_chooser), "response",
@@ -394,15 +313,18 @@ eos_done (struct _eos_data *ed)
 
 	gdk_window_set_cursor (window->priv->main_vbox->window, NULL);
 
-	CMD_SET_SENSITIVE (window, "MediaStop", "0");
-	CMD_SET_SENSITIVE (window, "MediaPlay", "1");
-	CMD_SET_SENSITIVE (window, "MediaRecord", "1");
-	CMD_SET_SENSITIVE (window, "FileSave", "0");
-	CMD_SET_SENSITIVE (window, "FileSaveAs", "1");
+	set_action_sensitive (window, "Stop", FALSE);
+	set_action_sensitive (window, "Play", TRUE);
+	set_action_sensitive (window, "Record", TRUE);
+	set_action_sensitive (window, "FileSave", FALSE);
+	set_action_sensitive (window, "FileSaveAs", TRUE);
 	gtk_widget_set_sensitive (window->priv->scale, TRUE);
 
-	bonobo_ui_component_set_status (window->priv->ui_component,
-					_("Ready"), NULL);
+	gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+			   window->priv->status_message_cid);
+	gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+			    window->priv->status_message_cid,
+			    _("Ready"));
 
 	g_free (ed);
 
@@ -501,10 +423,10 @@ pipeline_error_cb (GstElement *parent,
 			g_timeout_add (EBUSY_TRY_AGAIN, (GSourceFunc) handle_ebusy_error, window);
 			set_ebusy_timeout (window, GUINT_TO_POINTER (TRUE));
 
-			CMD_SET_SENSITIVE (window, "FileSave", "0");
-			CMD_SET_SENSITIVE (window, "FileSaveAs", "0");
-			CMD_SET_SENSITIVE (window, "MediaPlay", "0");
-			CMD_SET_SENSITIVE (window, "MediaRecord", "0");
+			set_action_sensitive (window, "FileSave", FALSE);
+			set_action_sensitive (window, "FileSaveAs", FALSE);
+			set_action_sensitive (window, "Play", FALSE);
+			set_action_sensitive (window, "Record", FALSE);
 			return;
 		}
 	}
@@ -526,56 +448,11 @@ pipeline_error_cb (GstElement *parent,
 	eos_done (ed);
 }
 
-GtkWidget *
-gsr_button_new_with_stock_image (const gchar *text, const gchar *stock_id)
-{
-	GtkWidget *button;
-	GtkStockItem item;
-	GtkWidget *label;
-	GtkWidget *image;
-	GtkWidget *hbox;
-	GtkWidget *align;
-
-	button = gtk_button_new ();
-
-	if (GTK_BIN (button)->child)
-		gtk_container_remove (GTK_CONTAINER (button),
-				      GTK_BIN (button)->child);
-
-	if (gtk_stock_lookup (stock_id, &item)) {
-		label = gtk_label_new_with_mnemonic (text);
-
-		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
-
-		image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
-		hbox = gtk_hbox_new (FALSE, 2);
-
-		align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-
-		gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
-		gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
-		gtk_container_add (GTK_CONTAINER (button), align);
-		gtk_container_add (GTK_CONTAINER (align), hbox);
-
-		gtk_widget_show_all (align);
-
-		return button;
-
-	}
-
-	label = gtk_label_new_with_mnemonic (text);
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
-
-	gtk_widget_show (label);
-	gtk_container_add (GTK_CONTAINER (button), label);
-
-	return button;
-}
-
-GtkWidget *
-gsr_dialog_add_button (GtkDialog *dialog, const gchar *text, const gchar *stock_id, gint response_id)
+static GtkWidget *
+gsr_dialog_add_button (GtkDialog *dialog,
+		       const gchar *text,
+		       const gchar *stock_id,
+		       gint response_id)
 {
 	GtkWidget *button;
 
@@ -583,8 +460,10 @@ gsr_dialog_add_button (GtkDialog *dialog, const gchar *text, const gchar *stock_
 	g_return_val_if_fail (text != NULL, NULL);
 	g_return_val_if_fail (stock_id != NULL, NULL);
 
-	button = gsr_button_new_with_stock_image (text, stock_id);
-	g_return_val_if_fail (button != NULL, NULL);
+	button = gtk_button_new_with_mnemonic (text);
+	gtk_button_set_image (GTK_BUTTON (button),
+			      gtk_image_new_from_stock (stock_id,
+							GTK_ICON_SIZE_BUTTON));
 
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 
@@ -681,7 +560,7 @@ do_save_file (GSRWindow *window,
 			title = g_strdup_printf ("%s - Sound Recorder",
 				short_name);
 			gtk_window_set_title (GTK_WINDOW (window), title);
-			gtk_label_set (GTK_LABEL (priv->name), short_name);
+			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
 			priv->dirty = FALSE;
 			g_free (title);
 		} else {
@@ -710,7 +589,6 @@ file_chooser_save_response_cb (GtkDialog *file_chooser,
 			       int response_id,
 			       GSRWindow *window)
 {
-	GConfClient *client;
 	char *name;
 	char *dirname;
 
@@ -722,10 +600,7 @@ file_chooser_save_response_cb (GtkDialog *file_chooser,
 		goto out;
 
 	dirname = g_path_get_dirname (name);
-	
-	client = gconf_client_get_default ();
-	gconf_client_set_string (client, KEY_SAVE_DIR, dirname, NULL);
-	g_object_unref (G_OBJECT (client));
+	gconf_client_set_string (gconf_client, KEY_SAVE_DIR, dirname, NULL);
 	g_free (dirname);
 	
 	do_save_file (window, name);
@@ -736,12 +611,10 @@ file_chooser_save_response_cb (GtkDialog *file_chooser,
 }
 
 static void
-file_save_as (BonoboUIComponent *uic,
-	      GSRWindow *window,
-	      const char *path)
+file_save_as_cb (GtkAction *action,
+		 GSRWindow *window)
 {
 	GtkWidget *file_chooser;
-	GConfClient *client;
 	char *directory;
 
 	file_chooser = gtk_file_chooser_dialog_new (_("Save file as"),
@@ -751,12 +624,10 @@ file_save_as (BonoboUIComponent *uic,
 						    GTK_STOCK_SAVE, GTK_RESPONSE_OK,
 						    NULL);
 
-	client = gconf_client_get_default ();
-	directory = gconf_client_get_string (client, KEY_SAVE_DIR, NULL);
+	directory = gconf_client_get_string (gconf_client, KEY_SAVE_DIR, NULL);
 	if (directory != NULL && *directory != 0) {
 		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), directory);
 	}
-	g_object_unref (G_OBJECT (client));
 	g_free (directory);
 
 	if (window->priv->filename != NULL) {
@@ -792,9 +663,8 @@ file_save_as (BonoboUIComponent *uic,
 }
 
 static void
-file_save (BonoboUIComponent *uic,
-	   GSRWindow *window,
-	   const char *path)
+file_save_cb (GtkAction *action,
+	      GSRWindow *window)
 {
 	if (window->priv->filename == NULL ||
 	    /* Translator comment: Untitled here implies a track without a
@@ -803,16 +673,15 @@ file_save (BonoboUIComponent *uic,
 	     * open the save-as dialog here, else we´ll use the given file
 	     * to save to. */
 	    g_strrstr (window->priv->filename, _("Untitled")) == 0) {
-		file_save_as (uic, window, NULL);
+		file_save_as_cb (NULL, window);
 	} else {
 		do_save_file (window, window->priv->filename);
 	}
 }
 
 static void
-file_mixer (BonoboUIComponent *uic,
-	    GSRWindow *window,
-	    const char *path)
+run_mixer_cb (GtkAction *action,
+	       GSRWindow *window)
 {
 	char *mixer_path;
 	char *argv[2] = {NULL, NULL};
@@ -966,15 +835,12 @@ fill_in_information (GSRWindow *window,
 	case 0:
 		text = g_strdup (_("Unknown"));
 		break;
- 
 	case 1:
 		text = g_strdup (_("1 (mono)"));
 		break;
-
 	case 2:
 		text = g_strdup (_("2 (stereo)"));
 		break;
-
 	default:
 		text = g_strdup_printf ("%d", window->priv->n_channels);
 		break;
@@ -993,9 +859,8 @@ dialog_closed_cb (GtkDialog *dialog,
 }
 
 static void
-file_properties (BonoboUIComponent *uic,
-		 GSRWindow *window,
-		 const char *path)
+file_properties_cb (GtkAction *action,
+		    GSRWindow *window)
 {
 	GtkWidget *dialog, *vbox, *inner_vbox, *hbox, *table, *label;
 	char *title, *shortname;
@@ -1106,25 +971,22 @@ gsr_window_close (GSRWindow *window)
 }
 
 static void
-file_close (BonoboUIComponent *uic,
-	    GSRWindow *window,
-	    const char *path)
+file_close_cb (GtkAction *action,
+	       GSRWindow *window)
 {
 	gsr_window_close (window);
 }
 
 static void
-file_quit (BonoboUIComponent *uic,
-	   GSRWindow *window,
-	   const char *path)
+quit_cb (GtkAction *action,
+	 GSRWindow *window)
 {
 	gsr_quit ();
 }
 
 static void
-help_contents (BonoboUIComponent *component,
-	       GSRWindow *window,
-	       const char *path)
+help_contents_cb (GtkAction *action,
+	          GSRWindow *window)
 {
 	GError *error = NULL;
 
@@ -1139,31 +1001,29 @@ help_contents (BonoboUIComponent *component,
 }
 
 static void
-help_about (BonoboUIComponent *uic,
-	    GSRWindow *window,
-	    const char *path)
+about_cb (GtkAction *action,
+	  GSRWindow *window)
 {
-	const char *authors[2] = {"Iain Holmes <iain@prettypeople.org>", NULL};
-	const char *documentors[2] = {"Sun Microsystems", NULL};
-
-	gtk_show_about_dialog (NULL,
+	const char * const authors[] = {"Iain Holmes <iain@prettypeople.org>", NULL};
+	const char * const documenters[] = {"Sun Microsystems", NULL};
+ 
+	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "name", _("Sound Recorder"),
 			       "version", VERSION,
 			       "copyright", "Copyright \xc2\xa9 2002 Iain Holmes",
 			       "comments", _("A sound recorder for GNOME"),
 			       "authors", authors,
-			       "documenters", documentors,
+			       "documenters", documenters,
 			       "logo-icon-name", "gnome-grecord",
 			       NULL);
 }
 
 static void
-media_play (BonoboUIComponent *uic,
-	    GSRWindow *window,
-	    const char *path)
+play_cb (GtkAction *action,
+	 GSRWindow *window)
 {
 	GSRWindowPrivate *priv = window->priv;
-	
+
 	if (priv->has_file == FALSE)
 		return;
 
@@ -1204,9 +1064,8 @@ cb_rec_eos (GstElement * element,
 }
 
 static void
-media_stop (BonoboUIComponent *uic,
-	    GSRWindow *window,
-	    const char *path)
+stop_cb (GtkAction *action,
+	 GSRWindow *window)
 {
 	GSRWindowPrivate *priv = window->priv;
 
@@ -1235,9 +1094,8 @@ media_stop (BonoboUIComponent *uic,
 }
 
 static void
-media_record (BonoboUIComponent *uic,
-	      GSRWindow *window,
-	      const char *path)
+record_cb (GtkAction *action,
+	   GSRWindow *window)
 {
 	GSRWindowPrivate *priv = window->priv;
 
@@ -1254,17 +1112,6 @@ media_record (BonoboUIComponent *uic,
 		      NULL);
 	window->priv->len_secs = 0;
 	gst_element_set_state (priv->record->pipeline, GST_STATE_PLAYING);
-}
-
-static void
-gsr_menu_setup (GSRWindow *window)
-{
-	BonoboUIComponent *uic;
-
-	uic = window->priv->ui_component;
-	bonobo_ui_component_add_verb_list_with_data (uic, file_verbs, window);
-	bonobo_ui_component_add_verb_list_with_data (uic, media_verbs, window);
-	bonobo_ui_component_add_verb_list_with_data (uic, help_verbs, window);
 }
 
 static gboolean
@@ -1285,7 +1132,7 @@ get_length (GSRWindow *window)
 		window->priv->len_secs = value / GST_SECOND;
 
 		len_str = seconds_to_full_string (window->priv->len_secs);
-		gtk_label_set (GTK_LABEL (window->priv->length), len_str);
+		gtk_label_set (GTK_LABEL (window->priv->length_label), len_str);
 		
 		g_free (len_str);
 
@@ -1293,7 +1140,7 @@ get_length (GSRWindow *window)
 	} else {
 		if (window->priv->get_length_attempts-- < 1) {
 			/* Attempts to get length ran out. */
-			gtk_label_set (GTK_LABEL (window->priv->length), _("Unknown"));
+			gtk_label_set (GTK_LABEL (window->priv->length_label), _("Unknown"));
 			return FALSE;
 		}
 	}
@@ -1302,15 +1149,19 @@ get_length (GSRWindow *window)
 }
 
 static gboolean
-seek_started (GtkRange *range,GdkEventButton *event,
-	      GSRWindow *window) {
+seek_started (GtkRange *range,
+	      GdkEventButton *event,
+	      GSRWindow *window)
+{
 	g_return_val_if_fail (window->priv != NULL, FALSE);
+
 	window->priv->seek_in_progress = TRUE;
 	return FALSE;
 }
 
 static gboolean
-seek_to (GtkRange *range,GdkEventButton *gdkevent,
+seek_to (GtkRange *range,
+	 GdkEventButton *gdkevent,
 	 GSRWindow *window)
 {
 	double value = range->adjustment->value;
@@ -1402,7 +1253,7 @@ record_tick_callback (GSRWindow *window)
 		
 		len_str = seconds_to_full_string (secs);
 		window->priv->len_secs = secs;
-		gtk_label_set (GTK_LABEL (window->priv->length), len_str);
+		gtk_label_set (GTK_LABEL (window->priv->length_label), len_str);
 		g_free (len_str);
 	}
 
@@ -1430,20 +1281,25 @@ play_state_changed_cb (GstElement *element,
 	case GST_STATE_PLAYING:
 		g_idle_add ((GSourceFunc) play_iterate, window);
 		window->priv->tick_id = g_timeout_add (200, (GSourceFunc) tick_callback, window);
-		//if (window->priv->len_secs == 0) {
-		//	window->priv->get_length_attempts = 16;
-		//	g_timeout_add (200, (GSourceFunc) get_length, window);
-		//}
-		
-		CMD_SET_SENSITIVE (window, "MediaStop", "1");
-		CMD_SET_SENSITIVE (window, "MediaPlay", "0");
-		CMD_SET_SENSITIVE (window, "MediaRecord", "0");
-		CMD_SET_SENSITIVE (window, "FileSave", "0");
-		CMD_SET_SENSITIVE (window, "FileSaveAs", "0");
-		
-		bonobo_ui_component_set_status (window->priv->ui_component,
-						_("Playing..."), NULL);
+#if 0
+		if (window->priv->len_secs == 0) {
+			window->priv->get_length_attempts = 16;
+			g_timeout_add (200, (GSourceFunc) get_length, window);
+		}
+#endif		
+		set_action_sensitive (window, "Stop", TRUE);
+		set_action_sensitive (window, "Play", FALSE);
+		set_action_sensitive (window, "Record", FALSE);
+		set_action_sensitive (window, "FileSave", FALSE);
+		set_action_sensitive (window, "FileSaveAs", FALSE);
 		gtk_widget_set_sensitive (window->priv->scale, TRUE);
+
+		gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+				   window->priv->status_message_cid);
+		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+				    window->priv->status_message_cid,
+				    _("Playing..."));
+
 		set_ebusy_timeout (window, NULL);
 		break;
 
@@ -1451,14 +1307,17 @@ play_state_changed_cb (GstElement *element,
 		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 	case GST_STATE_PAUSED:
-		CMD_SET_SENSITIVE (window, "MediaStop", "0");
-		CMD_SET_SENSITIVE (window, "MediaPlay", "1");
-		CMD_SET_SENSITIVE (window, "MediaRecord", "1");
-		CMD_SET_SENSITIVE (window, "FileSave", window->priv->dirty ? "1" : "0");
-		CMD_SET_SENSITIVE (window, "FileSaveAs", "1");
+		set_action_sensitive (window, "Stop", FALSE);
+		set_action_sensitive (window, "Play", TRUE);
+		set_action_sensitive (window, "Record", TRUE);
+		set_action_sensitive (window, "FileSave", window->priv->dirty ? TRUE : FALSE);
+		set_action_sensitive (window, "FileSaveAs", TRUE);
 
-		bonobo_ui_component_set_status (window->priv->ui_component,
-						_("Ready"), NULL);
+		gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+				   window->priv->status_message_cid);
+		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+				    window->priv->status_message_cid,
+				    _("Ready"));
 		break;
 	default:
 		break;
@@ -1492,18 +1351,15 @@ pipeline_deep_notify_cb (GstElement *element,
 static void
 profile_changed_cb (GObject *object, GSRWindow *window)
 {
-  GMAudioProfile *profile;
-  gchar *id;
-  GConfClient *client;
+	GMAudioProfile *profile;
+	gchar *id;
 
-  g_return_if_fail (GTK_IS_COMBO_BOX (object));
-  profile = gm_audio_profile_choose_get_active (GTK_WIDGET (object));
+	g_return_if_fail (GTK_IS_COMBO_BOX (object));
+	profile = gm_audio_profile_choose_get_active (GTK_WIDGET (object));
   
-  id = g_strdup (gm_audio_profile_get_id (profile));
-  client = gconf_client_get_default ();
-  gconf_client_set_string (client, KEY_LAST_PROFILE_ID, id, NULL);
-  g_object_unref (G_OBJECT (client));
-  g_free (id);
+	id = g_strdup (gm_audio_profile_get_id (profile));
+	gconf_client_set_string (gconf_client, KEY_LAST_PROFILE_ID, id, NULL);
+	g_free (id);
 }
 
 static GSRWindowPipeline *
@@ -1566,15 +1422,19 @@ record_start (gpointer user_data)
 	window->priv->get_length_attempts = 16;
 	g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
 
-	CMD_SET_SENSITIVE (window, "MediaStop", "1");
-	CMD_SET_SENSITIVE (window, "MediaPlay", "0");
-	CMD_SET_SENSITIVE (window, "MediaRecord", "0");
-	CMD_SET_SENSITIVE (window, "FileSave", "0");
-	CMD_SET_SENSITIVE (window, "FileSaveAs", "0");
-
-	bonobo_ui_component_set_status (window->priv->ui_component,
-					_("Recording..."), NULL);
+	set_action_sensitive (window, "Stop", TRUE);
+	set_action_sensitive (window, "Play", FALSE);
+	set_action_sensitive (window, "Record", FALSE);
+	set_action_sensitive (window, "FileSave", FALSE);
+	set_action_sensitive (window, "FileSaveAs", FALSE);
 	gtk_widget_set_sensitive (window->priv->scale, FALSE);
+
+	gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+			   window->priv->status_message_cid);
+	gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+			    window->priv->status_message_cid,
+			    _("Recording..."));
+
 	window->priv->record_id = 0;
 
 	/* Translator comment: untitled here implies that
@@ -1612,14 +1472,18 @@ record_state_changed_cb (GstElement *element,
 		gtk_widget_set_sensitive (window->priv->profile, TRUE);
 		/* fall through */
 	case GST_STATE_PAUSED:
-		CMD_SET_SENSITIVE (window, "MediaStop", "0");
-		CMD_SET_SENSITIVE (window, "MediaPlay", "1");
-		CMD_SET_SENSITIVE (window, "MediaRecord", "1");
-		CMD_SET_SENSITIVE (window, "FileSave", window->priv->dirty ? "1" : "0");
-		CMD_SET_SENSITIVE (window, "FileSaveAs", "1");
-		bonobo_ui_component_set_status (window->priv->ui_component,
-						_("Ready"), NULL);
+		set_action_sensitive (window, "Stop", FALSE);
+		set_action_sensitive (window, "Play", TRUE);
+		set_action_sensitive (window, "Record", TRUE);
+		set_action_sensitive (window, "FileSave", window->priv->dirty ? TRUE : FALSE);
+		set_action_sensitive (window, "FileSaveAs", TRUE);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
+
+		gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+				   window->priv->status_message_cid);
+		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+				    window->priv->status_message_cid,
+				    _("Ready"));
 		break;
 	default:
 		break;
@@ -1714,112 +1578,224 @@ calculate_format_value (GtkScale *scale,
 	}
 }
 	
-GType
-gsr_window_get_type (void)
+static const GtkActionEntry menu_entries[] =
 {
-	static GType type = 0;
+	/* File menu */
+	{ "File", NULL, N_("_File") },
+	{ "FileNew", GTK_STOCK_NEW, NULL, "<control>N",
+	  N_("Create a new sample"), G_CALLBACK (file_new_cb) },
+	{ "FileOpen", GTK_STOCK_OPEN, N_("_Open..."), "<control>O",
+	  N_("Open a file"), G_CALLBACK (file_open_cb) },
+	{ "FileSave", GTK_STOCK_SAVE, N_("_Save"), "<control>S",
+	  N_("Save the current file"), G_CALLBACK (file_save_cb) },
+	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
+	  N_("Save the current file with a different name"), G_CALLBACK (file_save_as_cb) },
+	{ "RunMixer", GTK_STOCK_EXECUTE, N_("Run _Mixer"), NULL,
+	  N_("Run the audio mixer"), G_CALLBACK (run_mixer_cb) },
+	{ "FileProperties", GTK_STOCK_PROPERTIES, N_("File _Information"), NULL,
+	  N_("Show information about the current file"), G_CALLBACK (file_properties_cb) },
+	{ "FileClose", GTK_STOCK_CLOSE, NULL, "<control>W",
+	  N_("Close the current file"), G_CALLBACK (file_close_cb) },
+	{ "Quit", GTK_STOCK_QUIT, NULL, "<control>Q",
+	  N_("Quit the program"), G_CALLBACK (quit_cb) },
 
-	if (type == 0) {
-		GTypeInfo info = {
-			sizeof (GSRWindowClass), NULL, NULL,
-			(GClassInitFunc) gsr_window_class_init, NULL, NULL,
-			sizeof (GSRWindow), 0, (GInstanceInitFunc) gsr_window_init
-		};
-	
-		type = g_type_register_static (BONOBO_TYPE_WINDOW,
-					       "GSRWindow",
-					       &info, 0);
+	/* Control menu */
+	{ "Control", NULL, N_("_Control") },
+	{ "Record", GTK_STOCK_MEDIA_RECORD, N_("_Record"), "<control>R",
+	  N_("Record sound"), G_CALLBACK (record_cb) },
+	{ "Play", GTK_STOCK_MEDIA_PLAY, N_("_Play"), "<control>P",
+	  N_("Play sound"), G_CALLBACK (play_cb) },
+	{ "Stop", GTK_STOCK_MEDIA_STOP, N_("_Stop"), "<control>X",
+	  N_("Stop sound"), G_CALLBACK (stop_cb) },
+
+	/* Help menu */
+	{ "Help", NULL, N_("_Help") },
+	{"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1",
+	 N_("Open the manual"), G_CALLBACK (help_contents_cb) },
+	{ "About", GTK_STOCK_ABOUT, NULL, NULL,
+	 N_("About this application"), G_CALLBACK (about_cb) }
+};
+
+static void
+menu_item_select_cb (GtkMenuItem *proxy,
+                     GSRWindow *window)
+{
+	GtkAction *action;
+	char *message;
+
+	action = g_object_get_data (G_OBJECT (proxy),  "gtk-action");
+	g_return_if_fail (action != NULL);
+
+	g_object_get (G_OBJECT (action), "tooltip", &message, NULL);
+	if (message) {
+		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
+				    window->priv->tip_message_cid, message);
+		g_free (message);
 	}
-
-	return type;
 }
 
-GtkWidget *
-gsr_window_new (const char *filename)
+static void
+menu_item_deselect_cb (GtkMenuItem *proxy,
+                       GSRWindow *window)
 {
-	GSRWindow *window;
-	GtkWidget *hbox, *table, *label, *vbox;
-	struct stat buf;
-	char *id, *short_name;
-	GConfClient *client;
-	
-        /* filename has been changed to be without extension */
-	window = g_object_new (GSR_WINDOW_TYPE, 
-			       "location", filename,
-			       NULL);
-        /* FIXME: check extension too */
-	window->priv->filename = g_strdup (filename);
-	if (stat (filename, &buf) == 0) {
-		window->priv->has_file = TRUE;
-	} else {
-		window->priv->has_file = FALSE;
+	gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
+			   window->priv->tip_message_cid);
+}
+ 
+static void
+connect_proxy_cb (GtkUIManager *manager,
+                  GtkAction *action,
+                  GtkWidget *proxy,
+                  GSRWindow *window)
+{
+	if (GTK_IS_MENU_ITEM (proxy)) {
+		g_signal_connect (proxy, "select",
+				  G_CALLBACK (menu_item_select_cb), window);
+		g_signal_connect (proxy, "deselect",
+				  G_CALLBACK (menu_item_deselect_cb), window);
+	}
+}
+
+static void
+disconnect_proxy_cb (GtkUIManager *manager,
+                     GtkAction *action,
+                     GtkWidget *proxy,
+                     GSRWindow *window)
+{
+	if (GTK_IS_MENU_ITEM (proxy)) {
+		g_signal_handlers_disconnect_by_func
+			(proxy, G_CALLBACK (menu_item_select_cb), window);
+		g_signal_handlers_disconnect_by_func
+			(proxy, G_CALLBACK (menu_item_deselect_cb), window);
+	}
+}
+
+static void
+gsr_window_init (GSRWindow *window)
+{
+	GSRWindowPrivate *priv;
+	GError *error = NULL;
+	GtkWidget *main_vbox;
+	GtkWidget *menubar;
+	GtkWidget *toolbar;
+	GtkWidget *content_vbox;
+	GtkWidget *hbox;
+	GtkWidget *label;
+	GtkWidget *table;
+	gchar *id;
+	GtkAction *action;
+
+	window->priv = GSR_WINDOW_GET_PRIVATE (window);
+	priv = window->priv;
+
+	/* treat gconf client as a singleton */
+	if (gconf_client == NULL)
+		gconf_client = gconf_client_get_default ();
+
+	main_vbox = gtk_vbox_new (FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (window), main_vbox);
+	priv->main_vbox = main_vbox;
+	gtk_widget_show (main_vbox);
+
+	/* menu & toolbar */
+	priv->ui_manager = gtk_ui_manager_new ();
+
+	gtk_window_add_accel_group (GTK_WINDOW (window),
+				    gtk_ui_manager_get_accel_group (priv->ui_manager));
+
+	gtk_ui_manager_add_ui_from_file (priv->ui_manager, GSR_UIDIR "ui.xml", &error);
+	if (error != NULL)
+	{
+		show_error_dialog (GTK_WINDOW (window),
+			_("Could not load ui.xml. The program may be not properly installed"));
+		g_error_free (error);
+		exit (1);
 	}
 
-	window->priv->record_filename = g_strdup_printf ("%s/gsr-record-%s-%d.XXXXXX",
-							 g_get_tmp_dir(), filename, getpid ());
-	window->priv->record_fd = mkstemp (window->priv->record_filename);
-	close (window->priv->record_fd);
+	/* show tooltips in the statusbar */
+	g_signal_connect (priv->ui_manager, "connect_proxy",
+			  G_CALLBACK (connect_proxy_cb), window);
+	g_signal_connect (priv->ui_manager, "disconnect_proxy",
+			 G_CALLBACK (disconnect_proxy_cb), window);
 
-	if (window->priv->has_file == FALSE) {
-		g_free (window->priv->working_file);
-		window->priv->working_file = g_strdup (window->priv->record_filename);
-	} else {
-		g_free (window->priv->working_file);
-		window->priv->working_file = g_strdup (filename);
-	}
+	priv->action_group = gtk_action_group_new ("GSRWindowActions");
+	gtk_action_group_set_translation_domain (priv->action_group, NULL);
+	gtk_action_group_add_actions (priv->action_group,
+				      menu_entries,
+				      G_N_ELEMENTS (menu_entries),
+				      window);
 
-	gtk_window_set_default_size (GTK_WINDOW (window), 512, 200);
-	hbox = gtk_hbox_new (FALSE, 6);
-	gtk_widget_show (hbox);
-	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), hbox, FALSE, FALSE, 0);
-	
-	window->priv->scale = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 100, 1, 1, 0)));
-	window->priv->seek_in_progress = FALSE;
-	g_signal_connect (G_OBJECT (window->priv->scale), "format-value",
+	gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
+
+	/* set short labels to use in the toolbar */
+	action = gtk_action_group_get_action (priv->action_group, "FileOpen");
+	g_object_set (action, "short_label", _("Open"), NULL);
+	action = gtk_action_group_get_action (priv->action_group, "FileSave");
+	g_object_set (action, "short_label", _("Save"), NULL);
+	action = gtk_action_group_get_action (priv->action_group, "FileSaveAs");
+	g_object_set (action, "short_label", _("Save As"), NULL);
+
+	set_action_sensitive (window, "FileSave", FALSE);
+	set_action_sensitive (window, "FileSaveAs", FALSE);
+	set_action_sensitive (window, "Play", FALSE);
+	set_action_sensitive (window, "Stop", FALSE);
+
+	menubar = gtk_ui_manager_get_widget (priv->ui_manager, "/MenuBar");
+	gtk_box_pack_start (GTK_BOX (main_vbox), menubar, FALSE, FALSE, 0);
+	gtk_widget_show (menubar);
+
+	toolbar = gtk_ui_manager_get_widget (priv->ui_manager, "/ToolBar");
+	gtk_box_pack_start (GTK_BOX (main_vbox), toolbar, FALSE, FALSE, 0);
+	gtk_widget_show (toolbar);
+
+	/* window content: hscale, labels, etc */
+	content_vbox = gtk_vbox_new (FALSE, 6);
+	gtk_container_set_border_width (GTK_CONTAINER (content_vbox), 6);
+	gtk_box_pack_start (GTK_BOX (main_vbox), content_vbox, TRUE, TRUE, 0);
+	gtk_widget_show (content_vbox);
+
+	priv->scale = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 100, 1, 1, 0)));
+	priv->seek_in_progress = FALSE;
+	g_signal_connect (priv->scale, "format-value",
 			  G_CALLBACK (calculate_format_value), window);
-	g_signal_connect (G_OBJECT (window->priv->scale), "button_press_event",
+	g_signal_connect (priv->scale, "button_press_event",
 			  G_CALLBACK (seek_started), window);
-	g_signal_connect (G_OBJECT (window->priv->scale), "button_release_event",
+	g_signal_connect (priv->scale, "button_release_event",
 			  G_CALLBACK (seek_to), window);
 
 	gtk_scale_set_value_pos (GTK_SCALE (window->priv->scale), GTK_POS_BOTTOM);
 	/* We can't seek until we find out the length */
 	gtk_widget_set_sensitive (window->priv->scale, FALSE);
-
+	gtk_box_pack_start (GTK_BOX (content_vbox), priv->scale, TRUE, TRUE, 6);
 	gtk_widget_show (window->priv->scale);
-	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), window->priv->scale, TRUE, TRUE, 0);
-
-	vbox = gtk_vbox_new (FALSE, 7);
-	gtk_box_pack_start (GTK_BOX (window->priv->main_vbox), vbox, TRUE, TRUE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 2);
-	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, TRUE, TRUE, 0);
 
 	label = gtk_label_new (_("Record as"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-        window->priv->profile = gm_audio_profile_choose_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile,
-                            FALSE, FALSE, 0);
-        gtk_widget_show (window->priv->profile);
-	client = gconf_client_get_default ();
-	id = gconf_client_get_string (client, KEY_LAST_PROFILE_ID, NULL);
-	if (id) 
-		gm_audio_profile_choose_set_active (window->priv->profile, id);
 
-	g_free (id);
-	g_object_unref (client);
-        g_signal_connect (G_OBJECT (window->priv->profile), "changed",
+	priv->profile = gm_audio_profile_choose_new ();
+	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile, FALSE, FALSE, 0);
+	gtk_widget_show (window->priv->profile);
+
+	id = gconf_client_get_string (gconf_client, KEY_LAST_PROFILE_ID, NULL);
+	if (id) {
+		gm_audio_profile_choose_set_active (window->priv->profile, id);
+		g_free (id);
+	}
+
+        g_signal_connect (priv->profile, "changed",
                           G_CALLBACK (profile_changed_cb), window);
 
 	label = gtk_label_new (_("File information"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-
-	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (content_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
-	
+	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, TRUE, TRUE, 0);
+
 	label = gtk_label_new ("    ");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
@@ -1833,12 +1809,11 @@ gsr_window_new (const char *filename)
 			  0, 1, 0, 1,
 			  GTK_FILL, GTK_FILL, 0, 0);
 
-        short_name = g_path_get_basename (filename);
-	window->priv->name = gtk_label_new (short_name ? short_name : _("<none>"));
-	gtk_label_set_selectable (GTK_LABEL (window->priv->name), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (window->priv->name), GTK_WRAP_WORD);
-	gtk_misc_set_alignment (GTK_MISC (window->priv->name), 0, 0.5);
-	gtk_table_attach (GTK_TABLE (table), window->priv->name,
+	priv->name_label = gtk_label_new (_("<none>"));
+	gtk_label_set_selectable (GTK_LABEL (priv->name_label), TRUE);
+	gtk_label_set_line_wrap (GTK_LABEL (priv->name_label), GTK_WRAP_WORD);
+	gtk_misc_set_alignment (GTK_MISC (priv->name_label), 0, 0.5);
+	gtk_table_attach (GTK_TABLE (table), priv->name_label,
 			  1, 2, 0, 1,
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
@@ -1849,54 +1824,28 @@ gsr_window_new (const char *filename)
 			  0, 1, 1, 2,
 			  GTK_FILL, 0, 0, 0);
 	
-	window->priv->length = gtk_label_new ("");
-	gtk_label_set_selectable (GTK_LABEL (window->priv->length), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (window->priv->length), 0, 0.5);
-	gtk_table_attach (GTK_TABLE (table), window->priv->length,
+	priv->length_label = gtk_label_new ("");
+	gtk_label_set_selectable (GTK_LABEL (priv->length_label), TRUE);
+	gtk_misc_set_alignment (GTK_MISC (priv->length_label), 0, 0.5);
+	gtk_table_attach (GTK_TABLE (table), priv->length_label,
 			  1, 2, 1, 2,
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
 
-	gtk_widget_show_all (window->priv->main_vbox);
-	return GTK_WIDGET (window);
-}
+	/* statusbar */
+	priv->statusbar = gtk_statusbar_new ();
+	gtk_box_pack_end (GTK_BOX (main_vbox), priv->statusbar, FALSE, FALSE, 0);
+	gtk_widget_show (priv->statusbar);
+	priv->status_message_cid = gtk_statusbar_get_context_id
+		(GTK_STATUSBAR (priv->statusbar), "status_message");
+	priv->tip_message_cid = gtk_statusbar_get_context_id
+		(GTK_STATUSBAR (priv->statusbar), "tip_message");
 
-static void
-gsr_window_init (GSRWindow *window)
-{
-	GSRWindowPrivate *priv;
+	gtk_statusbar_push (GTK_STATUSBAR (priv->statusbar),
+			    priv->status_message_cid,
+			    _("Ready"));
 
-	window->priv = g_new0 (GSRWindowPrivate, 1);
-	priv = window->priv;
-
-	priv->ui_container = bonobo_ui_container_new ();
-	bonobo_window_construct (BONOBO_WINDOW (window),
-				 priv->ui_container, "Gnome-Sound-Recorder", NULL);
-
-	priv->ev = gtk_event_box_new ();
-	gtk_widget_show (priv->ev);
-	
-	priv->main_vbox = gtk_vbox_new (FALSE, 6);
-	gtk_container_set_border_width (GTK_CONTAINER (priv->main_vbox), 6);
-	gtk_widget_show (priv->main_vbox);
-	gtk_container_add (GTK_CONTAINER (priv->ev), priv->main_vbox);
-
-	bonobo_window_set_contents (BONOBO_WINDOW (window), priv->ev);
-
-	priv->ui_component = bonobo_ui_component_new ("Gnome-Sound-Recorder");
-	bonobo_ui_component_set_container (priv->ui_component,
-					   bonobo_object_corba_objref (BONOBO_OBJECT (priv->ui_container)),
-					   NULL);
-
-	bonobo_ui_component_freeze (priv->ui_component, NULL);
-	bonobo_ui_util_set_ui (priv->ui_component, GSR_DATADIR,
-			       "ui/gsr.xml", "Gnome-Sound-Recorder", NULL);
-	bonobo_ui_engine_config_set_path (bonobo_window_get_ui_engine (BONOBO_WINDOW (window)),
-					  KEY_KVPS);
-	bonobo_ui_component_set_status (priv->ui_component, _("Ready"), NULL);
-					
-	gsr_menu_setup (window);
-	bonobo_ui_component_thaw (priv->ui_component, NULL);
+	gtk_widget_show_all (main_vbox);
 
 	/* Make the pipelines */
 	priv->play = NULL;
@@ -1906,32 +1855,6 @@ gsr_window_init (GSRWindow *window)
 	priv->get_length_attempts = 16;
 	priv->dirty = FALSE;
 	priv->gstenc_id = 0;
-}
-
-static void
-gsr_window_class_init (GSRWindowClass *klass)
-{
-	GObjectClass *object_class;
-
-	object_class = G_OBJECT_CLASS (klass);
-
-	object_class->finalize = gsr_window_finalize;
-	object_class->set_property = gsr_window_set_property;
-	object_class->get_property = gsr_window_get_property;
-
-	parent_class = g_type_class_peek_parent (klass);
-
-	g_object_class_install_property (object_class,
-					 PROP_LOCATION,
-					 g_param_spec_string ("location",
-							      "Location",
-							      "",
-	/* Translator comment: default trackname is 'untitled', which
-	 * has as effect that the user cannot save to this file. The
-	 * 'save' action will open the save-as dialog instead to give
-	 * a proper filename. See gnome-record.c:94. */
-							      _("Untitled"),
-							      G_PARAM_READWRITE));
 }
 
 static void
@@ -1971,21 +1894,20 @@ gsr_window_set_property (GObject      *object,
 		}
 
 		/* Make the gui in the init? */
-		if (priv->name != NULL) {
-			gtk_label_set (GTK_LABEL (priv->name), short_name);
+		if (priv->name_label != NULL) {
+			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
 		}
 
 		title = g_strdup_printf ("%s - Sound Recorder", short_name);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
 		g_free (short_name);
-				      
-		
-		CMD_SET_SENSITIVE (window, "MediaPlay", window->priv->has_file ? "1" : "0");
-		CMD_SET_SENSITIVE (window, "MediaStop", "0");
-		CMD_SET_SENSITIVE (window, "MediaRecord", "1");
-		/* CMD_SET_SENSITIVE (window, "FileSave", "0"); */
-		CMD_SET_SENSITIVE (window, "FileSaveAs", window->priv->has_file ? "1" : "0");
+
+		set_action_sensitive (window, "Play", window->priv->has_file ? TRUE : FALSE);
+		set_action_sensitive (window, "Stop", FALSE);
+		set_action_sensitive (window, "Record", TRUE);
+		/* set_action_sensitive (window, "FileSave", FALSE); */
+		set_action_sensitive (window, "FileSaveAs", window->priv->has_file ? TRUE : FALSE);
 		break;
 	default:
 		break;
@@ -2046,9 +1968,96 @@ gsr_window_finalize (GObject *object)
 
 	g_free (priv->working_file);
 	g_free (priv->filename);
-	g_free (priv);
-	window->priv = NULL;
 
 	G_OBJECT_CLASS (parent_class)->finalize (object);
+
+	window->priv = NULL;
 }
 
+static void
+gsr_window_class_init (GSRWindowClass *klass)
+{
+	GObjectClass *object_class;
+
+	object_class = G_OBJECT_CLASS (klass);
+
+	object_class->finalize = gsr_window_finalize;
+	object_class->set_property = gsr_window_set_property;
+	object_class->get_property = gsr_window_get_property;
+
+	parent_class = g_type_class_peek_parent (klass);
+
+	g_object_class_install_property (object_class,
+					 PROP_LOCATION,
+					 g_param_spec_string ("location",
+							      "Location",
+							      "",
+	/* Translator comment: default trackname is 'untitled', which
+	 * has as effect that the user cannot save to this file. The
+	 * 'save' action will open the save-as dialog instead to give
+	 * a proper filename. See gnome-record.c:94. */
+							      _("Untitled"),
+							      G_PARAM_READWRITE));
+
+	g_type_class_add_private (object_class, sizeof (GSRWindowPrivate));
+}
+
+GType
+gsr_window_get_type (void)
+{
+	static GType type = 0;
+
+	if (G_UNLIKELY (type == 0)) {
+		GTypeInfo info = {
+			sizeof (GSRWindowClass),
+			NULL, NULL,
+			(GClassInitFunc) gsr_window_class_init,
+			NULL, NULL,
+			sizeof (GSRWindow), 0,
+			(GInstanceInitFunc) gsr_window_init
+		};
+
+		type = g_type_register_static (GTK_TYPE_WINDOW,
+					       "GSRWindow",
+					       &info, 0);
+	}
+
+	return type;
+}
+
+GtkWidget *
+gsr_window_new (const char *filename)
+{
+	GSRWindow *window;
+	struct stat buf;
+	char *short_name;
+
+        /* filename has been changed to be without extension */
+	window = g_object_new (GSR_TYPE_WINDOW, 
+			       "location", filename,
+			       NULL);
+        /* FIXME: check extension too */
+	window->priv->filename = g_strdup (filename);
+	if (stat (filename, &buf) == 0) {
+		window->priv->has_file = TRUE;
+	} else {
+		window->priv->has_file = FALSE;
+	}
+
+	window->priv->record_filename = g_strdup_printf ("%s/gsr-record-%s-%d.XXXXXX",
+							 g_get_tmp_dir(), filename, getpid ());
+	window->priv->record_fd = g_mkstemp (window->priv->record_filename);
+	close (window->priv->record_fd);
+
+	if (window->priv->has_file == FALSE) {
+		g_free (window->priv->working_file);
+		window->priv->working_file = g_strdup (window->priv->record_filename);
+	} else {
+		g_free (window->priv->working_file);
+		window->priv->working_file = g_strdup (filename);
+	}
+
+	gtk_window_set_default_size (GTK_WINDOW (window), 512, 200);
+
+	return GTK_WIDGET (window);
+}
