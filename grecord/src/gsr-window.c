@@ -43,12 +43,20 @@
 
 #include <profiles/gnome-media-profiles.h>
 
+#include "egg-recent-view.h"
+#include "egg-recent-view-gtk.h"
+#include "egg-recent-model.h"
+#include "egg-recent-util.h"
+
 #include "gsr-window.h"
 
 extern GtkWidget * gsr_open_window (const char *filename);
 extern void gsr_quit (void);
 
 extern GConfClient *gconf_client;
+
+extern EggRecentModel *recent_model;
+extern void gsr_add_recent (gchar *filename);
 
 #define GCONF_DIR           "/apps/gnome-sound-recorder/"
 #define KEY_OPEN_DIR        GCONF_DIR "system-state/open-file-directory"
@@ -84,6 +92,7 @@ struct _GSRWindowPrivate {
 
 	GtkUIManager *ui_manager;
 	GtkActionGroup *action_group;
+	EggRecentViewGtk *recent_view;
 
 	/* statusbar */
 	GtkWidget *statusbar;
@@ -287,6 +296,58 @@ file_open_cb (GtkAction *action,
 	g_signal_connect (G_OBJECT (file_chooser), "response",
 			  G_CALLBACK (file_chooser_open_response_cb), window);
 	gtk_widget_show (file_chooser);
+}
+
+static void
+file_open_recent_cb (EggRecentViewGtk *view,
+		     EggRecentItem *item,
+		     GSRWindow *window)
+{
+	gchar *uri;
+	gchar *filename;
+
+	uri = egg_recent_item_get_uri (item);
+	g_return_if_fail (uri != NULL);
+
+	if (!g_str_has_prefix (uri, "file://"))
+		return;
+
+	filename = g_filename_from_uri (uri, NULL, NULL);
+	if (filename == NULL)
+		goto out;
+
+	if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
+		gchar *filename_utf8;
+		GtkWidget *dlg;
+
+		filename_utf8 = g_filename_to_utf8 (filename, -1, NULL, NULL, NULL);
+		dlg = gtk_message_dialog_new (GTK_WINDOW (window),
+					      GTK_DIALOG_MODAL,
+					      GTK_MESSAGE_ERROR,
+					      GTK_BUTTONS_OK,
+					      _("Unable to load file:\n%s"), filename_utf8);
+
+		gtk_widget_show (dlg);
+		gtk_dialog_run (GTK_DIALOG (dlg));
+		gtk_widget_destroy (dlg);
+
+		egg_recent_model_delete (recent_model, uri);
+
+		g_free (filename_utf8);
+		goto out;
+  	}
+
+	if (window->priv->has_file == TRUE) {
+		/* Just open a new window with the file */
+		gsr_open_window (filename);
+	} else {
+		/* Set the file in this window */
+		g_object_set (G_OBJECT (window), "location", filename, NULL);
+	}
+
+ out:
+	g_free (filename);
+	g_free (uri);
 }
 
 struct _eos_data {
@@ -554,15 +615,8 @@ do_save_file (GSRWindow *window,
 			GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
 			NULL, NULL);
 		if (result == GNOME_VFS_OK) {
-			char *title, *short_name;
-			priv->filename = g_strdup (name);
-			short_name = g_path_get_basename (priv->filename);
-			title = g_strdup_printf ("%s - Sound Recorder",
-				short_name);
-			gtk_window_set_title (GTK_WINDOW (window), title);
-			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
+			g_object_set (G_OBJECT (window), "location", name, NULL);
 			priv->dirty = FALSE;
-			g_free (title);
 		} else {
 			gchar *error_message;
  
@@ -873,10 +927,11 @@ file_properties_cb (GtkAction *action,
 					      GTK_DIALOG_DESTROY_WITH_PARENT,
 					      GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 	g_free (title);
-	gtk_window_set_resizable (GTK_WINDOW(dialog), FALSE);
+	gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 	fp = g_new (struct _file_props, 1);
 	fp->dialog = dialog;
-	
+
 	g_signal_connect (G_OBJECT (dialog), "response",
 			  G_CALLBACK (dialog_closed_cb), fp);
 
@@ -1677,6 +1732,9 @@ gsr_window_init (GSRWindow *window)
 	GError *error = NULL;
 	GtkWidget *main_vbox;
 	GtkWidget *menubar;
+	GtkWidget *file_menu;
+	GtkWidget *submenu;
+	GtkWidget *rec_menu;
 	GtkWidget *toolbar;
 	GtkWidget *content_vbox;
 	GtkWidget *hbox;
@@ -1747,6 +1805,20 @@ gsr_window_init (GSRWindow *window)
 	toolbar = gtk_ui_manager_get_widget (priv->ui_manager, "/ToolBar");
 	gtk_box_pack_start (GTK_BOX (main_vbox), toolbar, FALSE, FALSE, 0);
 	gtk_widget_show (toolbar);
+
+	/* recent files */
+	file_menu = gtk_ui_manager_get_widget (priv->ui_manager,
+					      "/MenuBar/FileMenu");
+	submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (file_menu));
+	rec_menu = gtk_ui_manager_get_widget (priv->ui_manager,
+					      "/MenuBar/FileMenu/FileRecentMenu");
+	priv->recent_view = egg_recent_view_gtk_new (submenu, rec_menu);
+	egg_recent_view_gtk_show_icons (EGG_RECENT_VIEW_GTK (priv->recent_view),
+					FALSE);
+	egg_recent_view_gtk_set_trailing_sep (priv->recent_view, TRUE);
+	egg_recent_view_set_model (EGG_RECENT_VIEW (priv->recent_view), recent_model); 
+	g_signal_connect (priv->recent_view, "activate",
+			  G_CALLBACK (file_open_recent_cb), window);
 
 	/* window content: hscale, labels, etc */
 	content_vbox = gtk_vbox_new (FALSE, 6);
@@ -1893,9 +1965,12 @@ gsr_window_set_property (GObject      *object,
 			window->priv->has_file = FALSE;
 		}
 
-		/* Make the gui in the init? */
 		if (priv->name_label != NULL) {
 			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
+		}
+
+		if (recent_model) {
+			gsr_add_recent (priv->filename);
 		}
 
 		title = g_strdup_printf ("%s - Sound Recorder", short_name);
@@ -1941,6 +2016,16 @@ gsr_window_finalize (GObject *object)
 
 	if (priv == NULL) {
 		return;
+	}
+
+	if (priv->ui_manager) {
+		g_object_unref (priv->ui_manager);
+		priv->ui_manager = NULL;
+	}
+
+	if (priv->action_group) {
+		g_object_unref (priv->action_group);
+		priv->action_group = NULL;
 	}
 
 	if (priv->tick_id > 0) { 

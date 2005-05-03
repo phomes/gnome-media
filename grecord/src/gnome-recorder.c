@@ -34,12 +34,15 @@
 
 #include "gsr-window.h"
 #include "gst/manager.h"
+#include "egg-recent-model.h"
 
 extern void gnome_media_profiles_init (GConfClient *conf);
  
 static GList *windows = NULL;
 
 GConfClient *gconf_client = NULL;
+
+EggRecentModel *recent_model = NULL;
 
 static void
 window_destroyed (GtkWidget *window,
@@ -66,6 +69,45 @@ gsr_quit (void)
 		p = p->next;
 		gsr_window_close (window);
 	}
+}
+
+#define RECENT_HISTORY_LEN 5
+
+static void
+init_recent (void)
+{
+	/* global recent model */
+	recent_model = egg_recent_model_new (EGG_RECENT_MODEL_SORT_MRU);
+
+	egg_recent_model_set_filter_groups (recent_model, 
+					    "gnome-sound-recorder",
+					    NULL);
+
+	egg_recent_model_set_filter_uri_schemes (recent_model, "file", NULL);
+	egg_recent_model_set_limit (recent_model, RECENT_HISTORY_LEN);
+}
+
+void
+gsr_add_recent (gchar *filename)
+{
+	char *uri;
+	EggRecentItem *item;
+
+	g_return_if_fail (filename != NULL);
+
+	uri = g_filename_to_uri (filename, NULL, NULL);
+
+	if (uri) {
+		item = egg_recent_item_new_from_uri (uri);
+		g_return_if_fail (item != NULL);
+
+		egg_recent_item_add_group (item, "gnome-sound-recorder");
+		egg_recent_model_add_full (recent_model, item);
+
+		egg_recent_item_unref (item);
+	}
+
+	g_free (uri);
 }
 
 gint sample_count = 1;
@@ -136,6 +178,8 @@ main (int argc,
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
 
+	init_recent ();
+
 	if (!gst_scheduler_factory_get_default_name ()) {
 		GtkWidget *dialog;
 
@@ -152,10 +196,10 @@ main (int argc,
 	}
 	gst_rec_elements_init ();
 
+	gtk_window_set_default_icon_name ("gnome-grecord");
+
 	/* use it like a singleton */
 	gconf_client = gconf_client_get_default ();
-
-	gtk_window_set_default_icon_name ("gnome-grecord");
 
         /* init gnome-media-profiles */
         gnome_media_profiles_init (gconf_client);
