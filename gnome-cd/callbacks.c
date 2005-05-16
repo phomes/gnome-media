@@ -753,6 +753,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);
 			gcd->disc_info = NULL;
+			/* we need to destroy the hashtable(cddb_cache) */
+			destroy_cache_hashTable();
 		}
 		
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
@@ -806,6 +808,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		if (gcd->disc_info != NULL) {
 				cddb_free_disc_info (gcd->disc_info);
 				gcd->disc_info = NULL;
+				/* we need to destroy the hashtable(cddb_cache) */
+				destroy_cache_hashTable();
 		}	
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 
@@ -830,6 +834,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		if (gcd->disc_info != NULL) {
 				cddb_free_disc_info (gcd->disc_info);
 				gcd->disc_info = NULL;
+				/* we need to destroy the hashtable(cddb_cache) */
+				destroy_cache_hashTable();
 		}	
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
 
@@ -856,6 +862,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);
 			gcd->disc_info = NULL;
+			/* we need to destroy the hashtable(cddb_cache) */
+			destroy_cache_hashTable();
 		}
 
 		gtk_widget_set_sensitive (gcd->trackeditor_b, FALSE);
