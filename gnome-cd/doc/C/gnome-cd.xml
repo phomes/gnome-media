@@ -4,8 +4,8 @@
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "2.5.2">
   <!ENTITY manrevision "2.6">
-  <!ENTITY date "Mei 2005">
-  <!ENTITY app "CD-speler">
+  <!ENTITY date "February 2004">
+  <!ENTITY app "CD Player">
 ]>
 
 <!-- 
@@ -17,11 +17,11 @@
   
 -->
 <!-- =============Document Header ============================= -->
-<article id="index" lang="nl">
+<article id="index" lang="en">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Handleiding V&manrevision;</title>       
+    <title>&app; Manual V&manrevision;</title>       
 
     <copyright> 
       <year>2002</year>
@@ -30,12 +30,14 @@
       <holder>Sun Microsystems</holder> 
     </copyright> 
 
+<!-- translators: uncomment this:
 
   <copyright>
-   <year>2005</year>
-   <holder>Myckel Habets (Nederlandse documentatie)</holder>
+   <year>2003</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
   </copyright>
 
+   -->
 
     <publisher> 
       <publishername> GNOME Documentation Project </publishername> 
@@ -69,70 +71,68 @@
  
     <revhistory>
       <revision> 
-			<revnumber>&app; Handleiding V&manrevision;</revnumber> 
+			<revnumber>&app; Manual V&manrevision;</revnumber> 
 			<date>&date;</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
-			<revnumber>CD-speler Handleiding V2.5</revnumber> 
-			<date>Augustus 2003</date> 
+			<revnumber>CD Player Manual V2.5</revnumber> 
+			<date>August 2003</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
-			<revnumber>CD-speler Handleiding V2.4</revnumber> 
+			<revnumber>CD Player Manual V2.4</revnumber> 
 			<date>April 2003</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
-			<revnumber>CD-speler Handleiding V2.3</revnumber> 
-			<date>Januari 2003</date> 
+			<revnumber>CD Player Manual V2.3</revnumber> 
+			<date>January 2003</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
-			<revnumber>CD-speler Handleiding V2.2</revnumber> 
-			<date>Augustus 2002</date> 
+			<revnumber>CD Player Manual V2.2</revnumber> 
+			<date>August 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
-			<revnumber>CD-speler Handleiding V2.1</revnumber> 
-			<date>Juli 2002</date> 
+			<revnumber>CD Player Manual V2.1</revnumber> 
+			<date>July 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision> 
       <revision> 
-			<revnumber>CD-speler Handleiding V2.0</revnumber> 
-			<date>Mei 2002</date> 
+			<revnumber>CD Player Manual V2.0</revnumber> 
+			<date>May 2002</date> 
 			<revdescription> 
-	  			<para role="author">Sun GNOME Documentatie Team</para>
-	  			<para role="publisher">GNOME Documentatie Project</para>
+	  			<para role="author">Sun GNOME Documentation Team</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision> 
     </revhistory> 
 
-    <releaseinfo>Deze handleiding beschrijft versie &appversion; van &app;.
+    <releaseinfo>This manual describes version &appversion; of &app;.
     </releaseinfo> 
     <legalnotice> 
       <title>Feedback</title> 
-      <para>Om een bug te rapporteren of een suggestie te doen over de &app; toepassing of
-      deze handleiding, volg de beschrijvingen in de 
-      <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Pagina</ulink>. 
+      <para>To report a bug or make a suggestion regarding the &app; application or this manual, follow the directions in the <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice> 
@@ -144,30 +144,27 @@
 
 
 <sect1 id="gtcd-introduction">
-<title>Introductie</title>
-<para>De <application>&app;</application> toepassing stelt u in staat om
-audio Compact Disc's (CD's) op uw computer af te spelen. U kan 
-<application>CD Player</application> gebruiken om de volgende taken
-op uw CD's uit te voeren:</para>
+<title>Introduction</title>
+<para>The <application>&app;</application> application enables you to play audio Compact Discs (CDs) on your computer. You can use <application>CD Player</application> to perform the following tasks with audio CDs:</para>
 <itemizedlist>
-<listitem><para>Afspelen, pauzeren, stoppen of uitwerpen van een CD.</para></listitem>
-<listitem><para>Verplaatsen door de nummers op de CD.</para></listitem>
-<listitem><para>De uitvoervolume van de CD speler aanpassen.</para></listitem>
-<listitem><para>Nummerinformatie bewerken.</para></listitem>
+<listitem><para>Play, pause, stop, or eject a CD.</para></listitem>
+<listitem><para>Move through the tracks on the CD.</para></listitem>
+<listitem><para>Adjust the output volume from the CD Player.</para></listitem>
+<listitem><para>Edit the track information.</para></listitem>
 </itemizedlist>
 </sect1>
 <!-- =========== Getting Started ============================== -->
 <sect1 id="gtcd-getting-started">
-<title>Beginnen...</title>
+<title>Getting Started</title>
 
 <sect2 id="gtcd-to-start">
-<title>Om de CD speler op te starten</title>
-<para>U kan <application>&app;</application> op de volgende manieren opstarten:</para>
+<title>To Start CD Player</title>
+<para>You can start <application>&app;</application> in the following ways:</para>
 <variablelist>
 <varlistentry>
-<term><guimenu>Toepassingen</guimenu> menu</term>
+<term><guimenu>Applications</guimenu> menu</term>
 <listitem>
-<para>Kies
+<para>Choose
 <menuchoice>
 <guisubmenu>Multimedia</guisubmenu>
 <guimenuitem>&app;</guimenuitem>
@@ -175,183 +172,183 @@ op uw CD's uit te voeren:</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term>Commando-regel</term>
+<term>Command line</term>
 <listitem>
-<para>Voer het volgende commando uit: <command>gnome-cd</command></para>
+<para>Execute the following command: <command>gnome-cd</command></para>
 </listitem>
 </varlistentry>
 </variablelist>
 </sect2>
 
 <sect2 id="gtcd-when-start">
-<title>Als de CD speler start</title>
-<para>Als <application>&app;</application> wordt opgestart, zal het volgende
-venster weergegeven worden.</para>
+<title>When You Start CD Player</title>
+<para>When you start <application>&app;</application>, the following window
+is displayed.</para>
 <!-- ==== Figure ==== -->
       <figure id="cdplayer_start_window"> 
-	<title>&app; Venster</title> 
+	<title>&app; Window</title> 
 	<screenshot> 
 	  <mediaobject> 
-	    <imageobject><imagedata fileref="../C/figures/cdplayer_window.png" format="PNG"/> 
+	    <imageobject><imagedata fileref="figures/cdplayer_window.png" format="PNG"/> 
 	    </imageobject>
 	    <textobject> 
-	      <phrase>Het hoofdvenster van de CD speler.</phrase> 
+	      <phrase>Shows CD Player main window.</phrase> 
 	    </textobject> 
 	  </mediaobject> 
 	</screenshot> 
       </figure>
 <!-- ==== End of Figure ==== -->
-<para>Het <application>&app;</application> venster bevat de volgende elementen:</para>
+<para>The <application>&app;</application> window contains the following elements:</para>
 <itemizedlist>
-<listitem><para>Een weergave gebied dat gedetaileerde informatie weergeeft over de CD die u op dat moment afspeelt.</para></listitem>
-<listitem><para>Een <guilabel>Volumeregeling</guilabel> schuifknop die u in staat stelt om de uitvoervolume aan te passen. </para></listitem>
-<listitem><para>Een <guilabel>Positie</guilabel> schuifknop die de voortgang van het huidige nummer weergeeft. U kunt de schuiknop naar voor of achter bewegen om naar een andere positie binnen het nummer te verplaatsen. </para></listitem>
-<listitem><para>Een 
+<listitem><para>A display area that displays details about the CD that you are playing. </para></listitem>
+<listitem><para>A <guilabel>Volume control</guilabel> slider that enables you to control the output volume. </para></listitem>
+<listitem><para>A <guilabel>Position</guilabel> slider that displays the progress of the current track. You can move the slider forwards or backwards to move the play to a different position on the track. </para></listitem>
+<listitem><para>A 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/cdplayer_trackeditor_button.png" format="PNG"/>
+<imagedata fileref="figures/cdplayer_trackeditor_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Open Track-editor knop.</phrase></textobject>
-</inlinemediaobject> knop die u in staat stelt om het <guilabel>Track-editor</guilabel> venster te openen. </para></listitem>
-<listitem><para>Een <inlinemediaobject>
+<textobject><phrase>Shows Open track editor button.</phrase></textobject>
+</inlinemediaobject> button that enables you to open the <guilabel>Track Editor</guilabel> dialog. </para></listitem>
+<listitem><para>A <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/preferences_button.png" format="PNG"/>
+<imagedata fileref="figures/preferences_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Voorkeuren knop.</phrase></textobject>
-</inlinemediaobject> knop die u in staat stelt om het <guilabel>Voorkeuren</guilabel> venster te openen. </para></listitem>
-<listitem><para>Een selectielijst die u in staat stelt om de namen van de nummers op de CD te zien en naar een bepaald nummer te springen. </para></listitem>
-<listitem><para>Een knop gebied dat u in staat stelt om de nummers op de CD af te spelen. </para></listitem>
+<textobject><phrase>Shows Preferences button.</phrase></textobject>
+</inlinemediaobject> button that enables you to open the <guilabel>Preferences</guilabel> dialog. </para></listitem>
+<listitem><para>A drop-down list that enables you to view the names of the tracks on the CD and move to a track. </para></listitem>
+<listitem><para>A button area that enables you to play the tracks on the CD. </para></listitem>
 </itemizedlist>
 </sect2>
 </sect1>
 
 <!-- ============= Usage ============================= -->
 <sect1 id="gtcd-usage">
-<title>Gebruik</title>
+<title>Usage</title>
 
 <!--=========== To Play a CD ============================= -->
 <sect2 id="gtcd_play">
-<title>Om een CD af te spelen</title>
-<para>Om een CD af te spelen, stop een CD in het CD station van uw computer, druk dan op de
+<title>To Play a CD</title>
+<para>To play a CD, insert the CD in the CD drive of your computer, then press the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/play_button.png" format="PNG"/>
+<imagedata fileref="figures/play_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Afspelen knop.</phrase></textobject>
-</inlinemediaobject> knop. </para>
-<para>De toepassing geeft de volgende informatie in het weergave gebied weer:
+<textobject><phrase>Shows Play button.</phrase></textobject>
+</inlinemediaobject> button. </para>
+<para>The application displays the following information in the display area: 
 </para>
 <itemizedlist>
-<listitem><para>Tijd verstreken van het huidige nummer.</para></listitem>
-<listitem><para>Naam van de artiest.</para></listitem>
-<listitem><para>Titel van de CD.</para>
+<listitem><para>Time elapsed on the current track.</para></listitem>
+<listitem><para>Name of the artist.</para></listitem>
+<listitem><para>Title of the CD.</para>
 </listitem>
 </itemizedlist>
 </sect2>
 
 <sect2 id="gtcd_movetracks">
-<title>Door nummers verplaatsen</title>
-<para>Om verschillende nummers van de CD af te spelen, doe het volgende;
+<title>To Move Through Tracks</title>
+<para>To play different tracks on the CD, perform the following actions:
 </para>
 <itemizedlist>
-<listitem><para>Om naar het volgende nummer op de CD te gaan, klik op de
+<listitem><para>To move to the next track on the CD, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/next_button.png" format="PNG"/>
+<imagedata fileref="figures/next_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Volgende nummer knop.</phrase></textobject>
-</inlinemediaobject> knop. </para></listitem>
-<listitem><para>Om naar het vorige nummer op de CD te gaan, klik twee keer op de
+<textobject><phrase>Shows Next track button.</phrase></textobject>
+</inlinemediaobject> button. </para></listitem>
+<listitem><para>To move to the previous track on the CD, click twice on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/previous_button.png" format="PNG"/>
+<imagedata fileref="figures/previous_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Vorige nummer knop.</phrase></textobject>
-</inlinemediaobject> knop. </para></listitem>
-<listitem><para>Om de lijst met alle nummers op de CD te geven, klik op de selectielijst beneden het weergave gebied. Om naar een nummer in de lijst te gaan, selecteer het nummer uit de lijst.</para></listitem>
+<textobject><phrase>Shows Previous track button.</phrase></textobject>
+</inlinemediaobject> button. </para></listitem>
+<listitem><para>To display a list of the tracks on the CD, click on the drop-down list located below the display area. To move to a track on the list, select a track from the list.</para></listitem>
 </itemizedlist>
 </sect2>
 
 <sect2 id="gtcd_forward">
-<title>Een nummer vooruitspoelen</title>
-<para>Om een nummer vooruit te spoelen, klik op de 
+<title>To Fast Forward a Track</title>
+<para>To fast forward a track, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/forward_button.png" format="PNG"/>
+<imagedata fileref="figures/forward_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Vooruitspoelen knop.</phrase></textobject>
-</inlinemediaobject> knop.</para>
+<textobject><phrase>Shows Fast forward button.</phrase></textobject>
+</inlinemediaobject> button.</para>
 </sect2>
 
 <sect2 id="gtcd_rewind">
-<title>Een nummer terugspoelen</title>
-<para>Om een nummer terug te spoelen, klik op de 
+<title>To Rewind a Track</title>
+<para>To rewind a track, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/rewind_button.png" format="PNG"/>
+<imagedata fileref="figures/rewind_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Terugspoelen knop.</phrase></textobject>
-</inlinemediaobject> knop.</para>
+<textobject><phrase>Shows Rewind button.</phrase></textobject>
+</inlinemediaobject> button.</para>
 </sect2>
 
 <sect2 id="gtcd_pause">
-<title>Een CD pauzeren</title>
-<para>Om een reeds afspelende CD te pauzeren, klik op de 
+<title>To Pause a CD</title>
+<para>To pause a CD that is playing, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/pause_button.png" format="PNG"/>
+<imagedata fileref="figures/pause_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Pause knop.</phrase></textobject>
-</inlinemediaobject> knop. Om door te gaan met spelen van de CD, klik nogmaals op de 
+<textobject><phrase>Shows Pause button.</phrase></textobject>
+</inlinemediaobject> button. To resume playing the CD, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/play_button.png" format="PNG"/>
+<imagedata fileref="figures/play_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Afspelen knop.</phrase></textobject>
-</inlinemediaobject> knop. </para>
+<textobject><phrase>Shows Play button.</phrase></textobject>
+</inlinemediaobject> button again. </para>
 </sect2>
 
 <sect2 id="gtcd_stop">
-<title>Stoppen met afspelen</title>
-<para>Om te stoppen met het afspelen van een CD, klik op de
+<title>To Stop a CD</title>
+<para>To stop playing a CD, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/stop_button.png" format="PNG"/>
+<imagedata fileref="figures/stop_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Stop knop.</phrase></textobject>
-</inlinemediaobject> knop.</para>
+<textobject><phrase>Shows Stop button.</phrase></textobject>
+</inlinemediaobject> button.</para>
 </sect2>
 
 <sect2 id="gtcd_adjust_vol">
-<title>Het volume aanpassen</title>
-<para>Om het uitvoervolume van de CD speler aan te passen, verplaats de volume schuifknop om het gewenste volume niveau aan te geven. De volume schuifknop bevindt zich rechts van het weergave gebied in het toepassingsvenster. Verplaats de schuifknop omhoog om het volume harder te zetten. Verplaats de schuifknop omlaag om het volume zachter te zetten.</para>
+<title>To Adjust the Volume</title>
+<para>To adjust the output volume of the CD Player, move the volume slider to specify the volume level you require. The volume slider is located to the right of the display area in the application window. Move the slider upwards to increase the volume. Move the slider downwards to decrease the volume.</para>
 </sect2>
 
 <sect2 id="gtcd_edit_info">
-<title>CD Informatie bewerken</title>
-<para>Om de CD informatie aan te passen, volg de volgende stappen:</para>
+<title>To Edit CD Information</title>
+<para>To edit the CD information, perform the following steps:</para>
 <orderedlist>
-<listitem><para>Open het <guilabel>Track-editor</guilabel> venster, klik op de <inlinemediaobject>
+<listitem><para>To open the <guilabel>Track Editor</guilabel> dialog, click on the <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/cdplayer_trackeditor_button.png" format="PNG"/>
+<imagedata fileref="figures/cdplayer_trackeditor_button.png" format="PNG"/>
 </imageobject>
-</inlinemediaobject> knop. Het <guilabel>Track-editor</guilabel> venster wordt weergegeven, 
-zie <xref linkend="fig-cd-track-editor"/>. </para></listitem>
-<listitem><para>Om de naam van de artiest aan te passen, bewerk de inhoud van het <guilabel>Artiest</guilabel> tekstveld.</para></listitem>
-<listitem><para>Om de titel van de CD aan te passen, bewerk de inhoud van het <guilabel>CD Titel</guilabel> tekstveld.</para></listitem>
-<listitem><para>Om commentaar over de CD, het genre van de muziek en het jaar dat de CD geproduceert was toe te voegen, klik op de pijl naast de <guilabel>Gevorderde schijfopties tonen</guilabel>.</para></listitem>
-<listitem><para>Om de titel van het nummer aan te passen, klik tweemaal op het nummer in de <guilabel>Titel</guilabel> kolom van de nummertabel, typ dan de nieuwe titel.</para></listitem>
-<listitem><para>Om additionele informatie over een nummer toe te voegen, selecteer het nummer in de nummertabel, klik dan op de pijl naast de <guilabel>Gevorderde trackopties tonen</guilabel>.</para></listitem>
-<listitem><para>Typ de additionele nummerinformatie in de <guilabel>Extra trackgegevens</guilabel> tekstveld.</para></listitem>
-<listitem><para>Om de veranderingen op uw lokale computer op te slaan, klik op <guibutton>Opslaan</guibutton>.</para></listitem>
+</inlinemediaobject> button. The <guilabel>Track Editor</guilabel> dialog is displayed, 
+see <xref linkend="fig-cd-track-editor"/>. </para></listitem>
+<listitem><para>To edit the name of the artist, edit the contents of the <guilabel>Artist</guilabel> text box.</para></listitem>
+<listitem><para>To edit the title of the CD, edit the contents of the <guilabel>Disc Title</guilabel> text box.</para></listitem>
+<listitem><para>To add comments about the CD, the genre of music, and the year the CD was produced, click on the arrow next to <guilabel>Show advanced disc options</guilabel>.</para></listitem>
+<listitem><para>To edit the title of a track, click twice on the track in the <guilabel>Title</guilabel> column of the track table, then type the new title.</para></listitem>
+<listitem><para>To add additional information about a track, select the track in the track table, then click on the arrow next to <guilabel>Show advanced track options</guilabel>.</para></listitem>
+<listitem><para>Type the additional track information in the <guilabel>Extra track data</guilabel> text box.</para></listitem>
+<listitem><para>To save the changes on your local computer, click <guibutton>Save</guibutton>.</para></listitem>
 </orderedlist>
 <!-- ==== Figure ==== -->
       <figure id="fig-cd-track-editor"> 
-	<title>Track-editor venster</title> 
+	<title>Track Editor Dialog</title> 
 	<screenshot> 
 	  <mediaobject> 
 	    <imageobject><imagedata
-		fileref="../C/figures/cdplayer_trackeditor_window.png" format="PNG"/> 
+		fileref="figures/cdplayer_trackeditor_window.png" format="PNG"/> 
 	    </imageobject>
 	    <textobject> 
 	      <phrase></phrase> 
@@ -363,70 +360,68 @@ zie <xref linkend="fig-cd-track-editor"/>. </para></listitem>
 </sect2>
 
 <sect2 id="gtcd_eject">
-<title>Een CD uitwerpen</title>
-<para>Om een CD uit te werpen, klik op de
+<title>To Eject a CD</title>
+<para>To eject a CD, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/eject_button.png" format="PNG"/>
+<imagedata fileref="figures/eject_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>CD Uitwerpen knop.</phrase></textobject>
-</inlinemediaobject> knop. Deze handeling stop de CD als de CD nog steeds aan het afspelen is en opent het CD station.</para>
+<textobject><phrase>Shows Eject CD button.</phrase></textobject>
+</inlinemediaobject> button. This action stops the CD if the CD is still playing, and opens the CD tray.</para>
 </sect2>
 
 </sect1>
 
 <!-- ================= Preferences =================== -->
 <sect1 id="gtcd-prefs">
-<title>Voorkeuren</title>
-<para>Om <application>&app;</application> te configureren, klik op de 
+<title>Preferences</title>
+<para>To configure <application>&app;</application>, click on the 
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../C/figures/preferences_button.png" format="PNG"/>
+<imagedata fileref="figures/preferences_button.png" format="PNG"/>
 </imageobject>
-<textobject><phrase>Vookeuren knop.</phrase></textobject>
-</inlinemediaobject> knop. </para>
+<textobject><phrase>Shows Preferences button.</phrase></textobject>
+</inlinemediaobject> button. </para>
 
 <variablelist>
 
 <varlistentry>
-<term><guilabel>CD speler apparaat</guilabel> </term>
+<term><guilabel>CD Player Device</guilabel> </term>
 <listitem>
-<para>Gebruik dit tekstveld om de naam van het CDROM apparaat te specificeren. Klik op <guibutton>Wijziging toepassen</guibutton> om de verandering van deze instelling op te slaan.</para>
+<para>Use this text box to specify the name of the CDROM device. Click <guibutton>Apply change</guibutton> to save a change to this setting.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Beginnen met afspelen van CD wanneer CD-speler start</guilabel> </term>
+<term><guilabel>Start playing CD when CD Player starts</guilabel> </term>
 <listitem>
-<para>Selecteer deze optie om de CD af te spelen die in het CD station is als u de
-<application>&app;</application> toepassing start.</para>
+<para>Select this option to start playing the CD in the CD drive when you start the <application>&app;</application> application.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Proberen CD uit te werpen wanneer CD-speler afsluit</guilabel> </term>
+<term><guilabel>Attempt to eject CD when CD Player exits</guilabel> </term>
 <listitem>
-<para>Selecteer deze optie om automatisch de CD in het CD station uit te werpen als de <application>&app;</application> toepassing afgesloten word.</para>
+<para>Select this option to automatically eject the CD in the CD drive when the <application>&app;</application> application exits.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Beschikbare thema's</guilabel> </term>
+<term><guilabel>Available Themes</guilabel> </term>
 <listitem>
-<para>Gebruik deze selectielijst om een weergave thema voor de <application>&app;</application> toepassing in te stellen. 
-De volgende thema's zijn beschikbaar:</para>
+<para>Use this list box to select a display theme for the <application>&app;</application>. The themes available are as follows:</para>
 <itemizedlist>
 <listitem>
 <para><guilabel>lcd</guilabel> </para>
-<para>Geeft standaard knoppen en een grijze achtergrond in het weergave gebied.</para>
+<para>Provides standard buttons and a gray background in the display area.</para>
 </listitem>
 <listitem>
 <para><guilabel>red-lcd</guilabel> </para>
-<para>Geeft standaard knoppen en een rode achtergrond in het weergave gebied.</para>
+<para>Provides standard buttons and a red background in the display area.</para>
 </listitem>
 <listitem>
 <para><guilabel>media</guilabel> </para>
-<para>Geeft aangepaste knoppen en een rode achtergrond in het weergave gebied.</para>
+<para>Provides modified buttons and a red background in the display area.</para>
 </listitem>
 </itemizedlist>
 </listitem>
