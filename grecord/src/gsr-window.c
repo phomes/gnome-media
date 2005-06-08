@@ -1058,14 +1058,18 @@ static void
 about_cb (GtkAction *action,
 	  GSRWindow *window)
 {
-	const char * const authors[] = {"Iain Holmes <iain@prettypeople.org>", NULL};
+	const char * const authors[] = {"Iain Holmes <iain@prettypeople.org>", 
+		"Ronald Bultje <rbultje@ronald.bitfreak.net>", 
+		"Johan Dahlin  <johan@gnome.org>", 
+		NULL};
 	const char * const documenters[] = {"Sun Microsystems", NULL};
  
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "name", _("Sound Recorder"),
 			       "version", VERSION,
 			       "copyright", "Copyright \xc2\xa9 2002 Iain Holmes",
-			       "comments", _("A sound recorder for GNOME"),
+			       "comments", _("A sound recorder for GNOME\n gnome-media@gnome.org",      
+			       ),
 			       "authors", authors,
 			       "documenters", documenters,
 			       "logo-icon-name", "gnome-grecord",
