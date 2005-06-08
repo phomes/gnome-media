@@ -37,7 +37,7 @@
 #include "pipeline-tests.h"
 
 #define WID(s) glade_xml_get_widget (interface_xml, s)
-static GladeXML *interface_xml;
+static GladeXML *interface_xml = NULL;
 static GtkDialog *main_window;
 
 static gchar pipeline_editor_property[] = "gstp-editor";
@@ -299,6 +299,21 @@ main (int argc, char **argv)
 			    argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 	gst_init_with_popt_table (&argc, &argv, NULL);
 
+	if (!gst_scheduler_factory_get_default_name ()) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Registry is not present or it is corrupted, please update it by running gst-register."));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		exit (1);
+	}
+
 	/* FIXME: hardcode uninstalled path here */
 	if (g_file_test("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
 		interface_xml = glade_xml_new ("gstreamer-properties.glade", NULL, NULL);
@@ -308,11 +323,18 @@ main (int argc, char **argv)
 	}
 	
 	if (!interface_xml) {
-		/* Fatal error */
-		char *err = g_strdup_printf (_("Could not load UI resource %s"),"gstreamer-properties.glade");
-		g_print ("Error: could not load glade file gstreamer-properties.glade\n");
-		gnome_app_error (GNOME_APP (gnome_program_get ()), err);
-		return 1;
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Failed to load glade file; please check your installation."));
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		exit (1);
 	}
 	
 	create_dialog ();
