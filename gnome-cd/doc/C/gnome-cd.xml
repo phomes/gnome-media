@@ -203,21 +203,26 @@ is displayed.</para>
 <listitem><para>A display area that displays details about the CD that you are playing. </para></listitem>
 <listitem><para>A <guilabel>Volume control</guilabel> slider that enables you to control the output volume. </para></listitem>
 <listitem><para>A <guilabel>Position</guilabel> slider that displays the progress of the current track. You can move the slider forwards or backwards to move the play to a different position on the track. </para></listitem>
-<listitem><para>A 
-<inlinemediaobject>
-<imageobject>
-<imagedata fileref="figures/cdplayer_trackeditor_button.png" format="PNG"/>
-</imageobject>
-<textobject><phrase>Shows Open track editor button.</phrase></textobject>
-</inlinemediaobject> button that enables you to open the <guilabel>Track Editor</guilabel> dialog. </para></listitem>
 <listitem><para>A <inlinemediaobject>
 <imageobject>
 <imagedata fileref="figures/preferences_button.png" format="PNG"/>
 </imageobject>
 <textobject><phrase>Shows Preferences button.</phrase></textobject>
 </inlinemediaobject> button that enables you to open the <guilabel>Preferences</guilabel> dialog. </para></listitem>
-<listitem><para>A drop-down list that enables you to view the names of the tracks on the CD and move to a track. </para></listitem>
-<listitem><para>A button area that enables you to play the tracks on the CD. </para></listitem>
+<listitem><para>A drop-down list that enables you to view the names of the tracks on the CD and move to a track. </para>
+</listitem>
+<listitem>
+<para>A 
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="figures/cdplayer_trackeditor_button.png" format="PNG"/>
+</imageobject>
+<textobject><phrase>Shows Open track editor button.</phrase></textobject>
+</inlinemediaobject> button that enables you to open the <guilabel>Track Editor</guilabel> dialog. </para>
+</listitem>
+<listitem>
+<para>A button area that enables you to play the tracks on the CD. </para>
+</listitem>
 </itemizedlist>
 </sect2>
 </sect1>
@@ -412,6 +417,13 @@ see <xref linkend="fig-cd-track-editor"/>. </para></listitem>
 <para>Use this list box to select a display theme for the <application>&app;</application>. The themes available are as follows:</para>
 <itemizedlist>
 <listitem>
+<para><guilabel>None</guilabel> </para>
+<para>
+Provides standard buttons and allows the standard Gnome Theme to show through 
+making <application>&app;</application> 
+match your other applications.  </para>
+</listitem>
+<listitem>
 <para><guilabel>lcd</guilabel> </para>
 <para>Provides standard buttons and a gray background in the display area.</para>
 </listitem>
@@ -419,10 +431,14 @@ see <xref linkend="fig-cd-track-editor"/>. </para></listitem>
 <para><guilabel>red-lcd</guilabel> </para>
 <para>Provides standard buttons and a red background in the display area.</para>
 </listitem>
+
+<!-- Themes are unsupported.  Modified Buttons not available
 <listitem>
 <para><guilabel>media</guilabel> </para>
 <para>Provides modified buttons and a red background in the display area.</para>
 </listitem>
+-->
+
 </itemizedlist>
 </listitem>
 </varlistentry>
