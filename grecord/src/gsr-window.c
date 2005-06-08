@@ -61,7 +61,6 @@ extern void gsr_add_recent (gchar *filename);
 #define GCONF_DIR           "/apps/gnome-sound-recorder/"
 #define KEY_OPEN_DIR        GCONF_DIR "system-state/open-file-directory"
 #define KEY_SAVE_DIR        GCONF_DIR "system-state/save-file-directory"
-#define KEY_KVPS            GCONF_DIR "UIConf/kvps"
 #define KEY_LAST_PROFILE_ID GCONF_DIR "last-profile-id"
 #define EBUSY_TRY_AGAIN     3000    /* Empirical data */
 

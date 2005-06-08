@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 13:02+0100\n"
+"POT-Creation-Date: 2005-06-08 09:51+0200\n"
 "PO-Revision-Date: 2005-03-04 14:23+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
@@ -30,7 +30,7 @@ msgstr "A CD-lekérdezésekhez használt kiszolgáló neve"
 msgid "Information to send to server"
 msgstr "A kiszolgálónak küldendő adatok"
 
-#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:832
+#: cddb-slave2/CDDB-Slave2.schemas.in.h:3 cddb-slave2/cddb-slave-capplet.c:955
 msgid "Port"
 msgstr "Port"
 
@@ -81,15 +81,7 @@ msgstr ""
 msgid "Your hostname"
 msgstr "Gépének neve"
 
-#: cddb-slave2/cddb-disclosure.c:241
-msgid "Expander Size"
-msgstr "Expander mérete"
-
-#: cddb-slave2/cddb-disclosure.c:242
-msgid "Size of the expander arrow"
-msgstr "A széthúzó nyíl mérete"
-
-#: cddb-slave2/cddb-slave-capplet.c:115
+#: cddb-slave2/cddb-slave-capplet.c:133
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -98,65 +90,63 @@ msgstr ""
 "Hiba történt a súgó megjelenítése közben: \n"
 "%s"
 
-#. Log on info
-#: cddb-slave2/cddb-slave-capplet.c:696
-msgid "Login Information"
-msgstr "Bejelentkezéshez szükséges adatok"
-
-#: cddb-slave2/cddb-slave-capplet.c:702
+#: cddb-slave2/cddb-slave-capplet.c:807
 msgid "Sen_d no information"
 msgstr "_Nincs adatküldés"
 
-#: cddb-slave2/cddb-slave-capplet.c:711
+#: cddb-slave2/cddb-slave-capplet.c:816
 msgid "Send real _information"
 msgstr "_Valós adatot küldjön"
 
-#: cddb-slave2/cddb-slave-capplet.c:720
+#: cddb-slave2/cddb-slave-capplet.c:825
 msgid "Send _other information:"
 msgstr "_Egyéb adatot küldjön:"
 
-#: cddb-slave2/cddb-slave-capplet.c:745
+#: cddb-slave2/cddb-slave-capplet.c:850
 msgid "_Name:"
 msgstr "_Név:"
 
-#: cddb-slave2/cddb-slave-capplet.c:765
+#: cddb-slave2/cddb-slave-capplet.c:874
 msgid "Hostna_me:"
 msgstr "_Gépnév:"
 
-#. Server info
-#: cddb-slave2/cddb-slave-capplet.c:785 cddb-slave2/cddb-slave-capplet.c:829
-msgid "Server"
-msgstr "Kiszolgáló"
+#: cddb-slave2/cddb-slave-capplet.c:898
+msgid "Login Information"
+msgstr "Bejelentkezéshez szükséges adatok"
 
-#: cddb-slave2/cddb-slave-capplet.c:791
+#: cddb-slave2/cddb-slave-capplet.c:914
 msgid "FreeDB _round robin server"
 msgstr "FreeDB _round robin kiszolgáló"
 
-#: cddb-slave2/cddb-slave-capplet.c:797
+#: cddb-slave2/cddb-slave-capplet.c:920
 msgid "Other _FreeDB server:"
 msgstr "Más _FreeDB kiszolgáló:"
 
-#: cddb-slave2/cddb-slave-capplet.c:835
+#: cddb-slave2/cddb-slave-capplet.c:952 cddb-slave2/cddb-slave-capplet.c:1062
+msgid "Server"
+msgstr "Kiszolgáló"
+
+#: cddb-slave2/cddb-slave-capplet.c:958
 msgid "Location"
 msgstr "Hely"
 
-#: cddb-slave2/cddb-slave-capplet.c:864
+#: cddb-slave2/cddb-slave-capplet.c:987
 msgid "_Update Server List"
 msgstr "_Kiszolgálólista frissítése"
 
-#: cddb-slave2/cddb-slave-capplet.c:871
+#: cddb-slave2/cddb-slave-capplet.c:994
 msgid "Other _server:"
 msgstr "Más _kiszolgáló:"
 
-#: cddb-slave2/cddb-slave-capplet.c:891
+#: cddb-slave2/cddb-slave-capplet.c:1014
 msgid "Hos_tname:"
 msgstr "_Gépnév:"
 
-#: cddb-slave2/cddb-slave-capplet.c:908
+#: cddb-slave2/cddb-slave-capplet.c:1031
 msgid "_Port:"
 msgstr "_Port:"
 
-#: cddb-slave2/cddb-slave-capplet.c:972
+#: cddb-slave2/cddb-slave-capplet.c:1103
 msgid "CD Database Preferences"
 msgstr "CD-adatbázis beállításai"
 
@@ -165,9 +155,9 @@ msgid "Unknown / Unknown"
 msgstr "Ismeretlen / Ismeretlen"
 
 #. Attempts to get length ran out.
-#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:920
-#: grecord/src/gsr-window.c:929 grecord/src/gsr-window.c:938
-#: grecord/src/gsr-window.c:948 grecord/src/gsr-window.c:1263
+#: cddb-slave2/cddb-slave.c:227 grecord/src/gsr-window.c:861
+#: grecord/src/gsr-window.c:870 grecord/src/gsr-window.c:879
+#: grecord/src/gsr-window.c:889 grecord/src/gsr-window.c:1197
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -196,7 +186,7 @@ msgid "Artist and Title"
 msgstr "Előadó és cím"
 
 #: cddb-slave2/cddb-slave.c:1351 cddb-slave2/cddb-slave.c:1353
-#: gnome-cd/gnome-cd.c:183
+#: gnome-cd/gnome-cd.c:202
 msgid "Unknown track"
 msgstr "Ismeretlen szám"
 
@@ -208,684 +198,684 @@ msgstr "CD-adatbáziskiszolgáló"
 msgid "Modify your CD database server preferences"
 msgstr "A CD-adatbáziskiszolgáló beállításainak módosítása"
 
-#: cddb-slave2/cddb-track-editor.c:79
+#: cddb-slave2/cddb-track-editor.c:78
 msgid "Blues"
 msgstr "Blues"
 
-#: cddb-slave2/cddb-track-editor.c:80
+#: cddb-slave2/cddb-track-editor.c:79
 msgid "Classical Rock"
 msgstr "Klasszikus rock"
 
-#: cddb-slave2/cddb-track-editor.c:81
+#: cddb-slave2/cddb-track-editor.c:80
 msgid "Country"
 msgstr "Country"
 
-#: cddb-slave2/cddb-track-editor.c:82
+#: cddb-slave2/cddb-track-editor.c:81
 msgid "Dance"
 msgstr "Dance"
 
-#: cddb-slave2/cddb-track-editor.c:83
+#: cddb-slave2/cddb-track-editor.c:82
 msgid "Disco"
 msgstr "Disco"
 
-#: cddb-slave2/cddb-track-editor.c:84
+#: cddb-slave2/cddb-track-editor.c:83
 msgid "Funk"
 msgstr "Funk"
 
-#: cddb-slave2/cddb-track-editor.c:85
+#: cddb-slave2/cddb-track-editor.c:84
 msgid "Grunge"
 msgstr "Grunge"
 
-#: cddb-slave2/cddb-track-editor.c:86
+#: cddb-slave2/cddb-track-editor.c:85
 msgid "Hip-Hop"
 msgstr "Hip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:87
+#: cddb-slave2/cddb-track-editor.c:86
 msgid "Jazz"
 msgstr "Jazz"
 
-#: cddb-slave2/cddb-track-editor.c:88
+#: cddb-slave2/cddb-track-editor.c:87
 msgid "Metal"
 msgstr "Metal"
 
-#: cddb-slave2/cddb-track-editor.c:89
+#: cddb-slave2/cddb-track-editor.c:88
 msgid "New Age"
 msgstr "New Age"
 
-#: cddb-slave2/cddb-track-editor.c:90
+#: cddb-slave2/cddb-track-editor.c:89
 msgid "Oldies"
 msgstr "Régi slágerek"
 
-#: cddb-slave2/cddb-track-editor.c:91
+#: cddb-slave2/cddb-track-editor.c:90
 msgid "Other"
 msgstr "Egyéb"
 
-#: cddb-slave2/cddb-track-editor.c:92
+#: cddb-slave2/cddb-track-editor.c:91
 msgid "Pop"
 msgstr "Pop"
 
-#: cddb-slave2/cddb-track-editor.c:93
+#: cddb-slave2/cddb-track-editor.c:92
 msgid "R&B"
 msgstr "R&B"
 
-#: cddb-slave2/cddb-track-editor.c:94
+#: cddb-slave2/cddb-track-editor.c:93
 msgid "Rap"
 msgstr "Rap"
 
-#: cddb-slave2/cddb-track-editor.c:95
+#: cddb-slave2/cddb-track-editor.c:94
 msgid "Reggae"
 msgstr "Reggae"
 
-#: cddb-slave2/cddb-track-editor.c:96
+#: cddb-slave2/cddb-track-editor.c:95
 msgid "Rock"
 msgstr "Rock"
 
-#: cddb-slave2/cddb-track-editor.c:97
+#: cddb-slave2/cddb-track-editor.c:96
 msgid "Techno"
 msgstr "Techno"
 
-#: cddb-slave2/cddb-track-editor.c:98
+#: cddb-slave2/cddb-track-editor.c:97
 msgid "Industrial"
 msgstr "Ipari"
 
-#: cddb-slave2/cddb-track-editor.c:99
+#: cddb-slave2/cddb-track-editor.c:98
 msgid "Alternative"
 msgstr "Alternatív"
 
-#: cddb-slave2/cddb-track-editor.c:100
+#: cddb-slave2/cddb-track-editor.c:99
 msgid "Ska"
 msgstr "Ska"
 
-#: cddb-slave2/cddb-track-editor.c:101
+#: cddb-slave2/cddb-track-editor.c:100
 msgid "Death Metal"
 msgstr "Death Metal"
 
-#: cddb-slave2/cddb-track-editor.c:102
+#: cddb-slave2/cddb-track-editor.c:101
 msgid "Pranks"
 msgstr "Pranks"
 
-#: cddb-slave2/cddb-track-editor.c:103
+#: cddb-slave2/cddb-track-editor.c:102
 msgid "Soundtrack"
 msgstr "Filmzene"
 
-#: cddb-slave2/cddb-track-editor.c:104
+#: cddb-slave2/cddb-track-editor.c:103
 msgid "Euro-Techno"
 msgstr "Euro-Techno"
 
-#: cddb-slave2/cddb-track-editor.c:105
+#: cddb-slave2/cddb-track-editor.c:104
 msgid "Ambient"
 msgstr "Ambient"
 
-#: cddb-slave2/cddb-track-editor.c:106
+#: cddb-slave2/cddb-track-editor.c:105
 msgid "Trip-Hop"
 msgstr "Trip-Hop"
 
-#: cddb-slave2/cddb-track-editor.c:107
+#: cddb-slave2/cddb-track-editor.c:106
 msgid "Vocal"
 msgstr "Vokális"
 
-#: cddb-slave2/cddb-track-editor.c:108
+#: cddb-slave2/cddb-track-editor.c:107
 msgid "Jazz+Funk"
 msgstr "Jazz+Funk"
 
-#: cddb-slave2/cddb-track-editor.c:109
+#: cddb-slave2/cddb-track-editor.c:108
 msgid "Fusion"
 msgstr "Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:110
+#: cddb-slave2/cddb-track-editor.c:109
 msgid "Trance"
 msgstr "Trance"
 
-#: cddb-slave2/cddb-track-editor.c:111
+#: cddb-slave2/cddb-track-editor.c:110
 msgid "Classical"
 msgstr "Klasszikus"
 
-#: cddb-slave2/cddb-track-editor.c:112
+#: cddb-slave2/cddb-track-editor.c:111
 msgid "Instrumental"
 msgstr "Hangszeres"
 
-#: cddb-slave2/cddb-track-editor.c:113
+#: cddb-slave2/cddb-track-editor.c:112
 msgid "Acid"
 msgstr "Acid"
 
-#: cddb-slave2/cddb-track-editor.c:114
+#: cddb-slave2/cddb-track-editor.c:113
 msgid "House"
 msgstr "House"
 
-#: cddb-slave2/cddb-track-editor.c:115
+#: cddb-slave2/cddb-track-editor.c:114
 msgid "Game"
 msgstr "Játék"
 
-#: cddb-slave2/cddb-track-editor.c:116
+#: cddb-slave2/cddb-track-editor.c:115
 msgid "Sound Clip"
 msgstr "Zene klip"
 
-#: cddb-slave2/cddb-track-editor.c:117
+#: cddb-slave2/cddb-track-editor.c:116
 msgid "Gospel"
 msgstr "Gospel"
 
-#: cddb-slave2/cddb-track-editor.c:118
+#: cddb-slave2/cddb-track-editor.c:117
 msgid "Noise"
 msgstr "Zaj"
 
-#: cddb-slave2/cddb-track-editor.c:119
+#: cddb-slave2/cddb-track-editor.c:118
 msgid "Alt"
 msgstr "Alt"
 
-#: cddb-slave2/cddb-track-editor.c:120
+#: cddb-slave2/cddb-track-editor.c:119
 msgid "Bass"
 msgstr "Basszus"
 
-#: cddb-slave2/cddb-track-editor.c:121
+#: cddb-slave2/cddb-track-editor.c:120
 msgid "Soul"
 msgstr "Soul"
 
-#: cddb-slave2/cddb-track-editor.c:122
+#: cddb-slave2/cddb-track-editor.c:121
 msgid "Punk"
 msgstr "Punk"
 
-#: cddb-slave2/cddb-track-editor.c:123
+#: cddb-slave2/cddb-track-editor.c:122
 msgid "Space"
 msgstr "Space"
 
-#: cddb-slave2/cddb-track-editor.c:124
+#: cddb-slave2/cddb-track-editor.c:123
 msgid "Meditative"
 msgstr "Meditatív"
 
-#: cddb-slave2/cddb-track-editor.c:125
+#: cddb-slave2/cddb-track-editor.c:124
 msgid "Instrumental Pop"
 msgstr "Hangszeres pop"
 
-#: cddb-slave2/cddb-track-editor.c:126
+#: cddb-slave2/cddb-track-editor.c:125
 msgid "Instrumental Rock"
 msgstr "Hangszeres rock"
 
-#: cddb-slave2/cddb-track-editor.c:127
+#: cddb-slave2/cddb-track-editor.c:126
 msgid "Ethnic"
 msgstr "Népzene"
 
-#: cddb-slave2/cddb-track-editor.c:128
+#: cddb-slave2/cddb-track-editor.c:127
 msgid "Gothic"
 msgstr "Gothic"
 
-#: cddb-slave2/cddb-track-editor.c:129
+#: cddb-slave2/cddb-track-editor.c:128
 msgid "Darkwave"
 msgstr "Darkwave"
 
-#: cddb-slave2/cddb-track-editor.c:130
+#: cddb-slave2/cddb-track-editor.c:129
 msgid "Techno-Industrial"
 msgstr "Techno-Industrial"
 
-#: cddb-slave2/cddb-track-editor.c:131
+#: cddb-slave2/cddb-track-editor.c:130
 msgid "Electronic"
 msgstr "Electronic"
 
-#: cddb-slave2/cddb-track-editor.c:132
+#: cddb-slave2/cddb-track-editor.c:131
 msgid "Pop-Folk"
 msgstr "Pop-Folk"
 
-#: cddb-slave2/cddb-track-editor.c:133
+#: cddb-slave2/cddb-track-editor.c:132
 msgid "Eurodance"
 msgstr "Eurodance"
 
-#: cddb-slave2/cddb-track-editor.c:134
+#: cddb-slave2/cddb-track-editor.c:133
 msgid "Dream"
 msgstr "Álom"
 
-#: cddb-slave2/cddb-track-editor.c:135
+#: cddb-slave2/cddb-track-editor.c:134
 msgid "Southern Rock"
 msgstr "Southern Rock"
 
-#: cddb-slave2/cddb-track-editor.c:136
+#: cddb-slave2/cddb-track-editor.c:135
 msgid "Comedy"
 msgstr "Kabaré"
 
-#: cddb-slave2/cddb-track-editor.c:137
+#: cddb-slave2/cddb-track-editor.c:136
 msgid "Cult"
 msgstr "Cult"
 
-#: cddb-slave2/cddb-track-editor.c:138
+#: cddb-slave2/cddb-track-editor.c:137
 msgid "Gangsta Rap"
 msgstr "Gangsta Rap"
 
-#: cddb-slave2/cddb-track-editor.c:139
+#: cddb-slave2/cddb-track-editor.c:138
 msgid "Top 40"
 msgstr "Top 40"
 
-#: cddb-slave2/cddb-track-editor.c:140
+#: cddb-slave2/cddb-track-editor.c:139
 msgid "Christian Rap"
 msgstr "Christian Rap"
 
-#: cddb-slave2/cddb-track-editor.c:141
+#: cddb-slave2/cddb-track-editor.c:140
 msgid "Pop/Funk"
 msgstr "Pop/Funk"
 
-#: cddb-slave2/cddb-track-editor.c:142
+#: cddb-slave2/cddb-track-editor.c:141
 msgid "Jungle"
 msgstr "Jungle"
 
-#: cddb-slave2/cddb-track-editor.c:143
+#: cddb-slave2/cddb-track-editor.c:142
 msgid "Native American"
 msgstr "Indián"
 
-#: cddb-slave2/cddb-track-editor.c:144
+#: cddb-slave2/cddb-track-editor.c:143
 msgid "Cabaret"
 msgstr "Kabaré"
 
-#: cddb-slave2/cddb-track-editor.c:145
+#: cddb-slave2/cddb-track-editor.c:144
 msgid "New Wave"
 msgstr "Újhullámos"
 
-#: cddb-slave2/cddb-track-editor.c:146
+#: cddb-slave2/cddb-track-editor.c:145
 msgid "Psychedelic"
 msgstr "Pszichedelikus"
 
-#: cddb-slave2/cddb-track-editor.c:147
+#: cddb-slave2/cddb-track-editor.c:146
 msgid "Rave"
 msgstr "Rave"
 
-#: cddb-slave2/cddb-track-editor.c:148
+#: cddb-slave2/cddb-track-editor.c:147
 msgid "Showtunes"
 msgstr "Sorozatok zenéi"
 
-#: cddb-slave2/cddb-track-editor.c:149
+#: cddb-slave2/cddb-track-editor.c:148
 msgid "Trailer"
 msgstr "Filmelőzetes"
 
-#: cddb-slave2/cddb-track-editor.c:150
+#: cddb-slave2/cddb-track-editor.c:149
 msgid "Lo-Fi"
 msgstr "Lo-Fi"
 
-#: cddb-slave2/cddb-track-editor.c:151
+#: cddb-slave2/cddb-track-editor.c:150
 msgid "Tribal"
 msgstr "Tribal"
 
-#: cddb-slave2/cddb-track-editor.c:152
+#: cddb-slave2/cddb-track-editor.c:151
 msgid "Acid Punk"
 msgstr "Acid Punk"
 
-#: cddb-slave2/cddb-track-editor.c:153
+#: cddb-slave2/cddb-track-editor.c:152
 msgid "Acid Jazz"
 msgstr "Acid Jazz"
 
-#: cddb-slave2/cddb-track-editor.c:154
+#: cddb-slave2/cddb-track-editor.c:153
 msgid "Polka"
 msgstr "Polka"
 
-#: cddb-slave2/cddb-track-editor.c:155
+#: cddb-slave2/cddb-track-editor.c:154
 msgid "Retro"
 msgstr "Retro"
 
-#: cddb-slave2/cddb-track-editor.c:156
+#: cddb-slave2/cddb-track-editor.c:155
 msgid "Musical"
 msgstr "Musical"
 
-#: cddb-slave2/cddb-track-editor.c:157
+#: cddb-slave2/cddb-track-editor.c:156
 msgid "Rock & Roll"
 msgstr "Rock & Roll"
 
-#: cddb-slave2/cddb-track-editor.c:158
+#: cddb-slave2/cddb-track-editor.c:157
 msgid "Hard Rock"
 msgstr "Hard Rock"
 
-#: cddb-slave2/cddb-track-editor.c:159
+#: cddb-slave2/cddb-track-editor.c:158
 msgid "Folk"
 msgstr "Folk"
 
-#: cddb-slave2/cddb-track-editor.c:160
+#: cddb-slave2/cddb-track-editor.c:159
 msgid "Folk/Rock"
 msgstr "Folk/Rock"
 
-#: cddb-slave2/cddb-track-editor.c:161
+#: cddb-slave2/cddb-track-editor.c:160
 msgid "National Folk"
 msgstr "National Folk"
 
-#: cddb-slave2/cddb-track-editor.c:162
+#: cddb-slave2/cddb-track-editor.c:161
 msgid "Swing"
 msgstr "Swing"
 
-#: cddb-slave2/cddb-track-editor.c:163
+#: cddb-slave2/cddb-track-editor.c:162
 msgid "Fast-Fusion"
 msgstr "Fast-Fusion"
 
-#: cddb-slave2/cddb-track-editor.c:164
+#: cddb-slave2/cddb-track-editor.c:163
 msgid "Bebop"
 msgstr "Bebop"
 
-#: cddb-slave2/cddb-track-editor.c:165
+#: cddb-slave2/cddb-track-editor.c:164
 msgid "Latin"
 msgstr "Latin"
 
-#: cddb-slave2/cddb-track-editor.c:166
+#: cddb-slave2/cddb-track-editor.c:165
 msgid "Revival"
 msgstr "Revival"
 
-#: cddb-slave2/cddb-track-editor.c:167
+#: cddb-slave2/cddb-track-editor.c:166
 msgid "Celtic"
 msgstr "Kelta"
 
-#: cddb-slave2/cddb-track-editor.c:168
+#: cddb-slave2/cddb-track-editor.c:167
 msgid "Bluegrass"
 msgstr "Bluegrass"
 
-#: cddb-slave2/cddb-track-editor.c:169
+#: cddb-slave2/cddb-track-editor.c:168
 msgid "Avantgarde"
 msgstr "Avantgarde"
 
-#: cddb-slave2/cddb-track-editor.c:170
+#: cddb-slave2/cddb-track-editor.c:169
 msgid "Gothic Rock"
 msgstr "Gothic Rock"
 
-#: cddb-slave2/cddb-track-editor.c:171
+#: cddb-slave2/cddb-track-editor.c:170
 msgid "Progressive Rock"
 msgstr "Progresszív rock"
 
-#: cddb-slave2/cddb-track-editor.c:172
+#: cddb-slave2/cddb-track-editor.c:171
 msgid "Psychedelic Rock"
 msgstr "Pszichedelikus rock"
 
-#: cddb-slave2/cddb-track-editor.c:173
+#: cddb-slave2/cddb-track-editor.c:172
 msgid "Symphonic Rock"
 msgstr "Szimfonikus rock"
 
-#: cddb-slave2/cddb-track-editor.c:174
+#: cddb-slave2/cddb-track-editor.c:173
 msgid "Slow Rock"
 msgstr "Lassú rock"
 
-#: cddb-slave2/cddb-track-editor.c:175
+#: cddb-slave2/cddb-track-editor.c:174
 msgid "Big Band"
 msgstr "Big Band"
 
-#: cddb-slave2/cddb-track-editor.c:176
+#: cddb-slave2/cddb-track-editor.c:175
 msgid "Chorus"
 msgstr "Kórus"
 
-#: cddb-slave2/cddb-track-editor.c:177
+#: cddb-slave2/cddb-track-editor.c:176
 msgid "Easy Listening"
 msgstr "Könnyed dallam"
 
-#: cddb-slave2/cddb-track-editor.c:178
+#: cddb-slave2/cddb-track-editor.c:177
 msgid "Acoustic"
 msgstr "Akusztikus"
 
-#: cddb-slave2/cddb-track-editor.c:179
+#: cddb-slave2/cddb-track-editor.c:178
 msgid "Humour"
 msgstr "Humoros"
 
-#: cddb-slave2/cddb-track-editor.c:180
+#: cddb-slave2/cddb-track-editor.c:179
 msgid "Speech"
 msgstr "Beszéd"
 
-#: cddb-slave2/cddb-track-editor.c:181
+#: cddb-slave2/cddb-track-editor.c:180
 msgid "Chanson"
 msgstr "Sanzon"
 
-#: cddb-slave2/cddb-track-editor.c:182
+#: cddb-slave2/cddb-track-editor.c:181
 msgid "Opera"
 msgstr "Opera"
 
-#: cddb-slave2/cddb-track-editor.c:183
+#: cddb-slave2/cddb-track-editor.c:182
 msgid "Chamber Music"
 msgstr "Kamarazene"
 
-#: cddb-slave2/cddb-track-editor.c:184
+#: cddb-slave2/cddb-track-editor.c:183
 msgid "Sonata"
 msgstr "Szonáta"
 
-#: cddb-slave2/cddb-track-editor.c:185
+#: cddb-slave2/cddb-track-editor.c:184
 msgid "Symphony"
 msgstr "Szimfónia"
 
-#: cddb-slave2/cddb-track-editor.c:186
+#: cddb-slave2/cddb-track-editor.c:185
 msgid "Booty Bass"
 msgstr "Booty Bass"
 
-#: cddb-slave2/cddb-track-editor.c:187
+#: cddb-slave2/cddb-track-editor.c:186
 msgid "Primus"
 msgstr "Primus"
 
-#: cddb-slave2/cddb-track-editor.c:188
+#: cddb-slave2/cddb-track-editor.c:187
 msgid "Porn Groove"
 msgstr "Porn Groove"
 
-#: cddb-slave2/cddb-track-editor.c:189
+#: cddb-slave2/cddb-track-editor.c:188
 msgid "Satire"
 msgstr "Szatíra"
 
-#: cddb-slave2/cddb-track-editor.c:190
+#: cddb-slave2/cddb-track-editor.c:189
 msgid "Slow Jam"
 msgstr "Slow Jam"
 
-#: cddb-slave2/cddb-track-editor.c:191
+#: cddb-slave2/cddb-track-editor.c:190
 msgid "Club"
 msgstr "Klub"
 
-#: cddb-slave2/cddb-track-editor.c:192
+#: cddb-slave2/cddb-track-editor.c:191
 msgid "Tango"
 msgstr "Tangó"
 
-#: cddb-slave2/cddb-track-editor.c:193
+#: cddb-slave2/cddb-track-editor.c:192
 msgid "Samba"
 msgstr "Szamba"
 
-#: cddb-slave2/cddb-track-editor.c:194
+#: cddb-slave2/cddb-track-editor.c:193
 msgid "Folklore"
 msgstr "Folklór"
 
-#: cddb-slave2/cddb-track-editor.c:195
+#: cddb-slave2/cddb-track-editor.c:194
 msgid "Ballad"
 msgstr "Ballada"
 
-#: cddb-slave2/cddb-track-editor.c:196
+#: cddb-slave2/cddb-track-editor.c:195
 msgid "Power Ballad"
 msgstr "Power Ballad"
 
-#: cddb-slave2/cddb-track-editor.c:197
+#: cddb-slave2/cddb-track-editor.c:196
 msgid "Rhythmic Soul"
 msgstr "Rhythmic Soul"
 
-#: cddb-slave2/cddb-track-editor.c:198
+#: cddb-slave2/cddb-track-editor.c:197
 msgid "Freestyle"
 msgstr "Freestyle"
 
-#: cddb-slave2/cddb-track-editor.c:199
+#: cddb-slave2/cddb-track-editor.c:198
 msgid "Duet"
 msgstr "Duett"
 
-#: cddb-slave2/cddb-track-editor.c:200
+#: cddb-slave2/cddb-track-editor.c:199
 msgid "Punk Rock"
 msgstr "Punk Rock"
 
-#: cddb-slave2/cddb-track-editor.c:201
+#: cddb-slave2/cddb-track-editor.c:200
 msgid "Drum Solo"
 msgstr "Drum Solo"
 
-#: cddb-slave2/cddb-track-editor.c:202
+#: cddb-slave2/cddb-track-editor.c:201
 msgid "A Cappella"
 msgstr "A Cappella"
 
-#: cddb-slave2/cddb-track-editor.c:203
+#: cddb-slave2/cddb-track-editor.c:202
 msgid "Euro-House"
 msgstr "Euro-House"
 
-#: cddb-slave2/cddb-track-editor.c:204
+#: cddb-slave2/cddb-track-editor.c:203
 msgid "Dance Hall"
 msgstr "Dance Hall"
 
-#: cddb-slave2/cddb-track-editor.c:205
+#: cddb-slave2/cddb-track-editor.c:204
 msgid "Goa"
 msgstr "Goa"
 
-#: cddb-slave2/cddb-track-editor.c:206
+#: cddb-slave2/cddb-track-editor.c:205
 msgid "Drum & Bass"
 msgstr "Drum & Bass"
 
-#: cddb-slave2/cddb-track-editor.c:207
+#: cddb-slave2/cddb-track-editor.c:206
 msgid "Club-House"
 msgstr "Club-House"
 
-#: cddb-slave2/cddb-track-editor.c:208
+#: cddb-slave2/cddb-track-editor.c:207
 msgid "Hardcore"
 msgstr "Hardcore"
 
-#: cddb-slave2/cddb-track-editor.c:209
+#: cddb-slave2/cddb-track-editor.c:208
 msgid "Terror"
 msgstr "Terror"
 
-#: cddb-slave2/cddb-track-editor.c:210
+#: cddb-slave2/cddb-track-editor.c:209
 msgid "Indie"
 msgstr "Indie"
 
-#: cddb-slave2/cddb-track-editor.c:211
+#: cddb-slave2/cddb-track-editor.c:210
 msgid "BritPop"
 msgstr "BritPop"
 
-#: cddb-slave2/cddb-track-editor.c:212
+#: cddb-slave2/cddb-track-editor.c:211
 msgid "Negerpunk"
 msgstr "Negerpunk"
 
-#: cddb-slave2/cddb-track-editor.c:213
+#: cddb-slave2/cddb-track-editor.c:212
 msgid "Polsk Punk"
 msgstr "Polsk Punk"
 
-#: cddb-slave2/cddb-track-editor.c:214
+#: cddb-slave2/cddb-track-editor.c:213
 msgid "Beat"
 msgstr "Beat"
 
-#: cddb-slave2/cddb-track-editor.c:215
+#: cddb-slave2/cddb-track-editor.c:214
 msgid "Christian Gangsta Rap"
 msgstr "Christian Gangsta Rap"
 
-#: cddb-slave2/cddb-track-editor.c:216
+#: cddb-slave2/cddb-track-editor.c:215
 msgid "Heavy Metal"
 msgstr "Heavy Metal"
 
-#: cddb-slave2/cddb-track-editor.c:217
+#: cddb-slave2/cddb-track-editor.c:216
 msgid "Black Metal"
 msgstr "Black Metal"
 
-#: cddb-slave2/cddb-track-editor.c:218
+#: cddb-slave2/cddb-track-editor.c:217
 msgid "Crossover"
 msgstr "Crossover"
 
-#: cddb-slave2/cddb-track-editor.c:219
+#: cddb-slave2/cddb-track-editor.c:218
 msgid "Contemporary Christian"
 msgstr "Kortárs keresztény"
 
-#: cddb-slave2/cddb-track-editor.c:220
+#: cddb-slave2/cddb-track-editor.c:219
 msgid "Christian Rock"
 msgstr "Keresztény rock"
 
-#: cddb-slave2/cddb-track-editor.c:221
+#: cddb-slave2/cddb-track-editor.c:220
 msgid "Merengue"
 msgstr "Merengue"
 
-#: cddb-slave2/cddb-track-editor.c:222
+#: cddb-slave2/cddb-track-editor.c:221
 msgid "Salsa"
 msgstr "Salsa"
 
-#: cddb-slave2/cddb-track-editor.c:223
+#: cddb-slave2/cddb-track-editor.c:222
 msgid "Thrash Metal"
 msgstr "Thrash Metal"
 
-#: cddb-slave2/cddb-track-editor.c:224
+#: cddb-slave2/cddb-track-editor.c:223
 msgid "Anime"
 msgstr "Anime"
 
-#: cddb-slave2/cddb-track-editor.c:225
+#: cddb-slave2/cddb-track-editor.c:224
 msgid "JPop"
 msgstr "JPop"
 
-#: cddb-slave2/cddb-track-editor.c:226
+#: cddb-slave2/cddb-track-editor.c:225
 msgid "Synthpop"
 msgstr "Synthpop"
 
-#: cddb-slave2/cddb-track-editor.c:227
+#: cddb-slave2/cddb-track-editor.c:226
 msgid "Nu-Metal"
 msgstr "Nu-Metal"
 
-#: cddb-slave2/cddb-track-editor.c:228
+#: cddb-slave2/cddb-track-editor.c:227
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:558
-#: gnome-cd/callbacks.c:696 gnome-cd/callbacks.c:707 gnome-cd/display.c:74
+#: cddb-slave2/cddb-track-editor.c:531 gnome-cd/callbacks.c:563
+#: gnome-cd/callbacks.c:702 gnome-cd/callbacks.c:713 gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "Ismeretlen előadó"
 
-#: cddb-slave2/cddb-track-editor.c:533 gnome-cd/callbacks.c:559
-#: gnome-cd/callbacks.c:699 gnome-cd/callbacks.c:711 gnome-cd/display.c:75
+#: cddb-slave2/cddb-track-editor.c:532 gnome-cd/callbacks.c:564
+#: gnome-cd/callbacks.c:705 gnome-cd/callbacks.c:717 gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "Ismeretlen album"
 
-#: cddb-slave2/cddb-track-editor.c:541
+#: cddb-slave2/cddb-track-editor.c:540
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Következő azonosítójú lemez szerkesztése: %s"
 
-#. Info label
-#: cddb-slave2/cddb-track-editor.c:630
-msgid "Editing Disc ID: "
-msgstr "Következő azonosítójú lemez szerkesztése: "
-
-#: cddb-slave2/cddb-track-editor.c:641
-msgid "_Artist:"
-msgstr "_Előadó:"
-
-#: cddb-slave2/cddb-track-editor.c:655
-msgid "Disc _Title:"
-msgstr "Lemez _címe:"
-
-#: cddb-slave2/cddb-track-editor.c:665
-msgid "Show advanced disc options"
-msgstr "Haladó lemezbeállítások megjelenítése"
-
-#: cddb-slave2/cddb-track-editor.c:666
+#: cddb-slave2/cddb-track-editor.c:617
 msgid "Hide advanced disc options"
 msgstr "Haladó lemezbeállítások elrejtése"
 
+#: cddb-slave2/cddb-track-editor.c:619 cddb-slave2/cddb-track-editor.c:696
+msgid "Show advanced disc options"
+msgstr "Haladó lemezbeállítások megjelenítése"
+
+#: cddb-slave2/cddb-track-editor.c:633
+msgid "Hide advanced track options"
+msgstr "Haladó számbeállítások elrejtése"
+
+#. More advanced options
+#: cddb-slave2/cddb-track-editor.c:635 cddb-slave2/cddb-track-editor.c:798
+msgid "Show advanced track options"
+msgstr "Haladó számbeállítások megjelenítése"
+
+#. Info label
+#: cddb-slave2/cddb-track-editor.c:661
+msgid "Editing Disc ID: "
+msgstr "Következő azonosítójú lemez szerkesztése: "
+
+#: cddb-slave2/cddb-track-editor.c:672
+msgid "_Artist:"
+msgstr "_Előadó:"
+
+#: cddb-slave2/cddb-track-editor.c:686
+msgid "Disc _Title:"
+msgstr "Lemez _címe:"
+
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: cddb-slave2/cddb-track-editor.c:678
+#: cddb-slave2/cddb-track-editor.c:710
 msgid "_Disc comments:"
 msgstr "Megjegyzések a _lemezhez:"
 
 #. Genre
-#: cddb-slave2/cddb-track-editor.c:693
+#: cddb-slave2/cddb-track-editor.c:725
 msgid "_Genre:"
 msgstr "_Műfaj:"
 
 #. Year
-#: cddb-slave2/cddb-track-editor.c:709
+#: cddb-slave2/cddb-track-editor.c:741
 msgid "_Year:"
 msgstr "É_v:"
 
-#: cddb-slave2/cddb-track-editor.c:748
+#: cddb-slave2/cddb-track-editor.c:780
 msgid "Title"
 msgstr "Cím"
 
-#: cddb-slave2/cddb-track-editor.c:755
+#: cddb-slave2/cddb-track-editor.c:787
 msgid "Length"
 msgstr "Hossz"
 
-#. More advanced options
-#: cddb-slave2/cddb-track-editor.c:766
-msgid "Show advanced track options"
-msgstr "Haladó számbeállítások megjelenítése"
-
-#: cddb-slave2/cddb-track-editor.c:767
-msgid "Hide advanced track options"
-msgstr "Haladó számbeállítások elrejtése"
-
 #. Extra data
-#: cddb-slave2/cddb-track-editor.c:775
+#: cddb-slave2/cddb-track-editor.c:807
 msgid "_Extra track data:"
 msgstr "_További adatok a számról:"
 
-#: cddb-slave2/cddb-track-editor.c:904
+#: cddb-slave2/cddb-track-editor.c:934
 msgid "CDDB Track Editor"
 msgstr "CDDB számszerkesztő"
 
-#: cddb-slave2/cddb-track-editor.c:1041
+#: cddb-slave2/cddb-track-editor.c:1071
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -936,67 +926,90 @@ msgstr "Albumsor"
 msgid "Line for displaying the name of the album"
 msgstr "Az album nevét megjelenítő sor"
 
-#: gnome-cd/callbacks.c:83 gnome-cd/callbacks.c:171 gnome-cd/callbacks.c:270
-#: gnome-cd/callbacks.c:573 gnome-cd/gnome-cd.c:751 grecord/gsr.xml.h:13
+#: gnome-cd/callbacks.c:85 gnome-cd/callbacks.c:173 gnome-cd/callbacks.c:273
+#: gnome-cd/callbacks.c:579 gnome-cd/gnome-cd.c:813
 msgid "Play"
 msgstr "Lejátszás"
 
-#: gnome-cd/callbacks.c:156 gnome-cd/callbacks.c:202 gnome-cd/callbacks.c:232
-#: gnome-cd/callbacks.c:312 gnome-cd/callbacks.c:352 gnome-cd/callbacks.c:376
-#: gnome-cd/callbacks.c:417 gnome-cd/callbacks.c:511
+#: gnome-cd/callbacks.c:158 gnome-cd/callbacks.c:204 gnome-cd/callbacks.c:234
+#: gnome-cd/callbacks.c:315 gnome-cd/callbacks.c:355 gnome-cd/callbacks.c:379
+#: gnome-cd/callbacks.c:420 gnome-cd/callbacks.c:515
 msgid "Pause"
 msgstr "Szünet"
 
-#: gnome-cd/callbacks.c:557
-#, c-format
-msgid "Playing %s - %s"
+#: gnome-cd/callbacks.c:562
+#, fuzzy, c-format
+msgid ""
+"Playing %s - %s\n"
+"Current Time: %s"
 msgstr "%s - %s lejátszása"
 
-#: gnome-cd/callbacks.c:561
-msgid "Playing"
-msgstr "Lejátszás"
+#: gnome-cd/callbacks.c:567
+#, c-format
+msgid ""
+"Playing\n"
+"Current Time: %s"
+msgstr ""
 
-#: gnome-cd/callbacks.c:585
+#: gnome-cd/callbacks.c:591
 msgid "Paused"
 msgstr "Szünet"
 
-#: gnome-cd/callbacks.c:631 gnome-cd/callbacks.c:879 gnome-cd/gnome-cd.c:95
-#: gnome-cd/gnome-cd.c:611 gnome-cd/gnome-cd.c:815 gnome-cd/gnome-cd.c:818
-#: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:613
+#: gnome-cd/callbacks.c:637 gnome-cd/callbacks.c:890 gnome-cd/gnome-cd.c:114
+#: gnome-cd/gnome-cd.c:678 gnome-cd/gnome-cd.c:877 gnome-cd/gnome-cd.c:880
+#: gnome-cd/gnome-cd.desktop.in.h:1 gnome-cd/preferences.c:610
 msgid "CD Player"
 msgstr "CD-lejátszó"
 
-#: gnome-cd/callbacks.c:655
+#: gnome-cd/callbacks.c:661
 msgid "Stopped"
 msgstr "Leállítva"
 
-#: gnome-cd/callbacks.c:661
+#: gnome-cd/callbacks.c:667
 msgid "Disc error"
 msgstr "Lemezhiba"
 
-#: gnome-cd/callbacks.c:672 gnome-cd/callbacks.c:767
+#: gnome-cd/callbacks.c:678 gnome-cd/callbacks.c:775
 msgid "No disc"
 msgstr "Nincs lemez"
 
-#: gnome-cd/callbacks.c:795
+#: gnome-cd/callbacks.c:803
 msgid "Drive open"
 msgstr "Meghajtó nyitva"
 
-#: gnome-cd/callbacks.c:819
+#: gnome-cd/callbacks.c:829
 msgid "Data CD"
 msgstr "Adat CD"
 
-#: gnome-cd/callbacks.c:841 gnome-cd/callbacks.c:846
+#: gnome-cd/callbacks.c:853 gnome-cd/callbacks.c:858
 msgid "No Cdrom"
 msgstr "Nincs CD-ROM"
 
-#: gnome-cd/callbacks.c:857
+#: gnome-cd/callbacks.c:871
 msgid "Drive Error"
 msgstr "Meghajtóhiba"
 
-#: gnome-cd/callbacks.c:881
+#: gnome-cd/callbacks.c:893
 msgid "A CD player for GNOME"
 msgstr "CD-lejátszó program a GNOME-hoz"
+
+#: gnome-cd/callbacks.c:1114
+msgid "Contents in the CDDB have changed"
+msgstr ""
+
+#: gnome-cd/callbacks.c:1115
+msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+msgstr ""
+
+#: gnome-cd/callbacks.c:1116
+msgid "Do you wish to continue?"
+msgstr ""
+
+#. Set the tooltip
+#: gnome-cd/callbacks.c:1189 gnome-cd/gnome-cd.c:519
+#, fuzzy, c-format
+msgid "Volume %d%%"
+msgstr "Hangerőmérő"
 
 #: gnome-cd/cdrom.c:368
 #, c-format
@@ -1024,40 +1037,45 @@ msgstr "Elhelyezkedés"
 msgid "The orientation of the tray."
 msgstr "A tálca elhelyezkedése."
 
-#: gnome-cd/gnome-cd.c:222
+#: gnome-cd/gnome-cd.c:241
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Ismeretlen"
 
-#: gnome-cd/gnome-cd.c:336
+#: gnome-cd/gnome-cd.c:357
 msgid "P_revious track"
 msgstr "_Előző szám"
 
-#: gnome-cd/gnome-cd.c:337 grecord/gsr.xml.h:44
+#: gnome-cd/gnome-cd.c:358 grecord/src/gsr-window.c:1662
 msgid "_Stop"
 msgstr "_Leállítás"
 
-#: gnome-cd/gnome-cd.c:338
+#: gnome-cd/gnome-cd.c:359
 msgid "_Play / Pause"
 msgstr "_Lejátszás / Szünet"
 
-#: gnome-cd/gnome-cd.c:339
+#: gnome-cd/gnome-cd.c:360
 msgid "_Next track"
 msgstr "_Következő szám"
 
-#: gnome-cd/gnome-cd.c:340
+#: gnome-cd/gnome-cd.c:361
 msgid "_Eject disc"
 msgstr "Le_mez kiadása"
 
-#: gnome-cd/gnome-cd.c:341 grecord/gsr.xml.h:37
+#. Help menu
+#: gnome-cd/gnome-cd.c:362 grecord/src/gsr-window.c:1666
 msgid "_Help"
 msgstr "_Súgó"
 
-#: gnome-cd/gnome-cd.c:342
+#: gnome-cd/gnome-cd.c:363
 msgid "_About CD player"
 msgstr "CD-lejátszó _névjegye"
 
-#: gnome-cd/gnome-cd.c:531
+#: gnome-cd/gnome-cd.c:364
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: gnome-cd/gnome-cd.c:598
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1068,15 +1086,15 @@ msgstr ""
 "amely egy párbeszédablakot nyit meg, ahol beállíthatja\n"
 "a CD-eszközt. A \"Kilépés\" gombbal kiléphet a CD-lejátszóból."
 
-#: gnome-cd/gnome-cd.c:535
+#: gnome-cd/gnome-cd.c:602
 msgid "Set device"
 msgstr "Eszköz megadása"
 
-#: gnome-cd/gnome-cd.c:537
+#: gnome-cd/gnome-cd.c:604
 msgid "No CD device"
 msgstr "Nincs CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:590
+#: gnome-cd/gnome-cd.c:657
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1093,96 +1111,96 @@ msgstr ""
 "meg, ahol beállíthatja a CD-eszközt. A \"Kilépés\" gombbal kiléphet a CD-"
 "lejátszó programból"
 
-#: gnome-cd/gnome-cd.c:594
+#: gnome-cd/gnome-cd.c:661
 msgid "_Details"
 msgstr "_Részletek"
 
-#: gnome-cd/gnome-cd.c:595
+#: gnome-cd/gnome-cd.c:662
 msgid "_Set device"
 msgstr "_Eszköz megadása"
 
-#: gnome-cd/gnome-cd.c:597
+#: gnome-cd/gnome-cd.c:664
 msgid "Invalid CD device"
 msgstr "Érvénytelen CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:664
-msgid "Volume control"
-msgstr "Hangerőszabályozó"
-
-#: gnome-cd/gnome-cd.c:675
+#: gnome-cd/gnome-cd.c:739
 msgid "Position"
 msgstr "Pozíció"
 
-#: gnome-cd/gnome-cd.c:692
+#: gnome-cd/gnome-cd.c:756
 msgid "Open track editor"
 msgstr "Számszerkesztő megnyitása"
 
-#: gnome-cd/gnome-cd.c:693
+#: gnome-cd/gnome-cd.c:757
 msgid "Track editor"
 msgstr "Számszerkesztő"
 
-#: gnome-cd/gnome-cd.c:700
+#: gnome-cd/gnome-cd.c:764
 msgid "Open preferences"
 msgstr "Beállítások megnyitása"
 
-#: gnome-cd/gnome-cd.c:701
+#: gnome-cd/gnome-cd.c:765
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: gnome-cd/gnome-cd.c:709
+#: gnome-cd/gnome-cd.c:773
 msgid "Track List"
 msgstr "Számok listája"
 
-#: gnome-cd/gnome-cd.c:730
+#: gnome-cd/gnome-cd.c:792
 msgid "Previous track"
 msgstr "Előző szám"
 
-#: gnome-cd/gnome-cd.c:730
+#: gnome-cd/gnome-cd.c:792
 msgid "Previous"
 msgstr "Előző"
 
-#: gnome-cd/gnome-cd.c:734
+#: gnome-cd/gnome-cd.c:796
 msgid "Rewind"
 msgstr "Vissza"
 
-#: gnome-cd/gnome-cd.c:751
+#: gnome-cd/gnome-cd.c:813
 msgid "Play / Pause"
 msgstr "Lejátszás / Szünet"
 
-#: gnome-cd/gnome-cd.c:756 grecord/gsr.xml.h:30
+#: gnome-cd/gnome-cd.c:818
 msgid "Stop"
 msgstr "Leállítás"
 
-#: gnome-cd/gnome-cd.c:760
+#: gnome-cd/gnome-cd.c:822
 msgid "Fast forward"
 msgstr "Gyorsan előre"
 
-#: gnome-cd/gnome-cd.c:768
+#: gnome-cd/gnome-cd.c:830
 msgid "Next track"
 msgstr "Következő szám"
 
-#: gnome-cd/gnome-cd.c:772
+#: gnome-cd/gnome-cd.c:834
 msgid "Eject CD"
 msgstr "CD kiadása"
 
-#: gnome-cd/gnome-cd.c:772
+#: gnome-cd/gnome-cd.c:834
 msgid "Eject"
 msgstr "Kiadás"
 
-#: gnome-cd/gnome-cd.c:905
+#: gnome-cd/gnome-cd.c:967
 msgid "CD device to use"
 msgstr "Használandó CD-eszköz"
 
-#: gnome-cd/gnome-cd.c:907
+#: gnome-cd/gnome-cd.c:969
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Csak akkor induljon el, ha még nem fut másik CD-lejátszó alkalmazás"
 
-#: gnome-cd/gnome-cd.c:909
+#: gnome-cd/gnome-cd.c:971
 msgid "Play the CD on startup"
 msgstr "CD lejátszása indításkor"
 
-#: gnome-cd/gnome-cd.c:942 grecord/src/gnome-recorder.c:196
-#: gst-mixer/src/main.c:228
+#: gnome-cd/gnome-cd.c:973
+msgid "Start iconified to tray"
+msgstr ""
+
+#: gnome-cd/gnome-cd.c:1006 grecord/src/gnome-recorder.c:190
+#: gst-mixer/src/main.c:242
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
@@ -1191,7 +1209,7 @@ msgstr ""
 "futtatásával"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:959
+#: gnome-cd/gnome-cd.c:1023
 msgid "Cannot create player"
 msgstr "Lejátszó létrehozása sikertelen"
 
@@ -1200,40 +1218,61 @@ msgid "Play audio CDs"
 msgstr "Audio CD-k lejátszására"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player theme"
+#, fuzzy
+msgid "CD player Volume"
 msgstr "CD-lejátszó témája"
 
 #: gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "CD player theme"
+msgstr "CD-lejátszó témája"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "Device path"
 msgstr "Eszköz elérési útja"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:3
+#: gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Eject the CD when CD player quits?"
 msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:4
+#: gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Play when the CD player starts?"
 msgstr "Lejátssza a CD-t a CD-lejátszó elindulásakor?"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:5
+#: gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Should the CD be ejected when the CD player quits?"
 msgstr "Kiadja a CD-t a CD-lejátszó bezárásakor?"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:6
+#: gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr ""
 "Annak a CD-meghajtónak az elérési útja, amelyet a CD-lejátszó CD-lejátszásra "
 "használ"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:7
+#: gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "What theme should the CD player use for its appearance"
 msgstr "Milyen témával jelenjen meg a CD-lejátszó"
 
-#: gnome-cd/gnome-cd.schemas.in.in.h:8
+#: gnome-cd/gnome-cd.schemas.in.in.h:9
+#, fuzzy
+msgid "What volume should the CD player use when it is started?"
+msgstr "Milyen témával jelenjen meg a CD-lejátszó"
+
+#: gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "A CD-lejátszó indításakor kezdje el lejátszani a CD-t?"
 
-#: gnome-cd/preferences.c:84
+#: gnome-cd/gst-cdparanoia-cdrom.c:274
+msgid ""
+"Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
+msgstr ""
+
+#: gnome-cd/gst-cdparanoia-cdrom.c:300
+msgid ""
+"Failed to set up audio output; please install a GStreamer plugin for your "
+"soundcard."
+msgstr ""
+
+#: gnome-cd/preferences.c:81
 #, c-format
 msgid ""
 "%s\n"
@@ -1242,43 +1281,43 @@ msgstr ""
 "%s\n"
 "Ez azt jelenti, hogy a CD-lejátszó nem tud majd futni."
 
-#: gnome-cd/preferences.c:85
+#: gnome-cd/preferences.c:82
 msgid "Error setting device"
 msgstr "Hiba az eszköz beállításánál"
 
-#: gnome-cd/preferences.c:586
+#: gnome-cd/preferences.c:583
 msgid "CD Player Preferences"
 msgstr "CD-lejátszó beállításai"
 
-#: gnome-cd/preferences.c:625
+#: gnome-cd/preferences.c:622
 msgid "_Device:"
 msgstr "_Eszköz:"
 
-#: gnome-cd/preferences.c:639
+#: gnome-cd/preferences.c:636
 msgid "Behavior"
 msgstr "Viselkedés"
 
-#: gnome-cd/preferences.c:652
+#: gnome-cd/preferences.c:649
 msgid "Start _playback when CD Player starts"
 msgstr "Kezdje _lejátszani a CD-t, amikor a CD-lejátszó elindul"
 
-#: gnome-cd/preferences.c:653
+#: gnome-cd/preferences.c:650
 msgid "Start playback when CD Player starts"
 msgstr "Kezdje lejátszani a CD-t, amikor a CD-lejátszó elindul"
 
-#: gnome-cd/preferences.c:665
+#: gnome-cd/preferences.c:662
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Próbálja meg _kinyitni a CD tálcáját, amikor a CD-lejátszó kilép"
 
-#: gnome-cd/preferences.c:666
+#: gnome-cd/preferences.c:663
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Próbálja meg kinyitni a CD tálcáját, amikor a CD-lejátszó kilép"
 
-#: gnome-cd/preferences.c:682
+#: gnome-cd/preferences.c:679
 msgid "Themes"
 msgstr "Témák"
 
-#: gnome-cd/preferences.c:694
+#: gnome-cd/preferences.c:691
 msgid "_Select a theme:"
 msgstr "_Téma kiválasztása:"
 
@@ -1286,175 +1325,10 @@ msgstr "_Téma kiválasztása:"
 msgid "Record sound clips"
 msgstr "Hangfelvétel készítése"
 
-#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1137
-#: grecord/src/gsr-window.c:1473
+#: grecord/gnome-sound-recorder.desktop.in.h:2 grecord/src/gsr-window.c:1065
 msgid "Sound Recorder"
 msgstr "Hangrögzítő"
 
-#: grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Névjegy"
-
-#: grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Bezárás"
-
-#: grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "A jelenlegi ablak bezárása"
-
-#: grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Tartalom"
-
-#: grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Új hangminta"
-
-#: grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "A Hangrögzítő súgójának megjelenítése"
-
-#: grecord/gsr.xml.h:7 grecord/src/gsr-window.c:1006
-msgid "File Information"
-msgstr "Fájl adatai"
-
-#: grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "Fájl _adatai"
-
-#: grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Fő eszköztár"
-
-#: grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Új"
-
-#: grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Megnyitás"
-
-#: grecord/gsr.xml.h:12 grecord/src/gsr-window.c:353
-msgid "Open a file"
-msgstr "Fájl megnyitása"
-
-#: grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Hanglejátszás"
-
-#: grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Kilépés"
-
-#: grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Kilépés az alkalmazásból"
-
-#: grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "Legutóbbi _fájlok"
-
-#: grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Felvétel"
-
-#: grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Hangfelvétel készítése"
-
-#: grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Mixer futtatása"
-
-#: grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "_Mixer futtatása"
-
-#: grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "A keverőpult futtatása"
-
-#: grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Mentés"
-
-#: grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Mentés másként"
-
-#: grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Men_tés másként..."
-
-#: grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "A jelenlegi fájl mentése"
-
-#: grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "A jelenlegi fájl mentése más néven"
-
-#: grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "A jelenlegi fájl adatai"
-
-#: grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "A Hangrögzítő adatai"
-
-#: grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Hang leállítása"
-
-#: grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Névjegy"
-
-#: grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Ablak bezárása"
-
-#: grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Tartalom"
-
-#: grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Vezérlés"
-
-#: grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fájl"
-
-#: grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "Ú_j"
-
-#: grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Megnyitás..."
-
-#: grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Lejátszás"
-
-#: grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Kilépés"
-
-#: grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "_Felvétel"
-
-#: grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "M_entés"
-
-#. Translator comment: untitled here implies that
-#. * there is no active sound sample. Any newly
-#. * recorded samples will be saved to disk with this
-#. * name as default value.
 #. Translator comment: Untitled here implies a track without a
 #. * name. See also the translation in gnome-recorder.c:94. Those
 #. * two strings should match! If the track is unnamed, we will
@@ -1464,60 +1338,74 @@ msgstr "M_entés"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: grecord/src/gnome-recorder.c:94 grecord/src/gsr-window.c:786
-#: grecord/src/gsr-window.c:1896
-#, c-format
+#: grecord/src/gnome-recorder.c:127 grecord/src/gsr-window.c:728
+#: grecord/src/gsr-window.c:1499 grecord/src/gsr-window.c:2083
+#, fuzzy
 msgid "Untitled"
-msgid_plural "Untitled-%d"
-msgstr[0] "Névtelen"
-msgstr[1] "Névtelen-%d"
+msgstr "Névtelen"
 
-#: grecord/src/gnome-recorder.c:168
+#: grecord/src/gnome-recorder.c:129 grecord/src/gsr-window.c:1501
+#, fuzzy, c-format
+msgid "Untitled-%d"
+msgstr "Névtelen"
+
+#: grecord/src/gnome-recorder.c:159
 msgid "Dummy option"
 msgstr "Üres opció"
 
-#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:184 grecord/src/gsr-window.c:189
+#: grecord/src/gsr-window.c:195 grecord/src/gsr-window.c:199
 msgid "hours"
 msgstr "óra"
 
-#: grecord/src/gsr-window.c:257 grecord/src/gsr-window.c:262
-#: grecord/src/gsr-window.c:268 grecord/src/gsr-window.c:272
+#: grecord/src/gsr-window.c:184 grecord/src/gsr-window.c:189
+#: grecord/src/gsr-window.c:195 grecord/src/gsr-window.c:199
 msgid "hour"
 msgstr "óra"
 
-#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
+#: grecord/src/gsr-window.c:185 grecord/src/gsr-window.c:190
+#: grecord/src/gsr-window.c:206 grecord/src/gsr-window.c:210
 msgid "minutes"
 msgstr "perc"
 
-#: grecord/src/gsr-window.c:258 grecord/src/gsr-window.c:263
-#: grecord/src/gsr-window.c:279 grecord/src/gsr-window.c:283
+#: grecord/src/gsr-window.c:185 grecord/src/gsr-window.c:190
+#: grecord/src/gsr-window.c:206 grecord/src/gsr-window.c:210
 msgid "minute"
 msgstr "perc"
 
-#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
-#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:288
-#: grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:186 grecord/src/gsr-window.c:196
+#: grecord/src/gsr-window.c:207 grecord/src/gsr-window.c:215
+#: grecord/src/gsr-window.c:218
 msgid "seconds"
 msgstr "másodperc"
 
-#: grecord/src/gsr-window.c:259 grecord/src/gsr-window.c:269
-#: grecord/src/gsr-window.c:280 grecord/src/gsr-window.c:291
+#: grecord/src/gsr-window.c:186 grecord/src/gsr-window.c:196
+#: grecord/src/gsr-window.c:207 grecord/src/gsr-window.c:218
 msgid "second"
 msgstr "másodperc"
 
-#: grecord/src/gsr-window.c:405 grecord/src/gsr-window.c:1425
-#: grecord/src/gsr-window.c:1589 grecord/src/gsr-window.c:1859
+#: grecord/src/gsr-window.c:282 grecord/src/gsr-window.c:1642
+msgid "Open a file"
+msgstr "Fájl megnyitása"
+
+#: grecord/src/gsr-window.c:327
+#, c-format
+msgid ""
+"Unable to load file:\n"
+"%s"
+msgstr ""
+
+#: grecord/src/gsr-window.c:387 grecord/src/gsr-window.c:1374
+#: grecord/src/gsr-window.c:1540 grecord/src/gsr-window.c:1917
 msgid "Ready"
 msgstr "Kész"
 
 #. Add replace button
-#: grecord/src/gsr-window.c:619
+#: grecord/src/gsr-window.c:558
 msgid "_Replace"
 msgstr "_Csere"
 
-#: grecord/src/gsr-window.c:636
+#: grecord/src/gsr-window.c:575
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1526,119 +1414,118 @@ msgstr ""
 "Már létezik \"%s\" nevű fájl. \n"
 "Szeretné lecserélni azzal, amit épp menteni készül?"
 
-#: grecord/src/gsr-window.c:689
+#: grecord/src/gsr-window.c:622
 #, c-format
 msgid "Could not save the file \" %s\""
 msgstr "Nem lehet menteni a(z) \"%s\" fájlt"
 
-#: grecord/src/gsr-window.c:698
+#: grecord/src/gsr-window.c:631
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Nem lehet menteni a(z) \"%s\" fájlt"
 
-#: grecord/src/gsr-window.c:746
+#: grecord/src/gsr-window.c:673
 msgid "Save file as"
 msgstr "Fájl mentése másként"
 
-#: grecord/src/gsr-window.c:807
+#: grecord/src/gsr-window.c:748
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nincs telepítve az elérési útvonalon."
 
-#: grecord/src/gsr-window.c:817
+#: grecord/src/gsr-window.c:758
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Hiba történt %s indításakor: %s"
 
-#: grecord/src/gsr-window.c:894
+#: grecord/src/gsr-window.c:835
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nincs mentve)"
 
-#: grecord/src/gsr-window.c:907
+#: grecord/src/gsr-window.c:848
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bájt)"
 msgstr[1] "%s (%llu bájt)"
 
-#: grecord/src/gsr-window.c:911
+#: grecord/src/gsr-window.c:852
 msgid "Unknown size"
 msgstr "Ismeretlen méret"
 
-#: grecord/src/gsr-window.c:931
+#: grecord/src/gsr-window.c:872
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: grecord/src/gsr-window.c:940
+#: grecord/src/gsr-window.c:881
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: grecord/src/gsr-window.c:952
+#: grecord/src/gsr-window.c:892
 msgid "1 (mono)"
 msgstr "1 (monó)"
 
-#: grecord/src/gsr-window.c:956
+#: grecord/src/gsr-window.c:895
 msgid "2 (stereo)"
 msgstr "2 (sztereó)"
 
-#: grecord/src/gsr-window.c:985
+#: grecord/src/gsr-window.c:922
 #, c-format
 msgid "%s Information"
 msgstr "%s adatai"
 
-#: grecord/src/gsr-window.c:1020
+#: grecord/src/gsr-window.c:944
+msgid "File Information"
+msgstr "Fájl adatai"
+
+#: grecord/src/gsr-window.c:958
 msgid "Folder:"
 msgstr "Mappa:"
 
-#: grecord/src/gsr-window.c:1026 grecord/src/gsr-window.c:1791
+#: grecord/src/gsr-window.c:964 grecord/src/gsr-window.c:1877
 msgid "Filename:"
 msgstr "Fájlnév:"
 
-#: grecord/src/gsr-window.c:1032
+#: grecord/src/gsr-window.c:970
 msgid "File size:"
 msgstr "Fájl mérete:"
 
-#: grecord/src/gsr-window.c:1041
+#: grecord/src/gsr-window.c:979
 msgid "Audio Information"
 msgstr "Hanginformáció"
 
-#: grecord/src/gsr-window.c:1055
+#: grecord/src/gsr-window.c:993
 msgid "File duration:"
 msgstr "Fájl hossza:"
 
-#: grecord/src/gsr-window.c:1061
+#: grecord/src/gsr-window.c:999
 msgid "Number of channels:"
 msgstr "Csatornák száma:"
 
-#: grecord/src/gsr-window.c:1067
+#: grecord/src/gsr-window.c:1005
 msgid "Sample rate:"
 msgstr "Mintavételezés:"
 
-#: grecord/src/gsr-window.c:1073
+#: grecord/src/gsr-window.c:1011
 msgid "Bit rate:"
 msgstr "Bitráta:"
 
-#: grecord/src/gsr-window.c:1139
+#: grecord/src/gsr-window.c:1068
 msgid "A sound recorder for GNOME"
 msgstr "Hangrögzítő program a GNOME-hoz"
 
-#: grecord/src/gsr-window.c:1409
+#: grecord/src/gsr-window.c:1355
 msgid "Playing..."
 msgstr "Lejátszás..."
 
-#: grecord/src/gsr-window.c:1469
-#, c-format
-msgid "%s.%s - Sound Recorder"
-msgstr "%s.%s - Hangrögzítő"
-
-#: grecord/src/gsr-window.c:1560
+#: grecord/src/gsr-window.c:1490
 msgid "Recording..."
 msgstr "Felvétel..."
 
-#: grecord/src/gsr-window.c:1620
+#: grecord/src/gsr-window.c:1573
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
@@ -1646,17 +1533,17 @@ msgstr ""
 "Nincs beállítva alapértelmezett GStreamer hangbemeneti elem - telepítse a "
 "GStreamer-GConf sémákat vagy állítson be egyet kézzel"
 
-#: grecord/src/gsr-window.c:1635
+#: grecord/src/gsr-window.c:1591
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "GStreamer-kódolóelemek létrehozása sikertelen - ellenőrizze a "
 "kódolóbeállításokat"
 
-#: grecord/src/gsr-window.c:1645
+#: grecord/src/gsr-window.c:1601
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "Nem található a GStreamer filesink bővítmény - telepítse"
 
-#: grecord/src/gsr-window.c:1653
+#: grecord/src/gsr-window.c:1610
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
@@ -1664,19 +1551,128 @@ msgstr ""
 "Kódolóelemek linkelése a fájlkimeneti elemhez sikertelen - lehet, hogy "
 "érvénytelen kódolót választott ki"
 
-#: grecord/src/gsr-window.c:1759
+#. File menu
+#: grecord/src/gsr-window.c:1638
+msgid "_File"
+msgstr "_Fájl"
+
+#: grecord/src/gsr-window.c:1640
+msgid "Create a new sample"
+msgstr "Új hangminta"
+
+#: grecord/src/gsr-window.c:1641
+msgid "_Open..."
+msgstr "_Megnyitás..."
+
+#: grecord/src/gsr-window.c:1643
+msgid "_Save"
+msgstr "M_entés"
+
+#: grecord/src/gsr-window.c:1644
+msgid "Save the current file"
+msgstr "A jelenlegi fájl mentése"
+
+#: grecord/src/gsr-window.c:1645
+msgid "Save _As..."
+msgstr "Men_tés másként..."
+
+#: grecord/src/gsr-window.c:1646
+msgid "Save the current file with a different name"
+msgstr "A jelenlegi fájl mentése más néven"
+
+#: grecord/src/gsr-window.c:1647
+msgid "Run _Mixer"
+msgstr "_Mixer futtatása"
+
+#: grecord/src/gsr-window.c:1648
+msgid "Run the audio mixer"
+msgstr "A keverőpult futtatása"
+
+#: grecord/src/gsr-window.c:1649
+msgid "File _Information"
+msgstr "Fájl _adatai"
+
+#: grecord/src/gsr-window.c:1650
+msgid "Show information about the current file"
+msgstr "A jelenlegi fájl adatai"
+
+#: grecord/src/gsr-window.c:1652
+#, fuzzy
+msgid "Close the current file"
+msgstr "A jelenlegi fájl mentése"
+
+#: grecord/src/gsr-window.c:1654
+#, fuzzy
+msgid "Quit the program"
+msgstr "Kilépés az alkalmazásból"
+
+#. Control menu
+#: grecord/src/gsr-window.c:1657
+msgid "_Control"
+msgstr "_Vezérlés"
+
+#: grecord/src/gsr-window.c:1658
+msgid "_Record"
+msgstr "_Felvétel"
+
+#: grecord/src/gsr-window.c:1659
+msgid "Record sound"
+msgstr "Hangfelvétel készítése"
+
+#: grecord/src/gsr-window.c:1660
+msgid "_Play"
+msgstr "_Lejátszás"
+
+#: grecord/src/gsr-window.c:1661
+msgid "Play sound"
+msgstr "Hanglejátszás"
+
+#: grecord/src/gsr-window.c:1663
+msgid "Stop sound"
+msgstr "Hang leállítása"
+
+#: grecord/src/gsr-window.c:1667
+msgid "_Contents"
+msgstr "_Tartalom"
+
+#: grecord/src/gsr-window.c:1668
+msgid "Open the manual"
+msgstr ""
+
+#: grecord/src/gsr-window.c:1670
+#, fuzzy
+msgid "About this application"
+msgstr "Kilépés az alkalmazásból"
+
+#: grecord/src/gsr-window.c:1767
+msgid "Could not load ui.xml. The program may be not properly installed"
+msgstr ""
+
+#: grecord/src/gsr-window.c:1789
+msgid "Open"
+msgstr "Megnyitás"
+
+#: grecord/src/gsr-window.c:1791
+msgid "Save"
+msgstr "Mentés"
+
+#: grecord/src/gsr-window.c:1793
+msgid "Save As"
+msgstr "Mentés másként"
+
+#: grecord/src/gsr-window.c:1846
 msgid "Record as"
 msgstr "Felvétel mint"
 
-#: grecord/src/gsr-window.c:1776
+#: grecord/src/gsr-window.c:1863
 msgid "File information"
 msgstr "Fájlinformáció"
 
-#: grecord/src/gsr-window.c:1798
+#: grecord/src/gsr-window.c:1883
 msgid "<none>"
 msgstr "<nincs>"
 
-#: grecord/src/gsr-window.c:1807
+#: grecord/src/gsr-window.c:1892
 msgid "Length:"
 msgstr "Hossz:"
 
@@ -1684,10 +1680,26 @@ msgstr "Hossz:"
 msgid "Adjust the volume level"
 msgstr "Hangerő beállítása"
 
-#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:146
-#: gst-mixer/src/window.c:380
+#: gst-mixer/gnome-volume-control.desktop.in.h:2 gst-mixer/src/window.c:147
+#: gst-mixer/src/window.c:383
 msgid "Volume Control"
 msgstr "Hangerőszabályozó"
+
+#: gst-mixer/gnome-volume-control.schemas.in.h:1
+msgid "Height of the Window"
+msgstr ""
+
+#: gst-mixer/gnome-volume-control.schemas.in.h:2
+msgid "Height of the Window to be displayed"
+msgstr ""
+
+#: gst-mixer/gnome-volume-control.schemas.in.h:3
+msgid "Width of the Window"
+msgstr ""
+
+#: gst-mixer/gnome-volume-control.schemas.in.h:4
+msgid "Width of the Window to be displayed"
+msgstr ""
 
 #: gst-mixer/src/element.c:230
 msgid "Playback"
@@ -1710,37 +1722,36 @@ msgstr "Beállítások"
 #. *     if we've found that?
 #.
 #. create element
-#. and recreate this object, since we give it to the mixer
-#: gst-mixer/src/main.c:75 gst-mixer/src/main.c:78 gst-mixer/src/main.c:134
+#: gst-mixer/src/main.c:76 gst-mixer/src/main.c:79 gst-mixer/src/main.c:135
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "Ismeretlen hangerőszabályozó %d"
 
-#: gst-mixer/src/main.c:253
+#: gst-mixer/src/main.c:267
 msgid "No volume control elements and/or devices found."
 msgstr "Hangerőszabályozó elemek és/vagy eszközök nem találhatóak."
 
 #. make window look cute
-#: gst-mixer/src/preferences.c:108
+#: gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "Hangerőszabályozó beállításai"
 
-#: gst-mixer/src/preferences.c:121
+#: gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "Látható számok ki_választása:"
 
-#: gst-mixer/src/track.c:220
+#: gst-mixer/src/track.c:221
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: gst-mixer/src/track.c:260
+#: gst-mixer/src/track.c:261
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s némítása/visszakapcsolása"
 
-#: gst-mixer/src/track.c:275
+#: gst-mixer/src/track.c:276
 #, c-format
 msgid "Track %s: mute"
 msgstr "%s sáv: némítás"
@@ -1750,50 +1761,50 @@ msgstr "%s sáv: némítás"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: gst-mixer/src/track.c:355
+#: gst-mixer/src/track.c:356
 #, c-format
 msgid "Toggle audio capture from %s"
 msgstr "Audio felvétel átváltása a következőről: %s"
 
-#: gst-mixer/src/track.c:370
+#: gst-mixer/src/track.c:371
 #, c-format
 msgid "Track %s: audio capture"
 msgstr "%s sáv: audio felvétel"
 
-#: gst-mixer/src/track.c:449
+#: gst-mixer/src/track.c:450
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s opció kiválasztása"
 
-#: gst-mixer/src/volume.c:132
+#: gst-mixer/src/volume.c:135
 msgid "mono"
 msgstr "monó"
 
-#: gst-mixer/src/volume.c:134
+#: gst-mixer/src/volume.c:137
 msgid "left"
 msgstr "bal"
 
-#: gst-mixer/src/volume.c:134
+#: gst-mixer/src/volume.c:137
 msgid "right"
 msgstr "jobb"
 
-#: gst-mixer/src/volume.c:137
+#: gst-mixer/src/volume.c:140
 msgid "front left"
 msgstr "szemközti bal"
 
-#: gst-mixer/src/volume.c:138
+#: gst-mixer/src/volume.c:141
 msgid "front right"
 msgstr "szemközti jobb"
 
-#: gst-mixer/src/volume.c:139
+#: gst-mixer/src/volume.c:142
 msgid "rear left"
 msgstr "bal hátsó"
 
-#: gst-mixer/src/volume.c:140
+#: gst-mixer/src/volume.c:143
 msgid "rear right"
 msgstr "jobb hátsó"
 
-#: gst-mixer/src/volume.c:141
+#: gst-mixer/src/volume.c:144
 msgid "front center"
 msgstr "szemközti középső"
 
@@ -1801,72 +1812,72 @@ msgstr "szemközti középső"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: gst-mixer/src/volume.c:146
+#: gst-mixer/src/volume.c:149
 msgid "LFE"
 msgstr "LFE"
 
-#: gst-mixer/src/volume.c:147
+#: gst-mixer/src/volume.c:150
 msgid "side left"
 msgstr "bal oldal"
 
-#: gst-mixer/src/volume.c:148
+#: gst-mixer/src/volume.c:151
 msgid "side right"
 msgstr "jobb oldal"
 
-#: gst-mixer/src/volume.c:149
+#: gst-mixer/src/volume.c:152
 msgid "unknown"
 msgstr "ismeretlen"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: gst-mixer/src/volume.c:155
+#: gst-mixer/src/volume.c:158
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s csatorna hangereje %s eszközön"
 
-#: gst-mixer/src/volume.c:203
+#: gst-mixer/src/volume.c:206
 #, c-format
 msgid "Track %s"
 msgstr "   sáv            %s"
 
-#: gst-mixer/src/volume.c:206
+#: gst-mixer/src/volume.c:209
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%d. csatorna %s sávon"
 
-#: gst-mixer/src/volume.c:209
+#: gst-mixer/src/volume.c:212
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "%s sáv, %d. csatorna"
 
-#: gst-mixer/src/volume.c:247
+#: gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "%s sáv: csatornák összekapcsolása"
 
-#: gst-mixer/src/window.c:109
+#: gst-mixer/src/window.c:110
 msgid "_Change Device"
 msgstr "Eszköz _megváltoztatása"
 
-#: gst-mixer/src/window.c:110
+#: gst-mixer/src/window.c:111
 msgid "Control volume on a different device"
 msgstr "Hangerő szabályzása egy másik eszközön"
 
-#: gst-mixer/src/window.c:179
+#: gst-mixer/src/window.c:182
 #, c-format
 msgid "Change device to %s"
 msgstr "Eszköz megváltoztatása erre: %s"
 
 #. window title and menu selection
 #. change window title
-#: gst-mixer/src/window.c:223 gst-mixer/src/window.c:426
+#: gst-mixer/src/window.c:226 gst-mixer/src/window.c:430
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Hangerőszabályozó: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: gst-mixer/src/window.c:375
+#: gst-mixer/src/window.c:377
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -1877,7 +1888,7 @@ msgstr ""
 "Szél Miklós <mukka@freemail.hu>\n"
 "Tímár András <timar@gnome.hu>"
 
-#: gst-mixer/src/window.c:383
+#: gst-mixer/src/window.c:386
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Egy GNOME/GStreamer-alapú hangerőszabályozó alkalmazás"
 
@@ -1959,9 +1970,9 @@ msgid "_Test"
 msgstr "_Teszt"
 
 #: gstreamer-properties/pipeline-constants.c:63
-#: gstreamer-properties/pipeline-constants.c:85
-#: gstreamer-properties/pipeline-constants.c:104
-#: gstreamer-properties/pipeline-constants.c:119
+#: gstreamer-properties/pipeline-constants.c:90
+#: gstreamer-properties/pipeline-constants.c:109
+#: gstreamer-properties/pipeline-constants.c:124
 msgid "Custom"
 msgstr "Egyéni"
 
@@ -2290,3 +2301,63 @@ msgstr "A kimenet hangerejét figyeli"
 #: vu-meter/vumeter.desktop.in.h:2
 msgid "Volume monitor"
 msgstr "Hangerőmérő"
+
+#~ msgid "Expander Size"
+#~ msgstr "Expander mérete"
+
+#~ msgid "Size of the expander arrow"
+#~ msgstr "A széthúzó nyíl mérete"
+
+#~ msgid "Playing"
+#~ msgstr "Lejátszás"
+
+#~ msgid "Volume control"
+#~ msgstr "Hangerőszabályozó"
+
+#~ msgid "About"
+#~ msgstr "Névjegy"
+
+#~ msgid "Close"
+#~ msgstr "Bezárás"
+
+#~ msgid "Close this window"
+#~ msgstr "A jelenlegi ablak bezárása"
+
+#~ msgid "Contents"
+#~ msgstr "Tartalom"
+
+#~ msgid "Display help for Sound Recorder"
+#~ msgstr "A Hangrögzítő súgójának megjelenítése"
+
+#~ msgid "Main toolbar"
+#~ msgstr "Fő eszköztár"
+
+#~ msgid "New"
+#~ msgstr "Új"
+
+#~ msgid "Quit"
+#~ msgstr "Kilépés"
+
+#~ msgid "Recent _Files"
+#~ msgstr "Legutóbbi _fájlok"
+
+#~ msgid "Record"
+#~ msgstr "Felvétel"
+
+#~ msgid "Run Mixer"
+#~ msgstr "Mixer futtatása"
+
+#~ msgid "Show information for Sound Recorder"
+#~ msgstr "A Hangrögzítő adatai"
+
+#~ msgid "_About"
+#~ msgstr "_Névjegy"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Ablak bezárása"
+
+#~ msgid "_New"
+#~ msgstr "Ú_j"
+
+#~ msgid "%s.%s - Sound Recorder"
+#~ msgstr "%s.%s - Hangrögzítő"

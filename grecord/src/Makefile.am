@@ -21,6 +21,8 @@ gnome_sound_recorder_SOURCES =	\
 uidir = $(datadir)/gnome-sound-recorder/ui
 ui_DATA = ui.xml
 
+EXTRA_DIST = $(ui_DATA)
+
 gnome_sound_recorder_LDADD =					\
 	$(GSR_LIBS)						\
 	$(top_builddir)/profiles/libgnome-media-profiles.la	\
