@@ -78,6 +78,8 @@ struct _GstCdparanoiaCDRomPrivate {
 
 	int check_playtime;
 	int end_playtime;
+
+	int volume;
 };
 
 static gboolean gst_cdparanoia_cdrom_eject (GnomeCDRom * cdrom,
@@ -306,6 +308,8 @@ build_pipeline (GstCdparanoiaCDRom * lcd, GError ** error)
 	conv = gst_element_factory_make ("audioconvert", "conv");
 	scale = gst_element_factory_make ("audioscale", "scale");
 	priv->vol_element = vol = gst_element_factory_make ("volume", "vol");
+	g_object_set (G_OBJECT (priv->vol_element), "volume",
+		      (gdouble) priv->volume / 255.0, NULL);
 
 	/* Now build the pipeline */
 	gst_bin_add_many (GST_BIN (pthread), queue, conv,
@@ -1258,7 +1262,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 		return FALSE;
 
 	g_object_get (G_OBJECT (priv->vol_element), "volume", &vol, NULL);
-	realstatus->volume = lrint (vol * 255.0);
+	realstatus->volume = priv->volume = lrint (vol * 255.0);
 	cur_gst_status =
 	    gst_element_get_state (GST_ELEMENT (priv->play_thread));
 
@@ -1418,6 +1422,7 @@ gst_cdparanoia_cdrom_set_volume (GnomeCDRom * cdrom,
 
 	g_object_set (G_OBJECT (priv->vol_element), "volume",
 		      (gdouble) volume / 255.0, NULL);
+	priv->volume = volume;
 
 	return TRUE;
 }
