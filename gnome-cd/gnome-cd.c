@@ -751,14 +751,6 @@ init_player (const char *device_override)
 	option_hbox = gtk_hbox_new (FALSE, 2);
 
 	/* Create app controls */
-	button = make_button_from_stock (gcd, GTK_STOCK_INDEX,
-					 G_CALLBACK(open_track_editor),
-					 _("Open track editor"),
-					 _("Track editor"));
-	gtk_widget_set_sensitive (button, FALSE);
-	gtk_box_pack_start (GTK_BOX (option_hbox), button, FALSE, FALSE, 0);
-	gcd->trackeditor_b = button;
-
 	button = make_button_from_stock (gcd, GTK_STOCK_PREFERENCES,
 					 G_CALLBACK(open_preferences),
 					 _("Open preferences"),
@@ -773,6 +765,14 @@ init_player (const char *device_override)
 			      _("Track List"), NULL );
 	gnome_cd_build_track_list_menu (gcd);
 	gtk_box_pack_start (GTK_BOX (option_hbox), gcd->tracks, TRUE, TRUE, 0);
+
+	button = make_button_from_stock (gcd, GTK_STOCK_INDEX,
+					 G_CALLBACK(open_track_editor),
+					 _("Open track editor"),
+					 _("Track editor"));
+	gtk_widget_set_sensitive (button, FALSE);
+	gtk_box_pack_start (GTK_BOX (option_hbox), button, FALSE, FALSE, 0);
+	gcd->trackeditor_b = button;
 
 	gtk_box_pack_start (GTK_BOX (gcd->vbox), option_hbox, FALSE, FALSE, 0);
 	
