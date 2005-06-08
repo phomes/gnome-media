@@ -1634,37 +1634,37 @@ calculate_format_value (GtkScale *scale,
 	
 static const GtkActionEntry menu_entries[] =
 {
-	/* File menu */
+	/* File menu.  */
 	{ "File", NULL, N_("_File") },
-	{ "FileNew", GTK_STOCK_NEW, NULL, "<control>N",
+	{ "FileNew", GTK_STOCK_NEW, NULL, NULL,
 	  N_("Create a new sample"), G_CALLBACK (file_new_cb) },
-	{ "FileOpen", GTK_STOCK_OPEN, N_("_Open..."), "<control>O",
+	{ "FileOpen", GTK_STOCK_OPEN, NULL, NULL,
 	  N_("Open a file"), G_CALLBACK (file_open_cb) },
-	{ "FileSave", GTK_STOCK_SAVE, N_("_Save"), "<control>S",
+	{ "FileSave", GTK_STOCK_SAVE, NULL, NULL,
 	  N_("Save the current file"), G_CALLBACK (file_save_cb) },
-	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
+	{ "FileSaveAs", GTK_STOCK_SAVE_AS, NULL, "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (file_save_as_cb) },
 	{ "RunMixer", GTK_STOCK_EXECUTE, N_("Run _Mixer"), NULL,
 	  N_("Run the audio mixer"), G_CALLBACK (run_mixer_cb) },
-	{ "FileProperties", GTK_STOCK_PROPERTIES, N_("File _Information"), NULL,
+	{ "FileProperties", GTK_STOCK_PROPERTIES, NULL, "<control>I",
 	  N_("Show information about the current file"), G_CALLBACK (file_properties_cb) },
-	{ "FileClose", GTK_STOCK_CLOSE, NULL, "<control>W",
+	{ "FileClose", GTK_STOCK_CLOSE, NULL, NULL,
 	  N_("Close the current file"), G_CALLBACK (file_close_cb) },
-	{ "Quit", GTK_STOCK_QUIT, NULL, "<control>Q",
+	{ "Quit", GTK_STOCK_QUIT, NULL, NULL,
 	  N_("Quit the program"), G_CALLBACK (quit_cb) },
 
 	/* Control menu */
 	{ "Control", NULL, N_("_Control") },
-	{ "Record", GTK_STOCK_MEDIA_RECORD, N_("_Record"), "<control>R",
+	{ "Record", GTK_STOCK_MEDIA_RECORD, NULL, "<control>R",
 	  N_("Record sound"), G_CALLBACK (record_cb) },
-	{ "Play", GTK_STOCK_MEDIA_PLAY, N_("_Play"), "<control>P",
+	{ "Play", GTK_STOCK_MEDIA_PLAY, NULL, "<control>P",
 	  N_("Play sound"), G_CALLBACK (play_cb) },
-	{ "Stop", GTK_STOCK_MEDIA_STOP, N_("_Stop"), "<control>X",
+	{ "Stop", GTK_STOCK_MEDIA_STOP, NULL, "<control>X",
 	  N_("Stop sound"), G_CALLBACK (stop_cb) },
 
 	/* Help menu */
 	{ "Help", NULL, N_("_Help") },
-	{"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1",
+	{"HelpContents", GTK_STOCK_HELP, NULL, NULL,
 	 N_("Open the manual"), G_CALLBACK (help_contents_cb) },
 	{ "About", GTK_STOCK_ABOUT, NULL, NULL,
 	 N_("About this application"), G_CALLBACK (about_cb) }
