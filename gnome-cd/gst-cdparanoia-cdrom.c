@@ -210,6 +210,19 @@ eos (GstElement * element, gpointer data)
 	    (GstCdparanoiaCDRomPrivate *) data;*/
 }
 
+static gboolean
+stop_playback_idle_func (gpointer data) 
+{
+	GstCdparanoiaCDRomPrivate *priv =
+	    (GstCdparanoiaCDRomPrivate *) data;
+		    
+	gst_element_set_state (GST_ELEMENT (priv->play_thread),
+                               GST_STATE_NULL);
+	priv->check_playtime = 0;
+							  
+	return FALSE;
+}
+
 static void
 check_playtime (GstBin * bin, gpointer data)
 {
@@ -224,9 +237,7 @@ check_playtime (GstBin * bin, gpointer data)
 	    gst_pad_query (GST_PAD (priv->cdp_pad), GST_QUERY_POSITION,
 			   &priv->sector_format, &value);
 	if (ret && priv->check_playtime && value >= priv->end_playtime) {
-		gst_element_set_state (GST_ELEMENT (priv->play_thread),
-				       GST_STATE_NULL);
-		priv->check_playtime = 0;
+		g_idle_add (stop_playback_idle_func, data);
 	} else {
 		for (i = 0; i < priv->number_tracks; i++) {
 			if (value <
