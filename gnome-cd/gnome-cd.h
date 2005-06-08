@@ -25,13 +25,6 @@
 #define NUMBER_OF_DISPLAY_LINES 5
 
 /* Stock icons */
-#define GNOME_CD_PLAY "media-play"
-#define GNOME_CD_PAUSE "media-pause"
-#define GNOME_CD_STOP "media-stop"
-#define GNOME_CD_PREVIOUS "media-prev"
-#define GNOME_CD_NEXT "media-next"
-#define GNOME_CD_FFWD "media-ffwd"
-#define GNOME_CD_REWIND "media-rewind"
 #define GNOME_CD_EJECT "media-eject"
 
 typedef struct _GnomeCDDiscInfo {

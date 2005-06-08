@@ -354,13 +354,13 @@ struct _MenuItem {
 };
 
 struct _MenuItem menuitems[] = {
-	{N_("P_revious track"), GNOME_CD_PREVIOUS, G_CALLBACK (back_cb)},
-	{N_("_Stop"), GNOME_CD_STOP, G_CALLBACK (stop_cb)},
-	{N_("_Play / Pause"), GNOME_CD_PLAY, G_CALLBACK (play_cb)},
-	{N_("_Next track"), GNOME_CD_NEXT, G_CALLBACK (next_cb)},
+	{N_("P_revious track"), GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb)},
+	{N_("_Stop"), GTK_STOCK_MEDIA_STOP, G_CALLBACK (stop_cb)},
+	{N_("_Play / Pause"), GTK_STOCK_MEDIA_PLAY, G_CALLBACK (play_cb)},
+	{N_("_Next track"), GTK_STOCK_MEDIA_NEXT, G_CALLBACK (next_cb)},
 	{N_("_Eject disc"), GNOME_CD_EJECT, G_CALLBACK (eject_cb)},
 	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
-	{N_("_About CD player"), GNOME_STOCK_ABOUT, G_CALLBACK (about_cb)},
+	{N_("_About CD player"), GTK_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{N_("_Quit"), GTK_STOCK_QUIT, G_CALLBACK (window_destroy_cb)},
 	{NULL, NULL, NULL}
 };
@@ -410,7 +410,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 	        
 		/* If status is play, display the pause icon else display the play icon */
         	if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 2) 
-	        	icon_name = GNOME_CD_PAUSE;
+	        	icon_name = GTK_STOCK_MEDIA_PAUSE;
 		else 
 		        icon_name = menuitems[i].icon;
 		
@@ -789,11 +789,11 @@ init_player (const char *device_override)
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
 	
-	button = make_button_from_stock (gcd, GNOME_CD_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->back_b = button;
 
-	button = make_button_from_stock (gcd, GNOME_CD_REWIND, NULL, _("Rewind"), _("Rewind"));
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_REWIND, NULL, _("Rewind"), _("Rewind"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (rewind_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -803,10 +803,10 @@ init_player (const char *device_override)
 
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
-	gcd->play_image = gtk_image_new_from_stock (GNOME_CD_PLAY, GTK_ICON_SIZE_BUTTON);
+	gcd->play_image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PLAY, GTK_ICON_SIZE_BUTTON);
 	g_object_ref (gcd->play_image);
 
-	gcd->pause_image = gtk_image_new_from_stock (GNOME_CD_PAUSE, GTK_ICON_SIZE_BUTTON);
+	gcd->pause_image = gtk_image_new_from_stock (GTK_STOCK_MEDIA_PAUSE, GTK_ICON_SIZE_BUTTON);
 	gtk_widget_show (gcd->pause_image);
 	g_object_ref (gcd->pause_image);
 
@@ -815,11 +815,11 @@ init_player (const char *device_override)
 	gcd->play_b = button;
 	gcd->current_image = gcd->play_image;
 	
-	button = make_button_from_stock (gcd, GNOME_CD_STOP, G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_STOP, G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->stop_b = button;
 
-	button = make_button_from_stock (gcd, GNOME_CD_FFWD, NULL, _("Fast forward"), _("Fast forward"));
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_FORWARD, NULL, _("Fast forward"), _("Fast forward"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (ffwd_press_cb), gcd);
 	g_signal_connect (G_OBJECT (button), "button-release-event",
@@ -827,7 +827,7 @@ init_player (const char *device_override)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->ffwd_b = button;
 
-	button = make_button_from_stock (gcd, GNOME_CD_NEXT, G_CALLBACK (next_cb), _("Next track"), _("Next track"));
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_NEXT, G_CALLBACK (next_cb), _("Next track"), _("Next track"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->next_b = button;
 	
@@ -912,13 +912,6 @@ static void client_die(GnomeClient *client,
 
 static const char *items [] =
 {
-	GNOME_CD_PLAY,
-	GNOME_CD_STOP,
-	GNOME_CD_PAUSE,
-	GNOME_CD_PREVIOUS,
-	GNOME_CD_NEXT,
-	GNOME_CD_FFWD,
-	GNOME_CD_REWIND,
 	GNOME_CD_EJECT
 };
 

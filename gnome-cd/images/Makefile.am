@@ -2,15 +2,8 @@ SUBDIRS = lcd-theme red-lcd-theme media-theme None-theme
 
 pixmapdir = $(datadir)/pixmaps/gnome-cd
 
-BITMAPS = media-play.png	\
-	media-pause.png		\
-	media-stop.png		\
-	media-prev.png		\
-	media-next.png		\
-	media-ffwd.png		\
-	media-rewind.png	\
+BITMAPS =  \
 	media-eject.png		\
-	media-record.png	\
 	once.png		\
 	cd.png			\
 	repeat.png		\
