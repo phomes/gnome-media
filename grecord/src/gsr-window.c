@@ -114,6 +114,7 @@ struct _GSRWindowPrivate {
 
 	int n_channels, bitrate, samplerate;
 	gboolean has_file;
+	gboolean saved;
 	gboolean dirty;
 	gboolean seek_in_progress;
 
@@ -617,6 +618,9 @@ do_save_file (GSRWindow *window,
 		if (result == GNOME_VFS_OK) {
 			g_object_set (G_OBJECT (window), "location", name, NULL);
 			priv->dirty = FALSE;
+			window->priv->saved = TRUE;
+			if ( GPOINTER_TO_INT (g_object_get_data (G_OBJECT (window), "save_quit")))
+				gsr_window_close (window);
 		} else {
 			gchar *error_message;
  
@@ -661,6 +665,7 @@ file_chooser_save_response_cb (GtkDialog *file_chooser,
 	g_free (name);
 
  out:	
+	g_object_set_data (G_OBJECT (window), "save_quit", GPOINTER_TO_INT (NULL));
 	gtk_widget_destroy (GTK_WIDGET (file_chooser));
 }
 
@@ -764,6 +769,68 @@ run_mixer_cb (GtkAction *action,
 	}
 
 	g_free (mixer_path);
+}
+
+gboolean
+gsr_window_is_saved (GSRWindow *window)
+{
+	return window->priv->saved;
+}
+
+static void
+handle_confirmation_response (GtkDialog *dialog, gint response_id, GSRWindow *window)
+{
+	switch (response_id) {
+		case GTK_RESPONSE_YES:
+			g_object_set_data (G_OBJECT (window), "save_quit", GINT_TO_POINTER (TRUE));
+			file_save_as_cb (NULL, window);
+				break;
+
+		case GTK_RESPONSE_NO:
+			gsr_window_close (window);
+			break;
+
+		case GTK_RESPONSE_CANCEL:
+		default: 
+			break;
+	} 
+
+	gtk_widget_destroy (GTK_WIDGET (dialog));
+	return;
+}
+
+void 
+close_confirmation_dialog (GSRWindow *window)
+{
+	GtkDialog *confirmation_dialog;
+	char *msg;
+	AtkObject *atk_obj;
+
+	msg = g_strdup_printf (_("Save the changes to file \"%s\" before closing?"),
+			       window->priv->record_filename);
+
+	confirmation_dialog = gtk_message_dialog_new_with_markup (NULL,
+								  GTK_DIALOG_MODAL,
+						 		  GTK_MESSAGE_WARNING,
+								  GTK_BUTTONS_NONE,
+								  "<span weight=\"bold\" size=\"larger\">%s</span>",
+								  msg);
+
+	gtk_dialog_add_buttons (confirmation_dialog,
+			 	_("Close _without Saving"), GTK_RESPONSE_NO,
+				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				GTK_STOCK_SAVE, GTK_RESPONSE_YES, NULL);
+
+	gtk_window_set_title (GTK_WINDOW (confirmation_dialog), "");
+
+	g_signal_connect (G_OBJECT (confirmation_dialog), "response",
+			  G_CALLBACK (handle_confirmation_response), window);
+
+	atk_obj = gtk_widget_get_accessible (GTK_WIDGET (confirmation_dialog));
+	atk_object_set_name (atk_obj, _("Question"));
+
+	gtk_widget_show_all (GTK_WIDGET (confirmation_dialog));
+	g_free (msg);
 }
 
 static GtkWidget *
@@ -1029,7 +1096,11 @@ static void
 file_close_cb (GtkAction *action,
 	       GSRWindow *window)
 {
-	gsr_window_close (window);
+	if (! gsr_window_is_saved (window)) {
+		close_confirmation_dialog (window);
+	} else {
+		gsr_window_close (window);
+	}
 }
 
 static void
@@ -1169,6 +1240,7 @@ record_cb (GtkAction *action,
 		      "location", priv->record_filename,
 		      NULL);
 	window->priv->len_secs = 0;
+	window->priv->saved = FALSE;
 	gst_element_set_state (priv->record->pipeline, GST_STATE_PLAYING);
 }
 
@@ -2144,6 +2216,8 @@ gsr_window_new (const char *filename)
 		g_free (window->priv->working_file);
 		window->priv->working_file = g_strdup (filename);
 	}
+
+	window->priv->saved = TRUE;
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 512, 200);
 

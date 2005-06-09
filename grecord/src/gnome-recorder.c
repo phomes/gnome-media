@@ -44,7 +44,19 @@ GConfClient *gconf_client = NULL;
 
 EggRecentModel *recent_model = NULL;
 
-static void
+static gboolean
+delete_event_cb (GSRWindow *window,
+		 gpointer data)
+{
+	if (! gsr_window_is_saved (window)) {
+		close_confirmation_dialog (window);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+void
 window_destroyed (GtkWidget *window,
 		  gpointer data)
 {
@@ -67,7 +79,11 @@ gsr_quit (void)
 		   because by the time we get back to the loop,
 		   p will be invalid */
 		p = p->next;
-		gsr_window_close (window);
+
+		if (! gsr_window_is_saved (window))
+			close_confirmation_dialog (window);
+		else
+			gsr_window_close (window);
 	}
 }
 
@@ -136,6 +152,10 @@ gsr_open_window (const char *filename)
 
 	window = GTK_WIDGET (gsr_window_new (name));
 	g_free (name);
+
+	g_signal_connect (G_OBJECT (window), "delete-event",
+			  G_CALLBACK (delete_event_cb), NULL);
+
 	g_signal_connect (G_OBJECT (window), "destroy",
 			  G_CALLBACK (window_destroyed), NULL);
 

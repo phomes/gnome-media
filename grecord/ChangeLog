@@ -1,3 +1,10 @@
+2005-06-07  Archana Shah  <archana.shah@wipro.com>
+	* src/gnome-recorder.c: (delete_event_cb): Callback attached for
+	delete_event.
+	* src/gsr-window.c: If any recorded file is unsaved, throw up a dialog
+	asking if the user wants to save the file before exiting.
+	Fixes bug #306755
+
 2005-06-09  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/gsr-window.c: (about_cb): Previous commit broke
