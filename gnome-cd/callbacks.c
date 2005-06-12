@@ -18,7 +18,6 @@
 #include <gtk/gtkmessagedialog.h>
 #include <gdk/gdkkeysyms.h>
 #include <libgnome/gnome-i18n.h>
-#include <libgnomeui/gnome-about.h>
 #include <libgnome/gnome-help.h>
 #include <gtk/gtk.h>
 
