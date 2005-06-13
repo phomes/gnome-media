@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#include <libgnome/gnome-macros.h>
+#include <glib-object.h>
 
 #include "gtkled.h"
 
@@ -30,8 +30,6 @@
 #define	LED_HEIGHT	(5)
 #define	BOTTOM_SPACE	(2)
 
-static void gtk_led_class_init (GtkLedClass *klass);
-static void gtk_led_instance_init (GtkLed *led);
 static void gtk_led_finalize (GObject *object);
 static void gtk_led_size_request (GtkWidget *widget,
 				  GtkRequisition *requisition);
@@ -45,10 +43,9 @@ enum {
 	LED_COLOR_OFF
 };
 
-GNOME_CLASS_BOILERPLATE (GtkLed, gtk_led,
-			 GtkMisc, GTK_TYPE_MISC);
+G_DEFINE_TYPE(GtkLed, gtk_led, GTK_TYPE_MISC);
 
-void
+static void
 gtk_led_class_init (GtkLedClass *class)
 {
 	GObjectClass *object_class;
@@ -64,8 +61,8 @@ gtk_led_class_init (GtkLedClass *class)
 	widget_class->realize = gtk_led_realize;
 }
 
-void
-gtk_led_instance_init (GtkLed *led)
+static void
+gtk_led_init (GtkLed *led)
 {
 	GtkMisc *misc;
 	
@@ -140,7 +137,7 @@ gtk_led_finalize (GObject *object)
 		gtk_widget_unmap (GTK_WIDGET (object));
 	}
 
-	G_OBJECT_CLASS (parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_led_parent_class)->finalize (object);
 }
 
 static void

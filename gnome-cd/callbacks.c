@@ -10,6 +10,7 @@
 #include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <glib/gerror.h>
 #include <gtk/gtkmain.h>
 #include <gtk/gtkrange.h>
@@ -17,7 +18,6 @@
 #include <gtk/gtkoptionmenu.h>
 #include <gtk/gtkmessagedialog.h>
 #include <gdk/gdkkeysyms.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-help.h>
 #include <gtk/gtk.h>
 

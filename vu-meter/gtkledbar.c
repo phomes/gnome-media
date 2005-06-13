@@ -25,16 +25,12 @@
 #include <config.h>
 #endif
 
-#include <libgnome/gnome-macros.h>
+#include <glib-object.h>
 #include <gtk/gtktable.h>
 
 #include "gtkledbar.h"
 
-static void led_bar_class_init (LedBarClass *klass);
-static void led_bar_instance_init (LedBar      *led_bar);
-
-GNOME_CLASS_BOILERPLATE (LedBar, led_bar,
-			 GtkVBox, GTK_TYPE_VBOX);
+G_DEFINE_TYPE (LedBar, led_bar, GTK_TYPE_VBOX);
 
 static void
 led_bar_class_init (LedBarClass *class)
@@ -42,7 +38,7 @@ led_bar_class_init (LedBarClass *class)
 }
 
 static void
-led_bar_instance_init (LedBar *led_bar)
+led_bar_init (LedBar *led_bar)
 {
 	led_bar->num_segments = 0;
 	led_bar->lit_segments = 0;

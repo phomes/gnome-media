@@ -20,7 +20,7 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 
 #include "cdrom.h"
 #include "gnome-cd.h"

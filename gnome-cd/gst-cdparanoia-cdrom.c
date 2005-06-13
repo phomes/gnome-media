@@ -15,7 +15,7 @@
 #define _ISOC99_SOURCE
 
 #include <string.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>

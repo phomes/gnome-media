@@ -50,7 +50,7 @@
 
 #include <gtk/gtkscrolledwindow.h>
 
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 #include <gnome.h>
 
 #include <nautilus-burn-drive-selection.h>

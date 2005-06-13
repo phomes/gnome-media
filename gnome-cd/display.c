@@ -8,7 +8,7 @@
 
 #include <string.h>
 #include <libgnome/gnome-util.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 
 #include <libxml/tree.h>
 
