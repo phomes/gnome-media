@@ -354,13 +354,13 @@ struct _MenuItem {
 };
 
 struct _MenuItem menuitems[] = {
-	{N_("P_revious track"), GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb)},
-	{N_("_Stop"), GTK_STOCK_MEDIA_STOP, G_CALLBACK (stop_cb)},
 	{N_("_Play / Pause"), GTK_STOCK_MEDIA_PLAY, G_CALLBACK (play_cb)},
-	{N_("_Next track"), GTK_STOCK_MEDIA_NEXT, G_CALLBACK (next_cb)},
+	{N_("_Stop"), GTK_STOCK_MEDIA_STOP, G_CALLBACK (stop_cb)},
+	{N_("P_revious"), GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb)},
+	{N_("_Next"), GTK_STOCK_MEDIA_NEXT, G_CALLBACK (next_cb)},
 	{N_("_Eject disc"), GNOME_CD_EJECT, G_CALLBACK (eject_cb)},
 	{N_("_Help"), GTK_STOCK_HELP, G_CALLBACK (help_cb)},
-	{N_("_About CD player"), GTK_STOCK_ABOUT, G_CALLBACK (about_cb)},
+	{N_("_About"), GTK_STOCK_ABOUT, G_CALLBACK (about_cb)},
 	{N_("_Quit"), GTK_STOCK_QUIT, G_CALLBACK (window_destroy_cb)},
 	{NULL, NULL, NULL}
 };
@@ -394,16 +394,16 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
                                GTK_WIDGET (gcd->display),
                                popup_menu_detach);
 	if (iconify == TRUE)
-		no_of_menu_items = 5;
-	else
 		no_of_menu_items = 6;
+	else
+		no_of_menu_items = 7;
 	
 	for (i = 0; i <= no_of_menu_items; i++) {
 		GtkWidget *item, *image;
 		gchar *icon_name;
 
 		/* Add Quit menu item if iconify popup */
-		if (i == 5 && iconify)
+		if (i == 6 && iconify)
 			i = 7;
 		
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
@@ -416,74 +416,82 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		
 		if (icon_name != NULL) {
 	        	char *ext = strrchr (icon_name, '.');
-	        if (ext == NULL) 
-			image = gtk_image_new_from_stock (icon_name, GTK_ICON_SIZE_MENU);
-	        else {
-			char *fullname;
-			fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
-			                                      icon_name, TRUE, NULL);
-			if (fullname != NULL) 
-                		image = gtk_image_new_from_file (fullname);
-			else 
-                		image = NULL;
+
+		        if (ext == NULL) 
+				image = gtk_image_new_from_stock (icon_name, GTK_ICON_SIZE_MENU);
+		        else {
+				char *fullname;
+				fullname = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+				                                      icon_name, TRUE, NULL);
+				if (fullname != NULL) 
+					image = gtk_image_new_from_file (fullname);
+				else 
+       					image = NULL;
         	       	       
-			g_free (fullname);
-	     	}
+				g_free (fullname);
+		     	}
         	}
 		
 		if (image != NULL) {
 			gtk_widget_show (image);
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
-	}
+		}
 
-	if (status->cd == GNOME_CDROM_STATUS_OK) {
-        /* Previous menuitem is sensitive when it is  not the first track and
-        we're playing */
-        	if (i == 0) {
-                	if (status->track <= 1 && 
-			   (status->audio == GNOME_CDROM_AUDIO_STOP || status->audio ==GNOME_CDROM_AUDIO_COMPLETE)) 
-				gtk_widget_set_sensitive (item, FALSE);
-                else 
-                	  gtk_widget_set_sensitive (item, TRUE);
-                
-            	}
+		if (status->cd == GNOME_CDROM_STATUS_OK) {
+			/* Previous menuitem is sensitive when it is
+			 * not the first track and we're playing */
+	        	if (i == 2) {
+	                	if (status->track <= 1 ||
+				   (status->audio == GNOME_CDROM_AUDIO_STOP ||
+				    status->audio == GNOME_CDROM_AUDIO_COMPLETE)) 
+					gtk_widget_set_sensitive (item, FALSE);
+				else 
+					gtk_widget_set_sensitive (item, TRUE);
+	            	}
 
-            /* Next menuitem is sensitive when this is not the last track */
-		if (i == 3) {
-	                if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) 
-        	        	gtk_widget_set_sensitive (item, FALSE);
-                else 
-                	 gtk_widget_set_sensitive (item, TRUE);
-                }
-        }
+		        /* Next menuitem is sensitive when this is not
+			 * the last track */
+			if (i == 3) {
+				if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) 
+					gtk_widget_set_sensitive (item, FALSE);
+				else
+					gtk_widget_set_sensitive (item, TRUE);
+	                }
+	        }
 		
 		/* Disable the first four menu items when no disc is inserted
 		 * Update as per the buttons on the main window
 		 */
 		if (status->cd == GNOME_CDROM_STATUS_NO_DISC && i < 4) 
-	       	gtk_widget_set_sensitive (item, FALSE);
+			gtk_widget_set_sensitive (item, FALSE);
         
 		gtk_widget_show (item);
 
 		gtk_menu_shell_append ((GtkMenuShell *)(popup_menu), item);
+		if (i == 4) {
+			GtkWidget *s = gtk_separator_menu_item_new ();
+			gtk_menu_shell_append ((GtkMenuShell *)(popup_menu), s);
+			gtk_widget_show (s);
+		}
+
 		if (menuitems[i].callback != NULL) 
 			g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (menuitems[i].callback), gcd);
 		
 	}
 	
 	if (event != NULL) {
-   	gtk_menu_popup (GTK_MENU (popup_menu),
-    	                NULL, NULL,
-    	                NULL, NULL,
-    	                event->button,
-    	                event->time);
+	   	gtk_menu_popup (GTK_MENU (popup_menu),
+	    	                NULL, NULL,
+	    	                NULL, NULL,
+	    	                event->button,
+	    	                event->time);
    	} else {
-	gtk_menu_popup (GTK_MENU (popup_menu),
-			NULL, NULL,
-			NULL, NULL,
-			0, gtk_get_current_event_time ());
+		gtk_menu_popup (GTK_MENU (popup_menu),
+				NULL, NULL,
+				NULL, NULL,
+				0, gtk_get_current_event_time ());
     	}
-	cleanup:
+cleanup:
         g_free (status);
 }
 
@@ -788,18 +796,6 @@ init_player (const char *device_override)
 			  G_CALLBACK (volume_changed), gcd);
 	
 	button_hbox = gtk_hbox_new (TRUE, 2);
-	
-	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
-	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
-	gcd->back_b = button;
-
-	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_REWIND, NULL, _("Rewind"), _("Rewind"));
-	g_signal_connect (G_OBJECT (button), "button-press-event",
-			  G_CALLBACK (rewind_press_cb), gcd);
-	g_signal_connect (G_OBJECT (button), "button-release-event",
-			  G_CALLBACK (rewind_release_cb), gcd);
-	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
-	gcd->rewind_b = button;
 
 	/* Create the play and pause images, and ref them so they never
 	   get destroyed */
@@ -814,11 +810,23 @@ init_player (const char *device_override)
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->play_b = button;
 	gcd->current_image = gcd->play_image;
-	
+
 	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_STOP, G_CALLBACK (stop_cb), _("Stop"), _("Stop"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->stop_b = button;
 
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_PREVIOUS, G_CALLBACK (back_cb), _("Previous track"), _("Previous"));
+	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
+	gcd->back_b = button;
+
+	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_REWIND, NULL, _("Rewind"), _("Rewind"));
+	g_signal_connect (G_OBJECT (button), "button-press-event",
+			  G_CALLBACK (rewind_press_cb), gcd);
+	g_signal_connect (G_OBJECT (button), "button-release-event",
+			  G_CALLBACK (rewind_release_cb), gcd);
+	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
+	gcd->rewind_b = button;
+	
 	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_FORWARD, NULL, _("Fast forward"), _("Fast forward"));
 	g_signal_connect (G_OBJECT (button), "button-press-event",
 			  G_CALLBACK (ffwd_press_cb), gcd);
@@ -830,7 +838,7 @@ init_player (const char *device_override)
 	button = make_button_from_stock (gcd, GTK_STOCK_MEDIA_NEXT, G_CALLBACK (next_cb), _("Next track"), _("Next track"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->next_b = button;
-	
+
 	button = make_button_from_stock (gcd, GNOME_CD_EJECT, G_CALLBACK (eject_cb), _("Eject CD"), _("Eject"));
 	gtk_box_pack_start (GTK_BOX (button_hbox), button, TRUE, TRUE, 0);
 	gcd->eject_b = button;

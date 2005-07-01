@@ -46,6 +46,8 @@ extern GSTPPipelineDescription audiosrc_pipelines[];
 extern GSTPPipelineDescription videosrc_pipelines[];
 
 GSTPPipelineDescription audiosink_pipelines[] = {
+	{PIPE_TYPE_AUDIOSINK, 0,"Autodetect", "autoaudiosink", FALSE,
+	 TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 	{PIPE_TYPE_AUDIOSINK, 0,"ALSA - Advanced Linux Sound Architecture",
 	 "alsasink", FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 	{PIPE_TYPE_AUDIOSINK, 0,"Artsd - ART Sound Daemon", 
@@ -65,6 +67,8 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 };
 
 GSTPPipelineDescription videosink_pipelines[] = {
+	{PIPE_TYPE_VIDEOSINK, 0,"Autodetect", "autovideosink", FALSE,
+	 TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 #if 0
   /*
    * aasink is disabled because it is not a serious alternative.
