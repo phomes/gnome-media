@@ -409,7 +409,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
 	        
 		/* If status is play, display the pause icon else display the play icon */
-        	if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 2) 
+        	if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 0) 
 	        	icon_name = GTK_STOCK_MEDIA_PAUSE;
 		else 
 		        icon_name = menuitems[i].icon;
