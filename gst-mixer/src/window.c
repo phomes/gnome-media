@@ -155,8 +155,8 @@ gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
 GtkWidget *
 gnome_volume_control_window_new (GList *elements)
 {
-  GConfValue *value;
-  const gchar *active_el_str = NULL, *cur_el_str, *cur_de_str;
+  gchar *cur_el_str, *cur_de_str;
+  gchar *active_el_str;
   GstElement *active_element;
   GList *item;
   GnomeVolumeControlWindow *win;
@@ -178,9 +178,12 @@ gnome_volume_control_window_new (GList *elements)
   /* menus, and the available elements in a submenu */
   win->element_menu = g_new (GnomeUIInfo, g_list_length (elements) + 1);
   for (count = 0, item = elements; item != NULL; item = item->next, count++) {
-    cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
-    cur_de_str = g_strdup_printf (_("Change device to %s"), cur_el_str);
-    cur_el_str = g_strdup_printf ("_%d: %s", count, cur_el_str);
+    const gchar *tmp;
+
+    tmp = g_object_get_data (item->data, "gnome-volume-control-name");
+    cur_de_str = g_strdup_printf (_("Change device to %s"), tmp);
+    cur_el_str = g_strdup_printf ("_%d: %s", count, tmp);
+
     win->element_menu[count] = templ;
     win->element_menu[count].label = cur_el_str;
     win->element_menu[count].hint = cur_de_str;
@@ -202,12 +205,10 @@ gnome_volume_control_window_new (GList *elements)
 			   cb_gconf, win, NULL, NULL);
 
   /* get active element, if any (otherwise we use the default) */
-  if ((value = gconf_client_get (win->client,
-				 GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
-				 NULL)) != NULL &&
-      value->type == GCONF_VALUE_STRING) {
-    active_el_str = gconf_value_get_string (value);
-
+  active_el_str = gconf_client_get_string (win->client,
+					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
+					   NULL);
+  if (active_el_str != NULL) {
     for (count = 0, item = elements; item != NULL;
 	 item = item->next, count++) {
       cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
@@ -216,6 +217,7 @@ gnome_volume_control_window_new (GList *elements)
         break;
       }
     }
+    g_free (active_el_str);
     if (!item)
       count = 0;
   } else {
@@ -288,6 +290,7 @@ gnome_volume_control_window_dispose (GObject *object)
     gint i;
 
     for (i = 0; win->element_menu[i].widget != NULL; i++) {
+      g_free ((void *) win->element_menu[i].label);
       g_free ((void *) win->element_menu[i].hint);
     }
     g_free (win->element_menu);
