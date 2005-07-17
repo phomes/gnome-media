@@ -107,6 +107,9 @@ static gboolean gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 						 status, GError ** error);
 static gboolean gst_cdparanoia_cdrom_close_tray (GnomeCDRom * cdrom,
 						 GError ** error);
+static gboolean gst_cdparanoia_cdrom_get_cddb_data (GnomeCDRom * cdrom,
+						GnomeCDRomCDDBData ** data,
+						GError ** error);
 
 static GnomeCDRomMSF blank_msf = { 0, 0, 0 };
 
@@ -1174,6 +1177,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 	GstCdparanoiaCDRom *lcd;
 	GstCdparanoiaCDRomPrivate *priv;
 	GnomeCDRomStatus *realstatus;
+	GnomeCDRomCDDBData *data;	
 #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
 	struct cd_sub_channel_position_data subchnl;
 #else
@@ -1238,7 +1242,11 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 			return TRUE;
 
 		default:
-			realstatus->cd = GNOME_CDROM_STATUS_OK;
+			gst_cdparanoia_cdrom_get_cddb_data (cdrom, &data, NULL);
+			if (data == NULL)
+				realstatus->cd = GNOME_CDROM_STATUS_EMPTY_DISC;
+			else
+				realstatus->cd = GNOME_CDROM_STATUS_OK;
 			break;
 		}
 	} else {

@@ -749,6 +749,7 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 
         /* everything below are states where we're not playing */
 	case GNOME_CDROM_STATUS_NO_DISC:
+	case GNOME_CDROM_STATUS_EMPTY_DISC:
 		if (gcd->disc_info != NULL) {
 			cddb_free_disc_info (gcd->disc_info);
 			gcd->disc_info = NULL;
@@ -771,7 +772,10 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
 		gtk_widget_set_sensitive (gcd->eject_b, TRUE);
 
 		cd_display_clear (CD_DISPLAY (gcd->display));
-		cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc"));
+		if (status->cd == GNOME_CDROM_STATUS_EMPTY_DISC)
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("Empty disc"));
+		else
+			cd_display_set_line (CD_DISPLAY (gcd->display), CD_DISPLAY_LINE_TIME, _("No disc")); 
 		gnome_cd_set_window_title (gcd, NULL, NULL);
 		break;
 

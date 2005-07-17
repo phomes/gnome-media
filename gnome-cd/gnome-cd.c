@@ -462,7 +462,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		/* Disable the first four menu items when no disc is inserted
 		 * Update as per the buttons on the main window
 		 */
-		if (status->cd == GNOME_CDROM_STATUS_NO_DISC && i < 4) 
+		if ((status->cd == GNOME_CDROM_STATUS_NO_DISC || status->cd == GNOME_CDROM_STATUS_EMPTY_DISC) && i < 4) 
 			gtk_widget_set_sensitive (item, FALSE);
         
 		gtk_widget_show (item);

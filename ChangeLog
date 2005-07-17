@@ -1,3 +1,16 @@
+2005-07-17  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	* gnome-cd/callbacks.c: (cd_status_changed_cb)
+	  Check for empty disc.
+	* gnome-cd/cdrom.h: (_GnomeCDRomDriveStatus)
+	  New status GNOME_CDROM_STATUS_EMPTY_DISC.
+	* gnome-cd/gst-cdparanoia-cdrom.c: (gst_cdparanoia_cdrom_get_status)
+	  Use gst_cdparanoia_cdrom_get_cddb_data and check 
+	  for Null data (empty disc).
+	  Fix crash #310626
+	* gnome-cd/gnome-cd.c: (make_popup_menu)
+	  Set popup menu sensitivity.	
+					
 2005-07-13  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:
