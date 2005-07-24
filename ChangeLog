@@ -1,3 +1,16 @@
+2005-07-24  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	* profiles/gnome-media-profiles.h:
+	* profiles/gnome-media-profiles.c: (gtk_dialog_build_children),
+	  (dialog_find_internal_child): Moved the definitions from 
+	  gnome-audio-profiles-properties.c.
+	* profiles/gnome-audio-profiles-properties.c:
+	* profiles/audio-profiles-edit.c: (profile_activated_callback),
+	  (edit_button_clicked), (delete_button_clicked),
+	  (gm_audio_profiles_edit_new_profile):
+	  Make the dialog run. Also based on the patch from Luca Cavalli.
+	  Fixes Bug#309883.
+	
 2005-07-17  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* gnome-cd/callbacks.c: (cd_status_changed_cb)
