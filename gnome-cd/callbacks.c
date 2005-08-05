@@ -39,6 +39,7 @@ extern void destroy_cache_hashTable (void);
 static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
 
 static gboolean position_auto_update=TRUE;
+static gboolean stopped_state=FALSE;
 static gboolean position_update_ignore_event=FALSE;
 static gchar* discid_prev;
 
@@ -208,6 +209,7 @@ play_cb (GtkButton *button,
 		break;
 
 	case GNOME_CDROM_AUDIO_COMPLETE:
+		stopped_state = FALSE;
 	case GNOME_CDROM_AUDIO_STOP:
 		msf.minute = 0;
 		msf.second = 0;
@@ -264,6 +266,8 @@ stop_cb (GtkButton *button,
 		g_error_free (error);
 		return;
 	}
+
+	stopped_state = TRUE;
 
 	if (gcd->current_image == gcd->pause_image) {
 		AtkObject *aob;
@@ -591,7 +595,7 @@ status_ok (GnomeCD *gcd,
 		break;
 		
 	case GNOME_CDROM_AUDIO_COMPLETE:
-		if (gcd->cdrom->loopmode == GNOME_CDROM_LOOP) {
+		if (gcd->cdrom->loopmode == GNOME_CDROM_LOOP && stopped_state == FALSE) {
 			if (gcd->cdrom->playmode == GNOME_CDROM_WHOLE_CD) {
 				/* Around we go */
 				play_cb (NULL, gcd);
