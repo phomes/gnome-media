@@ -184,11 +184,16 @@ play_cb (GtkButton *button,
 			end_track = -1;
 			endmsf = NULL;
 		} else {
-			end_track = status->track + 1;
-			msf.minute = 0;
-			msf.second = 0;
-			msf.frame = 0;
-			endmsf = &msf;
+			if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) {
+				end_track = -1;
+				endmsf = NULL;	
+			} else {	
+				end_track = status->track + 1;
+				msf.minute = 0;
+				msf.second = 0;
+				msf.frame = 0;
+				endmsf = &msf;
+			}
 		}
 		if (gnome_cdrom_play (gcd->cdrom, status->track,
 				      &status->relative, end_track, endmsf, &error) == FALSE) {
@@ -1238,8 +1243,13 @@ position_changed (GtkRange *range,
 	msf2.frame = 0;
 	
 	if (gcd->cdrom->playmode == GNOME_CDROM_SINGLE_TRACK) {
-		end_track = status->track + 1;
-		endmsf = &msf2;
+		if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) {
+			end_track = -1;
+			endmsf = NULL;
+		} else {	
+			end_track = status->track + 1;
+			endmsf = &msf2;
+		}
 	} else {
 		end_track = -1;
 		endmsf = NULL;

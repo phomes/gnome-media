@@ -157,8 +157,13 @@ skip_to_track (GtkWidget *item,
 	msf.frame = 0;
 
 	if (gcd->cdrom->playmode == GNOME_CDROM_SINGLE_TRACK) {
-		end_track = track + 2;
-		endmsf = &msf;
+		if (gcd->disc_info && (track + 1) >= gcd->disc_info->ntracks) {
+			end_track = -1;
+			endmsf = NULL;
+		} else {	
+			end_track = track + 2;
+			endmsf = &msf;
+		}
 	} else {
 		end_track = -1;
 		endmsf = NULL;
