@@ -605,21 +605,26 @@ status_ok (GnomeCD *gcd,
 				/* Around we go */
 				play_cb (NULL, gcd);
 			} else {
-				GnomeCDRomMSF msf;
+				GnomeCDRomMSF msf, *endmsf;
 				int start_track, end_track;
 				GError *error = NULL;
 				
-				/* CD has gone to the start of the next track.
-				   Track we want to loop is track - 1 */
-				start_track = status->track - 1;
-				end_track = status->track;
-				
+				/* CD is still in the same track */
 				msf.minute = 0;
 				msf.second = 0;
 				msf.frame = 0;
 				
+				start_track = status->track;
+				if (gcd->disc_info && status->track >= gcd->disc_info->ntracks) {
+					end_track = -1;
+					endmsf = NULL;
+				} else {
+					end_track = status->track + 1;
+					endmsf = &msf;
+				}
+				
 				if (gnome_cdrom_play (gcd->cdrom, start_track, &msf,
-						      end_track, &msf, &error) == FALSE) {
+						      end_track, endmsf, &error) == FALSE) {
 					gcd_warning ("%s", error);
 					g_error_free (error);
 					
