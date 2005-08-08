@@ -1281,7 +1281,7 @@ gst_cdparanoia_cdrom_get_status (GnomeCDRom * cdrom,
 		return FALSE;
 
 	g_object_get (G_OBJECT (priv->vol_element), "volume", &vol, NULL);
-	realstatus->volume = priv->volume = lrint (vol * 255.0);
+	realstatus->volume = priv->volume = rint (vol * 255.0);
 	cur_gst_status =
 	    gst_element_get_state (GST_ELEMENT (priv->play_thread));
 
