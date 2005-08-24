@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY appversion "2.2.2">
+<!ENTITY manrevision "2.4">
+<!ENTITY date "September 2003">
+<!ENTITY app "GStreamer Properties">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="uk">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo> 
+    <title>Довідка з програми Вибір мультимедійної системи версії 2.4</title>       
+
+    <copyright>
+      <year>2003</year> 
+      <holder>Christian Fredrik Kalager Schaller</holder> 
+    </copyright><copyright><year>2004, 2005.</year><holder>Максим Дзюманенко (mvd@mylinux.ua)</holder></copyright> 
+
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2003</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+    <publisher> 
+      <publishername>Проект документації GNOME</publishername> 
+    </publisher> 
+
+   &legal;
+
+    <authorgroup> 
+      <author> 
+	<firstname>Christian Fredrik</firstname> 
+	<surname>Kalager Schaller</surname> 
+	<affiliation> 
+	  <orgname>gnome.org</orgname> 
+	  <address/> 
+	</affiliation> 
+      </author> 
+
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+
+    <revhistory>
+      <revision> 
+			<revnumber>Довідка з програми Вибір мультимедійної системи версії 2.4</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			<para role="author">Christian Fredrik Kalager Schaller</para>
+	  			<para role="publisher">Проект документації GNOME</para>
+			</revdescription> 
+      </revision>
+      <revision> 
+			<revnumber>Довідка з програми Вибір мультимедійної системи версії 1.0</revnumber> 
+			<date>Грудень 2003</date> 
+			<revdescription> 
+	  			<para role="author">Christian Fredrik Kalager Schaller</para>
+	  			<para role="publisher">Проект документації GNOME</para>
+			</revdescription> 
+      </revision>
+         </revhistory> 
+
+    <releaseinfo>У цій довідці описується програма Вибір мультимедійної системи версії 2.2.2</releaseinfo> 
+    <legalnotice> 
+      <title>Зворотний зв'язок</title> 
+      <para>Щоб сповістити про помилку або внести пропозицію стосовно програми Вибір мультимедійної системи або цієї довідки, відвідайте сторінку <ulink url="ghelp:gnome-feedback" type="help">Зворотний зв'язок з GNOME</ulink>.</para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice> 
+  </articleinfo> 
+
+  <indexterm> 
+    <primary>Вибір мультимедійної системи</primary> 
+  </indexterm> 
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+
+  <sect1 id="gstreamer-properties-introduction"> 
+    <title>Вступ</title> 
+    <para>Програма <application>Вибір мультимедійної системи</application> дозволяє налаштовувати параметри обладнання та мультимедійних систем вашої системи. Зазвичай, нею користуються лише досвідчені користувачі, тому що постачальний вашої ОС має постачати систему з коректними початковими значеннями.</para> 
+  </sect1>
+
+  <sect1 id="gstreamer-properties-getting-started">
+    <title>Початок роботи</title> 
+
+    <para>Програму <application>Вибір мультимедійної системи</application> можна запустити наступним чином:</para> 
+    <variablelist>
+    	<varlistentry>
+    		<term>У меню <guimenu>Програми</guimenu></term>
+    		<listitem>
+    		<para>Виберіть <menuchoice><guisubmenu>Параметри</guisubmenu><guimenuitem>Вибір мультимедійної системи</guimenuitem></menuchoice>.</para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>З командного рядка</term>
+    		<listitem>
+    		<para>Введіть <command>gstreamer-properties</command>, потім натисніть <keycap>Enter</keycap>.</para>
+    		<para> 		 
+    		</para> 
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
+
+    <para>Коли ви запустите програму <application>Вибір мультимедійної системи</application>, відкриється наступне вікно.</para>
+
+    <!-- ==== Figure ==== -->
+      <figure id="gstreamer-properties-fig"> 
+	<title>Вікно програми Вибір мультимедійної системи</title> 
+	<screenshot> 
+	  <mediaobject> 
+	    <imageobject>
+	    <imagedata fileref="figures/gstreamer_properties_window.png" format="PNG"/> 
+	    </imageobject>
+	    <textobject> 
+	      <phrase>Показано вікно програми Вибір мультимедійної системи. Містить панель меню, панель інструментів, розкривні списки для параметрів вводу та виводу звуку.</phrase> 
+	    </textobject> 
+	  </mediaobject> 
+	</screenshot> 
+      </figure>
+    <!-- ==== End of Figure ==== -->
+
+  </sect1>
+
+<!-- ================ Usage ================================ -->
+
+  <sect1 id="gstreamer-properties-usage"> 
+    <title>Використання</title>
+	<para>Елемент центру керування GStreamer має чотири розкривні меню у двох вкладках. По два меню для звуку та відео. Меню визначають типові значення вводу та виводу звуку та відео для усіх програм GNOME.</para>
+  <sect2 id="gstreamer-properties-concepts">
+    	<title>Значення пунктів меню</title>
+    	<para>Дивлячись на екран на параметри звуку ви помітите, що є дві секції з назвами Типовий пристрій вводу та Типовий пристрій виводу. Ці терміни використовуються у оточенні GStreamer, яке використовує GNOME для опису куди дані направляються та звідки вони надходять. Типовий пристрій виводу - іншими словами куди програма GNOME має направляти звукові дані, а Типовий пристрій вводу - звідки надходять звукові дані.</para>
+	<para>Ви можете забажати змінити ці параметри тому що у Unix є кілька звукових систем та сервер звуку, у які можна виводити звук. Наприклад у Linux популярні звукові системи OSS, ALSA, звукові сервера ESD та ARTSd.</para>
+	<para>Наприклад, якщо ви бажаєте, щоб ваші програми GNOME виводили звук через сервер звуку ESD, встановіть у Типовий пристрій виводу значення ESD. Щоб  програми GNOME, що мають можливість запису звуку використовували звукову систему OSS, встановіть у Типовий пристрій вводу у значення OSS.</para>
+	<para>Як вже було вказано, ці параметри для досвідчених користувачів з особливими потребами. Звичайному користувачу не слід змінювати параметри, тому що вони встановлені у розумні значення виробником дистрибутиву Linux чи Unix.</para> 
+    	
+    </sect2>
+  </sect1>  
+
+
+</article>
