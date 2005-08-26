@@ -34,6 +34,15 @@
 #include "stock.h"
 #include "window.h"
 
+static gint
+sort_by_rank (GstElement * a, GstElement * b)
+{
+#define gst_element_rank(x) \
+  gst_plugin_feature_get_rank (GST_PLUGIN_FEATURE ( \
+      gst_element_get_factory (x)))
+  return gst_element_rank (b) - gst_element_rank (a);
+}
+
 /*
  * Probe for mixer elements. Set up GList * with elements,
  * where each element has a GObject data node set of the
@@ -144,7 +153,7 @@ next:
     g_free (title);
   }
 
-  return collection;
+  return g_list_sort (collection, (GCompareFunc) sort_by_rank);
 }
 
 static void
