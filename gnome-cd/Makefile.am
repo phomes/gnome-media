@@ -49,7 +49,7 @@ $(IDL_GENERATED): $(IDLS)
 	-I $(srcdir) -I $(datadir)/idl	$(IDLS)
 
 noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
-libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
+nodist_libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 
 if HAVE_GSTREAMER
 cd_sources = gst-cdparanoia-cdrom.c
@@ -118,6 +118,6 @@ else
 install-data-local:
 endif
 
-CLEANFILES = $(Audio_DATA) $(schema_DATA)
+CLEANFILES = $(Audio_DATA) $(schema_DATA) $(IDL_GENERATED)
 
 CDROM_HOST = gst-cdparanoia

@@ -1,3 +1,10 @@
+2005-08-27  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* cddb-slave2/Makefile.am:
+	* gnome-cd/Makefile.am:
+	  Do not dist generated files; they may be build-env-dependent.
+	  Fixes #314660.
+
 2005-08-26  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* gst-mixer/src/main.c: (sort_by_rank), (create_mixer_collection):

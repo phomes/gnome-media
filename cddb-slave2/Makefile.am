@@ -28,7 +28,7 @@ idl_DATA = $(IDLS)
 noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la libcddb-slave2-private.la
 
 # FIXME: rename this lib to something like libcddb-slave2-idl.la
-libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
+nodist_libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 libcddb_slave2_private_la_SOURCES = cddb-slave-private.c
 
 ### installed cddb slave library
