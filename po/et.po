@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-04 21:51+0000\n"
-"PO-Revision-Date: 2005-08-20 12:17+0300\n"
+"POT-Creation-Date: 2005-09-21 05:30+0200\n"
+"PO-Revision-Date: 2005-09-21 13:17+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid "Information to send to server"
 msgstr "Serverile saadetavad andmed"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:832
+#: ../cddb-slave2/cddb-slave-capplet.c:955
 msgid "Port"
 msgstr "Port"
 
@@ -55,7 +55,9 @@ msgstr "Serveri port, kus andmebaas kuulab"
 msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr "Serveri nimi, mis võtab vastu CD-päringuid. Võimalikud väärtused on 0 (FreeDB round robin server), 1 (muu freedb server) ja 2 (muu server)."
+msgstr ""
+"Serveri nimi, mis võtab vastu CD-päringuid. Võimalikud väärtused on 0 "
+"(FreeDB round robin server), 1 (muu freedb server) ja 2 (muu server)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -70,21 +72,16 @@ msgid ""
 "This key specifies which user information will be sent to the server to "
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
-msgstr "See võti määrab, milliseid kasutajaandmeid serverisse CD küsimuste jaoks saadetakse. Võimalikud väärtused on 0 (ei mingeid andmeid), 1 (tegelikud andmed) ja 3 (muud andmed)."
+msgstr ""
+"See võti määrab, milliseid kasutajaandmeid serverisse CD küsimuste jaoks "
+"saadetakse. Võimalikud väärtused on 0 (ei mingeid andmeid), 1 (tegelikud "
+"andmed) ja 3 (muud andmed)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
 msgstr "Sinu hostinimi"
 
-#: ../cddb-slave2/cddb-disclosure.c:241
-msgid "Expander Size"
-msgstr "Laiendaja suurus"
-
-#: ../cddb-slave2/cddb-disclosure.c:242
-msgid "Size of the expander arrow"
-msgstr "Laiendamisnoole suurus"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:115
+#: ../cddb-slave2/cddb-slave-capplet.c:133
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -93,66 +90,64 @@ msgstr ""
 "Abiteabe kuvamisel ilmnes viga: \n"
 "%s"
 
-#. Log on info
-#: ../cddb-slave2/cddb-slave-capplet.c:696
-msgid "Login Information"
-msgstr "Sisselogimise andmed"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:702
+#: ../cddb-slave2/cddb-slave-capplet.c:807
 msgid "Sen_d no information"
 msgstr "Andmeid _ei saadeta"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:711
+#: ../cddb-slave2/cddb-slave-capplet.c:816
 msgid "Send real _information"
 msgstr "Saadetakse _tegelikud andmed"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:720
+#: ../cddb-slave2/cddb-slave-capplet.c:825
 msgid "Send _other information:"
 msgstr "Saadetakse _muud andmed:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:745
+#: ../cddb-slave2/cddb-slave-capplet.c:850
 msgid "_Name:"
 msgstr "_Nimi:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:765
+#: ../cddb-slave2/cddb-slave-capplet.c:874
 msgid "Hostna_me:"
 msgstr "Hostini_mi:"
 
-#. Server info
-#: ../cddb-slave2/cddb-slave-capplet.c:785
-#: ../cddb-slave2/cddb-slave-capplet.c:829
-msgid "Server"
-msgstr "Server"
+#: ../cddb-slave2/cddb-slave-capplet.c:898
+msgid "Login Information"
+msgstr "Sisselogimise andmed"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:791
+#: ../cddb-slave2/cddb-slave-capplet.c:914
 msgid "FreeDB _round robin server"
 msgstr "FreeDB _round robin server"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:797
+#: ../cddb-slave2/cddb-slave-capplet.c:920
 msgid "Other _FreeDB server:"
 msgstr "Muu _FreeDB server:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:835
+#: ../cddb-slave2/cddb-slave-capplet.c:952
+#: ../cddb-slave2/cddb-slave-capplet.c:1062
+msgid "Server"
+msgstr "Server"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:958
 msgid "Location"
 msgstr "Asukoht"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:864
+#: ../cddb-slave2/cddb-slave-capplet.c:987
 msgid "_Update Server List"
 msgstr "_Uuenda serverite loendit"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:871
+#: ../cddb-slave2/cddb-slave-capplet.c:994
 msgid "Other _server:"
 msgstr "Muu _server:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:891
+#: ../cddb-slave2/cddb-slave-capplet.c:1014
 msgid "Hos_tname:"
 msgstr "Hos_tinimi:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:908
+#: ../cddb-slave2/cddb-slave-capplet.c:1031
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:972
+#: ../cddb-slave2/cddb-slave-capplet.c:1103
 msgid "CD Database Preferences"
 msgstr "CD-andmebaasi eelistused"
 
@@ -161,9 +156,9 @@ msgid "Unknown / Unknown"
 msgstr "Tundmatu / Tundmatu"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:939
-#: ../grecord/src/gsr-window.c:948 ../grecord/src/gsr-window.c:957
-#: ../grecord/src/gsr-window.c:967 ../grecord/src/gsr-window.c:1282
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:929
+#: ../grecord/src/gsr-window.c:938 ../grecord/src/gsr-window.c:947
+#: ../grecord/src/gsr-window.c:957 ../grecord/src/gsr-window.c:1273
 msgid "Unknown"
 msgstr "Tundmatu"
 
@@ -192,7 +187,7 @@ msgid "Artist and Title"
 msgstr "Artist ja pealkiri"
 
 #: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:183
+#: ../gnome-cd/gnome-cd.c:207
 msgid "Unknown track"
 msgstr "Tundmatu lugu"
 
@@ -204,692 +199,695 @@ msgstr "CD-andmebaasi server"
 msgid "Modify your CD database server preferences"
 msgstr "Muuda oma CD-andmebaasi serveri eelistusi"
 
-#: ../cddb-slave2/cddb-track-editor.c:79
+#: ../cddb-slave2/cddb-track-editor.c:78
 msgid "Blues"
 msgstr "Bluus"
 
-#: ../cddb-slave2/cddb-track-editor.c:80
+#: ../cddb-slave2/cddb-track-editor.c:79
 msgid "Classical Rock"
 msgstr "Klassikaline rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:81
+#: ../cddb-slave2/cddb-track-editor.c:80
 msgid "Country"
 msgstr "Kantri"
 
-#: ../cddb-slave2/cddb-track-editor.c:82
+#: ../cddb-slave2/cddb-track-editor.c:81
 msgid "Dance"
 msgstr "Tantsumuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:83
+#: ../cddb-slave2/cddb-track-editor.c:82
 msgid "Disco"
 msgstr "Disko"
 
-#: ../cddb-slave2/cddb-track-editor.c:84
+#: ../cddb-slave2/cddb-track-editor.c:83
 msgid "Funk"
 msgstr "Funk"
 
-#: ../cddb-slave2/cddb-track-editor.c:85
+#: ../cddb-slave2/cddb-track-editor.c:84
 msgid "Grunge"
 msgstr "Grunge"
 
-#: ../cddb-slave2/cddb-track-editor.c:86
+#: ../cddb-slave2/cddb-track-editor.c:85
 msgid "Hip-Hop"
 msgstr "Hip-Hop"
 
-#: ../cddb-slave2/cddb-track-editor.c:87
+#: ../cddb-slave2/cddb-track-editor.c:86
 msgid "Jazz"
 msgstr "Džäss"
 
-#: ../cddb-slave2/cddb-track-editor.c:88
+#: ../cddb-slave2/cddb-track-editor.c:87
 msgid "Metal"
 msgstr "Metall"
 
-#: ../cddb-slave2/cddb-track-editor.c:89
+#: ../cddb-slave2/cddb-track-editor.c:88
 msgid "New Age"
 msgstr "New Age"
 
-#: ../cddb-slave2/cddb-track-editor.c:90
+#: ../cddb-slave2/cddb-track-editor.c:89
 msgid "Oldies"
 msgstr "Igihaljas"
 
-#: ../cddb-slave2/cddb-track-editor.c:91
+#: ../cddb-slave2/cddb-track-editor.c:90
 msgid "Other"
 msgstr "Muu"
 
-#: ../cddb-slave2/cddb-track-editor.c:92
+#: ../cddb-slave2/cddb-track-editor.c:91
 msgid "Pop"
 msgstr "Popmuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:93
+#: ../cddb-slave2/cddb-track-editor.c:92
 msgid "R&B"
 msgstr "R&B"
 
-#: ../cddb-slave2/cddb-track-editor.c:94
+#: ../cddb-slave2/cddb-track-editor.c:93
 msgid "Rap"
 msgstr "Räpp"
 
-#: ../cddb-slave2/cddb-track-editor.c:95
+#: ../cddb-slave2/cddb-track-editor.c:94
 msgid "Reggae"
 msgstr "Regemuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:96
+#: ../cddb-slave2/cddb-track-editor.c:95
 msgid "Rock"
 msgstr "Rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:97
+#: ../cddb-slave2/cddb-track-editor.c:96
 msgid "Techno"
 msgstr "Tehno"
 
-#: ../cddb-slave2/cddb-track-editor.c:98
+#: ../cddb-slave2/cddb-track-editor.c:97
 msgid "Industrial"
 msgstr "Industriaal"
 
-#: ../cddb-slave2/cddb-track-editor.c:99
+#: ../cddb-slave2/cddb-track-editor.c:98
 msgid "Alternative"
 msgstr "Alternatiiv"
 
-#: ../cddb-slave2/cddb-track-editor.c:100
+#: ../cddb-slave2/cddb-track-editor.c:99
 msgid "Ska"
 msgstr "Ska"
 
-#: ../cddb-slave2/cddb-track-editor.c:101
+#: ../cddb-slave2/cddb-track-editor.c:100
 msgid "Death Metal"
 msgstr "Death Metal"
 
-#: ../cddb-slave2/cddb-track-editor.c:102
+#: ../cddb-slave2/cddb-track-editor.c:101
 msgid "Pranks"
 msgstr "Tillikad"
 
-#: ../cddb-slave2/cddb-track-editor.c:103
+#: ../cddb-slave2/cddb-track-editor.c:102
 msgid "Soundtrack"
 msgstr "Filmimuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:104
+#: ../cddb-slave2/cddb-track-editor.c:103
 msgid "Euro-Techno"
 msgstr "Euro-Tehno"
 
-#: ../cddb-slave2/cddb-track-editor.c:105
+#: ../cddb-slave2/cddb-track-editor.c:104
 msgid "Ambient"
 msgstr "Ambient"
 
-#: ../cddb-slave2/cddb-track-editor.c:106
+#: ../cddb-slave2/cddb-track-editor.c:105
 msgid "Trip-Hop"
 msgstr "Trip-Hop"
 
-#: ../cddb-slave2/cddb-track-editor.c:107
+#: ../cddb-slave2/cddb-track-editor.c:106
 msgid "Vocal"
 msgstr "Vokaal"
 
-#: ../cddb-slave2/cddb-track-editor.c:108
+#: ../cddb-slave2/cddb-track-editor.c:107
 msgid "Jazz+Funk"
 msgstr "Jazz+Funk"
 
-#: ../cddb-slave2/cddb-track-editor.c:109
+#: ../cddb-slave2/cddb-track-editor.c:108
 msgid "Fusion"
 msgstr "Fusion"
 
-#: ../cddb-slave2/cddb-track-editor.c:110
+#: ../cddb-slave2/cddb-track-editor.c:109
 msgid "Trance"
 msgstr "Trance"
 
-#: ../cddb-slave2/cddb-track-editor.c:111
+#: ../cddb-slave2/cddb-track-editor.c:110
 msgid "Classical"
 msgstr "Klassika"
 
-#: ../cddb-slave2/cddb-track-editor.c:112
+#: ../cddb-slave2/cddb-track-editor.c:111
 msgid "Instrumental"
 msgstr "Instrumentaalmuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:113
+#: ../cddb-slave2/cddb-track-editor.c:112
 msgid "Acid"
 msgstr "Acid"
 
-#: ../cddb-slave2/cddb-track-editor.c:114
+#: ../cddb-slave2/cddb-track-editor.c:113
 msgid "House"
 msgstr "House"
 
-#: ../cddb-slave2/cddb-track-editor.c:115
+#: ../cddb-slave2/cddb-track-editor.c:114
 msgid "Game"
 msgstr "Mängumuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:116
+#: ../cddb-slave2/cddb-track-editor.c:115
 msgid "Sound Clip"
 msgstr "Helikatkend"
 
-#: ../cddb-slave2/cddb-track-editor.c:117
+#: ../cddb-slave2/cddb-track-editor.c:116
 msgid "Gospel"
 msgstr "Gospel"
 
-#: ../cddb-slave2/cddb-track-editor.c:118
+#: ../cddb-slave2/cddb-track-editor.c:117
 msgid "Noise"
 msgstr "Müra"
 
-#: ../cddb-slave2/cddb-track-editor.c:119
+#: ../cddb-slave2/cddb-track-editor.c:118
 msgid "Alt"
 msgstr "Alt"
 
-#: ../cddb-slave2/cddb-track-editor.c:120
+#: ../cddb-slave2/cddb-track-editor.c:119
 msgid "Bass"
 msgstr "Bass"
 
-#: ../cddb-slave2/cddb-track-editor.c:121
+#: ../cddb-slave2/cddb-track-editor.c:120
 msgid "Soul"
 msgstr "Soul"
 
-#: ../cddb-slave2/cddb-track-editor.c:122
+#: ../cddb-slave2/cddb-track-editor.c:121
 msgid "Punk"
 msgstr "Punk"
 
-#: ../cddb-slave2/cddb-track-editor.c:123
+#: ../cddb-slave2/cddb-track-editor.c:122
 msgid "Space"
 msgstr "Kosmos"
 
-#: ../cddb-slave2/cddb-track-editor.c:124
+#: ../cddb-slave2/cddb-track-editor.c:123
 msgid "Meditative"
 msgstr "Meditatiivne"
 
-#: ../cddb-slave2/cddb-track-editor.c:125
+#: ../cddb-slave2/cddb-track-editor.c:124
 msgid "Instrumental Pop"
 msgstr "Instrumentaalpopp"
 
-#: ../cddb-slave2/cddb-track-editor.c:126
+#: ../cddb-slave2/cddb-track-editor.c:125
 msgid "Instrumental Rock"
 msgstr "Instrumentaalrokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:127
+#: ../cddb-slave2/cddb-track-editor.c:126
 msgid "Ethnic"
 msgstr "Etno"
 
-#: ../cddb-slave2/cddb-track-editor.c:128
+#: ../cddb-slave2/cddb-track-editor.c:127
 msgid "Gothic"
 msgstr "Gooti muusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:129
+#: ../cddb-slave2/cddb-track-editor.c:128
 msgid "Darkwave"
 msgstr "Darkwave"
 
-#: ../cddb-slave2/cddb-track-editor.c:130
+#: ../cddb-slave2/cddb-track-editor.c:129
 msgid "Techno-Industrial"
 msgstr "Tehno-Industriaal"
 
-#: ../cddb-slave2/cddb-track-editor.c:131
+#: ../cddb-slave2/cddb-track-editor.c:130
 msgid "Electronic"
 msgstr "Elektrooniline muusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:132
+#: ../cddb-slave2/cddb-track-editor.c:131
 msgid "Pop-Folk"
 msgstr "Popp-Folk"
 
-#: ../cddb-slave2/cddb-track-editor.c:133
+#: ../cddb-slave2/cddb-track-editor.c:132
 msgid "Eurodance"
 msgstr "Euro tantsumuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:134
+#: ../cddb-slave2/cddb-track-editor.c:133
 msgid "Dream"
 msgstr "Unelemismuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:135
+#: ../cddb-slave2/cddb-track-editor.c:134
 msgid "Southern Rock"
 msgstr "Southern Rock"
 
-#: ../cddb-slave2/cddb-track-editor.c:136
+#: ../cddb-slave2/cddb-track-editor.c:135
 msgid "Comedy"
 msgstr "Komöödia"
 
-#: ../cddb-slave2/cddb-track-editor.c:137
+#: ../cddb-slave2/cddb-track-editor.c:136
 msgid "Cult"
 msgstr "Cult"
 
-#: ../cddb-slave2/cddb-track-editor.c:138
+#: ../cddb-slave2/cddb-track-editor.c:137
 msgid "Gangsta Rap"
 msgstr "Gängster-räpp"
 
-#: ../cddb-slave2/cddb-track-editor.c:139
+#: ../cddb-slave2/cddb-track-editor.c:138
 msgid "Top 40"
 msgstr "Top 40"
 
-#: ../cddb-slave2/cddb-track-editor.c:140
+#: ../cddb-slave2/cddb-track-editor.c:139
 msgid "Christian Rap"
 msgstr "Kristlik räpp"
 
-#: ../cddb-slave2/cddb-track-editor.c:141
+#: ../cddb-slave2/cddb-track-editor.c:140
 msgid "Pop/Funk"
 msgstr "Pop/Funk"
 
-#: ../cddb-slave2/cddb-track-editor.c:142
+#: ../cddb-slave2/cddb-track-editor.c:141
 msgid "Jungle"
 msgstr "Jungle"
 
-#: ../cddb-slave2/cddb-track-editor.c:143
+#: ../cddb-slave2/cddb-track-editor.c:142
 msgid "Native American"
 msgstr "Indiaanimuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:144
+#: ../cddb-slave2/cddb-track-editor.c:143
 msgid "Cabaret"
 msgstr "Kabaree"
 
-#: ../cddb-slave2/cddb-track-editor.c:145
+#: ../cddb-slave2/cddb-track-editor.c:144
 msgid "New Wave"
 msgstr "New Wave"
 
-#: ../cddb-slave2/cddb-track-editor.c:146
+#: ../cddb-slave2/cddb-track-editor.c:145
 msgid "Psychedelic"
 msgstr "Psühhedeelia"
 
-#: ../cddb-slave2/cddb-track-editor.c:147
+#: ../cddb-slave2/cddb-track-editor.c:146
 msgid "Rave"
 msgstr "Reiv"
 
-#: ../cddb-slave2/cddb-track-editor.c:148
+#: ../cddb-slave2/cddb-track-editor.c:147
 msgid "Showtunes"
 msgstr "Tunnusmuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:149
+#: ../cddb-slave2/cddb-track-editor.c:148
 msgid "Trailer"
 msgstr "Tutvustusmuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:150
+#: ../cddb-slave2/cddb-track-editor.c:149
 msgid "Lo-Fi"
 msgstr "Lo-Fi"
 
-#: ../cddb-slave2/cddb-track-editor.c:151
+#: ../cddb-slave2/cddb-track-editor.c:150
 msgid "Tribal"
 msgstr "Tribal"
 
-#: ../cddb-slave2/cddb-track-editor.c:152
+#: ../cddb-slave2/cddb-track-editor.c:151
 msgid "Acid Punk"
 msgstr "Acid Punk"
 
-#: ../cddb-slave2/cddb-track-editor.c:153
+#: ../cddb-slave2/cddb-track-editor.c:152
 msgid "Acid Jazz"
 msgstr "Acid Jazz"
 
-#: ../cddb-slave2/cddb-track-editor.c:154
+#: ../cddb-slave2/cddb-track-editor.c:153
 msgid "Polka"
 msgstr "Polka"
 
-#: ../cddb-slave2/cddb-track-editor.c:155
+#: ../cddb-slave2/cddb-track-editor.c:154
 msgid "Retro"
 msgstr "Retro"
 
-#: ../cddb-slave2/cddb-track-editor.c:156
+#: ../cddb-slave2/cddb-track-editor.c:155
 msgid "Musical"
 msgstr "Muusikal"
 
-#: ../cddb-slave2/cddb-track-editor.c:157
+#: ../cddb-slave2/cddb-track-editor.c:156
 msgid "Rock & Roll"
 msgstr "Rock'n'roll"
 
-#: ../cddb-slave2/cddb-track-editor.c:158
+#: ../cddb-slave2/cddb-track-editor.c:157
 msgid "Hard Rock"
 msgstr "Hard Rock"
 
-#: ../cddb-slave2/cddb-track-editor.c:159
+#: ../cddb-slave2/cddb-track-editor.c:158
 msgid "Folk"
 msgstr "Folk"
 
-#: ../cddb-slave2/cddb-track-editor.c:160
+#: ../cddb-slave2/cddb-track-editor.c:159
 msgid "Folk/Rock"
 msgstr "Folk/Rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:161
+#: ../cddb-slave2/cddb-track-editor.c:160
 msgid "National Folk"
 msgstr "Rahvuslik folk"
 
-#: ../cddb-slave2/cddb-track-editor.c:162
+#: ../cddb-slave2/cddb-track-editor.c:161
 msgid "Swing"
 msgstr "Sving"
 
-#: ../cddb-slave2/cddb-track-editor.c:163
+#: ../cddb-slave2/cddb-track-editor.c:162
 msgid "Fast-Fusion"
 msgstr "Fast-Fusion"
 
-#: ../cddb-slave2/cddb-track-editor.c:164
+#: ../cddb-slave2/cddb-track-editor.c:163
 msgid "Bebop"
 msgstr "Bebop"
 
-#: ../cddb-slave2/cddb-track-editor.c:165
+#: ../cddb-slave2/cddb-track-editor.c:164
 msgid "Latin"
 msgstr "Ladina"
 
-#: ../cddb-slave2/cddb-track-editor.c:166
+#: ../cddb-slave2/cddb-track-editor.c:165
 msgid "Revival"
 msgstr "Revival"
 
-#: ../cddb-slave2/cddb-track-editor.c:167
+#: ../cddb-slave2/cddb-track-editor.c:166
 msgid "Celtic"
 msgstr "Keldi"
 
-#: ../cddb-slave2/cddb-track-editor.c:168
+#: ../cddb-slave2/cddb-track-editor.c:167
 msgid "Bluegrass"
 msgstr "Bluegrass"
 
-#: ../cddb-slave2/cddb-track-editor.c:169
+#: ../cddb-slave2/cddb-track-editor.c:168
 msgid "Avantgarde"
 msgstr "Avandard"
 
-#: ../cddb-slave2/cddb-track-editor.c:170
+#: ../cddb-slave2/cddb-track-editor.c:169
 msgid "Gothic Rock"
 msgstr "Gootirokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:171
+#: ../cddb-slave2/cddb-track-editor.c:170
 msgid "Progressive Rock"
 msgstr "Progressiivne rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:172
+#: ../cddb-slave2/cddb-track-editor.c:171
 msgid "Psychedelic Rock"
 msgstr "Psühodeelne rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:173
+#: ../cddb-slave2/cddb-track-editor.c:172
 msgid "Symphonic Rock"
 msgstr "Sümfooniline rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:174
+#: ../cddb-slave2/cddb-track-editor.c:173
 msgid "Slow Rock"
 msgstr "Aeglane rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:175
+#: ../cddb-slave2/cddb-track-editor.c:174
 msgid "Big Band"
 msgstr "Big Band"
 
-#: ../cddb-slave2/cddb-track-editor.c:176
+#: ../cddb-slave2/cddb-track-editor.c:175
 msgid "Chorus"
 msgstr "Koor"
 
-#: ../cddb-slave2/cddb-track-editor.c:177
+#: ../cddb-slave2/cddb-track-editor.c:176
 msgid "Easy Listening"
 msgstr "Kerge kuulamine"
 
-#: ../cddb-slave2/cddb-track-editor.c:178
+#: ../cddb-slave2/cddb-track-editor.c:177
 msgid "Acoustic"
 msgstr "Akustiline"
 
-#: ../cddb-slave2/cddb-track-editor.c:179
+#: ../cddb-slave2/cddb-track-editor.c:178
 msgid "Humour"
 msgstr "Huumor"
 
-#: ../cddb-slave2/cddb-track-editor.c:180
+#: ../cddb-slave2/cddb-track-editor.c:179
 msgid "Speech"
 msgstr "Kõne"
 
-#: ../cddb-slave2/cddb-track-editor.c:181
+#: ../cddb-slave2/cddb-track-editor.c:180
 msgid "Chanson"
 msgstr "Chanson"
 
-#: ../cddb-slave2/cddb-track-editor.c:182
+#: ../cddb-slave2/cddb-track-editor.c:181
 msgid "Opera"
 msgstr "Ooper"
 
-#: ../cddb-slave2/cddb-track-editor.c:183
+#: ../cddb-slave2/cddb-track-editor.c:182
 msgid "Chamber Music"
 msgstr "Kammermuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:184
+#: ../cddb-slave2/cddb-track-editor.c:183
 msgid "Sonata"
 msgstr "Sonaat"
 
-#: ../cddb-slave2/cddb-track-editor.c:185
+#: ../cddb-slave2/cddb-track-editor.c:184
 msgid "Symphony"
 msgstr "Sümfoonia"
 
-#: ../cddb-slave2/cddb-track-editor.c:186
+#: ../cddb-slave2/cddb-track-editor.c:185
 msgid "Booty Bass"
 msgstr "Booty Bass"
 
-#: ../cddb-slave2/cddb-track-editor.c:187
+#: ../cddb-slave2/cddb-track-editor.c:186
 msgid "Primus"
 msgstr "Primus"
 
-#: ../cddb-slave2/cddb-track-editor.c:188
+#: ../cddb-slave2/cddb-track-editor.c:187
 msgid "Porn Groove"
 msgstr "Porn Groove"
 
-#: ../cddb-slave2/cddb-track-editor.c:189
+#: ../cddb-slave2/cddb-track-editor.c:188
 msgid "Satire"
 msgstr "Satiir"
 
-#: ../cddb-slave2/cddb-track-editor.c:190
+#: ../cddb-slave2/cddb-track-editor.c:189
 msgid "Slow Jam"
 msgstr "Aeglane Jam"
 
-#: ../cddb-slave2/cddb-track-editor.c:191
+#: ../cddb-slave2/cddb-track-editor.c:190
 msgid "Club"
 msgstr "Klubimuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:192
+#: ../cddb-slave2/cddb-track-editor.c:191
 msgid "Tango"
 msgstr "Tango"
 
-#: ../cddb-slave2/cddb-track-editor.c:193
+#: ../cddb-slave2/cddb-track-editor.c:192
 msgid "Samba"
 msgstr "Samba"
 
-#: ../cddb-slave2/cddb-track-editor.c:194
+#: ../cddb-slave2/cddb-track-editor.c:193
 msgid "Folklore"
 msgstr "Folkloor"
 
-#: ../cddb-slave2/cddb-track-editor.c:195
+#: ../cddb-slave2/cddb-track-editor.c:194
 msgid "Ballad"
 msgstr "Ballaad"
 
-#: ../cddb-slave2/cddb-track-editor.c:196
+#: ../cddb-slave2/cddb-track-editor.c:195
 msgid "Power Ballad"
 msgstr "Power Ballad"
 
-#: ../cddb-slave2/cddb-track-editor.c:197
+#: ../cddb-slave2/cddb-track-editor.c:196
 msgid "Rhythmic Soul"
 msgstr "Rütmikas Soul"
 
-#: ../cddb-slave2/cddb-track-editor.c:198
+#: ../cddb-slave2/cddb-track-editor.c:197
 msgid "Freestyle"
 msgstr "Freestyle"
 
-#: ../cddb-slave2/cddb-track-editor.c:199
+#: ../cddb-slave2/cddb-track-editor.c:198
 msgid "Duet"
 msgstr "Duett"
 
-#: ../cddb-slave2/cddb-track-editor.c:200
+#: ../cddb-slave2/cddb-track-editor.c:199
 msgid "Punk Rock"
 msgstr "Punkrokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:201
+#: ../cddb-slave2/cddb-track-editor.c:200
 msgid "Drum Solo"
 msgstr "Trummisoolo"
 
-#: ../cddb-slave2/cddb-track-editor.c:202
+#: ../cddb-slave2/cddb-track-editor.c:201
 msgid "A Cappella"
 msgstr "A capella"
 
-#: ../cddb-slave2/cddb-track-editor.c:203
+#: ../cddb-slave2/cddb-track-editor.c:202
 msgid "Euro-House"
 msgstr "Euro-House"
 
-#: ../cddb-slave2/cddb-track-editor.c:204
+#: ../cddb-slave2/cddb-track-editor.c:203
 msgid "Dance Hall"
 msgstr "Dance Hall"
 
-#: ../cddb-slave2/cddb-track-editor.c:205
+#: ../cddb-slave2/cddb-track-editor.c:204
 msgid "Goa"
 msgstr "Goa"
 
-#: ../cddb-slave2/cddb-track-editor.c:206
+#: ../cddb-slave2/cddb-track-editor.c:205
 msgid "Drum & Bass"
 msgstr "Trumm ja bass"
 
-#: ../cddb-slave2/cddb-track-editor.c:207
+#: ../cddb-slave2/cddb-track-editor.c:206
 msgid "Club-House"
 msgstr "Klubi-house"
 
-#: ../cddb-slave2/cddb-track-editor.c:208
+#: ../cddb-slave2/cddb-track-editor.c:207
 msgid "Hardcore"
 msgstr "Hardcore"
 
-#: ../cddb-slave2/cddb-track-editor.c:209
+#: ../cddb-slave2/cddb-track-editor.c:208
 msgid "Terror"
 msgstr "Terror"
 
-#: ../cddb-slave2/cddb-track-editor.c:210
+#: ../cddb-slave2/cddb-track-editor.c:209
 msgid "Indie"
 msgstr "Indie"
 
-#: ../cddb-slave2/cddb-track-editor.c:211
+#: ../cddb-slave2/cddb-track-editor.c:210
 msgid "BritPop"
 msgstr "BritPop"
 
-#: ../cddb-slave2/cddb-track-editor.c:212
+#: ../cddb-slave2/cddb-track-editor.c:211
 msgid "Negerpunk"
 msgstr "Neegripunk"
 
-#: ../cddb-slave2/cddb-track-editor.c:213
+#: ../cddb-slave2/cddb-track-editor.c:212
 msgid "Polsk Punk"
 msgstr "Polsk Punk"
 
-#: ../cddb-slave2/cddb-track-editor.c:214
+#: ../cddb-slave2/cddb-track-editor.c:213
 msgid "Beat"
 msgstr "Rütm"
 
-#: ../cddb-slave2/cddb-track-editor.c:215
+#: ../cddb-slave2/cddb-track-editor.c:214
 msgid "Christian Gangsta Rap"
 msgstr "Kristlik gängster-räpp"
 
-#: ../cddb-slave2/cddb-track-editor.c:216
+#: ../cddb-slave2/cddb-track-editor.c:215
 msgid "Heavy Metal"
 msgstr "Raske metall"
 
-#: ../cddb-slave2/cddb-track-editor.c:217
+#: ../cddb-slave2/cddb-track-editor.c:216
 msgid "Black Metal"
 msgstr "Black Metal"
 
-#: ../cddb-slave2/cddb-track-editor.c:218
+#: ../cddb-slave2/cddb-track-editor.c:217
 msgid "Crossover"
 msgstr "Crossover"
 
-#: ../cddb-slave2/cddb-track-editor.c:219
+#: ../cddb-slave2/cddb-track-editor.c:218
 msgid "Contemporary Christian"
 msgstr "Contemporary Christian"
 
-#: ../cddb-slave2/cddb-track-editor.c:220
+#: ../cddb-slave2/cddb-track-editor.c:219
 msgid "Christian Rock"
 msgstr "Kristlik rokk"
 
-#: ../cddb-slave2/cddb-track-editor.c:221
+#: ../cddb-slave2/cddb-track-editor.c:220
 msgid "Merengue"
 msgstr "Merenge"
 
-#: ../cddb-slave2/cddb-track-editor.c:222
+#: ../cddb-slave2/cddb-track-editor.c:221
 msgid "Salsa"
 msgstr "Salsa"
 
-#: ../cddb-slave2/cddb-track-editor.c:223
+#: ../cddb-slave2/cddb-track-editor.c:222
 msgid "Thrash Metal"
 msgstr "Thrash Metal"
 
-#: ../cddb-slave2/cddb-track-editor.c:224
+#: ../cddb-slave2/cddb-track-editor.c:223
 msgid "Anime"
 msgstr "Multifilmimuusika"
 
-#: ../cddb-slave2/cddb-track-editor.c:225
+#: ../cddb-slave2/cddb-track-editor.c:224
 msgid "JPop"
 msgstr "JPop"
 
-#: ../cddb-slave2/cddb-track-editor.c:226
+#: ../cddb-slave2/cddb-track-editor.c:225
 msgid "Synthpop"
 msgstr "Synthpop"
 
-#: ../cddb-slave2/cddb-track-editor.c:227
+#: ../cddb-slave2/cddb-track-editor.c:226
 msgid "Nu-Metal"
 msgstr "Nu-Metal"
 
-#: ../cddb-slave2/cddb-track-editor.c:228
+#: ../cddb-slave2/cddb-track-editor.c:227
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:558
-#: ../gnome-cd/callbacks.c:696 ../gnome-cd/callbacks.c:707
+#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:571
+#: ../gnome-cd/callbacks.c:715 ../gnome-cd/callbacks.c:726
 #: ../gnome-cd/display.c:74
 msgid "Unknown Artist"
 msgstr "Tundmatu esitaja"
 
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:559
-#: ../gnome-cd/callbacks.c:699 ../gnome-cd/callbacks.c:711
+#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:572
+#: ../gnome-cd/callbacks.c:718 ../gnome-cd/callbacks.c:730
 #: ../gnome-cd/display.c:75
 msgid "Unknown Album"
 msgstr "Tundmatu album"
 
-#: ../cddb-slave2/cddb-track-editor.c:541
+#: ../cddb-slave2/cddb-track-editor.c:540
 #, c-format
 msgid "Editing Disc ID: %s"
 msgstr "Plaadi ID redaktor: %s"
 
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:630
-msgid "Editing Disc ID: "
-msgstr "Plaadi ID redaktor: "
-
-#: ../cddb-slave2/cddb-track-editor.c:641
-msgid "_Artist:"
-msgstr "_Esitaja:"
-
-#: ../cddb-slave2/cddb-track-editor.c:655
-msgid "Disc _Title:"
-msgstr "Plaadi _nimi:"
-
-#: ../cddb-slave2/cddb-track-editor.c:665
-msgid "Show advanced disc options"
-msgstr "Näita plaadi laiendatud võtmeid"
-
-#: ../cddb-slave2/cddb-track-editor.c:666
+#: ../cddb-slave2/cddb-track-editor.c:617
 msgid "Hide advanced disc options"
 msgstr "Peida plaadi laiendatud võtmed"
 
+#: ../cddb-slave2/cddb-track-editor.c:619
+#: ../cddb-slave2/cddb-track-editor.c:696
+msgid "Show advanced disc options"
+msgstr "Näita plaadi laiendatud võtmeid"
+
+#: ../cddb-slave2/cddb-track-editor.c:633
+msgid "Hide advanced track options"
+msgstr "Peida loo laiendatud võtmed"
+
+#. More advanced options
+#: ../cddb-slave2/cddb-track-editor.c:635
+#: ../cddb-slave2/cddb-track-editor.c:798
+msgid "Show advanced track options"
+msgstr "Näita loo laiendatud võtmeid"
+
+#. Info label
+#: ../cddb-slave2/cddb-track-editor.c:661
+msgid "Editing Disc ID: "
+msgstr "Plaadi ID redaktor: "
+
+#: ../cddb-slave2/cddb-track-editor.c:672
+msgid "_Artist:"
+msgstr "_Esitaja:"
+
+#: ../cddb-slave2/cddb-track-editor.c:686
+msgid "Disc _Title:"
+msgstr "Plaadi _nimi:"
+
 #. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:678
+#: ../cddb-slave2/cddb-track-editor.c:710
 msgid "_Disc comments:"
 msgstr "_Plaadi kommentaarid:"
 
 #. Genre
-#: ../cddb-slave2/cddb-track-editor.c:693
+#: ../cddb-slave2/cddb-track-editor.c:725
 msgid "_Genre:"
 msgstr "_Žanr:"
 
 #. Year
-#: ../cddb-slave2/cddb-track-editor.c:709
+#: ../cddb-slave2/cddb-track-editor.c:741
 msgid "_Year:"
 msgstr "_Aasta:"
 
-#: ../cddb-slave2/cddb-track-editor.c:748
+#: ../cddb-slave2/cddb-track-editor.c:780
 msgid "Title"
 msgstr "Pealkiri"
 
-#: ../cddb-slave2/cddb-track-editor.c:755
+#: ../cddb-slave2/cddb-track-editor.c:787
 msgid "Length"
 msgstr "Pikkus"
 
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:766
-msgid "Show advanced track options"
-msgstr "Näita loo laiendatud võtmeid"
-
-#: ../cddb-slave2/cddb-track-editor.c:767
-msgid "Hide advanced track options"
-msgstr "Peida loo laiendatud võtmed"
-
 #. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:775
+#: ../cddb-slave2/cddb-track-editor.c:807
 msgid "_Extra track data:"
 msgstr "_Lisaandmed loo kohta:"
 
-#: ../cddb-slave2/cddb-track-editor.c:904
+#: ../cddb-slave2/cddb-track-editor.c:934
 msgid "CDDB Track Editor"
 msgstr "CDDB looredaktor"
 
-#: ../cddb-slave2/cddb-track-editor.c:1041
+#: ../cddb-slave2/cddb-track-editor.c:1071
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
 "Viga CDDBTrackEditor factory't loomisel.\n"
-"Selle põhjuseks võib olla see, et mõni cddb-track-editor on juba käivitatud.\n"
+"Selle põhjuseks võib olla see, et mõni cddb-track-editor on juba "
+"käivitatud.\n"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
@@ -899,7 +897,7 @@ msgstr "CD kuvamine"
 msgid ""
 "Displays information about the currently playing album, artist and time "
 "elapsed"
-msgstr "Kuvab teabe hetkel mängitava albumi, esitaja ja kulunud aja kohta"
+msgstr "Andmete kuvamine hetkel esitatava albumi, esitaja ja kulunud aja kohta"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -933,70 +931,101 @@ msgstr "Albumi rida"
 msgid "Line for displaying the name of the album"
 msgstr "Albumi nime kuvamiseks mõeldud rida"
 
-#: ../gnome-cd/callbacks.c:83 ../gnome-cd/callbacks.c:171
-#: ../gnome-cd/callbacks.c:270 ../gnome-cd/callbacks.c:573
-#: ../gnome-cd/gnome-cd.c:751 ../grecord/gsr.xml.h:13
+#: ../gnome-cd/callbacks.c:85 ../gnome-cd/callbacks.c:173
+#: ../gnome-cd/callbacks.c:281 ../gnome-cd/callbacks.c:587
+#: ../gnome-cd/gnome-cd.c:814
 msgid "Play"
-msgstr "Mängi"
+msgstr "Esita"
 
-#: ../gnome-cd/callbacks.c:156 ../gnome-cd/callbacks.c:202
-#: ../gnome-cd/callbacks.c:232 ../gnome-cd/callbacks.c:312
-#: ../gnome-cd/callbacks.c:352 ../gnome-cd/callbacks.c:376
-#: ../gnome-cd/callbacks.c:417 ../gnome-cd/callbacks.c:511
+#: ../gnome-cd/callbacks.c:158 ../gnome-cd/callbacks.c:209
+#: ../gnome-cd/callbacks.c:240 ../gnome-cd/callbacks.c:323
+#: ../gnome-cd/callbacks.c:363 ../gnome-cd/callbacks.c:387
+#: ../gnome-cd/callbacks.c:428 ../gnome-cd/callbacks.c:523
 msgid "Pause"
 msgstr "Paus"
 
-#: ../gnome-cd/callbacks.c:557
+#: ../gnome-cd/callbacks.c:570
 #, c-format
-msgid "Playing %s - %s"
-msgstr "%s - %s mängimine"
+msgid ""
+"Playing %s - %s\n"
+"Current Time: %s"
+msgstr ""
+"%s - %s esitamine\n"
+"Praegune aeg: %s"
 
-#: ../gnome-cd/callbacks.c:561
-msgid "Playing"
-msgstr "Mängimine"
+#: ../gnome-cd/callbacks.c:575
+#, c-format
+msgid ""
+"Playing\n"
+"Current Time: %s"
+msgstr ""
+"Esitamine\n"
+"Praegune aeg: %s"
 
-#: ../gnome-cd/callbacks.c:585
+#: ../gnome-cd/callbacks.c:599
 msgid "Paused"
 msgstr "Paus"
 
-#: ../gnome-cd/callbacks.c:631 ../gnome-cd/callbacks.c:879
-#: ../gnome-cd/gnome-cd.c:95 ../gnome-cd/gnome-cd.c:611
-#: ../gnome-cd/gnome-cd.c:815 ../gnome-cd/gnome-cd.c:818
-#: ../gnome-cd/gnome-cd.desktop.in.h:1 ../gnome-cd/preferences.c:613
+#: ../gnome-cd/callbacks.c:650 ../gnome-cd/callbacks.c:907
+#: ../gnome-cd/gnome-cd.c:114 ../gnome-cd/gnome-cd.c:691
+#: ../gnome-cd/gnome-cd.c:890 ../gnome-cd/gnome-cd.c:893
+#: ../gnome-cd/gnome-cd.desktop.in.h:1 ../gnome-cd/preferences.c:610
 msgid "CD Player"
 msgstr "CD-mängija"
 
-#: ../gnome-cd/callbacks.c:655
+#: ../gnome-cd/callbacks.c:674
 msgid "Stopped"
 msgstr "Stopp"
 
-#: ../gnome-cd/callbacks.c:661
+#: ../gnome-cd/callbacks.c:680
 msgid "Disc error"
 msgstr "Plaadi viga"
 
-#: ../gnome-cd/callbacks.c:672 ../gnome-cd/callbacks.c:767
+#: ../gnome-cd/callbacks.c:691 ../gnome-cd/callbacks.c:792
 msgid "No disc"
 msgstr "Plaati pole"
 
-#: ../gnome-cd/callbacks.c:795
+#: ../gnome-cd/callbacks.c:790
+msgid "Empty disc"
+msgstr "Tühi plaat"
+
+#: ../gnome-cd/callbacks.c:820
 msgid "Drive open"
 msgstr "Seade on avatud"
 
-#: ../gnome-cd/callbacks.c:819
+#: ../gnome-cd/callbacks.c:846
 msgid "Data CD"
 msgstr "Andme-CD"
 
-#: ../gnome-cd/callbacks.c:841 ../gnome-cd/callbacks.c:846
+#: ../gnome-cd/callbacks.c:870 ../gnome-cd/callbacks.c:875
 msgid "No Cdrom"
 msgstr "CD-seade puudub"
 
-#: ../gnome-cd/callbacks.c:857
+#: ../gnome-cd/callbacks.c:888
 msgid "Drive Error"
 msgstr "Seadme viga"
 
-#: ../gnome-cd/callbacks.c:881
+#: ../gnome-cd/callbacks.c:910
 msgid "A CD player for GNOME"
 msgstr "GNOME CD-mängija"
+
+#: ../gnome-cd/callbacks.c:1131
+msgid "Contents in the CDDB have changed"
+msgstr "CDDB baasi sisu on muutunud"
+
+#: ../gnome-cd/callbacks.c:1132
+msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+msgstr "Valik 'Jah' kustutab CDDB eelmise sisu."
+
+#: ../gnome-cd/callbacks.c:1133
+msgid "Do you wish to continue?"
+msgstr "Kas sa soovid jätkata?"
+
+#. Set the tooltip
+#: ../gnome-cd/callbacks.c:1206 ../gnome-cd/gnome-cd.c:532
+#, c-format
+msgid "Volume %d%%"
+msgstr "Helitugevus %d%%"
 
 #: ../gnome-cd/cdrom.c:368
 #, c-format
@@ -1011,7 +1040,8 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"%s ei paista olevat õige CD-seade. Selline olukord võib olla tekkinud järgmistel põhjustel:\n"
+"%s ei paista olevat õige CD-seade. Selline olukord võib olla tekkinud "
+"järgmistel põhjustel:\n"
 "a) sellel masinal ei ole CD tuge\n"
 "b) sul ei ole piisavalt õigusi CD-seadmele ligipääsuks\n"
 "c) %s ei ole CD-seade.\n"
@@ -1024,40 +1054,45 @@ msgstr "Suund"
 msgid "The orientation of the tray."
 msgstr "Salve suund."
 
-#: ../gnome-cd/gnome-cd.c:222
+#: ../gnome-cd/gnome-cd.c:246
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Tundmatu"
 
-#: ../gnome-cd/gnome-cd.c:336
-msgid "P_revious track"
-msgstr "Mängi _eelmist lugu"
+#: ../gnome-cd/gnome-cd.c:362
+msgid "_Play / Pause"
+msgstr "_Esita / paus"
 
-#: ../gnome-cd/gnome-cd.c:337 ../grecord/gsr.xml.h:44
+#: ../gnome-cd/gnome-cd.c:363
 msgid "_Stop"
 msgstr "_Seiska"
 
-#: ../gnome-cd/gnome-cd.c:338
-msgid "_Play / Pause"
-msgstr "_Mängi / paus"
+#: ../gnome-cd/gnome-cd.c:364
+msgid "P_revious"
+msgstr "_Eelmine"
 
-#: ../gnome-cd/gnome-cd.c:339
-msgid "_Next track"
-msgstr "Mängi _järgmist lugu"
+#: ../gnome-cd/gnome-cd.c:365
+msgid "_Next"
+msgstr "_Järgmine"
 
-#: ../gnome-cd/gnome-cd.c:340
+#: ../gnome-cd/gnome-cd.c:366
 msgid "_Eject disc"
 msgstr "_Väljasta plaat"
 
-#: ../gnome-cd/gnome-cd.c:341 ../grecord/gsr.xml.h:37
+#. Help menu
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1742
 msgid "_Help"
 msgstr "_Abi"
 
-#: ../gnome-cd/gnome-cd.c:342
-msgid "_About CD player"
-msgstr "CD-mängija _teave"
+#: ../gnome-cd/gnome-cd.c:368
+msgid "_About"
+msgstr "_Programmist lähemalt"
 
-#: ../gnome-cd/gnome-cd.c:531
+#: ../gnome-cd/gnome-cd.c:369
+msgid "_Quit"
+msgstr "_Lõpeta"
+
+#: ../gnome-cd/gnome-cd.c:611
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1067,15 +1102,15 @@ msgstr ""
 "pole võimalik käivitada. Klõpsa 'Määra seade' nupule, et avada\n"
 "dialoog, kus saad määrata seadme või klõpsa 'Välju', et väljuda CD mängijast."
 
-#: ../gnome-cd/gnome-cd.c:535
+#: ../gnome-cd/gnome-cd.c:615
 msgid "Set device"
 msgstr "Määra seade"
 
-#: ../gnome-cd/gnome-cd.c:537
+#: ../gnome-cd/gnome-cd.c:617
 msgid "No CD device"
 msgstr "CD-seadet ei ole"
 
-#: ../gnome-cd/gnome-cd.c:590
+#: ../gnome-cd/gnome-cd.c:670
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1088,145 +1123,171 @@ msgstr ""
 "\n"
 "Tõrke põhjuseid saad vaadata vajutades nupule 'Üksikasjad'.\n"
 "\n"
-"Vajuta 'Määra seade', et avada seadme määramise dialoog või vajuta 'Lõpeta' CD_mängija sulgemiseks."
+"Vajuta 'Määra seade', et avada seadme määramise dialoog või vajuta 'Lõpeta' "
+"CD_mängija sulgemiseks."
 
-#: ../gnome-cd/gnome-cd.c:594
+#: ../gnome-cd/gnome-cd.c:674
 msgid "_Details"
 msgstr "Ü_ksikasjad"
 
-#: ../gnome-cd/gnome-cd.c:595
+#: ../gnome-cd/gnome-cd.c:675
 msgid "_Set device"
 msgstr "_Määra seade"
 
-#: ../gnome-cd/gnome-cd.c:597
+#: ../gnome-cd/gnome-cd.c:677
 msgid "Invalid CD device"
 msgstr "Vigane CD-seade"
 
-#: ../gnome-cd/gnome-cd.c:664
-msgid "Volume control"
-msgstr "Helitugevuse regulaator"
-
-#: ../gnome-cd/gnome-cd.c:675
+#: ../gnome-cd/gnome-cd.c:752
 msgid "Position"
 msgstr "Asukoht"
 
-#: ../gnome-cd/gnome-cd.c:692
-msgid "Open track editor"
-msgstr "Redaktori avamine"
-
-#: ../gnome-cd/gnome-cd.c:693
-msgid "Track editor"
-msgstr "Looredaktor"
-
-#: ../gnome-cd/gnome-cd.c:700
+#: ../gnome-cd/gnome-cd.c:769
 msgid "Open preferences"
 msgstr "Eelistuste avamine"
 
-#: ../gnome-cd/gnome-cd.c:701
+#: ../gnome-cd/gnome-cd.c:770
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: ../gnome-cd/gnome-cd.c:709
+#: ../gnome-cd/gnome-cd.c:778
 msgid "Track List"
 msgstr "Lugude nimekiri"
 
-#: ../gnome-cd/gnome-cd.c:730
-msgid "Previous track"
-msgstr "Eelmine rada"
+#: ../gnome-cd/gnome-cd.c:784
+msgid "Open track editor"
+msgstr "Redaktori avamine"
 
-#: ../gnome-cd/gnome-cd.c:730
-msgid "Previous"
-msgstr "Eelmine"
+#: ../gnome-cd/gnome-cd.c:785
+msgid "Track editor"
+msgstr "Looredaktor"
 
-#: ../gnome-cd/gnome-cd.c:734
-msgid "Rewind"
-msgstr "Tagasikerimine"
-
-#: ../gnome-cd/gnome-cd.c:751
+#: ../gnome-cd/gnome-cd.c:814
 msgid "Play / Pause"
-msgstr "Mängimine / paus"
+msgstr "Esitamine / paus"
 
-#: ../gnome-cd/gnome-cd.c:756 ../grecord/gsr.xml.h:30
+#: ../gnome-cd/gnome-cd.c:819
 msgid "Stop"
 msgstr "Seiskamine"
 
-#: ../gnome-cd/gnome-cd.c:760
+#: ../gnome-cd/gnome-cd.c:823
+msgid "Previous track"
+msgstr "Eelmine rada"
+
+#: ../gnome-cd/gnome-cd.c:823
+msgid "Previous"
+msgstr "Eelmine"
+
+#: ../gnome-cd/gnome-cd.c:827
+msgid "Rewind"
+msgstr "Tagasikerimine"
+
+#: ../gnome-cd/gnome-cd.c:835
 msgid "Fast forward"
 msgstr "Edasikerimine"
 
-#: ../gnome-cd/gnome-cd.c:768
+#: ../gnome-cd/gnome-cd.c:843
 msgid "Next track"
 msgstr "Järgmine rada"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:847
 msgid "Eject CD"
 msgstr "CD väljastamine"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:847
 msgid "Eject"
 msgstr "Plaat välja"
 
-#: ../gnome-cd/gnome-cd.c:905
+#: ../gnome-cd/gnome-cd.c:973
 msgid "CD device to use"
 msgstr "Kasutatav CD-seade"
 
-#: ../gnome-cd/gnome-cd.c:907
+#: ../gnome-cd/gnome-cd.c:975
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Käivitada ainult juhul, kui ükski CD-mängija rakendus ei käi"
 
-#: ../gnome-cd/gnome-cd.c:909
+#: ../gnome-cd/gnome-cd.c:977
 msgid "Play the CD on startup"
 msgstr "CD mängimine käivitamisel"
 
-#: ../gnome-cd/gnome-cd.c:942 ../grecord/src/gnome-recorder.c:196
-#: ../gst-mixer/src/main.c:230
+#: ../gnome-cd/gnome-cd.c:979
+msgid "Start iconified to tray"
+msgstr "Käivitatakse ikoonina süsteemisalves"
+
+#: ../gnome-cd/gnome-cd.c:1012 ../grecord/src/gnome-recorder.c:210
+#: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
 "register"
-msgstr "Registrit ei ole olemas või on see rikutud. Palun uuenda seda käsu 'gst-register' käivitamise abil."
+msgstr ""
+"Registrit ei ole olemas või on see rikutud. Palun uuenda seda käsu 'gst-"
+"register' käivitamise abil."
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:959
+#: ../gnome-cd/gnome-cd.c:1029
 msgid "Cannot create player"
 msgstr "Mängijat pole võimalik luua"
 
 #: ../gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
-msgstr "Mängi muusikaplaate"
+msgstr "Muusikaplaatide esitamine"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player Volume"
+msgstr "CD-mängija helitugevus"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "CD player theme"
 msgstr "CD-mängija teema"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "Device path"
 msgstr "Seadme rada"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Eject the CD when CD player quits?"
 msgstr "Kas väljastada mängija sulgemisel CD-plaat?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Play when the CD player starts?"
-msgstr "Kas CD-mängija käivitamisel alustatakse plaadi mängimist?"
-
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Play when the CD player starts?"
+msgstr "Kas CD-mängija käivitamisel alustatakse plaadi esitamist?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "Should the CD be ejected when the CD player quits?"
 msgstr "Kas CD-mängija sulgemisel peab CD-plaadi väljastatama?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "CD-plaatide mängimiseks kasutatava seadme otsingutee."
-
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "CD-plaatide esitamiseks kasutatava seadme otsingurada."
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "What theme should the CD player use for its appearance"
 msgstr "Mis teemat peab kasutama CD-mängija välimuseks"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Kui CD-mängija käivitatakse, kas see peab hakkama koheselt CD-plaati mängima?"
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
+msgid "What volume should the CD player use when it is started?"
+msgstr "Mis helitugevust peab CD-mängija käivitamisel kasutama?"
 
-#: ../gnome-cd/preferences.c:84
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr ""
+"Kui CD-mängija käivitatakse, kas see peab hakkama koheselt CD-plaati esitama?"
+
+#: ../gnome-cd/gst-cdparanoia-cdrom.c:290
+msgid ""
+"Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
+msgstr ""
+"Tõrge CD-lugeja lähtestamisel; palun paigalda GStreamer'i cdparanoia plugin."
+
+#: ../gnome-cd/gst-cdparanoia-cdrom.c:316
+msgid ""
+"Failed to set up audio output; please install a GStreamer plugin for your "
+"soundcard."
+msgstr ""
+"Tõrge audioväljundi lähtestamisel; palun paigalda oma helikaardi jaoks "
+"GStreameri plugin."
+
+#: ../gnome-cd/preferences.c:81
 #, c-format
 msgid ""
 "%s\n"
@@ -1235,43 +1296,43 @@ msgstr ""
 "%s\n"
 "See tähendab, et CD-mängija ei ole võimeline käivituma."
 
-#: ../gnome-cd/preferences.c:85
+#: ../gnome-cd/preferences.c:82
 msgid "Error setting device"
 msgstr "Viga seadme määramisel"
 
-#: ../gnome-cd/preferences.c:586
+#: ../gnome-cd/preferences.c:583
 msgid "CD Player Preferences"
 msgstr "CD-mängija eelistused"
 
-#: ../gnome-cd/preferences.c:625
+#: ../gnome-cd/preferences.c:622
 msgid "_Device:"
 msgstr "_Seade:"
 
-#: ../gnome-cd/preferences.c:639
+#: ../gnome-cd/preferences.c:636
 msgid "Behavior"
 msgstr "Käitumine"
 
-#: ../gnome-cd/preferences.c:652
+#: ../gnome-cd/preferences.c:649
 msgid "Start _playback when CD Player starts"
-msgstr "CD _mängimise alustamine CD-mängija käivitamisel"
+msgstr "CD _esitamise alustamine CD-mängija käivitamisel"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:650
 msgid "Start playback when CD Player starts"
-msgstr "CD mängimise alustamine CD-mängija käivitamisel"
+msgstr "CD esitamise alustamine CD-mängija käivitamisel"
 
-#: ../gnome-cd/preferences.c:665
+#: ../gnome-cd/preferences.c:662
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "CD _väljastamine CD-mängija lõpetamisel"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:663
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "CD väljastamine CD-mängija lõpetamisel"
 
-#: ../gnome-cd/preferences.c:682
+#: ../gnome-cd/preferences.c:679
 msgid "Themes"
 msgstr "Teemad"
 
-#: ../gnome-cd/preferences.c:694
+#: ../gnome-cd/preferences.c:691
 msgid "_Select a theme:"
 msgstr "_Vali teema:"
 
@@ -1280,174 +1341,10 @@ msgid "Record sound clips"
 msgstr "Heliklippide salvestamine"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1140
 msgid "Sound Recorder"
 msgstr "Helisalvestaja"
 
-#: ../grecord/gsr.xml.h:1
-msgid "About"
-msgstr "Programmist lähemalt"
-
-#: ../grecord/gsr.xml.h:2
-msgid "Close"
-msgstr "Sulge"
-
-#: ../grecord/gsr.xml.h:3
-msgid "Close this window"
-msgstr "Sulge see aken"
-
-#: ../grecord/gsr.xml.h:4
-msgid "Contents"
-msgstr "Sisukord"
-
-#: ../grecord/gsr.xml.h:5
-msgid "Create a new sample"
-msgstr "Uue helilõigu loomine"
-
-#: ../grecord/gsr.xml.h:6
-msgid "Display help for Sound Recorder"
-msgstr "Kuvab helisalvestaja abiinfo"
-
-#: ../grecord/gsr.xml.h:7 ../grecord/src/gsr-window.c:1025
-msgid "File Information"
-msgstr "Faili info"
-
-#: ../grecord/gsr.xml.h:8
-msgid "File _Information"
-msgstr "Faili _teave"
-
-#: ../grecord/gsr.xml.h:9
-msgid "Main toolbar"
-msgstr "Peamine tööriistariba"
-
-#: ../grecord/gsr.xml.h:10
-msgid "New"
-msgstr "Uus"
-
-#: ../grecord/gsr.xml.h:11
-msgid "Open"
-msgstr "Ava"
-
-#: ../grecord/gsr.xml.h:12 ../grecord/src/gsr-window.c:353
-msgid "Open a file"
-msgstr "Avab faili"
-
-#: ../grecord/gsr.xml.h:14
-msgid "Play sound"
-msgstr "Mängi heli"
-
-#: ../grecord/gsr.xml.h:15
-msgid "Quit"
-msgstr "Lõpeta"
-
-#: ../grecord/gsr.xml.h:16
-msgid "Quit the application"
-msgstr "Lõpetab rakenduse töö"
-
-#: ../grecord/gsr.xml.h:17
-msgid "Recent _Files"
-msgstr "Hiljutised _failid"
-
-#: ../grecord/gsr.xml.h:18
-msgid "Record"
-msgstr "Salvesta"
-
-#: ../grecord/gsr.xml.h:19
-msgid "Record sound"
-msgstr "Salvestab heli"
-
-#: ../grecord/gsr.xml.h:20
-msgid "Run Mixer"
-msgstr "Käivitab mikseri"
-
-#: ../grecord/gsr.xml.h:21
-msgid "Run _Mixer"
-msgstr "Ava _mikser"
-
-#: ../grecord/gsr.xml.h:22
-msgid "Run the audio mixer"
-msgstr "Helimikseri käivitamine"
-
-#: ../grecord/gsr.xml.h:23
-msgid "Save"
-msgstr "Salvesta"
-
-#: ../grecord/gsr.xml.h:24
-msgid "Save As"
-msgstr "Salvesta kui"
-
-#: ../grecord/gsr.xml.h:25
-msgid "Save _As..."
-msgstr "Salvesta _kui..."
-
-#: ../grecord/gsr.xml.h:26
-msgid "Save the current file"
-msgstr "Käesoleva faili salvestamine"
-
-#: ../grecord/gsr.xml.h:27
-msgid "Save the current file with a different name"
-msgstr "Käesoleva faili salvestamine teise nime alla"
-
-#: ../grecord/gsr.xml.h:28
-msgid "Show information about the current file"
-msgstr "Teabe näitamine käesoleva faili kohta"
-
-#: ../grecord/gsr.xml.h:29
-msgid "Show information for Sound Recorder"
-msgstr "Näitab teavet helisalvestusprogrammi kohta"
-
-#: ../grecord/gsr.xml.h:31
-msgid "Stop sound"
-msgstr "Seiska heli"
-
-#: ../grecord/gsr.xml.h:32
-msgid "_About"
-msgstr "_Programmist lähemalt"
-
-#: ../grecord/gsr.xml.h:33
-msgid "_Close Window"
-msgstr "_Sulge aken"
-
-#: ../grecord/gsr.xml.h:34
-msgid "_Contents"
-msgstr "_Sisukord"
-
-#: ../grecord/gsr.xml.h:35
-msgid "_Control"
-msgstr "_Juhtimine"
-
-#: ../grecord/gsr.xml.h:36
-msgid "_File"
-msgstr "_Fail"
-
-#: ../grecord/gsr.xml.h:38
-msgid "_New"
-msgstr "_Uus"
-
-#: ../grecord/gsr.xml.h:39
-msgid "_Open..."
-msgstr "_Ava..."
-
-#: ../grecord/gsr.xml.h:40
-msgid "_Play"
-msgstr "_Mängi"
-
-#: ../grecord/gsr.xml.h:41
-msgid "_Quit"
-msgstr "_Lõpeta"
-
-#: ../grecord/gsr.xml.h:42
-msgid "_Record"
-msgstr "S_alvesta"
-
-#: ../grecord/gsr.xml.h:43
-msgid "_Save"
-msgstr "_Salvesta"
-
-#. Translator comment: untitled here implies that
-#. * there is no active sound sample. Any newly
-#. * recorded samples will be saved to disk with this
-#. * name as default value.
 #. Translator comment: Untitled here implies a track without a
 #. * name. See also the translation in gnome-recorder.c:94. Those
 #. * two strings should match! If the track is unnamed, we will
@@ -1457,60 +1354,74 @@ msgstr "_Salvesta"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:94 ../grecord/src/gsr-window.c:805
-#: ../grecord/src/gsr-window.c:1891
-#, c-format
+#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:734
+#: ../grecord/src/gsr-window.c:1575 ../grecord/src/gsr-window.c:2159
 msgid "Untitled"
-msgid_plural "Untitled-%d"
-msgstr[0] "Pealkirjata"
-msgstr[1] "Pealkirjata-%d"
+msgstr "Pealkirjata"
 
-#: ../grecord/src/gnome-recorder.c:168
+#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1577
+#, c-format
+msgid "Untitled-%d"
+msgstr "Pealkirjata-%d"
+
+#: ../grecord/src/gnome-recorder.c:179
 msgid "Dummy option"
 msgstr "Kasutuseta võti"
 
-#: ../grecord/src/gsr-window.c:257 ../grecord/src/gsr-window.c:262
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
+#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
 msgid "hours"
 msgstr "tundi"
 
-#: ../grecord/src/gsr-window.c:257 ../grecord/src/gsr-window.c:262
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
+#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
 msgid "hour"
 msgstr "tund"
 
-#: ../grecord/src/gsr-window.c:258 ../grecord/src/gsr-window.c:263
-#: ../grecord/src/gsr-window.c:279 ../grecord/src/gsr-window.c:283
+#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
+#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
 msgid "minutes"
 msgstr "minutit"
 
-#: ../grecord/src/gsr-window.c:258 ../grecord/src/gsr-window.c:263
-#: ../grecord/src/gsr-window.c:279 ../grecord/src/gsr-window.c:283
+#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
+#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
 msgid "minute"
 msgstr "minut"
 
-#: ../grecord/src/gsr-window.c:259 ../grecord/src/gsr-window.c:269
-#: ../grecord/src/gsr-window.c:280 ../grecord/src/gsr-window.c:288
-#: ../grecord/src/gsr-window.c:291
+#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
+#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:217
+#: ../grecord/src/gsr-window.c:220
 msgid "seconds"
 msgstr "sekundit"
 
-#: ../grecord/src/gsr-window.c:259 ../grecord/src/gsr-window.c:269
-#: ../grecord/src/gsr-window.c:280 ../grecord/src/gsr-window.c:291
+#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
+#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:220
 msgid "second"
 msgstr "sekund"
 
-#: ../grecord/src/gsr-window.c:405 ../grecord/src/gsr-window.c:1444
-#: ../grecord/src/gsr-window.c:1586 ../grecord/src/gsr-window.c:1854
+#: ../grecord/src/gsr-window.c:284 ../grecord/src/gsr-window.c:1718
+msgid "Open a file"
+msgstr "Avab faili"
+
+#: ../grecord/src/gsr-window.c:329
+#, c-format
+msgid ""
+"Unable to load file:\n"
+"%s"
+msgstr "Faili pole võimalik laadida:\n"
+"%s"
+
+#: ../grecord/src/gsr-window.c:389 ../grecord/src/gsr-window.c:1450
+#: ../grecord/src/gsr-window.c:1616 ../grecord/src/gsr-window.c:1993
 msgid "Ready"
 msgstr "Valmis"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:619
+#: ../grecord/src/gsr-window.c:560
 msgid "_Replace"
 msgstr "_Asenda"
 
-#: ../grecord/src/gsr-window.c:636
+#: ../grecord/src/gsr-window.c:577
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1519,146 +1430,248 @@ msgstr ""
 "Fail nimega \"%s\" on juba olemas.\n"
 "Kas soovid seda asendada salvestatava failiga?"
 
-#: ../grecord/src/gsr-window.c:690
-#, c-format
-msgid "Could not save the file \" %s\""
-msgstr "Faili \"%s\" ei saa salvestada"
-
-#: ../grecord/src/gsr-window.c:699
+#: ../grecord/src/gsr-window.c:627 ../grecord/src/gsr-window.c:636
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Faili \"%s\" pole võimalik salvestada"
 
-#: ../grecord/src/gsr-window.c:747
+#: ../grecord/src/gsr-window.c:679
 msgid "Save file as"
 msgstr "Salvesta fail kui"
 
-#: ../grecord/src/gsr-window.c:826
+#: ../grecord/src/gsr-window.c:754
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ei ole otsinguteele paigaldatud."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:764
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s käivitamisel tekkis viga: %s"
 
-#: ../grecord/src/gsr-window.c:913
+#: ../grecord/src/gsr-window.c:809
+#, c-format
+msgid "Save the changes to file \"%s\" before closing?"
+msgstr "Kas enne sulgemist tuleb muudatused faili \"%s\" salvestada?"
+
+#: ../grecord/src/gsr-window.c:820
+msgid "Close _without Saving"
+msgstr "Sulge _ilma salvestamata"
+
+#: ../grecord/src/gsr-window.c:830
+msgid "Question"
+msgstr "Küsimus"
+
+#: ../grecord/src/gsr-window.c:903
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (salvestamata)"
 
-#: ../grecord/src/gsr-window.c:926
+#: ../grecord/src/gsr-window.c:916
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bait)"
 msgstr[1] "%s (%llu baiti)"
 
-#: ../grecord/src/gsr-window.c:930
+#: ../grecord/src/gsr-window.c:920
 msgid "Unknown size"
 msgstr "Tundmatu suurus"
 
-#: ../grecord/src/gsr-window.c:950
+#: ../grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:959
+#: ../grecord/src/gsr-window.c:949
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:971
+#: ../grecord/src/gsr-window.c:960
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:975
+#: ../grecord/src/gsr-window.c:963
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:990
 #, c-format
 msgid "%s Information"
-msgstr "%s teave"
+msgstr "%s andmed"
 
-#: ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1012
+msgid "File Information"
+msgstr "Faili info"
+
+#: ../grecord/src/gsr-window.c:1026
 msgid "Folder:"
 msgstr "Kataloog:"
 
-#: ../grecord/src/gsr-window.c:1045 ../grecord/src/gsr-window.c:1788
+#: ../grecord/src/gsr-window.c:1032 ../grecord/src/gsr-window.c:1953
 msgid "Filename:"
 msgstr "Failinimi:"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1038
 msgid "File size:"
 msgstr "Failisuurus:"
 
-#: ../grecord/src/gsr-window.c:1060
+#: ../grecord/src/gsr-window.c:1047
 msgid "Audio Information"
-msgstr "Audioteave"
+msgstr "Audioandmed"
 
-#: ../grecord/src/gsr-window.c:1074
+#: ../grecord/src/gsr-window.c:1061
 msgid "File duration:"
 msgstr "Faili kestus:"
 
-#: ../grecord/src/gsr-window.c:1080
+#: ../grecord/src/gsr-window.c:1067
 msgid "Number of channels:"
 msgstr "Kanalite arv:"
 
-#: ../grecord/src/gsr-window.c:1086
+#: ../grecord/src/gsr-window.c:1073
 msgid "Sample rate:"
 msgstr "Sämplimissagedus:"
 
-#: ../grecord/src/gsr-window.c:1092
+#: ../grecord/src/gsr-window.c:1079
 msgid "Bit rate:"
 msgstr "Bitikiirus:"
 
-#: ../grecord/src/gsr-window.c:1158
-msgid "A sound recorder for GNOME"
-msgstr "GNOME helisalvestaja"
+#: ../grecord/src/gsr-window.c:1143
+msgid ""
+"A sound recorder for GNOME\n"
+" gnome-media@gnome.org"
+msgstr ""
+"GNOME helisalvestaja\n"
+" gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1428
+#: ../grecord/src/gsr-window.c:1431
 msgid "Playing..."
-msgstr "Mängimine..."
+msgstr "Esitamine..."
 
-#: ../grecord/src/gsr-window.c:1557
+#: ../grecord/src/gsr-window.c:1566
 msgid "Recording..."
 msgstr "Salvestamine..."
 
-#: ../grecord/src/gsr-window.c:1617
+#: ../grecord/src/gsr-window.c:1649
 msgid ""
 "There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
-msgstr "Süsteemis ei ole GStreamer'i vaikimisi audiosisendi elementi määratud - palun paigalda GStreamer-GConf skeemid või määra see käsitsi"
+msgstr ""
+"Süsteemis ei ole GStreamer'i vaikimisi audiosisendi elementi määratud - "
+"palun paigalda GStreamer-GConf skeemid või määra see käsitsi"
 
-#: ../grecord/src/gsr-window.c:1632
+#: ../grecord/src/gsr-window.c:1667
 msgid "Failed to create GStreamer encoder elements - check your encoding setup"
-msgstr "Tõrge GStreamer'i kodeerimiselemendi loomisel - kontrolli oma kodeerija seadeid"
+msgstr ""
+"Tõrge GStreamer'i kodeerimiselemendi loomisel - kontrolli oma kodeerija "
+"seadeid"
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1677
 msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "GStreamer'i filesink pluginat ei leitud - palun paigalda see"
 
-#: ../grecord/src/gsr-window.c:1650
+#: ../grecord/src/gsr-window.c:1686
 msgid ""
 "Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
-msgstr "Tõrge kodeerimiselementide ühendamisel failiväljundi elemendiga - arvatavasti oled valinud vigase kodeerija"
+msgstr ""
+"Tõrge kodeerimiselementide ühendamisel failiväljundi elemendiga - "
+"arvatavasti oled valinud vigase kodeerija"
 
-#: ../grecord/src/gsr-window.c:1756
+#. File menu.
+#: ../grecord/src/gsr-window.c:1714
+msgid "_File"
+msgstr "_Fail"
+
+#: ../grecord/src/gsr-window.c:1716
+msgid "Create a new sample"
+msgstr "Uue helilõigu loomine"
+
+#: ../grecord/src/gsr-window.c:1720
+msgid "Save the current file"
+msgstr "Käesoleva faili salvestamine"
+
+#: ../grecord/src/gsr-window.c:1722
+msgid "Save the current file with a different name"
+msgstr "Käesoleva faili salvestamine teise nime alla"
+
+#: ../grecord/src/gsr-window.c:1723
+msgid "Run _Mixer"
+msgstr "Ava _mikser"
+
+#: ../grecord/src/gsr-window.c:1724
+msgid "Run the audio mixer"
+msgstr "Helimikseri käivitamine"
+
+#: ../grecord/src/gsr-window.c:1726
+msgid "Show information about the current file"
+msgstr "Teabe näitamine käesoleva faili kohta"
+
+#: ../grecord/src/gsr-window.c:1728
+msgid "Close the current file"
+msgstr "Käesoleva faili sulgemine"
+
+#: ../grecord/src/gsr-window.c:1730
+msgid "Quit the program"
+msgstr "Rakenduse töö lõpetamine"
+
+#. Control menu
+#: ../grecord/src/gsr-window.c:1733
+msgid "_Control"
+msgstr "_Juhtimine"
+
+#: ../grecord/src/gsr-window.c:1735
+msgid "Record sound"
+msgstr "Salvestab heli"
+
+#: ../grecord/src/gsr-window.c:1737
+msgid "Play sound"
+msgstr "Mängi heli"
+
+#: ../grecord/src/gsr-window.c:1739
+msgid "Stop sound"
+msgstr "Seiska heli"
+
+#: ../grecord/src/gsr-window.c:1744
+msgid "Open the manual"
+msgstr "Kasutajajuhendi avamine"
+
+#: ../grecord/src/gsr-window.c:1746
+msgid "About this application"
+msgstr "Rakendusest lähemalt"
+
+#: ../grecord/src/gsr-window.c:1843
+msgid "Could not load ui.xml. The program may be not properly installed"
+msgstr ""
+"Faili ui.xml pole võimalik laadida. Programm pole võib-olla korralikult "
+"paigaldatud"
+
+#: ../grecord/src/gsr-window.c:1865
+msgid "Open"
+msgstr "Ava"
+
+#: ../grecord/src/gsr-window.c:1867
+msgid "Save"
+msgstr "Salvesta"
+
+#: ../grecord/src/gsr-window.c:1869
+msgid "Save As"
+msgstr "Salvesta kui"
+
+#: ../grecord/src/gsr-window.c:1922
 msgid "Record as"
 msgstr "Lindista kui"
 
-#: ../grecord/src/gsr-window.c:1773
+#: ../grecord/src/gsr-window.c:1939
 msgid "File information"
 msgstr "Faili andmed"
 
-#: ../grecord/src/gsr-window.c:1795
+#: ../grecord/src/gsr-window.c:1959
 msgid "<none>"
 msgstr "<ei ole>"
 
-#: ../grecord/src/gsr-window.c:1804
+#: ../grecord/src/gsr-window.c:1968
 msgid "Length:"
 msgstr "Pikkus:"
 
@@ -1667,9 +1680,25 @@ msgid "Adjust the volume level"
 msgstr "Muuda helitugevust"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:146 ../gst-mixer/src/window.c:380
+#: ../gst-mixer/src/window.c:147 ../gst-mixer/src/window.c:386
 msgid "Volume Control"
 msgstr "Helitugevuse juhtija"
+
+#: ../gst-mixer/gnome-volume-control.schemas.in.h:1
+msgid "Height of the Window"
+msgstr "Akna kõrgus"
+
+#: ../gst-mixer/gnome-volume-control.schemas.in.h:2
+msgid "Height of the Window to be displayed"
+msgstr "Kuvatava akna kõrgus"
+
+#: ../gst-mixer/gnome-volume-control.schemas.in.h:3
+msgid "Width of the Window"
+msgstr "Akna laius"
+
+#: ../gst-mixer/gnome-volume-control.schemas.in.h:4
+msgid "Width of the Window to be displayed"
+msgstr "Kuvatava akna laius"
 
 #: ../gst-mixer/src/element.c:230
 msgid "Playback"
@@ -1692,13 +1721,13 @@ msgstr "Valikud"
 #. *     if we've found that?
 #.
 #. create element
-#: ../gst-mixer/src/main.c:75 ../gst-mixer/src/main.c:78
-#: ../gst-mixer/src/main.c:136
+#: ../gst-mixer/src/main.c:85 ../gst-mixer/src/main.c:88
+#: ../gst-mixer/src/main.c:144
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "Tundmatu helitugevuse regulaator %d"
 
-#: ../gst-mixer/src/main.c:255
+#: ../gst-mixer/src/main.c:276
 msgid "No volume control elements and/or devices found."
 msgstr "Mikserielemente ja/või -seadmeid ei leitud."
 
@@ -1826,29 +1855,29 @@ msgstr "Rada %s, kanal %d"
 msgid "Track %s: lock channels together"
 msgstr "Rada %s: kanalite kokkulukusamine"
 
-#: ../gst-mixer/src/window.c:109
+#: ../gst-mixer/src/window.c:110
 msgid "_Change Device"
 msgstr "_Muuda seadet"
 
-#: ../gst-mixer/src/window.c:110
+#: ../gst-mixer/src/window.c:111
 msgid "Control volume on a different device"
 msgstr "Teise seadme helitugevuse juhtimine"
 
-#: ../gst-mixer/src/window.c:179
+#: ../gst-mixer/src/window.c:184
 #, c-format
 msgid "Change device to %s"
 msgstr "Muuda seade -> %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:223 ../gst-mixer/src/window.c:426
+#: ../gst-mixer/src/window.c:228 ../gst-mixer/src/window.c:433
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Helitugevuse juhtimine: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:375
+#: ../gst-mixer/src/window.c:380
 msgid "translator-credits"
 msgstr ""
 "Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
@@ -1856,7 +1885,7 @@ msgstr ""
 "Ivar Smolin <okul@linux.ee>, 2005.\n"
 "Priit Laes <amd store20 com>, 2005."
 
-#: ../gst-mixer/src/window.c:383
+#: ../gst-mixer/src/window.c:389
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME'il ja GStreamer'il baseeruv helivaljususe reguleerimise rakendus"
 
@@ -1865,11 +1894,17 @@ msgstr "GNOME'il ja GStreamer'il baseeruv helivaljususe reguleerimise rakendus"
 msgid "Failure instantiating main window"
 msgstr "Tõrge peaakna tootmisel"
 
-#. Fatal error
-#: ../gstreamer-properties/gstreamer-properties.c:312
-#, c-format
-msgid "Could not load UI resource %s"
-msgstr "Kasutajaliidese ressurssi %s ei saa laadida"
+#: ../gstreamer-properties/gstreamer-properties.c:309
+msgid ""
+"Registry is not present or it is corrupted, please update it by running gst-"
+"register."
+msgstr ""
+"Registrit pole olemas või on see rikutud. Palun uuenda seda käsu 'gst-"
+"register' käivitamise abil."
+
+#: ../gstreamer-properties/gstreamer-properties.c:332
+msgid "Failed to load glade file; please check your installation."
+msgstr "Tõrge glade faili laadimisel; palun kontrolli oma paigaldust."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -1937,14 +1972,13 @@ msgstr "_Toru:"
 msgid "_Test"
 msgstr "_Katseta"
 
-#: ../gstreamer-properties/pipeline-constants.c:63
-#: ../gstreamer-properties/pipeline-constants.c:85
-#: ../gstreamer-properties/pipeline-constants.c:104
-#: ../gstreamer-properties/pipeline-constants.c:119
+#: ../gstreamer-properties/pipeline-constants.c:65
+#: ../gstreamer-properties/pipeline-constants.c:94
+#: ../gstreamer-properties/pipeline-constants.c:113
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "Custom"
 msgstr "Kohandatud"
 
-#: ../gstreamer-properties/pipeline-test-old.c:215
 #: ../gstreamer-properties/pipeline-tests.c:119
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
@@ -1961,12 +1995,12 @@ msgid "Editing profile \"%s\""
 msgstr "Profiili \"%s\" redigeerimine"
 
 #: ../profiles/audio-profile.c:103
-msgid "<not named>"
+msgid "<no name>"
 msgstr "<nimetuseta>"
 
-#: ../profiles/audio-profile.c:104
-msgid "<not described>"
-msgstr "<kirjeldamata>"
+#: ../profiles/audio-profile.c:104 ../profiles/audio-profile.c:1002
+msgid "<no description>"
+msgstr "<kirjelduseta>"
 
 #: ../profiles/audio-profile.c:219
 #, c-format
@@ -1985,10 +2019,6 @@ msgstr "Audioprofiilide loendi muutuste tellimisel tekkis viga. (%s)\n"
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Profiili otsingutee %s unustamisel tekkis viga. (%s)\n"
 
-#: ../profiles/audio-profile.c:1002
-msgid "<no description>"
-msgstr "<kirjelduseta>"
-
 #: ../profiles/audio-profile.c:1013
 msgid "identity"
 msgstr "identiteet"
@@ -2001,24 +2031,24 @@ msgstr "wav"
 msgid "_Edit"
 msgstr "_Redigeerimine"
 
-#: ../profiles/audio-profiles-edit.c:452
+#: ../profiles/audio-profiles-edit.c:460
 msgid "You must select one or more profiles to delete."
 msgstr "Kustutamiseks pead sa valima ühe või rohkem profiile."
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:461
+#: ../profiles/audio-profiles-edit.c:469
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Kas kustutada see profiil?\n"
 msgstr[1] "Kas kustutada need %d profiili?\n"
 
-#: ../profiles/audio-profiles-edit.c:480
+#: ../profiles/audio-profiles-edit.c:488
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Kustutan profiili \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:502
+#: ../profiles/audio-profiles-edit.c:510
 msgid "Delete Profile"
 msgstr "Profiili kustutamine"
 
@@ -2034,20 +2064,20 @@ msgstr "Profiili kustutamine"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:597
+#: ../profiles/audio-profiles-edit.c:606
 msgid "Edit GMAudio Profiles"
 msgstr "GMAudio profiilide redaktor"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:659
 msgid "_Profiles:"
 msgstr "_Profiilid:"
 
-#: ../profiles/audio-profiles-edit.c:878
+#: ../profiles/audio-profiles-edit.c:887
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Profiil nimega \"%s\" on juba olemas"
 
-#: ../profiles/audio-profiles-edit.c:903
+#: ../profiles/audio-profiles-edit.c:912
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf viga (PARANDA): %s\n"
@@ -2057,7 +2087,9 @@ msgstr "GConf viga (PARANDA): %s\n"
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
-msgstr "Fail \"%s\" on puudu. See tähendab, et rakendus ei ole korrektselt paigaldatud ja dialoogi ei ole võimalik kuvada."
+msgstr ""
+"Fail \"%s\" on puudu. See tähendab, et rakendus ei ole korrektselt "
+"paigaldatud ja dialoogi ei ole võimalik kuvada."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
@@ -2107,12 +2139,15 @@ msgstr "Audioprofiili kirjeldus"
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
-msgstr "Profiili kirjeldus, mis sisaldab lähemat teavet selle profiili kohta."
+msgstr ""
+"Profiili kirjeldus, mis sisaldab lähemaid andmeid selle profiili kohta."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
-msgstr "Failinime laiend, mida kasutatakse selle profiili abil kodeeritud failide salvestamisel."
+msgstr ""
+"Failinime laiend, mida kasutatakse selle profiili abil kodeeritud failide "
+"salvestamisel."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -2126,7 +2161,9 @@ msgstr "Audioprofiili lühinimetus"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "Audioprofiili lühinimetus, mida kasutatakse valikutes kuvamiseks ja profiilide unikaalseks nimetamiseks."
+msgstr ""
+"Audioprofiili lühinimetus, mida kasutatakse valikutes kuvamiseks ja "
+"profiilide unikaalseks nimetamiseks."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, Lossless"
@@ -2140,7 +2177,9 @@ msgstr "CD-kvaliteet, kadudega"
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr "Audioprofiilide loend, mis sisaldab stringe alamkataloogide nimetamiseks kataloogi /system/gstreamer/audio/profiles suhtes."
+msgstr ""
+"Audioprofiilide loend, mis sisaldab stringe alamkataloogide nimetamiseks "
+"kataloogi /system/gstreamer/audio/profiles suhtes."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2158,13 +2197,18 @@ msgstr "Osaline GStreamer'i toru, mida kasutada"
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
-msgstr "Kasutatakse CD-kvaliteediga audio teisendamiseks koos kadudeta pakkimisga. Kasuta seda juhul, kui sa soovid audiofaili hiljem muuta või CD-plaadile salvestada."
+msgstr ""
+"Kasutatakse CD-kvaliteediga audio teisendamiseks koos kadudeta pakkimisga. "
+"Kasuta seda juhul, kui sa soovid audiofaili hiljem muuta või CD-plaadile "
+"salvestada."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
-msgstr "Kasutatakse CD-kvaliteediga audio teisendamiseks koos kadudega pakkimisga. Kasuta raadiost ja CD-plaatidelt salvestamisel."
+msgstr ""
+"Kasutatakse CD-kvaliteediga audio teisendamiseks koos kadudega pakkimisga. "
+"Kasuta raadiost ja CD-plaatidelt salvestamisel."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""
@@ -2241,7 +2285,7 @@ msgid "Monitor the recording input volume"
 msgstr "Monitoorib heli salvestamise taset"
 
 #: ../vu-meter/reclevel.desktop.in.h:2
-msgid "Recording level monitor"
+msgid "Recording Level Monitor"
 msgstr "Salvestustaseme monitor"
 
 #: ../vu-meter/vumeter.desktop.in.h:1
@@ -2249,5 +2293,6 @@ msgid "Monitor the sound output volume"
 msgstr "Montoorib heliväljundit"
 
 #: ../vu-meter/vumeter.desktop.in.h:2
-msgid "Volume monitor"
+msgid "Volume Monitor"
 msgstr "Helitugevuse monitor"
+
