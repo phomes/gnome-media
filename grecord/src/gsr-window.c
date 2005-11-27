@@ -281,7 +281,7 @@ file_open_cb (GtkAction *action,
 	GtkWidget *file_chooser;
 	char *directory;
 
-	file_chooser = gtk_file_chooser_dialog_new (_("Open a file"),
+	file_chooser = gtk_file_chooser_dialog_new (_("Open a File"),
 						    GTK_WINDOW (window),
 						    GTK_FILE_CHOOSER_ACTION_OPEN,
 						    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
@@ -996,14 +996,16 @@ file_properties_cb (GtkAction *action,
 	g_free (title);
 	gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
 	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
 	fp = g_new (struct _file_props, 1);
 	fp->dialog = dialog;
 
 	g_signal_connect (G_OBJECT (dialog), "response",
 			  G_CALLBACK (dialog_closed_cb), fp);
 
-	vbox = gtk_vbox_new (FALSE, 12);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
+	vbox = gtk_vbox_new (FALSE, 18);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox, TRUE, TRUE, 0);
 
 	inner_vbox = gtk_vbox_new (FALSE, 6);
@@ -1021,6 +1023,7 @@ file_properties_cb (GtkAction *action,
 	/* File properties */	
 	table = gtk_table_new (3, 2, FALSE);
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+	gtk_table_set_row_spacings (GTK_TABLE (table), 6);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
 	label = make_info_label (_("Folder:"));
@@ -1056,6 +1059,7 @@ file_properties_cb (GtkAction *action,
 	/* Audio info */
 	table = gtk_table_new (4, 2, FALSE);
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+	gtk_table_set_row_spacings (GTK_TABLE (table), 6);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
 	label = make_info_label (_("File duration:"));
@@ -1714,14 +1718,14 @@ static const GtkActionEntry menu_entries[] =
 	{ "File", NULL, N_("_File") },
 	{ "FileNew", GTK_STOCK_NEW, NULL, NULL,
 	  N_("Create a new sample"), G_CALLBACK (file_new_cb) },
-	{ "FileOpen", GTK_STOCK_OPEN, NULL, NULL,
+	{ "FileOpen", GTK_STOCK_OPEN, N_("_Open..."), NULL,
 	  N_("Open a file"), G_CALLBACK (file_open_cb) },
 	{ "FileSave", GTK_STOCK_SAVE, NULL, NULL,
 	  N_("Save the current file"), G_CALLBACK (file_save_cb) },
-	{ "FileSaveAs", GTK_STOCK_SAVE_AS, NULL, "<shift><control>S",
+	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (file_save_as_cb) },
-	{ "RunMixer", GTK_STOCK_EXECUTE, N_("Run _Mixer"), NULL,
-	  N_("Run the audio mixer"), G_CALLBACK (run_mixer_cb) },
+	{ "RunMixer", GTK_STOCK_EXECUTE, N_("Open Volu_me Control"), NULL,
+	  N_("Open the audio mixer"), G_CALLBACK (run_mixer_cb) },
 	{ "FileProperties", GTK_STOCK_PROPERTIES, NULL, "<control>I",
 	  N_("Show information about the current file"), G_CALLBACK (file_properties_cb) },
 	{ "FileClose", GTK_STOCK_CLOSE, NULL, NULL,
@@ -1916,15 +1920,15 @@ gsr_window_init (GSRWindow *window)
 	gtk_box_pack_start (GTK_BOX (content_vbox), priv->scale, TRUE, TRUE, 6);
 	gtk_widget_show (window->priv->scale);
 
-	hbox = gtk_hbox_new (FALSE, 2);
-	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, TRUE, TRUE, 0);
+	hbox = gtk_hbox_new (FALSE, 12);
+	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("Record as"));
+	label = gtk_label_new (_("Record as:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	priv->profile = gm_audio_profile_choose_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile, TRUE, TRUE, 0);
 	gtk_widget_show (window->priv->profile);
 
 	id = gconf_client_get_string (gconf_client, KEY_LAST_PROFILE_ID, NULL);
@@ -1936,18 +1940,19 @@ gsr_window_init (GSRWindow *window)
         g_signal_connect (priv->profile, "changed",
                           G_CALLBACK (profile_changed_cb), window);
 
-	label = gtk_label_new (_("File information"));
+	label = make_title_label (_("File Information"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (content_vbox), label, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new ("    ");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	table = gtk_table_new (2, 2, FALSE);
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+	gtk_table_set_row_spacings (GTK_TABLE (table), 6);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
 	label = gtk_label_new (_("Filename:"));
