@@ -997,7 +997,7 @@ solaris_cdrom_get_status (GnomeCDRom *cdrom,
 	}
 #else
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
-		g_warning ("Error reading CD header");
+		g_message ("Error reading CD header");
 		solaris_cdrom_close (lcd);
 		return FALSE; 
 	}

@@ -430,7 +430,7 @@ gst_cdparanoia_cdrom_update_cd (GnomeCDRom * cdrom)
 #else
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
 #endif
-		g_warning ("Error reading CD header");
+		g_message ("Error reading CD header");
 		gst_cdparanoia_cdrom_close (lcd);
 
 		return;
@@ -1439,8 +1439,10 @@ gst_cdparanoia_cdrom_set_volume (GnomeCDRom * cdrom,
 	lcd = GST_CDPARANOIA_CDROM (cdrom);
 	priv = lcd->priv;
 
-	g_object_set (G_OBJECT (priv->vol_element), "volume",
-		      (gdouble) volume / 255.0, NULL);
+	if (priv->vol_element != NULL) {
+		g_object_set (G_OBJECT (priv->vol_element), "volume",
+			      (gdouble) volume / 255.0, NULL);
+	}
 	priv->volume = volume;
 
 	return TRUE;
