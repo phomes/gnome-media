@@ -49,6 +49,8 @@ struct _CDDisplayClass {
 				  GnomeCDRomMode mode);
 	void (*playmode_changed) (CDDisplay *cd,
 				  GnomeCDRomMode mode);
+	void (*remainingtime_mode_changed) (CDDisplay *cd,
+				  GnomeCDRomMode mode);
 };
 
 GType cd_display_get_type (void);

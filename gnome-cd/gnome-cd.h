@@ -62,6 +62,7 @@ struct _GnomeCD {
 	GtkWidget *menu;
 	GtkWidget *slider;
 	GtkTooltips *tooltips;
+	GConfClient * client;
 
 	GtkWidget *trackeditor_b, *properties_b;
 
@@ -119,6 +120,5 @@ void make_popup_menu (GnomeCD *gcd,
                 GdkEventButton *event, gboolean iconify);
 
 void tray_icon_create (GnomeCD *gcd);
-GConfClient *client;
 
 #endif

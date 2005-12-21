@@ -170,53 +170,54 @@ static void
 restore_preferences (GnomeCDPreferences *prefs)
 {
 	GError *error = NULL;
+	GnomeCD *gcd = prefs->gcd;
 
 	/* Add the dir, cos we're getting all the stuff from it anyway */
-	gconf_client_add_dir (client, "/apps/gnome-cd",
+	gconf_client_add_dir (gcd->client, "/apps/gnome-cd",
 			      GCONF_CLIENT_PRELOAD_NONE, &error);
 	if (error != NULL) {
 		g_warning ("Error: %s", error->message);
 		error = NULL;
 	}
 	
-	prefs->device = gconf_client_get_string (client,
+	prefs->device = gconf_client_get_string (gcd->client,
 						 "/apps/gnome-cd/device", NULL);
 	if (prefs->device == NULL) {
 		g_warning ("GConf schemas are not correctly installed.");
 		prefs->device = g_strdup (default_cd_device);
 	}
 	
-	prefs->device_id = gconf_client_notify_add (client,
+	prefs->device_id = gconf_client_notify_add (gcd->client,
 						    "/apps/gnome-cd/device", device_changed,
 						    prefs, NULL, &error);
 	if (error != NULL) {
 		g_warning ("Error: %s", error->message);
 	}
 						    
-	prefs->start_play = gconf_client_get_bool (client,
+	prefs->start_play = gconf_client_get_bool (gcd->client,
 					     "/apps/gnome-cd/on-start-play",
 					      NULL);
-	prefs->start_id = gconf_client_notify_add (client,
+	prefs->start_id = gconf_client_notify_add (gcd->client,
 						   "/apps/gnome-cd/on-start-play",
 						   on_start_changed, prefs,
 						   NULL, NULL);
 	
-	prefs->stop_eject = gconf_client_get_bool (client,
+	prefs->stop_eject = gconf_client_get_bool (gcd->client,
 						   "/apps/gnome-cd/on-stop-eject",
 						   NULL);
-	prefs->stop_id = gconf_client_notify_add (client,
+	prefs->stop_id = gconf_client_notify_add (gcd->client,
 						  "/apps/gnome-cd/on-stop-eject",
 						  on_stop_changed, prefs,
 						  NULL, NULL);
 
-	prefs->theme_name = gconf_client_get_string (client,
+	prefs->theme_name = gconf_client_get_string (gcd->client,
 						     "/apps/gnome-cd/theme-name", NULL);
 	if (prefs->theme_name == NULL) {
 		g_warning ("GConf schemas are not correctly installed");
 		prefs->theme_name = g_strdup ("lcd");
 	}
 	
-	prefs->theme_id = gconf_client_notify_add (client,
+	prefs->theme_id = gconf_client_notify_add (gcd->client,
 						   "/apps/gnome-cd/theme-name",
 						   theme_changed, prefs,
 						   NULL, NULL);
@@ -225,14 +226,16 @@ restore_preferences (GnomeCDPreferences *prefs)
 void
 preferences_free (GnomeCDPreferences *prefs)
 {
+	GnomeCD *gcd = prefs->gcd;
+
 	g_free (prefs->device);
 	g_free (prefs->theme_name);
 
 	/* Remove the listeners */
-	gconf_client_notify_remove (client, prefs->device_id);
-	gconf_client_notify_remove (client, prefs->start_id);
-	gconf_client_notify_remove (client, prefs->stop_id);
-	gconf_client_notify_remove (client, prefs->theme_id);
+	gconf_client_notify_remove (gcd->client, prefs->device_id);
+	gconf_client_notify_remove (gcd->client, prefs->start_id);
+	gconf_client_notify_remove (gcd->client, prefs->stop_id);
+	gconf_client_notify_remove (gcd->client, prefs->theme_id);
 
 	g_free (prefs);
 }
@@ -245,8 +248,6 @@ preferences_new (GnomeCD *gcd)
 	prefs = g_new0 (GnomeCDPreferences, 1);
 	prefs->gcd = gcd;
 
-	client = gconf_client_get_default ();
-	
 	restore_preferences (prefs);
 	
 	return prefs;
@@ -317,10 +318,12 @@ static void
 prefs_destroy_cb (GtkDialog *dialog,
 		  PropertyDialog *pd)
 {
-	gconf_client_notify_remove (client, pd->device_id);
-	gconf_client_notify_remove (client, pd->start_id);
-	gconf_client_notify_remove (client, pd->stop_id); 
-	gconf_client_notify_remove (client, pd->theme_id);
+	GnomeCD *gcd = pd->gcd;	
+	
+	gconf_client_notify_remove (gcd->client, pd->device_id);
+	gconf_client_notify_remove (gcd->client, pd->start_id);
+	gconf_client_notify_remove (gcd->client, pd->stop_id); 
+	gconf_client_notify_remove (gcd->client, pd->theme_id);
 	
 	g_free (pd);
 }
@@ -339,7 +342,7 @@ device_changed_cb (NautilusBurnDriveSelection *bcs,
 	    strcmp (device_path, pd->gcd->preferences->device) == 0)
 		return;
 	
-	gconf_client_set_string (client, "/apps/gnome-cd/device", device_path, NULL);
+	gconf_client_set_string (pd->gcd->client, "/apps/gnome-cd/device", device_path, NULL);
 
 	dummy = gnome_cdrom_new (device_path, GNOME_CDROM_UPDATE_NEVER, NULL);
 	g_object_unref (dummy);
@@ -349,7 +352,7 @@ static void
 start_play_toggled_cb (GtkToggleButton *tb,
 		       PropertyDialog *pd)
 {
-	gconf_client_set_bool (client, "/apps/gnome-cd/on-start-play",
+	gconf_client_set_bool (pd->gcd->client, "/apps/gnome-cd/on-start-play",
 			       gtk_toggle_button_get_active (tb), NULL);
 }
 
@@ -374,7 +377,7 @@ static void
 stop_open_toggled_cb (GtkToggleButton *tb,
 		      PropertyDialog *pd)
 {
-	gconf_client_set_bool (client, "/apps/gnome-cd/on-stop-eject",
+	gconf_client_set_bool (pd->gcd->client, "/apps/gnome-cd/on-stop-eject",
 			       gtk_toggle_button_get_active (tb), NULL);
 }
 
@@ -406,7 +409,7 @@ theme_selection_changed_cb (GtkTreeSelection *selection,
 		char *theme_name;
 
 		gtk_tree_model_get (model, &iter, 0, &theme_name, -1);
-		gconf_client_set_string (client, "/apps/gnome-cd/theme-name", theme_name, NULL);
+		gconf_client_set_string (pd->gcd->client, "/apps/gnome-cd/theme-name", theme_name, NULL);
 		g_free (theme_name);
 	}
 }
@@ -655,7 +658,7 @@ preferences_dialog_show (GnomeCD *gcd)
 			  G_CALLBACK (start_play_toggled_cb), pd);
 	gtk_box_pack_start (GTK_BOX (action_vbox), pd->start_play, FALSE, FALSE, 0);
 
-	pd->start_id = gconf_client_notify_add (client,
+	pd->start_id = gconf_client_notify_add (gcd->client,
 						"/apps/gnome-cd/on-start-play",
 						change_play_widget, pd, NULL, NULL);
 	
@@ -668,7 +671,7 @@ preferences_dialog_show (GnomeCD *gcd)
 			  G_CALLBACK (stop_open_toggled_cb), pd);
 	gtk_box_pack_start (GTK_BOX (action_vbox), pd->stop_open, FALSE, FALSE, 0);
 
-	pd->stop_id = gconf_client_notify_add (client,
+	pd->stop_id = gconf_client_notify_add (gcd->client,
 					       "/apps/gnome-cd/on-stop-eject",
 					       change_stop_widget, pd, NULL, NULL);
 	
@@ -727,7 +730,7 @@ preferences_dialog_show (GnomeCD *gcd)
 	gtk_container_add (GTK_CONTAINER (sw), pd->theme_list);
 	gtk_box_pack_start (GTK_BOX (hbox), sw, TRUE, TRUE, 0);
 
-	pd->theme_id = gconf_client_notify_add (client,
+	pd->theme_id = gconf_client_notify_add (gcd->client,
 						"/apps/gnome-cd/theme-name",
 						change_theme_selection_widget, pd, NULL, NULL);
 	gtk_widget_show_all (pd->window);

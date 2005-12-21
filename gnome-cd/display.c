@@ -63,6 +63,7 @@ struct _CDDisplayPrivate {
 enum {
 	PLAYMODE_CHANGED,
 	LOOPMODE_CHANGED,
+	REMAINING_TIME,
 	LAST_SIGNAL
 };
 
@@ -487,11 +488,23 @@ button_press_event (GtkWidget *widget,
 {
 	CDDisplay *disp = CD_DISPLAY (widget);
 	CDDisplayPrivate *priv = disp->priv;
-
+	GnomeCDText *text;
+	PangoRectangle rect;
+	
+	text = priv->layout[CD_DISPLAY_LINE_TIME];
+	pango_layout_get_extents (text->layout, NULL, &rect);
+	text->height = rect.height / 1000;
+	
 	if (ev->button != 1) {
 		return FALSE;
 	}
-	
+
+    /* Check the remaining time mode */
+    if (ev->x <= (rect.width / 1000) && ev->y <= text->height) {
+        g_signal_emit (G_OBJECT (widget), display_signals[REMAINING_TIME], 0, NULL);
+        return TRUE;
+	}
+
 	/* Check the play mode */
 	if (ev->x >= priv->track->rect.x &&
 	    ev->x <= (priv->track->rect.x + priv->track->rect.width) &&
@@ -549,6 +562,14 @@ class_init (CDDisplayClass *klass)
 							  G_TYPE_FROM_CLASS (klass),
 							  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
 							  G_STRUCT_OFFSET (CDDisplayClass, playmode_changed),
+							  NULL, NULL,
+							  g_cclosure_marshal_VOID__INT,
+							  G_TYPE_NONE,
+							  1, G_TYPE_INT);
+	display_signals[REMAINING_TIME] = g_signal_new ("remainingtime-mode-changed",
+							  G_TYPE_FROM_CLASS (klass),
+							  G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE,
+							  G_STRUCT_OFFSET (CDDisplayClass, remainingtime_mode_changed),
 							  NULL, NULL,
 							  g_cclosure_marshal_VOID__INT,
 							  G_TYPE_NONE,

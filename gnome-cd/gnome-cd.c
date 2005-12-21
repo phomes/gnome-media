@@ -347,7 +347,7 @@ window_destroy_cb (GtkWidget *window,
 	destroy_track_editor ();
 	
 	/* Remove the gconf volume notify*/
-	gconf_client_notify_remove (client, volume_notify_id);
+	gconf_client_notify_remove (gcd->client, volume_notify_id);
 	g_object_unref (gcd->cdrom);
 	bonobo_main_quit ();
 }
@@ -509,15 +509,15 @@ set_volume (GnomeCD *gcd)
 	gint scaled_volume;
 	double volume;
 	
-	scaled_volume = gconf_client_get_int (client, "/apps/gnome-cd/volume", NULL);
+	scaled_volume = gconf_client_get_int (gcd->client, "/apps/gnome-cd/volume", NULL);
 	/* On error set the Key */	
 	if (scaled_volume < 0) {
 		scaled_volume = 0;
-		gconf_client_set_int (client, "/apps/gnome-cd/volume", 0, NULL);
+		gconf_client_set_int (gcd->client, "/apps/gnome-cd/volume", 0, NULL);
 	}	
 	else if (scaled_volume > 100) {
 		scaled_volume = 100;
-		gconf_client_set_int (client, "/apps/gnome-cd/volume", 100, NULL);
+		gconf_client_set_int (gcd->client, "/apps/gnome-cd/volume", 100, NULL);
 	}
 	volume = ((double)scaled_volume/100)*255;
         
@@ -600,6 +600,7 @@ init_player (const char *device_override)
 	gcd = g_new0 (GnomeCD, 1);
 
 	gcd->not_ready = TRUE;
+	gcd->client = gconf_client_get_default ();
 	gcd->preferences = (GnomeCDPreferences *)preferences_new (gcd);
 	gcd->device_override = g_strdup (device_override);
 	
@@ -711,13 +712,17 @@ init_player (const char *device_override)
 
 	gcd->display = GTK_WIDGET (cd_display_new ());
 	GTK_WIDGET_SET_FLAGS (gcd->display, GTK_CAN_FOCUS | GTK_CAN_DEFAULT);
+	
+	gtk_widget_add_events (gcd->display, GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK); 
+	
 	g_signal_connect (G_OBJECT (gcd->display), "loopmode-changed",
 			  G_CALLBACK (loopmode_changed_cb), gcd);
 	g_signal_connect (G_OBJECT (gcd->display), "playmode-changed",
 			  G_CALLBACK (playmode_changed_cb), gcd);
 	g_signal_connect (G_OBJECT (gcd->display), "style_set",
 			  G_CALLBACK (cd_display_set_style), NULL);
-
+	g_signal_connect (G_OBJECT (gcd->display), "remainingtime-mode-changed",
+			  G_CALLBACK (remainingtime_mode_changed_cb), gcd);
 	/* Theme needs to be loaded after the display is created */
 	gcd->theme = (GCDTheme *)theme_load (gcd, gcd->preferences->theme_name);
 	if (gcd->theme == NULL) {
@@ -791,7 +796,7 @@ init_player (const char *device_override)
 	
 	/* Set the initial volume */
 	set_volume (gcd);
-	volume_notify_id = gconf_client_notify_add (client,
+	volume_notify_id = gconf_client_notify_add (gcd->client,
 			"/apps/gnome-cd/volume", volume_changed_cb,
 			gcd, NULL, &error);
 	if (error != NULL) {

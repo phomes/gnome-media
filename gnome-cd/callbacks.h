@@ -46,6 +46,9 @@ void help_cb (GtkWidget *widget,
 void loopmode_changed_cb (GtkWidget *widget,
 			  GnomeCDRomMode mode,
 			  GnomeCD *gcd);
+void remainingtime_mode_changed_cb (GtkWidget *widget,
+		                    GnomeCDRomMode mode,
+                		    GnomeCD *gcd);
 void playmode_changed_cb (GtkWidget *widget,
 			  GnomeCDRomMode mode,
 			  GnomeCD *gcd);

@@ -1,3 +1,19 @@
+2005-12-21  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	Reviewed by:  Ronald S. Bultje <rbultje@ronald.bitfreak.net>
+
+	* gnome-cd/callbacks.c: (status_ok), (remainingtime_mode_changed_cb),
+	  (volume_changed): Set the tool tip for the display.
+	* gnome-cd/callbacks.h:
+	* gnome-cd/display.c: (button_press_event), (class_init)
+	* gnome-cd/display.h:
+	* gnome-cd/gnome-cd.c: (window_destroy_cb), (set_volue), (init_player)
+	  Add events to the display to show tool tip.
+	* gnome-cd/gnome-cd.h:
+	* gnome-cd/gnome-cd.schemas.in.in:
+	* gnome-cd/preferences.c:
+	  Remaining time mode. Fixes Bug #72802.
+
 2005-12-21  Christian Neumair  <chris@gnome-de.org>
 
 	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
@@ -111,6 +127,20 @@
 	  for private functions.
 	  Fixes Bug #311458
 	
+2005-07-24  Madhan Raj M  <madhanrm@cvs.gnome.org>
+
+	* gnome-cd/callbacks.c: (status_ok), (remainingtime_mode_changed_cb),
+	  (volume_changed): Set the tool tip for the display.
+	* gnome-cd/callbacks.h:
+	* gnome-cd/display.c: (button_press_event), (class_init)
+	* gnome-cd/display.h:
+	* gnome-cd/gnome-cd.c: (window_destroy_cb), (set_volue), (init_player)
+	  Add events to the display to show tool tip.
+	* gnome-cd/gnome-cd.h:
+	* gnome-cd/gnome-cd.schemas.in.in:
+	* gnome-cd/preferences.c:
+	  Remaining time mode. Fixes Bug #72802.
+
 2005-07-24  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* profiles/gnome-media-profiles.h:

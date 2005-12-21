@@ -20,6 +20,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <libgnome/gnome-help.h>
 #include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
 
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-control.h>
@@ -41,6 +42,7 @@ static GNOME_Media_CDDBTrackEditor track_editor = CORBA_OBJECT_NIL;
 static gboolean position_auto_update=TRUE;
 static gboolean stopped_state=FALSE;
 static gboolean position_update_ignore_event=FALSE;
+static gboolean remaining_time_mode=FALSE;
 static gchar* discid_prev;
 
 static void
@@ -498,6 +500,8 @@ status_ok (GnomeCD *gcd,
 	int track;
 	char *text;
 	char *current_time;
+
+	gboolean remaining_time_temp = gconf_client_get_bool (gcd->client, "/apps/gnome-cd/show-remaining-time",NULL);
 	
 	/* Allow the track editor to work */
 	gtk_widget_set_sensitive (gcd->trackeditor_b, TRUE);
@@ -538,10 +542,24 @@ status_ok (GnomeCD *gcd,
 		}
 		
 /*  		cd_display_clear (CD_DISPLAY (gcd->display)); */
-		text = g_strdup_printf ("%d:%02d / %d:%02d", 
+		if (remaining_time_temp) {
+			gint min = status->length.minute - status->relative.minute;
+			gint sec = status->length.second - status->relative.second;
+			if(sec < 0) {
+				min--;
+				sec = 60 - (-1 * sec);
+			}
+			text = g_strdup_printf ("- %d:%02d", min, sec);
+			current_time = g_strdup_printf ("Remaining time: %s", text);
+        } else {
+           	text = g_strdup_printf ("%d:%02d / %d:%02d",
 					status->relative.minute, status->relative.second,
 					status->length.minute, status->length.second);
-		current_time = g_strdup_printf ("%d:%02d",status->relative.minute, status->relative.second);
+	 	      		current_time = g_strdup_printf ("Current time: %s", text);
+        }
+
+		/* Displaying tooltip */
+		gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET(gcd->display), current_time, NULL);
 		
 		/* update position slider */
 		if(position_auto_update && (status->length.minute!=0 ||
@@ -567,12 +585,12 @@ status_ok (GnomeCD *gcd,
 			
 		/* Update the tray icon tooltip */
 		if (gcd->disc_info != NULL) {
-			text = g_strdup_printf (_("Playing %s - %s\nCurrent Time: %s"),
+			text = g_strdup_printf (_("Playing %s - %s\n%s"),
 						gcd->disc_info->artist ? gcd->disc_info->artist : _("Unknown Artist"),
 						gcd->disc_info->title ? gcd->disc_info->title : _("Unknown Album"),
 						current_time);
 		} else {
-			text = g_strdup_printf (_("Playing\nCurrent Time: %s"), current_time);
+			text = g_strdup_printf (_("Playing\n: %s"), current_time);
 		}
 		if (gcd->tray_tips)	
 			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, text, NULL);
@@ -648,6 +666,8 @@ status_ok (GnomeCD *gcd,
 			/* Update tray icon tooltip */
 			if (gcd->tray_tips)	
 				gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
+			if (gcd->tooltips)
+				gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET(gcd->display), _("CD Player"), NULL);
 
 			/* Initialise the display time to 0:00 in stopped state*/
 			cd_display_set_line (CD_DISPLAY (gcd->display),
@@ -946,6 +966,15 @@ loopmode_changed_cb (GtkWidget *display,
 }
 
 void
+remainingtime_mode_changed_cb (GtkWidget *display,
+                    GnomeCDRomMode mode,
+                    GnomeCD *gcd)
+{
+	remaining_time_mode = !remaining_time_mode;
+	gconf_client_set_bool (gcd->client, "/apps/gnome-cd/show-remaining-time", remaining_time_mode, NULL);
+}
+
+void
 playmode_changed_cb (GtkWidget *display,
 		     GnomeCDRomMode mode,
 		     GnomeCD *gcd)
@@ -1205,7 +1234,7 @@ volume_changed (GtkRange *range,
 	scaled_volume = (volume/255)*100;
 	volume_level = g_strdup_printf (_("Volume %d%%"), scaled_volume);
 	gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET (gcd->slider), volume_level, NULL);
-	gconf_client_set_int (client, "/apps/gnome-cd/volume", scaled_volume, NULL);
+	gconf_client_set_int (gcd->client, "/apps/gnome-cd/volume", scaled_volume, NULL);
 	g_free (volume_level);
 }
 
