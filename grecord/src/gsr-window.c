@@ -1519,13 +1519,13 @@ make_play_pipeline (GSRWindow *window)
 	obj->src = gst_element_factory_make ("filesrc", "src");
 	if (!obj->src)
 	{
-		g_error ("Could not find filesrc element");
+		g_error ("Could not find \"filesrc\" GStreamer plugin");
 		return NULL;
 	}
 	
  	spider = gst_element_factory_make ("spider", "spider");
 	if (!spider) {
-		g_error ("Could not find element spider");
+		g_error ("Could not find \"spider\" GStreamer plugin");
 		return NULL;
 	}
 
@@ -1534,7 +1534,7 @@ make_play_pipeline (GSRWindow *window)
 	obj->sink = gst_gconf_get_default_audio_sink ();
 	if (!obj->sink)
 	{
-		g_error ("Could not find default audio sink element");
+		g_error ("Could not find default audio output plugin ");
 		return NULL;
 	}
 
@@ -1651,7 +1651,7 @@ make_record_pipeline (GSRWindow *window)
 	}
 	if (!esource) {
 		show_error_dialog (NULL, _("There is no default GStreamer "
-				   "audio input element set - please install "
+				   "audio input plugin set - please install "
 				   "the GStreamer-GConf schemas or set one "
 				   "manually"));
 		return NULL;
@@ -1669,7 +1669,7 @@ make_record_pipeline (GSRWindow *window)
 	g_free (pipeline_desc);
 	if (!encoder) {
 		show_error_dialog (NULL, _("Failed to create GStreamer "
-				   "encoder elements - check your encoding "
+				   "encoder plugins - check your encoding "
 				   "setup"));
 		return NULL;
 	}
@@ -1678,8 +1678,8 @@ make_record_pipeline (GSRWindow *window)
 	pipeline->sink = gst_element_factory_make ("filesink", "sink");
 	if (!pipeline->sink)
 	{
-		show_error_dialog (NULL, _("Could not find GStreamer filesink"
-				   " plugin - please install it"));
+		show_error_dialog (NULL, _("Could not find \"filesink\" GStreamer "
+				   "plugin - please install it"));
 		return NULL;
 	}
 	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
@@ -1687,8 +1687,8 @@ make_record_pipeline (GSRWindow *window)
 	if (!gst_element_link (manager, encoder) ||
 	    !gst_element_link (encoder, pipeline->sink))
 	{
-		show_error_dialog (NULL, _("Failed to link encoder elements "
-				   "with file output element - you probably "
+		show_error_dialog (NULL, _("Failed to link encoder plugin "
+				   "with file output plugin - you probably "
 				   "selected an invalid encoder"));
 		return NULL;
 	}

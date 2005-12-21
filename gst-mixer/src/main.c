@@ -273,7 +273,7 @@ main (gint   argc,
   if (!(elements = create_mixer_collection ())) {
     win = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
 				  GTK_BUTTONS_CLOSE,
-				  _("No volume control elements and/or devices found."));
+				  _("No volume control GStreamer plugins and/or devices found."));
     gtk_widget_show (win);
     gtk_dialog_run (GTK_DIALOG (win));
     gtk_widget_destroy (win);
