@@ -61,6 +61,9 @@ typedef struct _GnomeVolumeControlWindow {
 
   /* preferences window, if opened */
   GtkWidget *prefs;
+
+  /* use default mixer */
+  gboolean use_default_mixer;
 } GnomeVolumeControlWindow;
 
 typedef struct _GnomeVolumeControlWindowClass {

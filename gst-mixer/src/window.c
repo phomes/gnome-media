@@ -141,6 +141,7 @@ gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
   win->el = NULL;
   win->client = gconf_client_get_default ();
   win->prefs = NULL;
+  win->use_default_mixer = FALSE;
 
   /* init */
   gnome_app_construct (GNOME_APP (win),
@@ -235,6 +236,8 @@ gnome_volume_control_window_new (GList *elements)
     GTK_CHECK_MENU_ITEM (win->element_menu[count].widget)->active = TRUE;
   }
 
+  win->use_default_mixer = (active_el_str == NULL);
+
   /* add content for this element */
   gst_element_set_state (active_element, GST_STATE_READY);
   el = gnome_volume_control_element_new (active_element,
@@ -318,6 +321,12 @@ cb_change (GtkWidget *widget,
     if (win->element_menu[i].widget == widget) {
       GConfValue *value;
       const gchar *label = win->element_menu[i].label;
+
+      if (win->use_default_mixer && (i == 0)) 
+	      /* we are selecting the default, ignore */
+	      return;
+
+      win->use_default_mixer = FALSE;
 
       /* skip mnemonic */
       while (*label != ':') label++; label++;
