@@ -8,14 +8,14 @@
 # Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004.
 # Alexander Shopov <ash@contact.bg>, 2005
 # Philip Dimitrov <philip.dimitrov@gmail.com>, 2005 
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-28 09:36+0200\n"
-"PO-Revision-Date: 2005-11-28 09:36+0200\n"
+"POT-Creation-Date: 2006-01-03 13:52+0200\n"
+"PO-Revision-Date: 2006-01-03 13:52+0200\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid ""
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
 "Тип сървър, към който се отправят запитвания. Възможните стойности са: 0 "
-"(FreeDB round robin сървър), 1 (друг freedb сървър) и 2 (друг сървър)"
+"(сървър FreeDB round robin), 1 (друг сървър на freedb) и 2 (друг сървър)"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -66,7 +66,7 @@ msgstr "Потребителско име"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
-msgstr "Потребителското име, което се изпраща с всички допитвания"
+msgstr "Потребителското име, което се изпраща с всички запитвания"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
 msgid ""
@@ -117,11 +117,11 @@ msgstr "Данни за регистриране"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:914
 msgid "FreeDB _round robin server"
-msgstr "FreeDB _round robin сървър"
+msgstr "Съ_рвър FreeDB _round robin"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:920
 msgid "Other _FreeDB server:"
-msgstr "Друг _FreeDB сървър:"
+msgstr "Дру_г сървър на  _FreeDB:"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:952
 #: ../cddb-slave2/cddb-slave-capplet.c:1062
@@ -138,7 +138,7 @@ msgstr "_Обновяване на списъка със сървъри"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:994
 msgid "Other _server:"
-msgstr "Друг _сървър:"
+msgstr "_Друг сървър:"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:1014
 msgid "Hos_tname:"
@@ -800,15 +800,15 @@ msgstr "Нео-метъл"
 msgid "Art Rock"
 msgstr "Арт рок"
 
-#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:571
-#: ../gnome-cd/callbacks.c:715 ../gnome-cd/callbacks.c:726
-#: ../gnome-cd/display.c:74
+#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:589
+#: ../gnome-cd/callbacks.c:735 ../gnome-cd/callbacks.c:746
+#: ../gnome-cd/display.c:75
 msgid "Unknown Artist"
 msgstr "Неизвестен изпълнител"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:572
-#: ../gnome-cd/callbacks.c:718 ../gnome-cd/callbacks.c:730
-#: ../gnome-cd/display.c:75
+#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:590
+#: ../gnome-cd/callbacks.c:738 ../gnome-cd/callbacks.c:750
+#: ../gnome-cd/display.c:76
 msgid "Unknown Album"
 msgstr "Неизвестен албум"
 
@@ -886,12 +886,12 @@ msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
-"Невъзможно създаването на CDDB РедакторНаПесни фабрика. \n"
+"Невъзможно създаването на фабрика за CDDBTrackEditor. \n"
 "Вероятно има стартирано друго копие на cddb-track-editor. \n"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
-msgstr "CD дисплей"
+msgstr "Дисплей на CD"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:120
 msgid ""
@@ -933,98 +933,99 @@ msgstr "Лента за албум"
 msgid "Line for displaying the name of the album"
 msgstr "Лента, показваща името на албума"
 
-#: ../gnome-cd/callbacks.c:85 ../gnome-cd/callbacks.c:173
-#: ../gnome-cd/callbacks.c:281 ../gnome-cd/callbacks.c:587
-#: ../gnome-cd/gnome-cd.c:814
+#: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
+#: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
+#: ../gnome-cd/gnome-cd.c:819
 msgid "Play"
 msgstr "Изпълнение"
 
-#: ../gnome-cd/callbacks.c:158 ../gnome-cd/callbacks.c:209
-#: ../gnome-cd/callbacks.c:240 ../gnome-cd/callbacks.c:323
-#: ../gnome-cd/callbacks.c:363 ../gnome-cd/callbacks.c:387
-#: ../gnome-cd/callbacks.c:428 ../gnome-cd/callbacks.c:523
+#: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
+#: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
+#: ../gnome-cd/callbacks.c:365 ../gnome-cd/callbacks.c:389
+#: ../gnome-cd/callbacks.c:430 ../gnome-cd/callbacks.c:527
 msgid "Pause"
 msgstr "Пауза"
 
-#: ../gnome-cd/callbacks.c:570
+#: ../gnome-cd/callbacks.c:588
 #, c-format
 msgid ""
 "Playing %s - %s\n"
-"Current Time: %s"
+"%s"
 msgstr ""
 "Изпълнение на %s - %s\n"
-"Позиция по време: %s"
+"%s"
 
-#: ../gnome-cd/callbacks.c:575
+#: ../gnome-cd/callbacks.c:593
 #, c-format
 msgid ""
 "Playing\n"
-"Current Time: %s"
+": %s"
 msgstr ""
 "Изпълнение\n"
-"Позиция по време: %s"
+": %s"
 
-#: ../gnome-cd/callbacks.c:599
+#: ../gnome-cd/callbacks.c:617
 msgid "Paused"
 msgstr "На пауза"
 
-#: ../gnome-cd/callbacks.c:650 ../gnome-cd/callbacks.c:907
-#: ../gnome-cd/gnome-cd.c:114 ../gnome-cd/gnome-cd.c:691
-#: ../gnome-cd/gnome-cd.c:890 ../gnome-cd/gnome-cd.c:893
-#: ../gnome-cd/gnome-cd.desktop.in.h:1 ../gnome-cd/preferences.c:610
+#: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
+#: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
+#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Изпълнение на CD"
 
-#: ../gnome-cd/callbacks.c:674
+#: ../gnome-cd/callbacks.c:694
 msgid "Stopped"
 msgstr "Спряно"
 
-#: ../gnome-cd/callbacks.c:680
+#: ../gnome-cd/callbacks.c:700
 msgid "Disc error"
 msgstr "Повреден диск"
 
-#: ../gnome-cd/callbacks.c:691 ../gnome-cd/callbacks.c:792
+#: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
 msgid "No disc"
 msgstr "Няма диск"
 
-#: ../gnome-cd/callbacks.c:790
+#: ../gnome-cd/callbacks.c:810
 msgid "Empty disc"
 msgstr "Празен диск"
 
-#: ../gnome-cd/callbacks.c:820
+#: ../gnome-cd/callbacks.c:840
 msgid "Drive open"
 msgstr "Устройството е отворено"
 
-#: ../gnome-cd/callbacks.c:846
+#: ../gnome-cd/callbacks.c:866
 msgid "Data CD"
 msgstr "CD с данни"
 
-#: ../gnome-cd/callbacks.c:870 ../gnome-cd/callbacks.c:875
+#: ../gnome-cd/callbacks.c:890 ../gnome-cd/callbacks.c:895
 msgid "No Cdrom"
 msgstr "Няма CD в устройството"
 
-#: ../gnome-cd/callbacks.c:888
+#: ../gnome-cd/callbacks.c:908
 msgid "Drive Error"
 msgstr "Грешка в устройството"
 
-#: ../gnome-cd/callbacks.c:910
+#: ../gnome-cd/callbacks.c:930
 msgid "A CD player for GNOME"
 msgstr "Програма за музикални CD за GNOME"
 
-#: ../gnome-cd/callbacks.c:1131
+#: ../gnome-cd/callbacks.c:1160
 msgid "Contents in the CDDB have changed"
 msgstr "Съдържанието на CDDB се е променило"
 
-#: ../gnome-cd/callbacks.c:1132
+#: ../gnome-cd/callbacks.c:1161
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "Ако изберете „Да“, предишното съдържание на CDDB ще бъде изтрито."
 
-#: ../gnome-cd/callbacks.c:1133
+#: ../gnome-cd/callbacks.c:1162
 msgid "Do you wish to continue?"
 msgstr "Искате ли да продължите?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1206 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1235 ../gnome-cd/gnome-cd.c:532
 #, c-format
 msgid "Volume %d%%"
 msgstr "Сила на звука %d%%"
@@ -1093,7 +1094,7 @@ msgstr "_Относно"
 msgid "_Quit"
 msgstr "_Спиране на програмата"
 
-#: ../gnome-cd/gnome-cd.c:611
+#: ../gnome-cd/gnome-cd.c:612
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1103,15 +1104,15 @@ msgstr ""
 "няма да работи. Натиснете „Настройка на устройство“ за да настроите\n"
 "устройство или изберете „Спиране на програмата“ за да затворите CD Плеър."
 
-#: ../gnome-cd/gnome-cd.c:615
+#: ../gnome-cd/gnome-cd.c:616
 msgid "Set device"
 msgstr "Настройка на устройство"
 
-#: ../gnome-cd/gnome-cd.c:617
+#: ../gnome-cd/gnome-cd.c:618
 msgid "No CD device"
 msgstr "Няма CD устройство"
 
-#: ../gnome-cd/gnome-cd.c:670
+#: ../gnome-cd/gnome-cd.c:671
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1120,102 +1121,102 @@ msgid ""
 "Press 'Set device' to go to a dialog where you can set the device, or press "
 "'Quit' to quit the CD player"
 msgstr ""
-"CD Плеъра не се изпълнява правилно.\n"
+"CD плеъра не се изпълнява правилно.\n"
 "\n"
 "Изберете „Детайли“ за повече информация относно грешката.\n"
 "\n"
 "Изберете „Настройка на устройство“ за да настроите устройство или „Спиране "
 "на програмата“ за да затворите CD Плеър"
 
-#: ../gnome-cd/gnome-cd.c:674
+#: ../gnome-cd/gnome-cd.c:675
 msgid "_Details"
 msgstr "_Детайли"
 
-#: ../gnome-cd/gnome-cd.c:675
+#: ../gnome-cd/gnome-cd.c:676
 msgid "_Set device"
 msgstr "На_стройка на устройство"
 
-#: ../gnome-cd/gnome-cd.c:677
+#: ../gnome-cd/gnome-cd.c:678
 msgid "Invalid CD device"
 msgstr "Невалидно CD устройство"
 
-#: ../gnome-cd/gnome-cd.c:752
+#: ../gnome-cd/gnome-cd.c:757
 msgid "Position"
 msgstr "Позиция"
 
-#: ../gnome-cd/gnome-cd.c:769
+#: ../gnome-cd/gnome-cd.c:774
 msgid "Open preferences"
 msgstr "Отваряне на настройките"
 
-#: ../gnome-cd/gnome-cd.c:770
+#: ../gnome-cd/gnome-cd.c:775
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../gnome-cd/gnome-cd.c:778
+#: ../gnome-cd/gnome-cd.c:783
 msgid "Track List"
 msgstr "Списък на песните"
 
-#: ../gnome-cd/gnome-cd.c:784
+#: ../gnome-cd/gnome-cd.c:789
 msgid "Open track editor"
 msgstr "Отваряне на редактора на песни"
 
-#: ../gnome-cd/gnome-cd.c:785
+#: ../gnome-cd/gnome-cd.c:790
 msgid "Track editor"
 msgstr "Редактор на песни"
 
-#: ../gnome-cd/gnome-cd.c:814
+#: ../gnome-cd/gnome-cd.c:819
 msgid "Play / Pause"
 msgstr "Изп./пауза"
 
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:824
 msgid "Stop"
 msgstr "Спиране"
 
-#: ../gnome-cd/gnome-cd.c:823
+#: ../gnome-cd/gnome-cd.c:828
 msgid "Previous track"
 msgstr "Предишна песен"
 
-#: ../gnome-cd/gnome-cd.c:823
+#: ../gnome-cd/gnome-cd.c:828
 msgid "Previous"
 msgstr "Предишна"
 
-#: ../gnome-cd/gnome-cd.c:827
+#: ../gnome-cd/gnome-cd.c:832
 msgid "Rewind"
 msgstr "Връщане"
 
-#: ../gnome-cd/gnome-cd.c:835
+#: ../gnome-cd/gnome-cd.c:840
 msgid "Fast forward"
 msgstr "Напред"
 
-#: ../gnome-cd/gnome-cd.c:843
+#: ../gnome-cd/gnome-cd.c:848
 msgid "Next track"
 msgstr "Следваща песен"
 
-#: ../gnome-cd/gnome-cd.c:847
+#: ../gnome-cd/gnome-cd.c:852
 msgid "Eject CD"
 msgstr "Изваждане на CD"
 
-#: ../gnome-cd/gnome-cd.c:847
+#: ../gnome-cd/gnome-cd.c:852
 msgid "Eject"
 msgstr "Изваждане"
 
-#: ../gnome-cd/gnome-cd.c:973
+#: ../gnome-cd/gnome-cd.c:978
 msgid "CD device to use"
 msgstr "Използвано CD устройство"
 
-#: ../gnome-cd/gnome-cd.c:975
+#: ../gnome-cd/gnome-cd.c:980
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Стартиране само ако няма стартирана програма за изпълнение на CD"
 
-#: ../gnome-cd/gnome-cd.c:977
+#: ../gnome-cd/gnome-cd.c:982
 msgid "Play the CD on startup"
 msgstr "Изпълнение на CD при стартирането"
 
-#: ../gnome-cd/gnome-cd.c:979
+#: ../gnome-cd/gnome-cd.c:984
 msgid "Start iconified to tray"
 msgstr "Стартиране в тавата"
 
-#: ../gnome-cd/gnome-cd.c:1012 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1224,7 +1225,7 @@ msgstr ""
 "Регистърът липсва или е развален. Обновете го чрез командата „gst-register“"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1029
+#: ../gnome-cd/gnome-cd.c:1034
 msgid "Cannot create player"
 msgstr "Невъзможно създаване на плеър"
 
@@ -1245,30 +1246,38 @@ msgid "Device path"
 msgstr "Път към устройство"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Display the Remaining time ?"
+msgstr "Показване на оставащото време?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
 msgstr "Изваждане на CD при спиране на програмата?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "How the time should be displayed while CD Player is playing ?"
+msgstr "Как да се показва времето, когато работи CD плеъра?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
 msgstr "Изпълнение при стартирането на CD плеъра?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
 msgstr "Да се отвори ли CD устройството при изход от CD плеър?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr "Пътят към CD устройство, което плеърът трябва да използва"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
 msgstr "Тема за външния вид на CD плеъра"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
 msgid "What volume should the CD player use when it is started?"
 msgstr "Колко силен да е звука при стартиране на CD плеъра?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "При стартиране на CD плеър да се стартира ли изпълнението на CD?"
 
@@ -1300,39 +1309,39 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Грешка при установяване на устройство"
 
-#: ../gnome-cd/preferences.c:583
+#: ../gnome-cd/preferences.c:586
 msgid "CD Player Preferences"
 msgstr "Настройки на CD плеър"
 
-#: ../gnome-cd/preferences.c:622
+#: ../gnome-cd/preferences.c:625
 msgid "_Device:"
 msgstr "_Устройство:"
 
-#: ../gnome-cd/preferences.c:636
+#: ../gnome-cd/preferences.c:639
 msgid "Behavior"
 msgstr "Поведение"
 
-#: ../gnome-cd/preferences.c:649
+#: ../gnome-cd/preferences.c:652
 msgid "Start _playback when CD Player starts"
 msgstr "Започване на _изпълнение при стартиране на CD плеъра"
 
-#: ../gnome-cd/preferences.c:650
+#: ../gnome-cd/preferences.c:653
 msgid "Start playback when CD Player starts"
 msgstr "Започване на изпълнение при стартиране на CD плеъра "
 
-#: ../gnome-cd/preferences.c:662
+#: ../gnome-cd/preferences.c:665
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Опитва да _отвори CD устр. при изход от CD плеър"
 
-#: ../gnome-cd/preferences.c:663
+#: ../gnome-cd/preferences.c:666
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Опитва да отвори CD устр. при изход от CD плеър"
 
-#: ../gnome-cd/preferences.c:679
+#: ../gnome-cd/preferences.c:682
 msgid "Themes"
 msgstr "Теми"
 
-#: ../gnome-cd/preferences.c:691
+#: ../gnome-cd/preferences.c:694
 msgid "_Select a theme:"
 msgstr "_Избор на тема:"
 
@@ -1482,12 +1491,12 @@ msgstr "Неизвестен размер"
 #: ../grecord/src/gsr-window.c:940
 #, c-format
 msgid "%.1f kHz"
-msgstr "%.1f кХз"
+msgstr "%.1f kHz"
 
 #: ../grecord/src/gsr-window.c:949
 #, c-format
 msgid "%.0f kb/s"
-msgstr "%.0f кб/с"
+msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:960
 msgid "1 (mono)"
@@ -1556,30 +1565,31 @@ msgstr "Запис..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input element set - please install the "
+"There is no default GStreamer audio input plugin set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
-"Няма настроен стандартен звуков входен елемент за GStreamer - моля, "
-"инсталирайте GConf схемите на GStreamer или настройте една ръчно"
+"Няма настроена стандартна звукова приставка за елемент-източник - "
+"инсталирайте схемите на GConf за GStreamer или настройте ръчно"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder elements - check your encoding setup"
+msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
 msgstr ""
-"Неуспех при създаването на елементите за кодека на GStreamer - проверете "
-"настройките на вашите кодеци"
+"Неуспех при създаването на приставките за кодека на GStreamer - проверете "
+"настройките на Вашите кодеци"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find GStreamer filesink plugin - please install it"
+msgid "Could not find \"filesink\" GStreamer plugin - please install it"
 msgstr ""
-"Неуспех при инициализацията на файловата мивка на GStreamer - инсталирайте го"
+"Неуспех при инициализацията на файловия елемент-приемник на GStreamer - "
+"инсталирайте го"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder elements with file output element - you probably "
+"Failed to link encoder plugin with file output plugin - you probably "
 "selected an invalid encoder"
 msgstr ""
-"Неуспех при връзката между елементите на кодирането и елемента на изходния "
-"файл - най-вероятно сте избрали невалидна програма за кодиране"
+"Неуспех при свързването между приставката за кодирането и елемента-приемник "
+"за изходен файл - най-вероятно сте избрали невалидна програма за кодиране"
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:1718
@@ -1690,7 +1700,7 @@ msgid "Adjust the volume level"
 msgstr "Нагласяване на силата на звука"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:147 ../gst-mixer/src/window.c:386
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:395
 msgid "Volume Control"
 msgstr "Сила на звука"
 
@@ -1738,8 +1748,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Неизвестна сила на звука %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control elements and/or devices found."
-msgstr "За съжаление не бяха открити миш-пултови елементи и/или устройства"
+msgid "No volume control GStreamer plugins and/or devices found."
+msgstr "Не бяха открити приставки/устройства-смесители."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
@@ -1873,21 +1883,21 @@ msgstr "_Смяна на устройството"
 msgid "Control volume on a different device"
 msgstr "Сила на звука на различно устройство"
 
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:185
 #, c-format
 msgid "Change device to %s"
 msgstr "Промяна на устройство на %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:228 ../gst-mixer/src/window.c:433
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:442
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Сила на звука: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:380
+#: ../gst-mixer/src/window.c:389
 msgid "translator-credits"
 msgstr ""
 "Владимир Петков <vpetkov@i-space.org>\n"
@@ -1901,7 +1911,7 @@ msgstr ""
 "Научете повече за нас на http://gnome.cult.bg\n"
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:398
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Мишпулт на основата на GNOME/GStreamer"
 
@@ -1936,12 +1946,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
-msgstr "<b>Канал по подразбиране</b>"
+msgid "<b>Default Input Plugin</b>"
+msgstr "<b>Приставка-вход по подразбиране</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>Източник по подразбиране</b>"
+msgid "<b>Default Output Plugin</b>"
+msgstr "<b>Приставка-изход по подразбиране</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -1957,7 +1967,7 @@ msgstr "Избор на „Да“ за край."
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
-msgstr "Тръбо_провод:"
+msgstr "_Конвейер:"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:9
 msgid "Te_st"
@@ -1965,7 +1975,7 @@ msgstr "Проверка"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Testing Pipeline"
-msgstr "Проверка на тръбопровода"
+msgstr "Проверка на конвейера"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
@@ -1981,7 +1991,7 @@ msgstr "_Изход:"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Pipeline:"
-msgstr "_Тръбопровод:"
+msgstr "_Конвейер:"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:15
 msgid "_Test"
@@ -1997,7 +2007,7 @@ msgstr "Потребителска"
 #: ../gstreamer-properties/pipeline-tests.c:119
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr "Грешка при конструирането на тестов тръбопровод за '%s'"
+msgstr "Грешка при конструирането на тестов конвейер за „%s“"
 
 #: ../profiles/audio-profile-edit.c:164
 #, c-format
@@ -2142,7 +2152,7 @@ msgstr "_Създаване"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:10
 msgid "_GStreamer Pipeline:"
-msgstr "Тръба на _GStreamer"
+msgstr "Конвейер на _GStreamer"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:11
 msgid "_Profile name:"
