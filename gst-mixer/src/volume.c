@@ -229,7 +229,7 @@ get_button (GnomeVolumeControlVolume *vol,
   gchar *accessible_name, *msg;
   gint n;
 
-  msg = g_strdup_printf (("Lock channels for %s together"), vol->track->label);
+  msg = g_strdup_printf (_("Lock channels for %s together"), vol->track->label);
   vol->button = gnome_volume_control_button_new ("chain.png",
 						 "chain-broken.png",
 						 vol->appbar, msg);
