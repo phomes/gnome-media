@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 20:50+0100\n"
-"PO-Revision-Date: 2006-01-09 20:56+0100\n"
+"POT-Creation-Date: 2006-01-10 15:11+0100\n"
+"PO-Revision-Date: 2006-01-10 15:15+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
@@ -972,8 +972,8 @@ msgstr "Pausado"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Reproductor de CD"
@@ -1204,23 +1204,23 @@ msgstr "Extraer CD"
 msgid "Eject"
 msgstr "Extraer"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "Dispositivo de CD a usar"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Iniciar soamente se non hai xa unha aplicación de CD en execución"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "Reproducir o CD ao iniciar"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Iniciar minimizado"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1230,7 +1230,7 @@ msgstr ""
 "register"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "Non se puido crear o reproductor"
 
@@ -1569,29 +1569,29 @@ msgstr "Gravando..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
-"Non hai un conxunto predeterminado de entrada de son de "
-"GStreamer. Instale os esquemas GStreamer-GConf ou configure un manualmente"
+"Non hai un conxunto de elementos predeterminado de entrada de son de GStreamer. Instale "
+"os esquemas GStreamer-GConf ou configure un manualmente"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
-"Ocorreu un erro ao crear complementos de codificación GStreamer - comprobe a "
+"Ocorreu un erro ao crear elementos de codificación GStreamer - comprobe a "
 "súa configuración de codificación."
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "Non se puido atopar o complemento GStreamer 'filesink' - debe instalalo"
+msgid "Could not find \"filesink\" GStreamer element - broken GStreamer install"
+msgstr "Non se puido atopar o elemento GStreamer \"filesink\" - instalación de GStreamer errónea"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
-"Produciuse un erro ao ligar o complemento de codificación co complemento de saída "
-"de ficheiro - probablemente seleccionou un codificador inválido"
+"Produciuse un erro ao ligar o elemento de codificación co elemento de "
+"saída de ficheiro - probablemente seleccionou un codificador inválido"
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:1718
@@ -1750,8 +1750,10 @@ msgid "Unknown Volume Control %d"
 msgstr "Control de volume %d descoñecido"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Non se atoparon complementos e/ou dispositivos de control de volume GStreamer."
+msgid "No volume control GStreamer elements and/or devices found."
+msgstr ""
+"Non se atoparon elementos e/ou dispositivos de control de volume "
+"GStreamer."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
@@ -1872,6 +1874,11 @@ msgstr "Canle %d da pista %s"
 msgid "Track %s, channel %d"
 msgstr "Pista %s, canle %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Bloquear canles de %s xuntamente"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1941,12 +1948,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Complemento de entrada predeterminado</b>"
+msgid "<b>Default Input Element</b>"
+msgstr "<b>Elemento de entrada predeterminado</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Complemento de saída predeterminado</b>"
+msgid "<b>Default Output Element</b>"
+msgstr "<b>Elemento de saída predeterminado</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
