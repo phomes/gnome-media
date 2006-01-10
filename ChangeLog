@@ -1,5 +1,14 @@
 2006-01-10  Thomas Vander Stichele  <thomas at apestaart dot org>
 
+	* grecord/src/gsr-window.c: (make_play_pipeline),
+	(make_record_pipeline):
+	* gst-mixer/src/main.c: (main):
+	* gstreamer-properties/gstreamer-properties.glade:
+	  Plugins are not elements - plugins provide features, which
+	  can be elements.  Fix the strings back.
+
+2006-01-10  Thomas Vander Stichele  <thomas at apestaart dot org>
+
 	Patch by: Raphael Slinckx
 
 	* gnome-cd/gnome-cd.c: (tray_icon_create):
