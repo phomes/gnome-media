@@ -870,6 +870,7 @@ void
 tray_icon_create (GnomeCD *gcd)
 {
 	GdkPixbuf *pixbuf;
+	GdkPixbuf *icon;
 	GtkWidget *box;
 
 	/* Tray icon */
@@ -886,11 +887,17 @@ tray_icon_create (GnomeCD *gcd)
 				(GDestroyNotify) tray_object_destroyed);
 
 	gtk_container_add (GTK_CONTAINER (gcd->tray), box);
-	pixbuf = gdk_pixbuf_scale_simple (pixbuf_from_file ("gnome-cd/cd.png"),
+	
+	icon = pixbuf_from_file ("gnome-cd/cd.png");
+	pixbuf = gdk_pixbuf_scale_simple (icon,
 				16, 16, GDK_INTERP_BILINEAR);
 	gcd->tray_icon = gtk_image_new_from_pixbuf (pixbuf);
 	g_signal_connect (G_OBJECT (gcd->tray_icon), "expose_event",
 			 	G_CALLBACK (tray_icon_expose), gcd);
+			 	
+	g_object_unref (G_OBJECT (pixbuf));
+	g_object_unref (G_OBJECT (icon));
+
 	GTK_WIDGET_SET_FLAGS (box, GTK_CAN_FOCUS);
 	atk_object_set_name (gtk_widget_get_accessible (box), _("CD Player"));
 	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
