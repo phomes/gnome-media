@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-25 11:21+0700\n"
-"PO-Revision-Date: 2005-12-25 12:58+0700\n"
+"POT-Creation-Date: 2006-01-11 20:56+0700\n"
+"PO-Revision-Date: 2006-01-11 21:05+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n>\n"
 "MIME-Version: 1.0\n"
@@ -965,8 +965,8 @@ msgstr "พัก"
 
 #: gnome-cd/callbacks.c:668 gnome-cd/callbacks.c:670
 #: gnome-cd/callbacks.c:927 gnome-cd/gnome-cd.c:114
-#: gnome-cd/gnome-cd.c:692 gnome-cd/gnome-cd.c:895
-#: gnome-cd/gnome-cd.c:898 gnome-cd/gnome-cd.desktop.in.h:1
+#: gnome-cd/gnome-cd.c:692 gnome-cd/gnome-cd.c:902
+#: gnome-cd/gnome-cd.c:905 gnome-cd/gnome-cd.desktop.in.h:1
 #: gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "เครื่องเล่นซีดี"
@@ -1194,23 +1194,23 @@ msgstr "ดันแผ่นซีดีออก"
 msgid "Eject"
 msgstr "ดันแผ่นออก"
 
-#: gnome-cd/gnome-cd.c:978
+#: gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "อุปกรณ์อ่านซีดีที่จะใช้"
 
-#: gnome-cd/gnome-cd.c:980
+#: gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "เริ่มทำงานเมื่อยังไม่มีโปรแกรมเล่นซีดีทำงานอยู่เท่านั้น"
 
-#: gnome-cd/gnome-cd.c:982
+#: gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "เล่นซีดีทันทีที่เริ่มโปรแกรม"
 
-#: gnome-cd/gnome-cd.c:984
+#: gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "เปิดเป็นไอคอนในถาด"
 
-#: gnome-cd/gnome-cd.c:1017 grecord/src/gnome-recorder.c:210
+#: gnome-cd/gnome-cd.c:1024 grecord/src/gnome-recorder.c:210
 #: gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1218,7 +1218,7 @@ msgid ""
 msgstr "ไม่มีเรจิสตรีอยู่หรือเรจิสตรีเสียหาย กรุณาอัพเดตเรจิสตรีโดยเรียกคำสั่ง gst-register"
 
 #. Stick a message box here?
-#: gnome-cd/gnome-cd.c:1034
+#: gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "ไม่สามารถสร้างเครื่องเล่นซีดีได้"
 
@@ -1554,27 +1554,29 @@ msgstr "กำลังอัดเสียง..."
 
 #: grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
-"ไม่ได้ตั้งค่าปลั๊กอินสัญญาณเสียงเข้าปริยายไว้ กรุณาติดตั้ง GStreamer-GConf schema "
+"ไม่ได้ตั้งค่าองค์ประกอบสัญญาณเสียงเข้าปริยายไว้ กรุณาติดตั้ง GStreamer-GConf schema "
 "หรือกำหนดเองโดยตรง"
 
 #: grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
-"ไม่สามารถสร้างปลั๊กอินการลงรหัส GStreamer กรุณาตรวจสอบการตั้งค่าการลงรหัสข้อมูลของคุณ"
+"ไม่สามารถสร้างองค์ประกอบการลงรหัส GStreamer กรุณาตรวจสอบการตั้งค่าการลงรหัสข้อมูลของคุณ"
 
 #: grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "ไม่พบปลั๊กอิน \"filesink\" ของ GStreamer กรุณาติดตั้งด้วย"
+msgid ""
+"Could not find \"filesink\" GStreamer element - broken GStreamer install"
+msgstr "ไม่พบองค์ประกอบ \"filesink\" ของ GStreamer กรุณาตรวจสอบการติดตั้ง GStreamer"
 
 #: grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
-"ไม่สามารถเชื่อมปลั๊กอินลงรหัสเข้ากับปลั๊กอินเขียนแฟ้ม คุณอาจเลือกปลั๊กอินลงรหัสที่ไม่ถูกต้อง"
+"ไม่สามารถเชื่อมองค์ประกอบลงรหัสเข้ากับองค์ประกอบเขียนแฟ้ม "
+"คุณอาจเลือกองค์ประกอบลงรหัสที่ไม่ถูกต้อง"
 
 #. File menu.
 #: grecord/src/gsr-window.c:1718
@@ -1731,8 +1733,8 @@ msgid "Unknown Volume Control %d"
 msgstr "เครื่องมือควบคุมระดับเสียงไม่ทราบชื่อ %d"
 
 #: gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "ไม่พบปลั๊กอิน และ/หรือ อุปกรณ์ควบคุมระดับเสียง"
+msgid "No volume control GStreamer elements and/or devices found."
+msgstr "ไม่พบองค์ประกอบ และ/หรือ อุปกรณ์ควบคุมระดับเสียง"
 
 #. make window look cute
 #: gst-mixer/src/preferences.c:107
@@ -1853,6 +1855,11 @@ msgstr "ช่อง %d ของแทร็ก %s"
 msgid "Track %s, channel %d"
 msgstr "แทร็ก %s, ช่อง %d"
 
+#: gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "ล็อคช่องสัญญาณสำหรับ %s ไปด้วยกัน"
+
 #: gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1923,12 +1930,12 @@ msgid "*"
 msgstr "*"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>ปลั๊กอินสัญญาณเข้าปริยาย</b>"
+msgid "<b>Default Input Element</b>"
+msgstr "<b>องค์ประกอบสัญญาณเข้าปริยาย</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>ปลั๊กอินสัญญาณออกปริยาย</b>"
+msgid "<b>Default Output Element</b>"
+msgstr "<b>องค์ประกอบสัญญาณออกปริยาย</b>"
 
 #: gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
