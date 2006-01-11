@@ -1,14 +1,14 @@
 # Canadian English translation of gnome-media
-# Copyright (C) 2004-2005 Adam Weinberger and the GNOME Foundation
+# Copyright (C) 2004-2006 Adam Weinberger and the GNOME Foundation
 # This file is distributed under the same licence as the gnome-media package.
 # Alexander Winston <alexander.winston@comcast.net>, 2004.
-# Adam Weinberger <adamw@gnome.org>, 2004, 2005.
+# Adam Weinberger <adamw@gnome.org>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-23 02:36-0500\n"
+"POT-Creation-Date: 2006-01-11 12:32-0500\n"
 "PO-Revision-Date: 2005-07-18 14:42-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -964,8 +964,8 @@ msgstr "Paused"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD Player"
@@ -1194,23 +1194,23 @@ msgstr "Eject CD"
 msgid "Eject"
 msgstr "Eject"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "CD device to use"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Only start if there isn't already a CD player application running"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "Play the CD on startup"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Start iconified to tray"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1220,7 +1220,7 @@ msgstr ""
 "register"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "Cannot create player"
 
@@ -1559,26 +1559,28 @@ msgstr "Recording..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
-msgstr "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
+msgstr "Failed to create GStreamer encoder elements - check your encoding setup"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "Could not find \"filesink\" GStreamer plugin - please install it"
+msgid ""
+"Could not find \"filesink\" GStreamer element - broken GStreamer install"
+msgstr ""
+"Could not find \"filesink\" GStreamer element - broken GStreamer install"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
 
 #. File menu.
@@ -1736,8 +1738,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Unknown Volume Control %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "No volume control GStreamer plugins and/or devices found."
+msgid "No volume control GStreamer elements and/or devices found."
+msgstr "No volume control GStreamer elements and/or devices found."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
@@ -1858,6 +1860,11 @@ msgstr "Channel %d of track %s"
 msgid "Track %s, channel %d"
 msgstr "Track %s, channel %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Lock channels for %s together"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1925,12 +1932,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Default Input Plugin</b>"
+msgid "<b>Default Input Element</b>"
+msgstr "<b>Default Input Element</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Default Output Plugin</b>"
+msgid "<b>Default Output Element</b>"
+msgstr "<b>Default Output Element</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
