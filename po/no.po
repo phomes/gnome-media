@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 01:14+0100\n"
-"PO-Revision-Date: 2006-01-02 01:17+0100\n"
+"POT-Creation-Date: 2006-01-13 11:17+0100\n"
+"PO-Revision-Date: 2006-01-13 11:19+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -961,8 +961,8 @@ msgstr "Pause"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:690 ../gnome-cd/gnome-cd.c:893
-#: ../gnome-cd/gnome-cd.c:896 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:690 ../gnome-cd/gnome-cd.c:900
+#: ../gnome-cd/gnome-cd.c:903 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:592
 msgid "CD Player"
 msgstr "CD-spiller"
@@ -1191,23 +1191,23 @@ msgstr "Løs ut CD"
 msgid "Eject"
 msgstr "Løs ut"
 
-#: ../gnome-cd/gnome-cd.c:976
+#: ../gnome-cd/gnome-cd.c:983
 msgid "CD device to use"
 msgstr "CD-enhet som skal brukes"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Kun start hvis ingen CD-spiller programmer kjører"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Play the CD on startup"
 msgstr "Spill av CDen ved oppstart"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Start iconified to tray"
 msgstr "Vis i varslingsområde ved oppstart"
 
-#: ../gnome-cd/gnome-cd.c:1015 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1022 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1217,7 +1217,7 @@ msgstr ""
 "ved å kjøre kommandoen gst-register"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1032
+#: ../gnome-cd/gnome-cd.c:1039
 msgid "Cannot create player"
 msgstr "Kan ikke opprette spiller"
 
@@ -1556,23 +1556,24 @@ msgstr "Tar opp..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
-msgstr "Forvalgt GStreamer-tillegg for lydopptak er ikke satt - vennligst installer schema for GStreamer-GConf eller sett et manuelt"
+msgstr "Forvalgt GStreamer-element for lydopptak er ikke satt - vennligst installer schema for GStreamer-GConf eller sett et manuelt"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
-msgstr "Kunne ikke opprette GStreamer-tillegg for koding - sjekk oppsett for koding"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
+msgstr "Kunne ikke opprette GStreamer-element for koding - sjekk oppsett for koding"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "Kunne ikke finne GStreamer-tillegget «filesink» - vennligst installer dette"
+msgid ""
+"Could not find \"filesink\" GStreamer element - broken GStreamer install"
+msgstr "Kunne ikke finne GStreamer-element «filesink» - vennligst installer dette"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
-msgstr "Kunne ikke koble kodingstillegg med utgangstillegg for fil - du har sannsynligvis valgt en ugyldig koding"
+msgstr "Kunne ikke koble element for koding med element for utdata til fil - du har sannsynligvis valgt en ugyldig koding"
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:1718
@@ -1729,8 +1730,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Ukjent volumkontroll %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Ingen volumkontrolltillegg for GStreamer og/eller enheter funnet."
+msgid "No volume control GStreamer elements and/or devices found."
+msgstr "Ingen volumkontrollelementer for GStreamer og/eller enheter funnet."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
@@ -1851,6 +1852,11 @@ msgstr "Kanal %d for spor %s"
 msgid "Track %s, channel %d"
 msgstr "Spor %s, kanal %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Lås sammen kanaler for %s"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1919,12 +1925,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Forvalgt inngangstillegg</b>"
+msgid "<b>Default Input Element</b>"
+msgstr "<b>Forvalgt inngangselement</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Forvalgt utgangstillegg</b>"
+msgid "<b>Default Output Element</b>"
+msgstr "<b>Forvalgt utgangselement</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
