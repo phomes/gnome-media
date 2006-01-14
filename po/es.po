@@ -1,3 +1,4 @@
+# translation of gnome-media.HEAD.po to
 # Translation of gnome-media into spanish
 # Copyright © 1998-2003 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
@@ -9,22 +10,22 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004.
 # Lucas Vieites <lucas@asixinformatica.com>, 2002-2004.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005.
-# Lucas Vieites Fariña <lucas@asixinformatica.com>, 2005.
+# Lucas Vieites Fariña <lucas@asixinformatica.com>, 2005, 2006.
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media.HEAD.es\n"
+"Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-25 13:43+0100\n"
-"PO-Revision-Date: 2005-12-25 13:48+0100\n"
-"Last-Translator: Lucas Vieites Fariña <lucas@asixinformatica.com>\n"
-"Language-Team: Español <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2006-01-13 06:39+0100\n"
+"PO-Revision-Date: 2006-01-13 10:24+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -1043,8 +1044,8 @@ msgstr "Pausado"
 # tcd/gtcd.desktop.in.h:1
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Reproductor de CD"
@@ -1315,23 +1316,23 @@ msgid "Eject"
 msgstr "Expulsar"
 
 # tcd/prefs.c:483
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "Dispositivo de CD"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Iniciar solamente si no hay ya una aplicación de CD en ejecución"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "Reproducir el CD al iniciar"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Iniciar minimizado"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1341,7 +1342,7 @@ msgstr ""
 "register»"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "No se puede crear el reproductor"
 
@@ -1373,7 +1374,9 @@ msgstr "Expulsar el CD cuando se cierra el reproductor"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr "¿Cómo debería mostrarse el tiempo cuando esté funcionando el reproductor de CD?"
+msgstr ""
+"¿Cómo debería mostrarse el tiempo cuando esté funcionando el reproductor de "
+"CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1402,8 +1405,7 @@ msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Cuando se inicia el reproductor de CDs, ¿debería reproducir el CD?"
 
 #: ../gnome-cd/gst-cdparanoia-cdrom.c:290
-msgid ""
-"Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
+msgid "Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
 msgstr ""
 "No se ha podido iniciar el lector de CD; instale el plugin cdparanoia para "
 "GStreamer."
@@ -1715,23 +1717,25 @@ msgstr "Grabando..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
-msgstr "No hay un conjunto predeterminado de elementos de entrada audio de GStreamer. Instale los esquemas GStreamer-GConf o configure uno manualmente."
+msgstr ""
+"No hay un conjunto predeterminado de elementos de entrada audio de "
+"GStreamer. Instale los esquemas GStreamer-GConf o configure uno manualmente."
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Ha ocurrido un error al crear elementos de codificación GStreamer - "
 "compruebe su configuración de codificación."
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "No se pudo encontrar el complemento GStreamer «filesink» - intálelo"
+msgid "Could not find \"filesink\" GStreamer element - broken GStreamer install"
+msgstr "No se ha podido encontrar el elemento de GStreamer «filesink» - instálelo"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 "Se ha producido un error al enlazar elementos de codificación con elementos "
@@ -1909,8 +1913,10 @@ msgid "Unknown Volume Control %d"
 msgstr "Control de volumen desconocido %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "No se han encontrado complementos y/o dispositivos de control de volumen de GStreamer."
+msgid "No volume control GStreamer elements and/or devices found."
+msgstr ""
+"No se han encontrado elementos y/o dispositivos de control de volumen de "
+"GStreamer."
 
 # tcd/gtcd.c:506
 #. make window look cute
@@ -2036,6 +2042,11 @@ msgstr "Canal %d de la pista %s"
 msgid "Track %s, channel %d"
 msgstr "Pista %s, canal %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Bloquear los canales de %s en conjunto"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -2106,12 +2117,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Complemento de entrada predeterminado</b>"
+msgid "<b>Default Input Element</b>"
+msgstr "<b>Elemento de entrada predeterminado</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Complemento de salida predeterminado</b>"
+msgid "<b>Default Output Element</b>"
+msgstr "<b>Elemento de salida predeterminado</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2193,8 +2204,7 @@ msgstr "<sin descripción>"
 #: ../profiles/audio-profile.c:219
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr ""
-"Se ha producido un error al obtener la lista de perfiles de gm_audio. (%s)\n"
+msgstr "Se ha producido un error al obtener la lista de perfiles de gm_audio. (%s)\n"
 
 #: ../profiles/audio-profile.c:720
 #, c-format
@@ -2336,8 +2346,7 @@ msgstr ""
 "utilizar este perfil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "La extensión de archivo que se usará al almacenar los archivos codificados "
 "con este perfil."
@@ -2405,10 +2414,8 @@ msgstr ""
 "radio."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to voice-quality audio. Use this for recording speech."
-msgstr ""
-"Usado para convertirse en sonido de calidad de voz. Use este para grabar voz."
+msgid "Used for converting to voice-quality audio. Use this for recording speech."
+msgstr "Usado para convertirse en sonido de calidad de voz. Use éste para grabar voz."
 
 # gmix/device_labels_alsa.h:15
 # gmix/device_labels_linux.h:10
@@ -2496,21 +2503,3 @@ msgstr "Monitorizar el volumen de salida de grabación."
 msgid "Volume Monitor"
 msgstr "Monitor de volumen"
 
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Fuente predeterminada</b>"
-
-# grecord/src/gui.c:50
-#~ msgid "Run _Mixer"
-#~ msgstr "Ejecutar _mezclador"
-
-# grecord/src/gui.c:130
-# grecord/src/gui.c:873
-#~ msgid "File information"
-#~ msgstr "Información de archivo"
-
-#~ msgid "P_revious track"
-#~ msgstr "Pista ante_rior"
-
-# tcd/gtcd.desktop.in.h:1
-#~ msgid "_About CD player"
-#~ msgstr "_Acerca del Reproductor de CD"
