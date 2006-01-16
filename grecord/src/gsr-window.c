@@ -1651,7 +1651,7 @@ make_record_pipeline (GSRWindow *window)
 	}
 	if (!esource) {
 		show_error_dialog (NULL, _("There is no default GStreamer "
-				   "audio input element set - please install "
+				   "audio input plugin set - please install "
 				   "the GStreamer-GConf schemas or set one "
 				   "manually"));
 		return NULL;
@@ -1669,7 +1669,7 @@ make_record_pipeline (GSRWindow *window)
 	g_free (pipeline_desc);
 	if (!encoder) {
 		show_error_dialog (NULL, _("Failed to create GStreamer "
-				   "encoder elements - check your encoding "
+				   "encoder plugins - check your encoding "
 				   "setup"));
 		return NULL;
 	}
@@ -1679,7 +1679,7 @@ make_record_pipeline (GSRWindow *window)
 	if (!pipeline->sink)
 	{
 		show_error_dialog (NULL, _("Could not find \"filesink\" GStreamer "
-				   "element - broken GStreamer install"));
+				   "plugin - broken GStreamer install"));
 		return NULL;
 	}
 	gst_bin_add (GST_BIN (pipeline->pipeline), pipeline->sink);
@@ -1687,8 +1687,8 @@ make_record_pipeline (GSRWindow *window)
 	if (!gst_element_link (manager, encoder) ||
 	    !gst_element_link (encoder, pipeline->sink))
 	{
-		show_error_dialog (NULL, _("Failed to link encoder element "
-				   "with file output element - you probably "
+		show_error_dialog (NULL, _("Failed to link encoder plugin "
+				   "with file output plugin - you probably "
 				   "selected an invalid encoder"));
 		return NULL;
 	}
