@@ -1,20 +1,20 @@
 # GNOME meedia eesti keele tõlge.
 # Estonian translation of Gnome-media.
 #
-# Copyright (C) 1999-2005 Free Software Foundation, Inc.
+# Copyright (C) 1999-2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
 #
 # Lauris Kaplinski <lauris@ariman.ee>, 1999.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002, 2003.
-# Ivar Smolin <okul@linux.ee>, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005, 2006.
 # Priit Laes <amd store20 com>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-25 04:59+0100\n"
-"PO-Revision-Date: 2005-12-25 10:14+0200\n"
+"POT-Creation-Date: 2006-01-17 05:23+0100\n"
+"PO-Revision-Date: 2006-01-17 14:17+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -968,8 +968,8 @@ msgstr "Paus"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD-mängija"
@@ -1199,23 +1199,23 @@ msgstr "CD väljastamine"
 msgid "Eject"
 msgstr "Plaat välja"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "Kasutatav CD-seade"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Käivitada ainult juhul, kui ükski CD-mängija rakendus ei käi"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "CD mängimine käivitamisel"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Käivitatakse ikoonina süsteemisalves"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1225,7 +1225,7 @@ msgstr ""
 "register' käivitamise abil."
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "Mängijat pole võimalik luua"
 
@@ -1565,28 +1565,28 @@ msgstr "Salvestamine..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
-"Süsteemis ei ole GStreamer'i vaikimisi audiosisendi pluginat määratud - "
+"Süsteemis ei ole GStreamer'i vaikimisi audiosisendi elementi määratud - "
 "palun paigalda GStreamer-GConf skeemid või määra see käsitsi"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
-"Tõrge GStreamer'i kodeerimisplugina loomisel - kontrolli oma kodeerija "
+"Tõrge GStreamer'i kodeerimiselemendi loomisel - kontrolli oma kodeerija "
 "seadeid"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
+msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr "GStreamer'i \"filesink\" pluginat ei leitud - palun paigalda see"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
-"Tõrge kodeerimisplugina ühendamisel failiväljundi pluginaga - arvatavasti "
+"Tõrge kodeerimiselemendi ühendamisel failiväljundi pluginaga - arvatavasti "
 "oled valinud vigase kodeerija"
 
 #. File menu.
@@ -1746,8 +1746,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Tundmatu helitugevuse regulaator %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "GStreamer'i helivaljuse juhtimise pluginaid või seadmeid ei leitud."
+msgid "No volume control elements and/or devices found."
+msgstr "Helivaljuse juhtimise elemente või seadmeid ei leitud."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
@@ -1868,6 +1868,11 @@ msgstr "Kanal %d rajal %s"
 msgid "Track %s, channel %d"
 msgstr "Rada %s, kanal %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "%s kanalite kokkulukusamine"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1900,7 +1905,7 @@ msgid "translator-credits"
 msgstr ""
 "Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
 "Tõivo Leedjärv <toivo@linux.ee>, 2002, 2003.\n"
-"Ivar Smolin <okul@linux.ee>, 2005.\n"
+"Ivar Smolin <okul@linux.ee>, 2005, 2006.\n"
 "Priit Laes <amd store20 com>, 2005."
 
 #: ../gst-mixer/src/window.c:398
@@ -1939,12 +1944,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Vaikimisi sisendplugin</b>"
+msgid "<b>Default Sink</b>"
+msgstr "<b>Vaikimisi allikas</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Vaikimisi väljundplugin</b>"
+msgid "<b>Default Source</b>"
+msgstr "<b>Vaikimisi allikas</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2313,12 +2318,3 @@ msgstr "Montoorib heliväljundit"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Helitugevuse monitor"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Vaikimisi allikas</b>"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Ava _mikser"
-
-#~ msgid "File information"
-#~ msgstr "Faili andmed"
