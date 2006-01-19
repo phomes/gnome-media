@@ -31,5 +31,10 @@
 void user_test_pipeline(GladeXML *interface_xml,
 		    GtkWindow *parent,
 		    GSTPPipelineDescription *pipeline_desc);
+
+void gst_properties_gconf_set_string (const gchar * key, const gchar * value);
+
+gchar *gst_properties_gconf_get_string (const gchar * key);
+
 			
 #endif	

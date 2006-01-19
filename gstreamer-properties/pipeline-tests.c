@@ -3,6 +3,7 @@
 
 /* pipeline-tests.c
  * Copyright (C) 2002 Jan Schmidt
+ * Copyright (C) 2005 Tim-Philipp Müller <tim centricular net>
  *
  * Written by: Jan Schmidt <thaytan@mad.scientist.com>
  *
@@ -31,169 +32,204 @@
 #include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
-#include <gst/gconf/gconf.h>
 
 #include "pipeline-tests.h"
 #define WID(s) glade_xml_get_widget (interface_xml, s)
 static gint timeout_tag;
 
 static GstElement *gst_test_pipeline;
-static GstClock *s_clock;
 
-static void pipeline_error_dlg(GtkWindow * parent,
-                GSTPPipelineDescription * pipeline_desc);
+static void pipeline_error_dlg (GtkWindow * parent,
+    GSTPPipelineDescription * pipeline_desc, const gchar * error_message);
+
 /* User responded in the dialog */
 static void
-user_test_pipeline_response(GtkDialog * widget, gint response_id,
-			    GladeXML * dialog)
+user_test_pipeline_response (GtkDialog * widget, gint response_id,
+    GladeXML * dialog)
 {
   /* Close the window causing the test to end */
-  gtk_widget_hide(GTK_WIDGET(widget));
+  gtk_widget_hide (GTK_WIDGET (widget));
 }
 
 /* Timer timeout has been occurred */
-static gint user_test_pipeline_timeout( gpointer data )
+static gint
+user_test_pipeline_timeout (gpointer data)
 {
-  gtk_progress_bar_pulse(GTK_PROGRESS_BAR(data));
+  gtk_progress_bar_pulse (GTK_PROGRESS_BAR (data));
   return TRUE;
 }
 
 /* Build the pipeline */
 static gboolean
-build_test_pipeline(GSTPPipelineDescription * pipeline_desc)
+build_test_pipeline (GSTPPipelineDescription * pipeline_desc, GError ** p_err)
 {
+  const gchar *in_between = NULL;
   gboolean return_val = FALSE;
-  GError *error = NULL;
-  gchar* test_pipeline_str = NULL;
-  gchar* full_pipeline_str = NULL;
-  gchar *in_between = NULL;
+  gchar *test_pipeline_str = NULL;
+  gchar *full_pipeline_str = NULL;
+
+  g_assert (p_err != NULL);
 
   switch (pipeline_desc->test_type) {
     case TEST_PIPE_AUDIOSINK:
-      test_pipeline_str = gst_gconf_get_string ("default/audiosink");
+      test_pipeline_str = gst_properties_gconf_get_string ("default/audiosink");
       break;
     case TEST_PIPE_VIDEOSINK:
-      test_pipeline_str = gst_gconf_get_string ("default/videosink");
+      test_pipeline_str = gst_properties_gconf_get_string ("default/videosink");
       break;
     case TEST_PIPE_SUPPLIED:
-      test_pipeline_str = pipeline_desc->test_pipe;
+      test_pipeline_str = g_strdup (pipeline_desc->test_pipe);
       break;
   }
-  if (pipeline_desc->type == PIPE_TYPE_AUDIOSINK ||
-      pipeline_desc->type == PIPE_TYPE_AUDIOSRC) {
-    in_between = "audioconvert ! audioscale";
-  } else {
-    in_between = "ffmpegcolorspace";
+
+  switch (pipeline_desc->type) {
+    case PIPE_TYPE_AUDIOSINK:
+    case PIPE_TYPE_AUDIOSRC:
+      in_between = "audioconvert ! audioresample";
+      break;
+    default:
+      in_between = "ffmpegcolorspace";
+      break;
   }
+
   switch (pipeline_desc->type) {
     case PIPE_TYPE_AUDIOSINK:
     case PIPE_TYPE_VIDEOSINK:
-      full_pipeline_str = g_strdup_printf("{ %s ! %s ! %s }",
+      full_pipeline_str = g_strdup_printf ("%s ! %s ! %s",
           test_pipeline_str, in_between, pipeline_desc->pipeline);
       break;
     case PIPE_TYPE_AUDIOSRC:
     case PIPE_TYPE_VIDEOSRC:
-      full_pipeline_str = g_strdup_printf("{ %s ! %s ! %s }",
+      full_pipeline_str = g_strdup_printf ("%s ! %s ! %s",
           pipeline_desc->pipeline, in_between, test_pipeline_str);
       break;
   }
+
   if (full_pipeline_str) {
-    gst_test_pipeline = (GstElement *)gst_parse_launch(full_pipeline_str, &error);
-    if (!error) {
+    gst_test_pipeline = gst_parse_launch (full_pipeline_str, p_err);
+
+    if (*p_err == NULL && gst_test_pipeline != NULL)
       return_val = TRUE;
-    }
-    else {
-      /* FIXME display the error? */
-      g_error_free(error);
-    }
- 
-    g_free(full_pipeline_str);
   }
+
+done:
+  g_free (test_pipeline_str);
+  g_free (full_pipeline_str);
+
   return return_val;
 }
 
 static void
-pipeline_error_dlg(GtkWindow * parent,
-		   GSTPPipelineDescription * pipeline_desc)
+pipeline_error_dlg (GtkWindow * parent,
+    GSTPPipelineDescription * pipeline_desc, const gchar * error_message)
 {
-  gchar *errstr = g_strdup_printf( _("Failed to construct test pipeline for '%s'"),
-		  pipeline_desc->name);
-    if (parent == NULL) {
-	    g_print(errstr);
-    }
-    else {
-      GtkDialog *dialog = GTK_DIALOG(gtk_message_dialog_new(parent,
-							  GTK_DIALOG_DESTROY_WITH_PARENT,
-							  GTK_MESSAGE_ERROR,
-							  GTK_BUTTONS_CLOSE,
-							  errstr));
-      gtk_dialog_run(GTK_DIALOG(dialog));
-      gtk_widget_destroy(GTK_WIDGET(dialog));
-    }
-    g_free(errstr);
+  gchar *errstr;
+
+  if (error_message) {
+    errstr = g_strdup_printf ("%s: %s", pipeline_desc->name, error_message);
+  } else {
+    errstr = g_strdup_printf (_("Failed to construct test pipeline for '%s'"),
+        pipeline_desc->name);
+  }
+
+  if (parent == NULL) {
+    g_printerr ("%s", errstr);
+  } else {
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new (parent,
+        GTK_DIALOG_DESTROY_WITH_PARENT,
+        GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", errstr);
+
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+  }
+
+  g_free (errstr);
 }
 
-/* Construct and iterate the pipeline. Use the indicated parent
-   for any user interaction window.
-*/
+/* Construct and run the pipeline. Use the indicated parent
+ * for any user interaction window.
+ */
 void
-user_test_pipeline(GladeXML * interface_xml,
-		   GtkWindow * parent,
-		   GSTPPipelineDescription * pipeline_desc)
+user_test_pipeline (GladeXML * interface_xml,
+    GtkWindow * parent, GSTPPipelineDescription * pipeline_desc)
 {
+  GstStateChangeReturn ret;
   GtkDialog *dialog = NULL;
+  GstMessage *msg;
+  GError *err = NULL;
+  GstBus *bus;
+
   gst_test_pipeline = NULL;
-  s_clock = NULL;
 
   /* Build the pipeline */
-  if (!build_test_pipeline(pipeline_desc)) {
+  if (!build_test_pipeline (pipeline_desc, &err)) {
     /* Show the error pipeline */
-    pipeline_error_dlg(parent, pipeline_desc);
+    pipeline_error_dlg (parent, pipeline_desc, (err) ? err->message : NULL);
+    if (err)
+      g_error_free (err);
     return;
   }
 
   /* Setup the 'click ok when done' dialog */
   if (parent) {
-    dialog = GTK_DIALOG(WID("test_pipeline"));
+    dialog = GTK_DIALOG (WID ("test_pipeline"));
     /* g_return_if_fail(dialog != NULL); */
-    gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
-    gtk_window_set_transient_for(GTK_WINDOW(dialog), parent);
-    g_signal_connect(G_OBJECT(dialog), "response",
-         (GCallback) user_test_pipeline_response,
-         interface_xml);
+    gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+    gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+    g_signal_connect (G_OBJECT (dialog), "response",
+        (GCallback) user_test_pipeline_response, interface_xml);
   }
 
-  /* Start the pipeline */
-  if (gst_element_set_state(gst_test_pipeline, GST_STATE_PLAYING) !=
-    GST_STATE_SUCCESS) {
-    pipeline_error_dlg(parent, pipeline_desc);
-    return;
+  /* Start the pipeline and wait for max. 3 seconds for it to start up */
+  gst_element_set_state (gst_test_pipeline, GST_STATE_PLAYING);
+  ret = gst_element_get_state (gst_test_pipeline, NULL, NULL, 3 * GST_SECOND);
+
+  /* Check if any error messages were posted on the bus */
+  bus = gst_element_get_bus (gst_test_pipeline);
+  msg = gst_bus_poll (bus, GST_MESSAGE_ERROR, 0);
+  gst_object_unref (bus);
+
+  if (msg != NULL) {
+    gchar *dbg = NULL;
+
+    gst_message_parse_error (msg, &err, &dbg);
+    gst_message_unref (msg);
+
+    g_message ("Error running pipeline '%s': %s [%s]", pipeline_desc,
+        err->message, (dbg) ? dbg : "no additional debugging details");
+    pipeline_error_dlg (parent, pipeline_desc, err->message);
+    g_error_free (err);
+    g_free (dbg);
+  } else if (ret != GST_STATE_CHANGE_SUCCESS) {
+    pipeline_error_dlg (parent, pipeline_desc, NULL);
+  } else {
+    /* Show the dialog */
+    if (dialog) {
+      gtk_window_present (GTK_WINDOW (dialog));
+      timeout_tag =
+          gtk_timeout_add (50, user_test_pipeline_timeout,
+          WID ("test_pipeline_progress"));
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_timeout_remove (timeout_tag);
+      gtk_widget_hide (GTK_WIDGET (dialog));
+    } else {
+      gint secs;
+
+      /* A bit hacky: No parent dialog, run in limited test mode */
+      for (secs = 0; secs < 5; ++secs) {
+        g_print (".");
+        g_usleep (G_USEC_PER_SEC);      /* 1 second */
+      }
+    }
   }
 
-  s_clock = gst_bin_get_clock(GST_BIN(gst_test_pipeline));
-  /* Show the dialog */
-  if (dialog) {
-    gtk_window_present(GTK_WINDOW(dialog));
-    timeout_tag = gtk_timeout_add(50, user_test_pipeline_timeout, WID("test_pipeline_progress"));    
-    gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_timeout_remove( timeout_tag );
-    gtk_widget_hide(GTK_WIDGET(dialog));
-  }
-  else {
-    gboolean busy;
-    gint secs = 0, max_secs = 5; /* A bit hacky: No parent dialog, run in limited test mode */
-    do {
-      secs++;
-      g_print(".");
-      g_usleep(1000000); // 1 sec
-      busy = (secs < max_secs);
-    } while (busy);
-  }
+done:
 
   if (gst_test_pipeline) {
-    gst_element_set_state(gst_test_pipeline, GST_STATE_NULL);
-    /* Free up the pipeline */
-    gst_object_unref(GST_OBJECT(gst_test_pipeline));
+    gst_element_set_state (gst_test_pipeline, GST_STATE_NULL);
+    gst_object_unref (gst_test_pipeline);
     gst_test_pipeline = NULL;
   }
 }

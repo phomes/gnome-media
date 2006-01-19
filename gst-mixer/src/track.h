@@ -26,7 +26,7 @@
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
-#include <gst/mixer/mixer.h>
+#include <gst/interfaces/mixer.h>
 
 #include "button.h"
 

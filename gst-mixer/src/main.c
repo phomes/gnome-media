@@ -27,21 +27,11 @@
 #include <glib.h>
 #include <gnome.h>
 #include <gst/gst.h>
-#include <gst/mixer/mixer.h>
-#include <gst/propertyprobe/propertyprobe.h>
+#include <gst/audio/mixerutils.h>
 
 #include "keys.h"
 #include "stock.h"
 #include "window.h"
-
-static gint
-sort_by_rank (GstElement * a, GstElement * b)
-{
-#define gst_element_rank(x) \
-  gst_plugin_feature_get_rank (GST_PLUGIN_FEATURE ( \
-      gst_element_get_factory (x)))
-  return gst_element_rank (b) - gst_element_rank (a);
-}
 
 /*
  * Probe for mixer elements. Set up GList * with elements,
@@ -53,107 +43,64 @@ sort_by_rank (GstElement * a, GstElement * b)
  * GST_STATE_NULL.
  */
 
-static GList *
-create_mixer_collection (void)
+static gboolean
+mixer_filter_func (GstMixer * mixer, gpointer user_data)
 {
-  const GList *elements;
-  GList *collection = NULL;
-  gint num = 0;
+  GstElementFactory *factory;
+  const gchar *long_name;
+  gchar *devname = NULL;
+  gchar *name;
+  gint *p_count = (gint *) user_data;
 
-  /* go through all elements of a certain class and check whether
-   * they implement a mixer. If so, add it to the list. */
-  elements = gst_registry_pool_feature_list (GST_TYPE_ELEMENT_FACTORY);
-  for ( ; elements != NULL; elements = elements->next) {
-    GstElementFactory *factory = GST_ELEMENT_FACTORY (elements->data);
-    gchar *title = NULL, *name;
-    const gchar *klass;
-    GstElement *element = NULL;
-    const GParamSpec *devspec;
-    GstPropertyProbe *probe;
-    GValueArray *array = NULL;
-    gint n;
+  /* fetch name */
+  if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (mixer)),
+                                    "device-name")) {
+    g_object_get (mixer, "device-name", &devname, NULL);
+    GST_DEBUG ("device name: %s", GST_STR_NULL (devname));
+  } else {
+    devname = NULL;
+    GST_DEBUG ("device name unknown, no 'device-name' property");
+  }
+    
+  factory = gst_element_get_factory (GST_ELEMENT (mixer));
+  long_name = gst_element_factory_get_longname (factory);
 
-    /* check category */
-    klass = gst_element_factory_get_klass (factory);
-    if (strcmp (klass, "Generic/Audio"))
-      goto next;
+  if (devname) {
+    name = g_strdup_printf ("%s (%s)", devname, long_name);
+    g_free (devname);
+  } else {
+    gchar *title;
 
-    /* FIXME:
-     * - maybe we want to rename the element to its actual name
-     *     if we've found that?
-     */
-#define _label N_("Unknown Volume Control %d")
+    *p_count += 1;
 
-    /* create element */
-    title = g_strdup_printf (gettext("Unknown Volume Control %d"), num);
-    element = gst_element_factory_create (factory, title);
-    if (!element)
-      goto next;
-
-    if (!GST_IS_PROPERTY_PROBE (element))
-      goto next;
-
-    probe = GST_PROPERTY_PROBE (element);
-    if (!(devspec = gst_property_probe_get_property (probe, "device")))
-      goto next;
-    if (!(array = gst_property_probe_probe_and_get_values (probe, devspec)))
-      goto next;
-
-    /* set all devices and test for mixer */
-    for (n = 0; n < array->n_values; n++) {
-      GValue *device = g_value_array_get_nth (array, n);
-      gchar *devname = NULL;
-
-      /* set this device */
-      g_object_set_property (G_OBJECT (element), "device", device);
-      if (gst_element_set_state (element,
-				 GST_STATE_READY) == GST_STATE_FAILURE)
-        continue;
-
-      /* is this device a mixer? */
-      if (!GST_IS_MIXER (element)) {
-        gst_element_set_state (element, GST_STATE_NULL);
-        continue;
-      }
-
-      /* any tracks? */
-      if (!gst_mixer_list_tracks (GST_MIXER (element))) {
-        gst_element_set_state (element, GST_STATE_NULL);
-        continue;
-      }
-
-      /* fetch name */
-      if (g_object_class_find_property (G_OBJECT_GET_CLASS (G_OBJECT (element)),
-					"device-name")) {
-        g_object_get (element, "device-name", &devname, NULL);
-      }
-
-      name = g_strdup_printf ("%s (%s)", devname ? devname : title,
-			      gst_element_factory_get_longname (factory));
-      g_free (devname);
-      g_object_set_data (G_OBJECT (element), "gnome-volume-control-name",
-			 name);
-
-      /* add to list */
-      gst_element_set_state (element, GST_STATE_NULL);
-      collection = g_list_append (collection, element);
-      num++;
-
-      /* and recreate this object, since we give it to the mixer */
-      g_free (title);
-      title = g_strdup_printf (gettext("Unknown Volume Control %d"), num);
-      element = gst_element_factory_create (factory, title);
-    }
-
-next:
-    if (element)
-      gst_object_unref (GST_OBJECT (element));
-    if (array)
-      g_value_array_free (array);
+    title = g_strdup_printf (_("Unknown Volume Control %d"),  *p_count);
+    name = g_strdup_printf ("%s (%s)", title, long_name);
     g_free (title);
   }
 
-  return g_list_sort (collection, (GCompareFunc) sort_by_rank);
+  g_object_set_data_full (G_OBJECT (mixer),
+                          "gnome-volume-control-name",
+                          name,
+                          (GDestroyNotify) g_free);
+
+  GST_DEBUG ("Adding '%s' to list of available mixers", name);
+
+  gst_element_set_state (GST_ELEMENT (mixer), GST_STATE_NULL);
+
+  return TRUE; /* add mixer to list */
+}
+
+static GList *
+create_mixer_collection (void)
+{
+  GList *mixer_list;
+  gint counter = 0;
+
+  mixer_list = gst_audio_default_registry_mixer_filter (mixer_filter_func,
+                                                        FALSE,
+                                                        &counter);
+
+  return mixer_list;
 }
 
 static void
@@ -221,10 +168,6 @@ main (gint   argc,
 {
   gchar *appfile;
   GtkWidget *win;
-  struct poptOption options[] = {
-    { NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
-    POPT_TABLEEND
-  };
   GList *elements;
 
   /* i18n */
@@ -232,31 +175,29 @@ main (gint   argc,
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  /* init gstreamer */
-  options[0].arg = (void *) gst_init_get_popt_table ();
+/* FIXME: remove when bumping requirements to 2.14 */
+#ifdef GNOME_PARAM_GOPTION_CONTEXT
+  if (1) {
+    GOptionContext *ctx;
+    GOptionGroup *group;
 
-  /* init gtk/gnome */
+    ctx = g_option_context_new ("gnome-volume-control");
+    g_option_context_add_group (ctx, gst_init_get_option_group ());
+
+    gnome_program_init ("gnome-volume-control", VERSION,
+                        LIBGNOMEUI_MODULE, argc, argv,
+                        GNOME_PARAM_GOPTION_CONTEXT, ctx,
+                        GNOME_PARAM_APP_DATADIR, DATA_DIR,
+                        NULL);
+  }
+#else /* GNOME_PARAM_GOPTION_CONTEXT */
+  gst_init (&argc, &argv);
   gnome_program_init ("gnome-volume-control", VERSION,
 		      LIBGNOMEUI_MODULE, argc, argv,
-		      GNOME_PARAM_POPT_TABLE, options,
 		      GNOME_PARAM_APP_DATADIR, DATA_DIR, NULL);
 
-   if (!gst_scheduler_factory_get_default_name ()) {
-		GtkWidget *dialog;
+#endif /* GNOME_PARAM_GOPTION_CONTEXT */
 
-		dialog = gtk_message_dialog_new (NULL,
-						 0,
-						 GTK_MESSAGE_ERROR,
-						 GTK_BUTTONS_CLOSE,
-						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
-
-		gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
-
-		exit (1);
-	}
-
-		
 
   /* init ourselves */
   register_stock_icons ();

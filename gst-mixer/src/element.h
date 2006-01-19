@@ -26,7 +26,7 @@
 #include <gtk/gtknotebook.h>
 #include <libgnomeui/gnome-appbar.h>
 #include <gconf/gconf-client.h>
-#include <gst/mixer/mixer.h>
+#include <gst/interfaces/mixer.h>
 
 G_BEGIN_DECLS
 

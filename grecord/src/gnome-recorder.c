@@ -33,7 +33,6 @@
 #include <gst/gst.h>
 
 #include "gsr-window.h"
-#include "gst/manager.h"
 #include "egg-recent-model.h"
 
 extern void gnome_media_profiles_init (GConfClient *conf);
@@ -126,7 +125,7 @@ gsr_add_recent (gchar *filename)
 	g_free (uri);
 }
 
-gint sample_count = 1;
+gint gsr_sample_count = 1;
 
 GtkWidget *
 gsr_open_window (const char *filename)
@@ -139,13 +138,12 @@ gsr_open_window (const char *filename)
 		 * there is no active sound sample. Any newly
 		 * recorded samples will be saved to disk with this
 		 * name as default value. */
-		if (sample_count == 1) {
+		if (gsr_sample_count == 1) {
 			name = g_strdup (_("Untitled"));
 		} else {
-			name = g_strdup_printf (_("Untitled-%d"),
-						sample_count);
+			name = g_strdup_printf (_("Untitled-%d"), gsr_sample_count);
 		}
-		sample_count++;
+		++gsr_sample_count;
 	} else {
 		name = g_strdup (filename);
 	}
@@ -170,82 +168,81 @@ main (int argc,
       char **argv)
 {
 	GnomeProgram *program;
-	poptContext pctx;
-	GValue value = {0, };
-	char **args = NULL;
-
-	static struct poptOption gsr_options[] = {
-		{ NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
-		{ NULL, 'p', POPT_ARG_NONE, NULL, 1, N_("Dummy option"), NULL },
-		POPT_TABLEEND
-	};
+	gchar **filenames = NULL;
 
 	/* Init gettext */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	/* init gstreamer */
-	gsr_options[0].arg = (void *) gst_init_get_popt_table ();
+/* FIXME: remove ifdef here and else branch when bumping requirements to 2.14 */
+#ifdef GNOME_PARAM_GOPTION_CONTEXT
+	if (1) {
+		GOptionContext *ctx;
+		/* this is necessary because someone apparently forgot to add a
+		 * convenient way to get the remaining arguments to the GnomeProgram
+		 * API when adding the GOption stuff to it ... */
+		GOptionEntry entries[] = {
+			{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames,
+			"Special option that collects any remaining arguments for us" },
+			{ NULL }
+		};
 
-	/* Init GNOME */
+		ctx = g_option_context_new ("gnome-sound-recorder");
+		g_option_context_add_group (ctx, gst_init_get_option_group ());
+		g_option_context_add_main_entries (ctx, entries, GETTEXT_PACKAGE);
+		program = gnome_program_init ("gnome-sound-recorder", VERSION,
+		                              LIBGNOMEUI_MODULE, argc, argv,
+		                              GNOME_PARAM_GOPTION_CONTEXT, ctx,
+		                              GNOME_PARAM_HUMAN_READABLE_NAME,
+		                              "GNOME Sound Recorder",
+		                              GNOME_PARAM_APP_DATADIR, DATADIR,
+		                              NULL);
+	}
+#else /* GNOME_PARAM_GOPTION_CONTEXT */
+	gst_init (&argc, &argv);
+
 	program = gnome_program_init ("gnome-sound-recorder", VERSION,
 				      LIBGNOMEUI_MODULE,
 				      argc, argv,
-				      GNOME_PARAM_POPT_TABLE, gsr_options,
 				      GNOME_PARAM_HUMAN_READABLE_NAME,
 				      "GNOME Sound Recorder",
 				      GNOME_PARAM_APP_DATADIR, DATADIR,
 				      NULL);
 
-	init_recent ();
-
-	if (!gst_scheduler_factory_get_default_name ()) {
-		GtkWidget *dialog;
-
-		dialog = gtk_message_dialog_new (NULL,
-						 0,
-						 GTK_MESSAGE_ERROR,
-						 GTK_BUTTONS_CLOSE,
-						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
-
-		gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
-
-		exit (1);
+	if (argc > 1) {
+		filenames = g_strdupv (&argv[1]);
+	} else {
+		filenames = NULL;
 	}
-	gst_rec_elements_init ();
+#endif /* GNOME_PARAM_GOPTION_CONTEXT */
+
+	init_recent ();
 
 	gtk_window_set_default_icon_name ("gnome-grecord");
 
 	/* use it like a singleton */
 	gconf_client = gconf_client_get_default ();
 
-        /* init gnome-media-profiles */
-        gnome_media_profiles_init (gconf_client);
+	/* init gnome-media-profiles */
+	gnome_media_profiles_init (gconf_client);
 
-	/* Get the args */
-	g_value_init (&value, G_TYPE_POINTER);
-	g_object_get_property (G_OBJECT (program),
-			       GNOME_PARAM_POPT_CONTEXT, &value);
-	pctx = g_value_get_pointer (&value);
-	g_value_unset (&value);
+	if (filenames != NULL && filenames[0] != NULL) {
+		guint i, num;
 
-	args = (char **) poptGetArgs (pctx);
-	if (args == NULL) {
-		gsr_open_window (NULL);
-	} else {
-		int i;
-
-		for (i = 0; args[i]; i++) {
-			gsr_open_window (args[i]);
+		num = g_strv_length (filenames);
+		for (i = 0; i < num; ++i) {
+			gsr_open_window (filenames[i]);
 		}
+	} else {
+			gsr_open_window (NULL);
 	}
 
-	poptFreeContext (pctx);
+	if (filenames) {
+		g_strfreev (filenames);
+	}
 
 	gtk_main ();
 
 	return 0;
 }
-

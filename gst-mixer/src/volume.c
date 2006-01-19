@@ -29,11 +29,10 @@
 #include <gnome.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <gst/mixer/mixer.h>
 
+#include "volume.h"
 #include "button.h"
 #include "stock.h"
-#include "volume.h"
 
 static void	gnome_volume_control_volume_class_init	(GnomeVolumeControlVolumeClass *klass);
 static void	gnome_volume_control_volume_init	(GnomeVolumeControlVolume *el);

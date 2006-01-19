@@ -28,7 +28,7 @@ INCLUDES   = \
 	-DGSTPROPS_ICONDIR=\""$(iconsdir)"\" \
 	-DDATADIR=\""$(datadir)"\" \
 	-DGNOMELOCALEDIR="${prefix}/${DATADIRNAME}/locale" \
-	-DG_LOG_DOMAIN="gstreamer-properties"
+	-DG_LOG_DOMAIN="\"gstreamer-properties\""
 
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
 EXTRA_DIST = $(icons_DATA) $(glade_DATA) $(Desktop_in_files)

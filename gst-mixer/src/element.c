@@ -25,7 +25,6 @@
 
 #include <gnome.h>
 #include <gtk/gtk.h>
-#include <gst/mixer/mixer.h>
 
 #include "element.h"
 #include "keys.h"

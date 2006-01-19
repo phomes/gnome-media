@@ -404,7 +404,7 @@ static void
 cdrom_update_cd (GnomeCDRom *cdrom)
 
 {
-	g_error ("cdrom_update_cd not implmented");
+	g_error ("cdrom_update_cd not implemented");
 }
 
 static void

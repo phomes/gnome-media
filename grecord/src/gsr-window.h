@@ -57,4 +57,8 @@ GtkWidget	*gsr_window_new		(const char *filename);
 
 void		 gsr_window_close	(GSRWindow *window);
 
+gboolean     gsr_window_is_saved (GSRWindow *window);
+
+void         close_confirmation_dialog (GSRWindow *window);
+
 #endif

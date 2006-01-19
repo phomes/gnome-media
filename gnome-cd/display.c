@@ -804,14 +804,28 @@ cd_display_clear (CDDisplay *disp)
 	gtk_widget_queue_resize (GTK_WIDGET (disp));
 }
 
+/* given a theme name and a file name, create the full path to the image file */
 static inline char *
 make_fullname (const char *theme_name,
 	       const char *name)
 {
 	char *image;
+	char *tmp;
 
-	image = g_build_filename (THEME_DIR, theme_name, name, NULL);
-	
+        tmp = g_strdup_printf ("%s-theme", theme_name);
+
+	image = g_build_filename (THEME_DIR_UNINSTALLED, tmp, name, NULL);
+        if (g_file_test (image,
+                         G_FILE_TEST_IS_REGULAR |
+                         G_FILE_TEST_IS_SYMLINK) == TRUE) {
+                g_free (tmp);
+                return image;
+        }
+
+	g_free (image);
+	image = g_build_filename (THEME_DIR, tmp, name, NULL);
+
+	g_free (tmp);
 	return image;
 }
 

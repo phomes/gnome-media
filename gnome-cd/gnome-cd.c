@@ -978,9 +978,6 @@ int
 main (int argc, char *argv[])
 {
 	static struct poptOption cd_popt_options [] = {
-#ifdef HAVE_GST
-		{ NULL, '\0', POPT_ARG_INCLUDE_TABLE, NULL, 0, "GStreamer", NULL },
-#endif
 		{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
 		  N_("CD device to use"), NULL },
 		{ "unique", '\0', POPT_ARG_NONE, &cd_option_unique, 0,
@@ -1006,29 +1003,16 @@ main (int argc, char *argv[])
 	textdomain (GETTEXT_PACKAGE);
 
 #ifdef HAVE_GST
-	cd_popt_options[0].arg = (void*) gst_init_get_popt_table();
+	/* FIXME when transition to GOption is being made */
+        /* g_option_context_add_group (context, gst_init_get_goption_group()); */
+
+	gst_init (&argc, &argv); /* gst will remove its own options */
 #endif
+
 	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, 
 			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
 			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
-
-#ifdef HAVE_GST
-	if (!gst_scheduler_factory_get_default_name ()) {
-		GtkWidget *dialog;
-
-		dialog = gtk_message_dialog_new (NULL,
-						 0,
-						 GTK_MESSAGE_ERROR,
-						 GTK_BUTTONS_CLOSE,
-						 _("Registry is not present or it is corrupted, please update it by running gst-register"));
-
-		gtk_dialog_run (GTK_DIALOG (dialog));
-		gtk_widget_destroy (dialog);
-
-		exit (1);
-	}
-#endif
 
 	register_stock_icons ();
 	client = gnome_master_client ();

@@ -276,9 +276,7 @@ gnome_volume_control_window_dispose (GObject *object)
       GstElement *element = GST_ELEMENT (item->data);
 
       gst_element_set_state (element, GST_STATE_NULL);
-      g_free (g_object_get_data (G_OBJECT (element),
-				 "gnome-volume-control-name"));
-      gst_object_unref (GST_OBJECT (element));
+      gst_object_unref (element);
     }
     g_list_free (win->elements);
     win->elements = NULL;

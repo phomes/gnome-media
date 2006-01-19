@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = gst recent-files
+SUBDIRS = recent-files
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
@@ -24,7 +24,6 @@ ui_DATA = ui.xml
 EXTRA_DIST = $(ui_DATA)
 
 gnome_sound_recorder_LDADD =					\
-	$(GSR_LIBS)						\
+	$(GSR_LIBS) -lgstinterfaces-@GST_MAJORMINOR@		\
 	$(top_builddir)/profiles/libgnome-media-profiles.la	\
-	recent-files/librecent.la				\
-	gst/libgstrecelements.la
+	recent-files/librecent.la

@@ -14,7 +14,6 @@ INCLUDES =					\
 	$(MEDIA_CFLAGS)				\
 	$(GNOMECD_CFLAGS)			\
 	$(GAILUTIL_CFLAGS)			\
-	$(GSR_CFLAGS)                           \
 	$(GST_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"		\
@@ -31,8 +30,8 @@ EXTRA_DIST = \
 	bsd-cdrom.h		\
 	linux-cdrom.c		\
 	linux-cdrom.h		\
-	gst-cdparanoia-cdrom.c	\
-	gst-cdparanoia-cdrom.h	\
+	gst-cdrom.c	  	\
+	gst-cdrom.h		\
 	gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
 
 ### intermediate libtool library generated from IDL source
@@ -52,7 +51,7 @@ noinst_LTLIBRARIES = libgnomemedia-cddbslave2.la
 nodist_libgnomemedia_cddbslave2_la_SOURCES = $(IDL_GENERATED)
 
 if HAVE_GSTREAMER
-cd_sources = gst-cdparanoia-cdrom.c
+cd_sources = gst-cdrom.c
 else
 if CDROM_HOST_BSD
 cd_sources = bsd-cdrom.c bsd-cdrom.h
