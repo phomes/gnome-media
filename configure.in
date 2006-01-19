@@ -127,28 +127,83 @@ AC_SUBST(VUMETER_LIBS)
 # Check for GStreamer stuff and GSR depds
 HAVE_GST=no
 
-GST_REQ=0.8.2
+GST_REQ=0.10.2
+GSTPB_REQ=0.10.2
+
 PROGRAMS_GSTRECORD=""
 
-dnl start with 0.8
-GST_MAJORMINOR=0.8
+dnl start with 0.10
+GST_MAJORMINOR=0.10
+dnl make available to Makefile.am
+AC_SUBST(GST_MAJORMINOR)
+AC_DEFINE_UNQUOTED(GST_MAJORMINOR_QUOTED, "$GST_MAJORMINOR",
+  [major/minor of GStreamer as a string constant])
+
+dnl  gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ 
+dnl  gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ
+
 PKG_CHECK_MODULES(GSR, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
-  gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ \
-  gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ \
+  gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_REQ \
   gtk+-2.0 >= 2.6.0 libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
   HAVE_GST=yes,HAVE_GST=no)
 
-if test "x$HAVE_GST" = "xno"; then
-  AC_MSG_WARN(you need GStreamer installed for the mixer and recorder to work)
-else
+if test "x$HAVE_GST" = "xyes"; then
   PROGRAMS_GRECORD="grecord"
+
+  gst010_toolsdir=`$PKG_CONFIG --variable=toolsdir gstreamer-0.10`
+  gst010_inspect="$gst010_toolsdir/gst-inspect-0.10"
+
+  dnl Check for elements from gst-plugins-base
+  for base_element in playbin audioconvert audioresample
+  do
+    AC_MSG_CHECKING([for GStreamer 0.10 $base_element plugin])
+    if $gst010_inspect $base_element >/dev/null 2>/dev/null; then
+      AC_MSG_RESULT([yes])
+    else
+      AC_MSG_RESULT([no])
+      AC_MSG_WARN([
+                    Cannot find required GStreamer-0.10 plugin '$base_element'.
+                    It should be part of gst-plugins-base. Please install it.
+                    You need it installed for the sound recorder to work.
+      ])
+      sleep 5 2>/dev/null
+      PROGRAMS_GRECORD=""
+    fi
+  done
+
+
+  dnl Check for elements from gst-plugins-good
+  for good_element in gconfaudiosink gconfaudiosrc
+  do
+    AC_MSG_CHECKING([for GStreamer 0.10 $good_element plugin])
+    if $gst010_inspect $good_element >/dev/null 2>/dev/null; then
+      AC_MSG_RESULT([yes])
+    else
+      AC_MSG_RESULT([no])
+      AC_MSG_WARN([
+                   Cannot find required GStreamer-0.10 plugin '$good_element'.
+                   It should be part of gst-plugins-good. Please install it.
+                   You need it installed for the sound recorder to work.
+      ])
+      sleep 5 2>/dev/null
+      PROGRAMS_GRECORD=""
+    fi
+  done
+else
+  AC_MSG_WARN([You need GStreamer installed for the mixer and recorder to work])
+  sleep 5 2>/dev/null
 fi
+
 AC_SUBST(PROGRAMS_GRECORD)
 AM_CONDITIONAL(HAVE_GSTREAMER, test "x$HAVE_GST" = "xyes")
 
 AC_SUBST(GSR_CFLAGS)
 AC_SUBST(GSR_LIBS)
+
+dnl uninstalled gsr ui dir
+AC_DEFINE_UNQUOTED(GSR_UIDIR_UNINSTALLED, "`pwd`/grecord/src",
+    [path to uninstalled gnome-sound-recorder UI dir])
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
@@ -223,7 +278,11 @@ AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 
 # Everything OK for gnome-cd?
 # Check for the gnome-cd
-PKG_CHECK_MODULES(GNOMECD, libnautilus-burn >= 2.9.0)
+PKG_CHECK_MODULES(GNOMECD, \
+  gstreamer-$GST_MAJORMINOR >= $GST_REQ \
+  gstreamer-plugins-base-$GST_MAJORMINOR >= $GSTPB_REQ \
+  libnautilus-burn >= 2.9.0,
+  HAVE_GST=yes,HAVE_GST=no)
 AC_SUBST(GNOMECD_CFLAGS)
 AC_SUBST(GNOMECD_LIBS)
 
@@ -310,6 +369,11 @@ AC_SUBST(default_cd_device)
 AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device",
   [Default CD device to use])
 
+dnl uninstalled theme dir
+AC_DEFINE_UNQUOTED(THEME_DIR_UNINSTALLED, "`pwd`/gnome-cd/images",
+    [path to uninstalled gnome-cd themes dir])
+AC_SUBST(THEME_DIR_UNINSTALLED)
+
 PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
 
 AC_SUBST(GAILUTIL_CFLAGS)
@@ -319,7 +383,9 @@ AC_SUBST(GAILUTIL_LIBS)
 PROGRAMS_GSTPROPS=""
 if test "x$HAVE_GST" = "xyes";
 then
-  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 gstreamer-$GST_MAJORMINOR gstreamer-libs-$GST_MAJORMINOR gstreamer-gconf-$GST_MAJORMINOR"
+  dnl gstreamer-libs-$GST_MAJORMINOR
+  dnl gstreamer-gconf-$GST_MAJORMINOR
+  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 gstreamer-$GST_MAJORMINOR"
   PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
   		  PROGRAMS_GSTPROPS="gstreamer-properties")
   GSTPROPS_LIBS="$GSTPROPS_LIBS"
@@ -338,16 +404,26 @@ fi
 if test "x$HAVE_GST" = "xyes";
 then
   PROGRAMS_GSTMIX=""
-  COMMON_MODULES="libgnomeui-2.0 gstreamer-$GST_MAJORMINOR gstreamer-interfaces-$GST_MAJORMINOR"
-  PKG_CHECK_MODULES(GSTMIXER, $COMMON_MODULES, [
+  dnl gstreamer-interfaces-$GST_MAJORMINOR
+  PKG_CHECK_MODULES(GSTMIXER,
+  [
+    libgnomeui-2.0
+    gstreamer-$GST_MAJORMINOR
+    gstreamer-plugins-base-$GST_MAJORMINOR
+  ],
+  [
     OLD_CPPFLAGS=$CPPFLAGS
     CPPFLAGS="$CPPFLAGS $GSTMIXER_CFLAGS"
     PROGRAMS_GSTMIXER="gst-mixer"
-    AC_CHECK_HEADER(gst/mixer/mixer.h, , PROGRAMS_GSTMIXER="")
-    if test x$PROGRAMS_GSTMIXER != x; then
-      AC_CHECK_HEADER(gst/propertyprobe/propertyprobe.h, , PROGRAMS_GSTMIXER="")
+    AC_CHECK_HEADER(gst/audio/mixerutils.h, , PROGRAMS_GSTMIXER="")
+    if test "x$PROGRAMS_GSTMIXER" != "x"; then
+      AC_CHECK_HEADER(gst/interfaces/mixer.h, , PROGRAMS_GSTMIXER="")
+    fi
+    if test "x$PROGRAMS_GSTMIXER" != "x"; then
+      AC_CHECK_HEADER(gst/interfaces/propertyprobe.h, , PROGRAMS_GSTMIXER="")
     fi
     CPPFLAGS=$OLD_CPPFLAGS
+    GSTMIXER_LIBS="$GSTMIXER_LIBS -lgstinterfaces-$GST_MAJORMINOR -lgstaudio-$GST_MAJORMINOR"
   ],
   [])
 
@@ -357,7 +433,7 @@ then
 fi
 
 # profiles
-PKG_CHECK_MODULES(GMP, gconf-2.0 libglade-2.0 libgnomeui-2.0,
+PKG_CHECK_MODULES(GMP, gconf-2.0 libglade-2.0 libgnomeui-2.0 gnome-vfs-module-2.0,
                   USE_GMP=yes, USE_GMP=no)
 AC_SUBST(GMP_CFLAGS)
 AC_SUBST(GMP_LIBS)
@@ -393,7 +469,6 @@ gnome-cd/doc/zh_TW/Makefile
 grecord/Makefile
 grecord/gnome-sound-recorder.schemas.in
 grecord/src/Makefile
-grecord/src/gst/Makefile
 grecord/src/recent-files/Makefile
 grecord/doc/Makefile
 grecord/doc/C/Makefile

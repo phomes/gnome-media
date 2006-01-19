@@ -1,3 +1,95 @@
+2006-01-19  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
+
+	* Makefile.am:
+	* configure.in:
+	* gnome-cd/Makefile.am:
+	* gnome-cd/cdrom.c: (cdrom_update_cd):
+	* gnome-cd/display.c: (make_fullname):
+	* gnome-cd/gnome-cd.c: (main):
+	* gnome-cd/gst-cdparanoia-cdrom.c:
+	* gnome-cd/gst-cdparanoia-cdrom.h:
+	* gnome-cd/gst-cdrom.c: (nanoseconds_to_msf),
+	(gst_cdrom_set_playbin_state_to_null), (gst_cdrom_is_cdrom_device),
+	(gst_cdrom_set_volume), (gst_cdrom_pause), (gst_cdrom_eject),
+	(gst_cdrom_next), (gst_cdrom_back), (gst_cdrom_seek_to_time),
+	(gst_cdrom_skip), (gst_cdrom_ffwd), (gst_cdrom_rewind),
+	(gst_cdrom_stop), (gst_cdrom_finalize), (gst_cdrom_init),
+	(gst_cdrom_class_init), (gst_cdrom_error_msg), (gst_cdrom_eos_msg),
+	(gst_cdrom_state_change_msg), (gst_cdrom_tag_msg),
+	(gnome_cdrom_new), (object_has_property),
+	(gst_cdrom_notify_source_cb), (gst_cdrom_is_open),
+	(gst_cdrom_ensure_open), (gst_cdrom_set_device),
+	(gst_cdrom_update_cd), (gst_cdrom_update_tray_status),
+	(gst_cdrom_get_status), (gst_cdrom_play),
+	(gst_cdrom_set_cddb_data_from_tags), (gst_cdrom_get_cddb_data):
+	* gnome-cd/gst-cdrom.h:
+	* gnome-cd/images/None-theme/Makefile.am:
+	* gnome-cd/images/lcd-theme/Makefile.am:
+	* gnome-cd/images/media-theme/Makefile.am:
+	* gnome-cd/images/red-lcd-theme/Makefile.am:
+	* gnome-cd/theme.c: (theme_check), (theme_load), (theme_free):
+	* grecord/src/Makefile.am:
+	* grecord/src/gnome-recorder.c: (gsr_open_window), (main):
+	* grecord/src/gsr-window.c: (show_error_dialog),
+	(set_pipeline_state_to_null), (shutdown_pipeline), (file_open_cb),
+	(handle_ebusy_error), (notgst_element_get_toplevel),
+	(pipeline_error_cb), (do_save_file), (file_save_as_cb),
+	(run_mixer_cb), (close_confirmation_dialog), (fill_in_information),
+	(about_cb), (play_cb), (stop_cb), (record_cb), (seek_to),
+	(play_tick_callback), (record_tick_callback),
+	(play_state_changed_cb), (pipeline_deep_notify_caps_cb),
+	(profile_changed_cb), (play_eos_msg_cb), (make_play_pipeline),
+	(record_eos_msg_cb), (record_start), (record_state_changed_cb),
+	(notgst_bin_find_unconnected_pad),
+	(notgst_render_bin_from_description), (make_record_source),
+	(record_input_changed_cb), (fill_record_input),
+	(make_record_pipeline), (calculate_format_value), (find_ui_file),
+	(gsr_window_init), (gsr_window_finalize), (gsr_window_class_init),
+	(gsr_window_new):
+	* grecord/src/gsr-window.h:
+	* grecord/src/gst/Makefile.am:
+	* grecord/src/gst/assistant.c:
+	* grecord/src/gst/assistant.h:
+	* grecord/src/gst/manager.c:
+	* grecord/src/gst/manager.h:
+	* gst-mixer/src/element.c:
+	* gst-mixer/src/element.h:
+	* gst-mixer/src/main.c: (mixer_filter_func),
+	(create_mixer_collection), (main):
+	* gst-mixer/src/preferences.c:
+	* gst-mixer/src/preferences.h:
+	* gst-mixer/src/track.h:
+	* gst-mixer/src/volume.c:
+	* gst-mixer/src/volume.h:
+	* gst-mixer/src/window.c: (gnome_volume_control_window_dispose):
+	* gstreamer-0.10.patch:
+	* gstreamer-properties/Makefile.am:
+	* gstreamer-properties/gstreamer-properties.c:
+	(gst_properties_gconf_get_full_key),
+	(gst_properties_gconf_get_string),
+	(gst_properties_gconf_set_string), (dialog_response),
+	(test_button_clicked), (update_from_option),
+	(set_menuitem_by_pipeline), (update_from_gconf),
+	(pipeline_option_changed), (entry_changed), (element_available),
+	(create_pipeline_menu), (init_pipeline_editor), (create_dialog),
+	(main):
+	* gstreamer-properties/pipeline-constants.c:
+	* gstreamer-properties/pipeline-tests.c:
+	(user_test_pipeline_response), (user_test_pipeline_timeout),
+	(build_test_pipeline), (pipeline_error_dlg), (user_test_pipeline):
+	* gstreamer-properties/pipeline-tests.h:
+	* po/POTFILES.in:
+	* profiles/audio-profile-choose.c:
+	* profiles/audio-profiles-edit.c: (count_selected_profiles_func),
+	(selection_changed_callback), (profile_activated_callback),
+	(gm_audio_profiles_edit_init):
+	* profiles/gmp-conf.h:
+	* profiles/gnome-audio-profiles-test.c: (edit_clicked_cb),
+	(test_clicked_cb), (main):
+	* profiles/gnome-audio-profiles.schemas.in.in:
+	* transmogrify-into-gstreamer-0.10:
+	  Integrate gst-0.10 patch in CVS tree. Needs lots of work.
+
 2006-01-16  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:

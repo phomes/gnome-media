@@ -2,8 +2,8 @@ always_built_SUBDIRS = cddb-slave2 profiles
 
 SUBDIRS = po $(always_built_SUBDIRS) \
 	  @PROGRAMS_VUMETER@ \
-	  @PROGRAMS_GNOME_CD@ \
 	  @PROGRAMS_GSTMIXER@ \
+	  @PROGRAMS_GNOME_CD@ \
 	  @PROGRAMS_GRECORD@ \
 	  @PROGRAMS_GSTPROPS@
 
@@ -21,8 +21,7 @@ EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 		gnome-media.spec \
 		sgmldocs.make xmldocs.make omf.make \
 		m4/as-compiler-flag.m4 m4/as-version.m4 \
-		$(INTLTOOL_BUILT:=.in) \
-		autogen.sh gstreamer-0.10.patch transmogrify-into-gstreamer-0.10
+		$(INTLTOOL_BUILT:=.in)
 
 DISTCLEANFILES = po/.intltool-merge-cache \
                  $(INTLTOOL_BUILT)
