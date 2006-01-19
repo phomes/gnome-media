@@ -7,15 +7,15 @@ msgid ""
 ""
 msgstr "Project-Id-Version: gnome-media Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-10 23:08+0100\n"
-"PO-Revision-Date: 2006-01-11 14:22+1030\n"
+"POT-Creation-Date: 2006-01-19 06:53+0100\n"
+"PO-Revision-Date: 2006-01-19 22:09+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: LocFactoryEditor 1.6b23\n"
+"X-Generator: LocFactoryEditor 1.6b30\n"
 
 #:../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -50,8 +50,9 @@ msgstr "Cổng nơi máy phục vụ đang chạy cơ sở dữ liệu"
 msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr "Kiểu máy phục vụ cần liên lạc để truy vấn đĩa CD. Giá trị có thể là 0 (máy phục vụ "
-"FreeDB loại round robin), 1 (máy phục vụ FreeDB khác) và 2 (máy phục vụ khác)."
+msgstr "Kiểu máy phục vụ cần liên lạc để truy vấn đĩa CD. Giá trị có thể là 0 (máy "
+"phục vụ FreeDB loại round robin), 1 (máy phục vụ FreeDB khác) và 2 (máy phục "
+"vụ khác)."
 
 #:../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -66,9 +67,9 @@ msgid ""
 "This key specifies which user information will be sent to the server to "
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
-msgstr "Khóa này xác định thông tin người dùng nào sẽ được gửi đến máy phục vụ để truy "
-"vấn đĩa CD. Giá trị có thể là 0 (không có thông tin), 1 (thông tin thực) và "
-"3 (thông tin khác)."
+msgstr "Khóa này xác định thông tin người dùng nào sẽ được gửi đến máy phục vụ để "
+"truy vấn đĩa CD. Giá trị có thể là 0 (không có thông tin), 1 (thông tin "
+"thực) và 3 (thông tin khác)."
 
 #:../cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -1541,27 +1542,26 @@ msgstr "Đang thu..."
 
 #:../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input element set - please install the "
+"There is no default GStreamer audio input plugin set - please install the "
 "GStreamer-GConf schemas or set one manually"
-msgstr "Chưa lập yếu tố nhập âm thanh GStreamer mặc định - hãy cài đặt những "
-"giản đồ GStreamer-GConf hoặc tự lập một giản đồ."
+msgstr "Chưa lập bộ cầm phít nhập âm thanh GStreamer mặc định: hãy cài đặt những giản đồ "
+"GStreamer-GConf hoặc tự lập một giản đồ."
 
 #:../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder elements - check your encoding setup"
-msgstr "Lỗi tạo những yếu tố mã hóa GStreamer - hãy kiểm tra thiết lâp phương "
-"pháp mã hóa cho đúng."
+msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgstr "Lỗi tạo những bộ cầm phít mã hóa GStreamer: hãy kiểm tra xem thiết lâp phương pháp "
+"mã hóa cho đúng."
 
 #:../grecord/src/gsr-window.c:1681
-msgid ""
-"Could not find \"filesink\" GStreamer element - broken GStreamer install"
-msgstr "Không tìm thấy yếu tố « filesink » kiểu GStreamer - bản cài đặt GStreamer bị hỏng"
+msgid "Could not find \"filesink\" GStreamer plugin - broken GStreamer install"
+msgstr "Không tìm thấy bộ cầm phít « filesink » kiểu GStreamer: bản cài đặt GStreamer bị hỏng"
 
 #:../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder element with file output element - you probably "
+"Failed to link encoder plugin with file output plugin - you probably "
 "selected an invalid encoder"
-msgstr "Lỗi liên kết yếu tố mã hóa đến yuế tố xuất tập tin - rất có thể là "
-"bạn đã chọn bộ mã hóa không hợp lệ."
+msgstr "Lỗi liên kết bộ cầm phít mã hóa đến bộ cầm phít xuất tập tin: rất có thể là bạn đã "
+"chọn bộ mã hóa không hợp lệ."
 
 #.File menu.
 #:../grecord/src/gsr-window.c:1718
@@ -1718,8 +1718,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Điều khiển âm lượng lạ %d"
 
 #:../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer elements and/or devices found."
-msgstr "Không tìm thấy yếu tố hay thiết bị điều khiển âm lượng."
+msgid "No volume control GStreamer plugins and/or devices found."
+msgstr "Không tìm thấy bộ cầm phít hay thiết bị điều khiển âm lượng."
 
 #.make window look cute
 #:../gst-mixer/src/preferences.c:107
@@ -1912,12 +1912,12 @@ msgid "*"
 msgstr "*"
 
 #:../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Element</b>"
-msgstr "<b>Yếu tố nhập mặc định</b>"
+msgid "<b>Default Input Plugin</b>"
+msgstr "<b>Bộ cầm phít nhập mặc định</b>"
 
 #:../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Element</b>"
-msgstr "<b>Yếu tố xuất mặc định</b>"
+msgid "<b>Default Output Plugin</b>"
+msgstr "<b>Bộ cầm phít xuất mặc định</b>"
 
 #:../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
