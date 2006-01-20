@@ -21,7 +21,8 @@ EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 		gnome-media.spec \
 		sgmldocs.make xmldocs.make omf.make \
 		m4/as-compiler-flag.m4 m4/as-version.m4 \
-		$(INTLTOOL_BUILT:=.in)
+		$(INTLTOOL_BUILT:=.in) \
+		autogen.sh
 
 DISTCLEANFILES = po/.intltool-merge-cache \
                  $(INTLTOOL_BUILT)
