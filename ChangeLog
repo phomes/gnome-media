@@ -138,6 +138,28 @@
 	* transmogrify-into-gstreamer-0.10:
 	  Integrate gst-0.10 patch in CVS tree. Needs lots of work.
 
+2006-01-19  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* grecord/src/Makefile.am:
+	* grecord/src/gsr-window.c: (record_cb), (make_record_source),
+	(record_input_changed_cb), (fill_record_input),
+	(make_record_pipeline), (gsr_window_init):
+	  add a drop-down box for selecting the recording channel.
+	  Fixes #305926.
+
+2006-01-19  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* profiles/gnome-audio-profiles.schemas.in.in:
+	  Add a lossy voice compression, using speex.
+	  Fixes #322900.
+
+2006-01-19  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* profiles/audio-profiles-edit.c: (count_selected_profiles_func),
+	(selection_changed_callback), (gm_audio_profiles_edit_init):
+	  Correctly handle sensitivity of Edit and Delete.
+	  Fixes #317186.
+
 2006-01-16  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:
