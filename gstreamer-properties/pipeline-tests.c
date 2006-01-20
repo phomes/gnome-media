@@ -112,7 +112,6 @@ build_test_pipeline (GSTPPipelineDescription * pipeline_desc, GError ** p_err)
       return_val = TRUE;
   }
 
-done:
   g_free (test_pipeline_str);
   g_free (full_pipeline_str);
 
@@ -197,8 +196,9 @@ user_test_pipeline (GladeXML * interface_xml,
     gst_message_parse_error (msg, &err, &dbg);
     gst_message_unref (msg);
 
-    g_message ("Error running pipeline '%s': %s [%s]", pipeline_desc,
-        err->message, (dbg) ? dbg : "no additional debugging details");
+    g_message ("Error running pipeline '%s': %s [%s]", pipeline_desc->name,
+        (err) ? err->message : "(null error)",
+        (dbg) ? dbg : "no additional debugging details");
     pipeline_error_dlg (parent, pipeline_desc, err->message);
     g_error_free (err);
     g_free (dbg);
@@ -224,8 +224,6 @@ user_test_pipeline (GladeXML * interface_xml,
       }
     }
   }
-
-done:
 
   if (gst_test_pipeline) {
     gst_element_set_state (gst_test_pipeline, GST_STATE_NULL);
