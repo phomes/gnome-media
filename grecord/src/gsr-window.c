@@ -1,4 +1,4 @@
-m/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
  *  Authors: Iain Holmes <iain@prettypeople.org>
  *           Johan Dahlin <johan@gnome.org>
