@@ -182,11 +182,16 @@ gst_cdrom_is_cdrom_device (GnomeCDRom * cdrom, const char *device,
     int fd;
 
     fd = open (device, O_RDONLY | O_NONBLOCK);
-    if (fd > 0) {
-      if (ioctl (fd, GST_CDROM_IOCTL_CDCAPABILITY_REQUEST, 0) >= 0)        
+    if (fd >= 0) {
+      if (ioctl (fd, GST_CDROM_IOCTL_CDCAPABILITY_REQUEST, 0) >= 0) {
         res = TRUE;
+      } else {
+        GST_DEBUG ("ioctl() failed: %s", g_strerror (errno));
+      }
 
       close (fd);
+    } else {
+      GST_DEBUG ("open() failed: %s", g_strerror (errno));
     }
   }
 
