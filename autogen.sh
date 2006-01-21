@@ -19,6 +19,10 @@ which gnome-autogen.sh || {
     exit 1
 }
 
+# intltoolize 0.33 has a bug; it contains commands to use patches that
+# were removed
+REQUIRED_INTLTOOL_VERSION=0.34
+
 # fix doc build before turning on common doc build
 # USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
 # set ACLOCAL_AMFLAGS
