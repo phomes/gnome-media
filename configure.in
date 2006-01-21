@@ -142,11 +142,18 @@ AC_DEFINE_UNQUOTED(GST_MAJORMINOR_QUOTED, "$GST_MAJORMINOR",
 dnl  gstreamer-libs-$GST_MAJORMINOR >= $GST_REQ 
 dnl  gstreamer-gconf-$GST_MAJORMINOR >= $GST_REQ
 
+HAVE_GST=no
 PKG_CHECK_MODULES(GSR, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_REQ \
   gtk+-2.0 >= 2.6.0 libgnomeui-2.0 >= 1.102.0 gnome-vfs-2.0,
-  HAVE_GST=yes,HAVE_GST=no)
+  HAVE_GST=yes,
+  [
+    HAVE_GST=no
+    AC_MSG_RESULT(no)
+    AC_MSG_WARN($GSR_PKG_ERRORS)
+    PROGRAMS_GRECORD_ERROR="$GSR_PKG_ERRORS"
+  ])
 
 if test "x$HAVE_GST" = "xyes"; then
   PROGRAMS_GRECORD="grecord"
@@ -167,8 +174,8 @@ if test "x$HAVE_GST" = "xyes"; then
                     It should be part of gst-plugins-base. Please install it.
                     You need it installed for the sound recorder to work.
       ])
-      sleep 5 2>/dev/null
       PROGRAMS_GRECORD=""
+      PROGRAMS_GRECORD_ERROR="Missing gst-plugins-base '$base_element' element\n"
     fi
   done
 
@@ -186,8 +193,8 @@ if test "x$HAVE_GST" = "xyes"; then
                    It should be part of gst-plugins-good. Please install it.
                    You need it installed for the sound recorder to work.
       ])
-      sleep 5 2>/dev/null
       PROGRAMS_GRECORD=""
+      PROGRAMS_GRECORD_ERROR="Missing gst-plugins-good '$good_element' element\n"
     fi
   done
 else
@@ -276,103 +283,118 @@ AC_DEFINE_UNQUOTED(MAIL_TRANSFER_AGENT, "$MAIL_TRANSFER_AGENT",
   [mail transfer agent command to use])
 AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 
-# Everything OK for gnome-cd?
-# Check for the gnome-cd
+# check for gnome-cd requirements
+# GStreamer is optional
+# libnautilus-burn is required
+
 PKG_CHECK_MODULES(GNOMECD, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GSTPB_REQ \
   libnautilus-burn >= 2.9.0,
-  HAVE_GST=yes,HAVE_GST=no)
+  HAVE_GNOMECD=yes,
+  [
+    AC_MSG_RESULT(no)
+    PKG_CHECK_MODULES(GNOMECD, libnautilus-burn >= 2.9.0,
+      HAVE_GNOMECD=yes,
+      [
+        AC_MSG_RESULT(no)
+        HAVE_GNOMECD=no
+      ])
+  ])
 AC_SUBST(GNOMECD_CFLAGS)
 AC_SUBST(GNOMECD_LIBS)
 
 PROGRAMS_GNOME_CD=""
-cdrom_header=""
-AC_CHECK_HEADERS(linux/cdrom.h,[
-  PROGRAMS_GNOME_CD=gnome-cd
-  cdrom_header=linux/cdrom.h])
-AC_CHECK_HEADERS(linux/ucdrom.h,[
-  cdrom_header=linux/ucdrom.h])
-AC_CHECK_HEADERS(sys/cdio.h,[
-  PROGRAMS_GNOME_CD=gnome-cd
-  cdrom_header=sys/cdio.h])
-AC_CHECK_HEADERS(sun/dkio.h,[
-  PROGRAMS_GNOME_CD=gnome-cd
-  cdrom_header=sun/dkio.h])
-
-AC_MSG_CHECKING([whether to use cd changer support])
-AC_EGREP_CPP(answer_affirmatively,
-[#include <linux/cdrom.h>
- #ifdef CDROM_CHANGER_NSLOTS
-	answer_affirmatively
- #endif
-], cd_changer=yes, cd_changer=no)
-if test "$cd_changer" = "yes"; then
-	USE_CD_CHANGER="-DTCD_CHANGER_ENABLED"
+if test "x$HAVE_GNOMECD" = "xyes"
+then
+  cdrom_header=""
+  AC_CHECK_HEADERS(linux/cdrom.h,[
+    PROGRAMS_GNOME_CD=gnome-cd
+    cdrom_header=linux/cdrom.h])
+  AC_CHECK_HEADERS(linux/ucdrom.h,[
+    cdrom_header=linux/ucdrom.h])
+  AC_CHECK_HEADERS(sys/cdio.h,[
+    PROGRAMS_GNOME_CD=gnome-cd
+    cdrom_header=sys/cdio.h])
+  AC_CHECK_HEADERS(sun/dkio.h,[
+    PROGRAMS_GNOME_CD=gnome-cd
+    cdrom_header=sun/dkio.h])
+  
+  AC_MSG_CHECKING([whether to use cd changer support])
+  AC_EGREP_CPP(answer_affirmatively,
+  [#include <linux/cdrom.h>
+   #ifdef CDROM_CHANGER_NSLOTS
+  	answer_affirmatively
+   #endif
+  ], cd_changer=yes, cd_changer=no)
+  if test "$cd_changer" = "yes"; then
+  	USE_CD_CHANGER="-DTCD_CHANGER_ENABLED"
+  fi
+  AC_MSG_RESULT($cd_changer)
+  
+  AC_SUBST(USE_CD_CHANGER)
+  AC_SUBST(PROGRAMS_GNOME_CD)
+  
+  close_tray=no
+  AC_MSG_CHECKING([whether OS supports the CDROMCLOSETRAY ioctl])
+  AC_EGREP_CPP(answer_affirmatively,
+  [#include <$cdrom_header>
+   #ifdef CDROMCLOSETRAY
+   	answer_affirmatively
+   #endif
+  ], close_tray=yes)
+  if test "$close_tray" = "yes"; then
+  	AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL, 1,
+            [Defined if have an ioctl to close the CD-rom tray])
+  fi
+  AC_MSG_RESULT($close_tray)
+  
+  host=`uname -s`
+  
+  CDROM_HOST_BSD=false
+  CDROM_HOST_LINUX=false
+  CDROM_HOST_SOLARIS=false
+  case "$host" in
+  *FreeBSD*)
+  	CDROM_HOST=bsd
+  	CDROM_HOST_BSD=true
+  	default_cd_device="/dev/acd0c"
+  	;;
+  *NetBSD*)
+  	CDROM_HOST=bsd
+  	CDROM_HOST_BSD=true
+  	default_cd_device="/dev/rcd0d"
+  	;;
+  *Linux*) 
+  	CDROM_HOST=linux
+  	CDROM_HOST_LINUX=true
+  	default_cd_device="/dev/cdrom"
+  	;;
+  *SunOS*) 
+  	CDROM_HOST=solaris
+  	CDROM_HOST_SOLARIS=true
+  	default_cd_device="/vol/dev/aliases/cdrom0"
+  	;;
+  esac
+  
+  AC_SUBST(CDROM_HOST)
+  AC_SUBST(CDROM_HOST_BSD)
+  AC_SUBST(CDROM_HOST_LINUX)
+  AC_SUBST(CDROM_HOST_SOLARIS)
+  
+  AC_SUBST(default_cd_device)
+  AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device",
+    [Default CD device to use])
+  
+  dnl uninstalled theme dir
+  AC_DEFINE_UNQUOTED(THEME_DIR_UNINSTALLED, "`pwd`/gnome-cd/images",
+      [path to uninstalled gnome-cd themes dir])
+  AC_SUBST(THEME_DIR_UNINSTALLED)
 fi
-AC_MSG_RESULT($cd_changer)
 
-AC_SUBST(USE_CD_CHANGER)
-AC_SUBST(PROGRAMS_GNOME_CD)
-
-close_tray=no
-AC_MSG_CHECKING([whether OS supports the CDROMCLOSETRAY ioctl])
-AC_EGREP_CPP(answer_affirmatively,
-[#include <$cdrom_header>
- #ifdef CDROMCLOSETRAY
- 	answer_affirmatively
- #endif
-], close_tray=yes)
-if test "$close_tray" = "yes"; then
-	AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL, 1,
-          [Defined if have an ioctl to close the CD-rom tray])
-fi
-AC_MSG_RESULT($close_tray)
-
-host=`uname -s`
-
-CDROM_HOST_BSD=false
-CDROM_HOST_LINUX=false
-CDROM_HOST_SOLARIS=false
-case "$host" in
-*FreeBSD*)
-	CDROM_HOST=bsd
-	CDROM_HOST_BSD=true
-	default_cd_device="/dev/acd0c"
-	;;
-*NetBSD*)
-	CDROM_HOST=bsd
-	CDROM_HOST_BSD=true
-	default_cd_device="/dev/rcd0d"
-	;;
-*Linux*) 
-	CDROM_HOST=linux
-	CDROM_HOST_LINUX=true
-	default_cd_device="/dev/cdrom"
-	;;
-*SunOS*) 
-	CDROM_HOST=solaris
-	CDROM_HOST_SOLARIS=true
-	default_cd_device="/vol/dev/aliases/cdrom0"
-	;;
-esac
-
-AC_SUBST(CDROM_HOST)
-AC_SUBST(CDROM_HOST_BSD)
-AC_SUBST(CDROM_HOST_LINUX)
-AC_SUBST(CDROM_HOST_SOLARIS)
 AM_CONDITIONAL(CDROM_HOST_BSD, test "x$CDROM_HOST_BSD" = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
-
-AC_SUBST(default_cd_device)
-AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device",
-  [Default CD device to use])
-
-dnl uninstalled theme dir
-AC_DEFINE_UNQUOTED(THEME_DIR_UNINSTALLED, "`pwd`/gnome-cd/images",
-    [path to uninstalled gnome-cd themes dir])
-AC_SUBST(THEME_DIR_UNINSTALLED)
 
 PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
 
@@ -520,7 +542,8 @@ fi
 if test x$PROGRAMS_GRECORD != x; then
   echo "Sound Recorder:         yes"
 else
-  echo "Sound Recorder:         no"
+  echo "Sound Recorder:         no, reason:"
+  echo "$PROGRAMS_GRECORD_ERROR"
 fi
 echo
 
