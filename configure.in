@@ -390,16 +390,16 @@ then
   AC_DEFINE_UNQUOTED(THEME_DIR_UNINSTALLED, "`pwd`/gnome-cd/images",
       [path to uninstalled gnome-cd themes dir])
   AC_SUBST(THEME_DIR_UNINSTALLED)
+
+  dnl used for accessibility of gnome-cd
+  PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
+  AC_SUBST(GAILUTIL_CFLAGS)
+  AC_SUBST(GAILUTIL_LIBS)
 fi
 
 AM_CONDITIONAL(CDROM_HOST_BSD, test "x$CDROM_HOST_BSD" = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
 AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
-
-PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
-
-AC_SUBST(GAILUTIL_CFLAGS)
-AC_SUBST(GAILUTIL_LIBS)
 
 # gstreamer-properties
 PROGRAMS_GSTPROPS=""
