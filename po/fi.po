@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media (gnome-2-8)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-30 15:48+0200\n"
-"PO-Revision-Date: 2005-12-30 15:50+0200\n"
+"POT-Creation-Date: 2006-01-22 17:48+0200\n"
+"PO-Revision-Date: 2006-01-22 17:55+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -975,8 +975,8 @@ msgstr "Keskeytetty"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD-soitin"
@@ -1207,23 +1207,23 @@ msgstr "Levy ulos"
 msgid "Eject"
 msgstr "Levy ulos"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "Käytettävä CD-laite"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Käynnistä vain mikäli käynnissä ei ole vielä CD-soitin-sovellusta"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "Aloita CD:n soittaminen käynnistettäessä"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Aloita pienennyttynä ilmoitusalueelle"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1233,7 +1233,7 @@ msgstr ""
 "register"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "Soittimen luonti epäonnistui"
 
@@ -1579,25 +1579,26 @@ msgstr "Äänitetään..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 "GStreamer-äänisisääntuloelementille ei ole annettu oletusarvoa - asenna "
 "GStreamer-GConf -skeemat tai aseta oletus manuaalisesti"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "GStreamer-koodauselementtien luominen epäonnistui - tarkista "
 "koodausasetuksesi"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "GStreamerin \"filesink\"-liitännäistä ei löytynyt - ole hyvä ja asenna se"
+msgid "Could not find GStreamer filesink plugin - please install it"
+msgstr ""
+"GStreamerin \"filesink\"-liitännäistä ei löytynyt - ole hyvä ja asenna se"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 "Koodauselementtien linkittäminen ulostuloelementtiin epäonnistui - valitsit "
@@ -1760,7 +1761,7 @@ msgid "Unknown Volume Control %d"
 msgstr "Tuntematon äänenhallinnan ohjain %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
+msgid "No volume control elements and/or devices found."
 msgstr "Äänenhallinnan ohjaimia tai -laitteita ei löytynyt."
 
 #. make window look cute
@@ -1882,6 +1883,11 @@ msgstr "Kanava %d raidasta %s"
 msgid "Track %s, channel %d"
 msgstr "Raita %s, kanava %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Lukitse laitteen %s kanavat yhteen"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1957,12 +1963,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Äänilähteen oletusliitännäinen</b>"
+msgid "<b>Default Sink</b>"
+msgstr "<b>Oletusulostulo</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Ääniulostulon oletusliitännäinen</b>"
+msgid "<b>Default Source</b>"
+msgstr "<b>Oletuslähde</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2336,6 +2342,12 @@ msgstr "Tarkkaile ulostulon äänenvoimakkuutta"
 msgid "Volume Monitor"
 msgstr "Äänenvoimakkuusmonitori"
 
+#~ msgid "<b>Default Input Plugin</b>"
+#~ msgstr "<b>Äänilähteen oletusliitännäinen</b>"
+
+#~ msgid "<b>Default Output Plugin</b>"
+#~ msgstr "<b>Ääniulostulon oletusliitännäinen</b>"
+
 #~ msgid ""
 #~ "Playing\n"
 #~ "Current Time: %s"
@@ -2349,9 +2361,6 @@ msgstr "Äänenvoimakkuusmonitori"
 #
 #~ msgid "File information"
 #~ msgstr "Tiedoston tiedot"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Oletuslähde</b>"
 
 #~ msgid "P_revious track"
 #~ msgstr "_Edellinen raita"
