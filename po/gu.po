@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-17 23:20+0100\n"
-"PO-Revision-Date: 2006-01-18 12:22+0530\n"
+"POT-Creation-Date: 2006-01-23 07:00+0100\n"
+"PO-Revision-Date: 2006-01-23 14:58+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -152,9 +153,9 @@ msgid "Unknown / Unknown"
 msgstr "અજાણ્યું / અજાણ્યું"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:929
-#: ../grecord/src/gsr-window.c:938 ../grecord/src/gsr-window.c:947
-#: ../grecord/src/gsr-window.c:957 ../grecord/src/gsr-window.c:1277
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:958
+#: ../grecord/src/gsr-window.c:968 ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1339
 msgid "Unknown"
 msgstr "અજાણ્યું"
 
@@ -1075,7 +1076,7 @@ msgid "_Eject disc"
 msgstr "ડિસ્ક નીકાળો (_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1746
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2030
 msgid "_Help"
 msgstr "મદદ (_H)"
 
@@ -1193,31 +1194,24 @@ msgstr "CD બહાર નીકાળો"
 msgid "Eject"
 msgstr "બહાર નીકાળો"
 
-#: ../gnome-cd/gnome-cd.c:985
+#: ../gnome-cd/gnome-cd.c:982
 msgid "CD device to use"
 msgstr "CD ઉપકરણ કે જેનો ઉપયોગ કરવાનો છે"
 
-#: ../gnome-cd/gnome-cd.c:987
+#: ../gnome-cd/gnome-cd.c:984
 msgid "Only start if there isn't already a CD player application running"
 msgstr "ત્યારે જ શરુ કરો જ્યારે પહેલાથી કોઇ CD ઉપકરણ ચાલુ ન હોય"
 
-#: ../gnome-cd/gnome-cd.c:989
+#: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
 msgstr "શરુઆતમાં CD વગાડો"
 
-#: ../gnome-cd/gnome-cd.c:991
+#: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
 msgstr "ટ્રેને ચિહ્નિત કરવાનું શરૂ કરો"
 
-#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
-#: ../gst-mixer/src/main.c:251
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register"
-msgstr "રજીસ્ટ્રી હાજર નથી અથવા બગડી ગયેલ છે, મહેરબાની કરીને gst-register ચલાવીને તેને સુધારો"
-
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1041
+#: ../gnome-cd/gnome-cd.c:1025
 msgid "Cannot create player"
 msgstr "CD ઉપકરણનું નિર્માણ થઇ શકતું નથી"
 
@@ -1273,19 +1267,10 @@ msgstr "કયું વોલ્યુમ CD પ્લેયરે જ્યા
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "જ્યારે CD વગાડનાર શરુ થાય, શું CD વગવાની શરુ થવી જોઇએ?"
 
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:290
-msgid "Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
-msgstr ""
-"CD વાંચનાર સુયોજિત કરવામાં નિષ્ફળ; મહેરબાની કરીને GStreamer cdparanoia પ્લગઈન "
-"સ્થાપિત કરો."
-
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:316
-msgid ""
-"Failed to set up audio output; please install a GStreamer plugin for your "
-"soundcard."
-msgstr ""
-"ઓડિયો આઉટપુટ સુયોજિત કરવામાં નિષ્ફળ; મહેરબાની કરીને તમારા સાઉન્ડ કાર્ડ માટે GStreamer "
-"પ્લગઈન સ્થાપિત કરો."
+#: ../gnome-cd/gst-cdrom.c:278
+#, c-format
+msgid "Failed to eject CD: %s"
+msgstr "CD બહાર કાઢવામાં ભૂલ: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1341,7 +1326,7 @@ msgid "Record sound clips"
 msgstr "ધ્વનિ અંશને રેકોર્ડ કરો"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1181
 msgid "Sound Recorder"
 msgstr "ધ્વનિ રેકોર્ડ કરનાર"
 
@@ -1354,56 +1339,52 @@ msgstr "ધ્વનિ રેકોર્ડ કરનાર"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:734
-#: ../grecord/src/gsr-window.c:1579 ../grecord/src/gsr-window.c:2164
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:769
+#: ../grecord/src/gsr-window.c:1665 ../grecord/src/gsr-window.c:2496
 msgid "Untitled"
 msgstr "શીર્ષકવિહીન"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1581
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1667
 #, c-format
 msgid "Untitled-%d"
 msgstr "શીર્ષકવિહીન-%d"
 
-#: ../grecord/src/gnome-recorder.c:179
-msgid "Dummy option"
-msgstr "ડમી વિકલ્પો"
-
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
 msgid "hours"
 msgstr "કલાકો"
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
 msgid "hour"
 msgstr "કલાક"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
+#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
 msgid "minutes"
 msgstr "મિનિટો"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
+#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
 msgid "minute"
 msgstr "મિનિટ"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:217
-#: ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
+#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:301
 msgid "seconds"
 msgstr "સેકંડો"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
+#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:301
 msgid "second"
 msgstr "સેકંડ"
 
-#: ../grecord/src/gsr-window.c:284
+#: ../grecord/src/gsr-window.c:336
 msgid "Open a File"
 msgstr "ફાઇલ ખોલો"
 
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:406
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1412,17 +1393,17 @@ msgstr ""
 "ફાઈલ લાવવામાં અસમર્થ:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:389 ../grecord/src/gsr-window.c:1454
-#: ../grecord/src/gsr-window.c:1620 ../grecord/src/gsr-window.c:1998
+#: ../grecord/src/gsr-window.c:551 ../grecord/src/gsr-window.c:1470
+#: ../grecord/src/gsr-window.c:1716 ../grecord/src/gsr-window.c:2325
 msgid "Ready"
 msgstr "તૈયાર"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:560
+#: ../grecord/src/gsr-window.c:604
 msgid "_Replace"
 msgstr "જગ્યા બદલો (_R)"
 
-#: ../grecord/src/gsr-window.c:577
+#: ../grecord/src/gsr-window.c:621
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1431,114 +1412,119 @@ msgstr ""
 "\"%s\" નામવાળી ફાઈલ પહેલાથી જ હાજર છે. \n"
 "શું તમે એને તમે જેનો સંગ્રહી કરી રહ્યા છો તેની સાથે બદલવા માંગો છો?"
 
-#: ../grecord/src/gsr-window.c:627 ../grecord/src/gsr-window.c:636
+#: ../grecord/src/gsr-window.c:671 ../grecord/src/gsr-window.c:678
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "ફાઈલ \"%s\" સંગ્રહી શક્યા નહિં"
 
-#: ../grecord/src/gsr-window.c:679
+#: ../grecord/src/gsr-window.c:695
 msgid "Save file as"
 msgstr "ફાઇલ આ રીતે સંગ્રહો"
 
-#: ../grecord/src/gsr-window.c:754
+#: ../grecord/src/gsr-window.c:789
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ને પથ પર સ્થાપિત કરેલ નથી."
 
-#: ../grecord/src/gsr-window.c:764
+#: ../grecord/src/gsr-window.c:798
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s ને શરુ કરવામાં ભૂલ છે: %s"
 
-#: ../grecord/src/gsr-window.c:809
+#: ../grecord/src/gsr-window.c:820
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "શું ફાઈલ \"%s\" બંધ કરવા પહેલાં ફેરફારો સંગ્રહવા છે?"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:831
 msgid "Close _without Saving"
 msgstr "સંગ્રહ કર્યા વિના બંધ કરો (_w)"
 
-#: ../grecord/src/gsr-window.c:830
+#: ../grecord/src/gsr-window.c:838
 msgid "Question"
 msgstr "પ્રશ્ન"
 
-#: ../grecord/src/gsr-window.c:903
+#: ../grecord/src/gsr-window.c:930
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (સંગ્રહાયું નથી)"
 
-#: ../grecord/src/gsr-window.c:916
+#: ../grecord/src/gsr-window.c:945
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu બાઈટ)"
 msgstr[1] "%s (%llu બાઈટો)"
 
-#: ../grecord/src/gsr-window.c:920
+#: ../grecord/src/gsr-window.c:949
 msgid "Unknown size"
 msgstr "અજાણ્યું માપ"
 
-#: ../grecord/src/gsr-window.c:940
+#: ../grecord/src/gsr-window.c:970
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:978
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f. kb/s"
 
-#: ../grecord/src/gsr-window.c:960
+#: ../grecord/src/gsr-window.c:981
+#, c-format
+msgid "%.0f kb/s (Estimated)"
+msgstr "%.0f kb/s (અંદાજીત)"
+
+#: ../grecord/src/gsr-window.c:996
 msgid "1 (mono)"
 msgstr "૧ (મોનો)"
 
-#: ../grecord/src/gsr-window.c:963
+#: ../grecord/src/gsr-window.c:999
 msgid "2 (stereo)"
 msgstr "૨ (સ્ટીરિયો)"
 
-#: ../grecord/src/gsr-window.c:990
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%s Information"
 msgstr "%s જાણકારી"
 
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1943
+#: ../grecord/src/gsr-window.c:1050 ../grecord/src/gsr-window.c:2270
 msgid "File Information"
 msgstr "ફાઇલની જાણકારી"
 
-#: ../grecord/src/gsr-window.c:1029
+#: ../grecord/src/gsr-window.c:1065
 msgid "Folder:"
 msgstr "ફોલ્ડર:"
 
-#: ../grecord/src/gsr-window.c:1035 ../grecord/src/gsr-window.c:1958
+#: ../grecord/src/gsr-window.c:1071 ../grecord/src/gsr-window.c:2285
 msgid "Filename:"
 msgstr "ફાઇલનું નામ:"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1077
 msgid "File size:"
 msgstr "ફાઇલનું માપ:"
 
-#: ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1086
 msgid "Audio Information"
 msgstr "ધ્વનિ વિશે જાણકારી"
 
-#: ../grecord/src/gsr-window.c:1065
+#: ../grecord/src/gsr-window.c:1101
 msgid "File duration:"
 msgstr "ફાઈલ સમયગાળો:"
 
-#: ../grecord/src/gsr-window.c:1071
+#: ../grecord/src/gsr-window.c:1107
 msgid "Number of channels:"
 msgstr "માધ્યમોની સંખ્યા:"
 
-#: ../grecord/src/gsr-window.c:1077
+#: ../grecord/src/gsr-window.c:1113
 msgid "Sample rate:"
 msgstr "નમુનાનો દર:"
 
-#: ../grecord/src/gsr-window.c:1083
+#: ../grecord/src/gsr-window.c:1119
 msgid "Bit rate:"
 msgstr "બીટનો દર:"
 
-#: ../grecord/src/gsr-window.c:1147
+#: ../grecord/src/gsr-window.c:1184
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1546,133 +1532,148 @@ msgstr ""
 "જીનોમ માટે સાઉન્ડ રેકોર્ડર\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1435
+#: ../grecord/src/gsr-window.c:1442
 msgid "Playing..."
 msgstr "વાગે છે..."
 
-#: ../grecord/src/gsr-window.c:1570
+#: ../grecord/src/gsr-window.c:1570 ../grecord/src/gsr-window.c:1578
+#, c-format
+msgid "Could not find GStreamer element \"%s\" - please install it"
+msgstr "GStreamer ઘટક \"%s\" શોધી શક્યા નહિં - મહેરબાની કરીને તેને સ્થાપિત કરો"
+
+#: ../grecord/src/gsr-window.c:1656
 msgid "Recording..."
 msgstr "રેકોર્ડ થાય છે..."
 
-#: ../grecord/src/gsr-window.c:1653
+#: ../grecord/src/gsr-window.c:1806 ../grecord/src/gsr-window.c:1898
+#, c-format
+msgid "Could not find GStreamer plugin \"%s\" - please install it"
+msgstr "GStreamer પ્લગઈન \"%s\" શોધી શક્યા નહિં - મહેરબાની કરીને તેને સ્થાપિત કરો"
+
+#: ../grecord/src/gsr-window.c:1815
+#, c-format
+msgid "Could not activate GStreamer plugin \"%s\""
+msgstr "GStreamer પ્લગઈન \"%s\" સક્રિય કરી શક્યા નહિં"
+
+#: ../grecord/src/gsr-window.c:1924
+msgid "Failed to create GStreamer encoder plugins - check your encoding setup."
+msgstr "GStreamer એનકોડર પ્લગઈનો બનાવવામાં નિષ્ફળ - તમારું એનકોડીંગ સુયોજન ચકાસો."
+
+#: ../grecord/src/gsr-window.c:1940
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
-"GStreamer-GConf schemas or set one manually"
-msgstr "ત્યાં કોઈ મૂળભૂત GStreamer ઓડિયો ઈનપુટ પ્લગઈન સુયોજિત નથી - મહેરબાની કરીને GStreamer-GConf પદ્ધતિઓ સ્થાપિત કરો અથવા એક જાતે સુયોજિત કરો"
+"Failed to link input element with encoder plugins - you probably selected an "
+"invalid encoder"
+msgstr "એનકોડર પ્લગઈન સાથે ઈનપુટ ઘટક કડી કરવામાં નિષ્ફળ - તમે કદાચ અયોગ્ય એનકોડર પસંદ કરેલ છે"
 
-#: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
-msgstr "GStreamer એનકોડર પ્લગઈનો બનાવવામાં નિષ્ફળ - તમારું એનકોડીંગ સુયોજન ચકાસો"
-
-#: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - broken GStreamer install"
-msgstr "\"filesink\" GStreamer પ્લગઈન શોધી શક્યા નહિં - ભાંગેલ GStreamer સ્થાપન"
-
-#: ../grecord/src/gsr-window.c:1690
+#: ../grecord/src/gsr-window.c:1950
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output plugins - you probably "
 "selected an invalid encoder"
-msgstr "ફાઈલ આઉટપુટ પ્લગઈન સાથે એનકોડર ઘટક કડી કરવામાં નિષ્ફળ - તમે કદાચ અયોગ્ય એનકોડર પસંદ કરેલ છે"
+msgstr "એનકોડર ઘટક સાથે ફાઈલ આઉટપુટ પ્લગઈનો કડી કરવામાં નિષ્ફળ - તમે કદાચ અયોગ્ય એનકોડર પસંદ કરેલ છે"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1718
+#: ../grecord/src/gsr-window.c:2002
 msgid "_File"
 msgstr "ફાઇલ (_F)"
 
-#: ../grecord/src/gsr-window.c:1720
+#: ../grecord/src/gsr-window.c:2004
 msgid "Create a new sample"
 msgstr "નવો નમૂનો બનાવો"
 
-#: ../grecord/src/gsr-window.c:1721
+#: ../grecord/src/gsr-window.c:2005
 msgid "_Open..."
 msgstr "ખોલો (_O)..."
 
-#: ../grecord/src/gsr-window.c:1722
+#: ../grecord/src/gsr-window.c:2006
 msgid "Open a file"
 msgstr "ફાઇલ ખોલો"
 
-#: ../grecord/src/gsr-window.c:1724
+#: ../grecord/src/gsr-window.c:2008
 msgid "Save the current file"
 msgstr "વર્તમાન ફાઇલ સંગ્રહો"
 
-#: ../grecord/src/gsr-window.c:1725
+#: ../grecord/src/gsr-window.c:2009
 msgid "Save _As..."
 msgstr "આ રીતે સંગ્રહો (_A)..."
 
-#: ../grecord/src/gsr-window.c:1726
+#: ../grecord/src/gsr-window.c:2010
 msgid "Save the current file with a different name"
 msgstr "વર્તમાન ફાઇલ જુદા નામથી સંગ્રહો"
 
-#: ../grecord/src/gsr-window.c:1727
+#: ../grecord/src/gsr-window.c:2011
 msgid "Open Volu_me Control"
 msgstr "અવાજનું પ્રમાણ નિયંત્રક ખોલો (_m)"
 
-#: ../grecord/src/gsr-window.c:1728
+#: ../grecord/src/gsr-window.c:2012
 msgid "Open the audio mixer"
 msgstr "ઓડિયો મિક્ષર ખોલો"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:2014
 msgid "Show information about the current file"
 msgstr "વર્તમાન ફાઇલ વિશેની માહિતી દર્શાવો"
 
-#: ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:2016
 msgid "Close the current file"
 msgstr "વર્તમાન ફાઈલ બંધ કરો"
 
-#: ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gsr-window.c:2018
 msgid "Quit the program"
 msgstr "કાર્યક્રમમાંથી બહાર નીકળો"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1737
+#: ../grecord/src/gsr-window.c:2021
 msgid "_Control"
 msgstr "નિયંત્રણ (_C)"
 
-#: ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2023
 msgid "Record sound"
 msgstr "ધ્વનિ રેકોર્ડ કરો"
 
-#: ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2025
 msgid "Play sound"
 msgstr "ધ્વનિ વગાડો"
 
-#: ../grecord/src/gsr-window.c:1743
+#: ../grecord/src/gsr-window.c:2027
 msgid "Stop sound"
 msgstr "ધ્વનિ બંધ"
 
-#: ../grecord/src/gsr-window.c:1748
+#: ../grecord/src/gsr-window.c:2032
 msgid "Open the manual"
 msgstr "માર્ગદર્શિકા ખોલો"
 
-#: ../grecord/src/gsr-window.c:1750
+#: ../grecord/src/gsr-window.c:2034
 msgid "About this application"
 msgstr "આ કાર્યક્રમ વિશે"
 
-#: ../grecord/src/gsr-window.c:1847
+#: ../grecord/src/gsr-window.c:2155
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml લાવી શક્યા નહિં. કાર્યક્રમ યોગ્ય રીતે સ્થાપિત થઈ શકે નહિં"
 
-#: ../grecord/src/gsr-window.c:1869
+#: ../grecord/src/gsr-window.c:2178
 msgid "Open"
 msgstr "ખોલો"
 
-#: ../grecord/src/gsr-window.c:1871
+#: ../grecord/src/gsr-window.c:2180
 msgid "Save"
 msgstr "સંગ્રહો"
 
-#: ../grecord/src/gsr-window.c:1873
+#: ../grecord/src/gsr-window.c:2182
 msgid "Save As"
 msgstr "આ રીતે સંગ્રહો"
 
-#: ../grecord/src/gsr-window.c:1926
+#: ../grecord/src/gsr-window.c:2236
+msgid "Record from input:"
+msgstr "ઈનપુટમાંથી રેકોર્ડ કરો:"
+
+#: ../grecord/src/gsr-window.c:2253
 msgid "Record as:"
 msgstr "આ રીતે રેકોર્ડ કરો:"
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:2291
 msgid "<none>"
 msgstr "<none>"
 
-#: ../grecord/src/gsr-window.c:1973
+#: ../grecord/src/gsr-window.c:2300
 msgid "Length:"
 msgstr "લંબાઇ:"
 
@@ -1681,7 +1682,7 @@ msgid "Adjust the volume level"
 msgstr "અવાજનું પ્રમાણને નિયંત્રિત કરો"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:395
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
 msgstr "અવાજનું પ્રમાણ નિયંત્રક"
 
@@ -1701,43 +1702,37 @@ msgstr "વિન્ડોની પહોળાઈ"
 msgid "Width of the Window to be displayed"
 msgstr "દર્શાવવા માટેની વિન્ડોની પહોળાઈ"
 
-#: ../gst-mixer/src/element.c:230
+#: ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "વગાડો"
 
-#: ../gst-mixer/src/element.c:232
+#: ../gst-mixer/src/element.c:231
 msgid "Capture"
 msgstr "મેળવો"
 
-#: ../gst-mixer/src/element.c:234
+#: ../gst-mixer/src/element.c:233
 msgid "Switches"
 msgstr "સ્વીચો"
 
-#: ../gst-mixer/src/element.c:236
+#: ../gst-mixer/src/element.c:235
 msgid "Options"
 msgstr "વિકલ્પો"
 
-#. FIXME:
-#. * - maybe we want to rename the element to its actual name
-#. *     if we've found that?
-#.
-#. create element
-#: ../gst-mixer/src/main.c:85 ../gst-mixer/src/main.c:88
-#: ../gst-mixer/src/main.c:144
+#: ../gst-mixer/src/main.c:76
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "અજ્ઞાત અવાજ નિયંત્રણ %d"
 
-#: ../gst-mixer/src/main.c:276
+#: ../gst-mixer/src/main.c:217
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "કોઈ અવાજ નિયંત્રણ GStreamer પ્લગઈનો અને/અથવા ઉપકરણો મળ્યા નહિં."
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:107
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "અવાજ નિયંત્રણ પસંદગીઓ"
 
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "ટ્રેકો દ્રશ્યમાન રહે એમ પસંદ કરો (_S):"
 
@@ -1777,35 +1772,35 @@ msgstr "ટ્રેક %s: અવાજ મેળવવો"
 msgid "%s Option Selection"
 msgstr "%s વિકલ્પ પસંદગી"
 
-#: ../gst-mixer/src/volume.c:135
+#: ../gst-mixer/src/volume.c:134
 msgid "mono"
 msgstr "મોનો)"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "left"
 msgstr "ડાબું"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "right"
 msgstr "જમણું"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:139
 msgid "front left"
 msgstr "અગ્ર ડાબું"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:140
 msgid "front right"
 msgstr "અગ્ર જમણું"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:141
 msgid "rear left"
 msgstr "પાશ્વ ડાબું"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:142
 msgid "rear right"
 msgstr "પાશ્વ જમણું"
 
-#: ../gst-mixer/src/volume.c:144
+#: ../gst-mixer/src/volume.c:143
 msgid "front center"
 msgstr "અગ્ર કેન્દ્ર"
 
@@ -1813,50 +1808,50 @@ msgstr "અગ્ર કેન્દ્ર"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:148
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:149
 msgid "side left"
 msgstr "ડાબી બાજુ"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:150
 msgid "side right"
 msgstr "જમણી બાજુ"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:151
 msgid "unknown"
 msgstr "અજ્ઞાત"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:158
+#: ../gst-mixer/src/volume.c:157
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s નો અવાજ ચેનલ %s પર"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s"
 msgstr "ટ્રેક %s"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:208
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "ચેનલ %d ટ્રેક %s ની"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "ટ્રેક %s, ચેનલ %d"
 
-#: ../gst-mixer/src/volume.c:232
+#: ../gst-mixer/src/volume.c:231
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "%s માટે સાથે ચેનલોને તાળું મારો"
 
-#: ../gst-mixer/src/volume.c:250
+#: ../gst-mixer/src/volume.c:249
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "ટ્રેક %s: ચેનલોને એકસાથે તાળું મારો"
@@ -1876,33 +1871,26 @@ msgstr "ઉપકરણને %s માં બદલો"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:442
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
 #, c-format
 msgid "Volume Control: %s"
 msgstr "અવાજ નિયંત્રણ: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:387
 msgid "translator-credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
 
-#: ../gst-mixer/src/window.c:398
+#: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "જીનોમ/જીસ્ટ્રીમર-આધારિત અવાજ નિયંત્રણ કાર્યક્રમ"
 
-#. Fatal error
-#: ../gstreamer-properties/gstreamer-properties.c:274
+#: ../gstreamer-properties/gstreamer-properties.c:381
 msgid "Failure instantiating main window"
 msgstr "મુખ્ય 'વિન્ડો' ચાલુ કરવામાં નિષ્ફળ"
 
-#: ../gstreamer-properties/gstreamer-properties.c:309
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register."
-msgstr "રજીસ્ટ્રી હાજર નથી અથવા બગડેલ છે, મહેરબાની કરીને gst-register ચલાવીને તેને સુધારો."
-
-#: ../gstreamer-properties/gstreamer-properties.c:332
+#: ../gstreamer-properties/gstreamer-properties.c:444
 msgid "Failed to load glade file; please check your installation."
 msgstr "glade ફાઈલ લાવવામાં નિષ્ફળ; મહેરબાની કરીને તમારું સ્થાપન ચકાસો."
 
@@ -1972,14 +1960,14 @@ msgstr "પાઇપ લાઇન (_P):"
 msgid "_Test"
 msgstr "ચકાસો (_T)"
 
-#: ../gstreamer-properties/pipeline-constants.c:65
-#: ../gstreamer-properties/pipeline-constants.c:94
-#: ../gstreamer-properties/pipeline-constants.c:113
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Custom"
 msgstr "કસ્ટમ"
 
-#: ../gstreamer-properties/pipeline-tests.c:119
+#: ../gstreamer-properties/pipeline-tests.c:130
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s' માટે પાઇપ લાઇન બનાવવામાં નિષ્ફળ"
@@ -2031,24 +2019,24 @@ msgstr "વેવ"
 msgid "_Edit"
 msgstr "ફેરફાર કરો (_E)"
 
-#: ../profiles/audio-profiles-edit.c:460
+#: ../profiles/audio-profiles-edit.c:492
 msgid "You must select one or more profiles to delete."
 msgstr "તમારે એક અથવા એકથી વધુ રુપરેખાઓ કાઢી નાખવા માટે પસંદ કરવી જ પડશે."
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:469
+#: ../profiles/audio-profiles-edit.c:501
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "આ રુપરેખા કાઢવી છે?\n"
 msgstr[1] "શું %d રુપરેખાઓ કાઢી નાખવી છે?\n"
 
-#: ../profiles/audio-profiles-edit.c:488
+#: ../profiles/audio-profiles-edit.c:520
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "રુપરેખા \"%s\" કાઢી નાખવી છે?"
 
-#: ../profiles/audio-profiles-edit.c:510
+#: ../profiles/audio-profiles-edit.c:542
 msgid "Delete Profile"
 msgstr "રુપરેખા કાઢી નાખો"
 
@@ -2064,20 +2052,20 @@ msgstr "રુપરેખા કાઢી નાખો"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:606
-msgid "Edit GMAudio Profiles"
-msgstr "GMAudio રુપરેખાઓમાં ફેરફાર કરો"
+#: ../profiles/audio-profiles-edit.c:638
+msgid "Edit GNOME Audio Profiles"
+msgstr "જીનોમ ઓડિયો રૂપરેખાઓમાં ફેરફાર કરો"
 
-#: ../profiles/audio-profiles-edit.c:659
+#: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
 msgstr "રુપરેખાઓ (_P):"
 
-#: ../profiles/audio-profiles-edit.c:887
+#: ../profiles/audio-profiles-edit.c:921
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "તમારી પાસે પહેલાથી જ \"%s\" તરીકે ઓળખાતી રુપરેખા છે"
 
-#: ../profiles/audio-profiles-edit.c:912
+#: ../profiles/audio-profiles-edit.c:946
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "જીકોન્ફ ભૂલ (FIXME): %s\n"
@@ -2170,10 +2158,8 @@ msgstr "CD ગુણવત્તા, નુકસાનવાળી"
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"અવાજ રેકોર્ડ કરવાની રુપરેખાઓની યાદી. /system/gstreamer/audio/profiles ને અનુલક્ષિને "
-"યાદી ઉપડિરેક્ટરીઓની શબ્દમાળા ધરાવે છે."
+"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgstr "ઓડિયો રેકોર્ડીંગ રૂપરેખાઓની યાદી. યાદી /system/gstreamer/@GST_MAJORMINOR@/audio/profiles ને સંબંધિત અમુક શબ્દમાળાની ઉપડિરેક્ટરીઓ સમાવે છે."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2204,18 +2190,30 @@ msgstr ""
 "કરવા અને રેડિયો રેકોર્ડ કરવા માટે વાપરો."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid "Used for converting to voice-quality audio. Use this for recording speech."
-msgstr "અવાજ-ગુણવત્તા ઓડિયોમાં ફેરવવા માટે વપરાય છે. આને બોલી રેકોર્ડ કરવા માટે વાપરો."
+msgid ""
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
+msgstr "ગુમ નહિં થાય તેવી અવાજ-ગુણવત્તા ઓડિયોમાં રૂપાંતરણ કરવા માટે વપરાય છે. આને અવાજ રેકોર્ડ અને ફેરફાર કરવા માટે વાપરો."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid "Voice"
-msgstr "અવાજ"
+msgid ""
+"Used for converting to lossy voice-quality audio. Use this for recording "
+"speech that doesn't need to be edited."
+msgstr "આછી અવાજ-ગુણવત્તા ઓડિયો માટે રૂપાંતરણ કરવા માટે વપરાય છે. આને અવાજ રેકોર્ડ કરવા માટે વાપરો કે જેને ફેરફાર કરવાની જરૂર નથી."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+msgid "Voice, Lossless"
+msgstr "અવાજ, નકુસાનવિના"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid "Voice, Lossy"
+msgstr "અવાજ, નુકસાની"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
 msgstr "આ રુપરેખા વપરાયેલ છે કે નહિ"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
 msgstr "આ રુપરેખાને વાપરવુ કે ડિસ્પ્લે કરવું કે નહિ."
 
