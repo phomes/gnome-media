@@ -4,7 +4,7 @@
 # Copyright (C) 2004 THE gnome-media.HEAD'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-media.HEAD package.
 # Amanpreet Singh Alam <amanlinux@netscape.net>, 2004.
-# Amanpreet Singh Alam <aalam@redhat.com>, 2004.
+# Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2006.
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
 # Amanpreet Singh Brar Alamwalia <apbrar@gmail.com>, 2005.
 #
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-29 21:11+0100\n"
-"PO-Revision-Date: 2005-12-30 07:30+0530\n"
-"Last-Translator: Amanpreet Singh Alam <amanpreetalam@yahoo.com>\n"
+"POT-Creation-Date: 2006-01-22 23:10+0100\n"
+"PO-Revision-Date: 2006-01-23 12:36+0530\n"
+"Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,9 +157,9 @@ msgid "Unknown / Unknown"
 msgstr "ਅਣਜਾਣ / ਅਣਜਾਣ"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:929
-#: ../grecord/src/gsr-window.c:938 ../grecord/src/gsr-window.c:947
-#: ../grecord/src/gsr-window.c:957 ../grecord/src/gsr-window.c:1277
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:958
+#: ../grecord/src/gsr-window.c:968 ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1339
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
@@ -968,8 +968,8 @@ msgstr "ਵਿਰਾਮ"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "CD ਪਲੇਅਰ"
@@ -1080,7 +1080,7 @@ msgid "_Eject disc"
 msgstr "ਡਿਸਕ ਕੱਢੋ(_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1746
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2030
 msgid "_Help"
 msgstr "ਸਹਾਇਤਾ(_H)"
 
@@ -1180,7 +1180,7 @@ msgstr "ਪਿੱਛੇ"
 
 #: ../gnome-cd/gnome-cd.c:832
 msgid "Rewind"
-msgstr "ਪਿੱਛੇ"
+msgstr "ਤੇਜ਼ ਪਿੱਛੇ"
 
 #: ../gnome-cd/gnome-cd.c:840
 msgid "Fast forward"
@@ -1198,33 +1198,26 @@ msgstr "CD ਬਾਹਰ ਕੱਢੋ"
 msgid "Eject"
 msgstr "ਬਾਹਰ ਕੱਢੋ"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:982
 msgid "CD device to use"
 msgstr "ਵਰਤਣ ਲਈ CD ਜੰਤਰ"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:984
 msgid "Only start if there isn't already a CD player application running"
 msgstr "ਸਿਰਫ ਤਾਂ ਹੀ ਚਲਾਓ, ਜੇਕਰ ਹੋਰ CD-ਪਲੇਅਰ ਕਾਰਜ ਨਹੀ ਚੱਲ ਰਿਹਾ ਹੈ"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
 msgstr "ਸ਼ੁਰੂ ਵੇਲੇ CD ਚਲਾਓ"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
 msgstr "ਟਰੇ ਵਿੱਚ ਆਈਕਾਨ ਦੇ ਰੂਪ 'ਚ ਸ਼ੁਰੂ"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
-#: ../gst-mixer/src/main.c:251
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register"
-msgstr "ਰਜਿਸਟਰੀ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਨਿਕਾਰਾ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ gst-register ਚਲਾਓ"
-
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1025
 msgid "Cannot create player"
-msgstr "ਪਲੇਅਰ ਬਣ ਨਹੀ ਸਕਿਆ"
+msgstr "ਪਲੇਅਰ ਬਣ ਨਹੀਂ ਸਕਿਆ"
 
 #: ../gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
@@ -1232,7 +1225,7 @@ msgstr "ਆਡੀਓ CD ਚਲਾਓ"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "CD player Volume"
-msgstr "CD ਪਲੇਅਰ ਅਵਾਜ਼"
+msgstr "CD ਪਲੇਅਰ ਆਵਾਜ਼"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "CD player theme"
@@ -1248,7 +1241,7 @@ msgstr "ਕੀ ਬਾਕੀ ਰਹਿੰਦਾ ਸਮਾਂ ਵੇਖਾਉਣ�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
-msgstr "ਬਾਹਰ ਕੱਢੋ, ਜਦੋਂ CD ਪਲੇਅਰ ਬੰਦ ਹੋਵੇ?"
+msgstr "ਕੀ ਬਾਹਰ ਕੱਢੀ ਜਾਵੇ, ਜਦੋਂ CD ਪਲੇਅਰ ਬੰਦ ਹੋਵੇ?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
@@ -1256,7 +1249,7 @@ msgstr "ਜਦੋਂ CD ਪਲੇਅਰ ਚੱਲਦਾ ਹੋਵੇ ਤਾਂ �
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
-msgstr "ਚਲਾਓ, ਜਦੋਂ CD ਪਲੇਅਰ ਚਾਲੂ ਹੋਵੇ?"
+msgstr "ਕੀ ਚਲਾਵੇ, ਜਦੋਂ CD ਪਲੇਅਰ ਚਾਲੂ ਹੋਵੇ?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
@@ -1278,17 +1271,10 @@ msgstr "ਕਿਹਡ਼ਾ ਸਰੂਪ CD ਪਲੇਅਰ ਆਪਣੇ ਲਈ �
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "ਜਦੋਂ CD ਪਲੇਅਰ ਚਾਲੂ ਹੋਵੇ ਤਾਂ ਕੀ ਇਹ CD ਨੂੰ ਚਲਾਏ?"
 
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:290
-msgid "Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
-msgstr "CD ਰੀਡਰ ਸੈਟਅੱਪ ਕਰਨ ਲਈ ਫੇਲ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ GStreamer cdparanoia ਪਲੱਗਿੰਨ ਇੰਸਟਾਲ ਕਰੋ।"
-
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:316
-msgid ""
-"Failed to set up audio output; please install a GStreamer plugin for your "
-"soundcard."
-msgstr ""
-"ਆਡੀਓ ਆਉਟਪੁੱਟ ਸੈਟਅੱਪ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਸਾਊਡਕਾਰਡ ਲਈ GStreamer ਪਲੱਗਿੰਨ "
-"ਇੰਸਟਾਲ ਕਰੋ।"
+#: ../gnome-cd/gst-cdrom.c:278
+#, c-format
+msgid "Failed to eject CD: %s"
+msgstr "CD ਕੱਢਣ ਲਈ ਅਸਮਰੱਥ: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1344,7 +1330,7 @@ msgid "Record sound clips"
 msgstr "ਧੁਨੀ ਅੰਸ਼ ਰਿਕਾਰਡ ਕਰੋ"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1181
 msgid "Sound Recorder"
 msgstr "ਧੁਨੀ ਰਿਕਾਰਡਰ"
 
@@ -1357,56 +1343,52 @@ msgstr "ਧੁਨੀ ਰਿਕਾਰਡਰ"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:734
-#: ../grecord/src/gsr-window.c:1579 ../grecord/src/gsr-window.c:2164
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:769
+#: ../grecord/src/gsr-window.c:1665 ../grecord/src/gsr-window.c:2496
 msgid "Untitled"
 msgstr "ਬਿਨਾਂ ਨਾਂ"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1581
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1667
 #, c-format
 msgid "Untitled-%d"
 msgstr "ਬਿਨਾਂ ਨਾਂ-%d"
 
-#: ../grecord/src/gnome-recorder.c:179
-msgid "Dummy option"
-msgstr "ਫ਼ਰਜੀ ਚੋਣ"
-
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
 msgid "hours"
 msgstr "ਘੰਟੇ"
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
+#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
 msgid "hour"
 msgstr "ਘੰਟਾ"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
+#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
 msgid "minutes"
 msgstr "ਮਿੰਟ"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
+#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
 msgid "minute"
 msgstr "ਮਿੰਟ"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:217
-#: ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
+#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:301
 msgid "seconds"
 msgstr "ਸਕਿੰਟ"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
+#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:301
 msgid "second"
 msgstr "ਸਕਿੰਟ"
 
-#: ../grecord/src/gsr-window.c:284
+#: ../grecord/src/gsr-window.c:336
 msgid "Open a File"
 msgstr "ਇੱਕ ਫਾਇਲ ਖੋਲ੍ਹੋ"
 
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:406
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1415,17 +1397,17 @@ msgstr ""
 "ਫਾਇਲ ਲੋਡ ਕਰਨ ਲਈ ਅਸਫ਼ਲ:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:389 ../grecord/src/gsr-window.c:1454
-#: ../grecord/src/gsr-window.c:1620 ../grecord/src/gsr-window.c:1998
+#: ../grecord/src/gsr-window.c:551 ../grecord/src/gsr-window.c:1470
+#: ../grecord/src/gsr-window.c:1716 ../grecord/src/gsr-window.c:2325
 msgid "Ready"
 msgstr "ਤਿਆਰ"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:560
+#: ../grecord/src/gsr-window.c:604
 msgid "_Replace"
 msgstr "ਤਬਦੀਲ(_R)"
 
-#: ../grecord/src/gsr-window.c:577
+#: ../grecord/src/gsr-window.c:621
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1434,114 +1416,119 @@ msgstr ""
 "ਫਾਇਲ ਨਾਂ \"%s\" ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\n"
 "ਕੀ ਤੁਸੀਂ ਸੰਭਾਲਣ ਲਈ ਉਸ ਨੂੰ ਤਬਦੀਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../grecord/src/gsr-window.c:627 ../grecord/src/gsr-window.c:636
+#: ../grecord/src/gsr-window.c:671 ../grecord/src/gsr-window.c:678
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "\"%s\" ਫਾਇਲ ਨੂੰ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
-#: ../grecord/src/gsr-window.c:679
+#: ../grecord/src/gsr-window.c:695
 msgid "Save file as"
 msgstr "ਫਾਇਲ ਇੰਜ ਸੰਭਾਲੋ"
 
-#: ../grecord/src/gsr-window.c:754
+#: ../grecord/src/gsr-window.c:789
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "ਮਾਰਗ ਵਿੱਚ %s ਇੰਸਟਾਲ ਨਹੀ ਹੈ।"
 
-#: ../grecord/src/gsr-window.c:764
+#: ../grecord/src/gsr-window.c:798
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s ਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਗਲਤੀ: %s"
 
-#: ../grecord/src/gsr-window.c:809
+#: ../grecord/src/gsr-window.c:820
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "ਕੀ ਫਾਇਲ \"%s\" ਨੂੰ ਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤਬਦੀਲੀਆਂ ਸੰਭਾਲਣੀਆਂ ਹਨ?"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:831
 msgid "Close _without Saving"
 msgstr "ਬਿਨਾਂ ਸੰਭਾਲੇ ਬੰਦ(_w)"
 
-#: ../grecord/src/gsr-window.c:830
+#: ../grecord/src/gsr-window.c:838
 msgid "Question"
 msgstr "ਸਵਾਲ"
 
-#: ../grecord/src/gsr-window.c:903
+#: ../grecord/src/gsr-window.c:930
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (ਹਾਲੇ ਸੰਭਾਲਿਆ ਨਹੀ)"
 
-#: ../grecord/src/gsr-window.c:916
+#: ../grecord/src/gsr-window.c:945
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu ਬਾਈਟ)"
 msgstr[1] "%s (%llu ਬਾਈਟ)"
 
-#: ../grecord/src/gsr-window.c:920
+#: ../grecord/src/gsr-window.c:949
 msgid "Unknown size"
 msgstr "ਅਣਜਾਣ ਅਕਾਰ"
 
-#: ../grecord/src/gsr-window.c:940
+#: ../grecord/src/gsr-window.c:970
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:978
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:960
+#: ../grecord/src/gsr-window.c:981
+#, c-format
+msgid "%.0f kb/s (Estimated)"
+msgstr "%.0f kb/s (ਅੰਦਾਜ਼ਾ)"
+
+#: ../grecord/src/gsr-window.c:996
 msgid "1 (mono)"
 msgstr "1 (ਮੋਨੋ)"
 
-#: ../grecord/src/gsr-window.c:963
+#: ../grecord/src/gsr-window.c:999
 msgid "2 (stereo)"
 msgstr "2 (ਸਟੀਰਿਓ)"
 
-#: ../grecord/src/gsr-window.c:990
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%s Information"
 msgstr "%s ਜਾਣਕਾਰੀ"
 
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1943
+#: ../grecord/src/gsr-window.c:1050 ../grecord/src/gsr-window.c:2270
 msgid "File Information"
 msgstr "ਫਾਇਲ ਜਾਣਕਾਰੀ"
 
-#: ../grecord/src/gsr-window.c:1029
+#: ../grecord/src/gsr-window.c:1065
 msgid "Folder:"
 msgstr "ਫੋਲਡਰ:"
 
-#: ../grecord/src/gsr-window.c:1035 ../grecord/src/gsr-window.c:1958
+#: ../grecord/src/gsr-window.c:1071 ../grecord/src/gsr-window.c:2285
 msgid "Filename:"
 msgstr "ਫਾਇਲ ਨਾਂ:"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1077
 msgid "File size:"
 msgstr "ਫਾਇਲ ਅਕਾਰ:"
 
-#: ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1086
 msgid "Audio Information"
 msgstr "ਆਡੀਓ ਜਾਣਕਾਰੀ"
 
-#: ../grecord/src/gsr-window.c:1065
+#: ../grecord/src/gsr-window.c:1101
 msgid "File duration:"
 msgstr "ਫਾਇਲ ਅੰਤਰਾਲ:"
 
-#: ../grecord/src/gsr-window.c:1071
+#: ../grecord/src/gsr-window.c:1107
 msgid "Number of channels:"
 msgstr "ਚੈਨਲਾਂ ਦੀ ਗਿਣਤੀ:"
 
-#: ../grecord/src/gsr-window.c:1077
+#: ../grecord/src/gsr-window.c:1113
 msgid "Sample rate:"
 msgstr "ਸਧਾਰਨ ਦਰ:"
 
-#: ../grecord/src/gsr-window.c:1083
+#: ../grecord/src/gsr-window.c:1119
 msgid "Bit rate:"
 msgstr "ਬਿੱਟ ਦਰ:"
 
-#: ../grecord/src/gsr-window.c:1147
+#: ../grecord/src/gsr-window.c:1184
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1549,135 +1536,152 @@ msgstr ""
 "ਗਨੋਮ ਲਈ ਇੱਕ ਆਵਾਜ਼ ਰਿਕਾਰਡਰ\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1435
+#: ../grecord/src/gsr-window.c:1442
 msgid "Playing..."
 msgstr "ਚੱਲ ਰਿਹਾ ਹੈ..."
 
-#: ../grecord/src/gsr-window.c:1570
+#: ../grecord/src/gsr-window.c:1570 ../grecord/src/gsr-window.c:1578
+#, c-format
+msgid "Could not find GStreamer element \"%s\" - please install it"
+msgstr "ਜੀ-ਸਟਰੀਮਰ ਇਕਾਈ \"%s\" ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕੀ ਹੈ - ਕਿਰਪਾ ਕਰਕੇ ਇੰਸਟਾਲ ਕਰੋ"
+
+#: ../grecord/src/gsr-window.c:1656
 msgid "Recording..."
 msgstr "ਰਿਕਾਰਡਿੰਗ ਜਾਰੀ..."
 
-#: ../grecord/src/gsr-window.c:1653
+#: ../grecord/src/gsr-window.c:1806 ../grecord/src/gsr-window.c:1898
+#, c-format
+msgid "Could not find GStreamer plugin \"%s\" - please install it"
+msgstr "ਜੀ-ਸਟਰੀਮਰ ਪਲੱਗਿੰਨ \"%s\" ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕੀ ਹੈ - ਕਿਰਪਾ ਕਰਕੇ ਇੰਸਟਾਲ ਕਰੋ"
+
+#: ../grecord/src/gsr-window.c:1815
+#, c-format
+msgid "Could not activate GStreamer plugin \"%s\""
+msgstr "ਜੀ-ਸਟਰੀਮਰ ਪਲੱਗਿੰਨ \"%s\" ਸਰਗਰਮ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
+
+#: ../grecord/src/gsr-window.c:1924
+msgid "Failed to create GStreamer encoder plugins - check your encoding setup."
+msgstr "GStreamer ਇੰਕੋਡਰ ਇਕਾਈ ਨਾਲ ਸਬੰਧ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ਼ - ਆਪਣੀ ਇਕੋਡਿੰਗ ਸੈੱਟਅਪ ਦੀ ਜਾਂਚ ਕਰੋ"
+
+#: ../grecord/src/gsr-window.c:1940
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
-"GStreamer-GConf schemas or set one manually"
+"Failed to link input element with encoder plugins - you probably selected an "
+"invalid encoder"
 msgstr ""
-"ਕੋਈ ਮੂਲ GStreamer ਆਡੀਓ ਇੰਪੁੱਟ ਇਕਾਈ ਨਿਰਧਾਰਤ ਨਹੀਂ ਹੈ- ਕਿਰਪਾ ਕਰਕੇ GStreamer-GConf ਸਕੀਮ "
-"ਇੰਸਟਾਲ ਕਰੋ ਜਾਂ ਦਸਤੀ ਨਿਰਧਾਰਿਤ ਕਰੋ"
+"ਇੰਪੁੱਟ ਇਕਾਈ ਨਾਲ ਇੰਕੋਡਰ ਸਬੰਧ ਵਰਤਣ ਵਿੱਚ ਅਸਫਲ - ਸੰਭਵ ਤੌਰ ਉੱਤੇ ਤੁਸੀਂ ਗਲਤ ਇੰਕੋਡਰ "
+"ਚੁਣਿਆ ਹੈ"
 
-#: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
-msgstr "GStreamer ਇੰਕੋਡਰ ਇਕਾਈ ਨਾਲ ਸੰਬੰਧ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ਼ - ਆਪਣੀ ਇਕੋਡਿੰਗ ਸੈੱਟਅਪ ਦੀ ਜਾਂਚ ਕਰੋ"
-
-#: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-msgstr "\"filesink\" GStreamer ਪਲੱਗਿੰਨ ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕੀ ਹੈ - ਕਿਰਪਾ ਕਰਕੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-#: ../grecord/src/gsr-window.c:1690
+#: ../grecord/src/gsr-window.c:1950
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder element with file output plugins - you probably "
 "selected an invalid encoder"
-msgstr "ਫਾਇਲ਼ ਆਉਟਪੁੱਟ ਇਕਾਈ ਨਾਲ ਇੰਕੋਡਰ ਸੰਬੰਧ ਵਰਤਣ ਵਿੱਚ ਅਸਫਲ - ਤੁਸੀਂ ਗਲਤ ਇੰਕੋਡਰ ਚੁਣਿਆ ਹੈ"
+msgstr ""
+"ਫਾਇਲ਼ ਆਉਟਪੁੱਟ ਇਕਾਈ ਨਾਲ ਇੰਕੋਡਰ ਇਕਾਈ ਸਬੰਧ ਬਣਾਉਣ ਲਈ ਅਸਫਲ - ਸੰਭਵ "
+"ਤੌਰ 'ਤੇ ਤੁਸੀਂ ਗਲਤ ਇੰਕੋਡਰ ਚੁਣਿਆ ਹੈ"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1718
+#: ../grecord/src/gsr-window.c:2002
 msgid "_File"
 msgstr "ਫਾਇਲ(_F)"
 
-#: ../grecord/src/gsr-window.c:1720
+#: ../grecord/src/gsr-window.c:2004
 msgid "Create a new sample"
 msgstr "ਨਵਾਂ ਨਮੂਨਾ ਬਣਾਓ"
 
-#: ../grecord/src/gsr-window.c:1721
+#: ../grecord/src/gsr-window.c:2005
 msgid "_Open..."
 msgstr "ਖੋਲ੍ਹੋ(_O)..."
 
-#: ../grecord/src/gsr-window.c:1722
+#: ../grecord/src/gsr-window.c:2006
 msgid "Open a file"
 msgstr "ਇੱਕ ਫਾਇਲ ਖੋਲ੍ਹੋ"
 
-#: ../grecord/src/gsr-window.c:1724
+#: ../grecord/src/gsr-window.c:2008
 msgid "Save the current file"
 msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਨੂੰ ਸੰਭਾਲੋ"
 
-#: ../grecord/src/gsr-window.c:1725
+#: ../grecord/src/gsr-window.c:2009
 msgid "Save _As..."
 msgstr "ਇੰਞ ਸੰਭਾਲੋ(_A)..."
 
-#: ../grecord/src/gsr-window.c:1726
+#: ../grecord/src/gsr-window.c:2010
 msgid "Save the current file with a different name"
 msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਨੂੰ ਵੱਖਰੇ ਨਾਂ ਨਾਲ ਸੰਭਾਲੋ"
 
-#: ../grecord/src/gsr-window.c:1727
+#: ../grecord/src/gsr-window.c:2011
 msgid "Open Volu_me Control"
 msgstr "ਆਵਾਜ਼ ਕੰਟਰੋਲ ਖੋਲੋ(_m)"
 
-#: ../grecord/src/gsr-window.c:1728
+#: ../grecord/src/gsr-window.c:2012
 msgid "Open the audio mixer"
 msgstr "ਆਡੀਓ ਮਿਕਸਰ ਖੋਲੋ"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:2014
 msgid "Show information about the current file"
 msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਬਾਰੇ ਜਾਣਕਾਰੀ ਵੇਖਾਓ"
 
-#: ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:2016
 msgid "Close the current file"
 msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਬੰਦ ਕਰੋ"
 
-#: ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gsr-window.c:2018
 msgid "Quit the program"
 msgstr "ਕਾਰਜ ਵਿੱਚੋਂ ਬਾਹਰ"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1737
+#: ../grecord/src/gsr-window.c:2021
 msgid "_Control"
 msgstr "ਕੰਟਰੋਲ(_C)"
 
-#: ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2023
 msgid "Record sound"
 msgstr "ਧੁਨੀ ਰਿਕਾਰਡ"
 
-#: ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2025
 msgid "Play sound"
 msgstr "ਅਵਾਜ਼ ਚਲਾਓ"
 
-#: ../grecord/src/gsr-window.c:1743
+#: ../grecord/src/gsr-window.c:2027
 msgid "Stop sound"
 msgstr "ਆਵਾਜ਼ ਰੋਕੋ"
 
-#: ../grecord/src/gsr-window.c:1748
+#: ../grecord/src/gsr-window.c:2032
 msgid "Open the manual"
 msgstr "ਦਸਤਾਵੇਜ਼ ਖੋਲੋ"
 
-#: ../grecord/src/gsr-window.c:1750
+#: ../grecord/src/gsr-window.c:2034
 msgid "About this application"
 msgstr "ਇਸ ਕਾਰਜ ਬਾਰੇ"
 
-#: ../grecord/src/gsr-window.c:1847
+#: ../grecord/src/gsr-window.c:2155
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml ਨੂੰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਹੈ। ਪਰੋਗਰਾਮ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ"
 
-#: ../grecord/src/gsr-window.c:1869
+#: ../grecord/src/gsr-window.c:2178
 msgid "Open"
 msgstr "ਖੋਲ੍ਹੋ"
 
-#: ../grecord/src/gsr-window.c:1871
+#: ../grecord/src/gsr-window.c:2180
 msgid "Save"
 msgstr "ਸੰਭਾਲੋ"
 
-#: ../grecord/src/gsr-window.c:1873
+#: ../grecord/src/gsr-window.c:2182
 msgid "Save As"
 msgstr "ਇਸ ਤਰਾਂ ਸੰਭਾਲੋ"
 
-#: ../grecord/src/gsr-window.c:1926
+#: ../grecord/src/gsr-window.c:2236
+msgid "Record from input:"
+msgstr "ਇੰਪੁੱਟ ਲਈ ਰਿਕਾਰਡ:"
+
+#: ../grecord/src/gsr-window.c:2253
 msgid "Record as:"
 msgstr "ਇੰਞ ਰਿਕਾਰਡ:"
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:2291
 msgid "<none>"
 msgstr "<ਕੁਝ ਨਹੀ>"
 
-#: ../grecord/src/gsr-window.c:1973
+#: ../grecord/src/gsr-window.c:2300
 msgid "Length:"
 msgstr "ਲੰਬਾਈ:"
 
@@ -1686,7 +1690,7 @@ msgid "Adjust the volume level"
 msgstr "ਆਵਾਜ਼ ਪੱਧਰ ਨਿਰਧਾਰਨ"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:395
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
 msgstr "ਆਵਾਜ਼ ਕੰਟਰੋਲ"
 
@@ -1706,43 +1710,37 @@ msgstr "ਝਰੋਖੇ ਦੀ ਚੌੜਾਈ"
 msgid "Width of the Window to be displayed"
 msgstr "ਵੇਖਾਉਣ ਵਾਲੇ ਝਰੋਖੇ ਦੀ ਚੌੜਾਈ ਹੈ"
 
-#: ../gst-mixer/src/element.c:230
+#: ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "ਵਜਾਓ"
 
-#: ../gst-mixer/src/element.c:232
+#: ../gst-mixer/src/element.c:231
 msgid "Capture"
 msgstr "ਪ੍ਰਾਪਤ"
 
-#: ../gst-mixer/src/element.c:234
+#: ../gst-mixer/src/element.c:233
 msgid "Switches"
 msgstr "ਸਵਿੱਚਾਂ"
 
-#: ../gst-mixer/src/element.c:236
+#: ../gst-mixer/src/element.c:235
 msgid "Options"
 msgstr "ਚੋਣ"
 
-#. FIXME:
-#. * - maybe we want to rename the element to its actual name
-#. *     if we've found that?
-#.
-#. create element
-#: ../gst-mixer/src/main.c:85 ../gst-mixer/src/main.c:88
-#: ../gst-mixer/src/main.c:144
+#: ../gst-mixer/src/main.c:76
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "ਅਣਜਾਣ ਆਵਾਜ਼ ਕੰਟਰੋਲ %d"
 
-#: ../gst-mixer/src/main.c:276
+#: ../gst-mixer/src/main.c:217
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "ਕੋਈ ਅਵਾਜ਼ ਕੰਟੋਰਲ GStreamer ਪਲੱਗਿੰਨ ਅਤੇ/ਜਾਂ ਜੰਤਰ ਨਹੀ ਲੱਭਿਆ ਹੈ।"
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:107
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "ਆਵਾਜ਼ ਕੰਟਰੋਲ ਪਸੰਦ"
 
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "ਵੇਖਾਉਣ ਲਈ ਟਰੈਕ ਚੁਣੋ(_S):"
 
@@ -1782,35 +1780,35 @@ msgstr "ਟਰੈਕ %s: ਆਡੀਓ ਪ੍ਰਾਪਤ"
 msgid "%s Option Selection"
 msgstr "%s ਚੋਣ ਕਰੋ"
 
-#: ../gst-mixer/src/volume.c:135
+#: ../gst-mixer/src/volume.c:134
 msgid "mono"
 msgstr "ਮੋਨੋ"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "left"
 msgstr "ਖੱਬਾ"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "right"
 msgstr "ਸੱਜਾ"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:139
 msgid "front left"
 msgstr "ਮੁੱਖ ਖੱਬਾ"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:140
 msgid "front right"
 msgstr "ਮੁੱਖ ਸੱਜਾ"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:141
 msgid "rear left"
 msgstr "ਰੇਅਰ ਖੱਬਾ"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:142
 msgid "rear right"
 msgstr "ਸੱਜਾ"
 
-#: ../gst-mixer/src/volume.c:144
+#: ../gst-mixer/src/volume.c:143
 msgid "front center"
 msgstr "ਮੁੱਖ ਕੇਂਦਰ"
 
@@ -1818,45 +1816,50 @@ msgstr "ਮੁੱਖ ਕੇਂਦਰ"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:148
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:149
 msgid "side left"
 msgstr "ਖੱਬਾ ਪਾਸਾ"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:150
 msgid "side right"
 msgstr "ਸੱਜਾ ਪਾਸਾ"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:151
 msgid "unknown"
 msgstr "ਅਣਜਾਣ"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:158
+#: ../gst-mixer/src/volume.c:157
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s ਚੈਨਲ ਦੀ %s ਤੇ ਅਵਾਜ਼"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s"
 msgstr "ਟਰੈਕ %s"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:208
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%d ਚੈਨਲ ਟਰੈਕ %s ਲਈ"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "ਟਰੈਕ %s, ਚੈਨਲ %d"
 
-#: ../gst-mixer/src/volume.c:250
+#: ../gst-mixer/src/volume.c:231
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "ਇੱਕਠੇ %s ਲਈ ਚੈਨਲ ਤਾਲਾਬੰਦ"
+
+#: ../gst-mixer/src/volume.c:249
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "ਟਰੈਕ %s: ਚੈਨਲਾਂ ਨੂੰ ਇੱਕਠਾ ਰੱਖੋ"
@@ -1876,36 +1879,29 @@ msgstr "ਜੰਤਰ ਨੂੰ %s ਲਈ ਤਬਦੀਲ"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:442
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
 #, c-format
 msgid "Volume Control: %s"
 msgstr "ਆਵਾਜ਼ ਕੰਟਰੋਲ: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:387
 msgid "translator-credits"
 msgstr ""
 "ਅਮਨਪ੍ਰੀਤ ਸਿੰਘ ਆਲਮ (amanpreetalam@yahoo.com)\n"
 "Punjabi Open Source Tarcel\n"
 "http://punlinux.sf.net"
 
-#: ../gst-mixer/src/window.c:398
+#: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "ਗਨੋਮ/GStreamer-ਅਧਾਰਿਤ ਅਵਾਜ਼ ਕੰਟਰੋਲ ਸਹੂਲਤ ਹੈ।"
 
-#. Fatal error
-#: ../gstreamer-properties/gstreamer-properties.c:274
+#: ../gstreamer-properties/gstreamer-properties.c:381
 msgid "Failure instantiating main window"
 msgstr "ਮੁੱਖ ਝਰੋਖਾ ਪੇਸ਼ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
 
-#: ../gstreamer-properties/gstreamer-properties.c:309
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register."
-msgstr "ਰਜਿਸਟਰੀ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਨਿਕਾਰਾ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ gst-register ਚਲਾ ਕੇ ਅੱਪਡੇਟ ਕਰੋ।"
-
-#: ../gstreamer-properties/gstreamer-properties.c:332
+#: ../gstreamer-properties/gstreamer-properties.c:444
 msgid "Failed to load glade file; please check your installation."
 msgstr "ਗਲੇਡ ਫਾਇਲ ਲੋਡ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਇੰਸਟਾਲੇਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ।"
 
@@ -1975,14 +1971,14 @@ msgstr "ਪਾਇਪਲਾਇਨ(_P):"
 msgid "_Test"
 msgstr "ਜਾਂਚ(_T)"
 
-#: ../gstreamer-properties/pipeline-constants.c:65
-#: ../gstreamer-properties/pipeline-constants.c:94
-#: ../gstreamer-properties/pipeline-constants.c:113
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Custom"
 msgstr "ਸੋਧ"
 
-#: ../gstreamer-properties/pipeline-tests.c:119
+#: ../gstreamer-properties/pipeline-tests.c:130
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s' ਲਈ ਜਾਂਚ ਪਾਇਪ-ਲਾਇਨ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ"
@@ -2034,24 +2030,24 @@ msgstr "wav"
 msgid "_Edit"
 msgstr "ਸੋਧ(_E)"
 
-#: ../profiles/audio-profiles-edit.c:460
+#: ../profiles/audio-profiles-edit.c:492
 msgid "You must select one or more profiles to delete."
 msgstr "ਹਟਾਉਣ ਲਈ ਇੱਕ ਜਾਂ ਵਧੇਰੇ ਪ੍ਰੋਫਾਇਲ ਚੁਣੋ।"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:469
+#: ../profiles/audio-profiles-edit.c:501
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "ਇਹ ਪ੍ਰੋਫਾਇਲ ਹਟਾਉਣਾ ਹੈ?\n"
 msgstr[1] "%d ਪ੍ਰੋਫਾਇਲ ਹਟਾਉਣੇ ਹਨ?\n"
 
-#: ../profiles/audio-profiles-edit.c:488
+#: ../profiles/audio-profiles-edit.c:520
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "ਪ੍ਰੋਫਾਇਲ \"%s\" ਹਟਾਉਣਾ ਹੈ?"
 
-#: ../profiles/audio-profiles-edit.c:510
+#: ../profiles/audio-profiles-edit.c:542
 msgid "Delete Profile"
 msgstr "ਪ੍ਰੋਫਾਇਲ ਹਟਾਓ"
 
@@ -2067,20 +2063,20 @@ msgstr "ਪ੍ਰੋਫਾਇਲ ਹਟਾਓ"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:606
-msgid "Edit GMAudio Profiles"
-msgstr "GMAudio ਪ੍ਰੋਫਾਇਲ ਸੋਧ"
+#: ../profiles/audio-profiles-edit.c:638
+msgid "Edit GNOME Audio Profiles"
+msgstr "ਗਨੋਮ ਆਡੀਓ ਪਰੋਫਾਇਲ ਸੋਧ"
 
-#: ../profiles/audio-profiles-edit.c:659
+#: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
 msgstr "ਪ੍ਰੋਫਾਇਲ(_P):"
 
-#: ../profiles/audio-profiles-edit.c:887
+#: ../profiles/audio-profiles-edit.c:921
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਹੀ ਪ੍ਰੋਫਾਇਲ ਹੈ, ਨਾਂ ਹੈ \"%s\""
 
-#: ../profiles/audio-profiles-edit.c:912
+#: ../profiles/audio-profiles-edit.c:946
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "ਜੀਕਾਨਫ ਗਲਤੀ (ਸੁਧਾਰੋ): %s\n"
@@ -2173,10 +2169,8 @@ msgstr "CD ਪੱਧਰ, ਹਲਕਾ"
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr ""
-"ਆਡੀਓ ਰਿਕਾਰਡ ਪ੍ਰੋਫਾਇਲ ਦੀ ਸੂਚੀ ਇਹ ਸੂਚੀ ਅਧੀਨ-ਡਾਇਰੈਕਟਰੀਆਂ ਦੀਆਂ ਨਾਂ ਸਤਰਾਂ /system/"
-"gstreamer/audio/profiles ਦੇ ਅਨੁਸਾਰ ਰੱਖਦੀ ਹੈ।"
+"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgstr "ਆਡੀਓ ਰਿਕਾਰਡ ਪਰੋਫਾਇਲ ਦੀ ਸੂਚੀ ਇਹ ਸੂਚੀ ਅਧੀਨ-ਡਾਇਰੈਕਟਰੀਆਂ ਦੀਆਂ ਨਾਂ ਸਤਰਾਂ /system/gstreamer/@GST_MAJORMINOR@/audio/profiles ਦੇ ਅਨੁਸਾਰ ਰੱਖਦੀ ਹੈ।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2207,18 +2201,34 @@ msgstr ""
 "ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਵਰਤੋਂ।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid "Used for converting to voice-quality audio. Use this for recording speech."
-msgstr "ਆਵਾਜ਼-ਪੱਧਰ ਆਡੀਓ ਤੱਕ ਤਬਦੀਲ ਕੀਤਾ ਜਾਦਾ ਹੈ। ਇਸ ਨੂੰ ਆਵਾਜ਼ ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਵਰਤੋਂ।"
+msgid ""
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
+msgstr ""
+"ਲੂਜ਼-ਲਿਸ ਆਵਾਜ਼-ਗੁਣਵੱਤਾ ਆਡੀਓ ਤਬਰੀਲ ਕਰਨ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ। ਇਸ ਨੂੰ ਰਿਕਾਰਡਿੰਗ "
+"ਅਤੇ ਭਾਸ਼ਣ ਸੋਧਣ ਲਈ ਵਰਤੋਂ।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid "Voice"
-msgstr "ਆਵਾਜ਼"
+msgid ""
+"Used for converting to lossy voice-quality audio. Use this for recording "
+"speech that doesn't need to be edited."
+msgstr ""
+"ਇੱਕ ਲੂਜ਼ੀ ਆਵਾਜ-ਗੁਣਵੱਤਾ ਆਡੀਓ ਵਿੱਚ ਤਬਦੀਲ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਇਸ ਨੂੰ "
+"ਭਾਸ਼ਣ ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਨੂੰ ਸੋਧਣ ਦੀ ਲੋੜ ਨਾ ਪਵੇ।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-msgid "Whether or not this profile is to be used"
-msgstr "ਕੀ ਇਹ ਪ੍ਰੋਫਾਇਲ ਨੂੰ ਵਰਤਣਾ ਹੈ ਜਾਂ ਨਹੀ"
+msgid "Voice, Lossless"
+msgstr "ਆਵਾਜ਼ਾ, ਲੂਜ਼-ਲਿਸ"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid "Voice, Lossy"
+msgstr "ਆਵਾਜ਼, ਲੂਜ਼ੀ"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+msgid "Whether or not this profile is to be used"
+msgstr "ਕੀ ਇਹ ਪਰੋਫਾਇਲ ਨੂੰ ਵਰਤਣਾ ਹੈ ਜਾਂ ਨਹੀ"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
 msgstr "ਕੀ ਇਹ ਪ੍ਰੋਫਾਇਲ ਨੂੰ ਵਰਤਣਾ ਤੇ ਵੇਖਾਉਣ ਹੈ ਜਾਂ ਨਹੀ।"
 
