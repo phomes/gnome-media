@@ -1,4 +1,4 @@
-pixmapdir = $(datadir)/pixmaps/gnome-cd/themes/red-lcd-theme
+pixmapdir = $(datadir)/pixmaps/gnome-cd/themes/red-lcd
 
 BITMAPS = 		\
 	    top-left.png	\

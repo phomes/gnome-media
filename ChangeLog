@@ -1,3 +1,15 @@
+2006-01-29  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	* gnome-cd/display.c: (make_fullname):
+	* gnome-cd/images/None-theme/Makefile.am:
+	* gnome-cd/images/lcd-theme/Makefile.am:
+	* gnome-cd/images/media-theme/Makefile.am:
+	* gnome-cd/images/red-lcd-theme/Makefile.am:
+	* gnome-cd/theme.c: (theme_check):
+	  revert theme patch, since the list of themes gets built by
+	  listing all directories in the theme dir (ugh).
+	  Will fix by CVS moving the uninstalled dirs instead.
+
 2006-01-21  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	* configure.in:

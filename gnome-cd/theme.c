@@ -46,9 +46,8 @@ theme_check (const char *theme_dir, const char *theme_name)
 	char *theme_path, *tmp, *xml_file;
 
 	/* check if a dir named theme_name exists under theme_dir */
-	tmp = g_strconcat (theme_name, "-theme", NULL);
-	theme_path = g_build_filename (theme_dir, tmp, NULL);
-        g_free (tmp);
+	theme_path = g_build_filename (theme_dir, theme_name, NULL);
+
 	if (g_file_test (theme_path, G_FILE_TEST_IS_DIR) == FALSE) {
 		g_free (theme_path);
 		return NULL;

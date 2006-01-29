@@ -812,7 +812,7 @@ make_fullname (const char *theme_name,
 	char *image;
 	char *tmp;
 
-        tmp = g_strdup_printf ("%s-theme", theme_name);
+        tmp = g_strdup_printf ("%s", theme_name);
 
 	image = g_build_filename (THEME_DIR_UNINSTALLED, tmp, name, NULL);
         if (g_file_test (image,
