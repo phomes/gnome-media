@@ -40,6 +40,7 @@
 #define WID(s) glade_xml_get_widget (interface_xml, s)
 static GladeXML *interface_xml = NULL;
 static GtkDialog *main_window;
+static GConfClient *gconf_client; /* NULL */
 
 static gchar pipeline_editor_property[] = "gstp-editor";
 static gchar pipeline_desc_property[] = "gstp-pipe-desc";
@@ -54,16 +55,13 @@ gst_properties_gconf_get_full_key (const gchar * key)
 gchar *
 gst_properties_gconf_get_string (const gchar * key)
 {
-  GConfClient *client;
   GError *error = NULL;
   gchar *value = NULL;
   gchar *full_key;
 
   full_key = gst_properties_gconf_get_full_key (key);
 
-  client = gconf_client_get_default ();
-
-  value = gconf_client_get_string (client, full_key, &error);
+  value = gconf_client_get_string (gconf_client, full_key, &error);
   g_free (full_key);
 
   if (error) {
@@ -78,14 +76,12 @@ gst_properties_gconf_get_string (const gchar * key)
 void
 gst_properties_gconf_set_string (const gchar * key, const gchar * value)
 {
-  GConfClient *client;
   GError *error = NULL;
   gchar *full_key;
 
   full_key = gst_properties_gconf_get_full_key (key);
-  client = gconf_client_get_default ();
 
-  gconf_client_set_string (client, full_key, value, &error);
+  gconf_client_set_string (gconf_client, full_key, value, &error);
   g_free (full_key);
 
   if (error) {
@@ -434,6 +430,8 @@ main (int argc, char **argv)
         NULL);
   }
 
+  gconf_client = gconf_client_get_default ();
+
   if (!interface_xml) {
     GtkWidget *dialog;
 
@@ -453,6 +451,8 @@ main (int argc, char **argv)
 
   if (main_window)
     gtk_main ();
+
+  g_object_unref (gconf_client);
 
   return 0;
 }

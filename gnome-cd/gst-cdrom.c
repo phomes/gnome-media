@@ -1,6 +1,7 @@
 /*
  * gst-cdrom.c: Gstreamer Audio CD controlling functions.
  *
+ * Copyright (C) 2001 Iain Holmes <iain@ximian.com>
  * Copyright (C) 2005 Tim-Philipp Müller <tim centricular net>
  *
  * Remaining issues:
@@ -285,7 +286,8 @@ gst_cdrom_eject (GnomeCDRom * gnome_cdrom, GError ** error)
   } else {
     GST_DEBUG ("tray seems to be open, closing tray ...");
     /* Try to close the tray if it's open */
-    res = gnome_cdrom_close_tray (gnome_cdrom, error); ///// FIXME: use gst_cdrom_close_tray() directly once implemented /////
+    /* FIXME: use gst_cdrom_close_tray() directly once implemented */
+    res = gnome_cdrom_close_tray (gnome_cdrom, error);
   }
 
   /* FIXME: update our status in cdrom->priv->status as well? */
@@ -825,7 +827,7 @@ gst_cdrom_set_device (GnomeCDRom *gnome_cdrom, const char *dev, GError **err)
   return TRUE;
 }
 
-/********** FIXME: see if there's anything else we need to do here ******/
+/* FIXME: see if there's anything else we need to do here */
 
 static void
 gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
@@ -979,7 +981,7 @@ gst_cdrom_update_tray_status (GstCDRom * cdrom, GError ** error)
   return FALSE;
 }
 
-/********** FIXME: do tray status checking ******/
+/* FIXME: do tray status checking */
 
 static gboolean
 gst_cdrom_get_status (GnomeCDRom * gnome_cdrom, GnomeCDRomStatus ** status,
