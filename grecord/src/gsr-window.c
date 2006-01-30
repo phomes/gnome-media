@@ -1841,7 +1841,7 @@ make_record_source (GSRWindow *window)
         if (!gst_element_set_state (source, GST_STATE_READY)) {
 		show_error_dialog (NULL, NULL,
 			_("Your audio capture settings are invalid. "
-			  "Please correct them in the Multimediad settings."));
+			  "Please correct them in the Multimedia settings."));
 		return FALSE;
 	}
 	window->priv->source = source;
