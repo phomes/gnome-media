@@ -183,6 +183,31 @@ show_error_dialog (GtkWindow *win, const gchar *dbg, const gchar * format, ...)
 	g_free (s);
 }
 
+static void
+show_missing_known_element_error (GtkWindow *win, gchar *description,
+	gchar *element, gchar *plugin, gchar *module)
+{
+	show_error_dialog (win, NULL,
+            _("Could not create the GStreamer %s element.\n"
+	      "Please install the '%s' plug-in from the '%s' module.\n"
+	      "Verify that the installation is correct by running\n"
+              "    gst-inspect-0.10 %s\n"
+	      "and then restart gnome-sound-recorder."),
+            description, plugin, module, element);
+}
+
+static void
+show_profile_error (GtkWindow *win, gchar *debug, gchar *description,
+	const char *profile)
+{
+	gchar *first;
+
+	first = g_strdup_printf (description, profile);
+	show_error_dialog (win, debug, "%s%s", first,
+		  _("Please verify its settings.\n"
+		    "You may be missing the necessary plug-ins."));
+	g_free (first);
+}
 /* Why do we need this? when a bin changes from READY => NULL state, its
  * bus is set to flushing and we're unlikely to ever see any of its messages
  * if the bin's state reaches NULL before we/the watch in the main thread
@@ -1567,16 +1592,18 @@ make_play_pipeline (GSRWindow *window)
 
 	audiosink = gst_element_factory_make ("gconfaudiosink", "sink");
 	if (audiosink == NULL) {
-		show_error_dialog (NULL, NULL, _("Could not find GStreamer element "
-		                   "\"%s\" - please install it"), "gconfaudiosink");
+		show_missing_known_element_error (NULL,
+		    _("GConf audio output"), "gconfaudiosink", "gconfelements",
+		    "gst-plugins-good");
 		return NULL;
 	}
 
 	playbin = gst_element_factory_make ("playbin", "playbin");
 	if (playbin == NULL) {
 		gst_object_unref (audiosink);
-		show_error_dialog (NULL, NULL, _("Could not find GStreamer element "
-		                   "\"%s\" - please install it"), "playbin");
+		show_missing_known_element_error (NULL,
+		    _("Playback"), "playbin", "playback",
+		    "gst-plugins-base");
 		return NULL;
 	}
 
@@ -1803,8 +1830,9 @@ make_record_source (GSRWindow *window)
 
 	source = gst_element_factory_make ("gconfaudiosrc", "gconfaudiosource");
 	if (source == NULL) {
-		show_error_dialog (NULL, NULL, _("Could not find GStreamer plugin "
-		                   "\"%s\" - please install it"), "gconfaudiosrc");
+		show_missing_known_element_error (NULL,
+		    _("GConf audio recording"), "gconfaudiosrc",
+		    "gconfelements", "gst-plugins-good");
 		return FALSE;
 	}
 
@@ -1812,8 +1840,8 @@ make_record_source (GSRWindow *window)
 	/* FIXME: maybe we want to trap errors in this case ? */
         if (!gst_element_set_state (source, GST_STATE_READY)) {
 		show_error_dialog (NULL, NULL,
-			_("Could not activate GStreamer plugin "
-		                   "\"%s\""), "gconfaudiosrc");
+			_("Your audio capture settings are invalid. "
+			  "Please correct them in the Multimediad settings."));
 		return FALSE;
 	}
 	window->priv->source = source;
@@ -1888,6 +1916,7 @@ make_record_pipeline (GSRWindow *window)
 	GstElement *encoder, *source, *filesink;
 	GError *err = NULL;
 	gchar *pipeline_desc;
+	const char *name;
 
 	source = window->priv->source;
 
@@ -1895,8 +1924,9 @@ make_record_pipeline (GSRWindow *window)
 	filesink = gst_element_factory_make ("filesink", "sink");
 	if (filesink == NULL)
 	{
-		show_error_dialog (NULL, NULL, _("Could not find GStreamer plugin "
-		                   "\"%s\" - please install it"), "filesink");
+		show_missing_known_element_error (NULL,
+		    _("file output"), "filesink", "coreelements",
+		    "gstreamer");
 		gst_object_unref (source);
 		return NULL;
 	}
@@ -1911,6 +1941,7 @@ make_record_pipeline (GSRWindow *window)
 
 	profile = gm_audio_profile_choose_get_active (window->priv->profile);
 	profile_pipeline_desc = gm_audio_profile_get_pipeline (profile);
+	name = gm_audio_profile_get_name (profile);
 
 	GST_DEBUG ("encoder profile pipeline: '%s'",
 		GST_STR_NULL (profile_pipeline_desc));
@@ -1921,9 +1952,9 @@ make_record_pipeline (GSRWindow *window)
 	pipeline_desc = NULL;
 
 	if (err) {
-		show_error_dialog (NULL, err->message, _("Failed to create GStreamer "
-				   "encoder plugins - check your encoding setup."));
-		g_printerr ("Failed to create GStreamer encoder plugins [%s]: %s",
+		show_profile_error (NULL, err->message,
+			_("Could not parse the '%s' audio profile. "), name);
+		g_printerr ("Failed to create GStreamer encoder plugins [%s]: %s\n",
 		           profile_pipeline_desc, err->message);
 		g_error_free (err);
 		gst_object_unref (pipeline->pipeline);
@@ -1937,9 +1968,9 @@ make_record_pipeline (GSRWindow *window)
 
 	/* now link it all together */
 	if (!gst_element_link (source, encoder)) {
-		show_error_dialog (NULL, NULL, _("Failed to link input element "
-		                   "with encoder plugins - you probably "
-		                   "selected an invalid encoder"));
+		show_profile_error (NULL, err->message,
+			_("Could not capture using the '%s' audio profile. "),
+			name);
 		g_error_free (err);
 		gst_object_unref (pipeline->pipeline);
 		g_free (pipeline);
@@ -1947,9 +1978,9 @@ make_record_pipeline (GSRWindow *window)
 	}
 
 	if (!gst_element_link (encoder, filesink)) {
-		show_error_dialog (NULL, NULL, _("Failed to link encoder element "
-		                   "with file output plugins - you probably "
-		                   "selected an invalid encoder"));
+		show_profile_error (NULL, err->message,
+			_("Could not write to a file using the '%s' audio profile. "),
+			name);
 		g_error_free (err);
 		gst_object_unref (pipeline->pipeline);
 		g_free (pipeline);
