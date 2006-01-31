@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-29 15:25+0700\n"
+"POT-Creation-Date: 2006-01-31 10:07+0700\n"
+"PO-Revision-Date: 2006-01-31 10:21+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n>\n"
 "MIME-Version: 1.0\n"
@@ -1358,12 +1358,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"ไม่สามารถสร้างองค์ประกอบ %s สำหรับ GStreamer\n"
+"กรุณาติดตั้งปลั๊กอิน '%s' จากมอดูล '%s'\n"
+"คุณสามารถตรวจสอบการติดตั้งว่าถูกต้องหรือไม่ โดยเรียกคำสั่ง\n"
+"    gst-inspect-0.10 %s\n"
+"แล้วเริ่มโปรแกรม gnome-sound-recorder ใหม่"
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"กรุณาตรวจสอบค่าตั้งดังกล่าว\n"
+"คุณอาจไม่ได้ติดตั้งปลั๊กอินที่จำเป็น"
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1554,7 +1561,7 @@ msgstr "กำลังเล่น..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "ค่าตั้ง GConf สำหรับช่องเสียงออก"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1565,35 +1572,34 @@ msgid "Recording..."
 msgstr "กำลังอัดเสียง..."
 
 #: ../grecord/src/gsr-window.c:1834
-#, fuzzy
 msgid "GConf audio recording"
-msgstr "เริ่มบันทึกเสียง"
+msgstr "ค่าตั้ง GConf สำหรับการอัดเสียง"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"ค่าตั้งการจับสัญญาณเสียงของคุณไม่ถูกต้อง กรุณาแก้ไขในการตั้งค่าระบบสื่อผสม"
 
 #: ../grecord/src/gsr-window.c:1928
-#, fuzzy
 msgid "file output"
-msgstr "ช่องเสียบหูฟัง"
+msgstr "ช่องเขียนออกแฟ้ม"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "ชื่อสั้นๆ ของโพรไฟล์เสียง"
+msgstr "ไม่สามารถแจงโพรไฟล์เสียง '%s'"
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "ชื่อสั้นๆ ของโพรไฟล์เสียง"
+msgstr "ไม่สามารถจับสัญญาณเสียงด้วยโพรไฟล์เสียง '%s'"
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "ไม่สามารถเขียนลงแฟ้มด้วยโพรไฟล์เสียง '%s'"
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1744,9 +1750,8 @@ msgid "Unknown Volume Control %d"
 msgstr "เครื่องมือควบคุมระดับเสียงไม่ทราบชื่อ %d"
 
 #: ../gst-mixer/src/main.c:217
-#, fuzzy
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "ไม่พบองค์ประกอบ และ/หรือ อุปกรณ์ควบคุมระดับเสียง"
+msgstr "ไม่พบปลั๊กอิน และ/หรือ อุปกรณ์ควบคุมระดับเสียง"
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1935,14 +1940,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>องค์ประกอบสัญญาณเข้าปริยาย</b>"
+msgstr "<b>ปลั๊กอินสัญญาณเข้าปริยาย</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>องค์ประกอบสัญญาณออกปริยาย</b>"
+msgstr "<b>ปลั๊กอินสัญญาณออกปริยาย</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
