@@ -1,18 +1,18 @@
 # Serbian translation of gnome-media
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005, 2006.
 #
 # This file is distributed under the same license as the gnome-media package.
 #
 # Maintainer: Данило Шеган <dsegan@gmx.net>
-# Игор Несторовић <igor@prevod.org>, 2005
+# Reviewed on 2005-08-08 by: Игор Несторовић <igor@prevod.org>"
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-08-08 14:42+0200\n"
-"Last-Translator: Игор Несторовић <igor@prevod.org>\n"
+"POT-Creation-Date: 2006-01-31 11:32+0100\n"
+"PO-Revision-Date: 2006-01-31 11:52+0200\n"
+"Last-Translator: Слободан Д. Средојевић <slobo@akrep.be>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -467,7 +467,7 @@ msgstr "Нови талас"
 
 #: ../cddb-slave2/cddb-track-editor.c:145
 msgid "Psychedelic"
-msgstr "Психоделик"
+msgstr "Психоделична"
 
 #: ../cddb-slave2/cddb-track-editor.c:146
 msgid "Rave"
@@ -539,7 +539,7 @@ msgstr "Фаст-фјужон"
 
 #: ../cddb-slave2/cddb-track-editor.c:163
 msgid "Bebop"
-msgstr "Бибоп"
+msgstr "Бибап"
 
 #: ../cddb-slave2/cddb-track-editor.c:164
 msgid "Latin"
@@ -946,20 +946,20 @@ msgid "Pause"
 msgstr "Пауза"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Пушта %s — %s\n"
-"Тренутно време: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
 msgid ""
 "Playing\n"
 ": %s"
 msgstr "Пуштам"
+"Пушта\n"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -971,7 +971,7 @@ msgstr "Паузирано"
 #: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
-msgstr "ЦД програм"
+msgstr "Слушање музичких дискова"
 
 #: ../gnome-cd/callbacks.c:694
 msgid "Stopped"
@@ -983,7 +983,7 @@ msgstr "Грешка са диском"
 
 #: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
 msgid "No disc"
-msgstr "Нема диска"
+msgstr "Нема носача звука"
 
 #: ../gnome-cd/callbacks.c:810
 msgid "Empty disc"
@@ -991,7 +991,7 @@ msgstr "Празан диск"
 
 #: ../gnome-cd/callbacks.c:840
 msgid "Drive open"
-msgstr "Уређај је отворен"
+msgstr "Фиока је отворена"
 
 #: ../gnome-cd/callbacks.c:866
 msgid "Data CD"
@@ -1236,7 +1236,7 @@ msgstr "Путања до уређаја"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Да ли да прикаже преостало време ?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1244,7 +1244,7 @@ msgstr "Избаци ЦД при затварању ЦД програма?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Како треба приказати време при слушању музике ?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1274,7 +1274,7 @@ msgstr "Када се покрене ЦД програм, да ли одмах �
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Не могу да избацим носач звука из фиоке: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1364,12 +1364,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Не могу пронаћи GStreamer елеменат %s.\n"
+"Молим инсталирајте додатак „%s“ из модула „%s“.\n"
+"Проверите да ли сте то успешно урадили позивањем наредбе\n"
+"    gst-inspect-0.10 %s\n"
+"а након тога поново покрените снимање звука."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Молим потврдите његова подешавања.\n"
+"Можда бам недостају неопходни додаци."
 
 # bug: plural-forms
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
@@ -1409,7 +1416,6 @@ msgid "second"
 msgstr "секунда"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "Отвори датотеку"
 
@@ -1501,9 +1507,8 @@ msgid "%.0f kb/s"
 msgstr "%.0f кб/с"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f кб/с"
+msgstr "%.0f kb/s (Процена)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1568,7 +1573,7 @@ msgstr "Пушта..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "GCOnf звучни излаз"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1579,35 +1584,33 @@ msgid "Recording..."
 msgstr "Снима..."
 
 #: ../grecord/src/gsr-window.c:1834
-#, fuzzy
 msgid "GConf audio recording"
-msgstr "Почни са снимањем"
+msgstr "GConf снимање звука"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Ваша подешавања за снимање звука су неисправна. Молим исправите их у "
+"подешаваљима мултимедије."
 
 #: ../grecord/src/gsr-window.c:1928
-#, fuzzy
 msgid "file output"
-msgstr "Излаз телефона"
+msgstr "излазна датотека"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Кратко име за аудио профил"
+msgstr "Не могу рашчланити звучну поставку „%s“. "
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Кратко име за аудио профил"
+msgstr "Не могу снимати звук користећи звучну поставку „%s“. "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Не могу да уписујем у датотеку користећи звучну поставку „%s“. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1639,12 +1642,10 @@ msgid "Save the current file with a different name"
 msgstr "Сачувај текућу датотеку под другим именом"
 
 #: ../grecord/src/gsr-window.c:2042
-#, fuzzy
 msgid "Open Volu_me Control"
-msgstr "Управљање јачином звука"
+msgstr "Управљање _јачином звука"
 
 #: ../grecord/src/gsr-window.c:2043
-#, fuzzy
 msgid "Open the audio mixer"
 msgstr "Покрени аудио миксер"
 
@@ -1702,14 +1703,12 @@ msgid "Save As"
 msgstr "Сачувај као"
 
 #: ../grecord/src/gsr-window.c:2267
-#, fuzzy
 msgid "Record from input:"
-msgstr "Сними исечке звука"
+msgstr "Снимај са улаза:"
 
 #: ../grecord/src/gsr-window.c:2284
-#, fuzzy
 msgid "Record as:"
-msgstr "Сними као"
+msgstr "Сними као:"
 
 #: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
@@ -1762,7 +1761,6 @@ msgid "Unknown Volume Control %d"
 msgstr "Непознато управљање јачином звука %d"
 
 #: ../gst-mixer/src/main.c:217
-#, fuzzy
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Нисам нашао елементе и/или уређаје за управљање јачином звука."
 
@@ -1886,9 +1884,8 @@ msgid "Track %s, channel %d"
 msgstr "Нумера %s, канал %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
 msgid "Lock channels for %s together"
-msgstr "Нумера %s: привежи канале заједно"
+msgstr "Закључај заједно све канале за %s"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1952,14 +1949,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Уобичајени излаз</b>"
+msgstr "<b>Уобичајени улазни додатак</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Уобичајени излаз</b>"
+msgstr "<b>Уобичајени излазни додатак</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2102,9 +2097,8 @@ msgstr "Обриши профил"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Уреди звучне профиле Гнома"
+msgstr "Уреди Гномове звучне поставке"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2213,13 +2207,12 @@ msgid "CD Quality, Lossy"
 msgstr "ЦД квалитет, са губитком"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"Списак профила за снимање звука. Списак садржи ниске које именују "
-"поддиректоријуме у односу на /system/gstreamer/audio/profiles."
+"Списак поставки за снимање звука. Списак садржи ниске које именују "
+"поддиректоријуме у односу на /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2251,31 +2244,28 @@ msgstr ""
 "губицима. Користите ово за извлачење са ЦД-а и снимања са радија."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Користи се за претварање у звук гласовног квалитета. Користите ово за "
+"Користи се за претварање у звук без губитака гласовног квалитета. Користите ово за "
 "снимање говора."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Користи се за претварање у звук гласовног квалитета. Користите ово за "
+"Користи се за претварање у звук са губицима гласовног квалитета. Користите ово за "
 "снимање говора."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "ЦД квалитет, без губитака"
+msgstr "Глас, без губитака"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Глас, са губицима"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
