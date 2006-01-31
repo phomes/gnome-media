@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media (gnome-2-8)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-21 21:28+0200\n"
+"POT-Creation-Date: 2006-01-30 22:04+0100\n"
 "PO-Revision-Date: 2006-01-21 21:35+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -156,9 +156,9 @@ msgid "Unknown / Unknown"
 msgstr "Tuntematon / Tuntematon"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:958
-#: ../grecord/src/gsr-window.c:968 ../grecord/src/gsr-window.c:984
-#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1339
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -1088,7 +1088,7 @@ msgid "_Eject disc"
 msgstr "_Levy ulos"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2030
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
 msgid "_Help"
 msgstr "O_hje"
 
@@ -1280,7 +1280,7 @@ msgstr "Mitä äänenvoimakkuuden säädintä CD-soitin käyttää käynnistyess
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Aloitetaanko CD:n soittaminen CD-soittimen käynnistyessä"
 
-#: ../gnome-cd/gst-cdrom.c:278
+#: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "CD-levyä ei voi poistaa asemasta: %s"
@@ -1339,7 +1339,7 @@ msgid "Record sound clips"
 msgstr "Äänitä äänitiedostoja"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1181
+#: ../grecord/src/gsr-window.c:1206
 msgid "Sound Recorder"
 msgstr "Ääninauhuri"
 
@@ -1352,54 +1352,70 @@ msgstr "Ääninauhuri"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:769
-#: ../grecord/src/gsr-window.c:1665 ../grecord/src/gsr-window.c:2496
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
+#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1667
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
 #, c-format
 msgid "Untitled-%d"
 msgstr "Nimetön-%d"
 
-#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
-#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
+#: ../grecord/src/gsr-window.c:191
+#, c-format
+msgid ""
+"Could not create the GStreamer %s element.\n"
+"Please install the '%s' plug-in from the '%s' module.\n"
+"Verify that the installation is correct by running\n"
+"    gst-inspect-0.10 %s\n"
+"and then restart gnome-sound-recorder."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:207
+msgid ""
+"Please verify its settings.\n"
+"You may be missing the necessary plug-ins."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hours"
 msgstr "tuntia"
 
-#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
-#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "tunti"
 
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
-#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minutes"
 msgstr "minuuttia"
 
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
-#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minute"
 msgstr "minuutti"
 
 #
-#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
-#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:301
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:326
 msgid "seconds"
 msgstr "sekuntia"
 
 #
-#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
-#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:301
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "sekunti"
 
-#: ../grecord/src/gsr-window.c:336
+#: ../grecord/src/gsr-window.c:361
 msgid "Open a File"
 msgstr "Avaa tiedosto"
 
-#: ../grecord/src/gsr-window.c:406
+#: ../grecord/src/gsr-window.c:431
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1408,17 +1424,17 @@ msgstr ""
 "Tiedosto ei voi avata:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:551 ../grecord/src/gsr-window.c:1470
-#: ../grecord/src/gsr-window.c:1716 ../grecord/src/gsr-window.c:2325
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
+#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
 msgid "Ready"
 msgstr "Valmis"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:604
+#: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
 msgstr "_Korvaa"
 
-#: ../grecord/src/gsr-window.c:621
+#: ../grecord/src/gsr-window.c:646
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1427,123 +1443,123 @@ msgstr ""
 "Tiedosto \"%s\" on jo olemassa.\n"
 "Haluatko korvata sen?"
 
-#: ../grecord/src/gsr-window.c:671 ../grecord/src/gsr-window.c:678
+#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Tiedostoa \"%s\" ei voi tallentaa"
 
-#: ../grecord/src/gsr-window.c:695
+#: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
 msgstr "Tallenna tiedosto nimeltä"
 
-#: ../grecord/src/gsr-window.c:789
+#: ../grecord/src/gsr-window.c:814
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ei ole asennettuna polussa."
 
-#: ../grecord/src/gsr-window.c:798
+#: ../grecord/src/gsr-window.c:823
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Virhe käynnistettäessä kohdetta \"%s\": %s"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:845
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Tallennetaanko muutokset tiedostoon \"%s\" ennen sulkemista?"
 
-#: ../grecord/src/gsr-window.c:831
+#: ../grecord/src/gsr-window.c:856
 msgid "Close _without Saving"
 msgstr "Sulje _tallentamatta"
 
-#: ../grecord/src/gsr-window.c:838
+#: ../grecord/src/gsr-window.c:863
 msgid "Question"
 msgstr "Kysymys"
 
-#: ../grecord/src/gsr-window.c:930
+#: ../grecord/src/gsr-window.c:955
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Ei tallennettu)"
 
-#: ../grecord/src/gsr-window.c:945
+#: ../grecord/src/gsr-window.c:970
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu tavu)"
 msgstr[1] "%s (%llu tavua)"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:974
 msgid "Unknown size"
 msgstr "Tuntematon koko"
 
-#: ../grecord/src/gsr-window.c:970
+#: ../grecord/src/gsr-window.c:995
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:978
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kt/s"
 
-#: ../grecord/src/gsr-window.c:981
+#: ../grecord/src/gsr-window.c:1006
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kt/s (arvioitu)"
 
-#: ../grecord/src/gsr-window.c:996
+#: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:999
+#: ../grecord/src/gsr-window.c:1024
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
 #
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1051
 #, c-format
 msgid "%s Information"
 msgstr "%s - Tiedot"
 
 #
-#: ../grecord/src/gsr-window.c:1050 ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
 msgid "File Information"
 msgstr "Tiedoston tiedot"
 
-#: ../grecord/src/gsr-window.c:1065
+#: ../grecord/src/gsr-window.c:1090
 msgid "Folder:"
 msgstr "Kansio:"
 
-#: ../grecord/src/gsr-window.c:1071 ../grecord/src/gsr-window.c:2285
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
 msgid "Filename:"
 msgstr "Tiedostonimi:"
 
-#: ../grecord/src/gsr-window.c:1077
+#: ../grecord/src/gsr-window.c:1102
 msgid "File size:"
 msgstr "Tiedoston koko:"
 
-#: ../grecord/src/gsr-window.c:1086
+#: ../grecord/src/gsr-window.c:1111
 msgid "Audio Information"
 msgstr "Äänitiedot"
 
 #
-#: ../grecord/src/gsr-window.c:1101
+#: ../grecord/src/gsr-window.c:1126
 msgid "File duration:"
 msgstr "Tiedoston kesto:"
 
-#: ../grecord/src/gsr-window.c:1107
+#: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
 msgstr "Kanavien määrä:"
 
-#: ../grecord/src/gsr-window.c:1113
+#: ../grecord/src/gsr-window.c:1138
 msgid "Sample rate:"
 msgstr "Äänitaajuus:"
 
 # Onkohan tälle jotain vakiintunutta suomennosta?
-#: ../grecord/src/gsr-window.c:1119
+#: ../grecord/src/gsr-window.c:1144
 msgid "Bit rate:"
 msgstr "Bittinopeus:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1209
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1551,157 +1567,156 @@ msgstr ""
 "Ääninauhuri Gnomelle\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1442
+#: ../grecord/src/gsr-window.c:1467
 msgid "Playing..."
 msgstr "Soitetaan..."
 
-#: ../grecord/src/gsr-window.c:1570 ../grecord/src/gsr-window.c:1578
-#, c-format
-msgid "Could not find GStreamer element \"%s\" - please install it"
+#: ../grecord/src/gsr-window.c:1596
+msgid "GConf audio output"
 msgstr ""
-"GStreamer-liitännäistä \"%s\" ei löydy - ole hyvä ja asenna se "
 
-#: ../grecord/src/gsr-window.c:1656
+#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+msgid "Playback"
+msgstr "Soitto"
+
+#: ../grecord/src/gsr-window.c:1683
 msgid "Recording..."
 msgstr "Äänitetään..."
 
-#: ../grecord/src/gsr-window.c:1806 ../grecord/src/gsr-window.c:1898
-#, c-format
-msgid "Could not find GStreamer plugin \"%s\" - please install it"
+#: ../grecord/src/gsr-window.c:1834
+msgid "GConf audio recording"
 msgstr ""
-"GStreamer-liitännäistä \"%s\" ei löydy - asenna se"
 
-#: ../grecord/src/gsr-window.c:1815
-#, c-format
-msgid "Could not activate GStreamer plugin \"%s\""
-msgstr "Gstreamer-liitännäistä \"%s\" ei voi aktivoida"
-
-#: ../grecord/src/gsr-window.c:1924
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup."
-msgstr "Gstreamer-koodausliittännäisen luominen epäonnistui - tarkista "
-"koodausasetuksesi."
-
-#: ../grecord/src/gsr-window.c:1940
+#: ../grecord/src/gsr-window.c:1843
 msgid ""
-"Failed to link input element with encoder plugins - you probably selected an "
-"invalid encoder"
+"Your audio capture settings are invalid. Please correct them in the "
+"Multimediad settings."
 msgstr ""
-"Koodausliitännäisen linkittäminen lähdeliitännäiseen epäonnistui - "
-"valitsit todennäköisesti virheellisen koodausohjelman"
 
-#: ../grecord/src/gsr-window.c:1950
-msgid ""
-"Failed to link encoder element with file output plugins - you probably "
-"selected an invalid encoder"
+#: ../grecord/src/gsr-window.c:1928
+msgid "file output"
 msgstr ""
-"Koodausliitännäisen liittäminen tiedoston kirjoitusliitännäiseen epäonnistui "
-"- valitsit todennäköisesti virheellisen koodausohjelman"
+
+#: ../grecord/src/gsr-window.c:1956
+#, fuzzy, c-format
+msgid "Could not parse the '%s' audio profile. "
+msgstr "Lyhyt nimi ääniprofiilille"
+
+#: ../grecord/src/gsr-window.c:1972
+#, fuzzy, c-format
+msgid "Could not capture using the '%s' audio profile. "
+msgstr "Lyhyt nimi ääniprofiilille"
+
+#: ../grecord/src/gsr-window.c:1982
+#, c-format
+msgid "Could not write to a file using the '%s' audio profile. "
+msgstr ""
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2002
+#: ../grecord/src/gsr-window.c:2033
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../grecord/src/gsr-window.c:2004
+#: ../grecord/src/gsr-window.c:2035
 msgid "Create a new sample"
 msgstr "Luo uusi äänitiedosto"
 
-#: ../grecord/src/gsr-window.c:2005
+#: ../grecord/src/gsr-window.c:2036
 msgid "_Open..."
 msgstr "_Avaa..."
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2037
 msgid "Open a file"
 msgstr "Avaa tiedosto"
 
-#: ../grecord/src/gsr-window.c:2008
+#: ../grecord/src/gsr-window.c:2039
 msgid "Save the current file"
 msgstr "Tallenna nykyinen tiedosto"
 
-#: ../grecord/src/gsr-window.c:2009
+#: ../grecord/src/gsr-window.c:2040
 msgid "Save _As..."
 msgstr "Tallenna _nimellä..."
 
-#: ../grecord/src/gsr-window.c:2010
+#: ../grecord/src/gsr-window.c:2041
 msgid "Save the current file with a different name"
 msgstr "Tallenna nykyinen tiedosto eri tiedostonimellä"
 
-#: ../grecord/src/gsr-window.c:2011
+#: ../grecord/src/gsr-window.c:2042
 msgid "Open Volu_me Control"
 msgstr "Avaa Äänen_hallinta"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2043
 msgid "Open the audio mixer"
 msgstr "Avaa äänenvoimakkuuden hallinta"
 
-#: ../grecord/src/gsr-window.c:2014
+#: ../grecord/src/gsr-window.c:2045
 msgid "Show information about the current file"
 msgstr "Näytä tietoja nykyisestä tiedostosta"
 
-#: ../grecord/src/gsr-window.c:2016
+#: ../grecord/src/gsr-window.c:2047
 msgid "Close the current file"
 msgstr "Sulje nykyinen tiedosto"
 
-#: ../grecord/src/gsr-window.c:2018
+#: ../grecord/src/gsr-window.c:2049
 msgid "Quit the program"
 msgstr "Lopeta ohjelma"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2021
+#: ../grecord/src/gsr-window.c:2052
 msgid "_Control"
 msgstr "_Hallinta"
 
-#: ../grecord/src/gsr-window.c:2023
+#: ../grecord/src/gsr-window.c:2054
 msgid "Record sound"
 msgstr "Äänitä äänitiedostoja"
 
-#: ../grecord/src/gsr-window.c:2025
+#: ../grecord/src/gsr-window.c:2056
 msgid "Play sound"
 msgstr "Soita ääni"
 
-#: ../grecord/src/gsr-window.c:2027
+#: ../grecord/src/gsr-window.c:2058
 msgid "Stop sound"
 msgstr "Pysäytä ääni"
 
-#: ../grecord/src/gsr-window.c:2032
+#: ../grecord/src/gsr-window.c:2063
 msgid "Open the manual"
 msgstr "Avaa manuaali"
 
-#: ../grecord/src/gsr-window.c:2034
+#: ../grecord/src/gsr-window.c:2065
 msgid "About this application"
 msgstr "Tietoja tästä ohjelmasta"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2186
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Tiedostoa ui.xml ei voi avata. Voi olla ettei ohjelma ole oikein asennettu."
 
-#: ../grecord/src/gsr-window.c:2178
+#: ../grecord/src/gsr-window.c:2209
 msgid "Open"
 msgstr "Avaa"
 
-#: ../grecord/src/gsr-window.c:2180
+#: ../grecord/src/gsr-window.c:2211
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../grecord/src/gsr-window.c:2182
+#: ../grecord/src/gsr-window.c:2213
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: ../grecord/src/gsr-window.c:2236
+#: ../grecord/src/gsr-window.c:2267
 msgid "Record from input:"
 msgstr "Äänitä sisääntulosta:"
 
 #
-#: ../grecord/src/gsr-window.c:2253
+#: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
 msgstr "Äänitä muodossa:"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
 msgstr "<ei mitään>"
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2331
 msgid "Length:"
 msgstr "Pituus:"
 
@@ -1729,10 +1744,6 @@ msgstr "Ikkunan leveys"
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
 msgid "Width of the Window to be displayed"
 msgstr "Näytettävän ikkunan leveys"
-
-#: ../gst-mixer/src/element.c:229
-msgid "Playback"
-msgstr "Soitto"
 
 #: ../gst-mixer/src/element.c:231
 msgid "Capture"
@@ -1920,11 +1931,11 @@ msgstr ""
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/Gstreamer-pohjainen äänenhallintaohjelma"
 
-#: ../gstreamer-properties/gstreamer-properties.c:381
+#: ../gstreamer-properties/gstreamer-properties.c:377
 msgid "Failure instantiating main window"
 msgstr "Virhe luotaessa päikkunaa"
 
-#: ../gstreamer-properties/gstreamer-properties.c:444
+#: ../gstreamer-properties/gstreamer-properties.c:442
 msgid "Failed to load glade file; please check your installation."
 msgstr ""
 "Glade-tiedoston avaus epäonnistui. Tarkista että ohjelman on asennettu "
@@ -2206,7 +2217,8 @@ msgid ""
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Luettelo äänitysprofiileista. Luettelo sisältää merkkijonoja, jotka nimeävät "
-"alihakemistoja suhteessa polkuun /system/gstreamer/$GST_MAJORMINOR/audio/profiles."
+"alihakemistoja suhteessa polkuun /system/gstreamer/$GST_MAJORMINOR/audio/"
+"profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2242,16 +2254,16 @@ msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Käytetään muuntamaan häviöttömäksi puhetasoiseksi ääneksi. Käytä tätä "
-"puheen äännitämiseen ja muokaamiseen."
+"Käytetään muuntamaan häviöttömäksi puhetasoiseksi ääneksi. Käytä tätä puheen "
+"äännitämiseen ja muokaamiseen."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Käytetään muuntamaan häviölliseksi puhetasoiseksi ääneksi. Käytä tätä "
-"puheen äännitämiseen, kun puhetta ei tarvitse enää muokata."
+"Käytetään muuntamaan häviölliseksi puhetasoiseksi ääneksi. Käytä tätä puheen "
+"äännitämiseen, kun puhetta ei tarvitse enää muokata."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid "Voice, Lossless"
@@ -2337,6 +2349,35 @@ msgstr "Tarkkaile ulostulon äänenvoimakkuutta"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Äänenvoimakkuusmonitori"
+
+#~ msgid "Could not find GStreamer element \"%s\" - please install it"
+#~ msgstr "GStreamer-liitännäistä \"%s\" ei löydy - ole hyvä ja asenna se "
+
+#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
+#~ msgstr "GStreamer-liitännäistä \"%s\" ei löydy - asenna se"
+
+#~ msgid "Could not activate GStreamer plugin \"%s\""
+#~ msgstr "Gstreamer-liitännäistä \"%s\" ei voi aktivoida"
+
+#~ msgid ""
+#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
+#~ msgstr ""
+#~ "Gstreamer-koodausliittännäisen luominen epäonnistui - tarkista "
+#~ "koodausasetuksesi."
+
+#~ msgid ""
+#~ "Failed to link input element with encoder plugins - you probably selected "
+#~ "an invalid encoder"
+#~ msgstr ""
+#~ "Koodausliitännäisen linkittäminen lähdeliitännäiseen epäonnistui - "
+#~ "valitsit todennäköisesti virheellisen koodausohjelman"
+
+#~ msgid ""
+#~ "Failed to link encoder element with file output plugins - you probably "
+#~ "selected an invalid encoder"
+#~ msgstr ""
+#~ "Koodausliitännäisen liittäminen tiedoston kirjoitusliitännäiseen "
+#~ "epäonnistui - valitsit todennäköisesti virheellisen koodausohjelman"
 
 #~ msgid ""
 #~ "Registry is not present or it is corrupted, please update it by running "

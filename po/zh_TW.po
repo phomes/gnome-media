@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-10 23:08+0100\n"
+"POT-Creation-Date: 2006-01-30 22:04+0100\n"
 "PO-Revision-Date: 2006-01-11 13:10+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
 "Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
@@ -155,9 +155,9 @@ msgid "Unknown / Unknown"
 msgstr "不明 / 不明"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:929
-#: ../grecord/src/gsr-window.c:938 ../grecord/src/gsr-window.c:947
-#: ../grecord/src/gsr-window.c:957 ../grecord/src/gsr-window.c:1277
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
 msgid "Unknown"
 msgstr "不明"
 
@@ -1116,7 +1116,7 @@ msgid "_Eject disc"
 msgstr "退片(_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1746
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
 msgid "_Help"
 msgstr "求助(_H)"
 
@@ -1233,31 +1233,24 @@ msgstr "退出 CD"
 msgid "Eject"
 msgstr "退片"
 
-#: ../gnome-cd/gnome-cd.c:985
+#: ../gnome-cd/gnome-cd.c:982
 msgid "CD device to use"
 msgstr "使用的光碟機"
 
-#: ../gnome-cd/gnome-cd.c:987
+#: ../gnome-cd/gnome-cd.c:984
 msgid "Only start if there isn't already a CD player application running"
 msgstr "只有當沒有任何 CD 播放程式正在執行時才會啟動"
 
-#: ../gnome-cd/gnome-cd.c:989
+#: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
 msgstr "啟動時立刻播放 CD"
 
-#: ../gnome-cd/gnome-cd.c:991
+#: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
 msgstr "啟動時縮小至面板上"
 
-#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
-#: ../gst-mixer/src/main.c:251
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register"
-msgstr "註冊表不存在或已受損，請執行 gst-register 來更新它。"
-
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1041
+#: ../gnome-cd/gnome-cd.c:1025
 msgid "Cannot create player"
 msgstr "無法執行播放程式"
 
@@ -1313,16 +1306,10 @@ msgstr "CD 播放程式執行的音量是？"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "當啟動 CD 播放程式時是否播放 CD？"
 
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:290
-msgid ""
-"Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
-msgstr "無法設定光碟機；請安裝 GStreamer cdparanoia 外掛程式。"
-
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:316
-msgid ""
-"Failed to set up audio output; please install a GStreamer plugin for your "
-"soundcard."
-msgstr "無法設定音效輸出；請替您的音效卡安裝 GStreamer 外掛程式。"
+#: ../gnome-cd/gst-cdrom.c:279
+#, c-format
+msgid "Failed to eject CD: %s"
+msgstr ""
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1378,7 +1365,7 @@ msgid "Record sound clips"
 msgstr "錄音"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1206
 msgid "Sound Recorder"
 msgstr "錄音程式"
 
@@ -1391,56 +1378,68 @@ msgstr "錄音程式"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:734
-#: ../grecord/src/gsr-window.c:1579 ../grecord/src/gsr-window.c:2164
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
+#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
 msgid "Untitled"
 msgstr "未命名"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1581
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
 #, c-format
 msgid "Untitled-%d"
 msgstr "未命名-%d"
 
-#: ../grecord/src/gnome-recorder.c:179
-msgid "Dummy option"
-msgstr "虛設選項"
+#: ../grecord/src/gsr-window.c:191
+#, c-format
+msgid ""
+"Could not create the GStreamer %s element.\n"
+"Please install the '%s' plug-in from the '%s' module.\n"
+"Verify that the installation is correct by running\n"
+"    gst-inspect-0.10 %s\n"
+"and then restart gnome-sound-recorder."
+msgstr ""
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:207
+msgid ""
+"Please verify its settings.\n"
+"You may be missing the necessary plug-ins."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hours"
 msgstr "時"
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "時"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minutes"
 msgstr "分"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minute"
 msgstr "分"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:217
-#: ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:326
 msgid "seconds"
 msgstr "秒"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "秒"
 
-#: ../grecord/src/gsr-window.c:284
+#: ../grecord/src/gsr-window.c:361
 msgid "Open a File"
 msgstr "開啟檔案"
 
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:431
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1449,17 +1448,17 @@ msgstr ""
 "無法載入檔案：\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:389 ../grecord/src/gsr-window.c:1454
-#: ../grecord/src/gsr-window.c:1620 ../grecord/src/gsr-window.c:1998
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
+#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
 msgid "Ready"
 msgstr "準備就緒"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:560
+#: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
 msgstr "取代(_R)"
 
-#: ../grecord/src/gsr-window.c:577
+#: ../grecord/src/gsr-window.c:646
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1468,115 +1467,120 @@ msgstr ""
 "檔案名為 “%s”已經存在。\n"
 "要以您準備儲存的檔案取代它嗎？"
 
-#: ../grecord/src/gsr-window.c:627 ../grecord/src/gsr-window.c:636
+#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "無法儲存檔案“%s”"
 
-#: ../grecord/src/gsr-window.c:679
+#: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
 msgstr "將檔案另存為"
 
-#: ../grecord/src/gsr-window.c:754
+#: ../grecord/src/gsr-window.c:814
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s 並未安裝在執行檔路徑中。"
 
-#: ../grecord/src/gsr-window.c:764
+#: ../grecord/src/gsr-window.c:823
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "啟動 %s 時出現錯誤：%s"
 
-#: ../grecord/src/gsr-window.c:809
+#: ../grecord/src/gsr-window.c:845
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "關閉前先儲存變更到檔案‘%s’？"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:856
 msgid "Close _without Saving"
 msgstr "關閉但不儲存(_W)"
 
-#: ../grecord/src/gsr-window.c:830
+#: ../grecord/src/gsr-window.c:863
 msgid "Question"
 msgstr "問題"
 
-#: ../grecord/src/gsr-window.c:903
+#: ../grecord/src/gsr-window.c:955
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (仍未儲存)"
 
-#: ../grecord/src/gsr-window.c:916
+#: ../grecord/src/gsr-window.c:970
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu 位元組)"
 msgstr[1] "%s (%llu 位元組)"
 
-#: ../grecord/src/gsr-window.c:920
+#: ../grecord/src/gsr-window.c:974
 msgid "Unknown size"
 msgstr "大小不詳"
 
-#: ../grecord/src/gsr-window.c:940
+#: ../grecord/src/gsr-window.c:995
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%.0f kb/s"
 msgstr "每秒 %.0f kb"
 
-#: ../grecord/src/gsr-window.c:960
+#: ../grecord/src/gsr-window.c:1006
+#, fuzzy, c-format
+msgid "%.0f kb/s (Estimated)"
+msgstr "每秒 %.0f kb"
+
+#: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
 msgstr "1 (單聲道)"
 
-#: ../grecord/src/gsr-window.c:963
+#: ../grecord/src/gsr-window.c:1024
 msgid "2 (stereo)"
 msgstr "2 (立體聲)"
 
-#: ../grecord/src/gsr-window.c:990
+#: ../grecord/src/gsr-window.c:1051
 #, c-format
 msgid "%s Information"
 msgstr "%s 資訊"
 
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1943
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
 msgid "File Information"
 msgstr "檔案資訊"
 
-#: ../grecord/src/gsr-window.c:1029
+#: ../grecord/src/gsr-window.c:1090
 msgid "Folder:"
 msgstr "資料夾："
 
-#: ../grecord/src/gsr-window.c:1035 ../grecord/src/gsr-window.c:1958
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
 msgid "Filename:"
 msgstr "檔案名稱："
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1102
 msgid "File size:"
 msgstr "檔案大小："
 
-#: ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1111
 msgid "Audio Information"
 msgstr "音效資訊"
 
-#: ../grecord/src/gsr-window.c:1065
+#: ../grecord/src/gsr-window.c:1126
 msgid "File duration:"
 msgstr "檔案長度："
 
-#: ../grecord/src/gsr-window.c:1071
+#: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
 msgstr "聲道數目："
 
-#: ../grecord/src/gsr-window.c:1077
+#: ../grecord/src/gsr-window.c:1138
 msgid "Sample rate:"
 msgstr "取樣率："
 
 # No good translation of bit rate can be found. -- Abel
-#: ../grecord/src/gsr-window.c:1083
+#: ../grecord/src/gsr-window.c:1144
 msgid "Bit rate:"
 msgstr "位元率："
 
-#: ../grecord/src/gsr-window.c:1147
+#: ../grecord/src/gsr-window.c:1209
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1584,136 +1588,157 @@ msgstr ""
 "適用於 GNOME 的錄音程式\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1435
+#: ../grecord/src/gsr-window.c:1467
 msgid "Playing..."
 msgstr "播放中..."
 
-#: ../grecord/src/gsr-window.c:1570
+#: ../grecord/src/gsr-window.c:1596
+msgid "GConf audio output"
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+msgid "Playback"
+msgstr "播放"
+
+#: ../grecord/src/gsr-window.c:1683
 msgid "Recording..."
 msgstr "錄音中..."
 
-#: ../grecord/src/gsr-window.c:1653
+#: ../grecord/src/gsr-window.c:1834
+#, fuzzy
+msgid "GConf audio recording"
+msgstr "開始錄音"
+
+#: ../grecord/src/gsr-window.c:1843
 msgid ""
-"There is no default GStreamer audio input element set - please install the "
-"GStreamer-GConf schemas or set one manually"
+"Your audio capture settings are invalid. Please correct them in the "
+"Multimediad settings."
 msgstr ""
-"沒有設定預設的 GStreamer 輸入元件 - 請安裝GStreamer-GConf 概要(schema)或自行"
-"設定一個"
 
-#: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder elements - check your encoding setup"
-msgstr "無法建立 GStreamer 編碼器元件 - 請檢查編碼器設定"
+#: ../grecord/src/gsr-window.c:1928
+#, fuzzy
+msgid "file output"
+msgstr "視訊輸出(_O)："
 
-#: ../grecord/src/gsr-window.c:1681
-msgid ""
-"Could not find \"filesink\" GStreamer element - broken GStreamer install"
-msgstr "無法找到“filesink”GStreamer 元件 -- GStramer 安裝不完整"
+#: ../grecord/src/gsr-window.c:1956
+#, fuzzy, c-format
+msgid "Could not parse the '%s' audio profile. "
+msgstr "音效設定組合的簡稱"
 
-#: ../grecord/src/gsr-window.c:1690
-msgid ""
-"Failed to link encoder element with file output element - you probably "
-"selected an invalid encoder"
-msgstr "將編碼器元件連結到檔案輸出元件失敗 - 您可能選取了無效的編碼器"
+#: ../grecord/src/gsr-window.c:1972
+#, fuzzy, c-format
+msgid "Could not capture using the '%s' audio profile. "
+msgstr "音效設定組合的簡稱"
+
+#: ../grecord/src/gsr-window.c:1982
+#, c-format
+msgid "Could not write to a file using the '%s' audio profile. "
+msgstr ""
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1718
+#: ../grecord/src/gsr-window.c:2033
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../grecord/src/gsr-window.c:1720
+#: ../grecord/src/gsr-window.c:2035
 msgid "Create a new sample"
 msgstr "製作新的音效樣本"
 
-#: ../grecord/src/gsr-window.c:1721
+#: ../grecord/src/gsr-window.c:2036
 msgid "_Open..."
 msgstr "開啟(_O)..."
 
-#: ../grecord/src/gsr-window.c:1722
+#: ../grecord/src/gsr-window.c:2037
 msgid "Open a file"
 msgstr "開啟檔案"
 
-#: ../grecord/src/gsr-window.c:1724
+#: ../grecord/src/gsr-window.c:2039
 msgid "Save the current file"
 msgstr "儲存目前的檔案"
 
-#: ../grecord/src/gsr-window.c:1725
+#: ../grecord/src/gsr-window.c:2040
 msgid "Save _As..."
 msgstr "另存檔案(_A)..."
 
-#: ../grecord/src/gsr-window.c:1726
+#: ../grecord/src/gsr-window.c:2041
 msgid "Save the current file with a different name"
 msgstr "以另一個名稱儲存目前的檔案"
 
-#: ../grecord/src/gsr-window.c:1727
+#: ../grecord/src/gsr-window.c:2042
 msgid "Open Volu_me Control"
 msgstr "開啟音量控制(_M)"
 
-#: ../grecord/src/gsr-window.c:1728
+#: ../grecord/src/gsr-window.c:2043
 msgid "Open the audio mixer"
 msgstr "開啟混音程式"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:2045
 msgid "Show information about the current file"
 msgstr "顯示有關目前檔案的資訊"
 
-#: ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:2047
 msgid "Close the current file"
 msgstr "關閉目前的檔案"
 
-#: ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gsr-window.c:2049
 msgid "Quit the program"
 msgstr "離開程式"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1737
+#: ../grecord/src/gsr-window.c:2052
 msgid "_Control"
 msgstr "控制(_C)"
 
-#: ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2054
 msgid "Record sound"
 msgstr "錄音"
 
-#: ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2056
 msgid "Play sound"
 msgstr "播放音效"
 
-#: ../grecord/src/gsr-window.c:1743
+#: ../grecord/src/gsr-window.c:2058
 msgid "Stop sound"
 msgstr "停止播放"
 
-#: ../grecord/src/gsr-window.c:1748
+#: ../grecord/src/gsr-window.c:2063
 msgid "Open the manual"
 msgstr "開啟說明文件"
 
-#: ../grecord/src/gsr-window.c:1750
+#: ../grecord/src/gsr-window.c:2065
 msgid "About this application"
 msgstr "關於本程式"
 
-#: ../grecord/src/gsr-window.c:1847
+#: ../grecord/src/gsr-window.c:2186
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "無法載入 ui.xml。程式可能未完全安裝"
 
-#: ../grecord/src/gsr-window.c:1869
+#: ../grecord/src/gsr-window.c:2209
 msgid "Open"
 msgstr "開啟"
 
-#: ../grecord/src/gsr-window.c:1871
+#: ../grecord/src/gsr-window.c:2211
 msgid "Save"
 msgstr "儲存"
 
-#: ../grecord/src/gsr-window.c:1873
+#: ../grecord/src/gsr-window.c:2213
 msgid "Save As"
 msgstr "另存檔案"
 
-#: ../grecord/src/gsr-window.c:1926
+#: ../grecord/src/gsr-window.c:2267
+#, fuzzy
+msgid "Record from input:"
+msgstr "錄音"
+
+#: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
 msgstr "記錄為："
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
 msgstr "<無>"
 
-#: ../grecord/src/gsr-window.c:1973
+#: ../grecord/src/gsr-window.c:2331
 msgid "Length:"
 msgstr "長度："
 
@@ -1722,7 +1747,7 @@ msgid "Adjust the volume level"
 msgstr "調整音量"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:395
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
 msgstr "音量控制"
 
@@ -1742,43 +1767,34 @@ msgstr "視窗寬度"
 msgid "Width of the Window to be displayed"
 msgstr "顯示的視窗的寬度"
 
-#: ../gst-mixer/src/element.c:230
-msgid "Playback"
-msgstr "播放"
-
-#: ../gst-mixer/src/element.c:232
+#: ../gst-mixer/src/element.c:231
 msgid "Capture"
 msgstr "錄音"
 
-#: ../gst-mixer/src/element.c:234
+#: ../gst-mixer/src/element.c:233
 msgid "Switches"
 msgstr "開關"
 
-#: ../gst-mixer/src/element.c:236
+#: ../gst-mixer/src/element.c:235
 msgid "Options"
 msgstr "選項"
 
-#. FIXME:
-#. * - maybe we want to rename the element to its actual name
-#. *     if we've found that?
-#.
-#. create element
-#: ../gst-mixer/src/main.c:85 ../gst-mixer/src/main.c:88
-#: ../gst-mixer/src/main.c:144
+#: ../gst-mixer/src/main.c:76
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "不明的音量控制 %d"
 
-#: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer elements and/or devices found."
+#: ../gst-mixer/src/main.c:217
+#, fuzzy
+msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "找不到音量控制 GStreamer 元件或裝置。"
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:107
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "音量控制偏好設定"
 
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "選擇可視的聲道(_S)："
 
@@ -1818,35 +1834,35 @@ msgstr "聲道 %s：錄音"
 msgid "%s Option Selection"
 msgstr "%s 選項"
 
-#: ../gst-mixer/src/volume.c:135
+#: ../gst-mixer/src/volume.c:134
 msgid "mono"
 msgstr "單聲道"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "left"
 msgstr "左"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "right"
 msgstr "右"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:139
 msgid "front left"
 msgstr "前左"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:140
 msgid "front right"
 msgstr "前右"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:141
 msgid "rear left"
 msgstr "後左"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:142
 msgid "rear right"
 msgstr "後右"
 
-#: ../gst-mixer/src/volume.c:144
+#: ../gst-mixer/src/volume.c:143
 msgid "front center"
 msgstr "前中"
 
@@ -1854,50 +1870,50 @@ msgstr "前中"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:148
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:149
 msgid "side left"
 msgstr "左邊"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:150
 msgid "side right"
 msgstr "右邊"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:151
 msgid "unknown"
 msgstr "不明"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:158
+#: ../gst-mixer/src/volume.c:157
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "在%2$s上%1$s頻道的音量"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s"
 msgstr "聲道 %s"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:208
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%2$s 聲道的第 %1$d 個頻道"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "聲道 %s，頻道 %d"
 
-#: ../gst-mixer/src/volume.c:232
+#: ../gst-mixer/src/volume.c:231
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "將 %s 的頻道鎖定"
 
-#: ../gst-mixer/src/volume.c:250
+#: ../gst-mixer/src/volume.c:249
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "聲道 %s：將頻道鎖定"
@@ -1917,14 +1933,14 @@ msgstr "變更裝置為 %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:442
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
 #, c-format
 msgid "Volume Control: %s"
 msgstr "音量控制：%s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:387
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
@@ -1935,22 +1951,15 @@ msgstr ""
 "Abel Cheung <abel@oaka.org>, 2001-2003.\n"
 "Fernando <bv1al@journalist.com.tw>, 1999."
 
-#: ../gst-mixer/src/window.c:398
+#: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "一個以 GNOME/GStreamer 為基礎的音量控制程式"
 
-#. Fatal error
-#: ../gstreamer-properties/gstreamer-properties.c:274
+#: ../gstreamer-properties/gstreamer-properties.c:377
 msgid "Failure instantiating main window"
 msgstr "開啟主視窗出現錯誤"
 
-#: ../gstreamer-properties/gstreamer-properties.c:309
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register."
-msgstr "註冊表不存在或已受損，請執行 gst-register 來更新它。"
-
-#: ../gstreamer-properties/gstreamer-properties.c:332
+#: ../gstreamer-properties/gstreamer-properties.c:442
 msgid "Failed to load glade file; please check your installation."
 msgstr "無法載入 glade 檔。請檢查安裝是否正確。"
 
@@ -1969,11 +1978,13 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Element</b>"
+#, fuzzy
+msgid "<b>Default Input Plugin</b>"
 msgstr "<b>預設輸入元件</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Element</b>"
+#, fuzzy
+msgid "<b>Default Output Plugin</b>"
 msgstr "<b>預設輸出元件</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
@@ -2020,14 +2031,14 @@ msgstr "管線(_P)："
 msgid "_Test"
 msgstr "測試(_T)"
 
-#: ../gstreamer-properties/pipeline-constants.c:65
-#: ../gstreamer-properties/pipeline-constants.c:94
-#: ../gstreamer-properties/pipeline-constants.c:113
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Custom"
 msgstr "自選"
 
-#: ../gstreamer-properties/pipeline-tests.c:119
+#: ../gstreamer-properties/pipeline-tests.c:130
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "無法產生‘%s’的管線測試"
@@ -2079,24 +2090,24 @@ msgstr "wav"
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../profiles/audio-profiles-edit.c:460
+#: ../profiles/audio-profiles-edit.c:492
 msgid "You must select one or more profiles to delete."
 msgstr "您必須選擇至少一個設定組合來刪除"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:469
+#: ../profiles/audio-profiles-edit.c:501
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "刪除這個設定組合？\n"
 msgstr[1] "刪除這 %d 個設定組合？\n"
 
-#: ../profiles/audio-profiles-edit.c:488
+#: ../profiles/audio-profiles-edit.c:520
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "刪除設定組合“%s”?"
 
-#: ../profiles/audio-profiles-edit.c:510
+#: ../profiles/audio-profiles-edit.c:542
 msgid "Delete Profile"
 msgstr "刪除設定組合"
 
@@ -2112,20 +2123,21 @@ msgstr "刪除設定組合"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:606
-msgid "Edit GMAudio Profiles"
+#: ../profiles/audio-profiles-edit.c:638
+#, fuzzy
+msgid "Edit GNOME Audio Profiles"
 msgstr "編輯 GMAudio 的設定組合"
 
-#: ../profiles/audio-profiles-edit.c:659
+#: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
 msgstr "設定組合(_P)："
 
-#: ../profiles/audio-profiles-edit.c:887
+#: ../profiles/audio-profiles-edit.c:921
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "您已經有一個設定組合稱為“%s”"
 
-#: ../profiles/audio-profiles-edit.c:912
+#: ../profiles/audio-profiles-edit.c:946
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf 錯誤(FIXME)：%s\n"
@@ -2215,9 +2227,10 @@ msgid "CD Quality, Lossy"
 msgstr "CD 品質，失真"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
+#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
+"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "錄音設定組合的清單。這清單列出了 /system/gstreamer/audio/profiles 以下的子目"
 "錄。"
@@ -2251,19 +2264,33 @@ msgstr ""
 "播。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#, fuzzy
 msgid ""
-"Used for converting to voice-quality audio. Use this for recording speech."
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
 msgstr "用作轉換語音品質的音效。適合用於演講錄音。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid "Voice"
-msgstr "音訊"
+#, fuzzy
+msgid ""
+"Used for converting to lossy voice-quality audio. Use this for recording "
+"speech that doesn't need to be edited."
+msgstr "用作轉換語音品質的音效。適合用於演講錄音。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#, fuzzy
+msgid "Voice, Lossless"
+msgstr "CD 品質，不失真"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid "Voice, Lossy"
+msgstr ""
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
 msgstr "是否使用此設定組合"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
 msgstr "是否使用及顯示此設定組合"
 
@@ -2335,6 +2362,52 @@ msgstr "監控輸出音量"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "音量計"
+
+#~ msgid ""
+#~ "Registry is not present or it is corrupted, please update it by running "
+#~ "gst-register"
+#~ msgstr "註冊表不存在或已受損，請執行 gst-register 來更新它。"
+
+#~ msgid ""
+#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
+#~ "plugin."
+#~ msgstr "無法設定光碟機；請安裝 GStreamer cdparanoia 外掛程式。"
+
+#~ msgid ""
+#~ "Failed to set up audio output; please install a GStreamer plugin for your "
+#~ "soundcard."
+#~ msgstr "無法設定音效輸出；請替您的音效卡安裝 GStreamer 外掛程式。"
+
+#~ msgid "Dummy option"
+#~ msgstr "虛設選項"
+
+#~ msgid ""
+#~ "There is no default GStreamer audio input element set - please install "
+#~ "the GStreamer-GConf schemas or set one manually"
+#~ msgstr ""
+#~ "沒有設定預設的 GStreamer 輸入元件 - 請安裝GStreamer-GConf 概要(schema)或自"
+#~ "行設定一個"
+
+#~ msgid ""
+#~ "Failed to create GStreamer encoder elements - check your encoding setup"
+#~ msgstr "無法建立 GStreamer 編碼器元件 - 請檢查編碼器設定"
+
+#~ msgid ""
+#~ "Could not find \"filesink\" GStreamer element - broken GStreamer install"
+#~ msgstr "無法找到“filesink”GStreamer 元件 -- GStramer 安裝不完整"
+
+#~ msgid ""
+#~ "Failed to link encoder element with file output element - you probably "
+#~ "selected an invalid encoder"
+#~ msgstr "將編碼器元件連結到檔案輸出元件失敗 - 您可能選取了無效的編碼器"
+
+#~ msgid ""
+#~ "Registry is not present or it is corrupted, please update it by running "
+#~ "gst-register."
+#~ msgstr "註冊表不存在或已受損，請執行 gst-register 來更新它。"
+
+#~ msgid "Voice"
+#~ msgstr "音訊"
 
 #~ msgid ""
 #~ "Playing\n"
@@ -2891,9 +2964,6 @@ msgstr "音量計"
 #~ msgid "Stop playing/recording"
 #~ msgstr "停止播放或錄音"
 
-#~ msgid "Start recording"
-#~ msgstr "開始錄音"
-
 #~ msgid "Audio format: "
 #~ msgstr "音效格式："
 
@@ -3057,9 +3127,6 @@ msgstr "音量計"
 
 #~ msgid "Audio _Input:"
 #~ msgstr "音效輸入(_I)："
-
-#~ msgid "Video _Output:"
-#~ msgstr "視訊輸出(_O)："
 
 #~ msgid "Action on application exit"
 #~ msgstr "離開程式時進行的操作"

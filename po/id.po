@@ -3,13 +3,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-13 00:42+0300\n"
+"POT-Creation-Date: 2006-01-30 22:04+0100\n"
 "PO-Revision-Date: 2005-08-13 12:57+0300\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesian <sukarelawan@gnome.linux.or.id>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -44,7 +44,9 @@ msgstr "Port yang digunakan server"
 msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr "Jenis server untuk informasi CD. Isi dengan 0 (FreeDB server acak), 1 (server freedb lainnya, 2 (lainnya)."
+msgstr ""
+"Jenis server untuk informasi CD. Isi dengan 0 (FreeDB server acak), 1 "
+"(server freedb lainnya, 2 (lainnya)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -59,8 +61,9 @@ msgid ""
 "This key specifies which user information will be sent to the server to "
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
-msgstr "Key ini berisi informasi yang dikirimkan ke server untuk informasi CD. Isi dengan "
-"0 (tidak ada informasi), 1 (informasi sebenarnya) dan 3 (lainnya)."
+msgstr ""
+"Key ini berisi informasi yang dikirimkan ke server untuk informasi CD. Isi "
+"dengan 0 (tidak ada informasi), 1 (informasi sebenarnya) dan 3 (lainnya)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -141,9 +144,9 @@ msgid "Unknown / Unknown"
 msgstr "Tidak diketahui / Tidak diketahui"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:929
-#: ../grecord/src/gsr-window.c:938 ../grecord/src/gsr-window.c:947
-#: ../grecord/src/gsr-window.c:957 ../grecord/src/gsr-window.c:1273
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
@@ -784,15 +787,15 @@ msgstr "Nu-Metal"
 msgid "Art Rock"
 msgstr "Art Rock"
 
-#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:571
-#: ../gnome-cd/callbacks.c:715 ../gnome-cd/callbacks.c:726
-#: ../gnome-cd/display.c:74
+#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:589
+#: ../gnome-cd/callbacks.c:735 ../gnome-cd/callbacks.c:746
+#: ../gnome-cd/display.c:75
 msgid "Unknown Artist"
 msgstr "Nama artis tidak diketahui"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:572
-#: ../gnome-cd/callbacks.c:718 ../gnome-cd/callbacks.c:730
-#: ../gnome-cd/display.c:75
+#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:590
+#: ../gnome-cd/callbacks.c:738 ../gnome-cd/callbacks.c:750
+#: ../gnome-cd/display.c:76
 msgid "Unknown Album"
 msgstr "Judul album tidak diketahui"
 
@@ -916,96 +919,97 @@ msgstr "Baris Album"
 msgid "Line for displaying the name of the album"
 msgstr "Baris yang menampilkan nama album"
 
-#: ../gnome-cd/callbacks.c:85 ../gnome-cd/callbacks.c:173
-#: ../gnome-cd/callbacks.c:281 ../gnome-cd/callbacks.c:587
-#: ../gnome-cd/gnome-cd.c:814
+#: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
+#: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
+#: ../gnome-cd/gnome-cd.c:819
 msgid "Play"
 msgstr "Putar"
 
-#: ../gnome-cd/callbacks.c:158 ../gnome-cd/callbacks.c:209
-#: ../gnome-cd/callbacks.c:240 ../gnome-cd/callbacks.c:323
-#: ../gnome-cd/callbacks.c:363 ../gnome-cd/callbacks.c:387
-#: ../gnome-cd/callbacks.c:428 ../gnome-cd/callbacks.c:523
+#: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
+#: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
+#: ../gnome-cd/callbacks.c:365 ../gnome-cd/callbacks.c:389
+#: ../gnome-cd/callbacks.c:430 ../gnome-cd/callbacks.c:527
 msgid "Pause"
 msgstr "Istirahat"
 
-#: ../gnome-cd/callbacks.c:570
-#, c-format
+#: ../gnome-cd/callbacks.c:588
+#, fuzzy, c-format
 msgid ""
 "Playing %s - %s\n"
-"Current Time: %s"
-msgstr "%s sedang diputar  %s\n"
+"%s"
+msgstr ""
+"%s sedang diputar  %s\n"
 "Waktu Saat Ini: %s"
 
-#: ../gnome-cd/callbacks.c:575
-#, c-format
+#: ../gnome-cd/callbacks.c:593
+#, fuzzy, c-format
 msgid ""
 "Playing\n"
-"Current Time: %s"
-msgstr "CD sedang diputar\n"
-"Waktu Saat Ini: %s"
+": %s"
+msgstr "Sedang memainkan"
 
-#: ../gnome-cd/callbacks.c:599
+#: ../gnome-cd/callbacks.c:617
 msgid "Paused"
 msgstr "Istirahat"
 
-#: ../gnome-cd/callbacks.c:650 ../gnome-cd/callbacks.c:907
-#: ../gnome-cd/gnome-cd.c:114 ../gnome-cd/gnome-cd.c:691
-#: ../gnome-cd/gnome-cd.c:890 ../gnome-cd/gnome-cd.c:893
-#: ../gnome-cd/gnome-cd.desktop.in.h:1 ../gnome-cd/preferences.c:610
+#: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
+#: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Pemutar CD"
 
-#: ../gnome-cd/callbacks.c:674
+#: ../gnome-cd/callbacks.c:694
 msgid "Stopped"
 msgstr "Berhenti"
 
-#: ../gnome-cd/callbacks.c:680
+#: ../gnome-cd/callbacks.c:700
 msgid "Disc error"
 msgstr "Error disk"
 
-#: ../gnome-cd/callbacks.c:691 ../gnome-cd/callbacks.c:792
+#: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
 msgid "No disc"
 msgstr "Tidak ada disk yang dipasang"
 
-#: ../gnome-cd/callbacks.c:790
+#: ../gnome-cd/callbacks.c:810
 msgid "Empty disc"
 msgstr "Kosongkan cakram"
 
-#: ../gnome-cd/callbacks.c:820
+#: ../gnome-cd/callbacks.c:840
 msgid "Drive open"
 msgstr "Pintu perangkat terbuka"
 
-#: ../gnome-cd/callbacks.c:846
+#: ../gnome-cd/callbacks.c:866
 msgid "Data CD"
 msgstr "CD Data"
 
-#: ../gnome-cd/callbacks.c:870 ../gnome-cd/callbacks.c:875
+#: ../gnome-cd/callbacks.c:890 ../gnome-cd/callbacks.c:895
 msgid "No Cdrom"
 msgstr "Tidak ada CDROM"
 
-#: ../gnome-cd/callbacks.c:888
+#: ../gnome-cd/callbacks.c:908
 msgid "Drive Error"
 msgstr "Error pada perangkat"
 
-#: ../gnome-cd/callbacks.c:910
+#: ../gnome-cd/callbacks.c:930
 msgid "A CD player for GNOME"
 msgstr "Pemutar CD untuk GNOME"
 
-#: ../gnome-cd/callbacks.c:1131
+#: ../gnome-cd/callbacks.c:1160
 msgid "Contents in the CDDB have changed"
 msgstr "Isi CDDB telah berubah"
 
-#: ../gnome-cd/callbacks.c:1132
+#: ../gnome-cd/callbacks.c:1161
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "Ini akan dihapus pada CDDB bila Anda memilih 'Ya'."
 
-#: ../gnome-cd/callbacks.c:1133
+#: ../gnome-cd/callbacks.c:1162
 msgid "Do you wish to continue?"
 msgstr "Ingin melanjutkan?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1206 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1235 ../gnome-cd/gnome-cd.c:532
 #, c-format
 msgid "Volume %d%%"
 msgstr "Volume %d%%"
@@ -1062,7 +1066,7 @@ msgid "_Eject disc"
 msgstr "K_eluarkan cakram"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1742
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
 msgid "_Help"
 msgstr "Ba_ntuan"
 
@@ -1074,7 +1078,7 @@ msgstr "Tent_ang program ini"
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: ../gnome-cd/gnome-cd.c:611
+#: ../gnome-cd/gnome-cd.c:612
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1084,15 +1088,15 @@ msgstr ""
 "dapat dijalankan. Silakan klik 'Pilih CD' untuk membuka\n"
 "setingan perangkat CD, atau klik 'Keluar' untuk keluar dari program."
 
-#: ../gnome-cd/gnome-cd.c:615
+#: ../gnome-cd/gnome-cd.c:616
 msgid "Set device"
 msgstr "Pilih perangkat CD yang digunakan"
 
-#: ../gnome-cd/gnome-cd.c:617
+#: ../gnome-cd/gnome-cd.c:618
 msgid "No CD device"
 msgstr "Tidak ada perangkat CD"
 
-#: ../gnome-cd/gnome-cd.c:670
+#: ../gnome-cd/gnome-cd.c:671
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1108,103 +1112,96 @@ msgstr ""
 "Klik 'Pilih CD' untuk menentukan perangkat CDnya, atauklik 'Keluar' untuk "
 "keluar dari program"
 
-#: ../gnome-cd/gnome-cd.c:674
+#: ../gnome-cd/gnome-cd.c:675
 msgid "_Details"
 msgstr "_Detil"
 
-#: ../gnome-cd/gnome-cd.c:675
+#: ../gnome-cd/gnome-cd.c:676
 msgid "_Set device"
 msgstr "Pilih _perangkat"
 
-#: ../gnome-cd/gnome-cd.c:677
+#: ../gnome-cd/gnome-cd.c:678
 msgid "Invalid CD device"
 msgstr "Perangkat CD tidak benar"
 
-#: ../gnome-cd/gnome-cd.c:752
+#: ../gnome-cd/gnome-cd.c:757
 msgid "Position"
 msgstr "Posisi"
 
-#: ../gnome-cd/gnome-cd.c:769
+#: ../gnome-cd/gnome-cd.c:774
 msgid "Open preferences"
 msgstr "Buka pengaturan"
 
-#: ../gnome-cd/gnome-cd.c:770
+#: ../gnome-cd/gnome-cd.c:775
 msgid "Preferences"
 msgstr "Pengaturan"
 
-#: ../gnome-cd/gnome-cd.c:778
+#: ../gnome-cd/gnome-cd.c:783
 msgid "Track List"
 msgstr "Daftar trek"
 
-#: ../gnome-cd/gnome-cd.c:784
+#: ../gnome-cd/gnome-cd.c:789
 msgid "Open track editor"
 msgstr "Buka editor trek"
 
-#: ../gnome-cd/gnome-cd.c:785
+#: ../gnome-cd/gnome-cd.c:790
 msgid "Track editor"
 msgstr "Editor trek"
 
-#: ../gnome-cd/gnome-cd.c:814
+#: ../gnome-cd/gnome-cd.c:819
 msgid "Play / Pause"
 msgstr "Mainkan / Istirahat"
 
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:824
 msgid "Stop"
 msgstr "Stop"
 
-#: ../gnome-cd/gnome-cd.c:823
+#: ../gnome-cd/gnome-cd.c:828
 msgid "Previous track"
 msgstr "Trek sebelumnya"
 
-#: ../gnome-cd/gnome-cd.c:823
+#: ../gnome-cd/gnome-cd.c:828
 msgid "Previous"
 msgstr "Kembali"
 
-#: ../gnome-cd/gnome-cd.c:827
+#: ../gnome-cd/gnome-cd.c:832
 msgid "Rewind"
 msgstr "Mundur"
 
-#: ../gnome-cd/gnome-cd.c:835
+#: ../gnome-cd/gnome-cd.c:840
 msgid "Fast forward"
 msgstr "Maju"
 
-#: ../gnome-cd/gnome-cd.c:843
+#: ../gnome-cd/gnome-cd.c:848
 msgid "Next track"
 msgstr "Trek berikutnya"
 
-#: ../gnome-cd/gnome-cd.c:847
+#: ../gnome-cd/gnome-cd.c:852
 msgid "Eject CD"
 msgstr "Keluarkan CD"
 
-#: ../gnome-cd/gnome-cd.c:847
+#: ../gnome-cd/gnome-cd.c:852
 msgid "Eject"
 msgstr "Keluarkan media"
 
-#: ../gnome-cd/gnome-cd.c:973
+#: ../gnome-cd/gnome-cd.c:982
 msgid "CD device to use"
 msgstr "Perangkat CD yang digunakan"
 
-#: ../gnome-cd/gnome-cd.c:975
+#: ../gnome-cd/gnome-cd.c:984
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Jalankan bila tidak ada aplikasi pemutar CD yang jalan sebelumnya"
 
-#: ../gnome-cd/gnome-cd.c:977
+#: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
 msgstr "Jalankan CD saat menyalakan komputer"
 
-#: ../gnome-cd/gnome-cd.c:979
+#: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
 msgstr "Masukkan dalam tray"
 
-#: ../gnome-cd/gnome-cd.c:1012 ../grecord/src/gnome-recorder.c:210
-#: ../gst-mixer/src/main.c:242
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register"
-msgstr "Pencatat tidak ada atau rusak, silakan perbaiki dengan menjalankan gst-register"
-
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1029
+#: ../gnome-cd/gnome-cd.c:1025
 msgid "Cannot create player"
 msgstr "Tidak dapat menjalankan program"
 
@@ -1225,43 +1222,45 @@ msgid "Device path"
 msgstr "Path ke perangkat "
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Display the Remaining time ?"
+msgstr ""
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
 msgstr "Keluarkan CD saat program berhenti?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "How the time should be displayed while CD Player is playing ?"
+msgstr ""
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
 msgstr "Mainkan saat program ini dijalankan?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
 msgstr "Apakah harus mengeluarkan CD saat program berhenti?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
 msgstr "Path ke perangkat CD yang digunakan oleh program untuk memutar CD"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
 msgstr "Tema yang digunakan untuk aksi dan gaya program pemutar CD"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
 msgid "What volume should the CD player use when it is started?"
 msgstr "Volume suara pemutar CD saat mulai dijalankan?"
 
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Saat program ini dijalankan, apakah langsung memutar CDnya?"
 
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:290
-msgid ""
-"Failed to set up CD reader; please install the GStreamer cdparanoia plugin."
-msgstr "Pembaca CD gagal disiapkan, instal dulu plugin GStreamer cdparanoia."
-
-#: ../gnome-cd/gst-cdparanoia-cdrom.c:316
-msgid ""
-"Failed to set up audio output; please install a GStreamer plugin for your "
-"soundcard."
-msgstr "Keluaran audio gagal disiapkan, silakan instal plugin GStreamer kartu suara Anda."
+#: ../gnome-cd/gst-cdrom.c:279
+#, c-format
+msgid "Failed to eject CD: %s"
+msgstr ""
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1276,39 +1275,39 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Ada error saat menyetel perangkat"
 
-#: ../gnome-cd/preferences.c:583
+#: ../gnome-cd/preferences.c:586
 msgid "CD Player Preferences"
 msgstr "Pengaturan Pemutar CD"
 
-#: ../gnome-cd/preferences.c:622
+#: ../gnome-cd/preferences.c:625
 msgid "_Device:"
 msgstr "_Perangkat:"
 
-#: ../gnome-cd/preferences.c:636
+#: ../gnome-cd/preferences.c:639
 msgid "Behavior"
 msgstr "Perilaku"
 
-#: ../gnome-cd/preferences.c:649
+#: ../gnome-cd/preferences.c:652
 msgid "Start _playback when CD Player starts"
 msgstr "Mulai _putar CD saat program dijalankan"
 
-#: ../gnome-cd/preferences.c:650
+#: ../gnome-cd/preferences.c:653
 msgid "Start playback when CD Player starts"
 msgstr "Mulai putar CD saat program dijalankan"
 
-#: ../gnome-cd/preferences.c:662
+#: ../gnome-cd/preferences.c:665
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "K_eluarkan CD saat program ditutup"
 
-#: ../gnome-cd/preferences.c:663
+#: ../gnome-cd/preferences.c:666
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Keluarkan CD saat program ditutup"
 
-#: ../gnome-cd/preferences.c:679
+#: ../gnome-cd/preferences.c:682
 msgid "Themes"
 msgstr "Tema"
 
-#: ../gnome-cd/preferences.c:691
+#: ../gnome-cd/preferences.c:694
 msgid "_Select a theme:"
 msgstr "_Pilih tema:"
 
@@ -1317,7 +1316,7 @@ msgid "Record sound clips"
 msgstr "Rekam potongan suara"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1140
+#: ../grecord/src/gsr-window.c:1206
 msgid "Sound Recorder"
 msgstr "Perekam Suara"
 
@@ -1330,313 +1329,370 @@ msgstr "Perekam Suara"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:734
-#: ../grecord/src/gsr-window.c:1575 ../grecord/src/gsr-window.c:2159
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
+#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
 msgid "Untitled"
 msgstr "Tak berjudul"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1577
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
 #, c-format
 msgid "Untitled-%d"
 msgstr "Tak berjudul %d"
 
-#: ../grecord/src/gnome-recorder.c:179
-msgid "Dummy option"
-msgstr "Pilihan kosong"
+#: ../grecord/src/gsr-window.c:191
+#, c-format
+msgid ""
+"Could not create the GStreamer %s element.\n"
+"Please install the '%s' plug-in from the '%s' module.\n"
+"Verify that the installation is correct by running\n"
+"    gst-inspect-0.10 %s\n"
+"and then restart gnome-sound-recorder."
+msgstr ""
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:207
+msgid ""
+"Please verify its settings.\n"
+"You may be missing the necessary plug-ins."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hours"
 msgstr "jam"
 
-#: ../grecord/src/gsr-window.c:186 ../grecord/src/gsr-window.c:191
-#: ../grecord/src/gsr-window.c:197 ../grecord/src/gsr-window.c:201
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "jam"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minutes"
 msgstr "menit"
 
-#: ../grecord/src/gsr-window.c:187 ../grecord/src/gsr-window.c:192
-#: ../grecord/src/gsr-window.c:208 ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minute"
 msgstr "menit"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:217
-#: ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:326
 msgid "seconds"
 msgstr "detik"
 
-#: ../grecord/src/gsr-window.c:188 ../grecord/src/gsr-window.c:198
-#: ../grecord/src/gsr-window.c:209 ../grecord/src/gsr-window.c:220
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "detik"
 
-#: ../grecord/src/gsr-window.c:284 ../grecord/src/gsr-window.c:1718
-msgid "Open a file"
+#: ../grecord/src/gsr-window.c:361
+#, fuzzy
+msgid "Open a File"
 msgstr "Buka berkas"
 
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:431
 #, c-format
 msgid ""
 "Unable to load file:\n"
 "%s"
-msgstr "Berkas tidak dapat dibuka:\n"
+msgstr ""
+"Berkas tidak dapat dibuka:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:389 ../grecord/src/gsr-window.c:1450
-#: ../grecord/src/gsr-window.c:1616 ../grecord/src/gsr-window.c:1993
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
+#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
 msgid "Ready"
 msgstr "Siap"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:560
+#: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
 msgstr "_Timpa"
 
-#: ../grecord/src/gsr-window.c:577
+#: ../grecord/src/gsr-window.c:646
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
-msgstr "Sudah ada berkas dengan nama \"%s\" di sini.\n"
+msgstr ""
+"Sudah ada berkas dengan nama \"%s\" di sini.\n"
 "Ganti dengan yang Anda simpan ini?"
 
-#: ../grecord/src/gsr-window.c:627 ../grecord/src/gsr-window.c:636
+#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Berkas \"%s\" tidak dapat disimpan"
 
-#: ../grecord/src/gsr-window.c:679
+#: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
 msgstr "Simpan berkas sebagai"
 
-#: ../grecord/src/gsr-window.c:754
+#: ../grecord/src/gsr-window.c:814
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s tidak ada pada path"
 
-#: ../grecord/src/gsr-window.c:764
+#: ../grecord/src/gsr-window.c:823
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Ada error saat mulai %s: %s"
 
-#: ../grecord/src/gsr-window.c:809
+#: ../grecord/src/gsr-window.c:845
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Simpan perubahan pada \"%s\" sebelum keluar?"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:856
 msgid "Close _without Saving"
 msgstr "Tutup tanpa _Menyimpan"
 
-#: ../grecord/src/gsr-window.c:830
+#: ../grecord/src/gsr-window.c:863
 msgid "Question"
 msgstr "Pertanyaan"
 
-#: ../grecord/src/gsr-window.c:903
+#: ../grecord/src/gsr-window.c:955
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (belum disimpan)"
 
-#: ../grecord/src/gsr-window.c:916
-#, c-format
+#: ../grecord/src/gsr-window.c:970
+#, fuzzy, c-format
 msgid "%s (%llu byte)"
-msgstr "%s (%llu byte)"
+msgid_plural "%s (%llu bytes)"
+msgstr[0] "%s (%llu byte)"
+msgstr[1] "%s (%llu byte)"
 
-#: ../grecord/src/gsr-window.c:920
+#: ../grecord/src/gsr-window.c:974
 msgid "Unknown size"
 msgstr "Ukuran tidak diketahui"
 
-#: ../grecord/src/gsr-window.c:940
+#: ../grecord/src/gsr-window.c:995
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/detik"
 
-#: ../grecord/src/gsr-window.c:960
+#: ../grecord/src/gsr-window.c:1006
+#, fuzzy, c-format
+msgid "%.0f kb/s (Estimated)"
+msgstr "%.0f kb/detik"
+
+#: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:963
+#: ../grecord/src/gsr-window.c:1024
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:990
+#: ../grecord/src/gsr-window.c:1051
 #, c-format
 msgid "%s Information"
 msgstr "Informasi %s"
 
-#: ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
 msgid "File Information"
 msgstr "Informasi berkas"
 
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1090
 msgid "Folder:"
 msgstr "Folder:"
 
-#: ../grecord/src/gsr-window.c:1032 ../grecord/src/gsr-window.c:1953
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
 msgid "Filename:"
 msgstr "Nama berkas:"
 
-#: ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1102
 msgid "File size:"
 msgstr "Ukuran berkas:"
 
-#: ../grecord/src/gsr-window.c:1047
+#: ../grecord/src/gsr-window.c:1111
 msgid "Audio Information"
 msgstr "Informasi audio"
 
-#: ../grecord/src/gsr-window.c:1061
+#: ../grecord/src/gsr-window.c:1126
 msgid "File duration:"
 msgstr "Durasi berkas:"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
 msgstr "Jumlah kanal:"
 
-#: ../grecord/src/gsr-window.c:1073
+#: ../grecord/src/gsr-window.c:1138
 msgid "Sample rate:"
 msgstr "Laju sampel:"
 
-#: ../grecord/src/gsr-window.c:1079
+#: ../grecord/src/gsr-window.c:1144
 msgid "Bit rate:"
 msgstr "Laju bit:"
 
-#: ../grecord/src/gsr-window.c:1143
+#: ../grecord/src/gsr-window.c:1209
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
-msgstr "Perekam suara untuk GNOME\n"
+msgstr ""
+"Perekam suara untuk GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1431
+#: ../grecord/src/gsr-window.c:1467
 msgid "Playing..."
 msgstr "Sedang memutar..."
 
-#: ../grecord/src/gsr-window.c:1566
+#: ../grecord/src/gsr-window.c:1596
+msgid "GConf audio output"
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+msgid "Playback"
+msgstr "Keluaran Suara"
+
+#: ../grecord/src/gsr-window.c:1683
 msgid "Recording..."
 msgstr "Sedang merekam..."
 
-#: ../grecord/src/gsr-window.c:1649
+#: ../grecord/src/gsr-window.c:1834
+#, fuzzy
+msgid "GConf audio recording"
+msgstr "Mulai merekam"
+
+#: ../grecord/src/gsr-window.c:1843
 msgid ""
-"There is no default GStreamer audio input element set - please install the "
-"GStreamer-GConf schemas or set one manually"
-msgstr "Elemen masukan audio GStreamer standar belum ditentukan, silakan instal "
-"schema GStreamer-GConf atau tentukan secara manual"
+"Your audio capture settings are invalid. Please correct them in the "
+"Multimediad settings."
+msgstr ""
 
-#: ../grecord/src/gsr-window.c:1667
-msgid "Failed to create GStreamer encoder elements - check your encoding setup"
-msgstr "Gagal membuat elemen encoder GStreamer - Periksa konfigurasi sistem Anda"
+#: ../grecord/src/gsr-window.c:1928
+#, fuzzy
+msgid "file output"
+msgstr "Keluaran vide_o"
 
-#: ../grecord/src/gsr-window.c:1677
-msgid "Could not find GStreamer filesink plugin - please install it"
-msgstr "Plugin filesink GStreamer tidak ada - instal dulu"
+#: ../grecord/src/gsr-window.c:1956
+#, fuzzy, c-format
+msgid "Could not parse the '%s' audio profile. "
+msgstr "Nama singkat profil audio"
 
-#: ../grecord/src/gsr-window.c:1686
-msgid ""
-"Failed to link encoder elements with file output element - you probably "
-"selected an invalid encoder"
-msgstr "Gagal menautkan elemen encoder dengan elemen keluaran berkas - Mungkin Anda salah memilih encoder"
+#: ../grecord/src/gsr-window.c:1972
+#, fuzzy, c-format
+msgid "Could not capture using the '%s' audio profile. "
+msgstr "Nama singkat profil audio"
+
+#: ../grecord/src/gsr-window.c:1982
+#, c-format
+msgid "Could not write to a file using the '%s' audio profile. "
+msgstr ""
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1714
+#: ../grecord/src/gsr-window.c:2033
 msgid "_File"
 msgstr "_Berkas"
 
-#: ../grecord/src/gsr-window.c:1716
+#: ../grecord/src/gsr-window.c:2035
 msgid "Create a new sample"
 msgstr "Buat sampel baru"
 
-#: ../grecord/src/gsr-window.c:1720
+#: ../grecord/src/gsr-window.c:2036
+msgid "_Open..."
+msgstr "_Buka..."
+
+#: ../grecord/src/gsr-window.c:2037
+msgid "Open a file"
+msgstr "Buka berkas"
+
+#: ../grecord/src/gsr-window.c:2039
 msgid "Save the current file"
 msgstr "Simpan berkas ini"
 
-#: ../grecord/src/gsr-window.c:1722
+#: ../grecord/src/gsr-window.c:2040
+msgid "Save _As..."
+msgstr "Simp_an dengan nama lain..."
+
+#: ../grecord/src/gsr-window.c:2041
 msgid "Save the current file with a different name"
 msgstr "Simpan berkas ini dengan nama lain"
 
-#: ../grecord/src/gsr-window.c:1723
-msgid "Run _Mixer"
-msgstr "Jalankan _Mixer"
+#: ../grecord/src/gsr-window.c:2042
+#, fuzzy
+msgid "Open Volu_me Control"
+msgstr "Pengatur Volume"
 
-#: ../grecord/src/gsr-window.c:1724
-msgid "Run the audio mixer"
+#: ../grecord/src/gsr-window.c:2043
+#, fuzzy
+msgid "Open the audio mixer"
 msgstr "Jalankan mixer audio"
 
-#: ../grecord/src/gsr-window.c:1726
+#: ../grecord/src/gsr-window.c:2045
 msgid "Show information about the current file"
 msgstr "Tampilkan informasi tentang berkas ini"
 
-#: ../grecord/src/gsr-window.c:1728
+#: ../grecord/src/gsr-window.c:2047
 msgid "Close the current file"
 msgstr "Tutup berkas ini"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:2049
 msgid "Quit the program"
 msgstr "Keluar dari aplikasi"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1733
+#: ../grecord/src/gsr-window.c:2052
 msgid "_Control"
 msgstr "_Kendali"
 
-#: ../grecord/src/gsr-window.c:1735
+#: ../grecord/src/gsr-window.c:2054
 msgid "Record sound"
 msgstr "Rekam suara"
 
-#: ../grecord/src/gsr-window.c:1737
+#: ../grecord/src/gsr-window.c:2056
 msgid "Play sound"
 msgstr "Mainkan suara"
 
-#: ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2058
 msgid "Stop sound"
 msgstr "Stop suara"
 
-#: ../grecord/src/gsr-window.c:1744
+#: ../grecord/src/gsr-window.c:2063
 msgid "Open the manual"
 msgstr "Buka manual"
 
-#: ../grecord/src/gsr-window.c:1746
+#: ../grecord/src/gsr-window.c:2065
 msgid "About this application"
 msgstr "Tentang aplikasi ini"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:2186
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml tidak dapat dibuka. Mungkin belum diinstal dengan benar"
 
-#: ../grecord/src/gsr-window.c:1865
+#: ../grecord/src/gsr-window.c:2209
 msgid "Open"
 msgstr "Buka"
 
-#: ../grecord/src/gsr-window.c:1867
+#: ../grecord/src/gsr-window.c:2211
 msgid "Save"
 msgstr "Simpan"
 
-#: ../grecord/src/gsr-window.c:1869
+#: ../grecord/src/gsr-window.c:2213
 msgid "Save As"
 msgstr "Simpan Ke"
 
-#: ../grecord/src/gsr-window.c:1922
-msgid "Record as"
+#: ../grecord/src/gsr-window.c:2267
+#, fuzzy
+msgid "Record from input:"
+msgstr "Rekam potongan suara"
+
+#: ../grecord/src/gsr-window.c:2284
+#, fuzzy
+msgid "Record as:"
 msgstr "Rekam sebagai"
 
-#: ../grecord/src/gsr-window.c:1939
-msgid "File information"
-msgstr "Informasi berkas"
-
-#: ../grecord/src/gsr-window.c:1959
+#: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
 msgstr "<tidak ada>"
 
-#: ../grecord/src/gsr-window.c:1968
+#: ../grecord/src/gsr-window.c:2331
 msgid "Length:"
 msgstr "Panjang:"
 
@@ -1645,7 +1701,7 @@ msgid "Adjust the volume level"
 msgstr "Setel besarnya volume"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:147 ../gst-mixer/src/window.c:386
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
 msgstr "Pengatur Volume"
 
@@ -1665,43 +1721,34 @@ msgstr "Lebar Jendela"
 msgid "Width of the Window to be displayed"
 msgstr "Lebar jendela yang ditampilkan"
 
-#: ../gst-mixer/src/element.c:230
-msgid "Playback"
-msgstr "Keluaran Suara"
-
-#: ../gst-mixer/src/element.c:232
+#: ../gst-mixer/src/element.c:231
 msgid "Capture"
 msgstr "Rekam"
 
-#: ../gst-mixer/src/element.c:234
+#: ../gst-mixer/src/element.c:233
 msgid "Switches"
 msgstr "Saklar"
 
-#: ../gst-mixer/src/element.c:236
+#: ../gst-mixer/src/element.c:235
 msgid "Options"
 msgstr "Pilihan"
 
-#. FIXME:
-#. * - maybe we want to rename the element to its actual name
-#. *     if we've found that?
-#.
-#. create element
-#: ../gst-mixer/src/main.c:76 ../gst-mixer/src/main.c:79
-#: ../gst-mixer/src/main.c:135
+#: ../gst-mixer/src/main.c:76
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "Kendali Volume Tidak Diketahui %d"
 
-#: ../gst-mixer/src/main.c:267
-msgid "No volume control elements and/or devices found."
+#: ../gst-mixer/src/main.c:217
+#, fuzzy
+msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Elemen kendali suara dan/atau perangkatnya tidak ditemukan."
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:107
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "Pengaturan Kendali Volume"
 
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "_Pilih jalur yang tampak:"
 
@@ -1741,35 +1788,35 @@ msgstr "Jalur %s: perekaman audio"
 msgid "%s Option Selection"
 msgstr "Pilihan %s"
 
-#: ../gst-mixer/src/volume.c:135
+#: ../gst-mixer/src/volume.c:134
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "left"
 msgstr "kiri"
 
-#: ../gst-mixer/src/volume.c:137
+#: ../gst-mixer/src/volume.c:136
 msgid "right"
 msgstr "kanan"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:139
 msgid "front left"
 msgstr "kiri depan"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:140
 msgid "front right"
 msgstr "kanan depan"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:141
 msgid "rear left"
 msgstr "kiri belakang"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:142
 msgid "rear right"
 msgstr "kanan belakang"
 
-#: ../gst-mixer/src/volume.c:144
+#: ../gst-mixer/src/volume.c:143
 msgid "front center"
 msgstr "tengah depan"
 
@@ -1777,45 +1824,50 @@ msgstr "tengah depan"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:148
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:149
 msgid "side left"
 msgstr "sisi kiri"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:150
 msgid "side right"
 msgstr "sisi kanan"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:151
 msgid "unknown"
 msgstr "tidak diketahui"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:158
+#: ../gst-mixer/src/volume.c:157
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Volume kanal %s pada %s"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 #, c-format
 msgid "Track %s"
 msgstr "Jalur %s"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:208
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "Kanal %d pada jalur %s"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "Jalur %s, kanal %d"
 
-#: ../gst-mixer/src/volume.c:250
+#: ../gst-mixer/src/volume.c:231
+#, fuzzy, c-format
+msgid "Lock channels for %s together"
+msgstr "Jalur %s: kunci semua kanal"
+
+#: ../gst-mixer/src/volume.c:249
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "Jalur %s: kunci semua kanal"
@@ -1828,41 +1880,35 @@ msgstr "_Ganti Perangkat"
 msgid "Control volume on a different device"
 msgstr "Atur volume pada perangkat yang berbeda"
 
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:185
 #, c-format
 msgid "Change device to %s"
 msgstr "Ganti perangkat ke %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:228 ../gst-mixer/src/window.c:433
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Kendali Volume: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:380
+#: ../gst-mixer/src/window.c:387
 msgid "translator-credits"
-msgstr "Mohammad DAMT <mdamt@bisnisweb.com>\n"
+msgstr ""
+"Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "http://id.gnome.org/"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Aplikasi pengatur suara GNOME berbasis GStreamer"
 
-#. Fatal error
-#: ../gstreamer-properties/gstreamer-properties.c:274
+#: ../gstreamer-properties/gstreamer-properties.c:377
 msgid "Failure instantiating main window"
 msgstr "Gagal membuat jendela utama"
 
-#: ../gstreamer-properties/gstreamer-properties.c:309
-msgid ""
-"Registry is not present or it is corrupted, please update it by running gst-"
-"register."
-msgstr "Pencatat tidak ada atau rusak, perbaiki dengan menjalankan gst-register."
-
-#: ../gstreamer-properties/gstreamer-properties.c:332
+#: ../gstreamer-properties/gstreamer-properties.c:442
 msgid "Failed to load glade file; please check your installation."
 msgstr "Berkas glade tidak dapat dibuka, periksa instalasi Anda"
 
@@ -1881,12 +1927,14 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Sink</b>"
+#, fuzzy
+msgid "<b>Default Input Plugin</b>"
 msgstr "<b>Sink Standar</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Source</b>"
-msgstr "<b>Sumber Standar</b>"
+#, fuzzy
+msgid "<b>Default Output Plugin</b>"
+msgstr "<b>Sink Standar</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -1932,14 +1980,14 @@ msgstr "_Pipeline:"
 msgid "_Test"
 msgstr "_Tes"
 
-#: ../gstreamer-properties/pipeline-constants.c:65
-#: ../gstreamer-properties/pipeline-constants.c:94
-#: ../gstreamer-properties/pipeline-constants.c:113
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Custom"
 msgstr "Bebas"
 
-#: ../gstreamer-properties/pipeline-tests.c:119
+#: ../gstreamer-properties/pipeline-tests.c:130
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Gagal membuat test pipeline untuk '%s'"
@@ -1947,8 +1995,7 @@ msgstr "Gagal membuat test pipeline untuk '%s'"
 #: ../profiles/audio-profile-edit.c:164
 #, c-format
 msgid "There was an error displaying help: %s"
-msgstr ""
-"Terjadi error ketika menampilkan layar bantuan: %s"
+msgstr "Terjadi error ketika menampilkan layar bantuan: %s"
 
 #: ../profiles/audio-profile-edit.c:366
 #, c-format
@@ -1973,7 +2020,9 @@ msgstr "Ada kesalahan saat mengumpulkan data profil gm_audio (%s)\n"
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
-msgstr "Ada kesalahan saat berlangganan notifikasi daftar perubahan pada profil audio (%s)\n"
+msgstr ""
+"Ada kesalahan saat berlangganan notifikasi daftar perubahan pada profil "
+"audio (%s)\n"
 
 #: ../profiles/audio-profile.c:911
 #, c-format
@@ -1992,22 +2041,24 @@ msgstr "wav"
 msgid "_Edit"
 msgstr "_Ubah"
 
-#: ../profiles/audio-profiles-edit.c:460
+#: ../profiles/audio-profiles-edit.c:492
 msgid "You must select one or more profiles to delete."
 msgstr "Pilih satu atau lebih profil yang hendak dihapus."
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:469
-#, c-format
+#: ../profiles/audio-profiles-edit.c:501
+#, fuzzy, c-format
 msgid "Delete this profile?\n"
-msgstr "Hapus profil ini?\n"
+msgid_plural "Delete these %d profiles?\n"
+msgstr[0] "Hapus profil ini?\n"
+msgstr[1] "Hapus profil ini?\n"
 
-#: ../profiles/audio-profiles-edit.c:488
+#: ../profiles/audio-profiles-edit.c:520
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Hapus profil \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:510
+#: ../profiles/audio-profiles-edit.c:542
 msgid "Delete Profile"
 msgstr "Hapus Profil"
 
@@ -2023,20 +2074,21 @@ msgstr "Hapus Profil"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:606
-msgid "Edit GMAudio Profiles"
+#: ../profiles/audio-profiles-edit.c:638
+#, fuzzy
+msgid "Edit GNOME Audio Profiles"
 msgstr "Ubah Profile GMAudio"
 
-#: ../profiles/audio-profiles-edit.c:659
+#: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
 msgstr "_Profil:"
 
-#: ../profiles/audio-profiles-edit.c:887
+#: ../profiles/audio-profiles-edit.c:921
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Profil \"%s\" sudah ada"
 
-#: ../profiles/audio-profiles-edit.c:912
+#: ../profiles/audio-profiles-edit.c:946
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Error GConf (FIXME): %s\n"
@@ -2046,7 +2098,9 @@ msgstr "Error GConf (FIXME): %s\n"
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
-msgstr "Berkas \"%s\" hilang. Ini berarti aplikasi tidak diinstal dengan benar sehingga dialog tidak dapat dibuka."
+msgstr ""
+"Berkas \"%s\" hilang. Ini berarti aplikasi tidak diinstal dengan benar "
+"sehingga dialog tidak dapat dibuka."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
@@ -2101,7 +2155,8 @@ msgstr "Keterangan profil, berisi informasi tentang penggunaan profil."
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
-msgstr "Ekstensi nama yang digunakan saat menyimpan berkas menggunakan profil ini."
+msgstr ""
+"Ekstensi nama yang digunakan saat menyimpan berkas menggunakan profil ini."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -2115,7 +2170,9 @@ msgstr "Nama singkat profil audio"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "Nama singkat profil audio yang digunakan pada pilihan dan sekaligus berperan sebagai nama unik."
+msgstr ""
+"Nama singkat profil audio yang digunakan pada pilihan dan sekaligus berperan "
+"sebagai nama unik."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, Lossless"
@@ -2126,10 +2183,13 @@ msgid "CD Quality, Lossy"
 msgstr "Kualitas CD, Aus"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
+#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/audio/profiles."
-msgstr "Daftar profil rekaman audio. Berisi kode subdirektori relatif dari /system/gstreamer/audio/profiles."
+"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgstr ""
+"Daftar profil rekaman audio. Berisi kode subdirektori relatif dari /system/"
+"gstreamer/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2147,30 +2207,52 @@ msgstr "Pipa GStreamer parsial yang digunakan"
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
-msgstr "Digunakan untuk mengkoversi ke audio sekualitas CD, tapi dengan codec "
-"kompresi yang antiaus. Gunakan pilihan ini bila ingin merubah berkasnya atau merekamnya ke CD."
+msgstr ""
+"Digunakan untuk mengkoversi ke audio sekualitas CD, tapi dengan codec "
+"kompresi yang antiaus. Gunakan pilihan ini bila ingin merubah berkasnya atau "
+"merekamnya ke CD."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
-msgstr "Digunakan untuk mengkoversi ke audio sekualitas CD, tapi dengan codec "
-"kompresi yang aus. Gunakan pilihan ini bila ingin mengekstrak CD dan merekam radio."
+msgstr ""
+"Digunakan untuk mengkoversi ke audio sekualitas CD, tapi dengan codec "
+"kompresi yang aus. Gunakan pilihan ini bila ingin mengekstrak CD dan merekam "
+"radio."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#, fuzzy
 msgid ""
-"Used for converting to voice-quality audio. Use this for recording speech."
-msgstr "Digunakan untuk mengkoversi ke audio biasa. Gunakan untuk merekam pembicaraan."
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
+msgstr ""
+"Digunakan untuk mengkoversi ke audio biasa. Gunakan untuk merekam "
+"pembicaraan."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid "Voice"
-msgstr "Suara"
+#, fuzzy
+msgid ""
+"Used for converting to lossy voice-quality audio. Use this for recording "
+"speech that doesn't need to be edited."
+msgstr ""
+"Digunakan untuk mengkoversi ke audio biasa. Gunakan untuk merekam "
+"pembicaraan."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#, fuzzy
+msgid "Voice, Lossless"
+msgstr "Kualitas CD, Tak Aus"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid "Voice, Lossy"
+msgstr ""
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
 msgstr "Gunakan profil ini atau tidak"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
 msgstr "Gunakan dan tampilkan profil ini atau tidak."
 
@@ -2243,6 +2325,76 @@ msgstr "Pantau volume suara"
 msgid "Volume Monitor"
 msgstr "Pantauan Volume"
 
+#~ msgid ""
+#~ "Playing\n"
+#~ "Current Time: %s"
+#~ msgstr ""
+#~ "CD sedang diputar\n"
+#~ "Waktu Saat Ini: %s"
+
+#~ msgid ""
+#~ "Registry is not present or it is corrupted, please update it by running "
+#~ "gst-register"
+#~ msgstr ""
+#~ "Pencatat tidak ada atau rusak, silakan perbaiki dengan menjalankan gst-"
+#~ "register"
+
+#~ msgid ""
+#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
+#~ "plugin."
+#~ msgstr ""
+#~ "Pembaca CD gagal disiapkan, instal dulu plugin GStreamer cdparanoia."
+
+#~ msgid ""
+#~ "Failed to set up audio output; please install a GStreamer plugin for your "
+#~ "soundcard."
+#~ msgstr ""
+#~ "Keluaran audio gagal disiapkan, silakan instal plugin GStreamer kartu "
+#~ "suara Anda."
+
+#~ msgid "Dummy option"
+#~ msgstr "Pilihan kosong"
+
+#~ msgid ""
+#~ "There is no default GStreamer audio input element set - please install "
+#~ "the GStreamer-GConf schemas or set one manually"
+#~ msgstr ""
+#~ "Elemen masukan audio GStreamer standar belum ditentukan, silakan instal "
+#~ "schema GStreamer-GConf atau tentukan secara manual"
+
+#~ msgid ""
+#~ "Failed to create GStreamer encoder elements - check your encoding setup"
+#~ msgstr ""
+#~ "Gagal membuat elemen encoder GStreamer - Periksa konfigurasi sistem Anda"
+
+#~ msgid "Could not find GStreamer filesink plugin - please install it"
+#~ msgstr "Plugin filesink GStreamer tidak ada - instal dulu"
+
+#~ msgid ""
+#~ "Failed to link encoder elements with file output element - you probably "
+#~ "selected an invalid encoder"
+#~ msgstr ""
+#~ "Gagal menautkan elemen encoder dengan elemen keluaran berkas - Mungkin "
+#~ "Anda salah memilih encoder"
+
+#~ msgid "Run _Mixer"
+#~ msgstr "Jalankan _Mixer"
+
+#~ msgid "File information"
+#~ msgstr "Informasi berkas"
+
+#~ msgid ""
+#~ "Registry is not present or it is corrupted, please update it by running "
+#~ "gst-register."
+#~ msgstr ""
+#~ "Pencatat tidak ada atau rusak, perbaiki dengan menjalankan gst-register."
+
+#~ msgid "<b>Default Source</b>"
+#~ msgstr "<b>Sumber Standar</b>"
+
+#~ msgid "Voice"
+#~ msgstr "Suara"
+
 #~ msgid "P_revious track"
 #~ msgstr "T_rek sebelumnya"
 
@@ -2252,14 +2404,8 @@ msgstr "Pantauan Volume"
 #~ msgid "_About CD player"
 #~ msgstr "Keterangan tent_ang program ini"
 
-#~ msgid "_Open..."
-#~ msgstr "_Buka..."
-
 #~ msgid "_Save"
 #~ msgstr "_Simpan"
-
-#~ msgid "Save _As..."
-#~ msgstr "Simp_an dengan nama lain..."
 
 #~ msgid "File _Information"
 #~ msgstr "_Informasi file"
@@ -2281,9 +2427,6 @@ msgstr "Pantauan Volume"
 
 #~ msgid "Size of the expander arrow"
 #~ msgstr "Ukuran panah ekspander"
-
-#~ msgid "Playing"
-#~ msgstr "Sedang memainkan"
 
 #~ msgid "Volume control"
 #~ msgstr "Pengatur volume"
@@ -2779,9 +2922,6 @@ msgstr "Pantauan Volume"
 #~ msgid "Stop playing/recording"
 #~ msgstr "Stop putar/rekam"
 
-#~ msgid "Start recording"
-#~ msgstr "Mulai merekam"
-
 #~ msgid "Audio format: "
 #~ msgstr "Format audio:"
 
@@ -2945,6 +3085,3 @@ msgstr "Pantauan Volume"
 
 #~ msgid "Video _Input:"
 #~ msgstr "_Input Video"
-
-#~ msgid "Video _Output:"
-#~ msgstr "Keluaran vide_o"

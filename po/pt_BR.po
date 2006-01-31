@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-26 23:08+0100\n"
+"POT-Creation-Date: 2006-01-30 22:04+0100\n"
 "PO-Revision-Date: 2006-01-27 02:40-0300\n"
 "Last-Translator: Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -152,9 +152,9 @@ msgid "Unknown / Unknown"
 msgstr "Desconhecido / Desconhecido"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:958
-#: ../grecord/src/gsr-window.c:968 ../grecord/src/gsr-window.c:984
-#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1339
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -1078,7 +1078,7 @@ msgid "_Eject disc"
 msgstr "Abrir band_eja do disco"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2030
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
 msgid "_Help"
 msgstr "Aj_uda"
 
@@ -1274,7 +1274,7 @@ msgstr "Que volume o Reprodutor de CD deve usar quando é iniciado?"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Quando o Reprodutor de CD é iniciado, deve começar reproduzindo o CD?"
 
-#: ../gnome-cd/gst-cdrom.c:278
+#: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "Falhou ao ejetar o CD: %s"
@@ -1333,7 +1333,7 @@ msgid "Record sound clips"
 msgstr "Grave clipes de som"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1181
+#: ../grecord/src/gsr-window.c:1206
 msgid "Sound Recorder"
 msgstr "Gravador de Som"
 
@@ -1346,52 +1346,68 @@ msgstr "Gravador de Som"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:769
-#: ../grecord/src/gsr-window.c:1665 ../grecord/src/gsr-window.c:2496
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
+#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
 msgid "Untitled"
 msgstr "Sem Título"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1667
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
 #, c-format
 msgid "Untitled-%d"
 msgstr "Sem Título-%d"
 
-#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
-#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
+#: ../grecord/src/gsr-window.c:191
+#, c-format
+msgid ""
+"Could not create the GStreamer %s element.\n"
+"Please install the '%s' plug-in from the '%s' module.\n"
+"Verify that the installation is correct by running\n"
+"    gst-inspect-0.10 %s\n"
+"and then restart gnome-sound-recorder."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:207
+msgid ""
+"Please verify its settings.\n"
+"You may be missing the necessary plug-ins."
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hours"
 msgstr "horas"
 
-#: ../grecord/src/gsr-window.c:267 ../grecord/src/gsr-window.c:272
-#: ../grecord/src/gsr-window.c:278 ../grecord/src/gsr-window.c:282
+#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "hora"
 
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
-#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minutes"
 msgstr "minutos"
 
-#: ../grecord/src/gsr-window.c:268 ../grecord/src/gsr-window.c:273
-#: ../grecord/src/gsr-window.c:289 ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
 msgid "minute"
 msgstr "minuto"
 
-#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
-#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:301
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:326
 msgid "seconds"
 msgstr "segundos"
 
-#: ../grecord/src/gsr-window.c:269 ../grecord/src/gsr-window.c:279
-#: ../grecord/src/gsr-window.c:290 ../grecord/src/gsr-window.c:301
+#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "segundo"
 
-#: ../grecord/src/gsr-window.c:336
+#: ../grecord/src/gsr-window.c:361
 msgid "Open a File"
 msgstr "Abrir um Arquivo"
 
-#: ../grecord/src/gsr-window.c:406
+#: ../grecord/src/gsr-window.c:431
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1400,17 +1416,17 @@ msgstr ""
 "Impossível carregar o arquivo:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:551 ../grecord/src/gsr-window.c:1470
-#: ../grecord/src/gsr-window.c:1716 ../grecord/src/gsr-window.c:2325
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
+#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
 msgid "Ready"
 msgstr "Pronto"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:604
+#: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
 msgstr "_Substituir"
 
-#: ../grecord/src/gsr-window.c:621
+#: ../grecord/src/gsr-window.c:646
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1419,119 +1435,119 @@ msgstr ""
 "Um arquivo \"%s\" já existe.\n"
 "Você deseja substituí-lo com o arquivo que você está salvando?"
 
-#: ../grecord/src/gsr-window.c:671 ../grecord/src/gsr-window.c:678
+#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Não foi possível salvar o arquivo \"%s\""
 
-#: ../grecord/src/gsr-window.c:695
+#: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
 msgstr "Salvar arquivo como"
 
-#: ../grecord/src/gsr-window.c:789
+#: ../grecord/src/gsr-window.c:814
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s não está instalado no caminho."
 
-#: ../grecord/src/gsr-window.c:798
+#: ../grecord/src/gsr-window.c:823
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Erro ao iniciar %s: %s"
 
-#: ../grecord/src/gsr-window.c:820
+#: ../grecord/src/gsr-window.c:845
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Deseja salvar as alterações no arquivo \"%s\" antes de fechar?"
 
-#: ../grecord/src/gsr-window.c:831
+#: ../grecord/src/gsr-window.c:856
 msgid "Close _without Saving"
 msgstr "Fechar _sem salvar"
 
-#: ../grecord/src/gsr-window.c:838
+#: ../grecord/src/gsr-window.c:863
 msgid "Question"
 msgstr "Pergunta"
 
-#: ../grecord/src/gsr-window.c:930
+#: ../grecord/src/gsr-window.c:955
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Não foi salvo)"
 
-#: ../grecord/src/gsr-window.c:945
+#: ../grecord/src/gsr-window.c:970
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:974
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
 
-#: ../grecord/src/gsr-window.c:970
+#: ../grecord/src/gsr-window.c:995
 #, c-format
 msgid "%.1f kHz"
 msgstr "%1.f kHz"
 
-#: ../grecord/src/gsr-window.c:978
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:981
+#: ../grecord/src/gsr-window.c:1006
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Estimativa)"
 
-#: ../grecord/src/gsr-window.c:996
+#: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:999
+#: ../grecord/src/gsr-window.c:1024
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1051
 #, c-format
 msgid "%s Information"
 msgstr "Informações de %s"
 
-#: ../grecord/src/gsr-window.c:1050 ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
 msgid "File Information"
 msgstr "Informações do Arquivo"
 
-#: ../grecord/src/gsr-window.c:1065
+#: ../grecord/src/gsr-window.c:1090
 msgid "Folder:"
 msgstr "Pasta:"
 
-#: ../grecord/src/gsr-window.c:1071 ../grecord/src/gsr-window.c:2285
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
 msgid "Filename:"
 msgstr "Nome do arquivo:"
 
-#: ../grecord/src/gsr-window.c:1077
+#: ../grecord/src/gsr-window.c:1102
 msgid "File size:"
 msgstr "Tamanho do arquivo:"
 
-#: ../grecord/src/gsr-window.c:1086
+#: ../grecord/src/gsr-window.c:1111
 msgid "Audio Information"
 msgstr "Informações de Áudio"
 
-#: ../grecord/src/gsr-window.c:1101
+#: ../grecord/src/gsr-window.c:1126
 msgid "File duration:"
 msgstr "Duração do arquivo:"
 
-#: ../grecord/src/gsr-window.c:1107
+#: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
 msgstr "Número de canais:"
 
-#: ../grecord/src/gsr-window.c:1113
+#: ../grecord/src/gsr-window.c:1138
 msgid "Sample rate:"
 msgstr "Taxa da amostragem:"
 
-#: ../grecord/src/gsr-window.c:1119
+#: ../grecord/src/gsr-window.c:1144
 msgid "Bit rate:"
 msgstr "Taxa de bits:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1209
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1539,160 +1555,156 @@ msgstr ""
 "Um gravador de som para o GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1442
+#: ../grecord/src/gsr-window.c:1467
 msgid "Playing..."
 msgstr "Reproduzindo..."
 
-#: ../grecord/src/gsr-window.c:1570 ../grecord/src/gsr-window.c:1578
-#, c-format
-msgid "Could not find GStreamer element \"%s\" - please install it"
+#: ../grecord/src/gsr-window.c:1596
+msgid "GConf audio output"
 msgstr ""
-"Não foi possível encontrar o elemento \"%s\" do GStreamer - por favor, "
-"instale-o"
 
-#: ../grecord/src/gsr-window.c:1656
+#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+msgid "Playback"
+msgstr "Reproduzir"
+
+#: ../grecord/src/gsr-window.c:1683
 msgid "Recording..."
 msgstr "Gravando..."
 
-#: ../grecord/src/gsr-window.c:1806 ../grecord/src/gsr-window.c:1898
-#, c-format
-msgid "Could not find GStreamer plugin \"%s\" - please install it"
+#: ../grecord/src/gsr-window.c:1834
+msgid "GConf audio recording"
 msgstr ""
-"Não foi possível encontrar o plugin \"%s\" do GStreamer - por favor, "
-"instale-o"
 
-#: ../grecord/src/gsr-window.c:1815
-#, c-format
-msgid "Could not activate GStreamer plugin \"%s\""
-msgstr "Não foi ativar o plugin \"%s\" do Gstreamer"
-
-#: ../grecord/src/gsr-window.c:1924
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup."
-msgstr ""
-"Falha ao criar plugins de codificação do GStreamer - verifique sua "
-"configuração de codificação."
-
-#: ../grecord/src/gsr-window.c:1940
+#: ../grecord/src/gsr-window.c:1843
 msgid ""
-"Failed to link input element with encoder plugins - you probably selected an "
-"invalid encoder"
+"Your audio capture settings are invalid. Please correct them in the "
+"Multimediad settings."
 msgstr ""
-"Falha ao ligar o elementos de entrada com os plugins de codificação - você "
-"provavelmente selecionou um codificador inválido."
 
-#: ../grecord/src/gsr-window.c:1950
-msgid ""
-"Failed to link encoder element with file output plugins - you probably "
-"selected an invalid encoder"
+#: ../grecord/src/gsr-window.c:1928
+msgid "file output"
 msgstr ""
-"Falha ao ligar o elemento codificador com os plugins de saída para "
-"arquivo - você provavelmente selecionou um codificador inválido."
+
+#: ../grecord/src/gsr-window.c:1956
+#, fuzzy, c-format
+msgid "Could not parse the '%s' audio profile. "
+msgstr "Um apelido para o perfil de áudio"
+
+#: ../grecord/src/gsr-window.c:1972
+#, fuzzy, c-format
+msgid "Could not capture using the '%s' audio profile. "
+msgstr "Um apelido para o perfil de áudio"
+
+#: ../grecord/src/gsr-window.c:1982
+#, c-format
+msgid "Could not write to a file using the '%s' audio profile. "
+msgstr ""
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2002
+#: ../grecord/src/gsr-window.c:2033
 msgid "_File"
 msgstr "_Arquivo"
 
-#: ../grecord/src/gsr-window.c:2004
+#: ../grecord/src/gsr-window.c:2035
 msgid "Create a new sample"
 msgstr "Criar uma nova amostra"
 
-#: ../grecord/src/gsr-window.c:2005
+#: ../grecord/src/gsr-window.c:2036
 msgid "_Open..."
 msgstr "_Abrir..."
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2037
 msgid "Open a file"
 msgstr "Abrir um arquivo"
 
-#: ../grecord/src/gsr-window.c:2008
+#: ../grecord/src/gsr-window.c:2039
 msgid "Save the current file"
 msgstr "Salvar o arquivo atual"
 
-#: ../grecord/src/gsr-window.c:2009
+#: ../grecord/src/gsr-window.c:2040
 msgid "Save _As..."
 msgstr "Salvar _Como..."
 
-#: ../grecord/src/gsr-window.c:2010
+#: ../grecord/src/gsr-window.c:2041
 msgid "Save the current file with a different name"
 msgstr "Salvar o arquivo atual com um nome diferente"
 
-#: ../grecord/src/gsr-window.c:2011
+#: ../grecord/src/gsr-window.c:2042
 msgid "Open Volu_me Control"
 msgstr "Abrir Controle de Volu_me"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2043
 msgid "Open the audio mixer"
 msgstr "Abrir o mixer de áudio"
 
-#: ../grecord/src/gsr-window.c:2014
+#: ../grecord/src/gsr-window.c:2045
 msgid "Show information about the current file"
 msgstr "Mostrar informações sobre o arquivo atual"
 
-#: ../grecord/src/gsr-window.c:2016
+#: ../grecord/src/gsr-window.c:2047
 msgid "Close the current file"
 msgstr "Fecha o arquivo atual"
 
-#: ../grecord/src/gsr-window.c:2018
+#: ../grecord/src/gsr-window.c:2049
 msgid "Quit the program"
 msgstr "Sai do programa"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2021
+#: ../grecord/src/gsr-window.c:2052
 msgid "_Control"
 msgstr "_Controle"
 
-#: ../grecord/src/gsr-window.c:2023
+#: ../grecord/src/gsr-window.c:2054
 msgid "Record sound"
 msgstr "Gravar som"
 
-#: ../grecord/src/gsr-window.c:2025
+#: ../grecord/src/gsr-window.c:2056
 msgid "Play sound"
 msgstr "Reproduzir som"
 
-#: ../grecord/src/gsr-window.c:2027
+#: ../grecord/src/gsr-window.c:2058
 msgid "Stop sound"
 msgstr "Parar som"
 
-#: ../grecord/src/gsr-window.c:2032
+#: ../grecord/src/gsr-window.c:2063
 msgid "Open the manual"
 msgstr "Abre o manual"
 
-#: ../grecord/src/gsr-window.c:2034
+#: ../grecord/src/gsr-window.c:2065
 msgid "About this application"
 msgstr "Sobre esta aplicação"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2186
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Não foi possível carregar o arquivo ui.xml. O programa pode não estar "
 "instalado adequadamente."
 
-#: ../grecord/src/gsr-window.c:2178
+#: ../grecord/src/gsr-window.c:2209
 msgid "Open"
 msgstr "Abrir"
 
-#: ../grecord/src/gsr-window.c:2180
+#: ../grecord/src/gsr-window.c:2211
 msgid "Save"
 msgstr "Salvar"
 
-#: ../grecord/src/gsr-window.c:2182
+#: ../grecord/src/gsr-window.c:2213
 msgid "Save As"
 msgstr "Salvar Como"
 
-#: ../grecord/src/gsr-window.c:2236
+#: ../grecord/src/gsr-window.c:2267
 msgid "Record from input:"
 msgstr "Gravar da entrada:"
 
-#: ../grecord/src/gsr-window.c:2253
+#: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
 msgstr "Gravar como:"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
 msgstr "<nenhum>"
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2331
 msgid "Length:"
 msgstr "Tamanho:"
 
@@ -1721,10 +1733,6 @@ msgstr "Largura da janela"
 msgid "Width of the Window to be displayed"
 msgstr "A largura da janela a ser exibida"
 
-#: ../gst-mixer/src/element.c:229
-msgid "Playback"
-msgstr "Reproduzir"
-
 #: ../gst-mixer/src/element.c:231
 msgid "Capture"
 msgstr "Capturar"
@@ -1744,7 +1752,9 @@ msgstr "Controle de Volume %d Desconhecido"
 
 #: ../gst-mixer/src/main.c:217
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Nenhum dispositivo e/ou plugin do Gstreamer para controle de volume encontrado."
+msgstr ""
+"Nenhum dispositivo e/ou plugin do Gstreamer para controle de volume "
+"encontrado."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1909,11 +1919,11 @@ msgstr ""
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Uma aplicação controladora de volume baseada no GNOME/GStreamer"
 
-#: ../gstreamer-properties/gstreamer-properties.c:381
+#: ../gstreamer-properties/gstreamer-properties.c:377
 msgid "Failure instantiating main window"
 msgstr "Falha ao criar a janela principal"
 
-#: ../gstreamer-properties/gstreamer-properties.c:444
+#: ../gstreamer-properties/gstreamer-properties.c:442
 msgid "Failed to load glade file; please check your installation."
 msgstr ""
 "Falha ao carregar o arquivo glade. Por favor, verifique sua instalação."
@@ -2230,8 +2240,8 @@ msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Usado para converter para áudio com qualidade de voz. Use isto para gravar "
-"e editar falas."
+"Usado para converter para áudio com qualidade de voz. Use isto para gravar e "
+"editar falas."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
@@ -2325,6 +2335,39 @@ msgstr "Monitore o volume de saída de som"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor de Volume"
+
+#~ msgid "Could not find GStreamer element \"%s\" - please install it"
+#~ msgstr ""
+#~ "Não foi possível encontrar o elemento \"%s\" do GStreamer - por favor, "
+#~ "instale-o"
+
+#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
+#~ msgstr ""
+#~ "Não foi possível encontrar o plugin \"%s\" do GStreamer - por favor, "
+#~ "instale-o"
+
+#~ msgid "Could not activate GStreamer plugin \"%s\""
+#~ msgstr "Não foi ativar o plugin \"%s\" do Gstreamer"
+
+#~ msgid ""
+#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
+#~ msgstr ""
+#~ "Falha ao criar plugins de codificação do GStreamer - verifique sua "
+#~ "configuração de codificação."
+
+#~ msgid ""
+#~ "Failed to link input element with encoder plugins - you probably selected "
+#~ "an invalid encoder"
+#~ msgstr ""
+#~ "Falha ao ligar o elementos de entrada com os plugins de codificação - "
+#~ "você provavelmente selecionou um codificador inválido."
+
+#~ msgid ""
+#~ "Failed to link encoder element with file output plugins - you probably "
+#~ "selected an invalid encoder"
+#~ msgstr ""
+#~ "Falha ao ligar o elemento codificador com os plugins de saída para "
+#~ "arquivo - você provavelmente selecionou um codificador inválido."
 
 #~ msgid ""
 #~ "Playing\n"
