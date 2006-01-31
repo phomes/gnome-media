@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media (gnome-2-8)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-21 21:35+0200\n"
+"POT-Creation-Date: 2006-01-31 23:13+0200\n"
+"PO-Revision-Date: 2006-01-31 23:20+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1371,12 +1371,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"GStreamer-elementtiä %s ei voitu luoda.\n"
+"Asenna liitännäinen \"%s\" modulista \"%s\".\n"
+"Varmista asennuksen onnistumisen suorittamalla komennon\n"
+"    gst-inspect-0.10 %s\n"
+"ja käynnistä gnome-sound-recorder sen jälkeen uudestaan."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Tarkista sen asetukset.\n"
+"Saattaa olla, että vaadittuja liitännäisiä puuttuu."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1573,7 +1580,7 @@ msgstr "Soitetaan..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConfin ääniulostulo"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1585,32 +1592,34 @@ msgstr "Äänitetään..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConfin äänisisääntulo"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Äänen tallennusasetukset ovat virheelliset. Korjaa asetukset "
+"Multimedia-asetuksista."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "tiedostoulostulo"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Lyhyt nimi ääniprofiilille"
+msgstr "Ääniprofiilia \"%s\" ei voitu tulkita."
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Lyhyt nimi ääniprofiilille"
+msgstr "Ääntä ei voitu kaapata käyttäen ääniprofiilia \"%s\""
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Tiedostoon ei voitu kirjoittaa käyttäen ääniprofiilia \"%s\""
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
