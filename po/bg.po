@@ -1,12 +1,12 @@
 # Bulgarian translation for gnome-media for GNOME2.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Evgeni Boevski <linkej@yahoo.com>, 2002.
 # Evgeni Boevski <linkej@yahoo.com>, 2003.
 # Yanko Kaneti <yaneti@declera.com>, 2003.
 # Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004.
 # Rostislav Raykov <zbrox@i-space.org>, 2004.
 # Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004.
-# Alexander Shopov <ash@contact.bg>, 2005
+# Alexander Shopov <ash@contact.bg>, 2005, 2006.
 # Philip Dimitrov <philip.dimitrov@gmail.com>, 2005 
 #
 #
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-03 13:52+0200\n"
-"PO-Revision-Date: 2006-01-03 13:52+0200\n"
+"POT-Creation-Date: 2006-02-01 10:50+0200\n"
+"PO-Revision-Date: 2006-02-01 10:50+0200\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -970,8 +970,8 @@ msgstr "На пауза"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:895
-#: ../gnome-cd/gnome-cd.c:898 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Изпълнение на CD"
@@ -1200,23 +1200,23 @@ msgstr "Изваждане на CD"
 msgid "Eject"
 msgstr "Изваждане"
 
-#: ../gnome-cd/gnome-cd.c:978
+#: ../gnome-cd/gnome-cd.c:985
 msgid "CD device to use"
 msgstr "Използвано CD устройство"
 
-#: ../gnome-cd/gnome-cd.c:980
+#: ../gnome-cd/gnome-cd.c:987
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Стартиране само ако няма стартирана програма за изпълнение на CD"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:989
 msgid "Play the CD on startup"
 msgstr "Изпълнение на CD при стартирането"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:991
 msgid "Start iconified to tray"
 msgstr "Стартиране в тавата"
 
-#: ../gnome-cd/gnome-cd.c:1017 ../grecord/src/gnome-recorder.c:210
+#: ../gnome-cd/gnome-cd.c:1024 ../grecord/src/gnome-recorder.c:210
 #: ../gst-mixer/src/main.c:251
 msgid ""
 "Registry is not present or it is corrupted, please update it by running gst-"
@@ -1225,7 +1225,7 @@ msgstr ""
 "Регистърът липсва или е развален. Обновете го чрез командата „gst-register“"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1034
+#: ../gnome-cd/gnome-cd.c:1041
 msgid "Cannot create player"
 msgstr "Невъзможно създаване на плеър"
 
@@ -1565,27 +1565,27 @@ msgstr "Запис..."
 
 #: ../grecord/src/gsr-window.c:1653
 msgid ""
-"There is no default GStreamer audio input plugin set - please install the "
+"There is no default GStreamer audio input element set - please install the "
 "GStreamer-GConf schemas or set one manually"
 msgstr ""
 "Няма настроена стандартна звукова приставка за елемент-източник - "
 "инсталирайте схемите на GConf за GStreamer или настройте ръчно"
 
 #: ../grecord/src/gsr-window.c:1671
-msgid "Failed to create GStreamer encoder plugins - check your encoding setup"
+msgid "Failed to create GStreamer encoder elements - check your encoding setup"
 msgstr ""
 "Неуспех при създаването на приставките за кодека на GStreamer - проверете "
 "настройките на Вашите кодеци"
 
 #: ../grecord/src/gsr-window.c:1681
-msgid "Could not find \"filesink\" GStreamer plugin - please install it"
+msgid "Could not find GStreamer filesink plugin - please install it"
 msgstr ""
 "Неуспех при инициализацията на файловия елемент-приемник на GStreamer - "
 "инсталирайте го"
 
 #: ../grecord/src/gsr-window.c:1690
 msgid ""
-"Failed to link encoder plugin with file output plugin - you probably "
+"Failed to link encoder elements with file output element - you probably "
 "selected an invalid encoder"
 msgstr ""
 "Неуспех при свързването между приставката за кодирането и елемента-приемник "
@@ -1748,7 +1748,7 @@ msgid "Unknown Volume Control %d"
 msgstr "Неизвестна сила на звука %d"
 
 #: ../gst-mixer/src/main.c:276
-msgid "No volume control GStreamer plugins and/or devices found."
+msgid "No volume control elements and/or devices found."
 msgstr "Не бяха открити приставки/устройства-смесители."
 
 #. make window look cute
@@ -1870,6 +1870,11 @@ msgstr "Канал %d от песен %s"
 msgid "Track %s, channel %d"
 msgstr "Песен %s, канал %d"
 
+#: ../gst-mixer/src/volume.c:232
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Заключване на каналите на %s заедно"
+
 #: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
@@ -1946,12 +1951,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Приставка-вход по подразбиране</b>"
+msgid "<b>Default Sink</b>"
+msgstr "<b>Изход по подразбиране</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Приставка-изход по подразбиране</b>"
+msgid "<b>Default Source</b>"
+msgstr "<b>Вход по подразбиране</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
