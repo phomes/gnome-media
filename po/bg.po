@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-03 13:52+0200\n"
+"POT-Creation-Date: 2006-02-02 14:17+0200\n"
+"PO-Revision-Date: 2006-02-02 14:14+0200\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -937,7 +937,7 @@ msgstr "Лента, показваща името на албума"
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
 #: ../gnome-cd/gnome-cd.c:819
 msgid "Play"
-msgstr "Изпълнение"
+msgstr "Слушане"
 
 #: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
 #: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
@@ -952,7 +952,7 @@ msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
-"Изпълнение на %s - %s\n"
+"Слушане на %s - %s\n"
 "%s"
 
 #: ../gnome-cd/callbacks.c:593
@@ -961,7 +961,7 @@ msgid ""
 "Playing\n"
 ": %s"
 msgstr ""
-"Изпълнение\n"
+"Слушане\n"
 ": %s"
 
 #: ../gnome-cd/callbacks.c:617
@@ -974,7 +974,7 @@ msgstr "На пауза"
 #: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
-msgstr "Изпълнение на CD"
+msgstr "Слушане на CD"
 
 #: ../gnome-cd/callbacks.c:694
 msgid "Stopped"
@@ -1206,11 +1206,11 @@ msgstr "Използвано CD устройство"
 
 #: ../gnome-cd/gnome-cd.c:984
 msgid "Only start if there isn't already a CD player application running"
-msgstr "Стартиране само ако няма стартирана програма за изпълнение на CD"
+msgstr "Стартиране само, ако няма стартирана програма за слушане на CD"
 
 #: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
-msgstr "Изпълнение на CD при стартирането"
+msgstr "Преслушване на CD при стартирането"
 
 #: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
@@ -1223,7 +1223,7 @@ msgstr "Невъзможно създаване на плеър"
 
 #: ../gnome-cd/gnome-cd.desktop.in.h:2
 msgid "Play audio CDs"
-msgstr "Изпълнение на аудио CD-та"
+msgstr "Слушане на аудио CD-та"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "CD player Volume"
@@ -1251,7 +1251,7 @@ msgstr "Как да се показва времето, когато работ�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
-msgstr "Изпълнение при стартирането на CD плеъра?"
+msgstr "Преслушване при стартирането на CD плеъра?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
@@ -1271,12 +1271,12 @@ msgstr "Колко силен да е звука при стартиране н�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:12
 msgid "When the CD player is started, should it start playing the CD?"
-msgstr "При стартиране на CD плеър да се стартира ли изпълнението на CD?"
+msgstr "При стартиране на CD плеър да се стартира ли преслушването на CD?"
 
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Неуспех при изваждане на диска: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1305,11 +1305,11 @@ msgstr "Поведение"
 
 #: ../gnome-cd/preferences.c:652
 msgid "Start _playback when CD Player starts"
-msgstr "Започване на _изпълнение при стартиране на CD плеъра"
+msgstr "Започване на _преслушване при стартиране на CD плеъра"
 
 #: ../gnome-cd/preferences.c:653
 msgid "Start playback when CD Player starts"
-msgstr "Започване на изпълнение при стартиране на CD плеъра "
+msgstr "Започване на преслушването при стартиране на CD плеъра "
 
 #: ../gnome-cd/preferences.c:665
 msgid "Attempt to _eject CD when CD Player exits"
@@ -1364,12 +1364,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Елементът „%s“ на GStreamer не може да бъде създаден.\n"
+"Инсталирайте приставката „%s“ от модула „%s“.\n"
+"Проверете инсталацията чрез командатата:\n"
+"    gst-inspect-0.10 %s\n"
+"след което рестартирайте gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Проверете дали настройките са правилни.\n"
+"Може да Ви липсват нужните приставки."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1493,9 +1500,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (приблизително)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1560,11 +1567,11 @@ msgstr "Изпълнява се..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "Аудио изход на GConf"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
-msgstr "Изпълнение"
+msgstr "Преслушване"
 
 #: ../grecord/src/gsr-window.c:1683
 msgid "Recording..."
@@ -1572,32 +1579,34 @@ msgstr "Запис..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "Запис на аудио на GConf"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Настройките Ви за аудио прихващане са неправилни. Поправете ги от "
+"настройките за мултимедия."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "изход към файл"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Кратко име за звуковия профил"
+msgstr "Аудио профилът „%s“ не може да се анализира."
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Кратко име за звуковия профил"
+msgstr "Не може да се прехваща звук чрез аудио профила „%s“."
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Не може да се запише към файл, използвайки аудио профила „%s“. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1659,7 +1668,7 @@ msgstr "Записване на звук"
 
 #: ../grecord/src/gsr-window.c:2056
 msgid "Play sound"
-msgstr "Изпълнение на звук"
+msgstr "Преслушване на звук"
 
 #: ../grecord/src/gsr-window.c:2058
 msgid "Stop sound"
@@ -1692,9 +1701,8 @@ msgid "Save As"
 msgstr "Запазване като"
 
 #: ../grecord/src/gsr-window.c:2267
-#, fuzzy
 msgid "Record from input:"
-msgstr "Запис на звукови клипове"
+msgstr "Запис от вход:"
 
 #: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
@@ -1761,7 +1769,7 @@ msgstr "Настройване силата на звука"
 
 #: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
-msgstr "_Избор на видими песни:"
+msgstr "_Избор на видими канали:"
 
 #: ../gst-mixer/src/track.c:221
 #, c-format
@@ -1805,27 +1813,27 @@ msgstr "моно"
 
 #: ../gst-mixer/src/volume.c:136
 msgid "left"
-msgstr "ляво"
+msgstr "ляв"
 
 #: ../gst-mixer/src/volume.c:136
 msgid "right"
-msgstr "дясно"
+msgstr "десен"
 
 #: ../gst-mixer/src/volume.c:139
 msgid "front left"
-msgstr "отпред ляво"
+msgstr "преден ляв"
 
 #: ../gst-mixer/src/volume.c:140
 msgid "front right"
-msgstr "отпред дясно"
+msgstr "преден десен"
 
 #: ../gst-mixer/src/volume.c:141
 msgid "rear left"
-msgstr "отзад ляво"
+msgstr "заден ляв"
 
 #: ../gst-mixer/src/volume.c:142
 msgid "rear right"
-msgstr "отзад дясно"
+msgstr "заден десен"
 
 #: ../gst-mixer/src/volume.c:143
 msgid "front center"
@@ -1841,11 +1849,11 @@ msgstr "LFE"
 
 #: ../gst-mixer/src/volume.c:149
 msgid "side left"
-msgstr "отстрани ляво"
+msgstr "страничен ляв"
 
 #: ../gst-mixer/src/volume.c:150
 msgid "side right"
-msgstr "отстрани дясно"
+msgstr "страничен десен"
 
 #: ../gst-mixer/src/volume.c:151
 msgid "unknown"
@@ -1874,9 +1882,9 @@ msgid "Track %s, channel %d"
 msgstr "Песен %s, канал %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Песен %s: заключване на каналите заедно"
+msgstr "Заключване на каналите за %s заедно"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -2092,9 +2100,8 @@ msgstr "Изтриване на профил"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Редактиране на профилите към GMAudio"
+msgstr "Редактиране на аудио профилите към GNOME"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2203,13 +2210,12 @@ msgid "CD Quality, Lossy"
 msgstr "CD качество, със загуби"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Списък с профили за запис на звук. Списъкът съдържа низове именуващи под-"
-"папки на /system/gstreamer/audio/profiles."
+"папки на /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2241,31 +2247,29 @@ msgstr ""
 "на качество. Използвайте този избор за сваляне на CD или за запис за радио."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Използва се за конвертиране към качество достатъчно за човешки глас. "
-"Използвайте този избор за запис на реч."
+"Използва се за конвертиране към аудио формат без загуби, предназначено за "
+"запис на човешки глас. Използвайте за записване и редактиране на реч."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Използва се за конвертиране към качество достатъчно за човешки глас. "
-"Използвайте този избор за запис на реч."
+"Използва се за конвертиране към аудио формат със загуби, предназначено за "
+"запис на човешки глас. Използвайте за записване на реч, която няма да бъде "
+"редактирана."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD качество, без загуби"
+msgstr "Глас, без загуби"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Глас, със загуби"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2343,63 +2347,3 @@ msgstr "Следене на изходната сила на звука"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Следене на силата на звука"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Регистърът липсва или е развален. Обновете го чрез командата „gst-"
-#~ "register“"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Неуспех при конфигурирането на CD устройството. Инсталирайте приставката "
-#~ "cdparanoia на GStreamer."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Неуспех при конфигурирането на аудио изхода. Инсталирайте приставката на "
-#~ "GStreamer за Вашата звукова карта."
-
-#~ msgid "Dummy option"
-#~ msgstr "Фалшива опция"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input plugin set - please install the "
-#~ "GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Няма настроена стандартна звукова приставка за елемент-източник - "
-#~ "инсталирайте схемите на GConf за GStreamer или настройте ръчно"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup"
-#~ msgstr ""
-#~ "Неуспех при създаването на приставките за кодека на GStreamer - проверете "
-#~ "настройките на Вашите кодеци"
-
-#~ msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-#~ msgstr ""
-#~ "Неуспех при инициализацията на файловия елемент-приемник на GStreamer - "
-#~ "инсталирайте го"
-
-#~ msgid ""
-#~ "Failed to link encoder plugin with file output plugin - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Неуспех при свързването между приставката за кодирането и елемента-"
-#~ "приемник за изходен файл - най-вероятно сте избрали невалидна програма за "
-#~ "кодиране"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Регистърът липсва или е развален. Обновете го чрез командата „gst-"
-#~ "register“"
-
-#~ msgid "Voice"
-#~ msgstr "Глас"
