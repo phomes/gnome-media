@@ -5,14 +5,14 @@
 # Huib Kleinhout <huib@stack.nl>, 2002.
 # Tino Meinen <a.t.meinen@chello.nl>, 2002.
 # Taco Witte <T.C.Witte@phys.uu.nl>, 2002.
-# Reinout van Schouwen <reinout@cs.vu.nl>, 2002-2005
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2002-2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 0.99.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-12-24 01:00+0100\n"
+"POT-Creation-Date: 2006-02-03 07:24+0100\n"
+"PO-Revision-Date: 2006-02-03 12:48+0100\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -1278,7 +1278,7 @@ msgstr ""
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "cd uitwerpen mislukt: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1366,12 +1366,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Aanmaken van GStreamer %s-element is mislukt.\n"
+"Installeer alstublieft de '%s' plug-in uit de '%s'-module.\n"
+"Ga na dat de installatie correct is door \n"
+"    gst-inspect-0.10 %s\n"
+"uit te voeren en dan gnome-sound-recorder te herstarten."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Ga de instellingen ervan na.\n"
+"U mist wellicht de benodigde plug-ins."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1495,9 +1502,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (Geschat)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1562,7 +1569,7 @@ msgstr "Afspelen..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf audio-uitvoer"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1573,35 +1580,37 @@ msgid "Recording..."
 msgstr "Opname actief..."
 
 #: ../grecord/src/gsr-window.c:1834
-#, fuzzy
 msgid "GConf audio recording"
-msgstr "Start opnemen"
+msgstr "GConf audio-opname"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Uw instellingen voor audio-opname zijn ongeldig. Corrigeer ze in de "
+"Multimedia-instellingen."
 
 #: ../grecord/src/gsr-window.c:1928
-#, fuzzy
 msgid "file output"
-msgstr "Vide_o-uitvoer:"
+msgstr "bestandsuitvoer"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Een korte naam voor het audioprofiel"
+msgstr "Kan het audioprofiel '%s' niet analyseren. "
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Een korte naam voor het audioprofiel"
+msgstr "Opnemen met behulp van het '%s'-audioprofiel was niet mogelijk. "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
+"Schrijven naar een bestand met behulp van het '%s'-audioprofiel was niet "
+"mogelijk. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1695,9 +1704,8 @@ msgid "Save As"
 msgstr "Opslaan als"
 
 #: ../grecord/src/gsr-window.c:2267
-#, fuzzy
 msgid "Record from input:"
-msgstr "Geluidsfragmenten opnemen"
+msgstr "Opnemen van invoer:"
 
 #: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
@@ -1878,9 +1886,9 @@ msgid "Track %s, channel %d"
 msgstr "Spoor %s, kanaal %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Spoor %s: kanalen aan elkaar koppelen"
+msgstr "Kanalen voor %s aan elkaar koppelen"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -2096,9 +2104,8 @@ msgstr "Profiel verwijderen"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "GMAudio-profielen bewerken"
+msgstr "GNOME audio-profielen bewerken"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2207,13 +2214,12 @@ msgid "CD Quality, Lossy"
 msgstr "cd-kwaliteit, met kwaliteitsverlies (lossy)"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Lijst van audio-opnameprofielen. De lijst bevat tekenreeksen met de namen "
-"van subdirectories relatief aan /system/gstreamer/audio/profiles."
+"van submappen relatief aan /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2246,31 +2252,28 @@ msgstr ""
 "vanaf cd en radio-opnamen."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Gebruikt voor het converteren naar stemkwaliteit-audio. Gebruik dit voor het "
-"opnemen van spraak."
+"Gebruikt voor het converteren naar stemkwaliteit-audio zonder verlies. "
+"Gebruik dit voor het opnemen en bewerken van spraak."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Gebruikt voor het converteren naar stemkwaliteit-audio. Gebruik dit voor het "
-"opnemen van spraak."
+"Gebruikt voor het converteren naar stemkwaliteit-audio met verlies. "
+"Gebruik dit voor het opnemen van spraak die geen verdere bewerking behoeft."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "cd-kwaliteit, zonder kwaliteitsverlies"
+msgstr "Stem, zonder kwaliteitsverlies"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Stem, met kwaliteitsverlies"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
