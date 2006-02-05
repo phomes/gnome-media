@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-21 17:54+0800\n"
+"POT-Creation-Date: 2006-02-04 23:05+0100\n"
+"PO-Revision-Date: 2006-02-05 11:47+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -1378,12 +1378,16 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"无法创建 GStreamer %1$s 元素。\n"
+"请安装“%3$s”模块中的“%2$s”插件。\n"
+"您可以运行 gst-inspect-0.10 %4$s 来验证安装是否正确。\n"
+"然后再重新启动 gnome-sound-recorder。"
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
-msgstr ""
+msgstr "请验证其设置。\n您可能缺少必要的插件。"
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1573,7 +1577,7 @@ msgstr "正在播放..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf 音频输出"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1585,32 +1589,32 @@ msgstr "正在录音..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf 音频录制"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
-msgstr ""
+"Multimedia settings."
+msgstr "您的音频抓取设置无效。请在多媒体设置中予以纠正。"
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "文件输出"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "音频配置文件的短名称"
+msgstr "无法分析“%s”音频配置文件。"
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "音频配置文件的短名称"
+msgstr "无法使用“%s”音频配置文件抓取。"
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "无法使用“%s”音频配置文件写入文件。"
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -2325,26 +2329,3 @@ msgstr "监视声音输出音量"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "音量监视器"
-
-#~ msgid "Could not find GStreamer element \"%s\" - please install it"
-#~ msgstr "找不到“%s” GStreamer 元素 - 请安装"
-
-#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
-#~ msgstr "找不到“%s” GStreamer 插件 - 请安装"
-
-#~ msgid "Could not activate GStreamer plugin \"%s\""
-#~ msgstr "无法激活 GStreamer 插件“%s”"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
-#~ msgstr "创建 GStreamer 编码器插件失败 - 请检查您的编码设置。"
-
-#~ msgid ""
-#~ "Failed to link input element with encoder plugins - you probably selected "
-#~ "an invalid encoder"
-#~ msgstr "将输入元素与编码器插件链接失败 - 您可能选择了无效的编码器"
-
-#~ msgid ""
-#~ "Failed to link encoder element with file output plugins - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr "将编码器元素与文件输出插件链接失败 - 您可能选择了无效的编码器"
