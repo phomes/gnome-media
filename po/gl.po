@@ -13,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-20 12:37+0100\n"
+"POT-Creation-Date: 2006-02-07 20:23+0100\n"
+"PO-Revision-Date: 2006-02-07 20:25+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
-"Language-Team: Galego\n"
+"Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
@@ -1250,8 +1250,7 @@ msgstr "Extraer o CD cando se peche o reproductor?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
-"Como debería amosarse o tempo cando esté funcionando o reproductor de CD?"
+msgstr "Como debería amosarse o tempo cando esté funcionando o reproductor de CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1263,8 +1262,7 @@ msgstr "Extraer o CD cando se peche o reproductor?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"A ruta hacia a unidade de CD que o reproductor debe usar para reproducir CDs"
+msgstr "A ruta hacia a unidade de CD que o reproductor debe usar para reproducir CDs"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
@@ -1369,12 +1367,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Non se puido crear o elemento GStreamer %s.\n"
+"Instale o complemento '%s' do módulo '%s'.\n"
+"Verifique que a instalación é correcta executando\n"
+"    gst-inspect-0.10 %s\n"
+"e reinicie o gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Por favor comprobe a configuración.\n"
+"Pode ser que lle falten complementos necesarios."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1565,7 +1570,7 @@ msgstr "Reproducindo..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "Saída de son de GConf"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1577,32 +1582,34 @@ msgstr "Gravando..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "Gravación de son de GConf"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"As súas opcións de captura de son, son inválidas. Corríxao nas opcións "
+"Multimedia."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "ficheiro de saída"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Un nome corto para o perfil de son"
+msgstr "Non se puido analizar o perfil de son '%s'. "
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Un nome corto para o perfil de son"
+msgstr "Non se puido capturar usando o perfil de son '%s'. "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Non se puido escribir nun ficheiro usando o perfil de son '%s'. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1927,8 +1934,7 @@ msgstr "Erro ao instanciar a fiestra principal"
 
 #: ../gstreamer-properties/gstreamer-properties.c:442
 msgid "Failed to load glade file; please check your installation."
-msgstr ""
-"Fallou ao cargar o ficheiro glade; por favor comprobe a súa instalación."
+msgstr "Fallou ao cargar o ficheiro glade; por favor comprobe a súa instalación."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -2170,8 +2176,7 @@ msgstr ""
 "utilizar este perfil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "A extensión de ficheiro que se usará ao almacenar os ficheiros codificados "
 "con este perfil."
@@ -2337,31 +2342,3 @@ msgstr "Monitorizar o volume de saída de gravación"
 msgid "Volume Monitor"
 msgstr "Monitor de volume"
 
-#~ msgid "Could not find GStreamer element \"%s\" - please install it"
-#~ msgstr "Non se puido atopar o elemento GStreamer \"%s\" - instálao"
-
-#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
-#~ msgstr "Non se puido atopar o complemento GStreamer \"%s\" - instálao"
-
-#~ msgid "Could not activate GStreamer plugin \"%s\""
-#~ msgstr "Non foi posible activar o complemento GStreamer \"%s\""
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
-#~ msgstr ""
-#~ "Ocorreu un erro ao crear complementos de codificación GStreamer - "
-#~ "comprobe a súa configuración de codificación."
-
-#~ msgid ""
-#~ "Failed to link input element with encoder plugins - you probably selected "
-#~ "an invalid encoder"
-#~ msgstr ""
-#~ "Produciuse un erro ao ligar os elementos de entrada de codificación - "
-#~ "probablemente seleccionou un codificador inválido"
-
-#~ msgid ""
-#~ "Failed to link encoder element with file output plugins - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Produciuse un erro ao ligar o elemento de codificación cos complementos "
-#~ "de saída de ficheiro - probablemente seleccionou un codificador inválido"
