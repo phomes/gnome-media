@@ -1747,79 +1747,6 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 	}
 }
 
-/* go through a bin, finding the one pad that is unconnected in the given
- * direction, and return that pad; nicked from the GStreamer gconf plugin */
-static GstPad *
-notgst_bin_find_unconnected_pad (GstBin * bin, GstPadDirection direction)
-{
-	GstPad *pad = NULL;
-	GList *elements = NULL;
-	const GList *pads = NULL;
-	GstElement *element = NULL;
-
-	GST_OBJECT_LOCK (bin);
-	elements = bin->children;
-	/* traverse all elements looking for unconnected pads */
-	while (elements && pad == NULL) {
-		element = GST_ELEMENT (elements->data);
-		GST_OBJECT_LOCK (element);
-		pads = element->pads;
-		while (pads) {
-			GstPad *testpad = GST_PAD (pads->data);
-
-			/* check if the direction matches */
-			if (GST_PAD_DIRECTION (testpad) == direction) {
-				GST_OBJECT_LOCK (testpad);
-				if (GST_PAD_PEER (testpad) == NULL) {
-					GST_OBJECT_UNLOCK (testpad);
-					/* found it ! */
-					pad = testpad;
-					break;
-				}
-				GST_OBJECT_UNLOCK (testpad);
-			}
-			pads = g_list_next (pads);
-		}
-		GST_OBJECT_UNLOCK (element);
-		elements = g_list_next (elements);
-	}
-	GST_OBJECT_UNLOCK (bin);
-
-	return pad;
-}
-
-/* nicked from the GStreamer gconf plugin */
-static GstElement *
-notgst_render_bin_from_description (const gchar * description, GError ** err)
-{
-	GstPad *pad = NULL;
-	GstBin *bin;
- 	gchar *desc;
-
-	GST_DEBUG ("making bin from description '%s'", GST_STR_NULL (description));
-
- 	/* parse the pipeline to a bin */
- 	desc = g_strdup_printf ("bin.( %s )", description);
-	bin = (GstBin *) gst_parse_launch (desc, err);
-	g_free (desc);
-
-	if (bin == NULL || (err && *err != NULL)) {
-		if (bin)
-			gst_object_unref (bin);
-		return NULL;
-	}
-
-	/* find pads and ghost them if necessary */
-	if ((pad = notgst_bin_find_unconnected_pad (bin, GST_PAD_SRC))) {
-		gst_element_add_pad (GST_ELEMENT (bin), gst_ghost_pad_new ("src", pad));
-	}
-	if ((pad = notgst_bin_find_unconnected_pad (bin, GST_PAD_SINK))) {
-		gst_element_add_pad (GST_ELEMENT (bin), gst_ghost_pad_new ("sink", pad));
-	}
-
-	return GST_ELEMENT (bin);
-}
-
 /* create the gconf-based source for recording.
  * store the source and the mixer in it in our window-private data
  */
@@ -1947,7 +1874,8 @@ make_record_pipeline (GSRWindow *window)
 		GST_STR_NULL (profile_pipeline_desc));
 
 	pipeline_desc = g_strdup_printf ("audioconvert ! %s", profile_pipeline_desc);
-	encoder = notgst_render_bin_from_description (pipeline_desc, &err);
+	GST_DEBUG ("making encoder bin from description '%s'", pipeline_desc);
+	encoder = gst_parse_bin_from_description (pipeline_desc, TRUE, &err);
 	g_free (pipeline_desc);
 	pipeline_desc = NULL;
 
