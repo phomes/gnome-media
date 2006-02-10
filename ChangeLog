@@ -1,6 +1,18 @@
 2006-02-10  Tim-Philipp Müller  <tim at centricular dot net>
 
 	* configure.in:
+	* gnome-cd/gnome-cd.c: (main):
+	* grecord/src/gnome-recorder.c: (main):
+	* gst-mixer/src/main.c: (main):
+	* gstreamer-properties/gstreamer-properties.c: (main):
+	  Move options parsing to GOption to make it work properly
+	  in connection with GStreamer 0.10 (which doesn't support
+	  popt). Bumping requirements for libgnome/libgnomeui to 2.13
+	  for the GOptions stuff. (see #324508).
+
+2006-02-10  Tim-Philipp Müller  <tim at centricular dot net>
+
+	* configure.in:
 	* grecord/src/gsr-window.c: (make_record_pipeline):
 	  Use newly-added gst_parse_bin_from_description() utility
 	  function from core instead of home-grown stuff, and bump

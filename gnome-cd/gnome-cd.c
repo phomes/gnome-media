@@ -977,20 +977,22 @@ register_stock_icons (void)
 int 
 main (int argc, char *argv[])
 {
-	static struct poptOption cd_popt_options [] = {
-		{ "device", '\0', POPT_ARG_STRING, &cd_option_device, 0,
+	static const GOptionEntry cd_goptions[] = {
+		{ "device", '\0', 0, G_OPTION_ARG_FILENAME, &cd_option_device,
 		  N_("CD device to use"), NULL },
-		{ "unique", '\0', POPT_ARG_NONE, &cd_option_unique, 0,
+		{ "unique", '\0', 0, G_OPTION_ARG_NONE, &cd_option_unique,
 		  N_("Only start if there isn't already a CD player application running"), NULL },
-		{ "play",   '\0', POPT_ARG_NONE, &cd_option_play, 0,
+		{ "play",   '\0', 0, G_OPTION_ARG_NONE, &cd_option_play,
 		  N_("Play the CD on startup"), NULL },
-		{ "tray", '\0', POPT_ARG_NONE, &cd_option_tray, 0,
+		{ "tray", '\0', 0, G_OPTION_ARG_NONE, &cd_option_tray,
 		  N_("Start iconified to tray"), NULL},
-		{ NULL, '\0', 0, NULL, 0 },
+		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
 	};
 
 	GnomeCD *gcd;
 	GnomeClient *client;
+	GOptionGroup *group;
+	GOptionContext *ctx;
 
 	free (malloc (8)); /* -lefence */
 
@@ -1002,16 +1004,17 @@ main (int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-#ifdef HAVE_GST
-	/* FIXME when transition to GOption is being made */
-        /* g_option_context_add_group (context, gst_init_get_goption_group()); */
+	ctx = g_option_context_new ("gnome-cd");
 
-	gst_init (&argc, &argv); /* gst will remove its own options */
+#ifdef HAVE_GST
+	g_option_context_add_group (ctx, gst_init_get_option_group ());
 #endif
+
+	g_option_context_add_main_entries (ctx, cd_goptions, GETTEXT_PACKAGE);
 
 	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
 			    argc, argv, 
-			    GNOME_PARAM_POPT_TABLE, cd_popt_options,
+			    GNOME_PARAM_GOPTION_CONTEXT, ctx,
 			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
 	register_stock_icons ();

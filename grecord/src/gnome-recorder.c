@@ -167,55 +167,34 @@ int
 main (int argc,
       char **argv)
 {
-	GnomeProgram *program;
 	gchar **filenames = NULL;
+	/* this is necessary because someone apparently forgot to add a
+	 * convenient way to get the remaining arguments to the GnomeProgram
+	 * API when adding the GOption stuff to it ... */
+	const GOptionEntry entries[] = {
+		{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames,
+		"Special option that collects any remaining arguments for us" },
+		{ NULL, }
+	};
+
+	GOptionContext *ctx;
+	GnomeProgram *program;
 
 	/* Init gettext */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-/* FIXME: remove ifdef here and else branch when bumping requirements to 2.14 */
-#ifdef GNOME_PARAM_GOPTION_CONTEXT
-	if (1) {
-		GOptionContext *ctx;
-		/* this is necessary because someone apparently forgot to add a
-		 * convenient way to get the remaining arguments to the GnomeProgram
-		 * API when adding the GOption stuff to it ... */
-		GOptionEntry entries[] = {
-			{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames,
-			"Special option that collects any remaining arguments for us" },
-			{ NULL }
-		};
-
-		ctx = g_option_context_new ("gnome-sound-recorder");
-		g_option_context_add_group (ctx, gst_init_get_option_group ());
-		g_option_context_add_main_entries (ctx, entries, GETTEXT_PACKAGE);
-		program = gnome_program_init ("gnome-sound-recorder", VERSION,
-		                              LIBGNOMEUI_MODULE, argc, argv,
-		                              GNOME_PARAM_GOPTION_CONTEXT, ctx,
-		                              GNOME_PARAM_HUMAN_READABLE_NAME,
-		                              "GNOME Sound Recorder",
-		                              GNOME_PARAM_APP_DATADIR, DATADIR,
-		                              NULL);
-	}
-#else /* GNOME_PARAM_GOPTION_CONTEXT */
-	gst_init (&argc, &argv);
-
+	ctx = g_option_context_new ("gnome-sound-recorder");
+	g_option_context_add_group (ctx, gst_init_get_option_group ());
+	g_option_context_add_main_entries (ctx, entries, GETTEXT_PACKAGE);
 	program = gnome_program_init ("gnome-sound-recorder", VERSION,
-				      LIBGNOMEUI_MODULE,
-				      argc, argv,
-				      GNOME_PARAM_HUMAN_READABLE_NAME,
-				      "GNOME Sound Recorder",
-				      GNOME_PARAM_APP_DATADIR, DATADIR,
-				      NULL);
-
-	if (argc > 1) {
-		filenames = g_strdupv (&argv[1]);
-	} else {
-		filenames = NULL;
-	}
-#endif /* GNOME_PARAM_GOPTION_CONTEXT */
+	                              LIBGNOMEUI_MODULE, argc, argv,
+	                              GNOME_PARAM_GOPTION_CONTEXT, ctx,
+	                              GNOME_PARAM_HUMAN_READABLE_NAME,
+	                              "GNOME Sound Recorder",
+	                              GNOME_PARAM_APP_DATADIR, DATADIR,
+	                              NULL);
 
 	init_recent ();
 

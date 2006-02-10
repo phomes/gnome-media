@@ -395,30 +395,20 @@ create_dialog (void)
 int
 main (int argc, char **argv)
 {
+  GOptionContext *ctx;
+  GOptionGroup *group;
+
   /* bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR); */
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-/* FIXME: remove when bumping requirements to 2.14 */
-#ifdef GNOME_PARAM_GOPTION_CONTEXT
-  if (1) {
-    GOptionContext *ctx;
-    GOptionGroup *group;
-
-    ctx = g_option_context_new ("gstreamer-properties");
-    g_option_context_add_group (ctx, gst_init_get_option_group ());
-
-    gnome_program_init ("gstreamer-properties", VERSION,
-        LIBGNOMEUI_MODULE, argc, argv,
-        GNOME_PARAM_GOPTION_CONTEXT, ctx,
-        GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
-  }
-#else /* GNOME_PARAM_GOPTION_CONTEXT */
-  gst_init (&argc, &argv);
+  ctx = g_option_context_new ("gstreamer-properties");
+  g_option_context_add_group (ctx, gst_init_get_option_group ());
 
   gnome_program_init ("gstreamer-properties", VERSION,
-      LIBGNOMEUI_MODULE, argc, argv, GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
-#endif /* GNOME_PARAM_GOPTION_CONTEXT */
+      LIBGNOMEUI_MODULE, argc, argv,
+      GNOME_PARAM_GOPTION_CONTEXT, ctx,
+      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
   /* FIXME: hardcode uninstalled path here */
   if (g_file_test ("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {

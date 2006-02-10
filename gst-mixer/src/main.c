@@ -166,6 +166,8 @@ gint
 main (gint   argc,
       gchar *argv[])
 {
+  GOptionContext *ctx;
+  GOptionGroup *group;
   gchar *appfile;
   GtkWidget *win;
   GList *elements;
@@ -175,29 +177,14 @@ main (gint   argc,
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-/* FIXME: remove when bumping requirements to 2.14 */
-#ifdef GNOME_PARAM_GOPTION_CONTEXT
-  if (1) {
-    GOptionContext *ctx;
-    GOptionGroup *group;
+  ctx = g_option_context_new ("gnome-volume-control");
+  g_option_context_add_group (ctx, gst_init_get_option_group ());
 
-    ctx = g_option_context_new ("gnome-volume-control");
-    g_option_context_add_group (ctx, gst_init_get_option_group ());
-
-    gnome_program_init ("gnome-volume-control", VERSION,
-                        LIBGNOMEUI_MODULE, argc, argv,
-                        GNOME_PARAM_GOPTION_CONTEXT, ctx,
-                        GNOME_PARAM_APP_DATADIR, DATA_DIR,
-                        NULL);
-  }
-#else /* GNOME_PARAM_GOPTION_CONTEXT */
-  gst_init (&argc, &argv);
   gnome_program_init ("gnome-volume-control", VERSION,
-		      LIBGNOMEUI_MODULE, argc, argv,
-		      GNOME_PARAM_APP_DATADIR, DATA_DIR, NULL);
-
-#endif /* GNOME_PARAM_GOPTION_CONTEXT */
-
+                      LIBGNOMEUI_MODULE, argc, argv,
+                      GNOME_PARAM_GOPTION_CONTEXT, ctx,
+                      GNOME_PARAM_APP_DATADIR, DATA_DIR,
+                      NULL);
 
   /* init ourselves */
   register_stock_icons ();
