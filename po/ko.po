@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: $PACKAGE $VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-08-22 23:09+0900\n"
-"Last-Translator: Young-Ho Cha <ganadist at gmail dot com>\n"
+"POT-Creation-Date: 2006-02-04 19:20+0900\n"
+"PO-Revision-Date: 2006-02-04 19:23+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@gmail.com>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -938,22 +938,22 @@ msgid "Pause"
 msgstr "일시 중지"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "%s - %s 연주중\n"
-"현재 시간: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
 msgstr ""
 "연주중\n"
-"현재 시간: %s"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -1230,7 +1230,7 @@ msgstr "장치 경로"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "남은 시간을 보입니까?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1238,7 +1238,7 @@ msgstr "CD 플레이어가 끝날 때 CD 트레이를 열까요?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "CD가 연주되는 동안 시간을 어떻게 보여줄까요?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1267,7 +1267,7 @@ msgstr "CD 플레이어가 시작할 때, CD 연주를 시작할까요?"
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "CD 꺼내기 실패: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1355,12 +1355,20 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"GStreamer %1$s 요소를 만들 수 없습니다.\n"
+"'%3$s' 모듈에서 '%2$s' 플러그인을 설치하십시오.\n"
+"올바르게 설치되었는지 확인하려면 아래를 실행하십시오.\n"
+"    gst-inspect-0.10 %4$s\n"
+"그리고 gnome-sound-recorder를 재시작하십시오."
+
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"설정을 확인하십시오.\n"
+"필요한 플러그인이 없습니다."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1394,7 +1402,6 @@ msgid "second"
 msgstr "초"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "파일 열기"
 
@@ -1484,9 +1491,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "(약)%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1551,7 +1558,7 @@ msgstr "연주중..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf 오디오 출력"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1563,32 +1570,34 @@ msgstr "녹음중..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf 오디오 녹음"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"오디오 캡쳐 설정이 올바르지 않습니다. 멀티미디어 설정에서 "
+"고치십시오."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "파일 출력"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "오디오 프로파일의 짧은 이름"
+msgstr "오디오 프로파일 '%s'(을)를 분석할 수 없습니다. "
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "오디오 프로파일의 짧은 이름"
+msgstr "오디오 프로파일 '%s'(으)로 캡쳐를 할 수 없습니다. "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "오디오 프로파일 '%s'(으)로 파일을 쓸 수 없습니다. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1600,9 +1609,8 @@ msgid "Create a new sample"
 msgstr "새 샘플을 만듭니다"
 
 #: ../grecord/src/gsr-window.c:2036
-#, fuzzy
 msgid "_Open..."
-msgstr "열기"
+msgstr "열기(_O)..."
 
 #: ../grecord/src/gsr-window.c:2037
 msgid "Open a file"
@@ -1613,21 +1621,18 @@ msgid "Save the current file"
 msgstr "지금 파일을 저장합니다"
 
 #: ../grecord/src/gsr-window.c:2040
-#, fuzzy
 msgid "Save _As..."
-msgstr "다른 이름으로 저장"
+msgstr "다른 이름으로 저장(_A)..."
 
 #: ../grecord/src/gsr-window.c:2041
 msgid "Save the current file with a different name"
 msgstr "지금 파일을 다른 이름으로 저장합니다"
 
 #: ../grecord/src/gsr-window.c:2042
-#, fuzzy
 msgid "Open Volu_me Control"
-msgstr "볼륨 조정"
+msgstr "볼륨 조정 열기(_M)"
 
 #: ../grecord/src/gsr-window.c:2043
-#, fuzzy
 msgid "Open the audio mixer"
 msgstr "오디오 믹서를 실행합니다"
 
@@ -1685,14 +1690,12 @@ msgid "Save As"
 msgstr "다른 이름으로 저장"
 
 #: ../grecord/src/gsr-window.c:2267
-#, fuzzy
 msgid "Record from input:"
-msgstr "사운드 클립을 녹음합니다"
+msgstr "다음 입력으로 녹음:"
 
 #: ../grecord/src/gsr-window.c:2284
-#, fuzzy
 msgid "Record as:"
-msgstr "녹음 방법: "
+msgstr "녹음 방법:"
 
 #: ../grecord/src/gsr-window.c:2322
 msgid "<none>"
@@ -1745,9 +1748,8 @@ msgid "Unknown Volume Control %d"
 msgstr "알 수 없는 볼륨 조정 %d"
 
 #: ../gst-mixer/src/main.c:217
-#, fuzzy
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "볼륨 조정 항목/장치가 없습니다."
+msgstr "볼륨 조정 GStremaer 플러그인/장치가 없습니다."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1869,7 +1871,7 @@ msgid "Track %s, channel %d"
 msgstr "트랙 %s, 채널 %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
 msgstr "트랙 %s: 채널을 같이 잠급니다"
 
@@ -1931,14 +1933,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>기본 출력</b>"
+msgstr "<b>기본 입력 플러그인</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>기본 출력</b>"
+msgstr "<b>기본 출력 플러그인</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2079,7 +2079,6 @@ msgstr "프로파일 지우기"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
 msgstr "그놈 미디어 오디오 프로파일 편집"
 
@@ -2188,13 +2187,12 @@ msgid "CD Quality, Lossy"
 msgstr "CD 수준, 손실 있음"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"오디오 녹음 프로파일의 목록. 이 목록에는 /system/gstreamer/audio/profiles에 "
-"상대적인 하위 디렉토리의 이름이 들어 있습니다."
+"오디오 녹음 프로파일의 목록. 이 목록에는 /system/gstreamer/@GST_MAJORMINOR@/"
+"audio/profiles에 상대적인 하위 디렉토리의 이름이 들어 있습니다."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2225,29 +2223,28 @@ msgstr ""
 "을 편집하거나 CD로 구우려고 할 때 사용하십시오."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"음성 수준의 오디오로 변환하는 데 사용합니다. 음성을 녹음할 때 사용하십시오."
+"음성 수준의 비손실 오디오로 변환하는 데 사용합니다. 음성을 녹음 및 편집할 때 "
+"사용하십시오."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"음성 수준의 오디오로 변환하는 데 사용합니다. 음성을 녹음할 때 사용하십시오."
+"음성 수준의 손실 오디오로 변환하는 데 사용합니다. 편집할 필요 없는 음성을 녹"
+"음할 때 사용하십시오."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD 수준, 손실 없음"
+msgstr "음성 수준, 손실 없음"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "음성 수준, 손실 있음"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2325,69 +2322,3 @@ msgstr "사운드 출력 볼륨을 감시합니다"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "볼륨 감시기"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "레지스트리가 없거나 망가졌습니다. gst-register를 실행해 레지스트리를 업데"
-#~ "이트하십시오."
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "CD 읽기를 설정할 수 없습니다; GStreamer cdparanoia 플러그인을 설치하십시"
-#~ "오."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "오디오 출력을 설정할 수 없습니다; 사운드 카드의 GStreamer 플러그인을 설치"
-#~ "하십시오."
-
-#~ msgid "Dummy option"
-#~ msgstr "더미 옵션"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "GStreamer 오디오 입력 엘리먼트의 기본값이 없습니다 - GStreamer-GConf 스키"
-#~ "마를 설치하거나 수동으로 설정하십시오."
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder elements - check your encoding setup"
-#~ msgstr ""
-#~ "GStreamer 인코더 엘리먼트를 만드는 데 실패했습니다 - 인코딩 설정을 확인하"
-#~ "십시오"
-
-#~ msgid "Could not find GStreamer filesink plugin - please install it"
-#~ msgstr "GStreamer filesink 플러그인을 찾을 수 없습니다 - 설치하십시오"
-
-#~ msgid ""
-#~ "Failed to link encoder elements with file output element - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "인코더 엘리먼트를 파일 출력 엘리먼트와 연결하는 데 실패했습니다 - 잘못된 "
-#~ "인코더를 선택했을 것입니다"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "볼륨 조정 실행(_M)"
-
-#~ msgid "File information"
-#~ msgstr "파일 정보"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "레지스트리가 없거나 망가졌습니다. gst-register를 실행해서 업데이트하십시"
-#~ "오."
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>기본 소스</b>"
-
-#~ msgid "Voice"
-#~ msgstr "음성"
