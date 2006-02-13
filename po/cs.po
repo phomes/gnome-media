@@ -1,16 +1,16 @@
 # Czech messages for gnome-media
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
 # Stanislav Brabec <utx@penguin.cz>, 2000, 2001.
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
-# Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005.
+# Miloslav Trmac <mitr@volny.cz>, 2003 - 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-12-02 20:04+0100\n"
+"POT-Creation-Date: 2006-02-09 23:56+0100\n"
+"PO-Revision-Date: 2006-02-13 04:58+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -941,20 +941,22 @@ msgid "Pause"
 msgstr "Pauza"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Přehrávám %s - %s<\n"
-"Aktuální čas: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
-msgstr "Přehrávání"
+msgstr ""
+"Přehrávám\n"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -1232,7 +1234,7 @@ msgstr "Cesta k zařízení"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Zobrazovat zbývající čas?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1240,7 +1242,7 @@ msgstr "Vysunout CD při ukončení přehrávače CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Jak se má zobrazovat čas, když přehrávač CD přehrává?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1269,7 +1271,7 @@ msgstr "Když je přehrávač CD spuštěn, má začít přehrávat CD?"
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Nemohu vysunout CD: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1357,12 +1359,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Nemohu vytvořit element GStreameru %s.\n"
+"Nainstalujte porsím zásuvný modul '%s' z modulu '%s'.\n"
+"Ověřte, že je instalace správná, spuštěním\n"
+"    gst-inspect-0.10 %s\n"
+"a pak spusťte gnome-sound-recorder znovu."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Zkontrolujte prosím jeho nastavení.\n"
+"Možná vám chybí potřebné zásuvné moduly."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1487,9 +1496,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (odhad)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1554,7 +1563,7 @@ msgstr "Přehrávám..."
 
 #: ../grecord/src/gsr-window.c:1596
 msgid "GConf audio output"
-msgstr ""
+msgstr "Výstup zvuku GConf"
 
 #: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1566,32 +1575,32 @@ msgstr "Nahrávám..."
 
 #: ../grecord/src/gsr-window.c:1834
 msgid "GConf audio recording"
-msgstr ""
+msgstr "Záznam zvuku GConf"
 
 #: ../grecord/src/gsr-window.c:1843
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
-msgstr ""
+"Multimedia settings."
+msgstr "Vaše nastavení záznamu zvuku nejsou platná. Opravte je prosím v Nastavení multimédií."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr ""
+msgstr "výstup do souboru"
 
 #: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Krátký název profilu zvuku"
+msgstr "Nemohu zpracovat profil zvuku '%s'. "
 
 #: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Krátký název profilu zvuku"
+msgstr "Nemohu zaznamenávat pomocí profilu zvuku '%s'. "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Nemohu zapisovat do souboru pomocí profilu zvuku '%s'."
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -1684,9 +1693,8 @@ msgid "Save As"
 msgstr "Uložit jako"
 
 #: ../grecord/src/gsr-window.c:2267
-#, fuzzy
 msgid "Record from input:"
-msgstr "Vytváření zvukových záznamů"
+msgstr "Zaznamenávat ze vstupu:"
 
 #: ../grecord/src/gsr-window.c:2284
 msgid "Record as:"
@@ -1743,9 +1751,8 @@ msgid "Unknown Volume Control %d"
 msgstr "Neznámé ovládání hlasitosti %d"
 
 #: ../gst-mixer/src/main.c:217
-#, fuzzy
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Nenalezen žádný prvek nebo zařízení pro ovládání hlasitosti."
+msgstr "Nenalezen žádný zásuvný modul GStreameru nebo zařízení pro ovládání hlasitosti."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1867,9 +1874,9 @@ msgid "Track %s, channel %d"
 msgstr "Stopa %s, kanál %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Stopa %s: Spřáhnout kanály dohromady"
+msgstr "Spřáhnout kanály %s dohromady"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1932,14 +1939,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Implicitní spotřebič</b>"
+msgstr "<b>Implicitní zásuvný modul vstupu</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Implicitní spotřebič</b>"
+msgstr "<b>Implicitní zásuvný modul výstupu</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2081,9 +2086,8 @@ msgstr "Odstranit profil"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Upravit profily GMAudio"
+msgstr "Upravit profily zvuku GNOME"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2192,13 +2196,10 @@ msgid "CD Quality, Lossy"
 msgstr "Kvalita CD, ztrátová"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
-msgstr ""
-"Seznam profilů záznamu zvuku. Seznam obsahuje řetězce s názvy podadresářů "
-"relativně k /system/gstreamer/audio/profiles."
+msgstr "Seznam profilů záznamu zvuku. Seznam obsahuje řetězce s názvy podadresářů relativně k /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2230,31 +2231,24 @@ msgstr ""
 "kodekem. Použijte toto pro extrakci CD a nahrávek z rádia."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr ""
-"Používáno pro převod na zvuk s kvalitou pro hlas. Použijte toto pro "
-"nahrávání řeči"
+msgstr "Používáno pro převod na bezztrátový zvuk s kvalitou pro hlas. Použijte toto pro záznam a úpravu řeči."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
-msgstr ""
-"Používáno pro převod na zvuk s kvalitou pro hlas. Použijte toto pro "
-"nahrávání řeči"
+msgstr "Používáno pro převod na ztrátový zvuk s kvalitou pro hlas. Použijte toto pro nahrávání řeči, kterou není potřeba upravovat."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "Kvalita CD, bezztrátová"
+msgstr "Hlas, bezztrátový"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Hlas, ztrátový"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
