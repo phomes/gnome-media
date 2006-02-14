@@ -1254,21 +1254,18 @@ stop_cb (GtkAction *action,
 	GSRWindowPrivate *priv = window->priv;
 
 	/* Work out what's playing */
-	if (priv->play && priv->play->state == GST_STATE_PLAYING) {
+	if (priv->play && priv->play->state >= GST_STATE_PAUSED) {
+		GST_DEBUG ("Stopping play pipeline");
 		set_pipeline_state_to_null (priv->play->pipeline);
 	} else if (priv->record && priv->record->state == GST_STATE_PLAYING) {
-		GstPad *pad;
+		GST_DEBUG ("Stopping recording source");
+		/* GstBaseSrc will automatically send an EOS when stopping */
+		gst_element_set_state (priv->record->src, GST_STATE_NULL);
+		gst_element_get_state (priv->record->src, NULL, NULL, -1);
+		gst_element_set_locked_state (priv->record->src, TRUE);
 
-		pad = gst_element_get_pad (priv->record->src, "src");
-		if (pad) {
-			/* FIXME: this is a bit evil, we should have a clean way of
-			 * doing this programmatically. Or maybe GstBaseSrc should just
-			 * send an EOS itself in PAUSED => READY? */
-			GST_PAD_STREAM_LOCK (pad);
-			gst_pad_push_event (pad, gst_event_new_eos ());
-			GST_PAD_STREAM_UNLOCK (pad);
-			gst_object_unref (pad);
-		}
+		GST_DEBUG ("Stopping recording pipeline");
+		set_pipeline_state_to_null (priv->record->pipeline);
 	}
 }
 
@@ -1722,11 +1719,13 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 	case GST_STATE_PLAYING:
 		window->priv->record_id = g_idle_add (record_start, window);
 		gtk_widget_set_sensitive (window->priv->profile, FALSE);
+		gtk_widget_set_sensitive (window->priv->input, FALSE);
 		break;
 	case GST_STATE_READY:
 		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 		gtk_widget_set_sensitive (window->priv->profile, TRUE);
+		gtk_widget_set_sensitive (window->priv->input, TRUE);
 		/* fall through */
 	case GST_STATE_PAUSED:
 		set_action_sensitive (window, "Stop", FALSE);

@@ -1,3 +1,13 @@
+2006-02-14  Thomas Vander Stichele  <thomas at apestaart dot org>
+
+	patch by: Tim-Philipp Müller
+
+	* grecord/src/gsr-window.c: (stop_cb), (record_state_changed_cb):
+	  - makes input selection combo box insensitive while recording
+	  - fixes a problem when stopping to record ('Internal Data Flow'
+	    error dialog might pop up when pressing 'Stop')
+	  Fixes #324508
+
 2006-02-10  Tim-Philipp Müller  <tim at centricular dot net>
 
 	* configure.in:
