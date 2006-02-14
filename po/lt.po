@@ -1,7 +1,7 @@
 # Lithuanian translation of gnome-media
-# Copyright (C) 2000-2005 Free Software Foundation, Inc.
+# Copyright (C) 2000-2006 Free Software Foundation, Inc.
 # Gediminas Paulauskas <menesis@chatsubo.lt>, 2000-2003.
-# Žygimantas Beručka <zygis@gnome.org>, 2003-2005.
+# Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # 
 # 
@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-12-30 00:06+0200\n"
+"POT-Creation-Date: 2006-02-15 01:35+0200\n"
+"PO-Revision-Date: 2006-02-15 01:50+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -155,7 +154,7 @@ msgstr "Nežinomas / Nežinomas"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Nežinomas"
 
@@ -1077,9 +1076,9 @@ msgid "_Eject disc"
 msgstr "_Išmesti diską"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
-msgstr "_Pagalba"
+msgstr "_Žinynas"
 
 #: ../gnome-cd/gnome-cd.c:368
 msgid "_About"
@@ -1087,7 +1086,7 @@ msgstr "_Apie"
 
 #: ../gnome-cd/gnome-cd.c:369
 msgid "_Quit"
-msgstr "_Išeiti"
+msgstr "Iš_eiti"
 
 #: ../gnome-cd/gnome-cd.c:612
 msgid ""
@@ -1212,7 +1211,7 @@ msgid "Start iconified to tray"
 msgstr "Paleisti sumažintą pranešimų skydelyje"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Nepavyko sukurti grotuvo"
 
@@ -1271,7 +1270,7 @@ msgstr "Kai CD grotuvas paleidžiamas, ar jis turi pradėti groti CD?"
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Nepavyko išimti CD: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1341,11 +1340,11 @@ msgstr "Garso įrašymo programa"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Nepavadinta"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Nepavadinta-%d"
@@ -1359,12 +1358,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Nepavyko sukurti GStreamer elemento %s.\n"
+"Įdiekite įskiepį „%s“ iš modulio „%s“.\n"
+"Patikrinkite ar įdiegta korektiškai, paleidę\n"
+"    gst-inspect-0.10 %s\n"
+"ir tada perleiskite gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Patikrinkite jo nustatymus.\n"
+"Jūs galite neturėti reikalingų įskiepių."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1399,7 +1405,7 @@ msgstr "sekundė"
 
 #: ../grecord/src/gsr-window.c:361
 msgid "Open a File"
-msgstr "Atverti bylą"
+msgstr "Atverti rinkmeną"
 
 #: ../grecord/src/gsr-window.c:431
 #, c-format
@@ -1407,11 +1413,11 @@ msgid ""
 "Unable to load file:\n"
 "%s"
 msgstr ""
-"Nepavyko įkelti bylos:\n"
+"Nepavyko įkelti rinkmenos:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Pasiruošta"
 
@@ -1426,17 +1432,17 @@ msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
-"Byla pavadinta „%s“ jau egzistuoja.\n"
-"Ar norite ją pakeisti Jūsų saugoma byla?"
+"Rinkmena pavadinta „%s“ jau egzistuoja.\n"
+"Ar norite ją pakeisti Jūsų saugoma rinkmena?"
 
 #: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr "Nepavyko išsaugoti bylos „%s“"
+msgstr "Nepavyko išsaugoti rinkmenos „%s“"
 
 #: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
-msgstr "Išsaugoti bylą kaip"
+msgstr "Išsaugoti rinkmeną kaip"
 
 #: ../grecord/src/gsr-window.c:814
 #, c-format
@@ -1451,7 +1457,7 @@ msgstr "Paleidžiant %s įvyko klaida: %s"
 #: ../grecord/src/gsr-window.c:845
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Ar prieš užveriant išsaugoti bylos „%s“ pakeitimus?"
+msgstr "Ar prieš užveriant išsaugoti rinkmenos „%s“ pakeitimus?"
 
 #: ../grecord/src/gsr-window.c:856
 msgid "Close _without Saving"
@@ -1489,9 +1495,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (apytiksliai)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1506,21 +1512,21 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "%s informacija"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
-msgstr "Bylos informacija"
+msgstr "Rinkmenos informacija"
 
 #: ../grecord/src/gsr-window.c:1090
 msgid "Folder:"
 msgstr "Katalogas:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
-msgstr "Bylos vardas:"
+msgstr "Rinkmenos vardas:"
 
 #: ../grecord/src/gsr-window.c:1102
 msgid "File size:"
-msgstr "Bylos dydis:"
+msgstr "Rinkmenos dydis:"
 
 #: ../grecord/src/gsr-window.c:1111
 msgid "Audio Information"
@@ -1528,7 +1534,7 @@ msgstr "Audio informacija"
 
 #: ../grecord/src/gsr-window.c:1126
 msgid "File duration:"
-msgstr "Bylos trukmė:"
+msgstr "Rinkmenos trukmė:"
 
 #: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
@@ -1550,155 +1556,156 @@ msgstr ""
 "GNOME garso įrašymo programa\n"
 "gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Grojama..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf audio išvestis"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Grojimas"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Įrašoma..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf audio įrašymas"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Jūsų garso įrašymo nustatymai yra netinkami. Pataisykite juos Multimedijos "
+"nustatymuose."
 
-#: ../grecord/src/gsr-window.c:1928
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr ""
+msgstr "rinkmenos išvestis"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Trumpas audio profilio vardas"
+msgstr "Nepavyko apdoroti „%s“ audio profilio. "
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Trumpas audio profilio vardas"
+msgstr "Nepavyko įrašyti naudojant „%s“ audio profilį. "
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Nepavyko įrašyti į rinkmeną naudojant „%s“ audio profilį. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
-msgstr "_Byla"
+msgstr "_Rinkmena"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Sukurti naują semplą"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
 msgstr "_Atverti..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
-msgstr "Atverti bylą"
+msgstr "Atverti rinkmeną"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
-msgstr "Išsaugoti dabartinę bylą"
+msgstr "Išsaugoti esamą rinkmeną"
 
-#: ../grecord/src/gsr-window.c:2040
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
 msgstr "Išsaugoti _kaip..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
-msgstr "Išsaugoti dabartinę bylą kitu vardu"
+msgstr "Išsaugoti esamą rinkmeną kitu vardu"
 
-#: ../grecord/src/gsr-window.c:2042
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
 msgstr "Atverti garsu_mo valdymą"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
 msgstr "Atverti audio mikšerį"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
-msgstr "Rodyti esamos bylos informaciją"
+msgstr "Rodyti esamos rinkmenos informaciją"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
-msgstr "Užverti dabartinę bylą"
+msgstr "Užverti esamą rinkmeną"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
-msgstr "Palikti  programą"
+msgstr "Palikti programą"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Valdymas"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Įrašyti garsą"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Groti garsą"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Stabdyti garsą"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Atverti žinyną"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Apie šią programą"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Nepavyko įkelti ui.xml. Gali būti, kad programa tinkamai neįdiegta"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Atverti"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Išsaugoti kaip"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Rašyti garso klipus"
+msgstr "Įrašyti iš įvesties:"
 
-#: ../grecord/src/gsr-window.c:2284
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
 msgstr "Įrašyti kaip:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<nėra>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Trukmė:"
 
@@ -1744,7 +1751,7 @@ msgstr "Nustatymai"
 msgid "Unknown Volume Control %d"
 msgstr "Nežinomas garso valdymo elementas %d"
 
-#: ../gst-mixer/src/main.c:217
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Garso valdymo GStreamer įskiepių ir/arba įrenginių nerasta."
 
@@ -1868,9 +1875,9 @@ msgid "Track %s, channel %d"
 msgstr "Takelis %s, kanalas %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Takelis %s: užrakinti kanalus kartu"
+msgstr "Užrakinti %s kanalus kartu"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1917,9 +1924,9 @@ msgstr "GNOME/GStreamer paremta garso valdymo programa"
 msgid "Failure instantiating main window"
 msgstr "Nesėkmė rodant pagrindinį langą"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
-msgstr "Nepavyko įkelti glade bylos. Patinkrite įdiegimą."
+msgstr "Nepavyko įkelti glade rinkmenos. Patinkrite įdiegimą."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -2083,9 +2090,8 @@ msgstr "Trinti profilį"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Keisti GMAudio profilius"
+msgstr "Keisti GNOME Audio profilius"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2107,7 +2113,7 @@ msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
-"Trūksta bylos „%s“. Tai rodo, kad programa yra įdiegta nekorektiškai, taigi "
+"Trūksta rinkmenos „%s“. Tai rodo, kad programa yra įdiegta nekorektiškai, taigi "
 "dialogas negali būti parodytas."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:2
@@ -2116,7 +2122,7 @@ msgstr "Keisti audio profilį"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
-msgstr "Bylos _plėtinys:"
+msgstr "Rinkmenos _plėtinys:"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:4
 msgid "New Profile"
@@ -2166,7 +2172,7 @@ msgstr ""
 msgid ""
 "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
-"Bylos plėtinys naudojamas kai saugomos bylos koduotos su šiuo profiliu."
+"Rinkmenos plėtinys naudojamas kai saugomos rinkmenos koduotos su šiuo profiliu."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -2193,13 +2199,12 @@ msgid "CD Quality, Lossy"
 msgstr "CD kokybės, su praradimais"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"Audio įrašymo profilių sąrašas. Šiame sąraše įeina eilutės vardijančios "
-"dukterinius katalogus santykinius /system/gstreamer/audio/profiles."
+"Audio įrašymo profilių sąrašas. Šiame sąraše yra eilutės nurodančios "
+"poaplankius santykinius /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2207,7 +2212,7 @@ msgstr "Profilių sąrašas"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "The default file extension for this profile"
-msgstr "Įprastas šio profilio bylų plėtinys"
+msgstr "Numatytasis šio profilio rinkmenų plėtinys"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "The partial GStreamer pipeline used"
@@ -2219,7 +2224,7 @@ msgid ""
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
 "Naudojama kovertuoti CD-kokybės garsui, su kokybei nekenkiančiu suspaudimu. "
-"Naudokit šį profilį jeigu vėliau norėsit redaguoti šią bylą arba norėsit "
+"Naudokit šį profilį jeigu vėliau norėsit redaguoti šią rinkmeną arba norėsit "
 "įrašyti į CD."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
@@ -2231,31 +2236,28 @@ msgstr ""
 "Naudoki šį profilį įrašymui iš CD ir radio įrašams."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Naudojama balso kokybės garso kovertavimui. Naudokite šį profilį įrašinėti "
-"balsui."
+"Naudojama konvertuoti į balso kokybės garsą. Naudokite šį profilį kalbos "
+"įrašymui bei redagavimui."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Naudojama balso kokybės garso kovertavimui. Naudokite šį profilį įrašinėti "
-"balsui."
+"Naudojama konvertavimui į balso kokybės garsą, su kokybės nuostoliais. "
+"Naudokite šį profilį kalbos, kurios nereiks redaguoti, įrašinėjimui."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD kokybės, be praradimų"
+msgstr "Balsas, be praradimų"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Balsas, su praradimais"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2333,62 +2335,3 @@ msgstr "Rodyo išvedamo garso garsumo lygį"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Garsumo matuoklis"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Nėra registro arba jis yra sugadintas, prašau, atnaujinkite jį paleisdami "
-#~ "komandą gst-register"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Nepavyko nustatyti CD skaitytuvo. Įdiekite GStreamer cdparanoia įskiepį."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Nepavyko nustatyti audio išvesties. Įdiekite GStreamer įskiepį savo garso "
-#~ "plokštei."
-
-#~ msgid "Dummy option"
-#~ msgstr "Netikras nustatymas"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input plugin set - please install the "
-#~ "GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Nenurodytas numatytasis GStreamer audio įvesties įskiepis - įdiekite "
-#~ "GStreamer-GConf schemas arba nurodykite jį rankiniu būdu"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup"
-#~ msgstr ""
-#~ "Nepavyko sukurti GStreamer enkoderio įskiepių - patikrinkite Jūsų audio "
-#~ "užkodavimo nustatymus"
-
-#~ msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-#~ msgstr "Nepavyko rasti GStreamer „filesink“ įskiepio - įdiekite jį"
-
-#~ msgid ""
-#~ "Failed to link encoder plugin with file output plugin - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Nepavyko susieti enkoderio įskiepio su bylos išvedimo įskiepiu - Jūs "
-#~ "tikriausiai pasirinkote netinkamą enkoderį"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Nėra registro arba jis yra sugadintas, prašau, atnaujinkite jį paleisdami "
-#~ "komandą gst-register."
-
-#~ msgid "Voice"
-#~ msgstr "Balsas"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Numatytasis šaltinis</b>"
