@@ -1,6 +1,6 @@
 # translation of gnome-media.HEAD.po to
 # Translation of gnome-media into spanish
-# Copyright © 1998-2003 Free Software Foundation, Inc.
+# Copyright © 1998-2003, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
 # Miguel de Icaza <miguel@metropolis.nuclecu.unam.mx> 1998.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch>, 1998-2000.
@@ -17,15 +17,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-07 19:55+0100\n"
-"PO-Revision-Date: 2006-02-07 20:00+0100\n"
+"POT-Creation-Date: 2006-02-16 22:58+0100\n"
+"PO-Revision-Date: 2006-02-07 11:21+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -1493,19 +1493,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"No se pudo crear el elemento de GStreamer %s.\n"
-"Instale el complemento «%s» desde el módulo «%s».\n"
-"Verifique que la instalación sea correcta ejecutando\n"
-"          gst-inspect-0.10 %s\n"
-"y después reinicie gnome-sound-recorder."
+"No se ha podido crear el elemento de GStreamer %s.\n"
+"Instale el complemento «%s» del módulo «%s».\n"
+"Compruebe que la instalación es correcta ejecutanto\n"
+"    gst-inspect-0.10 %s\n"
+"y vuelva a iniciar gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
-"Por favor, compruebe sus ajustes.\n"
-"Quizá le falten los complementos necesarios."
+"Compruebe sus ajustes.\n"
+"Podría carecer de los complementos necesarios."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1739,26 +1739,29 @@ msgstr "Grabación de sonido de GConf"
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
 "Multimedia settings."
-msgstr "Sus ajustes de captura de sonido son inválidos. Corríjalos en los ajustes Multimedia."
+msgstr ""
+"Sus ajustes de captura de audio no son válidos. Corríjalos en los ajustes "
+"Multimedia."
 
 #: ../grecord/src/gsr-window.c:1928
 msgid "file output"
-msgstr "archivo de salida"
+msgstr "salida a archivo"
 
 #: ../grecord/src/gsr-window.c:1956
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "No se pudo analizar sintácticamente el perfil de sonido «%s»."
+msgstr "No se ha podido interpretar el perfil de audio «%s». "
 
 #: ../grecord/src/gsr-window.c:1972
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "No se pudo capturar usando el perfil de sonido «%s»."
+msgstr "No se ha podido capturar mediante el perfil de audio «%s». "
 
 #: ../grecord/src/gsr-window.c:1982
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr "No se pudo escribir en un archivo usando el perfil de sonido «%s»."
+msgstr ""
+"No se ha podido escribir en un archivo mediante el perfil de audio «%s». "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:2033
@@ -2521,79 +2524,3 @@ msgstr "Monitorizar el volumen de salida de grabación."
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor de volumen"
-
-#~ msgid "Could not find GStreamer element \"%s\" - please install it"
-#~ msgstr "No se ha podido encontrar el elemento de GStreamer «%s» - instálelo"
-
-#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
-#~ msgstr ""
-#~ "No se ha podido encontrar el complemento de GStreamer «%s» - instálelo"
-
-#~ msgid "Could not activate GStreamer plugin \"%s\""
-#~ msgstr "No se pudo activar el complemento de GStreamer «%s»"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
-#~ msgstr ""
-#~ "Falló al crear los complementos de codificación de GStreamer - compruebe "
-#~ "su configuración de codificación."
-
-#~ msgid ""
-#~ "Failed to link input element with encoder plugins - you probably selected "
-#~ "an invalid encoder"
-#~ msgstr ""
-#~ "Se ha producido un error al enlazar el elemento de entrada con los "
-#~ "complementos de codificación - probablemente ha seleccionado un "
-#~ "codificador inválido"
-
-#~ msgid ""
-#~ "Failed to link encoder element with file output plugins - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Se ha producido un fallo al enlazar el elemento de codificación con los "
-#~ "elementos de salida de archivo - probablemente ha seleccionado un "
-#~ "codificador inválido"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "El registro no está presente o está corrompido, actualícelo ejecutando "
-#~ "«gst-register»"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "No se ha podido iniciar el lector de CD; instale el plugin cdparanoia "
-#~ "para GStreamer."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "No se ha podido iniciar la salida de audio; instale un plugin de "
-#~ "GStreamer para su tarjeta de sonido,"
-
-#~ msgid "Dummy option"
-#~ msgstr "Opción muda."
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "No hay un conjunto predeterminado de elementos de entrada audio de "
-#~ "GStreamer. Instale los esquemas GStreamer-GConf o configure uno "
-#~ "manualmente."
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "El registro no está presente o está corrompido, actualícelo ejecutando "
-#~ "«gst-register»"
-
-# gmix/device_labels_alsa.h:15
-# gmix/device_labels_linux.h:10
-#~ msgid "Voice"
-#~ msgstr "Voz"
