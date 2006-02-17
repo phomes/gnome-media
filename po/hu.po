@@ -1,7 +1,6 @@
 # Hungarian translation of gnome-media.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-media package.
-#
 # Szabolcs Ban <shooby@gnome.hu>, 1999, 2000.
 # Miklos Szel <mukka@freemail.hu>, 2000.
 # Gergely Nagy <greg@gnome.hu>, 2001.
@@ -9,19 +8,21 @@
 # Emese Kovacs <emese@gnome.hu>, 2002.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 # Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006.
+# Mate ORY <orymate at gmail d0t com>, 2006.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media\n"
+"Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2006-01-09 19:54+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@gnome.hu>\n"
+"POT-Creation-Date: 2006-02-17 08:20+0100\n"
+"PO-Revision-Date: 2006-02-02 13:23+0100\n"
+"Last-Translator: Mate ORY <orymate at gmail d0t com>\n"
+"Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.1\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -160,7 +161,7 @@ msgstr "Ismeretlen / Ismeretlen"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -1082,7 +1083,7 @@ msgid "_Eject disc"
 msgstr "Le_mez kiadása"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -1219,7 +1220,7 @@ msgid "Start iconified to tray"
 msgstr "Indítás ikonméretben a tálcán"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Lejátszó létrehozása sikertelen"
 
@@ -1280,7 +1281,7 @@ msgstr "A CD-lejátszó indításakor kezdje el lejátszani a CD-t?"
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "A CD kiadása meghiúsult: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1350,11 +1351,11 @@ msgstr "Hangrögzítő"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Névtelen"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Névtelen-%d"
@@ -1368,12 +1369,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Nem hozható létre a(z) %s GStreamer elem.\n"
+"Telepítse a(z) \"%s\" bővítményt a(z) \"%s\" modulból.\n"
+"A telepítés helyessége ellenőrizhető a\n"
+"    gst-inspect-0.10 %s\n"
+"parancs futtatásával és a gnome-sound-recorder újraindításával."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Ellenőrizze a beállításait.\n"
+"Szükséges bővítmények hiányozhatnak."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1419,8 +1427,8 @@ msgstr ""
 "A fájl nem tölthető be:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Kész"
 
@@ -1494,12 +1502,12 @@ msgstr "%.1f kHz"
 #: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%.0f kb/s"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/mp"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/mp (becsült)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1514,7 +1522,7 @@ msgstr "2 (sztereó)"
 msgid "%s Information"
 msgstr "%s adatai"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Fájl adatai"
 
@@ -1522,7 +1530,7 @@ msgstr "Fájl adatai"
 msgid "Folder:"
 msgstr "Mappa:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Fájlnév:"
 
@@ -1558,157 +1566,157 @@ msgstr ""
 "Hangrögzítő program a GNOME-hoz\n"
 "gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Lejátszás..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf hangkimenet"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Lejátszás"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Felvétel..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf hangfelvétel"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"A hangfelvétel beállításai hibásak. Javítsa őket a multimédia beállításoknál."
 
-#: ../grecord/src/gsr-window.c:1928
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr ""
+msgstr "fájl kimenet"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "A hangprofil rövid neve"
+msgstr "A(z) %s hangprofil nem dolgozható fel."
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "A hangprofil rövid neve"
+msgstr "Nem készíthető felvétel a(z) %s hangprofil használatával."
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Nem írható a fájl a(z) \"%s\" hangprofil használatával."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Új hangminta"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
 msgstr "_Megnyitás..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Fájl megnyitása"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "A jelenlegi fájl mentése"
 
-#: ../grecord/src/gsr-window.c:2040
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
 msgstr "Men_tés másként..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "A jelenlegi fájl mentése más néven"
 
-#: ../grecord/src/gsr-window.c:2042
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
 msgstr "_Hangerőszabályozó megnyitása"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
 msgstr "A hangkeverő megnyitása"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "A jelenlegi fájl adatai"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "A jelenlegi fájl bezárása"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Kilépés a programból"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Vezérlés"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Hangfelvétel készítése"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Hanglejátszás"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Hang leállítása"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "A kézikönyv megnyitása"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Az alkalmazás névjegye"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Nem sikerült betölteni az ui.xml-t. Lehetséges, hogy a program nincs "
 "megfelelően telepítve"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Mentés"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Hangfelvétel készítése"
+msgstr "Felvétel a következő bemenetből:"
 
-#: ../grecord/src/gsr-window.c:2284
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
 msgstr "Rögzítés mint:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<nincs>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Hossz:"
 
@@ -1754,7 +1762,7 @@ msgstr "Beállítások"
 msgid "Unknown Volume Control %d"
 msgstr "Ismeretlen hangerőszabályozó %d"
 
-#: ../gst-mixer/src/main.c:217
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr ""
 "Nem találhatók hangerőszabályozó GStreamer bővítmények és/vagy eszközök."
@@ -1879,9 +1887,9 @@ msgid "Track %s, channel %d"
 msgstr "%s sáv, %d. csatorna"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "%s sáv: csatornák összekapcsolása"
+msgstr "%s csatornáinak összekapcsolása"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1929,7 +1937,7 @@ msgstr "Egy GNOME/GStreamer-alapú hangerőszabályozó alkalmazás"
 msgid "Failure instantiating main window"
 msgstr "Nem sikerült létrehozni a főablakot"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr "Nem sikerült betölteni a glade fájlt, kérem ellenőrizze a telepítést."
 
@@ -2094,9 +2102,8 @@ msgstr "Profil törlése"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "GMAudio profilok szerkesztése"
+msgstr "GNOME Audio profilok szerkesztése"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2203,14 +2210,13 @@ msgid "CD Quality, Lossy"
 msgstr "CD-minőség, veszteséges"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "A felvételre használt hangprofilok listája. A lista karakterláncokat "
-"tartalmaz, amelyek alkönyvtárakat neveznek meg a /system/gstreamer/audio/"
-"profiles-hoz képest."
+"tartalmaz, amelyek alkönyvtárakat neveznek meg a /system/gstreamer/"
+"@GST_MAJORMINOR@/audio/profiles kulcsútvonalhoz képest."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2242,31 +2248,28 @@ msgstr ""
 "kodekkel. CD beolvasásához és rádiófelvételhez használja ezt."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Beszédhang minőségű hanggá alakításhoz használható. Beszéd felvételéhez "
-"használja ezt."
+"Veszteségmentes, beszédhang minőségű hanggá alakításhoz használható. Beszéd "
+"felvételéhez vagy szerkesztéséhez használja ezt."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Beszédhang minőségű hanggá alakításhoz használható. Beszéd felvételéhez "
-"használja ezt."
+"Veszteséges, beszédhang minőségű hanggá alakításhoz használható. "
+"Szerkesztést nem igénylő beszéd felvételéhez használja ezt."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD-minőség, veszteségmentes"
+msgstr "Hang, veszteségmentes"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Hang, veszteséges"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2344,60 +2347,3 @@ msgstr "A kimenet hangerejét figyeli"
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr "Hangerőmérő"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "A registry nem létezik vagy sérült, kérem frissítse a gst-register "
-#~ "parancs futtatásával"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Nem sikerült beállítani a CD olvasót; kérem telepítse a GStreamer "
-#~ "cdparanoia bővítményét."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Nem sikerült beállítani a hangkimenetet; kérem telepítse a "
-#~ "hangkártyájához megfelelő GStreamer bővítményt."
-
-#~ msgid "Dummy option"
-#~ msgstr "Üres opció"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input plugin set - please install the "
-#~ "GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Nincs beállítva alapértelmezett GStreamer hangbemeneti bővítmény - "
-#~ "telepítse a GStreamer-GConf sémákat, vagy állítson be egyet kézzel"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup"
-#~ msgstr ""
-#~ "A GStreamer-kódolóbővítmények létrehozása sikertelen - ellenőrizze a "
-#~ "kódolóbeállításokat"
-
-#~ msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-#~ msgstr "Nem található a GStreamer \"filesink\" bővítménye - telepítse"
-
-#~ msgid ""
-#~ "Failed to link encoder plugin with file output plugin - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Kódolóelemek linkelése a fájlkimeneti bővítményhez sikertelen - lehet, "
-#~ "hogy érvénytelen kódolót választott ki"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "A registry nem létezik vagy sérült, kérem frissítse a gst-register "
-#~ "parancs futtatásával."
-
-#~ msgid "Voice"
-#~ msgstr "Hang"
