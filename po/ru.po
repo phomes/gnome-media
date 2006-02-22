@@ -1,26 +1,25 @@
-# translation of gnome-media to Russian
-# Copyright (C) 1998-2002, 2004, 2005 Free Software Foundation, Inc.
+# translation of gnome-media.HEAD.ru.po to Russian
+# Copyright (C) 1998-2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 #
-# Max Valianskiy <maxcom@vinchi.ru> 1998-99
-# Sergey Panov <sipan@mit.edu> 1999
 # Valek Filippov <frob@df.ru>, 2000-2002.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004.
 # Andrew W. Nosenko <awn@bcs.zp.ua>, 2003.
-# Leonid Kanter <leon@asplinux.ru>, 2004, 2005.
+# Leonid Kanter <leon@asplinux.ru>, 2004, 2005, 2006.
+# Max Valianskiy <maxcom@vinchi.ru> 1998-99
+# Sergey Panov <sipan@mit.edu> 1999
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media.HEAD\n"
+"Project-Id-Version: gnome-media.HEAD.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-08-26 19:11+0300\n"
+"POT-Creation-Date: 2006-02-22 08:24+0100\n"
+"PO-Revision-Date: 2006-02-22 16:17+0200\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
-"Language-Team:  <ru@li.org>\n"
+"Language-Team:  <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.1\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -158,7 +157,7 @@ msgstr "Неизвестный / Неизвестный"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -946,22 +945,22 @@ msgid "Pause"
 msgstr "Пауза"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Воспроизводится %s - %s\n"
-"Текущее время: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
 msgstr ""
 "Воспроизводится\n"
-"Текущее время: %s"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -1084,7 +1083,7 @@ msgid "_Eject disc"
 msgstr "_Извлечь диск"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Справка"
 
@@ -1221,7 +1220,7 @@ msgid "Start iconified to tray"
 msgstr "Запускать свернутым в панель"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Невозможно создать проигрыватель"
 
@@ -1243,7 +1242,7 @@ msgstr "Путь к устройству"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Показывать оставшееся время?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1251,7 +1250,7 @@ msgstr "Извлекать CD при выходе из проигрывател�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Как должно отображаться время, когда играет CD-проигрыватель?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1259,8 +1258,7 @@ msgstr "Начинать воспроизведение при запуске п
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
-msgstr ""
-"Должен ли поигрыватель компакт дисков извлекать CD из привода при выходе?"
+msgstr "Должен ли поигрыватель компакт дисков извлекать CD из привода при выходе?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
@@ -1272,18 +1270,16 @@ msgstr "Тема, используемая для внешнего вида пр
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:11
 msgid "What volume should the CD player use when it is started?"
-msgstr ""
-"Какая громкость CD-проигрывателя должна быть установлена при его запуске?"
+msgstr "Какая громкость CD-проигрывателя должна быть установлена при его запуске?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:12
 msgid "When the CD player is started, should it start playing the CD?"
-msgstr ""
-"Начинать ли воспроизведение сразу после старта поигрывателя компакт-дисков?"
+msgstr "Начинать ли воспроизведение сразу после старта поигрывателя компакт-дисков?"
 
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Сбой извлечения CD: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1355,11 +1351,11 @@ msgstr "Звукозапись"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Untitled"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Untitled-%d"
@@ -1373,12 +1369,20 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Не удается создать элемент GStreamer %s.\n"
+"Установите модуль \"%s\" из \"%s\"\n"
+"Убедитесь, что установка корректна, при помощи\n"
+"команды\n"
+"    gst-inspect-0.10 %s\n"
+"и перезапустите gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Проверьте его параметры.\n"
+"Возможно, отсутствуют нужные модули."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1412,7 +1416,6 @@ msgid "second"
 msgstr "секунда"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "Открыть файл"
 
@@ -1425,8 +1428,8 @@ msgstr ""
 "Не удается загрузить файл:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Готово"
 
@@ -1504,9 +1507,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f кб/с"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f кб/с"
+msgstr "%.0f кб/с (Ожидается)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1521,7 +1524,7 @@ msgstr "2 (стерео)"
 msgid "%s Information"
 msgstr "Информация о файле \"%s\""
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Информация о файле"
 
@@ -1529,7 +1532,7 @@ msgstr "Информация о файле"
 msgid "Folder:"
 msgstr "Папка:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Имя файла:"
 
@@ -1565,161 +1568,154 @@ msgstr ""
 "Программа звукозаписи для среды GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Воспроизводится..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf - ввод звука"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Воспроизведение"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Записывается..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf - запись звука"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
-msgstr ""
+"Multimedia settings."
+msgstr "Ваши параметры записи звука неверны. Измените параметры в разделе Мультимедиа."
 
-#: ../grecord/src/gsr-window.c:1928
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr ""
+msgstr "вывод файла"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Краткое имя для этого аудио-профиля"
+msgstr "Не удается разобрать звуковой профиль \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Краткое имя для этого аудио-профиля"
+msgstr "Не удается записать звук с использованием профиля \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Не удается записать в файл с использованием звукового профиля \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Файл"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Создать новый отрывок"
 
-#: ../grecord/src/gsr-window.c:2036
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
-msgstr "Открыть"
+msgstr "_Открыть..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Открыть файл"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "Сохранить текущий файл"
 
-#: ../grecord/src/gsr-window.c:2040
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
-msgstr "Сохранить как"
+msgstr "Со_хранить как..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "Сохранить текущий файл под другим именем"
 
-#: ../grecord/src/gsr-window.c:2042
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
-msgstr "Управление громкостью"
+msgstr "Открыть _регулятор громкости"
 
-#: ../grecord/src/gsr-window.c:2043
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
-msgstr "Запустить регулятор громкости"
+msgstr "Открыть звуковой микшер"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "Показать информацию о текущем файле"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "Выбрать текущий файл"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Выйти из программы"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Управление"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Записать звуковой отрывок"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Воспроизвести звуковой отрывок"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Остановить воспроизведение"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Открыть руководство"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Об этом приложении"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr ""
-"Не удается загрузить ui.xml. Программа может быть неправильно установлена."
+msgstr "Не удается загрузить ui.xml. Программа может быть неправильно установлена."
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Открыть"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Запись звуковых клипов"
+msgstr "Запись со звукового входа:"
 
-#: ../grecord/src/gsr-window.c:2284
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
-msgstr "Записать как"
+msgstr "Записать как:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<нет>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Длина:"
 
@@ -1730,7 +1726,7 @@ msgstr "Программа подстройки громкости звука"
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
 #: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
-msgstr "Управление громкостью"
+msgstr "Регулятор громкости"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1765,10 +1761,9 @@ msgstr "Параметры"
 msgid "Unknown Volume Control %d"
 msgstr "Неизвестный регулятор громкости %d"
 
-#: ../gst-mixer/src/main.c:217
-#, fuzzy
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Элементы и/или устройства регулировки громкости не найдены."
+msgstr "Модули GStreamer и/или устройства регулировки громкости не найдены."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1890,9 +1885,9 @@ msgid "Track %s, channel %d"
 msgstr "Канал %s, движок %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Канал %s: объединить движки"
+msgstr "Объединить каналы для %s"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1939,7 +1934,7 @@ msgstr "Регулятор громкости на основе GNOME/GStreamer"
 msgid "Failure instantiating main window"
 msgstr "Сбой при создании главного окна"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr "Не удается загрузить файл glade, проверьте вашу установку."
 
@@ -1958,14 +1953,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Устройство вывода по умолчанию</b>"
+msgstr "<b>Модуль ввода по умолчанию</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Устройство вывода по умолчанию</b>"
+msgstr "<b>Модуль вывода по умолчанию</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2107,9 +2100,8 @@ msgstr "Удаление профиля"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Изменение профилей"
+msgstr "Изменение звуковых профилей GNOME"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2187,8 +2179,7 @@ msgstr ""
 "профиля."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "Расширение файла, используемое для сохранения файлов, закодированных этим "
 "профилем."
@@ -2218,13 +2209,12 @@ msgid "CD Quality, Lossy"
 msgstr "CD-качество, с потерями"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"Список записывающих аудио-профилей. Список содержит строки, именующие "
-"подкатологи относительно /system/gstreamer/audio/profiles."
+"Список профилей записи звука. Список содержит строки, именующие "
+"подкатологи относительно /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2256,29 +2246,24 @@ msgstr ""
 "для оцифровки CD и записи радио."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr ""
-"Преобразование звука голосового качества. Используется для записи речи."
+msgstr "Преобразование звука голосового качества без потерь. Используется для записи и редактирования речи."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
-msgstr ""
-"Преобразование звука голосового качества. Используется для записи речи."
+msgstr "Преобразование звука голосового качества с потерями. Используйте для записи речи, которую не придется редактировать."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD-качество, без потерь"
+msgstr "Голос, без потерь"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Голос, с потерями"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2357,67 +2342,3 @@ msgstr "Программа для индикации уровня громкос
 msgid "Volume Monitor"
 msgstr "Индикатор громкости"
 
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Реестр отсутствует или поврежден, обновите его, запустив команду gst-"
-#~ "register"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Не удается установить CD-ридер, установите модуль GStreamer для поддержки "
-#~ "cdparanoia."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Не удается установить вывод звука; установите модуль GStreamer для вашей "
-#~ "звуковой карты."
-
-#~ msgid "Dummy option"
-#~ msgstr "Пустой параметр"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Не установлен элемент ввода звука GStreamer по умолчанию - пожалуйста, "
-#~ "установите схемы GStreamer-GConf или установите элемент вручную"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder elements - check your encoding setup"
-#~ msgstr ""
-#~ "Не удается создать элементы кодировщика GStreamer - проверьте настройку "
-#~ "кодировщика."
-
-#~ msgid "Could not find GStreamer filesink plugin - please install it"
-#~ msgstr ""
-#~ "Не удается найти модуль filesink архитектуры GStreamer - установите его"
-
-#~ msgid ""
-#~ "Failed to link encoder elements with file output element - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr "Не удается связать элементы кодировщика с элементом вывода в файл. "
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Запустить _микшер"
-
-#~ msgid "File information"
-#~ msgstr "Информация о файле"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Реестр отсутствует или поврежден, обновите его, запустив команду gst-"
-#~ "register."
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Устройство ввода по умолчанию</b>"
-
-#~ msgid "Voice"
-#~ msgstr "Голос"
