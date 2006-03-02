@@ -4,15 +4,15 @@
 # Karl Eichwalder <ke@suse.de>, 1999, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2000-2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendi@gnome-de.org>, 2004, 2005.
+# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-08-30 18:29+0200\n"
-"Last-Translator: Hendrik Richter <hendi@gnome-de.org>\n"
+"POT-Creation-Date: 2006-03-02 20:21+0100\n"
+"PO-Revision-Date: 2006-03-02 20:36+0100\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +157,7 @@ msgstr "Unbekannt / Unbekannt"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -949,20 +949,22 @@ msgid "Pause"
 msgstr "Pause"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Wiedergabe von %s - %s\n"
-"Momentane Spielzeit: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
-msgstr "Wiedergabe"
+msgstr ""
+"Wiedergabe\n"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -1085,7 +1087,7 @@ msgid "_Eject disc"
 msgstr "CD _auswerfen"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Hilfe"
 
@@ -1224,7 +1226,7 @@ msgid "Start iconified to tray"
 msgstr "Als Symbol im Benachrichtigungsfeld starten"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Player konnte nicht angelegt werden"
 
@@ -1246,7 +1248,7 @@ msgstr "Gerätepfad"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Die verbleibende Zeit anzeigen?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1254,7 +1256,7 @@ msgstr "CD beim Beenden des CD-Players auswerfen?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Legt fest, wie die Zeit beim Abspielen einer CD dargestellt wird."
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1285,7 +1287,7 @@ msgstr "Soll die CD beim Starten des CD-Players wiedergegeben werden?"
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Auswerfen der CD gescheitert: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1355,11 +1357,11 @@ msgstr "Audio-Recorder"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Unbenannt-%d"
@@ -1373,12 +1375,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"GStreamer-Element »%s« könnte nicht erstellt werden.\n"
+"Bitte installieren Sie das Plugin »%s« aus dem »%s«-Modul.\n"
+"Stellen Sie mit »gst-inspect-0.10 %s«\n"
+"sicher, dass Ihre Installation korrekt ist und starten Sie\n"
+"anschließend »gnome-sound-recorder« erneut."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Bitte überprüfen Sie die Einstellungen.\n"
+"Möglicherweise fehlen die nötigen Plugins."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1412,7 +1421,6 @@ msgid "second"
 msgstr "Sekunde"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "Eine Datei öffnen"
 
@@ -1425,8 +1433,8 @@ msgstr ""
 "Datei konnte nicht geladen werden:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Bereit"
 
@@ -1503,9 +1511,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (geschätzt)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1520,7 +1528,7 @@ msgstr "2 (Stereo)"
 msgid "%s Information"
 msgstr "Informationen zu %s"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Dateiinformationen"
 
@@ -1528,7 +1536,7 @@ msgstr "Dateiinformationen"
 msgid "Folder:"
 msgstr "Ordner:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Dateiname:"
 
@@ -1564,161 +1572,161 @@ msgstr ""
 "Ein Audio-Recorder für GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Wiedergabe läuft..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf-Audio-Ausgang"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Wiedergabe"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Aufnahme läuft..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf-Audio-Aufnahme"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Die Einstellungen zur Audio-Aufnahme sind ungültig. Bitte korrigieren Sie "
+"diese in den Multimedia-Einstellungen."
 
-#: ../grecord/src/gsr-window.c:1928
+# CHECK
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr ""
+msgstr "Ausgabedatei"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Ein Kurzname für das Audio-Profil"
+msgstr "Das Audio-Profil »%s« konnte nicht verarbeitet werden."
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Ein Kurzname für das Audio-Profil"
+msgstr "Mit dem Audio-Profil »%s« konnte nicht aufgenommen werden."
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
+"Mit dem Audio-Profil »%s« konnte nicht in eine Datei geschrieben werden."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Datei"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Ein neues Sample anlegen"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
 msgstr "Ö_ffnen..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Eine Datei öffnen"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "Die momentan geöffnete Datei speichern"
 
-#: ../grecord/src/gsr-window.c:2040
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
 msgstr "Speichern _unter..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "Die momentan geöffnete Datei unter einem anderen Namen speichern"
 
-#: ../grecord/src/gsr-window.c:2042
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
-msgstr "Lautstärkeregler"
+msgstr "_Lautstärkeregler öffnen"
 
-#: ../grecord/src/gsr-window.c:2043
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
-msgstr "Den Audio-Mixer starten"
+msgstr "Den Audio-Mixer öffnen"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "Informationen zur momentan geöffneten Datei anzeigen"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "Die momentan geöffnete Datei schließen"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Die Anwendung beenden"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Steuerung"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Die Audio-Ausgabe mitschneiden"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Die Audio-Aufnahme wiedergeben"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Die Wiedergabe unterbrechen"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Die Hilfe anzeigen"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Info zu dieser Anwendung"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "»ui.xml« konnte nicht geladen werden. Möglicherweise ist diese Anwendung "
 "nicht korrekt installiert"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Öffnen"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Speichern"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Speichern unter"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Audioclips aufnehmen"
+msgstr "Aufnehmen von Eingang:"
 
 # CHECK
-#: ../grecord/src/gsr-window.c:2284
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
-msgstr "Aufnehmen als"
+msgstr "Aufnehmen als:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<keins>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Dauer:"
 
@@ -1765,10 +1773,11 @@ msgstr "Optionen"
 msgid "Unknown Volume Control %d"
 msgstr "Unbekannter Lautstärkeregler %d"
 
-#: ../gst-mixer/src/main.c:217
-#, fuzzy
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Es konnten keine Mischpultelemente und/oder -geräte gefunden werden."
+msgstr ""
+"Es konnten keine GStreamer-Plugins und/oder Geräte für Mischpultelemente "
+"gefunden werden."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1892,9 +1901,9 @@ msgid "Track %s, channel %d"
 msgstr "Tonspur %s, Kanal %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Tonspur %s: Kanäle einander anpassen"
+msgstr "Kanäle für »%s« einander anpassen"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1930,7 +1939,7 @@ msgstr ""
 "Karl Eichwalder <ke@suse.de>\n"
 "Christian Meyer <chrisime@gnome.org>\n"
 "Christian Neumair <chris@gnome-de.org>\n"
-"Hendrik Richter <hendi@gnome-de.org>"
+"Hendrik Richter <hendrikr@gnome.org>"
 
 #: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
@@ -1940,7 +1949,7 @@ msgstr "Eine GNOME/GStreamer-basierte Mischpultanwendung"
 msgid "Failure instantiating main window"
 msgstr "Fehler beim Instanzieren des Hauptfensters"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr ""
 "Glade-Datei konnte nicht geladen werden; bitte überprüfen Sie Ihre "
@@ -1960,17 +1969,13 @@ msgstr "Multimedia-System"
 msgid "*"
 msgstr "*"
 
-# CHECK - Sink übersetzen?
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Vorgabeeinbindung</b>"
+msgstr "<b>Vorgabe-Eingabe-Plugin</b>"
 
-# CHECK - Sink übersetzen?
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Vorgabeeinbindung</b>"
+msgstr "<b>Vorgabe-Ausgabe-Plugin</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2113,9 +2118,8 @@ msgstr "Profil löschen"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "GMAudio-Profile bearbeiten"
+msgstr "GNOME-Audio-Profile bearbeiten"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2226,13 +2230,13 @@ msgid "CD Quality, Lossy"
 msgstr "CD-Qualität, verlustbehaftet"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Eine Liste der Audio-Aufnahmeprofile. Die Liste enthält Zeichenketten, die "
-"Unterverzeichnisse relativ zu »/system/gstreamer/audio/profiles« angeben."
+"Unterverzeichnisse relativ "
+"zu »/system/gstreamer/@GST_MAJORMINOR@/audio/profiles« angeben."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2265,31 +2269,30 @@ msgstr ""
 "Rippen von CDs und Radio-Aufnahmen."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Wird zum Konvertieren von Audio-Daten in Sprachqualität verwendet. Verwenden "
-"Sie dies für Sprachaufnahmen."
+"Wird zum verlustfreien Konvertieren von Audio-Daten in Sprachqualität "
+"verwendet. Verwenden Sie dies für Sprachaufnahmen, die Sie bearbeiten "
+"möchten."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Wird zum Konvertieren von Audio-Daten in Sprachqualität verwendet. Verwenden "
-"Sie dies für Sprachaufnahmen."
+"Wird zum verlustbehafteten Konvertieren von Audio-Daten in Sprachqualität "
+"verwendet. Verwenden Sie dies für Sprachaufnahmen, die Sie nicht bearbeiten "
+"möchten."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "CD-Qualität, verlustfrei"
+msgstr "Sprache, verlustfrei"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Sprache, verlustbehaftet"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
