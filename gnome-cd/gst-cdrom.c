@@ -1001,6 +1001,12 @@ gst_cdrom_get_status (GnomeCDRom * gnome_cdrom, GnomeCDRomStatus ** status,
     if (!gst_cdrom_ensure_open (cdrom)) {
       *status = NULL;
       GST_DEBUG ("ensure_open failed");
+      if (error) {
+        /* error message is never shown to user, so no need to translate */
+        *error = g_error_new (GNOME_CDROM_ERROR,
+                              GNOME_CDROM_ERROR_IO,
+                              "Could not open CD.");
+      }
       return FALSE;
     }
   }
