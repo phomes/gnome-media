@@ -1,23 +1,22 @@
-# translation of gnome-media.HEAD.ro.po to Romanian
+# translation of gnome-media.HEAD.ro.po to Română
 # translation of gnome-media.HEAD.ro.po to
 # Romanian translation for gnome-media.
-# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
-# Mugurel Tudor <mugurelu@gnome.ro>, 2002-2003, 2004, 2005.
+# Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 #
+# Mugurel Tudor <mugurelu@gnome.ro>, 2002-2003, 2004, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.ro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-08-14 21:53+0300\n"
+"POT-Creation-Date: 2006-03-04 22:49+0100\n"
+"PO-Revision-Date: 2006-03-05 17:14+0200\n"
 "Last-Translator: Mugurel Tudor <mugurelu@gnome.ro>\n"
-"Language-Team: Romanian <gnomero@lists.sourceforge.net>\n"
+"Language-Team: Română <gnomero@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
-"2:1))\n"
-"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=3;plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1))\n"
+"X-Generator: KBabel 1.11.1\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -155,7 +154,7 @@ msgstr "Necunoscut / Necunoscut"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -945,22 +944,22 @@ msgid "Pause"
 msgstr "Pauză"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Redare %s - %s\n"
-"Timp curent: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
 msgstr ""
 "Redare\n"
-"Timp curent: %s"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -1081,7 +1080,7 @@ msgid "_Eject disc"
 msgstr "_Scoate discul"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Ajutor"
 
@@ -1217,7 +1216,7 @@ msgid "Start iconified to tray"
 msgstr "Porneste iconificat în tray"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Nu pot crea player"
 
@@ -1239,7 +1238,7 @@ msgstr "Calea către dispozitiv"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Afişez timpul rămas?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1247,7 +1246,7 @@ msgstr "Scot CD-ul din unitate la oprirea playerului CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Cum să fie afişat timpul de către player-ul CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1259,8 +1258,7 @@ msgstr "CD-ul ar trebui scos la oprirea Redării CD?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Calea către unitatea CD folosită de playerul de CD pentru a reda CD-uri"
+msgstr "Calea către unitatea CD folosită de playerul de CD pentru a reda CD-uri"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
@@ -1277,7 +1275,7 @@ msgstr "Când aplicaţia este pornită, ar trebui să înceapă redarea CD-ului?
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Eroare la ejectare CD: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1347,11 +1345,11 @@ msgstr "Înregistrare sunet"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Fără titlu-%d"
@@ -1365,12 +1363,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Eroare la crearea elementului GStreamer %s.\n"
+"Vă rugăm instalaţi modulul „%s”, parte a „%s”.\n"
+"Verificaţi corectitudinea instalării rulând\n"
+"    gst-inspect-0.10 %s\n"
+"si apoi restartaţi gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Vă rugăm verificaţi setările.\n"
+"Probabil vă lipsesc modulele necesare."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1404,7 +1409,6 @@ msgid "second"
 msgstr "secundă"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "Deschide un fişier"
 
@@ -1417,8 +1421,8 @@ msgstr ""
 "Nu am putut încărca fişierul:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Pregătit"
 
@@ -1496,9 +1500,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (estimat)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1513,7 +1517,7 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Informaţii %s"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Informaţii fişier"
 
@@ -1521,7 +1525,7 @@ msgstr "Informaţii fişier"
 msgid "Folder:"
 msgstr "Dosar:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Nume fişier:"
 
@@ -1557,161 +1561,156 @@ msgstr ""
 "O aplicaţie de înregistrat sunete pentru GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Redau..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "Ieşire audio GConf"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Redare"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Înregistrez..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "Înregistrare audio GConf"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Configurările dumneavoastră pentru capturi audio sunt invalide. Vă rugăm să le "
+"corectaţi în configurările Multimedia."
 
-#: ../grecord/src/gsr-window.c:1928
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr ""
+msgstr "fişier de ieşire"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Un nume scurt pentru profilul audio"
+msgstr "Nu s-a putut parsa profilul audio „%s”. "
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Un nume scurt pentru profilul audio"
+msgstr "Nu s-a putut realiza captura folosind profilul audio „%s”. "
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Nu s-a putut scrie în fişier folosind profilul audio „%s”. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Fişier"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Creează un nou eşantion"
 
-#: ../grecord/src/gsr-window.c:2036
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
-msgstr "Deschide"
+msgstr "_Deschide..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Deschide un fişier"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "Salvează fişierul curent"
 
-#: ../grecord/src/gsr-window.c:2040
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
-msgstr "Salvează ca"
+msgstr "Salvează c_a..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "Salvează fişierul curent sub un alt nume"
 
-#: ../grecord/src/gsr-window.c:2042
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
-msgstr "Control volum"
+msgstr "Deschide control volu_m"
 
-#: ../grecord/src/gsr-window.c:2043
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
-msgstr "Rulează mixerul audio"
+msgstr "Deschide mixerul audio"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "Arată informaţii despre fişierul curent"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "Închide fişierul curent"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Închide aplicaţia"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Control"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Înregistrează sunet"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Rulează sunet"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Opreşte sunet"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Deschide manualul"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Despre această aplicaţie"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr ""
-"Nu am putut încărca ui.xml. Probabil programul nu a fost corect instalat"
+msgstr "Nu am putut încărca ui.xml. Probabil programul nu a fost corect instalat"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Deschide"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Salvează"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Salvează ca"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Înregistrează eşantioane sonore"
+msgstr "Înregistrează de la intrare:"
 
-#: ../grecord/src/gsr-window.c:2284
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
-msgstr "Înregistrează ca"
+msgstr "Înregistrează ca:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<nici unul>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Lungime:"
 
@@ -1757,10 +1756,9 @@ msgstr "Opţiuni"
 msgid "Unknown Volume Control %d"
 msgstr "Control volum %d necunoscut"
 
-#: ../gst-mixer/src/main.c:217
-#, fuzzy
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Nici un element de control volum şi/sau dispozitive găsite."
+msgstr "Nici un modul GStreamer pentru control volum şi/sau dispozitive găsite."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1882,9 +1880,9 @@ msgid "Track %s, channel %d"
 msgstr "Pista %s, canalul %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Pista %s: blochează canalele împreună"
+msgstr "Blochează canalele pentru %s împreună"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1925,7 +1923,7 @@ msgstr "O aplicaţie GNOME/GStreamer pentru controlul volumului"
 msgid "Failure instantiating main window"
 msgstr "Eroare la instanţierea fereastrei principale"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr "Eroare la încărcarea fişierului glade; vă rugăm verificaţi instalarea."
 
@@ -1944,14 +1942,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Destinaţie implicită</b>"
+msgstr "<b>Modul de intrare implicit</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Destinaţie implicită</b>"
+msgstr "<b>Modul de ieşire implicit</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2093,9 +2089,8 @@ msgstr "Ştergere profil"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Editare profile GMAudio"
+msgstr "Editare Profile Audio GNOME"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2173,8 +2168,7 @@ msgstr ""
 "să fie folosit acest profil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "O extensie de fişier ce va fi folosită la stocarea fişierelor codate cu "
 "acest profil."
@@ -2204,13 +2198,12 @@ msgid "CD Quality, Lossy"
 msgstr "Calitate CD, cu pierderi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Listă a profilelor de înregistrare audio. Lista conţine stringuri descriind "
-"subdirectoare relative la /system/gstreamer/audio/profiles."
+"subdirectoare relative la /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2243,31 +2236,28 @@ msgstr ""
 "radio."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
-"Folosit la conversia audio de calitate voce. Folosiţi-l pentru înregistrarea "
-"vocii."
+"Folosit la conversia audio de calitate voce fără pierderi. Folosiţi-l pentru înregistrarea "
+"şi editarea vocii."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
-"Folosit la conversia audio de calitate voce. Folosiţi-l pentru înregistrarea "
-"vocii."
+"Folosit la conversia audio de calitate voce cu pierderi. Folosiţi-l pentru înregistrarea "
+"vocii când editarea nu este necesară."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "Calitate CD, fara pierderi"
+msgstr "Voce, fara pierderi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Voce, cu pierderi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2346,69 +2336,3 @@ msgstr "Monitorizează volumul de ieşire pentru sunet"
 msgid "Volume Monitor"
 msgstr "Monitor volum"
 
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Regiştrii nu sunt prezenţi sau sunt corupţi, vă rugăm să îi actualizaţi "
-#~ "prin rularea gst-register"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Eroare la setarea citirii CD-ului; vă rugăm să instalaţi modulul "
-#~ "GStreamer cdparanoia."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Eroare la setarea ieşirii audio; vă rugăm instalaţi un modul GStreamer "
-#~ "pentru placa dumneavoastră de sunet."
-
-#~ msgid "Dummy option"
-#~ msgstr "Opţiune falsă"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Nu este setat nici un element implicit de intrare audio GStreamer - vă "
-#~ "rugăm instalaţi schemele GConf pentru GStreamer sau setaţi unul manual"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder elements - check your encoding setup"
-#~ msgstr ""
-#~ "Nu am putut crea elemente de codare GStreamer - verificaţi setările "
-#~ "codărilor"
-
-#~ msgid "Could not find GStreamer filesink plugin - please install it"
-#~ msgstr ""
-#~ "Nu am putut găsi modulul GStreamer filesink - vă rugăm să îl instalaţi"
-
-#~ msgid ""
-#~ "Failed to link encoder elements with file output element - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Nu am putut crea o legătură între elementele de codare cu elementul de "
-#~ "ieşire fişier - aţi selectat probabil un codor invalid"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Rulează _mixer"
-
-#~ msgid "File information"
-#~ msgstr "Informaţii fişier"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Regiştrii nu sunt prezenţi sau sunt corupţi, vă rugăm să îi actualizaţi "
-#~ "prin rularea gst-register."
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Sursa implicită</b>"
-
-#~ msgid "Voice"
-#~ msgstr "Voce"
