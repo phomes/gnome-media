@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-30 22:04+0100\n"
-"PO-Revision-Date: 2005-06-10 10:53+0200\n"
+"POT-Creation-Date: 2006-03-09 23:17+0100\n"
+"PO-Revision-Date: 2006-03-09 23:17+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -164,7 +164,7 @@ msgstr "Ukendt/ukendt"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -952,20 +952,22 @@ msgid "Pause"
 msgstr "Pause"
 
 #: ../gnome-cd/callbacks.c:588
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing %s - %s\n"
 "%s"
 msgstr ""
 "Afspiller %s - %s\n"
-"Aktuel tid: %s"
+"%s"
 
 #: ../gnome-cd/callbacks.c:593
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Playing\n"
 ": %s"
-msgstr "Afspiller"
+msgstr ""
+"Afspiller\n"
+": %s"
 
 #: ../gnome-cd/callbacks.c:617
 msgid "Paused"
@@ -992,9 +994,8 @@ msgid "No disc"
 msgstr "Ingen disk"
 
 #: ../gnome-cd/callbacks.c:810
-#, fuzzy
 msgid "Empty disc"
-msgstr "_Skub disk ud"
+msgstr "Tom disk"
 
 #: ../gnome-cd/callbacks.c:840
 msgid "Drive open"
@@ -1074,21 +1075,19 @@ msgid "_Stop"
 msgstr "_Stop"
 
 #: ../gnome-cd/gnome-cd.c:364
-#, fuzzy
 msgid "P_revious"
-msgstr "Foregående"
+msgstr "F_oregående"
 
 #: ../gnome-cd/gnome-cd.c:365
-#, fuzzy
 msgid "_Next"
-msgstr "_Ny"
+msgstr "_Næste"
 
 #: ../gnome-cd/gnome-cd.c:366
 msgid "_Eject disc"
 msgstr "_Skub disk ud"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -1228,7 +1227,7 @@ msgid "Start iconified to tray"
 msgstr "Start som statusikon"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Kan ikke oprette afspiller"
 
@@ -1250,7 +1249,7 @@ msgstr "Sti til enhed"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
-msgstr ""
+msgstr "Om resterende tid vises"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
@@ -1258,7 +1257,7 @@ msgstr "Skub cd'en ud når cd-afspilleren slutter"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "Hvordan tiden skal vises når cd-afspiller spiller"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1289,7 +1288,7 @@ msgstr ""
 #: ../gnome-cd/gst-cdrom.c:279
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr ""
+msgstr "Kunne ikke skubbe cd ud: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1359,11 +1358,11 @@ msgstr "Lydoptager"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Uden titel"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Uden titel-%d"
@@ -1377,12 +1376,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"Kunne ikke oprettet GStreamer elementet \"%s\".\n"
+"Installér udvidelsesmodulet  '%s' fra modulet '%s'.\n"
+"Kontrollér at installationen er i orden ved at køre\n"
+"    gst-inspect-0.10 %s\n"
+"og genstart så gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"Kontrollér indstillingerne.\n"
+"Du mangler muligvis de nødvendige udvidelsesmoduler."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1416,7 +1422,6 @@ msgid "second"
 msgstr "sekund"
 
 #: ../grecord/src/gsr-window.c:361
-#, fuzzy
 msgid "Open a File"
 msgstr "Åbn en fil"
 
@@ -1429,8 +1434,8 @@ msgstr ""
 "Kunne ikke indlæse fil:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Klar"
 
@@ -1507,9 +1512,9 @@ msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
 #: ../grecord/src/gsr-window.c:1006
-#, fuzzy, c-format
+#, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s"
+msgstr "%.0f kb/s (estimeret)"
 
 #: ../grecord/src/gsr-window.c:1021
 msgid "1 (mono)"
@@ -1524,7 +1529,7 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Oplysninger om %s"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Filoplysninger"
 
@@ -1532,7 +1537,7 @@ msgstr "Filoplysninger"
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Filnavn:"
 
@@ -1568,161 +1573,157 @@ msgstr ""
 "En lydoptager til Gnome\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Afspiller..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf-lyd-ud"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Playback"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Optager..."
 
-#: ../grecord/src/gsr-window.c:1834
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr "Start indspilning"
+msgstr "GConf-lydindspilning"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
-"Multimediad settings."
+"Multimedia settings."
 msgstr ""
+"Dine lydoptageindstillinger er ugyldige. Kontrollér dem venligst under "
+"multimedie-indstillingerne."
 
-#: ../grecord/src/gsr-window.c:1928
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
-msgstr "Video-_ud:"
+msgstr "fil-uddata"
 
-#: ../grecord/src/gsr-window.c:1956
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1883
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Et kort navn til lydprofilen"
+msgstr "Kunne ikke fortolke lydprofilen \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1972
-#, fuzzy, c-format
+#: ../grecord/src/gsr-window.c:1899
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Et kort navn til lydprofilen"
+msgstr "Kunne ikke optage med lydprofilen \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "Kunne ikke skrive i en fil med lydprofilen \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Fil"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Opret nyt lydklip"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
 msgstr "_Åbn..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Åbn en fil"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "Gem den aktuelle fil"
 
-#: ../grecord/src/gsr-window.c:2040
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
 msgstr "Gem _som..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "Gem den aktuelle fil med et andet navn"
 
-#: ../grecord/src/gsr-window.c:2042
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
-msgstr "Lydstyrkekontrol"
+msgstr "Åbn lydstyrke_kontrol"
 
-#: ../grecord/src/gsr-window.c:2043
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
-msgstr "Kør lydmikseren"
+msgstr "Åbn lydmikseren"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "Vis oplysninger om den aktuelle fil"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "Luk den aktuelle fil"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Afslut programmet"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Handling"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Optag lyd"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Afspil lyd"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Stop lyd"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Åbn manualen"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Om programmet"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Kunne ikke indlæse ui.xml. Programmet er muligvis ikke korrekt installeret"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Åbn"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Gem"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Gem som"
 
-#: ../grecord/src/gsr-window.c:2267
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
-msgstr "Optag lydklip"
+msgstr "Optag fra kilde:"
 
-#: ../grecord/src/gsr-window.c:2284
-#, fuzzy
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
-msgstr "Optag som"
+msgstr "Optag som:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<ingen>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Længde:"
 
@@ -1768,10 +1769,9 @@ msgstr "Indstillinger"
 msgid "Unknown Volume Control %d"
 msgstr "Ukendt lydstyrkekontrol %d"
 
-#: ../gst-mixer/src/main.c:217
-#, fuzzy
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Ingen lydstyrkekontrolelementer eller -enheder fundet."
+msgstr "Ingen Gstreamer-moduler eller enheder til lydstyrkekontrol fundet."
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
@@ -1893,9 +1893,9 @@ msgid "Track %s, channel %d"
 msgstr "Spor %s, kanal %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "Spor %s: lås kanaler sammen"
+msgstr "Lås kanaler for %s sammen"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1943,7 +1943,7 @@ msgstr "Et Gnome/GStreamer-baseret lydstyrkekontrolprogram"
 msgid "Failure instantiating main window"
 msgstr "Fejl ved oprettelse af hovedvindue"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr ""
 "Indlæsning af glade-filen mislykkedes; kontrollér venligst din installation."
@@ -1963,14 +1963,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Forvalgt destination</b>"
+msgstr "<b>Forvalgt ind-modul</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Forvalgt destination</b>"
+msgstr "<b>Forvalgt ud-modul</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2111,9 +2109,8 @@ msgstr "Slet profil"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "Redigér lydprofiler"
+msgstr "Redigér Gnome-lydprofiler"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2219,13 +2216,13 @@ msgid "CD Quality, Lossy"
 msgstr "Cd-kvalitet, med tab"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Liste af lydoptagelsesprofiler. Listen indeholder strenge der navngiver "
-"undermapper relativt til \"/system/gstreamer/audio/profiles\"."
+"undermapper relativt til \"/system/gstreamer/@GST_MAJORMINOR@/audio/profiles"
+"\"."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2244,7 +2241,7 @@ msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
-"Konvertere til lyd af cd-kvalitet, men med en tabsfri komprimeringskodek. "
+"Konverterer til lyd af cd-kvalitet, men med en tabsfri komprimeringskodek. "
 "Benyt denne, hvis du senere vil redigere filen eller brænde den til en cd"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
@@ -2252,35 +2249,36 @@ msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
-"Konvertere til lyd af cd-kvalitet, men med en komprimeringskodek med tab. "
+"Konverterer til lyd af cd-kvalitet, men med en komprimeringskodek med tab. "
 "Benyt denne til cdudtrækning eller radiooptagelser. "
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr "Konvertere til talekvalitetslyd. Benyt denne til taleoptagelser."
+msgstr ""
+"Konverterer til tabsfri talekvalitetslyd. Benyt denne til optagelse og "
+"redigering af tale."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
-msgstr "Konvertere til talekvalitetslyd. Benyt denne til taleoptagelser."
+msgstr ""
+"Konverterer til talekvalitetslyd med tab. Benyt denne til taleoptagelser der "
+"ikke skal redigeres."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "Cd-kvalitet, tabsfri"
+msgstr "Tale, tabsfri"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Tale, med tab"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
-msgstr "Om profiln skal bruges"
+msgstr "Om profilen skal bruges"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
