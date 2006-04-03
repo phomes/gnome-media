@@ -40,7 +40,7 @@ AC_FUNC_MMAP
 AC_DEFINE_UNQUOTED(DEFAULT_MIXER, gst-mixer, [default mixer to use])
 
 dnl error flags
-GM_ERROR_CFLAGS=""
+GM_ERROR_CFLAGS="-I/opt/gnome_HEAD/include/gstreamer-0.8"
 dnl always use -Wall if it's supported
 AS_COMPILER_FLAG(-Wall, GM_ERROR_CFLAGS="-Wall")
 dnl if we're not in release mode, add -Werror if supported
@@ -64,6 +64,7 @@ case "$host" in
         ;;
 esac
 
+MEDIA_LIBS="$MEDIA_LIBS -L/opt/gnome_HEAD/lib -lgstreamer-0.8"
 AC_SUBST(MEDIA_CFLAGS)
 AC_SUBST(MEDIA_LIBS)
 
@@ -254,7 +255,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
 
 AM_PROG_LIBTOOL
-ALL_LINGUAS="am ar az be bg bn br bs ca cs cy da de dz el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ka ko ku lt lv mk ml mn ms nb ne nl nn no pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta th tk tr uk vi wa xh zh_CN zh_HK zh_TW"
+ALL_LINGUAS="am ar az be bg bn br bs ca cs cy da de dz el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ka ko ku lt lv mk ml mn ms nb ne nl nn no or pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta th tk tr uk vi wa xh zh_CN zh_HK zh_TW"
 
 AM_GLIB_GNU_GETTEXT
 
