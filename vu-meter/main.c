@@ -53,7 +53,7 @@ typedef struct _vumeter {
 static short aubuf[BUFS][NSAMP];
 static GtkWidget *dial[2];
 static GtkWidget *window;
-static char *esd_host = NULL;
+static gchar *esd_host = NULL;
 static int curbuf = 0;
 static int lag = 2;
 static int plevel_l = 0;
@@ -212,6 +212,7 @@ main (int argc,
       char *argv[])
 {
 	GnomeClient *client;
+	GOptionContext *goption_context;
 	GtkWidget *hbox;
 	GtkWidget *frame;
 	vumeter *meter;
@@ -219,38 +220,37 @@ main (int argc,
 	int i;
 	gint          session_xpos = -1;
 	gint          session_ypos = -1;
-	gint          orient = 0;
-	gint          record = 0;
+	gboolean      orient = FALSE;
+	gboolean      record = FALSE;
 
-	struct poptOption options[] = 
+	GOptionEntry options[] = 
 	{
-		{ NULL, 'x', POPT_ARG_INT, NULL, 0, 
+		{ "xpos", 'x', 0, G_OPTION_ARG_INT, &session_xpos, 
 		  N_("Specify the X position of the meter."), 
-		  N_("X-Position") },
-		{ NULL, 'y', POPT_ARG_INT, NULL, 0, 
+		  N_("X") },
+		{ "ypos", 'y', 0, G_OPTION_ARG_INT, &session_ypos, 
 		  N_("Specify the Y position of the meter."), 
-		  N_("Y-Position") },
-		{ NULL, 's', POPT_ARG_STRING, NULL, 0, 
+		  N_("Y") },
+		{ "server", 's', 0, G_OPTION_ARG_STRING, &esd_host, 
 		  N_("Connect to the esd server on this host."), 
-		  N_("ESD Server Host") },
-		{ NULL, 'v', POPT_ARG_NONE, NULL, 0, 
+		  N_("HOST") },
+		{ "vertical", 'v', 0, G_OPTION_ARG_NONE, &orient, 
 		  N_("Open a vertical version of the meter."), NULL },
-		{ NULL, 'r', POPT_ARG_NONE, NULL, 0, 
+		{ "record", 'r', 0, G_OPTION_ARG_NONE, &record, 
 		  N_("Act as recording level meter."), NULL },
-		{ NULL, '\0', 0, NULL, 0 }
+		{ NULL }
 	};
 
-	options[0].arg = &session_xpos;
-	options[1].arg = &session_ypos;
-	options[2].arg = &esd_host;
-	options[3].arg = &orient;
-	options[4].arg = &record;
-	
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
-	gnome_init_with_popt_table ("vumeter", VERSION, argc, argv, options, 
-				    0, NULL);
+
+	goption_context = g_option_context_new(NULL);
+	g_option_context_add_main_entries(goption_context, options, GETTEXT_PACKAGE);
+
+	gnome_program_init ("vumeter", VERSION, LIBGNOMEUI_MODULE, argc, argv,
+				    GNOME_PARAM_GOPTION_CONTEXT, goption_context, 
+				    NULL);
 #ifdef DEBUG
 	if (esd_host) {
 		g_print (_("Host is %s\n"), esd_host);
