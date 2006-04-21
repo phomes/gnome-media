@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-05 15:17+0100\n"
-"PO-Revision-Date: 2006-03-18 16:09+0200\n"
+"POT-Creation-Date: 2006-04-20 05:11+0200\n"
+"PO-Revision-Date: 2006-04-20 08:27+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Serveri tüüp"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
-msgstr "Hostinimi, mis saadetakse päringutega kaasa"
+msgstr "Hostinimi, mis saadetakse koos kõikide päringutega"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
@@ -65,7 +65,7 @@ msgstr "Kasutajanimi"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
-msgstr "Kasutajanimi, mis saadetakse kõikide päringutega"
+msgstr "Kasutajanimi, mis saadetakse koos kõikide päringutega"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
 msgid ""
@@ -158,7 +158,7 @@ msgstr "Tundmatu / Tundmatu"
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1364
+#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Tundmatu"
 
@@ -1081,7 +1081,7 @@ msgid "_Eject disc"
 msgstr "_Väljasta plaat"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:2061
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
 msgid "_Help"
 msgstr "_Abi"
 
@@ -1216,7 +1216,7 @@ msgid "Start iconified to tray"
 msgstr "Käivitatakse ikoonina süsteemisalves"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1025
+#: ../gnome-cd/gnome-cd.c:1028
 msgid "Cannot create player"
 msgstr "Mängijat pole võimalik luua"
 
@@ -1346,11 +1346,11 @@ msgstr "Helisalvestaja"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1692 ../grecord/src/gsr-window.c:2527
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Pealkirjata"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1694
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Pealkirjata-%d"
@@ -1422,8 +1422,8 @@ msgstr ""
 "Faili pole võimalik laadida:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1495
-#: ../grecord/src/gsr-window.c:1743 ../grecord/src/gsr-window.c:2356
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Valmis"
 
@@ -1517,7 +1517,7 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "%s andmed"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2301
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Faili info"
 
@@ -1525,7 +1525,7 @@ msgstr "Faili info"
 msgid "Folder:"
 msgstr "Kataloog:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2316
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Faili nimi:"
 
@@ -1561,27 +1561,27 @@ msgstr ""
 "GNOME helisalvestaja\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1467
+#: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
 msgstr "Esitamine..."
 
-#: ../grecord/src/gsr-window.c:1596
+#: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
 msgstr "GConf audioväljund"
 
-#: ../grecord/src/gsr-window.c:1605 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
 msgstr "Esitamine"
 
-#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
 msgstr "Salvestamine..."
 
-#: ../grecord/src/gsr-window.c:1834
+#: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
 msgstr "GConf audiosalvestamine"
 
-#: ../grecord/src/gsr-window.c:1843
+#: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
 "Multimedia settings."
@@ -1589,131 +1589,130 @@ msgstr ""
 "Sinu audiolindistamise sätted on vigased. Palun sea need Multimeedia "
 "sätetest õigeks."
 
-#: ../grecord/src/gsr-window.c:1928
+#: ../grecord/src/gsr-window.c:1854
 msgid "file output"
 msgstr "failiväljund"
 
-#: ../grecord/src/gsr-window.c:1956
+#: ../grecord/src/gsr-window.c:1883
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Audioprofiili '%s' pole võimalik parsida. "
 
-#: ../grecord/src/gsr-window.c:1972
+#: ../grecord/src/gsr-window.c:1899
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr ""
-"Audioprofiili '%s' abil pole võimalik heli lindistada. "
+msgstr "Audioprofiili '%s' abil pole võimalik heli lindistada. "
 
-#: ../grecord/src/gsr-window.c:1982
+#: ../grecord/src/gsr-window.c:1909
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Faili pole võimalik '%s' audioprofiili abil kirjutada. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:1960
 msgid "_File"
 msgstr "_Fail"
 
-#: ../grecord/src/gsr-window.c:2035
+#: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
 msgstr "Uue helilõigu loomine"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
 msgstr "_Ava..."
 
-#: ../grecord/src/gsr-window.c:2037
+#: ../grecord/src/gsr-window.c:1964
 msgid "Open a file"
 msgstr "Faili avamine"
 
-#: ../grecord/src/gsr-window.c:2039
+#: ../grecord/src/gsr-window.c:1966
 msgid "Save the current file"
 msgstr "Käesoleva faili salvestamine"
 
-#: ../grecord/src/gsr-window.c:2040
+#: ../grecord/src/gsr-window.c:1967
 msgid "Save _As..."
 msgstr "Salvesta _kui..."
 
-#: ../grecord/src/gsr-window.c:2041
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
 msgstr "Käesoleva faili salvestamine teise nime alla"
 
-#: ../grecord/src/gsr-window.c:2042
+#: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
 msgstr "A_va helitugevuse juhtija"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:1970
 msgid "Open the audio mixer"
 msgstr "Helimikseri käivitamine"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:1972
 msgid "Show information about the current file"
 msgstr "Teabe näitamine käesoleva faili kohta"
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:1974
 msgid "Close the current file"
 msgstr "Käesoleva faili sulgemine"
 
-#: ../grecord/src/gsr-window.c:2049
+#: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
 msgstr "Rakenduse töö lõpetamine"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2052
+#: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
 msgstr "_Juhtimine"
 
-#: ../grecord/src/gsr-window.c:2054
+#: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
 msgstr "Heli salvestamine"
 
-#: ../grecord/src/gsr-window.c:2056
+#: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
 msgstr "Heli esitamine"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:1985
 msgid "Stop sound"
 msgstr "Heli seiskamine"
 
-#: ../grecord/src/gsr-window.c:2063
+#: ../grecord/src/gsr-window.c:1990
 msgid "Open the manual"
 msgstr "Kasutajajuhendi avamine"
 
-#: ../grecord/src/gsr-window.c:2065
+#: ../grecord/src/gsr-window.c:1992
 msgid "About this application"
 msgstr "Rakendusest lähemalt"
 
-#: ../grecord/src/gsr-window.c:2186
+#: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Faili ui.xml pole võimalik laadida. Programm pole võib-olla korralikult "
 "paigaldatud"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open"
 msgstr "Ava"
 
-#: ../grecord/src/gsr-window.c:2211
+#: ../grecord/src/gsr-window.c:2138
 msgid "Save"
 msgstr "Salvesta"
 
-#: ../grecord/src/gsr-window.c:2213
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save As"
 msgstr "Salvesta kui"
 
-#: ../grecord/src/gsr-window.c:2267
+#: ../grecord/src/gsr-window.c:2194
 msgid "Record from input:"
 msgstr "Salvestamine sisendist:"
 
-#: ../grecord/src/gsr-window.c:2284
+#: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
 msgstr "Lindistada kui:"
 
-#: ../grecord/src/gsr-window.c:2322
+#: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
 msgstr "<pole>"
 
-#: ../grecord/src/gsr-window.c:2331
+#: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
 msgstr "Pikkus:"
 
@@ -1759,7 +1758,7 @@ msgstr "Valikud"
 msgid "Unknown Volume Control %d"
 msgstr "Tundmatu helitugevuse regulaator %d"
 
-#: ../gst-mixer/src/main.c:217
+#: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "GStreamer'i helivaljuse juhtimise pluginaid ja/või seadmeid ei leitud."
 
@@ -1930,7 +1929,7 @@ msgstr "GNOME'il ja GStreamer'il baseeruv helivaljususe reguleerimise rakendus"
 msgid "Failure instantiating main window"
 msgstr "Tõrge peaakna tootmisel"
 
-#: ../gstreamer-properties/gstreamer-properties.c:442
+#: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
 msgstr "Tõrge glade faili laadimisel; palun kontrolli oma paigaldust."
 
@@ -2281,37 +2280,37 @@ msgstr ""
 "Helideemoniga pole võimalik ühendust saada.\n"
 "Palun käivitage käsurealt 'esd'."
 
-#: ../vu-meter/main.c:228
-msgid "Specify the X position of the meter."
-msgstr "Määrab näidiku X-positsiooni"
-
 #: ../vu-meter/main.c:229
-msgid "X-Position"
-msgstr "X-positsioon"
+msgid "Specify the X position of the meter."
+msgstr "Näidiku X-positsiooni määramine"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the Y position of the meter."
-msgstr "Määrab näidiku Y-positsiooni"
+#: ../vu-meter/main.c:230
+msgid "X"
+msgstr "X"
 
 #: ../vu-meter/main.c:232
-msgid "Y-Position"
-msgstr "Y-positsioon"
+msgid "Specify the Y position of the meter."
+msgstr "Näidiku Y-positsiooni määramine"
 
-#: ../vu-meter/main.c:234
+#: ../vu-meter/main.c:233
+msgid "Y"
+msgstr "Y"
+
+#: ../vu-meter/main.c:235
 msgid "Connect to the esd server on this host."
 msgstr "Ühendutakse selles hostis olevasse esd serverisse."
 
-#: ../vu-meter/main.c:235
-msgid "ESD Server Host"
-msgstr "ESD serveri host"
+#: ../vu-meter/main.c:236
+msgid "HOST"
+msgstr "HOST"
 
-#: ../vu-meter/main.c:237
+#: ../vu-meter/main.c:238
 msgid "Open a vertical version of the meter."
-msgstr "Ava näidiku vertikaalne variant."
+msgstr "Näidiku vertikaalse versiooni avamine."
 
-#: ../vu-meter/main.c:239
+#: ../vu-meter/main.c:240
 msgid "Act as recording level meter."
-msgstr "Toimi salvestustaseme näidikuna."
+msgstr "Toimimine salvestustaseme näidikuna."
 
 #: ../vu-meter/main.c:256
 #, c-format
@@ -2342,83 +2341,3 @@ msgstr "Montoorib heliväljundit"
 msgid "Volume Monitor"
 msgstr "Helitugevuse monitor"
 
-#~ msgid "Could not find GStreamer element \"%s\" - please install it"
-#~ msgstr ""
-#~ "GStreamer'i \"%s\" elementi pole võimalik leida - palun paigalda see"
-
-#~ msgid "Could not find GStreamer plugin \"%s\" - please install it"
-#~ msgstr ""
-#~ "GStreamer'i \"%s\" elementi pole võimalik leida - palun paigalda see"
-
-#~ msgid "Could not activate GStreamer plugin \"%s\""
-#~ msgstr "GStreameri'i pluginat \"%s\" pole võimalik aktiveerida"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup."
-#~ msgstr ""
-#~ "Tõrge GStreamer'i kodeerimispluginate loomisel - kontrolli oma kodeerija "
-#~ "seadeid"
-
-#~ msgid ""
-#~ "Failed to link input element with encoder plugins - you probably selected "
-#~ "an invalid encoder"
-#~ msgstr ""
-#~ "Tõrge kodeerimiselemendi ühendamisel failiväljundi pluginatega - "
-#~ "arvatavasti oled valinud vigase kodeerija"
-
-#~ msgid ""
-#~ "Failed to link encoder element with file output plugins - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Tõrge kodeerimiselemendi ühendamisel failiväljundi pluginatega - "
-#~ "arvatavasti oled valinud vigase kodeerija"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Registrit ei ole olemas või on see rikutud. Palun uuenda seda käsu 'gst-"
-#~ "register' käivitamise abil."
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Tõrge CD-lugeja lähtestamisel; palun paigalda GStreamer'i cdparanoia "
-#~ "plugin."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Tõrge audioväljundi lähtestamisel; palun paigalda oma helikaardi jaoks "
-#~ "GStreameri plugin."
-
-#~ msgid "Dummy option"
-#~ msgstr "Kasutuseta võti"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Süsteemis ei ole GStreamer'i vaikimisi audiosisendi elementi määratud - "
-#~ "palun paigalda GStreamer-GConf skeemid või määra see käsitsi"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Registrit pole olemas või on see rikutud. Palun uuenda seda käsu 'gst-"
-#~ "register' käivitamise abil."
-
-#~ msgid "Voice"
-#~ msgstr "Hääl"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Vaikimisi allikas</b>"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Ava _mikser"
-
-#~ msgid "File information"
-#~ msgstr "Faili andmed"
