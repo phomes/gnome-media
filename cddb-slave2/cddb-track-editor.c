@@ -483,16 +483,17 @@ track_name_edited (GtkCellRendererText *cell,
 	GtkTreePath *path = gtk_tree_path_new_from_string (path_string);
 	int track_no;
 
-	gtk_tree_model_get_iter (model, &iter, path);
-	gtk_tree_model_get (model, &iter, 0, &track_no, -1);
+	if (gtk_tree_model_get_iter (model, &iter, path)) {
+		gtk_tree_model_get (model, &iter, 0, &track_no, -1);
 
-	g_print ("track no %d\n", track_no);
-	if (td->info->track_info[track_no - 1]->name != NULL) {
-		g_free (td->info->track_info[track_no - 1]->name);
+		g_print ("track no %d\n", track_no);
+		if (td->info->track_info[track_no - 1]->name != NULL) {
+			g_free (td->info->track_info[track_no - 1]->name);
+		}
+		td->info->track_info[track_no - 1]->name = g_strdup (new_text);
+
+		gtk_list_store_set (GTK_LIST_STORE (model), &iter, 1, new_text, -1);
 	}
-	td->info->track_info[track_no - 1]->name = g_strdup (new_text);
-
-	gtk_list_store_set (GTK_LIST_STORE (model), &iter, 1, new_text, -1);
 	gtk_tree_path_free (path);
 }
 
