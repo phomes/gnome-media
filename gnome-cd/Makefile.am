@@ -91,8 +91,8 @@ ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
 gnome_cd_LDADD = $(MEDIA_LIBS)		\
 		 $(GNOMECD_LIBS)	\
 		 $(INTLLIBS)		\
-		 $(GAILUTIL_LIBS)	\
 		 $(ACCESS_LT_LIB)	\
+		 $(GAILUTIL_LIBS)	\
 		 $(GSR_LIBS)		\
 		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
 		 libgnomemedia-cddbslave2.la
