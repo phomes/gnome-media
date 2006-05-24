@@ -414,7 +414,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		item = gtk_image_menu_item_new_with_mnemonic (_(menuitems[i].name));
 	        
 		/* If status is play, display the pause icon else display the play icon */
-        	if (status->audio == GNOME_CDROM_AUDIO_PLAY && i == 0) 
+        	if (status && status->audio == GNOME_CDROM_AUDIO_PLAY && i == 0) 
 	        	icon_name = GTK_STOCK_MEDIA_PAUSE;
 		else 
 		        icon_name = menuitems[i].icon;
@@ -442,7 +442,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(item), image);
 		}
 
-		if (status->cd == GNOME_CDROM_STATUS_OK) {
+		if (status && status->cd == GNOME_CDROM_STATUS_OK) {
 			/* Previous menuitem is sensitive when it is
 			 * not the first track and we're playing */
 	        	if (i == 2) {
@@ -467,7 +467,7 @@ make_popup_menu (GnomeCD *gcd, GdkEventButton *event, gboolean iconify)
 		/* Disable the first four menu items when no disc is inserted
 		 * Update as per the buttons on the main window
 		 */
-		if ((status->cd == GNOME_CDROM_STATUS_NO_DISC || status->cd == GNOME_CDROM_STATUS_EMPTY_DISC) && i < 4) 
+		if ((status == NULL || status->cd == GNOME_CDROM_STATUS_NO_DISC || status->cd == GNOME_CDROM_STATUS_EMPTY_DISC) && i < 4) 
 			gtk_widget_set_sensitive (item, FALSE);
         
 		gtk_widget_show (item);
