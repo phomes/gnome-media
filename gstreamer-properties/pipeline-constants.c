@@ -101,9 +101,9 @@ GSTPPipelineDescription videosink_pipelines[] = {
 #endif
   {PIPE_TYPE_VIDEOSINK, 0, "SDL - Simple DirectMedia Layer", "sdlvideosink",
       FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, "XWindows (No Xv)",
+  {PIPE_TYPE_VIDEOSINK, 0, "X Window System (No Xv)",
       "ximagesink", FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, "XWindows (X11/XShm/Xv)", "xvimagesink", FALSE,
+  {PIPE_TYPE_VIDEOSINK, 0, "X Window System (X11/XShm/Xv)", "xvimagesink", FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
   {PIPE_TYPE_VIDEOSINK, 0, N_("Custom"), NULL, TRUE, TEST_PIPE_SUPPLIED,
       videosink_test_pipe, TRUE}
