@@ -1782,30 +1782,28 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 {
 	const gchar *text;
 	const GList *l;
-	GstMixerTrack *t = NULL;
-	GstMixerTrack *selected = NULL;
+	GstMixerTrack *t = NULL, *new = NULL;
+	static GstMixerTrack *selected = NULL;
 
 	text = gtk_combo_box_get_active_text (input);
-
 	GST_DEBUG ("record input changed to '%s'", GST_STR_NULL (text));
 
-	for (l = gst_mixer_list_tracks (window->priv->mixer); l != NULL; l = l->next) {
+	for (l = gst_mixer_list_tracks (window->priv->mixer);
+	     l != NULL; l = l->next) {
 		t = l->data;
-
-		if (!(t->flags & GST_MIXER_TRACK_INPUT)) continue;
-
-		if ((strcmp (t->label, text) == 0) && (t->flags & GST_MIXER_TRACK_INPUT))
-			selected = t;
-		else {
-			/* we make sure other channels are not recording */
-			if (t->flags & GST_MIXER_TRACK_RECORD) {
-				GST_DEBUG ("turning off record on %s\n", t->label);
-				gst_mixer_set_record (window->priv->mixer, t, FALSE);
-			}
-		}
+		if ((strcmp (t->label, text) == 0) &&
+		    (t->flags & GST_MIXER_TRACK_INPUT)) {
+			if (new == NULL)
+				new = g_object_ref (t);
+		} else if (selected == t)
+			/* re-mute old one */
+			gst_mixer_set_record (window->priv->mixer,
+					      selected, FALSE);
 	}
 
-	if (!selected)
+	if (selected != NULL)
+		g_object_unref (selected);
+	if (!(selected = new))
 		return;
 
 	gst_mixer_set_record (window->priv->mixer, selected, TRUE);
