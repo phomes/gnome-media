@@ -88,15 +88,15 @@ gnome_cd_SOURCES =		\
 
 ACCESS_LT_LIB = $(top_builddir)/gnome-cd/access/libgnomecdaccess.la
 
-gnome_cd_LDADD = $(MEDIA_LIBS)		\
-		 $(GNOMECD_LIBS)	\
-		 $(INTLLIBS)		\
-		 $(ACCESS_LT_LIB)	\
-		 $(GAILUTIL_LIBS)	\
-		 $(GSR_LIBS)		\
-		 $(top_builddir)/cddb-slave2/libcddb-slave2.la	\
-		 libgnomemedia-cddbslave2.la
-
+gnome_cd_LDADD = \
+	$(top_builddir)/cddb-slave2/libcddb-slave2.la \
+	libgnomemedia-cddbslave2.la \
+	$(ACCESS_LT_LIB) 	\
+	$(MEDIA_LIBS) 		\
+	$(GNOMECD_LIBS)		\
+	$(INTLLIBS)		\
+	$(GAILUTIL_LIBS)	\
+	$(GSR_LIBS)
 
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
