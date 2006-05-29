@@ -88,6 +88,7 @@ typedef struct {
     { N_("speaker"), FALSE }, \
     { N_("volume"), FALSE }, \
     { N_("master"), FALSE }, \
+    { N_("digital output"), FALSE }, \
     { NULL, FALSE } \
   }
 
