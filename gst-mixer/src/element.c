@@ -298,7 +298,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 
     /* visible? */
     active = gnome_volume_control_element_whitelist (track, list);
-    key = get_gconf_key (el->mixer, track->label);
+    key = get_gconf_key (el->mixer, track);
     if ((value = gconf_client_get (el->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {
       active = gconf_value_get_bool (value);
@@ -390,7 +390,7 @@ cb_gconf (GConfClient *client,
 	  gpointer     data)
 {
   GnomeVolumeControlElement *el = GNOME_VOLUME_CONTROL_ELEMENT (data);
-  gchar *keybase = get_gconf_key (el->mixer, "");
+  gchar *keybase = get_gconf_key (el->mixer, NULL);
 
   if (!strncmp (gconf_entry_get_key (entry),
 		keybase, strlen (keybase))) {
@@ -401,7 +401,7 @@ cb_gconf (GConfClient *client,
       GstMixerTrack *track = item->data;
       GnomeVolumeControlTrack *trkw =
 	g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
-      gchar *key = get_gconf_key (el->mixer, track->label);
+      gchar *key = get_gconf_key (el->mixer, track);
 
       if (!strcmp (gconf_entry_get_key (entry), key)) {
         GConfValue *value = gconf_entry_get_value (entry);

@@ -50,6 +50,7 @@ typedef struct _GnomeVolumeControlPreferences {
 
   /* gconf client inherited from our parent */
   GConfClient *client;
+  guint client_cnxn;
 
   /* treeview inside us */
   GtkWidget *treeview;
@@ -68,8 +69,7 @@ void	gnome_volume_control_preferences_change	(GnomeVolumeControlPreferences *pre
 /*
  * GConf thingy. Escapes spaces and such.
  */
-gchar *	get_gconf_key	(GstMixer *mixer,
-			 gchar    *track_label);
+gchar *	get_gconf_key	(GstMixer *mixer, GstMixerTrack *track);
 
 
 G_END_DECLS

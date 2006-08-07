@@ -25,6 +25,7 @@
 
 #include <gnome.h>
 #include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
 
 #include "element.h"
 #include "preferences.h"
@@ -44,9 +45,19 @@ static void	gnome_volume_control_preferences_dispose (GObject *object);
 static void	gnome_volume_control_preferences_response (GtkDialog *dialog,
 							   gint       response_id);
 
+static void	set_gconf_track_active	(GConfClient *client, GstMixer *mixer, 
+					 GstMixerTrack *track, gboolean active);
+
+
 static void	cb_toggle		(GtkCellRendererToggle *cell,
 					 gchar                 *path_str,
 					 gpointer               data);
+static void	cb_activated		(GtkTreeView *view, GtkTreePath *path,
+					 GtkTreeViewColumn *col, gpointer userdata);
+static void	cb_gconf		(GConfClient     *client,
+					 guint            connection_id,
+					 GConfEntry      *entry,
+					 gpointer         userdata);
 
 static GtkNotebookClass *parent_class = NULL;
 
@@ -100,6 +111,7 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   GtkCellRenderer *render;
 
   prefs->client = NULL;
+  prefs->client_cnxn = 0;
   prefs->mixer = NULL;
 
   /* make window look cute */
@@ -143,11 +155,13 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 
   /* treeview internals */
   sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (prefs->treeview));
-  gtk_tree_selection_set_mode (sel, GTK_SELECTION_NONE);
+  gtk_tree_selection_set_mode (sel, GTK_SELECTION_SINGLE);
 
   render = gtk_cell_renderer_toggle_new ();
   g_signal_connect (render, "toggled",
 		    G_CALLBACK (cb_toggle), prefs);
+  g_signal_connect (prefs->treeview, "row-activated",
+		    G_CALLBACK (cb_activated), prefs);
   col = gtk_tree_view_column_new_with_attributes ("Active", render,
 						  "active", COL_ACTIVE,
 						  NULL);
@@ -182,9 +196,10 @@ gnome_volume_control_preferences_new (GstElement  *element,
 
   gnome_volume_control_preferences_change (prefs, element);
 
-  /* FIXME:
-   * - update preferences dialog if user touches gconf directly.
-   */
+  /* gconf */
+  prefs->client_cnxn = gconf_client_notify_add (prefs->client, 
+						GNOME_VOLUME_CONTROL_KEY_DIR,
+						cb_gconf, prefs, NULL, NULL);
 
   return GTK_WIDGET (prefs);
 }
@@ -192,9 +207,12 @@ gnome_volume_control_preferences_new (GstElement  *element,
 static void
 gnome_volume_control_preferences_dispose (GObject *object)
 {
-  GnomeVolumeControlPreferences *prefs = GNOME_VOLUME_CONTROL_PREFERENCES (object);
+  GnomeVolumeControlPreferences *prefs;
+
+  prefs = GNOME_VOLUME_CONTROL_PREFERENCES (object);
 
   if (prefs->client) {
+    gconf_client_notify_remove (prefs->client, prefs->client_cnxn);
     g_object_unref (G_OBJECT (prefs->client));
     prefs->client = NULL;
   }
@@ -229,16 +247,21 @@ gnome_volume_control_preferences_response (GtkDialog *dialog,
  */
 
 gchar *
-get_gconf_key (GstMixer *mixer,
-	       gchar    *track_label)
+get_gconf_key (GstMixer *mixer, GstMixerTrack *track)
 {
+  const gchar *dev;
   gchar *res;
-  const gchar *dev = g_object_get_data (G_OBJECT (mixer),
-					"gnome-volume-control-name");
   gint i, pos;
+  gchar *label;
+
+  g_return_val_if_fail(mixer != NULL, NULL);
+
+  dev = g_object_get_data (G_OBJECT (mixer),
+			   "gnome-volume-control-name");
+  label = track != NULL ? track->label : "";
 
   pos = strlen (GNOME_VOLUME_CONTROL_KEY_DIR) + 1;
-  res = g_new (gchar, pos + strlen (dev) + 1 + strlen (track_label) + 1);
+  res = g_new (gchar, pos + strlen (dev) + 1 + strlen (label) + 1);
   strcpy (res, GNOME_VOLUME_CONTROL_KEY_DIR "/");
 
   for (i = 0; dev[i] != '\0'; i++) {
@@ -246,9 +269,9 @@ get_gconf_key (GstMixer *mixer,
       res[pos++] = dev[i];
   }
   res[pos] = '/';
-  for (i = 0; track_label[i] != '\0'; i++) {
-    if (g_ascii_isalnum (track_label[i]))
-      res[pos++] = track_label[i];
+  for (i = 0; label[i] != '\0'; i++) {
+    if (g_ascii_isalnum (label[i]))
+      res[pos++] = label[i];
   }
   res[pos] = '\0';
 
@@ -286,7 +309,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   for (item = gst_mixer_list_tracks (mixer);
        item != NULL; item = item->next) {
     GstMixerTrack *track = item->data;
-    gchar *key = get_gconf_key (mixer, track->label);
+    gchar *key = get_gconf_key (mixer, track);
     GConfValue *value;
     gboolean active = gnome_volume_control_element_whitelist (track, list);
 
@@ -310,6 +333,84 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
  */
 
 static void
+set_gconf_track_active(GConfClient *client, GstMixer *mixer, 
+		       GstMixerTrack *track, gboolean active)
+{
+  gchar *key;
+  GConfValue *value;
+
+  key = get_gconf_key (mixer, track);
+  value = gconf_value_new (GCONF_VALUE_BOOL);
+  gconf_value_set_bool (value, active);
+  gconf_client_set (client, key, value, NULL);
+  gconf_value_free (value);
+  g_free (key);
+}
+
+static void	
+cb_gconf(GConfClient *client, guint connection_id, 
+	 GConfEntry *entry, gpointer userdata)
+{
+  GnomeVolumeControlPreferences *prefs;
+  GConfValue *value;
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  gchar *keybase;
+  gboolean active, valid;
+  GstMixerTrack *track;
+
+  prefs = GNOME_VOLUME_CONTROL_PREFERENCES (userdata);
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW(prefs->treeview));
+  keybase = get_gconf_key (prefs->mixer, NULL);
+
+  if (!strncmp (gconf_entry_get_key (entry),
+		keybase, strlen (keybase)) &&
+      (value = gconf_entry_get_value (entry)) != NULL &&
+      (value->type == GCONF_VALUE_BOOL)) {
+    active = gconf_value_get_bool (value); 
+    valid = gtk_tree_model_get_iter_first(model, &iter);
+
+    while (valid == TRUE) {
+      gtk_tree_model_get (model, &iter,
+			  COL_TRACK, &track,
+			  -1);
+      if (strcmp (track->label, gconf_entry_get_key (entry) + strlen (keybase))) {
+	gtk_list_store_set( GTK_LIST_STORE(model), &iter, COL_ACTIVE, active, -1);
+	break ;
+      }
+      valid = gtk_tree_model_iter_next(model, &iter);
+    }
+  }
+}
+
+static void
+cb_activated(GtkTreeView *view, GtkTreePath *path,
+	     GtkTreeViewColumn *col, gpointer userdata)
+
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gboolean active;
+  GstMixerTrack *track;
+  GnomeVolumeControlPreferences *prefs;
+
+  prefs = GNOME_VOLUME_CONTROL_PREFERENCES (userdata);
+  model = gtk_tree_view_get_model(view);
+
+  if (gtk_tree_model_get_iter(model, &iter, path)) {
+    gtk_tree_model_get(model, &iter, 
+		       COL_ACTIVE, &active, 
+		       COL_TRACK, &track,
+		       -1);
+
+    active = !active;
+
+    gtk_list_store_set( GTK_LIST_STORE(model), &iter, COL_ACTIVE, active, -1);
+    set_gconf_track_active(prefs->client, prefs->mixer, track, active);
+  }
+}
+
+static void
 cb_toggle (GtkCellRendererToggle *cell,
 	   gchar                 *path_str,
 	   gpointer               data)
@@ -319,7 +420,6 @@ cb_toggle (GtkCellRendererToggle *cell,
   GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
   GtkTreeIter iter;
   gboolean active;
-  GConfValue *value;
   gchar *key;
   GstMixerTrack *track;
 
@@ -330,15 +430,11 @@ cb_toggle (GtkCellRendererToggle *cell,
 		      -1);
 
   active = !active;
+
   gtk_list_store_set (GTK_LIST_STORE (model), &iter,
 		      COL_ACTIVE, active,
 		      -1);
   gtk_tree_path_free (path);
 
-  key = get_gconf_key (prefs->mixer, track->label);
-  value = gconf_value_new (GCONF_VALUE_BOOL);
-  gconf_value_set_bool (value, active);
-  gconf_client_set (prefs->client, key, value, NULL);
-  gconf_value_free (value);
-  g_free (key);
+  set_gconf_track_active(prefs->client, prefs->mixer, track, active);
 }
