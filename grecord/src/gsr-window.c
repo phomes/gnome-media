@@ -1816,7 +1816,13 @@ fill_record_input (GSRWindow *window)
 	GstElement *e;
 	const GList *l;
 	int i = 0;
+	GtkTreeModel *model;
 
+	model = gtk_combo_box_get_model (GTK_COMBO_BOX (window->priv->input));
+
+	if (model) 
+		gtk_list_store_clear (GTK_LIST_STORE (model));
+	
 	g_return_if_fail (GST_IS_MIXER (window->priv->mixer));
 
 	for (l = gst_mixer_list_tracks (window->priv->mixer); l != NULL; l = l->next) {
