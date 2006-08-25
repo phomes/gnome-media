@@ -289,7 +289,7 @@ AC_MSG_RESULT($MAIL_TRANSFER_AGENT)
 PKG_CHECK_MODULES(GNOMECD, \
   gstreamer-$GST_MAJORMINOR >= $GST_REQ \
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GSTPB_REQ \
-  libnautilus-burn >= 2.9.0,
+  libnautilus-burn >= 2.9.0 gtk+-2.0 >= 2.10.0,
   HAVE_GNOMECD=yes,
   [
     AC_MSG_RESULT(no)
