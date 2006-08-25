@@ -27,6 +27,7 @@ EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
 DISTCLEANFILES = po/.intltool-merge-cache \
                  $(INTLTOOL_BUILT)
 
+ACLOCAL_AMFLAGS = -I m4
 
 distuninstallcheck_listfiles = \
         find -path ./var/scrollkeeper/\* -prune -or -type f -print

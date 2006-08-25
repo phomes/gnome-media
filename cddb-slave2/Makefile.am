@@ -38,8 +38,8 @@ libcddb_slave2includedir = $(includedir)/cddb-slave2
 libcddb_slave2include_HEADERS = cddb-slave-client.h
 
 libcddb_slave2_la_SOURCES = cddb-slave-client.c
-libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la libcddb-slave2-private.la
-libcddb_slave2_la_LDFLAGS = $(CDDBSLAVE_LIBS)
+libcddb_slave2_la_LIBADD = libgnomemedia-cddbslave2.la libcddb-slave2-private.la $(CDDBSLAVE_LIBS)
+libcddb_slave2_la_LDFLAGS = -no-undefined
 
 # since automake builds dependencies AFTER objects, and the object
 # needs a generated header, we add a hack to make sure the .h gets
@@ -102,10 +102,10 @@ CDDBSlave2_SOURCES =				\
 	tcp.c
 
 CDDBSlave2_LDADD =				\
-	$(CDDBSLAVE_LIBS)			\
-	$(INTLLIBS)				\
 	libgnomemedia-cddbslave2.la		\
-	libcddb-slave2-private.la
+	libcddb-slave2-private.la		\
+	$(CDDBSLAVE_LIBS)			\
+	$(INTLLIBS)
 
 cddb_track_editor_SOURCES = 			\
 	cddb-track-editor.c
