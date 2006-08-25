@@ -66,8 +66,6 @@ endif
 
 bin_PROGRAMS = gnome-cd
 gnome_cd_SOURCES =		\
-	eggtrayicon.c		\
-	eggtrayicon.h		\
 	gnome-cd.c		\
 	gnome-cd.h		\
 	gnome-cd-type.h		\
