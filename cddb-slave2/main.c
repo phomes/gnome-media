@@ -88,10 +88,8 @@ factory_fn (BonoboGenericFactory *factory,
 		break;
 
 	case CDDB_SEND_OTHER_INFO:
-		name = g_strdup (gconf_client_get_string (client,
-							  "/apps/CDDB-Slave2/name", NULL));
-		hostname = g_strdup (gconf_client_get_string (client,
-							      "/apps/CDDB-Slave2/hostname", NULL));
+		name = gconf_client_get_string (client, "/apps/CDDB-Slave2/name", NULL);
+		hostname = gconf_client_get_string (client, "/apps/CDDB-Slave2/hostname", NULL);
 		break;
 
 	default:
@@ -100,8 +98,7 @@ factory_fn (BonoboGenericFactory *factory,
 		break;
 	}
 
-	server = gconf_client_get_string (client,
-					  "/apps/CDDB-Slave2/server", NULL);
+	server = gconf_client_get_string (client, "/apps/CDDB-Slave2/server", NULL);
 	port = gconf_client_get_int (client, "/apps/CDDB-Slave2/port", NULL);
 	g_object_unref (client);
 	client = NULL;
