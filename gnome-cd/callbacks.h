@@ -68,15 +68,13 @@ void position_slider_leave (GtkRange *range,
 			    GdkEventCrossing *event,
 			    GnomeCD *gcd);
 
-gboolean tray_icon_clicked (GtkWidget *widget,
-                           GdkEventButton *event,
-                           GnomeCD *gcd);
+void tray_popup_menu_cb (GtkStatusIcon *icon,
+			 guint          button,
+			 guint          activate_time,
+			 GnomeCD       *gcd);
+void tray_icon_activated (GtkStatusIcon *icon,
+			  GnomeCD *gcd);
 
-gboolean tray_icon_pressed (GtkWidget *widget,
-                           GdkEventKey *event,
-                           GnomeCD *gcd);
-gint tray_icon_expose (GtkWidget* widget,
-                      GdkEventExpose *event);
 gboolean button_press_event_cb (GtkWidget *widget,
 	                      GdkEventButton *event,
 	                      GnomeCD *gcd);

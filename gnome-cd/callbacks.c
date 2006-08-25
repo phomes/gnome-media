@@ -592,8 +592,8 @@ status_ok (GnomeCD *gcd,
 		} else {
 			text = g_strdup_printf (_("Playing\n: %s"), current_time);
 		}
-		if (gcd->tray_tips)	
-			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, text, NULL);
+		if (gcd->tray)	
+			gtk_status_icon_set_tooltip (gcd->tray, text);
 		g_free (text);
 		
 		break;
@@ -613,8 +613,8 @@ status_ok (GnomeCD *gcd,
 		set_window_track_title (gcd, status);
 
 		/* Update the tray icon tooltip */
-		if (gcd->tray_tips)	
-			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("Paused"), NULL);
+		if (gcd->tray)	
+			gtk_status_icon_set_tooltip (gcd->tray, _("Paused"));
 		break;
 		
 	case GNOME_CDROM_AUDIO_COMPLETE:
@@ -664,8 +664,8 @@ status_ok (GnomeCD *gcd,
 			set_track_option_menu (GTK_OPTION_MENU (gcd->tracks), 1);
 
 			/* Update tray icon tooltip */
-			if (gcd->tray_tips)	
-				gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("CD Player"), NULL);
+			if (gcd->tray)	
+				gtk_status_icon_set_tooltip (gcd->tray, _("CD Player"));
 			if (gcd->tooltips)
 				gtk_tooltips_set_tip (gcd->tooltips, GTK_WIDGET(gcd->display), _("CD Player"), NULL);
 
@@ -690,8 +690,8 @@ status_ok (GnomeCD *gcd,
 		}
 
 		/* Update the tray icon tooltip */
-		if (gcd->tray_tips)	
-			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("Stopped"), NULL);
+		if (gcd->tray)	
+			gtk_status_icon_set_tooltip (gcd->tray, _("Stopped"));
 		break;
 		
 	case GNOME_CDROM_AUDIO_ERROR:
@@ -707,8 +707,8 @@ status_ok (GnomeCD *gcd,
 		}
 
 		/* Update the tray icon tooltip */
-		if (gcd->tray_tips)	
-			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("No disc"), NULL);
+		if (gcd->tray)	
+			gtk_status_icon_set_tooltip (gcd->tray, _("No disc"));
 		break;
 		
 	default:
@@ -891,8 +891,8 @@ cd_status_changed_cb (GnomeCDRom *cdrom,
                 gnome_cd_set_window_title (gcd, NULL, NULL);
 
 		/* Updated the tray icon tooltip */
-		if (gcd->tray_tips)	
-			gtk_tooltips_set_tip (gcd->tray_tips, gcd->tray, _("No Cdrom"), NULL);
+		if (gcd->tray)	
+			gtk_status_icon_set_tooltip (gcd->tray, _("No Cdrom"));
                 break;
 
 	default:
@@ -1003,82 +1003,32 @@ popup_menu_cb (GtkWidget *widget, GnomeCD *gcd)
     return TRUE;
 }
 
-gboolean
-tray_icon_clicked (GtkWidget *widget, GdkEventButton *event, GnomeCD *gcd)
+void
+tray_popup_menu_cb (GtkStatusIcon *icon,
+		    guint          button,
+                    guint          activate_time,
+		    GnomeCD       *gcd)
 {
-	if (event->button != 3) {
-		if (GTK_WIDGET_VISIBLE (gcd->window)) {
-			gtk_widget_hide (gcd->window);
-		} else {
-			gtk_widget_show (gcd->window);
-		}
-
-		return TRUE;
-	} else {
-	if (event->button == 3) {	
-		make_popup_menu(gcd, NULL, TRUE);
-		return TRUE;
-	}
-		return FALSE;
-	}
+    make_popup_menu (gcd, NULL, FALSE);
 }
 
-gboolean
-tray_icon_pressed (GtkWidget *widget, GdkEventKey *event, GnomeCD *gcd)
+void
+tray_icon_activated (GtkStatusIcon *icon, GnomeCD *gcd)
 {
-	if (event->keyval == GDK_space ||
-	    event->keyval == GDK_KP_Space ||
-	    event->keyval == GDK_Return ||
-	    event->keyval == GDK_KP_Enter) {
-		if (GTK_WIDGET_VISIBLE (gcd->window)) {
-			gtk_widget_hide (gcd->window);
-		} else {
-			gtk_widget_show (gcd->window);
-		}
-
-		return TRUE;
+	if (GTK_WIDGET_VISIBLE (gcd->window)) {
+		gtk_widget_hide (gcd->window);
 	} else {
-		return FALSE;
+		gtk_widget_show (gcd->window);
 	}
-}
-
-gint
-tray_icon_expose (GtkWidget* widget, GdkEventExpose *event)
-{
-  /*
-   * Draw focus indication if the GtkEventBox has focus.
-   */
-  if (GTK_WIDGET_HAS_FOCUS (gtk_widget_get_parent (widget)))
-    {
-      gint focus_width, focus_pad;
-      gint x, y, width, height;
-
-      gtk_widget_style_get (widget,
-                            "focus-line-width", &focus_width,
-                            "focus-padding", &focus_pad,
-                            NULL);
-      x = widget->allocation.x + focus_pad;
-      y = widget->allocation.y + focus_pad;
-      width = widget->allocation.width -  2 * focus_pad;
-      height = widget->allocation.height - 2 * focus_pad;
-      gtk_paint_focus (widget->style, widget->window,
-                       GTK_STATE_NORMAL,
-                       &event->area, widget, "button",
-                       x, y, width, height);
-    }
-  return FALSE;
 }
 
 gboolean
 tray_icon_destroyed (GtkWidget *widget, GnomeCD *gcd)
 {
-	GdkPixbuf *pixbuf;
-	GtkWidget *box;
-
 	if (!GTK_WIDGET_VISIBLE (gcd->window)) {
 		gtk_widget_show (gcd->window);
 	}
-	gtk_widget_destroy (gcd->tray);
+	g_object_unref (gcd->tray);
 	gcd->tray = NULL;
 
 	tray_icon_create (gcd);

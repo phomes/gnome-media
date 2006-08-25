@@ -9,6 +9,7 @@
 #define __GNOME_CD_H__
 
 #include <gtk/gtkwidget.h>
+#include <gtk/gtkstatusicon.h>
 #include <gtk/gtktooltips.h>
 
 #include <pango/pango.h>
@@ -20,7 +21,6 @@
 #include "cd-selection.h"
 #include "preferences.h"
 #include "cdrom.h"
-#include "eggtrayicon.h"
 
 #define NUMBER_OF_DISPLAY_LINES 5
 
@@ -49,9 +49,7 @@ typedef struct _GCDTheme {
 } GCDTheme;
 
 struct _GnomeCD {
-	GtkWidget *tray;
-	GtkWidget *tray_icon;
-	GtkTooltips *tray_tips;
+	GtkStatusIcon *tray;
 
 	GtkWidget *window;
 	GtkWidget *vbox;

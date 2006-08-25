@@ -1,3 +1,12 @@
+2006-08-25  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* callbacks.c: (status_ok), (cd_status_changed_cb),
+	(tray_popup_menu_cb), (tray_icon_activated), (tray_icon_destroyed):
+	* callbacks.h:
+	* gnome-cd.c: (tray_icon_create):
+	* gnome-cd.h: Port to GtkStatusIcon from the libegg equivalent.
+	Patch from Vincent Vuntz. Closes bug #348645.
+
 2005-05-12 Alan Horkan <horkana tcd ie>     
         * gnome-cd/callbacks.c : removed last of libgnomeui
 	made possible thanks to work by Nirmal Kumar R

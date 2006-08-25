@@ -574,17 +574,6 @@ show_error (GtkWidget	*dialog,
 	}
 }
 
-static void
-tray_object_destroyed (GnomeCD *gcd)
-{
-	/* FIXME: gcd->tray should also be set to NULL.  
-	   Need a mechanism to re-create the eggtrayicon
-	   when the tray applet is re-added.
-	*/
-	g_free (gcd->tray_tips);
-	gcd->tray_tips = NULL;
-}
-
 static GnomeCD *
 init_player (const char *device_override)
 {
@@ -873,40 +862,23 @@ tray_icon_create (GnomeCD *gcd)
 	GdkPixbuf *icon;
 	GtkWidget *box;
 
-	/* Tray icon */
-	gcd->tray = GTK_WIDGET (egg_tray_icon_new ("GnomeCD Tray Icon"));
-	box = gtk_event_box_new ();
-	g_signal_connect (G_OBJECT (gcd->tray), "destroy",
-			 	G_CALLBACK (tray_icon_destroyed), gcd);
-	g_signal_connect (G_OBJECT (box), "button_press_event",
-			 	G_CALLBACK (tray_icon_clicked), gcd);
-	g_signal_connect (G_OBJECT (box), "key_press_event",
-			 	G_CALLBACK (tray_icon_pressed), gcd);
-
-	g_object_set_data_full (G_OBJECT (gcd->tray), "tray-action-data", gcd,
-				(GDestroyNotify) tray_object_destroyed);
-
-	gtk_container_add (GTK_CONTAINER (gcd->tray), box);
-	
 	icon = pixbuf_from_file ("gnome-cd/cd.png");
-	pixbuf = gdk_pixbuf_scale_simple (icon,
-				16, 16, GDK_INTERP_BILINEAR);
-	gcd->tray_icon = gtk_image_new_from_pixbuf (pixbuf);
-	g_signal_connect (G_OBJECT (gcd->tray_icon), "expose_event",
-			 	G_CALLBACK (tray_icon_expose), gcd);
-			 	
-	g_object_unref (G_OBJECT (pixbuf));
+	pixbuf = gdk_pixbuf_scale_simple (icon, 16, 16, GDK_INTERP_BILINEAR);
 	g_object_unref (G_OBJECT (icon));
 
-	GTK_WIDGET_SET_FLAGS (box, GTK_CAN_FOCUS);
-	atk_object_set_name (gtk_widget_get_accessible (box), _("CD Player"));
-	gtk_container_add (GTK_CONTAINER (box), gcd->tray_icon);
-	gcd->tray_tips = gtk_tooltips_new ();
-	gtk_tooltips_set_tip (GTK_TOOLTIPS(gcd->tray_tips), gcd->tray, _("CD Player"), NULL);
-	g_signal_connect (G_OBJECT (box), "popup_menu",
-	            G_CALLBACK (popup_menu_cb), gcd);
-	
-	gtk_widget_show_all (gcd->tray);
+	/* Tray icon */
+	gcd->tray = gtk_status_icon_new_from_pixbuf (pixbuf);
+	g_object_unref (G_OBJECT (pixbuf));
+
+	gtk_status_icon_set_tooltip (gcd->tray, _("CD Player"));
+
+	g_signal_connect (G_OBJECT (gcd->tray), "popup_menu",
+			        G_CALLBACK (tray_popup_menu_cb), gcd);
+	g_signal_connect (G_OBJECT (gcd->tray), "activate",
+			 	G_CALLBACK (tray_icon_activated), gcd);
+
+	g_object_set_data_full (G_OBJECT (gcd->tray), "tray-action-data", gcd,
+				(GDestroyNotify) tray_icon_destroyed);
 }
 
 static int 
