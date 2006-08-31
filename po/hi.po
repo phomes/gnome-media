@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-29 08:29+0200\n"
-"PO-Revision-Date: 2006-08-29 16:31+0530\n"
+"POT-Creation-Date: 2006-08-31 10:39+0200\n"
+"PO-Revision-Date: 2006-08-31 16:18+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 
@@ -1241,7 +1242,7 @@ msgstr "जब सीडी प्लेयर बाहर हो तो सी
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
 msgid "How the time should be displayed while CD Player is playing ?"
-msgstr ""
+msgstr "समय कैसे दिखाया जाना चाहिये जब सीडी प्लेयर चल रहा है?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1358,12 +1359,19 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
+"GStreamer %s तत्व बना नहीं सका.\n"
+"'%s' प्लगिन को '%s' मॉड्यूल में अधिष्ठापित करें.\n"
+"जांचे कि अधिष्ठापन सही है इसे चलाकर देखते हुये\n"
+"    gst-inspect-0.10 %s\n"
+"और ग्नोम ध्वनि रिकार्डर फिर शुरू करें."
 
 #: ../grecord/src/gsr-window.c:207
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
+"इसका जमावट जांचे.\n"
+"आप आवश्यक प्लगिन गुम हो रहा है."
 
 #: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
 #: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
@@ -1554,7 +1562,7 @@ msgstr "बजा रहे..."
 
 #: ../grecord/src/gsr-window.c:1593
 msgid "GConf audio output"
-msgstr ""
+msgstr "GConf ऑडियो आउटपुट"
 
 #: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
 msgid "Playback"
@@ -1566,32 +1574,32 @@ msgstr "रेकॉर्ड कर रहे..."
 
 #: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
-msgstr ""
+msgstr "GConf ऑडियो रिकार्डिंग"
 
 #: ../grecord/src/gsr-window.c:1769
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
 "Multimedia settings."
-msgstr ""
+msgstr "आपका ऑडियो कैप्चर जमावट अवैध है. मल्टीमीडिया जमावट में सही करें."
 
 #: ../grecord/src/gsr-window.c:1858
 msgid "file output"
-msgstr ""
+msgstr "फाइल आउटपुट"
 
 #: ../grecord/src/gsr-window.c:1887
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "ऑ़डियो प्रोफ़ाइल हेतु एक छोटा नाम"
+msgstr "'%s' ऑडियो प्रोफ़ाइल विश्लेषित नहीं कर सका. "
 
 #: ../grecord/src/gsr-window.c:1903
-#, fuzzy, c-format
+#, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "ऑ़डियो प्रोफ़ाइल हेतु एक छोटा नाम"
+msgstr "'%s' ऑडियो प्रोफाइल के प्रयोग से पकड़ नहीं सका. "
 
 #: ../grecord/src/gsr-window.c:1913
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr ""
+msgstr "'%s' ऑडियो प्रोफाइल के प्रयोग से फाइल के लिये प्रयोग नहीं कर सका. "
 
 #. File menu.
 #: ../grecord/src/gsr-window.c:1964
@@ -1603,7 +1611,6 @@ msgid "Create a new sample"
 msgstr "नया नमूना बनाएँ"
 
 #: ../grecord/src/gsr-window.c:1967
-#, fuzzy
 msgid "_Open..."
 msgstr "खोलें (_O)..."
 
@@ -1616,7 +1623,6 @@ msgid "Save the current file"
 msgstr "वर्तमान फ़ाइल सहेजें"
 
 #: ../grecord/src/gsr-window.c:1971
-#, fuzzy
 msgid "Save _As..."
 msgstr "इस रूप में सहेजें... (_A)"
 
@@ -1626,12 +1632,10 @@ msgstr "वर्तमान फ़ाइल एक भिन्न नाम �
 
 #  create main window + menus
 #: ../grecord/src/gsr-window.c:1973
-#, fuzzy
 msgid "Open Volu_me Control"
-msgstr "आवाज निर्धारक नियंत्रक"
+msgstr "आवाज नियंत्रक खोलें (_m)"
 
 #: ../grecord/src/gsr-window.c:1974
-#, fuzzy
 msgid "Open the audio mixer"
 msgstr "ऑडियो मिक्सर चलाएँ"
 
@@ -1689,12 +1693,10 @@ msgid "Save As"
 msgstr "इस रूप में सहेजें"
 
 #: ../grecord/src/gsr-window.c:2198
-#, fuzzy
 msgid "Record from input:"
-msgstr "ध्वनि क्लिप्स रेकॉर्ड करें"
+msgstr "इनपुट से रेकॉर्ड करें"
 
 #: ../grecord/src/gsr-window.c:2215
-#, fuzzy
 msgid "Record as:"
 msgstr "इस रूप में रेकॉर्ड करें"
 
@@ -1751,9 +1753,8 @@ msgid "Unknown Volume Control %d"
 msgstr "अनजान आवाज नियंत्रण %d"
 
 #: ../gst-mixer/src/main.c:204
-#, fuzzy
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "कोई आवाज नियंत्रण तत्व और/या युक्ति नहीं मिला"
+msgstr "कोई आवाज नियंत्रण तत्व GStreamer प्लगिन और/या युक्ति नहीं मिला"
 
 #  create main window + menus
 #. make window look cute
@@ -1877,9 +1878,9 @@ msgid "Track %s, channel %d"
 msgstr "ट्रैक %s, चैनल %d"
 
 #: ../gst-mixer/src/volume.c:231
-#, fuzzy, c-format
+#, c-format
 msgid "Lock channels for %s together"
-msgstr "ट्रैक %s: चैनल को एकसाथ लॉक करें"
+msgstr "%s एकसाथ लॉक करें"
 
 #: ../gst-mixer/src/volume.c:249
 #, c-format
@@ -1941,14 +1942,12 @@ msgid "*"
 msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-#, fuzzy
 msgid "<b>Default Input Plugin</b>"
-msgstr "<b>डिफ़ॉल्ट सिंक</b>"
+msgstr "<b>मूलभूत इनपुट प्लगिन</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-#, fuzzy
 msgid "<b>Default Output Plugin</b>"
-msgstr "<b>डिफ़ॉल्ट सिंक</b>"
+msgstr "<b>मूलभूत आउटपुट प्लगिन</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -2098,9 +2097,8 @@ msgstr "प्रोफ़ाइल मिटाएँ"
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
-#, fuzzy
 msgid "Edit GNOME Audio Profiles"
-msgstr "जीएमऑडियो प्रोफ़ाइल संपादित करें"
+msgstr "गनोम ऑडियो प्रोफ़ाइल संपादित करें"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
@@ -2208,13 +2206,12 @@ msgid "CD Quality, Lossy"
 msgstr "सीडी क्वालिटी, हानियुक्त"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-#, fuzzy
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "ऑडियो रेकॉर्डिंग प्रोफ़ाइल्स की सूची. सूची में हैं स्ट्रिंग्स सबडिरेक्ट्रीज़ नाम इसके सापेक्ष - /"
-"system/gstreamer/audio/profiles."
+"/system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2246,7 +2243,6 @@ msgstr ""
 "के साथ. इसका उपयोग सीडी से ऑडियो निकालने तथा रेडियो रेकॉर्डिंग हेतु करें."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-#, fuzzy
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
@@ -2255,22 +2251,20 @@ msgstr ""
 "करने हेतु करें."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-#, fuzzy
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
 "आवाज़-क्वॉलिटी ऑडियो में परिवर्तन हेतु उपयोग में लिया जाता है. इसका उपयोग भाषण रेकॉर्ड "
-"करने हेतु करें."
+"करने हेतु करें जो संपादित नहीं है."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-#, fuzzy
 msgid "Voice, Lossless"
-msgstr "सीडी क्वालिटी, हानि-रहित"
+msgstr "आवाज, हानि-रहित"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "आवाज, क्षीण"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
