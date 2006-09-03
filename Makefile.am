@@ -16,7 +16,7 @@ INTLTOOL_BUILT = \
         intltool-merge \
         intltool-update
 
-EXTRA_DIST =	config.rpath gnome-media.spec.in configure \
+EXTRA_DIST =	gnome-media.spec.in configure \
 		acinclude.m4 COPYING-DOCS MAINTAINERS \
 		gnome-media.spec \
 		xmldocs.make omf.make \

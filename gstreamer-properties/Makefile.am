@@ -19,8 +19,8 @@ gladedir   = $(datadir)/gstreamer-properties/glade
 glade_DATA = gstreamer-properties.glade 
 
 desktopdir = $(datadir)/applications
-Desktop_in_files = gstreamer-properties.desktop.in
-desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
+Desktop_in_files = gstreamer-properties.desktop.in.in
+desktop_DATA = $(Desktop_in_files:.desktop.in.in=.desktop)
 
 INCLUDES   = \
 	$(GSTPROPS_CFLAGS) \
@@ -31,4 +31,5 @@ INCLUDES   = \
 	-DG_LOG_DOMAIN="\"gstreamer-properties\""
 
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
+DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)
 EXTRA_DIST = $(icons_DATA) $(glade_DATA) $(Desktop_in_files)

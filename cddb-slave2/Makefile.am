@@ -144,8 +144,8 @@ $(server_in_files:.server.in.in=.server.in): $(server_in_files)
 
 ### desktop files
 desktopdir = $(datadir)/applications
-Desktop_in_files = cddb-slave.desktop.in
-desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
+Desktop_in_files = cddb-slave.desktop.in.in
+desktop_DATA = $(Desktop_in_files:.desktop.in.in=.desktop)
 
 ### pack up all of the extra files in the tarball
 EXTRA_DIST =						\
@@ -160,4 +160,4 @@ CLEANFILES =						\
 	$(server_in_files:.server.in.in=.server.in)	\
 	$(server_in_files:.server.in.in=.server)	\
 	$(schema_DATA)
-
+DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)

@@ -7,8 +7,8 @@ EXTRA_DIST = $(Desktop_in_files) \
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
-Desktop_in_files = gnome-volume-control.desktop.in
-Desktop_DATA = $(Desktop_in_files:.desktop.in=.desktop)
+Desktop_in_files = gnome-volume-control.desktop.in.in
+Desktop_DATA = $(Desktop_in_files:.desktop.in.in=.desktop)
 schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-volume-control.schemas
 
@@ -22,3 +22,4 @@ install-data-local:
 endif
 
 CLEANFILES = $(Desktop_DATA) $(schema_DATA)
+DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)

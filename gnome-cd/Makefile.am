@@ -32,7 +32,7 @@ EXTRA_DIST = \
 	linux-cdrom.h		\
 	gst-cdrom.c	  	\
 	gst-cdrom.h		\
-	gnome-cd.png gnome-cd.desktop.in gnome-cd.schemas.in
+	gnome-cd.png gnome-cd.desktop.in.in gnome-cd.schemas.in
 
 ### intermediate libtool library generated from IDL source
 IDLS = $(top_srcdir)/cddb-slave2/GNOME_Media_CDDBSlave2.idl
@@ -99,8 +99,8 @@ gnome_cd_LDADD = \
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
-Audio_in_files = gnome-cd.desktop.in
-Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+Audio_in_files = gnome-cd.desktop.in.in
+Audio_DATA = $(Audio_in_files:.desktop.in.in=.desktop)
 Pixmap_DATA = gnome-cd.png
 
 schemadir=$(GCONF_SCHEMA_FILE_DIR)
@@ -116,5 +116,6 @@ install-data-local:
 endif
 
 CLEANFILES = $(Audio_DATA) $(schema_DATA) $(IDL_GENERATED)
+DISTCLEANFILES = $(Audio_in_files:.desktop.in.in=.desktop.in)
 
 CDROM_HOST = gst-cdparanoia

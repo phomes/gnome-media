@@ -23,10 +23,11 @@ BITMAPS = gnome-vumeter.png gnome-reclevel.png
 
 pixmap_DATA = $(BITMAPS)
 
-EXTRA_DIST = $(BITMAPS) vumeter.desktop.in reclevel.desktop.in README TODO
+EXTRA_DIST = $(BITMAPS) vumeter.desktop.in reclevel.desktop.in.in README TODO
 
 @INTLTOOL_DESKTOP_RULE@
-Audio_in_files = vumeter.desktop.in reclevel.desktop.in
-Audio_DATA = $(Audio_in_files:.desktop.in=.desktop)
+Audio_in_files = vumeter.desktop.in reclevel.desktop.in.in
+Audio_DATA = $(Audio_in_files:.desktop.in.in=.desktop)
 
 CLEANFILES = $(Audio_DATA)
+DISTCLEANFILES = $(Audio_in_files:.desktop.in.in:.desktop.in)
