@@ -2259,6 +2259,11 @@ gsr_window_init (GSRWindow *window)
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
 
+	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->name_label)),
+				ATK_RELATION_LABELLED_BY,
+				gtk_widget_get_accessible (GTK_WIDGET (label)));
+
+
 	label = gtk_label_new (_("Length:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), label,
@@ -2266,12 +2271,16 @@ gsr_window_init (GSRWindow *window)
 			  GTK_FILL, 0, 0, 0);
 	
 	priv->length_label = gtk_label_new ("");
-	gtk_label_set_selectable (GTK_LABEL (priv->length_label), FALSE);
+	gtk_label_set_selectable (GTK_LABEL (priv->length_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (priv->length_label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), priv->length_label,
 			  1, 2, 1, 2,
 			  GTK_FILL, GTK_FILL,
 			  0, 0);
+
+	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->length_label)),
+				ATK_RELATION_LABELLED_BY,
+				gtk_widget_get_accessible (GTK_WIDGET (label)));
 
 	/* statusbar */
 	priv->statusbar = gtk_statusbar_new ();
