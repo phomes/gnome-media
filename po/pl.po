@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-17 00:20+0200\n"
+"POT-Creation-Date: 2006-11-12 16:01+0100\n"
 "PO-Revision-Date: 2006-08-15 16:52+0200\n"
 "Last-Translator: Artur Flinta <aflinta@at.kernel.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
@@ -192,11 +192,11 @@ msgstr "Wykonawca i tytuł"
 msgid "Unknown track"
 msgstr "Nieznana ścieżka"
 
-#: ../cddb-slave2/cddb-slave.desktop.in.h:1
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
 msgid "CD Database Server"
 msgstr "Serwer bazy danych płyt CD"
 
-#: ../cddb-slave2/cddb-slave.desktop.in.h:2
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
 msgid "Modify your CD database server preferences"
 msgstr "Modyfikacja ustawień serwera bazy danych płyt CD"
 
@@ -935,7 +935,7 @@ msgstr "Wiersz zawierający nazwę albumu"
 
 #: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:808
 msgid "Play"
 msgstr "Odtwarzaj"
 
@@ -970,9 +970,8 @@ msgstr "Wstrzymane"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
-#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
-#: ../gnome-cd/preferences.c:613
+#: ../gnome-cd/gnome-cd.c:681 ../gnome-cd/gnome-cd.c:873
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Odtwarzacz CD"
 
@@ -1012,20 +1011,20 @@ msgstr "Błąd napędu"
 msgid "A CD player for GNOME"
 msgstr "Odtwarzacz CD dla GNOME"
 
-#: ../gnome-cd/callbacks.c:1160
+#: ../gnome-cd/callbacks.c:1110
 msgid "Contents in the CDDB have changed"
 msgstr "Zawartość w CDDB uległa zmianie"
 
-#: ../gnome-cd/callbacks.c:1161
+#: ../gnome-cd/callbacks.c:1111
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "Wybór \"Tak\" spowoduje usunięcie poprzedniej zawartości w CDDB."
 
-#: ../gnome-cd/callbacks.c:1162
+#: ../gnome-cd/callbacks.c:1112
 msgid "Do you wish to continue?"
 msgstr "Czy kontynuować?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1235 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:532
 #, c-format
 msgid "Volume %d%%"
 msgstr "Głośność %d%%"
@@ -1047,14 +1046,6 @@ msgstr ""
 "a) System nie obsługuje napędów CD\n"
 "b) Brak uprawnień umożliwiających dostęp do napędu CD\n"
 "c) %s nie jest napędem CD.\n"
-
-#: ../gnome-cd/eggtrayicon.c:118
-msgid "Orientation"
-msgstr "Położenie"
-
-#: ../gnome-cd/eggtrayicon.c:119
-msgid "The orientation of the tray."
-msgstr "Ułożenie obszaru powiadamiania."
 
 #: ../gnome-cd/gnome-cd.c:246
 #, c-format
@@ -1082,7 +1073,7 @@ msgid "_Eject disc"
 msgstr "_Wysuń płytę"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1986
+#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1992
 msgid "_Help"
 msgstr "Pomo_c"
 
@@ -1094,7 +1085,7 @@ msgstr "_Informacje o"
 msgid "_Quit"
 msgstr "Za_kończ"
 
-#: ../gnome-cd/gnome-cd.c:612
+#: ../gnome-cd/gnome-cd.c:601
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1105,15 +1096,15 @@ msgstr ""
 "aby przejść do okna pozwalającego na ustawienie urządzenia lub też\n"
 "wybrać \"Zakończ\", aby zrezygnować z uruchomienia programu."
 
-#: ../gnome-cd/gnome-cd.c:616
+#: ../gnome-cd/gnome-cd.c:605
 msgid "Set device"
 msgstr "Ustaw urządzenie"
 
-#: ../gnome-cd/gnome-cd.c:618
+#: ../gnome-cd/gnome-cd.c:607
 msgid "No CD device"
 msgstr "Brak urządzenia CD"
 
-#: ../gnome-cd/gnome-cd.c:671
+#: ../gnome-cd/gnome-cd.c:660
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1131,100 +1122,100 @@ msgstr ""
 "ustawienie urządzenia lub też wybrać \"Zakończ\", aby zrezygnować z "
 "uruchomienia programu."
 
-#: ../gnome-cd/gnome-cd.c:675
+#: ../gnome-cd/gnome-cd.c:664
 msgid "_Details"
 msgstr "_Szczegóły"
 
-#: ../gnome-cd/gnome-cd.c:676
+#: ../gnome-cd/gnome-cd.c:665
 msgid "_Set device"
 msgstr "_Ustaw urządzenie"
 
-#: ../gnome-cd/gnome-cd.c:678
+#: ../gnome-cd/gnome-cd.c:667
 msgid "Invalid CD device"
 msgstr "Niepoprawne urządzenie CD"
 
-#: ../gnome-cd/gnome-cd.c:757
+#: ../gnome-cd/gnome-cd.c:746
 msgid "Position"
 msgstr "Pozycja"
 
-#: ../gnome-cd/gnome-cd.c:774
+#: ../gnome-cd/gnome-cd.c:763
 msgid "Open preferences"
 msgstr "Otwiera okno preferencji"
 
-#: ../gnome-cd/gnome-cd.c:775
+#: ../gnome-cd/gnome-cd.c:764
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: ../gnome-cd/gnome-cd.c:783
+#: ../gnome-cd/gnome-cd.c:772
 msgid "Track List"
 msgstr "Lista ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:789
+#: ../gnome-cd/gnome-cd.c:778
 msgid "Open track editor"
 msgstr "Otwiera edytor ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:790
+#: ../gnome-cd/gnome-cd.c:779
 msgid "Track editor"
 msgstr "Edytor ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:808
 msgid "Play / Pause"
 msgstr "Odtwarzanie/Wstrzymanie"
 
-#: ../gnome-cd/gnome-cd.c:824
+#: ../gnome-cd/gnome-cd.c:813
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: ../gnome-cd/gnome-cd.c:828
+#: ../gnome-cd/gnome-cd.c:817
 msgid "Previous track"
 msgstr "Poprzednia ścieżka"
 
-#: ../gnome-cd/gnome-cd.c:828
+#: ../gnome-cd/gnome-cd.c:817
 msgid "Previous"
 msgstr "Poprzednia"
 
-#: ../gnome-cd/gnome-cd.c:832
+#: ../gnome-cd/gnome-cd.c:821
 msgid "Rewind"
 msgstr "Przewiń"
 
-#: ../gnome-cd/gnome-cd.c:840
+#: ../gnome-cd/gnome-cd.c:829
 msgid "Fast forward"
 msgstr "Szybko naprzód"
 
-#: ../gnome-cd/gnome-cd.c:848
+#: ../gnome-cd/gnome-cd.c:837
 msgid "Next track"
 msgstr "Następna ścieżka"
 
-#: ../gnome-cd/gnome-cd.c:852
+#: ../gnome-cd/gnome-cd.c:841
 msgid "Eject CD"
 msgstr "Wysunięcie CD"
 
-#: ../gnome-cd/gnome-cd.c:852
+#: ../gnome-cd/gnome-cd.c:841
 msgid "Eject"
 msgstr "Wysuń"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:954
 msgid "CD device to use"
 msgstr "Używane _urządzenie CD"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:956
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Uruchamia odtwarzacz CD tylko, jeśli nie działa inna jego kopia."
 
-#: ../gnome-cd/gnome-cd.c:986
+#: ../gnome-cd/gnome-cd.c:958
 msgid "Play the CD on startup"
 msgstr "Rozpoczyna odtwarzanie po uruchomieniu"
 
-#: ../gnome-cd/gnome-cd.c:988
+#: ../gnome-cd/gnome-cd.c:960
 msgid "Start iconified to tray"
 msgstr "Zmniejszenie do ikony przy uruchamianiu"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1028
+#: ../gnome-cd/gnome-cd.c:1000
 msgid "Cannot create player"
 msgstr "Nie można utworzyć odtwarzacza"
 
-#: ../gnome-cd/gnome-cd.desktop.in.h:2
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
 msgid "Play audio CDs"
 msgstr "Odtwarzacz muzycznych płyt CD"
 
@@ -1330,11 +1321,11 @@ msgstr "Motywy"
 msgid "_Select a theme:"
 msgstr "_Wybór motywu:"
 
-#: ../grecord/gnome-sound-recorder.desktop.in.h:1
+#: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
 msgstr "Rejestracja i odtwarzanie dźwięków"
 
-#: ../grecord/gnome-sound-recorder.desktop.in.h:2
+#: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
 #: ../grecord/src/gsr-window.c:1206
 msgid "Sound Recorder"
 msgstr "Rejestrator dźwięku"
@@ -1349,7 +1340,7 @@ msgstr "Rejestrator dźwięku"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2452
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2458
 msgid "Untitled"
 msgstr "Nienazwany"
 
@@ -1426,7 +1417,7 @@ msgstr ""
 "%s"
 
 #: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
-#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2281
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2287
 msgid "Ready"
 msgstr "Gotowe"
 
@@ -1521,7 +1512,7 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Informacje o %s"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2226
+#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2232
 msgid "File Information"
 msgstr "Informacje o pliku"
 
@@ -1529,7 +1520,7 @@ msgstr "Informacje o pliku"
 msgid "Folder:"
 msgstr "Folder:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2241
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2247
 msgid "Filename:"
 msgstr "Nazwa pliku:"
 
@@ -1593,136 +1584,136 @@ msgstr ""
 "Ustawienia przechwytywania dźwięku są nieprawidłowe. Popraw je w "
 "ustawieniach multimediów."
 
-#: ../grecord/src/gsr-window.c:1852
+#: ../grecord/src/gsr-window.c:1858
 msgid "file output"
 msgstr "wyjście do pliku"
 
-#: ../grecord/src/gsr-window.c:1881
+#: ../grecord/src/gsr-window.c:1887
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Nie można przetworzyć profilu dźwiękowego \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1897
+#: ../grecord/src/gsr-window.c:1903
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Nie można przechwycić używając profilu dźwiękowego \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1907
+#: ../grecord/src/gsr-window.c:1913
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Nie można zapisać do pliku używając profilu dźwiękowego \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1958
+#: ../grecord/src/gsr-window.c:1964
 msgid "_File"
 msgstr "_Plik"
 
-#: ../grecord/src/gsr-window.c:1960
+#: ../grecord/src/gsr-window.c:1966
 msgid "Create a new sample"
 msgstr "Tworzy nowy plik dźwiękowy"
 
-#: ../grecord/src/gsr-window.c:1961
+#: ../grecord/src/gsr-window.c:1967
 msgid "_Open..."
 msgstr "_Otwórz..."
 
-#: ../grecord/src/gsr-window.c:1962
+#: ../grecord/src/gsr-window.c:1968
 msgid "Open a file"
 msgstr "Otwarcie pliku"
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:1970
 msgid "Save the current file"
 msgstr "Zapisuje bieżący plik"
 
-#: ../grecord/src/gsr-window.c:1965
+#: ../grecord/src/gsr-window.c:1971
 msgid "Save _As..."
 msgstr "Z_apisz jako..."
 
-#: ../grecord/src/gsr-window.c:1966
+#: ../grecord/src/gsr-window.c:1972
 msgid "Save the current file with a different name"
 msgstr "Zapisuje bieżący plik pod inną nazwą"
 
-#: ../grecord/src/gsr-window.c:1967
+#: ../grecord/src/gsr-window.c:1973
 msgid "Open Volu_me Control"
 msgstr "_Otwórz regulację głośności"
 
-#: ../grecord/src/gsr-window.c:1968
+#: ../grecord/src/gsr-window.c:1974
 msgid "Open the audio mixer"
 msgstr "Uruchamia mikser dźwiękowy"
 
-#: ../grecord/src/gsr-window.c:1970
+#: ../grecord/src/gsr-window.c:1976
 msgid "Show information about the current file"
 msgstr "Wyświetla informacje na temat bieżącego pliku"
 
-#: ../grecord/src/gsr-window.c:1972
+#: ../grecord/src/gsr-window.c:1978
 msgid "Close the current file"
 msgstr "Zamyka bieżący plik"
 
-#: ../grecord/src/gsr-window.c:1974
+#: ../grecord/src/gsr-window.c:1980
 msgid "Quit the program"
 msgstr "Kończy działanie aplikacji"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1977
+#: ../grecord/src/gsr-window.c:1983
 msgid "_Control"
 msgstr "_Sterowanie"
 
-#: ../grecord/src/gsr-window.c:1979
+#: ../grecord/src/gsr-window.c:1985
 msgid "Record sound"
 msgstr "Rejestruje dźwięk"
 
-#: ../grecord/src/gsr-window.c:1981
+#: ../grecord/src/gsr-window.c:1987
 msgid "Play sound"
 msgstr "Odtwarza dźwięk"
 
-#: ../grecord/src/gsr-window.c:1983
+#: ../grecord/src/gsr-window.c:1989
 msgid "Stop sound"
 msgstr "Zatrzymuje odtwarzanie"
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:1994
 msgid "Open the manual"
 msgstr "Otwiera podręcznik"
 
-#: ../grecord/src/gsr-window.c:1990
+#: ../grecord/src/gsr-window.c:1996
 msgid "About this application"
 msgstr "Informacja aplikacji"
 
-#: ../grecord/src/gsr-window.c:2111
+#: ../grecord/src/gsr-window.c:2117
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Nie można wczytać ui.xml. Program może być niepoprawnie zainstalowany"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2140
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../grecord/src/gsr-window.c:2136
+#: ../grecord/src/gsr-window.c:2142
 msgid "Save"
 msgstr "Zapisz"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2144
 msgid "Save As"
 msgstr "Zapisz jako"
 
-#: ../grecord/src/gsr-window.c:2192
+#: ../grecord/src/gsr-window.c:2198
 msgid "Record from input:"
 msgstr "Nagrywanie z wejścia:"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2215
 msgid "Record as:"
 msgstr "Nagrywanie jako:"
 
-#: ../grecord/src/gsr-window.c:2247
+#: ../grecord/src/gsr-window.c:2253
 msgid "<none>"
 msgstr "<brak>"
 
-#: ../grecord/src/gsr-window.c:2256
+#: ../grecord/src/gsr-window.c:2262
 msgid "Length:"
 msgstr "Długość:"
 
-#: ../gst-mixer/gnome-volume-control.desktop.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Adjust the volume level"
 msgstr "Dostrojenie poziomu głośności"
 
-#: ../gst-mixer/gnome-volume-control.desktop.in.h:2
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
 #: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
 msgid "Volume Control"
 msgstr "Regulacja głośności"
@@ -1931,11 +1922,11 @@ msgstr "Błąd przy tworzeniu okna głównego"
 msgid "Failed to load glade file; please check your installation."
 msgstr "Nie można wczytać pliku glade; sprawdź poprawność instalacji."
 
-#: ../gstreamer-properties/gstreamer-properties.desktop.in.h:1
+#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "Domyślne ustawienia aplikacji opartych na podsystemie GStreamer"
 
-#: ../gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
 #: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Wybór systemów multimediów"
@@ -2327,18 +2318,24 @@ msgstr "Poziom nagrywania"
 msgid "Volume Meter"
 msgstr "Wskaźnik głośności"
 
-#: ../vu-meter/reclevel.desktop.in.h:1
+#: ../vu-meter/reclevel.desktop.in.in.h:1
 msgid "Monitor the recording input volume"
 msgstr "Monitor poziomu głośności nagrywanego wejścia"
 
-#: ../vu-meter/reclevel.desktop.in.h:2
+#: ../vu-meter/reclevel.desktop.in.in.h:2
 msgid "Recording Level Monitor"
 msgstr "Monitor poziomu nagrywania"
 
-#: ../vu-meter/vumeter.desktop.in.h:1
+#: ../vu-meter/vumeter.desktop.in.in.h:1
 msgid "Monitor the sound output volume"
 msgstr "Monitor poziomu głośności generowanego dźwięku"
 
-#: ../vu-meter/vumeter.desktop.in.h:2
+#: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor głośności"
+
+#~ msgid "Orientation"
+#~ msgstr "Położenie"
+
+#~ msgid "The orientation of the tray."
+#~ msgstr "Ułożenie obszaru powiadamiania."
