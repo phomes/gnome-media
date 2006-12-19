@@ -1527,9 +1527,9 @@ pipeline_deep_notify_caps_cb (GstObject  *pipeline,
 			const gchar *klass;
 
 			element = GST_ELEMENT_CAST (pad_parent);
-			factory = gst_element_get_factory (element);
-			klass = gst_element_factory_get_klass (factory);
-			if (klass && strstr (klass, "Audio") &&
+			if ((factory = gst_element_get_factory (element)) &&
+			    (klass = gst_element_factory_get_klass (factory)) &&
+			    strstr (klass, "Audio") &&
 			    (strstr (klass, "Decoder") || strstr (klass, "Encoder"))) {
 				GstCaps *caps;
 
