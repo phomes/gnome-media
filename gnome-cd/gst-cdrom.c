@@ -16,6 +16,9 @@
 #endif
 
 #define _ISOC99_SOURCE
+#if defined(__FreeBSD_kernel__) && defined(__GLIBC__)
+#define _BSD_SOURCE 1
+#endif
 #include <math.h>
 #include <string.h>
 #include <glib/gi18n.h>
@@ -33,14 +36,14 @@
 
 #ifdef __linux__
 #include <linux/cdrom.h>
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 #include <sys/cdio.h>
 #endif
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 #include <sys/cdrio.h>
 #endif
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 # define GST_CDROM_IOCTL_CDCAPABILITY_REQUEST  CDIOCCAPABILITY
 # define GST_CDROM_IOCTL_EJECT_REQUEST         CDIOCEJECT
 #elif defined(__NetBSD__) || defined(__OpenBSD__)
@@ -844,7 +847,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 /*
 	GstCdparanoiaCDRom *lcd = GST_CDPARANOIA_CDROM (cdrom);
 	GstCdparanoiaCDRomPrivate *priv;
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 	struct ioc_read_toc_single_entry tocentry;
 #elif defined(__NetBSD__) || defined(__OpenBSD__)
 	struct ioc_read_toc_entry tocentries;
@@ -862,7 +865,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 		return;
 	}
 
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 	if (ioctl (cdrom->fd, CDIOREADTOCHEADER, priv->tochdr) < 0) {
 #else
 	if (ioctl (cdrom->fd, CDROMREADTOCHDR, priv->tochdr) < 0) {
@@ -873,7 +876,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 		return;
 	}
 
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 	priv->track0 = priv->tochdr->starting_track;
 	priv->track1 = priv->tochdr->ending_track;
 #else
@@ -886,8 +889,8 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 	priv->track_info =
 	    g_malloc ((priv->number_tracks +
 		       1) * sizeof (GstCdparanoiaCDRomTrackInfo));
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 	for (i = 0, j = priv->track0; i < priv->number_tracks; i++, j++) {
 		tocentry.track = j;
 		tocentry.address_format = CD_MSF_FORMAT;
@@ -899,7 +902,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 		tocentries.address_format = CD_MSF_FORMAT;
 #endif
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 		if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
 #else
 		if (ioctl (cdrom->fd, CDIOREADTOCENTRYS, &tocentries) < 0) {
@@ -909,7 +912,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 		}
 
 		priv->track_info[i].track = j;
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 		priv->track_info[i].audio_track =
 		    tocentry.entry.control != CDROM_DATA_TRACK ? 1 : 0;
 		ASSIGN_MSF (priv->track_info[i].address,
@@ -936,8 +939,8 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 			    tocentry.cdte_addr.msf);
 #endif
 	}
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 	tocentry.track = CDROM_LEADOUT;
 	tocentry.address_format = CD_MSF_FORMAT;
 	if (ioctl (cdrom->fd, CDIOREADTOCENTRY, &tocentry) < 0) {
@@ -950,7 +953,7 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 		gst_cdparanoia_cdrom_invalidate (lcd);
 		return;
 	}
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 	ASSIGN_MSF (priv->track_info[priv->number_tracks].address,
 		    tocentry.entry.addr.msf);
 #else
