@@ -1,5 +1,22 @@
 2006-12-19  Kjartan Maraas  <kmaraas@gnome.org>
 
+	* profiles/Makefile.am:
+	* profiles/audio-profile-edit.c: (gm_audio_profile_edit_init),
+	(gm_audio_profile_edit_class_init),
+	(gm_audio_profile_edit_finalize), (gm_audio_profile_edit_response),
+	(gm_audio_profile_edit_dispose), (gm_audio_profile_edit_new):
+	* profiles/audio-profiles-edit.c:
+	(gm_audio_profile_manage_register_stock),
+	(on_gm_audio_profiles_edit_response),
+	(gm_audio_profiles_edit_init), (gm_audio_profiles_edit_class_init),
+	(gm_audio_profiles_edit_finalize):
+	* profiles/gmp-util.h:
+	* profiles/gnome-audio-profiles-properties.c: (main):
+	* profiles/gnome-audio-profiles.glade2:
+	HIGify the dialogs. Patch from Christian Persch. Closes bug #332563.
+
+2006-12-19  Kjartan Maraas  <kmaraas@gnome.org>
+
 	* profiles/audio-profiles-edit.c: (delete_button_clicked),
 	(new_profile_response_callback),
 	(gm_audio_profiles_edit_new_profile):
