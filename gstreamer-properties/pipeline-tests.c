@@ -59,6 +59,51 @@ user_test_pipeline_timeout (gpointer data)
   return TRUE;
 }
 
+gchar *
+gst_pipeline_string_from_desc (GSTPPipelineDescription * pipeline_desc)
+{
+	gchar *pipeline = NULL;
+  if (pipeline_desc->device != NULL && pipeline_desc->device != "") {
+	  pipeline = g_strdup_printf ("%s device=\"%s\"", pipeline_desc->pipeline,
+                                pipeline_desc->device);
+  }
+  else
+    pipeline = pipeline_desc->pipeline;
+
+  return pipeline;
+}
+
+gchar *
+gst_pipeline_string_get_property_value (const gchar *pipeline_str, const gchar *propertyname)
+{
+  gchar **pipeline_nodes = NULL;
+  gchar *node = NULL;
+  gchar *node_value = NULL;
+  gchar **node_split = NULL;
+  gint i = 0;
+
+  g_assert (pipeline_str != NULL);
+
+  pipeline_nodes = g_strsplit (pipeline_str, " ", -1);
+
+  while(node = pipeline_nodes[i++]) {
+    /* Split into key = value pair */
+    node_split = g_strsplit_set (node, "=", -1);
+    if (node_split != NULL && node_split[1] != NULL) {
+      if (!strcmp (node_split[0], propertyname)) {
+        node_value = g_shell_unquote(node_split[1], NULL);
+      }
+    }
+    g_strfreev (node_split);
+
+    if (node_value != NULL) break;
+  }
+
+  g_strfreev (pipeline_nodes);
+
+  return node_value;
+}
+
 /* Build the pipeline */
 static gboolean
 build_test_pipeline (GSTPPipelineDescription * pipeline_desc, GError ** p_err)
@@ -96,12 +141,12 @@ build_test_pipeline (GSTPPipelineDescription * pipeline_desc, GError ** p_err)
     case PIPE_TYPE_AUDIOSINK:
     case PIPE_TYPE_VIDEOSINK:
       full_pipeline_str = g_strdup_printf ("%s ! %s ! %s",
-          test_pipeline_str, in_between, pipeline_desc->pipeline);
+          test_pipeline_str, in_between, gst_pipeline_string_from_desc(pipeline_desc));
       break;
     case PIPE_TYPE_AUDIOSRC:
     case PIPE_TYPE_VIDEOSRC:
       full_pipeline_str = g_strdup_printf ("%s ! %s ! %s",
-          pipeline_desc->pipeline, in_between, test_pipeline_str);
+          gst_pipeline_string_from_desc(pipeline_desc), in_between, test_pipeline_str);
       break;
   }
 

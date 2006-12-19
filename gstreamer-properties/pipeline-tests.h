@@ -28,6 +28,9 @@
 #include <glade/glade.h>
 #include "gstreamer-properties-structs.h"
 
+gchar *gst_pipeline_string_from_desc (GSTPPipelineDescription *pipeline_desc);
+gchar *gst_pipeline_string_get_property_value (const gchar *pipeline_str, const gchar *propertyname);
+
 void user_test_pipeline(GladeXML *interface_xml,
 		    GtkWindow *parent,
 		    GSTPPipelineDescription *pipeline_desc);

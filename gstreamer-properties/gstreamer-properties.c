@@ -34,6 +34,7 @@
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
+#include <gst/interfaces/propertyprobe.h>
 #include "gstreamer-properties-structs.h"
 #include "pipeline-tests.h"
 
@@ -44,6 +45,7 @@ static GConfClient *gconf_client; /* NULL */
 
 static gchar pipeline_editor_property[] = "gstp-editor";
 static gchar pipeline_desc_property[] = "gstp-pipe-desc";
+static gchar device_property[] = "gstp-device";
 
 static gchar *
 gst_properties_gconf_get_full_key (const gchar * key)
@@ -120,6 +122,217 @@ test_button_clicked (GtkButton * button, gpointer user_data)
 }
 
 static void
+pipeline_devicemenu_changed (GtkOptionMenu * devicemenu, gpointer user_data)
+{
+  GSTPPipelineEditor *editor = (GSTPPipelineEditor *) (user_data);
+  GtkMenu *menu = NULL;
+  GtkMenuItem *mi = NULL;
+  GSTPPipelineDescription *pipeline_desc = NULL;
+	gchar *devicename = NULL;
+
+  /* Determine which option changed, retrieve the pipeline desc,
+   * and call update_from_option */
+  menu = GTK_MENU (gtk_option_menu_get_menu (devicemenu));
+
+	if (menu == NULL)
+    return;
+
+  /*FIXME: g_return_if_fail (menu != NULL); */
+  mi = GTK_MENU_ITEM (gtk_menu_get_active (menu));
+
+	if (mi == NULL)
+		return;
+
+  devicename =
+      (gchar *) (g_object_get_data (G_OBJECT (mi),
+          device_property));
+
+  pipeline_desc =
+      (GSTPPipelineDescription *) (g_object_get_data (G_OBJECT (mi),
+          pipeline_desc_property));
+
+	if (pipeline_desc == NULL)
+    return;
+
+	pipeline_desc->device = devicename;
+
+  if (pipeline_desc->is_custom == FALSE) {
+		gchar *pipeline = gst_pipeline_string_from_desc (pipeline_desc);
+
+		if (pipeline)
+      gtk_entry_set_text (editor->entry, pipeline);
+    gtk_widget_set_sensitive (GTK_WIDGET (editor->entry), FALSE);
+
+    /* Update GConf */
+    gst_properties_gconf_set_string (editor->gconf_key, pipeline);
+  } else {
+    gtk_widget_set_sensitive (GTK_WIDGET (editor->entry), TRUE);
+  }
+}
+
+static void
+update_device_menu (GSTPPipelineEditor * editor,
+    GSTPPipelineDescription * pipeline_desc)
+{
+	/* Lots of gstreamer stuff */
+  GstElementFactory *factory;
+  GstElement *element;
+  GstPropertyProbe *probe;
+  const GParamSpec *pspec;
+  GObjectClass *klass;
+  const gchar *longname;	
+
+	if (editor->devicemenu == NULL) {
+    editor->devicemenu = GTK_OPTION_MENU (WID (editor->devicemenu_name));
+
+	  g_object_set_data (G_OBJECT (editor->devicemenu), pipeline_editor_property,
+	      (gpointer) (editor));
+	  g_signal_connect (G_OBJECT (editor->devicemenu), "changed",
+	      (GCallback) pipeline_devicemenu_changed, (gpointer) (editor));
+  }
+
+	if(editor->devicemenu) {
+    gchar *insensitive_label = g_strdup(_("None"));
+
+    gtk_widget_set_sensitive (GTK_WIDGET (editor->devicemenu), FALSE);
+
+	  gtk_option_menu_remove_menu (editor->devicemenu);
+
+	  GtkMenu *menu = GTK_MENU (gtk_menu_new ());
+	  GtkMenuItem *mi = NULL;
+		GtkMenuItem *mi_preselect = NULL;
+
+		if (pipeline_desc->is_custom == FALSE) {
+
+		  /* first see if we can actually create a device here */
+		  factory = gst_element_factory_find (pipeline_desc->pipeline);
+		  if (!factory) {
+		    GST_WARNING ("Failed to find factory for pipeline '%s'",
+		        pipeline_desc->pipeline);
+		    // return;
+		  }
+      else {
+			  element = gst_element_factory_create (factory, "test");
+			  longname = gst_element_factory_get_longname (factory);
+			  if (!element) {
+			    GST_WARNING ("Failed to create instance of factory '%s' (%s)",
+			        longname, GST_PLUGIN_FEATURE (factory)->name);
+			    //return;
+			  }
+        else {
+				  klass = G_OBJECT_GET_CLASS (element);  
+
+				  /* do we have a "device" property? */
+				  if (!g_object_class_find_property (klass, "device") ||
+				      !GST_IS_PROPERTY_PROBE (element) ||
+				      !(probe = GST_PROPERTY_PROBE (element)) ||
+				      !(pspec = gst_property_probe_get_property (probe, "device"))) {
+				    GST_DEBUG ("Found source '%s' (%s) - no device",
+				        longname, GST_PLUGIN_FEATURE (factory)->name);
+            g_free (insensitive_label);
+						/* Element does not support setting devices */
+						insensitive_label = g_strdup(_("Unsupported"));
+				  } else {
+					  gint n;
+					  gchar *name;
+					  GValueArray *array;
+
+            /* Set autoprobe[-fps] to FALSE to avoid delays when probing. */
+            if (g_object_class_find_property (klass, "autoprobe")) {
+              g_object_set (G_OBJECT (element), "autoprobe", FALSE, NULL);
+	            if (g_object_class_find_property (klass, "autoprobe-fps")) {
+	              g_object_set (G_OBJECT (element), "autoprobe-fps", FALSE, NULL);
+	            }
+            }
+
+				    array = gst_property_probe_probe_and_get_values (probe, pspec);
+				    if (array != NULL) {
+              /* default device item, so we can let the element handle it */
+				      if (array->n_values > 0) {
+								mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (_("Default")));
+					      g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
+					          (gpointer) pipeline_desc);
+
+								gtk_widget_show (GTK_WIDGET (mi));
+								gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
+
+				        gtk_widget_set_sensitive (GTK_WIDGET (editor->devicemenu), TRUE);
+              }
+
+				      for (n = 0; n < array->n_values; n++) {
+				        GValue *device;
+				        // GstCaps *caps;
+
+				        device = g_value_array_get_nth (array, n);
+				        g_object_set_property (G_OBJECT (element), "device", device);
+
+				        if (gst_element_set_state (element, GST_STATE_READY) !=
+				            GST_STATE_CHANGE_SUCCESS) {
+				          GST_WARNING
+				              ("Found source '%s' (%s) - device %s failed to open", longname,
+				              GST_PLUGIN_FEATURE (factory)->name,
+				              g_value_get_string (device));
+				          continue;
+				        }
+								
+				        g_object_get (G_OBJECT (element), "device-name", &name, NULL);
+				        // caps = gst_pad_get_caps (gst_element_get_pad (element, "src"));
+
+				        if (name == NULL)
+				          name = _("Unknown");
+
+				        GST_DEBUG ("Found source '%s' (%s) - device %s '%s'",
+				            longname, GST_PLUGIN_FEATURE (factory)->name,
+				            g_value_get_string (device), name);
+
+								gst_element_set_state (element, GST_STATE_NULL);
+
+				        /* Add device to devicemenu */
+								mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (name));		        
+								g_object_set_data (G_OBJECT (mi), device_property,
+					          (gpointer) g_value_get_string (device));
+					      g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
+					          (gpointer) pipeline_desc);
+								gtk_widget_show (GTK_WIDGET (mi));
+								gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
+                
+                if (pipeline_desc->device != NULL &&
+                   !strcmp (pipeline_desc->device, g_value_get_string(device)))
+                {
+                  mi_preselect = mi;
+                }
+				      }
+				    }
+				  }
+          gst_object_unref (GST_OBJECT (element));
+        }
+        gst_object_unref (GST_OBJECT (factory));
+      }
+	  }
+
+	  /* No devices to choose -> "None" */
+		if (mi == NULL) {
+				mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (g_strdup (insensitive_label)));
+
+	      g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
+	          (gpointer) pipeline_desc);
+
+				gtk_widget_show (GTK_WIDGET (mi));
+				gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
+    }
+
+		gtk_option_menu_set_menu (editor->devicemenu, GTK_WIDGET (menu));
+    
+    if (mi_preselect!=NULL) {
+      gtk_option_menu_set_history (editor->devicemenu,
+          g_list_index (GTK_MENU_SHELL (menu)->children, GTK_WIDGET (mi_preselect)));
+    }
+
+		g_free (insensitive_label);
+  }	
+}
+
+static void
 update_from_option (GSTPPipelineEditor * editor,
     GSTPPipelineDescription * pipeline_desc)
 {
@@ -130,14 +343,17 @@ update_from_option (GSTPPipelineEditor * editor,
 
   editor->cur_pipeline_index = pipeline_desc->index;
 
+	/* Update device list */
+	update_device_menu(editor, pipeline_desc);
+
   if (pipeline_desc->is_custom == FALSE) {
-    if (pipeline_desc->pipeline)
-      gtk_entry_set_text (editor->entry, pipeline_desc->pipeline);
+		gchar *pipeline = gst_pipeline_string_from_desc(pipeline_desc);
+    if (pipeline)
+      gtk_entry_set_text (editor->entry, pipeline);
     gtk_widget_set_sensitive (GTK_WIDGET (editor->entry), FALSE);
 
     /* Update GConf */
-    gst_properties_gconf_set_string (editor->gconf_key,
-        pipeline_desc->pipeline);
+    gst_properties_gconf_set_string (editor->gconf_key, pipeline);
   } else {
     gtk_widget_set_sensitive (GTK_WIDGET (editor->entry), TRUE);
   }
@@ -171,6 +387,12 @@ update_from_gconf (GSTPPipelineEditor * editor, const gchar * pipeline_str)
   gint custom_desc = -1;
 
   /* g_return_if_fail (editor != NULL); */
+	gchar **pipeline_nodes = g_strsplit (pipeline_str, " ", -1);
+	gchar *pipeline_device = NULL;
+	if (pipeline_nodes == NULL) {
+    pipeline_nodes[0] = (gchar*)pipeline_str;
+		pipeline_device = pipeline_nodes[1];
+  }
 
   editor->cur_pipeline_index = -1;
   for (i = 0; i < editor->n_pipeline_desc; i++) {
@@ -178,8 +400,12 @@ update_from_gconf (GSTPPipelineEditor * editor, const gchar * pipeline_str)
 
     if (pipeline_desc->is_custom == TRUE) {
       custom_desc = i;
-    } else if (!strcmp (pipeline_desc->pipeline, pipeline_str)) {
+    } else if (!strcmp (gst_pipeline_string_from_desc (pipeline_desc), pipeline_str)) {
       editor->cur_pipeline_index = i;
+      break;
+    } else if (!strcmp (gst_pipeline_string_from_desc (pipeline_desc), pipeline_nodes[0])) {
+      editor->cur_pipeline_index = i;
+      pipeline_desc->device = gst_pipeline_string_get_property_value(pipeline_str, "device");
       break;
     }
   }
@@ -201,6 +427,8 @@ update_from_gconf (GSTPPipelineEditor * editor, const gchar * pipeline_str)
     update_from_option (editor,
         editor->pipeline_desc + editor->cur_pipeline_index);
   }
+
+	g_strfreev(pipeline_nodes);
 }
 
 static void

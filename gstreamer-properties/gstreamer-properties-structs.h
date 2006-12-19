@@ -51,6 +51,7 @@ typedef struct _GSTPPipelineDescription
 	gint index;         /* A storage spot for the index in the dropdown menu */
 	gchar *name;		/* English pipeline description */
 	gchar *pipeline;	/* gst-launch description of the pipeline */
+	gchar *device; /* Store device property setting */
 	gboolean is_custom;	/* Mark this entry as the 'custom' pipeline */
 	GSTPPipelineTestType test_type;
 	gchar *test_pipe;	/* Pipeline to connect to for testing */
@@ -65,9 +66,11 @@ typedef struct _GSTPPipelineEditor
 	gint cur_pipeline_index;
 	gchar *gconf_key;
 	gchar *optionmenu_name;
+	gchar *devicemenu_name;
 	gchar *entry_name;
 	gchar *test_button_name;
 	GtkOptionMenu *optionmenu;
+	GtkOptionMenu *devicemenu;
 	GtkEntry *entry;
 	GtkButton *test_button;
 }

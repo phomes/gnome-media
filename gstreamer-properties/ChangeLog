@@ -1,3 +1,16 @@
+2006-12-19  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gstreamer-properties-structs.h:
+	* gstreamer-properties.c: (pipeline_devicemenu_changed),
+	(update_device_menu), (update_from_option), (update_from_gconf):
+	* gstreamer-properties.glade:
+	* pipeline-constants.c:
+	* pipeline-tests.c: (gst_pipeline_string_from_desc),
+	(gst_pipeline_string_get_property_value), (build_test_pipeline):
+	* pipeline-tests.h:
+	Allow selection of default input/output devices for sound/video.
+	Patches from Martin Szulecki. Closes bug #341983.
+
 2006-08-07  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* pipeline-constants.c: Rename polypaudio to pulseaudio
