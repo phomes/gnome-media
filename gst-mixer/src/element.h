@@ -89,7 +89,7 @@ typedef struct {
     { N_("volume"), FALSE }, \
     { N_("master"), FALSE }, \
     { N_("digital output"), FALSE }, \
-    { N_("capture"), FALSE }, \
+    { N_("recording"), FALSE }, \
     { NULL, FALSE } \
   }
 

@@ -327,13 +327,13 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 }
 
 GnomeVolumeControlTrack *
-gnome_volume_control_track_add_capture (GtkTable *table,
-					gint      tab_pos,
-					GstMixer *mixer,
-					GstMixerTrack *track,
-					GtkWidget *l_sep,
-					GtkWidget *r_sep,
-					GnomeAppBar *appbar)
+gnome_volume_control_track_add_recording (GtkTable *table,
+					  gint      tab_pos,
+					  GstMixer *mixer,
+					  GstMixerTrack *track,
+					  GtkWidget *l_sep,
+					  GtkWidget *r_sep,
+					  GnomeAppBar *appbar)
 {
   GnomeVolumeControlTrack *ctrl;
   GtkWidget *button;
@@ -353,7 +353,7 @@ gnome_volume_control_track_add_capture (GtkTable *table,
    */
 
   /* only the record button here */
-  msg = g_strdup_printf (_("Toggle audio capture from %s"), ctrl->track->label);
+  msg = g_strdup_printf (_("Toggle audio recording from %s"), ctrl->track->label);
   button = gnome_volume_control_button_new (GNOME_VOLUME_CONTROL_STOCK_RECORD,
 					    GNOME_VOLUME_CONTROL_STOCK_NORECORD,
 					    appbar, msg);
@@ -368,7 +368,7 @@ gnome_volume_control_track_add_capture (GtkTable *table,
   /* a11y */
   accessible = gtk_widget_get_accessible (button);
   if (GTK_IS_ACCESSIBLE (accessible)) {
-    accessible_name = g_strdup_printf (_("Track %s: audio capture"),
+    accessible_name = g_strdup_printf (_("Track %s: audio recording"),
 				       track->label);
     atk_object_set_name (accessible, accessible_name);
     g_free (accessible_name);

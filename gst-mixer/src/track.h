@@ -74,7 +74,7 @@ GnomeVolumeControlTrack *
 						 GtkWidget *r_sep,
 						 GnomeAppBar *appbar);
 GnomeVolumeControlTrack *
-	gnome_volume_control_track_add_capture	(GtkTable *table,
+	gnome_volume_control_track_add_recording(GtkTable *table,
 						 gint      tab_pos,
 						 GstMixer *mixer,
 						 GstMixerTrack *track,
