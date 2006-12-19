@@ -946,6 +946,15 @@ register_stock_icons (void)
 	g_object_unref (G_OBJECT (factory));
 }
 
+static gboolean
+start_playing (GnomeCD *gcd)
+{
+	/* Just fake a click on the button */
+	play_cb (NULL, gcd);
+
+	return FALSE; /* only call once */
+}
+
 int 
 main (int argc, char *argv[])
 {
@@ -1008,8 +1017,11 @@ main (int argc, char *argv[])
 			  G_CALLBACK (client_die), gcd);
 
 	if (cd_option_play || gcd->preferences->start_play) {
-		/* Just fake a click on the button */
-		play_cb (NULL, gcd);
+		/* we do this delayed with a low priority to give the
+		 * GStreamer backend a chance to process any pending TAG
+		 * messages on the bus first (so it knows the CD layout) */
+		g_idle_add_full (G_PRIORITY_LOW, (GSourceFunc) start_playing,
+		                 gcd, NULL);
 	}
 	
 	if (cd_option_unique &&
