@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-17 08:31+0000\n"
+"POT-Creation-Date: 2006-12-24 21:00+0000\n"
 "PO-Revision-Date: 2006-11-29 20:17+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
+"n<=10 ? 2 : 3\n"
 "\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
@@ -58,7 +59,9 @@ msgstr "المنفذ الذي يشغل الخادم قاعدة البيانات 
 msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr "نوع الخادم الذي سيتصل به للسؤال عن الأقراص المدمجة. القيم الممكنةهي 0 (خادم FreeDB round robin) و 1 (خادم freedb آخر) و 2 (خادم آخر)"
+msgstr ""
+"نوع الخادم الذي سيتصل به للسؤال عن الأقراص المدمجة. القيم الممكنةهي 0 (خادم "
+"FreeDB round robin) و 1 (خادم freedb آخر) و 2 (خادم آخر)"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -160,6 +163,7 @@ msgstr "مجهول / مجهول"
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
 #: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
 #: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
+#: ../gstreamer-properties/gstreamer-properties.c:282
 msgid "Unknown"
 msgstr "مجهول"
 
@@ -1190,24 +1194,24 @@ msgstr "اطرد القرص المدمج"
 msgid "Eject"
 msgstr "اطرد"
 
-#: ../gnome-cd/gnome-cd.c:954
+#: ../gnome-cd/gnome-cd.c:963
 msgid "CD device to use"
 msgstr "جهاز القرص المدمج للاستعمال"
 
-#: ../gnome-cd/gnome-cd.c:956
+#: ../gnome-cd/gnome-cd.c:965
 msgid "Only start if there isn't already a CD player application running"
 msgstr "التشغيل فقط إذا لم يوجد مسبقا تطبيق لعزف الأقراص المدمجة بصدد العمل"
 
-#: ../gnome-cd/gnome-cd.c:958
+#: ../gnome-cd/gnome-cd.c:967
 msgid "Play the CD on startup"
 msgstr "اعزف القرص المدمج عند بدأ التشغيل"
 
-#: ../gnome-cd/gnome-cd.c:960
+#: ../gnome-cd/gnome-cd.c:969
 msgid "Start iconified to tray"
 msgstr "ابدأ البرنامج بأيقونة اللوحة"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1000
+#: ../gnome-cd/gnome-cd.c:1009
 msgid "Cannot create player"
 msgstr "لا يمكن انشاء عازف"
 
@@ -1249,7 +1253,8 @@ msgstr "هل يطرد القرص المدمج عند إنهاء عازف الأ�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
+msgstr ""
+"مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
@@ -1263,7 +1268,7 @@ msgstr "ما هي شدة صوت قارئ القرص عند اشتغاله؟"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "هل يعزف عازف الأقراص المدمجة القرص عند بدأ تشغيله؟"
 
-#: ../gnome-cd/gst-cdrom.c:279
+#: ../gnome-cd/gst-cdrom.c:282
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "لم يمكن طرد القرص: %s "
@@ -1286,6 +1291,7 @@ msgid "CD Player Preferences"
 msgstr "تفضيلات عازف الأقراص المدمجة"
 
 #: ../gnome-cd/preferences.c:625
+#: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "ال_جهاز:"
 
@@ -1577,7 +1583,8 @@ msgstr "تسجيل صوت GConf"
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
 "Multimedia settings."
-msgstr "إعدادات تسجيل الصوت غير صحيحة. الرجاء تصحيحها عبر إعدادات الوسائط المتعددة."
+msgstr ""
+"إعدادات تسجيل الصوت غير صحيحة. الرجاء تصحيحها عبر إعدادات الوسائط المتعددة."
 
 #: ../grecord/src/gsr-window.c:1858
 msgid "file output"
@@ -1730,8 +1737,9 @@ msgid "Width of the Window to be displayed"
 msgstr "عرض النّافذة التي سيتم إظهارها"
 
 #: ../gst-mixer/src/element.c:231
-msgid "Capture"
-msgstr "سجّل"
+#, fuzzy
+msgid "Recording"
+msgstr "جاري التسجيل..."
 
 #: ../gst-mixer/src/element.c:233
 msgid "Switches"
@@ -1781,13 +1789,13 @@ msgstr "المقطوعة %s: صمت"
 #.
 #. only the record button here
 #: ../gst-mixer/src/track.c:356
-#, c-format
-msgid "Toggle audio capture from %s"
+#, fuzzy, c-format
+msgid "Toggle audio recording from %s"
 msgstr "بدّل تسجيل الصوت من %s"
 
 #: ../gst-mixer/src/track.c:371
-#, c-format
-msgid "Track %s: audio capture"
+#, fuzzy, c-format
+msgid "Track %s: audio recording"
 msgstr "المقطوعة %s: تسجيل الصوت"
 
 #: ../gst-mixer/src/track.c:450
@@ -1912,11 +1920,25 @@ msgstr ""
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "تطبيق لشدة الصوت معتمد على جنوم/جستريمر"
 
-#: ../gstreamer-properties/gstreamer-properties.c:377
+#: ../gstreamer-properties/gstreamer-properties.c:195
+#, fuzzy
+msgid "None"
+msgstr "نويْز"
+
+#. Element does not support setting devices
+#: ../gstreamer-properties/gstreamer-properties.c:234
+msgid "Unsupported"
+msgstr ""
+
+#: ../gstreamer-properties/gstreamer-properties.c:252
+msgid "Default"
+msgstr ""
+
+#: ../gstreamer-properties/gstreamer-properties.c:605
 msgid "Failure instantiating main window"
 msgstr "فشل تلحيظ النافذة الرئيسية"
 
-#: ../gstreamer-properties/gstreamer-properties.c:432
+#: ../gstreamer-properties/gstreamer-properties.c:660
 msgid "Failed to load glade file; please check your installation."
 msgstr "لم يمكن تحميل ملف glade . الرجاء التأكد من التثبيت."
 
@@ -1930,59 +1952,65 @@ msgid "Multimedia Systems Selector"
 msgstr "منتقي نظم الوسائط المتعدّدة"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:1
-#: ../profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
+#, fuzzy
+msgid "<b>Default Input</b>"
 msgstr "<b>ملحق الدخْل الإفتراضي</b>"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
+#: ../gstreamer-properties/gstreamer-properties.glade.h:2
+#, fuzzy
+msgid "<b>Default Output</b>"
 msgstr "<b>ملحق الخرْج الإفتراضي</b>"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
+#: ../gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">اختبار...</span>"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
+#: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "Audio"
 msgstr "صوت"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+#: ../gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Click Ok to finish."
 msgstr "انقر موافق للإنهاء."
 
+#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+#, fuzzy
+msgid "D_evice:"
+msgstr "ال_جهاز:"
+
 #: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
+#, fuzzy
+msgid "P_ipeline:"
 msgstr "خط الأ_نابيب:"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:9
+#, fuzzy
+msgid "P_lugin:"
+msgstr "خط الأ_نابيب:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+#, fuzzy
+msgid "Pipeli_ne:"
+msgstr "خط الأ_نابيب:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Te_st"
 msgstr "ا_ختبِر"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+#: ../gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
 msgstr "جاري اختبار خط الأنابيب"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
+#: ../gstreamer-properties/gstreamer-properties.glade.h:13
 msgid "Video"
 msgstr "فيديو"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "ال_دخْل:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "_Output:"
-msgstr "الخ_رْج:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Pipeline:"
+#: ../gstreamer-properties/gstreamer-properties.glade.h:15
+#, fuzzy
+msgid "_Plugin:"
 msgstr "خط الأنا_بيب:"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
+#: ../gstreamer-properties/gstreamer-properties.glade.h:16
 msgid "_Test"
 msgstr "اخ_تبِر"
 
@@ -1993,17 +2021,17 @@ msgstr "اخ_تبِر"
 msgid "Custom"
 msgstr "مخصّص"
 
-#: ../gstreamer-properties/pipeline-tests.c:130
+#: ../gstreamer-properties/pipeline-tests.c:175
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "فشل بناء خط أنابيب إختبار لـ '%s'"
 
-#: ../profiles/audio-profile-edit.c:164
+#: ../profiles/audio-profile-edit.c:117 ../profiles/audio-profiles-edit.c:537
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "حصل خطأ عند عرض المساعدة: %s"
 
-#: ../profiles/audio-profile-edit.c:366
+#: ../profiles/audio-profile-edit.c:311
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "حرّر الطوْر: %s"
@@ -2041,16 +2069,12 @@ msgstr "الهوية"
 msgid "wav"
 msgstr "wav"
 
-#: ../profiles/audio-profiles-edit.c:115
+#: ../profiles/audio-profiles-edit.c:83
 msgid "_Edit"
 msgstr "_حرّر"
 
-#: ../profiles/audio-profiles-edit.c:492
-msgid "You must select one or more profiles to delete."
-msgstr "يجب أن تنتقي طور أو أكثر لحذفه."
-
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:501
+#: ../profiles/audio-profiles-edit.c:463
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
@@ -2059,12 +2083,12 @@ msgstr[1] "هل تحذف هذين الطورين؟\n"
 msgstr[2] "هل تحذف هذه الـ%d أطوار؟\n"
 msgstr[3] "هل تحذف هذه الـ%d أطوار؟\n"
 
-#: ../profiles/audio-profiles-edit.c:520
+#: ../profiles/audio-profiles-edit.c:482
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "هل تحذف هذه الطور\"%s\"؟"
 
-#: ../profiles/audio-profiles-edit.c:542
+#: ../profiles/audio-profiles-edit.c:504
 msgid "Delete Profile"
 msgstr "احذف الطور"
 
@@ -2080,20 +2104,36 @@ msgstr "احذف الطور"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:638
+#: ../profiles/audio-profiles-edit.c:600
 msgid "Edit GNOME Audio Profiles"
 msgstr "حرّر أطوار صوت جنوم"
 
-#: ../profiles/audio-profiles-edit.c:691
+#. FIXME
+#. hbox = gtk_hbox_new (FALSE, PADDING);
+#. gtk_box_pack_end (GTK_BOX (vbox),
+#. hbox, FALSE, FALSE, 0);
+#.
+#. app->manage_profiles_default_menu = profile_optionmenu_new ();
+#. g_signal_connect (G_OBJECT (app->manage_profiles_default_menu),
+#. "changed", G_CALLBACK (default_menu_changed),
+#. app);
+#.
+#. gtk_box_pack_start (GTK_BOX (hbox),
+#. label, TRUE, TRUE, 0);
+#.
+#. gtk_box_pack_end (GTK_BOX (hbox),
+#. app->manage_profiles_default_menu, FALSE, FALSE, 0);
+#.
+#: ../profiles/audio-profiles-edit.c:647
 msgid "_Profiles:"
 msgstr "أ_طوار:"
 
-#: ../profiles/audio-profiles-edit.c:921
+#: ../profiles/audio-profiles-edit.c:862
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "لديك طور بإسم \"%s\" مسبقا"
 
-#: ../profiles/audio-profiles-edit.c:946
+#: ../profiles/audio-profiles-edit.c:887
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "خطأ GConf (FIXME):·%s\n"
@@ -2107,43 +2147,38 @@ msgstr ""
 "الملف \"%s\" مفقود. يعني ذلك أن التطبيق غير مثبت بسلامة و بالتالي لن يمكن "
 "عرض الحوار."
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
+#: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
 msgstr "حرّر طور الصوت"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "ا_متداد الملف:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "New Profile"
 msgstr "طور جديد"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "وصف الطور:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
+#: ../profiles/gnome-audio-profiles.glade2.h:3
+#, fuzzy
+msgid "Profile _description:"
 msgstr "_وصف الطور:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "ا_سم الطور:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profiles.glade2.h:4
 msgid "_Active?"
 msgstr "_نشط ؟"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:9
+#: ../profiles/gnome-audio-profiles.glade2.h:5
 msgid "_Create"
 msgstr "إ_نشيء"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
+#: ../profiles/gnome-audio-profiles.glade2.h:6
+#, fuzzy
+msgid "_File extension:"
+msgstr "ا_متداد الملف:"
+
+#: ../profiles/gnome-audio-profiles.glade2.h:7
+#, fuzzy
+msgid "_GStreamer pipeline:"
 msgstr "أنبوب _جستريمر:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:11
+#: ../profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Profile name:"
 msgstr "اسم ال_طور:"
 
@@ -2158,7 +2193,8 @@ msgid ""
 msgstr "وصف للطور، مشتملا للمزيد من المعلومات و حالات استعمال هذا الطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid "A filename extension to be used when storing files encoded with this profile."
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
 msgstr "إمتداد إسم ملف يستخدم عند خزن ملفات مشفرة بهذا الطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
@@ -2173,7 +2209,8 @@ msgstr "إسم مختصر لطور الصوت"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "إسم مختصر لطور الصوت ، يمكن استعماله في المنتقيات و للتحديد الموحد للطور."
+msgstr ""
+"إسم مختصر لطور الصوت ، يمكن استعماله في المنتقيات و للتحديد الموحد للطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, Lossless"
@@ -2188,8 +2225,8 @@ msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"قائمة بأطوار التسجيلات الصوتية. القائمة تشتمل على أسماء سلسلية "
-"للدلائل نسبة إلى /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+"قائمة بأطوار التسجيلات الصوتية. القائمة تشتمل على أسماء سلسلية للدلائل نسبة "
+"إلى /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
 msgid "List of profiles"
@@ -2223,7 +2260,8 @@ msgstr ""
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr "يستخدم للتّحويل إلى ملف صوتٍ غير مضيع بجودةٍ الحديث. استخدم هذا لتسجيل النّطق."
+msgstr ""
+"يستخدم للتّحويل إلى ملف صوتٍ غير مضيع بجودةٍ الحديث. استخدم هذا لتسجيل النّطق."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
@@ -2318,3 +2356,23 @@ msgstr "راقب شدة صوت الخرْج الصوتي"
 msgid "Volume Monitor"
 msgstr "مراقب شدة صوت"
 
+#~ msgid "Capture"
+#~ msgstr "سجّل"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "_Input:"
+#~ msgstr "ال_دخْل:"
+
+#~ msgid "_Output:"
+#~ msgstr "الخ_رْج:"
+
+#~ msgid "You must select one or more profiles to delete."
+#~ msgstr "يجب أن تنتقي طور أو أكثر لحذفه."
+
+#~ msgid "Profile Description:"
+#~ msgstr "وصف الطور:"
+
+#~ msgid "Profile _name:"
+#~ msgstr "ا_سم الطور:"
