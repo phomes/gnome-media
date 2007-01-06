@@ -1,5 +1,12 @@
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
+	* profiles/audio-profiles-edit.c: (profile_activated_callback),
+	(edit_button_clicked):
+	  Don't run edit dialogs, no need to, plus it makes them modal
+	  (#317430).
+
+2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
 	* configure.in:
 	* profiles/audio-profile.c: (gm_audio_profile_get_active_list):
 	* profiles/gnome-audio-profiles.schemas.in.in:
