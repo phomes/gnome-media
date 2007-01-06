@@ -24,6 +24,7 @@
 #endif
 
 #include <gnome.h>
+#include <string.h>
 
 #include "button.h"
 #include "stock.h"
@@ -74,14 +75,29 @@ cb_record_toggled (GnomeVolumeControlButton *button,
 		        gnome_volume_control_button_get_active (button));
 }
 
+/* Tells us whether toggling a switch should change the corresponding
+ * GstMixerTrack's MUTE or RECORD flag.
+ */
+static gboolean
+should_toggle_record_switch (const GstMixerTrack *track)
+{
+  return GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT);
+}
+ 
+
 static void
 cb_toggle_changed (GtkToggleButton *button,
 		   gpointer         data)
 {
   GnomeVolumeControlTrack *ctrl = data;
 
-  gst_mixer_set_mute (ctrl->mixer, ctrl->track,
-		      !gtk_toggle_button_get_active (button));
+  if (should_toggle_record_switch (ctrl->track)) {
+    gst_mixer_set_record (ctrl->mixer, ctrl->track,
+      gtk_toggle_button_get_active (button));
+  } else {
+    gst_mixer_set_mute (ctrl->mixer, ctrl->track,
+      !gtk_toggle_button_get_active (button));
+  }
 }
 
 static void
@@ -109,6 +125,14 @@ static gboolean
 cb_check (gpointer data)
 {
   GnomeVolumeControlTrack *trkw = data;
+
+  /* trigger an update of the mixer state */
+  if (! GST_IS_MIXER_OPTIONS (trkw->track)) {
+    gint *dummy = g_new (gint, 1);
+    gst_mixer_get_volume (trkw->mixer, GST_MIXER_TRACK (trkw->track), dummy);
+    g_free (dummy);
+  }
+  
   gboolean mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
 				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE,
            record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
@@ -136,20 +160,20 @@ cb_check (gpointer data)
   }
 
   if (trkw->toggle) {
-    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (trkw->toggle)) ==
-            mute) {
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (trkw->toggle), !mute);
+    if (should_toggle_record_switch (trkw->track)) {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (trkw->toggle),
+        GST_MIXER_TRACK_HAS_FLAG (trkw->track, GST_MIXER_TRACK_RECORD));
+    } else {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (trkw->toggle),
+        !GST_MIXER_TRACK_HAS_FLAG (trkw->track, GST_MIXER_TRACK_MUTE));
     }
   }
 
   /* FIXME:
    * - options.
-   * - we cannot check flags! We need a _get_*() function in the
-   *     mixer interface, because flags don't change if other
-   *     apps change device state.
    */
 
-  return (trkw->mute || trkw->record);
+  return TRUE;
 }
 
 /*
@@ -180,7 +204,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
   ctrl->visible = TRUE;
   ctrl->table = table;
   ctrl->pos = tab_pos;
-  ctrl->id = g_timeout_add (100, cb_check, ctrl);
+  ctrl->id = g_timeout_add (200, cb_check, ctrl);
 
   /* image (optional) */
   for (i = 0; !found && pix[i].label != NULL; i++) {
@@ -398,9 +422,13 @@ gnome_volume_control_track_add_switch (GtkTable *table,
 					       GTK_ORIENTATION_HORIZONTAL,
 					       mixer, track, l_sep, r_sep);
   ctrl->toggle = gtk_check_button_new ();
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
-				!GST_MIXER_TRACK_HAS_FLAG (ctrl->track,
-					GST_MIXER_TRACK_MUTE));
+  if (should_toggle_record_switch (ctrl->track)) {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
+      GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_RECORD));
+  } else {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
+      !GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_MUTE));
+  }
 
   /* attach'n'show */
   gtk_table_attach (GTK_TABLE (table), ctrl->toggle,

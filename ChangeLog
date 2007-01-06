@@ -1,5 +1,21 @@
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
+	* gst-mixer/src/Makefile.am:
+	* gst-mixer/src/element.c: (gnome_volume_control_element_dispose):
+	* gst-mixer/src/misc.c: (get_page_num), (get_page_description):
+	* gst-mixer/src/misc.h:
+	* gst-mixer/src/preferences.c:
+	(gnome_volume_control_preferences_init),
+	(gnome_volume_control_preferences_change):
+	* gst-mixer/src/track.c: (should_toggle_record_switch),
+	(cb_toggle_changed), (cb_check),
+	(gnome_volume_control_track_add_title),
+	(gnome_volume_control_track_add_switch):
+	  Don't duplicate devices for the Audigy (#313495). Patch by
+	  Sam Morris <sam@robots.org.uk>.
+
+2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
 	* gst-mixer/src/volume.c: (get_scale):
 	  Dynamically set the step-size and change page-size so it is more
 	  accessible for keyboard-use.

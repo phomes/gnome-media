@@ -30,6 +30,7 @@
 #include "keys.h"
 #include "preferences.h"
 #include "track.h"
+#include "misc.h"
 
 static void	gnome_volume_control_element_class_init	(GnomeVolumeControlElementClass *klass);
 static void	gnome_volume_control_element_init	(GnomeVolumeControlElement *el);
@@ -125,7 +126,7 @@ gnome_volume_control_element_dispose (GObject *object)
   if (el->mixer) {
     /* remove g_timeout_add() mainloop handlers */
     gnome_volume_control_element_change (el, NULL);
-    gst_element_set_state (el->mixer, GST_STATE_NULL);
+    gst_element_set_state (GST_ELEMENT (el->mixer), GST_STATE_NULL);
     gst_object_unref (GST_OBJECT (el->mixer));
     el->mixer = NULL;
   }
@@ -168,19 +169,6 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track,
 /*
  * Hide/show notebook page.
  */
-
-static gint
-get_page_num (GstMixerTrack *track)
-{
-  if (GST_IS_MIXER_OPTIONS (track))
-    return 3;
-  else if (track->num_channels == 0)
-    return 2;
-  else if (track->flags & GST_MIXER_TRACK_INPUT)
-    return 1;
-  else
-    return 0;
-}
 
 static void
 update_tab_visibility (GnomeVolumeControlElement *el, gint page)

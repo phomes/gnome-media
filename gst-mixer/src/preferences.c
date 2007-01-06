@@ -31,11 +31,13 @@
 #include "preferences.h"
 #include "keys.h"
 #include "track.h"
+#include "misc.h"
 
 enum {
   COL_ACTIVE,
   COL_LABEL,
   COL_TRACK,
+  COL_TYPE,
   NUM_COLS
 };
 
@@ -134,7 +136,7 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   gtk_widget_show (label);
 
   store = gtk_list_store_new (NUM_COLS, G_TYPE_BOOLEAN,
-			      G_TYPE_STRING, G_TYPE_POINTER);
+			      G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_STRING);
   prefs->treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (prefs->treeview), FALSE);
   gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET (prefs->treeview));
@@ -145,7 +147,7 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 				  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (view),
 				       GTK_SHADOW_IN);
-  gtk_widget_set_usize (view, -1, 150);
+  gtk_widget_set_size_request (view, -1, 250);
 
   gtk_container_add (GTK_CONTAINER (view), prefs->treeview);
   gtk_box_pack_start (GTK_BOX (box), view, TRUE, TRUE, 0);
@@ -171,6 +173,12 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   render = gtk_cell_renderer_text_new ();
   col = gtk_tree_view_column_new_with_attributes ("Track name", render,
 						  "text", COL_LABEL,
+						  NULL);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (prefs->treeview), col);
+
+  render = gtk_cell_renderer_text_new ();
+  col = gtk_tree_view_column_new_with_attributes ("Type", render,
+                          "text", COL_TYPE,
 						  NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (prefs->treeview), col);
 
@@ -300,6 +308,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   /* remove old */
   while (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
     gtk_list_store_remove (store, &iter);
+	/* does this free COL_TYPE? */
   }
 
   /* take/put reference */

@@ -13,7 +13,8 @@ gnome_volume_control_SOURCES = \
 	preferences.c \
 	track.c \
 	volume.c \
-	window.c
+	window.c \
+	misc.c
 
 noinst_HEADERS = \
 	button.h \
@@ -23,7 +24,8 @@ noinst_HEADERS = \
 	stock.h \
 	track.h \
 	volume.h \
-	window.h
+	window.h \
+	misc.h
 
 gnome_volume_control_LDFLAGS = \
 	$(GSTMIXER_LIBS)
