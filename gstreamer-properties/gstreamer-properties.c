@@ -67,7 +67,7 @@ gst_properties_gconf_get_string (const gchar * key)
   g_free (full_key);
 
   if (error) {
-    g_warning ("%s() error: %s", __FUNCTION__, error->message);
+    g_warning ("%s() error: %s", G_GNUC_PRETTY_FUNCTION, error->message);
     g_error_free (error);
     return NULL;
   }
@@ -87,7 +87,7 @@ gst_properties_gconf_set_string (const gchar * key, const gchar * value)
   g_free (full_key);
 
   if (error) {
-    g_warning ("%s() error: %s", __FUNCTION__, error->message);
+    g_warning ("%s() error: %s", G_GNUC_PRETTY_FUNCTION, error->message);
     g_error_free (error);
   }
 }

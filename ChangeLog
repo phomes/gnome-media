@@ -1,6 +1,14 @@
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
 	* gstreamer-properties/gstreamer-properties.c:
+	(gst_properties_gconf_get_string),
+	(gst_properties_gconf_set_string):
+	  Use G_GNUC_PRETTY_FUNCTION instead of __FUNCTION__, so that it
+	  works on non-gcc compilers (#383106).
+
+2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
+	* gstreamer-properties/gstreamer-properties.c:
 	  Fix indenting.
 
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
