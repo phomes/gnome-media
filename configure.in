@@ -458,7 +458,7 @@ then
 fi
 
 # profiles
-PKG_CHECK_MODULES(GMP, gconf-2.0 libglade-2.0 libgnomeui-2.0 gnome-vfs-module-2.0,
+PKG_CHECK_MODULES(GMP, gstreamer-0.10 gconf-2.0 libglade-2.0 libgnomeui-2.0 gnome-vfs-module-2.0,
                   USE_GMP=yes, USE_GMP=no)
 AC_SUBST(GMP_CFLAGS)
 AC_SUBST(GMP_LIBS)
