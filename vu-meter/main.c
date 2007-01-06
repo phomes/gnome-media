@@ -212,6 +212,7 @@ main (int argc,
       char *argv[])
 {
 	GnomeClient *client;
+	GdkGeometry hints;
 	GOptionContext *goption_context;
 	GtkWidget *hbox;
 	GtkWidget *frame;
@@ -295,9 +296,31 @@ main (int argc,
 	gtk_container_add (GTK_CONTAINER (frame), hbox);
 	
 	for (i = 0; i < 2; i++) {
-		dial[i] = led_bar_new (25, orient);
-		gtk_box_pack_start (GTK_BOX (hbox), dial[i], FALSE, FALSE, 0);
+		/* 20 segments is the max in gtkledbar.c */
+		dial[i] = led_bar_new (20, orient);
+		gtk_box_pack_start (GTK_BOX (hbox), dial[i], TRUE, TRUE, 0);
 	}
+	
+	/* set to -1 to use the requisition */
+	hints.base_width = -1;
+	hints.base_height = -1;
+	hints.min_width = -1;
+	hints.min_height = -1;
+
+	/* since each led starts at a width of 10, (see gtkled.c) then
+	 * to increase each led by 1px, we set the incremenet width to
+	 * num_segments * 1px = 20px */
+	hints.width_inc = 20;
+	
+	/* arbitrary */
+	hints.height_inc = 20;
+
+	gtk_window_set_geometry_hints (GTK_WINDOW (window),
+				       NULL,
+				       &hints,
+				       GDK_HINT_RESIZE_INC |
+				       GDK_HINT_MIN_SIZE |
+				       GDK_HINT_BASE_SIZE);
 	
 	gtk_widget_show_all (window);
 	open_sound(record);

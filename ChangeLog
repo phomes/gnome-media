@@ -1,5 +1,15 @@
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
+	* vu-meter/gtkled.c: (gtk_led_init), (gtk_led_size_request),
+	(gtk_led_size_allocate), (gtk_led_expose):
+	* vu-meter/gtkled.h:
+	* vu-meter/gtkledbar.c: (led_bar_new):
+	* vu-meter/main.c: (main):
+	  Implement dynamic resizing (#315257), patch by Brent Smith
+	  <gnome@nextreality.net>.
+
+2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
 	* gst-mixer/src/Makefile.am:
 	* gst-mixer/src/element.c: (gnome_volume_control_element_dispose):
 	* gst-mixer/src/misc.c: (get_page_num), (get_page_description):

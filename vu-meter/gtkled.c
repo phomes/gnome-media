@@ -26,6 +26,7 @@
 
 #include "gtkled.h"
 
+/* these define initial width and height of the LED */
 #define	LED_WIDTH	(10)
 #define	LED_HEIGHT	(5)
 #define	BOTTOM_SPACE	(2)
@@ -33,6 +34,8 @@
 static void gtk_led_finalize (GObject *object);
 static void gtk_led_size_request (GtkWidget *widget,
 				  GtkRequisition *requisition);
+static void gtk_led_size_allocate (GtkWidget *widget,
+				  GtkAllocation *allocate);
 static gint gtk_led_expose (GtkWidget *widget,
 			    GdkEventExpose *event);
 static void gtk_led_realize (GtkWidget *widget);
@@ -72,6 +75,10 @@ gtk_led_init (GtkLed *led)
 	
 	led->is_on             = FALSE;
 	led->gc                = NULL;
+	led->width             = LED_WIDTH;
+	led->height            = LED_HEIGHT;
+
+	g_signal_connect (GTK_OBJECT(led), "size-allocate", gtk_led_size_allocate, NULL);
 }
 
 GtkWidget*
@@ -151,8 +158,23 @@ gtk_led_size_request (GtkWidget	     *widget,
 	
 	led = GTK_LED (widget);
 	
-	requisition->width = LED_WIDTH + led->misc.xpad * 2;
-	requisition->height = LED_HEIGHT + led->misc.ypad * 2 + BOTTOM_SPACE;
+	requisition->width = led->width + led->misc.xpad * 2;
+	requisition->height = led->height + led->misc.ypad * 2 + BOTTOM_SPACE;
+}
+
+static void
+gtk_led_size_allocate (GtkWidget     *widget,
+		       GtkAllocation *allocate)
+{
+	GtkLed *led;
+	
+	g_return_if_fail (GTK_IS_LED (widget));
+	g_return_if_fail (allocate != NULL);
+
+	led = GTK_LED (widget);
+	
+	led->width = allocate->width;
+	led->height = allocate->height - BOTTOM_SPACE;
 }
 
 static void 
@@ -211,28 +233,24 @@ gtk_led_expose (GtkWidget      *widget,
 				&(led->fg[LED_COLOR_OFF]);
 
 			gdk_gc_set_foreground (led->gc, win_bg);
-			x = widget->allocation.x + misc->xpad +
-				(widget->allocation.width - 
-				 widget->requisition.width) *  
-				misc->xalign + 0.5;
+			x = widget->allocation.x + misc->xpad * misc->xalign + 0.5;
 
-			y = widget->allocation.y + misc->ypad + LED_HEIGHT +
-				(widget->allocation.height - 
-				 widget->requisition.height) * 
-				misc->xalign + 0.5 - BOTTOM_SPACE;
+			y = widget->allocation.y + misc->ypad * misc->xalign + 0.5 - BOTTOM_SPACE;
 			
 			gtk_draw_shadow (widget->style, widget->window,
 					 GTK_STATE_NORMAL, GTK_SHADOW_IN,
 					 x, y,
-					 LED_WIDTH,
-					 LED_HEIGHT);
+					 led->width,
+					 led->height);
 			
 			gdk_draw_rectangle (widget->window,
 					    led->gc,
 					    TRUE,
 					    x + 1, y + 1,
-					    LED_WIDTH - 2,
-					    LED_HEIGHT - 2);
+					    led->width - 2,
+					    led->height - 2);
+		
+			
 		}
 	}
 	

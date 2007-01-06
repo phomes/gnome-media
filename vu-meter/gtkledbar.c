@@ -55,6 +55,7 @@ led_bar_new (gint segments, gint orientation )
 	GdkColor  active;
 	GdkColor  inactive;
 	gint      half, full;
+	GtkAttachOptions sizeopts;
 	
 	led_bar = gtk_type_new (led_bar_get_type ());
 	if (segments > MAX_SEGMENTS) {
@@ -79,6 +80,8 @@ led_bar_new (gint segments, gint orientation )
 	gdk_color_parse ("#00F100", &active);
 	gdk_color_parse ("#008C00", &inactive);
 
+	sizeopts = GTK_EXPAND | GTK_FILL;
+	
 	for (i = 0; i < segments; i++) {
 		if (i >= half && i <= full) {
 			gdk_color_parse ("#F1EE00", &active);
@@ -95,11 +98,11 @@ led_bar_new (gint segments, gint orientation )
 		
 		if ( !orientation ) {/* horiz */
 			gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
-					  i, (i + 1), 0, 1, 0, 0, 0, 0);
+					  i, (i + 1), 0, 1, sizeopts, sizeopts, 0, 0);
 		} else { /* vert */
 			gtk_table_attach (GTK_TABLE (table), led_bar->segments[i],
 					  0, 1, (segments - i - 1), (segments - i),
-					  0, 0, 0, 0 );
+					  sizeopts, sizeopts, 0, 0 );
 		}
 		
 		gtk_widget_show (led_bar->segments[i]);

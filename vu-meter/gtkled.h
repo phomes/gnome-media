@@ -45,6 +45,7 @@ struct _GtkLed
   GdkGC    *gc;
 
   guint is_on;
+  gint width, height;
 };
 
 struct _GtkLedClass
