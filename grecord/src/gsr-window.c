@@ -776,8 +776,6 @@ file_save_as_cb (GtkAction *action,
 	}
 
 	gtk_widget_destroy (file_chooser);
-
-	window->priv->quit_after_save = FALSE;
 }
 
 
