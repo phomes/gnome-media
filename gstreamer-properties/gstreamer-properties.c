@@ -193,14 +193,13 @@ update_device_menu (GSTPPipelineEditor * editor,
 
 	if(editor->devicemenu) {
     gchar *insensitive_label = g_strdup(_("None"));
+	  GtkMenu *menu = GTK_MENU (gtk_menu_new ());
+	  GtkMenuItem *mi = NULL;
+		GtkMenuItem *mi_preselect = NULL;
 
     gtk_widget_set_sensitive (GTK_WIDGET (editor->devicemenu), FALSE);
 
 	  gtk_option_menu_remove_menu (editor->devicemenu);
-
-	  GtkMenu *menu = GTK_MENU (gtk_menu_new ());
-	  GtkMenuItem *mi = NULL;
-		GtkMenuItem *mi_preselect = NULL;
 
 		if (pipeline_desc->is_custom == FALSE) {
 
