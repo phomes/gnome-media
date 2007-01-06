@@ -293,7 +293,7 @@ PKG_CHECK_MODULES(GNOMECD, \
   HAVE_GNOMECD=yes,
   [
     AC_MSG_RESULT(no)
-    PKG_CHECK_MODULES(GNOMECD, libnautilus-burn >= 2.9.0,
+    PKG_CHECK_MODULES(GNOMECD, libnautilus-burn >= 2.9.0 gtk+-2.0 >= 2.10.0,
       HAVE_GNOMECD=yes,
       [
         AC_MSG_RESULT(no)
