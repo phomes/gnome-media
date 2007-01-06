@@ -123,6 +123,9 @@ gnome_volume_control_element_dispose (GObject *object)
   }
 
   if (el->mixer) {
+    /* remove g_timeout_add() mainloop handlers */
+    gnome_volume_control_element_change (el, NULL);
+    gst_element_set_state (el->mixer, GST_STATE_NULL);
     gst_object_unref (GST_OBJECT (el->mixer));
     el->mixer = NULL;
   }
@@ -240,9 +243,6 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   const GList *item;
   GstMixer *mixer;
 
-  g_return_if_fail (GST_IS_MIXER (element));
-  mixer = GST_MIXER (element);
-
   /* remove old pages */
   while (gtk_notebook_get_n_pages (GTK_NOTEBOOK (el)) > 0) {
     gtk_notebook_remove_page (GTK_NOTEBOOK (el), 0);
@@ -260,6 +260,11 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
       gnome_volume_control_track_free (trkw);
     }
   }
+  if (!element)
+    return;
+
+  g_return_if_fail (GST_IS_MIXER (element));
+  mixer = GST_MIXER (element);
   gst_object_replace ((GstObject **) &el->mixer, GST_OBJECT (element));
 
   /* content pages */

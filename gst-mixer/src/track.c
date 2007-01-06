@@ -468,8 +468,10 @@ gnome_volume_control_track_add_option (GtkTable *table,
 void
 gnome_volume_control_track_free (GnomeVolumeControlTrack *track)
 {
-  if (track->id != 0)
+  if (track->id != 0) {
     g_source_remove (track->id);
+    track->id = 0;
+  }
 
   g_object_unref (G_OBJECT (track->track));
 

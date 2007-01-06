@@ -1,5 +1,14 @@
 2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
+	* gst-mixer/src/element.c: (gnome_volume_control_element_dispose),
+	(gnome_volume_control_element_change):
+	* gst-mixer/src/track.c: (gnome_volume_control_track_free):
+	* gst-mixer/src/window.c: (gnome_volume_control_window_dispose):
+	  Clean up on close, so that we don't crash if the idle handler
+	  comes in between the final exit() and the cleanup (#361887).
+
+2007-01-06  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
 	* configure.in:
 	  Set correct gtk version dependency for GtkStatusIcon.
 

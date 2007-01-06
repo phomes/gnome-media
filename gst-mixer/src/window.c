@@ -272,12 +272,7 @@ gnome_volume_control_window_dispose (GObject *object)
   if (win->elements) {
     const GList *item;
 
-    for (item = win->elements; item != NULL; item = item->next) {
-      GstElement *element = GST_ELEMENT (item->data);
-
-      gst_element_set_state (element, GST_STATE_NULL);
-      gst_object_unref (element);
-    }
+    g_list_foreach (win->elements, (GFunc) g_object_unref, NULL);
     g_list_free (win->elements);
     win->elements = NULL;
   }
