@@ -537,8 +537,8 @@ create_pipeline_menu (GladeXML * dialog, GSTPPipelineEditor * editor)
         /* This is probably the 'Custom' pipeline */
       }
 
-      mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (_(pipeline_desc[i].
-                  name)));
+      mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (
+			gettext (pipeline_desc[i].name)));
       pipeline_desc[i].index = i;
       g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
           (gpointer) & pipeline_desc[i]);

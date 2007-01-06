@@ -47,9 +47,9 @@ extern GSTPPipelineDescription audiosrc_pipelines[];
 extern GSTPPipelineDescription videosrc_pipelines[];
 
 GSTPPipelineDescription audiosink_pipelines[] = {
-  {PIPE_TYPE_AUDIOSINK, 0, "Autodetect", "autoaudiosink", NULL, FALSE,
+  {PIPE_TYPE_AUDIOSINK, 0, N_("Autodetect"), "autoaudiosink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-  {PIPE_TYPE_AUDIOSINK, 0, "ALSA - Advanced Linux Sound Architecture",
+  {PIPE_TYPE_AUDIOSINK, 0, N_("ALSA - Advanced Linux Sound Architecture"),
       "alsasink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #if 0
   {PIPE_TYPE_AUDIOSINK, 0,
@@ -64,24 +64,24 @@ GSTPPipelineDescription audiosink_pipelines[] = {
         "alsasink device=dmix:0", NULL, FALSE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSINK, 0, "Artsd - ART Sound Daemon",
+  {PIPE_TYPE_AUDIOSINK, 0, N_("Artsd - ART Sound Daemon"),
       "artsdsink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-  {PIPE_TYPE_AUDIOSINK, 0, "ESD - Enlightenment Sound Daemon",
+  {PIPE_TYPE_AUDIOSINK, 0, N_("ESD - Enlightenment Sound Daemon"),
       "esdsink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #if 0                           /* Disabled this until it works */
   {PIPE_TYPE_AUDIOSINK, 0, "Jack", "jackbin.( jacksink )", NULL, FALSE,
       TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSINK, 0, "OSS - Open Sound System",
+  {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System"),
       "osssink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
-  {PIPE_TYPE_AUDIOSINK, 0, "Pulse - PulseAudio Sound Server",
+  {PIPE_TYPE_AUDIOSINK, 0, N_("Pulse - PulseAudio Sound Server"),
       "pulsesink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
   {PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, TRUE}
 };
 
 GSTPPipelineDescription videosink_pipelines[] = {
-  {PIPE_TYPE_VIDEOSINK, 0, "Autodetect", "autovideosink", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSINK, 0, N_("Autodetect"), "autovideosink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 #if 0
   /*
@@ -99,50 +99,50 @@ GSTPPipelineDescription videosink_pipelines[] = {
   {PIPE_TYPE_VIDEOSINK, 0, "Colour Ascii Art", "cacasink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 #endif
-  {PIPE_TYPE_VIDEOSINK, 0, "SDL - Simple DirectMedia Layer", "sdlvideosink",
+  {PIPE_TYPE_VIDEOSINK, 0, N_("SDL - Simple DirectMedia Layer"), "sdlvideosink",
       NULL, FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, "X Window System (No Xv)",
+  {PIPE_TYPE_VIDEOSINK, 0, N_("X Window System (No Xv)"),
       "ximagesink", NULL, FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, "X Window System (X11/XShm/Xv)", "xvimagesink", NULL,
+  {PIPE_TYPE_VIDEOSINK, 0, N_("X Window System (X11/XShm/Xv)"), "xvimagesink", NULL,
       FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
   {PIPE_TYPE_VIDEOSINK, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_SUPPLIED,
       videosink_test_pipe, TRUE}
 };
 
 GSTPPipelineDescription audiosrc_pipelines[] = {
-  {PIPE_TYPE_AUDIOSRC, 0, "ALSA - Advanced Linux Sound Architecture",
+  {PIPE_TYPE_AUDIOSRC, 0, N_("ALSA - Advanced Linux Sound Architecture"),
       "alsasrc", NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-  {PIPE_TYPE_AUDIOSRC, 0, "ESD - Enlightenment Sound Daemon", "esdmon",
+  {PIPE_TYPE_AUDIOSRC, 0, N_("ESD - Enlightenment Sound Daemon"), "esdmon",
       NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
 #if 0                           /* Disabled this until it works */
   {PIPE_TYPE_AUDIOSRC, 0, "Jack", "jackbin{ jacksrc }", NULL, FALSE,
         TEST_PIPE_AUDIOSINK,
       NULL, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSRC, 0, "OSS - Open Sound System", "osssrc", NULL, FALSE,
+  {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System"), "osssrc", NULL, FALSE,
       TEST_PIPE_AUDIOSINK, NULL, FALSE},
-  {PIPE_TYPE_AUDIOSRC, 0, "Pulse - PulseAudio Sound Server", "pulsesrc", NULL,
+  {PIPE_TYPE_AUDIOSRC, 0, N_("Pulse - PulseAudio Sound Server"), "pulsesrc", NULL,
       FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
   /* Note: using triangle instead of sine for test sound so we
    * can test the vorbis encoder as well (otherwise it'd compress too well) */
-  {PIPE_TYPE_AUDIOSRC, 0, "Test Sound", "audiotestsrc wave=triangle is-live=true",
+  {PIPE_TYPE_AUDIOSRC, 0, N_("Test Sound"), "audiotestsrc wave=triangle is-live=true",
       NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-  {PIPE_TYPE_AUDIOSRC, 0, "Silence", "audiotestsrc wave=silence is-live=true",
+  {PIPE_TYPE_AUDIOSRC, 0, N_("Silence"), "audiotestsrc wave=silence is-live=true",
       NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
   {PIPE_TYPE_AUDIOSRC, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_AUDIOSINK, NULL,
       TRUE}
 };
 
 GSTPPipelineDescription videosrc_pipelines[] = {
-  {PIPE_TYPE_VIDEOSRC, 0, "MJPEG (e.g. Zoran v4l device)", "v4lmjpegsrc", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSRC, 0, N_("MJPEG (e.g. Zoran v4l device)"), "v4lmjpegsrc", NULL, FALSE,
       TEST_PIPE_VIDEOSINK, NULL, FALSE},
-  {PIPE_TYPE_VIDEOSRC, 0, "QCAM", "qcamsrc", NULL, FALSE, TEST_PIPE_VIDEOSINK,
+  {PIPE_TYPE_VIDEOSRC, 0, N_("QCAM"), "qcamsrc", NULL, FALSE, TEST_PIPE_VIDEOSINK,
       NULL, FALSE},
-  {PIPE_TYPE_VIDEOSRC, 0, "Test Input", "videotestsrc is-live=true", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSRC, 0, N_("Test Input"), "videotestsrc is-live=true", NULL, FALSE,
       TEST_PIPE_VIDEOSINK, NULL, FALSE},
-  {PIPE_TYPE_VIDEOSRC, 0, "Video for Linux (v4l)", "v4lsrc", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSRC, 0, N_("Video for Linux (v4l)"), "v4lsrc", NULL, FALSE,
       TEST_PIPE_VIDEOSINK, NULL, FALSE},
-  {PIPE_TYPE_VIDEOSRC, 0, "Video for Linux 2 (v4l2)", "v4l2src", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSRC, 0, N_("Video for Linux 2 (v4l2)"), "v4l2src", NULL, FALSE,
       TEST_PIPE_VIDEOSINK, NULL, FALSE},
   {PIPE_TYPE_VIDEOSRC, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_VIDEOSINK, NULL,
       TRUE}
