@@ -2,7 +2,8 @@ INCLUDES = \
         -I$(top_srcdir) \
 	$(MEDIA_CFLAGS)	\
 	-I$(top_srcdir)/cddb-slave2	\
-	$(GAILUTIL_CFLAGS)
+	$(GAILUTIL_CFLAGS) \
+	$(LIBXML2_CFLAGS)
 
 noinst_LTLIBRARIES = libgnomecdaccess.la
 
@@ -18,4 +19,6 @@ libgnomecdaccess_la_SOURCES = \
 	factory.c	\
 	factory.h
 
-libgnomecdaccess_la_LIBADD = $(INTLLIBS)
+libgnomecdaccess_la_LIBADD = \
+	$(INTLLIBS) \
+	$(LIBXML2_LIBS)
