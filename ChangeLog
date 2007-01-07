@@ -1,5 +1,13 @@
 2007-01-07  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
+	* grecord/src/gsr-window.c: (do_save_file), (file_save_as_cb),
+	(record_state_changed_cb), (gsr_window_set_property):
+	  Save extension when recording start, so that if the profile
+	  selection changes, we don't provide a false extension hint for
+	  the already-recorded file (#300571).
+
+2007-01-07  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
 	* grecord/src/gsr-window.c: (pipeline_error_cb), (file_save_cb),
 	(play_state_changed_cb), (record_state_changed_cb),
 	(gsr_window_set_property):

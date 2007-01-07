@@ -662,11 +662,12 @@ do_save_file (GSRWindow *window,
 
         profile = gm_audio_profile_choose_get_active (priv->profile);
 
-	if (g_str_has_suffix (_name, gm_audio_profile_get_extension (profile)))
+	if (window->priv->extension == NULL ||
+	    g_str_has_suffix (_name, window->priv->extension))
 		name = g_strdup (_name);
 	else
 		name = g_strdup_printf ("%s.%s", _name,
-			       gm_audio_profile_get_extension (profile));
+				window->priv->extension);
 	if (g_file_test (name, G_FILE_TEST_EXISTS)) {
 		if (!replace_existing_file (GTK_WINDOW (window), name))
 			return;
@@ -746,10 +747,11 @@ file_save_as_cb (GtkAction *action,
 
 		filename = g_strndup (basename,length);
 		profile = gm_audio_profile_choose_get_active (window->priv->profile);
-		g_free (window->priv->extension);
-
-		window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
-		filename_ext = g_strdup_printf ("%s.%s", filename , window->priv->extension);
+		if (window->priv->extension)
+			filename_ext = g_strdup_printf ("%s.%s", filename,
+						window->priv->extension);
+		else
+			filename_ext = g_strdup (filename);
 		gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (file_chooser),
 						   filename_ext);
 		g_free (filename);
@@ -1694,6 +1696,7 @@ static void
 record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 {
 	GstState  new_state;
+	GMAudioProfile *profile;
 
 	gst_message_parse_state_changed (msg, NULL, &new_state, NULL);
 
@@ -1710,6 +1713,9 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 	switch (new_state) {
 	case GST_STATE_PLAYING:
 		window->priv->record_id = g_idle_add (record_start, window);
+		g_free (window->priv->extension);
+		profile = gm_audio_profile_choose_get_active (window->priv->profile);
+		window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
 		gtk_widget_set_sensitive (window->priv->profile, FALSE);
 		gtk_widget_set_sensitive (window->priv->input, FALSE);
 		break;
@@ -2308,6 +2314,7 @@ gsr_window_set_property (GObject      *object,
 	GSRWindowPrivate *priv;
 	struct stat buf;
 	char *title, *short_name;
+	const char *ext;
 
 	window = GSR_WINDOW (object);
 	priv = window->priv;
@@ -2333,6 +2340,12 @@ gsr_window_set_property (GObject      *object,
 		} else {
 			window->priv->has_file = FALSE;
 		}
+
+		g_free (window->priv->extension);
+		if ((ext = strrchr (short_name, '.')) && ext[1] != '\0')
+			window->priv->extension = g_strdup (&ext[1]);
+		else
+			window->priv->extension = NULL;
 
 		if (priv->name_label != NULL) {
 			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
