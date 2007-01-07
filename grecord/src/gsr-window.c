@@ -565,7 +565,7 @@ pipeline_error_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 	set_action_sensitive (window, "Stop", FALSE);
 	set_action_sensitive (window, "Play", TRUE);
 	set_action_sensitive (window, "Record", TRUE);
-	set_action_sensitive (window, "FileSave", FALSE);
+	set_action_sensitive (window, "FileSave", TRUE);
 	set_action_sensitive (window, "FileSaveAs", TRUE);
 	gtk_widget_set_sensitive (window->priv->scale, TRUE);
 
@@ -783,13 +783,7 @@ static void
 file_save_cb (GtkAction *action,
 	      GSRWindow *window)
 {
-	if (window->priv->filename == NULL ||
-	    /* Translator comment: Untitled here implies a track without a
-	     * name. See also the translation in gnome-recorder.c:94. Those
-	     * two strings should match! If the track is unnamed, we will
-	     * open the save-as dialog here, else we´ll use the given file
-	     * to save to. */
-	    g_strrstr (window->priv->filename, _("Untitled")) == 0) {
+	if (window->priv->dirty) {
 		file_save_as_cb (NULL, window);
 	} else {
 		do_save_file (window, window->priv->filename);
@@ -1480,7 +1474,7 @@ play_state_changed_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 		set_action_sensitive (window, "Stop", FALSE);
 		set_action_sensitive (window, "Play", TRUE);
 		set_action_sensitive (window, "Record", TRUE);
-		set_action_sensitive (window, "FileSave", window->priv->dirty ? TRUE : FALSE);
+		set_action_sensitive (window, "FileSave", TRUE);
 		set_action_sensitive (window, "FileSaveAs", TRUE);
 
 		gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
@@ -1729,7 +1723,7 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		set_action_sensitive (window, "Stop", FALSE);
 		set_action_sensitive (window, "Play", TRUE);
 		set_action_sensitive (window, "Record", TRUE);
-		set_action_sensitive (window, "FileSave", window->priv->dirty ? TRUE : FALSE);
+		set_action_sensitive (window, "FileSave", TRUE);
 		set_action_sensitive (window, "FileSaveAs", TRUE);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 
@@ -2356,7 +2350,7 @@ gsr_window_set_property (GObject      *object,
 		set_action_sensitive (window, "Play", window->priv->has_file ? TRUE : FALSE);
 		set_action_sensitive (window, "Stop", FALSE);
 		set_action_sensitive (window, "Record", TRUE);
-		/* set_action_sensitive (window, "FileSave", FALSE); */
+		set_action_sensitive (window, "FileSave", window->priv->has_file ? TRUE : FALSE);
 		set_action_sensitive (window, "FileSaveAs", window->priv->has_file ? TRUE : FALSE);
 		break;
 	default:
