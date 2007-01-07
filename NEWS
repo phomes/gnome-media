@@ -1,3 +1,47 @@
+This is gnome-media 2.17.2
+
+Changes since 2.17.1:
+	* Add AAC/MP3 default audio profiles
+	* Do not show profiles in the selection box if the plugins
+	  are not available
+	* Some fixes for strings wrongly marked or not marked for i18n
+	* Add explicit compile dependency on libxml2
+	* Fixes to gnome-volume-control and gnome-sound-recorder to not crash
+	  after closing
+	* Change OK/cancel buttons into a single close button in profile
+	  editor (which was already instant-apply)
+	* Better display of tracks that have separate playback and record
+	  volume controls, which occurs on e.g. the Audigy
+	* Allow resizing of the vu-meter
+	* Default speex profile extension changed from .ogg to .spx
+	* Audio profile editor dialogs are no longer modal
+	* Removed save-as button from gnome-sound-recorder toolbar, and made
+	  the save button behave as save-as when no filename has been given
+	* Fix for false extension hint if the profile selection is changed
+	  in between recording and saving in gnome-sound-recorder
+	* C89 and Solaris compile fixes
+
+Bugs fixed:
+	* 300571: Gnome Sound Recorder Can Falsely name files
+	* 302392: Gnome-volume-control no capture tab for Audigy 2
+	* 313495: Audigy 2 mixer duplication and inactive mixers shown
+	* 315257: vumeter window resizing
+	* 317257: MP3 profile should be included in default install
+	* 317430: gnome-audio-profiles-properties profile editor is modal
+	* 328386: Voice, Lossy profile (speex) should use spx for file exte...
+	* 346386: Cancelling changes after editing a profile still applies ...
+	* 346389: Clicking 'Help' in Profile Edit Dialog closes dialog
+	* 355085: Gnome-sound-recorder dialog too small
+	* 361887: gnome-volume-control crashed
+	* 364652: The relation between label_for/labelled_by is absent in s...
+	* 364656: The Length text is not accessible for orca.
+	* 367442: Sound-recorder core dumps while quiting.
+	* 383106: shouldn't use __FUNCTION__ in source code since this is G...
+	* 383469: audio profiles editor gstreamer entry i18n problem
+	* 387868: compile errors with gcc 2
+	* 388728: gnome-media fails; implicit dependence on libxml2 not sil...
+	* 393527: GStreamer settings variables untranslated
+
 This is gnome-media 2.17.1
 
 Changes since 2.16.1:
