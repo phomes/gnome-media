@@ -966,7 +966,7 @@ main (int argc, char *argv[])
 		{ "play",   '\0', 0, G_OPTION_ARG_NONE, &cd_option_play,
 		  N_("Play the CD on startup"), NULL },
 		{ "tray", '\0', 0, G_OPTION_ARG_NONE, &cd_option_tray,
-		  N_("Start iconified to tray"), NULL},
+		  N_("Start iconified in notification area"), NULL},
 		{ NULL, '\0', 0, 0, NULL, NULL, NULL }
 	};
 
