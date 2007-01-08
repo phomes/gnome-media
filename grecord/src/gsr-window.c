@@ -2151,6 +2151,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_widget_show (menubar);
 
 	toolbar = gtk_ui_manager_get_widget (priv->ui_manager, "/ToolBar");
+	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (toolbar), FALSE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), toolbar, FALSE, FALSE, 0);
 	gtk_widget_show (toolbar);
 
