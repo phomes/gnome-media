@@ -125,6 +125,8 @@ static gboolean
 cb_check (gpointer data)
 {
   GnomeVolumeControlTrack *trkw = data;
+  gboolean mute, record;
+  gboolean vol_is_zero = FALSE, slider_is_zero = FALSE;
 
   /* trigger an update of the mixer state */
   if (! GST_IS_MIXER_OPTIONS (trkw->track)) {
@@ -133,11 +135,10 @@ cb_check (gpointer data)
     g_free (dummy);
   }
   
-  gboolean mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
-				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE,
-           record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
+  mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
+				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE;
+  record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
 				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
-  gboolean vol_is_zero = FALSE, slider_is_zero = FALSE;
 
   if (trkw->sliderbox) {
     gnome_volume_control_volume_ask (
