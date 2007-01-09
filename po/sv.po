@@ -5,14 +5,14 @@
 # Andreas Hyden <a.hyden@cyberpoint.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004, 2005, 2006.
 #
-# $Id$
+# $Id: sv.po,v 1.99 2006/12/22 21:34:08 dnylande Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-22 15:50+0100\n"
-"PO-Revision-Date: 2006-12-22 22:31+0100\n"
+"POT-Creation-Date: 2007-01-08 07:23+0000\n"
+"PO-Revision-Date: 2007-01-09 23:28+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -145,12 +145,12 @@ msgstr "Okänd / Okänd"
 
 #. Attempts to get length ran out.
 #: ../cddb-slave2/cddb-slave.c:227
-#: ../grecord/src/gsr-window.c:983
-#: ../grecord/src/gsr-window.c:993
-#: ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018
-#: ../grecord/src/gsr-window.c:1361
-#: ../gstreamer-properties/gstreamer-properties.c:282
+#: ../grecord/src/gsr-window.c:977
+#: ../grecord/src/gsr-window.c:987
+#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1355
+#: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -899,7 +899,7 @@ msgstr "Tidslinje"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:190
 msgid "Line for displaying the time elapsed for the current track"
-msgstr "Linje för visning av den tid som gått tid för aktuellt spår"
+msgstr "Linje för visning av den tid som gått för aktuellt spår"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:193
 msgid "Info Line"
@@ -1079,7 +1079,7 @@ msgstr "_Mata ut skiva"
 
 #. Help menu
 #: ../gnome-cd/gnome-cd.c:367
-#: ../grecord/src/gsr-window.c:1992
+#: ../grecord/src/gsr-window.c:1990
 msgid "_Help"
 msgstr "_Hjälp"
 
@@ -1208,8 +1208,8 @@ msgid "Play the CD on startup"
 msgstr "Spela cd-skivan vid uppstart"
 
 #: ../gnome-cd/gnome-cd.c:969
-msgid "Start iconified to tray"
-msgstr "Starta som ikon i lådan"
+msgid "Start iconified in notification area"
+msgstr "Starta som ikon i notifieringsytan"
 
 #. Stick a message box here?
 #: ../gnome-cd/gnome-cd.c:1009
@@ -1233,7 +1233,7 @@ msgid "Device path"
 msgstr "Enhetssökväg"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time ?"
+msgid "Display the Remaining time?"
 msgstr "Visa återstående tid?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
@@ -1241,7 +1241,7 @@ msgid "Eject the CD when CD player quits?"
 msgstr "Mata ut cd-skivan då cd-spelaren avslutas"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing ?"
+msgid "How the time should be displayed while CD Player is playing?"
 msgstr "Hur tiden ska visas medan cd-spelaren spelar?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
@@ -1328,28 +1328,22 @@ msgid "Record sound clips"
 msgstr "Spela in ljudklipp"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1206
+#: ../grecord/src/gsr-window.c:1200
 msgid "Sound Recorder"
 msgstr "Ljudinspelare"
 
-#. Translator comment: Untitled here implies a track without a
-#. * name. See also the translation in gnome-recorder.c:94. Those
-#. * two strings should match! If the track is unnamed, we will
-#. * open the save-as dialog here, else we´ll use the given file
-#. * to save to.
 #. Translator comment: default trackname is 'untitled', which
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142
-#: ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1689
-#: ../grecord/src/gsr-window.c:2467
+#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:2473
 msgid "Untitled"
 msgstr "Namnlös"
 
 #: ../grecord/src/gnome-recorder.c:144
-#: ../grecord/src/gsr-window.c:1691
+#: ../grecord/src/gsr-window.c:1685
 #, c-format
 msgid "Untitled-%d"
 msgstr "Namnlös-%d"
@@ -1435,9 +1429,9 @@ msgstr ""
 "%s"
 
 #: ../grecord/src/gsr-window.c:576
-#: ../grecord/src/gsr-window.c:1492
-#: ../grecord/src/gsr-window.c:1742
-#: ../grecord/src/gsr-window.c:2296
+#: ../grecord/src/gsr-window.c:1486
+#: ../grecord/src/gsr-window.c:1740
+#: ../grecord/src/gsr-window.c:2295
 msgid "Ready"
 msgstr "Klar"
 
@@ -1455,122 +1449,122 @@ msgstr ""
 "Det finns redan en fil med namnet \"%s\".\n"
 "Vill du ersätta den med den du håller på att spara?"
 
-#: ../grecord/src/gsr-window.c:696
-#: ../grecord/src/gsr-window.c:703
+#: ../grecord/src/gsr-window.c:697
+#: ../grecord/src/gsr-window.c:704
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Kunde inte spara filen \"%s\""
 
-#: ../grecord/src/gsr-window.c:720
+#: ../grecord/src/gsr-window.c:721
 msgid "Save file as"
 msgstr "Spara fil som"
 
-#: ../grecord/src/gsr-window.c:814
+#: ../grecord/src/gsr-window.c:808
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s är inte installerad i sökvägen."
 
-#: ../grecord/src/gsr-window.c:823
+#: ../grecord/src/gsr-window.c:817
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Det uppstod ett fel vid start av %s: %s"
 
-#: ../grecord/src/gsr-window.c:845
+#: ../grecord/src/gsr-window.c:839
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Spara ändringarna i filen \"%s\" innan stängning?"
 
-#: ../grecord/src/gsr-window.c:856
+#: ../grecord/src/gsr-window.c:850
 msgid "Close _without Saving"
 msgstr "Stäng _utan att spara"
 
-#: ../grecord/src/gsr-window.c:863
+#: ../grecord/src/gsr-window.c:857
 msgid "Question"
 msgstr "Fråga"
 
-#: ../grecord/src/gsr-window.c:955
+#: ../grecord/src/gsr-window.c:949
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Har inte sparats)"
 
-#: ../grecord/src/gsr-window.c:970
+#: ../grecord/src/gsr-window.c:964
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu byte)"
 
-#: ../grecord/src/gsr-window.c:974
+#: ../grecord/src/gsr-window.c:968
 msgid "Unknown size"
 msgstr "Okänd storlek"
 
-#: ../grecord/src/gsr-window.c:995
+#: ../grecord/src/gsr-window.c:989
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:997
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1006
+#: ../grecord/src/gsr-window.c:1000
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/sek (Uppskattad)"
 
-#: ../grecord/src/gsr-window.c:1021
+#: ../grecord/src/gsr-window.c:1015
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1018
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1045
 #, c-format
 msgid "%s Information"
 msgstr "Information om %s"
 
-#: ../grecord/src/gsr-window.c:1075
-#: ../grecord/src/gsr-window.c:2232
+#: ../grecord/src/gsr-window.c:1069
+#: ../grecord/src/gsr-window.c:2231
 msgid "File Information"
 msgstr "Filinformation"
 
-#: ../grecord/src/gsr-window.c:1090
+#: ../grecord/src/gsr-window.c:1084
 msgid "Folder:"
 msgstr "Mapp:"
 
-#: ../grecord/src/gsr-window.c:1096
-#: ../grecord/src/gsr-window.c:2247
+#: ../grecord/src/gsr-window.c:1090
+#: ../grecord/src/gsr-window.c:2246
 msgid "Filename:"
 msgstr "Filnamn:"
 
-#: ../grecord/src/gsr-window.c:1102
+#: ../grecord/src/gsr-window.c:1096
 msgid "File size:"
 msgstr "Filstorlek:"
 
-#: ../grecord/src/gsr-window.c:1111
+#: ../grecord/src/gsr-window.c:1105
 msgid "Audio Information"
 msgstr "Ljudinformation"
 
-#: ../grecord/src/gsr-window.c:1126
+#: ../grecord/src/gsr-window.c:1120
 msgid "File duration:"
 msgstr "Fillängd:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1126
 msgid "Number of channels:"
 msgstr "Antal kanaler:"
 
-#: ../grecord/src/gsr-window.c:1138
+#: ../grecord/src/gsr-window.c:1132
 msgid "Sample rate:"
 msgstr "Samplingsfrekvens:"
 
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1138
 msgid "Bit rate:"
 msgstr "Bithastighet:"
 
-#: ../grecord/src/gsr-window.c:1209
+#: ../grecord/src/gsr-window.c:1203
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1578,153 +1572,153 @@ msgstr ""
 "Ett ljudinspelningsprogram för GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1464
+#: ../grecord/src/gsr-window.c:1458
 msgid "Playing..."
 msgstr "Spelar upp..."
 
-#: ../grecord/src/gsr-window.c:1593
+#: ../grecord/src/gsr-window.c:1587
 msgid "GConf audio output"
 msgstr "GConf-ljudutgång"
 
-#: ../grecord/src/gsr-window.c:1602
-#: ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1596
+#: ../gst-mixer/src/element.c:220
 msgid "Playback"
 msgstr "Uppspelning"
 
-#: ../grecord/src/gsr-window.c:1680
+#: ../grecord/src/gsr-window.c:1674
 msgid "Recording..."
 msgstr "Spelar in..."
 
-#: ../grecord/src/gsr-window.c:1760
+#: ../grecord/src/gsr-window.c:1758
 msgid "GConf audio recording"
 msgstr "GConf-ljudinspelning"
 
-#: ../grecord/src/gsr-window.c:1769
+#: ../grecord/src/gsr-window.c:1767
 msgid "Your audio capture settings are invalid. Please correct them in the Multimedia settings."
 msgstr "Dina ljudfångstinställningar är ogiltiga. Vänligen rätta till dem i Multimedia-inställningarna."
 
-#: ../grecord/src/gsr-window.c:1858
+#: ../grecord/src/gsr-window.c:1856
 msgid "file output"
 msgstr "filutgång"
 
-#: ../grecord/src/gsr-window.c:1887
+#: ../grecord/src/gsr-window.c:1885
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Kunde inte tolka ljudprofilen \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1903
+#: ../grecord/src/gsr-window.c:1901
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Kunde inte fånga in med ljudprofilen \"%s\". "
 
-#: ../grecord/src/gsr-window.c:1913
+#: ../grecord/src/gsr-window.c:1911
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Kunde inte skriva till en fil med ljudprofilen \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:1962
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../grecord/src/gsr-window.c:1966
+#: ../grecord/src/gsr-window.c:1964
 msgid "Create a new sample"
 msgstr "Skapa ett nytt ljudklipp"
 
-#: ../grecord/src/gsr-window.c:1967
+#: ../grecord/src/gsr-window.c:1965
 msgid "_Open..."
 msgstr "_Öppna..."
 
-#: ../grecord/src/gsr-window.c:1968
+#: ../grecord/src/gsr-window.c:1966
 msgid "Open a file"
 msgstr "Öppna en fil"
 
-#: ../grecord/src/gsr-window.c:1970
+#: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file"
 msgstr "Spara den aktuella filen"
 
-#: ../grecord/src/gsr-window.c:1971
+#: ../grecord/src/gsr-window.c:1969
 msgid "Save _As..."
 msgstr "Spara so_m..."
 
-#: ../grecord/src/gsr-window.c:1972
+#: ../grecord/src/gsr-window.c:1970
 msgid "Save the current file with a different name"
 msgstr "Spara den aktuella filen med ett annat namn"
 
-#: ../grecord/src/gsr-window.c:1973
+#: ../grecord/src/gsr-window.c:1971
 msgid "Open Volu_me Control"
 msgstr "Öppna voly_mkontrollen"
 
-#: ../grecord/src/gsr-window.c:1974
+#: ../grecord/src/gsr-window.c:1972
 msgid "Open the audio mixer"
 msgstr "Öppna ljudmixern"
 
-#: ../grecord/src/gsr-window.c:1976
+#: ../grecord/src/gsr-window.c:1974
 msgid "Show information about the current file"
 msgstr "Visa information om den aktuella filen"
 
-#: ../grecord/src/gsr-window.c:1978
+#: ../grecord/src/gsr-window.c:1976
 msgid "Close the current file"
 msgstr "Stäng den aktuella filen"
 
-#: ../grecord/src/gsr-window.c:1980
+#: ../grecord/src/gsr-window.c:1978
 msgid "Quit the program"
 msgstr "Avsluta programmet"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1983
+#: ../grecord/src/gsr-window.c:1981
 msgid "_Control"
 msgstr "_Kontroll"
 
-#: ../grecord/src/gsr-window.c:1985
+#: ../grecord/src/gsr-window.c:1983
 msgid "Record sound"
 msgstr "Spela in ljud"
 
-#: ../grecord/src/gsr-window.c:1987
+#: ../grecord/src/gsr-window.c:1985
 msgid "Play sound"
 msgstr "Spela ljud"
 
-#: ../grecord/src/gsr-window.c:1989
+#: ../grecord/src/gsr-window.c:1987
 msgid "Stop sound"
 msgstr "Stoppa ljud"
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:1992
 msgid "Open the manual"
 msgstr "Öpna manualen"
 
-#: ../grecord/src/gsr-window.c:1996
+#: ../grecord/src/gsr-window.c:1994
 msgid "About this application"
 msgstr "Om detta program"
 
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2115
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Kunde inte läsa in ui.xml. Programmet är kanske inte korrekt installerat"
 
-#: ../grecord/src/gsr-window.c:2140
+#: ../grecord/src/gsr-window.c:2138
 msgid "Open"
 msgstr "Öppna"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2140
 msgid "Save"
 msgstr "Spara"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2142
 msgid "Save As"
 msgstr "Spara som"
 
-#: ../grecord/src/gsr-window.c:2198
+#: ../grecord/src/gsr-window.c:2197
 msgid "Record from input:"
 msgstr "Spela in från ingång:"
 
-#: ../grecord/src/gsr-window.c:2215
+#: ../grecord/src/gsr-window.c:2214
 msgid "Record as:"
 msgstr "Spela in som:"
 
-#: ../grecord/src/gsr-window.c:2253
+#: ../grecord/src/gsr-window.c:2252
 msgid "<none>"
 msgstr "<ingen>"
 
-#: ../grecord/src/gsr-window.c:2267
+#: ../grecord/src/gsr-window.c:2266
 msgid "Length:"
 msgstr "Längd:"
 
@@ -1734,7 +1728,7 @@ msgstr "Justera nivån på volymen"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
 #: ../gst-mixer/src/window.c:148
-#: ../gst-mixer/src/window.c:393
+#: ../gst-mixer/src/window.c:388
 msgid "Volume Control"
 msgstr "Volymkontroll"
 
@@ -1754,15 +1748,15 @@ msgstr "Bredd på fönstret"
 msgid "Width of the Window to be displayed"
 msgstr "Bredd på fönstret som ska visas"
 
-#: ../gst-mixer/src/element.c:231
+#: ../gst-mixer/src/element.c:222
 msgid "Recording"
 msgstr "Spelar in"
 
-#: ../gst-mixer/src/element.c:233
+#: ../gst-mixer/src/element.c:224
 msgid "Switches"
 msgstr "Växlar"
 
-#: ../gst-mixer/src/element.c:235
+#: ../gst-mixer/src/element.c:226
 msgid "Options"
 msgstr "Alternativ"
 
@@ -1776,26 +1770,26 @@ msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Inga volymkontrollerande GStreamer-insticksmoduler och/eller enheter hittades."
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:118
+#: ../gst-mixer/src/preferences.c:120
 msgid "Volume Control Preferences"
 msgstr "Inställningar för volymkontroll"
 
-#: ../gst-mixer/src/preferences.c:131
+#: ../gst-mixer/src/preferences.c:133
 msgid "_Select tracks to be visible:"
 msgstr "_Välj spår att vara synliga:"
 
-#: ../gst-mixer/src/track.c:221
+#: ../gst-mixer/src/track.c:246
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:261
+#: ../gst-mixer/src/track.c:286
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Tysta/tysta inte %s"
 
-#: ../gst-mixer/src/track.c:276
+#: ../gst-mixer/src/track.c:301
 #, c-format
 msgid "Track %s: mute"
 msgstr "Spår %s: tyst"
@@ -1805,17 +1799,17 @@ msgstr "Spår %s: tyst"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: ../gst-mixer/src/track.c:356
+#: ../gst-mixer/src/track.c:381
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Växla ljudinspelning från %s"
 
-#: ../gst-mixer/src/track.c:371
+#: ../gst-mixer/src/track.c:396
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Spår %s: ljudinspelning"
 
-#: ../gst-mixer/src/track.c:450
+#: ../gst-mixer/src/track.c:479
 #, c-format
 msgid "%s Option Selection"
 msgstr "Val av alternativet %s"
@@ -1920,14 +1914,14 @@ msgstr "Byt enhet till %s"
 #. window title and menu selection
 #. change window title
 #: ../gst-mixer/src/window.c:229
-#: ../gst-mixer/src/window.c:440
+#: ../gst-mixer/src/window.c:435
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Volymkontroll: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:387
+#: ../gst-mixer/src/window.c:382
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -1938,7 +1932,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../gst-mixer/src/window.c:396
+#: ../gst-mixer/src/window.c:391
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Ett GNOME/GStreamer-baserat volymkontrollsprogram"
 
@@ -1947,19 +1941,19 @@ msgid "None"
 msgstr "Ingen"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:234
+#: ../gstreamer-properties/gstreamer-properties.c:233
 msgid "Unsupported"
 msgstr "Stöds inte"
 
-#: ../gstreamer-properties/gstreamer-properties.c:252
+#: ../gstreamer-properties/gstreamer-properties.c:251
 msgid "Default"
 msgstr "Standard"
 
-#: ../gstreamer-properties/gstreamer-properties.c:605
+#: ../gstreamer-properties/gstreamer-properties.c:604
 msgid "Failure instantiating main window"
 msgstr "Misslyckades med att instantiera huvudfönstret"
 
-#: ../gstreamer-properties/gstreamer-properties.c:660
+#: ../gstreamer-properties/gstreamer-properties.c:659
 msgid "Failed to load glade file; please check your installation."
 msgstr "Misslyckades med att läsa in glade-filen; kontrollera din installation."
 
@@ -2028,6 +2022,35 @@ msgstr "_Insticksmodul:"
 msgid "_Test"
 msgstr "_Testa"
 
+#: ../gstreamer-properties/pipeline-constants.c:50
+#: ../gstreamer-properties/pipeline-constants.c:84
+msgid "Autodetect"
+msgstr "Identifiera automatiskt"
+
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:113
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../gstreamer-properties/pipeline-constants.c:67
+msgid "Artsd - ART Sound Daemon"
+msgstr "Artsd - ART Sound Daemon"
+
+#: ../gstreamer-properties/pipeline-constants.c:69
+#: ../gstreamer-properties/pipeline-constants.c:115
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment Sound Daemon"
+
+#: ../gstreamer-properties/pipeline-constants.c:75
+#: ../gstreamer-properties/pipeline-constants.c:122
+msgid "OSS - Open Sound System"
+msgstr "OSS - Open Sound System"
+
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:124
+msgid "Pulse - PulseAudio Sound Server"
+msgstr "Pulse - PulseAudio Sound Server"
+
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:108
 #: ../gstreamer-properties/pipeline-constants.c:132
@@ -2035,51 +2058,89 @@ msgstr "_Testa"
 msgid "Custom"
 msgstr "Anpassad"
 
+#: ../gstreamer-properties/pipeline-constants.c:102
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL - Simple DirectMedia Layer"
+
+#: ../gstreamer-properties/pipeline-constants.c:104
+msgid "X Window System (No Xv)"
+msgstr "X Window System (utan Xv)"
+
+#: ../gstreamer-properties/pipeline-constants.c:106
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Window System (X11/XShm/Xv)"
+
+#. Note: using triangle instead of sine for test sound so we
+#. * can test the vorbis encoder as well (otherwise it'd compress too well)
+#: ../gstreamer-properties/pipeline-constants.c:128
+msgid "Test Sound"
+msgstr "Testa ljud"
+
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "Silence"
+msgstr "Tyst"
+
+#: ../gstreamer-properties/pipeline-constants.c:137
+msgid "MJPEG (e.g. Zoran v4l device)"
+msgstr "MJPEG (t.ex. Zoran v4l-enhet)"
+
+#: ../gstreamer-properties/pipeline-constants.c:139
+msgid "QCAM"
+msgstr "QCAM"
+
+#: ../gstreamer-properties/pipeline-constants.c:141
+msgid "Test Input"
+msgstr "Test inmatning"
+
+#: ../gstreamer-properties/pipeline-constants.c:143
+msgid "Video for Linux (v4l)"
+msgstr "Video for Linux (v4l)"
+
+#: ../gstreamer-properties/pipeline-constants.c:145
+msgid "Video for Linux 2 (v4l2)"
+msgstr "Video for Linux 2 (v4l2)"
+
 #: ../gstreamer-properties/pipeline-tests.c:175
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Misslyckades med att konstruera testpipeline för \"%s\""
 
 #: ../profiles/audio-profile-edit.c:117
-#: ../profiles/audio-profiles-edit.c:537
+#: ../profiles/audio-profiles-edit.c:535
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Det uppstod ett fel vid visning av hjälp: %s"
 
-#: ../profiles/audio-profile-edit.c:311
+#: ../profiles/audio-profile-edit.c:329
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Redigerar profilen \"%s\""
 
-#: ../profiles/audio-profile.c:103
+#: ../profiles/audio-profile.c:104
 msgid "<no name>"
 msgstr "<inget namn>"
 
-#: ../profiles/audio-profile.c:104
-#: ../profiles/audio-profile.c:1002
+#: ../profiles/audio-profile.c:105
+#: ../profiles/audio-profile.c:1015
 msgid "<no description>"
 msgstr "<ingen beskrivning>"
 
-#: ../profiles/audio-profile.c:219
+#: ../profiles/audio-profile.c:220
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr "Det uppstod ett fel vid hämtandet av listan med gm_audio-profiler. (%s)\n"
 
-#: ../profiles/audio-profile.c:720
+#: ../profiles/audio-profile.c:721
 #, c-format
 msgid "There was an error subscribing to notification of audio profile list changes. (%s)\n"
 msgstr "Det uppstod ett problem vid prenumeration på notifiering av ändringar i ljudprofilslistan. (%s)\n"
 
-#: ../profiles/audio-profile.c:911
+#: ../profiles/audio-profile.c:924
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Det uppstod ett fel vid glömmandet av profilsökvägen %s. (%s)\n"
 
-#: ../profiles/audio-profile.c:1013
-msgid "identity"
-msgstr "identitet"
-
-#: ../profiles/audio-profile.c:1024
+#: ../profiles/audio-profile.c:1037
 msgid "wav"
 msgstr "wav"
 
@@ -2088,19 +2149,19 @@ msgid "_Edit"
 msgstr "_Redigera"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:463
+#: ../profiles/audio-profiles-edit.c:461
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Ta bort denna profil?\n"
 msgstr[1] "Ta bort dessa %d profiler?\n"
 
-#: ../profiles/audio-profiles-edit.c:482
+#: ../profiles/audio-profiles-edit.c:480
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Ta bort profilen \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:504
+#: ../profiles/audio-profiles-edit.c:502
 msgid "Delete Profile"
 msgstr "Ta bort profil"
 
@@ -2116,7 +2177,7 @@ msgstr "Ta bort profil"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:600
+#: ../profiles/audio-profiles-edit.c:598
 msgid "Edit GNOME Audio Profiles"
 msgstr "Redigera GNOME-ljudprofiler"
 
@@ -2136,16 +2197,16 @@ msgstr "Redigera GNOME-ljudprofiler"
 #. gtk_box_pack_end (GTK_BOX (hbox),
 #. app->manage_profiles_default_menu, FALSE, FALSE, 0);
 #.
-#: ../profiles/audio-profiles-edit.c:647
+#: ../profiles/audio-profiles-edit.c:645
 msgid "_Profiles:"
 msgstr "_Profiler:"
 
-#: ../profiles/audio-profiles-edit.c:862
+#: ../profiles/audio-profiles-edit.c:860
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Du har redan en profil med namnet \"%s\""
 
-#: ../profiles/audio-profiles-edit.c:887
+#: ../profiles/audio-profiles-edit.c:885
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf-fel (FIXAMIG): %s\n"
@@ -2212,59 +2273,75 @@ msgid "A short name for the audio profile, to be used in selections and uniquely
 msgstr "Ett kort namn för ljudprofilen som kan användas i markeringar och som unikt identifierar profilen."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "CD Quality, AAC"
+msgstr "Cd-kvalitet, AAC"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "CD Quality, Lossless"
 msgstr "Cd-kvalitet, förlustfri"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:8
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "CD Quality, Lossy"
 msgstr "Cd-kvalitet, med förluster"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "CD Quality, MP3"
+msgstr "Cd-kvalitet, MP3"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "List of audio recording profiles. The list contains strings naming subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr "Lista av ljudinspelningsprofiler. Listan innehåller strängar som anger underkataloger relativa till /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
 msgstr "Lista med profiler"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "The default file extension for this profile"
 msgstr "Standardfiländelsen för denna profil"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The partial GStreamer pipeline used"
 msgstr "Den ofullständiga GSTreamer-rörledning som används"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid "Used for converting to CD-quality audio, but with a lossless compression codec. Use this if you later want to edit the file or burn it to CD."
 msgstr "Används för att konvertera till ljud med cd-kvalitet, men med en förlustfri kodek. Använd detta om du vill redigera filen senare eller bränna den på en cd-skiva."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid "Used for converting to CD-quality audio, but with a lossy compression codec. Use this for CD extraction and radio recordings."
 msgstr "Används för att konvertera till ljud med cd-kvalitet, men med en kodek med förluster. Använd detta för cd-extrahering och radioinspelningar."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+msgid "Used for converting to CD-quality audio, but with the lossy AAC codec. Use this for preparing files for copying to devices that only support the AAC codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "Används för att konvertera till ljud i cd-kvalitet, men med en AAC-kodek med förluster. Använd den här för att förbereda filer för kopiering till enheter som endast har stöd för AAC-kodeken."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid "Used for converting to CD-quality audio, but with the lossy MP3 codec. Use this for preparing files for copying to devices that only support the MP3 codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "Används för att konvertera till ljud i cd-kvalitet, men med enMP3-kodek med förluster. Använd den här för att förbereda filer för kopiering till enheter som endast har stöd för MP3-kodeken."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Used for converting to lossless voice-quality audio. Use this for recording and editing speech."
 msgstr "Används för att konvertera till ljud med röstkvalitet och är inte dataförstörande. Använd denna för inspelning och redigering av tal."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Used for converting to lossy voice-quality audio. Use this for recording speech that doesn't need to be edited."
 msgstr "Används för att konvertera till ljud med röstkvalitet och är dataförstörande. Använd denna för inspelning av tal som inte behöver redigeras."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid "Voice, Lossless"
 msgstr "Röst, förlustfri"
 
 # Bättre ord för lossy?
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
 msgid "Voice, Lossy"
 msgstr "Röst, förlust"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Whether or not this profile is to be used"
 msgstr "Huruvida denna profil ska användas eller inte"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Whether or not to use and display this profile."
 msgstr "Huruvida denna profil ska användas och visas eller inte."
 
@@ -2276,48 +2353,48 @@ msgstr ""
 "Kan inte ansluta till ljuddemonen.\n"
 "Kör \"esd\" vid en kommandorad."
 
-#: ../vu-meter/main.c:229
+#: ../vu-meter/main.c:230
 msgid "Specify the X position of the meter."
 msgstr "Ange X-position för mätaren."
 
-#: ../vu-meter/main.c:230
+#: ../vu-meter/main.c:231
 msgid "X"
 msgstr "X"
 
-#: ../vu-meter/main.c:232
+#: ../vu-meter/main.c:233
 msgid "Specify the Y position of the meter."
 msgstr "Ange Y-position för mätaren."
 
-#: ../vu-meter/main.c:233
+#: ../vu-meter/main.c:234
 msgid "Y"
 msgstr "Y"
 
-#: ../vu-meter/main.c:235
+#: ../vu-meter/main.c:236
 msgid "Connect to the esd server on this host."
 msgstr "Anslut till esd-servern på denna dator."
 
-#: ../vu-meter/main.c:236
+#: ../vu-meter/main.c:237
 msgid "HOST"
 msgstr "VÄRD"
 
-#: ../vu-meter/main.c:238
+#: ../vu-meter/main.c:239
 msgid "Open a vertical version of the meter."
 msgstr "Öppna en lodrät version av mätaren."
 
-#: ../vu-meter/main.c:240
+#: ../vu-meter/main.c:241
 msgid "Act as recording level meter."
 msgstr "Bli en inspelningsnivåmätare."
 
-#: ../vu-meter/main.c:256
+#: ../vu-meter/main.c:257
 #, c-format
 msgid "Host is %s\n"
 msgstr "Värddatorn är %s\n"
 
-#: ../vu-meter/main.c:273
+#: ../vu-meter/main.c:274
 msgid "Recording level"
 msgstr "Inspelningsnivå"
 
-#: ../vu-meter/main.c:273
+#: ../vu-meter/main.c:274
 msgid "Volume Meter"
 msgstr "Volymmätare"
 
@@ -2337,6 +2414,12 @@ msgstr "Övervaka ljudvolymen"
 msgid "Volume Monitor"
 msgstr "Volymmätare"
 
+#~ msgid "Display the Remaining time ?"
+#~ msgstr "Visa återstående tid?"
+#~ msgid "How the time should be displayed while CD Player is playing ?"
+#~ msgstr "Hur tiden ska visas medan cd-spelaren spelar?"
+#~ msgid "identity"
+#~ msgstr "identitet"
 #~ msgid "Orientation"
 #~ msgstr "Orientering"
 #~ msgid "The orientation of the tray."
@@ -2427,14 +2510,10 @@ msgstr "Volymmätare"
 #~ msgstr ""
 #~ "Spelar:\n"
 #~ " %s"
-#~ msgid "Display the Remaining time?"
-#~ msgstr "Visa återstående tid?"
 #~ msgid "Display the remaining time ?"
 #~ msgstr "Visa återstående tid?"
 #~ msgid "Display the remaining time?"
 #~ msgstr "Visa återstående tid?"
-#~ msgid "How the time should be displayed while CD Player is playing?"
-#~ msgstr "Hur tiden ska visas medan cd-spelaren spelar?"
 #~ msgid "How the time should be displayed while CD Player is playing"
 #~ msgstr "Hur tiden ska visas medan cd-spelaren spelar"
 #~ msgid "How the time should be displayed while CD Player is playing."
