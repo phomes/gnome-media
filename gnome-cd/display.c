@@ -838,6 +838,9 @@ cd_display_parse_theme (CDDisplay *disp,
 	CDDisplayPrivate *priv;
 	CDDisplayTheme *theme;
 
+	if (!disp)
+		return;
+
 	priv = disp->priv;
 	/* Should probably destroy the old theme here */
 

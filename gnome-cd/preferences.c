@@ -150,7 +150,8 @@ do_theme_changed (GnomeCDPreferences *prefs,
 		prefs->gcd->theme = old_theme;
 	} else {
 		theme_change_widgets (prefs->gcd);
-		theme_free (old_theme);
+		if (old_theme != NULL)
+			theme_free (old_theme);
 	}
 }
 
