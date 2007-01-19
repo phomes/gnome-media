@@ -7,16 +7,16 @@
 # maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2006.
 # Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
 # Baptiste Mille-Mathias <bmm80@free.fr>, 2005.
-# Robert-André Mauchin <zebob.m@gmail.com>, 2006.
+# Robert-André Mauchin <zebob.m@gmail.com>, 2006-2007.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.16.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-02 09:54+0100\n"
-"PO-Revision-Date: 2006-11-02 09:54+0100\n"
-"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
+"POT-Creation-Date: 2007-01-07 20:14+0000\n"
+"PO-Revision-Date: 2007-01-19 22:35+0100\n"
+"Last-Translator: Robert-André Mauchin <zebob.m@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgid ""
 "There was an error displaying help: \n"
 "%s"
 msgstr ""
-"Il y a eu une erreur lors de l'affichage de l'aide : \n"
+"Une erreur est survenue lors de l'affichage de l'aide : \n"
 "%s"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:807
@@ -1224,7 +1224,7 @@ msgstr "Impossible de créer le lecteur"
 
 #: ../gnome-cd/gnome-cd.desktop.in.in.h:2
 msgid "Play audio CDs"
-msgstr "Joue vos CD audio"
+msgstr "Lit vos CD audio"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "CD player Volume"
@@ -1254,7 +1254,7 @@ msgstr ""
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
-msgstr "Jouer lorsque le lecteur de CD audio démarre ?"
+msgstr "Lire lorsque le lecteur de CD audio démarre ?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
@@ -1355,7 +1355,7 @@ msgstr "Enregistreur de sons"
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2458
+#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2467
 msgid "Untitled"
 msgstr "Sans_titre"
 
@@ -1373,9 +1373,9 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"Impossible de créer l'élément GSTreamer %s.\n"
+"Impossible de créer l'élément GStreamer %s.\n"
 "Veuillez installer le greffon « %s » du module « %s ».\n"
-"Vérifiez que l'installation est correcte en exécutant\n"
+"Vérifiez que l'installation est conforme en exécutant\n"
 "    gst-inspect-0.10 %s\n"
 "et relancez ensuite gnome-sound-recorder."
 
@@ -1432,7 +1432,7 @@ msgstr ""
 "%s"
 
 #: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
-#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2287
+#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2296
 msgid "Ready"
 msgstr "Prêt"
 
@@ -1448,12 +1448,12 @@ msgid ""
 "Do you want to replace it with the one you are saving?"
 msgstr ""
 "Un fichier nommé « %s » existe déjà. \n"
-"Voulez-vous le remplacer avec celui qui vous sauvegardez ?"
+"Voulez-vous le remplacer par celui que vous enregistrez ?"
 
 #: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr "Impossible de sauver le fichier  « %s » "
+msgstr "Impossible d'enregister le fichier « %s »"
 
 #: ../grecord/src/gsr-window.c:720
 msgid "Save file as"
@@ -1678,7 +1678,7 @@ msgstr "Enregistre un son"
 
 #: ../grecord/src/gsr-window.c:1987
 msgid "Play sound"
-msgstr "Joue le son"
+msgstr "Lit le son"
 
 #: ../grecord/src/gsr-window.c:1989
 msgid "Stop sound"
@@ -1722,7 +1722,7 @@ msgstr "Enregistrer sous :"
 msgid "<none>"
 msgstr "<aucun>"
 
-#: ../grecord/src/gsr-window.c:2262
+#: ../grecord/src/gsr-window.c:2267
 msgid "Length:"
 msgstr "Durée :"
 
@@ -1856,7 +1856,7 @@ msgstr "avant central"
 #. * language, leave it unchanged.
 #: ../gst-mixer/src/volume.c:148
 msgid "LFE"
-msgstr "Effets basse fréquence"
+msgstr "Effets basse fréquence (LFE)"
 
 #: ../gst-mixer/src/volume.c:149
 msgid "side left"
@@ -1945,9 +1945,7 @@ msgstr "L'instanciation de la fenêtre principale a échoué"
 
 #: ../gstreamer-properties/gstreamer-properties.c:432
 msgid "Failed to load glade file; please check your installation."
-msgstr ""
-"Le chargement du fichier glade a échoué ; veuillez vérifier votre "
-"installation."
+msgstr "Impossible de charger le fichier glade ; veuillez vérifier votre installation."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -1981,7 +1979,7 @@ msgstr "Audio"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
-msgstr "Cliquez Ok pour terminer."
+msgstr "Cliquez Valider pour terminer."
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
@@ -1993,7 +1991,7 @@ msgstr "Te_st"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:10
 msgid "Testing Pipeline"
-msgstr "Test de la pipeline"
+msgstr "Test le pipeline"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Video"
@@ -2015,6 +2013,30 @@ msgstr "_Pipeline :"
 msgid "_Test"
 msgstr "_Test"
 
+#: ../gstreamer-properties/pipeline-constants.c:50
+#: ../gstreamer-properties/pipeline-constants.c:84
+msgid "Autodetect"
+msgstr "Autodetect"
+
+#: ../gstreamer-properties/pipeline-constants.c:67
+msgid "Artsd - ART Sound Daemon"
+msgstr "Artsd - ART Sound Daemon"
+
+#: ../gstreamer-properties/pipeline-constants.c:69
+#: ../gstreamer-properties/pipeline-constants.c:115
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment Sound Daemo"
+
+#: ../gstreamer-properties/pipeline-constants.c:75
+#: ../gstreamer-properties/pipeline-constants.c:122
+msgid "OSS - Open Sound System"
+msgstr "OSS - Open Sound System"
+
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:124
+msgid "Pulse - PulseAudio Sound Server"
+msgstr "Pulse - PulseAudio Sound Server"
+
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:108
 #: ../gstreamer-properties/pipeline-constants.c:132
@@ -2022,10 +2044,56 @@ msgstr "_Test"
 msgid "Custom"
 msgstr "Personnalisé"
 
+#: ../gstreamer-properties/pipeline-constants.c:102
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL - Simple DirectMedia Layer"
+
+#: ../gstreamer-properties/pipeline-constants.c:104
+msgid "X Window System (No Xv)"
+msgstr "X Window System (No Xv)"
+
+#: ../gstreamer-properties/pipeline-constants.c:106
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Window System (X11/XShm/Xv)"
+
+#: ../gstreamer-properties/pipeline-constants.c:113
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#. Note: using triangle instead of sine for test sound so we
+#. * can test the vorbis encoder as well (otherwise it'd compress too well)
+#: ../gstreamer-properties/pipeline-constants.c:128
+msgid "Test Sound"
+msgstr "Tester le son"
+
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "Silence"
+msgstr "Silence"
+
+#: ../gstreamer-properties/pipeline-constants.c:137
+msgid "MJPEG (e.g. Zoran v4l device)"
+msgstr "MJPEG (ex. périphérique v4l Zoran)"
+
+#: ../gstreamer-properties/pipeline-constants.c:139
+msgid "QCAM"
+msgstr "QCAM"
+
+#: ../gstreamer-properties/pipeline-constants.c:141
+msgid "Test Input"
+msgstr "Tester l'entrée"
+
+#: ../gstreamer-properties/pipeline-constants.c:143
+msgid "Video for Linux (v4l)"
+msgstr "Video for Linux (v4l)"
+
+#: ../gstreamer-properties/pipeline-constants.c:145
+msgid "Video for Linux 2 (v4l2)"
+msgstr "Video for Linux 2 (v4l2)"
+
 #: ../gstreamer-properties/pipeline-tests.c:130
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr "La construction de la pipeline de test pour « %s » a échoué"
+msgstr "Impossible de créer le pipeline de test pour « %s »"
 
 #: ../profiles/audio-profile-edit.c:164
 #, c-format
@@ -2134,9 +2202,7 @@ msgstr "Erreur GConf (FIXME) : %s\n"
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
-msgstr ""
-"Le fichier « %s » est manquant. Cela indique que l'application est installée "
-"incorrectement, par conséquent la boîte de dialogue ne peut être affichée."
+msgstr "Le fichier « %s » est manquant. Cela indique que l'application est installée de manière incorrecte, par conséquent la boîte de dialogue ne peut pas être affichée."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
@@ -2199,7 +2265,7 @@ msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
-msgstr "Une pipeline partielle GStreamer à utiliser pour ce profil."
+msgstr "Un pipeline partiel GStreamer à utiliser pour ce profil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:5
 msgid "A short name for the audio profile"
@@ -2240,7 +2306,7 @@ msgstr "L'extension de fichier par défaut pour ce profil"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "The partial GStreamer pipeline used"
-msgstr "La pipeline partiel GStreamer utilisée"
+msgstr "Le pipeline partiel GStreamer utilisé"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid ""
@@ -2286,11 +2352,11 @@ msgstr "Voix, avec pertes"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
-msgstr "Indique si ce profil doit être utilisé ou non"
+msgstr "Indique si ce profil doit être utilisé"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid "Whether or not to use and display this profile."
-msgstr "Indique si il faut utiliser et afficher ce profil ou non."
+msgstr "Indique s'il faut utiliser et afficher ce profil."
 
 #: ../vu-meter/main.c:102
 msgid ""
