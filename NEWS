@@ -1,3 +1,30 @@
+This is gnome-media 2.17.90
+
+Changes since 2.17.2:
+	* Fix a segfault in gnome-cd when changing theme while not being
+	  displayed
+	* Add GStreamer Properties to the system settings, and hide the menu
+	  entry by default since most is autodetected with auto/gconf elements
+	* Hide cddbslave2 menu entry also
+	* Fix for a segfault in Gnome Volume Control
+	* Gnome Sound Recorder will no longer hide toolbar icons if the text
+	  does not fit on the screen
+	* Change profile dialog to better fit screen
+	* Some documentation/string changes
+	* Translation updates: ar, en_GB, et, sv, th
+
+Bugs fixed:
+	* 308340: Confusing usage of tray / notification area
+	* 327012: There should be no whitespace before punctuation in gnome...
+	* 330050: descriptions in profile editing page are unreadable
+	* 339859: remove cddb slave
+	* 355085: Gnome-sound-recorder dialog too small
+	* 380124: changing theme when gnome-cd interface is not displayed m...
+	* 393998: fix build with gcc 2
+	* 395499: [Patch] Categorize gstreamer-properties for the control c...
+	* 396023: gnome-volume-control crashes with USB Sound Blaster Extigy
+	* 397949: .desktop menu entry should be removed
+
 This is gnome-media 2.17.2
 
 Changes since 2.17.1:
