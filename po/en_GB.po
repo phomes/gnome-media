@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-08 07:22+0000\n"
-"PO-Revision-Date: 2007-01-08 07:23-0000\n"
+"POT-Creation-Date: 2007-01-23 19:58+0000\n"
+"PO-Revision-Date: 2007-01-23 19:59-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -969,7 +969,7 @@ msgstr "Paused"
 #: ../gnome-cd/gnome-cd.c:681
 #: ../gnome-cd/gnome-cd.c:873
 #: ../gnome-cd/gnome-cd.desktop.in.in.h:1
-#: ../gnome-cd/preferences.c:613
+#: ../gnome-cd/preferences.c:614
 msgid "CD Player"
 msgstr "CD Player"
 
@@ -1208,7 +1208,7 @@ msgid "Start iconified in notification area"
 msgstr "Start iconified in notification area"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1009
+#: ../gnome-cd/gnome-cd.c:1011
 msgid "Cannot create player"
 msgstr "Cannot create player"
 
@@ -1282,40 +1282,40 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Error setting device"
 
-#: ../gnome-cd/preferences.c:586
+#: ../gnome-cd/preferences.c:587
 msgid "CD Player Preferences"
 msgstr "CD Player Preferences"
 
-#: ../gnome-cd/preferences.c:625
+#: ../gnome-cd/preferences.c:626
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Device:"
 
-#: ../gnome-cd/preferences.c:639
+#: ../gnome-cd/preferences.c:640
 msgid "Behavior"
 msgstr "Behaviour"
 
-#: ../gnome-cd/preferences.c:652
+#: ../gnome-cd/preferences.c:653
 msgid "Start _playback when CD Player starts"
 msgstr "Start _playback when CD Player starts"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:654
 msgid "Start playback when CD Player starts"
 msgstr "Start playback when CD Player starts"
 
-#: ../gnome-cd/preferences.c:665
+#: ../gnome-cd/preferences.c:666
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Attempt to _eject CD when CD Player exits"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:667
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Attempt to eject CD when CD Player exits"
 
-#: ../gnome-cd/preferences.c:682
+#: ../gnome-cd/preferences.c:683
 msgid "Themes"
 msgstr "Themes"
 
-#: ../gnome-cd/preferences.c:694
+#: ../gnome-cd/preferences.c:695
 msgid "_Select a theme:"
 msgstr "_Select a theme:"
 
@@ -1577,6 +1577,7 @@ msgstr "GConf audio output"
 
 #: ../grecord/src/gsr-window.c:1596
 #: ../gst-mixer/src/element.c:220
+#: ../gst-mixer/src/misc.c:38
 msgid "Playback"
 msgstr "Playback"
 
@@ -1760,9 +1761,21 @@ msgstr "Options"
 msgid "Unknown Volume Control %d"
 msgstr "Unknown Volume Control %d"
 
-#: ../gst-mixer/src/main.c:204
+#: ../gst-mixer/src/main.c:205
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "No volume control GStreamer plugins and/or devices found."
+
+#: ../gst-mixer/src/misc.c:40
+msgid "Capture"
+msgstr "Capture"
+
+#: ../gst-mixer/src/misc.c:42
+msgid "Switch"
+msgstr "Switch"
+
+#: ../gst-mixer/src/misc.c:44
+msgid "Option"
+msgstr "Option"
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:120
@@ -1943,7 +1956,7 @@ msgstr "Default"
 msgid "Failure instantiating main window"
 msgstr "Failure instantiating main window"
 
-#: ../gstreamer-properties/gstreamer-properties.c:659
+#: ../gstreamer-properties/gstreamer-properties.c:661
 msgid "Failed to load glade file; please check your installation."
 msgstr "Failed to load glade file; please check your installation."
 
@@ -2129,10 +2142,6 @@ msgstr "There was an error subscribing to notification of audio profile list cha
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "There was an error forgetting profile path %s. (%s)\n"
-
-#: ../profiles/audio-profile.c:1037
-msgid "wav"
-msgstr "wav"
 
 #: ../profiles/audio-profiles-edit.c:83
 msgid "_Edit"
@@ -2403,10 +2412,10 @@ msgstr "Monitor the sound output volume"
 msgid "Volume Monitor"
 msgstr "Volume Monitor"
 
+#~ msgid "wav"
+#~ msgstr "wav"
 #~ msgid "identity"
 #~ msgstr "identity"
-#~ msgid "Capture"
-#~ msgstr "Capture"
 #~ msgid "*"
 #~ msgstr "*"
 #~ msgid "_Input:"
