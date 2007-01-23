@@ -177,6 +177,7 @@ main (gint   argc,
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  g_thread_init (NULL);
   ctx = g_option_context_new ("gnome-volume-control");
   g_option_context_add_group (ctx, gst_init_get_option_group ());
 

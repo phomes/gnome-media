@@ -1,3 +1,10 @@
+2007-01-23  Ronald S. Bultje,,,  <rbultje@gnome.org>
+
+	* gst-mixer/src/main.c: (main):
+	  Add g_thread_init() call to workaround new glib "feature" where
+	  lazy loading no longer works (#399710, plus see bugs referenced
+	  in there).
+
 2007-01-22  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
 	* configure.in:
