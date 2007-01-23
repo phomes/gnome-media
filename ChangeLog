@@ -1,3 +1,11 @@
+2007-01-23  Tim-Philipp Müller  <tim at centricular dot net>
+
+	* gnome-cd/gnome-cd.c: (main):
+	* grecord/src/gnome-recorder.c: (main):
+	* gstreamer-properties/gstreamer-properties.c: (main):
+	  Call g_thread_init() before calling any other GLib function here too.
+	  Closes #399807.
+
 2007-01-23  Ronald S. Bultje,,,  <rbultje@gnome.org>
 
 	* gst-mixer/src/main.c: (main):

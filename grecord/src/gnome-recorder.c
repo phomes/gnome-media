@@ -180,6 +180,8 @@ main (int argc,
 	GOptionContext *ctx;
 	GnomeProgram *program;
 
+	g_thread_init (NULL);
+
 	/* Init gettext */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");

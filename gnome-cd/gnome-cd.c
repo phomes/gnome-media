@@ -977,6 +977,8 @@ main (int argc, char *argv[])
 
 	free (malloc (8)); /* -lefence */
 
+	g_thread_init (NULL);
+
 	if (g_getenv ("GNOME_CD_DEBUG")) {
 		debug_mode = TRUE;
 	}
