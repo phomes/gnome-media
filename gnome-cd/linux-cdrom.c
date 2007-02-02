@@ -865,7 +865,7 @@ linux_cdrom_get_status (GnomeCDRom *cdrom,
 				g_print ("Error reading CD header");
 				linux_cdrom_close (lcd);
 
-				return;
+				return FALSE;
 			}
 			realstatus->cd = GNOME_CDROM_STATUS_DATA_CD;
 
