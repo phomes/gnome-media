@@ -74,7 +74,7 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 #endif
   {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System"),
       "osssink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
-  {PIPE_TYPE_AUDIOSINK, 0, N_("Pulse - PulseAudio Sound Server"),
+  {PIPE_TYPE_AUDIOSINK, 0, N_("PulseAudio Sound Server"),
       "pulsesink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
   {PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, TRUE}
@@ -121,7 +121,7 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
 #endif
   {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System"), "osssrc", NULL, FALSE,
       TEST_PIPE_AUDIOSINK, NULL, FALSE},
-  {PIPE_TYPE_AUDIOSRC, 0, N_("Pulse - PulseAudio Sound Server"), "pulsesrc", NULL,
+  {PIPE_TYPE_AUDIOSRC, 0, N_("PulseAudio Sound Server"), "pulsesrc", NULL,
       FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
   /* Note: using triangle instead of sine for test sound so we
    * can test the vorbis encoder as well (otherwise it'd compress too well) */
