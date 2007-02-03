@@ -1,3 +1,9 @@
+2007-02-03  Jens Granseuer  <jensgr@gmx.net>
+
+	* gst-mixer/src/track.c: (cb_check):
+	Make sure we don't call gst_mixer_get_volume() with a NULL pointer.
+	Closes #402165.
+
 2007-01-23  Tim-Philipp Müller  <tim at centricular dot net>
 
 	* gnome-cd/gnome-cd.c: (main):

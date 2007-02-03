@@ -130,8 +130,8 @@ cb_check (gpointer data)
 
   /* trigger an update of the mixer state */
   if (!GST_IS_MIXER_OPTIONS (trkw->track)) {
-    gint *dummy = g_new (gint, GST_MIXER_TRACK (trkw->track)->num_channels);
-    gst_mixer_get_volume (trkw->mixer, GST_MIXER_TRACK (trkw->track), dummy);
+    gint *dummy = g_new (gint, MAX (trkw->track->num_channels, 1));
+    gst_mixer_get_volume (trkw->mixer, trkw->track, dummy);
     g_free (dummy);
   }
   
