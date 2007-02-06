@@ -186,8 +186,8 @@ get_scale (GnomeVolumeControlVolume *vol,
 
   adj = gtk_adjustment_new (volume,
 		vol->track->min_volume, vol->track->max_volume,
-		(vol->track->max_volume - vol->track->min_volume) / 100,
-		(vol->track->max_volume - vol->track->min_volume) / 10, 0.0);
+		(vol->track->max_volume - vol->track->min_volume) / 100.0,
+		(vol->track->max_volume - vol->track->min_volume) / 10.0, 0.0);
   g_signal_connect (adj, "value_changed",
 		    G_CALLBACK (cb_volume_changed), vol);
   slider = gtk_vscale_new (GTK_ADJUSTMENT (adj));
