@@ -2291,6 +2291,7 @@ gsr_window_init (GSRWindow *window)
 
 	/* statusbar */
 	priv->statusbar = gtk_statusbar_new ();
+	GTK_WIDGET_SET_FLAGS (priv->statusbar, GTK_CAN_FOCUS);
 	gtk_box_pack_end (GTK_BOX (main_vbox), priv->statusbar, FALSE, FALSE, 0);
 	gtk_widget_show (priv->statusbar);
 	priv->status_message_cid = gtk_statusbar_get_context_id
