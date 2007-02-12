@@ -1,13 +1,13 @@
-always_built_SUBDIRS = cddb-slave2 profiles
-
-SUBDIRS = po $(always_built_SUBDIRS) \
+SUBDIRS = po \
+	  @PROGRAMS_GMP@ \
+	  @PROGRAMS_CDDBSLAVE@ \
 	  @PROGRAMS_VUMETER@ \
 	  @PROGRAMS_GSTMIXER@ \
 	  @PROGRAMS_GNOME_CD@ \
 	  @PROGRAMS_GRECORD@ \
 	  @PROGRAMS_GSTPROPS@
 
-DIST_SUBDIRS = po $(always_built_SUBDIRS) \
+DIST_SUBDIRS = po profiles cddb-slave2 \
 	       vu-meter grecord gst-mixer gnome-cd \
                gstreamer-properties
 
