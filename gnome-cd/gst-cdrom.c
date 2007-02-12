@@ -36,7 +36,7 @@
 
 #ifdef __linux__
 #include <linux/cdrom.h>
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__) || defined(__sun)
 #include <sys/cdio.h>
 #endif
 #if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
@@ -187,11 +187,15 @@ gst_cdrom_is_cdrom_device (GnomeCDRom * cdrom, const char *device,
 
     fd = open (device, O_RDONLY | O_NONBLOCK);
     if (fd >= 0) {
+#ifdef __sun
+      res = TRUE;
+#else
       if (ioctl (fd, GST_CDROM_IOCTL_CDCAPABILITY_REQUEST, 0) >= 0) {
         res = TRUE;
       } else {
         GST_DEBUG ("ioctl() failed: %s", g_strerror (errno));
       }
+#endif
 
       close (fd);
     } else {
