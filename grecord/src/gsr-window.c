@@ -2207,6 +2207,10 @@ gsr_window_init (GSRWindow *window)
 	g_signal_connect (priv->input, "changed",
 			  G_CALLBACK (record_input_changed_cb), window);
 
+	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->input)),
+				ATK_RELATION_LABELLED_BY,
+				gtk_widget_get_accessible (GTK_WIDGET (label)));
+
 	/* choose profile */
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
@@ -2218,6 +2222,10 @@ gsr_window_init (GSRWindow *window)
 	priv->profile = gm_audio_profile_choose_new ();
 	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile, TRUE, TRUE, 0);
 	gtk_widget_show (window->priv->profile);
+
+	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->profile)),
+				ATK_RELATION_LABELLED_BY,
+				gtk_widget_get_accessible (GTK_WIDGET (label)));
 
 	id = gconf_client_get_string (gconf_client, KEY_LAST_PROFILE_ID, NULL);
 	if (id) {
