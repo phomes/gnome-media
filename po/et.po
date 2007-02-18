@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 14:13+0000\n"
-"PO-Revision-Date: 2007-01-28 23:48+0200\n"
+"POT-Creation-Date: 2007-02-02 21:59+0000\n"
+"PO-Revision-Date: 2007-02-16 13:28+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -971,7 +971,7 @@ msgstr "Paus"
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
 #: ../gnome-cd/gnome-cd.c:681 ../gnome-cd/gnome-cd.c:873
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:613
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
 msgid "CD Player"
 msgstr "CD-mängija"
 
@@ -1209,7 +1209,7 @@ msgid "Start iconified in notification area"
 msgstr "Käivitatakse teavitusalas ikoonina"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1009
+#: ../gnome-cd/gnome-cd.c:1011
 msgid "Cannot create player"
 msgstr "Mängijat pole võimalik luua"
 
@@ -1284,40 +1284,40 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Viga seadme määramisel"
 
-#: ../gnome-cd/preferences.c:586
+#: ../gnome-cd/preferences.c:587
 msgid "CD Player Preferences"
 msgstr "CD-mängija eelistused"
 
-#: ../gnome-cd/preferences.c:625
+#: ../gnome-cd/preferences.c:626
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Seade:"
 
-#: ../gnome-cd/preferences.c:639
+#: ../gnome-cd/preferences.c:640
 msgid "Behavior"
 msgstr "Käitumine"
 
-#: ../gnome-cd/preferences.c:652
+#: ../gnome-cd/preferences.c:653
 msgid "Start _playback when CD Player starts"
 msgstr "CD _esitamise alustamine CD-mängija käivitamisel"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:654
 msgid "Start playback when CD Player starts"
 msgstr "CD esitamise alustamine CD-mängija käivitamisel"
 
-#: ../gnome-cd/preferences.c:665
+#: ../gnome-cd/preferences.c:666
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "CD _väljastamine CD-mängija lõpetamisel"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:667
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "CD väljastamine CD-mängija lõpetamisel"
 
-#: ../gnome-cd/preferences.c:682
+#: ../gnome-cd/preferences.c:683
 msgid "Themes"
 msgstr "Teemad"
 
-#: ../gnome-cd/preferences.c:694
+#: ../gnome-cd/preferences.c:695
 msgid "_Select a theme:"
 msgstr "_Vali teema:"
 
@@ -1748,7 +1748,7 @@ msgstr "Valikud"
 msgid "Unknown Volume Control %d"
 msgstr "Tundmatu helitugevuse regulaator %d"
 
-#: ../gst-mixer/src/main.c:204
+#: ../gst-mixer/src/main.c:205
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "GStreamer'i helivaljuse juhtimise pluginaid ja/või seadmeid ei leitud."
 
@@ -1944,7 +1944,7 @@ msgstr "Vaikimisi"
 msgid "Failure instantiating main window"
 msgstr "Tõrge peaakna tootmisel"
 
-#: ../gstreamer-properties/gstreamer-properties.c:659
+#: ../gstreamer-properties/gstreamer-properties.c:661
 msgid "Failed to load glade file; please check your installation."
 msgstr "Tõrge glade faili laadimisel; palun kontrolli oma paigaldust."
 
@@ -2021,16 +2021,16 @@ msgstr "Automaattuvastus"
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:113
 msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Linuxi laiendustega heliarhitektuur"
 
 #: ../gstreamer-properties/pipeline-constants.c:67
 msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART Sound Daemon"
+msgstr "Artsd - ART helideemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
 #: ../gstreamer-properties/pipeline-constants.c:115
 msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment helideemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:75
 #: ../gstreamer-properties/pipeline-constants.c:122
@@ -2039,8 +2039,8 @@ msgstr "OSS - Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
 #: ../gstreamer-properties/pipeline-constants.c:124
-msgid "Pulse - PulseAudio Sound Server"
-msgstr "Pulse - PulseAudio Sound Server"
+msgid "PulseAudio Sound Server"
+msgstr "PulseAudio heliserver"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:108
@@ -2130,10 +2130,6 @@ msgstr "Audioprofiilide loendi muutuste tellimisel tekkis viga. (%s)\n"
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Profiili otsingutee %s unustamisel tekkis viga. (%s)\n"
-
-#: ../profiles/audio-profile.c:1037
-msgid "wav"
-msgstr "wav"
 
 #: ../profiles/audio-profiles-edit.c:83
 msgid "_Edit"
@@ -2449,6 +2445,9 @@ msgstr "Montoorib heliväljundit"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Helitugevuse monitor"
+
+#~ msgid "wav"
+#~ msgstr "wav"
 
 #~ msgid "identity"
 #~ msgstr "identiteet"
