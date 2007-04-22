@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-02 21:59+0000\n"
-"PO-Revision-Date: 2007-03-03 17:39+0800\n"
-"Last-Translator: Funda Wang <fundawang@gmail.com>\n"
+"POT-Creation-Date: 2007-03-03 03:14+0000\n"
+"PO-Revision-Date: 2007-04-20 16:03+0700\n"
+"Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,12 +48,8 @@ msgid "The port that the server is running the database on"
 msgstr "访问服务器运行的数据库的端口"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"CD 查询所用的服务器类型。可供选择的值中，0 代表 FreeDB round robin 服务器，1 "
-"代表其它 freedb 服务器，2 代表其它类型的服务器。"
+msgid "The type of the server to contact for CD queries. Possible values are 0 (FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "CD 查询所用的服务器类型。可供选择的值中，0 代表 FreeDB round robin 服务器，1 代表其它 freedb 服务器，2 代表其它类型的服务器。"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -64,13 +60,8 @@ msgid "The username that will be sent with all queries"
 msgstr "进行所有查询时将要用到的用户名"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"此处指定了将要发送给服务器进行 CD 查询的用户信息。可供选择的值中，0 代表不发"
-"送信息，1 代表真实信息，3 代表其它信息。"
+msgid "This key specifies which user information will be sent to the server to contact for CD queries. Possible values are 0 (no information), 1 (real information) and 3 (other information)."
+msgstr "此处指定了将要发送给服务器进行 CD 查询的用户信息。可供选择的值中，0 代表不发送信息，1 代表真实信息，3 代表其它信息。"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -152,9 +143,12 @@ msgid "Unknown / Unknown"
 msgstr "未知/未知"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:977
-#: ../grecord/src/gsr-window.c:987 ../grecord/src/gsr-window.c:1003
-#: ../grecord/src/gsr-window.c:1012 ../grecord/src/gsr-window.c:1355
+#: ../cddb-slave2/cddb-slave.c:227
+#: ../grecord/src/gsr-window.c:977
+#: ../grecord/src/gsr-window.c:987
+#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1355
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "未知"
@@ -183,7 +177,8 @@ msgstr "碟片的 ID"
 msgid "Artist and Title"
 msgstr "艺人和标题"
 
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
+#: ../cddb-slave2/cddb-slave.c:1351
+#: ../cddb-slave2/cddb-slave.c:1353
 #: ../gnome-cd/gnome-cd.c:207
 msgid "Unknown track"
 msgstr "未知音轨"
@@ -813,14 +808,18 @@ msgstr "Nu-Metal"
 msgid "Art Rock"
 msgstr "艺术摇滚"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:589
-#: ../gnome-cd/callbacks.c:735 ../gnome-cd/callbacks.c:746
+#: ../cddb-slave2/cddb-track-editor.c:532
+#: ../gnome-cd/callbacks.c:589
+#: ../gnome-cd/callbacks.c:735
+#: ../gnome-cd/callbacks.c:746
 #: ../gnome-cd/display.c:75
 msgid "Unknown Artist"
 msgstr "未知艺人"
 
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:590
-#: ../gnome-cd/callbacks.c:738 ../gnome-cd/callbacks.c:750
+#: ../cddb-slave2/cddb-track-editor.c:533
+#: ../gnome-cd/callbacks.c:590
+#: ../gnome-cd/callbacks.c:738
+#: ../gnome-cd/callbacks.c:750
 #: ../gnome-cd/display.c:76
 msgid "Unknown Album"
 msgstr "未知专辑"
@@ -908,9 +907,7 @@ msgid "CD Display"
 msgstr "CD 显示"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
+msgid "Displays information about the currently playing album, artist and time elapsed"
 msgstr "显示当前所播放专辑、艺人和播放时间的有关信息"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:189
@@ -949,16 +946,22 @@ msgstr "专辑行"
 msgid "Line for displaying the name of the album"
 msgstr "显示专辑名称的行"
 
-#: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
-#: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
+#: ../gnome-cd/callbacks.c:87
+#: ../gnome-cd/callbacks.c:175
+#: ../gnome-cd/callbacks.c:283
+#: ../gnome-cd/callbacks.c:605
 #: ../gnome-cd/gnome-cd.c:808
 msgid "Play"
 msgstr "播放"
 
-#: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
-#: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
-#: ../gnome-cd/callbacks.c:365 ../gnome-cd/callbacks.c:389
-#: ../gnome-cd/callbacks.c:430 ../gnome-cd/callbacks.c:527
+#: ../gnome-cd/callbacks.c:160
+#: ../gnome-cd/callbacks.c:211
+#: ../gnome-cd/callbacks.c:242
+#: ../gnome-cd/callbacks.c:325
+#: ../gnome-cd/callbacks.c:365
+#: ../gnome-cd/callbacks.c:389
+#: ../gnome-cd/callbacks.c:430
+#: ../gnome-cd/callbacks.c:527
 msgid "Pause"
 msgstr "暂停"
 
@@ -984,10 +987,14 @@ msgstr ""
 msgid "Paused"
 msgstr "已暂停"
 
-#: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
-#: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:681 ../gnome-cd/gnome-cd.c:873
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
+#: ../gnome-cd/callbacks.c:668
+#: ../gnome-cd/callbacks.c:670
+#: ../gnome-cd/callbacks.c:927
+#: ../gnome-cd/gnome-cd.c:114
+#: ../gnome-cd/gnome-cd.c:681
+#: ../gnome-cd/gnome-cd.c:873
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1
+#: ../gnome-cd/preferences.c:614
 msgid "CD Player"
 msgstr "CD 播放机"
 
@@ -999,7 +1006,8 @@ msgstr "已停止"
 msgid "Disc error"
 msgstr "碟片出错"
 
-#: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
+#: ../gnome-cd/callbacks.c:711
+#: ../gnome-cd/callbacks.c:812
 msgid "No disc"
 msgstr "无碟片"
 
@@ -1015,7 +1023,8 @@ msgstr "光驱已打开"
 msgid "Data CD"
 msgstr "数据 CD"
 
-#: ../gnome-cd/callbacks.c:890 ../gnome-cd/callbacks.c:895
+#: ../gnome-cd/callbacks.c:890
+#: ../gnome-cd/callbacks.c:895
 msgid "No Cdrom"
 msgstr "无 CDROM"
 
@@ -1040,7 +1049,8 @@ msgid "Do you wish to continue?"
 msgstr "您是否想要继续？"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1185
+#: ../gnome-cd/gnome-cd.c:532
 #, c-format
 msgid "Volume %d%%"
 msgstr "音量 %d%%"
@@ -1089,7 +1099,8 @@ msgid "_Eject disc"
 msgstr "弹出碟片(_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1990
+#: ../gnome-cd/gnome-cd.c:367
+#: ../grecord/src/gsr-window.c:1990
 msgid "_Help"
 msgstr "帮助(_H)"
 
@@ -1125,8 +1136,7 @@ msgid ""
 "\n"
 "Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
+"Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player"
 msgstr ""
 "无法正常运行 CD 播放机。\n"
 "\n"
@@ -1279,7 +1289,7 @@ msgstr "CD 播放机启动时应该使用多大的音量。"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "CD 播放机启动时，是否要开始播放 CD？"
 
-#: ../gnome-cd/gst-cdrom.c:282
+#: ../gnome-cd/gst-cdrom.c:286
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "弹出 CD 失败：%s"
@@ -1347,12 +1357,14 @@ msgstr "录音机"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1683
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gnome-recorder.c:142
+#: ../grecord/src/gsr-window.c:1683
+#: ../grecord/src/gsr-window.c:2482
 msgid "Untitled"
 msgstr "无标题"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1685
+#: ../grecord/src/gnome-recorder.c:144
+#: ../grecord/src/gsr-window.c:1685
 #, c-format
 msgid "Untitled-%d"
 msgstr "无标题%d"
@@ -1379,34 +1391,46 @@ msgstr ""
 "请验证其设置。\n"
 "您可能缺少必要的插件。"
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:292
+#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:307
 msgid "hours"
 msgstr "小时"
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:292
+#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "小时"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314
+#: ../grecord/src/gsr-window.c:318
 msgid "minutes"
 msgstr "分钟"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314
+#: ../grecord/src/gsr-window.c:318
 msgid "minute"
 msgstr "分钟"
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315
+#: ../grecord/src/gsr-window.c:323
 #: ../grecord/src/gsr-window.c:326
 msgid "seconds"
 msgstr "秒"
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
+#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315
+#: ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "秒"
 
@@ -1423,8 +1447,10 @@ msgstr ""
 "无法装入文件：\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1486
-#: ../grecord/src/gsr-window.c:1740 ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:576
+#: ../grecord/src/gsr-window.c:1486
+#: ../grecord/src/gsr-window.c:1740
+#: ../grecord/src/gsr-window.c:2304
 msgid "Ready"
 msgstr "就绪"
 
@@ -1442,7 +1468,8 @@ msgstr ""
 "名为“%s”的文件已经存在。\n"
 "您是否想要将其替换为您正在保存的文件？"
 
-#: ../grecord/src/gsr-window.c:697 ../grecord/src/gsr-window.c:704
+#: ../grecord/src/gsr-window.c:697
+#: ../grecord/src/gsr-window.c:704
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "无法保存文件“%s”"
@@ -1517,7 +1544,8 @@ msgstr "2 (立体声)"
 msgid "%s Information"
 msgstr "%s 信息"
 
-#: ../grecord/src/gsr-window.c:1069 ../grecord/src/gsr-window.c:2231
+#: ../grecord/src/gsr-window.c:1069
+#: ../grecord/src/gsr-window.c:2239
 msgid "File Information"
 msgstr "文件信息"
 
@@ -1525,7 +1553,8 @@ msgstr "文件信息"
 msgid "Folder:"
 msgstr "目录："
 
-#: ../grecord/src/gsr-window.c:1090 ../grecord/src/gsr-window.c:2246
+#: ../grecord/src/gsr-window.c:1090
+#: ../grecord/src/gsr-window.c:2254
 msgid "Filename:"
 msgstr "文件名："
 
@@ -1569,7 +1598,8 @@ msgstr "正在播放..."
 msgid "GConf audio output"
 msgstr "GConf 音频输出"
 
-#: ../grecord/src/gsr-window.c:1596 ../gst-mixer/src/element.c:220
+#: ../grecord/src/gsr-window.c:1596
+#: ../gst-mixer/src/element.c:220
 #: ../gst-mixer/src/misc.c:38
 msgid "Playback"
 msgstr "回放"
@@ -1583,9 +1613,7 @@ msgid "GConf audio recording"
 msgstr "GConf 音频录制"
 
 #: ../grecord/src/gsr-window.c:1767
-msgid ""
-"Your audio capture settings are invalid. Please correct them in the "
-"Multimedia settings."
+msgid "Your audio capture settings are invalid. Please correct them in the Multimedia settings."
 msgstr "您的音频抓取设置无效。请在多媒体设置中予以纠正。"
 
 #: ../grecord/src/gsr-window.c:1856
@@ -1701,15 +1729,15 @@ msgstr "另存为"
 msgid "Record from input:"
 msgstr "从输入录制："
 
-#: ../grecord/src/gsr-window.c:2214
+#: ../grecord/src/gsr-window.c:2218
 msgid "Record as:"
 msgstr "录制为："
 
-#: ../grecord/src/gsr-window.c:2252
+#: ../grecord/src/gsr-window.c:2260
 msgid "<none>"
 msgstr "<无>"
 
-#: ../grecord/src/gsr-window.c:2266
+#: ../grecord/src/gsr-window.c:2274
 msgid "Length:"
 msgstr "长度："
 
@@ -1718,7 +1746,8 @@ msgid "Adjust the volume level"
 msgstr "调整音量"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:388
+#: ../gst-mixer/src/window.c:148
+#: ../gst-mixer/src/window.c:388
 msgid "Volume Control"
 msgstr "音量控制"
 
@@ -1915,7 +1944,8 @@ msgstr "将设备更改为 %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:435
+#: ../gst-mixer/src/window.c:229
+#: ../gst-mixer/src/window.c:435
 #, c-format
 msgid "Volume Control: %s"
 msgstr "音量控制：%s"
@@ -2100,7 +2130,8 @@ msgstr "Video for Linux 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "为“%s”创建测试流水线失败"
 
-#: ../profiles/audio-profile-edit.c:117 ../profiles/audio-profiles-edit.c:535
+#: ../profiles/audio-profile-edit.c:117
+#: ../profiles/audio-profiles-edit.c:535
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "显示帮助时出错：%s"
@@ -2114,7 +2145,8 @@ msgstr "编辑配置文件“%s”"
 msgid "<no name>"
 msgstr "<未命名>"
 
-#: ../profiles/audio-profile.c:105 ../profiles/audio-profile.c:1015
+#: ../profiles/audio-profile.c:105
+#: ../profiles/audio-profile.c:1015
 msgid "<no description>"
 msgstr "<无描述>"
 
@@ -2125,9 +2157,7 @@ msgstr "获得 gm_audio 配置文件列表出错。(%s)\n"
 
 #: ../profiles/audio-profile.c:721
 #, c-format
-msgid ""
-"There was an error subscribing to notification of audio profile list "
-"changes. (%s)\n"
+msgid "There was an error subscribing to notification of audio profile list changes. (%s)\n"
 msgstr "订阅音频配置文件列表更改通知出错。(%s)\n"
 
 #: ../profiles/audio-profile.c:924
@@ -2203,9 +2233,7 @@ msgstr "GConf 错误(待修正)：%s\n"
 
 #: ../profiles/gmp-util.c:64
 #, c-format
-msgid ""
-"The file \"%s\" is missing. This indicates that the application is installed "
-"incorrectly, so the dialog can't be displayed."
+msgid "The file \"%s\" is missing. This indicates that the application is installed incorrectly, so the dialog can't be displayed."
 msgstr "缺少文件“%s”。这表明应用程序安装不正确，所以无法显示对话框。"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
@@ -2246,14 +2274,11 @@ msgid "A description for the audio profile"
 msgstr "音频配置文件的描述"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
+msgid "A description of the profile, containing more information and describing when to use this profile."
 msgstr "配置文件描述，其中包含了更多的信息并描述了何时使用此配置文件。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr "对用此配置文件编码的文件进行排序时要使用的文件扩展名。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
@@ -2265,9 +2290,7 @@ msgid "A short name for the audio profile"
 msgstr "音频配置文件的短名称"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
+msgid "A short name for the audio profile, to be used in selections and uniquely identifying the profile."
 msgstr "音频配置文件的短名称，要在选择区中使用并唯一表示配置文件。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
@@ -2287,12 +2310,8 @@ msgid "CD Quality, MP3"
 msgstr "CD 音质，MP3"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
-msgstr ""
-"列出音频录制配置文件。此列表包含的字符串会作为相对 /system/gstreamer/"
-"@GST_MAJORMINOR@/audio/profiles 起名之用。"
+msgid "List of audio recording profiles. The list contains strings naming subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgstr "列出音频录制配置文件。此列表包含的字符串会作为相对 /system/gstreamer/@GST_MAJORMINOR@/audio/profiles 起名之用。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
@@ -2307,47 +2326,27 @@ msgid "The partial GStreamer pipeline used"
 msgstr "所用的部分 GStreamer 流水线"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to CD-quality audio, but with a lossless compression "
-"codec. Use this if you later want to edit the file or burn it to CD."
-msgstr ""
-"用于配置 CD 音质的音频，但是用无损压缩编码方式。如果您稍后想要编辑文件，或者"
-"将其刻录到 CD，请使用此方式。"
+msgid "Used for converting to CD-quality audio, but with a lossless compression codec. Use this if you later want to edit the file or burn it to CD."
+msgstr "用于转换为 CD 音质的音频，但是用无损压缩编码方式。如果您稍后想要编辑文件，或者将其刻录到 CD，请使用此方式。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid ""
-"Used for converting to CD-quality audio, but with a lossy compression codec. "
-"Use this for CD extraction and radio recordings."
-msgstr ""
-"用于转换为 CD 音质，但使用有损压缩编码方式。进行 CD 提取或广播录音时请使用此"
-"方式。"
+msgid "Used for converting to CD-quality audio, but with a lossy compression codec. Use this for CD extraction and radio recordings."
+msgstr "用于转换为 CD 音质的音频，但使用有损压缩编码方式。进行 CD 提取或广播录音时请使用此方式。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-msgid ""
-"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
-"this for preparing files for copying to devices that only support the AAC "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
-msgstr ""
+msgid "Used for converting to CD-quality audio, but with the lossy AAC codec. Use this for preparing files for copying to devices that only support the AAC codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "用于转换为 CD 音质的音频，但使用有损 AAC 编码方式。制作需要复制到仅支持 AAC 编码方式的设备的文件时使用。注意使用此格式可能在您所在的司法制度下是违法的；请联系您的律师以获得建议。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
-msgid ""
-"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
-"this for preparing files for copying to devices that only support the MP3 "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
-msgstr ""
+msgid "Used for converting to CD-quality audio, but with the lossy MP3 codec. Use this for preparing files for copying to devices that only support the MP3 codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "用于转换为 CD 音质的音频，但使用有损 MP3 编码方式。制作需要复制到仅支持 MP3 编码方式的设备的文件时使用。注意使用此格式可能在您所在的司法制度下是违法的；请联系您的律师以获得建议。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
-msgid ""
-"Used for converting to lossless voice-quality audio. Use this for recording "
-"and editing speech."
+msgid "Used for converting to lossless voice-quality audio. Use this for recording and editing speech."
 msgstr "用于转换为无损的语音质量的音频。录制和编辑语音时请使用此方式。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
-msgid ""
-"Used for converting to lossy voice-quality audio. Use this for recording "
-"speech that doesn't need to be edited."
+msgid "Used for converting to lossy voice-quality audio. Use this for recording speech that doesn't need to be edited."
 msgstr "用于转换为有损语音质量的音频。录制无需编辑的语音时请使用此方式。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
