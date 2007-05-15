@@ -1,3 +1,12 @@
+2007-05-14  Michael Terry  <mterry@gnome.org>
+
+	* Makefile.am: Install icon into hicolor theme, not .../pixmaps
+
+	* gstreamer-properties.c: (create_dialog): Grab app icon from theme,
+	not compile-time path.
+
+	* gstreamer-properties.desktop.in.in: Remove png suffix from icon
+
 2007-02-21  Bastien Nocera  <hadess@hadess.net>
 
 	* gstreamer-properties.desktop.in.in: Only have NoDisplay once, it's

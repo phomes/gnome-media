@@ -1,6 +1,6 @@
 Audiodir = $(datadir)/applications
 
-pixmapdir = $(datadir)/pixmaps
+icondir = $(datadir)/icons/hicolor/48x48/apps
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
@@ -21,7 +21,7 @@ vumeter_LDADD = \
 
 BITMAPS = gnome-vumeter.png gnome-reclevel.png
 
-pixmap_DATA = $(BITMAPS)
+icon_DATA = $(BITMAPS)
 
 EXTRA_DIST = $(BITMAPS) vumeter.desktop.in.in reclevel.desktop.in.in README TODO
 
@@ -31,3 +31,13 @@ Audio_DATA = $(Audio_in_files:.desktop.in.in=.desktop)
 
 CLEANFILES = $(Audio_DATA)
 DISTCLEANFILES = $(Audio_in_files:.desktop.in.in:.desktop.in)
+
+gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
+install-data-hook:
+	@-if test -z "$(DESTDIR)"; then \
+		echo "Updating Gtk icon cache."; \
+		$(gtk_update_icon_cache); \
+	else \
+		echo "*** Icon cache not updated.  After install, run this:"; \
+		echo "***   $(gtk_update_icon_cache)"; \
+	fi

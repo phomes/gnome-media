@@ -21,7 +21,7 @@ INCLUDES =					\
 	-DTHEME_DIR=\""$(datadir)/pixmaps/gnome-cd/themes"\"
 
 Audiodir = $(datadir)/applications
-Pixmapdir = $(datadir)/pixmaps
+icondir = $(datadir)/icons/hicolor/48x48/apps
 EXTRA_DIST = \
 	HACKING \
 	solaris-cdrom.c		\
@@ -101,7 +101,7 @@ gnome_cd_LDADD = \
 
 Audio_in_files = gnome-cd.desktop.in.in
 Audio_DATA = $(Audio_in_files:.desktop.in.in=.desktop)
-Pixmap_DATA = gnome-cd.png
+icon_DATA = gnome-cd.png
 
 schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-cd.schemas
@@ -114,6 +114,16 @@ install-data-local: install-schemas
 else
 install-data-local:
 endif
+
+gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
+install-data-hook:
+	@-if test -z "$(DESTDIR)"; then \
+		echo "Updating Gtk icon cache."; \
+		$(gtk_update_icon_cache); \
+	else \
+		echo "*** Icon cache not updated.  After install, run this:"; \
+		echo "***   $(gtk_update_icon_cache)"; \
+	fi
 
 CLEANFILES = $(Audio_DATA) $(schema_DATA) $(IDL_GENERATED)
 DISTCLEANFILES = $(Audio_in_files:.desktop.in.in=.desktop.in)

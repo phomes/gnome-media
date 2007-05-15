@@ -12,7 +12,7 @@ gstreamer_properties_SOURCES = \
 iconsdir   = $(datadir)/gstreamer-properties/icons
 icons_DATA = gstreamer-properties.png
 
-desktop_iconsdir = $(datadir)/pixmaps
+desktop_iconsdir = $(datadir)/icons/hicolor/48x48/apps
 desktop_icons_DATA = gstreamer-properties.png
 
 gladedir   = $(datadir)/gstreamer-properties/glade
@@ -33,3 +33,13 @@ INCLUDES   = \
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
 DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)
 EXTRA_DIST = $(icons_DATA) $(glade_DATA) $(Desktop_in_files)
+
+gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
+install-data-hook:
+	@-if test -z "$(DESTDIR)"; then \
+		echo "Updating Gtk icon cache."; \
+		$(gtk_update_icon_cache); \
+	else \
+		echo "*** Icon cache not updated.  After install, run this:"; \
+		echo "***   $(gtk_update_icon_cache)"; \
+	fi

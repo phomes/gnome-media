@@ -392,7 +392,7 @@ cb_about (GtkWidget *widget,
 			 "authors", authors,
 			 "documenters", documentors,
 			 "translator-credits", translators,
-			 "logo-icon-name", "volume-knob",
+			 "logo-icon-name", "multimedia-volume-control",
 			 NULL);
 }
 

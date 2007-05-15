@@ -190,14 +190,7 @@ main (gint   argc,
   /* init ourselves */
   register_stock_icons ();
 
-  /* add appicon image */
-  appfile = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
-				       "mixer.png", TRUE,
-				       NULL);
-  if (appfile) {
-    gnome_window_icon_set_default_from_file (appfile);
-    g_free (appfile);
-  }
+  gtk_window_set_default_icon_name ("multimedia-volume-control");
 
   if (!(elements = create_mixer_collection ())) {
     win = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,

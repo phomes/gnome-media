@@ -1,3 +1,97 @@
+2007-05-14  Michael Terry  <mterry@gnome.org>
+
+	* Makefile.am: Install app icon into hicolor theme, not .../pixmaps
+
+	* gnome-cd.c: (make_button_from_icon_name), (make_popup_menu),
+	(init_player), (tray_icon_create), (main): Look up icons in theme,
+	not from stock
+
+	* gnome-cd.desktop.in.in: Remove png suffix from icon
+
+	* images/Makefile.am:
+	* images/None/Makefile.am:
+
+	Don't install unused icons
+
+	* images/None/None.theme: Remove obsolete <icons> section
+
+	* images/media/media-fwd.png:
+	* images/media/media-stop.png:
+	* images/media/a-stop-menu.png:
+	* images/media/media-eject.png:
+	* images/media/a-first-menu.png:
+	* images/media/a-eject-menu.png:
+	* images/media/media-rew.png:
+	* images/media/media-play.png:
+	* images/media/a-last-menu.png:
+	* images/media/a-play-menu.png:
+	* images/media/media-rec.png:
+	* images/media/media-prev.png:
+	* images/media/media-pause.png:
+	* images/media/media-next.png:
+	* images/media-eject.png:
+	* images/None/media-fwd.png:
+	* images/None/media-stop.png:
+	* images/None/a-stop-menu.png:
+	* images/None/a-first-menu.png:
+	* images/None/media-eject.png:
+	* images/None/media-rew.png:
+	* images/None/a-eject-menu.png:
+	* images/None/media-play.png:
+	* images/None/a-last-menu.png:
+	* images/None/a-play-menu.png:
+	* images/None/media-prev.png:
+	* images/None/media-pause.png:
+	* images/None/media-next.png:
+	* images/lcd/a-fwd.png:
+	* images/lcd/a-pause-pressed.png:
+	* images/lcd/a-fwd-pressed.png:
+	* images/lcd/a-first.png:
+	* images/lcd/a-first-menu.png:
+	* images/lcd/a-eject.png:
+	* images/lcd/a-first-pressed.png:
+	* images/lcd/a-eject-pressed.png:
+	* images/lcd/a-rwnd.png:
+	* images/lcd/a-rwnd-pressed.png:
+	* images/lcd/a-stop.png:
+	* images/lcd/a-stop-menu.png:
+	* images/lcd/a-stop-pressed.png:
+	* images/lcd/a-eject-menu.png:
+	* images/lcd/a-last.png:
+	* images/lcd/a-last-menu.png:
+	* images/lcd/a-play.png:
+	* images/lcd/a-last-pressed.png:
+	* images/lcd/a-play-menu.png:
+	* images/lcd/a-play-pressed.png:
+	* images/lcd/a-pause.png:
+	* images/mixer.png:
+	* images/a-play-menu.png:
+	* images/cd.png:
+	* images/red-lcd/a-fwd.png:
+	* images/red-lcd/a-pause-pressed.png:
+	* images/red-lcd/a-fwd-pressed.png:
+	* images/red-lcd/a-first.png:
+	* images/red-lcd/a-first-menu.png:
+	* images/red-lcd/a-eject.png:
+	* images/red-lcd/a-first-pressed.png:
+	* images/red-lcd/a-eject-pressed.png:
+	* images/red-lcd/a-rwnd.png:
+	* images/red-lcd/a-rwnd-pressed.png:
+	* images/red-lcd/a-stop.png:
+	* images/red-lcd/a-stop-menu.png:
+	* images/red-lcd/a-stop-pressed.png:
+	* images/red-lcd/a-eject-menu.png:
+	* images/red-lcd/a-last.png:
+	* images/red-lcd/a-last-menu.png:
+	* images/red-lcd/a-play.png:
+	* images/red-lcd/a-last-pressed.png:
+	* images/red-lcd/a-play-menu.png:
+	* images/red-lcd/a-play-pressed.png:
+	* images/red-lcd/a-pause.png:
+
+	Deleted, as these icons are unused or grabbed from icon theme
+	instead
+
 2007-02-02  Bastien Nocera  <hadess@hadess.net>
 
 	* linux-cdrom.c: (linux_cdrom_get_status): return FALSE, not "return"

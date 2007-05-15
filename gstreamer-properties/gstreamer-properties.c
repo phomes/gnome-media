@@ -607,15 +607,7 @@ create_dialog (void)
 
   g_signal_connect (G_OBJECT (main_window),
       "response", (GCallback) dialog_response, interface_xml);
-  icon =
-      gdk_pixbuf_new_from_file (GSTPROPS_ICONDIR "/gstreamer-properties.png",
-      NULL);
-  if (icon) {
-    gtk_window_set_icon (GTK_WINDOW (main_window), icon);
-  } else {
-    g_warning ("Error loading main window icon %s",
-        GSTPROPS_ICONDIR "/gstreamer-properties.png\n");
-  }
+  gtk_window_set_icon_name (GTK_WINDOW (main_window), "gstreamer-properties");
   gtk_widget_show (GTK_WIDGET (main_window));
 }
 
