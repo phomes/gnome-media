@@ -191,8 +191,8 @@ gnome_volume_control_track_add_title (GtkTable *table,
 				      GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
+  gchar *ulabel = NULL;
   gchar *str = NULL;
-  gboolean found = FALSE;
   gint i;
 
   /* start */
@@ -207,22 +207,28 @@ gnome_volume_control_track_add_title (GtkTable *table,
   ctrl->pos = tab_pos;
   ctrl->id = g_timeout_add (200, cb_check, ctrl);
 
-  /* image (optional) */
-  for (i = 0; !found && pix[i].label != NULL; i++) {
-    /* we dup the string to make the comparison case-insensitive */
-    gchar *label_l = g_strdup (track->label);
+  /* find image from label string (optional) */
+  if (g_object_class_find_property (G_OBJECT_GET_CLASS (track), "untranslated-label"))
+    g_object_get (track, "untranslated-label", &ulabel, NULL);
+
+  if (ulabel == NULL)
+    g_object_get (track, "label", &ulabel, NULL);
+
+  if (ulabel) {
     gint pos;
 
     /* make case insensitive */
-    for (pos = 0; label_l[pos] != '\0'; pos++)
-      label_l[pos] = g_ascii_tolower (label_l[pos]);
+    for (pos = 0; ulabel[pos] != '\0'; pos++)
+      ulabel[pos] = g_ascii_tolower (ulabel[pos]);
 
-    if (g_strrstr (label_l, pix[i].label) != NULL) {
-      str = pix[i].pixmap;
-      found = TRUE;
+    for (i = 0; pix[i].label != NULL; i++) {
+      if (g_strrstr (ulabel, pix[i].label) != NULL) {
+        str = pix[i].pixmap;
+        break;
+      }
     }
 
-    g_free (label_l);
+    g_free (ulabel);
   }
 
   if (str != NULL) {
@@ -245,7 +251,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
   if (or == GTK_ORIENTATION_HORIZONTAL)
     str = g_strdup_printf (_("%s:"), track->label);
   else
-    str = track->label;
+    str = g_strdup (track->label);
   ctrl->label = gtk_label_new (str);
   if (or == GTK_ORIENTATION_HORIZONTAL) {
     g_free (str);

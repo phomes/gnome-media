@@ -146,13 +146,16 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track,
   gboolean found = FALSE;
 
   for (i = 0; !found && list[i].label != NULL; i++) {
-    gchar *label_l;
+    gchar *label_l = NULL;
 
     if (list[i].done)
       continue;
 
     /* make case insensitive */
-    label_l = g_strdup (track->label);
+    if (g_object_class_find_property (G_OBJECT_GET_CLASS (track), "untranslated-label"))
+      g_object_get (track, "untranslated-label", &label_l, NULL);
+    if (label_l == NULL)
+      g_object_get (track, "label", &label_l, NULL);
     for (pos = 0; label_l[pos] != '\0'; pos++)
       label_l[pos] = g_ascii_tolower (label_l[pos]);
 

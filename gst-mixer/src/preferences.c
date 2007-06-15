@@ -260,13 +260,20 @@ get_gconf_key (GstMixer *mixer, GstMixerTrack *track)
   const gchar *dev;
   gchar *res;
   gint i, pos;
-  gchar *label;
+  gchar *label = NULL;
 
   g_return_val_if_fail(mixer != NULL, NULL);
 
   dev = g_object_get_data (G_OBJECT (mixer),
 			   "gnome-volume-control-name");
-  label = track != NULL ? track->label : "";
+  if (track != NULL) {
+    if (g_object_class_find_property (G_OBJECT_GET_CLASS (track), "untranslated-label"))
+      g_object_get (track, "untranslated-label", &label, NULL);
+    if (label == NULL)
+      g_object_get (track, "label", &label, NULL);
+  }
+  if (label == NULL)
+    label = g_strdup ("");
 
   pos = strlen (GNOME_VOLUME_CONTROL_KEY_DIR) + 1;
   res = g_new (gchar, pos + strlen (dev) + 1 + strlen (label) + 1);
@@ -283,6 +290,7 @@ get_gconf_key (GstMixer *mixer, GstMixerTrack *track)
   }
   res[pos] = '\0';
 
+  g_free (label);
   return res;
 }
 

@@ -80,16 +80,16 @@ typedef struct {
  * controls to show by default. Make sure that those match the translations
  * of GStreamer-plugins' ALSA/OSS plugins. */
 #define whitelist_init_list { \
-    { N_("cd"), FALSE }, \
-    { N_("line"), FALSE }, \
-    { N_("mic"), FALSE }, \
-    { N_("pcm"), FALSE }, \
-    { N_("headphone"), FALSE }, \
-    { N_("speaker"), FALSE }, \
-    { N_("volume"), FALSE }, \
-    { N_("master"), FALSE }, \
-    { N_("digital output"), FALSE }, \
-    { N_("recording"), FALSE }, \
+    { "cd", FALSE }, \
+    { "line", FALSE }, \
+    { "mic", FALSE }, \
+    { "pcm", FALSE }, \
+    { "headphone", FALSE }, \
+    { "speaker", FALSE }, \
+    { "volume", FALSE }, \
+    { "master", FALSE }, \
+    { "digital output", FALSE }, \
+    { "recording", FALSE }, \
     { NULL, FALSE } \
   }
 
