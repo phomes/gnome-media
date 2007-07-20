@@ -1,1 +1,7 @@
-SUBDIRS = C de es fr it sv ja ko uk zh_CN zh_TW
+include $(top_srcdir)/gnome-doc-utils.make
+dist-hook: doc-dist-hook
+DOC_MODULE = gnome-sound-recorder
+DOC_ENTITIES = legal.xml
+DOC_INCLUDES =
+DOC_FIGURES = figures/grecord_window.png
+DOC_LINGUAS =

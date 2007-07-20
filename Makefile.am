@@ -7,6 +7,8 @@ SUBDIRS = po \
 	  @PROGRAMS_GRECORD@ \
 	  @PROGRAMS_GSTPROPS@
 
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
+
 DIST_SUBDIRS = po profiles cddb-slave2 \
 	       vu-meter grecord gst-mixer gnome-cd \
                gstreamer-properties
@@ -21,10 +23,12 @@ EXTRA_DIST =	gnome-media.spec.in configure \
 		gnome-media.spec \
 		xmldocs.make omf.make \
 		m4/as-compiler-flag.m4 m4/as-version.m4 \
+                gnome-doc-utils.make \
 		$(INTLTOOL_BUILT:=.in) \
 		autogen.sh
 
 DISTCLEANFILES = po/.intltool-merge-cache \
+                 gnome-doc-utils.make \
                  $(INTLTOOL_BUILT)
 
 ACLOCAL_AMFLAGS = -I m4
