@@ -4,4 +4,4 @@ DOC_MODULE = gstreamer-properties
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES =
 DOC_FIGURES = figures/gstreamer_properties_window.png
-DOC_LINGUAS =
+DOC_LINGUAS = es
