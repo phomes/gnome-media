@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-07 00:33+0100\n"
+"POT-Creation-Date: 2007-09-02 13:59+0200\n"
 "PO-Revision-Date: 2007-03-03 21:11+0100\n"
 "Last-Translator: wadim dziedzic <wdziedzic@aviary.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
@@ -883,6 +883,7 @@ msgid "CDDB Track Editor"
 msgstr "Edytor ścieżek CDDB"
 
 #: ../cddb-slave2/cddb-track-editor.c:1072
+#, c-format
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -936,7 +937,7 @@ msgstr "Wiersz zawierający nazwę albumu"
 
 #: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:808
+#: ../gnome-cd/gnome-cd.c:767
 msgid "Play"
 msgstr "Odtwarzaj"
 
@@ -971,7 +972,7 @@ msgstr "Wstrzymane"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:681 ../gnome-cd/gnome-cd.c:873
+#: ../gnome-cd/gnome-cd.c:647 ../gnome-cd/gnome-cd.c:823
 #: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
 msgid "CD Player"
 msgstr "Odtwarzacz CD"
@@ -1025,7 +1026,7 @@ msgid "Do you wish to continue?"
 msgstr "Czy kontynuować?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:499
 #, c-format
 msgid "Volume %d%%"
 msgstr "Głośność %d%%"
@@ -1053,40 +1054,40 @@ msgstr ""
 msgid "%d - Unknown"
 msgstr "%d - Nieznany"
 
-#: ../gnome-cd/gnome-cd.c:362
+#: ../gnome-cd/gnome-cd.c:343
 msgid "_Play / Pause"
 msgstr "_Odtwarzaj/Wstrzymaj"
 
-#: ../gnome-cd/gnome-cd.c:363
+#: ../gnome-cd/gnome-cd.c:344
 msgid "_Stop"
 msgstr "_Zatrzymaj"
 
-#: ../gnome-cd/gnome-cd.c:364
+#: ../gnome-cd/gnome-cd.c:345
 msgid "P_revious"
 msgstr "_Poprzednia"
 
-#: ../gnome-cd/gnome-cd.c:365
+#: ../gnome-cd/gnome-cd.c:346
 msgid "_Next"
 msgstr "_Następna"
 
-#: ../gnome-cd/gnome-cd.c:366
+#: ../gnome-cd/gnome-cd.c:347
 msgid "_Eject disc"
 msgstr "_Wysuń płytę"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1990
+#: ../gnome-cd/gnome-cd.c:348 ../grecord/src/gsr-window.c:1990
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: ../gnome-cd/gnome-cd.c:368
+#: ../gnome-cd/gnome-cd.c:349
 msgid "_About"
 msgstr "_Informacje o"
 
-#: ../gnome-cd/gnome-cd.c:369
+#: ../gnome-cd/gnome-cd.c:350
 msgid "_Quit"
 msgstr "Za_kończ"
 
-#: ../gnome-cd/gnome-cd.c:601
+#: ../gnome-cd/gnome-cd.c:567
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1097,15 +1098,15 @@ msgstr ""
 "aby przejść do okna pozwalającego na ustawienie urządzenia lub też\n"
 "wybrać \"Zakończ\", aby zrezygnować z uruchomienia programu."
 
-#: ../gnome-cd/gnome-cd.c:605
+#: ../gnome-cd/gnome-cd.c:571
 msgid "Set device"
 msgstr "Ustaw urządzenie"
 
-#: ../gnome-cd/gnome-cd.c:607
+#: ../gnome-cd/gnome-cd.c:573
 msgid "No CD device"
 msgstr "Brak urządzenia CD"
 
-#: ../gnome-cd/gnome-cd.c:660
+#: ../gnome-cd/gnome-cd.c:626
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1123,96 +1124,96 @@ msgstr ""
 "ustawienie urządzenia lub też wybrać \"Zakończ\", aby zrezygnować z "
 "uruchomienia programu."
 
-#: ../gnome-cd/gnome-cd.c:664
+#: ../gnome-cd/gnome-cd.c:630
 msgid "_Details"
 msgstr "_Szczegóły"
 
-#: ../gnome-cd/gnome-cd.c:665
+#: ../gnome-cd/gnome-cd.c:631
 msgid "_Set device"
 msgstr "_Ustaw urządzenie"
 
-#: ../gnome-cd/gnome-cd.c:667
+#: ../gnome-cd/gnome-cd.c:633
 msgid "Invalid CD device"
 msgstr "Niepoprawne urządzenie CD"
 
-#: ../gnome-cd/gnome-cd.c:746
+#: ../gnome-cd/gnome-cd.c:705
 msgid "Position"
 msgstr "Pozycja"
 
-#: ../gnome-cd/gnome-cd.c:763
+#: ../gnome-cd/gnome-cd.c:722
 msgid "Open preferences"
 msgstr "Otwiera okno preferencji"
 
-#: ../gnome-cd/gnome-cd.c:764
+#: ../gnome-cd/gnome-cd.c:723
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:731
 msgid "Track List"
 msgstr "Lista ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:778
+#: ../gnome-cd/gnome-cd.c:737
 msgid "Open track editor"
 msgstr "Otwiera edytor ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:779
+#: ../gnome-cd/gnome-cd.c:738
 msgid "Track editor"
 msgstr "Edytor ścieżek"
 
-#: ../gnome-cd/gnome-cd.c:808
+#: ../gnome-cd/gnome-cd.c:767
 msgid "Play / Pause"
 msgstr "Odtwarzanie/Wstrzymanie"
 
-#: ../gnome-cd/gnome-cd.c:813
+#: ../gnome-cd/gnome-cd.c:772
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: ../gnome-cd/gnome-cd.c:817
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Previous track"
 msgstr "Poprzednia ścieżka"
 
-#: ../gnome-cd/gnome-cd.c:817
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Previous"
 msgstr "Poprzednia"
 
-#: ../gnome-cd/gnome-cd.c:821
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Rewind"
 msgstr "Przewiń"
 
-#: ../gnome-cd/gnome-cd.c:829
+#: ../gnome-cd/gnome-cd.c:788
 msgid "Fast forward"
 msgstr "Szybko naprzód"
 
-#: ../gnome-cd/gnome-cd.c:837
+#: ../gnome-cd/gnome-cd.c:796
 msgid "Next track"
 msgstr "Następna ścieżka"
 
-#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Eject CD"
 msgstr "Wysunięcie CD"
 
-#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Eject"
 msgstr "Wysuń"
 
-#: ../gnome-cd/gnome-cd.c:963
+#: ../gnome-cd/gnome-cd.c:874
 msgid "CD device to use"
 msgstr "Używane _urządzenie CD"
 
-#: ../gnome-cd/gnome-cd.c:965
+#: ../gnome-cd/gnome-cd.c:876
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Uruchamia odtwarzacz CD tylko, jeśli nie działa inna jego kopia."
 
-#: ../gnome-cd/gnome-cd.c:967
+#: ../gnome-cd/gnome-cd.c:878
 msgid "Play the CD on startup"
 msgstr "Rozpoczyna odtwarzanie po uruchomieniu"
 
-#: ../gnome-cd/gnome-cd.c:969
+#: ../gnome-cd/gnome-cd.c:880
 msgid "Start iconified in notification area"
 msgstr "Zmniejszenie do ikony po uruchamieniu"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1011
+#: ../gnome-cd/gnome-cd.c:921
 msgid "Cannot create player"
 msgstr "Nie można utworzyć odtwarzacza"
 
@@ -1561,7 +1562,7 @@ msgstr "Odtwarzanie..."
 msgid "GConf audio output"
 msgstr "Wyjście dźwiękowe GConf"
 
-#: ../grecord/src/gsr-window.c:1596 ../gst-mixer/src/element.c:220
+#: ../grecord/src/gsr-window.c:1596 ../gst-mixer/src/element.c:223
 #: ../gst-mixer/src/misc.c:38
 msgid "Playback"
 msgstr "Odtwarzanie"
@@ -1732,15 +1733,15 @@ msgstr "Szerokość okna"
 msgid "Width of the Window to be displayed"
 msgstr "Szerokość wyświetlanego okna"
 
-#: ../gst-mixer/src/element.c:222
+#: ../gst-mixer/src/element.c:225
 msgid "Recording"
 msgstr "Nagrywanie"
 
-#: ../gst-mixer/src/element.c:224
+#: ../gst-mixer/src/element.c:227
 msgid "Switches"
 msgstr "Przełączniki"
 
-#: ../gst-mixer/src/element.c:226
+#: ../gst-mixer/src/element.c:229
 msgid "Options"
 msgstr "Opcje"
 
@@ -1749,7 +1750,7 @@ msgstr "Opcje"
 msgid "Unknown Volume Control %d"
 msgstr "Nieznana regulacja głośności %d"
 
-#: ../gst-mixer/src/main.c:205
+#: ../gst-mixer/src/main.c:198
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Nie odnaleziono wtyczek GStreamer i/lub urządzeń kontroli głośności."
 
@@ -1774,18 +1775,18 @@ msgstr "Preferencje regulacji głośności"
 msgid "_Select tracks to be visible:"
 msgstr "_Wybór widocznych ścieżek:"
 
-#: ../gst-mixer/src/track.c:246
+#: ../gst-mixer/src/track.c:252
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:286
+#: ../gst-mixer/src/track.c:292
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Wyciszenie/pogłośnienie %s"
 
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:307
 #, c-format
 msgid "Track %s: mute"
 msgstr "Ścieżka %s: wyciszenie"
@@ -1795,17 +1796,17 @@ msgstr "Ścieżka %s: wyciszenie"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: ../gst-mixer/src/track.c:381
+#: ../gst-mixer/src/track.c:387
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Przłącza nagrywanie dźwięku z %s"
 
-#: ../gst-mixer/src/track.c:396
+#: ../gst-mixer/src/track.c:402
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Ścieżka %s: nagrywanie dźwięku"
 
-#: ../gst-mixer/src/track.c:479
+#: ../gst-mixer/src/track.c:485
 #, c-format
 msgid "%s Option Selection"
 msgstr "Wybór opcji %s"
@@ -1922,7 +1923,7 @@ msgstr "GNOME PL Team <translators@gnomepl.org>"
 
 #: ../gst-mixer/src/window.c:391
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Bazująca na GNOME/GStremer aplikacja kontroli głośności"
+msgstr "Aplikacja kontroli głośności oparta na GNOME/GStreamer"
 
 #: ../gstreamer-properties/gstreamer-properties.c:195
 msgid "None"
@@ -1941,7 +1942,7 @@ msgstr "Domyślne"
 msgid "Failure instantiating main window"
 msgstr "Błąd przy tworzeniu okna głównego"
 
-#: ../gstreamer-properties/gstreamer-properties.c:661
+#: ../gstreamer-properties/gstreamer-properties.c:653
 msgid "Failed to load glade file; please check your installation."
 msgstr "Nie można wczytać pliku glade; sprawdź poprawność instalacji."
 
@@ -2098,7 +2099,7 @@ msgstr "Nie można utworzyć potoku testowego o nazwie \"%s\""
 msgid "There was an error displaying help: %s"
 msgstr "Wystąpił błąd podczas wyświetlania pomocy: %s"
 
-#: ../profiles/audio-profile-edit.c:329
+#: ../profiles/audio-profile-edit.c:330
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Modyfikacja profilu \"%s\""
@@ -2189,12 +2190,12 @@ msgstr "Edycja profili GNOME Audio"
 msgid "_Profiles:"
 msgstr "_Profile:"
 
-#: ../profiles/audio-profiles-edit.c:860
+#: ../profiles/audio-profiles-edit.c:830
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Profil o nazwie \"%s\" już istnieje"
 
-#: ../profiles/audio-profiles-edit.c:885
+#: ../profiles/audio-profiles-edit.c:855
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Błąd GConf (do poprawy): %s\n"
