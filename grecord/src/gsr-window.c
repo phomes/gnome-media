@@ -1789,19 +1789,31 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 	text = gtk_combo_box_get_active_text (input);
 	GST_DEBUG ("record input changed to '%s'", GST_STR_NULL (text));
 
+	if (text == NULL)
+		return;
+
 	for (l = gst_mixer_list_tracks (window->priv->mixer);
 	     l != NULL; l = l->next) {
 		t = l->data;
+		if (t == NULL || t->label == NULL)
+			continue;
 		if ((strcmp (t->label, text) == 0) &&
 		    (t->flags & GST_MIXER_TRACK_INPUT)) {
 			if (new == NULL)
 				new = g_object_ref (t);
+		/* FIXME selected == t is equivalent to NULL == t in this case,
+		 * selected, after its initialization to NULL, was never written to
+		 * before this read access to it
+		 * and NULL == t is equivalent to FALSE, because of the check
+		 * "if (t == NULL || t->label == NULL)" above
+		 */
 		} else if (selected == t)
 			/* re-mute old one */
 			gst_mixer_set_record (window->priv->mixer,
 					      selected, FALSE);
 	}
 
+	/* FIXME selected _is_ NULL always at this point - same as 5 lines above*/
 	if (selected != NULL)
 		g_object_unref (selected);
 	if (!(selected = new))

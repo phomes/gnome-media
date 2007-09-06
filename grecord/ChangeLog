@@ -1,5 +1,11 @@
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gsr-window.c: (record_input_changed_cb): Patch from
+	Boris Dušek <boris.dusek@gmail.com> to avoid crashing when
+	strcmp'ing NULL strings (Helps: #329922)
+
+2007-09-06  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gsr-window.c: (file_save_cb), (play_cb):
 	Patch from Mark Siner <msiner@gmail.com> to avoid crashing when
 	pressing save for a new file (Closes: #430101)
