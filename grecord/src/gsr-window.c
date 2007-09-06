@@ -780,12 +780,11 @@ file_save_as_cb (GtkAction *action,
 	gtk_widget_destroy (file_chooser);
 }
 
-
 static void
 file_save_cb (GtkAction *action,
 	      GSRWindow *window)
 {
-	if (window->priv->dirty) {
+	if (!window->priv->has_file) {
 		file_save_as_cb (NULL, window);
 	} else {
 		do_save_file (window, window->priv->filename);
@@ -1213,7 +1212,7 @@ play_cb (GtkAction *action,
 {
 	GSRWindowPrivate *priv = window->priv;
 
-	if (priv->has_file == FALSE)
+	if (priv->has_file == FALSE && !priv->working_file)
 		return;
 
 	if (priv->play) {
@@ -1222,14 +1221,18 @@ play_cb (GtkAction *action,
 
 	if ((priv->play = make_play_pipeline (window))) {
 		gchar *uri;
+		gchar *usefile;
+
+		if(priv->has_file == FALSE && priv->working_file) usefile = priv->working_file;
+		else usefile = priv->filename;
 
 		/* FIXME: do we need to complete relative paths
 		 * here or is it always an absolute path? */
-		if (!g_path_is_absolute (priv->filename)) {
+		if (!g_path_is_absolute (usefile)) {
 			g_warning ("Filename '%s' is not an absolute path (FIXME)",
-			           priv->filename);
+			           usefile);
 		}
-		uri = g_strdup_printf ("file://%s", priv->filename);
+		uri = g_strdup_printf ("file://%s", usefile);
 		g_object_set (window->priv->play->pipeline, "uri", uri, NULL);
 		g_free (uri);
 
