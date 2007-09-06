@@ -673,8 +673,8 @@ do_save_file (GSRWindow *window,
 			return;
 	}
 
-	tmp = g_strdup_printf ("file://%s", name);
-	src = g_strdup_printf ("file://%s", priv->record_filename);
+	tmp = g_filename_to_uri (name, NULL, NULL);
+	src = g_filename_to_uri (priv->record_filename, NULL, NULL);
 	src_uri = gnome_vfs_uri_new (src);
 	dst_uri = gnome_vfs_uri_new (tmp);
 	g_free (src);
@@ -1232,7 +1232,7 @@ play_cb (GtkAction *action,
 			g_warning ("Filename '%s' is not an absolute path (FIXME)",
 			           usefile);
 		}
-		uri = g_strdup_printf ("file://%s", usefile);
+		uri = g_filename_to_uri (usefile, NULL, NULL);
 		g_object_set (window->priv->play->pipeline, "uri", uri, NULL);
 		g_free (uri);
 
@@ -2529,7 +2529,7 @@ GtkWidget *
 gsr_window_new (const char *filename)
 {
 	GSRWindow *window;
-	struct stat buf;
+	char *template;
 
 	/* filename has been changed to be without extension */
 	window = g_object_new (GSR_TYPE_WINDOW, 
@@ -2537,15 +2537,15 @@ gsr_window_new (const char *filename)
 			       NULL);
         /* FIXME: check extension too */
 	window->priv->filename = g_strdup (filename);
-	if (stat (filename, &buf) == 0) {
+	if (g_file_test (filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR) != FALSE) {
 		window->priv->has_file = TRUE;
 	} else {
 		window->priv->has_file = FALSE;
 	}
 
-	window->priv->record_filename = g_strdup_printf ("%s/gsr-record-%s-%d.XXXXXX",
-							 g_get_tmp_dir(), filename, getpid ());
-	window->priv->record_fd = g_mkstemp (window->priv->record_filename);
+	template = g_strdup_printf ("gsr-record-%s-%d.XXXXXX", filename, getpid ());
+	window->priv->record_fd = g_file_open_tmp (template, &window->priv->record_filename, NULL);
+	g_free (template);
 	close (window->priv->record_fd);
 
 	if (window->priv->has_file == FALSE) {

@@ -1,5 +1,18 @@
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
 
+	* gnome-sound-recorder.schemas.in.in: Remove unused tempdir key
+	* src/gsr-window.c: (do_save_file), (play_cb), (gsr_window_new):
+	Use g_filename_to_uri instead of crappy printfs when converting
+	filenames to URIs (Closes: #437875)
+
+2007-09-06  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: <delete if not using a buddy>
+
+	* src/gsr-window.c: (do_save_file), (play_cb):
+
+2007-09-06  Bastien Nocera  <hadess@hadess.net>
+
 	* gnome-sound-recorder.schemas.in.in: Remove obsolete reference
 	to sox (Closes: #412670)
 
