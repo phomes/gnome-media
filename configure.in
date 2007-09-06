@@ -256,11 +256,7 @@ if test -n "$we_have_esd"; then
   AC_DEFINE(HAVE_ESD, 1, [Defined if we have Esound])
 fi
 
-# Check for ScrollKeeper
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR([Couldn't find scrollkeeper-config, please install the scrollkeeper package])
-fi
+GNOME_DOC_INIT
 
 # Test whether jw is installed
 AC_PATH_PROG(JW,jw,no)

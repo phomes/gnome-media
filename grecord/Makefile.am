@@ -6,15 +6,17 @@ EXTRA_DIST = \
 	gnome-sound-recorder.schemas.in \
 	gnome-grecord.png
 
-@INTLTOOL_DESKTOP_RULE@
-@INTLTOOL_SCHEMAS_RULE@
 
 Applicationsdir = $(datadir)/applications
 Applications_in_files = gnome-sound-recorder.desktop.in.in
 Applications_DATA = $(Applications_in_files:.desktop.in.in=.desktop)
 
+@INTLTOOL_DESKTOP_RULE@
+
 schemadir=$(GCONF_SCHEMA_FILE_DIR)
 schema_DATA=gnome-sound-recorder.schemas
+
+@INTLTOOL_SCHEMAS_RULE@
 
 icondir = $(datadir)/icons/hicolor/48x48/apps
 icon_DATA = gnome-grecord.png

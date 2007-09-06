@@ -30,7 +30,7 @@ Audio_in_files = vumeter.desktop.in.in reclevel.desktop.in.in
 Audio_DATA = $(Audio_in_files:.desktop.in.in=.desktop)
 
 CLEANFILES = $(Audio_DATA)
-DISTCLEANFILES = $(Audio_in_files:.desktop.in.in:.desktop.in)
+DISTCLEANFILES = $(Audio_in_files:.desktop.in.in=.desktop.in)
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 install-data-hook:
