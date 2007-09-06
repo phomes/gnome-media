@@ -575,7 +575,23 @@ gst_cdrom_eos_msg (GstCDRom * cdrom, GstMessage * msg, GstBus * bus)
 
   GST_DEBUG ("received EOS %s", (was_last) ? "(last track)" : "");
 
-  if (was_last) {
+  if (was_last && GNOME_CDROM (cdrom)->playmode == GNOME_CDROM_SINGLE_TRACK) {
+    GnomeCDRomMSF start_msf, end_msf;
+    start_msf.minute = 0;
+    start_msf.second = 0;
+    start_msf.frame = 0;
+
+    end_msf.minute = 0;
+    end_msf.second = 0;
+    end_msf.frame = 0;
+
+    gst_cdrom_play (GNOME_CDROM (cdrom),
+		    cdrom->priv->status.track,
+		    &start_msf,
+		    cdrom->priv->status.track,
+		    &end_msf,
+		    NULL);
+  } else if (was_last) {
     gst_cdrom_set_playbin_state_to_null (cdrom);
     cdrom->priv->status.audio = GNOME_CDROM_AUDIO_COMPLETE;
   } else {
