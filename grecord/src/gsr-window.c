@@ -1773,6 +1773,12 @@ make_record_source (GSRWindow *window)
 	}
 	window->priv->source = source;
 	e = gst_bin_get_by_interface (GST_BIN (source), GST_TYPE_MIXER);
+	if (GST_IS_MIXER (e) == FALSE) {
+		show_error_dialog (NULL, NULL,
+			_("Your audio capture settings are invalid. "
+			  "Please correct them in the Multimedia settings."));
+		return FALSE;
+	}
 	window->priv->mixer = GST_MIXER (e);
 
 	return TRUE;
