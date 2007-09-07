@@ -1,5 +1,14 @@
 2007-09-07  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gsr-window.c: (record_cb), (record_input_changed_cb),
+	(fill_record_input), (gsr_window_init): Remember the current
+	capture track when restarting a record, so it doesn't
+	revert back to "Capture", Avoid a warning when trying to set
+	the new capture track after the pipeline has been stopped
+	(Closes: #335556)
+
+2007-09-07  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gsr-window.c: (make_record_source): Fail to startup if
 	the source selected ends up not having a mixer
 
@@ -9,12 +18,6 @@
 	* src/gsr-window.c: (do_save_file), (play_cb), (gsr_window_new):
 	Use g_filename_to_uri instead of crappy printfs when converting
 	filenames to URIs (Closes: #437875)
-
-2007-09-06  Bastien Nocera  <hadess@hadess.net>
-
-	reviewed by: <delete if not using a buddy>
-
-	* src/gsr-window.c: (do_save_file), (play_cb):
 
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
 

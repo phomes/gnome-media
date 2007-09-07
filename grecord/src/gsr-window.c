@@ -148,7 +148,7 @@ struct _GSRWindowPrivate {
 };
 
 static gboolean            make_record_source      (GSRWindow         *window);
-static void                fill_record_input       (GSRWindow         *window);
+static void                fill_record_input       (GSRWindow         *window, gchar *selected);
 static GSRWindowPipeline * make_record_pipeline    (GSRWindow         *window);
 static GSRWindowPipeline * make_play_pipeline      (GSRWindow         *window);
 
@@ -1273,9 +1273,11 @@ record_cb (GtkAction *action,
 	GSRWindowPrivate *priv = window->priv;
 
 	if (priv->record) {
+		char *current_source;
 		shutdown_pipeline (priv->record);
 		if (!make_record_source (window)) exit (1);
-		fill_record_input (window);
+		current_source = gtk_combo_box_get_active_text (GTK_COMBO_BOX (window->priv->input));
+		fill_record_input (window, current_source);
 	}
 
 	if ((priv->record = make_record_pipeline (window))) {
@@ -1798,6 +1800,11 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 	if (text == NULL)
 		return;
 
+	/* The pipeline has been destroyed already, we'll try and remember
+	 * the input for the next record run in fill_record_input() */
+	if (GST_IS_MIXER (window->priv->mixer) == FALSE)
+		return;
+
 	for (l = gst_mixer_list_tracks (window->priv->mixer);
 	     l != NULL; l = l->next) {
 		t = l->data;
@@ -1830,7 +1837,7 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 }
 
 static void
-fill_record_input (GSRWindow *window)
+fill_record_input (GSRWindow *window, gchar *selected)
 {
 	GstElement *e;
 	const GList *l;
@@ -1846,11 +1853,16 @@ fill_record_input (GSRWindow *window)
 
 	for (l = gst_mixer_list_tracks (window->priv->mixer); l != NULL; l = l->next) {
 		GstMixerTrack *t = l->data;
+		if (t->label == NULL)
+			continue;
 		if (t->flags & GST_MIXER_TRACK_INPUT) {
 			gtk_combo_box_append_text (GTK_COMBO_BOX (window->priv->input), t->label);
 			++i;
 		}
-		if (t->flags & GST_MIXER_TRACK_RECORD) {
+		if ((t->flags & GST_MIXER_TRACK_RECORD) && (selected == NULL)) {
+			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
+		}
+		if ((selected != NULL) && strcmp (selected, t->label) == 0) {
 			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
 		}
 	}
@@ -2224,7 +2236,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_widget_show (priv->input);
 
 	if (!make_record_source (window)) exit (1);
-	fill_record_input (window);
+	fill_record_input (window, NULL);
 	g_signal_connect (priv->input, "changed",
 			  G_CALLBACK (record_input_changed_cb), window);
 
