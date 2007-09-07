@@ -1,5 +1,12 @@
 2007-09-07  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gsr-window.c: (record_start), (record_state_changed_cb):
+	Remove the record timeout tick when we're done recording, so
+	the timeout isn't called after we've destroyed the window
+	(Closes: #333351)
+
+2007-09-07  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gsr-window.c: (record_cb), (record_input_changed_cb),
 	(fill_record_input), (gsr_window_init): Remember the current
 	capture track when restarting a record, so it doesn't

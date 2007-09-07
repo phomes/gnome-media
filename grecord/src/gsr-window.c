@@ -1663,7 +1663,7 @@ record_start (gpointer user_data)
 	gchar *name;
 
 	window->priv->get_length_attempts = 16;
-	g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
+	window->priv->tick_id = g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
 
 	set_action_sensitive (window, "Stop", TRUE);
 	set_action_sensitive (window, "Play", FALSE);
@@ -1743,6 +1743,10 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
 				    window->priv->status_message_cid,
 				    _("Ready"));
+		if (window->priv->tick_id > 0) {
+			g_source_remove (window->priv->tick_id);
+			window->priv->tick_id = 0;
+		}
 		break;
 	default:
 		break;
