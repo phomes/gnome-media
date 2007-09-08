@@ -446,7 +446,7 @@ if test "x$HAVE_GST" = "xyes" && test "x$enable_gstprops" == "xyes";
 then
   dnl gstreamer-libs-$GST_MAJORMINOR
   dnl gstreamer-gconf-$GST_MAJORMINOR
-  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 gstreamer-$GST_MAJORMINOR"
+  COMMON_MODULES="gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 gstreamer-$GST_MAJORMINOR gstreamer-plugins-base-$GST_MAJORMINOR >= $GSTPB_REQ"
   PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
   		  PROGRAMS_GSTPROPS="gstreamer-properties")
   GSTPROPS_LIBS="$GSTPROPS_LIBS -lgstinterfaces-$GST_MAJORMINOR"
