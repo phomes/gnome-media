@@ -8,18 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-16 23:42+0300\n"
-"PO-Revision-Date: 2006-08-13 00:24-0500\n"
-"Last-Translator: Onur Can ÇAKMAK <onur.cakmak@gmail.com>\n"
+"POT-Creation-Date: 2007-09-17 22:18+0300\n"
+"PO-Revision-Date: 2007-09-17 10:52+0300\n"
+"Last-Translator: Emrah Ünal <eunall@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
-"X-Generator: KBabel 1.10.2\n"
-"X-Poedit-Bookmarks: 218,-1,-1,-1,304,-1,-1,-1,-1,-1\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -44,7 +40,7 @@ msgstr "Sunucu türü"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
-msgstr "Tüm sorgularla gönderilecek makine adı"
+msgstr "Tüm sorgularda gönderilecek makine adı"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
@@ -64,7 +60,7 @@ msgstr "Kullanıcı adı"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
 msgid "The username that will be sent with all queries"
-msgstr "Tüm sorgularla gönderilecek kullanıcı adı"
+msgstr "Tüm sorgularda gönderilecek kullanıcı adı"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
 msgid ""
@@ -73,7 +69,7 @@ msgid ""
 "information) and 3 (other information)."
 msgstr ""
 "Bu anahtar CD sorgulamaları için bağlanılacak sunucuya gönderilen bilgileri "
-"belirler. Geçerli değerler 0 (Bilgi gönderme), 1 (Gerçek bilgiler), 3 (Başka "
+"belirler. Geçerli değerler 0 (Bilgi gönderme), 1 (Gerçek bilgiler), 3 (Diğer "
 "bilgiler)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
@@ -91,7 +87,7 @@ msgstr ""
 
 #: ../cddb-slave2/cddb-slave-capplet.c:807
 msgid "Sen_d no information"
-msgstr "_Bilgi gönderme"
+msgstr "Hiçbir _bilgi gönderme"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:816
 msgid "Send real _information"
@@ -103,7 +99,7 @@ msgstr "B_aşka bir bilgi gönder:"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:850
 msgid "_Name:"
-msgstr "İ_sim:"
+msgstr "_Ad:"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:874
 msgid "Hostna_me:"
@@ -155,9 +151,10 @@ msgid "Unknown / Unknown"
 msgstr "Bilinmiyor / Bilinmiyor"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
-#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:976
+#: ../grecord/src/gsr-window.c:986 ../grecord/src/gsr-window.c:1002
+#: ../grecord/src/gsr-window.c:1011 ../grecord/src/gsr-window.c:1360
+#: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
@@ -170,8 +167,8 @@ msgid ""
 "There were multiple matches found in the database.\n"
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
-"Veritabanında çoklu eşleşmeler bulundu.\n"
-"Aşağıda olası eşleşmeler listelenmiştir, lütfen en fazla uyanı seçin"
+"Veritabanında birden fazla eşleşme bulundu.\n"
+"Aşağıda olası eşleşmeler sıralanmıştır, lütfen en fazla uyanı seçin"
 
 #: ../cddb-slave2/cddb-slave.c:288
 msgid "Category"
@@ -190,11 +187,11 @@ msgstr "Sanatçı ve Albüm adı"
 msgid "Unknown track"
 msgstr "Bilinmeyen parça"
 
-#: ../cddb-slave2/cddb-slave.desktop.in.h:1
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
 msgid "CD Database Server"
 msgstr "CD Veritabanı Sunucusu"
 
-#: ../cddb-slave2/cddb-slave.desktop.in.h:2
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
 msgid "Modify your CD database server preferences"
 msgstr "CD veritabanı sunucusu tercihlerinizi düzenleyin"
 
@@ -931,7 +928,7 @@ msgstr "Albümün adının gösterildiği satır"
 
 #: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:767
 msgid "Play"
 msgstr "Çal"
 
@@ -966,9 +963,8 @@ msgstr "Duraklatıldı"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
-#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
-#: ../gnome-cd/preferences.c:613
+#: ../gnome-cd/gnome-cd.c:647 ../gnome-cd/gnome-cd.c:823
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
 msgid "CD Player"
 msgstr "CD Çalıcı"
 
@@ -1008,20 +1004,20 @@ msgstr "Sürücü Hatası"
 msgid "A CD player for GNOME"
 msgstr "GNOME için CD çalıcı"
 
-#: ../gnome-cd/callbacks.c:1160
+#: ../gnome-cd/callbacks.c:1110
 msgid "Contents in the CDDB have changed"
 msgstr "CDDB içindeki içerik değişti"
 
-#: ../gnome-cd/callbacks.c:1161
+#: ../gnome-cd/callbacks.c:1111
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "'Evet'i seçmek CDDB içindeki önceki içeriği silecektir."
 
-#: ../gnome-cd/callbacks.c:1162
+#: ../gnome-cd/callbacks.c:1112
 msgid "Do you wish to continue?"
 msgstr "Devam etmek ister misiniz?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1235 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:499
 #, c-format
 msgid "Volume %d%%"
 msgstr "Ses %%%d"
@@ -1044,53 +1040,45 @@ msgstr ""
 "b) CD aygıtına erişmek için doğru haklarınızın olmaması\n"
 "c) %s CD aygıtı olmaması gibi şeyler olabilir.\n"
 
-#: ../gnome-cd/eggtrayicon.c:118
-msgid "Orientation"
-msgstr "Yön"
-
-#: ../gnome-cd/eggtrayicon.c:119
-msgid "The orientation of the tray."
-msgstr "Uyarı alanının yönü."
-
 #: ../gnome-cd/gnome-cd.c:246
 #, c-format
 msgid "%d - Unknown"
 msgstr "%d - Bilinmiyor"
 
-#: ../gnome-cd/gnome-cd.c:362
+#: ../gnome-cd/gnome-cd.c:343
 msgid "_Play / Pause"
 msgstr "Ç_al / Duraklat"
 
-#: ../gnome-cd/gnome-cd.c:363
+#: ../gnome-cd/gnome-cd.c:344
 msgid "_Stop"
 msgstr "_Dur"
 
-#: ../gnome-cd/gnome-cd.c:364
+#: ../gnome-cd/gnome-cd.c:345
 msgid "P_revious"
 msgstr "Ö_nceki"
 
-#: ../gnome-cd/gnome-cd.c:365
+#: ../gnome-cd/gnome-cd.c:346
 msgid "_Next"
 msgstr "_Sonraki"
 
-#: ../gnome-cd/gnome-cd.c:366
+#: ../gnome-cd/gnome-cd.c:347
 msgid "_Eject disc"
 msgstr "_Diski çıkart"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1986
+#: ../gnome-cd/gnome-cd.c:348 ../grecord/src/gsr-window.c:2027
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../gnome-cd/gnome-cd.c:368
+#: ../gnome-cd/gnome-cd.c:349
 msgid "_About"
 msgstr "_Hakkında"
 
-#: ../gnome-cd/gnome-cd.c:369
+#: ../gnome-cd/gnome-cd.c:350
 msgid "_Quit"
 msgstr "Çı_k"
 
-#: ../gnome-cd/gnome-cd.c:612
+#: ../gnome-cd/gnome-cd.c:567
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1100,15 +1088,15 @@ msgstr ""
 "çalışmayacak. 'Aygıtı Seç' tuşuna basarak aygıtı belirtebilir\n"
 "veya 'Çık'a basarak CD çalıcısından çıkabilirsiniz."
 
-#: ../gnome-cd/gnome-cd.c:616
+#: ../gnome-cd/gnome-cd.c:571
 msgid "Set device"
 msgstr "Aygıtı Seç"
 
-#: ../gnome-cd/gnome-cd.c:618
+#: ../gnome-cd/gnome-cd.c:573
 msgid "No CD device"
 msgstr "CD aygıtı yok"
 
-#: ../gnome-cd/gnome-cd.c:671
+#: ../gnome-cd/gnome-cd.c:626
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1124,100 +1112,100 @@ msgstr ""
 "Aygıtı ayarlayacağınız pencereye gitmek için 'Aygıtı Seç' tuşuna basabilir "
 "veya 'Çık'a basarak CD çalıcısından çıkabilirsiniz"
 
-#: ../gnome-cd/gnome-cd.c:675
+#: ../gnome-cd/gnome-cd.c:630
 msgid "_Details"
 msgstr "_Ayrıntılar"
 
-#: ../gnome-cd/gnome-cd.c:676
+#: ../gnome-cd/gnome-cd.c:631
 msgid "_Set device"
 msgstr "Aygıt _Seç"
 
-#: ../gnome-cd/gnome-cd.c:678
+#: ../gnome-cd/gnome-cd.c:633
 msgid "Invalid CD device"
 msgstr "Geçersiz CD aygıtı"
 
-#: ../gnome-cd/gnome-cd.c:757
+#: ../gnome-cd/gnome-cd.c:705
 msgid "Position"
 msgstr "Pozisyon"
 
-#: ../gnome-cd/gnome-cd.c:774
+#: ../gnome-cd/gnome-cd.c:722
 msgid "Open preferences"
 msgstr "Tercihleri aç"
 
-#: ../gnome-cd/gnome-cd.c:775
+#: ../gnome-cd/gnome-cd.c:723
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../gnome-cd/gnome-cd.c:783
+#: ../gnome-cd/gnome-cd.c:731
 msgid "Track List"
 msgstr "Parça Listesi"
 
-#: ../gnome-cd/gnome-cd.c:789
+#: ../gnome-cd/gnome-cd.c:737
 msgid "Open track editor"
 msgstr "Parça düzenleyicisini aç"
 
-#: ../gnome-cd/gnome-cd.c:790
+#: ../gnome-cd/gnome-cd.c:738
 msgid "Track editor"
 msgstr "Parça düzenleyici"
 
-#: ../gnome-cd/gnome-cd.c:819
+#: ../gnome-cd/gnome-cd.c:767
 msgid "Play / Pause"
 msgstr "Çal / Duraklat"
 
-#: ../gnome-cd/gnome-cd.c:824
+#: ../gnome-cd/gnome-cd.c:772
 msgid "Stop"
 msgstr "Dur"
 
-#: ../gnome-cd/gnome-cd.c:828
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Previous track"
 msgstr "Önceki parça"
 
-#: ../gnome-cd/gnome-cd.c:828
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Previous"
 msgstr "Önceki"
 
-#: ../gnome-cd/gnome-cd.c:832
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Rewind"
 msgstr "Geri Sar"
 
-#: ../gnome-cd/gnome-cd.c:840
+#: ../gnome-cd/gnome-cd.c:788
 msgid "Fast forward"
 msgstr "Hızlı ileri"
 
-#: ../gnome-cd/gnome-cd.c:848
+#: ../gnome-cd/gnome-cd.c:796
 msgid "Next track"
 msgstr "Sonraki parça"
 
-#: ../gnome-cd/gnome-cd.c:852
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Eject CD"
 msgstr "CD'yi Çıkart"
 
-#: ../gnome-cd/gnome-cd.c:852
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Eject"
 msgstr "Çıkart"
 
-#: ../gnome-cd/gnome-cd.c:982
+#: ../gnome-cd/gnome-cd.c:874
 msgid "CD device to use"
 msgstr "Kullanılacak CD aygıtı"
 
-#: ../gnome-cd/gnome-cd.c:984
+#: ../gnome-cd/gnome-cd.c:876
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Sadece çalışan bir CD çalıcı uygulaması yoksa başlat"
 
-#: ../gnome-cd/gnome-cd.c:986
+#: ../gnome-cd/gnome-cd.c:878
 msgid "Play the CD on startup"
 msgstr "Başlarken CD'yi çal"
 
-#: ../gnome-cd/gnome-cd.c:988
-msgid "Start iconified to tray"
+#: ../gnome-cd/gnome-cd.c:880
+msgid "Start iconified in notification area"
 msgstr "Uyarı alanında simge olarak başlat"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1028
+#: ../gnome-cd/gnome-cd.c:921
 msgid "Cannot create player"
 msgstr "Çalııcı başlatılamadı"
 
-#: ../gnome-cd/gnome-cd.desktop.in.h:2
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
 msgid "Play audio CDs"
 msgstr "Ses CD'si çal"
 
@@ -1234,16 +1222,16 @@ msgid "Device path"
 msgstr "Aygıt yolu"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time ?"
-msgstr "Kalan süreyi göster ?"
+msgid "Display the Remaining time?"
+msgstr "Kalan "
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:5
 msgid "Eject the CD when CD player quits?"
 msgstr "CD çalıcıdan çıktığınızda CD'yi çıkarsın mı?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing ?"
-msgstr "CD Oynatıcı çalarken zaman nasıl gösterilmeli ?"
+msgid "How the time should be displayed while CD Player is playing?"
+msgstr "CD Oynatıcı disk çalarken zaman nasıl gösterilsin? "
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:7
 msgid "Play when the CD player starts?"
@@ -1269,7 +1257,7 @@ msgstr "CD çalıcı başlatıldığında ses seviyesi olarka ne kullanılacak?"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "CD çalıcı başlatıldığında, CD çalmaya başlamalı mı?"
 
-#: ../gnome-cd/gst-cdrom.c:279
+#: ../gnome-cd/gst-cdrom.c:286
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "CD çıkarılamadı: %s"
@@ -1287,66 +1275,62 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Aygıt tanımlanırken hata oluştu"
 
-#: ../gnome-cd/preferences.c:586
+#: ../gnome-cd/preferences.c:587
 msgid "CD Player Preferences"
 msgstr "CD Çalıcı Tercihleri"
 
-#: ../gnome-cd/preferences.c:625
+#: ../gnome-cd/preferences.c:626
+#: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Aygıt:"
 
-#: ../gnome-cd/preferences.c:639
+#: ../gnome-cd/preferences.c:640
 msgid "Behavior"
 msgstr "Davranış"
 
-#: ../gnome-cd/preferences.c:652
+#: ../gnome-cd/preferences.c:653
 msgid "Start _playback when CD Player starts"
 msgstr "CD Çalıcı _başladığında CD'yi çalmaya başla"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:654
 msgid "Start playback when CD Player starts"
 msgstr "CD Çalıcı başladığında CD'yi çalmaya başla"
 
-#: ../gnome-cd/preferences.c:665
+#: ../gnome-cd/preferences.c:666
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "CD Çalıcı _kapandığında CD'yi çıkartmaya çalış"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:667
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "CD Çalıcı kapandığında CD'yi çıkartmaya çalış"
 
-#: ../gnome-cd/preferences.c:682
+#: ../gnome-cd/preferences.c:683
 msgid "Themes"
 msgstr "Temalar"
 
-#: ../gnome-cd/preferences.c:694
+#: ../gnome-cd/preferences.c:695
 msgid "_Select a theme:"
 msgstr "Tema _seç:"
 
-#: ../grecord/gnome-sound-recorder.desktop.in.h:1
+#: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
 msgstr "Ses parçalarını kaydet"
 
-#: ../grecord/gnome-sound-recorder.desktop.in.h:2
-#: ../grecord/src/gsr-window.c:1206
+#: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
+#: ../grecord/src/gsr-window.c:1199
 msgid "Sound Recorder"
 msgstr "Ses Kaydedicisi"
 
-#. Translator comment: Untitled here implies a track without a
-#. * name. See also the translation in gnome-recorder.c:94. Those
-#. * two strings should match! If the track is unnamed, we will
-#. * open the save-as dialog here, else we´ll use the given file
-#. * to save to.
 #. Translator comment: default trackname is 'untitled', which
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2452
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1688
+#: ../grecord/src/gsr-window.c:2519
 msgid "Untitled"
 msgstr "Adsız-%d"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1690
 #, c-format
 msgid "Untitled-%d"
 msgstr "İsimsiz-%d"
@@ -1418,8 +1402,8 @@ msgstr ""
 "Dosya yüklenemedi:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
-#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2281
+#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1491
+#: ../grecord/src/gsr-window.c:1745 ../grecord/src/gsr-window.c:2341
 msgid "Ready"
 msgstr "Hazır"
 
@@ -1437,119 +1421,119 @@ msgstr ""
 "\"%s\" adında bir dosya zate mevcut. \n"
 "Şu anda kaydetmekte olduğunuz dosyayı onun yerine koymak ister misiniz?"
 
-#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
+#: ../grecord/src/gsr-window.c:697 ../grecord/src/gsr-window.c:704
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "\"%s\" dosyası kaydedilemedi"
 
-#: ../grecord/src/gsr-window.c:720
+#: ../grecord/src/gsr-window.c:721
 msgid "Save file as"
 msgstr "Dosyayı farklı kaydet"
 
-#: ../grecord/src/gsr-window.c:814
+#: ../grecord/src/gsr-window.c:807
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s yok içinde kurulu değil."
 
-#: ../grecord/src/gsr-window.c:823
+#: ../grecord/src/gsr-window.c:816
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s başlatılırken bir hata oluştu: %s"
 
-#: ../grecord/src/gsr-window.c:845
+#: ../grecord/src/gsr-window.c:838
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "\"%s\" dosyasına değişiklikler kapatmadan önce kaydedilsin mi?"
 
-#: ../grecord/src/gsr-window.c:856
+#: ../grecord/src/gsr-window.c:849
 msgid "Close _without Saving"
 msgstr "Kaydetmeden çı_k"
 
-#: ../grecord/src/gsr-window.c:863
+#: ../grecord/src/gsr-window.c:856
 msgid "Question"
 msgstr "Soru"
 
-#: ../grecord/src/gsr-window.c:955
+#: ../grecord/src/gsr-window.c:948
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Henüz kaydedilmedi)"
 
-#: ../grecord/src/gsr-window.c:970
+# msgstr[1] "%s (%llu bayt)"
+#: ../grecord/src/gsr-window.c:963
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bayt)"
-msgstr[1] "%s (%llu bayt)"
 
-#: ../grecord/src/gsr-window.c:974
+#: ../grecord/src/gsr-window.c:967
 msgid "Unknown size"
 msgstr "Bilinmeyen boyut"
 
-#: ../grecord/src/gsr-window.c:995
+#: ../grecord/src/gsr-window.c:988
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:996
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1006
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Yaklaşık)"
 
-#: ../grecord/src/gsr-window.c:1021
+#: ../grecord/src/gsr-window.c:1014
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1017
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1044
 #, c-format
 msgid "%s Information"
 msgstr "%s Bilgi"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2226
+#: ../grecord/src/gsr-window.c:1068 ../grecord/src/gsr-window.c:2276
 msgid "File Information"
 msgstr "Dosya Bilgisi"
 
-#: ../grecord/src/gsr-window.c:1090
+#: ../grecord/src/gsr-window.c:1083
 msgid "Folder:"
 msgstr "Klasör:"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2241
+#: ../grecord/src/gsr-window.c:1089 ../grecord/src/gsr-window.c:2291
 msgid "Filename:"
 msgstr "Dosya adı:"
 
-#: ../grecord/src/gsr-window.c:1102
+#: ../grecord/src/gsr-window.c:1095
 msgid "File size:"
 msgstr "Dosya boyutu:"
 
-#: ../grecord/src/gsr-window.c:1111
+#: ../grecord/src/gsr-window.c:1104
 msgid "Audio Information"
 msgstr "Ses Bilgisi"
 
-#: ../grecord/src/gsr-window.c:1126
+#: ../grecord/src/gsr-window.c:1119
 msgid "File duration:"
 msgstr "Dosya süresi:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1125
 msgid "Number of channels:"
 msgstr "Kanal sayısı:"
 
-#: ../grecord/src/gsr-window.c:1138
+#: ../grecord/src/gsr-window.c:1131
 msgid "Sample rate:"
 msgstr "Örnekleme hızı:"
 
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1137
 msgid "Bit rate:"
 msgstr "Bit oranı:"
 
-#: ../grecord/src/gsr-window.c:1209
+#: ../grecord/src/gsr-window.c:1202
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1557,27 +1541,28 @@ msgstr ""
 "GNOME için ses kaydedicisi\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1464
+#: ../grecord/src/gsr-window.c:1463
 msgid "Playing..."
 msgstr "Çalınıyor..."
 
-#: ../grecord/src/gsr-window.c:1593
+#: ../grecord/src/gsr-window.c:1592
 msgid "GConf audio output"
 msgstr "GConf ses çıkışı"
 
-#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1601 ../gst-mixer/src/element.c:223
+#: ../gst-mixer/src/misc.c:38
 msgid "Playback"
-msgstr "Arkada Çal"
+msgstr "Ses çıkışı"
 
-#: ../grecord/src/gsr-window.c:1680
+#: ../grecord/src/gsr-window.c:1679
 msgid "Recording..."
 msgstr "Kaydediliyor..."
 
-#: ../grecord/src/gsr-window.c:1760
+#: ../grecord/src/gsr-window.c:1767
 msgid "GConf audio recording"
 msgstr "GConf ses kayıdı"
 
-#: ../grecord/src/gsr-window.c:1769
+#: ../grecord/src/gsr-window.c:1776 ../grecord/src/gsr-window.c:1784
 msgid ""
 "Your audio capture settings are invalid. Please correct them in the "
 "Multimedia settings."
@@ -1585,137 +1570,137 @@ msgstr ""
 "Ses yakalama ayarlarınız geçersiz. Lütfen Çokluortam Seçenekleri'nden "
 "düzeltin"
 
-#: ../grecord/src/gsr-window.c:1852
+#: ../grecord/src/gsr-window.c:1893
 msgid "file output"
 msgstr "dosya çıktısı"
 
-#: ../grecord/src/gsr-window.c:1881
+#: ../grecord/src/gsr-window.c:1922
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "'%s' ses profili ayrıştırılamadı."
 
-#: ../grecord/src/gsr-window.c:1897
+#: ../grecord/src/gsr-window.c:1938
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "'%s' ses profili kullanılarak kayıt yapılamadı."
 
-#: ../grecord/src/gsr-window.c:1907
+#: ../grecord/src/gsr-window.c:1948
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "'%s' ses profilini kullanarak dosyaya yazılamıyor."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1958
+#: ../grecord/src/gsr-window.c:1999
 msgid "_File"
 msgstr "_Dosya"
 
-#: ../grecord/src/gsr-window.c:1960
+#: ../grecord/src/gsr-window.c:2001
 msgid "Create a new sample"
 msgstr "Yeni bir örnekleme yarat"
 
-#: ../grecord/src/gsr-window.c:1961
+#: ../grecord/src/gsr-window.c:2002
 msgid "_Open..."
 msgstr "_Aç..."
 
-#: ../grecord/src/gsr-window.c:1962
+#: ../grecord/src/gsr-window.c:2003
 msgid "Open a file"
 msgstr "Bir dosya aç"
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:2005
 msgid "Save the current file"
 msgstr "Güncel dosyayı kaydet"
 
-#: ../grecord/src/gsr-window.c:1965
+#: ../grecord/src/gsr-window.c:2006
 msgid "Save _As..."
 msgstr "F_arklı kaydet..."
 
-#: ../grecord/src/gsr-window.c:1966
+#: ../grecord/src/gsr-window.c:2007
 msgid "Save the current file with a different name"
 msgstr "Güncel dosyayı başka bir adla kaydet"
 
-#: ../grecord/src/gsr-window.c:1967
+#: ../grecord/src/gsr-window.c:2008
 msgid "Open Volu_me Control"
 msgstr "Ses _Kontrolünü Aç"
 
-#: ../grecord/src/gsr-window.c:1968
+#: ../grecord/src/gsr-window.c:2009
 msgid "Open the audio mixer"
 msgstr "Ses karıştırıcısını çalıştır"
 
-#: ../grecord/src/gsr-window.c:1970
+#: ../grecord/src/gsr-window.c:2011
 msgid "Show information about the current file"
 msgstr "Güncel dosya bilgisini göster"
 
-#: ../grecord/src/gsr-window.c:1972
+#: ../grecord/src/gsr-window.c:2013
 msgid "Close the current file"
 msgstr "Mevcut dosyayı kapat"
 
-#: ../grecord/src/gsr-window.c:1974
+#: ../grecord/src/gsr-window.c:2015
 msgid "Quit the program"
 msgstr "Programdan çık"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1977
+#: ../grecord/src/gsr-window.c:2018
 msgid "_Control"
 msgstr "_Kontrol"
 
-#: ../grecord/src/gsr-window.c:1979
+#: ../grecord/src/gsr-window.c:2020
 msgid "Record sound"
 msgstr "Sesi kaydet"
 
-#: ../grecord/src/gsr-window.c:1981
+#: ../grecord/src/gsr-window.c:2022
 msgid "Play sound"
 msgstr "Ses çal"
 
-#: ../grecord/src/gsr-window.c:1983
+#: ../grecord/src/gsr-window.c:2024
 msgid "Stop sound"
 msgstr "Sesi durdur"
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:2029
 msgid "Open the manual"
 msgstr "Kılavuzu aç"
 
-#: ../grecord/src/gsr-window.c:1990
+#: ../grecord/src/gsr-window.c:2031
 msgid "About this application"
 msgstr "Bu uygulama hakkında"
 
-#: ../grecord/src/gsr-window.c:2111
+#: ../grecord/src/gsr-window.c:2152
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml yüklenemedi. Program doğru yüklememiş olabilir"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2175
 msgid "Open"
 msgstr "Aç"
 
-#: ../grecord/src/gsr-window.c:2136
+#: ../grecord/src/gsr-window.c:2177
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2179
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: ../grecord/src/gsr-window.c:2192
+#: ../grecord/src/gsr-window.c:2234
 msgid "Record from input:"
 msgstr "Kayıt edilecek giriş:"
 
-#: ../grecord/src/gsr-window.c:2209
+#: ../grecord/src/gsr-window.c:2255
 msgid "Record as:"
 msgstr "Kayıt edilecek yer:"
 
-#: ../grecord/src/gsr-window.c:2247
+#: ../grecord/src/gsr-window.c:2297
 msgid "<none>"
 msgstr "<hiçbiri>"
 
-#: ../grecord/src/gsr-window.c:2256
+#: ../grecord/src/gsr-window.c:2311
 msgid "Length:"
 msgstr "Uzunluk:"
 
-#: ../gst-mixer/gnome-volume-control.desktop.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Adjust the volume level"
 msgstr "Ses seviyesini ayarla"
 
-#: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:388
 msgid "Volume Control"
 msgstr "Ses Kontrolü"
 
@@ -1735,15 +1720,15 @@ msgstr "Pencerenin Genişliği"
 msgid "Width of the Window to be displayed"
 msgstr "Gösterilecek pencerenin genişliği"
 
-#: ../gst-mixer/src/element.c:231
-msgid "Capture"
-msgstr "Yakala"
+#: ../gst-mixer/src/element.c:225
+msgid "Recording"
+msgstr "Ses kayıt"
 
-#: ../gst-mixer/src/element.c:233
+#: ../gst-mixer/src/element.c:227
 msgid "Switches"
 msgstr "Switchler"
 
-#: ../gst-mixer/src/element.c:235
+#: ../gst-mixer/src/element.c:229
 msgid "Options"
 msgstr "Ayarlar"
 
@@ -1752,31 +1737,43 @@ msgstr "Ayarlar"
 msgid "Unknown Volume Control %d"
 msgstr "Bilinmeyen Ses Kontrolü %d"
 
-#: ../gst-mixer/src/main.c:204
+#: ../gst-mixer/src/main.c:198
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Ses kontrolü için GStreamer eklentisi ve/veya aygıtı bulunamadı."
 
+#: ../gst-mixer/src/misc.c:40
+msgid "Capture"
+msgstr "Yakala"
+
+#: ../gst-mixer/src/misc.c:42
+msgid "Switch"
+msgstr "Anahtar"
+
+#: ../gst-mixer/src/misc.c:44
+msgid "Option"
+msgstr "Seçenek"
+
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:118
+#: ../gst-mixer/src/preferences.c:120
 msgid "Volume Control Preferences"
 msgstr "Ses Kontrolü Tercihleri"
 
-#: ../gst-mixer/src/preferences.c:131
+#: ../gst-mixer/src/preferences.c:133
 msgid "_Select tracks to be visible:"
 msgstr "_Görünür olacak parçaları seçin:"
 
-#: ../gst-mixer/src/track.c:221
+#: ../gst-mixer/src/track.c:248
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:261
+#: ../gst-mixer/src/track.c:288
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Sessiz/Sesli %s"
 
-#: ../gst-mixer/src/track.c:276
+#: ../gst-mixer/src/track.c:303
 #, c-format
 msgid "Track %s: mute"
 msgstr "Parça %s: sessiz"
@@ -1786,17 +1783,17 @@ msgstr "Parça %s: sessiz"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: ../gst-mixer/src/track.c:356
+#: ../gst-mixer/src/track.c:383
 #, c-format
-msgid "Toggle audio capture from %s"
-msgstr "%s konumundan ses yakalama ayarı"
+msgid "Toggle audio recording from %s"
+msgstr "%s konumundan ses kaydını değiştir"
 
-#: ../gst-mixer/src/track.c:371
+#: ../gst-mixer/src/track.c:398
 #, c-format
-msgid "Track %s: audio capture"
-msgstr "Parça %s: ses yakalama"
+msgid "Track %s: audio recording"
+msgstr "%s kanalı: ses kayıt"
 
-#: ../gst-mixer/src/track.c:450
+#: ../gst-mixer/src/track.c:481
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s Seçenek Seçimi"
@@ -1900,95 +1897,136 @@ msgstr "Aygıtı %s olarak değiştir"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
+#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:435
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Ses Kontrolü: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:387
+#: ../gst-mixer/src/window.c:382
 msgid "translator-credits"
 msgstr "Barış Çiçek <baris@teamforce.name.tr>"
 
-#: ../gst-mixer/src/window.c:396
+#: ../gst-mixer/src/window.c:391
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/GStreamer tabanlı ses kontrolü uygulaması"
 
-#: ../gstreamer-properties/gstreamer-properties.c:377
+#: ../gstreamer-properties/gstreamer-properties.c:195
+msgid "None"
+msgstr "Hiçbiri"
+
+#. Element does not support setting devices
+#: ../gstreamer-properties/gstreamer-properties.c:233
+msgid "Unsupported"
+msgstr "Desteklenmeyen"
+
+#: ../gstreamer-properties/gstreamer-properties.c:251
+msgid "Default"
+msgstr "Öntanımlı"
+
+#: ../gstreamer-properties/gstreamer-properties.c:604
 msgid "Failure instantiating main window"
 msgstr "Ana pencere örneklendirilirken hata oluştu"
 
-#: ../gstreamer-properties/gstreamer-properties.c:432
+#: ../gstreamer-properties/gstreamer-properties.c:653
 msgid "Failed to load glade file; please check your installation."
 msgstr ""
 "Glade dosyası yüklerken başarısız olundu, lütfen kurulumunuzu kontrol edin."
 
-#: ../gstreamer-properties/gstreamer-properties.desktop.in.h:1
+#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "GStreamer uygulamaları için öntanımlı ayarları yapılandır"
 
-#: ../gstreamer-properties/gstreamer-properties.desktop.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
 #: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Çokluortam Sistemleri Seçicisi"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:1
-#: ../profiles/gnome-audio-profiles.glade2.h:1
-msgid "*"
-msgstr "*"
+msgid "<b>Default Input</b>"
+msgstr "<b>Öntanımlı Girdi</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Input Plugin</b>"
-msgstr "<b>Öntanımlı Girdi Eklentisi</b>"
+msgid "<b>Default Output</b>"
+msgstr "<b>Öntanımlı Çıktı </b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<b>Default Output Plugin</b>"
-msgstr "<b>Öntanımlı Çıktı Eklentisi</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 msgstr "<span weight=\"bold\" size=\"x-large\">Deneme yapılıyor...</span>"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
+#: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "Audio"
 msgstr "Ses"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+#: ../gstreamer-properties/gstreamer-properties.glade.h:5
 msgid "Click Ok to finish."
 msgstr "Bitirmek için Tamam'a tıklayın."
 
+#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+msgid "D_evice:"
+msgstr "_Aygıt:"
+
 #: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "Pipe_line:"
-msgstr "_Yönlendirme:"
+msgid "P_ipeline:"
+msgstr "Y_önlendirme:"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "P_lugin:"
+msgstr "_Eklenti:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Pipeli_ne:"
+msgstr "_Yönlendirme:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:11
 msgid "Te_st"
 msgstr "_Dene"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+#: ../gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "Testing Pipeline"
 msgstr "Yönlendirme (Pipeline) Testi"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
+#: ../gstreamer-properties/gstreamer-properties.glade.h:13
 msgid "Video"
 msgstr "Video"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "_Input:"
-msgstr "_Girdi:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "_Output:"
-msgstr "Çı_ktı:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Pipeline:"
-msgstr "_Yönlendirme:"
-
 #: ../gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Plugin:"
+msgstr "_Eklenti:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:16
 msgid "_Test"
 msgstr "_Dene"
+
+#: ../gstreamer-properties/pipeline-constants.c:50
+#: ../gstreamer-properties/pipeline-constants.c:84
+msgid "Autodetect"
+msgstr "Kendiliğinden tanı"
+
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:113
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Gelişmiş Linux Ses Mimarisi"
+
+#: ../gstreamer-properties/pipeline-constants.c:67
+msgid "Artsd - ART Sound Daemon"
+msgstr "Artsd - ART Ses Servisi"
+
+#: ../gstreamer-properties/pipeline-constants.c:69
+#: ../gstreamer-properties/pipeline-constants.c:115
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment Ses Servisi"
+
+#: ../gstreamer-properties/pipeline-constants.c:75
+#: ../gstreamer-properties/pipeline-constants.c:122
+msgid "OSS - Open Sound System"
+msgstr "OSS - Open Sound System"
+
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:124
+msgid "PulseAudio Sound Server"
+msgstr "PulseAudio Ses Sunucusu"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:108
@@ -1997,35 +2035,77 @@ msgstr "_Dene"
 msgid "Custom"
 msgstr "Özel"
 
-#: ../gstreamer-properties/pipeline-tests.c:130
+#: ../gstreamer-properties/pipeline-constants.c:102
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL - Basit DirectMedia Katmanı"
+
+#: ../gstreamer-properties/pipeline-constants.c:104
+msgid "X Window System (No Xv)"
+msgstr "X Pencere Sistemi (Xv olmadan)"
+
+#: ../gstreamer-properties/pipeline-constants.c:106
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Pencere Sistemi (X11/XShm/Xv)"
+
+#. Note: using triangle instead of sine for test sound so we
+#. * can test the vorbis encoder as well (otherwise it'd compress too well)
+#: ../gstreamer-properties/pipeline-constants.c:128
+msgid "Test Sound"
+msgstr "Sesi Dene"
+
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "Silence"
+msgstr "Sessizlik"
+
+#: ../gstreamer-properties/pipeline-constants.c:137
+msgid "MJPEG (e.g. Zoran v4l device)"
+msgstr "MJPEG (örneğin Zoran v4l aygıtı)"
+
+#: ../gstreamer-properties/pipeline-constants.c:139
+msgid "QCAM"
+msgstr "QCAM"
+
+#: ../gstreamer-properties/pipeline-constants.c:141
+msgid "Test Input"
+msgstr "Test Girdisi"
+
+#: ../gstreamer-properties/pipeline-constants.c:143
+msgid "Video for Linux (v4l)"
+msgstr "Linux için Video (v4l)"
+
+#: ../gstreamer-properties/pipeline-constants.c:145
+msgid "Video for Linux 2 (v4l2)"
+msgstr "Linux için Video (v4l2)"
+
+#: ../gstreamer-properties/pipeline-tests.c:175
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s' için yönlendirme (pipeline) testi yapılırken hata oluştu"
 
-#: ../profiles/audio-profile-edit.c:164
+#: ../profiles/audio-profile-edit.c:117 ../profiles/audio-profiles-edit.c:535
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Yardım görüntülenirken hata oluştu: %s"
 
-#: ../profiles/audio-profile-edit.c:366
+#: ../profiles/audio-profile-edit.c:330
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Düzenlenen profil: \"%s\""
 
-#: ../profiles/audio-profile.c:103
+#: ../profiles/audio-profile.c:125
 msgid "<no name>"
 msgstr "<isimsiz>"
 
-#: ../profiles/audio-profile.c:104 ../profiles/audio-profile.c:1002
+#: ../profiles/audio-profile.c:126 ../profiles/audio-profile.c:1036
 msgid "<no description>"
-msgstr "<tanımlanmamış>"
+msgstr "<açıklama yok>"
 
-#: ../profiles/audio-profile.c:219
+#: ../profiles/audio-profile.c:241
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr "gm_audio profilleri listesi alınırken hata oluştu. (%s)\n"
 
-#: ../profiles/audio-profile.c:720
+#: ../profiles/audio-profile.c:742
 #, c-format
 msgid ""
 "There was an error subscribing to notification of audio profile list "
@@ -2034,41 +2114,29 @@ msgstr ""
 "Ses profilleri listesi değişikliklerinin uyarılarına kaydolurken bir hata "
 "oluştu. (%s)\n"
 
-#: ../profiles/audio-profile.c:911
+#: ../profiles/audio-profile.c:945
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Profil yolu %s unutulurken bir hata oluştu. (%s)\n"
 
-#: ../profiles/audio-profile.c:1013
-msgid "identity"
-msgstr "kimlik"
-
-#: ../profiles/audio-profile.c:1024
-msgid "wav"
-msgstr "wav"
-
-#: ../profiles/audio-profiles-edit.c:115
+#: ../profiles/audio-profiles-edit.c:83
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../profiles/audio-profiles-edit.c:492
-msgid "You must select one or more profiles to delete."
-msgstr "Silmek için bir ya da daha fazla profil seçmeniz gerekiyor."
-
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:501
+#: ../profiles/audio-profiles-edit.c:461
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Bu profil silinsin mi?\n"
-msgstr[1] "Bu profil silinsin mi?\n"
+msgstr[1] "Seçilen %d profil silinsin mi?\n"
 
-#: ../profiles/audio-profiles-edit.c:520
+#: ../profiles/audio-profiles-edit.c:480
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "\"%s\" profili silinsin mi?"
 
-#: ../profiles/audio-profiles-edit.c:542
+#: ../profiles/audio-profiles-edit.c:502
 msgid "Delete Profile"
 msgstr "Profil Sil"
 
@@ -2094,20 +2162,36 @@ msgstr "Profil Sil"
 #. NULL);
 #.
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:638
+#: ../profiles/audio-profiles-edit.c:598
 msgid "Edit GNOME Audio Profiles"
 msgstr "GNOME Ses Profillerini Düzenle"
 
-#: ../profiles/audio-profiles-edit.c:691
+#. FIXME
+#. hbox = gtk_hbox_new (FALSE, PADDING);
+#. gtk_box_pack_end (GTK_BOX (vbox),
+#. hbox, FALSE, FALSE, 0);
+#.
+#. app->manage_profiles_default_menu = profile_optionmenu_new ();
+#. g_signal_connect (G_OBJECT (app->manage_profiles_default_menu),
+#. "changed", G_CALLBACK (default_menu_changed),
+#. app);
+#.
+#. gtk_box_pack_start (GTK_BOX (hbox),
+#. label, TRUE, TRUE, 0);
+#.
+#. gtk_box_pack_end (GTK_BOX (hbox),
+#. app->manage_profiles_default_menu, FALSE, FALSE, 0);
+#.
+#: ../profiles/audio-profiles-edit.c:645
 msgid "_Profiles:"
 msgstr "_Profiller:"
 
-#: ../profiles/audio-profiles-edit.c:921
+#: ../profiles/audio-profiles-edit.c:830
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "\"%s\" adında bir profil zaten var"
 
-#: ../profiles/audio-profiles-edit.c:946
+#: ../profiles/audio-profiles-edit.c:855
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf Hatası (DÜZELT): %s\n"
@@ -2121,43 +2205,35 @@ msgstr ""
 "\"%s\" dosyası eksik. Bu uygulamanın doğru yüklenmemiş olduğunu belirtir, "
 "dolayısıyla bu iletişim kutusu gösterilemeyecek."
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
+#: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
 msgstr "Ses Profilini Düzenle"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:3
-msgid "File _Extension:"
-msgstr "Dosya _Uzantısı:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "New Profile"
 msgstr "Yeni Profil"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "Profile Description:"
-msgstr "Profil Tanımı:"
+#: ../profiles/gnome-audio-profiles.glade2.h:3
+msgid "Profile _description:"
+msgstr "Profil _açıklaması:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:6
-msgid "Profile _Description:"
-msgstr "Profil _Tanımı:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:7
-msgid "Profile _name:"
-msgstr "Profil _adı:"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profiles.glade2.h:4
 msgid "_Active?"
 msgstr "Et_kin mi?"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:9
+#: ../profiles/gnome-audio-profiles.glade2.h:5
 msgid "_Create"
 msgstr "_Oluştur"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:10
-msgid "_GStreamer Pipeline:"
-msgstr "_GStreamer Yönlendirmesi:"
+#: ../profiles/gnome-audio-profiles.glade2.h:6
+msgid "_File extension:"
+msgstr "Dosya _uzantısı:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:11
+#: ../profiles/gnome-audio-profiles.glade2.h:7
+msgid "_GStreamer pipeline:"
+msgstr "_GStreamer yönlendirmesi:"
+
+#: ../profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Profile name:"
 msgstr "_Profil adı:"
 
@@ -2171,7 +2247,7 @@ msgid ""
 "when to use this profile."
 msgstr ""
 "Profilin nerede kullanılacağı ve profil hakkında daha fazla bilgiler içeren "
-"profil açıklaması."
+"bir açıklama."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid ""
@@ -2193,14 +2269,22 @@ msgid ""
 msgstr "Profili ayırt edebilmek ve seçerken kullanmak için kısa bir isim."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
+msgid "CD Quality, AAC"
+msgstr "CD Kalitesi, AAC"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:8
 msgid "CD Quality, Lossless"
 msgstr "CD Kalitesi, Kayıpsız"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:8
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
 msgid "CD Quality, Lossy"
 msgstr "CD Kalitesi, Kayıplı"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "CD Quality, MP3"
+msgstr "CD Kalitesi, MP3"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
@@ -2208,19 +2292,19 @@ msgstr ""
 "Ses kayıt profillerinin listesi. Bu liste /system/@GST_MAJORMINOR@/audio/"
 "profiles yoluna göre alt dizinlerin listesini içerir."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
 msgstr "Profillerin listesi"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "The default file extension for this profile"
 msgstr "Bu profil için öntanımlı dosya uzantısı"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The partial GStreamer pipeline used"
 msgstr "Kullanılacak kısmi GStreamer yönlendirmesi"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
@@ -2229,7 +2313,7 @@ msgstr ""
 "kullanılır. Bunu eğer daha sonra dosyayı düzenlemek ya da CD'ye kaydetmek "
 "istiyorsanız kullanın."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
@@ -2238,7 +2322,33 @@ msgstr ""
 "kullanılır. Bunu CD'leri dosya halinde kaydederken ve radyo kayıtlarında "
 "kullanın."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+msgid ""
+"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
+"this for preparing files for copying to devices that only support the AAC "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+msgstr ""
+"Kayıplı AAC dönüştürücüsü kullanılarak CD kalitesindeki sese çevirmek için "
+"kullanılır. Bunu yalnızca AAC dönüştürücüsünü destekleyen cihazlara "
+"kopyalanacak dosyalar hazırlamak için kullanın. Bu ses biçiminin hukuk "
+"sisteminize göre yasadışı olabileceğini unutmayın; öneri için avukatınızla "
+"iletişime geçin."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+msgid ""
+"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
+"this for preparing files for copying to devices that only support the MP3 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+msgstr ""
+"Kayıplı MP3 dönüştürücüsü kullanılarak CD kalitesindeki sese çevirmek için "
+"kullanılır. Bunu yalnızca MP3 dönüştürücüsünü destekleyen cihazlara "
+"kopyalanacak dosyalar hazırlamak için kullanın. Bu ses biçiminin hukuk "
+"sisteminize göre yasadışı olabileceğini unutmayın; öneri için avukatınızla "
+"iletişime geçin."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
@@ -2246,7 +2356,7 @@ msgstr ""
 "Konuşma-kalitesinde kayıpsız sese çevirmek için kullanılır. Bunu konuşmaları "
 "kaydedip düzenlerken kullanın."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
@@ -2254,19 +2364,19 @@ msgstr ""
 "Konuşma-kalitesinde kayıplı sese çevirmek için kullanılır. Bunu düzenleme "
 "gerektirmeyen konuşmaları kaydederken kullanın."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid "Voice, Lossless"
 msgstr "Ses, Kayıpsız"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
 msgid "Voice, Lossy"
 msgstr "Ses, Kayıplı"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Whether or not this profile is to be used"
 msgstr "Bu profilin kullanılıp kullanılmayacağı"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Whether or not to use and display this profile."
 msgstr "Bu profilin listede gösterilip gösterilmeyeceği."
 
@@ -2278,66 +2388,96 @@ msgstr ""
 "Ses servisi ile bağlantı kurulamadı.\n"
 "Lütfen bir konsoldan 'esd' komutunu çalıştırın."
 
-#: ../vu-meter/main.c:229
+#: ../vu-meter/main.c:230
 msgid "Specify the X position of the meter."
 msgstr "Ses göstergesinin X konumunu belirle."
 
-#: ../vu-meter/main.c:230
+#: ../vu-meter/main.c:231
 msgid "X"
 msgstr "X"
 
-#: ../vu-meter/main.c:232
+#: ../vu-meter/main.c:233
 msgid "Specify the Y position of the meter."
 msgstr "Ses göstergesinin Y konumunu belirle."
 
-#: ../vu-meter/main.c:233
+#: ../vu-meter/main.c:234
 msgid "Y"
 msgstr "Y"
 
-#: ../vu-meter/main.c:235
+#: ../vu-meter/main.c:236
 msgid "Connect to the esd server on this host."
 msgstr "Bu makinadaki esd sunucusuna bağlan."
 
-#: ../vu-meter/main.c:236
+#: ../vu-meter/main.c:237
 msgid "HOST"
 msgstr "MAKİNE"
 
-#: ../vu-meter/main.c:238
+#: ../vu-meter/main.c:239
 msgid "Open a vertical version of the meter."
 msgstr "Ses göstergesini dikey aç."
 
-#: ../vu-meter/main.c:240
+#: ../vu-meter/main.c:241
 msgid "Act as recording level meter."
 msgstr "Kaydedici seviyesi ölçücü gibi davran."
 
-#: ../vu-meter/main.c:256
+#: ../vu-meter/main.c:257
 #, c-format
 msgid "Host is %s\n"
 msgstr "Makine: %s\n"
 
-#: ../vu-meter/main.c:273
+#: ../vu-meter/main.c:274
 msgid "Recording level"
 msgstr "Kayıt seviyesi"
 
-#: ../vu-meter/main.c:273
+#: ../vu-meter/main.c:274
 msgid "Volume Meter"
 msgstr "Ses Göstergesi"
 
-#: ../vu-meter/reclevel.desktop.in.h:1
+#: ../vu-meter/reclevel.desktop.in.in.h:1
 msgid "Monitor the recording input volume"
 msgstr "Kayıt giriş sesini izleyin"
 
-#: ../vu-meter/reclevel.desktop.in.h:2
+#: ../vu-meter/reclevel.desktop.in.in.h:2
 msgid "Recording Level Monitor"
 msgstr "Kaydetme Seviye İzleyici"
 
-#: ../vu-meter/vumeter.desktop.in.h:1
+#: ../vu-meter/vumeter.desktop.in.in.h:1
 msgid "Monitor the sound output volume"
 msgstr "Ses çıkışını izleyin"
 
-#: ../vu-meter/vumeter.desktop.in.h:2
+#: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Ses Seviyesi İzleyici"
+
+#~ msgid "Orientation"
+#~ msgstr "Yön"
+
+#~ msgid "The orientation of the tray."
+#~ msgstr "Uyarı alanının yönü."
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "_Input:"
+#~ msgstr "_Girdi:"
+
+#~ msgid "_Output:"
+#~ msgstr "Çı_ktı:"
+
+#~ msgid "identity"
+#~ msgstr "kimlik"
+
+#~ msgid "wav"
+#~ msgstr "wav"
+
+#~ msgid "You must select one or more profiles to delete."
+#~ msgstr "Silmek için bir ya da daha fazla profil seçmeniz gerekiyor."
+
+#~ msgid "Profile Description:"
+#~ msgstr "Profil Tanımı:"
+
+#~ msgid "Profile _name:"
+#~ msgstr "Profil _adı:"
 
 #~ msgid "X-Position"
 #~ msgstr "X-Konumu"
