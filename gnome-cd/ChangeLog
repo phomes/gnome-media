@@ -1,3 +1,11 @@
+2007-09-19  Bastien Nocera  <hadess@hadess.net>
+
+	* gnome-cd.c: (make_button_from_stock), (make_popup_menu),
+	(init_player): Patch from Matthias Clasen <mclasen@redhat.com>
+	to fix the default icons not showing up properly, as they're not
+	named icons, but stock ones (name is different because of the
+	RTL variants)
+
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
 
 	* gst-cdrom.c: (gst_cdrom_eos_msg): Fix playing the last track when
