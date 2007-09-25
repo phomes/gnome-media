@@ -1,3 +1,10 @@
+2007-09-26  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* cddb-slave-capplet.c: (read_from_server), (open_cb), (notify_cb),
+	(create_dialog), (main):
+	* cddb-track-editor.c: (main):
+	* main.c: (main): Unref the GnomeProgram to avoid a leak.
+
 2007-01-08  William Jon McCann  <mccann@jhu.edu>
 
 	* cddb-slave.desktop.in.in:

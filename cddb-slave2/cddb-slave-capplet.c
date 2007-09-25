@@ -541,14 +541,14 @@ read_from_server (GIOChannel *iochannel,
 	}
 
 	if (condition & (G_IO_IN | G_IO_PRI)) {
-		GIOError error;
+		GIOStatus status;
 		char *buffer;
 		gsize bytes_read;
 
 		/* Read the data into our buffer */
-		error = g_io_channel_read_line (iochannel, &buffer,
+		status = g_io_channel_read_line (iochannel, &buffer,
 						&bytes_read, NULL, NULL);
-		while (error == G_IO_STATUS_NORMAL) {
+		while (status == G_IO_STATUS_NORMAL) {
 			gboolean more = FALSE;
 
 			switch (pd->mode) {
@@ -577,7 +577,7 @@ read_from_server (GIOChannel *iochannel,
 			g_free (buffer);
 
 			if (more == TRUE) {
-				error = g_io_channel_read_line (iochannel, &buffer,
+				status = g_io_channel_read_line (iochannel, &buffer,
 								&bytes_read, NULL, NULL);
 			} else {
 				break;
@@ -1089,12 +1089,13 @@ main (int argc,
 {
 	GtkWidget *dialog_win;
 	GdkPixbuf *pixbuf;
+	GnomeProgram *program;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	gnome_program_init (argv[0], VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
+	program = gnome_program_init (argv[0], VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
 
 	client = gconf_client_get_default ();
 	gconf_client_add_dir (client, "/apps/CDDB-Slave2",
@@ -1127,6 +1128,8 @@ main (int argc,
 	gtk_widget_show_all (dialog_win);
 
 	gtk_main ();
+
+	g_object_unref (program);
 
 	return 0;
 }

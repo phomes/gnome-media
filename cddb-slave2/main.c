@@ -155,13 +155,14 @@ main (int argc,
       char **argv)
 {
 	char *cddbdir;
+	GnomeProgram *program;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
-			    argc, argv, NULL);
+	program = gnome_program_init ("CDDBSlave2", VERSION, LIBGNOMEUI_MODULE,
+				      argc, argv, NULL);
 
 	if (g_getenv ("CDDB_SLAVE_DEBUG")) {
 		cs_set_debug (TRUE);
@@ -182,5 +183,8 @@ main (int argc,
 		g_warning ("Could not initialize CDDB Slave");
 
         cs_debug ("main.c: done.");
+
+	g_object_unref (program);
+
 	exit (0);
 }
