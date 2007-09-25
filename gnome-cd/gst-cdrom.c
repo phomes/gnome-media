@@ -98,9 +98,6 @@ static gboolean        gst_cdrom_next            (GnomeCDRom         * cdrom,
 static gboolean        gst_cdrom_back            (GnomeCDRom         * cdrom,
                                                   GError            ** error);
 
-static gboolean        gst_cdrom_update_tray_status (GstCDRom * cdrom,
-                                                     GError  ** error);
-
 static gboolean        gst_cdrom_get_cddb_data   (GnomeCDRom          * cdrom,
                                                   GnomeCDRomCDDBData ** data,
                                                   GError             ** error);
@@ -996,12 +993,6 @@ gst_cdrom_update_cd (GnomeCDRom * gnome_cdrom)
 
 	gst_cdparanoia_cdrom_close (lcd);
 */
-}
-
-static gboolean
-gst_cdrom_update_tray_status (GstCDRom * cdrom, GError ** error)
-{
-  return FALSE;
 }
 
 /* FIXME: do tray status checking */

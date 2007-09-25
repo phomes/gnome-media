@@ -1101,7 +1101,6 @@ open_track_editor (GtkWidget *widget,
 	discid = g_strdup_printf ("%08lx", (gulong) data->discid);
 
 	if (discid_prev != NULL) {
-		gint string_compare;
 		gboolean same_cd;
 		same_cd = g_str_equal(discid,discid_prev);
 		if (!same_cd) {
@@ -1171,7 +1170,6 @@ volume_changed (GtkRange *range,
 {
 	double volume;
 	GError *error = NULL;
-	GtkTooltips *volume_level_tooltip;
 	gchar *volume_level;
 	gint scaled_volume;
 

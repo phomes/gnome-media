@@ -29,7 +29,7 @@ static AtkObject* pango_accessible_factory_create_accessible ( GObject     *obj)
 static GType pango_accessible_factory_get_accessible_type (void);
 
 GType
-pango_accessible_factory_get_type ()
+pango_accessible_factory_get_type (void)
 {
 	static GType type = 0;
 
@@ -69,7 +69,7 @@ pango_accessible_factory_class_init (PangoAccessibleFactoryClass *klass)
 }
 
 AtkObjectFactory*
-pango_accessible_factory_new ()
+pango_accessible_factory_new (void)
 {
 	GObject *factory;
 

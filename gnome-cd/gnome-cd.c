@@ -477,7 +477,6 @@ static void
 set_volume (GnomeCD *gcd)
 {
 	GError *error = NULL;
-	GtkTooltips *volume_level_tooltip;
 	gchar *volume_level;
 	gint scaled_volume;
 	double volume;
@@ -554,7 +553,6 @@ init_player (const char *device_override)
 	GtkWidget *display_box;
 	GtkWidget *top_hbox, *button_hbox, *option_hbox;
 	GtkWidget *button;
-	GtkWidget *box;
 	GError *error = NULL;
 	GError *detailed_error = NULL;
 
@@ -889,8 +887,8 @@ main (int argc, char *argv[])
 
 	GnomeCD *gcd;
 	GnomeClient *client;
-	GOptionGroup *group;
 	GOptionContext *ctx;
+	GnomeProgram *program;
 
 	free (malloc (8)); /* -lefence */
 
@@ -912,10 +910,10 @@ main (int argc, char *argv[])
 
 	g_option_context_add_main_entries (ctx, cd_goptions, GETTEXT_PACKAGE);
 
-	gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
-			    argc, argv, 
-			    GNOME_PARAM_GOPTION_CONTEXT, ctx,
-			    GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+	program = gnome_program_init ("gnome-cd", VERSION, LIBGNOMEUI_MODULE, 
+				      argc, argv, 
+				      GNOME_PARAM_GOPTION_CONTEXT, ctx,
+				      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
 	client = gnome_master_client ();
 	g_signal_connect (client, "save_yourself",
@@ -925,6 +923,7 @@ main (int argc, char *argv[])
 	if (gcd == NULL) {
 		/* Stick a message box here? */
 		g_error (_("Cannot create player"));
+		g_object_unref (program);
 		exit (0);
 	}
 
@@ -949,5 +948,8 @@ main (int argc, char *argv[])
 	setup_a11y_factory ();
 
 	bonobo_main ();
+
+	g_object_unref (program);
+
 	return 0;
 }
