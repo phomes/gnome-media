@@ -26,6 +26,7 @@
 #define _ISOC99_SOURCE
 
 #include <math.h>
+#include <glib/gi18n.h>
 #include <gnome.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>

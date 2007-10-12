@@ -23,6 +23,7 @@
 #include "config.h"
 #endif
 
+#include <glib/gi18n.h>
 #include <gnome.h>
 #include <gtk/gtk.h>
 

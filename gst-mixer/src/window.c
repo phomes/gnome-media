@@ -23,6 +23,7 @@
 #include "config.h"
 #endif
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gnome.h>
 #include <gconf/gconf-client.h>
@@ -385,7 +386,12 @@ cb_about (GtkWidget *widget,
     translators = NULL;
   
   gtk_show_about_dialog (NULL,
-			 "name", _("Volume Control"),
+#if GTK_CHECK_VERSION (2, 12, 0)
+			 "program-name",
+#else
+			 "name",
+#endif
+			 _("Volume Control"),
 			 "version", VERSION,
 			 "copyright", "(c) 2003-2004 Ronald Bultje",
 			 "comments", _("A GNOME/GStreamer-based volume control application"),

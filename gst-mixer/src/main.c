@@ -25,6 +25,7 @@
 
 #include <getopt.h>
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gnome.h>
 #include <gst/gst.h>
 #include <gst/audio/mixerutils.h>

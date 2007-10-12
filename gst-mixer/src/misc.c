@@ -3,8 +3,7 @@
 #include <gst/interfaces/mixeroptions.h>
 
 #include <glib.h>
-
-#define _(String) gettext((String))
+#include <glib/gi18n.h>
 
 gint get_page_num (GstMixerTrack *track)
 {
