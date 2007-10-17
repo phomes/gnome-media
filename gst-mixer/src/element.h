@@ -90,6 +90,7 @@ typedef struct {
     { "master", FALSE }, \
     { "digital output", FALSE }, \
     { "recording", FALSE }, \
+    { "front", FALSE }, \
     { NULL, FALSE } \
   }
 
