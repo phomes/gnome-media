@@ -1,3 +1,13 @@
+2007-10-18  Bastien Nocera  <hadess@hadess.net>
+
+	* gst-mixer/src/window.c: (gnome_volume_control_window_init),
+	(gnome_volume_control_window_new):
+	 - Sanitise the height/width values we get from GConf so we get a decent
+	 width/height on the main window on startup
+	 - reset the "active-element" GConf key to the currently selected
+	 element if the one in GConf isn't available
+	(Closes: #485411)
+
 2007-10-17  Bastien Nocera  <hadess@hadess.net>
 
 	* gst-mixer/src/element.h: Fix no tracks showing up

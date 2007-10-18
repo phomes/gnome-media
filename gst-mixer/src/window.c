@@ -137,6 +137,8 @@ static GnomeUIInfo menu[] = {
 static void
 gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
 {
+  int width, height;
+
   win->elements = NULL;
   win->element_menu = NULL;
   win->el = NULL;
@@ -148,10 +150,14 @@ gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
   gnome_app_construct (GNOME_APP (win),
 		       "gnome-volume-control", _("Volume Control"));
 
-  /* To set the window according to previous geomtery */
-  gtk_window_set_default_size (GTK_WINDOW (win),
-                               gconf_client_get_int (win->client,PREF_UI_WINDOW_WIDTH, NULL),
-                               gconf_client_get_int (win->client,PREF_UI_WINDOW_HEIGHT, NULL));
+  /* To set the window according to previous geometry */
+  width = gconf_client_get_int (win->client,PREF_UI_WINDOW_WIDTH, NULL);
+  if (width < 250)
+    width = 250;
+  gconf_client_get_int (win->client,PREF_UI_WINDOW_HEIGHT, NULL);
+  if (height < 100)
+    height = -1;
+  gtk_window_set_default_size (GTK_WINDOW (win), width, height);
 }
 
 GtkWidget *
@@ -168,9 +174,8 @@ gnome_volume_control_window_new (GList *elements)
   gint count = 0, i;
   gchar *title;
 
-  /* default element to first */
   g_return_val_if_fail (elements != NULL, NULL);
-  active_element = elements->data;
+  active_element = NULL;
 
   /* window */
   win = g_object_new (GNOME_VOLUME_CONTROL_TYPE_WINDOW, NULL);
@@ -200,17 +205,11 @@ gnome_volume_control_window_new (GList *elements)
   gnome_app_set_statusbar (app, bar);
   gnome_app_install_appbar_menu_hints (GNOME_APPBAR (bar), menu);
 
-  /* gconf */
-  gconf_client_add_dir (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
-			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
-  gconf_client_notify_add (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
-			   cb_gconf, win, NULL, NULL);
-
   /* get active element, if any (otherwise we use the default) */
   active_el_str = gconf_client_get_string (win->client,
 					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
 					   NULL);
-  if (active_el_str != NULL) {
+  if (active_el_str != NULL && active_el_str != '\0') {
     for (count = 0, item = elements; item != NULL;
 	 item = item->next, count++) {
       cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
@@ -220,11 +219,30 @@ gnome_volume_control_window_new (GList *elements)
       }
     }
     g_free (active_el_str);
-    if (!item)
+    if (!item) {
       count = 0;
+      active_element = elements->data;
+      /* If there's a default but it doesn't match what we have available,
+       * reset the default */
+      gconf_client_set_string (win->client,
+      			       GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
+      			       g_object_get_data (G_OBJECT (active_element),
+      			       			  "gnome-volume-control-name"),
+      			       NULL);
+    }
+    /* default element to first */
+    if (!active_element)
+      active_element = elements->data;
   } else {
     count = 0;
+    active_element = elements->data;
   }
+
+  /* gconf */
+  gconf_client_add_dir (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
+			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+  gconf_client_notify_add (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
+			   cb_gconf, win, NULL, NULL);
 
   /* window title and menu selection */
   title = g_strdup_printf (_("Volume Control: %s"),
