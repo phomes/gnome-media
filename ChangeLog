@@ -1,3 +1,9 @@
+2007-10-22  Brian Cameron  <brian.cameron@sun.com>
+
+	* profiles/audio-profiles-edit.c: Change definition of edit_item to
+	  "static const" instead of "const".  This fixes a bug on Solaris
+	  using Sun Studio compiler where the Edit label was not appearing.
+
 2007-10-18  Bastien Nocera  <hadess@hadess.net>
 
 	* gst-mixer/src/window.c: (gnome_volume_control_window_init),
