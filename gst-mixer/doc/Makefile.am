@@ -4,4 +4,4 @@ DOC_MODULE = gnome-volume-control
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES =
 DOC_FIGURES = figures/gnome-volume-control_window.png
-DOC_LINGUAS = es fr oc sv
+DOC_LINGUAS = ca es fr oc sv

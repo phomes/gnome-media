@@ -4,4 +4,4 @@ DOC_MODULE = gnome-sound-recorder
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES =
 DOC_FIGURES = figures/grecord_window.png
-DOC_LINGUAS = es fr oc sv uk
+DOC_LINGUAS = ca es fr oc sv uk
