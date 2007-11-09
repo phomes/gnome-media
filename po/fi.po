@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 19:34+0300\n"
+"POT-Creation-Date: 2007-11-09 08:53+0300\n"
 "PO-Revision-Date: 2007-02-14 07:01+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -147,7 +147,7 @@ msgstr "Verkko_nimi::"
 msgid "_Port:"
 msgstr "_Portti:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:1103
+#: ../cddb-slave2/cddb-slave-capplet.c:1104
 msgid "CD Database Preferences"
 msgstr "CD-tietokanta-asetukset"
 
@@ -940,7 +940,7 @@ msgstr "Rivi joka näyttää levyn nimen"
 
 #: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:767
+#: ../gnome-cd/gnome-cd.c:771
 msgid "Play"
 msgstr "Soita"
 
@@ -977,8 +977,8 @@ msgstr "Keskeytetty"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:647 ../gnome-cd/gnome-cd.c:823
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
+#: ../gnome-cd/gnome-cd.c:651 ../gnome-cd/gnome-cd.c:827
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
 msgid "CD Player"
 msgstr "CD-soitin"
 
@@ -1018,20 +1018,20 @@ msgstr "Asemavirhe"
 msgid "A CD player for GNOME"
 msgstr "Gnomen CD-soitin"
 
-#: ../gnome-cd/callbacks.c:1110
+#: ../gnome-cd/callbacks.c:1109
 msgid "Contents in the CDDB have changed"
 msgstr "Sisältö CDDB:ssä on muuttunut"
 
-#: ../gnome-cd/callbacks.c:1111
+#: ../gnome-cd/callbacks.c:1110
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "Valinta \"Kyllä\" poistaa vanhat tiedot CDDB:stä."
 
-#: ../gnome-cd/callbacks.c:1112
+#: ../gnome-cd/callbacks.c:1111
 msgid "Do you wish to continue?"
 msgstr "Haluatko jatkaa?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:499
+#: ../gnome-cd/callbacks.c:1183 ../gnome-cd/gnome-cd.c:504
 #, c-format
 msgid "Volume %d%%"
 msgstr "Äänenvoimakkuus %d %%"
@@ -1060,40 +1060,40 @@ msgstr ""
 msgid "%d - Unknown"
 msgstr "%d - Tuntematon"
 
-#: ../gnome-cd/gnome-cd.c:343
+#: ../gnome-cd/gnome-cd.c:346
 msgid "_Play / Pause"
 msgstr "_Soita / Keskeytä"
 
-#: ../gnome-cd/gnome-cd.c:344
+#: ../gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "_Lopeta"
 
-#: ../gnome-cd/gnome-cd.c:345
+#: ../gnome-cd/gnome-cd.c:348
 msgid "P_revious"
 msgstr "_Edellinen"
 
-#: ../gnome-cd/gnome-cd.c:346
+#: ../gnome-cd/gnome-cd.c:349
 msgid "_Next"
 msgstr "_Seuraava"
 
-#: ../gnome-cd/gnome-cd.c:347
+#: ../gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "_Levy ulos"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:348 ../grecord/src/gsr-window.c:2027
+#: ../gnome-cd/gnome-cd.c:351 ../grecord/src/gsr-window.c:2027
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../gnome-cd/gnome-cd.c:349
+#: ../gnome-cd/gnome-cd.c:352
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../gnome-cd/gnome-cd.c:350
+#: ../gnome-cd/gnome-cd.c:353
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: ../gnome-cd/gnome-cd.c:567
+#: ../gnome-cd/gnome-cd.c:571
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1103,15 +1103,15 @@ msgstr ""
 "tule toimimaan. Valitse \"Aseta laite\" päästäksesi valitsemaan\n"
 "oikeaa laitetta, tai valitse \"Lopeta\" poistuaksesi CD-soittimesta."
 
-#: ../gnome-cd/gnome-cd.c:571
+#: ../gnome-cd/gnome-cd.c:575
 msgid "Set device"
 msgstr "Aseta laite"
 
-#: ../gnome-cd/gnome-cd.c:573
+#: ../gnome-cd/gnome-cd.c:577
 msgid "No CD device"
 msgstr "Ei CD-asemaa"
 
-#: ../gnome-cd/gnome-cd.c:626
+#: ../gnome-cd/gnome-cd.c:630
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1127,97 +1127,97 @@ msgstr ""
 "Napsauta \"Aseta laite\" asettaaksesi oikein CD-laitteen, tai napsauta "
 "\"Lopeta\" poistuaksesi CD-soittimesta."
 
-#: ../gnome-cd/gnome-cd.c:630
+#: ../gnome-cd/gnome-cd.c:634
 msgid "_Details"
 msgstr "_Lisätietoja"
 
-#: ../gnome-cd/gnome-cd.c:631
+#: ../gnome-cd/gnome-cd.c:635
 msgid "_Set device"
 msgstr "A_seta laite"
 
-#: ../gnome-cd/gnome-cd.c:633
+#: ../gnome-cd/gnome-cd.c:637
 msgid "Invalid CD device"
 msgstr "Epäkelpo CD-laite"
 
-#: ../gnome-cd/gnome-cd.c:705
+#: ../gnome-cd/gnome-cd.c:709
 msgid "Position"
 msgstr "Sijainti"
 
-#: ../gnome-cd/gnome-cd.c:722
+#: ../gnome-cd/gnome-cd.c:726
 msgid "Open preferences"
 msgstr "Avaa asetusikkuna"
 
-#: ../gnome-cd/gnome-cd.c:723
+#: ../gnome-cd/gnome-cd.c:727
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../gnome-cd/gnome-cd.c:731
+#: ../gnome-cd/gnome-cd.c:735
 msgid "Track List"
 msgstr "Kappaleluettelo"
 
-#: ../gnome-cd/gnome-cd.c:737
+#: ../gnome-cd/gnome-cd.c:741
 msgid "Open track editor"
 msgstr "Avaa kappalemuokkain"
 
-#: ../gnome-cd/gnome-cd.c:738
+#: ../gnome-cd/gnome-cd.c:742
 msgid "Track editor"
 msgstr "Kappalemuokkain"
 
-#: ../gnome-cd/gnome-cd.c:767
+#: ../gnome-cd/gnome-cd.c:771
 msgid "Play / Pause"
 msgstr "Soita / Keskeytä"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Stop"
 msgstr "Pysäytä"
 
-#: ../gnome-cd/gnome-cd.c:776
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Previous track"
 msgstr "Edellinen raita"
 
-#: ../gnome-cd/gnome-cd.c:776
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../gnome-cd/gnome-cd.c:780
+#: ../gnome-cd/gnome-cd.c:784
 msgid "Rewind"
 msgstr "Takaisinkelaus"
 
-#: ../gnome-cd/gnome-cd.c:788
+#: ../gnome-cd/gnome-cd.c:792
 msgid "Fast forward"
 msgstr "Eteenpäinkelaus"
 
-#: ../gnome-cd/gnome-cd.c:796
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Next track"
 msgstr "Seuraava raita"
 
-#: ../gnome-cd/gnome-cd.c:800
+#: ../gnome-cd/gnome-cd.c:804
 msgid "Eject CD"
 msgstr "Levy ulos"
 
 #
-#: ../gnome-cd/gnome-cd.c:800
+#: ../gnome-cd/gnome-cd.c:804
 msgid "Eject"
 msgstr "Levy ulos"
 
-#: ../gnome-cd/gnome-cd.c:874
+#: ../gnome-cd/gnome-cd.c:878
 msgid "CD device to use"
 msgstr "Käytettävä CD-laite"
 
-#: ../gnome-cd/gnome-cd.c:876
+#: ../gnome-cd/gnome-cd.c:880
 msgid "Only start if there isn't already a CD player application running"
 msgstr "Käynnistä vain mikäli käynnissä ei ole vielä CD-soitin-sovellusta"
 
-#: ../gnome-cd/gnome-cd.c:878
+#: ../gnome-cd/gnome-cd.c:882
 msgid "Play the CD on startup"
 msgstr "Aloita CD:n soittaminen käynnistettäessä"
 
-#: ../gnome-cd/gnome-cd.c:880
+#: ../gnome-cd/gnome-cd.c:884
 msgid "Start iconified in notification area"
 msgstr "Aloita pienennyttynä ilmoitusalueelle"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:921
+#: ../gnome-cd/gnome-cd.c:925
 msgid "Cannot create player"
 msgstr "Soittimen luonti epäonnistui"
 
@@ -1273,7 +1273,7 @@ msgstr "Mitä äänenvoimakkuuden säädintä CD-soitin käyttää käynnistyess
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Aloitetaanko CD:n soittaminen CD-soittimen käynnistyessä"
 
-#: ../gnome-cd/gst-cdrom.c:286
+#: ../gnome-cd/gst-cdrom.c:283
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "CD-levyä ei voi poistaa asemasta: %s"
@@ -1291,40 +1291,40 @@ msgstr ""
 msgid "Error setting device"
 msgstr "Virhe asetettaessa asemaa"
 
-#: ../gnome-cd/preferences.c:587
+#: ../gnome-cd/preferences.c:526
 msgid "CD Player Preferences"
 msgstr "CD-soittimen asetukset"
 
-#: ../gnome-cd/preferences.c:626
+#: ../gnome-cd/preferences.c:565
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Laite:"
 
-#: ../gnome-cd/preferences.c:640
+#: ../gnome-cd/preferences.c:579
 msgid "Behavior"
 msgstr "Käytös"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:592
 msgid "Start _playback when CD Player starts"
 msgstr "Aloita CD:n _soittaminen kun CD-soitin _käynnistetään"
 
-#: ../gnome-cd/preferences.c:654
+#: ../gnome-cd/preferences.c:593
 msgid "Start playback when CD Player starts"
 msgstr "Aloita CD:n soittaminen kun CD-soitin käynnistetään"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:605
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Yrit_ä avata CD-asema kun CD-soittimesta poistutaan"
 
-#: ../gnome-cd/preferences.c:667
+#: ../gnome-cd/preferences.c:606
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Yritä avata CD-asema kun CD-soittimesta poistutaan"
 
-#: ../gnome-cd/preferences.c:683
+#: ../gnome-cd/preferences.c:622
 msgid "Themes"
 msgstr "Teemat"
 
-#: ../gnome-cd/preferences.c:695
+#: ../gnome-cd/preferences.c:634
 msgid "_Select a theme:"
 msgstr "_Valitse teema:"
 
@@ -1571,8 +1571,8 @@ msgstr "Soitetaan..."
 msgid "GConf audio output"
 msgstr "GConfin ääniulostulo"
 
-#: ../grecord/src/gsr-window.c:1601 ../gst-mixer/src/element.c:223
-#: ../gst-mixer/src/misc.c:38
+#: ../grecord/src/gsr-window.c:1601 ../gst-mixer/src/element.c:224
+#: ../gst-mixer/src/misc.c:37
 msgid "Playback"
 msgstr "Toisto"
 
@@ -1724,7 +1724,7 @@ msgid "Adjust the volume level"
 msgstr "Säädä äänenvoimakkuutta"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:388
+#: ../gst-mixer/src/window.c:151 ../gst-mixer/src/window.c:412
 msgid "Volume Control"
 msgstr "Äänenvoimakkuuden hallinta"
 
@@ -1744,60 +1744,60 @@ msgstr "Ikkunan leveys"
 msgid "Width of the Window to be displayed"
 msgstr "Näytettävän ikkunan leveys"
 
-#: ../gst-mixer/src/element.c:225
+#: ../gst-mixer/src/element.c:226
 msgid "Recording"
-msgstr "Nauhoitetaan"
+msgstr "Nauhoitus"
 
-#: ../gst-mixer/src/element.c:227
+#: ../gst-mixer/src/element.c:228
 msgid "Switches"
 msgstr "Kytkimet"
 
-#: ../gst-mixer/src/element.c:229
+#: ../gst-mixer/src/element.c:230
 msgid "Options"
 msgstr "Asetukset"
 
-#: ../gst-mixer/src/main.c:76
+#: ../gst-mixer/src/main.c:77
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "Tuntematon äänenvoimakkuden ohjain %d"
 
-#: ../gst-mixer/src/main.c:198
+#: ../gst-mixer/src/main.c:199
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Äänenvoimakkuden ohjainliitännäisiä tai -laitteita ei löydy."
 
-#: ../gst-mixer/src/misc.c:40
+#: ../gst-mixer/src/misc.c:39
 msgid "Capture"
 msgstr "Kaappaus"
 
-#: ../gst-mixer/src/misc.c:42
+#: ../gst-mixer/src/misc.c:41
 msgid "Switch"
 msgstr "Kytkin"
 
-#: ../gst-mixer/src/misc.c:44
+#: ../gst-mixer/src/misc.c:43
 msgid "Option"
 msgstr "Valitsin"
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:121
 msgid "Volume Control Preferences"
 msgstr "Äänenvoimakkuuden hallinnan asetukset"
 
-#: ../gst-mixer/src/preferences.c:133
+#: ../gst-mixer/src/preferences.c:134
 msgid "_Select tracks to be visible:"
 msgstr "_Valitse näytettävät raidat:"
 
-#: ../gst-mixer/src/track.c:248
+#: ../gst-mixer/src/track.c:249
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:288
+#: ../gst-mixer/src/track.c:289
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Vaimenna/palauta %s"
 
-#: ../gst-mixer/src/track.c:303
+#: ../gst-mixer/src/track.c:304
 #, c-format
 msgid "Track %s: mute"
 msgstr "Raita %s: vaimennettu"
@@ -1807,50 +1807,50 @@ msgstr "Raita %s: vaimennettu"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: ../gst-mixer/src/track.c:383
+#: ../gst-mixer/src/track.c:384
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Nauhoitetaanko lähteestä %s"
 
-#: ../gst-mixer/src/track.c:398
+#: ../gst-mixer/src/track.c:399
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Raita %s: nauhoitus"
 
-#: ../gst-mixer/src/track.c:481
+#: ../gst-mixer/src/track.c:482
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s option valinta"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:135
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:137
 msgid "left"
 msgstr "vasen"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:137
 msgid "right"
 msgstr "oikea"
 
-#: ../gst-mixer/src/volume.c:139
+#: ../gst-mixer/src/volume.c:140
 msgid "front left"
 msgstr "edessä vasen"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:141
 msgid "front right"
 msgstr "edessä oikea"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:142
 msgid "rear left"
 msgstr "takana vasen"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:143
 msgid "rear right"
 msgstr "takana oikea"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:144
 msgid "front center"
 msgstr "edessä keskellä"
 
@@ -1858,77 +1858,77 @@ msgstr "edessä keskellä"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:148
+#: ../gst-mixer/src/volume.c:149
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:150
 msgid "side left"
 msgstr "vasen sivu"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:151
 msgid "side right"
 msgstr "oikea sivu"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:152
 msgid "unknown"
 msgstr "tuntematon"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:157
+#: ../gst-mixer/src/volume.c:158
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Kanavan %s äänenvoimakkus kortilla %s"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:206
 #, c-format
 msgid "Track %s"
 msgstr "Raita %s"
 
-#: ../gst-mixer/src/volume.c:208
+#: ../gst-mixer/src/volume.c:209
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "Kanava %d raidasta %s"
 
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:212
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "Raita %s, kanava %d"
 
-#: ../gst-mixer/src/volume.c:231
+#: ../gst-mixer/src/volume.c:232
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "Lukitse lähteen %s kanavat yhteen"
 
-#: ../gst-mixer/src/volume.c:249
+#: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "Raita %s: lukitse kanavat yhteen"
 
-#: ../gst-mixer/src/window.c:110
+#: ../gst-mixer/src/window.c:111
 msgid "_Change Device"
 msgstr "_Vaihda laitetta"
 
-#: ../gst-mixer/src/window.c:111
+#: ../gst-mixer/src/window.c:112
 msgid "Control volume on a different device"
 msgstr "Säädä toisen laitteen äänenvoimakkuutta"
 
-#: ../gst-mixer/src/window.c:185
+#: ../gst-mixer/src/window.c:191
 #, c-format
 msgid "Change device to %s"
 msgstr "Vaihda laitteeksi %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:435
+#: ../gst-mixer/src/window.c:248 ../gst-mixer/src/window.c:459
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Äänenvoimakkuuden hallinta: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:382
+#: ../gst-mixer/src/window.c:401
 msgid "translator-credits"
 msgstr ""
 "Tuomas J. Lukka, 1998.\n"
@@ -1938,7 +1938,7 @@ msgstr ""
 "\n"
 "http://gnome.fi/"
 
-#: ../gst-mixer/src/window.c:391
+#: ../gst-mixer/src/window.c:415
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/Gstreamer-pohjainen äänenvoimakuuden hallintaohjelma"
 
@@ -2314,9 +2314,9 @@ msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
-"Luettelo nauhoitusprofiileista. Luettelo sisältää merkkijonoja, jotka nimeävät "
-"alihakemistoja suhteessa polkuun /system/gstreamer/$GST_MAJORMINOR/audio/"
-"profiles."
+"Luettelo nauhoitusprofiileista. Luettelo sisältää merkkijonoja, jotka "
+"nimeävät alihakemistoja suhteessa polkuun /system/gstreamer/$GST_MAJORMINOR/"
+"audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
@@ -2469,4 +2469,3 @@ msgstr "Tarkkaile ulostulon äänenvoimakkuutta"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Äänenvoimakkuusmonitori"
-
