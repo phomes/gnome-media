@@ -1,23 +1,21 @@
-# Slovenian translation of gnome-media.
-# Copyright (C) 2000-2007 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-media package.
 #
 # Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
 # Matjaž Horvat <m@owca.info>, 2006.
 # Matic Žgur <mr.zgur@gmail.com>, 2007.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-02 21:59+0000\n"
-"PO-Revision-Date: 2007-02-25 19:55+0100\n"
-"Last-Translator: Matic Žgur <mr.zgur@gmail.com>\n"
+"POT-Creation-Date: 2007-02-25 18:56+0000\n"
+"PO-Revision-Date: 2007-11-14 14:39+0100\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Language: Slovenian\n"
@@ -1270,10 +1268,10 @@ msgstr "Kakšno glasnost naj uporablja predvajalnik CD-jev ob zagonu?"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "Ko se zažene predvajalnik CDjev, ali naj začne predvajati CD?"
 
-#: ../gnome-cd/gst-cdrom.c:282
+#: ../gnome-cd/gst-cdrom.c:286
 #, c-format
 msgid "Failed to eject CD: %s"
-msgstr "Ni bilo moč izvreči zgoščenke CD: %s"
+msgstr "Ni mogoče izvreči zgoščenke CD: %s"
 
 #: ../gnome-cd/preferences.c:81
 #, c-format
@@ -1340,7 +1338,7 @@ msgstr "Snemalnik zvoka"
 #. * a proper filename. See gnome-record.c:94.
 #: ../grecord/src/gnome-recorder.c:142
 #: ../grecord/src/gsr-window.c:1683
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gsr-window.c:2482
 msgid "Untitled"
 msgstr "Neimenovano"
 
@@ -1359,7 +1357,7 @@ msgid ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"Ni bilo moč ustvariti elementa GStreamerja %s.\n"
+"Ni mogoče ustvariti elementa GStreamerja %s.\n"
 "Namestite vstavek '%s' iz modula '%s'.\n"
 "Preverite, ali je namestitev pravilna, tako da poženete\n"
 "    gst-inspect-0.10 %s\n"
@@ -1426,13 +1424,13 @@ msgid ""
 "Unable to load file:\n"
 "%s"
 msgstr ""
-"Ni bilo moč naložiti datoteke:\n"
+"Ni mogoče naložiti datoteke:\n"
 "%s"
 
 #: ../grecord/src/gsr-window.c:576
 #: ../grecord/src/gsr-window.c:1486
 #: ../grecord/src/gsr-window.c:1740
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2304
 msgid "Ready"
 msgstr "Pripravljen"
 
@@ -1454,7 +1452,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:704
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr "Ni bilo moč shraniti datoteke \"%s\""
+msgstr "Ni mogoče shraniti datoteke \"%s\""
 
 #: ../grecord/src/gsr-window.c:721
 msgid "Save file as"
@@ -1492,10 +1490,10 @@ msgstr "%s (Ni bila shranjena)"
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] "%s (%llu bajt)"
-msgstr[1] "%s (%llu bajta)"
-msgstr[2] "%s (%llu bajti)"
-msgstr[3] "%s (%llu bajtov)"
+msgstr[0] "%s (%llu bajtov)"
+msgstr[1] "%s (%llu bajt)"
+msgstr[2] "%s (%llu bajta)"
+msgstr[3] "%s (%llu bajti)"
 
 #: ../grecord/src/gsr-window.c:968
 msgid "Unknown size"
@@ -1530,7 +1528,7 @@ msgid "%s Information"
 msgstr "Podatki %s"
 
 #: ../grecord/src/gsr-window.c:1069
-#: ../grecord/src/gsr-window.c:2231
+#: ../grecord/src/gsr-window.c:2239
 msgid "File Information"
 msgstr "Podatki o datoteki"
 
@@ -1539,7 +1537,7 @@ msgid "Folder:"
 msgstr "Mapa:"
 
 #: ../grecord/src/gsr-window.c:1090
-#: ../grecord/src/gsr-window.c:2246
+#: ../grecord/src/gsr-window.c:2254
 msgid "Filename:"
 msgstr "Datoteka:"
 
@@ -1608,7 +1606,7 @@ msgstr "izhodna datoteka"
 #: ../grecord/src/gsr-window.c:1885
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Ni bilo moč razčleniti zvočnega profila '%s'."
+msgstr "Ni mogoče razčleniti zvočnega profila '%s'."
 
 #: ../grecord/src/gsr-window.c:1901
 #, c-format
@@ -1696,7 +1694,7 @@ msgstr "O tem programu"
 
 #: ../grecord/src/gsr-window.c:2115
 msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr "Ni bilo moč naložiti ui.xml. Program morda ni bil pravilno nameščen"
+msgstr "Ni mogoče naložiti ui.xml. Program morda ni bil pravilno nameščen"
 
 #: ../grecord/src/gsr-window.c:2138
 msgid "Open"
@@ -1714,15 +1712,15 @@ msgstr "Shrani kot"
 msgid "Record from input:"
 msgstr "Snemaj iz vhoda:"
 
-#: ../grecord/src/gsr-window.c:2214
+#: ../grecord/src/gsr-window.c:2218
 msgid "Record as:"
 msgstr "Snemaj kot:"
 
-#: ../grecord/src/gsr-window.c:2252
+#: ../grecord/src/gsr-window.c:2260
 msgid "<none>"
 msgstr "<brez>"
 
-#: ../grecord/src/gsr-window.c:2266
+#: ../grecord/src/gsr-window.c:2274
 msgid "Length:"
 msgstr "Dolžina:"
 
@@ -1771,7 +1769,7 @@ msgstr "Neznan nadzor glasnosti %d"
 
 #: ../gst-mixer/src/main.c:205
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Ni bilo moč najti vstavkov in/ali naprav za nadzor glasnosti GStreamer"
+msgstr "Ni mogoče najti vstavkov in/ali naprav za nadzor glasnosti GStreamer"
 
 #: ../gst-mixer/src/misc.c:40
 msgid "Capture"
@@ -1967,7 +1965,7 @@ msgstr "Napaka ob inicializaciji glavnega okna"
 
 #: ../gstreamer-properties/gstreamer-properties.c:661
 msgid "Failed to load glade file; please check your installation."
-msgstr "Ni bilo moč naložiti datoteke glade. Preverite vašo namestitev."
+msgstr "Ni mogoče naložiti datoteke glade. Preverite vašo namestitev."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -2161,10 +2159,10 @@ msgstr "Ur_ejanje"
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "Ali želite zbrisati ta profil?\n"
-msgstr[1] "Ali želite zbrisati ta %d profila?\n"
-msgstr[2] "Ali želite zbrisati te %d profile?\n"
-msgstr[3] "Ali želite zbrisati teh %d profilov?\n"
+msgstr[0] "Ali želite zbrisati teh %d profilov?\n"
+msgstr[1] "Ali želite zbrisati ta %d profil?\n"
+msgstr[2] "Ali želite zbrisati ta %d profila?\n"
+msgstr[3] "Ali želite zbrisati te %d profile?\n"
 
 #: ../profiles/audio-profiles-edit.c:480
 #, c-format
@@ -2224,7 +2222,7 @@ msgstr "Napaka GConf (FIXME): %s\n"
 #: ../profiles/gmp-util.c:64
 #, c-format
 msgid "The file \"%s\" is missing. This indicates that the application is installed incorrectly, so the dialog can't be displayed."
-msgstr "Datoteka \"%s\" manjka. To pomeni, da je program napačno nameščen, zato pogovornega okna ni moč prikazati."
+msgstr "Datoteka \"%s\" manjka. To pomeni, da je program napačno nameščen, zato pogovornega okna ni mogoče prikazati."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2478,7 +2476,7 @@ msgstr "Kazalec glasnosti"
 
 #, fuzzy
 #~ msgid "Could not save the file \" %s\""
-#~ msgstr "Ne morem odstraniti datoteke: %s\n"
+#~ msgstr "Ni mogoče odstraniti datoteke: %s\n"
 #~ msgid "_Save"
 #~ msgstr "_Shrani"
 #~ msgid "File _Information"
@@ -2490,13 +2488,13 @@ msgstr "Kazalec glasnosti"
 #~ msgid "_Contents"
 #~ msgstr "_Vsebina"
 #~ msgid "Could not load UI resource %s"
-#~ msgstr "Ne morem naložiti vira %s"
+#~ msgstr "Ni mogoče naložiti vira %s"
 #~ msgid "Expander Size"
 #~ msgstr "Velikost razširitvene puščice"
 #~ msgid "Size of the expander arrow"
 #~ msgstr "Velikost razširitvene puščice"
 #~ msgid "Volume control"
-#~ msgstr "Kontrola glasnosti"
+#~ msgstr "Nadzor glasnosti"
 #~ msgid "About"
 #~ msgstr "O programu"
 #~ msgid "Close"
@@ -2558,13 +2556,13 @@ msgstr "Kazalec glasnosti"
 
 #, fuzzy
 #~ msgid "GStreamer Volume Control"
-#~ msgstr "Kontrola glasnosti"
+#~ msgstr "Nadzor glasnosti"
 #~ msgid "GStreamer"
 #~ msgstr "GStreamer"
 
 #, fuzzy
 #~ msgid "Could not build pipeline"
-#~ msgstr "Ne morem razvejiti 'otroka' procesa"
+#~ msgstr "Ni mogoče izgraditi cevovoda"
 #~ msgid "Saving %s..."
 #~ msgstr "Shranjujem %s..."
 #~ msgid "Synth"
@@ -2692,7 +2690,7 @@ msgstr "Kazalec glasnosti"
 #~ msgstr ""
 #~ "Vaš nastavljalnik glasnosti ne more delovati pravilno.\n"
 #~ "\n"
-#~ "Ne morem odpreti avdio naprave '%s'.\n"
+#~ "Ni mogoče odpreti avdio naprave '%s'.\n"
 #~ "Prosim, preverite ali imate dovoljenje za odprtje \n"
 #~ "'%s' in se prepričajte ali ima vaše jedro podporo\n"
 #~ "za zvok."
@@ -2703,12 +2701,12 @@ msgstr "Kazalec glasnosti"
 #~ "\n"
 #~ "Press Quit to quit Volume control"
 #~ msgstr ""
-#~ "Kontrola glasnosti ne more teči pravilno.\n"
+#~ "Nadzor glasnosti ne teče pravilno.\n"
 #~ "\n"
 #~ "Za več podrobnosti o razlogih za napako, kliknite na gumb \"Podrobnosti"
 #~ "\".\n"
 #~ "\n"
-#~ "Kliknite na \"Izhod\" za izhod iz kontrole glasnosti"
+#~ "Kliknite na \"Izhod\" za izhod iz nadzornika glasnosti"
 #~ msgid "Invalid mixer device"
 #~ msgstr "Neveljavna naprava mešalca"
 #~ msgid ""
@@ -2716,7 +2714,7 @@ msgstr "Kazalec glasnosti"
 #~ "OSS version %d.%d.%d, and your system is running\n"
 #~ "a version prior to 3.6.0.\n"
 #~ msgstr ""
-#~ "Opozorilo: Ta različica programa Kontrola glasnosti Gnome je bila \n"
+#~ "Opozorilo: Ta različica programa nadzora glasnosti Gnome je bila \n"
 #~ "prevedena z OSS različico %d.%d.%d. in na vašem sistemu\n"
 #~ "teče različica starejša od 3.6.0.\n"
 #~ msgid ""
@@ -2724,11 +2722,11 @@ msgstr "Kazalec glasnosti"
 #~ "OSS version %d.%d.%d, and your system is running\n"
 #~ "version %d.%d.%d.\n"
 #~ msgstr ""
-#~ "Opozorilo: Ta različica programa Kontrola glasnosti Gnome \n"
+#~ "Opozorilo: Ta različica programa nadzora glasnosti Gnome \n"
 #~ "prevedena z OSS različico %d.%d.%d. in na vašem sistemu\n"
 #~ "teče različica starejša od %d.%d.%d.\n"
 #~ msgid "GNOME Volume Control"
-#~ msgstr "Kontrola glasnosti GNOME"
+#~ msgstr "Nadzor glasnosti GNOME"
 #~ msgid "A mixer for sound devices"
 #~ msgstr "Mešalka za zvočne naprave"
 #~ msgid "Shown"
@@ -2747,7 +2745,7 @@ msgstr "Kazalec glasnosti"
 #~ "\n"
 #~ "If you don't have sox, you will not be able to record or do any effects."
 #~ msgstr ""
-#~ "Nisem mogel najti '%s'.\n"
+#~ "Ni mogoče najti '%s'.\n"
 #~ "Nastavitve pravilno pot do programa sox v nastavitvah pod uhljem 'poti'.\n"
 #~ "\n"
 #~ "Če nimate programa sox, ne boste mogli snemati in izvajati efektov."
@@ -2822,7 +2820,7 @@ msgstr "Kazalec glasnosti"
 #~ "Zvočna naprava ni pripravljena! Prosim, preverite, da ne\n"
 #~ "teče kak drug pogram, ki uporablja zvočno napravo."
 #~ msgid "Run GNOME Volume Control"
-#~ msgstr "Poženi Kontrolo glasnosti GNOME"
+#~ msgstr "Poženi nadzornika glasnosti GNOME"
 #~ msgid "Add echo"
 #~ msgstr "Dodaj odmev"
 #~ msgid "Add echo to the current sample"
@@ -3287,13 +3285,13 @@ msgstr "Kazalec glasnosti"
 #~ msgid "(Scanning)"
 #~ msgstr "(Pregledujem)"
 #~ msgid "Cannot load requested font. Reloading default font."
-#~ msgstr "Ne morem naložiti željene pisave. Nalagam privzeto."
+#~ msgstr "Ni mogoče naložiti željene pisave. Nalagam privzeto."
 #~ msgid "Cannot load default Helvetica font. Loading any fixed width font."
 #~ msgstr ""
-#~ "Ne morem naložiti privzete pisave Helvetica. Nalagam katerokoli pisavo s "
+#~ "Ni mogoče naložiti privzete pisave Helvetica. Nalagam katerokoli pisavo s "
 #~ "stalno širino"
 #~ msgid "Cannot load fixed width font. Exiting."
-#~ msgstr "Ne morem naložiti pisave s stalno širino. Končujem."
+#~ msgstr "Ni mogoče naložiti pisave s stalno širino. Končujem."
 #~ msgid "Filename of the CD device"
 #~ msgstr "Ime datoteke CD naprave"
 #~ msgid "FILE"
@@ -3345,7 +3343,7 @@ msgstr "Kazalec glasnosti"
 #~ msgid "Use alternate method to play CD"
 #~ msgstr "Uporabi drugo metodo igranja CDja"
 #~ msgid "Use squared law volume control"
-#~ msgstr "Uporabi kontrolo glasnosti kvadratnega zakona"
+#~ msgstr "Uporabi nadzornik glasnosti kvadratnega zakona"
 #~ msgid "On exit"
 #~ msgstr "Ob izhodu"
 #~ msgid "Key"
