@@ -1,16 +1,16 @@
-# translation of eu.po to Basque
-# Copyright (C) 2001, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# translation of gnome-media.HEAD.po to Basque
+# Copyright (C) 2001, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 #
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006, 2007.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006, 2007, 2008.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-08 18:09+0200\n"
-"PO-Revision-Date: 2007-09-08 18:10+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"POT-Creation-Date: 2008-01-08 11:21+0100\n"
+"PO-Revision-Date: 2008-01-07 23:13+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +20,12 @@ msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr "CDko kontsultetarako kontaktatu beharreko zerbitzariaren helbidea"
+msgstr "Zerbitzariaren helbidea (CDen kontsultak kontaktatzeko)"
 
 #
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
 msgid "Information to send to server"
-msgstr "Zerbitzariari bidali beharreko informazioa"
+msgstr "Informazioa zerbitzariari bidaltzeko"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
 #: ../cddb-slave2/cddb-slave-capplet.c:955
@@ -44,7 +44,7 @@ msgstr "Zerbitzari-mota"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
-msgstr "Kontsulta guztiekin bidaliko den ostalari-izena"
+msgstr "Ostalari-izena (kontsulta guztiekin bidaltzeko)"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
 msgid "The port that the server is running the database on"
@@ -74,8 +74,8 @@ msgid ""
 "contact for CD queries. Possible values are 0 (no information), 1 (real "
 "information) and 3 (other information)."
 msgstr ""
-"Gako honek zehazten du zerbitzariari erabiltzailearen zein informazio bidali "
-"behar zaion CDko kontsultak egiteko kontaktatzean. Hauek dira balio "
+"Zerbitzariari erabiltzailearen zein informazio bidali behar zaion zehazten "
+"du gako honek, CDko kontsultak egiteko kontaktatzean. Hauek dira balio "
 "posibleak: 0 (informaziorik ez), 1 (benetako informazioa) eta 3 (bestelako "
 "informazioa)."
 
@@ -158,7 +158,7 @@ msgid "_Port:"
 msgstr "_Ataka:"
 
 #
-#: ../cddb-slave2/cddb-slave-capplet.c:1103
+#: ../cddb-slave2/cddb-slave-capplet.c:1104
 msgid "CD Database Preferences"
 msgstr "CDaren datu-basearen hobespenak"
 
@@ -184,7 +184,7 @@ msgid ""
 "Below is a list of possible matches, please choose the best match"
 msgstr ""
 "Datu-basean bat baino gehiago zetozen bat.\n"
-"Behean bat datozen aukera posibleen zerrenda dago, aukeratu onena"
+"Behean bat datozen aukera posibleen zerrenda dago, aukeratu egokiena"
 
 #
 #: ../cddb-slave2/cddb-slave.c:288
@@ -198,7 +198,7 @@ msgstr "Diskoaren IDa"
 #
 #: ../cddb-slave2/cddb-slave.c:296
 msgid "Artist and Title"
-msgstr "Artista eta izenburua"
+msgstr "Artista eta titulua"
 
 #
 #: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
@@ -260,7 +260,7 @@ msgstr "Metala"
 #
 #: ../cddb-slave2/cddb-track-editor.c:88
 msgid "New Age"
-msgstr "New Age "
+msgstr "New Age"
 
 #: ../cddb-slave2/cddb-track-editor.c:89
 msgid "Oldies"
@@ -284,7 +284,7 @@ msgstr "Rap-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:94
 msgid "Reggae"
-msgstr "Reggae "
+msgstr "Reggae"
 
 #
 #: ../cddb-slave2/cddb-track-editor.c:95
@@ -310,11 +310,11 @@ msgstr "Ska"
 
 #: ../cddb-slave2/cddb-track-editor.c:100
 msgid "Death Metal"
-msgstr "Death Metal "
+msgstr "Death Metal"
 
 #: ../cddb-slave2/cddb-track-editor.c:101
 msgid "Pranks"
-msgstr "Pranks "
+msgstr "Pranks"
 
 #
 #: ../cddb-slave2/cddb-track-editor.c:102
@@ -344,11 +344,11 @@ msgstr "Jazz+Funk-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:108
 msgid "Fusion"
-msgstr "Fusion "
+msgstr "Fusion"
 
 #: ../cddb-slave2/cddb-track-editor.c:109
 msgid "Trance"
-msgstr "Trance "
+msgstr "Trance"
 
 #: ../cddb-slave2/cddb-track-editor.c:110
 msgid "Classical"
@@ -361,15 +361,15 @@ msgstr "Instrumentala"
 #
 #: ../cddb-slave2/cddb-track-editor.c:112
 msgid "Acid"
-msgstr "Acid "
+msgstr "Acid"
 
 #: ../cddb-slave2/cddb-track-editor.c:113
 msgid "House"
-msgstr "House "
+msgstr "House"
 
 #: ../cddb-slave2/cddb-track-editor.c:114
 msgid "Game"
-msgstr "Game "
+msgstr "Game"
 
 #
 #: ../cddb-slave2/cddb-track-editor.c:115
@@ -383,7 +383,7 @@ msgstr "Gospel-a"
 #
 #: ../cddb-slave2/cddb-track-editor.c:117
 msgid "Noise"
-msgstr "Noise "
+msgstr "Noise"
 
 #: ../cddb-slave2/cddb-track-editor.c:118
 msgid "Alt"
@@ -404,7 +404,7 @@ msgstr "Punk-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:122
 msgid "Space"
-msgstr "Space "
+msgstr "Space"
 
 #: ../cddb-slave2/cddb-track-editor.c:123
 msgid "Meditative"
@@ -428,7 +428,7 @@ msgstr "Gotikoa"
 
 #: ../cddb-slave2/cddb-track-editor.c:128
 msgid "Darkwave"
-msgstr "Darkwave "
+msgstr "Darkwave"
 
 #: ../cddb-slave2/cddb-track-editor.c:129
 msgid "Techno-Industrial"
@@ -448,7 +448,7 @@ msgstr "Eurodance-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:133
 msgid "Dream"
-msgstr "Dream "
+msgstr "Dream"
 
 #: ../cddb-slave2/cddb-track-editor.c:134
 msgid "Southern Rock"
@@ -464,7 +464,7 @@ msgstr "Kultua"
 
 #: ../cddb-slave2/cddb-track-editor.c:137
 msgid "Gangsta Rap"
-msgstr "Gangsta Rap "
+msgstr "Gangsta Rap"
 
 #
 #: ../cddb-slave2/cddb-track-editor.c:138
@@ -485,7 +485,7 @@ msgstr "Jungle-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:142
 msgid "Native American"
-msgstr "Indioa"
+msgstr "Ameriketako Indioa"
 
 #: ../cddb-slave2/cddb-track-editor.c:143
 msgid "Cabaret"
@@ -493,7 +493,7 @@ msgstr "Kabareta"
 
 #: ../cddb-slave2/cddb-track-editor.c:144
 msgid "New Wave"
-msgstr "New Wave "
+msgstr "New Wave"
 
 #: ../cddb-slave2/cddb-track-editor.c:145
 msgid "Psychedelic"
@@ -507,7 +507,7 @@ msgstr "Rave"
 #
 #: ../cddb-slave2/cddb-track-editor.c:147
 msgid "Showtunes"
-msgstr "Showtunes "
+msgstr "Showtunes"
 
 #
 #: ../cddb-slave2/cddb-track-editor.c:148
@@ -570,7 +570,7 @@ msgstr "Swing-a"
 
 #: ../cddb-slave2/cddb-track-editor.c:162
 msgid "Fast-Fusion"
-msgstr "Fast-Fusion "
+msgstr "Fast-Fusion"
 
 #: ../cddb-slave2/cddb-track-editor.c:163
 msgid "Bebop"
@@ -592,7 +592,7 @@ msgstr "Zelta"
 #
 #: ../cddb-slave2/cddb-track-editor.c:167
 msgid "Bluegrass"
-msgstr "Bluegrass "
+msgstr "Bluegrass"
 
 #: ../cddb-slave2/cddb-track-editor.c:168
 msgid "Avantgarde"
@@ -667,11 +667,11 @@ msgstr "Sinfonia"
 
 #: ../cddb-slave2/cddb-track-editor.c:185
 msgid "Booty Bass"
-msgstr "Booty Bass "
+msgstr "Booty Bass"
 
 #: ../cddb-slave2/cddb-track-editor.c:186
 msgid "Primus"
-msgstr "Primus "
+msgstr "Primus"
 
 #: ../cddb-slave2/cddb-track-editor.c:187
 msgid "Porn Groove"
@@ -688,7 +688,7 @@ msgstr "Jam motela"
 
 #: ../cddb-slave2/cddb-track-editor.c:190
 msgid "Club"
-msgstr "Club "
+msgstr "Club"
 
 #: ../cddb-slave2/cddb-track-editor.c:191
 msgid "Tango"
@@ -933,8 +933,8 @@ msgid ""
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
 "Ezin da CDDBPistaEditorearen fabrika sortu.\n"
-"Baliteke horren arrazoia izatea cddb-track-editor-en beste kopia bat martxan "
-"egotea.\n"
+"Agian horren arrazoia cddb-track-editor-en beste kopia bat martxan egotea "
+"da.\n"
 
 #
 #: ../gnome-cd/access/cddisplayaccessible.c:118
@@ -987,7 +987,7 @@ msgstr "Albumaren izena bistaratzeko lerroa"
 
 #: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
 #: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:767
+#: ../gnome-cd/gnome-cd.c:771
 msgid "Play"
 msgstr "Erreproduzitu"
 
@@ -1024,8 +1024,8 @@ msgstr "Pausarazita"
 
 #: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
 #: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:647 ../gnome-cd/gnome-cd.c:823
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
+#: ../gnome-cd/gnome-cd.c:651 ../gnome-cd/gnome-cd.c:827
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
 msgid "CD Player"
 msgstr "CD erreproduzigailua"
 
@@ -1068,22 +1068,22 @@ msgstr "Unitate-errorea"
 
 #: ../gnome-cd/callbacks.c:930
 msgid "A CD player for GNOME"
-msgstr "GNOMErako CD erreproduzigailua"
+msgstr "GNOMEren CD erreproduzigailua"
 
-#: ../gnome-cd/callbacks.c:1110
+#: ../gnome-cd/callbacks.c:1109
 msgid "Contents in the CDDB have changed"
 msgstr "CDDBko edukia aldatu egin da"
 
-#: ../gnome-cd/callbacks.c:1111
+#: ../gnome-cd/callbacks.c:1110
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "'Bai' aukeratzean aurreko CDBBko edukia ezabatuko da"
 
-#: ../gnome-cd/callbacks.c:1112
+#: ../gnome-cd/callbacks.c:1111
 msgid "Do you wish to continue?"
 msgstr "Jarraitu nahi duzu?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:499
+#: ../gnome-cd/callbacks.c:1183 ../gnome-cd/gnome-cd.c:504
 #, c-format
 msgid "Volume %d%%"
 msgstr "Bolumena: %%%d"
@@ -1101,7 +1101,7 @@ msgid ""
 "b) You do not have the correct permissions to access the CD drive\n"
 "c) %s is not the CD drive.\n"
 msgstr ""
-"ez dirudi %s(e)k CD gailu baliozkoa seinalatzen duenik. Arrazoia hau izan "
+"Ez dirudi %s(e)k CD gailu baliozkoa seinalatzen duenik. Arrazoia hau izan "
 "daiteke:\n"
 "a) CD euskarria ez dago zure makinan\n"
 "b) Ez duzu CD unitatea atzitzeko baimen egokirik\n"
@@ -1113,65 +1113,65 @@ msgid "%d - Unknown"
 msgstr "%d - Ezezaguna"
 
 #
-#: ../gnome-cd/gnome-cd.c:343
+#: ../gnome-cd/gnome-cd.c:346
 msgid "_Play / Pause"
 msgstr "_Erreproduzitu/ Pausarazi"
 
 #
-#: ../gnome-cd/gnome-cd.c:344
+#: ../gnome-cd/gnome-cd.c:347
 msgid "_Stop"
 msgstr "Gel_ditu"
 
-#: ../gnome-cd/gnome-cd.c:345
+#: ../gnome-cd/gnome-cd.c:348
 msgid "P_revious"
 msgstr "_Aurrekoa"
 
-#: ../gnome-cd/gnome-cd.c:346
+#: ../gnome-cd/gnome-cd.c:349
 msgid "_Next"
 msgstr "_Hurrengoa"
 
 #
-#: ../gnome-cd/gnome-cd.c:347
+#: ../gnome-cd/gnome-cd.c:350
 msgid "_Eject disc"
 msgstr "E_gotzi diskoa"
 
 #
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:348 ../grecord/src/gsr-window.c:2027
+#: ../gnome-cd/gnome-cd.c:351 ../grecord/src/gsr-window.c:2027
 msgid "_Help"
 msgstr "La_guntza"
 
-#: ../gnome-cd/gnome-cd.c:349
+#: ../gnome-cd/gnome-cd.c:352
 msgid "_About"
 msgstr "Honi _buruz"
 
 #
-#: ../gnome-cd/gnome-cd.c:350
+#: ../gnome-cd/gnome-cd.c:353
 msgid "_Quit"
 msgstr "I_rten"
 
-#: ../gnome-cd/gnome-cd.c:567
+#: ../gnome-cd/gnome-cd.c:571
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
-"Ez dago CD gailurik ezarrita. Horrek esan nahi du CD erreproduzigailua\n"
-"ezin dela exekutatu. Egin klik 'Ezarri gailua' komandoan elkarrizketa-koadro "
-"batera joateko\n"
-"eta han gailua ezartzeko, edo sakatu 'Irten' CD erreproduzigailutik irteteko."
+"Ez dago CD gailurik ezarrita. Horrek esan nahi du CD\n"
+"erreproduzigailua ezin dela exekutatu. Egin klik 'Ezarri gailua'\n"
+"komandoan elkarrizketa-koadro batera joateko eta han gailua\n"
+"ezartzeko, edo sakatu 'Irten' CD erreproduzigailutik irteteko."
 
 #
-#: ../gnome-cd/gnome-cd.c:571
+#: ../gnome-cd/gnome-cd.c:575
 msgid "Set device"
 msgstr "Ezarri gailua"
 
 #
-#: ../gnome-cd/gnome-cd.c:573
+#: ../gnome-cd/gnome-cd.c:577
 msgid "No CD device"
 msgstr "Ez dago CD gailurik"
 
-#: ../gnome-cd/gnome-cd.c:626
+#: ../gnome-cd/gnome-cd.c:630
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1189,109 +1189,109 @@ msgstr ""
 "ezartzeko, edo sakatu 'Irten' CD erreproduzigailutik irteteko"
 
 #
-#: ../gnome-cd/gnome-cd.c:630
+#: ../gnome-cd/gnome-cd.c:634
 msgid "_Details"
 msgstr "_Xehetasunak"
 
 #
-#: ../gnome-cd/gnome-cd.c:631
+#: ../gnome-cd/gnome-cd.c:635
 msgid "_Set device"
 msgstr "_Ezarri gailua"
 
 #
-#: ../gnome-cd/gnome-cd.c:633
+#: ../gnome-cd/gnome-cd.c:637
 msgid "Invalid CD device"
 msgstr "CD gailu baliogabea"
 
 #
-#: ../gnome-cd/gnome-cd.c:705
+#: ../gnome-cd/gnome-cd.c:709
 msgid "Position"
 msgstr "Kokalekua"
 
 #
-#: ../gnome-cd/gnome-cd.c:722
+#: ../gnome-cd/gnome-cd.c:726
 msgid "Open preferences"
 msgstr "Ireki hobespenak"
 
-#: ../gnome-cd/gnome-cd.c:723
+#: ../gnome-cd/gnome-cd.c:727
 msgid "Preferences"
 msgstr "Hobespenak"
 
 #
-#: ../gnome-cd/gnome-cd.c:731
+#: ../gnome-cd/gnome-cd.c:735
 msgid "Track List"
 msgstr "Pista-zerrenda"
 
-#: ../gnome-cd/gnome-cd.c:737
+#: ../gnome-cd/gnome-cd.c:741
 msgid "Open track editor"
 msgstr "Ireki pista-editorea"
 
 #
-#: ../gnome-cd/gnome-cd.c:738
+#: ../gnome-cd/gnome-cd.c:742
 msgid "Track editor"
 msgstr "Pista-editorea"
 
 #
-#: ../gnome-cd/gnome-cd.c:767
+#: ../gnome-cd/gnome-cd.c:771
 msgid "Play / Pause"
 msgstr "Erreproduzitu/Pausarazi"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:776
 msgid "Stop"
 msgstr "Gelditu"
 
-#: ../gnome-cd/gnome-cd.c:776
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Previous track"
 msgstr "Aurreko pista"
 
-#: ../gnome-cd/gnome-cd.c:776
+#: ../gnome-cd/gnome-cd.c:780
 msgid "Previous"
 msgstr "Aurrekoa"
 
-#: ../gnome-cd/gnome-cd.c:780
+#: ../gnome-cd/gnome-cd.c:784
 msgid "Rewind"
 msgstr "Atzera eraman"
 
 #
-#: ../gnome-cd/gnome-cd.c:788
+#: ../gnome-cd/gnome-cd.c:792
 msgid "Fast forward"
 msgstr "Bizkor aurreratu"
 
-#: ../gnome-cd/gnome-cd.c:796
+#: ../gnome-cd/gnome-cd.c:800
 msgid "Next track"
 msgstr "Hurrengo pista"
 
 #
-#: ../gnome-cd/gnome-cd.c:800
+#: ../gnome-cd/gnome-cd.c:804
 msgid "Eject CD"
 msgstr "Egotzi CDa"
 
-#: ../gnome-cd/gnome-cd.c:800
+#: ../gnome-cd/gnome-cd.c:804
 msgid "Eject"
 msgstr "Egotzi"
 
 #
-#: ../gnome-cd/gnome-cd.c:874
+#: ../gnome-cd/gnome-cd.c:878
 msgid "CD device to use"
 msgstr "Erabili beharreko CD gailua"
 
-#: ../gnome-cd/gnome-cd.c:876
+#: ../gnome-cd/gnome-cd.c:880
 msgid "Only start if there isn't already a CD player application running"
 msgstr ""
 "CD erreproduzigailuaren aplikaziorik exekutatzen ari ez bada bakarrik "
-"abiarazi "
+"abiarazi"
 
 #
-#: ../gnome-cd/gnome-cd.c:878
+#: ../gnome-cd/gnome-cd.c:882
 msgid "Play the CD on startup"
 msgstr "Erreproduzitu CDa abioan"
 
-#: ../gnome-cd/gnome-cd.c:880
+#: ../gnome-cd/gnome-cd.c:884
 msgid "Start iconified in notification area"
 msgstr "Abiarazi ikonotuta jakinarazpeneko arean"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:921
+#: ../gnome-cd/gnome-cd.c:925
 msgid "Cannot create player"
 msgstr "Ezin da erreproduzigailua sortu"
 
@@ -1333,7 +1333,7 @@ msgstr "Erreproduzitu CD erreproduzigailua abiaraztean?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:8
 msgid "Should the CD be ejected when the CD player quits?"
-msgstr "CD egotzi behar da CD erreproduzigailutik irtetean?"
+msgstr "CDa egotzi behar da CD erreproduzigailutik irtetean?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
@@ -1353,7 +1353,7 @@ msgstr "Zein bolumen erabili beharko luke CD erreproduzigailua abiaraztean?"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "CD erreproduzigailua abiaraztean, CDa erreproduzitzea nahi duzu?"
 
-#: ../gnome-cd/gst-cdrom.c:286
+#: ../gnome-cd/gst-cdrom.c:283
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "Huts egin du CDa egoztean: %s"
@@ -1373,41 +1373,41 @@ msgid "Error setting device"
 msgstr "Errorea gailua ezartzean"
 
 #
-#: ../gnome-cd/preferences.c:587
+#: ../gnome-cd/preferences.c:526
 msgid "CD Player Preferences"
 msgstr "CD erreproduzigailuaren hobespenak"
 
-#: ../gnome-cd/preferences.c:626
+#: ../gnome-cd/preferences.c:565
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Gailua:"
 
-#: ../gnome-cd/preferences.c:640
+#: ../gnome-cd/preferences.c:579
 msgid "Behavior"
 msgstr "Portarea"
 
 #
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:592
 msgid "Start _playback when CD Player starts"
 msgstr "Hasi _erreproduzitzen CD erreproduzigailua abiaraztean"
 
-#: ../gnome-cd/preferences.c:654
+#: ../gnome-cd/preferences.c:593
 msgid "Start playback when CD Player starts"
 msgstr "Hasi erreproduzitzen CD erreproduzigailua abiaraztean"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:605
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "Saia_tu CDa egozten CD erreproduzigailua ixtean"
 
-#: ../gnome-cd/preferences.c:667
+#: ../gnome-cd/preferences.c:606
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "Saiatu CDa egozten CD erreproduzigailua ixtean"
 
-#: ../gnome-cd/preferences.c:683
+#: ../gnome-cd/preferences.c:622
 msgid "Themes"
 msgstr "Gaiak"
 
-#: ../gnome-cd/preferences.c:695
+#: ../gnome-cd/preferences.c:634
 msgid "_Select a theme:"
 msgstr "_Hautatu gaia:"
 
@@ -1502,7 +1502,7 @@ msgid ""
 "Unable to load file:\n"
 "%s"
 msgstr ""
-"Ezin da fitxategia kargatu::\n"
+"Ezin da fitxategia kargatu:\n"
 "%s"
 
 #: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1491
@@ -1513,7 +1513,7 @@ msgstr "Prest"
 #. Add replace button
 #: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
-msgstr "_Ordeztu "
+msgstr "_Ordeztu"
 
 #: ../grecord/src/gsr-window.c:646
 #, c-format
@@ -1542,12 +1542,12 @@ msgstr "%s ez dago bide-izenean instalatuta."
 #: ../grecord/src/gsr-window.c:816
 #, c-format
 msgid "There was an error starting %s: %s"
-msgstr "Errore bat gertatu da %s abiaraztean: %s"
+msgstr "Errorea gertatu da %s abiaraztean: %s"
 
 #: ../grecord/src/gsr-window.c:838
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Gorde aldaketak  \"%s\" fitxategian itxi aurretik?"
+msgstr "Gorde aldaketak \"%s\" fitxategian itxi aurretik?"
 
 #: ../grecord/src/gsr-window.c:849
 msgid "Close _without Saving"
@@ -1587,7 +1587,7 @@ msgstr "%.0f kb/s"
 #: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%.0f kb/s (Estimated)"
-msgstr "%.0f kb/s (iritzira :)"
+msgstr "%.0f kb/s (iritzira)"
 
 #
 #: ../grecord/src/gsr-window.c:1014
@@ -1597,7 +1597,7 @@ msgstr "1 (mono)"
 #
 #: ../grecord/src/gsr-window.c:1017
 msgid "2 (stereo)"
-msgstr "2 (stereo)"
+msgstr "2 (estereoa)"
 
 #: ../grecord/src/gsr-window.c:1044
 #, c-format
@@ -1652,7 +1652,7 @@ msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
 msgstr ""
-"GNOMErako soinu-grabagailua\n"
+"GNOMEren soinu-grabagailua\n"
 " gnome-media@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1463
@@ -1663,8 +1663,8 @@ msgstr "Erreproduzitzen..."
 msgid "GConf audio output"
 msgstr "GConf soinu-irteera"
 
-#: ../grecord/src/gsr-window.c:1601 ../gst-mixer/src/element.c:223
-#: ../gst-mixer/src/misc.c:38
+#: ../grecord/src/gsr-window.c:1601 ../gst-mixer/src/element.c:224
+#: ../gst-mixer/src/misc.c:37
 msgid "Playback"
 msgstr "Erreproduzitu"
 
@@ -1723,7 +1723,7 @@ msgstr "Fitxategi bat irekitzen du"
 #
 #: ../grecord/src/gsr-window.c:2005
 msgid "Save the current file"
-msgstr "Gorde uneko fitxategia "
+msgstr "Gorde uneko fitxategia"
 
 #: ../grecord/src/gsr-window.c:2006
 msgid "Save _As..."
@@ -1786,7 +1786,8 @@ msgstr "Aplikazio honi buruz"
 
 #: ../grecord/src/gsr-window.c:2152
 msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr "Ezin izan da ui.xml kargatu. Baliteke programa ongi instalatuta ez egotea."
+msgstr ""
+"Ezin izan da ui.xml kargatu. Baliteke programa ongi instalatuta ez egotea."
 
 #
 #: ../grecord/src/gsr-window.c:2175
@@ -1824,7 +1825,7 @@ msgstr "Doitu bolumen-maila"
 
 #
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:388
+#: ../gst-mixer/src/window.c:151 ../gst-mixer/src/window.c:412
 msgid "Volume Control"
 msgstr "Bolumen-kontrola"
 
@@ -1844,63 +1845,63 @@ msgstr "Leihoaren zabalera"
 msgid "Width of the Window to be displayed"
 msgstr "Bistaratuko den leihoaren zabalera"
 
-#: ../gst-mixer/src/element.c:225
+#: ../gst-mixer/src/element.c:226
 msgid "Recording"
 msgstr "Grabatzen"
 
-#: ../gst-mixer/src/element.c:227
+#: ../gst-mixer/src/element.c:228
 msgid "Switches"
 msgstr "Parametroak"
 
-#: ../gst-mixer/src/element.c:229
+#: ../gst-mixer/src/element.c:230
 msgid "Options"
 msgstr "Aukerak"
 
 #
-#: ../gst-mixer/src/main.c:76
+#: ../gst-mixer/src/main.c:77
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "%d bolumen-kontrol ezezaguna"
 
-#: ../gst-mixer/src/main.c:198
+#: ../gst-mixer/src/main.c:199
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Ez da bolumen-kontroleko GStreamer plugin-ak edota gailurik aurkitu."
 
 #
-#: ../gst-mixer/src/misc.c:40
+#: ../gst-mixer/src/misc.c:39
 msgid "Capture"
 msgstr "Kapturatu"
 
-#: ../gst-mixer/src/misc.c:42
+#: ../gst-mixer/src/misc.c:41
 msgid "Switch"
 msgstr "Kommutatu"
 
-#: ../gst-mixer/src/misc.c:44
+#: ../gst-mixer/src/misc.c:43
 msgid "Option"
 msgstr "Aukera"
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:121
 msgid "Volume Control Preferences"
 msgstr "Bolumen-kontrolaren hobespenak"
 
-#: ../gst-mixer/src/preferences.c:133
+#: ../gst-mixer/src/preferences.c:134
 msgid "_Select tracks to be visible:"
 msgstr "_Hautatu pistak ikusgai izateko:"
 
-#: ../gst-mixer/src/track.c:248
+#: ../gst-mixer/src/track.c:249
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:288
+#: ../gst-mixer/src/track.c:289
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s mututu/ez-mututu"
 
 #
-#: ../gst-mixer/src/track.c:303
+#: ../gst-mixer/src/track.c:304
 #, c-format
 msgid "Track %s: mute"
 msgstr "%s pista: mututu"
@@ -1910,50 +1911,50 @@ msgstr "%s pista: mututu"
 #. *     is always FALSE.
 #.
 #. only the record button here
-#: ../gst-mixer/src/track.c:383
+#: ../gst-mixer/src/track.c:384
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Txandakatu %s(r)en audio-kaptura"
 
-#: ../gst-mixer/src/track.c:398
+#: ../gst-mixer/src/track.c:399
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "%s pista: audio-kaptura"
 
-#: ../gst-mixer/src/track.c:481
+#: ../gst-mixer/src/track.c:482
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s aukeraren hautapena"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:135
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:137
 msgid "left"
 msgstr "ezkerrekoa"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:137
 msgid "right"
 msgstr "eskuinekoa"
 
-#: ../gst-mixer/src/volume.c:139
+#: ../gst-mixer/src/volume.c:140
 msgid "front left"
 msgstr "aurreko ezkerrekoa"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:141
 msgid "front right"
 msgstr "aurreko eskuinekoa"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:142
 msgid "rear left"
 msgstr "atzeko ezkerrekoa"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:143
 msgid "rear right"
 msgstr "atzeko eskuinekoa"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:144
 msgid "front center"
 msgstr "aurreko erdikoa"
 
@@ -1961,66 +1962,66 @@ msgstr "aurreko erdikoa"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:148
+#: ../gst-mixer/src/volume.c:149
 msgid "LFE"
 msgstr "MBE"
 
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:150
 msgid "side left"
 msgstr "alboko ezkerrekoa"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:151
 msgid "side right"
 msgstr "alboko eskuinekoa"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:152
 msgid "unknown"
 msgstr "ezezaguna"
 
 #
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:157
+#: ../gst-mixer/src/volume.c:158
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s kanalaren bolumena %s(e)n"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:206
 #, c-format
 msgid "Track %s"
 msgstr "%s pista"
 
-#: ../gst-mixer/src/volume.c:208
+#: ../gst-mixer/src/volume.c:209
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%d kanala : %s pista"
 
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:212
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "%s pista, %d kanala"
 
-#: ../gst-mixer/src/volume.c:231
+#: ../gst-mixer/src/volume.c:232
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "Blokeatu %s(r)en kanalak batera"
 
-#: ../gst-mixer/src/volume.c:249
+#: ../gst-mixer/src/volume.c:250
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "%s pista: blokeatu kanalak batera"
 
 #
-#: ../gst-mixer/src/window.c:110
+#: ../gst-mixer/src/window.c:111
 msgid "_Change Device"
 msgstr "_Aldatu gailua"
 
-#: ../gst-mixer/src/window.c:111
+#: ../gst-mixer/src/window.c:112
 msgid "Control volume on a different device"
 msgstr "Beste gailu baten bolumen-kontrola"
 
 #
-#: ../gst-mixer/src/window.c:185
+#: ../gst-mixer/src/window.c:191
 #, c-format
 msgid "Change device to %s"
 msgstr "Aldatu gailua hona: %s"
@@ -2028,22 +2029,20 @@ msgstr "Aldatu gailua hona: %s"
 #
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:435
+#: ../gst-mixer/src/window.c:248 ../gst-mixer/src/window.c:459
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Bolumen-kontrola: %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
-#: ../gst-mixer/src/window.c:382
+#: ../gst-mixer/src/window.c:401
 msgid "translator-credits"
 msgstr ""
-"Hizkuntza Politikarako Sailburuordetza \n"
-"<hizkpol@ej-gv.es>\n"
-"Iñaki Larrañaga Murgoitio\n"
-"<dooteo@euskalgnu.org>"
+"Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>\n"
+"Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../gst-mixer/src/window.c:391
+#: ../gst-mixer/src/window.c:415
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/GStreamer-ean oinarritutako bolumen-kontrola"
 
@@ -2248,13 +2247,13 @@ msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
-"Errore bat gertatu da audio profilen zerrendako aldaketeten jakinarazpenetan "
+"Errorea gertatu da audio profilen zerrendako aldaketeten jakinarazpenetan "
 "harpidetzean. (%s)\n"
 
 #: ../profiles/audio-profile.c:945
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
-msgstr "Errore bat gertatu da %s profila direktorioa ahaztean: (%s)\n"
+msgstr "Errorea gertatu da %s profila direktorioa ahaztean: (%s)\n"
 
 #: ../profiles/audio-profiles-edit.c:83
 msgid "_Edit"
@@ -2378,7 +2377,8 @@ msgstr ""
 "informazioa du."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid "A filename extension to be used when storing files encoded with this profile."
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 "Erabiliko den fitxategiaren luzapena profila honekin kodetutako fitxategiak "
 "gordetzean."
@@ -2433,24 +2433,24 @@ msgstr "Profilaren fitxategi-luzapen lehenetsia"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The partial GStreamer pipeline used"
-msgstr "erabilitako GStreamer kanalizazio partziala"
+msgstr "Erabilitako GStreamer kanalizazio partziala"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
-"CD kalitatedun audiora bihurtzeko erabiltzen da, baina kodeketa konpresio "
-"galerarik gabe. Erabili fitxategia editatzea edo CD batean grabatzea nahi "
-"baduzu."
+"CD kalitatedun audiora bihurtzeko erabiltzen da, baina konpresioan galerarik "
+"gabeko kodeketarekin. Erabili hau fitxategia editatzea edo CD batean "
+"grabatzea nahi baduzu."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
-"CD kalitatedun audiora bihurtzeko erabiltzen da, kodeketa konpresio "
-"galerarekin. Erabili CDa erauzteko edo irratia grabatzeko."
+"CD kalitatedun audiora bihurtzeko erabiltzen da, konpresioan galera duen "
+"kodeketarekin. Erabili CDa erauzteko edo irratia grabatzeko."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid ""
@@ -2520,7 +2520,7 @@ msgstr ""
 
 #: ../vu-meter/main.c:230
 msgid "Specify the X position of the meter."
-msgstr "Zehaztu neurgailuaren X kokalekua."
+msgstr "Zehaztu neurgailuaren X posizioa."
 
 #: ../vu-meter/main.c:231
 msgid "X"
@@ -2528,7 +2528,7 @@ msgstr "X"
 
 #: ../vu-meter/main.c:233
 msgid "Specify the Y position of the meter."
-msgstr "Zehaztu neurgailuaren Y kokalekua."
+msgstr "Zehaztu neurgailuaren Y posizioa."
 
 #: ../vu-meter/main.c:234
 msgid "Y"
@@ -2580,4 +2580,3 @@ msgstr "Kontrolatu soinuaren irteera-bolumena"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Bolumenaren monitorea"
-
