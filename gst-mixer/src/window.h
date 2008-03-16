@@ -70,8 +70,9 @@ typedef struct _GnomeVolumeControlWindowClass {
   GnomeAppClass klass;
 } GnomeVolumeControlWindowClass;
 
-GType		gnome_volume_control_window_get_type	(void);
-GtkWidget *	gnome_volume_control_window_new		(GList *elements);
+GType		gnome_volume_control_window_get_type		(void);
+GtkWidget *	gnome_volume_control_window_new			(GList *elements);
+void		gnome_volume_control_window_set_page		(GtkWidget *win, const gchar *page);
 
 G_END_DECLS
 

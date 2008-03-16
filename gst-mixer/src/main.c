@@ -34,6 +34,12 @@
 #include "stock.h"
 #include "window.h"
 
+static gchar* page = NULL;
+static GOptionEntry entries[] =
+{
+  { "page", 'p', 0, G_OPTION_ARG_STRING, &page, N_("Startup page"), "playback|recording|switches|options" }
+};
+
 /*
  * Probe for mixer elements. Set up GList * with elements,
  * where each element has a GObject data node set of the
@@ -180,6 +186,7 @@ main (gint   argc,
 
   g_thread_init (NULL);
   ctx = g_option_context_new ("gnome-volume-control");
+  g_option_context_add_main_entries(ctx, entries, GETTEXT_PACKAGE);
   g_option_context_add_group (ctx, gst_init_get_option_group ());
 
   gnome_program_init ("gnome-volume-control", VERSION,
@@ -205,6 +212,8 @@ main (gint   argc,
 
   /* window contains everything automagically */
   win = gnome_volume_control_window_new (elements);
+  if (page != NULL)
+    gnome_volume_control_window_set_page(win, page);
   g_signal_connect (win, "destroy", G_CALLBACK (cb_destroy), NULL);
   g_signal_connect (win, "check_resize", G_CALLBACK (cb_check_resize), NULL);
 

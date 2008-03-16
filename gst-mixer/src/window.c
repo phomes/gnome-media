@@ -277,6 +277,22 @@ gnome_volume_control_window_new (GList *elements)
   return GTK_WIDGET (win);
 }
 
+void gnome_volume_control_window_set_page(GtkWidget *widget, const gchar *page)
+{
+  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (widget);
+
+  if (g_ascii_strncasecmp(page, "playback",8) == 0)
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 0);
+  else if (g_ascii_strncasecmp(page, "recording",9) == 0)
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 1);
+  else if (g_ascii_strncasecmp(page, "switches",9) == 0)
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 2);
+  else if (g_ascii_strncasecmp(page, "options",9) == 0)
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 3);
+  else /* default is "playback" */
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 0);
+}
+
 static void
 gnome_volume_control_window_dispose (GObject *object)
 {
