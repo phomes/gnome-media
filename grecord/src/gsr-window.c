@@ -796,7 +796,7 @@ run_mixer_cb (GtkAction *action,
 	       GSRWindow *window)
 {
 	char *mixer_path;
-	char *argv[2] = {NULL, NULL};
+	char *argv[4] = {NULL, "--page", "recording",  NULL};
 	GError *error = NULL;
 	gboolean ret;
 
