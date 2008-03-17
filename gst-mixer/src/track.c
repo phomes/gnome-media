@@ -375,13 +375,12 @@ gnome_volume_control_track_add_recording (GtkTable *table,
     return ctrl;
   }
 
+  /* only the record button here */
+  msg = g_strdup_printf (_("Toggle audio recording from %s"), ctrl->track->label);
   /* FIXME:
    * - there's something fishy about this button, it
    *     is always FALSE.
    */
-
-  /* only the record button here */
-  msg = g_strdup_printf (_("Toggle audio recording from %s"), ctrl->track->label);
   button = gnome_volume_control_button_new (GNOME_VOLUME_CONTROL_STOCK_RECORD,
 					    GNOME_VOLUME_CONTROL_STOCK_NORECORD,
 					    appbar, msg);
