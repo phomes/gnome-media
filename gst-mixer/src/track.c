@@ -455,7 +455,7 @@ gnome_volume_control_track_add_option (GtkTable *table,
 {
   GnomeVolumeControlTrack *ctrl;
   GstMixerOptions *options = GST_MIXER_OPTIONS (track);
-  const GList *opt;
+  const GList *opt, *opts;
   AtkObject *accessible;
   gchar *accessible_name;
   gint i = 0;
@@ -468,7 +468,8 @@ gnome_volume_control_track_add_option (GtkTable *table,
   /* optionmenu */
   active_opt = gst_mixer_get_option (mixer, GST_MIXER_OPTIONS (track));
   ctrl->options = gtk_combo_box_new_text ();
-  for (opt = options->values; opt != NULL; opt = opt->next, i++) {
+  opts = gst_mixer_options_get_values (options);
+  for (opt = opts; opt != NULL; opt = opt->next, i++) {
     gtk_combo_box_append_text (GTK_COMBO_BOX (ctrl->options), opt->data);
     if (!strcmp (active_opt, opt->data)) {
       gtk_combo_box_set_active (GTK_COMBO_BOX (ctrl->options), i);
