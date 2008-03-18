@@ -331,7 +331,10 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
 
     content[i].old_sep = content[i].new_sep;
-    content[i].use = TRUE;
+
+    if (active) {
+      content[i].use = TRUE;
+    }
   }
 
   /* show */
