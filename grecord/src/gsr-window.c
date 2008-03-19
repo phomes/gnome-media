@@ -2402,7 +2402,8 @@ gsr_window_set_property (GObject      *object,
 			gsr_add_recent (priv->filename);
 		}
 
-		title = g_strdup_printf ("%s - Sound Recorder", short_name);
+		/*Translators: this is the window title, %s is the currently open file's name or Untitled*/
+		title = g_strdup_printf (_("%s - Sound Recorder"), short_name);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
 		g_free (short_name);
