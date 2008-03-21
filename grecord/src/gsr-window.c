@@ -2025,7 +2025,7 @@ static const GtkActionEntry menu_entries[] =
 
 	/* Help menu */
 	{ "Help", NULL, N_("_Help") },
-	{"HelpContents", GTK_STOCK_HELP, NULL, NULL,
+	{"HelpContents", GTK_STOCK_HELP, N_("Contents"), "F1",
 	 N_("Open the manual"), G_CALLBACK (help_contents_cb) },
 	{ "About", GTK_STOCK_ABOUT, NULL, NULL,
 	 N_("About this application"), G_CALLBACK (about_cb) }
