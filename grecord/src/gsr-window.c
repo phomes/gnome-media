@@ -654,13 +654,10 @@ do_save_file (GSRWindow *window,
 	      const char *_name)
 {
 	GSRWindowPrivate *priv;
-        GMAudioProfile *profile;
 	char *tmp, *src, *name;
 	GnomeVFSURI *src_uri, *dst_uri;
 
 	priv = window->priv;
-
-        profile = gm_audio_profile_choose_get_active (priv->profile);
 
 	if (window->priv->extension == NULL ||
 	    g_str_has_suffix (_name, window->priv->extension))
@@ -735,7 +732,6 @@ file_save_as_cb (GtkAction *action,
 		char *basename;
 		gchar *filename, *filename_ext, *extension;
 		gint length;
-		GMAudioProfile *profile;
 
 		basename = g_path_get_basename (window->priv->filename);
 		length = strlen (basename);
@@ -746,7 +742,6 @@ file_save_as_cb (GtkAction *action,
 		}
 
 		filename = g_strndup (basename,length);
-		profile = gm_audio_profile_choose_get_active (window->priv->profile);
 		if (window->priv->extension)
 			filename_ext = g_strdup_printf ("%s.%s", filename,
 						window->priv->extension);
@@ -1561,12 +1556,15 @@ profile_changed_cb (GObject *object, GSRWindow *window)
 	gchar *id;
 
 	g_return_if_fail (GTK_IS_COMBO_BOX (object));
+
 	profile = gm_audio_profile_choose_get_active (GTK_WIDGET (object));
-  
-	id = g_strdup (gm_audio_profile_get_id (profile));
-	GST_DEBUG ("profile changed to %s", GST_STR_NULL (id));
-	gconf_client_set_string (gconf_client, KEY_LAST_PROFILE_ID, id, NULL);
-	g_free (id);
+
+	if (profile != NULL) {
+		id = g_strdup (gm_audio_profile_get_id (profile));
+		GST_DEBUG ("profile changed to %s", GST_STR_NULL (id));
+		gconf_client_set_string (gconf_client, KEY_LAST_PROFILE_ID, id, NULL);
+		g_free (id);
+	}
 }
 
 static void
@@ -1720,7 +1718,7 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		window->priv->record_id = g_idle_add (record_start, window);
 		g_free (window->priv->extension);
 		profile = gm_audio_profile_choose_get_active (window->priv->profile);
-		window->priv->extension = g_strdup (gm_audio_profile_get_extension (profile));
+		window->priv->extension = g_strdup (profile ? gm_audio_profile_get_extension (profile) : NULL);
 		gtk_widget_set_sensitive (window->priv->profile, FALSE);
 		gtk_widget_set_sensitive (window->priv->input, FALSE);
 		break;
@@ -1905,6 +1903,8 @@ make_record_pipeline (GSRWindow *window)
 	gst_bin_add (GST_BIN (pipeline->pipeline), source);
 
 	profile = gm_audio_profile_choose_get_active (window->priv->profile);
+	if (profile == NULL)
+		return NULL;
 	profile_pipeline_desc = gm_audio_profile_get_pipeline (profile);
 	name = gm_audio_profile_get_name (profile);
 

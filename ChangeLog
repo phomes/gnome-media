@@ -1,5 +1,14 @@
 2008-03-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
+	* profiles/audio-profile-choose.c (audio_profile_forgotten):
+	Remove deleted profiles from the profile choose combo-box. 
+	Replace GMP_DEBUG macro with GST_DEBUG.
+
+	* grecord/src/gsr-window.c: more checking before string
+	comparisons. (Bug #493503)
+
+2008-03-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
+
 	* gnome-cd/linux-cdrom.c: return FALSE when track_info is NULL.
 	(Closes: #430824)
 
