@@ -1098,7 +1098,7 @@ linux_cdrom_get_cddb_data (GnomeCDRom *cdrom,
 
 	if (priv->track_info == NULL) {
 		*data = NULL;
-		return TRUE;
+		return FALSE;
 	}
 	
 	*data = g_new0 (GnomeCDRomCDDBData, 1);
