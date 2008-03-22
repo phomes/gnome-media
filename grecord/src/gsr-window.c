@@ -1814,7 +1814,7 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 		t = l->data;
 		if (t == NULL || t->label == NULL)
 			continue;
-		if ((strcmp (t->label, text) == 0) &&
+		if ((g_str_equal (t->label, text)) &&
 		    (t->flags & GST_MIXER_TRACK_INPUT)) {
 			if (new == NULL)
 				new = g_object_ref (t);
@@ -1866,7 +1866,7 @@ fill_record_input (GSRWindow *window, gchar *selected)
 		if ((t->flags & GST_MIXER_TRACK_RECORD) && (selected == NULL)) {
 			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
 		}
-		if ((selected != NULL) && strcmp (selected, t->label) == 0) {
+		if ((selected != NULL) && g_str_equal (selected, t->label)) {
 			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
 		}
 	}
@@ -2369,7 +2369,9 @@ gsr_window_set_property (GObject      *object,
 	switch (prop_id) {
 	case PROP_LOCATION:
 		if (priv->filename != NULL) {
-			if (strcmp (g_value_get_string (value), priv->filename) == 0) {
+			if (g_value_get_string (value) == NULL)
+				return;
+			if (g_str_equal (g_value_get_string (value), priv->filename)) {
 				return;
 			}
 		}
