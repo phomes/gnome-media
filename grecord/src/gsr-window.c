@@ -35,6 +35,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <math.h>
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -97,6 +98,10 @@ struct _GSRWindowPrivate {
 	GtkWidget *rate, *time_sec, *format, *channels;
 	GtkWidget *name_label;
 	GtkWidget *length_label;
+	GtkWidget *align;
+	GtkWidget *volume_label;
+	GtkWidget *level;
+
 	gulong seek_id;
 
 	GtkUIManager *ui_manager;
@@ -1258,6 +1263,9 @@ stop_cb (GtkAction *action,
 
 		GST_DEBUG ("Stopping recording pipeline");
 		set_pipeline_state_to_null (priv->record->pipeline);
+		gtk_widget_set_sensitive (window->priv->level, FALSE);
+		gtk_widget_set_sensitive (window->priv->volume_label, FALSE);
+		gtk_progress_set_percentage (GTK_PROGRESS (window->priv->level), 0);
 	}
 }
 
@@ -1284,6 +1292,9 @@ record_cb (GtkAction *action,
 			      NULL);
 
 		gst_element_set_state (priv->record->pipeline, GST_STATE_PLAYING);
+		gtk_widget_set_sensitive (window->priv->level, TRUE);
+		gtk_widget_set_sensitive (window->priv->volume_label, TRUE);
+
 	}
 }
 
@@ -1870,13 +1881,55 @@ fill_record_input (GSRWindow *window, gchar *selected)
 	}
 }
 
+gboolean
+level_message_handler_cb (GstBus * bus, GstMessage * message, GSRWindow *window)
+{
+  GSRWindowPrivate *priv;
+  GstState cur_state, pending;
+
+  priv = window->priv;
+
+  if (message->type == GST_MESSAGE_ELEMENT) {
+    const GstStructure *s = gst_message_get_structure (message);
+    const gchar *name = gst_structure_get_name (s);
+
+    if (g_str_equal (name, "level")) {
+      gint channels;
+      gdouble peak_dB;
+      gdouble myind;
+      const GValue *list;
+      const GValue *value;
+
+      gint i;
+      /* we can get the number of channels as the length of any of the value
+       * lists */
+
+      list = gst_structure_get_value (s, "rms");
+      channels = gst_value_list_get_size (list);
+
+      for (i = 0; i < channels; ++i) {
+	list = gst_structure_get_value (s, "peak");
+        value = gst_value_list_get_value (list, i);
+        peak_dB = g_value_get_double (value);
+	myind = exp (peak_dB / 20);
+	if (myind > 1.0)
+		myind = 1.0;
+	gtk_progress_set_percentage (GTK_PROGRESS (window->priv->level), myind);
+      }
+    }
+  }
+  /* we handled the message we want, and ignored the ones we didn't want.
+   * so the core can unref the message for us */
+  return TRUE;
+}
+
 static GSRWindowPipeline *
 make_record_pipeline (GSRWindow *window)
 {
 	GSRWindowPipeline *pipeline;
 	GMAudioProfile *profile;
 	const gchar *profile_pipeline_desc;
-	GstElement *encoder, *source, *filesink;
+	GstElement *encoder, *source, *filesink, *level;
 	GError *err = NULL;
 	gchar *pipeline_desc;
 	const char *name;
@@ -1901,6 +1954,17 @@ make_record_pipeline (GSRWindow *window)
 	pipeline->sink = filesink;
 
 	gst_bin_add (GST_BIN (pipeline->pipeline), source);
+
+	level = gst_element_factory_make ("level", "level");
+	if (level == NULL)
+	{
+		show_missing_known_element_error (NULL,
+		    _("level"), "level", "level",
+		    "gstreamer");
+		gst_object_unref (source);
+		return NULL;
+	}
+	gst_element_set_name (level, "level");
 
 	profile = gm_audio_profile_choose_get_active (window->priv->profile);
 	if (profile == NULL)
@@ -1929,11 +1993,12 @@ make_record_pipeline (GSRWindow *window)
 		return NULL;
 	}
 
+	gst_bin_add (GST_BIN (pipeline->pipeline), level);
 	gst_bin_add (GST_BIN (pipeline->pipeline), encoder);
 	gst_bin_add (GST_BIN (pipeline->pipeline), filesink);
 
 	/* now link it all together */
-	if (!gst_element_link (source, encoder)) {
+	if (!(gst_element_link_many (source, level, encoder, NULL))) {
 		show_profile_error (NULL, err->message,
 			_("Could not capture using the '%s' audio profile. "),
 			name);
@@ -1961,6 +2026,10 @@ make_record_pipeline (GSRWindow *window)
 	pipeline->bus = gst_element_get_bus (pipeline->pipeline);
 
 	gst_bus_add_signal_watch (pipeline->bus);
+
+	g_signal_connect (pipeline->bus, "message::element",
+	                  G_CALLBACK (level_message_handler_cb),
+	                  window);
 
 	g_signal_connect (pipeline->bus, "message::state-changed",
 	                  G_CALLBACK (record_state_changed_cb),
@@ -2119,6 +2188,7 @@ gsr_window_init (GSRWindow *window)
 	GtkWidget *hbox;
 	GtkWidget *label;
 	GtkWidget *table;
+	GtkWidget *align;
 	gchar *id;
 	gchar *path;
 	GtkAction *action;
@@ -2224,7 +2294,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_scale_set_value_pos (GTK_SCALE (window->priv->scale), GTK_POS_BOTTOM);
 	/* We can't seek until we find out the length */
 	gtk_widget_set_sensitive (window->priv->scale, FALSE);
-	gtk_box_pack_start (GTK_BOX (content_vbox), priv->scale, TRUE, TRUE, 6);
+	gtk_box_pack_start (GTK_BOX (content_vbox), priv->scale, FALSE, FALSE, 6);
 	gtk_widget_show (window->priv->scale);
 
         /* create source and choose mixer input */
@@ -2273,34 +2343,38 @@ gsr_window_init (GSRWindow *window)
         g_signal_connect (priv->profile, "changed",
                           G_CALLBACK (profile_changed_cb), window);
 
-	label = make_title_label (_("File Information"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-	gtk_box_pack_start (GTK_BOX (content_vbox), label, FALSE, FALSE, 0);
-
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new ("    ");
+	label = gtk_label_new ("    "); /* FIXME: better padding? */
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
-	table = gtk_table_new (2, 2, FALSE);
+	table = gtk_table_new (3, 2, FALSE);
 	gtk_table_set_col_spacings (GTK_TABLE (table), 12);
 	gtk_table_set_row_spacings (GTK_TABLE (table), 6);
 	gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
-	label = gtk_label_new (_("Filename:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0, 0);
+	label = make_title_label (_("File Information"));
+
+	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), label,
-			  0, 1, 0, 1,
-			  GTK_FILL, GTK_FILL, 0, 0);
+			  0, 2, 0, 1,
+			  GTK_FILL, 0, 0, 0);
+
+	label = gtk_label_new (_("Filename:"));
+
+	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+	gtk_table_attach (GTK_TABLE (table), label,
+			  0, 1, 1, 2,
+			  GTK_FILL, 0, 0, 0);
 
 	priv->name_label = gtk_label_new (_("<none>"));
 	gtk_label_set_selectable (GTK_LABEL (priv->name_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (priv->name_label), GTK_WRAP_WORD);
 	gtk_misc_set_alignment (GTK_MISC (priv->name_label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), priv->name_label,
-			  1, 2, 0, 1,
-			  GTK_FILL, GTK_FILL,
+			  1, 2, 1, 2,
+			  GTK_FILL  | GTK_EXPAND, 0,
 			  0, 0);
 
 	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->name_label)),
@@ -2309,17 +2383,18 @@ gsr_window_init (GSRWindow *window)
 
 
 	label = gtk_label_new (_("Length:"));
+
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), label,
-			  0, 1, 1, 2,
+			  0, 1, 2, 3,
 			  GTK_FILL, 0, 0, 0);
 	
 	priv->length_label = gtk_label_new ("");
 	gtk_label_set_selectable (GTK_LABEL (priv->length_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (priv->length_label), 0, 0.5);
 	gtk_table_attach (GTK_TABLE (table), priv->length_label,
-			  1, 2, 1, 2,
-			  GTK_FILL, GTK_FILL,
+			  1, 2, 2, 3,
+			  GTK_FILL | GTK_EXPAND, 0,
 			  0, 0);
 
 	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->length_label)),
@@ -2331,6 +2406,36 @@ gsr_window_init (GSRWindow *window)
 	GTK_WIDGET_SET_FLAGS (priv->statusbar, GTK_CAN_FOCUS);
 	gtk_box_pack_end (GTK_BOX (main_vbox), priv->statusbar, FALSE, FALSE, 0);
 	gtk_widget_show (priv->statusbar);
+
+	/* hack to get the same shadow as the status bar.. */
+	GtkShadowType shadow_type;
+	gtk_widget_style_get (GTK_WIDGET (priv->statusbar), "shadow-type", &shadow_type, NULL);
+
+	GtkWidget *frame = gtk_frame_new (NULL);
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), shadow_type);
+	gtk_widget_show (frame);
+
+	gtk_box_pack_end (GTK_BOX (priv->statusbar), frame, FALSE, TRUE, 0);
+
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (frame), hbox);
+	gtk_box_set_spacing (GTK_BOX (hbox), 6);
+
+	priv->volume_label = gtk_label_new (_("Level:"));
+	gtk_box_pack_start (GTK_BOX (hbox), priv->volume_label, FALSE, TRUE, 0);
+
+	/* initialize priv->level */
+	align = gtk_aspect_frame_new ("", 0.0, 0.0, 20, FALSE);
+	gtk_frame_set_shadow_type (GTK_FRAME (align), GTK_SHADOW_NONE);
+	gtk_widget_show (align);
+	gtk_box_pack_start (GTK_BOX (hbox), align, FALSE, FALSE, 0);
+
+	priv->level = gtk_progress_bar_new ();
+	gtk_container_add (GTK_CONTAINER (align), priv->level);
+
+	gtk_widget_set_sensitive (window->priv->volume_label, FALSE);
+	gtk_widget_set_sensitive (window->priv->level, FALSE);
+
 	priv->status_message_cid = gtk_statusbar_get_context_id
 		(GTK_STATUSBAR (priv->statusbar), "status_message");
 	priv->tip_message_cid = gtk_statusbar_get_context_id
