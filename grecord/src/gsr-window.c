@@ -1812,7 +1812,8 @@ make_record_source (GSRWindow *window)
         if (!gst_element_set_state (source, GST_STATE_READY)) {
 		show_error_dialog (NULL, NULL,
 			_("Your audio capture settings are invalid. "
-			  "Please correct them in the Multimedia settings."));
+			  "Please correct them with the \"Sound Preferences\" "
+			  "under the System-Preferences menu."));
 		return FALSE;
 	}
 	window->priv->source = source;
@@ -1885,7 +1886,7 @@ fill_record_input (GSRWindow *window, gchar *selected)
 	if (model) 
 		gtk_list_store_clear (GTK_LIST_STORE (model));
 	
-	if (GST_IS_MIXER (window->priv->mixer) == NULL) {
+	if (!GST_IS_MIXER (window->priv->mixer)) {
 		gtk_widget_set_sensitive (window->priv->input, FALSE);
 		return;
 	} else {
