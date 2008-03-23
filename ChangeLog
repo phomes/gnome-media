@@ -2,12 +2,11 @@
 
 	reviewed by: Marc-Andre Lureau
 
-	* grecord/src/gsr-window.c: (file_open_cb), (do_save_file),
-	(file_save_as_cb), (close_confirmation_dialog),
-	(fill_in_information), (play_cb),
-	(gsr_window_set_property):
-	  Use g_filename_to_utf8() so that grecord doen't crash.
-	  (Closes: #483254)
+	* grecord/src/gsr-window.c (file_open_cb, do_save_file,
+	file_save_as_cb, close_confirmation_dialog, fill_in_information,
+	play_cb, gsr_window_set_property): Use g_filename_to_utf8() so
+	that grecord doen't crash.
+	(Closes: #483254)
 
 2008-03-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
@@ -32,13 +31,13 @@
 2008-03-17  Tim-Philipp Müller  <tim at centricular dot net>
 
 	* gst-mixer/src/track.c: (gnome_volume_control_track_add_option):
-	  Use gst_mixer_options_list_values() instead of accessing the
-	  mixer options structure directly; this gives implementations
-	  a change to return an updated list on request (and know when
-	  it's safe to update the structure value). This is required
-	  for mixer implementations where the list of available options
-	  may change, such as OSSv4.
-	  (Closes: #519544)
+	Use gst_mixer_options_list_values() instead of accessing the
+	mixer options structure directly; this gives implementations
+	a change to return an updated list on request (and know when
+	it's safe to update the structure value). This is required
+	for mixer implementations where the list of available options
+	may change, such as OSSv4.
+	(Closes: #519544)
 
 2008-03-17  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
