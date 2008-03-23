@@ -359,6 +359,7 @@ file_open_cb (GtkAction *action,
 {
 	GtkWidget *file_chooser;
 	gchar *directory;
+	gchar *locale_directory = NULL;
 	gint response;
 
 	g_return_if_fail (GSR_IS_WINDOW (window));
@@ -373,22 +374,29 @@ file_open_cb (GtkAction *action,
 	directory = gconf_client_get_string (gconf_client, KEY_OPEN_DIR, NULL);
 
 	if (directory != NULL && *directory != 0) {
+		locale_directory = g_filename_from_utf8 (directory, -1, NULL, NULL, NULL);
+		if (!locale_directory || !g_file_test (locale_directory, G_FILE_TEST_EXISTS))
+			locale_directory = g_strdup (directory);
 		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser),
-		                                     directory);
+		                                     locale_directory);
+		g_free (locale_directory);
 	}
 
 	response = gtk_dialog_run (GTK_DIALOG (file_chooser));
 
 	if (response == GTK_RESPONSE_OK) {
 		gchar *name;
+		gchar *utf8_name = NULL;
 
 		name = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser));
 		if (name) {
 			gchar *dirname;
 
-			dirname = g_path_get_dirname (name);
+			utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
+			dirname = g_path_get_dirname (utf8_name);
 			gconf_client_set_string (gconf_client, KEY_OPEN_DIR, dirname, NULL);
 			g_free (dirname);
+			g_free (utf8_name);
 
 			if (window->priv->has_file == TRUE) {
 				/* Just open a new window with the file */
@@ -660,6 +668,7 @@ do_save_file (GSRWindow *window,
 {
 	GSRWindowPrivate *priv;
 	char *tmp, *src, *name;
+	gchar *utf8_name = NULL;
 	GnomeVFSURI *src_uri, *dst_uri;
 
 	priv = window->priv;
@@ -671,12 +680,16 @@ do_save_file (GSRWindow *window,
 		name = g_strdup_printf ("%s.%s", _name,
 				window->priv->extension);
 	if (g_file_test (name, G_FILE_TEST_EXISTS)) {
-		if (!replace_existing_file (GTK_WINDOW (window), name))
+		utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
+		if (!replace_existing_file (GTK_WINDOW (window), utf8_name)) {
+			g_free (utf8_name);
 			return;
+		}
+		g_free (utf8_name);
 	}
 
-	tmp = g_filename_to_uri (name, NULL, NULL);
-	src = g_filename_to_uri (priv->record_filename, NULL, NULL);
+	tmp = gnome_vfs_make_uri_from_shell_arg (name);
+	src = gnome_vfs_make_uri_from_shell_arg (priv->record_filename);
 	src_uri = gnome_vfs_uri_new (src);
 	dst_uri = gnome_vfs_uri_new (tmp);
 	g_free (src);
@@ -702,8 +715,10 @@ do_save_file (GSRWindow *window,
 		gnome_vfs_uri_unref (src_uri);
 		gnome_vfs_uri_unref (dst_uri);
 	} else {
+		utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
 		show_error_dialog (GTK_WINDOW (window), NULL,
-			           _("Could not save the file \"%s\""), name);
+			           _("Could not save the file \"%s\""), utf8_name);
+		g_free (utf8_name);
 	}
 
 	g_free (name);
@@ -716,6 +731,7 @@ file_save_as_cb (GtkAction *action,
 {
 	GtkWidget *file_chooser;
 	gchar *directory;
+	gchar *locale_directory = NULL;
 	gint response;
 
 	g_return_if_fail (GSR_IS_WINDOW (window));
@@ -729,18 +745,24 @@ file_save_as_cb (GtkAction *action,
 
 	directory = gconf_client_get_string (gconf_client, KEY_SAVE_DIR, NULL);
 	if (directory != NULL && *directory != 0) {
-		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), directory);
+		locale_directory = g_filename_from_utf8 (directory, -1, NULL, NULL, NULL);
+		if (!locale_directory || !g_file_test (locale_directory, G_FILE_TEST_EXISTS))
+			locale_directory = g_strdup (directory);
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (file_chooser), locale_directory);
+		g_free (locale_directory);
 	}
 	g_free (directory);
 
 	if (window->priv->filename != NULL) {
-		char *basename;
+		char *locale_basename;
+		char *basename = NULL;
 		gchar *filename, *filename_ext, *extension;
 		gint length;
 
-		basename = g_path_get_basename (window->priv->filename);
+		locale_basename = g_path_get_basename (window->priv->filename);
+		basename = g_filename_to_utf8 (locale_basename, -1, NULL, NULL, NULL);
 		length = strlen (basename);
-		extension = strrchr (basename, '.');
+		extension = g_strrstr (basename, ".");
 
 		if (extension != NULL) {
 			length = length - strlen (extension);
@@ -757,20 +779,24 @@ file_save_as_cb (GtkAction *action,
 		g_free (filename);
 		g_free (filename_ext);
 		g_free (basename);
+		g_free (locale_basename);
 	}
 
 	response = gtk_dialog_run (GTK_DIALOG (file_chooser));
 
 	if (response == GTK_RESPONSE_OK) {
 		gchar *name;
+		gchar *utf8_name = NULL;
 
 		name = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser));
 		if (name) {
 			gchar *dirname;
 
-			dirname = g_path_get_dirname (name);
+			utf8_name= g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
+			dirname = g_path_get_dirname (utf8_name);
 			gconf_client_set_string (gconf_client, KEY_SAVE_DIR, dirname, NULL);
 			g_free (dirname);
+			g_free (utf8_name);
 	
 			do_save_file (window, name);
 			g_free (name);
@@ -834,9 +860,16 @@ close_confirmation_dialog (GSRWindow *window)
 	AtkObject *atk_obj;
 	gchar *msg;
 	gint response_id;
+	gchar *utf8_filename = NULL;
 
+	utf8_filename = g_filename_to_utf8 (window->priv->record_filename,
+	                                    -1,
+	                                    NULL,
+	                                    NULL,
+	                                    NULL);
 	msg = g_strdup_printf (_("Save the changes to file \"%s\" before closing?"),
-			       window->priv->record_filename);
+			       utf8_filename);
+	g_free (utf8_filename);
 
 	confirmation_dialog = gtk_message_dialog_new_with_markup (NULL,
 								  GTK_DIALOG_MODAL,
@@ -935,6 +968,7 @@ fill_in_information (GSRWindow *window,
 	struct stat buf;
 	guint64 file_size = 0;
 	gchar *text, *name;
+	gchar *utf8_name = NULL;
 	gint n_channels, bitrate, samplerate;
 
 	/* dirname */
@@ -943,14 +977,15 @@ fill_in_information (GSRWindow *window,
 	g_free (text);
 
 	/* filename */
-	name = g_path_get_basename (window->priv->filename);
+	utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
 	if (window->priv->dirty) {
-		text = g_strdup_printf (_("%s (Has not been saved)"), name);
+		text = g_strdup_printf (_("%s (Has not been saved)"), utf8_name);
 	} else {
-		text = g_strdup (name);
+		text = g_strdup (utf8_name);
 	}
 	gtk_label_set_text (GTK_LABEL (fp->filename), text);
 	g_free (text);
+	g_free (utf8_name);
 	g_free (name);
 	
 	/* Size */
@@ -1226,13 +1261,7 @@ play_cb (GtkAction *action,
 		if(priv->has_file == FALSE && priv->working_file) usefile = priv->working_file;
 		else usefile = priv->filename;
 
-		/* FIXME: do we need to complete relative paths
-		 * here or is it always an absolute path? */
-		if (!g_path_is_absolute (usefile)) {
-			g_warning ("Filename '%s' is not an absolute path (FIXME)",
-			           usefile);
-		}
-		uri = g_filename_to_uri (usefile, NULL, NULL);
+		uri = gnome_vfs_make_uri_from_shell_arg (usefile);
 		g_object_set (window->priv->play->pipeline, "uri", uri, NULL);
 		g_free (uri);
 
@@ -2466,6 +2495,7 @@ gsr_window_set_property (GObject      *object,
 	GSRWindowPrivate *priv;
 	struct stat buf;
 	char *title, *short_name;
+	char *utf8_name = NULL;
 	const char *ext;
 
 	window = GSR_WINDOW (object);
@@ -2501,8 +2531,9 @@ gsr_window_set_property (GObject      *object,
 		else
 			window->priv->extension = NULL;
 
+		utf8_name = g_filename_to_utf8 (short_name, -1, NULL, NULL, NULL);
 		if (priv->name_label != NULL) {
-			gtk_label_set (GTK_LABEL (priv->name_label), short_name);
+			gtk_label_set (GTK_LABEL (priv->name_label), utf8_name);
 		}
 
 		if (recent_model) {
@@ -2510,9 +2541,10 @@ gsr_window_set_property (GObject      *object,
 		}
 
 		/*Translators: this is the window title, %s is the currently open file's name or Untitled*/
-		title = g_strdup_printf (_("%s - Sound Recorder"), short_name);
+		title = g_strdup_printf (_("%s - Sound Recorder"), utf8_name);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
+		g_free (utf8_name);
 		g_free (short_name);
 
 		set_action_sensitive (window, "Play", window->priv->has_file ? TRUE : FALSE);

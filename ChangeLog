@@ -1,3 +1,13 @@
+2008-03-23  Takao Fujiwara  <takao.fujiwara@sun.com>
+
+	reviewed by: Marc-Andre Lureau
+
+	* grecord/src/gsr-window.c: (file_open_cb), (do_save_file),
+	(file_save_as_cb), (close_confirmation_dialog),
+	(fill_in_information), (play_cb),
+	(gsr_window_set_property):
+	  Use g_filename_to_utf8() so that grecord doen't crash.
+
 2008-03-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
 	* profiles/audio-profile-choose.c (audio_profile_forgotten):
