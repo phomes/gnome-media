@@ -1,5 +1,11 @@
 2008-03-23  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
+	* src/gsr-window.c (fill_record_input, record_state_changed_cb):
+	Make sure the input selector is insensitive if the source does not
+	implement GST_MIXER.
+
+2008-03-23  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
+
 	* grecord/src/gsr-window.c: Changed the error message when
 	the capture settings are not working.
 

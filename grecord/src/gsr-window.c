@@ -1766,7 +1766,7 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 		gtk_widget_set_sensitive (window->priv->profile, TRUE);
-		gtk_widget_set_sensitive (window->priv->input, TRUE);
+		gtk_widget_set_sensitive (window->priv->input, GST_IS_MIXER (window->priv->mixer));
 		/* fall through */
 	case GST_STATE_PAUSED:
 		set_action_sensitive (window, "Stop", FALSE);
@@ -1886,12 +1886,9 @@ fill_record_input (GSRWindow *window, gchar *selected)
 	if (model) 
 		gtk_list_store_clear (GTK_LIST_STORE (model));
 	
-	if (!GST_IS_MIXER (window->priv->mixer)) {
-		gtk_widget_set_sensitive (window->priv->input, FALSE);
+	gtk_widget_set_sensitive (window->priv->input, GST_IS_MIXER (window->priv->mixer));
+	if (!GST_IS_MIXER (window->priv->mixer))
 		return;
-	} else {
-		gtk_widget_set_sensitive (window->priv->input, TRUE);
-	}
 
 	for (l = gst_mixer_list_tracks (window->priv->mixer); l != NULL; l = l->next) {
 		GstMixerTrack *t = l->data;
