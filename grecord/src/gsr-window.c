@@ -1817,12 +1817,6 @@ make_record_source (GSRWindow *window)
 	}
 	window->priv->source = source;
 	e = gst_bin_get_by_interface (GST_BIN (source), GST_TYPE_MIXER);
-	if (GST_IS_MIXER (e) == FALSE) {
-		show_error_dialog (NULL, NULL,
-			_("Your audio capture settings are invalid. "
-			  "Please correct them in the Multimedia settings."));
-		return FALSE;
-	}
 	window->priv->mixer = GST_MIXER (e);
 
 	return TRUE;
@@ -1891,7 +1885,12 @@ fill_record_input (GSRWindow *window, gchar *selected)
 	if (model) 
 		gtk_list_store_clear (GTK_LIST_STORE (model));
 	
-	g_return_if_fail (GST_IS_MIXER (window->priv->mixer));
+	if (GST_IS_MIXER (window->priv->mixer) == NULL) {
+		gtk_widget_set_sensitive (window->priv->input, FALSE);
+		return;
+	} else {
+		gtk_widget_set_sensitive (window->priv->input, TRUE);
+	}
 
 	for (l = gst_mixer_list_tracks (window->priv->mixer); l != NULL; l = l->next) {
 		GstMixerTrack *t = l->data;
