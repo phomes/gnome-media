@@ -1,5 +1,10 @@
 2008-03-23  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
+	* src/gsr-window.c (fill_in_information):
+	Fix crash introduced by utf8 fix (see #483254)
+
+2008-03-23  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
+
 	* src/gsr-window.c (fill_record_input, record_state_changed_cb):
 	Make sure the input selector is insensitive if the source does not
 	implement GST_MIXER.

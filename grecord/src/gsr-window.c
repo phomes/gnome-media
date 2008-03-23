@@ -404,6 +404,7 @@ file_open_cb (GtkAction *action,
 			} else {
 				/* Set the file in this window */
 				g_object_set (G_OBJECT (window), "location", name, NULL);
+				window->priv->dirty = FALSE;
 			}
 		
 			g_free (name);
@@ -459,6 +460,7 @@ file_open_recent_cb (EggRecentViewGtk *view,
 	} else {
 		/* Set the file in this window */
 		g_object_set (G_OBJECT (window), "location", filename, NULL);
+		window->priv->dirty = FALSE;
 	}
 
  out:
@@ -972,12 +974,18 @@ fill_in_information (GSRWindow *window,
 	gint n_channels, bitrate, samplerate;
 
 	/* dirname */
-	text = g_path_get_dirname (window->priv->filename);
-	gtk_label_set_text (GTK_LABEL (fp->dirname), text);
-	g_free (text);
+	if (window->priv->dirty) {
+		gtk_label_set_text (GTK_LABEL (fp->dirname), "");
+	} else {
+		text = g_path_get_dirname (window->priv->filename);
+		gtk_label_set_text (GTK_LABEL (fp->dirname), text);
+		g_free (text);
+	}
 
 	/* filename */
+	name = g_path_get_basename (window->priv->filename);
 	utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
+
 	if (window->priv->dirty) {
 		text = g_strdup_printf (_("%s (Has not been saved)"), utf8_name);
 	} else {
@@ -1316,6 +1324,7 @@ record_cb (GtkAction *action,
 		window->priv->len_secs = 0;
 		window->priv->saved = FALSE;
 
+		g_print (priv->record_filename);
 		g_object_set (G_OBJECT (priv->record->sink),
 			      "location", priv->record_filename,
 			      NULL);
@@ -1688,7 +1697,6 @@ record_eos_msg_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 	g_free (window->priv->filename);
 	window->priv->filename = g_strdup (window->priv->record_filename);
 
-	window->priv->dirty = TRUE;
 	window->priv->has_file = TRUE;
 }
 
@@ -2479,7 +2487,7 @@ gsr_window_init (GSRWindow *window)
 
 	priv->len_secs = 0;
 	priv->get_length_attempts = 16;
-	priv->dirty = FALSE;
+	priv->dirty = TRUE;
 }
 
 static void
@@ -2698,6 +2706,7 @@ gsr_window_new (const char *filename)
 	window->priv->filename = g_strdup (filename);
 	if (g_file_test (filename, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR) != FALSE) {
 		window->priv->has_file = TRUE;
+		window->priv->dirty = FALSE;
 	} else {
 		window->priv->has_file = FALSE;
 	}
