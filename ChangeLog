@@ -1,3 +1,12 @@
+2008-03-24  Takao Fujiwara  <takao.fujiwara@sun.com>
+
+	reviewed by: Marc-Andre Lureau
+
+	* grecord/src/gnome-recorder.c: (gsr_open_window):
+	* grecord/src/gsr-window.c: (fill_in_information):
+	  Use g_filename_from/to_utf8() so that grecord doen't crash.
+	  (Closes: #524099)
+
 2008-03-24  Jaap Haitsma  <jaap@haitsma.org>
 
 	reviewed by: Marc-Andre Lureau

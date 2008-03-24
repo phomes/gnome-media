@@ -131,6 +131,7 @@ GtkWidget *
 gsr_open_window (const char *filename)
 {
 	GtkWidget *window;
+	char *utf8_name;
 	char *name;
 
 	if (filename == NULL) {
@@ -139,10 +140,12 @@ gsr_open_window (const char *filename)
 		 * recorded samples will be saved to disk with this
 		 * name as default value. */
 		if (gsr_sample_count == 1) {
-			name = g_strdup (_("Untitled"));
+			utf8_name = g_strdup (_("Untitled"));
 		} else {
-			name = g_strdup_printf (_("Untitled-%d"), gsr_sample_count);
+			utf8_name = g_strdup_printf (_("Untitled-%d"), gsr_sample_count);
 		}
+		name = g_filename_from_utf8 (utf8_name, -1, NULL, NULL, NULL);
+		g_free (utf8_name);
 		++gsr_sample_count;
 	} else {
 		name = g_strdup (filename);

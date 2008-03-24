@@ -977,9 +977,11 @@ fill_in_information (GSRWindow *window,
 	if (window->priv->dirty) {
 		gtk_label_set_text (GTK_LABEL (fp->dirname), "");
 	} else {
-		text = g_path_get_dirname (window->priv->filename);
+		name = g_path_get_dirname (window->priv->filename);
+		text = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
 		gtk_label_set_text (GTK_LABEL (fp->dirname), text);
 		g_free (text);
+		g_free (name);
 	}
 
 	/* filename */
