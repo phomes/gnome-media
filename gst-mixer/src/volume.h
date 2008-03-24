@@ -23,6 +23,7 @@
 #define __GVC_VOLUME_H__
 
 #include <glib.h>
+#include <gtk/gtkstatusbar.h>
 #include <gtk/gtkfixed.h>
 #include <gst/interfaces/mixer.h>
 
@@ -61,7 +62,7 @@ typedef struct _GnomeVolumeControlVolume {
   gboolean locked;
 
   /* status bar */
-  GnomeAppBar *appbar;
+  GtkStatusbar *statusbar;
 
   /* signal ID */
   guint id;
@@ -75,7 +76,7 @@ GType		gnome_volume_control_volume_get_type	(void);
 GtkWidget *	gnome_volume_control_volume_new	(GstMixer *mixer,
 						 GstMixerTrack *track,
 						 gint      padding,
-						 GnomeAppBar *appbar);
+						 GtkStatusbar *statusbar);
 void		gnome_volume_control_volume_sync (GnomeVolumeControlVolume *volume);
 void		gnome_volume_control_volume_ask (GnomeVolumeControlVolume *volume,
 						 gboolean * real_zero,

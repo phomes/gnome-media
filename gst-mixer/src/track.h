@@ -72,7 +72,7 @@ GnomeVolumeControlTrack *
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
 						 GtkWidget *r_sep,
-						 GnomeAppBar *appbar);
+						 GtkStatusbar *statusbar);
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_recording(GtkTable *table,
 						 gint      tab_pos,
@@ -80,7 +80,7 @@ GnomeVolumeControlTrack *
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
 						 GtkWidget *r_sep,
-						 GnomeAppBar *appbar);
+						 GtkStatusbar *statusbar);
 
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_switch	(GtkTable *table,
@@ -89,7 +89,7 @@ GnomeVolumeControlTrack *
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
 						 GtkWidget *r_sep,
-						 GnomeAppBar *appbar);
+						 GtkStatusbar *statusbar);
 
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_option	(GtkTable *table,
@@ -98,7 +98,7 @@ GnomeVolumeControlTrack *
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
 						 GtkWidget *r_sep,
-						 GnomeAppBar *appbar);
+						 GtkStatusbar *statusbar);
 
 void	gnome_volume_control_track_free		(GnomeVolumeControlTrack *track);
 

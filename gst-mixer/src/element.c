@@ -23,8 +23,8 @@
 #include "config.h"
 #endif
 
+#include <string.h>
 #include <glib/gi18n.h>
-#include <gnome.h>
 #include <gtk/gtk.h>
 
 #include "element.h"
@@ -32,6 +32,8 @@
 #include "preferences.h"
 #include "track.h"
 #include "misc.h"
+
+G_DEFINE_TYPE (GnomeVolumeControlElement, gnome_volume_control_element, GTK_TYPE_NOTEBOOK)
 
 static void	gnome_volume_control_element_class_init	(GnomeVolumeControlElementClass *klass);
 static void	gnome_volume_control_element_init	(GnomeVolumeControlElement *el);
@@ -42,42 +44,11 @@ static void	cb_gconf			(GConfClient     *client,
 						 GConfEntry      *entry,
 						 gpointer         data);
 
-static GtkNotebookClass *parent_class = NULL;
-
-GType
-gnome_volume_control_element_get_type (void)
-{
-  static GType gnome_volume_control_element_type = 0;
-
-  if (!gnome_volume_control_element_type) {
-    static const GTypeInfo gnome_volume_control_element_info = {
-      sizeof (GnomeVolumeControlElementClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) gnome_volume_control_element_class_init,
-      NULL,
-      NULL,
-      sizeof (GnomeVolumeControlElement),
-      0,
-      (GInstanceInitFunc) gnome_volume_control_element_init,
-      NULL
-    };
-
-    gnome_volume_control_element_type =
-	g_type_register_static (GTK_TYPE_NOTEBOOK, 
-				"GnomeVolumeControlElement",
-				&gnome_volume_control_element_info, 0);
-  }
-
-  return gnome_volume_control_element_type;
-}
 
 static void
 gnome_volume_control_element_class_init (GnomeVolumeControlElementClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_ref (GTK_TYPE_NOTEBOOK);
 
   gobject_class->dispose = gnome_volume_control_element_dispose;
 }
@@ -87,13 +58,13 @@ gnome_volume_control_element_init (GnomeVolumeControlElement *el)
 {
   el->client = NULL;
   el->mixer = NULL;
-  el->appbar = NULL;
+  el->statusbar = NULL;
 }
 
 GtkWidget *
-gnome_volume_control_element_new (GstElement  *element,
-				  GConfClient *client,
-				  GnomeAppBar *appbar)
+gnome_volume_control_element_new (GstElement   *element,
+				  GConfClient  *client,
+				  GtkStatusbar *statusbar)
 {
   GnomeVolumeControlElement *el;
 
@@ -102,7 +73,7 @@ gnome_volume_control_element_new (GstElement  *element,
   /* element */
   el = g_object_new (GNOME_VOLUME_CONTROL_TYPE_ELEMENT, NULL);
   el->client = g_object_ref (G_OBJECT (client));
-  el->appbar = appbar;
+  el->statusbar = statusbar;
 
   gconf_client_add_dir (el->client, GNOME_VOLUME_CONTROL_KEY_DIR,
 			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
@@ -132,7 +103,7 @@ gnome_volume_control_element_dispose (GObject *object)
     el->mixer = NULL;
   }
 
-  G_OBJECT_CLASS (parent_class)->dispose (object);
+  G_OBJECT_CLASS (gnome_volume_control_element_parent_class)->dispose (object);
 }
 
 /*
@@ -219,7 +190,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 						    GstMixerTrack *track,
 						    GtkWidget     *left_sep,
 						    GtkWidget     *right_sep,
-						    GnomeAppBar   *appbar);
+						    GtkStatusbar  *statusbar);
   } content[4] = {
     { _("Playback"), NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_playback },
@@ -310,7 +281,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     trkw = content[i].get_track_widget (GTK_TABLE (content[i].page),
 					content[i].pos++, el->mixer, track,
 					content[i].old_sep, content[i].new_sep,
-					el->appbar);
+					el->statusbar);
     gnome_volume_control_track_show (trkw, active);
 
     g_object_set_data (G_OBJECT (track),

@@ -25,256 +25,48 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <gnome.h>
 #include <gconf/gconf-client.h>
 
 #include "keys.h"
 #include "preferences.h"
 #include "window.h"
 
-static void	gnome_volume_control_window_class_init	(GnomeVolumeControlWindowClass *klass);
-static void	gnome_volume_control_window_init	(GnomeVolumeControlWindow *win);
-static void	gnome_volume_control_window_dispose	(GObject *object);
+G_DEFINE_TYPE (GnomeVolumeControlWindow, gnome_volume_control_window, GTK_TYPE_WINDOW)
 
-static void	cb_change			(GtkWidget       *widget,
-						 gpointer         data);
-static void	cb_exit				(GtkWidget       *widget,
-						 gpointer         data);
-static void	cb_preferences			(GtkWidget       *widget,
-						 gpointer         data);
-static void	cb_about			(GtkWidget       *widget,
-						 gpointer         data);
-
-static void	cb_gconf			(GConfClient     *client,
-						 guint            connection_id,
-						 GConfEntry      *entry,
-						 gpointer         data);
-
-#if 0
-static void	cb_error			(GstElement      *element,
-						 GstElement      *source,
-						 GError          *error,
-						 gchar           *debug,
-						 gpointer         data);
-#endif
-
-static GnomeAppClass *parent_class = NULL;
-
-GType
-gnome_volume_control_window_get_type (void)
+static void
+menu_item_select_cb (GtkMenuItem *proxy, GtkStatusbar *statusbar)
 {
-  static GType gnome_volume_control_window_type = 0;
+  GtkAction *action;
+  char *message;
 
-  if (!gnome_volume_control_window_type) {
-    static const GTypeInfo gnome_volume_control_window_info = {
-      sizeof (GnomeVolumeControlWindowClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) gnome_volume_control_window_class_init,
-      NULL,
-      NULL,
-      sizeof (GnomeVolumeControlWindow),
-      0,
-      (GInstanceInitFunc) gnome_volume_control_window_init,
-      NULL
-    };
+  action = g_object_get_data (G_OBJECT (proxy), "gtk-action");
 
-    gnome_volume_control_window_type =
-	g_type_register_static (GNOME_TYPE_APP, 
-				"GnomeVolumeControlWindow",
-				&gnome_volume_control_window_info, 0);
+  g_return_if_fail (action != NULL);
+
+  g_object_get (G_OBJECT (action), "tooltip", &message, NULL);
+
+  if (message) {
+    gtk_statusbar_push (statusbar, 0, message);
+    g_free (message);
   }
-
-  return gnome_volume_control_window_type;
 }
 
 static void
-gnome_volume_control_window_class_init (GnomeVolumeControlWindowClass *klass)
+menu_item_deselect_cb (GtkMenuItem *proxy, GtkStatusbar *statusbar)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_ref (GNOME_TYPE_APP);
-
-  gobject_class->dispose = gnome_volume_control_window_dispose;
+  gtk_statusbar_pop (statusbar, 0);
 }
-
-/*
- * Menus.
- */
-
-static GnomeUIInfo radio_menu[] = {
-  GNOMEUIINFO_RADIOLIST (NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo file_menu[] = {
-  GNOMEUIINFO_SUBTREE_HINT (N_("_Change Device"),
-			    N_("Control volume on a different device"),
-			    radio_menu),
-  GNOMEUIINFO_SEPARATOR,
-  GNOMEUIINFO_MENU_EXIT_ITEM (cb_exit, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo edit_menu[] = {
-  GNOMEUIINFO_MENU_PREFERENCES_ITEM (cb_preferences, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_HELP ("gnome-volume-control"),
-  GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo menu[] = {
-  GNOMEUIINFO_MENU_FILE_TREE (file_menu),
-  GNOMEUIINFO_MENU_EDIT_TREE (edit_menu),
-  GNOMEUIINFO_MENU_HELP_TREE (help_menu),
-  GNOMEUIINFO_END
-};
 
 static void
-gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
+connect_proxy_cb (GtkUIManager *manager,
+                  GtkAction *action,
+                  GtkWidget *proxy,
+                  GtkStatusbar *statusbar)
 {
-  int width, height;
-
-  win->elements = NULL;
-  win->element_menu = NULL;
-  win->el = NULL;
-  win->client = gconf_client_get_default ();
-  win->prefs = NULL;
-  win->use_default_mixer = FALSE;
-
-  /* init */
-  gnome_app_construct (GNOME_APP (win),
-		       "gnome-volume-control", _("Volume Control"));
-
-  /* To set the window according to previous geometry */
-  width = gconf_client_get_int (win->client,PREF_UI_WINDOW_WIDTH, NULL);
-  if (width < 250)
-    width = 250;
-  gconf_client_get_int (win->client,PREF_UI_WINDOW_HEIGHT, NULL);
-  if (height < 100)
-    height = -1;
-  gtk_window_set_default_size (GTK_WINDOW (win), width, height);
-}
-
-GtkWidget *
-gnome_volume_control_window_new (GList *elements)
-{
-  gchar *cur_el_str, *cur_de_str;
-  gchar *active_el_str;
-  GstElement *active_element;
-  GList *item;
-  GnomeVolumeControlWindow *win;
-  GtkWidget *el, *bar;
-  GnomeApp *app;
-  GnomeUIInfo templ = GNOMEUIINFO_RADIOITEM (NULL, NULL, cb_change, NULL);
-  gint count = 0, i;
-  gchar *title;
-
-  g_return_val_if_fail (elements != NULL, NULL);
-  active_element = NULL;
-
-  /* window */
-  win = g_object_new (GNOME_VOLUME_CONTROL_TYPE_WINDOW, NULL);
-  app = GNOME_APP (win);
-  win->elements = elements;
-
-  /* menus, and the available elements in a submenu */
-  win->element_menu = g_new (GnomeUIInfo, g_list_length (elements) + 1);
-  for (count = 0, item = elements; item != NULL; item = item->next, count++) {
-    const gchar *tmp;
-
-    tmp = g_object_get_data (item->data, "gnome-volume-control-name");
-    cur_de_str = g_strdup_printf (_("Change device to %s"), tmp);
-    cur_el_str = g_strdup_printf ("_%d: %s", count, tmp);
-
-    win->element_menu[count] = templ;
-    win->element_menu[count].label = cur_el_str;
-    win->element_menu[count].hint = cur_de_str;
+  if (GTK_IS_MENU_ITEM (proxy)) {
+    g_signal_connect (proxy, "select", G_CALLBACK (menu_item_select_cb), statusbar);
+    g_signal_connect (proxy, "deselect", G_CALLBACK (menu_item_deselect_cb), statusbar);
   }
-  memset (&win->element_menu[count], 0, sizeof (GnomeUIInfo));
-  win->element_menu[count].type = GNOME_APP_UI_ENDOFINFO;
-  radio_menu[0].moreinfo = win->element_menu;
-  gnome_app_create_menus_with_data (app, menu, win);
-
-  /* statusbar */
-  bar = gnome_appbar_new (FALSE, TRUE, GNOME_PREFERENCES_USER);
-  gnome_app_set_statusbar (app, bar);
-  gnome_app_install_appbar_menu_hints (GNOME_APPBAR (bar), menu);
-
-  /* get active element, if any (otherwise we use the default) */
-  active_el_str = gconf_client_get_string (win->client,
-					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
-					   NULL);
-  if (active_el_str != NULL && active_el_str != '\0') {
-    for (count = 0, item = elements; item != NULL;
-	 item = item->next, count++) {
-      cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
-      if (!strcmp (active_el_str, cur_el_str)) {
-        active_element = item->data;
-        break;
-      }
-    }
-    g_free (active_el_str);
-    if (!item) {
-      count = 0;
-      active_element = elements->data;
-      /* If there's a default but it doesn't match what we have available,
-       * reset the default */
-      gconf_client_set_string (win->client,
-      			       GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
-      			       g_object_get_data (G_OBJECT (active_element),
-      			       			  "gnome-volume-control-name"),
-      			       NULL);
-    }
-    /* default element to first */
-    if (!active_element)
-      active_element = elements->data;
-  } else {
-    count = 0;
-    active_element = elements->data;
-  }
-
-  /* gconf */
-  gconf_client_add_dir (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
-			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
-  gconf_client_notify_add (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
-			   cb_gconf, win, NULL, NULL);
-
-  /* window title and menu selection */
-  title = g_strdup_printf (_("Volume Control: %s"),
-			   g_object_get_data (G_OBJECT (active_element),
-					      "gnome-volume-control-name"));
-  gtk_window_set_title (GTK_WINDOW (win), title);
-  g_free (title);
-  if (count) {
-    GTK_CHECK_MENU_ITEM (win->element_menu[0].widget)->active = FALSE;
-    GTK_CHECK_MENU_ITEM (win->element_menu[count].widget)->active = TRUE;
-  }
-
-  win->use_default_mixer = (active_el_str == NULL);
-
-  /* add content for this element */
-  gst_element_set_state (active_element, GST_STATE_READY);
-  el = gnome_volume_control_element_new (active_element,
-					 win->client,
-					 GNOME_APPBAR (GNOME_APP (win)->statusbar));
-  win->el = GNOME_VOLUME_CONTROL_ELEMENT (el);
-  gtk_container_set_border_width (GTK_CONTAINER (el), 6);
-  gnome_app_set_contents (GNOME_APP (win), el);
-  gtk_widget_show (el);
-
-  /* FIXME:
-   * - set error handler (cb_error) after device activation:
-   *     g_signal_connect (element, "error", G_CALLBACK (cb_error), win);.
-   * - on device change: reset error handler, change menu (in case this
-   *     was done outside the UI).
-   */
-
-  return GTK_WIDGET (win);
 }
 
 void gnome_volume_control_window_set_page(GtkWidget *widget, const gchar *page)
@@ -294,151 +86,120 @@ void gnome_volume_control_window_set_page(GtkWidget *widget, const gchar *page)
 }
 
 static void
-gnome_volume_control_window_dispose (GObject *object)
+disconnect_proxy_cb (GtkUIManager *manager,
+                     GtkAction *action,
+                     GtkWidget *proxy,
+                     GtkStatusbar *statusbar)
 {
-  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (object);
-
-  if (win->prefs) {
-    gtk_widget_destroy (win->prefs);
-    win->prefs = NULL;
+  if (GTK_IS_MENU_ITEM (proxy)) {
+    g_signal_handlers_disconnect_by_func (proxy, G_CALLBACK (menu_item_select_cb), statusbar);
+    g_signal_handlers_disconnect_by_func (proxy, G_CALLBACK (menu_item_deselect_cb), statusbar);
   }
-
-  /* clean up */
-  if (win->elements) {
-    const GList *item;
-
-    g_list_foreach (win->elements, (GFunc) g_object_unref, NULL);
-    g_list_free (win->elements);
-    win->elements = NULL;
-  }
-
-  if (win->client) {
-    g_object_unref (win->client);
-    win->client = NULL;
-  }
-
-  if (win->element_menu) {
-    gint i;
-
-    for (i = 0; win->element_menu[i].widget != NULL; i++) {
-      g_free ((void *) win->element_menu[i].label);
-      g_free ((void *) win->element_menu[i].hint);
-    }
-    g_free (win->element_menu);
-    win->element_menu = NULL;
-  }
-
-  G_OBJECT_CLASS (parent_class)->dispose (object);
 }
+
 
 /*
  * Menu actions.
  */
 
 static void
-cb_change (GtkWidget *widget,
-	   gpointer   data)
+cb_change (GtkToggleAction *action,
+	   GnomeVolumeControlWindow *win)
 {
-  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (data);
-  gint i;
+  GConfValue *value;
+  gchar *device_name;
 
-  if (!GTK_CHECK_MENU_ITEM (widget)->active)
+  if (gtk_toggle_action_get_active (action) == FALSE)
     return;
 
-  for (i = 0; win->element_menu[i].widget != NULL; i++) {
-    if (win->element_menu[i].widget == widget) {
-      GConfValue *value;
-      const gchar *label = win->element_menu[i].label;
+  device_name = g_object_get_data (G_OBJECT (action), "device-name");
 
-      if (win->use_default_mixer && (i == 0)) 
-	      /* we are selecting the default, ignore */
-	      return;
-
-      win->use_default_mixer = FALSE;
-
-      /* skip mnemonic */
-      while (*label != ':') label++; label++;
-      while (*label == ' ') label++;
-
-      value = gconf_value_new (GCONF_VALUE_STRING);
-      gconf_value_set_string (value, label);
-      gconf_client_set (win->client,
-			GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
-			value, NULL);
-      gconf_value_free (value);
-
-      break;
-    }
-  }
+  value = gconf_value_new (GCONF_VALUE_STRING);
+  gconf_value_set_string (value, device_name);
+  gconf_client_set (win->client, GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT, value, NULL);
+  gconf_value_free (value);
 }
 
 static void
-cb_exit (GtkWidget *widget,
-	 gpointer   data)
+cb_exit (GtkAction *action,
+	 GnomeVolumeControlWindow *win)
 {
-  gtk_widget_destroy (GTK_WIDGET (data));
+  gtk_widget_destroy (GTK_WIDGET (win));
 }
 
 static void
 cb_preferences_destroy (GtkWidget *widget,
-			gpointer   data)
+			GnomeVolumeControlWindow *win)
 {
-  ((GnomeVolumeControlWindow *) data)->prefs = NULL;
+  win->prefs = NULL;
 }
 
 static void
-cb_preferences (GtkWidget *widget,
-		gpointer   data)
+cb_preferences (GtkAction *action,
+		GnomeVolumeControlWindow *win)
 {
-  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (data);
 
   if (!win->prefs) {
     win->prefs = gnome_volume_control_preferences_new (GST_ELEMENT (win->el->mixer),
 						       win->client);
-    g_signal_connect (win->prefs, "destroy",
-		      G_CALLBACK (cb_preferences_destroy), win);
+    g_signal_connect (win->prefs, "destroy", G_CALLBACK (cb_preferences_destroy), win);
     gtk_widget_show (win->prefs);
   } else {
     gtk_window_present (GTK_WINDOW (win->prefs));
   }
 }
 
+static void 
+open_uri (GtkWindow *parent, 
+          const char *uri)
+{
+  GtkWidget *dialog;
+  GdkScreen *screen;
+  GError *error = NULL;
+  gchar *cmdline;
+
+  screen = gtk_window_get_screen (parent);
+
+  cmdline = g_strconcat ("xdg-open ", uri, NULL);
+
+  if (gdk_spawn_command_line_on_screen (screen, cmdline, &error) == FALSE) {
+    dialog = gtk_message_dialog_new (parent, GTK_DIALOG_DESTROY_WITH_PARENT, 
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, error->message);
+    gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+    g_error_free(error);
+  }
+  g_free(cmdline);
+}
+
+
 static void
-cb_about (GtkWidget *widget,
-	  gpointer   data)
+cb_help (GtkAction *action,
+	 GnomeVolumeControlWindow *win)
+{
+  open_uri (GTK_WINDOW (win), "ghelp:gnome-volume-control");
+}
+
+static void
+cb_about (GtkAction *action,
+	  GnomeVolumeControlWindow *win)
 {
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
-  const gchar *documentors[] = { "Sun Microsystems",
+  const gchar *documenters[] = { "Sun Microsystems",
 				 NULL};
-  /* Translators comment: put your own name here to appear in the
-   * about dialog. */
-  const gchar *translators = _("translator-credits");
-
-  if (!strcmp (translators, "translator-credits"))
-    translators = NULL;
   
-  gtk_show_about_dialog (NULL,
-#if GTK_CHECK_VERSION (2, 12, 0)
-			 "program-name",
-#else
-			 "name",
-#endif
-			 _("Volume Control"),
+  gtk_show_about_dialog (GTK_WINDOW (win),
 			 "version", VERSION,
-			 "copyright", "(c) 2003-2004 Ronald Bultje",
+			 "copyright", "Copyright \xc2\xa9 2003-2004 Ronald Bultje",
 			 "comments", _("A GNOME/GStreamer-based volume control application"),
 			 "authors", authors,
-			 "documenters", documentors,
-			 "translator-credits", translators,
+			 "documenters", documenters,
+			 "translator-credits", _("translator-credits"),
 			 "logo-icon-name", "multimedia-volume-control",
 			 NULL);
 }
-
-/*
- * GConf callback.
- */
 
 static void
 cb_gconf (GConfClient *client,
@@ -506,3 +267,250 @@ cb_error (GstElement *element,
   gtk_widget_destroy (dialog);
 }
 #endif
+
+static void
+gnome_volume_control_window_dispose (GObject *object)
+{
+  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (object);
+
+  if (win->prefs) {
+    gtk_widget_destroy (win->prefs);
+    win->prefs = NULL;
+  }
+
+  /* clean up */
+  if (win->elements) {
+    const GList *item;
+
+    g_list_foreach (win->elements, (GFunc) g_object_unref, NULL);
+    g_list_free (win->elements);
+    win->elements = NULL;
+  }
+
+  if (win->client) {
+    g_object_unref (win->client);
+    win->client = NULL;
+  }
+
+  G_OBJECT_CLASS (gnome_volume_control_window_parent_class)->dispose (object);
+}
+
+
+static void
+gnome_volume_control_window_class_init (GnomeVolumeControlWindowClass *klass)
+{
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+
+  gobject_class->dispose = gnome_volume_control_window_dispose;
+}
+
+
+static void
+gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
+{
+  int width, height;
+
+  win->elements = NULL;
+  win->el = NULL;
+  win->client = gconf_client_get_default ();
+  win->prefs = NULL;
+  win->use_default_mixer = FALSE;
+
+  g_set_application_name (_("Volume Control"));
+  gtk_window_set_title (GTK_WINDOW (win), _("Volume Control"));
+
+  /* To set the window according to previous geometry */
+  width = gconf_client_get_int (win->client, PREF_UI_WINDOW_WIDTH, NULL);
+  if (width < 250)
+    width = 250;
+  height = gconf_client_get_int (win->client, PREF_UI_WINDOW_HEIGHT, NULL);
+  if (height < 100)
+    height = -1;
+  gtk_window_set_default_size (GTK_WINDOW (win), width, height);
+}
+
+
+static const GtkActionEntry action_entries[] = {
+  { "File",  NULL, N_("_File") },
+  { "Edit",  NULL, N_("_Edit") },
+  { "Help",  NULL, N_("_Help") },
+
+  { "FileChangeDevice", NULL,  N_("_Change Device"), NULL, 
+    N_("Control volume on a different device"),
+    NULL },
+  { "FileQuit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q",  
+    N_("Quit the application"),
+    G_CALLBACK (cb_exit) },
+  { "EditPreferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, 
+    N_("Configure the application"), 
+    G_CALLBACK (cb_preferences) },
+  { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", 
+    N_("Help on this application"),
+    G_CALLBACK (cb_help) },
+  { "HelpAbout", GTK_STOCK_ABOUT, N_("_About"), NULL, 
+    N_("About this application"),
+    G_CALLBACK (cb_about) }
+};
+
+
+
+GtkWidget *
+gnome_volume_control_window_new (GList *elements)
+{
+  gchar *active_el_str, *cur_el_str;
+  GstElement *active_element;
+  GList *item;
+  GnomeVolumeControlWindow *win;
+  GtkWidget *el;
+  gint count = 0;
+  gchar *title;
+  guint change_device_menu_id;
+  GtkActionGroup *action_group;
+  GtkWidget *vbox;
+  GtkWidget *menubar;
+  GSList *radio_group = NULL;
+
+  g_return_val_if_fail (elements != NULL, NULL);
+  active_element = NULL;
+
+  /* window */
+  win = g_object_new (GNOME_VOLUME_CONTROL_TYPE_WINDOW, NULL);
+  win->elements = elements;
+
+  win->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
+
+  win->ui_manager = gtk_ui_manager_new ();
+
+  /* Hookup menu tooltips to the statusbar */
+  g_signal_connect (win->ui_manager, "connect_proxy",
+	            G_CALLBACK (connect_proxy_cb), win->statusbar);
+  g_signal_connect (win->ui_manager, "disconnect_proxy",
+		    G_CALLBACK (disconnect_proxy_cb), win->statusbar);
+
+  action_group = gtk_action_group_new ("MenuActions");
+  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
+	
+  gtk_action_group_add_actions (action_group, action_entries, 
+                                G_N_ELEMENTS (action_entries), win);
+
+  gtk_ui_manager_insert_action_group (win->ui_manager, action_group, 0);
+
+  gtk_ui_manager_add_ui_from_file (win->ui_manager, DATA_DIR "/gnome-volume-control-ui.xml", NULL);
+
+  menubar = gtk_ui_manager_get_widget (win->ui_manager, "/MainMenu");
+
+
+
+  /* get active element, if any (otherwise we use the default) */
+  active_el_str = gconf_client_get_string (win->client,
+					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
+					   NULL);
+  if (active_el_str != NULL && active_el_str != '\0') {
+    for (count = 0, item = elements; item != NULL; item = item->next, count++) {
+      cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
+      if (!strcmp (active_el_str, cur_el_str)) {
+        active_element = item->data;
+        break;
+      }
+    }
+    g_free (active_el_str);
+    if (!item) {
+      count = 0;
+      active_element = elements->data;
+      /* If there's a default but it doesn't match what we have available,
+       * reset the default */
+      gconf_client_set_string (win->client,
+      			       GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
+      			       g_object_get_data (G_OBJECT (active_element),
+      			       			  "gnome-volume-control-name"),
+      			       NULL);
+    }
+    /* default element to first */
+    if (!active_element)
+      active_element = elements->data;
+  } else {
+    count = 0;
+    active_element = elements->data;
+  }
+  gint active_element_num = count;
+
+  change_device_menu_id = gtk_ui_manager_new_merge_id (win->ui_manager);
+
+  for (count = 0, item = elements; item != NULL; item = item->next, count++) {
+    const gchar *name;
+    gchar *tip;
+    gchar *label;
+    GtkRadioAction *radio_action;
+
+    name = g_object_get_data (item->data, "gnome-volume-control-name");
+    tip = g_strdup_printf (_("Change device to %s"), name);
+    label = g_strdup_printf ("_%d: %s", count, name);
+
+    radio_action = gtk_radio_action_new (name, label, tip, NULL, count);
+    g_object_set_data_full (G_OBJECT (radio_action), "device-name", 
+                            g_strdup (name), (GDestroyNotify)g_free);
+
+    g_free (tip);
+    g_free (label);
+
+    gtk_radio_action_set_group (radio_action, radio_group);
+    radio_group = gtk_radio_action_get_group (radio_action);
+
+    g_signal_connect (radio_action, "activate", G_CALLBACK (cb_change), win);
+
+    if (count == active_element_num)
+      gtk_radio_action_set_current_value (radio_action, active_element_num);
+
+    gtk_action_group_add_action (action_group, GTK_ACTION (radio_action));
+    g_object_unref (radio_action);
+
+    gtk_ui_manager_add_ui (win->ui_manager, change_device_menu_id,
+                           "/MainMenu/File/FileChangeDevice/Devices Placeholder",
+                           name, name, GTK_UI_MANAGER_AUTO, FALSE);
+
+  }
+
+
+  /* gconf */
+  gconf_client_add_dir (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
+			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+  gconf_client_notify_add (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
+			   cb_gconf, win, NULL, NULL);
+
+  /* window title and menu selection */
+  title = g_strdup_printf (_("Volume Control: %s"),
+			   g_object_get_data (G_OBJECT (active_element),
+					      "gnome-volume-control-name"));
+  gtk_window_set_title (GTK_WINDOW (win), title);
+  g_free (title);
+
+  win->use_default_mixer = (active_el_str == NULL);
+
+  /* add content for this element */
+  gst_element_set_state (active_element, GST_STATE_READY);
+  el = gnome_volume_control_element_new (active_element,
+					 win->client,
+					 win->statusbar);
+  win->el = GNOME_VOLUME_CONTROL_ELEMENT (el);
+  gtk_container_set_border_width (GTK_CONTAINER (el), 6);
+
+  /* Put the menubar, the elements and the statusbar in a vbox */
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER(win), vbox);
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), el, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET(win->statusbar), FALSE, FALSE, 0);
+
+  gtk_widget_show_all (GTK_WIDGET (win));
+
+  /* FIXME:
+   * - set error handler (cb_error) after device activation:
+   *     g_signal_connect (element, "error", G_CALLBACK (cb_error), win);.
+   * - on device change: reset error handler, change menu (in case this
+   *     was done outside the UI).
+   */
+
+  return GTK_WIDGET (win);
+}
+
+

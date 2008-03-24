@@ -24,7 +24,7 @@
 
 #include <glib.h>
 #include <gtk/gtknotebook.h>
-#include <libgnomeui/gnome-appbar.h>
+#include <gtk/gtkstatusbar.h>
 #include <gconf/gconf-client.h>
 #include <gst/interfaces/mixer.h>
 
@@ -53,7 +53,7 @@ typedef struct _GnomeVolumeControlElement {
   GConfClient *client;
 
   /* status bar */
-  GnomeAppBar *appbar;
+  GtkStatusbar *statusbar;
 } GnomeVolumeControlElement;
 
 typedef struct _GnomeVolumeControlElementClass {
@@ -61,9 +61,9 @@ typedef struct _GnomeVolumeControlElementClass {
 } GnomeVolumeControlElementClass;
 
 GType		gnome_volume_control_element_get_type	(void);
-GtkWidget *	gnome_volume_control_element_new	(GstElement  *element,
-							 GConfClient *client,
-							 GnomeAppBar *appbar);
+GtkWidget *	gnome_volume_control_element_new	(GstElement   *element,
+							 GConfClient  *client,
+							 GtkStatusbar *statusbar);
 void		gnome_volume_control_element_change	(GnomeVolumeControlElement *el,
 							 GstElement  *element);
 

@@ -1,3 +1,66 @@
+2008-03-24  Jaap Haitsma  <jaap@haitsma.org>
+
+	reviewed by: Marc-Andre Lureau
+
+	* configure.in:
+	* gst-mixer/Makefile.am:
+	* gst-mixer/gnome-volume-control-ui.xml:
+	* gst-mixer/icons/16x16/Makefile.am:
+	* gst-mixer/icons/16x16/devices/Makefile.am:
+	* gst-mixer/icons/16x16/status/Makefile.am:
+	* gst-mixer/icons/Makefile.am:
+	* gst-mixer/pixmaps/Makefile.am:
+	* gst-mixer/src/Makefile.am:
+	* gst-mixer/src/button.c: (gnome_volume_control_button_class_init),
+	(gnome_volume_control_button_init),
+	(gnome_volume_control_button_dispose),
+	(gnome_volume_control_button_new),
+	(gnome_volume_control_button_clicked),
+	(gnome_volume_control_button_mouseover),
+	(gnome_volume_control_button_mouseout):
+	* gst-mixer/src/button.h:
+	* gst-mixer/src/element.c:
+	(gnome_volume_control_element_class_init),
+	(gnome_volume_control_element_init),
+	(gnome_volume_control_element_new),
+	(gnome_volume_control_element_dispose),
+	(gnome_volume_control_element_change):
+	* gst-mixer/src/element.h:
+	* gst-mixer/src/main.c: (main):
+	* gst-mixer/src/misc.c:
+	* gst-mixer/src/preferences.c:
+	* gst-mixer/src/stock.h:
+	* gst-mixer/src/track.c: (gnome_volume_control_track_add_title),
+	(gnome_volume_control_track_put_switch),
+	(gnome_volume_control_track_add_playback),
+	(gnome_volume_control_track_add_recording),
+	(gnome_volume_control_track_add_switch),
+	(gnome_volume_control_track_add_option):
+	* gst-mixer/src/track.h:
+	* gst-mixer/src/volume.c: (gnome_volume_control_volume_class_init),
+	(gnome_volume_control_volume_init), (cb_mouseover), (cb_mouseout),
+	(get_button), (gnome_volume_control_volume_new),
+	(gnome_volume_control_volume_dispose),
+	(gnome_volume_control_volume_size_alloc),
+	(gnome_volume_control_volume_expose):
+	* gst-mixer/src/volume.h:
+	* gst-mixer/src/window.c: (menu_item_select_cb),
+	(menu_item_deselect_cb), (connect_proxy_cb), (disconnect_proxy_cb),
+	(cb_change), (cb_exit), (cb_preferences_destroy), (cb_preferences),
+	(open_uri), (cb_help), (cb_about),
+	(gnome_volume_control_window_dispose),
+	(gnome_volume_control_window_class_init),
+	(gnome_volume_control_window_init),
+	(gnome_volume_control_window_new):
+	* gst-mixer/src/window.h:
+	Use GtkUIManager i.s.o. deprecated libgnomeui
+	Remove libgnomeui as a dependency
+	Use tango icons if possible and make all icons themeable
+	Install deprecated icons from the application itself. Now we just need
+	a pixel pusher to make us some nice tango icons for the remaining icons
+	Use G_DEFINE_TYPE macro for our own types
+	Fixes bug #494031 and bug #310883
+
 2008-03-23  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
 	* profiles/audio-profile.c (gm_audio_profile_get_type): use

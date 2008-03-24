@@ -26,12 +26,11 @@
 #include <getopt.h>
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <gnome.h>
+#include <gtk/gtk.h>
 #include <gst/gst.h>
 #include <gst/audio/mixerutils.h>
 
 #include "keys.h"
-#include "stock.h"
 #include "window.h"
 
 static gchar* page = NULL;
@@ -111,45 +110,6 @@ create_mixer_collection (void)
 }
 
 static void
-register_stock_icons (void)
-{
-  GtkIconFactory *icon_factory;
-  struct {
-    gchar *filename, *stock_id;
-  } list[] = {
-    { "3dsound.png",      GNOME_VOLUME_CONTROL_STOCK_3DSOUND     },
-    { "headphones.png",   GNOME_VOLUME_CONTROL_STOCK_HEADPHONES  },
-    { "mixer.png",        GNOME_VOLUME_CONTROL_STOCK_MIXER       },
-    { "noplay.png",       GNOME_VOLUME_CONTROL_STOCK_NOPLAY      },
-    { "norecord.png",     GNOME_VOLUME_CONTROL_STOCK_NORECORD    },
-    { "phone.png",        GNOME_VOLUME_CONTROL_STOCK_PHONE       },
-    { "play.png",         GNOME_VOLUME_CONTROL_STOCK_PLAY        },
-    { "record.png",       GNOME_VOLUME_CONTROL_STOCK_RECORD      },
-    { "tone.png",         GNOME_VOLUME_CONTROL_STOCK_TONE        },
-    { "video.png",        GNOME_VOLUME_CONTROL_STOCK_VIDEO       },
-    { NULL, NULL }
-  };
-  gint num;
-
-  icon_factory = gtk_icon_factory_new ();
-  gtk_icon_factory_add_default (icon_factory);
-
-  for (num = 0; list[num].filename != NULL; num++) {
-    gchar *filename =
-	gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
-				   list[num].filename, TRUE, NULL);
-
-    if (filename) {
-      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
-      GtkIconSet *icon_set = gtk_icon_set_new_from_pixbuf (pixbuf);
-
-      gtk_icon_factory_add (icon_factory, list[num].stock_id, icon_set);
-      g_free (filename);
-    }
-  }
-}
-
-static void
 cb_destroy (GtkWidget *widget,
 	    gpointer   data)
 {
@@ -188,15 +148,10 @@ main (gint   argc,
   ctx = g_option_context_new ("gnome-volume-control");
   g_option_context_add_main_entries(ctx, entries, GETTEXT_PACKAGE);
   g_option_context_add_group (ctx, gst_init_get_option_group ());
+  g_option_context_parse(ctx, &argc, &argv, NULL);
+  g_option_context_free(ctx);
 
-  gnome_program_init ("gnome-volume-control", VERSION,
-                      LIBGNOMEUI_MODULE, argc, argv,
-                      GNOME_PARAM_GOPTION_CONTEXT, ctx,
-                      GNOME_PARAM_APP_DATADIR, DATA_DIR,
-                      NULL);
-
-  /* init ourselves */
-  register_stock_icons ();
+  gtk_init (&argc, &argv);
 
   gtk_window_set_default_icon_name ("multimedia-volume-control");
 

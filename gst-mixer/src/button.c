@@ -23,11 +23,14 @@
 #include "config.h"
 #endif
 
-#include <gnome.h>
+#include <string.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#include "stock.h"
 #include "button.h"
+
+G_DEFINE_TYPE (GnomeVolumeControlButton, gnome_volume_control_button, GTK_TYPE_BUTTON)
+
 
 static void	gnome_volume_control_button_class_init	(GnomeVolumeControlButtonClass *klass);
 static void	gnome_volume_control_button_init	(GnomeVolumeControlButton *button);
@@ -40,35 +43,6 @@ static gboolean	gnome_volume_control_button_mouseover	(GtkWidget *widget,
 static gboolean	gnome_volume_control_button_mouseout	(GtkWidget *widget,
 							 GdkEventCrossing *event);
 
-static GtkButtonClass *parent_class = NULL;
-
-GType
-gnome_volume_control_button_get_type (void)
-{
-  static GType gnome_volume_control_button_type = 0;
-
-  if (!gnome_volume_control_button_type) {
-    static const GTypeInfo gnome_volume_control_button_info = {
-      sizeof (GnomeVolumeControlButtonClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) gnome_volume_control_button_class_init,
-      NULL,
-      NULL,
-      sizeof (GnomeVolumeControlButton),
-      0,
-      (GInstanceInitFunc) gnome_volume_control_button_init,
-      NULL
-    };
-
-    gnome_volume_control_button_type =
-	g_type_register_static (GTK_TYPE_BUTTON, 
-				"GnomeVolumeControlButton",
-				&gnome_volume_control_button_info, 0);
-  }
-
-  return gnome_volume_control_button_type;
-}
 
 static void
 gnome_volume_control_button_class_init (GnomeVolumeControlButtonClass *klass)
@@ -76,8 +50,6 @@ gnome_volume_control_button_class_init (GnomeVolumeControlButtonClass *klass)
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkButtonClass *gtkbutton_class = GTK_BUTTON_CLASS (klass);
   GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
-
-  parent_class = g_type_class_ref (GTK_TYPE_BUTTON);
 
   gobject_class->dispose = gnome_volume_control_button_dispose;
   gtkbutton_class->clicked = gnome_volume_control_button_clicked;
@@ -94,7 +66,7 @@ gnome_volume_control_button_init (GnomeVolumeControlButton *button)
   button->active = FALSE;
 
   button->status_msg = NULL;
-  button->appbar = NULL;
+  button->statusbar = NULL;
 }
 
 static void
@@ -107,13 +79,13 @@ gnome_volume_control_button_dispose (GObject *object)
     button->status_msg = NULL;
   }
 
-  G_OBJECT_CLASS (parent_class)->dispose (object);
+  G_OBJECT_CLASS (gnome_volume_control_button_parent_class)->dispose (object);
 }
 
 GtkWidget *
 gnome_volume_control_button_new (gchar *active_icon,
 				 gchar *inactive_icon,
-				 GnomeAppBar *appbar,
+				 GtkStatusbar *statusbar,
 				 gchar *status_msg)
 {
   GnomeVolumeControlButton *button;
@@ -130,7 +102,7 @@ gnome_volume_control_button_new (gchar *active_icon,
   button->image = GTK_IMAGE (image);
   gtk_button_clicked (GTK_BUTTON (button));
 
-  button->appbar = appbar;
+  button->statusbar = statusbar;
   button->status_msg = g_strdup (status_msg);
 
   return GTK_WIDGET (button);
@@ -160,26 +132,21 @@ gnome_volume_control_button_clicked (GtkButton *_button)
   if (strstr (button->active_icon, ".png")) {
     gchar *filename;
 
-    if (button->active) {
-      filename = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
-					  button->active_icon, TRUE, NULL);
-    } else {
-      filename = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_PIXMAP,
-					  button->inactive_icon, TRUE, NULL);
-    }
-
-    if (filename) {
-      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
-      gtk_image_set_from_pixbuf (button->image, pixbuf);
-      g_object_unref (pixbuf);
-      g_free (filename);
-    }
+    if (button->active)
+      filename = g_build_filename (PIX_DIR, button->active_icon, NULL);
+    else
+      filename = g_build_filename (PIX_DIR, button->inactive_icon, NULL);
+   
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
+    gtk_image_set_from_pixbuf (button->image, pixbuf);
+    g_object_unref (pixbuf);
+    g_free (filename);
   } else {
     if (button->active) {
-      gtk_image_set_from_stock (button->image, button->active_icon,
+      gtk_image_set_from_icon_name (button->image, button->active_icon,
 				GTK_ICON_SIZE_MENU);
     } else {
-      gtk_image_set_from_stock (button->image, button->inactive_icon,
+      gtk_image_set_from_icon_name (button->image, button->inactive_icon,
 				GTK_ICON_SIZE_MENU);
     }
   }
@@ -195,9 +162,9 @@ gnome_volume_control_button_mouseover (GtkWidget *widget,
 {
   GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (widget);
 
-  gnome_appbar_push (button->appbar, button->status_msg);
+  gtk_statusbar_push (button->statusbar, 0, button->status_msg);
 
-  return GTK_WIDGET_CLASS (parent_class)->enter_notify_event (widget, event);
+  return GTK_WIDGET_CLASS (gnome_volume_control_button_parent_class)->enter_notify_event (widget, event);
 }
 
 static gboolean
@@ -206,7 +173,7 @@ gnome_volume_control_button_mouseout (GtkWidget *widget,
 {
   GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (widget);
 
-  gnome_appbar_pop (button->appbar);
+  gtk_statusbar_pop (button->statusbar, 0);
 
-  return GTK_WIDGET_CLASS (parent_class)->leave_notify_event (widget, event);
+  return GTK_WIDGET_CLASS (gnome_volume_control_button_parent_class)->leave_notify_event (widget, event);
 }

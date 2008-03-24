@@ -21,7 +21,6 @@ noinst_HEADERS = \
 	element.h \
 	keys.h \
 	preferences.h \
-	stock.h \
 	track.h \
 	volume.h \
 	window.h \

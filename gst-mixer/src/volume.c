@@ -27,13 +27,14 @@
 
 #include <math.h>
 #include <glib/gi18n.h>
-#include <gnome.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
 #include "volume.h"
 #include "button.h"
-#include "stock.h"
+
+G_DEFINE_TYPE (GnomeVolumeControlVolume, gnome_volume_control_volume, GTK_TYPE_FIXED)
+
 
 static void	gnome_volume_control_volume_class_init	(GnomeVolumeControlVolumeClass *klass);
 static void	gnome_volume_control_volume_init	(GnomeVolumeControlVolume *el);
@@ -53,43 +54,12 @@ static void	cb_lock_toggled				(GtkToggleButton *button,
 
 static gboolean	cb_check				(gpointer   data);
 
-static GtkFixedClass *parent_class = NULL;
-
-GType
-gnome_volume_control_volume_get_type (void)
-{
-  static GType gnome_volume_control_volume_type = 0;
-
-  if (!gnome_volume_control_volume_type) {
-    static const GTypeInfo gnome_volume_control_volume_info = {
-      sizeof (GnomeVolumeControlVolumeClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) gnome_volume_control_volume_class_init,
-      NULL,
-      NULL,
-      sizeof (GnomeVolumeControlVolume),
-      0,
-      (GInstanceInitFunc) gnome_volume_control_volume_init,
-      NULL
-    };
-
-    gnome_volume_control_volume_type =
-	g_type_register_static (GTK_TYPE_FIXED, 
-				"GnomeVolumeControlVolume",
-				&gnome_volume_control_volume_info, 0);
-  }
-
-  return gnome_volume_control_volume_type;
-}
 
 static void
 gnome_volume_control_volume_class_init (GnomeVolumeControlVolumeClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
-
-  parent_class = g_type_class_ref (GTK_TYPE_FIXED);
 
   gobject_class->dispose = gnome_volume_control_volume_dispose;
   gtkwidget_class->size_allocate = gnome_volume_control_volume_size_alloc;
@@ -108,7 +78,7 @@ gnome_volume_control_volume_init (GnomeVolumeControlVolume *vol)
   vol->scales = NULL;
   vol->button = NULL;
   vol->locked = FALSE;
-  vol->appbar = NULL;
+  vol->statusbar = NULL;
   vol->id = 0;
 }
 
@@ -157,7 +127,7 @@ cb_mouseover (GtkScale *scale,
    * is a slider that will change channel X. */
   msg = g_strdup_printf (_("Volume of %s channel on %s"),
       chan, vol->track->label);
-  gnome_appbar_push (vol->appbar, msg);
+  gtk_statusbar_push (vol->statusbar, 0, msg);
   g_free (msg);
 
   return FALSE;
@@ -170,7 +140,7 @@ cb_mouseout (GtkScale *scale,
 {
   GnomeVolumeControlVolume *vol = data;
 
-  gnome_appbar_pop (vol->appbar);
+  gtk_statusbar_pop (vol->statusbar, 0);
 
   return FALSE;
 }
@@ -232,7 +202,7 @@ get_button (GnomeVolumeControlVolume *vol,
   msg = g_strdup_printf (_("Lock channels for %s together"), vol->track->label);
   vol->button = gnome_volume_control_button_new ("chain.png",
 						 "chain-broken.png",
-						 vol->appbar, msg);
+						 vol->statusbar, msg);
   g_free (msg);
   g_signal_connect (vol->button, "clicked",
 		    G_CALLBACK (cb_lock_toggled), vol);
@@ -258,7 +228,7 @@ GtkWidget *
 gnome_volume_control_volume_new (GstMixer *mixer,
 				 GstMixerTrack *track,
 				 gint      padding,
-				 GnomeAppBar *appbar)
+				 GtkStatusbar *statusbar)
 {
   GnomeVolumeControlVolume *vol;
   gint *volumes, n;
@@ -268,7 +238,7 @@ gnome_volume_control_volume_new (GstMixer *mixer,
   gst_object_ref (GST_OBJECT (mixer));
   vol->mixer = mixer;
   vol->track = g_object_ref (G_OBJECT (track));
-  vol->appbar = appbar;
+  vol->statusbar = statusbar;
   if (padding >= 0)
     vol->padding = padding;
 
@@ -325,7 +295,7 @@ gnome_volume_control_volume_dispose (GObject *object)
     vol->scales = NULL;
   }
 
-  G_OBJECT_CLASS (parent_class)->dispose (object);
+  G_OBJECT_CLASS (gnome_volume_control_volume_parent_class)->dispose (object);
 }
 
 /*
@@ -401,7 +371,7 @@ gnome_volume_control_volume_size_alloc (GtkWidget *widget,
   }
 
   /* parent will resize window */
-  GTK_WIDGET_CLASS (parent_class)->size_allocate (widget, alloc);
+  GTK_WIDGET_CLASS (gnome_volume_control_volume_parent_class)->size_allocate (widget, alloc);
 }
 
 static gboolean
@@ -454,7 +424,7 @@ gnome_volume_control_volume_expose (GtkWidget *widget,
   }
 
   /* take care of redrawing the kids */
-  return GTK_WIDGET_CLASS (parent_class)->expose_event (widget, expose);
+  return GTK_WIDGET_CLASS (gnome_volume_control_volume_parent_class)->expose_event (widget, expose);
 }
 
 /*

@@ -24,7 +24,6 @@
 
 #include <glib.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/libgnome.h>
 #include <gst/gst.h>
 
 #include "element.h"
@@ -44,8 +43,8 @@ G_BEGIN_DECLS
 #define GNOME_VOLUME_CONTROL_IS_WINDOW_CLASS(klass) \
   (G_TYPE_CHECK_CLASS_TYPE ((klass), GNOME_VOLUME_CONTROL_TYPE_WINDOW))
 
-typedef struct _GnomeVolumeControlWindow {
-  GnomeApp parent;
+typedef struct {
+  GtkWindow parent;
 
   /* element list */
   GList *elements;
@@ -56,8 +55,8 @@ typedef struct _GnomeVolumeControlWindow {
   /* contents */
   GnomeVolumeControlElement *el;
 
-  /* element menus */
-  GnomeUIInfo *element_menu;
+  GtkUIManager *ui_manager;
+  GtkStatusbar *statusbar;
 
   /* preferences window, if opened */
   GtkWidget *prefs;
@@ -66,8 +65,8 @@ typedef struct _GnomeVolumeControlWindow {
   gboolean use_default_mixer;
 } GnomeVolumeControlWindow;
 
-typedef struct _GnomeVolumeControlWindowClass {
-  GnomeAppClass klass;
+typedef struct {
+  GtkWindowClass klass;
 } GnomeVolumeControlWindowClass;
 
 GType		gnome_volume_control_window_get_type		(void);
