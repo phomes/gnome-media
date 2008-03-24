@@ -42,6 +42,8 @@ enum {
   NUM_COLS
 };
 
+G_DEFINE_TYPE (GnomeVolumeControlPreferences, gnome_volume_control_preferences, GTK_TYPE_DIALOG)
+
 static void	gnome_volume_control_preferences_class_init	(GnomeVolumeControlPreferencesClass *klass);
 static void	gnome_volume_control_preferences_init	(GnomeVolumeControlPreferences *prefs);
 static void	gnome_volume_control_preferences_dispose (GObject *object);
@@ -62,43 +64,12 @@ static void	cb_gconf		(GConfClient     *client,
 					 GConfEntry      *entry,
 					 gpointer         userdata);
 
-static GtkNotebookClass *parent_class = NULL;
-
-GType
-gnome_volume_control_preferences_get_type (void)
-{
-  static GType gnome_volume_control_preferences_type = 0;
-
-  if (!gnome_volume_control_preferences_type) {
-    static const GTypeInfo gnome_volume_control_preferences_info = {
-      sizeof (GnomeVolumeControlPreferencesClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) gnome_volume_control_preferences_class_init,
-      NULL,
-      NULL,
-      sizeof (GnomeVolumeControlPreferences),
-      0,
-      (GInstanceInitFunc) gnome_volume_control_preferences_init,
-      NULL
-    };
-
-    gnome_volume_control_preferences_type =
-	g_type_register_static (GTK_TYPE_DIALOG, 
-				"GnomeVolumeControlPreferences",
-				&gnome_volume_control_preferences_info, 0);
-  }
-
-  return gnome_volume_control_preferences_type;
-}
 
 static void
 gnome_volume_control_preferences_class_init (GnomeVolumeControlPreferencesClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkDialogClass *gtkdialog_class = (GtkDialogClass *) klass;
-
-  parent_class = g_type_class_ref (GTK_TYPE_DIALOG);
 
   gobject_class->dispose = gnome_volume_control_preferences_dispose;
   gtkdialog_class->response = gnome_volume_control_preferences_response;
@@ -231,7 +202,7 @@ gnome_volume_control_preferences_dispose (GObject *object)
     prefs->mixer = NULL;
   }
 
-  G_OBJECT_CLASS (parent_class)->dispose (object);
+  G_OBJECT_CLASS (gnome_volume_control_preferences_parent_class)->dispose (object);
 }
 
 static void
@@ -247,8 +218,8 @@ gnome_volume_control_preferences_response (GtkDialog *dialog,
       break;
   }
 
-  if (((GtkDialogClass *) parent_class)->response)
-    ((GtkDialogClass *) parent_class)->response (dialog, response_id);
+  if (((GtkDialogClass *) gnome_volume_control_preferences_parent_class)->response)
+    ((GtkDialogClass *) gnome_volume_control_preferences_parent_class)->response (dialog, response_id);
 }
 
 /*
