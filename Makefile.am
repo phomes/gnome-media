@@ -18,8 +18,8 @@ INTLTOOL_BUILT = \
         intltool-merge \
         intltool-update
 
-EXTRA_DIST = autogen.sh configure acinclude.m4 COPYING-DOCS	\
-	MAINTAINERS m4/as-compiler-flag.m4 m4/as-version.m4	\
+EXTRA_DIST = autogen.sh configure COPYING-DOCS COPYING.grecord		\
+	MAINTAINERS m4/as-compiler-flag.m4 m4/as-version.m4 m4/esd.m4	\
 	gnome-doc-utils.make $(INTLTOOL_BUILT:=.in)
 
 DISTCLEANFILES = po/.intltool-merge-cache \

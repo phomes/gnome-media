@@ -1,5 +1,14 @@
 2008-03-25  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
+	* configure.in: added AM_PROG_CC_C_O, as per autofoo warning:
+	compiling `gnome-audio-profiles-properties.c' with per-target
+	flags requires `AM_PROG_CC_C_O' in `configure.in'
+
+	* acinclude.m4->m4/esd.m4, Makefile.am (EXTRA_DIST): move
+	acinclude.m4 to m4 directory.
+
+2008-03-25  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
+
 	* AUTHORS (Maintainers): updated.
 
 2008-03-25  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
