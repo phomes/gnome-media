@@ -18,20 +18,12 @@ INTLTOOL_BUILT = \
         intltool-merge \
         intltool-update
 
-EXTRA_DIST =	gnome-media.spec.in configure \
-		acinclude.m4 COPYING-DOCS MAINTAINERS \
-		gnome-media.spec \
-		xmldocs.make omf.make \
-		m4/as-compiler-flag.m4 m4/as-version.m4 \
-                gnome-doc-utils.make \
-		$(INTLTOOL_BUILT:=.in) \
-		autogen.sh
+EXTRA_DIST = autogen.sh configure acinclude.m4 COPYING-DOCS	\
+	MAINTAINERS m4/as-compiler-flag.m4 m4/as-version.m4	\
+	gnome-doc-utils.make $(INTLTOOL_BUILT:=.in)
 
 DISTCLEANFILES = po/.intltool-merge-cache \
                  gnome-doc-utils.make \
                  $(INTLTOOL_BUILT)
 
 ACLOCAL_AMFLAGS = -I m4
-
-distuninstallcheck_listfiles = \
-        find -path ./var/scrollkeeper/\* -prune -or -type f -print
