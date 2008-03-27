@@ -283,57 +283,65 @@ seconds_to_string (guint seconds)
 static char *
 seconds_to_full_string (guint seconds)
 {
-	int hour, min, sec;
+	long days, hours, minutes;
+	char *time = NULL;
+	const char *minutefmt;
+	const char *hourfmt;
+	const char *dayfmt;
+	const char *secondfmt;
 
-	min = (seconds / 60);
-	hour = (min / 60);
-	min -= (hour * 60);
-	sec = seconds - ((hour * 3600) + (min * 60));
+	days    = seconds / (60 * 60 * 24);
+	hours   = (seconds / (60 * 60));
+	minutes = (seconds / 60) - ((days * 24 * 60) + (hours * 60));
+	seconds = seconds % 60;
 
-	if (hour > 0) {
-		if (min > 0) {
-			if (sec > 0) {
-				return g_strdup_printf ("%d %s %d %s %d %s",
-							hour, hour > 1 ? _("hours") : _("hour"),
-							min, min > 1 ? _("minutes") : _("minute"),
-							sec, sec > 1 ? _("seconds") : _("second"));
+	minutefmt = ngettext ("%ld minute", "%ld minutes", minutes);
+	hourfmt = ngettext ("%ld hour", "%ld hours", hours);
+	secondfmt = ngettext ("%ld second", "%ld seconds", seconds);
+
+	if (hours > 0) {
+		if (minutes > 0)
+			if (seconds > 0) {
+				char *fmt;
+				/* Translators: the format is "X hours, X minutes and X seconds" */
+				fmt = g_strdup_printf (_("%s, %s and %s"), hourfmt, minutefmt, secondfmt);
+				time = g_strdup_printf (fmt, hours, minutes, seconds);
+				g_free (fmt);
 			} else {
-				return g_strdup_printf ("%d %s %d %s",
-							hour, hour > 1 ? _("hours") : _("hour"),
-							min, min > 1 ? _("minutes") : _("minute"));
+				char *fmt;
+				/* Translators: the format is "X hours and X minutes" */
+				fmt = g_strdup_printf (_("%s and %s"), hourfmt, minutefmt);
+				time = g_strdup_printf (fmt, hours, minutes);
+				g_free (fmt);
 			}
-		} else {
-			if (sec > 0) {
-				return g_strdup_printf ("%d %s %d %s",
-							hour, hour > 1 ? _("hours") : _("hour"),
-							sec, sec > 1 ? _("seconds") : _("second"));
+		else
+			if (seconds > 0) {
+				char *fmt;
+				/* Translators: the format is "X minutes and X seconds" */
+				fmt = g_strdup_printf (_("%s and %s"), minutefmt, secondfmt);
+				time = g_strdup_printf (fmt, minutes, seconds);
+				g_free (fmt);
 			} else {
-				return g_strdup_printf ("%d %s",
-							hour, hour > 1 ? _("hours") : _("hour"));
+				time = g_strdup_printf (minutefmt, minutes);
 			}
-		}
 	} else {
-		if (min > 0) {
-			if (sec > 0) {
-				return g_strdup_printf ("%d %s %02d %s",
-							min, min > 1 ? _("minutes") : _("minute"),
-							sec, sec > 1 ? _("seconds") : _("second"));
+		if (minutes > 0) {
+			if (seconds > 0) {
+				char *fmt;
+				/* Translators: the format is "X minutes and X seconds" */
+				fmt = g_strdup_printf (_("%s and %s"), minutefmt, secondfmt);
+				time = g_strdup_printf (fmt, minutes, seconds);
+				g_free (fmt);
 			} else {
-				return g_strdup_printf ("%d %s",
-							min, min > 1 ? _("minutes") : _("minute"));
+				time = g_strdup_printf (minutefmt, minutes);
 			}
+
 		} else {
-			if (sec == 0) {
-				return g_strdup_printf ("%d %s",
-							sec, _("seconds"));
-			} else {
-				return g_strdup_printf ("%d %s",
-							sec, sec > 1 ? _("seconds") : _("second"));
-			}
+			time = g_strdup_printf (secondfmt, seconds);
 		}
 	}
 
-	return NULL;
+	return time;
 }
 
 static void
