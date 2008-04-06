@@ -1,10 +1,9 @@
-SUBDIRS = src doc
+SUBDIRS = src doc icons
 
 EXTRA_DIST = \
 	README COPYING AUTHORS INSTALL \
 	gnome-sound-recorder.desktop.in.in \
-	gnome-sound-recorder.schemas.in \
-	gnome-grecord.png
+	gnome-sound-recorder.schemas.in
 
 
 Applicationsdir = $(datadir)/applications
@@ -18,9 +17,6 @@ schema_DATA=gnome-sound-recorder.schemas
 
 @INTLTOOL_SCHEMAS_RULE@
 
-icondir = $(datadir)/icons/hicolor/48x48/apps
-icon_DATA = gnome-grecord.png
-
 CLEANFILES=$(Applications_DATA) $(schema_DATA)
 DISTCLEANFILES=$(Applications_in_files:.desktop.in.in=.desktop.in)
 install-schemas:
@@ -31,13 +27,3 @@ install-data-local: install-schemas
 else
 install-data-local:
 endif
-
-gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
-install-data-hook:
-	@-if test -z "$(DESTDIR)"; then \
-		echo "Updating Gtk icon cache."; \
-		$(gtk_update_icon_cache); \
-	else \
-		echo "*** Icon cache not updated.  After install, run this:"; \
-		echo "***   $(gtk_update_icon_cache)"; \
-	fi
