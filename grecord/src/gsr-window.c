@@ -2345,11 +2345,12 @@ gsr_window_init (GSRWindow *window)
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("Record from input:"));
+	label = gtk_label_new_with_mnemonic (_("Record from _input:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	priv->input = gtk_combo_box_new_text ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->input);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->input, TRUE, TRUE, 0);
 	gtk_widget_show (priv->input);
 
@@ -2366,11 +2367,12 @@ gsr_window_init (GSRWindow *window)
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("Record as:"));
+	label = gtk_label_new_with_mnemonic (_("_Record as:"));
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
 	priv->profile = gm_audio_profile_choose_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->profile);
 	gtk_box_pack_start (GTK_BOX (hbox), window->priv->profile, TRUE, TRUE, 0);
 	gtk_widget_show (window->priv->profile);
 
