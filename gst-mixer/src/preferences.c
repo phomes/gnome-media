@@ -352,8 +352,7 @@ cb_gconf(GConfClient *client, guint connection_id,
   model = gtk_tree_view_get_model (GTK_TREE_VIEW(prefs->treeview));
   keybase = get_gconf_key (prefs->mixer, NULL);
 
-  if (!strncmp (gconf_entry_get_key (entry),
-		keybase, strlen (keybase)) &&
+  if (g_str_equal (gconf_entry_get_key (entry), keybase) &&
       (value = gconf_entry_get_value (entry)) != NULL &&
       (value->type == GCONF_VALUE_BOOL)) {
     active = gconf_value_get_bool (value); 
@@ -363,7 +362,7 @@ cb_gconf(GConfClient *client, guint connection_id,
       gtk_tree_model_get (model, &iter,
 			  COL_TRACK, &track,
 			  -1);
-      if (strcmp (track->label, gconf_entry_get_key (entry) + strlen (keybase))) {
+      if (g_str_equal (track->label, gconf_entry_get_key (entry) + strlen (keybase))) {
 	gtk_list_store_set( GTK_LIST_STORE(model), &iter, COL_ACTIVE, active, -1);
 	break ;
       }
