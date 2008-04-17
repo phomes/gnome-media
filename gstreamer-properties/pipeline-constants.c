@@ -99,6 +99,8 @@ GSTPPipelineDescription videosink_pipelines[] = {
   {PIPE_TYPE_VIDEOSINK, 0, "Colour Ascii Art", "cacasink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 #endif
+  {PIPE_TYPE_VIDEOSINK, 0, N_("OpenGL"), "glimagesink", NULL, FALSE,
+      TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
   {PIPE_TYPE_VIDEOSINK, 0, N_("SDL - Simple DirectMedia Layer"), "sdlvideosink",
       NULL, FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
   {PIPE_TYPE_VIDEOSINK, 0, N_("X Window System (No Xv)"),
