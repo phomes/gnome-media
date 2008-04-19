@@ -1,3 +1,81 @@
+This is gnome-media 2.23.0
+
+Changes since 2.22.0:
+
+	* GNOME-cd, CDDB-slave-2, vumeter are all disabled by default
+	starting from this release:
+
+	- Rhythmbox, SoundJuicer or any other music players are better
+	  suited to play CDs.
+	- If you use PulseAudio, we suggest you to use pavumeter
+	  instead of vumeter.
+
+	* gnome-sound-recorder now has a slick new icon, and a record
+	  level indicator, which might have ui/usability improvements.
+
+	* UTF-8 filename support improved in gnome-sound-recorder.
+
+	* gnome-volume-control has dropped libgnomeui dependency, and
+	  improved themability: "Now we just need a pixel pusher to
+	  make us some nice tango icons for the remaining icons"
+
+	* various code cleanups
+
+What's cooking for next release (almost ready):
+
+	* 516090, 404877: GIO port, use GtkRecentManager
+	* 524364: GtkBuilder
+	* 513612 and 422719: GNOME-Media relicensing
+
+Those bugs are marked with high priority. Help is always appreciated!
+:-) If you would like to pick one, leave a note in the bug to avoid
+effort duplication.
+
+	* 171070: Hangs when recording is done on a file where there
+          is no permission (sound-recorder)
+	* 387400: remove new button and new menuitem from the GUI
+          (sound-recorder)
+	* 359037: crash in Rhythmbox, edit profile
+	* 462164: should listen bus events (volume-control)
+	* 479757: sound-juicer does not properly delete profiles
+	* 169381: PCM is too technical for all but audio engineers
+          (volume-control)
+	* 109621: documentation: what does the sound recorder record?
+	* 365607: Lock button status should be visible for blind access.
+          (volume-control)
+
+Bugs fixed:
+
+	* 349106: specify tab at startup (volume-control)
+	* 349106: open capture page of volume-control (sound-recorder)
+	* 448706: use gtk_stock_add to avoid crash when started
+	  multiple times (profiles)
+	* 504422: move code comments to avoid them being close to
+	  translatable strings (profiles)
+	* 519544: fix mixer access when the list of options change
+	  (volume-control)
+	* 415353: only show a separator at the left of the playback
+	  control if a previous control has been visible
+	  (volume-control)
+	* 516831: mark window title for translation (sound-recorder)
+	* 521919: "Help/Help Ctrl+H" renamed to "Help/Contents F1"
+	  (sound-recorder)
+	* 430824: return FALSE when track_info is NULL (GNOME-cd)
+	* 493503: more checking before string comparisons (sound-recorder)
+	* 430616: recording level indication in the statusbar
+	* 483254: fix utf8 crash
+	* 494031 and 310883: use GtkUIManager, use tango icons if
+	possible and make all icons themeable (volume-control)
+	* 524097: disable gnome-cd, vu-meter and cddb-slave by default
+	* 504420: use more GTK stock text (sound-recorder)
+	* 504419: use ngettext for plural forms
+	* 462551 and 526933: add Tango style icon (sound-recorder),
+	  renamed icon (gnome-grecord -> gnome-sound-recorder).
+	* 466685: add navigations shortcut ("_Record as" and "Record
+	  from _input")
+	* 528252: mixer track enable/disable toggles toggle the wrong
+	  tracks!
+
 This is gnome-media 2.22.0
 
 Changes since 2.20.1:
@@ -47,7 +125,7 @@ This is gnome-media 2.17.92
 
 Changes since 2.17.91:
 	* Hide the multimedia system selector from the menu
- 
+
 
 This is gnome-media 2.17.91
 
@@ -71,7 +149,7 @@ Bugs fixed:
 	* 349305: Polypaudio is renamed to PulseAudio
 	* 364652: The relation between label_for/labelled_by is absent in s...
 	* 365176: Status bar of sound-recorder is not accessible for blinds.
-	* 399710: GLib threading system has not been initialised 
+	* 399710: GLib threading system has not been initialised
 	* 399807: [PATCH] call g_thread_init() before any other GLib function
 	* 400498: can't adjust the volume with the scrollwheel
 	* 402165: crash on startup
@@ -243,7 +321,7 @@ Changes since 2.13.92:
 	* translation updates
 
 Changes since 2.13.91:
-	* bug fixes: 324508, 
+	* bug fixes: 324508,
 
 Changes since 2.13.90:
 	* made error dialogs from gnome-sound-recorder more friendly.
@@ -292,7 +370,7 @@ Changes since 2.11.91:
 	* s/lrint/rint/ for BSD portability
 
 Bugs fixed:
-	
+
 	* #309634: build failure -- some platforms do not have lrint()
 
 This is gnome-media 2.11.91
@@ -333,7 +411,7 @@ Bugs fixed:
 	* 302156: Cd Player doesn't remember last volume chosen
 	* 303630: A few typos in the .po file
 	* 304063: Incorrect item capitalization in panel menus
-	* 305228: Gnome-CD deadlocks at end of cd 
+	* 305228: Gnome-CD deadlocks at end of cd
 	* 306052: Fehler
 	* 306323: gnome-cd should use GTK_STOCK_MEDIA buttons
 	* 306755: gnome-sound-recorder does not ask to save the files
@@ -355,7 +433,7 @@ Bugs fixed:
 	* 139808: "Iconify to tray" option
 	* 144163: gnome-cd status tray icon should show current CD information
 	* 148689: should remember window geometry
-	* 152878: wrong cddbp port 
+	* 152878: wrong cddbp port
 	* 156671: Gnome Sound Recorder: elapsed time incorrect for FLAC & W...
 	* 161973: adding cacasink to videosink list OR removing aasink from it
 	* 164120: Gnome-CD asserts when GStreamer elements not found
@@ -365,7 +443,7 @@ Bugs fixed:
 	* 171370: use GnomeAbout which is deprecated
 	* 171952: Gnome-cd Uses GnomeAbout which is deprecated
 	* 171973: Gconf not updated with "Other FreeDB server" selection f...
-	* 171986: Gnome-Sound-Recorder Uses GnomeAbout which is deprecated	
+	* 171986: Gnome-Sound-Recorder Uses GnomeAbout which is deprecated
 	* 171990: Add Quit menu item to the popup menu of the tray icon
 	* 172034: Correct spelling error
 	* 172036: Correct grammar error
@@ -426,7 +504,7 @@ Bugs fixed:
 
 	* 105768: Crash when opening gnome-cd
 	* 148650: changing window title to 'Multimedia Systems Selector'
-	* 153537: [PATCH] typo in error message 
+	* 153537: [PATCH] typo in error message
 	* 161722: Build breakage on gnome-cd
 	* 162608: gnome-media mixer message needs translator comment
 	* 163354: Update the Time line Display after inserting the CD
@@ -453,10 +531,10 @@ Changes since 2.9.1:
 Bugs fixed:
 
 	72581:	Gnome-CD should detect multiple cdroms and put them in a ...
-	150072:	small code clean ups
-	154547:	compilation error in audio-profile.h with sound-juicer au...
-	155088:	gnome-sound-recorder does not save files
-	156874:	[PATCH] HIG fixes for preference dialog
+	150072: small code clean ups
+	154547: compilation error in audio-profile.h with sound-juicer au...
+	155088: gnome-sound-recorder does not save files
+	156874: [PATCH] HIG fixes for preference dialog
 
 This is gnome-media 2.9.1
 
@@ -623,7 +701,7 @@ New in 1.0.9.1:
 New in 1.0.9:
 
 	TCD/Cddbslave:
-	
+
 	Now includes a --device option to specify CDROM device file.
 
 	Lots of CDDB fixes and updates from James Henstridge, including
