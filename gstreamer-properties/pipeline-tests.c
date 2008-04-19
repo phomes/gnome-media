@@ -247,7 +247,7 @@ user_test_pipeline (GladeXML * interface_xml,
     pipeline_error_dlg (parent, pipeline_desc, err->message);
     g_error_free (err);
     g_free (dbg);
-  } else if (ret != GST_STATE_CHANGE_SUCCESS) {
+  } else if (ret != GST_STATE_CHANGE_SUCCESS && ret != GST_STATE_CHANGE_ASYNC) {
     pipeline_error_dlg (parent, pipeline_desc, NULL);
   } else {
     /* Show the dialog */
