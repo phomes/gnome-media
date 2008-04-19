@@ -1255,7 +1255,7 @@ about_cb (GtkAction *action,
 			       "comments", _("A sound recorder for GNOME\n gnome-media@gnome.org"),
 			       "authors", authors,
 			       "documenters", documenters,
-			       "logo-icon-name", "gnome-grecord",
+			       "logo-icon-name", "gnome-sound-recorder",
 			       NULL);
 }
 

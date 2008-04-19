@@ -203,7 +203,7 @@ main (int argc,
 
 	init_recent ();
 
-	gtk_window_set_default_icon_name ("gnome-grecord");
+	gtk_window_set_default_icon_name ("gnome-sound-recorder");
 
 	/* use it like a singleton */
 	gconf_client = gconf_client_get_default ();
