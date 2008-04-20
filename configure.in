@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
 AC_INIT(cddb-slave2)
 
-AS_VERSION(gnome-media, GNOME_MEDIA_VERSION, 2, 23, 2, 0,
+AS_VERSION(gnome-media, GNOME_MEDIA_VERSION, 2, 23, 1, 1,
   GM_RELEASE="yes", GM_RELEASE="no")
 
 AM_MAINTAINER_MODE
@@ -10,7 +10,7 @@ AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
 AM_CONFIG_HEADER(config.h)
 
-IT_PROG_INTLTOOL([0.39.99])
+IT_PROG_INTLTOOL([0.35.0])
 
 AC_PROG_CC
 AC_ISC_POSIX
@@ -175,6 +175,15 @@ if test -z "$PROGRAMS_GMP" ; then
   enable_grecord="no"  
   PROGRAMS_GRECORD_ERROR="	gnome media profiles is disabled"
 fi		
+
+if test "x$HAVE_GST" = "xyes" && test "x$enable_grecord" == "xyes"; then
+  PROGRAMS_GRECORD="grecord"
+else
+  if test "x$HAVE_GST" = "xno"; then
+    AC_MSG_WARN([You need GStreamer installed for the mixer and recorder to work])
+    sleep 5 2>/dev/null
+  fi
+fi
 
 AC_SUBST(PROGRAMS_GRECORD)
 AM_CONDITIONAL(HAVE_GSTREAMER, test "x$HAVE_GST" = "xyes")
