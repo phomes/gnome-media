@@ -13,14 +13,9 @@ DIST_SUBDIRS = po profiles cddb-slave2 \
 	       vu-meter grecord gst-mixer gnome-cd \
                gstreamer-properties
 
-INTLTOOL_BUILT = \
-        intltool-extract \
-        intltool-merge \
-        intltool-update
-
 EXTRA_DIST = autogen.sh configure COPYING-DOCS COPYING.grecord		\
 	MAINTAINERS m4/as-compiler-flag.m4 m4/as-version.m4 m4/esd.m4	\
-	gnome-doc-utils.make $(INTLTOOL_BUILT:=.in)
+	gnome-doc-utils.make
 
 DISTCLEANFILES = po/.intltool-merge-cache \
                  gnome-doc-utils.make \
