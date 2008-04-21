@@ -2233,10 +2233,11 @@ gsr_window_init (GSRWindow *window)
 	GtkWidget *label;
 	GtkWidget *table;
 	GtkWidget *align;
+	GtkWidget *frame;
 	gchar *id;
 	gchar *path;
 	GtkAction *action;
-
+	GtkShadowType shadow_type;
 	GstElement *source;
 
 	window->priv = GSR_WINDOW_GET_PRIVATE (window);
@@ -2454,10 +2455,9 @@ gsr_window_init (GSRWindow *window)
 	gtk_widget_show (priv->statusbar);
 
 	/* hack to get the same shadow as the status bar.. */
-	GtkShadowType shadow_type;
 	gtk_widget_style_get (GTK_WIDGET (priv->statusbar), "shadow-type", &shadow_type, NULL);
 
-	GtkWidget *frame = gtk_frame_new (NULL);
+	frame = gtk_frame_new (NULL);
 	gtk_frame_set_shadow_type (GTK_FRAME (frame), shadow_type);
 	gtk_widget_show (frame);
 

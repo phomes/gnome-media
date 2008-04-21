@@ -1,3 +1,10 @@
+2008-04-21  Jens Granseuer  <jensgr@gmx.net>
+
+	* gst-mixer/src/button.c: (gnome_volume_control_button_clicked):
+	* gst-mixer/src/window.c: (gnome_volume_control_window_new): don't
+	declare variables in the middle of a code block. Fixes build with
+	older compilers (bug #529083)
+
 === release 2.23.1.1 ===
 
 2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>

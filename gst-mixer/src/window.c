@@ -369,6 +369,7 @@ gnome_volume_control_window_new (GList *elements)
   GtkWidget *vbox;
   GtkWidget *menubar;
   GSList *radio_group = NULL;
+  gint active_element_num;
 
   g_return_val_if_fail (elements != NULL, NULL);
   active_element = NULL;
@@ -432,7 +433,7 @@ gnome_volume_control_window_new (GList *elements)
     count = 0;
     active_element = elements->data;
   }
-  gint active_element_num = count;
+  active_element_num = count;
 
   change_device_menu_id = gtk_ui_manager_new_merge_id (win->ui_manager);
 

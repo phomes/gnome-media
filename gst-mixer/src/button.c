@@ -131,13 +131,14 @@ gnome_volume_control_button_clicked (GtkButton *_button)
 
   if (strstr (button->active_icon, ".png")) {
     gchar *filename;
+    GdkPixbuf *pixbuf;
 
     if (button->active)
       filename = g_build_filename (PIX_DIR, button->active_icon, NULL);
     else
       filename = g_build_filename (PIX_DIR, button->inactive_icon, NULL);
    
-    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
+    pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
     gtk_image_set_from_pixbuf (button->image, pixbuf);
     g_object_unref (pixbuf);
     g_free (filename);
