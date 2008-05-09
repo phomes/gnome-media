@@ -75,6 +75,20 @@ gnome_volume_control_preferences_class_init (GnomeVolumeControlPreferencesClass 
   gtkdialog_class->response = gnome_volume_control_preferences_response;
 }
 
+/*
+ * Mixer tracks are sorted by their types.
+ */
+static gint
+sort_by_page_num (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
+{
+	GstMixerTrack *a_track, *b_track;
+
+	gtk_tree_model_get (model, a, COL_TRACK, &a_track, -1);
+	gtk_tree_model_get (model, b, COL_TRACK, &b_track, -1);
+
+	return get_page_num (a_track) - get_page_num (b_track);
+}
+
 static void
 gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 {
@@ -109,6 +123,8 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
 
   store = gtk_list_store_new (NUM_COLS, G_TYPE_BOOLEAN,
 			      G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_STRING);
+  gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (store), sort_by_page_num, NULL, NULL);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID, GTK_SORT_ASCENDING);
   prefs->treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (prefs->treeview), FALSE);
   gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET (prefs->treeview));
