@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-07 12:15+0000\n"
+"POT-Creation-Date: 2008-05-19 01:54+0100\n"
 "PO-Revision-Date: 2007-02-08 02:10+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
+"n<=10 ? 2 : 3\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -149,7 +150,7 @@ msgstr "اسم الم_ضيف:"
 msgid "_Port:"
 msgstr "ال_مَنْفذ:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:1103
+#: ../cddb-slave2/cddb-slave-capplet.c:1104
 msgid "CD Database Preferences"
 msgstr "تفضيلات قاعدة بيانات القرص المدمج"
 
@@ -158,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "مجهول / مجهول"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:977
-#: ../grecord/src/gsr-window.c:987 ../grecord/src/gsr-window.c:1003
-#: ../grecord/src/gsr-window.c:1012 ../grecord/src/gsr-window.c:1355
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
+#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
+#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1414
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "مجهول"
@@ -190,7 +191,7 @@ msgid "Artist and Title"
 msgstr "الفنان وعنوان الأغنية"
 
 #: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:207
+#: ../gnome-cd/gnome-cd.c:221
 msgid "Unknown track"
 msgstr "قطعة مجهولة"
 
@@ -802,15 +803,15 @@ msgstr "نيو-ميتال"
 msgid "Art Rock"
 msgstr "روك فني"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:589
-#: ../gnome-cd/callbacks.c:735 ../gnome-cd/callbacks.c:746
-#: ../gnome-cd/display.c:75
+#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
+#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
+#: ../gnome-cd/display.c:89
 msgid "Unknown Artist"
 msgstr "فنان مجهول"
 
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:590
-#: ../gnome-cd/callbacks.c:738 ../gnome-cd/callbacks.c:750
-#: ../gnome-cd/display.c:76
+#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
+#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
+#: ../gnome-cd/display.c:90
 msgid "Unknown Album"
 msgstr "ألبوم مجهول"
 
@@ -884,6 +885,7 @@ msgid "CDDB Track Editor"
 msgstr "محرّر CDDB للمقطوعات"
 
 #: ../cddb-slave2/cddb-track-editor.c:1072
+#, c-format
 msgid ""
 "Cannot create CDDBTrackEditor factory.\n"
 "This may be caused by another copy of cddb-track-editor already running.\n"
@@ -933,20 +935,20 @@ msgstr "سطر الألبوم"
 msgid "Line for displaying the name of the album"
 msgstr "سطر لعرض اسم الألبوم"
 
-#: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
-#: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
-#: ../gnome-cd/gnome-cd.c:808
+#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
+#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
+#: ../gnome-cd/gnome-cd.c:785
 msgid "Play"
 msgstr "اعزف"
 
-#: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
-#: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
-#: ../gnome-cd/callbacks.c:365 ../gnome-cd/callbacks.c:389
-#: ../gnome-cd/callbacks.c:430 ../gnome-cd/callbacks.c:527
+#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
+#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
+#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
+#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
 msgid "Pause"
 msgstr "قف مؤقتاً"
 
-#: ../gnome-cd/callbacks.c:588
+#: ../gnome-cd/callbacks.c:602
 #, c-format
 msgid ""
 "Playing %s - %s\n"
@@ -955,7 +957,7 @@ msgstr ""
 "عزف %s - %s\n"
 "%s"
 
-#: ../gnome-cd/callbacks.c:593
+#: ../gnome-cd/callbacks.c:607
 #, c-format
 msgid ""
 "Playing\n"
@@ -964,77 +966,77 @@ msgstr ""
 "عزف\n"
 ": %s"
 
-#: ../gnome-cd/callbacks.c:617
+#: ../gnome-cd/callbacks.c:631
 msgid "Paused"
 msgstr "أوقِفَ مؤقتا"
 
-#: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
-#: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:681 ../gnome-cd/gnome-cd.c:873
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:614
+#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
+#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
+#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
 msgid "CD Player"
 msgstr "عازف الأقراص المدمجة"
 
-#: ../gnome-cd/callbacks.c:694
+#: ../gnome-cd/callbacks.c:708
 msgid "Stopped"
 msgstr "أوقِفَ"
 
-#: ../gnome-cd/callbacks.c:700
+#: ../gnome-cd/callbacks.c:714
 msgid "Disc error"
 msgstr "خطأ في القرص"
 
-#: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
+#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
 msgid "No disc"
 msgstr "لا وجود لقرص"
 
-#: ../gnome-cd/callbacks.c:810
+#: ../gnome-cd/callbacks.c:824
 msgid "Empty disc"
 msgstr "قرص فارغ"
 
-#: ../gnome-cd/callbacks.c:840
+#: ../gnome-cd/callbacks.c:854
 msgid "Drive open"
 msgstr "السواقة مفتوحة"
 
-#: ../gnome-cd/callbacks.c:866
+#: ../gnome-cd/callbacks.c:880
 msgid "Data CD"
 msgstr "قرص بيانات مدمج"
 
-#: ../gnome-cd/callbacks.c:890 ../gnome-cd/callbacks.c:895
+#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
 msgid "No Cdrom"
 msgstr "ليس قرصا مدمجا"
 
-#: ../gnome-cd/callbacks.c:908
+#: ../gnome-cd/callbacks.c:922
 msgid "Drive Error"
 msgstr "خطأ السواقة"
 
-#: ../gnome-cd/callbacks.c:930
+#: ../gnome-cd/callbacks.c:944
 msgid "A CD player for GNOME"
 msgstr "عازف أقراص مدمجة لجنوم"
 
-#: ../gnome-cd/callbacks.c:1110
+#: ../gnome-cd/callbacks.c:1123
 msgid "Contents in the CDDB have changed"
 msgstr "تغيرت محتويات ال CDDB "
 
-#: ../gnome-cd/callbacks.c:1111
+#: ../gnome-cd/callbacks.c:1124
 msgid "Choosing 'Yes' will delete the previous contents in CDDB."
 msgstr "إختيار 'Yes' يحذف المحتوات السابقة في CDDB."
 
-#: ../gnome-cd/callbacks.c:1112
+#: ../gnome-cd/callbacks.c:1125
 msgid "Do you wish to continue?"
 msgstr "هل تريد المواصلة؟"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1185 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
 #, c-format
 msgid "Volume %d%%"
 msgstr "شدة الصوت %d%%"
 
-#: ../gnome-cd/cdrom.c:368
+#: ../gnome-cd/cdrom.c:382
 #, c-format
 msgid "You do not seem to have permission to access %s."
 msgstr "يبدو انك لا تملك ترخيصا للنفاذ إلى %s."
 
-#: ../gnome-cd/cdrom.c:374
+#: ../gnome-cd/cdrom.c:388
 #, c-format
 msgid ""
 "%s does not appear to point to a valid CD device. This may be because:\n"
@@ -1047,45 +1049,46 @@ msgstr ""
 "ب) ليست لديك التراخيص الكافية للنفاذ إلى القرص المدمج\n"
 "ج) %s ليست سواقة الأقراص المدمجة.\n"
 
-#: ../gnome-cd/gnome-cd.c:246
+#: ../gnome-cd/gnome-cd.c:260
 #, c-format
 msgid "%d - Unknown"
 msgstr "مجهول - %d"
 
-#: ../gnome-cd/gnome-cd.c:362
+#: ../gnome-cd/gnome-cd.c:360
 msgid "_Play / Pause"
 msgstr "ا_عزف / قِف مؤقّتاً"
 
-#: ../gnome-cd/gnome-cd.c:363
+#: ../gnome-cd/gnome-cd.c:361
 msgid "_Stop"
 msgstr "_قف"
 
-#: ../gnome-cd/gnome-cd.c:364
+#: ../gnome-cd/gnome-cd.c:362
 msgid "P_revious"
 msgstr "ال_سابق"
 
-#: ../gnome-cd/gnome-cd.c:365
+#: ../gnome-cd/gnome-cd.c:363
 msgid "_Next"
 msgstr "ال_تالي"
 
-#: ../gnome-cd/gnome-cd.c:366
+#: ../gnome-cd/gnome-cd.c:364
 msgid "_Eject disc"
 msgstr "اطر_د القرص"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1990
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
+#: ../gst-mixer/src/window.c:336
 msgid "_Help"
 msgstr "_مساعدة"
 
-#: ../gnome-cd/gnome-cd.c:368
+#: ../gnome-cd/gnome-cd.c:366 ../gst-mixer/src/window.c:350
 msgid "_About"
 msgstr "_حوْل..."
 
-#: ../gnome-cd/gnome-cd.c:369
+#: ../gnome-cd/gnome-cd.c:367 ../gst-mixer/src/window.c:341
 msgid "_Quit"
 msgstr "إ_نهي"
 
-#: ../gnome-cd/gnome-cd.c:601
+#: ../gnome-cd/gnome-cd.c:585
 msgid ""
 "There is no CD device set. This means that the CD player\n"
 "will be unable to run. Click 'Set device' to go to a dialog\n"
@@ -1096,15 +1099,15 @@ msgstr ""
 "لالذهاب إلى حوار يمكن فيه ضبط الجهاز، أو أنقر 'إنهي' لإنهاء\n"
 "عازف الأقراص المدمجة."
 
-#: ../gnome-cd/gnome-cd.c:605
+#: ../gnome-cd/gnome-cd.c:589
 msgid "Set device"
 msgstr "اضبط الجهاز"
 
-#: ../gnome-cd/gnome-cd.c:607
+#: ../gnome-cd/gnome-cd.c:591
 msgid "No CD device"
 msgstr "لا جهاز للأقراص المدمجة"
 
-#: ../gnome-cd/gnome-cd.c:660
+#: ../gnome-cd/gnome-cd.c:644
 msgid ""
 "The CD player is unable to run correctly.\n"
 "\n"
@@ -1120,96 +1123,96 @@ msgstr ""
 "انقر 'اضبط الجهاز' للذهاب إلى حوار يمكنك منه ضبط الجهاز، أو انقر 'إنهي' "
 "لإنهاء عازف الأقراص المدمجة"
 
-#: ../gnome-cd/gnome-cd.c:664
+#: ../gnome-cd/gnome-cd.c:648
 msgid "_Details"
 msgstr "_تفاصيل"
 
-#: ../gnome-cd/gnome-cd.c:665
+#: ../gnome-cd/gnome-cd.c:649
 msgid "_Set device"
 msgstr "ا_ضبط الجهاز"
 
-#: ../gnome-cd/gnome-cd.c:667
+#: ../gnome-cd/gnome-cd.c:651
 msgid "Invalid CD device"
 msgstr "جهاز الأقراص المدمجة غير سليم"
 
-#: ../gnome-cd/gnome-cd.c:746
+#: ../gnome-cd/gnome-cd.c:723
 msgid "Position"
 msgstr "موقع"
 
-#: ../gnome-cd/gnome-cd.c:763
+#: ../gnome-cd/gnome-cd.c:740
 msgid "Open preferences"
 msgstr "افتح التفضيلات"
 
-#: ../gnome-cd/gnome-cd.c:764
+#: ../gnome-cd/gnome-cd.c:741
 msgid "Preferences"
 msgstr "تفضيلات"
 
-#: ../gnome-cd/gnome-cd.c:772
+#: ../gnome-cd/gnome-cd.c:749
 msgid "Track List"
 msgstr "قائمة المقطوعات"
 
-#: ../gnome-cd/gnome-cd.c:778
+#: ../gnome-cd/gnome-cd.c:755
 msgid "Open track editor"
 msgstr "افتح محرر المقطوعات"
 
-#: ../gnome-cd/gnome-cd.c:779
+#: ../gnome-cd/gnome-cd.c:756
 msgid "Track editor"
 msgstr "محرّر المقطوعات"
 
-#: ../gnome-cd/gnome-cd.c:808
+#: ../gnome-cd/gnome-cd.c:785
 msgid "Play / Pause"
 msgstr "اعزف / قف مؤقتاً"
 
-#: ../gnome-cd/gnome-cd.c:813
+#: ../gnome-cd/gnome-cd.c:790
 msgid "Stop"
 msgstr "قِفْ"
 
-#: ../gnome-cd/gnome-cd.c:817
+#: ../gnome-cd/gnome-cd.c:794
 msgid "Previous track"
 msgstr "المقطوعة السابقة"
 
-#: ../gnome-cd/gnome-cd.c:817
+#: ../gnome-cd/gnome-cd.c:794
 msgid "Previous"
 msgstr "السابق"
 
-#: ../gnome-cd/gnome-cd.c:821
+#: ../gnome-cd/gnome-cd.c:798
 msgid "Rewind"
 msgstr "لف"
 
-#: ../gnome-cd/gnome-cd.c:829
+#: ../gnome-cd/gnome-cd.c:806
 msgid "Fast forward"
 msgstr "تقدم سريع"
 
-#: ../gnome-cd/gnome-cd.c:837
+#: ../gnome-cd/gnome-cd.c:814
 msgid "Next track"
 msgstr "المقطوعة التالية"
 
-#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.c:818
 msgid "Eject CD"
 msgstr "اطرد القرص المدمج"
 
-#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.c:818
 msgid "Eject"
 msgstr "اطرد"
 
-#: ../gnome-cd/gnome-cd.c:963
+#: ../gnome-cd/gnome-cd.c:892
 msgid "CD device to use"
 msgstr "جهاز القرص المدمج للاستعمال"
 
-#: ../gnome-cd/gnome-cd.c:965
+#: ../gnome-cd/gnome-cd.c:894
 msgid "Only start if there isn't already a CD player application running"
 msgstr "التشغيل فقط إذا لم يوجد مسبقا تطبيق لعزف الأقراص المدمجة بصدد العمل"
 
-#: ../gnome-cd/gnome-cd.c:967
+#: ../gnome-cd/gnome-cd.c:896
 msgid "Play the CD on startup"
 msgstr "اعزف القرص المدمج عند بدأ التشغيل"
 
-#: ../gnome-cd/gnome-cd.c:969
+#: ../gnome-cd/gnome-cd.c:898
 msgid "Start iconified in notification area"
 msgstr "ابدأ البرنامج مصغّرا بأيقونة في منطقة التبليغ"
 
 #. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:1011
+#: ../gnome-cd/gnome-cd.c:939
 msgid "Cannot create player"
 msgstr "لا يمكن انشاء عازف"
 
@@ -1251,7 +1254,8 @@ msgstr "هل يطرد القرص المدمج عند إنهاء عازف الأ�
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
+msgstr ""
+"مسار جهاز الأقراص المدمجة الذي من المفترض لعازف الأقراص المدمجة استخدامه"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
@@ -1265,7 +1269,7 @@ msgstr "ما هي شدة صوت قارئ القرص عند اشتغاله؟"
 msgid "When the CD player is started, should it start playing the CD?"
 msgstr "هل يعزف عازف الأقراص المدمجة القرص عند بدأ تشغيله؟"
 
-#: ../gnome-cd/gst-cdrom.c:282
+#: ../gnome-cd/gst-cdrom.c:301
 #, c-format
 msgid "Failed to eject CD: %s"
 msgstr "لم يمكن طرد القرص: %s "
@@ -1283,40 +1287,40 @@ msgstr ""
 msgid "Error setting device"
 msgstr "خطأ ضبط الجهاز"
 
-#: ../gnome-cd/preferences.c:587
+#: ../gnome-cd/preferences.c:526
 msgid "CD Player Preferences"
 msgstr "تفضيلات عازف الأقراص المدمجة"
 
-#: ../gnome-cd/preferences.c:626
+#: ../gnome-cd/preferences.c:565
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "ال_جهاز:"
 
-#: ../gnome-cd/preferences.c:640
+#: ../gnome-cd/preferences.c:579
 msgid "Behavior"
 msgstr "السلوك"
 
-#: ../gnome-cd/preferences.c:653
+#: ../gnome-cd/preferences.c:592
 msgid "Start _playback when CD Player starts"
 msgstr "ابدأ _عزف القرص المدمج عند تشغيل عازف الأقراص المدمجة"
 
-#: ../gnome-cd/preferences.c:654
+#: ../gnome-cd/preferences.c:593
 msgid "Start playback when CD Player starts"
 msgstr "ابدأ عزف القرص المدمج عند تشغيل عازف الأقراص المدمجة"
 
-#: ../gnome-cd/preferences.c:666
+#: ../gnome-cd/preferences.c:605
 msgid "Attempt to _eject CD when CD Player exits"
 msgstr "حاول _طرد القرص المدمج عند خروج عازف الأقراص المدمجة"
 
-#: ../gnome-cd/preferences.c:667
+#: ../gnome-cd/preferences.c:606
 msgid "Attempt to eject CD when CD Player exits"
 msgstr "حاول طرد القرص المدمج عند خروج عازف الأقراص المدمجة"
 
-#: ../gnome-cd/preferences.c:683
+#: ../gnome-cd/preferences.c:622
 msgid "Themes"
 msgstr "السِّمات"
 
-#: ../gnome-cd/preferences.c:695
+#: ../gnome-cd/preferences.c:634
 msgid "_Select a theme:"
 msgstr "ا_ختر سِمة:"
 
@@ -1325,7 +1329,7 @@ msgid "Record sound clips"
 msgstr "سجّل قطع صوتية"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1200
+#: ../grecord/src/gsr-window.c:1252
 msgid "Sound Recorder"
 msgstr "مسجل الأصوات"
 
@@ -1333,17 +1337,17 @@ msgstr "مسجل الأصوات"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1683
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1744
+#: ../grecord/src/gsr-window.c:2676
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1685
+#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1746
 #, c-format
 msgid "Untitled-%d"
 msgstr "بدون عنوان-%d"
 
-#: ../grecord/src/gsr-window.c:191
+#: ../grecord/src/gsr-window.c:196
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1358,7 +1362,7 @@ msgstr ""
 " gst-inspect-0.10 %s\n"
 "ثم أعد تشغيل gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:207
+#: ../grecord/src/gsr-window.c:212
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1366,42 +1370,52 @@ msgstr ""
 "الرجاء التأكد من إعداداته.\n"
 "من المحتمل الإفتقار إلى الملحقات المطلوبة."
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
-msgid "hours"
-msgstr "ساعات"
+#: ../grecord/src/gsr-window.c:298
+#, fuzzy, c-format
+msgid "%ld minute"
+msgid_plural "%ld minutes"
+msgstr[0] "دقيقة"
+msgstr[1] "دقيقة"
+msgstr[2] "دقيقة"
+msgstr[3] "دقيقة"
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
-msgid "hour"
-msgstr "ساعة"
+#: ../grecord/src/gsr-window.c:299
+#, fuzzy, c-format
+msgid "%ld hour"
+msgid_plural "%ld hours"
+msgstr[0] "ساعة"
+msgstr[1] "ساعة"
+msgstr[2] "ساعة"
+msgstr[3] "ساعة"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
-msgid "minutes"
-msgstr "دقائق"
+#: ../grecord/src/gsr-window.c:300
+#, fuzzy, c-format
+msgid "%ld second"
+msgid_plural "%ld seconds"
+msgstr[0] "ثانية"
+msgstr[1] "ثانية"
+msgstr[2] "ثانية"
+msgstr[3] "ثانية"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
-msgid "minute"
-msgstr "دقيقة"
+#. Translators: the format is "X hours, X minutes and X seconds"
+#: ../grecord/src/gsr-window.c:307
+#, c-format
+msgid "%s, %s and %s"
+msgstr ""
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
-#: ../grecord/src/gsr-window.c:326
-msgid "seconds"
-msgstr "ثوان"
+#. Translators: the format is "X hours and X minutes"
+#. Translators: the format is "X minutes and X seconds"
+#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
+#: ../grecord/src/gsr-window.c:332
+#, c-format
+msgid "%s and %s"
+msgstr ""
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
-msgid "second"
-msgstr "ثانية"
-
-#: ../grecord/src/gsr-window.c:361
+#: ../grecord/src/gsr-window.c:375
 msgid "Open a File"
 msgstr "افتح ملف"
 
-#: ../grecord/src/gsr-window.c:431
+#: ../grecord/src/gsr-window.c:453
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1410,17 +1424,17 @@ msgstr ""
 "لا يمكن تحميل الملف:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1486
-#: ../grecord/src/gsr-window.c:1740 ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1545
+#: ../grecord/src/gsr-window.c:1801 ../grecord/src/gsr-window.c:2492
 msgid "Ready"
 msgstr "مستعد"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:629
+#: ../grecord/src/gsr-window.c:652
 msgid "_Replace"
 msgstr "است_بدِل"
 
-#: ../grecord/src/gsr-window.c:646
+#: ../grecord/src/gsr-window.c:669
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1429,44 +1443,44 @@ msgstr ""
 "الملف المسمى \"%s\" موجود مسبقا. \n"
 "هل تريد تبديله بالملف الذي تريد حفظه؟"
 
-#: ../grecord/src/gsr-window.c:697 ../grecord/src/gsr-window.c:704
+#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "لم يمكن حفظ الملف \"%s\""
 
-#: ../grecord/src/gsr-window.c:721
+#: ../grecord/src/gsr-window.c:749
 msgid "Save file as"
 msgstr "احفظ الملف كـ"
 
-#: ../grecord/src/gsr-window.c:808
+#: ../grecord/src/gsr-window.c:843
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s غير مثبت في المسار."
 
-#: ../grecord/src/gsr-window.c:817
+#: ../grecord/src/gsr-window.c:852
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "حصل خطأ أثناء تشغيل %s: %s"
 
-#: ../grecord/src/gsr-window.c:839
+#: ../grecord/src/gsr-window.c:880
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "هل تريد حفظ الملف \"%s\" قبل الغلق؟"
 
-#: ../grecord/src/gsr-window.c:850
+#: ../grecord/src/gsr-window.c:892
 msgid "Close _without Saving"
 msgstr "اغلق بدون حفظ"
 
-#: ../grecord/src/gsr-window.c:857
+#: ../grecord/src/gsr-window.c:899
 msgid "Question"
 msgstr "سؤال"
 
-#: ../grecord/src/gsr-window.c:949
+#: ../grecord/src/gsr-window.c:1000
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "(لم يحفظ) %s"
 
-#: ../grecord/src/gsr-window.c:964
+#: ../grecord/src/gsr-window.c:1016
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1475,75 +1489,75 @@ msgstr[1] "%s (%llu بايت)"
 msgstr[2] "%s (%llu بايت)"
 msgstr[3] "%s (%llu بايت)"
 
-#: ../grecord/src/gsr-window.c:968
+#: ../grecord/src/gsr-window.c:1020
 msgid "Unknown size"
 msgstr "حجم مجهول"
 
-#: ../grecord/src/gsr-window.c:989
+#: ../grecord/src/gsr-window.c:1041
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f كيلوهارتز"
 
-#: ../grecord/src/gsr-window.c:997
+#: ../grecord/src/gsr-window.c:1049
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f كيلوبت/الثانية"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1052
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f كيلوبت/الثانية (تقدير)"
 
-#: ../grecord/src/gsr-window.c:1015
+#: ../grecord/src/gsr-window.c:1067
 msgid "1 (mono)"
 msgstr "1 (مونو)"
 
-#: ../grecord/src/gsr-window.c:1018
+#: ../grecord/src/gsr-window.c:1070
 msgid "2 (stereo)"
 msgstr "2 (ستيرٍٍِِيو)"
 
-#: ../grecord/src/gsr-window.c:1045
+#: ../grecord/src/gsr-window.c:1097
 #, c-format
 msgid "%s Information"
 msgstr "معلومات %s"
 
-#: ../grecord/src/gsr-window.c:1069 ../grecord/src/gsr-window.c:2231
+#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2404
 msgid "File Information"
 msgstr "معلومات الملف"
 
-#: ../grecord/src/gsr-window.c:1084
+#: ../grecord/src/gsr-window.c:1136
 msgid "Folder:"
 msgstr "المجلد:"
 
-#: ../grecord/src/gsr-window.c:1090 ../grecord/src/gsr-window.c:2246
+#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2411
 msgid "Filename:"
 msgstr "اسم الملف:"
 
-#: ../grecord/src/gsr-window.c:1096
+#: ../grecord/src/gsr-window.c:1148
 msgid "File size:"
 msgstr "حجم الملف:"
 
-#: ../grecord/src/gsr-window.c:1105
+#: ../grecord/src/gsr-window.c:1157
 msgid "Audio Information"
 msgstr "معلومات الصوت"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1172
 msgid "File duration:"
 msgstr "مدة الملف:"
 
-#: ../grecord/src/gsr-window.c:1126
+#: ../grecord/src/gsr-window.c:1178
 msgid "Number of channels:"
 msgstr "عدد القنوات:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1184
 msgid "Sample rate:"
 msgstr "نسبة التردد:"
 
-#: ../grecord/src/gsr-window.c:1138
+#: ../grecord/src/gsr-window.c:1190
 msgid "Bit rate:"
 msgstr "نسبة البايتات:"
 
-#: ../grecord/src/gsr-window.c:1203
+#: ../grecord/src/gsr-window.c:1255
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
@@ -1551,164 +1565,179 @@ msgstr ""
 "مسجل أصوت لجنوم\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1458
+#: ../grecord/src/gsr-window.c:1517
 msgid "Playing..."
 msgstr "عزف...."
 
-#: ../grecord/src/gsr-window.c:1587
+#: ../grecord/src/gsr-window.c:1649
 msgid "GConf audio output"
 msgstr "خرْج صوت GConf"
 
-#: ../grecord/src/gsr-window.c:1596 ../gst-mixer/src/element.c:220
-#: ../gst-mixer/src/misc.c:38
+#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:195
+#: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "العزف"
 
-#: ../grecord/src/gsr-window.c:1674
+#: ../grecord/src/gsr-window.c:1735
 msgid "Recording..."
 msgstr "يجري التسجيل..."
 
-#: ../grecord/src/gsr-window.c:1758
+#: ../grecord/src/gsr-window.c:1823
 msgid "GConf audio recording"
 msgstr "تسجيل صوت GConf"
 
-#: ../grecord/src/gsr-window.c:1767
+#: ../grecord/src/gsr-window.c:1832
+#, fuzzy
 msgid ""
-"Your audio capture settings are invalid. Please correct them in the "
-"Multimedia settings."
-msgstr "إعدادات تسجيل الصوت غير صحيحة. الرجاء تصحيحها عبر إعدادات الوسائط المتعددة."
+"Your audio capture settings are invalid. Please correct them with the "
+"\"Sound Preferences\" under the System-Preferences menu."
+msgstr ""
+"إعدادات تسجيل الصوت غير صحيحة. الرجاء تصحيحها عبر إعدادات الوسائط المتعددة."
 
-#: ../grecord/src/gsr-window.c:1856
+#: ../grecord/src/gsr-window.c:1988
 msgid "file output"
 msgstr "ملف الخرْج"
 
-#: ../grecord/src/gsr-window.c:1885
+#: ../grecord/src/gsr-window.c:2006
+msgid "level"
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:2030
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "لم يمكن تحليل طوْر الصوت '%s'"
 
-#: ../grecord/src/gsr-window.c:1901
+#: ../grecord/src/gsr-window.c:2047
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "لم يمكن الإستقبال باستعمال طوْر الصوت '%s'"
 
-#: ../grecord/src/gsr-window.c:1911
+#: ../grecord/src/gsr-window.c:2057
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "لم يمكن الكتابة للملف باستعمال طوْر الصوت '%s'."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:1962
+#: ../grecord/src/gsr-window.c:2112 ../gst-mixer/src/window.c:334
 msgid "_File"
 msgstr "_ملف"
 
-#: ../grecord/src/gsr-window.c:1964
+#: ../grecord/src/gsr-window.c:2114
 msgid "Create a new sample"
 msgstr "انشيء عينة جديدة"
 
-#: ../grecord/src/gsr-window.c:1965
-msgid "_Open..."
-msgstr "ا_فتح..."
-
-#: ../grecord/src/gsr-window.c:1966
+#: ../grecord/src/gsr-window.c:2116
 msgid "Open a file"
 msgstr "افتح ملفّ"
 
-#: ../grecord/src/gsr-window.c:1968
+#: ../grecord/src/gsr-window.c:2118
 msgid "Save the current file"
 msgstr "احفظ الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:1969
-msgid "Save _As..."
-msgstr "احفظ _كـ..."
-
-#: ../grecord/src/gsr-window.c:1970
+#: ../grecord/src/gsr-window.c:2120
 msgid "Save the current file with a different name"
 msgstr "احفظ الملف الحالي باسم مغاير"
 
-#: ../grecord/src/gsr-window.c:1971
+#: ../grecord/src/gsr-window.c:2121
 msgid "Open Volu_me Control"
 msgstr "افتح متحكم _شدة الصوت"
 
-#: ../grecord/src/gsr-window.c:1972
+#: ../grecord/src/gsr-window.c:2122
 msgid "Open the audio mixer"
 msgstr "افتح جهاز هندسة الصوت"
 
-#: ../grecord/src/gsr-window.c:1974
+#: ../grecord/src/gsr-window.c:2124
 msgid "Show information about the current file"
 msgstr "اعرض معلومات عن الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:1976
+#: ../grecord/src/gsr-window.c:2126
 msgid "Close the current file"
 msgstr "اغلق الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:1978
+#: ../grecord/src/gsr-window.c:2128
 msgid "Quit the program"
 msgstr "اخرج من البرنامج"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:1981
+#: ../grecord/src/gsr-window.c:2131
 msgid "_Control"
 msgstr "_التحكم"
 
-#: ../grecord/src/gsr-window.c:1983
+#: ../grecord/src/gsr-window.c:2133
 msgid "Record sound"
 msgstr "سجّل صوت"
 
-#: ../grecord/src/gsr-window.c:1985
+#: ../grecord/src/gsr-window.c:2135
 msgid "Play sound"
 msgstr "اعزف صوت"
 
-#: ../grecord/src/gsr-window.c:1987
+#: ../grecord/src/gsr-window.c:2137
 msgid "Stop sound"
 msgstr "أوقِف الصوت"
 
-#: ../grecord/src/gsr-window.c:1992
+#: ../grecord/src/gsr-window.c:2141
+#, fuzzy
+msgid "Contents"
+msgstr "الصدر الأوسط"
+
+#: ../grecord/src/gsr-window.c:2142
 msgid "Open the manual"
 msgstr "افتح الكتيّب"
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2144 ../gst-mixer/src/window.c:351
 msgid "About this application"
 msgstr "حوْل هذا التّطبيق"
 
-#: ../grecord/src/gsr-window.c:2115
+#: ../grecord/src/gsr-window.c:2267
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "لم يمكن تحميل ui.xml. من المحتمل أن البرنامج لم يثبت بصورة صحيحة"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2290
 msgid "Open"
 msgstr "افتح"
 
-#: ../grecord/src/gsr-window.c:2140
+#: ../grecord/src/gsr-window.c:2292
 msgid "Save"
 msgstr "احفظ"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2294
 msgid "Save As"
 msgstr "احفظ كـ"
 
-#: ../grecord/src/gsr-window.c:2197
-msgid "Record from input:"
+#: ../grecord/src/gsr-window.c:2349
+#, fuzzy
+msgid "Record from _input:"
 msgstr "سجّل من الدخْل:"
 
-#: ../grecord/src/gsr-window.c:2214
-msgid "Record as:"
+#: ../grecord/src/gsr-window.c:2371
+#, fuzzy
+msgid "_Record as:"
 msgstr "سجّل ك:"
 
-#: ../grecord/src/gsr-window.c:2252
+#: ../grecord/src/gsr-window.c:2418
 msgid "<none>"
 msgstr "<لا شيء>"
 
-#: ../grecord/src/gsr-window.c:2266
+#: ../grecord/src/gsr-window.c:2432
 msgid "Length:"
 msgstr "الطول:"
+
+#: ../grecord/src/gsr-window.c:2470
+msgid "Level:"
+msgstr ""
+
+#. Translators: this is the window title, %s is the currently open file's name or Untitled
+#: ../grecord/src/gsr-window.c:2561
+#, fuzzy, c-format
+msgid "%s - Sound Recorder"
+msgstr "مسجل الأصوات"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Adjust the volume level"
 msgstr "إضبط مستوى شدة الصوت"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:388
+#: ../gst-mixer/src/window.c:319 ../gst-mixer/src/window.c:320
 msgid "Volume Control"
 msgstr "متحكم شدة الصوت"
 
@@ -1728,75 +1757,75 @@ msgstr "عرض النّافذة"
 msgid "Width of the Window to be displayed"
 msgstr "عرض النّافذة التي سيتم إظهارها"
 
-#: ../gst-mixer/src/element.c:222
+#: ../gst-mixer/src/element.c:197
 msgid "Recording"
 msgstr "يجري التسجيل"
 
-#: ../gst-mixer/src/element.c:224
+#: ../gst-mixer/src/element.c:199
 msgid "Switches"
 msgstr "قاطعات"
 
-#: ../gst-mixer/src/element.c:226
+#: ../gst-mixer/src/element.c:201
 msgid "Options"
 msgstr "خيارات"
 
-#: ../gst-mixer/src/main.c:76
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr ""
+
+#: ../gst-mixer/src/main.c:82
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "متحكم مجهول شدة الصوت %d"
 
-#: ../gst-mixer/src/main.c:205
+#: ../gst-mixer/src/main.c:161
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "لم يوجد إضافات متحكم شدة الصوت GStreamer و/أو أجهزة."
 
-#: ../gst-mixer/src/misc.c:40
+#: ../gst-mixer/src/misc.c:60
 msgid "Capture"
 msgstr "سجّل"
 
-#: ../gst-mixer/src/misc.c:42
+#: ../gst-mixer/src/misc.c:62
 msgid "Switch"
 msgstr "تحوّل"
 
-#: ../gst-mixer/src/misc.c:44
+#: ../gst-mixer/src/misc.c:64
 msgid "Option"
 msgstr "خيار"
 
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:120
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "تفضيلات متحكم الصوت"
 
-#: ../gst-mixer/src/preferences.c:133
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "ا_ختر المقاطع المرئية:"
 
-#: ../gst-mixer/src/track.c:246
+#: ../gst-mixer/src/track.c:247
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:286
+#: ../gst-mixer/src/track.c:287
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "سكون/تفعيل %s"
 
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:302
 #, c-format
 msgid "Track %s: mute"
 msgstr "المقطوعة %s: صمت"
 
-#. FIXME:
-#. * - there's something fishy about this button, it
-#. *     is always FALSE.
-#.
 #. only the record button here
-#: ../gst-mixer/src/track.c:381
+#: ../gst-mixer/src/track.c:377
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "حول تسجيل الصوت من %s"
 
-#: ../gst-mixer/src/track.c:396
+#: ../gst-mixer/src/track.c:395
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "مسلك %s: تسجيل الصوت"
@@ -1806,35 +1835,35 @@ msgstr "مسلك %s: تسجيل الصوت"
 msgid "%s Option Selection"
 msgstr "%s انتقاء الخيار"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:105
 msgid "mono"
 msgstr "1 (مونو)"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:107
 msgid "left"
 msgstr "اليسار"
 
-#: ../gst-mixer/src/volume.c:136
+#: ../gst-mixer/src/volume.c:107
 msgid "right"
 msgstr "اليمين"
 
-#: ../gst-mixer/src/volume.c:139
+#: ../gst-mixer/src/volume.c:110
 msgid "front left"
 msgstr "الصدر اﻷيسر"
 
-#: ../gst-mixer/src/volume.c:140
+#: ../gst-mixer/src/volume.c:111
 msgid "front right"
 msgstr "الصدر الأيمن"
 
-#: ../gst-mixer/src/volume.c:141
+#: ../gst-mixer/src/volume.c:112
 msgid "rear left"
 msgstr "المؤخرة اليسرى"
 
-#: ../gst-mixer/src/volume.c:142
+#: ../gst-mixer/src/volume.c:113
 msgid "rear right"
 msgstr "المؤخرة اليمنى"
 
-#: ../gst-mixer/src/volume.c:143
+#: ../gst-mixer/src/volume.c:114
 msgid "front center"
 msgstr "الصدر الأوسط"
 
@@ -1842,86 +1871,112 @@ msgstr "الصدر الأوسط"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:148
+#: ../gst-mixer/src/volume.c:119
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:149
+#: ../gst-mixer/src/volume.c:120
 msgid "side left"
 msgstr "الجانب اﻷيسر"
 
-#: ../gst-mixer/src/volume.c:150
+#: ../gst-mixer/src/volume.c:121
 msgid "side right"
 msgstr "الجانب الأيمن"
 
-#: ../gst-mixer/src/volume.c:151
+#: ../gst-mixer/src/volume.c:122
 msgid "unknown"
 msgstr "مجهول"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:157
+#: ../gst-mixer/src/volume.c:128
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "شدة الصوت ل %s في قناة %s"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:176
 #, c-format
 msgid "Track %s"
 msgstr "المقطوعة %s"
 
-#: ../gst-mixer/src/volume.c:208
+#: ../gst-mixer/src/volume.c:179
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "القناة %d من المقطوعة %s"
 
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:182
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "المقطوعة %s، القناة %d"
 
-#: ../gst-mixer/src/volume.c:231
+#: ../gst-mixer/src/volume.c:202
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "اقفل القنوات ل %s معا. "
 
-#: ../gst-mixer/src/volume.c:249
+#: ../gst-mixer/src/volume.c:220
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "المقطوعة %s: اقفل القنوات مع بعضها"
 
-#: ../gst-mixer/src/window.c:110
-msgid "_Change Device"
-msgstr "_غيّر الجهاز"
+#: ../gst-mixer/src/window.c:196
+msgid "A GNOME/GStreamer-based volume control application"
+msgstr "تطبيق لشدة الصوت معتمد على جنوم/جستريمر"
 
-#: ../gst-mixer/src/window.c:111
-msgid "Control volume on a different device"
-msgstr "تحكّم بشدة الصوت في جهاز آخر"
-
-#: ../gst-mixer/src/window.c:185
-#, c-format
-msgid "Change device to %s"
-msgstr "_غيّر الجهاز إلى %s"
-
-#. window title and menu selection
-#. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:435
-#, c-format
-msgid "Volume Control: %s"
-msgstr "متحكم شدة الصوت:  %s"
-
-#. Translators comment: put your own name here to appear in the
-#. * about dialog.
-#: ../gst-mixer/src/window.c:382
+#: ../gst-mixer/src/window.c:199
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "جهاد عفيفي\t<djihed@gmail.com>\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../gst-mixer/src/window.c:391
-msgid "A GNOME/GStreamer-based volume control application"
-msgstr "تطبيق لشدة الصوت معتمد على جنوم/جستريمر"
+#. change window title
+#. window title and menu selection
+#: ../gst-mixer/src/window.c:236 ../gst-mixer/src/window.c:482
+#, c-format
+msgid "Volume Control: %s"
+msgstr "متحكم شدة الصوت:  %s"
+
+#: ../gst-mixer/src/window.c:335 ../profiles/audio-profiles-edit.c:87
+msgid "_Edit"
+msgstr "_حرّر"
+
+#: ../gst-mixer/src/window.c:338
+msgid "_Change Device"
+msgstr "_غيّر الجهاز"
+
+#: ../gst-mixer/src/window.c:339
+msgid "Control volume on a different device"
+msgstr "تحكّم بشدة الصوت في جهاز آخر"
+
+#: ../gst-mixer/src/window.c:342
+#, fuzzy
+msgid "Quit the application"
+msgstr "حوْل هذا التّطبيق"
+
+#: ../gst-mixer/src/window.c:344
+#, fuzzy
+msgid "Prefere_nces"
+msgstr "تفضيلات"
+
+#: ../gst-mixer/src/window.c:345
+#, fuzzy
+msgid "Configure the application"
+msgstr "حوْل هذا التّطبيق"
+
+#: ../gst-mixer/src/window.c:347
+msgid "_Contents"
+msgstr ""
+
+#: ../gst-mixer/src/window.c:348
+#, fuzzy
+msgid "Help on this application"
+msgstr "حوْل هذا التّطبيق"
+
+#: ../gst-mixer/src/window.c:447
+#, c-format
+msgid "Change device to %s"
+msgstr "_غيّر الجهاز إلى %s"
 
 #: ../gstreamer-properties/gstreamer-properties.c:195
 msgid "None"
@@ -1940,7 +1995,7 @@ msgstr "الافتراضي"
 msgid "Failure instantiating main window"
 msgstr "فشل تلحيظ النافذة الرئيسية"
 
-#: ../gstreamer-properties/gstreamer-properties.c:661
+#: ../gstreamer-properties/gstreamer-properties.c:653
 msgid "Failed to load glade file; please check your installation."
 msgstr "لم يمكن تحميل ملف glade . الرجاء التأكد من التثبيت."
 
@@ -2015,7 +2070,7 @@ msgid "Autodetect"
 msgstr "تعرف آالي"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:113
+#: ../gstreamer-properties/pipeline-constants.c:115
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - معماريّة لينكس المتقدّمة للصوت"
 
@@ -2024,66 +2079,71 @@ msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - خادم صوت ART"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - خادم صوت انلايتنمنت"
 
 #: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:122
+#: ../gstreamer-properties/pipeline-constants.c:124
 msgid "OSS - Open Sound System"
 msgstr "OSS - نظام الصوت المفتوح"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "PulseAudio Sound Server"
 msgstr "خادم صوت PulseAudio"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:108
-#: ../gstreamer-properties/pipeline-constants.c:132
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Custom"
 msgstr "مخصّص"
 
 #: ../gstreamer-properties/pipeline-constants.c:102
+#, fuzzy
+msgid "OpenGL"
+msgstr "افتح"
+
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - طبقة DirectMedia بسيطة"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "X Window System (No Xv)"
 msgstr "نظام النوفذة إكس (لا Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "نظام النوفذة إكس (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:130
 msgid "Test Sound"
 msgstr "اختبر الصوت"
 
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Silence"
 msgstr "صمت"
 
-#: ../gstreamer-properties/pipeline-constants.c:137
+#: ../gstreamer-properties/pipeline-constants.c:139
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (e.g. Zoran v4l device)"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "Test Input"
 msgstr "اختبر الدخْل"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Video for Linux (v4l)"
 msgstr "فيديو للينكس (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux 2 (v4l2)"
 msgstr "فيديو للينكس 2 (v4l2)"
 
@@ -2092,47 +2152,43 @@ msgstr "فيديو للينكس 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "فشل بناء خط أنابيب إختبار لـ '%s'"
 
-#: ../profiles/audio-profile-edit.c:117 ../profiles/audio-profiles-edit.c:535
+#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:539
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "حصل خطأ عند عرض المساعدة: %s"
 
-#: ../profiles/audio-profile-edit.c:329
+#: ../profiles/audio-profile-edit.c:334
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "حرّر الطوْر: %s"
 
-#: ../profiles/audio-profile.c:104
+#: ../profiles/audio-profile.c:92
 msgid "<no name>"
 msgstr "<لا اسم>"
 
-#: ../profiles/audio-profile.c:105 ../profiles/audio-profile.c:1015
+#: ../profiles/audio-profile.c:93 ../profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr "<لا وصف>"
 
-#: ../profiles/audio-profile.c:220
+#: ../profiles/audio-profile.c:208
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
 msgstr "خطأ عند تلقي قائمة أطوار gm_audio. (%s)\n"
 
-#: ../profiles/audio-profile.c:721
+#: ../profiles/audio-profile.c:709
 #, c-format
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr "حدث خطأ عند الاشتراك للتّبليغ عن تغييرات قائمة أطوار الصّوت. (%s)\n"
 
-#: ../profiles/audio-profile.c:924
+#: ../profiles/audio-profile.c:912
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "خطأ عند نسيان مسار أطوار %s.(%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:83
-msgid "_Edit"
-msgstr "_حرّر"
-
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:461
+#: ../profiles/audio-profiles-edit.c:465
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
@@ -2141,62 +2197,34 @@ msgstr[1] "هل تحذف هذين الطورين؟\n"
 msgstr[2] "هل تحذف هذه الـ%d أطوار؟\n"
 msgstr[3] "هل تحذف هذه الـ%d أطوار؟\n"
 
-#: ../profiles/audio-profiles-edit.c:480
+#: ../profiles/audio-profiles-edit.c:484
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "هل تحذف هذه الطور\"%s\"؟"
 
-#: ../profiles/audio-profiles-edit.c:502
+#: ../profiles/audio-profiles-edit.c:506
 msgid "Delete Profile"
 msgstr "احذف الطور"
 
-#.
-#. dialog =
-#. gtk_dialog_new_with_buttons (_("Edit Profiles"),
-#. NULL,
-#. GTK_DIALOG_DESTROY_WITH_PARENT,
-#. GTK_STOCK_HELP,
-#. GTK_RESPONSE_HELP,
-#. GTK_STOCK_CLOSE,
-#. GTK_RESPONSE_ACCEPT,
-#. NULL);
-#.
-#. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
-#: ../profiles/audio-profiles-edit.c:598
+#: ../profiles/audio-profiles-edit.c:602
 msgid "Edit GNOME Audio Profiles"
 msgstr "حرّر أطوار صوت جنوم"
 
-#. FIXME
-#. hbox = gtk_hbox_new (FALSE, PADDING);
-#. gtk_box_pack_end (GTK_BOX (vbox),
-#. hbox, FALSE, FALSE, 0);
-#.
-#. app->manage_profiles_default_menu = profile_optionmenu_new ();
-#. g_signal_connect (G_OBJECT (app->manage_profiles_default_menu),
-#. "changed", G_CALLBACK (default_menu_changed),
-#. app);
-#.
-#. gtk_box_pack_start (GTK_BOX (hbox),
-#. label, TRUE, TRUE, 0);
-#.
-#. gtk_box_pack_end (GTK_BOX (hbox),
-#. app->manage_profiles_default_menu, FALSE, FALSE, 0);
-#.
-#: ../profiles/audio-profiles-edit.c:645
+#: ../profiles/audio-profiles-edit.c:651
 msgid "_Profiles:"
 msgstr "أ_طوار:"
 
-#: ../profiles/audio-profiles-edit.c:860
+#: ../profiles/audio-profiles-edit.c:835
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "لديك طور باسم \"%s\" مسبقا"
 
-#: ../profiles/audio-profiles-edit.c:885
+#: ../profiles/audio-profiles-edit.c:860
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "خطأ GConf (FIXME):·%s\n"
 
-#: ../profiles/gmp-util.c:64
+#: ../profiles/gmp-util.c:68
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
@@ -2248,7 +2276,8 @@ msgid ""
 msgstr "وصف للطور، مشتملا للمزيد من المعلومات و حالات استعمال هذا الطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid "A filename extension to be used when storing files encoded with this profile."
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
 msgstr "إمتداد اسم ملف يستخدم عند خزن ملفات مشفرة بهذا الطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
@@ -2263,7 +2292,8 @@ msgstr "اسم مختصر لطور الصوت"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "اسم مختصر لطور الصوت ، يمكن استعماله في المنتقيات و للتحديد الموحد للطور."
+msgstr ""
+"اسم مختصر لطور الصوت ، يمكن استعماله في المنتقيات و للتحديد الموحد للطور."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, AAC"
@@ -2323,7 +2353,10 @@ msgid ""
 "this for preparing files for copying to devices that only support the AAC "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
-msgstr "يستخدم للتحويل إلى صوت بجودة القرص المدمج لكن باستخدام كودك AAC فاقِد. استخدم هذا لتجهيز الملفات للنسخ لأجهزة تدعم كودك AAC فقط. لاحظ أن استخدام هذا الكودك قد لا يكون قانونيا في بلدك، راجع محاميك طلبا للنصيحة."
+msgstr ""
+"يستخدم للتحويل إلى صوت بجودة القرص المدمج لكن باستخدام كودك AAC فاقِد. استخدم "
+"هذا لتجهيز الملفات للنسخ لأجهزة تدعم كودك AAC فقط. لاحظ أن استخدام هذا "
+"الكودك قد لا يكون قانونيا في بلدك، راجع محاميك طلبا للنصيحة."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid ""
@@ -2331,13 +2364,17 @@ msgid ""
 "this for preparing files for copying to devices that only support the MP3 "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
-msgstr "يستخدم للتحويل إلى صوت بجودة القرص المدمج لكن باستخدام كودك MP3 فاقِد. استخدم هذا لتجهيز الملفات للنسخ لأجهزة تدعم كودك MP3 فقط. لاحظ أن استخدام هذا الكودك قد لا يكون قانونيا في بلدك، راجع محاميك طلبا للنصيحة."
+msgstr ""
+"يستخدم للتحويل إلى صوت بجودة القرص المدمج لكن باستخدام كودك MP3 فاقِد. استخدم "
+"هذا لتجهيز الملفات للنسخ لأجهزة تدعم كودك MP3 فقط. لاحظ أن استخدام هذا "
+"الكودك قد لا يكون قانونيا في بلدك، راجع محاميك طلبا للنصيحة."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr "يستخدم للتّحويل إلى ملف صوتٍ غير مضيع بجودةٍ الحديث. استخدم هذا لتسجيل النّطق."
+msgstr ""
+"يستخدم للتّحويل إلى ملف صوتٍ غير مضيع بجودةٍ الحديث. استخدم هذا لتسجيل النّطق."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
@@ -2432,3 +2469,17 @@ msgstr "راقب شدة صوت الخرْج الصوتي"
 msgid "Volume Monitor"
 msgstr "مراقب شدة صوت"
 
+#~ msgid "hours"
+#~ msgstr "ساعات"
+
+#~ msgid "minutes"
+#~ msgstr "دقائق"
+
+#~ msgid "seconds"
+#~ msgstr "ثوان"
+
+#~ msgid "_Open..."
+#~ msgstr "ا_فتح..."
+
+#~ msgid "Save _As..."
+#~ msgstr "احفظ _كـ..."
