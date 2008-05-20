@@ -304,7 +304,6 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   /* remove old */
   while (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
     gtk_list_store_remove (store, &iter);
-	/* does this free COL_TYPE? */
   }
 
   /* take/put reference */
@@ -329,6 +328,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
 			COL_ACTIVE, active,
 			COL_LABEL, track->label,
 			COL_TRACK, track,
+			COL_TYPE, get_page_description (get_page_num (track)),
 			-1);
   }
 }
