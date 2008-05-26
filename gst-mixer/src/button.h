@@ -24,7 +24,6 @@
 
 #include <glib.h>
 #include <gtk/gtkbutton.h>
-#include <gtk/gtkstatusbar.h>
 
 G_BEGIN_DECLS
 
@@ -53,10 +52,6 @@ typedef struct _GnomeVolumeControlButton {
 
   /* image */
   GtkImage *image;
-
-  /* statusstuff */
-  gchar *status_msg;
-  GtkStatusbar *statusbar;
 } GnomeVolumeControlButton;
 
 typedef struct _GnomeVolumeControlButtonClass {
@@ -66,8 +61,7 @@ typedef struct _GnomeVolumeControlButtonClass {
 GType		gnome_volume_control_button_get_type	(void);
 GtkWidget *	gnome_volume_control_button_new		(gchar   *active_icon,
 							 gchar   *inactive_icon,
-							 GtkStatusbar *statusbar,
-							 gchar   *status_msg);
+							 gchar   *msg);
 gboolean	gnome_volume_control_button_get_active	(GnomeVolumeControlButton *button);
 void		gnome_volume_control_button_set_active	(GnomeVolumeControlButton *button,
 							 gboolean active);

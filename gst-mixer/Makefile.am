@@ -1,7 +1,6 @@
 Desktopdir = $(datadir)/applications
 SUBDIRS = doc icons pixmaps src
 
-
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
@@ -19,14 +18,7 @@ else
 install-data-local:
 endif
 
-uidir = $(pkgdatadir)
-ui_FILES = \
-	gnome-volume-control-ui.xml 
-
-ui_DATA = $(ui_FILES)
-
 EXTRA_DIST = $(Desktop_in_files) \
-	$(ui_FILES) \
 	gnome-volume-control.schemas.in 
 
 

@@ -26,48 +26,13 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "keys.h"
 #include "preferences.h"
 #include "window.h"
 
 G_DEFINE_TYPE (GnomeVolumeControlWindow, gnome_volume_control_window, GTK_TYPE_WINDOW)
-
-static void
-menu_item_select_cb (GtkMenuItem *proxy, GtkStatusbar *statusbar)
-{
-  GtkAction *action;
-  char *message;
-
-  action = g_object_get_data (G_OBJECT (proxy), "gtk-action");
-
-  g_return_if_fail (action != NULL);
-
-  g_object_get (G_OBJECT (action), "tooltip", &message, NULL);
-
-  if (message) {
-    gtk_statusbar_push (statusbar, 0, message);
-    g_free (message);
-  }
-}
-
-static void
-menu_item_deselect_cb (GtkMenuItem *proxy, GtkStatusbar *statusbar)
-{
-  gtk_statusbar_pop (statusbar, 0);
-}
-
-static void
-connect_proxy_cb (GtkUIManager *manager,
-                  GtkAction *action,
-                  GtkWidget *proxy,
-                  GtkStatusbar *statusbar)
-{
-  if (GTK_IS_MENU_ITEM (proxy)) {
-    g_signal_connect (proxy, "select", G_CALLBACK (menu_item_select_cb), statusbar);
-    g_signal_connect (proxy, "deselect", G_CALLBACK (menu_item_deselect_cb), statusbar);
-  }
-}
 
 void gnome_volume_control_window_set_page(GtkWidget *widget, const gchar *page)
 {
@@ -85,34 +50,21 @@ void gnome_volume_control_window_set_page(GtkWidget *widget, const gchar *page)
     gtk_notebook_set_current_page (GTK_NOTEBOOK (win->el), 0);
 }
 
-static void
-disconnect_proxy_cb (GtkUIManager *manager,
-                     GtkAction *action,
-                     GtkWidget *proxy,
-                     GtkStatusbar *statusbar)
-{
-  if (GTK_IS_MENU_ITEM (proxy)) {
-    g_signal_handlers_disconnect_by_func (proxy, G_CALLBACK (menu_item_select_cb), statusbar);
-    g_signal_handlers_disconnect_by_func (proxy, G_CALLBACK (menu_item_deselect_cb), statusbar);
-  }
-}
-
 
 /*
  * Menu actions.
  */
 
 static void
-cb_change (GtkToggleAction *action,
+cb_change (GtkComboBox *widget,
 	   GnomeVolumeControlWindow *win)
 {
   GConfValue *value;
   gchar *device_name;
 
-  if (gtk_toggle_action_get_active (action) == FALSE)
+  device_name = gtk_combo_box_get_active_text (widget);
+  if (device_name == NULL)
     return;
-
-  device_name = g_object_get_data (G_OBJECT (action), "device-name");
 
   value = gconf_value_new (GCONF_VALUE_STRING);
   gconf_value_set_string (value, device_name);
@@ -149,8 +101,8 @@ cb_preferences (GtkAction *action,
   }
 }
 
-static void 
-open_uri (GtkWindow *parent, 
+static void
+open_uri (GtkWindow *parent,
           const char *uri)
 {
   GtkWidget *dialog;
@@ -163,7 +115,7 @@ open_uri (GtkWindow *parent,
   cmdline = g_strconcat ("xdg-open ", uri, NULL);
 
   if (gdk_spawn_command_line_on_screen (screen, cmdline, &error) == FALSE) {
-    dialog = gtk_message_dialog_new (parent, GTK_DIALOG_DESTROY_WITH_PARENT, 
+    dialog = gtk_message_dialog_new (parent, GTK_DIALOG_DESTROY_WITH_PARENT,
                                      GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, error->message);
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_destroy(dialog);
@@ -181,15 +133,14 @@ cb_help (GtkAction *action,
 }
 
 static void
-cb_about (GtkAction *action,
-	  GnomeVolumeControlWindow *win)
+cb_show_about (GnomeVolumeControlWindow *win)
 {
   const gchar *authors[] = { "Ronald Bultje <rbultje@ronald.bitfreak.net>",
 			     "Leif Johnson <leif@ambient.2y.net>",
 			     NULL };
   const gchar *documenters[] = { "Sun Microsystems",
 				 NULL};
-  
+
   gtk_show_about_dialog (GTK_WINDOW (win),
 			 "version", VERSION,
 			 "copyright", "Copyright \xc2\xa9 2003-2004 Ronald Bultje",
@@ -211,8 +162,8 @@ cb_gconf (GConfClient *client,
   GConfValue *value;
   const gchar *el, *cur_el_str;
 
-  if (!strcmp (gconf_entry_get_key (entry),
-	       GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT) &&
+  if (g_str_equal (gconf_entry_get_key (entry),
+		   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT) &&
       (value = gconf_entry_get_value (entry)) != NULL &&
       (value->type == GCONF_VALUE_STRING) &&
       (el = gconf_value_get_string (value)) != NULL) {
@@ -329,31 +280,6 @@ gnome_volume_control_window_init (GnomeVolumeControlWindow *win)
   gtk_window_set_default_size (GTK_WINDOW (win), width, height);
 }
 
-
-static const GtkActionEntry action_entries[] = {
-  { "File",  NULL, N_("_File") },
-  { "Edit",  NULL, N_("_Edit") },
-  { "Help",  NULL, N_("_Help") },
-
-  { "FileChangeDevice", NULL,  N_("_Change Device"), NULL, 
-    N_("Control volume on a different device"),
-    NULL },
-  { "FileQuit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q",  
-    N_("Quit the application"),
-    G_CALLBACK (cb_exit) },
-  { "EditPreferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, 
-    N_("Configure the application"), 
-    G_CALLBACK (cb_preferences) },
-  { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", 
-    N_("Help on this application"),
-    G_CALLBACK (cb_help) },
-  { "HelpAbout", GTK_STOCK_ABOUT, N_("_About"), NULL, 
-    N_("About this application"),
-    G_CALLBACK (cb_about) }
-};
-
-
-
 GtkWidget *
 gnome_volume_control_window_new (GList *elements)
 {
@@ -361,14 +287,20 @@ gnome_volume_control_window_new (GList *elements)
   GstElement *active_element;
   GList *item;
   GnomeVolumeControlWindow *win;
+  GtkAccelGroup *accel_group;
+  GtkWidget *combo_box;
+  GtkWidget *label;
+  GtkWidget *hbox;
+  GtkWidget *buttons;
   GtkWidget *el;
+  GtkWidget *prefsbtn;
+  GtkWidget *closebtn;
+  GtkWidget *helpbtn;
   gint count = 0;
   gchar *title;
-  guint change_device_menu_id;
   GtkActionGroup *action_group;
   GtkWidget *vbox;
-  GtkWidget *menubar;
-  GSList *radio_group = NULL;
+  GtkCellRenderer *renderer;
   gint active_element_num;
 
   g_return_val_if_fail (elements != NULL, NULL);
@@ -378,30 +310,11 @@ gnome_volume_control_window_new (GList *elements)
   win = g_object_new (GNOME_VOLUME_CONTROL_TYPE_WINDOW, NULL);
   win->elements = elements;
 
-  win->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
+  accel_group = gtk_accel_group_new ();
 
-  win->ui_manager = gtk_ui_manager_new ();
-
-  /* Hookup menu tooltips to the statusbar */
-  g_signal_connect (win->ui_manager, "connect_proxy",
-	            G_CALLBACK (connect_proxy_cb), win->statusbar);
-  g_signal_connect (win->ui_manager, "disconnect_proxy",
-		    G_CALLBACK (disconnect_proxy_cb), win->statusbar);
-
-  action_group = gtk_action_group_new ("MenuActions");
-  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
-	
-  gtk_action_group_add_actions (action_group, action_entries, 
-                                G_N_ELEMENTS (action_entries), win);
-
-  gtk_ui_manager_insert_action_group (win->ui_manager, action_group, 0);
-
-  gtk_ui_manager_add_ui_from_file (win->ui_manager, DATA_DIR "/gnome-volume-control-ui.xml", NULL);
-
-  menubar = gtk_ui_manager_get_widget (win->ui_manager, "/MainMenu");
-
-
-
+  gtk_window_add_accel_group (GTK_WINDOW (win), accel_group);
+  gtk_accel_group_connect (accel_group, GDK_A, GDK_CONTROL_MASK, 0, 
+			   g_cclosure_new_swap (G_CALLBACK (cb_show_about), win, NULL));
   /* get active element, if any (otherwise we use the default) */
   active_el_str = gconf_client_get_string (win->client,
 					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
@@ -435,41 +348,24 @@ gnome_volume_control_window_new (GList *elements)
   }
   active_element_num = count;
 
-  change_device_menu_id = gtk_ui_manager_new_merge_id (win->ui_manager);
-
+  combo_box = gtk_combo_box_new_text ();
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+  gtk_cell_layout_clear (GTK_CELL_LAYOUT (combo_box));
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, TRUE);
+  gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box), renderer, "text", 0);
   for (count = 0, item = elements; item != NULL; item = item->next, count++) {
     const gchar *name;
     gchar *tip;
     gchar *label;
-    GtkRadioAction *radio_action;
 
     name = g_object_get_data (item->data, "gnome-volume-control-name");
     tip = g_strdup_printf (_("Change device to %s"), name);
-    label = g_strdup_printf ("_%d: %s", count, name);
-
-    radio_action = gtk_radio_action_new (name, label, tip, NULL, count);
-    g_object_set_data_full (G_OBJECT (radio_action), "device-name", 
-                            g_strdup (name), (GDestroyNotify)g_free);
-
+    gtk_combo_box_append_text(GTK_COMBO_BOX (combo_box), name);
     g_free (tip);
-    g_free (label);
-
-    gtk_radio_action_set_group (radio_action, radio_group);
-    radio_group = gtk_radio_action_get_group (radio_action);
-
-    g_signal_connect (radio_action, "activate", G_CALLBACK (cb_change), win);
-
-    if (count == active_element_num)
-      gtk_radio_action_set_current_value (radio_action, active_element_num);
-
-    gtk_action_group_add_action (action_group, GTK_ACTION (radio_action));
-    g_object_unref (radio_action);
-
-    gtk_ui_manager_add_ui (win->ui_manager, change_device_menu_id,
-                           "/MainMenu/File/FileChangeDevice/Devices Placeholder",
-                           name, name, GTK_UI_MANAGER_AUTO, FALSE);
-
   }
+  gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), active_element_num);
+  g_signal_connect (combo_box, "changed", G_CALLBACK (cb_change), win);
 
 
   /* gconf */
@@ -487,20 +383,50 @@ gnome_volume_control_window_new (GList *elements)
 
   win->use_default_mixer = (active_el_str == NULL);
 
+  /* add the combo box to choose the device */
+  label = gtk_label_new (NULL);
+  gtk_label_set_text_with_mnemonic (GTK_LABEL (label), _("_Device: "));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), combo_box);
+
+  hbox = gtk_hbox_new (FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), combo_box, TRUE, TRUE, 0);
+
   /* add content for this element */
   gst_element_set_state (active_element, GST_STATE_READY);
   el = gnome_volume_control_element_new (active_element,
-					 win->client,
-					 win->statusbar);
+					 win->client);
   win->el = GNOME_VOLUME_CONTROL_ELEMENT (el);
-  gtk_container_set_border_width (GTK_CONTAINER (el), 6);
 
-  /* Put the menubar, the elements and the statusbar in a vbox */
+  /* create the buttons box */
+  helpbtn = gtk_button_new_from_stock (GTK_STOCK_HELP);
+  prefsbtn = gtk_button_new_from_stock (GTK_STOCK_PREFERENCES);
+  closebtn = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  g_signal_connect (helpbtn, "clicked", G_CALLBACK (cb_help), win);
+  g_signal_connect (prefsbtn, "clicked", G_CALLBACK (cb_preferences), win);
+  g_signal_connect (closebtn, "clicked", G_CALLBACK (cb_exit), win);
+  gtk_widget_add_accelerator (closebtn, "clicked", accel_group,
+			      GDK_Escape, 0, 0);
+  gtk_widget_add_accelerator (helpbtn, "clicked", accel_group,
+			      GDK_F1, 0, 0);
+  buttons = gtk_hbutton_box_new ();
+  gtk_box_pack_start (GTK_BOX (buttons), helpbtn, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (buttons), prefsbtn, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (buttons), closebtn, FALSE, FALSE, 0);
+  gtk_box_set_spacing (GTK_BOX (buttons), 6);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (buttons), GTK_BUTTONBOX_END);
+  gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (buttons), helpbtn, TRUE);
+
+  /* Put the the elements in a vbox */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER(win), vbox);
-  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox), el, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET(win->statusbar), FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (vbox), el, TRUE, TRUE, 6);
+  gtk_box_pack_start (GTK_BOX (vbox), buttons, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
+
+  /* set tooltips */
+  gtk_widget_set_tooltip_text (combo_box, _("Control volume on a different device"));
 
   gtk_widget_show_all (GTK_WIDGET (win));
 

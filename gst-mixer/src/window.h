@@ -55,9 +55,6 @@ typedef struct {
   /* contents */
   GnomeVolumeControlElement *el;
 
-  GtkUIManager *ui_manager;
-  GtkStatusbar *statusbar;
-
   /* preferences window, if opened */
   GtkWidget *prefs;
 

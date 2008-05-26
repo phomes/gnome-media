@@ -58,13 +58,11 @@ gnome_volume_control_element_init (GnomeVolumeControlElement *el)
 {
   el->client = NULL;
   el->mixer = NULL;
-  el->statusbar = NULL;
 }
 
 GtkWidget *
 gnome_volume_control_element_new (GstElement   *element,
-				  GConfClient  *client,
-				  GtkStatusbar *statusbar)
+				  GConfClient  *client)
 {
   GnomeVolumeControlElement *el;
 
@@ -73,7 +71,6 @@ gnome_volume_control_element_new (GstElement   *element,
   /* element */
   el = g_object_new (GNOME_VOLUME_CONTROL_TYPE_ELEMENT, NULL);
   el->client = g_object_ref (G_OBJECT (client));
-  el->statusbar = statusbar;
 
   gconf_client_add_dir (el->client, GNOME_VOLUME_CONTROL_KEY_DIR,
 			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
@@ -189,8 +186,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 						    GstMixer      *mixer,
 						    GstMixerTrack *track,
 						    GtkWidget     *left_sep,
-						    GtkWidget     *right_sep,
-						    GtkStatusbar  *statusbar);
+						    GtkWidget     *right_sep);
   } content[4] = {
     { _("Playback"), NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_playback },
@@ -280,8 +276,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     /* widget */
     trkw = content[i].get_track_widget (GTK_TABLE (content[i].page),
 					content[i].pos++, el->mixer, track,
-					content[i].old_sep, content[i].new_sep,
-					el->statusbar);
+					content[i].old_sep, content[i].new_sep);
     gnome_volume_control_track_show (trkw, active);
 
     g_object_set_data (G_OBJECT (track),

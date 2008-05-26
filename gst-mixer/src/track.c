@@ -269,8 +269,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
 static void
 gnome_volume_control_track_put_switch (GtkTable *table,
 				       gint      tab_pos,
-				       GnomeVolumeControlTrack *ctrl,
-				       GtkStatusbar *statusbar)
+				       GnomeVolumeControlTrack *ctrl)
 {
   GtkWidget *button;
   AtkObject *accessible;
@@ -287,7 +286,7 @@ gnome_volume_control_track_put_switch (GtkTable *table,
   msg = g_strdup_printf (_("Mute/unmute %s"), ctrl->track->label);
   button = gnome_volume_control_button_new ("audio-volume-high",
 					    "audio-volume-muted",
-					    statusbar, msg);
+					     msg);
   ctrl->mute = GNOME_VOLUME_CONTROL_BUTTON (button);
   g_free (msg);
   gnome_volume_control_button_set_active (GNOME_VOLUME_CONTROL_BUTTON (button),
@@ -317,8 +316,7 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 					 GstMixer *mixer,
 					 GstMixerTrack *track,
 					 GtkWidget *l_sep,
-					 GtkWidget *r_sep,
-					 GtkStatusbar *statusbar)
+					 GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
   GtkWidget *slider;
@@ -334,20 +332,19 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 
   /* switch exception (no sliders) */
   if (track->num_channels == 0) {
-    gnome_volume_control_track_put_switch (table, tab_pos, ctrl, statusbar);
+    gnome_volume_control_track_put_switch (table, tab_pos, ctrl);
     return ctrl;
   }
 
   ctrl->sliderbox = gnome_volume_control_volume_new (ctrl->mixer,
-						     ctrl->track, 6,
-						     statusbar);
+						     ctrl->track, 6);
   gtk_table_attach (GTK_TABLE (table), ctrl->sliderbox,
 		    tab_pos, tab_pos + 1, 2, 3,
 		    GTK_EXPAND, GTK_EXPAND | GTK_FILL, 0, 0);
   gtk_widget_show (ctrl->sliderbox);
 
   /* mute button */
-  gnome_volume_control_track_put_switch (table, tab_pos, ctrl, statusbar);
+  gnome_volume_control_track_put_switch (table, tab_pos, ctrl);
 
   return ctrl;
 }
@@ -358,8 +355,7 @@ gnome_volume_control_track_add_recording (GtkTable *table,
 					  GstMixer *mixer,
 					  GstMixerTrack *track,
 					  GtkWidget *l_sep,
-					  GtkWidget *r_sep,
-					  GtkStatusbar *statusbar)
+					  GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
   GtkWidget *button;
@@ -367,8 +363,7 @@ gnome_volume_control_track_add_recording (GtkTable *table,
   gchar *accessible_name, *msg;
 
   ctrl = gnome_volume_control_track_add_playback (table, tab_pos, mixer,
-						  track, l_sep, r_sep,
-						  statusbar);
+						  track, l_sep, r_sep);
   if (track->num_channels == 0) {
     return ctrl;
   }
@@ -379,8 +374,7 @@ gnome_volume_control_track_add_recording (GtkTable *table,
    * - there's something fishy about this button, it
    *     is always FALSE.
    */
-  button = gnome_volume_control_button_new ("audio-input-microphone", "audio-input-microphone-muted",
-					    statusbar, msg);
+  button = gnome_volume_control_button_new ("audio-input-microphone", "audio-input-microphone-muted", msg);
   ctrl->record = GNOME_VOLUME_CONTROL_BUTTON (button);
   g_free (msg);
   gnome_volume_control_button_set_active (GNOME_VOLUME_CONTROL_BUTTON (button),
@@ -412,8 +406,7 @@ gnome_volume_control_track_add_switch (GtkTable *table,
 				       GstMixer *mixer,
 				       GstMixerTrack *track,
 				       GtkWidget *l_sep,
-				       GtkWidget *r_sep,
-				       GtkStatusbar *statusbar)
+				       GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
 
@@ -447,8 +440,7 @@ gnome_volume_control_track_add_option (GtkTable *table,
 				       GstMixer *mixer,
 				       GstMixerTrack *track,
 				       GtkWidget *l_sep,
-				       GtkWidget *r_sep,
-				       GtkStatusbar *statusbar)
+				       GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
   GstMixerOptions *options = GST_MIXER_OPTIONS (track);

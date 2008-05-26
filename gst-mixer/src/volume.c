@@ -78,71 +78,7 @@ gnome_volume_control_volume_init (GnomeVolumeControlVolume *vol)
   vol->scales = NULL;
   vol->button = NULL;
   vol->locked = FALSE;
-  vol->statusbar = NULL;
   vol->id = 0;
-}
-
-static gboolean
-cb_mouseover (GtkScale *scale,
-	      GdkEventCrossing *event,
-	      gpointer data)
-{
-  GnomeVolumeControlVolume *vol = data;
-  gchar *msg, *chan;
-  GList *items;
-  gint n = 0;
-
-  for (items = vol->scales; items != NULL; items = items->next, n++)
-    if (items->data == scale)
-      break;
-  g_assert (items != NULL);
-
-  /* somewhat dirty hack that will suffice for now. 1 chan
-   * means mono, two means stereo (left/right) and > 2 means
-   * alsa, where channel order is front, rear, center, lfe,
-   * side. */
-  if (vol->track->num_channels == 1) {
-    chan = _("mono");
-  } else if (vol->track->num_channels == 2) {
-    chan = (n == 0) ? _("left") : _("right");
-  } else {
-    switch (n) {
-      case 0:  chan = _("front left"); break;
-      case 1:  chan = _("front right"); break;
-      case 2:  chan = _("rear left"); break;
-      case 3:  chan = _("rear right"); break;
-      case 4:  chan = _("front center"); break;
-      /* Translators: This is the name of a surround sound channel. It
-       * stands for "Low-Frequency Effects". If you're not sure that
-       * this has an established and different translation in your
-       * language, leave it unchanged. */
-      case 5:  chan = _("LFE"); break;
-      case 6:  chan = _("side left"); break;
-      case 7:  chan = _("side right"); break;
-      default: chan = _("unknown"); break;
-    }
-  }
-
-  /* Here, we can actually tell people that this
-   * is a slider that will change channel X. */
-  msg = g_strdup_printf (_("Volume of %s channel on %s"),
-      chan, vol->track->label);
-  gtk_statusbar_push (vol->statusbar, 0, msg);
-  g_free (msg);
-
-  return FALSE;
-}
-
-static gboolean
-cb_mouseout (GtkScale *scale,
-	     GdkEventCrossing *event,
-	     gpointer data)
-{
-  GnomeVolumeControlVolume *vol = data;
-
-  gtk_statusbar_pop (vol->statusbar, 0);
-
-  return FALSE;
 }
 
 static GtkWidget *
@@ -164,10 +100,6 @@ get_scale (GnomeVolumeControlVolume *vol,
   slider = gtk_vscale_new (GTK_ADJUSTMENT (adj));
   gtk_scale_set_draw_value (GTK_SCALE (slider), FALSE);
   gtk_range_set_inverted (GTK_RANGE (slider), TRUE);
-  g_signal_connect (slider, "enter-notify-event",
-		    G_CALLBACK (cb_mouseover), vol);
-  g_signal_connect (slider, "leave-notify-event",
-		    G_CALLBACK (cb_mouseout), vol);
 
   /* a11y */
   accessible = gtk_widget_get_accessible (slider);
@@ -202,7 +134,7 @@ get_button (GnomeVolumeControlVolume *vol,
   msg = g_strdup_printf (_("Lock channels for %s together"), vol->track->label);
   vol->button = gnome_volume_control_button_new ("chain.png",
 						 "chain-broken.png",
-						 vol->statusbar, msg);
+						 msg);
   g_free (msg);
   g_signal_connect (vol->button, "clicked",
 		    G_CALLBACK (cb_lock_toggled), vol);
@@ -227,18 +159,18 @@ get_button (GnomeVolumeControlVolume *vol,
 GtkWidget *
 gnome_volume_control_volume_new (GstMixer *mixer,
 				 GstMixerTrack *track,
-				 gint      padding,
-				 GtkStatusbar *statusbar)
+				 gint      padding)
 {
   GnomeVolumeControlVolume *vol;
   gint *volumes, n;
+  gchar *msg, *chan;
+  GList *items;
 
   /* volume */
   vol = g_object_new (GNOME_VOLUME_CONTROL_TYPE_VOLUME, NULL);
   gst_object_ref (GST_OBJECT (mixer));
   vol->mixer = mixer;
   vol->track = g_object_ref (G_OBJECT (track));
-  vol->statusbar = statusbar;
   if (padding >= 0)
     vol->padding = padding;
 
@@ -253,6 +185,39 @@ gnome_volume_control_volume_new (GstMixer *mixer,
     gtk_fixed_put (GTK_FIXED (vol), slider, 0, 0);
     gtk_widget_show (slider);
     vol->scales = g_list_append (vol->scales, slider);
+
+    /* somewhat dirty hack that will suffice for now. 1 chan
+     * means mono, two means stereo (left/right) and > 2 means
+     * alsa, where channel order is front, rear, center, lfe,
+     * side. */
+    if (vol->track->num_channels == 1) {
+        chan = _("mono");
+    } else if (vol->track->num_channels == 2) {
+        chan = (n == 0) ? _("left") : _("right");
+    } else {
+        switch (n) {
+            case 0:  chan = _("front left"); break;
+            case 1:  chan = _("front right"); break;
+            case 2:  chan = _("rear left"); break;
+            case 3:  chan = _("rear right"); break;
+            case 4:  chan = _("front center"); break;
+            /* Translators: This is the name of a surround sound channel. It
+             * stands for "Low-Frequency Effects". If you're not sure that
+             * this has an established and different translation in your
+             * language, leave it unchanged. */
+            case 5:  chan = _("LFE"); break;
+            case 6:  chan = _("side left"); break;
+            case 7:  chan = _("side right"); break;
+            default: chan = _("unknown"); break;
+        }
+    }
+
+    /* Here, we can actually tell people that this
+     * is a slider that will change channel X. */
+    msg = g_strdup_printf (_("Volume of %s channel on %s"),
+            chan, vol->track->label);
+    gtk_widget_set_tooltip_text (slider, msg);
+    g_free (msg);
   }
 
   /* chainbutton */

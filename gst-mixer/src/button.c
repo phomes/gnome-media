@@ -53,8 +53,6 @@ gnome_volume_control_button_class_init (GnomeVolumeControlButtonClass *klass)
 
   gobject_class->dispose = gnome_volume_control_button_dispose;
   gtkbutton_class->clicked = gnome_volume_control_button_clicked;
-  gtkwidget_class->enter_notify_event = gnome_volume_control_button_mouseover;
-  gtkwidget_class->leave_notify_event = gnome_volume_control_button_mouseout;
 }
 
 static void
@@ -64,9 +62,6 @@ gnome_volume_control_button_init (GnomeVolumeControlButton *button)
   button->inactive_icon = NULL;
 
   button->active = FALSE;
-
-  button->status_msg = NULL;
-  button->statusbar = NULL;
 }
 
 static void
@@ -74,19 +69,13 @@ gnome_volume_control_button_dispose (GObject *object)
 {
   GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (object);
 
-  if (button->status_msg) {
-    g_free (button->status_msg);
-    button->status_msg = NULL;
-  }
-
   G_OBJECT_CLASS (gnome_volume_control_button_parent_class)->dispose (object);
 }
 
 GtkWidget *
 gnome_volume_control_button_new (gchar *active_icon,
 				 gchar *inactive_icon,
-				 GtkStatusbar *statusbar,
-				 gchar *status_msg)
+				 gchar *msg)
 {
   GnomeVolumeControlButton *button;
   GtkWidget *image;
@@ -102,8 +91,7 @@ gnome_volume_control_button_new (gchar *active_icon,
   button->image = GTK_IMAGE (image);
   gtk_button_clicked (GTK_BUTTON (button));
 
-  button->statusbar = statusbar;
-  button->status_msg = g_strdup (status_msg);
+  gtk_widget_set_tooltip_text (GTK_WIDGET (button), g_strdup (msg));
 
   return GTK_WIDGET (button);
 }
@@ -151,30 +139,4 @@ gnome_volume_control_button_clicked (GtkButton *_button)
 				GTK_ICON_SIZE_MENU);
     }
   }
-}
-
-/*
- * Statusbar stuff.
- */
-
-static gboolean
-gnome_volume_control_button_mouseover (GtkWidget *widget,
-				       GdkEventCrossing *event)
-{
-  GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (widget);
-
-  gtk_statusbar_push (button->statusbar, 0, button->status_msg);
-
-  return GTK_WIDGET_CLASS (gnome_volume_control_button_parent_class)->enter_notify_event (widget, event);
-}
-
-static gboolean
-gnome_volume_control_button_mouseout (GtkWidget *widget,
-				      GdkEventCrossing *event)
-{
-  GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (widget);
-
-  gtk_statusbar_pop (button->statusbar, 0);
-
-  return GTK_WIDGET_CLASS (gnome_volume_control_button_parent_class)->leave_notify_event (widget, event);
 }
