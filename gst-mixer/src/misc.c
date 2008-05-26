@@ -57,11 +57,11 @@ gchar *get_page_description (gint n)
 	case 0:
 		return _("Playback");
 	case 1:
-		return _("Capture");
+		return _("Recording");
 	case 2:
-		return _("Switch");
+		return _("Switches");
 	case 3:
-		return _("Option");
+		return _("Options");
 	}
 
 	g_assert_not_reached ();
