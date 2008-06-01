@@ -342,13 +342,9 @@ set_gconf_track_active(GConfClient *client, GstMixer *mixer,
 		       GstMixerTrack *track, gboolean active)
 {
   gchar *key;
-  GConfValue *value;
 
   key = get_gconf_key (mixer, track);
-  value = gconf_value_new (GCONF_VALUE_BOOL);
-  gconf_value_set_bool (value, active);
-  gconf_client_set (client, key, value, NULL);
-  gconf_value_free (value);
+  gconf_client_set_bool (client, key, active, NULL);
   g_free (key);
 }
 

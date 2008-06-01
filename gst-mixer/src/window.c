@@ -59,17 +59,14 @@ static void
 cb_change (GtkComboBox *widget,
 	   GnomeVolumeControlWindow *win)
 {
-  GConfValue *value;
   gchar *device_name;
 
   device_name = gtk_combo_box_get_active_text (widget);
-  if (device_name == NULL)
-    return;
+  g_return_if_fail (device_name != NULL);
 
-  value = gconf_value_new (GCONF_VALUE_STRING);
-  gconf_value_set_string (value, device_name);
-  gconf_client_set (win->client, GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT, value, NULL);
-  gconf_value_free (value);
+  gconf_client_set_string (win->client, GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT, device_name, NULL);
+
+  g_free (device_name);
 }
 
 static void
