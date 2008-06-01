@@ -369,7 +369,10 @@ cb_gconf (GConfClient *client,
 	g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
       gchar *key = get_gconf_key (el->mixer, track);
 
-      if (!strcmp (gconf_entry_get_key (entry), key)) {
+      g_return_if_fail (gconf_entry_get_key (entry) != NULL);
+      g_return_if_fail (key != NULL);
+
+      if (g_str_equal (gconf_entry_get_key (entry), key)) {
         GConfValue *value = gconf_entry_get_value (entry);
 
         if (value->type == GCONF_VALUE_BOOL) {

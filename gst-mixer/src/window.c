@@ -168,7 +168,11 @@ cb_gconf (GConfClient *client,
 
     for (item = win->elements; item != NULL; item = item->next) {
       cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
-      if (!strcmp (cur_el_str, el)) {
+
+      g_return_if_fail (cur_el_str != NULL);
+      g_return_if_fail (el != NULL);
+
+      if (g_str_equal (cur_el_str, el)) {
         GstElement *old_element = GST_ELEMENT (win->el->mixer);
         gchar *title;
 
@@ -319,7 +323,10 @@ gnome_volume_control_window_new (GList *elements)
   if (active_el_str != NULL && active_el_str != '\0') {
     for (count = 0, item = elements; item != NULL; item = item->next, count++) {
       cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
-      if (!strcmp (active_el_str, cur_el_str)) {
+      if (cur_el_str == NULL)
+	continue;
+
+      if (g_str_equal (active_el_str, cur_el_str)) {
         active_element = item->data;
         break;
       }

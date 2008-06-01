@@ -1,5 +1,14 @@
 2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
+	* gst-mixer/src/track.c (gnome_volume_control_track_add_option),
+	* gst-mixer/src/element.c (cb_gconf),
+	* gst-mixer/src/window.c (gnome_volume_control_window_new):
+
+	Use g_str_equal () and check arguments.
+	(Closes #441641)
+
+2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
 	* gst-mixer/src/window.c (cb_change),
 	gst-mixer/src/preferences.c (set_gconf_track_active):
 
