@@ -150,48 +150,58 @@ cb_show_about (GnomeVolumeControlWindow *win)
 }
 
 static void
+window_change_mixer_element (GnomeVolumeControlWindow *win,
+			     const gchar *el)
+{
+  const char *cur_el_str;
+  GList *item;
+
+  g_return_if_fail (win != NULL);
+  g_return_if_fail (el != NULL);
+
+  for (item = win->elements; item != NULL; item = item->next) {
+    cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
+
+    if (cur_el_str == NULL)
+      continue;
+
+    if (g_str_equal (cur_el_str, el)) {
+      GstElement *old_element = GST_ELEMENT (win->el->mixer);
+      gchar *title;
+
+      /* change element */
+      gst_element_set_state (item->data, GST_STATE_READY);
+      gnome_volume_control_element_change (win->el, item->data);
+
+      if (win->prefs != NULL)
+	gnome_volume_control_preferences_change (GNOME_VOLUME_CONTROL_PREFERENCES (win->prefs), 
+						 item->data);
+
+      if (old_element != NULL)
+	gst_element_set_state (old_element, GST_STATE_NULL);
+
+      /* change window title */
+      title = g_strdup_printf (_("Volume Control: %s"), cur_el_str);
+      gtk_window_set_title (GTK_WINDOW (win), title);
+      g_free (title);
+
+      break;
+    }
+  }
+}
+
+static void
 cb_gconf (GConfClient *client,
 	  guint        connection_id,
 	  GConfEntry  *entry,
 	  gpointer     data)
 {
-  GnomeVolumeControlWindow *win = GNOME_VOLUME_CONTROL_WINDOW (data);
-  GConfValue *value;
-  const gchar *el, *cur_el_str;
+  g_return_if_fail (gconf_entry_get_key (entry) != NULL);
 
   if (g_str_equal (gconf_entry_get_key (entry),
-		   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT) &&
-      (value = gconf_entry_get_value (entry)) != NULL &&
-      (value->type == GCONF_VALUE_STRING) &&
-      (el = gconf_value_get_string (value)) != NULL) {
-    GList *item;
-
-    for (item = win->elements; item != NULL; item = item->next) {
-      cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
-
-      g_return_if_fail (cur_el_str != NULL);
-      g_return_if_fail (el != NULL);
-
-      if (g_str_equal (cur_el_str, el)) {
-        GstElement *old_element = GST_ELEMENT (win->el->mixer);
-        gchar *title;
-
-        /* change element */
-        gst_element_set_state (item->data, GST_STATE_READY);
-        gnome_volume_control_element_change (win->el, item->data);
-        if (win->prefs)
-          gnome_volume_control_preferences_change (
-		GNOME_VOLUME_CONTROL_PREFERENCES (win->prefs), item->data);
-        gst_element_set_state (old_element, GST_STATE_NULL);
-
-        /* change window title */
-        title = g_strdup_printf (_("Volume Control: %s"), cur_el_str);
-        gtk_window_set_title (GTK_WINDOW (win), title);
-        g_free (title);
-
-        break;
-      }
-    }
+		   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT)) {
+    window_change_mixer_element (GNOME_VOLUME_CONTROL_WINDOW (data),
+				 gconf_value_get_string (gconf_entry_get_value (entry)));
   }
 }
 
@@ -314,8 +324,9 @@ gnome_volume_control_window_new (GList *elements)
   accel_group = gtk_accel_group_new ();
 
   gtk_window_add_accel_group (GTK_WINDOW (win), accel_group);
-  gtk_accel_group_connect (accel_group, GDK_A, GDK_CONTROL_MASK, 0, 
+  gtk_accel_group_connect (accel_group, GDK_A, GDK_CONTROL_MASK, 0,
 			   g_cclosure_new_swap (G_CALLBACK (cb_show_about), win, NULL));
+
   /* get active element, if any (otherwise we use the default) */
   active_el_str = gconf_client_get_string (win->client,
 					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
@@ -360,13 +371,10 @@ gnome_volume_control_window_new (GList *elements)
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box), renderer, "text", 0);
   for (count = 0, item = elements; item != NULL; item = item->next, count++) {
     const gchar *name;
-    gchar *tip;
     gchar *label;
 
     name = g_object_get_data (item->data, "gnome-volume-control-name");
-    tip = g_strdup_printf (_("Change device to %s"), name);
     gtk_combo_box_append_text(GTK_COMBO_BOX (combo_box), name);
-    g_free (tip);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), active_element_num);
   g_signal_connect (combo_box, "changed", G_CALLBACK (cb_change), win);
@@ -377,13 +385,6 @@ gnome_volume_control_window_new (GList *elements)
 			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
   gconf_client_notify_add (win->client, GNOME_VOLUME_CONTROL_KEY_DIR,
 			   cb_gconf, win, NULL, NULL);
-
-  /* window title and menu selection */
-  title = g_strdup_printf (_("Volume Control: %s"),
-			   g_object_get_data (G_OBJECT (active_element),
-					      "gnome-volume-control-name"));
-  gtk_window_set_title (GTK_WINDOW (win), title);
-  g_free (title);
 
   win->use_default_mixer = (active_el_str == NULL);
 
@@ -397,9 +398,7 @@ gnome_volume_control_window_new (GList *elements)
   gtk_box_pack_start (GTK_BOX (hbox), combo_box, TRUE, TRUE, 0);
 
   /* add content for this element */
-  gst_element_set_state (active_element, GST_STATE_READY);
-  el = gnome_volume_control_element_new (active_element,
-					 win->client);
+  el = gnome_volume_control_element_new (win->client);
   win->el = GNOME_VOLUME_CONTROL_ELEMENT (el);
 
   /* create the buttons box */
@@ -433,6 +432,10 @@ gnome_volume_control_window_new (GList *elements)
   gtk_widget_set_tooltip_text (combo_box, _("Control volume on a different device"));
 
   gtk_widget_show_all (GTK_WIDGET (win));
+
+  /* refresh the control and window title with the default mixer */
+  window_change_mixer_element (win, g_object_get_data (G_OBJECT (active_element),
+						       "gnome-volume-control-name"));
 
   /* FIXME:
    * - set error handler (cb_error) after device activation:

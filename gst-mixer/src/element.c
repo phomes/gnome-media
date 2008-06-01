@@ -61,12 +61,9 @@ gnome_volume_control_element_init (GnomeVolumeControlElement *el)
 }
 
 GtkWidget *
-gnome_volume_control_element_new (GstElement   *element,
-				  GConfClient  *client)
+gnome_volume_control_element_new (GConfClient  *client)
 {
   GnomeVolumeControlElement *el;
-
-  g_return_val_if_fail (GST_IS_MIXER (element), NULL);
 
   /* element */
   el = g_object_new (GNOME_VOLUME_CONTROL_TYPE_ELEMENT, NULL);
@@ -76,8 +73,6 @@ gnome_volume_control_element_new (GstElement   *element,
 			GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
   gconf_client_notify_add (el->client, GNOME_VOLUME_CONTROL_KEY_DIR,
 			   cb_gconf, el, NULL, NULL);
-
-  gnome_volume_control_element_change (el, element);
 
   return GTK_WIDGET (el);
 }

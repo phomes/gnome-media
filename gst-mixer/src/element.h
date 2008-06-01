@@ -57,8 +57,7 @@ typedef struct _GnomeVolumeControlElementClass {
 } GnomeVolumeControlElementClass;
 
 GType		gnome_volume_control_element_get_type	(void);
-GtkWidget *	gnome_volume_control_element_new	(GstElement   *element,
-							 GConfClient  *client);
+GtkWidget *	gnome_volume_control_element_new	(GConfClient  *client);
 void		gnome_volume_control_element_change	(GnomeVolumeControlElement *el,
 							 GstElement  *element);
 
