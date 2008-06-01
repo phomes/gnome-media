@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-29 13:34+0200\n"
-"PO-Revision-Date: 2008-04-29 13:37+0200\n"
+"POT-Creation-Date: 2008-06-01 14:47+0200\n"
+"PO-Revision-Date: 2008-06-01 14:47+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -1078,15 +1078,14 @@ msgstr "_Expulsar disco"
 
 #. Help menu
 #: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
-#: ../gst-mixer/src/window.c:336
 msgid "_Help"
 msgstr "_Axuda"
 
-#: ../gnome-cd/gnome-cd.c:366 ../gst-mixer/src/window.c:350
+#: ../gnome-cd/gnome-cd.c:366
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../gnome-cd/gnome-cd.c:367 ../gst-mixer/src/window.c:341
+#: ../gnome-cd/gnome-cd.c:367
 msgid "_Quit"
 msgstr "_Saír"
 
@@ -1569,7 +1568,7 @@ msgstr "Reproducindo..."
 msgid "GConf audio output"
 msgstr "Saída de son do GConf"
 
-#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:195
+#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:191
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "Reprodución"
@@ -1614,7 +1613,7 @@ msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Non se puido escribir nun ficheiro usando o perfil de son '%s'. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2112 ../gst-mixer/src/window.c:334
+#: ../grecord/src/gsr-window.c:2112
 msgid "_File"
 msgstr "_Ficheiro"
 
@@ -1679,7 +1678,7 @@ msgstr "Contidos"
 msgid "Open the manual"
 msgstr "Abrir o manual"
 
-#: ../grecord/src/gsr-window.c:2144 ../gst-mixer/src/window.c:351
+#: ../grecord/src/gsr-window.c:2144
 msgid "About this application"
 msgstr "Sobre esta aplicación"
 
@@ -1732,7 +1731,7 @@ msgid "Adjust the volume level"
 msgstr "Axustar o nivel de volume"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:319 ../gst-mixer/src/window.c:320
+#: ../gst-mixer/src/window.c:270 ../gst-mixer/src/window.c:271
 msgid "Volume Control"
 msgstr "Control do volume"
 
@@ -1752,15 +1751,15 @@ msgstr "Largura da ventá"
 msgid "Width of the Window to be displayed"
 msgstr "Largura da ventá que se vai mostrar"
 
-#: ../gst-mixer/src/element.c:197
+#: ../gst-mixer/src/element.c:193 ../gst-mixer/src/misc.c:60
 msgid "Recording"
 msgstr "Gravando"
 
-#: ../gst-mixer/src/element.c:199
+#: ../gst-mixer/src/element.c:195 ../gst-mixer/src/misc.c:62
 msgid "Switches"
 msgstr "Conmutadores"
 
-#: ../gst-mixer/src/element.c:201
+#: ../gst-mixer/src/element.c:197 ../gst-mixer/src/misc.c:64
 msgid "Options"
 msgstr "Opcións"
 
@@ -1778,24 +1777,12 @@ msgid "No volume control GStreamer plugins and/or devices found."
 msgstr ""
 "Non se encontran plugins ou dispositivos de control de volume GStreamer."
 
-#: ../gst-mixer/src/misc.c:60
-msgid "Capture"
-msgstr "Capturar"
-
-#: ../gst-mixer/src/misc.c:62
-msgid "Switch"
-msgstr "Conmutar"
-
-#: ../gst-mixer/src/misc.c:64
-msgid "Option"
-msgstr "Opción"
-
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:92
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "Preferencias do control do volume"
 
-#: ../gst-mixer/src/preferences.c:105
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "_Seleccione as pistas que serán visibles:"
 
@@ -1805,61 +1792,86 @@ msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:287
+#: ../gst-mixer/src/track.c:286
 #, c-format
 msgid "Mute/unmute %s"
 msgstr " %s con/sen son"
 
-#: ../gst-mixer/src/track.c:302
+#: ../gst-mixer/src/track.c:301
 #, c-format
 msgid "Track %s: mute"
 msgstr "Pista %s: sen son"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:377
+#: ../gst-mixer/src/track.c:372
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Conmutar a captura de son de %s"
 
-#: ../gst-mixer/src/track.c:395
+#: ../gst-mixer/src/track.c:389
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Pista %s: captura de son"
 
-#: ../gst-mixer/src/track.c:479
+#: ../gst-mixer/src/track.c:471
 #, c-format
 msgid "%s Option Selection"
 msgstr "Selección de opción %s"
 
-#: ../gst-mixer/src/volume.c:105
+#: ../gst-mixer/src/volume.c:108
+#, c-format
+msgid "Track %s"
+msgstr "Pista %s"
+
+#: ../gst-mixer/src/volume.c:111
+#, c-format
+msgid "Channel %d of track %s"
+msgstr "Canal %d da pista %s"
+
+#: ../gst-mixer/src/volume.c:114
+#, c-format
+msgid "Track %s, channel %d"
+msgstr "Pista %s, canal %d"
+
+#: ../gst-mixer/src/volume.c:134
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Bloquear canais de %s conxuntamente"
+
+#: ../gst-mixer/src/volume.c:152
+#, c-format
+msgid "Track %s: lock channels together"
+msgstr "Pista %s: bloquear canais conxuntamente"
+
+#: ../gst-mixer/src/volume.c:194
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:107
+#: ../gst-mixer/src/volume.c:196
 msgid "left"
 msgstr "esquerda"
 
-#: ../gst-mixer/src/volume.c:107
+#: ../gst-mixer/src/volume.c:196
 msgid "right"
 msgstr "dereita"
 
-#: ../gst-mixer/src/volume.c:110
+#: ../gst-mixer/src/volume.c:199
 msgid "front left"
 msgstr "adiante esquerdo"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:200
 msgid "front right"
 msgstr "adiante dereito"
 
-#: ../gst-mixer/src/volume.c:112
+#: ../gst-mixer/src/volume.c:201
 msgid "rear left"
 msgstr "atrás esquerdo"
 
-#: ../gst-mixer/src/volume.c:113
+#: ../gst-mixer/src/volume.c:202
 msgid "rear right"
 msgstr "atrás dereito"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:203
 msgid "front center"
 msgstr "adiante centro"
 
@@ -1867,59 +1879,34 @@ msgstr "adiante centro"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:119
+#: ../gst-mixer/src/volume.c:208
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:120
+#: ../gst-mixer/src/volume.c:209
 msgid "side left"
 msgstr "lateral esquerdo"
 
-#: ../gst-mixer/src/volume.c:121
+#: ../gst-mixer/src/volume.c:210
 msgid "side right"
 msgstr "lateral dereito"
 
-#: ../gst-mixer/src/volume.c:122
+#: ../gst-mixer/src/volume.c:211
 msgid "unknown"
 msgstr "descoñecido"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:128
+#: ../gst-mixer/src/volume.c:217
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Volume do canal %s en %s"
 
-#: ../gst-mixer/src/volume.c:176
-#, c-format
-msgid "Track %s"
-msgstr "Pista %s"
-
-#: ../gst-mixer/src/volume.c:179
-#, c-format
-msgid "Channel %d of track %s"
-msgstr "Canal %d da pista %s"
-
-#: ../gst-mixer/src/volume.c:182
-#, c-format
-msgid "Track %s, channel %d"
-msgstr "Pista %s, canal %d"
-
-#: ../gst-mixer/src/volume.c:202
-#, c-format
-msgid "Lock channels for %s together"
-msgstr "Bloquear canais de %s conxuntamente"
-
-#: ../gst-mixer/src/volume.c:220
-#, c-format
-msgid "Track %s: lock channels together"
-msgstr "Pista %s: bloquear canais conxuntamente"
-
-#: ../gst-mixer/src/window.c:196
+#: ../gst-mixer/src/window.c:147
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Unha aplicación de control de volume baseada no Gnome/GStreamer"
 
-#: ../gst-mixer/src/window.c:199
+#: ../gst-mixer/src/window.c:150
 msgid "translator-credits"
 msgstr ""
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
@@ -1927,47 +1914,24 @@ msgstr ""
 
 #. change window title
 #. window title and menu selection
-#: ../gst-mixer/src/window.c:236 ../gst-mixer/src/window.c:482
+#: ../gst-mixer/src/window.c:187 ../gst-mixer/src/window.c:378
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Control do volume: %s"
 
-#: ../gst-mixer/src/window.c:335 ../profiles/audio-profiles-edit.c:87
-msgid "_Edit"
-msgstr "_Editar"
-
-#: ../gst-mixer/src/window.c:338
-msgid "_Change Device"
-msgstr "_Cambiar o dispositivo"
-
-#: ../gst-mixer/src/window.c:339
-msgid "Control volume on a different device"
-msgstr "Controlar o volume nun dispositivo diferente"
-
-#: ../gst-mixer/src/window.c:342
-msgid "Quit the application"
-msgstr "Saír da aplicación"
-
-#: ../gst-mixer/src/window.c:344
-msgid "Prefere_nces"
-msgstr "Prefere_ncias"
-
-#: ../gst-mixer/src/window.c:345
-msgid "Configure the application"
-msgstr "Configurar a aplicación"
-
-#: ../gst-mixer/src/window.c:347
-msgid "_Contents"
-msgstr "_Contidos"
-
-#: ../gst-mixer/src/window.c:348
-msgid "Help on this application"
-msgstr "Axuda nesta aplicación"
-
-#: ../gst-mixer/src/window.c:447
+#: ../gst-mixer/src/window.c:363
 #, c-format
 msgid "Change device to %s"
 msgstr "Cambiar o dispositivo a %s"
+
+#: ../gst-mixer/src/window.c:388
+msgid "_Device: "
+msgstr "_Dispositivo: "
+
+#. set tooltips
+#: ../gst-mixer/src/window.c:429
+msgid "Control volume on a different device"
+msgstr "Controlar o volume nun dispositivo diferente"
 
 #: ../gstreamer-properties/gstreamer-properties.c:195
 msgid "None"
@@ -2178,6 +2142,10 @@ msgstr ""
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Ocorreu un erro ao esquecer o camiño de perfís %s. (%s)\n"
+
+#: ../profiles/audio-profiles-edit.c:87
+msgid "_Edit"
+msgstr "_Editar"
 
 #. the first argument will never be used since we only run for count > 1
 #: ../profiles/audio-profiles-edit.c:465
@@ -2470,6 +2438,33 @@ msgstr "Monitorizar o volume de saída de son"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor de volume"
+
+#~ msgid "Capture"
+#~ msgstr "Capturar"
+
+#~ msgid "Switch"
+#~ msgstr "Conmutar"
+
+#~ msgid "Option"
+#~ msgstr "Opción"
+
+#~ msgid "_Change Device"
+#~ msgstr "_Cambiar o dispositivo"
+
+#~ msgid "Quit the application"
+#~ msgstr "Saír da aplicación"
+
+#~ msgid "Prefere_nces"
+#~ msgstr "Prefere_ncias"
+
+#~ msgid "Configure the application"
+#~ msgstr "Configurar a aplicación"
+
+#~ msgid "_Contents"
+#~ msgstr "_Contidos"
+
+#~ msgid "Help on this application"
+#~ msgstr "Axuda nesta aplicación"
 
 #~ msgid "hours"
 #~ msgstr "horas"
