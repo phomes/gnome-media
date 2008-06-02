@@ -23,6 +23,6 @@ EXTRA_DIST = autogen.sh configure COPYING-DOCS COPYING.grecord		\
 	gnome-doc-utils.make $(INTLTOOL_BUILT:=.in)
 
 DISTCLEANFILES = po/.intltool-merge-cache \
-                 gnome-doc-utils.make
+                 gnome-doc-utils.make $(INTLTOOL_BUILT)
 
 ACLOCAL_AMFLAGS = -I m4
