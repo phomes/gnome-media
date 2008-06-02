@@ -506,7 +506,6 @@ void
 gnome_volume_control_volume_update (GnomeVolumeControlVolume *vol)
 {
   gint *volumes, n;
-  gboolean real_zero, slider_zero;
   GList *scales;
 
   /* don't do callbacks */
@@ -517,13 +516,6 @@ gnome_volume_control_volume_update (GnomeVolumeControlVolume *vol)
 
   volumes = g_new (gint, vol->track->num_channels);
   gst_mixer_get_volume (vol->mixer, vol->track, volumes);
-  gnome_volume_control_volume_ask (vol, &real_zero, &slider_zero);
-  if (real_zero || GST_MIXER_TRACK_HAS_FLAG (vol->track,
-					     GST_MIXER_TRACK_MUTE)) {
-    g_free (volumes);
-    vol->locked = FALSE;
-    return;
-  }
 
   /* did we change? */
   for (n = 0, scales = vol->scales;

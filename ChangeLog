@@ -1,5 +1,13 @@
 2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
+	* gst-mixer/src/track.c (gnome_volume_control_track_update):
+	* gst-mixer/src/volume.c (gnome_volume_control_volume_update):
+	Stop muting the track when volume is zero, and doing weird things
+	that do more harm than good.
+	(Closes #341021)
+
+2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
 	* gst-mixer/src/element.c (cb_notify_message): Fix warning
 	introduced by previous change.
 

@@ -137,13 +137,14 @@ gnome_volume_control_track_update (GnomeVolumeControlTrack *trkw)
 				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
 
   if (trkw->sliderbox) {
-    gnome_volume_control_volume_update (trkw->sliderbox);
+    gnome_volume_control_volume_update (GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox));
     gnome_volume_control_volume_ask (
       GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox),
       &vol_is_zero, &slider_is_zero);
   }
+
   if (!slider_is_zero && vol_is_zero)
-    mute = TRUE;
+    mute |= TRUE;
 
   if (trkw->mute) {
     if (gnome_volume_control_button_get_active (trkw->mute) == mute) {
