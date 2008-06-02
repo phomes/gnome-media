@@ -181,9 +181,10 @@ cb_notify_message (GstBus *bus, GstMessage *message, gpointer data)
   type = gst_mixer_message_get_type (message);
   if (type == GST_MIXER_MESSAGE_MUTE_TOGGLED) {
     gst_mixer_message_parse_mute_toggled (message, &track, NULL);
-  }
-  else {
+  } else if (type == GST_MIXER_MESSAGE_VOLUME_CHANGED) {
     gst_mixer_message_parse_volume_changed (message, &track, NULL, NULL);
+  } else {
+    return;
   }
 
   trkw = g_object_get_data (G_OBJECT (track),
