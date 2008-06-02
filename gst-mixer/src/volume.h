@@ -76,6 +76,7 @@ void		gnome_volume_control_volume_sync (GnomeVolumeControlVolume *volume);
 void		gnome_volume_control_volume_ask (GnomeVolumeControlVolume *volume,
 						 gboolean * real_zero,
 						 gboolean * slider_zero);
+void		gnome_volume_control_volume_update (GnomeVolumeControlVolume *volume);
 
 G_END_DECLS
 

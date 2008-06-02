@@ -165,6 +165,10 @@ gnome_volume_control_volume_new (GstMixer *mixer,
   gint *volumes, n;
   gchar *msg, *chan;
   GList *items;
+  gboolean need_timeout = TRUE;
+
+  need_timeout = ((gst_mixer_get_mixer_flags (GST_MIXER (mixer)) &
+		   GST_MIXER_FLAG_AUTO_NOTIFICATIONS) == 0);
 
   /* volume */
   vol = g_object_new (GNOME_VOLUME_CONTROL_TYPE_VOLUME, NULL);
@@ -230,7 +234,8 @@ gnome_volume_control_volume_new (GstMixer *mixer,
   g_free (volumes);
 
   /* GStreamer signals */
-  vol->id = g_timeout_add (100, cb_check, vol);
+  if (need_timeout)
+    vol->id = g_timeout_add (100, cb_check, vol);
 
   return GTK_WIDGET (vol);
 }
@@ -496,21 +501,18 @@ gnome_volume_control_volume_ask (GnomeVolumeControlVolume * vol,
   }
 }
 
-/*
- * Timeout to check for volume changes.
- */
 
-static gboolean
-cb_check (gpointer data)
+void
+gnome_volume_control_volume_update (GnomeVolumeControlVolume *vol)
 {
-  GnomeVolumeControlVolume *vol = data;
   gint *volumes, n;
   gboolean real_zero, slider_zero;
   GList *scales;
 
   /* don't do callbacks */
   if (vol->locked)
-    return TRUE;
+    return;
+
   vol->locked = TRUE;
 
   volumes = g_new (gint, vol->track->num_channels);
@@ -520,7 +522,7 @@ cb_check (gpointer data)
 					     GST_MIXER_TRACK_MUTE)) {
     g_free (volumes);
     vol->locked = FALSE;
-    return TRUE;
+    return;
   }
 
   /* did we change? */
@@ -535,12 +537,22 @@ cb_check (gpointer data)
     /* should we release lock? */
     if (volumes[n] != volumes[0]) {
       gnome_volume_control_button_set_active (
-          GNOME_VOLUME_CONTROL_BUTTON (vol->button), FALSE);
+	GNOME_VOLUME_CONTROL_BUTTON (vol->button), FALSE);
     }
   }
 
   g_free (volumes);
   vol->locked = FALSE;
+}
+
+/*
+ * Timeout to check for volume changes.
+ */
+
+static gboolean
+cb_check (gpointer data)
+{
+  gnome_volume_control_volume_update (data);
 
   return TRUE;
 }

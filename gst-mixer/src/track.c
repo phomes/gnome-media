@@ -82,7 +82,7 @@ should_toggle_record_switch (const GstMixerTrack *track)
 {
   return GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT);
 }
- 
+
 
 static void
 cb_toggle_changed (GtkToggleButton *button,
@@ -116,12 +116,13 @@ cb_option_changed (GtkComboBox *box,
  * Timeout to check for changes in mixer outside ourselves.
  */
 
-static gboolean
-cb_check (gpointer data)
+void
+gnome_volume_control_track_update (GnomeVolumeControlTrack *trkw)
 {
-  GnomeVolumeControlTrack *trkw = data;
   gboolean mute, record;
   gboolean vol_is_zero = FALSE, slider_is_zero = FALSE;
+
+  g_return_if_fail (trkw != NULL);
 
   /* trigger an update of the mixer state */
   if (!GST_IS_MIXER_OPTIONS (trkw->track)) {
@@ -129,13 +130,14 @@ cb_check (gpointer data)
     gst_mixer_get_volume (trkw->mixer, trkw->track, dummy);
     g_free (dummy);
   }
-  
+
   mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
 				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE;
   record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
 				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
 
   if (trkw->sliderbox) {
+    gnome_volume_control_volume_update (trkw->sliderbox);
     gnome_volume_control_volume_ask (
       GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox),
       &vol_is_zero, &slider_is_zero);
@@ -168,6 +170,13 @@ cb_check (gpointer data)
   /* FIXME:
    * - options.
    */
+}
+
+
+static gboolean
+cb_check (gpointer data)
+{
+  gnome_volume_control_track_update (data);
 
   return TRUE;
 }
@@ -189,6 +198,10 @@ gnome_volume_control_track_add_title (GtkTable *table,
   gchar *ulabel = NULL;
   gchar *str = NULL;
   gint i;
+  gboolean need_timeout = TRUE;
+
+  need_timeout = ((gst_mixer_get_mixer_flags (GST_MIXER (mixer)) &
+		   GST_MIXER_FLAG_AUTO_NOTIFICATIONS) == 0);
 
   /* start */
   ctrl = g_new0 (GnomeVolumeControlTrack, 1);
@@ -200,7 +213,8 @@ gnome_volume_control_track_add_title (GtkTable *table,
   ctrl->visible = TRUE;
   ctrl->table = table;
   ctrl->pos = tab_pos;
-  ctrl->id = g_timeout_add (200, cb_check, ctrl);
+  if (need_timeout)
+    ctrl->id = g_timeout_add (200, cb_check, ctrl);
 
   /* find image from label string (optional) */
   if (g_object_class_find_property (G_OBJECT_GET_CLASS (track), "untranslated-label"))
@@ -430,8 +444,8 @@ gnome_volume_control_track_add_switch (GtkTable *table,
   g_signal_connect (ctrl->toggle, "toggled",
 		    G_CALLBACK (cb_toggle_changed), ctrl);
   gtk_widget_show (ctrl->toggle);
-                                                                                
-  return ctrl;  
+
+  return ctrl;
 }
 
 GnomeVolumeControlTrack *

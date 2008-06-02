@@ -101,6 +101,8 @@ void	gnome_volume_control_track_free		(GnomeVolumeControlTrack *track);
 void	gnome_volume_control_track_show		(GnomeVolumeControlTrack *track,
 						 gboolean  visible);
 
+void    gnome_volume_control_track_update       (GnomeVolumeControlTrack *trkw);
+
 G_END_DECLS
 
 #endif /* __GVC_TRACK_H__ */

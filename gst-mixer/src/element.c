@@ -148,7 +148,7 @@ update_tab_visibility (GnomeVolumeControlElement *el, gint page)
        item != NULL; item = item->next) {
     GstMixerTrack *track = item->data;
     GnomeVolumeControlTrack *trkw =
-        g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw"); 
+        g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
 
     if (get_page_num (track) == page && trkw->visible) {
       visible = TRUE;
@@ -161,6 +161,35 @@ update_tab_visibility (GnomeVolumeControlElement *el, gint page)
     gtk_widget_show (t);
   else
     gtk_widget_hide (t);
+}
+
+static void
+cb_notify_message (GstBus *bus, GstMessage *message, gpointer data)
+{
+  GnomeVolumeControlElement *el = data;
+  GstMixerMessageType type;
+  GnomeVolumeControlTrack *trkw;
+  GstMixerTrack *track = NULL;
+
+  if (GST_MESSAGE_SRC (message) != GST_OBJECT (el->mixer)) {
+    /* not from our mixer - can't update anything anyway */
+    return;
+  }
+
+  /* This code only calls refresh if the first_track changes, because the
+   * refresh code only retrieves the current value from that track anyway */
+  type = gst_mixer_message_get_type (message);
+  if (type == GST_MIXER_MESSAGE_MUTE_TOGGLED) {
+    gst_mixer_message_parse_mute_toggled (message, &track, NULL);
+  }
+  else {
+    gst_mixer_message_parse_volume_changed (message, &track, NULL, NULL);
+  }
+
+  trkw = g_object_get_data (G_OBJECT (track),
+			    "gnome-volume-control-trkw");
+
+  gnome_volume_control_track_update (trkw);
 }
 
 /*
@@ -196,6 +225,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   gint i;
   const GList *item;
   GstMixer *mixer;
+  GstBus *bus;
 
   /* remove old pages */
   while (gtk_notebook_get_n_pages (GTK_NOTEBOOK (el)) > 0) {
@@ -211,6 +241,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 
       trkw = g_object_get_data (G_OBJECT (track),
 				"gnome-volume-control-trkw");
+      g_object_set_data (G_OBJECT (track), "gnome-volume-control-trkw", NULL);
       gnome_volume_control_track_free (trkw);
     }
   }
@@ -220,6 +251,15 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   g_return_if_fail (GST_IS_MIXER (element));
   mixer = GST_MIXER (element);
   gst_object_replace ((GstObject **) &el->mixer, GST_OBJECT (element));
+
+  /* Bus for notifications */
+  if (GST_ELEMENT_BUS (mixer) == NULL) {
+    bus = gst_bus_new ();
+    gst_bus_add_signal_watch (bus);
+    g_signal_connect (G_OBJECT (bus), "message::element",
+		      (GCallback) cb_notify_message, el);
+    gst_element_set_bus (GST_ELEMENT (mixer), bus);
+  }
 
   /* content pages */
   for (i = 0; i < 4; i++) {
