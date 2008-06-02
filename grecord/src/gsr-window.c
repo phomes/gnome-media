@@ -1325,7 +1325,8 @@ record_cb (GtkAction *action,
 	if (priv->record) {
 		char *current_source;
 		shutdown_pipeline (priv->record);
-		if (!make_record_source (window)) exit (1);
+		if (!make_record_source (window))
+			g_assert_not_reached ();
 		current_source = gtk_combo_box_get_active_text (GTK_COMBO_BOX (window->priv->input));
 		fill_record_input (window, current_source);
 	}
@@ -2355,7 +2356,9 @@ gsr_window_init (GSRWindow *window)
 	gtk_box_pack_start (GTK_BOX (hbox), priv->input, TRUE, TRUE, 0);
 	gtk_widget_show (priv->input);
 
-	if (!make_record_source (window)) exit (1);
+	if (!make_record_source (window))
+		g_assert_not_reached ();
+
 	fill_record_input (window, NULL);
 	g_signal_connect (priv->input, "changed",
 			  G_CALLBACK (record_input_changed_cb), window);
