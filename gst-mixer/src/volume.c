@@ -432,16 +432,6 @@ cb_volume_changed (GtkAdjustment *_adj,
   vol->locked = FALSE;
 }
 
-/*
- * To be called after unmuting.
- */
-
-void
-gnome_volume_control_volume_sync (GnomeVolumeControlVolume * vol)
-{
-  cb_volume_changed (gtk_range_get_adjustment (vol->scales->data), vol);
-}
-
 static void
 cb_lock_toggled (GtkToggleButton *button,
 		 gpointer         data)

@@ -1,3 +1,11 @@
+2008-06-16  Brian Cameron  <brian.cameron@sun.com>
+
+	* volume.[ch], track.c: Remove call to gnome_volume_control_volume_sync
+	  in cb_mute_toggled.  This causes problems for the SunAudio mixer.  It
+	  is better for the mixer plugin itself to update state as needed.
+	  Also remove the gnome_volume_control_volume_sync function itself
+	  since nothing more calls it.  Fixes bug #537028.
+
 === release 2.23.3 ===
 
 2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>

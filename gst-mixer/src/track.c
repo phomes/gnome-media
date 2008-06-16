@@ -23,6 +23,8 @@
 #include "config.h"
 #endif
 
+#include <unistd.h>
+#include <stropts.h>
 #include <glib/gi18n.h>
 #include <string.h>
 
@@ -61,7 +63,6 @@ cb_mute_toggled (GnomeVolumeControlButton *button,
 
   gst_mixer_set_mute (ctrl->mixer, ctrl->track,
 		      !gnome_volume_control_button_get_active (button));
-  gnome_volume_control_volume_sync (GNOME_VOLUME_CONTROL_VOLUME (ctrl->sliderbox));
 }
 
 static void

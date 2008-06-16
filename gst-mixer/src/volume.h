@@ -72,7 +72,6 @@ GType		gnome_volume_control_volume_get_type	(void);
 GtkWidget *	gnome_volume_control_volume_new	(GstMixer *mixer,
 						 GstMixerTrack *track,
 						 gint      padding);
-void		gnome_volume_control_volume_sync (GnomeVolumeControlVolume *volume);
 void		gnome_volume_control_volume_ask (GnomeVolumeControlVolume *volume,
 						 gboolean * real_zero,
 						 gboolean * slider_zero);
