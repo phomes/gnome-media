@@ -24,7 +24,6 @@
 #endif
 
 #include <unistd.h>
-#include <stropts.h>
 #include <glib/gi18n.h>
 #include <string.h>
 

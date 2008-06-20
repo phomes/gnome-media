@@ -1,3 +1,18 @@
+2008-06-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gst-mixer/src/track.c: Remove non-existing include to fix build.
+
+2008-06-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gst-mixer/src/element.c: (gnome_volume_control_element_change):
+	* gst-mixer/src/preferences.c: (cb_toggle):
+	* gst-mixer/src/track.c: (gnome_volume_control_track_add_playback):
+	* gst-mixer/src/volume.c: (gnome_volume_control_volume_size_req),
+	(gnome_volume_control_volume_size_alloc):
+	* profiles/audio-profiles-edit.c: (gm_audio_profiles_edit_init):
+	* profiles/gmp-util.c: (gmp_util_run_error_dialog):
+	* profiles/gnome-audio-profiles-test.c: (main):
+
 2008-06-16  Brian Cameron  <brian.cameron@sun.com>
 
 	* volume.[ch], track.c: Remove call to gnome_volume_control_volume_sync
