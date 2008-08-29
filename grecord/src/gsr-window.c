@@ -38,9 +38,9 @@
 #include <math.h>
 
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <libgnome/gnome-help.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
 #include <gst/interfaces/mixer.h>
@@ -671,9 +671,9 @@ do_save_file (GSRWindow *window,
 	      const char *_name)
 {
 	GSRWindowPrivate *priv;
-	char *tmp, *src, *name;
-	gchar *utf8_name = NULL;
-	GnomeVFSURI *src_uri, *dst_uri;
+	char *name;
+	GFile *src, *dst;
+	GError *error = NULL;
 
 	priv = window->priv;
 
@@ -684,6 +684,7 @@ do_save_file (GSRWindow *window,
 		name = g_strdup_printf ("%s.%s", _name,
 				window->priv->extension);
 	if (g_file_test (name, G_FILE_TEST_EXISTS)) {
+		char *utf8_name;
 		utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
 		if (!replace_existing_file (GTK_WINDOW (window), utf8_name)) {
 			g_free (utf8_name);
@@ -691,42 +692,29 @@ do_save_file (GSRWindow *window,
 		}
 		g_free (utf8_name);
 	}
+	src = g_file_new_for_path(priv->record_filename);
+	dst = g_file_new_for_path(name);
 
-	tmp = gnome_vfs_make_uri_from_shell_arg (name);
-	src = gnome_vfs_make_uri_from_shell_arg (priv->record_filename);
-	src_uri = gnome_vfs_uri_new (src);
-	dst_uri = gnome_vfs_uri_new (tmp);
-	g_free (src);
-	if (src_uri && dst_uri) {
-		GnomeVFSResult result;
-		result = gnome_vfs_xfer_uri (src_uri, dst_uri,
-			GNOME_VFS_XFER_DEFAULT,
-			GNOME_VFS_XFER_ERROR_MODE_ABORT,
-			GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
-			NULL, NULL);
-		if (result == GNOME_VFS_OK) {
-			g_object_set (G_OBJECT (window), "location", name, NULL);
-			priv->dirty = FALSE;
-			window->priv->saved = TRUE;
-			if (window->priv->quit_after_save == TRUE) {
-				gsr_window_close (window);
-			}
-		} else {
-			show_error_dialog (GTK_WINDOW (window), NULL,
-			                   _("Could not save the file \"%s\""),
-			                   gnome_vfs_result_to_string (result));
+	/* TODO: Show progress? Where? */
+	if (g_file_copy(src, dst, G_FILE_COPY_OVERWRITE,
+	                NULL, NULL, NULL, &error)) {
+		g_object_set (G_OBJECT (window), "location", name, NULL);
+		priv->dirty = FALSE;
+		window->priv->saved = TRUE;
+		if (window->priv->quit_after_save == TRUE) {
+			gsr_window_close (window);
 		}
-		gnome_vfs_uri_unref (src_uri);
-		gnome_vfs_uri_unref (dst_uri);
 	} else {
+		char *utf8_name;
 		utf8_name = g_filename_to_utf8 (name, -1, NULL, NULL, NULL);
 		show_error_dialog (GTK_WINDOW (window), NULL,
 			           _("Could not save the file \"%s\""), utf8_name);
 		g_free (utf8_name);
 	}
 
+	g_object_unref(src);
+	g_object_unref(dst);
 	g_free (name);
-	g_free (tmp);
 }
 
 static void
@@ -1005,7 +993,7 @@ fill_in_information (GSRWindow *window,
 		gchar *human;
 
 		file_size = (guint64) buf.st_size;
-		human = gnome_vfs_format_file_size_for_display (file_size);
+		human = g_format_size_for_display (file_size);
 
 		text = g_strdup_printf (ngettext ("%s (%llu byte)", "%s (%llu bytes)", 
 		                        file_size), human, file_size);
@@ -1269,11 +1257,14 @@ play_cb (GtkAction *action,
 	if ((priv->play = make_play_pipeline (window))) {
 		gchar *uri;
 		gchar *usefile;
+		GFile *file;
 
 		if(priv->has_file == FALSE && priv->working_file) usefile = priv->working_file;
 		else usefile = priv->filename;
 
-		uri = gnome_vfs_make_uri_from_shell_arg (usefile);
+		file = g_file_new_for_commandline_arg (usefile);
+		uri = g_file_get_uri (file);
+		g_object_unref (file);
 		g_object_set (window->priv->play->pipeline, "uri", uri, NULL);
 		g_free (uri);
 
