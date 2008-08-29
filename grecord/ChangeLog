@@ -1,9 +1,18 @@
+2008-08-29  Bastien Nocera  <hadess@hadess.net>
+
+	* src/Makefile.am:
+	* src/gnome-recorder.c (gsr_add_recent), (main):
+	* src/gsr-window.c (file_open_recent_cb), (gsr_window_init),
+	(gsr_window_set_property):
+	Port gnome-sound-recorder to using GtkRecent (Closes: #404877)
+	* src/recent-files/*: Remove
+
 2008-04-21  Jens Granseuer  <jensgr@gmx.net>
 
 	* src/gsr-window.c: (gsr_window_init): don't declare variables in the
 	middle of a code block. Fixes build with older compilers (bug #529083)
 
-2008-04-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gnome-sound-recorder.desktop.in.in, icons/16x16/Makefile.am,
 	icons/16x16/gnome-grecord.png ->
@@ -137,7 +146,7 @@
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
 
 	* src/gsr-window.c: (record_input_changed_cb): Patch from
-	Boris Dušek <boris.dusek@gmail.com> to avoid crashing when
+	Boris DuÅ¡ek <boris.dusek@gmail.com> to avoid crashing when
 	strcmp'ing NULL strings (Helps: #329922)
 
 2007-09-06  Bastien Nocera  <hadess@hadess.net>
@@ -1452,7 +1461,7 @@
 2000-04-17  Andreas Hyden  <a.hyden@cyberpoint.se>
 
 	* grecord.spec: Added, thanks to:
-	  Marc Lavallée <odradek@videotron.ca>
+	  Marc LavallÃ©e <odradek@videotron.ca>
 
 2000-04-17  Andreas Hyden  <a.hyden@cyberpoint.se>
 

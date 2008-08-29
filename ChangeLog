@@ -1,3 +1,7 @@
+2008-08-29  Bastien Nocera  <hadess@hadess.net>
+
+	* configure.in: Remove recent-files sub-directory
+
 2008-07-30  Sebastien Bacher  <seb128@ubuntu.com>
 
 	* profiles/gnome-audio-profiles.schemas.in.in:use oga naming
@@ -28,11 +32,11 @@
 
 === release 2.23.3 ===
 
-2008-06-02  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* NEWS: Release 2.23.3
 
-2008-06-02  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/track.c (gnome_volume_control_track_update):
 	* gst-mixer/src/volume.c (gnome_volume_control_volume_update):
@@ -40,12 +44,12 @@
 	that do more harm than good.
 	(Closes #341021)
 
-2008-06-02  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/element.c (cb_notify_message): Fix warning
 	introduced by previous change.
 
-2008-06-02  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-02  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/element.c:
 	* gst-mixer/src/track.{c,h}:
@@ -54,12 +58,12 @@
 	Listen to GStreamer bus events for mixers that supports it.
 	(Closes #462164)
 
-2008-06-01  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* Makefile.am (INTLTOOL_BUILT): Add back intltool*.
 	I screwed up with last dist?! crap.
 
-2008-06-01  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/element.{c,h}:
 	* gst-mixer/src/preferences.c (get_gconf_key):
@@ -71,7 +75,7 @@
 	Fix enable/disable the wrong tracks, again.
 	(bug #528252)
 
-2008-06-01  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/track.c (gnome_volume_control_track_add_option),
 	* gst-mixer/src/element.c (cb_gconf),
@@ -79,16 +83,16 @@
 	Use g_str_equal () and check arguments.
 	(Closes #441641)
 
-2008-06-01  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-06-01  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* gst-mixer/src/window.c (cb_change),
 	gst-mixer/src/preferences.c (set_gconf_track_active):
 
 	Remove GConf values and use higher level functions instead.
 
-2008-05-26  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-05-26  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
-	Based on patch by: Louis-Francis Ratt�-Boulianne
+	Based on patch by: Louis-Francis Ratté-Boulianne
 
 	* gnome-volume-control-ui.xml: deleted.
 
@@ -97,11 +101,11 @@
 	some custom accelerators.
 	(Closes #349951)
 
-2008-05-26  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-05-26  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* configure.in: version 2.23.3
 
-2008-05-26  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-05-26  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	Patch by: Sam Morris
 
@@ -109,14 +113,14 @@
 	the tabs.
 	(Closes #534090)
 
-2008-05-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-05-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	Patch by: Sam Morris
 
 	* gst-mixer/src/preferences.c (g_v_c_preferences_change):
 	Display the track column in "Preferences" dialog.
 
-2008-05-09  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-05-09  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	Patch by: Sam Morris
 
@@ -134,23 +138,23 @@
 
 === release 2.23.1.1 ===
 
-2008-04-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* configure.in: release 2.23.1.1: intltool 0.35 is enough
 	according to dobey. Fix a gnome-record configure regression.
 
-2008-04-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* configure.in (GNOME_MEDIA_VERSION): 2.23.2, back to dev.
 
 === release 2.23.1 ===
 
-2008-04-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* NEWS: upd
 	* configure.in: version 2.23.1
 
-2008-04-20  Marc-Andr� Lureau  <marcandre.lureau@gmail.com>
+2008-04-20  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* autogen.sh, configure.in: depends on intltool 0.39.99
 	* Makefile.am (INTLTOOL_BUILT): no more necessary to ship
@@ -314,13 +318,13 @@
 	* gnome-cd/linux-cdrom.c: return FALSE when track_info is NULL.
 	(Closes: #430824)
 
-2008-03-18  Loïc Minier <lool@dooz.org>
+2008-03-18  LoÃ¯c Minier <lool@dooz.org>
 
 	* gst-mixer/src/element.c: Only show a separator at the left of the
 	Playback control if a previous control has been visible; patch by
 	Matt Krai; fixes #415353
 
-2008-03-17  Tim-Philipp Müller  <tim at centricular dot net>
+2008-03-17  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* gst-mixer/src/track.c: (gnome_volume_control_track_add_option):
 	Use gst_mixer_options_list_values() instead of accessing the
@@ -430,7 +434,7 @@
 	* NEWS: upd
 	* configure.in: 2.20.0
 
-2007-09-08  Tim-Philipp Müller  <tim at centricular dot net>
+2007-09-08  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* configure.in:
 	  Fix build of gstreamer-properties against an
@@ -513,7 +517,7 @@
 	* gst-mixer/src/preferences.c:
 	* gst-mixer/src/track.c:
 	  Use "untranslated-label" property from GstMixerTrack since 0.10.13.
-	  Based on Tim-Philipp Müller  <tim at centricular dot net> (#416595).
+	  Based on Tim-Philipp MÃ¼ller  <tim at centricular dot net> (#416595).
 
 2007-05-16  Takao Fujiwara  <takao.fujiwara@sun.com>
 
@@ -646,7 +650,7 @@
 	Make sure we don't call gst_mixer_get_volume() with a NULL pointer.
 	Closes #402165.
 
-2007-01-23  Tim-Philipp Müller  <tim at centricular dot net>
+2007-01-23  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* gnome-cd/gnome-cd.c: (main):
 	* grecord/src/gnome-recorder.c: (main):
@@ -1113,12 +1117,12 @@
 	* configure.in:
 	  Use new intltool (for po file packaging).
 
-2006-05-28  Tim-Philipp Müller  <tim at centricular dot net>
+2006-05-28  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* gstreamer-properties/pipeline-constants.c:
 	  Change 'XWindows' to 'X Window System' (#343030).
 
-2006-05-24  Tim-Philipp Müller  <tim at centricular dot net>
+2006-05-24  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* gnome-cd/gnome-cd.c: (make_popup_menu):
 	  Don't crash when creating the context menu and we
@@ -1144,7 +1148,7 @@
 
 	* po/LINGUAS: new file listing all linguas
 
-2006-04-06  Tim-Philipp Müller  <tim at centricular dot net>
+2006-04-06  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* configure.in:
 	  Revert bogus commit to configure.in that broke
@@ -1154,7 +1158,7 @@
 
         * configure.in: Added 'or' (Oriya) to ALL_LINGUAS.
 
-2006-03-29  Jérémy Ar Floc'h  <jeremy.lefloch@gmail.com>
+2006-03-29  JÃ©rÃ©my Ar Floc'h  <jeremy.lefloch@gmail.com>
 
 	* configure.in (ALL_LINGUAS): Added Breton (br).
 
@@ -1179,7 +1183,7 @@
 	* configure.in:
 	  releasing
 
-2006-03-03  Tim-Philipp Müller  <tim at centricular dot net>
+2006-03-03  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* gnome-cd/cdrom.c: (timeout_update_cd):
 	* gnome-cd/gst-cdrom.c: (gst_cdrom_get_status):
@@ -1214,7 +1218,7 @@
 
 2006-02-14  Thomas Vander Stichele  <thomas at apestaart dot org>
 
-	patch by: Tim-Philipp Müller
+	patch by: Tim-Philipp MÃ¼ller
 
 	* grecord/src/gsr-window.c: (stop_cb), (record_state_changed_cb):
 	  - makes input selection combo box insensitive while recording
@@ -1222,7 +1226,7 @@
 	    error dialog might pop up when pressing 'Stop')
 	  Fixes #324508
 
-2006-02-10  Tim-Philipp Müller  <tim at centricular dot net>
+2006-02-10  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* configure.in:
 	* gnome-cd/gnome-cd.c: (main):
@@ -1234,7 +1238,7 @@
 	  popt). Bumping requirements for libgnome/libgnomeui to 2.13
 	  for the GOptions stuff. (see #324508).
 
-2006-02-10  Tim-Philipp Müller  <tim at centricular dot net>
+2006-02-10  Tim-Philipp MÃ¼ller  <tim at centricular dot net>
 
 	* configure.in:
 	* grecord/src/gsr-window.c: (make_record_pipeline):
@@ -1275,7 +1279,7 @@
 	* configure.in:
 	  Release 2.13.90.
 
-2006-01-29  Tim-Philipp Müller  <t.i.m@zen.co.uk>
+2006-01-29  Tim-Philipp MÃ¼ller  <t.i.m@zen.co.uk>
 
 	Reviewed by:  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
@@ -2586,7 +2590,7 @@
 
 	* gnome-cd/gst-cdparanoia-cdrom.c: (build_pipeline):
 	  Implement basic buffering (should prevent hickups) and add
-	  a max. speed of 2 so that it doesn´t get too loud (#164857).
+	  a max. speed of 2 so that it doesnÂ´t get too loud (#164857).
 
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
@@ -2597,7 +2601,7 @@
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* grecord/src/gsr-window.c: (media_record):
-	  Don´t segfault if pipeline creation failed.
+	  DonÂ´t segfault if pipeline creation failed.
 
 2005-02-06  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
@@ -3556,7 +3560,7 @@
 	* gnome-cd/cdrom.c: (timeout_update_cd):
 	  Fix memleak.
 
-2004-06-02  Mariano Suárez-Alvarez  <mariano@gnome.org>
+2004-06-02  Mariano SuÃ¡rez-Alvarez  <mariano@gnome.org>
 
 	* autogen.sh: do not overwrite ACLOCAL_FLAGS, but append to it.
 
@@ -4388,7 +4392,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 	Add use the logos of these programs in their about dialogs.
 	Fixes #102983.
 
-2003-05-20  Danilo Šegan  <dsegan@gmx.net>
+2003-05-20  Danilo Å egan  <dsegan@gmx.net>
 
 	* configure.in: Added "sr" and "sr@Latn" to ALL_LINGUAS.
 

@@ -47,11 +47,6 @@
 
 #include <profiles/gnome-media-profiles.h>
 
-#include "egg-recent-view.h"
-#include "egg-recent-view-gtk.h"
-#include "egg-recent-model.h"
-#include "egg-recent-util.h"
-
 #include "gsr-window.h"
 
 GST_DEBUG_CATEGORY_STATIC (gsr_debug);
@@ -62,7 +57,6 @@ extern void gsr_quit (void);
 
 extern GConfClient *gconf_client;
 
-extern EggRecentModel *recent_model;
 extern void gsr_add_recent (gchar *filename);
 
 #define GCONF_DIR           "/apps/gnome-sound-recorder/"
@@ -106,7 +100,8 @@ struct _GSRWindowPrivate {
 
 	GtkUIManager *ui_manager;
 	GtkActionGroup *action_group;
-	EggRecentViewGtk *recent_view;
+	GtkWidget *recent_view;
+	GtkRecentFilter *recent_filter;
 
 	/* statusbar */
 	GtkWidget *statusbar;
@@ -424,14 +419,13 @@ file_open_cb (GtkAction *action,
 }
 
 static void
-file_open_recent_cb (EggRecentViewGtk *view,
-		     EggRecentItem *item,
+file_open_recent_cb (GtkRecentChooser *chooser,
 		     GSRWindow *window)
 {
 	gchar *uri;
 	gchar *filename;
 
-	uri = egg_recent_item_get_uri (item);
+	uri = gtk_recent_chooser_get_current_uri (chooser);
 	g_return_if_fail (uri != NULL);
 
 	if (!g_str_has_prefix (uri, "file://"))
@@ -456,7 +450,7 @@ file_open_recent_cb (EggRecentViewGtk *view,
 		gtk_dialog_run (GTK_DIALOG (dlg));
 		gtk_widget_destroy (dlg);
 
-		egg_recent_model_delete (recent_model, uri);
+		gtk_recent_manager_remove_item (gtk_recent_manager_get_default (), uri, NULL);
 
 		g_free (filename_utf8);
 		goto out;
@@ -2314,12 +2308,13 @@ gsr_window_init (GSRWindow *window)
 	submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (file_menu));
 	rec_menu = gtk_ui_manager_get_widget (priv->ui_manager,
 					      "/MenuBar/FileMenu/FileRecentMenu");
-	priv->recent_view = egg_recent_view_gtk_new (submenu, rec_menu);
-	egg_recent_view_gtk_show_icons (EGG_RECENT_VIEW_GTK (priv->recent_view),
-					FALSE);
-	egg_recent_view_gtk_set_trailing_sep (priv->recent_view, TRUE);
-	egg_recent_view_set_model (EGG_RECENT_VIEW (priv->recent_view), recent_model); 
-	g_signal_connect (priv->recent_view, "activate",
+	priv->recent_view = gtk_recent_chooser_menu_new ();
+	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (priv->recent_view), TRUE);
+	gtk_recent_chooser_set_limit (GTK_RECENT_CHOOSER (priv->recent_view), 5);
+	priv->recent_filter = gtk_recent_filter_new ();
+	gtk_recent_filter_add_application (priv->recent_filter, g_get_application_name ());
+	gtk_recent_chooser_set_filter (GTK_RECENT_CHOOSER (priv->recent_view), priv->recent_filter);
+	g_signal_connect (priv->recent_view, "item-activated",
 			  G_CALLBACK (file_open_recent_cb), window);
 
 	/* window content: hscale, labels, etc */
@@ -2556,9 +2551,7 @@ gsr_window_set_property (GObject      *object,
 			gtk_label_set (GTK_LABEL (priv->name_label), utf8_name);
 		}
 
-		if (recent_model) {
-			gsr_add_recent (priv->filename);
-		}
+		gsr_add_recent (priv->filename);
 
 		/*Translators: this is the window title, %s is the currently open file's name or Untitled*/
 		title = g_strdup_printf (_("%s - Sound Recorder"), utf8_name);
@@ -2571,7 +2564,7 @@ gsr_window_set_property (GObject      *object,
 		set_action_sensitive (window, "Stop", FALSE);
 		set_action_sensitive (window, "Record", TRUE);
 		set_action_sensitive (window, "FileSave", window->priv->has_file ? TRUE : FALSE);
-		set_action_sensitive (window, "FileSaveAs", window->priv->has_file ? TRUE : FALSE);
+		set_action_sensitive (window, "FileSaveAs", TRUE);
 		break;
 	default:
 		break;

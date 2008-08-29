@@ -28,20 +28,18 @@
 #endif
 
 #include <gconf/gconf-client.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include <gnome.h>
 
 #include <gst/gst.h>
 
 #include "gsr-window.h"
-#include "egg-recent-model.h"
 
 extern void gnome_media_profiles_init (GConfClient *conf);
  
 static GList *windows = NULL;
 
 GConfClient *gconf_client = NULL;
-
-EggRecentModel *recent_model = NULL;
 
 static gboolean
 delete_event_cb (GSRWindow *window,
@@ -86,43 +84,42 @@ gsr_quit (void)
 	}
 }
 
-#define RECENT_HISTORY_LEN 5
-
-static void
-init_recent (void)
-{
-	/* global recent model */
-	recent_model = egg_recent_model_new (EGG_RECENT_MODEL_SORT_MRU);
-
-	egg_recent_model_set_filter_groups (recent_model, 
-					    "gnome-sound-recorder",
-					    NULL);
-
-	egg_recent_model_set_filter_uri_schemes (recent_model, "file", NULL);
-	egg_recent_model_set_limit (recent_model, RECENT_HISTORY_LEN);
-}
-
 void
 gsr_add_recent (gchar *filename)
 {
+	GtkRecentData data;
+	char *groups[] = { NULL, NULL };
 	char *uri;
-	EggRecentItem *item;
 
-	g_return_if_fail (filename != NULL);
+	memset (&data, 0, sizeof (data));
 
 	uri = g_filename_to_uri (filename, NULL, NULL);
+	if (uri == NULL)
+		return;
 
-	if (uri) {
-		item = egg_recent_item_new_from_uri (uri);
-		g_return_if_fail (item != NULL);
-
-		egg_recent_item_add_group (item, "gnome-sound-recorder");
-		egg_recent_model_add_full (recent_model, item);
-
-		egg_recent_item_unref (item);
+	data.mime_type = gnome_vfs_get_mime_type (uri);
+	if (data.mime_type == NULL) {
+		/* No mime-type means warnings, and it breaks when adding
+		 * non-gnome-vfs supported URI schemes */
+		g_free (uri);
+		return;
 	}
 
-	g_free (uri);
+	/* It's a local file */
+	data.display_name = g_filename_display_basename (data.display_name);
+	groups[0] = "Totem";
+
+	data.app_name = g_strdup (g_get_application_name ());
+	data.app_exec = g_strjoin (" ", g_get_prgname (), "%u", NULL);
+	data.groups = groups;
+	gtk_recent_manager_add_full (gtk_recent_manager_get_default (),
+				     uri, &data);
+
+	g_free (data.display_name);
+	g_free (data.mime_type);
+	g_free (data.app_name);
+	g_free (data.app_exec);
+
 }
 
 gint gsr_sample_count = 1;
@@ -200,8 +197,6 @@ main (int argc,
 	                              "GNOME Sound Recorder",
 	                              GNOME_PARAM_APP_DATADIR, DATADIR,
 	                              NULL);
-
-	init_recent ();
 
 	gtk_window_set_default_icon_name ("gnome-sound-recorder");
 
