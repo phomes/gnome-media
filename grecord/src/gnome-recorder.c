@@ -28,7 +28,6 @@
 #endif
 
 #include <gconf/gconf-client.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <gnome.h>
 
 #include <gst/gst.h>
@@ -97,10 +96,10 @@ gsr_add_recent (gchar *filename)
 	if (uri == NULL)
 		return;
 
-	data.mime_type = gnome_vfs_get_mime_type (uri);
+	data.mime_type = g_content_type_guess (uri, NULL, 0, NULL);
 	if (data.mime_type == NULL) {
 		/* No mime-type means warnings, and it breaks when adding
-		 * non-gnome-vfs supported URI schemes */
+		 * non-GIO supported URI schemes */
 		g_free (uri);
 		return;
 	}
