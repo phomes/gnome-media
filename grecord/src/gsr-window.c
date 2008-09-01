@@ -1311,7 +1311,7 @@ record_cb (GtkAction *action,
 		char *current_source;
 		shutdown_pipeline (priv->record);
 		if (!make_record_source (window))
-			g_assert_not_reached ();
+			return;
 		current_source = gtk_combo_box_get_active_text (GTK_COMBO_BOX (window->priv->input));
 		fill_record_input (window, current_source);
 	}
@@ -2029,20 +2029,18 @@ make_record_pipeline (GSRWindow *window)
 
 	/* now link it all together */
 	if (!(gst_element_link_many (source, level, encoder, NULL))) {
-		show_profile_error (NULL, err->message,
+		show_profile_error (NULL, NULL,
 			_("Could not capture using the '%s' audio profile. "),
 			name);
-		g_error_free (err);
 		gst_object_unref (pipeline->pipeline);
 		g_free (pipeline);
 		return NULL;
 	}
 
 	if (!gst_element_link (encoder, filesink)) {
-		show_profile_error (NULL, err->message,
+		show_profile_error (NULL, NULL,
 			_("Could not write to a file using the '%s' audio profile. "),
 			name);
-		g_error_free (err);
 		gst_object_unref (pipeline->pipeline);
 		g_free (pipeline);
 		return NULL;
@@ -2343,7 +2341,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_widget_show (priv->input);
 
 	if (!make_record_source (window))
-		g_assert_not_reached ();
+		exit (1);
 
 	fill_record_input (window, NULL);
 	g_signal_connect (priv->input, "changed",
