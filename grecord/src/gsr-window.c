@@ -90,6 +90,7 @@ struct _GSRWindowPrivate {
 	GtkWidget *scale;
 	GtkWidget *profile, *input;
 	GtkWidget *rate, *time_sec, *format, *channels;
+	GtkWidget *input_label;
 	GtkWidget *name_label;
 	GtkWidget *length_label;
 	GtkWidget *align;
@@ -1891,7 +1892,14 @@ fill_record_input (GSRWindow *window, gchar *selected)
 
 	if (model) 
 		gtk_list_store_clear (GTK_LIST_STORE (model));
-	
+
+	if (GST_IS_MIXER (window->priv->mixer) == FALSE
+	    || gst_mixer_list_tracks (window->priv->mixer) == NULL) {
+		gtk_widget_hide (window->priv->input);
+		gtk_widget_hide (window->priv->input_label);
+		return;
+	}
+
 	gtk_widget_set_sensitive (window->priv->input, GST_IS_MIXER (window->priv->mixer));
 	if (!GST_IS_MIXER (window->priv->mixer))
 		return;
@@ -1911,6 +1919,9 @@ fill_record_input (GSRWindow *window, gchar *selected)
 			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
 		}
 	}
+
+	gtk_widget_show (window->priv->input);
+	gtk_widget_show (window->priv->input_label);
 }
 
 gboolean
@@ -2333,19 +2344,17 @@ gsr_window_init (GSRWindow *window)
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new_with_mnemonic (_("Record from _input:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	priv->input_label = gtk_label_new_with_mnemonic (_("Record from _input:"));
+	gtk_misc_set_alignment (GTK_MISC (priv->input_label), 0, 0.5);
+	gtk_box_pack_start (GTK_BOX (hbox), priv->input_label, FALSE, FALSE, 0);
 
 	priv->input = gtk_combo_box_new_text ();
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->input);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (priv->input_label), priv->input);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->input, TRUE, TRUE, 0);
-	gtk_widget_show (priv->input);
 
 	if (!make_record_source (window))
 		exit (1);
 
-	fill_record_input (window, NULL);
 	g_signal_connect (priv->input, "changed",
 			  G_CALLBACK (record_input_changed_cb), window);
 
@@ -2481,6 +2490,7 @@ gsr_window_init (GSRWindow *window)
 			    _("Ready"));
 
 	gtk_widget_show_all (main_vbox);
+	fill_record_input (window, NULL);
 
 	/* Make the pipelines */
 	priv->play = NULL;
