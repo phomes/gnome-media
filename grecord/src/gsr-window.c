@@ -1779,6 +1779,8 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		set_action_sensitive (window, "FileSave", TRUE);
 		set_action_sensitive (window, "FileSaveAs", TRUE);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
+		gtk_widget_set_sensitive (window->priv->profile, TRUE);
+		gtk_widget_set_sensitive (window->priv->input, TRUE);
 
 		gtk_statusbar_pop (GTK_STATUSBAR (window->priv->statusbar),
 				   window->priv->status_message_cid);
