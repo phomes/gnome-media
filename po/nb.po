@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 2.21.x\n"
+"Project-Id-Version: gnome-media 2.24.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-07 18:30+0200\n"
-"PO-Revision-Date: 2008-06-07 18:30+0200\n"
+"POT-Creation-Date: 2008-09-02 08:01+0200\n"
+"PO-Revision-Date: 2008-09-02 08:02+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -150,9 +150,9 @@ msgid "Unknown / Unknown"
 msgstr "Ukjent - Ukjent"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1415
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Ukjent"
@@ -1066,7 +1066,7 @@ msgid "_Eject disc"
 msgstr "_Løs ut plate"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2136
 msgid "_Help"
 msgstr "_Hjelp"
 
@@ -1317,7 +1317,7 @@ msgid "Record sound clips"
 msgstr "Ta opp lydklipp"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "Lydinnspilling"
 
@@ -1325,17 +1325,17 @@ msgstr "Lydinnspilling"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1745
-#: ../grecord/src/gsr-window.c:2676
+#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2670
 msgid "Untitled"
 msgstr "Uten tittel"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1747
+#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
 msgstr "Uten tittel-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1350,7 +1350,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "og start gnome-sound-recorder på nytt."
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1358,21 +1358,21 @@ msgstr ""
 "Vennligst sjekk innstillingene.\n"
 "Du kan mangle de nødvendige tilleggene."
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld minutt"
 msgstr[1] "%ld minutter"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld time"
 msgstr[1] "%ld timer"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1380,24 +1380,24 @@ msgstr[0] "%ld sekund"
 msgstr[1] "%ld sekunder"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s og %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s og %s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Åpne en fil"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1406,17 +1406,17 @@ msgstr ""
 "Kunne ikke laste fil:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1546
-#: ../grecord/src/gsr-window.c:1802 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2487
 msgid "Ready"
 msgstr "Klar"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "E_rstatt"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1425,148 +1425,148 @@ msgstr ""
 "En fil med navn «%s» eksisterer allerede.\n"
 "Vil du erstatte den med filen du lagrer nå?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Kunne ikke lagre filen «%s»"
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Lagre fil som"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s er ikke installert i stien."
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "En feil oppsto under start av %s: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Lagre endringene i «%s» før den lukkes?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "Lukk _uten å lagre"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "Spørsmål"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (ikke lagret)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "Ukjent størrelse"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (estimert)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "Informasjon om %s"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2399
 msgid "File Information"
 msgstr "Filinformasjon"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "Mappe:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2406
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "Filstørrelse:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "Lydinformasjon"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "Filens varighet:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "Antall kanaler:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "Samplerate:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "Bitrate:"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1238
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "Lydinnspilling for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1518
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "Spiller..."
 
-#: ../grecord/src/gsr-window.c:1650
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "GConf-lydutgang"
 
-#: ../grecord/src/gsr-window.c:1659 ../gst-mixer/src/element.c:216
+#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "Avspilling"
 
-#: ../grecord/src/gsr-window.c:1736
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "Tar opp..."
 
-#: ../grecord/src/gsr-window.c:1824
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "GConf lydopptak"
 
-#: ../grecord/src/gsr-window.c:1833
+#: ../grecord/src/gsr-window.c:1821
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1574,137 +1574,137 @@ msgstr ""
 "Innstillingene for opptak er feil. Vennligst rett opp disse med «Brukervalg "
 "for lyd» i menyen «System->Brukervalg»."
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:1986
 msgid "file output"
 msgstr "utdatafil"
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2004
 msgid "level"
 msgstr "nivå"
 
-#: ../grecord/src/gsr-window.c:2030
+#: ../grecord/src/gsr-window.c:2028
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Kunne ikke lese lydprofilen «%s»."
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Kunne ikke ta opp med lydprofil «%s»."
 
-#: ../grecord/src/gsr-window.c:2057
+#: ../grecord/src/gsr-window.c:2054
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Kunne ikke skrive til en fil med lydprofil «%s»."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2112
+#: ../grecord/src/gsr-window.c:2108
 msgid "_File"
 msgstr "_Fil"
 
-#: ../grecord/src/gsr-window.c:2114
+#: ../grecord/src/gsr-window.c:2110
 msgid "Create a new sample"
 msgstr "Opprett ny sample"
 
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2112
 msgid "Open a file"
 msgstr "Åpne en fil"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2114
 msgid "Save the current file"
 msgstr "Lagre aktiv fil"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2116
 msgid "Save the current file with a different name"
 msgstr "Lagre aktiv fil med et annet navn"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2117
 msgid "Open Volu_me Control"
 msgstr "Åpne volu_mkontroll"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open the audio mixer"
 msgstr "Åpne volumkontroll"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2120
 msgid "Show information about the current file"
 msgstr "Vis informasjon om aktiv fil"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2122
 msgid "Close the current file"
 msgstr "Lukk aktiv fil"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2124
 msgid "Quit the program"
 msgstr "Avslutt programmet"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2127
 msgid "_Control"
 msgstr "_Kontroll"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2129
 msgid "Record sound"
 msgstr "Ta opp lyd"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2131
 msgid "Play sound"
 msgstr "Spill av lyd"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2133
 msgid "Stop sound"
 msgstr "Stopp lyd"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2137
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2138
 msgid "Open the manual"
 msgstr "Åpne manualen"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2140
 msgid "About this application"
 msgstr "Om programmet"
 
-#: ../grecord/src/gsr-window.c:2265
+#: ../grecord/src/gsr-window.c:2261
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Kunne ikke laste ui.xml. Programmet er kanskje ikke installert riktig"
 
-#: ../grecord/src/gsr-window.c:2288
+#: ../grecord/src/gsr-window.c:2284
 msgid "Open"
 msgstr "Åpne"
 
-#: ../grecord/src/gsr-window.c:2290
+#: ../grecord/src/gsr-window.c:2286
 msgid "Save"
 msgstr "Lagre"
 
-#: ../grecord/src/gsr-window.c:2292
+#: ../grecord/src/gsr-window.c:2288
 msgid "Save As"
 msgstr "Lagre som"
 
-#: ../grecord/src/gsr-window.c:2347
+#: ../grecord/src/gsr-window.c:2344
 msgid "Record from _input:"
 msgstr "Ta opp fra _inndata:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2366
 msgid "_Record as:"
 msgstr "Ta o_pp som:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2413
 msgid "<none>"
 msgstr "<ingen>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2427
 msgid "Length:"
 msgstr "Lengde:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2465
 msgid "Level:"
 msgstr "Nivå:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2561
+#: ../grecord/src/gsr-window.c:2555
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Lydinnspilling"
@@ -1785,17 +1785,17 @@ msgid "Track %s: mute"
 msgstr "Spor %s: dempet"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:382
+#: ../gst-mixer/src/track.c:387
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Slå av/på opptak fra %s"
 
-#: ../gst-mixer/src/track.c:399
+#: ../gst-mixer/src/track.c:404
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Spor %s: opptak"
 
-#: ../gst-mixer/src/track.c:487
+#: ../gst-mixer/src/track.c:492
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s alternativ"
@@ -2410,33 +2410,3 @@ msgstr "Overvåk utgangsnivå for volum"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Nivåmåler for volum"
-
-#~ msgid "Capture"
-#~ msgstr "Ta opp"
-
-#~ msgid "Switch"
-#~ msgstr "Bytt"
-
-#~ msgid "Option"
-#~ msgstr "Alternativ"
-
-#~ msgid "_Change Device"
-#~ msgstr "En_dre enhet"
-
-#~ msgid "Quit the application"
-#~ msgstr "Avslutt programmet"
-
-#~ msgid "Prefere_nces"
-#~ msgstr "Bruker_valg"
-
-#~ msgid "Configure the application"
-#~ msgstr "Konfigurer programmet"
-
-#~ msgid "_Contents"
-#~ msgstr "_Innhold"
-
-#~ msgid "Help on this application"
-#~ msgstr "Hjelp om dette programmet"
-
-#~ msgid "Change device to %s"
-#~ msgstr "Endre til enhet %s"
