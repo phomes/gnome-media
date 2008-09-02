@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-26 20:57+0000\n"
-"PO-Revision-Date: 2008-06-01 21:04+0300\n"
+"POT-Creation-Date: 2008-09-01 20:01+0000\n"
+"PO-Revision-Date: 2008-09-02 06:51+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -157,9 +157,9 @@ msgid "Unknown / Unknown"
 msgstr "Tundmatu / Tundmatu"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1414
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Tundmatu"
@@ -1075,7 +1075,7 @@ msgid "_Eject disc"
 msgstr "_Väljasta plaat"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2137
 msgid "_Help"
 msgstr "A_bi"
 
@@ -1327,7 +1327,7 @@ msgid "Record sound clips"
 msgstr "Heliklippide salvestamine"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "Helisalvestaja"
 
@@ -1335,17 +1335,17 @@ msgstr "Helisalvestaja"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1744
-#: ../grecord/src/gsr-window.c:2676
+#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2673
 msgid "Untitled"
 msgstr "Pealkirjata"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1746
+#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
 msgstr "Pealkirjata-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1360,7 +1360,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "ja taaskäivita gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1368,21 +1368,21 @@ msgstr ""
 "Palun kontrolli selle sätteid.\n"
 "Võib-olla on mõni vajalik plugin puudu."
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld minut"
 msgstr[1] "%ld minutit"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld tund"
 msgstr[1] "%ld tundi"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1390,24 +1390,24 @@ msgstr[0] "%ld sekund"
 msgstr[1] "%ld sekundit"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ja %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s ja %s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Faili avamine"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1416,17 +1416,17 @@ msgstr ""
 "Faili pole võimalik laadida:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1545
-#: ../grecord/src/gsr-window.c:1801 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2490
 msgid "Ready"
 msgstr "Valmis"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "_Asenda"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1435,288 +1435,288 @@ msgstr ""
 "Fail nimega \"%s\" on juba olemas.\n"
 "Kas soovid seda asendada salvestatava failiga?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Faili \"%s\" pole võimalik salvestada"
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Salvesta fail kui"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ei ole otsinguteele paigaldatud."
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s käivitamisel tekkis viga: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Kas enne sulgemist tuleb muudatused faili \"%s\" salvestada?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "Sulge _ilma salvestamata"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "Küsimus"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (salvestamata)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bait)"
 msgstr[1] "%s (%llu baiti)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "Tundmatu suurus"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Hinnanguline)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "%s andmed"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2402
 msgid "File Information"
 msgstr "Faili andmed"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "Kataloog:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2409
 msgid "Filename:"
 msgstr "Faili nimi:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "Faili suurus:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "Audioandmed"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "Faili kestus:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "Kanalite arv:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "Diskreetimissagedus:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "Bitikiirus:"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1238
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "GNOME helisalvestaja\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1517
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "Esitamine..."
 
-#: ../grecord/src/gsr-window.c:1649
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "GConf audioväljund"
 
-#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:191
+#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "Esitamine"
 
-#: ../grecord/src/gsr-window.c:1735
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "Salvestamine..."
 
-#: ../grecord/src/gsr-window.c:1823
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "GConf audiosalvestamine"
 
-#: ../grecord/src/gsr-window.c:1832
+#: ../grecord/src/gsr-window.c:1821
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
-"Sinu audiosalvestamise sätted on vigased. Palun sea need süsteemi "
-"eelistuste all olevast \"Helieelistuste\" sätetest õigeks."
+"Sinu audiosalvestamise sätted on vigased. Palun sea need süsteemi eelistuste "
+"all olevast \"Helieelistuste\" sätetest õigeks."
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:1987
 msgid "file output"
 msgstr "failiväljund"
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2005
 msgid "level"
 msgstr "tase"
 
-#: ../grecord/src/gsr-window.c:2030
+#: ../grecord/src/gsr-window.c:2029
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Audioprofiili '%s' pole võimalik parsida. "
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Audioprofiili '%s' abil pole võimalik heli salvestada. "
 
-#: ../grecord/src/gsr-window.c:2057
+#: ../grecord/src/gsr-window.c:2055
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Faili pole võimalik '%s' audioprofiili abil kirjutada. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2112
+#: ../grecord/src/gsr-window.c:2109
 msgid "_File"
 msgstr "_Fail"
 
-#: ../grecord/src/gsr-window.c:2114
+#: ../grecord/src/gsr-window.c:2111
 msgid "Create a new sample"
 msgstr "Uue helilõigu loomine"
 
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2113
 msgid "Open a file"
 msgstr "Faili avamine"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2115
 msgid "Save the current file"
 msgstr "Käesoleva faili salvestamine"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2117
 msgid "Save the current file with a different name"
 msgstr "Käesoleva faili salvestamine teise nime alla"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open Volu_me Control"
 msgstr "A_va helitugevuse juhtija"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2119
 msgid "Open the audio mixer"
 msgstr "Helimikseri käivitamine"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2121
 msgid "Show information about the current file"
 msgstr "Teabe näitamine käesoleva faili kohta"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2123
 msgid "Close the current file"
 msgstr "Käesoleva faili sulgemine"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2125
 msgid "Quit the program"
 msgstr "Rakenduse töö lõpetamine"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2128
 msgid "_Control"
 msgstr "_Juhtimine"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2130
 msgid "Record sound"
 msgstr "Heli salvestamine"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2132
 msgid "Play sound"
 msgstr "Heli esitamine"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2134
 msgid "Stop sound"
 msgstr "Heli seiskamine"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2138
 msgid "Contents"
 msgstr "Sisukord"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2139
 msgid "Open the manual"
 msgstr "Kasutajajuhendi avamine"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2141
 msgid "About this application"
 msgstr "Rakendusest lähemalt"
 
-#: ../grecord/src/gsr-window.c:2267
+#: ../grecord/src/gsr-window.c:2264
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Faili ui.xml pole võimalik laadida. Programm pole võib-olla korralikult "
 "paigaldatud"
 
-#: ../grecord/src/gsr-window.c:2290
+#: ../grecord/src/gsr-window.c:2287
 msgid "Open"
 msgstr "Ava"
 
-#: ../grecord/src/gsr-window.c:2292
+#: ../grecord/src/gsr-window.c:2289
 msgid "Save"
 msgstr "Salvesta"
 
-#: ../grecord/src/gsr-window.c:2294
+#: ../grecord/src/gsr-window.c:2291
 msgid "Save As"
 msgstr "Salvesta kui"
 
-#: ../grecord/src/gsr-window.c:2349
+#: ../grecord/src/gsr-window.c:2347
 msgid "Record from _input:"
 msgstr "_Salvestamine sisendist:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2369
 msgid "_Record as:"
 msgstr "_Lindistada kui:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2416
 msgid "<none>"
 msgstr "<pole>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2430
 msgid "Length:"
 msgstr "Pikkus:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2468
 msgid "Level:"
 msgstr "Tase:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2561
+#: ../grecord/src/gsr-window.c:2558
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Helisalvestaja"
@@ -1726,7 +1726,7 @@ msgid "Adjust the volume level"
 msgstr "Helitugevuse muutmine"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:270 ../gst-mixer/src/window.c:271
+#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
 msgid "Volume Control"
 msgstr "Helitugevuse juhtija"
 
@@ -1746,15 +1746,15 @@ msgstr "Akna laius"
 msgid "Width of the Window to be displayed"
 msgstr "Kuvatava akna laius"
 
-#: ../gst-mixer/src/element.c:193 ../gst-mixer/src/misc.c:60
+#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
 msgid "Recording"
 msgstr "Salvestamine"
 
-#: ../gst-mixer/src/element.c:195 ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
 msgid "Switches"
 msgstr "Lülitid"
 
-#: ../gst-mixer/src/element.c:197 ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
 msgid "Options"
 msgstr "Valikud"
 
@@ -1780,34 +1780,34 @@ msgstr "Helitugevuse juhtimise eelistused"
 msgid "_Select tracks to be visible:"
 msgstr "_Vali nähtavad rajad:"
 
-#: ../gst-mixer/src/track.c:247
+#: ../gst-mixer/src/track.c:262
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:286
+#: ../gst-mixer/src/track.c:301
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s tummaks/valjuks"
 
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:316
 #, c-format
 msgid "Track %s: mute"
 msgstr "Lugu %s: tumm"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:372
+#: ../gst-mixer/src/track.c:387
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Allikast %s audio salvestamise sisse-/väljalülitamine"
 
-#: ../gst-mixer/src/track.c:389
+#: ../gst-mixer/src/track.c:404
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Rada %s: audio salvestamine"
 
-#: ../gst-mixer/src/track.c:471
+#: ../gst-mixer/src/track.c:492
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s valiku valimine"
@@ -1837,35 +1837,35 @@ msgstr "%s kanalite kokkulukusamine"
 msgid "Track %s: lock channels together"
 msgstr "Rada %s: kanalite kokkulukusamine"
 
-#: ../gst-mixer/src/volume.c:194
+#: ../gst-mixer/src/volume.c:198
 msgid "mono"
 msgstr "Mono"
 
-#: ../gst-mixer/src/volume.c:196
+#: ../gst-mixer/src/volume.c:200
 msgid "left"
 msgstr "Vasaku"
 
-#: ../gst-mixer/src/volume.c:196
+#: ../gst-mixer/src/volume.c:200
 msgid "right"
 msgstr "Parema"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "front left"
 msgstr "Eesmise vasaku"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:204
 msgid "front right"
 msgstr "Eesmise parema"
 
-#: ../gst-mixer/src/volume.c:201
+#: ../gst-mixer/src/volume.c:205
 msgid "rear left"
 msgstr "Tagumise vasaku"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "rear right"
 msgstr "Tagumise parema"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front center"
 msgstr "Eesmise keskmise"
 
@@ -1873,34 +1873,34 @@ msgstr "Eesmise keskmise"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:208
+#: ../gst-mixer/src/volume.c:212
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:213
 msgid "side left"
 msgstr "Vasakpoolse"
 
-#: ../gst-mixer/src/volume.c:210
+#: ../gst-mixer/src/volume.c:214
 msgid "side right"
 msgstr "Parempoolse"
 
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "unknown"
 msgstr "Tundmatu"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:217
+#: ../gst-mixer/src/volume.c:221
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s kanali helitugevus %s rajal"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:144
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME'il ja GStreamer'il põhinev helivaljuse juhtimise rakendus"
 
-#: ../gst-mixer/src/window.c:150
+#: ../gst-mixer/src/window.c:147
 msgid "translator-credits"
 msgstr ""
 "Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
@@ -1909,23 +1909,17 @@ msgstr ""
 "Priit Laes <amd store20 com>, 2005, 2007"
 
 #. change window title
-#. window title and menu selection
-#: ../gst-mixer/src/window.c:187 ../gst-mixer/src/window.c:378
+#: ../gst-mixer/src/window.c:184
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Helitugevuse juhtimine: %s"
 
-#: ../gst-mixer/src/window.c:363
-#, c-format
-msgid "Change device to %s"
-msgstr "Seadme muutmine -> %s"
-
-#: ../gst-mixer/src/window.c:388
+#: ../gst-mixer/src/window.c:393
 msgid "_Device: "
 msgstr "_Seade: "
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:429
+#: ../gst-mixer/src/window.c:432
 msgid "Control volume on a different device"
 msgstr "Teise seadme helitugevuse juhtimine"
 
@@ -2433,30 +2427,3 @@ msgstr "Montoorib heliväljundit"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Helitugevuse monitor"
-
-#~ msgid "hours"
-#~ msgstr "tundi"
-
-#~ msgid "minutes"
-#~ msgstr "minutit"
-
-#~ msgid "seconds"
-#~ msgstr "sekundit"
-
-#~ msgid "_Open..."
-#~ msgstr "_Ava..."
-
-#~ msgid "Save _As..."
-#~ msgstr "Salvesta _kui..."
-
-#~ msgid "Capture"
-#~ msgstr "Salvestamine"
-
-#~ msgid "Switch"
-#~ msgstr "Lüliti"
-
-#~ msgid "Option"
-#~ msgstr "Parameeter"
-
-#~ msgid "_Change Device"
-#~ msgstr "_Muuda seadet"
