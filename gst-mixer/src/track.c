@@ -35,7 +35,7 @@ static const struct {
   gchar *label,
 	*pixmap;
 } pix[] = {
-  { "cd",         "media-cdrom"         	},
+  { "cd",         "media-optical"         	},
   { "line",       "gvc-line-in"                 },
   { "mic",        "audio-input-microphone"      },
   { "mix",        "multimedia-volume-control"   },
