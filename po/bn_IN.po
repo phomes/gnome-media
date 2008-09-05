@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-01 18:39+0000\n"
-"PO-Revision-Date: 2008-08-27 16:51+0530\n"
+"POT-Creation-Date: 2008-09-01 20:01+0000\n"
+"PO-Revision-Date: 2008-09-05 12:58+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <fedora-trans-bn_IN@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -57,8 +57,8 @@ msgid ""
 "The type of the server to contact for CD queries. Possible values are 0 "
 "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
-"CD সম্বন্ধীয় জিজ্ঞাসা থাকলে যে ধরনের সার্ভারের সাথে যোগাযোগ করা হবে। সম্ভাব্য "
-"মান হল 0 (০) (FreeDB রাউন্ড রবিন সার্ভার), 1 (১) (অন্যান্য freedb সার্ভার) এবং 2 (২) "
+"CD সম্বন্ধীয় জিজ্ঞাসা থাকলে যে ধরনের সার্ভারের সাথে যোগাযোগ করা হবে। সম্ভাব্য মান "
+"হল 0 (০) (FreeDB রাউন্ড রবিন সার্ভার), 1 (১) (অন্যান্য freedb সার্ভার) এবং 2 (২) "
 "(অন্যান্য সার্ভার)।"
 
 # C
@@ -77,8 +77,8 @@ msgid ""
 "information) and 3 (other information)."
 msgstr ""
 "এই মানটি নির্ধারণ করে যে, CD সম্বন্ধীয় জিজ্ঞাসার ক্ষেত্রে সার্ভারকে ব্যবহারকারী "
-"সম্বন্ধে কী তথ্য পাঠানো হবে। সম্ভাব্য মানগুলি হল 0 (০) (কোনো তথ্য পাঠানো হবে না), 1 (১) (যথার্থ "
-"তথ্য) এবং 3 (৩) (অন্যান্য তথ্য)।"
+"সম্বন্ধে কী তথ্য পাঠানো হবে। সম্ভাব্য মানগুলি হল 0 (০) (কোনো তথ্য পাঠানো হবে না), 1 "
+"(১) (যথার্থ তথ্য) এবং 3 (৩) (অন্যান্য তথ্য)।"
 
 # C
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
@@ -166,9 +166,9 @@ msgid "Unknown / Unknown"
 msgstr "অজানা / অজানা"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1414
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "অজানা"
@@ -1082,7 +1082,7 @@ msgid "_Eject disc"
 msgstr "ডিস্ক বের করুন (_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2137
 msgid "_Help"
 msgstr "সহায়তা (_H)"
 
@@ -1101,7 +1101,8 @@ msgid ""
 "where you can set the device, or click 'Quit' to quit the CD player."
 msgstr ""
 "কোনো CD ডিভাইস নির্ধারণ করা হয়নি। এই কারনে CD প্লেয়ার চালানো\n"
-"সম্ভব হবে না। ডিভাইস নির্ধারণের উদ্দেশ্যে 'ডিভাইস নির্ধারণ করুন' ক্লিক করে ডায়লগ বক্সে\n"
+"সম্ভব হবে না। ডিভাইস নির্ধারণের উদ্দেশ্যে 'ডিভাইস নির্ধারণ করুন' ক্লিক করে ডায়লগ "
+"বক্সে\n"
 "চলুন, অথবা 'প্রস্থান' টিপে CD প্লেয়ার বন্ধ করুন।"
 
 #: ../gnome-cd/gnome-cd.c:589
@@ -1333,7 +1334,7 @@ msgid "Record sound clips"
 msgstr "শব্দের অংশ রেকর্ড করুন"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "শব্দ রেকর্ড ব্যবস্থা"
 
@@ -1341,17 +1342,17 @@ msgstr "শব্দ রেকর্ড ব্যবস্থা"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1744
-#: ../grecord/src/gsr-window.c:2676
+#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2673
 msgid "Untitled"
 msgstr "শিরোনামহীন"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1746
+#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
 msgstr "শিরোনামহীন-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1366,7 +1367,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "ও gnome-sound-recorder পুনরারম্ভ করুন।"
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1374,21 +1375,21 @@ msgstr ""
 "অনুগ্রহ করে বৈশিষ্ট্য পরীক্ষা করুন।\n"
 "প্রয়োজনীয় প্লাগ-ইন উপস্থিত না থাকতে পারে।"
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld মিনিট"
 msgstr[1] "%ld মিনিট"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld ঘন্টা"
 msgstr[1] "%ld ঘন্টা"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1396,24 +1397,24 @@ msgstr[0] "%ld সেকেন্ড"
 msgstr[1] "%ld সেকেন্ড"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ও %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s ও %s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "একটি ফাইল খুলুন"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1422,17 +1423,17 @@ msgstr ""
 "চিহ্নিত ফাইল লোড করা যায়নি:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1545
-#: ../grecord/src/gsr-window.c:1801 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2490
 msgid "Ready"
 msgstr "প্রস্তুত"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "প্রতিস্থাপন (_R)"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1441,286 +1442,286 @@ msgstr ""
 "\"%s\" ফাইলটি বর্তমানে উপস্থিত। \n"
 "সংরক্ষণের জন্য চিহ্নিত ফাইল দ্বারা বর্তমান ফাইলটি প্রতিস্থাপন করা হবে কি?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "\"%s\" ফাইলটি সংরক্ষণ করা যায়নি"
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "নতুন রূপে ফাইল সংরক্ষণ করুন"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "পথ নির্দেশে %s ইনস্টল করা নেই।"
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s আরম্ভ করতে ত্রুটি: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "বন্ধ করার পূর্বে পরিবর্তনগুলি \"%s\" ফাইলের মধ্যে সংরক্ষণ করা হবে কি?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "সংরক্ষণ না করেই বন্ধ করুন (_w)"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "প্রশ্ন"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (সংরক্ষণ করা হয়নি)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu বাইট)"
 msgstr[1] "%s (%llu বাইট)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "অজানা মাপ"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (আনুমানিক)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "১ (মোনো)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "২ (স্টিরিও)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "%s তথ্য"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2402
 msgid "File Information"
 msgstr "ফাইল সম্বন্ধীয় তথ্য"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "ফোল্ডার:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2409
 msgid "Filename:"
 msgstr "ফাইলের নাম:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "ফাইলের মাপ:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "অডিও সম্বন্ধীয় তথ্য"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "ফাইলের ব্যাপ্তি:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "চ্যানেল সংখ্যা:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "স্যাম্পলের গতি:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "বিট মাত্রা"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1238
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "GNOME-র সাথে ব্যবহারযোগ্য শব্দ রেকর্ড ব্যবস্থা\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1517
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "বাজানো হচ্ছে..."
 
-#: ../grecord/src/gsr-window.c:1649
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "GConf অডিও আউটপুট"
 
-#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:186
+#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "প্লে-ব্যাক"
 
-#: ../grecord/src/gsr-window.c:1735
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "রেকর্ড করা হচ্ছে..."
 
-#: ../grecord/src/gsr-window.c:1823
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "GConf অডিও রেকর্ড ব্যবস্থা"
 
-#: ../grecord/src/gsr-window.c:1832
+#: ../grecord/src/gsr-window.c:1821
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
-"অডিও ক্যাপচার সংক্রান্ত বৈশিষ্ট্যগুলি বৈধ নয়। অনুগ্রহ করে সিস্টেম-পছন্দ মেনুর মধ্যে"
-"\"শব্দ সংক্রান্ত পছন্দ\" প্রয়োগ করে বৈশিষ্ট্যগুলি পরিবর্তন করুন।"
+"অডিও ক্যাপচার সংক্রান্ত বৈশিষ্ট্যগুলি বৈধ নয়। অনুগ্রহ করে সিস্টেম-পছন্দ মেনুর মধ্যে\"শব্দ "
+"সংক্রান্ত পছন্দ\" প্রয়োগ করে বৈশিষ্ট্যগুলি পরিবর্তন করুন।"
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:1987
 msgid "file output"
 msgstr "ফাইল আউটপুট"
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2005
 msgid "level"
 msgstr "মাত্রা"
 
-#: ../grecord/src/gsr-window.c:2030
+#: ../grecord/src/gsr-window.c:2029
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "'%s' অডিও প্রোফাইল পার্স করতে ব্যর্থ। "
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "'%s' অডিও প্রোফাইল সহযোগে ক্যাপচার করা যায়নি। "
 
-#: ../grecord/src/gsr-window.c:2057
+#: ../grecord/src/gsr-window.c:2055
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "'%s' অডিও প্রোফাইল সহযোগে লিখতে ব্যর্থ"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2112
+#: ../grecord/src/gsr-window.c:2109
 msgid "_File"
 msgstr "ফাইল (_F)"
 
-#: ../grecord/src/gsr-window.c:2114
+#: ../grecord/src/gsr-window.c:2111
 msgid "Create a new sample"
 msgstr "নতুন নমূনা তৈরি করুন"
 
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2113
 msgid "Open a file"
 msgstr "ফাইল খুলুন"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2115
 msgid "Save the current file"
 msgstr "বর্তমান ফাইল সংরক্ষণ করুন"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2117
 msgid "Save the current file with a different name"
 msgstr "ভিন্ন নামে বর্তমান ফাইল সংরক্ষণ করুন"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open Volu_me Control"
 msgstr "শব্দের মাত্রা নিয়ন্ত্রণ ব্যবস্থা খুলুন (_m)"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2119
 msgid "Open the audio mixer"
 msgstr "অডিও-মিক্সার আরম্ভ করুন"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2121
 msgid "Show information about the current file"
 msgstr "বর্তমান ফাইল সংক্রান্ত তথ্য প্রদর্শন করা হবে"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2123
 msgid "Close the current file"
 msgstr "বর্তমান ফাইল বন্ধ করুন"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2125
 msgid "Quit the program"
 msgstr "প্রোগ্রাম থেকে প্রস্থান করুন"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2128
 msgid "_Control"
 msgstr "নিয়ন্ত্রণ (_C)"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2130
 msgid "Record sound"
 msgstr "শব্দ রেকর্ড করুন"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2132
 msgid "Play sound"
 msgstr "শব্দ বাজান"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2134
 msgid "Stop sound"
 msgstr "শব্দ বন্ধ করুন"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2138
 msgid "Contents"
 msgstr "সূচী"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2139
 msgid "Open the manual"
 msgstr "সহায়িকা খুলুন"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2141
 msgid "About this application"
 msgstr "অ্যাপ্লিকেশন পরিচিতি"
 
-#: ../grecord/src/gsr-window.c:2267
+#: ../grecord/src/gsr-window.c:2264
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml লোড করা যায়নি।  এই প্রোগ্রামটি সম্ভবত সঠিকভাবে ইনস্টল করা হয়নি"
 
-#: ../grecord/src/gsr-window.c:2290
+#: ../grecord/src/gsr-window.c:2287
 msgid "Open"
 msgstr "খুলুন"
 
-#: ../grecord/src/gsr-window.c:2292
+#: ../grecord/src/gsr-window.c:2289
 msgid "Save"
 msgstr "সংরক্ষণ করুন"
 
-#: ../grecord/src/gsr-window.c:2294
+#: ../grecord/src/gsr-window.c:2291
 msgid "Save As"
 msgstr "নতুন রূপে সংরক্ষণ করুন"
 
-#: ../grecord/src/gsr-window.c:2349
+#: ../grecord/src/gsr-window.c:2347
 msgid "Record from _input:"
 msgstr "প্রাপ্ত ইনপুট থেকে রেকর্ড করা হবে: (_i)"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2369
 msgid "_Record as:"
 msgstr "চিহ্নিত রূপে রেকর্ড করা হবে: (_R)"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2416
 msgid "<none>"
 msgstr "<none>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2430
 msgid "Length:"
 msgstr "ব্যাপ্তি:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2468
 msgid "Level:"
 msgstr "মাত্রা:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2561
+#: ../grecord/src/gsr-window.c:2558
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - শব্দ রেকর্ডকারী"
@@ -1750,16 +1751,16 @@ msgstr "উইন্ডোর প্রস্থ"
 msgid "Width of the Window to be displayed"
 msgstr "প্রদর্শনযোগ্য উইন্ডোর প্রস্থ"
 
-#: ../gst-mixer/src/element.c:188 ../gst-mixer/src/misc.c:60
+#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
 msgid "Recording"
 msgstr "রেকর্ড"
 
 # FIXME
-#: ../gst-mixer/src/element.c:190 ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
 msgid "Switches"
 msgstr "পরিবর্তক"
 
-#: ../gst-mixer/src/element.c:192 ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
 msgid "Options"
 msgstr "বিবিধ বিকল্প"
 
@@ -1785,34 +1786,34 @@ msgstr "শব্দমাত্রা নিয়ন্ত্রক সম্প�
 msgid "_Select tracks to be visible:"
 msgstr "প্রদর্শনযোগ্য ট্র্যাক নির্বাচন করুন: (_S)"
 
-#: ../gst-mixer/src/track.c:247
+#: ../gst-mixer/src/track.c:262
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:286
+#: ../gst-mixer/src/track.c:301
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "নিঃশব্দ/শব্দ %s"
 
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:316
 #, c-format
 msgid "Track %s: mute"
 msgstr "ট্র্যাক %s: নিঃশব্দ"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:372
+#: ../gst-mixer/src/track.c:387
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "%s থেকে অডিও রেকর্ড পরিবর্তন করা হবে"
 
-#: ../gst-mixer/src/track.c:389
+#: ../gst-mixer/src/track.c:404
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "ট্র্যাক %s: অডিও রেকর্ড"
 
-#: ../gst-mixer/src/track.c:477
+#: ../gst-mixer/src/track.c:492
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s বিকল্প নির্বাচন"
@@ -1842,35 +1843,35 @@ msgstr "%s-র জন্য একত্রে চ্যানেল লক ক�
 msgid "Track %s: lock channels together"
 msgstr "ট্র্যাক %s: একত্রে চ্যানেল লক করা হবে"
 
-#: ../gst-mixer/src/volume.c:194
+#: ../gst-mixer/src/volume.c:198
 msgid "mono"
 msgstr "মোনো"
 
-#: ../gst-mixer/src/volume.c:196
+#: ../gst-mixer/src/volume.c:200
 msgid "left"
 msgstr "বাঁদিকে"
 
-#: ../gst-mixer/src/volume.c:196
+#: ../gst-mixer/src/volume.c:200
 msgid "right"
 msgstr "ডানদিকে"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "front left"
 msgstr "সামনে বাঁদিকে"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:204
 msgid "front right"
 msgstr "সামনে ডানদিকে"
 
-#: ../gst-mixer/src/volume.c:201
+#: ../gst-mixer/src/volume.c:205
 msgid "rear left"
 msgstr "পেছনে বাঁদিকে"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "rear right"
 msgstr "পেছনে ডানদিকে"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front center"
 msgstr "সামনে কেন্দ্রে"
 
@@ -1878,25 +1879,25 @@ msgstr "সামনে কেন্দ্রে"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:208
+#: ../gst-mixer/src/volume.c:212
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:209
+#: ../gst-mixer/src/volume.c:213
 msgid "side left"
 msgstr "বাঁদিকে"
 
-#: ../gst-mixer/src/volume.c:210
+#: ../gst-mixer/src/volume.c:214
 msgid "side right"
 msgstr "ডানদিকে"
 
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "unknown"
 msgstr "অজানা"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:217
+#: ../gst-mixer/src/volume.c:221
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%s চ্যানেলের শব্দের মাত্রা, %s-র উপর"
@@ -2129,7 +2130,9 @@ msgstr "gm_audio প্রোফাইলের তালিকা সংগ্�
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
-msgstr "অডিও প্রোফাইল তালিকায় পরিবর্তনের সূচনাবার্তা প্রাপ্তির উদ্দেশ্যে সাবস্ক্রাইব করতে সমস্যা। (%s)\n"
+msgstr ""
+"অডিও প্রোফাইল তালিকায় পরিবর্তনের সূচনাবার্তা প্রাপ্তির উদ্দেশ্যে সাবস্ক্রাইব করতে "
+"সমস্যা। (%s)\n"
 
 #: ../profiles/audio-profile.c:912
 #, c-format
@@ -2181,7 +2184,9 @@ msgstr "GConf ত্রুটি (FIXME): %s\n"
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
-msgstr "\"%s\" ফাইলটি অনুপস্থিত। অর্থাৎ অ্যাপ্লিকেশনটি সঠিকরূপে ইনস্টল করা হয়নি ও এর ফলে ডায়লগ বক্স প্রদর্শন করা যাবে না।"
+msgstr ""
+"\"%s\" ফাইলটি অনুপস্থিত। অর্থাৎ অ্যাপ্লিকেশনটি সঠিকরূপে ইনস্টল করা হয়নি ও এর ফলে "
+"ডায়লগ বক্স প্রদর্শন করা যাবে না।"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2223,7 +2228,9 @@ msgstr "অডিও প্রোফাইলের বিবরণ"
 msgid ""
 "A description of the profile, containing more information and describing "
 "when to use this profile."
-msgstr "প্রোফাইলের বর্ণনা। এর মধ্যে প্রোফাইল সম্পর্কিত অধিক তথ্য ও প্রোফাইল ব্যবহারের সঠিক পরিস্থিতি সংক্রান্ত তথ্য উপলব্ধ করা হয়েছে।"
+msgstr ""
+"প্রোফাইলের বর্ণনা। এর মধ্যে প্রোফাইল সম্পর্কিত অধিক তথ্য ও প্রোফাইল ব্যবহারের সঠিক "
+"পরিস্থিতি সংক্রান্ত তথ্য উপলব্ধ করা হয়েছে।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
 msgid "A filename extension to be used when storing files encoded with this profile."
@@ -2265,7 +2272,9 @@ msgstr "CD-র গুণমান, MP3"
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
-msgstr "অডিও রেকর্ডিং প্রোফাইলের তালিকা। /system/gstreamer/@GST_MAJORMINOR@/audio/profiles-র অপেক্ষায় সাব-ডিরেক্টরির নামগুলি পংক্তিরূপে এই তালিকায় অন্তর্ভুক্ত করা হয়।"
+msgstr ""
+"অডিও রেকর্ডিং প্রোফাইলের তালিকা। /system/gstreamer/@GST_MAJORMINOR@/audio/"
+"profiles-র অপেক্ষায় সাব-ডিরেক্টরির নামগুলি পংক্তিরূপে এই তালিকায় অন্তর্ভুক্ত করা হয়।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
@@ -2283,13 +2292,17 @@ msgstr "ব্যবহৃত আংশিক GStreamer পাইপলাইন
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
-msgstr "CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু উচ্চ গুণমানের কম্প্রেশন কোডেক সহ। ফাইলটি পরে সম্পাদনা করার জন্য অথবা CD-তে বার্ন করতে হলে এটি ব্যবহার করুন।"
+msgstr ""
+"CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু উচ্চ গুণমানের কম্প্রেশন কোডেক সহ। "
+"ফাইলটি পরে সম্পাদনা করার জন্য অথবা CD-তে বার্ন করতে হলে এটি ব্যবহার করুন।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
-msgstr "CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের কম্প্রেশন কোডেক সহ। CD থেকে এক্সট্র্যাক্ট করার জন্য অথবা রেডিও রেকর্ডিং-র জন্য এটি ব্যবহার করুন।"
+msgstr ""
+"CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের কম্প্রেশন কোডেক সহ। CD "
+"থেকে এক্সট্র্যাক্ট করার জন্য অথবা রেডিও রেকর্ডিং-র জন্য এটি ব্যবহার করুন।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid ""
@@ -2297,7 +2310,11 @@ msgid ""
 "this for preparing files for copying to devices that only support the AAC "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
-msgstr "CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের AAC কোডেক সহ। শুধুমাত্র AAC কোডেক ব্যবহারকারী ডিভাইসে কপি করার জন্য ফাইল প্রস্তুত করার জন্য এটি ব্যবহার করুন। উল্লেখ্য, এই কোডেকের ব্যবহার আপনার এলাকায় বেআইনি হতে পারে এবং কোনো আইনী বিশেষজ্ঞের পরামর্শ নেওয়া বাঞ্ছনীয়।"
+msgstr ""
+"CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের AAC কোডেক সহ। শুধুমাত্র "
+"AAC কোডেক ব্যবহারকারী ডিভাইসে কপি করার জন্য ফাইল প্রস্তুত করার জন্য এটি ব্যবহার "
+"করুন। উল্লেখ্য, এই কোডেকের ব্যবহার আপনার এলাকায় বেআইনি হতে পারে এবং কোনো আইনী "
+"বিশেষজ্ঞের পরামর্শ নেওয়া বাঞ্ছনীয়।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid ""
@@ -2305,19 +2322,27 @@ msgid ""
 "this for preparing files for copying to devices that only support the MP3 "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
-msgstr "CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের MP3 কোডেক সহ। শুধুমাত্র MP3 কোডেক ব্যবহারকারী ডিভাইসে কপি করার জন্য ফাইল প্রস্তুত করার জন্য এটি ব্যবহার করুন। উল্লেখ্য, এই কোডেকের ব্যবহার আপনার এলাকায় বেআইনি হতে পারে এবং কোনো আইনী বিশেষজ্ঞের পরামর্শ নেওয়া বাঞ্ছনীয়।"
+msgstr ""
+"CD-গুণমানের অডিওতে রূপান্তর করতে ব্যবহৃত। কিন্তু নিম্ন গুণমানের MP3 কোডেক সহ। শুধুমাত্র "
+"MP3 কোডেক ব্যবহারকারী ডিভাইসে কপি করার জন্য ফাইল প্রস্তুত করার জন্য এটি ব্যবহার "
+"করুন। উল্লেখ্য, এই কোডেকের ব্যবহার আপনার এলাকায় বেআইনি হতে পারে এবং কোনো আইনী "
+"বিশেষজ্ঞের পরামর্শ নেওয়া বাঞ্ছনীয়।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
-msgstr "উচ্চ গুণমানের কন্ঠস্বরের অনুরূপ অডিওতে রূপান্তর করতে ব্যবহৃত। রেকর্ডিং অথবা ভাষ্য সম্পাদনার জন্য ব্যবহার করুন।"
+msgstr ""
+"উচ্চ গুণমানের কন্ঠস্বরের অনুরূপ অডিওতে রূপান্তর করতে ব্যবহৃত। রেকর্ডিং অথবা ভাষ্য "
+"সম্পাদনার জন্য ব্যবহার করুন।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
-msgstr "নিম্ন গুণমানের কন্ঠস্বরের অনুরূপ অডিওতে রূপান্তর করতে ব্যবহৃত। ভাষ্য রেকর্ডিং সম্পাদনার জন্য ব্যবহার করুন যা সম্পাদন করা হবে না।"
+msgstr ""
+"নিম্ন গুণমানের কন্ঠস্বরের অনুরূপ অডিওতে রূপান্তর করতে ব্যবহৃত। ভাষ্য রেকর্ডিং সম্পাদনার "
+"জন্য ব্যবহার করুন যা সম্পাদন করা হবে না।"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid "Voice, Lossless"
