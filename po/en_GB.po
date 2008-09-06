@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-03 20:47+0100\n"
+"POT-Creation-Date: 2008-09-06 23:52+0100\n"
 "PO-Revision-Date: 2007-02-09 12:13-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
@@ -150,9 +150,9 @@ msgid "Unknown / Unknown"
 msgstr "Unknown / Unknown"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1414
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Unknown"
@@ -1068,16 +1068,15 @@ msgid "_Eject disc"
 msgstr "_Eject disc"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2140
-#: ../gst-mixer/src/window.c:336
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2137
 msgid "_Help"
 msgstr "_Help"
 
-#: ../gnome-cd/gnome-cd.c:366 ../gst-mixer/src/window.c:350
+#: ../gnome-cd/gnome-cd.c:366
 msgid "_About"
 msgstr "_About"
 
-#: ../gnome-cd/gnome-cd.c:367 ../gst-mixer/src/window.c:341
+#: ../gnome-cd/gnome-cd.c:367
 msgid "_Quit"
 msgstr "_Quit"
 
@@ -1320,7 +1319,7 @@ msgid "Record sound clips"
 msgstr "Record sound clips"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "Sound Recorder"
 
@@ -1328,17 +1327,17 @@ msgstr "Sound Recorder"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1744
-#: ../grecord/src/gsr-window.c:2674
+#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2673
 msgid "Untitled"
 msgstr "Untitled"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1746
+#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
 msgstr "Untitled-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1353,7 +1352,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1361,21 +1360,21 @@ msgstr ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld minute"
 msgstr[1] "%ld minutes"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld hour"
 msgstr[1] "%ld hours"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1383,24 +1382,24 @@ msgstr[0] "%ld second"
 msgstr[1] "%ld seconds"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s and %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s and %s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Open a File"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1409,17 +1408,17 @@ msgstr ""
 "Unable to load file:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1545
-#: ../grecord/src/gsr-window.c:1801 ../grecord/src/gsr-window.c:2490
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2490
 msgid "Ready"
 msgstr "Ready"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "_Replace"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1428,148 +1427,148 @@ msgstr ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Could not save the file \"%s\""
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Save file as"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s is not installed in the path."
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "There was an error starting %s: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Save the changes to file \"%s\" before closing?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "Close _without Saving"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "Question"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Has not been saved)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "Unknown size"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Estimated)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "%s Information"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2401
+#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2402
 msgid "File Information"
 msgstr "File Information"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "Folder:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2408
+#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2409
 msgid "Filename:"
 msgstr "Filename:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "File size:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "Audio Information"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "File duration:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "Number of channels:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "Sample rate:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1238
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1517
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "Playing..."
 
-#: ../grecord/src/gsr-window.c:1649
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "GConf audio output"
 
-#: ../grecord/src/gsr-window.c:1658 ../gst-mixer/src/element.c:195
+#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "Playback"
 
-#: ../grecord/src/gsr-window.c:1735
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "Recording..."
 
-#: ../grecord/src/gsr-window.c:1823
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "GConf audio recording"
 
-#: ../grecord/src/gsr-window.c:1832
+#: ../grecord/src/gsr-window.c:1821
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1577,128 +1576,128 @@ msgstr ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 
-#: ../grecord/src/gsr-window.c:1988
+#: ../grecord/src/gsr-window.c:1987
 msgid "file output"
 msgstr "file output"
 
-#: ../grecord/src/gsr-window.c:2006
+#: ../grecord/src/gsr-window.c:2005
 msgid "level"
 msgstr "level"
 
-#: ../grecord/src/gsr-window.c:2030
+#: ../grecord/src/gsr-window.c:2029
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Could not parse the '%s' audio profile. "
 
-#: ../grecord/src/gsr-window.c:2047
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Could not capture using the '%s' audio profile. "
 
-#: ../grecord/src/gsr-window.c:2057
+#: ../grecord/src/gsr-window.c:2055
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Could not write to a file using the '%s' audio profile. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2112 ../gst-mixer/src/window.c:334
+#: ../grecord/src/gsr-window.c:2109
 msgid "_File"
 msgstr "_File"
 
-#: ../grecord/src/gsr-window.c:2114
+#: ../grecord/src/gsr-window.c:2111
 msgid "Create a new sample"
 msgstr "Create a new sample"
 
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2113
 msgid "Open a file"
 msgstr "Open a file"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2115
 msgid "Save the current file"
 msgstr "Save the current file"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2117
 msgid "Save the current file with a different name"
 msgstr "Save the current file with a different name"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open Volu_me Control"
 msgstr "Open Volu_me Control"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2119
 msgid "Open the audio mixer"
 msgstr "Open the audio mixer"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2121
 msgid "Show information about the current file"
 msgstr "Show information about the current file"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2123
 msgid "Close the current file"
 msgstr "Close the current file"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2125
 msgid "Quit the program"
 msgstr "Quit the program"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2128
 msgid "_Control"
 msgstr "_Control"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2130
 msgid "Record sound"
 msgstr "Record sound"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2132
 msgid "Play sound"
 msgstr "Play sound"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2134
 msgid "Stop sound"
 msgstr "Stop sound"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2138
 msgid "Contents"
 msgstr "Contents"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2139
 msgid "Open the manual"
 msgstr "Open the manual"
 
-#: ../grecord/src/gsr-window.c:2144 ../gst-mixer/src/window.c:351
+#: ../grecord/src/gsr-window.c:2141
 msgid "About this application"
 msgstr "About this application"
 
-#: ../grecord/src/gsr-window.c:2266
+#: ../grecord/src/gsr-window.c:2264
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Could not load ui.xml. The program may be not properly installed"
 
-#: ../grecord/src/gsr-window.c:2289
+#: ../grecord/src/gsr-window.c:2287
 msgid "Open"
 msgstr "Open"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2289
 msgid "Save"
 msgstr "Save"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2291
 msgid "Save As"
 msgstr "Save As"
 
-#: ../grecord/src/gsr-window.c:2348
-msgid "Record from input:"
-msgstr "Record from input:"
+#: ../grecord/src/gsr-window.c:2347
+msgid "Record from _input:"
+msgstr "Record from _input:"
 
 #: ../grecord/src/gsr-window.c:2369
-msgid "Record as:"
-msgstr "Record as:"
+msgid "_Record as:"
+msgstr "_Record as:"
 
-#: ../grecord/src/gsr-window.c:2415
+#: ../grecord/src/gsr-window.c:2416
 msgid "<none>"
 msgstr "<none>"
 
-#: ../grecord/src/gsr-window.c:2429
+#: ../grecord/src/gsr-window.c:2430
 msgid "Length:"
 msgstr "Length:"
 
@@ -1707,7 +1706,7 @@ msgid "Level:"
 msgstr "Level:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2559
+#: ../grecord/src/gsr-window.c:2558
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Sound Recorder"
@@ -1717,7 +1716,7 @@ msgid "Adjust the volume level"
 msgstr "Adjust the volume level"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:319 ../gst-mixer/src/window.c:320
+#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
 msgid "Volume Control"
 msgstr "Volume Control"
 
@@ -1737,15 +1736,15 @@ msgstr "Width of the Window"
 msgid "Width of the Window to be displayed"
 msgstr "Width of the Window to be displayed"
 
-#: ../gst-mixer/src/element.c:197
+#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
 msgid "Recording"
 msgstr "Recording"
 
-#: ../gst-mixer/src/element.c:199
+#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
 msgid "Switches"
 msgstr "Switches"
 
-#: ../gst-mixer/src/element.c:201
+#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
 msgid "Options"
 msgstr "Options"
 
@@ -1762,88 +1761,101 @@ msgstr "Unknown Volume Control %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "No volume control GStreamer plugins and/or devices found."
 
-#: ../gst-mixer/src/misc.c:60
-msgid "Capture"
-msgstr "Capture"
-
-#: ../gst-mixer/src/misc.c:62
-msgid "Switch"
-msgstr "Switch"
-
-#: ../gst-mixer/src/misc.c:64
-msgid "Option"
-msgstr "Option"
-
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:92
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "Volume Control Preferences"
 
-#: ../gst-mixer/src/preferences.c:105
+#: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
 msgstr "_Select tracks to be visible:"
 
-#: ../gst-mixer/src/track.c:247
+#: ../gst-mixer/src/track.c:262
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:287
+#: ../gst-mixer/src/track.c:301
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Mute/unmute %s"
 
-#: ../gst-mixer/src/track.c:302
+#: ../gst-mixer/src/track.c:316
 #, c-format
 msgid "Track %s: mute"
 msgstr "Track %s: mute"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:377
+#: ../gst-mixer/src/track.c:387
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Toggle audio recording from %s"
 
-#: ../gst-mixer/src/track.c:395
+#: ../gst-mixer/src/track.c:404
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Track %s: audio recording"
 
-#: ../gst-mixer/src/track.c:479
+#: ../gst-mixer/src/track.c:492
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s Option Selection"
 
-#: ../gst-mixer/src/volume.c:105
+#: ../gst-mixer/src/volume.c:108
+#, c-format
+msgid "Track %s"
+msgstr "Track %s"
+
+#: ../gst-mixer/src/volume.c:111
+#, c-format
+msgid "Channel %d of track %s"
+msgstr "Channel %d of track %s"
+
+#: ../gst-mixer/src/volume.c:114
+#, c-format
+msgid "Track %s, channel %d"
+msgstr "Track %s, channel %d"
+
+#: ../gst-mixer/src/volume.c:134
+#, c-format
+msgid "Lock channels for %s together"
+msgstr "Lock channels for %s together"
+
+#: ../gst-mixer/src/volume.c:152
+#, c-format
+msgid "Track %s: lock channels together"
+msgstr "Track %s: lock channels together"
+
+#: ../gst-mixer/src/volume.c:198
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:107
+#: ../gst-mixer/src/volume.c:200
 msgid "left"
 msgstr "left"
 
-#: ../gst-mixer/src/volume.c:107
+#: ../gst-mixer/src/volume.c:200
 msgid "right"
 msgstr "right"
 
-#: ../gst-mixer/src/volume.c:110
+#: ../gst-mixer/src/volume.c:203
 msgid "front left"
 msgstr "front left"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:204
 msgid "front right"
 msgstr "front right"
 
-#: ../gst-mixer/src/volume.c:112
+#: ../gst-mixer/src/volume.c:205
 msgid "rear left"
 msgstr "rear left"
 
-#: ../gst-mixer/src/volume.c:113
+#: ../gst-mixer/src/volume.c:206
 msgid "rear right"
 msgstr "rear right"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:207
 msgid "front center"
 msgstr "front centre"
 
@@ -1851,107 +1863,53 @@ msgstr "front centre"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:119
+#: ../gst-mixer/src/volume.c:212
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:120
+#: ../gst-mixer/src/volume.c:213
 msgid "side left"
 msgstr "side left"
 
-#: ../gst-mixer/src/volume.c:121
+#: ../gst-mixer/src/volume.c:214
 msgid "side right"
 msgstr "side right"
 
-#: ../gst-mixer/src/volume.c:122
+#: ../gst-mixer/src/volume.c:215
 msgid "unknown"
 msgstr "unknown"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:128
+#: ../gst-mixer/src/volume.c:221
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Volume of %s channel on %s"
 
-#: ../gst-mixer/src/volume.c:176
-#, c-format
-msgid "Track %s"
-msgstr "Track %s"
-
-#: ../gst-mixer/src/volume.c:179
-#, c-format
-msgid "Channel %d of track %s"
-msgstr "Channel %d of track %s"
-
-#: ../gst-mixer/src/volume.c:182
-#, c-format
-msgid "Track %s, channel %d"
-msgstr "Track %s, channel %d"
-
-#: ../gst-mixer/src/volume.c:202
-#, c-format
-msgid "Lock channels for %s together"
-msgstr "Lock channels for %s together"
-
-#: ../gst-mixer/src/volume.c:220
-#, c-format
-msgid "Track %s: lock channels together"
-msgstr "Track %s: lock channels together"
-
-#: ../gst-mixer/src/window.c:196
+#: ../gst-mixer/src/window.c:144
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "A GNOME/GStreamer-based volume control application"
 
-#: ../gst-mixer/src/window.c:199
+#: ../gst-mixer/src/window.c:147
 msgid "translator-credits"
 msgstr ""
 "Gareth Owen <gowen72@yahoo.com>\n"
 "David Lodge <dave@cirt.net>"
 
 #. change window title
-#. window title and menu selection
-#: ../gst-mixer/src/window.c:236 ../gst-mixer/src/window.c:481
+#: ../gst-mixer/src/window.c:184
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Volume Control: %s"
 
-#: ../gst-mixer/src/window.c:335 ../profiles/audio-profiles-edit.c:87
-msgid "_Edit"
-msgstr "_Edit"
+#: ../gst-mixer/src/window.c:393
+msgid "_Device: "
+msgstr "_Device: "
 
-#: ../gst-mixer/src/window.c:338
-msgid "_Change Device"
-msgstr "_Change Device"
-
-#: ../gst-mixer/src/window.c:339
+#. set tooltips
+#: ../gst-mixer/src/window.c:432
 msgid "Control volume on a different device"
 msgstr "Control volume on a different device"
-
-#: ../gst-mixer/src/window.c:342
-msgid "Quit the application"
-msgstr "Quit the application"
-
-#: ../gst-mixer/src/window.c:344
-msgid "Prefere_nces"
-msgstr "Prefere_nces"
-
-#: ../gst-mixer/src/window.c:345
-msgid "Configure the application"
-msgstr "Configure the application"
-
-#: ../gst-mixer/src/window.c:347
-msgid "_Contents"
-msgstr "_Contents"
-
-#: ../gst-mixer/src/window.c:348
-msgid "Help on this application"
-msgstr "Help on this application"
-
-#: ../gst-mixer/src/window.c:446
-#, c-format
-msgid "Change device to %s"
-msgstr "Change device to %s"
 
 #: ../gstreamer-properties/gstreamer-properties.c:195
 msgid "None"
@@ -2045,7 +2003,7 @@ msgid "Autodetect"
 msgstr "Autodetect"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:113
+#: ../gstreamer-properties/pipeline-constants.c:115
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
@@ -2054,66 +2012,70 @@ msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:122
+#: ../gstreamer-properties/pipeline-constants.c:124
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio Sound Server"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:108
-#: ../gstreamer-properties/pipeline-constants.c:132
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Custom"
 msgstr "Custom"
 
 #: ../gstreamer-properties/pipeline-constants.c:102
+msgid "OpenGL"
+msgstr "OpenGL"
+
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "X Window System (No Xv)"
 msgstr "X Window System (No Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:130
 msgid "Test Sound"
 msgstr "Test Sound"
 
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Silence"
 msgstr "Silence"
 
-#: ../gstreamer-properties/pipeline-constants.c:137
+#: ../gstreamer-properties/pipeline-constants.c:139
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (e.g. Zoran v4l device)"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "Test Input"
 msgstr "Test Input"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
@@ -2158,6 +2120,10 @@ msgstr ""
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "There was an error forgetting profile path %s. (%s)\n"
+
+#: ../profiles/audio-profiles-edit.c:87
+msgid "_Edit"
+msgstr "_Edit"
 
 #. the first argument will never be used since we only run for count > 1
 #: ../profiles/audio-profiles-edit.c:465
@@ -2445,6 +2411,36 @@ msgstr "Monitor the sound output volume"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Volume Monitor"
+
+#~ msgid "Capture"
+#~ msgstr "Capture"
+
+#~ msgid "Switch"
+#~ msgstr "Switch"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "_Change Device"
+#~ msgstr "_Change Device"
+
+#~ msgid "Quit the application"
+#~ msgstr "Quit the application"
+
+#~ msgid "Prefere_nces"
+#~ msgstr "Prefere_nces"
+
+#~ msgid "Configure the application"
+#~ msgstr "Configure the application"
+
+#~ msgid "_Contents"
+#~ msgstr "_Contents"
+
+#~ msgid "Help on this application"
+#~ msgstr "Help on this application"
+
+#~ msgid "Change device to %s"
+#~ msgstr "Change device to %s"
 
 #~ msgid "hours"
 #~ msgstr "hours"
