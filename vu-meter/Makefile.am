@@ -2,7 +2,7 @@ Audiodir = $(datadir)/applications
 
 icondir = $(datadir)/icons/hicolor/48x48/apps
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	$(VUMETER_CFLAGS)			\
 	-DGNOME_ICONDIR=\""$(pixmapdir)"\"

@@ -1,3 +1,21 @@
+2008-09-07  Gilles Dartiguelongue  <gdartigu@svn.gnome.org>
+
+	* Makefile.am:
+	* autogen.sh:
+	* configure.ac:
+	* configure.in:
+	* gst-mixer/src/Makefile.am:
+	* m4/as-version.m4: Modernize autofoo, bug #550919.
+	Rename configure.in to configure.ac, use a modern
+	version of AS_VERSION, remove duplicate of ACLOCAL flags,
+	remove tabs and trailing ws, print CFLAGS, use
+	GNOME_COMPILE_FLAGS, change autogen.sh accordingly,
+	remove the weird unused MAIL_TRANSFERT_AGENT, make a more
+	appropriate summary by moving gnome-cd and deprecated stuff
+	to the end.
+	Patch by Marc-André Lureau  <marcandre.lureau@gmail.com>
+	and Gilles Dartiguelongue  <gdartigu@svn.gnome.org>.
+
 2008-09-05  Matthias Clasen  <mclasen@redhat.com>
 
 	Bug 550931 – use standard icon name for cd icon

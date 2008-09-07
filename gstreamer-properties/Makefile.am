@@ -22,7 +22,7 @@ desktopdir = $(datadir)/applications
 Desktop_in_files = gstreamer-properties.desktop.in.in
 desktop_DATA = $(Desktop_in_files:.desktop.in.in=.desktop)
 
-INCLUDES   = \
+AM_CPPFLAGS = \
 	$(GSTPROPS_CFLAGS) \
 	-DGSTPROPS_GLADEDIR=\""$(gladedir)"\" \
 	-DGSTPROPS_ICONDIR=\""$(iconsdir)"\" \

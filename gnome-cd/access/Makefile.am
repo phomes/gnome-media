@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
         -I$(top_srcdir) \
 	$(MEDIA_CFLAGS)	\
 	-I$(top_srcdir)/cddb-slave2	\

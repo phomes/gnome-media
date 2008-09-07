@@ -1,18 +1,40 @@
-SUBDIRS = po \
-	  @PROGRAMS_GMP@ \
-	  @PROGRAMS_CDDBSLAVE@ \
-	  @PROGRAMS_VUMETER@ \
-	  @PROGRAMS_GSTMIXER@ \
-	  @PROGRAMS_GNOME_CD@ \
-	  @PROGRAMS_GRECORD@ \
-	  @PROGRAMS_GSTPROPS@
+SUBDIRS = po
+
+if HAVE_GMP
+SUBDIRS += profiles
+endif
+
+if HAVE_CDDBSLAVE
+SUBDIRS += cddb-slave2
+endif
+
+if HAVE_VUMETER
+SUBDIRS += vu-meter
+endif
+
+if HAVE_GRECORD
+SUBDIRS += grecord
+endif
+
+if HAVE_GNOMECD
+SUBDIRS += gnome-cd
+endif
+
+if HAVE_GSTMIXER
+SUBDIRS += gst-mixer
+endif
+
+if HAVE_GSTPROPS
+SUBDIRS += gstreamer-properties
+endif
 
 INTLTOOL_BUILT = \
         intltool-extract \
         intltool-merge \
         intltool-update
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-cddbslave	\
+--enable-vumeter --enable-gnomecd --enable-compile-warnings=maximum
 
 DIST_SUBDIRS = po profiles cddb-slave2 \
 	       vu-meter grecord gst-mixer gnome-cd \

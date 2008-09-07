@@ -5,9 +5,9 @@ srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
 PKG_NAME="gnome-media"
-REQUIRED_AUTOMAKE_VERSION=1.7
+REQUIRED_AUTOMAKE_VERSION=1.9
 
-(test -f $srcdir/configure.in \
+(test -f $srcdir/configure.ac \
   && test -d $srcdir/cddb-slave2) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
@@ -21,7 +21,4 @@ which gnome-autogen.sh || {
 
 REQUIRED_INTLTOOL_VERSION=0.35
 
-# fix doc build before turning on common doc build
-# USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
-# set ACLOCAL_AMFLAGS
-USE_GNOME2_MACROS=1 ACLOCAL_FLAGS="$ACLOCAL_FLAGS -I m4" . gnome-autogen.sh
+USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh

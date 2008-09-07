@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
 	$(GSTMIXER_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(pkgdatadir)"\"			\

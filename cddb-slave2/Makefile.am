@@ -1,5 +1,5 @@
 ### compile flags used by all objects
-INCLUDES =					\
+AM_CPPFLAGS =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(CDDBSLAVE_CFLAGS)			\

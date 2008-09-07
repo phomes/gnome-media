@@ -6,7 +6,7 @@ else
 GST_CFLAGS=
 endif
 
-INCLUDES =					\
+AM_CPPFLAGS =					\
 	-I$(top_srcdir)				\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(top_builddir)			\
