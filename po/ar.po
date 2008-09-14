@@ -1,4 +1,4 @@
-# translation of gnome-media.HEAD.ar.po to Arabic
+# translation of gnome-media.HEAD.po to Arabic
 # This file is distributed under the same license as the gnome-media.ar package.
 # Copyright (C) 2003 THE gnome-media.ar'S COPYRIGHT HOLDER.
 #
@@ -9,21 +9,21 @@
 #  <lumina@silverpen.de>, 2003.
 # Abdulaziz Al-Arfaj <alarfaj0@yahoo.com>, 2004.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media.HEAD.ar\n"
+"Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-11 22:27+0100\n"
-"PO-Revision-Date: 2007-02-08 02:10+0200\n"
+"POT-Creation-Date: 2008-09-14 11:09+0100\n"
+"PO-Revision-Date: 2008-07-28 19:33+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -159,9 +159,9 @@ msgid "Unknown / Unknown"
 msgstr "مجهول / مجهول"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1415
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "مجهول"
@@ -1029,7 +1029,7 @@ msgstr "هل تريد المواصلة؟"
 #: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
 #, c-format
 msgid "Volume %d%%"
-msgstr "شدة الصوت %d%%"
+msgstr "شدة الصوت %Id%%"
 
 #: ../gnome-cd/cdrom.c:382
 #, c-format
@@ -1052,7 +1052,7 @@ msgstr ""
 #: ../gnome-cd/gnome-cd.c:260
 #, c-format
 msgid "%d - Unknown"
-msgstr "مجهول - %d"
+msgstr "مجهول - %Id"
 
 #: ../gnome-cd/gnome-cd.c:360
 msgid "_Play / Pause"
@@ -1075,7 +1075,7 @@ msgid "_Eject disc"
 msgstr "اطر_د القرص"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2141
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2137
 msgid "_Help"
 msgstr "_مساعدة"
 
@@ -1328,7 +1328,7 @@ msgid "Record sound clips"
 msgstr "سجّل قطع صوتية"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "مسجل الأصوات"
 
@@ -1336,17 +1336,17 @@ msgstr "مسجل الأصوات"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1745
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2673
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1747
+#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
-msgstr "بدون عنوان-%d"
+msgstr "بدون عنوان-%Id"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1361,7 +1361,7 @@ msgstr ""
 " gst-inspect-0.10 %s\n"
 "ثم أعد تشغيل gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1369,7 +1369,7 @@ msgstr ""
 "الرجاء التأكد من إعداداته.\n"
 "من المحتمل الإفتقار إلى الملحقات المطلوبة."
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, fuzzy, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1377,8 +1377,10 @@ msgstr[0] "دقيقة"
 msgstr[1] "دقيقة"
 msgstr[2] "دقيقة"
 msgstr[3] "دقيقة"
+msgstr[4] "دقيقة"
+msgstr[5] "دقيقة"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, fuzzy, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1386,8 +1388,10 @@ msgstr[0] "ساعة"
 msgstr[1] "ساعة"
 msgstr[2] "ساعة"
 msgstr[3] "ساعة"
+msgstr[4] "ساعة"
+msgstr[5] "ساعة"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, fuzzy, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1395,26 +1399,28 @@ msgstr[0] "ثانية"
 msgstr[1] "ثانية"
 msgstr[2] "ثانية"
 msgstr[3] "ثانية"
+msgstr[4] "ثانية"
+msgstr[5] "ثانية"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr ""
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "افتح ملف"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1423,17 +1429,17 @@ msgstr ""
 "لا يمكن تحميل الملف:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1546
-#: ../grecord/src/gsr-window.c:1802 ../grecord/src/gsr-window.c:2495
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2490
 msgid "Ready"
 msgstr "مستعد"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "است_بدِل"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1442,150 +1448,153 @@ msgstr ""
 "الملف المسمى \"%s\" موجود مسبقا. \n"
 "هل تريد تبديله بالملف الذي تريد حفظه؟"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "لم يمكن حفظ الملف \"%s\""
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "احفظ الملف كـ"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s غير مثبت في المسار."
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "حصل خطأ أثناء تشغيل %s: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "هل تريد حفظ الملف \"%s\" قبل الغلق؟"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "اغلق بدون حفظ"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "سؤال"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "(لم يحفظ) %s"
 
-#: ../grecord/src/gsr-window.c:1016
-#, c-format
+#: ../grecord/src/gsr-window.c:999
+#, fuzzy, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu بايت)"
 msgstr[1] "%s (%llu بايت)"
 msgstr[2] "%s (%llu بايت)"
 msgstr[3] "%s (%llu بايت)"
+msgstr[4] "%s (%llu بايت)"
+msgstr[5] "%s (%llu بايت)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "حجم مجهول"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f كيلوهارتز"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f كيلوبت/الثانية"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f كيلوبت/الثانية (تقدير)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "1 (مونو)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "2 (ستيرٍٍِِيو)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "معلومات %s"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2407
+#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2402
 msgid "File Information"
 msgstr "معلومات الملف"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "المجلد:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2414
+#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2409
 msgid "Filename:"
 msgstr "اسم الملف:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "حجم الملف:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "معلومات الصوت"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "مدة الملف:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "عدد القنوات:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "نسبة التردد:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "نسبة البايتات:"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1238
+#, fuzzy
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "مسجل أصوت لجنوم\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1518
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "عزف...."
 
-#: ../grecord/src/gsr-window.c:1650
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "خرْج صوت GConf"
 
-#: ../grecord/src/gsr-window.c:1659 ../gst-mixer/src/element.c:216
+#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "العزف"
 
-#: ../grecord/src/gsr-window.c:1736
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "يجري التسجيل..."
 
-#: ../grecord/src/gsr-window.c:1824
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "تسجيل صوت GConf"
 
-#: ../grecord/src/gsr-window.c:1833
+#: ../grecord/src/gsr-window.c:1821
 #, fuzzy
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
@@ -1593,140 +1602,140 @@ msgid ""
 msgstr ""
 "إعدادات تسجيل الصوت غير صحيحة. الرجاء تصحيحها عبر إعدادات الوسائط المتعددة."
 
-#: ../grecord/src/gsr-window.c:1989
+#: ../grecord/src/gsr-window.c:1987
 msgid "file output"
 msgstr "ملف الخرْج"
 
-#: ../grecord/src/gsr-window.c:2007
+#: ../grecord/src/gsr-window.c:2005
 msgid "level"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2031
+#: ../grecord/src/gsr-window.c:2029
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "لم يمكن تحليل طوْر الصوت '%s'"
 
-#: ../grecord/src/gsr-window.c:2048
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "لم يمكن الإستقبال باستعمال طوْر الصوت '%s'"
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:2055
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "لم يمكن الكتابة للملف باستعمال طوْر الصوت '%s'."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2113
+#: ../grecord/src/gsr-window.c:2109
 msgid "_File"
 msgstr "_ملف"
 
-#: ../grecord/src/gsr-window.c:2115
+#: ../grecord/src/gsr-window.c:2111
 msgid "Create a new sample"
 msgstr "أنشئ عينة جديدة"
 
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2113
 msgid "Open a file"
 msgstr "افتح ملفّ"
 
-#: ../grecord/src/gsr-window.c:2119
+#: ../grecord/src/gsr-window.c:2115
 msgid "Save the current file"
 msgstr "احفظ الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2117
 msgid "Save the current file with a different name"
 msgstr "احفظ الملف الحالي باسم مغاير"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open Volu_me Control"
 msgstr "افتح متحكم _شدة الصوت"
 
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2119
 msgid "Open the audio mixer"
 msgstr "افتح جهاز هندسة الصوت"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2121
 msgid "Show information about the current file"
 msgstr "اعرض معلومات عن الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2123
 msgid "Close the current file"
 msgstr "اغلق الملف الحالي"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2125
 msgid "Quit the program"
 msgstr "اخرج من البرنامج"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2128
 msgid "_Control"
 msgstr "_التحكم"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2130
 msgid "Record sound"
 msgstr "سجّل صوت"
 
-#: ../grecord/src/gsr-window.c:2136
+#: ../grecord/src/gsr-window.c:2132
 msgid "Play sound"
 msgstr "اعزف صوت"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2134
 msgid "Stop sound"
 msgstr "أوقِف الصوت"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2138
 #, fuzzy
 msgid "Contents"
 msgstr "الصدر الأوسط"
 
-#: ../grecord/src/gsr-window.c:2143
+#: ../grecord/src/gsr-window.c:2139
 msgid "Open the manual"
 msgstr "افتح الكتيّب"
 
-#: ../grecord/src/gsr-window.c:2145
+#: ../grecord/src/gsr-window.c:2141
 msgid "About this application"
 msgstr "حوْل هذا التّطبيق"
 
-#: ../grecord/src/gsr-window.c:2268
+#: ../grecord/src/gsr-window.c:2264
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "لم يمكن تحميل ui.xml. من المحتمل أن البرنامج لم يثبت بصورة صحيحة"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2287
 msgid "Open"
 msgstr "افتح"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2289
 msgid "Save"
 msgstr "احفظ"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2291
 msgid "Save As"
 msgstr "احفظ كـ"
 
-#: ../grecord/src/gsr-window.c:2350
+#: ../grecord/src/gsr-window.c:2347
 #, fuzzy
 msgid "Record from _input:"
 msgstr "سجّل من الدخْل:"
 
-#: ../grecord/src/gsr-window.c:2374
+#: ../grecord/src/gsr-window.c:2369
 #, fuzzy
 msgid "_Record as:"
 msgstr "سجّل ك:"
 
-#: ../grecord/src/gsr-window.c:2421
+#: ../grecord/src/gsr-window.c:2416
 msgid "<none>"
 msgstr "<لا شيء>"
 
-#: ../grecord/src/gsr-window.c:2435
+#: ../grecord/src/gsr-window.c:2430
 msgid "Length:"
 msgstr "الطول:"
 
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gsr-window.c:2468
 msgid "Level:"
 msgstr ""
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2558
 #, fuzzy, c-format
 msgid "%s - Sound Recorder"
 msgstr "مسجل الأصوات"
@@ -1775,7 +1784,7 @@ msgstr ""
 #: ../gst-mixer/src/main.c:82
 #, c-format
 msgid "Unknown Volume Control %d"
-msgstr "متحكم مجهول شدة الصوت %d"
+msgstr "متحكم مجهول شدة الصوت %Id"
 
 #: ../gst-mixer/src/main.c:161
 msgid "No volume control GStreamer plugins and/or devices found."
@@ -1830,12 +1839,12 @@ msgstr "المقطوعة %s"
 #: ../gst-mixer/src/volume.c:111
 #, c-format
 msgid "Channel %d of track %s"
-msgstr "القناة %d من المقطوعة %s"
+msgstr "القناة %Id من المقطوعة %s"
 
 #: ../gst-mixer/src/volume.c:114
 #, c-format
 msgid "Track %s, channel %d"
-msgstr "المقطوعة %s، القناة %d"
+msgstr "المقطوعة %s، القناة %Id"
 
 #: ../gst-mixer/src/volume.c:134
 #, c-format
@@ -2148,13 +2157,15 @@ msgstr "_حرّر"
 
 #. the first argument will never be used since we only run for count > 1
 #: ../profiles/audio-profiles-edit.c:465
-#, c-format
+#, fuzzy, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "هل تحذف هذا الطور؟\n"
 msgstr[1] "هل تحذف هذين الطورين؟\n"
-msgstr[2] "هل تحذف هذه الـ%d أطوار؟\n"
-msgstr[3] "هل تحذف هذه الـ%d أطوار؟\n"
+msgstr[2] "هل تحذف هذه الـ%Id أطوار؟\n"
+msgstr[3] "هل تحذف هذه الـ%Id أطوار؟\n"
+msgstr[4] "هل تحذف هذه الـ%Id أطوار؟\n"
+msgstr[5] "هل تحذف هذه الـ%Id أطوار؟\n"
 
 #: ../profiles/audio-profiles-edit.c:484
 #, c-format
@@ -2427,49 +2438,3 @@ msgstr "راقب شدة صوت الخرْج الصوتي"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "مراقب شدة صوت"
-
-#~ msgid "Capture"
-#~ msgstr "سجّل"
-
-#~ msgid "Switch"
-#~ msgstr "تحوّل"
-
-#~ msgid "Option"
-#~ msgstr "خيار"
-
-#~ msgid "_Change Device"
-#~ msgstr "_غيّر الجهاز"
-
-#, fuzzy
-#~ msgid "Quit the application"
-#~ msgstr "حوْل هذا التّطبيق"
-
-#, fuzzy
-#~ msgid "Prefere_nces"
-#~ msgstr "تفضيلات"
-
-#, fuzzy
-#~ msgid "Configure the application"
-#~ msgstr "حوْل هذا التّطبيق"
-
-#, fuzzy
-#~ msgid "Help on this application"
-#~ msgstr "حوْل هذا التّطبيق"
-
-#~ msgid "Change device to %s"
-#~ msgstr "_غيّر الجهاز إلى %s"
-
-#~ msgid "hours"
-#~ msgstr "ساعات"
-
-#~ msgid "minutes"
-#~ msgstr "دقائق"
-
-#~ msgid "seconds"
-#~ msgstr "ثوان"
-
-#~ msgid "_Open..."
-#~ msgstr "ا_فتح..."
-
-#~ msgid "Save _As..."
-#~ msgstr "احفظ _كـ..."
