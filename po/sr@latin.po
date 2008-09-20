@@ -11,15 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-14 17:11+0200\n"
-"PO-Revision-Date: 2007-03-12 15:01+0100\n"
+"POT-Creation-Date: 2008-09-20 03:35+0200\n"
+"PO-Revision-Date: 2008-09-20 03:35+0100\n"
 "Last-Translator: Goran Rakić <grakic@devbase.net>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
@@ -51,12 +50,8 @@ msgid "The port that the server is running the database on"
 msgstr "Port na kome server gostuje bazu podataka"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Vrsta servera kome se šalju CD upiti. Dozvoljene vrednosti su 0 (FreeDB "
-"naizmenični server), 1 (neki drugi freedb server) ili 2 (drugi server)."
+msgid "The type of the server to contact for CD queries. Possible values are 0 (FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "Vrsta servera kome se šalju CD upiti. Dozvoljene vrednosti su 0 (FreeDB naizmenični server), 1 (neki drugi freedb server) ili 2 (drugi server)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
 msgid "The username"
@@ -67,14 +62,8 @@ msgid "The username that will be sent with all queries"
 msgstr "Korisničko ime koje će se proslediti uz sve upite"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Ovaj ključ navodi koji podaci o korisniku će se poslati serveru radi CD "
-"upita. Dozvoljene vrednosti su 0 (ništa se ne šalje), 1 (pravi podaci) ili 3 "
-"(neki drugi podaci)."
+msgid "This key specifies which user information will be sent to the server to contact for CD queries. Possible values are 0 (no information), 1 (real information) and 3 (other information)."
+msgstr "Ovaj ključ navodi koji podaci o korisniku će se poslati serveru radi CD upita. Dozvoljene vrednosti su 0 (ništa se ne šalje), 1 (pravi podaci) ili 3 (neki drugi podaci)."
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
 msgid "Your hostname"
@@ -155,9 +144,12 @@ msgid "Unknown / Unknown"
 msgstr "Nepoznato / nepoznato"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1415
+#: ../cddb-slave2/cddb-slave.c:227
+#: ../grecord/src/gsr-window.c:1012
+#: ../grecord/src/gsr-window.c:1022
+#: ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1047
+#: ../grecord/src/gsr-window.c:1401
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "Nepoznato"
@@ -186,7 +178,8 @@ msgstr "IB diska"
 msgid "Artist and Title"
 msgstr "Izvođač i naslov"
 
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
+#: ../cddb-slave2/cddb-slave.c:1351
+#: ../cddb-slave2/cddb-slave.c:1353
 #: ../gnome-cd/gnome-cd.c:221
 msgid "Unknown track"
 msgstr "Nepoznata numera"
@@ -800,14 +793,18 @@ msgstr "Nu-metal"
 msgid "Art Rock"
 msgstr "Art rok"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
+#: ../cddb-slave2/cddb-track-editor.c:532
+#: ../gnome-cd/callbacks.c:603
+#: ../gnome-cd/callbacks.c:749
+#: ../gnome-cd/callbacks.c:760
 #: ../gnome-cd/display.c:89
 msgid "Unknown Artist"
 msgstr "Nepoznati izvođač"
 
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
+#: ../cddb-slave2/cddb-track-editor.c:533
+#: ../gnome-cd/callbacks.c:604
+#: ../gnome-cd/callbacks.c:752
+#: ../gnome-cd/callbacks.c:764
 #: ../gnome-cd/display.c:90
 msgid "Unknown Album"
 msgstr "Nepoznati album"
@@ -888,20 +885,15 @@ msgid ""
 "This may be caused by another copy of cddb-track-editor already running.\n"
 msgstr ""
 "Ne može da napravi fabriku za CDDBTrackEditor.\n"
-"Razlog može biti u tome što je već jedan primerak cddb-track-editor-a "
-"pokrenut.\n"
+"Razlog može biti u tome što je već jedan primerak cddb-track-editor-a pokrenut.\n"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
 msgstr "CD ekran"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Prikazuje informacije o albumu koji se trenutno pušta, izvođaču i proteklom "
-"vremenu"
+msgid "Displays information about the currently playing album, artist and time elapsed"
+msgstr "Prikazuje informacije o albumu koji se trenutno pušta, izvođaču i proteklom vremenu"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -935,16 +927,22 @@ msgstr "Linija albuma"
 msgid "Line for displaying the name of the album"
 msgstr "Linija u kojoj se prikazuje naziv albuma"
 
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
+#: ../gnome-cd/callbacks.c:101
+#: ../gnome-cd/callbacks.c:189
+#: ../gnome-cd/callbacks.c:297
+#: ../gnome-cd/callbacks.c:619
 #: ../gnome-cd/gnome-cd.c:785
 msgid "Play"
 msgstr "Pusti"
 
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
+#: ../gnome-cd/callbacks.c:174
+#: ../gnome-cd/callbacks.c:225
+#: ../gnome-cd/callbacks.c:256
+#: ../gnome-cd/callbacks.c:339
+#: ../gnome-cd/callbacks.c:379
+#: ../gnome-cd/callbacks.c:403
+#: ../gnome-cd/callbacks.c:444
+#: ../gnome-cd/callbacks.c:541
 msgid "Pause"
 msgstr "Pauza"
 
@@ -970,10 +968,14 @@ msgstr ""
 msgid "Paused"
 msgstr "Pauzirano"
 
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
+#: ../gnome-cd/callbacks.c:682
+#: ../gnome-cd/callbacks.c:684
+#: ../gnome-cd/callbacks.c:941
+#: ../gnome-cd/gnome-cd.c:128
+#: ../gnome-cd/gnome-cd.c:665
+#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1
+#: ../gnome-cd/preferences.c:553
 msgid "CD Player"
 msgstr "Slušanje muzičkih diskova"
 
@@ -985,7 +987,8 @@ msgstr "Zaustavljeno"
 msgid "Disc error"
 msgstr "Greška sa diskom"
 
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
+#: ../gnome-cd/callbacks.c:725
+#: ../gnome-cd/callbacks.c:826
 msgid "No disc"
 msgstr "Nema nosača zvuka"
 
@@ -1001,7 +1004,8 @@ msgstr "Fioka je otvorena"
 msgid "Data CD"
 msgstr "CD sa podacima"
 
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
+#: ../gnome-cd/callbacks.c:904
+#: ../gnome-cd/callbacks.c:909
 msgid "No Cdrom"
 msgstr "Nema CD uređaja"
 
@@ -1026,7 +1030,8 @@ msgid "Do you wish to continue?"
 msgstr "Želite li da nastavite?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
+#: ../gnome-cd/callbacks.c:1197
+#: ../gnome-cd/gnome-cd.c:518
 #, c-format
 msgid "Volume %d%%"
 msgstr "Jačina %d%%"
@@ -1075,7 +1080,8 @@ msgid "_Eject disc"
 msgstr "Iz_baci disk"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2141
+#: ../gnome-cd/gnome-cd.c:365
+#: ../grecord/src/gsr-window.c:2137
 msgid "_Help"
 msgstr "_Pomoć"
 
@@ -1111,15 +1117,13 @@ msgid ""
 "\n"
 "Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
+"Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player"
 msgstr ""
 "Nije moguće ispravno pokrenuti CD program.\n"
 "\n"
 "Pritisnite „Detalji“ za više informacija o uzroku problema.\n"
 "\n"
-"Pritisnite „Postavi uređaj“ za otvaranje dijaloga gde možete odrediti uređaj, "
-"ili pritisnite „Izlaz“ za napuštanje programa"
+"Pritisnite „Postavi uređaj“ za otvaranje dijaloga gde možete odrediti uređaj, ili pritisnite „Izlaz“ za napuštanje programa"
 
 #: ../gnome-cd/gnome-cd.c:648
 msgid "_Details"
@@ -1252,8 +1256,7 @@ msgstr "Da li CD treba izbaciti pri zatvaranju CD programa?"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:9
 msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Putanja ka CD uređaju koji CD program treba da koristi za puštanje diskova"
+msgstr "Putanja ka CD uređaju koji CD program treba da koristi za puštanje diskova"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:10
 msgid "What theme should the CD player use for its appearance"
@@ -1327,7 +1330,7 @@ msgid "Record sound clips"
 msgstr "Snimi isečke zvuka"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1235
 msgid "Sound Recorder"
 msgstr "Snimanje zvuka"
 
@@ -1336,18 +1339,20 @@ msgstr "Snimanje zvuka"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1745
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:139
+#: ../grecord/src/gsr-window.c:1731
+#: ../grecord/src/gsr-window.c:2673
 msgid "Untitled"
 msgstr "Neimenovano"
 
 # bug: this won't work
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1747
+#: ../grecord/src/gnome-recorder.c:141
+#: ../grecord/src/gsr-window.c:1733
 #, c-format
 msgid "Untitled-%d"
 msgstr "Neimenovano-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:192
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1362,7 +1367,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "a nakon toga ponovo pokrenite snimanje zvuka."
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:208
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1371,7 +1376,7 @@ msgstr ""
 "Možda bam nedostaju neophodni dodaci."
 
 # bug: plural-forms
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1380,7 +1385,7 @@ msgstr[1] "%ld minuta"
 msgstr[2] "%ld minuta"
 
 # bug: plural-forms
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1389,7 +1394,7 @@ msgstr[1] "%ld sata"
 msgstr[2] "%ld sata"
 
 # bug: plural-forms
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1398,24 +1403,25 @@ msgstr[1] "%ld sekunde"
 msgstr[2] "%ld sekundi"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s i %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:309
+#: ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Otvori datoteku"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1424,17 +1430,19 @@ msgstr ""
 "Nije moguće učitati datoteku:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1546
-#: ../grecord/src/gsr-window.c:1802 ../grecord/src/gsr-window.c:2495
+#: ../grecord/src/gsr-window.c:594
+#: ../grecord/src/gsr-window.c:1532
+#: ../grecord/src/gsr-window.c:1790
+#: ../grecord/src/gsr-window.c:2490
 msgid "Ready"
 msgstr "Spreman"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "_Zameni"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1443,44 +1451,44 @@ msgstr ""
 "Datoteka sa imenom \"%s\" već postoji.\n"
 "Želite li da je zamenite ovom koju čuvate?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Ne mogu da sačuvam datoteku \"%s\""
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Sačuvaj datoteku kao"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nije instaliran u putanji."
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Došlo je do greške pri pokretanju %s: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:863
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "Sačuvati izmene u datoteci \"%s\" pre zatvaranja?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:875
 msgid "Close _without Saving"
 msgstr "Zatvori _bez čuvanja"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:882
 msgid "Question"
 msgstr "Pitanje"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:983
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (nije sačuvan)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:999
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1488,243 +1496,241 @@ msgstr[0] "%s (%llu bajt)"
 msgstr[1] "%s (%llu bajta)"
 msgstr[2] "%s (%llu bajtova)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1003
 msgid "Unknown size"
 msgstr "Nepoznata veličina"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1024
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1032
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Procena)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1050
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1053
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1080
 #, c-format
 msgid "%s Information"
 msgstr "Podaci o %s"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2407
+#: ../grecord/src/gsr-window.c:1104
+#: ../grecord/src/gsr-window.c:2402
 msgid "File Information"
 msgstr "Podaci o datoteci"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1119
 msgid "Folder:"
 msgstr "Fascikla:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2414
+#: ../grecord/src/gsr-window.c:1125
+#: ../grecord/src/gsr-window.c:2409
 msgid "Filename:"
 msgstr "Ime datoteke:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1131
 msgid "File size:"
 msgstr "Veličina datoteke:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1140
 msgid "Audio Information"
 msgstr "Podaci o snimku"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1155
 msgid "File duration:"
 msgstr "Trajanje datoteke:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1161
 msgid "Number of channels:"
 msgstr "Broj kanala:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1167
 msgid "Sample rate:"
 msgstr "Kvalitet isečka:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1173
 msgid "Bit rate:"
 msgstr "Kvalitet:"
 
-#: ../grecord/src/gsr-window.c:1255
-#, fuzzy
+#: ../grecord/src/gsr-window.c:1238
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "Snimanje zvuka za Gnom\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1518
+#: ../grecord/src/gsr-window.c:1504
 msgid "Playing..."
 msgstr "Pušta..."
 
-#: ../grecord/src/gsr-window.c:1650
+#: ../grecord/src/gsr-window.c:1636
 msgid "GConf audio output"
 msgstr "GCOnf zvučni izlaz"
 
-#: ../grecord/src/gsr-window.c:1659 ../gst-mixer/src/element.c:216
+#: ../grecord/src/gsr-window.c:1645
+#: ../gst-mixer/src/element.c:216
 #: ../gst-mixer/src/misc.c:58
 msgid "Playback"
 msgstr "Puštanje"
 
-#: ../grecord/src/gsr-window.c:1736
+#: ../grecord/src/gsr-window.c:1722
 msgid "Recording..."
 msgstr "Snima..."
 
-#: ../grecord/src/gsr-window.c:1824
+#: ../grecord/src/gsr-window.c:1812
 msgid "GConf audio recording"
 msgstr "GConf snimanje zvuka"
 
-#: ../grecord/src/gsr-window.c:1833
-msgid ""
-"Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
-msgstr ""
-"Vaša podešavanja za snimanje zvuka nisu ispravna. Molim ispravite ih iz "
-"„Postavke zvuka“ u meniju Sistem — Postavke."
+#: ../grecord/src/gsr-window.c:1821
+msgid "Your audio capture settings are invalid. Please correct them with the \"Sound Preferences\" under the System-Preferences menu."
+msgstr "Vaša podešavanja za snimanje zvuka nisu ispravna. Molim ispravite ih iz „Postavke zvuka“ u meniju Sistem — Postavke."
 
-#: ../grecord/src/gsr-window.c:1989
+#: ../grecord/src/gsr-window.c:1987
 msgid "file output"
 msgstr "izlazna datoteka"
 
-#: ../grecord/src/gsr-window.c:2007
+#: ../grecord/src/gsr-window.c:2005
 msgid "level"
 msgstr "nivo"
 
-#: ../grecord/src/gsr-window.c:2031
+#: ../grecord/src/gsr-window.c:2029
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Ne mogu raščlaniti zvučnu postavku „%s“. "
 
-#: ../grecord/src/gsr-window.c:2048
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Ne mogu snimati zvuk koristeći zvučnu postavku „%s“. "
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:2055
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Ne mogu da upisujem u datoteku koristeći zvučnu postavku „%s“. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2113
+#: ../grecord/src/gsr-window.c:2109
 msgid "_File"
 msgstr "Dato_teka"
 
-#: ../grecord/src/gsr-window.c:2115
+#: ../grecord/src/gsr-window.c:2111
 msgid "Create a new sample"
 msgstr "Napravi novi isečak"
 
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2113
 msgid "Open a file"
 msgstr "Otvori datoteku"
 
-#: ../grecord/src/gsr-window.c:2119
+#: ../grecord/src/gsr-window.c:2115
 msgid "Save the current file"
 msgstr "Sačuvaj tekuću datoteku"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2117
 msgid "Save the current file with a different name"
 msgstr "Sačuvaj tekuću datoteku pod drugim imenom"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2118
 msgid "Open Volu_me Control"
 msgstr "Upravljanje _jačinom zvuka"
 
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2119
 msgid "Open the audio mixer"
 msgstr "Pokreni audio mikser"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2121
 msgid "Show information about the current file"
 msgstr "Prikaži podatke o tekućoj datoteci"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2123
 msgid "Close the current file"
 msgstr "Zatvori tekuću datoteku"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2125
 msgid "Quit the program"
 msgstr "Izađi iz programa"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2128
 msgid "_Control"
 msgstr "_Upravljanje"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2130
 msgid "Record sound"
 msgstr "Snimi zvuk"
 
-#: ../grecord/src/gsr-window.c:2136
+#: ../grecord/src/gsr-window.c:2132
 msgid "Play sound"
 msgstr "Pusti zvuk"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2134
 msgid "Stop sound"
 msgstr "Zaustavi zvuk"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2138
 msgid "Contents"
 msgstr "Sadržaj"
 
-#: ../grecord/src/gsr-window.c:2143
+#: ../grecord/src/gsr-window.c:2139
 msgid "Open the manual"
 msgstr "Otvori uputstvo"
 
-#: ../grecord/src/gsr-window.c:2145
+#: ../grecord/src/gsr-window.c:2141
 msgid "About this application"
 msgstr "O ovom programu"
 
-#: ../grecord/src/gsr-window.c:2268
+#: ../grecord/src/gsr-window.c:2264
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Nije moguće učitati ui.xml. Program možda nije ispravno instaliran"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2287
 msgid "Open"
 msgstr "Otvori"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2289
 msgid "Save"
 msgstr "Sačuvaj"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2291
 msgid "Save As"
 msgstr "Sačuvaj kao"
 
-#: ../grecord/src/gsr-window.c:2350
+#: ../grecord/src/gsr-window.c:2347
 msgid "Record from _input:"
 msgstr "Snimaj sa _ulaza:"
 
-#: ../grecord/src/gsr-window.c:2374
+#: ../grecord/src/gsr-window.c:2369
 msgid "_Record as:"
 msgstr "Snimi _kao:"
 
-#: ../grecord/src/gsr-window.c:2421
+#: ../grecord/src/gsr-window.c:2416
 msgid "<none>"
 msgstr "<ništa>"
 
-#: ../grecord/src/gsr-window.c:2435
+#: ../grecord/src/gsr-window.c:2430
 msgid "Length:"
 msgstr "Dužina:"
 
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gsr-window.c:2468
 msgid "Level:"
 msgstr "Nivo:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2558
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s — snimanje zvuka"
@@ -1734,7 +1740,8 @@ msgid "Adjust the volume level"
 msgstr "Prilagodi jačinu zvuka"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
+#: ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:282
 msgid "Volume Control"
 msgstr "Upravljanje jačinom zvuka"
 
@@ -1754,15 +1761,18 @@ msgstr "Dužina prozora"
 msgid "Width of the Window to be displayed"
 msgstr "Dužina prozora za prikaz"
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
+#: ../gst-mixer/src/element.c:218
+#: ../gst-mixer/src/misc.c:60
 msgid "Recording"
 msgstr "Snima"
 
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/element.c:220
+#: ../gst-mixer/src/misc.c:62
 msgid "Switches"
 msgstr "Prekidači"
 
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/element.c:222
+#: ../gst-mixer/src/misc.c:64
 msgid "Options"
 msgstr "Opcije"
 
@@ -2105,7 +2115,8 @@ msgstr "Video za Linuks 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nije uspeo da napravi probnu cev za „%s“"
 
-#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:539
+#: ../profiles/audio-profile-edit.c:121
+#: ../profiles/audio-profiles-edit.c:539
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Došlo je do greške pri prikazivanju pomoći: %s"
@@ -2119,24 +2130,20 @@ msgstr "Uređujem skup postavki \"%s\""
 msgid "<no name>"
 msgstr "<bez imena>"
 
-#: ../profiles/audio-profile.c:93 ../profiles/audio-profile.c:1002
+#: ../profiles/audio-profile.c:93
+#: ../profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr "<bez opisa>"
 
 #: ../profiles/audio-profile.c:208
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr ""
-"Došlo je do greške pri dobavljanju spiska skupova zvučnih postavki. (%s)\n"
+msgstr "Došlo je do greške pri dobavljanju spiska skupova zvučnih postavki. (%s)\n"
 
 #: ../profiles/audio-profile.c:709
 #, c-format
-msgid ""
-"There was an error subscribing to notification of audio profile list "
-"changes. (%s)\n"
-msgstr ""
-"Došlo je do greške u prijavi za obaveštenja o izmeni spiska skupova postavki "
-"zvuka. (%s)\n"
+msgid "There was an error subscribing to notification of audio profile list changes. (%s)\n"
+msgstr "Došlo je do greške u prijavi za obaveštenja o izmeni spiska skupova postavki zvuka. (%s)\n"
 
 #: ../profiles/audio-profile.c:912
 #, c-format
@@ -2185,12 +2192,8 @@ msgstr "GKonf greška (ISPRAVI-ME): %s\n"
 
 #: ../profiles/gmp-util.c:68
 #, c-format
-msgid ""
-"The file \"%s\" is missing. This indicates that the application is installed "
-"incorrectly, so the dialog can't be displayed."
-msgstr ""
-"Nedostaje datoteka \"%s\". Ovo znači da je program neispravno postavljen, pa "
-"se prozorče ne može prikazati."
+msgid "The file \"%s\" is missing. This indicates that the application is installed incorrectly, so the dialog can't be displayed."
+msgstr "Nedostaje datoteka \"%s\". Ovo znači da je program neispravno postavljen, pa se prozorče ne može prikazati."
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2229,19 +2232,12 @@ msgid "A description for the audio profile"
 msgstr "Opis audio profila"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
-msgstr ""
-"Opis profila koji sadrži više podataka i opisuje kada treba koristiti ovaj "
-"profil."
+msgid "A description of the profile, containing more information and describing when to use this profile."
+msgstr "Opis profila koji sadrži više podataka i opisuje kada treba koristiti ovaj profil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
-msgstr ""
-"Ekstenzija datoteke koja se koristi pri smeštanju datoteka zapisanih pomoću "
-"ovog profila."
+msgid "A filename extension to be used when storing files encoded with this profile."
+msgstr "Ekstenzija datoteke koja se koristi pri smeštanju datoteka zapisanih pomoću ovog profila."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -2252,12 +2248,8 @@ msgid "A short name for the audio profile"
 msgstr "Kratko ime za audio profil"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
-msgstr ""
-"Kratko ime za audio profil, koji se koristi pri izboru i jednoznačnom "
-"određivanju profila."
+msgid "A short name for the audio profile, to be used in selections and uniquely identifying the profile."
+msgstr "Kratko ime za audio profil, koji se koristi pri izboru i jednoznačnom određivanju profila."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, AAC"
@@ -2276,13 +2268,8 @@ msgid "CD Quality, MP3"
 msgstr "CD kvalitet, MP3"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
-msgstr ""
-"Spisak postavki za snimanje zvuka. Spisak sadrži niske koje imenuju "
-"poddirektorijume u odnosu na /system/gstreamer/@GST_MAJORMINOR@/audio/"
-"profiles."
+msgid "List of audio recording profiles. The list contains strings naming subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgstr "Spisak postavki za snimanje zvuka. Spisak sadrži niske koje imenuju poddirektorijume u odnosu na /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid "List of profiles"
@@ -2297,61 +2284,28 @@ msgid "The partial GStreamer pipeline used"
 msgstr "Korišćena delimična GStrimer cevka"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to CD-quality audio, but with a lossless compression "
-"codec. Use this if you later want to edit the file or burn it to CD."
-msgstr ""
-"Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa kompresijom bez "
-"gubitaka. Koristite ovo ako želite da kasnije menjate datoteku ili da je "
-"narežete na CD."
+msgid "Used for converting to CD-quality audio, but with a lossless compression codec. Use this if you later want to edit the file or burn it to CD."
+msgstr "Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa kompresijom bez gubitaka. Koristite ovo ako želite da kasnije menjate datoteku ili da je narežete na CD."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid ""
-"Used for converting to CD-quality audio, but with a lossy compression codec. "
-"Use this for CD extraction and radio recordings."
-msgstr ""
-"Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa kompresijom sa "
-"gubicima. Koristite ovo za izvlačenje sa CD-a i snimanja sa radija."
+msgid "Used for converting to CD-quality audio, but with a lossy compression codec. Use this for CD extraction and radio recordings."
+msgstr "Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa kompresijom sa gubicima. Koristite ovo za izvlačenje sa CD-a i snimanja sa radija."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
-msgid ""
-"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
-"this for preparing files for copying to devices that only support the AAC "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
-msgstr ""
-"Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa AAC formatom sa "
-"gubicima. Koristite ovo za pripremu datoteka za kopiranje na uređaj koji "
-"podržava AAC. Obratite pažnju da ovaj format može biti nelegalan u tvojoj "
-"zemlji; konsultuj se sa advokatom za savet."
+msgid "Used for converting to CD-quality audio, but with the lossy AAC codec. Use this for preparing files for copying to devices that only support the AAC codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa AAC formatom sa gubicima. Koristite ovo za pripremu datoteka za kopiranje na uređaj koji podržava AAC. Obratite pažnju da ovaj format može biti nelegalan u tvojoj zemlji; konsultuj se sa advokatom za savet."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
-msgid ""
-"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
-"this for preparing files for copying to devices that only support the MP3 "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
-msgstr ""
-"Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa MP3 formatom sa "
-"gubicima. Koristite ovo za pripremu datoteka za kopiranje na uređaj koji "
-"podržava MP3. Obratite pažnju da ovaj format može biti nelegalan u tvojoj "
-"zemlji; konsultuj se sa advokatom za savet."
+msgid "Used for converting to CD-quality audio, but with the lossy MP3 codec. Use this for preparing files for copying to devices that only support the MP3 codec. Note that using this format may be illegal in your jurisdiction; contact your lawyer for advice."
+msgstr "Koristi se za pretvaranje u zvuk CD kvaliteta, ali sa MP3 formatom sa gubicima. Koristite ovo za pripremu datoteka za kopiranje na uređaj koji podržava MP3. Obratite pažnju da ovaj format može biti nelegalan u tvojoj zemlji; konsultuj se sa advokatom za savet."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
-msgid ""
-"Used for converting to lossless voice-quality audio. Use this for recording "
-"and editing speech."
-msgstr ""
-"Koristi se za pretvaranje u zvuk bez gubitaka glasovnog kvaliteta. Koristite "
-"ovo za snimanje govora."
+msgid "Used for converting to lossless voice-quality audio. Use this for recording and editing speech."
+msgstr "Koristi se za pretvaranje u zvuk bez gubitaka glasovnog kvaliteta. Koristite ovo za snimanje govora."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
-msgid ""
-"Used for converting to lossy voice-quality audio. Use this for recording "
-"speech that doesn't need to be edited."
-msgstr ""
-"Koristi se za pretvaranje u zvuk sa gubicima glasovnog kvaliteta. Koristite "
-"ovo za snimanje govora."
+msgid "Used for converting to lossy voice-quality audio. Use this for recording speech that doesn't need to be edited."
+msgstr "Koristi se za pretvaranje u zvuk sa gubicima glasovnog kvaliteta. Koristite ovo za snimanje govora."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid "Voice, Lossless"
@@ -2438,829 +2392,3 @@ msgstr "Prati jačinu izlaza zvuka"
 msgid "Volume Monitor"
 msgstr "Praćenje jačine zvuka"
 
-# bug: plural-forms
-#~ msgid "hours"
-#~ msgstr "časova"
-
-# bug: plural-forms
-#~ msgid "minutes"
-#~ msgstr "minuta"
-
-# bug: plural-forms
-#~ msgid "seconds"
-#~ msgstr "sekundi"
-
-#~ msgid "_Open..."
-#~ msgstr "_Otvori..."
-
-#~ msgid "Save _As..."
-#~ msgstr "Snimi k_ao..."
-
-#~ msgid "Capture"
-#~ msgstr "Snimanje"
-
-#~ msgid "Switch"
-#~ msgstr "Promeni"
-
-#~ msgid "Option"
-#~ msgstr "Opcije"
-
-#~ msgid "_Change Device"
-#~ msgstr "_Promeni uređaj"
-
-#~ msgid "Change device to %s"
-#~ msgstr "Izmeni uređaj na %s"
-
-#~ msgid "Orientation"
-#~ msgstr "Usmerenje"
-
-#~ msgid "The orientation of the tray."
-#~ msgstr "Usmerenje obaveštajne zone."
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "_Input:"
-#~ msgstr "_Ulaz:"
-
-#~ msgid "_Output:"
-#~ msgstr "_Izlaz:"
-
-#~ msgid "identity"
-#~ msgstr "identitet"
-
-#~ msgid "wav"
-#~ msgstr "wav"
-
-#~ msgid "You must select one or more profiles to delete."
-#~ msgstr "Morate izabrati jedan ili više skupova postavki za brisanje."
-
-#~ msgid "Profile Description:"
-#~ msgstr "Opis profila:"
-
-#~ msgid "Profile _name:"
-#~ msgstr "_Ime profila:"
-
-#~ msgid "X-Position"
-#~ msgstr "X pozicija"
-
-#~ msgid "Y-Position"
-#~ msgstr "Y pozicija"
-
-#~ msgid "ESD Server Host"
-#~ msgstr "ESD server"
-
-#~ msgid ""
-#~ "Playing\n"
-#~ "Current Time: %s"
-#~ msgstr ""
-#~ "Pušta\n"
-#~ "Trenutno vreme: %s"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Registar nije prisutan ili je oštećen, osvežite ga pokretanjem gst-register"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Neuspelo određivanje CD čitača; instalirajte cdparanoia dodatak za "
-#~ "GStreamer."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Neuspelo određivanje audio izlaza; instalirajte GStreamer dodatak za Vašu "
-#~ "zvučnu kartu."
-
-#~ msgid "Dummy option"
-#~ msgstr "Glupa opcija"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input element set - please install "
-#~ "the GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Nije postavljen podrazumevani ulazni zvučni element GStrimera — "
-#~ "instalirajte GStrimer-GKonf šeme ili postavite neku ručno"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder elements - check your encoding setup"
-#~ msgstr ""
-#~ "Neuspešno pravljenje GStrimer elemenata za kodiranje — proverite postavku "
-#~ "vašeg kodiranja"
-
-#~ msgid "Could not find GStreamer filesink plugin - please install it"
-#~ msgstr "Ne mogu da nađem dodatak „filesink“ za GStrimer — instalirajte ga"
-
-#~ msgid ""
-#~ "Failed to link encoder elements with file output element - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Neuspešno vezivanje elemenata za kodiranje sa elementom za izlaz u datoteku "
-#~ "— verovatno ste izabrali neispravno kodiranje"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "Pokreni _mikser"
-
-#~ msgid "File information"
-#~ msgstr "Podaci o datoteci"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Registar nije prisutan ili je oštećen, osvežite ga pokretanjem gst-register"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Uobičajeni izvor</b>"
-
-#~ msgid "Voice"
-#~ msgstr "Glas"
-
-#~ msgid "P_revious track"
-#~ msgstr "P_rethodna numera"
-
-#~ msgid "_Next track"
-#~ msgstr "S_ledeća numera"
-
-#~ msgid "_About CD player"
-#~ msgstr "_O CD plejeru"
-
-# bug: s/" %s"/"%s"/ (extra space after ")
-#~ msgid "Could not save the file \" %s\""
-#~ msgstr "Ne mogu da sačuvam datoteku „%s“"
-
-#~ msgid "_Save"
-#~ msgstr "_Sačuvaj"
-
-#~ msgid "File _Information"
-#~ msgstr "_Podaci o datoteci"
-
-#~ msgid "_Record"
-#~ msgstr "_Snimi"
-
-#~ msgid "_Play"
-#~ msgstr "_Pusti"
-
-#~ msgid "_Contents"
-#~ msgstr "_Sadržaj"
-
-#~ msgid "Could not load UI resource %s"
-#~ msgstr "Ne može da učita resurs korisničkog sučelja %s"
-
-#~ msgid "<not described>"
-#~ msgstr "<bez opisa>"
-
-#~ msgid "Expander Size"
-#~ msgstr "Veličina proširivača"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Veličina strelice za proširivanje"
-
-#~ msgid "Volume control"
-#~ msgstr "Kontrola jačine zvuka"
-
-#~ msgid "About"
-#~ msgstr "O programu"
-
-#~ msgid "Close"
-#~ msgstr "Zatvori"
-
-#~ msgid "Close this window"
-#~ msgstr "Zatvori ovaj prozor"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "Prikaži pomoć za snimanje zvuka"
-
-#~ msgid "Main toolbar"
-#~ msgstr "Glavne alatke"
-
-#~ msgid "New"
-#~ msgstr "Novi"
-
-#~ msgid "Quit"
-#~ msgstr "Zatvori"
-
-#~ msgid "Recent _Files"
-#~ msgstr "_Poslednje otvarane datoteke"
-
-#~ msgid "Record"
-#~ msgstr "Snimi"
-
-#~ msgid "Run Mixer"
-#~ msgstr "Pokreni mikser"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "Prikaži podatke o snimanju zvuka"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Zatvori prozor"
-
-#~ msgid "Song length:"
-#~ msgstr "Dužina pesme:"
-
-#~ msgid "GStreamer Preferences"
-#~ msgstr "Postavke GStrimera"
-
-#~ msgid "CD Player De_vice:"
-#~ msgstr "CD plejer u_ređaj:"
-
-#~ msgid "CD Player Behaviour:"
-#~ msgstr "Ponašanje CD plejera:"
-
-#~ msgid "_Available Themes:"
-#~ msgstr "_Dostupne teme:"
-
-#~ msgid "_Apply change"
-#~ msgstr "Primeni izmene"
-
-# bug: string composition
-#~ msgid "%s Slider"
-#~ msgstr "Klizač %s"
-
-# bug: string composition
-#~ msgid "%s Slider %d"
-#~ msgstr "%s klizač %d"
-
-#~ msgid "Lock"
-#~ msgstr "Zaključaj"
-
-# bug: string composition
-#~ msgid "%s Lock"
-#~ msgstr "Zaključaj %s"
-
-#~ msgid "Mute"
-#~ msgstr "Utišaj"
-
-# bug: string composition
-#~ msgid "%s Mute"
-#~ msgstr "Utišaj %s"
-
-#~ msgid "Rec."
-#~ msgstr "Snim."
-
-# bug: string composition
-#~ msgid "%s Record"
-#~ msgstr "Snimaj %s"
-
-# bug: plural-forms
-#~ msgid "Delete these two profiles?\n"
-#~ msgstr "Obriši ova dva skupa postavki?\n"
-
-#~ msgid "Unknown artist"
-#~ msgstr "Nepoznati izvođač"
-
-#~ msgid "Unknown disc"
-#~ msgstr "Nepoznati disk"
-
-#~ msgid "GStreamer Volume Control"
-#~ msgstr "Upravljanje jačinom zvuka"
-
-#~ msgid "GStreamer"
-#~ msgstr "GStrimer"
-
-#~ msgid "Unknown extension, doing nothing"
-#~ msgstr "Nepoznato proširenje, ne radim ništa"
-
-#~ msgid "Could not build pipeline"
-#~ msgstr "Ne mogu da napravim cev"
-
-#~ msgid "Saving %s..."
-#~ msgstr "Čuva %s..."
-
-#~ msgid "Synth"
-#~ msgstr "Sintisajzer"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "Digitalni ulaz"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "Digitalni procesorski izlaz"
-
-#~ msgid "Line"
-#~ msgstr "Linija"
-
-#~ msgid "MIC"
-#~ msgstr "Mikrofon"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "Mono"
-#~ msgstr "Mono"
-
-#~ msgid "PC Speaker"
-#~ msgstr "Kompjuterski zvučnik"
-
-# bug: aux -> auxiliary?
-#~ msgid "Aux"
-#~ msgstr "Pomoćni"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Ulaz pojačivača"
-
-#~ msgid "Surround Input"
-#~ msgstr "Saraund ulaz"
-
-#~ msgid "Master"
-#~ msgstr "Glavni"
-
-#~ msgid "Master Mono"
-#~ msgstr "Glavni mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Glavni digitalni"
-
-#~ msgid "Headphone"
-#~ msgstr "Slušalice"
-
-#~ msgid "Center"
-#~ msgstr "Centar"
-
-#~ msgid "Woofer"
-#~ msgstr "Pojačivač"
-
-#~ msgid "Surround"
-#~ msgstr "Saraund"
-
-#~ msgid "DSP Output"
-#~ msgstr "Digitalni (DSP) izlaz"
-
-#~ msgid "Treble"
-#~ msgstr "Šum"
-
-# Ujednačenje, ekvalajzer
-#~ msgid "Equalizer"
-#~ msgstr "Ujednačenje"
-
-#~ msgid "Fader"
-#~ msgstr "Bleđenje"
-
-#~ msgid "Effect"
-#~ msgstr "Efekat"
-
-#~ msgid "3D Effect"
-#~ msgstr "3D efekat"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Pojačanje mikrofona"
-
-#~ msgid "Input Gain"
-#~ msgstr "Pojačanje ulaza"
-
-#~ msgid "Output Gain"
-#~ msgstr "Pojačanje izlaza"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analogni ciklus"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digitalni ciklus"
-
-#~ msgid "Vol  "
-#~ msgstr "Jačina"
-
-#~ msgid "Bass "
-#~ msgstr "Bas  "
-
-#~ msgid "Trebl"
-#~ msgstr "Šum  "
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Zvučnik"
-
-#~ msgid "Line "
-#~ msgstr "Linija"
-
-#~ msgid "Mic  "
-#~ msgstr "Mikrofon"
-
-#~ msgid "CD   "
-#~ msgstr "CD"
-
-#~ msgid "Mix  "
-#~ msgstr "Mikser"
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2"
-
-#~ msgid "Rec  "
-#~ msgstr "Snimanje"
-
-#~ msgid "IGain"
-#~ msgstr "UPojačanje"
-
-#~ msgid "OGain"
-#~ msgstr "IPojačanje"
-
-#~ msgid "Line1"
-#~ msgstr "Linija1"
-
-#~ msgid "Line2"
-#~ msgstr "Linija2"
-
-#~ msgid "Line3"
-#~ msgstr "Linija3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digitalno1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digitalno2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digitalno3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "Telefonski ulaz"
-
-#~ msgid "PhoneOut"
-#~ msgstr "Telefonski izlaz"
-
-#~ msgid "Monitor"
-#~ msgstr "Praćenje"
-
-#~ msgid "Help"
-#~ msgstr "Pomoć"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Koji mikser uređaj da koristi"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Podešavanje jačine zvuka ne može da radi ispravno.\n"
-#~ "\n"
-#~ "Ne može da pristupi audio uređaju „%s“.\n"
-#~ "Molim proverite da li imate ovlašćenja da pristupite „%s“\n"
-#~ "i da vam ja podrška za zvuk omogućena u jezgru.\n"
-#~ "\n"
-#~ "Pritisnite „Izađi“ da napustite podešavanje zvuka."
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Podešavanje jačine zvuka ne može da radi ispravno.\n"
-#~ "\n"
-#~ "Pritisnite dugme za više detalja o razlozima neuspeha.\n"
-#~ "\n"
-#~ "Pritisnite „Izađi“ da napustite podešavanje zvuka."
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Neispravan mikser uređaj"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
-#~ "OSS izdanje %d.%d.%d, a vaš sistem koristi izdanje\n"
-#~ "starije od 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Upozorenje: Ovo izdanje Gnomovog upravljanja zvukom je prevedeno uz \n"
-#~ "OSS izdanje %d.%d.%d, a vaš sistem koristi \n"
-#~ "izdanje %d.%d.%d.\n"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Gnomovo upravljanje jačinom zvuka"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Mikser za zvučne uređaje"
-
-#~ msgid "Shown"
-#~ msgstr "Prikazano"
-
-#~ msgid "Mixer label"
-#~ msgstr "Oznaka miksera"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "_Vrati oznake na uobičajene"
-
-#~ msgid "Sound Recorder:"
-#~ msgstr "Snimanje zvuka:"
-
-#~ msgid "Don't show this message again."
-#~ msgstr "Ne prikazuj više ovu poruku."
-
-#~ msgid ""
-#~ "Could not find '%s'.\n"
-#~ "Set the correct path to sox inpreferences under the tab 'paths'.\n"
-#~ "\n"
-#~ "If you don't have sox, you will not be able to record or do any effects."
-#~ msgstr ""
-#~ "Ne može da pronađe „%s“.\n"
-#~ "Postavite ispravnu putanju za sox među postavkama na listu „putanje“.\n"
-#~ "\n"
-#~ "Ukoliko nemate sox, nećete moći da snimate ili da izvodite efekte."
-
-#~ msgid "Converting file..."
-#~ msgstr "Pretvara datoteku..."
-
-#~ msgid "Cancel"
-#~ msgstr "Odustani"
-
-#~ msgid "Audioformat: "
-#~ msgstr "Zvučni zapis: "
-
-#~ msgid "Sample rate: "
-#~ msgstr "Veličina uzorka: "
-
-#~ msgid "Channels: "
-#~ msgstr "Kanali: "
-
-#~ msgid "Cancel open"
-#~ msgstr "Obustavi otvaranje"
-
-#~ msgid "Select a sound file"
-#~ msgstr "Izaberi zvučnu datoteku"
-
-#~ msgid "%s is not installed in the path"
-#~ msgstr "Nije postavljen %s u putanji"
-
-#~ msgid "Undoing all changes..."
-#~ msgstr "Opoziva sve izmene..."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please select a sound file to be opened."
-#~ msgstr ""
-#~ "„%s“ je direktorijum.\n"
-#~ "Izaberite zvučnu datoteku koju želite da otvorite."
-
-#~ msgid ""
-#~ "File '%s' doesn't exist.\n"
-#~ "Please select an existing sound file to be opened."
-#~ msgstr ""
-#~ "Ne postoji datoteka „%s“.\n"
-#~ "Izaberite postojeću zvučnu datoteku koju želite da otvorite."
-
-#~ msgid "File '%s isn't a valid sound file."
-#~ msgstr "Datoteka „%s“ nije ispravna zvučna datoteka."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please enter another filename."
-#~ msgstr ""
-#~ "„%s“ je direktorijum.\n"
-#~ "Unesite neko drugo ime datoteke."
-
-#~ msgid "Cancel save"
-#~ msgstr "Obustavi snimanje"
-
-#~ msgid "Overwrite"
-#~ msgstr "Prepiši"
-
-#~ msgid "Error saving '%s'"
-#~ msgstr "Greška pri snimanju „%s“"
-
-#~ msgid ""
-#~ "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "<b>Želite li da sačuvate izmene koje ste učinili u „%s“?</b>\n"
-#~ "\n"
-#~ "Vaše izmene će biti izgubljene, ukoliko ih ne sačuvate."
-
-#~ msgid "Do_n't save"
-#~ msgstr "_Nemoj da sačuvaš"
-
-#~ msgid "Save %s?"
-#~ msgstr "Sačuvaj %s?"
-
-#~ msgid "Saving..."
-#~ msgstr "Čuva..."
-
-#~ msgid ""
-#~ "The size of the current sample is more than\n"
-#~ "%i Mb!"
-#~ msgstr ""
-#~ "Tekući isečak je veći od\n"
-#~ "%i MB!"
-
-#~ msgid "Save sound file"
-#~ msgstr "Sačuvaj zvučnu datoteku"
-
-#~ msgid ""
-#~ "The sound device is not ready. Please check that there isn't\n"
-#~ "another program running that is using the device."
-#~ msgstr ""
-#~ "Zvučni uređaj nije spreman. Proverite da ga možda ne \n"
-#~ "koristi neki drugi program."
-
-#~ msgid "Run GNOME Volume Control"
-#~ msgstr "Pokreni Gnomovo upravljanje jačinom zvuka"
-
-#~ msgid "Add echo"
-#~ msgstr "Dodaj eho"
-
-#~ msgid "Add echo to the current sample"
-#~ msgstr "Dodaj eho u tekući isečak"
-
-#~ msgid "Echo"
-#~ msgstr "Eho"
-
-#~ msgid "_Undo All"
-#~ msgstr "_Opozovi sve"
-
-#~ msgid "Undo all changes made on the current sample"
-#~ msgstr "Opozovi sve izmene tekućeg isečka"
-
-#~ msgid "Effects"
-#~ msgstr "Efekti"
-
-#~ msgid "16bit PCM"
-#~ msgstr "16-bitni PCM"
-
-#~ msgid "8bit PCM"
-#~ msgstr "8-bitni PCM"
-
-#~ msgid "stereo"
-#~ msgstr "stereo"
-
-#~ msgid "Create new sample"
-#~ msgstr "Napravi novi isečak"
-
-#~ msgid "Stop playing/recording"
-#~ msgstr "Zaustavi puštanje/snimanje"
-
-#~ msgid "Audio format: "
-#~ msgstr "Vrsta zapisa zvuka: "
-
-#~ msgid "File '%s' doesn't exist; using default."
-#~ msgstr "Ne postoji datoteka „%s“; koristi uobičajeno."
-
-#~ msgid "File '%s' isn't a supported soundfile."
-#~ msgstr "Datoteka „%s“ ne predstavlja podržanu zvučnu datoteku."
-
-#~ msgid "GNOME Sound Recorder"
-#~ msgstr "Gnomovo snimanje zvuka"
-
-#~ msgid ""
-#~ "A simple soundrecorder and soundplayer for GNOME.\n"
-#~ "Dedicated to my cat, Malte."
-#~ msgstr ""
-#~ "Jednostavan program za snimanje i puštanje zvuka za Gnom.\n"
-#~ "Posvećen mojoj mački, Malti."
-
-#~ msgid "Gnome Sound Recorder Preferences"
-#~ msgstr "Postave Gnomovog snimanja zvuka"
-
-#~ msgid "Sound Recorder Preferences"
-#~ msgstr "Postavke snimanja zvuka"
-
-#~ msgid "_Recording timeout: "
-#~ msgstr "_Tempirani prekid snimanja: "
-
-#~ msgid "_Stop recording on timeout"
-#~ msgstr "_Prekini snimanje nakon nekog vremena"
-
-#~ msgid "_Open save dialog when recording is finished"
-#~ msgstr "_Otvori prozorče za čuvanje po završetku snimanja"
-
-#~ msgid "Size"
-#~ msgstr "Veličina"
-
-#~ msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-#~ msgstr "Prikaži upozorenje ukoliko isečak preraste u MB:"
-
-#~ msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-#~ msgstr "Prekini snimanje ukoliko isečak preraste u MB:"
-
-#~ msgid "Repetition"
-#~ msgstr "Ponavljanje"
-
-#~ msgid "_Repeat the sound"
-#~ msgstr "Po_novi zvuk"
-
-#~ msgid "Play the sound _once only."
-#~ msgstr "Pusti zvuk samo _jednom."
-
-#~ msgid "Repeat _forever"
-#~ msgstr "_Neprestano ponavljaj"
-
-#~ msgid "_Number of times:"
-#~ msgstr "_Broj ponavljanja:"
-
-#~ msgid "Paths"
-#~ msgstr "Pytanje"
-
-#~ msgid "Program files"
-#~ msgstr "Programi"
-
-#~ msgid "_Path to sox:"
-#~ msgstr "_Putanja za sox:"
-
-#~ msgid "_Apply"
-#~ msgstr "_Primeni"
-
-#~ msgid "Folders"
-#~ msgstr "Direktorijumi"
-
-#~ msgid "_Temporary folder:"
-#~ msgstr "_Privremeni direktorijum:"
-
-#~ msgid "Apply"
-#~ msgstr "Primeni"
-
-#~ msgid ""
-#~ "Note: These options only take effect whenever a new sound sample\n"
-#~ "is created. They do not operate on an existing sample."
-#~ msgstr ""
-#~ "Napomena: Ove opcije imaju uticaja pri pravljenju novog zvučnog \n"
-#~ "isečka. One ne utiču na postojeći isečak."
-
-#~ msgid "Audio format:"
-#~ msgstr "Vrsta zapisa zvuka:"
-
-#~ msgid "8 _bit PCM"
-#~ msgstr "_8-bitni PCM"
-
-#~ msgid "16 b_it PCM"
-#~ msgstr "1_6-bitni PCM"
-
-#~ msgid "S_ample rate:"
-#~ msgstr "_Veličina uzorka:"
-
-#~ msgid "Mono or Stereo:"
-#~ msgstr "Mono ili stereo:"
-
-#~ msgid "_Mono"
-#~ msgstr "_Mono"
-
-#~ msgid "_Stereo"
-#~ msgstr "_Stereo"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Specify the geometry of the main window"
-#~ msgstr "Odredi dimenzije osnovnog prozora"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRIJA"
-
-#~ msgid "Specify a file to be opened"
-#~ msgstr "Navedi datoteku za otvaranje"
-
-#~ msgid "Specify a file to start recording"
-#~ msgstr "Navedi datoteku za početak snimanja"
-
-#~ msgid "Specify a file to start playing"
-#~ msgstr "Navedi datoteku za puštanje"
-
-#~ msgid "Sound recorder"
-#~ msgstr "Snimanje zvuka"
-
-#~ msgid "Audio format: 8bit PCM"
-#~ msgstr "Način zapisa zvuka: 8-bitni PCM"
-
-#~ msgid "Audio format: 16bit PCM"
-#~ msgstr "Način zapisa zvuka: 16-bitni PCM"
-
-#~ msgid "Sample rate: %s"
-#~ msgstr "Veličina uzorka: %s"
-
-#~ msgid "Channels: mono"
-#~ msgstr "Kanali: mono"
-
-#~ msgid "Channels: stereo"
-#~ msgstr "Kanali: stereo"
-
-#~ msgid "Adding echo to sample..."
-#~ msgstr "Dodaje eho u isečak..."
