@@ -1,7 +1,7 @@
 SUBDIRS = src doc icons
 
 EXTRA_DIST = \
-	README COPYING AUTHORS INSTALL \
+	README AUTHORS INSTALL \
 	gnome-sound-recorder.desktop.in.in \
 	gnome-sound-recorder.schemas.in
 
