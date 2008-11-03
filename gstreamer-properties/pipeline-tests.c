@@ -63,7 +63,7 @@ gchar *
 gst_pipeline_string_from_desc (GSTPPipelineDescription * pipeline_desc)
 {
 	gchar *pipeline = NULL;
-  if (pipeline_desc->device != NULL && pipeline_desc->device != "") {
+  if (pipeline_desc->device != NULL && *pipeline_desc->device != '\0') {
 	  pipeline = g_strdup_printf ("%s device=\"%s\"", pipeline_desc->pipeline,
                                 pipeline_desc->device);
   }
