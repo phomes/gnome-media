@@ -4,7 +4,7 @@ AC_INIT([gnome-media],
         [2.25.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
-AM_INIT_AUTOMAKE([-Wall -Wno-portability -Werror])
+AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 -Wall -Wno-portability])
 
 AS_VERSION
 
@@ -59,11 +59,17 @@ dnl=======================================================================
 dnl Start of pkg-config checks - common libs
 dnl=======================================================================
 
+DBUS_GLIB_REQUIRED_VERSION=0.74
+GLIB_REQUIRED_VERSION=2.15.4
+GTK_REQUIRED_VERSION=2.10.0
+LIBGLADE_REQUIRED_VERSION=1.99.2
+GCONF_REQUIRED_VERSION=2.6.1
+PA_REQUIRED_VERSION=0.9.12
+
 PKG_CHECK_MODULES(MEDIA, [
-        glib-2.0 >= 1.3.7
-        gmodule-2.0 >= 1.3.7
-        libgnome-2.0 >= 2.13.7
-        libgnomeui-2.0 >= 2.13.2
+        glib-2.0 >= $GLIB_REQUIRED_VERSION
+        gmodule-2.0 >= $GLIB_REQUIRED_VERSION
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION
 ])
 
 host=`uname -s`
@@ -75,6 +81,42 @@ esac
 
 AC_SUBST(MEDIA_CFLAGS)
 AC_SUBST(MEDIA_LIBS)
+
+dnl=======================================================================
+dnl Check for the new volume control modules
+dnl=======================================================================
+
+PKG_CHECK_MODULES(VOLUME_CONTROL,
+        dbus-glib-1 >= $DBUS_GLIB_REQUIRED_VERSION
+        gobject-2.0 >= $GLIB_REQUIRED_VERSION
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION
+)
+AC_SUBST(VOLUME_CONTROL_CFLAGS)
+AC_SUBST(VOLUME_CONTROL_LIBS)
+
+PKG_CHECK_MODULES(PULSEAUDIO,
+        libpulse >= $PA_REQUIRED_VERSION libpulse-mainloop-glib >= $PA_REQUIRED_VERSION,
+        have_pulseaudio=yes,
+        have_pulseaudio=no)
+
+AC_ARG_ENABLE([pulseaudio],
+              AS_HELP_STRING([--enable-pulseaudio],
+                             [Enable PulseAudio support @<:@default=auto@:>@]),
+              enable_pulseaudio=$enableval, enable_pulseaudio=auto)
+
+if test "x$enable_pulseaudio" != "xno"; then
+  if test "x$enable_pulseaudio" = "xyes" -a "x$have_pulseaudio" = "xno"; then
+    AC_MSG_ERROR([PulseAudio support explicitly requested but dependencies not found])
+  fi
+
+  if test "x$have_pulseaudio" = "xyes" ; then
+    AC_DEFINE(HAVE_PULSEAUDIO, [], [Define if we have pulseaudio])
+  fi
+fi
+AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
+AC_SUBST(HAVE_PULSEAUDIO)
+AC_SUBST(PULSEAUDIO_CFLAGS)
+AC_SUBST(PULSEAUDIO_LIBS)
 
 dnl=======================================================================
 dnl Check for the CDDBSlave2 modules
@@ -502,7 +544,7 @@ AC_ARG_ENABLE([gstmix],
   AS_HELP_STRING([--enable-gstmix], [enable gstreamer mixer]),
   ,enable_gstmix=yes)
 
-if test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
+if test "x$have_pulseaudio" = "xno" && test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
 then
   PKG_CHECK_MODULES(GSTMIXER, [
     libgnomeui-2.0
@@ -529,7 +571,51 @@ AC_SUBST(GSTMIXER_LIBS)
 AM_CONDITIONAL(HAVE_GSTMIXER, [test x$have_gstmixer = xyes])
 
 
-CFLAGS="$CFLAGS $WARN_CFLAGS"
+dnl ---------------------------------------------------------------------------
+dnl - Finish
+dnl ---------------------------------------------------------------------------
+
+# Turn on the additional warnings last, so warnings don't affect other tests.
+AC_ARG_ENABLE(more-warnings,
+	[AC_HELP_STRING([--enable-more-warnings],
+	[Maximum compiler warnings])],
+	set_more_warnings="$enableval",[
+        	if test -d $srcdir/.svn; then
+        		set_more_warnings=yes
+              	else
+                  	set_more_warnings=no
+              	fi
+        ])
+AC_MSG_CHECKING(for more warnings)
+if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
+        AC_MSG_RESULT(yes)
+        CFLAGS="\
+        -Wall \
+        -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
+        -Wnested-externs -Wpointer-arith \
+        -Wcast-align -Wsign-compare \
+        $CFLAGS"
+
+        for option in -Wno-unused-parameter -Wno-strict-aliasing -Wno-sign-compare; do
+                SAVE_CFLAGS="$CFLAGS"
+                CFLAGS="$CFLAGS $option"
+                AC_MSG_CHECKING([whether gcc understands $option])
+                AC_TRY_COMPILE([], [],
+                        has_option=yes,
+                        has_option=no,)
+                if test $has_option = no; then
+                        CFLAGS="$SAVE_CFLAGS"
+                fi
+                AC_MSG_RESULT($has_option)
+                unset has_option
+                unset SAVE_CFLAGS
+        done
+        unset option
+else
+        AC_MSG_RESULT(no)
+fi
+
+
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LIBS)
@@ -538,6 +624,8 @@ AC_SUBST(LDFLAGS)
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
+gnome-volume-control/Makefile
+gnome-volume-control/src/Makefile
 vu-meter/Makefile
 cddb-slave2/Makefile
 gnome-cd/Makefile
@@ -586,20 +674,24 @@ vu-meter/vumeter.desktop.in
 AC_OUTPUT
 
 echo "
-        ${PACKAGE} ${VERSION} has been configured as follows:
+
+                    ${PACKAGE} ${VERSION}
+                    ============
+
 
 	Prefix:                 ${prefix}
         Source code location:   ${srcdir}
         Compiler:               ${CC}
         CFLAGS:                 ${CFLAGS}
 
-        GStreamer mixer:        $have_gstmixer
+        Volume Control          $have_pulseaudio
         GStreamer properties:   $have_gstprops
         GStreamer profiles:     $have_profiles
         Sound recorder:         $have_grecord$grecord_reason
 
   *Deprecated*:
 
+        GStreamer mixer:        $have_gstmixer
         vu-meter:               $have_vumeter$vumeter_reason
         cddb-slave:             $have_cddbslave
         gnome-cd:               $have_gnomecd$gnomecd_reason"

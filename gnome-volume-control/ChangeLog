@@ -1,0 +1,97 @@
+2008-11-03  William Jon McCann  <jmccann@redhat.com>
+
+	* AUTHORS:
+	* Makefile.am:
+	* src/Makefile.am:
+	* src/applet-main.c (on_bus_name_lost), (acquire_name_on_proxy),
+	(acquire_name), (main):
+	* src/dialog-main.c (on_bus_name_lost), (acquire_name_on_proxy),
+	(acquire_name), (on_dialog_response), (on_control_ready), (main):
+	* src/gvc-applet.c (maybe_show_status_icon), (gvc_applet_start),
+	(gvc_applet_dispose), (gvc_applet_constructor),
+	(gvc_applet_class_init), (on_adjustment_value_changed),
+	(popup_dock), (on_status_icon_activate),
+	(on_menu_activate_open_volume_control),
+	(on_status_icon_popup_menu), (on_status_icon_scroll_event),
+	(gvc_applet_release_grab), (on_dock_button_press), (popdown_dock),
+	(gvc_applet_grab_notify), (on_dock_grab_notify),
+	(on_dock_grab_broken_event), (on_dock_key_release), (update_icon),
+	(on_stream_volume_notify), (on_stream_is_muted_notify),
+	(on_control_ready), (on_bar_is_muted_notify), (gvc_applet_init),
+	(gvc_applet_finalize), (gvc_applet_new):
+	* src/gvc-applet.h:
+	* src/gvc-channel-bar.c (_scale_box_new), (update_image),
+	(update_label), (gvc_channel_bar_set_name),
+	(gvc_channel_bar_set_icon_name), (gvc_channel_bar_set_orientation),
+	(gvc_channel_bar_set_adjustment), (gvc_channel_bar_get_adjustment),
+	(update_mute_button), (gvc_channel_bar_set_is_muted),
+	(gvc_channel_bar_get_is_muted), (gvc_channel_bar_set_property),
+	(gvc_channel_bar_get_property), (gvc_channel_bar_constructor),
+	(gvc_channel_bar_class_init), (on_mute_button_toggled),
+	(gvc_channel_bar_init), (gvc_channel_bar_finalize),
+	(gvc_channel_bar_new):
+	* src/gvc-channel-bar.h:
+	* src/gvc-mixer-control.c (gvc_mixer_control_get_event_sink_input),
+	(gvc_mixer_control_get_default_sink), (listify_hash_values_hfunc),
+	(gvc_stream_collate), (gvc_mixer_control_get_sinks),
+	(gvc_mixer_control_get_sink_inputs), (dec_outstanding),
+	(gvc_mixer_control_is_ready), (update_server), (update_sink),
+	(update_source), (set_icon_name_from_proplist),
+	(update_sink_input), (update_source_output), (update_client),
+	(_pa_context_get_sink_info_cb), (_pa_context_get_source_info_cb),
+	(_pa_context_get_sink_input_info_cb),
+	(_pa_context_get_source_output_info_cb),
+	(_pa_context_get_client_info_cb), (_pa_context_get_server_info_cb),
+	(remove_event_role_stream), (update_event_role_stream),
+	(_pa_ext_stream_restore_read_cb),
+	(_pa_ext_stream_restore_subscribe_cb), (req_update_server_info),
+	(req_update_client_info), (req_update_sink_info),
+	(req_update_source_info), (req_update_sink_input_info),
+	(req_update_source_output_info), (remove_client), (remove_sink),
+	(remove_source), (remove_sink_input), (remove_source_output),
+	(_pa_context_subscribe_cb), (gvc_mixer_control_ready),
+	(_pa_context_state_cb), (gvc_mixer_control_open),
+	(gvc_mixer_control_close), (gvc_mixer_control_dispose),
+	(gvc_mixer_control_constructor), (gvc_mixer_control_class_init),
+	(gvc_mixer_control_init), (gvc_mixer_control_finalize),
+	(gvc_mixer_control_new):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_set_mixer_control),
+	(gvc_mixer_dialog_get_mixer_control),
+	(gvc_mixer_dialog_set_property), (gvc_mixer_dialog_get_property),
+	(on_adjustment_value_changed), (on_bar_is_muted_notify),
+	(lookup_bar_for_stream), (on_stream_volume_notify),
+	(on_stream_is_muted_notify), (save_bar_for_stream), (add_stream),
+	(gvc_mixer_dialog_constructor), (gvc_mixer_dialog_class_init),
+	(gvc_mixer_dialog_init), (gvc_mixer_dialog_finalize),
+	(gvc_mixer_dialog_new):
+	* src/gvc-mixer-dialog.h:
+	* src/gvc-mixer-sink-input.c (gvc_mixer_sink_input_change_volume),
+	(gvc_mixer_sink_input_change_is_muted),
+	(gvc_mixer_sink_input_constructor),
+	(gvc_mixer_sink_input_class_init), (gvc_mixer_sink_input_init),
+	(gvc_mixer_sink_input_finalize), (gvc_mixer_sink_input_new):
+	* src/gvc-mixer-sink-input.h:
+	* src/gvc-mixer-sink.c (gvc_mixer_sink_change_volume),
+	(gvc_mixer_sink_change_is_muted), (gvc_mixer_sink_constructor),
+	(gvc_mixer_sink_class_init), (gvc_mixer_sink_init),
+	(gvc_mixer_sink_finalize), (gvc_mixer_sink_new):
+	* src/gvc-mixer-sink.h:
+	* src/gvc-mixer-stream.c (get_next_stream_serial),
+	(gvc_mixer_stream_get_pa_context), (gvc_mixer_stream_get_index),
+	(gvc_mixer_stream_get_id), (gvc_mixer_stream_get_num_channels),
+	(gvc_mixer_stream_get_volume), (gvc_mixer_stream_set_volume),
+	(gvc_mixer_stream_get_is_muted), (gvc_mixer_stream_get_is_default),
+	(gvc_mixer_stream_set_is_muted), (gvc_mixer_stream_set_is_default),
+	(gvc_mixer_stream_get_name), (gvc_mixer_stream_set_name),
+	(gvc_mixer_stream_get_icon_name), (gvc_mixer_stream_set_icon_name),
+	(gvc_mixer_stream_set_property), (gvc_mixer_stream_get_property),
+	(gvc_mixer_stream_constructor),
+	(gvc_mixer_stream_real_change_volume),
+	(gvc_mixer_stream_real_change_is_muted),
+	(gvc_mixer_stream_change_volume),
+	(gvc_mixer_stream_change_is_muted), (gvc_mixer_stream_class_init),
+	(gvc_mixer_stream_init), (gvc_mixer_stream_finalize):
+	* src/gvc-mixer-stream.h:
+	Initial commit.
+
