@@ -625,6 +625,7 @@ AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
 gnome-volume-control/Makefile
+gnome-volume-control/data/Makefile
 gnome-volume-control/src/Makefile
 vu-meter/Makefile
 cddb-slave2/Makefile
