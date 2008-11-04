@@ -297,7 +297,11 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self = GVC_MIXER_DIALOG (object);
 
+#if GTK_CHECK_VERSION(2,14,0)
         main_vbox = gtk_dialog_get_content_area (GTK_DIALOG (self));
+#else
+        main_vbox = GTK_DIALOG (self)->vbox;
+#endif
         self->priv->streams_box = gtk_hbox_new (FALSE, 12);
         gtk_container_add (GTK_CONTAINER (main_vbox), self->priv->streams_box);
 
