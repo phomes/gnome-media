@@ -1,7 +1,7 @@
 AC_PREREQ(2.60)
 
 AC_INIT([gnome-media],
-        [2.24.0.1],
+        [2.25.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
 AM_INIT_AUTOMAKE([-Wall -Wno-portability -Werror])
