@@ -273,6 +273,7 @@ on_status_icon_popup_menu (GtkStatusIcon *status_icon,
                         activate_time);
 }
 
+#if GTK_CHECK_VERSION(2,15,0)
 static gboolean
 on_status_icon_scroll_event (GtkStatusIcon  *status_icon,
                              GdkEventScroll *event,
@@ -310,6 +311,7 @@ on_status_icon_scroll_event (GtkStatusIcon  *status_icon,
 
         return FALSE;
 }
+#endif
 
 static void
 gvc_applet_release_grab (GvcApplet      *applet,
@@ -517,11 +519,12 @@ gvc_applet_init (GvcApplet *applet)
                           "popup-menu",
                           G_CALLBACK (on_status_icon_popup_menu),
                           applet);
+#if GTK_CHECK_VERSION(2,15,0)
         g_signal_connect (applet->priv->status_icon,
                           "scroll-event",
                           G_CALLBACK (on_status_icon_scroll_event),
                           applet);
-
+#endif
 
         /* window */
         applet->priv->dock = gtk_window_new (GTK_WINDOW_POPUP);
