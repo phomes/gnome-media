@@ -61,12 +61,14 @@ gboolean            gvc_mixer_control_close               (GvcMixerControl *cont
 gboolean            gvc_mixer_control_is_ready            (GvcMixerControl *control);
 
 GSList *            gvc_mixer_control_get_sinks           (GvcMixerControl *control);
+GSList *            gvc_mixer_control_get_sources         (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sink_inputs     (GvcMixerControl *control);
 
 GvcMixerStream *    gvc_mixer_control_lookup_stream_id    (GvcMixerControl *control,
                                                            guint            id);
 
 GvcMixerStream *    gvc_mixer_control_get_default_sink    (GvcMixerControl *control);
+GvcMixerStream *    gvc_mixer_control_get_default_source  (GvcMixerControl *control);
 GvcMixerStream *    gvc_mixer_control_get_event_sink_input (GvcMixerControl *control);
 
 G_END_DECLS

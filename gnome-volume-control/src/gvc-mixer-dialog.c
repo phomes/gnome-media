@@ -31,6 +31,7 @@
 #include "gvc-channel-bar.h"
 #include "gvc-mixer-control.h"
 #include "gvc-mixer-sink.h"
+#include "gvc-mixer-source.h"
 #include "gvc-mixer-dialog.h"
 
 #define SCALE_SIZE 128
@@ -43,6 +44,7 @@ struct GvcMixerDialogPrivate
         GHashTable      *bars;
         GtkWidget       *streams_box;
         GtkWidget       *output_streams_box;
+        GtkWidget       *input_streams_box;
         GtkWidget       *application_streams_box;
 };
 
@@ -235,6 +237,9 @@ add_stream (GvcMixerDialog *dialog,
                                           _("Speakers"));
                 gtk_widget_set_sensitive (dialog->priv->application_streams_box,
                                           !is_muted);
+        } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
+                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
+                                          _("Microphone"));
         } else {
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
@@ -248,6 +253,8 @@ add_stream (GvcMixerDialog *dialog,
 
         if (GVC_IS_MIXER_SINK (stream)) {
                 gtk_box_pack_start (GTK_BOX (dialog->priv->output_streams_box), bar, TRUE, FALSE, 0);
+        } else if (GVC_IS_MIXER_SOURCE (stream)) {
+                gtk_box_pack_start (GTK_BOX (dialog->priv->input_streams_box), bar, TRUE, FALSE, 0);
         } else {
                 gtk_box_pack_start (GTK_BOX (dialog->priv->application_streams_box), bar, TRUE, FALSE, 0);
         }
@@ -326,6 +333,11 @@ gvc_mixer_dialog_constructor (GType                  type,
                             self->priv->output_streams_box,
                             FALSE, FALSE, 6);
 
+        self->priv->input_streams_box = gtk_hbox_new (FALSE, 12);
+        gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
+                            self->priv->input_streams_box,
+                            FALSE, FALSE, 6);
+
         separator = gtk_vseparator_new ();
         gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
                             separator,
@@ -347,12 +359,11 @@ gvc_mixer_dialog_constructor (GType                  type,
                           G_CALLBACK (on_control_stream_removed),
                           self);
 
-        streams = gvc_mixer_control_get_sinks (self->priv->mixer_control);
-        for (l = streams; l != NULL; l = l->next) {
-                stream = l->data;
-                add_stream (self, stream);
-        }
-        g_slist_free (streams);
+        stream = gvc_mixer_control_get_default_sink (self->priv->mixer_control);
+        add_stream (self, stream);
+
+        stream = gvc_mixer_control_get_default_source (self->priv->mixer_control);
+        add_stream (self, stream);
 
         stream = gvc_mixer_control_get_event_sink_input (self->priv->mixer_control);
         add_stream (self, stream);

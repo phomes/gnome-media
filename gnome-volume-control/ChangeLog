@@ -1,5 +1,24 @@
 2008-11-05  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-mixer-control.c (gvc_mixer_control_get_default_source),
+	(gvc_mixer_control_get_sources), (remove_stream), (add_stream),
+	(update_sink), (update_source), (update_sink_input),
+	(update_event_role_stream), (remove_sink), (remove_source),
+	(remove_sink_input), (remove_source_output):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-dialog.c (add_stream),
+	(gvc_mixer_dialog_constructor):
+	* src/gvc-mixer-source.c (gvc_mixer_source_change_volume),
+	(gvc_mixer_source_change_is_muted), (gvc_mixer_source_constructor),
+	(gvc_mixer_source_class_init), (gvc_mixer_source_init),
+	(gvc_mixer_source_finalize), (gvc_mixer_source_new):
+	* src/gvc-mixer-source.h:
+	Add support for input streams.  Only show default input and
+	output stream.
+
+2008-11-05  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-applet.c (gvc_applet_dispose), (on_control_ready):
 	* src/gvc-channel-bar.c (gvc_channel_bar_finalize):
 	* src/gvc-mixer-control.c (gvc_mixer_control_get_event_sink_input),
