@@ -47,9 +47,9 @@ typedef struct
 
         void (*ready)          (GvcMixerControl *control);
         void (*stream_added)   (GvcMixerControl *control,
-                                guint            index);
+                                guint            id);
         void (*stream_removed) (GvcMixerControl *control,
-                                guint            index);
+                                guint            id);
 } GvcMixerControlClass;
 
 GType               gvc_mixer_control_get_type            (void);
@@ -62,6 +62,9 @@ gboolean            gvc_mixer_control_is_ready            (GvcMixerControl *cont
 
 GSList *            gvc_mixer_control_get_sinks           (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sink_inputs     (GvcMixerControl *control);
+
+GvcMixerStream *    gvc_mixer_control_lookup_stream_id    (GvcMixerControl *control,
+                                                           guint            id);
 
 GvcMixerStream *    gvc_mixer_control_get_default_sink    (GvcMixerControl *control);
 GvcMixerStream *    gvc_mixer_control_get_event_sink_input (GvcMixerControl *control);

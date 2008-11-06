@@ -280,6 +280,22 @@ add_stream (GvcMixerDialog *dialog,
         gtk_widget_show (bar);
 }
 
+static void
+on_control_stream_added (GvcMixerControl *control,
+                         guint            id,
+                         GvcMixerDialog  *dialog)
+{
+        g_debug ("GvcMixerDialog: Stream %u added", id);
+}
+
+static void
+on_control_stream_removed (GvcMixerControl *control,
+                           guint            id,
+                           GvcMixerDialog  *dialog)
+{
+        g_debug ("GvcMixerDialog: Stream %u removed", id);
+}
+
 static GObject *
 gvc_mixer_dialog_constructor (GType                  type,
                               guint                  n_construct_properties,
@@ -322,6 +338,15 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         gtk_widget_show_all (self->priv->streams_box);
 
+        g_signal_connect (self->priv->mixer_control,
+                          "stream-added",
+                          G_CALLBACK (on_control_stream_added),
+                          self);
+        g_signal_connect (self->priv->mixer_control,
+                          "stream-removed",
+                          G_CALLBACK (on_control_stream_removed),
+                          self);
+
         streams = gvc_mixer_control_get_sinks (self->priv->mixer_control);
         for (l = streams; l != NULL; l = l->next) {
                 stream = l->data;
@@ -343,11 +368,37 @@ gvc_mixer_dialog_constructor (GType                  type,
 }
 
 static void
+gvc_mixer_dialog_dispose (GObject *object)
+{
+        GvcMixerDialog *dialog = GVC_MIXER_DIALOG (object);
+
+        g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                              on_control_stream_added,
+                                              dialog);
+        g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                              on_control_stream_removed,
+                                              dialog);
+
+        if (dialog->priv->mixer_control != NULL) {
+                g_object_unref (dialog->priv->mixer_control);
+                dialog->priv->mixer_control = NULL;
+        }
+
+        if (dialog->priv->bars != NULL) {
+                g_hash_table_destroy (dialog->priv->bars);
+                dialog->priv->bars = NULL;
+        }
+
+        G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->dispose (object);
+}
+
+static void
 gvc_mixer_dialog_class_init (GvcMixerDialogClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
         object_class->constructor = gvc_mixer_dialog_constructor;
+        object_class->dispose = gvc_mixer_dialog_dispose;
         object_class->finalize = gvc_mixer_dialog_finalize;
         object_class->set_property = gvc_mixer_dialog_set_property;
         object_class->get_property = gvc_mixer_dialog_get_property;

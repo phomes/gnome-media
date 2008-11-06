@@ -46,13 +46,17 @@ struct GvcMixerControlPrivate
         pa_context       *pa_context;
         int               n_outstanding;
 
+        gboolean          default_sink_is_set;
+        guint             default_sink_id;
         char             *default_sink_name;
-        guint             default_sink_index;
+        gboolean          default_source_is_set;
+        guint             default_source_id;
         char             *default_source_name;
-        guint             default_source_index;
 
-        GvcMixerStream   *event_sink_input;
+        gboolean          event_sink_input_is_set;
+        guint             event_sink_input_id;
 
+        GHashTable       *all_streams;
         GHashTable       *sinks; /* fixed outputs */
         GHashTable       *sources; /* fixed inputs */
         GHashTable       *sink_inputs; /* routable output streams */
@@ -78,9 +82,14 @@ G_DEFINE_TYPE (GvcMixerControl, gvc_mixer_control, G_TYPE_OBJECT)
 GvcMixerStream *
 gvc_mixer_control_get_event_sink_input (GvcMixerControl *control)
 {
+        GvcMixerStream *stream;
+
         g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
 
-        return control->priv->event_sink_input;
+        stream = g_hash_table_lookup (control->priv->all_streams,
+                                      GUINT_TO_POINTER (control->priv->event_sink_input_id));
+
+        return stream;
 }
 
 GvcMixerStream *
@@ -90,8 +99,26 @@ gvc_mixer_control_get_default_sink (GvcMixerControl *control)
 
         g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
 
-        stream = g_hash_table_lookup (control->priv->sinks,
-                                      GUINT_TO_POINTER (control->priv->default_sink_index));
+        if (control->priv->default_sink_is_set) {
+                stream = g_hash_table_lookup (control->priv->all_streams,
+                                              GUINT_TO_POINTER (control->priv->default_sink_id));
+        } else {
+                stream = NULL;
+        }
+
+        return stream;
+}
+
+GvcMixerStream *
+gvc_mixer_control_lookup_stream_id (GvcMixerControl *control,
+                                    guint            id)
+{
+        GvcMixerStream *stream;
+
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+
+        stream = g_hash_table_lookup (control->priv->all_streams,
+                                      GUINT_TO_POINTER (id));
         return stream;
 }
 
@@ -212,6 +239,10 @@ update_sink (GvcMixerControl    *control,
                                              info->channel_map.channels);
                 g_hash_table_insert (control->priv->sinks,
                                      GUINT_TO_POINTER (info->index),
+                                     g_object_ref (stream));
+
+                g_hash_table_insert (control->priv->all_streams,
+                                     GUINT_TO_POINTER (gvc_mixer_stream_get_id (stream)),
                                      stream);
                 is_new = TRUE;
         }
@@ -232,11 +263,17 @@ update_sink (GvcMixerControl    *control,
         //w->type = info.flags & PA_SINK_HARDWARE ? SINK_HARDWARE : SINK_VIRTUAL;
 
         if (is_new) {
-                g_signal_emit (G_OBJECT (control), signals[STREAM_ADDED], 0, info->index);
+                g_signal_emit (G_OBJECT (control),
+                               signals[STREAM_ADDED],
+                               0,
+                               gvc_mixer_stream_get_id (stream));
         }
 
         if (is_default) {
-                control->priv->default_sink_index = info->index;
+                control->priv->default_sink_id = gvc_mixer_stream_get_id (stream);
+                control->priv->default_sink_is_set = TRUE;
+
+                /* FIXME: property w/ changed event */
         }
 }
 
@@ -323,6 +360,10 @@ update_sink_input (GvcMixerControl          *control,
                                                    info->channel_map.channels);
                 g_hash_table_insert (control->priv->sink_inputs,
                                      GUINT_TO_POINTER (info->index),
+                                     g_object_ref (stream));
+
+                g_hash_table_insert (control->priv->all_streams,
+                                     GUINT_TO_POINTER (gvc_mixer_stream_get_id (stream)),
                                      stream);
                 is_new = TRUE;
         }
@@ -337,7 +378,10 @@ update_sink_input (GvcMixerControl          *control,
         gvc_mixer_stream_set_is_default (stream, is_default);
 
         if (is_new) {
-                g_signal_emit (G_OBJECT (control), signals[STREAM_ADDED], 0, info->index);
+                g_signal_emit (G_OBJECT (control),
+                               signals[STREAM_ADDED],
+                               0,
+                               gvc_mixer_stream_get_id (stream));
         }
 }
 
@@ -527,14 +571,20 @@ update_event_role_stream (GvcMixerControl                  *control,
 
         is_new = FALSE;
 
-        if (control->priv->event_sink_input == NULL) {
+        if (!control->priv->event_sink_input_is_set) {
                 stream = gvc_mixer_sink_input_new (control->priv->pa_context,
                                                    0,
                                                    1);
-                control->priv->event_sink_input = stream;
+                g_hash_table_insert (control->priv->all_streams,
+                                     GUINT_TO_POINTER (gvc_mixer_stream_get_id (stream)),
+                                     stream);
+                control->priv->event_sink_input_id = gvc_mixer_stream_get_id (stream);
+                control->priv->event_sink_input_is_set = TRUE;
+
                 is_new = TRUE;
         } else {
-                stream = control->priv->event_sink_input;
+                stream = g_hash_table_lookup (control->priv->all_streams,
+                                              GUINT_TO_POINTER (control->priv->event_sink_input_id));
         }
 
         avg_volume = pa_cvolume_avg (&info->volume);
@@ -544,6 +594,13 @@ update_event_role_stream (GvcMixerControl                  *control,
         gvc_mixer_stream_set_icon_name (stream, "multimedia-volume-control");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+
+        if (is_new) {
+                g_signal_emit (G_OBJECT (control),
+                               signals[STREAM_ADDED],
+                               0,
+                               gvc_mixer_stream_get_id (stream));
+        }
 }
 
 static void
@@ -949,9 +1006,44 @@ gvc_mixer_control_dispose (GObject *object)
                 control->priv->pa_context = NULL;
         }
 
+        if (control->priv->default_source_name != NULL) {
+                g_free (control->priv->default_source_name);
+                control->priv->default_source_name = NULL;
+        }
+        if (control->priv->default_sink_name != NULL) {
+                g_free (control->priv->default_sink_name);
+                control->priv->default_sink_name = NULL;
+        }
+
         if (control->priv->pa_mainloop != NULL) {
                 pa_glib_mainloop_free (control->priv->pa_mainloop);
                 control->priv->pa_mainloop = NULL;
+        }
+
+        if (control->priv->all_streams != NULL) {
+                g_hash_table_destroy (control->priv->all_streams);
+                control->priv->all_streams = NULL;
+        }
+
+        if (control->priv->sinks != NULL) {
+                g_hash_table_destroy (control->priv->sinks);
+                control->priv->sinks = NULL;
+        }
+        if (control->priv->sources != NULL) {
+                g_hash_table_destroy (control->priv->sources);
+                control->priv->sources = NULL;
+        }
+        if (control->priv->sink_inputs != NULL) {
+                g_hash_table_destroy (control->priv->sink_inputs);
+                control->priv->sink_inputs = NULL;
+        }
+        if (control->priv->source_outputs != NULL) {
+                g_hash_table_destroy (control->priv->source_outputs);
+                control->priv->source_outputs = NULL;
+        }
+        if (control->priv->clients != NULL) {
+                g_hash_table_destroy (control->priv->clients);
+                control->priv->clients = NULL;
         }
 
         G_OBJECT_CLASS (gvc_mixer_control_parent_class)->dispose (object);
@@ -1040,6 +1132,7 @@ gvc_mixer_control_init (GvcMixerControl *control)
         control->priv->pa_api = pa_glib_mainloop_get_api (control->priv->pa_mainloop);
         g_assert (control->priv->pa_api);
 
+        control->priv->all_streams = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->sinks = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->sources = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->sink_inputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);

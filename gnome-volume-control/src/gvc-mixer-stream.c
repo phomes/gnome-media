@@ -446,5 +446,12 @@ gvc_mixer_stream_finalize (GObject *object)
         mixer_stream = GVC_MIXER_STREAM (object);
 
         g_return_if_fail (mixer_stream->priv != NULL);
+
+        g_free (mixer_stream->priv->name);
+        mixer_stream->priv->name = NULL;
+
+        g_free (mixer_stream->priv->icon_name);
+        mixer_stream->priv->icon_name = NULL;
+
         G_OBJECT_CLASS (gvc_mixer_stream_parent_class)->finalize (object);
 }

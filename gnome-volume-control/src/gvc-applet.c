@@ -92,6 +92,16 @@ gvc_applet_dispose (GObject *object)
                 applet->priv->dock = NULL;
         }
 
+        if (applet->priv->control != NULL) {
+                g_object_unref (applet->priv->control);
+                applet->priv->control = NULL;
+        }
+
+        if (applet->priv->sink_stream != NULL) {
+                g_object_unref (applet->priv->sink_stream);
+                applet->priv->sink_stream = NULL;
+        }
+
         G_OBJECT_CLASS (gvc_applet_parent_class)->dispose (object);
 }
 
@@ -506,6 +516,8 @@ on_control_ready (GvcMixerControl *control,
         applet->priv->sink_stream = gvc_mixer_control_get_default_sink (control);
         if (applet->priv->sink_stream != NULL) {
                 GtkAdjustment *adj;
+
+                g_object_ref (applet->priv->sink_stream);
 
                 adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (applet->priv->bar)));
                 gtk_adjustment_set_value (adj,

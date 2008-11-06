@@ -436,6 +436,10 @@ gvc_channel_bar_finalize (GObject *object)
         channel_bar = GVC_CHANNEL_BAR (object);
 
         g_return_if_fail (channel_bar->priv != NULL);
+
+        g_free (channel_bar->priv->name);
+        g_free (channel_bar->priv->icon_name);
+
         G_OBJECT_CLASS (gvc_channel_bar_parent_class)->finalize (object);
 }
 

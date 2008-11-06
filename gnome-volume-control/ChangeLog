@@ -1,3 +1,20 @@
+2008-11-05  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gvc-applet.c (gvc_applet_dispose), (on_control_ready):
+	* src/gvc-channel-bar.c (gvc_channel_bar_finalize):
+	* src/gvc-mixer-control.c (gvc_mixer_control_get_event_sink_input),
+	(gvc_mixer_control_get_default_sink),
+	(gvc_mixer_control_lookup_stream_id), (update_sink),
+	(update_sink_input), (update_event_role_stream),
+	(gvc_mixer_control_dispose), (gvc_mixer_control_init):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-dialog.c (on_control_stream_added),
+	(on_control_stream_removed), (gvc_mixer_dialog_constructor),
+	(gvc_mixer_dialog_dispose), (gvc_mixer_dialog_class_init):
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_finalize):
+	Fix leaks.  Use ids instead of indexes when possible.
+	Add method to lookup stream by id.
+
 2008-11-04  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor): Compile
