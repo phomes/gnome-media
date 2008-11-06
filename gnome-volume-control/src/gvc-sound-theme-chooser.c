@@ -1463,10 +1463,13 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 
         alignment = gtk_alignment_new (0, 0, 1, 1);
         gtk_container_add (GTK_CONTAINER (frame), alignment);
-        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 12, 0, 12, 0);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
 
         chooser->priv->treeview = gtk_tree_view_new ();
         box = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
                                              GTK_SHADOW_IN);
         gtk_container_add (GTK_CONTAINER (box), chooser->priv->treeview);

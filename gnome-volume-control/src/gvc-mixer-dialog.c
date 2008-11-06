@@ -370,6 +370,25 @@ on_audible_bell_toggled (GtkToggleButton *button,
         g_object_unref (client);
 }
 
+static void
+_gtk_label_make_bold (GtkLabel *label)
+{
+        PangoFontDescription *font_desc;
+
+        font_desc = pango_font_description_new ();
+
+        pango_font_description_set_weight (font_desc,
+                                           PANGO_WEIGHT_BOLD);
+
+        /* This will only affect the weight of the font, the rest is
+         * from the current state of the widget, which comes from the
+         * theme or user prefs, since the font desc only has the
+         * weight flag turned on.
+         */
+        gtk_widget_modify_font (GTK_WIDGET (label), font_desc);
+
+        pango_font_description_free (font_desc);
+}
 
 static GObject *
 gvc_mixer_dialog_constructor (GType                  type,
@@ -383,6 +402,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         GtkWidget      *alignment;
         GtkWidget      *box;
         GtkWidget      *notebook;
+        GtkWidget      *treeview;
         GSList         *streams;
         GSList         *l;
         GvcMixerStream *stream;
@@ -398,20 +418,20 @@ gvc_mixer_dialog_constructor (GType                  type,
         main_vbox = GTK_DIALOG (self)->vbox;
 #endif
 
-        gtk_container_set_border_width (GTK_CONTAINER (self), 5);
+        gtk_container_set_border_width (GTK_CONTAINER (self), 12);
 
         notebook = gtk_notebook_new ();
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             notebook,
-                            TRUE, TRUE, 6);
+                            TRUE, TRUE, 12);
 
-        self->priv->output_stream_box = gtk_hbox_new (FALSE, 6);
+        self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->output_stream_box,
-                            FALSE, FALSE, 6);
+                            FALSE, FALSE, 12);
 
         /* Effects page */
-        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
+        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
         label = gtk_label_new (_("Sound Effects"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
@@ -420,7 +440,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             self->priv->sound_theme_chooser,
-                            TRUE, TRUE, 6);
+                            TRUE, TRUE, 0);
 
         client = gconf_client_get_default ();
 
@@ -463,18 +483,64 @@ gvc_mixer_dialog_constructor (GType                  type,
                           self);
 
         /* Output page */
-        self->priv->output_box = gtk_vbox_new (FALSE, 6);
+        self->priv->output_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
         label = gtk_label_new (_("Output"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
                                   self->priv->output_box,
                                   label);
-        self->priv->input_box = gtk_vbox_new (FALSE, 6);
+
+        box = gtk_frame_new (_("Choose a device for sound output"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 0);
+
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+
+        treeview = gtk_tree_view_new ();
+        box = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
+                                             GTK_SHADOW_IN);
+        gtk_container_add (GTK_CONTAINER (box), treeview);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
+
+
+        /* Input page */
+        self->priv->input_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
         label = gtk_label_new (_("Input"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
                                   self->priv->input_box,
                                   label);
+
+        box = gtk_frame_new (_("Choose a device for sound input"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->input_box), box, TRUE, TRUE, 0);
+
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+
+        treeview = gtk_tree_view_new ();
+        box = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
+                                             GTK_SHADOW_IN);
+        gtk_container_add (GTK_CONTAINER (box), treeview);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
+
+
+        /* Applications */
         self->priv->applications_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->applications_box), 12);
         label = gtk_label_new (_("Applications"));
