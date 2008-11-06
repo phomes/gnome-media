@@ -244,36 +244,7 @@ on_menu_activate_open_volume_control (GtkMenuItem *item,
                                                  0,
                                                  GTK_MESSAGE_ERROR,
                                                  GTK_BUTTONS_CLOSE,
-                                                 _("Failed to start Volume Control: %s"),
-                                                 error->message);
-                g_signal_connect (dialog,
-                                  "response",
-                                  G_CALLBACK (gtk_widget_destroy),
-                                  NULL);
-                gtk_widget_show (dialog);
-                g_error_free (error);
-        }
-}
-
-static void
-on_menu_activate_sounds (GtkMenuItem *item,
-                         GvcApplet   *applet)
-{
-        GError *error;
-
-        error = NULL;
-        gdk_spawn_command_line_on_screen (gtk_widget_get_screen (applet->priv->dock),
-                                          "gnome-sound-properties",
-                                          &error);
-
-        if (error != NULL) {
-                GtkWidget *dialog;
-
-                dialog = gtk_message_dialog_new (NULL,
-                                                 0,
-                                                 GTK_MESSAGE_ERROR,
-                                                 GTK_BUTTONS_CLOSE,
-                                                 _("Failed to start sound properties: %s"),
+                                                 _("Failed to start Sound Preferences: %s"),
                                                  error->message);
                 g_signal_connect (dialog,
                                   "response",
@@ -295,20 +266,13 @@ on_status_icon_popup_menu (GtkStatusIcon *status_icon,
         GtkWidget *image;
 
         menu = gtk_menu_new ();
-        item = gtk_image_menu_item_new_with_mnemonic (_("_Open Volume Control"));
+        item = gtk_image_menu_item_new_with_mnemonic (_("_Sound Preferences"));
         image = gtk_image_new_from_icon_name ("multimedia-volume-control",
                                               GTK_ICON_SIZE_MENU);
         gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
         g_signal_connect (item,
                           "activate",
                           G_CALLBACK (on_menu_activate_open_volume_control),
-                          applet);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-
-        item = gtk_menu_item_new_with_mnemonic (_("_Sounds"));
-        g_signal_connect (item,
-                          "activate",
-                          G_CALLBACK (on_menu_activate_sounds),
                           applet);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 

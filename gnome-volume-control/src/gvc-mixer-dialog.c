@@ -33,6 +33,7 @@
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
 #include "gvc-mixer-dialog.h"
+#include "gvc-sound-theme-chooser.h"
 
 #define SCALE_SIZE 128
 
@@ -42,10 +43,11 @@ struct GvcMixerDialogPrivate
 {
         GvcMixerControl *mixer_control;
         GHashTable      *bars;
-        GtkWidget       *streams_box;
-        GtkWidget       *output_streams_box;
-        GtkWidget       *input_streams_box;
-        GtkWidget       *application_streams_box;
+        GtkWidget       *output_stream_box;
+        GtkWidget       *sound_effects_box;
+        GtkWidget       *input_box;
+        GtkWidget       *output_box;
+        GtkWidget       *applications_box;
 };
 
 enum
@@ -204,7 +206,7 @@ on_stream_is_muted_notify (GObject        *object,
                                       is_muted);
 
         if (stream == gvc_mixer_control_get_default_sink (dialog->priv->mixer_control)) {
-                gtk_widget_set_sensitive (dialog->priv->application_streams_box,
+                gtk_widget_set_sensitive (dialog->priv->applications_box,
                                           !is_muted);
         }
 
@@ -230,36 +232,41 @@ add_stream (GvcMixerDialog *dialog,
 
         bar = gvc_channel_bar_new ();
         gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (bar),
-                                         GTK_ORIENTATION_VERTICAL);
+                                         GTK_ORIENTATION_HORIZONTAL);
         gvc_channel_bar_set_show_mute (GVC_CHANNEL_BAR (bar),
                                        TRUE);
         is_muted = gvc_mixer_stream_get_is_muted (stream);
 
         if (stream == gvc_mixer_control_get_default_sink (dialog->priv->mixer_control)) {
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
-                                          _("Speakers"));
-                gtk_widget_set_sensitive (dialog->priv->application_streams_box,
+                                          _("Output volume: "));
+                gtk_widget_set_sensitive (dialog->priv->applications_box,
                                           !is_muted);
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
-                                          _("Microphone"));
+                                          _("Input volume: "));
+        } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
+                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
+                                          _("Alert volume: "));
         } else {
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
+                gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
+                                               gvc_mixer_stream_get_icon_name (stream));
         }
 
-        gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
-                                       gvc_mixer_stream_get_icon_name (stream));
         g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
 
         save_bar_for_stream (dialog, stream, bar);
 
         if (GVC_IS_MIXER_SINK (stream)) {
-                gtk_box_pack_start (GTK_BOX (dialog->priv->output_streams_box), bar, TRUE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (dialog->priv->output_stream_box), bar, TRUE, TRUE, 0);
         } else if (GVC_IS_MIXER_SOURCE (stream)) {
-                gtk_box_pack_start (GTK_BOX (dialog->priv->input_streams_box), bar, TRUE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (dialog->priv->input_box), bar, FALSE, FALSE, 0);
+        } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
+                gtk_box_pack_end (GTK_BOX (dialog->priv->sound_effects_box), bar, FALSE, FALSE, 0);
         } else {
-                gtk_box_pack_start (GTK_BOX (dialog->priv->application_streams_box), bar, TRUE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 0);
         }
 
         gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
@@ -313,8 +320,10 @@ gvc_mixer_dialog_constructor (GType                  type,
 {
         GObject        *object;
         GvcMixerDialog *self;
-        GtkWidget      *separator;
         GtkWidget      *main_vbox;
+        GtkWidget      *label;
+        GtkWidget      *box;
+        GtkWidget      *notebook;
         GSList         *streams;
         GSList         *l;
         GvcMixerStream *stream;
@@ -328,30 +337,50 @@ gvc_mixer_dialog_constructor (GType                  type,
 #else
         main_vbox = GTK_DIALOG (self)->vbox;
 #endif
-        self->priv->streams_box = gtk_hbox_new (FALSE, 12);
-        gtk_container_add (GTK_CONTAINER (main_vbox), self->priv->streams_box);
 
-        self->priv->output_streams_box = gtk_hbox_new (FALSE, 12);
-        gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
-                            self->priv->output_streams_box,
+        gtk_container_set_border_width (GTK_CONTAINER (self), 5);
+
+        notebook = gtk_notebook_new ();
+        gtk_box_pack_start (GTK_BOX (main_vbox),
+                            notebook,
+                            TRUE, TRUE, 6);
+
+        self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
+        gtk_box_pack_start (GTK_BOX (main_vbox),
+                            self->priv->output_stream_box,
                             FALSE, FALSE, 6);
 
-        self->priv->input_streams_box = gtk_hbox_new (FALSE, 12);
-        gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
-                            self->priv->input_streams_box,
-                            FALSE, FALSE, 6);
+        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
+        label = gtk_label_new (_("Sound Effects"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                  self->priv->sound_effects_box,
+                                  label);
+        box = gvc_sound_theme_chooser_new ();
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            box,
+                            TRUE, TRUE, 6);
 
-        separator = gtk_vseparator_new ();
-        gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
-                            separator,
-                            FALSE, FALSE, 6);
+        self->priv->output_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
+        label = gtk_label_new (_("Output"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                  self->priv->output_box,
+                                  label);
+        self->priv->input_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
+        label = gtk_label_new (_("Input"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                  self->priv->input_box,
+                                  label);
+        self->priv->applications_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->applications_box), 12);
+        label = gtk_label_new (_("Applications"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                  self->priv->applications_box,
+                                  label);
 
-        self->priv->application_streams_box = gtk_hbox_new (FALSE, 12);
-        gtk_box_pack_start (GTK_BOX (self->priv->streams_box),
-                            self->priv->application_streams_box,
-                            FALSE, FALSE, 6);
-
-        gtk_widget_show_all (self->priv->streams_box);
+        gtk_widget_show_all (GTK_WIDGET (self));
 
         g_signal_connect (self->priv->mixer_control,
                           "stream-added",
@@ -455,7 +484,7 @@ gvc_mixer_dialog_new (GvcMixerControl *control)
         GObject *dialog;
         dialog = g_object_new (GVC_TYPE_MIXER_DIALOG,
                                "icon-name", "multimedia-volume-control",
-                               "title", _("Volume Control"),
+                               "title", _("Sound Preferences"),
                                "has-separator", FALSE,
                                "mixer-control", control,
                                NULL);

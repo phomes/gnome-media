@@ -1,3 +1,42 @@
+2008-11-06  William Jon McCann  <jmccann@redhat.com>
+
+	* src/Makefile.am:
+	* src/gvc-applet.c (on_menu_activate_open_volume_control),
+	(on_status_icon_popup_menu):
+	* src/gvc-mixer-dialog.c (on_stream_is_muted_notify), (add_stream),
+	(gvc_mixer_dialog_constructor), (gvc_mixer_dialog_new):
+	* src/gvc-sound-theme-chooser.c (theme_changed_custom_reinit),
+	(on_combobox_changed), (load_index_theme_name),
+	(sound_theme_in_dir), (add_theme_to_store),
+	(set_combox_for_theme_name), (on_theme_changed),
+	(setup_theme_selector), (visual_bell_gconf_to_setting),
+	(visual_bell_setting_to_gconf), (play_sound_preview),
+	(get_sound_filename), (count_customised_sounds), (save_sounds),
+	(save_custom_theme), (dump_theme), (on_setting_column_edited),
+	(fill_visual_bell_model), (fill_custom_model),
+	(on_combobox_editing_started), (play_sound_at_path),
+	(on_treeview_button_press_event), (setting_set_func),
+	(activatable_cell_renderer_pixbuf_activate),
+	(activatable_cell_renderer_pixbuf_init),
+	(activatable_cell_renderer_pixbuf_class_init),
+	(input_feedback_foreach), (set_input_feedback_enabled),
+	(on_input_feedback_changed), (audible_bell_foreach),
+	(set_audible_bell_enabled), (on_audible_bell_changed),
+	(get_file_type), (theme_changed_custom_init),
+	(setup_theme_custom_selector),
+	(gvc_sound_theme_chooser_constructor),
+	(gvc_sound_theme_chooser_class_init), (_gtk_label_make_bold),
+	(gvc_sound_theme_chooser_init), (gvc_sound_theme_chooser_finalize),
+	(gvc_sound_theme_chooser_new):
+	* src/gvc-sound-theme-chooser.h:
+	* src/sound-theme-file-utils.c (custom_theme_update_time),
+	(custom_theme_dir_path), (directory_delete_recursive),
+	(capplet_file_delete_recursive), (delete_custom_theme_dir),
+	(delete_one_file), (delete_old_files), (delete_disabled_files),
+	(create_one_file), (add_disabled_file), (add_custom_file):
+	* src/sound-theme-file-utils.h:
+	Redesign a bit in order to incorporate the sound properties.
+
 2008-11-05  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gvc-applet.c (popup_dock), (on_bar_is_muted_notify),

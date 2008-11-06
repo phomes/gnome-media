@@ -12,6 +12,7 @@ INCLUDES =					\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGLADEDIR=\""$(pkgdatadir)"\"		\
+	-DSOUND_DATA_DIR="\"$(datadir)/sounds\"" \
 	$(NULL)
 
 gnome_volume_control_applet_LDADD =		\
@@ -55,6 +56,10 @@ gnome_volume_control_SOURCES =			\
 	gvc-mixer-control.c			\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
+	gvc-sound-theme-chooser.h		\
+	gvc-sound-theme-chooser.c		\
+	sound-theme-file-utils.h		\
+	sound-theme-file-utils.c		\
 	gvc-mixer-dialog.h			\
 	gvc-mixer-dialog.c			\
 	dialog-main.c				\
