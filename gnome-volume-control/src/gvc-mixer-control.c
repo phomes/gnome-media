@@ -254,7 +254,7 @@ remove_stream (GvcMixerControl *control,
         g_hash_table_remove (control->priv->all_streams,
                              GUINT_TO_POINTER (gvc_mixer_stream_get_id (stream)));
         g_signal_emit (G_OBJECT (control),
-                       signals[STREAM_ADDED],
+                       signals[STREAM_REMOVED],
                        0,
                        gvc_mixer_stream_get_id (stream));
         g_object_unref (stream);
@@ -472,10 +472,6 @@ update_sink_input (GvcMixerControl          *control,
                                      GUINT_TO_POINTER (info->index),
                                      g_object_ref (stream));
                 add_stream (control, stream);
-                g_signal_emit (G_OBJECT (control),
-                               signals[STREAM_ADDED],
-                               0,
-                               gvc_mixer_stream_get_id (stream));
         }
 }
 
@@ -688,10 +684,6 @@ update_event_role_stream (GvcMixerControl                  *control,
 
         if (is_new) {
                 add_stream (control, stream);
-                g_signal_emit (G_OBJECT (control),
-                               signals[STREAM_ADDED],
-                               0,
-                               gvc_mixer_stream_get_id (stream));
         }
 }
 

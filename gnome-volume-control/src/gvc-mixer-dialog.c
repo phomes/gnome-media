@@ -317,7 +317,21 @@ on_control_stream_added (GvcMixerControl *control,
                          guint            id,
                          GvcMixerDialog  *dialog)
 {
+        GvcMixerStream *stream;
+        GtkWidget      *bar;
+
         g_debug ("GvcMixerDialog: Stream %u added", id);
+
+        bar = g_hash_table_lookup (dialog->priv->bars, GUINT_TO_POINTER (id));
+        if (bar != NULL) {
+                g_debug ("GvcMixerDialog: Stream %u already added", id);
+                return;
+        }
+
+        stream = gvc_mixer_control_lookup_stream_id (control, id);
+        if (stream != NULL) {
+                add_stream (dialog, stream);
+        }
 }
 
 static void
@@ -325,7 +339,16 @@ on_control_stream_removed (GvcMixerControl *control,
                            guint            id,
                            GvcMixerDialog  *dialog)
 {
+        GtkWidget      *bar;
+
         g_debug ("GvcMixerDialog: Stream %u removed", id);
+
+        bar = g_hash_table_lookup (dialog->priv->bars, GUINT_TO_POINTER (id));
+        if (bar != NULL) {
+                g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
+                gtk_container_remove (GTK_CONTAINER (bar->parent),
+                                      bar);
+        }
 }
 
 static void
