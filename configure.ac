@@ -60,7 +60,7 @@ dnl Start of pkg-config checks - common libs
 dnl=======================================================================
 
 DBUS_GLIB_REQUIRED_VERSION=0.74
-GLIB_REQUIRED_VERSION=2.15.4
+GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.10.0
 LIBGLADE_REQUIRED_VERSION=1.99.2
 GCONF_REQUIRED_VERSION=2.6.1
