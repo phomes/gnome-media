@@ -1,5 +1,14 @@
 2008-11-06  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-channel-bar.c (_scale_box_new),
+	(gvc_channel_bar_set_size_group):
+	* src/gvc-channel-bar.h:
+	* src/gvc-mixer-dialog.c (add_stream), (gvc_mixer_dialog_init):
+	Put all the scales in a size group.  Doesn't seem
+	to work though.
+
+2008-11-06  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (on_enable_effects_toggled),
 	(on_click_feedback_toggled), (on_audible_bell_toggled),
 	(gvc_mixer_dialog_constructor), (on_key_changed),

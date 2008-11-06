@@ -51,6 +51,7 @@ struct GvcChannelBarPrivate
         gboolean       is_muted;
         char          *name;
         char          *icon_name;
+        GtkSizeGroup  *size_group;
 };
 
 enum
@@ -113,6 +114,10 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_start (GTK_BOX (box), priv->mute_box, FALSE, FALSE, 0);
         }
 
+        if (bar->priv->size_group != NULL) {
+                gtk_size_group_add_widget (bar->priv->size_group, bar->priv->scale);
+        }
+
         gtk_scale_set_draw_value (GTK_SCALE (priv->scale), FALSE);
 
         return box;
@@ -143,6 +148,16 @@ update_label (GvcChannelBar *bar)
         } else {
                 gtk_widget_hide (bar->priv->label);
         }
+}
+
+void
+gvc_channel_bar_set_size_group (GvcChannelBar *bar,
+                                GtkSizeGroup  *group)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
+
+        bar->priv->size_group = group;
+        gtk_size_group_add_widget (group, bar->priv->scale);
 }
 
 void

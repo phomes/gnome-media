@@ -54,6 +54,7 @@ struct GvcMixerDialogPrivate
         GtkWidget       *enable_effects_button;
         GtkWidget       *click_feedback_button;
         GtkWidget       *audible_bell_button;
+        GtkSizeGroup    *size_group;
 };
 
 #define KEY_SOUNDS_DIR             "/desktop/gnome/sound"
@@ -243,6 +244,8 @@ add_stream (GvcMixerDialog *dialog,
         gboolean       is_muted;
 
         bar = gvc_channel_bar_new ();
+        gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
+                                        dialog->priv->size_group);
         gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (bar),
                                          GTK_ORIENTATION_HORIZONTAL);
         gvc_channel_bar_set_show_mute (GVC_CHANNEL_BAR (bar),
@@ -593,7 +596,7 @@ gvc_mixer_dialog_init (GvcMixerDialog *dialog)
 
         dialog->priv = GVC_MIXER_DIALOG_GET_PRIVATE (dialog);
         dialog->priv->bars = g_hash_table_new (NULL, NULL);
-
+        dialog->priv->size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
 
         client = gconf_client_get_default ();
 
