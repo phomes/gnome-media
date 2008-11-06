@@ -606,6 +606,8 @@ gvc_applet_init (GvcApplet *applet)
         gtk_container_add (GTK_CONTAINER (frame), box);
 
         applet->priv->bar = gvc_channel_bar_new ();
+        gvc_channel_bar_set_orientation (applet->priv->bar, GTK_ORIENTATION_VERTICAL);
+
         gtk_box_pack_start (GTK_BOX (box), applet->priv->bar, TRUE, FALSE, 0);
         g_signal_connect (applet->priv->bar,
                           "notify::is-muted",

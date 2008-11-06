@@ -229,7 +229,10 @@ add_stream (GvcMixerDialog *dialog,
         gboolean       is_muted;
 
         bar = gvc_channel_bar_new ();
-
+        gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (bar),
+                                         GTK_ORIENTATION_VERTICAL);
+        gvc_channel_bar_set_show_mute (GVC_CHANNEL_BAR (bar),
+                                       TRUE);
         is_muted = gvc_mixer_stream_get_is_muted (stream);
 
         if (stream == gvc_mixer_control_get_default_sink (dialog->priv->mixer_control)) {

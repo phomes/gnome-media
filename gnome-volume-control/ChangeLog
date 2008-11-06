@@ -1,5 +1,19 @@
 2008-11-05  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-applet.c (gvc_applet_init):
+	* src/gvc-channel-bar.c (_scale_box_new),
+	(gvc_channel_bar_set_orientation), (update_mute_button),
+	(gvc_channel_bar_set_show_mute), (gvc_channel_bar_get_show_mute),
+	(gvc_channel_bar_set_property), (gvc_channel_bar_get_property),
+	(gvc_channel_bar_constructor), (gvc_channel_bar_class_init),
+	(gvc_channel_bar_init):
+	* src/gvc-channel-bar.h:
+	* src/gvc-mixer-dialog.c (add_stream):
+	Hide mute in vertical mode.  Add icons to hint at scale direction
+	in horizontal mode.  Fix orientation changing.
+
+2008-11-05  William Jon McCann  <jmccann@redhat.com>
+
 	* src/Makefile.am:
 	* src/gvc-mixer-control.c (gvc_mixer_control_get_default_source),
 	(gvc_mixer_control_get_sources), (remove_stream), (add_stream),
