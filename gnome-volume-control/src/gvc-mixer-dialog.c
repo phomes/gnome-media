@@ -28,6 +28,8 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include <gconf/gconf-client.h>
+
 #include "gvc-channel-bar.h"
 #include "gvc-mixer-control.h"
 #include "gvc-mixer-sink.h"
@@ -48,7 +50,17 @@ struct GvcMixerDialogPrivate
         GtkWidget       *input_box;
         GtkWidget       *output_box;
         GtkWidget       *applications_box;
+        GtkWidget       *sound_theme_chooser;
+        GtkWidget       *enable_effects_button;
+        GtkWidget       *click_feedback_button;
+        GtkWidget       *audible_bell_button;
 };
+
+#define KEY_SOUNDS_DIR             "/desktop/gnome/sound"
+#define EVENT_SOUNDS_KEY           KEY_SOUNDS_DIR "/event_sounds"
+#define INPUT_SOUNDS_KEY           KEY_SOUNDS_DIR "/input_feedback_sounds"
+#define KEY_METACITY_DIR           "/apps/metacity/general"
+#define AUDIO_BELL_KEY             KEY_METACITY_DIR "/audible_bell"
 
 enum
 {
@@ -313,6 +325,49 @@ on_control_stream_removed (GvcMixerControl *control,
         g_debug ("GvcMixerDialog: Stream %u removed", id);
 }
 
+static void
+on_enable_effects_toggled (GtkToggleButton *button,
+                           GvcMixerDialog  *dialog)
+{
+        GConfClient *client;
+        gboolean     enabled;
+
+        enabled = gtk_toggle_button_get_active (button);
+
+        client = gconf_client_get_default ();
+        gconf_client_set_bool (client, EVENT_SOUNDS_KEY, enabled, NULL);
+        g_object_unref (client);
+}
+
+static void
+on_click_feedback_toggled (GtkToggleButton *button,
+                           GvcMixerDialog  *dialog)
+{
+        GConfClient *client;
+        gboolean     enabled;
+
+        enabled = gtk_toggle_button_get_active (button);
+
+        client = gconf_client_get_default ();
+        gconf_client_set_bool (client, INPUT_SOUNDS_KEY, enabled, NULL);
+        g_object_unref (client);
+}
+
+static void
+on_audible_bell_toggled (GtkToggleButton *button,
+                         GvcMixerDialog  *dialog)
+{
+        GConfClient *client;
+        gboolean     enabled;
+
+        enabled = gtk_toggle_button_get_active (button);
+
+        client = gconf_client_get_default ();
+        gconf_client_set_bool (client, AUDIO_BELL_KEY, enabled, NULL);
+        g_object_unref (client);
+}
+
+
 static GObject *
 gvc_mixer_dialog_constructor (GType                  type,
                               guint                  n_construct_properties,
@@ -322,13 +377,13 @@ gvc_mixer_dialog_constructor (GType                  type,
         GvcMixerDialog *self;
         GtkWidget      *main_vbox;
         GtkWidget      *label;
-        GtkWidget      *button;
         GtkWidget      *alignment;
         GtkWidget      *box;
         GtkWidget      *notebook;
         GSList         *streams;
         GSList         *l;
         GvcMixerStream *stream;
+        GConfClient    *client;
 
         object = G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->constructor (type, n_construct_properties, construct_params);
 
@@ -359,14 +414,23 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
                                   self->priv->sound_effects_box,
                                   label);
-        box = gvc_sound_theme_chooser_new ();
+        self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            box,
+                            self->priv->sound_theme_chooser,
                             TRUE, TRUE, 6);
-        button = gtk_check_button_new_with_mnemonic (_("_Play alerts and sound effects"));
+
+        client = gconf_client_get_default ();
+
+        self->priv->enable_effects_button = gtk_check_button_new_with_mnemonic (_("_Play alerts and sound effects"));
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->enable_effects_button),
+                                      gconf_client_get_bool (client, EVENT_SOUNDS_KEY, NULL));
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            button,
+                            self->priv->enable_effects_button,
                             FALSE, FALSE, 0);
+        g_signal_connect (self->priv->enable_effects_button,
+                          "toggled",
+                          G_CALLBACK (on_enable_effects_toggled),
+                          self);
         alignment = gtk_alignment_new (0, 0, 1, 1);
         gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 12, 0);
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
@@ -374,14 +438,26 @@ gvc_mixer_dialog_constructor (GType                  type,
                             FALSE, FALSE, 0);
         box = gtk_vbox_new (FALSE, 6);
         gtk_container_add (GTK_CONTAINER (alignment), box);
-        button = gtk_check_button_new_with_mnemonic (_("Play _sound effects when buttons are clicked"));
+        self->priv->click_feedback_button = gtk_check_button_new_with_mnemonic (_("Play _sound effects when buttons are clicked"));
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->click_feedback_button),
+                                      gconf_client_get_bool (client, INPUT_SOUNDS_KEY, NULL));
         gtk_box_pack_start (GTK_BOX (box),
-                            button,
+                            self->priv->click_feedback_button,
                             FALSE, FALSE, 0);
-        button = gtk_check_button_new_with_mnemonic (_("Play _alert sound"));
+        g_signal_connect (self->priv->click_feedback_button,
+                          "toggled",
+                          G_CALLBACK (on_click_feedback_toggled),
+                          self);
+        self->priv->audible_bell_button = gtk_check_button_new_with_mnemonic (_("Play _alert sound"));
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->audible_bell_button),
+                                      gconf_client_get_bool (client, AUDIO_BELL_KEY, NULL));
         gtk_box_pack_start (GTK_BOX (box),
-                            button,
+                            self->priv->audible_bell_button,
                             FALSE, FALSE, 0);
+        g_signal_connect (self->priv->audible_bell_button,
+                          "toggled",
+                          G_CALLBACK (on_audible_bell_toggled),
+                          self);
 
         /* Output page */
         self->priv->output_box = gtk_vbox_new (FALSE, 6);
@@ -481,10 +557,62 @@ gvc_mixer_dialog_class_init (GvcMixerDialogClass *klass)
 }
 
 static void
+on_key_changed (GConfClient    *client,
+                guint           cnxn_id,
+                GConfEntry     *entry,
+                GvcMixerDialog *dialog)
+{
+        const char *key;
+        GConfValue *value;
+        gboolean    enabled;
+
+        key = gconf_entry_get_key (entry);
+
+        if (! g_str_has_prefix (key, KEY_SOUNDS_DIR)
+            && ! g_str_has_prefix (key, KEY_METACITY_DIR)) {
+                return;
+        }
+
+        value = gconf_entry_get_value (entry);
+        enabled = gconf_value_get_bool (value);
+        if (strcmp (key, EVENT_SOUNDS_KEY) == 0) {
+                gtk_widget_set_sensitive (dialog->priv->sound_theme_chooser, enabled);
+                gtk_widget_set_sensitive (dialog->priv->click_feedback_button, enabled);
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->enable_effects_button), enabled);
+        } else if (strcmp (key, INPUT_SOUNDS_KEY) == 0) {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->click_feedback_button), enabled);
+        } else if (strcmp (key, AUDIO_BELL_KEY) == 0) {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->audible_bell_button), enabled);
+        }
+}
+
+static void
 gvc_mixer_dialog_init (GvcMixerDialog *dialog)
 {
+        GConfClient *client;
+
         dialog->priv = GVC_MIXER_DIALOG_GET_PRIVATE (dialog);
         dialog->priv->bars = g_hash_table_new (NULL, NULL);
+
+
+        client = gconf_client_get_default ();
+
+        gconf_client_add_dir (client, KEY_SOUNDS_DIR,
+                              GCONF_CLIENT_PRELOAD_ONELEVEL,
+                              NULL);
+        gconf_client_notify_add (client,
+                                 KEY_SOUNDS_DIR,
+                                 (GConfClientNotifyFunc)on_key_changed,
+                                 dialog, NULL, NULL);
+        gconf_client_add_dir (client, KEY_METACITY_DIR,
+                              GCONF_CLIENT_PRELOAD_ONELEVEL,
+                              NULL);
+        gconf_client_notify_add (client,
+                                 KEY_METACITY_DIR,
+                                 (GConfClientNotifyFunc)on_key_changed,
+                                 dialog, NULL, NULL);
+
+        g_object_unref (client);
 }
 
 static void
