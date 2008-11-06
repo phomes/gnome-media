@@ -46,6 +46,7 @@ struct GvcChannelBarPrivate
         GtkWidget     *mute_box;
         GtkWidget     *mute_button;
         GtkAdjustment *adjustment;
+        GtkAdjustment *zero_adjustment;
         gboolean       show_mute;
         gboolean       is_muted;
         char          *name;
@@ -174,16 +175,12 @@ gvc_channel_bar_set_orientation (GvcChannelBar  *bar,
 {
         g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
 
-        g_debug ("setting orientation");
-
         if (orientation != bar->priv->orientation) {
                 bar->priv->orientation = orientation;
 
                 if (bar->priv->scale != NULL) {
                         GtkWidget *box;
                         GtkWidget *frame;
-
-                        g_debug ("recreating scale");
 
                         box = bar->priv->scale_box;
                         frame = box->parent;
@@ -246,6 +243,21 @@ gvc_channel_bar_get_adjustment (GvcChannelBar *bar)
 }
 
 static void
+on_zero_adjustment_value_changed (GtkAdjustment *adjustment,
+                                  GvcChannelBar *bar)
+{
+        gdouble value;
+
+        value = gtk_adjustment_get_value (bar->priv->zero_adjustment);
+        gtk_adjustment_set_value (bar->priv->adjustment, value);
+
+        /* this means the adjustment moved away from zero and
+          therefore we should unmute and set the volume. */
+
+        gvc_channel_bar_set_is_muted (bar, FALSE);
+}
+
+static void
 update_mute_button (GvcChannelBar *bar)
 {
         if (bar->priv->show_mute) {
@@ -254,6 +266,25 @@ update_mute_button (GvcChannelBar *bar)
                                               bar->priv->is_muted);
         } else {
                 gtk_widget_hide (bar->priv->mute_button);
+
+                if (bar->priv->is_muted) {
+                        /* If we aren't showing the mute button then
+                         * move slider to the zero.  But we don't want to
+                         * change the adjustment.  */
+                        g_signal_handlers_block_by_func (bar->priv->zero_adjustment,
+                                                         on_zero_adjustment_value_changed,
+                                                         bar);
+                        gtk_adjustment_set_value (bar->priv->zero_adjustment, 0);
+                        g_signal_handlers_unblock_by_func (bar->priv->zero_adjustment,
+                                                           on_zero_adjustment_value_changed,
+                                                           bar);
+                        gtk_range_set_adjustment (GTK_RANGE (bar->priv->scale),
+                                                  bar->priv->zero_adjustment);
+                } else {
+                        /* no longer muted so restore the original adjustment */
+                        gtk_range_set_adjustment (GTK_RANGE (bar->priv->scale),
+                                                  bar->priv->adjustment);
+                }
         }
 }
 
@@ -473,6 +504,19 @@ gvc_channel_bar_init (GvcChannelBar *bar)
                                                                     65536.0/10.0,
                                                                     0.0));
         g_object_ref_sink (bar->priv->adjustment);
+
+        bar->priv->zero_adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0,
+                                                                         0.0,
+                                                                         65536.0,
+                                                                         65536.0/100.0,
+                                                                         65536.0/10.0,
+                                                                         0.0));
+        g_object_ref_sink (bar->priv->zero_adjustment);
+
+        g_signal_connect (bar->priv->zero_adjustment,
+                          "value-changed",
+                          G_CALLBACK (on_zero_adjustment_value_changed),
+                          bar);
 
         bar->priv->mute_button = gtk_check_button_new_with_label (_("Mute"));
         gtk_widget_set_no_show_all (bar->priv->mute_button, TRUE);

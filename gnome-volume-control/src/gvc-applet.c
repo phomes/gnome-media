@@ -154,12 +154,15 @@ popup_dock (GvcApplet *applet,
         GtkOrientation orientation;
         GdkDisplay    *display;
         GdkScreen     *screen;
+        gboolean       is_muted;
         gboolean       res;
         int            x, y;
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (applet->priv->bar)));
         gtk_adjustment_set_value (adj,
                                   gvc_mixer_stream_get_volume (applet->priv->sink_stream));
+        is_muted = gvc_mixer_stream_get_is_muted (applet->priv->sink_stream);
+        gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (applet->priv->bar), is_muted);
 
         screen = gtk_status_icon_get_screen (applet->priv->status_icon);
         res = gtk_status_icon_get_geometry (applet->priv->status_icon,
@@ -606,7 +609,8 @@ gvc_applet_init (GvcApplet *applet)
         gtk_container_add (GTK_CONTAINER (frame), box);
 
         applet->priv->bar = gvc_channel_bar_new ();
-        gvc_channel_bar_set_orientation (applet->priv->bar, GTK_ORIENTATION_VERTICAL);
+        gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (applet->priv->bar),
+                                         GTK_ORIENTATION_VERTICAL);
 
         gtk_box_pack_start (GTK_BOX (box), applet->priv->bar, TRUE, FALSE, 0);
         g_signal_connect (applet->priv->bar,
