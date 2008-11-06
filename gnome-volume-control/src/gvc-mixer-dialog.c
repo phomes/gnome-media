@@ -260,13 +260,13 @@ add_stream (GvcMixerDialog *dialog,
         save_bar_for_stream (dialog, stream, bar);
 
         if (GVC_IS_MIXER_SINK (stream)) {
-                gtk_box_pack_start (GTK_BOX (dialog->priv->output_stream_box), bar, TRUE, TRUE, 0);
+                gtk_box_pack_start (GTK_BOX (dialog->priv->output_stream_box), bar, TRUE, TRUE, 12);
         } else if (GVC_IS_MIXER_SOURCE (stream)) {
-                gtk_box_pack_end (GTK_BOX (dialog->priv->input_box), bar, FALSE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (dialog->priv->input_box), bar, FALSE, FALSE, 12);
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
-                gtk_box_pack_end (GTK_BOX (dialog->priv->sound_effects_box), bar, FALSE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (dialog->priv->sound_effects_box), bar, FALSE, FALSE, 12);
         } else {
-                gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
         }
 
         gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
@@ -322,6 +322,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         GvcMixerDialog *self;
         GtkWidget      *main_vbox;
         GtkWidget      *label;
+        GtkWidget      *button;
+        GtkWidget      *alignment;
         GtkWidget      *box;
         GtkWidget      *notebook;
         GSList         *streams;
@@ -345,12 +347,13 @@ gvc_mixer_dialog_constructor (GType                  type,
                             notebook,
                             TRUE, TRUE, 6);
 
-        self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
+        self->priv->output_stream_box = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->output_stream_box,
                             FALSE, FALSE, 6);
 
-        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 12);
+        /* Effects page */
+        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
         label = gtk_label_new (_("Sound Effects"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
@@ -360,14 +363,34 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             box,
                             TRUE, TRUE, 6);
+        button = gtk_check_button_new_with_mnemonic (_("_Play alerts and sound effects"));
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            button,
+                            FALSE, FALSE, 0);
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 12, 0);
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            alignment,
+                            FALSE, FALSE, 0);
+        box = gtk_vbox_new (FALSE, 6);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
+        button = gtk_check_button_new_with_mnemonic (_("Play _sound effects when buttons are clicked"));
+        gtk_box_pack_start (GTK_BOX (box),
+                            button,
+                            FALSE, FALSE, 0);
+        button = gtk_check_button_new_with_mnemonic (_("Play _alert sound"));
+        gtk_box_pack_start (GTK_BOX (box),
+                            button,
+                            FALSE, FALSE, 0);
 
-        self->priv->output_box = gtk_vbox_new (FALSE, 12);
+        /* Output page */
+        self->priv->output_box = gtk_vbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
         label = gtk_label_new (_("Output"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
                                   self->priv->output_box,
                                   label);
-        self->priv->input_box = gtk_vbox_new (FALSE, 12);
+        self->priv->input_box = gtk_vbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
         label = gtk_label_new (_("Input"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),

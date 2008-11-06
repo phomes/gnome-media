@@ -41,6 +41,7 @@ struct GvcSoundThemeChooserPrivate
 {
         GtkWidget *combo_box;
         GtkWidget *treeview;
+        GtkWidget *theme_box;
 };
 
 static void     gvc_sound_theme_chooser_class_init (GvcSoundThemeChooserClass *klass);
@@ -367,6 +368,7 @@ setup_theme_selector (GvcSoundThemeChooser *chooser)
         char                 *theme_name;
         GConfClient          *client;
         guint                 i;
+        GtkTreeIter           iter;
 
         /* Add the theme names and their display name to a hash table,
          * makes it easy to avoid duplicate themes */
@@ -391,6 +393,10 @@ setup_theme_selector (GvcSoundThemeChooser *chooser)
                 g_warning ("Bad setup, install the freedesktop sound theme");
                 g_hash_table_destroy (hash);
                 return;
+        } else if (g_hash_table_size (hash) < 2) {
+                gtk_widget_hide (chooser->priv->theme_box);
+        } else {
+                gtk_widget_show_all (chooser->priv->theme_box);
         }
 
         /* Setup the tree model, 3 columns:
@@ -438,7 +444,6 @@ setup_theme_selector (GvcSoundThemeChooser *chooser)
                           "changed",
                           G_CALLBACK (on_combobox_changed),
                           chooser);
-
 }
 
 static int
@@ -1450,19 +1455,6 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 
         chooser->priv = GVC_SOUND_THEME_CHOOSER_GET_PRIVATE (chooser);
 
-        frame = gtk_frame_new (_("Sound Theme"));
-        label = gtk_frame_get_label_widget (GTK_FRAME (frame));
-        _gtk_label_make_bold (GTK_LABEL (label));
-        gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-        gtk_box_pack_start (GTK_BOX (chooser), frame, FALSE, FALSE, 0);
-
-        alignment = gtk_alignment_new (0, 0, 1, 1);
-        gtk_container_add (GTK_CONTAINER (frame), alignment);
-        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 12, 0, 12, 0);
-
-        chooser->priv->combo_box = gtk_combo_box_new ();
-        gtk_container_add (GTK_CONTAINER (alignment), chooser->priv->combo_box);
-
         frame = gtk_frame_new (_("Alerts and Sound Effects"));
         label = gtk_frame_get_label_widget (GTK_FRAME (frame));
         _gtk_label_make_bold (GTK_LABEL (label));
@@ -1479,6 +1471,17 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
                                              GTK_SHADOW_IN);
         gtk_container_add (GTK_CONTAINER (box), chooser->priv->treeview);
         gtk_container_add (GTK_CONTAINER (alignment), box);
+
+        chooser->priv->theme_box = gtk_hbox_new (FALSE, 6);
+        gtk_widget_set_no_show_all (chooser->priv->theme_box, TRUE);
+        gtk_box_pack_start (GTK_BOX (chooser),
+                            chooser->priv->theme_box, FALSE, FALSE, 0);
+
+        label = gtk_label_new (_("Sound Theme:"));
+        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), label, FALSE, FALSE, 6);
+        chooser->priv->combo_box = gtk_combo_box_new ();
+        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), chooser->priv->combo_box, FALSE, FALSE, 0);
+
 }
 
 static void
