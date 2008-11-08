@@ -587,11 +587,10 @@ init_pipeline_editor (GladeXML * dialog, GSTPPipelineEditor * editor)
   }
 }
 
-void
+static void
 create_dialog (void)
 {
   int i = 0;
-  GdkPixbuf *icon = NULL;
 
   for (i = 0; i < pipeline_editors_count; i++) {
     init_pipeline_editor (interface_xml, pipeline_editors + i);
@@ -615,7 +614,7 @@ int
 main (int argc, char **argv)
 {
   GOptionContext *ctx;
-  GOptionGroup *group;
+  GnomeProgram *program;
 
   g_thread_init (NULL);
 
@@ -626,7 +625,7 @@ main (int argc, char **argv)
   ctx = g_option_context_new ("gstreamer-properties");
   g_option_context_add_group (ctx, gst_init_get_option_group ());
 
-  gnome_program_init ("gstreamer-properties", VERSION,
+  program = gnome_program_init ("gstreamer-properties", VERSION,
       LIBGNOMEUI_MODULE, argc, argv,
       GNOME_PARAM_GOPTION_CONTEXT, ctx,
       GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
@@ -654,6 +653,7 @@ main (int argc, char **argv)
 
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
+    g_object_unref (program);
 
     exit (1);
   }
@@ -664,6 +664,7 @@ main (int argc, char **argv)
     gtk_main ();
 
   g_object_unref (gconf_client);
+  g_object_unref (program);
 
   return 0;
 }

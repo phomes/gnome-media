@@ -1,3 +1,9 @@
+2008-09-18  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gstreamer-properties.c: (create_dialog), (main):
+	* pipeline-tests.c: (gst_pipeline_string_get_property_value):
+	Make a function static and stop leaking GnomeProgram. Bug #552748.
+
 2008-11-06  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* gstreamer-properties.c: (gst_properties_gconf_get_string),

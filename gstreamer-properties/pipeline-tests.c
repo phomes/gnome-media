@@ -86,7 +86,7 @@ gst_pipeline_string_get_property_value (const gchar *pipeline_str, const gchar *
 
   pipeline_nodes = g_strsplit (pipeline_str, " ", -1);
 
-  while(node = pipeline_nodes[i++]) {
+  while ((node = pipeline_nodes[i++])) {
     /* Split into key = value pair */
     node_split = g_strsplit_set (node, "=", -1);
     if (node_split != NULL && node_split[1] != NULL) {
