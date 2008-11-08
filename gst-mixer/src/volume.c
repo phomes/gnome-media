@@ -164,7 +164,6 @@ gnome_volume_control_volume_new (GstMixer *mixer,
   GnomeVolumeControlVolume *vol;
   gint *volumes, n;
   gchar *msg, *chan;
-  GList *items;
   gboolean need_timeout = TRUE;
 
   need_timeout = ((gst_mixer_get_mixer_flags (GST_MIXER (mixer)) &
@@ -278,7 +277,6 @@ gnome_volume_control_volume_size_req (GtkWidget *widget,
 {
   GnomeVolumeControlVolume *vol = GNOME_VOLUME_CONTROL_VOLUME (widget);
   GtkRequisition but_req, scale_req;
-  gint w,h;
 
   /* request size of kids */
   GTK_WIDGET_GET_CLASS (vol->button)->size_request (vol->button, &but_req);
@@ -300,7 +298,7 @@ gnome_volume_control_volume_size_alloc (GtkWidget *widget,
   GnomeVolumeControlVolume *vol = GNOME_VOLUME_CONTROL_VOLUME (widget);
   GtkRequisition but_req, scale_req;
   GtkAllocation but_all, scale_all;
-  gint x_offset, but_deco_y_offset, but_x_offset, but_deco_width, n = 0;
+  gint x_offset, but_deco_width, n = 0;
   GList *scales;
 
   /* loop? */

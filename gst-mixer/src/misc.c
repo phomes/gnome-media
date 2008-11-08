@@ -19,6 +19,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include "misc.h"
+
 #include <gst/interfaces/mixer.h>
 #include <gst/interfaces/mixertrack.h>
 #include <gst/interfaces/mixeroptions.h>

@@ -38,18 +38,11 @@ static void	gnome_volume_control_button_dispose	(GObject   *object);
 
 static void	gnome_volume_control_button_clicked	(GtkButton *button);
 
-static gboolean	gnome_volume_control_button_mouseover	(GtkWidget *widget,
-							 GdkEventCrossing *event);
-static gboolean	gnome_volume_control_button_mouseout	(GtkWidget *widget,
-							 GdkEventCrossing *event);
-
-
 static void
 gnome_volume_control_button_class_init (GnomeVolumeControlButtonClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkButtonClass *gtkbutton_class = GTK_BUTTON_CLASS (klass);
-  GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
 
   gobject_class->dispose = gnome_volume_control_button_dispose;
   gtkbutton_class->clicked = gnome_volume_control_button_clicked;
@@ -67,8 +60,6 @@ gnome_volume_control_button_init (GnomeVolumeControlButton *button)
 static void
 gnome_volume_control_button_dispose (GObject *object)
 {
-  GnomeVolumeControlButton *button = GNOME_VOLUME_CONTROL_BUTTON (object);
-
   G_OBJECT_CLASS (gnome_volume_control_button_parent_class)->dispose (object);
 }
 

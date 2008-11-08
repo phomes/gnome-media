@@ -417,7 +417,6 @@ cb_toggle (GtkCellRendererToggle *cell,
   GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
   GtkTreeIter iter;
   gboolean active;
-  gchar *key;
   GstMixerTrack *track;
 
   gtk_tree_model_get_iter (model, &iter, path);

@@ -116,7 +116,7 @@ cb_destroy (GtkWidget *widget,
   gtk_main_quit ();
 }
 
-void
+static void
 cb_check_resize (GtkContainer    *container,
       		  gpointer         user_data)
 {
@@ -134,8 +134,6 @@ main (gint   argc,
       gchar *argv[])
 {
   GOptionContext *ctx;
-  GOptionGroup *group;
-  gchar *appfile;
   GtkWidget *win;
   GList *elements;
 

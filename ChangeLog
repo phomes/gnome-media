@@ -1,3 +1,28 @@
+2008-11-08  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gst-mixer/src/button.c: (gnome_volume_control_button_class_init),
+	(gnome_volume_control_button_dispose):
+	* gst-mixer/src/element.c: (gnome_volume_control_element_change):
+	* gst-mixer/src/main.c: (main):
+	* gst-mixer/src/misc.c:
+	* gst-mixer/src/preferences.c: (cb_toggle):
+	* gst-mixer/src/track.c: (gnome_volume_control_track_add_playback):
+	* gst-mixer/src/volume.c: (gnome_volume_control_volume_new),
+	(gnome_volume_control_volume_size_req),
+	(gnome_volume_control_volume_size_alloc):
+	* gst-mixer/src/window.c: (gnome_volume_control_window_dispose),
+	(gnome_volume_control_window_new):
+	* profiles/audio-profile-edit.c:
+	* profiles/audio-profiles-edit.c: (gm_audio_profiles_edit_init):
+	* profiles/glade/gnome-media-profiles-glade.c:
+	(glade_module_register_widgets):
+	* profiles/gmp-util.c: (gmp_util_run_error_dialog):
+	* profiles/gnome-audio-profiles-properties.c:
+	* profiles/gnome-audio-profiles-test.c: (main):
+	* profiles/gnome-media-profiles.c:
+	General cleanups: Remove unused variables, mark code static, add
+	missing prototypes and includes etc. Bug #552748.
+
 2008-11-07  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* configure.ac: Raise glib dependency to 2.18 for the new

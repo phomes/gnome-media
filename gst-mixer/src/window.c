@@ -113,7 +113,7 @@ open_uri (GtkWindow *parent,
 
   if (gdk_spawn_command_line_on_screen (screen, cmdline, &error) == FALSE) {
     dialog = gtk_message_dialog_new (parent, GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, error->message);
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", error->message);
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_destroy(dialog);
     g_error_free(error);
@@ -242,7 +242,6 @@ gnome_volume_control_window_dispose (GObject *object)
 
   /* clean up */
   if (win->elements) {
-    const GList *item;
 
     g_list_foreach (win->elements, (GFunc) g_object_unref, NULL);
     g_list_free (win->elements);
@@ -308,8 +307,6 @@ gnome_volume_control_window_new (GList *elements)
   GtkWidget *closebtn;
   GtkWidget *helpbtn;
   gint count = 0;
-  gchar *title;
-  GtkActionGroup *action_group;
   GtkWidget *vbox;
   GtkCellRenderer *renderer;
   gint active_element_num;
@@ -331,7 +328,7 @@ gnome_volume_control_window_new (GList *elements)
   active_el_str = gconf_client_get_string (win->client,
 					   GNOME_VOLUME_CONTROL_KEY_ACTIVE_ELEMENT,
 					   NULL);
-  if (active_el_str != NULL && active_el_str != '\0') {
+  if (active_el_str != NULL && *active_el_str != '\0') {
     for (count = 0, item = elements; item != NULL; item = item->next, count++) {
       cur_el_str = g_object_get_data (item->data, "gnome-volume-control-name");
       if (cur_el_str == NULL)
@@ -371,7 +368,6 @@ gnome_volume_control_window_new (GList *elements)
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box), renderer, "text", 0);
   for (count = 0, item = elements; item != NULL; item = item->next, count++) {
     const gchar *name;
-    gchar *label;
 
     name = g_object_get_data (item->data, "gnome-volume-control-name");
     gtk_combo_box_append_text(GTK_COMBO_BOX (combo_box), name);

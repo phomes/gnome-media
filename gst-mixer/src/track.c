@@ -334,11 +334,6 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 					 GtkWidget *r_sep)
 {
   GnomeVolumeControlTrack *ctrl;
-  GtkWidget *slider;
-  gint i, *volumes;
-  GtkObject *adj;
-  AtkObject *accessible;
-  gchar *accessible_name;
 
   /* image, title */
   ctrl = gnome_volume_control_track_add_title (table, tab_pos,
