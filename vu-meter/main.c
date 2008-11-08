@@ -216,6 +216,7 @@ main (int argc,
 	GOptionContext *goption_context;
 	GtkWidget *hbox;
 	GtkWidget *frame;
+	GnomeProgram *program;
 	vumeter *meter;
 	/*int time_id;*/
 	int i;
@@ -249,9 +250,9 @@ main (int argc,
 	goption_context = g_option_context_new(NULL);
 	g_option_context_add_main_entries(goption_context, options, GETTEXT_PACKAGE);
 
-	gnome_program_init ("vumeter", VERSION, LIBGNOMEUI_MODULE, argc, argv,
-				    GNOME_PARAM_GOPTION_CONTEXT, goption_context, 
-				    NULL);
+	program = gnome_program_init ("vumeter", VERSION, LIBGNOMEUI_MODULE, argc, argv,
+				      GNOME_PARAM_GOPTION_CONTEXT, goption_context, 
+				      NULL);
 #ifdef DEBUG
 	if (esd_host) {
 		g_print (_("Host is %s\n"), esd_host);
@@ -333,6 +334,8 @@ main (int argc,
 	/* time_id = gtk_timeout_add (50000, (GtkFunction)update_display, meter); */
 	
 	gtk_main ();
+
+	g_object_unref (program);
 	
 	return 0;
 }

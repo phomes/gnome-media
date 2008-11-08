@@ -78,7 +78,7 @@ gtk_led_init (GtkLed *led)
 	led->width             = LED_WIDTH;
 	led->height            = LED_HEIGHT;
 
-	g_signal_connect (GTK_OBJECT(led), "size-allocate", gtk_led_size_allocate, NULL);
+	g_signal_connect (G_OBJECT(led), "size-allocate", G_CALLBACK (gtk_led_size_allocate), NULL);
 }
 
 GtkWidget*
