@@ -34,10 +34,15 @@
 
 #include "gsr-window.h"
 
+void gsr_quit (void);
+void gsr_add_recent (gchar *filename);
+GtkWidget * gsr_open_window (const char *filename);
+
 extern void gnome_media_profiles_init (GConfClient *conf);
  
 static GList *windows = NULL;
 
+/* Also used in gsr-window.c as extern GConfClient *gconf_client */
 GConfClient *gconf_client = NULL;
 
 static gboolean
@@ -52,7 +57,7 @@ delete_event_cb (GSRWindow *window,
 	return FALSE;
 }
 
-void
+static void
 window_destroyed (GtkWidget *window,
 		  gpointer data)
 {
@@ -121,6 +126,7 @@ gsr_add_recent (gchar *filename)
 
 }
 
+/* Also referenced from gsr-window.c */
 gint gsr_sample_count = 1;
 
 GtkWidget *

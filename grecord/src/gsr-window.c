@@ -173,6 +173,7 @@ show_error_dialog (GtkWindow *win, const gchar *dbg, const gchar * format, ...)
 					 GTK_DIALOG_DESTROY_WITH_PARENT,
 					 GTK_MESSAGE_ERROR,
 					 GTK_BUTTONS_CLOSE,
+					 "%s",
 					 s);
 
 	if (dbg != NULL) {
@@ -283,7 +284,6 @@ seconds_to_full_string (guint seconds)
 	char *time = NULL;
 	const char *minutefmt;
 	const char *hourfmt;
-	const char *dayfmt;
 	const char *secondfmt;
 
 	days    = seconds / (60 * 60 * 24);
@@ -1214,7 +1214,7 @@ help_contents_cb (GtkAction *action,
 
 	if (error != NULL)
 	{
-		g_warning (error->message);
+		g_warning ("%s", error->message);
 
 		g_error_free (error);
 	}
@@ -1321,7 +1321,7 @@ record_cb (GtkAction *action,
 		window->priv->len_secs = 0;
 		window->priv->saved = FALSE;
 
-		g_print (priv->record_filename);
+		g_print ("%s", priv->record_filename);
 		g_object_set (G_OBJECT (priv->record->sink),
 			      "location", priv->record_filename,
 			      NULL);
@@ -1883,7 +1883,6 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 static void
 fill_record_input (GSRWindow *window, gchar *selected)
 {
-	GstElement *e;
 	const GList *l;
 	int i = 0;
 	GtkTreeModel *model;
@@ -1924,13 +1923,10 @@ fill_record_input (GSRWindow *window, gchar *selected)
 	gtk_widget_show (window->priv->input_label);
 }
 
-gboolean
+static gboolean
 level_message_handler_cb (GstBus * bus, GstMessage * message, GSRWindow *window)
 {
-  GSRWindowPrivate *priv;
-  GstState cur_state, pending;
-
-  priv = window->priv;
+  GSRWindowPrivate *priv = window->priv;
 
   if (message->type == GST_MESSAGE_ELEMENT) {
     const GstStructure *s = gst_message_get_structure (message);
@@ -1957,7 +1953,7 @@ level_message_handler_cb (GstBus * bus, GstMessage * message, GSRWindow *window)
 	myind = exp (peak_dB / 20);
 	if (myind > 1.0)
 		myind = 1.0;
-	gtk_progress_set_percentage (GTK_PROGRESS (window->priv->level), myind);
+	gtk_progress_set_percentage (GTK_PROGRESS (priv->level), myind);
       }
     }
   }
@@ -2235,8 +2231,6 @@ gsr_window_init (GSRWindow *window)
 	gchar *path;
 	GtkAction *action;
 	GtkShadowType shadow_type;
-	GstElement *source;
-
 	window->priv = GSR_WINDOW_GET_PRIVATE (window);
 	priv = window->priv;
 
