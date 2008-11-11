@@ -167,6 +167,20 @@ gvc_stream_collate (GvcMixerStream *a,
 }
 
 GSList *
+gvc_mixer_control_get_streams (GvcMixerControl *control)
+{
+        GSList *retval;
+
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+
+        retval = NULL;
+        g_hash_table_foreach (control->priv->all_streams,
+                              listify_hash_values_hfunc,
+                              &retval);
+        return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
+}
+
+GSList *
 gvc_mixer_control_get_sinks (GvcMixerControl *control)
 {
         GSList *retval;
