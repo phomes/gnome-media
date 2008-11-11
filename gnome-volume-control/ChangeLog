@@ -1,5 +1,17 @@
 2008-11-11  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-control.c (update_sink_input),
+	(update_source_output), (update_event_role_stream),
+	(remove_client), (remove_sink), (remove_source),
+	(remove_sink_input), (remove_source_output):
+	* src/gvc-mixer-dialog.c (on_bar_is_muted_notify), (create_bar),
+	(bar_set_stream), (add_stream), (on_control_stream_added),
+	(on_control_stream_removed):
+	Set the associated stream on the bar so mute works.
+	Hush some debugging.
+
+2008-11-11  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-control.c (update_sink), (update_source):
 	* src/gvc-mixer-dialog.c (add_stream):
 	* src/gvc-mixer-stream.c (gvc_mixer_stream_get_description),

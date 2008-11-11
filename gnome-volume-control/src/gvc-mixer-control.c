@@ -469,9 +469,11 @@ update_sink_input (GvcMixerControl          *control,
         gboolean        is_default;
         pa_volume_t     avg_volume;
 
+#if 0
         g_debug ("Updating sink input: index=%u name='%s'",
                  info->index,
                  info->name);
+#endif
 
         is_new = FALSE;
         is_default = FALSE;
@@ -506,9 +508,11 @@ static void
 update_source_output (GvcMixerControl             *control,
                       const pa_source_output_info *info)
 {
+#if 0
         g_debug ("Updating source output: index=%u name='%s'",
                  info->index,
                  info->name);
+#endif
 }
 
 static void
@@ -682,9 +686,11 @@ update_event_role_stream (GvcMixerControl                  *control,
                 return;
         }
 
+#if 0
         g_debug ("Updating event role: name='%s' device='%s'",
                  info->name,
                  info->device);
+#endif
 
         is_new = FALSE;
 
@@ -704,7 +710,6 @@ update_event_role_stream (GvcMixerControl                  *control,
         avg_volume = pa_cvolume_avg (&info->volume);
 
         gvc_mixer_stream_set_name (stream, _("System Sounds"));
-        //gvc_mixer_stream_set_name (stream, info->name);
         gvc_mixer_stream_set_icon_name (stream, "multimedia-volume-control");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
@@ -895,7 +900,6 @@ static void
 remove_client (GvcMixerControl *control,
                guint            index)
 {
-        g_debug ("Removing client: index=%u", index);
         /* FIXME: */
 }
 
@@ -905,7 +909,9 @@ remove_sink (GvcMixerControl *control,
 {
         GvcMixerStream *stream;
 
+#if 0
         g_debug ("Removing sink: index=%u", index);
+#endif
 
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (index));
@@ -924,7 +930,9 @@ remove_source (GvcMixerControl *control,
 {
         GvcMixerStream *stream;
 
+#if 0
         g_debug ("Removing source: index=%u", index);
+#endif
 
         stream = g_hash_table_lookup (control->priv->sources,
                                       GUINT_TO_POINTER (index));
@@ -943,8 +951,9 @@ remove_sink_input (GvcMixerControl *control,
 {
         GvcMixerStream *stream;
 
+#if 0
         g_debug ("Removing sink input: index=%u", index);
-
+#endif
         stream = g_hash_table_lookup (control->priv->sink_inputs,
                                       GUINT_TO_POINTER (index));
         if (stream == NULL) {
@@ -962,7 +971,9 @@ remove_source_output (GvcMixerControl *control,
 {
         GvcMixerStream *stream;
 
+#if 0
         g_debug ("Removing source output: index=%u", index);
+#endif
 
         stream = g_hash_table_lookup (control->priv->source_outputs,
                                       GUINT_TO_POINTER (index));

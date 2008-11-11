@@ -171,10 +171,13 @@ on_bar_is_muted_notify (GObject        *object,
         gboolean        is_muted;
         GvcMixerStream *stream;
 
-        stream = g_object_get_data (object, "gvc-mixer-dialog-stream");
         is_muted = gvc_channel_bar_get_is_muted (GVC_CHANNEL_BAR (object));
+
+        stream = g_object_get_data (object, "gvc-mixer-dialog-stream");
         if (stream != NULL) {
                 gvc_mixer_stream_change_is_muted (stream, is_muted);
+        } else {
+                g_warning ("Unable to find stream for bar");
         }
 }
 
@@ -259,6 +262,10 @@ create_bar (GvcMixerDialog *dialog)
                                          GTK_ORIENTATION_HORIZONTAL);
         gvc_channel_bar_set_show_mute (GVC_CHANNEL_BAR (bar),
                                        TRUE);
+        g_signal_connect (bar,
+                          "notify::is-muted",
+                          G_CALLBACK (on_bar_is_muted_notify),
+                          dialog);
         return bar;
 }
 
@@ -284,15 +291,11 @@ bar_set_stream (GvcMixerDialog *dialog,
         gtk_adjustment_set_value (adj,
                                   gvc_mixer_stream_get_volume (stream));
 
+        g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
         g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
         g_signal_connect (adj,
                           "value-changed",
                           G_CALLBACK (on_adjustment_value_changed),
-                          dialog);
-
-        g_signal_connect (bar,
-                          "notify::is-muted",
-                          G_CALLBACK (on_bar_is_muted_notify),
                           dialog);
         gtk_widget_show (bar);
 }
@@ -324,7 +327,6 @@ add_stream (GvcMixerDialog *dialog,
                                           gvc_mixer_stream_get_name (stream));
                 gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
                                                gvc_mixer_stream_get_icon_name (stream));
-                g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
                 gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
         }
 
@@ -374,8 +376,6 @@ on_control_stream_added (GvcMixerControl *control,
         GvcMixerStream *stream;
         GtkWidget      *bar;
 
-        g_debug ("GvcMixerDialog: Stream %u added", id);
-
         bar = g_hash_table_lookup (dialog->priv->bars, GUINT_TO_POINTER (id));
         if (bar != NULL) {
                 g_debug ("GvcMixerDialog: Stream %u already added", id);
@@ -424,8 +424,6 @@ on_control_stream_removed (GvcMixerControl *control,
         gboolean      found;
         GtkTreeIter   iter;
         GtkTreeModel *model;
-
-        g_debug ("GvcMixerDialog: Stream %u removed", id);
 
         bar = g_hash_table_lookup (dialog->priv->bars, GUINT_TO_POINTER (id));
         if (bar != NULL) {
