@@ -43,6 +43,7 @@ struct GvcMixerStreamPrivate
         guint          num_channels;
         guint          volume;
         char          *name;
+        char          *description;
         char          *icon_name;
         gboolean       is_muted;
         gboolean       is_default;
@@ -56,6 +57,7 @@ enum
         PROP_NUM_CHANNELS,
         PROP_INDEX,
         PROP_NAME,
+        PROP_DESCRIPTION,
         PROP_ICON_NAME,
         PROP_VOLUME,
         PROP_IS_MUTED,
@@ -173,11 +175,18 @@ gvc_mixer_stream_set_is_default  (GvcMixerStream *stream,
         return TRUE;
 }
 
-char *
+const char *
 gvc_mixer_stream_get_name (GvcMixerStream *stream)
 {
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), NULL);
         return stream->priv->name;
+}
+
+const char *
+gvc_mixer_stream_get_description (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), NULL);
+        return stream->priv->description;
 }
 
 gboolean
@@ -193,7 +202,20 @@ gvc_mixer_stream_set_name (GvcMixerStream *stream,
         return TRUE;
 }
 
-char *
+gboolean
+gvc_mixer_stream_set_description (GvcMixerStream *stream,
+                                  const char     *description)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        g_free (stream->priv->description);
+        stream->priv->description = g_strdup (description);
+        g_object_notify (G_OBJECT (stream), "description");
+
+        return TRUE;
+}
+
+const char *
 gvc_mixer_stream_get_icon_name (GvcMixerStream *stream)
 {
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), NULL);
@@ -237,6 +259,9 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_NAME:
                 gvc_mixer_stream_set_name (self, g_value_get_string (value));
                 break;
+        case PROP_DESCRIPTION:
+                gvc_mixer_stream_set_description (self, g_value_get_string (value));
+                break;
         case PROP_ICON_NAME:
                 gvc_mixer_stream_set_icon_name (self, g_value_get_string (value));
                 break;
@@ -278,6 +303,9 @@ gvc_mixer_stream_get_property (GObject     *object,
                 break;
         case PROP_NAME:
                 g_value_set_string (value, self->priv->name);
+                break;
+        case PROP_DESCRIPTION:
+                g_value_set_string (value, self->priv->description);
                 break;
         case PROP_ICON_NAME:
                 g_value_set_string (value, self->priv->icon_name);
@@ -404,6 +432,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                               NULL,
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_object_class_install_property (gobject_class,
+                                         PROP_DESCRIPTION,
+                                         g_param_spec_string ("description",
+                                                              "Description",
+                                                              "Description to display for this stream",
+                                                              NULL,
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (gobject_class,
                                          PROP_ICON_NAME,
                                          g_param_spec_string ("icon-name",
                                                               "Icon Name",
@@ -449,6 +484,9 @@ gvc_mixer_stream_finalize (GObject *object)
 
         g_free (mixer_stream->priv->name);
         mixer_stream->priv->name = NULL;
+
+        g_free (mixer_stream->priv->description);
+        mixer_stream->priv->description = NULL;
 
         g_free (mixer_stream->priv->icon_name);
         mixer_stream->priv->icon_name = NULL;

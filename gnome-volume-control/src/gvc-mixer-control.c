@@ -301,9 +301,14 @@ update_sink (GvcMixerControl    *control,
                  info->name,
                  info->description);
 #endif
+
+        /* for now completely ignore virtual streams */
+        if (!(info->flags & PA_SINK_HARDWARE)) {
+                return;
+        }
+
         is_new = FALSE;
         is_default = FALSE;
-
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
@@ -321,6 +326,7 @@ update_sink (GvcMixerControl    *control,
         avg_volume = pa_cvolume_avg (&info->volume);
 
         gvc_mixer_stream_set_name (stream, info->name);
+        gvc_mixer_stream_set_description (stream, info->description);
         gvc_mixer_stream_set_icon_name (stream, "audio-card");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
@@ -357,6 +363,12 @@ update_source (GvcMixerControl      *control,
                  info->name,
                  info->description);
 #endif
+
+        /* for now completely ignore virtual streams */
+        if (!(info->flags & PA_SOURCE_HARDWARE)) {
+                return;
+        }
+
         is_new = FALSE;
         is_default = FALSE;
 
@@ -377,6 +389,7 @@ update_source (GvcMixerControl      *control,
         avg_volume = pa_cvolume_avg (&info->volume);
 
         gvc_mixer_stream_set_name (stream, info->name);
+        gvc_mixer_stream_set_description (stream, info->description);
         gvc_mixer_stream_set_icon_name (stream, "audio-input-microphone");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);

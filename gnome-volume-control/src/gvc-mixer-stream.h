@@ -67,8 +67,9 @@ gboolean            gvc_mixer_stream_change_volume   (GvcMixerStream *stream,
 gboolean            gvc_mixer_stream_get_is_muted    (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_is_muted (GvcMixerStream *stream,
                                                       gboolean        is_muted);
-char *              gvc_mixer_stream_get_name        (GvcMixerStream *stream);
-char *              gvc_mixer_stream_get_icon_name   (GvcMixerStream *stream);
+const char *        gvc_mixer_stream_get_name        (GvcMixerStream *stream);
+const char *        gvc_mixer_stream_get_icon_name   (GvcMixerStream *stream);
+const char *        gvc_mixer_stream_get_description (GvcMixerStream *stream);
 
 /* private */
 gboolean            gvc_mixer_stream_set_is_default  (GvcMixerStream *stream,
@@ -79,6 +80,8 @@ gboolean            gvc_mixer_stream_set_is_muted    (GvcMixerStream *stream,
                                                       gboolean        is_muted);
 gboolean            gvc_mixer_stream_set_name        (GvcMixerStream *stream,
                                                       const char     *name);
+gboolean            gvc_mixer_stream_set_description (GvcMixerStream *stream,
+                                                      const char     *description);
 gboolean            gvc_mixer_stream_set_icon_name   (GvcMixerStream *stream,
                                                       const char     *name);
 

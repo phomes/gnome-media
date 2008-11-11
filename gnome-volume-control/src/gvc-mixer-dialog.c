@@ -335,7 +335,7 @@ add_stream (GvcMixerDialog *dialog,
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
                 gtk_list_store_set (GTK_LIST_STORE (model),
                                     &iter,
-                                    NAME_COL, gvc_mixer_stream_get_name (stream),
+                                    NAME_COL, gvc_mixer_stream_get_description (stream),
                                     DEVICE_COL, "",
                                     ID_COL, gvc_mixer_stream_get_id (stream),
                                     -1);
@@ -346,7 +346,7 @@ add_stream (GvcMixerDialog *dialog,
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
                 gtk_list_store_set (GTK_LIST_STORE (model),
                                     &iter,
-                                    NAME_COL, gvc_mixer_stream_get_name (stream),
+                                    NAME_COL, gvc_mixer_stream_get_description (stream),
                                     DEVICE_COL, "",
                                     ID_COL, gvc_mixer_stream_get_id (stream),
                                     -1);

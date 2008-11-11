@@ -1,5 +1,17 @@
 2008-11-11  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-control.c (update_sink), (update_source):
+	* src/gvc-mixer-dialog.c (add_stream):
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_get_description),
+	(gvc_mixer_stream_set_description),
+	(gvc_mixer_stream_set_property), (gvc_mixer_stream_get_property),
+	(gvc_mixer_stream_class_init), (gvc_mixer_stream_finalize):
+	* src/gvc-mixer-stream.h:
+	Add descriptions and use them instead of names when
+	displaying sinks and sources.
+
+2008-11-11  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (add_stream):
 	Don't show sinks/source in apps page.
 
