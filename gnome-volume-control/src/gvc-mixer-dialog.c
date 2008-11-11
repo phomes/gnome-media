@@ -317,7 +317,8 @@ add_stream (GvcMixerDialog *dialog,
                 bar = dialog->priv->input_bar;
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
                 bar = dialog->priv->effects_bar;
-        } else {
+        } else if (! GVC_IS_MIXER_SOURCE (stream)
+                   && !GVC_IS_MIXER_SINK (stream)) {
                 bar = create_bar (dialog);
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
