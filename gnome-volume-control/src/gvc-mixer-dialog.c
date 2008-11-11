@@ -243,6 +243,8 @@ add_stream (GvcMixerDialog *dialog,
         GtkAdjustment *adj;
         gboolean       is_muted;
 
+        g_assert (stream != NULL);
+
         bar = gvc_channel_bar_new ();
         gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
                                         dialog->priv->size_group);
@@ -583,13 +585,19 @@ gvc_mixer_dialog_constructor (GType                  type,
                           self);
 
         stream = gvc_mixer_control_get_default_sink (self->priv->mixer_control);
-        add_stream (self, stream);
+        if (stream != NULL) {
+                add_stream (self, stream);
+        }
 
         stream = gvc_mixer_control_get_default_source (self->priv->mixer_control);
-        add_stream (self, stream);
+        if (stream != NULL) {
+                add_stream (self, stream);
+        }
 
         stream = gvc_mixer_control_get_event_sink_input (self->priv->mixer_control);
-        add_stream (self, stream);
+        if (stream != NULL) {
+                add_stream (self, stream);
+        }
 
         streams = gvc_mixer_control_get_sink_inputs (self->priv->mixer_control);
         for (l = streams; l != NULL; l = l->next) {
