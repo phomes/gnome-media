@@ -71,7 +71,7 @@ struct GvcMixerDialogPrivate
 enum {
         NAME_COL,
         DEVICE_COL,
-        STREAM_COL,
+        ID_COL,
         NUM_COLS
 };
 
@@ -336,7 +336,7 @@ add_stream (GvcMixerDialog *dialog,
                                     &iter,
                                     NAME_COL, gvc_mixer_stream_get_name (stream),
                                     DEVICE_COL, "",
-                                    STREAM_COL, stream,
+                                    ID_COL, gvc_mixer_stream_get_id (stream),
                                     -1);
         } else if (GVC_IS_MIXER_SINK (stream)) {
                 GtkTreeModel *model;
@@ -347,7 +347,7 @@ add_stream (GvcMixerDialog *dialog,
                                     &iter,
                                     NAME_COL, gvc_mixer_stream_get_name (stream),
                                     DEVICE_COL, "",
-                                    STREAM_COL, stream,
+                                    ID_COL, gvc_mixer_stream_get_id (stream),
                                     -1);
         }
 
@@ -387,12 +387,42 @@ on_control_stream_added (GvcMixerControl *control,
         }
 }
 
+static gboolean
+find_stream_by_id (GtkTreeModel *model,
+                   guint         id,
+                   GtkTreeIter  *iter)
+{
+        gboolean found_item;
+
+        found_item = FALSE;
+
+        if (!gtk_tree_model_get_iter_first (model, iter)) {
+                return FALSE;
+        }
+
+        do {
+                guint t_id;
+
+                gtk_tree_model_get (model, iter,
+                                    ID_COL, &t_id, -1);
+
+                if (id == t_id) {
+                        found_item = TRUE;
+                }
+        } while (!found_item && gtk_tree_model_iter_next (model, iter));
+
+        return found_item;
+}
+
 static void
 on_control_stream_removed (GvcMixerControl *control,
                            guint            id,
                            GvcMixerDialog  *dialog)
 {
-        GtkWidget      *bar;
+        GtkWidget    *bar;
+        gboolean      found;
+        GtkTreeIter   iter;
+        GtkTreeModel *model;
 
         g_debug ("GvcMixerDialog: Stream %u removed", id);
 
@@ -401,6 +431,17 @@ on_control_stream_removed (GvcMixerControl *control,
                 g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
                 gtk_container_remove (GTK_CONTAINER (bar->parent),
                                       bar);
+        }
+
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
+        found = find_stream_by_id (GTK_TREE_MODEL (model), id, &iter);
+        if (found) {
+                gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+        }
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->input_treeview));
+        found = find_stream_by_id (GTK_TREE_MODEL (model), id, &iter);
+        if (found) {
+                gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
         }
 }
 
@@ -480,7 +521,7 @@ create_stream_treeview (GvcMixerDialog *dialog)
         store = gtk_list_store_new (NUM_COLS,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
-                                    G_TYPE_OBJECT);
+                                    G_TYPE_UINT);
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (store));
 
