@@ -317,7 +317,17 @@ add_stream (GvcMixerDialog *dialog,
                 bar = dialog->priv->input_bar;
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
                 bar = dialog->priv->effects_bar;
-        } else if (GVC_IS_MIXER_SOURCE (stream)) {
+        } else {
+                bar = create_bar (dialog);
+                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
+                                          gvc_mixer_stream_get_name (stream));
+                gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
+                                               gvc_mixer_stream_get_icon_name (stream));
+                g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
+                gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
+        }
+
+        if (GVC_IS_MIXER_SOURCE (stream)) {
                 GtkTreeModel *model;
                 GtkTreeIter   iter;
                 model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->input_treeview));
@@ -339,14 +349,6 @@ add_stream (GvcMixerDialog *dialog,
                                     DEVICE_COL, "",
                                     STREAM_COL, stream,
                                     -1);
-        } else {
-                bar = create_bar (dialog);
-                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
-                                          gvc_mixer_stream_get_name (stream));
-                gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
-                                               gvc_mixer_stream_get_icon_name (stream));
-                g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
-                gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
         }
 
         if (bar != NULL) {
