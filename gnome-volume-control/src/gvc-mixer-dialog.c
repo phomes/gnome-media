@@ -746,14 +746,14 @@ gvc_mixer_dialog_dispose (GObject *object)
 {
         GvcMixerDialog *dialog = GVC_MIXER_DIALOG (object);
 
-        g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
-                                              on_control_stream_added,
-                                              dialog);
-        g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
-                                              on_control_stream_removed,
-                                              dialog);
-
         if (dialog->priv->mixer_control != NULL) {
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      on_control_stream_added,
+                                                      dialog);
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      on_control_stream_removed,
+                                                      dialog);
+
                 g_object_unref (dialog->priv->mixer_control);
                 dialog->priv->mixer_control = NULL;
         }
