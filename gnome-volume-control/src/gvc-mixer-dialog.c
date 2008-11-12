@@ -570,11 +570,6 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         gtk_container_set_border_width (GTK_CONTAINER (self), 12);
 
-        notebook = gtk_notebook_new ();
-        gtk_box_pack_start (GTK_BOX (main_vbox),
-                            notebook,
-                            TRUE, TRUE, 12);
-
         self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->output_stream_box,
@@ -585,6 +580,11 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_widget_set_sensitive (self->priv->output_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->output_stream_box),
                             self->priv->output_bar, TRUE, TRUE, 12);
+
+        notebook = gtk_notebook_new ();
+        gtk_box_pack_start (GTK_BOX (main_vbox),
+                            notebook,
+                            TRUE, TRUE, 12);
 
         /* Effects page */
         self->priv->sound_effects_box = gtk_vbox_new (FALSE, 12);
