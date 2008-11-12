@@ -1,5 +1,13 @@
 2008-11-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-channel-bar.c (_scale_box_new):
+	Add labels to size group instead of scale because
+	using expand/fill widgets in a size group doesn't really
+	work.  And in practice the label is the only variable
+	length widget.
+
+2008-11-12  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_dispose):
 	Only disconnect signals once.
 

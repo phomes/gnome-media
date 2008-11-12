@@ -115,7 +115,7 @@ _scale_box_new (GvcChannelBar *bar)
         }
 
         if (bar->priv->size_group != NULL) {
-                gtk_size_group_add_widget (bar->priv->size_group, bar->priv->scale);
+                gtk_size_group_add_widget (bar->priv->size_group, bar->priv->label);
         }
 
         gtk_scale_set_draw_value (GTK_SCALE (priv->scale), FALSE);
