@@ -647,35 +647,6 @@ gvc_mixer_dialog_constructor (GType                  type,
                           G_CALLBACK (on_audible_bell_toggled),
                           self);
 
-        /* Output page */
-        self->priv->output_box = gtk_vbox_new (FALSE, 12);
-        gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
-        label = gtk_label_new (_("Output"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
-                                  self->priv->output_box,
-                                  label);
-
-        box = gtk_frame_new (_("Choose a device for sound output"));
-        label = gtk_frame_get_label_widget (GTK_FRAME (box));
-        _gtk_label_make_bold (GTK_LABEL (label));
-        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
-        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 0);
-
-        alignment = gtk_alignment_new (0, 0, 1, 1);
-        gtk_container_add (GTK_CONTAINER (box), alignment);
-        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
-
-        self->priv->output_treeview = create_stream_treeview (self);
-        box = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
-                                        GTK_POLICY_NEVER,
-                                        GTK_POLICY_AUTOMATIC);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
-                                             GTK_SHADOW_IN);
-        gtk_container_add (GTK_CONTAINER (box), self->priv->output_treeview);
-        gtk_container_add (GTK_CONTAINER (alignment), box);
-
-
         /* Input page */
         self->priv->input_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
@@ -711,6 +682,33 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_container_add (GTK_CONTAINER (box), self->priv->input_treeview);
         gtk_container_add (GTK_CONTAINER (alignment), box);
 
+        /* Output page */
+        self->priv->output_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
+        label = gtk_label_new (_("Output"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+                                  self->priv->output_box,
+                                  label);
+
+        box = gtk_frame_new (_("Choose a device for sound output"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 0);
+
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+
+        self->priv->output_treeview = create_stream_treeview (self);
+        box = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
+                                             GTK_SHADOW_IN);
+        gtk_container_add (GTK_CONTAINER (box), self->priv->output_treeview);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
 
         /* Applications */
         self->priv->applications_box = gtk_vbox_new (FALSE, 12);
