@@ -1029,6 +1029,7 @@ setting_set_func (GtkTreeViewColumn *tree_column,
 typedef GtkCellRendererPixbuf      ActivatableCellRendererPixbuf;
 typedef GtkCellRendererPixbufClass ActivatableCellRendererPixbufClass;
 
+GType activatable_cell_renderer_pixbuf_get_type (void);
 #define ACTIVATABLE_TYPE_CELL_RENDERER_PIXBUF (activatable_cell_renderer_pixbuf_get_type ())
 G_DEFINE_TYPE (ActivatableCellRendererPixbuf, activatable_cell_renderer_pixbuf, GTK_TYPE_CELL_RENDERER_PIXBUF);
 
@@ -1461,6 +1462,8 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         chooser->priv->combo_box = gtk_combo_box_new ();
         gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), chooser->priv->combo_box, FALSE, FALSE, 0);
 
+        /* FIXME: should accept drag and drop themes.  should also
+           add an "Add Theme..." item to the theme combobox */
 }
 
 static void

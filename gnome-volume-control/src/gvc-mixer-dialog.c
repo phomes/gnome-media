@@ -598,8 +598,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
                                   _("Alert Volume: "));
         gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
-        gtk_box_pack_end (GTK_BOX (self->priv->sound_effects_box),
-                          self->priv->effects_bar, FALSE, FALSE, 12);
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            self->priv->effects_bar, FALSE, FALSE, 12);
 
         client = gconf_client_get_default ();
 
@@ -688,8 +688,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                   _("Input volume: "));
         gtk_widget_set_sensitive (self->priv->input_bar, FALSE);
-        gtk_box_pack_end (GTK_BOX (self->priv->input_box),
-                          self->priv->input_bar, FALSE, FALSE, 12);
+        gtk_box_pack_start (GTK_BOX (self->priv->input_box),
+                            self->priv->input_bar, FALSE, FALSE, 12);
 
         box = gtk_frame_new (_("Choose a device for sound input"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
