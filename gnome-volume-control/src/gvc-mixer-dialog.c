@@ -808,14 +808,17 @@ on_key_changed (GConfClient    *client,
         }
 
         value = gconf_entry_get_value (entry);
-        enabled = gconf_value_get_bool (value);
         if (strcmp (key, EVENT_SOUNDS_KEY) == 0) {
+                enabled = gconf_value_get_bool (value);
+
                 gtk_widget_set_sensitive (dialog->priv->sound_theme_chooser, enabled);
                 gtk_widget_set_sensitive (dialog->priv->click_feedback_button, enabled);
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->enable_effects_button), enabled);
         } else if (strcmp (key, INPUT_SOUNDS_KEY) == 0) {
+                enabled = gconf_value_get_bool (value);
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->click_feedback_button), enabled);
         } else if (strcmp (key, AUDIO_BELL_KEY) == 0) {
+                enabled = gconf_value_get_bool (value);
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->audible_bell_button), enabled);
         }
 }
