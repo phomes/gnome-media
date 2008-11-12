@@ -587,7 +587,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                             TRUE, TRUE, 12);
 
         /* Effects page */
-        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 12);
+        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
         label = gtk_label_new (_("Sound Effects"));
         gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
@@ -601,11 +601,6 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_end (GTK_BOX (self->priv->sound_effects_box),
                           self->priv->effects_bar, FALSE, FALSE, 12);
 
-        self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
-        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            self->priv->sound_theme_chooser,
-                            TRUE, TRUE, 0);
-
         client = gconf_client_get_default ();
 
         self->priv->enable_effects_button = gtk_check_button_new_with_mnemonic (_("_Play alerts and sound effects"));
@@ -618,8 +613,14 @@ gvc_mixer_dialog_constructor (GType                  type,
                           "toggled",
                           G_CALLBACK (on_enable_effects_toggled),
                           self);
+
+        self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            self->priv->sound_theme_chooser,
+                            TRUE, TRUE, 0);
+
         alignment = gtk_alignment_new (0, 0, 1, 1);
-        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 12, 0);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 12, 0, 12, 0);
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             alignment,
                             FALSE, FALSE, 0);
