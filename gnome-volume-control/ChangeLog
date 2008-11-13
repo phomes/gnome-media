@@ -1,5 +1,25 @@
 2008-11-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor),
+	(gvc_mixer_dialog_init):
+	* src/gvc-sound-theme-chooser.c (theme_changed_custom_reinit),
+	(on_combobox_changed), (audible_bell_foreach),
+	(set_audible_bell_enabled), (input_feedback_foreach),
+	(set_input_feedback_enabled), (get_file_type),
+	(theme_changed_custom_init), (update_theme),
+	(setup_theme_selector), (count_customised_sounds), (save_sounds),
+	(on_setting_column_edited), (fill_custom_model),
+	(on_combobox_editing_started), (setting_set_func),
+	(setup_theme_custom_selector),
+	(gvc_sound_theme_chooser_constructor), (on_click_feedback_toggled),
+	(on_key_changed), (gvc_sound_theme_chooser_init),
+	(gvc_sound_theme_chooser_new):
+	Simplify the theme chooser a bit.  Remove the visual bell stuff
+	since that should go into the to-be-written Universal Access
+	control panel.
+
+2008-11-12  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (on_key_changed):
 	Don't assume all changed keys are booleans.
 
