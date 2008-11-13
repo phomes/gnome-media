@@ -37,6 +37,7 @@
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
 #include "gvc-mixer-sink-input.h"
+#include "gvc-mixer-event-role.h"
 
 #define GVC_MIXER_CONTROL_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_CONTROL, GvcMixerControlPrivate))
 
@@ -695,9 +696,8 @@ update_event_role_stream (GvcMixerControl                  *control,
         is_new = FALSE;
 
         if (!control->priv->event_sink_input_is_set) {
-                stream = gvc_mixer_sink_input_new (control->priv->pa_context,
-                                                   0,
-                                                   1);
+                stream = gvc_mixer_event_role_new (control->priv->pa_context,
+                                                   info->device);
                 control->priv->event_sink_input_id = gvc_mixer_stream_get_id (stream);
                 control->priv->event_sink_input_is_set = TRUE;
 

@@ -251,6 +251,7 @@ create_bar (GvcMixerDialog *dialog,
         GtkWidget     *bar;
 
         bar = gvc_channel_bar_new ();
+        gtk_widget_set_sensitive (bar, FALSE);
         if (size_group != NULL) {
                 gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
                                                 size_group);
@@ -317,6 +318,7 @@ add_stream (GvcMixerDialog *dialog,
                 bar = dialog->priv->input_bar;
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
                 bar = dialog->priv->effects_bar;
+                g_debug ("Adding effects stream");
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)) {
                 bar = create_bar (dialog, dialog->priv->apps_size_group);

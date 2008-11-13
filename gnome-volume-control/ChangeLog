@@ -1,5 +1,22 @@
 2008-11-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-mixer-control.c (update_event_role_stream):
+	* src/gvc-mixer-dialog.c (create_bar), (add_stream):
+	* src/gvc-mixer-event-role.c (update_settings),
+	(gvc_mixer_event_role_change_volume),
+	(gvc_mixer_event_role_change_is_muted),
+	(gvc_mixer_event_role_set_device),
+	(gvc_mixer_event_role_set_property),
+	(gvc_mixer_event_role_get_property),
+	(gvc_mixer_event_role_constructor),
+	(gvc_mixer_event_role_class_init), (gvc_mixer_event_role_init),
+	(gvc_mixer_event_role_finalize), (gvc_mixer_event_role_new):
+	* src/gvc-mixer-event-role.h:
+	Add event role stream.  Make setting event volume work.
+
+2008-11-12  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor),
 	(gvc_mixer_dialog_init):
 	* src/gvc-sound-theme-chooser.c (theme_changed_custom_reinit),
