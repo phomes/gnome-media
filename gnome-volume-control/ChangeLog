@@ -1,5 +1,15 @@
 2008-11-18  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-dialog.c (create_stream_treeview):
+	* src/gvc-sound-theme-chooser.c (play_sound_at_path),
+	(activatable_cell_renderer_pixbuf_activate),
+	(setup_theme_custom_selector), (on_treeview_row_activated),
+	(gvc_sound_theme_chooser_init):
+	Hide treeview headers.  Make double click on tree rows
+	play sound preview.
+
+2008-11-18  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-applet.c (maybe_show_status_icon), (update_icon),
 	(update_default_sink), (on_control_ready),
 	(on_control_default_sink_changed), (gvc_applet_init):

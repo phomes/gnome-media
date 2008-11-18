@@ -540,7 +540,7 @@ create_stream_treeview (GvcMixerDialog *dialog)
         GtkTreeViewColumn *column;
 
         treeview = gtk_tree_view_new ();
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
 
         store = gtk_list_store_new (NUM_COLUMNS,
                                     G_TYPE_STRING,

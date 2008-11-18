@@ -602,7 +602,7 @@ static void
 play_sound_preview (GtkFileChooser *chooser,
                     gpointer user_data)
 {
-        char *filename;
+        char       *filename;
         ca_context *ctx;
 
         filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER (chooser));
@@ -970,73 +970,41 @@ on_combobox_editing_started (GtkCellRenderer      *renderer,
 
 static gboolean
 play_sound_at_path (GtkWidget         *tree_view,
-                    GtkTreeViewColumn *column,
                     GtkTreePath       *path)
 {
-        GObject *preview_column;
+        GtkTreeModel *model;
+        GtkTreeIter   iter;
+        char        **sound_names;
+        gboolean      sensitive;
+        ca_context   *ctx;
 
-        preview_column = g_object_get_data (G_OBJECT (tree_view), "preview-column");
-        if (column == (GtkTreeViewColumn *) preview_column) {
-                GtkTreeModel *model;
-                GtkTreeIter iter;
-                char **sound_names;
-                gboolean sensitive;
-                ca_context *ctx;
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
+        if (gtk_tree_model_get_iter (model, &iter, path) == FALSE) {
+                return FALSE;
+        }
 
-                model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
-                if (gtk_tree_model_get_iter (model, &iter, path) == FALSE) {
-                        return FALSE;
-                }
+        gtk_tree_model_get (model, &iter,
+                            SOUND_NAMES_COL, &sound_names,
+                            SENSITIVE_COL, &sensitive,
+                            -1);
+        if (!sensitive || sound_names == NULL) {
+                return FALSE;
+        }
 
-                gtk_tree_model_get (model, &iter,
-                                    SOUND_NAMES_COL, &sound_names,
-                                    SENSITIVE_COL, &sensitive, -1);
-                if (!sensitive || sound_names == NULL) {
-                        return FALSE;
-                }
-
-                ctx = ca_gtk_context_get ();
-                ca_gtk_play_for_widget (GTK_WIDGET (tree_view), 0,
-                                        CA_PROP_APPLICATION_NAME, _("Sound Preferences"),
-                                        CA_PROP_EVENT_ID, sound_names[0],
-                                        CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
-                                        CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+        ctx = ca_gtk_context_get ();
+        ca_gtk_play_for_widget (GTK_WIDGET (tree_view), 0,
+                                CA_PROP_APPLICATION_NAME, _("Sound Preferences"),
+                                CA_PROP_EVENT_ID, sound_names[0],
+                                CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
+                                CA_PROP_CANBERRA_CACHE_CONTROL, "never",
 #ifdef CA_PROP_CANBERRA_ENABLE
-                                        CA_PROP_CANBERRA_ENABLE, "1",
+                                CA_PROP_CANBERRA_ENABLE, "1",
 #endif
-                                        NULL);
+                                NULL);
 
-                g_strfreev (sound_names);
+        g_strfreev (sound_names);
 
-                return TRUE;
-        }
-        return FALSE;
-}
-
-static gboolean
-on_treeview_button_press_event (GtkWidget            *tree_view,
-                                GdkEventButton       *event,
-                                GvcSoundThemeChooser *chooser)
-{
-        GtkTreePath       *path;
-        GtkTreeViewColumn *column;
-        GdkEventButton    *button_event = (GdkEventButton *) event;
-        gboolean           res;
-
-        res = FALSE;
-
-        if (event->type != GDK_BUTTON_PRESS) {
-                return TRUE;
-        }
-
-        if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (tree_view),
-                                           button_event->x, button_event->y,
-                                           &path, &column, NULL, NULL)) {
-                res = play_sound_at_path (tree_view, column, path);
-                gtk_tree_path_free (path);
-        }
-
-        return res;
+        return TRUE;
 }
 
 static void
@@ -1101,13 +1069,13 @@ activatable_cell_renderer_pixbuf_activate (GtkCellRenderer      *cell,
                                            GdkRectangle         *cell_area,
                                            GtkCellRendererState  flags)
 {
-        GtkTreeViewColumn *preview_column;
         GtkTreePath *path;
-        gboolean res;
+        gboolean     res;
 
-        preview_column = g_object_get_data (G_OBJECT (widget), "preview-column");
+        g_debug ("Activating pixbuf");
+
         path = gtk_tree_path_new_from_string (path_string);
-        res = play_sound_at_path (widget, preview_column, path);
+        res = play_sound_at_path (widget, path);
         gtk_tree_path_free (path);
 
         return res;
@@ -1204,11 +1172,6 @@ setup_theme_custom_selector (GvcSoundThemeChooser *chooser,
 
         gtk_tree_view_set_model (GTK_TREE_VIEW (chooser->priv->treeview), GTK_TREE_MODEL (store));
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (chooser->priv->treeview), FALSE);
-
-        g_signal_connect (chooser->priv->treeview,
-                          "button-press-event",
-                          G_CALLBACK (on_treeview_button_press_event),
-                          chooser);
 
         /* Fill in the model */
         type = CATEGORY_INVALID;
@@ -1336,6 +1299,16 @@ on_key_changed (GConfClient          *client,
 }
 
 static void
+on_treeview_row_activated (GtkTreeView          *treeview,
+                           GtkTreePath          *path,
+                           GtkTreeViewColumn    *column,
+                           GvcSoundThemeChooser *chooser)
+{
+        g_debug ("row activated");
+        play_sound_at_path (GTK_WIDGET (treeview), path);
+}
+
+static void
 gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 {
         GtkWidget   *box;
@@ -1361,6 +1334,11 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         gtk_box_pack_start (GTK_BOX (chooser), box, TRUE, TRUE, 0);
 
         chooser->priv->treeview = gtk_tree_view_new ();
+        g_signal_connect (chooser->priv->treeview,
+                          "row-activated",
+                          G_CALLBACK (on_treeview_row_activated),
+                          chooser);
+
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_NEVER,
