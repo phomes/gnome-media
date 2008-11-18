@@ -63,10 +63,10 @@ struct GvcMixerDialogPrivate
 };
 
 enum {
-        NAME_COL,
-        DEVICE_COL,
-        ID_COL,
-        NUM_COLS
+        NAME_COLUMN,
+        DEVICE_COLUMN,
+        ID_COLUMN,
+        NUM_COLUMNS
 };
 
 enum
@@ -77,11 +77,43 @@ enum
 
 static void     gvc_mixer_dialog_class_init (GvcMixerDialogClass *klass);
 static void     gvc_mixer_dialog_init       (GvcMixerDialog      *mixer_dialog);
-static void     gvc_mixer_dialog_finalize   (GObject            *object);
+static void     gvc_mixer_dialog_finalize   (GObject             *object);
+
+static void     bar_set_stream              (GvcMixerDialog      *dialog,
+                                             GtkWidget           *bar,
+                                             GvcMixerStream      *stream);
 
 G_DEFINE_TYPE (GvcMixerDialog, gvc_mixer_dialog, GTK_TYPE_DIALOG)
-static void
 
+static void
+on_mixer_control_default_sink_changed (GvcMixerControl *control,
+                                       guint            id,
+                                       GvcMixerDialog  *dialog)
+{
+        GvcMixerStream *stream;
+
+        g_debug ("GvcMixerDialog: default sink changed: %u", id);
+
+        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
+                                                     id);
+        bar_set_stream (dialog, dialog->priv->output_bar, stream);
+}
+
+static void
+on_mixer_control_default_source_changed (GvcMixerControl *control,
+                                         guint            id,
+                                         GvcMixerDialog  *dialog)
+{
+        GvcMixerStream *stream;
+
+        g_debug ("GvcMixerDialog: default source changed: %u", id);
+
+        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
+                                                     id);
+        bar_set_stream (dialog, dialog->priv->input_bar, stream);
+}
+
+static void
 gvc_mixer_dialog_set_mixer_control (GvcMixerDialog  *dialog,
                                     GvcMixerControl *control)
 {
@@ -91,10 +123,25 @@ gvc_mixer_dialog_set_mixer_control (GvcMixerDialog  *dialog,
         g_object_ref (control);
 
         if (dialog->priv->mixer_control != NULL) {
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      G_CALLBACK (on_mixer_control_default_sink_changed),
+                                                      dialog);
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      G_CALLBACK (on_mixer_control_default_source_changed),
+                                                      dialog);
                 g_object_unref (dialog->priv->mixer_control);
         }
 
         dialog->priv->mixer_control = control;
+
+        g_signal_connect (dialog->priv->mixer_control,
+                          "default-sink-changed",
+                          G_CALLBACK (on_mixer_control_default_sink_changed),
+                          dialog);
+        g_signal_connect (dialog->priv->mixer_control,
+                          "default-source-changed",
+                          G_CALLBACK (on_mixer_control_default_source_changed),
+                          dialog);
 
         g_object_notify (G_OBJECT (dialog), "mixer-control");
 }
@@ -275,27 +322,26 @@ bar_set_stream (GvcMixerDialog *dialog,
         GtkAdjustment *adj;
         gboolean       is_muted;
 
-        g_assert (stream != NULL);
+        g_assert (bar != NULL);
 
-        gtk_widget_set_sensitive (bar, TRUE);
+        is_muted = FALSE;
 
-        is_muted = gvc_mixer_stream_get_is_muted (stream);
-        gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
-
-        save_bar_for_stream (dialog, stream, bar);
+        gtk_widget_set_sensitive (bar, (stream != NULL));
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
 
-        gtk_adjustment_set_value (adj,
-                                  gvc_mixer_stream_get_volume (stream));
+        if (stream != NULL) {
+                is_muted = gvc_mixer_stream_get_is_muted (stream);
+                gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
+
+                save_bar_for_stream (dialog, stream, bar);
+
+                gtk_adjustment_set_value (adj,
+                                          gvc_mixer_stream_get_volume (stream));
+        }
 
         g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
         g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
-        g_signal_connect (adj,
-                          "value-changed",
-                          G_CALLBACK (on_adjustment_value_changed),
-                          dialog);
-        gtk_widget_show (bar);
 }
 
 static void
@@ -304,6 +350,7 @@ add_stream (GvcMixerDialog *dialog,
 {
         GtkWidget     *bar;
         gboolean       is_muted;
+        GtkAdjustment *adj;
 
         g_assert (stream != NULL);
 
@@ -336,9 +383,9 @@ add_stream (GvcMixerDialog *dialog,
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
                 gtk_list_store_set (GTK_LIST_STORE (model),
                                     &iter,
-                                    NAME_COL, gvc_mixer_stream_get_description (stream),
-                                    DEVICE_COL, "",
-                                    ID_COL, gvc_mixer_stream_get_id (stream),
+                                    NAME_COLUMN, gvc_mixer_stream_get_description (stream),
+                                    DEVICE_COLUMN, "",
+                                    ID_COLUMN, gvc_mixer_stream_get_id (stream),
                                     -1);
         } else if (GVC_IS_MIXER_SINK (stream)) {
                 GtkTreeModel *model;
@@ -347,14 +394,21 @@ add_stream (GvcMixerDialog *dialog,
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
                 gtk_list_store_set (GTK_LIST_STORE (model),
                                     &iter,
-                                    NAME_COL, gvc_mixer_stream_get_description (stream),
-                                    DEVICE_COL, "",
-                                    ID_COL, gvc_mixer_stream_get_id (stream),
+                                    NAME_COLUMN, gvc_mixer_stream_get_description (stream),
+                                    DEVICE_COLUMN, "",
+                                    ID_COLUMN, gvc_mixer_stream_get_id (stream),
                                     -1);
         }
 
         if (bar != NULL) {
                 bar_set_stream (dialog, bar, stream);
+                adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
+
+                g_signal_connect (adj,
+                                  "value-changed",
+                                  G_CALLBACK (on_adjustment_value_changed),
+                                  dialog);
+                gtk_widget_show (bar);
         }
 
         g_signal_connect (stream,
@@ -404,7 +458,7 @@ find_stream_by_id (GtkTreeModel *model,
                 guint t_id;
 
                 gtk_tree_model_get (model, iter,
-                                    ID_COL, &t_id, -1);
+                                    ID_COLUMN, &t_id, -1);
 
                 if (id == t_id) {
                         found_item = TRUE;
@@ -415,22 +469,28 @@ find_stream_by_id (GtkTreeModel *model,
 }
 
 static void
-on_control_stream_removed (GvcMixerControl *control,
-                           guint            id,
-                           GvcMixerDialog  *dialog)
+remove_stream (GvcMixerDialog  *dialog,
+               guint            id)
 {
         GtkWidget    *bar;
         gboolean      found;
         GtkTreeIter   iter;
         GtkTreeModel *model;
 
+        /* remove bars for applications and reset fixed bars */
         bar = g_hash_table_lookup (dialog->priv->bars, GUINT_TO_POINTER (id));
-        if (bar != NULL) {
+        if (bar == dialog->priv->output_bar
+            || bar == dialog->priv->input_bar
+            || bar == dialog->priv->effects_bar) {
+                g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
+                bar_set_stream (dialog, bar, NULL);
+        } else if (bar != NULL) {
                 g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
                 gtk_container_remove (GTK_CONTAINER (bar->parent),
                                       bar);
         }
 
+        /* remove from any models */
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
         found = find_stream_by_id (GTK_TREE_MODEL (model), id, &iter);
         if (found) {
@@ -441,6 +501,14 @@ on_control_stream_removed (GvcMixerControl *control,
         if (found) {
                 gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
         }
+}
+
+static void
+on_control_stream_removed (GvcMixerControl *control,
+                           guint            id,
+                           GvcMixerDialog  *dialog)
+{
+        remove_stream (dialog, id);
 }
 
 static void
@@ -474,7 +542,7 @@ create_stream_treeview (GvcMixerDialog *dialog)
         treeview = gtk_tree_view_new ();
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), TRUE);
 
-        store = gtk_list_store_new (NUM_COLS,
+        store = gtk_list_store_new (NUM_COLUMNS,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_UINT);
@@ -484,18 +552,78 @@ create_stream_treeview (GvcMixerDialog *dialog)
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Name"),
                                                            renderer,
-                                                           "text", NAME_COL,
+                                                           "text", NAME_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Device"),
                                                            renderer,
-                                                           "text", DEVICE_COL,
+                                                           "text", DEVICE_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
         return treeview;
+}
+
+static void
+on_input_treeview_selection_changed (GtkTreeSelection *selection,
+                                     GvcMixerDialog   *dialog)
+{
+        GtkTreeIter     iter;
+        GtkTreeModel   *model;
+        guint           id;
+        GvcMixerStream *stream;
+
+        if (! gtk_tree_selection_get_selected (selection, &model, &iter)) {
+                return;
+        }
+
+        id = 0;
+        gtk_tree_model_get (model, &iter, ID_COLUMN, &id, -1);
+
+        if (id == 0) {
+                return;
+        }
+
+        g_debug ("Default input selected: %u", id);
+        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control, id);
+        if (stream == NULL) {
+                g_warning ("Unable to find stream for id: %u", id);
+                return;
+        }
+
+        gvc_mixer_control_set_default_source (dialog->priv->mixer_control, stream);
+}
+
+static void
+on_output_treeview_selection_changed (GtkTreeSelection *selection,
+                                      GvcMixerDialog   *dialog)
+{
+        GtkTreeIter     iter;
+        GtkTreeModel   *model;
+        guint           id;
+        GvcMixerStream *stream;
+
+        if (! gtk_tree_selection_get_selected (selection, &model, &iter)) {
+                return;
+        }
+
+        id = 0;
+        gtk_tree_model_get (model, &iter, ID_COLUMN, &id, -1);
+
+        if (id == 0) {
+                return;
+        }
+
+        g_debug ("Default output selected: %u", id);
+        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control, id);
+        if (stream == NULL) {
+                g_warning ("Unable to find stream for id: %u", id);
+                return;
+        }
+
+        gvc_mixer_control_set_default_sink (dialog->priv->mixer_control, stream);
 }
 
 static GObject *
@@ -503,16 +631,17 @@ gvc_mixer_dialog_constructor (GType                  type,
                               guint                  n_construct_properties,
                               GObjectConstructParam *construct_params)
 {
-        GObject        *object;
-        GvcMixerDialog *self;
-        GtkWidget      *main_vbox;
-        GtkWidget      *label;
-        GtkWidget      *alignment;
-        GtkWidget      *box;
-        GtkWidget      *notebook;
-        GSList         *streams;
-        GSList         *l;
-        GvcMixerStream *stream;
+        GObject          *object;
+        GvcMixerDialog   *self;
+        GtkWidget        *main_vbox;
+        GtkWidget        *label;
+        GtkWidget        *alignment;
+        GtkWidget        *box;
+        GtkWidget        *notebook;
+        GSList           *streams;
+        GSList           *l;
+        GvcMixerStream   *stream;
+        GtkTreeSelection *selection;
 
         object = G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->constructor (type, n_construct_properties, construct_params);
 
@@ -597,6 +726,13 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_container_add (GTK_CONTAINER (box), self->priv->input_treeview);
         gtk_container_add (GTK_CONTAINER (alignment), box);
 
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (self->priv->input_treeview));
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+        g_signal_connect (selection,
+                          "changed",
+                          G_CALLBACK (on_input_treeview_selection_changed),
+                          self);
+
         /* Output page */
         self->priv->output_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
@@ -624,6 +760,13 @@ gvc_mixer_dialog_constructor (GType                  type,
                                              GTK_SHADOW_IN);
         gtk_container_add (GTK_CONTAINER (box), self->priv->output_treeview);
         gtk_container_add (GTK_CONTAINER (alignment), box);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (self->priv->output_treeview));
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+        g_signal_connect (selection,
+                          "changed",
+                          G_CALLBACK (on_output_treeview_selection_changed),
+                          self);
 
         /* Applications */
         self->priv->applications_box = gtk_vbox_new (FALSE, 12);

@@ -58,7 +58,6 @@ pa_context *        gvc_mixer_stream_get_pa_context  (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_index       (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_id          (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_num_channels (GvcMixerStream *stream);
-gboolean            gvc_mixer_stream_get_is_default  (GvcMixerStream *stream);
 
 guint               gvc_mixer_stream_get_volume      (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_volume   (GvcMixerStream *stream,
@@ -72,8 +71,6 @@ const char *        gvc_mixer_stream_get_icon_name   (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_description (GvcMixerStream *stream);
 
 /* private */
-gboolean            gvc_mixer_stream_set_is_default  (GvcMixerStream *stream,
-                                                      gboolean        is_default);
 gboolean            gvc_mixer_stream_set_volume      (GvcMixerStream *stream,
                                                       guint           volume);
 gboolean            gvc_mixer_stream_set_is_muted    (GvcMixerStream *stream,

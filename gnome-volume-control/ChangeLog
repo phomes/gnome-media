@@ -1,3 +1,25 @@
+2008-11-18  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gvc-mixer-control.c (gvc_mixer_control_set_default_sink),
+	(gvc_mixer_control_set_default_source), (_set_default_source),
+	(_set_default_sink), (_stream_has_name), (find_stream_for_name),
+	(update_default_source_from_name), (update_default_sink_from_name),
+	(update_server), (update_sink), (update_source),
+	(update_sink_input), (gvc_mixer_control_class_init):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-dialog.c (on_mixer_control_default_sink_changed),
+	(on_mixer_control_default_source_changed),
+	(gvc_mixer_dialog_set_mixer_control), (bar_set_stream),
+	(add_stream), (find_stream_by_id), (remove_stream),
+	(on_control_stream_removed), (create_stream_treeview),
+	(on_input_treeview_selection_changed),
+	(on_output_treeview_selection_changed),
+	(gvc_mixer_dialog_constructor):
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_set_property),
+	(gvc_mixer_stream_get_property), (gvc_mixer_stream_class_init):
+	* src/gvc-mixer-stream.h:
+	Add support for changing the default sink and source.
+
 2008-11-12  William Jon McCann  <jmccann@redhat.com>
 
 	* src/Makefile.am:

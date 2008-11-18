@@ -45,11 +45,15 @@ typedef struct
 {
         GObjectClass            parent_class;
 
-        void (*ready)          (GvcMixerControl *control);
-        void (*stream_added)   (GvcMixerControl *control,
-                                guint            id);
-        void (*stream_removed) (GvcMixerControl *control,
-                                guint            id);
+        void (*ready)                  (GvcMixerControl *control);
+        void (*stream_added)           (GvcMixerControl *control,
+                                        guint            id);
+        void (*stream_removed)         (GvcMixerControl *control,
+                                        guint            id);
+        void (*default_sink_changed)   (GvcMixerControl *control,
+                                        guint            id);
+        void (*default_source_changed) (GvcMixerControl *control,
+                                        guint            id);
 } GvcMixerControlClass;
 
 GType               gvc_mixer_control_get_type            (void);
@@ -68,9 +72,14 @@ GSList *            gvc_mixer_control_get_sink_inputs     (GvcMixerControl *cont
 GvcMixerStream *    gvc_mixer_control_lookup_stream_id    (GvcMixerControl *control,
                                                            guint            id);
 
-GvcMixerStream *    gvc_mixer_control_get_default_sink    (GvcMixerControl *control);
-GvcMixerStream *    gvc_mixer_control_get_default_source  (GvcMixerControl *control);
+GvcMixerStream *    gvc_mixer_control_get_default_sink     (GvcMixerControl *control);
+GvcMixerStream *    gvc_mixer_control_get_default_source   (GvcMixerControl *control);
 GvcMixerStream *    gvc_mixer_control_get_event_sink_input (GvcMixerControl *control);
+
+gboolean            gvc_mixer_control_set_default_sink     (GvcMixerControl *control,
+                                                            GvcMixerStream  *stream);
+gboolean            gvc_mixer_control_set_default_source   (GvcMixerControl *control,
+                                                            GvcMixerStream  *stream);
 
 G_END_DECLS
 

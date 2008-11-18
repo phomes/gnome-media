@@ -46,7 +46,6 @@ struct GvcMixerStreamPrivate
         char          *description;
         char          *icon_name;
         gboolean       is_muted;
-        gboolean       is_default;
 };
 
 enum
@@ -61,7 +60,6 @@ enum
         PROP_ICON_NAME,
         PROP_VOLUME,
         PROP_IS_MUTED,
-        PROP_IS_DEFAULT,
 };
 
 static void     gvc_mixer_stream_class_init (GvcMixerStreamClass *klass);
@@ -141,13 +139,6 @@ gvc_mixer_stream_get_is_muted  (GvcMixerStream *stream)
 }
 
 gboolean
-gvc_mixer_stream_get_is_default  (GvcMixerStream *stream)
-{
-        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
-        return stream->priv->is_default;
-}
-
-gboolean
 gvc_mixer_stream_set_is_muted  (GvcMixerStream *stream,
                                 gboolean        is_muted)
 {
@@ -156,20 +147,6 @@ gvc_mixer_stream_set_is_muted  (GvcMixerStream *stream,
         if (is_muted != stream->priv->is_muted) {
                 stream->priv->is_muted = is_muted;
                 g_object_notify (G_OBJECT (stream), "is-muted");
-        }
-
-        return TRUE;
-}
-
-gboolean
-gvc_mixer_stream_set_is_default  (GvcMixerStream *stream,
-                                  gboolean        is_default)
-{
-        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
-
-        if (is_default != stream->priv->is_default) {
-                stream->priv->is_default = is_default;
-                g_object_notify (G_OBJECT (stream), "is-default");
         }
 
         return TRUE;
@@ -271,9 +248,6 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_IS_MUTED:
                 gvc_mixer_stream_set_is_muted (self, g_value_get_boolean (value));
                 break;
-        case PROP_IS_DEFAULT:
-                gvc_mixer_stream_set_is_default (self, g_value_get_boolean (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -315,9 +289,6 @@ gvc_mixer_stream_get_property (GObject     *object,
                 break;
         case PROP_IS_MUTED:
                 g_value_set_boolean (value, self->priv->is_muted);
-                break;
-        case PROP_IS_DEFAULT:
-                g_value_set_boolean (value, self->priv->is_default);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -450,13 +421,6 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                          g_param_spec_boolean ("is-muted",
                                                                "is muted",
                                                                "Whether stream is muted",
-                                                               FALSE,
-                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
-        g_object_class_install_property (gobject_class,
-                                         PROP_IS_DEFAULT,
-                                         g_param_spec_boolean ("is-default",
-                                                               "is default",
-                                                               "Whether stream is the default",
                                                                FALSE,
                                                                G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
 
