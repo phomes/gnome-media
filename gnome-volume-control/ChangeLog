@@ -1,5 +1,13 @@
 2008-11-18  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-applet.c (maybe_show_status_icon), (update_icon),
+	(update_default_sink), (on_control_ready),
+	(on_control_default_sink_changed), (gvc_applet_init):
+	* src/gvc-mixer-control.c (remove_stream):
+	Hide the status icon when there is no output device.
+
+2008-11-18  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-control.c (gvc_mixer_control_set_default_sink),
 	(gvc_mixer_control_set_default_source), (_set_default_source),
 	(_set_default_sink), (_stream_has_name), (find_stream_for_name),

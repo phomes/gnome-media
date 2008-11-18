@@ -71,6 +71,14 @@ maybe_show_status_icon (GvcApplet *applet)
 
         show = TRUE;
 
+        if (applet->priv->sink_stream == NULL) {
+                show = FALSE;
+        }
+
+        if (applet->priv->dock != NULL) {
+                gtk_widget_hide (applet->priv->dock);
+        }
+
         gtk_status_icon_set_visible (applet->priv->status_icon, show);
 }
 
@@ -435,6 +443,12 @@ update_icon (GvcApplet *applet)
         gboolean is_muted;
         guint    n;
 
+        maybe_show_status_icon (applet);
+
+        if (applet->priv->sink_stream == NULL) {
+                return;
+        }
+
         volume = gvc_mixer_stream_get_volume (applet->priv->sink_stream);
         is_muted = gvc_mixer_stream_get_is_muted (applet->priv->sink_stream);
 
@@ -477,10 +491,20 @@ on_stream_is_muted_notify (GObject    *object,
 }
 
 static void
-on_control_ready (GvcMixerControl *control,
-                  GvcApplet       *applet)
+update_default_sink (GvcApplet *applet)
 {
-        applet->priv->sink_stream = gvc_mixer_control_get_default_sink (control);
+        if (applet->priv->sink_stream != NULL) {
+                g_signal_handlers_disconnect_by_func (applet->priv->sink_stream,
+                                                      G_CALLBACK (on_stream_volume_notify),
+                                                      applet);
+                g_signal_handlers_disconnect_by_func (applet->priv->sink_stream,
+                                                      G_CALLBACK (on_stream_is_muted_notify),
+                                                      applet);
+                g_object_unref (applet->priv->sink_stream);
+                applet->priv->sink_stream = NULL;
+        }
+
+        applet->priv->sink_stream = gvc_mixer_control_get_default_sink (applet->priv->control);
         if (applet->priv->sink_stream != NULL) {
                 GtkAdjustment *adj;
 
@@ -498,10 +522,17 @@ on_control_ready (GvcMixerControl *control,
                                   "notify::is-muted",
                                   G_CALLBACK (on_stream_is_muted_notify),
                                   applet);
-                update_icon (applet);
         } else {
                 g_warning ("Unable to get default sink");
         }
+        update_icon (applet);
+}
+
+static void
+on_control_ready (GvcMixerControl *control,
+                  GvcApplet       *applet)
+{
+        update_default_sink (applet);
 }
 
 static void
@@ -514,6 +545,14 @@ on_bar_is_muted_notify (GObject    *object,
         is_muted = gvc_channel_bar_get_is_muted (GVC_CHANNEL_BAR (object));
         gvc_mixer_stream_change_is_muted (applet->priv->sink_stream,
                                           is_muted);
+}
+
+static void
+on_control_default_sink_changed (GvcMixerControl *control,
+                                 guint            id,
+                                 GvcApplet       *applet)
+{
+        update_default_sink (applet);
 }
 
 static void
@@ -586,6 +625,10 @@ gvc_applet_init (GvcApplet *applet)
         g_signal_connect (applet->priv->control,
                           "ready",
                           G_CALLBACK (on_control_ready),
+                          applet);
+        g_signal_connect (applet->priv->control,
+                          "default-sink-changed",
+                          G_CALLBACK (on_control_default_sink_changed),
                           applet);
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (applet->priv->bar)));
