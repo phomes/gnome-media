@@ -324,6 +324,12 @@ on_stream_volume_notify (GObject        *object,
         stream = GVC_MIXER_STREAM (object);
 
         bar = lookup_bar_for_stream (dialog, stream);
+
+        if (bar == NULL) {
+                g_warning ("Unable to find bar for stream");
+                return;
+        }
+
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
 
         g_signal_handlers_block_by_func (adj,
@@ -349,6 +355,12 @@ on_stream_is_muted_notify (GObject        *object,
 
         stream = GVC_MIXER_STREAM (object);
         bar = lookup_bar_for_stream (dialog, stream);
+
+        if (bar == NULL) {
+                g_warning ("Unable to find bar for stream");
+                return;
+        }
+
         is_muted = gvc_mixer_stream_get_is_muted (stream);
         gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar),
                                       is_muted);

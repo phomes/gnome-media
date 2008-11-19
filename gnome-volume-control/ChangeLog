@@ -1,5 +1,11 @@
 2008-11-19  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-dialog.c (on_stream_volume_notify),
+	(on_stream_is_muted_notify):
+	Fix crash when can't find a bar for stream.
+
+2008-11-19  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (update_default_input),
 	(update_default_output), (on_mixer_control_default_sink_changed),
 	(on_mixer_control_default_source_changed), (add_stream),
