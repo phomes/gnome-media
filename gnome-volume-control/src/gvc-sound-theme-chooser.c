@@ -1309,6 +1309,32 @@ on_treeview_row_activated (GtkTreeView          *treeview,
 }
 
 static void
+constrain_list_size (GtkWidget      *widget,
+                     GtkRequisition *requisition,
+                     GtkWidget      *to_size)
+{
+        GtkRequisition req;
+        int            max_height;
+
+        /* constrain height to be the tree height up to a max */
+        max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
+
+        gtk_widget_size_request (to_size, &req);
+
+        requisition->height = MIN (req.height, max_height);
+}
+
+static void
+setup_list_size_constraint (GtkWidget *widget,
+                            GtkWidget *to_size)
+{
+        g_signal_connect (widget,
+                          "size-request",
+                          G_CALLBACK (constrain_list_size),
+                          to_size);
+}
+
+static void
 gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 {
         GtkWidget   *box;
@@ -1340,6 +1366,8 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
                           chooser);
 
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+        setup_list_size_constraint (scrolled_window, chooser->priv->treeview);
+
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
