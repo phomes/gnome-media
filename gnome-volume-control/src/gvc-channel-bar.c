@@ -114,6 +114,8 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_start (GTK_BOX (box), priv->mute_box, FALSE, FALSE, 0);
         }
 
+        gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_DISCONTINUOUS);
+
         if (bar->priv->size_group != NULL) {
                 gtk_size_group_add_widget (bar->priv->size_group, bar->priv->label);
         }
@@ -578,6 +580,7 @@ GtkWidget *
 gvc_channel_bar_new (void)
 {
         GObject *bar;
-        bar = g_object_new (GVC_TYPE_CHANNEL_BAR, NULL);
+        bar = g_object_new (GVC_TYPE_CHANNEL_BAR,
+                            NULL);
         return GTK_WIDGET (bar);
 }

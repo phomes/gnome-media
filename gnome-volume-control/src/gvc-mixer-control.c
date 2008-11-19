@@ -310,8 +310,6 @@ _set_default_source (GvcMixerControl *control,
                 new_id = gvc_mixer_stream_get_id (stream);
         }
 
-        g_debug ("GvcMixerControl: setting new default source %u (was %u)", new_id, control->priv->default_source_id);
-
         if (control->priv->default_source_id != new_id) {
                 control->priv->default_source_id = new_id;
                 control->priv->default_source_is_set = TRUE;
@@ -333,8 +331,6 @@ _set_default_sink (GvcMixerControl *control,
         if (stream != NULL) {
                 new_id = gvc_mixer_stream_get_id (stream);
         }
-
-        g_debug ("GvcMixerControl: setting new default sink %u (was %u)", new_id, control->priv->default_sink_id);
 
         if (control->priv->default_sink_id != new_id) {
                 control->priv->default_sink_id = new_id;
