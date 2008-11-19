@@ -632,10 +632,11 @@ update_sink_input (GvcMixerControl          *control,
         gboolean        is_new;
         pa_volume_t     avg_volume;
 
-#if 0
-        g_debug ("Updating sink input: index=%u name='%s'",
+#if 1
+        g_debug ("Updating sink input: index=%u name='%s' sink=%u",
                  info->index,
-                 info->name);
+                 info->name,
+                 info->sink);
 #endif
 
         is_new = FALSE;
@@ -847,7 +848,7 @@ update_event_role_stream (GvcMixerControl                  *control,
                 return;
         }
 
-#if 0
+#if 1
         g_debug ("Updating event role: name='%s' device='%s'",
                  info->name,
                  info->device);
