@@ -1,5 +1,14 @@
 2008-11-19  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-mixer-dialog.c (update_default_input),
+	(update_default_output), (on_mixer_control_default_sink_changed),
+	(on_mixer_control_default_source_changed), (add_stream),
+	(on_input_radio_toggled), (on_output_radio_toggled),
+	(create_stream_treeview), (gvc_mixer_dialog_constructor):
+	Use radio buttons instead of selection to change default in/out.
+
+2008-11-19  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-channel-bar.c (_scale_box_new), (gvc_channel_bar_new):
 	* src/gvc-mixer-control.c (_set_default_source),
 	(_set_default_sink):
