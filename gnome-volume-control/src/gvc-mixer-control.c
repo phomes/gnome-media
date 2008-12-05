@@ -480,6 +480,7 @@ update_sink (GvcMixerControl    *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     avg_volume;
+
 #if 0
         g_debug ("Updating sink: index=%u name='%s' description='%s'",
                  info->index,
@@ -631,11 +632,13 @@ update_sink_input (GvcMixerControl          *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     avg_volume;
+        const char     *name;
 
 #if 1
-        g_debug ("Updating sink input: index=%u name='%s' sink=%u",
+        g_debug ("Updating sink input: index=%u name='%s' client=%u sink=%u",
                  info->index,
                  info->name,
+                 info->client,
                  info->sink);
 #endif
 
@@ -652,7 +655,10 @@ update_sink_input (GvcMixerControl          *control,
 
         avg_volume = pa_cvolume_avg (&info->volume);
 
-        gvc_mixer_stream_set_name (stream, info->name);
+        name = (const char *)g_hash_table_lookup (control->priv->clients,
+                                                  GUINT_TO_POINTER (info->client));
+        gvc_mixer_stream_set_name (stream, name);
+        gvc_mixer_stream_set_description (stream, info->name);
 
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
@@ -681,11 +687,14 @@ static void
 update_client (GvcMixerControl      *control,
                const pa_client_info *info)
 {
-#if 0
+#if 1
         g_debug ("Updating client: index=%u name='%s'",
                  info->index,
                  info->name);
 #endif
+        g_hash_table_insert (control->priv->clients,
+                             GUINT_TO_POINTER (info->index),
+                             g_strdup (info->name));
 }
 
 static void
@@ -1061,7 +1070,8 @@ static void
 remove_client (GvcMixerControl *control,
                guint            index)
 {
-        /* FIXME: */
+        g_hash_table_remove (control->priv->clients,
+                             GUINT_TO_POINTER (index));
 }
 
 static void
@@ -1480,7 +1490,8 @@ gvc_mixer_control_init (GvcMixerControl *control)
         control->priv->sources = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->sink_inputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->source_outputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
-        control->priv->clients = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
+
+        control->priv->clients = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_free);
 }
 
 static void
