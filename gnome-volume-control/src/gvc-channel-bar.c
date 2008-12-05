@@ -555,6 +555,9 @@ gvc_channel_bar_init (GvcChannelBar *bar)
         gtk_widget_set_no_show_all (bar->priv->image, TRUE);
 
         bar->priv->label = gtk_label_new (NULL);
+        gtk_misc_set_alignment (GTK_MISC (bar->priv->label),
+                                0.0,
+                                0.5);
         gtk_widget_set_no_show_all (bar->priv->label, TRUE);
 }
 
