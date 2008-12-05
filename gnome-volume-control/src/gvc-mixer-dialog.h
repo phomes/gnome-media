@@ -49,6 +49,7 @@ typedef struct
 GType               gvc_mixer_dialog_get_type            (void);
 
 GvcMixerDialog *    gvc_mixer_dialog_new                 (GvcMixerControl *control);
+gboolean            gvc_mixer_dialog_set_page            (GvcMixerDialog *dialog, const gchar* page);
 
 G_END_DECLS
 

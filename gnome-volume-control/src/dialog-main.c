@@ -43,6 +43,7 @@
 
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
+static gchar* page = NULL;
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
@@ -158,11 +159,16 @@ on_control_ready (GvcMixerControl *control,
                   gpointer         data)
 {
         GvcMixerDialog *dialog;
+
         dialog = gvc_mixer_dialog_new (control);
         g_signal_connect (dialog,
                           "response",
                           G_CALLBACK (on_dialog_response),
                           NULL);
+
+        if (page != NULL)
+                gvc_mixer_dialog_set_page(dialog, page);
+
         gtk_widget_show (GTK_WIDGET (dialog));
 }
 
@@ -172,6 +178,7 @@ main (int argc, char **argv)
         GError             *error;
         GvcMixerControl    *control;
         static GOptionEntry entries[] = {
+                { "page", 'p', 0, G_OPTION_ARG_STRING, &page, N_("Startup page"), "playback|recording|effects|applications" },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }

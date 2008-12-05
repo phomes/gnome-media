@@ -45,6 +45,7 @@ struct GvcMixerDialogPrivate
 {
         GvcMixerControl *mixer_control;
         GHashTable      *bars;
+        GtkWidget       *notebook;
         GtkWidget       *output_bar;
         GtkWidget       *input_bar;
         GtkWidget       *effects_bar;
@@ -765,7 +766,6 @@ gvc_mixer_dialog_constructor (GType                  type,
         GtkWidget        *label;
         GtkWidget        *alignment;
         GtkWidget        *box;
-        GtkWidget        *notebook;
         GSList           *streams;
         GSList           *l;
         GvcMixerStream   *stream;
@@ -794,16 +794,16 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (self->priv->output_stream_box),
                             self->priv->output_bar, TRUE, TRUE, 12);
 
-        notebook = gtk_notebook_new ();
+        self->priv->notebook = gtk_notebook_new ();
         gtk_box_pack_start (GTK_BOX (main_vbox),
-                            notebook,
+                            self->priv->notebook,
                             TRUE, TRUE, 12);
 
         /* Effects page */
         self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
         label = gtk_label_new (_("Sound Effects"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->sound_effects_box,
                                   label);
 
@@ -823,7 +823,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->input_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
         label = gtk_label_new (_("Input"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->input_box,
                                   label);
 
@@ -862,7 +862,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->output_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->output_box), 12);
         label = gtk_label_new (_("Output"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->output_box,
                                   label);
 
@@ -894,7 +894,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->applications_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->applications_box), 12);
         label = gtk_label_new (_("Applications"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (notebook),
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->applications_box,
                                   label);
 
@@ -1001,4 +1001,21 @@ gvc_mixer_dialog_new (GvcMixerControl *control)
                                "mixer-control", control,
                                NULL);
         return GVC_MIXER_DIALOG (dialog);
+}
+
+gboolean
+gvc_mixer_dialog_set_page (GvcMixerDialog *self, const gchar* page)
+{
+        g_return_val_if_fail (self != NULL, FALSE);
+
+        if (g_ascii_strncasecmp(page, "playback",8) == 0)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 2);
+        else if (g_ascii_strncasecmp(page, "recording",9) == 0)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 1);
+        else if (g_ascii_strncasecmp(page, "effects",7) == 0)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 0);
+        else if (g_ascii_strncasecmp(page, "applications",12) == 0)
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 3);
+        else /* default is "playback" */
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 0);
 }
