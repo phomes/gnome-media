@@ -1,3 +1,10 @@
+2008-12-05  Frederic Peters  <fpeters@0d.be>
+
+	* gnome-sound-recorder.schemas.in.in:
+	* src/gsr-window.c: (record_input_changed_cb), (fill_record_input),
+	(gsr_window_init): remember last input channel (in a last-input gconf
+	key).  Closes: #558720
+
 2008-12-05  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* src/gsr-window.c (gsr_window_init): Fixes critical warning when

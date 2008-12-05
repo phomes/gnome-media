@@ -63,6 +63,7 @@ extern void gsr_add_recent (gchar *filename);
 #define KEY_OPEN_DIR        GCONF_DIR "system-state/open-file-directory"
 #define KEY_SAVE_DIR        GCONF_DIR "system-state/save-file-directory"
 #define KEY_LAST_PROFILE_ID GCONF_DIR "last-profile-id"
+#define KEY_LAST_INPUT      GCONF_DIR "last-input"
 #define EBUSY_TRY_AGAIN     3000    /* Empirical data */
 
 typedef struct _GSRWindowPipeline {
@@ -1878,6 +1879,7 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 
 	gst_mixer_set_record (window->priv->mixer, selected, TRUE);
 	GST_DEBUG ("input changed to: %s\n", selected->label);
+	gconf_client_set_string (gconf_client, KEY_LAST_INPUT, selected->label, NULL);
 }
 
 static void
@@ -1885,6 +1887,7 @@ fill_record_input (GSRWindow *window, gchar *selected)
 {
 	const GList *l;
 	int i = 0;
+	int last_possible_i = 0;
 	GtkTreeModel *model;
 
 	model = gtk_combo_box_get_model (GTK_COMBO_BOX (window->priv->input));
@@ -1911,12 +1914,20 @@ fill_record_input (GSRWindow *window, gchar *selected)
 			gtk_combo_box_append_text (GTK_COMBO_BOX (window->priv->input), t->label);
 			++i;
 		}
-		if ((t->flags & GST_MIXER_TRACK_RECORD) && (selected == NULL)) {
-			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
+		if (t->flags & GST_MIXER_TRACK_RECORD) {
+			if (selected == NULL) {
+				gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
+			} else {
+				last_possible_i = i;
+			}
 		}
 		if ((selected != NULL) && g_str_equal (selected, t->label)) {
 			gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), i - 1);
 		}
+	}
+
+	if (gtk_combo_box_get_active (GTK_COMBO_BOX (window->priv->input)) == -1) {
+		gtk_combo_box_set_active (GTK_COMBO_BOX (window->priv->input), last_possible_i - 1);
 	}
 
 	gtk_widget_show (window->priv->input);
@@ -2228,6 +2239,7 @@ gsr_window_init (GSRWindow *window)
 	GtkWidget *align;
 	GtkWidget *frame;
 	gchar *id;
+	gchar *last_input;
 	gchar *path;
 	GtkAction *action;
 	GtkShadowType shadow_type;
@@ -2480,7 +2492,11 @@ gsr_window_init (GSRWindow *window)
 			    _("Ready"));
 
 	gtk_widget_show_all (main_vbox);
-	fill_record_input (window, NULL);
+	last_input = gconf_client_get_string (gconf_client, KEY_LAST_INPUT, NULL);
+	fill_record_input (window, last_input);
+	if (last_input) {
+		g_free (last_input);
+	}
 
 	/* Make the pipelines */
 	priv->play = NULL;
