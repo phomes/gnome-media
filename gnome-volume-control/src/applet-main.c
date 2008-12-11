@@ -177,6 +177,9 @@ main (int argc, char **argv)
 
         acquire_name ();
 
+        gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
+                                           ICON_DATA_DIR);
+
         applet = gvc_applet_new ();
         gvc_applet_start (applet);
 

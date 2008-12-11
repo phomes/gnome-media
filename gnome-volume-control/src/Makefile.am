@@ -13,6 +13,7 @@ INCLUDES =					\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGLADEDIR=\""$(pkgdatadir)"\"		\
 	-DSOUND_DATA_DIR="\"$(datadir)/sounds\"" \
+	-DICON_DATA_DIR="\"$(pkgdatadir)/icons\"" \
 	$(NULL)
 
 gnome_volume_control_applet_LDADD =		\
