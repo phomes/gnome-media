@@ -48,10 +48,10 @@ static const char *output_icon_names[] = {
 };
 
 static const char *input_icon_names[] = {
-        "audio-volume-muted",
-        "audio-volume-low",
-        "audio-volume-medium",
-        "audio-volume-high",
+        "audio-input-microphone-muted",
+        "audio-input-microphone-low",
+        "audio-input-microphone-medium",
+        "audio-input-microphone-high",
         NULL
 };
 
