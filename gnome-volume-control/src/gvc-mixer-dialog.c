@@ -830,6 +830,10 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->input_bar = create_bar (self, self->priv->size_group);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                   _("Input volume: "));
+        gvc_channel_bar_set_low_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
+                                           "audio-input-microphone-low");
+        gvc_channel_bar_set_high_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
+                                            "audio-input-microphone-high");
         gtk_widget_set_sensitive (self->priv->input_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->input_box),
                             self->priv->input_bar, FALSE, FALSE, 12);
@@ -1004,7 +1008,8 @@ gvc_mixer_dialog_new (GvcMixerControl *control)
 }
 
 gboolean
-gvc_mixer_dialog_set_page (GvcMixerDialog *self, const gchar* page)
+gvc_mixer_dialog_set_page (GvcMixerDialog *self,
+                           const char     *page)
 {
         g_return_val_if_fail (self != NULL, FALSE);
 
@@ -1018,4 +1023,6 @@ gvc_mixer_dialog_set_page (GvcMixerDialog *self, const gchar* page)
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 3);
         else /* default is "playback" */
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 0);
+
+        return TRUE;
 }

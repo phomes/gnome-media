@@ -51,6 +51,8 @@ struct GvcChannelBarPrivate
         gboolean       is_muted;
         char          *name;
         char          *icon_name;
+        char          *low_icon_name;
+        char          *high_icon_name;
         GtkSizeGroup  *size_group;
 };
 
@@ -63,6 +65,8 @@ enum
         PROP_ADJUSTMENT,
         PROP_NAME,
         PROP_ICON_NAME,
+        PROP_LOW_ICON_NAME,
+        PROP_HIGH_ICON_NAME,
 };
 
 static void     gvc_channel_bar_class_init (GvcChannelBarClass *klass);
@@ -184,6 +188,38 @@ gvc_channel_bar_set_icon_name (GvcChannelBar  *bar,
         bar->priv->icon_name = g_strdup (name);
         update_image (bar);
         g_object_notify (G_OBJECT (bar), "icon-name");
+}
+
+void
+gvc_channel_bar_set_low_icon_name   (GvcChannelBar *bar,
+                                     const char    *name)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
+
+        if (name != NULL && strcmp (bar->priv->low_icon_name, name) != 0) {
+                g_free (bar->priv->low_icon_name);
+                bar->priv->low_icon_name = g_strdup (name);
+                gtk_image_set_from_icon_name (GTK_IMAGE (bar->priv->low_image),
+                                              bar->priv->low_icon_name,
+                                              GTK_ICON_SIZE_BUTTON);
+                g_object_notify (G_OBJECT (bar), "low-icon-name");
+        }
+}
+
+void
+gvc_channel_bar_set_high_icon_name  (GvcChannelBar *bar,
+                                     const char    *name)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
+
+        if (name != NULL && strcmp (bar->priv->high_icon_name, name) != 0) {
+                g_free (bar->priv->high_icon_name);
+                bar->priv->high_icon_name = g_strdup (name);
+                gtk_image_set_from_icon_name (GTK_IMAGE (bar->priv->high_image),
+                                              bar->priv->high_icon_name,
+                                              GTK_ICON_SIZE_BUTTON);
+                g_object_notify (G_OBJECT (bar), "high-icon-name");
+        }
 }
 
 void
@@ -369,6 +405,12 @@ gvc_channel_bar_set_property (GObject       *object,
         case PROP_ICON_NAME:
                 gvc_channel_bar_set_icon_name (self, g_value_get_string (value));
                 break;
+        case PROP_LOW_ICON_NAME:
+                gvc_channel_bar_set_low_icon_name (self, g_value_get_string (value));
+                break;
+        case PROP_HIGH_ICON_NAME:
+                gvc_channel_bar_set_high_icon_name (self, g_value_get_string (value));
+                break;
         case PROP_ADJUSTMENT:
                 gvc_channel_bar_set_adjustment (self, g_value_get_object (value));
                 break;
@@ -402,6 +444,12 @@ gvc_channel_bar_get_property (GObject     *object,
                 break;
         case PROP_ICON_NAME:
                 g_value_set_string (value, priv->icon_name);
+                break;
+        case PROP_LOW_ICON_NAME:
+                g_value_set_string (value, priv->low_icon_name);
+                break;
+        case PROP_HIGH_ICON_NAME:
+                g_value_set_string (value, priv->high_icon_name);
                 break;
         case PROP_ADJUSTMENT:
                 g_value_set_object (value, gvc_channel_bar_get_adjustment (self));
@@ -495,6 +543,20 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
                                                               "Name of icon to display for this stream",
                                                               NULL,
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_LOW_ICON_NAME,
+                                         g_param_spec_string ("low-icon-name",
+                                                              "Icon Name",
+                                                              "Name of icon to display for this stream",
+                                                              "audio-volume-low",
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_HIGH_ICON_NAME,
+                                         g_param_spec_string ("high-icon-name",
+                                                              "Icon Name",
+                                                              "Name of icon to display for this stream",
+                                                              "audio-volume-high",
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GvcChannelBarPrivate));
 }
@@ -512,6 +574,9 @@ static void
 gvc_channel_bar_init (GvcChannelBar *bar)
 {
         bar->priv = GVC_CHANNEL_BAR_GET_PRIVATE (bar);
+
+        bar->priv->low_icon_name = g_strdup ("audio-volume-low");
+        bar->priv->high_icon_name = g_strdup ("audio-volume-high");
 
         bar->priv->orientation = GTK_ORIENTATION_VERTICAL;
         bar->priv->adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0,
@@ -575,6 +640,8 @@ gvc_channel_bar_finalize (GObject *object)
 
         g_free (channel_bar->priv->name);
         g_free (channel_bar->priv->icon_name);
+        g_free (channel_bar->priv->low_icon_name);
+        g_free (channel_bar->priv->high_icon_name);
 
         G_OBJECT_CLASS (gvc_channel_bar_parent_class)->finalize (object);
 }

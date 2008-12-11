@@ -53,6 +53,10 @@ void                gvc_channel_bar_set_name            (GvcChannelBar *bar,
                                                          const char    *name);
 void                gvc_channel_bar_set_icon_name       (GvcChannelBar *bar,
                                                          const char    *icon_name);
+void                gvc_channel_bar_set_low_icon_name   (GvcChannelBar *bar,
+                                                         const char    *icon_name);
+void                gvc_channel_bar_set_high_icon_name  (GvcChannelBar *bar,
+                                                         const char    *icon_name);
 
 void                gvc_channel_bar_set_orientation     (GvcChannelBar *bar,
                                                          GtkOrientation orientation);
