@@ -630,6 +630,17 @@ Makefile
 po/Makefile.in
 gnome-volume-control/Makefile
 gnome-volume-control/data/Makefile
+gnome-volume-control/data/icons/Makefile
+gnome-volume-control/data/icons/16x16/Makefile
+gnome-volume-control/data/icons/16x16/status/Makefile
+gnome-volume-control/data/icons/22x22/Makefile
+gnome-volume-control/data/icons/22x22/status/Makefile
+gnome-volume-control/data/icons/24x24/Makefile
+gnome-volume-control/data/icons/24x24/status/Makefile
+gnome-volume-control/data/icons/32x32/Makefile
+gnome-volume-control/data/icons/32x32/status/Makefile
+gnome-volume-control/data/icons/scalable/Makefile
+gnome-volume-control/data/icons/scalable/status/Makefile
 gnome-volume-control/src/Makefile
 vu-meter/Makefile
 cddb-slave2/Makefile
