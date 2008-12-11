@@ -35,6 +35,8 @@ gnome_volume_control_applet_SOURCES =		\
 	gvc-mixer-control.c			\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
+	gvc-stream-status-icon.h		\
+	gvc-stream-status-icon.c		\
 	gvc-applet.h				\
 	gvc-applet.c				\
 	applet-main.c				\

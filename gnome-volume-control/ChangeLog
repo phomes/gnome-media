@@ -1,3 +1,34 @@
+2008-12-11  William Jon McCann  <jmccann@redhat.com>
+
+	* src/Makefile.am:
+	* src/gvc-applet.c (gvc_applet_start), (gvc_applet_dispose),
+	(update_default_source), (update_default_sink), (on_control_ready),
+	(on_control_default_sink_changed),
+	(on_control_default_source_changed), (gvc_applet_constructor),
+	(gvc_applet_class_init), (gvc_applet_init), (gvc_applet_finalize):
+	* src/gvc-stream-status-icon.c (on_adjustment_value_changed),
+	(popup_dock), (on_status_icon_activate),
+	(on_menu_activate_open_volume_control),
+	(on_status_icon_popup_menu), (on_status_icon_scroll_event),
+	(gvc_icon_release_grab), (on_dock_button_press), (popdown_dock),
+	(gvc_icon_grab_notify), (on_dock_grab_notify),
+	(on_dock_grab_broken_event), (on_dock_key_release),
+	(maybe_show_status_icon), (update_icon),
+	(gvc_stream_status_icon_set_icon_names), (on_stream_volume_notify),
+	(on_stream_is_muted_notify),
+	(gvc_stream_status_icon_set_display_name),
+	(gvc_stream_status_icon_set_mixer_stream),
+	(gvc_stream_status_icon_set_property),
+	(gvc_stream_status_icon_get_property), (on_bar_is_muted_notify),
+	(gvc_stream_status_icon_constructor),
+	(gvc_stream_status_icon_dispose),
+	(gvc_stream_status_icon_class_init), (gvc_stream_status_icon_init),
+	(gvc_stream_status_icon_finalize), (gvc_stream_status_icon_new):
+	* src/gvc-stream-status-icon.h:
+	Create a stream-status-icon class.  Create a status icon
+	for input stream.  Todo: only show input status icon
+	when an application is recording, use microphone images.
+
 2008-12-05  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gvc-channel-bar.c (gvc_channel_bar_init):
