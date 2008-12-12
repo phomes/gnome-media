@@ -627,6 +627,8 @@ static char *
 get_sound_filename (GvcSoundThemeChooser *chooser)
 {
         GtkWidget          *file_chooser;
+        GtkWidget          *toplevel;
+        GtkWindow          *parent;
         int                 response;
         char               *filename;
         char               *path;
@@ -634,8 +636,15 @@ get_sound_filename (GvcSoundThemeChooser *chooser)
         GtkFileFilter      *filter;
         guint               i;
 
+	/* Try to get the parent window of the widget */
+	toplevel = gtk_widget_get_toplevel (GTK_WIDGET (chooser));
+	if (GTK_WIDGET_TOPLEVEL (toplevel) != FALSE)
+		parent = GTK_WINDOW (toplevel);
+	else
+		parent = NULL;
+
         file_chooser = gtk_file_chooser_dialog_new (_("Select Sound File"),
-                                                    NULL, /* FIXME: */
+                                                    parent,
                                                     GTK_FILE_CHOOSER_ACTION_OPEN,
                                                     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                                     GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
