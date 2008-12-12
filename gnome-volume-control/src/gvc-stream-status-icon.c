@@ -355,32 +355,12 @@ on_dock_key_release (GtkWidget           *widget,
 }
 
 static void
-maybe_show_status_icon (GvcStreamStatusIcon *icon)
-{
-        gboolean show;
-
-        show = TRUE;
-
-        if (icon->priv->mixer_stream == NULL) {
-                show = FALSE;
-        }
-
-        if (icon->priv->dock != NULL) {
-                gtk_widget_hide (icon->priv->dock);
-        }
-
-        gtk_status_icon_set_visible (GTK_STATUS_ICON (icon), show);
-}
-
-static void
 update_icon (GvcStreamStatusIcon *icon)
 {
         guint    volume;
         gboolean is_muted;
         guint    n;
         char    *markup;
-
-        maybe_show_status_icon (icon);
 
         if (icon->priv->mixer_stream == NULL) {
                 return;
@@ -691,6 +671,19 @@ gvc_stream_status_icon_class_init (GvcStreamStatusIconClass *klass)
 }
 
 static void
+on_status_icon_visible_notify (GvcStreamStatusIcon *icon)
+{
+        gboolean visible;
+
+        g_object_get (icon, "visible", &visible, NULL);
+        if (! visible) {
+                if (icon->priv->dock != NULL) {
+                        gtk_widget_hide (icon->priv->dock);
+                }
+        }
+}
+
+static void
 gvc_stream_status_icon_init (GvcStreamStatusIcon *icon)
 {
         icon->priv = GVC_STREAM_STATUS_ICON_GET_PRIVATE (icon);
@@ -709,7 +702,10 @@ gvc_stream_status_icon_init (GvcStreamStatusIcon *icon)
                           G_CALLBACK (on_status_icon_scroll_event),
                           icon);
 #endif
-
+        g_signal_connect (icon,
+                          "notify::visible",
+                          G_CALLBACK (on_status_icon_visible_notify),
+                          NULL);
 }
 
 static void

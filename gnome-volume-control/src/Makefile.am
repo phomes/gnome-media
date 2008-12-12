@@ -30,6 +30,8 @@ gnome_volume_control_applet_SOURCES =		\
 	gvc-mixer-source.c			\
 	gvc-mixer-sink-input.h			\
 	gvc-mixer-sink-input.c			\
+	gvc-mixer-source-output.h		\
+	gvc-mixer-source-output.c		\
 	gvc-mixer-event-role.h			\
 	gvc-mixer-event-role.c			\
 	gvc-mixer-control.h			\
@@ -57,6 +59,8 @@ gnome_volume_control_SOURCES =			\
 	gvc-mixer-source.c			\
 	gvc-mixer-sink-input.h			\
 	gvc-mixer-sink-input.c			\
+	gvc-mixer-source-output.h		\
+	gvc-mixer-source-output.c		\
 	gvc-mixer-event-role.h			\
 	gvc-mixer-event-role.c			\
 	gvc-mixer-control.h			\

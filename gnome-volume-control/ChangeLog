@@ -1,5 +1,28 @@
 2008-12-11  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-applet.c (maybe_show_status_icons), (gvc_applet_start),
+	(on_control_stream_removed), (on_control_stream_added),
+	(gvc_applet_constructor):
+	* src/gvc-mixer-control.c (gvc_mixer_control_get_source_outputs),
+	(update_source), (update_sink_input), (update_source_output),
+	(update_event_role_stream):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-source-output.c
+	(gvc_mixer_source_output_change_volume),
+	(gvc_mixer_source_output_change_is_muted),
+	(gvc_mixer_source_output_constructor),
+	(gvc_mixer_source_output_class_init),
+	(gvc_mixer_source_output_init), (gvc_mixer_source_output_finalize),
+	(gvc_mixer_source_output_new):
+	* src/gvc-mixer-source-output.h:
+	* src/gvc-stream-status-icon.c (update_icon),
+	(on_status_icon_visible_notify), (gvc_stream_status_icon_init):
+	Show/hide input level status icon based on presence of
+	a "source output" stream.
+
+2008-12-11  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-channel-bar.c (gvc_channel_bar_set_low_icon_name),
 	(gvc_channel_bar_set_high_icon_name),
 	(gvc_channel_bar_set_property), (gvc_channel_bar_get_property),

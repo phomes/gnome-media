@@ -37,6 +37,7 @@
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
 #include "gvc-mixer-sink-input.h"
+#include "gvc-mixer-source-output.h"
 #include "gvc-mixer-event-role.h"
 
 #define GVC_MIXER_CONTROL_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_CONTROL, GvcMixerControlPrivate))
@@ -272,6 +273,20 @@ gvc_mixer_control_get_sink_inputs (GvcMixerControl *control)
 
         retval = NULL;
         g_hash_table_foreach (control->priv->sink_inputs,
+                              listify_hash_values_hfunc,
+                              &retval);
+        return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
+}
+
+GSList *
+gvc_mixer_control_get_source_outputs (GvcMixerControl *control)
+{
+        GSList *retval;
+
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+
+        retval = NULL;
+        g_hash_table_foreach (control->priv->source_outputs,
                               listify_hash_values_hfunc,
                               &retval);
         return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
@@ -532,7 +547,7 @@ update_source (GvcMixerControl      *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     avg_volume;
-#if 0
+#if 1
         g_debug ("Updating source: index=%u name='%s' description='%s'",
                  info->index,
                  info->name,
@@ -634,7 +649,7 @@ update_sink_input (GvcMixerControl          *control,
         pa_volume_t     avg_volume;
         const char     *name;
 
-#if 1
+#if 0
         g_debug ("Updating sink input: index=%u name='%s' client=%u sink=%u",
                  info->index,
                  info->name,
@@ -676,11 +691,41 @@ static void
 update_source_output (GvcMixerControl             *control,
                       const pa_source_output_info *info)
 {
-#if 0
-        g_debug ("Updating source output: index=%u name='%s'",
+        GvcMixerStream *stream;
+        gboolean        is_new;
+        const char     *name;
+
+#if 1
+        g_debug ("Updating source output: index=%u name='%s' client=%u source=%u",
                  info->index,
-                 info->name);
+                 info->name,
+                 info->client,
+                 info->source);
 #endif
+
+        is_new = FALSE;
+        stream = g_hash_table_lookup (control->priv->source_outputs,
+                                      GUINT_TO_POINTER (info->index));
+        if (stream == NULL) {
+                stream = gvc_mixer_source_output_new (control->priv->pa_context,
+                                                      info->index,
+                                                      info->channel_map.channels);
+                is_new = TRUE;
+        }
+
+        name = (const char *)g_hash_table_lookup (control->priv->clients,
+                                                  GUINT_TO_POINTER (info->client));
+
+        gvc_mixer_stream_set_name (stream, name);
+        gvc_mixer_stream_set_description (stream, info->name);
+        set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
+
+        if (is_new) {
+                g_hash_table_insert (control->priv->source_outputs,
+                                     GUINT_TO_POINTER (info->index),
+                                     g_object_ref (stream));
+                add_stream (control, stream);
+        }
 }
 
 static void
@@ -857,7 +902,7 @@ update_event_role_stream (GvcMixerControl                  *control,
                 return;
         }
 
-#if 1
+#if 0
         g_debug ("Updating event role: name='%s' device='%s'",
                  info->name,
                  info->device);

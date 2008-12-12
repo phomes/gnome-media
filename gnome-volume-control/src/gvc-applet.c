@@ -68,12 +68,36 @@ static void     gvc_applet_finalize   (GObject        *object);
 
 G_DEFINE_TYPE (GvcApplet, gvc_applet, G_TYPE_OBJECT)
 
+static void
+maybe_show_status_icons (GvcApplet *applet)
+{
+        gboolean        show;
+        GvcMixerStream *stream;
+        GSList         *source_outputs;
+
+        show = TRUE;
+        stream = gvc_mixer_control_get_default_sink (applet->priv->control);
+        if (stream == NULL) {
+                show = FALSE;
+        }
+        gtk_status_icon_set_visible (GTK_STATUS_ICON (applet->priv->output_status_icon), show);
+
+
+        show = FALSE;
+        stream = gvc_mixer_control_get_default_source (applet->priv->control);
+        source_outputs = gvc_mixer_control_get_source_outputs (applet->priv->control);
+        if (stream != NULL && source_outputs != NULL) {
+                show = TRUE;
+        }
+        gtk_status_icon_set_visible (GTK_STATUS_ICON (applet->priv->input_status_icon), show);
+}
+
 void
 gvc_applet_start (GvcApplet *applet)
 {
         g_return_if_fail (GVC_IS_APPLET (applet));
 
-        //maybe_show_status_icon (applet);
+        maybe_show_status_icons (applet);
 }
 
 static void
@@ -141,6 +165,22 @@ on_control_default_source_changed (GvcMixerControl *control,
         update_default_source (applet);
 }
 
+static void
+on_control_stream_removed (GvcMixerControl *control,
+                           guint            id,
+                           GvcApplet       *applet)
+{
+        maybe_show_status_icons (applet);
+}
+
+static void
+on_control_stream_added (GvcMixerControl *control,
+                         guint            id,
+                         GvcApplet       *applet)
+{
+        maybe_show_status_icons (applet);
+}
+
 static GObject *
 gvc_applet_constructor (GType                  type,
                         guint                  n_construct_properties,
@@ -165,6 +205,14 @@ gvc_applet_constructor (GType                  type,
         g_signal_connect (self->priv->control,
                           "default-source-changed",
                           G_CALLBACK (on_control_default_source_changed),
+                          self);
+        g_signal_connect (self->priv->control,
+                          "stream-added",
+                          G_CALLBACK (on_control_stream_added),
+                          self);
+        g_signal_connect (self->priv->control,
+                          "stream-removed",
+                          G_CALLBACK (on_control_stream_removed),
                           self);
 
         gvc_mixer_control_open (self->priv->control);

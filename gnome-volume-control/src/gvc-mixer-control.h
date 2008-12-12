@@ -68,6 +68,7 @@ GSList *            gvc_mixer_control_get_streams         (GvcMixerControl *cont
 GSList *            gvc_mixer_control_get_sinks           (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sources         (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sink_inputs     (GvcMixerControl *control);
+GSList *            gvc_mixer_control_get_source_outputs  (GvcMixerControl *control);
 
 GvcMixerStream *    gvc_mixer_control_lookup_stream_id    (GvcMixerControl *control,
                                                            guint            id);
