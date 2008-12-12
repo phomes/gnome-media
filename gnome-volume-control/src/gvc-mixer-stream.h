@@ -60,10 +60,12 @@ guint               gvc_mixer_stream_get_id          (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_num_channels (GvcMixerStream *stream);
 
 guint               gvc_mixer_stream_get_volume      (GvcMixerStream *stream);
+gdouble             gvc_mixer_stream_get_decibel     (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_volume   (GvcMixerStream *stream,
                                                       guint           volume);
 
 gboolean            gvc_mixer_stream_get_is_muted    (GvcMixerStream *stream);
+gboolean            gvc_mixer_stream_get_can_decibel (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_is_muted (GvcMixerStream *stream,
                                                       gboolean        is_muted);
 const char *        gvc_mixer_stream_get_name        (GvcMixerStream *stream);
@@ -73,8 +75,12 @@ const char *        gvc_mixer_stream_get_description (GvcMixerStream *stream);
 /* private */
 gboolean            gvc_mixer_stream_set_volume      (GvcMixerStream *stream,
                                                       guint           volume);
+gboolean            gvc_mixer_stream_set_decibel     (GvcMixerStream *stream,
+                                                      gdouble         db);
 gboolean            gvc_mixer_stream_set_is_muted    (GvcMixerStream *stream,
                                                       gboolean        is_muted);
+gboolean            gvc_mixer_stream_set_can_decibel (GvcMixerStream *stream,
+                                                      gboolean        can_decibel);
 gboolean            gvc_mixer_stream_set_name        (GvcMixerStream *stream,
                                                       const char     *name);
 gboolean            gvc_mixer_stream_set_description (GvcMixerStream *stream,

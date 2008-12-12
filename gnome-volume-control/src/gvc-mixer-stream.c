@@ -42,10 +42,12 @@ struct GvcMixerStreamPrivate
         guint          index;
         guint          num_channels;
         guint          volume;
+        gdouble        decibel;
         char          *name;
         char          *description;
         char          *icon_name;
         gboolean       is_muted;
+        gboolean       can_decibel;
 };
 
 enum
@@ -59,7 +61,9 @@ enum
         PROP_DESCRIPTION,
         PROP_ICON_NAME,
         PROP_VOLUME,
+        PROP_DECIBEL,
         PROP_IS_MUTED,
+        PROP_CAN_DECIBEL
 };
 
 static void     gvc_mixer_stream_class_init (GvcMixerStreamClass *klass);
@@ -117,6 +121,13 @@ gvc_mixer_stream_get_volume (GvcMixerStream *stream)
         return stream->priv->volume;
 }
 
+gdouble
+gvc_mixer_stream_get_decibel (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), 0);
+        return stream->priv->decibel;
+}
+
 gboolean
 gvc_mixer_stream_set_volume (GvcMixerStream *stream,
                              pa_volume_t     volume)
@@ -132,10 +143,31 @@ gvc_mixer_stream_set_volume (GvcMixerStream *stream,
 }
 
 gboolean
+gvc_mixer_stream_set_decibel (GvcMixerStream *stream,
+                              gdouble         db)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        if (db != stream->priv->decibel) {
+                stream->priv->decibel = db;
+                g_object_notify (G_OBJECT (stream), "decibel");
+        }
+
+        return TRUE;
+}
+
+gboolean
 gvc_mixer_stream_get_is_muted  (GvcMixerStream *stream)
 {
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
         return stream->priv->is_muted;
+}
+
+gboolean
+gvc_mixer_stream_get_can_decibel (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+        return stream->priv->can_decibel;
 }
 
 gboolean
@@ -147,6 +179,20 @@ gvc_mixer_stream_set_is_muted  (GvcMixerStream *stream,
         if (is_muted != stream->priv->is_muted) {
                 stream->priv->is_muted = is_muted;
                 g_object_notify (G_OBJECT (stream), "is-muted");
+        }
+
+        return TRUE;
+}
+
+gboolean
+gvc_mixer_stream_set_can_decibel  (GvcMixerStream *stream,
+                                   gboolean        can_decibel)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        if (can_decibel != stream->priv->can_decibel) {
+                stream->priv->can_decibel = can_decibel;
+                g_object_notify (G_OBJECT (stream), "can-decibel");
         }
 
         return TRUE;
@@ -245,8 +291,14 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_VOLUME:
                 gvc_mixer_stream_set_volume (self, g_value_get_ulong (value));
                 break;
+        case PROP_DECIBEL:
+                gvc_mixer_stream_set_decibel (self, g_value_get_double (value));
+                break;
         case PROP_IS_MUTED:
                 gvc_mixer_stream_set_is_muted (self, g_value_get_boolean (value));
+                break;
+        case PROP_CAN_DECIBEL:
+                gvc_mixer_stream_set_can_decibel (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -287,8 +339,14 @@ gvc_mixer_stream_get_property (GObject     *object,
         case PROP_VOLUME:
                 g_value_set_ulong (value, self->priv->volume);
                 break;
+        case PROP_DECIBEL:
+                g_value_set_double (value, self->priv->decibel);
+                break;
         case PROP_IS_MUTED:
                 g_value_set_boolean (value, self->priv->is_muted);
+                break;
+        case PROP_CAN_DECIBEL:
+                g_value_set_boolean (value, self->priv->can_decibel);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -394,6 +452,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                              "The volume for this stream",
                                                              0, G_MAXULONG, 0,
                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (gobject_class,
+                                         PROP_DECIBEL,
+                                         g_param_spec_double ("decibel",
+                                                              "Decibel",
+                                                              "The decibel level for this stream",
+                                                              -G_MAXDOUBLE, G_MAXDOUBLE, 0,
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
 
         g_object_class_install_property (gobject_class,
                                          PROP_NAME,
@@ -421,6 +486,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                          g_param_spec_boolean ("is-muted",
                                                                "is muted",
                                                                "Whether stream is muted",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (gobject_class,
+                                         PROP_CAN_DECIBEL,
+                                         g_param_spec_boolean ("can-decibel",
+                                                               "can decibel",
+                                                               "Whether stream volume can be converted to decibel units",
                                                                FALSE,
                                                                G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
 

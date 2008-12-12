@@ -525,6 +525,12 @@ update_sink (GvcMixerControl    *control,
         gvc_mixer_stream_set_icon_name (stream, "audio-card");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+        gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
+        if (!!(info->flags & PA_SINK_DECIBEL_VOLUME)) {
+                gdouble db;
+                db = pa_sw_volume_to_dB (avg_volume);
+                gvc_mixer_stream_set_decibel (stream, db);
+        }
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sinks,
@@ -547,6 +553,7 @@ update_source (GvcMixerControl      *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     avg_volume;
+
 #if 1
         g_debug ("Updating source: index=%u name='%s' description='%s'",
                  info->index,
@@ -577,6 +584,12 @@ update_source (GvcMixerControl      *control,
         gvc_mixer_stream_set_icon_name (stream, "audio-input-microphone");
         gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+        gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SOURCE_DECIBEL_VOLUME));
+        if (!!(info->flags & PA_SINK_DECIBEL_VOLUME)) {
+                gdouble db;
+                db = pa_sw_volume_to_dB (avg_volume);
+                gvc_mixer_stream_set_decibel (stream, db);
+        }
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sources,

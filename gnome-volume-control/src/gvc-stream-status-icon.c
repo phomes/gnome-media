@@ -361,6 +361,8 @@ update_icon (GvcStreamStatusIcon *icon)
         gboolean is_muted;
         guint    n;
         char    *markup;
+        gboolean can_decibel;
+        gdouble  db;
 
         if (icon->priv->mixer_stream == NULL) {
                 return;
@@ -368,6 +370,8 @@ update_icon (GvcStreamStatusIcon *icon)
 
         volume = gvc_mixer_stream_get_volume (icon->priv->mixer_stream);
         is_muted = gvc_mixer_stream_get_is_muted (icon->priv->mixer_stream);
+        db = gvc_mixer_stream_get_decibel (icon->priv->mixer_stream);
+        can_decibel = gvc_mixer_stream_get_can_decibel (icon->priv->mixer_stream);
 
         /* select image */
         if (volume <= 0 || is_muted) {
@@ -389,10 +393,28 @@ update_icon (GvcStreamStatusIcon *icon)
                 icon->priv->current_icon = n;
         }
 
-        markup = g_strdup_printf ("<b>%s: %.0f%%</b>\n<small>%s</small>",
-                                  icon->priv->display_name,
-                                  100 * (float)volume / PA_VOLUME_NORM,
-                                  gvc_mixer_stream_get_description (icon->priv->mixer_stream));
+        if (is_muted) {
+                markup = g_strdup_printf ("<b>%s: %s</b>\n<small>%s</small>",
+                                          icon->priv->display_name,
+                                          _("Muted"),
+                                          gvc_mixer_stream_get_description (icon->priv->mixer_stream));
+        } else if (can_decibel && (db > PA_DECIBEL_MININFTY)) {
+                markup = g_strdup_printf ("<b>%s: %.0f%%</b>\n<small>%0.2f dB\n%s</small>",
+                                          icon->priv->display_name,
+                                          100 * (float)volume / PA_VOLUME_NORM,
+                                          db,
+                                          gvc_mixer_stream_get_description (icon->priv->mixer_stream));
+        } else if (can_decibel) {
+                markup = g_strdup_printf ("<b>%s: %.0f%%</b>\n<small>-&#8734; dB\n%s</small>",
+                                          icon->priv->display_name,
+                                          100 * (float)volume / PA_VOLUME_NORM,
+                                          gvc_mixer_stream_get_description (icon->priv->mixer_stream));
+        } else {
+                markup = g_strdup_printf ("<b>%s: %.0f%%</b>\n<small>%s</small>",
+                                          icon->priv->display_name,
+                                          100 * (float)volume / PA_VOLUME_NORM,
+                                          gvc_mixer_stream_get_description (icon->priv->mixer_stream));
+        }
         gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (icon),
                                             markup);
         g_free (markup);
