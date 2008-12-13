@@ -34,6 +34,7 @@
 #include "gvc-mixer-control.h"
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
+#include "gvc-mixer-source-output.h"
 #include "gvc-mixer-dialog.h"
 #include "gvc-sound-theme-chooser.h"
 #include "rb-segmented-bar.h"
@@ -56,6 +57,7 @@ struct GvcMixerDialogPrivate
         GtkWidget       *input_box;
         GtkWidget       *output_box;
         GtkWidget       *applications_box;
+        GtkWidget       *no_apps_label;
         GtkWidget       *output_treeview;
         GtkWidget       *input_treeview;
         GtkWidget       *sound_theme_chooser;
@@ -65,6 +67,7 @@ struct GvcMixerDialogPrivate
         GtkSizeGroup    *apps_size_group;
 
         gdouble          last_input_peak;
+        guint            num_apps;
 };
 
 enum {
@@ -616,13 +619,16 @@ add_stream (GvcMixerDialog *dialog,
                 bar = dialog->priv->effects_bar;
                 g_debug ("Adding effects stream");
         } else if (! GVC_IS_MIXER_SOURCE (stream)
-                   && !GVC_IS_MIXER_SINK (stream)) {
+                   && !GVC_IS_MIXER_SINK (stream)
+                   && !GVC_IS_MIXER_SOURCE_OUTPUT (stream)) {
                 bar = create_bar (dialog, dialog->priv->apps_size_group);
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
                 gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
                                                gvc_mixer_stream_get_icon_name (stream));
                 gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
+                dialog->priv->num_apps++;
+                gtk_widget_hide (dialog->priv->no_apps_label);
         }
 
         if (GVC_IS_MIXER_SOURCE (stream)) {
@@ -741,6 +747,10 @@ remove_stream (GvcMixerDialog  *dialog,
                 g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
                 gtk_container_remove (GTK_CONTAINER (bar->parent),
                                       bar);
+                dialog->priv->num_apps--;
+                if (dialog->priv->num_apps == 0) {
+                        gtk_widget_show (dialog->priv->no_apps_label);
+                }
         }
 
         /* remove from any models */
@@ -1095,6 +1105,10 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->applications_box,
                                   label);
+        self->priv->no_apps_label = gtk_label_new (_("No application is currently playing audio."));
+        gtk_box_pack_start (GTK_BOX (self->priv->applications_box),
+                            self->priv->no_apps_label,
+                            TRUE, TRUE, 0);
 
         gtk_widget_show_all (GTK_WIDGET (self));
 
