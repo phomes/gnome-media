@@ -38,6 +38,8 @@ struct GvcChannelBarPrivate
 {
         GtkOrientation orientation;
         GtkWidget     *scale_box;
+        GtkWidget     *start_box;
+        GtkWidget     *end_box;
         GtkWidget     *image;
         GtkWidget     *label;
         GtkWidget     *low_image;
@@ -80,6 +82,8 @@ _scale_box_new (GvcChannelBar *bar)
 {
         GvcChannelBarPrivate *priv = bar->priv;
         GtkWidget            *box;
+        GtkWidget            *sbox;
+        GtkWidget            *ebox;
 
         if (priv->orientation == GTK_ORIENTATION_VERTICAL) {
                 bar->priv->scale_box = box = gtk_vbox_new (FALSE, 6);
@@ -89,16 +93,23 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_widget_set_size_request (priv->scale, -1, SCALE_SIZE);
                 gtk_range_set_inverted (GTK_RANGE (priv->scale), TRUE);
 
-                gtk_box_pack_start (GTK_BOX (box), priv->image, FALSE, FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (box), priv->label, FALSE, FALSE, 0);
+                bar->priv->start_box = sbox = gtk_vbox_new (FALSE, 6);
+                gtk_box_pack_start (GTK_BOX (box), sbox, FALSE, FALSE, 0);
 
-                gtk_box_pack_start (GTK_BOX (box), priv->high_image, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
+
+                gtk_box_pack_start (GTK_BOX (sbox), priv->high_image, FALSE, FALSE, 0);
                 gtk_widget_hide (priv->high_image);
                 gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
-                gtk_box_pack_start (GTK_BOX (box), priv->low_image, FALSE, FALSE, 0);
+
+                bar->priv->end_box = ebox = gtk_vbox_new (FALSE, 6);
+                gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
+
+                gtk_box_pack_start (GTK_BOX (ebox), priv->low_image, FALSE, FALSE, 0);
                 gtk_widget_hide (priv->low_image);
 
-                gtk_box_pack_start (GTK_BOX (box), priv->mute_box, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (ebox), priv->mute_box, FALSE, FALSE, 0);
         } else {
                 bar->priv->scale_box = box = gtk_hbox_new (FALSE, 6);
 
@@ -106,22 +117,30 @@ _scale_box_new (GvcChannelBar *bar)
 
                 gtk_widget_set_size_request (priv->scale, SCALE_SIZE, -1);
 
-                gtk_box_pack_start (GTK_BOX (box), priv->image, FALSE, FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (box), priv->label, FALSE, FALSE, 0);
+                bar->priv->start_box = sbox = gtk_hbox_new (FALSE, 6);
+                gtk_box_pack_start (GTK_BOX (box), sbox, FALSE, FALSE, 0);
 
-                gtk_box_pack_start (GTK_BOX (box), priv->low_image, FALSE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (sbox), priv->low_image, FALSE, FALSE, 0);
                 gtk_widget_show (priv->low_image);
 
+                gtk_box_pack_end (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
+
                 gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
-                gtk_box_pack_start (GTK_BOX (box), priv->high_image, FALSE, FALSE, 0);
+
+                bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
+                gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
+
+                gtk_box_pack_start (GTK_BOX (ebox), priv->high_image, FALSE, FALSE, 0);
                 gtk_widget_show (priv->high_image);
-                gtk_box_pack_start (GTK_BOX (box), priv->mute_box, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (ebox), priv->mute_box, FALSE, FALSE, 0);
         }
 
         gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_DISCONTINUOUS);
 
         if (bar->priv->size_group != NULL) {
-                gtk_size_group_add_widget (bar->priv->size_group, bar->priv->label);
+                gtk_size_group_add_widget (bar->priv->size_group, sbox);
+                gtk_size_group_add_widget (bar->priv->size_group, ebox);
         }
 
         gtk_scale_set_draw_value (GTK_SCALE (priv->scale), FALSE);
@@ -244,12 +263,21 @@ gvc_channel_bar_set_orientation (GvcChannelBar  *bar,
                         g_object_ref (bar->priv->low_image);
                         g_object_ref (bar->priv->high_image);
 
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->image);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->label);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->mute_box);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->low_image);
+                        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->image);
+                        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->label);
+                        gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->mute_box);
+
+                        if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
+                                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->low_image);
+                                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->high_image);
+                        } else {
+                                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->low_image);
+                                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->high_image);
+                        }
+
+                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->start_box);
                         gtk_container_remove (GTK_CONTAINER (box), bar->priv->scale);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->high_image);
+                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->end_box);
                         gtk_container_remove (GTK_CONTAINER (frame), box);
 
                         bar->priv->scale_box = _scale_box_new (bar);
