@@ -71,7 +71,8 @@ gboolean            gvc_channel_bar_get_show_mute       (GvcChannelBar *bar);
 void                gvc_channel_bar_set_show_mute       (GvcChannelBar *bar,
                                                          gboolean       show_mute);
 void                gvc_channel_bar_set_size_group      (GvcChannelBar *bar,
-                                                         GtkSizeGroup  *group);
+                                                         GtkSizeGroup  *group,
+                                                         gboolean       symmetric);
 
 G_END_DECLS
 

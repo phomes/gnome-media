@@ -1,5 +1,16 @@
 2008-12-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-channel-bar.c (_scale_box_new), (update_layout),
+	(gvc_channel_bar_set_size_group),
+	(gvc_channel_bar_set_orientation), (gvc_channel_bar_constructor),
+	(gvc_channel_bar_init):
+	* src/gvc-channel-bar.h:
+	* src/gvc-mixer-dialog.c (create_bar), (add_stream),
+	(gvc_mixer_dialog_constructor):
+	Don't put the end box in the size group for app channel bars.
+
+2008-12-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (add_stream), (remove_stream),
 	(gvc_mixer_dialog_constructor):
 	Show explanation when no apps are playing.

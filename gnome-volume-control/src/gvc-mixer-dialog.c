@@ -539,15 +539,17 @@ save_bar_for_stream (GvcMixerDialog *dialog,
 
 static GtkWidget *
 create_bar (GvcMixerDialog *dialog,
-            GtkSizeGroup   *size_group)
+            GtkSizeGroup   *size_group,
+            gboolean        symmetric)
 {
-        GtkWidget     *bar;
+        GtkWidget *bar;
 
         bar = gvc_channel_bar_new ();
         gtk_widget_set_sensitive (bar, FALSE);
         if (size_group != NULL) {
                 gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
-                                                size_group);
+                                                size_group,
+                                                symmetric);
         }
         gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (bar),
                                          GTK_ORIENTATION_HORIZONTAL);
@@ -621,11 +623,12 @@ add_stream (GvcMixerDialog *dialog,
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)
                    && !GVC_IS_MIXER_SOURCE_OUTPUT (stream)) {
-                bar = create_bar (dialog, dialog->priv->apps_size_group);
+                bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
                 gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
                                                gvc_mixer_stream_get_icon_name (stream));
+
                 gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
                 dialog->priv->num_apps++;
                 gtk_widget_hide (dialog->priv->no_apps_label);
@@ -952,7 +955,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->output_stream_box,
                             FALSE, FALSE, 12);
-        self->priv->output_bar = create_bar (self, self->priv->size_group);
+        self->priv->output_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->output_bar),
                                   _("Output volume: "));
         gtk_widget_set_sensitive (self->priv->output_bar, FALSE);
@@ -972,7 +975,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->sound_effects_box,
                                   label);
 
-        self->priv->effects_bar = create_bar (self, self->priv->size_group);
+        self->priv->effects_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
                                   _("Alert Volume: "));
         gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
@@ -992,7 +995,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->input_box,
                                   label);
 
-        self->priv->input_bar = create_bar (self, self->priv->size_group);
+        self->priv->input_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                   _("Input volume: "));
         gvc_channel_bar_set_low_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),

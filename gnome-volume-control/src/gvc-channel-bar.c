@@ -56,6 +56,7 @@ struct GvcChannelBarPrivate
         char          *low_icon_name;
         char          *high_icon_name;
         GtkSizeGroup  *size_group;
+        gboolean       symmetric;
 };
 
 enum
@@ -140,7 +141,10 @@ _scale_box_new (GvcChannelBar *bar)
 
         if (bar->priv->size_group != NULL) {
                 gtk_size_group_add_widget (bar->priv->size_group, sbox);
-                gtk_size_group_add_widget (bar->priv->size_group, ebox);
+
+                if (bar->priv->symmetric) {
+                        gtk_size_group_add_widget (bar->priv->size_group, ebox);
+                }
         }
 
         gtk_scale_set_draw_value (GTK_SCALE (priv->scale), FALSE);
@@ -175,14 +179,74 @@ update_label (GvcChannelBar *bar)
         }
 }
 
+static void
+update_layout (GvcChannelBar *bar)
+{
+        GtkWidget *box;
+        GtkWidget *frame;
+
+        if (bar->priv->scale == NULL) {
+                return;
+        }
+
+        box = bar->priv->scale_box;
+        frame = box->parent;
+
+        g_object_ref (bar->priv->image);
+        g_object_ref (bar->priv->label);
+        g_object_ref (bar->priv->mute_box);
+        g_object_ref (bar->priv->low_image);
+        g_object_ref (bar->priv->high_image);
+
+        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->image);
+        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->label);
+        gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->mute_box);
+
+        if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
+                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->low_image);
+                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->high_image);
+        } else {
+                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->low_image);
+                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->high_image);
+        }
+
+        gtk_container_remove (GTK_CONTAINER (box), bar->priv->start_box);
+        gtk_container_remove (GTK_CONTAINER (box), bar->priv->scale);
+        gtk_container_remove (GTK_CONTAINER (box), bar->priv->end_box);
+        gtk_container_remove (GTK_CONTAINER (frame), box);
+
+        bar->priv->scale_box = _scale_box_new (bar);
+        gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
+
+        g_object_unref (bar->priv->image);
+        g_object_unref (bar->priv->label);
+        g_object_unref (bar->priv->mute_box);
+        g_object_unref (bar->priv->low_image);
+        g_object_unref (bar->priv->high_image);
+
+        gtk_widget_show_all (frame);
+}
+
 void
 gvc_channel_bar_set_size_group (GvcChannelBar *bar,
-                                GtkSizeGroup  *group)
+                                GtkSizeGroup  *group,
+                                gboolean       symmetric)
 {
         g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
 
         bar->priv->size_group = group;
-        gtk_size_group_add_widget (group, bar->priv->scale);
+        bar->priv->symmetric = symmetric;
+
+        if (bar->priv->size_group != NULL) {
+                gtk_size_group_add_widget (bar->priv->size_group,
+                                           bar->priv->start_box);
+
+                if (bar->priv->symmetric) {
+                        gtk_size_group_add_widget (bar->priv->size_group,
+                                                   bar->priv->end_box);
+                }
+        }
+        gtk_widget_queue_draw (GTK_WIDGET (bar));
 }
 
 void
@@ -249,49 +313,7 @@ gvc_channel_bar_set_orientation (GvcChannelBar  *bar,
 
         if (orientation != bar->priv->orientation) {
                 bar->priv->orientation = orientation;
-
-                if (bar->priv->scale != NULL) {
-                        GtkWidget *box;
-                        GtkWidget *frame;
-
-                        box = bar->priv->scale_box;
-                        frame = box->parent;
-
-                        g_object_ref (bar->priv->image);
-                        g_object_ref (bar->priv->label);
-                        g_object_ref (bar->priv->mute_box);
-                        g_object_ref (bar->priv->low_image);
-                        g_object_ref (bar->priv->high_image);
-
-                        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->image);
-                        gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->label);
-                        gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->mute_box);
-
-                        if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
-                                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->low_image);
-                                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->high_image);
-                        } else {
-                                gtk_container_remove (GTK_CONTAINER (bar->priv->end_box), bar->priv->low_image);
-                                gtk_container_remove (GTK_CONTAINER (bar->priv->start_box), bar->priv->high_image);
-                        }
-
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->start_box);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->scale);
-                        gtk_container_remove (GTK_CONTAINER (box), bar->priv->end_box);
-                        gtk_container_remove (GTK_CONTAINER (frame), box);
-
-                        bar->priv->scale_box = _scale_box_new (bar);
-                        gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
-
-                        g_object_unref (bar->priv->image);
-                        g_object_unref (bar->priv->label);
-                        g_object_unref (bar->priv->mute_box);
-                        g_object_unref (bar->priv->low_image);
-                        g_object_unref (bar->priv->high_image);
-
-                        gtk_widget_show_all (frame);
-                }
-
+                update_layout (bar);
                 g_object_notify (G_OBJECT (bar), "orientation");
         }
 }
@@ -495,24 +517,12 @@ gvc_channel_bar_constructor (GType                  type,
 {
         GObject       *object;
         GvcChannelBar *self;
-        GtkWidget     *frame;
 
         object = G_OBJECT_CLASS (gvc_channel_bar_parent_class)->constructor (type, n_construct_properties, construct_params);
 
         self = GVC_CHANNEL_BAR (object);
 
-        /* frame */
-        frame = gtk_frame_new (NULL);
-        gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-        gtk_container_add (GTK_CONTAINER (self), frame);
-
-        /* box with scale */
-        self->priv->scale_box = _scale_box_new (self);
-        gtk_container_add (GTK_CONTAINER (frame), self->priv->scale_box);
-
         update_mute_button (self);
-
-        gtk_widget_show_all (frame);
 
         return object;
 }
@@ -601,6 +611,8 @@ on_mute_button_toggled (GtkToggleButton *button,
 static void
 gvc_channel_bar_init (GvcChannelBar *bar)
 {
+        GtkWidget *frame;
+
         bar->priv = GVC_CHANNEL_BAR_GET_PRIVATE (bar);
 
         bar->priv->low_icon_name = g_strdup ("audio-volume-low");
@@ -652,6 +664,16 @@ gvc_channel_bar_init (GvcChannelBar *bar)
                                 0.0,
                                 0.5);
         gtk_widget_set_no_show_all (bar->priv->label, TRUE);
+
+        /* frame */
+        frame = gtk_frame_new (NULL);
+        gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
+        gtk_container_add (GTK_CONTAINER (bar), frame);
+        gtk_widget_show_all (frame);
+
+        /* box with scale */
+        bar->priv->scale_box = _scale_box_new (bar);
+        gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
 }
 
 static void
