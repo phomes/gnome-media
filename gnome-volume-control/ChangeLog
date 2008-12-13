@@ -1,5 +1,37 @@
 2008-12-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-channel-map.c (gvc_channel_map_get_num_channels),
+	(gvc_channel_map_get_gains), (gvc_channel_map_get_positions),
+	(gvc_channel_map_class_init), (gvc_channel_map_init),
+	(gvc_channel_map_finalize), (gvc_channel_map_new),
+	(set_from_pa_map), (gvc_channel_map_new_from_pa_channel_map):
+	* src/gvc-channel-map.h:
+	* src/gvc-mixer-control.c (update_sink), (update_source),
+	(update_sink_input), (update_source_output):
+	* src/gvc-mixer-event-role.c (update_settings),
+	(gvc_mixer_event_role_new):
+	* src/gvc-mixer-sink-input.c (gvc_mixer_sink_input_change_volume),
+	(gvc_mixer_sink_input_new):
+	* src/gvc-mixer-sink-input.h:
+	* src/gvc-mixer-sink.c (gvc_mixer_sink_change_volume),
+	(gvc_mixer_sink_new):
+	* src/gvc-mixer-sink.h:
+	* src/gvc-mixer-source-output.c (gvc_mixer_source_output_new):
+	* src/gvc-mixer-source-output.h:
+	* src/gvc-mixer-source.c (gvc_mixer_source_change_volume),
+	(gvc_mixer_source_new):
+	* src/gvc-mixer-source.h:
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_get_channel_map),
+	(gvc_mixer_stream_set_channel_map),
+	(gvc_mixer_stream_set_property), (gvc_mixer_stream_get_property),
+	(gvc_mixer_stream_class_init):
+	* src/gvc-mixer-stream.h:
+	Add a ChannelMap class that we can use to manipulate channel
+	volume levels.
+
+2008-12-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-channel-bar.c (_scale_box_new), (update_layout),
 	(gvc_channel_bar_set_size_group),
 	(gvc_channel_bar_set_orientation), (gvc_channel_bar_constructor),

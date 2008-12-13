@@ -24,6 +24,8 @@ gnome_volume_control_applet_LDADD =		\
 gnome_volume_control_applet_SOURCES =		\
 	gvc-mixer-stream.h			\
 	gvc-mixer-stream.c			\
+	gvc-channel-map.h			\
+	gvc-channel-map.c			\
 	gvc-mixer-sink.h			\
 	gvc-mixer-sink.c			\
 	gvc-mixer-source.h			\
@@ -53,6 +55,8 @@ gnome_volume_control_LDADD =			\
 gnome_volume_control_SOURCES =			\
 	gvc-mixer-stream.h			\
 	gvc-mixer-stream.c			\
+	gvc-channel-map.h			\
+	gvc-channel-map.c			\
 	gvc-mixer-sink.h			\
 	gvc-mixer-sink.c			\
 	gvc-mixer-source.h			\

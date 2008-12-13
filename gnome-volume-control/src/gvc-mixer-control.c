@@ -503,12 +503,15 @@ update_sink (GvcMixerControl    *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     avg_volume;
+        char            map_buff[PA_CHANNEL_MAP_SNPRINT_MAX];
 
-#if 0
-        g_debug ("Updating sink: index=%u name='%s' description='%s'",
+        pa_channel_map_snprint (map_buff, PA_CHANNEL_MAP_SNPRINT_MAX, &info->channel_map);
+#if 1
+        g_debug ("Updating sink: index=%u name='%s' description='%s' map='%s'",
                  info->index,
                  info->name,
-                 info->description);
+                 info->description,
+                 map_buff);
 #endif
 
         /* for now completely ignore virtual streams */
@@ -520,9 +523,12 @@ update_sink (GvcMixerControl    *control,
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GvcChannelMap *map;
+                map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_sink_new (control->priv->pa_context,
                                              info->index,
-                                             info->channel_map.channels);
+                                             map);
+                g_object_unref (map);
                 is_new = TRUE;
         }
 
@@ -579,9 +585,12 @@ update_source (GvcMixerControl      *control,
         stream = g_hash_table_lookup (control->priv->sources,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GvcChannelMap *map;
+                map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_source_new (control->priv->pa_context,
                                                info->index,
-                                               info->channel_map.channels);
+                                               map);
+                g_object_unref (map);
                 is_new = TRUE;
         }
 
@@ -683,9 +692,12 @@ update_sink_input (GvcMixerControl          *control,
         stream = g_hash_table_lookup (control->priv->sink_inputs,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GvcChannelMap *map;
+                map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_sink_input_new (control->priv->pa_context,
                                                    info->index,
-                                                   info->channel_map.channels);
+                                                   map);
+                g_object_unref (map);
                 is_new = TRUE;
         }
 
@@ -728,9 +740,12 @@ update_source_output (GvcMixerControl             *control,
         stream = g_hash_table_lookup (control->priv->source_outputs,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GvcChannelMap *map;
+                map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_source_output_new (control->priv->pa_context,
                                                       info->index,
-                                                      info->channel_map.channels);
+                                                      map);
+                g_object_unref (map);
                 is_new = TRUE;
         }
 

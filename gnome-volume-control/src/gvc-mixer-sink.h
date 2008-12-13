@@ -48,9 +48,9 @@ typedef struct
 
 GType               gvc_mixer_sink_get_type            (void);
 
-GvcMixerStream *    gvc_mixer_sink_new                 (pa_context *context,
-                                                        guint       index,
-                                                        guint       num_channels);
+GvcMixerStream *    gvc_mixer_sink_new                 (pa_context    *context,
+                                                        guint          index,
+                                                        GvcChannelMap *map);
 
 G_END_DECLS
 

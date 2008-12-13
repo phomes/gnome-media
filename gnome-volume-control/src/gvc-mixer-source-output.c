@@ -112,16 +112,16 @@ gvc_mixer_source_output_finalize (GObject *object)
 }
 
 GvcMixerStream *
-gvc_mixer_source_output_new (pa_context *context,
-                             guint       index,
-                             guint       num_channels)
+gvc_mixer_source_output_new (pa_context    *context,
+                             guint          index,
+                             GvcChannelMap *channel_map)
 {
         GObject *object;
 
         object = g_object_new (GVC_TYPE_MIXER_SOURCE_OUTPUT,
                                "pa-context", context,
                                "index", index,
-                               "num-channels", num_channels,
+                               "channel-map", channel_map,
                                NULL);
 
         return GVC_MIXER_STREAM (object);

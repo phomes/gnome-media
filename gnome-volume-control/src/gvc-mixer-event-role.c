@@ -58,14 +58,12 @@ update_settings (GvcMixerEventRole *role,
 {
         pa_operation              *o;
         guint                      index;
-        guint                      num_channels;
         pa_context                *context;
         pa_ext_stream_restore_info info;
 
         index = gvc_mixer_stream_get_index (GVC_MIXER_STREAM (role));
-        num_channels = gvc_mixer_stream_get_num_channels (GVC_MIXER_STREAM (role));
 
-        pa_cvolume_set (&info.volume, num_channels, (pa_volume_t)volume);
+        pa_cvolume_set (&info.volume, 1, (pa_volume_t)volume);
 
         info.name = "sink-input-by-media-role:event";
         info.channel_map.channels = 1;
@@ -233,7 +231,6 @@ gvc_mixer_event_role_new (pa_context *context,
         object = g_object_new (GVC_TYPE_MIXER_EVENT_ROLE,
                                "pa-context", context,
                                "index", 0,
-                               "num-channels", 1,
                                "device", device,
                                NULL);
 

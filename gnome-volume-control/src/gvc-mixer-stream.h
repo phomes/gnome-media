@@ -24,6 +24,8 @@
 #include <glib-object.h>
 #include <pulse/pulseaudio.h>
 
+#include "gvc-channel-map.h"
+
 G_BEGIN_DECLS
 
 #define GVC_TYPE_MIXER_STREAM         (gvc_mixer_stream_get_type ())
@@ -57,7 +59,7 @@ GType               gvc_mixer_stream_get_type        (void);
 pa_context *        gvc_mixer_stream_get_pa_context  (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_index       (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_id          (GvcMixerStream *stream);
-guint               gvc_mixer_stream_get_num_channels (GvcMixerStream *stream);
+GvcChannelMap *     gvc_mixer_stream_get_channel_map (GvcMixerStream *stream);
 
 guint               gvc_mixer_stream_get_volume      (GvcMixerStream *stream);
 gdouble             gvc_mixer_stream_get_decibel     (GvcMixerStream *stream);

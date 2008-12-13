@@ -40,7 +40,7 @@ struct GvcMixerStreamPrivate
         pa_context    *pa_context;
         guint          id;
         guint          index;
-        guint          num_channels;
+        GvcChannelMap *channel_map;
         guint          volume;
         gdouble        decibel;
         char          *name;
@@ -55,7 +55,7 @@ enum
         PROP_0,
         PROP_ID,
         PROP_PA_CONTEXT,
-        PROP_NUM_CHANNELS,
+        PROP_CHANNEL_MAP,
         PROP_INDEX,
         PROP_NAME,
         PROP_DESCRIPTION,
@@ -107,11 +107,11 @@ gvc_mixer_stream_get_id (GvcMixerStream *stream)
         return stream->priv->id;
 }
 
-guint
-gvc_mixer_stream_get_num_channels (GvcMixerStream *stream)
+GvcChannelMap *
+gvc_mixer_stream_get_channel_map (GvcMixerStream *stream)
 {
-        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), 0);
-        return stream->priv->num_channels;
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), NULL);
+        return stream->priv->channel_map;
 }
 
 guint
@@ -238,6 +238,27 @@ gvc_mixer_stream_set_description (GvcMixerStream *stream,
         return TRUE;
 }
 
+static gboolean
+gvc_mixer_stream_set_channel_map (GvcMixerStream *stream,
+                                  GvcChannelMap  *channel_map)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        if (channel_map != NULL) {
+                g_object_ref (channel_map);
+        }
+
+        if (stream->priv->channel_map != NULL) {
+                g_object_unref (stream->priv->channel_map);
+        }
+
+        stream->priv->channel_map = channel_map;
+
+        g_object_notify (G_OBJECT (stream), "channel-map");
+
+        return TRUE;
+}
+
 const char *
 gvc_mixer_stream_get_icon_name (GvcMixerStream *stream)
 {
@@ -276,8 +297,8 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_ID:
                 self->priv->id = g_value_get_ulong (value);
                 break;
-        case PROP_NUM_CHANNELS:
-                self->priv->num_channels = g_value_get_ulong (value);
+        case PROP_CHANNEL_MAP:
+                gvc_mixer_stream_set_channel_map (self, g_value_get_object (value));
                 break;
         case PROP_NAME:
                 gvc_mixer_stream_set_name (self, g_value_get_string (value));
@@ -324,8 +345,8 @@ gvc_mixer_stream_get_property (GObject     *object,
         case PROP_ID:
                 g_value_set_ulong (value, self->priv->id);
                 break;
-        case PROP_NUM_CHANNELS:
-                g_value_set_ulong (value, self->priv->num_channels);
+        case PROP_CHANNEL_MAP:
+                g_value_set_object (value, self->priv->channel_map);
                 break;
         case PROP_NAME:
                 g_value_set_string (value, self->priv->name);
@@ -433,12 +454,12 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                              0, G_MAXULONG, 0,
                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT_ONLY));
         g_object_class_install_property (gobject_class,
-                                         PROP_NUM_CHANNELS,
-                                         g_param_spec_ulong ("num-channels",
-                                                             "num channels",
-                                                             "The number of channels for this stream",
-                                                             0, G_MAXULONG, 0,
-                                                             G_PARAM_READWRITE|G_PARAM_CONSTRUCT_ONLY));
+                                         PROP_CHANNEL_MAP,
+                                         g_param_spec_object ("channel-map",
+                                                              "channel map",
+                                                              "The channel map for this stream",
+                                                              GVC_TYPE_CHANNEL_MAP,
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_object_class_install_property (gobject_class,
                                          PROP_PA_CONTEXT,
                                          g_param_spec_pointer ("pa-context",

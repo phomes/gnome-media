@@ -50,14 +50,28 @@ gvc_mixer_sink_input_change_volume (GvcMixerStream *stream,
 {
         pa_operation      *o;
         guint              index;
-        guint              num_channels;
+        GvcChannelMap     *map;
         pa_context        *context;
         pa_cvolume         cv;
+        guint              i;
+        guint              num_channels;
+        gdouble           *gains;
 
         index = gvc_mixer_stream_get_index (stream);
-        num_channels = gvc_mixer_stream_get_num_channels (stream);
 
+        map = gvc_mixer_stream_get_channel_map (stream);
+        num_channels = gvc_channel_map_get_num_channels (map);
+        gains = gvc_channel_map_get_gains (map);
+
+        /* set all values to nominal level */
         pa_cvolume_set (&cv, num_channels, (pa_volume_t)volume);
+
+        /* apply channel gain mapping */
+        for (i = 0; i < num_channels; i++) {
+                pa_volume_t v;
+                v = (double) v * gains[i];
+                cv.values[i] = v;
+        }
 
         context = gvc_mixer_stream_get_pa_context (stream);
 
@@ -156,16 +170,16 @@ gvc_mixer_sink_input_finalize (GObject *object)
 }
 
 GvcMixerStream *
-gvc_mixer_sink_input_new (pa_context *context,
-                          guint       index,
-                          guint       num_channels)
+gvc_mixer_sink_input_new (pa_context    *context,
+                          guint          index,
+                          GvcChannelMap *channel_map)
 {
         GObject *object;
 
         object = g_object_new (GVC_TYPE_MIXER_SINK_INPUT,
                                "pa-context", context,
                                "index", index,
-                               "num-channels", num_channels,
+                               "channel-map", channel_map,
                                NULL);
 
         return GVC_MIXER_STREAM (object);
