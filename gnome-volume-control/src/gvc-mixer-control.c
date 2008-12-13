@@ -84,6 +84,13 @@ static void     gvc_mixer_control_finalize   (GObject              *object);
 
 G_DEFINE_TYPE (GvcMixerControl, gvc_mixer_control, G_TYPE_OBJECT)
 
+pa_context *
+gvc_mixer_control_get_pa_context (GvcMixerControl *control)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+        return control->priv->pa_context;
+}
+
 GvcMixerStream *
 gvc_mixer_control_get_event_sink_input (GvcMixerControl *control)
 {
@@ -405,6 +412,7 @@ update_default_source_from_name (GvcMixerControl *control,
 
         if (changed) {
                 GvcMixerStream *stream;
+
                 g_free (control->priv->default_source_name);
                 control->priv->default_source_name = g_strdup (name);
 

@@ -1,5 +1,35 @@
 2008-12-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-channel-bar.c (_scale_box_new):
+	* src/gvc-mixer-control.c (gvc_mixer_control_get_pa_context),
+	(update_default_source_from_name):
+	* src/gvc-mixer-control.h:
+	* src/gvc-mixer-dialog.c (update_input_peak), (update_input_meter),
+	(on_monitor_suspended_callback), (on_monitor_read_callback),
+	(create_monitor_stream_for_source),
+	(on_mixer_control_default_source_changed), (add_stream),
+	(gvc_mixer_dialog_constructor):
+	* src/rb-segmented-bar.c (rb_segment_new), (rb_segment_free),
+	(rb_segmented_bar_init), (rb_segmented_bar_class_init),
+	(rb_segmented_bar_finalize), (rb_segmented_bar_get_property),
+	(rb_segmented_bar_set_property),
+	(rb_segmented_bar_default_value_formatter),
+	(rb_segmented_bar_size_request), (create_adapt_layout),
+	(compute_layout_size), (rb_segmented_bar_size_allocate),
+	(rb_segmented_bar_add_segment),
+	(rb_segmented_bar_add_segment_default_color),
+	(rb_segmented_bar_update_segment), (draw_rounded_rectangle),
+	(rb_segmented_bar_render_segments), (modula), (hsb_from_color),
+	(color_from_hsb), (color_shade), (make_segment_gradient),
+	(rb_segmented_bar_render_strokes), (rb_segmented_bar_render),
+	(rb_segmented_bar_render_labels), (rb_segmented_bar_expose),
+	(rb_segmented_bar_new), (rb_segmented_bar_set_value_formatter):
+	* src/rb-segmented-bar.h:
+	Add input level monitor.
+
+2008-12-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-channel-bar.c (_scale_box_new),
 	(gvc_channel_bar_set_orientation):
 	Use the same size group for the start and end of

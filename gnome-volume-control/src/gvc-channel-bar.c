@@ -123,8 +123,8 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_end (GTK_BOX (sbox), priv->low_image, FALSE, FALSE, 0);
                 gtk_widget_show (priv->low_image);
 
-                gtk_box_pack_end (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
-                gtk_box_pack_end (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
 
                 gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
 

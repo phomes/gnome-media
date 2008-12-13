@@ -22,6 +22,7 @@
 #define __GVC_MIXER_CONTROL_H
 
 #include <glib-object.h>
+#include <pulse/pulseaudio.h>
 #include "gvc-mixer-stream.h"
 
 G_BEGIN_DECLS
@@ -64,6 +65,7 @@ gboolean            gvc_mixer_control_open                (GvcMixerControl *cont
 gboolean            gvc_mixer_control_close               (GvcMixerControl *control);
 gboolean            gvc_mixer_control_is_ready            (GvcMixerControl *control);
 
+pa_context *        gvc_mixer_control_get_pa_context      (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_streams         (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sinks           (GvcMixerControl *control);
 GSList *            gvc_mixer_control_get_sources         (GvcMixerControl *control);

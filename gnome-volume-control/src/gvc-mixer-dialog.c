@@ -36,6 +36,7 @@
 #include "gvc-mixer-source.h"
 #include "gvc-mixer-dialog.h"
 #include "gvc-sound-theme-chooser.h"
+#include "rb-segmented-bar.h"
 
 #define SCALE_SIZE 128
 
@@ -48,6 +49,7 @@ struct GvcMixerDialogPrivate
         GtkWidget       *notebook;
         GtkWidget       *output_bar;
         GtkWidget       *input_bar;
+        GtkWidget       *input_level_bar;
         GtkWidget       *effects_bar;
         GtkWidget       *output_stream_box;
         GtkWidget       *sound_effects_box;
@@ -61,6 +63,8 @@ struct GvcMixerDialogPrivate
         GtkWidget       *audible_bell_button;
         GtkSizeGroup    *size_group;
         GtkSizeGroup    *apps_size_group;
+
+        gdouble          last_input_peak;
 };
 
 enum {
@@ -177,6 +181,151 @@ on_mixer_control_default_sink_changed (GvcMixerControl *control,
         update_default_output (dialog);
 }
 
+
+#define DECAY_STEP .15
+
+static void
+update_input_peak (GvcMixerDialog *dialog,
+                   gdouble         v)
+{
+
+        if (dialog->priv->last_input_peak >= DECAY_STEP) {
+                if (v < dialog->priv->last_input_peak - DECAY_STEP) {
+                        v = dialog->priv->last_input_peak - DECAY_STEP;
+                }
+        }
+
+        v = (gdouble)floor (20 * v) / 20;
+        dialog->priv->last_input_peak = v;
+
+        if (v >= 0) {
+                rb_segmented_bar_update_segment (RB_SEGMENTED_BAR (dialog->priv->input_level_bar),
+                                                 0,
+                                                 v);
+        } else {
+                rb_segmented_bar_update_segment (RB_SEGMENTED_BAR (dialog->priv->input_level_bar),
+                                                 0,
+                                                 0.0);
+        }
+}
+
+static void
+update_input_meter (GvcMixerDialog *dialog,
+                    uint32_t        source_index,
+                    uint32_t        sink_input_idx,
+                    double          v)
+{
+        update_input_peak (dialog, v);
+}
+
+static void
+on_monitor_suspended_callback (pa_stream *s,
+                               void      *userdata)
+{
+        GvcMixerDialog *dialog;
+
+        dialog = userdata;
+
+        if (pa_stream_is_suspended (s)) {
+                g_debug ("Stream suspended");
+                update_input_meter (dialog,
+                                    pa_stream_get_device_index (s),
+                                    PA_INVALID_INDEX,
+                                    -1);
+        }
+}
+
+static void
+on_monitor_read_callback (pa_stream *s,
+                          size_t     length,
+                          void      *userdata)
+{
+        GvcMixerDialog *dialog;
+        const void     *data;
+        double          v;
+
+        dialog = userdata;
+
+        if (pa_stream_peek (s, &data, &length) < 0) {
+                g_warning ("Failed to read data from stream");
+                return;
+        }
+
+        assert (length > 0);
+        assert (length % sizeof (float) == 0);
+
+        v = ((const float *) data)[length / sizeof (float) -1];
+
+        pa_stream_drop (s);
+
+        if (v < 0) {
+                v = 0;
+        }
+        if (v > 1) {
+                v = 1;
+        }
+
+        update_input_meter (dialog,
+                            pa_stream_get_device_index (s),
+                            pa_stream_get_monitor_stream (s),
+                            v);
+}
+
+static void
+create_monitor_stream_for_source (GvcMixerDialog *dialog,
+                                  GvcMixerStream *stream)
+{
+        pa_stream     *s;
+        char           t[16];
+        pa_buffer_attr attr;
+        pa_sample_spec ss;
+        pa_context    *context;
+        int            res;
+
+        if (stream == NULL) {
+                return;
+        }
+
+        g_debug ("Create monitor for %u",
+                 gvc_mixer_stream_get_index (stream));
+
+        context = gvc_mixer_control_get_pa_context (dialog->priv->mixer_control);
+
+        if (pa_context_get_server_protocol_version (context) < 13) {
+                return;
+        }
+
+        ss.channels = 1;
+        ss.format = PA_SAMPLE_FLOAT32;
+        ss.rate = 25;
+
+        memset (&attr, 0, sizeof (attr));
+        attr.fragsize = sizeof (float);
+        attr.maxlength = (uint32_t) -1;
+
+        snprintf (t, sizeof (t), "%u", gvc_mixer_stream_get_index (stream));
+
+        s = pa_stream_new (context, _("Peak detect"), &ss, NULL);
+        if (s == NULL) {
+                g_warning ("Failed to create monitoring stream");
+                return;
+        }
+
+        pa_stream_set_read_callback (s, on_monitor_read_callback, dialog);
+        pa_stream_set_suspended_callback (s, on_monitor_suspended_callback, dialog);
+
+        res = pa_stream_connect_record (s,
+                                        t,
+                                        &attr,
+                                        (pa_stream_flags_t) (PA_STREAM_DONT_MOVE
+                                                             |PA_STREAM_PEAK_DETECT
+                                                             |PA_STREAM_ADJUST_LATENCY));
+        if (res < 0) {
+                g_warning ("Failed to connect monitoring stream");
+                pa_stream_unref (s);
+        }
+}
+
 static void
 on_mixer_control_default_source_changed (GvcMixerControl *control,
                                          guint            id,
@@ -189,6 +338,8 @@ on_mixer_control_default_source_changed (GvcMixerControl *control,
         stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
                                                      id);
         bar_set_stream (dialog, dialog->priv->input_bar, stream);
+
+        create_monitor_stream_for_source (dialog, stream);
 
         update_default_input (dialog);
 }
@@ -459,6 +610,8 @@ add_stream (GvcMixerDialog *dialog,
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
                 bar = dialog->priv->input_bar;
                 is_default = TRUE;
+
+                create_monitor_stream_for_source (dialog, stream);
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
                 bar = dialog->priv->effects_bar;
                 g_debug ("Adding effects stream");
@@ -766,6 +919,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         GtkWidget        *label;
         GtkWidget        *alignment;
         GtkWidget        *box;
+        GtkWidget        *sbox;
+        GtkWidget        *ebox;
         GSList           *streams;
         GSList           *l;
         GvcMixerStream   *stream;
@@ -836,7 +991,46 @@ gvc_mixer_dialog_constructor (GType                  type,
                                             "audio-input-microphone-high");
         gtk_widget_set_sensitive (self->priv->input_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->input_box),
-                            self->priv->input_bar, FALSE, FALSE, 12);
+                            self->priv->input_bar,
+                            FALSE, FALSE, 12);
+
+        box = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (self->priv->input_box),
+                            box,
+                            FALSE, FALSE, 12);
+
+        sbox = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (box),
+                            sbox,
+                            FALSE, FALSE, 0);
+
+        label = gtk_label_new (_("Input level:"));
+        gtk_box_pack_start (GTK_BOX (sbox),
+                            label,
+                            FALSE, FALSE, 0);
+        gtk_size_group_add_widget (self->priv->size_group, sbox);
+
+        self->priv->input_level_bar = rb_segmented_bar_new ();
+        g_object_set (G_OBJECT (self->priv->input_level_bar),
+                      "show-reflection", FALSE,
+                      "show-labels", FALSE,
+                      "bar-height", 22,
+                      NULL);
+
+        rb_segmented_bar_add_segment (RB_SEGMENTED_BAR (self->priv->input_level_bar),
+                                      "audio", 0.0, 0.2 , 0.4 , 0.65, 1);
+        rb_segmented_bar_add_segment_default_color (RB_SEGMENTED_BAR (self->priv->input_level_bar),
+                                                    "empty", 0.23);
+
+        gtk_box_pack_start (GTK_BOX (box),
+                            self->priv->input_level_bar,
+                            TRUE, TRUE, 0);
+
+        ebox = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (box),
+                            ebox,
+                            FALSE, FALSE, 0);
+        gtk_size_group_add_widget (self->priv->size_group, ebox);
 
         box = gtk_frame_new (_("Choose a device for sound input"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));

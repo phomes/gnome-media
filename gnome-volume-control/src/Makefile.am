@@ -73,6 +73,8 @@ gnome_volume_control_SOURCES =			\
 	sound-theme-file-utils.c		\
 	gvc-mixer-dialog.h			\
 	gvc-mixer-dialog.c			\
+	rb-segmented-bar.h			\
+	rb-segmented-bar.c			\
 	dialog-main.c				\
 	$(NULL)
 
