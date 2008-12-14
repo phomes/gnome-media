@@ -1,3 +1,9 @@
+2008-12-15  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
+	* profiles/audio-profile.c (gm_audio_profile_forget): Remove
+	audio profile from hashtable with id instead of name, fix "can't
+	delete profile with '#' in its name". Closes: #553383
+
 2008-12-14  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* profiles/gnome-audio-profiles.schemas.in.in: Use 32kHz for
