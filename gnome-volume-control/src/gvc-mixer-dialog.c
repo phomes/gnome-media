@@ -38,7 +38,7 @@
 #include "gvc-mixer-source-output.h"
 #include "gvc-mixer-dialog.h"
 #include "gvc-sound-theme-chooser.h"
-#include "rb-segmented-bar.h"
+#include "gvc-level-bar.h"
 
 #define SCALE_SIZE 128
 
@@ -233,6 +233,7 @@ static void
 update_input_peak (GvcMixerDialog *dialog,
                    gdouble         v)
 {
+        GtkAdjustment *adj;
 
         if (dialog->priv->last_input_peak >= DECAY_STEP) {
                 if (v < dialog->priv->last_input_peak - DECAY_STEP) {
@@ -240,17 +241,13 @@ update_input_peak (GvcMixerDialog *dialog,
                 }
         }
 
-        v = (gdouble)floor (20 * v) / 20;
         dialog->priv->last_input_peak = v;
 
+        adj = gvc_level_bar_get_peak_adjustment (GVC_LEVEL_BAR (dialog->priv->input_level_bar));
         if (v >= 0) {
-                rb_segmented_bar_update_segment (RB_SEGMENTED_BAR (dialog->priv->input_level_bar),
-                                                 0,
-                                                 v);
+                gtk_adjustment_set_value (adj, v);
         } else {
-                rb_segmented_bar_update_segment (RB_SEGMENTED_BAR (dialog->priv->input_level_bar),
-                                                 0,
-                                                 0.0);
+                gtk_adjustment_set_value (adj, 0.0);
         }
 }
 
@@ -1067,21 +1064,15 @@ gvc_mixer_dialog_constructor (GType                  type,
                             FALSE, FALSE, 0);
         gtk_size_group_add_widget (self->priv->size_group, sbox);
 
-        self->priv->input_level_bar = rb_segmented_bar_new ();
-        g_object_set (G_OBJECT (self->priv->input_level_bar),
-                      "show-reflection", FALSE,
-                      "show-labels", FALSE,
-                      "bar-height", 22,
-                      NULL);
-
-        rb_segmented_bar_add_segment (RB_SEGMENTED_BAR (self->priv->input_level_bar),
-                                      "audio", 0.0, 0.2 , 0.4 , 0.65, 1);
-        rb_segmented_bar_add_segment_default_color (RB_SEGMENTED_BAR (self->priv->input_level_bar),
-                                                    "empty", 0.23);
-
+        self->priv->input_level_bar = gvc_level_bar_new ();
+        gvc_level_bar_set_orientation (GVC_LEVEL_BAR (self->priv->input_level_bar),
+                                       GTK_ORIENTATION_HORIZONTAL);
+        gvc_level_bar_set_scale (GVC_LEVEL_BAR (self->priv->input_level_bar),
+                                 GVC_LEVEL_SCALE_LINEAR);
         gtk_box_pack_start (GTK_BOX (box),
                             self->priv->input_level_bar,
                             TRUE, TRUE, 0);
+        gtk_widget_show (self->priv->input_level_bar);
 
         ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box),

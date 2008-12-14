@@ -1,3 +1,28 @@
+2008-12-14  William Jon McCann  <jmccann@redhat.com>
+
+	* src/Makefile.am:
+	* src/gvc-level-bar.c (fraction_from_adjustment),
+	(update_peak_value), (update_rms_value),
+	(gvc_level_bar_get_orientation), (gvc_level_bar_set_orientation),
+	(on_peak_adjustment_value_changed),
+	(on_rms_adjustment_value_changed),
+	(gvc_level_bar_set_peak_adjustment),
+	(gvc_level_bar_set_rms_adjustment),
+	(gvc_level_bar_get_peak_adjustment),
+	(gvc_level_bar_get_rms_adjustment), (gvc_level_bar_set_scale),
+	(gvc_level_bar_set_property), (gvc_level_bar_get_property),
+	(gvc_level_bar_constructor), (gvc_level_bar_size_request),
+	(gvc_level_bar_size_allocate), (curved_rectangle),
+	(gvc_level_bar_expose), (gvc_level_bar_class_init),
+	(gvc_level_bar_init), (gvc_level_bar_finalize),
+	(gvc_level_bar_new):
+	* src/gvc-level-bar.h:
+	* src/gvc-mixer-dialog.c (update_input_peak),
+	(gvc_mixer_dialog_constructor):
+	* src/rb-segmented-bar.c:
+	* src/rb-segmented-bar.h:
+	Remove rb-segmented-bar and add a new GvcLevelBar.
+
 2008-12-13  William Jon McCann  <jmccann@redhat.com>
 
 	* src/Makefile.am:
