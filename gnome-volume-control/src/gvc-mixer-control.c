@@ -113,9 +113,6 @@ gvc_mixer_control_set_default_sink (GvcMixerControl *control,
         g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), FALSE);
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
 
-        g_debug ("Setting default sink to '%s'",
-                 gvc_mixer_stream_get_name (stream));
-
         o = pa_context_set_default_sink (control->priv->pa_context,
                                          gvc_mixer_stream_get_name (stream),
                                          NULL,
@@ -138,9 +135,6 @@ gvc_mixer_control_set_default_source (GvcMixerControl *control,
 
         g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), FALSE);
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
-
-        g_debug ("Setting default source to '%s'",
-                 gvc_mixer_stream_get_name (stream));
 
         o = pa_context_set_default_source (control->priv->pa_context,
                                            gvc_mixer_stream_get_name (stream),
@@ -401,7 +395,6 @@ update_default_source_from_name (GvcMixerControl *control,
 {
         gboolean changed;
 
-        g_debug ("Default source: %s", name);
         if ((control->priv->default_source_name == NULL
              && name != NULL)
             || (control->priv->default_source_name != NULL
@@ -427,7 +420,6 @@ update_default_sink_from_name (GvcMixerControl *control,
 {
         gboolean changed;
 
-        g_debug ("Default sink: %s", name);
         if ((control->priv->default_sink_name == NULL
              && name != NULL)
             || (control->priv->default_sink_name != NULL
@@ -502,7 +494,7 @@ update_sink (GvcMixerControl    *control,
 {
         GvcMixerStream *stream;
         gboolean        is_new;
-        pa_volume_t     avg_volume;
+        pa_volume_t     max_volume;
         char            map_buff[PA_CHANNEL_MAP_SNPRINT_MAX];
 
         pa_channel_map_snprint (map_buff, PA_CHANNEL_MAP_SNPRINT_MAX, &info->channel_map);
@@ -532,17 +524,16 @@ update_sink (GvcMixerControl    *control,
                 is_new = TRUE;
         }
 
-        avg_volume = pa_cvolume_avg (&info->volume);
-
+        max_volume = pa_cvolume_max (&info->volume);
         gvc_mixer_stream_set_name (stream, info->name);
         gvc_mixer_stream_set_description (stream, info->description);
         gvc_mixer_stream_set_icon_name (stream, "audio-card");
-        gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
+        gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
         if (!!(info->flags & PA_SINK_DECIBEL_VOLUME)) {
                 gdouble db;
-                db = pa_sw_volume_to_dB (avg_volume);
+                db = pa_sw_volume_to_dB (max_volume);
                 gvc_mixer_stream_set_decibel (stream, db);
         }
 
@@ -566,7 +557,7 @@ update_source (GvcMixerControl      *control,
 {
         GvcMixerStream *stream;
         gboolean        is_new;
-        pa_volume_t     avg_volume;
+        pa_volume_t     max_volume;
 
 #if 1
         g_debug ("Updating source: index=%u name='%s' description='%s'",
@@ -594,17 +585,17 @@ update_source (GvcMixerControl      *control,
                 is_new = TRUE;
         }
 
-        avg_volume = pa_cvolume_avg (&info->volume);
+        max_volume = pa_cvolume_max (&info->volume);
 
         gvc_mixer_stream_set_name (stream, info->name);
         gvc_mixer_stream_set_description (stream, info->description);
         gvc_mixer_stream_set_icon_name (stream, "audio-input-microphone");
-        gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
+        gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SOURCE_DECIBEL_VOLUME));
         if (!!(info->flags & PA_SINK_DECIBEL_VOLUME)) {
                 gdouble db;
-                db = pa_sw_volume_to_dB (avg_volume);
+                db = pa_sw_volume_to_dB (max_volume);
                 gvc_mixer_stream_set_decibel (stream, db);
         }
 
@@ -676,7 +667,7 @@ update_sink_input (GvcMixerControl          *control,
 {
         GvcMixerStream *stream;
         gboolean        is_new;
-        pa_volume_t     avg_volume;
+        pa_volume_t     max_volume;
         const char     *name;
 
 #if 0
@@ -701,7 +692,7 @@ update_sink_input (GvcMixerControl          *control,
                 is_new = TRUE;
         }
 
-        avg_volume = pa_cvolume_avg (&info->volume);
+        max_volume = pa_cvolume_max (&info->volume);
 
         name = (const char *)g_hash_table_lookup (control->priv->clients,
                                                   GUINT_TO_POINTER (info->client));
@@ -709,7 +700,7 @@ update_sink_input (GvcMixerControl          *control,
         gvc_mixer_stream_set_description (stream, info->name);
 
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
-        gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
+        gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
 
         if (is_new) {
@@ -932,7 +923,7 @@ update_event_role_stream (GvcMixerControl                  *control,
 {
         GvcMixerStream *stream;
         gboolean        is_new;
-        pa_volume_t     avg_volume;
+        pa_volume_t     max_volume;
 
         if (strcmp (info->name, "sink-input-by-media-role:event") != 0) {
                 return;
@@ -958,11 +949,11 @@ update_event_role_stream (GvcMixerControl                  *control,
                                               GUINT_TO_POINTER (control->priv->event_sink_input_id));
         }
 
-        avg_volume = pa_cvolume_avg (&info->volume);
+        max_volume = pa_cvolume_max (&info->volume);
 
         gvc_mixer_stream_set_name (stream, _("System Sounds"));
         gvc_mixer_stream_set_icon_name (stream, "multimedia-volume-control");
-        gvc_mixer_stream_set_volume (stream, (guint)avg_volume);
+        gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
 
         if (is_new) {

@@ -70,7 +70,7 @@ gvc_mixer_source_change_volume (GvcMixerStream *stream,
         /* apply channel gain mapping */
         for (i = 0; i < num_channels; i++) {
                 pa_volume_t v;
-                v = (double) v * gains[i];
+                v = (double) volume * gains[i];
                 cv.values[i] = v;
         }
 

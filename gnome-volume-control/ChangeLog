@@ -1,5 +1,34 @@
 2008-12-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/Makefile.am:
+	* src/gvc-balance-bar.c (_scale_box_new),
+	(gvc_balance_bar_set_size_group),
+	(gvc_balance_bar_set_channel_map), (gvc_balance_bar_set_property),
+	(gvc_balance_bar_get_property), (gvc_balance_bar_constructor),
+	(gvc_balance_bar_class_init), (on_left), (on_right),
+	(on_adjustment_value_changed), (gvc_balance_bar_init),
+	(gvc_balance_bar_finalize), (gvc_balance_bar_new):
+	* src/gvc-balance-bar.h:
+	* src/gvc-channel-map.c (gvc_channel_map_class_init),
+	(gvc_channel_map_gains_changed), (set_from_pa_map):
+	* src/gvc-channel-map.h:
+	* src/gvc-mixer-control.c (gvc_mixer_control_set_default_sink),
+	(gvc_mixer_control_set_default_source),
+	(update_default_source_from_name), (update_default_sink_from_name),
+	(update_sink), (update_source), (update_sink_input),
+	(update_event_role_stream):
+	* src/gvc-mixer-dialog.c (update_output_settings),
+	(on_mixer_control_default_sink_changed), (add_stream),
+	(on_output_radio_toggled), (gvc_mixer_dialog_constructor):
+	* src/gvc-mixer-sink-input.c (gvc_mixer_sink_input_change_volume):
+	* src/gvc-mixer-sink.c (gvc_mixer_sink_change_volume):
+	* src/gvc-mixer-source.c (gvc_mixer_source_change_volume):
+	* src/gvc-mixer-stream.c (on_channel_map_gains_changed),
+	(gvc_mixer_stream_set_channel_map):
+	Add output balance control.
+
+2008-12-13  William Jon McCann  <jmccann@redhat.com>
+
 	* AUTHORS: updated email address
 
 2008-12-13  William Jon McCann  <jmccann@redhat.com>

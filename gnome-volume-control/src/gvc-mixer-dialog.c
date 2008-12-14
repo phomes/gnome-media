@@ -31,6 +31,7 @@
 #include <gconf/gconf-client.h>
 
 #include "gvc-channel-bar.h"
+#include "gvc-balance-bar.h"
 #include "gvc-mixer-control.h"
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
@@ -59,6 +60,8 @@ struct GvcMixerDialogPrivate
         GtkWidget       *applications_box;
         GtkWidget       *no_apps_label;
         GtkWidget       *output_treeview;
+        GtkWidget       *output_settings_box;
+        GtkWidget       *output_balance_bar;
         GtkWidget       *input_treeview;
         GtkWidget       *sound_theme_chooser;
         GtkWidget       *click_feedback_button;
@@ -132,6 +135,43 @@ update_default_input (GvcMixerDialog *dialog)
 }
 
 static void
+update_output_settings (GvcMixerDialog *dialog)
+{
+        GvcMixerStream *stream;
+        GvcChannelMap  *map;
+
+        g_debug ("Updating output settings");
+        if (dialog->priv->output_balance_bar != NULL) {
+                gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
+                                      dialog->priv->output_balance_bar);
+                dialog->priv->output_balance_bar = NULL;
+        }
+
+        stream = gvc_mixer_control_get_default_sink (dialog->priv->mixer_control);
+        if (stream == NULL) {
+                g_warning ("Default sink stream not found");
+                return;
+        }
+
+        map = gvc_mixer_stream_get_channel_map (stream);
+        if (map == NULL) {
+                g_warning ("Default sink stream has no channel map");
+                return;
+        }
+
+        dialog->priv->output_balance_bar = gvc_balance_bar_new (map);
+        if (dialog->priv->size_group != NULL) {
+                gvc_balance_bar_set_size_group (GVC_BALANCE_BAR (dialog->priv->output_balance_bar),
+                                                dialog->priv->size_group,
+                                                TRUE);
+        }
+        gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
+                            dialog->priv->output_balance_bar,
+                            FALSE, FALSE, 12);
+        gtk_widget_show (dialog->priv->output_balance_bar);
+}
+
+static void
 update_default_output (GvcMixerDialog *dialog)
 {
         GtkTreeModel *model;
@@ -180,6 +220,8 @@ on_mixer_control_default_sink_changed (GvcMixerControl *control,
         stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
                                                      id);
         bar_set_stream (dialog, dialog->priv->output_bar, stream);
+
+        update_output_settings (dialog);
 
         update_default_output (dialog);
 }
@@ -612,6 +654,8 @@ add_stream (GvcMixerDialog *dialog,
                 is_default = TRUE;
                 gtk_widget_set_sensitive (dialog->priv->applications_box,
                                           !is_muted);
+
+                update_output_settings (dialog);
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
                 bar = dialog->priv->input_bar;
                 is_default = TRUE;
@@ -860,7 +904,7 @@ on_output_radio_toggled (GtkCellRendererToggle *renderer,
         if (toggled) {
                 GvcMixerStream *stream;
 
-                g_debug ("Default input selected: %u", id);
+                g_debug ("Default output selected: %u", id);
                 stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control, id);
                 if (stream == NULL) {
                         g_warning ("Unable to find stream for id: %u", id);
@@ -1100,6 +1144,14 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (self->priv->output_treeview));
         gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+
+        box = gtk_frame_new (_("Settings for the selected device:"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 12);
+        self->priv->output_settings_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_add (GTK_CONTAINER (box), self->priv->output_settings_box);
 
         /* Applications */
         self->priv->applications_box = gtk_vbox_new (FALSE, 12);

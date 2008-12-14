@@ -40,6 +40,13 @@ struct GvcChannelMapPrivate
         gdouble               gains[PA_CHANNELS_MAX];
 };
 
+enum {
+        GAINS_CHANGED,
+        LAST_SIGNAL
+};
+
+static guint signals [LAST_SIGNAL] = { 0, };
+
 static void     gvc_channel_map_class_init (GvcChannelMapClass *klass);
 static void     gvc_channel_map_init       (GvcChannelMap      *channel_map);
 static void     gvc_channel_map_finalize   (GObject            *object);
@@ -74,7 +81,23 @@ gvc_channel_map_class_init (GvcChannelMapClass *klass)
 
         gobject_class->finalize = gvc_channel_map_finalize;
 
+        signals [GAINS_CHANGED] =
+                g_signal_new ("gains-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GvcChannelMapClass, gains_changed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0);
+
         g_type_class_add_private (klass, sizeof (GvcChannelMapPrivate));
+}
+
+void
+gvc_channel_map_gains_changed (GvcChannelMap *map)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_MAP (map));
+        g_signal_emit (map, signals[GAINS_CHANGED], 0);
 }
 
 static void
@@ -112,6 +135,7 @@ set_from_pa_map (GvcChannelMap        *map,
 {
         guint i;
 
+        map->priv->num_channels = pa_map->channels;
         for (i = 0; i < pa_map->channels; i++) {
                 map->priv->positions[i] = pa_map->map[i];
                 map->priv->gains[i] = 1.0;

@@ -64,13 +64,16 @@ gvc_mixer_sink_change_volume (GvcMixerStream *stream,
         num_channels = gvc_channel_map_get_num_channels (map);
         gains = gvc_channel_map_get_gains (map);
 
+        g_debug ("Changing volume for sink: n=%d vol=%u", num_channels, (guint)volume);
+
         /* set all values to nominal level */
         pa_cvolume_set (&cv, num_channels, (pa_volume_t)volume);
 
         /* apply channel gain mapping */
         for (i = 0; i < num_channels; i++) {
                 pa_volume_t v;
-                v = (double) v * gains[i];
+                v = (double) volume * gains[i];
+                g_debug ("Channel %d v=%u", i, v);
                 cv.values[i] = v;
         }
 

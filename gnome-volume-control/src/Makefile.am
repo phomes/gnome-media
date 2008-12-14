@@ -69,6 +69,8 @@ gnome_volume_control_SOURCES =			\
 	gvc-mixer-event-role.c			\
 	gvc-mixer-control.h			\
 	gvc-mixer-control.c			\
+	gvc-balance-bar.h			\
+	gvc-balance-bar.c			\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
 	gvc-sound-theme-chooser.h		\

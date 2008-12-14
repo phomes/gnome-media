@@ -238,6 +238,14 @@ gvc_mixer_stream_set_description (GvcMixerStream *stream,
         return TRUE;
 }
 
+static void
+on_channel_map_gains_changed (GvcChannelMap  *channel_map,
+                              GvcMixerStream *stream)
+{
+        g_debug ("Gains changed");
+        gvc_mixer_stream_change_volume (stream, stream->priv->volume);
+}
+
 static gboolean
 gvc_mixer_stream_set_channel_map (GvcMixerStream *stream,
                                   GvcChannelMap  *channel_map)
@@ -249,12 +257,22 @@ gvc_mixer_stream_set_channel_map (GvcMixerStream *stream,
         }
 
         if (stream->priv->channel_map != NULL) {
+                g_signal_handlers_disconnect_by_func (stream->priv->channel_map,
+                                                      on_channel_map_gains_changed,
+                                                      stream);
                 g_object_unref (stream->priv->channel_map);
         }
 
         stream->priv->channel_map = channel_map;
 
-        g_object_notify (G_OBJECT (stream), "channel-map");
+        if (stream->priv->channel_map != NULL) {
+                g_signal_connect (stream->priv->channel_map,
+                                  "gains-changed",
+                                  G_CALLBACK (on_channel_map_gains_changed),
+                                  stream);
+
+                g_object_notify (G_OBJECT (stream), "channel-map");
+        }
 
         return TRUE;
 }

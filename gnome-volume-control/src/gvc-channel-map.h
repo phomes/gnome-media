@@ -44,6 +44,7 @@ typedef struct
 typedef struct
 {
         GObjectClass           parent_class;
+        void (*gains_changed) (GvcChannelMap *channel_map);
 } GvcChannelMapClass;
 
 GType                   gvc_channel_map_get_type                (void);
@@ -53,6 +54,8 @@ GvcChannelMap *         gvc_channel_map_new_from_pa_channel_map (const pa_channe
 guint                   gvc_channel_map_get_num_channels        (GvcChannelMap  *map);
 pa_channel_position_t * gvc_channel_map_get_positions           (GvcChannelMap  *map);
 gdouble *               gvc_channel_map_get_gains               (GvcChannelMap  *map);
+
+void                    gvc_channel_map_gains_changed           (GvcChannelMap  *map);
 
 G_END_DECLS
 
