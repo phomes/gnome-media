@@ -42,9 +42,10 @@ INTLTOOL_BUILT = \
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-scrollkeeper	\
+	--disable-gnomecd	\
 	--enable-cddbslave	\
 	--enable-vumeter	\
-	--enable-gnomecd	\
+	--enable-more-warnings  \
 	--enable-compile-warnings=maximum
 
 DIST_SUBDIRS = \

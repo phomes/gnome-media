@@ -494,7 +494,10 @@ if test "x$have_gnomecd" = "xyes" && test "x$enable_gnomecd" = "xyes" ; then
   AC_SUBST(THEME_DIR_UNINSTALLED)
 
   dnl used for accessibility of gnome-cd
-  PKG_CHECK_MODULES(GAILUTIL, gail >= 0.0.3)
+  PKG_CHECK_MODULES(GAILUTIL,
+	gail >= 0.0.3
+	libbonobo-2.0 >= 2.0.0
+	gconf-2.0)
   AC_SUBST(GAILUTIL_CFLAGS)
   AC_SUBST(GAILUTIL_LIBS)
 fi
