@@ -454,6 +454,11 @@ gvc_level_bar_expose (GtkWidget      *widget,
         g_return_val_if_fail (GVC_IS_LEVEL_BAR (widget), FALSE);
         g_return_val_if_fail (event != NULL, FALSE);
 
+        /* event queue compression */
+        if (event->count > 0) {
+                return FALSE;
+        }
+
         bar = GVC_LEVEL_BAR (widget);
 
         width = widget->allocation.width - 2;
