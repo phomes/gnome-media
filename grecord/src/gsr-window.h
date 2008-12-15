@@ -28,7 +28,7 @@
 #ifndef __GSR_WINDOW_H__
 #define __GSR_WINDOW_H__
 
-#include <gtk/gtkwindow.h>
+#include <gtk/gtk.h>
 
 #define GSR_TYPE_WINDOW (gsr_window_get_type ())
 #define GSR_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSR_TYPE_WINDOW, GSRWindow))

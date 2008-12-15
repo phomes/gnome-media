@@ -23,7 +23,7 @@
 #define __GVC_PREFERENCES_H__
 
 #include <glib.h>
-#include <gtk/gtkdialog.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <gst/interfaces/mixer.h>
 

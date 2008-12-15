@@ -23,7 +23,7 @@
 #define __GVC_BUTTON_H__
 
 #include <glib.h>
-#include <gtk/gtkbutton.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

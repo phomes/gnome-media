@@ -23,7 +23,7 @@
 #define __GVC_VOLUME_H__
 
 #include <glib.h>
-#include <gtk/gtkfixed.h>
+#include <gtk/gtk.h>
 #include <gst/interfaces/mixer.h>
 
 G_BEGIN_DECLS

@@ -23,7 +23,7 @@
 #define __GVC_ELEMENT_H__
 
 #include <glib.h>
-#include <gtk/gtknotebook.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <gst/interfaces/mixer.h>
 

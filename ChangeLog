@@ -1,5 +1,16 @@
 2008-12-15  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
+	* grecord/src/gsr-window.h, gst-mixer/src/button.h,
+	gst-mixer/src/element.h, gst-mixer/src/preferences.h,
+	gst-mixer/src/volume.h, profiles/audio-profile-choose.h,
+	profiles/audio-profile-edit.h, profiles/audio-profiles-edit.h,
+	profiles/gnome-audio-profiles-properties.c: clean up GLib and GTK+
+	includes. Closes #563573
+
+	Patch by: Luis Menina <liberforce@freeside.fr>
+
+2008-12-15  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
 	* profiles/audio-profile.c (gm_audio_profile_forget): Remove
 	audio profile from hashtable with id instead of name, fix "can't
 	delete profile with '#' in its name". Closes: #553383
