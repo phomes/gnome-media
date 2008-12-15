@@ -496,7 +496,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
                 by = 0;
                 bh = delta / 2;
                 bw = width;
-                br = bw / 10;
+                br = bw / 2;
 
                 for (i = 0; i < NUM_BOXES; i++) {
                         by = i * delta;
@@ -544,7 +544,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
                 by = 0;
                 bw = delta / 2;
                 bh = height;
-                br = bh / 10;
+                br = bh / 2;
 
                 for (i = 0; i < NUM_BOXES; i++) {
                         bx = i * delta;
