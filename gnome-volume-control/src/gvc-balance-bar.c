@@ -66,6 +66,10 @@ _scale_box_new (GvcBalanceBar *bar)
         GtkWidget            *box;
         GtkWidget            *sbox;
         GtkWidget            *ebox;
+        GtkWidget            *ivbox;
+        GtkWidget            *ihbox;
+        GtkWidget            *label;
+        char                 *str;
 
         bar->priv->scale_box = box = gtk_hbox_new (FALSE, 6);
         priv->scale = gtk_hscale_new (priv->adjustment);
@@ -76,7 +80,22 @@ _scale_box_new (GvcBalanceBar *bar)
 
         gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
 
-        gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
+        ivbox = gtk_vbox_new (FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (box), ivbox, TRUE, TRUE, 0);
+
+        gtk_box_pack_start (GTK_BOX (ivbox), priv->scale, TRUE, TRUE, 0);
+        ihbox = gtk_hbox_new (FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (ivbox), ihbox, FALSE, FALSE, 0);
+        str = g_strdup_printf ("<small>%s</small>", _("Left"));
+        label = gtk_label_new (NULL);
+        gtk_label_set_markup (GTK_LABEL (label), str);
+        g_free (str);
+        gtk_box_pack_start (GTK_BOX (ihbox), label, FALSE, FALSE, 0);
+        str = g_strdup_printf ("<small>%s</small>", _("Right"));
+        label = gtk_label_new (NULL);
+        gtk_label_set_markup (GTK_LABEL (label), str);
+        g_free (str);
+        gtk_box_pack_end (GTK_BOX (ihbox), label, FALSE, FALSE, 0);
 
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
