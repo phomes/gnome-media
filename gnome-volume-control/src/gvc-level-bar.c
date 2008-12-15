@@ -48,6 +48,8 @@ struct GvcLevelBarPrivate
         int            scale;
         gdouble        peak_fraction;
         gdouble        rms_fraction;
+        gdouble        max_peak;
+        guint          max_peak_id;
 };
 
 enum
@@ -93,6 +95,17 @@ fraction_from_adjustment (GvcLevelBar   *bar,
         return fraction;
 }
 
+static gboolean
+reset_max_peak (GvcLevelBar *bar)
+{
+        gdouble min;
+
+        min = gtk_adjustment_get_lower (bar->priv->peak_adjustment);
+        bar->priv->max_peak = min;
+        bar->priv->max_peak_id = 0;
+        return FALSE;
+}
+
 static void
 update_peak_value (GvcLevelBar *bar)
 {
@@ -100,6 +113,13 @@ update_peak_value (GvcLevelBar *bar)
 
         val = fraction_from_adjustment (bar, bar->priv->peak_adjustment);
         bar->priv->peak_fraction = val;
+        if (val > bar->priv->max_peak) {
+                if (bar->priv->max_peak_id > 0) {
+                        g_source_remove (bar->priv->max_peak_id);
+                }
+                bar->priv->max_peak_id = g_timeout_add_seconds (1, (GSourceFunc)reset_max_peak, bar);
+                bar->priv->max_peak = val;
+        }
         gtk_widget_queue_draw (GTK_WIDGET (bar));
 }
 
@@ -416,6 +436,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
         GvcLevelBar     *bar;
         int              rms_level;
         int              peak_level;
+        int              max_peak_level;
         int              width;
         int              height;
         cairo_t         *cr;
@@ -468,6 +489,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
 
                 rms_level = bar->priv->rms_fraction * height;
                 peak_level = bar->priv->peak_fraction * height;
+                max_peak_level = bar->priv->max_peak * height;
 
                 delta = height / NUM_BOXES;
                 bx = 0;
@@ -480,7 +502,12 @@ gvc_level_bar_expose (GtkWidget      *widget,
                         by = i * delta;
                         curved_rectangle (cr, bx, by, bw, bh, br);
 
-                        if (peak_level > bx) {
+                        if ((max_peak_level > by)
+                            && (max_peak_level < (by + delta))) {
+                                /* fill peak foreground */
+                                cairo_set_source_rgb (cr, fl_r, fl_g, fl_b);
+                                cairo_fill_preserve (cr);
+                        } else if (peak_level > by) {
                                 /* fill background */
                                 cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
                                 cairo_fill_preserve (cr);
@@ -510,6 +537,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
 
                 rms_level = bar->priv->rms_fraction * width;
                 peak_level = bar->priv->peak_fraction * width;
+                max_peak_level = bar->priv->max_peak * width;
 
                 delta = width / NUM_BOXES;
                 bx = 0;
@@ -522,7 +550,12 @@ gvc_level_bar_expose (GtkWidget      *widget,
                         bx = i * delta;
                         curved_rectangle (cr, bx, by, bw, bh, br);
 
-                        if (peak_level > bx) {
+                        if ((max_peak_level > bx)
+                            && (max_peak_level < (bx + delta))) {
+                                /* fill peak foreground */
+                                cairo_set_source_rgb (cr, fl_r, fl_g, fl_b);
+                                cairo_fill_preserve (cr);
+                        } else if (peak_level > bx) {
                                 /* fill background */
                                 cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
                                 cairo_fill_preserve (cr);
