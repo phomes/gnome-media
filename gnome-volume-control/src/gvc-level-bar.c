@@ -40,6 +40,26 @@
 #define VERTICAL_BAR_WIDTH         6
 #define MIN_VERTICAL_BAR_HEIGHT    400
 
+typedef struct {
+        int          peak_num;
+        int          max_peak_num;
+
+        GdkRectangle area;
+        int          delta;
+        int          box_width;
+        int          box_height;
+        int          box_radius;
+        double       bg_r;
+        double       bg_g;
+        double       bg_b;
+        double       bdr_r;
+        double       bdr_g;
+        double       bdr_b;
+        double       fl_r;
+        double       fl_g;
+        double       fl_b;
+} LevelBarLayout;
+
 struct GvcLevelBarPrivate
 {
         GtkOrientation orientation;
@@ -50,6 +70,7 @@ struct GvcLevelBarPrivate
         gdouble        rms_fraction;
         gdouble        max_peak;
         guint          max_peak_id;
+        LevelBarLayout layout;
 };
 
 enum
@@ -66,6 +87,38 @@ static void     gvc_level_bar_init       (GvcLevelBar      *level_bar);
 static void     gvc_level_bar_finalize   (GObject            *object);
 
 G_DEFINE_TYPE (GvcLevelBar, gvc_level_bar, GTK_TYPE_HBOX)
+
+#define check_rectangle(rectangle1, rectangle2)                          \
+        {                                                                \
+                if (rectangle1.x != rectangle2.x) return TRUE;           \
+                if (rectangle1.y != rectangle2.y) return TRUE;           \
+                if (rectangle1.width  != rectangle2.width)  return TRUE; \
+                if (rectangle1.height != rectangle2.height) return TRUE; \
+        }
+
+static gboolean
+layout_changed (LevelBarLayout *layout1,
+                LevelBarLayout *layout2)
+{
+        check_rectangle (layout1->area, layout2->area);
+        if (layout1->delta != layout2->delta) return TRUE;
+        if (layout1->peak_num != layout2->peak_num) return TRUE;
+        if (layout1->max_peak_num != layout2->max_peak_num) return TRUE;
+        if (layout1->bg_r != layout2->bg_r
+            || layout1->bg_g != layout2->bg_g
+            || layout1->bg_b != layout2->bg_b)
+                return TRUE;
+        if (layout1->bdr_r != layout2->bdr_r
+            || layout1->bdr_g != layout2->bdr_g
+            || layout1->bdr_b != layout2->bdr_b)
+                return TRUE;
+        if (layout1->fl_r != layout2->fl_r
+            || layout1->fl_g != layout2->fl_g
+            || layout1->fl_b != layout2->fl_b)
+                return TRUE;
+
+        return FALSE;
+}
 
 static gdouble
 fraction_from_adjustment (GvcLevelBar   *bar,
@@ -102,17 +155,75 @@ reset_max_peak (GvcLevelBar *bar)
 
         min = gtk_adjustment_get_lower (bar->priv->peak_adjustment);
         bar->priv->max_peak = min;
+        bar->priv->layout.max_peak_num = 0;
+        gtk_widget_queue_draw (GTK_WIDGET (bar));
         bar->priv->max_peak_id = 0;
         return FALSE;
 }
 
 static void
+bar_calc_layout (GvcLevelBar *bar)
+{
+        GdkColor color;
+        int      rms_level;
+        int      peak_level;
+        int      max_peak_level;
+
+        bar->priv->layout.area.width = GTK_WIDGET (bar)->allocation.width - 2;
+        bar->priv->layout.area.height = GTK_WIDGET (bar)->allocation.height - 2;
+
+        color = GTK_WIDGET (bar)->style->bg [GTK_STATE_NORMAL];
+        bar->priv->layout.bg_r = (float)color.red / 65535.0;
+        bar->priv->layout.bg_g = (float)color.green / 65535.0;
+        bar->priv->layout.bg_b = (float)color.blue / 65535.0;
+        color = GTK_WIDGET (bar)->style->dark [GTK_STATE_NORMAL];
+        bar->priv->layout.bdr_r = (float)color.red / 65535.0;
+        bar->priv->layout.bdr_g = (float)color.green / 65535.0;
+        bar->priv->layout.bdr_b = (float)color.blue / 65535.0;
+        color = GTK_WIDGET (bar)->style->bg [GTK_STATE_SELECTED];
+        bar->priv->layout.fl_r = (float)color.red / 65535.0;
+        bar->priv->layout.fl_g = (float)color.green / 65535.0;
+        bar->priv->layout.fl_b = (float)color.blue / 65535.0;
+
+        if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
+                rms_level = bar->priv->rms_fraction * bar->priv->layout.area.height;
+                peak_level = bar->priv->peak_fraction * bar->priv->layout.area.height;
+                max_peak_level = bar->priv->max_peak * bar->priv->layout.area.height;
+
+                bar->priv->layout.delta = bar->priv->layout.area.height / NUM_BOXES;
+                bar->priv->layout.area.x = 0;
+                bar->priv->layout.area.y = 0;
+                bar->priv->layout.box_height = bar->priv->layout.delta / 2;
+                bar->priv->layout.box_width = bar->priv->layout.area.width;
+                bar->priv->layout.box_radius = bar->priv->layout.box_width / 2;
+        } else {
+                rms_level = bar->priv->rms_fraction * bar->priv->layout.area.width;
+                peak_level = bar->priv->peak_fraction * bar->priv->layout.area.width;
+                max_peak_level = bar->priv->max_peak * bar->priv->layout.area.width;
+
+                bar->priv->layout.delta = bar->priv->layout.area.width / NUM_BOXES;
+                bar->priv->layout.area.x = 0;
+                bar->priv->layout.area.y = 0;
+                bar->priv->layout.box_width = bar->priv->layout.delta / 2;
+                bar->priv->layout.box_height = bar->priv->layout.area.height;
+                bar->priv->layout.box_radius = bar->priv->layout.box_height / 2;
+        }
+
+        bar->priv->layout.peak_num = peak_level / bar->priv->layout.delta;
+        bar->priv->layout.max_peak_num = max_peak_level / bar->priv->layout.delta;
+}
+
+static void
 update_peak_value (GvcLevelBar *bar)
 {
-        gdouble val;
+        gdouble        val;
+        LevelBarLayout layout;
+
+        layout = bar->priv->layout;
 
         val = fraction_from_adjustment (bar, bar->priv->peak_adjustment);
         bar->priv->peak_fraction = val;
+
         if (val > bar->priv->max_peak) {
                 if (bar->priv->max_peak_id > 0) {
                         g_source_remove (bar->priv->max_peak_id);
@@ -120,7 +231,12 @@ update_peak_value (GvcLevelBar *bar)
                 bar->priv->max_peak_id = g_timeout_add_seconds (1, (GSourceFunc)reset_max_peak, bar);
                 bar->priv->max_peak = val;
         }
-        gtk_widget_queue_draw (GTK_WIDGET (bar));
+
+        bar_calc_layout (bar);
+
+        if (layout_changed (&bar->priv->layout, &layout)) {
+                gtk_widget_queue_draw (GTK_WIDGET (bar));
+        }
 }
 
 static void
@@ -130,7 +246,6 @@ update_rms_value (GvcLevelBar *bar)
 
         val = fraction_from_adjustment (bar, bar->priv->rms_adjustment);
         bar->priv->rms_fraction = val;
-        gtk_widget_queue_draw (GTK_WIDGET (bar));
 }
 
 GtkOrientation
@@ -434,22 +549,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
                       GdkEventExpose *event)
 {
         GvcLevelBar     *bar;
-        int              rms_level;
-        int              peak_level;
-        int              max_peak_level;
-        int              width;
-        int              height;
         cairo_t         *cr;
-        GdkColor         color;
-        double           bg_r;
-        double           bg_g;
-        double           bg_b;
-        double           bdr_r;
-        double           bdr_g;
-        double           bdr_b;
-        double           fl_r;
-        double           fl_g;
-        double           fl_b;
 
         g_return_val_if_fail (GVC_IS_LEVEL_BAR (widget), FALSE);
         g_return_val_if_fail (event != NULL, FALSE);
@@ -461,22 +561,6 @@ gvc_level_bar_expose (GtkWidget      *widget,
 
         bar = GVC_LEVEL_BAR (widget);
 
-        width = widget->allocation.width - 2;
-        height = widget->allocation.height - 2;
-
-        color = widget->style->bg [GTK_STATE_NORMAL];
-        bg_r = (float)color.red / 65535.0;
-        bg_g = (float)color.green / 65535.0;
-        bg_b = (float)color.blue / 65535.0;
-        color = widget->style->dark [GTK_STATE_NORMAL];
-        bdr_r = (float)color.red / 65535.0;
-        bdr_g = (float)color.green / 65535.0;
-        bdr_b = (float)color.blue / 65535.0;
-        color = widget->style->bg [GTK_STATE_SELECTED];
-        fl_r = (float)color.red / 65535.0;
-        fl_g = (float)color.green / 65535.0;
-        fl_b = (float)color.blue / 65535.0;
-
         cr = gdk_cairo_create (widget->window);
 
         cairo_translate (cr,
@@ -485,48 +569,35 @@ gvc_level_bar_expose (GtkWidget      *widget,
 
         if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
                 int i;
-                int bx;
                 int by;
-                int bw;
-                int bh;
-                int br;
-                int delta;
-
-                rms_level = bar->priv->rms_fraction * height;
-                peak_level = bar->priv->peak_fraction * height;
-                max_peak_level = bar->priv->max_peak * height;
-
-                delta = height / NUM_BOXES;
-                bx = 0;
-                by = 0;
-                bh = delta / 2;
-                bw = width;
-                br = bw / 2;
 
                 for (i = 0; i < NUM_BOXES; i++) {
-                        by = i * delta;
-                        curved_rectangle (cr, bx, by, bw, bh, br);
-
-                        if ((max_peak_level > by)
-                            && (max_peak_level < (by + delta))) {
+                        by = i * bar->priv->layout.delta;
+                        curved_rectangle (cr,
+                                          bar->priv->layout.area.x,
+                                          by,
+                                          bar->priv->layout.box_width,
+                                          bar->priv->layout.box_height,
+                                          bar->priv->layout.box_radius);
+                        if ((bar->priv->layout.max_peak_num - 1) == i) {
                                 /* fill peak foreground */
-                                cairo_set_source_rgb (cr, fl_r, fl_g, fl_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.fl_r, bar->priv->layout.fl_g, bar->priv->layout.fl_b);
                                 cairo_fill_preserve (cr);
-                        } else if (peak_level > by) {
+                        } else if ((bar->priv->layout.peak_num - 1) >= i) {
                                 /* fill background */
-                                cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.bg_r, bar->priv->layout.bg_g, bar->priv->layout.bg_b);
                                 cairo_fill_preserve (cr);
                                 /* fill foreground */
-                                cairo_set_source_rgba (cr, fl_r, fl_g, fl_b, 0.5);
+                                cairo_set_source_rgba (cr, bar->priv->layout.fl_r, bar->priv->layout.fl_g, bar->priv->layout.fl_b, 0.5);
                                 cairo_fill_preserve (cr);
                         } else {
                                 /* fill background */
-                                cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.bg_r, bar->priv->layout.bg_g, bar->priv->layout.bg_b);
                                 cairo_fill_preserve (cr);
                         }
 
                         /* stroke border */
-                        cairo_set_source_rgb (cr, bdr_r, bdr_g, bdr_b);
+                        cairo_set_source_rgb (cr, bar->priv->layout.bdr_r, bar->priv->layout.bdr_g, bar->priv->layout.bdr_b);
                         cairo_set_line_width (cr, 1);
                         cairo_stroke (cr);
                 }
@@ -534,47 +605,35 @@ gvc_level_bar_expose (GtkWidget      *widget,
         } else {
                 int i;
                 int bx;
-                int by;
-                int bw;
-                int bh;
-                int br;
-                int delta;
-
-                rms_level = bar->priv->rms_fraction * width;
-                peak_level = bar->priv->peak_fraction * width;
-                max_peak_level = bar->priv->max_peak * width;
-
-                delta = width / NUM_BOXES;
-                bx = 0;
-                by = 0;
-                bw = delta / 2;
-                bh = height;
-                br = bh / 2;
 
                 for (i = 0; i < NUM_BOXES; i++) {
-                        bx = i * delta;
-                        curved_rectangle (cr, bx, by, bw, bh, br);
+                        bx = i * bar->priv->layout.delta;
+                        curved_rectangle (cr,
+                                          bx,
+                                          bar->priv->layout.area.y,
+                                          bar->priv->layout.box_width,
+                                          bar->priv->layout.box_height,
+                                          bar->priv->layout.box_radius);
 
-                        if ((max_peak_level > bx)
-                            && (max_peak_level < (bx + delta))) {
+                        if ((bar->priv->layout.max_peak_num - 1) == i) {
                                 /* fill peak foreground */
-                                cairo_set_source_rgb (cr, fl_r, fl_g, fl_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.fl_r, bar->priv->layout.fl_g, bar->priv->layout.fl_b);
                                 cairo_fill_preserve (cr);
-                        } else if (peak_level > bx) {
+                        } else if ((bar->priv->layout.peak_num - 1) >= i) {
                                 /* fill background */
-                                cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.bg_r, bar->priv->layout.bg_g, bar->priv->layout.bg_b);
                                 cairo_fill_preserve (cr);
                                 /* fill foreground */
-                                cairo_set_source_rgba (cr, fl_r, fl_g, fl_b, 0.5);
+                                cairo_set_source_rgba (cr, bar->priv->layout.fl_r, bar->priv->layout.fl_g, bar->priv->layout.fl_b, 0.5);
                                 cairo_fill_preserve (cr);
                         } else {
                                 /* fill background */
-                                cairo_set_source_rgb (cr, bg_r, bg_g, bg_b);
+                                cairo_set_source_rgb (cr, bar->priv->layout.bg_r, bar->priv->layout.bg_g, bar->priv->layout.bg_b);
                                 cairo_fill_preserve (cr);
                         }
 
                         /* stroke border */
-                        cairo_set_source_rgb (cr, bdr_r, bdr_g, bdr_b);
+                        cairo_set_source_rgb (cr, bar->priv->layout.bdr_r, bar->priv->layout.bdr_g, bar->priv->layout.bdr_b);
                         cairo_set_line_width (cr, 1);
                         cairo_stroke (cr);
                 }
