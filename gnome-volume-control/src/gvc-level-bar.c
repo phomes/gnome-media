@@ -485,6 +485,8 @@ gvc_level_bar_size_allocate (GtkWidget     *widget,
                 allocation->width = MIN (widget->allocation.width, MIN_HORIZONTAL_BAR_WIDTH);
                 allocation->height = MAX (widget->allocation.height, HORIZONTAL_BAR_HEIGHT);
         }
+
+        bar_calc_layout (bar);
 }
 
 static void
