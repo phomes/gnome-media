@@ -1136,7 +1136,11 @@ setup_theme_custom_selector (GvcSoundThemeChooser *chooser,
         column = gtk_tree_view_column_new_with_attributes ("Display", renderer,
                                                            "text", DISPLAY_COL,
                                                            "sensitive", SENSITIVE_COL,
-                                                           NULL);
+							   "ellipsize", PANGO_ELLIPSIZE_END,
+							   "ellipsize-set", TRUE,
+							   NULL);
+	g_object_set (G_OBJECT (column), "expand", TRUE, NULL);
+
         gtk_tree_view_append_column (GTK_TREE_VIEW (chooser->priv->treeview), column);
 
         /* The 2nd column with the sound settings */
