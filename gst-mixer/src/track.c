@@ -38,6 +38,7 @@ static const struct {
   { "cd",         "media-optical"         	},
   { "line",       "gvc-line-in"                 },
   { "mic",        "audio-input-microphone"      },
+  { "cap",        "gvc-line-in"			},
   { "mix",        "multimedia-volume-control"   },
   { "pcm",        "gvc-tone"       		},
   { "headphone",  "gvc-headphones" 		},
