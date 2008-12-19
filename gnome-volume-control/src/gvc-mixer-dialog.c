@@ -1008,26 +1008,6 @@ gvc_mixer_dialog_constructor (GType                  type,
                             self->priv->notebook,
                             TRUE, TRUE, 12);
 
-        /* Effects page */
-        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
-        gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
-        label = gtk_label_new (_("Sound Effects"));
-        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
-                                  self->priv->sound_effects_box,
-                                  label);
-
-        self->priv->effects_bar = create_bar (self, self->priv->size_group, TRUE);
-        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
-                                  _("Alert Volume: "));
-        gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
-        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            self->priv->effects_bar, FALSE, FALSE, 12);
-
-        self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
-        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            self->priv->sound_theme_chooser,
-                            TRUE, TRUE, 0);
-
         /* Input page */
         self->priv->input_box = gtk_vbox_new (FALSE, 12);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->input_box), 12);
@@ -1156,8 +1136,6 @@ gvc_mixer_dialog_constructor (GType                  type,
                             self->priv->no_apps_label,
                             TRUE, TRUE, 0);
 
-        gtk_widget_show_all (GTK_WIDGET (self));
-
         g_signal_connect (self->priv->mixer_control,
                           "stream-added",
                           G_CALLBACK (on_control_stream_added),
@@ -1173,6 +1151,28 @@ gvc_mixer_dialog_constructor (GType                  type,
                 add_stream (self, stream);
         }
         g_slist_free (streams);
+
+        /* Effects page */
+        self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->sound_effects_box), 12);
+        label = gtk_label_new (_("Sound Effects"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
+                                  self->priv->sound_effects_box,
+                                  label);
+
+        self->priv->effects_bar = create_bar (self, self->priv->size_group, TRUE);
+        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
+                                  _("Alert Volume: "));
+        gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            self->priv->effects_bar, FALSE, FALSE, 12);
+
+        self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
+        gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
+                            self->priv->sound_theme_chooser,
+                            TRUE, TRUE, 0);
+
+        gtk_widget_show_all (GTK_WIDGET (self));
 
         return object;
 }
