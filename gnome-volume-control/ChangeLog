@@ -1,5 +1,43 @@
 2008-12-21  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-sound-theme-chooser.c (on_combobox_changed),
+	(set_input_feedback_enabled), (update_theme), (on_alert_toggled),
+	(play_preview_for_path), (on_treeview_row_activated),
+	(on_treeview_selection_changed), (create_alert_treeview),
+	(gvc_sound_theme_chooser_constructor),
+	(gvc_sound_theme_chooser_init):
+	* src/gvc-sound-theme-editor.c (theme_changed_custom_reinit),
+	(on_theme_changed), (load_index_theme_name), (sound_theme_in_dir),
+	(add_theme_to_store), (set_theme_name), (audible_bell_foreach),
+	(set_audible_bell_enabled), (input_feedback_foreach),
+	(set_input_feedback_enabled), (get_file_type),
+	(theme_changed_custom_init), (update_theme),
+	(setup_theme_selector), (play_sound_preview), (get_sound_filename),
+	(count_customised_sounds), (save_sounds), (save_custom_theme),
+	(dump_theme), (on_setting_column_edited), (fill_custom_model),
+	(on_combobox_editing_started), (play_sound_at_path),
+	(setting_set_func), (activatable_cell_renderer_pixbuf_activate),
+	(activatable_cell_renderer_pixbuf_init),
+	(activatable_cell_renderer_pixbuf_class_init),
+	(setup_theme_custom_selector),
+	(gvc_sound_theme_editor_constructor),
+	(gvc_sound_theme_editor_class_init), (on_click_feedback_toggled),
+	(on_key_changed), (on_treeview_row_activated),
+	(constrain_list_size), (setup_list_size_constraint),
+	(gvc_sound_theme_editor_init), (gvc_sound_theme_editor_finalize),
+	(gvc_sound_theme_editor_new):
+	* src/gvc-sound-theme-editor.h:
+	Simplify the theme selection.  Move the ability to
+	customize the sound theme into a separate widget.  We
+	should add a Customize button to access it.
+	This new approach will mirror the way we handle
+	wallpapers.  Next thing to do is to add a set
+	of standard alert sounds that one can choose from.
+	And have the widget customize the selected theme to
+	use them.
+
+2008-12-21  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor):
 	Move the sound effects tab back to the first one.
 
