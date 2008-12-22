@@ -787,9 +787,11 @@ on_treeview_selection_changed (GtkTreeSelection     *selection,
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
 
         paths = gtk_tree_selection_get_selected_rows (selection, &model);
+        if (paths == NULL) {
+                return;
+        }
 
         path = paths->data;
-
         play_preview_for_path (chooser, path);
 
         g_list_foreach (paths, (GFunc)gtk_tree_path_free, NULL);
