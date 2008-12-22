@@ -1026,7 +1026,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             self->priv->sound_theme_chooser,
-                            TRUE, TRUE, 0);
+                            TRUE, TRUE, 6);
 
         /* Input page */
         self->priv->input_box = gtk_vbox_new (FALSE, 12);

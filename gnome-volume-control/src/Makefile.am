@@ -13,6 +13,7 @@ INCLUDES =					\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGLADEDIR=\""$(pkgdatadir)"\"		\
 	-DSOUND_DATA_DIR="\"$(datadir)/sounds\"" \
+	-DSOUND_SET_DIR="\"$(pkgdatadir)/sounds\"" \
 	-DICON_DATA_DIR="\"$(pkgdatadir)/icons\"" \
 	$(NULL)
 

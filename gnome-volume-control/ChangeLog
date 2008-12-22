@@ -1,5 +1,26 @@
 2008-12-21  William Jon McCann  <jmccann@redhat.com>
 
+	* data/Makefile.am:
+	* data/sounds/Makefile.am:
+	* data/sounds/gnome-sounds-default.xml.in.in:
+	* src/Makefile.am:
+	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor):
+	* src/gvc-sound-theme-chooser.c (set_combox_for_theme_name),
+	(xml_get_and_trim_names), (populate_model_from_node),
+	(populate_model_from_file), (populate_model_from_dir),
+	(save_alert_sounds), (update_alert_model), (update_alert),
+	(on_alert_toggled), (play_preview_for_path),
+	(create_alert_treeview), (get_file_type),
+	(update_alerts_from_theme_name), (update_theme),
+	(gvc_sound_theme_chooser_init):
+	* src/sound-theme-file-utils.c (custom_theme_dir_is_empty),
+	(delete_old_files), (delete_disabled_files), (add_disabled_file),
+	(add_custom_file), (create_custom_theme):
+	* src/sound-theme-file-utils.h:
+	Add sound set.
+
+2008-12-21  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-sound-theme-chooser.c (on_combobox_changed),
 	(set_input_feedback_enabled), (update_theme), (on_alert_toggled),
 	(play_preview_for_path), (on_treeview_row_activated),

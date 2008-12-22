@@ -94,6 +94,7 @@ PKG_CHECK_MODULES(VOLUME_CONTROL,
         gio-2.0
         gconf-2.0 >= $GCONF_REQUIRED_VERSION
         libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+        libxml-2.0
 )
 AC_SUBST(VOLUME_CONTROL_CFLAGS)
 AC_SUBST(VOLUME_CONTROL_LIBS)
@@ -652,6 +653,7 @@ gnome-volume-control/data/icons/48x48/apps/Makefile
 gnome-volume-control/data/icons/scalable/Makefile
 gnome-volume-control/data/icons/scalable/apps/Makefile
 gnome-volume-control/data/icons/scalable/status/Makefile
+gnome-volume-control/data/sounds/Makefile
 gnome-volume-control/src/Makefile
 vu-meter/Makefile
 cddb-slave2/Makefile

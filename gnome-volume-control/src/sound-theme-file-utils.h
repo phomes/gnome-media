@@ -22,13 +22,15 @@
 #include <gio/gio.h>
 
 char *custom_theme_dir_path (const char *child);
+gboolean custom_theme_dir_is_empty (void);
+void create_custom_theme (const char *parent);
 
 void delete_custom_theme_dir (void);
-void delete_old_files (char **sounds);
-void delete_disabled_files (char **sounds);
+void delete_old_files (const char **sounds);
+void delete_disabled_files (const char **sounds);
 
-void add_disabled_file (char **sounds);
-void add_custom_file (char **sounds, const char *filename);
+void add_disabled_file (const char **sounds);
+void add_custom_file (const char **sounds, const char *filename);
 
 void custom_theme_update_time (void);
 

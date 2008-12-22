@@ -19,8 +19,10 @@
 
 #include <config.h>
 #include <glib/gstdio.h>
+#include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <utime.h>
+#include <strings.h>
 
 #include "sound-theme-file-utils.h"
 
@@ -99,7 +101,7 @@ directory_delete_recursive (GFile *directory, GError **error)
  * A utility routine to delete files and/or directories,
  * including non-empty directories.
  **/
-gboolean
+static gboolean
 capplet_file_delete_recursive (GFile *file, GError **error)
 {
         GFileInfo *info;
@@ -138,6 +140,50 @@ delete_custom_theme_dir (void)
         g_debug ("deleted the custom theme dir");
 }
 
+gboolean
+custom_theme_dir_is_empty (void)
+{
+        char            *dir;
+        GFile           *file;
+        gboolean         is_empty;
+        GFileEnumerator *enumerator;
+        GFileInfo       *info;
+        GError          *error;
+
+        dir = custom_theme_dir_path (NULL);
+        file = g_file_new_for_path (dir);
+        g_free (dir);
+
+        is_empty = TRUE;
+
+        enumerator = g_file_enumerate_children (file,
+                                                G_FILE_ATTRIBUTE_STANDARD_NAME ","
+                                                G_FILE_ATTRIBUTE_STANDARD_TYPE,
+                                                G_FILE_QUERY_INFO_NONE,
+                                                NULL, &error);
+        if (enumerator == NULL) {
+                g_warning ("Unable to enumerate files: %s", error->message);
+                g_error_free (error);
+                goto out;
+        }
+
+        while (is_empty &&
+               (info = g_file_enumerator_next_file (enumerator, NULL, NULL))) {
+
+                if (strcmp ("index.theme", g_file_info_get_name (info)) != 0) {
+                        is_empty = FALSE;
+                }
+
+                g_object_unref (info);
+        }
+        g_file_enumerator_close (enumerator, NULL, NULL);
+
+ out:
+        g_object_unref (file);
+
+        return is_empty;
+}
+
 static void
 delete_one_file (const char *sound_name, const char *pattern)
 {
@@ -154,7 +200,7 @@ delete_one_file (const char *sound_name, const char *pattern)
 }
 
 void
-delete_old_files (char **sounds)
+delete_old_files (const char **sounds)
 {
         guint i;
 
@@ -164,7 +210,7 @@ delete_old_files (char **sounds)
 }
 
 void
-delete_disabled_files (char **sounds)
+delete_disabled_files (const char **sounds)
 {
         guint i;
 
@@ -185,7 +231,7 @@ create_one_file (GFile *file)
 }
 
 void
-add_disabled_file (char **sounds)
+add_disabled_file (const char **sounds)
 {
         guint i;
 
@@ -205,7 +251,7 @@ add_disabled_file (char **sounds)
 }
 
 void
-add_custom_file (char **sounds, const char *filename)
+add_custom_file (const char **sounds, const char *filename)
 {
         guint i;
 
@@ -229,3 +275,31 @@ add_custom_file (char **sounds, const char *filename)
         }
 }
 
+void
+create_custom_theme (const char *parent)
+{
+        GKeyFile *keyfile;
+        char     *data;
+        char     *path;
+
+        /* Create the custom directory */
+        path = custom_theme_dir_path (NULL);
+        g_mkdir_with_parents (path, 0755);
+        g_free (path);
+
+        /* Set the data for index.theme */
+        keyfile = g_key_file_new ();
+        g_key_file_set_string (keyfile, "Sound Theme", "Name", _("Custom"));
+        g_key_file_set_string (keyfile, "Sound Theme", "Inherits", parent);
+        g_key_file_set_string (keyfile, "Sound Theme", "Directories", ".");
+        data = g_key_file_to_data (keyfile, NULL, NULL);
+        g_key_file_free (keyfile);
+
+        /* Save the index.theme */
+        path = custom_theme_dir_path ("index.theme");
+        g_file_set_contents (path, data, -1, NULL);
+        g_free (path);
+        g_free (data);
+
+        custom_theme_update_time ();
+}
