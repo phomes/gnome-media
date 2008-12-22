@@ -4,6 +4,9 @@ sounddir = $(datadir)/sounds/gnome/default/alerts
 
 sound_DATA =			\
 	bark.ogg		\
+	drip.ogg		\
+	glass.ogg		\
+	sonar.ogg		\
 	$(NULL)
 
 metadata_in_files = gnome-sounds-default.xml.in
