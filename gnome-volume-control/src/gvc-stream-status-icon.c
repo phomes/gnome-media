@@ -82,7 +82,11 @@ popup_dock (GvcStreamStatusIcon *icon,
         GdkScreen     *screen;
         gboolean       is_muted;
         gboolean       res;
-        int            x, y;
+        int            x;
+        int            y;
+        int            monitor_num;
+        GdkRectangle   monitor;
+        GtkRequisition dock_req;
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (icon->priv->bar)));
         gtk_adjustment_set_value (adj,
@@ -102,14 +106,39 @@ popup_dock (GvcStreamStatusIcon *icon,
 
         /* position roughly */
         gtk_window_set_screen (GTK_WINDOW (icon->priv->dock), screen);
-        x = area.x + area.width;
-        y = area.y + area.height;
+        gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (icon->priv->bar),
+                                         1 - orientation);
+
+        monitor_num = gdk_screen_get_monitor_at_point (screen, area.x, area.y);
+        gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
+
+        gtk_widget_size_request (icon->priv->dock, &dock_req);
 
         if (orientation == GTK_ORIENTATION_VERTICAL) {
-                gtk_window_move (GTK_WINDOW (icon->priv->dock), x, area.y);
+                if (area.x + area.width + dock_req.width <= monitor.x + monitor.width) {
+                        x = area.x + area.width;
+                } else {
+                        x = area.x - dock_req.width;
+                }
+                if (area.y + dock_req.height <= monitor.y + monitor.height) {
+                        y = area.y;
+                } else {
+                        y = monitor.y + monitor.height - dock_req.height;
+                }
         } else {
-                gtk_window_move (GTK_WINDOW (icon->priv->dock), area.x, y);
+                if (area.y + area.height + dock_req.height <= monitor.y + monitor.height) {
+                        y = area.y + area.height;
+                } else {
+                        y = area.y - dock_req.height;
+                }
+                if (area.x + dock_req.width <= monitor.x + monitor.width) {
+                        x = area.x;
+                } else {
+                        x = monitor.x + monitor.width - dock_req.width;
+                }
         }
+
+        gtk_window_move (GTK_WINDOW (icon->priv->dock), x, y);
 
         /* FIXME: without this, the popup window appears as a square
          * after changing the orientation
