@@ -28,7 +28,9 @@
 
 #include <locale.h>
 #include <string.h>
-#include <gnome.h>
+
+#include <glib.h>
+#include <glib/gi18n.h>
 #include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>

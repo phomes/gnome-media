@@ -559,8 +559,8 @@ AC_ARG_ENABLE([gstprops],
 if test "x$have_gst" = "xyes" && test "x$enable_gstprops" = "xyes";
 then
   PKG_CHECK_MODULES(GSTPROPS, [
+    glib-2.0
     gconf-2.0
-    libgnomeui-2.0
     libglade-2.0 >= 1.99.12
     gstreamer-$GST_MAJORMINOR
     gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_PLUGINS_BASE_REQ

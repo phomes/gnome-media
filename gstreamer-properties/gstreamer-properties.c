@@ -29,7 +29,9 @@
 
 #include <locale.h>
 #include <string.h>
-#include <gnome.h>
+
+#include <glib.h>
+#include <glib/gi18n.h>
 #include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
@@ -599,8 +601,12 @@ create_dialog (void)
   main_window = GTK_DIALOG (WID ("gst_properties_dialog"));
   if (!main_window) {
     /* Fatal error */
-    gnome_app_error (GNOME_APP (gnome_program_get ()),
-        _("Failure instantiating main window"));
+    GtkWidget *dialog;
+    dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+                                     _("Failure instantiating main window"));
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
     return;
   }
 
@@ -614,7 +620,7 @@ int
 main (int argc, char **argv)
 {
   GOptionContext *ctx;
-  GnomeProgram *program;
+  GError *error = NULL;
 
   g_thread_init (NULL);
 
@@ -623,12 +629,14 @@ main (int argc, char **argv)
   textdomain (GETTEXT_PACKAGE);
 
   ctx = g_option_context_new ("gstreamer-properties");
+  g_option_context_add_group (ctx, gtk_get_option_group ());
   g_option_context_add_group (ctx, gst_init_get_option_group ());
 
-  program = gnome_program_init ("gstreamer-properties", VERSION,
-      LIBGNOMEUI_MODULE, argc, argv,
-      GNOME_PARAM_GOPTION_CONTEXT, ctx,
-      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+  if (! g_option_context_parse (ctx, &argc, &argv, &error)) {
+     g_printerr ("option parsing failed: %s\n", error->message);
+     g_error_free (error);
+     return EXIT_FAILURE;
+  }
 
   /* FIXME: hardcode uninstalled path here */
   if (g_file_test ("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
@@ -653,7 +661,6 @@ main (int argc, char **argv)
 
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
-    g_object_unref (program);
 
     exit (1);
   }
@@ -664,7 +671,6 @@ main (int argc, char **argv)
     gtk_main ();
 
   g_object_unref (gconf_client);
-  g_object_unref (program);
 
   return 0;
 }

@@ -26,8 +26,10 @@
 #endif
 
 #include "gstreamer-properties-structs.h"
+
+#include <glib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <bonobo/bonobo-i18n.h>
 
 /* Test specified inputs for pipelines */
 /* static const gchar audiosink_test_pipe[] = "afsrc location=\"" TEST_MEDIA_FILE "\""; FIXME*/
