@@ -182,6 +182,15 @@ on_status_icon_activate (GtkStatusIcon *status_icon,
 }
 
 static void
+on_menu_mute_toggled (GtkMenuItem *item,
+                      GvcStreamStatusIcon *icon)
+{
+        gboolean is_muted;
+        is_muted = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (item));
+        gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (icon->priv->bar), is_muted);
+}
+
+static void
 on_menu_activate_open_volume_control (GtkMenuItem *item,
                                       GvcStreamStatusIcon   *icon)
 {
@@ -221,6 +230,16 @@ on_status_icon_popup_menu (GtkStatusIcon       *status_icon,
         GtkWidget *image;
 
         menu = gtk_menu_new ();
+
+        item = gtk_check_menu_item_new_with_mnemonic (_("_Mute"));
+        gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (item),
+                                        gvc_mixer_stream_get_is_muted (icon->priv->mixer_stream));
+        g_signal_connect (item,
+                          "toggled",
+                          G_CALLBACK (on_menu_mute_toggled),
+                          icon);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+
         item = gtk_image_menu_item_new_with_mnemonic (_("_Sound Preferences"));
         image = gtk_image_new_from_icon_name ("multimedia-volume-control",
                                               GTK_ICON_SIZE_MENU);
