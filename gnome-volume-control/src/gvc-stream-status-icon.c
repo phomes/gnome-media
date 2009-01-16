@@ -175,14 +175,14 @@ popup_dock (GvcStreamStatusIcon *icon,
 }
 
 static void
-on_status_icon_activate (GtkStatusIcon *status_icon,
-                         GvcStreamStatusIcon     *icon)
+on_status_icon_activate (GtkStatusIcon       *status_icon,
+                         GvcStreamStatusIcon *icon)
 {
         popup_dock (icon, GDK_CURRENT_TIME);
 }
 
 static void
-on_menu_mute_toggled (GtkMenuItem *item,
+on_menu_mute_toggled (GtkMenuItem         *item,
                       GvcStreamStatusIcon *icon)
 {
         gboolean is_muted;
@@ -688,7 +688,7 @@ gvc_stream_status_icon_constructor (GType                  type,
         gtk_widget_show (frame);
 
         box = gtk_vbox_new (FALSE, 6);
-        gtk_container_set_border_width (GTK_CONTAINER (box), 6);
+        gtk_container_set_border_width (GTK_CONTAINER (box), 2);
         gtk_container_add (GTK_CONTAINER (frame), box);
 
         icon->priv->bar = gvc_channel_bar_new ();
