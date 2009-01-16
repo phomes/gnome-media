@@ -90,6 +90,8 @@ maybe_show_status_icons (GvcApplet *applet)
                 show = TRUE;
         }
         gtk_status_icon_set_visible (GTK_STATUS_ICON (applet->priv->input_status_icon), show);
+
+        g_slist_free (source_outputs);
 }
 
 void
