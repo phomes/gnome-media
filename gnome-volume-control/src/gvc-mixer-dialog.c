@@ -1165,15 +1165,14 @@ gvc_mixer_dialog_constructor (GType                  type,
                           G_CALLBACK (on_control_stream_removed),
                           self);
 
+        gtk_widget_show_all (GTK_WIDGET (self));
+
         streams = gvc_mixer_control_get_streams (self->priv->mixer_control);
         for (l = streams; l != NULL; l = l->next) {
                 stream = l->data;
                 add_stream (self, stream);
         }
         g_slist_free (streams);
-
-
-        gtk_widget_show_all (GTK_WIDGET (self));
 
         return object;
 }
