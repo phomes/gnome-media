@@ -27,6 +27,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <canberra-gtk.h>
 
 #include "gvc-channel-bar.h"
 
@@ -57,6 +58,7 @@ struct GvcChannelBarPrivate
         char          *high_icon_name;
         GtkSizeGroup  *size_group;
         gboolean       symmetric;
+        gboolean       click_lock;
 };
 
 enum
@@ -137,7 +139,7 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_start (GTK_BOX (ebox), priv->mute_box, FALSE, FALSE, 0);
         }
 
-        gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_DISCONTINUOUS);
+        gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_CONTINUOUS);
 
         if (bar->priv->size_group != NULL) {
                 gtk_size_group_add_widget (bar->priv->size_group, sbox);
@@ -345,11 +347,61 @@ gvc_channel_bar_get_adjustment (GvcChannelBar *bar)
         return bar->priv->adjustment;
 }
 
+static gboolean
+on_scale_button_press_event (GtkWidget      *widget,
+                             GdkEventButton *event,
+                             GvcChannelBar  *bar)
+{
+        /* HACK: we want the behaviour you get with the middle button, so we
+         * mangle the event.  clicking with other buttons moves the slider in
+         * step increments, clicking with the middle button moves the slider to
+         * the location of the click.
+         */
+        event->button = 2;
+
+        bar->priv->click_lock = TRUE;
+
+        return FALSE;
+}
+
+static gboolean
+on_scale_button_release_event (GtkWidget      *widget,
+                               GdkEventButton *event,
+                               GvcChannelBar  *bar)
+{
+        gdouble value;
+
+        /* HACK: see on_scale_button_press_event() */
+        event->button = 2;
+
+        bar->priv->click_lock = FALSE;
+
+        value = gtk_adjustment_get_value (bar->priv->zero_adjustment);
+        gtk_adjustment_set_value (bar->priv->adjustment, value);
+
+        /* this means the adjustment moved away from zero and
+          therefore we should unmute and set the volume. */
+
+        gvc_channel_bar_set_is_muted (bar, FALSE);
+
+        /* Play a sound! */
+        ca_gtk_play_for_widget (GTK_WIDGET (bar), 0,
+                                CA_PROP_EVENT_ID, "audio-volume-change",
+                                CA_PROP_EVENT_DESCRIPTION, "foobar event happened",
+                                NULL);
+
+        return FALSE;
+}
+
 static void
 on_zero_adjustment_value_changed (GtkAdjustment *adjustment,
                                   GvcChannelBar *bar)
 {
         gdouble value;
+
+        if (bar->priv->click_lock != FALSE) {
+                return;
+        }
 
         value = gtk_adjustment_get_value (bar->priv->zero_adjustment);
         gtk_adjustment_set_value (bar->priv->adjustment, value);
@@ -673,6 +725,12 @@ gvc_channel_bar_init (GvcChannelBar *bar)
 
         /* box with scale */
         bar->priv->scale_box = _scale_box_new (bar);
+        ca_gtk_widget_disable_sounds (bar->priv->scale, FALSE);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-press-event",
+                          G_CALLBACK (on_scale_button_press_event), bar);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-release-event",
+                          G_CALLBACK (on_scale_button_release_event), bar);
+
         gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
 }
 

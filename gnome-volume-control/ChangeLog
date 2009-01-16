@@ -1,5 +1,15 @@
 2009-01-16  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gvc-channel-bar.c (_scale_box_new),
+	(on_scale_button_press_event), (on_scale_button_release_event),
+	(on_zero_adjustment_value_changed), (gvc_channel_bar_init):
+	Make volume sliders instantaneous.
+
+	Patch from: Bastien Nocera  <hadess@hadess.net>
+	Fixes #564313
+
+2009-01-16  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gvc-stream-status-icon.c (on_menu_mute_toggled),
 	(on_status_icon_popup_menu):
 	Add a mute toggle item to the context menu.
