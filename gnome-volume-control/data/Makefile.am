@@ -20,6 +20,7 @@ EXTRA_DIST =					\
 	$(NULL)
 
 CLEANFILES =					\
+	gnome-volume-control.desktop		\
 	$(NULL)
 
 DISTCLEANFILES =				\
