@@ -983,6 +983,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         object = G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->constructor (type, n_construct_properties, construct_params);
 
         self = GVC_MIXER_DIALOG (object);
+        gtk_dialog_add_button (GTK_DIALOG (self), "gtk-close", GTK_RESPONSE_OK);
 
 #if GTK_CHECK_VERSION(2,14,0)
         main_vbox = gtk_dialog_get_content_area (GTK_DIALOG (self));
@@ -990,7 +991,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         main_vbox = GTK_DIALOG (self)->vbox;
 #endif
 
-        gtk_container_set_border_width (GTK_CONTAINER (self), 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self), 6);
 
         self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (main_vbox),
@@ -1006,7 +1007,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->notebook = gtk_notebook_new ();
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->notebook,
-                            TRUE, TRUE, 12);
+                            TRUE, TRUE, 6);
 
         /* Effects page */
         self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
