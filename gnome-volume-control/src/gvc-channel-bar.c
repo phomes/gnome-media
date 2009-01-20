@@ -74,9 +74,19 @@ enum
         PROP_HIGH_ICON_NAME,
 };
 
-static void     gvc_channel_bar_class_init (GvcChannelBarClass *klass);
-static void     gvc_channel_bar_init       (GvcChannelBar      *channel_bar);
-static void     gvc_channel_bar_finalize   (GObject            *object);
+static void     gvc_channel_bar_class_init    (GvcChannelBarClass *klass);
+static void     gvc_channel_bar_init          (GvcChannelBar      *channel_bar);
+static void     gvc_channel_bar_finalize      (GObject            *object);
+
+static gboolean on_scale_button_press_event   (GtkWidget      *widget,
+                                               GdkEventButton *event,
+                                               GvcChannelBar  *bar);
+static gboolean on_scale_button_release_event (GtkWidget      *widget,
+                                               GdkEventButton *event,
+                                               GvcChannelBar  *bar);
+static gboolean on_scale_scroll_event         (GtkWidget      *widget,
+                                               GdkEventScroll *event,
+                                               GvcChannelBar  *bar);
 
 G_DEFINE_TYPE (GvcChannelBar, gvc_channel_bar, GTK_TYPE_HBOX)
 
@@ -140,6 +150,15 @@ _scale_box_new (GvcChannelBar *bar)
         }
 
         gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_CONTINUOUS);
+        ca_gtk_widget_disable_sounds (bar->priv->scale, FALSE);
+        gtk_widget_add_events (bar->priv->scale, GDK_SCROLL_MASK);
+
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-press-event",
+                          G_CALLBACK (on_scale_button_press_event), bar);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-release-event",
+                          G_CALLBACK (on_scale_button_release_event), bar);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "scroll-event",
+                          G_CALLBACK (on_scale_scroll_event), bar);
 
         if (bar->priv->size_group != NULL) {
                 gtk_size_group_add_widget (bar->priv->size_group, sbox);
@@ -357,7 +376,8 @@ on_scale_button_press_event (GtkWidget      *widget,
          * step increments, clicking with the middle button moves the slider to
          * the location of the click.
          */
-        event->button = 2;
+        if (event->button == 1)
+                event->button = 2;
 
         bar->priv->click_lock = TRUE;
 
@@ -372,7 +392,8 @@ on_scale_button_release_event (GtkWidget      *widget,
         gdouble value;
 
         /* HACK: see on_scale_button_press_event() */
-        event->button = 2;
+        if (event->button == 1)
+                event->button = 2;
 
         bar->priv->click_lock = FALSE;
 
@@ -391,6 +412,32 @@ on_scale_button_release_event (GtkWidget      *widget,
                                 NULL);
 
         return FALSE;
+}
+
+static gboolean
+on_scale_scroll_event (GtkWidget      *widget,
+                       GdkEventScroll *event,
+                       GvcChannelBar  *bar)
+{
+        gdouble value;
+
+        value = gtk_adjustment_get_value (bar->priv->adjustment);
+
+        if (event->direction == GDK_SCROLL_UP) {
+                if (value + 65536.0/100.0 > 65536.0)
+                        value = 65536.0;
+                else
+                        value = value + 65536.0/100.0;
+                gtk_adjustment_set_value (bar->priv->adjustment, value);
+        } else if (event->direction == GDK_SCROLL_DOWN) {
+                if (value - 65536.0/100.0 < 0)
+                        value = 0.0;
+                else
+                        value = value - 65536.0/100.0;
+                gtk_adjustment_set_value (bar->priv->adjustment, value);
+        }
+
+        return TRUE;
 }
 
 static void
@@ -725,11 +772,6 @@ gvc_channel_bar_init (GvcChannelBar *bar)
 
         /* box with scale */
         bar->priv->scale_box = _scale_box_new (bar);
-        ca_gtk_widget_disable_sounds (bar->priv->scale, FALSE);
-        g_signal_connect (G_OBJECT (bar->priv->scale), "button-press-event",
-                          G_CALLBACK (on_scale_button_press_event), bar);
-        g_signal_connect (G_OBJECT (bar->priv->scale), "button-release-event",
-                          G_CALLBACK (on_scale_button_release_event), bar);
 
         gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
 }

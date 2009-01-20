@@ -1,5 +1,15 @@
 2009-01-20  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-channel-bar.c (_scale_box_new),
+	(on_scale_button_press_event), (on_scale_button_release_event),
+	(on_scale_scroll_event), (gvc_channel_bar_init): Move the
+	setup of the press and release button events to _scale_box_new(),
+	otherwise it's not handled with horizontal scales.
+	When scrolling with the mouse wheel, swap the up/down directions
+	to work as expected (Closes: #567034)
+
+2009-01-20  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-mixer-control.c (set_is_event_stream_from_proplist),
 	(update_sink_input):
 	* src/gvc-mixer-stream.c (gvc_mixer_stream_is_event_stream),
