@@ -662,6 +662,23 @@ set_icon_name_from_proplist (GvcMixerStream *stream,
 }
 
 static void
+set_is_event_stream_from_proplist (GvcMixerStream *stream,
+                                   pa_proplist    *l)
+{
+        const char *t;
+        gboolean is_event_stream;
+
+        is_event_stream = FALSE;
+
+        if ((t = pa_proplist_gets (l, PA_PROP_MEDIA_ROLE))) {
+                if (g_str_equal (t, "event"))
+                        is_event_stream = TRUE;
+        }
+
+        gvc_mixer_stream_set_is_event_stream (stream, is_event_stream);
+}
+
+static void
 update_sink_input (GvcMixerControl          *control,
                    const pa_sink_input_info *info)
 {
@@ -699,6 +716,7 @@ update_sink_input (GvcMixerControl          *control,
         gvc_mixer_stream_set_name (stream, name);
         gvc_mixer_stream_set_description (stream, info->name);
 
+        set_is_event_stream_from_proplist (stream, info->proplist);
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);

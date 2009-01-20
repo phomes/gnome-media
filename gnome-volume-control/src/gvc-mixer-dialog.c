@@ -663,7 +663,8 @@ add_stream (GvcMixerDialog *dialog,
                 g_debug ("Adding effects stream");
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)
-                   && !GVC_IS_MIXER_SOURCE_OUTPUT (stream)) {
+                   && !GVC_IS_MIXER_SOURCE_OUTPUT (stream)
+                   && !gvc_mixer_stream_is_event_stream (stream)) {
                 bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));

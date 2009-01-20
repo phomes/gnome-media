@@ -1,5 +1,19 @@
 2009-01-20  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-mixer-control.c (set_is_event_stream_from_proplist),
+	(update_sink_input):
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_is_event_stream),
+	(gvc_mixer_stream_set_is_event_stream),
+	(gvc_mixer_stream_set_property), (gvc_mixer_stream_get_property),
+	(gvc_mixer_stream_class_init):
+	* src/gvc-mixer-stream.h: Add the "is-event-stream" property,
+	to check whether the role of a stream is to play an event
+
+	* src/gvc-mixer-dialog.c (add_stream): Don't show event streams
+	in the applications tab (Closes: #565145)
+
+2009-01-20  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor):
 	Add Close button, and change the spacing around it to
 	match existing capplets (Closes: #564314)

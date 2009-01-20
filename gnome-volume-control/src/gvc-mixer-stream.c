@@ -48,6 +48,7 @@ struct GvcMixerStreamPrivate
         char          *icon_name;
         gboolean       is_muted;
         gboolean       can_decibel;
+        gboolean       is_event_stream;
 };
 
 enum
@@ -63,7 +64,8 @@ enum
         PROP_VOLUME,
         PROP_DECIBEL,
         PROP_IS_MUTED,
-        PROP_CAN_DECIBEL
+        PROP_CAN_DECIBEL,
+        PROP_IS_EVENT_STREAM,
 };
 
 static void     gvc_mixer_stream_class_init (GvcMixerStreamClass *klass);
@@ -238,6 +240,26 @@ gvc_mixer_stream_set_description (GvcMixerStream *stream,
         return TRUE;
 }
 
+gboolean
+gvc_mixer_stream_is_event_stream (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        return stream->priv->is_event_stream;
+}
+
+gboolean
+gvc_mixer_stream_set_is_event_stream (GvcMixerStream *stream,
+                                      gboolean is_event_stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        stream->priv->is_event_stream = is_event_stream;
+        g_object_notify (G_OBJECT (stream), "is-event-stream");
+
+        return TRUE;
+}
+
 static void
 on_channel_map_gains_changed (GvcChannelMap  *channel_map,
                               GvcMixerStream *stream)
@@ -336,6 +358,9 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_IS_MUTED:
                 gvc_mixer_stream_set_is_muted (self, g_value_get_boolean (value));
                 break;
+        case PROP_IS_EVENT_STREAM:
+                gvc_mixer_stream_set_is_event_stream (self, g_value_get_boolean (value));
+                break;
         case PROP_CAN_DECIBEL:
                 gvc_mixer_stream_set_can_decibel (self, g_value_get_boolean (value));
                 break;
@@ -383,6 +408,9 @@ gvc_mixer_stream_get_property (GObject     *object,
                 break;
         case PROP_IS_MUTED:
                 g_value_set_boolean (value, self->priv->is_muted);
+                break;
+        case PROP_IS_EVENT_STREAM:
+                g_value_set_boolean (value, self->priv->is_event_stream);
                 break;
         case PROP_CAN_DECIBEL:
                 g_value_set_boolean (value, self->priv->can_decibel);
@@ -534,7 +562,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                                "Whether stream volume can be converted to decibel units",
                                                                FALSE,
                                                                G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
-
+        g_object_class_install_property (gobject_class,
+                                         PROP_IS_EVENT_STREAM,
+                                         g_param_spec_boolean ("is-event-stream",
+                                                               "is event stream",
+                                                               "Whether stream's role is to play an event",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_type_class_add_private (klass, sizeof (GvcMixerStreamPrivate));
 }
 
