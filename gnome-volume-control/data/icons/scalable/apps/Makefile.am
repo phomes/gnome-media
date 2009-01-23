@@ -1,6 +1,6 @@
 NULL =
 
-themedir = $(pkgdatadir)/icons/hicolor
+themedir = $(datadir)/icons/hicolor
 size = scalable
 context = apps
 
