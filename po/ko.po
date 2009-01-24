@@ -1,14 +1,16 @@
 # gnome-media ko.po
+# This file is distributed under the same license as the gnome-media package.
+#
 # Updated by Young-Ho, Cha <ganadist@chollian.net>, 2000, 2006, 2007.
-# Changwoo Ryu <cwryu@debian.org>, 1998, 2002, 2003, 2004, 2006, 2008.
+# Changwoo Ryu <cwryu@debian.org>, 1998, 2002, 2003, 2004, 2006, 2008, 2009.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-04 21:28+0900\n"
-"PO-Revision-Date: 2008-09-04 21:34+0900\n"
+"POT-Creation-Date: 2009-01-24 23:36+0900\n"
+"PO-Revision-Date: 2009-01-25 00:00+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +20,7 @@ msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr "CD 질의를 할 서버의 주소"
+msgstr "CD 질의를 보낼 서버의 주소"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
 msgid "Information to send to server"
@@ -149,9 +151,9 @@ msgid "Unknown / Unknown"
 msgstr "모름 / 모름"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1012
-#: ../grecord/src/gsr-window.c:1022 ../grecord/src/gsr-window.c:1038
-#: ../grecord/src/gsr-window.c:1047 ../grecord/src/gsr-window.c:1401
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
+#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "모름"
@@ -1068,7 +1070,7 @@ msgid "_Eject disc"
 msgstr "디스크 꺼내기(_E)"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2137
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
 msgid "_Help"
 msgstr "도움말(_H)"
 
@@ -1314,12 +1316,357 @@ msgstr "테마"
 msgid "_Select a theme:"
 msgstr "테마 선택(_S):"
 
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and associate sounds with events"
+msgstr "사운드 볼륨을 바꾸고 사운드를 이벤트와 연결합니다"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "사운드"
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
+msgid "Show desktop volume control"
+msgstr "데스크탑 볼륨 조정 표시"
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+msgid "Volume Control"
+msgstr "볼륨 조정"
+
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "멍멍"
+
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "뚝뚝"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:9
+msgid "Glass"
+msgstr "챙챙"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:12
+msgid "Sonar"
+msgstr "핑핑"
+
+#: ../gnome-volume-control/src/applet-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:182
+msgid "Enable debugging code"
+msgstr "디버깅 코드 사용"
+
+#: ../gnome-volume-control/src/applet-main.c:155
+#: ../gnome-volume-control/src/dialog-main.c:183
+msgid "Version of this application"
+msgstr "이 프로그램의 버전"
+
+#: ../gnome-volume-control/src/applet-main.c:165
+msgid " - GNOME Volume Control Applet"
+msgstr "- 그놈 볼륨 조정 애플릿"
+
+#: ../gnome-volume-control/src/dialog-main.c:181 ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "시작 페이지"
+
+#: ../gnome-volume-control/src/dialog-main.c:193
+msgid " - GNOME Volume Control"
+msgstr "- 그놈 볼륨 조정"
+
+#: ../gnome-volume-control/src/gvc-applet.c:245
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1112
+msgid "Output"
+msgstr "출력"
+
+#: ../gnome-volume-control/src/gvc-applet.c:249
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1036
+msgid "Input"
+msgstr "입력"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:95
+msgid "Left"
+msgstr "왼쪽"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:100
+msgid "Right"
+msgstr "오른쪽"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:323
+msgid "Balance:"
+msgstr "좌우:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:742
+msgid "Mute"
+msgstr "조용히"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:972
+msgid "System Sounds"
+msgstr "시스템 사운드"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1496
+msgid "GNOME Volume Control"
+msgstr "그놈 볼륨 조정"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:350
+msgid "Peak detect"
+msgstr "최대치 검출"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:950
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:862
+msgid "Name"
+msgstr "이름"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:957
+msgid "Device"
+msgstr "장치"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1003
+msgid "Output volume: "
+msgstr "출력 볼륨:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1016
+msgid "Sound Effects"
+msgstr "사운드 효과"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1023
+msgid "Alert Volume: "
+msgstr "경보 볼륨:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1043
+msgid "Input volume: "
+msgstr "입력 볼륨:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1063
+msgid "Input level:"
+msgstr "입력 단계:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1085
+msgid "Choose a device for sound input"
+msgstr "사운드 입력 장치를 선택하십시오"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1117
+msgid "Choose a device for sound output"
+msgstr "사운드 출력 장치를 선택하십시오"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
+msgid "Settings for the selected device:"
+msgstr "선택한 장치의 설정:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1152
+msgid "Applications"
+msgstr "프로그램"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1156
+msgid "No application is currently playing audio."
+msgstr "현재 오디오를 재생하는 프로그램이 없습니다."
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1259
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:730
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:741
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:563
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:953
+msgid "Sound Preferences"
+msgstr "사운드 기본 설정"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:320
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:523
+msgid "No sounds"
+msgstr "소리 없음"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:442
+msgid "Built-in"
+msgstr "내장"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:618
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:707
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:761
+#: ../gnome-volume-control/src/sound-theme-file-utils.c:292
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
+msgid "Custom"
+msgstr "사용자 지정"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:733
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:743
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:754
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:565
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:955
+msgid "Testing event sound"
+msgstr "이벤트 소리 테스트"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:838
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:893
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:998
+#: ../gstreamer-properties/gstreamer-properties.c:251
+msgid "Default"
+msgstr "기본값"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:839
+msgid "From theme"
+msgstr "테마에서"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:869
+msgid "Type"
+msgstr "종류"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1079
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1312
+msgid "Sound Theme:"
+msgstr "사운드 테마:"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1087
+msgid "Choose an alert sound:"
+msgstr "경보 사운드 선택:"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1105
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1340
+msgid "Enable window and button sounds"
+msgstr "창 및 단추 사운드 사용"
+
+#. Bell
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:76
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "경보 사운드"
+
+#. Windows and buttons
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "창 및 단추"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr "단추 누름"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr "토글 단추 누름"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr "창 최대화"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr "창 최대화 해제"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr "창 최소화"
+
+#. Desktop
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "바탕 화면"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "로그인"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "로그아웃"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "새 전자메일"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "휴지통 비우기"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr "오래 걸리는 작업 완료 (다운로드, CD 굽기 등)"
+
+#. Alerts?
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:92
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "경보"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "정보 혹은 물음"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "경고"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "오류"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "배터리 경고"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:594
+msgid "Select Sound File"
+msgstr "사운드 파일을 선택하십시오"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:605
+msgid "Sound files"
+msgstr "사운드 파일"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:897
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:994
+msgid "Disabled"
+msgstr "사용하지 않음"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:901
+msgid "Custom..."
+msgstr "사용자 지정..."
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:211
+#, c-format
+msgid "Failed to start Sound Preferences: %s"
+msgstr "사운드 기본 설정 시작에 실패: %s"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:234
+msgid "_Mute"
+msgstr "조용히(_M)"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:243
+msgid "_Sound Preferences"
+msgstr "사운드 기본 설정(_S)"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:453
+msgid "Muted"
+msgstr "조용히"
+
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
 msgstr "사운드 클립을 녹음합니다"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1235
+#: ../grecord/src/gsr-window.c:1236
 msgid "Sound Recorder"
 msgstr "녹음기"
 
@@ -1327,17 +1674,17 @@ msgstr "녹음기"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1731
-#: ../grecord/src/gsr-window.c:2673
+#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:2679
 msgid "Untitled"
 msgstr "제목없음"
 
-#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1733
+#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
 #, c-format
 msgid "Untitled-%d"
 msgstr "제목없음-%d"
 
-#: ../grecord/src/gsr-window.c:192
+#: ../grecord/src/gsr-window.c:194
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1352,7 +1699,7 @@ msgstr ""
 "    gst-inspect-0.10 %4$s\n"
 "그리고 gnome-sound-recorder를 다시 시작하십시오."
 
-#: ../grecord/src/gsr-window.c:208
+#: ../grecord/src/gsr-window.c:210
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1360,43 +1707,43 @@ msgstr ""
 "설정을 확인하십시오.\n"
 "필요한 플러그인이 없습니다."
 
-#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld분"
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld시간"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:297
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
 msgstr[0] "%ld초"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:304
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s %s %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
-#: ../grecord/src/gsr-window.c:328
+#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:329
 #, c-format
 msgid "%s and %s"
 msgstr "%s %s"
 
-#: ../grecord/src/gsr-window.c:371
+#: ../grecord/src/gsr-window.c:372
 msgid "Open a File"
 msgstr "파일 열기"
 
-#: ../grecord/src/gsr-window.c:448
+#: ../grecord/src/gsr-window.c:449
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1405,17 +1752,17 @@ msgstr ""
 "파일을 읽을 수 없음:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1532
-#: ../grecord/src/gsr-window.c:1790 ../grecord/src/gsr-window.c:2490
+#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
+#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
 msgid "Ready"
 msgstr "준비"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:647
+#: ../grecord/src/gsr-window.c:648
 msgid "_Replace"
 msgstr "바꾸기(_R)"
 
-#: ../grecord/src/gsr-window.c:664
+#: ../grecord/src/gsr-window.c:665
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1424,118 +1771,118 @@ msgstr ""
 "이름이 \"%s\"인 파일이 이미 있습니다. \n"
 "이 파일을 저장하려는 파일로 바꾸시겠습니까?"
 
-#: ../grecord/src/gsr-window.c:712
+#: ../grecord/src/gsr-window.c:713
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "\"%s\" 파일을 저장할 수 없습니다"
 
-#: ../grecord/src/gsr-window.c:732
+#: ../grecord/src/gsr-window.c:733
 msgid "Save file as"
 msgstr "다른 이름으로 저장"
 
-#: ../grecord/src/gsr-window.c:826
+#: ../grecord/src/gsr-window.c:827
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s은(는) 경로에 설치되어 있지 않습니다."
 
-#: ../grecord/src/gsr-window.c:835
+#: ../grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s을(를) 시작하는 데 오류가 발생했습니다: %s"
 
-#: ../grecord/src/gsr-window.c:863
+#: ../grecord/src/gsr-window.c:864
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "닫기 전에 파일 \"%s\"의 바뀐점을 저장하겠습니까?"
 
-#: ../grecord/src/gsr-window.c:875
+#: ../grecord/src/gsr-window.c:876
 msgid "Close _without Saving"
 msgstr "저장하지 않고 닫기(_W)"
 
-#: ../grecord/src/gsr-window.c:882
+#: ../grecord/src/gsr-window.c:883
 msgid "Question"
 msgstr "질문"
 
-#: ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:984
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (저장되지 않음)"
 
-#: ../grecord/src/gsr-window.c:999
+#: ../grecord/src/gsr-window.c:1000
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu바이트)"
 
-#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:1004
 msgid "Unknown size"
 msgstr "알 수 없는 크기"
 
-#: ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1025
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1032
+#: ../grecord/src/gsr-window.c:1033
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1035
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "(약)%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1051
 msgid "1 (mono)"
 msgstr "1 (모노)"
 
-#: ../grecord/src/gsr-window.c:1053
+#: ../grecord/src/gsr-window.c:1054
 msgid "2 (stereo)"
 msgstr "2 (스테레오)"
 
-#: ../grecord/src/gsr-window.c:1080
+#: ../grecord/src/gsr-window.c:1081
 #, c-format
 msgid "%s Information"
 msgstr "%s 정보"
 
-#: ../grecord/src/gsr-window.c:1104 ../grecord/src/gsr-window.c:2402
+#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
 msgid "File Information"
 msgstr "파일 정보"
 
-#: ../grecord/src/gsr-window.c:1119
+#: ../grecord/src/gsr-window.c:1120
 msgid "Folder:"
 msgstr "폴더:"
 
-#: ../grecord/src/gsr-window.c:1125 ../grecord/src/gsr-window.c:2409
+#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
 msgid "Filename:"
 msgstr "파일 이름:"
 
-#: ../grecord/src/gsr-window.c:1131
+#: ../grecord/src/gsr-window.c:1132
 msgid "File size:"
 msgstr "파일 크기:"
 
-#: ../grecord/src/gsr-window.c:1140
+#: ../grecord/src/gsr-window.c:1141
 msgid "Audio Information"
 msgstr "오디오 정보"
 
-#: ../grecord/src/gsr-window.c:1155
+#: ../grecord/src/gsr-window.c:1156
 msgid "File duration:"
 msgstr "파일 길이:"
 
-#: ../grecord/src/gsr-window.c:1161
+#: ../grecord/src/gsr-window.c:1162
 msgid "Number of channels:"
 msgstr "채널 개수:"
 
-#: ../grecord/src/gsr-window.c:1167
+#: ../grecord/src/gsr-window.c:1168
 msgid "Sample rate:"
 msgstr "샘플 레이트:"
 
-#: ../grecord/src/gsr-window.c:1173
+#: ../grecord/src/gsr-window.c:1174
 msgid "Bit rate:"
 msgstr "비트 레이트:"
 
-#: ../grecord/src/gsr-window.c:1238
+#: ../grecord/src/gsr-window.c:1239
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -1543,164 +1890,166 @@ msgstr ""
 "그놈 데스크탑 녹음기\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1504
+#: ../grecord/src/gsr-window.c:1505
 msgid "Playing..."
 msgstr "연주중..."
 
-#: ../grecord/src/gsr-window.c:1636
+#: ../grecord/src/gsr-window.c:1637
 msgid "GConf audio output"
 msgstr "GConf 오디오 출력"
 
-#: ../grecord/src/gsr-window.c:1645 ../gst-mixer/src/element.c:216
-#: ../gst-mixer/src/misc.c:58
+#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/element.c:216
+#: ../gst-mixer/src/misc.c:60
 msgid "Playback"
 msgstr "재생"
 
-#: ../grecord/src/gsr-window.c:1722
+#: ../grecord/src/gsr-window.c:1723
 msgid "Recording..."
 msgstr "녹음중..."
 
-#: ../grecord/src/gsr-window.c:1812
+#: ../grecord/src/gsr-window.c:1813
 msgid "GConf audio recording"
 msgstr "GConf 오디오 녹음"
 
-#: ../grecord/src/gsr-window.c:1821
+#: ../grecord/src/gsr-window.c:1822
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
-msgstr "오디오 캡쳐 설정이 올바르지 않습니다. 시스템 기본 설정 메뉴에 있는 사운드 기본 설정에서 바로잡으십시오."
+msgstr ""
+"오디오 캡쳐 설정이 올바르지 않습니다. 시스템 기본 설정 메뉴에 있는 사운드 기"
+"본 설정에서 바로잡으십시오."
 
-#: ../grecord/src/gsr-window.c:1987
+#: ../grecord/src/gsr-window.c:1994
 msgid "file output"
 msgstr "파일 출력"
 
-#: ../grecord/src/gsr-window.c:2005
+#: ../grecord/src/gsr-window.c:2012
 msgid "level"
 msgstr "단계"
 
-#: ../grecord/src/gsr-window.c:2029
+#: ../grecord/src/gsr-window.c:2036
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "오디오 프로파일 '%s'(을)를 분석할 수 없습니다. "
 
-#: ../grecord/src/gsr-window.c:2046
+#: ../grecord/src/gsr-window.c:2053
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "오디오 프로파일 '%s'(으)로 캡쳐를 할 수 없습니다. "
 
-#: ../grecord/src/gsr-window.c:2055
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "오디오 프로파일 '%s'(으)로 파일을 쓸 수 없습니다. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2109
+#: ../grecord/src/gsr-window.c:2116
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../grecord/src/gsr-window.c:2111
+#: ../grecord/src/gsr-window.c:2118
 msgid "Create a new sample"
 msgstr "새 샘플을 만듭니다"
 
-#: ../grecord/src/gsr-window.c:2113
+#: ../grecord/src/gsr-window.c:2120
 msgid "Open a file"
 msgstr "파일 열기"
 
-#: ../grecord/src/gsr-window.c:2115
+#: ../grecord/src/gsr-window.c:2122
 msgid "Save the current file"
 msgstr "지금 파일을 저장합니다"
 
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2124
 msgid "Save the current file with a different name"
 msgstr "지금 파일을 다른 이름으로 저장합니다"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Open Volu_me Control"
 msgstr "볼륨 조정 열기(_M)"
 
-#: ../grecord/src/gsr-window.c:2119
+#: ../grecord/src/gsr-window.c:2126
 msgid "Open the audio mixer"
 msgstr "오디오 믹서를 실행합니다"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2128
 msgid "Show information about the current file"
 msgstr "지금 파일의 정보를 보여줍니다"
 
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2130
 msgid "Close the current file"
 msgstr "지금 파일을 닫습니다"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Quit the program"
 msgstr "프로그램을 끝냅니다"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "_Control"
 msgstr "컨트롤(_C)"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Record sound"
 msgstr "소리를 녹음합니다"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Play sound"
 msgstr "소리 연주"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2141
 msgid "Stop sound"
 msgstr "소리 멈춤"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2145
 msgid "Contents"
 msgstr "차례"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Open the manual"
 msgstr "설명서를 엽니다"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "About this application"
 msgstr "이 프로그램의 정보"
 
-#: ../grecord/src/gsr-window.c:2264
+#: ../grecord/src/gsr-window.c:2270
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "ui.xml을 읽을 수 없습니다. 프로그램이 제대로 설치되지 않은 것 같습니다"
 
-#: ../grecord/src/gsr-window.c:2287
+#: ../grecord/src/gsr-window.c:2293
 msgid "Open"
 msgstr "열기"
 
-#: ../grecord/src/gsr-window.c:2289
+#: ../grecord/src/gsr-window.c:2295
 msgid "Save"
 msgstr "저장"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2297
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: ../grecord/src/gsr-window.c:2347
+#: ../grecord/src/gsr-window.c:2353
 msgid "Record from _input:"
 msgstr "입력에서 녹음(_I):"
 
-#: ../grecord/src/gsr-window.c:2369
+#: ../grecord/src/gsr-window.c:2371
 msgid "_Record as:"
 msgstr "녹음 방법(_R):"
 
-#: ../grecord/src/gsr-window.c:2416
+#: ../grecord/src/gsr-window.c:2418
 msgid "<none>"
 msgstr "<없음>"
 
-#: ../grecord/src/gsr-window.c:2430
+#: ../grecord/src/gsr-window.c:2432
 msgid "Length:"
 msgstr "길이:"
 
-#: ../grecord/src/gsr-window.c:2468
+#: ../grecord/src/gsr-window.c:2470
 msgid "Level:"
 msgstr "단계:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2558
+#: ../grecord/src/gsr-window.c:2564
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - 녹음기"
@@ -1708,11 +2057,6 @@ msgstr "%s - 녹음기"
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Adjust the volume level"
 msgstr "볼륨 단계를 조절합니다"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
-msgid "Volume Control"
-msgstr "볼륨 조정"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1730,28 +2074,24 @@ msgstr "창의 너비"
 msgid "Width of the Window to be displayed"
 msgstr "보이는 창의 너비"
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
+#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:62
 msgid "Recording"
 msgstr "녹음"
 
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:64
 msgid "Switches"
 msgstr "스위치"
 
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:66
 msgid "Options"
 msgstr "옵션"
-
-#: ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "시작 페이지"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "알 수 없는 볼륨 조정 %d"
 
-#: ../gst-mixer/src/main.c:161
+#: ../gst-mixer/src/main.c:159
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "볼륨 조정 GStremaer 플러그인/장치가 없습니다."
 
@@ -1764,34 +2104,34 @@ msgstr "볼륨 조정 기본 설정"
 msgid "_Select tracks to be visible:"
 msgstr "표시할 트랙 선택(_S):"
 
-#: ../gst-mixer/src/track.c:262
+#: ../gst-mixer/src/track.c:263
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:302
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s 조용/소리내기"
 
-#: ../gst-mixer/src/track.c:316
+#: ../gst-mixer/src/track.c:317
 #, c-format
 msgid "Track %s: mute"
 msgstr "트랙 %s: 음소거"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:387
+#: ../gst-mixer/src/track.c:383
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "%s 오디오 녹음  토글"
 
-#: ../gst-mixer/src/track.c:404
+#: ../gst-mixer/src/track.c:400
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "트랙 %s: 오디오 녹음"
 
-#: ../gst-mixer/src/track.c:492
+#: ../gst-mixer/src/track.c:488
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s 옵션 선택"
@@ -1821,35 +2161,35 @@ msgstr "트랙 %s: 채널을 같이 잠급니다"
 msgid "Track %s: lock channels together"
 msgstr "트랙 %s: 채널을 같이 잠급니다"
 
-#: ../gst-mixer/src/volume.c:198
+#: ../gst-mixer/src/volume.c:197
 msgid "mono"
 msgstr "모노"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "left"
 msgstr "왼쪽"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "right"
 msgstr "오른쪽"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:202
 msgid "front left"
 msgstr "앞 왼쪽"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:203
 msgid "front right"
 msgstr "앞 오른쪽"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:204
 msgid "rear left"
 msgstr "뒤 왼쪽"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 msgid "rear right"
 msgstr "뒤 오른쪽"
 
-#: ../gst-mixer/src/volume.c:207
+#: ../gst-mixer/src/volume.c:206
 msgid "front center"
 msgstr "앞 가운데"
 
@@ -1857,25 +2197,25 @@ msgstr "앞 가운데"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:212
 msgid "side left"
 msgstr "사이드 왼쪽"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:213
 msgid "side right"
 msgstr "사이드 오른쪽"
 
-#: ../gst-mixer/src/volume.c:215
+#: ../gst-mixer/src/volume.c:214
 msgid "unknown"
 msgstr "모름"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:221
+#: ../gst-mixer/src/volume.c:220
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "%2$s 채널 %1$s의 볼륨"
@@ -1894,12 +2234,12 @@ msgstr "GNOME Korea <http://gnome.or.kr>"
 msgid "Volume Control: %s"
 msgstr "볼륨 조정: %s"
 
-#: ../gst-mixer/src/window.c:393
+#: ../gst-mixer/src/window.c:389
 msgid "_Device: "
 msgstr "장치(_D): "
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:432
+#: ../gst-mixer/src/window.c:428
 msgid "Control volume on a different device"
 msgstr "다른 장치에서 볼륨 조정"
 
@@ -1912,15 +2252,11 @@ msgstr "없음"
 msgid "Unsupported"
 msgstr "지원하지 않음"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-msgid "Default"
-msgstr "기본값"
-
-#: ../gstreamer-properties/gstreamer-properties.c:604
+#: ../gstreamer-properties/gstreamer-properties.c:603
 msgid "Failure instantiating main window"
 msgstr "기본 창을 띄우기 실패"
 
-#: ../gstreamer-properties/gstreamer-properties.c:653
+#: ../gstreamer-properties/gstreamer-properties.c:652
 msgid "Failed to load glade file; please check your installation."
 msgstr "glade 파일을 읽을 수 없음; 설치가 제대로 되었는지 확인하십시오."
 
@@ -2019,13 +2355,6 @@ msgstr "OSS - 오픈 사운드 시스템"
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio 사운드 서버"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-msgid "Custom"
-msgstr "사용자 지정"
-
 #: ../gstreamer-properties/pipeline-constants.c:102
 msgid "OpenGL"
 msgstr "OpenGL"
@@ -2077,12 +2406,12 @@ msgstr "Video for Linux 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s'의 파이프라인 테스트 실패"
 
-#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:539
+#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "도움말을 보여주는 데 오류가 발생했습니다: %s"
 
-#: ../profiles/audio-profile-edit.c:334
+#: ../profiles/audio-profile-edit.c:336
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "프로파일 \"%s\" 편집"
@@ -2115,40 +2444,40 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "프로파일 경로 %s을(를) 지우는 데 오류가 발생했습니다. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:88
 msgid "_Edit"
 msgstr "편집(_E)"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:466
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "이 %d개의 프로파일을 지우시겠습니까?\n"
+msgstr[0] "이 %d개의 프로파일을 삭제하시겠습니까?\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:485
 #, c-format
 msgid "Delete profile \"%s\"?"
-msgstr "\"%s\" 프로파일을 지우시겠습니까?"
+msgstr "\"%s\" 프로파일을 삭제하시겠습니까?"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:507
 msgid "Delete Profile"
-msgstr "프로파일 지우기"
+msgstr "프로파일 삭제"
 
-#: ../profiles/audio-profiles-edit.c:602
+#: ../profiles/audio-profiles-edit.c:601
 msgid "Edit GNOME Audio Profiles"
 msgstr "그놈 미디어 오디오 프로파일 편집"
 
-#: ../profiles/audio-profiles-edit.c:651
+#: ../profiles/audio-profiles-edit.c:650
 msgid "_Profiles:"
 msgstr "프로파일(_P):"
 
-#: ../profiles/audio-profiles-edit.c:835
+#: ../profiles/audio-profiles-edit.c:834
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "이미 \"%s\" 프로파일이 있습니다"
 
-#: ../profiles/audio-profiles-edit.c:860
+#: ../profiles/audio-profiles-edit.c:859
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf 오류 (FIXME): %s\n"
@@ -2240,10 +2569,14 @@ msgid "CD Quality, Lossy"
 msgstr "CD 수준, 손실 있음"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+msgid "CD Quality, MP2"
+msgstr "CD 수준, MP2"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "CD Quality, MP3"
 msgstr "CD 수준, MP3"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
@@ -2251,19 +2584,19 @@ msgstr ""
 "오디오 녹음 프로파일의 목록. 이 목록에는 /system/gstreamer/@GST_MAJORMINOR@/"
 "audio/profiles에 상대적인 하위 디렉토리의 이름이 들어 있습니다."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "List of profiles"
 msgstr "프로파일의 목록"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The default file extension for this profile"
 msgstr "이 프로파일의 기본 파일 확장자"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid "The partial GStreamer pipeline used"
 msgstr "사용할 GStreamer 파이프라인 부분"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
@@ -2271,7 +2604,7 @@ msgstr ""
 "CD 수준의 오디오로 변환하는 데 사용합니다. 비손실 압축 코덱을 사용합니다. 파"
 "일을 편집하거나 CD로 구우려고 할 때 사용하십시오."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
@@ -2279,7 +2612,7 @@ msgstr ""
 "CD 수준의 오디오로 변환하는 데 사용합니다. 손실 압축 코덱을 사용합니다. CD에"
 "서 음악을 복사하거나 라디오를 녹음할 때 사용하십시오."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid ""
 "Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
 "this for preparing files for copying to devices that only support the AAC "
@@ -2290,18 +2623,23 @@ msgstr ""
 "을 지원하는 장치로 파일을 복사할 때 사용하십시오. 이 형식을 사용하는 것은 현"
 "행법상 위법이 될 수 있습니다; 변호사에게 상담하시기 바랍니다."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+msgid ""
+"Used for converting to CD-quality audio, but with the lossy MP2 codec. Use "
+"this for preparing files for copying to devices that only support the MP2 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+msgstr "CD 수준의 오디오로 변환하는 데 사용합니다. 손실 MP2 코덱을 사용합니다. MP2 코덱을 지원하는 장치로 파일을 복사할 때 사용하십시오. 이 형식을 사용하는 것은 지역에 따라 위법이 될 수 있습니다. 변호사에게 상담하시기 바랍니다."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
 "Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
 "this for preparing files for copying to devices that only support the MP3 "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
-msgstr ""
-"CD 수준의 오디오로 변환하는 데 사용합니다. 손실 MP3코덱을 사용합니다. MP3코덱"
-"을 지원하는 장치로 파일을 복사할 때 사용하십시오. 이 형식을 사용하는 것은 현"
-"행법상 위법이 될 수 있습니다; 변호사에게 상담하시기 바랍니다."
+msgstr "CD 수준의 오디오로 변환하는 데 사용합니다. 손실 MP3 코덱을 사용합니다. MP3 코덱을 지원하는 장치로 파일을 복사할 때 사용하십시오. 이 형식을 사용하는 것은 지역에 따라 위법이 될 수 있습니다. 변호사에게 상담하시기 바랍니다."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
@@ -2309,7 +2647,7 @@ msgstr ""
 "음성 수준의 비손실 오디오로 변환하는 데 사용합니다. 음성을 녹음 및 편집할 때 "
 "사용하십시오."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
@@ -2317,19 +2655,19 @@ msgstr ""
 "음성 수준의 손실 오디오로 변환하는 데 사용합니다. 편집할 필요 없는 음성을 녹"
 "음할 때 사용하십시오."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Voice, Lossless"
 msgstr "음성 수준, 손실 없음"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Voice, Lossy"
 msgstr "음성 수준, 손실 있음"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
 msgid "Whether or not this profile is to be used"
 msgstr "이 프로파일을 사용할 지 여부"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
 msgid "Whether or not to use and display this profile."
 msgstr "이 프로파일을 사용하고 표시할 지 여부."
 
@@ -2341,48 +2679,48 @@ msgstr ""
 "사운드 데몬에 연결할 수 없습니다.\n"
 "셸 명령으로 'esd'를 실행하세요."
 
-#: ../vu-meter/main.c:230
+#: ../vu-meter/main.c:231
 msgid "Specify the X position of the meter."
 msgstr "프로그램의 가로 위치 지정."
 
-#: ../vu-meter/main.c:231
+#: ../vu-meter/main.c:232
 msgid "X"
 msgstr "X"
 
-#: ../vu-meter/main.c:233
+#: ../vu-meter/main.c:234
 msgid "Specify the Y position of the meter."
 msgstr "프로그램의 세로 위치 지정."
 
-#: ../vu-meter/main.c:234
+#: ../vu-meter/main.c:235
 msgid "Y"
 msgstr "Y"
 
-#: ../vu-meter/main.c:236
+#: ../vu-meter/main.c:237
 msgid "Connect to the esd server on this host."
 msgstr "이 호스트의 esd 서버와 연결."
 
-#: ../vu-meter/main.c:237
+#: ../vu-meter/main.c:238
 msgid "HOST"
 msgstr "<호스트>"
 
-#: ../vu-meter/main.c:239
+#: ../vu-meter/main.c:240
 msgid "Open a vertical version of the meter."
 msgstr "프로그램을 아래위로 길게 열기."
 
-#: ../vu-meter/main.c:241
+#: ../vu-meter/main.c:242
 msgid "Act as recording level meter."
 msgstr "녹음 레벨 보기 프로그램으로 동작하기."
 
-#: ../vu-meter/main.c:257
+#: ../vu-meter/main.c:258
 #, c-format
 msgid "Host is %s\n"
 msgstr "호스트는 %s입니다\n"
 
-#: ../vu-meter/main.c:274
+#: ../vu-meter/main.c:275
 msgid "Recording level"
 msgstr "녹음 레벨"
 
-#: ../vu-meter/main.c:274
+#: ../vu-meter/main.c:275
 msgid "Volume Meter"
 msgstr "볼륨 보기 프로그램"
 
