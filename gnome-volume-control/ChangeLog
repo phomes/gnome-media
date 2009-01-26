@@ -1,5 +1,11 @@
 2009-01-26  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-balance-bar.c (_scale_box_new), (gvc_balance_bar_init):
+	Patch from Luca Ferretti <elle.uca@libero.it>, to use the new GTK+
+	scale marks for the balance widget (Closes: #565144)
+
+2009-01-26  Bastien Nocera  <hadess@hadess.net>
+
 	* src/dialog-main.c (on_dialog_response), (on_dialog_close):
 	Use gtk_main_quit () instead of exit (), so that all the
 	objects are unref'ed cleanly

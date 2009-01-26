@@ -66,9 +66,7 @@ _scale_box_new (GvcBalanceBar *bar)
         GtkWidget            *box;
         GtkWidget            *sbox;
         GtkWidget            *ebox;
-        GtkWidget            *ivbox;
-        GtkWidget            *ihbox;
-        GtkWidget            *label;
+        GtkAdjustment        *adjustment = bar->priv->adjustment;
         char                 *str;
 
         bar->priv->scale_box = box = gtk_hbox_new (FALSE, 6);
@@ -86,22 +84,20 @@ _scale_box_new (GvcBalanceBar *bar)
 
         gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
 
-        ivbox = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (box), ivbox, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (sbox), priv->scale, TRUE, TRUE, 0);
 
-        gtk_box_pack_start (GTK_BOX (ivbox), priv->scale, TRUE, TRUE, 0);
-        ihbox = gtk_hbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (ivbox), ihbox, FALSE, FALSE, 0);
-        str = g_strdup_printf ("<small>%s</small>", _("Left"));
-        label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), str);
+        str = g_strdup_printf ("<small>%s</small>", C_("balance", "Left"));
+        gtk_scale_add_mark (GTK_SCALE (priv->scale), adjustment->lower , 
+                            GTK_POS_BOTTOM, str);
         g_free (str);
-        gtk_box_pack_start (GTK_BOX (ihbox), label, FALSE, FALSE, 0);
-        str = g_strdup_printf ("<small>%s</small>", _("Right"));
-        label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), str);
+
+        str = g_strdup_printf ("<small>%s</small>", C_("balance", "Right"));
+        gtk_scale_add_mark (GTK_SCALE (priv->scale),  adjustment->upper, 
+                            GTK_POS_BOTTOM, str);
         g_free (str);
-        gtk_box_pack_end (GTK_BOX (ihbox), label, FALSE, FALSE, 0);
+
+        gtk_scale_add_mark (GTK_SCALE (priv->scale), (adjustment->upper - adjustment->lower)/2 + adjustment->lower, 
+                            GTK_POS_BOTTOM, NULL);
 
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
@@ -320,7 +316,7 @@ gvc_balance_bar_init (GvcBalanceBar *bar)
                           G_CALLBACK (on_adjustment_value_changed),
                           bar);
 
-        bar->priv->label = gtk_label_new (_("Balance:"));
+        bar->priv->label = gtk_label_new_with_mnemonic (_("_Balance:"));
         gtk_misc_set_alignment (GTK_MISC (bar->priv->label),
                                 0.0,
                                 0.5);
@@ -333,6 +329,9 @@ gvc_balance_bar_init (GvcBalanceBar *bar)
         bar->priv->scale_box = _scale_box_new (bar);
         gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
         gtk_widget_show_all (frame);
+
+        gtk_label_set_mnemonic_widget (GTK_LABEL (bar->priv->label),
+                                       bar->priv->scale);
 }
 
 static void
