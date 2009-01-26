@@ -151,7 +151,14 @@ on_dialog_response (GtkDialog *dialog,
                     guint      response_id,
                     gpointer   data)
 {
-        gtk_main_quit ();
+        exit (0);
+}
+
+static void
+on_dialog_close (GtkDialog *dialog,
+		 gpointer   data)
+{
+        exit (0);
 }
 
 static void
@@ -164,6 +171,10 @@ on_control_ready (GvcMixerControl *control,
         g_signal_connect (dialog,
                           "response",
                           G_CALLBACK (on_dialog_response),
+                          NULL);
+        g_signal_connect (dialog,
+                          "close",
+                          G_CALLBACK (on_dialog_close),
                           NULL);
 
         if (page != NULL)
