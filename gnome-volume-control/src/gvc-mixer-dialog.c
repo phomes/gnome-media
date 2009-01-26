@@ -986,11 +986,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         self = GVC_MIXER_DIALOG (object);
         gtk_dialog_add_button (GTK_DIALOG (self), "gtk-close", GTK_RESPONSE_OK);
 
-#if GTK_CHECK_VERSION(2,14,0)
         main_vbox = gtk_dialog_get_content_area (GTK_DIALOG (self));
-#else
-        main_vbox = GTK_DIALOG (self)->vbox;
-#endif
 
         gtk_container_set_border_width (GTK_CONTAINER (self), 6);
 

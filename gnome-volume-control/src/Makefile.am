@@ -5,7 +5,7 @@ bin_PROGRAMS = 					\
 	gnome-volume-control			\
 	$(NULL)
 
-INCLUDES =					\
+AM_CPPFLAGS =					\
 	$(WARN_CFLAGS)				\
 	$(VOLUME_CONTROL_CFLAGS)		\
 	$(PULSEAUDIO_CFLAGS)			\

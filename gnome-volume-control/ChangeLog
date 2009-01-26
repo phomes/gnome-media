@@ -1,3 +1,14 @@
+2009-01-26  Bastien Nocera  <hadess@hadess.net>
+
+	* src/Makefile.am: Fix automake warning
+
+	* src/gvc-applet.c (maybe_show_status_icons):
+	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor):
+	* src/gvc-stream-status-icon.c (on_status_icon_scroll_event),
+	(update_icon), (gvc_stream_status_icon_init): Remove ifdef's
+	from the volume control code, as GTK+ 2.15.1 is now required
+	(Closes: #564318)
+
 2009-01-24  Luca Ferretti  <elle.uca@libero.it>
 
 	* data/gnome-volume-control.desktop.in.in:

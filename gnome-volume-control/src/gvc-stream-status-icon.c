@@ -260,7 +260,6 @@ on_status_icon_popup_menu (GtkStatusIcon       *status_icon,
                         activate_time);
 }
 
-#if GTK_CHECK_VERSION(2,15,0)
 static gboolean
 on_status_icon_scroll_event (GtkStatusIcon       *status_icon,
                              GdkEventScroll      *event,
@@ -298,7 +297,6 @@ on_status_icon_scroll_event (GtkStatusIcon       *status_icon,
 
         return FALSE;
 }
-#endif
 
 static void
 gvc_icon_release_grab (GvcStreamStatusIcon *icon,
@@ -444,51 +442,31 @@ update_icon (GvcStreamStatusIcon *icon)
 
         if (is_muted) {
                 markup = g_strdup_printf (
-#if GTK_CHECK_VERSION(2,15,0)
                                           "<b>%s: %s</b>\n<small>%s</small>",
-#else
-                                          "%s: %s\n%s",
-#endif
                                           icon->priv->display_name,
                                           _("Muted"),
                                           gvc_mixer_stream_get_description (icon->priv->mixer_stream));
         } else if (can_decibel && (db > PA_DECIBEL_MININFTY)) {
                 markup = g_strdup_printf (
-#if GTK_CHECK_VERSION(2,15,0)
                                           "<b>%s: %.0f%%</b>\n<small>%0.2f dB\n%s</small>",
-#else
-                                          "%s: %.0f%%\n%0.2f dB\n%s",
-#endif
                                           icon->priv->display_name,
                                           100 * (float)volume / PA_VOLUME_NORM,
                                           db,
                                           gvc_mixer_stream_get_description (icon->priv->mixer_stream));
         } else if (can_decibel) {
                 markup = g_strdup_printf (
-#if GTK_CHECK_VERSION(2,15,0)
                                           "<b>%s: %.0f%%</b>\n<small>-&#8734; dB\n%s</small>",
-#else
-                                          "%s: %.0f%%\n-&#8734; dB\n%s",
-#endif
                                           icon->priv->display_name,
                                           100 * (float)volume / PA_VOLUME_NORM,
                                           gvc_mixer_stream_get_description (icon->priv->mixer_stream));
         } else {
                 markup = g_strdup_printf (
-#if GTK_CHECK_VERSION(2,15,0)
                                           "<b>%s: %.0f%%</b>\n<small>%s</small>",
-#else
-                                          "%s: %.0f%%\n%s",
-#endif
                                           icon->priv->display_name,
                                           100 * (float)volume / PA_VOLUME_NORM,
                                           gvc_mixer_stream_get_description (icon->priv->mixer_stream));
         }
-#if GTK_CHECK_VERSION(2,15,0)
         gtk_status_icon_set_tooltip_markup (GTK_STATUS_ICON (icon), markup);
-#else
-        gtk_status_icon_set_tooltip (GTK_STATUS_ICON (icon), markup);
-#endif
         g_free (markup);
 }
 
@@ -790,12 +768,10 @@ gvc_stream_status_icon_init (GvcStreamStatusIcon *icon)
                           "popup-menu",
                           G_CALLBACK (on_status_icon_popup_menu),
                           icon);
-#if GTK_CHECK_VERSION(2,15,0)
         g_signal_connect (icon,
                           "scroll-event",
                           G_CALLBACK (on_status_icon_scroll_event),
                           icon);
-#endif
         g_signal_connect (icon,
                           "notify::visible",
                           G_CALLBACK (on_status_icon_visible_notify),

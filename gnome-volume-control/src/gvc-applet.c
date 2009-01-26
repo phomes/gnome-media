@@ -73,7 +73,7 @@ maybe_show_status_icons (GvcApplet *applet)
 {
         gboolean        show;
         GvcMixerStream *stream;
-        GSList         *source_outputs;
+        GSList         *source_outputs, *l;
 
         show = TRUE;
         stream = gvc_mixer_control_get_default_sink (applet->priv->control);
@@ -87,7 +87,16 @@ maybe_show_status_icons (GvcApplet *applet)
         stream = gvc_mixer_control_get_default_source (applet->priv->control);
         source_outputs = gvc_mixer_control_get_source_outputs (applet->priv->control);
         if (stream != NULL && source_outputs != NULL) {
-                show = TRUE;
+        	/* Check that we're not trying to add the peak detector
+        	 * as an application doing recording */
+        	for (l = source_outputs ; l ; l = l->next) {
+        		GvcMixerStream *s = l->data;
+
+        		if (g_strcmp0 (gvc_mixer_stream_get_description (s), _("Peak detect")) != 0) {
+        			show = TRUE;
+        			break;
+			}
+		}
         }
         gtk_status_icon_set_visible (GTK_STATUS_ICON (applet->priv->input_status_icon), show);
 

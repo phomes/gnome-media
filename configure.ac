@@ -87,6 +87,9 @@ dnl=======================================================================
 dnl Check for the new volume control modules
 dnl=======================================================================
 
+dnl The new gnome-volume-control needs a newer GTK+
+GTK_REQUIRED_VERSION=2.15.1
+
 PKG_CHECK_MODULES(VOLUME_CONTROL,
         dbus-glib-1 >= $DBUS_GLIB_REQUIRED_VERSION
         gobject-2.0 >= $GLIB_REQUIRED_VERSION
