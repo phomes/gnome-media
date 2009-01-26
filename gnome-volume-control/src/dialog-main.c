@@ -151,14 +151,14 @@ on_dialog_response (GtkDialog *dialog,
                     guint      response_id,
                     gpointer   data)
 {
-        exit (0);
+        gtk_main_quit ();
 }
 
 static void
 on_dialog_close (GtkDialog *dialog,
 		 gpointer   data)
 {
-        exit (0);
+        gtk_main_quit ();
 }
 
 static void

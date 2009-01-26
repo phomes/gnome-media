@@ -1,5 +1,11 @@
 2009-01-26  Bastien Nocera  <hadess@hadess.net>
 
+	* src/dialog-main.c (on_dialog_response), (on_dialog_close):
+	Use gtk_main_quit () instead of exit (), so that all the
+	objects are unref'ed cleanly
+
+2009-01-26  Bastien Nocera  <hadess@hadess.net>
+
 	* src/dialog-main.c (on_dialog_response), (on_dialog_close),
 	(on_control_ready): Exit when Esc is pressed
 
