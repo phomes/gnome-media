@@ -330,6 +330,7 @@ gvc_balance_bar_init (GvcBalanceBar *bar)
         gtk_container_add (GTK_CONTAINER (frame), bar->priv->scale_box);
         gtk_widget_show_all (frame);
 
+        gtk_widget_set_direction (bar->priv->scale, GTK_TEXT_DIR_LTR);
         gtk_label_set_mnemonic_widget (GTK_LABEL (bar->priv->label),
                                        bar->priv->scale);
 }
