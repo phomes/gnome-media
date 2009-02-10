@@ -6,7 +6,7 @@ SUBDIRS =			\
 	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@
-autostartdir = $(datadir)/gnome/autostart
+autostartdir = $(sysconfdir)/xdg/autostart
 autostart_in_files = gnome-volume-control-applet.desktop.in
 autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
 
