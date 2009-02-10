@@ -1156,7 +1156,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
                                   self->priv->applications_box,
                                   label);
-        self->priv->no_apps_label = gtk_label_new (_("No application is currently playing audio."));
+        self->priv->no_apps_label = gtk_label_new (_("No application is currently playing or recording audio."));
         gtk_box_pack_start (GTK_BOX (self->priv->applications_box),
                             self->priv->no_apps_label,
                             TRUE, TRUE, 0);
