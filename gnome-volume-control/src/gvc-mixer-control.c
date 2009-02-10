@@ -777,7 +777,7 @@ update_source_output (GvcMixerControl             *control,
         gvc_mixer_stream_set_description (stream, info->name);
         set_application_id_from_proplist (stream, info->proplist);
         set_is_event_stream_from_proplist (stream, info->proplist);
-        set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
+        set_icon_name_from_proplist (stream, info->proplist, "audio-input-microphone");
 
         if (is_new) {
                 g_hash_table_insert (control->priv->source_outputs,

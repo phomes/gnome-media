@@ -643,11 +643,13 @@ add_stream (GvcMixerDialog *dialog,
         gboolean       is_muted;
         gboolean       is_default;
         GtkAdjustment *adj;
+        const char    *id;
 
         g_assert (stream != NULL);
 
         bar = NULL;
         is_default = FALSE;
+        id = gvc_mixer_stream_get_application_id (stream);
 
         if (stream == gvc_mixer_control_get_default_sink (dialog->priv->mixer_control)) {
                 bar = dialog->priv->output_bar;
@@ -667,8 +669,9 @@ add_stream (GvcMixerDialog *dialog,
                 g_debug ("Adding effects stream");
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)
-                   && !GVC_IS_MIXER_SOURCE_OUTPUT (stream)
-                   && !gvc_mixer_stream_is_event_stream (stream)) {
+                   && !gvc_mixer_stream_is_event_stream (stream)
+                   && g_strcmp0 (id, "org.gnome.VolumeControl") != 0
+                   && g_strcmp0 (id, "org.PulseAudio.pavucontrol") != 0) {
                 bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);
                 gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
                                           gvc_mixer_stream_get_name (stream));
