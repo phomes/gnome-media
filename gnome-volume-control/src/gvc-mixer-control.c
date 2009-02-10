@@ -679,6 +679,17 @@ set_is_event_stream_from_proplist (GvcMixerStream *stream,
 }
 
 static void
+set_application_id_from_proplist (GvcMixerStream *stream,
+                                  pa_proplist    *l)
+{
+        const char *t;
+
+        if ((t = pa_proplist_gets (l, PA_PROP_APPLICATION_ID))) {
+                gvc_mixer_stream_set_application_id (stream, t);
+        }
+}
+
+static void
 update_sink_input (GvcMixerControl          *control,
                    const pa_sink_input_info *info)
 {
@@ -716,6 +727,7 @@ update_sink_input (GvcMixerControl          *control,
         gvc_mixer_stream_set_name (stream, name);
         gvc_mixer_stream_set_description (stream, info->name);
 
+        set_application_id_from_proplist (stream, info->proplist);
         set_is_event_stream_from_proplist (stream, info->proplist);
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
@@ -763,6 +775,8 @@ update_source_output (GvcMixerControl             *control,
 
         gvc_mixer_stream_set_name (stream, name);
         gvc_mixer_stream_set_description (stream, info->name);
+        set_application_id_from_proplist (stream, info->proplist);
+        set_is_event_stream_from_proplist (stream, info->proplist);
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
 
         if (is_new) {

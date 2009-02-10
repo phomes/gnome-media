@@ -323,6 +323,7 @@ create_monitor_stream_for_source (GvcMixerDialog *dialog,
         pa_sample_spec ss;
         pa_context    *context;
         int            res;
+        pa_proplist   *proplist;
 
         if (stream == NULL) {
                 return;
@@ -347,7 +348,10 @@ create_monitor_stream_for_source (GvcMixerDialog *dialog,
 
         snprintf (t, sizeof (t), "%u", gvc_mixer_stream_get_index (stream));
 
-        s = pa_stream_new (context, _("Peak detect"), &ss, NULL);
+        proplist = pa_proplist_new ();
+        pa_proplist_sets (proplist, PA_PROP_APPLICATION_ID, "org.gnome.VolumeControl");
+        s = pa_stream_new_with_proplist (context, _("Peak detect"), &ss, NULL, proplist);
+        pa_proplist_free (proplist);
         if (s == NULL) {
                 g_warning ("Failed to create monitoring stream");
                 return;

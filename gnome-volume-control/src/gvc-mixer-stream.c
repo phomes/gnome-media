@@ -45,6 +45,7 @@ struct GvcMixerStreamPrivate
         gdouble        decibel;
         char          *name;
         char          *description;
+        char          *application_id;
         char          *icon_name;
         gboolean       is_muted;
         gboolean       can_decibel;
@@ -60,6 +61,7 @@ enum
         PROP_INDEX,
         PROP_NAME,
         PROP_DESCRIPTION,
+        PROP_APPLICATION_ID,
         PROP_ICON_NAME,
         PROP_VOLUME,
         PROP_DECIBEL,
@@ -260,6 +262,26 @@ gvc_mixer_stream_set_is_event_stream (GvcMixerStream *stream,
         return TRUE;
 }
 
+const char *
+gvc_mixer_stream_get_application_id (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), NULL);
+        return stream->priv->application_id;
+}
+
+gboolean
+gvc_mixer_stream_set_application_id (GvcMixerStream *stream,
+                                     const char *application_id)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        g_free (stream->priv->application_id);
+        stream->priv->application_id = g_strdup (application_id);
+        g_object_notify (G_OBJECT (stream), "application-id");
+
+        return TRUE;
+}
+
 static void
 on_channel_map_gains_changed (GvcChannelMap  *channel_map,
                               GvcMixerStream *stream)
@@ -346,6 +368,9 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_DESCRIPTION:
                 gvc_mixer_stream_set_description (self, g_value_get_string (value));
                 break;
+        case PROP_APPLICATION_ID:
+                gvc_mixer_stream_set_application_id (self, g_value_get_string (value));
+                break;
         case PROP_ICON_NAME:
                 gvc_mixer_stream_set_icon_name (self, g_value_get_string (value));
                 break;
@@ -396,6 +421,9 @@ gvc_mixer_stream_get_property (GObject     *object,
                 break;
         case PROP_DESCRIPTION:
                 g_value_set_string (value, self->priv->description);
+                break;
+        case PROP_APPLICATION_ID:
+                g_value_set_string (value, self->priv->application_id);
                 break;
         case PROP_ICON_NAME:
                 g_value_set_string (value, self->priv->icon_name);
@@ -542,6 +570,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                               NULL,
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_object_class_install_property (gobject_class,
+                                         PROP_APPLICATION_ID,
+                                         g_param_spec_string ("application-id",
+                                                              "Application identifier",
+                                                              "Application identifier for this stream",
+                                                              NULL,
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (gobject_class,
                                          PROP_ICON_NAME,
                                          g_param_spec_string ("icon-name",
                                                               "Icon Name",
@@ -596,6 +631,9 @@ gvc_mixer_stream_finalize (GObject *object)
 
         g_free (mixer_stream->priv->description);
         mixer_stream->priv->description = NULL;
+
+        g_free (mixer_stream->priv->application_id);
+        mixer_stream->priv->application_id = NULL;
 
         g_free (mixer_stream->priv->icon_name);
         mixer_stream->priv->icon_name = NULL;

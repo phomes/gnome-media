@@ -1,5 +1,21 @@
 2009-02-10  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-applet.c (maybe_show_status_icons):
+	* src/gvc-mixer-control.c (set_application_id_from_proplist),
+	(update_sink_input), (update_source_output):
+	* src/gvc-mixer-dialog.c (create_monitor_stream_for_source):
+	* src/gvc-mixer-stream.c (gvc_mixer_stream_get_application_id),
+	(gvc_mixer_stream_set_application_id),
+	(gvc_mixer_stream_set_property), (gvc_mixer_stream_get_property),
+	(gvc_mixer_stream_class_init), (gvc_mixer_stream_finalize):
+	* src/gvc-mixer-stream.h: Set the org.gnome.VolumeControl application
+	ID for the input peak monitor, and ignore it when checking whether
+	an application is using the input. Also ignore Pavucontrol.
+	Stops the microphone showing up in the applet when the capplet is
+	running (Closes: #565146)
+
+2009-02-10  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-applet.c (maybe_show_status_icons): Revert accidentally
 	committing the rejected patch for bug #565146
 
