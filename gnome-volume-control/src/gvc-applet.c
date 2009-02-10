@@ -73,7 +73,7 @@ maybe_show_status_icons (GvcApplet *applet)
 {
         gboolean        show;
         GvcMixerStream *stream;
-        GSList         *source_outputs, *l;
+        GSList         *source_outputs;
 
         show = TRUE;
         stream = gvc_mixer_control_get_default_sink (applet->priv->control);
