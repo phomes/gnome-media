@@ -1,5 +1,13 @@
 2009-02-11  Bastien Nocera  <hadess@hadess.net>
 
+	* src/applet-main.c (main): Use libunique instead of D-Bus
+	and refuse to run if an applet is already running
+	* src/dialog-main.c (message_received_cb), (on_control_ready),
+	(main): present the application when it's already running
+	(Closes: #542727)
+
+2009-02-11  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-channel-bar.c (on_scale_button_release_event):
 	* src/gvc-sound-theme-chooser.c (play_preview_for_path):
 	* src/gvc-sound-theme-editor.c (play_sound_preview),

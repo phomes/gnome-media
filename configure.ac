@@ -59,7 +59,6 @@ dnl=======================================================================
 dnl Start of pkg-config checks - common libs
 dnl=======================================================================
 
-DBUS_GLIB_REQUIRED_VERSION=0.74
 GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.10.0
 LIBGLADE_REQUIRED_VERSION=1.99.2
@@ -91,12 +90,12 @@ dnl The new gnome-volume-control needs a newer GTK+
 GTK_REQUIRED_VERSION=2.15.1
 
 PKG_CHECK_MODULES(VOLUME_CONTROL,
-        dbus-glib-1 >= $DBUS_GLIB_REQUIRED_VERSION
         gobject-2.0 >= $GLIB_REQUIRED_VERSION
         gtk+-2.0 >= $GTK_REQUIRED_VERSION
         gio-2.0
         gconf-2.0 >= $GCONF_REQUIRED_VERSION
         libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+        unique-1.0
         libxml-2.0
 )
 AC_SUBST(VOLUME_CONTROL_CFLAGS)

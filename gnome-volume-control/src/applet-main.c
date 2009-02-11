@@ -29,11 +29,7 @@
 #include <glib/gi18n.h>
 #include <glib/goption.h>
 #include <gtk/gtk.h>
-
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
-#include <dbus/dbus-glib-lowlevel.h>
+#include <unique/uniqueapp.h>
 
 #include "gvc-applet.h"
 
@@ -44,112 +40,12 @@
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 
-static void
-on_bus_name_lost (DBusGProxy *bus_proxy,
-                  const char *name,
-                  gpointer    data)
-{
-        g_warning ("Lost name on bus: %s, exiting", name);
-        exit (1);
-}
-
-static gboolean
-acquire_name_on_proxy (DBusGProxy *bus_proxy,
-                       const char *name)
-{
-        GError     *error;
-        guint       result;
-        gboolean    res;
-        gboolean    ret;
-
-        ret = FALSE;
-
-        if (bus_proxy == NULL) {
-                goto out;
-        }
-
-        error = NULL;
-        res = dbus_g_proxy_call (bus_proxy,
-                                 "RequestName",
-                                 &error,
-                                 G_TYPE_STRING, name,
-                                 G_TYPE_UINT, 0,
-                                 G_TYPE_INVALID,
-                                 G_TYPE_UINT, &result,
-                                 G_TYPE_INVALID);
-        if (! res) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        /* register for name lost */
-        dbus_g_proxy_add_signal (bus_proxy,
-                                 "NameLost",
-                                 G_TYPE_STRING,
-                                 G_TYPE_INVALID);
-        dbus_g_proxy_connect_signal (bus_proxy,
-                                     "NameLost",
-                                     G_CALLBACK (on_bus_name_lost),
-                                     NULL,
-                                     NULL);
-
-
-        ret = TRUE;
-
- out:
-        return ret;
-}
-
-static gboolean
-acquire_name (void)
-{
-        DBusGProxy      *bus_proxy;
-        GError          *error;
-        DBusGConnection *connection;
-
-        error = NULL;
-        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (connection == NULL) {
-                g_warning ("Could not connect to session bus: %s",
-                           error->message);
-                exit (1);
-        }
-
-        bus_proxy = dbus_g_proxy_new_for_name (connection,
-                                               DBUS_SERVICE_DBUS,
-                                               DBUS_PATH_DBUS,
-                                               DBUS_INTERFACE_DBUS);
-
-        if (! acquire_name_on_proxy (bus_proxy, GVCA_DBUS_NAME) ) {
-                g_warning ("Could not acquire name on session bus");
-                exit (1);
-        }
-
-        g_object_unref (bus_proxy);
-
-        return TRUE;
-}
-
 int
 main (int argc, char **argv)
 {
         GError             *error;
         GvcApplet          *applet;
+        UniqueApp          *app;
         static GOptionEntry entries[] = {
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -175,7 +71,11 @@ main (int argc, char **argv)
                 exit (1);
         }
 
-        acquire_name ();
+        app = unique_app_new (GVCA_DBUS_NAME, NULL);
+        if (unique_app_is_running (app)) {
+                g_warning ("Applet is already running, exiting");
+                return 0;
+        }
 
         gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                            ICON_DATA_DIR);

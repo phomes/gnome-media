@@ -29,11 +29,7 @@
 #include <glib/gi18n.h>
 #include <glib/goption.h>
 #include <gtk/gtk.h>
-
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
-#include <dbus/dbus-glib-lowlevel.h>
+#include <unique/uniqueapp.h>
 
 #include "gvc-mixer-dialog.h"
 
@@ -46,107 +42,6 @@ static gboolean debug = FALSE;
 static gchar* page = NULL;
 
 static void
-on_bus_name_lost (DBusGProxy *bus_proxy,
-                  const char *name,
-                  gpointer    data)
-{
-        g_warning ("Lost name on bus: %s, exiting", name);
-        exit (1);
-}
-
-static gboolean
-acquire_name_on_proxy (DBusGProxy *bus_proxy,
-                       const char *name)
-{
-        GError     *error;
-        guint       result;
-        gboolean    res;
-        gboolean    ret;
-
-        ret = FALSE;
-
-        if (bus_proxy == NULL) {
-                goto out;
-        }
-
-        error = NULL;
-        res = dbus_g_proxy_call (bus_proxy,
-                                 "RequestName",
-                                 &error,
-                                 G_TYPE_STRING, name,
-                                 G_TYPE_UINT, 0,
-                                 G_TYPE_INVALID,
-                                 G_TYPE_UINT, &result,
-                                 G_TYPE_INVALID);
-        if (! res) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        /* register for name lost */
-        dbus_g_proxy_add_signal (bus_proxy,
-                                 "NameLost",
-                                 G_TYPE_STRING,
-                                 G_TYPE_INVALID);
-        dbus_g_proxy_connect_signal (bus_proxy,
-                                     "NameLost",
-                                     G_CALLBACK (on_bus_name_lost),
-                                     NULL,
-                                     NULL);
-
-
-        ret = TRUE;
-
- out:
-        return ret;
-}
-
-static gboolean
-acquire_name (void)
-{
-        DBusGProxy      *bus_proxy;
-        GError          *error;
-        DBusGConnection *connection;
-
-        error = NULL;
-        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (connection == NULL) {
-                g_warning ("Could not connect to session bus: %s",
-                           error->message);
-                exit (1);
-        }
-
-        bus_proxy = dbus_g_proxy_new_for_name (connection,
-                                               DBUS_SERVICE_DBUS,
-                                               DBUS_PATH_DBUS,
-                                               DBUS_INTERFACE_DBUS);
-
-        if (! acquire_name_on_proxy (bus_proxy, GVCA_DBUS_NAME) ) {
-                g_warning ("Could not acquire name on session bus");
-                exit (1);
-        }
-
-        g_object_unref (bus_proxy);
-
-        return TRUE;
-}
-
-static void
 on_dialog_response (GtkDialog *dialog,
                     guint      response_id,
                     gpointer   data)
@@ -156,14 +51,26 @@ on_dialog_response (GtkDialog *dialog,
 
 static void
 on_dialog_close (GtkDialog *dialog,
-		 gpointer   data)
+                 gpointer   data)
 {
         gtk_main_quit ();
 }
 
+static UniqueResponse
+message_received_cb (UniqueApp         *app,
+                     int                command,
+                     UniqueMessageData *message_data,
+                     guint              time_,
+                     gpointer           user_data)
+{
+        gtk_window_present (GTK_WINDOW (user_data));
+
+        return UNIQUE_RESPONSE_OK;
+}
+
 static void
 on_control_ready (GvcMixerControl *control,
-                  gpointer         data)
+                  UniqueApp       *app)
 {
         GvcMixerDialog *dialog;
 
@@ -180,6 +87,9 @@ on_control_ready (GvcMixerControl *control,
         if (page != NULL)
                 gvc_mixer_dialog_set_page(dialog, page);
 
+        g_signal_connect (app, "message-received",
+                          G_CALLBACK (message_received_cb), dialog);
+
         gtk_widget_show (GTK_WIDGET (dialog));
 }
 
@@ -188,6 +98,7 @@ main (int argc, char **argv)
 {
         GError             *error;
         GvcMixerControl    *control;
+        UniqueApp          *app;
         static GOptionEntry entries[] = {
                 { "page", 'p', 0, G_OPTION_ARG_STRING, &page, N_("Startup page"), "playback|recording|effects|applications" },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -214,7 +125,11 @@ main (int argc, char **argv)
                 exit (1);
         }
 
-        acquire_name ();
+        app = unique_app_new (GVCA_DBUS_NAME, NULL);
+        if (unique_app_is_running (app)) {
+                unique_app_send_message (app, UNIQUE_ACTIVATE, NULL);
+                exit (0);
+        }
 
         gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                            ICON_DATA_DIR);
@@ -223,7 +138,7 @@ main (int argc, char **argv)
         g_signal_connect (control,
                           "ready",
                           G_CALLBACK (on_control_ready),
-                          control);
+                          app);
         gvc_mixer_control_open (control);
 
         /* FIXME: add timeout in case ready doesn't happen */
