@@ -551,19 +551,18 @@ play_sound_preview (GtkFileEditor *editor,
                     gpointer user_data)
 {
         char       *filename;
-        ca_context *ctx;
 
         filename = gtk_file_editor_get_preview_filename (GTK_FILE_EDITOR (editor));
         if (filename == NULL) {
                 return;
         }
 
-        ctx = ca_gtk_context_get ();
         ca_gtk_play_for_widget (GTK_WIDGET (editor), 0,
                                 CA_PROP_APPLICATION_NAME, _("Sound Preferences"),
                                 CA_PROP_MEDIA_FILENAME, filename,
                                 CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
                                 CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+                                CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
 #ifdef CA_PROP_CANBERRA_ENABLE
                                 CA_PROP_CANBERRA_ENABLE, "1",
 #endif
@@ -933,7 +932,6 @@ play_sound_at_path (GtkWidget         *tree_view,
         GtkTreeIter   iter;
         char        **sound_names;
         gboolean      sensitive;
-        ca_context   *ctx;
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
         if (gtk_tree_model_get_iter (model, &iter, path) == FALSE) {
@@ -948,12 +946,12 @@ play_sound_at_path (GtkWidget         *tree_view,
                 return FALSE;
         }
 
-        ctx = ca_gtk_context_get ();
         ca_gtk_play_for_widget (GTK_WIDGET (tree_view), 0,
                                 CA_PROP_APPLICATION_NAME, _("Sound Preferences"),
                                 CA_PROP_EVENT_ID, sound_names[0],
                                 CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
                                 CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+                                CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
 #ifdef CA_PROP_CANBERRA_ENABLE
                                 CA_PROP_CANBERRA_ENABLE, "1",
 #endif

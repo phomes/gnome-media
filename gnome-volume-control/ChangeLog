@@ -1,3 +1,12 @@
+2009-02-11  Bastien Nocera  <hadess@hadess.net>
+
+	* src/gvc-channel-bar.c (on_scale_button_release_event):
+	* src/gvc-sound-theme-chooser.c (play_preview_for_path):
+	* src/gvc-sound-theme-editor.c (play_sound_preview),
+	(play_sound_at_path): Don't call ca_gtk_context_get () when
+	we're not going to use the returned context, set the
+	application id for all the calls to ca_gtk_play_*()
+
 2009-02-10  Bastien Nocera  <hadess@hadess.net>
 
 	* src/gvc-mixer-dialog.c (gvc_mixer_dialog_constructor):

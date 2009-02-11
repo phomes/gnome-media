@@ -686,7 +686,6 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
         GtkTreeIter   iter;
         GtkTreeIter   theme_iter;
         char         *id;
-        ca_context   *ctx;
         char         *parent_theme;
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
@@ -721,7 +720,6 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
                 g_free (parent_id);
         }
 
-        ctx = ca_gtk_context_get ();
         /* special case: for the default item on custom themes
          * play the alert for the parent theme */
         if (strcmp (id, DEFAULT_ALERT_ID) == 0) {
@@ -732,6 +730,7 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
                                                 CA_PROP_CANBERRA_XDG_THEME_NAME, parent_theme,
                                                 CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
                                                 CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+                                                CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
 #ifdef CA_PROP_CANBERRA_ENABLE
                                                 CA_PROP_CANBERRA_ENABLE, "1",
 #endif
@@ -742,6 +741,7 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
                                                 CA_PROP_EVENT_ID, "bell-window-system",
                                                 CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
                                                 CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+                                                CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
 #ifdef CA_PROP_CANBERRA_ENABLE
                                                 CA_PROP_CANBERRA_ENABLE, "1",
 #endif
@@ -753,6 +753,7 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
                                         CA_PROP_MEDIA_FILENAME, id,
                                         CA_PROP_EVENT_DESCRIPTION, _("Testing event sound"),
                                         CA_PROP_CANBERRA_CACHE_CONTROL, "never",
+                                        CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
 #ifdef CA_PROP_CANBERRA_ENABLE
                                         CA_PROP_CANBERRA_ENABLE, "1",
 #endif
