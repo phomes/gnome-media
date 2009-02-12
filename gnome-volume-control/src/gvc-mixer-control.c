@@ -220,6 +220,13 @@ gvc_stream_collate (GvcMixerStream *a,
         namea = gvc_mixer_stream_get_name (a);
         nameb = gvc_mixer_stream_get_name (b);
 
+        if (nameb == NULL && namea == NULL)
+        	return 0;
+        if (nameb == NULL)
+        	return 1;
+        if (namea == NULL)
+        	return -1;
+
         return g_utf8_collate (namea, nameb);
 }
 

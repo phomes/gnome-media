@@ -1,5 +1,11 @@
 2009-02-12  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-mixer-control.c (gvc_stream_collate): Fix run-time
+	warning when there's no name for a stream, such as some events
+	from libcanberra
+
+2009-02-12  Bastien Nocera  <hadess@hadess.net>
+
 	* src/dialog-main.c (on_control_ready), (warning_dialog_answered),
 	(dialog_popup_timeout), (main): When PulseAudio isn't running,
 	or takes a long time to connect to, popup a dialogue telling
