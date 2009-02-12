@@ -34,12 +34,15 @@
 #include "gvc-mixer-dialog.h"
 
 #define GVCA_DBUS_NAME "org.gnome.VolumeControl"
-
-#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+#define DIALOG_POPUP_TIMEOUT 3
 
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 static gchar* page = NULL;
+
+static guint popup_id = 0;
+static GtkWidget *dialog = NULL;
+static GtkWidget *warning_dialog = NULL;
 
 static void
 on_dialog_response (GtkDialog *dialog,
@@ -72,9 +75,16 @@ static void
 on_control_ready (GvcMixerControl *control,
                   UniqueApp       *app)
 {
-        GvcMixerDialog *dialog;
+	if (popup_id != 0) {
+		g_source_remove (popup_id);
+		popup_id = 0;
+	}
+	if (warning_dialog != NULL) {
+		gtk_widget_destroy (warning_dialog);
+		warning_dialog = NULL;
+	}
 
-        dialog = gvc_mixer_dialog_new (control);
+        dialog = GTK_WIDGET (gvc_mixer_dialog_new (control));
         g_signal_connect (dialog,
                           "response",
                           G_CALLBACK (on_dialog_response),
@@ -85,12 +95,38 @@ on_control_ready (GvcMixerControl *control,
                           NULL);
 
         if (page != NULL)
-                gvc_mixer_dialog_set_page(dialog, page);
+                gvc_mixer_dialog_set_page(GVC_MIXER_DIALOG (dialog), page);
 
         g_signal_connect (app, "message-received",
                           G_CALLBACK (message_received_cb), dialog);
 
-        gtk_widget_show (GTK_WIDGET (dialog));
+        gtk_widget_show (dialog);
+}
+
+static void
+warning_dialog_answered (GtkDialog *d,
+			 gpointer data)
+{
+	gtk_widget_destroy (warning_dialog);
+	gtk_main_quit ();
+}
+
+static gboolean
+dialog_popup_timeout (gpointer data)
+{
+	warning_dialog = gtk_message_dialog_new (NULL,
+						 0,
+						 GTK_MESSAGE_INFO,
+						 GTK_BUTTONS_CANCEL,
+						 _("Waiting for sound system to respond"));
+	g_signal_connect (warning_dialog, "response",
+			  G_CALLBACK (warning_dialog_answered), NULL);
+	g_signal_connect (warning_dialog, "close",
+			  G_CALLBACK (warning_dialog_answered), NULL);
+
+	gtk_widget_show (warning_dialog);
+
+	return FALSE;
 }
 
 int
@@ -141,7 +177,9 @@ main (int argc, char **argv)
                           app);
         gvc_mixer_control_open (control);
 
-        /* FIXME: add timeout in case ready doesn't happen */
+        popup_id = g_timeout_add_seconds (DIALOG_POPUP_TIMEOUT,
+        				  dialog_popup_timeout,
+        				  NULL);
 
         gtk_main ();
 

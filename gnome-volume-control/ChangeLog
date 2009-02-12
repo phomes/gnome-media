@@ -1,3 +1,11 @@
+2009-02-12  Bastien Nocera  <hadess@hadess.net>
+
+	* src/dialog-main.c (on_control_ready), (warning_dialog_answered),
+	(dialog_popup_timeout), (main): When PulseAudio isn't running,
+	or takes a long time to connect to, popup a dialogue telling
+	the user what we're waiting for, and the ability to cancel
+	(Closes: #566835)
+
 2009-02-11  Bastien Nocera  <hadess@hadess.net>
 
 	* src/applet-main.c (main): Use libunique instead of D-Bus
