@@ -54,6 +54,7 @@ GvcChannelMap *         gvc_channel_map_new_from_pa_channel_map (const pa_channe
 guint                   gvc_channel_map_get_num_channels        (GvcChannelMap  *map);
 pa_channel_position_t * gvc_channel_map_get_positions           (GvcChannelMap  *map);
 gdouble *               gvc_channel_map_get_gains               (GvcChannelMap  *map);
+gboolean                gvc_channel_map_can_balance             (GvcChannelMap  *map);
 
 void                    gvc_channel_map_gains_changed           (GvcChannelMap  *map);
 

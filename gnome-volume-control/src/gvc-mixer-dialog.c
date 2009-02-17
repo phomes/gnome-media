@@ -169,6 +169,9 @@ update_output_settings (GvcMixerDialog *dialog)
                             dialog->priv->output_balance_bar,
                             FALSE, FALSE, 12);
         gtk_widget_show (dialog->priv->output_balance_bar);
+
+        /* We could make this into a "No settings" label instead */
+        gtk_widget_set_sensitive (dialog->priv->output_balance_bar, gvc_channel_map_can_balance (map));
 }
 
 static void

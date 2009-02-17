@@ -1,5 +1,14 @@
 2009-02-17  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-channel-map.c (gvc_channel_map_can_balance),
+	(set_from_pa_map):
+	* src/gvc-channel-map.h: Add API to detect whether a channel
+	map supports balancing
+	* src/gvc-mixer-dialog.c (update_output_settings): De-sensitivise
+	the balance bar if the output doesn't support balacing
+
+2009-02-17  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-balance-bar.c (on_adjustment_value_changed):
 	Remove fixed FIXME
 

@@ -38,6 +38,7 @@ struct GvcChannelMapPrivate
         guint                 num_channels;
         pa_channel_position_t positions[PA_CHANNELS_MAX];
         gdouble               gains[PA_CHANNELS_MAX];
+        gboolean              can_balance;
 };
 
 enum {
@@ -72,6 +73,13 @@ gvc_channel_map_get_positions (GvcChannelMap *map)
 {
         g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
         return map->priv->positions;
+}
+
+gboolean
+gvc_channel_map_can_balance (GvcChannelMap  *map)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
+        return map->priv->can_balance;
 }
 
 static void
@@ -136,6 +144,11 @@ set_from_pa_map (GvcChannelMap        *map,
         guint i;
 
         map->priv->num_channels = pa_map->channels;
+#ifdef HAVE_NEW_PULSE
+        map->priv->can_balance = pa_channel_map_can_balance (pa_map);
+#else
+	map->priv->can_balance = TRUE;
+#endif
         for (i = 0; i < pa_map->channels; i++) {
                 map->priv->positions[i] = pa_map->map[i];
                 map->priv->gains[i] = 1.0;
