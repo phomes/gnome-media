@@ -272,7 +272,6 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
         left_v = 1.0;
         right_v = 1.0;
 
-        /* FIXME: handle RTOL locales */
         if (val > 0) {
                 left_v = 1.0 - val;
         } else if (val < 0) {
