@@ -35,8 +35,6 @@
 
 #define GVCA_DBUS_NAME "org.gnome.VolumeControlApplet"
 
-#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
-
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 
