@@ -568,8 +568,8 @@ update_source (GvcMixerControl      *control,
                  info->description);
 #endif
 
-        /* for now completely ignore virtual streams */
-        if (!(info->flags & PA_SOURCE_HARDWARE)) {
+        /* completely ignore monitors, they're not real sources */
+        if (info->monitor_of_sink != PA_INVALID_INDEX) {
                 return;
         }
 

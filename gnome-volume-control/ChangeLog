@@ -1,5 +1,10 @@
 2009-02-17  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-mixer-control.c (update_source): Don't filter out
+	non-hardware sources, only ignore sink monitors
+
+2009-02-17  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-mixer-control.c (update_sink): Don't filter out
 	sinks with PA_SINK_HARDWARE, otherwise things like network sinks
 	(Airport Express?) won't show up in the volume capplet
