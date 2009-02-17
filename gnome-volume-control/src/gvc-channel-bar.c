@@ -32,6 +32,9 @@
 #include "gvc-channel-bar.h"
 
 #define SCALE_SIZE 128
+#define ADJUSTMENT_MAX_NORMAL 65536.0 /* PA_VOLUME_NORM */
+#define ADJUSTMENT_MAX_AMPLIFIED 98304.0 /* 1.5 * ADJUSTMENT_MAX_NORMAL */
+#define ADJUSTMENT_MAX (bar->priv->is_amplified ? ADJUSTMENT_MAX_AMPLIFIED : ADJUSTMENT_MAX_NORMAL)
 
 #define GVC_CHANNEL_BAR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_CHANNEL_BAR, GvcChannelBarPrivate))
 
@@ -59,6 +62,7 @@ struct GvcChannelBarPrivate
         GtkSizeGroup  *size_group;
         gboolean       symmetric;
         gboolean       click_lock;
+        gboolean       is_amplified;
 };
 
 enum
@@ -72,6 +76,7 @@ enum
         PROP_ICON_NAME,
         PROP_LOW_ICON_NAME,
         PROP_HIGH_ICON_NAME,
+        PROP_IS_AMPLIFIED,
 };
 
 static void     gvc_channel_bar_class_init    (GvcChannelBarClass *klass);
@@ -425,16 +430,16 @@ on_scale_scroll_event (GtkWidget      *widget,
         value = gtk_adjustment_get_value (bar->priv->adjustment);
 
         if (event->direction == GDK_SCROLL_UP) {
-                if (value + 65536.0/100.0 > 65536.0)
-                        value = 65536.0;
+                if (value + ADJUSTMENT_MAX/100.0 > ADJUSTMENT_MAX)
+                        value = ADJUSTMENT_MAX;
                 else
-                        value = value + 65536.0/100.0;
+                        value = value + ADJUSTMENT_MAX/100.0;
                 gtk_adjustment_set_value (bar->priv->adjustment, value);
         } else if (event->direction == GDK_SCROLL_DOWN) {
-                if (value - 65536.0/100.0 < 0)
+                if (value - ADJUSTMENT_MAX/100.0 < 0)
                         value = 0.0;
                 else
-                        value = value - 65536.0/100.0;
+                        value = value - ADJUSTMENT_MAX/100.0;
                 gtk_adjustment_set_value (bar->priv->adjustment, value);
         }
 
@@ -531,6 +536,16 @@ gvc_channel_bar_get_show_mute (GvcChannelBar *bar)
         return bar->priv->show_mute;
 }
 
+void
+gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
+
+        bar->priv->is_amplified = amplified;
+        gtk_adjustment_set_upper (bar->priv->adjustment, ADJUSTMENT_MAX);
+        gtk_adjustment_set_upper (bar->priv->zero_adjustment, ADJUSTMENT_MAX);
+}
+
 static void
 gvc_channel_bar_set_property (GObject       *object,
                               guint          prop_id,
@@ -563,6 +578,9 @@ gvc_channel_bar_set_property (GObject       *object,
                 break;
         case PROP_ADJUSTMENT:
                 gvc_channel_bar_set_adjustment (self, g_value_get_object (value));
+                break;
+        case PROP_IS_AMPLIFIED:
+                gvc_channel_bar_set_is_amplified (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -603,6 +621,9 @@ gvc_channel_bar_get_property (GObject     *object,
                 break;
         case PROP_ADJUSTMENT:
                 g_value_set_object (value, gvc_channel_bar_get_adjustment (self));
+                break;
+        case PROP_IS_AMPLIFIED:
+                g_value_set_boolean (value, priv->is_amplified);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -695,6 +716,13 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
                                                               "Name of icon to display for this stream",
                                                               "audio-volume-high",
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_IS_AMPLIFIED,
+                                         g_param_spec_boolean ("is-amplified",
+                                                               "is amplified",
+                                                               "Whether the stream is digitally amplified",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GvcChannelBarPrivate));
 }
@@ -721,17 +749,17 @@ gvc_channel_bar_init (GvcChannelBar *bar)
         bar->priv->orientation = GTK_ORIENTATION_VERTICAL;
         bar->priv->adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0,
                                                                     0.0,
-                                                                    65536.0,
-                                                                    65536.0/100.0,
-                                                                    65536.0/10.0,
+                                                                    ADJUSTMENT_MAX_NORMAL,
+                                                                    ADJUSTMENT_MAX_NORMAL/100.0,
+                                                                    ADJUSTMENT_MAX_NORMAL/10.0,
                                                                     0.0));
         g_object_ref_sink (bar->priv->adjustment);
 
         bar->priv->zero_adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0,
                                                                          0.0,
-                                                                         65536.0,
-                                                                         65536.0/100.0,
-                                                                         65536.0/10.0,
+                                                                         ADJUSTMENT_MAX_NORMAL,
+                                                                         ADJUSTMENT_MAX_NORMAL/100.0,
+                                                                         ADJUSTMENT_MAX_NORMAL/10.0,
                                                                          0.0));
         g_object_ref_sink (bar->priv->zero_adjustment);
 

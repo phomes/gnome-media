@@ -1,5 +1,20 @@
 2009-02-17  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-channel-bar.c (on_scale_scroll_event),
+	(gvc_channel_bar_set_is_amplified), (gvc_channel_bar_set_property),
+	(gvc_channel_bar_get_property), (gvc_channel_bar_class_init),
+	(gvc_channel_bar_init):
+	* src/gvc-channel-bar.h: Add "is-amplified" property. In this mode,
+	the volume can be set above 100% (150% tops actually) for inputs
+	that support giving us the dB information
+	* src/gvc-mixer-dialog.c (on_mixer_control_default_source_changed),
+	(add_stream): Disconnect the value-changed signal, and
+	reconnect it when we're done setting is_amplified for source streams
+	that support giving dB info
+	(Closes: #567536)
+
+2009-02-17  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-channel-map.c (gvc_channel_map_can_balance),
 	(set_from_pa_map):
 	* src/gvc-channel-map.h: Add API to detect whether a channel

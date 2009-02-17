@@ -95,6 +95,9 @@ static void     bar_set_stream              (GvcMixerDialog      *dialog,
                                              GtkWidget           *bar,
                                              GvcMixerStream      *stream);
 
+static void     on_adjustment_value_changed (GtkAdjustment  *adjustment,
+                                             GvcMixerDialog *dialog);
+
 G_DEFINE_TYPE (GvcMixerDialog, gvc_mixer_dialog, GTK_TYPE_DIALOG)
 
 static void
@@ -381,13 +384,21 @@ on_mixer_control_default_source_changed (GvcMixerControl *control,
                                          GvcMixerDialog  *dialog)
 {
         GvcMixerStream *stream;
+        GtkAdjustment *adj;
 
         g_debug ("GvcMixerDialog: default source changed: %u", id);
 
         stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
                                                      id);
+        adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (dialog->priv->input_bar)));
+        g_signal_handlers_disconnect_by_func(adj, on_adjustment_value_changed, dialog);
         bar_set_stream (dialog, dialog->priv->input_bar, stream);
-
+        gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (dialog->priv->input_bar),
+                                          gvc_mixer_stream_get_can_decibel (stream));
+        g_signal_connect (adj,
+                          "value-changed",
+                          G_CALLBACK (on_adjustment_value_changed),
+                          dialog);
         create_monitor_stream_for_source (dialog, stream);
 
         update_default_input (dialog);
@@ -665,6 +676,13 @@ add_stream (GvcMixerDialog *dialog,
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
                 bar = dialog->priv->input_bar;
                 is_default = TRUE;
+
+                /* Disconnect the adj, otherwise it might change if is_amplified changes */
+                adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
+                g_signal_handlers_disconnect_by_func(adj, on_adjustment_value_changed, dialog);
+
+                gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (bar),
+                                                  gvc_mixer_stream_get_can_decibel (stream));
 
                 create_monitor_stream_for_source (dialog, stream);
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
