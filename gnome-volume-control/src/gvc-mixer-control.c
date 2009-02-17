@@ -513,11 +513,6 @@ update_sink (GvcMixerControl    *control,
                  map_buff);
 #endif
 
-        /* for now completely ignore virtual streams */
-        if (!(info->flags & PA_SINK_HARDWARE)) {
-                return;
-        }
-
         is_new = FALSE;
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
