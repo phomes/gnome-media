@@ -63,7 +63,7 @@ GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.10.0
 LIBGLADE_REQUIRED_VERSION=1.99.2
 GCONF_REQUIRED_VERSION=2.6.1
-PA_REQUIRED_VERSION=0.9.12
+PA_REQUIRED_VERSION=0.9.12 # FIXME remove extra checks below when we have PA 0.9.15
 CANBERRA_REQUIRED_VERSION=0.4
 
 PKG_CHECK_MODULES(MEDIA, [
@@ -124,6 +124,19 @@ AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
 AC_SUBST(HAVE_PULSEAUDIO)
 AC_SUBST(PULSEAUDIO_CFLAGS)
 AC_SUBST(PULSEAUDIO_LIBS)
+
+dnl FIXME remove when we have PA 0.9.15 hard-deps
+if test "x$have_pulseaudio" = "xyes" ; then
+  PKG_CHECK_MODULES(NEW_PA,
+  		    libpulse >= 0.9.15,
+  		    have_new_pulseaudio=yes,
+  		    have_new_pulseaudio=no)
+  if test "x$have_new_pulseaudio" = "xyes" ; then
+    AC_DEFINE(HAVE_NEW_PULSE, 1, [Define if we have PulseAudio 0.9.15])
+  fi
+fi
+
+
 
 dnl=======================================================================
 dnl Check for the CDDBSlave2 modules
