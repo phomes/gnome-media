@@ -113,7 +113,7 @@ popup_dock (GvcStreamStatusIcon *icon,
         gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
         gtk_container_foreach (GTK_CONTAINER (icon->priv->dock), 
-                               gtk_widget_show_all, NULL);
+                               (GtkCallback) gtk_widget_show_all, NULL);
         gtk_widget_size_request (icon->priv->dock, &dock_req);
 
         if (orientation == GTK_ORIENTATION_VERTICAL) {
