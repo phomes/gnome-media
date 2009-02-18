@@ -27,6 +27,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <canberra-gtk.h>
 
 #include "gvc-balance-bar.h"
 
@@ -45,6 +46,7 @@ struct GvcBalanceBarPrivate
         GtkAdjustment *adjustment;
         GtkSizeGroup  *size_group;
         gboolean       symmetric;
+        gboolean       click_lock;
 };
 
 enum
@@ -56,6 +58,16 @@ enum
 static void     gvc_balance_bar_class_init (GvcBalanceBarClass *klass);
 static void     gvc_balance_bar_init       (GvcBalanceBar      *balance_bar);
 static void     gvc_balance_bar_finalize   (GObject            *object);
+
+static gboolean on_scale_button_press_event   (GtkWidget      *widget,
+                                               GdkEventButton *event,
+                                               GvcBalanceBar  *bar);
+static gboolean on_scale_button_release_event (GtkWidget      *widget,
+                                               GdkEventButton *event,
+                                               GvcBalanceBar  *bar);
+static gboolean on_scale_scroll_event         (GtkWidget      *widget,
+                                               GdkEventScroll *event,
+                                               GvcBalanceBar  *bar);
 
 G_DEFINE_TYPE (GvcBalanceBar, gvc_balance_bar, GTK_TYPE_HBOX)
 
@@ -102,7 +114,16 @@ _scale_box_new (GvcBalanceBar *bar)
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
 
-        gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_DISCONTINUOUS);
+        gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_CONTINUOUS);
+        ca_gtk_widget_disable_sounds (bar->priv->scale, FALSE);
+        gtk_widget_add_events (bar->priv->scale, GDK_SCROLL_MASK);
+
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-press-event",
+                          G_CALLBACK (on_scale_button_press_event), bar);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "button-release-event",
+                          G_CALLBACK (on_scale_button_release_event), bar);
+        g_signal_connect (G_OBJECT (bar->priv->scale), "scroll-event",
+                          G_CALLBACK (on_scale_scroll_event), bar);
 
         if (bar->priv->size_group != NULL) {
                 gtk_size_group_add_widget (bar->priv->size_group, sbox);
@@ -248,6 +269,52 @@ on_right (pa_channel_position_t p)
         p == PA_CHANNEL_POSITION_SIDE_RIGHT ||
         p == PA_CHANNEL_POSITION_TOP_FRONT_RIGHT ||
         p == PA_CHANNEL_POSITION_TOP_REAR_RIGHT;
+}
+
+static gboolean
+on_scale_button_press_event (GtkWidget      *widget,
+                             GdkEventButton *event,
+                             GvcBalanceBar  *bar)
+{
+        bar->priv->click_lock = TRUE;
+
+        return FALSE;
+}
+
+static gboolean
+on_scale_button_release_event (GtkWidget      *widget,
+                               GdkEventButton *event,
+                               GvcBalanceBar  *bar)
+{
+        bar->priv->click_lock = FALSE;
+
+        return FALSE;
+}
+
+static gboolean
+on_scale_scroll_event (GtkWidget      *widget,
+                       GdkEventScroll *event,
+                       GvcBalanceBar  *bar)
+{
+        gdouble value;
+
+        value = gtk_adjustment_get_value (bar->priv->adjustment);
+
+        if (event->direction == GDK_SCROLL_UP) {
+                if (value + 0.01 > 1.0)
+                        value = 1.0;
+                else
+                        value = value + 0.01;
+                gtk_adjustment_set_value (bar->priv->adjustment, value);
+        } else if (event->direction == GDK_SCROLL_DOWN) {
+                if (value - 0.01 < 0)
+                        value = 0.0;
+                else
+                        value = value - 0.01;
+                gtk_adjustment_set_value (bar->priv->adjustment, value);
+        }
+
+        return TRUE;
 }
 
 static void
