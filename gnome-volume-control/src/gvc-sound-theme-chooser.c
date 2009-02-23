@@ -955,6 +955,7 @@ update_theme (GvcSoundThemeChooser *chooser)
         }
 
         gtk_widget_set_sensitive (chooser->priv->selection_box, events_enabled);
+        gtk_widget_set_sensitive (chooser->priv->click_feedback_button, events_enabled);
 
         set_combox_for_theme_name (chooser, theme_name);
 
