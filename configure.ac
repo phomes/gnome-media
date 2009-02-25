@@ -119,6 +119,8 @@ if test "x$enable_pulseaudio" != "xno"; then
   if test "x$have_pulseaudio" = "xyes" ; then
     AC_DEFINE(HAVE_PULSEAUDIO, [], [Define if we have pulseaudio])
   fi
+else
+  have_pulseaudio=no
 fi
 AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
 AC_SUBST(HAVE_PULSEAUDIO)
