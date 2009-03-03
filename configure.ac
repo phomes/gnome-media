@@ -1,7 +1,7 @@
 AC_PREREQ(2.60)
 
 AC_INIT([gnome-media],
-        [2.25.92],
+        [2.26.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 -Wall -Wno-portability tar-pax])
