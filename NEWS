@@ -1,4 +1,75 @@
 ===============
+Version 2.25.92
+===============
+
+- General:
+  + Add libunique dependency, instead of direct dbus-glib dependency (Bastien)
+  + Detect pulseaudio 0.9.15 to use some new API when it's there (Bastien)
+  + Fix automagic dep on pulseaudio (Mart Raudsepp)
+- gnome-volume-control
+  + Install the application icon in the global icon theme (Bastien)
+  + Fix icon name in desktop file (Luca Ferretti)
+  + Exit when Esc is pressed (Bastien)
+  + Use the new GTK+ scale marks for the balance widget (Luca Ferretti)
+  + Make sure the balance bar stays Left to Right, so that the Left balance is
+    really on the left (Bastien)
+  + Stop the microphone showing up in the applet when the capplet is running
+    (Bastien)
+  + Show recording applications in addition to playback applications, use the
+    microphone icon for those applications (Bastien)
+  + Install the applet's desktop file in the xdg autostart directory (Bastien)
+  + Present the application when it's already running (with libunique)
+    (Bastien)
+  + When PulseAudio isn't running, or takes a long time to connect to, popup a
+    dialogue telling the user what we're waiting for, and the ability to cancel
+    (Bastien)
+  + De-sensitivise the balance bar if the output doesn't support balacing
+    (Bastien)
+  + Add "is-amplified" property. In this mode, the volume can be set above 100%
+    (150% tops actually) for inputs that support giving us the dB information
+    (Bastien)
+  + Don't filter out sinks with PA_SINK_HARDWARE, otherwise things like network
+    sinks (Airport Express?) won't show up in the volume capplet (Bastien)
+  + Don't filter out non-hardware sources, only ignore sink monitors (Bastien)
+  + Fix the dock showing up off-screen when the applet is at the bottom of the
+    screen and is popped up for the first time (Yanko Kaneti)
+  + Make the balance bar instant-apply (Bastien)
+  + Update sensitivity of input feedback checkbox (Matthias Clasen)
+  + Code cleanup (Bastien)
+- Updated translations:
+  + Alaksandar Navicki (be@latin)
+  + Jordi Mallach (ca)
+  + Ask Hjorth Larsen (da)
+  + Christian Kirbach (de)
+  + David Lodge (en_GB)
+  + Jorge González (es)
+  + Ivar Smolin (et)
+  + Iñaki Larrañaga Murgoitio (eu)
+  + Ilkka Tuohela (fi)
+  + Ignacio Casal Quinteiro (gl)
+  + Sweta Kothari (gu)
+  + Gabor Kelemen (hu)
+  + Milo Casagrande (it)
+  + Takeshi AIHANA (ja)
+  + Shankar Prasad (kn)
+  + Changwoo Ryu (ko)
+  + (LINGUAS)
+  + Raivis Dejus (lv)
+  + Jovan Naumovski (mk)
+  + Sandeep Shedmake (mr)
+  + Kjartan Maraas (nb)
+  + Wouter Bolsterlee (nl)
+  + Tomasz Dominikowski (pl)
+  + Djavan Fagundes (pt_BR)
+  + Duarte Loreto (pt)
+  + Adi Roiban (ro)
+  + Daniel Nylander (sv)
+  + Theppitak Karoonboonyanan (th)
+  + Clytie Siddall (vi)
+  + Chao-Hsiung Liao (zh_HK)
+  + Chao-Hsiung Liao (zh_TW)
+
+===============
 Version 2.25.5
 ===============
 - Add desktop files and icons for gnome-volume-control
