@@ -163,7 +163,7 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track)
  */
 
 static void
-update_tab_visibility (GnomeVolumeControlElement *el, gint page)
+update_tab_visibility (GnomeVolumeControlElement *el, gint page, gint tabnum)
 {
   const GList *item;
   gboolean visible = FALSE;
@@ -181,7 +181,7 @@ update_tab_visibility (GnomeVolumeControlElement *el, gint page)
     }
   }
 
-  t = gtk_notebook_get_nth_page (GTK_NOTEBOOK (el), page);
+  t = gtk_notebook_get_nth_page (GTK_NOTEBOOK (el), tabnum);
   if (visible)
     gtk_widget_show (t);
   else
@@ -250,13 +250,18 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     { NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
-  gint i;
+  static gboolean theme_page = FALSE;
   const GList *item;
   GstMixer *mixer;
   GstBus *bus;
+  gint i;
 
-  /* remove old pages */
-  while (gtk_notebook_get_n_pages (GTK_NOTEBOOK (el)) > 0) {
+  /* remove old pages, but not the "Sound Theme" page */
+  i = 0;
+  if (theme_page)
+    i = 1;
+
+  while (gtk_notebook_get_n_pages (GTK_NOTEBOOK (el)) > i) {
     gtk_notebook_remove_page (GTK_NOTEBOOK (el), 0);
   }
 
@@ -365,8 +370,10 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
   }
 
-  /* show */
-  for (i = 0; i < 4; i++) {
+  /* show - need to build the tabs backwards so that deleting the "Sound Theme"
+   * page can be avoided.
+   */
+  for (i = 3; i >= 0; i--) {
     GtkWidget *label, *view, *viewport;
     GtkAdjustment *hadjustment, *vadjustment;
 
@@ -390,14 +397,14 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_container_add (GTK_CONTAINER (viewport), content[i].page);
     gtk_container_add (GTK_CONTAINER (view), viewport);
 
-    label = gtk_label_new (get_page_description(i));
-    gtk_notebook_append_page (GTK_NOTEBOOK (el), view, label);
+    label = gtk_label_new (get_page_description (i));
+    gtk_notebook_prepend_page (GTK_NOTEBOOK (el), view, label);
     gtk_widget_show (content[i].page);
     gtk_widget_show (viewport);
     gtk_widget_show (view);
     gtk_widget_show (label);
 
-    update_tab_visibility (el, i);
+    update_tab_visibility (el, i, 0);
   }
 
   /* refresh fix */
@@ -408,7 +415,8 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 
 #ifdef HAVE_SOUND_THEME
   /* Add tab for managing themes */
-  {
+  if (!theme_page) {
+    theme_page = TRUE;
     GtkWidget *label, *view, *viewport, *sound_theme_chooser, *vbox;
     GtkAdjustment *hadjustment, *vadjustment;
 
@@ -498,7 +506,7 @@ cb_gconf (GConfClient *client,
             if (trkw->visible && first[n])
               first[n] = FALSE;
           }
-          update_tab_visibility (el, page);
+          update_tab_visibility (el, page, page);
           break;
         }
       }

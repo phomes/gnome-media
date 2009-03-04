@@ -1,3 +1,9 @@
+2009-03-04  Brian Cameron  <brian.cameron@sun.com>
+
+	* gst-mixer/src/element.c: I noticed that when switching devices,
+	the "Sound Theme" tab was not rebuilding properly.  Avoiding to ever
+	remove the "Sound Theme" tab fixes this problem.
+
 2009-03-04  Bastien Nocera  <hadess@hadess.net>
 
 	* gst-mixer/src/Makefile.am:
@@ -7,51 +13,51 @@
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/track.c: Add new icons mappings.  Fixes bug #571084.
-	  Patch by Garrett D'Amore <garrett.damore@sun.com>
+	Patch by Garrett D'Amore <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/element.c: Fix code so that options are updated upon
-	  change.  Fixes bug #571083.  Patch by Garrett D'Amore
-	  <garrett.damore@sun.com>
+	change.  Fixes bug #571083.  Patch by Garrett D'Amore
+	<garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/preferences.c: Add the pagenum directly to the
-	  gtk_list_store, and avoid having to look up the pagenum in the
-	  sort_by_page_num function.  This makes the code simpler and avoids
-	  needless string comparisons.  Fixes bug #571068.  Patch by Garrett
-	  D'Amore.  <garrett.damore@sun.com>
+	gtk_list_store, and avoid having to look up the pagenum in the
+	sort_by_page_num function.  This makes the code simpler and avoids
+	needless string comparisons.  Fixes bug #571068.  Patch by Garrett
+	D'Amore.  <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/element.c: Use get_page_description() to get the labels
-	  rather than duplicating the values in the content structure.  Fixes
-	  bug #570979.  Patch by Garrett D'Amore <garrett.damore@sun.com>
+	rather than duplicating the values in the content structure.  Fixes bug
+	#570979.  Patch by Garrett D'Amore <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/element.[ch], gst-mixer/src/preferences.c: Move the
-	  whitelist_init_list from the element.h to element.c file.  This makes
-	  for more efficient code since the structure only needs to be defined
-	  once, not twice (once in element.c and once in preferences.c).  Fixes
-	  bug #570978.  Patch by Garrett D'Amore <garrett.damore@sun.com>
+	whitelist_init_list from the element.h to element.c file.  This makes
+	for more efficient code since the structure only needs to be defined
+	once, not twice (once in element.c and once in preferences.c).  Fixes
+	bug #570978.  Patch by Garrett D'Amore <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* configure.ac, Makefile.am, gst-mixer/src/Makefile.am,
-	  gst-mixer/src/element.c, gnome-volume-control/src/Makefile.am,
-	  gnome-volume-control/data/Makefile.am: Now the sound-theme widgets
-	  and the sound files are built in the sound-theme directory.  The
-	  sound-theme widgets are built into a static library that is linked
-	  into both gst-mixer and gnome-volume-control so that both
-	  applications can provide the ability to edit the Sound Theme
-	  configuration.  This fixes bug #570736.
+	gst-mixer/src/element.c, gnome-volume-control/src/Makefile.am,
+	gnome-volume-control/data/Makefile.am: Now the sound-theme widgets
+	and the sound files are built in the sound-theme directory.  The
+	sound-theme widgets are built into a static library that is linked
+	into both gst-mixer and gnome-volume-control so that both
+	applications can provide the ability to edit the Sound Theme
+	configuration.  This fixes bug #570736.
 	* sound-theme/Makefile.am, sound-theme/gvc-sound-theme-editor.[ch],
-	  sound-theme/gvc-sound-theme-chooser.[ch], 
-	  sound-theme/sound-theme-file-utils.[ch]: Move sound-theme widget
-	  files from gnome-volume-control/src and provide Makefile.am to build
-	  them into a static library.
+	sound-theme/gvc-sound-theme-chooser.[ch], 
+	sound-theme/sound-theme-file-utils.[ch]: Move sound-theme widget
+	files from gnome-volume-control/src and provide Makefile.am to build
+	them into a static library.
 	* sound-theme/sounds: Move from gnome-volume-control/data/sounds.
 
 2009-03-03  Vincent Untz  <vuntz@gnome.org>
