@@ -39,6 +39,7 @@ enum {
   COL_LABEL,
   COL_TRACK,
   COL_TYPE,
+  COL_PAGE,
   NUM_COLS
 };
 
@@ -81,12 +82,12 @@ gnome_volume_control_preferences_class_init (GnomeVolumeControlPreferencesClass 
 static gint
 sort_by_page_num (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
 {
-	GstMixerTrack *a_track, *b_track;
+	gint a_type, b_type;
 
-	gtk_tree_model_get (model, a, COL_TRACK, &a_track, -1);
-	gtk_tree_model_get (model, b, COL_TRACK, &b_track, -1);
+	gtk_tree_model_get (model, a, COL_PAGE, &a_type, -1);
+	gtk_tree_model_get (model, b, COL_PAGE, &b_type, -1);
 
-	return get_page_num (a_track) - get_page_num (b_track);
+	return (a_type - b_type);
 }
 
 static void
@@ -122,7 +123,8 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   gtk_widget_show (label);
 
   store = gtk_list_store_new (NUM_COLS, G_TYPE_BOOLEAN,
-			      G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_STRING);
+			      G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_STRING,
+			      G_TYPE_INT);
   gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (store), sort_by_page_num, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID, GTK_SORT_ASCENDING);
   prefs->treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
@@ -291,6 +293,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   GtkTreeIter iter;
   GtkListStore *store;
   const GList *item;
+  gint pgnum;
 
   g_return_if_fail (GST_IS_MIXER (element));
   mixer = GST_MIXER (element);
@@ -319,12 +322,14 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
     }
     g_free (key);
 
+    pgnum = get_page_num (track);
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter,
 			COL_ACTIVE, active,
 			COL_LABEL, track->label,
 			COL_TRACK, track,
-			COL_TYPE, get_page_description (get_page_num (track)),
+			COL_TYPE, get_page_description (pgnum),
+			COL_PAGE, pgnum,
 			-1);
   }
 }

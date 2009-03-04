@@ -1,5 +1,13 @@
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
+	* gst-mixer/src/preferences.c: Add the pagenum directly to the
+	  gtk_list_store, and avoid having to look up the pagenum in the
+	  sort_by_page_num function.  This makes the code simpler and avoids
+	  needless string comparisons.  Fixes bug #571068.  Patch by Garrett
+	  D'Amore.  <garrett.damore@sun.com>
+
+2009-03-04  Brian Cameron  <brian.cameron@sun.com>
+
 	* gst-mixer/src/element.c: Use get_page_description() to get the 
 	  labels rather than duplicating the values in the content
 	  structure.  Fixes bug #570979.  Patch by Garrett D'Amore
