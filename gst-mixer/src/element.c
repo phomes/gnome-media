@@ -227,7 +227,6 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 				     GstElement *element)
 {
   struct {
-    gchar *label;
     GtkWidget *page, *old_sep, *new_sep;
     gboolean use;
     gint pos, height, width;
@@ -238,13 +237,13 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 						    GtkWidget     *left_sep,
 						    GtkWidget     *right_sep);
   } content[4] = {
-    { _("Playback"), NULL, NULL, NULL, FALSE, 0, 5, 1,
+    { NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_playback },
-    { _("Recording"),  NULL, NULL, NULL, FALSE, 0, 5, 1,
+    { NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_recording },
-    { _("Switches"), NULL, NULL, NULL, FALSE, 0, 1, 3,
+    { NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_switch },
-    { _("Options"),  NULL, NULL, NULL, FALSE, 0, 1, 3,
+    { NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
   gint i;
@@ -387,7 +386,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     gtk_container_add (GTK_CONTAINER (viewport), content[i].page);
     gtk_container_add (GTK_CONTAINER (view), viewport);
 
-    label = gtk_label_new (content[i].label);
+    label = gtk_label_new (get_page_description(i));
     gtk_notebook_append_page (GTK_NOTEBOOK (el), view, label);
     gtk_widget_show (content[i].page);
     gtk_widget_show (viewport);
