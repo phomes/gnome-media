@@ -106,11 +106,33 @@ gnome_volume_control_element_dispose (GObject *object)
  */
 
 gboolean
-gnome_volume_control_element_whitelist (GstMixerTrack *track,
-					gvc_whitelist *list)
+gnome_volume_control_element_whitelist (GstMixerTrack *track)
 {
   gint i, pos;
   gboolean found = FALSE;
+
+  /* Yes this is a hack. */
+  static struct {
+    gchar *label;
+    gboolean done;
+  } list[] = {
+
+/* Translator comment: the names below are a whitelist for which volume
+ * controls to show by default. Make sure that those match the translations
+ * of GStreamer-plugins' ALSA/OSS plugins. */
+    { "cd", FALSE },
+    { "line", FALSE },
+    { "mic", FALSE },
+    { "pcm", FALSE },
+    { "headphone", FALSE },
+    { "speaker", FALSE },
+    { "volume", FALSE },
+    { "master", FALSE },
+    { "digital output", FALSE },
+    { "recording", FALSE },
+    { "front", FALSE },
+    { NULL, FALSE }
+  };
 
   for (i = 0; !found && list[i].label != NULL; i++) {
     gchar *label_l = NULL;
@@ -225,7 +247,6 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     { _("Options"),  NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
-  gvc_whitelist list[] = whitelist_init_list;
   gint i;
   const GList *item;
   GstMixer *mixer;
@@ -299,7 +320,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
 
     /* visible? */
-    active = gnome_volume_control_element_whitelist (track, list);
+    active = gnome_volume_control_element_whitelist (track);
     key = get_gconf_key (el->mixer, track);
     if ((value = gconf_client_get (el->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {

@@ -291,7 +291,6 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   GtkTreeIter iter;
   GtkListStore *store;
   const GList *item;
-  gvc_whitelist list[] = whitelist_init_list;
 
   g_return_if_fail (GST_IS_MIXER (element));
   mixer = GST_MIXER (element);
@@ -312,7 +311,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
     GstMixerTrack *track = item->data;
     gchar *key = get_gconf_key (mixer, track);
     GConfValue *value;
-    gboolean active = gnome_volume_control_element_whitelist (track, list);
+    gboolean active = gnome_volume_control_element_whitelist (track);
 
     if ((value = gconf_client_get (prefs->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {

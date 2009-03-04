@@ -60,36 +60,7 @@ GType		gnome_volume_control_element_get_type	(void);
 GtkWidget *	gnome_volume_control_element_new	(GConfClient  *client);
 void		gnome_volume_control_element_change	(GnomeVolumeControlElement *el,
 							 GstElement  *element);
-
-/*
- * Yes this is a hack.
- */
-
-typedef struct {
-  gchar *label;
-  gboolean done;
-} gvc_whitelist;
-
-/* Translator comment: the names below are a whitelist for which volume
- * controls to show by default. Make sure that those match the translations
- * of GStreamer-plugins' ALSA/OSS plugins. */
-#define whitelist_init_list { \
-    { "cd", FALSE }, \
-    { "line", FALSE }, \
-    { "mic", FALSE }, \
-    { "pcm", FALSE }, \
-    { "headphone", FALSE }, \
-    { "speaker", FALSE }, \
-    { "volume", FALSE }, \
-    { "master", FALSE }, \
-    { "digital output", FALSE }, \
-    { "recording", FALSE }, \
-    { "front", FALSE }, \
-    { NULL, FALSE } \
-  }
-
-gboolean	gnome_volume_control_element_whitelist	(GstMixerTrack *track,
-							 gvc_whitelist *list);
+gboolean	gnome_volume_control_element_whitelist	(GstMixerTrack *track);
 
 G_END_DECLS
 

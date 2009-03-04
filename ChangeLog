@@ -1,5 +1,13 @@
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
+	* gst-mixer/src/element.[ch], gst-mixer/src/preferences.c: Move the
+	  whitelist_init_list from the element.h to element.c file.  This
+	  makes for more efficient code since the structure only needs to 
+	  be defined once, not twice (once in element.c and once in
+	  preferences.c).
+
+2009-03-04  Brian Cameron  <brian.cameron@sun.com>
+
 	* configure.ac, Makefile.am, gst-mixer/src/Makefile.am,
 	  gst-mixer/src/element.c, gnome-volume-control/src/Makefile.am,
 	  gnome-volume-control/data/Makefile.am: Now the sound-theme widgets
