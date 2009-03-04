@@ -7,13 +7,12 @@ bin_PROGRAMS = 					\
 
 AM_CPPFLAGS =					\
 	$(WARN_CFLAGS)				\
+	-I../../sound-theme			\
 	$(VOLUME_CONTROL_CFLAGS)		\
 	$(PULSEAUDIO_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGLADEDIR=\""$(pkgdatadir)"\"		\
-	-DSOUND_DATA_DIR="\"$(datadir)/sounds\"" \
-	-DSOUND_SET_DIR="\"$(pkgdatadir)/sounds\"" \
 	-DICON_DATA_DIR="\"$(pkgdatadir)/icons\"" \
 	$(NULL)
 
@@ -49,6 +48,8 @@ gnome_volume_control_applet_SOURCES =		\
 	$(NULL)
 
 gnome_volume_control_LDADD =			\
+	-L$(top_builddir)/sound-theme		\
+	-lsoundtheme				\
 	$(VOLUME_CONTROL_LIBS)			\
 	$(PULSEAUDIO_LIBS)			\
 	$(NULL)
@@ -74,10 +75,6 @@ gnome_volume_control_SOURCES =			\
 	gvc-balance-bar.c			\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
-	gvc-sound-theme-chooser.h		\
-	gvc-sound-theme-chooser.c		\
-	sound-theme-file-utils.h		\
-	sound-theme-file-utils.c		\
 	gvc-mixer-dialog.h			\
 	gvc-mixer-dialog.c			\
 	gvc-level-bar.h				\
@@ -87,8 +84,6 @@ gnome_volume_control_SOURCES =			\
 
 BUILT_SOURCES =				\
 	$(NULL)
-
-EXTRA_DIST = gvc-sound-theme-editor.c gvc-sound-theme-editor.h
 
 CLEANFILES =				\
 	$(BUILT_SOURCES)		\

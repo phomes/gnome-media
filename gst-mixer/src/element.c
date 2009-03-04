@@ -32,6 +32,9 @@
 #include "preferences.h"
 #include "track.h"
 #include "misc.h"
+#ifdef HAVE_SOUND_THEME
+#include "gvc-sound-theme-chooser.h"
+#endif
 
 G_DEFINE_TYPE (GnomeVolumeControlElement, gnome_volume_control_element, GTK_TYPE_NOTEBOOK)
 
@@ -378,6 +381,41 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
        i >= 0; i--) {
     gtk_notebook_set_current_page (GTK_NOTEBOOK (el), i);
   }
+
+#ifdef HAVE_SOUND_THEME
+  /* Add tab for managing themes */
+  {
+    GtkWidget *label, *view, *viewport, *sound_theme_chooser, *vbox;
+    GtkAdjustment *hadjustment, *vadjustment;
+
+    label = gtk_label_new (_("Sound Theme"));
+
+    view = gtk_scrolled_window_new (NULL, NULL);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (view),
+				    GTK_POLICY_AUTOMATIC,
+				    GTK_POLICY_AUTOMATIC);
+
+    hadjustment = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (view));
+    vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (view));
+    viewport = gtk_viewport_new (hadjustment, vadjustment);
+    gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
+    gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
+
+    sound_theme_chooser = gvc_sound_theme_chooser_new ();
+    vbox = gtk_vbox_new (FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (vbox), sound_theme_chooser, TRUE, TRUE, 6);
+    gtk_container_add (GTK_CONTAINER (viewport), vbox);
+    gtk_container_add (GTK_CONTAINER (view), viewport);
+
+    gtk_widget_show_all (vbox);
+    gtk_widget_show (sound_theme_chooser);
+    gtk_widget_show (viewport);
+    gtk_widget_show (view);
+    gtk_widget_show (label);
+
+    gtk_notebook_append_page (GTK_NOTEBOOK (el), view, label);
+  }
+#endif
 }
 
 /*

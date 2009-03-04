@@ -22,6 +22,10 @@ if HAVE_GNOMECD
 SUBDIRS += gnome-cd
 endif
 
+if HAVE_SOUND_THEME
+SUBDIRS += sound-theme
+endif
+
 if HAVE_PULSEAUDIO
 SUBDIRS += gnome-volume-control
 endif
