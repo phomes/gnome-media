@@ -195,6 +195,7 @@ cb_notify_message (GstBus *bus, GstMessage *message, gpointer data)
   GstMixerMessageType type;
   GnomeVolumeControlTrack *trkw;
   GstMixerTrack *track = NULL;
+  GstMixerOptions *options = NULL;
 
   if (GST_MESSAGE_SRC (message) != GST_OBJECT (el->mixer)) {
     /* not from our mixer - can't update anything anyway */
