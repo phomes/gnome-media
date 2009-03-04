@@ -1,8 +1,7 @@
 
 if HAVE_SOUND_THEME
 GVC_ST_LIBS = $(SOUND_THEME_LIBS) \
-	 -L$(top_builddir)/sound-theme \
-	 -lsoundtheme
+	$(top_builddir)/sound-theme/libsoundtheme.la
 endif
 
 AM_CPPFLAGS = \

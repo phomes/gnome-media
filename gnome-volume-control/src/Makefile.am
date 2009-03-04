@@ -7,7 +7,7 @@ bin_PROGRAMS = 					\
 
 AM_CPPFLAGS =					\
 	$(WARN_CFLAGS)				\
-	-I../../sound-theme			\
+	-I$(top_srcdir)/sound-theme		\
 	$(VOLUME_CONTROL_CFLAGS)		\
 	$(PULSEAUDIO_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
@@ -47,11 +47,10 @@ gnome_volume_control_applet_SOURCES =		\
 	applet-main.c				\
 	$(NULL)
 
-gnome_volume_control_LDADD =			\
-	-L$(top_builddir)/sound-theme		\
-	-lsoundtheme				\
-	$(VOLUME_CONTROL_LIBS)			\
-	$(PULSEAUDIO_LIBS)			\
+gnome_volume_control_LDADD =				\
+	$(VOLUME_CONTROL_LIBS)				\
+	$(PULSEAUDIO_LIBS)				\
+	$(top_builddir)/sound-theme/libsoundtheme.la	\
 	$(NULL)
 
 gnome_volume_control_SOURCES =			\
