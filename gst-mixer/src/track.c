@@ -37,6 +37,7 @@ static const struct {
 } pix[] = {
   { "cd",         "media-optical"         	},
   { "line",       "gvc-line-in"                 },
+  { "aux",        "gvc-line-in"                 },
   { "mic",        "audio-input-microphone"      },
   { "cap",        "gvc-line-in"			},
   { "mix",        "multimedia-volume-control"   },
@@ -44,10 +45,17 @@ static const struct {
   { "headphone",  "gvc-headphones" 		},
   { "phone",      "phone"      			},
   { "speaker",    "audio-volume-high"           },
+  { "front",      "audio-volume-high"           },
+  { "surround",   "audio-volume-high"           },
+  { "side",       "audio-volume-high"           },
+  { "center",     "audio-volume-high"           },
+  { "lfe",        "audio-volume-high"           },
   { "video",      "video-display"      		},
   { "volume",     "gvc-tone"       		},
   { "master",     "gvc-tone"       		},
   { "3d",         "gvc-3d-sound"		},
+  { "beep",       "keyboard"                    },
+  { "record",     "audio-input-microphone"      },
   { NULL, NULL }
 };
 
