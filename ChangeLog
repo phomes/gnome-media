@@ -1,5 +1,11 @@
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
+	* gst-mixer/src/element.c: Fix code so that options are updated upon
+	  change.  Fixes bug #571083.  Patch by Garrett D'Amore
+	  <garrett.damore@sun.com>
+
+2009-03-04  Brian Cameron  <brian.cameron@sun.com>
+
 	* gst-mixer/src/preferences.c: Add the pagenum directly to the
 	  gtk_list_store, and avoid having to look up the pagenum in the
 	  sort_by_page_num function.  This makes the code simpler and avoids
@@ -8,19 +14,17 @@
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
-	* gst-mixer/src/element.c: Use get_page_description() to get the 
-	  labels rather than duplicating the values in the content
-	  structure.  Fixes bug #570979.  Patch by Garrett D'Amore
-	  <garrett.damore@sun.com>
+	* gst-mixer/src/element.c: Use get_page_description() to get the labels
+	  rather than duplicating the values in the content structure.  Fixes
+	  bug #570979.  Patch by Garrett D'Amore <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 
 	* gst-mixer/src/element.[ch], gst-mixer/src/preferences.c: Move the
-	  whitelist_init_list from the element.h to element.c file.  This
-	  makes for more efficient code since the structure only needs to 
-	  be defined once, not twice (once in element.c and once in
-	  preferences.c).  Fixes bug #570978.  Patch by Garrett D'Amore
-	  <garrett.damore@sun.com>
+	  whitelist_init_list from the element.h to element.c file.  This makes
+	  for more efficient code since the structure only needs to be defined
+	  once, not twice (once in element.c and once in preferences.c).  Fixes
+	  bug #570978.  Patch by Garrett D'Amore <garrett.damore@sun.com>
 
 2009-03-04  Brian Cameron  <brian.cameron@sun.com>
 

@@ -208,6 +208,9 @@ cb_notify_message (GstBus *bus, GstMessage *message, gpointer data)
     gst_mixer_message_parse_mute_toggled (message, &track, NULL);
   } else if (type == GST_MIXER_MESSAGE_VOLUME_CHANGED) {
     gst_mixer_message_parse_volume_changed (message, &track, NULL, NULL);
+  } else if (type == GST_MIXER_MESSAGE_OPTION_CHANGED) {
+    gst_mixer_message_parse_option_changed (message, &options, NULL);
+    track = GST_MIXER_TRACK (options);
   } else {
     return;
   }
