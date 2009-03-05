@@ -589,9 +589,13 @@ have_gstmixer=no
 
 AC_ARG_ENABLE([gstmix],
   AS_HELP_STRING([--enable-gstmix], [enable gstreamer mixer]),
-  ,enable_gstmix=yes)
+  ,enable_gstmix=auto)
 
-if test "x$have_pulseaudio" = "xno" && test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
+if test "x$enable_gstmix" = "xauto" && test "x$have_pulseaudio" = "xno"; then
+  enable_gstmix=yes
+fi
+
+if test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
 then
   PKG_CHECK_MODULES(GSTMIXER, [
     libgnomeui-2.0
