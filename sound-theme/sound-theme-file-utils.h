@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.
  */
-#ifndef __SOUND_THEME_FILE_UTILSHH__
-#define __SOUND_THEME_HH__
+#ifndef __SOUND_THEME_FILE_UTILS_HH__
+#define __SOUND_THEME_FILE_UTILS_HH__
 
 #include <gio/gio.h>
 
