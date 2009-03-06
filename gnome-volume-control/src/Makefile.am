@@ -44,6 +44,7 @@ gnome_volume_control_applet_SOURCES =		\
 	gvc-stream-status-icon.c		\
 	gvc-applet.h				\
 	gvc-applet.c				\
+	gvc-log.c				\
 	applet-main.c				\
 	$(NULL)
 
@@ -78,6 +79,7 @@ gnome_volume_control_SOURCES =			\
 	gvc-mixer-dialog.c			\
 	gvc-level-bar.h				\
 	gvc-level-bar.c				\
+	gvc-log.c				\
 	dialog-main.c				\
 	$(NULL)
 

@@ -32,6 +32,7 @@
 #include <unique/uniqueapp.h>
 
 #include "gvc-applet.h"
+#include "gvc-log.h"
 
 #define GVCA_DBUS_NAME "org.gnome.VolumeControlApplet"
 
@@ -54,11 +55,14 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
+	gvc_log_init ();
+
         error = NULL;
         gtk_init_with_args (&argc, &argv,
                             (char *) _(" - GNOME Volume Control Applet"),
                             entries, GETTEXT_PACKAGE,
                             &error);
+
         if (error != NULL) {
                 g_warning ("%s", error->message);
                 exit (1);
@@ -68,6 +72,8 @@ main (int argc, char **argv)
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (1);
         }
+
+	gvc_log_set_debug (debug);
 
         app = unique_app_new (GVCA_DBUS_NAME, NULL);
         if (unique_app_is_running (app)) {
