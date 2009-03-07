@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-18 07:58+0900\n"
-"PO-Revision-Date: 2009-02-26 15:40+0900\n"
+"POT-Creation-Date: 2009-03-07 18:57+0900\n"
+"PO-Revision-Date: 2009-03-07 18:57+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -1334,53 +1334,29 @@ msgstr "데스크탑 볼륨 조정 표시"
 msgid "Volume Control"
 msgstr "볼륨 조정"
 
-#. Translators: This is the name of an audio file that sounds like the bark of a dog.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:3
-msgid "Bark"
-msgstr "멍멍"
-
-#. Translators: This is the name of an audio file that sounds like a water drip.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:6
-msgid "Drip"
-msgstr "뚝뚝"
-
-#. Translators: This is the name of an audio file that sounds like tapping glass.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:9
-msgid "Glass"
-msgstr "챙챙"
-
-#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:12
-msgid "Sonar"
-msgstr "핑핑"
-
-#: ../gnome-volume-control/src/applet-main.c:48
-#: ../gnome-volume-control/src/dialog-main.c:140
+#: ../gnome-volume-control/src/applet-main.c:49
+#: ../gnome-volume-control/src/dialog-main.c:141
 msgid "Enable debugging code"
 msgstr "디버깅 코드 사용"
 
-#: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/applet-main.c:50
+#: ../gnome-volume-control/src/dialog-main.c:142
 msgid "Version of this application"
 msgstr "이 프로그램의 버전"
 
-#: ../gnome-volume-control/src/applet-main.c:59
+#: ../gnome-volume-control/src/applet-main.c:62
 msgid " - GNOME Volume Control Applet"
 msgstr "- 그놈 볼륨 조정 애플릿"
 
-#: ../gnome-volume-control/src/dialog-main.c:121
+#: ../gnome-volume-control/src/dialog-main.c:122
 msgid "Waiting for sound system to respond"
 msgstr "사운드 시스템이 응답하기를 기다립니다"
 
-#: ../gnome-volume-control/src/dialog-main.c:139 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "시작 페이지"
 
-#: ../gnome-volume-control/src/dialog-main.c:151
+#: ../gnome-volume-control/src/dialog-main.c:154
 msgid " - GNOME Volume Control"
 msgstr "- 그놈 볼륨 조정"
 
@@ -1394,17 +1370,17 @@ msgstr "출력"
 msgid "Input"
 msgstr "입력"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:89
+#: ../gnome-volume-control/src/gvc-balance-bar.c:101
 msgctxt "balance"
 msgid "Left"
 msgstr "왼쪽"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:94
+#: ../gnome-volume-control/src/gvc-balance-bar.c:106
 msgctxt "balance"
 msgid "Right"
 msgstr "오른쪽"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:318
+#: ../gnome-volume-control/src/gvc-balance-bar.c:385
 msgid "_Balance:"
 msgstr "균형(_B):"
 
@@ -1425,7 +1401,7 @@ msgid "Peak detect"
 msgstr "최대치 검출"
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:863
+#: ../sound-theme/gvc-sound-theme-chooser.c:863
 msgid "Name"
 msgstr "이름"
 
@@ -1474,196 +1450,28 @@ msgid "No application is currently playing or recording audio."
 msgstr "현재 오디오를 재생하거나 녹음하는 프로그램이 없습니다."
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:728
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:740
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:752
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:561
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:950
+#: ../sound-theme/gvc-sound-theme-chooser.c:728
+#: ../sound-theme/gvc-sound-theme-chooser.c:740
+#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../sound-theme/gvc-sound-theme-editor.c:561
+#: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "사운드 기본 설정"
 
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:320
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:523
-msgid "No sounds"
-msgstr "소리 없음"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:442
-msgid "Built-in"
-msgstr "내장"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:618
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:706
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:760
-#: ../gnome-volume-control/src/sound-theme-file-utils.c:292
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-msgid "Custom"
-msgstr "사용자 지정"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:731
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:742
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:754
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:563
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:952
-msgid "Testing event sound"
-msgstr "이벤트 소리 테스트"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:839
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:892
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:996
-#: ../gstreamer-properties/gstreamer-properties.c:251
-msgid "Default"
-msgstr "기본값"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:840
-msgid "From theme"
-msgstr "테마에서"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:870
-msgid "Type"
-msgstr "종류"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1080
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "사운드 테마:"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1088
-msgid "Choose an alert sound:"
-msgstr "경보 사운드 선택:"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1106
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "창 및 단추 사운드 사용"
-
-#. Bell
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:76
-msgctxt "Sound event"
-msgid "Alert sound"
-msgstr "경보 사운드"
-
-#. Windows and buttons
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:78
-msgctxt "Sound event"
-msgid "Windows and Buttons"
-msgstr "창 및 단추"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:79
-msgctxt "Sound event"
-msgid "Button clicked"
-msgstr "단추 누름"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:80
-msgctxt "Sound event"
-msgid "Toggle button clicked"
-msgstr "토글 단추 누름"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:81
-msgctxt "Sound event"
-msgid "Window maximized"
-msgstr "창 최대화"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:82
-msgctxt "Sound event"
-msgid "Window unmaximized"
-msgstr "창 최대화 해제"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:83
-msgctxt "Sound event"
-msgid "Window minimised"
-msgstr "창 최소화"
-
-#. Desktop
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:85
-msgctxt "Sound event"
-msgid "Desktop"
-msgstr "바탕 화면"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:86
-msgctxt "Sound event"
-msgid "Login"
-msgstr "로그인"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:87
-msgctxt "Sound event"
-msgid "Logout"
-msgstr "로그아웃"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:88
-msgctxt "Sound event"
-msgid "New e-mail"
-msgstr "새 전자메일"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:89
-msgctxt "Sound event"
-msgid "Empty trash"
-msgstr "휴지통 비우기"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:90
-msgctxt "Sound event"
-msgid "Long action completed (download, CD burning, etc.)"
-msgstr "오래 걸리는 작업 완료 (다운로드, CD 굽기 등)"
-
-#. Alerts?
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:92
-msgctxt "Sound event"
-msgid "Alerts"
-msgstr "경보"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:93
-msgctxt "Sound event"
-msgid "Information or question"
-msgstr "정보 혹은 물음"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:94
-msgctxt "Sound event"
-msgid "Warning"
-msgstr "경고"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:95
-msgctxt "Sound event"
-msgid "Error"
-msgstr "오류"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:96
-msgctxt "Sound event"
-msgid "Battery warning"
-msgstr "배터리 경고"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:593
-msgid "Select Sound File"
-msgstr "사운드 파일을 선택하십시오"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:604
-msgid "Sound files"
-msgstr "사운드 파일"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:896
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "사용하지 않음"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "사용자 지정..."
-
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:211
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "사운드 기본 설정 시작에 실패: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:234
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
 msgid "_Mute"
 msgstr "조용히(_M)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:243
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
 msgid "_Sound Preferences"
 msgstr "사운드 기본 설정(_S)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:447
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
 msgid "Muted"
 msgstr "조용히"
 
@@ -1904,8 +1712,7 @@ msgstr "연주중..."
 msgid "GConf audio output"
 msgstr "GConf 오디오 출력"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/element.c:216
-#: ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
 msgid "Playback"
 msgstr "재생"
 
@@ -2080,17 +1887,9 @@ msgstr "창의 너비"
 msgid "Width of the Window to be displayed"
 msgstr "보이는 창의 너비"
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:62
-msgid "Recording"
-msgstr "녹음"
-
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:64
-msgid "Switches"
-msgstr "스위치"
-
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:66
-msgid "Options"
-msgstr "옵션"
+#: ../gst-mixer/src/element.c:423
+msgid "Sound Theme"
+msgstr "사운드 테마"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -2101,43 +1900,55 @@ msgstr "알 수 없는 볼륨 조정 %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "볼륨 조정 GStremaer 플러그인/장치가 없습니다."
 
+#: ../gst-mixer/src/misc.c:62
+msgid "Recording"
+msgstr "녹음"
+
+#: ../gst-mixer/src/misc.c:64
+msgid "Switches"
+msgstr "스위치"
+
+#: ../gst-mixer/src/misc.c:66
+msgid "Options"
+msgstr "옵션"
+
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:106
+#: ../gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "볼륨 조정 기본 설정"
 
-#: ../gst-mixer/src/preferences.c:119
+#: ../gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "표시할 트랙 선택(_S):"
 
-#: ../gst-mixer/src/track.c:263
+#: ../gst-mixer/src/track.c:271
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:302
+#: ../gst-mixer/src/track.c:310
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s 조용/소리내기"
 
-#: ../gst-mixer/src/track.c:317
+#: ../gst-mixer/src/track.c:325
 #, c-format
 msgid "Track %s: mute"
 msgstr "트랙 %s: 음소거"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:383
+#: ../gst-mixer/src/track.c:391
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "%s 오디오 녹음  토글"
 
-#: ../gst-mixer/src/track.c:400
+#: ../gst-mixer/src/track.c:408
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "트랙 %s: 오디오 녹음"
 
-#: ../gst-mixer/src/track.c:488
+#: ../gst-mixer/src/track.c:496
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s 옵션 선택"
@@ -2258,6 +2069,13 @@ msgstr "없음"
 msgid "Unsupported"
 msgstr "지원하지 않음"
 
+#: ../gstreamer-properties/gstreamer-properties.c:251
+#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../sound-theme/gvc-sound-theme-editor.c:892
+#: ../sound-theme/gvc-sound-theme-editor.c:996
+msgid "Default"
+msgstr "기본값"
+
 #: ../gstreamer-properties/gstreamer-properties.c:603
 msgid "Failure instantiating main window"
 msgstr "기본 창을 띄우기 실패"
@@ -2360,6 +2178,17 @@ msgstr "OSS - 오픈 사운드 시스템"
 #: ../gstreamer-properties/pipeline-constants.c:126
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio 사운드 서버"
+
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../sound-theme/gvc-sound-theme-editor.c:706
+#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../sound-theme/sound-theme-file-utils.c:292
+msgid "Custom"
+msgstr "사용자 지정"
 
 #: ../gstreamer-properties/pipeline-constants.c:102
 msgid "OpenGL"
@@ -2682,6 +2511,180 @@ msgstr "이 프로파일을 사용할 지 여부"
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
 msgid "Whether or not to use and display this profile."
 msgstr "이 프로파일을 사용하고 표시할 지 여부."
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-editor.c:523
+msgid "No sounds"
+msgstr "소리 없음"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:442
+msgid "Built-in"
+msgstr "내장"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:731
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-editor.c:563
+#: ../sound-theme/gvc-sound-theme-editor.c:952
+msgid "Testing event sound"
+msgstr "이벤트 소리 테스트"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:840
+msgid "From theme"
+msgstr "테마에서"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:870
+msgid "Type"
+msgstr "종류"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1081
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "사운드 테마:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1089
+msgid "Choose an alert sound:"
+msgstr "경보 사운드 선택:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1107
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "창 및 단추 사운드 사용"
+
+#. Bell
+#: ../sound-theme/gvc-sound-theme-editor.c:76
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "경보 사운드"
+
+#. Windows and buttons
+#: ../sound-theme/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "창 및 단추"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr "단추 누름"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr "토글 단추 누름"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr "창 최대화"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr "창 최대화 해제"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr "창 최소화"
+
+#. Desktop
+#: ../sound-theme/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "바탕 화면"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "로그인"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "로그아웃"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "새 전자메일"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "휴지통 비우기"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr "오래 걸리는 작업 완료 (다운로드, CD 굽기 등)"
+
+#. Alerts?
+#: ../sound-theme/gvc-sound-theme-editor.c:92
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "경보"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "정보 혹은 물음"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "경고"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "오류"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "배터리 경고"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:593
+msgid "Select Sound File"
+msgstr "사운드 파일을 선택하십시오"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:604
+msgid "Sound files"
+msgstr "사운드 파일"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "사용하지 않음"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:900
+msgid "Custom..."
+msgstr "사용자 지정..."
+
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "멍멍"
+
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "뚝뚝"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:9
+msgid "Glass"
+msgstr "챙챙"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
+msgid "Sonar"
+msgstr "핑핑"
 
 #: ../vu-meter/main.c:102
 msgid ""
