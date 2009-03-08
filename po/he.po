@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD.he\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-16 13:35+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"media&component=general\n"
+"POT-Creation-Date: 2009-03-05 13:30+0000\n"
 "PO-Revision-Date: 2003-07-26 12:09+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -153,9 +154,9 @@ msgid "Unknown / Unknown"
 msgstr "לא ידוע / לא ידוע"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1029
-#: ../grecord/src/gsr-window.c:1039 ../grecord/src/gsr-window.c:1055
-#: ../grecord/src/gsr-window.c:1064 ../grecord/src/gsr-window.c:1415
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
+#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
 #: ../gstreamer-properties/gstreamer-properties.c:281
 msgid "Unknown"
 msgstr "לא ידוע"
@@ -1069,7 +1070,7 @@ msgid "_Eject disc"
 msgstr "ה_וצא דיסק"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2141
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
 msgid "_Help"
 msgstr "_עזרה"
 
@@ -1315,12 +1316,189 @@ msgstr "ערכות נושא"
 msgid "_Select a theme:"
 msgstr "בחר ערכת נושא:"
 
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and associate sounds with events"
+msgstr ""
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+#| msgid "Soundtrack"
+msgid "Sound"
+msgstr "קול"
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
+msgid "Show desktop volume control"
+msgstr ""
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+msgid "Volume Control"
+msgstr "בקרת עוצמה"
+
+#: ../gnome-volume-control/src/applet-main.c:48
+#: ../gnome-volume-control/src/dialog-main.c:140
+msgid "Enable debugging code"
+msgstr ""
+
+#: ../gnome-volume-control/src/applet-main.c:49
+#: ../gnome-volume-control/src/dialog-main.c:141
+#| msgid "About this application"
+msgid "Version of this application"
+msgstr "גירסת יישום זה"
+
+#: ../gnome-volume-control/src/applet-main.c:59
+#| msgid "Open Volu_me Control"
+msgid " - GNOME Volume Control Applet"
+msgstr " - יישומון בקרת העוצמה של GNOME"
+
+#: ../gnome-volume-control/src/dialog-main.c:121
+msgid "Waiting for sound system to respond"
+msgstr "ממתין לתגובת מערכת הקול"
+
+#: ../gnome-volume-control/src/dialog-main.c:139 ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "עמוד התחלה"
+
+#: ../gnome-volume-control/src/dialog-main.c:151
+#| msgid "Volume Control"
+msgid " - GNOME Volume Control"
+msgstr " - בקר העוצמה של GNOME"
+
+#: ../gnome-volume-control/src/gvc-applet.c:260
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+msgid "Output"
+msgstr "פלט"
+
+#: ../gnome-volume-control/src/gvc-applet.c:264
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#| msgid "Test Input"
+msgid "Input"
+msgstr "קלט"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#| msgid "left"
+msgctxt "balance"
+msgid "Left"
+msgstr "שמאלה"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#| msgid "right"
+msgctxt "balance"
+msgid "Right"
+msgstr "ימינה"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+msgid "_Balance:"
+msgstr "_איזון:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:771
+msgid "Mute"
+msgstr "השתק"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#| msgid "Test Sound"
+msgid "System Sounds"
+msgstr "קולות מערכת"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
+#| msgid "Volume Control"
+msgid "GNOME Volume Control"
+msgstr "בקרת העוצמה של GNOME"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+msgid "Peak detect"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
+#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#| msgid "_Name:"
+msgid "Name"
+msgstr "שם"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#| msgid "_Device:"
+msgid "Device"
+msgstr "התקן"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
+msgid "Output volume: "
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+msgid "Sound Effects"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
+#, fuzzy
+#| msgid "CD player Volume"
+msgid "Alert Volume: "
+msgstr "CD player Volume"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
+msgid "Input volume: "
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
+msgid "Input level:"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
+msgid "Choose a device for sound input"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
+msgid "Choose a device for sound output"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+msgid "Settings for the selected device:"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#| msgid "About this application"
+msgid "Applications"
+msgstr "יישומים"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+msgid "No application is currently playing or recording audio."
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
+#: ../sound-theme/gvc-sound-theme-chooser.c:728
+#: ../sound-theme/gvc-sound-theme-chooser.c:740
+#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../sound-theme/gvc-sound-theme-editor.c:561
+#: ../sound-theme/gvc-sound-theme-editor.c:950
+#| msgid "Preferences"
+msgid "Sound Preferences"
+msgstr "העדפות קול"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#, fuzzy, c-format
+#| msgid "Volume Control Preferences"
+msgid "Failed to start Sound Preferences: %s"
+msgstr "העדפות בקרת העוצמה"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#| msgid "_Quit"
+msgid "_Mute"
+msgstr "_השתק"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#| msgid "Preferences"
+msgid "_Sound Preferences"
+msgstr "העדפות_ קול"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
+msgid "Muted"
+msgstr "מושתק"
+
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
 msgstr "הקלט קטעי קול"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1252
+#: ../grecord/src/gsr-window.c:1236
 msgid "Sound Recorder"
 msgstr "רשמקול"
 
@@ -1328,17 +1506,17 @@ msgstr "רשמקול"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:143 ../grecord/src/gsr-window.c:1745
+#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
 #: ../grecord/src/gsr-window.c:2679
 msgid "Untitled"
 msgstr "ללא שם"
 
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1747
+#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
 #, c-format
 msgid "Untitled-%d"
 msgstr "ללא שם-%d"
 
-#: ../grecord/src/gsr-window.c:196
+#: ../grecord/src/gsr-window.c:194
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1348,27 +1526,27 @@ msgid ""
 "and then restart gnome-sound-recorder."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:212
+#: ../grecord/src/gsr-window.c:210
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "דקה אחת"
 msgstr[1] "%ld דקות"
 
-#: ../grecord/src/gsr-window.c:299
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "שעה אחת"
 msgstr[1] "%ld שעות"
 
-#: ../grecord/src/gsr-window.c:300
+#: ../grecord/src/gsr-window.c:297
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1376,24 +1554,24 @@ msgstr[0] "שניה אחת"
 msgstr[1] "%ld שניות"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:304
 #, c-format
 msgid "%s, %s and %s"
 msgstr "‏%s, ‏%s ו-%s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:313 ../grecord/src/gsr-window.c:321
-#: ../grecord/src/gsr-window.c:332
+#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:329
 #, c-format
 msgid "%s and %s"
 msgstr "‏%s ו-%s"
 
-#: ../grecord/src/gsr-window.c:375
+#: ../grecord/src/gsr-window.c:372
 msgid "Open a File"
 msgstr "פותח קובץ"
 
-#: ../grecord/src/gsr-window.c:453
+#: ../grecord/src/gsr-window.c:449
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1402,17 +1580,17 @@ msgstr ""
 "אין אפשרות לטעון קובץ:\n"
 "‏%s"
 
-#: ../grecord/src/gsr-window.c:599 ../grecord/src/gsr-window.c:1546
-#: ../grecord/src/gsr-window.c:1802 ../grecord/src/gsr-window.c:2495
+#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
+#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
 msgid "Ready"
 msgstr "מוכן"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:652
+#: ../grecord/src/gsr-window.c:648
 msgid "_Replace"
 msgstr "ה_חלף"
 
-#: ../grecord/src/gsr-window.c:669
+#: ../grecord/src/gsr-window.c:665
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1421,279 +1599,282 @@ msgstr ""
 "הקובץ \"%s\" כבר קיים. \n"
 "האם ברצונך להחליף אותו?"
 
-#: ../grecord/src/gsr-window.c:722 ../grecord/src/gsr-window.c:730
+#: ../grecord/src/gsr-window.c:713
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "לא ניתן לשמור את הקובץ \"%s\""
 
-#: ../grecord/src/gsr-window.c:749
+#: ../grecord/src/gsr-window.c:733
 msgid "Save file as"
 msgstr "שמור קובץ בשם"
 
-#: ../grecord/src/gsr-window.c:843
+#: ../grecord/src/gsr-window.c:827
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s .לא מותקן בנתיב"
 
-#: ../grecord/src/gsr-window.c:852
+#: ../grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "ארעה שגיאה בהפעלת %s: %s"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:864
 #, c-format
 msgid "Save the changes to file \"%s\" before closing?"
 msgstr "לשמור את השינויים לקובץ \"%s\" לפני הסגירה?"
 
-#: ../grecord/src/gsr-window.c:892
+#: ../grecord/src/gsr-window.c:876
 msgid "Close _without Saving"
 msgstr "סגור מבלי _לשמור"
 
-#: ../grecord/src/gsr-window.c:899
+#: ../grecord/src/gsr-window.c:883
 msgid "Question"
 msgstr "שאלה"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:984
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (טרם נשמר)"
 
-#: ../grecord/src/gsr-window.c:1016
+#: ../grecord/src/gsr-window.c:1000
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (בית אחד)"
 msgstr[1] "%s (%llu בתים)"
 
-#: ../grecord/src/gsr-window.c:1020
+#: ../grecord/src/gsr-window.c:1004
 msgid "Unknown size"
 msgstr "גודל לא ידוע"
 
-#: ../grecord/src/gsr-window.c:1041
+#: ../grecord/src/gsr-window.c:1025
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1033
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "‏%.0f kb/s (הערכה)"
 
-#: ../grecord/src/gsr-window.c:1067
+#: ../grecord/src/gsr-window.c:1051
 msgid "1 (mono)"
 msgstr "1 (מונו)"
 
-#: ../grecord/src/gsr-window.c:1070
+#: ../grecord/src/gsr-window.c:1054
 msgid "2 (stereo)"
 msgstr "2 (סטריאו)"
 
-#: ../grecord/src/gsr-window.c:1097
+#: ../grecord/src/gsr-window.c:1081
 #, c-format
 msgid "%s Information"
 msgstr "מידע %s"
 
-#: ../grecord/src/gsr-window.c:1121 ../grecord/src/gsr-window.c:2407
+#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
 msgid "File Information"
 msgstr "מידע על הקובץ"
 
-#: ../grecord/src/gsr-window.c:1136
+#: ../grecord/src/gsr-window.c:1120
 msgid "Folder:"
 msgstr "תיקייה:"
 
-#: ../grecord/src/gsr-window.c:1142 ../grecord/src/gsr-window.c:2414
+#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
 msgid "Filename:"
 msgstr "שם הקובץ:"
 
-#: ../grecord/src/gsr-window.c:1148
+#: ../grecord/src/gsr-window.c:1132
 msgid "File size:"
 msgstr "גודל הקובץ:"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1141
 msgid "Audio Information"
 msgstr "מידע שמע"
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1156
 msgid "File duration:"
 msgstr "משך הקובץ:"
 
-#: ../grecord/src/gsr-window.c:1178
+#: ../grecord/src/gsr-window.c:1162
 msgid "Number of channels:"
 msgstr "מספר ערוצים:"
 
-#: ../grecord/src/gsr-window.c:1184
+#: ../grecord/src/gsr-window.c:1168
 msgid "Sample rate:"
 msgstr "קצב דגימה:"
 
-#: ../grecord/src/gsr-window.c:1190
+#: ../grecord/src/gsr-window.c:1174
 msgid "Bit rate:"
 msgstr "קצב:"
 
-#: ../grecord/src/gsr-window.c:1255
+#: ../grecord/src/gsr-window.c:1239
+#, fuzzy
+#| msgid ""
+#| "A sound recorder for GNOME\n"
+#| " gnome-media@gnome.org"
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 "רשמקול ל GNOME\n"
 " gnome-media@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1518
+#: ../grecord/src/gsr-window.c:1505
 msgid "Playing..."
 msgstr "מנגן..."
 
-#: ../grecord/src/gsr-window.c:1650
+#: ../grecord/src/gsr-window.c:1637
 msgid "GConf audio output"
 msgstr "פלט אודיו GConf"
 
-#: ../grecord/src/gsr-window.c:1659 ../gst-mixer/src/element.c:216
-#: ../gst-mixer/src/misc.c:58
+#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
 msgid "Playback"
 msgstr "נגינה"
 
-#: ../grecord/src/gsr-window.c:1736
+#: ../grecord/src/gsr-window.c:1723
 msgid "Recording..."
 msgstr "מקליט..."
 
-#: ../grecord/src/gsr-window.c:1824
+#: ../grecord/src/gsr-window.c:1813
 msgid "GConf audio recording"
 msgstr "הקלטת אודיו GConf"
 
-#: ../grecord/src/gsr-window.c:1833
+#: ../grecord/src/gsr-window.c:1822
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1989
+#: ../grecord/src/gsr-window.c:1994
 msgid "file output"
 msgstr "פלט קובץ"
 
-#: ../grecord/src/gsr-window.c:2007
+#: ../grecord/src/gsr-window.c:2012
 msgid "level"
 msgstr "רמה"
 
-#: ../grecord/src/gsr-window.c:2031
+#: ../grecord/src/gsr-window.c:2036
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "לא ניתן לפרק את פרופיל השמע %s. "
 
-#: ../grecord/src/gsr-window.c:2048
+#: ../grecord/src/gsr-window.c:2053
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2058
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "לא ניתן לכתוב לקובץ בשימוש בפרופיל השמע '%s'."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2113
+#: ../grecord/src/gsr-window.c:2116
 msgid "_File"
 msgstr "_קובץ"
 
-#: ../grecord/src/gsr-window.c:2115
+#: ../grecord/src/gsr-window.c:2118
 msgid "Create a new sample"
 msgstr "צור דגימה חדשה"
 
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2120
 msgid "Open a file"
 msgstr "פותח קובץ"
 
-#: ../grecord/src/gsr-window.c:2119
+#: ../grecord/src/gsr-window.c:2122
 msgid "Save the current file"
 msgstr "שומר את הקובץ הנוכחי"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2124
 msgid "Save the current file with a different name"
 msgstr "שמירת הקובץ הנוכחי עם שם אחר"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2125
 msgid "Open Volu_me Control"
 msgstr "פתח _בקרת עוצמה"
 
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2126
 msgid "Open the audio mixer"
 msgstr "הפעל את מערבל השמע"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2128
 msgid "Show information about the current file"
 msgstr "מציג מידע על הקובץ הנוכחי"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2130
 msgid "Close the current file"
 msgstr "סגור את הקובץ הנוכחי"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2132
 msgid "Quit the program"
 msgstr "יציאה מהיישום"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2135
 msgid "_Control"
 msgstr "_בקרה"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2137
 msgid "Record sound"
 msgstr "הקלט קול"
 
-#: ../grecord/src/gsr-window.c:2136
+#: ../grecord/src/gsr-window.c:2139
 msgid "Play sound"
 msgstr "מנגן קול"
 
-#: ../grecord/src/gsr-window.c:2138
+#: ../grecord/src/gsr-window.c:2141
 msgid "Stop sound"
 msgstr "מפסיק קול"
 
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2145
 msgid "Contents"
 msgstr "תכנים"
 
-#: ../grecord/src/gsr-window.c:2143
+#: ../grecord/src/gsr-window.c:2146
 msgid "Open the manual"
 msgstr "פתח את המדריך"
 
-#: ../grecord/src/gsr-window.c:2145
+#: ../grecord/src/gsr-window.c:2148
 msgid "About this application"
 msgstr "אודות יישום זה"
 
-#: ../grecord/src/gsr-window.c:2268
+#: ../grecord/src/gsr-window.c:2270
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "לא ניתן לטעון את ui.xml. כנראה שהתוכנית לא הותקנה כראוי"
 
-#: ../grecord/src/gsr-window.c:2291
+#: ../grecord/src/gsr-window.c:2293
 msgid "Open"
 msgstr "פתח"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2295
 msgid "Save"
 msgstr "שמור"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2297
 msgid "Save As"
 msgstr "שמור בשם"
 
-#: ../grecord/src/gsr-window.c:2350
+#: ../grecord/src/gsr-window.c:2353
 msgid "Record from _input:"
 msgstr "הקלט _מקלט:"
 
-#: ../grecord/src/gsr-window.c:2374
+#: ../grecord/src/gsr-window.c:2371
 msgid "_Record as:"
 msgstr "הקלט ב_שם:"
 
-#: ../grecord/src/gsr-window.c:2421
+#: ../grecord/src/gsr-window.c:2418
 msgid "<none>"
 msgstr "<ללא>"
 
-#: ../grecord/src/gsr-window.c:2435
+#: ../grecord/src/gsr-window.c:2432
 msgid "Length:"
 msgstr "אורך:"
 
-#: ../grecord/src/gsr-window.c:2473
+#: ../grecord/src/gsr-window.c:2470
 msgid "Level:"
 msgstr "רמה:"
 
@@ -1706,11 +1887,6 @@ msgstr "‏%s - רשמקול"
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Adjust the volume level"
 msgstr "קבע את רמת העוצמה"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
-msgid "Volume Control"
-msgstr "בקרת עוצמה"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1728,68 +1904,70 @@ msgstr "Width of the Window"
 msgid "Width of the Window to be displayed"
 msgstr "Width of the Window to be displayed"
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
-msgid "Recording"
-msgstr "הקלטה"
-
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
-msgid "Switches"
-msgstr "מתגים"
-
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
-msgid "Options"
-msgstr "אפשרויות"
-
-#: ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "עמוד התחלה"
+#: ../gst-mixer/src/element.c:423
+#, fuzzy
+#| msgid "Sound Recorder"
+msgid "Sound Theme"
+msgstr "רשמקול"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
 msgid "Unknown Volume Control %d"
 msgstr "בקרת עוצמה לא ידועה: %d"
 
-#: ../gst-mixer/src/main.c:161
+#: ../gst-mixer/src/main.c:159
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "לא נמצאו תוספי GStreamer ו/או התקנים לבקרת עוצמה."
 
+#: ../gst-mixer/src/misc.c:62
+msgid "Recording"
+msgstr "הקלטה"
+
+#: ../gst-mixer/src/misc.c:64
+msgid "Switches"
+msgstr "מתגים"
+
+#: ../gst-mixer/src/misc.c:66
+msgid "Options"
+msgstr "אפשרויות"
+
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:106
+#: ../gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "העדפות בקרת העוצמה"
 
-#: ../gst-mixer/src/preferences.c:119
+#: ../gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "_בחר את הרצועות שיהיו גלויות:"
 
-#: ../gst-mixer/src/track.c:262
+#: ../gst-mixer/src/track.c:271
 #, c-format
 msgid "%s:"
 msgstr "‏%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:310
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "השתק/בטל השתקה של %s"
 
-#: ../gst-mixer/src/track.c:316
+#: ../gst-mixer/src/track.c:325
 #, c-format
 msgid "Track %s: mute"
 msgstr "מסילה %s: מושתק"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:387
+#: ../gst-mixer/src/track.c:391
 #, fuzzy, c-format
 msgid "Toggle audio recording from %s"
 msgstr "מתחיל להקליט"
 
-#: ../gst-mixer/src/track.c:404
+#: ../gst-mixer/src/track.c:408
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "מסילה %s: הקלטת אודיו"
 
-#: ../gst-mixer/src/track.c:492
+#: ../gst-mixer/src/track.c:496
 #, c-format
 msgid "%s Option Selection"
 msgstr ""
@@ -1819,35 +1997,35 @@ msgstr "נעל את הערוצים עבור %s ביחד"
 msgid "Track %s: lock channels together"
 msgstr "רצועה %s: נעל את הערוצים ביחד"
 
-#: ../gst-mixer/src/volume.c:198
+#: ../gst-mixer/src/volume.c:197
 msgid "mono"
 msgstr "מונו"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "left"
 msgstr "שמאלה"
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "right"
 msgstr "ימינה"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:202
 msgid "front left"
 msgstr "קדימה שמאל"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:203
 msgid "front right"
 msgstr "קדימה ימין"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:204
 msgid "rear left"
 msgstr "אחורה שמאל"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 msgid "rear right"
 msgstr "אחרוה ימין"
 
-#: ../gst-mixer/src/volume.c:207
+#: ../gst-mixer/src/volume.c:206
 msgid "front center"
 msgstr "קדימה מרכז"
 
@@ -1855,25 +2033,25 @@ msgstr "קדימה מרכז"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:212
 msgid "side left"
 msgstr "צד שמאל"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:213
 msgid "side right"
 msgstr "צד ימין"
 
-#: ../gst-mixer/src/volume.c:215
+#: ../gst-mixer/src/volume.c:214
 msgid "unknown"
 msgstr "לא ידוע"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:221
+#: ../gst-mixer/src/volume.c:220
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "העוצמה של ערוץ %s ב-%s"
@@ -1896,12 +2074,12 @@ msgstr ""
 msgid "Volume Control: %s"
 msgstr "בקרת עוצמה: %s"
 
-#: ../gst-mixer/src/window.c:393
+#: ../gst-mixer/src/window.c:389
 msgid "_Device: "
 msgstr "_התקן:"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:432
+#: ../gst-mixer/src/window.c:428
 msgid "Control volume on a different device"
 msgstr "שלוט בעוצמה שח התקן אחר"
 
@@ -1915,14 +2093,17 @@ msgid "Unsupported"
 msgstr "לא נתמך"
 
 #: ../gstreamer-properties/gstreamer-properties.c:251
+#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../sound-theme/gvc-sound-theme-editor.c:892
+#: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "ברירת מחדל"
 
-#: ../gstreamer-properties/gstreamer-properties.c:604
+#: ../gstreamer-properties/gstreamer-properties.c:603
 msgid "Failure instantiating main window"
 msgstr "שגיאה ביצירת עותק של החלון הראשי"
 
-#: ../gstreamer-properties/gstreamer-properties.c:653
+#: ../gstreamer-properties/gstreamer-properties.c:652
 msgid "Failed to load glade file; please check your installation."
 msgstr "נכשל בטעינת קובץ ה-glade; יש לבדוק את ההתקנה."
 
@@ -2024,6 +2205,10 @@ msgstr "שרת קול PulseAudio"
 #: ../gstreamer-properties/pipeline-constants.c:110
 #: ../gstreamer-properties/pipeline-constants.c:134
 #: ../gstreamer-properties/pipeline-constants.c:149
+#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../sound-theme/gvc-sound-theme-editor.c:706
+#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "מותאם אישית"
 
@@ -2078,12 +2263,12 @@ msgstr "וידאו ללינוקס 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "נכשל בהקמת צינור ניסיון ל '%s'"
 
-#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:539
+#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "ארעה שגיאה בהצגת העזרה: %s"
 
-#: ../profiles/audio-profile-edit.c:334
+#: ../profiles/audio-profile-edit.c:336
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "עורך פרופיל \"%s\""
@@ -2099,57 +2284,55 @@ msgstr "<ללא תיאור>"
 #: ../profiles/audio-profile.c:208
 #, c-format
 msgid "There was an error getting the list of gm_audio profiles. (%s)\n"
-msgstr ""
-"ארעה שגיאה בקבלת רשימת פרופילי gm_audio.‏ (%s)‏\n"
+msgstr "ארעה שגיאה בקבלת רשימת פרופילי gm_audio.‏ (%s)‏\n"
 
 #: ../profiles/audio-profile.c:709
 #, c-format
 msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
-msgstr ""
-"ארעה שגיאה בהרשמה להתראות אודות השינויים ברשימת פרופילי השמע. (%s)‏\n"
+msgstr "ארעה שגיאה בהרשמה להתראות אודות השינויים ברשימת פרופילי השמע. (%s)‏\n"
 
 #: ../profiles/audio-profile.c:912
 #, fuzzy, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "ארעה שגיאה בהפעלת %s: %s"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:88
 msgid "_Edit"
 msgstr "_עריכה"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:466
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "למחוק את פרופיל זה?\n"
 msgstr[1] "למחוק את %d פרופילים אלה?\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:485
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "למחוק את הפרופיל \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:507
 msgid "Delete Profile"
 msgstr "מחק פרופיל"
 
-#: ../profiles/audio-profiles-edit.c:602
+#: ../profiles/audio-profiles-edit.c:601
 msgid "Edit GNOME Audio Profiles"
 msgstr "ערוך את פרופילי השמע של GNOME"
 
-#: ../profiles/audio-profiles-edit.c:651
+#: ../profiles/audio-profiles-edit.c:650
 msgid "_Profiles:"
 msgstr "_פרופילים:"
 
-#: ../profiles/audio-profiles-edit.c:835
+#: ../profiles/audio-profiles-edit.c:834
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "פרופיל בשם \"%s\" כבר קיים"
 
-#: ../profiles/audio-profiles-edit.c:860
+#: ../profiles/audio-profiles-edit.c:859
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "שגיאת GConf:‏ %s\n"
@@ -2242,10 +2425,15 @@ msgid "CD Quality, Lossy"
 msgstr "CD Quality, Lossy"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
+#| msgid "CD Quality, MP3"
+msgid "CD Quality, MP2"
+msgstr "CD Quality, MP2"
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
 msgid "CD Quality, MP3"
 msgstr "CD Quality, MP3"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
@@ -2253,89 +2441,302 @@ msgstr ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "List of profiles"
 msgstr "List of profiles"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The default file extension for this profile"
 msgstr "The default file extension for this profile"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid "The partial GStreamer pipeline used"
 msgstr "The partial GStreamer pipeline used"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to CD-quality audio, but with a lossless compression "
-"codec. Use this if you later want to edit the file or burn it to CD."
-msgstr ""
-"Used for converting to CD-quality audio, but with a lossless compression "
-"codec. Use this if you later want to edit the file or burn it to CD."
-
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
-"Used for converting to CD-quality audio, but with a lossy compression codec. "
-"Use this for CD extraction and radio recordings."
+"Used for converting to CD-quality audio, but with a lossless compression "
+"codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
-"Used for converting to CD-quality audio, but with a lossy compression codec. "
-"Use this for CD extraction and radio recordings."
+"Used for converting to CD-quality audio, but with a lossless compression "
+"codec. Use this if you later want to edit the file or burn it to CD."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid ""
-"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
-"this for preparing files for copying to devices that only support the AAC "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
+"Used for converting to CD-quality audio, but with a lossy compression codec. "
+"Use this for CD extraction and radio recordings."
 msgstr ""
-"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
-"this for preparing files for copying to devices that only support the AAC "
-"codec. Note that using this format may be illegal in your jurisdiction; "
-"contact your lawyer for advice."
+"Used for converting to CD-quality audio, but with a lossy compression codec. "
+"Use this for CD extraction and radio recordings."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid ""
-"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
-"this for preparing files for copying to devices that only support the MP3 "
+"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
+"this for preparing files for copying to devices that only support the AAC "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
 msgstr ""
-"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
-"this for preparing files for copying to devices that only support the MP3 "
+"Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
+"this for preparing files for copying to devices that only support the AAC "
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+#| msgid ""
+#| "Used for converting to CD-quality audio, but with the lossy MP3 codec. "
+#| "Use this for preparing files for copying to devices that only support the "
+#| "MP3 codec. Note that using this format may be illegal in your "
+#| "jurisdiction; contact your lawyer for advice."
 msgid ""
-"Used for converting to lossless voice-quality audio. Use this for recording "
-"and editing speech."
+"Used for converting to CD-quality audio, but with the lossy MP2 codec. Use "
+"this for preparing files for copying to devices that only support the MP2 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
 msgstr ""
-"Used for converting to lossless voice-quality audio. Use this for recording "
-"and editing speech."
+"Used for converting to CD-quality audio, but with the lossy MP2 codec. Use "
+"this for preparing files for copying to devices that only support the MP2 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
+"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
+"this for preparing files for copying to devices that only support the MP3 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+msgstr ""
+"Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
+"this for preparing files for copying to devices that only support the MP3 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
+msgid ""
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
+msgstr ""
+"Used for converting to lossless voice-quality audio. Use this for recording "
+"and editing speech."
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
+msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Voice, Lossless"
 msgstr "Voice, Lossless"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Voice, Lossy"
 msgstr "Voice, Lossy"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
 msgid "Whether or not this profile is to be used"
 msgstr "Whether or not this profile is to be used"
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
 msgid "Whether or not to use and display this profile."
 msgstr "Whether or not to use and display this profile."
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-editor.c:523
+#, fuzzy
+#| msgid "Stop sound"
+msgid "No sounds"
+msgstr "מפסיק קול"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:442
+msgid "Built-in"
+msgstr "מובנה"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:731
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-editor.c:563
+#: ../sound-theme/gvc-sound-theme-editor.c:952
+#, fuzzy
+#| msgid "Test Sound"
+msgid "Testing event sound"
+msgstr "בדוק קול"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:840
+msgid "From theme"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:870
+msgid "Type"
+msgstr "סוג"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1081
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#, fuzzy
+#| msgid "Sound Recorder"
+msgid "Sound Theme:"
+msgstr "רשמקול"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1089
+msgid "Choose an alert sound:"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1107
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr ""
+
+#. Bell
+#: ../sound-theme/gvc-sound-theme-editor.c:76
+#, fuzzy
+#| msgid "Record sound"
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "הקלט קול"
+
+#. Windows and buttons
+#: ../sound-theme/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr ""
+
+#. Desktop
+#: ../sound-theme/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:86
+#, fuzzy
+#| msgid "Location"
+msgctxt "Sound event"
+msgid "Login"
+msgstr "מיקום"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "התנתקות"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "דוא\"ל חדש"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:89
+#, fuzzy
+#| msgid "Empty disc"
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "דיסק ריק"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr ""
+
+#. Alerts?
+#: ../sound-theme/gvc-sound-theme-editor.c:92
+#, fuzzy
+#| msgid "Alt"
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "אלט"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:93
+#, fuzzy
+#| msgid "Information to send to server"
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "Information to send to server"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "אזהרה"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:95
+#| msgid "Terror"
+msgctxt "Sound event"
+msgid "Error"
+msgstr "שגיאה"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "אזהרת סוללה"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:593
+msgid "Select Sound File"
+msgstr ""
+
+#: ../sound-theme/gvc-sound-theme-editor.c:604
+#| msgid "Sound Clip"
+msgid "Sound files"
+msgstr "קבצי קול"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "מכובה"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:900
+#| msgid "Custom"
+msgid "Custom..."
+msgstr "מותאם אישית..."
+
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "נביחה"
+
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "טיפטוף"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:9
+#| msgid "Bass"
+msgid "Glass"
+msgstr "זכוכית"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
+#, fuzzy
+#| msgid "Sonata"
+msgid "Sonar"
+msgstr "סונטה"
 
 #: ../vu-meter/main.c:102
 msgid ""
@@ -2345,48 +2746,48 @@ msgstr ""
 "לא ניתן להתחבר לשירות הקול.\n"
 "אנא הפעל 'esd' בשורת הפקודה."
 
-#: ../vu-meter/main.c:230
+#: ../vu-meter/main.c:231
 msgid "Specify the X position of the meter."
 msgstr "Specify the X position of the meter."
 
-#: ../vu-meter/main.c:231
+#: ../vu-meter/main.c:232
 msgid "X"
 msgstr "X"
 
-#: ../vu-meter/main.c:233
+#: ../vu-meter/main.c:234
 msgid "Specify the Y position of the meter."
 msgstr "Specify the Y position of the meter."
 
-#: ../vu-meter/main.c:234
+#: ../vu-meter/main.c:235
 msgid "Y"
 msgstr "Y"
 
-#: ../vu-meter/main.c:236
+#: ../vu-meter/main.c:237
 msgid "Connect to the esd server on this host."
 msgstr "Connect to the esd server on this host."
 
-#: ../vu-meter/main.c:237
+#: ../vu-meter/main.c:238
 msgid "HOST"
 msgstr "HOST"
 
-#: ../vu-meter/main.c:239
+#: ../vu-meter/main.c:240
 msgid "Open a vertical version of the meter."
 msgstr "Open a vertical version of the meter."
 
-#: ../vu-meter/main.c:241
+#: ../vu-meter/main.c:242
 msgid "Act as recording level meter."
 msgstr "Act as recording level meter."
 
-#: ../vu-meter/main.c:257
+#: ../vu-meter/main.c:258
 #, c-format
 msgid "Host is %s\n"
 msgstr "Host is %s\n"
 
-#: ../vu-meter/main.c:274
+#: ../vu-meter/main.c:275
 msgid "Recording level"
 msgstr "רמת הקלטה"
 
-#: ../vu-meter/main.c:274
+#: ../vu-meter/main.c:275
 msgid "Volume Meter"
 msgstr "מד עוצמה"
 
@@ -2405,262 +2806,3 @@ msgstr "מציג את עוצמת יציאת הקול"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "צג עוצמה"
-
-#, fuzzy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#, fuzzy
-
-
-
-
-#, fuzzy
-
-
-
-
-#, fuzzy
-
-#, fuzzy
-
-
-
-
-#, fuzzy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#, fuzzy
-
-
-#, fuzzy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
