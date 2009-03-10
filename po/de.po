@@ -4,16 +4,16 @@
 # Karl Eichwalder <ke@suse.de>, 1999, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2000-2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2008.
+# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2008, 2009.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-25 00:41+0100\n"
-"PO-Revision-Date: 2009-02-25 00:42+0100\n"
-"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
+"POT-Creation-Date: 2009-03-10 10:30+0100\n"
+"PO-Revision-Date: 2009-03-10 10:31+0100\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1353,53 +1353,29 @@ msgstr "Lautstärkeregler anzeigen"
 msgid "Volume Control"
 msgstr "Lautstärkeregler"
 
-#. Translators: This is the name of an audio file that sounds like the bark of a dog.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:3
-msgid "Bark"
-msgstr "Bellen"
-
-#. Translators: This is the name of an audio file that sounds like a water drip.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:6
-msgid "Drip"
-msgstr "Tropfen"
-
-#. Translators: This is the name of an audio file that sounds like tapping glass.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:9
-msgid "Glass"
-msgstr "Glas"
-
-#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
-#. You might want to translate it into the equivalent words of your language.
-#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:12
-msgid "Sonar"
-msgstr "Sonar"
-
-#: ../gnome-volume-control/src/applet-main.c:48
-#: ../gnome-volume-control/src/dialog-main.c:140
-msgid "Enable debugging code"
-msgstr ""
-
 #: ../gnome-volume-control/src/applet-main.c:49
 #: ../gnome-volume-control/src/dialog-main.c:141
+msgid "Enable debugging code"
+msgstr "Fehlerdiagnose-Code aktivieren"
+
+#: ../gnome-volume-control/src/applet-main.c:50
+#: ../gnome-volume-control/src/dialog-main.c:142
 msgid "Version of this application"
 msgstr "Version dieser Anwendung"
 
-#: ../gnome-volume-control/src/applet-main.c:59
+#: ../gnome-volume-control/src/applet-main.c:62
 msgid " - GNOME Volume Control Applet"
-msgstr " - GNOME-Lautstärkeregler-Applet"
+msgstr " – GNOME-Lautstärkeregler-Applet"
 
-#: ../gnome-volume-control/src/dialog-main.c:121
+#: ../gnome-volume-control/src/dialog-main.c:122
 msgid "Waiting for sound system to respond"
 msgstr "Es wird auf Antwort des Audiosystems gewartet"
 
-#: ../gnome-volume-control/src/dialog-main.c:139 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Startseite"
 
-#: ../gnome-volume-control/src/dialog-main.c:151
+#: ../gnome-volume-control/src/dialog-main.c:154
 msgid " - GNOME Volume Control"
 msgstr " - GNOME-Lautstärkeregler"
 
@@ -1444,7 +1420,7 @@ msgid "Peak detect"
 msgstr "Spitzenerkennung"
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:863
+#: ../sound-theme/gvc-sound-theme-chooser.c:863
 msgid "Name"
 msgstr "Name"
 
@@ -1494,182 +1470,13 @@ msgstr ""
 "Derzeit wird von keiner Audio-Anwendung aufgenommen oder wiedergegeben."
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:728
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:740
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:752
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:561
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:950
+#: ../sound-theme/gvc-sound-theme-chooser.c:728
+#: ../sound-theme/gvc-sound-theme-chooser.c:740
+#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../sound-theme/gvc-sound-theme-editor.c:561
+#: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Audio-Einstellungen"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:320
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:523
-msgid "No sounds"
-msgstr "Keine Klänge"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:442
-msgid "Built-in"
-msgstr "Eingebaut"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:618
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:706
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:760
-#: ../gnome-volume-control/src/sound-theme-file-utils.c:292
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-msgid "Custom"
-msgstr "Angepasst"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:731
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:742
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:754
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:563
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:952
-msgid "Testing event sound"
-msgstr "Ereignisklang wird getestet"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:839
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:892
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:996
-#: ../gstreamer-properties/gstreamer-properties.c:251
-msgid "Default"
-msgstr "Vorgabe"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:840
-msgid "From theme"
-msgstr "Von Thema"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:870
-msgid "Type"
-msgstr "Art"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1081
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "Klangthema:"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1089
-msgid "Choose an alert sound:"
-msgstr "Wählen Sie einen Warnklang:"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1107
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "Fenster- und Knopfklänge einschalten"
-
-#. Bell
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:76
-msgctxt "Sound event"
-msgid "Alert sound"
-msgstr "Warnklang"
-
-#. Windows and buttons
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:78
-msgctxt "Sound event"
-msgid "Windows and Buttons"
-msgstr "Fenster und Knöpfe"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:79
-msgctxt "Sound event"
-msgid "Button clicked"
-msgstr "Knopf angeklickt"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:80
-#, fuzzy
-msgctxt "Sound event"
-msgid "Toggle button clicked"
-msgstr "Umschaltknopf angeklickt"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:81
-msgctxt "Sound event"
-msgid "Window maximized"
-msgstr "Fenster maximiert"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:82
-msgctxt "Sound event"
-msgid "Window unmaximized"
-msgstr "Fenstermaximierung widerrufen"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:83
-msgctxt "Sound event"
-msgid "Window minimised"
-msgstr "Fenster minimiert"
-
-#. Desktop
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:85
-msgctxt "Sound event"
-msgid "Desktop"
-msgstr "Schreibtisch"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:86
-msgctxt "Sound event"
-msgid "Login"
-msgstr "Anmeldung"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:87
-msgctxt "Sound event"
-msgid "Logout"
-msgstr "Abmeldung"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:88
-msgctxt "Sound event"
-msgid "New e-mail"
-msgstr "Neue E-Mail"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:89
-msgctxt "Sound event"
-msgid "Empty trash"
-msgstr "Müll leeren"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:90
-msgctxt "Sound event"
-msgid "Long action completed (download, CD burning, etc.)"
-msgstr "Langer Vorgang abgeschlossen (Download, CD brennen etc.)"
-
-#. Alerts?
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:92
-msgctxt "Sound event"
-msgid "Alerts"
-msgstr "Alarme"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:93
-msgctxt "Sound event"
-msgid "Information or question"
-msgstr "Information oder Frage"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:94
-msgctxt "Sound event"
-msgid "Warning"
-msgstr "Warnung"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:95
-msgctxt "Sound event"
-msgid "Error"
-msgstr "Fehler"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:96
-msgctxt "Sound event"
-msgid "Battery warning"
-msgstr "Akkuwarnung"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:593
-msgid "Select Sound File"
-msgstr "Wählen Sie eine Audiodatei"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:604
-msgid "Sound files"
-msgstr "Audiodateien"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:896
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Deaktiviert"
-
-#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Angepasst..."
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
 #, c-format
@@ -1929,8 +1736,7 @@ msgstr "Wiedergabe läuft …"
 msgid "GConf audio output"
 msgstr "GConf-Audio-Ausgang"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/element.c:216
-#: ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
 msgid "Playback"
 msgstr "Wiedergabe"
 
@@ -2108,17 +1914,9 @@ msgstr "Breite des Fensters"
 msgid "Width of the Window to be displayed"
 msgstr "Die Breite mit der das Fenster angezeigt wird."
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:62
-msgid "Recording"
-msgstr "Aufnahme"
-
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:64
-msgid "Switches"
-msgstr "Schalter"
-
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:66
-msgid "Options"
-msgstr "Optionen"
+#: ../gst-mixer/src/element.c:423
+msgid "Sound Theme"
+msgstr "Klangthema"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -2131,43 +1929,55 @@ msgstr ""
 "Es konnten keine GStreamer-Plugins und/oder Geräte für Mischpultelemente "
 "gefunden werden."
 
+#: ../gst-mixer/src/misc.c:62
+msgid "Recording"
+msgstr "Aufnahme"
+
+#: ../gst-mixer/src/misc.c:64
+msgid "Switches"
+msgstr "Schalter"
+
+#: ../gst-mixer/src/misc.c:66
+msgid "Options"
+msgstr "Optionen"
+
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:106
+#: ../gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "Einstellungen des Lautstärkereglers"
 
-#: ../gst-mixer/src/preferences.c:119
+#: ../gst-mixer/src/preferences.c:120
 msgid "_Select tracks to be visible:"
 msgstr "_Sichtbare Tonspuren:"
 
-#: ../gst-mixer/src/track.c:263
+#: ../gst-mixer/src/track.c:271
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:302
+#: ../gst-mixer/src/track.c:310
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s stummschalten"
 
-#: ../gst-mixer/src/track.c:317
+#: ../gst-mixer/src/track.c:325
 #, c-format
 msgid "Track %s: mute"
 msgstr "Tonspur %s: stumm"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:383
+#: ../gst-mixer/src/track.c:391
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Audio von %s aufnehmen"
 
-#: ../gst-mixer/src/track.c:400
+#: ../gst-mixer/src/track.c:408
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Tonspur %s: Audioaufnahme"
 
-#: ../gst-mixer/src/track.c:488
+#: ../gst-mixer/src/track.c:496
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s Optionsauswahl"
@@ -2295,6 +2105,13 @@ msgstr "Nichts"
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
+#: ../gstreamer-properties/gstreamer-properties.c:251
+#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../sound-theme/gvc-sound-theme-editor.c:892
+#: ../sound-theme/gvc-sound-theme-editor.c:996
+msgid "Default"
+msgstr "Vorgabe"
+
 #: ../gstreamer-properties/gstreamer-properties.c:603
 msgid "Failure instantiating main window"
 msgstr "Fehler beim Instanzieren des Hauptfensters"
@@ -2398,6 +2215,17 @@ msgstr "OSS – Open Sound System"
 #: ../gstreamer-properties/pipeline-constants.c:126
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio-Soundserver"
+
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../sound-theme/gvc-sound-theme-editor.c:706
+#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../sound-theme/sound-theme-file-utils.c:292
+msgid "Custom"
+msgstr "Angepasst"
 
 #: ../gstreamer-properties/pipeline-constants.c:102
 msgid "OpenGL"
@@ -2735,6 +2563,180 @@ msgstr "Dieses Profil verwenden?"
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
 msgid "Whether or not to use and display this profile."
 msgstr "Soll dieses Profil verwendet und angezeigt werden?"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-editor.c:523
+msgid "No sounds"
+msgstr "Keine Klänge"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:442
+msgid "Built-in"
+msgstr "Eingebaut"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:731
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-editor.c:563
+#: ../sound-theme/gvc-sound-theme-editor.c:952
+msgid "Testing event sound"
+msgstr "Ereignisklang wird getestet"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:840
+msgid "From theme"
+msgstr "Von Thema"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:870
+msgid "Type"
+msgstr "Art"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1081
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Klangthema:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1089
+msgid "Choose an alert sound:"
+msgstr "Wählen Sie einen Warnklang:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1107
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Fenster- und Knopfklänge einschalten"
+
+#. Bell
+#: ../sound-theme/gvc-sound-theme-editor.c:76
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "Warnklang"
+
+#. Windows and buttons
+#: ../sound-theme/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "Fenster und Knöpfe"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr "Knopf angeklickt"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr "Umschaltknopf angeklickt"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr "Fenster maximiert"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr "Fenstermaximierung widerrufen"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr "Fenster minimiert"
+
+#. Desktop
+#: ../sound-theme/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "Schreibtisch"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "Anmeldung"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "Abmeldung"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "Neue E-Mail"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "Müll leeren"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr "Langer Vorgang abgeschlossen (Download, CD brennen etc.)"
+
+#. Alerts?
+#: ../sound-theme/gvc-sound-theme-editor.c:92
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "Alarme"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "Information oder Frage"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "Warnung"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "Fehler"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "Akkuwarnung"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:593
+msgid "Select Sound File"
+msgstr "Wählen Sie eine Audiodatei"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:604
+msgid "Sound files"
+msgstr "Audiodateien"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:900
+msgid "Custom..."
+msgstr "Angepasst..."
+
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "Bellen"
+
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "Tropfen"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:9
+msgid "Glass"
+msgstr "Glas"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
+msgid "Sonar"
+msgstr "Sonar"
 
 #: ../vu-meter/main.c:102
 msgid ""
