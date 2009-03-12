@@ -1,3 +1,18 @@
+2009-03-12  Bastien Nocera  <hadess@hadess.net>
+
+	* src/gvc-balance-bar.c (_scale_box_new),
+	(gvc_balance_bar_set_balance_type), (gvc_balance_bar_set_property),
+	(gvc_balance_bar_class_init), (on_adjustment_value_changed),
+	(gvc_balance_bar_init), (gvc_balance_bar_new): Fix use of the
+	zero_adjustment GtkAdjustment in slider callbacks, export
+	gvc_channel_bar_scroll
+	* src/gvc-balance-bar.h: Export gvc_channel_bar_scroll
+
+	* src/gvc-stream-status-icon.c (on_status_icon_scroll_event):
+	Use gvc_channel_bar_scroll instead of our own code
+
+	(Closes: #564313)
+
 2009-03-06  Matthias Clasen  <mclasne@redhat.com>
 
 	* src/applet-main.c:

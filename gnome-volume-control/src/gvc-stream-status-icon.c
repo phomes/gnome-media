@@ -267,37 +267,7 @@ on_status_icon_scroll_event (GtkStatusIcon       *status_icon,
                              GdkEventScroll      *event,
                              GvcStreamStatusIcon *icon)
 {
-        GtkAdjustment *adj;
-
-        adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (icon->priv->bar)));
-
-        switch (event->direction) {
-        case GDK_SCROLL_UP:
-        case GDK_SCROLL_DOWN: {
-                gdouble volume;
-
-                volume = gtk_adjustment_get_value (adj);
-
-                if (event->direction == GDK_SCROLL_UP) {
-                        volume += adj->step_increment;
-                        if (volume > adj->upper) {
-                                volume = adj->upper;
-                        }
-                } else {
-                        volume -= adj->step_increment;
-                        if (volume < adj->lower) {
-                                volume = adj->lower;
-                        }
-                }
-
-                gtk_adjustment_set_value (adj, volume);
-                return TRUE;
-        }
-        default:
-                break;
-        }
-
-        return FALSE;
+        return gvc_channel_bar_scroll (GVC_CHANNEL_BAR (icon->priv->bar), event->direction);
 }
 
 static void

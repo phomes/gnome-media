@@ -394,6 +394,7 @@ on_scale_button_release_event (GtkWidget      *widget,
                                GdkEventButton *event,
                                GvcChannelBar  *bar)
 {
+        GtkAdjustment *adj;
         gdouble value;
 
         /* HACK: see on_scale_button_press_event() */
@@ -402,13 +403,16 @@ on_scale_button_release_event (GtkWidget      *widget,
 
         bar->priv->click_lock = FALSE;
 
-        value = gtk_adjustment_get_value (bar->priv->zero_adjustment);
-        gtk_adjustment_set_value (bar->priv->adjustment, value);
+        adj = gtk_range_get_adjustment (GTK_RANGE (widget));
+
+        value = gtk_adjustment_get_value (adj);
 
         /* this means the adjustment moved away from zero and
           therefore we should unmute and set the volume. */
-
-        gvc_channel_bar_set_is_muted (bar, FALSE);
+        if (value > 0)
+                gvc_channel_bar_set_is_muted (bar, FALSE);
+        else
+                gvc_channel_bar_set_is_muted (bar, TRUE);
 
         /* Play a sound! */
         ca_gtk_play_for_widget (GTK_WIDGET (bar), 0,
@@ -420,30 +424,53 @@ on_scale_button_release_event (GtkWidget      *widget,
         return FALSE;
 }
 
+gboolean
+gvc_channel_bar_scroll (GvcChannelBar *bar, GdkScrollDirection direction)
+{
+        GtkAdjustment *adj;
+        gdouble value;
+
+        g_return_val_if_fail (bar != NULL, FALSE);
+        g_return_val_if_fail (GVC_IS_CHANNEL_BAR (bar), FALSE);
+
+        /* FIXME we should handle left/right for horizontal bars */
+        if (direction != GDK_SCROLL_UP && direction != GDK_SCROLL_DOWN)
+                return FALSE;
+
+        adj = gtk_range_get_adjustment (GTK_RANGE (bar->priv->scale));
+        if (adj == bar->priv->zero_adjustment) {
+                if (direction == GDK_SCROLL_UP)
+                        gvc_channel_bar_set_is_muted (bar, FALSE);
+                return TRUE;
+        }
+
+        value = gtk_adjustment_get_value (adj);
+
+        if (direction == GDK_SCROLL_UP) {
+                if (value + ADJUSTMENT_MAX/100.0 > ADJUSTMENT_MAX)
+                        value = ADJUSTMENT_MAX;
+                else
+                        value = value + ADJUSTMENT_MAX/100.0;
+        } else if (direction == GDK_SCROLL_DOWN) {
+                if (value - ADJUSTMENT_MAX/100.0 < 0)
+                        value = 0.0;
+                else
+                        value = value - ADJUSTMENT_MAX/100.0;
+        }
+
+        gvc_channel_bar_set_is_muted (bar, (value == 0.0));
+        adj = gtk_range_get_adjustment (GTK_RANGE (bar->priv->scale));
+        gtk_adjustment_set_value (adj, value);
+
+        return TRUE;
+}
+
 static gboolean
 on_scale_scroll_event (GtkWidget      *widget,
                        GdkEventScroll *event,
                        GvcChannelBar  *bar)
 {
-        gdouble value;
-
-        value = gtk_adjustment_get_value (bar->priv->adjustment);
-
-        if (event->direction == GDK_SCROLL_UP) {
-                if (value + ADJUSTMENT_MAX/100.0 > ADJUSTMENT_MAX)
-                        value = ADJUSTMENT_MAX;
-                else
-                        value = value + ADJUSTMENT_MAX/100.0;
-                gtk_adjustment_set_value (bar->priv->adjustment, value);
-        } else if (event->direction == GDK_SCROLL_DOWN) {
-                if (value - ADJUSTMENT_MAX/100.0 < 0)
-                        value = 0.0;
-                else
-                        value = value - ADJUSTMENT_MAX/100.0;
-                gtk_adjustment_set_value (bar->priv->adjustment, value);
-        }
-
-        return TRUE;
+        return gvc_channel_bar_scroll (bar, event->direction);
 }
 
 static void
