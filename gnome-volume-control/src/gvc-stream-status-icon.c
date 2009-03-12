@@ -472,6 +472,15 @@ on_stream_is_muted_notify (GObject             *object,
         /* FIXME: update dock too */
 }
 
+static void
+on_stream_decibel_notify (GObject             *object,
+                          GParamSpec          *pspec,
+                          GvcStreamStatusIcon *icon)
+{
+        update_icon (icon);
+        /* FIXME: update dock too */
+}
+
 void
 gvc_stream_status_icon_set_display_name (GvcStreamStatusIcon *icon,
                                          const char          *name)
@@ -501,6 +510,9 @@ gvc_stream_status_icon_set_mixer_stream (GvcStreamStatusIcon *icon,
                 g_signal_handlers_disconnect_by_func (icon->priv->mixer_stream,
                                                       G_CALLBACK (on_stream_is_muted_notify),
                                                       icon);
+                g_signal_handlers_disconnect_by_func (icon->priv->mixer_stream,
+                                                      G_CALLBACK (on_stream_decibel_notify),
+                                                      icon);
                 g_object_unref (icon->priv->mixer_stream);
                 icon->priv->mixer_stream = NULL;
         }
@@ -523,6 +535,10 @@ gvc_stream_status_icon_set_mixer_stream (GvcStreamStatusIcon *icon,
                 g_signal_connect (icon->priv->mixer_stream,
                                   "notify::is-muted",
                                   G_CALLBACK (on_stream_is_muted_notify),
+                                  icon);
+                g_signal_connect (icon->priv->mixer_stream,
+                                  "notify::decibel",
+                                  G_CALLBACK (on_stream_decibel_notify),
                                   icon);
         }
 

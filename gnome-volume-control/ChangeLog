@@ -1,5 +1,13 @@
 2009-03-12  Bastien Nocera  <hadess@hadess.net>
 
+	* src/gvc-stream-status-icon.c (on_stream_decibel_notify),
+	(gvc_stream_status_icon_set_mixer_stream): Also update the
+	tooltip when decibels change, fixes the dB value pretty much
+	always being wrong (the code notifies of the changed dB after the
+	changed volume) (Closes: #575093)
+
+2009-03-12  Bastien Nocera  <hadess@hadess.net>
+
 	* src/gvc-balance-bar.c (_scale_box_new),
 	(gvc_balance_bar_set_balance_type), (gvc_balance_bar_set_property),
 	(gvc_balance_bar_class_init), (on_adjustment_value_changed),
