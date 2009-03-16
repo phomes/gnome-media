@@ -62,6 +62,7 @@ DIST_SUBDIRS = \
 	gst-mixer		\
 	gnome-cd		\
 	gstreamer-properties	\
+	sound-theme		\
 	$(NULL)
 
 EXTRA_DIST = \
