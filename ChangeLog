@@ -1,3 +1,9 @@
+==================== 2.26.0 ====================
+
+2009-03-16  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
+	* NEWS: 2.26.0 release.
+
 2009-03-05  Marc-André Lureau  <marcandre.lureau@gmail.com>
 
 	* sound-theme/sound-theme-file-utils.h: minor define fix.
@@ -62,7 +68,7 @@
 	applications can provide the ability to edit the Sound Theme
 	configuration.  This fixes bug #570736.
 	* sound-theme/Makefile.am, sound-theme/gvc-sound-theme-editor.[ch],
-	sound-theme/gvc-sound-theme-chooser.[ch], 
+	sound-theme/gvc-sound-theme-chooser.[ch],
 	sound-theme/sound-theme-file-utils.[ch]: Move sound-theme widget
 	files from gnome-volume-control/src and provide Makefile.am to build
 	them into a static library.
@@ -249,7 +255,7 @@
 	  since the top-level directory already contains the same information.
 	* README: Add some information about which license files relate to
 	  which sub-components.
-	  
+
 === release 2.24.0 ===
 
 2008-09-23  Marc-André Lureau  <marcandre.lureau@gmail.com>
@@ -405,7 +411,7 @@
 
 	* gst-mixer/src/element.{c,h}:
 	* gst-mixer/src/preferences.c (get_gconf_key):
-	* gst-mixer/src/window.c (gnome_volume_control_window_new): 
+	* gst-mixer/src/window.c (gnome_volume_control_window_new):
 
 	Fix wrong track list displayed on startup.
 	(Closes #535058)
@@ -645,7 +651,7 @@
 2008-03-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
 
 	* profiles/audio-profile-choose.c (audio_profile_forgotten):
-	Remove deleted profiles from the profile choose combo-box. 
+	Remove deleted profiles from the profile choose combo-box.
 	Replace GMP_DEBUG macro with GST_DEBUG.
 
 	* grecord/src/gsr-window.c: more checking before string
@@ -979,7 +985,7 @@
 2007-02-06  Sebastien Bacher  <seb128@ubuntu.com>
 
 	* gst-mixer/src/volume.c: (get_scale):
-	- don't use int values for gtk_adjustment_new (), fix scrollwheel 
+	- don't use int values for gtk_adjustment_new (), fix scrollwheel
 	  not working to adjust the volume (Closes: #400498)
 
 2007-02-03  Jens Granseuer  <jensgr@gmx.net>
@@ -1695,7 +1701,7 @@
 
 	* configure.in:
 	  Dev mode.
-	
+
 === release 2.13.7 ===
 
 2006-01-19  Elijah Newren  <newren gmail com>
@@ -1707,7 +1713,7 @@
 
 	* grecord/src/gsr-window.c: Remove extraneous 'm' character at the
 	beginning of the file
-	
+
 2006-01-19  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:
@@ -1863,7 +1869,7 @@
 2006-01-14  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
 
 	* configure.in: Added "zh_HK" to ALL_LINGUAS.
-	
+
 2006-01-10  Thomas Vander Stichele  <thomas at apestaart dot org>
 
 	patch by: Gabor Kelemen
@@ -1976,7 +1982,7 @@
 	* gstreamer-properties/help/Makefile.am:
 	* gstreamer-properties/help/uk/*:
 	Added Ukrainian translation of the manual.
-	
+
 === release 2.11.91 ===
 
 2005-08-24  Madhan Raj M  <madhanrm@gnome.org>
@@ -2016,18 +2022,18 @@
 	  Repeat the track in Loop mode. Fixes #312636.
 
 2005-08-06  Madhan Raj M  <madhanrm@gnome.org>
-	
+
 	* gnome-cd/callbacks.c: (play_cb), (position_changed)
 	* gnome-cd/gnome-cd.c: (skip_to_track)
 	  For playing the last track, set end_track = -1.
 	  Fixes Bug #312654
 
 2005-08-05  Madhan Raj M  <madhanrm@gnome.org>
-	
-	* gnome-cd/callbacks.c: (play_cb), (stop_cb), (status_ok) 
+
+	* gnome-cd/callbacks.c: (play_cb), (stop_cb), (status_ok)
 	  Stop should stop play while in Loop mode.
 	  Fixes Bug #312658
-	
+
 2005-07-25  Madhan Raj M  <madhanrm@gnome.org>
 
 	* profiles/gnome-media-profiles.h:
@@ -2036,7 +2042,7 @@
 	  Use audio-profile-private.h instead of gnome-media-profiles.h
 	  for private functions.
 	  Fixes Bug #311458
-	
+
 2005-07-24  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* gnome-cd/callbacks.c: (status_ok), (remainingtime_mode_changed_cb),
@@ -2055,7 +2061,7 @@
 
 	* profiles/gnome-media-profiles.h:
 	* profiles/gnome-media-profiles.c: (gtk_dialog_build_children),
-	  (dialog_find_internal_child): Moved the definitions from 
+	  (dialog_find_internal_child): Moved the definitions from
 	  gnome-audio-profiles-properties.c.
 	* profiles/gnome-audio-profiles-properties.c:
 	* profiles/audio-profiles-edit.c: (profile_activated_callback),
@@ -2063,7 +2069,7 @@
 	  (gm_audio_profiles_edit_new_profile):
 	  Make the dialog run. Also based on the patch from Luca Cavalli.
 	  Fixes Bug#309883.
-	
+
 2005-07-17  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* gnome-cd/callbacks.c: (cd_status_changed_cb)
@@ -2071,12 +2077,12 @@
 	* gnome-cd/cdrom.h: (_GnomeCDRomDriveStatus)
 	  New status GNOME_CDROM_STATUS_EMPTY_DISC.
 	* gnome-cd/gst-cdparanoia-cdrom.c: (gst_cdparanoia_cdrom_get_status)
-	  Use gst_cdparanoia_cdrom_get_cddb_data and check 
+	  Use gst_cdparanoia_cdrom_get_cddb_data and check
 	  for Null data (empty disc).
 	  Fix crash #310626
 	* gnome-cd/gnome-cd.c: (make_popup_menu)
-	  Set popup menu sensitivity.	
-					
+	  Set popup menu sensitivity.
+
 2005-07-13  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:
@@ -2170,8 +2176,8 @@
 2005-07-11  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
 	* gnome-cd/gnome-cd.c: (make_popup_menu):
-	  Update the Popup menu stock items.		
-	  	
+	  Update the Popup menu stock items.
+
 2005-07-01  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* configure.in:
@@ -2539,7 +2545,7 @@
 
 2005-03-30  Madhan Raj M  <madhanrm@cvs.gnome.org>
 
-	* cddb-slave2/cddb-slave-capplet.c (notify_cb): Do 
+	* cddb-slave2/cddb-slave-capplet.c (notify_cb): Do
 	appropriate changes when notified.
 	(destroy_window): Remove the notify
 	(create_dialog): Add a notify (Fixes #90792)
@@ -2553,7 +2559,7 @@
 
 	* cddb-slave2/cddb-slave-capplet.c (other_freedb_toggled): Get
 	the selection and set it in gconf.
-		
+
 2005-03-30  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
 
 	* gnome-cd/callbacks.c: (open_track_editor):
@@ -2561,25 +2567,25 @@
 
 2005-03-28  Nirmal Kumar  <nirmalk@cvs.gnome.org>
 
-	* gnome-cd/callbacks.c (status_ok ): 
-	* gnome-cd/gnome-cd.c (tray_icon_create): Sets the 
-	tooltip for the gnome-cd status tray icon to show the 
+	* gnome-cd/callbacks.c (status_ok ):
+	* gnome-cd/gnome-cd.c (tray_icon_create): Sets the
+	tooltip for the gnome-cd status tray icon to show the
 	name of the album currently playing and Current time.
 	(Fixes #144163).
 
 2005-03-28  Nirmal Kumar  <nirmalk@cvs.gnome.org>
 
 	 * gnome-cd/callbacks.c (open_track_editor): Displays
-	dialog that pops up when the track editor is clicked again 
+	dialog that pops up when the track editor is clicked again
 	after changing discs (Fixes #105703).
 
 2005-03-28  Nirmal Kumar  <nirmalk@cvs.gnome.org>
 
 	* gst-mixer/Makefile.am:
 	* gst-mixer/src/keys.h:
-	* gst-mixer/src/main.c (cb_check_resize): 
+	* gst-mixer/src/main.c (cb_check_resize):
 	* gst-mixer/src/window.c (gnome_volume_control_window_init) :
-	Sets the window geometry accordingly (Fixes #148689).	
+	Sets the window geometry accordingly (Fixes #148689).
 
 2005-03-28  Nirmal Kumar  <nirmalk@cvs.gnome.org>
 
@@ -3433,7 +3439,7 @@
 
 	* gst-mixer/src/window.c:
 	  Small capitalization fix missed by Ronald
-	  
+
 2004-11-02  Archana Shah <archana.shah@wipro.com>
 
 	reviewed by: Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
@@ -3728,7 +3734,7 @@
 	  set ACLOCAL_AMFLAGS
 
 2004-08-31  Ronald S. Bultje  <rbultje@ronald.bitfreak.net>
-	
+
 	* configure.in:
 	  And we're in CVS mode again.
 
@@ -4104,18 +4110,18 @@
 	* configure.in: Upping to 2.5.5
 
 2004-03-09  Jan Schmidt  <thaytan@mad.scientist.com>
- 
+
  	* gstreamer-properties/gstreamer-properties.c:
  	(create_pipeline_menu):
  	* gstreamer-properties/pipeline-constants.c:
-           - Add "audioconvert ! audioscale" to the pipeline for testing 
+           - Add "audioconvert ! audioscale" to the pipeline for testing
  	  audio sinks.  This makes esdsink 'work' and fixes #136407
  	  - Wrap lines in pipeline-constants to 80 chars for readability.
  	  - Use gst_parse_launch to evaluate the validity of a sink pipeline, i
- 	  rather than assuming that they contain only a single sink. 
+ 	  rather than assuming that they contain only a single sink.
  	  Resurrects Ascii Art.
  	  - Add a disabled cacasink destination. Disabled because apparently
- 	  cacasink briefly creates an empty window, even though we never 
+ 	  cacasink briefly creates an empty window, even though we never
  	  set the element to READY.
  	  - Disable jack source & sink, since they're not working.
  	  - Remove ossgst audio source which no longer exists.
@@ -4183,10 +4189,10 @@
 
 	* profiles/audio-profile-choose.c
 	(gm_audio_profile_choose_set_active): And fix leak(s)
-	(gm_audio_profile_choose_get_active): One more leak fix, 
+	(gm_audio_profile_choose_get_active): One more leak fix,
 	thanks Richard.
 
-	* profiles/audio-profile-choose.[ch] New function, 
+	* profiles/audio-profile-choose.[ch] New function,
 	gm_audio_profile_choose_set_active
 
 2004-02-23  Ted Gould <ted@gould.cx>
@@ -4216,11 +4222,11 @@
 	* configure.in: Added Thai (th) to ALL_LINGUAS.
 
 2004-02-19  Kaushal Kumar  <kaushal.kumar@wipro.com>
- 
+
  	* gst-mixer/src/mixer.c (create_track_widget):
  	Make all the slider and checkbox widgets accessible.
  	Fix bugzilla #133208.
- 
+
 2004-02-18  Ted Gould <ted@gould.cx>
 
 	* autogen.sh, configure.in:  Applying a patch by
@@ -4670,11 +4676,11 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 2003-08-11  Ted Gould   <ted@gould.cx>
 
 	* configure.in:  Updating version number to 2.3.7
-	
+
 2003-08-04  Ted Gould   <ted@gould.cx>
 
 	* configure.in:  Updating version number to 2.3.6
-	
+
 2003-07-25  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Macedonian (mk) to ALL_LINGUAS
@@ -4682,7 +4688,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 2003-07-16  Ted Gould   <ted@gould.cx>
 
 	* configure.in:  Updating version number to 2.3.5
-	
+
 2003-07-03  Ted Gould   <ted@gould.cx>
 	* configure.in:  Updating version number to 2.3.4
 
@@ -4735,15 +4741,15 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 	* configure.in: Added "sr" and "sr@Latn" to ALL_LINGUAS.
 
 2003-05-05  Telsa Gwynne  <hobbit@aloss.ukuu.org.uk>
-                                                                                
+
         * configure.in: Added cy to ALL_LINGUAS
         * po/cy.po: Added
 
 2003-04-08  Mike Lei <mike.lei@sun.com>
 
-	* configure.in: Added l10n doc Makefile support for 
+	* configure.in: Added l10n doc Makefile support for
 	  gnome-cd and grecord
-	
+
 	* Added l10n doc files for gnome-cd and grecord
 
 2003-03-21  Guntupalli Karunakar  <karunakar@freedomink.org>
@@ -4761,7 +4767,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 2003-01-29  Laurent Dhima  <laurenti@alblinux.net>
 
 	* configure.in: Added "sq" to ALL_LINGUAS.
-	
+
 2003-01-22  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "mn" to ALL_LINGUAS.
@@ -4782,21 +4788,21 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 	* cddb-slave2/cddb-slave.c: (do_goodbye), (do_read), (do_query),
 	(do_hello):
 	* cddb-slave2/iochannel.c: (gnet_io_channel_writen),
-	(gnet_io_channel_readn): Use guint instead of gsize to comply with 
+	(gnet_io_channel_readn): Use guint instead of gsize to comply with
 	cddb-slave API.
-	
+
 
 2003-01-07  Naba Kumar <naba@gnome.org>
 
 	* configure.in: Added hi (hindi) in ALL_LINGUAS
-	
+
 2002-12-16  Thomas Vander Stichele <thomas at apestaart dot org>
 
         * gstreamer-properties/Makefile.am: don't install desktop stuff
           until proper UI review is done
 
 2002-12-11  Alex Duggan <aldug@gnome.org>
-	
+
    * gmix/gnome-volume-control.desktop.in.in:
    * gnome-cd/gnome-cd.desktop.in:
    * record/gnome-sound-recorder.desktop.in:
@@ -4824,7 +4830,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 
 2002-10-16  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* configure.in: Require a newer intltool for better .schemas 
+	* configure.in: Require a newer intltool for better .schemas
 	support.
 
 2002-10-10 Iain <iain@prettypeople.org>
@@ -4844,13 +4850,13 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 
 	* cddb-slave2/cddb-slave2.desktop.in: Fix the name and tooltip in
 	this file. #87760
- 
+
 2002-06-18  Shivram U  <shivaram.upadhyayula@wipro.com>
 
 	* cddb-slave2/Makefile.am, gmix/Makefile.am, gnome-cd/Makefile.am,
 	gnome-volume-control/Makefile.am, vu-meter/Makefile.am: Changed
 	-DGNOMELOCALEDIR to "${prefix}/${DATADIRNAME}/locale".
-	 Fix for #83624, as per the suggestions given by 
+	 Fix for #83624, as per the suggestions given by
 	Hidetoshi Tajima <hidetoshi.tajima@sun.com>
 
 2002-06-10  Iain <iain@ximian.com>
@@ -4936,7 +4942,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 
 2002-04-01  jacob berkman  <jacob@ximian.com>
 
-	* xmldocs.make: 
+	* xmldocs.make:
 	* Makefile.am (EXTRA_DIST): add xmldocs.make (fixes build bustage)
 
 2002-04-01  Iain <iain@ximian.com>
@@ -4970,7 +4976,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 
 2002-02-27  Iain <iain@ximian.com>
 
-	* configure.in: Use the gconf2 AM rule 
+	* configure.in: Use the gconf2 AM rule
 
 2002-02-27  Iain <iain@ximian.com>
 
@@ -5024,8 +5030,8 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 	Makefile in the lcd-theme dir
 
 2001-12-03  Sander Vesik <Sander.Vesik@sun.com>
-	* autogen.sh: Remove test for CERTIFIED_GNOMIE 
-	* configure.in: Remove test for CERTIFIED_GNOMIE and add 
+	* autogen.sh: Remove test for CERTIFIED_GNOMIE
+	* configure.in: Remove test for CERTIFIED_GNOMIE and add
 	  missing [] to AC_MESSAGE_ERROR for the case of missing
 	  scrollkeeper
 
@@ -5247,7 +5253,7 @@ Sun Feb  8 00:53:23 2004  Matthias Clasen  <maclas@gmx.de>
 	* configure.in: Alphabetical resort of languages.
 
 1999-28-09  Tim P. Gerla  <timg@means.net>
-	
+
 	* configure.in: Bump to 1.0.50, whee!
 
 1999-22-09  Tim P. Gerla  <timg@means.net>
@@ -5323,7 +5329,7 @@ Wed Feb 10 22:42:39 EST 1999 Gregory McLean <gregm@comstar.net>
 	* Bumped version to 0.99.8
 
 Wed Jan 20 23:48:16 EST 1999 Mandrake <mandrake@mandrake.net>
-	
+
 	* vu-meter/Makefile.am: fixes to make this puppy actually BUILD again.
 
 1999-01-18  Christopher Blizzard  <blizzard@appliedtheory.com>
@@ -5365,7 +5371,7 @@ Fri Dec 25 23:25:02 PST 1998 Manish Singh <yosh@gimp.org>
 Wed Nov 25 12:56:36 EST 1998 Gregory McLean <gregm@comstar.net>
 
 	* vu-meter: Added a new toy.
- 
+
 1998-11-17  Tuomas J. Lukka  <lukka@iki.fi>
 
 	* configure.in (ALL_LINGUAS): Add da, fi
@@ -5376,18 +5382,18 @@ Wed Nov 25 12:56:36 EST 1998 Gregory McLean <gregm@comstar.net>
 	Thanks to Mitsuru Oka for the ja.po file!
 
 Sun Aug 30 21:06:10 1998  Tim P. Gerla	<timg@means.net>
-	
-	* Added new directory `cddbslave'. It's a program to request 
+
+	* Added new directory `cddbslave'. It's a program to request
 	cddb information from cddb servers.
 
 	* Makefile.am: Added cddbslave.
-	
+
 	* configure.in: Added cddbslave.
 
 1998-08-24  Tim P. Gerla  <timg@means.net>
 
-	* configure.in: Added checks for later linux kernel headers, to enable cd                      
-	  changer support. I haven't tried using the cd changer code on a kernel that                  
+	* configure.in: Added checks for later linux kernel headers, to enable cd
+	  changer support. I haven't tried using the cd changer code on a kernel that
 	  doesn't support it, so when we release we may want to disable it.
 
 1998-08-14  Federico Mena Quintero  <federico@nuclecu.unam.mx>
@@ -5423,7 +5429,7 @@ Tue Feb 17 11:06:43 KST 1998  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>
 
 	* Makefile.am (macros/macros.dep): Maintainer rule to
 	auto-regenerate aclocal.m4.
-	(SUBDIRS): Add `macros'. 
+	(SUBDIRS): Add `macros'.
 	* autogen.sh: Use macros/autogen.sh.
-	
+
 
