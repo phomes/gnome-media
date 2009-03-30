@@ -133,6 +133,14 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track)
     { "front", FALSE },
     { NULL, FALSE }
   };
+    
+  /* Reset the whitelist.  This is a hack to fix bugs LP:345645, 576022 */
+  if (track == NULL)
+  {
+    for (i = 0; list[i].label != NULL; i++)
+      list[i].done = FALSE;
+    return TRUE;
+  }
 
   for (i = 0; !found && list[i].label != NULL; i++) {
     gchar *label_l = NULL;
@@ -304,6 +312,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   }
 
   /* show */
+  gnome_volume_control_element_whitelist (NULL);
   for (item = gst_mixer_list_tracks (el->mixer);
        item != NULL; item = item->next) {
     GstMixerTrack *track = item->data;
