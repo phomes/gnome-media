@@ -134,7 +134,10 @@ gnome_volume_control_element_whitelist (GstMixerTrack *track)
     { NULL, FALSE }
   };
     
-  /* Reset the whitelist.  This is a hack to fix bugs LP:345645, 576022 */
+  /*
+   * When the user changes devices, it is necessary to reset the whitelist
+   * to a good default state.  This fixes bugs LP:345645, 576022
+   */
   if (track == NULL)
   {
     for (i = 0; list[i].label != NULL; i++)
