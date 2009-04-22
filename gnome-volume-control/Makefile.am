@@ -6,7 +6,7 @@ SUBDIRS =			\
 	$(NULL)
 
 EXTRA_DIST = \
-	ChangeLog		\
+	ChangeLog.pre-2-26	\
 	$(NULL)
 
 MAINTAINERCLEANFILES =		\

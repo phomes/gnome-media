@@ -152,7 +152,8 @@ EXTRA_DIST =						\
 	$(server_in_files)				\
 	$(Desktop_in_files)				\
 	$(IDLS)						\
-	$(schema_in_files)
+	$(schema_in_files)				\
+	ChangeLog.pre-2-26
 
 ### clean up all of the generated stuff
 CLEANFILES =						\

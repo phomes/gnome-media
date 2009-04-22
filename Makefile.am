@@ -79,6 +79,7 @@ EXTRA_DIST = \
 	m4/as-version.m4	\
 	m4/esd.m4		\
 	gnome-doc-utils.make	\
+	ChangeLog.pre-2-26	\
 	$(INTLTOOL_BUILT:=.in)	\
 	$(NULL)
 

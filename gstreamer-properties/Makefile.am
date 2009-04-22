@@ -32,7 +32,7 @@ AM_CPPFLAGS = \
 
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
 DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)
-EXTRA_DIST = $(icons_DATA) $(glade_DATA) $(Desktop_in_files)
+EXTRA_DIST = ChangeLog.pre-2-26 $(icons_DATA) $(glade_DATA) $(Desktop_in_files)
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 install-data-hook:

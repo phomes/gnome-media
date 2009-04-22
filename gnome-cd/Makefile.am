@@ -23,7 +23,8 @@ AM_CPPFLAGS =					\
 Audiodir = $(datadir)/applications
 icondir = $(datadir)/icons/hicolor/48x48/apps
 EXTRA_DIST = \
-	HACKING \
+	ChangeLog.pre-2-26	\
+	HACKING			\
 	solaris-cdrom.c		\
 	solaris-cdrom.h		\
 	bsd-cdrom.c		\

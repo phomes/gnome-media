@@ -4,7 +4,7 @@ AC_INIT([gnome-media],
         [2.27.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
-AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 -Wall -Wno-portability tar-pax])
+AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 -Wall -Wno-portability tar-pax foreign])
 
 AS_VERSION
 
