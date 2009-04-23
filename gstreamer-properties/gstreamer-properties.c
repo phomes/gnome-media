@@ -97,10 +97,20 @@ gst_properties_gconf_set_string (const gchar * key, const gchar * value)
 static void
 dialog_response (GtkDialog * widget, gint response_id, GladeXML * dialog)
 {
+  GError *error = NULL;
+
   if (response_id == GTK_RESPONSE_HELP)
-    gnome_help_display ("gstreamer-properties.xml", NULL, NULL);
+    gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (dialog)),
+                  "ghelp:gstreamer-properties",
+                   gtk_get_current_event_time (),
+                  &error);
   else
     gtk_main_quit ();
+
+  if (error) {
+    g_warning ("%s() error: %s", G_STRFUNC, error->message);
+    g_error_free (error);
+  }
 }
 
 static void
@@ -629,7 +639,7 @@ main (int argc, char **argv)
   textdomain (GETTEXT_PACKAGE);
 
   ctx = g_option_context_new ("gstreamer-properties");
-  g_option_context_add_group (ctx, gtk_get_option_group ());
+  g_option_context_add_group (ctx, gtk_get_option_group (TRUE));
   g_option_context_add_group (ctx, gst_init_get_option_group ());
 
   if (! g_option_context_parse (ctx, &argc, &argv, &error)) {
