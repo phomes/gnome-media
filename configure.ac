@@ -1,7 +1,7 @@
 AC_PREREQ(2.60)
 
 AC_INIT([gnome-media],
-        m4_esyscmd([build-aux/git-version-gen .tarball-version]),
+        m4_esyscmd([GNOME_TAG_PATTERN=GNOME_MEDIA build-aux/git-version-gen .tarball-version]),
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
 AC_CONFIG_AUX_DIR([build-aux])

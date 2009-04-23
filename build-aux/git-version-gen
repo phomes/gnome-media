@@ -1,6 +1,6 @@
 #!/bin/sh
 # Print a version string.
-scriptversion=2009-04-23.18
+scriptversion=2009-04-23.19
 
 # Copyright (C) 2007-2008 Free Software Foundation
 #
@@ -90,8 +90,6 @@ then
     test -z "$v" \
 	&& echo "$0: WARNING: $tarball_version_file seems to be damaged" 1>&2
 fi
-
-GNOME_TAG_PATTERN=GNOME_MEDIA
 
 if test -n "$v"
 then
