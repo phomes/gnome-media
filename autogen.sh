@@ -21,4 +21,4 @@ which gnome-autogen.sh || {
 
 REQUIRED_INTLTOOL_VERSION=0.35
 
-USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh
+USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh --enable-shave

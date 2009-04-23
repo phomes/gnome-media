@@ -673,6 +673,8 @@ AC_SUBST(LDFLAGS)
 
 AC_CONFIG_FILES([
 Makefile
+shave
+shave-libtool
 po/Makefile.in
 sound-theme/Makefile
 sound-theme/sounds/Makefile
@@ -743,6 +745,7 @@ vu-meter/reclevel.desktop.in
 vu-meter/vumeter.desktop.in
 ])
 
+SHAVE_INIT
 AC_OUTPUT
 
 echo "
