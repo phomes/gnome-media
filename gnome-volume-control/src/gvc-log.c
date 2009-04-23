@@ -57,7 +57,6 @@ gvc_log_set_debug (gboolean debug)
                 log_levels |= G_LOG_LEVEL_DEBUG;
                 g_debug ("Enabling debugging");
         } else {
-                g_debug ("Disabling debugging");
                 log_levels &= ~G_LOG_LEVEL_DEBUG;
         }
 }
