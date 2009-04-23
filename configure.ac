@@ -60,7 +60,7 @@ dnl Start of pkg-config checks - common libs
 dnl=======================================================================
 
 GLIB_REQUIRED_VERSION=2.18.2
-GTK_REQUIRED_VERSION=2.10.0
+GTK_REQUIRED_VERSION=2.14.0
 LIBGLADE_REQUIRED_VERSION=1.99.2
 GCONF_REQUIRED_VERSION=2.6.1
 PA_REQUIRED_VERSION=0.9.12 # FIXME remove extra checks below when we have PA 0.9.15
@@ -246,7 +246,6 @@ if test "x$enable_profiles" = "xyes"; then
     gstreamer-0.10
     gconf-2.0
     libglade-2.0
-    libgnomeui-2.0
     gio-2.0],
     have_profiles=yes)
 fi
