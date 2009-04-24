@@ -6,6 +6,8 @@ test -z "$srcdir" && srcdir=.
 
 PKG_NAME="gnome-media"
 REQUIRED_AUTOMAKE_VERSION=1.9
+REQUIRED_INTLTOOL_VERSION=0.35
+USE_COMMON_DOC_BUILD=yes
 
 (test -f $srcdir/configure.ac \
   && test -d $srcdir/cddb-slave2) || {
@@ -19,6 +21,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-REQUIRED_INTLTOOL_VERSION=0.35
-
-USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh --enable-shave
+. gnome-autogen.sh --enable-shave "$@"
