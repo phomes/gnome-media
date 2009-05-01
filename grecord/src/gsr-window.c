@@ -1299,7 +1299,7 @@ stop_cb (GtkAction *action,
 		set_pipeline_state_to_null (priv->record->pipeline);
 		gtk_widget_set_sensitive (window->priv->level, FALSE);
 		gtk_widget_set_sensitive (window->priv->volume_label, FALSE);
-		gtk_progress_set_percentage (GTK_PROGRESS (window->priv->level), 0);
+		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->priv->level), 0.0);
 	}
 }
 
@@ -1394,12 +1394,13 @@ play_tick_callback (GSRWindow *window)
 		window->priv->len_secs = val / GST_SECOND;
 
 		len_str = seconds_to_full_string (window->priv->len_secs);
-		gtk_label_set (GTK_LABEL (window->priv->length_label), len_str);
+		gtk_label_set_text (GTK_LABEL (window->priv->length_label),
+				    len_str);
 		g_free (len_str);
 	} else {
 		if (window->priv->get_length_attempts <= 0) {
 			/* Attempts to get length ran out. */
-			gtk_label_set (GTK_LABEL (window->priv->length_label), _("Unknown"));
+			gtk_label_set_text (GTK_LABEL (window->priv->length_label), _("Unknown"));
 		} else {
 			--window->priv->get_length_attempts;
 		}
@@ -1458,7 +1459,8 @@ record_tick_callback (GSRWindow *window)
 		
 		len_str = seconds_to_full_string (secs);
 		window->priv->len_secs = secs;
-		gtk_label_set (GTK_LABEL (window->priv->length_label), len_str);
+		gtk_label_set_text (GTK_LABEL (window->priv->length_label),
+				    len_str);
 		g_free (len_str);
 	} else {
 		GST_DEBUG ("failed to query position");
@@ -1964,7 +1966,7 @@ level_message_handler_cb (GstBus * bus, GstMessage * message, GSRWindow *window)
 	myind = exp (peak_dB / 20);
 	if (myind > 1.0)
 		myind = 1.0;
-	gtk_progress_set_percentage (GTK_PROGRESS (priv->level), myind);
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->level), myind);
       }
     }
   }
@@ -2555,7 +2557,8 @@ gsr_window_set_property (GObject      *object,
 
 		utf8_name = g_filename_to_utf8 (short_name, -1, NULL, NULL, NULL);
 		if (priv->name_label != NULL) {
-			gtk_label_set (GTK_LABEL (priv->name_label), utf8_name);
+			gtk_label_set_text (GTK_LABEL (priv->name_label),
+					    utf8_name);
 		}
 
 		gsr_add_recent (priv->filename);
