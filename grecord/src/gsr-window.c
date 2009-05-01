@@ -40,7 +40,6 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
-#include <libgnome/gnome-help.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
 #include <gst/interfaces/mixer.h>
@@ -1211,7 +1210,9 @@ help_contents_cb (GtkAction *action,
 {
 	GError *error = NULL;
 
-	gnome_help_display ("gnome-sound-recorder.xml", NULL, &error);
+	gtk_show_uri (gtk_window_get_screen (GTK_WINDOW (window)),
+		      "ghelp:gnome-sound-recorder",
+		      gtk_get_current_event_time (), &error);
 
 	if (error != NULL)
 	{

@@ -274,8 +274,8 @@ PKG_CHECK_MODULES(GSR, [
   gstreamer-$GST_MAJORMINOR >= $GST_REQ
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_REQ
   gtk+-2.0 >= 2.6.0
-  libgnomeui-2.0 >= 1.102.0
-  gio-2.0],
+  gio-2.0
+  gconf-2.0],
   have_gst=yes,
   [
     AC_MSG_RESULT(no)

@@ -27,9 +27,10 @@
 #include <config.h>
 #endif
 
-#include <gconf/gconf-client.h>
-#include <gnome.h>
+#include <string.h>
 
+#include <glib/gi18n.h>
+#include <gconf/gconf-client.h>
 #include <gst/gst.h>
 
 #include "gsr-window.h"
@@ -183,7 +184,7 @@ main (int argc,
 	};
 
 	GOptionContext *ctx;
-	GnomeProgram *program;
+	GError *error = NULL;
 
 	g_thread_init (NULL);
 
@@ -193,16 +194,19 @@ main (int argc,
 	textdomain (GETTEXT_PACKAGE);
 
 	ctx = g_option_context_new ("gnome-sound-recorder");
+	/* Initializes gtk during option parsing */
+	g_option_context_add_group (ctx, gtk_get_option_group (TRUE));
 	g_option_context_add_group (ctx, gst_init_get_option_group ());
 	g_option_context_add_main_entries (ctx, entries, GETTEXT_PACKAGE);
-	program = gnome_program_init ("gnome-sound-recorder", VERSION,
-	                              LIBGNOMEUI_MODULE, argc, argv,
-	                              GNOME_PARAM_GOPTION_CONTEXT, ctx,
-	                              GNOME_PARAM_HUMAN_READABLE_NAME,
-	                              "GNOME Sound Recorder",
-	                              GNOME_PARAM_APP_DATADIR, DATADIR,
-	                              NULL);
 
+	if (!g_option_context_parse (ctx, &argc, &argv, &error)) {
+		g_printerr ("Option parsing failed: %s\n", error->message);
+		g_error_free (error);
+		g_option_context_free (ctx);
+		return EXIT_FAILURE;
+	}
+
+	g_option_context_free (ctx);
 	gtk_window_set_default_icon_name ("gnome-sound-recorder");
 
 	/* use it like a singleton */
