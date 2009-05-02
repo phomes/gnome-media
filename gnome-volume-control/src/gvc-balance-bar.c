@@ -96,7 +96,7 @@ _scale_box_new (GvcBalanceBar *bar)
 
         gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
 
-        gtk_box_pack_start (GTK_BOX (sbox), priv->scale, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
 
         str = g_strdup_printf ("<small>%s</small>", C_("balance", "Left"));
         gtk_scale_add_mark (GTK_SCALE (priv->scale), adjustment->lower , 
