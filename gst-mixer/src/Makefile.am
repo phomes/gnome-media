@@ -6,7 +6,7 @@ endif
 
 AM_CPPFLAGS = \
 	$(GSTMIXER_CFLAGS)				\
-	-I../../sound-theme				\
+	-I$(top_srcdir)/sound-theme			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(pkgdatadir)"\"			\
 	-DPIX_DIR=\""$(pkgdatadir)/pixmaps"\"
