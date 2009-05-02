@@ -178,8 +178,7 @@ if test "x$enable_cddbslave" != "xno"; then
   PKG_CHECK_MODULES(CDDBSLAVE, [
     glib-2.0 >= 1.3.7
     gmodule-2.0 >= 1.3.7
-    libbonobo-2.0 >= 2.0.0
-    libgnomeui-2.0 >= 1.102.0],
+    libbonobo-2.0 >= 2.0.0],
     have_cddbslave=yes)
 fi
 
@@ -390,8 +389,7 @@ if test "x$enable_vumeter" = "xyes" ; then
     PKG_CHECK_MODULES(VUMETER, [
       glib-2.0 >= 1.3.7
       gtk+-2.0 >= 2.3.1
-      esound >= 0.2.23
-      libgnomeui-2.0 > 1.102.0],
+      esound >= 0.2.23],
       have_vumeter=yes)
   else
     AC_MSG_WARN([vu-meter disabled because esound couldn't be found])
@@ -599,7 +597,6 @@ fi
 if test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
 then
   PKG_CHECK_MODULES(GSTMIXER, [
-    libgnomeui-2.0
     gtk+-2.0
     gconf-2.0
     gstreamer-$GST_MAJORMINOR
