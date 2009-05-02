@@ -26,6 +26,7 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
 #include <gconf/gconf-client.h>
@@ -991,6 +992,32 @@ create_stream_treeview (GvcMixerDialog *dialog,
         return treeview;
 }
 
+static const guint tab_accel_keys[] = {
+        GDK_1, GDK_2, GDK_3, GDK_4
+};
+
+static void
+dialog_accel_cb (GtkAccelGroup    *accelgroup,
+                 GObject          *object,
+                 guint             key,
+                 GdkModifierType   mod,
+                 GvcMixerDialog   *self)
+{
+        gint num = -1;
+        gint i;
+
+        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
+                if (tab_accel_keys[i] == key) {
+                        num = i;
+                        break;
+                }
+        }
+
+        if (num != -1) {
+                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), num);
+        }
+}
+
 static GObject *
 gvc_mixer_dialog_constructor (GType                  type,
                               guint                  n_construct_properties,
@@ -1008,6 +1035,9 @@ gvc_mixer_dialog_constructor (GType                  type,
         GSList           *l;
         GvcMixerStream   *stream;
         GtkTreeSelection *selection;
+        GtkAccelGroup    *accel_group;
+        GClosure         *closure;
+        gint             i;
 
         object = G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->constructor (type, n_construct_properties, construct_params);
 
@@ -1033,6 +1063,23 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->notebook,
                             TRUE, TRUE, 6);
+
+        /* Set up accels (borrowed from Empathy) */
+        accel_group = gtk_accel_group_new ();
+        gtk_window_add_accel_group (GTK_WINDOW (self), accel_group);
+
+        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
+                closure =  g_cclosure_new (G_CALLBACK (dialog_accel_cb),
+                                           self,
+                                           NULL);
+                gtk_accel_group_connect (accel_group,
+                                         tab_accel_keys[i],
+                                         GDK_MOD1_MASK,
+                                         0,
+                                         closure);
+        }
+
+        g_object_unref (accel_group);
 
         /* Effects page */
         self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
