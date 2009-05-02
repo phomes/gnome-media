@@ -99,34 +99,23 @@ cb_preferences (GtkAction *action,
 }
 
 static void
-open_uri (GtkWindow *parent,
-          const char *uri)
-{
-  GtkWidget *dialog;
-  GdkScreen *screen;
-  GError *error = NULL;
-  gchar *cmdline;
-
-  screen = gtk_window_get_screen (parent);
-
-  cmdline = g_strconcat ("xdg-open ", uri, NULL);
-
-  if (gdk_spawn_command_line_on_screen (screen, cmdline, &error) == FALSE) {
-    dialog = gtk_message_dialog_new (parent, GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", error->message);
-    gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_widget_destroy(dialog);
-    g_error_free(error);
-  }
-  g_free(cmdline);
-}
-
-
-static void
 cb_help (GtkAction *action,
 	 GnomeVolumeControlWindow *win)
 {
-  open_uri (GTK_WINDOW (win), "ghelp:gnome-volume-control");
+  GdkScreen *screen;
+  GtkWidget *dialog;
+  GError *error = NULL;
+
+  screen = gtk_window_get_screen (GTK_WINDOW (win));
+
+  if (gtk_show_uri (screen, "ghelp:gnome-volume-control", GDK_CURRENT_TIME,
+  				&error) == FALSE) {
+  	dialog = gtk_message_dialog_new (GTK_WINDOW (win), GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", error->message);
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+    g_error_free (error);
+  }
 }
 
 static void
