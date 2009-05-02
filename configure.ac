@@ -178,6 +178,7 @@ if test "x$enable_cddbslave" != "xno"; then
   PKG_CHECK_MODULES(CDDBSLAVE, [
     glib-2.0 >= 1.3.7
     gmodule-2.0 >= 1.3.7
+    libgnomeui-2.0 >= 1.102.0
     libbonobo-2.0 >= 2.0.0],
     have_cddbslave=yes)
 fi
@@ -389,6 +390,7 @@ if test "x$enable_vumeter" = "xyes" ; then
     PKG_CHECK_MODULES(VUMETER, [
       glib-2.0 >= 1.3.7
       gtk+-2.0 >= 2.3.1
+      libgnomeui-2.0 >= 1.102.0
       esound >= 0.2.23],
       have_vumeter=yes)
   else
