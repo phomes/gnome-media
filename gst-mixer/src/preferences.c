@@ -117,7 +117,7 @@ gnome_volume_control_preferences_init (GnomeVolumeControlPreferences *prefs)
   box = gtk_vbox_new (FALSE, 6);
   gtk_container_set_border_width (GTK_CONTAINER (box), 5);
 
-  label = gtk_label_new_with_mnemonic (_("_Select tracks to be visible:"));
+  label = gtk_label_new_with_mnemonic (_("_Select mixers to be visible:"));
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
   gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
