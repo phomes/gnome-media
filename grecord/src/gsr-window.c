@@ -1709,6 +1709,8 @@ record_start (gpointer user_data)
 	GSRWindow *window = GSR_WINDOW (user_data);
 	gchar *name;
 
+	g_assert (window->priv->tick_id == 0);
+
 	window->priv->get_length_attempts = 16;
 	window->priv->tick_id = g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
 
@@ -2625,6 +2627,7 @@ gsr_window_finalize (GObject *object)
 
 	if (priv->tick_id > 0) { 
 		g_source_remove (priv->tick_id);
+		window->priv->play->tick_id = 0;
 	}
 
 	if (priv->record_id > 0) {
