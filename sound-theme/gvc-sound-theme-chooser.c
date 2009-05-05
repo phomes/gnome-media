@@ -119,6 +119,8 @@ on_combobox_changed (GtkComboBox          *widget,
         gconf_client_set_string (client, SOUND_THEME_KEY, theme_name, NULL);
         g_object_unref (client);
 
+        g_free (theme_name);
+
         /* FIXME: reset alert model */
 }
 
