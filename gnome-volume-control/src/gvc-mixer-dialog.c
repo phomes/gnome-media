@@ -539,7 +539,8 @@ on_stream_volume_notify (GObject        *object,
         bar = lookup_bar_for_stream (dialog, stream);
 
         if (bar == NULL) {
-                g_warning ("Unable to find bar for stream");
+                g_warning ("Unable to find bar for stream %s in on_stream_volume_notify()",
+                           gvc_mixer_stream_get_name (stream));
                 return;
         }
 
@@ -570,7 +571,8 @@ on_stream_is_muted_notify (GObject        *object,
         bar = lookup_bar_for_stream (dialog, stream);
 
         if (bar == NULL) {
-                g_warning ("Unable to find bar for stream");
+                g_warning ("Unable to find bar for stream %s in on_stream_is_muted_notify()",
+                           gvc_mixer_stream_get_name (stream));
                 return;
         }
 
