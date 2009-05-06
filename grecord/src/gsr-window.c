@@ -63,7 +63,7 @@ extern void gsr_add_recent (gchar *filename);
 #define KEY_SAVE_DIR        GCONF_DIR "system-state/save-file-directory"
 #define KEY_LAST_PROFILE_ID GCONF_DIR "last-profile-id"
 #define KEY_LAST_INPUT      GCONF_DIR "last-input"
-#define EBUSY_TRY_AGAIN     3000    /* Empirical data */
+#define EBUSY_TRY_AGAIN     3    /* Empirical data */
 
 typedef struct _GSRWindowPipeline {
 	GstElement *pipeline;
@@ -554,9 +554,9 @@ pipeline_error_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 			window->priv->ebusy_pipeline = pipeline;
 
 			window->priv->ebusy_timeout_id = 
-				g_timeout_add (EBUSY_TRY_AGAIN,
-				               (GSourceFunc) handle_ebusy_error,
-				               window);
+				g_timeout_add_seconds (EBUSY_TRY_AGAIN,
+						       (GSourceFunc) handle_ebusy_error,
+						       window);
 
 			g_error_free (error);
 			g_free (dbg);

@@ -40,7 +40,7 @@
 #include "gnome-cd.h"
 
 /* how frequently we poke at the cdrom (ms) */
-#define CDROM_POLL_TIMEOUT 1000
+#define CDROM_POLL_TIMEOUT 1
 
 static GObjectClass *parent_class = NULL;
 
@@ -873,7 +873,7 @@ gnome_cdrom_construct (GnomeCDRom      *cdrom,
 		
 	case GNOME_CDROM_UPDATE_WHEN_CHANGED:
 	case GNOME_CDROM_UPDATE_CONTINOUS:
-		cdrom->priv->update_id = g_timeout_add (
+		cdrom->priv->update_id = g_timeout_add_seconds (
 			CDROM_POLL_TIMEOUT, timeout_update_cd, cdrom);
 		break;
 		
