@@ -143,7 +143,6 @@ _scale_box_new (GvcChannelBar *bar)
 
                 gtk_box_pack_start (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
                 gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
-
                 gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
 
                 bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
@@ -573,15 +572,23 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
         gtk_adjustment_set_upper (bar->priv->zero_adjustment, ADJUSTMENT_MAX);
 
         if (amplified) {
-        	char *str;
+                char *str;
 
-        	str = g_strdup_printf ("<small>%s</small>", C_("volume", "100%"));
-        	gtk_scale_add_mark (GTK_SCALE (bar->priv->scale), ADJUSTMENT_MAX_NORMAL,
-        			    GTK_POS_BOTTOM, str);
-        	g_free (str);
-	} else {
-		gtk_scale_clear_marks (GTK_SCALE (bar->priv->scale));
-	}
+                str = g_strdup_printf ("<small>%s</small>", C_("volume", "100%"));
+                gtk_scale_add_mark (GTK_SCALE (bar->priv->scale), ADJUSTMENT_MAX_NORMAL,
+                                    GTK_POS_BOTTOM, str);
+                g_free (str);
+                gtk_alignment_set (GTK_ALIGNMENT (bar->priv->mute_box), 0.5, 0, 0, 0);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->low_image), 0.5, 0);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->high_image), 0.5, 0);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->label), 0, 0);
+        } else {
+                gtk_scale_clear_marks (GTK_SCALE (bar->priv->scale));
+                gtk_alignment_set (GTK_ALIGNMENT (bar->priv->mute_box), 0.5, 0.5, 0, 0);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->low_image), 0.5, 0.5);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->high_image), 0.5, 0.5);
+                gtk_misc_set_alignment (GTK_MISC (bar->priv->label), 0, 0.5);
+        }
 }
 
 static void
@@ -826,9 +833,7 @@ gvc_channel_bar_init (GvcChannelBar *bar)
         gtk_widget_set_no_show_all (bar->priv->image, TRUE);
 
         bar->priv->label = gtk_label_new (NULL);
-        gtk_misc_set_alignment (GTK_MISC (bar->priv->label),
-                                0.0,
-                                0.5);
+        gtk_misc_set_alignment (GTK_MISC (bar->priv->label), 0.0, 0.5);
         gtk_widget_set_no_show_all (bar->priv->label, TRUE);
 
         /* frame */

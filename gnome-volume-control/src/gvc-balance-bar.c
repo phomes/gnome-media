@@ -385,7 +385,7 @@ gvc_balance_bar_init (GvcBalanceBar *bar)
         bar->priv->label = gtk_label_new_with_mnemonic (_("_Balance:"));
         gtk_misc_set_alignment (GTK_MISC (bar->priv->label),
                                 0.0,
-                                0.5);
+                                0.0);
         /* frame */
         frame = gtk_frame_new (NULL);
         gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
