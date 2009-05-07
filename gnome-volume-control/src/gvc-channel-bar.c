@@ -571,6 +571,17 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
         bar->priv->is_amplified = amplified;
         gtk_adjustment_set_upper (bar->priv->adjustment, ADJUSTMENT_MAX);
         gtk_adjustment_set_upper (bar->priv->zero_adjustment, ADJUSTMENT_MAX);
+
+        if (amplified) {
+        	char *str;
+
+        	str = g_strdup_printf ("<small>%s</small>", C_("volume", "100%"));
+        	gtk_scale_add_mark (GTK_SCALE (bar->priv->scale), ADJUSTMENT_MAX_NORMAL,
+        			    GTK_POS_BOTTOM, str);
+        	g_free (str);
+	} else {
+		gtk_scale_clear_marks (GTK_SCALE (bar->priv->scale));
+	}
 }
 
 static void
