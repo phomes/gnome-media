@@ -63,6 +63,7 @@ struct GvcMixerDialogPrivate
         GtkWidget       *output_treeview;
         GtkWidget       *output_settings_box;
         GtkWidget       *output_balance_bar;
+        GtkWidget       *output_fade_bar;
         GtkWidget       *input_treeview;
         GtkWidget       *sound_theme_chooser;
         GtkWidget       *click_feedback_button;
@@ -150,6 +151,11 @@ update_output_settings (GvcMixerDialog *dialog)
                                       dialog->priv->output_balance_bar);
                 dialog->priv->output_balance_bar = NULL;
         }
+        if (dialog->priv->output_fade_bar != NULL) {
+                gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
+                                      dialog->priv->output_fade_bar);
+                dialog->priv->output_fade_bar = NULL;
+        }
 
         stream = gvc_mixer_control_get_default_sink (dialog->priv->mixer_control);
         if (stream == NULL) {
@@ -163,7 +169,7 @@ update_output_settings (GvcMixerDialog *dialog)
                 return;
         }
 
-        dialog->priv->output_balance_bar = gvc_balance_bar_new (map);
+        dialog->priv->output_balance_bar = gvc_balance_bar_new (map, BALANCE_TYPE_RL);
         if (dialog->priv->size_group != NULL) {
                 gvc_balance_bar_set_size_group (GVC_BALANCE_BAR (dialog->priv->output_balance_bar),
                                                 dialog->priv->size_group,
@@ -173,6 +179,19 @@ update_output_settings (GvcMixerDialog *dialog)
                             dialog->priv->output_balance_bar,
                             FALSE, FALSE, 12);
         gtk_widget_show (dialog->priv->output_balance_bar);
+
+        if (gvc_channel_map_can_fade (map)) {
+                dialog->priv->output_fade_bar = gvc_balance_bar_new (map, BALANCE_TYPE_FR);
+                if (dialog->priv->size_group != NULL) {
+                        gvc_balance_bar_set_size_group (GVC_BALANCE_BAR (dialog->priv->output_fade_bar),
+                                                        dialog->priv->size_group,
+                                                        TRUE);
+                }
+                gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
+                                    dialog->priv->output_fade_bar,
+                                    FALSE, FALSE, 12);
+                gtk_widget_show (dialog->priv->output_fade_bar);
+        }
 
         /* We could make this into a "No settings" label instead */
         gtk_widget_set_sensitive (dialog->priv->output_balance_bar, gvc_channel_map_can_balance (map));

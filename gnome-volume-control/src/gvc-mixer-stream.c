@@ -283,10 +283,10 @@ gvc_mixer_stream_set_application_id (GvcMixerStream *stream,
 }
 
 static void
-on_channel_map_gains_changed (GvcChannelMap  *channel_map,
-                              GvcMixerStream *stream)
+on_channel_map_volume_changed (GvcChannelMap  *channel_map,
+                               GvcMixerStream *stream)
 {
-        g_debug ("Gains changed");
+        g_debug ("Volume changed");
         gvc_mixer_stream_change_volume (stream, stream->priv->volume);
 }
 
@@ -302,7 +302,7 @@ gvc_mixer_stream_set_channel_map (GvcMixerStream *stream,
 
         if (stream->priv->channel_map != NULL) {
                 g_signal_handlers_disconnect_by_func (stream->priv->channel_map,
-                                                      on_channel_map_gains_changed,
+                                                      on_channel_map_volume_changed,
                                                       stream);
                 g_object_unref (stream->priv->channel_map);
         }
@@ -311,8 +311,8 @@ gvc_mixer_stream_set_channel_map (GvcMixerStream *stream,
 
         if (stream->priv->channel_map != NULL) {
                 g_signal_connect (stream->priv->channel_map,
-                                  "gains-changed",
-                                  G_CALLBACK (on_channel_map_gains_changed),
+                                  "volume-changed",
+                                  G_CALLBACK (on_channel_map_volume_changed),
                                   stream);
 
                 g_object_notify (G_OBJECT (stream), "channel-map");
@@ -498,6 +498,14 @@ gvc_mixer_stream_change_is_muted (GvcMixerStream *stream,
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
         ret = GVC_MIXER_STREAM_GET_CLASS (stream)->change_is_muted (stream, is_muted);
         return ret;
+}
+
+gboolean
+gvc_mixer_stream_is_running (GvcMixerStream *stream)
+{
+        if (GVC_MIXER_STREAM_GET_CLASS (stream)->is_running != NULL)
+                return GVC_MIXER_STREAM_GET_CLASS (stream)->is_running (stream);
+        return FALSE;
 }
 
 static void

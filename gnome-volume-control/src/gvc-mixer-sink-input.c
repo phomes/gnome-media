@@ -52,32 +52,22 @@ gvc_mixer_sink_input_change_volume (GvcMixerStream *stream,
         guint              index;
         GvcChannelMap     *map;
         pa_context        *context;
-        pa_cvolume         cv;
-        guint              i;
+        const pa_cvolume  *cv;
         guint              num_channels;
-        gdouble           *gains;
 
         index = gvc_mixer_stream_get_index (stream);
 
         map = gvc_mixer_stream_get_channel_map (stream);
         num_channels = gvc_channel_map_get_num_channels (map);
-        gains = gvc_channel_map_get_gains (map);
 
-        /* set all values to nominal level */
-        pa_cvolume_set (&cv, num_channels, (pa_volume_t)volume);
-
-        /* apply channel gain mapping */
-        for (i = 0; i < num_channels; i++) {
-                pa_volume_t v;
-                v = (double) volume * gains[i];
-                cv.values[i] = v;
-        }
+        /* set the volume */
+        cv = gvc_channel_map_get_cvolume_for_volumes (map, volume);
 
         context = gvc_mixer_stream_get_pa_context (stream);
 
         o = pa_context_set_sink_input_volume (context,
                                               index,
-                                              &cv,
+                                              cv,
                                               NULL,
                                               NULL);
 

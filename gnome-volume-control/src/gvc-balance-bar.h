@@ -34,6 +34,11 @@ G_BEGIN_DECLS
 #define GVC_IS_BALANCE_BAR_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GVC_TYPE_BALANCE_BAR))
 #define GVC_BALANCE_BAR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GVC_TYPE_BALANCE_BAR, GvcBalanceBarClass))
 
+typedef enum {
+        BALANCE_TYPE_RL,
+        BALANCE_TYPE_FR,
+} GvcBalanceType;
+
 typedef struct GvcBalanceBarPrivate GvcBalanceBarPrivate;
 
 typedef struct
@@ -49,7 +54,8 @@ typedef struct
 
 GType               gvc_balance_bar_get_type            (void);
 
-GtkWidget *         gvc_balance_bar_new                 (GvcChannelMap *map);
+GtkWidget *         gvc_balance_bar_new                 (GvcChannelMap *map,
+                                                         GvcBalanceType btype);
 
 void                gvc_balance_bar_set_size_group      (GvcBalanceBar *bar,
                                                          GtkSizeGroup  *group,

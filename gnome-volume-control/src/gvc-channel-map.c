@@ -35,14 +35,15 @@
 
 struct GvcChannelMapPrivate
 {
-        guint                 num_channels;
-        pa_channel_position_t positions[PA_CHANNELS_MAX];
-        gdouble               gains[PA_CHANNELS_MAX];
+        pa_channel_map        pa_map;
+        pa_cvolume            pa_volume;
+        gdouble               extern_volume[3]; /* volume, balance, fade */
         gboolean              can_balance;
+        gboolean              can_fade;
 };
 
 enum {
-        GAINS_CHANGED,
+        VOLUME_CHANGED,
         LAST_SIGNAL
 };
 
@@ -58,28 +59,68 @@ guint
 gvc_channel_map_get_num_channels (GvcChannelMap *map)
 {
         g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), 0);
-        return map->priv->num_channels;
+
+        if (!pa_channel_map_valid(&map->priv->pa_map))
+                return 0;
+
+        return map->priv->pa_map.channels;
 }
 
-gdouble *
-gvc_channel_map_get_gains (GvcChannelMap *map)
+const gdouble *
+gvc_channel_map_get_volume (GvcChannelMap *map)
 {
         g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
-        return map->priv->gains;
-}
 
-pa_channel_position_t *
-gvc_channel_map_get_positions (GvcChannelMap *map)
-{
-        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
-        return map->priv->positions;
+        if (!pa_channel_map_valid(&map->priv->pa_map))
+                return NULL;
+
+        map->priv->extern_volume[VOLUME] = (gdouble) pa_cvolume_max (&map->priv->pa_volume);
+        map->priv->extern_volume[BALANCE] = (gdouble) pa_cvolume_get_balance (&map->priv->pa_volume, &map->priv->pa_map);
+        map->priv->extern_volume[FADE] = (gdouble) pa_cvolume_get_fade (&map->priv->pa_volume, &map->priv->pa_map);
+
+        return map->priv->extern_volume;
 }
 
 gboolean
 gvc_channel_map_can_balance (GvcChannelMap  *map)
 {
         g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
+
         return map->priv->can_balance;
+}
+
+gboolean
+gvc_channel_map_can_fade (GvcChannelMap  *map)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
+
+        return map->priv->can_fade;
+}
+
+const pa_channel_map *
+gvc_channel_map_get_pa_channel_map (GvcChannelMap  *map)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
+
+        if (!pa_channel_map_valid(&map->priv->pa_map))
+                return NULL;
+
+        return &map->priv->pa_map;
+}
+
+const pa_cvolume *
+gvc_channel_map_get_cvolume_for_volumes (GvcChannelMap  *map,
+                                         gint            volume)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
+
+        if (!pa_channel_map_valid(&map->priv->pa_map))
+                return NULL;
+
+        if (volume >= 0)
+                pa_cvolume_scale (&map->priv->pa_volume, (pa_volume_t) volume);
+
+        return &map->priv->pa_volume;
 }
 
 static void
@@ -89,11 +130,11 @@ gvc_channel_map_class_init (GvcChannelMapClass *klass)
 
         gobject_class->finalize = gvc_channel_map_finalize;
 
-        signals [GAINS_CHANGED] =
-                g_signal_new ("gains-changed",
+        signals [VOLUME_CHANGED] =
+                g_signal_new ("volume-changed",
                               G_TYPE_FROM_CLASS (klass),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GvcChannelMapClass, gains_changed),
+                              G_STRUCT_OFFSET (GvcChannelMapClass, volume_changed),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE, 0);
@@ -102,10 +143,19 @@ gvc_channel_map_class_init (GvcChannelMapClass *klass)
 }
 
 void
-gvc_channel_map_gains_changed (GvcChannelMap *map)
+gvc_channel_map_volume_changed (GvcChannelMap     *map,
+                                const pa_cvolume  *cv)
 {
         g_return_if_fail (GVC_IS_CHANNEL_MAP (map));
-        g_signal_emit (map, signals[GAINS_CHANGED], 0);
+        g_return_if_fail (cv != NULL);
+        g_return_if_fail (pa_cvolume_compatible_with_channel_map(cv, &map->priv->pa_map));
+
+        if (pa_cvolume_equal(cv, &map->priv->pa_volume))
+                return;
+
+        map->priv->pa_volume = *cv;
+
+        g_signal_emit (map, signals[VOLUME_CHANGED], 0);
 }
 
 static void
@@ -141,18 +191,18 @@ static void
 set_from_pa_map (GvcChannelMap        *map,
                  const pa_channel_map *pa_map)
 {
-        guint i;
+        g_assert (pa_channel_map_valid(pa_map));
 
-        map->priv->num_channels = pa_map->channels;
 #ifdef HAVE_NEW_PULSE
         map->priv->can_balance = pa_channel_map_can_balance (pa_map);
+        map->priv->can_fade = pa_channel_map_can_fade (pa_map);
 #else
-	map->priv->can_balance = TRUE;
+        map->priv->can_balance = TRUE;
+        map->priv->can_fade = FALSE;
 #endif
-        for (i = 0; i < pa_map->channels; i++) {
-                map->priv->positions[i] = pa_map->map[i];
-                map->priv->gains[i] = 1.0;
-        }
+
+        map->priv->pa_map = *pa_map;
+        pa_cvolume_set(&map->priv->pa_volume, pa_map->channels, PA_VOLUME_NORM);
 }
 
 GvcChannelMap *

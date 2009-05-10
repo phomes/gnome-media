@@ -221,11 +221,11 @@ gvc_stream_collate (GvcMixerStream *a,
         nameb = gvc_mixer_stream_get_name (b);
 
         if (nameb == NULL && namea == NULL)
-        	return 0;
+                return 0;
         if (nameb == NULL)
-        	return 1;
+                return 1;
         if (namea == NULL)
-        	return -1;
+                return -1;
 
         return g_utf8_collate (namea, nameb);
 }
@@ -502,6 +502,7 @@ update_sink (GvcMixerControl    *control,
         GvcMixerStream *stream;
         gboolean        is_new;
         pa_volume_t     max_volume;
+        GvcChannelMap  *map;
         char            map_buff[PA_CHANNEL_MAP_SNPRINT_MAX];
 
         pa_channel_map_snprint (map_buff, PA_CHANNEL_MAP_SNPRINT_MAX, &info->channel_map);
@@ -513,17 +514,21 @@ update_sink (GvcMixerControl    *control,
                  map_buff);
 #endif
 
+        map = NULL;
         is_new = FALSE;
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
-                GvcChannelMap *map;
                 map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_sink_new (control->priv->pa_context,
                                              info->index,
                                              map);
                 g_object_unref (map);
                 is_new = TRUE;
+        } else if (gvc_mixer_stream_is_running (stream)) {
+                /* Ignore events if volume changes are outstanding */
+                g_debug ("Ignoring event, volume changes are outstanding");
+                return;
         }
 
         max_volume = pa_cvolume_max (&info->volume);
@@ -551,6 +556,10 @@ update_sink (GvcMixerControl    *control,
             && strcmp (control->priv->default_sink_name, info->name) == 0) {
                 _set_default_sink (control, stream);
         }
+
+        if (map == NULL)
+                map = gvc_mixer_stream_get_channel_map (stream);
+        gvc_channel_map_volume_changed (map, &info->volume);
 }
 
 static void

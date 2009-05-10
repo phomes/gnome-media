@@ -52,6 +52,7 @@ typedef struct
                                      guint           volume);
         gboolean (*change_is_muted) (GvcMixerStream *stream,
                                      gboolean        is_muted);
+        gboolean (*is_running)      (GvcMixerStream *stream);
 } GvcMixerStreamClass;
 
 GType               gvc_mixer_stream_get_type        (void);
@@ -70,6 +71,7 @@ gboolean            gvc_mixer_stream_get_is_muted    (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_get_can_decibel (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_is_muted (GvcMixerStream *stream,
                                                       gboolean        is_muted);
+gboolean            gvc_mixer_stream_is_running      (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_name        (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_icon_name   (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_description (GvcMixerStream *stream);
