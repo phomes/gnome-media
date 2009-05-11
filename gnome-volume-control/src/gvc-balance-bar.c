@@ -235,7 +235,7 @@ gvc_balance_bar_set_balance_type (GvcBalanceBar *bar,
                                                                     1.0,
                                                                     0.5,
                                                                     0.5,
-                                                                    0.5));
+                                                                    0.0));
         g_object_ref_sink (bar->priv->adjustment);
         g_signal_connect (bar->priv->adjustment,
                           "value-changed",
