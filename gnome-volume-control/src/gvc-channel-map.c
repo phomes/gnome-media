@@ -97,10 +97,21 @@ gvc_channel_map_can_fade (GvcChannelMap  *map)
         return map->priv->can_fade;
 }
 
+const char *
+gvc_channel_map_get_mapping (GvcChannelMap  *map)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
+
+        if (!pa_channel_map_valid(&map->priv->pa_map))
+                return NULL;
+
+        return pa_channel_map_to_pretty_name (&map->priv->pa_map);
+}
+
 const pa_channel_map *
 gvc_channel_map_get_pa_channel_map (GvcChannelMap  *map)
 {
-        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
+        g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), NULL);
 
         if (!pa_channel_map_valid(&map->priv->pa_map))
                 return NULL;

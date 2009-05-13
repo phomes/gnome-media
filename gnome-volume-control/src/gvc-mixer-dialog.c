@@ -80,6 +80,7 @@ enum {
         DEVICE_COLUMN,
         ACTIVE_COLUMN,
         ID_COLUMN,
+        SPEAKERS_COLUMN,
         NUM_COLUMNS
 };
 
@@ -740,17 +741,20 @@ add_stream (GvcMixerDialog *dialog,
                                     ID_COLUMN, gvc_mixer_stream_get_id (stream),
                                     -1);
         } else if (GVC_IS_MIXER_SINK (stream)) {
-                GtkTreeModel *model;
-                GtkTreeIter   iter;
+                GtkTreeModel  *model;
+                GtkTreeIter    iter;
+                GvcChannelMap *map;
 
                 model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+                map = gvc_mixer_stream_get_channel_map (stream);
                 gtk_list_store_set (GTK_LIST_STORE (model),
                                     &iter,
                                     NAME_COLUMN, gvc_mixer_stream_get_description (stream),
                                     DEVICE_COLUMN, "",
                                     ACTIVE_COLUMN, is_default,
                                     ID_COLUMN, gvc_mixer_stream_get_id (stream),
+                                    SPEAKERS_COLUMN, gvc_channel_map_get_mapping (map),
                                     -1);
         }
 
@@ -963,6 +967,36 @@ on_output_radio_toggled (GtkCellRendererToggle *renderer,
         }
 }
 
+static void
+name_to_text (GtkTreeViewColumn *column,
+              GtkCellRenderer *cell,
+              GtkTreeModel *model,
+              GtkTreeIter *iter,
+              gpointer user_data)
+{
+        char *name, *mapping;
+
+        gtk_tree_model_get(model, iter,
+                           NAME_COLUMN, &name,
+                           SPEAKERS_COLUMN, &mapping,
+                           -1);
+
+        if (mapping == NULL) {
+                g_object_set (cell, "text", name, NULL);
+        } else {
+                char *str;
+
+                str = g_strdup_printf ("%s\n\t<i>%s</i>",
+                                       name, mapping);
+                g_object_set (cell, "markup", str, NULL);
+                g_free (str);
+        }
+
+        g_free (name);
+        g_free (mapping);
+}
+
+
 static GtkWidget *
 create_stream_treeview (GvcMixerDialog *dialog,
                         GCallback       on_toggled)
@@ -979,7 +1013,8 @@ create_stream_treeview (GvcMixerDialog *dialog,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_BOOLEAN,
-                                    G_TYPE_UINT);
+                                    G_TYPE_UINT,
+                                    G_TYPE_STRING);
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (store));
 
@@ -996,20 +1031,18 @@ create_stream_treeview (GvcMixerDialog *dialog,
                           G_CALLBACK (on_toggled),
                           dialog);
 
-        renderer = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes (_("Name"),
-                                                           renderer,
-                                                           "text", NAME_COLUMN,
-                                                           NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+        gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (treeview), -1,
+                                                    _("Name"), gtk_cell_renderer_text_new (),
+                                                    name_to_text, NULL, NULL);
 
+#if 0
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Device"),
                                                            renderer,
                                                            "text", DEVICE_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-
+#endif
         return treeview;
 }
 

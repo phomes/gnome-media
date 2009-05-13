@@ -64,6 +64,7 @@ gboolean                gvc_channel_map_can_fade                (GvcChannelMap  
 
 void                    gvc_channel_map_volume_changed          (GvcChannelMap    *map,
                                                                  const pa_cvolume *cv);
+const char *            gvc_channel_map_get_mapping             (GvcChannelMap  *map);
 
 /* private */
 const pa_cvolume *      gvc_channel_map_get_cvolume_for_volumes (GvcChannelMap  *map,
