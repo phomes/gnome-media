@@ -414,6 +414,8 @@ on_mixer_control_default_source_changed (GvcMixerControl *control,
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (dialog->priv->input_bar)));
         g_signal_handlers_disconnect_by_func(adj, on_adjustment_value_changed, dialog);
         bar_set_stream (dialog, dialog->priv->input_bar, stream);
+        gvc_channel_bar_set_base_volume (GVC_CHANNEL_BAR (dialog->priv->input_bar),
+                                         gvc_mixer_stream_get_base_volume (stream));
         gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (dialog->priv->input_bar),
                                           gvc_mixer_stream_get_can_decibel (stream));
         g_signal_connect (adj,
@@ -704,6 +706,8 @@ add_stream (GvcMixerDialog *dialog,
                 adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
                 g_signal_handlers_disconnect_by_func(adj, on_adjustment_value_changed, dialog);
 
+                gvc_channel_bar_set_base_volume (GVC_CHANNEL_BAR (dialog->priv->input_bar),
+                                                 gvc_mixer_stream_get_base_volume (stream));
                 gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (bar),
                                                   gvc_mixer_stream_get_can_decibel (stream));
 

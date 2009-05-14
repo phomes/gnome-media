@@ -50,6 +50,7 @@ struct GvcMixerStreamPrivate
         gboolean       is_muted;
         gboolean       can_decibel;
         gboolean       is_event_stream;
+        guint32        base_volume;
 };
 
 enum
@@ -341,6 +342,25 @@ gvc_mixer_stream_set_icon_name (GvcMixerStream *stream,
         return TRUE;
 }
 
+guint32
+gvc_mixer_stream_get_base_volume (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), 0);
+
+        return stream->priv->base_volume;
+}
+
+gboolean
+gvc_mixer_stream_set_base_volume (GvcMixerStream *stream,
+                                  guint32         base_volume)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        stream->priv->base_volume = base_volume;
+
+        return TRUE;
+}
+
 static void
 gvc_mixer_stream_set_property (GObject       *object,
                                guint          prop_id,
@@ -619,7 +639,6 @@ static void
 gvc_mixer_stream_init (GvcMixerStream *stream)
 {
         stream->priv = GVC_MIXER_STREAM_GET_PRIVATE (stream);
-
 }
 
 static void

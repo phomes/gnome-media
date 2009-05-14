@@ -66,6 +66,7 @@ guint               gvc_mixer_stream_get_volume      (GvcMixerStream *stream);
 gdouble             gvc_mixer_stream_get_decibel     (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_change_volume   (GvcMixerStream *stream,
                                                       guint           volume);
+guint32             gvc_mixer_stream_get_base_volume (GvcMixerStream *stream);
 
 gboolean            gvc_mixer_stream_get_is_muted    (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_get_can_decibel (GvcMixerStream *stream);
@@ -97,6 +98,8 @@ gboolean            gvc_mixer_stream_set_is_event_stream (GvcMixerStream *stream
                                                           gboolean is_event_stream);
 gboolean            gvc_mixer_stream_set_application_id (GvcMixerStream *stream,
                                                          const char *application_id);
+gboolean            gvc_mixer_stream_set_base_volume (GvcMixerStream *stream,
+                                                      guint32         base_volume);
 
 G_END_DECLS
 
