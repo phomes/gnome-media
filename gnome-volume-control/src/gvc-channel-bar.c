@@ -63,7 +63,7 @@ struct GvcChannelBarPrivate
         gboolean       symmetric;
         gboolean       click_lock;
         gboolean       is_amplified;
-        double         base_volume;
+        guint32        base_volume;
 };
 
 enum
@@ -601,12 +601,14 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
 
 void
 gvc_channel_bar_set_base_volume (GvcChannelBar *bar,
-                                 double         base_volume)
+                                 guint32        base_volume)
 {
         g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
 
-        if (base_volume == 0)
+        if (base_volume == 0) {
                 bar->priv->base_volume = ADJUSTMENT_MAX_NORMAL;
+                return;
+	}
 
         /* Note that you need to call _is_amplified() afterwards to update the marks */
         bar->priv->base_volume = base_volume;

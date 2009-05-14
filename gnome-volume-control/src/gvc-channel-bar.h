@@ -76,7 +76,7 @@ void                gvc_channel_bar_set_size_group      (GvcChannelBar *bar,
 void                gvc_channel_bar_set_is_amplified    (GvcChannelBar *bar,
                                                          gboolean amplified);
 void                gvc_channel_bar_set_base_volume     (GvcChannelBar *bar,
-                                                         double         base_volume);
+                                                         guint32        base_volume);
 
 gboolean            gvc_channel_bar_scroll              (GvcChannelBar *bar,
                                                          GdkScrollDirection direction);
