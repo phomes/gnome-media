@@ -133,7 +133,7 @@ gvc_mixer_control_stream_restore_cb (pa_context *c,
 
         if (o == NULL) {
                 g_warning ("pa_ext_stream_restore_write() failed: %s",
-                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
+                           pa_strerror (pa_context_errno (control->priv->pa_context)));
                 return;
         }
 
@@ -157,7 +157,7 @@ gvc_mixer_control_set_default_sink (GvcMixerControl *control,
                                          NULL);
         if (o == NULL) {
                 g_warning ("pa_context_set_default_sink() failed: %s",
-                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
+                           pa_strerror (pa_context_errno (control->priv->pa_context)));
                 return FALSE;
         }
 
@@ -173,7 +173,7 @@ gvc_mixer_control_set_default_sink (GvcMixerControl *control,
 
         if (o == NULL) {
                 g_warning ("pa_ext_stream_restore_read() failed: %s",
-                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
+                           pa_strerror (pa_context_errno (control->priv->pa_context)));
                 return FALSE;
         }
 
@@ -1045,8 +1045,16 @@ update_event_role_stream (GvcMixerControl                  *control,
         is_new = FALSE;
 
         if (!control->priv->event_sink_input_is_set) {
+                pa_channel_map pa_map;
+                GvcChannelMap *map;
+
+                pa_map.channels = 1;
+                pa_map.map[0] = PA_CHANNEL_POSITION_MONO;
+                map = gvc_channel_map_new_from_pa_channel_map (&pa_map);
+
                 stream = gvc_mixer_event_role_new (control->priv->pa_context,
-                                                   info->device);
+                                                   info->device,
+                                                   map);
                 control->priv->event_sink_input_id = gvc_mixer_stream_get_id (stream);
                 control->priv->event_sink_input_is_set = TRUE;
 

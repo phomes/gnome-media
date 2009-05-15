@@ -221,7 +221,8 @@ gvc_mixer_event_role_finalize (GObject *object)
 
 GvcMixerStream *
 gvc_mixer_event_role_new (pa_context *context,
-                          const char *device)
+                          const char *device,
+                          GvcChannelMap *channel_map)
 {
         GObject *object;
 
@@ -229,6 +230,7 @@ gvc_mixer_event_role_new (pa_context *context,
                                "pa-context", context,
                                "index", 0,
                                "device", device,
+                               "channel-map", channel_map,
                                NULL);
 
         return GVC_MIXER_STREAM (object);
