@@ -37,7 +37,10 @@ G_BEGIN_DECLS
 typedef enum {
         BALANCE_TYPE_RL,
         BALANCE_TYPE_FR,
+        BALANCE_TYPE_LFE,
 } GvcBalanceType;
+
+#define NUM_BALANCE_TYPES BALANCE_TYPE_LFE + 1
 
 typedef struct GvcBalanceBarPrivate GvcBalanceBarPrivate;
 

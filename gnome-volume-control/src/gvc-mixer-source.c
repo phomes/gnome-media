@@ -45,21 +45,21 @@ static void     gvc_mixer_source_finalize   (GObject            *object);
 G_DEFINE_TYPE (GvcMixerSource, gvc_mixer_source, GVC_TYPE_MIXER_STREAM)
 
 static gboolean
-gvc_mixer_source_change_volume (GvcMixerStream *stream,
-                              guint           volume)
+gvc_mixer_source_push_volume (GvcMixerStream *stream)
 {
         pa_operation      *o;
         guint              index;
         GvcChannelMap     *map;
         pa_context        *context;
         const pa_cvolume  *cv;
+        GvcMixerSource    *source = GVC_MIXER_SOURCE (stream);
 
         index = gvc_mixer_stream_get_index (stream);
 
         map = gvc_mixer_stream_get_channel_map (stream);
 
         /* set the volume */
-        cv = gvc_channel_map_get_cvolume_for_volumes (map, volume);
+        cv = gvc_channel_map_get_cvolume (map);
 
         context = gvc_mixer_stream_get_pa_context (stream);
 
@@ -130,7 +130,7 @@ gvc_mixer_source_class_init (GvcMixerSourceClass *klass)
         object_class->constructor = gvc_mixer_source_constructor;
         object_class->finalize = gvc_mixer_source_finalize;
 
-        stream_class->change_volume = gvc_mixer_source_change_volume;
+        stream_class->push_volume = gvc_mixer_source_push_volume;
         stream_class->change_is_muted = gvc_mixer_source_change_is_muted;
 
         g_type_class_add_private (klass, sizeof (GvcMixerSourcePrivate));

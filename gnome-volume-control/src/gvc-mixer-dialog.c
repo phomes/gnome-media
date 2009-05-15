@@ -64,6 +64,7 @@ struct GvcMixerDialogPrivate
         GtkWidget       *output_settings_box;
         GtkWidget       *output_balance_bar;
         GtkWidget       *output_fade_bar;
+        GtkWidget       *output_lfe_bar;
         GtkWidget       *input_treeview;
         GtkWidget       *sound_theme_chooser;
         GtkWidget       *click_feedback_button;
@@ -145,6 +146,7 @@ update_output_settings (GvcMixerDialog *dialog)
 {
         GvcMixerStream *stream;
         GvcChannelMap  *map;
+        guint           num_settings;
 
         g_debug ("Updating output settings");
         if (dialog->priv->output_balance_bar != NULL) {
@@ -156,6 +158,11 @@ update_output_settings (GvcMixerDialog *dialog)
                 gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
                                       dialog->priv->output_fade_bar);
                 dialog->priv->output_fade_bar = NULL;
+        }
+        if (dialog->priv->output_lfe_bar != NULL) {
+                gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
+                                      dialog->priv->output_lfe_bar);
+                dialog->priv->output_lfe_bar = NULL;
         }
 
         stream = gvc_mixer_control_get_default_sink (dialog->priv->mixer_control);
@@ -180,6 +187,7 @@ update_output_settings (GvcMixerDialog *dialog)
                             dialog->priv->output_balance_bar,
                             FALSE, FALSE, 12);
         gtk_widget_show (dialog->priv->output_balance_bar);
+        num_settings = 1;
 
         if (gvc_channel_map_can_fade (map)) {
                 dialog->priv->output_fade_bar = gvc_balance_bar_new (map, BALANCE_TYPE_FR);
@@ -192,9 +200,24 @@ update_output_settings (GvcMixerDialog *dialog)
                                     dialog->priv->output_fade_bar,
                                     FALSE, FALSE, 12);
                 gtk_widget_show (dialog->priv->output_fade_bar);
+                num_settings++;
         }
 
-        /* We could make this into a "No settings" label instead */
+        if (gvc_channel_map_has_lfe (map)) {
+                dialog->priv->output_lfe_bar = gvc_balance_bar_new (map, BALANCE_TYPE_LFE);
+                if (dialog->priv->size_group != NULL) {
+                        gvc_balance_bar_set_size_group (GVC_BALANCE_BAR (dialog->priv->output_lfe_bar),
+                                                        dialog->priv->size_group,
+                                                        TRUE);
+                }
+                gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
+                                    dialog->priv->output_lfe_bar,
+                                    FALSE, FALSE, 12);
+                gtk_widget_show (dialog->priv->output_lfe_bar);
+                num_settings++;
+        }
+
+        /* FIXME: We could make this into a "No settings" label instead */
         gtk_widget_set_sensitive (dialog->priv->output_balance_bar, gvc_channel_map_can_balance (map));
 }
 
@@ -514,7 +537,7 @@ on_adjustment_value_changed (GtkAdjustment  *adjustment,
         stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream"),
         volume = gtk_adjustment_get_value (adjustment);
         if (stream != NULL) {
-                gvc_mixer_stream_change_volume (stream, (guint)volume);
+                gvc_mixer_stream_set_volume(stream, (pa_volume_t) volume );
         }
 }
 

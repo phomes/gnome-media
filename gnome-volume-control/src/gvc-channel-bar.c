@@ -24,6 +24,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <pulse/pulseaudio.h>
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

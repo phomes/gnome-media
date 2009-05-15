@@ -51,7 +51,10 @@ enum {
         VOLUME,
         BALANCE,
         FADE,
+        LFE,
 };
+
+#define NUM_TYPES LFE + 1
 
 GType                   gvc_channel_map_get_type                (void);
 
@@ -61,14 +64,14 @@ guint                   gvc_channel_map_get_num_channels        (GvcChannelMap  
 const gdouble *         gvc_channel_map_get_volume              (GvcChannelMap  *map);
 gboolean                gvc_channel_map_can_balance             (GvcChannelMap  *map);
 gboolean                gvc_channel_map_can_fade                (GvcChannelMap  *map);
+gboolean                gvc_channel_map_has_lfe                 (GvcChannelMap  *map);
 
 void                    gvc_channel_map_volume_changed          (GvcChannelMap    *map,
                                                                  const pa_cvolume *cv);
 const char *            gvc_channel_map_get_mapping             (GvcChannelMap  *map);
 
 /* private */
-const pa_cvolume *      gvc_channel_map_get_cvolume_for_volumes (GvcChannelMap  *map,
-                                                                 int             volume);
+const pa_cvolume *      gvc_channel_map_get_cvolume             (GvcChannelMap  *map);
 const pa_channel_map *  gvc_channel_map_get_pa_channel_map      (GvcChannelMap  *map);
 G_END_DECLS
 

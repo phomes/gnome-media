@@ -46,8 +46,7 @@ static void     gvc_mixer_sink_dispose    (GObject           *object);
 G_DEFINE_TYPE (GvcMixerSink, gvc_mixer_sink, GVC_TYPE_MIXER_STREAM)
 
 static gboolean
-gvc_mixer_sink_change_volume (GvcMixerStream *stream,
-                              guint           volume)
+gvc_mixer_sink_push_volume (GvcMixerStream *stream)
 {
         pa_operation      *o;
         guint              index;
@@ -60,10 +59,8 @@ gvc_mixer_sink_change_volume (GvcMixerStream *stream,
 
         map = gvc_mixer_stream_get_channel_map (stream);
 
-        g_debug ("Changing volume for sink: vol=%u", (guint)volume);
-
         /* set the volume */
-        cv = gvc_channel_map_get_cvolume_for_volumes (map, volume);
+        cv = gvc_channel_map_get_cvolume(map);
 
         context = gvc_mixer_stream_get_pa_context (stream);
 
@@ -135,7 +132,7 @@ gvc_mixer_sink_constructor (GType                  type,
                             guint                  n_construct_properties,
                             GObjectConstructParam *construct_params)
 {
-        GObject       *object;
+        GObject      *object;
         GvcMixerSink *self;
 
         object = G_OBJECT_CLASS (gvc_mixer_sink_parent_class)->constructor (type, n_construct_properties, construct_params);
@@ -155,7 +152,7 @@ gvc_mixer_sink_class_init (GvcMixerSinkClass *klass)
         object_class->dispose = gvc_mixer_sink_dispose;
         object_class->finalize = gvc_mixer_sink_finalize;
 
-        stream_class->change_volume = gvc_mixer_sink_change_volume;
+        stream_class->push_volume = gvc_mixer_sink_push_volume;
         stream_class->change_is_muted = gvc_mixer_sink_change_is_muted;
         stream_class->is_running = gvc_mixer_sink_is_running;
 
@@ -166,7 +163,6 @@ static void
 gvc_mixer_sink_init (GvcMixerSink *sink)
 {
         sink->priv = GVC_MIXER_SINK_GET_PRIVATE (sink);
-
 }
 
 static void

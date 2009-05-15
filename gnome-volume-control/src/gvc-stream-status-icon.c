@@ -67,8 +67,9 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
         gdouble volume;
 
         volume = gtk_adjustment_get_value (adjustment);
-        gvc_mixer_stream_change_volume (icon->priv->mixer_stream,
-                                        (guint)volume);
+
+        gvc_mixer_stream_set_volume(icon->priv->mixer_stream,
+                                    (pa_volume_t) volume );
 }
 
 static gboolean

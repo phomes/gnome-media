@@ -48,8 +48,7 @@ typedef struct
         GObjectClass           parent_class;
 
         /* vtable */
-        gboolean (*change_volume)   (GvcMixerStream *stream,
-                                     guint           volume);
+        gboolean (*push_volume)   (GvcMixerStream *stream);
         gboolean (*change_is_muted) (GvcMixerStream *stream,
                                      gboolean        is_muted);
         gboolean (*is_running)      (GvcMixerStream *stream);
@@ -64,9 +63,8 @@ GvcChannelMap *     gvc_mixer_stream_get_channel_map (GvcMixerStream *stream);
 
 guint               gvc_mixer_stream_get_volume      (GvcMixerStream *stream);
 gdouble             gvc_mixer_stream_get_decibel     (GvcMixerStream *stream);
-gboolean            gvc_mixer_stream_change_volume   (GvcMixerStream *stream,
-                                                      guint           volume);
-guint32             gvc_mixer_stream_get_base_volume (GvcMixerStream *stream);
+gboolean            gvc_mixer_stream_push_volume     (GvcMixerStream *stream);
+pa_volume_t         gvc_mixer_stream_get_base_volume (GvcMixerStream *stream);
 
 gboolean            gvc_mixer_stream_get_is_muted    (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_get_can_decibel (GvcMixerStream *stream);

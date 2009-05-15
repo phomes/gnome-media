@@ -45,8 +45,7 @@ static void     gvc_mixer_sink_input_finalize   (GObject            *object);
 G_DEFINE_TYPE (GvcMixerSinkInput, gvc_mixer_sink_input, GVC_TYPE_MIXER_STREAM)
 
 static gboolean
-gvc_mixer_sink_input_change_volume (GvcMixerStream *stream,
-                                    guint           volume)
+gvc_mixer_sink_input_push_volume (GvcMixerStream *stream)
 {
         pa_operation      *o;
         guint              index;
@@ -60,8 +59,7 @@ gvc_mixer_sink_input_change_volume (GvcMixerStream *stream,
         map = gvc_mixer_stream_get_channel_map (stream);
         num_channels = gvc_channel_map_get_num_channels (map);
 
-        /* set the volume */
-        cv = gvc_channel_map_get_cvolume_for_volumes (map, volume);
+        cv = gvc_channel_map_get_cvolume(map);
 
         context = gvc_mixer_stream_get_pa_context (stream);
 
@@ -132,7 +130,7 @@ gvc_mixer_sink_input_class_init (GvcMixerSinkInputClass *klass)
         object_class->constructor = gvc_mixer_sink_input_constructor;
         object_class->finalize = gvc_mixer_sink_input_finalize;
 
-        stream_class->change_volume = gvc_mixer_sink_input_change_volume;
+        stream_class->push_volume = gvc_mixer_sink_input_push_volume;
         stream_class->change_is_muted = gvc_mixer_sink_input_change_is_muted;
 
         g_type_class_add_private (klass, sizeof (GvcMixerSinkInputPrivate));
