@@ -35,12 +35,13 @@
 
 struct GvcMixerSourcePrivate
 {
-        gpointer dummy;
+        pa_operation *change_volume_op;
 };
 
 static void     gvc_mixer_source_class_init (GvcMixerSourceClass *klass);
 static void     gvc_mixer_source_init       (GvcMixerSource      *mixer_source);
 static void     gvc_mixer_source_finalize   (GObject            *object);
+static void     gvc_mixer_source_dispose    (GObject           *object);
 
 G_DEFINE_TYPE (GvcMixerSource, gvc_mixer_source, GVC_TYPE_MIXER_STREAM)
 
@@ -74,7 +75,10 @@ gvc_mixer_source_push_volume (GvcMixerStream *stream)
                 return FALSE;
         }
 
-        pa_operation_unref(o);
+        if (source->priv->change_volume_op != NULL)
+                pa_operation_unref (source->priv->change_volume_op);
+
+        source->priv->change_volume_op = o;
 
         return TRUE;
 }
@@ -106,12 +110,29 @@ gvc_mixer_source_change_is_muted (GvcMixerStream *stream,
         return TRUE;
 }
 
+static gboolean
+gvc_mixer_source_is_running (GvcMixerStream *stream)
+{
+        GvcMixerSource *source = GVC_MIXER_SOURCE (stream);
+
+        if (source->priv->change_volume_op == NULL)
+                return FALSE;
+
+        if ((pa_operation_get_state(source->priv->change_volume_op) == PA_OPERATION_RUNNING))
+                return TRUE;
+
+        pa_operation_unref(source->priv->change_volume_op);
+        source->priv->change_volume_op = NULL;
+
+        return FALSE;
+}
+
 static GObject *
 gvc_mixer_source_constructor (GType                  type,
                             guint                  n_construct_properties,
                             GObjectConstructParam *construct_params)
 {
-        GObject       *object;
+        GObject        *object;
         GvcMixerSource *self;
 
         object = G_OBJECT_CLASS (gvc_mixer_source_parent_class)->constructor (type, n_construct_properties, construct_params);
@@ -128,10 +149,12 @@ gvc_mixer_source_class_init (GvcMixerSourceClass *klass)
         GvcMixerStreamClass *stream_class = GVC_MIXER_STREAM_CLASS (klass);
 
         object_class->constructor = gvc_mixer_source_constructor;
+        object_class->dispose = gvc_mixer_source_dispose;
         object_class->finalize = gvc_mixer_source_finalize;
 
         stream_class->push_volume = gvc_mixer_source_push_volume;
         stream_class->change_is_muted = gvc_mixer_source_change_is_muted;
+        stream_class->is_running = gvc_mixer_source_is_running;
 
         g_type_class_add_private (klass, sizeof (GvcMixerSourcePrivate));
 }
@@ -140,7 +163,24 @@ static void
 gvc_mixer_source_init (GvcMixerSource *source)
 {
         source->priv = GVC_MIXER_SOURCE_GET_PRIVATE (source);
+}
 
+static void
+gvc_mixer_source_dispose (GObject *object)
+{
+        GvcMixerSource *mixer_source;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GVC_IS_MIXER_SOURCE (object));
+
+        mixer_source = GVC_MIXER_SOURCE (object);
+
+        if (mixer_source->priv->change_volume_op) {
+                pa_operation_unref(mixer_source->priv->change_volume_op);
+                mixer_source->priv->change_volume_op = NULL;
+        }
+
+        G_OBJECT_CLASS (gvc_mixer_source_parent_class)->dispose (object);
 }
 
 static void

@@ -594,6 +594,10 @@ update_source (GvcMixerControl      *control,
                                                map);
                 g_object_unref (map);
                 is_new = TRUE;
+        } else if (gvc_mixer_stream_is_running (stream)) {
+                /* Ignore events if volume changes are outstanding */
+                g_debug ("Ignoring event, volume changes are outstanding");
+                return;
         }
 
         max_volume = pa_cvolume_max (&info->volume);
@@ -730,6 +734,10 @@ update_sink_input (GvcMixerControl          *control,
                                                    map);
                 g_object_unref (map);
                 is_new = TRUE;
+        } else if (gvc_mixer_stream_is_running (stream)) {
+                /* Ignore events if volume changes are outstanding */
+                g_debug ("Ignoring event, volume changes are outstanding");
+                return;
         }
 
         max_volume = pa_cvolume_max (&info->volume);
