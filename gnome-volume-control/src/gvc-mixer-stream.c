@@ -49,6 +49,7 @@ struct GvcMixerStreamPrivate
         gboolean       can_decibel;
         gboolean       is_event_stream;
         pa_volume_t    base_volume;
+        pa_operation  *change_volume_op;
 };
 
 enum
@@ -501,7 +502,7 @@ gvc_mixer_stream_constructor (GType                  type,
 }
 
 static gboolean
-gvc_mixer_stream_real_push_volume (GvcMixerStream *stream)
+gvc_mixer_stream_real_push_volume (GvcMixerStream *stream, gpointer *op)
 {
         return FALSE;
 }
@@ -516,9 +517,15 @@ gvc_mixer_stream_real_change_is_muted (GvcMixerStream *stream,
 gboolean
 gvc_mixer_stream_push_volume (GvcMixerStream *stream)
 {
+	pa_operation *op;
         gboolean ret;
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
-        ret = GVC_MIXER_STREAM_GET_CLASS (stream)->push_volume (stream);
+        ret = GVC_MIXER_STREAM_GET_CLASS (stream)->push_volume (stream, (gpointer *) &op);
+        if (ret) {
+        	if (stream->priv->change_volume_op != NULL)
+        		pa_operation_unref (stream->priv->change_volume_op);
+        	stream->priv->change_volume_op = op;
+	}
         return ret;
 }
 
@@ -535,8 +542,15 @@ gvc_mixer_stream_change_is_muted (GvcMixerStream *stream,
 gboolean
 gvc_mixer_stream_is_running (GvcMixerStream *stream)
 {
-        if (GVC_MIXER_STREAM_GET_CLASS (stream)->is_running != NULL)
-                return GVC_MIXER_STREAM_GET_CLASS (stream)->is_running (stream);
+        if (stream->priv->change_volume_op == NULL)
+                return FALSE;
+
+        if ((pa_operation_get_state(stream->priv->change_volume_op) == PA_OPERATION_RUNNING))
+                return TRUE;
+
+        pa_operation_unref(stream->priv->change_volume_op);
+        stream->priv->change_volume_op = NULL;
+
         return FALSE;
 }
 
@@ -676,6 +690,11 @@ gvc_mixer_stream_finalize (GObject *object)
 
         g_free (mixer_stream->priv->icon_name);
         mixer_stream->priv->icon_name = NULL;
+
+       if (mixer_stream->priv->change_volume_op) {
+               pa_operation_unref(mixer_stream->priv->change_volume_op);
+               mixer_stream->priv->change_volume_op = NULL;
+       }
 
         G_OBJECT_CLASS (gvc_mixer_stream_parent_class)->finalize (object);
 }

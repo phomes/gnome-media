@@ -45,9 +45,10 @@ static void     gvc_mixer_source_output_finalize   (GObject            *object);
 G_DEFINE_TYPE (GvcMixerSourceOutput, gvc_mixer_source_output, GVC_TYPE_MIXER_STREAM)
 
 static gboolean
-gvc_mixer_source_output_push_volume (GvcMixerStream *stream)
+gvc_mixer_source_output_push_volume (GvcMixerStream *stream, gpointer *op)
 {
         /* FIXME: */
+        *op = NULL;
         return TRUE;
 }
 

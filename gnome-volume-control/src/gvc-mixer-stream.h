@@ -48,10 +48,9 @@ typedef struct
         GObjectClass           parent_class;
 
         /* vtable */
-        gboolean (*push_volume)   (GvcMixerStream *stream);
+        gboolean (*push_volume)   (GvcMixerStream *stream, gpointer *operation);
         gboolean (*change_is_muted) (GvcMixerStream *stream,
                                      gboolean        is_muted);
-        gboolean (*is_running)      (GvcMixerStream *stream);
 } GvcMixerStreamClass;
 
 GType               gvc_mixer_stream_get_type        (void);

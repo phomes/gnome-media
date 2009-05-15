@@ -53,7 +53,8 @@ G_DEFINE_TYPE (GvcMixerEventRole, gvc_mixer_event_role, GVC_TYPE_MIXER_STREAM)
 
 static gboolean
 update_settings (GvcMixerEventRole *role,
-                 gboolean           is_muted)
+                 gboolean           is_muted,
+                 gpointer          *op)
 {
         pa_operation              *o;
         guint                      index;
@@ -86,16 +87,17 @@ update_settings (GvcMixerEventRole *role,
                 return FALSE;
         }
 
-        pa_operation_unref(o);
+	if (op != NULL)
+		*op = o;
 
         return TRUE;
 }
 
 static gboolean
-gvc_mixer_event_role_push_volume (GvcMixerStream *stream)
+gvc_mixer_event_role_push_volume (GvcMixerStream *stream, gpointer *op)
 {
         return update_settings (GVC_MIXER_EVENT_ROLE (stream),
-                                gvc_mixer_stream_get_is_muted (stream));
+                                gvc_mixer_stream_get_is_muted (stream), op);
 }
 
 static gboolean
@@ -103,7 +105,7 @@ gvc_mixer_event_role_change_is_muted (GvcMixerStream *stream,
                                       gboolean        is_muted)
 {
         return update_settings (GVC_MIXER_EVENT_ROLE (stream),
-                                is_muted);
+                                is_muted, NULL);
 }
 
 static gboolean
