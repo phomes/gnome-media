@@ -65,6 +65,8 @@ struct GvcMixerControlPrivate
         GHashTable       *sink_inputs; /* routable output streams */
         GHashTable       *source_outputs; /* routable input streams */
         GHashTable       *clients;
+
+        GvcMixerStream   *new_default_stream; /* new default stream, used in gvc_mixer_control_set_default_sink () */
 };
 
 enum {
@@ -104,6 +106,42 @@ gvc_mixer_control_get_event_sink_input (GvcMixerControl *control)
         return stream;
 }
 
+static void
+gvc_mixer_control_stream_restore_cb (pa_context *c,
+                                     const pa_ext_stream_restore_info *info,
+                                     int eol,
+                                     void *userdata)
+{
+        pa_operation *o;
+        GvcMixerControl *control = (GvcMixerControl *) userdata;
+        pa_ext_stream_restore_info new_info;
+
+        if (eol || control->priv->new_default_stream == NULL)
+                return;
+
+        new_info.name = info->name;
+        new_info.channel_map = info->channel_map;
+        new_info.volume = info->volume;
+        new_info.mute = info->mute;
+
+        new_info.device = gvc_mixer_stream_get_name (control->priv->new_default_stream);
+
+        o = pa_ext_stream_restore_write (control->priv->pa_context,
+                                         PA_UPDATE_REPLACE,
+                                         &new_info, 1,
+                                         TRUE, NULL, NULL);
+
+        if (o == NULL) {
+                g_warning ("pa_ext_stream_restore_write() failed: %s",
+                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
+                return;
+        }
+
+        g_debug ("Changed default device for %s to %s", info->name, info->device);
+
+        pa_operation_unref (o);
+}
+
 gboolean
 gvc_mixer_control_set_default_sink (GvcMixerControl *control,
                                     GvcMixerStream  *stream)
@@ -118,7 +156,24 @@ gvc_mixer_control_set_default_sink (GvcMixerControl *control,
                                          NULL,
                                          NULL);
         if (o == NULL) {
-                g_warning ("pa_context_set_default_sink() failed");
+                g_warning ("pa_context_set_default_sink() failed: %s",
+                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
+                return FALSE;
+        }
+
+        pa_operation_unref (o);
+
+        control->priv->new_default_stream = stream;
+        g_object_weak_ref (G_OBJECT (control->priv->new_default_stream), NULL, NULL);
+        g_object_add_weak_pointer (G_OBJECT (stream), (gpointer *) &control->priv->new_default_stream);
+
+        o = pa_ext_stream_restore_read (control->priv->pa_context,
+                                        gvc_mixer_control_stream_restore_cb,
+                                        control);
+
+        if (o == NULL) {
+                g_warning ("pa_ext_stream_restore_read() failed: %s",
+                	   pa_strerror (pa_context_errno (control->priv->pa_context)));
                 return FALSE;
         }
 
