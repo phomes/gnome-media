@@ -603,7 +603,7 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
 
 void
 gvc_channel_bar_set_base_volume (GvcChannelBar *bar,
-                                 guint32        base_volume)
+                                 pa_volume_t    base_volume)
 {
         g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
 
