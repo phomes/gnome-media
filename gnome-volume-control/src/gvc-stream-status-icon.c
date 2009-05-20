@@ -156,7 +156,7 @@ popup_dock (GvcStreamStatusIcon *icon,
 
         if (gdk_pointer_grab (icon->priv->dock->window, TRUE,
                               GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-                              GDK_POINTER_MOTION_MASK, NULL, NULL,
+                              GDK_POINTER_MOTION_MASK | GDK_SCROLL_MASK, NULL, NULL,
                               time)
             != GDK_GRAB_SUCCESS) {
                 gtk_grab_remove (icon->priv->dock);
@@ -370,6 +370,16 @@ on_dock_key_release (GtkWidget           *widget,
                 gtk_bindings_activate_event (GTK_OBJECT (user_data), event);
         }
 #endif
+        return TRUE;
+}
+
+static gboolean
+on_dock_scroll_event (GtkWidget           *widget,
+                      GdkEventScroll      *event,
+                      GvcStreamStatusIcon *icon)
+{
+        /* Forward event to the status icon */
+        on_status_icon_scroll_event (NULL, event, icon);
         return TRUE;
 }
 
@@ -637,6 +647,10 @@ gvc_stream_status_icon_constructor (GType                  type,
         g_signal_connect (icon->priv->dock,
                           "key-release-event",
                           G_CALLBACK (on_dock_key_release),
+                          icon);
+        g_signal_connect (icon->priv->dock,
+                          "scroll-event",
+                          G_CALLBACK (on_dock_scroll_event),
                           icon);
         g_signal_connect (icon->priv->dock,
                           "grab-notify",
