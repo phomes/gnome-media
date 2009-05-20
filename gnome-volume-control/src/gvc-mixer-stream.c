@@ -600,7 +600,7 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                                              "Volume",
                                                              "The volume for this stream",
                                                              0, G_MAXULONG, 0,
-                                                             G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+                                                             G_PARAM_READWRITE));
         g_object_class_install_property (gobject_class,
                                          PROP_DECIBEL,
                                          g_param_spec_double ("decibel",
