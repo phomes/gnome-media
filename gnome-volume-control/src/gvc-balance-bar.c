@@ -131,7 +131,9 @@ _scale_box_new (GvcBalanceBar *bar)
                 gtk_scale_add_mark (GTK_SCALE (priv->scale),
                                     (adjustment->upper - adjustment->lower)/2 + adjustment->lower,
                                     GTK_POS_BOTTOM, NULL);
-        }
+        } else {
+                gtk_scale_set_digits (GTK_SCALE (bar->priv->scale), 0);
+	}
 
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
@@ -275,7 +277,6 @@ gvc_balance_bar_set_balance_type (GvcBalanceBar *bar,
                                                                             ADJUSTMENT_MAX_NORMAL/100.0,
                                                                             ADJUSTMENT_MAX_NORMAL/10.0,
                                                                             0.0));
-                gtk_scale_set_digits (GTK_SCALE (bar->priv->scale), 0);
         }
 
         g_object_ref_sink (bar->priv->adjustment);
