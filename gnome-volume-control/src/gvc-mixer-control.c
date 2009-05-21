@@ -164,7 +164,6 @@ gvc_mixer_control_set_default_sink (GvcMixerControl *control,
         pa_operation_unref (o);
 
         control->priv->new_default_stream = stream;
-        g_object_weak_ref (G_OBJECT (control->priv->new_default_stream), NULL, NULL);
         g_object_add_weak_pointer (G_OBJECT (stream), (gpointer *) &control->priv->new_default_stream);
 
         o = pa_ext_stream_restore_read (control->priv->pa_context,
