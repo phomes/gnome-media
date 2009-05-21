@@ -157,6 +157,7 @@ _scale_box_new (GvcChannelBar *bar)
         }
 
         gtk_range_set_update_policy (GTK_RANGE (priv->scale), GTK_UPDATE_CONTINUOUS);
+        gtk_scale_set_digits (GTK_SCALE (priv->scale), 0);
         ca_gtk_widget_disable_sounds (bar->priv->scale, FALSE);
         gtk_widget_add_events (bar->priv->scale, GDK_SCROLL_MASK);
 

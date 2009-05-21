@@ -275,6 +275,7 @@ gvc_balance_bar_set_balance_type (GvcBalanceBar *bar,
                                                                             ADJUSTMENT_MAX_NORMAL/100.0,
                                                                             ADJUSTMENT_MAX_NORMAL/10.0,
                                                                             0.0));
+                gtk_scale_set_digits (GTK_SCALE (bar->priv->scale), 0);
         }
 
         g_object_ref_sink (bar->priv->adjustment);
