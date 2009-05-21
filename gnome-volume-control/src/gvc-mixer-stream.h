@@ -75,6 +75,7 @@ const char *        gvc_mixer_stream_get_icon_name   (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_description (GvcMixerStream *stream);
 const char *        gvc_mixer_stream_get_application_id (GvcMixerStream *stream);
 gboolean            gvc_mixer_stream_is_event_stream (GvcMixerStream *stream);
+gboolean            gvc_mixer_stream_is_virtual      (GvcMixerStream *stream);
 
 /* private */
 gboolean            gvc_mixer_stream_set_volume      (GvcMixerStream *stream,
@@ -93,6 +94,8 @@ gboolean            gvc_mixer_stream_set_icon_name   (GvcMixerStream *stream,
                                                       const char     *name);
 gboolean            gvc_mixer_stream_set_is_event_stream (GvcMixerStream *stream,
                                                           gboolean is_event_stream);
+gboolean            gvc_mixer_stream_set_is_virtual  (GvcMixerStream *stream,
+                                                      gboolean is_event_stream);
 gboolean            gvc_mixer_stream_set_application_id (GvcMixerStream *stream,
                                                          const char *application_id);
 gboolean            gvc_mixer_stream_set_base_volume (GvcMixerStream *stream,

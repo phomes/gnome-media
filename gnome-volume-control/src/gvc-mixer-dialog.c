@@ -741,6 +741,7 @@ add_stream (GvcMixerDialog *dialog,
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)
                    && !gvc_mixer_stream_is_event_stream (stream)
+                   && !gvc_mixer_stream_is_virtual (stream)
                    && g_strcmp0 (id, "org.gnome.VolumeControl") != 0
                    && g_strcmp0 (id, "org.PulseAudio.pavucontrol") != 0) {
                 bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);

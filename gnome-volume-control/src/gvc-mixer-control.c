@@ -806,6 +806,7 @@ update_sink_input (GvcMixerControl          *control,
         set_icon_name_from_proplist (stream, info->proplist, "applications-multimedia");
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+        gvc_mixer_stream_set_is_virtual (stream, info->client == PA_INVALID_INDEX);
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sink_inputs,

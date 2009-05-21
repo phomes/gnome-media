@@ -48,6 +48,7 @@ struct GvcMixerStreamPrivate
         gboolean       is_muted;
         gboolean       can_decibel;
         gboolean       is_event_stream;
+        gboolean       is_virtual;
         pa_volume_t    base_volume;
         pa_operation  *change_volume_op;
 };
@@ -68,6 +69,7 @@ enum
         PROP_IS_MUTED,
         PROP_CAN_DECIBEL,
         PROP_IS_EVENT_STREAM,
+        PROP_IS_VIRTUAL,
 };
 
 static void     gvc_mixer_stream_class_init (GvcMixerStreamClass *klass);
@@ -275,6 +277,26 @@ gvc_mixer_stream_set_is_event_stream (GvcMixerStream *stream,
         return TRUE;
 }
 
+gboolean
+gvc_mixer_stream_is_virtual (GvcMixerStream *stream)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        return stream->priv->is_virtual;
+}
+
+gboolean
+gvc_mixer_stream_set_is_virtual (GvcMixerStream *stream,
+                                 gboolean is_virtual)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+
+        stream->priv->is_virtual = is_virtual;
+        g_object_notify (G_OBJECT (stream), "is-virtual");
+
+        return TRUE;
+}
+
 const char *
 gvc_mixer_stream_get_application_id (GvcMixerStream *stream)
 {
@@ -419,6 +441,9 @@ gvc_mixer_stream_set_property (GObject       *object,
         case PROP_IS_EVENT_STREAM:
                 gvc_mixer_stream_set_is_event_stream (self, g_value_get_boolean (value));
                 break;
+        case PROP_IS_VIRTUAL:
+                gvc_mixer_stream_set_is_virtual (self, g_value_get_boolean (value));
+                break;
         case PROP_CAN_DECIBEL:
                 gvc_mixer_stream_set_can_decibel (self, g_value_get_boolean (value));
                 break;
@@ -475,6 +500,9 @@ gvc_mixer_stream_get_property (GObject     *object,
         case PROP_IS_EVENT_STREAM:
                 g_value_set_boolean (value, self->priv->is_event_stream);
                 break;
+        case PROP_IS_VIRTUAL:
+                g_value_set_boolean (value, self->priv->is_virtual);
+                break;
         case PROP_CAN_DECIBEL:
                 g_value_set_boolean (value, self->priv->can_decibel);
                 break;
@@ -517,15 +545,15 @@ gvc_mixer_stream_real_change_is_muted (GvcMixerStream *stream,
 gboolean
 gvc_mixer_stream_push_volume (GvcMixerStream *stream)
 {
-	pa_operation *op;
+        pa_operation *op;
         gboolean ret;
         g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
         ret = GVC_MIXER_STREAM_GET_CLASS (stream)->push_volume (stream, (gpointer *) &op);
         if (ret) {
-        	if (stream->priv->change_volume_op != NULL)
-        		pa_operation_unref (stream->priv->change_volume_op);
-        	stream->priv->change_volume_op = op;
-	}
+                if (stream->priv->change_volume_op != NULL)
+                        pa_operation_unref (stream->priv->change_volume_op);
+                stream->priv->change_volume_op = op;
+        }
         return ret;
 }
 
@@ -656,6 +684,13 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
                                          g_param_spec_boolean ("is-event-stream",
                                                                "is event stream",
                                                                "Whether stream's role is to play an event",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (gobject_class,
+                                         PROP_IS_VIRTUAL,
+                                         g_param_spec_boolean ("is-virtual",
+                                                               "is virtual stream",
+                                                               "Whether the stream is virtual",
                                                                FALSE,
                                                                G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_type_class_add_private (klass, sizeof (GvcMixerStreamPrivate));
