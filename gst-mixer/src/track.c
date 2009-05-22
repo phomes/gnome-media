@@ -89,7 +89,8 @@ cb_record_toggled (GnomeVolumeControlButton *button,
 static gboolean
 should_toggle_record_switch (const GstMixerTrack *track)
 {
-  return GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT);
+  return (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT) &&
+    !GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_NO_RECORD));
 }
 
 
@@ -130,30 +131,52 @@ gnome_volume_control_track_update (GnomeVolumeControlTrack *trkw)
 {
   gboolean mute, record;
   gboolean vol_is_zero = FALSE, slider_is_zero = FALSE;
+  GstMixer *mixer;
+  GstMixerTrack *track;
+  gint i;
+  gint *dummy;
 
   g_return_if_fail (trkw != NULL);
 
+  track = trkw->track;
+  mixer = trkw->mixer;
+
   /* trigger an update of the mixer state */
-  if (!GST_IS_MIXER_OPTIONS (trkw->track)) {
-    gint *dummy = g_new (gint, MAX (trkw->track->num_channels, 1));
-    gst_mixer_get_volume (trkw->mixer, trkw->track, dummy);
-    g_free (dummy);
+  if (GST_IS_MIXER_OPTIONS (track)) {
+    const GList *opt;
+    GstMixerOptions *options = GST_MIXER_OPTIONS (track);
+    const char *active_opt;
+    active_opt = gst_mixer_get_option (mixer, options);
+
+    for (i = 0, opt = gst_mixer_options_get_values (options);
+        opt != NULL;
+        opt = opt->next, i++) {
+      if (g_str_equal (active_opt, opt->data)) {
+       gtk_combo_box_set_active (GTK_COMBO_BOX (trkw->options), i);
+      }
+    }
+
+    return;
   }
 
-  mute = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
-				GST_MIXER_TRACK_MUTE) ? TRUE : FALSE;
-  record = GST_MIXER_TRACK_HAS_FLAG (trkw->track,
-				GST_MIXER_TRACK_RECORD) ? TRUE : FALSE;
+  dummy = g_new (gint, MAX (track->num_channels, 1));
+  gst_mixer_get_volume (mixer, track, dummy);
+  g_free (dummy);
+
+  mute = GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_MUTE) ?
+    TRUE : FALSE;
+  record = GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_RECORD) ?
+    TRUE : FALSE;
 
   if (trkw->sliderbox) {
     gnome_volume_control_volume_update (GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox));
     gnome_volume_control_volume_ask (
       GNOME_VOLUME_CONTROL_VOLUME (trkw->sliderbox),
       &vol_is_zero, &slider_is_zero);
-  }
 
-  if (!slider_is_zero && vol_is_zero)
-    mute |= TRUE;
+    if (trkw->mute && !slider_is_zero && vol_is_zero)
+        mute = TRUE;
+  }
 
   if (trkw->mute) {
     if (gnome_volume_control_button_get_active (trkw->mute) == mute) {
@@ -225,6 +248,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
   ctrl->pos = tab_pos;
   if (need_timeout)
     ctrl->id = g_timeout_add (200, cb_check, ctrl);
+  ctrl->flagbuttonbox = NULL;
 
   /* find image from label string (optional) */
   if (g_object_class_find_property (G_OBJECT_GET_CLASS (track), "untranslated-label"))
@@ -250,7 +274,7 @@ gnome_volume_control_track_add_title (GtkTable *table,
     g_free (ulabel);
   }
 
-  if (str != NULL) {
+  if ((str != NULL) && (track->num_channels != 0)) {
     if ((ctrl->image = gtk_image_new_from_icon_name (str, GTK_ICON_SIZE_MENU)) != NULL) {
       gtk_misc_set_alignment (GTK_MISC (ctrl->image), 0.5, 0.5);
       if (or == GTK_ORIENTATION_VERTICAL) {
@@ -303,8 +327,13 @@ gnome_volume_control_track_put_switch (GtkTable *table,
   ctrl->buttonbox = gtk_hbox_new (FALSE, 0);
   gtk_table_attach (GTK_TABLE (table), ctrl->buttonbox,
 		    tab_pos, tab_pos + 1,
-		    4, 5, GTK_EXPAND, 0, 0, 0);
+		    3, 4, GTK_EXPAND, 0, 0, 0);
   gtk_widget_show (ctrl->buttonbox);
+
+  /* if we weren't supposed to show the mute button, then don't create it */
+  if (GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_NO_MUTE)) {
+    return;
+  }
 
   /* mute button */
   msg = g_strdup_printf (_("Mute/unmute %s"), ctrl->track->label);
@@ -313,9 +342,11 @@ gnome_volume_control_track_put_switch (GtkTable *table,
 					     msg);
   ctrl->mute = GNOME_VOLUME_CONTROL_BUTTON (button);
   g_free (msg);
-  gnome_volume_control_button_set_active (GNOME_VOLUME_CONTROL_BUTTON (button),
-					  !GST_MIXER_TRACK_HAS_FLAG (ctrl->track,
-					       GST_MIXER_TRACK_MUTE));
+
+  gnome_volume_control_button_set_active (
+    GNOME_VOLUME_CONTROL_BUTTON (button),
+    !GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_MUTE));
+
   g_signal_connect (G_OBJECT (button), "clicked",
 		    G_CALLBACK (cb_mute_toggled), ctrl);
 
@@ -340,20 +371,25 @@ gnome_volume_control_track_add_playback	(GtkTable *table,
 					 GstMixer *mixer,
 					 GstMixerTrack *track,
 					 GtkWidget *l_sep,
-					 GtkWidget *r_sep)
+					 GtkWidget *r_sep,
+                                         GtkWidget *fbox)
 {
   GnomeVolumeControlTrack *ctrl;
+
+  /* switch and options exception (no sliders) */
+  if (track->num_channels == 0) {
+    if (GST_IS_MIXER_OPTIONS (track)) {
+      return (gnome_volume_control_track_add_option (table, tab_pos, mixer, track,
+                                                     l_sep, r_sep, fbox));
+    }
+    return (gnome_volume_control_track_add_switch (table, tab_pos, mixer, track,
+                                                   l_sep, r_sep, fbox));
+  }
 
   /* image, title */
   ctrl = gnome_volume_control_track_add_title (table, tab_pos,
 					       GTK_ORIENTATION_VERTICAL,
 					       mixer, track, l_sep, r_sep);
-
-  /* switch exception (no sliders) */
-  if (track->num_channels == 0) {
-    gnome_volume_control_track_put_switch (table, tab_pos, ctrl);
-    return ctrl;
-  }
 
   ctrl->sliderbox = gnome_volume_control_volume_new (ctrl->mixer,
 						     ctrl->track, 6);
@@ -374,7 +410,8 @@ gnome_volume_control_track_add_recording (GtkTable *table,
 					  GstMixer *mixer,
 					  GstMixerTrack *track,
 					  GtkWidget *l_sep,
-					  GtkWidget *r_sep)
+					  GtkWidget *r_sep,
+					  GtkWidget *fbox)
 {
   GnomeVolumeControlTrack *ctrl;
   GtkWidget *button;
@@ -382,39 +419,44 @@ gnome_volume_control_track_add_recording (GtkTable *table,
   gchar *accessible_name, *msg;
 
   ctrl = gnome_volume_control_track_add_playback (table, tab_pos, mixer,
-						  track, l_sep, r_sep);
+						  track, l_sep, r_sep, fbox);
   if (track->num_channels == 0) {
     return ctrl;
   }
 
-  /* only the record button here */
-  msg = g_strdup_printf (_("Toggle audio recording from %s"), ctrl->track->label);
   /* FIXME:
    * - there's something fishy about this button, it
    *     is always FALSE.
    */
-  button = gnome_volume_control_button_new ("audio-input-microphone", "audio-input-microphone-muted", msg);
-  ctrl->record = GNOME_VOLUME_CONTROL_BUTTON (button);
-  g_free (msg);
-  gnome_volume_control_button_set_active (GNOME_VOLUME_CONTROL_BUTTON (button),
-					  GST_MIXER_TRACK_HAS_FLAG (track,
+  if (!GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_NO_RECORD)) {
+    /* only the record button here */
+    msg = g_strdup_printf (_("Toggle audio recording from %s"),
+                          ctrl->track->label);
+    button = gnome_volume_control_button_new ("audio-input-microphone",
+                                              "audio-input-microphone-muted",
+                                              msg);
+    ctrl->record = GNOME_VOLUME_CONTROL_BUTTON (button);
+    g_free (msg);
+    gnome_volume_control_button_set_active (GNOME_VOLUME_CONTROL_BUTTON (button),
+                                            GST_MIXER_TRACK_HAS_FLAG (track,
 					      GST_MIXER_TRACK_RECORD));
-  g_signal_connect (G_OBJECT (button), "clicked",
-		    G_CALLBACK (cb_record_toggled), ctrl);
+    g_signal_connect (G_OBJECT (button), "clicked",
+		      G_CALLBACK (cb_record_toggled), ctrl);
 
-  /* a11y */
-  accessible = gtk_widget_get_accessible (button);
-  if (GTK_IS_ACCESSIBLE (accessible)) {
-    accessible_name = g_strdup_printf (_("Track %s: audio recording"),
-				       track->label);
-    atk_object_set_name (accessible, accessible_name);
-    g_free (accessible_name);
+    /* a11y */
+    accessible = gtk_widget_get_accessible (button);
+    if (GTK_IS_ACCESSIBLE (accessible)) {
+      accessible_name = g_strdup_printf (_("Track %s: audio recording"),
+                                        track->label);
+      atk_object_set_name (accessible, accessible_name);
+      g_free (accessible_name);
+    }
+
+    /* attach, show */
+    gtk_box_pack_start (GTK_BOX (ctrl->buttonbox), button,
+		        FALSE, FALSE, 0);
+    gtk_widget_show (button);
   }
-
-  /* attach, show */
-  gtk_box_pack_start (GTK_BOX (ctrl->buttonbox), button,
-		      FALSE, FALSE, 0);
-  gtk_widget_show (button);
 
   return ctrl;
 }
@@ -425,30 +467,47 @@ gnome_volume_control_track_add_switch (GtkTable *table,
 				       GstMixer *mixer,
 				       GstMixerTrack *track,
 				       GtkWidget *l_sep,
-				       GtkWidget *r_sep)
+				       GtkWidget *r_sep,
+				       GtkWidget *fbox)
 {
   GnomeVolumeControlTrack *ctrl;
+  GtkWidget *toggle;
+  gint volume;
 
   /* image, title */
-  ctrl = gnome_volume_control_track_add_title (table, tab_pos,
-					       GTK_ORIENTATION_HORIZONTAL,
-					       mixer, track, l_sep, r_sep);
-  ctrl->toggle = gtk_check_button_new ();
-  if (should_toggle_record_switch (ctrl->track)) {
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
-      GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_RECORD));
+  toggle = gtk_check_button_new ();
+
+  /* this is a hack - we query volume to initialize switch state */
+  gst_mixer_get_volume (mixer, track, &volume);
+
+  if (should_toggle_record_switch (track)) {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toggle),
+      GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_RECORD));
   } else {
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ctrl->toggle),
-      !GST_MIXER_TRACK_HAS_FLAG (ctrl->track, GST_MIXER_TRACK_MUTE));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toggle),
+      !GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_MUTE));
   }
 
+  if (fbox == NULL) {
+    fbox = gtk_table_new(0, 3, FALSE);
+    gtk_table_set_col_spacings (GTK_TABLE (fbox), 6);
+  }
+  table = GTK_TABLE (fbox);
+
+  ctrl = gnome_volume_control_track_add_title (table, tab_pos,
+                                              GTK_ORIENTATION_HORIZONTAL,
+                                              mixer, track, l_sep, r_sep);
+  ctrl->toggle = toggle;
+  ctrl->flagbuttonbox = fbox;
+
   /* attach'n'show */
-  gtk_table_attach (GTK_TABLE (table), ctrl->toggle,
-                    2, 3, tab_pos, tab_pos + 1,
-                    GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
-  g_signal_connect (ctrl->toggle, "toggled",
+  gtk_table_attach (table, toggle,
+                   2, 3, tab_pos, tab_pos + 1,
+                   GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
+
+  g_signal_connect (toggle, "toggled",
 		    G_CALLBACK (cb_toggle_changed), ctrl);
-  gtk_widget_show (ctrl->toggle);
+  gtk_widget_show (toggle);
 
   return ctrl;
 }
@@ -459,7 +518,8 @@ gnome_volume_control_track_add_option (GtkTable *table,
 				       GstMixer *mixer,
 				       GstMixerTrack *track,
 				       GtkWidget *l_sep,
-				       GtkWidget *r_sep)
+				       GtkWidget *r_sep,
+				       GtkWidget *fbox)
 {
   GnomeVolumeControlTrack *ctrl;
   GstMixerOptions *options = GST_MIXER_OPTIONS (track);
@@ -469,12 +529,18 @@ gnome_volume_control_track_add_option (GtkTable *table,
   gint i = 0;
   const gchar *active_opt;
 
+  if (fbox == NULL) {
+    fbox = gtk_table_new(0, 3, FALSE);
+    gtk_table_set_col_spacings (GTK_TABLE (fbox), 6);
+  }
+  table = GTK_TABLE (fbox);
+
   ctrl = gnome_volume_control_track_add_title (table, tab_pos,
 					       GTK_ORIENTATION_HORIZONTAL,
 					       mixer, track, l_sep, r_sep);
 
   /* optionmenu */
-  active_opt = gst_mixer_get_option (mixer, GST_MIXER_OPTIONS (track));
+  active_opt = gst_mixer_get_option (mixer, options);
   if (active_opt != NULL) {
     ctrl->options = gtk_combo_box_new_text ();
     opts = gst_mixer_options_get_values (options);
@@ -502,8 +568,10 @@ gnome_volume_control_track_add_option (GtkTable *table,
   g_signal_connect (ctrl->options, "changed",
 		    G_CALLBACK (cb_option_changed), ctrl);
 
+  ctrl->flagbuttonbox = fbox;
+
   /* attach'n'show */
-  gtk_table_attach (GTK_TABLE (table), ctrl->options,
+  gtk_table_attach (table, ctrl->options,
 		    2, 3, tab_pos, tab_pos + 1,
 		    GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
   gtk_widget_show (ctrl->options);
@@ -528,9 +596,6 @@ void
 gnome_volume_control_track_show (GnomeVolumeControlTrack *track,
 				 gboolean visible)
 {
-  if (track->visible == visible)
-    return;
-
 #define func(w) \
   if (w != NULL) { \
     if (visible) { \

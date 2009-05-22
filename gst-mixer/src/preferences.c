@@ -315,7 +315,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
     GstMixerTrack *track = item->data;
     gchar *key = get_gconf_key (mixer, track);
     GConfValue *value;
-    gboolean active = gnome_volume_control_element_whitelist (track);
+    gboolean active = gnome_volume_control_element_whitelist (mixer, track);
 
     if ((value = gconf_client_get (prefs->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {
@@ -323,7 +323,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
     }
     g_free (key);
 
-    pgnum = get_page_num (track);
+    pgnum = get_page_num (mixer, track);
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter,
 			COL_ACTIVE, active,

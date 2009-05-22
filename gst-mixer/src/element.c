@@ -106,10 +106,20 @@ gnome_volume_control_element_dispose (GObject *object)
  */
 
 gboolean
-gnome_volume_control_element_whitelist (GstMixerTrack *track)
+gnome_volume_control_element_whitelist (GstMixer *mixer,
+					GstMixerTrack *track)
 {
   gint i, pos;
   gboolean found = FALSE;
+
+  /* honor the mixer supplied hints about whitelisting if available */
+  if (gst_mixer_get_mixer_flags (GST_MIXER (mixer)) & GST_MIXER_FLAG_HAS_WHITELIST) {
+    if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_WHITELIST)) {
+      return (TRUE);
+    } else {
+      return (FALSE);
+    }
+  }
 
   /* Yes this is a hack. */
   static struct {
@@ -186,7 +196,7 @@ update_tab_visibility (GnomeVolumeControlElement *el, gint page, gint tabnum)
     GnomeVolumeControlTrack *trkw =
         g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
 
-    if (get_page_num (track) == page && trkw->visible) {
+    if (get_page_num (el->mixer, track) == page && trkw->visible) {
       visible = TRUE;
       break;
     }
@@ -242,7 +252,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 				     GstElement *element)
 {
   struct {
-    GtkWidget *page, *old_sep, *new_sep;
+    GtkWidget *page, *old_sep, *new_sep, *flagbuttonbox;
     gboolean use;
     gint pos, height, width;
     GnomeVolumeControlTrack * (* get_track_widget) (GtkTable      *table,
@@ -250,15 +260,17 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
 						    GstMixer      *mixer,
 						    GstMixerTrack *track,
 						    GtkWidget     *left_sep,
-						    GtkWidget     *right_sep);
+						    GtkWidget     *right_sep,
+						    GtkWidget     *flagbox);
+
   } content[4] = {
-    { NULL, NULL, NULL, FALSE, 0, 5, 1,
+    { NULL, NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_playback },
-    { NULL, NULL, NULL, FALSE, 0, 5, 1,
+    { NULL, NULL, NULL, NULL, FALSE, 0, 5, 1,
       gnome_volume_control_track_add_recording },
-    { NULL, NULL, NULL, FALSE, 0, 1, 3,
-      gnome_volume_control_track_add_switch },
-    { NULL, NULL, NULL, FALSE, 0, 1, 3,
+    { NULL, NULL, NULL, NULL, FALSE, 0, 1, 3,
+      gnome_volume_control_track_add_playback },
+    { NULL, NULL, NULL, NULL, FALSE, 0, 1, 3,
       gnome_volume_control_track_add_option }
   };
   static gboolean theme_page = FALSE;
@@ -312,6 +324,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     if (i >= 2)
       gtk_table_set_row_spacings (GTK_TABLE (content[i].page), 6);
     gtk_table_set_col_spacings (GTK_TABLE (content[i].page), 6);
+    content[i].flagbuttonbox = NULL;
   }
 
   /* show */
@@ -324,7 +337,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     const GConfValue *value;
     gboolean active;
 
-    i = get_page_num (track);
+    i = get_page_num (el->mixer, track);
 
     /* FIXME:
      * - do not create separator if there is no more track
@@ -340,7 +353,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     }
 
     /* visible? */
-    active = gnome_volume_control_element_whitelist (track);
+    active = gnome_volume_control_element_whitelist (mixer, track);
     key = get_gconf_key (el->mixer, track);
     if ((value = gconf_client_get (el->client, key, NULL)) != NULL &&
         value->type == GCONF_VALUE_BOOL) {
@@ -349,15 +362,24 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     g_free (key);
 
     /* Show left separator if we're not the first track */
-    if (active && content[i].use && content[i].old_sep)
-      gtk_widget_show (content[i].old_sep);
+    if (active && content[i].use && content[i].old_sep) {
+
+      /* Do not show separator for switches/options on Playback/Recording tab */
+      if (i < 2 && track->num_channels != 0) {
+        gtk_widget_show (content[i].old_sep);
+      }
+    }
 
     /* widget */
     trkw = content[i].get_track_widget (GTK_TABLE (content[i].page),
 					content[i].pos++, el->mixer, track,
-					content[i].old_sep, content[i].new_sep);
+					content[i].old_sep, content[i].new_sep,
+					content[i].flagbuttonbox);
     gnome_volume_control_track_show (trkw, active);
 
+    /* Only the first trkw on the page will return flagbuttonbox */
+    if (trkw->flagbuttonbox != NULL)
+       content[i].flagbuttonbox = trkw->flagbuttonbox;
     g_object_set_data (G_OBJECT (track),
 		       "gnome-volume-control-trkw", trkw);
 
@@ -366,11 +388,11 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
       if (i >= 2) {
         gtk_table_attach (GTK_TABLE (content[i].page), content[i].new_sep,
 			  0, 3, content[i].pos, content[i].pos + 1,
-			  GTK_EXPAND | GTK_FILL, 0, 0, 0);
+			  GTK_SHRINK | GTK_FILL, 0, 0, 0);
       } else {
         gtk_table_attach (GTK_TABLE (content[i].page), content[i].new_sep,
 			  content[i].pos, content[i].pos + 1, 0, 6,
-			  0, GTK_EXPAND | GTK_FILL, 0, 0);
+			  0, GTK_SHRINK | GTK_FILL, 0, 0);
       }
       content[i].pos++;
     }
@@ -406,8 +428,46 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
     viewport = gtk_viewport_new (hadjustment, vadjustment);
     gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport), GTK_SHADOW_NONE);
 
-    gtk_container_add (GTK_CONTAINER (viewport), content[i].page);
-    gtk_container_add (GTK_CONTAINER (view), viewport);
+    if (content[i].flagbuttonbox != NULL) {
+       GtkWidget *vbox      = NULL;
+       GtkWidget *hbox      = NULL;
+       GtkWidget *hbox2     = NULL;
+       GtkWidget *separator = NULL;
+
+       if (i < 2) {
+          vbox      = gtk_vbox_new (FALSE, 0);
+          hbox      = gtk_hbox_new (FALSE, 6);
+          hbox2     = gtk_hbox_new (FALSE, 6);
+          separator = gtk_hseparator_new ();
+          gtk_box_pack_start (GTK_BOX (vbox), content[i].page, TRUE, TRUE, 6);
+          gtk_box_pack_start (GTK_BOX (vbox), hbox2, FALSE, FALSE, 6);
+          gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 6);
+          gtk_box_pack_start (GTK_BOX (hbox2), separator, TRUE, TRUE, 6);
+          gtk_box_pack_start (GTK_BOX (hbox), content[i].flagbuttonbox, TRUE,
+                              FALSE, 6);
+       } else {
+          /* orientation is rotated for these ... */
+          vbox      = gtk_hbox_new (FALSE, 0);
+          hbox      = gtk_vbox_new (FALSE, 0);
+          hbox2     = gtk_vbox_new (FALSE, 0);
+          gtk_box_pack_start (GTK_BOX (vbox), content[i].page, FALSE, FALSE, 6);
+          gtk_box_pack_start (GTK_BOX (vbox), hbox2, FALSE, FALSE, 6);
+          gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, FALSE, 6);
+          gtk_box_pack_start (GTK_BOX (hbox), content[i].flagbuttonbox, TRUE,
+                              FALSE, 6);
+       }
+       gtk_widget_show_all (hbox2);
+       gtk_widget_show (content[i].flagbuttonbox);
+       gtk_widget_show (hbox);
+       gtk_widget_show (content[i].page);
+       gtk_widget_show (vbox);
+
+       gtk_container_add (GTK_CONTAINER (viewport), vbox);
+       gtk_container_add (GTK_CONTAINER (view), viewport);
+    } else {
+       gtk_container_add (GTK_CONTAINER (viewport), content[i].page);
+       gtk_container_add (GTK_CONTAINER (view), viewport);
+    }
 
     label = gtk_label_new (get_page_description (i));
     gtk_notebook_prepend_page (GTK_NOTEBOOK (el), view, label);
@@ -495,7 +555,7 @@ cb_gconf (GConfClient *client,
         if (value->type == GCONF_VALUE_BOOL) {
           gboolean active = gconf_value_get_bool (value),
 		   first[4] = { TRUE, TRUE, TRUE, TRUE };
-          gint n, page = get_page_num (track);
+          gint n, page = get_page_num (el->mixer, track);
 
           gnome_volume_control_track_show (trkw, active);
 
@@ -506,10 +566,15 @@ cb_gconf (GConfClient *client,
             GnomeVolumeControlTrack *trkw =
 	      g_object_get_data (G_OBJECT (track), "gnome-volume-control-trkw");
 
-            n = get_page_num (track);
+            n = get_page_num (el->mixer, track);
             if (trkw->visible && !first[n]) {
-              if (trkw->left_separator)
-                gtk_widget_show (trkw->left_separator);
+              if (trkw->left_separator) {
+                if (n < 2 && track->num_channels == 0) {
+                   gtk_widget_hide (trkw->left_separator);
+                } else {
+                   gtk_widget_show (trkw->left_separator);
+                }
+              }
             } else {
               if (trkw->left_separator)
                 gtk_widget_hide (trkw->left_separator);

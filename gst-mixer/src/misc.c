@@ -19,37 +19,39 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "misc.h"
-
 #include <gst/interfaces/mixer.h>
 #include <gst/interfaces/mixertrack.h>
 #include <gst/interfaces/mixeroptions.h>
 
+#include "misc.h"
+
 #include <glib.h>
 #include <glib/gi18n.h>
 
-gint get_page_num (GstMixerTrack *track)
+gint get_page_num (GstMixer *mixer, GstMixerTrack *track)
 {
-	/* GstMixerOptions derives from GstMixerTrack */
-	if (GST_IS_MIXER_OPTIONS (track)) {
-		return 3;
-	} else {
-		/* present tracks without channels as toggle switches */
-		if (track->num_channels == 0)
-			return 2;
-		else {
-			/* is it possible to have a track that does input and output? */
-			g_assert (! (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)
-			            && GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_OUTPUT)));
+        /* is it possible to have a track that does input and output? */
+        g_assert (! (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT)
+                && GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_OUTPUT)));
 
-			if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT))
-				return 1;
-			else if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_OUTPUT))
-				return 0;
-		}
-	}
-	
-	g_assert_not_reached ();
+        if ((gst_mixer_get_mixer_flags (GST_MIXER (mixer)) &
+                GST_MIXER_FLAG_GROUPING) == 0) {
+                /* old style grouping, only volume sliders on the first two pages */
+               if (GST_IS_MIXER_OPTIONS (track))
+                        return 3;
+                else if (track->num_channels == 0)
+                        return 2;
+        }
+        if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_INPUT))
+                return 1;
+        else if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_OUTPUT))
+                return 0;
+        else if (GST_IS_MIXER_OPTIONS (track))
+                return 3;
+        else
+                return 2;
+
+        g_assert_not_reached ();
 }
 
 gchar *get_page_description (gint n)

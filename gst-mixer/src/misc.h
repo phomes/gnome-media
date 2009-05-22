@@ -25,7 +25,7 @@
 #include <glib.h>
 #include <gst/interfaces/mixertrack.h>
 
-gint get_page_num (GstMixerTrack *track);
+gint get_page_num (GstMixer *mixer, GstMixerTrack *track);
 
 gchar *get_page_description (gint n);
 

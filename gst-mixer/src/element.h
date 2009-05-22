@@ -60,7 +60,8 @@ GType		gnome_volume_control_element_get_type	(void);
 GtkWidget *	gnome_volume_control_element_new	(GConfClient  *client);
 void		gnome_volume_control_element_change	(GnomeVolumeControlElement *el,
 							 GstElement  *element);
-gboolean	gnome_volume_control_element_whitelist	(GstMixerTrack *track);
+gboolean	gnome_volume_control_element_whitelist	(GstMixer *mixer,
+							 GstMixerTrack *track);
 
 G_END_DECLS
 

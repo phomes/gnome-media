@@ -47,7 +47,8 @@ typedef struct _GnomeVolumeControlTrack {
 	    *sliderbox,
 	    *buttonbox,
 	    *toggle,
-	    *options;
+	    *options,
+	    *flagbuttonbox;
 
   GnomeVolumeControlButton *mute, *record;
 
@@ -71,14 +72,16 @@ GnomeVolumeControlTrack *
 						 GstMixer *mixer,
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
-						 GtkWidget *r_sep);
+						 GtkWidget *r_sep,
+						 GtkWidget *fbox);
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_recording(GtkTable *table,
 						 gint      tab_pos,
 						 GstMixer *mixer,
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
-						 GtkWidget *r_sep);
+						 GtkWidget *r_sep,
+						 GtkWidget *fbox);
 
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_switch	(GtkTable *table,
@@ -86,7 +89,8 @@ GnomeVolumeControlTrack *
 						 GstMixer *mixer,
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
-						 GtkWidget *r_sep);
+						 GtkWidget *r_sep,
+						 GtkWidget *fbox);
 
 GnomeVolumeControlTrack *
 	gnome_volume_control_track_add_option	(GtkTable *table,
@@ -94,7 +98,8 @@ GnomeVolumeControlTrack *
 						 GstMixer *mixer,
 						 GstMixerTrack *track,
 						 GtkWidget *l_sep,
-						 GtkWidget *r_sep);
+						 GtkWidget *r_sep,
+						 GtkWidget *fbox);
 
 void	gnome_volume_control_track_free		(GnomeVolumeControlTrack *track);
 
