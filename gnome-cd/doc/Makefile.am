@@ -3,7 +3,7 @@ dist-hook: doc-dist-hook
 DOC_MODULE = gnome-cd
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES =
-DOC_LINGUAS = ca el en_GB es fr it oc ru sv
+DOC_LINGUAS = ca el en_GB es fr it oc ru sv zh_CN
 DOC_FIGURES = figures/cdplayer_trackeditor_button.png	   	\
               figures/cdplayer_trackeditor_window.png		\
               figures/cdplayer_window.png			\
