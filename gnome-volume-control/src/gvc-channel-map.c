@@ -33,6 +33,14 @@
 
 #define GVC_CHANNEL_MAP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_CHANNEL_MAP, GvcChannelMapPrivate))
 
+#ifndef PA_CHECK_VERSION
+#define PA_CHECK_VERSION(major,minor,micro)                             \
+        ((PA_MAJOR > (major)) ||                                        \
+         (PA_MAJOR == (major) && PA_MINOR > (minor)) ||                 \
+         (PA_MAJOR == (major) && PA_MINOR == (minor) && PA_MICRO >= (micro)))
+#endif
+
+
 struct GvcChannelMapPrivate
 {
         pa_channel_map        pa_map;
@@ -71,8 +79,11 @@ gvc_pa_channel_map_has_position (const pa_channel_map *map, pa_channel_position_
         return 0;
 }
 
+#if !PA_CHECK_VERSION(0,9,16)
+/* The PulseAudio master increase version only when tagged, so let's avoid clashing with pa_ namespace */
+#define pa_cvolume_get_position gvc_cvolume_get_position
 static pa_volume_t
-pa_cvolume_get_position (pa_cvolume *cv, const pa_channel_map *map, pa_channel_position_t t) {
+gvc_cvolume_get_position (pa_cvolume *cv, const pa_channel_map *map, pa_channel_position_t t) {
         unsigned c;
         pa_volume_t v = PA_VOLUME_MUTED;
 
@@ -89,6 +100,7 @@ pa_cvolume_get_position (pa_cvolume *cv, const pa_channel_map *map, pa_channel_p
 
         return v;
 }
+#endif
 
 guint
 gvc_channel_map_get_num_channels (GvcChannelMap *map)
