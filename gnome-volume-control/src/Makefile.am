@@ -50,9 +50,9 @@ gnome_volume_control_applet_SOURCES =		\
 	$(NULL)
 
 gnome_volume_control_LDADD =				\
+	$(top_builddir)/sound-theme/libsoundtheme.la	\
 	$(VOLUME_CONTROL_LIBS)				\
 	$(PULSEAUDIO_LIBS)				\
-	$(top_builddir)/sound-theme/libsoundtheme.la	\
 	$(NULL)
 
 gnome_volume_control_SOURCES =			\
