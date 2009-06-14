@@ -113,34 +113,34 @@ dnl=======================================================================
 dnl The new gnome-volume-control needs a newer GTK+
 GTK_REQUIRED_VERSION=2.15.1
 
-PKG_CHECK_MODULES(VOLUME_CONTROL,
-        gobject-2.0 >= $GLIB_REQUIRED_VERSION
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
-        gio-2.0
-        gconf-2.0 >= $GCONF_REQUIRED_VERSION
-        libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
-        unique-1.0
-        libxml-2.0
-)
-AC_SUBST(VOLUME_CONTROL_CFLAGS)
-AC_SUBST(VOLUME_CONTROL_LIBS)
-
-PKG_CHECK_MODULES(PULSEAUDIO,
-        libpulse >= $PA_REQUIRED_VERSION libpulse-mainloop-glib >= $PA_REQUIRED_VERSION,
-        have_pulseaudio=yes,
-        have_pulseaudio=no)
-
 AC_ARG_ENABLE([pulseaudio],
               AS_HELP_STRING([--enable-pulseaudio],
                              [Enable PulseAudio support @<:@default=auto@:>@]),
               enable_pulseaudio=$enableval, enable_pulseaudio=auto)
 
 if test "x$enable_pulseaudio" != "xno"; then
+
+  PKG_CHECK_MODULES(PULSEAUDIO,
+          libpulse >= $PA_REQUIRED_VERSION libpulse-mainloop-glib >= $PA_REQUIRED_VERSION,
+          have_pulseaudio=yes,
+          have_pulseaudio=no)
+
   if test "x$enable_pulseaudio" = "xyes" -a "x$have_pulseaudio" = "xno"; then
     AC_MSG_ERROR([PulseAudio support explicitly requested but dependencies not found])
   fi
 
   if test "x$have_pulseaudio" = "xyes" ; then
+    PKG_CHECK_MODULES(VOLUME_CONTROL,
+            gobject-2.0 >= $GLIB_REQUIRED_VERSION
+            gtk+-2.0 >= $GTK_REQUIRED_VERSION
+            gio-2.0
+            gconf-2.0 >= $GCONF_REQUIRED_VERSION
+            libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+            unique-1.0
+            libxml-2.0
+    )
+    AC_SUBST(VOLUME_CONTROL_CFLAGS)
+    AC_SUBST(VOLUME_CONTROL_LIBS)
     AC_DEFINE(HAVE_PULSEAUDIO, [], [Define if we have pulseaudio])
   fi
 else
@@ -154,9 +154,9 @@ AC_SUBST(PULSEAUDIO_LIBS)
 dnl FIXME remove when we have PA 0.9.15 hard-deps
 if test "x$have_pulseaudio" = "xyes" ; then
   PKG_CHECK_MODULES(NEW_PA,
-  		    libpulse >= 0.9.15,
-  		    have_new_pulseaudio=yes,
-  		    have_new_pulseaudio=no)
+                    libpulse >= 0.9.15,
+                    have_new_pulseaudio=yes,
+                    have_new_pulseaudio=no)
   if test "x$have_new_pulseaudio" = "xyes" ; then
     AC_DEFINE(HAVE_NEW_PULSE, 1, [Define if we have PulseAudio 0.9.15])
   fi
@@ -536,9 +536,9 @@ if test "x$have_gnomecd" = "xyes" && test "x$enable_gnomecd" = "xyes" ; then
 
   dnl used for accessibility of gnome-cd
   PKG_CHECK_MODULES(GAILUTIL,
-	gail >= 0.0.3
-	libbonobo-2.0 >= 2.0.0
-	gconf-2.0)
+        gail >= 0.0.3
+        libbonobo-2.0 >= 2.0.0
+        gconf-2.0)
   AC_SUBST(GAILUTIL_CFLAGS)
   AC_SUBST(GAILUTIL_LIBS)
 fi
@@ -628,14 +628,14 @@ dnl ---------------------------------------------------------------------------
 
 # Turn on the additional warnings last, so warnings don't affect other tests.
 AC_ARG_ENABLE(more-warnings,
-	[AC_HELP_STRING([--enable-more-warnings],
-	[Maximum compiler warnings])],
-	set_more_warnings="$enableval",[
-        	if test -d $srcdir/.svn; then
-        		set_more_warnings=yes
-              	else
-                  	set_more_warnings=no
-              	fi
+        [AC_HELP_STRING([--enable-more-warnings],
+        [Maximum compiler warnings])],
+        set_more_warnings="$enableval",[
+                if test -d $srcdir/.svn; then
+                        set_more_warnings=yes
+                else
+                        set_more_warnings=no
+                fi
         ])
 AC_MSG_CHECKING(for more warnings)
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
@@ -755,7 +755,7 @@ echo "
                     ============
 
 
-	Prefix:                 ${prefix}
+        Prefix:                 ${prefix}
         Source code location:   ${srcdir}
         Compiler:               ${CC}
         CFLAGS:                 ${CFLAGS}
