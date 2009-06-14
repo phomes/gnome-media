@@ -737,6 +737,7 @@ profiles/Makefile
 profiles/gnome-audio-profiles.schemas.in
 profiles/gnome-media-profiles.pc
 profiles/glade/Makefile
+profiles/help/Makefile
 cddb-slave2/cddb-slave.desktop.in
 gnome-cd/gnome-cd.desktop.in
 grecord/gnome-sound-recorder.desktop.in
