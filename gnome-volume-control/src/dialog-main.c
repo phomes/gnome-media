@@ -85,6 +85,9 @@ on_control_ready (GvcMixerControl *control,
 		warning_dialog = NULL;
 	}
 
+        if (dialog)
+                return;
+
         dialog = GTK_WIDGET (gvc_mixer_dialog_new (control));
         g_signal_connect (dialog,
                           "response",
@@ -115,7 +118,7 @@ warning_dialog_answered (GtkDialog *d,
 static gboolean
 dialog_popup_timeout (gpointer data)
 {
-	warning_dialog = gtk_message_dialog_new (NULL,
+	warning_dialog = gtk_message_dialog_new (GTK_WINDOW(dialog),
 						 0,
 						 GTK_MESSAGE_INFO,
 						 GTK_BUTTONS_CANCEL,
@@ -128,6 +131,18 @@ dialog_popup_timeout (gpointer data)
 	gtk_widget_show (warning_dialog);
 
 	return FALSE;
+}
+
+static void
+on_control_connecting (GvcMixerControl *control,
+                       UniqueApp       *app)
+{
+        if (popup_id != 0)
+                return;
+
+        popup_id = g_timeout_add_seconds (DIALOG_POPUP_TIMEOUT,
+                                          dialog_popup_timeout,
+                                          NULL);
 }
 
 int
@@ -177,14 +192,14 @@ main (int argc, char **argv)
 
         control = gvc_mixer_control_new ();
         g_signal_connect (control,
+                          "connecting",
+                          G_CALLBACK (on_control_connecting),
+                          app);
+        g_signal_connect (control,
                           "ready",
                           G_CALLBACK (on_control_ready),
                           app);
         gvc_mixer_control_open (control);
-
-        popup_id = g_timeout_add_seconds (DIALOG_POPUP_TIMEOUT,
-        				  dialog_popup_timeout,
-        				  NULL);
 
         gtk_main ();
 

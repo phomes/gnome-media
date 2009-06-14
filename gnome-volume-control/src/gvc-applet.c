@@ -167,6 +167,13 @@ on_control_ready (GvcMixerControl *control,
 }
 
 static void
+on_control_connecting (GvcMixerControl *control,
+                       GvcApplet       *applet)
+{
+        g_debug ("Connecting..");
+}
+
+static void
 on_control_default_sink_changed (GvcMixerControl *control,
                                  guint            id,
                                  GvcApplet       *applet)
@@ -214,6 +221,10 @@ gvc_applet_constructor (GType                  type,
         g_signal_connect (self->priv->control,
                           "ready",
                           G_CALLBACK (on_control_ready),
+                          self);
+        g_signal_connect (self->priv->control,
+                          "connecting",
+                          G_CALLBACK (on_control_connecting),
                           self);
         g_signal_connect (self->priv->control,
                           "default-sink-changed",

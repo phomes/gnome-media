@@ -48,6 +48,7 @@ struct GvcMixerControlPrivate
         pa_mainloop_api  *pa_api;
         pa_context       *pa_context;
         int               n_outstanding;
+        guint             reconnect_id;
 
         gboolean          default_sink_is_set;
         guint             default_sink_id;
@@ -70,6 +71,7 @@ struct GvcMixerControlPrivate
 };
 
 enum {
+        CONNECTING,
         READY,
         STREAM_ADDED,
         STREAM_REMOVED,
@@ -381,11 +383,13 @@ _set_default_source (GvcMixerControl *control,
 {
         guint new_id;
 
-        new_id = 0;
-
-        if (stream != NULL) {
-                new_id = gvc_mixer_stream_get_id (stream);
+        if (stream == NULL) {
+                control->priv->default_source_id = 0;
+                control->priv->default_source_is_set = FALSE;
+                return;
         }
+
+        new_id = gvc_mixer_stream_get_id (stream);
 
         if (control->priv->default_source_id != new_id) {
                 control->priv->default_source_id = new_id;
@@ -403,11 +407,13 @@ _set_default_sink (GvcMixerControl *control,
 {
         guint new_id;
 
-        new_id = 0;
-
-        if (stream != NULL) {
-                new_id = gvc_mixer_stream_get_id (stream);
+        if (stream == NULL) {
+                control->priv->default_sink_id = 0;
+                control->priv->default_sink_is_set = FALSE;
+                return;
         }
+
+        new_id = gvc_mixer_stream_get_id (stream);
 
         if (control->priv->default_sink_id != new_id) {
                 control->priv->default_sink_id = new_id;
@@ -1451,6 +1457,78 @@ gvc_mixer_control_ready (GvcMixerControl *control)
 }
 
 static void
+gvc_mixer_new_pa_context (GvcMixerControl *self)
+{
+        pa_proplist     *proplist;
+
+        g_return_if_fail (self);
+        g_return_if_fail (!self->priv->pa_context);
+
+        /* FIXME: read these from an object property */
+        proplist = pa_proplist_new ();
+        pa_proplist_sets (proplist,
+                          PA_PROP_APPLICATION_NAME,
+                          _("GNOME Volume Control"));
+        pa_proplist_sets (proplist,
+                          PA_PROP_APPLICATION_ID,
+                          "org.gnome.VolumeControl");
+        pa_proplist_sets (proplist,
+                          PA_PROP_APPLICATION_ICON_NAME,
+                          "multimedia-volume-control");
+        pa_proplist_sets (proplist,
+                          PA_PROP_APPLICATION_VERSION,
+                          PACKAGE_VERSION);
+
+        self->priv->pa_context = pa_context_new_with_proplist (self->priv->pa_api, NULL, proplist);
+
+        pa_proplist_free (proplist);
+        g_assert (self->priv->pa_context);
+}
+
+static void
+remove_all_streams (GvcMixerControl *control, GHashTable *hash_table)
+{
+        GHashTableIter iter;
+        gpointer key, value;
+
+        g_hash_table_iter_init (&iter, hash_table);
+        while (g_hash_table_iter_next (&iter, &key, &value)) {
+                remove_stream (control, value);
+                g_hash_table_iter_remove (&iter);
+        }
+}
+
+static gboolean
+idle_reconnect (gpointer data)
+{
+        GvcMixerControl *control = GVC_MIXER_CONTROL (data);
+        GHashTableIter iter;
+        gpointer key, value;
+
+        g_return_val_if_fail (control, FALSE);
+
+        if (control->priv->pa_context) {
+                pa_context_unref (control->priv->pa_context);
+                control->priv->pa_context = NULL;
+                gvc_mixer_new_pa_context (control);
+        }
+
+        remove_all_streams (control, control->priv->sinks);
+        remove_all_streams (control, control->priv->sources);
+        remove_all_streams (control, control->priv->sink_inputs);
+        remove_all_streams (control, control->priv->source_outputs);
+
+        g_hash_table_iter_init (&iter, control->priv->clients);
+        while (g_hash_table_iter_next (&iter, &key, &value))
+                g_hash_table_iter_remove (&iter);
+
+        gvc_mixer_control_open (control); /* cannot fail */
+
+        control->priv->reconnect_id = 0;
+        return FALSE;
+}
+
+static void
 _pa_context_state_cb (pa_context *context,
                       void       *userdata)
 {
@@ -1468,7 +1546,9 @@ _pa_context_state_cb (pa_context *context,
                 break;
 
         case PA_CONTEXT_FAILED:
-                g_warning ("Connection failed");
+                g_warning ("Connection failed, reconnecting...");
+                if (control->priv->reconnect_id == 0)
+                        control->priv->reconnect_id = g_idle_add (idle_reconnect, control);
                 break;
 
         case PA_CONTEXT_TERMINATED:
@@ -1491,7 +1571,8 @@ gvc_mixer_control_open (GvcMixerControl *control)
                                        _pa_context_state_cb,
                                        control);
 
-        res = pa_context_connect (control->priv->pa_context, NULL, (pa_context_flags_t) 0, NULL);
+        g_signal_emit (G_OBJECT (control), signals[CONNECTING], 0);
+        res = pa_context_connect (control->priv->pa_context, NULL, (pa_context_flags_t) PA_CONTEXT_NOFAIL, NULL);
         if (res < 0) {
                 g_warning ("Failed to connect context: %s",
                            pa_strerror (pa_context_errno (control->priv->pa_context)));
@@ -1570,30 +1651,12 @@ gvc_mixer_control_constructor (GType                  type,
 {
         GObject         *object;
         GvcMixerControl *self;
-        pa_proplist     *proplist;
 
         object = G_OBJECT_CLASS (gvc_mixer_control_parent_class)->constructor (type, n_construct_properties, construct_params);
 
         self = GVC_MIXER_CONTROL (object);
 
-        /* FIXME: read these from an object property */
-        proplist = pa_proplist_new ();
-        pa_proplist_sets (proplist,
-                          PA_PROP_APPLICATION_NAME,
-                          _("GNOME Volume Control"));
-        pa_proplist_sets (proplist,
-                          PA_PROP_APPLICATION_ID,
-                          "org.gnome.VolumeControl");
-        pa_proplist_sets (proplist,
-                          PA_PROP_APPLICATION_ICON_NAME,
-                          "multimedia-volume-control");
-        pa_proplist_sets (proplist,
-                          PA_PROP_APPLICATION_VERSION,
-                          PACKAGE_VERSION);
-
-        self->priv->pa_context = pa_context_new_with_proplist (self->priv->pa_api, NULL, proplist);
-        g_assert (self->priv->pa_context);
-        pa_proplist_free (proplist);
+        gvc_mixer_new_pa_context (self);
 
         return object;
 }
@@ -1607,6 +1670,14 @@ gvc_mixer_control_class_init (GvcMixerControlClass *klass)
         object_class->dispose = gvc_mixer_control_dispose;
         object_class->finalize = gvc_mixer_control_finalize;
 
+        signals [CONNECTING] =
+                g_signal_new ("connecting",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GvcMixerControlClass, connecting),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0);
         signals [READY] =
                 g_signal_new ("ready",
                               G_TYPE_FROM_CLASS (klass),
