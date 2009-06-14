@@ -309,7 +309,7 @@ gnome_volume_control_preferences_change (GnomeVolumeControlPreferences *prefs,
   gst_object_replace ((GstObject **) &prefs->mixer, GST_OBJECT (element));
 
   /* add all tracks */
-  gnome_volume_control_element_whitelist (NULL);
+  gnome_volume_control_element_whitelist (mixer, NULL);
   for (item = gst_mixer_list_tracks (mixer);
        item != NULL; item = item->next) {
     GstMixerTrack *track = item->data;

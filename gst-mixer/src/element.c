@@ -328,7 +328,7 @@ gnome_volume_control_element_change (GnomeVolumeControlElement *el,
   }
 
   /* show */
-  gnome_volume_control_element_whitelist (NULL);
+  gnome_volume_control_element_whitelist (el->mixer, NULL);
   for (item = gst_mixer_list_tracks (el->mixer);
        item != NULL; item = item->next) {
     GstMixerTrack *track = item->data;
