@@ -592,11 +592,6 @@ update_sink (GvcMixerControl    *control,
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
-        if (!!(info->flags & PA_SINK_DECIBEL_VOLUME)) {
-                gdouble db;
-                db = pa_sw_volume_to_dB (max_volume);
-                gvc_mixer_stream_set_decibel (stream, db);
-        }
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sinks,
