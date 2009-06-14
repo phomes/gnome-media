@@ -265,15 +265,9 @@ set_from_pa_map (GvcChannelMap        *map,
 {
         g_assert (pa_channel_map_valid(pa_map));
 
-#ifdef HAVE_NEW_PULSE
         map->priv->can_balance = pa_channel_map_can_balance (pa_map);
         map->priv->can_fade = pa_channel_map_can_fade (pa_map);
         map->priv->has_lfe = gvc_pa_channel_map_has_position (pa_map, PA_CHANNEL_POSITION_LFE);
-#else
-        map->priv->can_balance = TRUE;
-        map->priv->can_fade = FALSE;
-        map->priv->has_lfe = FALSE;
-#endif
 
         map->priv->pa_map = *pa_map;
         pa_cvolume_set(&map->priv->pa_volume, pa_map->channels, PA_VOLUME_NORM);
