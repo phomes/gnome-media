@@ -846,35 +846,31 @@ gsr_window_is_saved (GSRWindow *window)
 	return window->priv->saved;
 }
 
-void 
-close_confirmation_dialog (GSRWindow *window)
+gboolean
+gsr_discard_confirmation_dialog (GSRWindow *window, gboolean closing)
 {
 	GtkWidget *confirmation_dialog;
 	AtkObject *atk_obj;
-	gchar *msg;
 	gint response_id;
 	gchar *utf8_filename = NULL;
-
-	utf8_filename = g_filename_to_utf8 (window->priv->record_filename,
-	                                    -1,
-	                                    NULL,
-	                                    NULL,
-	                                    NULL);
-	msg = g_strdup_printf (_("Save the changes to file \"%s\" before closing?"),
-			       utf8_filename);
-	g_free (utf8_filename);
+	gboolean ret = TRUE;
 
 	confirmation_dialog = gtk_message_dialog_new_with_markup (NULL,
 								  GTK_DIALOG_MODAL,
-						 		  GTK_MESSAGE_WARNING,
+								  GTK_MESSAGE_WARNING,
 								  GTK_BUTTONS_NONE,
 								  "<span weight=\"bold\" size=\"larger\">%s</span>",
-								  msg);
+								  closing ?
+								    _("Save recording before closing?") :
+								    _("Save recording?"));
 
 	gtk_dialog_add_buttons (GTK_DIALOG (confirmation_dialog),
-			 	_("Close _without Saving"), GTK_RESPONSE_NO,
+				closing ?
+				  _("Close _without Saving") :
+				  _("Continue _without Saving"),
+				GTK_RESPONSE_YES,
 				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				GTK_STOCK_SAVE, GTK_RESPONSE_YES, NULL);
+				GTK_STOCK_SAVE_AS, GTK_RESPONSE_NO, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (confirmation_dialog), "");
 
@@ -884,23 +880,29 @@ close_confirmation_dialog (GSRWindow *window)
 	response_id = gtk_dialog_run (GTK_DIALOG (confirmation_dialog));
 
 	switch (response_id) {
-		case GTK_RESPONSE_YES:
-			window->priv->quit_after_save = TRUE;
+		case GTK_RESPONSE_NO:
+		/* hiding the confirmation dialog allows the user to
+		see only one dialog at a time if the user click cancel
+		in the file dialog, they won't expect to return to the
+		confirmation dialog*/
+			gtk_widget_hide (confirmation_dialog);
 			file_save_as_cb (NULL, window);
+			ret = window->priv->has_file;
 			break;
 
-		case GTK_RESPONSE_NO:
-			gsr_window_close (window);
+		case GTK_RESPONSE_YES:
+			ret = TRUE;
 			break;
 
 		case GTK_RESPONSE_CANCEL:
-		default: 
+		default:
+			ret = FALSE;
 			break;
-	} 
+	}
 
 	gtk_widget_destroy (confirmation_dialog);
 
-	g_free (msg);
+	return ret;
 }
 
 static GtkWidget *
@@ -1190,11 +1192,8 @@ static void
 file_close_cb (GtkAction *action,
 	       GSRWindow *window)
 {
-	if (! gsr_window_is_saved (window)) {
-		close_confirmation_dialog (window);
-	} else {
+	if (gsr_window_is_saved (window) || gsr_discard_confirmation_dialog (window, TRUE))
 		gsr_window_close (window);
-	}
 }
 
 static void
@@ -1308,6 +1307,9 @@ static void
 record_cb (GtkAction *action,
 	   GSRWindow *window)
 {
+	if (!gsr_window_is_saved(window) && !gsr_discard_confirmation_dialog (window, FALSE))
+		return;
+
 	GSRWindowPrivate *priv = window->priv;
 
 	if (priv->record) {

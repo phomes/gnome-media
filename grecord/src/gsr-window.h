@@ -51,14 +51,11 @@ struct _GSRWindowClass {
 };
 
 
-GType		 gsr_window_get_type	(void);
+GType		gsr_window_get_type		(void);
 
-GtkWidget	*gsr_window_new		(const char *filename);
-
-void		 gsr_window_close	(GSRWindow *window);
-
-gboolean     gsr_window_is_saved (GSRWindow *window);
-
-void         close_confirmation_dialog (GSRWindow *window);
+GtkWidget*	gsr_window_new			(const char *filename);
+void		gsr_window_close		(GSRWindow *window);
+gboolean	gsr_window_is_saved		(GSRWindow *window);
+gboolean	gsr_discard_confirmation_dialog	(GSRWindow *window, gboolean closing);
 
 #endif

@@ -50,8 +50,8 @@ static gboolean
 delete_event_cb (GSRWindow *window,
 		 gpointer data)
 {
-	if (! gsr_window_is_saved (window)) {
-		close_confirmation_dialog (window);
+	if (!gsr_window_is_saved (window) && gsr_discard_confirmation_dialog (window, TRUE)) {
+		gsr_window_close (window);
 		return TRUE;
 	}
 
@@ -82,9 +82,7 @@ gsr_quit (void)
 		   p will be invalid */
 		p = p->next;
 
-		if (! gsr_window_is_saved (window))
-			close_confirmation_dialog (window);
-		else
+		if (gsr_window_is_saved (window) || gsr_discard_confirmation_dialog (window, TRUE))
 			gsr_window_close (window);
 	}
 }
