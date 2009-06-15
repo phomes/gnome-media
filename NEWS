@@ -1,4 +1,40 @@
 ==============
+Version 2.27.3
+==============
+
+- General:
+  + Bug 581630 - Use g_timeout_add_seconds to reduce wakeups (Javier Jardón)
+  + Bug 585377 – Don't require volume-control deps if not building volume-control
+- gnome-volume-control
+  + Implement LFE: http://www.hadess.net/2009/05/i-really-haz-51.html
+    (Bastien & Lennart)
+  + Bug 568936 – Add fade slider (Bastien, Lennart & Matthias Clasen)
+  + Bug 583483 - Raise PulseAudio dependency to 0.9.15
+  + Bug 583485 – fails to build with PA master
+  + Bug 583486 – incorrect LDADD order
+  + Bug 574198 – don't show virtual streams
+  + Bug 583141 – scrollwheel doesn't work when dock is first shown (Bastien)
+  + Bug 581024 – Move streams to the new default sink (Bastien)
+  + Bug 574312 – Add mark for base volume instead of 100% (Bastien)
+  + Bug 581921 – Please show high-level channel mapping string (Bastien)
+  + Bug 579115 – fix alignment issues with sliders (Matthias Clasen)
+  + Bug 574312 – Add mark at 100% for inputs (Bastien)
+  + other fix and improvements
+- gst-mixer
+  + Bug 585006 – build error: gnome_volume_control_element_whitelist
+  + Add support for new GStreamer mixer flags (Brian Cameron)
+- gnome-audio-profiles:
+  + Bug 563343 - first stab at profiles documentation
+- gnome-sound-recorder
+  + Bug 569659 – Previous record discarded without any prompt
+- Updated translations:
+  + el (Sterios Prosiniklis)
+  + es (Jorge González)
+  + et (Ivar Smolin)
+  + nb (Kjartan Maraas)
+  + ta (Dr.T.Vasudevan)
+
+==============
 Version 2.27.1
 ==============
 
