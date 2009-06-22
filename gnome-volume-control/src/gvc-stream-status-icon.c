@@ -43,7 +43,7 @@ struct GvcStreamStatusIconPrivate
         GtkWidget      *bar;
         guint           current_icon;
         char           *display_name;
-
+        gboolean        thaw;
 };
 
 enum
@@ -66,22 +66,41 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
 {
         gdouble volume;
 
+        if (icon->priv->thaw)
+                return;
+
         volume = gtk_adjustment_get_value (adjustment);
 
         gvc_mixer_stream_set_volume(icon->priv->mixer_stream,
-                                    (pa_volume_t) volume );
+                                    (pa_volume_t) volume);
+}
+
+static void
+update_dock (GvcStreamStatusIcon *icon)
+{
+        GtkAdjustment *adj;
+        gboolean       is_muted;
+
+        g_return_if_fail (icon);
+
+        adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (icon->priv->bar)));
+
+        icon->priv->thaw = TRUE;
+        gtk_adjustment_set_value (adj,
+                                  gvc_mixer_stream_get_volume (icon->priv->mixer_stream));
+        is_muted = gvc_mixer_stream_get_is_muted (icon->priv->mixer_stream);
+        gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (icon->priv->bar), is_muted);
+        icon->priv->thaw = FALSE;
 }
 
 static gboolean
 popup_dock (GvcStreamStatusIcon *icon,
             guint                time)
 {
-        GtkAdjustment *adj;
         GdkRectangle   area;
         GtkOrientation orientation;
         GdkDisplay    *display;
         GdkScreen     *screen;
-        gboolean       is_muted;
         gboolean       res;
         int            x;
         int            y;
@@ -89,11 +108,7 @@ popup_dock (GvcStreamStatusIcon *icon,
         GdkRectangle   monitor;
         GtkRequisition dock_req;
 
-        adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (icon->priv->bar)));
-        gtk_adjustment_set_value (adj,
-                                  gvc_mixer_stream_get_volume (icon->priv->mixer_stream));
-        is_muted = gvc_mixer_stream_get_is_muted (icon->priv->mixer_stream);
-        gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (icon->priv->bar), is_muted);
+        update_dock (icon);
 
         screen = gtk_status_icon_get_screen (GTK_STATUS_ICON (icon));
         res = gtk_status_icon_get_geometry (GTK_STATUS_ICON (icon),
@@ -471,7 +486,7 @@ on_stream_volume_notify (GObject             *object,
                          GvcStreamStatusIcon *icon)
 {
         update_icon (icon);
-        /* FIXME: update dock too */
+        update_dock (icon);
 }
 
 static void
@@ -480,16 +495,7 @@ on_stream_is_muted_notify (GObject             *object,
                            GvcStreamStatusIcon *icon)
 {
         update_icon (icon);
-        /* FIXME: update dock too */
-}
-
-static void
-on_stream_decibel_notify (GObject             *object,
-                          GParamSpec          *pspec,
-                          GvcStreamStatusIcon *icon)
-{
-        update_icon (icon);
-        /* FIXME: update dock too */
+        update_dock (icon);
 }
 
 void
@@ -521,9 +527,6 @@ gvc_stream_status_icon_set_mixer_stream (GvcStreamStatusIcon *icon,
                 g_signal_handlers_disconnect_by_func (icon->priv->mixer_stream,
                                                       G_CALLBACK (on_stream_is_muted_notify),
                                                       icon);
-                g_signal_handlers_disconnect_by_func (icon->priv->mixer_stream,
-                                                      G_CALLBACK (on_stream_decibel_notify),
-                                                      icon);
                 g_object_unref (icon->priv->mixer_stream);
                 icon->priv->mixer_stream = NULL;
         }
@@ -546,10 +549,6 @@ gvc_stream_status_icon_set_mixer_stream (GvcStreamStatusIcon *icon,
                 g_signal_connect (icon->priv->mixer_stream,
                                   "notify::is-muted",
                                   G_CALLBACK (on_stream_is_muted_notify),
-                                  icon);
-                g_signal_connect (icon->priv->mixer_stream,
-                                  "notify::decibel",
-                                  G_CALLBACK (on_stream_decibel_notify),
                                   icon);
         }
 
@@ -778,6 +777,8 @@ gvc_stream_status_icon_init (GvcStreamStatusIcon *icon)
                           "notify::visible",
                           G_CALLBACK (on_status_icon_visible_notify),
                           NULL);
+
+        icon->priv->thaw = FALSE;
 }
 
 static void
