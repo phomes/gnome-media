@@ -69,8 +69,8 @@ typedef struct _GSTPPipelineEditor
 	gchar *devicemenu_name;
 	gchar *entry_name;
 	gchar *test_button_name;
-	GtkOptionMenu *optionmenu;
-	GtkOptionMenu *devicemenu;
+	GtkComboBox *optionmenu;
+	GtkComboBox *devicemenu;
 	GtkEntry *entry;
 	GtkButton *test_button;
 }

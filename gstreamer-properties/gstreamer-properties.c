@@ -133,34 +133,28 @@ test_button_clicked (GtkButton * button, gpointer user_data)
 }
 
 static void
-pipeline_devicemenu_changed (GtkOptionMenu * devicemenu, gpointer user_data)
+pipeline_devicemenu_changed (GtkComboBox *devicemenu, gpointer user_data)
 {
   GSTPPipelineEditor *editor = (GSTPPipelineEditor *) (user_data);
-  GtkMenu *menu = NULL;
-  GtkMenuItem *mi = NULL;
   GSTPPipelineDescription *pipeline_desc = NULL;
+  GtkTreeIter iter;
+  GtkTreeModel *model = gtk_combo_box_get_model (devicemenu);
   gchar *devicename = NULL;
+  gboolean active;
 
   /* Determine which option changed, retrieve the pipeline desc,
    * and call update_from_option */
-  menu = GTK_MENU (gtk_option_menu_get_menu (devicemenu));
 
-  if (menu == NULL)
+  if (model == NULL)
+    return;
+  /*FIXME: g_return_if_fail (model != NULL); */
+
+  active = gtk_combo_box_get_active_iter (devicemenu, &iter);
+
+  if (!active)
     return;
 
-  /*FIXME: g_return_if_fail (menu != NULL); */
-  mi = GTK_MENU_ITEM (gtk_menu_get_active (menu));
-
-  if (mi == NULL)
-    return;
-
-  devicename =
-      (gchar *) (g_object_get_data (G_OBJECT (mi),
-          device_property));
-
-  pipeline_desc =
-      (GSTPPipelineDescription *) (g_object_get_data (G_OBJECT (mi),
-          pipeline_desc_property));
+  gtk_tree_model_get (model, &iter, 1, &pipeline_desc, 2, &devicename, -1);
 
   if (pipeline_desc == NULL)
     return;
@@ -191,10 +185,17 @@ update_device_menu (GSTPPipelineEditor * editor,
   GstPropertyProbe *probe;
   const GParamSpec *pspec;
   GObjectClass *klass;
-  const gchar *longname;  
+  const gchar *longname;
 
   if (editor->devicemenu == NULL) {
-    editor->devicemenu = GTK_OPTION_MENU (WID (editor->devicemenu_name));
+    GtkCellRenderer *cellrenderer = gtk_cell_renderer_text_new ();
+
+    editor->devicemenu = GTK_COMBO_BOX (WID (editor->devicemenu_name));
+
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (editor->devicemenu),
+                                cellrenderer, TRUE);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (editor->devicemenu),
+                                   cellrenderer, "text", 0);
 
     g_object_set_data (G_OBJECT (editor->devicemenu), pipeline_editor_property,
         (gpointer) (editor));
@@ -202,15 +203,19 @@ update_device_menu (GSTPPipelineEditor * editor,
         (GCallback) pipeline_devicemenu_changed, (gpointer) (editor));
   }
 
-  if(editor->devicemenu) {
+  if (editor->devicemenu) {
     gchar *insensitive_label = g_strdup(_("None"));
-    GtkMenu *menu = GTK_MENU (gtk_menu_new ());
-    GtkMenuItem *mi = NULL;
-    GtkMenuItem *mi_preselect = NULL;
+    gboolean devices_added = FALSE;
+    gboolean preselect = FALSE;
+    GtkTreeIter preselection;
+    /* Use a pointer for the devicename (col 3), the capplet seems to avoid
+     * string allocation/deallocation this way */
+    GtkListStore *store = gtk_list_store_new (3, G_TYPE_STRING,
+                                              G_TYPE_POINTER, G_TYPE_POINTER);
 
     gtk_widget_set_sensitive (GTK_WIDGET (editor->devicemenu), FALSE);
 
-    gtk_option_menu_remove_menu (editor->devicemenu);
+    gtk_combo_box_set_model (editor->devicemenu, NULL);
 
     if (pipeline_desc->is_custom == FALSE) {
 
@@ -230,7 +235,7 @@ update_device_menu (GSTPPipelineEditor * editor,
           //return;
         }
         else {
-          klass = G_OBJECT_GET_CLASS (element);  
+          klass = G_OBJECT_GET_CLASS (element);
 
           /* do we have a "device" property? */
           if (!g_object_class_find_property (klass, "device") ||
@@ -257,14 +262,21 @@ update_device_menu (GSTPPipelineEditor * editor,
 
             array = gst_property_probe_probe_and_get_values (probe, pspec);
             if (array != NULL) {
+	      GtkTreeIter iter;
+
               /* default device item, so we can let the element handle it */
               if (array->n_values > 0) {
-                mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (_("Default")));
-                g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
-                    (gpointer) pipeline_desc);
+                gtk_list_store_append (store, &iter);
+                gtk_list_store_set (store, &iter,
+                                    0, _("Default"),
+                                    1, (gpointer) pipeline_desc,
+                                    2, NULL, -1);
 
-                gtk_widget_show (GTK_WIDGET (mi));
-                gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
+                devices_added = TRUE;
+
+                // Preselect this to simulate GtkOptionMenu behavior
+                preselect = TRUE;
+                preselection = iter;
 
                 gtk_widget_set_sensitive (GTK_WIDGET (editor->devicemenu), TRUE);
               }
@@ -284,7 +296,7 @@ update_device_menu (GSTPPipelineEditor * editor,
                       g_value_get_string (device));
                   continue;
                 }
-                
+
                 g_object_get (G_OBJECT (element), "device-name", &name, NULL);
                 // caps = gst_pad_get_caps (gst_element_get_pad (element, "src"));
 
@@ -298,18 +310,19 @@ update_device_menu (GSTPPipelineEditor * editor,
                 gst_element_set_state (element, GST_STATE_NULL);
 
                 /* Add device to devicemenu */
-                mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (name));            
-                g_object_set_data (G_OBJECT (mi), device_property,
-                    (gpointer) g_value_get_string (device));
-                g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
-                    (gpointer) pipeline_desc);
-                gtk_widget_show (GTK_WIDGET (mi));
-                gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
-                
+		gtk_list_store_append (store, &iter);
+                gtk_list_store_set (store, &iter,
+                                    0, name,
+                                    1, (gpointer) pipeline_desc,
+                                    2, (gpointer) g_value_get_string (device),
+                                    -1);
+
+                devices_added = TRUE;
                 if (pipeline_desc->device != NULL &&
                    !strcmp (pipeline_desc->device, g_value_get_string(device)))
                 {
-                  mi_preselect = mi;
+                  preselect = TRUE;
+		  preselection = iter;
                 }
               }
             }
@@ -321,25 +334,24 @@ update_device_menu (GSTPPipelineEditor * editor,
     }
 
     /* No devices to choose -> "None" */
-    if (mi == NULL) {
-        mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (g_strdup (insensitive_label)));
+    if (!devices_added) {
+      GtkTreeIter iter;
 
-        g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
-            (gpointer) pipeline_desc);
-
-        gtk_widget_show (GTK_WIDGET (mi));
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
+      gtk_list_store_append (store, &iter);
+      gtk_list_store_set (store, &iter,
+                          0, insensitive_label,
+                          1, (gpointer) pipeline_desc,
+                          2, NULL, -1);
     }
 
-    gtk_option_menu_set_menu (editor->devicemenu, GTK_WIDGET (menu));
-    
-    if (mi_preselect!=NULL) {
-      gtk_option_menu_set_history (editor->devicemenu,
-          g_list_index (GTK_MENU_SHELL (menu)->children, GTK_WIDGET (mi_preselect)));
+    gtk_combo_box_set_model (editor->devicemenu, GTK_TREE_MODEL (store));
+
+    if (preselect) {
+      gtk_combo_box_set_active_iter (editor->devicemenu, &preselection);
     }
 
     g_free (insensitive_label);
-  }  
+  }
 }
 
 static void
@@ -369,23 +381,20 @@ update_from_option (GSTPPipelineEditor * editor,
   }
 }
 
-static void
-set_menuitem_by_pipeline (GtkWidget * widget, gpointer data)
+static gboolean
+set_menuitem_by_pipeline (GtkTreeModel *model, GtkTreePath *path,
+                          GtkTreeIter *iter, gpointer data)
 {
   GSTPPipelineEditor *editor = (GSTPPipelineEditor *) (data);
+  GSTPPipelineDescription *pipeline_desc;
 
-  if (GTK_IS_MENU_ITEM (widget)) {
-    GtkMenuItem *mi = GTK_MENU_ITEM (widget);
-    GSTPPipelineDescription *pipeline_desc =
-        (GSTPPipelineDescription *) (g_object_get_data (G_OBJECT (mi),
-            pipeline_desc_property));
-    if (pipeline_desc == (editor->pipeline_desc + editor->cur_pipeline_index)) {
-      GtkMenuShell *menu =
-          GTK_MENU_SHELL (gtk_option_menu_get_menu (editor->optionmenu));
-      gtk_option_menu_set_history (editor->optionmenu,
-          g_list_index (menu->children, mi));
-    }
+  gtk_tree_model_get (model, iter, 1, &pipeline_desc, -1);
+  if (pipeline_desc == (editor->pipeline_desc + editor->cur_pipeline_index)) {
+    gtk_combo_box_set_active_iter (editor->optionmenu, iter);
+    return TRUE;
   }
+
+  return FALSE;
 }
 
 static void
@@ -430,10 +439,9 @@ update_from_gconf (GSTPPipelineEditor * editor, const gchar * pipeline_str)
   }
 
   if (editor->cur_pipeline_index >= 0) {
-    GtkMenu *menu = GTK_MENU (gtk_option_menu_get_menu (editor->optionmenu));
+    GtkTreeModel *model = gtk_combo_box_get_model (editor->optionmenu);
 
-    gtk_container_foreach (GTK_CONTAINER (menu), set_menuitem_by_pipeline,
-        editor);
+    gtk_tree_model_foreach (model, set_menuitem_by_pipeline, editor);
     update_from_option (editor,
         editor->pipeline_desc + editor->cur_pipeline_index);
   }
@@ -442,21 +450,19 @@ update_from_gconf (GSTPPipelineEditor * editor, const gchar * pipeline_str)
 }
 
 static void
-pipeline_option_changed (GtkOptionMenu * optionmenu, gpointer user_data)
+pipeline_option_changed (GtkComboBox *optionmenu, gpointer user_data)
 {
+  GtkTreeIter iter;
+  GtkTreeModel *model = gtk_combo_box_get_model (optionmenu);
+  gboolean active;
   GSTPPipelineEditor *editor = (GSTPPipelineEditor *) (user_data);
-  GtkMenu *menu = NULL;
-  GtkMenuItem *mi = NULL;
   GSTPPipelineDescription *pipeline_desc = NULL;
 
   /* Determine which option changed, retrieve the pipeline desc,
    * and call update_from_option */
-  menu = GTK_MENU (gtk_option_menu_get_menu (optionmenu));
-  /*FIXME: g_return_if_fail (menu != NULL); */
-  mi = GTK_MENU_ITEM (gtk_menu_get_active (menu));
-  pipeline_desc =
-      (GSTPPipelineDescription *) (g_object_get_data (G_OBJECT (mi),
-          pipeline_desc_property));
+  active = gtk_combo_box_get_active_iter (optionmenu, &iter);
+  g_return_if_fail (active == TRUE);
+  gtk_tree_model_get (model, &iter, 1, &pipeline_desc, -1);
 
   update_from_option (editor, pipeline_desc);
 }
@@ -510,20 +516,26 @@ element_available (const gchar * pipeline)
   return res;
 }
 
-static GtkOptionMenu *
+static GtkComboBox *
 create_pipeline_menu (GtkBuilder * dialog, GSTPPipelineEditor * editor)
 {
-  GtkOptionMenu *option = NULL;
+  GtkComboBox *option = NULL;
   gint i;
   GSTPPipelineDescription *pipeline_desc = editor->pipeline_desc;
 
 
-  option = GTK_OPTION_MENU (WID (editor->optionmenu_name));
+  option = GTK_COMBO_BOX (WID (editor->optionmenu_name));
   if (option) {
-    GtkMenu *menu = GTK_MENU (gtk_menu_new ());
-    GtkMenuItem *mi = NULL;
+    GtkListStore *list_store = gtk_list_store_new (2, G_TYPE_STRING,
+                                                   G_TYPE_POINTER);
+    GtkCellRenderer *cellrenderer = gtk_cell_renderer_text_new ();
 
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (option), cellrenderer, TRUE);
+    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (option), cellrenderer,
+                                   "text", 0);
     for (i = 0; i < editor->n_pipeline_desc; i++) {
+      GtkTreeIter iter;
+
       if (element_available (pipeline_desc[i].pipeline)) {
         GstElement *pipeline;
         GError *error = NULL;
@@ -547,16 +559,14 @@ create_pipeline_menu (GtkBuilder * dialog, GSTPPipelineEditor * editor)
         /* This is probably the 'Custom' pipeline */
       }
 
-      mi = GTK_MENU_ITEM (gtk_menu_item_new_with_label (
-      gettext (pipeline_desc[i].name)));
+      gtk_list_store_append (list_store, &iter);
+      gtk_list_store_set (list_store, &iter,
+                          0, gettext (pipeline_desc[i].name),
+                          1, (gpointer) & pipeline_desc[i], -1);
       pipeline_desc[i].index = i;
-      g_object_set_data (G_OBJECT (mi), pipeline_desc_property,
-          (gpointer) & pipeline_desc[i]);
-      gtk_widget_show (GTK_WIDGET (mi));
-      gtk_menu_shell_append (GTK_MENU_SHELL (menu), GTK_WIDGET (mi));
     }
 
-    gtk_option_menu_set_menu (option, GTK_WIDGET (menu));
+    gtk_combo_box_set_model (option, GTK_TREE_MODEL (list_store));
   }
 
   return option;
