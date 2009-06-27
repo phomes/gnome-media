@@ -36,7 +36,7 @@
 
 #include "pipeline-tests.h"
 #define WID(s) gtk_builder_get_object (builder, s)
-static gint timeout_tag;
+static guint timeout_tag;
 
 static GstElement *gst_test_pipeline;
 
@@ -255,10 +255,10 @@ user_test_pipeline (GtkBuilder * builder,
     if (dialog) {
       gtk_window_present (GTK_WINDOW (dialog));
       timeout_tag =
-          gtk_timeout_add (50, user_test_pipeline_timeout,
+          g_timeout_add (50, user_test_pipeline_timeout,
           WID ("test_pipeline_progress"));
       gtk_dialog_run (GTK_DIALOG (dialog));
-      gtk_timeout_remove (timeout_tag);
+      g_source_remove (timeout_tag);
       gtk_widget_hide (GTK_WIDGET (dialog));
     } else {
       gint secs;
