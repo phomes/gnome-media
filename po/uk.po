@@ -3,14 +3,15 @@
 # Yuri Syrota <rasta@renome.rovno.ua> 1999
 # Maxim Dizumanenko <dziumanenko@gmail.com>, 2002-2007
 #
+# wanderlust <wanderlust@ukr.net>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-28 14:18+0300\n"
-"PO-Revision-Date: 2009-04-28 23:50+0300\n"
-"Last-Translator: Maxim V. Dziumanenko <dziumanenko@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"POT-Creation-Date: 2009-07-09 22:48+0300\n"
+"PO-Revision-Date: 2009-07-08 10:08+0300\n"
+"Last-Translator: wanderlust <wanderlust@ukr.net>\n"
+"Language-Team: ukrainian <Ukrainian <uk@li.org>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -152,9 +153,9 @@ msgid "Unknown / Unknown"
 msgstr "Невідомий / Невідомий"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1014
+#: ../grecord/src/gsr-window.c:1024 ../grecord/src/gsr-window.c:1040
+#: ../grecord/src/gsr-window.c:1049 ../grecord/src/gsr-window.c:1406
 #: ../gstreamer-properties/gstreamer-properties.c:293
 msgid "Unknown"
 msgstr "Невідомо"
@@ -1069,7 +1070,7 @@ msgid "_Eject disc"
 msgstr "_Витягти диск"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2151
 msgid "_Help"
 msgstr "_Довідка"
 
@@ -1321,6 +1322,16 @@ msgstr "Теми"
 msgid "_Select a theme:"
 msgstr "_Виберіть тему:"
 
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
+msgid "Show desktop volume control"
+msgstr "Показати регулятор гучності"
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
+msgid "Volume Control"
+msgstr "Регулятор гучності"
+
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
 msgid "Change sound volume and associate sounds with events"
 msgstr "Змінити гучність звуку та зв'язати звуки з подіями робочого столу"
@@ -1329,23 +1340,13 @@ msgstr "Змінити гучність звуку та зв'язати звук
 msgid "Sound"
 msgstr "Звук"
 
-#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
-msgid "Show desktop volume control"
-msgstr "Показати регулятор гучності"
-
-#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
-msgid "Volume Control"
-msgstr "Регулятор гучності"
-
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "Увімкнути режим налагодження"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "Версія цієї програми"
 
@@ -1353,130 +1354,168 @@ msgstr "Версія цієї програми"
 msgid " - GNOME Volume Control Applet"
 msgstr " — Аплет регулятора гучності"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "Очікування відповіді звукової підсистеми"
 
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Початкова сторінка"
 
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " — Регулятор гучності"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:271
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1265
 msgid "Output"
 msgstr "Вихід"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1189
 msgid "Input"
 msgstr "Вхід"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "Лівий"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "Правий"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr "Фронтальний"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Rear"
+msgstr "Тло"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Мінімум"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Максимум"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:290
 msgid "_Balance:"
 msgstr "_Баланс"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:798
+#: ../gnome-volume-control/src/gvc-balance-bar.c:293
+msgid "_Fade:"
+msgstr "_Затухання:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:296
+msgid "_Subwoofer:"
+msgstr "_Сабвуфер:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:583
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:587
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "Вимкнути підсилення"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:843
 msgid "Mute"
 msgstr "Приглушити"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1065
 msgid "System Sounds"
 msgstr "Системні звуки"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1471
 msgid "GNOME Volume Control"
 msgstr "Регулятор гучності"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:403
 msgid "Peak detect"
 msgstr "Визначення максимальної гучності"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1063
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Назва"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1068
 msgid "Device"
 msgstr "Пристрій"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1139
+msgid "Output Volume: "
 msgstr "Гучність звуку: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1169
 msgid "Sound Effects"
 msgstr "Звукові події"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
 msgid "Alert Volume: "
 msgstr "Гучність сповіщень: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1196
+msgid "Input Volume: "
 msgstr "Гучність запису: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1216
 msgid "Input level:"
 msgstr "Рівень запису: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1238
 msgid "Choose a device for sound input"
 msgstr "Виберіть пристрій для запису звуку"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1270
 msgid "Choose a device for sound output"
 msgstr "Виберіть пристрій для виводу звуку"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1294
 msgid "Settings for the selected device:"
 msgstr "Параметри обраного пристрою:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1305
 msgid "Applications"
 msgstr "Програми"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1309
 msgid "No application is currently playing or recording audio."
 msgstr "Наразі програми не програють та не записують звук."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1412
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Параметри звуку"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:229
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Не вдається запустити діалог налаштовування параметрів звуку: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:252
 msgid "_Mute"
 msgstr "_Приглушити"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:261
 msgid "_Sound Preferences"
 msgstr "П_араметри звуку"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:419
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:445
 msgid "Muted"
 msgstr "Приглушений"
 
@@ -1493,17 +1532,17 @@ msgstr "Запис звуку"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Без заголовка"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Без заголовка-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1519,7 +1558,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "та перезапустіть gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1527,7 +1566,7 @@ msgstr ""
 "Перевірте його параметри.\n"
 "Можливо відсутні необхідні модулі."
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1535,7 +1574,7 @@ msgstr[0] "%ld хвилина"
 msgstr[1] "%ld хвилини"
 msgstr[2] "%ld хвилин"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1543,7 +1582,7 @@ msgstr[0] "%ld година"
 msgstr[1] "%ld години"
 msgstr[2] "%ld годин"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1552,24 +1591,24 @@ msgstr[1] "%ld секунди"
 msgstr[2] "%ld секунд"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s та %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s та %s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Відкрити файл"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1578,17 +1617,17 @@ msgstr ""
 "Не вдається завантажити файл:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "Готовий"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "За_мінити"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1597,44 +1636,51 @@ msgstr ""
 "Файл з назвою \"%s\" вже існує. \n"
 "Замінити його?"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Не вдається записати файл \"%s\""
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Зберегти файл як"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s не встановлено за шляхом."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Помилка при запуску %s: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Зберегти зміни у \"%s\" перед закриванням?"
+msgid "Save recording before closing?"
+msgstr "Зберегти запис перед закриванням?"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "Зберегти запис?"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "_Закрити без збереження"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr "Продовжити _без збереження"
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "Запитання"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Не збережено)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1642,71 +1688,71 @@ msgstr[0] "%s (%llu байт)"
 msgstr[1] "%s (%llu байти)"
 msgstr[2] "%s (%llu байтів)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "Розмір невідомий"
 
-#: ../grecord/src/gsr-window.c:1025
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f кГц"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f кб/с"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f кб/с (очікується)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1052
 msgid "1 (mono)"
 msgstr "1 (моно)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1055
 msgid "2 (stereo)"
 msgstr "2 (стерео)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "Інформація про файл \"%s\""
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Інформація про файл"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Тека:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Файл:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "Розмір файлу:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "Аудіо інформація"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "Тривалість файлу:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "Кількість каналів:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "Частота фрагменту: "
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "Кількість біт:"
 
@@ -1718,27 +1764,27 @@ msgstr ""
 "Записувач звуку для GNOME\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr "Відтворення..."
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "GConf - вивід звуку"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Відтворення"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr "Запис..."
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "GConf - запис звуку"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1746,138 +1792,138 @@ msgstr ""
 "Параметри запису звуку неправильні. Змініть параметри в розділі \"Параметри "
 "звуку\" у меню Система-Параметри."
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "вивід у файл"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "рівень"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Не вдається розібрати звуковий профіль '%s'."
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Не вдається записати звук з використанням звукового профілю '%s'."
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Не вдається записати у файл з використанням звукового профілю '%s'."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Файл"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "Створити новий фрагмент"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Відкрити файл"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "Зберегти поточний файл"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "Зберегти поточний файл з іншою назвою"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "Відкрити _регулятор гучності"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "Відкрити звуковий мікшер"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "Показати інформацію про поточний файл"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "Закрити поточний файл"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Вийти з програми"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "_Керування"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "Запис звуку"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "Відтворити звук"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Зупинити звук"
 
-#: ../grecord/src/gsr-window.c:2145
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Зміст"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "Відкрити довідку"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "Про цю програму"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Не вдається завантажити ui.xml. Можливо, програма неправильно встановлена"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Відкрити"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Зберегти"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "Запис із лінійного в_ходу:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "Записати _як:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<немає>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "Тривалість:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "Рівень:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Запис звуку"
@@ -1902,7 +1948,7 @@ msgstr "Ширина вікна"
 msgid "Width of the Window to be displayed"
 msgstr "Ширина вікна"
 
-#: ../gst-mixer/src/element.c:435
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Тема звукових подій"
 
@@ -1915,15 +1961,15 @@ msgstr "Невідомий регулятор гучності %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Не знайдено модулі GStreamer та/чи пристрої регулювання звуку."
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "Запис"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "Перемикачі"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "Параметри"
 
@@ -1933,37 +1979,37 @@ msgid "Volume Control Preferences"
 msgstr "Параметри регулятора гучності"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
+msgid "_Select mixers to be visible:"
 msgstr "_Виберіть видимі канали:"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Приглушити/увімкнути %s"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "Канал %s: приглушений"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Перемикнути запис звуку з %s"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Доріжка %s: запис звуку"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "Вибір параметра %s"
@@ -2052,28 +2098,28 @@ msgstr "невідомо"
 msgid "Volume of %s channel on %s"
 msgstr "Гучність каналу %s на %s"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Регулятор гучності оснований на GNOME/GStreamer"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота\n"
 "Максим Дзюманенко <dziumanenko@gmail.com>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Регулятор гучності: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "_Пристрій: "
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "Регулювати гучність іншого пристрою"
 
@@ -2087,7 +2133,7 @@ msgid "Unsupported"
 msgstr "Непідтримуваний"
 
 #: ../gstreamer-properties/gstreamer-properties.c:263
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
@@ -2199,7 +2245,7 @@ msgstr "PulseAudio Sound Server"
 #: ../gstreamer-properties/pipeline-constants.c:112
 #: ../gstreamer-properties/pipeline-constants.c:136
 #: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
@@ -2340,6 +2386,16 @@ msgid ""
 msgstr ""
 "Файл \"%s\" не існує. Це означає, що програма встановлена неправильно, тому "
 "діалогове вікно не може бути відображене."
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Запустіть '%s --help' щоб отримати повний перелік параметрів, які  "
+"підтримуються.\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2538,41 +2594,41 @@ msgstr ""
 "Відображати та використовувати, чи не відображати та не використовувати цей "
 "профіль."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Без звуків"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Вбудована"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Тестовий звуковий сигнал"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "З теми"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "Тип"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
+#: ../sound-theme/gvc-sound-theme-chooser.c:1083
 #: ../sound-theme/gvc-sound-theme-editor.c:1310
 msgid "Sound Theme:"
 msgstr "Тема звуків:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
+#: ../sound-theme/gvc-sound-theme-chooser.c:1091
 msgid "Choose an alert sound:"
 msgstr "Виберіть звук сповіщення:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
+#: ../sound-theme/gvc-sound-theme-chooser.c:1109
 #: ../sound-theme/gvc-sound-theme-editor.c:1338
 msgid "Enable window and button sounds"
 msgstr "Увімкнути звукові сповіщення про дії з вікнами та натискання кнопок"
