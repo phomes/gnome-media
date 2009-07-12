@@ -59,7 +59,6 @@ AC_MSG_NOTICE([Using $GM_ERROR_CFLAGS as error checking CFLAGS])
 
 GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.14.0
-LIBGLADE_REQUIRED_VERSION=1.99.2
 GCONF_REQUIRED_VERSION=2.6.1
 PA_REQUIRED_VERSION=0.9.15
 CANBERRA_REQUIRED_VERSION=0.4
@@ -143,15 +142,29 @@ AC_ARG_ENABLE([profiles],
 
 if test "x$enable_profiles" = "xyes"; then
   PKG_CHECK_MODULES(GMP, [
+    gtk+-2.0 >= $GTK_REQUIRED_VERSION
     gstreamer-0.10
     gconf-2.0
-    libglade-2.0
     gio-2.0],
     have_profiles=yes)
 fi
 AC_SUBST(GMP_CFLAGS)
 AC_SUBST(GMP_LIBS)
 AM_CONDITIONAL(HAVE_GMP, [test x$have_profiles = xyes])
+
+dnl Profiles glade ui: needed to edit .ui files with glade3
+have_gladeui=no
+
+PKG_CHECK_MODULES(GLADEUI, [gladeui-1.0], have_gladeui=yes)
+AC_SUBST(GLADEUI_CFLAGS)
+AC_SUBST(GLADEUI_LIBS)
+AM_CONDITIONAL(HAVE_GLADEUI, [test x$have_gladeui = xyes])
+
+GLADEUI_CATALOG_DIR="`$PKG_CONFIG --variable=catalogdir gladeui-1.0`"
+AC_SUBST(GLADEUI_CATALOG_DIR)
+
+GLADEUI_MODULE_DIR="`$PKG_CONFIG --variable=moduledir gladeui-1.0`"
+AC_SUBST(GLADEUI_MODULE_DIR)
 
 dnl=======================================================================
 dnl Check for GStreamer and GSR deps
@@ -433,7 +446,7 @@ echo "
 
         Volume Control          $have_pulseaudio
         GStreamer properties:   $have_gstprops
-        GStreamer profiles:     $have_profiles
+        GStreamer profiles:     $have_profiles (GladeUI: $have_gladeui)
         Sound recorder:         $have_grecord$grecord_reason
 
   *Deprecated*:
