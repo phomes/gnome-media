@@ -147,7 +147,6 @@ pipeline_devicemenu_changed (GtkComboBox *devicemenu, gpointer user_data)
 
   if (model == NULL)
     return;
-  /*FIXME: g_return_if_fail (model != NULL); */
 
   active = gtk_combo_box_get_active_iter (devicemenu, &iter);
 
@@ -262,7 +261,7 @@ update_device_menu (GSTPPipelineEditor * editor,
 
             array = gst_property_probe_probe_and_get_values (probe, pspec);
             if (array != NULL) {
-	      GtkTreeIter iter;
+              GtkTreeIter iter;
 
               /* default device item, so we can let the element handle it */
               if (array->n_values > 0) {
@@ -310,7 +309,7 @@ update_device_menu (GSTPPipelineEditor * editor,
                 gst_element_set_state (element, GST_STATE_NULL);
 
                 /* Add device to devicemenu */
-		gtk_list_store_append (store, &iter);
+                gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
                                     0, name,
                                     1, (gpointer) pipeline_desc,
@@ -322,7 +321,7 @@ update_device_menu (GSTPPipelineEditor * editor,
                    !strcmp (pipeline_desc->device, g_value_get_string(device)))
                 {
                   preselect = TRUE;
-		  preselection = iter;
+                  preselection = iter;
                 }
               }
             }
@@ -342,6 +341,8 @@ update_device_menu (GSTPPipelineEditor * editor,
                           0, insensitive_label,
                           1, (gpointer) pipeline_desc,
                           2, NULL, -1);
+      preselect = TRUE;
+      preselection = iter;
     }
 
     gtk_combo_box_set_model (editor->devicemenu, GTK_TREE_MODEL (store));
