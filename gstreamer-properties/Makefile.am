@@ -15,8 +15,8 @@ icons_DATA = gstreamer-properties.png
 desktop_iconsdir = $(datadir)/icons/hicolor/48x48/apps
 desktop_icons_DATA = gstreamer-properties.png
 
-gladedir   = $(datadir)/gstreamer-properties/glade
-glade_DATA = gstreamer-properties.glade 
+uidir   = $(datadir)/gstreamer-properties/
+ui_DATA = gstreamer-properties.ui
 
 desktopdir = $(datadir)/applications
 Desktop_in_files = gstreamer-properties.desktop.in.in
@@ -24,7 +24,7 @@ desktop_DATA = $(Desktop_in_files:.desktop.in.in=.desktop)
 
 AM_CPPFLAGS = \
 	$(GSTPROPS_CFLAGS) \
-	-DGSTPROPS_GLADEDIR=\""$(gladedir)"\" \
+	-DGSTPROPS_UIDIR=\""$(uidir)"\" \
 	-DGSTPROPS_ICONDIR=\""$(iconsdir)"\" \
 	-DDATADIR=\""$(datadir)"\" \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
@@ -32,7 +32,7 @@ AM_CPPFLAGS = \
 
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
 DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)
-EXTRA_DIST = ChangeLog.pre-2-26 $(icons_DATA) $(glade_DATA) $(Desktop_in_files)
+EXTRA_DIST = $(icons_DATA) $(ui_DATA) $(Desktop_in_files)
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 install-data-hook:

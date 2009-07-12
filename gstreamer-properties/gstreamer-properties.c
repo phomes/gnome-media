@@ -32,7 +32,6 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
@@ -40,8 +39,8 @@
 #include "gstreamer-properties-structs.h"
 #include "pipeline-tests.h"
 
-#define WID(s) glade_xml_get_widget (interface_xml, s)
-static GladeXML *interface_xml = NULL;
+#define WID(s) gtk_builder_get_object (builder, s)
+static GtkBuilder *builder;
 static GtkDialog *main_window;
 static GConfClient *gconf_client; /* NULL */
 
@@ -95,7 +94,7 @@ gst_properties_gconf_set_string (const gchar * key, const gchar * value)
 }
 
 static void
-dialog_response (GtkDialog * widget, gint response_id, GladeXML * dialog)
+dialog_response (GtkDialog * widget, gint response_id, GtkBuilder * dialog)
 {
   GError *error = NULL;
 
@@ -125,7 +124,7 @@ test_button_clicked (GtkButton * button, gpointer user_data)
     pipeline_desc->pipeline = g_strdup (gtk_entry_get_text (GTK_ENTRY (entry)));
   }
 
-  user_test_pipeline (interface_xml, GTK_WINDOW (main_window), pipeline_desc);
+  user_test_pipeline (builder, GTK_WINDOW (main_window), pipeline_desc);
 
   if (pipeline_desc->is_custom) {
     g_free (pipeline_desc->pipeline);
@@ -512,7 +511,7 @@ element_available (const gchar * pipeline)
 }
 
 static GtkOptionMenu *
-create_pipeline_menu (GladeXML * dialog, GSTPPipelineEditor * editor)
+create_pipeline_menu (GtkBuilder * dialog, GSTPPipelineEditor * editor)
 {
   GtkOptionMenu *option = NULL;
   gint i;
@@ -564,7 +563,7 @@ create_pipeline_menu (GladeXML * dialog, GSTPPipelineEditor * editor)
 }
 
 static void
-init_pipeline_editor (GladeXML * dialog, GSTPPipelineEditor * editor)
+init_pipeline_editor (GtkBuilder * dialog, GSTPPipelineEditor * editor)
 {
   gchar *gconf_init_pipe = NULL;
 
@@ -605,7 +604,7 @@ create_dialog (void)
   int i = 0;
 
   for (i = 0; i < pipeline_editors_count; i++) {
-    init_pipeline_editor (interface_xml, pipeline_editors + i);
+    init_pipeline_editor (builder, pipeline_editors + i);
   }
 
   main_window = GTK_DIALOG (WID ("gst_properties_dialog"));
@@ -621,7 +620,7 @@ create_dialog (void)
   }
 
   g_signal_connect (G_OBJECT (main_window),
-      "response", (GCallback) dialog_response, interface_xml);
+      "response", (GCallback) dialog_response, builder);
   gtk_window_set_icon_name (GTK_WINDOW (main_window), "gstreamer-properties");
   gtk_widget_show (GTK_WIDGET (main_window));
 }
@@ -648,29 +647,30 @@ main (int argc, char **argv)
      return EXIT_FAILURE;
   }
 
+  builder = gtk_builder_new ();
+
   /* FIXME: hardcode uninstalled path here */
-  if (g_file_test ("gstreamer-properties.glade", G_FILE_TEST_EXISTS) == TRUE) {
-    interface_xml = glade_xml_new ("gstreamer-properties.glade", NULL, NULL);
-  } else if (g_file_test (GSTPROPS_GLADEDIR "/gstreamer-properties.glade",
+  if (g_file_test ("gstreamer-properties.ui", G_FILE_TEST_EXISTS) == TRUE) {
+    gtk_builder_add_from_file (builder, "gstreamer-properties.ui", &error);
+  } else if (g_file_test (GSTPROPS_UIDIR "/gstreamer-properties.ui",
           G_FILE_TEST_EXISTS) == TRUE) {
-    interface_xml =
-        glade_xml_new (GSTPROPS_GLADEDIR "/gstreamer-properties.glade", NULL,
-        NULL);
+    gtk_builder_add_from_file (builder, GSTPROPS_UIDIR "/gstreamer-properties.ui", &error);
   }
 
   gconf_client = gconf_client_get_default ();
 
-  if (!interface_xml) {
+  if (error) {
     GtkWidget *dialog;
 
     dialog = gtk_message_dialog_new (NULL,
         0,
         GTK_MESSAGE_ERROR,
         GTK_BUTTONS_CLOSE,
-        _("Failed to load glade file; please check your installation."));
+        _("Failed to load UI file; please check your installation."));
 
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
+    g_clear_error (&error);
 
     exit (1);
   }

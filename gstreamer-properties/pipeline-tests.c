@@ -31,12 +31,11 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 
 #include "pipeline-tests.h"
-#define WID(s) glade_xml_get_widget (interface_xml, s)
+#define WID(s) gtk_builder_get_object (builder, s)
 static gint timeout_tag;
 
 static GstElement *gst_test_pipeline;
@@ -47,7 +46,7 @@ static void pipeline_error_dlg (GtkWindow * parent,
 /* User responded in the dialog */
 static void
 user_test_pipeline_response (GtkDialog * widget, gint response_id,
-    GladeXML * dialog)
+    GtkBuilder * dialog)
 {
   /* Close the window causing the test to end */
   gtk_widget_hide (GTK_WIDGET (widget));
@@ -198,7 +197,7 @@ pipeline_error_dlg (GtkWindow * parent,
  * for any user interaction window.
  */
 void
-user_test_pipeline (GladeXML * interface_xml,
+user_test_pipeline (GtkBuilder * builder,
     GtkWindow * parent, GSTPPipelineDescription * pipeline_desc)
 {
   GstStateChangeReturn ret;
@@ -225,7 +224,7 @@ user_test_pipeline (GladeXML * interface_xml,
     gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
     gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
     g_signal_connect (G_OBJECT (dialog), "response",
-        (GCallback) user_test_pipeline_response, interface_xml);
+        (GCallback) user_test_pipeline_response, builder);
   }
 
   /* Start the pipeline and wait for max. 3 seconds for it to start up */
