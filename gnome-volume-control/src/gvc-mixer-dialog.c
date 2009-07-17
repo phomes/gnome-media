@@ -555,7 +555,10 @@ on_bar_is_muted_notify (GObject        *object,
         if (stream != NULL) {
                 gvc_mixer_stream_change_is_muted (stream, is_muted);
         } else {
-                g_warning ("Unable to find stream for bar");
+                char *name;
+                g_object_get (object, "name", &name, NULL);
+                g_warning ("Unable to find stream for bar '%s'", name);
+                g_free (name);
         }
 }
 
