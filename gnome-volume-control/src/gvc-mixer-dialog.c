@@ -686,6 +686,9 @@ bar_set_stream (GvcMixerDialog *dialog,
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
 
+        g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
+        g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
+
         if (stream != NULL) {
                 is_muted = gvc_mixer_stream_get_is_muted (stream);
                 gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
@@ -695,9 +698,6 @@ bar_set_stream (GvcMixerDialog *dialog,
                 gtk_adjustment_set_value (adj,
                                           gvc_mixer_stream_get_volume (stream));
         }
-
-        g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
-        g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
 }
 
 static void
