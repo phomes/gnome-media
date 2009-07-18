@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2009-06-15 19:56+0000\n"
-"PO-Revision-Date: 2009-06-21 10:45+0200\n"
+"POT-Creation-Date: 2009-07-15 16:05+0000\n"
+"PO-Revision-Date: 2009-07-16 09:15+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -183,7 +183,7 @@ msgstr "Desconocido / Desconocido"
 #: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1014
 #: ../grecord/src/gsr-window.c:1024 ../grecord/src/gsr-window.c:1040
 #: ../grecord/src/gsr-window.c:1049 ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:293
+#: ../gstreamer-properties/gstreamer-properties.c:303
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -1414,7 +1414,6 @@ msgid "CD Player Preferences"
 msgstr "Preferencias del reproductor de CD"
 
 #: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Dispositivo:"
 
@@ -1458,8 +1457,10 @@ msgid "Volume Control"
 msgstr "Control de volumen"
 
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "Cambiar el volumen y asociar sonidos con eventos"
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+#| msgid "Change sound volume and associate sounds with events"
+msgid "Change sound volume and sound events"
+msgstr "Cambiar el volumen y los eventos de sonido"
 
 # grecord/src/gui.c:851
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
@@ -1467,12 +1468,12 @@ msgid "Sound"
 msgstr "Sonido"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
@@ -1481,25 +1482,25 @@ msgstr "Versión de esta aplicación"
 msgid " - GNOME Volume Control Applet"
 msgstr " - Miniaplicación Control de volumen de GNOME"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "Esperando a que el sistema de sonido responda"
 
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Página de inicio"
 
 # tcd/gtcd.c:506
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " - Control de volumen de GNOME"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
+#: ../gnome-volume-control/src/gvc-applet.c:271
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1265
 msgid "Output"
 msgstr "Salida"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
+#: ../gnome-volume-control/src/gvc-applet.c:275
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1189
 msgid "Input"
 msgstr "Entrada"
@@ -1560,12 +1561,12 @@ msgstr "Sin amplificar"
 msgid "Mute"
 msgstr "Silenciar"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1064
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1065
 msgid "System Sounds"
 msgstr "Sonidos del sistema"
 
 # tcd/gtcd.c:506
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1588
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1471
 msgid "GNOME Volume Control"
 msgstr "Control de volumen de GNOME"
 
@@ -1636,23 +1637,23 @@ msgid "Sound Preferences"
 msgstr "Preferencias de sonido"
 
 # tcd/gtcd.c:506
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:214
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:229
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Falló al iniciar las Preferencias de sonido: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:237
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:252
 msgid "_Mute"
 msgstr "_Silenciar"
 
 # gmix/prefs.c:483
 # tcd/gtcd.c:490
 # tcd/prefs.c:752
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:246
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:261
 msgid "_Sound Preferences"
 msgstr "Prefere_ncias de sonido"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:430
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:445
 msgid "Muted"
 msgstr "Silenciado"
 
@@ -1794,13 +1795,11 @@ msgid "There was an error starting %s: %s"
 msgstr "Hubo un error al iniciar %s: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#| msgid "Save the changes to file \"%s\" before closing?"
 msgid "Save recording before closing?"
 msgstr "¿Guardar la grabación antes de cerrar?"
 
 # grecord/src/grec.c:92
 #: ../grecord/src/gsr-window.c:865
-#| msgid "Recording"
 msgid "Save recording?"
 msgstr "¿Guardar la grabación?"
 
@@ -1809,7 +1808,6 @@ msgid "Close _without Saving"
 msgstr "Cerrar _sin guardar"
 
 #: ../grecord/src/gsr-window.c:870
-#| msgid "Close _without Saving"
 msgid "Continue _without Saving"
 msgstr "Continuar _sin guardar"
 
@@ -2103,10 +2101,6 @@ msgstr "Nivel:"
 msgid "%s - Sound Recorder"
 msgstr "%s - Grabador de sonido"
 
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "Ajustar nivel de volumen"
-
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Altura de la ventana"
@@ -2311,96 +2305,38 @@ msgid "Control volume on a different device"
 msgstr "Controlar el volumen en otro dispositivo"
 
 # tcd/gtcd.c:666
-#: ../gstreamer-properties/gstreamer-properties.c:207
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "Ninguno"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:245
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr "No soportado"
 
-#: ../gstreamer-properties/gstreamer-properties.c:263
+#: ../gstreamer-properties/gstreamer-properties.c:270
 #: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "Predeterminado"
 
-#: ../gstreamer-properties/gstreamer-properties.c:617
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr "Error al instanciar la ventana principal"
 
-#: ../gstreamer-properties/gstreamer-properties.c:670
-msgid "Failed to load glade file; please check your installation."
-msgstr "Error al cargar el archivo glade, compruebe su instalación."
+#: ../gstreamer-properties/gstreamer-properties.c:680
+#| msgid "Failed to load glade file; please check your installation."
+msgid "Failed to load UI file; please check your installation."
+msgstr "Falló al cargar el archivo de IU, compruebe su instalación."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "Configurar predeterminados para aplicaciones Gstreamer"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Selector de sistemas multimedia"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>Entrada predeterminada</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>Salida predeterminada</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Probando…</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "Sonido"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr "Pulse «Aceptar» para terminar."
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "_Dispositivo:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr "Pipe_line:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr "_Complemento:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr "Pipe_line:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr "Prue_ba"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr "Probando pipeline"
-
-# gmix/device_labels_alsa.h:15
-# gmix/device_labels_linux.h:10
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "Vídeo"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr "_Complemento:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr "Prue_ba"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:86
@@ -2489,7 +2425,7 @@ msgstr "Video for Linux (v4l)"
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:177
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Error al construir pipeline de prueba para '%s'"
@@ -3041,3 +2977,50 @@ msgstr "Monitorice el volumen de salida del sonido"
 #: ../vu-meter/vumeter.desktop.in.in.h:2
 msgid "Volume Monitor"
 msgstr "Monitor del volumen"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Ajustar nivel de volumen"
+
+#~ msgid "<b>Default Input</b>"
+#~ msgstr "<b>Entrada predeterminada</b>"
+
+#~ msgid "<b>Default Output</b>"
+#~ msgstr "<b>Salida predeterminada</b>"
+
+#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+#~ msgstr "<span weight=\"bold\" size=\"x-large\">Probando…</span>"
+
+#~ msgid "Audio"
+#~ msgstr "Sonido"
+
+#~ msgid "Click Ok to finish."
+#~ msgstr "Pulse «Aceptar» para terminar."
+
+#~ msgid "D_evice:"
+#~ msgstr "_Dispositivo:"
+
+#~ msgid "P_ipeline:"
+#~ msgstr "Pipe_line:"
+
+#~ msgid "P_lugin:"
+#~ msgstr "_Complemento:"
+
+#~ msgid "Pipeli_ne:"
+#~ msgstr "Pipe_line:"
+
+#~ msgid "Te_st"
+#~ msgstr "Prue_ba"
+
+#~ msgid "Testing Pipeline"
+#~ msgstr "Probando pipeline"
+
+# gmix/device_labels_alsa.h:15
+# gmix/device_labels_linux.h:10
+#~ msgid "Video"
+#~ msgstr "Vídeo"
+
+#~ msgid "_Plugin:"
+#~ msgstr "_Complemento:"
+
+#~ msgid "_Test"
+#~ msgstr "Prue_ba"
