@@ -18,6 +18,8 @@ AM_CPPFLAGS =					\
 
 noinst_LTLIBRARIES = libgnomevolumecontrol.la
 libgnomevolumecontrol_la_SOURCES =		\
+	gvc-mixer-card.h			\
+	gvc-mixer-card.c			\
 	gvc-mixer-stream.h			\
 	gvc-mixer-stream.c			\
 	gvc-channel-map.h			\
