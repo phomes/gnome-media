@@ -66,6 +66,7 @@ struct GvcMixerControlPrivate
         GHashTable       *sink_inputs; /* routable output streams */
         GHashTable       *source_outputs; /* routable input streams */
         GHashTable       *clients;
+        GHashTable       *cards;
 
         GvcMixerStream   *new_default_stream; /* new default stream, used in gvc_mixer_control_set_default_sink () */
 };
@@ -873,6 +874,20 @@ update_client (GvcMixerControl      *control,
 }
 
 static void
+update_cards (GvcMixerControl      *control,
+              const pa_card_info   *info)
+{
+#if 1
+        g_debug ("Updating card: index=%u name='%s'",
+                 info->index,
+                 info->name);
+#endif
+        g_hash_table_insert (control->priv->cards,
+                             GUINT_TO_POINTER (info->index),
+                             g_strdup (info->name));
+}
+
+static void
 _pa_context_get_sink_info_cb (pa_context         *context,
                               const pa_sink_info *i,
                               int                 eol,
@@ -996,6 +1011,30 @@ _pa_context_get_client_info_cb (pa_context           *context,
         }
 
         update_client (control, i);
+}
+
+static void
+_pa_context_get_card_info_by_index_cb (pa_context *context,
+                                       const pa_card_info *i,
+                                       int eol,
+                                       void *userdata)
+{
+        GvcMixerControl *control = GVC_MIXER_CONTROL (userdata);
+
+        if (eol < 0) {
+                if (pa_context_errno (context) == PA_ERR_NOENTITY)
+                        return;
+
+                g_warning ("Card callback failure");
+                return;
+        }
+
+        if (eol > 0) {
+                dec_outstanding (control);
+                return;
+        }
+
+        update_cards (control, i);
 }
 
 static void
@@ -1154,6 +1193,30 @@ req_update_client_info (GvcMixerControl *control,
 }
 
 static void
+req_update_card (GvcMixerControl *control,
+                 int              index)
+{
+        pa_operation *o;
+
+        if (index < 0) {
+                o = pa_context_get_card_info_list (control->priv->pa_context,
+                                                   _pa_context_get_card_info_by_index_cb,
+                                                   control);
+        } else {
+                o = pa_context_get_card_info_by_index (control->priv->pa_context,
+                                                       index,
+                                                       _pa_context_get_card_info_by_index_cb,
+                                                       control);
+        }
+
+        if (o == NULL) {
+                g_warning ("pa_context_get_card_info_by_index() failed");
+                return;
+        }
+        pa_operation_unref (o);
+}
+
+static void
 req_update_sink_info (GvcMixerControl *control,
                       int              index)
 {
@@ -1254,6 +1317,14 @@ remove_client (GvcMixerControl *control,
                guint            index)
 {
         g_hash_table_remove (control->priv->clients,
+                             GUINT_TO_POINTER (index));
+}
+
+static void
+remove_card (GvcMixerControl *control,
+             guint            index)
+{
+        g_hash_table_remove (control->priv->cards,
                              GUINT_TO_POINTER (index));
 }
 
@@ -1392,6 +1463,14 @@ _pa_context_subscribe_cb (pa_context                  *context,
         case PA_SUBSCRIPTION_EVENT_SERVER:
                 req_update_server_info (control, index);
                 break;
+
+        case PA_SUBSCRIPTION_EVENT_CARD:
+                if ((t & PA_SUBSCRIPTION_EVENT_TYPE_MASK) == PA_SUBSCRIPTION_EVENT_REMOVE) {
+                        remove_card (control, index);
+                } else {
+                        req_update_card (control, index);
+                }
+                break;
         }
 }
 
@@ -1410,7 +1489,8 @@ gvc_mixer_control_ready (GvcMixerControl *control)
                                    PA_SUBSCRIPTION_MASK_SINK_INPUT|
                                    PA_SUBSCRIPTION_MASK_SOURCE_OUTPUT|
                                    PA_SUBSCRIPTION_MASK_CLIENT|
-                                   PA_SUBSCRIPTION_MASK_SERVER),
+                                   PA_SUBSCRIPTION_MASK_SERVER|
+                                   PA_SUBSCRIPTION_MASK_CARD),
                                   NULL,
                                   NULL);
 
@@ -1426,6 +1506,7 @@ gvc_mixer_control_ready (GvcMixerControl *control)
         req_update_source_info (control, -1);
         req_update_sink_input_info (control, -1);
         req_update_source_output_info (control, -1);
+        req_update_card (control, -1);
 
         control->priv->n_outstanding = 6;
 
@@ -1640,6 +1721,10 @@ gvc_mixer_control_dispose (GObject *object)
                 g_hash_table_destroy (control->priv->clients);
                 control->priv->clients = NULL;
         }
+        if (control->priv->cards != NULL) {
+                g_hash_table_destroy (control->priv->cards);
+                control->priv->cards = NULL;
+        }
 
         G_OBJECT_CLASS (gvc_mixer_control_parent_class)->dispose (object);
 }
@@ -1740,6 +1825,7 @@ gvc_mixer_control_init (GvcMixerControl *control)
         control->priv->source_outputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
 
         control->priv->clients = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_free);
+        control->priv->cards = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_free);
 }
 
 static void
