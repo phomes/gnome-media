@@ -39,6 +39,7 @@
 #include "gvc-mixer-sink-input.h"
 #include "gvc-mixer-source-output.h"
 #include "gvc-mixer-event-role.h"
+#include "gvc-mixer-card.h"
 
 #define GVC_MIXER_CONTROL_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_CONTROL, GvcMixerControlPrivate))
 
@@ -76,6 +77,8 @@ enum {
         READY,
         STREAM_ADDED,
         STREAM_REMOVED,
+        CARD_ADDED,
+        CARD_REMOVED,
         DEFAULT_SINK_CHANGED,
         DEFAULT_SOURCE_CHANGED,
         LAST_SIGNAL
@@ -241,17 +244,30 @@ gvc_mixer_control_get_default_source (GvcMixerControl *control)
         return stream;
 }
 
+static gpointer
+gvc_mixer_control_lookup_id (GHashTable *hash_table,
+                             guint       id)
+{
+        return g_hash_table_lookup (hash_table,
+                                    GUINT_TO_POINTER (id));
+}
+
 GvcMixerStream *
 gvc_mixer_control_lookup_stream_id (GvcMixerControl *control,
                                     guint            id)
 {
-        GvcMixerStream *stream;
-
         g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
 
-        stream = g_hash_table_lookup (control->priv->all_streams,
-                                      GUINT_TO_POINTER (id));
-        return stream;
+        return gvc_mixer_control_lookup_id (control->priv->all_streams, id);
+}
+
+GvcMixerCard *
+gvc_mixer_control_lookup_card_id (GvcMixerControl *control,
+                                  guint            id)
+{
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+
+        return gvc_mixer_control_lookup_id (control->priv->cards, id);
 }
 
 static void
@@ -262,6 +278,22 @@ listify_hash_values_hfunc (gpointer key,
         GSList **list = user_data;
 
         *list = g_slist_prepend (*list, value);
+}
+
+GSList *
+gvc_mixer_control_get_cards (GvcMixerControl *control)
+{
+        GSList *retval;
+
+        g_return_val_if_fail (GVC_IS_MIXER_CONTROL (control), NULL);
+
+        retval = NULL;
+        g_hash_table_foreach (control->priv->cards,
+                              listify_hash_values_hfunc,
+                              &retval);
+        //FIXME sort
+        return retval;
+//        return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
 }
 
 static int
@@ -286,6 +318,8 @@ gvc_stream_collate (GvcMixerStream *a,
 
         return g_utf8_collate (namea, nameb);
 }
+
+
 
 GSList *
 gvc_mixer_control_get_streams (GvcMixerControl *control)
@@ -874,17 +908,21 @@ update_client (GvcMixerControl      *control,
 }
 
 static void
-update_cards (GvcMixerControl      *control,
-              const pa_card_info   *info)
+update_card (GvcMixerControl      *control,
+             const pa_card_info   *info)
 {
+        GvcMixerCard *card;
+        gboolean      is_new;
 #if 1
         guint i;
+        const char *key;
+        void *state;
 
         g_debug ("Updating card: index=%u name='%s'",
                  info->index,
                  info->name);
 
-        g_debug ("Adding card %s:", info->name);
+        g_debug ("Adding card %s (driver: %s):", info->name, info->driver);
         for (i = 0; i < info->n_profiles; i++) {
                 struct pa_card_profile_info pi = info->profiles[i];
                 gboolean is_default;
@@ -894,10 +932,39 @@ update_cards (GvcMixerControl      *control,
                          pi.name, pi.n_sources, pi.n_sinks,
                          is_default ? " (Current)" : "");
         }
+        state = NULL;
+        key = pa_proplist_iterate (info->proplist, &state);
+        while (key != NULL) {
+                g_debug ("\tProperty: '%s' = '%s'",
+                        key, pa_proplist_gets (info->proplist, key));
+                key = pa_proplist_iterate (info->proplist, &state);
+        }
 #endif
-        g_hash_table_insert (control->priv->cards,
-                             GUINT_TO_POINTER (info->index),
-                             g_strdup (info->name));
+        card = g_hash_table_lookup (control->priv->cards,
+                                    GUINT_TO_POINTER (info->index));
+        if (card == NULL) {
+                card = gvc_mixer_card_new (control->priv->pa_context,
+                                           info->index);
+                is_new = TRUE;
+        }
+
+        gvc_mixer_card_set_name (card, pa_proplist_gets (info->proplist, "device.description"));
+        gvc_mixer_card_set_icon_name (card, "rhythmbox");
+//FIXME set the icon name properly
+//        gvc_mixer_card_set_icon_name (card, pa_proplist_gets (info->proplist, "device.icon_name"));
+        gvc_mixer_card_set_profile (card, info->active_profile->name);
+        gvc_mixer_card_set_human_profile (card, info->active_profile->description);
+        //FIXME set profiles here
+
+        if (is_new) {
+                g_hash_table_insert (control->priv->cards,
+                                     GUINT_TO_POINTER (info->index),
+                                     g_object_ref (card));
+                g_signal_emit (G_OBJECT (control),
+                               signals[CARD_ADDED],
+                               0,
+                               info->index);
+        }
 }
 
 static void
@@ -1047,7 +1114,7 @@ _pa_context_get_card_info_by_index_cb (pa_context *context,
                 return;
         }
 
-        update_cards (control, i);
+        update_card (control, i);
 }
 
 static void
@@ -1339,6 +1406,11 @@ remove_card (GvcMixerControl *control,
 {
         g_hash_table_remove (control->priv->cards,
                              GUINT_TO_POINTER (index));
+
+        g_signal_emit (G_OBJECT (control),
+                       signals[CARD_REMOVED],
+                       0,
+                       index);
 }
 
 static void
@@ -1534,7 +1606,6 @@ gvc_mixer_control_ready (GvcMixerControl *control)
                 pa_ext_stream_restore_set_subscribe_cb (control->priv->pa_context,
                                                         _pa_ext_stream_restore_subscribe_cb,
                                                         control);
-
 
                 o = pa_ext_stream_restore_subscribe (control->priv->pa_context,
                                                      1,
@@ -1800,6 +1871,22 @@ gvc_mixer_control_class_init (GvcMixerControlClass *klass)
                               NULL, NULL,
                               g_cclosure_marshal_VOID__UINT,
                               G_TYPE_NONE, 1, G_TYPE_UINT);
+        signals [CARD_ADDED] =
+                g_signal_new ("card-added",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GvcMixerControlClass, card_added),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__UINT,
+                              G_TYPE_NONE, 1, G_TYPE_UINT);
+        signals [CARD_REMOVED] =
+                g_signal_new ("card-removed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GvcMixerControlClass, card_removed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__UINT,
+                              G_TYPE_NONE, 1, G_TYPE_UINT);
         signals [DEFAULT_SINK_CHANGED] =
                 g_signal_new ("default-sink-changed",
                               G_TYPE_FROM_CLASS (klass),
@@ -1836,9 +1923,9 @@ gvc_mixer_control_init (GvcMixerControl *control)
         control->priv->sources = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->sink_inputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
         control->priv->source_outputs = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
+        control->priv->cards = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_object_unref);
 
         control->priv->clients = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_free);
-        control->priv->cards = g_hash_table_new_full (NULL, NULL, NULL, (GDestroyNotify)g_free);
 }
 
 static void
