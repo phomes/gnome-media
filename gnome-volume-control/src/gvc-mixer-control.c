@@ -878,22 +878,22 @@ update_cards (GvcMixerControl      *control,
               const pa_card_info   *info)
 {
 #if 1
-	guint i;
+        guint i;
 
         g_debug ("Updating card: index=%u name='%s'",
                  info->index,
                  info->name);
 
-	g_debug ("Adding card %s:", info->name);
-	for (i = 0; i < info->n_profiles; i++) {
-		struct pa_card_profile_info pi = info->profiles[i];
-		gboolean is_default;
+        g_debug ("Adding card %s:", info->name);
+        for (i = 0; i < info->n_profiles; i++) {
+                struct pa_card_profile_info pi = info->profiles[i];
+                gboolean is_default;
 
-		is_default = (g_strcmp0 (pi.name, info->active_profile->name) == 0);
-		g_debug ("\tProfile '%s': %d sources %d sinks%s",
-			 pi.name, pi.n_sources, pi.n_sinks,
-			 is_default ? " (Current)" : "");
-	}
+                is_default = (g_strcmp0 (pi.name, info->active_profile->name) == 0);
+                g_debug ("\tProfile '%s': %d sources %d sinks%s",
+                         pi.name, pi.n_sources, pi.n_sinks,
+                         is_default ? " (Current)" : "");
+        }
 #endif
         g_hash_table_insert (control->priv->cards,
                              GUINT_TO_POINTER (info->index),
