@@ -169,31 +169,51 @@ _pa_context_set_card_profile_by_index_cb (pa_context                       *cont
 {
         GvcMixerCard *card = GVC_MIXER_CARD (userdata);
 
+        g_assert (card->priv->target_profile);
+
         if (success > 0) {
-                GList *l;
-
-                g_free (card->priv->profile);
-                card->priv->profile = card->priv->target_profile;
-                card->priv->target_profile = NULL;
-
-                g_free (card->priv->human_profile);
-                card->priv->human_profile = NULL;
-
-                for (l = card->priv->profiles; l != NULL; l = l->next) {
-                        GvcMixerCardProfile *p = l->data;
-                        if (g_str_equal (card->priv->profile, p->profile)) {
-                                card->priv->human_profile = g_strdup (p->human_profile);
-                                break;
-                        }
-                }
-
-                g_object_notify (G_OBJECT (card), "profile");
+                gvc_mixer_card_set_profile (card, card->priv->target_profile);
+        } else {
+                g_debug ("Failed to switch profile on '%s' from '%s' to '%s'",
+                         card->priv->name,
+                         card->priv->profile,
+                         card->priv->target_profile);
         }
+        g_free (card->priv->target_profile);
+        card->priv->target_profile = NULL;
 }
 
 gboolean
 gvc_mixer_card_set_profile (GvcMixerCard *card,
                             const char     *profile)
+{
+        GList *l;
+
+        g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
+        g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
+
+        g_free (card->priv->profile);
+        card->priv->profile = g_strdup (profile);
+
+        g_free (card->priv->human_profile);
+        card->priv->human_profile = NULL;
+
+        for (l = card->priv->profiles; l != NULL; l = l->next) {
+                GvcMixerCardProfile *p = l->data;
+                if (g_str_equal (card->priv->profile, p->profile)) {
+                        card->priv->human_profile = g_strdup (p->human_profile);
+                        break;
+                }
+        }
+
+        g_object_notify (G_OBJECT (card), "profile");
+
+        return TRUE;
+}
+
+gboolean
+gvc_mixer_card_change_profile (GvcMixerCard *card,
+                               const char *profile)
 {
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
         g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
@@ -211,10 +231,10 @@ gvc_mixer_card_set_profile (GvcMixerCard *card,
                 card->priv->target_profile = g_strdup (profile);
 
                 o = pa_context_set_card_profile_by_index (card->priv->pa_context,
-                                                      card->priv->index,
-                                                      card->priv->target_profile,
-                                                      _pa_context_set_card_profile_by_index_cb,
-                                                      card);
+                                                          card->priv->index,
+                                                          card->priv->target_profile,
+                                                          _pa_context_set_card_profile_by_index_cb,
+                                                          card);
 
                 if (o == NULL) {
                         g_warning ("pa_context_set_card_profile_by_index() failed");

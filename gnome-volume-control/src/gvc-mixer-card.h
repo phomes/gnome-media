@@ -66,7 +66,9 @@ const char *          gvc_mixer_card_get_icon_name     (GvcMixerCard *card);
 GvcMixerCardProfile * gvc_mixer_card_get_profile       (GvcMixerCard *card);
 const GList *         gvc_mixer_card_get_profiles      (GvcMixerCard *card);
 
-pa_context *          gvc_mixer_card_get_pa_context  (GvcMixerCard *card);
+pa_context *          gvc_mixer_card_get_pa_context    (GvcMixerCard *card);
+gboolean              gvc_mixer_card_change_profile    (GvcMixerCard *card,
+                                                        const char *profile);
 
 /* private */
 gboolean              gvc_mixer_card_set_name          (GvcMixerCard *card,
