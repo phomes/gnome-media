@@ -44,6 +44,7 @@ struct GvcMixerCardPrivate
         char          *name;
         char          *icon_name;
         char          *profile;
+        char          *target_profile;
         char          *human_profile;
         GList         *profiles;
 };
@@ -161,35 +162,69 @@ gvc_mixer_card_get_profile (GvcMixerCard *card)
         return ret;
 }
 
+static void
+_pa_context_set_card_profile_by_index_cb (pa_context                       *context,
+                                          int                               success,
+                                          void                             *userdata)
+{
+        GvcMixerCard *card = GVC_MIXER_CARD (userdata);
+
+        if (success > 0) {
+                GList *l;
+
+                g_free (card->priv->profile);
+                card->priv->profile = card->priv->target_profile;
+                card->priv->target_profile = NULL;
+
+                g_free (card->priv->human_profile);
+                card->priv->human_profile = NULL;
+
+                for (l = card->priv->profiles; l != NULL; l = l->next) {
+                        GvcMixerCardProfile *p = l->data;
+                        if (g_str_equal (card->priv->profile, p->profile)) {
+                                card->priv->human_profile = g_strdup (p->human_profile);
+                                break;
+                        }
+                }
+
+                g_object_notify (G_OBJECT (card), "profile");
+        }
+}
+
 gboolean
 gvc_mixer_card_set_profile (GvcMixerCard *card,
                             const char     *profile)
 {
-        GList *l;
-
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
         g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
 
+        /* Same profile, or already requested? */
         if (g_strcmp0 (card->priv->profile, profile) == 0)
+                return TRUE;
+        if (g_strcmp0 (profile, card->priv->target_profile) == 0)
                 return TRUE;
 
         if (card->priv->profile != NULL) {
-                g_free (card->priv->profile);
-                card->priv->profile = g_strdup (profile);
-                g_object_notify (G_OBJECT (card), "profile");
-                g_free (card->priv->human_profile);
-                card->priv->human_profile = NULL;
-        } else {
-                card->priv->profile = g_strdup (profile);
-                g_assert (card->priv->human_profile == NULL);
-        }
+                pa_operation *o;
 
-        for (l = card->priv->profiles; l != NULL; l = l->next) {
-                GvcMixerCardProfile *p = l->data;
-                if (g_str_equal (profile, p->profile)) {
-                        card->priv->human_profile = g_strdup (p->human_profile);
-                        break;
+                g_free (card->priv->target_profile);
+                card->priv->target_profile = g_strdup (profile);
+
+                o = pa_context_set_card_profile_by_index (card->priv->pa_context,
+                                                      card->priv->index,
+                                                      card->priv->target_profile,
+                                                      _pa_context_set_card_profile_by_index_cb,
+                                                      card);
+
+                if (o == NULL) {
+                        g_warning ("pa_context_set_card_profile_by_index() failed");
+                        return FALSE;
                 }
+
+                pa_operation_unref (o);
+        } else {
+                g_assert (card->priv->human_profile == NULL);
+                card->priv->profile = g_strdup (profile);
         }
 
         return TRUE;
@@ -399,6 +434,9 @@ gvc_mixer_card_finalize (GObject *object)
 
         g_free (mixer_card->priv->icon_name);
         mixer_card->priv->icon_name = NULL;
+
+        g_free (mixer_card->priv->target_profile);
+        mixer_card->priv->target_profile = NULL;
 
         g_free (mixer_card->priv->profile);
         mixer_card->priv->profile = NULL;
