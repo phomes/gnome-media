@@ -926,6 +926,7 @@ add_card (GvcMixerDialog *dialog,
 {
         GtkTreeModel        *model;
         GtkTreeIter          iter;
+        GtkTreeSelection    *selection;
         GvcMixerCardProfile *profile;
         GIcon               *icon;
         guint                index;
@@ -947,6 +948,11 @@ add_card (GvcMixerDialog *dialog,
                             HW_PROFILE_HUMAN_COLUMN, profile->human_profile,
                             HW_STATUS_COLUMN, "Ready",
                             -1);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->priv->hw_treeview));
+        if (gtk_tree_selection_get_selected (selection, NULL, NULL) == FALSE) {
+                gtk_tree_selection_select_iter (selection, &iter);
+        }
 }
 
 static void
@@ -1211,7 +1217,6 @@ on_card_selection_changed (GtkTreeSelection *selection,
         if (dialog->priv->hw_profile_combo != NULL) {
                 gtk_container_remove (GTK_CONTAINER (dialog->priv->hw_settings_box),
                                       dialog->priv->hw_profile_combo);
-                gtk_widget_destroy (dialog->priv->hw_profile_combo);
                 dialog->priv->hw_profile_combo = NULL;
         }
 
@@ -1485,7 +1490,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
         _gtk_label_make_bold (GTK_LABEL (label));
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
-        gtk_box_pack_start (GTK_BOX (self->priv->hw_box), box, TRUE, TRUE, 12);
+        gtk_box_pack_start (GTK_BOX (self->priv->hw_box), box, FALSE, TRUE, 12);
         self->priv->hw_settings_box = gtk_vbox_new (FALSE, 12);
         gtk_container_add (GTK_CONTAINER (box), self->priv->hw_settings_box);
 
