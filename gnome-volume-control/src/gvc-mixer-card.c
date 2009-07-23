@@ -258,6 +258,17 @@ gvc_mixer_card_get_profiles (GvcMixerCard *card)
         return card->priv->profiles;
 }
 
+static int
+sort_profiles (GvcMixerCardProfile *a,
+	       GvcMixerCardProfile *b)
+{
+	if (a->priority == b->priority)
+		return 0;
+	if (a->priority > b->priority)
+		return 1;
+	return -1;
+}
+
 gboolean
 gvc_mixer_card_set_profiles (GvcMixerCard *card,
                              GList        *profiles)
@@ -265,7 +276,7 @@ gvc_mixer_card_set_profiles (GvcMixerCard *card,
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
         g_return_val_if_fail (card->priv->profiles == NULL, FALSE);
 
-        card->priv->profiles = profiles;
+        card->priv->profiles = g_list_sort (profiles, (GCompareFunc) sort_profiles);
 
         return TRUE;
 }
