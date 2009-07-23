@@ -962,9 +962,7 @@ update_card (GvcMixerControl      *control,
         }
 
         gvc_mixer_card_set_name (card, pa_proplist_gets (info->proplist, "device.description"));
-        gvc_mixer_card_set_icon_name (card, "rhythmbox");
-//FIXME set the icon name properly
-//        gvc_mixer_card_set_icon_name (card, pa_proplist_gets (info->proplist, "device.icon_name"));
+        gvc_mixer_card_set_icon_name (card, pa_proplist_gets (info->proplist, "device.icon_name"));
         gvc_mixer_card_set_profile (card, info->active_profile->name);
 
         if (is_new) {
