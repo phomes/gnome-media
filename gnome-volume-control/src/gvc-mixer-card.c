@@ -45,7 +45,7 @@ struct GvcMixerCardPrivate
         char          *icon_name;
         char          *profile;
         char          *human_profile;
-        GHashTable    *profiles;
+        GList         *profiles;
 };
 
 enum
@@ -141,72 +141,75 @@ gvc_mixer_card_set_icon_name (GvcMixerCard *card,
         return TRUE;
 }
 
-const char *
+GvcMixerCardProfile *
 gvc_mixer_card_get_profile (GvcMixerCard *card)
 {
-        g_return_val_if_fail (GVC_IS_MIXER_CARD (card), NULL);
-        return card->priv->profile;
-}
+        GList *l;
+        GvcMixerCardProfile *ret;
 
-const char *
-gvc_mixer_card_get_human_profile (GvcMixerCard *card)
-{
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), NULL);
-        return card->priv->human_profile;
+
+        ret = NULL;
+        for (l = card->priv->profiles; l != NULL; l = l->next) {
+                GvcMixerCardProfile *p = l->data;
+                if (g_str_equal (card->priv->profile, p->profile)) {
+                        ret = p;
+                        break;
+                }
+        }
+
+        return ret;
 }
 
 gboolean
 gvc_mixer_card_set_profile (GvcMixerCard *card,
                             const char     *profile)
 {
+        GList *l;
+
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
+        g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
+
+        if (g_strcmp0 (card->priv->profile, profile) == 0)
+                return TRUE;
 
         if (card->priv->profile != NULL) {
                 g_free (card->priv->profile);
                 card->priv->profile = g_strdup (profile);
                 g_object_notify (G_OBJECT (card), "profile");
+                g_free (card->priv->human_profile);
+                card->priv->human_profile = NULL;
         } else {
                 card->priv->profile = g_strdup (profile);
+                g_assert (card->priv->human_profile == NULL);
+        }
+
+        for (l = card->priv->profiles; l != NULL; l = l->next) {
+                GvcMixerCardProfile *p = l->data;
+                if (g_str_equal (profile, p->profile)) {
+                        card->priv->human_profile = g_strdup (p->human_profile);
+                        break;
+                }
         }
 
         return TRUE;
 }
 
-gboolean
-gvc_mixer_card_set_human_profile (GvcMixerCard *card,
-                                  const char     *profile)
-{
-        g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
-
-        if (card->priv->human_profile != NULL) {
-                g_free (card->priv->human_profile);
-                card->priv->human_profile = g_strdup (profile);
-                g_object_notify (G_OBJECT (card), "human-profile");
-        } else {
-                card->priv->human_profile = g_strdup (profile);
-        }
-
-        return TRUE;
-}
-
-GHashTable *
+const GList *
 gvc_mixer_card_get_profiles (GvcMixerCard *card)
 {
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
-        return g_hash_table_ref (card->priv->profiles);
+        return card->priv->profiles;
 }
 
 gboolean
 gvc_mixer_card_set_profiles (GvcMixerCard *card,
-                             GHashTable   *profiles)
+                             GList        *profiles)
 {
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), FALSE);
+        g_return_val_if_fail (card->priv->profiles == NULL, FALSE);
 
-        g_hash_table_unref (card->priv->profiles);
-        if (profiles == NULL)
-                card->priv->profiles = NULL;
-        else
-                card->priv->profiles = g_hash_table_ref (profiles);
+        card->priv->profiles = profiles;
 
         return TRUE;
 }
@@ -237,9 +240,6 @@ gvc_mixer_card_set_property (GObject       *object,
                 break;
         case PROP_PROFILE:
                 gvc_mixer_card_set_profile (self, g_value_get_string (value));
-                break;
-        case PROP_HUMAN_PROFILE:
-                gvc_mixer_card_set_human_profile (self, g_value_get_string (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -351,14 +351,14 @@ gvc_mixer_card_class_init (GvcMixerCardClass *klass)
                                                               "Profile",
                                                               "Name of current profile for this card",
                                                               NULL,
-                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READWRITE));
         g_object_class_install_property (gobject_class,
                                          PROP_HUMAN_PROFILE,
                                          g_param_spec_string ("human-profile",
                                                               "Profile (Human readable)",
                                                               "Name of current profile for this card in human readable form",
                                                               NULL,
-                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READABLE));
 
         g_type_class_add_private (klass, sizeof (GvcMixerCardPrivate));
 }
@@ -406,7 +406,8 @@ gvc_mixer_card_finalize (GObject *object)
         g_free (mixer_card->priv->human_profile);
         mixer_card->priv->human_profile = NULL;
 
-        g_hash_table_unref (mixer_card->priv->profiles);
+        g_list_foreach (mixer_card->priv->profiles, (GFunc) g_free, NULL);
+        g_list_free (mixer_card->priv->profiles);
         mixer_card->priv->profiles = NULL;
 
         G_OBJECT_CLASS (gvc_mixer_card_parent_class)->finalize (object);

@@ -943,8 +943,21 @@ update_card (GvcMixerControl      *control,
         card = g_hash_table_lookup (control->priv->cards,
                                     GUINT_TO_POINTER (info->index));
         if (card == NULL) {
+                GList *list = NULL;
+
+                for (i = 0; i < info->n_profiles; i++) {
+                        struct pa_card_profile_info pi = info->profiles[i];
+                        GvcMixerCardProfile *profile;
+
+                        profile = g_new0 (GvcMixerCardProfile, 1);
+                        profile->profile = pi.name;
+                        profile->human_profile = pi.description;
+                        profile->priority = pi.priority;
+                        list = g_list_prepend (list, profile);
+                }
                 card = gvc_mixer_card_new (control->priv->pa_context,
                                            info->index);
+                gvc_mixer_card_set_profiles (card, list);
                 is_new = TRUE;
         }
 
@@ -953,8 +966,6 @@ update_card (GvcMixerControl      *control,
 //FIXME set the icon name properly
 //        gvc_mixer_card_set_icon_name (card, pa_proplist_gets (info->proplist, "device.icon_name"));
         gvc_mixer_card_set_profile (card, info->active_profile->name);
-        gvc_mixer_card_set_human_profile (card, info->active_profile->description);
-        //FIXME set profiles here
 
         if (is_new) {
                 g_hash_table_insert (control->priv->cards,

@@ -48,31 +48,35 @@ typedef struct
         /* vtable */
 } GvcMixerCardClass;
 
-GType               gvc_mixer_card_get_type          (void);
-GvcMixerCard *      gvc_mixer_card_new               (pa_context   *context,
-                                                      guint         index);
+typedef struct
+{
+        const char *profile;
+        const char *human_profile;
+        guint priority;
+} GvcMixerCardProfile;
 
-guint               gvc_mixer_card_get_id            (GvcMixerCard *card);
-guint               gvc_mixer_card_get_index         (GvcMixerCard *card);
-const char *        gvc_mixer_card_get_name          (GvcMixerCard *card);
-const char *        gvc_mixer_card_get_icon_name     (GvcMixerCard *card);
-const char *        gvc_mixer_card_get_profile       (GvcMixerCard *card);
-const char *        gvc_mixer_card_get_human_profile (GvcMixerCard *card);
-GHashTable *        gvc_mixer_card_get_profiles      (GvcMixerCard *card);
+GType                 gvc_mixer_card_get_type          (void);
+GvcMixerCard *        gvc_mixer_card_new               (pa_context   *context,
+                                                        guint         index);
 
-pa_context *        gvc_mixer_card_get_pa_context  (GvcMixerCard *card);
+guint                 gvc_mixer_card_get_id            (GvcMixerCard *card);
+guint                 gvc_mixer_card_get_index         (GvcMixerCard *card);
+const char *          gvc_mixer_card_get_name          (GvcMixerCard *card);
+const char *          gvc_mixer_card_get_icon_name     (GvcMixerCard *card);
+GvcMixerCardProfile * gvc_mixer_card_get_profile       (GvcMixerCard *card);
+const GList *         gvc_mixer_card_get_profiles      (GvcMixerCard *card);
+
+pa_context *          gvc_mixer_card_get_pa_context  (GvcMixerCard *card);
 
 /* private */
-gboolean            gvc_mixer_card_set_name          (GvcMixerCard *card,
-                                                      const char   *name);
-gboolean            gvc_mixer_card_set_icon_name     (GvcMixerCard *card,
-                                                      const char   *name);
-gboolean            gvc_mixer_card_set_profile       (GvcMixerCard *card,
-                                                      const char   *profile);
-gboolean            gvc_mixer_card_set_human_profile (GvcMixerCard *card,
-                                                      const char   *profile);
-gboolean            gvc_mixer_card_set_profiles      (GvcMixerCard *card,
-                                                      GHashTable   *profiles);
+gboolean              gvc_mixer_card_set_name          (GvcMixerCard *card,
+                                                        const char   *name);
+gboolean              gvc_mixer_card_set_icon_name     (GvcMixerCard *card,
+                                                        const char   *name);
+gboolean              gvc_mixer_card_set_profile       (GvcMixerCard *card,
+                                                        const char   *profile);
+gboolean              gvc_mixer_card_set_profiles      (GvcMixerCard *card,
+                                                        GList        *profiles);
 
 G_END_DECLS
 
