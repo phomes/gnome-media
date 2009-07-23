@@ -280,6 +280,36 @@ listify_hash_values_hfunc (gpointer key,
         *list = g_slist_prepend (*list, value);
 }
 
+static int
+gvc_name_collate (const char *namea,
+                  const char *nameb)
+{
+        if (nameb == NULL && namea == NULL)
+                return 0;
+        if (nameb == NULL)
+                return 1;
+        if (namea == NULL)
+                return -1;
+
+        return g_utf8_collate (namea, nameb);
+}
+
+static int
+gvc_card_collate (GvcMixerCard *a,
+                  GvcMixerCard *b)
+{
+        const char *namea;
+        const char *nameb;
+
+        g_return_val_if_fail (a == NULL || GVC_IS_MIXER_CARD (a), 0);
+        g_return_val_if_fail (b == NULL || GVC_IS_MIXER_CARD (b), 0);
+
+        namea = gvc_mixer_card_get_name (a);
+        nameb = gvc_mixer_card_get_name (b);
+
+        return gvc_name_collate (namea, nameb);
+}
+
 GSList *
 gvc_mixer_control_get_cards (GvcMixerControl *control)
 {
@@ -291,9 +321,7 @@ gvc_mixer_control_get_cards (GvcMixerControl *control)
         g_hash_table_foreach (control->priv->cards,
                               listify_hash_values_hfunc,
                               &retval);
-        //FIXME sort
-        return retval;
-//        return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
+        return g_slist_sort (retval, (GCompareFunc) gvc_card_collate);
 }
 
 static int
@@ -309,17 +337,8 @@ gvc_stream_collate (GvcMixerStream *a,
         namea = gvc_mixer_stream_get_name (a);
         nameb = gvc_mixer_stream_get_name (b);
 
-        if (nameb == NULL && namea == NULL)
-                return 0;
-        if (nameb == NULL)
-                return 1;
-        if (namea == NULL)
-                return -1;
-
-        return g_utf8_collate (namea, nameb);
+        return gvc_name_collate (namea, nameb);
 }
-
-
 
 GSList *
 gvc_mixer_control_get_streams (GvcMixerControl *control)
