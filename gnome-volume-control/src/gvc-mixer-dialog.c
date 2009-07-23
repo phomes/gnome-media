@@ -34,6 +34,7 @@
 #include "gvc-channel-bar.h"
 #include "gvc-balance-bar.h"
 #include "gvc-mixer-control.h"
+#include "gvc-mixer-card.h"
 #include "gvc-mixer-sink.h"
 #include "gvc-mixer-source.h"
 #include "gvc-mixer-source-output.h"
@@ -56,6 +57,10 @@ struct GvcMixerDialogPrivate
         GtkWidget       *effects_bar;
         GtkWidget       *output_stream_box;
         GtkWidget       *sound_effects_box;
+        GtkWidget       *hw_box;
+        GtkWidget       *hw_treeview;
+        GtkWidget       *hw_settings_box;
+        GtkWidget       *hw_profile_combo;
         GtkWidget       *input_box;
         GtkWidget       *output_box;
         GtkWidget       *applications_box;
@@ -83,6 +88,16 @@ enum {
         ID_COLUMN,
         SPEAKERS_COLUMN,
         NUM_COLUMNS
+};
+
+enum {
+        HW_ID_COLUMN,
+        HW_ICON_COLUMN,
+        HW_NAME_COLUMN,
+        HW_STATUS_COLUMN,
+        HW_PROFILE_COLUMN,
+        HW_PROFILE_HUMAN_COLUMN,
+        HW_NUM_COLUMNS
 };
 
 enum
@@ -831,8 +846,9 @@ on_control_stream_added (GvcMixerControl *control,
 }
 
 static gboolean
-find_stream_by_id (GtkTreeModel *model,
+find_item_by_id (GtkTreeModel *model,
                    guint         id,
+                   guint         column,
                    GtkTreeIter  *iter)
 {
         gboolean found_item;
@@ -847,7 +863,7 @@ find_stream_by_id (GtkTreeModel *model,
                 guint t_id;
 
                 gtk_tree_model_get (model, iter,
-                                    ID_COLUMN, &t_id, -1);
+                                    column, &t_id, -1);
 
                 if (id == t_id) {
                         found_item = TRUE;
@@ -885,12 +901,12 @@ remove_stream (GvcMixerDialog  *dialog,
 
         /* remove from any models */
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
-        found = find_stream_by_id (GTK_TREE_MODEL (model), id, &iter);
+        found = find_item_by_id (GTK_TREE_MODEL (model), id, ID_COLUMN, &iter);
         if (found) {
                 gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
         }
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->input_treeview));
-        found = find_stream_by_id (GTK_TREE_MODEL (model), id, &iter);
+        found = find_item_by_id (GTK_TREE_MODEL (model), id, ID_COLUMN, &iter);
         if (found) {
                 gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
         }
@@ -902,6 +918,71 @@ on_control_stream_removed (GvcMixerControl *control,
                            GvcMixerDialog  *dialog)
 {
         remove_stream (dialog, id);
+}
+
+static void
+add_card (GvcMixerDialog *dialog,
+          GvcMixerCard   *card)
+{
+        GtkTreeModel        *model;
+        GtkTreeIter          iter;
+        GvcMixerCardProfile *profile;
+        GIcon               *icon;
+        guint                index;
+
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->hw_treeview));
+        index = gvc_mixer_card_get_index (card);
+        if (find_item_by_id (GTK_TREE_MODEL (model), index, HW_ID_COLUMN, &iter) == FALSE)
+                gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        profile = gvc_mixer_card_get_profile (card);
+        g_assert (profile != NULL);
+        icon = g_themed_icon_new_with_default_fallbacks (gvc_mixer_card_get_icon_name (card));
+        //FIXME we need the status (default for a profile?) here
+        gtk_list_store_set (GTK_LIST_STORE (model),
+                            &iter,
+                            HW_NAME_COLUMN, gvc_mixer_card_get_name (card),
+                            HW_ID_COLUMN, index,
+                            HW_ICON_COLUMN, icon,
+                            HW_PROFILE_COLUMN, profile->profile,
+                            HW_PROFILE_HUMAN_COLUMN, profile->human_profile,
+                            HW_STATUS_COLUMN, "Ready",
+                            -1);
+}
+
+static void
+on_control_card_added (GvcMixerControl *control,
+                       guint            id,
+                       GvcMixerDialog  *dialog)
+{
+        GvcMixerCard *card;
+
+        card = gvc_mixer_control_lookup_card_id (control, id);
+        if (card != NULL) {
+                add_card (dialog, card);
+        }
+}
+
+static void
+remove_card (GvcMixerDialog  *dialog,
+             guint            id)
+{
+        gboolean      found;
+        GtkTreeIter   iter;
+        GtkTreeModel *model;
+
+        /* remove from any models */
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->hw_treeview));
+        found = find_item_by_id (GTK_TREE_MODEL (model), id, HW_ID_COLUMN, &iter);
+        if (found) {
+                gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+        }
+}
+static void
+on_control_card_removed (GvcMixerControl *control,
+                         guint            id,
+                         GvcMixerDialog  *dialog)
+{
+        remove_card (dialog, id);
 }
 
 static void
@@ -1017,7 +1098,7 @@ name_to_text (GtkTreeViewColumn *column,
         } else {
                 char *str;
 
-                str = g_strdup_printf ("%s\n\t<i>%s</i>",
+                str = g_strdup_printf ("%s\n<i>%s</i>",
                                        name, mapping);
                 g_object_set (cell, "markup", str, NULL);
                 g_free (str);
@@ -1026,7 +1107,6 @@ name_to_text (GtkTreeViewColumn *column,
         g_free (name);
         g_free (mapping);
 }
-
 
 static GtkWidget *
 create_stream_treeview (GvcMixerDialog *dialog,
@@ -1077,6 +1157,187 @@ create_stream_treeview (GvcMixerDialog *dialog,
         return treeview;
 }
 
+enum {
+        PROFILE_NAME,
+        PROFILE_HUMAN_NAME,
+        PROFILE_NUM_COLS
+};
+
+static void
+on_profile_changed (GtkComboBox *widget,
+                    gpointer     user_data)
+{
+        GtkTreeModel        *model;
+        GvcMixerDialog      *dialog = GVC_MIXER_DIALOG (user_data);
+        GvcMixerCard        *card;
+        GtkTreeIter          iter;
+        char                *profile;
+
+        model = gtk_combo_box_get_model (GTK_COMBO_BOX (dialog->priv->hw_profile_combo));
+
+        card = g_object_get_data (G_OBJECT (dialog->priv->hw_profile_combo), "card");
+        if (card == NULL) {
+                g_warning ("Could not find card for combobox");
+                return;
+        }
+
+        if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (dialog->priv->hw_profile_combo), &iter) == FALSE) {
+                g_warning ("Could not find an active profile");
+                return;
+        }
+
+        gtk_tree_model_get (model, &iter,
+                            PROFILE_NAME, &profile,
+                            -1);
+        gvc_mixer_card_change_profile (card, profile);
+        g_free (profile);
+}
+
+static void
+on_card_selection_changed (GtkTreeSelection *selection,
+                           gpointer          user_data)
+{
+        GvcMixerDialog      *dialog = GVC_MIXER_DIALOG (user_data);
+        GtkTreeModel        *model, *profile_model;
+        GtkTreeIter          iter;
+        const GList         *profiles, *l;
+        guint                id, i, current_index;
+        GvcMixerCard        *card;
+        GvcMixerCardProfile *current_profile;
+        GtkCellRenderer     *renderer;
+
+        g_debug ("Card selection changed");
+
+        if (dialog->priv->hw_profile_combo != NULL) {
+                gtk_container_remove (GTK_CONTAINER (dialog->priv->hw_settings_box),
+                                      dialog->priv->hw_profile_combo);
+                gtk_widget_destroy (dialog->priv->hw_profile_combo);
+                dialog->priv->hw_profile_combo = NULL;
+        }
+
+        if (gtk_tree_selection_get_selected (selection,
+                                             NULL,
+                                             &iter) == FALSE) {
+                return;
+        }
+
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->hw_treeview));
+        gtk_tree_model_get (model, &iter,
+                            HW_ID_COLUMN, &id,
+                            -1);
+        card = gvc_mixer_control_lookup_card_id (dialog->priv->mixer_control, id);
+        if (card == NULL) {
+                g_warning ("Unable to find card for id: %u", id);
+                return;
+        }
+
+        current_profile = gvc_mixer_card_get_profile (card);
+        profiles = gvc_mixer_card_get_profiles (card);
+        profile_model = GTK_TREE_MODEL (gtk_list_store_new (PROFILE_NUM_COLS,
+                                                            G_TYPE_STRING,
+                                                            G_TYPE_STRING));
+        current_index = 0;
+        for (l = profiles, i = 0; l != NULL; l = l->next, i++) {
+                GvcMixerCardProfile *p = l->data;
+
+                if (g_str_equal (p->profile, current_profile->profile))
+                        current_index = i;
+
+                gtk_list_store_insert_with_values (GTK_LIST_STORE (profile_model),
+                                                   NULL,
+                                                   G_MAXINT,
+                                                   PROFILE_NAME, p->profile,
+                                                   PROFILE_HUMAN_NAME, p->human_profile,
+                                                   -1);
+        }
+
+        dialog->priv->hw_profile_combo = gtk_combo_box_new_with_model (profile_model);
+        renderer = gtk_cell_renderer_text_new ();
+        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (dialog->priv->hw_profile_combo),
+                                    renderer, FALSE);
+        gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (dialog->priv->hw_profile_combo),
+                                       renderer,
+                                       "text", PROFILE_HUMAN_NAME);
+        gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->priv->hw_profile_combo), current_index);
+        //FIXME layout is wrong, missing label
+        gtk_box_pack_start (GTK_BOX (dialog->priv->hw_settings_box),
+                            dialog->priv->hw_profile_combo,
+                            FALSE, FALSE, 12);
+        gtk_widget_show (dialog->priv->hw_profile_combo);
+
+        g_signal_connect (G_OBJECT (dialog->priv->hw_profile_combo), "changed",
+                          G_CALLBACK (on_profile_changed), dialog);
+        g_object_set_data (G_OBJECT (dialog->priv->hw_profile_combo), "card", card);
+}
+
+static void
+card_to_text (GtkTreeViewColumn *column,
+              GtkCellRenderer *cell,
+              GtkTreeModel *model,
+              GtkTreeIter *iter,
+              gpointer user_data)
+{
+        char *name, *status, *profile, *str;
+
+        gtk_tree_model_get(model, iter,
+                           HW_NAME_COLUMN, &name,
+                           HW_STATUS_COLUMN, &status,
+                           HW_PROFILE_HUMAN_COLUMN, &profile,
+                           -1);
+
+        //FIXME colors?
+        str = g_strdup_printf ("%s\n<i>%s</i>\n<i>%s</i>",
+                               name, status, profile);
+        g_object_set (cell, "markup", str, NULL);
+        g_free (str);
+
+        g_free (name);
+        g_free (status);
+        g_free (profile);
+}
+
+static GtkWidget *
+create_cards_treeview (GvcMixerDialog *dialog,
+                       GCallback       on_changed)
+{
+        GtkWidget         *treeview;
+        GtkListStore      *store;
+        GtkCellRenderer   *renderer;
+        GtkTreeViewColumn *column;
+        GtkTreeSelection  *selection;
+
+        treeview = gtk_tree_view_new ();
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+        g_signal_connect (G_OBJECT (selection), "changed",
+                          on_changed, dialog);
+
+        store = gtk_list_store_new (HW_NUM_COLUMNS,
+                                    G_TYPE_UINT,
+                                    G_TYPE_ICON,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING);
+        gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
+                                 GTK_TREE_MODEL (store));
+
+        renderer = gtk_cell_renderer_pixbuf_new ();
+        g_object_set (G_OBJECT (renderer), "stock-size", GTK_ICON_SIZE_DIALOG, NULL);
+        column = gtk_tree_view_column_new_with_attributes (NULL,
+                                                           renderer,
+                                                           "gicon", HW_ICON_COLUMN,
+                                                           NULL);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
+        gtk_tree_view_insert_column_with_data_func (GTK_TREE_VIEW (treeview), -1,
+                                                    _("Name"), gtk_cell_renderer_text_new (),
+                                                    card_to_text, NULL, NULL);
+
+        return treeview;
+}
+
 static const guint tab_accel_keys[] = {
         GDK_1, GDK_2, GDK_3, GDK_4
 };
@@ -1117,8 +1378,10 @@ gvc_mixer_dialog_constructor (GType                  type,
         GtkWidget        *sbox;
         GtkWidget        *ebox;
         GSList           *streams;
+        GSList           *cards;
         GSList           *l;
         GvcMixerStream   *stream;
+        GvcMixerCard     *card;
         GtkTreeSelection *selection;
         GtkAccelGroup    *accel_group;
         GClosure         *closure;
@@ -1185,6 +1448,46 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             self->priv->sound_theme_chooser,
                             TRUE, TRUE, 6);
+
+        /* Hardware page */
+        self->priv->hw_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->hw_box), 12);
+        label = gtk_label_new (_("Hardware"));
+        gtk_notebook_append_page (GTK_NOTEBOOK (self->priv->notebook),
+                                  self->priv->hw_box,
+                                  label);
+
+        box = gtk_frame_new (_("Choose a device to configure"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->hw_box), box, TRUE, TRUE, 0);
+
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+
+        self->priv->hw_treeview = create_cards_treeview (self,
+                                                         G_CALLBACK (on_card_selection_changed));
+        box = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (box),
+                                             GTK_SHADOW_IN);
+        gtk_container_add (GTK_CONTAINER (box), self->priv->hw_treeview);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
+
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (self->priv->hw_treeview));
+        gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+
+        box = gtk_frame_new (_("Settings for the selected device:"));
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX (self->priv->hw_box), box, TRUE, TRUE, 12);
+        self->priv->hw_settings_box = gtk_vbox_new (FALSE, 12);
+        gtk_container_add (GTK_CONTAINER (box), self->priv->hw_settings_box);
 
         /* Input page */
         self->priv->input_box = gtk_vbox_new (FALSE, 12);
@@ -1322,6 +1625,14 @@ gvc_mixer_dialog_constructor (GType                  type,
                           "stream-removed",
                           G_CALLBACK (on_control_stream_removed),
                           self);
+        g_signal_connect (self->priv->mixer_control,
+                          "card-added",
+                          G_CALLBACK (on_control_card_added),
+                          self);
+        g_signal_connect (self->priv->mixer_control,
+                          "card-removed",
+                          G_CALLBACK (on_control_card_removed),
+                          self);
 
         gtk_widget_show_all (GTK_WIDGET (self));
 
@@ -1331,6 +1642,13 @@ gvc_mixer_dialog_constructor (GType                  type,
                 add_stream (self, stream);
         }
         g_slist_free (streams);
+
+        cards = gvc_mixer_control_get_cards (self->priv->mixer_control);
+        for (l = cards; l != NULL; l = l->next) {
+                card = l->data;
+                add_card (self, card);
+        }
+        g_slist_free (cards);
 
         return object;
 }
@@ -1346,6 +1664,12 @@ gvc_mixer_dialog_dispose (GObject *object)
                                                       dialog);
                 g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
                                                       on_control_stream_removed,
+                                                      dialog);
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      on_control_card_added,
+                                                      dialog);
+                g_signal_handlers_disconnect_by_func (dialog->priv->mixer_control,
+                                                      on_control_card_removed,
                                                       dialog);
 
                 g_object_unref (dialog->priv->mixer_control);
