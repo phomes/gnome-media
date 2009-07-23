@@ -937,11 +937,9 @@ update_card (GvcMixerControl      *control,
         const char *key;
         void *state;
 
-        g_debug ("Updating card: index=%u name='%s'",
-                 info->index,
-                 info->name);
+        g_debug ("Udpating card %s (index: %u driver: %s):",
+                 info->name, info->index, info->driver);
 
-        g_debug ("Adding card %s (driver: %s):", info->name, info->driver);
         for (i = 0; i < info->n_profiles; i++) {
                 struct pa_card_profile_info pi = info->profiles[i];
                 gboolean is_default;
@@ -969,8 +967,8 @@ update_card (GvcMixerControl      *control,
                         GvcMixerCardProfile *profile;
 
                         profile = g_new0 (GvcMixerCardProfile, 1);
-                        profile->profile = pi.name;
-                        profile->human_profile = pi.description;
+                        profile->profile = g_strdup (pi.name);
+                        profile->human_profile = g_strdup (pi.description);
                         profile->priority = pi.priority;
                         list = g_list_prepend (list, profile);
                 }
@@ -988,11 +986,11 @@ update_card (GvcMixerControl      *control,
                 g_hash_table_insert (control->priv->cards,
                                      GUINT_TO_POINTER (info->index),
                                      g_object_ref (card));
-                g_signal_emit (G_OBJECT (control),
-                               signals[CARD_ADDED],
-                               0,
-                               info->index);
         }
+        g_signal_emit (G_OBJECT (control),
+                       signals[CARD_ADDED],
+                       0,
+                       info->index);
 }
 
 static void
@@ -1019,7 +1017,6 @@ _pa_context_get_sink_info_cb (pa_context         *context,
 
         update_sink (control, i);
 }
-
 
 static void
 _pa_context_get_source_info_cb (pa_context           *context,

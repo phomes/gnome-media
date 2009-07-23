@@ -50,8 +50,8 @@ typedef struct
 
 typedef struct
 {
-        const char *profile;
-        const char *human_profile;
+        char *profile;
+        char *human_profile;
         guint priority;
 } GvcMixerCardProfile;
 

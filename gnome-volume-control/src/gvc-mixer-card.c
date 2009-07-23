@@ -149,6 +149,7 @@ gvc_mixer_card_get_profile (GvcMixerCard *card)
         GvcMixerCardProfile *ret;
 
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), NULL);
+        g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
 
         ret = NULL;
         for (l = card->priv->profiles; l != NULL; l = l->next) {
@@ -438,6 +439,14 @@ gvc_mixer_card_new (pa_context *context,
 }
 
 static void
+free_profile (GvcMixerCardProfile *p)
+{
+	g_free (p->profile);
+	g_free (p->human_profile);
+	g_free (p);
+}
+
+static void
 gvc_mixer_card_finalize (GObject *object)
 {
         GvcMixerCard *mixer_card;
@@ -464,7 +473,7 @@ gvc_mixer_card_finalize (GObject *object)
         g_free (mixer_card->priv->human_profile);
         mixer_card->priv->human_profile = NULL;
 
-        g_list_foreach (mixer_card->priv->profiles, (GFunc) g_free, NULL);
+        g_list_foreach (mixer_card->priv->profiles, (GFunc) free_profile, NULL);
         g_list_free (mixer_card->priv->profiles);
         mixer_card->priv->profiles = NULL;
 
