@@ -163,27 +163,6 @@ gvc_mixer_card_get_profile (GvcMixerCard *card)
         return ret;
 }
 
-static void
-_pa_context_set_card_profile_by_index_cb (pa_context                       *context,
-                                          int                               success,
-                                          void                             *userdata)
-{
-        GvcMixerCard *card = GVC_MIXER_CARD (userdata);
-
-        g_assert (card->priv->target_profile);
-
-        if (success > 0) {
-                gvc_mixer_card_set_profile (card, card->priv->target_profile);
-        } else {
-                g_debug ("Failed to switch profile on '%s' from '%s' to '%s'",
-                         card->priv->name,
-                         card->priv->profile,
-                         card->priv->target_profile);
-        }
-        g_free (card->priv->target_profile);
-        card->priv->target_profile = NULL;
-}
-
 gboolean
 gvc_mixer_card_set_profile (GvcMixerCard *card,
                             const char     *profile)
@@ -210,6 +189,27 @@ gvc_mixer_card_set_profile (GvcMixerCard *card,
         g_object_notify (G_OBJECT (card), "profile");
 
         return TRUE;
+}
+
+static void
+_pa_context_set_card_profile_by_index_cb (pa_context                       *context,
+                                          int                               success,
+                                          void                             *userdata)
+{
+        GvcMixerCard *card = GVC_MIXER_CARD (userdata);
+
+        g_assert (card->priv->target_profile);
+
+        if (success > 0) {
+                gvc_mixer_card_set_profile (card, card->priv->target_profile);
+        } else {
+                g_debug ("Failed to switch profile on '%s' from '%s' to '%s'",
+                         card->priv->name,
+                         card->priv->profile,
+                         card->priv->target_profile);
+        }
+        g_free (card->priv->target_profile);
+        card->priv->target_profile = NULL;
 }
 
 gboolean
