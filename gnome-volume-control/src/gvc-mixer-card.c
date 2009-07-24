@@ -146,21 +146,20 @@ GvcMixerCardProfile *
 gvc_mixer_card_get_profile (GvcMixerCard *card)
 {
         GList *l;
-        GvcMixerCardProfile *ret;
 
         g_return_val_if_fail (GVC_IS_MIXER_CARD (card), NULL);
         g_return_val_if_fail (card->priv->profiles != NULL, FALSE);
 
-        ret = NULL;
         for (l = card->priv->profiles; l != NULL; l = l->next) {
                 GvcMixerCardProfile *p = l->data;
                 if (g_str_equal (card->priv->profile, p->profile)) {
-                        ret = p;
-                        break;
+                        return p;
                 }
         }
 
-        return ret;
+        g_assert_not_reached ();
+
+        return NULL;
 }
 
 gboolean
@@ -260,13 +259,13 @@ gvc_mixer_card_get_profiles (GvcMixerCard *card)
 
 static int
 sort_profiles (GvcMixerCardProfile *a,
-	       GvcMixerCardProfile *b)
+               GvcMixerCardProfile *b)
 {
-	if (a->priority == b->priority)
-		return 0;
-	if (a->priority > b->priority)
-		return 1;
-	return -1;
+        if (a->priority == b->priority)
+                return 0;
+        if (a->priority > b->priority)
+                return 1;
+        return -1;
 }
 
 gboolean
