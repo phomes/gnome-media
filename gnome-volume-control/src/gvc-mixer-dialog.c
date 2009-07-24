@@ -97,6 +97,7 @@ enum {
         HW_STATUS_COLUMN,
         HW_PROFILE_COLUMN,
         HW_PROFILE_HUMAN_COLUMN,
+        HW_SENSITIVE_COLUMN,
         HW_NUM_COLUMNS
 };
 
@@ -947,6 +948,7 @@ add_card (GvcMixerDialog *dialog,
                             HW_PROFILE_COLUMN, profile->profile,
                             HW_PROFILE_HUMAN_COLUMN, profile->human_profile,
                             HW_STATUS_COLUMN, "Ready",
+                            HW_SENSITIVE_COLUMN, g_strcmp0 (profile->profile, "off") != 0,
                             -1);
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->priv->hw_treeview));
@@ -1283,17 +1285,22 @@ card_to_text (GtkTreeViewColumn *column,
               gpointer user_data)
 {
         char *name, *status, *profile, *str;
+        gboolean sensitive;
 
         gtk_tree_model_get(model, iter,
                            HW_NAME_COLUMN, &name,
                            HW_STATUS_COLUMN, &status,
                            HW_PROFILE_HUMAN_COLUMN, &profile,
+                           HW_SENSITIVE_COLUMN, &sensitive,
                            -1);
 
         //FIXME colors?
         str = g_strdup_printf ("%s\n<i>%s</i>\n<i>%s</i>",
                                name, status, profile);
-        g_object_set (cell, "markup", str, NULL);
+        g_object_set (cell,
+                      "markup", str,
+                      "sensitive", sensitive,
+                      NULL);
         g_free (str);
 
         g_free (name);
@@ -1324,7 +1331,8 @@ create_cards_treeview (GvcMixerDialog *dialog,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
-                                    G_TYPE_STRING);
+                                    G_TYPE_STRING,
+                                    G_TYPE_BOOLEAN);
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (store));
 
@@ -1333,6 +1341,7 @@ create_cards_treeview (GvcMixerDialog *dialog,
         column = gtk_tree_view_column_new_with_attributes (NULL,
                                                            renderer,
                                                            "gicon", HW_ICON_COLUMN,
+                                                           "sensitive", HW_SENSITIVE_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
