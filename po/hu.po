@@ -10,14 +10,15 @@
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 # Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007, 2008, 2009.
 # Mate ORY <orymate at gmail d0t com>, 2006.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
-"POT-Creation-Date: 2009-03-05 13:30+0000\n"
-"PO-Revision-Date: 2009-03-07 14:08+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@fsf.hu>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-24 12:06+0200\n"
+"PO-Revision-Date: 2009-07-24 12:12+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -159,10 +160,10 @@ msgid "Unknown / Unknown"
 msgstr "Ismeretlen / Ismeretlen"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
-#: ../gstreamer-properties/gstreamer-properties.c:281
+#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1014
+#: ../grecord/src/gsr-window.c:1024 ../grecord/src/gsr-window.c:1040
+#: ../grecord/src/gsr-window.c:1049 ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -1075,7 +1076,7 @@ msgid "_Eject disc"
 msgstr "Le_mez kiadása"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
+#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2151
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -1293,7 +1294,6 @@ msgid "CD Player Preferences"
 msgstr "CD-lejátszó beállításai"
 
 #: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Device:"
 msgstr "_Eszköz:"
 
@@ -1325,162 +1325,237 @@ msgstr "Témák"
 msgid "_Select a theme:"
 msgstr "_Téma kiválasztása:"
 
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "Hangerő módosítása és hangok társítása eseményekhez"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "Hang"
-
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
 msgstr "Hangerőszabályzó megjelenítése"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "Hangerőszabályzó"
 
-#: ../gnome-volume-control/src/applet-main.c:48
-#: ../gnome-volume-control/src/dialog-main.c:140
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and sound events"
+msgstr "Hangerő és hangesemények módosítása"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Hang"
+
+#: ../gnome-volume-control/src/applet-main.c:49
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
-#: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/applet-main.c:50
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
-#: ../gnome-volume-control/src/applet-main.c:59
+#: ../gnome-volume-control/src/applet-main.c:62
 msgid " - GNOME Volume Control Applet"
 msgstr " – GNOME hangerőszabályzó kisalkalmazás"
 
-#: ../gnome-volume-control/src/dialog-main.c:121
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "Várakozás a hangrendszer válaszára"
 
-#: ../gnome-volume-control/src/dialog-main.c:139 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Indulóoldal"
 
-#: ../gnome-volume-control/src/dialog-main.c:151
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " – GNOME hangerőszabályzó"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:271
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
 msgid "Output"
 msgstr "Kimenet"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1509
 msgid "Input"
 msgstr "Bemenet"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "Bal"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "Jobb"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr "Elöl"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Rear"
+msgstr "Hátul"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Minimum"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Maximum"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:290
 msgid "_Balance:"
 msgstr "_Egyensúly:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:771
+#: ../gnome-volume-control/src/gvc-balance-bar.c:293
+msgid "_Fade:"
+msgstr "_Elhalás:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:296
+msgid "_Subwoofer:"
+msgstr "_Mélysugárzó:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:583
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:587
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "Erősítetlen"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:843
 msgid "Mute"
 msgstr "Némítás"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:940
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Tiltva"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:947
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u kimenet"
+msgstr[1] "%u kimenet"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:957
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u bemenet"
+msgstr[1] "%u bemenet"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1253
 msgid "System Sounds"
 msgstr "Rendszerhangok"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1705
 msgid "GNOME Volume Control"
 msgstr "GNOME hangerőszabályzó"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:419
 msgid "Peak detect"
 msgstr "Csúcsérzékelés"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1154
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1349
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Név"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1159
 msgid "Device"
 msgstr "Eszköz"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1419
+msgid "Output Volume: "
 msgstr "Kimeneti hangerő: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1449
 msgid "Sound Effects"
 msgstr "Hangeffektek"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1456
 msgid "Alert Volume: "
 msgstr "Riasztás hangereje: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
-msgstr "Bemeneti hangerő: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+msgid "Hardware"
+msgstr "Hardver"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
-msgid "Input level:"
-msgstr "Bemeneti szint:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
+msgid "Choose a device to configure"
+msgstr "Válassza ki a beállítandó eszközt"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
-msgid "Choose a device for sound input"
-msgstr "Válasszon hangbemeneti eszközt"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
-msgid "Choose a device for sound output"
-msgstr "Válasszon hangkimeneti eszközt"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1498
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1614
 msgid "Settings for the selected device:"
 msgstr "Kiválasztott eszköz beállításai:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1516
+msgid "Input Volume: "
+msgstr "Bemeneti hangerő: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1536
+msgid "Input level:"
+msgstr "Bemeneti szint:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1558
+msgid "Choose a device for sound input"
+msgstr "Válasszon hangbemeneti eszközt"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1590
+msgid "Choose a device for sound output"
+msgstr "Válasszon hangkimeneti eszközt"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1625
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1629
 msgid "No application is currently playing or recording audio."
 msgstr "Jelenleg nincs hangot lejátszó vagy felvevő alkalmazás."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1753
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Hangbeállítások"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:229
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "A Hangbeállítások indítása meghiúsult: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:252
 msgid "_Mute"
 msgstr "_Némítás"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:261
 msgid "_Sound Preferences"
 msgstr "_Hangbeállítások"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:445
 msgid "Muted"
 msgstr "Némítva"
 
@@ -1497,17 +1572,17 @@ msgstr "Hangrögzítő"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Névtelen"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Névtelen-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1522,7 +1597,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "parancs futtatásával és a gnome-sound-recorder újraindításával."
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1530,21 +1605,21 @@ msgstr ""
 "Ellenőrizze a beállításait.\n"
 "Szükséges bővítmények hiányozhatnak."
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld perc"
 msgstr[1] "%ld perc"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld óra"
 msgstr[1] "%ld óra"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1552,24 +1627,24 @@ msgstr[0] "%ld másodperc"
 msgstr[1] "%ld másodperc"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s %s és %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s és %s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Fájl megnyitása"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1578,17 +1653,17 @@ msgstr ""
 "A fájl nem tölthető be:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "Kész"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "_Csere"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1597,115 +1672,122 @@ msgstr ""
 "Már létezik „%s” nevű fájl. \n"
 "Szeretné lecserélni azzal, amit épp menteni készül?"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "A(z) „%s” fájl nem menthető"
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Fájl mentése másként"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s nincs telepítve az elérési útvonalon."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Hiba történt %s indításakor: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Menti „%s” fájl változásait bezárás előtt?"
+msgid "Save recording before closing?"
+msgstr "Menti a felvételt bezárás előtt?"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "Menti a felvételt?"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "Bezárás mentés _nélkül"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr "Bezárás mentés _nélkül"
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "Kérdés"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nincs mentve)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bájt)"
 msgstr[1] "%s (%llu bájt)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "Ismeretlen méret"
 
-#: ../grecord/src/gsr-window.c:1025
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/mp"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/mp (becsült)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1052
 msgid "1 (mono)"
 msgstr "1 (monó)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1055
 msgid "2 (stereo)"
 msgstr "2 (sztereó)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "%s adatai"
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Fájl adatai"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Mappa:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Fájlnév:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "Fájl mérete:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "Hanginformáció"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "Fájl hossza:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "Csatornák száma:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "Mintavételezés:"
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "Bitsebesség:"
 
@@ -1717,27 +1799,27 @@ msgstr ""
 "Hangrögzítő program a GNOME-hoz\n"
 "gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr "Lejátszás…"
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "GConf hangkimenet"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Lejátszás"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr "Felvétel…"
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "GConf hangfelvétel"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1745,146 +1827,142 @@ msgstr ""
 "A hangfelvétel beállításai érvénytelenek. Javítsa ezeket a Rendszer -> "
 "Beállítások menü Hang pontja alatt."
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "fájl kimenet"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "szint"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "A hangprofil („%s”) nem dolgozható fel."
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Nem készíthető felvétel a hangprofil („%s”) használatával."
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Nem írható a fájl a hangprofil („%s”) használatával."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "Új hangminta"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Fájl megnyitása"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "A jelenlegi fájl mentése"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "A jelenlegi fájl mentése más néven"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "_Hangerőszabályzó megnyitása"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "A hangkeverő megnyitása"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "A jelenlegi fájl adatai"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "A jelenlegi fájl bezárása"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Kilépés a programból"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "_Vezérlés"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "Hangfelvétel készítése"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "Hanglejátszás"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Hang leállítása"
 
-#: ../grecord/src/gsr-window.c:2145
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Tartalom"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "A kézikönyv megnyitása"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "Az alkalmazás névjegye"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Nem sikerült betölteni az ui.xml-t. Lehetséges, hogy a program nincs "
 "megfelelően telepítve"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Mentés"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "_Felvétel a következő bemenetből:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "_Felvétel mint:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<nincs>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "Hossz:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "Szint:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s – Hangrögzítő"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "Hangerő beállítása"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1902,8 +1980,7 @@ msgstr "Az ablak szélessége"
 msgid "Width of the Window to be displayed"
 msgstr "A megjelenítendő ablak szélessége"
 
-#: ../gst-mixer/src/element.c:423
-#| msgid "Sound Theme:"
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Hangtéma"
 
@@ -1916,15 +1993,15 @@ msgstr "Ismeretlen hangerőszabályzó %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Nem találhatók hangerőszabályzó GStreamer bővítmények és/vagy eszközök."
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "Felvétel"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "Kapcsolók"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "Beállítások"
 
@@ -1934,37 +2011,37 @@ msgid "Volume Control Preferences"
 msgstr "Hangerőszabályzó beállításai"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
-msgstr "Látható sávok ki_választása:"
+msgid "_Select mixers to be visible:"
+msgstr "_Válassza ki a látható sávokat:"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s némítása/visszakapcsolása"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "%s sáv: némítás"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Hangfelvétel átváltása a következőről: %s"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "%s sáv: hangfelvétel"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s opció kiválasztása"
@@ -2053,11 +2130,11 @@ msgstr "Ismeretlen"
 msgid "Volume of %s channel on %s"
 msgstr "%s csatorna hangereje %s eszközön"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Egy GNOME/GStreamer-alapú hangerőszabályzó alkalmazás"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -2069,206 +2146,149 @@ msgstr ""
 "Tímár András <timar@gnome.hu>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Hangerőszabályzó: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "_Eszköz: "
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "Hangerő szabályzása egy másik eszközön"
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "Nincs"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr "Nem támogatott"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: ../gstreamer-properties/gstreamer-properties.c:603
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr "Nem sikerült létrehozni a főablakot"
 
-#: ../gstreamer-properties/gstreamer-properties.c:652
-msgid "Failed to load glade file; please check your installation."
-msgstr "Nem sikerült betölteni a glade fájlt, kérem ellenőrizze a telepítést."
+#: ../gstreamer-properties/gstreamer-properties.c:680
+msgid "Failed to load UI file; please check your installation."
+msgstr "Nem sikerült betölteni a felületfájlt, ellenőrizze a telepítést."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "A GStreamer-alkalmazások alapbeállításainak módosítása"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Multimédiarendszer-választó"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>Alapértelmezett bemenet</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>Alapértelmezett kimenet</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Tesztelés…</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "Hang"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr "Kattintson az OK gombra a befejezéshez."
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "_Eszköz:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr "_Adatcsatorna:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr "Bő_vítmény:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr "A_datcsatorna:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr "Te_szt"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr "Adatcsatorna tesztelése"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "Videó"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr "Bővítmén_y:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr "_Teszt"
-
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr "Automatikus"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA – Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd – ART hangdémon"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD – Enlightened hangdémon"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS – Nyílt hangrendszer"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio hangkiszolgáló"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Egyéni"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL – Egyszerű DirectMedia réteg"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "X ablakkezelő rendszer (Xv nélkül)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X ablakkezelő rendszer (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "Teszthang"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "Csend"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (például Zoran v4l eszköz)"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr "Tesztbemenet"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nem sikerült létrehozni a teszt adatcsatornát „%s” számára"
 
-#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
+#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Hiba történt a súgó megjelenítése közben: %s"
 
-#: ../profiles/audio-profile-edit.c:336
+#: ../profiles/audio-profile-edit.c:335
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "„%s” profil szerkesztése"
@@ -2300,41 +2320,41 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Hiba történt a(z) %s profilútvonal elfelejtése közben. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:88
+#: ../profiles/audio-profiles-edit.c:87
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:466
+#: ../profiles/audio-profiles-edit.c:465
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Törli ezt a profilt?\n"
 msgstr[1] "Törli ezt a(z) %d profilt?\n"
 
-#: ../profiles/audio-profiles-edit.c:485
+#: ../profiles/audio-profiles-edit.c:484
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Törli a(z) „%s” profilt?"
 
-#: ../profiles/audio-profiles-edit.c:507
+#: ../profiles/audio-profiles-edit.c:506
 msgid "Delete Profile"
 msgstr "Profil törlése"
 
-#: ../profiles/audio-profiles-edit.c:601
+#: ../profiles/audio-profiles-edit.c:599
 msgid "Edit GNOME Audio Profiles"
 msgstr "GNOME Audio profilok szerkesztése"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr "_Profilok:"
 
-#: ../profiles/audio-profiles-edit.c:834
+#: ../profiles/audio-profiles-edit.c:832
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Önnek már van egy „%s” nevű profilja"
 
-#: ../profiles/audio-profiles-edit.c:859
+#: ../profiles/audio-profiles-edit.c:857
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf Hiba (FIXME): %s\n"
@@ -2347,6 +2367,16 @@ msgid ""
 msgstr ""
 "A(z) „%s” fájl hiányzik. Ez azt jelzi, hogy az alkalmazás nincs megfelelően "
 "telepítve, így a párbeszédablak nem jeleníthető meg."
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Adja ki a(z) „%s --help” parancsot az elérhető parancssori kapcsolók teljes "
+"listájáért.\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2536,41 +2566,41 @@ msgstr "Használatban van-e vagy sem ez a profil"
 msgid "Whether or not to use and display this profile."
 msgstr "Használja és jelenítse-e meg ezt a profilt."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Nincsenek hangok"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Beépített"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Eseményhang tesztelése"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "Témából"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "Típus"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
+#: ../sound-theme/gvc-sound-theme-chooser.c:1083
 #: ../sound-theme/gvc-sound-theme-editor.c:1310
 msgid "Sound Theme:"
 msgstr "Hangtéma:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
+#: ../sound-theme/gvc-sound-theme-chooser.c:1091
 msgid "Choose an alert sound:"
 msgstr "Válasszon riasztáshangot:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
+#: ../sound-theme/gvc-sound-theme-chooser.c:1109
 #: ../sound-theme/gvc-sound-theme-editor.c:1338
 msgid "Enable window and button sounds"
 msgstr "Ablak- és gombhangok engedélyezése"
@@ -2677,14 +2707,9 @@ msgstr "Válasszon hangfájlt"
 msgid "Sound files"
 msgstr "Hangfájlok"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Tiltva"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
-msgstr "Egyedi…"
+msgstr "Egyéni…"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
