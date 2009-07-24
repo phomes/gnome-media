@@ -633,10 +633,24 @@ update_sink (GvcMixerControl    *control,
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GList *list = NULL;
+                guint i;
+
                 map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_sink_new (control->priv->pa_context,
                                              info->index,
                                              map);
+
+                for (i = 0; i < info->n_ports; i++) {
+                        GvcMixerStreamPort *port;
+
+                        port = g_new0 (GvcMixerStreamPort, 1);
+                        port->port = g_strdup (info->ports[i]->name);
+                        port->human_port = g_strdup (info->ports[i]->description);
+                        port->priority = info->ports[i]->priority;
+                        list = g_list_prepend (list, port);
+                }
+                gvc_mixer_stream_set_ports (stream, list);
                 g_object_unref (map);
                 is_new = TRUE;
         } else if (gvc_mixer_stream_is_running (stream)) {
@@ -651,6 +665,8 @@ update_sink (GvcMixerControl    *control,
         gvc_mixer_stream_set_icon_name (stream, "audio-card");
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+        if (info->active_port != NULL)
+                gvc_mixer_stream_set_port (stream, info->active_port->name);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
 
         if (is_new) {
@@ -696,11 +712,26 @@ update_source (GvcMixerControl      *control,
         stream = g_hash_table_lookup (control->priv->sources,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+                GList *list = NULL;
+                guint i;
                 GvcChannelMap *map;
+
                 map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_source_new (control->priv->pa_context,
                                                info->index,
                                                map);
+
+                for (i = 0; i < info->n_ports; i++) {
+                        GvcMixerStreamPort *port;
+
+                        port = g_new0 (GvcMixerStreamPort, 1);
+                        port->port = g_strdup (info->ports[i]->name);
+                        port->human_port = g_strdup (info->ports[i]->description);
+                        port->priority = info->ports[i]->priority;
+                        list = g_list_prepend (list, port);
+                }
+                gvc_mixer_stream_set_ports (stream, list);
+
                 g_object_unref (map);
                 is_new = TRUE;
         } else if (gvc_mixer_stream_is_running (stream)) {
@@ -717,6 +748,7 @@ update_source (GvcMixerControl      *control,
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SOURCE_DECIBEL_VOLUME));
+        gvc_mixer_stream_set_port (stream, info->active_port->name);
         gvc_mixer_stream_set_base_volume (stream, (guint32) info->base_volume);
 
         if (is_new) {
