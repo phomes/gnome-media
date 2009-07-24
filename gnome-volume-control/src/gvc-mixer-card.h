@@ -52,6 +52,7 @@ typedef struct
 {
         char *profile;
         char *human_profile;
+        char *status;
         guint priority;
 } GvcMixerCardProfile;
 

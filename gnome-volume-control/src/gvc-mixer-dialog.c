@@ -947,7 +947,7 @@ add_card (GvcMixerDialog *dialog,
                             HW_ICON_COLUMN, icon,
                             HW_PROFILE_COLUMN, profile->profile,
                             HW_PROFILE_HUMAN_COLUMN, profile->human_profile,
-                            HW_STATUS_COLUMN, "Ready",
+                            HW_STATUS_COLUMN, profile->status,
                             HW_SENSITIVE_COLUMN, g_strcmp0 (profile->profile, "off") != 0,
                             -1);
 

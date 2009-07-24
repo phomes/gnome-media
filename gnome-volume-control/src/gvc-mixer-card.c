@@ -454,6 +454,7 @@ free_profile (GvcMixerCardProfile *p)
 {
         g_free (p->profile);
         g_free (p->human_profile);
+        g_free (p->status);
         g_free (p);
 }
 
