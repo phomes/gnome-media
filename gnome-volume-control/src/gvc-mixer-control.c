@@ -633,14 +633,16 @@ update_sink (GvcMixerControl    *control,
         stream = g_hash_table_lookup (control->priv->sinks,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+#if PA_MICRO > 15
                 GList *list = NULL;
                 guint i;
+#endif /* PA_MICRO > 15 */
 
                 map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_sink_new (control->priv->pa_context,
                                              info->index,
                                              map);
-
+#if PA_MICRO > 15
                 for (i = 0; i < info->n_ports; i++) {
                         GvcMixerStreamPort *port;
 
@@ -651,6 +653,7 @@ update_sink (GvcMixerControl    *control,
                         list = g_list_prepend (list, port);
                 }
                 gvc_mixer_stream_set_ports (stream, list);
+#endif /* PA_MICRO > 15 */
                 g_object_unref (map);
                 is_new = TRUE;
         } else if (gvc_mixer_stream_is_running (stream)) {
@@ -665,9 +668,11 @@ update_sink (GvcMixerControl    *control,
         gvc_mixer_stream_set_icon_name (stream, "audio-card");
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
+        gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
+#if PA_MICRO > 15
         if (info->active_port != NULL)
                 gvc_mixer_stream_set_port (stream, info->active_port->name);
-        gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
+#endif /* PA_MICRO > 15 */
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sinks,
@@ -712,15 +717,17 @@ update_source (GvcMixerControl      *control,
         stream = g_hash_table_lookup (control->priv->sources,
                                       GUINT_TO_POINTER (info->index));
         if (stream == NULL) {
+#if PA_MICRO > 15
                 GList *list = NULL;
                 guint i;
+#endif /* PA_MICRO > 15 */
                 GvcChannelMap *map;
 
                 map = gvc_channel_map_new_from_pa_channel_map (&info->channel_map);
                 stream = gvc_mixer_source_new (control->priv->pa_context,
                                                info->index,
                                                map);
-
+#if PA_MICRO > 15
                 for (i = 0; i < info->n_ports; i++) {
                         GvcMixerStreamPort *port;
 
@@ -731,6 +738,7 @@ update_source (GvcMixerControl      *control,
                         list = g_list_prepend (list, port);
                 }
                 gvc_mixer_stream_set_ports (stream, list);
+#endif /* PA_MICRO > 15 */
 
                 g_object_unref (map);
                 is_new = TRUE;
@@ -748,8 +756,10 @@ update_source (GvcMixerControl      *control,
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SOURCE_DECIBEL_VOLUME));
-        gvc_mixer_stream_set_port (stream, info->active_port->name);
         gvc_mixer_stream_set_base_volume (stream, (guint32) info->base_volume);
+#if PA_MICRO > 15
+        gvc_mixer_stream_set_port (stream, info->active_port->name);
+#endif /* PA_MICRO > 15 */
 
         if (is_new) {
                 g_hash_table_insert (control->priv->sources,
