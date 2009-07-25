@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-19 10:35+0300\n"
-"PO-Revision-Date: 2009-07-19 10:40+0300\n"
+"POT-Creation-Date: 2009-07-25 11:30+0300\n"
+"PO-Revision-Date: 2009-07-25 11:30+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1373,12 +1373,12 @@ msgid " - GNOME Volume Control"
 msgstr " - Gnomen äänenvoimakkuuden hallinta"
 
 #: ../gnome-volume-control/src/gvc-applet.c:271
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
 msgid "Output"
 msgstr "Toisto"
 
 #: ../gnome-volume-control/src/gvc-applet.c:275
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1192
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1509
 msgid "Input"
 msgstr "Tallennus"
 
@@ -1438,68 +1438,104 @@ msgstr "Vahvistamaton"
 msgid "Mute"
 msgstr "Vaimenna"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1065
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:972
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Ei käytössä"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:979
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u ulostulo"
+msgstr[1] "%u ulostuloa"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:989
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u sisääntulo"
+msgstr[1] "%u sisääntuloa"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1285
 msgid "System Sounds"
 msgstr "Järjestelmä-äänet"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1737
 msgid "GNOME Volume Control"
 msgstr "Gnomen äänenvoimakkuuden hallinta"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:403
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:419
 msgid "Peak detect"
 msgstr "Havaitse piikit"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1066
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1154
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1349
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Nimi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1071
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1159
 msgid "Device"
 msgstr "Laite"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1142
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1419
 msgid "Output Volume: "
 msgstr "Toistovoimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1172
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1449
 msgid "Sound Effects"
 msgstr "Ääniefektit"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1179
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1456
 msgid "Alert Volume: "
 msgstr "Hälytysten voimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1199
-msgid "Input Volume: "
-msgstr "Äänitysvoimakkuus: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+msgid "Hardware"
+msgstr "Laitteisto"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1219
-msgid "Input level:"
-msgstr "Äänitystaso: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
+msgid "Choose a device to configure"
+msgstr "Valitse määriteltävä laite"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1241
-msgid "Choose a device for sound input"
-msgstr "Valitse laite äänen tallentamiseksi"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1273
-msgid "Choose a device for sound output"
-msgstr "Valitse laite äänen toistamiseksi"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1297
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1498
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1614
 msgid "Settings for the selected device:"
 msgstr "Valitun laitteen asetukset:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1308
-msgid "Applications"
-msgstr "Sovelluket"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1516
+msgid "Input Volume: "
+msgstr "Äänitysvoimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1312
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1536
+msgid "Input level:"
+msgstr "Äänitystaso: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1558
+msgid "Choose a device for sound input"
+msgstr "Valitse laite äänen tallentamiseksi"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1590
+msgid "Choose a device for sound output"
+msgstr "Valitse laite äänen toistamiseksi"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1625
+msgid "Applications"
+msgstr "Sovellukset"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1629
 msgid "No application is currently playing or recording audio."
 msgstr "Mikään sovellus ei nyt soita tai tallenna ääntä."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1415
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1753
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -2152,7 +2188,8 @@ msgstr "Virhe luotaessa pääikkunaa"
 
 #: ../gstreamer-properties/gstreamer-properties.c:680
 msgid "Failed to load UI file; please check your installation."
-msgstr "UI-tiedoston avaus epäonnistui. Tarkista että ohjelman on asennettu oikein."
+msgstr ""
+"UI-tiedoston avaus epäonnistui. Tarkista että ohjelman on asennettu oikein."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -2345,7 +2382,8 @@ msgid ""
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"Suorita \"%s --help\", jos haluat nähdä kaikki mahdolliset komentorivivalitsimet.\n" 
+"Suorita \"%s --help\", jos haluat nähdä kaikki mahdolliset "
+"komentorivivalitsimet.\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2677,11 +2715,6 @@ msgstr "Valitse äänitiedosto"
 #: ../sound-theme/gvc-sound-theme-editor.c:604
 msgid "Sound files"
 msgstr "Äänitiedostot"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Ei käytössä"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
