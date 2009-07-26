@@ -43,6 +43,8 @@
 
 #define GVC_MIXER_CONTROL_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_CONTROL, GvcMixerControlPrivate))
 
+#define RECONNECT_DELAY 5
+
 struct GvcMixerControlPrivate
 {
         pa_glib_mainloop *pa_mainloop;
@@ -1824,7 +1826,7 @@ _pa_context_state_cb (pa_context *context,
         case PA_CONTEXT_FAILED:
                 g_warning ("Connection failed, reconnecting...");
                 if (control->priv->reconnect_id == 0)
-                        control->priv->reconnect_id = g_idle_add (idle_reconnect, control);
+                        control->priv->reconnect_id = g_timeout_add_seconds (RECONNECT_DELAY, idle_reconnect, control);
                 break;
 
         case PA_CONTEXT_TERMINATED:
