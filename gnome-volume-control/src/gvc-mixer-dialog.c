@@ -71,7 +71,10 @@ struct GvcMixerDialogPrivate
         GtkWidget       *output_balance_bar;
         GtkWidget       *output_fade_bar;
         GtkWidget       *output_lfe_bar;
+        GtkWidget       *output_port_combo;
         GtkWidget       *input_treeview;
+        GtkWidget       *input_port_combo;
+        GtkWidget       *input_settings_box;
         GtkWidget       *sound_theme_chooser;
         GtkWidget       *click_feedback_button;
         GtkWidget       *audible_bell_button;
@@ -159,11 +162,29 @@ update_default_input (GvcMixerDialog *dialog)
 }
 
 static void
+port_selection_changed (GvcComboBox *combo_box,
+                        const char  *port,
+                        GvcMixerDialog *dialog)
+{
+        GvcMixerStream *stream;
+
+        stream = g_object_get_data (G_OBJECT (combo_box), "stream");
+        if (stream == NULL) {
+                g_warning ("Could not find stream for port combo box");
+                return;
+        }
+        if (gvc_mixer_stream_change_port (stream, port) == FALSE) {
+                g_warning ("Could not change port for stream");
+        }
+}
+
+static void
 update_output_settings (GvcMixerDialog *dialog)
 {
         GvcMixerStream *stream;
         GvcChannelMap  *map;
         guint           num_settings;
+        const GList    *ports;
 
         g_debug ("Updating output settings");
         if (dialog->priv->output_balance_bar != NULL) {
@@ -180,6 +201,11 @@ update_output_settings (GvcMixerDialog *dialog)
                 gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
                                       dialog->priv->output_lfe_bar);
                 dialog->priv->output_lfe_bar = NULL;
+        }
+        if (dialog->priv->output_port_combo != NULL) {
+                gtk_container_remove (GTK_CONTAINER (dialog->priv->output_settings_box),
+                                      dialog->priv->output_port_combo);
+                dialog->priv->output_port_combo = NULL;
         }
 
         stream = gvc_mixer_control_get_default_sink (dialog->priv->mixer_control);
@@ -232,6 +258,25 @@ update_output_settings (GvcMixerDialog *dialog)
                                     FALSE, FALSE, 12);
                 gtk_widget_show (dialog->priv->output_lfe_bar);
                 num_settings++;
+        }
+
+        ports = gvc_mixer_stream_get_ports (stream);
+        if (ports != NULL) {
+                GvcMixerStreamPort *port;
+                port = gvc_mixer_stream_get_port (stream);
+
+                dialog->priv->output_port_combo = gvc_combo_box_new (_("Connector:"));
+                gvc_combo_box_set_ports (GVC_COMBO_BOX (dialog->priv->output_port_combo),
+                                         ports);
+                gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->output_port_combo), port->port);
+                g_object_set_data (G_OBJECT (dialog->priv->output_port_combo), "stream", stream);
+                g_signal_connect (G_OBJECT (dialog->priv->output_port_combo), "changed",
+                                  G_CALLBACK (port_selection_changed), dialog);
+
+                gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
+                                    dialog->priv->output_port_combo,
+                                    FALSE, FALSE, 12);
+                gtk_widget_show (dialog->priv->output_port_combo);
         }
 
         /* FIXME: We could make this into a "No settings" label instead */
@@ -590,6 +635,60 @@ lookup_bar_for_stream (GvcMixerDialog *dialog,
         return bar;
 }
 
+static GtkWidget *
+lookup_combo_box_for_stream (GvcMixerDialog *dialog,
+                             GvcMixerStream *stream)
+{
+        GvcMixerStream *combo_stream;
+        guint id;
+
+        id = gvc_mixer_stream_get_id (stream);
+
+        if (dialog->priv->output_port_combo != NULL) {
+                combo_stream = g_object_get_data (G_OBJECT (dialog->priv->output_port_combo),
+                                                  "stream");
+                if (combo_stream != NULL) {
+                        if (id == gvc_mixer_stream_get_id (combo_stream))
+                                return dialog->priv->output_port_combo;
+                }
+        }
+
+        if (dialog->priv->input_port_combo != NULL) {
+                combo_stream = g_object_get_data (G_OBJECT (dialog->priv->input_port_combo),
+                                                  "stream");
+                if (combo_stream != NULL) {
+                        if (id == gvc_mixer_stream_get_id (combo_stream))
+                                return dialog->priv->input_port_combo;
+                }
+        }
+
+        return NULL;
+}
+
+static void
+on_stream_port_notify (GObject        *object,
+                       GParamSpec     *pspec,
+                       GvcMixerDialog *dialog)
+{
+        GvcComboBox *combo_box;
+        char *port;
+
+        combo_box = GVC_COMBO_BOX (lookup_combo_box_for_stream (dialog, GVC_MIXER_STREAM (object)));
+        if (combo_box == NULL)
+                return;
+
+        g_signal_handlers_block_by_func (G_OBJECT (combo_box),
+                                         port_selection_changed,
+                                         dialog);
+
+        g_object_get (object, "port", &port, NULL);
+        gvc_combo_box_set_active (GVC_COMBO_BOX (combo_box), port);
+
+        g_signal_handlers_unblock_by_func (G_OBJECT (combo_box),
+                                         port_selection_changed,
+                                         dialog);
+}
+
 static void
 on_stream_volume_notify (GObject        *object,
                          GParamSpec     *pspec,
@@ -742,6 +841,7 @@ add_stream (GvcMixerDialog *dialog,
 
                 update_output_settings (dialog);
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
+                const GList *ports;
                 bar = dialog->priv->input_bar;
                 is_default = TRUE;
 
@@ -753,6 +853,30 @@ add_stream (GvcMixerDialog *dialog,
                                                  gvc_mixer_stream_get_base_volume (stream));
                 gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (bar),
                                                   gvc_mixer_stream_get_can_decibel (stream));
+
+                if (dialog->priv->input_port_combo != NULL) {
+                        gtk_container_remove (GTK_CONTAINER (dialog->priv->input_settings_box),
+                                              dialog->priv->input_port_combo);
+                        dialog->priv->input_port_combo = NULL;
+                }
+                ports = gvc_mixer_stream_get_ports (stream);
+                if (ports != NULL) {
+                        GvcMixerStreamPort *port;
+                        port = gvc_mixer_stream_get_port (stream);
+
+                        dialog->priv->input_port_combo = gvc_combo_box_new (_("Connector:"));
+                        gvc_combo_box_set_ports (GVC_COMBO_BOX (dialog->priv->input_port_combo),
+                                                 ports);
+                        gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->input_port_combo), port->port);
+                        g_object_set_data (G_OBJECT (dialog->priv->input_port_combo), "stream", stream);
+                        g_signal_connect (G_OBJECT (dialog->priv->input_port_combo), "changed",
+                                          G_CALLBACK (port_selection_changed), dialog);
+
+                        gtk_box_pack_start (GTK_BOX (dialog->priv->input_settings_box),
+                                            dialog->priv->input_port_combo,
+                                            TRUE, TRUE, 12);
+                        gtk_widget_show (dialog->priv->input_port_combo);
+                }
 
                 create_monitor_stream_for_source (dialog, stream);
         } else if (stream == gvc_mixer_control_get_event_sink_input (dialog->priv->mixer_control)) {
@@ -824,6 +948,10 @@ add_stream (GvcMixerDialog *dialog,
         g_signal_connect (stream,
                           "notify::volume",
                           G_CALLBACK (on_stream_volume_notify),
+                          dialog);
+        g_signal_connect (stream,
+                          "notify::port",
+                          G_CALLBACK (on_stream_port_notify),
                           dialog);
 }
 
@@ -1522,6 +1650,11 @@ gvc_mixer_dialog_constructor (GType                  type,
                             ebox,
                             FALSE, FALSE, 0);
         gtk_size_group_add_widget (self->priv->size_group, ebox);
+
+        self->priv->input_settings_box = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (self->priv->input_box),
+                            self->priv->input_settings_box,
+                            FALSE, FALSE, 0);
 
         box = gtk_frame_new (_("Choose a device for sound input"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
