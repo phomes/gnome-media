@@ -57,32 +57,12 @@ then
 fi
 AC_MSG_NOTICE([Using $GM_ERROR_CFLAGS as error checking CFLAGS])
 
-dnl=======================================================================
-dnl Start of pkg-config checks - common libs
-dnl=======================================================================
-
 GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.14.0
 LIBGLADE_REQUIRED_VERSION=1.99.2
 GCONF_REQUIRED_VERSION=2.6.1
 PA_REQUIRED_VERSION=0.9.15
 CANBERRA_REQUIRED_VERSION=0.4
-
-PKG_CHECK_MODULES(MEDIA, [
-        glib-2.0 >= $GLIB_REQUIRED_VERSION
-        gmodule-2.0 >= $GLIB_REQUIRED_VERSION
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
-])
-
-host=`uname -s`
-case "$host" in
-*SunOS*)
-        MEDIA_LIBS="$MEDIA_LIBS -ldevinfo -lX11"
-        ;;
-esac
-
-AC_SUBST(MEDIA_CFLAGS)
-AC_SUBST(MEDIA_LIBS)
 
 dnl=======================================================================
 dnl Check for libcanberra
@@ -150,76 +130,6 @@ AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
 AC_SUBST(HAVE_PULSEAUDIO)
 AC_SUBST(PULSEAUDIO_CFLAGS)
 AC_SUBST(PULSEAUDIO_LIBS)
-
-
-dnl=======================================================================
-dnl Check for the CDDBSlave2 modules
-dnl=======================================================================
-
-have_cddbslave=no
-
-AC_ARG_ENABLE([cddbslave],
-  AS_HELP_STRING([--enable-cddbslave], [enable gnome cd database]),
-  ,enable_cddbslave=no)
-
-if test "x$enable_cddbslave" != "xno"; then
-  PKG_CHECK_MODULES(CDDBSLAVE, [
-    glib-2.0 >= 1.3.7
-    gmodule-2.0 >= 1.3.7
-    libgnomeui-2.0 >= 1.102.0
-    libbonobo-2.0 >= 2.0.0],
-    have_cddbslave=yes)
-fi
-
-# Check for network stuff
-AC_CHECK_FUNCS(poll basename)
-AC_CHECK_FUNC(inet_aton,,[AC_CHECK_LIB(resolv,inet_aton,CDDBSLAVE_LIBS="$CDDBSLAVE_LIBS -lresolv")])
-AC_CHECK_FUNC(socket,,[AC_CHECK_LIB(socket,socket,CDDBSLAVE_LIBS="$CDDBSLAVE_LIBS -lsocket")])
-AC_CHECK_FUNC(gethostbyname,,[AC_CHECK_LIB(nsl,gethostbyname,CDDBSLAVE_LIBS="$CDDBSLAVE_LIBS -lnsl")])
-
-dnl=======================================================================
-dnl                        IPv6 related checks
-dnl=======================================================================
-
-have_ipv6=no
-
-AC_ARG_ENABLE(ipv6,
-  AS_HELP_STRING([--enable-ipv6],[enable IPv6 extension]),
-  ,enable_ipv6=yes)
-
-if test "x$enable_ipv6" = "xyes"; then
-  AC_MSG_CHECKING([whether to enable IPv6])
-  AC_TRY_COMPILE([
-    #include <sys/types.h>
-    #include <sys/socket.h>], [
-    struct sockaddr_storage ss;
-    socket(AF_INET6, SOCK_STREAM, 0)
-    ], have_ipv6=yes)
-  AC_MSG_RESULT($have_ipv6)
-
-  if test "x$have_ipv6" = "xyes"; then
-    have_getaddrinfo=no
-    AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
-
-    if test "x$have_getaddrinfo" = "xno"; then
-      for lib in bsd socket inet; do
-        AC_CHECK_LIB($lib,getaddrinfo,[LIBS="$LIBS -l$lib";have_getaddrinfo=yes;break])
-      done
-    fi
-
-    if test "x$have_getaddrinfo" = "xyes"; then
-      AC_DEFINE(ENABLE_IPV6, 1, [Define if we have IPv6 support])
-    fi
-  fi
-fi
-
-dnl=======================================================================
-dnl                        IPv6 related checks ends..
-dnl=======================================================================
-
-AC_SUBST(CDDBSLAVE_CFLAGS, "$CDDBSLAVE_CFLAGS $GM_ERROR_CFLAGS")
-AC_SUBST(CDDBSLAVE_LIBS)
-AM_CONDITIONAL(HAVE_CDDBSLAVE, [test x$have_cddbslave = xyes])
 
 dnl=======================================================================
 dnl profiles
@@ -308,46 +218,6 @@ AM_GCONF_SOURCE_2
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
-BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir libbonobo-2.0`"
-AC_SUBST(BONOBO_IDLDIR)
-BONOBO_ACT_IDLDIR="`$PKG_CONFIG --variable=idldir bonobo-activation-2.0`"
-AC_SUBST(BONOBO_ACT_IDLDIR)
-
-ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
-AC_SUBST(ORBIT_IDL)
-
-dnl=======================================================================
-dnl Check for esound library
-dnl=======================================================================
-
-have_esd=no
-
-AC_ARG_ENABLE([esound],
-  AS_HELP_STRING([--enable-esound], [enable support for esound daemon]),
-  ,enable_esound=yes)
-
-if test "x$enable_esound" = "xyes"; then
-  AM_PATH_ESD(0.2.7, have_esd=yes)
-
-  if test "x$have_esd" = "xyes"; then
-    AC_DEFINE(HAVE_ESD, 1, [Defined if we have Esound])
-  fi
-fi
-
-dnl=======================================================================
-dnl Test whether jw is installed
-dnl=======================================================================
-
-AC_PATH_PROG(JW,jw,no)
-if test x$JW = xno; then
-  HAVE_JW="no"
-else
-  HAVE_JW="yes"
-fi
-
-AM_CONDITIONAL(HAVE_JW, [test x$HAVE_JW = xyes])
-AC_SUBST(HAVE_JW)
-
 dnl=======================================================================
 dnl i18n
 dnl=======================================================================
@@ -361,179 +231,6 @@ GNOME_DOC_INIT
 
 AM_PROG_LIBTOOL
 AM_PROG_CC_C_O
-
-dnl=======================================================================
-dnl vu-meter
-dnl=======================================================================
-
-have_vumeter=no
-vumeter_reason=""
-
-AC_ARG_ENABLE([vumeter],
-  AS_HELP_STRING([--enable-vumeter], [enable vumeter]),
-  ,enable_vumeter=no)
-
-if test "x$enable_vumeter" = "xyes" ; then
-  if test "x$have_esd" = "xyes"; then
-    PKG_CHECK_MODULES(VUMETER, [
-      glib-2.0 >= 1.3.7
-      gtk+-2.0 >= 2.3.1
-      libgnomeui-2.0 >= 1.102.0
-      esound >= 0.2.23],
-      have_vumeter=yes)
-  else
-    AC_MSG_WARN([vu-meter disabled because esound couldn't be found])
-    vumeter_reason=", esound not found"
-  fi
-fi
-
-AC_SUBST(VUMETER_CFLAGS)
-AC_SUBST(VUMETER_LIBS)
-AM_CONDITIONAL(HAVE_VUMETER, [test x$have_vumeter = xyes])
-
-dnl=======================================================================
-dnl check for gnome-cd requirements
-dnl=======================================================================
-
-# GStreamer is optional
-# libnautilus-burn is required
-
-have_gnomecd=no
-gnomecd_reason=""
-
-AC_ARG_ENABLE([gnomecd],
-  AS_HELP_STRING([--enable-gnomecd], [enable gnome cd player]),
-  ,enable_gnomecd=no)
-
-if test "x$have_cddbslave" = "xno" ; then
-  AC_MSG_WARN([gnome-cd will be disabled because of disabled cddb-slave2])
-  enable_gnomecd=no
-  have_gnomecd=no
-  gnomecd_reason=", missing cddb-slave support"
-fi
-
-if test "x$enable_gnomecd" = "xyes"; then
-  PKG_CHECK_MODULES(LIBXML2, [libxml-2.0 >= 2.5.0])
-
-  PKG_CHECK_MODULES(GNOMECD, [
-    gstreamer-$GST_MAJORMINOR >= $GST_REQ
-    gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_PLUGINS_BASE_REQ
-    libnautilus-burn >= 2.9.0
-    gtk+-2.0 >= 2.10.0],
-    have_gnomecd=yes)
-
-  if test "x$have_gnomecd" = "xno"; then
-    PKG_CHECK_MODULES(GNOMECD, [
-      libnautilus-burn >= 2.9.0
-      gtk+-2.0 >= 2.10.0],
-      have_gnomecd=yes)
-  fi
-fi
-
-AC_SUBST(LIBXML2_CFLAGS)
-AC_SUBST(LIBXML2_LIBS)
-
-AC_SUBST(GNOMECD_CFLAGS)
-AC_SUBST(GNOMECD_LIBS)
-AM_CONDITIONAL(HAVE_GNOMECD, [test x$have_gnomecd = xyes])
-
-if test "x$have_gnomecd" = "xyes" && test "x$enable_gnomecd" = "xyes" ; then
-  cdrom_header=""
-  AC_CHECK_HEADERS(linux/cdrom.h,[
-    PROGRAMS_GNOME_CD=gnome-cd
-    cdrom_header=linux/cdrom.h])
-  AC_CHECK_HEADERS(linux/ucdrom.h,[
-    cdrom_header=linux/ucdrom.h])
-  AC_CHECK_HEADERS(sys/cdio.h,[
-    PROGRAMS_GNOME_CD=gnome-cd
-    cdrom_header=sys/cdio.h])
-  AC_CHECK_HEADERS(sun/dkio.h,[
-    PROGRAMS_GNOME_CD=gnome-cd
-    cdrom_header=sun/dkio.h])
-
-  AC_MSG_CHECKING([whether to use cd changer support])
-  AC_EGREP_CPP(answer_affirmatively,
-  [#include <linux/cdrom.h>
-   #ifdef CDROM_CHANGER_NSLOTS
-        answer_affirmatively
-   #endif
-  ], cd_changer=yes, cd_changer=no)
-  if test "$cd_changer" = "yes"; then
-        USE_CD_CHANGER="-DTCD_CHANGER_ENABLED"
-  fi
-  AC_MSG_RESULT($cd_changer)
-
-  AC_SUBST(USE_CD_CHANGER)
-  AC_SUBST(PROGRAMS_GNOME_CD)
-
-  close_tray=no
-  AC_MSG_CHECKING([whether OS supports the CDROMCLOSETRAY ioctl])
-  AC_EGREP_CPP(answer_affirmatively,
-  [#include <$cdrom_header>
-   #ifdef CDROMCLOSETRAY
-        answer_affirmatively
-   #endif
-  ], close_tray=yes)
-  if test "$close_tray" = "yes"; then
-        AC_DEFINE(HAVE_CDROMCLOSETRAY_IOCTL, 1,
-            [Defined if have an ioctl to close the CD-rom tray])
-  fi
-  AC_MSG_RESULT($close_tray)
-
-  host=`uname -s`
-
-  CDROM_HOST_BSD=false
-  CDROM_HOST_LINUX=false
-  CDROM_HOST_SOLARIS=false
-  case "$host" in
-  *FreeBSD*)
-        CDROM_HOST=bsd
-        CDROM_HOST_BSD=true
-        default_cd_device="/dev/acd0c"
-        ;;
-  *NetBSD*)
-        CDROM_HOST=bsd
-        CDROM_HOST_BSD=true
-        default_cd_device="/dev/rcd0d"
-        ;;
-  *Linux*)
-        CDROM_HOST=linux
-        CDROM_HOST_LINUX=true
-        default_cd_device="/dev/cdrom"
-        ;;
-  *SunOS*)
-        CDROM_HOST=solaris
-        CDROM_HOST_SOLARIS=true
-        default_cd_device="/vol/dev/aliases/cdrom0"
-        ;;
-  esac
-
-  AC_SUBST(CDROM_HOST)
-  AC_SUBST(CDROM_HOST_BSD)
-  AC_SUBST(CDROM_HOST_LINUX)
-  AC_SUBST(CDROM_HOST_SOLARIS)
-
-  AC_SUBST(default_cd_device)
-  AC_DEFINE_UNQUOTED(default_cd_device, "$default_cd_device",
-    [Default CD device to use])
-
-  dnl uninstalled theme dir
-  AC_DEFINE_UNQUOTED(THEME_DIR_UNINSTALLED, "`pwd`/gnome-cd/images",
-      [path to uninstalled gnome-cd themes dir])
-  AC_SUBST(THEME_DIR_UNINSTALLED)
-
-  dnl used for accessibility of gnome-cd
-  PKG_CHECK_MODULES(GAILUTIL,
-        gail >= 0.0.3
-        libbonobo-2.0 >= 2.0.0
-        gconf-2.0)
-  AC_SUBST(GAILUTIL_CFLAGS)
-  AC_SUBST(GAILUTIL_LIBS)
-fi
-
-AM_CONDITIONAL(CDROM_HOST_BSD, test "x$CDROM_HOST_BSD" = "xtrue")
-AM_CONDITIONAL(CDROM_HOST_LINUX,   test "x$CDROM_HOST_LINUX"   = "xtrue")
-AM_CONDITIONAL(CDROM_HOST_SOLARIS, test "x$CDROM_HOST_SOLARIS" = "xtrue")
 
 dnl=======================================================================
 dnl gstreamer-properties
@@ -689,17 +386,6 @@ gnome-volume-control/data/icons/scalable/Makefile
 gnome-volume-control/data/icons/scalable/apps/Makefile
 gnome-volume-control/data/icons/scalable/status/Makefile
 gnome-volume-control/src/Makefile
-vu-meter/Makefile
-cddb-slave2/Makefile
-gnome-cd/Makefile
-gnome-cd/gnome-cd.schemas.in
-gnome-cd/images/Makefile
-gnome-cd/images/None/Makefile
-gnome-cd/images/lcd/Makefile
-gnome-cd/images/red-lcd/Makefile
-gnome-cd/images/media/Makefile
-gnome-cd/access/Makefile
-gnome-cd/doc/Makefile
 grecord/Makefile
 grecord/gnome-sound-recorder.schemas.in
 grecord/src/Makefile
@@ -726,13 +412,9 @@ profiles/gnome-audio-profiles.schemas.in
 profiles/gnome-media-profiles.pc
 profiles/glade/Makefile
 profiles/help/Makefile
-cddb-slave2/cddb-slave.desktop.in
-gnome-cd/gnome-cd.desktop.in
 grecord/gnome-sound-recorder.desktop.in
 gst-mixer/gnome-volume-control.desktop.in
 gstreamer-properties/gstreamer-properties.desktop.in
-vu-meter/reclevel.desktop.in
-vu-meter/vumeter.desktop.in
 ])
 
 SHAVE_INIT
@@ -757,16 +439,6 @@ echo "
   *Deprecated*:
 
         GStreamer mixer:        $have_gstmixer
-        vu-meter:               $have_vumeter$vumeter_reason
-        cddb-slave:             $have_cddbslave
-        gnome-cd:               $have_gnomecd$gnomecd_reason"
 
-if test x$enable_gnomecd = xyes; then
-echo "  System CDRom header:    ${cdrom_header}
-        Default CD device:      ${default_cd_device}
-        OS supports close tray: ${close_tray}
-        Architecture:           ${CDROM_HOST}"
-fi
-
-echo ""
+"
 
