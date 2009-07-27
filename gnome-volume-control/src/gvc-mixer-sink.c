@@ -106,6 +106,33 @@ gvc_mixer_sink_change_is_muted (GvcMixerStream *stream,
         return TRUE;
 }
 
+static gboolean
+gvc_mixer_sink_change_port (GvcMixerStream *stream,
+                            const char     *port)
+{
+        pa_operation *o;
+        guint         index;
+        pa_context   *context;
+
+        index = gvc_mixer_stream_get_index (stream);
+        context = gvc_mixer_stream_get_pa_context (stream);
+
+        o = pa_context_set_sink_port_by_index (context,
+                                               index,
+                                               port,
+                                               NULL,
+                                               NULL);
+
+        if (o == NULL) {
+                g_warning ("pa_context_set_sink_port_by_index() failed: %s", pa_strerror(pa_context_errno(context)));
+                return FALSE;
+        }
+
+        pa_operation_unref(o);
+
+        return TRUE;
+}
+
 static GObject *
 gvc_mixer_sink_constructor (GType                  type,
                             guint                  n_construct_properties,
@@ -132,6 +159,7 @@ gvc_mixer_sink_class_init (GvcMixerSinkClass *klass)
         object_class->finalize = gvc_mixer_sink_finalize;
 
         stream_class->push_volume = gvc_mixer_sink_push_volume;
+        stream_class->change_port = gvc_mixer_sink_change_port;
         stream_class->change_is_muted = gvc_mixer_sink_change_is_muted;
 
         g_type_class_add_private (klass, sizeof (GvcMixerSinkPrivate));

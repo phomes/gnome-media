@@ -452,8 +452,8 @@ gboolean
 gvc_mixer_stream_change_port (GvcMixerStream *stream,
                               const char     *port)
 {
-        //FIXME implementz!
-        return FALSE;
+        g_return_val_if_fail (GVC_IS_MIXER_STREAM (stream), FALSE);
+        return GVC_MIXER_STREAM_GET_CLASS (stream)->change_port (stream, port);
 }
 
 const GList *
@@ -626,6 +626,13 @@ gvc_mixer_stream_constructor (GType                  type,
 }
 
 static gboolean
+gvc_mixer_stream_real_change_port (GvcMixerStream *stream,
+                                   const char     *port)
+{
+        return FALSE;
+}
+
+static gboolean
 gvc_mixer_stream_real_push_volume (GvcMixerStream *stream, gpointer *op)
 {
         return FALSE;
@@ -689,6 +696,7 @@ gvc_mixer_stream_class_init (GvcMixerStreamClass *klass)
         gobject_class->get_property = gvc_mixer_stream_get_property;
 
         klass->push_volume = gvc_mixer_stream_real_push_volume;
+        klass->change_port = gvc_mixer_stream_real_change_port;
         klass->change_is_muted = gvc_mixer_stream_real_change_is_muted;
 
         g_object_class_install_property (gobject_class,
