@@ -110,6 +110,7 @@ static gboolean
 gvc_mixer_source_change_port (GvcMixerStream *stream,
                               const char     *port)
 {
+#if PA_MICRO > 15
         pa_operation *o;
         guint         index;
         pa_context   *context;
@@ -131,6 +132,9 @@ gvc_mixer_source_change_port (GvcMixerStream *stream,
         pa_operation_unref(o);
 
         return TRUE;
+#else
+	return FALSE;
+#endif /* PA_MICRO > 15 */
 }
 
 static GObject *
