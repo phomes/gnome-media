@@ -70,6 +70,8 @@ gnome_volume_control_SOURCES =			\
 	gvc-mixer-dialog.c			\
 	gvc-level-bar.h				\
 	gvc-level-bar.c				\
+	gvc-combo-box.h				\
+	gvc-combo-box.c				\
 	dialog-main.c				\
 	$(NULL)
 
