@@ -33,6 +33,7 @@
 
 #include "gvc-channel-bar.h"
 #include "gvc-balance-bar.h"
+#include "gvc-combo-box.h"
 #include "gvc-mixer-control.h"
 #include "gvc-mixer-card.h"
 #include "gvc-mixer-sink.h"
@@ -954,6 +955,15 @@ add_card (GvcMixerDialog *dialog,
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->priv->hw_treeview));
         if (gtk_tree_selection_get_selected (selection, NULL, NULL) == FALSE) {
                 gtk_tree_selection_select_iter (selection, &iter);
+        } else if (dialog->priv->hw_profile_combo != NULL) {
+                GvcMixerCard *selected;
+
+                /* Set the current profile if it changed for the selected card */
+                selected = g_object_get_data (G_OBJECT (dialog->priv->hw_profile_combo), "card");
+                if (gvc_mixer_card_get_index (selected) == gvc_mixer_card_get_index (card)) {
+                        gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->hw_profile_combo),
+                                                  profile->profile);
+                }
         }
 }
 
@@ -1165,40 +1175,23 @@ create_stream_treeview (GvcMixerDialog *dialog,
         return treeview;
 }
 
-enum {
-        PROFILE_NAME,
-        PROFILE_HUMAN_NAME,
-        PROFILE_NUM_COLS
-};
-
 static void
-on_profile_changed (GtkComboBox *widget,
+on_profile_changed (GvcComboBox *widget,
+                    const char  *profile,
                     gpointer     user_data)
 {
-        GtkTreeModel        *model;
-        GvcMixerDialog      *dialog = GVC_MIXER_DIALOG (user_data);
         GvcMixerCard        *card;
-        GtkTreeIter          iter;
-        char                *profile;
 
-        model = gtk_combo_box_get_model (GTK_COMBO_BOX (dialog->priv->hw_profile_combo));
-
-        card = g_object_get_data (G_OBJECT (dialog->priv->hw_profile_combo), "card");
+        card = g_object_get_data (G_OBJECT (widget), "card");
         if (card == NULL) {
                 g_warning ("Could not find card for combobox");
                 return;
         }
 
-        if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (dialog->priv->hw_profile_combo), &iter) == FALSE) {
-                g_warning ("Could not find an active profile");
-                return;
-        }
+        g_debug ("Profile changed to %s for card %s", profile,
+                 gvc_mixer_card_get_name (card));
 
-        gtk_tree_model_get (model, &iter,
-                            PROFILE_NAME, &profile,
-                            -1);
         gvc_mixer_card_change_profile (card, profile);
-        g_free (profile);
 }
 
 static void
@@ -1206,13 +1199,12 @@ on_card_selection_changed (GtkTreeSelection *selection,
                            gpointer          user_data)
 {
         GvcMixerDialog      *dialog = GVC_MIXER_DIALOG (user_data);
-        GtkTreeModel        *model, *profile_model;
+        GtkTreeModel        *model;
         GtkTreeIter          iter;
-        const GList         *profiles, *l;
-        guint                id, i, current_index;
+        const GList         *profiles;
+        guint                id;
         GvcMixerCard        *card;
         GvcMixerCardProfile *current_profile;
-        GtkCellRenderer     *renderer;
 
         g_debug ("Card selection changed");
 
@@ -1240,41 +1232,18 @@ on_card_selection_changed (GtkTreeSelection *selection,
 
         current_profile = gvc_mixer_card_get_profile (card);
         profiles = gvc_mixer_card_get_profiles (card);
-        profile_model = GTK_TREE_MODEL (gtk_list_store_new (PROFILE_NUM_COLS,
-                                                            G_TYPE_STRING,
-                                                            G_TYPE_STRING));
-        current_index = 0;
-        for (l = profiles, i = 0; l != NULL; l = l->next, i++) {
-                GvcMixerCardProfile *p = l->data;
+        dialog->priv->hw_profile_combo = gvc_combo_box_new (_("Profile:"));
+        gvc_combo_box_set_profiles (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), profiles);
+        gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), current_profile->profile);
 
-                if (g_str_equal (p->profile, current_profile->profile))
-                        current_index = i;
-
-                gtk_list_store_insert_with_values (GTK_LIST_STORE (profile_model),
-                                                   NULL,
-                                                   G_MAXINT,
-                                                   PROFILE_NAME, p->profile,
-                                                   PROFILE_HUMAN_NAME, p->human_profile,
-                                                   -1);
-        }
-
-        dialog->priv->hw_profile_combo = gtk_combo_box_new_with_model (profile_model);
-        renderer = gtk_cell_renderer_text_new ();
-        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (dialog->priv->hw_profile_combo),
-                                    renderer, FALSE);
-        gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (dialog->priv->hw_profile_combo),
-                                       renderer,
-                                       "text", PROFILE_HUMAN_NAME);
-        gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->priv->hw_profile_combo), current_index);
-        //FIXME layout is wrong, missing label
         gtk_box_pack_start (GTK_BOX (dialog->priv->hw_settings_box),
                             dialog->priv->hw_profile_combo,
                             FALSE, FALSE, 12);
         gtk_widget_show (dialog->priv->hw_profile_combo);
 
+        g_object_set_data (G_OBJECT (dialog->priv->hw_profile_combo), "card", card);
         g_signal_connect (G_OBJECT (dialog->priv->hw_profile_combo), "changed",
                           G_CALLBACK (on_profile_changed), dialog);
-        g_object_set_data (G_OBJECT (dialog->priv->hw_profile_combo), "card", card);
 }
 
 static void
@@ -1294,7 +1263,6 @@ card_to_text (GtkTreeViewColumn *column,
                            HW_SENSITIVE_COLUMN, &sensitive,
                            -1);
 
-        //FIXME colors?
         str = g_strdup_printf ("%s\n<i>%s</i>\n<i>%s</i>",
                                name, status, profile);
         g_object_set (cell,
