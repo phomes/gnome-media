@@ -275,7 +275,7 @@ update_output_settings (GvcMixerDialog *dialog)
 
                 gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
                                     dialog->priv->output_port_combo,
-                                    FALSE, FALSE, 12);
+                                    TRUE, TRUE, 0);
                 gtk_widget_show (dialog->priv->output_port_combo);
         }
 
@@ -874,7 +874,7 @@ add_stream (GvcMixerDialog *dialog,
 
                         gtk_box_pack_start (GTK_BOX (dialog->priv->input_settings_box),
                                             dialog->priv->input_port_combo,
-                                            TRUE, TRUE, 12);
+                                            TRUE, TRUE, 0);
                         gtk_widget_show (dialog->priv->input_port_combo);
                 }
 
