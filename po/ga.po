@@ -1,15 +1,16 @@
 # Irish translations for gnome-media package.
-# Copyright (C) 1998-2008 Free Software Foundation, Inc.
+# Copyright (C) 1998-2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-media package.
 # Alastair McKinstry <mckinstry@computer.org>, 1999.
 # Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003.
-# Seán de Búrca <leftmostcat@gmail.com>, 2008.
+# Seán de Búrca <leftmostcat@gmail.com>, 2008-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-29 23:47-0400\n"
-"PO-Revision-Date: 2008-08-29 23:47-0500\n"
+"POT-Creation-Date: 2009-07-31 18:35-0600\n"
+"PO-Revision-Date: 2009-07-31 19:19-0600\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,1282 +19,262 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : (n%10==1 || n%10==2) ? 1 : (n%"
 "10>=3 && n%10<= 6) ? 2 : ((n%10>=7 && n%10<=9) || n==10) ? 3 : 4;\n"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
+msgid "Show desktop volume control"
+msgstr "‭Taispeáin rialtán airde deisce"
+
+#: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
+msgid "Volume Control"
+msgstr "Rialtán Airde"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and sound events"
+msgstr "Athraigh airde agus teagmhais fuaime"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Fuaim"
+
+#: ../gnome-volume-control/src/applet-main.c:49
+#: ../gnome-volume-control/src/dialog-main.c:156
+msgid "Enable debugging code"
+msgstr "Cumasaigh cód dífhabhtaithe"
+
+#: ../gnome-volume-control/src/applet-main.c:50
+#: ../gnome-volume-control/src/dialog-main.c:157
+msgid "Version of this application"
+msgstr "Leagan an fheidhmchláir seo"
+
+#: ../gnome-volume-control/src/applet-main.c:62
+msgid " - GNOME Volume Control Applet"
+msgstr " - Feidhmchláirín Rialtáin Airde GNOME"
+
+#: ../gnome-volume-control/src/dialog-main.c:125
+msgid "Waiting for sound system to respond"
 msgstr ""
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
+msgid "Startup page"
 msgstr ""
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "Port"
+#: ../gnome-volume-control/src/dialog-main.c:169
+msgid " - GNOME Volume Control"
+msgstr " - Rialtán Airde GNOME"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Ainm freastalaí"
+#: ../gnome-volume-control/src/gvc-applet.c:271
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1686
+msgid "Output"
+msgstr "Aschur"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Cineál freastalaí"
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1605
+msgid "Input"
+msgstr "Ionchur"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+msgctxt "balance"
+msgid "Left"
+msgstr "Clé"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+msgctxt "balance"
+msgid "Right"
+msgstr "Deas"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr "Aghaidh"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Rear"
+msgstr "Cúl"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Íosmhéid"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Uasmhéid"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "D'óstainm"
+#: ../gnome-volume-control/src/gvc-balance-bar.c:290
+msgid "_Balance:"
+msgstr "_Cothromaíocht:"
 
-#: ../cddb-slave2/cddb-slave-capplet.c:133
+#: ../gnome-volume-control/src/gvc-balance-bar.c:293
+msgid "_Fade:"
+msgstr "Cé_imniú:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:296
+msgid "_Subwoofer:"
+msgstr "_Fo-dhordaire:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:583
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:587
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "Neamhaimplithe"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:843
+msgid "Mute"
+msgstr "Gan Fuaim"
+
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1363
+msgid "Profile:"
+msgstr "Próifíl:"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:985
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Díchumasaithe"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:992
 #, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "Ai_nm:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "Óstain_m:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "Eolas Logála Isteach"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "Freastalaí"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "Suíomh"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "Freastalaí _eile:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "Ós_tainm:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "_Port:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "Anaithnid / Anaithnid"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1011
-#: ../grecord/src/gsr-window.c:1021 ../grecord/src/gsr-window.c:1037
-#: ../grecord/src/gsr-window.c:1046 ../grecord/src/gsr-window.c:1400
-#: ../gstreamer-properties/gstreamer-properties.c:281
-msgid "Unknown"
-msgstr "Anaithnid"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "CA Diosca"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "Ealaíontóir agus Teideal"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr ""
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "Rince"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "Dioscó"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ska"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "Fuaimrian"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "Torann"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "Polca"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "Laidineach"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "Ceilteach"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "Fuaimiúil"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "Greann"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "Caint"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "Ceoldráma"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "Siansa"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "Aoir"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "Samba"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "Béaloideas"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "Goa"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "Sceimhle"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "Anime"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr ""
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "Ealaíontóir Anaithnid"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "Albam Anaithnid"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u Aschur"
+msgstr[1] "%u Aschur"
+msgstr[2] "%u Aschur"
+msgstr[3] "%u nAschur"
+msgstr[4] "%u Aschur"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1002
 #, c-format
-msgid "Editing Disc ID: %s"
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u Ionchur"
+msgstr[1] "%u Ionchur"
+msgstr[2] "%u Ionchur"
+msgstr[3] "%u nIonchur"
+msgstr[4] "%u Ionchur"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1298
+msgid "System Sounds"
+msgstr "Fuaimeanna Córais"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1750
+msgid "GNOME Volume Control"
+msgstr "Rialtán Airde GNOME"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:867
+msgid "Connector:"
 msgstr ""
 
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:465
+msgid "Peak detect"
 msgstr ""
 
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1292
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1445
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
+msgid "Name"
+msgstr "Ainm"
 
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1297
+msgid "Device"
+msgstr "Gléas"
 
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
+msgid "Output Volume: "
+msgstr "Airde Aschurtha:"
 
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1545
+msgid "Sound Effects"
+msgstr "Maisíochtaí Fuaime"
 
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "_Ealaíontóir:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1552
+msgid "Alert Volume: "
+msgstr "Airde Foláirimh:"
 
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "_Teideal an _Diosca:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1565
+msgid "Hardware"
+msgstr "Crua-earraí"
 
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1570
+msgid "Choose a device to configure"
+msgstr "Roghnaigh gléas le cumrú"
 
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1594
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1715
+msgid "Settings for the selected device:"
+msgstr "Socruithe don ghléas roghnaithe:"
 
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "_Bliain:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1612
+msgid "Input Volume: "
+msgstr "Airde Ionchurtha:"
 
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "Teideal"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1632
+msgid "Input level:"
+msgstr "Leibhéal ionchurtha:"
 
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1659
+msgid "Choose a device for sound input"
+msgstr "Roghnaigh gléas le haghaidh ionchurtha fuaime"
 
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1691
+msgid "Choose a device for sound output"
+msgstr "Roghnaigh gléas le haghaidh aschurtha fuaime"
 
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "Eagathoir raille CDDB"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1726
+msgid "Applications"
+msgstr "Feidhmchláir"
 
-#: ../cddb-slave2/cddb-track-editor.c:1072
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1730
+msgid "No application is currently playing or recording audio."
+msgstr "Níl aon fheidhmchlár ag seinm nó ag taifeadadh fuaime faoi láthair."
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1854
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-editor.c:561
+#: ../sound-theme/gvc-sound-theme-editor.c:950
+msgid "Sound Preferences"
+msgstr "Sainroghanna Fuaime"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:229
 #, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr ""
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "Seinn"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "Sos"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"%s - %s á Sheinm\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"Á Sheinm\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "Moillithe"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "Stadta"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "Earraid ar an Diosca"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "Gan diosca"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "Diosca folamh"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "CD Sonraí"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "Gan CD-ROM"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr ""
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr ""
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "Airde %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr ""
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - Anaithnid"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "_Seinn / Sos"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "_Stad"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "Sia_r"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "Ar _Aghaidh"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "_Díchuir Diosca"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2126
-msgid "_Help"
-msgstr "Cab_hair"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "_Maidir Leis Seo"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "_Scoir"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "Socraigh gléas"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "Gan gléas CD"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "_Sonraí"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "_Socraigh gléas"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "Áit"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "Roghnachais"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "Roghnachais"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "Liosta na Raon"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "Oscail eagarthóir raon"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "Eagathóir Raon"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "Seinn / Stad"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "Stop"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "Siar"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "Léim ar aghaidh"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "Díchuir CD"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "Díchuir"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "Gléas CD le húsáid"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr ""
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr ""
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr ""
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "Sainroghanna an Sheinnteoir CD"
-
-#: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Device:"
-msgstr "_Gléas:"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr ""
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "Téamaí"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr ""
+msgid "Failed to start Sound Preferences: %s"
+msgstr "Theip ar thosú Sainroghanna Fuaime: %s"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:252
+msgid "_Mute"
+msgstr "_Gan Fuaim"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:261
+msgid "_Sound Preferences"
+msgstr "Sainroghanna _Fuaime"
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:445
+msgid "Muted"
+msgstr "Gan Fuaim"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
 msgstr ""
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1234
+#: ../grecord/src/gsr-window.c:1236
 msgid "Sound Recorder"
 msgstr ""
 
@@ -1301,17 +282,17 @@ msgstr ""
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:139 ../grecord/src/gsr-window.c:1730
-#: ../grecord/src/gsr-window.c:2663
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Gan Teideal"
 
-#: ../grecord/src/gnome-recorder.c:141 ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Gan Teideal-%d"
 
-#: ../grecord/src/gsr-window.c:191
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1321,13 +302,13 @@ msgid ""
 "and then restart gnome-sound-recorder."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:207
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1337,7 +318,7 @@ msgstr[2] "%ld nóiméad"
 msgstr[3] "%ld nóiméad"
 msgstr[4] "%ld nóiméad"
 
-#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1347,7 +328,7 @@ msgstr[2] "%ld uair"
 msgstr[3] "%ld n-uair"
 msgstr[4] "%ld uair"
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1358,335 +339,345 @@ msgstr[3] "%ld soicind"
 msgstr[4] "%ld soicind"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:302
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s agus %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:308 ../grecord/src/gsr-window.c:316
-#: ../grecord/src/gsr-window.c:327
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s agus %s"
 
-#: ../grecord/src/gsr-window.c:370
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Oscail Comhad"
 
-#: ../grecord/src/gsr-window.c:447
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
 "%s"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:593 ../grecord/src/gsr-window.c:1531
-#: ../grecord/src/gsr-window.c:1787 ../grecord/src/gsr-window.c:2481
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr ""
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:646
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:663
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:711
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:731
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Sábháil comhad mar"
 
-#: ../grecord/src/gsr-window.c:825
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:834
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:862
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
+#: ../grecord/src/gsr-window.c:864
+msgid "Save recording before closing?"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:874
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "Sábháil taifeadadh?"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:881
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr ""
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "Ceist"
 
-#: ../grecord/src/gsr-window.c:982
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:998
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../grecord/src/gsr-window.c:1002
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
-msgstr ""
+msgstr "Méid anaithnid"
 
-#: ../grecord/src/gsr-window.c:1023
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
+msgid "Unknown"
+msgstr "Anaithnid"
+
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1031
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1034
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Measta)"
 
-#: ../grecord/src/gsr-window.c:1049
-msgid "1 (mono)"
-msgstr ""
-
 #: ../grecord/src/gsr-window.c:1052
-msgid "2 (stereo)"
-msgstr ""
+msgid "1 (mono)"
+msgstr "1 (mona)"
 
-#: ../grecord/src/gsr-window.c:1079
+#: ../grecord/src/gsr-window.c:1055
+msgid "2 (stereo)"
+msgstr "2 (steirió)"
+
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "Eolas %s"
 
-#: ../grecord/src/gsr-window.c:1103 ../grecord/src/gsr-window.c:2393
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Eolas Comhaid"
 
-#: ../grecord/src/gsr-window.c:1118
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Fillteán:"
 
-#: ../grecord/src/gsr-window.c:1124 ../grecord/src/gsr-window.c:2400
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Ainm comhaid:"
 
-#: ../grecord/src/gsr-window.c:1130
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1139
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1154
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "Tréimhse an chomhaid:"
 
-#: ../grecord/src/gsr-window.c:1160
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1166
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1172
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1237
+#: ../grecord/src/gsr-window.c:1239
 msgid ""
 "A sound recorder for GNOME\n"
-" gnome-media@gnome.org"
+" gnome-multimedia@gnome.org"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1503
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1635
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1644 ../gst-mixer/src/element.c:216
-#: ../gst-mixer/src/misc.c:58
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Athsheinm"
 
-#: ../grecord/src/gsr-window.c:1721
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1809
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1818
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1974
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
-msgstr ""
+msgstr "aschur comhaid"
 
-#: ../grecord/src/gsr-window.c:1992
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
-msgstr ""
+msgstr "leibhéal"
 
-#: ../grecord/src/gsr-window.c:2016
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2033
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2098
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Comhad"
 
-#: ../grecord/src/gsr-window.c:2100
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2102
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Oscail comhad"
 
-#: ../grecord/src/gsr-window.c:2104
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2106
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2107
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "Oscail Rialúchán _Airde"
 
-#: ../grecord/src/gsr-window.c:2108
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2110
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2112
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2114
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Scoir ón bhfeidhmchlár"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2117
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "_Rialúchán"
 
-#: ../grecord/src/gsr-window.c:2119
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
-msgstr ""
+msgstr "Taifead fuaim"
 
-#: ../grecord/src/gsr-window.c:2121
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
-msgstr ""
+msgstr "Seinn fuaim"
 
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
-msgstr ""
+msgstr "Stad fuaim"
 
-#: ../grecord/src/gsr-window.c:2127
+#. Help menu
+#: ../grecord/src/gsr-window.c:2151
+msgid "_Help"
+msgstr "Cab_hair"
+
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Inneachar"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
-msgstr ""
+msgstr "Oscail an lámhleabhar"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "Maidir leis an bhfeidhmchlár seo"
 
-#: ../grecord/src/gsr-window.c:2253
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2276
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Oscail"
 
-#: ../grecord/src/gsr-window.c:2278
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Sábháil"
 
-#: ../grecord/src/gsr-window.c:2280
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Sábháil Mar"
 
-#: ../grecord/src/gsr-window.c:2336
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "_Taifead mar:"
 
-#: ../grecord/src/gsr-window.c:2407
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<neamhní>"
 
-#: ../grecord/src/gsr-window.c:2421
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:2459
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr ""
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2548
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Taifeadán Fuaime"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr ""
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:281 ../gst-mixer/src/window.c:282
-msgid "Volume Control"
-msgstr ""
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1704,20 +695,8 @@ msgstr ""
 msgid "Width of the Window to be displayed"
 msgstr ""
 
-#: ../gst-mixer/src/element.c:218 ../gst-mixer/src/misc.c:60
-msgid "Recording"
-msgstr "Á Thaifeadadh"
-
-#: ../gst-mixer/src/element.c:220 ../gst-mixer/src/misc.c:62
-msgid "Switches"
-msgstr ""
-
-#: ../gst-mixer/src/element.c:222 ../gst-mixer/src/misc.c:64
-msgid "Options"
-msgstr "Roghanna"
-
-#: ../gst-mixer/src/main.c:39
-msgid "Startup page"
+#: ../gst-mixer/src/element.c:495
+msgid "Sound Theme"
 msgstr ""
 
 #: ../gst-mixer/src/main.c:82
@@ -1725,47 +704,59 @@ msgstr ""
 msgid "Unknown Volume Control %d"
 msgstr ""
 
-#: ../gst-mixer/src/main.c:161
+#: ../gst-mixer/src/main.c:159
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr ""
 
+#: ../gst-mixer/src/misc.c:64
+msgid "Recording"
+msgstr "Á Thaifeadadh"
+
+#: ../gst-mixer/src/misc.c:66
+msgid "Switches"
+msgstr ""
+
+#: ../gst-mixer/src/misc.c:68
+msgid "Options"
+msgstr "Roghanna"
+
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:106
+#: ../gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
 msgstr "Sainroghanna Rialúchán Airde"
 
-#: ../gst-mixer/src/preferences.c:119
-msgid "_Select tracks to be visible:"
+#: ../gst-mixer/src/preferences.c:120
+msgid "_Select mixers to be visible:"
 msgstr ""
 
-#: ../gst-mixer/src/track.c:262
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:301
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr ""
 
-#: ../gst-mixer/src/track.c:316
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "Amhrán %s: gan fuaim"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:387
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr ""
 
-#: ../gst-mixer/src/track.c:404
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Amhrán %s: taifeadadh fuaime"
 
-#: ../gst-mixer/src/track.c:492
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr ""
@@ -1795,35 +786,35 @@ msgstr ""
 msgid "Track %s: lock channels together"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:198
+#: ../gst-mixer/src/volume.c:197
 msgid "mono"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "left"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:200
+#: ../gst-mixer/src/volume.c:199
 msgid "right"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:202
 msgid "front left"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:203
 msgid "front right"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:204
 msgid "rear left"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:205
 msgid "rear right"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:207
+#: ../gst-mixer/src/volume.c:206
 msgid "front center"
 msgstr ""
 
@@ -1831,34 +822,34 @@ msgstr ""
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:211
 msgid "LFE"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:212
 msgid "side left"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:213
 msgid "side right"
 msgstr ""
 
-#: ../gst-mixer/src/volume.c:215
+#: ../gst-mixer/src/volume.c:214
 msgid "unknown"
 msgstr "anaithnid"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:221
+#: ../gst-mixer/src/volume.c:220
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr ""
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr ""
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Alastair McKinstry <mckinstry@computer.org>\n"
@@ -1866,39 +857,42 @@ msgstr ""
 "Seán de Búrca <leftmostcat@gmail.com>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Rialúchán Airde: %s"
 
-#: ../gst-mixer/src/window.c:393
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "_Gléas:"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:432
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr ""
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "Neamhní"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr ""
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
+#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
+#: ../sound-theme/gvc-sound-theme-editor.c:892
+#: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
-msgstr ""
+msgstr "Réamhshocrú"
 
-#: ../gstreamer-properties/gstreamer-properties.c:604
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr ""
 
-#: ../gstreamer-properties/gstreamer-properties.c:653
-msgid "Failed to load glade file; please check your installation."
+#: ../gstreamer-properties/gstreamer-properties.c:680
+msgid "Failed to load UI file; please check your installation."
 msgstr ""
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
@@ -1906,159 +900,106 @@ msgid "Configure defaults for GStreamer applications"
 msgstr ""
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr ""
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "Fuaim"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "G_léas:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "Fís"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr ""
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr ""
-
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr ""
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr ""
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
+#: ../sound-theme/gvc-sound-theme-editor.c:706
+#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
-msgstr ""
+msgstr "Saincheaptha"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "X Window System (Gan Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "Fuaim Tástála"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "Ciúnas"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr ""
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr ""
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr ""
 
-#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:539
+#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr ""
 
-#: ../profiles/audio-profile-edit.c:334
+#: ../profiles/audio-profile-edit.c:335
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr ""
@@ -2109,20 +1050,20 @@ msgstr ""
 msgid "Delete Profile"
 msgstr ""
 
-#: ../profiles/audio-profiles-edit.c:602
+#: ../profiles/audio-profiles-edit.c:599
 msgid "Edit GNOME Audio Profiles"
 msgstr ""
 
-#: ../profiles/audio-profiles-edit.c:651
+#: ../profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr ""
 
-#: ../profiles/audio-profiles-edit.c:835
+#: ../profiles/audio-profiles-edit.c:832
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr ""
 
-#: ../profiles/audio-profiles-edit.c:860
+#: ../profiles/audio-profiles-edit.c:857
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr ""
@@ -2132,6 +1073,13 @@ msgstr ""
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
+msgstr ""
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
@@ -2208,40 +1156,44 @@ msgid "CD Quality, Lossy"
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
-msgid "CD Quality, MP3"
+msgid "CD Quality, MP2"
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:11
+msgid "CD Quality, MP3"
+msgstr ""
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
 msgid ""
 "List of audio recording profiles. The list contains strings naming "
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:12
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "List of profiles"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
 msgid "The default file extension for this profile"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
 msgid "The partial GStreamer pipeline used"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
 msgid ""
 "Used for converting to CD-quality audio, but with a lossless compression "
 "codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
 msgid ""
 "Used for converting to CD-quality audio, but with a lossy compression codec. "
 "Use this for CD extraction and radio recordings."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
 msgid ""
 "Used for converting to CD-quality audio, but with the lossy AAC codec. Use "
 "this for preparing files for copying to devices that only support the AAC "
@@ -2249,7 +1201,15 @@ msgid ""
 "contact your lawyer for advice."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+msgid ""
+"Used for converting to CD-quality audio, but with the lossy MP2 codec. Use "
+"this for preparing files for copying to devices that only support the MP2 "
+"codec. Note that using this format may be illegal in your jurisdiction; "
+"contact your lawyer for advice."
+msgstr ""
+
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
 "Used for converting to CD-quality audio, but with the lossy MP3 codec. Use "
 "this for preparing files for copying to devices that only support the MP3 "
@@ -2257,97 +1217,199 @@ msgid ""
 "contact your lawyer for advice."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
 msgid ""
 "Used for converting to lossless voice-quality audio. Use this for recording "
 "and editing speech."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
 msgid ""
 "Used for converting to lossy voice-quality audio. Use this for recording "
 "speech that doesn't need to be edited."
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Voice, Lossless"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Voice, Lossy"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
 msgid "Whether or not this profile is to be used"
 msgstr ""
 
-#: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
+#: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
 msgid "Whether or not to use and display this profile."
 msgstr ""
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
+#: ../sound-theme/gvc-sound-theme-editor.c:523
+msgid "No sounds"
+msgstr "Gan fhuaimeanna"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
+msgid "Built-in"
 msgstr ""
 
-#: ../vu-meter/main.c:230
-msgid "Specify the X position of the meter."
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
+#: ../sound-theme/gvc-sound-theme-editor.c:563
+#: ../sound-theme/gvc-sound-theme-editor.c:952
+msgid "Testing event sound"
+msgstr "Fuaim teagmhais tástála"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
+msgid "From theme"
+msgstr "Ó théama"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
+msgid "Type"
+msgstr "Cineál"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1083
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Téama Fuaime:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1091
+msgid "Choose an alert sound:"
+msgstr "Roghnaigh fuaim foláirimh:"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:1109
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Cumasaigh fuaimeanna fuinneog agus cnaipí"
+
+#. Bell
+#: ../sound-theme/gvc-sound-theme-editor.c:76
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "Fuaim foláirimh"
+
+#. Windows and buttons
+#: ../sound-theme/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "Fuinneoga agus Cnaipí"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
 msgstr ""
 
-#: ../vu-meter/main.c:231
-msgid "X"
-msgstr "X"
-
-#: ../vu-meter/main.c:233
-msgid "Specify the Y position of the meter."
+#: ../sound-theme/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
 msgstr ""
 
-#: ../vu-meter/main.c:234
-msgid "Y"
-msgstr "Y"
-
-#: ../vu-meter/main.c:236
-msgid "Connect to the esd server on this host."
+#: ../sound-theme/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
 msgstr ""
 
-#: ../vu-meter/main.c:237
-msgid "HOST"
-msgstr "ÓST"
-
-#: ../vu-meter/main.c:239
-msgid "Open a vertical version of the meter."
-msgstr "Oscail leagan ingearach an mhéadair."
-
-#: ../vu-meter/main.c:241
-msgid "Act as recording level meter."
+#: ../sound-theme/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
 msgstr ""
 
-#: ../vu-meter/main.c:257
-#, c-format
-msgid "Host is %s\n"
+#: ../sound-theme/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
 msgstr ""
 
-#: ../vu-meter/main.c:274
-msgid "Recording level"
+#. Desktop
+#: ../sound-theme/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "Deasc"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "Logáil isteach"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "Logáil amach"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "Ríomhphost nua"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "Folmhaigh bruscar"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
 msgstr ""
 
-#: ../vu-meter/main.c:274
-msgid "Volume Meter"
+#. Alerts?
+#: ../sound-theme/gvc-sound-theme-editor.c:92
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "Foláirimh"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
 msgstr ""
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
+#: ../sound-theme/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "Rabhadh"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "Earráid"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
 msgstr ""
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
+#: ../sound-theme/gvc-sound-theme-editor.c:593
+msgid "Select Sound File"
 msgstr ""
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr ""
+#: ../sound-theme/gvc-sound-theme-editor.c:604
+msgid "Sound files"
+msgstr "Comhaid fuaime"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "Monatóir Airde"
+#: ../sound-theme/gvc-sound-theme-editor.c:900
+msgid "Custom..."
+msgstr "Saincheaptha..."
+
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "Sceamh"
+
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "Sileadh"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:9
+msgid "Glass"
+msgstr "Gloine"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
+msgid "Sonar"
+msgstr "Sonóir"
