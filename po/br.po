@@ -1,16 +1,17 @@
 # Breton translation of gnome-media.
 # Copyright (C) 2006 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-menu package.
+# This file is distributed under the same license as the gnome-media package.
+#
 # Jérémy Ar Floc'h <jeremy.lefloch@gmail.com>, 2006.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-04 19:31+0200\n"
-"PO-Revision-Date: 2006-03-29 16:29+0200\n"
-"Last-Translator: Jérémy Ar Floc'h <jeremy.lefloch@gmail.com>\n"
-"Language-Team: <jeremy.lefloch@gmail.com>\n"
+"PO-Revision-Date: 2009-08-03 08:56+0100\n"
+"Last-Translator: Denis\n"
+"Language-Team: Brenux <brenux@free.fr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,11 +19,11 @@ msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
 msgid "Address of the server to contact for CD queries"
-msgstr "Chomlec'h ar servijer da mont e darempred gantañ evit reketoù CD"
+msgstr "Chomlec'h an dafariad da mont e darempred gantañ evit reketoù CD"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
 msgid "Information to send to server"
-msgstr "Titouroù da gas da servijer"
+msgstr "Titouroù da gas da dafariad"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
 #: ../cddb-slave2/cddb-slave-capplet.c:955
@@ -31,11 +32,11 @@ msgstr "Porzh"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
 msgid "Server name"
-msgstr "Anv ar servijer"
+msgstr "Anv an dafariad"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
 msgid "Server type"
-msgstr "Seurt ar servijer"
+msgstr "Rizh an dafariad"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
 msgid "The hostname that will be sent with all queries"
@@ -46,9 +47,7 @@ msgid "The port that the server is running the database on"
 msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgid "The type of the server to contact for CD queries. Possible values are 0 (FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
 msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
@@ -60,10 +59,7 @@ msgid "The username that will be sent with all queries"
 msgstr "Anv implijer a vo kaset gant an holl reketoù"
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
+msgid "This key specifies which user information will be sent to the server to contact for CD queries. Possible values are 0 (no information), 1 (real information) and 3 (other information)."
 msgstr ""
 
 #: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
@@ -105,16 +101,16 @@ msgstr "Titouroù kennaskañ"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:914
 msgid "FreeDB _round robin server"
-msgstr "Servijer _round robin FreeDB"
+msgstr "Dafariad _round robin FreeDB"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:920
 msgid "Other _FreeDB server:"
-msgstr "Servijer FreeDB all :"
+msgstr "Dafariad FreeDB all :"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:952
 #: ../cddb-slave2/cddb-slave-capplet.c:1062
 msgid "Server"
-msgstr "Servijer"
+msgstr "Dafariad"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:958
 msgid "Location"
@@ -122,11 +118,11 @@ msgstr "Lec'hiadur"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:987
 msgid "_Update Server List"
-msgstr "Bremanaat roll ar servijeroù"
+msgstr "Bremanaat roll an dafariadoù"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:994
 msgid "Other _server:"
-msgstr "Servijer all :"
+msgstr "Dafariad all :"
 
 #: ../cddb-slave2/cddb-slave-capplet.c:1014
 msgid "Hos_tname:"
@@ -145,9 +141,12 @@ msgid "Unknown / Unknown"
 msgstr "Dianav / Dianav"
 
 #. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:983
-#: ../grecord/src/gsr-window.c:993 ../grecord/src/gsr-window.c:1009
-#: ../grecord/src/gsr-window.c:1018 ../grecord/src/gsr-window.c:1361
+#: ../cddb-slave2/cddb-slave.c:227
+#: ../grecord/src/gsr-window.c:983
+#: ../grecord/src/gsr-window.c:993
+#: ../grecord/src/gsr-window.c:1009
+#: ../grecord/src/gsr-window.c:1018
+#: ../grecord/src/gsr-window.c:1361
 msgid "Unknown"
 msgstr "Dianav"
 
@@ -167,13 +166,14 @@ msgstr "Rummad"
 
 #: ../cddb-slave2/cddb-slave.c:292
 msgid "Disc ID"
-msgstr "ID pladenn"
+msgstr "ID ar gantenn"
 
 #: ../cddb-slave2/cddb-slave.c:296
 msgid "Artist and Title"
 msgstr "Arzour ha Titl"
 
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
+#: ../cddb-slave2/cddb-slave.c:1351
+#: ../cddb-slave2/cddb-slave.c:1353
 #: ../gnome-cd/gnome-cd.c:207
 msgid "Unknown track"
 msgstr "Loabr dianav"
@@ -284,7 +284,7 @@ msgstr "Pranks"
 
 #: ../cddb-slave2/cddb-track-editor.c:102
 msgid "Soundtrack"
-msgstr "Loabr a orin"
+msgstr "Loabr"
 
 #: ../cddb-slave2/cddb-track-editor.c:103
 msgid "Euro-Techno"
@@ -424,15 +424,15 @@ msgstr "Cult"
 
 #: ../cddb-slave2/cddb-track-editor.c:137
 msgid "Gangsta Rap"
-msgstr "Gangsta·Rap"
+msgstr "Gangsta Rap"
 
 #: ../cddb-slave2/cddb-track-editor.c:138
 msgid "Top 40"
-msgstr "Top·40"
+msgstr "Top 40"
 
 #: ../cddb-slave2/cddb-track-editor.c:139
 msgid "Christian Rap"
-msgstr "Christian·Rap"
+msgstr "Christian Rap"
 
 #: ../cddb-slave2/cddb-track-editor.c:140
 msgid "Pop/Funk"
@@ -480,11 +480,11 @@ msgstr "Tribal"
 
 #: ../cddb-slave2/cddb-track-editor.c:151
 msgid "Acid Punk"
-msgstr "Acid·Punk"
+msgstr "Acid unk"
 
 #: ../cddb-slave2/cddb-track-editor.c:152
 msgid "Acid Jazz"
-msgstr "Acid·Jazz"
+msgstr "Acid Jazz"
 
 #: ../cddb-slave2/cddb-track-editor.c:153
 msgid "Polka"
@@ -500,11 +500,11 @@ msgstr "Sonerezh"
 
 #: ../cddb-slave2/cddb-track-editor.c:156
 msgid "Rock & Roll"
-msgstr "Rock·&·Roll"
+msgstr "Rock'n Roll"
 
 #: ../cddb-slave2/cddb-track-editor.c:157
 msgid "Hard Rock"
-msgstr "Hard·Rock"
+msgstr "Hard Rock"
 
 #: ../cddb-slave2/cddb-track-editor.c:158
 msgid "Folk"
@@ -572,7 +572,7 @@ msgstr "Slow Rock"
 
 #: ../cddb-slave2/cddb-track-editor.c:174
 msgid "Big Band"
-msgstr "Big·Band"
+msgstr "Big Band"
 
 #: ../cddb-slave2/cddb-track-editor.c:175
 msgid "Chorus"
@@ -616,7 +616,7 @@ msgstr "Symphony"
 
 #: ../cddb-slave2/cddb-track-editor.c:185
 msgid "Booty Bass"
-msgstr "Booty·Bass"
+msgstr "Booty Bass"
 
 #: ../cddb-slave2/cddb-track-editor.c:186
 msgid "Primus"
@@ -624,7 +624,7 @@ msgstr "Primus"
 
 #: ../cddb-slave2/cddb-track-editor.c:187
 msgid "Porn Groove"
-msgstr "Porn·Groove"
+msgstr "Porn Groove"
 
 #: ../cddb-slave2/cddb-track-editor.c:188
 msgid "Satire"
@@ -688,7 +688,7 @@ msgstr "Euro-House"
 
 #: ../cddb-slave2/cddb-track-editor.c:203
 msgid "Dance Hall"
-msgstr "Dance·Hall"
+msgstr "Dance Hall"
 
 #: ../cddb-slave2/cddb-track-editor.c:204
 msgid "Goa"
@@ -696,7 +696,7 @@ msgstr "Goa"
 
 #: ../cddb-slave2/cddb-track-editor.c:205
 msgid "Drum & Bass"
-msgstr "Drum·&·Bass"
+msgstr "Drum & Bass"
 
 #: ../cddb-slave2/cddb-track-editor.c:206
 msgid "Club-House"
@@ -740,7 +740,7 @@ msgstr "Heavy·Metal"
 
 #: ../cddb-slave2/cddb-track-editor.c:216
 msgid "Black Metal"
-msgstr "Black·Metal"
+msgstr "Black Metal"
 
 #: ../cddb-slave2/cddb-track-editor.c:217
 msgid "Crossover"
@@ -752,7 +752,7 @@ msgstr "Contemporary Christian"
 
 #: ../cddb-slave2/cddb-track-editor.c:219
 msgid "Christian Rock"
-msgstr "Christian·Rock"
+msgstr "Christian Rock"
 
 #: ../cddb-slave2/cddb-track-editor.c:220
 msgid "Merengue"
@@ -786,14 +786,18 @@ msgstr "Nu-Metal"
 msgid "Art Rock"
 msgstr "Rock Arz"
 
-#: ../cddb-slave2/cddb-track-editor.c:531 ../gnome-cd/callbacks.c:589
-#: ../gnome-cd/callbacks.c:735 ../gnome-cd/callbacks.c:746
+#: ../cddb-slave2/cddb-track-editor.c:531
+#: ../gnome-cd/callbacks.c:589
+#: ../gnome-cd/callbacks.c:735
+#: ../gnome-cd/callbacks.c:746
 #: ../gnome-cd/display.c:75
 msgid "Unknown Artist"
 msgstr "Arzour dianav"
 
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:590
-#: ../gnome-cd/callbacks.c:738 ../gnome-cd/callbacks.c:750
+#: ../cddb-slave2/cddb-track-editor.c:532
+#: ../gnome-cd/callbacks.c:590
+#: ../gnome-cd/callbacks.c:738
+#: ../gnome-cd/callbacks.c:750
 #: ../gnome-cd/display.c:76
 msgid "Unknown Album"
 msgstr "Albom dianav"
@@ -801,31 +805,31 @@ msgstr "Albom dianav"
 #: ../cddb-slave2/cddb-track-editor.c:540
 #, c-format
 msgid "Editing Disc ID: %s"
-msgstr "Oc'h aozañ ID ar bladenn : %s"
+msgstr "Oc'h aozañ ID ar gantenn : %s"
 
 #: ../cddb-slave2/cddb-track-editor.c:617
 msgid "Hide advanced disc options"
-msgstr "Kuzhat neuziadoù arbennik ar bladenn"
+msgstr "Kuzhat dibarzhioù arbennik ar gantenn"
 
 #: ../cddb-slave2/cddb-track-editor.c:619
 #: ../cddb-slave2/cddb-track-editor.c:696
 msgid "Show advanced disc options"
-msgstr "Diskouez neuziadoù arbennik ar bladenn"
+msgstr "Diskouez dibarzhioù arbennik ar gantenn"
 
 #: ../cddb-slave2/cddb-track-editor.c:633
 msgid "Hide advanced track options"
-msgstr "Kuzhat neuziadoù arbennik al loabr"
+msgstr "Kuzhat dibarzhioù arbennik al loabr"
 
 #. More advanced options
 #: ../cddb-slave2/cddb-track-editor.c:635
 #: ../cddb-slave2/cddb-track-editor.c:798
 msgid "Show advanced track options"
-msgstr "Diskouez neuziadoù arbennik al loabr"
+msgstr "Diskouez dibarzhioù arbennik al loabr"
 
 #. Info label
 #: ../cddb-slave2/cddb-track-editor.c:661
 msgid "Editing Disc ID: "
-msgstr "Oc'h aozañ ID ar bladenn :"
+msgstr "Oc'h embann ID ar gantenn :"
 
 #: ../cddb-slave2/cddb-track-editor.c:672
 msgid "_Artist:"
@@ -833,22 +837,22 @@ msgstr "_Arzour :"
 
 #: ../cddb-slave2/cddb-track-editor.c:686
 msgid "Disc _Title:"
-msgstr "Titl ar bladenn :"
+msgstr "_Titl ar gantenn :"
 
 #. Top box: Disc comments. Maybe should be a GtkText?
 #: ../cddb-slave2/cddb-track-editor.c:710
 msgid "_Disc comments:"
-msgstr "Addisplegoù ar bladenn :"
+msgstr "Askelennoù ar _gantenn :"
 
 #. Genre
 #: ../cddb-slave2/cddb-track-editor.c:725
 msgid "_Genre:"
-msgstr "Seurt :"
+msgstr "_Doare :"
 
 #. Year
 #: ../cddb-slave2/cddb-track-editor.c:741
 msgid "_Year:"
-msgstr "Bloaz :"
+msgstr "_Bloaz :"
 
 #: ../cddb-slave2/cddb-track-editor.c:780
 msgid "Title"
@@ -856,7 +860,7 @@ msgstr "Titl"
 
 #: ../cddb-slave2/cddb-track-editor.c:787
 msgid "Length"
-msgstr "Hed"
+msgstr "Led"
 
 #. Extra data
 #: ../cddb-slave2/cddb-track-editor.c:807
@@ -865,7 +869,7 @@ msgstr ""
 
 #: ../cddb-slave2/cddb-track-editor.c:934
 msgid "CDDB Track Editor"
-msgstr "Aozer loabroù CDDB"
+msgstr "Embanner loabroù CDDB"
 
 #: ../cddb-slave2/cddb-track-editor.c:1071
 msgid ""
@@ -875,15 +879,11 @@ msgstr ""
 
 #: ../gnome-cd/access/cddisplayaccessible.c:118
 msgid "CD Display"
-msgstr "Diskouez CD"
+msgstr "Skrammañ ar CD"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Diskouez titouroù diwar-benn an albom, arzour a zo en implij ha diwar-benn "
-"an amzer deveret"
+msgid "Displays information about the currently playing album, artist and time elapsed"
+msgstr "Diskouez titouroù diwar-benn an albom, arzour a zo en implij ha diwar-benn an amzer deveret"
 
 #: ../gnome-cd/access/cddisplayaccessible.c:189
 msgid "Time Line"
@@ -917,16 +917,22 @@ msgstr "Linenn an albom"
 msgid "Line for displaying the name of the album"
 msgstr "Linenn evit diskouez anv an albom"
 
-#: ../gnome-cd/callbacks.c:87 ../gnome-cd/callbacks.c:175
-#: ../gnome-cd/callbacks.c:283 ../gnome-cd/callbacks.c:605
+#: ../gnome-cd/callbacks.c:87
+#: ../gnome-cd/callbacks.c:175
+#: ../gnome-cd/callbacks.c:283
+#: ../gnome-cd/callbacks.c:605
 #: ../gnome-cd/gnome-cd.c:819
 msgid "Play"
 msgstr "Lenn"
 
-#: ../gnome-cd/callbacks.c:160 ../gnome-cd/callbacks.c:211
-#: ../gnome-cd/callbacks.c:242 ../gnome-cd/callbacks.c:325
-#: ../gnome-cd/callbacks.c:365 ../gnome-cd/callbacks.c:389
-#: ../gnome-cd/callbacks.c:430 ../gnome-cd/callbacks.c:527
+#: ../gnome-cd/callbacks.c:160
+#: ../gnome-cd/callbacks.c:211
+#: ../gnome-cd/callbacks.c:242
+#: ../gnome-cd/callbacks.c:325
+#: ../gnome-cd/callbacks.c:365
+#: ../gnome-cd/callbacks.c:389
+#: ../gnome-cd/callbacks.c:430
+#: ../gnome-cd/callbacks.c:527
 msgid "Pause"
 msgstr "Paouez"
 
@@ -952,10 +958,14 @@ msgstr ""
 msgid "Paused"
 msgstr "Paouezet"
 
-#: ../gnome-cd/callbacks.c:668 ../gnome-cd/callbacks.c:670
-#: ../gnome-cd/callbacks.c:927 ../gnome-cd/gnome-cd.c:114
-#: ../gnome-cd/gnome-cd.c:692 ../gnome-cd/gnome-cd.c:902
-#: ../gnome-cd/gnome-cd.c:905 ../gnome-cd/gnome-cd.desktop.in.h:1
+#: ../gnome-cd/callbacks.c:668
+#: ../gnome-cd/callbacks.c:670
+#: ../gnome-cd/callbacks.c:927
+#: ../gnome-cd/gnome-cd.c:114
+#: ../gnome-cd/gnome-cd.c:692
+#: ../gnome-cd/gnome-cd.c:902
+#: ../gnome-cd/gnome-cd.c:905
+#: ../gnome-cd/gnome-cd.desktop.in.h:1
 #: ../gnome-cd/preferences.c:613
 msgid "CD Player"
 msgstr "Lenner CD"
@@ -966,25 +976,27 @@ msgstr "Harzet"
 
 #: ../gnome-cd/callbacks.c:700
 msgid "Disc error"
-msgstr "Fazi pladenn"
+msgstr "Fazi gant ar gantenn"
 
-#: ../gnome-cd/callbacks.c:711 ../gnome-cd/callbacks.c:812
+#: ../gnome-cd/callbacks.c:711
+#: ../gnome-cd/callbacks.c:812
 msgid "No disc"
-msgstr "Pladenn ebet"
+msgstr "Kantenn ebet"
 
 #: ../gnome-cd/callbacks.c:810
 msgid "Empty disc"
-msgstr "Pladenn goullo"
+msgstr "Kantenn goullo"
 
 #: ../gnome-cd/callbacks.c:840
 msgid "Drive open"
-msgstr "Lenner digeret"
+msgstr "Lenner digoret"
 
 #: ../gnome-cd/callbacks.c:866
 msgid "Data CD"
-msgstr "Titour CD"
+msgstr "CD roadennoù"
 
-#: ../gnome-cd/callbacks.c:890 ../gnome-cd/callbacks.c:895
+#: ../gnome-cd/callbacks.c:890
+#: ../gnome-cd/callbacks.c:895
 msgid "No Cdrom"
 msgstr "Cdrom ebet"
 
@@ -1009,10 +1021,11 @@ msgid "Do you wish to continue?"
 msgstr "C'hoant hoc'h eus da genderc'hel ?"
 
 #. Set the tooltip
-#: ../gnome-cd/callbacks.c:1235 ../gnome-cd/gnome-cd.c:532
+#: ../gnome-cd/callbacks.c:1235
+#: ../gnome-cd/gnome-cd.c:532
 #, c-format
 msgid "Volume %d%%"
-msgstr "Ment ar son %d%%"
+msgstr "Ampled %d%%"
 
 #: ../gnome-cd/cdrom.c:368
 #, c-format
@@ -1030,7 +1043,7 @@ msgstr ""
 
 #: ../gnome-cd/eggtrayicon.c:118
 msgid "Orientation"
-msgstr "Tu"
+msgstr "Reteradur"
 
 #: ../gnome-cd/eggtrayicon.c:119
 msgid "The orientation of the tray."
@@ -1043,36 +1056,37 @@ msgstr "%d - Dianav"
 
 #: ../gnome-cd/gnome-cd.c:362
 msgid "_Play / Pause"
-msgstr "Lenn / Paouez"
+msgstr "_Seniñ / Paouez"
 
 #: ../gnome-cd/gnome-cd.c:363
 msgid "_Stop"
-msgstr "Harz"
+msgstr "_Harz"
 
 #: ../gnome-cd/gnome-cd.c:364
 msgid "P_revious"
-msgstr "An hini kent"
+msgstr "An hini _kent"
 
 #: ../gnome-cd/gnome-cd.c:365
 msgid "_Next"
-msgstr "A-heul"
+msgstr "A-_heul"
 
 #: ../gnome-cd/gnome-cd.c:366
 msgid "_Eject disc"
-msgstr "Kas er-maez ar bladenn"
+msgstr "Kas _er-maez ar gantenn"
 
 #. Help menu
-#: ../gnome-cd/gnome-cd.c:367 ../grecord/src/gsr-window.c:1988
+#: ../gnome-cd/gnome-cd.c:367
+#: ../grecord/src/gsr-window.c:1988
 msgid "_Help"
-msgstr "Skoazell"
+msgstr "_Skoazell"
 
 #: ../gnome-cd/gnome-cd.c:368
 msgid "_About"
-msgstr "A-zivout"
+msgstr "_A-zivout"
 
 #: ../gnome-cd/gnome-cd.c:369
 msgid "_Quit"
-msgstr "Mont kuit"
+msgstr "_Kuitaat"
 
 #: ../gnome-cd/gnome-cd.c:612
 msgid ""
@@ -1083,7 +1097,7 @@ msgstr ""
 
 #: ../gnome-cd/gnome-cd.c:616
 msgid "Set device"
-msgstr "Lakaat trobarzhell"
+msgstr "Arventenniñ an drobarzhell"
 
 #: ../gnome-cd/gnome-cd.c:618
 msgid "No CD device"
@@ -1095,8 +1109,7 @@ msgid ""
 "\n"
 "Press 'Details' for more details on reasons for the failure.\n"
 "\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
+"Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player"
 msgstr ""
 
 #: ../gnome-cd/gnome-cd.c:675
@@ -1113,15 +1126,15 @@ msgstr "Trobarzhell CD siek"
 
 #: ../gnome-cd/gnome-cd.c:757
 msgid "Position"
-msgstr "lec'h"
+msgstr "Lec'hiadur"
 
 #: ../gnome-cd/gnome-cd.c:774
 msgid "Open preferences"
-msgstr "Digeriñ an dibaboù gwellañ"
+msgstr "Digeriñ ar gwellvezioù"
 
 #: ../gnome-cd/gnome-cd.c:775
 msgid "Preferences"
-msgstr "Dibaboù gwellañ"
+msgstr "Gwellvezioù"
 
 #: ../gnome-cd/gnome-cd.c:783
 msgid "Track List"
@@ -1129,11 +1142,11 @@ msgstr "Roll al loabroù"
 
 #: ../gnome-cd/gnome-cd.c:789
 msgid "Open track editor"
-msgstr "Digeriñ an aozer loabr"
+msgstr "Digeriñ an embanner loabroù"
 
 #: ../gnome-cd/gnome-cd.c:790
 msgid "Track editor"
-msgstr "Aozer loabr"
+msgstr "Embanner loabroù"
 
 #: ../gnome-cd/gnome-cd.c:819
 msgid "Play / Pause"
@@ -1153,7 +1166,7 @@ msgstr "An hini kent"
 
 #: ../gnome-cd/gnome-cd.c:832
 msgid "Rewind"
-msgstr ""
+msgstr "Adenbeniañ"
 
 #: ../gnome-cd/gnome-cd.c:840
 msgid "Fast forward"
@@ -1181,7 +1194,7 @@ msgstr ""
 
 #: ../gnome-cd/gnome-cd.c:986
 msgid "Play the CD on startup"
-msgstr ""
+msgstr "Seniñ ar CD e-pad al loc'hañ"
 
 #: ../gnome-cd/gnome-cd.c:988
 msgid "Start iconified to tray"
@@ -1198,15 +1211,15 @@ msgstr "Lenn CD-où audio"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:1
 msgid "CD player Volume"
-msgstr "Ment ar son al lenner CD"
+msgstr "Ampled al lenner CD"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:2
 msgid "CD player theme"
-msgstr "Tem al lenner CD"
+msgstr "Neuz al lenner CD"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:3
 msgid "Device path"
-msgstr "Ment an trobarzhell"
+msgstr "Treug an trobarzhell"
 
 #: ../gnome-cd/gnome-cd.schemas.in.in.h:4
 msgid "Display the Remaining time ?"
@@ -1260,15 +1273,15 @@ msgstr ""
 
 #: ../gnome-cd/preferences.c:82
 msgid "Error setting device"
-msgstr "Fazi o didab trobarzhell"
+msgstr "Fazi en ur arventenniñ an drobarzhell"
 
 #: ../gnome-cd/preferences.c:586
 msgid "CD Player Preferences"
-msgstr "Dibaboù gwellañ al lenner CD"
+msgstr "Gwellvezioù al lenner CD"
 
 #: ../gnome-cd/preferences.c:625
 msgid "_Device:"
-msgstr "Trobarzhell :"
+msgstr "_Trobarzhell :"
 
 #: ../gnome-cd/preferences.c:639
 msgid "Behavior"
@@ -1292,11 +1305,11 @@ msgstr "Esaeañ da gas er-maez ar CD pa serr al lenner CD"
 
 #: ../gnome-cd/preferences.c:682
 msgid "Themes"
-msgstr "Temoù"
+msgstr "Neuzioù"
 
 #: ../gnome-cd/preferences.c:694
 msgid "_Select a theme:"
-msgstr "Diuz ur tem :"
+msgstr "_Diuz un neuz :"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.h:1
 msgid "Record sound clips"
@@ -1316,12 +1329,15 @@ msgstr "Enroller Son"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:794
-#: ../grecord/src/gsr-window.c:1689 ../grecord/src/gsr-window.c:2454
+#: ../grecord/src/gnome-recorder.c:142
+#: ../grecord/src/gsr-window.c:794
+#: ../grecord/src/gsr-window.c:1689
+#: ../grecord/src/gsr-window.c:2454
 msgid "Untitled"
 msgstr "Titl_ebet"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1691
+#: ../grecord/src/gnome-recorder.c:144
+#: ../grecord/src/gsr-window.c:1691
 #, c-format
 msgid "Untitled-%d"
 msgstr "Titl_ebet-%d"
@@ -1336,7 +1352,7 @@ msgid ""
 "and then restart gnome-sound-recorder."
 msgstr ""
 "Ne oa ket tu da grouiñ an elfenn GStreamer %s.\n"
-"Staliit an astenn '%s' eus ar modulenn '%s' mar plij.\n"
+"Staliit an enlugellad '%s' eus ar mollad '%s' mar plij.\n"
 "Gwiriit eo reizh ar staliadur dre seveniñ\n"
 "    gst-inspect-0.10 %s\n"
 "ha goudevezh adloc'hañ gnome-sound-recoder."
@@ -1347,34 +1363,46 @@ msgid ""
 "You may be missing the necessary plug-ins."
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:292
+#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:307
 msgid "hours"
-msgstr "eurioù"
+msgstr "eur"
 
-#: ../grecord/src/gsr-window.c:292 ../grecord/src/gsr-window.c:297
-#: ../grecord/src/gsr-window.c:303 ../grecord/src/gsr-window.c:307
+#: ../grecord/src/gsr-window.c:292
+#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:307
 msgid "hour"
 msgstr "eur"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314
+#: ../grecord/src/gsr-window.c:318
 msgid "minutes"
-msgstr "munutennoù"
+msgstr "a vunutennoù"
 
-#: ../grecord/src/gsr-window.c:293 ../grecord/src/gsr-window.c:298
-#: ../grecord/src/gsr-window.c:314 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:293
+#: ../grecord/src/gsr-window.c:298
+#: ../grecord/src/gsr-window.c:314
+#: ../grecord/src/gsr-window.c:318
 msgid "minute"
-msgstr "munutenn"
+msgstr "vunutenn"
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:323
+#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315
+#: ../grecord/src/gsr-window.c:323
 #: ../grecord/src/gsr-window.c:326
 msgid "seconds"
-msgstr "eilennoù"
+msgstr "eilenn"
 
-#: ../grecord/src/gsr-window.c:294 ../grecord/src/gsr-window.c:304
-#: ../grecord/src/gsr-window.c:315 ../grecord/src/gsr-window.c:326
+#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:315
+#: ../grecord/src/gsr-window.c:326
 msgid "second"
 msgstr "eilenn"
 
@@ -1391,15 +1419,17 @@ msgstr ""
 "N'eus ket tu da gargañ ar restr :\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:576 ../grecord/src/gsr-window.c:1492
-#: ../grecord/src/gsr-window.c:1742 ../grecord/src/gsr-window.c:2283
+#: ../grecord/src/gsr-window.c:576
+#: ../grecord/src/gsr-window.c:1492
+#: ../grecord/src/gsr-window.c:1742
+#: ../grecord/src/gsr-window.c:2283
 msgid "Ready"
 msgstr "Prest"
 
 #. Add replace button
 #: ../grecord/src/gsr-window.c:629
 msgid "_Replace"
-msgstr "Erlec'hiañ"
+msgstr "E_rlec'hiañ"
 
 #: ../grecord/src/gsr-window.c:646
 #, c-format
@@ -1407,10 +1437,11 @@ msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
-"Ur restr anvet \"%s\" a zo anezhañ dija. \n"
+"Ur restr anvet \"%s\" a zo anezhañ endeo. \n"
 "C'hoant hoc'h eus da erlec'hiañ anezhañ gant ar restr emaoc'h o warediñ ?"
 
-#: ../grecord/src/gsr-window.c:696 ../grecord/src/gsr-window.c:703
+#: ../grecord/src/gsr-window.c:696
+#: ../grecord/src/gsr-window.c:703
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Ne oa ket tu da warediñ ar restr \"%s\""
@@ -1422,7 +1453,7 @@ msgstr "Gwarediñ ar restr evel"
 #: ../grecord/src/gsr-window.c:814
 #, c-format
 msgid "%s is not installed in the path."
-msgstr "N'eo ket staliet %s en hent."
+msgstr "N'eo ket staliet %s en treug."
 
 #: ../grecord/src/gsr-window.c:823
 #, c-format
@@ -1451,8 +1482,8 @@ msgstr "%s (n'e oa ket bet enrollet)"
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
-msgstr[0] "%s (%llu beit)"
-msgstr[1] "%s (%llu beit)"
+msgstr[0] "%s (%llu eizhbit)"
+msgstr[1] "%s (%llu eizhbit)"
 
 #: ../grecord/src/gsr-window.c:974
 msgid "Unknown size"
@@ -1486,7 +1517,8 @@ msgstr "2 (stereo)"
 msgid "%s Information"
 msgstr "Stlenn %s"
 
-#: ../grecord/src/gsr-window.c:1075 ../grecord/src/gsr-window.c:2228
+#: ../grecord/src/gsr-window.c:1075
+#: ../grecord/src/gsr-window.c:2228
 msgid "File Information"
 msgstr "Stlenn ar restr"
 
@@ -1494,7 +1526,8 @@ msgstr "Stlenn ar restr"
 msgid "Folder:"
 msgstr "Renkell :"
 
-#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2243
+#: ../grecord/src/gsr-window.c:1096
+#: ../grecord/src/gsr-window.c:2243
 msgid "Filename:"
 msgstr "Anv ar restr :"
 
@@ -1512,7 +1545,7 @@ msgstr ""
 
 #: ../grecord/src/gsr-window.c:1132
 msgid "Number of channels:"
-msgstr ""
+msgstr "Niver a sanelloù :"
 
 #: ../grecord/src/gsr-window.c:1138
 msgid "Sample rate:"
@@ -1527,6 +1560,8 @@ msgid ""
 "A sound recorder for GNOME\n"
 " gnome-media@gnome.org"
 msgstr ""
+"Un enroller sonioù evit GNOME\n"
+" gnome-media@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1464
 msgid "Playing..."
@@ -1536,22 +1571,21 @@ msgstr "O lenn..."
 msgid "GConf audio output"
 msgstr ""
 
-#: ../grecord/src/gsr-window.c:1602 ../gst-mixer/src/element.c:229
+#: ../grecord/src/gsr-window.c:1602
+#: ../gst-mixer/src/element.c:229
 msgid "Playback"
-msgstr ""
+msgstr "Lenn"
 
 #: ../grecord/src/gsr-window.c:1680
 msgid "Recording..."
-msgstr ""
+msgstr "Oc'h enrollañ..."
 
 #: ../grecord/src/gsr-window.c:1760
 msgid "GConf audio recording"
 msgstr ""
 
 #: ../grecord/src/gsr-window.c:1769
-msgid ""
-"Your audio capture settings are invalid. Please correct them in the "
-"Multimedia settings."
+msgid "Your audio capture settings are invalid. Please correct them in the Multimedia settings."
 msgstr ""
 
 #: ../grecord/src/gsr-window.c:1854
@@ -1580,7 +1614,7 @@ msgstr "Restr"
 
 #: ../grecord/src/gsr-window.c:1962
 msgid "Create a new sample"
-msgstr ""
+msgstr "Krouiñ ur standilhon nevez"
 
 #: ../grecord/src/gsr-window.c:1963
 msgid "_Open..."
@@ -1600,7 +1634,7 @@ msgstr "Gwarediñ dindan..."
 
 #: ../grecord/src/gsr-window.c:1968
 msgid "Save the current file with a different name"
-msgstr "Gwarediñ ar restr en implij gant un anv disheñvel"
+msgstr "Gwarediñ ar restr en implij gant un anv all"
 
 #: ../grecord/src/gsr-window.c:1969
 msgid "Open Volu_me Control"
@@ -1620,16 +1654,16 @@ msgstr "Serriñ ar restr en implij"
 
 #: ../grecord/src/gsr-window.c:1976
 msgid "Quit the program"
-msgstr "Kuitaat ar programm"
+msgstr "Kuitaat ar goulev"
 
 #. Control menu
 #: ../grecord/src/gsr-window.c:1979
 msgid "_Control"
-msgstr ""
+msgstr "_Reoliñ"
 
 #: ../grecord/src/gsr-window.c:1981
 msgid "Record sound"
-msgstr ""
+msgstr "Enrollañ ar son"
 
 #: ../grecord/src/gsr-window.c:1983
 msgid "Play sound"
@@ -1649,8 +1683,7 @@ msgstr "Diwar-benn an arload-mañ"
 
 #: ../grecord/src/gsr-window.c:2113
 msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr ""
-"Ne oa ket tu da gargañ ui.xml. Ar programm n'eo ket staliet mat marteze"
+msgstr "Ne oa ket tu da gargañ ui.xml. Ar goulev n'eo ket staliet mat marteze"
 
 #: ../grecord/src/gsr-window.c:2136
 msgid "Open"
@@ -1670,7 +1703,7 @@ msgstr ""
 
 #: ../grecord/src/gsr-window.c:2211
 msgid "Record as:"
-msgstr ""
+msgstr "Enrollañ evel :"
 
 #: ../grecord/src/gsr-window.c:2249
 msgid "<none>"
@@ -1678,16 +1711,17 @@ msgstr "<ebet>"
 
 #: ../grecord/src/gsr-window.c:2258
 msgid "Length:"
-msgstr "Hed :"
+msgstr "Led :"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:1
 msgid "Adjust the volume level"
-msgstr ""
+msgstr "Kengeidañ live an ampled"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.h:2
-#: ../gst-mixer/src/window.c:148 ../gst-mixer/src/window.c:393
+#: ../gst-mixer/src/window.c:148
+#: ../gst-mixer/src/window.c:393
 msgid "Volume Control"
-msgstr ""
+msgstr "Reoliñ an ampled"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1707,7 +1741,7 @@ msgstr ""
 
 #: ../gst-mixer/src/element.c:231
 msgid "Capture"
-msgstr ""
+msgstr "Pakañ"
 
 #: ../gst-mixer/src/element.c:233
 msgid "Switches"
@@ -1715,12 +1749,12 @@ msgstr ""
 
 #: ../gst-mixer/src/element.c:235
 msgid "Options"
-msgstr "Neuziadoù"
+msgstr "Dibarzhioù"
 
 #: ../gst-mixer/src/main.c:76
 #, c-format
 msgid "Unknown Volume Control %d"
-msgstr ""
+msgstr "Dianav eo reoliñ an ampled %d"
 
 #: ../gst-mixer/src/main.c:204
 msgid "No volume control GStreamer plugins and/or devices found."
@@ -1729,7 +1763,7 @@ msgstr ""
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
-msgstr ""
+msgstr "Gwellvezioù reoliñ an ampled"
 
 #: ../gst-mixer/src/preferences.c:119
 msgid "_Select tracks to be visible:"
@@ -1744,12 +1778,12 @@ msgstr "%s :"
 #: ../gst-mixer/src/track.c:261
 #, c-format
 msgid "Mute/unmute %s"
-msgstr ""
+msgstr "Mut/heglev %s"
 
 #: ../gst-mixer/src/track.c:276
 #, c-format
 msgid "Track %s: mute"
-msgstr ""
+msgstr "Loabr %s : mut"
 
 #. FIXME:
 #. * - there's something fishy about this button, it
@@ -1821,7 +1855,7 @@ msgstr "Kostez dehou"
 
 #: ../gst-mixer/src/volume.c:151
 msgid "unknown"
-msgstr "Dianav"
+msgstr "dianav"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
@@ -1843,7 +1877,7 @@ msgstr ""
 #: ../gst-mixer/src/volume.c:211
 #, c-format
 msgid "Track %s, channel %d"
-msgstr ""
+msgstr "Loabr %s, sannel %d"
 
 #: ../gst-mixer/src/volume.c:231
 #, c-format
@@ -1857,23 +1891,24 @@ msgstr ""
 
 #: ../gst-mixer/src/window.c:110
 msgid "_Change Device"
-msgstr "Kemmañ trobarzhell"
+msgstr "_Kemmañ an drobarzhell"
 
 #: ../gst-mixer/src/window.c:111
 msgid "Control volume on a different device"
-msgstr ""
+msgstr "Reoliñ an ampled war trobarzhelloù disheñvel"
 
 #: ../gst-mixer/src/window.c:185
 #, c-format
 msgid "Change device to %s"
-msgstr "Kemmañ trobarzhell da %s"
+msgstr "Kemmañ an drobarzhell da %s"
 
 #. window title and menu selection
 #. change window title
-#: ../gst-mixer/src/window.c:229 ../gst-mixer/src/window.c:440
+#: ../gst-mixer/src/window.c:229
+#: ../gst-mixer/src/window.c:440
 #, c-format
 msgid "Volume Control: %s"
-msgstr ""
+msgstr "Reoliñ an ampled : %s"
 
 #. Translators comment: put your own name here to appear in the
 #. * about dialog.
@@ -1883,7 +1918,7 @@ msgstr "Jérémy Ar Floc'h <jeremy.lefloch@gmail.com>"
 
 #: ../gst-mixer/src/window.c:396
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr ""
+msgstr "An arload evit reoliñ an ampled gant GNOME/GStreamer"
 
 #: ../gstreamer-properties/gstreamer-properties.c:377
 msgid "Failure instantiating main window"
@@ -1900,7 +1935,7 @@ msgstr ""
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.h:2
 #: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
-msgstr ""
+msgstr "Diuzer ar reizhiadoù Multimedia"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:1
 #: ../profiles/gnome-audio-profiles.glade2.h:1
@@ -1909,11 +1944,11 @@ msgstr "*"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:2
 msgid "<b>Default Input Plugin</b>"
-msgstr ""
+msgstr "<b>Enlugellad enankañ dre ziouer</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:3
 msgid "<b>Default Output Plugin</b>"
-msgstr ""
+msgstr "<b>Enlugellad ec'hankañ dre ziouer</b>"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:4
 msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
@@ -1925,7 +1960,7 @@ msgstr "Audio"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:6
 msgid "Click Ok to finish."
-msgstr "Pouezhit Ok evit echuiñ"
+msgstr "Klik Mat eo evit echuiñ."
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:8
 msgid "Pipe_line:"
@@ -1945,11 +1980,11 @@ msgstr "Video"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:12
 msgid "_Input:"
-msgstr ""
+msgstr "E_nankañ :"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:13
 msgid "_Output:"
-msgstr ""
+msgstr "E_c'hankañ :"
 
 #: ../gstreamer-properties/gstreamer-properties.glade.h:14
 msgid "_Pipeline:"
@@ -1979,13 +2014,14 @@ msgstr "Ur fazi e oa o tiskouez skoazell : %s"
 #: ../profiles/audio-profile-edit.c:366
 #, c-format
 msgid "Editing profile \"%s\""
-msgstr "O kemmañ aelad \"%s\""
+msgstr "O kemmañ an aelad \"%s\""
 
 #: ../profiles/audio-profile.c:103
 msgid "<no name>"
 msgstr "<anv ebet>"
 
-#: ../profiles/audio-profile.c:104 ../profiles/audio-profile.c:1002
+#: ../profiles/audio-profile.c:104
+#: ../profiles/audio-profile.c:1002
 msgid "<no description>"
 msgstr "<deskrivadur ebet>"
 
@@ -1996,9 +2032,7 @@ msgstr ""
 
 #: ../profiles/audio-profile.c:720
 #, c-format
-msgid ""
-"There was an error subscribing to notification of audio profile list "
-"changes. (%s)\n"
+msgid "There was an error subscribing to notification of audio profile list changes. (%s)\n"
 msgstr ""
 
 #: ../profiles/audio-profile.c:911
@@ -2008,7 +2042,7 @@ msgstr ""
 
 #: ../profiles/audio-profile.c:1013
 msgid "identity"
-msgstr ""
+msgstr "hennad"
 
 #: ../profiles/audio-profile.c:1024
 msgid "wav"
@@ -2016,7 +2050,7 @@ msgstr "wav"
 
 #: ../profiles/audio-profiles-edit.c:115
 msgid "_Edit"
-msgstr "Kemmañ"
+msgstr "K_emmañ"
 
 #: ../profiles/audio-profiles-edit.c:492
 msgid "You must select one or more profiles to delete."
@@ -2037,7 +2071,7 @@ msgstr "Dilemel an aelad \"%s\" ?"
 
 #: ../profiles/audio-profiles-edit.c:542
 msgid "Delete Profile"
-msgstr "Dilemel aelad"
+msgstr "Dilemel an aelad"
 
 #.
 #. dialog =
@@ -2053,36 +2087,34 @@ msgstr "Dilemel aelad"
 #. FIXME: GTK_DIALOG_DESTROY_WITH_PARENT,
 #: ../profiles/audio-profiles-edit.c:638
 msgid "Edit GNOME Audio Profiles"
-msgstr "Kemmañ aeladoù audio GNOME"
+msgstr "Kemmañ an aeladoù audio GNOME"
 
 #: ../profiles/audio-profiles-edit.c:691
 msgid "_Profiles:"
-msgstr "Aeladoù :"
+msgstr "_Aeladoù :"
 
 #: ../profiles/audio-profiles-edit.c:921
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr "Un aelad a zo \"%s\" e anv hoc'h eus dija"
+msgstr "Un aelad a zo \"%s\" e anv hoc'h eus endeo"
 
 #: ../profiles/audio-profiles-edit.c:946
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
-msgstr ""
+msgstr "Fazi GConf (FIXME) : %s\n"
 
 #: ../profiles/gmp-util.c:64
 #, c-format
-msgid ""
-"The file \"%s\" is missing. This indicates that the application is installed "
-"incorrectly, so the dialog can't be displayed."
+msgid "The file \"%s\" is missing. This indicates that the application is installed incorrectly, so the dialog can't be displayed."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.glade2.h:2
 msgid "Edit Audio Profile"
-msgstr "Kemmañ Aelad Audio"
+msgstr "Kemmañ an aelad Audio"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:3
 msgid "File _Extension:"
-msgstr ""
+msgstr "Askou_ezhadenn ar restr :"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:4
 msgid "New Profile"
@@ -2090,23 +2122,23 @@ msgstr "Aelad nevez"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:5
 msgid "Profile Description:"
-msgstr "Deskrivadur an aelad"
+msgstr "Deskrivadur an aelad :"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:6
 msgid "Profile _Description:"
-msgstr "Deskrivadur an aelad"
+msgstr "_Deskrivadur an aelad :"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:7
 msgid "Profile _name:"
-msgstr "Anv an aelad :"
+msgstr "_Anv an aelad :"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:8
 msgid "_Active?"
-msgstr "Oberiant ?"
+msgstr "Oberi_ant ?"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:9
 msgid "_Create"
-msgstr "Krouiñ"
+msgstr "_Krouiñ"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:10
 msgid "_GStreamer Pipeline:"
@@ -2114,21 +2146,18 @@ msgstr ""
 
 #: ../profiles/gnome-audio-profiles.glade2.h:11
 msgid "_Profile name:"
-msgstr "Anv an aelad :"
+msgstr "Anv an a_elad :"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
 msgstr "Un deskrivadur evit an aelad audio"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:2
-msgid ""
-"A description of the profile, containing more information and describing "
-"when to use this profile."
+msgid "A description of the profile, containing more information and describing when to use this profile."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid ""
-"A filename extension to be used when storing files encoded with this profile."
+msgid "A filename extension to be used when storing files encoded with this profile."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
@@ -2140,23 +2169,21 @@ msgid "A short name for the audio profile"
 msgstr "Un anv berr evit an aelad audio"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:6
-msgid ""
-"A short name for the audio profile, to be used in selections and uniquely "
-"identifying the profile."
+msgid "A short name for the audio profile, to be used in selections and uniquely identifying the profile."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
+#, fuzzy
 msgid "CD Quality, Lossless"
-msgstr ""
+msgstr "Perzhded CD, hep koll"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:8
+#, fuzzy
 msgid "CD Quality, Lossy"
-msgstr ""
+msgstr "Perzhded CD, gant koll"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:9
-msgid ""
-"List of audio recording profiles. The list contains strings naming "
-"subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
+msgid "List of audio recording profiles. The list contains strings naming subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:10
@@ -2172,36 +2199,30 @@ msgid "The partial GStreamer pipeline used"
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
-msgid ""
-"Used for converting to CD-quality audio, but with a lossless compression "
-"codec. Use this if you later want to edit the file or burn it to CD."
+msgid "Used for converting to CD-quality audio, but with a lossless compression codec. Use this if you later want to edit the file or burn it to CD."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:14
-msgid ""
-"Used for converting to CD-quality audio, but with a lossy compression codec. "
-"Use this for CD extraction and radio recordings."
+msgid "Used for converting to CD-quality audio, but with a lossy compression codec. Use this for CD extraction and radio recordings."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:15
-msgid ""
-"Used for converting to lossless voice-quality audio. Use this for recording "
-"and editing speech."
+msgid "Used for converting to lossless voice-quality audio. Use this for recording and editing speech."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:16
-msgid ""
-"Used for converting to lossy voice-quality audio. Use this for recording "
-"speech that doesn't need to be edited."
+msgid "Used for converting to lossy voice-quality audio. Use this for recording speech that doesn't need to be edited."
 msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:17
+#, fuzzy
 msgid "Voice, Lossless"
-msgstr ""
+msgstr "Voice, hep koll"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:18
+#, fuzzy
 msgid "Voice, Lossy"
-msgstr ""
+msgstr "Voice, gant koll"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
 msgid "Whether or not this profile is to be used"
@@ -2223,7 +2244,7 @@ msgstr ""
 
 #: ../vu-meter/main.c:229
 msgid "X-Position"
-msgstr ""
+msgstr "X-lec'hiadur"
 
 #: ../vu-meter/main.c:231
 msgid "Specify the Y position of the meter."
@@ -2231,15 +2252,15 @@ msgstr ""
 
 #: ../vu-meter/main.c:232
 msgid "Y-Position"
-msgstr ""
+msgstr "Y-lec'hiadur"
 
 #: ../vu-meter/main.c:234
 msgid "Connect to the esd server on this host."
-msgstr "En em gennaskañ ouzh ar servijer esd war an ostiz-mañ"
+msgstr "En em gennaskañ ouzh an dafariad esd war an ostiz-mañ"
 
 #: ../vu-meter/main.c:235
 msgid "ESD Server Host"
-msgstr "Ostiz servijer ESD"
+msgstr "Ostiz dafariad ESD"
 
 #: ../vu-meter/main.c:237
 msgid "Open a vertical version of the meter."
@@ -2277,3 +2298,4 @@ msgstr ""
 #: ../vu-meter/vumeter.desktop.in.h:2
 msgid "Volume Monitor"
 msgstr ""
+
