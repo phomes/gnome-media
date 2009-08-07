@@ -148,7 +148,7 @@ custom_theme_dir_is_empty (void)
         gboolean         is_empty;
         GFileEnumerator *enumerator;
         GFileInfo       *info;
-        GError          *error;
+        GError          *error = NULL;
 
         dir = custom_theme_dir_path (NULL);
         file = g_file_new_for_path (dir);
