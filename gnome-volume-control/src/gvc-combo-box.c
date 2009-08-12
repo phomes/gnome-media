@@ -104,7 +104,7 @@ gvc_combo_box_set_property (GObject       *object,
 
         switch (prop_id) {
         case PROP_LABEL:
-                gtk_label_set_text (GTK_LABEL (self->priv->label), g_value_get_string (value));
+                gtk_label_set_text_with_mnemonic (GTK_LABEL (self->priv->label), g_value_get_string (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -145,7 +145,7 @@ gvc_combo_box_class_init (GvcComboBoxClass *klass)
                                          g_param_spec_string ("label",
                                                               "label",
                                                               "The combo box labale",
-                                                              _("Profile:"),
+                                                              _("_Profile:"),
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         signals [CHANGED] =
                 g_signal_new ("changed",

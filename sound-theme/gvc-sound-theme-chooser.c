@@ -1072,7 +1072,9 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         GtkWidget   *box;
         GtkWidget   *label;
         GtkWidget   *scrolled_window;
+        GtkWidget   *alignment;
         GConfClient *client;
+        char        *str;
 
         chooser->priv = GVC_SOUND_THEME_CHOOSER_GET_PRIVATE (chooser);
 
@@ -1080,20 +1082,30 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         gtk_box_pack_start (GTK_BOX (chooser),
                             chooser->priv->theme_box, FALSE, FALSE, 0);
 
-        label = gtk_label_new (_("Sound Theme:"));
+        label = gtk_label_new_with_mnemonic (_("Sound _theme:"));
         gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), label, FALSE, FALSE, 6);
         chooser->priv->combo_box = gtk_combo_box_new ();
         gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), chooser->priv->combo_box, FALSE, FALSE, 0);
-
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), chooser->priv->combo_box);
 
         client = gconf_client_get_default ();
 
-        chooser->priv->selection_box = box = gtk_frame_new (_("Choose an alert sound:"));
+        str = g_strdup_printf ("<b>%s</b>", _("C_hoose an alert sound:"));
+        chooser->priv->selection_box = box = gtk_frame_new (str);
+        g_free (str);
+        label = gtk_frame_get_label_widget (GTK_FRAME (box));
+        gtk_label_set_use_underline (GTK_LABEL (label), TRUE);
+        gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
 
         gtk_box_pack_start (GTK_BOX (chooser), box, TRUE, TRUE, 6);
 
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+
         chooser->priv->treeview = create_alert_treeview (chooser);
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), chooser->priv->treeview);
 
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         setup_list_size_constraint (scrolled_window, chooser->priv->treeview);
@@ -1104,9 +1116,9 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                              GTK_SHADOW_IN);
         gtk_container_add (GTK_CONTAINER (scrolled_window), chooser->priv->treeview);
-        gtk_container_add (GTK_CONTAINER (box), scrolled_window);
+        gtk_container_add (GTK_CONTAINER (alignment), scrolled_window);
 
-        chooser->priv->click_feedback_button = gtk_check_button_new_with_mnemonic (_("Enable window and button sounds"));
+        chooser->priv->click_feedback_button = gtk_check_button_new_with_mnemonic (_("Enable _window and button sounds"));
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chooser->priv->click_feedback_button),
                                       gconf_client_get_bool (client, INPUT_SOUNDS_KEY, NULL));
         gtk_box_pack_start (GTK_BOX (chooser),

@@ -265,7 +265,7 @@ update_output_settings (GvcMixerDialog *dialog)
                 GvcMixerStreamPort *port;
                 port = gvc_mixer_stream_get_port (stream);
 
-                dialog->priv->output_port_combo = gvc_combo_box_new (_("Connector:"));
+                dialog->priv->output_port_combo = gvc_combo_box_new (_("Co_nnector:"));
                 gvc_combo_box_set_ports (GVC_COMBO_BOX (dialog->priv->output_port_combo),
                                          ports);
                 gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->output_port_combo), port->port);
@@ -864,7 +864,7 @@ add_stream (GvcMixerDialog *dialog,
                         GvcMixerStreamPort *port;
                         port = gvc_mixer_stream_get_port (stream);
 
-                        dialog->priv->input_port_combo = gvc_combo_box_new (_("Connector:"));
+                        dialog->priv->input_port_combo = gvc_combo_box_new (_("Co_nnector:"));
                         gvc_combo_box_set_ports (GVC_COMBO_BOX (dialog->priv->input_port_combo),
                                                  ports);
                         gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->input_port_combo), port->port);
@@ -888,9 +888,23 @@ add_stream (GvcMixerDialog *dialog,
                    && !gvc_mixer_stream_is_virtual (stream)
                    && g_strcmp0 (id, "org.gnome.VolumeControl") != 0
                    && g_strcmp0 (id, "org.PulseAudio.pavucontrol") != 0) {
+                const char *name;
+
                 bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);
-                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar),
-                                          gvc_mixer_stream_get_name (stream));
+
+                name = gvc_mixer_stream_get_name (stream);
+                if (name == NULL || strchr (name, '_') == NULL) {
+                        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), name);
+                } else {
+                        char **tokens, *escaped;
+
+                        tokens = g_strsplit (name, "_", -1); 
+                        escaped = g_strjoinv ("__", tokens);
+                        g_strfreev (tokens);
+                        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), escaped);
+                        g_free (escaped);
+                }
+
                 gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
                                                gvc_mixer_stream_get_icon_name (stream));
 
@@ -1360,7 +1374,7 @@ on_card_selection_changed (GtkTreeSelection *selection,
 
         current_profile = gvc_mixer_card_get_profile (card);
         profiles = gvc_mixer_card_get_profiles (card);
-        dialog->priv->hw_profile_combo = gvc_combo_box_new (_("Profile:"));
+        dialog->priv->hw_profile_combo = gvc_combo_box_new (_("_Profile:"));
         gvc_combo_box_set_profiles (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), profiles);
         gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), current_profile->profile);
 
@@ -1512,7 +1526,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                             FALSE, FALSE, 12);
         self->priv->output_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->output_bar),
-                                  _("Output Volume: "));
+                                  _("_Output volume: "));
         gtk_widget_set_sensitive (self->priv->output_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->output_stream_box),
                             self->priv->output_bar, TRUE, TRUE, 12);
@@ -1549,7 +1563,7 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self->priv->effects_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
-                                  _("Alert Volume: "));
+                                  _("_Alert volume: "));
         gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
                             self->priv->effects_bar, FALSE, FALSE, 12);
@@ -1567,9 +1581,10 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->hw_box,
                                   label);
 
-        box = gtk_frame_new (_("Choose a device to configure"));
+        box = gtk_frame_new (_("C_hoose a device to configure:"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
         _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_label_set_use_underline (GTK_LABEL (label), TRUE);
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
         gtk_box_pack_start (GTK_BOX (self->priv->hw_box), box, TRUE, TRUE, 0);
 
@@ -1579,6 +1594,8 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self->priv->hw_treeview = create_cards_treeview (self,
                                                          G_CALLBACK (on_card_selection_changed));
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), self->priv->hw_treeview);
+
         box = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
                                         GTK_POLICY_NEVER,
@@ -1609,7 +1626,7 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self->priv->input_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->input_bar),
-                                  _("Input Volume: "));
+                                  _("_Input volume: "));
         gvc_channel_bar_set_low_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                            "audio-input-microphone-low");
         gvc_channel_bar_set_high_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
@@ -1656,9 +1673,10 @@ gvc_mixer_dialog_constructor (GType                  type,
                             self->priv->input_settings_box,
                             FALSE, FALSE, 0);
 
-        box = gtk_frame_new (_("Choose a device for sound input"));
+        box = gtk_frame_new (_("C_hoose a device for sound input:"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
         _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_label_set_use_underline (GTK_LABEL (label), TRUE);
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
         gtk_box_pack_start (GTK_BOX (self->priv->input_box), box, TRUE, TRUE, 0);
 
@@ -1668,6 +1686,8 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self->priv->input_treeview = create_stream_treeview (self,
                                                              G_CALLBACK (on_input_radio_toggled));
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), self->priv->input_treeview);
+
         box = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
                                         GTK_POLICY_NEVER,
@@ -1688,9 +1708,10 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->output_box,
                                   label);
 
-        box = gtk_frame_new (_("Choose a device for sound output"));
+        box = gtk_frame_new (_("C_hoose a device for sound output:"));
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
         _gtk_label_make_bold (GTK_LABEL (label));
+        gtk_label_set_use_underline (GTK_LABEL (label), TRUE);
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
         gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 0);
 
@@ -1700,6 +1721,8 @@ gvc_mixer_dialog_constructor (GType                  type,
 
         self->priv->output_treeview = create_stream_treeview (self,
                                                               G_CALLBACK (on_output_radio_toggled));
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), self->priv->output_treeview);
+
         box = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (box),
                                         GTK_POLICY_NEVER,

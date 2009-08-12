@@ -198,12 +198,14 @@ update_image (GvcChannelBar *bar)
 static void
 update_label (GvcChannelBar *bar)
 {
-        gtk_label_set_text (GTK_LABEL (bar->priv->label),
-                            bar->priv->name);
-
         if (bar->priv->name != NULL) {
+                gtk_label_set_text_with_mnemonic (GTK_LABEL (bar->priv->label),
+                                                  bar->priv->name);
+                gtk_label_set_mnemonic_widget (GTK_LABEL (bar->priv->label),
+                                               bar->priv->scale);
                 gtk_widget_show (bar->priv->label);
         } else {
+                gtk_label_set_text (GTK_LABEL (bar->priv->label), NULL);
                 gtk_widget_hide (bar->priv->label);
         }
 }
@@ -611,7 +613,7 @@ gvc_channel_bar_set_base_volume (GvcChannelBar *bar,
         if (base_volume == 0) {
                 bar->priv->base_volume = ADJUSTMENT_MAX_NORMAL;
                 return;
-	}
+        }
 
         /* Note that you need to call _is_amplified() afterwards to update the marks */
         bar->priv->base_volume = base_volume;
