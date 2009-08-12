@@ -12,14 +12,16 @@
 # Djavan Fagundes <dnoway@gmail.com>, 2008.
 # Jonh Wendell <jwendell@gnome.org>, 2009.
 # André Gondim <andregondim@ubuntu.com>, 2009.
+# Henrique P Machado <zehrique@gmail.com>, 2009.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2009-07-19 19:35+0000\n"
-"PO-Revision-Date: 2009-05-05 23:13-0300\n"
-"Last-Translator: André Gondim <andregondim@ubuntu.com>\n"
+"POT-Creation-Date: 2009-08-07 15:41+0000\n"
+"PO-Revision-Date: 2009-08-08 14:59-0300\n"
+"Last-Translator: Henrique P Machado <zehrique@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,1309 +29,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Endereço do servidor a ser contatado em requisições de CD"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Informação a enviar para o servidor"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "Porta"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Nome do servidor"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Tipo do servidor"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "O nome do host que será enviado com todas as requisições"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "A porta em que o servidor está rodando o banco de dados"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"O tipo do servidor para obter informações de CD. Valores possíveis são 0 "
-"(rodízio de servidor FreeDB), 1 (outro servidor freedb) e 2 (outro servidor)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "O nome do usuário"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "O nome do usuário que será enviado com todas as requisições"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Esta chave especifica qual informação de usuário será enviada ao servidor "
-"para obter informações do CD. Valores possíveis são 0 (nenhuma informação), "
-"1 (informação real) e 3 (outra informação)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Nome da sua máquina"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:133
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Ocorreu um erro ao exibir a ajuda: \n"
-"%s"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr "_Não enviar informações"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr "Enviar _informações reais"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr "Enviar _outras informações:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "_Nome:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "Nome da _máquina:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "Informações de login"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr "_Rodízio de servidores FreeDB"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr "Outro servidor _FreeDB:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "Servidor"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "Local"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr "At_ualizar lista de servidores"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "Outro _servidor:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "Nome da má_quina:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "_Porta:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr "Preferências do banco de dados de CD"
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "Desconhecido / desconhecido"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1014
-#: ../grecord/src/gsr-window.c:1024 ../grecord/src/gsr-window.c:1040
-#: ../grecord/src/gsr-window.c:1049 ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:303
-msgid "Unknown"
-msgstr "Desconhecido"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr "Várias correspondências..."
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-"Várias ocorrências foram localizadas no banco de dados.\n"
-"Abaixo há uma lista de incidências possíveis, escolha a melhor"
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr "Categoria"
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "ID do disco"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "Artista e título"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr "Faixa desconhecida"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr "Servidor de banco de dados de CD"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr "Modifique suas preferências de servidor de banco de dados de CD"
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr "Blues"
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr "Rock clássico"
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr "Country"
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "Dance"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "Disco"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr "Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr "Grunge"
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr "Hip-Hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr "Jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr "Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr "New age"
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr "Oldies"
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr "Outro"
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr "Pop"
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr "R&B"
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr "Rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr "Reggae"
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr "Rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr "Techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr "Industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr "Alternativo"
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ska"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr "Death metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr "Pranks"
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "Trilha sonora"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr "Euro-Techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr "Ambiente"
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr "Trip-Hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr "Vocal"
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr "Jazz+Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr "Fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr "Trance"
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr "Clássico"
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr "Instrumental"
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr "Acid"
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr "House"
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr "Jogo"
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr "Clipe de som"
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr "Gospel"
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "Ruído"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr "Alt"
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr "Graves"
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr "Soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr "Punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr "Espacial"
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr "Meditativo"
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr "Pop instrumental"
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr "Rock instrumental"
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr "Étnico"
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr "Gótico"
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr "Darkwave"
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr "Tecno-Industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr "Eletrônico"
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr "Pop-Folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr "Eurodance"
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr "Dream"
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr "Rock sulista"
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr "Comédia"
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr "Cult"
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr "Gangsta rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr "Top 40"
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr "Rap cristão"
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr "Pop/Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr "Jungle"
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr "Indígena americano"
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr "Cabaré"
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr "New wave"
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr "Psicodélico"
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr "Rave"
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr "Showtunes"
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr "Trailer"
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr "Lo-Fi"
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr "Tribal"
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr "Acid punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr "Acid jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "Polca"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr "Retrô"
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr "Musical"
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr "Rock & roll"
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr "Hard rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr "Folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr "Folk/rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr "National folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr "Swing"
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr "Fast-fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr "Bebop"
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "Latino"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr "Revival"
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "Celta"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr "Bluegrass"
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr "Avantgarde"
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr "Rock gótico"
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr "Rock progressivo"
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr "Rock psicodélico"
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr "Rock sinfônico"
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr "Rock lento"
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr "Big band"
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr "Coral"
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr "Easy listening"
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "Acústico"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "Humor"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "Discurso"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr "Chanson"
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "Ópera"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr "Música de câmara"
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr "Sonata"
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "Sinfonia"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr "Booty bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr "Primus"
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr "Porn groove"
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "Sátira"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr "Slow jam"
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr "Club"
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr "Tango"
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "Samba"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "Folclórico"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr "Balada"
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr "Power ballad"
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr "Rhythmic soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr "Freestyle"
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr "Dueto"
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr "Punk rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr "Solo de bateria"
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr "A cappella"
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr "Euro-House"
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr "Dance hall"
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "Goa"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr "Drum & bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr "Club-house"
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr "Hardcore"
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "Terror"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr "Indie"
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr "Pop britânico"
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr "Negerpunk"
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr "Polsk punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr "Beat"
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr "Gangsta rap cristão"
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr "Heavy metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr "Black metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr "Crossover"
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr "Cristão contemporâneo"
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr "Rock cristão"
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr "Merengue"
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr "Salsa"
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr "Thrash metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "Anime"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr "JPop"
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr "Synthpop"
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr "Nu-Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr "Art rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "Artista desconhecido"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "Álbum desconhecido"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
-#, c-format
-msgid "Editing Disc ID: %s"
-msgstr "Editando ID do disco: %s"
-
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
-msgstr "Ocultar opções de disco avançadas"
-
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr "Mostrar opções de disco avançadas"
-
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr "Ocultar opções de faixa avançadas"
-
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr "Mostrar opções de faixa avançadas"
-
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr "Editando ID do disco: "
-
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "_Artista:"
-
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "_Título do disco"
-
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr "Comentários sobre o _disco:"
-
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr "_Gênero:"
-
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "_Ano:"
-
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "Título"
-
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr "Duração"
-
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr "Dados _extras sobre a faixa:"
-
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "Editor de faixas CDDB"
-
-#: ../cddb-slave2/cddb-track-editor.c:1072
-#, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-"Não foi possível criar o gerador de CDDBTrackEditor.\n"
-"Este problema pode ser ocasionado por uma outra cópia do cddb-track-editor "
-"já em execução.\n"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr "Mostrador de CD"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Exibir informações sobre o álbum que está sendo reproduzido, o artista e o "
-"tempo decorrido"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr "Linha do tempo"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr "Linha para exibição do tempo decorrido da faixa atual"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr "Linha de info"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr "Linha para exibição de informações"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr "Linha do artista"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr "Linha para exibição do nome do artista"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr "Linha do álbum"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr "Linha para exibição do nome do álbum"
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "Reprodução"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "Pausar"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"Reproduzindo %s - %s\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"Reproduzindo\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "Pausado"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr "Reprodutor de CD"
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "Parado"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "Erro no disco"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "Sem disco"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "Disco vazio"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr "Unidade aberta"
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "CD de dados"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "Nenhum CD-ROM"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr "Erro na unidade"
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr "Um reprodutor de CDs para o GNOME"
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr "O conteúdo no CDDB foi alterado"
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr "Escolher \"Sim\" excluirá o conteúdo anterior no CDDB."
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr "Você deseja continuar?"
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "Volume %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr "Você não tem permissões para acessar %s."
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"%s não parece apontar para um dispositivo de CD válido. Causas possíveis:\n"
-"a) Suporte a CD não está disponível na sua máquina\n"
-"b) Você não tem as permissões corretas para acessar a unidade de CD\n"
-"c) %s não é a unidade de CD.\n"
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - Desconhecido"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "Re_produzir / Pausar"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "_Parar"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "_Anterior"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "Pró_xima"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "Abrir band_eja do disco"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2151
-msgid "_Help"
-msgstr "Aj_uda"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "_Sobre"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "Sai_r"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-"Não há um dispositivo de CD definido. Isso significa que o reprodutor de CD\n"
-"não poderá ser executado. Clique em \"Definir dispositivo\" para ir\n"
-"para um diálogo onde você poderá definir o dispositivo \n"
-"ou clique em \"Sair\" para sair do reprodutor de CD."
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "Definir dispositivo"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "Nenhum dispositivo de CD"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-"Não é possível executar o reprodutor de CD corretamente.\n"
-"\n"
-"Clique em \"Detalhes\" para obter mais informações sobre as razões desta "
-"falha.\n"
-"\n"
-"Clique em \"Definir dispositivo\" para abrir um diálogo no qual você poderá "
-"definir o dispositivo ou pressione \"Sair\" para sair do reprodutor de CD"
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "_Detalhes"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "_Definir dispositivo"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr "Dispositivo de CD inválido"
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "Posição"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "Abrir preferências"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "Lista de faixas"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "Abrir editor de faixas"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "Editor de faixas"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "Reproduzir / pausar"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "Parar"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr "Faixa anterior"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "Anterior"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr "Retroceder"
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "Adiantar"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr "Próxima faixa"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "Ejetar CD"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "Ejetar"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "Dispositivo de CD a ser usado"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr ""
-"Iniciar somente se já não houver um aplicativo reprodutor de CD executando"
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr "Reproduzir o CD ao iniciar"
-
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr "Iniciar como ícone na área de notificação"
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr "Não foi possível criar o reprodutor"
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr "Reproduza CDs de áudio"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr "Volume do reprodutor de CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr "Tema do reprodutor de CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr "Caminho para o dispositivo"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr "Mostrar o tempo restante?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr "Ejetar o CD quando o reprodutor de CD sair?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr "Como o tempo deve ser exibido quando o CD é reproduzido?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr "Reproduzir música quando o Reprodutor de CD iniciar?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "O CD deve ser ejetado quando o Reprodutor de CD sair?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"O caminho para a unidade de CD que o Reprodutor de CD deve usar para "
-"reproduzir CDs"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr "Que tema o Reprodutor de CD deve usar para sua aparência"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr "Que volume o Reprodutor de CD deve usar quando é iniciado?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Quando o Reprodutor de CD é iniciado, deve começar reproduzindo o CD?"
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr "Falhou ao ejetar o CD: %s"
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-"%s\n"
-"Isto significa que o Reprodutor de CD não poderá ser executado."
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr "Erro ao definir o dispositivo"
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "Preferências do reprodutor de CD"
-
-#: ../gnome-cd/preferences.c:565
-msgid "_Device:"
-msgstr "_Dispositivo:"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr "Comportamento"
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr "Começar a _reprodução quando o Reprodutor de CD iniciar"
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr "Começa a reproduzir quando o Reprodutor de CD iniciar"
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr "Tentar _ejetar o CD quando o Reprodutor de CD sair"
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr "Tenta ejetar o CD quando o Reprodutor de CD sair"
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "Temas"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr "_Selecione um tema:"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -1343,10 +42,8 @@ msgstr "Controle de volume"
 
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-#, fuzzy
-#| msgid "Change sound volume and associate sounds with events"
 msgid "Change sound volume and sound events"
-msgstr "Alterar volume sonoro e sons associados a eventos"
+msgstr "Alterar volume do áudio e sons de eventos"
 
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
 msgid "Sound"
@@ -1379,12 +76,12 @@ msgid " - GNOME Volume Control"
 msgstr " - Controle de volume do GNOME"
 
 #: ../gnome-volume-control/src/gvc-applet.c:271
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1686
 msgid "Output"
 msgstr "Saída"
 
 #: ../gnome-volume-control/src/gvc-applet.c:275
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1192
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1605
 msgid "Input"
 msgstr "Entrada"
 
@@ -1401,115 +98,157 @@ msgstr "Direita"
 #: ../gnome-volume-control/src/gvc-balance-bar.c:112
 msgctxt "balance"
 msgid "Front"
-msgstr ""
+msgstr "Frontal"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:113
-#, fuzzy
-#| msgid "Retro"
 msgctxt "balance"
 msgid "Rear"
-msgstr "Retrô"
+msgstr "Traseiro"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:116
 msgctxt "balance"
 msgid "Minimum"
-msgstr ""
+msgstr "Mínimo"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Maximum"
-msgstr ""
+msgstr "Máximo"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:290
 msgid "_Balance:"
 msgstr "_Balanço:"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:293
-#, fuzzy
-#| msgid "_Name:"
 msgid "_Fade:"
-msgstr "_Nome:"
+msgstr "_Desaparecimento:"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:296
 msgid "_Subwoofer:"
-msgstr ""
+msgstr "_Subwoofer:"
 
 #: ../gnome-volume-control/src/gvc-channel-bar.c:583
 msgctxt "volume"
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: ../gnome-volume-control/src/gvc-channel-bar.c:587
 msgctxt "volume"
 msgid "Unamplified"
-msgstr ""
+msgstr "Sem amplificação"
 
 #: ../gnome-volume-control/src/gvc-channel-bar.c:843
 msgid "Mute"
 msgstr "Mudo"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1065
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1363
+msgid "Profile:"
+msgstr "Perfis:"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:985
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Desabilitado"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:992
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u saída"
+msgstr[1] "%u saídas"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1002
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u entrada"
+msgstr[1] "%u entradas"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1298
 msgid "System Sounds"
 msgstr "Sons do sistema"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1750
 msgid "GNOME Volume Control"
 msgstr "Controle de volume do GNOME"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:403
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:867
+msgid "Connector:"
+msgstr "Conector:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:465
 msgid "Peak detect"
 msgstr "Detectar pico"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1066
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1292
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1445
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Nome"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1071
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1297
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1142
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
 msgid "Output Volume: "
 msgstr "Volume de saída:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1172
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1545
 msgid "Sound Effects"
 msgstr "Efeitos de som"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1179
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1552
 msgid "Alert Volume: "
 msgstr "Volume de alerta: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1199
-msgid "Input Volume: "
-msgstr "Volume de entrada:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1565
+msgid "Hardware"
+msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1219
-msgid "Input level:"
-msgstr "Nível de entrada:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1570
+msgid "Choose a device to configure"
+msgstr "Escolha um dispositivo para configurar"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1241
-msgid "Choose a device for sound input"
-msgstr "Escolha um dispositivo para entrada de som"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1273
-msgid "Choose a device for sound output"
-msgstr "Escolha um dispositivo para saída de som"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1297
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1594
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1715
 msgid "Settings for the selected device:"
 msgstr "Configurações para o dispositivo selecionado:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1308
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1612
+msgid "Input Volume: "
+msgstr "Volume de entrada: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1632
+msgid "Input level:"
+msgstr "Nível de entrada:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1659
+msgid "Choose a device for sound input"
+msgstr "Escolha um dispositivo para entrada de som"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1691
+msgid "Choose a device for sound output"
+msgstr "Escolha um dispositivo para saída de som"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1726
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1312
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1730
 msgid "No application is currently playing or recording audio."
 msgstr "Nenhum aplicativo está reproduzindo ou gravando áudio no momento."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1415
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1854
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -1668,26 +407,20 @@ msgid "There was an error starting %s: %s"
 msgstr "Erro ao iniciar %s: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, fuzzy
-#| msgid "Save the changes to file \"%s\" before closing?"
 msgid "Save recording before closing?"
-msgstr "Deseja salvar as alterações no arquivo \"%s\" antes de fechar?"
+msgstr "Deseja salvar gravação antes de fechar?"
 
 #: ../grecord/src/gsr-window.c:865
-#, fuzzy
-#| msgid "Recording"
 msgid "Save recording?"
-msgstr "Gravando"
+msgstr "Salvar gravação?"
 
 #: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "Fechar _sem salvar"
 
 #: ../grecord/src/gsr-window.c:870
-#, fuzzy
-#| msgid "Close _without Saving"
 msgid "Continue _without Saving"
-msgstr "Fechar _sem salvar"
+msgstr "Continuar s_em salvar"
 
 #: ../grecord/src/gsr-window.c:878
 msgid "Question"
@@ -1708,6 +441,14 @@ msgstr[1] "%s (%llu bytes)"
 #: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
+
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
+msgid "Unknown"
+msgstr "Desconhecido"
 
 #: ../grecord/src/gsr-window.c:1026
 #, c-format
@@ -1889,6 +630,11 @@ msgstr "Reproduzir som"
 #: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Parar som"
+
+#. Help menu
+#: ../grecord/src/gsr-window.c:2151
+msgid "_Help"
+msgstr "Aj_uda"
 
 #: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
@@ -2129,7 +875,8 @@ msgstr ""
 "Guilherme de S. Pastore <gpastore@gnome.org>\n"
 "Og Maciel <ogmaciel@ubuntu.com>\n"
 "Djavan Fagundes <dnoway@gmail.com>\n"
-"André Gondim <andregondim@ubuntu.com>"
+"André Gondim <andregondim@ubuntu.com>\n"
+"Henrique P Machado <zehrique@gmail.com>"
 
 #. change window title
 #: ../gst-mixer/src/window.c:173
@@ -2167,11 +914,10 @@ msgid "Failure instantiating main window"
 msgstr "Falha ao criar a janela principal"
 
 #: ../gstreamer-properties/gstreamer-properties.c:680
-#, fuzzy
-#| msgid "Failed to load glade file; please check your installation."
 msgid "Failed to load UI file; please check your installation."
 msgstr ""
-"Falha ao carregar o arquivo glade. Por favor, verifique sua instalação."
+"Falha ao carregar o arquivo de interface com o usuário. Por favor, verifique "
+"sua instalação."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -2700,11 +1446,6 @@ msgstr "Selecione um arquivo de áudio"
 msgid "Sound files"
 msgstr "Arquivos de áudio"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Desabilitado"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "Personalizar..."
@@ -2733,74 +1474,1017 @@ msgstr "Batida no copo"
 msgid "Sonar"
 msgstr "Sonar"
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
-msgstr ""
-"Não foi possível conectar ao servidor de som.\n"
-"Por favor execute \"esd\" na linha de comando."
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Endereço do servidor a ser contatado em requisições de CD"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the X position of the meter."
-msgstr "Especifique a posição X do medidor."
+#~ msgid "Information to send to server"
+#~ msgstr "Informação a enviar para o servidor"
 
-#: ../vu-meter/main.c:232
-msgid "X"
-msgstr "X"
+#~ msgid "Port"
+#~ msgstr "Porta"
 
-#: ../vu-meter/main.c:234
-msgid "Specify the Y position of the meter."
-msgstr "Especifique a posição Y do medidor."
+#~ msgid "Server name"
+#~ msgstr "Nome do servidor"
 
-#: ../vu-meter/main.c:235
-msgid "Y"
-msgstr "Y"
+#~ msgid "Server type"
+#~ msgstr "Tipo do servidor"
 
-#: ../vu-meter/main.c:237
-msgid "Connect to the esd server on this host."
-msgstr "Conectar ao servidor esd nesta máquina."
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "O nome do host que será enviado com todas as requisições"
 
-#: ../vu-meter/main.c:238
-msgid "HOST"
-msgstr "HOST"
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "A porta em que o servidor está rodando o banco de dados"
 
-#: ../vu-meter/main.c:240
-msgid "Open a vertical version of the meter."
-msgstr "Abrir uma versão vertical do medidor."
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "O tipo do servidor para obter informações de CD. Valores possíveis são 0 "
+#~ "(rodízio de servidor FreeDB), 1 (outro servidor freedb) e 2 (outro "
+#~ "servidor)."
 
-#: ../vu-meter/main.c:242
-msgid "Act as recording level meter."
-msgstr "Agir como um medidor de nível de gravação."
+#~ msgid "The username"
+#~ msgstr "O nome do usuário"
 
-#: ../vu-meter/main.c:258
-#, c-format
-msgid "Host is %s\n"
-msgstr "A máquina é %s\n"
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "O nome do usuário que será enviado com todas as requisições"
 
-#: ../vu-meter/main.c:275
-msgid "Recording level"
-msgstr "Nível de gravação"
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Esta chave especifica qual informação de usuário será enviada ao servidor "
+#~ "para obter informações do CD. Valores possíveis são 0 (nenhuma "
+#~ "informação), 1 (informação real) e 3 (outra informação)."
 
-#: ../vu-meter/main.c:275
-msgid "Volume Meter"
-msgstr "Medidor de volume"
+#~ msgid "Your hostname"
+#~ msgstr "Nome da sua máquina"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Monitore o volume de entrada da gravação"
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ocorreu um erro ao exibir a ajuda: \n"
+#~ "%s"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
-msgstr "Monitor de nível de gravação"
+#~ msgid "Sen_d no information"
+#~ msgstr "_Não enviar informações"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Monitorar o volume de saída de som"
+#~ msgid "Send real _information"
+#~ msgstr "Enviar _informações reais"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "Monitor de volume"
+#~ msgid "Send _other information:"
+#~ msgstr "Enviar _outras informações:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Nome:"
+
+#~ msgid "Hostna_me:"
+#~ msgstr "Nome da _máquina:"
+
+#~ msgid "Login Information"
+#~ msgstr "Informações de login"
+
+#~ msgid "FreeDB _round robin server"
+#~ msgstr "_Rodízio de servidores FreeDB"
+
+#~ msgid "Other _FreeDB server:"
+#~ msgstr "Outro servidor _FreeDB:"
+
+#~ msgid "Server"
+#~ msgstr "Servidor"
+
+#~ msgid "Location"
+#~ msgstr "Local"
+
+#~ msgid "_Update Server List"
+#~ msgstr "At_ualizar lista de servidores"
+
+#~ msgid "Other _server:"
+#~ msgstr "Outro _servidor:"
+
+#~ msgid "Hos_tname:"
+#~ msgstr "Nome da má_quina:"
+
+#~ msgid "_Port:"
+#~ msgstr "_Porta:"
+
+#~ msgid "CD Database Preferences"
+#~ msgstr "Preferências do banco de dados de CD"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Desconhecido / desconhecido"
+
+#~ msgid "Multiple matches..."
+#~ msgstr "Várias correspondências..."
+
+#~ msgid ""
+#~ "There were multiple matches found in the database.\n"
+#~ "Below is a list of possible matches, please choose the best match"
+#~ msgstr ""
+#~ "Várias ocorrências foram localizadas no banco de dados.\n"
+#~ "Abaixo há uma lista de incidências possíveis, escolha a melhor"
+
+#~ msgid "Category"
+#~ msgstr "Categoria"
+
+#~ msgid "Disc ID"
+#~ msgstr "ID do disco"
+
+#~ msgid "Artist and Title"
+#~ msgstr "Artista e título"
+
+#~ msgid "Unknown track"
+#~ msgstr "Faixa desconhecida"
+
+#~ msgid "CD Database Server"
+#~ msgstr "Servidor de banco de dados de CD"
+
+#~ msgid "Modify your CD database server preferences"
+#~ msgstr "Modifique suas preferências de servidor de banco de dados de CD"
+
+#~ msgid "Blues"
+#~ msgstr "Blues"
+
+#~ msgid "Classical Rock"
+#~ msgstr "Rock clássico"
+
+#~ msgid "Country"
+#~ msgstr "Country"
+
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Disco"
+#~ msgstr "Disco"
+
+#~ msgid "Funk"
+#~ msgstr "Funk"
+
+#~ msgid "Grunge"
+#~ msgstr "Grunge"
+
+#~ msgid "Hip-Hop"
+#~ msgstr "Hip-Hop"
+
+#~ msgid "Jazz"
+#~ msgstr "Jazz"
+
+#~ msgid "Metal"
+#~ msgstr "Metal"
+
+#~ msgid "New Age"
+#~ msgstr "New age"
+
+#~ msgid "Oldies"
+#~ msgstr "Oldies"
+
+#~ msgid "Other"
+#~ msgstr "Outro"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "R&B"
+#~ msgstr "R&B"
+
+#~ msgid "Rap"
+#~ msgstr "Rap"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Techno"
+#~ msgstr "Techno"
+
+#~ msgid "Industrial"
+#~ msgstr "Industrial"
+
+#~ msgid "Alternative"
+#~ msgstr "Alternativo"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Death Metal"
+#~ msgstr "Death metal"
+
+#~ msgid "Pranks"
+#~ msgstr "Pranks"
+
+#~ msgid "Soundtrack"
+#~ msgstr "Trilha sonora"
+
+#~ msgid "Euro-Techno"
+#~ msgstr "Euro-Techno"
+
+#~ msgid "Ambient"
+#~ msgstr "Ambiente"
+
+#~ msgid "Trip-Hop"
+#~ msgstr "Trip-Hop"
+
+#~ msgid "Vocal"
+#~ msgstr "Vocal"
+
+#~ msgid "Jazz+Funk"
+#~ msgstr "Jazz+Funk"
+
+#~ msgid "Fusion"
+#~ msgstr "Fusion"
+
+#~ msgid "Trance"
+#~ msgstr "Trance"
+
+#~ msgid "Classical"
+#~ msgstr "Clássico"
+
+#~ msgid "Instrumental"
+#~ msgstr "Instrumental"
+
+#~ msgid "Acid"
+#~ msgstr "Acid"
+
+#~ msgid "House"
+#~ msgstr "House"
+
+#~ msgid "Game"
+#~ msgstr "Jogo"
+
+#~ msgid "Sound Clip"
+#~ msgstr "Clipe de som"
+
+#~ msgid "Gospel"
+#~ msgstr "Gospel"
+
+#~ msgid "Noise"
+#~ msgstr "Ruído"
+
+#~ msgid "Alt"
+#~ msgstr "Alt"
+
+#~ msgid "Bass"
+#~ msgstr "Graves"
+
+#~ msgid "Soul"
+#~ msgstr "Soul"
+
+#~ msgid "Punk"
+#~ msgstr "Punk"
+
+#~ msgid "Space"
+#~ msgstr "Espacial"
+
+#~ msgid "Meditative"
+#~ msgstr "Meditativo"
+
+#~ msgid "Instrumental Pop"
+#~ msgstr "Pop instrumental"
+
+#~ msgid "Instrumental Rock"
+#~ msgstr "Rock instrumental"
+
+#~ msgid "Ethnic"
+#~ msgstr "Étnico"
+
+#~ msgid "Gothic"
+#~ msgstr "Gótico"
+
+#~ msgid "Darkwave"
+#~ msgstr "Darkwave"
+
+#~ msgid "Techno-Industrial"
+#~ msgstr "Tecno-Industrial"
+
+#~ msgid "Electronic"
+#~ msgstr "Eletrônico"
+
+#~ msgid "Pop-Folk"
+#~ msgstr "Pop-Folk"
+
+#~ msgid "Eurodance"
+#~ msgstr "Eurodance"
+
+#~ msgid "Dream"
+#~ msgstr "Dream"
+
+#~ msgid "Southern Rock"
+#~ msgstr "Rock sulista"
+
+#~ msgid "Comedy"
+#~ msgstr "Comédia"
+
+#~ msgid "Cult"
+#~ msgstr "Cult"
+
+#~ msgid "Gangsta Rap"
+#~ msgstr "Gangsta rap"
+
+#~ msgid "Top 40"
+#~ msgstr "Top 40"
+
+#~ msgid "Christian Rap"
+#~ msgstr "Rap cristão"
+
+#~ msgid "Pop/Funk"
+#~ msgstr "Pop/Funk"
+
+#~ msgid "Jungle"
+#~ msgstr "Jungle"
+
+#~ msgid "Native American"
+#~ msgstr "Indígena americano"
+
+#~ msgid "Cabaret"
+#~ msgstr "Cabaré"
+
+#~ msgid "New Wave"
+#~ msgstr "New wave"
+
+#~ msgid "Psychedelic"
+#~ msgstr "Psicodélico"
+
+#~ msgid "Rave"
+#~ msgstr "Rave"
+
+#~ msgid "Showtunes"
+#~ msgstr "Showtunes"
+
+#~ msgid "Trailer"
+#~ msgstr "Trailer"
+
+#~ msgid "Lo-Fi"
+#~ msgstr "Lo-Fi"
+
+#~ msgid "Tribal"
+#~ msgstr "Tribal"
+
+#~ msgid "Acid Punk"
+#~ msgstr "Acid punk"
+
+#~ msgid "Acid Jazz"
+#~ msgstr "Acid jazz"
+
+#~ msgid "Polka"
+#~ msgstr "Polca"
+
+#~ msgid "Retro"
+#~ msgstr "Retrô"
+
+#~ msgid "Musical"
+#~ msgstr "Musical"
+
+#~ msgid "Rock & Roll"
+#~ msgstr "Rock & roll"
+
+#~ msgid "Hard Rock"
+#~ msgstr "Hard rock"
+
+#~ msgid "Folk"
+#~ msgstr "Folk"
+
+#~ msgid "Folk/Rock"
+#~ msgstr "Folk/rock"
+
+#~ msgid "National Folk"
+#~ msgstr "National folk"
+
+#~ msgid "Swing"
+#~ msgstr "Swing"
+
+#~ msgid "Fast-Fusion"
+#~ msgstr "Fast-fusion"
+
+#~ msgid "Bebop"
+#~ msgstr "Bebop"
+
+#~ msgid "Latin"
+#~ msgstr "Latino"
+
+#~ msgid "Revival"
+#~ msgstr "Revival"
+
+#~ msgid "Celtic"
+#~ msgstr "Celta"
+
+#~ msgid "Bluegrass"
+#~ msgstr "Bluegrass"
+
+#~ msgid "Avantgarde"
+#~ msgstr "Avantgarde"
+
+#~ msgid "Gothic Rock"
+#~ msgstr "Rock gótico"
+
+#~ msgid "Progressive Rock"
+#~ msgstr "Rock progressivo"
+
+#~ msgid "Psychedelic Rock"
+#~ msgstr "Rock psicodélico"
+
+#~ msgid "Symphonic Rock"
+#~ msgstr "Rock sinfônico"
+
+#~ msgid "Slow Rock"
+#~ msgstr "Rock lento"
+
+#~ msgid "Big Band"
+#~ msgstr "Big band"
+
+#~ msgid "Chorus"
+#~ msgstr "Coral"
+
+#~ msgid "Easy Listening"
+#~ msgstr "Easy listening"
+
+#~ msgid "Acoustic"
+#~ msgstr "Acústico"
+
+#~ msgid "Humour"
+#~ msgstr "Humor"
+
+#~ msgid "Speech"
+#~ msgstr "Discurso"
+
+#~ msgid "Chanson"
+#~ msgstr "Chanson"
+
+#~ msgid "Opera"
+#~ msgstr "Ópera"
+
+#~ msgid "Chamber Music"
+#~ msgstr "Música de câmara"
+
+#~ msgid "Sonata"
+#~ msgstr "Sonata"
+
+#~ msgid "Symphony"
+#~ msgstr "Sinfonia"
+
+#~ msgid "Booty Bass"
+#~ msgstr "Booty bass"
+
+#~ msgid "Primus"
+#~ msgstr "Primus"
+
+#~ msgid "Porn Groove"
+#~ msgstr "Porn groove"
+
+#~ msgid "Satire"
+#~ msgstr "Sátira"
+
+#~ msgid "Slow Jam"
+#~ msgstr "Slow jam"
+
+#~ msgid "Club"
+#~ msgstr "Club"
+
+#~ msgid "Tango"
+#~ msgstr "Tango"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Folklore"
+#~ msgstr "Folclórico"
+
+#~ msgid "Ballad"
+#~ msgstr "Balada"
+
+#~ msgid "Power Ballad"
+#~ msgstr "Power ballad"
+
+#~ msgid "Rhythmic Soul"
+#~ msgstr "Rhythmic soul"
+
+#~ msgid "Freestyle"
+#~ msgstr "Freestyle"
+
+#~ msgid "Duet"
+#~ msgstr "Dueto"
+
+#~ msgid "Punk Rock"
+#~ msgstr "Punk rock"
+
+#~ msgid "Drum Solo"
+#~ msgstr "Solo de bateria"
+
+#~ msgid "A Cappella"
+#~ msgstr "A cappella"
+
+#~ msgid "Euro-House"
+#~ msgstr "Euro-House"
+
+#~ msgid "Dance Hall"
+#~ msgstr "Dance hall"
+
+#~ msgid "Goa"
+#~ msgstr "Goa"
+
+#~ msgid "Drum & Bass"
+#~ msgstr "Drum & bass"
+
+#~ msgid "Club-House"
+#~ msgstr "Club-house"
+
+#~ msgid "Terror"
+#~ msgstr "Terror"
+
+#~ msgid "Indie"
+#~ msgstr "Indie"
+
+#~ msgid "BritPop"
+#~ msgstr "Pop britânico"
+
+#~ msgid "Negerpunk"
+#~ msgstr "Negerpunk"
+
+#~ msgid "Polsk Punk"
+#~ msgstr "Polsk punk"
+
+#~ msgid "Beat"
+#~ msgstr "Beat"
+
+#~ msgid "Christian Gangsta Rap"
+#~ msgstr "Gangsta rap cristão"
+
+#~ msgid "Heavy Metal"
+#~ msgstr "Heavy metal"
+
+#~ msgid "Black Metal"
+#~ msgstr "Black metal"
+
+#~ msgid "Crossover"
+#~ msgstr "Crossover"
+
+#~ msgid "Contemporary Christian"
+#~ msgstr "Cristão contemporâneo"
+
+#~ msgid "Christian Rock"
+#~ msgstr "Rock cristão"
+
+#~ msgid "Merengue"
+#~ msgstr "Merengue"
+
+#~ msgid "Salsa"
+#~ msgstr "Salsa"
+
+#~ msgid "Thrash Metal"
+#~ msgstr "Thrash metal"
+
+#~ msgid "Anime"
+#~ msgstr "Anime"
+
+#~ msgid "JPop"
+#~ msgstr "JPop"
+
+#~ msgid "Synthpop"
+#~ msgstr "Synthpop"
+
+#~ msgid "Nu-Metal"
+#~ msgstr "Nu-Metal"
+
+#~ msgid "Art Rock"
+#~ msgstr "Art rock"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Artista desconhecido"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Álbum desconhecido"
+
+#~ msgid "Editing Disc ID: %s"
+#~ msgstr "Editando ID do disco: %s"
+
+#~ msgid "Hide advanced disc options"
+#~ msgstr "Ocultar opções de disco avançadas"
+
+#~ msgid "Show advanced disc options"
+#~ msgstr "Mostrar opções de disco avançadas"
+
+#~ msgid "Hide advanced track options"
+#~ msgstr "Ocultar opções de faixa avançadas"
+
+#~ msgid "Show advanced track options"
+#~ msgstr "Mostrar opções de faixa avançadas"
+
+#~ msgid "Editing Disc ID: "
+#~ msgstr "Editando ID do disco: "
+
+#~ msgid "_Artist:"
+#~ msgstr "_Artista:"
+
+#~ msgid "Disc _Title:"
+#~ msgstr "_Título do disco"
+
+#~ msgid "_Disc comments:"
+#~ msgstr "Comentários sobre o _disco:"
+
+#~ msgid "_Genre:"
+#~ msgstr "_Gênero:"
+
+#~ msgid "_Year:"
+#~ msgstr "_Ano:"
+
+#~ msgid "Title"
+#~ msgstr "Título"
+
+#~ msgid "Length"
+#~ msgstr "Duração"
+
+#~ msgid "_Extra track data:"
+#~ msgstr "Dados _extras sobre a faixa:"
+
+#~ msgid "CDDB Track Editor"
+#~ msgstr "Editor de faixas CDDB"
+
+#~ msgid ""
+#~ "Cannot create CDDBTrackEditor factory.\n"
+#~ "This may be caused by another copy of cddb-track-editor already running.\n"
+#~ msgstr ""
+#~ "Não foi possível criar o gerador de CDDBTrackEditor.\n"
+#~ "Este problema pode ser ocasionado por uma outra cópia do cddb-track-"
+#~ "editor já em execução.\n"
+
+#~ msgid "CD Display"
+#~ msgstr "Mostrador de CD"
+
+#~ msgid ""
+#~ "Displays information about the currently playing album, artist and time "
+#~ "elapsed"
+#~ msgstr ""
+#~ "Exibir informações sobre o álbum que está sendo reproduzido, o artista e "
+#~ "o tempo decorrido"
+
+#~ msgid "Time Line"
+#~ msgstr "Linha do tempo"
+
+#~ msgid "Line for displaying the time elapsed for the current track"
+#~ msgstr "Linha para exibição do tempo decorrido da faixa atual"
+
+#~ msgid "Info Line"
+#~ msgstr "Linha de info"
+
+#~ msgid "Line for displaying information"
+#~ msgstr "Linha para exibição de informações"
+
+#~ msgid "Artist Line"
+#~ msgstr "Linha do artista"
+
+#~ msgid "Line for displaying the name of the artist"
+#~ msgstr "Linha para exibição do nome do artista"
+
+#~ msgid "Album Line"
+#~ msgstr "Linha do álbum"
+
+#~ msgid "Line for displaying the name of the album"
+#~ msgstr "Linha para exibição do nome do álbum"
+
+#~ msgid "Play"
+#~ msgstr "Reprodução"
+
+#~ msgid "Pause"
+#~ msgstr "Pausar"
+
+#~ msgid ""
+#~ "Playing %s - %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Reproduzindo %s - %s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Playing\n"
+#~ ": %s"
+#~ msgstr ""
+#~ "Reproduzindo\n"
+#~ ": %s"
+
+#~ msgid "Paused"
+#~ msgstr "Pausado"
+
+#~ msgid "CD Player"
+#~ msgstr "Reprodutor de CD"
+
+#~ msgid "Stopped"
+#~ msgstr "Parado"
+
+#~ msgid "Disc error"
+#~ msgstr "Erro no disco"
+
+#~ msgid "No disc"
+#~ msgstr "Sem disco"
+
+#~ msgid "Empty disc"
+#~ msgstr "Disco vazio"
+
+#~ msgid "Drive open"
+#~ msgstr "Unidade aberta"
+
+#~ msgid "Data CD"
+#~ msgstr "CD de dados"
+
+#~ msgid "No Cdrom"
+#~ msgstr "Nenhum CD-ROM"
+
+#~ msgid "Drive Error"
+#~ msgstr "Erro na unidade"
+
+#~ msgid "A CD player for GNOME"
+#~ msgstr "Um reprodutor de CDs para o GNOME"
+
+#~ msgid "Contents in the CDDB have changed"
+#~ msgstr "O conteúdo no CDDB foi alterado"
+
+#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+#~ msgstr "Escolher \"Sim\" excluirá o conteúdo anterior no CDDB."
+
+#~ msgid "Do you wish to continue?"
+#~ msgstr "Você deseja continuar?"
+
+#~ msgid "Volume %d%%"
+#~ msgstr "Volume %d%%"
+
+#~ msgid "You do not seem to have permission to access %s."
+#~ msgstr "Você não tem permissões para acessar %s."
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CD device. This may be because:\n"
+#~ "a) CD support is not present in your machine\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "%s não parece apontar para um dispositivo de CD válido. Causas "
+#~ "possíveis:\n"
+#~ "a) Suporte a CD não está disponível na sua máquina\n"
+#~ "b) Você não tem as permissões corretas para acessar a unidade de CD\n"
+#~ "c) %s não é a unidade de CD.\n"
+
+#~ msgid "%d - Unknown"
+#~ msgstr "%d - Desconhecido"
+
+#~ msgid "_Play / Pause"
+#~ msgstr "Re_produzir / Pausar"
+
+#~ msgid "_Stop"
+#~ msgstr "_Parar"
+
+#~ msgid "P_revious"
+#~ msgstr "_Anterior"
+
+#~ msgid "_Next"
+#~ msgstr "Pró_xima"
+
+#~ msgid "_Eject disc"
+#~ msgstr "Abrir band_eja do disco"
+
+#~ msgid "_About"
+#~ msgstr "_Sobre"
+
+#~ msgid "_Quit"
+#~ msgstr "Sai_r"
+
+#~ msgid ""
+#~ "There is no CD device set. This means that the CD player\n"
+#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
+#~ "where you can set the device, or click 'Quit' to quit the CD player."
+#~ msgstr ""
+#~ "Não há um dispositivo de CD definido. Isso significa que o reprodutor de "
+#~ "CD\n"
+#~ "não poderá ser executado. Clique em \"Definir dispositivo\" para ir\n"
+#~ "para um diálogo onde você poderá definir o dispositivo \n"
+#~ "ou clique em \"Sair\" para sair do reprodutor de CD."
+
+#~ msgid "Set device"
+#~ msgstr "Definir dispositivo"
+
+#~ msgid "No CD device"
+#~ msgstr "Nenhum dispositivo de CD"
+
+#~ msgid ""
+#~ "The CD player is unable to run correctly.\n"
+#~ "\n"
+#~ "Press 'Details' for more details on reasons for the failure.\n"
+#~ "\n"
+#~ "Press 'Set device' to go to a dialog where you can set the device, or "
+#~ "press 'Quit' to quit the CD player"
+#~ msgstr ""
+#~ "Não é possível executar o reprodutor de CD corretamente.\n"
+#~ "\n"
+#~ "Clique em \"Detalhes\" para obter mais informações sobre as razões desta "
+#~ "falha.\n"
+#~ "\n"
+#~ "Clique em \"Definir dispositivo\" para abrir um diálogo no qual você "
+#~ "poderá definir o dispositivo ou pressione \"Sair\" para sair do "
+#~ "reprodutor de CD"
+
+#~ msgid "_Details"
+#~ msgstr "_Detalhes"
+
+#~ msgid "_Set device"
+#~ msgstr "_Definir dispositivo"
+
+#~ msgid "Invalid CD device"
+#~ msgstr "Dispositivo de CD inválido"
+
+#~ msgid "Position"
+#~ msgstr "Posição"
+
+#~ msgid "Open preferences"
+#~ msgstr "Abrir preferências"
+
+#~ msgid "Preferences"
+#~ msgstr "Preferências"
+
+#~ msgid "Track List"
+#~ msgstr "Lista de faixas"
+
+#~ msgid "Open track editor"
+#~ msgstr "Abrir editor de faixas"
+
+#~ msgid "Track editor"
+#~ msgstr "Editor de faixas"
+
+#~ msgid "Play / Pause"
+#~ msgstr "Reproduzir / pausar"
+
+#~ msgid "Stop"
+#~ msgstr "Parar"
+
+#~ msgid "Previous track"
+#~ msgstr "Faixa anterior"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Rewind"
+#~ msgstr "Retroceder"
+
+#~ msgid "Fast forward"
+#~ msgstr "Adiantar"
+
+#~ msgid "Next track"
+#~ msgstr "Próxima faixa"
+
+#~ msgid "Eject CD"
+#~ msgstr "Ejetar CD"
+
+#~ msgid "Eject"
+#~ msgstr "Ejetar"
+
+#~ msgid "CD device to use"
+#~ msgstr "Dispositivo de CD a ser usado"
+
+#~ msgid "Only start if there isn't already a CD player application running"
+#~ msgstr ""
+#~ "Iniciar somente se já não houver um aplicativo reprodutor de CD executando"
+
+#~ msgid "Play the CD on startup"
+#~ msgstr "Reproduzir o CD ao iniciar"
+
+#~ msgid "Start iconified in notification area"
+#~ msgstr "Iniciar como ícone na área de notificação"
+
+#~ msgid "Cannot create player"
+#~ msgstr "Não foi possível criar o reprodutor"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Reproduza CDs de áudio"
+
+#~ msgid "CD player Volume"
+#~ msgstr "Volume do reprodutor de CD"
+
+#~ msgid "CD player theme"
+#~ msgstr "Tema do reprodutor de CD"
+
+#~ msgid "Device path"
+#~ msgstr "Caminho para o dispositivo"
+
+#~ msgid "Display the Remaining time?"
+#~ msgstr "Mostrar o tempo restante?"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Ejetar o CD quando o reprodutor de CD sair?"
+
+#~ msgid "How the time should be displayed while CD Player is playing?"
+#~ msgstr "Como o tempo deve ser exibido quando o CD é reproduzido?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Reproduzir música quando o Reprodutor de CD iniciar?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "O CD deve ser ejetado quando o Reprodutor de CD sair?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "O caminho para a unidade de CD que o Reprodutor de CD deve usar para "
+#~ "reproduzir CDs"
+
+#~ msgid "What theme should the CD player use for its appearance"
+#~ msgstr "Que tema o Reprodutor de CD deve usar para sua aparência"
+
+#~ msgid "What volume should the CD player use when it is started?"
+#~ msgstr "Que volume o Reprodutor de CD deve usar quando é iniciado?"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr ""
+#~ "Quando o Reprodutor de CD é iniciado, deve começar reproduzindo o CD?"
+
+#~ msgid "Failed to eject CD: %s"
+#~ msgstr "Falhou ao ejetar o CD: %s"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "This means that the CD player will not be able to run."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Isto significa que o Reprodutor de CD não poderá ser executado."
+
+#~ msgid "Error setting device"
+#~ msgstr "Erro ao definir o dispositivo"
+
+#~ msgid "CD Player Preferences"
+#~ msgstr "Preferências do reprodutor de CD"
+
+#~ msgid "_Device:"
+#~ msgstr "_Dispositivo:"
+
+#~ msgid "Behavior"
+#~ msgstr "Comportamento"
+
+#~ msgid "Start _playback when CD Player starts"
+#~ msgstr "Começar a _reprodução quando o Reprodutor de CD iniciar"
+
+#~ msgid "Start playback when CD Player starts"
+#~ msgstr "Começa a reproduzir quando o Reprodutor de CD iniciar"
+
+#~ msgid "Attempt to _eject CD when CD Player exits"
+#~ msgstr "Tentar _ejetar o CD quando o Reprodutor de CD sair"
+
+#~ msgid "Attempt to eject CD when CD Player exits"
+#~ msgstr "Tenta ejetar o CD quando o Reprodutor de CD sair"
+
+#~ msgid "Themes"
+#~ msgstr "Temas"
+
+#~ msgid "_Select a theme:"
+#~ msgstr "_Selecione um tema:"
+
+#~ msgid ""
+#~ "Cannot connect to sound daemon.\n"
+#~ "Please run 'esd' at a command prompt."
+#~ msgstr ""
+#~ "Não foi possível conectar ao servidor de som.\n"
+#~ "Por favor execute \"esd\" na linha de comando."
+
+#~ msgid "Specify the X position of the meter."
+#~ msgstr "Especifique a posição X do medidor."
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "Especifique a posição Y do medidor."
+
+#~ msgid "Y"
+#~ msgstr "Y"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "Conectar ao servidor esd nesta máquina."
+
+#~ msgid "HOST"
+#~ msgstr "HOST"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "Abrir uma versão vertical do medidor."
+
+#~ msgid "Act as recording level meter."
+#~ msgstr "Agir como um medidor de nível de gravação."
+
+#~ msgid "Host is %s\n"
+#~ msgstr "A máquina é %s\n"
+
+#~ msgid "Recording level"
+#~ msgstr "Nível de gravação"
+
+#~ msgid "Volume Meter"
+#~ msgstr "Medidor de volume"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Monitore o volume de entrada da gravação"
+
+#~ msgid "Recording Level Monitor"
+#~ msgstr "Monitor de nível de gravação"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Monitorar o volume de saída de som"
+
+#~ msgid "Volume Monitor"
+#~ msgstr "Monitor de volume"
 
 #~ msgid "Adjust the volume level"
 #~ msgstr "Ajuste o nível do volume"
