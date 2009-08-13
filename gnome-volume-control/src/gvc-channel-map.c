@@ -44,6 +44,7 @@
 struct GvcChannelMapPrivate
 {
         pa_channel_map        pa_map;
+        gboolean              pa_volume_is_set;
         pa_cvolume            pa_volume;
         gdouble               extern_volume[NUM_TYPES]; /* volume, balance, fade, lfe */
         gboolean              can_balance;
@@ -227,6 +228,10 @@ gvc_channel_map_volume_changed (GvcChannelMap     *map,
 
         map->priv->pa_volume = *cv;
 
+        if (map->priv->pa_volume_is_set == FALSE) {
+                map->priv->pa_volume_is_set = TRUE;
+                return;
+        }
         g_signal_emit (map, signals[VOLUME_CHANGED], 0);
 }
 
@@ -234,6 +239,7 @@ static void
 gvc_channel_map_init (GvcChannelMap *map)
 {
         map->priv = GVC_CHANNEL_MAP_GET_PRIVATE (map);
+        map->priv->pa_volume_is_set = FALSE;
 }
 
 static void
