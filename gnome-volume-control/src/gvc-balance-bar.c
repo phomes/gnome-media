@@ -133,7 +133,7 @@ _scale_box_new (GvcBalanceBar *bar)
                                     GTK_POS_BOTTOM, NULL);
         } else {
                 gtk_scale_set_digits (GTK_SCALE (bar->priv->scale), 0);
-	}
+        }
 
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
@@ -230,6 +230,7 @@ update_level_from_map (GvcBalanceBar *bar,
 
 static void
 on_channel_map_volume_changed (GvcChannelMap  *map,
+                               gboolean        set,
                                GvcBalanceBar  *bar)
 {
         update_level_from_map (bar, map);
@@ -509,7 +510,7 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
                 break;
         }
 
-        gvc_channel_map_volume_changed (bar->priv->channel_map, &cv);
+        gvc_channel_map_volume_changed (bar->priv->channel_map, &cv, TRUE);
 }
 
 static void

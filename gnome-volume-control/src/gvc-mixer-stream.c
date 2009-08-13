@@ -153,7 +153,7 @@ gvc_mixer_stream_set_volume (GvcMixerStream *stream,
         pa_cvolume_scale(&cv, volume);
 
         if (!pa_cvolume_equal(gvc_channel_map_get_cvolume(stream->priv->channel_map), &cv)) {
-                gvc_channel_map_volume_changed(stream->priv->channel_map, &cv);
+                gvc_channel_map_volume_changed(stream->priv->channel_map, &cv, FALSE);
                 g_object_notify (G_OBJECT (stream), "volume");
         }
 
@@ -172,7 +172,7 @@ gvc_mixer_stream_set_decibel (GvcMixerStream *stream,
         pa_cvolume_scale(&cv, pa_sw_volume_from_dB(db));
 
         if (!pa_cvolume_equal(gvc_channel_map_get_cvolume(stream->priv->channel_map), &cv)) {
-                gvc_channel_map_volume_changed(stream->priv->channel_map, &cv);
+                gvc_channel_map_volume_changed(stream->priv->channel_map, &cv, FALSE);
                 g_object_notify (G_OBJECT (stream), "volume");
         }
 
@@ -323,9 +323,11 @@ gvc_mixer_stream_set_application_id (GvcMixerStream *stream,
 
 static void
 on_channel_map_volume_changed (GvcChannelMap  *channel_map,
+                               gboolean        set,
                                GvcMixerStream *stream)
 {
-        gvc_mixer_stream_push_volume (stream);
+        if (set == TRUE)
+                gvc_mixer_stream_push_volume (stream);
 
         g_object_notify (G_OBJECT (stream), "volume");
 }

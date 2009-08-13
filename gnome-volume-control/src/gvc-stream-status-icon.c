@@ -73,6 +73,7 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
 
         gvc_mixer_stream_set_volume(icon->priv->mixer_stream,
                                     (pa_volume_t) volume);
+        gvc_mixer_stream_push_volume(icon->priv->mixer_stream);
 }
 
 static void
