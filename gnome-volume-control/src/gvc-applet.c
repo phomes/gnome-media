@@ -139,6 +139,7 @@ update_default_source (GvcApplet *applet)
         if (stream != NULL) {
                 gvc_stream_status_icon_set_mixer_stream (applet->priv->input_status_icon,
                                                          stream);
+                maybe_show_status_icons(applet);
         } else {
                 g_warning ("Unable to get default source");
         }
@@ -153,6 +154,7 @@ update_default_sink (GvcApplet *applet)
         if (stream != NULL) {
                 gvc_stream_status_icon_set_mixer_stream (applet->priv->output_status_icon,
                                                          stream);
+                maybe_show_status_icons(applet);
         } else {
                 g_warning ("Unable to get default sink");
         }
