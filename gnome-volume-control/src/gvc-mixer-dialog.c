@@ -436,8 +436,13 @@ create_monitor_stream_for_source (GvcMixerDialog *dialog,
         pa_context    *context;
         int            res;
         pa_proplist   *proplist;
+        gboolean       has_monitor;
 
         if (stream == NULL) {
+                return;
+        }
+        has_monitor = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (stream), "has-monitor"));
+        if (has_monitor != FALSE) {
                 return;
         }
 
@@ -481,6 +486,8 @@ create_monitor_stream_for_source (GvcMixerDialog *dialog,
         if (res < 0) {
                 g_warning ("Failed to connect monitoring stream");
                 pa_stream_unref (s);
+        } else {
+                g_object_set_data (G_OBJECT (stream), "has-monitor", GINT_TO_POINTER (TRUE));
         }
 }
 
