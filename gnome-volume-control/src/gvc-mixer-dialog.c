@@ -652,7 +652,10 @@ on_adjustment_value_changed (GtkAdjustment  *adjustment,
         stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream"),
         volume = gtk_adjustment_get_value (adjustment);
         if (stream != NULL) {
-                gvc_mixer_stream_set_volume(stream, (pa_volume_t) volume );
+        	/* FIXME would need to do that in the balance bar really... */
+        	gvc_mixer_stream_set_is_muted (stream, volume == 0);
+                gvc_mixer_stream_set_volume(stream, (pa_volume_t) volume);
+                gvc_mixer_stream_push_volume (stream);
         }
 }
 
@@ -881,6 +884,9 @@ add_stream (GvcMixerDialog *dialog,
 
         g_assert (stream != NULL);
 
+        if (gvc_mixer_stream_is_event_stream (stream) != FALSE)
+        	return;
+
         bar = NULL;
         is_default = FALSE;
         id = gvc_mixer_stream_get_application_id (stream);
@@ -904,7 +910,6 @@ add_stream (GvcMixerDialog *dialog,
                 g_debug ("Adding effects stream");
         } else if (! GVC_IS_MIXER_SOURCE (stream)
                    && !GVC_IS_MIXER_SINK (stream)
-                   && !gvc_mixer_stream_is_event_stream (stream)
                    && !gvc_mixer_stream_is_virtual (stream)
                    && g_strcmp0 (id, "org.gnome.VolumeControl") != 0
                    && g_strcmp0 (id, "org.PulseAudio.pavucontrol") != 0) {
