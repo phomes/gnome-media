@@ -44,7 +44,7 @@ main (int argc, char **argv)
 {
         GError             *error;
         GvcApplet          *applet;
-        UniqueApp          *app;
+        UniqueApp          *app = NULL;
         static GOptionEntry entries[] = {
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -55,7 +55,7 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-	gvc_log_init ();
+        gvc_log_init ();
 
         error = NULL;
         gtk_init_with_args (&argc, &argv,
@@ -73,12 +73,14 @@ main (int argc, char **argv)
                 exit (1);
         }
 
-	gvc_log_set_debug (debug);
+        gvc_log_set_debug (debug);
 
-        app = unique_app_new (GVCA_DBUS_NAME, NULL);
-        if (unique_app_is_running (app)) {
-                g_warning ("Applet is already running, exiting");
-                return 0;
+        if (debug == FALSE) {
+                app = unique_app_new (GVCA_DBUS_NAME, NULL);
+                if (unique_app_is_running (app)) {
+                        g_warning ("Applet is already running, exiting");
+                        return 0;
+                }
         }
 
         gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
@@ -91,6 +93,9 @@ main (int argc, char **argv)
 
         if (applet != NULL) {
                 g_object_unref (applet);
+        }
+        if (app != NULL) {
+                g_object_unref (app);
         }
 
         return 0;
