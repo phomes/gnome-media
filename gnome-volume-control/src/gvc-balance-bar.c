@@ -131,8 +131,6 @@ _scale_box_new (GvcBalanceBar *bar)
                 gtk_scale_add_mark (GTK_SCALE (priv->scale),
                                     (adjustment->upper - adjustment->lower)/2 + adjustment->lower,
                                     GTK_POS_BOTTOM, NULL);
-        } else {
-                gtk_scale_set_digits (GTK_SCALE (bar->priv->scale), 0);
         }
 
         bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
