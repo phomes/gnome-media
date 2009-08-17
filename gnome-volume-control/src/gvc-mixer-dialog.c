@@ -652,8 +652,8 @@ on_adjustment_value_changed (GtkAdjustment  *adjustment,
         stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream"),
         volume = gtk_adjustment_get_value (adjustment);
         if (stream != NULL) {
-        	/* FIXME would need to do that in the balance bar really... */
-        	gvc_mixer_stream_set_is_muted (stream, volume == 0);
+                /* FIXME would need to do that in the balance bar really... */
+                gvc_mixer_stream_set_is_muted (stream, volume == 0);
                 gvc_mixer_stream_set_volume(stream, (pa_volume_t) volume);
                 gvc_mixer_stream_push_volume (stream);
         }
@@ -847,12 +847,25 @@ bar_set_stream (GvcMixerDialog *dialog,
                 GtkWidget      *bar,
                 GvcMixerStream *stream)
 {
-        GtkAdjustment *adj;
-        gboolean       is_muted;
+        GtkAdjustment  *adj;
+        GvcMixerStream *old_stream;
 
         g_assert (bar != NULL);
 
-        is_muted = FALSE;
+        old_stream = g_object_get_data (G_OBJECT (bar), "gvc-mixer-dialog-stream");
+        if (old_stream != NULL) {
+                char *name;
+
+                g_object_get (bar, "name", &name, NULL);
+                g_debug ("Disconnecting old stream '%s' from bar '%s'",
+                         gvc_mixer_stream_get_name (old_stream), name);
+                g_free (name);
+
+                g_signal_handlers_disconnect_by_func (old_stream, on_stream_is_muted_notify, dialog);
+                g_signal_handlers_disconnect_by_func (old_stream, on_stream_volume_notify, dialog);
+                g_signal_handlers_disconnect_by_func (old_stream, on_stream_port_notify, dialog);
+                g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (gvc_mixer_stream_get_id (old_stream)));
+        }
 
         gtk_widget_set_sensitive (bar, (stream != NULL));
 
@@ -862,6 +875,8 @@ bar_set_stream (GvcMixerDialog *dialog,
         g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
 
         if (stream != NULL) {
+                gboolean is_muted;
+
                 is_muted = gvc_mixer_stream_get_is_muted (stream);
                 gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (bar), is_muted);
 
@@ -869,6 +884,19 @@ bar_set_stream (GvcMixerDialog *dialog,
 
                 gtk_adjustment_set_value (adj,
                                           gvc_mixer_stream_get_volume (stream));
+
+                g_signal_connect (stream,
+                                  "notify::is-muted",
+                                  G_CALLBACK (on_stream_is_muted_notify),
+                                  dialog);
+                g_signal_connect (stream,
+                                  "notify::volume",
+                                  G_CALLBACK (on_stream_volume_notify),
+                                  dialog);
+                g_signal_connect (stream,
+                                  "notify::port",
+                                  G_CALLBACK (on_stream_port_notify),
+                                  dialog);
         }
 }
 
@@ -885,7 +913,7 @@ add_stream (GvcMixerDialog *dialog,
         g_assert (stream != NULL);
 
         if (gvc_mixer_stream_is_event_stream (stream) != FALSE)
-        	return;
+                return;
 
         bar = NULL;
         is_default = FALSE;
@@ -897,7 +925,8 @@ add_stream (GvcMixerDialog *dialog,
                 is_default = TRUE;
                 gtk_widget_set_sensitive (dialog->priv->applications_box,
                                           !is_muted);
-
+                adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
+                g_signal_handlers_disconnect_by_func(adj, on_adjustment_value_changed, dialog);
                 update_output_settings (dialog);
         } else if (stream == gvc_mixer_control_get_default_source (dialog->priv->mixer_control)) {
                 bar = dialog->priv->input_bar;
@@ -978,19 +1007,6 @@ add_stream (GvcMixerDialog *dialog,
                                   G_CALLBACK (on_adjustment_value_changed),
                                   dialog);
                 gtk_widget_show (bar);
-
-                g_signal_connect (stream,
-                                  "notify::is-muted",
-                                  G_CALLBACK (on_stream_is_muted_notify),
-                                  dialog);
-                g_signal_connect (stream,
-                                  "notify::volume",
-                                  G_CALLBACK (on_stream_volume_notify),
-                                  dialog);
-                g_signal_connect (stream,
-                                  "notify::port",
-                                  G_CALLBACK (on_stream_port_notify),
-                                  dialog);
         }
 }
 
@@ -1056,7 +1072,10 @@ remove_stream (GvcMixerDialog  *dialog,
         if (bar == dialog->priv->output_bar
             || bar == dialog->priv->input_bar
             || bar == dialog->priv->effects_bar) {
-                g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
+                char *name;
+                g_object_get (bar, "name", &name, NULL);
+                g_debug ("Removing stream for bar '%s'", name);
+                g_free (name);
                 bar_set_stream (dialog, bar, NULL);
         } else if (bar != NULL) {
                 g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
