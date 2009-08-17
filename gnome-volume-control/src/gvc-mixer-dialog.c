@@ -978,20 +978,20 @@ add_stream (GvcMixerDialog *dialog,
                                   G_CALLBACK (on_adjustment_value_changed),
                                   dialog);
                 gtk_widget_show (bar);
-        }
 
-        g_signal_connect (stream,
-                          "notify::is-muted",
-                          G_CALLBACK (on_stream_is_muted_notify),
-                          dialog);
-        g_signal_connect (stream,
-                          "notify::volume",
-                          G_CALLBACK (on_stream_volume_notify),
-                          dialog);
-        g_signal_connect (stream,
-                          "notify::port",
-                          G_CALLBACK (on_stream_port_notify),
-                          dialog);
+                g_signal_connect (stream,
+                                  "notify::is-muted",
+                                  G_CALLBACK (on_stream_is_muted_notify),
+                                  dialog);
+                g_signal_connect (stream,
+                                  "notify::volume",
+                                  G_CALLBACK (on_stream_volume_notify),
+                                  dialog);
+                g_signal_connect (stream,
+                                  "notify::port",
+                                  G_CALLBACK (on_stream_port_notify),
+                                  dialog);
+        }
 }
 
 static void
