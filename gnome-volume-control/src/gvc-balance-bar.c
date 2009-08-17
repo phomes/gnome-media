@@ -241,6 +241,8 @@ gvc_balance_bar_set_channel_map (GvcBalanceBar *bar,
         g_return_if_fail (GVC_BALANCE_BAR (bar));
 
         if (bar->priv->channel_map != NULL) {
+                g_signal_handlers_disconnect_by_func (G_OBJECT (bar->priv->channel_map),
+                                                      on_channel_map_volume_changed, bar);
                 g_object_unref (bar->priv->channel_map);
         }
         bar->priv->channel_map = g_object_ref (map);
@@ -520,17 +522,19 @@ gvc_balance_bar_init (GvcBalanceBar *bar)
 static void
 gvc_balance_bar_finalize (GObject *object)
 {
-        GvcBalanceBar *balance_bar;
+        GvcBalanceBar *bar;
 
         g_return_if_fail (object != NULL);
         g_return_if_fail (GVC_IS_BALANCE_BAR (object));
 
-        balance_bar = GVC_BALANCE_BAR (object);
+        bar = GVC_BALANCE_BAR (object);
 
-        g_return_if_fail (balance_bar->priv != NULL);
+        g_return_if_fail (bar->priv != NULL);
 
-        if (balance_bar->priv->channel_map != NULL) {
-                g_object_unref (balance_bar->priv->channel_map);
+        if (bar->priv->channel_map != NULL) {
+                g_signal_handlers_disconnect_by_func (G_OBJECT (bar->priv->channel_map),
+                                                      on_channel_map_volume_changed, bar);
+                g_object_unref (bar->priv->channel_map);
         }
 
         G_OBJECT_CLASS (gvc_balance_bar_parent_class)->finalize (object);
