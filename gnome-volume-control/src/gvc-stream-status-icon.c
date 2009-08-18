@@ -71,9 +71,11 @@ on_adjustment_value_changed (GtkAdjustment *adjustment,
 
         volume = gtk_adjustment_get_value (adjustment);
 
-        gvc_mixer_stream_set_volume(icon->priv->mixer_stream,
-                                    (pa_volume_t) round (volume));
-        gvc_mixer_stream_push_volume(icon->priv->mixer_stream);
+        /* Only push the volume if it's actually changed */
+        if (gvc_mixer_stream_set_volume(icon->priv->mixer_stream,
+                                    (pa_volume_t) round (volume)) != FALSE) {
+                gvc_mixer_stream_push_volume(icon->priv->mixer_stream);
+        }
 }
 
 static void
