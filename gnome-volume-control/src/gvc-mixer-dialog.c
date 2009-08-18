@@ -881,8 +881,11 @@ bar_set_stream (GvcMixerDialog *dialog,
 
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
 
+        g_signal_handlers_disconnect_by_func (adj, on_adjustment_value_changed, dialog);
+
         g_object_set_data (G_OBJECT (bar), "gvc-mixer-dialog-stream", stream);
         g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-stream", stream);
+        g_object_set_data (G_OBJECT (adj), "gvc-mixer-dialog-bar", bar);
 
         if (stream != NULL) {
                 gboolean is_muted;
@@ -906,6 +909,10 @@ bar_set_stream (GvcMixerDialog *dialog,
                 g_signal_connect (stream,
                                   "notify::port",
                                   G_CALLBACK (on_stream_port_notify),
+                                  dialog);
+                g_signal_connect (adj,
+                                  "value-changed",
+                                  G_CALLBACK (on_adjustment_value_changed),
                                   dialog);
         }
 }
@@ -1010,12 +1017,6 @@ add_stream (GvcMixerDialog *dialog,
 
         if (bar != NULL) {
                 bar_set_stream (dialog, bar, stream);
-                adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (bar)));
-
-                g_signal_connect (adj,
-                                  "value-changed",
-                                  G_CALLBACK (on_adjustment_value_changed),
-                                  dialog);
                 gtk_widget_show (bar);
         }
 }
