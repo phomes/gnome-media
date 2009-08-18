@@ -219,7 +219,7 @@ gvc_applet_constructor (GType                  type,
 
         self = GVC_APPLET (object);
 
-        self->priv->control = gvc_mixer_control_new ();
+        self->priv->control = gvc_mixer_control_new ("GNOME Volume Control Applet");
         g_signal_connect (self->priv->control,
                           "ready",
                           G_CALLBACK (on_control_ready),

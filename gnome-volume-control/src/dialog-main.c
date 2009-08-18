@@ -190,7 +190,7 @@ main (int argc, char **argv)
         gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                            ICON_DATA_DIR);
 
-        control = gvc_mixer_control_new ();
+        control = gvc_mixer_control_new ("GNOME Volume Control Dialog");
         g_signal_connect (control,
                           "connecting",
                           G_CALLBACK (on_control_connecting),
