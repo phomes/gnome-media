@@ -646,15 +646,25 @@ static void
 on_adjustment_value_changed (GtkAdjustment  *adjustment,
                              GvcMixerDialog *dialog)
 {
-        gdouble         volume;
         GvcMixerStream *stream;
 
-        stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream"),
-        volume = gtk_adjustment_get_value (adjustment);
+        stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream");
         if (stream != NULL) {
+        	GObject *bar;
+                gdouble volume, rounded;
+                char *name;
+
+                volume = gtk_adjustment_get_value (adjustment);
+                rounded = round (volume);
+
+                bar = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-bar");
+                g_object_get (bar, "name", &name, NULL);
+                g_debug ("Setting stream volume %lf (rounded: %lf) for bar '%s'", volume, rounded, name);
+                g_free (name);
+
                 /* FIXME would need to do that in the balance bar really... */
                 gvc_mixer_stream_set_is_muted (stream, volume == 0);
-                gvc_mixer_stream_set_volume(stream, (pa_volume_t) round (volume));
+                gvc_mixer_stream_set_volume(stream, (pa_volume_t) rounded);
                 gvc_mixer_stream_push_volume (stream);
         }
 }
