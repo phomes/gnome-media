@@ -112,15 +112,6 @@ gnome_volume_control_element_whitelist (GstMixer *mixer,
   gint i, pos;
   gboolean found = FALSE;
 
-  /* honor the mixer supplied hints about whitelisting if available */
-  if (gst_mixer_get_mixer_flags (GST_MIXER (mixer)) & GST_MIXER_FLAG_HAS_WHITELIST) {
-    if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_WHITELIST)) {
-      return (TRUE);
-    } else {
-      return (FALSE);
-    }
-  }
-
   /* Yes this is a hack. */
   static struct {
     gchar *label;
@@ -153,6 +144,15 @@ gnome_volume_control_element_whitelist (GstMixer *mixer,
     for (i = 0; list[i].label != NULL; i++)
       list[i].done = FALSE;
     return TRUE;
+  }
+
+  /* honor the mixer supplied hints about whitelisting if available */
+  if (gst_mixer_get_mixer_flags (GST_MIXER (mixer)) & GST_MIXER_FLAG_HAS_WHITELIST) {
+    if (GST_MIXER_TRACK_HAS_FLAG (track, GST_MIXER_TRACK_WHITELIST)) {
+      return (TRUE);
+    } else {
+      return (FALSE);
+    }
   }
 
   for (i = 0; !found && list[i].label != NULL; i++) {
