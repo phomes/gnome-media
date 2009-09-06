@@ -25,3 +25,5 @@ gnome-sounds-default.xml.in: gnome-sounds-default.xml.in.in Makefile
 
 MAINTAINERCLEANFILES = \
 	Makefile.in
+
+-include $(top_srcdir)/git.mk

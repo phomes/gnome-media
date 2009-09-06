@@ -27,3 +27,5 @@ install-data-local: install-schemas
 else
 install-data-local:
 endif
+
+-include $(top_srcdir)/git.mk

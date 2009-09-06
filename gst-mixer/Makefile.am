@@ -24,3 +24,5 @@ EXTRA_DIST = $(Desktop_in_files) \
 
 CLEANFILES = $(Desktop_DATA) $(schema_DATA)
 DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)
+
+-include $(top_srcdir)/git.mk

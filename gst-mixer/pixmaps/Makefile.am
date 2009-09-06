@@ -5,3 +5,5 @@ pixmap_DATA = \
 	chain-broken.png 
 
 EXTRA_DIST=$(pixmap_DATA)
+
+-include $(top_srcdir)/git.mk

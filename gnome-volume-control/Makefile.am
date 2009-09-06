@@ -12,3 +12,5 @@ EXTRA_DIST = \
 MAINTAINERCLEANFILES =		\
 	*~			\
 	$(NULL)
+
+-include $(top_srcdir)/git.mk

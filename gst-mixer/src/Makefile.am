@@ -37,3 +37,5 @@ gnome_volume_control_LDFLAGS = \
 	$(GVC_ST_LIBS) \
 	$(GSTMIXER_LIBS)
 
+
+-include $(top_srcdir)/git.mk

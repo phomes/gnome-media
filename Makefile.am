@@ -87,3 +87,5 @@ update-shave:
 	mv shave.m4 m4/
 
 .PHONY: update-shave
+
+-include $(top_srcdir)/git.mk

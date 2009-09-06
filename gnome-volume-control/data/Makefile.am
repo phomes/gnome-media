@@ -25,3 +25,5 @@ CLEANFILES =					\
 DISTCLEANFILES =				\
 	gnome-volume-control-applet.desktop	\
 	$(NULL)
+
+-include $(top_srcdir)/git.mk
