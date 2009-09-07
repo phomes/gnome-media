@@ -1,4 +1,25 @@
 ==============
+Verion 2.27.91
+==============
+
+- gnome-volume-control
+  + Fix warnings when a volume changes, and the
+    stream doesn't have a UI
+  + Fix crash when the default sink goes away
+  + Fix receiving multiple events when a volume bar is changed
+  + Fix the output volume bar becoming unsensitive when the
+    selected output goes away
+  + Don't change PulseAudio's volume when we receive events
+    from PulseAudio
+  + Only change PulseAudio's volume if the volume hasn't already
+    been set to that value
+  + Differentiate the various mixer controls in PulseAudio's
+    output
+
+- gst-mixer
+  + Fix a crash in gnome_volume_control_element_whitelist()
+
+==============
 Verion 2.27.90
 ==============
 
