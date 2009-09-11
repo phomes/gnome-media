@@ -1,1339 +1,27 @@
 # Russian translation of gnome-media
 # Copyright (C) 1998-2008 Free Software Foundation, Inc.
-#
+# 
 # Valek Filippov <frob@df.ru>, 2000-2002.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004.
 # Andrew W. Nosenko <awn@bcs.zp.ua>, 2003.
 # Leonid Kanter <leon@asplinux.ru>, 2004, 2005, 2006.
 # Max Valianskiy <maxcom@vinchi.ru> 1998-99
 # Sergey Panov <sipan@mit.edu> 1999
+# Valery Inozemtsev <inozemtsev@gmail.com>, 2009.
+# Alexandre Prokoudine <alexandre.prokoudine@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-22 10:21+0300\n"
-"PO-Revision-Date: 2009-03-26 23:15+0800\n"
-"Last-Translator: Nickolay V. Shmyrev <nshmyrev@yandex.ru>\n"
-"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2009-09-11 19:32+0400\n"
+"PO-Revision-Date: 2009-09-11 19:36+0400\n"
+"Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Адрес сервера для посылки запросов по компакт-дискам"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Информация, посылаемая на сервер"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "Порт"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Сервер"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Тип сервера"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "Имя узла, куда будут посылаться все запросы"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "Порт, на котором на сервере запущена база данных"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Тип сервера для запроса по компакт-дискам. Возможные значения 0 (циклический "
-"сервер системы FreeDB), 1 (другой сервер системы freedb) и 2 (иной сервер)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Имя пользователя"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "Имя пользователя, которое будет посылаться со всеми запросами"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Этот ключ определяет, какая информация о пользователе будет послана на "
-"сервер для запроса о компакт-диске. Возможные значения 0 (информация не "
-"посылается), 1 (реальная информация) и 3 (другая информация)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Ваше имя узла"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:133
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Произошла ошибка при запуске отображении справки: \n"
-"%s"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr "_не посылать информацию"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr "посылать _действительную информацию"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr "посылать д_ругую информацию:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "_Имя:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "Имя _узла:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "Информация о пользователе"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr "_циклический сервер системы FreeDB"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr "другой сервер системы _FreeDB"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "Сервер"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "Адрес"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr "_Обновить список серверов"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "другой с_ервер..."
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "И_мя узла:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "Пор_т:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr "Параметры базы данных компакт-дисков"
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "Неизвестный / Неизвестный"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
-#: ../gstreamer-properties/gstreamer-properties.c:281
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr "Несколько совпадений..."
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-"В базе данных найдено несколько совпадений.\n"
-"Выберите наилучшее из приведённого ниже списка."
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr "Категория"
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "Идентификатор диска"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "Исполнитель и название"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr "Неизвестная дорожка"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr "Сервер базы данных компакт-дисков"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr "Настройка базы данных компакт-дисков"
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr "Блюз"
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr "Классический рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr "Кантри"
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "Танцевальная"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "Диско"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr "Фанк"
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr "Гранж"
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr "Хип-Хоп"
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr "Джаз"
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr "Металл"
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr "Нью-эйдж"
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr "Ретро"
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr "Другое"
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr "Поп"
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr "R&B"
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr "Рэп"
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr "Рэгги"
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr "Рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr "Техно"
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr "Индустриальная"
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr "Альтернативная"
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ска"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr "Death Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr "Pranks"
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "Звуковая дорожка"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr "Евро-техно"
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr "Амбиент"
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr "Трип-хоп"
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr "Вокал"
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr "Джаз+Фанк"
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr "Фьюжн"
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr "Транс"
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr "Классика"
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr "Инструментальная"
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr "Кислотная"
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr "Хаус"
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr "Игровая"
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr "Звуковой клип"
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr "Госпел"
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "Шум"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr "Alt"
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr "Низкие"
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr "Соул"
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr "Панк"
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr "Космическая"
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr "Медитативная"
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr "Инструментальный поп"
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr "Инструментальный рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr "Этническая"
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr "Готическая"
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr "Darkwave"
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr "Техно-индустриальная"
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr "Электронная"
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr "Поп-фолк"
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr "Евроданс"
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr "Мечтательная"
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr "Южный рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr "Комедия"
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr "Культовая"
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr "Бандитский рэп"
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr "Лучшие 40"
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr "Христианский рэп"
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr "Поп/Фанк"
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr "Джангл"
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr "Народная американская"
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr "Кабаре"
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr "Новая волна"
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr "Психоделическая"
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr "Рэйв"
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr "Showtunes"
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr "Трейлер"
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr "Lo-Fi"
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr "Племенная"
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr "Кислотный панк"
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr "Кислотный джаз"
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "Полька"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr "Ретро"
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr "Мюзикл"
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr "Рок-н-ролл"
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr "Хард-рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr "Фолк"
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr "Фолк/Рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr "Народная"
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr "Свинг"
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr "Fast-Fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr "Бибоп"
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "Латиноамериканская"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr "Revival"
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "Кельтская"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr "Блюграсс"
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr "Авангард"
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr "Готический рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr "Прогрессивный рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr "Психоделический рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr "Симфонический рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr "Медленный рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr "Биг-бэнд"
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr "Хорус"
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr "Лёгкая для восприятия"
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "Акустическая"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "Юмор"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "Речь"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr "Шансон"
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "Оперная"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr "Камерная"
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr "Соната"
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "Симфоническая"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr "Booty Bass"
-
-# Тег создан ради единственной группы — Primus, поэтому не должен переводиться.
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr "Primus"
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr "Porn Groove"
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "Сатира"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr "Slow Jam"
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr "Клубная"
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr "Танго"
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "Самба"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "Фольклор"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr "Баллада"
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr "Мощная баллада"
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr "Ритмичный соул"
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr "Свободный стиль"
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr "Дуэт"
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr "Панк-рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr "Барабанное соло"
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr "А капелла"
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr "Евро-хаус"
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr "Dance Hall"
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "Гоа"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr "Ударные и бас"
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr "Клуб-хаус"
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr "Hardcore"
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "Террор"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr "Инди"
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr "Брит-поп"
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr "Negerpunk"
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr "Польский панк"
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr "Бит"
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr "Christian Gangsta Rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr "Хэви-металл"
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr "Блэк-металл"
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr "Crossover"
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr "Contemporary Christian"
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr "Христианский рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr "Меренга"
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr "Сальса"
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr "Трэш-металл"
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "Аниме"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr "JPop"
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr "Синтпоп"
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr "Nu-Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr "Арт-рок"
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "Неизвестный исполнитель"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "Неизвестный альбом"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
-#, c-format
-msgid "Editing Disc ID: %s"
-msgstr "Идентификатор редактируемого диска: %s"
-
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
-msgstr "Скрыть расширенные параметры диска"
-
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr "Показать расширенные параметры диска"
-
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr "Скрыть расширенные параметры дорожки"
-
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr "Показать расширенные параметры дорожки"
-
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr "Идентификатор редактируемого диска: "
-
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "_Исполнитель:"
-
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "На_звание диска:"
-
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr "Комментарий к _диску:"
-
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr "_Жанр:"
-
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "_Год:"
-
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "Название"
-
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr "Длина"
-
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr "Д_ополнительные данные дорожки:"
-
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "Редактор дорожек"
-
-#: ../cddb-slave2/cddb-track-editor.c:1072
-#, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-"Невозможно создать фабрику редактора дорожек.\n"
-"Возможно запущена другая копия cddb-track-editor.\n"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr "Дисплей устройства чтения компакт-дисков"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Отображает информацию о воспроизводимом альбоме, исполнителе и прошедшем "
-"времени"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr "Строка времени"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr "Строка для отображения времени воспроизведения для текущей дорожки"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr "Информационная строка"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr "Строка отображения информации"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr "Строка исполнителя"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr "Строка для отображения имени исполнителя"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr "Строка альбома"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr "Строка для отображения названия альбома"
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "Воспроизвести"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "Пауза"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"Воспроизводится %s — %s\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"Воспроизводится\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "Приостановлено"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr "CD-проигрыватель"
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "Остановлено"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "Ошибка диска"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "Нет диска"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "Пустой диск"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr "Дисковод открыт"
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "Компакт-диск с данными"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "Нет компакт-диска"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr "Ошибка привода"
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr "Проигрыватель компакт-дисков для среды GNOME"
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr "Содержимое CDDB было изменено"
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr "Нажатие кнопки «Да» удалит предыдущее содержимое CDDB."
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr "Хотите продолжить?"
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "Том %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr "Возможно, отсутствуют права на доступ к «%s»."
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"Адрес «%s» не указывает на допустимое устройство чтения компакт-дисков.\n"
-"Возможные причины:\n"
-"а) поддержка компакт-дисков на данном компьютере отсутствует\n"
-"б) отсутствуют необходимые права на доступ к устройству чтения компакт-"
-"дисков\n"
-"в) устройство «%s» не является устройством чтения компакт-дисков.\n"
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d — Неизвестный"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "_Воспроизведение / Пауза"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "_Остановить"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "П_редыдущая"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "_Следующая"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "_Извлечь диск"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
-msgid "_Help"
-msgstr "_Справка"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "_О программе"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "В_ыход"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-"Не установлено устройство чтения компакт-дисков. Это значит, что\n"
-"проигрыватель компакт-дисков не сможет запуститься.\n"
-"Нажмите кнопку «Установить устройство»,\n"
-"чтобы перейти к диалогу установки устройства или \n"
-"кнопку «Выйти», чтобы выйти из проигрывателя."
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "Установить устройство"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "Нет устройства чтения CD"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-"CD-проигрыватель не запускается нормально.\n"
-"\n"
-"Нажмите кнопку «Показать подробности» для выяснения причины сбоя.\n"
-"\n"
-"Нажмите кнопку «Установить устройство» для запуска диалога установки "
-"устройства или «Выйти» для выхода из программы"
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "_Подробности"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "_Установить устройство"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr "Недопустимое устройство чтения CD"
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "Положение"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "Изменить параметры"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "Параметры"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "Список дорожек"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "Открыть редактор дорожек"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "Редактор дорожек"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "Воспроизведение / Пауза"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "Стоп"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr "Предыдущая дорожка"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "Предыдущая"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr "Перемотка назад"
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "Перемотка вперёд"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr "Следующая дорожка"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "Извлечь CD"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "Извлечь"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "Используемое устройство CD"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr "Запускаться только если отсутствуют другие запущенные проигрыватели"
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr "Проигрывать компакт-диск при старте"
-
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr "Запускать свёрнутым со значком в области уведомления"
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr "Невозможно создать проигрыватель"
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr "Проигрыватель компакт-дисков"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr "Громкость проигрывателя компакт-дисков"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr "Тема проигрывателя компакт-дисков"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr "Путь к устройству"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr "Показывать оставшееся время?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr "Извлекать CD при выходе из проигрывателя компакт-дисков?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr "Как должно отображаться время, когда играет CD-проигрыватель?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr "Начинать воспроизведение при запуске проигрывателя CD?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr ""
-"Должен ли проигрыватель компакт-дисков извлекать CD из привода при выходе?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Путь к устройству чтения CD, которое проигрыватель должен использовать"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr "Тема, используемая для внешнего вида проигрывателя CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr ""
-"Какая громкость CD-проигрывателя должна быть установлена при его запуске?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr ""
-"Начинать ли воспроизведение сразу после старта проигрывателя компакт-дисков?"
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr "Не удалось извлечь компакт-диск: %s"
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-"%s\n"
-"Это значит, что проигрыватель компакт-дисков не может быть запущен."
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr "Ошибка установки устройства"
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "Параметры проигрывателя CD"
-
-#: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Device:"
-msgstr "_Устройство:"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr "Поведение"
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr "Начинать _воспроизведение при запуске CD-проигрывателя"
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr "Начинать воспроизведение при запуске CD-проигрывателя"
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr "_Извлекать CD при выходе из проигрывателя"
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr "Пытаться извлечь CD при выходе из проигрывателя"
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "Темы"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr "_Выберите тему:"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "Изменить громкость звука и связать звуки с событиями рабочего стола"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "Звук"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -1341,17 +29,26 @@ msgstr "Показать регулятор громкости"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "Регулятор громкости"
 
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and sound events"
+msgstr "Изменить громкость звука и связать звуки с событиями рабочего стола"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Звук"
+
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "Включить отладочный режим"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "Версия этого приложения"
 
@@ -1359,130 +56,212 @@ msgstr "Версия этого приложения"
 msgid " - GNOME Volume Control Applet"
 msgstr " — Апплет регулятора громкости"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "Ожидание ответа звуковой подсистемы"
 
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Домашняя страница"
 
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " — Регулятор громкости"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
 msgid "Output"
 msgstr "Выход"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:277
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
 msgid "Input"
 msgstr "Вход"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "Левый"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "Правый"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr "Передний"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Rear"
+msgstr "Задний"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Минимум"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Максимум"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "_Баланс"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:798
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+msgid "_Fade:"
+msgstr "Затухание:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+msgid "_Subwoofer:"
+msgstr "Сабвуфер"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:584
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+msgctxt "volume"
+msgid "Unamplified"
+msgstr " "
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:844
 msgid "Mute"
 msgstr "Приглушить"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
+msgid "_Profile:"
+msgstr "_Профили:"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Выключено"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u Выход"
+msgstr[1] "%s Выходы"
+msgstr[2] "%u Выходов"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u Вход"
+msgstr[1] "%u Входы"
+msgstr[2] "%u Входов"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
 msgid "System Sounds"
 msgstr "Системные звуки"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
-msgid "GNOME Volume Control"
-msgstr "Регулятор громкости"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+msgid "Co_nnector:"
+msgstr "Канал:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
 msgid "Peak detect"
 msgstr "Определение максимальной громкости"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Название"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
 msgid "Device"
 msgstr "Устройство"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+msgid "_Output volume: "
 msgstr "Громкость звука: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
 msgid "Sound Effects"
 msgstr "Звуковые события"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
-msgid "Alert Volume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+msgid "_Alert volume: "
 msgstr "Громкость уведомлений: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
-msgstr "Громкость записи:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
+msgid "Hardware"
+msgstr "Устройства"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
-msgid "Input level:"
-msgstr "Уровень записи:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+msgid "C_hoose a device to configure:"
+msgstr "Выберете устройство:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
-msgid "Choose a device for sound input"
-msgstr "Выберите устройство для записи звука"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
-msgid "Choose a device for sound output"
-msgstr "Выберите устройство для вывода звука"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "Settings for the selected device:"
 msgstr "Настройки выбранного устройства:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+msgid "_Input volume: "
+msgstr "Громкость записи: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
+msgid "Input level:"
+msgstr "Уровень записи:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+msgid "C_hoose a device for sound input:"
+msgstr "Выберите устройство для записи звука:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+msgid "C_hoose a device for sound output:"
+msgstr "Выберите устройство для вывода звука:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
 msgid "Applications"
 msgstr "Приложения"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
 msgid "No application is currently playing or recording audio."
 msgstr "В настоящий момент приложения не проигрывают и не записывают звук."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Параметры звука"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Не удалось запустить диалог настройки параметров звука: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "_Приглушить"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "П_араметры звука"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:419
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "Приглушён"
 
@@ -1499,17 +278,17 @@ msgstr "Звукозапись"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Безымянный"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Безымянный-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1525,7 +304,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "и перезапустите Звукозапись."
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1533,7 +312,7 @@ msgstr ""
 "Проверьте его параметры.\n"
 "Возможно, отсутствуют нужные модули."
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1541,7 +320,7 @@ msgstr[0] "%ld минута"
 msgstr[1] "%ld минуты"
 msgstr[2] "%ld минут"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1549,7 +328,7 @@ msgstr[0] "%ld час"
 msgstr[1] "%ld часа"
 msgstr[2] "%ld часов"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1558,24 +337,24 @@ msgstr[1] "%ld секунды"
 msgstr[2] "%ld секунд"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s и %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s и %s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Открыть файл"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1584,17 +363,17 @@ msgstr ""
 "Не удалось загрузить файл:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "Готово"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "_Заменить"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1603,44 +382,51 @@ msgstr ""
 "Файл с именем «%s» уже существует.\n"
 "Заменить его сохраняемым файлом?"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Не удалось сохранить файл «%s»"
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Сохранить файл как"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "Программа «%s» не найдена в пути поиска."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Произошла ошибка при запуске программы «%s»: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Сохранить изменения в файл «%s» перед закрытием?"
+msgid "Save recording before closing?"
+msgstr "Сохранить запись перед закрытием?"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "Запись"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "Закрыть _без сохранения"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr "Продолжить _без сохранения"
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "Вопрос"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (не был сохранён)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1648,71 +434,79 @@ msgstr[0] "%s (%llu байт)"
 msgstr[1] "%s (%llu байта)"
 msgstr[2] "%s (%llu байт)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "Размер неизвестен"
 
-#: ../grecord/src/gsr-window.c:1025
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f кГц"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f КБ/с"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f КБ/с (ожидается)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1052
 msgid "1 (mono)"
 msgstr "1 (моно)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1055
 msgid "2 (stereo)"
 msgstr "2 (стерео)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "Информация о файле «%s»"
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Сведения о файле"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Папка:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Имя файла:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "Размер файла:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "Сведения о звуке"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
-msgstr "Продолжительность файла:"
+msgstr "Длительность файла:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "Число каналов:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "Частота дискретизации:"
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "Ширина потока:"
 
@@ -1724,27 +518,27 @@ msgstr ""
 "Программа звукозаписи для среды GNOME\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr "Воспроизводится..."
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "Выход звука, заданный в GConf"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Воспроизведение"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr "Записывается..."
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "GConf - запись звука"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1752,145 +546,146 @@ msgstr ""
 "Параметры записи звука неверны. Измените их в разделе «Звук» меню «Система», "
 "«Параметры»."
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "Вывод в файл"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "уровень"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Не удается разобрать звуковой профиль \"%s\". "
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Не удается записать звук с использованием профиля \"%s\". "
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Не удается записать в файл с использованием звукового профиля \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Файл"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "Создать новый отрывок"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Открыть файл"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "Сохранить текущий файл"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "Сохранить текущий файл под другим именем"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "Открыть _регулятор громкости"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "Открыть звуковой микшер"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "Показать информацию о текущем файле"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "Выбрать текущий файл"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Выйти из программы"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "_Управление"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "Записать звуковой отрывок"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "Воспроизвести звуковой отрывок"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Остановить воспроизведение"
 
-#: ../grecord/src/gsr-window.c:2145
+#. Help menu
+#: ../grecord/src/gsr-window.c:2151
+msgid "_Help"
+msgstr "_Справка"
+
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Содержание"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "Открыть руководство"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "Об этом приложении"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Не удается загрузить ui.xml. Программа может быть неправильно установлена."
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Открыть"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "Запись со звукового _входа:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "_Записать как:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<нет>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "Продолжительность:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "Уровень:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s — звукозапись"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "Регулятор громкости звука"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1908,7 +703,7 @@ msgstr "Ширина окна"
 msgid "Width of the Window to be displayed"
 msgstr "Ширина отображаемого окна"
 
-#: ../gst-mixer/src/element.c:423
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Тема звуковых событий"
 
@@ -1921,15 +716,15 @@ msgstr "Неизвестный регулятор громкости %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Модули GStreamer и/или устройства регулировки громкости не найдены."
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "Запись"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "Переключатели"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "Параметры"
 
@@ -1939,37 +734,37 @@ msgid "Volume Control Preferences"
 msgstr "Параметры регулятора громкости"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
+msgid "_Select mixers to be visible:"
 msgstr "_Выберите видимые каналы:"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Приглушить/включить %s"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "Канал %s: приглушён"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Переключить запись с %s"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Дорожка %s: запись звука"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "Выбор параметра %s"
@@ -2058,11 +853,11 @@ msgstr "неизв."
 msgid "Volume of %s channel on %s"
 msgstr "Громкость канала %2$s (%1$s)"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Регулятор громкости на основе GNOME/GStreamer"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Max Valianskiy <maxcom@vinchi.ru>\n"
@@ -2070,45 +865,46 @@ msgstr ""
 "Valek Filippov <frob@df.ru>\n"
 "Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Andrew W. Nosenko <awn@bcs.zp.ua>\n"
-"Leonid Kanter <leon@asplinux.ru>"
+"Leonid Kanter <leon@asplinux.ru>\n"
+"Valery V. Inozemtsev <shrek@altlinux.ru>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Регулятор громкости: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "_Устройство:"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "Регулировать громкость другого устройства"
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "Отсутствует"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr "Не поддерживается"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "По умолчанию"
 
-#: ../gstreamer-properties/gstreamer-properties.c:603
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr "Сбой при создании главного окна"
 
-#: ../gstreamer-properties/gstreamer-properties.c:652
-msgid "Failed to load glade file; please check your installation."
+#: ../gstreamer-properties/gstreamer-properties.c:680
+msgid "Failed to load UI file; please check your installation."
 msgstr ""
 "Не удалось загрузить файл glade, проверьте правильность установки программы."
 
@@ -2117,163 +913,106 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Настройка приложений GStreamer по умолчанию"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Выбор мультимедийной системы"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>Вход по умолчанию</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>Выход по умолчанию</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Проверка...</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "Аудио"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr "Нажмите «OK» для завершения"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "Ус_тройство:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr "_Конвейер:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr "М_одуль:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr "Ко_нвейер:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr "П_роверить"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr "Проверяется конвейер"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "Видео"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr "_Модуль:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr "_Проверить"
-
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr "Автоопределение"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA (Advanced Linux Sound Architecture)"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd (звуковой сервис ART)"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD (звуковой сервис Enlightenment)"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS (Open Sound System)"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr "Звуковой сервер PulseAudio"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Другой"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL (Simple DirectMedia Layer)"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "Система X Window (без расширения Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "Система X Window (с расширениями X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "Тестовый звук"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "Тишина"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (например, для устройств Zoran)"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr "Тестовый сигнал"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Видео для Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Видео для Linux версии 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Сбой при создании проверочного конвейера для «%s»"
 
-#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
+#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Произошла ошибка при отображении справки: %s"
 
-#: ../profiles/audio-profile-edit.c:336
+#: ../profiles/audio-profile-edit.c:335
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Изменение профиля «%s»"
@@ -2305,12 +1044,12 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Произошла ошибка при отмене пути профилей \"%s\". (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:88
+#: ../profiles/audio-profiles-edit.c:87
 msgid "_Edit"
 msgstr "_Изменить"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:466
+#: ../profiles/audio-profiles-edit.c:465
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
@@ -2318,29 +1057,29 @@ msgstr[0] "Удалить этот %d профиль?\n"
 msgstr[1] "Удалить эти %d профиля?\n"
 msgstr[2] "Удалить эти %d профилей?\n"
 
-#: ../profiles/audio-profiles-edit.c:485
+#: ../profiles/audio-profiles-edit.c:484
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Удалить профиль «%s»?"
 
-#: ../profiles/audio-profiles-edit.c:507
+#: ../profiles/audio-profiles-edit.c:506
 msgid "Delete Profile"
 msgstr "Удаление профиля"
 
-#: ../profiles/audio-profiles-edit.c:601
+#: ../profiles/audio-profiles-edit.c:599
 msgid "Edit GNOME Audio Profiles"
 msgstr "Изменение звуковых профилей GNOME"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr "_Профили:"
 
-#: ../profiles/audio-profiles-edit.c:834
+#: ../profiles/audio-profiles-edit.c:832
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Профиль с именем «%s» уже существует"
 
-#: ../profiles/audio-profiles-edit.c:859
+#: ../profiles/audio-profiles-edit.c:857
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Произошла ошибка системы GConf: %s\n"
@@ -2353,6 +1092,16 @@ msgid ""
 msgstr ""
 "Файл «%s» отсутствует. Это означает, что приложение установлено некорректно, "
 "так что диалог не может быть отображён."
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Запустите '%s --help' для просмотра полного списка доступных ключей "
+"командной строки.\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2549,43 +1298,41 @@ msgstr "Используется ли данный профиль"
 msgid "Whether or not to use and display this profile."
 msgstr "Используется ли и отображается данный профиль."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Без звуков"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Встроенная"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Тестовый звуковой сигнал"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "Из темы"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "Тип"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+msgid "Sound _theme:"
 msgstr "Тема звуков:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
-msgid "Choose an alert sound:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+msgid "C_hoose an alert sound:"
 msgstr "Выберите звук уведомления:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+msgid "Enable _window and button sounds"
 msgstr "Включить звуковые уведомления о действиях с окнами и нажатии кнопок"
 
 #. Bell
@@ -2690,14 +1437,17 @@ msgstr "Выберите звуковой файл"
 msgid "Sound files"
 msgstr "Звуковые файлы"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Выключено"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "Другой..."
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Тема звуков:"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Включить звуковые уведомления о действиях с окнами и нажатии кнопок"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
@@ -2723,71 +1473,1056 @@ msgstr "Разбитое стекло"
 msgid "Sonar"
 msgstr "Сонар"
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
-msgstr ""
-"Невозможно установить соединение с сервером звука.\n"
-"Запустите сервис «esd» из командной строки."
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Адрес сервера для посылки запросов по компакт-дискам"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the X position of the meter."
-msgstr "Указать Х-координату индикатора"
+#~ msgid "Information to send to server"
+#~ msgstr "Информация, посылаемая на сервер"
 
-#: ../vu-meter/main.c:232
-msgid "X"
-msgstr "X"
+#~ msgid "Port"
+#~ msgstr "Порт"
 
-#: ../vu-meter/main.c:234
-msgid "Specify the Y position of the meter."
-msgstr "Указать Y-координату индикатора."
+#~ msgid "Server name"
+#~ msgstr "Сервер"
 
-#: ../vu-meter/main.c:235
-msgid "Y"
-msgstr "Y"
+#~ msgid "Server type"
+#~ msgstr "Тип сервера"
 
-#: ../vu-meter/main.c:237
-msgid "Connect to the esd server on this host."
-msgstr "Установить соединение с esd-сервером на этой системе"
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "Имя узла, куда будут посылаться все запросы"
 
-#: ../vu-meter/main.c:238
-msgid "HOST"
-msgstr "HOST"
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "Порт, на котором на сервере запущена база данных"
 
-#: ../vu-meter/main.c:240
-msgid "Open a vertical version of the meter."
-msgstr "Открыть вертикальную версию индикатора"
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "Тип сервера для запроса по компакт-дискам. Возможные значения 0 "
+#~ "(циклический сервер системы FreeDB), 1 (другой сервер системы freedb) и 2 "
+#~ "(иной сервер)."
 
-#: ../vu-meter/main.c:242
-msgid "Act as recording level meter."
-msgstr "Действовать как измеритель уровня записи."
+#~ msgid "The username"
+#~ msgstr "Имя пользователя"
 
-#: ../vu-meter/main.c:258
-#, c-format
-msgid "Host is %s\n"
-msgstr "Имя узла: %s\n"
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "Имя пользователя, которое будет посылаться со всеми запросами"
 
-#: ../vu-meter/main.c:275
-msgid "Recording level"
-msgstr "Уровень записи"
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Этот ключ определяет, какая информация о пользователе будет послана на "
+#~ "сервер для запроса о компакт-диске. Возможные значения 0 (информация не "
+#~ "посылается), 1 (реальная информация) и 3 (другая информация)."
 
-#: ../vu-meter/main.c:275
-msgid "Volume Meter"
-msgstr "Индикатор громкости"
+#~ msgid "Your hostname"
+#~ msgstr "Ваше имя узла"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Программа для индикации уровня записи"
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Произошла ошибка при запуске отображении справки: \n"
+#~ "%s"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
-msgstr "Индикатор уровня записи"
+#~ msgid "Sen_d no information"
+#~ msgstr "_не посылать информацию"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Программа для индикации уровня громкости"
+#~ msgid "Send real _information"
+#~ msgstr "посылать _действительную информацию"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "Индикатор громкости"
+#~ msgid "Send _other information:"
+#~ msgstr "посылать д_ругую информацию:"
+
+#~ msgid "Hostna_me:"
+#~ msgstr "Имя _узла:"
+
+#~ msgid "Login Information"
+#~ msgstr "Информация о пользователе"
+
+#~ msgid "FreeDB _round robin server"
+#~ msgstr "_циклический сервер системы FreeDB"
+
+#~ msgid "Other _FreeDB server:"
+#~ msgstr "другой сервер системы _FreeDB"
+
+#~ msgid "Server"
+#~ msgstr "Сервер"
+
+#~ msgid "Location"
+#~ msgstr "Адрес"
+
+#~ msgid "_Update Server List"
+#~ msgstr "_Обновить список серверов"
+
+#~ msgid "Other _server:"
+#~ msgstr "другой с_ервер..."
+
+#~ msgid "Hos_tname:"
+#~ msgstr "И_мя узла:"
+
+#~ msgid "_Port:"
+#~ msgstr "Пор_т:"
+
+#~ msgid "CD Database Preferences"
+#~ msgstr "Параметры базы данных компакт-дисков"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Неизвестный / Неизвестный"
+
+#~ msgid "Multiple matches..."
+#~ msgstr "Несколько совпадений..."
+
+#~ msgid ""
+#~ "There were multiple matches found in the database.\n"
+#~ "Below is a list of possible matches, please choose the best match"
+#~ msgstr ""
+#~ "В базе данных найдено несколько совпадений.\n"
+#~ "Выберите наилучшее из приведённого ниже списка."
+
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#~ msgid "Disc ID"
+#~ msgstr "Идентификатор диска"
+
+#~ msgid "Artist and Title"
+#~ msgstr "Исполнитель и название"
+
+#~ msgid "Unknown track"
+#~ msgstr "Неизвестная дорожка"
+
+#~ msgid "CD Database Server"
+#~ msgstr "Сервер базы данных компакт-дисков"
+
+#~ msgid "Modify your CD database server preferences"
+#~ msgstr "Настройка базы данных компакт-дисков"
+
+#~ msgid "Blues"
+#~ msgstr "Блюз"
+
+#~ msgid "Classical Rock"
+#~ msgstr "Классический рок"
+
+#~ msgid "Country"
+#~ msgstr "Кантри"
+
+#~ msgid "Dance"
+#~ msgstr "Танцевальная"
+
+#~ msgid "Disco"
+#~ msgstr "Диско"
+
+#~ msgid "Funk"
+#~ msgstr "Фанк"
+
+#~ msgid "Grunge"
+#~ msgstr "Гранж"
+
+#~ msgid "Hip-Hop"
+#~ msgstr "Хип-Хоп"
+
+#~ msgid "Jazz"
+#~ msgstr "Джаз"
+
+#~ msgid "Metal"
+#~ msgstr "Металл"
+
+#~ msgid "New Age"
+#~ msgstr "Нью-эйдж"
+
+#~ msgid "Oldies"
+#~ msgstr "Ретро"
+
+#~ msgid "Other"
+#~ msgstr "Другое"
+
+#~ msgid "Pop"
+#~ msgstr "Поп"
+
+#~ msgid "R&B"
+#~ msgstr "R&B"
+
+#~ msgid "Rap"
+#~ msgstr "Рэп"
+
+#~ msgid "Reggae"
+#~ msgstr "Рэгги"
+
+#~ msgid "Rock"
+#~ msgstr "Рок"
+
+#~ msgid "Techno"
+#~ msgstr "Техно"
+
+#~ msgid "Industrial"
+#~ msgstr "Индустриальная"
+
+#~ msgid "Alternative"
+#~ msgstr "Альтернативная"
+
+#~ msgid "Ska"
+#~ msgstr "Ска"
+
+#~ msgid "Death Metal"
+#~ msgstr "Death Metal"
+
+#~ msgid "Pranks"
+#~ msgstr "Pranks"
+
+#~ msgid "Soundtrack"
+#~ msgstr "Звуковая дорожка"
+
+#~ msgid "Euro-Techno"
+#~ msgstr "Евро-техно"
+
+#~ msgid "Ambient"
+#~ msgstr "Амбиент"
+
+#~ msgid "Trip-Hop"
+#~ msgstr "Трип-хоп"
+
+#~ msgid "Vocal"
+#~ msgstr "Вокал"
+
+#~ msgid "Jazz+Funk"
+#~ msgstr "Джаз+Фанк"
+
+#~ msgid "Fusion"
+#~ msgstr "Фьюжн"
+
+#~ msgid "Trance"
+#~ msgstr "Транс"
+
+#~ msgid "Classical"
+#~ msgstr "Классика"
+
+#~ msgid "Instrumental"
+#~ msgstr "Инструментальная"
+
+#~ msgid "Acid"
+#~ msgstr "Кислотная"
+
+#~ msgid "House"
+#~ msgstr "Хаус"
+
+#~ msgid "Game"
+#~ msgstr "Игровая"
+
+#~ msgid "Sound Clip"
+#~ msgstr "Звуковой клип"
+
+#~ msgid "Gospel"
+#~ msgstr "Госпел"
+
+#~ msgid "Noise"
+#~ msgstr "Шум"
+
+#~ msgid "Alt"
+#~ msgstr "Alt"
+
+#~ msgid "Bass"
+#~ msgstr "Низкие"
+
+#~ msgid "Soul"
+#~ msgstr "Соул"
+
+#~ msgid "Punk"
+#~ msgstr "Панк"
+
+#~ msgid "Space"
+#~ msgstr "Космическая"
+
+#~ msgid "Meditative"
+#~ msgstr "Медитативная"
+
+#~ msgid "Instrumental Pop"
+#~ msgstr "Инструментальный поп"
+
+#~ msgid "Instrumental Rock"
+#~ msgstr "Инструментальный рок"
+
+#~ msgid "Ethnic"
+#~ msgstr "Этническая"
+
+#~ msgid "Gothic"
+#~ msgstr "Готическая"
+
+#~ msgid "Darkwave"
+#~ msgstr "Darkwave"
+
+#~ msgid "Techno-Industrial"
+#~ msgstr "Техно-индустриальная"
+
+#~ msgid "Electronic"
+#~ msgstr "Электронная"
+
+#~ msgid "Pop-Folk"
+#~ msgstr "Поп-фолк"
+
+#~ msgid "Eurodance"
+#~ msgstr "Евроданс"
+
+#~ msgid "Dream"
+#~ msgstr "Мечтательная"
+
+#~ msgid "Southern Rock"
+#~ msgstr "Южный рок"
+
+#~ msgid "Comedy"
+#~ msgstr "Комедия"
+
+#~ msgid "Cult"
+#~ msgstr "Культовая"
+
+#~ msgid "Gangsta Rap"
+#~ msgstr "Бандитский рэп"
+
+#~ msgid "Top 40"
+#~ msgstr "Лучшие 40"
+
+#~ msgid "Christian Rap"
+#~ msgstr "Христианский рэп"
+
+#~ msgid "Pop/Funk"
+#~ msgstr "Поп/Фанк"
+
+#~ msgid "Jungle"
+#~ msgstr "Джангл"
+
+#~ msgid "Native American"
+#~ msgstr "Народная американская"
+
+#~ msgid "Cabaret"
+#~ msgstr "Кабаре"
+
+#~ msgid "New Wave"
+#~ msgstr "Новая волна"
+
+#~ msgid "Psychedelic"
+#~ msgstr "Психоделическая"
+
+#~ msgid "Rave"
+#~ msgstr "Рэйв"
+
+#~ msgid "Showtunes"
+#~ msgstr "Showtunes"
+
+#~ msgid "Trailer"
+#~ msgstr "Трейлер"
+
+#~ msgid "Lo-Fi"
+#~ msgstr "Lo-Fi"
+
+#~ msgid "Tribal"
+#~ msgstr "Племенная"
+
+#~ msgid "Acid Punk"
+#~ msgstr "Кислотный панк"
+
+#~ msgid "Acid Jazz"
+#~ msgstr "Кислотный джаз"
+
+#~ msgid "Polka"
+#~ msgstr "Полька"
+
+#~ msgid "Musical"
+#~ msgstr "Мюзикл"
+
+#~ msgid "Rock & Roll"
+#~ msgstr "Рок-н-ролл"
+
+#~ msgid "Hard Rock"
+#~ msgstr "Хард-рок"
+
+#~ msgid "Folk"
+#~ msgstr "Фолк"
+
+#~ msgid "Folk/Rock"
+#~ msgstr "Фолк/Рок"
+
+#~ msgid "National Folk"
+#~ msgstr "Народная"
+
+#~ msgid "Swing"
+#~ msgstr "Свинг"
+
+#~ msgid "Fast-Fusion"
+#~ msgstr "Fast-Fusion"
+
+#~ msgid "Bebop"
+#~ msgstr "Бибоп"
+
+#~ msgid "Latin"
+#~ msgstr "Латиноамериканская"
+
+#~ msgid "Revival"
+#~ msgstr "Revival"
+
+#~ msgid "Celtic"
+#~ msgstr "Кельтская"
+
+#~ msgid "Bluegrass"
+#~ msgstr "Блюграсс"
+
+#~ msgid "Avantgarde"
+#~ msgstr "Авангард"
+
+#~ msgid "Gothic Rock"
+#~ msgstr "Готический рок"
+
+#~ msgid "Progressive Rock"
+#~ msgstr "Прогрессивный рок"
+
+#~ msgid "Psychedelic Rock"
+#~ msgstr "Психоделический рок"
+
+#~ msgid "Symphonic Rock"
+#~ msgstr "Симфонический рок"
+
+#~ msgid "Slow Rock"
+#~ msgstr "Медленный рок"
+
+#~ msgid "Big Band"
+#~ msgstr "Биг-бэнд"
+
+#~ msgid "Chorus"
+#~ msgstr "Хорус"
+
+#~ msgid "Easy Listening"
+#~ msgstr "Лёгкая для восприятия"
+
+#~ msgid "Acoustic"
+#~ msgstr "Акустическая"
+
+#~ msgid "Humour"
+#~ msgstr "Юмор"
+
+#~ msgid "Speech"
+#~ msgstr "Речь"
+
+#~ msgid "Chanson"
+#~ msgstr "Шансон"
+
+#~ msgid "Opera"
+#~ msgstr "Оперная"
+
+#~ msgid "Chamber Music"
+#~ msgstr "Камерная"
+
+#~ msgid "Sonata"
+#~ msgstr "Соната"
+
+#~ msgid "Symphony"
+#~ msgstr "Симфоническая"
+
+#~ msgid "Booty Bass"
+#~ msgstr "Booty Bass"
+
+# Тег создан ради единственной группы — Primus, поэтому не должен переводиться.
+#~ msgid "Primus"
+#~ msgstr "Primus"
+
+#~ msgid "Porn Groove"
+#~ msgstr "Porn Groove"
+
+#~ msgid "Satire"
+#~ msgstr "Сатира"
+
+#~ msgid "Slow Jam"
+#~ msgstr "Slow Jam"
+
+#~ msgid "Club"
+#~ msgstr "Клубная"
+
+#~ msgid "Tango"
+#~ msgstr "Танго"
+
+#~ msgid "Samba"
+#~ msgstr "Самба"
+
+#~ msgid "Folklore"
+#~ msgstr "Фольклор"
+
+#~ msgid "Ballad"
+#~ msgstr "Баллада"
+
+#~ msgid "Power Ballad"
+#~ msgstr "Мощная баллада"
+
+#~ msgid "Rhythmic Soul"
+#~ msgstr "Ритмичный соул"
+
+#~ msgid "Freestyle"
+#~ msgstr "Свободный стиль"
+
+#~ msgid "Duet"
+#~ msgstr "Дуэт"
+
+#~ msgid "Punk Rock"
+#~ msgstr "Панк-рок"
+
+#~ msgid "Drum Solo"
+#~ msgstr "Барабанное соло"
+
+#~ msgid "A Cappella"
+#~ msgstr "А капелла"
+
+#~ msgid "Euro-House"
+#~ msgstr "Евро-хаус"
+
+#~ msgid "Dance Hall"
+#~ msgstr "Dance Hall"
+
+#~ msgid "Goa"
+#~ msgstr "Гоа"
+
+#~ msgid "Drum & Bass"
+#~ msgstr "Ударные и бас"
+
+#~ msgid "Club-House"
+#~ msgstr "Клуб-хаус"
+
+#~ msgid "Terror"
+#~ msgstr "Террор"
+
+#~ msgid "Indie"
+#~ msgstr "Инди"
+
+#~ msgid "BritPop"
+#~ msgstr "Брит-поп"
+
+#~ msgid "Negerpunk"
+#~ msgstr "Negerpunk"
+
+#~ msgid "Polsk Punk"
+#~ msgstr "Польский панк"
+
+#~ msgid "Beat"
+#~ msgstr "Бит"
+
+#~ msgid "Christian Gangsta Rap"
+#~ msgstr "Christian Gangsta Rap"
+
+#~ msgid "Heavy Metal"
+#~ msgstr "Хэви-металл"
+
+#~ msgid "Black Metal"
+#~ msgstr "Блэк-металл"
+
+#~ msgid "Crossover"
+#~ msgstr "Crossover"
+
+#~ msgid "Contemporary Christian"
+#~ msgstr "Contemporary Christian"
+
+#~ msgid "Christian Rock"
+#~ msgstr "Христианский рок"
+
+#~ msgid "Merengue"
+#~ msgstr "Меренга"
+
+#~ msgid "Salsa"
+#~ msgstr "Сальса"
+
+#~ msgid "Thrash Metal"
+#~ msgstr "Трэш-металл"
+
+#~ msgid "Anime"
+#~ msgstr "Аниме"
+
+#~ msgid "JPop"
+#~ msgstr "JPop"
+
+#~ msgid "Synthpop"
+#~ msgstr "Синтпоп"
+
+#~ msgid "Nu-Metal"
+#~ msgstr "Nu-Metal"
+
+#~ msgid "Art Rock"
+#~ msgstr "Арт-рок"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Неизвестный исполнитель"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Неизвестный альбом"
+
+#~ msgid "Editing Disc ID: %s"
+#~ msgstr "Идентификатор редактируемого диска: %s"
+
+#~ msgid "Hide advanced disc options"
+#~ msgstr "Скрыть расширенные параметры диска"
+
+#~ msgid "Show advanced disc options"
+#~ msgstr "Показать расширенные параметры диска"
+
+#~ msgid "Hide advanced track options"
+#~ msgstr "Скрыть расширенные параметры дорожки"
+
+#~ msgid "Show advanced track options"
+#~ msgstr "Показать расширенные параметры дорожки"
+
+#~ msgid "Editing Disc ID: "
+#~ msgstr "Идентификатор редактируемого диска: "
+
+#~ msgid "_Artist:"
+#~ msgstr "_Исполнитель:"
+
+#~ msgid "Disc _Title:"
+#~ msgstr "На_звание диска:"
+
+#~ msgid "_Disc comments:"
+#~ msgstr "Комментарий к _диску:"
+
+#~ msgid "_Genre:"
+#~ msgstr "_Жанр:"
+
+#~ msgid "_Year:"
+#~ msgstr "_Год:"
+
+#~ msgid "Title"
+#~ msgstr "Название"
+
+#~ msgid "Length"
+#~ msgstr "Длина"
+
+#~ msgid "_Extra track data:"
+#~ msgstr "Д_ополнительные данные дорожки:"
+
+#~ msgid "CDDB Track Editor"
+#~ msgstr "Редактор дорожек"
+
+#~ msgid ""
+#~ "Cannot create CDDBTrackEditor factory.\n"
+#~ "This may be caused by another copy of cddb-track-editor already running.\n"
+#~ msgstr ""
+#~ "Невозможно создать фабрику редактора дорожек.\n"
+#~ "Возможно запущена другая копия cddb-track-editor.\n"
+
+#~ msgid "CD Display"
+#~ msgstr "Дисплей устройства чтения компакт-дисков"
+
+#~ msgid ""
+#~ "Displays information about the currently playing album, artist and time "
+#~ "elapsed"
+#~ msgstr ""
+#~ "Отображает информацию о воспроизводимом альбоме, исполнителе и прошедшем "
+#~ "времени"
+
+#~ msgid "Time Line"
+#~ msgstr "Строка времени"
+
+#~ msgid "Line for displaying the time elapsed for the current track"
+#~ msgstr "Строка для отображения времени воспроизведения для текущей дорожки"
+
+#~ msgid "Info Line"
+#~ msgstr "Информационная строка"
+
+#~ msgid "Line for displaying information"
+#~ msgstr "Строка отображения информации"
+
+#~ msgid "Artist Line"
+#~ msgstr "Строка исполнителя"
+
+#~ msgid "Line for displaying the name of the artist"
+#~ msgstr "Строка для отображения имени исполнителя"
+
+#~ msgid "Album Line"
+#~ msgstr "Строка альбома"
+
+#~ msgid "Line for displaying the name of the album"
+#~ msgstr "Строка для отображения названия альбома"
+
+#~ msgid "Play"
+#~ msgstr "Воспроизвести"
+
+#~ msgid "Pause"
+#~ msgstr "Пауза"
+
+#~ msgid ""
+#~ "Playing %s - %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Воспроизводится %s — %s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Playing\n"
+#~ ": %s"
+#~ msgstr ""
+#~ "Воспроизводится\n"
+#~ ": %s"
+
+#~ msgid "Paused"
+#~ msgstr "Приостановлено"
+
+#~ msgid "CD Player"
+#~ msgstr "CD-проигрыватель"
+
+#~ msgid "Stopped"
+#~ msgstr "Остановлено"
+
+#~ msgid "Disc error"
+#~ msgstr "Ошибка диска"
+
+#~ msgid "No disc"
+#~ msgstr "Нет диска"
+
+#~ msgid "Empty disc"
+#~ msgstr "Пустой диск"
+
+#~ msgid "Drive open"
+#~ msgstr "Дисковод открыт"
+
+#~ msgid "Data CD"
+#~ msgstr "Компакт-диск с данными"
+
+#~ msgid "No Cdrom"
+#~ msgstr "Нет компакт-диска"
+
+#~ msgid "Drive Error"
+#~ msgstr "Ошибка привода"
+
+#~ msgid "A CD player for GNOME"
+#~ msgstr "Проигрыватель компакт-дисков для среды GNOME"
+
+#~ msgid "Contents in the CDDB have changed"
+#~ msgstr "Содержимое CDDB было изменено"
+
+#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+#~ msgstr "Нажатие кнопки «Да» удалит предыдущее содержимое CDDB."
+
+#~ msgid "Do you wish to continue?"
+#~ msgstr "Хотите продолжить?"
+
+#~ msgid "Volume %d%%"
+#~ msgstr "Том %d%%"
+
+#~ msgid "You do not seem to have permission to access %s."
+#~ msgstr "Возможно, отсутствуют права на доступ к «%s»."
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CD device. This may be because:\n"
+#~ "a) CD support is not present in your machine\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "Адрес «%s» не указывает на допустимое устройство чтения компакт-дисков.\n"
+#~ "Возможные причины:\n"
+#~ "а) поддержка компакт-дисков на данном компьютере отсутствует\n"
+#~ "б) отсутствуют необходимые права на доступ к устройству чтения компакт-"
+#~ "дисков\n"
+#~ "в) устройство «%s» не является устройством чтения компакт-дисков.\n"
+
+#~ msgid "%d - Unknown"
+#~ msgstr "%d — Неизвестный"
+
+#~ msgid "_Play / Pause"
+#~ msgstr "_Воспроизведение / Пауза"
+
+#~ msgid "_Stop"
+#~ msgstr "_Остановить"
+
+#~ msgid "P_revious"
+#~ msgstr "П_редыдущая"
+
+#~ msgid "_Next"
+#~ msgstr "_Следующая"
+
+#~ msgid "_Eject disc"
+#~ msgstr "_Извлечь диск"
+
+#~ msgid "_About"
+#~ msgstr "_О программе"
+
+#~ msgid "_Quit"
+#~ msgstr "В_ыход"
+
+#~ msgid ""
+#~ "There is no CD device set. This means that the CD player\n"
+#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
+#~ "where you can set the device, or click 'Quit' to quit the CD player."
+#~ msgstr ""
+#~ "Не установлено устройство чтения компакт-дисков. Это значит, что\n"
+#~ "проигрыватель компакт-дисков не сможет запуститься.\n"
+#~ "Нажмите кнопку «Установить устройство»,\n"
+#~ "чтобы перейти к диалогу установки устройства или \n"
+#~ "кнопку «Выйти», чтобы выйти из проигрывателя."
+
+#~ msgid "Set device"
+#~ msgstr "Установить устройство"
+
+#~ msgid "No CD device"
+#~ msgstr "Нет устройства чтения CD"
+
+#~ msgid ""
+#~ "The CD player is unable to run correctly.\n"
+#~ "\n"
+#~ "Press 'Details' for more details on reasons for the failure.\n"
+#~ "\n"
+#~ "Press 'Set device' to go to a dialog where you can set the device, or "
+#~ "press 'Quit' to quit the CD player"
+#~ msgstr ""
+#~ "CD-проигрыватель не запускается нормально.\n"
+#~ "\n"
+#~ "Нажмите кнопку «Показать подробности» для выяснения причины сбоя.\n"
+#~ "\n"
+#~ "Нажмите кнопку «Установить устройство» для запуска диалога установки "
+#~ "устройства или «Выйти» для выхода из программы"
+
+#~ msgid "_Details"
+#~ msgstr "_Подробности"
+
+#~ msgid "_Set device"
+#~ msgstr "_Установить устройство"
+
+#~ msgid "Invalid CD device"
+#~ msgstr "Недопустимое устройство чтения CD"
+
+#~ msgid "Position"
+#~ msgstr "Положение"
+
+#~ msgid "Open preferences"
+#~ msgstr "Изменить параметры"
+
+#~ msgid "Preferences"
+#~ msgstr "Параметры"
+
+#~ msgid "Track List"
+#~ msgstr "Список дорожек"
+
+#~ msgid "Open track editor"
+#~ msgstr "Открыть редактор дорожек"
+
+#~ msgid "Track editor"
+#~ msgstr "Редактор дорожек"
+
+#~ msgid "Play / Pause"
+#~ msgstr "Воспроизведение / Пауза"
+
+#~ msgid "Stop"
+#~ msgstr "Стоп"
+
+#~ msgid "Previous track"
+#~ msgstr "Предыдущая дорожка"
+
+#~ msgid "Previous"
+#~ msgstr "Предыдущая"
+
+#~ msgid "Rewind"
+#~ msgstr "Перемотка назад"
+
+#~ msgid "Fast forward"
+#~ msgstr "Перемотка вперёд"
+
+#~ msgid "Next track"
+#~ msgstr "Следующая дорожка"
+
+#~ msgid "Eject CD"
+#~ msgstr "Извлечь CD"
+
+#~ msgid "Eject"
+#~ msgstr "Извлечь"
+
+#~ msgid "CD device to use"
+#~ msgstr "Используемое устройство CD"
+
+#~ msgid "Only start if there isn't already a CD player application running"
+#~ msgstr "Запускаться только если отсутствуют другие запущенные проигрыватели"
+
+#~ msgid "Play the CD on startup"
+#~ msgstr "Проигрывать компакт-диск при старте"
+
+#~ msgid "Start iconified in notification area"
+#~ msgstr "Запускать свёрнутым со значком в области уведомления"
+
+#~ msgid "Cannot create player"
+#~ msgstr "Невозможно создать проигрыватель"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Проигрыватель компакт-дисков"
+
+#~ msgid "CD player Volume"
+#~ msgstr "Громкость проигрывателя компакт-дисков"
+
+#~ msgid "CD player theme"
+#~ msgstr "Тема проигрывателя компакт-дисков"
+
+#~ msgid "Device path"
+#~ msgstr "Путь к устройству"
+
+#~ msgid "Display the Remaining time?"
+#~ msgstr "Показывать оставшееся время?"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Извлекать CD при выходе из проигрывателя компакт-дисков?"
+
+#~ msgid "How the time should be displayed while CD Player is playing?"
+#~ msgstr "Как должно отображаться время, когда играет CD-проигрыватель?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Начинать воспроизведение при запуске проигрывателя CD?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr ""
+#~ "Должен ли проигрыватель компакт-дисков извлекать CD из привода при выходе?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "Путь к устройству чтения CD, которое проигрыватель должен использовать"
+
+#~ msgid "What theme should the CD player use for its appearance"
+#~ msgstr "Тема, используемая для внешнего вида проигрывателя CD"
+
+#~ msgid "What volume should the CD player use when it is started?"
+#~ msgstr ""
+#~ "Какая громкость CD-проигрывателя должна быть установлена при его запуске?"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr ""
+#~ "Начинать ли воспроизведение сразу после старта проигрывателя компакт-"
+#~ "дисков?"
+
+#~ msgid "Failed to eject CD: %s"
+#~ msgstr "Не удалось извлечь компакт-диск: %s"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "This means that the CD player will not be able to run."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Это значит, что проигрыватель компакт-дисков не может быть запущен."
+
+#~ msgid "Error setting device"
+#~ msgstr "Ошибка установки устройства"
+
+#~ msgid "CD Player Preferences"
+#~ msgstr "Параметры проигрывателя CD"
+
+#~ msgid "_Device:"
+#~ msgstr "_Устройство:"
+
+#~ msgid "Behavior"
+#~ msgstr "Поведение"
+
+#~ msgid "Start _playback when CD Player starts"
+#~ msgstr "Начинать _воспроизведение при запуске CD-проигрывателя"
+
+#~ msgid "Start playback when CD Player starts"
+#~ msgstr "Начинать воспроизведение при запуске CD-проигрывателя"
+
+#~ msgid "Attempt to _eject CD when CD Player exits"
+#~ msgstr "_Извлекать CD при выходе из проигрывателя"
+
+#~ msgid "Attempt to eject CD when CD Player exits"
+#~ msgstr "Пытаться извлечь CD при выходе из проигрывателя"
+
+#~ msgid "Themes"
+#~ msgstr "Темы"
+
+#~ msgid "_Select a theme:"
+#~ msgstr "_Выберите тему:"
+
+#~ msgid "GNOME Volume Control"
+#~ msgstr "Регулятор громкости"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Регулятор громкости звука"
+
+#~ msgid "<b>Default Input</b>"
+#~ msgstr "<b>Вход по умолчанию</b>"
+
+#~ msgid "<b>Default Output</b>"
+#~ msgstr "<b>Выход по умолчанию</b>"
+
+#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+#~ msgstr "<span weight=\"bold\" size=\"x-large\">Проверка...</span>"
+
+#~ msgid "Audio"
+#~ msgstr "Аудио"
+
+#~ msgid "Click Ok to finish."
+#~ msgstr "Нажмите «OK» для завершения"
+
+#~ msgid "D_evice:"
+#~ msgstr "Ус_тройство:"
+
+#~ msgid "P_ipeline:"
+#~ msgstr "_Конвейер:"
+
+#~ msgid "P_lugin:"
+#~ msgstr "М_одуль:"
+
+#~ msgid "Pipeli_ne:"
+#~ msgstr "Ко_нвейер:"
+
+#~ msgid "Te_st"
+#~ msgstr "П_роверить"
+
+#~ msgid "Testing Pipeline"
+#~ msgstr "Проверяется конвейер"
+
+#~ msgid "Video"
+#~ msgstr "Видео"
+
+#~ msgid "_Plugin:"
+#~ msgstr "_Модуль:"
+
+#~ msgid "_Test"
+#~ msgstr "_Проверить"
+
+#~ msgid ""
+#~ "Cannot connect to sound daemon.\n"
+#~ "Please run 'esd' at a command prompt."
+#~ msgstr ""
+#~ "Невозможно установить соединение с сервером звука.\n"
+#~ "Запустите сервис «esd» из командной строки."
+
+#~ msgid "Specify the X position of the meter."
+#~ msgstr "Указать Х-координату индикатора"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "Указать Y-координату индикатора."
+
+#~ msgid "Y"
+#~ msgstr "Y"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "Установить соединение с esd-сервером на этой системе"
+
+#~ msgid "HOST"
+#~ msgstr "HOST"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "Открыть вертикальную версию индикатора"
+
+#~ msgid "Act as recording level meter."
+#~ msgstr "Действовать как измеритель уровня записи."
+
+#~ msgid "Host is %s\n"
+#~ msgstr "Имя узла: %s\n"
+
+#~ msgid "Recording level"
+#~ msgstr "Уровень записи"
+
+#~ msgid "Volume Meter"
+#~ msgstr "Индикатор громкости"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Программа для индикации уровня записи"
+
+#~ msgid "Recording Level Monitor"
+#~ msgstr "Индикатор уровня записи"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Программа для индикации уровня громкости"
+
+#~ msgid "Volume Monitor"
+#~ msgstr "Индикатор громкости"
