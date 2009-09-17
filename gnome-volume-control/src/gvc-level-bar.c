@@ -165,7 +165,6 @@ static void
 bar_calc_layout (GvcLevelBar *bar)
 {
         GdkColor color;
-        int      rms_level;
         int      peak_level;
         int      max_peak_level;
 
@@ -186,7 +185,6 @@ bar_calc_layout (GvcLevelBar *bar)
         bar->priv->layout.fl_b = (float)color.blue / 65535.0;
 
         if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
-                rms_level = bar->priv->rms_fraction * bar->priv->layout.area.height;
                 peak_level = bar->priv->peak_fraction * bar->priv->layout.area.height;
                 max_peak_level = bar->priv->max_peak * bar->priv->layout.area.height;
 
@@ -197,7 +195,6 @@ bar_calc_layout (GvcLevelBar *bar)
                 bar->priv->layout.box_width = bar->priv->layout.area.width;
                 bar->priv->layout.box_radius = bar->priv->layout.box_width / 2;
         } else {
-                rms_level = bar->priv->rms_fraction * bar->priv->layout.area.width;
                 peak_level = bar->priv->peak_fraction * bar->priv->layout.area.width;
                 max_peak_level = bar->priv->max_peak * bar->priv->layout.area.width;
 
