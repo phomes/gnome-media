@@ -3,1327 +3,24 @@
 # Mitsuru Oka <95i44@is.kochi-u.ac.jp>, 1998.
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1999.
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2000.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002, 2009.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <aihana@gnome.gr.jp>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media trunk\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-07 15:37+0900\n"
-"PO-Revision-Date: 2009-03-07 15:27+0900\n"
-"Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
+"Project-Id-Version: gnome-media master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"media&component=general\n"
+"POT-Creation-Date: 2009-09-17 20:39+0900\n"
+"PO-Revision-Date: 2009-09-17 20:40+0900\n"
+"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "CD 検索で使用するサーバのアドレスです。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "サーバへ送信する情報"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "ポート"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "サーバ名"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "サーバの種類"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "全ての問い合わせで使用するホスト名です。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "サーバがデータベースを実行しているポート番号です。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"CD の問い合わせを行うサーバの種類です。設定可能な値は 0 (FreeDB ラウンド・ロ"
-"ビン・サーバ)、1 (その他の FreeDB サーバ) と 2 (その他のサーバ) です。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "ユーザ名"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "全ての問い合わせで使用するユーザ名です。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"このキーは、どのユーザ情報が CD の問い合わせを行うサーバへ送信されるかを表し"
-"ます。設定可能な値は 0 (情報なし)、1 (実際の情報) と 3 (その他の情報) です。"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "ホスト名"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:133
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"ヘルプを表示する際にエラーが発生しました: \n"
-"%s"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr "情報を送信しない(_D)"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr "実際の情報を送信する(_I)"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr "その他の情報を送信する(_O)"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "名前(_N):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "ホスト名(_M):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "ログイン情報"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr "FreeDB ラウンド・ロビン・サーバ(_R)"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr "他の FreeDB サーバ(_F):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "サーバ"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "場所"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr "サーバ一覧の更新(_U)"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "他のサーバ(_S):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "ホスト名(_T):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "ポート(_P):"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr "CD データベースの設定"
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "不明 / 不明"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
-#: ../gstreamer-properties/gstreamer-properties.c:281
-msgid "Unknown"
-msgstr "不明"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr "複数に一致しました..."
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-"データベースの中に一致するものが複数見つかりました。\n"
-"次の一致する可能性のある一覧から、最も適切なものを選択して下さい。"
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr "カテゴリ"
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "ディスク ID"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "演奏者 / タイトル"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr "不明なトラック"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr "CD データベース・サーバ"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr "CD データベース・サーバの設定を変更します"
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr "ブルース"
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr "クラシック・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr "カントリー"
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "ダンス"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "ディスコ"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr "ファンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr "グランジ"
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr "ヒップホップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr "ジャズ"
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr "メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr "ニュー・エイジ"
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr "オールディーズ"
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr "その他"
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr "ポップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr "R&B"
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr "ラップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr "レゲエ"
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr "ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr "テクノ"
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr "インダストリアル"
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr "オルタナティブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ska"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr "デス・メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr "プランク"
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "サントラ"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr "ユーロ・テクノ"
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr "アンビエント"
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr "トリップ・ホップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr "ボーカル"
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr "ジャズ+ファンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr "フュージョン"
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr "トランス"
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr "クラシック"
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr "インストルメンタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr "アシッド"
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr "ハウス"
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr "ゲーム"
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr "サウンド・クリップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr "ゴスペル"
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "ノイズ"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr "アルト"
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr "ベース"
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr "ソウル"
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr "パンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr "スペース"
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr "メディテーティブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr "インストルメンタル・ポップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr "インストルメンタル・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr "エスニック"
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr "ゴシック"
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr "ダークウェーブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr "テクノ・インダストリアル"
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr "エレクトロニック"
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr "ポップ・フォーク"
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr "ユーロダンス"
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr "ドリーム"
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr "サザン・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr "コメディ"
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr "カルト"
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr "ギャングスター・ラップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr "トップ 40"
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr "クリスチャン・ラップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr "ポップ/ファンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr "ジャングル"
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr "ネイティブ・アメリカン"
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr "キャバレー"
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr "ニュー・ウェーブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr "サイケデリック"
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr "レイブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr "ショーテューンズ"
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr "トレイラー"
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr "ローファイ"
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr "民族音楽"
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr "アシッド・パンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr "アシッド・ジャズ"
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "ポルカ"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr "レトロ"
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr "ミュージカル"
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr "ロックンロール"
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr "ハード・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr "フォーク"
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr "フォーク/ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr "ナショナル・フォーク"
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr "スイング"
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr "ファースト・フュージョン"
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr "ビーバップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "ラテン"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr "リバイバル"
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "ケルト"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr "ブルーグラス"
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr "アバンギャルド"
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr "ゴシック・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr "プログレッシブ・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr "サイケデリック・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr "シンフォニック・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr "スロー・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr "ビッグ・バンド"
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr "コーラス"
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr "イージー・リスニング"
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "アコースティック"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "ユーモア"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "スピーチ"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr "シャンソン"
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "オペラ"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr "室内楽曲"
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr "ソナタ"
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "シンフォニー"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr "ブーティ・ベース"
-
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr "プリムス"
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr "ポーン・グルーブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "風刺作品"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr "スロー・ジャム"
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr "クラブ"
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr "タンゴ"
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "サンバ"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "民話"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr "バラード"
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr "パワー・バラード"
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr "リズミック・ソウル"
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr "フリースタイル"
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr "デュエット"
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr "パンク・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr "ドラム・ソロ"
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr "アカペラ"
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr "ユーロ・ハウス"
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr "ダンス・ホール"
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "ゴア"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr "ドラムアンドベース"
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr "クラブ・ハウス"
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr "ハードコア"
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "テラー"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr "インディ"
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr "ブリテンポップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr "ニガーパンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr "ポルスカ・パンク"
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr "ビート"
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr "クリスチャン・ギャングスター・ラップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr "ヘビー・メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr "ブラック・メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr "クロスオーバー"
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr "コンテンポラリー・クリスチャン"
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr "クリスチャン・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr "メレンゲ"
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr "サルサ"
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr "スラッシュ・メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "アニソン"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr "Jポップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr "シンセ・ポップ"
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr "ニュー・メタル"
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr "アート・ロック"
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "演奏者が不明です"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "アルバムが不明です"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
-#, c-format
-msgid "Editing Disc ID: %s"
-msgstr "ディスク ID の編集: %s"
-
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
-msgstr "拡張オプションの非表示"
-
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr "拡張オプションの表示"
-
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr "拡張トラック・オプションの非表示"
-
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr "拡張トラック・オプションの表示"
-
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr "ディスク ID の編集:"
-
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "演奏者(_A):"
-
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "タイトル(_T)"
-
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr "コメント(_D):"
-
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr "ジャンル(_G):"
-
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "制作年(_Y):"
-
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "タイトル"
-
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr "演奏時間"
-
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr "追加トラック・データ(_E):"
-
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "CDDB トラック・エディタ"
-
-#: ../cddb-slave2/cddb-track-editor.c:1072
-#, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-"CDDBTrackEditor ファクトリを作成できません。\n"
-"cddb-track-editor の別のコピーが既に動作している可能性があります。\n"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr "CD 表示"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr "現在演奏中のアルバム、演奏者、および経過時間についての情報を表示します"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr "タイム・ライン"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr "現在のトラックにおける経過時間を表示する行"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr "情報ライン"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr "情報を表示する行"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr "アーティスト・ライン"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr "アーティストの名前を表示する行"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr "アルバム・ライン"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr "アルバムの名前を表示する行"
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "演奏"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "停止"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"演奏中 %s - %s\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"演奏中\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "一時停止"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr "CD プレイヤー"
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "停止"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "ディスク・エラーです"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "ディスクがありません"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "空のディスクです"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr "ドライブが開いています"
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "データ CD です"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "CD-ROM ではありません"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr "ドライブ・エラーです"
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr "GNOME 用 CD プレイヤー"
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr "'CDDB の内容が変更されています"
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr "[はい] をクリックすると、CDDB の古い内容が削除されます。"
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr "続行しますか？"
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "音量 %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr "%s へのアクセス権限がないようです。"
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"%s は正しい CD デバイスではないようです。以下の理由が考えられます:\n"
-"a) お使いのマシンに CD サポートが組み込まれていない\n"
-"b) CD ドライブへアクセスできる権限を持ってない\n"
-"c) %s は CD ドライブではない。\n"
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - 不明"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "演奏/停止(_P)"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "停止(_S)"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "前の曲へ(_R)"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "次の曲へ(_N)"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "取り出し(_E)"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "情報(_A)"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "終了(_Q)"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-"CD デバイスがありません。\n"
-"これは CD プレイヤーを実行できないことを意味します。\n"
-"\"デバイスの設定\" を押してデバイスを設定するダイアログを開くか、\n"
-"\"終了\" を押して CD プレイヤーを終了して下さい。"
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "デバイスの設定"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "CD デバイスではありません"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-"CD プレイヤーは正常に動作しません。\n"
-"\n"
-"\"詳細\" を押してエラーの原因の詳細を参照して下さい。\n"
-"\n"
-"\"デバイスの設定\" を押してデバイスの設定をするか、\"終了\" を押して CD プレ"
-"イヤーを終了して下さい。"
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "詳細(_D)"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "デバイスの設定(_S)"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr "CD デバイスがおかしいです"
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "演奏位置を示します"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "CD プレイヤーを設定します"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "設定"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "トラックの一覧です"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "トラック・エディタを開きます"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "トラック・エディタ"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "演奏/停止します"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "停止します"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr "前のトラックへ戻ります"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "前"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr "巻き戻します"
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "前へ進めます"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr "次のトラックへ進めます"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "CD を取り出します"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "取り出し"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "利用する CD デバイス"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr "CD プレイヤーアプリケーションが実行されていない場合のみ、起動できます"
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr "起動時に CD を再生する"
-
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr "起動時にアイコン化して通知スペースに格納する"
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr "プレイヤーを作成できません"
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr "オーディオ CD を演奏します"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr "CD プレイヤーの音量"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr "CD プレイヤーのテーマ"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr "デバイスへのパス"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr "残り時間を表示するかどうか"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr "CD プレイヤーを終了したら CD を取り出すかどうか"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr "CD プレイヤーで演奏時間の表示方法"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr "CD プレイヤーが起動したら演奏するかどうか"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "CD プレイヤーを終了したら CD を取り出すかどうかです。"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "CD の再生に利用する CD ドライブへのパスです。"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr "CD プレイヤーの外観として利用するテーマです。"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr "CD プレイヤーを起動したらセットする音量レベルです。"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "CD プレイヤーを起動したら CD の演奏を開始するかどうかです。"
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr "CD の取り出しに失敗しました: %s"
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-"%s\n"
-"CD プレイヤーを実行できないということです。"
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr "デバイスの設定中にエラー"
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "CD プレイヤーの設定"
-
-#: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Device:"
-msgstr "デバイス(_D):"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr "動作"
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr "CD プレイヤーの起動時に演奏を開始する(_P)"
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr "CD プレイヤーを起動したら CD の演奏を開始します"
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr "CD プレイヤーの終了時に CD を取り出す(_E)"
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr "CD プレイヤーの終了時に CD を取り出す"
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "テーマ"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr "テーマの選択(_S):"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "音量やデスクトップに関連する音のイベントを変更します"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "サウンド"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -1332,17 +29,26 @@ msgstr "デスクトップの音量を調節するアプレットです"
 # この名称を変更したら gnome-applets/po/ja.po も変更すること
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "音量調節ツール"
 
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and sound events"
+msgstr "音量や音のイベントを変更します"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "サウンド"
+
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "デバッグ情報を表示する"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
@@ -1351,132 +57,209 @@ msgstr "このアプリケーションのバージョンを表示する"
 msgid " - GNOME Volume Control Applet"
 msgstr " - GNOME 音量調節アプレット"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "サウンド・システムからの応答待ちです"
 
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "起動時に開くページを指定する"
 
 # この名称を変更したら gnome-applets/po/ja.po も変更すること
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " - 音量調節ツール"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
 msgid "Output"
 msgstr "出力"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:277
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
 msgid "Input"
 msgstr "入力"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "左"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "右"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr "フロント"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Rear"
+msgstr "リア"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "最小"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "最大"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "バランス(_B):"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:771
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+msgid "_Fade:"
+msgstr "フェード(_F):"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+msgid "_Subwoofer:"
+msgstr "サブウーファー(_S):"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:584
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "増幅しない"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:844
 msgid "Mute"
 msgstr "ミュート"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
+msgid "_Profile:"
+msgstr "プロファイル(_P):"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "無効"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u 出力"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u 入力"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
 msgid "System Sounds"
 msgstr "システムのサウンド"
 
-# この名称を変更したら gnome-applets/po/ja.po も変更すること
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
-msgid "GNOME Volume Control"
-msgstr "GNOME 音量調節ツール"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+msgid "Co_nnector:"
+msgstr "コネクター(_N):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
 msgid "Peak detect"
 msgstr "ピークの検出"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "名前"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
 msgid "Device"
 msgstr "デバイス"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
-msgstr "出力の音量: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+msgid "_Output volume: "
+msgstr "出力の音量(_O): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
 msgid "Sound Effects"
 msgstr "サウンドの効果"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
-msgid "Alert Volume: "
-msgstr "警告音の音量: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+msgid "_Alert volume: "
+msgstr "警告音の音量(_A): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
-msgstr "入力の音量: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
+msgid "Hardware"
+msgstr "ハードウェア"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
-msgid "Input level:"
-msgstr "入力レベル:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+msgid "C_hoose a device to configure:"
+msgstr "設定するデバイスを選択してください(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
-msgid "Choose a device for sound input"
-msgstr "サウンドの入力デバイス"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
-msgid "Choose a device for sound output"
-msgstr "サウンドの出力デバイス"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "Settings for the selected device:"
 msgstr "選択したデバイスの設定:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+msgid "_Input volume: "
+msgstr "入力の音量(_I): "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
+msgid "Input level:"
+msgstr "入力レベル:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+msgid "C_hoose a device for sound input:"
+msgstr "サウンドの入力デバイスを選択してください(_H):"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+msgid "C_hoose a device for sound output:"
+msgstr "サウンドの出力デバイスを選択してください(_H):"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
 msgid "Applications"
 msgstr "アプリケーション"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
 msgid "No application is currently playing or recording audio."
 msgstr "現在、再生または録音しているアプリケーションはありません"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "サウンドの設定"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "サウンドの設定を起動できませんでした: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "ミュート(_M)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "サウンドの設定(_S)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "ミュート"
 
@@ -1493,17 +276,17 @@ msgstr "サウンド・レコーダ"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "タイトルなし"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "タイトルなし-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1517,7 +300,7 @@ msgstr ""
 "gst-inspect-0.10 %s を実行して、適切にインストールされているか確認し\n"
 "gnome-sound-recorder を再起動して下さい。"
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1525,46 +308,43 @@ msgstr ""
 "設定を確認して下さい。\n"
 "おそらく必要なプラグインがありません。"
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld分"
-msgstr[1] "%ld分"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld時間"
-msgstr[1] "%ld時間"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
 msgstr[0] "%ld秒"
-msgstr[1] "%ld秒"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s:%s:%s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s:%s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "ファイルを開く"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1573,17 +353,17 @@ msgstr ""
 "ファイルを読み込めません:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "準備完了です"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "置き換える(_R)"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1592,115 +372,129 @@ msgstr ""
 "\"%s\" というファイルは既に存在します。\n"
 "保存するファイルで上書きしてもよろしいですか？"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "ファイル \"%s\" を保存できませんでした"
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "ファイルを別名で保存"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s はパス上にインストールされていません"
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s の起動時にエラー: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
-msgstr "閉じる前に、ファイル \"%s\" への変更を保存しますか？"
+msgid "Save recording before closing?"
+msgstr "閉じる前に、録音を保存しますか？"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "録音を保存しますか?"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "保存せずに閉じる(_W)"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr "保存せずに続ける(_W)"
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "質問"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (未保存)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu バイト)"
-msgstr[1] "%s (%llu バイト)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "未知のサイズ"
 
-#: ../grecord/src/gsr-window.c:1025
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
+msgid "Unknown"
+msgstr "不明"
+
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/秒"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/秒 (推定)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1052
 msgid "1 (mono)"
 msgstr "1 (モノラル)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1055
 msgid "2 (stereo)"
 msgstr "2 (ステレオ)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "%s の情報"
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "ファイル情報"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "フォルダ:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "ファイル名:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "サイズ:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "オーディオ情報"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "録音/再生時間:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "チャネル数:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "サンプリング・レート:"
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "ビット・レート:"
 
@@ -1712,51 +506,51 @@ msgstr ""
 "GNOME 向けのサウンド録音ツール\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr "再生中..."
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "GConf  オーディオ出力"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "録音再生"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr "録音中..."
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "GConf オーディオ録音"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr "オーディオ・キャプチャの設定が適切ではありません。"
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "ファイル出力"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "レベル:"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "オーディオ・プロファイル '%s' を解析できませんでした。"
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "オーディオ・プロファイル '%s' を使ってキャプチャできませんでした。"
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
@@ -1764,123 +558,124 @@ msgstr ""
 "た。"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "新しいサンプルを生成します"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "ファイルを開きます"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "このファイルを保存します"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "このファイルに名前を付けて保存します"
 
 # この名称を変更したら gnome-applets/po/ja.po も変更すること
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "音量調節ツールを開く(_M)"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "音量を調節するオーディオ・ミキサを起動します"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "このファイルの情報を表示します"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "このファイルを閉じます"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "プログラムを終了します"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "コントロール(_C)"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "サウンドを保存します"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "サウンドを再生します"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "録音/再生を停止します"
 
-#: ../grecord/src/gsr-window.c:2145
+#. Help menu
+#: ../grecord/src/gsr-window.c:2151
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "目次"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "このアプリケーションのヘルプを表示します"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "このアプリケーションについて"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "ui.xml を読み込めませんでした。おそらくプログラムが正しくインストールされてい"
 "ないようです。"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "開く"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "保存"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "別名で保存"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "録音元(_I):"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "録音形式(_R):"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<なし>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "録音時間:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "レベル:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s- サウンド・レコーダ"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "音量レベルを調整します"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1898,7 +693,7 @@ msgstr "ウィンドウの幅"
 msgid "Width of the Window to be displayed"
 msgstr "表示するウィンドウの幅です。"
 
-#: ../gst-mixer/src/element.c:423
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "サウンドのテーマ"
 
@@ -1912,15 +707,15 @@ msgid "No volume control GStreamer plugins and/or devices found."
 msgstr ""
 "音量コントロールの GStreamer プラグイン/デバイスがが見つかりませんでした。"
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "録音"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "スイッチ"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "オプション"
 
@@ -1930,37 +725,37 @@ msgid "Volume Control Preferences"
 msgstr "音量コントロールの設定"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
-msgstr "表示するトラックの選択(_S):"
+msgid "_Select mixers to be visible:"
+msgstr "表示するミキサーを選択(_S):"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s のミュートを ON/OFF します"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "トラック %s: ミュート"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "%s からオーディオの録音を切り換えます"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "トラック %s: オーディオの録音"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s のオプション"
@@ -2049,11 +844,11 @@ msgstr "不明"
 msgid "Volume of %s channel on %s"
 msgstr "\"%2$s\" の音量です (%1$sチャンネル)"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "GNOME/GStreamer ベースの音量コントロール・アプリケーションです。"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
@@ -2066,207 +861,149 @@ msgstr ""
 "日本 GNOME ユーザー会 <http://www.gnome.gr.jp>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "音量コントロール: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "デバイス(_D):"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "別のデバイスの音量を調節します"
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "なし"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr "未サポート"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "デフォルト"
 
-#: ../gstreamer-properties/gstreamer-properties.c:603
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr "メイン・ウィンドウを生成できませんでした"
 
-#: ../gstreamer-properties/gstreamer-properties.c:652
-msgid "Failed to load glade file; please check your installation."
-msgstr ""
-".glade ファイルの読み込みに失敗しました; インストールを確認して下さい。"
+#: ../gstreamer-properties/gstreamer-properties.c:680
+msgid "Failed to load UI file; please check your installation."
+msgstr "UI ファイルの読み込みに失敗しました: インストールを確認して下さい。"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "GStreamer を使用するアプリのデフォルト値を設定します"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "マルチメディア・システム・セレクタ"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>デフォルトの入力</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>デフォルトの出力</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">テスト中...</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "オーディオ"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr "[OK] をクリックすると終了します。"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "デバイス(_E):"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr "パイプライン(_I):"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr "プラグイン(_L):"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr "パイプライン(_N):"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr "テスト(_S)"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr "パイプラインのテスト"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "ビデオ"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr "プラグイン(_P):"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr "テスト(_T)"
-
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr "自動検出"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART サウンド・デーモン"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment サウンド・デーモン"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS - オープン・サウンド・システム"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio サウンド・サーバ"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "その他"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "Ｘウィンドウ・システム(Xv なし)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "Ｘウィンドウ・システム(X11/Xshm/Xv あり)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "テスト用の音"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "無音"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (例: Zoran v4l デバイス)"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr "テスト用の入力"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s' のテスト用パイプラインの構築に失敗しました"
 
-#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
+#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "ヘルプを表示する際にエラーが発生しました: %s"
 
-#: ../profiles/audio-profile-edit.c:336
+#: ../profiles/audio-profile-edit.c:335
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "プロファイル \"%s\" の編集"
@@ -2298,41 +1035,40 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "プロファイルのフォルダ %s を破棄する際にエラーが発生しました (%s)。\n"
 
-#: ../profiles/audio-profiles-edit.c:88
+#: ../profiles/audio-profiles-edit.c:87
 msgid "_Edit"
 msgstr "編集(_E)"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:466
+#: ../profiles/audio-profiles-edit.c:465
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "このプロファイルを削除しますか？\n"
-msgstr[1] "これら %d 個のプロファイルを削除しますか？\n"
+msgstr[0] "この %d 個のプロファイルを削除しますか？\n"
 
-#: ../profiles/audio-profiles-edit.c:485
+#: ../profiles/audio-profiles-edit.c:484
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "プロファイル \"%s\" を削除しますか？"
 
-#: ../profiles/audio-profiles-edit.c:507
+#: ../profiles/audio-profiles-edit.c:506
 msgid "Delete Profile"
 msgstr "プロファイルの削除"
 
-#: ../profiles/audio-profiles-edit.c:601
+#: ../profiles/audio-profiles-edit.c:599
 msgid "Edit GNOME Audio Profiles"
 msgstr "GNOME オーディオ・プロファイルの編集"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr "プロファイル(_P):"
 
-#: ../profiles/audio-profiles-edit.c:834
+#: ../profiles/audio-profiles-edit.c:832
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "\"%s\" という名前のプロファイルが既に存在します"
 
-#: ../profiles/audio-profiles-edit.c:859
+#: ../profiles/audio-profiles-edit.c:857
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf エラー (FIXME): %s\n"
@@ -2345,6 +1081,16 @@ msgid ""
 msgstr ""
 "ファイル \"%s\" がありません。アプリケーションが正しくインストールされていな"
 "いので、ダイアログを表示できません。"
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"'%s --help' を実行すれば、指定可能なコマンドライン・オプションの完全な一覧を"
+"見られます。\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2539,44 +1285,42 @@ msgstr "プロファイルを使用するかどうか"
 msgid "Whether or not to use and display this profile."
 msgstr "このプロファイルを使用したり表示するかどうかを指定します。"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "なし"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "インストール済"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "イベント音のテスト中"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "テーマ"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "種類"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "サウンドのテーマ:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+msgid "Sound _theme:"
+msgstr "サウンドのテーマ(_T):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
-msgid "Choose an alert sound:"
-msgstr "警告音の選択:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+msgid "C_hoose an alert sound:"
+msgstr "警告音を選択してください(_H):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "ウィンドウとボタンの音を鳴らす"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+msgid "Enable _window and button sounds"
+msgstr "ウィンドウとボタンの音を鳴らす(_W)"
 
 #. Bell
 #: ../sound-theme/gvc-sound-theme-editor.c:76
@@ -2680,14 +1424,17 @@ msgstr "サウンド・ファイルの選択"
 msgid "Sound files"
 msgstr "サウンド・ファイル"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "無効"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "その他..."
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "サウンドのテーマ:"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "ウィンドウとボタンの音を鳴らす"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
@@ -2713,71 +1460,1047 @@ msgstr "ガラスを叩く音"
 msgid "Sonar"
 msgstr "ソナーのピング音"
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
-msgstr ""
-"サウンド・デーモンへ接続できません。\n"
-"'esd'をコマンド行から実行して下さい。"
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "CD 検索で使用するサーバのアドレスです。"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the X position of the meter."
-msgstr "メータを配置する X 座標"
+#~ msgid "Information to send to server"
+#~ msgstr "サーバへ送信する情報"
 
-#: ../vu-meter/main.c:232
-msgid "X"
-msgstr "X"
+#~ msgid "Port"
+#~ msgstr "ポート"
 
-#: ../vu-meter/main.c:234
-msgid "Specify the Y position of the meter."
-msgstr "メータを配置する Y 座標"
+#~ msgid "Server name"
+#~ msgstr "サーバ名"
 
-#: ../vu-meter/main.c:235
-msgid "Y"
-msgstr "Y"
+#~ msgid "Server type"
+#~ msgstr "サーバの種類"
 
-#: ../vu-meter/main.c:237
-msgid "Connect to the esd server on this host."
-msgstr "指定した \"ESD サーバ・ホスト\" へ接続する"
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "全ての問い合わせで使用するホスト名です。"
 
-#: ../vu-meter/main.c:238
-msgid "HOST"
-msgstr "HOST"
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "サーバがデータベースを実行しているポート番号です。"
 
-#: ../vu-meter/main.c:240
-msgid "Open a vertical version of the meter."
-msgstr "縦向きのメータを開く"
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "CD の問い合わせを行うサーバの種類です。設定可能な値は 0 (FreeDB ラウンド・"
+#~ "ロビン・サーバ)、1 (その他の FreeDB サーバ) と 2 (その他のサーバ) です。"
 
-#: ../vu-meter/main.c:242
-msgid "Act as recording level meter."
-msgstr "録音レベル・メータとして動作させる"
+#~ msgid "The username"
+#~ msgstr "ユーザ名"
 
-#: ../vu-meter/main.c:258
-#, c-format
-msgid "Host is %s\n"
-msgstr "ホストは %sです。\n"
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "全ての問い合わせで使用するユーザ名です。"
 
-#: ../vu-meter/main.c:275
-msgid "Recording level"
-msgstr "録音レベル"
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "このキーは、どのユーザ情報が CD の問い合わせを行うサーバへ送信されるかを表"
+#~ "します。設定可能な値は 0 (情報なし)、1 (実際の情報) と 3 (その他の情報) で"
+#~ "す。"
 
-#: ../vu-meter/main.c:275
-msgid "Volume Meter"
-msgstr "音量メータ"
+#~ msgid "Your hostname"
+#~ msgstr "ホスト名"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "録音入力音量のモニタです"
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "ヘルプを表示する際にエラーが発生しました: \n"
+#~ "%s"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
-msgstr "録音レベル・モニタ"
+#~ msgid "Sen_d no information"
+#~ msgstr "情報を送信しない(_D)"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "音声出力音量のモニタです"
+#~ msgid "Send real _information"
+#~ msgstr "実際の情報を送信する(_I)"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "音量モニタ"
+#~ msgid "Send _other information:"
+#~ msgstr "その他の情報を送信する(_O)"
+
+#~ msgid "Hostna_me:"
+#~ msgstr "ホスト名(_M):"
+
+#~ msgid "Login Information"
+#~ msgstr "ログイン情報"
+
+#~ msgid "FreeDB _round robin server"
+#~ msgstr "FreeDB ラウンド・ロビン・サーバ(_R)"
+
+#~ msgid "Other _FreeDB server:"
+#~ msgstr "他の FreeDB サーバ(_F):"
+
+#~ msgid "Server"
+#~ msgstr "サーバ"
+
+#~ msgid "Location"
+#~ msgstr "場所"
+
+#~ msgid "_Update Server List"
+#~ msgstr "サーバ一覧の更新(_U)"
+
+#~ msgid "Other _server:"
+#~ msgstr "他のサーバ(_S):"
+
+#~ msgid "Hos_tname:"
+#~ msgstr "ホスト名(_T):"
+
+#~ msgid "_Port:"
+#~ msgstr "ポート(_P):"
+
+#~ msgid "CD Database Preferences"
+#~ msgstr "CD データベースの設定"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "不明 / 不明"
+
+#~ msgid "Multiple matches..."
+#~ msgstr "複数に一致しました..."
+
+#~ msgid ""
+#~ "There were multiple matches found in the database.\n"
+#~ "Below is a list of possible matches, please choose the best match"
+#~ msgstr ""
+#~ "データベースの中に一致するものが複数見つかりました。\n"
+#~ "次の一致する可能性のある一覧から、最も適切なものを選択して下さい。"
+
+#~ msgid "Category"
+#~ msgstr "カテゴリ"
+
+#~ msgid "Disc ID"
+#~ msgstr "ディスク ID"
+
+#~ msgid "Artist and Title"
+#~ msgstr "演奏者 / タイトル"
+
+#~ msgid "Unknown track"
+#~ msgstr "不明なトラック"
+
+#~ msgid "CD Database Server"
+#~ msgstr "CD データベース・サーバ"
+
+#~ msgid "Modify your CD database server preferences"
+#~ msgstr "CD データベース・サーバの設定を変更します"
+
+#~ msgid "Blues"
+#~ msgstr "ブルース"
+
+#~ msgid "Classical Rock"
+#~ msgstr "クラシック・ロック"
+
+#~ msgid "Country"
+#~ msgstr "カントリー"
+
+#~ msgid "Dance"
+#~ msgstr "ダンス"
+
+#~ msgid "Disco"
+#~ msgstr "ディスコ"
+
+#~ msgid "Funk"
+#~ msgstr "ファンク"
+
+#~ msgid "Grunge"
+#~ msgstr "グランジ"
+
+#~ msgid "Hip-Hop"
+#~ msgstr "ヒップホップ"
+
+#~ msgid "Jazz"
+#~ msgstr "ジャズ"
+
+#~ msgid "Metal"
+#~ msgstr "メタル"
+
+#~ msgid "New Age"
+#~ msgstr "ニュー・エイジ"
+
+#~ msgid "Oldies"
+#~ msgstr "オールディーズ"
+
+#~ msgid "Other"
+#~ msgstr "その他"
+
+#~ msgid "Pop"
+#~ msgstr "ポップ"
+
+#~ msgid "R&B"
+#~ msgstr "R&B"
+
+#~ msgid "Rap"
+#~ msgstr "ラップ"
+
+#~ msgid "Reggae"
+#~ msgstr "レゲエ"
+
+#~ msgid "Rock"
+#~ msgstr "ロック"
+
+#~ msgid "Techno"
+#~ msgstr "テクノ"
+
+#~ msgid "Industrial"
+#~ msgstr "インダストリアル"
+
+#~ msgid "Alternative"
+#~ msgstr "オルタナティブ"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Death Metal"
+#~ msgstr "デス・メタル"
+
+#~ msgid "Pranks"
+#~ msgstr "プランク"
+
+#~ msgid "Soundtrack"
+#~ msgstr "サントラ"
+
+#~ msgid "Euro-Techno"
+#~ msgstr "ユーロ・テクノ"
+
+#~ msgid "Ambient"
+#~ msgstr "アンビエント"
+
+#~ msgid "Trip-Hop"
+#~ msgstr "トリップ・ホップ"
+
+#~ msgid "Vocal"
+#~ msgstr "ボーカル"
+
+#~ msgid "Jazz+Funk"
+#~ msgstr "ジャズ+ファンク"
+
+#~ msgid "Fusion"
+#~ msgstr "フュージョン"
+
+#~ msgid "Trance"
+#~ msgstr "トランス"
+
+#~ msgid "Classical"
+#~ msgstr "クラシック"
+
+#~ msgid "Instrumental"
+#~ msgstr "インストルメンタル"
+
+#~ msgid "Acid"
+#~ msgstr "アシッド"
+
+#~ msgid "House"
+#~ msgstr "ハウス"
+
+#~ msgid "Game"
+#~ msgstr "ゲーム"
+
+#~ msgid "Sound Clip"
+#~ msgstr "サウンド・クリップ"
+
+#~ msgid "Gospel"
+#~ msgstr "ゴスペル"
+
+#~ msgid "Noise"
+#~ msgstr "ノイズ"
+
+#~ msgid "Alt"
+#~ msgstr "アルト"
+
+#~ msgid "Bass"
+#~ msgstr "ベース"
+
+#~ msgid "Soul"
+#~ msgstr "ソウル"
+
+#~ msgid "Punk"
+#~ msgstr "パンク"
+
+#~ msgid "Space"
+#~ msgstr "スペース"
+
+#~ msgid "Meditative"
+#~ msgstr "メディテーティブ"
+
+#~ msgid "Instrumental Pop"
+#~ msgstr "インストルメンタル・ポップ"
+
+#~ msgid "Instrumental Rock"
+#~ msgstr "インストルメンタル・ロック"
+
+#~ msgid "Ethnic"
+#~ msgstr "エスニック"
+
+#~ msgid "Gothic"
+#~ msgstr "ゴシック"
+
+#~ msgid "Darkwave"
+#~ msgstr "ダークウェーブ"
+
+#~ msgid "Techno-Industrial"
+#~ msgstr "テクノ・インダストリアル"
+
+#~ msgid "Electronic"
+#~ msgstr "エレクトロニック"
+
+#~ msgid "Pop-Folk"
+#~ msgstr "ポップ・フォーク"
+
+#~ msgid "Eurodance"
+#~ msgstr "ユーロダンス"
+
+#~ msgid "Dream"
+#~ msgstr "ドリーム"
+
+#~ msgid "Southern Rock"
+#~ msgstr "サザン・ロック"
+
+#~ msgid "Comedy"
+#~ msgstr "コメディ"
+
+#~ msgid "Cult"
+#~ msgstr "カルト"
+
+#~ msgid "Gangsta Rap"
+#~ msgstr "ギャングスター・ラップ"
+
+#~ msgid "Top 40"
+#~ msgstr "トップ 40"
+
+#~ msgid "Christian Rap"
+#~ msgstr "クリスチャン・ラップ"
+
+#~ msgid "Pop/Funk"
+#~ msgstr "ポップ/ファンク"
+
+#~ msgid "Jungle"
+#~ msgstr "ジャングル"
+
+#~ msgid "Native American"
+#~ msgstr "ネイティブ・アメリカン"
+
+#~ msgid "Cabaret"
+#~ msgstr "キャバレー"
+
+#~ msgid "New Wave"
+#~ msgstr "ニュー・ウェーブ"
+
+#~ msgid "Psychedelic"
+#~ msgstr "サイケデリック"
+
+#~ msgid "Rave"
+#~ msgstr "レイブ"
+
+#~ msgid "Showtunes"
+#~ msgstr "ショーテューンズ"
+
+#~ msgid "Trailer"
+#~ msgstr "トレイラー"
+
+#~ msgid "Lo-Fi"
+#~ msgstr "ローファイ"
+
+#~ msgid "Tribal"
+#~ msgstr "民族音楽"
+
+#~ msgid "Acid Punk"
+#~ msgstr "アシッド・パンク"
+
+#~ msgid "Acid Jazz"
+#~ msgstr "アシッド・ジャズ"
+
+#~ msgid "Polka"
+#~ msgstr "ポルカ"
+
+#~ msgid "Musical"
+#~ msgstr "ミュージカル"
+
+#~ msgid "Rock & Roll"
+#~ msgstr "ロックンロール"
+
+#~ msgid "Hard Rock"
+#~ msgstr "ハード・ロック"
+
+#~ msgid "Folk"
+#~ msgstr "フォーク"
+
+#~ msgid "Folk/Rock"
+#~ msgstr "フォーク/ロック"
+
+#~ msgid "National Folk"
+#~ msgstr "ナショナル・フォーク"
+
+#~ msgid "Swing"
+#~ msgstr "スイング"
+
+#~ msgid "Fast-Fusion"
+#~ msgstr "ファースト・フュージョン"
+
+#~ msgid "Bebop"
+#~ msgstr "ビーバップ"
+
+#~ msgid "Latin"
+#~ msgstr "ラテン"
+
+#~ msgid "Revival"
+#~ msgstr "リバイバル"
+
+#~ msgid "Celtic"
+#~ msgstr "ケルト"
+
+#~ msgid "Bluegrass"
+#~ msgstr "ブルーグラス"
+
+#~ msgid "Avantgarde"
+#~ msgstr "アバンギャルド"
+
+#~ msgid "Gothic Rock"
+#~ msgstr "ゴシック・ロック"
+
+#~ msgid "Progressive Rock"
+#~ msgstr "プログレッシブ・ロック"
+
+#~ msgid "Psychedelic Rock"
+#~ msgstr "サイケデリック・ロック"
+
+#~ msgid "Symphonic Rock"
+#~ msgstr "シンフォニック・ロック"
+
+#~ msgid "Slow Rock"
+#~ msgstr "スロー・ロック"
+
+#~ msgid "Big Band"
+#~ msgstr "ビッグ・バンド"
+
+#~ msgid "Chorus"
+#~ msgstr "コーラス"
+
+#~ msgid "Easy Listening"
+#~ msgstr "イージー・リスニング"
+
+#~ msgid "Acoustic"
+#~ msgstr "アコースティック"
+
+#~ msgid "Humour"
+#~ msgstr "ユーモア"
+
+#~ msgid "Speech"
+#~ msgstr "スピーチ"
+
+#~ msgid "Chanson"
+#~ msgstr "シャンソン"
+
+#~ msgid "Opera"
+#~ msgstr "オペラ"
+
+#~ msgid "Chamber Music"
+#~ msgstr "室内楽曲"
+
+#~ msgid "Sonata"
+#~ msgstr "ソナタ"
+
+#~ msgid "Symphony"
+#~ msgstr "シンフォニー"
+
+#~ msgid "Booty Bass"
+#~ msgstr "ブーティ・ベース"
+
+#~ msgid "Primus"
+#~ msgstr "プリムス"
+
+#~ msgid "Porn Groove"
+#~ msgstr "ポーン・グルーブ"
+
+#~ msgid "Satire"
+#~ msgstr "風刺作品"
+
+#~ msgid "Slow Jam"
+#~ msgstr "スロー・ジャム"
+
+#~ msgid "Club"
+#~ msgstr "クラブ"
+
+#~ msgid "Tango"
+#~ msgstr "タンゴ"
+
+#~ msgid "Samba"
+#~ msgstr "サンバ"
+
+#~ msgid "Folklore"
+#~ msgstr "民話"
+
+#~ msgid "Ballad"
+#~ msgstr "バラード"
+
+#~ msgid "Power Ballad"
+#~ msgstr "パワー・バラード"
+
+#~ msgid "Rhythmic Soul"
+#~ msgstr "リズミック・ソウル"
+
+#~ msgid "Freestyle"
+#~ msgstr "フリースタイル"
+
+#~ msgid "Duet"
+#~ msgstr "デュエット"
+
+#~ msgid "Punk Rock"
+#~ msgstr "パンク・ロック"
+
+#~ msgid "Drum Solo"
+#~ msgstr "ドラム・ソロ"
+
+#~ msgid "A Cappella"
+#~ msgstr "アカペラ"
+
+#~ msgid "Euro-House"
+#~ msgstr "ユーロ・ハウス"
+
+#~ msgid "Dance Hall"
+#~ msgstr "ダンス・ホール"
+
+#~ msgid "Goa"
+#~ msgstr "ゴア"
+
+#~ msgid "Drum & Bass"
+#~ msgstr "ドラムアンドベース"
+
+#~ msgid "Club-House"
+#~ msgstr "クラブ・ハウス"
+
+#~ msgid "Terror"
+#~ msgstr "テラー"
+
+#~ msgid "Indie"
+#~ msgstr "インディ"
+
+#~ msgid "BritPop"
+#~ msgstr "ブリテンポップ"
+
+#~ msgid "Negerpunk"
+#~ msgstr "ニガーパンク"
+
+#~ msgid "Polsk Punk"
+#~ msgstr "ポルスカ・パンク"
+
+#~ msgid "Beat"
+#~ msgstr "ビート"
+
+#~ msgid "Christian Gangsta Rap"
+#~ msgstr "クリスチャン・ギャングスター・ラップ"
+
+#~ msgid "Heavy Metal"
+#~ msgstr "ヘビー・メタル"
+
+#~ msgid "Black Metal"
+#~ msgstr "ブラック・メタル"
+
+#~ msgid "Crossover"
+#~ msgstr "クロスオーバー"
+
+#~ msgid "Contemporary Christian"
+#~ msgstr "コンテンポラリー・クリスチャン"
+
+#~ msgid "Christian Rock"
+#~ msgstr "クリスチャン・ロック"
+
+#~ msgid "Merengue"
+#~ msgstr "メレンゲ"
+
+#~ msgid "Salsa"
+#~ msgstr "サルサ"
+
+#~ msgid "Thrash Metal"
+#~ msgstr "スラッシュ・メタル"
+
+#~ msgid "Anime"
+#~ msgstr "アニソン"
+
+#~ msgid "JPop"
+#~ msgstr "Jポップ"
+
+#~ msgid "Synthpop"
+#~ msgstr "シンセ・ポップ"
+
+#~ msgid "Nu-Metal"
+#~ msgstr "ニュー・メタル"
+
+#~ msgid "Art Rock"
+#~ msgstr "アート・ロック"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "演奏者が不明です"
+
+#~ msgid "Unknown Album"
+#~ msgstr "アルバムが不明です"
+
+#~ msgid "Editing Disc ID: %s"
+#~ msgstr "ディスク ID の編集: %s"
+
+#~ msgid "Hide advanced disc options"
+#~ msgstr "拡張オプションの非表示"
+
+#~ msgid "Show advanced disc options"
+#~ msgstr "拡張オプションの表示"
+
+#~ msgid "Hide advanced track options"
+#~ msgstr "拡張トラック・オプションの非表示"
+
+#~ msgid "Show advanced track options"
+#~ msgstr "拡張トラック・オプションの表示"
+
+#~ msgid "Editing Disc ID: "
+#~ msgstr "ディスク ID の編集:"
+
+#~ msgid "_Artist:"
+#~ msgstr "演奏者(_A):"
+
+#~ msgid "Disc _Title:"
+#~ msgstr "タイトル(_T)"
+
+#~ msgid "_Disc comments:"
+#~ msgstr "コメント(_D):"
+
+#~ msgid "_Genre:"
+#~ msgstr "ジャンル(_G):"
+
+#~ msgid "_Year:"
+#~ msgstr "制作年(_Y):"
+
+#~ msgid "Title"
+#~ msgstr "タイトル"
+
+#~ msgid "Length"
+#~ msgstr "演奏時間"
+
+#~ msgid "_Extra track data:"
+#~ msgstr "追加トラック・データ(_E):"
+
+#~ msgid "CDDB Track Editor"
+#~ msgstr "CDDB トラック・エディタ"
+
+#~ msgid ""
+#~ "Cannot create CDDBTrackEditor factory.\n"
+#~ "This may be caused by another copy of cddb-track-editor already running.\n"
+#~ msgstr ""
+#~ "CDDBTrackEditor ファクトリを作成できません。\n"
+#~ "cddb-track-editor の別のコピーが既に動作している可能性があります。\n"
+
+#~ msgid "CD Display"
+#~ msgstr "CD 表示"
+
+#~ msgid ""
+#~ "Displays information about the currently playing album, artist and time "
+#~ "elapsed"
+#~ msgstr ""
+#~ "現在演奏中のアルバム、演奏者、および経過時間についての情報を表示します"
+
+#~ msgid "Time Line"
+#~ msgstr "タイム・ライン"
+
+#~ msgid "Line for displaying the time elapsed for the current track"
+#~ msgstr "現在のトラックにおける経過時間を表示する行"
+
+#~ msgid "Info Line"
+#~ msgstr "情報ライン"
+
+#~ msgid "Line for displaying information"
+#~ msgstr "情報を表示する行"
+
+#~ msgid "Artist Line"
+#~ msgstr "アーティスト・ライン"
+
+#~ msgid "Line for displaying the name of the artist"
+#~ msgstr "アーティストの名前を表示する行"
+
+#~ msgid "Album Line"
+#~ msgstr "アルバム・ライン"
+
+#~ msgid "Line for displaying the name of the album"
+#~ msgstr "アルバムの名前を表示する行"
+
+#~ msgid "Play"
+#~ msgstr "演奏"
+
+#~ msgid "Pause"
+#~ msgstr "停止"
+
+#~ msgid ""
+#~ "Playing %s - %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "演奏中 %s - %s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Playing\n"
+#~ ": %s"
+#~ msgstr ""
+#~ "演奏中\n"
+#~ ": %s"
+
+#~ msgid "Paused"
+#~ msgstr "一時停止"
+
+#~ msgid "CD Player"
+#~ msgstr "CD プレイヤー"
+
+#~ msgid "Stopped"
+#~ msgstr "停止"
+
+#~ msgid "Disc error"
+#~ msgstr "ディスク・エラーです"
+
+#~ msgid "No disc"
+#~ msgstr "ディスクがありません"
+
+#~ msgid "Empty disc"
+#~ msgstr "空のディスクです"
+
+#~ msgid "Drive open"
+#~ msgstr "ドライブが開いています"
+
+#~ msgid "Data CD"
+#~ msgstr "データ CD です"
+
+#~ msgid "No Cdrom"
+#~ msgstr "CD-ROM ではありません"
+
+#~ msgid "Drive Error"
+#~ msgstr "ドライブ・エラーです"
+
+#~ msgid "A CD player for GNOME"
+#~ msgstr "GNOME 用 CD プレイヤー"
+
+#~ msgid "Contents in the CDDB have changed"
+#~ msgstr "'CDDB の内容が変更されています"
+
+#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+#~ msgstr "[はい] をクリックすると、CDDB の古い内容が削除されます。"
+
+#~ msgid "Do you wish to continue?"
+#~ msgstr "続行しますか？"
+
+#~ msgid "Volume %d%%"
+#~ msgstr "音量 %d%%"
+
+#~ msgid "You do not seem to have permission to access %s."
+#~ msgstr "%s へのアクセス権限がないようです。"
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CD device. This may be because:\n"
+#~ "a) CD support is not present in your machine\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "%s は正しい CD デバイスではないようです。以下の理由が考えられます:\n"
+#~ "a) お使いのマシンに CD サポートが組み込まれていない\n"
+#~ "b) CD ドライブへアクセスできる権限を持ってない\n"
+#~ "c) %s は CD ドライブではない。\n"
+
+#~ msgid "%d - Unknown"
+#~ msgstr "%d - 不明"
+
+#~ msgid "_Play / Pause"
+#~ msgstr "演奏/停止(_P)"
+
+#~ msgid "_Stop"
+#~ msgstr "停止(_S)"
+
+#~ msgid "P_revious"
+#~ msgstr "前の曲へ(_R)"
+
+#~ msgid "_Next"
+#~ msgstr "次の曲へ(_N)"
+
+#~ msgid "_Eject disc"
+#~ msgstr "取り出し(_E)"
+
+#~ msgid "_About"
+#~ msgstr "情報(_A)"
+
+#~ msgid "_Quit"
+#~ msgstr "終了(_Q)"
+
+#~ msgid ""
+#~ "There is no CD device set. This means that the CD player\n"
+#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
+#~ "where you can set the device, or click 'Quit' to quit the CD player."
+#~ msgstr ""
+#~ "CD デバイスがありません。\n"
+#~ "これは CD プレイヤーを実行できないことを意味します。\n"
+#~ "\"デバイスの設定\" を押してデバイスを設定するダイアログを開くか、\n"
+#~ "\"終了\" を押して CD プレイヤーを終了して下さい。"
+
+#~ msgid "Set device"
+#~ msgstr "デバイスの設定"
+
+#~ msgid "No CD device"
+#~ msgstr "CD デバイスではありません"
+
+#~ msgid ""
+#~ "The CD player is unable to run correctly.\n"
+#~ "\n"
+#~ "Press 'Details' for more details on reasons for the failure.\n"
+#~ "\n"
+#~ "Press 'Set device' to go to a dialog where you can set the device, or "
+#~ "press 'Quit' to quit the CD player"
+#~ msgstr ""
+#~ "CD プレイヤーは正常に動作しません。\n"
+#~ "\n"
+#~ "\"詳細\" を押してエラーの原因の詳細を参照して下さい。\n"
+#~ "\n"
+#~ "\"デバイスの設定\" を押してデバイスの設定をするか、\"終了\" を押して CD プ"
+#~ "レイヤーを終了して下さい。"
+
+#~ msgid "_Details"
+#~ msgstr "詳細(_D)"
+
+#~ msgid "_Set device"
+#~ msgstr "デバイスの設定(_S)"
+
+#~ msgid "Invalid CD device"
+#~ msgstr "CD デバイスがおかしいです"
+
+#~ msgid "Position"
+#~ msgstr "演奏位置を示します"
+
+#~ msgid "Open preferences"
+#~ msgstr "CD プレイヤーを設定します"
+
+#~ msgid "Preferences"
+#~ msgstr "設定"
+
+#~ msgid "Track List"
+#~ msgstr "トラックの一覧です"
+
+#~ msgid "Open track editor"
+#~ msgstr "トラック・エディタを開きます"
+
+#~ msgid "Track editor"
+#~ msgstr "トラック・エディタ"
+
+#~ msgid "Play / Pause"
+#~ msgstr "演奏/停止します"
+
+#~ msgid "Stop"
+#~ msgstr "停止します"
+
+#~ msgid "Previous track"
+#~ msgstr "前のトラックへ戻ります"
+
+#~ msgid "Previous"
+#~ msgstr "前"
+
+#~ msgid "Rewind"
+#~ msgstr "巻き戻します"
+
+#~ msgid "Fast forward"
+#~ msgstr "前へ進めます"
+
+#~ msgid "Next track"
+#~ msgstr "次のトラックへ進めます"
+
+#~ msgid "Eject CD"
+#~ msgstr "CD を取り出します"
+
+#~ msgid "Eject"
+#~ msgstr "取り出し"
+
+#~ msgid "CD device to use"
+#~ msgstr "利用する CD デバイス"
+
+#~ msgid "Only start if there isn't already a CD player application running"
+#~ msgstr ""
+#~ "CD プレイヤーアプリケーションが実行されていない場合のみ、起動できます"
+
+#~ msgid "Play the CD on startup"
+#~ msgstr "起動時に CD を再生する"
+
+#~ msgid "Start iconified in notification area"
+#~ msgstr "起動時にアイコン化して通知スペースに格納する"
+
+#~ msgid "Cannot create player"
+#~ msgstr "プレイヤーを作成できません"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "オーディオ CD を演奏します"
+
+#~ msgid "CD player Volume"
+#~ msgstr "CD プレイヤーの音量"
+
+#~ msgid "CD player theme"
+#~ msgstr "CD プレイヤーのテーマ"
+
+#~ msgid "Device path"
+#~ msgstr "デバイスへのパス"
+
+#~ msgid "Display the Remaining time?"
+#~ msgstr "残り時間を表示するかどうか"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "CD プレイヤーを終了したら CD を取り出すかどうか"
+
+#~ msgid "How the time should be displayed while CD Player is playing?"
+#~ msgstr "CD プレイヤーで演奏時間の表示方法"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "CD プレイヤーが起動したら演奏するかどうか"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "CD プレイヤーを終了したら CD を取り出すかどうかです。"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr "CD の再生に利用する CD ドライブへのパスです。"
+
+#~ msgid "What theme should the CD player use for its appearance"
+#~ msgstr "CD プレイヤーの外観として利用するテーマです。"
+
+#~ msgid "What volume should the CD player use when it is started?"
+#~ msgstr "CD プレイヤーを起動したらセットする音量レベルです。"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "CD プレイヤーを起動したら CD の演奏を開始するかどうかです。"
+
+#~ msgid "Failed to eject CD: %s"
+#~ msgstr "CD の取り出しに失敗しました: %s"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "This means that the CD player will not be able to run."
+#~ msgstr ""
+#~ "%s\n"
+#~ "CD プレイヤーを実行できないということです。"
+
+#~ msgid "Error setting device"
+#~ msgstr "デバイスの設定中にエラー"
+
+#~ msgid "CD Player Preferences"
+#~ msgstr "CD プレイヤーの設定"
+
+#~ msgid "_Device:"
+#~ msgstr "デバイス(_D):"
+
+#~ msgid "Behavior"
+#~ msgstr "動作"
+
+#~ msgid "Start _playback when CD Player starts"
+#~ msgstr "CD プレイヤーの起動時に演奏を開始する(_P)"
+
+#~ msgid "Start playback when CD Player starts"
+#~ msgstr "CD プレイヤーを起動したら CD の演奏を開始します"
+
+#~ msgid "Attempt to _eject CD when CD Player exits"
+#~ msgstr "CD プレイヤーの終了時に CD を取り出す(_E)"
+
+#~ msgid "Attempt to eject CD when CD Player exits"
+#~ msgstr "CD プレイヤーの終了時に CD を取り出す"
+
+#~ msgid "Themes"
+#~ msgstr "テーマ"
+
+#~ msgid "_Select a theme:"
+#~ msgstr "テーマの選択(_S):"
+
+# この名称を変更したら gnome-applets/po/ja.po も変更すること
+#~ msgid "GNOME Volume Control"
+#~ msgstr "GNOME 音量調節ツール"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "音量レベルを調整します"
+
+#~ msgid "<b>Default Input</b>"
+#~ msgstr "<b>デフォルトの入力</b>"
+
+#~ msgid "<b>Default Output</b>"
+#~ msgstr "<b>デフォルトの出力</b>"
+
+#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+#~ msgstr "<span weight=\"bold\" size=\"x-large\">テスト中...</span>"
+
+#~ msgid "Audio"
+#~ msgstr "オーディオ"
+
+#~ msgid "Click Ok to finish."
+#~ msgstr "[OK] をクリックすると終了します。"
+
+#~ msgid "D_evice:"
+#~ msgstr "デバイス(_E):"
+
+#~ msgid "P_ipeline:"
+#~ msgstr "パイプライン(_I):"
+
+#~ msgid "P_lugin:"
+#~ msgstr "プラグイン(_L):"
+
+#~ msgid "Pipeli_ne:"
+#~ msgstr "パイプライン(_N):"
+
+#~ msgid "Te_st"
+#~ msgstr "テスト(_S)"
+
+#~ msgid "Testing Pipeline"
+#~ msgstr "パイプラインのテスト"
+
+#~ msgid "Video"
+#~ msgstr "ビデオ"
+
+#~ msgid "_Plugin:"
+#~ msgstr "プラグイン(_P):"
+
+#~ msgid "_Test"
+#~ msgstr "テスト(_T)"
+
+#~ msgid ""
+#~ "Cannot connect to sound daemon.\n"
+#~ "Please run 'esd' at a command prompt."
+#~ msgstr ""
+#~ "サウンド・デーモンへ接続できません。\n"
+#~ "'esd'をコマンド行から実行して下さい。"
+
+#~ msgid "Specify the X position of the meter."
+#~ msgstr "メータを配置する X 座標"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "メータを配置する Y 座標"
+
+#~ msgid "Y"
+#~ msgstr "Y"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "指定した \"ESD サーバ・ホスト\" へ接続する"
+
+#~ msgid "HOST"
+#~ msgstr "HOST"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "縦向きのメータを開く"
+
+#~ msgid "Act as recording level meter."
+#~ msgstr "録音レベル・メータとして動作させる"
+
+#~ msgid "Host is %s\n"
+#~ msgstr "ホストは %sです。\n"
+
+#~ msgid "Recording level"
+#~ msgstr "録音レベル"
+
+#~ msgid "Volume Meter"
+#~ msgstr "音量メータ"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "録音入力音量のモニタです"
+
+#~ msgid "Recording Level Monitor"
+#~ msgstr "録音レベル・モニタ"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "音声出力音量のモニタです"
+
+#~ msgid "Volume Monitor"
+#~ msgstr "音量モニタ"
