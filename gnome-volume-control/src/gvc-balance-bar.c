@@ -363,14 +363,7 @@ gvc_balance_bar_constructor (GType                  type,
                              guint                  n_construct_properties,
                              GObjectConstructParam *construct_params)
 {
-        GObject       *object;
-        GvcBalanceBar *self;
-
-        object = G_OBJECT_CLASS (gvc_balance_bar_parent_class)->constructor (type, n_construct_properties, construct_params);
-
-        self = GVC_BALANCE_BAR (object);
-
-        return object;
+        return G_OBJECT_CLASS (gvc_balance_bar_parent_class)->constructor (type, n_construct_properties, construct_params);
 }
 
 static void
