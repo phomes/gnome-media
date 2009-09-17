@@ -183,7 +183,6 @@ update_output_settings (GvcMixerDialog *dialog)
 {
         GvcMixerStream *stream;
         GvcChannelMap  *map;
-        guint           num_settings;
         const GList    *ports;
 
         g_debug ("Updating output settings");
@@ -230,7 +229,6 @@ update_output_settings (GvcMixerDialog *dialog)
                             dialog->priv->output_balance_bar,
                             FALSE, FALSE, 12);
         gtk_widget_show (dialog->priv->output_balance_bar);
-        num_settings = 1;
 
         if (gvc_channel_map_can_fade (map)) {
                 dialog->priv->output_fade_bar = gvc_balance_bar_new (map, BALANCE_TYPE_FR);
@@ -243,7 +241,6 @@ update_output_settings (GvcMixerDialog *dialog)
                                     dialog->priv->output_fade_bar,
                                     FALSE, FALSE, 12);
                 gtk_widget_show (dialog->priv->output_fade_bar);
-                num_settings++;
         }
 
         if (gvc_channel_map_has_lfe (map)) {
@@ -257,7 +254,6 @@ update_output_settings (GvcMixerDialog *dialog)
                                     dialog->priv->output_lfe_bar,
                                     FALSE, FALSE, 12);
                 gtk_widget_show (dialog->priv->output_lfe_bar);
-                num_settings++;
         }
 
         ports = gvc_mixer_stream_get_ports (stream);
