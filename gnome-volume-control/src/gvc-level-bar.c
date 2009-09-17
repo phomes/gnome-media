@@ -426,14 +426,7 @@ gvc_level_bar_constructor (GType                  type,
                            guint                  n_construct_properties,
                            GObjectConstructParam *construct_params)
 {
-        GObject     *object;
-        GvcLevelBar *self;
-
-        object = G_OBJECT_CLASS (gvc_level_bar_parent_class)->constructor (type, n_construct_properties, construct_params);
-
-        self = GVC_LEVEL_BAR (object);
-
-        return object;
+        return G_OBJECT_CLASS (gvc_level_bar_parent_class)->constructor (type, n_construct_properties, construct_params);
 }
 
 static void
