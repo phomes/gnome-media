@@ -11,14 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.master.or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
-"POT-Creation-Date: 2009-07-27 20:30+0000\n"
-"PO-Revision-Date: 2009-08-13 19:59+0530\n"
+"POT-Creation-Date: 2009-09-12 19:00+0000\n"
+"PO-Revision-Date: 2009-09-17 22:57+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
 "\n"
 "\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -36,7 +38,6 @@ msgstr "ଧ୍ବନି ପ୍ରବଳତା ନିୟନ୍ତ୍ରକ"
 
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-#| msgid "Change sound volume and associate sounds with events"
 msgid "Change sound volume and sound events"
 msgstr "ଧ୍ୱନି ପ୍ରବଳତା ଏବଂ ଧ୍ୱନି ଘଟଣାଗୁଡ଼ିକ ପରିବର୍ତ୍ତନ କରନ୍ତୁ"
 
@@ -72,13 +73,13 @@ msgstr "ଆରମ୍ଭ ପୃଷ୍ଠା"
 msgid " - GNOME Volume Control"
 msgstr " - GNOME ଧ୍ବନି ପ୍ରବଳତା ନିୟନ୍ତ୍ରକ"
 
-#: ../gnome-volume-control/src/gvc-applet.c:271
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1686
+#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
 msgid "Output"
 msgstr "ନିର୍ଗମ"
 
-#: ../gnome-volume-control/src/gvc-applet.c:275
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1605
+#: ../gnome-volume-control/src/gvc-applet.c:277
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
 msgid "Input"
 msgstr "ନିବେଶ"
 
@@ -98,7 +99,6 @@ msgid "Front"
 msgstr "ଆଗ"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:113
-#| msgid "Retro"
 msgctxt "balance"
 msgid "Rear"
 msgstr "ଆଗ"
@@ -113,43 +113,42 @@ msgctxt "balance"
 msgid "Maximum"
 msgstr "ସର୍ବାଧିକ"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:290
+#: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "ସମତୁଲ (_B):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:293
-#, fuzzy
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 #| msgid "_Name:"
 msgid "_Fade:"
-msgstr "ନାମ (_N)"
+msgstr "ଲିଭିବା (_F):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:296
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Subwoofer:"
-msgstr ""
+msgstr "ଉପ ଉଫର (_S):"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:583
+#: ../gnome-volume-control/src/gvc-channel-bar.c:584
 msgctxt "volume"
 msgid "100%"
 msgstr "୧୦୦%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:587
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
 msgctxt "volume"
 msgid "Unamplified"
-msgstr ""
+msgstr "ଅପରିବର୍ଦ୍ଧିତ"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:843
+#: ../gnome-volume-control/src/gvc-channel-bar.c:844
 msgid "Mute"
 msgstr "ମୂକ କରନ୍ତୁ"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1363
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
 #| msgid "_Profiles:"
-msgid "Profile:"
-msgstr "ରୂପରେଖ:"
+msgid "_Profile:"
+msgstr "ରୂପରେଖ (_P):"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:985
+#: ../gnome-volume-control/src/gvc-mixer-control.c:991
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -157,9 +156,8 @@ msgstr "ନିଷ୍କ୍ରିୟ ହୋଇଛି"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:998
 #, c-format
-#| msgid "Output"
 msgid "%u Output"
 msgid_plural "%u Outputs"
 msgstr[0] "%u ନିର୍ଗମ"
@@ -167,96 +165,92 @@ msgstr[1] "%u ନିର୍ଗମଗୁଡ଼ିକ"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1002
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
 #, c-format
-#| msgid "Input"
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u ନିବେଶ"
 msgstr[1] "%u ନିବେଶଗୁଡ଼ିକ"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1298
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
 msgid "System Sounds"
 msgstr "ତନ୍ତ୍ର ଧ୍ୱନି"
 
-#  create main window + menus
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1750
-msgid "GNOME Volume Control"
-msgstr "GNOME ଧ୍ବନି ପ୍ରବଳତା ନିୟନ୍ତ୍ରକ"
-
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:867
-msgid "Connector:"
-msgstr ""
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+msgid "Co_nnector:"
+msgstr "ସଂଯୋଜକ (_n):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:465
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
 msgid "Peak detect"
 msgstr "ସର୍ବୋଚ୍ଚ ତୀବ୍ରତା ଜଣା ପଡ଼ିଛି"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1292
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1445
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "ନାମ"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1297
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
 msgid "Device"
 msgstr "ଯନ୍ତ୍ର"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
-#| msgid "Output volume: "
-msgid "Output Volume: "
-msgstr "ନିର୍ଗମ ତିବ୍ରତା:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+#| msgid "Output Volume: "
+msgid "_Output volume: "
+msgstr "ନିର୍ଗମ ଧ୍ୱନି ତିବ୍ରତା (_O):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1545
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
 msgid "Sound Effects"
 msgstr "ଧ୍ୱନି ପ୍ରଭାବ"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1552
-msgid "Alert Volume: "
-msgstr "ଧ୍ୱନୀ ପ୍ରବଳତା ସତର୍କ ସୂଚନା"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+#| msgid "Alert Volume: "
+msgid "_Alert volume: "
+msgstr "ସତର୍କ ସୂଚନା ଧ୍ୱନୀ ପ୍ରବଳତା (_A): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1565
-#| msgid "Hardcore"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
 msgid "Hardware"
 msgstr "ହାର୍ଡ଼ୱେର"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1570
-#| msgid "Choose a device for sound input"
-msgid "Choose a device to configure"
-msgstr "ବିନ୍ୟାସ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+#| msgid "Choose a device to configure"
+msgid "C_hoose a device to configure:"
+msgstr "ବିନ୍ୟାସ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ (_h):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1594
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1715
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "Settings for the selected device:"
 msgstr "ବଚ୍ଛିତ ଉପକରଣ ପାଇଁ ବିନ୍ୟାସ:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1612
-#| msgid "Input volume: "
-msgid "Input Volume: "
-msgstr "ନିବେଶ ଧ୍ୱନୀ ପ୍ରବଳତା:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+#| msgid "Input Volume: "
+msgid "_Input volume: "
+msgstr "ନିବେଶ ଧ୍ୱନୀ ପ୍ରବଳତା (_I):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1632
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
 msgid "Input level:"
 msgstr "ନିବେଶ ସ୍ତର:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1659
-msgid "Choose a device for sound input"
-msgstr "ଧ୍ୱନି ନିବେଶ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#| msgid "Choose a device for sound input"
+msgid "C_hoose a device for sound input:"
+msgstr "ଧ୍ୱନି ନିବେଶ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ (_h):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1691
-msgid "Choose a device for sound output"
-msgstr "ଧ୍ୱନି ନିର୍ଗମ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+#| msgid "Choose a device for sound output"
+msgid "C_hoose a device for sound output:"
+msgstr "ଧ୍ୱନି ନିର୍ଗମ ପାଇଁ ଗୋଟିଏ ଉପକରଣ ବାଛନ୍ତୁ (_h):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1726
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
 msgid "Applications"
 msgstr "ପ୍ରୟୋଗ"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1730
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
 msgid "No application is currently playing or recording audio."
 msgstr "ବର୍ତ୍ତମାନ କୌଣସି ପ୍ରୟୋଗ ଧ୍ୱନିକୁ ଚଲାଉନାହିଁ କିମ୍ବା ଅନୁଲିପି କରୁନାହିଁ।"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1854
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -266,20 +260,20 @@ msgid "Sound Preferences"
 msgstr "ଧ୍ୱନି ପସନ୍ଦ"
 
 #  create main window + menus
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:229
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "ଧ୍ବନି ପ୍ରବଳତା ନିୟନ୍ତ୍ରକ ପସନ୍ଦ ଆରମ୍ଭ କରିବାରେ ବିଫଳ: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:252
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "ମୂକ କରନ୍ତୁ (_M)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:261
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "ଧ୍ୱନୀ ପସନ୍ଦ (_S)"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:445
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "ମୂକ ଅଛି"
 
@@ -416,12 +410,10 @@ msgid "There was an error starting %s: %s"
 msgstr "%sକୁ ପ୍ରାରମ୍ଭ କରିବାରେ ତ୍ରୁଟି: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#| msgid "Save the changes to file \"%s\" before closing?"
 msgid "Save recording before closing?"
 msgstr "ବନ୍ଦ କରିବା ପୂର୍ବରୁ ଲିଖନଗୁଡ଼ିକୁ ସଂରକ୍ଷଣ କରାଯିବ କି?"
 
 #: ../grecord/src/gsr-window.c:865
-#| msgid "Recording"
 msgid "Save recording?"
 msgstr "ଲିଖନଗୁଡ଼ିକୁ ସଂରକ୍ଷଣ କରାଯିବ କି?"
 
@@ -430,7 +422,6 @@ msgid "Close _without Saving"
 msgstr "ବିନା ସଂରକ୍ଷଣ ବନ୍ଦ କରନ୍ତୁ (_w)"
 
 #: ../grecord/src/gsr-window.c:870
-#| msgid "Close _without Saving"
 msgid "Continue _without Saving"
 msgstr "ବିନା ସଂରକ୍ଷଣ ଅଗ୍ରସର କରନ୍ତୁ (_w)"
 
@@ -753,10 +744,9 @@ msgid "Volume Control Preferences"
 msgstr "ଧ୍ବନି ପ୍ରବଳତା ନିୟନ୍ତ୍ରକ ପସନ୍ଦ"
 
 #: ../gst-mixer/src/preferences.c:120
-#, fuzzy
 #| msgid "_Select tracks to be visible:"
 msgid "_Select mixers to be visible:"
-msgstr "ଦୃଶ୍ଯମାନ ଟ୍ରାକ ବାଛନ୍ତୁ: (_S)"
+msgstr "ଦୃଶ୍ଯମାନ ହେବା ପାଇଁ ମିଶ୍ରଣକାରୀ ବାଛନ୍ତୁ (_S):"
 
 #: ../gst-mixer/src/track.c:295
 #, c-format
@@ -921,10 +911,9 @@ msgid "Failure instantiating main window"
 msgstr "ମୁଖ୍ଯ ୱିଣ୍ଡୋ ପ୍ରାରମ୍ଭ କରିବାରେ ଅସଫଳ"
 
 #: ../gstreamer-properties/gstreamer-properties.c:680
-#, fuzzy
 #| msgid "Failed to load glade file; please check your installation."
 msgid "Failed to load UI file; please check your installation."
-msgstr "ଗ୍ଲେଡ ଫାଇଲ ଧାରଣରେ ତ୍ରୁଟି; ଦୟା କରି ଆପଣଙ୍କ ସ୍ଥାପନ ଯାଞ୍ଚ କରନ୍ତୁ."
+msgstr "UI ଫାଇଲ ଧାରଣରେ ତ୍ରୁଟି; ଦୟା କରି ଆପଣଙ୍କ ସ୍ଥାପନ ଯାଞ୍ଚ କରନ୍ତୁ।"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
@@ -1344,19 +1333,20 @@ msgstr "ପ୍ରସଙ୍ଗରୁ"
 msgid "Type"
 msgstr "ପ୍ରକାର"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1083
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "ଧ୍ୱନି ପ୍ରସଙ୍ଗ:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+#| msgid "Sound Theme:"
+msgid "Sound _theme:"
+msgstr "ଧ୍ୱନି ପ୍ରସଙ୍ଗ (_t):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1091
-msgid "Choose an alert sound:"
-msgstr "ସତର୍କ ଧ୍ୱନି ବାଛନ୍ତୁ:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+#| msgid "Choose an alert sound:"
+msgid "C_hoose an alert sound:"
+msgstr "ଗୋଟିଏ ସତର୍କ ଧ୍ୱନି ବାଛନ୍ତୁ (_h):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1109
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "ୱିଣ୍ଡୋ ଏବଂ ବଟନ ଧ୍ୱନିକୁ ସକ୍ରିୟ କରନ୍ତୁ"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+#| msgid "Enable window and button sounds"
+msgid "Enable _window and button sounds"
+msgstr "ୱିଣ୍ଡୋ ଏବଂ ବଟନ ଧ୍ୱନିକୁ ସକ୍ରିୟ କରନ୍ତୁ (_w)"
 
 #. Bell
 #: ../sound-theme/gvc-sound-theme-editor.c:76
@@ -1463,6 +1453,14 @@ msgstr "ଧ୍ବନି ଫାଇଲଗୁଡ଼ିକ"
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "ଇଚ୍ଛାରୂପଣ..."
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "ଧ୍ୱନି ପ୍ରସଙ୍ଗ:"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "ୱିଣ୍ଡୋ ଏବଂ ବଟନ ଧ୍ୱନିକୁ ସକ୍ରିୟ କରନ୍ତୁ"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
