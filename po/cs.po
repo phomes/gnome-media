@@ -13,10 +13,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-08 20:12+0100\n"
-"PO-Revision-Date: 2009-03-08 02:04+0100\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"media&component=general\n"
+"POT-Creation-Date: 2009-08-18 12:26+0000\n"
+"PO-Revision-Date: 2009-09-21 02:04+0100\n"
+"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,1329 +25,34 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Adresa serveru, který se má kontaktovat kvůli dotazům na CD"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Informace, které mají být odeslány na server"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "Port"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Název serveru"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Typ serveru"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "Název počítače, který se bude odesílat se všemi dotazy"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "Port, na kterém server poskytuje databázi"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Typ serveru, který má být kontaktován kvůli dotazům na CD. Možné hodnoty "
-"jsou \"0\" (server round robin FreeDB), \"1\" (jiný server freedb) a 2 (jiný "
-"server)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "Uživatelské jméno"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "Uživatelské jméno, které se bude odesílat se všemi dotazy"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Tento klíč určuje, jaké informace o uživateli budou odeslány serveru "
-"kontaktovanému kvůli dotazům na CD. Možné hodnoty jsou \"0\" (žádné "
-"informace), \"1\" (skutečné informace) a \"3\" (jiné informace)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Název vašeho počítače"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:133
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Při zobrazování nápovědy došlo k chybě: \n"
-"%s"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr "_Neodesílat žádné informace"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr "Odesílat skutečné _informace"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr "_Odesílat jiné informace:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "_Jméno:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "_Název počítače:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "Přihlašovací informace"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr "Se_rver round robin FreeDB"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr "Jiný server _FreeDB:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "Server"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "Umístění"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr "_Aktualizovat seznam serverů"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "Jiný _server:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "_Název počítače:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "_Port:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr "Předvolby databáze CD"
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "Neznámé / Neznámé"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
-#: ../gstreamer-properties/gstreamer-properties.c:281
-msgid "Unknown"
-msgstr "Neznámé"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr "Více shod..."
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-"V databázi bylo nalezeno více odpovídajících záznamů.\n"
-"Níže je uveden seznam možných shod, vyberte prosím nejpřesnější shodu"
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr "Kategorie"
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "ID disku"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "Umělec a titul"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr "Neznámá stopa"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr "Server databáze CD"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr "Upraví předvolby serveru databáze CD"
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr "Blues"
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr "Klasický rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr "Country"
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "Dance"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "Disko"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr "Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr "Grunge"
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr "Hip-hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr "Jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr "Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr "New Age"
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr "Oldies"
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr "Jiná"
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr "Pop"
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr "R&B"
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr "Rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr "Reggae"
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr "Rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr "Techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr "Industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr "Alternativní"
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ska"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr "Death metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr "Pranks"
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "Soundtrack"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr "Euro-techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr "Ambient"
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr "Trip-hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr "Vokální"
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr "Jazz+Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr "Fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr "Trance"
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr "Klasická"
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr "Instrumentální"
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr "Acid"
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr "House"
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr "Game"
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr "Zvukový klip"
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr "Gospel"
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "Noise"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr "Alt"
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr "Bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr "Soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr "Punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr "Space"
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr "Meditativní"
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr "Instrumentální pop"
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr "Instrumentální rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr "Etnická"
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr "Gotická"
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr "Darkwave"
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr "Techno-industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr "Elektronická"
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr "Pop-folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr "Eurodance"
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr "Dream"
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr "Jižanský rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr "Komedie"
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr "Kultovní"
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr "Gangsta rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr "Top 40"
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr "Křesťanský rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr "Pop/funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr "Jungle"
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr "Domorodá americká"
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr "Kabaret"
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr "New Wave"
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr "Psychedelická"
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr "Rave"
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr "Showtunes"
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr "Trailer"
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr "Lo-fi"
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr "Tribal"
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr "Acid punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr "Acid jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "Polka"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr "Retro"
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr "Muzikál"
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr "Rock and roll"
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr "Hard rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr "Folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr "Folk/rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr "National folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr "Swing"
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr "Fast-fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr "Bebob"
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "Latinskoamerická"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr "Revival"
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "Keltská"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr "Bluegrass"
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr "Avantgardní"
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr "Gotický rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr "Progresivní rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr "Psychedelický rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr "Symfonický rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr "Pomalý rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr "Big band"
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr "Sbor"
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr "Nenáročný poslech"
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "Akustická"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "Humor"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "Mluvené slovo"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr "Šanson"
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "Opera"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr "Komorní hudba"
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr "Sonáta"
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "Symfonie"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr "Booty bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr "Primus"
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr "Porn groove"
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "Satira"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr "Pomalý jam"
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr "Klubová"
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr "Tango"
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "Samba"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "Folklórní"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr "Balada"
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr "Silná balada"
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr "Rytmický soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr "Freestyle"
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr "Duet"
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr "Punk rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr "Sólo na bubny"
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr "A cappella"
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr "Euro-house"
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr "Dance hall"
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "Goa"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr "Drum & bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr "Club-house"
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr "Hardcore"
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "Terror"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr "Indie"
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr "BritPop"
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr "Negerpunk"
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr "Polský punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr "Beat"
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr "Křesťanský gangsta rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr "Heavy metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr "Black metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr "Crossover"
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr "Současná křesťanská"
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr "Křesťanský rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr "Merengue"
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr "Salsa"
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr "Thrash metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "Anime"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr "JPop"
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr "Synthpop"
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr "Nu-metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr "Art rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "Neznámý umělec"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "Neznámé album"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
-#, c-format
-msgid "Editing Disc ID: %s"
-msgstr "Úprava disku s ID: %s"
-
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
-msgstr "Skrýt pokročilé možnosti disku"
-
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr "Ukázat pokročilé možnosti disku"
-
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr "Skrýt pokročilé možnosti skladby"
-
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr "Ukázat pokročilé možnosti skladby"
-
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr "Úprava disku s ID: "
-
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "_Umělec:"
-
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "_Titul disku:"
-
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr "Komentář k _disku:"
-
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr "Žán_r:"
-
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "Ro_k:"
-
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "Titul"
-
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr "Délka"
-
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr "Dodat_ečná data ke skladbě:"
-
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "Editor skladeb CDDB"
-
-#: ../cddb-slave2/cddb-track-editor.c:1072
-#, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-"Nelze vytvořit generátor CDDBTrackEditor.\n"
-"Důvodem může být již běžící jiná kopie programu cddb-track-editor.\n"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr "Informace k CD"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr "Zobrazuje informace o právě přehrávaném albu, umělci a uplynulém času"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr "Časová osa"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr "Osa zobrazující uplynulý čas aktuální skladby"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr "Informační řádek"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr "Řádek zobrazující informace"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr "Řádek s umělcem"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr "Řádek zobrazující jméno umělce"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr "Řádek s albem"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr "Řádek zobrazující název alba"
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "Přehrávání"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "Pozastavení"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"Přehrává se %s - %s<\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"Přehrává se\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "Pozastaveno"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr "Přehrávač CD"
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "Zastaveno"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "Chyba disku"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "Žádný disk"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "Prázdný disk"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr "Zařízení otevřeno"
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "Datové CD"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "Žádný CD-ROM"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr "Chyba zařízení"
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr "Přehrávač CD pro GNOME"
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr "Obsah v CDDB se změnil"
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr "Zvolením \"Ano\" se odstraní předchozí obsah v CDDB."
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr "Chcete pokračovat?"
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "Hlasitost %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr "Zdá se, že nemáte oprávnění k přístupu na %s."
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"%s zřejmě neukazuje na platné zařízení CD. To může mít několik příčin:\n"
-"a) podpora CD není na vašem počítači k dispozici\n"
-"b) nemáte potřebná oprávnění k přístupu k CD mechanice\n"
-"c) %s není CD mechanika.\n"
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - Neznámá"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "Přehrát / _Pauza"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "Za_stavit"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "_Předchozí"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "_Následující"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "_Vysunout disk"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
-msgid "_Help"
-msgstr "_Nápověda"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "O _aplikaci"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "U_končit"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-"Není nastaveno žádné zařízení CD. To znamená, že přehrávač CD\n"
-"nebude fungovat. Stiskněte prosím tlačítko \"Nastavit zařízení\"\n"
-"a nastavte toto zařízení, nebo tlačítko \"Ukončit\", čímž ukončíte přehrávač "
-"CD."
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "Nastavit zařízení"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "Žádné zařízení CD"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-"Přehrávač CD není schopen fungovat správně.\n"
-"\n"
-"Podrobnosti o důvodech selhání získáte stisknutím tlačítka \"Podrobnosti\".\n"
-"\n"
-"Stiskněte prosím tlačítko \"Nastavit zařízení\" a nastavte zařízení, nebo "
-"ukončete přehrávač CD stisknutím tlačítka \"Ukončit\""
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "Po_drobnosti"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "_Nastavit zařízení"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr "Neplatné zařízení CD"
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "Pozice"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "Otevřít předvolby"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "Předvolby"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "Seznam skladeb"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "Otevřít editor skladeb"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "Editor skladeb"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "Přehrát / Pauza"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "Stop"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr "Předchozí skladba"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "Předchozí"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr "Přetočit"
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "Rychle vpřed"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr "Následující skladba"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "Vysunout CD"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "Vysunout"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "Zařízení CD, které má být použito"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr "Spustit pouze pokud ještě neběží aplikace na přehrávání CD"
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr "Přehrávat CD při spuštění"
-
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr "Spustit jako minimalizovaný v oznamovací oblasti"
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr "Nelze vytvořit přehrávač"
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr "Přehrává zvuková CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr "Hlasitost přehrávače CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr "Motiv přehrávače CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr "Cesta k zařízení"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr "Zobrazovat zbývající čas?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr "Vysunout CD při ukončení přehrávače CD?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr "Jak se má zobrazovat čas, když přehrávač CD přehrává?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr "Přehrávat při spuštění přehrávače CD?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Má být CD vysunuto při ukončení přehrávače CD?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr "Cesta k jednotce CD, kterou má přehrávač CD používat k přehrávání CD"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr "Jaký motiv má přehrávač CD používat pro svůj vzhled"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr "Jakou hlasitost má přehrávač CD používat po spuštění?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr "Když je přehrávač CD spuštěn, má začít přehrávat CD?"
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr "Nelze vysunout CD: %s"
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-"%s\n"
-"To znamená, že přehrávač CD nebude fungovat správně."
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr "Chyba při nastavování zařízení"
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "Předvolby Přehrávače CD"
-
-#: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Device:"
-msgstr "Zaříz_ení:"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr "Chování"
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr "Při _spuštění Přehrávače CD začít přehrávat"
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr "Při spuštění Přehrávače CD začít přehrávat"
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr "Při _ukončení Přehrávače CD se pokusit vysunout CD mechaniku"
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr "Při ukončení Přehrávače CD se pokusit vysunout CD mechaniku"
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "Motivy"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr "_Zvolit motiv:"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "Změní hlasitost zvuku a přiřadí zvuky k událostem"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "Zvuk"
-
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
 msgstr "Zobrazí ovládání hlasitosti pracovního prostředí"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "Ovládání hlasitosti"
 
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+#, fuzzy
+#| msgid "Change sound volume and associate sounds with events"
+msgid "Change sound volume and sound events"
+msgstr "Změní hlasitost zvuku a přiřadí zvuky k událostem"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Zvuk"
+
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "Zapnout ladění kódu"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
@@ -1354,130 +60,226 @@ msgstr "Verze této aplikace"
 msgid " - GNOME Volume Control Applet"
 msgstr " - applet ovládání hlasitosti GNOME"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:125
 msgid "Waiting for sound system to respond"
 msgstr "Čekání na odpověď zvukového systému"
 
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Spouštěcí stránka"
 
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:169
 msgid " - GNOME Volume Control"
 msgstr " - ovládání hlasitosti GNOME"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
 msgid "Output"
 msgstr "Výstup"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:277
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
 msgid "Input"
 msgstr "Vstup"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "Levý"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "Pravý"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Front"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#, fuzzy
+#| msgid "Retro"
+msgctxt "balance"
+msgid "Rear"
+msgstr "Retro"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "_Vyvážení:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:771
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#, fuzzy
+#| msgid "_Name:"
+msgid "_Fade:"
+msgstr "_Jméno:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+msgid "_Subwoofer:"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:584
+msgctxt "volume"
+msgid "100%"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+msgctxt "volume"
+msgid "Unamplified"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:844
 msgid "Mute"
 msgstr "Ztlumit"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
+#, fuzzy
+#| msgid "_Profiles:"
+msgid "_Profile:"
+msgstr "_Profily:"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Zakázáno"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#, fuzzy, c-format
+#| msgid "Output"
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "Výstup"
+msgstr[1] "Výstup"
+msgstr[2] "Výstup"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#, fuzzy, c-format
+#| msgid "Input"
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "Vstup"
+msgstr[1] "Vstup"
+msgstr[2] "Vstup"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
 msgid "System Sounds"
 msgstr "Systémové zvuky"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
-msgid "GNOME Volume Control"
-msgstr "Ovládání hlasitosti GNOME"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+msgid "Co_nnector:"
+msgstr ""
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
 msgid "Peak detect"
 msgstr "Rozpoznání vrcholů"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Název"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
 msgid "Device"
 msgstr "Zařízení"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
-msgstr "Výstupní hlasitost: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+msgid "_Output volume: "
+msgstr "_Výstupní hlasitost: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
 msgid "Sound Effects"
 msgstr "Zvukové efekty"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
-msgid "Alert Volume: "
-msgstr "Hlasitost upozornění: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+msgid "_Alert volume: "
+msgstr "_Hlasitost upozornění: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
-msgstr "Vstupní hlasitost: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
+#, fuzzy
+#| msgid "Hardcore"
+msgid "Hardware"
+msgstr "Hardcore"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
-msgid "Input level:"
-msgstr "Vstupní úroveň:"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
-msgid "Choose a device for sound input"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+#, fuzzy
+#| msgid "Choose a device for sound input"
+msgid "C_hoose a device to configure:"
 msgstr "Vyberte zařízení zvukového vstupu"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
-msgid "Choose a device for sound output"
-msgstr "Vyberte zařízení zvukového výstupu"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "Settings for the selected device:"
 msgstr "Nastavení vybraného zařízení:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+msgid "_Input volume: "
+msgstr "_Vstupní hlasitost: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
+msgid "Input level:"
+msgstr "Vstupní úroveň:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+msgid "C_hoose a device for sound input:"
+msgstr "_Vyberte zařízení zvukového vstupu"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+#, fuzzy
+#| msgid "Choose a device for sound output"
+msgid "C_hoose a device for sound output:"
+msgstr "Vyberte zařízení zvukového výstupu"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
 msgid "Applications"
 msgstr "Aplikace"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
 msgid "No application is currently playing or recording audio."
 msgstr "Žádná aplikace aktuálně nepřehrává nebo nezaznamenává zvuk."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Předvolby zvuku"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Nezdařilo se spustit předvolby zvuku: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "Z_tlumit"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "Př_edvolby zvuku"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "Ztlumeno"
 
@@ -1494,17 +296,17 @@ msgstr "Záznamník zvuků"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Nepojmenováno"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Nepojmenováno-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1519,7 +321,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "Poté znovu spusťte gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1527,7 +329,7 @@ msgstr ""
 "Zkontrolujte prosím jeho nastavení.\n"
 "Možná vám chybí potřebné zásuvné moduly."
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1535,7 +337,7 @@ msgstr[0] "%ld minuta"
 msgstr[1] "%ld minuty"
 msgstr[2] "%ld minut"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -1543,7 +345,7 @@ msgstr[0] "%ld hodina"
 msgstr[1] "%ld hodiny"
 msgstr[2] "%ld hodin"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1552,24 +354,24 @@ msgstr[1] "%ld sekundy"
 msgstr[2] "%ld sekund"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s a %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s a %s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Otevřít soubor"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1578,17 +380,17 @@ msgstr ""
 "Nelze načíst soubor:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "Připraven"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "Na_hradit"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1597,44 +399,57 @@ msgstr ""
 "Soubor nazvaný \"%s\" již existuje.\n"
 "Chcete jej nahradit souborem, který ukládáte?"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Nelze uložit soubor \"%s\""
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Uložit soubor jako"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s není nainstalován v cestě."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Při spouštění %s došlo k chybě: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
+#, fuzzy
+#| msgid "Save the changes to file \"%s\" before closing?"
+msgid "Save recording before closing?"
 msgstr "Uložit změny do souboru \"%s\" před zavřením?"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+#, fuzzy
+#| msgid "Recording"
+msgid "Save recording?"
+msgstr "Záznam"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "Zavřít _bez uložení"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+#, fuzzy
+#| msgid "Close _without Saving"
+msgid "Continue _without Saving"
+msgstr "Zavřít _bez uložení"
+
+#: ../grecord/src/gsr-window.c:878
 msgid "Question"
 msgstr "Otázka"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:985
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nebylo uloženo)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1001
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -1642,71 +457,79 @@ msgstr[0] "%s (%llu bajt)"
 msgstr[1] "%s (%llu bajty)"
 msgstr[2] "%s (%llu bajtů)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1005
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
-#: ../grecord/src/gsr-window.c:1025
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
+#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
+#: ../grecord/src/gsr-window.c:1406
+#: ../gstreamer-properties/gstreamer-properties.c:303
+msgid "Unknown"
+msgstr "Neznámé"
+
+#: ../grecord/src/gsr-window.c:1026
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1034
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1037
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (odhad)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1052
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1055
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1082
 #, c-format
 msgid "%s Information"
 msgstr "Informace o %s"
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Informace o souboru"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Složka:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Jméno souboru:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "Velikost souboru:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "Informace o zvuku"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "Stopáž souboru:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "Počet kanálů:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "Vzorkovací kmitočet:"
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "Přenosová rychlost:"
 
@@ -1718,27 +541,27 @@ msgstr ""
 "Záznamník zvuků pro GNOME\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1510
 msgid "Playing..."
 msgstr "Přehrávání..."
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "Výstup zvuku GConf"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Přehrávání"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1730
 msgid "Recording..."
 msgstr "Nahrávání..."
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "Záznam zvuku GConf"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1746,144 +569,145 @@ msgstr ""
 "Vaše nastavení záznamu zvuku nejsou platná. Opravte je prosím v "
 "\"Předvolbách zvuku\" v nabídce Systém-Volby."
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "výstup do souboru"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "úroveň"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Nelze zpracovat profil zvuku \"%s\". "
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Nelze zaznamenávat pomocí profilu zvuku \"%s\". "
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Nelze zapisovat do souboru pomocí profilu zvuku \"%s\". "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "Vytvoří nový vzorek"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Otevře soubor"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "Uloží současný soubor"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "Uloží současný soubor pod jiným jménem"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "Otevřít ovládání _hlasitosti"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "Otevře zvukový směšovač"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "Zobrazí informace o současném souboru"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "Zavře současný soubor"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Ukončí program"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "_Ovládání"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "Zaznamená zvuk"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "Přehraje zvuk"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Zastaví zvuk"
 
-#: ../grecord/src/gsr-window.c:2145
+#. Help menu
+#: ../grecord/src/gsr-window.c:2151
+msgid "_Help"
+msgstr "_Nápověda"
+
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "Otevřít příručku"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "O této aplikaci"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2277
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Nelze načíst ui.xml. Program možná není správně nainstalován"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Otevřít"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Uložit"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Uložit jako"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "Zaznamená_vat ze vstupu:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "Zaznamenávat _jako:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<žádný>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "Délka:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "Úroveň:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Záznamník zvuků"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "Upravit úroveň hlasitosti"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1901,7 +725,7 @@ msgstr "Šířka okna"
 msgid "Width of the Window to be displayed"
 msgstr "Šířka zobrazovaného okna"
 
-#: ../gst-mixer/src/element.c:423
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Motiv zvuku"
 
@@ -1916,15 +740,15 @@ msgstr ""
 "Nenalezen žádný zásuvný modul systému GStreamer nebo zařízení pro ovládání "
 "hlasitosti."
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "Záznam"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "Přepínače"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "Možnosti"
 
@@ -1934,37 +758,39 @@ msgid "Volume Control Preferences"
 msgstr "Předvolby ovládání hlasitosti"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
+#, fuzzy
+#| msgid "_Select tracks to be visible:"
+msgid "_Select mixers to be visible:"
 msgstr "Z_volte stopy, které mají být viditelné:"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Ztlumit/povolit %s"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
 msgstr "Stopa %s: ztlumit"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Přepnout záznam zvuku z %s"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Stopa %s: záznam zvuku"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "Výběr možnosti %s"
@@ -2053,11 +879,11 @@ msgstr "neznámé"
 msgid "Volume of %s channel on %s"
 msgstr "Hlasitost kanálu %s na %s"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Aplikace zajišťující ovládání hlasitosti, založená na GNOME/GStreamer"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Stanislav Brabec <utx@penguin.cz>\n"
@@ -2068,42 +894,44 @@ msgstr ""
 "Petr Kovář <pknbe@volny.cz>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Ovládání hlasitosti: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "Zaříz_ení: "
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "Ovládá hlasitost jiného zařízení"
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:206
 msgid "None"
 msgstr "Žádné"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:248
 msgid "Unsupported"
 msgstr "Nepodporované"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "Výchozí"
 
-#: ../gstreamer-properties/gstreamer-properties.c:603
+#: ../gstreamer-properties/gstreamer-properties.c:627
 msgid "Failure instantiating main window"
 msgstr "Selhala instanciace hlavního okna"
 
-#: ../gstreamer-properties/gstreamer-properties.c:652
-msgid "Failed to load glade file; please check your installation."
+#: ../gstreamer-properties/gstreamer-properties.c:680
+#, fuzzy
+#| msgid "Failed to load glade file; please check your installation."
+msgid "Failed to load UI file; please check your installation."
 msgstr "Nelze načíst soubor glade; zkontrolujte prosím vaši instalaci."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
@@ -2111,163 +939,106 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Nastavit výchozí hodnoty aplikací systému GStreamer"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Výběr systému multimédií"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>Výchozí vstup</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>Výchozí výstup</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Testování...</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
-msgid "Audio"
-msgstr "Zvuk"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
-msgid "Click Ok to finish."
-msgstr "Ukončete kliknutím na Budiž."
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
-msgid "D_evice:"
-msgstr "Z_ařízení:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
-msgid "P_ipeline:"
-msgstr "_Roura:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
-msgid "P_lugin:"
-msgstr "Zásu_vný modul:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
-msgid "Pipeli_ne:"
-msgstr "Ro_ura:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
-msgid "Te_st"
-msgstr "Te_st"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
-msgid "Testing Pipeline"
-msgstr "Testování roury"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
-msgid "Video"
-msgstr "Video"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
-msgid "_Plugin:"
-msgstr "Zásuvný mo_dul:"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
-msgid "_Test"
-msgstr "_Test"
-
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr "Automaticky detekovat"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightened Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio Sound Server"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Vlastní"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "X Window System (bez Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "Testovat zvuk"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "Ticho"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (např. zařízení Zoran v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr "Testovat vstup"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Nelze vytvořit testovací rouru pro \"%s\""
 
-#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
+#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Při zobrazování nápovědy došlo k chybě: %s"
 
-#: ../profiles/audio-profile-edit.c:336
+#: ../profiles/audio-profile-edit.c:335
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Upravování profilu \"%s\""
@@ -2299,12 +1070,12 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Při zahazování cesty k profilu %s došlo k chybě. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:88
+#: ../profiles/audio-profiles-edit.c:87
 msgid "_Edit"
 msgstr "_Upravit"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:466
+#: ../profiles/audio-profiles-edit.c:465
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
@@ -2312,29 +1083,29 @@ msgstr[0] "Odstranit tento profil?\n"
 msgstr[1] "Odstranit tyto %d profily?\n"
 msgstr[2] "Odstranit těchto %d profilů?\n"
 
-#: ../profiles/audio-profiles-edit.c:485
+#: ../profiles/audio-profiles-edit.c:484
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Odstranit profil \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:507
+#: ../profiles/audio-profiles-edit.c:506
 msgid "Delete Profile"
 msgstr "Odstranit profil"
 
-#: ../profiles/audio-profiles-edit.c:601
+#: ../profiles/audio-profiles-edit.c:599
 msgid "Edit GNOME Audio Profiles"
 msgstr "Upravit profily zvuku GNOME"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:648
 msgid "_Profiles:"
 msgstr "_Profily:"
 
-#: ../profiles/audio-profiles-edit.c:834
+#: ../profiles/audio-profiles-edit.c:832
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Máte již profil zvuku nazvaný \"%s\""
 
-#: ../profiles/audio-profiles-edit.c:859
+#: ../profiles/audio-profiles-edit.c:857
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Chyba GConf (FIXME): %s\n"
@@ -2347,6 +1118,13 @@ msgid ""
 msgstr ""
 "Soubor \"%s\" chybí. To znamená, že aplikace je nesprávně nainstalována, "
 "takže dialog nelze zobrazit."
+
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -2540,44 +1318,42 @@ msgstr "Jestli bude nebo nebude tento profil použit"
 msgid "Whether or not to use and display this profile."
 msgstr "Jestli používat a zobrazovat tento profil."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Bez zvuků"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Zabudované"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Testují se zvuky událostí"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "Z motivu"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "Typ"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "Motiv zvuku:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+msgid "Sound _theme:"
+msgstr "_Motiv zvuku:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
-msgid "Choose an alert sound:"
-msgstr "Vyberte zvuk upozornění:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+msgid "C_hoose an alert sound:"
+msgstr "_Vyberte zvuk upozornění:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "Povolit zvuky oken a tlačítek"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+msgid "Enable _window and button sounds"
+msgstr "_Povolit zvuky oken a tlačítek"
 
 #. Bell
 #: ../sound-theme/gvc-sound-theme-editor.c:76
@@ -2681,14 +1457,17 @@ msgstr "Vybrat soubor se zvukem"
 msgid "Sound files"
 msgstr "Zvukové soubory"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Zakázáno"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "Vlastní..."
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Motiv zvuku:"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Povolit zvuky oken a tlačítek"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
@@ -2714,71 +1493,1049 @@ msgstr "Sklo"
 msgid "Sonar"
 msgstr "Sonar"
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
-msgstr ""
-"Nelze se připojit ke zvukovému démonu.\n"
-"Spusťte prosím z příkazové řádky \"esd\"."
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Adresa serveru, který se má kontaktovat kvůli dotazům na CD"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the X position of the meter."
-msgstr "Zadání polohy X měřidla."
+#~ msgid "Information to send to server"
+#~ msgstr "Informace, které mají být odeslány na server"
 
-#: ../vu-meter/main.c:232
-msgid "X"
-msgstr "X"
+#~ msgid "Port"
+#~ msgstr "Port"
 
-#: ../vu-meter/main.c:234
-msgid "Specify the Y position of the meter."
-msgstr "Zadání polohy Y měřidla."
+#~ msgid "Server name"
+#~ msgstr "Název serveru"
 
-#: ../vu-meter/main.c:235
-msgid "Y"
-msgstr "Y"
+#~ msgid "Server type"
+#~ msgstr "Typ serveru"
 
-#: ../vu-meter/main.c:237
-msgid "Connect to the esd server on this host."
-msgstr "Spojení se serverem esd na daném počítači."
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "Název počítače, který se bude odesílat se všemi dotazy"
 
-#: ../vu-meter/main.c:238
-msgid "HOST"
-msgstr "POČÍTAČ"
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "Port, na kterém server poskytuje databázi"
 
-#: ../vu-meter/main.c:240
-msgid "Open a vertical version of the meter."
-msgstr "Otevře vertikální verzi měřidla."
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "Typ serveru, který má být kontaktován kvůli dotazům na CD. Možné hodnoty "
+#~ "jsou \"0\" (server round robin FreeDB), \"1\" (jiný server freedb) a 2 "
+#~ "(jiný server)."
 
-#: ../vu-meter/main.c:242
-msgid "Act as recording level meter."
-msgstr "Běží jako měřidlo záznamové úrovně."
+#~ msgid "The username"
+#~ msgstr "Uživatelské jméno"
 
-#: ../vu-meter/main.c:258
-#, c-format
-msgid "Host is %s\n"
-msgstr "Počítač je %s\n"
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "Uživatelské jméno, které se bude odesílat se všemi dotazy"
 
-#: ../vu-meter/main.c:275
-msgid "Recording level"
-msgstr "Záznamová úroveň"
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Tento klíč určuje, jaké informace o uživateli budou odeslány serveru "
+#~ "kontaktovanému kvůli dotazům na CD. Možné hodnoty jsou \"0\" (žádné "
+#~ "informace), \"1\" (skutečné informace) a \"3\" (jiné informace)."
 
-#: ../vu-meter/main.c:275
-msgid "Volume Meter"
-msgstr "Měřidlo hlasitosti"
+#~ msgid "Your hostname"
+#~ msgstr "Název vašeho počítače"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Sledování hlasitosti záznamu na vstupu"
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Při zobrazování nápovědy došlo k chybě: \n"
+#~ "%s"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
-msgstr "Sledování úrovně záznamu"
+#~ msgid "Sen_d no information"
+#~ msgstr "_Neodesílat žádné informace"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Sledování hlasitosti zvukového výstupu"
+#~ msgid "Send real _information"
+#~ msgstr "Odesílat skutečné _informace"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "Sledování hlasitosti"
+#~ msgid "Send _other information:"
+#~ msgstr "_Odesílat jiné informace:"
+
+#~ msgid "Hostna_me:"
+#~ msgstr "_Název počítače:"
+
+#~ msgid "Login Information"
+#~ msgstr "Přihlašovací informace"
+
+#~ msgid "FreeDB _round robin server"
+#~ msgstr "Se_rver round robin FreeDB"
+
+#~ msgid "Other _FreeDB server:"
+#~ msgstr "Jiný server _FreeDB:"
+
+#~ msgid "Server"
+#~ msgstr "Server"
+
+#~ msgid "Location"
+#~ msgstr "Umístění"
+
+#~ msgid "_Update Server List"
+#~ msgstr "_Aktualizovat seznam serverů"
+
+#~ msgid "Other _server:"
+#~ msgstr "Jiný _server:"
+
+#~ msgid "Hos_tname:"
+#~ msgstr "_Název počítače:"
+
+#~ msgid "_Port:"
+#~ msgstr "_Port:"
+
+#~ msgid "CD Database Preferences"
+#~ msgstr "Předvolby databáze CD"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Neznámé / Neznámé"
+
+#~ msgid "Multiple matches..."
+#~ msgstr "Více shod..."
+
+#~ msgid ""
+#~ "There were multiple matches found in the database.\n"
+#~ "Below is a list of possible matches, please choose the best match"
+#~ msgstr ""
+#~ "V databázi bylo nalezeno více odpovídajících záznamů.\n"
+#~ "Níže je uveden seznam možných shod, vyberte prosím nejpřesnější shodu"
+
+#~ msgid "Category"
+#~ msgstr "Kategorie"
+
+#~ msgid "Disc ID"
+#~ msgstr "ID disku"
+
+#~ msgid "Artist and Title"
+#~ msgstr "Umělec a titul"
+
+#~ msgid "Unknown track"
+#~ msgstr "Neznámá stopa"
+
+#~ msgid "CD Database Server"
+#~ msgstr "Server databáze CD"
+
+#~ msgid "Modify your CD database server preferences"
+#~ msgstr "Upraví předvolby serveru databáze CD"
+
+#~ msgid "Blues"
+#~ msgstr "Blues"
+
+#~ msgid "Classical Rock"
+#~ msgstr "Klasický rock"
+
+#~ msgid "Country"
+#~ msgstr "Country"
+
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Disco"
+#~ msgstr "Disko"
+
+#~ msgid "Funk"
+#~ msgstr "Funk"
+
+#~ msgid "Grunge"
+#~ msgstr "Grunge"
+
+#~ msgid "Hip-Hop"
+#~ msgstr "Hip-hop"
+
+#~ msgid "Jazz"
+#~ msgstr "Jazz"
+
+#~ msgid "Metal"
+#~ msgstr "Metal"
+
+#~ msgid "New Age"
+#~ msgstr "New Age"
+
+#~ msgid "Oldies"
+#~ msgstr "Oldies"
+
+#~ msgid "Other"
+#~ msgstr "Jiná"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "R&B"
+#~ msgstr "R&B"
+
+#~ msgid "Rap"
+#~ msgstr "Rap"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Techno"
+#~ msgstr "Techno"
+
+#~ msgid "Industrial"
+#~ msgstr "Industrial"
+
+#~ msgid "Alternative"
+#~ msgstr "Alternativní"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Death Metal"
+#~ msgstr "Death metal"
+
+#~ msgid "Pranks"
+#~ msgstr "Pranks"
+
+#~ msgid "Soundtrack"
+#~ msgstr "Soundtrack"
+
+#~ msgid "Euro-Techno"
+#~ msgstr "Euro-techno"
+
+#~ msgid "Ambient"
+#~ msgstr "Ambient"
+
+#~ msgid "Trip-Hop"
+#~ msgstr "Trip-hop"
+
+#~ msgid "Vocal"
+#~ msgstr "Vokální"
+
+#~ msgid "Jazz+Funk"
+#~ msgstr "Jazz+Funk"
+
+#~ msgid "Fusion"
+#~ msgstr "Fusion"
+
+#~ msgid "Trance"
+#~ msgstr "Trance"
+
+#~ msgid "Classical"
+#~ msgstr "Klasická"
+
+#~ msgid "Instrumental"
+#~ msgstr "Instrumentální"
+
+#~ msgid "Acid"
+#~ msgstr "Acid"
+
+#~ msgid "House"
+#~ msgstr "House"
+
+#~ msgid "Game"
+#~ msgstr "Game"
+
+#~ msgid "Sound Clip"
+#~ msgstr "Zvukový klip"
+
+#~ msgid "Gospel"
+#~ msgstr "Gospel"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "Alt"
+#~ msgstr "Alt"
+
+#~ msgid "Bass"
+#~ msgstr "Bass"
+
+#~ msgid "Soul"
+#~ msgstr "Soul"
+
+#~ msgid "Punk"
+#~ msgstr "Punk"
+
+#~ msgid "Space"
+#~ msgstr "Space"
+
+#~ msgid "Meditative"
+#~ msgstr "Meditativní"
+
+#~ msgid "Instrumental Pop"
+#~ msgstr "Instrumentální pop"
+
+#~ msgid "Instrumental Rock"
+#~ msgstr "Instrumentální rock"
+
+#~ msgid "Ethnic"
+#~ msgstr "Etnická"
+
+#~ msgid "Gothic"
+#~ msgstr "Gotická"
+
+#~ msgid "Darkwave"
+#~ msgstr "Darkwave"
+
+#~ msgid "Techno-Industrial"
+#~ msgstr "Techno-industrial"
+
+#~ msgid "Electronic"
+#~ msgstr "Elektronická"
+
+#~ msgid "Pop-Folk"
+#~ msgstr "Pop-folk"
+
+#~ msgid "Eurodance"
+#~ msgstr "Eurodance"
+
+#~ msgid "Dream"
+#~ msgstr "Dream"
+
+#~ msgid "Southern Rock"
+#~ msgstr "Jižanský rock"
+
+#~ msgid "Comedy"
+#~ msgstr "Komedie"
+
+#~ msgid "Cult"
+#~ msgstr "Kultovní"
+
+#~ msgid "Gangsta Rap"
+#~ msgstr "Gangsta rap"
+
+#~ msgid "Top 40"
+#~ msgstr "Top 40"
+
+#~ msgid "Christian Rap"
+#~ msgstr "Křesťanský rap"
+
+#~ msgid "Pop/Funk"
+#~ msgstr "Pop/funk"
+
+#~ msgid "Jungle"
+#~ msgstr "Jungle"
+
+#~ msgid "Native American"
+#~ msgstr "Domorodá americká"
+
+#~ msgid "Cabaret"
+#~ msgstr "Kabaret"
+
+#~ msgid "New Wave"
+#~ msgstr "New Wave"
+
+#~ msgid "Psychedelic"
+#~ msgstr "Psychedelická"
+
+#~ msgid "Rave"
+#~ msgstr "Rave"
+
+#~ msgid "Showtunes"
+#~ msgstr "Showtunes"
+
+#~ msgid "Trailer"
+#~ msgstr "Trailer"
+
+#~ msgid "Lo-Fi"
+#~ msgstr "Lo-fi"
+
+#~ msgid "Tribal"
+#~ msgstr "Tribal"
+
+#~ msgid "Acid Punk"
+#~ msgstr "Acid punk"
+
+#~ msgid "Acid Jazz"
+#~ msgstr "Acid jazz"
+
+#~ msgid "Polka"
+#~ msgstr "Polka"
+
+#~ msgid "Musical"
+#~ msgstr "Muzikál"
+
+#~ msgid "Rock & Roll"
+#~ msgstr "Rock and roll"
+
+#~ msgid "Hard Rock"
+#~ msgstr "Hard rock"
+
+#~ msgid "Folk"
+#~ msgstr "Folk"
+
+#~ msgid "Folk/Rock"
+#~ msgstr "Folk/rock"
+
+#~ msgid "National Folk"
+#~ msgstr "National folk"
+
+#~ msgid "Swing"
+#~ msgstr "Swing"
+
+#~ msgid "Fast-Fusion"
+#~ msgstr "Fast-fusion"
+
+#~ msgid "Bebop"
+#~ msgstr "Bebob"
+
+#~ msgid "Latin"
+#~ msgstr "Latinskoamerická"
+
+#~ msgid "Revival"
+#~ msgstr "Revival"
+
+#~ msgid "Celtic"
+#~ msgstr "Keltská"
+
+#~ msgid "Bluegrass"
+#~ msgstr "Bluegrass"
+
+#~ msgid "Avantgarde"
+#~ msgstr "Avantgardní"
+
+#~ msgid "Gothic Rock"
+#~ msgstr "Gotický rock"
+
+#~ msgid "Progressive Rock"
+#~ msgstr "Progresivní rock"
+
+#~ msgid "Psychedelic Rock"
+#~ msgstr "Psychedelický rock"
+
+#~ msgid "Symphonic Rock"
+#~ msgstr "Symfonický rock"
+
+#~ msgid "Slow Rock"
+#~ msgstr "Pomalý rock"
+
+#~ msgid "Big Band"
+#~ msgstr "Big band"
+
+#~ msgid "Chorus"
+#~ msgstr "Sbor"
+
+#~ msgid "Easy Listening"
+#~ msgstr "Nenáročný poslech"
+
+#~ msgid "Acoustic"
+#~ msgstr "Akustická"
+
+#~ msgid "Humour"
+#~ msgstr "Humor"
+
+#~ msgid "Speech"
+#~ msgstr "Mluvené slovo"
+
+#~ msgid "Chanson"
+#~ msgstr "Šanson"
+
+#~ msgid "Opera"
+#~ msgstr "Opera"
+
+#~ msgid "Chamber Music"
+#~ msgstr "Komorní hudba"
+
+#~ msgid "Sonata"
+#~ msgstr "Sonáta"
+
+#~ msgid "Symphony"
+#~ msgstr "Symfonie"
+
+#~ msgid "Booty Bass"
+#~ msgstr "Booty bass"
+
+#~ msgid "Primus"
+#~ msgstr "Primus"
+
+#~ msgid "Porn Groove"
+#~ msgstr "Porn groove"
+
+#~ msgid "Satire"
+#~ msgstr "Satira"
+
+#~ msgid "Slow Jam"
+#~ msgstr "Pomalý jam"
+
+#~ msgid "Club"
+#~ msgstr "Klubová"
+
+#~ msgid "Tango"
+#~ msgstr "Tango"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Folklore"
+#~ msgstr "Folklórní"
+
+#~ msgid "Ballad"
+#~ msgstr "Balada"
+
+#~ msgid "Power Ballad"
+#~ msgstr "Silná balada"
+
+#~ msgid "Rhythmic Soul"
+#~ msgstr "Rytmický soul"
+
+#~ msgid "Freestyle"
+#~ msgstr "Freestyle"
+
+#~ msgid "Duet"
+#~ msgstr "Duet"
+
+#~ msgid "Punk Rock"
+#~ msgstr "Punk rock"
+
+#~ msgid "Drum Solo"
+#~ msgstr "Sólo na bubny"
+
+#~ msgid "A Cappella"
+#~ msgstr "A cappella"
+
+#~ msgid "Euro-House"
+#~ msgstr "Euro-house"
+
+#~ msgid "Dance Hall"
+#~ msgstr "Dance hall"
+
+#~ msgid "Goa"
+#~ msgstr "Goa"
+
+#~ msgid "Drum & Bass"
+#~ msgstr "Drum & bass"
+
+#~ msgid "Club-House"
+#~ msgstr "Club-house"
+
+#~ msgid "Terror"
+#~ msgstr "Terror"
+
+#~ msgid "Indie"
+#~ msgstr "Indie"
+
+#~ msgid "BritPop"
+#~ msgstr "BritPop"
+
+#~ msgid "Negerpunk"
+#~ msgstr "Negerpunk"
+
+#~ msgid "Polsk Punk"
+#~ msgstr "Polský punk"
+
+#~ msgid "Beat"
+#~ msgstr "Beat"
+
+#~ msgid "Christian Gangsta Rap"
+#~ msgstr "Křesťanský gangsta rap"
+
+#~ msgid "Heavy Metal"
+#~ msgstr "Heavy metal"
+
+#~ msgid "Black Metal"
+#~ msgstr "Black metal"
+
+#~ msgid "Crossover"
+#~ msgstr "Crossover"
+
+#~ msgid "Contemporary Christian"
+#~ msgstr "Současná křesťanská"
+
+#~ msgid "Christian Rock"
+#~ msgstr "Křesťanský rock"
+
+#~ msgid "Merengue"
+#~ msgstr "Merengue"
+
+#~ msgid "Salsa"
+#~ msgstr "Salsa"
+
+#~ msgid "Thrash Metal"
+#~ msgstr "Thrash metal"
+
+#~ msgid "Anime"
+#~ msgstr "Anime"
+
+#~ msgid "JPop"
+#~ msgstr "JPop"
+
+#~ msgid "Synthpop"
+#~ msgstr "Synthpop"
+
+#~ msgid "Nu-Metal"
+#~ msgstr "Nu-metal"
+
+#~ msgid "Art Rock"
+#~ msgstr "Art rock"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Neznámý umělec"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Neznámé album"
+
+#~ msgid "Editing Disc ID: %s"
+#~ msgstr "Úprava disku s ID: %s"
+
+#~ msgid "Hide advanced disc options"
+#~ msgstr "Skrýt pokročilé možnosti disku"
+
+#~ msgid "Show advanced disc options"
+#~ msgstr "Ukázat pokročilé možnosti disku"
+
+#~ msgid "Hide advanced track options"
+#~ msgstr "Skrýt pokročilé možnosti skladby"
+
+#~ msgid "Show advanced track options"
+#~ msgstr "Ukázat pokročilé možnosti skladby"
+
+#~ msgid "Editing Disc ID: "
+#~ msgstr "Úprava disku s ID: "
+
+#~ msgid "_Artist:"
+#~ msgstr "_Umělec:"
+
+#~ msgid "Disc _Title:"
+#~ msgstr "_Titul disku:"
+
+#~ msgid "_Disc comments:"
+#~ msgstr "Komentář k _disku:"
+
+#~ msgid "_Genre:"
+#~ msgstr "Žán_r:"
+
+#~ msgid "_Year:"
+#~ msgstr "Ro_k:"
+
+#~ msgid "Title"
+#~ msgstr "Titul"
+
+#~ msgid "Length"
+#~ msgstr "Délka"
+
+#~ msgid "_Extra track data:"
+#~ msgstr "Dodat_ečná data ke skladbě:"
+
+#~ msgid "CDDB Track Editor"
+#~ msgstr "Editor skladeb CDDB"
+
+#~ msgid ""
+#~ "Cannot create CDDBTrackEditor factory.\n"
+#~ "This may be caused by another copy of cddb-track-editor already running.\n"
+#~ msgstr ""
+#~ "Nelze vytvořit generátor CDDBTrackEditor.\n"
+#~ "Důvodem může být již běžící jiná kopie programu cddb-track-editor.\n"
+
+#~ msgid "CD Display"
+#~ msgstr "Informace k CD"
+
+#~ msgid ""
+#~ "Displays information about the currently playing album, artist and time "
+#~ "elapsed"
+#~ msgstr ""
+#~ "Zobrazuje informace o právě přehrávaném albu, umělci a uplynulém času"
+
+#~ msgid "Time Line"
+#~ msgstr "Časová osa"
+
+#~ msgid "Line for displaying the time elapsed for the current track"
+#~ msgstr "Osa zobrazující uplynulý čas aktuální skladby"
+
+#~ msgid "Info Line"
+#~ msgstr "Informační řádek"
+
+#~ msgid "Line for displaying information"
+#~ msgstr "Řádek zobrazující informace"
+
+#~ msgid "Artist Line"
+#~ msgstr "Řádek s umělcem"
+
+#~ msgid "Line for displaying the name of the artist"
+#~ msgstr "Řádek zobrazující jméno umělce"
+
+#~ msgid "Album Line"
+#~ msgstr "Řádek s albem"
+
+#~ msgid "Line for displaying the name of the album"
+#~ msgstr "Řádek zobrazující název alba"
+
+#~ msgid "Play"
+#~ msgstr "Přehrávání"
+
+#~ msgid "Pause"
+#~ msgstr "Pozastavení"
+
+#~ msgid ""
+#~ "Playing %s - %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Přehrává se %s - %s<\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Playing\n"
+#~ ": %s"
+#~ msgstr ""
+#~ "Přehrává se\n"
+#~ ": %s"
+
+#~ msgid "Paused"
+#~ msgstr "Pozastaveno"
+
+#~ msgid "CD Player"
+#~ msgstr "Přehrávač CD"
+
+#~ msgid "Stopped"
+#~ msgstr "Zastaveno"
+
+#~ msgid "Disc error"
+#~ msgstr "Chyba disku"
+
+#~ msgid "No disc"
+#~ msgstr "Žádný disk"
+
+#~ msgid "Empty disc"
+#~ msgstr "Prázdný disk"
+
+#~ msgid "Drive open"
+#~ msgstr "Zařízení otevřeno"
+
+#~ msgid "Data CD"
+#~ msgstr "Datové CD"
+
+#~ msgid "No Cdrom"
+#~ msgstr "Žádný CD-ROM"
+
+#~ msgid "Drive Error"
+#~ msgstr "Chyba zařízení"
+
+#~ msgid "A CD player for GNOME"
+#~ msgstr "Přehrávač CD pro GNOME"
+
+#~ msgid "Contents in the CDDB have changed"
+#~ msgstr "Obsah v CDDB se změnil"
+
+#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+#~ msgstr "Zvolením \"Ano\" se odstraní předchozí obsah v CDDB."
+
+#~ msgid "Do you wish to continue?"
+#~ msgstr "Chcete pokračovat?"
+
+#~ msgid "Volume %d%%"
+#~ msgstr "Hlasitost %d%%"
+
+#~ msgid "You do not seem to have permission to access %s."
+#~ msgstr "Zdá se, že nemáte oprávnění k přístupu na %s."
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CD device. This may be because:\n"
+#~ "a) CD support is not present in your machine\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "%s zřejmě neukazuje na platné zařízení CD. To může mít několik příčin:\n"
+#~ "a) podpora CD není na vašem počítači k dispozici\n"
+#~ "b) nemáte potřebná oprávnění k přístupu k CD mechanice\n"
+#~ "c) %s není CD mechanika.\n"
+
+#~ msgid "%d - Unknown"
+#~ msgstr "%d - Neznámá"
+
+#~ msgid "_Play / Pause"
+#~ msgstr "Přehrát / _Pauza"
+
+#~ msgid "_Stop"
+#~ msgstr "Za_stavit"
+
+#~ msgid "P_revious"
+#~ msgstr "_Předchozí"
+
+#~ msgid "_Next"
+#~ msgstr "_Následující"
+
+#~ msgid "_Eject disc"
+#~ msgstr "_Vysunout disk"
+
+#~ msgid "_About"
+#~ msgstr "O _aplikaci"
+
+#~ msgid "_Quit"
+#~ msgstr "U_končit"
+
+#~ msgid ""
+#~ "There is no CD device set. This means that the CD player\n"
+#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
+#~ "where you can set the device, or click 'Quit' to quit the CD player."
+#~ msgstr ""
+#~ "Není nastaveno žádné zařízení CD. To znamená, že přehrávač CD\n"
+#~ "nebude fungovat. Stiskněte prosím tlačítko \"Nastavit zařízení\"\n"
+#~ "a nastavte toto zařízení, nebo tlačítko \"Ukončit\", čímž ukončíte "
+#~ "přehrávač CD."
+
+#~ msgid "Set device"
+#~ msgstr "Nastavit zařízení"
+
+#~ msgid "No CD device"
+#~ msgstr "Žádné zařízení CD"
+
+#~ msgid ""
+#~ "The CD player is unable to run correctly.\n"
+#~ "\n"
+#~ "Press 'Details' for more details on reasons for the failure.\n"
+#~ "\n"
+#~ "Press 'Set device' to go to a dialog where you can set the device, or "
+#~ "press 'Quit' to quit the CD player"
+#~ msgstr ""
+#~ "Přehrávač CD není schopen fungovat správně.\n"
+#~ "\n"
+#~ "Podrobnosti o důvodech selhání získáte stisknutím tlačítka \"Podrobnosti"
+#~ "\".\n"
+#~ "\n"
+#~ "Stiskněte prosím tlačítko \"Nastavit zařízení\" a nastavte zařízení, nebo "
+#~ "ukončete přehrávač CD stisknutím tlačítka \"Ukončit\""
+
+#~ msgid "_Details"
+#~ msgstr "Po_drobnosti"
+
+#~ msgid "_Set device"
+#~ msgstr "_Nastavit zařízení"
+
+#~ msgid "Invalid CD device"
+#~ msgstr "Neplatné zařízení CD"
+
+#~ msgid "Position"
+#~ msgstr "Pozice"
+
+#~ msgid "Open preferences"
+#~ msgstr "Otevřít předvolby"
+
+#~ msgid "Preferences"
+#~ msgstr "Předvolby"
+
+#~ msgid "Track List"
+#~ msgstr "Seznam skladeb"
+
+#~ msgid "Open track editor"
+#~ msgstr "Otevřít editor skladeb"
+
+#~ msgid "Track editor"
+#~ msgstr "Editor skladeb"
+
+#~ msgid "Play / Pause"
+#~ msgstr "Přehrát / Pauza"
+
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+#~ msgid "Previous track"
+#~ msgstr "Předchozí skladba"
+
+#~ msgid "Previous"
+#~ msgstr "Předchozí"
+
+#~ msgid "Rewind"
+#~ msgstr "Přetočit"
+
+#~ msgid "Fast forward"
+#~ msgstr "Rychle vpřed"
+
+#~ msgid "Next track"
+#~ msgstr "Následující skladba"
+
+#~ msgid "Eject CD"
+#~ msgstr "Vysunout CD"
+
+#~ msgid "Eject"
+#~ msgstr "Vysunout"
+
+#~ msgid "CD device to use"
+#~ msgstr "Zařízení CD, které má být použito"
+
+#~ msgid "Only start if there isn't already a CD player application running"
+#~ msgstr "Spustit pouze pokud ještě neběží aplikace na přehrávání CD"
+
+#~ msgid "Play the CD on startup"
+#~ msgstr "Přehrávat CD při spuštění"
+
+#~ msgid "Start iconified in notification area"
+#~ msgstr "Spustit jako minimalizovaný v oznamovací oblasti"
+
+#~ msgid "Cannot create player"
+#~ msgstr "Nelze vytvořit přehrávač"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Přehrává zvuková CD"
+
+#~ msgid "CD player Volume"
+#~ msgstr "Hlasitost přehrávače CD"
+
+#~ msgid "CD player theme"
+#~ msgstr "Motiv přehrávače CD"
+
+#~ msgid "Device path"
+#~ msgstr "Cesta k zařízení"
+
+#~ msgid "Display the Remaining time?"
+#~ msgstr "Zobrazovat zbývající čas?"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Vysunout CD při ukončení přehrávače CD?"
+
+#~ msgid "How the time should be displayed while CD Player is playing?"
+#~ msgstr "Jak se má zobrazovat čas, když přehrávač CD přehrává?"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Přehrávat při spuštění přehrávače CD?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "Má být CD vysunuto při ukončení přehrávače CD?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "Cesta k jednotce CD, kterou má přehrávač CD používat k přehrávání CD"
+
+#~ msgid "What theme should the CD player use for its appearance"
+#~ msgstr "Jaký motiv má přehrávač CD používat pro svůj vzhled"
+
+#~ msgid "What volume should the CD player use when it is started?"
+#~ msgstr "Jakou hlasitost má přehrávač CD používat po spuštění?"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr "Když je přehrávač CD spuštěn, má začít přehrávat CD?"
+
+#~ msgid "Failed to eject CD: %s"
+#~ msgstr "Nelze vysunout CD: %s"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "This means that the CD player will not be able to run."
+#~ msgstr ""
+#~ "%s\n"
+#~ "To znamená, že přehrávač CD nebude fungovat správně."
+
+#~ msgid "Error setting device"
+#~ msgstr "Chyba při nastavování zařízení"
+
+#~ msgid "CD Player Preferences"
+#~ msgstr "Předvolby Přehrávače CD"
+
+#~ msgid "_Device:"
+#~ msgstr "Zaříz_ení:"
+
+#~ msgid "Behavior"
+#~ msgstr "Chování"
+
+#~ msgid "Start _playback when CD Player starts"
+#~ msgstr "Při _spuštění Přehrávače CD začít přehrávat"
+
+#~ msgid "Start playback when CD Player starts"
+#~ msgstr "Při spuštění Přehrávače CD začít přehrávat"
+
+#~ msgid "Attempt to _eject CD when CD Player exits"
+#~ msgstr "Při _ukončení Přehrávače CD se pokusit vysunout CD mechaniku"
+
+#~ msgid "Attempt to eject CD when CD Player exits"
+#~ msgstr "Při ukončení Přehrávače CD se pokusit vysunout CD mechaniku"
+
+#~ msgid "Themes"
+#~ msgstr "Motivy"
+
+#~ msgid "_Select a theme:"
+#~ msgstr "_Zvolit motiv:"
+
+#~ msgid "GNOME Volume Control"
+#~ msgstr "Ovládání hlasitosti GNOME"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Upravit úroveň hlasitosti"
+
+#~ msgid "<b>Default Input</b>"
+#~ msgstr "<b>Výchozí vstup</b>"
+
+#~ msgid "<b>Default Output</b>"
+#~ msgstr "<b>Výchozí výstup</b>"
+
+#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+#~ msgstr "<span weight=\"bold\" size=\"x-large\">Testování...</span>"
+
+#~ msgid "Audio"
+#~ msgstr "Zvuk"
+
+#~ msgid "Click Ok to finish."
+#~ msgstr "Ukončete kliknutím na Budiž."
+
+#~ msgid "D_evice:"
+#~ msgstr "Z_ařízení:"
+
+#~ msgid "P_ipeline:"
+#~ msgstr "_Roura:"
+
+#~ msgid "P_lugin:"
+#~ msgstr "Zásu_vný modul:"
+
+#~ msgid "Pipeli_ne:"
+#~ msgstr "Ro_ura:"
+
+#~ msgid "Te_st"
+#~ msgstr "Te_st"
+
+#~ msgid "Testing Pipeline"
+#~ msgstr "Testování roury"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "_Plugin:"
+#~ msgstr "Zásuvný mo_dul:"
+
+#~ msgid "_Test"
+#~ msgstr "_Test"
+
+#~ msgid ""
+#~ "Cannot connect to sound daemon.\n"
+#~ "Please run 'esd' at a command prompt."
+#~ msgstr ""
+#~ "Nelze se připojit ke zvukovému démonu.\n"
+#~ "Spusťte prosím z příkazové řádky \"esd\"."
+
+#~ msgid "Specify the X position of the meter."
+#~ msgstr "Zadání polohy X měřidla."
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "Zadání polohy Y měřidla."
+
+#~ msgid "Y"
+#~ msgstr "Y"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "Spojení se serverem esd na daném počítači."
+
+#~ msgid "HOST"
+#~ msgstr "POČÍTAČ"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "Otevře vertikální verzi měřidla."
+
+#~ msgid "Act as recording level meter."
+#~ msgstr "Běží jako měřidlo záznamové úrovně."
+
+#~ msgid "Host is %s\n"
+#~ msgstr "Počítač je %s\n"
+
+#~ msgid "Recording level"
+#~ msgstr "Záznamová úroveň"
+
+#~ msgid "Volume Meter"
+#~ msgstr "Měřidlo hlasitosti"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Sledování hlasitosti záznamu na vstupu"
+
+#~ msgid "Recording Level Monitor"
+#~ msgstr "Sledování úrovně záznamu"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Sledování hlasitosti zvukového výstupu"
+
+#~ msgid "Volume Monitor"
+#~ msgstr "Sledování hlasitosti"
+
