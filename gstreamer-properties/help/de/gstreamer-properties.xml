@@ -24,7 +24,7 @@
     <copyright>
       <year>2003</year> 
       <holder>Christian Fredrik Kalager Schaller</holder> 
-    </copyright><copyright><year>2008</year><holder>Mario Blättermann (mario.blaettermann@t-online.de)</holder></copyright> 
+    </copyright><copyright><year>2008, 2009</year><holder>Mario Blättermann (mariobl@gnome.org)</holder></copyright> 
 
     <abstract role="description">
       <para>GStreamer-Eigenschaften erlaubt Ihnen die Konfiguration der auf Hardware und Multimedia bezogenen Parameter</para>
@@ -168,16 +168,13 @@
 
   <sect1 id="gstreamer-properties-usage"> 
     <title>Benutzung</title>
-	<para>The GStreamer properties capplet offers four drop down menus spread over two tabs.
-	There are two drop-menues for audio and two for video. These choices set the default for most GNOME applications for output and input of Sound and Video.</para>
+	<para>Das Fenster der GStreamer-Eigenschaften enthält zwei Auswahlmenüs, die in jedem der zwei Reiter vorhanden sind. Es gibt zwei Auswahlmenüs für Video und zwei für Audio. Mit diesen Auswahlen legen Sie die Eingabe und Ausgabe für Klänge und Video für die meisten GNOME-Anwendungen fest.</para>
   <sect2 id="gstreamer-properties-concepts">
     	<title>Erläuterung der Menüoptionen</title>
-    	<para>Looking at the screen for setting audio options you notice that the two sections 		says are called Default Sink and Default Source. These are terms used in the GStreamer 		framework that GNOME uses to describe where data is sent and where it comes from. The 		Default sink is in other words where GNOME apps should output their sound, while 		Default source is where the sound comes from.</para>
+    	<para>Beim Blick auf den Bildschirm werden Sie feststellen, dass zwei Abschnitte mit »Vorgegebene Quelle« und »Vorgegebenes Ziel« benannt sind. Diese Begriffe werden in GStreamer verwendet, das GNOME zur Angabe verwendet, welche Daten gesendet werden bzw. wo diese herkommen. Das vorgegebene Ziel ist, anders ausgedrückt, die Stelle wo GNOME-Anwendungen Klänge ausgeben, während die vorgegebene Quelle die Quelle dieser Klänge ist.</para>
 	<para>Das Vorhandensein vieler verschiedener zur Ausgabe geeigneter Audio-Systeme und Soundserver auf UNIX-Systemen könnte der Grund dafür sein, dass Sie diese Einstellungen vielleicht ändern wollen. Populäre Alternativen auf Linux-Systemen sind das OSS-Soundsystem, das ALSA-Soundsystem, der ESD-Soundserver und der ARTSd-Soundserver.</para>
 	<para>Wenn Sie beispielsweise wünschen, dass Ihre GNOME-Anwendungen Ihre Klänge über den ESD-Soundserver ausgeben sollen, setzen Sie als Standard-Ausgabegerät ESD. Und wenn Sie wünschen, dass die GNOME-Anwendungen, die über Fähigkeiten zur Tonaufnahme verfügen, das OSS-Soundsystem benutzen sollen, dann setzen Sie OSS als Standardquelle.</para>
-	<para>As mentioned elsewhere in this user guide. These setting are meant for as a tool 		for advanced users who have specialized need. As an ordinary user you should not need 	
-	to set these as the vendor of your distribution of Linux or Unix should have set them 
-	for you and sensible defaults.</para> 
+	<para>Wie bereits in dieser Dokumentation erwähnt. Diese Einstellungen sind als Werkzeug für fortgeschrittene Benutzer gedacht, die spezielle Einstellungen benötigen. Als gewöhnlicher Benutzer werden Sie dies nicht ändern müssen, da der Anbieter Ihrer Linux- oder Unix-Distribution bereits sinnvolle Werte voreingestellt haben dürfte.</para> 
     	
     </sect2>
   </sect1>  

@@ -26,12 +26,6 @@ if HAVE_GSTPROPS
 SUBDIRS += gstreamer-properties
 endif
 
-INTLTOOL_BUILT = \
-        intltool-extract \
-        intltool-merge \
-        intltool-update \
-	$(NULL)
-
 DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-scrollkeeper	\
 	--enable-more-warnings  \
@@ -68,7 +62,6 @@ EXTRA_DIST = \
 DISTCLEANFILES = \
 	build-aux/gnome-doc-utils.make	\
 	po/.intltool-merge-cache	\
-	$(INTLTOOL_BUILT)		\
 	$(NULL)
 
 ACLOCAL_AMFLAGS = -I m4
