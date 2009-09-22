@@ -411,12 +411,14 @@ on_scale_button_release_event (GtkWidget      *widget,
 
         value = gtk_adjustment_get_value (adj);
 
-        /* this means the adjustment moved away from zero and
-          therefore we should unmute and set the volume. */
-        if (value > 0)
-                gvc_channel_bar_set_is_muted (bar, FALSE);
-        else
-                gvc_channel_bar_set_is_muted (bar, TRUE);
+        if (bar->priv->show_mute == FALSE) {
+                /* this means the adjustment moved away from zero and
+                 * therefore we should unmute and set the volume. */
+                if (value > 0)
+                        gvc_channel_bar_set_is_muted (bar, FALSE);
+                else
+                        gvc_channel_bar_set_is_muted (bar, TRUE);
+        }
 
         /* Play a sound! */
         ca_gtk_play_for_widget (GTK_WIDGET (bar), 0,
@@ -490,10 +492,12 @@ on_zero_adjustment_value_changed (GtkAdjustment *adjustment,
         value = gtk_adjustment_get_value (bar->priv->zero_adjustment);
         gtk_adjustment_set_value (bar->priv->adjustment, value);
 
-        /* this means the adjustment moved away from zero and
-          therefore we should unmute and set the volume. */
 
-        gvc_channel_bar_set_is_muted (bar, FALSE);
+        if (bar->priv->show_mute == FALSE) {
+                /* this means the adjustment moved away from zero and
+                 * therefore we should unmute and set the volume. */
+                gvc_channel_bar_set_is_muted (bar, value > 0.0);
+        }
 }
 
 static void
@@ -520,9 +524,11 @@ update_mute_button (GvcChannelBar *bar)
                         gtk_range_set_adjustment (GTK_RANGE (bar->priv->scale),
                                                   bar->priv->zero_adjustment);
                 } else {
-                        /* no longer muted so restore the original adjustment */
+                        /* no longer muted so restore the original adjustment
+                         * and tell the front-end that the value changed */
                         gtk_range_set_adjustment (GTK_RANGE (bar->priv->scale),
                                                   bar->priv->adjustment);
+                        gtk_adjustment_value_changed (bar->priv->adjustment);
                 }
         }
 }
@@ -534,9 +540,11 @@ gvc_channel_bar_set_is_muted (GvcChannelBar *bar,
         g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
 
         if (is_muted != bar->priv->is_muted) {
+                /* Update our internal state before telling the
+                 * front-end about our changes */
                 bar->priv->is_muted = is_muted;
-                g_object_notify (G_OBJECT (bar), "is-muted");
                 update_mute_button (bar);
+                g_object_notify (G_OBJECT (bar), "is-muted");
         }
 }
 

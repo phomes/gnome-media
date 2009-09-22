@@ -659,7 +659,9 @@ on_adjustment_value_changed (GtkAdjustment  *adjustment,
                 g_free (name);
 
                 /* FIXME would need to do that in the balance bar really... */
-                gvc_mixer_stream_set_is_muted (stream, volume == 0);
+                /* Make sure we do not unmute muted streams, there's a button for that */
+                if (volume == 0.0)
+                        gvc_mixer_stream_set_is_muted (stream, TRUE);
                 /* Only push the volume if it's actually changed */
                 if (gvc_mixer_stream_set_volume(stream, (pa_volume_t) rounded) != FALSE)
                         gvc_mixer_stream_push_volume (stream);

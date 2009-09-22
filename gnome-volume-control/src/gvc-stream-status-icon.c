@@ -617,8 +617,13 @@ on_bar_is_muted_notify (GObject             *object,
         gboolean is_muted;
 
         is_muted = gvc_channel_bar_get_is_muted (GVC_CHANNEL_BAR (object));
-        gvc_mixer_stream_change_is_muted (icon->priv->mixer_stream,
-                                          is_muted);
+
+        if (gvc_mixer_stream_get_is_muted (icon->priv->mixer_stream) != is_muted) {
+                /* Update the stream before pushing the change */
+                gvc_mixer_stream_set_is_muted (icon->priv->mixer_stream, is_muted);
+                gvc_mixer_stream_change_is_muted (icon->priv->mixer_stream,
+                                                  is_muted);
+        }
 }
 
 static GObject *
