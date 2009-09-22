@@ -213,6 +213,11 @@ update_output_settings (GvcMixerDialog *dialog)
                 return;
         }
 
+        gvc_channel_bar_set_base_volume (GVC_CHANNEL_BAR (dialog->priv->output_bar),
+                                         gvc_mixer_stream_get_base_volume (stream));
+        gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (dialog->priv->output_bar),
+                                          gvc_mixer_stream_get_can_decibel (stream));
+
         map = gvc_mixer_stream_get_channel_map (stream);
         if (map == NULL) {
                 g_warning ("Default sink stream has no channel map");
