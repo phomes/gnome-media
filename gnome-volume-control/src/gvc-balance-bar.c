@@ -109,8 +109,8 @@ _scale_box_new (GvcBalanceBar *bar)
                 str_upper = g_strdup_printf ("<small>%s</small>", C_("balance", "Right"));
                 break;
         case BALANCE_TYPE_FR:
-                str_lower = g_strdup_printf ("<small>%s</small>", C_("balance", "Front"));
-                str_upper = g_strdup_printf ("<small>%s</small>", C_("balance", "Rear"));
+                str_lower = g_strdup_printf ("<small>%s</small>", C_("balance", "Rear"));
+                str_upper = g_strdup_printf ("<small>%s</small>", C_("balance", "Front"));
                 break;
         case BALANCE_TYPE_LFE:
                 str_lower = g_strdup_printf ("<small>%s</small>", C_("balance", "Minimum"));
