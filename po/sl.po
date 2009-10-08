@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
-"POT-Creation-Date: 2009-09-21 14:43+0000\n"
-"PO-Revision-Date: 2009-09-22 11:27+0100\n"
+"POT-Creation-Date: 2009-02-24 04:53+0000\n"
+"PO-Revision-Date: 2009-10-07 12:34+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,249 +20,1660 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Language: Slovenian\n"
 
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
+msgid "Address of the server to contact for CD queries"
+msgstr "Naslov strežnika z podatki o CD-jih"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
+msgid "Information to send to server"
+msgstr "Podatki, ki naj se pošljejo strežniku"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
+#: ../cddb-slave2/cddb-slave-capplet.c:955
+msgid "Port"
+msgstr "Vrata"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
+msgid "Server name"
+msgstr "Ime strežnika"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
+msgid "Server type"
+msgstr "Vrsta strežnika"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
+msgid "The hostname that will be sent with all queries"
+msgstr "Ime gostitelja, ki bo poslano skupaj z vsemi poizvedbami"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
+msgid "The port that the server is running the database on"
+msgstr "Vrata na katerih teče strežnik podatkovne zbirke"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
+msgid "The type of the server to contact for CD queries. Possible values are 0 (FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+msgstr "Vrsta strežnika s katerim naj se poveže za poizvedbe po CDjih. Mogoče vrednosti so 0 (krožni strežnik FreeDB), 1 (drugačen strežnik freedb) in 2 (drug strežnik)"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
+msgid "The username"
+msgstr "Uporabniško ime"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
+msgid "The username that will be sent with all queries"
+msgstr "Uporabniško ime, ki bo poslano skupaj z vsemi poizvedbami"
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
+msgid "This key specifies which user information will be sent to the server to contact for CD queries. Possible values are 0 (no information), 1 (real information) and 3 (other information)."
+msgstr "Ta ključ določa kateri uporabnikovi podatki se bodo poslali strežniku ob izvajanju poizvedb po CDjih. Mogoče vrednosti so 0 (brez podatkov), 1 (resnični podatki),  in 3 (drugi podatki)."
+
+#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
+msgid "Your hostname"
+msgstr "Ime vašega računalnika"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:133
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Ob zagonu prikazovanju pomoči se je zgodila napaka: \n"
+"%s"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:807
+msgid "Sen_d no information"
+msgstr "_Ne pošlji nobenih podatkov"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:816
+msgid "Send real _information"
+msgstr "Pošlji _resnične podatke"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:825
+msgid "Send _other information:"
+msgstr "Pošlji _druge podatke:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:850
+msgid "_Name:"
+msgstr "_Ime:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:874
+msgid "Hostna_me:"
+msgstr "Ime _gostitelja:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:898
+msgid "Login Information"
+msgstr "Podatki prijave"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:914
+msgid "FreeDB _round robin server"
+msgstr "K_rožni strežnik FreeDB"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:920
+msgid "Other _FreeDB server:"
+msgstr "Drug strežnik _FreeDB:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:952
+#: ../cddb-slave2/cddb-slave-capplet.c:1062
+msgid "Server"
+msgstr "Strežnik"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:958
+msgid "Location"
+msgstr "Mesto"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:987
+msgid "_Update Server List"
+msgstr "_Posodobi seznam strežnikov"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:994
+msgid "Other _server:"
+msgstr "Drug _strežnik:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:1014
+msgid "Hos_tname:"
+msgstr "Ime _gostitelja:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:1031
+msgid "_Port:"
+msgstr "_Vrata:"
+
+#: ../cddb-slave2/cddb-slave-capplet.c:1104
+msgid "CD Database Preferences"
+msgstr "Nastavitve zbirke podatkov o CDjih"
+
+#: ../cddb-slave2/cddb-slave.c:221
+msgid "Unknown / Unknown"
+msgstr "Neznano / Neznano"
+
+#. Attempts to get length ran out.
+#: ../cddb-slave2/cddb-slave.c:227
+#: ../grecord/src/gsr-window.c:1013
+#: ../grecord/src/gsr-window.c:1023
+#: ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1048
+#: ../grecord/src/gsr-window.c:1402
+#: ../gstreamer-properties/gstreamer-properties.c:281
+msgid "Unknown"
+msgstr "Neznano"
+
+#: ../cddb-slave2/cddb-slave.c:272
+msgid "Multiple matches..."
+msgstr "Več zadetkov ..."
+
+#: ../cddb-slave2/cddb-slave.c:277
+msgid ""
+"There were multiple matches found in the database.\n"
+"Below is a list of possible matches, please choose the best match"
+msgstr ""
+"V zbirki podatkov je bilo najdenih več zadetkov.\n"
+"Spodaj je seznam mogočih zadetkov, prosim, izberite najboljšega."
+
+#: ../cddb-slave2/cddb-slave.c:288
+msgid "Category"
+msgstr "Kategorija"
+
+#: ../cddb-slave2/cddb-slave.c:292
+msgid "Disc ID"
+msgstr "ID zgoščenke"
+
+#: ../cddb-slave2/cddb-slave.c:296
+msgid "Artist and Title"
+msgstr "Izvajalec in naslov"
+
+#: ../cddb-slave2/cddb-slave.c:1351
+#: ../cddb-slave2/cddb-slave.c:1353
+#: ../gnome-cd/gnome-cd.c:221
+msgid "Unknown track"
+msgstr "Neznana skladba"
+
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
+msgid "CD Database Server"
+msgstr "Podatkovni strežnik CD-jev"
+
+#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
+msgid "Modify your CD database server preferences"
+msgstr "Spremenite svoje nastavitve podatkovnega strežnika CD-jev"
+
+#: ../cddb-slave2/cddb-track-editor.c:78
+msgid "Blues"
+msgstr "Bluz"
+
+#: ../cddb-slave2/cddb-track-editor.c:79
+msgid "Classical Rock"
+msgstr "Klasični rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:80
+msgid "Country"
+msgstr "Country"
+
+#: ../cddb-slave2/cddb-track-editor.c:81
+msgid "Dance"
+msgstr "Plesna"
+
+#: ../cddb-slave2/cddb-track-editor.c:82
+msgid "Disco"
+msgstr "Disko"
+
+#: ../cddb-slave2/cddb-track-editor.c:83
+msgid "Funk"
+msgstr "Funk"
+
+#: ../cddb-slave2/cddb-track-editor.c:84
+msgid "Grunge"
+msgstr "Grunge"
+
+#: ../cddb-slave2/cddb-track-editor.c:85
+msgid "Hip-Hop"
+msgstr "Hip hop"
+
+#: ../cddb-slave2/cddb-track-editor.c:86
+msgid "Jazz"
+msgstr "Jazz"
+
+#: ../cddb-slave2/cddb-track-editor.c:87
+msgid "Metal"
+msgstr "Metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:88
+msgid "New Age"
+msgstr "New age"
+
+#: ../cddb-slave2/cddb-track-editor.c:89
+msgid "Oldies"
+msgstr "Stare"
+
+#: ../cddb-slave2/cddb-track-editor.c:90
+msgid "Other"
+msgstr "Drugo"
+
+#: ../cddb-slave2/cddb-track-editor.c:91
+msgid "Pop"
+msgstr "Pop"
+
+#: ../cddb-slave2/cddb-track-editor.c:92
+msgid "R&B"
+msgstr "Ritm in blues"
+
+#: ../cddb-slave2/cddb-track-editor.c:93
+msgid "Rap"
+msgstr "Rap"
+
+#: ../cddb-slave2/cddb-track-editor.c:94
+msgid "Reggae"
+msgstr "Reggae"
+
+#: ../cddb-slave2/cddb-track-editor.c:95
+msgid "Rock"
+msgstr "Rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:96
+msgid "Techno"
+msgstr "Tehno"
+
+#: ../cddb-slave2/cddb-track-editor.c:97
+msgid "Industrial"
+msgstr "Industrial"
+
+#: ../cddb-slave2/cddb-track-editor.c:98
+msgid "Alternative"
+msgstr "Alternativna"
+
+#: ../cddb-slave2/cddb-track-editor.c:99
+msgid "Ska"
+msgstr "Ska"
+
+#: ../cddb-slave2/cddb-track-editor.c:100
+msgid "Death Metal"
+msgstr "Death metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:101
+msgid "Pranks"
+msgstr "Nategi"
+
+#: ../cddb-slave2/cddb-track-editor.c:102
+msgid "Soundtrack"
+msgstr "Filmska glasba"
+
+#: ../cddb-slave2/cddb-track-editor.c:103
+msgid "Euro-Techno"
+msgstr "Evro tehno"
+
+#: ../cddb-slave2/cddb-track-editor.c:104
+msgid "Ambient"
+msgstr "Ambientalna"
+
+#: ../cddb-slave2/cddb-track-editor.c:105
+msgid "Trip-Hop"
+msgstr "Trip hop"
+
+#: ../cddb-slave2/cddb-track-editor.c:106
+msgid "Vocal"
+msgstr "Vokalna"
+
+#: ../cddb-slave2/cddb-track-editor.c:107
+msgid "Jazz+Funk"
+msgstr "Jazz+Funk"
+
+#: ../cddb-slave2/cddb-track-editor.c:108
+msgid "Fusion"
+msgstr "Fusion"
+
+#: ../cddb-slave2/cddb-track-editor.c:109
+msgid "Trance"
+msgstr "Trance"
+
+#: ../cddb-slave2/cddb-track-editor.c:110
+msgid "Classical"
+msgstr "Klasična"
+
+#: ../cddb-slave2/cddb-track-editor.c:111
+msgid "Instrumental"
+msgstr "Inštrumentalna"
+
+#: ../cddb-slave2/cddb-track-editor.c:112
+msgid "Acid"
+msgstr "Acid"
+
+#: ../cddb-slave2/cddb-track-editor.c:113
+msgid "House"
+msgstr "House"
+
+#: ../cddb-slave2/cddb-track-editor.c:114
+msgid "Game"
+msgstr "Igra"
+
+#: ../cddb-slave2/cddb-track-editor.c:115
+msgid "Sound Clip"
+msgstr "Zvočni odsek"
+
+#: ../cddb-slave2/cddb-track-editor.c:116
+msgid "Gospel"
+msgstr "Gospel"
+
+#: ../cddb-slave2/cddb-track-editor.c:117
+msgid "Noise"
+msgstr "Šum"
+
+#: ../cddb-slave2/cddb-track-editor.c:118
+msgid "Alt"
+msgstr "Alt"
+
+#: ../cddb-slave2/cddb-track-editor.c:119
+msgid "Bass"
+msgstr "Bass"
+
+#: ../cddb-slave2/cddb-track-editor.c:120
+msgid "Soul"
+msgstr "Soul"
+
+#: ../cddb-slave2/cddb-track-editor.c:121
+msgid "Punk"
+msgstr "Punk"
+
+#: ../cddb-slave2/cddb-track-editor.c:122
+msgid "Space"
+msgstr "Vesoljna"
+
+#: ../cddb-slave2/cddb-track-editor.c:123
+msgid "Meditative"
+msgstr "Meditativna"
+
+#: ../cddb-slave2/cddb-track-editor.c:124
+msgid "Instrumental Pop"
+msgstr "Inštrumentalni pop"
+
+#: ../cddb-slave2/cddb-track-editor.c:125
+msgid "Instrumental Rock"
+msgstr "Inštrumentalni rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:126
+msgid "Ethnic"
+msgstr "Etnična"
+
+#: ../cddb-slave2/cddb-track-editor.c:127
+msgid "Gothic"
+msgstr "Gotska"
+
+#: ../cddb-slave2/cddb-track-editor.c:128
+msgid "Darkwave"
+msgstr "Darkwave"
+
+#: ../cddb-slave2/cddb-track-editor.c:129
+msgid "Techno-Industrial"
+msgstr "Tehno-industrial"
+
+#: ../cddb-slave2/cddb-track-editor.c:130
+msgid "Electronic"
+msgstr "Elektronska"
+
+#: ../cddb-slave2/cddb-track-editor.c:131
+msgid "Pop-Folk"
+msgstr "Pop-folk"
+
+#: ../cddb-slave2/cddb-track-editor.c:132
+msgid "Eurodance"
+msgstr "Eurodance"
+
+#: ../cddb-slave2/cddb-track-editor.c:133
+msgid "Dream"
+msgstr "Sanje"
+
+#: ../cddb-slave2/cddb-track-editor.c:134
+msgid "Southern Rock"
+msgstr "Južni rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:135
+msgid "Comedy"
+msgstr "Komedija"
+
+#: ../cddb-slave2/cddb-track-editor.c:136
+msgid "Cult"
+msgstr "Cultna"
+
+#: ../cddb-slave2/cddb-track-editor.c:137
+msgid "Gangsta Rap"
+msgstr "Gangsterski rap"
+
+#: ../cddb-slave2/cddb-track-editor.c:138
+msgid "Top 40"
+msgstr "Top 40"
+
+#: ../cddb-slave2/cddb-track-editor.c:139
+msgid "Christian Rap"
+msgstr "Krščanski rap"
+
+#: ../cddb-slave2/cddb-track-editor.c:140
+msgid "Pop/Funk"
+msgstr "Pop/funk"
+
+#: ../cddb-slave2/cddb-track-editor.c:141
+msgid "Jungle"
+msgstr "Jungle"
+
+#: ../cddb-slave2/cddb-track-editor.c:142
+msgid "Native American"
+msgstr "Indijanska"
+
+#: ../cddb-slave2/cddb-track-editor.c:143
+msgid "Cabaret"
+msgstr "Kabare"
+
+#: ../cddb-slave2/cddb-track-editor.c:144
+msgid "New Wave"
+msgstr "Novi val"
+
+#: ../cddb-slave2/cddb-track-editor.c:145
+msgid "Psychedelic"
+msgstr "Psihadelična"
+
+#: ../cddb-slave2/cddb-track-editor.c:146
+msgid "Rave"
+msgstr "Rave"
+
+#: ../cddb-slave2/cddb-track-editor.c:147
+msgid "Showtunes"
+msgstr "Showtunes"
+
+#: ../cddb-slave2/cddb-track-editor.c:148
+msgid "Trailer"
+msgstr "Trailer"
+
+#: ../cddb-slave2/cddb-track-editor.c:149
+msgid "Lo-Fi"
+msgstr "Lo-Fi"
+
+#: ../cddb-slave2/cddb-track-editor.c:150
+msgid "Tribal"
+msgstr "Plemenska"
+
+#: ../cddb-slave2/cddb-track-editor.c:151
+msgid "Acid Punk"
+msgstr "Acid punk"
+
+#: ../cddb-slave2/cddb-track-editor.c:152
+msgid "Acid Jazz"
+msgstr "Acid jazz"
+
+#: ../cddb-slave2/cddb-track-editor.c:153
+msgid "Polka"
+msgstr "Polka"
+
+#: ../cddb-slave2/cddb-track-editor.c:154
+msgid "Retro"
+msgstr "Retro"
+
+#: ../cddb-slave2/cddb-track-editor.c:155
+msgid "Musical"
+msgstr "Muzikal"
+
+#: ../cddb-slave2/cddb-track-editor.c:156
+msgid "Rock & Roll"
+msgstr "Rock & roll"
+
+#: ../cddb-slave2/cddb-track-editor.c:157
+msgid "Hard Rock"
+msgstr "Hard rock"
+
+#: ../cddb-slave2/cddb-track-editor.c:158
+msgid "Folk"
+msgstr "Folk"
+
+#: ../cddb-slave2/cddb-track-editor.c:159
+msgid "Folk/Rock"
+msgstr "Folk/rock"
+
+#: ../cddb-slave2/cddb-track-editor.c:160
+msgid "National Folk"
+msgstr "Nacionalna folk"
+
+#: ../cddb-slave2/cddb-track-editor.c:161
+msgid "Swing"
+msgstr "Sving"
+
+#: ../cddb-slave2/cddb-track-editor.c:162
+msgid "Fast-Fusion"
+msgstr "Fast-fusion"
+
+#: ../cddb-slave2/cddb-track-editor.c:163
+msgid "Bebop"
+msgstr "Bebop"
+
+#: ../cddb-slave2/cddb-track-editor.c:164
+msgid "Latin"
+msgstr "Latinska"
+
+#: ../cddb-slave2/cddb-track-editor.c:165
+msgid "Revival"
+msgstr "Revival"
+
+#: ../cddb-slave2/cddb-track-editor.c:166
+msgid "Celtic"
+msgstr "Keltska"
+
+#: ../cddb-slave2/cddb-track-editor.c:167
+msgid "Bluegrass"
+msgstr "Bluegrass"
+
+#: ../cddb-slave2/cddb-track-editor.c:168
+msgid "Avantgarde"
+msgstr "Avantgardna"
+
+#: ../cddb-slave2/cddb-track-editor.c:169
+msgid "Gothic Rock"
+msgstr "Gotski rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:170
+msgid "Progressive Rock"
+msgstr "Progresivni rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:171
+msgid "Psychedelic Rock"
+msgstr "Psihadelični rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:172
+msgid "Symphonic Rock"
+msgstr "Simfonični rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:173
+msgid "Slow Rock"
+msgstr "Počasen rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:174
+msgid "Big Band"
+msgstr "Big band"
+
+#: ../cddb-slave2/cddb-track-editor.c:175
+msgid "Chorus"
+msgstr "Zborovska"
+
+#: ../cddb-slave2/cddb-track-editor.c:176
+msgid "Easy Listening"
+msgstr "Lahko poslušljiva"
+
+#: ../cddb-slave2/cddb-track-editor.c:177
+msgid "Acoustic"
+msgstr "Akustična"
+
+#: ../cddb-slave2/cddb-track-editor.c:178
+msgid "Humour"
+msgstr "Humor"
+
+#: ../cddb-slave2/cddb-track-editor.c:179
+msgid "Speech"
+msgstr "Govor"
+
+#: ../cddb-slave2/cddb-track-editor.c:180
+msgid "Chanson"
+msgstr "Šanson"
+
+#: ../cddb-slave2/cddb-track-editor.c:181
+msgid "Opera"
+msgstr "Opera"
+
+#: ../cddb-slave2/cddb-track-editor.c:182
+msgid "Chamber Music"
+msgstr "Prostorska glasba"
+
+#: ../cddb-slave2/cddb-track-editor.c:183
+msgid "Sonata"
+msgstr "Sonata"
+
+#: ../cddb-slave2/cddb-track-editor.c:184
+msgid "Symphony"
+msgstr "Simfonija"
+
+#: ../cddb-slave2/cddb-track-editor.c:185
+msgid "Booty Bass"
+msgstr "Booty bass"
+
+#: ../cddb-slave2/cddb-track-editor.c:186
+msgid "Primus"
+msgstr "Primus"
+
+#: ../cddb-slave2/cddb-track-editor.c:187
+msgid "Porn Groove"
+msgstr "Porn groove"
+
+#: ../cddb-slave2/cddb-track-editor.c:188
+msgid "Satire"
+msgstr "Satira"
+
+#: ../cddb-slave2/cddb-track-editor.c:189
+msgid "Slow Jam"
+msgstr "Slow jam"
+
+#: ../cddb-slave2/cddb-track-editor.c:190
+msgid "Club"
+msgstr "Klubska"
+
+#: ../cddb-slave2/cddb-track-editor.c:191
+msgid "Tango"
+msgstr "Tango"
+
+#: ../cddb-slave2/cddb-track-editor.c:192
+msgid "Samba"
+msgstr "Samba"
+
+#: ../cddb-slave2/cddb-track-editor.c:193
+msgid "Folklore"
+msgstr "Folklorna"
+
+#: ../cddb-slave2/cddb-track-editor.c:194
+msgid "Ballad"
+msgstr "Balada"
+
+#: ../cddb-slave2/cddb-track-editor.c:195
+msgid "Power Ballad"
+msgstr "Močna balada"
+
+#: ../cddb-slave2/cddb-track-editor.c:196
+msgid "Rhythmic Soul"
+msgstr "Ritmični soul"
+
+#: ../cddb-slave2/cddb-track-editor.c:197
+msgid "Freestyle"
+msgstr "Prosti stil"
+
+#: ../cddb-slave2/cddb-track-editor.c:198
+msgid "Duet"
+msgstr "Duet"
+
+#: ../cddb-slave2/cddb-track-editor.c:199
+msgid "Punk Rock"
+msgstr "Punk rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:200
+msgid "Drum Solo"
+msgstr "Solo bobni"
+
+#: ../cddb-slave2/cddb-track-editor.c:201
+msgid "A Cappella"
+msgstr "A cappella"
+
+#: ../cddb-slave2/cddb-track-editor.c:202
+msgid "Euro-House"
+msgstr "Euro-house"
+
+#: ../cddb-slave2/cddb-track-editor.c:203
+msgid "Dance Hall"
+msgstr "Plesna dvorana"
+
+#: ../cddb-slave2/cddb-track-editor.c:204
+msgid "Goa"
+msgstr "Goa"
+
+#: ../cddb-slave2/cddb-track-editor.c:205
+msgid "Drum & Bass"
+msgstr "Drum & bass"
+
+#: ../cddb-slave2/cddb-track-editor.c:206
+msgid "Club-House"
+msgstr "Klub-house"
+
+#: ../cddb-slave2/cddb-track-editor.c:207
+msgid "Hardcore"
+msgstr "Hardcore"
+
+#: ../cddb-slave2/cddb-track-editor.c:208
+msgid "Terror"
+msgstr "Terror"
+
+#: ../cddb-slave2/cddb-track-editor.c:209
+msgid "Indie"
+msgstr "Indijska"
+
+#: ../cddb-slave2/cddb-track-editor.c:210
+msgid "BritPop"
+msgstr "BritPop"
+
+#: ../cddb-slave2/cddb-track-editor.c:211
+msgid "Negerpunk"
+msgstr "Negerpunk"
+
+#: ../cddb-slave2/cddb-track-editor.c:212
+msgid "Polsk Punk"
+msgstr "Polsk punk"
+
+#: ../cddb-slave2/cddb-track-editor.c:213
+msgid "Beat"
+msgstr "Beat"
+
+#: ../cddb-slave2/cddb-track-editor.c:214
+msgid "Christian Gangsta Rap"
+msgstr "Krščanski gangstrski rap"
+
+#: ../cddb-slave2/cddb-track-editor.c:215
+msgid "Heavy Metal"
+msgstr "Težki metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:216
+msgid "Black Metal"
+msgstr "Črni metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:217
+msgid "Crossover"
+msgstr "Crossover"
+
+#: ../cddb-slave2/cddb-track-editor.c:218
+msgid "Contemporary Christian"
+msgstr "Sodobna krščanska glasba"
+
+#: ../cddb-slave2/cddb-track-editor.c:219
+msgid "Christian Rock"
+msgstr "Krščanski rok"
+
+#: ../cddb-slave2/cddb-track-editor.c:220
+msgid "Merengue"
+msgstr "Merengue"
+
+#: ../cddb-slave2/cddb-track-editor.c:221
+msgid "Salsa"
+msgstr "Salsa"
+
+#: ../cddb-slave2/cddb-track-editor.c:222
+msgid "Thrash Metal"
+msgstr "Thrash metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:223
+msgid "Anime"
+msgstr "Anime"
+
+#: ../cddb-slave2/cddb-track-editor.c:224
+msgid "JPop"
+msgstr "Jpop"
+
+#: ../cddb-slave2/cddb-track-editor.c:225
+msgid "Synthpop"
+msgstr "Synthpop"
+
+#: ../cddb-slave2/cddb-track-editor.c:226
+msgid "Nu-Metal"
+msgstr "Nu-metal"
+
+#: ../cddb-slave2/cddb-track-editor.c:227
+msgid "Art Rock"
+msgstr "Umetniški rock"
+
+#: ../cddb-slave2/cddb-track-editor.c:532
+#: ../gnome-cd/callbacks.c:603
+#: ../gnome-cd/callbacks.c:749
+#: ../gnome-cd/callbacks.c:760
+#: ../gnome-cd/display.c:89
+msgid "Unknown Artist"
+msgstr "Neznan izvajalec"
+
+#: ../cddb-slave2/cddb-track-editor.c:533
+#: ../gnome-cd/callbacks.c:604
+#: ../gnome-cd/callbacks.c:752
+#: ../gnome-cd/callbacks.c:764
+#: ../gnome-cd/display.c:90
+msgid "Unknown Album"
+msgstr "Neznan album"
+
+#: ../cddb-slave2/cddb-track-editor.c:541
+#, c-format
+msgid "Editing Disc ID: %s"
+msgstr "Urejanje ID zgoščenke: %s"
+
+#: ../cddb-slave2/cddb-track-editor.c:618
+msgid "Hide advanced disc options"
+msgstr "Skrij napredne možnosti zgoščenke"
+
+#: ../cddb-slave2/cddb-track-editor.c:620
+#: ../cddb-slave2/cddb-track-editor.c:697
+msgid "Show advanced disc options"
+msgstr "Pokaži napredne možnosti zgoščenke"
+
+#: ../cddb-slave2/cddb-track-editor.c:634
+msgid "Hide advanced track options"
+msgstr "Skrij napredne možnosti skladbe"
+
+#. More advanced options
+#: ../cddb-slave2/cddb-track-editor.c:636
+#: ../cddb-slave2/cddb-track-editor.c:799
+msgid "Show advanced track options"
+msgstr "Prikaži napredne možnosti skladbe"
+
+#. Info label
+#: ../cddb-slave2/cddb-track-editor.c:662
+msgid "Editing Disc ID: "
+msgstr "Urejanje ID zgoščenke: "
+
+#: ../cddb-slave2/cddb-track-editor.c:673
+msgid "_Artist:"
+msgstr "_Izvajalec:"
+
+#: ../cddb-slave2/cddb-track-editor.c:687
+msgid "Disc _Title:"
+msgstr "Naslov _zgoščenke"
+
+#. Top box: Disc comments. Maybe should be a GtkText?
+#: ../cddb-slave2/cddb-track-editor.c:711
+msgid "_Disc comments:"
+msgstr "Opombe _diska:"
+
+#. Genre
+#: ../cddb-slave2/cddb-track-editor.c:726
+msgid "_Genre:"
+msgstr "Ž_anr:"
+
+#. Year
+#: ../cddb-slave2/cddb-track-editor.c:742
+msgid "_Year:"
+msgstr "_Leto:"
+
+#: ../cddb-slave2/cddb-track-editor.c:781
+msgid "Title"
+msgstr "Naziv"
+
+#: ../cddb-slave2/cddb-track-editor.c:788
+msgid "Length"
+msgstr "Dolžina"
+
+#. Extra data
+#: ../cddb-slave2/cddb-track-editor.c:808
+msgid "_Extra track data:"
+msgstr "_Dodatni podatki skladbe:"
+
+#: ../cddb-slave2/cddb-track-editor.c:935
+msgid "CDDB Track Editor"
+msgstr "Urejevalnik skladbe CDDB"
+
+#: ../cddb-slave2/cddb-track-editor.c:1072
+#, c-format
+msgid ""
+"Cannot create CDDBTrackEditor factory.\n"
+"This may be caused by another copy of cddb-track-editor already running.\n"
+msgstr ""
+"Ni mogoče ustvariti tovarne CDDBTrackEditor.\n"
+"Vzrok je lahko, da ena kopija cddb-track-editor že teče.\n"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:118
+msgid "CD Display"
+msgstr "Predvajalnik CD"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:120
+msgid "Displays information about the currently playing album, artist and time elapsed"
+msgstr "Pokaže podatke o trenutno predvajanem albumu, izvajalcu in porabljenem času"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:189
+msgid "Time Line"
+msgstr "Časovna vrstica"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:190
+msgid "Line for displaying the time elapsed for the current track"
+msgstr "Vrstica uporabljena za prikaz časa porabljenega za trenutno skladba"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:193
+msgid "Info Line"
+msgstr "Podatkovna vrstica"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:194
+msgid "Line for displaying information"
+msgstr "Vrstica za prikazovanje podatkov"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:197
+msgid "Artist Line"
+msgstr "Vrstica izvajalca"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:198
+msgid "Line for displaying the name of the artist"
+msgstr "Vrstica za prikaz imena izvajalca"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:201
+msgid "Album Line"
+msgstr "Vrstica albuma"
+
+#: ../gnome-cd/access/cddisplayaccessible.c:202
+msgid "Line for displaying the name of the album"
+msgstr "Vrstica za prikaz imena albuma"
+
+#: ../gnome-cd/callbacks.c:101
+#: ../gnome-cd/callbacks.c:189
+#: ../gnome-cd/callbacks.c:297
+#: ../gnome-cd/callbacks.c:619
+#: ../gnome-cd/gnome-cd.c:785
+msgid "Play"
+msgstr "Predvajaj"
+
+#: ../gnome-cd/callbacks.c:174
+#: ../gnome-cd/callbacks.c:225
+#: ../gnome-cd/callbacks.c:256
+#: ../gnome-cd/callbacks.c:339
+#: ../gnome-cd/callbacks.c:379
+#: ../gnome-cd/callbacks.c:403
+#: ../gnome-cd/callbacks.c:444
+#: ../gnome-cd/callbacks.c:541
+msgid "Pause"
+msgstr "Premor"
+
+#: ../gnome-cd/callbacks.c:602
+#, c-format
+msgid ""
+"Playing %s - %s\n"
+"%s"
+msgstr ""
+"Predvajanje %s - %s\n"
+"%s"
+
+#: ../gnome-cd/callbacks.c:607
+#, c-format
+msgid ""
+"Playing\n"
+": %s"
+msgstr ""
+"Predvajanje\n"
+": %s"
+
+#: ../gnome-cd/callbacks.c:631
+msgid "Paused"
+msgstr "Premor"
+
+#: ../gnome-cd/callbacks.c:682
+#: ../gnome-cd/callbacks.c:684
+#: ../gnome-cd/callbacks.c:941
+#: ../gnome-cd/gnome-cd.c:128
+#: ../gnome-cd/gnome-cd.c:665
+#: ../gnome-cd/gnome-cd.c:841
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:1
+#: ../gnome-cd/preferences.c:553
+msgid "CD Player"
+msgstr "Predvajalnik CD"
+
+#: ../gnome-cd/callbacks.c:708
+msgid "Stopped"
+msgstr "Ustavljeno"
+
+#: ../gnome-cd/callbacks.c:714
+msgid "Disc error"
+msgstr "Napaka zgoščenke"
+
+#: ../gnome-cd/callbacks.c:725
+#: ../gnome-cd/callbacks.c:826
+msgid "No disc"
+msgstr "Ni zgoščenke"
+
+#: ../gnome-cd/callbacks.c:824
+msgid "Empty disc"
+msgstr "Sprazni zgoščenko"
+
+#: ../gnome-cd/callbacks.c:854
+msgid "Drive open"
+msgstr "Predvajalnik odprt"
+
+#: ../gnome-cd/callbacks.c:880
+msgid "Data CD"
+msgstr "Podatkovni CD"
+
+#: ../gnome-cd/callbacks.c:904
+#: ../gnome-cd/callbacks.c:909
+msgid "No Cdrom"
+msgstr "Ni CDROMa"
+
+#: ../gnome-cd/callbacks.c:922
+msgid "Drive Error"
+msgstr "Napaka predvajalnika"
+
+#: ../gnome-cd/callbacks.c:944
+msgid "A CD player for GNOME"
+msgstr "Predvajalnik CDjev za GNOME"
+
+#: ../gnome-cd/callbacks.c:1123
+msgid "Contents in the CDDB have changed"
+msgstr "Vsebina CDDB se je spremenila"
+
+#: ../gnome-cd/callbacks.c:1124
+msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+msgstr "Če izberete 'Da', bo prejšnja vsebina CDDB izbrisana."
+
+#: ../gnome-cd/callbacks.c:1125
+msgid "Do you wish to continue?"
+msgstr "Želite nadaljevati?"
+
+#. Set the tooltip
+#: ../gnome-cd/callbacks.c:1197
+#: ../gnome-cd/gnome-cd.c:518
+#, c-format
+msgid "Volume %d%%"
+msgstr "Glasnost %d%%"
+
+#: ../gnome-cd/cdrom.c:382
+#, c-format
+msgid "You do not seem to have permission to access %s."
+msgstr "Nimate dovoljenj za dostop do %s."
+
+#: ../gnome-cd/cdrom.c:388
+#, c-format
+msgid ""
+"%s does not appear to point to a valid CD device. This may be because:\n"
+"a) CD support is not present in your machine\n"
+"b) You do not have the correct permissions to access the CD drive\n"
+"c) %s is not the CD drive.\n"
+msgstr ""
+"%s ni povezava do veljavnega pogona CD-ROM. To je lahko zaradi:\n"
+"a) Podpore za CD-ROM ni v vašem jedru\n"
+"b) Nimate ustreznih dovoljenj za dostop do pogona CD-ROM\n"
+"c) %s ni pogon CDRom.\n"
+
+#: ../gnome-cd/gnome-cd.c:260
+#, c-format
+msgid "%d - Unknown"
+msgstr "%d - Neznano"
+
+#: ../gnome-cd/gnome-cd.c:360
+msgid "_Play / Pause"
+msgstr "_Predvajaj / Premor"
+
+#: ../gnome-cd/gnome-cd.c:361
+msgid "_Stop"
+msgstr "_Ustavi"
+
+#: ../gnome-cd/gnome-cd.c:362
+msgid "P_revious"
+msgstr "P_rejšnja"
+
+#: ../gnome-cd/gnome-cd.c:363
+msgid "_Next"
+msgstr "_Naslednja"
+
+#: ../gnome-cd/gnome-cd.c:364
+msgid "_Eject disc"
+msgstr "_Izvrzi zgoščenko"
+
+#. Help menu
+#: ../gnome-cd/gnome-cd.c:365
+#: ../grecord/src/gsr-window.c:2144
+msgid "_Help"
+msgstr "_Pomoč"
+
+#: ../gnome-cd/gnome-cd.c:366
+msgid "_About"
+msgstr "_O programu"
+
+#: ../gnome-cd/gnome-cd.c:367
+msgid "_Quit"
+msgstr "_Izhod"
+
+#: ../gnome-cd/gnome-cd.c:585
+msgid ""
+"There is no CD device set. This means that the CD player\n"
+"will be unable to run. Click 'Set device' to go to a dialog\n"
+"where you can set the device, or click 'Quit' to quit the CD player."
+msgstr ""
+"Nobena CD naprava ni nastavljena. To pomeni, da se predvajalnik\n"
+"CDjev ne more pognati. Pritisnite \"Nastavi napravo\", da boste\n"
+"šli na dialog, kjer boste lahko nastavili napravo ali \n"
+"kliknite \"Izhod\" za izhod iz CD predvajalnika."
+
+#: ../gnome-cd/gnome-cd.c:589
+msgid "Set device"
+msgstr "Nastavi napravo"
+
+#: ../gnome-cd/gnome-cd.c:591
+msgid "No CD device"
+msgstr "Ni CD naprave"
+
+#: ../gnome-cd/gnome-cd.c:644
+msgid ""
+"The CD player is unable to run correctly.\n"
+"\n"
+"Press 'Details' for more details on reasons for the failure.\n"
+"\n"
+"Press 'Set device' to go to a dialog where you can set the device, or press 'Quit' to quit the CD player"
+msgstr ""
+"Predvajalnik CDjev ne more pravilno teči.\n"
+"\n"
+"Za več podrobnosti o vzrokih te napake pritisnite na gumb \"Podrobnosti\".\n"
+"Pritisnite \"Nastavi napravo\" za dialog kjer boste lahko nastavili napravo ali kliknite \"Izhod\" za izhod iz predvajalnika CDjev"
+
+#: ../gnome-cd/gnome-cd.c:648
+msgid "_Details"
+msgstr "_Podrobnosti"
+
+#: ../gnome-cd/gnome-cd.c:649
+msgid "_Set device"
+msgstr "_Nastavi napravo"
+
+#: ../gnome-cd/gnome-cd.c:651
+msgid "Invalid CD device"
+msgstr "Neveljavna naprava CD"
+
+#: ../gnome-cd/gnome-cd.c:723
+msgid "Position"
+msgstr "Mesto"
+
+#: ../gnome-cd/gnome-cd.c:740
+msgid "Open preferences"
+msgstr "Odpri nastavitve"
+
+#: ../gnome-cd/gnome-cd.c:741
+msgid "Preferences"
+msgstr "Nastavitve"
+
+#: ../gnome-cd/gnome-cd.c:749
+msgid "Track List"
+msgstr "Seznam skladbe"
+
+#: ../gnome-cd/gnome-cd.c:755
+msgid "Open track editor"
+msgstr "Odpri urejevalnik skladbe"
+
+#: ../gnome-cd/gnome-cd.c:756
+msgid "Track editor"
+msgstr "Urejevalnik skladbe"
+
+#: ../gnome-cd/gnome-cd.c:785
+msgid "Play / Pause"
+msgstr "Predvajaj / Premor"
+
+#: ../gnome-cd/gnome-cd.c:790
+msgid "Stop"
+msgstr "Ustavi"
+
+#: ../gnome-cd/gnome-cd.c:794
+msgid "Previous track"
+msgstr "Prejšnja skladba"
+
+#: ../gnome-cd/gnome-cd.c:794
+msgid "Previous"
+msgstr "Prejšnja"
+
+#: ../gnome-cd/gnome-cd.c:798
+msgid "Rewind"
+msgstr "Previj"
+
+#: ../gnome-cd/gnome-cd.c:806
+msgid "Fast forward"
+msgstr "Hitro naprej"
+
+#: ../gnome-cd/gnome-cd.c:814
+msgid "Next track"
+msgstr "Naslednja skladba"
+
+#: ../gnome-cd/gnome-cd.c:818
+msgid "Eject CD"
+msgstr "Izvrzi CD"
+
+#: ../gnome-cd/gnome-cd.c:818
+msgid "Eject"
+msgstr "Izvrzi"
+
+#: ../gnome-cd/gnome-cd.c:892
+msgid "CD device to use"
+msgstr "Naprava CD-ROM, ki naj se uporabi"
+
+#: ../gnome-cd/gnome-cd.c:894
+msgid "Only start if there isn't already a CD player application running"
+msgstr "Zaženi se le, če predvajalnik CDjev še ne teče"
+
+#: ../gnome-cd/gnome-cd.c:896
+msgid "Play the CD on startup"
+msgstr "Ob zagonu samodejno predvajaj CD"
+
+#: ../gnome-cd/gnome-cd.c:898
+msgid "Start iconified in notification area"
+msgstr "Začni pomanjšano v obvestilni vrstici"
+
+#. Stick a message box here?
+#: ../gnome-cd/gnome-cd.c:939
+msgid "Cannot create player"
+msgstr "Ni mogoče ustvariti predvajalnika"
+
+#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
+msgid "Play audio CDs"
+msgstr "Predvajaj glasbene CDje"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
+msgid "CD player Volume"
+msgstr "Glasnost predvajalnika CD-jev"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
+msgid "CD player theme"
+msgstr "Tema predvajalnika CDjev"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
+msgid "Device path"
+msgstr "Pot naprave"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
+msgid "Display the Remaining time?"
+msgstr "Prikaži preostali čas?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
+msgid "Eject the CD when CD player quits?"
+msgstr "Ob izhodu iz predvajalnika izvrži CD?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
+msgid "How the time should be displayed while CD Player is playing?"
+msgstr "Kako naj bo prikazan čas, ko predvajalnik CD-jev predvaja CD?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
+msgid "Play when the CD player starts?"
+msgstr "Predvajaj, ko se zažene predvajalnik?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
+msgid "Should the CD be ejected when the CD player quits?"
+msgstr "Ali naj se CD izvrže ob izhodu iz prevajalnika?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
+msgid "The path to the CD drive that the CD player should use to play CDs"
+msgstr "Pot do pogona CD-ROM, ki naj jo uporabi predvajalnik CDjev"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
+msgid "What theme should the CD player use for its appearance"
+msgstr "Katero temo naj uporablja predvajalnik CD-jev"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
+msgid "What volume should the CD player use when it is started?"
+msgstr "Kakšno glasnost naj uporablja predvajalnik CD-jev ob zagonu?"
+
+#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
+msgid "When the CD player is started, should it start playing the CD?"
+msgstr "Ko se zažene predvajalnik CDjev, ali naj začne predvajati CD?"
+
+#: ../gnome-cd/gst-cdrom.c:301
+#, c-format
+msgid "Failed to eject CD: %s"
+msgstr "Ni mogoče izvreči zgoščenke CD: %s"
+
+#: ../gnome-cd/preferences.c:81
+#, c-format
+msgid ""
+"%s\n"
+"This means that the CD player will not be able to run."
+msgstr ""
+"%s\n"
+"To pomeni, da se Predvajalnik CDjev ne bo mogel pognati."
+
+#: ../gnome-cd/preferences.c:82
+msgid "Error setting device"
+msgstr "Napaka ob nastavljanju naprave"
+
+#: ../gnome-cd/preferences.c:526
+msgid "CD Player Preferences"
+msgstr "Nastavitve Predvajalnika CDjev"
+
+#: ../gnome-cd/preferences.c:565
+#: ../gstreamer-properties/gstreamer-properties.glade.h:14
+msgid "_Device:"
+msgstr "_Naprava:"
+
+#: ../gnome-cd/preferences.c:579
+msgid "Behavior"
+msgstr "Vedenje"
+
+#: ../gnome-cd/preferences.c:592
+msgid "Start _playback when CD Player starts"
+msgstr "Ob zagonu _predvajalnika začni predvajati CD"
+
+#: ../gnome-cd/preferences.c:593
+msgid "Start playback when CD Player starts"
+msgstr "Ob zagonu predvajalnika začni predvajati CD"
+
+#: ../gnome-cd/preferences.c:605
+msgid "Attempt to _eject CD when CD Player exits"
+msgstr "Ob _izhodu iz predvajalnika poskusi izvreči CD"
+
+#: ../gnome-cd/preferences.c:606
+msgid "Attempt to eject CD when CD Player exits"
+msgstr "Ob izhodu iz predvajalnika poskusi izvreči CD"
+
+#: ../gnome-cd/preferences.c:622
+msgid "Themes"
+msgstr "Teme"
+
+#: ../gnome-cd/preferences.c:634
+msgid "_Select a theme:"
+msgstr "_Izberi temo:"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and associate sounds with events"
+msgstr "Spreminjanje glasnosti zvoka in povezvljivost z dogodki"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Zvok"
+
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
 msgstr "Prikaži namizni nadzornik zvoka"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:269
-#: ../gst-mixer/src/window.c:270
+#: ../gst-mixer/src/window.c:280
+#: ../gst-mixer/src/window.c:281
 msgid "Volume Control"
 msgstr "Nadzor glasnosti"
 
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and sound events"
-msgstr "Spremeni glasnost zvoka in zvočne dogodke"
+#. Translators: This is the name of an audio file that sounds like the bark of a dog.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:3
+msgid "Bark"
+msgstr "Lajanje"
 
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "Zvok"
+#. Translators: This is the name of an audio file that sounds like a water drip.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:6
+msgid "Drip"
+msgstr "Pokapljanje"
+
+#. Translators: This is the name of an audio file that sounds like tapping glass.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:9
+msgid "Glass"
+msgstr "Steklo"
+
+#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
+#. You might want to translate it into the equivalent words of your language.
+#: ../gnome-volume-control/data/sounds/gnome-sounds-default.xml.in.in.h:12
+msgid "Sonar"
+msgstr "Sonar"
+
+#: ../gnome-volume-control/src/applet-main.c:48
+#: ../gnome-volume-control/src/dialog-main.c:140
+msgid "Enable debugging code"
+msgstr "Omogoči kodo za razhroščevanje"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:156
-msgid "Enable debugging code"
-msgstr "Omogoči razhroščevanje kode"
-
-#: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:157
+#: ../gnome-volume-control/src/dialog-main.c:141
 msgid "Version of this application"
 msgstr "Različica tega programa"
 
-#: ../gnome-volume-control/src/applet-main.c:62
+#: ../gnome-volume-control/src/applet-main.c:59
 msgid " - GNOME Volume Control Applet"
-msgstr "- GNOME aplet nadzornika glasnosti"
+msgstr "- GNOME aplet nadzora glasnosti"
 
-#: ../gnome-volume-control/src/dialog-main.c:125
+#: ../gnome-volume-control/src/dialog-main.c:121
 msgid "Waiting for sound system to respond"
 msgstr "Čakanje na odziv zvočnega sistema"
 
-#: ../gnome-volume-control/src/dialog-main.c:155
+#: ../gnome-volume-control/src/dialog-main.c:139
 #: ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Začetna stran"
 
-#: ../gnome-volume-control/src/dialog-main.c:169
+#: ../gnome-volume-control/src/dialog-main.c:151
 msgid " - GNOME Volume Control"
-msgstr "- GNOME nadzornik glasnosti"
+msgstr "- GNOME nadzor glasnosti"
 
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1758
+#: ../gnome-volume-control/src/gvc-applet.c:260
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
 msgid "Output"
 msgstr "Odvod"
 
-#: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1674
+#: ../gnome-volume-control/src/gvc-applet.c:264
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
 msgid "Input"
 msgstr "Dovod"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-balance-bar.c:101
 msgctxt "balance"
 msgid "Left"
 msgstr "Levo"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:106
 msgctxt "balance"
 msgid "Right"
 msgstr "Desno"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
-msgctxt "balance"
-msgid "Front"
-msgstr "Spredaj"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
-msgctxt "balance"
-msgid "Rear"
-msgstr "Zadnji"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
-msgctxt "balance"
-msgid "Minimum"
-msgstr "Najmanj"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
-msgctxt "balance"
-msgid "Maximum"
-msgstr "največ"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:385
 msgid "_Balance:"
 msgstr "_Ravnotežje:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
-msgid "_Fade:"
-msgstr "_Pojemanje:"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
-msgid "_Subwoofer:"
-msgstr "_Nizkotonski zvočnik:"
-
-#: ../gnome-volume-control/src/gvc-channel-bar.c:584
-msgctxt "volume"
-msgid "100%"
-msgstr "100%"
-
-#: ../gnome-volume-control/src/gvc-channel-bar.c:588
-msgctxt "volume"
-msgid "Unamplified"
-msgstr "Neojačano"
-
-#: ../gnome-volume-control/src/gvc-channel-bar.c:844
+#: ../gnome-volume-control/src/gvc-channel-bar.c:771
 msgid "Mute"
 msgstr "Nemo"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1429
-msgid "_Profile:"
-msgstr "_Profil:"
-
-#. translators:
-#. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Neomogočeno"
-
-#. translators:
-#. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
-#, c-format
-msgid "%u Output"
-msgid_plural "%u Outputs"
-msgstr[0] "%u odvodov"
-msgstr[1] "%u odvod"
-msgstr[2] "%u odvoda"
-msgstr[3] "%u odvodi"
-
-#. translators:
-#. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
-#, c-format
-msgid "%u Input"
-msgid_plural "%u Inputs"
-msgstr[0] "%u dovodov"
-msgstr[1] "%u dovod"
-msgstr[2] "%u dovoda"
-msgstr[3] "%u dovodi"
-
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:988
 msgid "System Sounds"
 msgstr "Sistemski zvoki"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:520
-msgid "Co_nnector:"
-msgstr "_Spojnik:"
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
+msgid "GNOME Volume Control"
+msgstr "GNOME nadzornik glasnosti"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:466
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
 msgid "Peak detect"
 msgstr "Zaznava vrhov"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1358
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1511
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:863
 msgid "Name"
 msgstr "Ime"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1363
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
 msgid "Device"
 msgstr "Naprava"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1581
-msgid "_Output volume: "
-msgstr "_Izhodna glasnost"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
+msgid "Output volume: "
+msgstr "Glasnost odvoda:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1611
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
 msgid "Sound Effects"
 msgstr "Zvočni učinki"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1618
-msgid "_Alert volume: "
-msgstr "_Glasnost opozoril"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
+msgid "Alert Volume: "
+msgstr "Glasnost opozoril:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1631
-msgid "Hardware"
-msgstr "Strojna oprema"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
+msgid "Input volume: "
+msgstr "Glasnost dovajanja:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1636
-msgid "C_hoose a device to configure:"
-msgstr "Izbor naprave za nastavitev:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
+msgid "Input level:"
+msgstr "Raven dovajanja:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1663
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1790
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
+msgid "Choose a device for sound input"
+msgstr "Izbor naprave za dovod zvoka"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
+msgid "Choose a device for sound output"
+msgstr "Izbor naprave za odvod zvoka"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
 msgid "Settings for the selected device:"
 msgstr "Nastavitve izbrane naprave:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1681
-msgid "_Input volume: "
-msgstr "_Vhodna glasnost:"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1701
-msgid "Input level:"
-msgstr "Dovodna raven:"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1728
-msgid "C_hoose a device for sound input:"
-msgstr "Izbor naprave za _dovod zvoka:"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1763
-msgid "C_hoose a device for sound output:"
-msgstr "Izbor naprave za _odvod zvoka:"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1801
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
 msgid "Applications"
 msgstr "Programi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
 msgid "No application is currently playing or recording audio."
 msgstr "Ni programa, ki bi trenutno predvajal ali snemal zvočni posnetek."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1929
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:728
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:740
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:561
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
-msgstr "_Lastnosti zvoka"
+msgstr "Lastnosti zvoka"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:320
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:523
+msgid "No sounds"
+msgstr "Brez zvoka"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:442
+msgid "Built-in"
+msgstr "Vgrajeno"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:618
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:706
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:760
+#: ../gnome-volume-control/src/sound-theme-file-utils.c:292
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:149
+msgid "Custom"
+msgstr "Prilagojeno"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:731
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:742
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:754
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:563
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:952
+msgid "Testing event sound"
+msgstr "Preizkus zvoka dogodkov"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:839
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:892
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:996
+#: ../gstreamer-properties/gstreamer-properties.c:251
+msgid "Default"
+msgstr "Privzeto"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:840
+msgid "From theme"
+msgstr "Iz teme"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:870
+msgid "Type"
+msgstr "Vrsta"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1081
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Zvočna tema:"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1089
+msgid "Choose an alert sound:"
+msgstr "Izbor zvoka opozorila:"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-chooser.c:1107
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Omogoči zvoke oken in gumbov"
+
+#. Bell
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:76
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "Zvok opozorila"
+
+#. Windows and buttons
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:78
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "Okna in gumbi"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr "Klik gumba"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr "Klik gumba preklopa"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr "Razpeto okno"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr "Pomanjšano okno"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr "Skrčeno okno"
+
+#. Desktop
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "Namizje"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "Prijava"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "Odjava"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "Nova pošta"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "Sprazni smeti"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr "Končano dolgotrajno dejanje (omrežni prenos, zapis CD-ja ...)"
+
+#. Alerts?
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:92
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "Opozorila"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "Podrobnosti ali vprašanje"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "Opozorilo"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "Napaka"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "Opozorilo baterije"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:593
+msgid "Select Sound File"
+msgstr "Izbor zvočne datoteke"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:604
+msgid "Sound files"
+msgstr "Zvočne datoteke"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:896
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Onemogočeno"
+
+#: ../gnome-volume-control/src/gvc-sound-theme-editor.c:900
+msgid "Custom..."
+msgstr "Po meni ..."
+
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Napaka med zagonom lastnosti zvoka: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
 msgid "_Mute"
 msgstr "_Nemo"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
 msgid "_Sound Preferences"
 msgstr "_Nastavitve zvoka"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:449
 msgid "Muted"
 msgstr "Nemo"
 
@@ -279,19 +1690,19 @@ msgstr "Snemalnik zvoka"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:144
-#: ../grecord/src/gsr-window.c:1739
-#: ../grecord/src/gsr-window.c:2688
+#: ../grecord/src/gnome-recorder.c:145
+#: ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:2679
 msgid "Untitled"
 msgstr "Neimenovano"
 
-#: ../grecord/src/gnome-recorder.c:146
-#: ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gnome-recorder.c:147
+#: ../grecord/src/gsr-window.c:1734
 #, c-format
 msgid "Untitled-%d"
 msgstr "Neimenovano-%d"
 
-#: ../grecord/src/gsr-window.c:193
+#: ../grecord/src/gsr-window.c:194
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -306,15 +1717,15 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "in ponovno zaženete gnome-sound-recorder."
 
-#: ../grecord/src/gsr-window.c:209
+#: ../grecord/src/gsr-window.c:210
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
 msgstr ""
 "Preverite nastavitve.\n"
-"Morda vam manjkajo potrebni vstavki."
+"Morda vam manjkajo zahtevni vstavki."
 
-#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -323,7 +1734,7 @@ msgstr[1] "%ld minuta"
 msgstr[2] "%ld minuti"
 msgstr[3] "%ld minute"
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
@@ -332,7 +1743,7 @@ msgstr[1] "%ld ura"
 msgstr[2] "%ld uri"
 msgstr[3] "%ld ur"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:297
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -342,25 +1753,25 @@ msgstr[2] "%ld sekundi"
 msgstr[3] "%ld sekunde"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:304
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s in %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:309
-#: ../grecord/src/gsr-window.c:317
-#: ../grecord/src/gsr-window.c:328
+#: ../grecord/src/gsr-window.c:310
+#: ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:329
 #, c-format
 msgid "%s and %s"
 msgstr "%s in %s"
 
-#: ../grecord/src/gsr-window.c:371
+#: ../grecord/src/gsr-window.c:372
 msgid "Open a File"
 msgstr "Odpri datoteko"
 
-#: ../grecord/src/gsr-window.c:448
+#: ../grecord/src/gsr-window.c:449
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -369,19 +1780,19 @@ msgstr ""
 "Ni mogoče naložiti datoteke:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594
-#: ../grecord/src/gsr-window.c:1538
-#: ../grecord/src/gsr-window.c:1798
-#: ../grecord/src/gsr-window.c:2499
+#: ../grecord/src/gsr-window.c:595
+#: ../grecord/src/gsr-window.c:1533
+#: ../grecord/src/gsr-window.c:1791
+#: ../grecord/src/gsr-window.c:2492
 msgid "Ready"
 msgstr "Pripravljen"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:647
+#: ../grecord/src/gsr-window.c:648
 msgid "_Replace"
 msgstr "_Zamenjaj"
 
-#: ../grecord/src/gsr-window.c:664
+#: ../grecord/src/gsr-window.c:665
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -390,51 +1801,44 @@ msgstr ""
 "Datoteka z imenom \"%s\" že obstaja. \n"
 "Ali jo želite prepisati z datoteko, ki jo shranjujete?"
 
-#: ../grecord/src/gsr-window.c:712
+#: ../grecord/src/gsr-window.c:713
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Ni mogoče shraniti datoteke \"%s\""
 
-#: ../grecord/src/gsr-window.c:732
+#: ../grecord/src/gsr-window.c:733
 msgid "Save file as"
 msgstr "Shrani datoteko kot"
 
-#: ../grecord/src/gsr-window.c:826
+#: ../grecord/src/gsr-window.c:827
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s ni nameščen v poti."
 
-#: ../grecord/src/gsr-window.c:835
+#: ../grecord/src/gsr-window.c:836
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Ob zagonu %s se je zgodila napaka: %s"
 
 #: ../grecord/src/gsr-window.c:864
-msgid "Save recording before closing?"
-msgstr "Ali želite shraniti posnetek pred zapiranjem?"
+#, c-format
+msgid "Save the changes to file \"%s\" before closing?"
+msgstr "Želite shraniti spremembe datoteke \"%s\" pred zapiranjem?"
 
-#: ../grecord/src/gsr-window.c:865
-msgid "Save recording?"
-msgstr "Ali želite shraniti posnetek?"
-
-#: ../grecord/src/gsr-window.c:869
+#: ../grecord/src/gsr-window.c:876
 msgid "Close _without Saving"
 msgstr "Zapri _brez shranjevanja"
 
-#: ../grecord/src/gsr-window.c:870
-msgid "Continue _without Saving"
-msgstr "Nadaljuj _brez shranjevanja"
-
-#: ../grecord/src/gsr-window.c:878
+#: ../grecord/src/gsr-window.c:883
 msgid "Question"
 msgstr "Vprašanje"
 
-#: ../grecord/src/gsr-window.c:985
+#: ../grecord/src/gsr-window.c:984
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Ni bila shranjena)"
 
-#: ../grecord/src/gsr-window.c:1001
+#: ../grecord/src/gsr-window.c:1000
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -443,83 +1847,73 @@ msgstr[1] "%s (%llu bajt)"
 msgstr[2] "%s (%llu bajta)"
 msgstr[3] "%s (%llu bajti)"
 
-#: ../grecord/src/gsr-window.c:1005
+#: ../grecord/src/gsr-window.c:1004
 msgid "Unknown size"
 msgstr "Neznana velikost"
 
-#. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1014
-#: ../grecord/src/gsr-window.c:1024
-#: ../grecord/src/gsr-window.c:1040
-#: ../grecord/src/gsr-window.c:1049
-#: ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:303
-msgid "Unknown"
-msgstr "Neznano"
-
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1025
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1034
+#: ../grecord/src/gsr-window.c:1033
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1037
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Ocenjeno)"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1051
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1055
+#: ../grecord/src/gsr-window.c:1054
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1082
+#: ../grecord/src/gsr-window.c:1081
 #, c-format
 msgid "%s Information"
 msgstr "Podatki %s"
 
-#: ../grecord/src/gsr-window.c:1106
-#: ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1105
+#: ../grecord/src/gsr-window.c:2404
 msgid "File Information"
 msgstr "Podatki o datoteki"
 
-#: ../grecord/src/gsr-window.c:1121
+#: ../grecord/src/gsr-window.c:1120
 msgid "Folder:"
 msgstr "Mapa:"
 
-#: ../grecord/src/gsr-window.c:1127
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:1126
+#: ../grecord/src/gsr-window.c:2411
 msgid "Filename:"
 msgstr "Datoteka:"
 
-#: ../grecord/src/gsr-window.c:1133
+#: ../grecord/src/gsr-window.c:1132
 msgid "File size:"
 msgstr "Velikost datoteke:"
 
-#: ../grecord/src/gsr-window.c:1142
+#: ../grecord/src/gsr-window.c:1141
 msgid "Audio Information"
 msgstr "Podatki zvoka"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1156
 msgid "File duration:"
 msgstr "Trajanje datoteke"
 
-#: ../grecord/src/gsr-window.c:1163
+#: ../grecord/src/gsr-window.c:1162
 msgid "Number of channels:"
 msgstr "Število kanalov:"
 
-#: ../grecord/src/gsr-window.c:1169
+#: ../grecord/src/gsr-window.c:1168
 msgid "Sample rate:"
 msgstr "Frekvenca vzorčenja:"
 
-#: ../grecord/src/gsr-window.c:1175
+#: ../grecord/src/gsr-window.c:1174
 msgid "Bit rate:"
 msgstr "Bitna hitrost:"
 
@@ -531,170 +1925,170 @@ msgstr ""
 "Snemalnik zvoka za GNOME\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1510
+#: ../grecord/src/gsr-window.c:1505
 msgid "Playing..."
 msgstr "Predvajanje ..."
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1637
 msgid "GConf audio output"
 msgstr "Zvočni izhod GConf"
 
-#: ../grecord/src/gsr-window.c:1651
-#: ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1646
+#: ../gst-mixer/src/element.c:216
+#: ../gst-mixer/src/misc.c:60
 msgid "Playback"
 msgstr "Predvajanje"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:1723
 msgid "Recording..."
 msgstr "Snemanje ..."
 
-#: ../grecord/src/gsr-window.c:1820
+#: ../grecord/src/gsr-window.c:1813
 msgid "GConf audio recording"
 msgstr "Snemanje zvoka GConf"
 
-#: ../grecord/src/gsr-window.c:1829
+#: ../grecord/src/gsr-window.c:1822
 msgid "Your audio capture settings are invalid. Please correct them with the \"Sound Preferences\" under the System-Preferences menu."
 msgstr "Vaše nastavitve zajema zvoka so neveljavne. Popravite jih med nastavitvami zvoka v meniju Sistem - Lastnosti."
 
-#: ../grecord/src/gsr-window.c:2001
+#: ../grecord/src/gsr-window.c:1994
 msgid "file output"
 msgstr "izhodna datoteka"
 
-#: ../grecord/src/gsr-window.c:2019
+#: ../grecord/src/gsr-window.c:2012
 msgid "level"
 msgstr "raven"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2036
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Ni mogoče razčleniti zvočnega profila '%s'."
 
-#: ../grecord/src/gsr-window.c:2060
+#: ../grecord/src/gsr-window.c:2053
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Zajem z zvočnim profilom '%s' ni bil mogoč. "
 
-#: ../grecord/src/gsr-window.c:2069
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Pisanje v datoteko z zvočnim profilom '%s' ni bilo mogoče."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2116
 msgid "_File"
 msgstr "_Datoteka"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2118
 msgid "Create a new sample"
 msgstr "Ustvari nov vzorec"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2120
 msgid "Open a file"
 msgstr "Odpri datoteko"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2122
 msgid "Save the current file"
 msgstr "Shrani trenutno datoteko"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2124
 msgid "Save the current file with a different name"
 msgstr "Shrani trenutno datoteko pod drugačnim imenom"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2125
 msgid "Open Volu_me Control"
 msgstr "Odpri _nadzor glasnosti"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2126
 msgid "Open the audio mixer"
 msgstr "Odpri mešalnik zvoka"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2128
 msgid "Show information about the current file"
 msgstr "Pokaži podatke o trenutni datoteki"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2130
 msgid "Close the current file"
 msgstr "Zapri trenutno datoteko"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2132
 msgid "Quit the program"
 msgstr "Izhod iz programa"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2135
 msgid "_Control"
 msgstr "_Nadzoruj"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2137
 msgid "Record sound"
 msgstr "Posnemi zvok"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2139
 msgid "Play sound"
 msgstr "Predvajaj zvok"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2141
 msgid "Stop sound"
 msgstr "Ustavi zvok"
 
-#. Help menu
-#: ../grecord/src/gsr-window.c:2151
-msgid "_Help"
-msgstr "_Pomoč"
-
-#: ../grecord/src/gsr-window.c:2152
+#: ../grecord/src/gsr-window.c:2145
 msgid "Contents"
 msgstr "Vsebina"
 
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2146
 msgid "Open the manual"
 msgstr "Ročno odpri"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2148
 msgid "About this application"
 msgstr "O tem programu"
 
-#: ../grecord/src/gsr-window.c:2277
+#: ../grecord/src/gsr-window.c:2270
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "Ni mogoče naložiti ui.xml. Program morda ni bil pravilno nameščen"
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2293
 msgid "Open"
 msgstr "Odpri"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2295
 msgid "Save"
 msgstr "Shrani"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2297
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2353
 msgid "Record from _input:"
 msgstr "Snemaj iz _vhoda:"
 
-#: ../grecord/src/gsr-window.c:2378
+#: ../grecord/src/gsr-window.c:2371
 msgid "_Record as:"
 msgstr "_Snemaj kot:"
 
-#: ../grecord/src/gsr-window.c:2425
+#: ../grecord/src/gsr-window.c:2418
 msgid "<none>"
 msgstr "<brez>"
 
-#: ../grecord/src/gsr-window.c:2439
+#: ../grecord/src/gsr-window.c:2432
 msgid "Length:"
 msgstr "Dolžina:"
 
-#: ../grecord/src/gsr-window.c:2477
+#: ../grecord/src/gsr-window.c:2470
 msgid "Level:"
 msgstr "Raven:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2572
+#: ../grecord/src/gsr-window.c:2564
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Snemalnik zvoka"
+
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Adjust the volume level"
+msgstr "Prilagodi raven glasnosti"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -712,9 +2106,20 @@ msgstr "Širina okna"
 msgid "Width of the Window to be displayed"
 msgstr "Širina okna za prikaz"
 
-#: ../gst-mixer/src/element.c:495
-msgid "Sound Theme"
-msgstr "Zvočna tema"
+#: ../gst-mixer/src/element.c:218
+#: ../gst-mixer/src/misc.c:62
+msgid "Recording"
+msgstr "Snemanje"
+
+#: ../gst-mixer/src/element.c:220
+#: ../gst-mixer/src/misc.c:64
+msgid "Switches"
+msgstr "Preklopi"
+
+#: ../gst-mixer/src/element.c:222
+#: ../gst-mixer/src/misc.c:66
+msgid "Options"
+msgstr "Možnosti"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -725,55 +2130,43 @@ msgstr "Neznan nadzor glasnosti %d"
 msgid "No volume control GStreamer plugins and/or devices found."
 msgstr "Ni mogoče najti vstavkov in/ali naprav za nadzor glasnosti GStreamer"
 
-#: ../gst-mixer/src/misc.c:64
-msgid "Recording"
-msgstr "Snemanje"
-
-#: ../gst-mixer/src/misc.c:66
-msgid "Switches"
-msgstr "Preklopi"
-
-#: ../gst-mixer/src/misc.c:68
-msgid "Options"
-msgstr "Možnosti"
-
 #. make window look cute
-#: ../gst-mixer/src/preferences.c:107
+#: ../gst-mixer/src/preferences.c:106
 msgid "Volume Control Preferences"
 msgstr "Nastavitve Nadzora glasnosti"
 
-#: ../gst-mixer/src/preferences.c:120
-msgid "_Select mixers to be visible:"
-msgstr "_Izberite mešalce, ki bodo vidni:"
+#: ../gst-mixer/src/preferences.c:119
+msgid "_Select tracks to be visible:"
+msgstr "_Izberite sledi, ki naj bodo vidne:"
 
-#: ../gst-mixer/src/track.c:295
+#: ../gst-mixer/src/track.c:263
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:339
+#: ../gst-mixer/src/track.c:302
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "Utišaj/povrni glasnost %s"
 
-#: ../gst-mixer/src/track.c:356
+#: ../gst-mixer/src/track.c:317
 #, c-format
 msgid "Track %s: mute"
 msgstr "Sled %s: nemo"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:433
+#: ../gst-mixer/src/track.c:383
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Preklopi zvočno snemanje iz %s"
 
-#: ../gst-mixer/src/track.c:449
+#: ../gst-mixer/src/track.c:400
 #, c-format
 msgid "Track %s: audio recording"
 msgstr "Skladba %s: zvočno snemanje"
 
-#: ../gst-mixer/src/track.c:562
+#: ../gst-mixer/src/track.c:488
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s Izbira možnosti"
@@ -862,11 +2255,11 @@ msgstr "neznano"
 msgid "Volume of %s channel on %s"
 msgstr "Glasnost kanala %s na %s"
 
-#: ../gst-mixer/src/window.c:133
+#: ../gst-mixer/src/window.c:144
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Program za nadzor glasnosti na temeljih GNOME/GStreamer"
 
-#: ../gst-mixer/src/window.c:136
+#: ../gst-mixer/src/window.c:147
 msgid "translator-credits"
 msgstr ""
 "Matic Žgur <mr.zgur@gmail.com>\n"
@@ -875,150 +2268,189 @@ msgstr ""
 "Matej Urbančič <mateju@svn.gnome.org>"
 
 #. change window title
-#: ../gst-mixer/src/window.c:173
+#: ../gst-mixer/src/window.c:184
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Nadzor glasnosti: %s"
 
-#: ../gst-mixer/src/window.c:378
+#: ../gst-mixer/src/window.c:389
 msgid "_Device: "
 msgstr "_Naprava:"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:417
+#: ../gst-mixer/src/window.c:428
 msgid "Control volume on a different device"
 msgstr "Nadziraj glasnost na drugačni napravi"
 
-#: ../gstreamer-properties/gstreamer-properties.c:206
+#: ../gstreamer-properties/gstreamer-properties.c:195
 msgid "None"
 msgstr "Noben"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:248
+#: ../gstreamer-properties/gstreamer-properties.c:233
 msgid "Unsupported"
 msgstr "Nepodprto"
 
-#: ../gstreamer-properties/gstreamer-properties.c:270
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
-msgid "Default"
-msgstr "Privzeto"
-
-#: ../gstreamer-properties/gstreamer-properties.c:627
+#: ../gstreamer-properties/gstreamer-properties.c:603
 msgid "Failure instantiating main window"
 msgstr "Napaka ob inicializaciji glavnega okna"
 
-#: ../gstreamer-properties/gstreamer-properties.c:680
-msgid "Failed to load UI file; please check your installation."
-msgstr "Ni mogoče naložiti datoteke vmesnika. Preverite vašo namestitev."
+#: ../gstreamer-properties/gstreamer-properties.c:652
+msgid "Failed to load glade file; please check your installation."
+msgstr "Ni mogoče naložiti datoteke glade. Preverite vašo namestitev."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "Privzete nastavitve za programe GStreamer"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.glade.h:7
 msgid "Multimedia Systems Selector"
 msgstr "Izbirnik večpredstavnih sistemov"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/gstreamer-properties.glade.h:1
+msgid "<b>Default Input</b>"
+msgstr "<b>Privzeti vhod</b>"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:2
+msgid "<b>Default Output</b>"
+msgstr "<b>Privzeti izhod</b>"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:3
+msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+msgstr "<span weight=\"bold\" size=\"x-large\">Preizkušanje ...</span>"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:4
+msgid "Audio"
+msgstr "Avdio"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:5
+msgid "Click Ok to finish."
+msgstr "Klikni \"V redu\" za zaključek."
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+msgid "D_evice:"
+msgstr "_Naprava:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:8
+msgid "P_ipeline:"
+msgstr "_Cevovod:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:9
+msgid "P_lugin:"
+msgstr "_Vstavek:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+msgid "Pipeli_ne:"
+msgstr "C_evovod:"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:11
+msgid "Te_st"
+msgstr "_Preizkus"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:12
+msgid "Testing Pipeline"
+msgstr "Preizkušanje cevovoda"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:13
+msgid "Video"
+msgstr "Video"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:15
+msgid "_Plugin:"
+msgstr "_Vstavek"
+
+#: ../gstreamer-properties/gstreamer-properties.glade.h:16
+msgid "_Test"
+msgstr "_Preizkus"
+
+#: ../gstreamer-properties/pipeline-constants.c:50
+#: ../gstreamer-properties/pipeline-constants.c:84
 msgid "Autodetect"
 msgstr "Samodejno zaznaj"
 
-#: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:115
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
+#: ../gstreamer-properties/pipeline-constants.c:67
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
+#: ../gstreamer-properties/pipeline-constants.c:69
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:75
+#: ../gstreamer-properties/pipeline-constants.c:124
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "PulseAudio Sound Server"
 msgstr "Zvočni strežnik PulseAudio"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
-#: ../sound-theme/sound-theme-file-utils.c:292
-msgid "Custom"
-msgstr "Prilagojeno"
-
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:102
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "X Window System (No Xv)"
 msgstr "X Window System (Ne Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:130
 msgid "Test Sound"
 msgstr "Preizkusi zvok"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Silence"
 msgstr "Tišina"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:139
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (npr. Zoran v4l device)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "Test Input"
 msgstr "Preizkusi vhod"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:176
+#: ../gstreamer-properties/pipeline-tests.c:175
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Izdelava preizkusnega cevovoda za '%s' ni uspela"
 
-#: ../profiles/audio-profile-edit.c:122
-#: ../profiles/audio-profiles-edit.c:538
+#: ../profiles/audio-profile-edit.c:123
+#: ../profiles/audio-profiles-edit.c:540
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Prišlo je do napake pri prikazovanju pomoči: %s"
 
-#: ../profiles/audio-profile-edit.c:335
+#: ../profiles/audio-profile-edit.c:336
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Urejanje profila \"%s\""
@@ -1047,12 +2479,12 @@ msgstr "Prišlo je do napake pri naročanju na obvestila o spremembah seznama zv
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Prišlo je do napake pri pozabljanju poti profila %s. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:88
 msgid "_Edit"
 msgstr "Ur_ejanje"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:466
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
@@ -1061,29 +2493,29 @@ msgstr[1] "Ali želite izbrisati ta %d profil?\n"
 msgstr[2] "Ali želite izbrisati ta %d profila?\n"
 msgstr[3] "Ali želite izbrisati te %d profile?\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:485
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Želite izbrisati profil \"%s\"?"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:507
 msgid "Delete Profile"
 msgstr "Zbriši profil"
 
-#: ../profiles/audio-profiles-edit.c:599
+#: ../profiles/audio-profiles-edit.c:601
 msgid "Edit GNOME Audio Profiles"
 msgstr "Uredi zvočne profile GNOME"
 
-#: ../profiles/audio-profiles-edit.c:648
+#: ../profiles/audio-profiles-edit.c:650
 msgid "_Profiles:"
 msgstr "_Profili:"
 
-#: ../profiles/audio-profiles-edit.c:832
+#: ../profiles/audio-profiles-edit.c:834
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Profil z imenom \"%s\" že obstaja"
 
-#: ../profiles/audio-profiles-edit.c:857
+#: ../profiles/audio-profiles-edit.c:859
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Napaka GConf (FIXME): %s\n"
@@ -1092,15 +2524,6 @@ msgstr "Napaka GConf (FIXME): %s\n"
 #, c-format
 msgid "The file \"%s\" is missing. This indicates that the application is installed incorrectly, so the dialog can't be displayed."
 msgstr "Datoteka \"%s\" manjka. To pomeni, da je program napačno nameščen, zato pogovornega okna ni mogoče prikazati."
-
-#: ../profiles/gnome-audio-profiles-properties.c:54
-#, c-format
-msgid ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"Zaženite '%s --help' za podroben pregled celotnega seznama možnosti ukazne vrstice.\n"
 
 #: ../profiles/gnome-audio-profiles.glade2.h:1
 msgid "Edit Audio Profile"
@@ -1220,7 +2643,7 @@ msgstr "Uporabljeno za pretvarjanje v zvok kakovosti glasu brez izgub. Uporabite
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:22
 msgid "Used for converting to lossy voice-quality audio. Use this for recording speech that doesn't need to be edited."
-msgstr "Uporabljeno za pretvarjanje v zvok kakovosti glasu z izgubami. Uporabite za snemanje govora, ki ga ni potrebno urejati."
+msgstr "Uporabljeno za pretvarjanje v zvok kakovosti glasu z izgubami. Uporabite za snemanje govora, ki ga ni treba urejati."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Voice, Lossless"
@@ -1238,901 +2661,75 @@ msgstr "Ali naj se uporabi ta profil"
 msgid "Whether or not to use and display this profile."
 msgstr "Ali naj se uporabi in prikaže ta profil."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
-msgid "No sounds"
-msgstr "Brez zvoka"
+#: ../vu-meter/main.c:102
+msgid ""
+"Cannot connect to sound daemon.\n"
+"Please run 'esd' at a command prompt."
+msgstr ""
+"Ni se mogoče povezati s strežnikom za zvok.\n"
+"Prosim, zaženite 'esd' v ukazni vrstici."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:444
-msgid "Built-in"
-msgstr "Vgrajeno"
+#: ../vu-meter/main.c:231
+msgid "Specify the X position of the meter."
+msgstr "Določi X mesto metra."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
-msgid "Testing event sound"
-msgstr "Preizkus zvoka dogodkov"
+#: ../vu-meter/main.c:232
+msgid "X"
+msgstr "X"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
-msgid "From theme"
-msgstr "Iz teme"
+#: ../vu-meter/main.c:234
+msgid "Specify the Y position of the meter."
+msgstr "Določi Y mesto metra."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
-msgid "Type"
-msgstr "Vrsta"
+#: ../vu-meter/main.c:235
+msgid "Y"
+msgstr "Y"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1085
-msgid "Sound _theme:"
-msgstr "Zvočna tema:"
+#: ../vu-meter/main.c:237
+msgid "Connect to the esd server on this host."
+msgstr "Poveži se s strežnikom esd na tem gostitelju."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1093
-msgid "C_hoose an alert sound:"
-msgstr "Izbor zvoka -opozorila:"
+#: ../vu-meter/main.c:238
+msgid "HOST"
+msgstr "HOST"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1121
-msgid "Enable _window and button sounds"
-msgstr "Omogoči _zvoke oken in gumbov"
+#: ../vu-meter/main.c:240
+msgid "Open a vertical version of the meter."
+msgstr "Odpri navpično različico metra."
 
-#. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
-msgctxt "Sound event"
-msgid "Alert sound"
-msgstr "Zvok opozorila"
+#: ../vu-meter/main.c:242
+msgid "Act as recording level meter."
+msgstr "Deluj kot merilec glasnosti snemanja."
 
-#. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
-msgctxt "Sound event"
-msgid "Windows and Buttons"
-msgstr "Okna in gumbi"
+#: ../vu-meter/main.c:258
+#, c-format
+msgid "Host is %s\n"
+msgstr "Gostitelj je %s\n"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
-msgctxt "Sound event"
-msgid "Button clicked"
-msgstr "Klik gumba"
+#: ../vu-meter/main.c:275
+msgid "Recording level"
+msgstr "Stopnja snemanja"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
-msgctxt "Sound event"
-msgid "Toggle button clicked"
-msgstr "Klik gumba preklopa"
+#: ../vu-meter/main.c:275
+msgid "Volume Meter"
+msgstr "Meter glasnosti"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
-msgctxt "Sound event"
-msgid "Window maximized"
-msgstr "Razpeto okno"
+#: ../vu-meter/reclevel.desktop.in.in.h:1
+msgid "Monitor the recording input volume"
+msgstr "Meri glasnost snemalnega vhoda"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
-msgctxt "Sound event"
-msgid "Window unmaximized"
-msgstr "Okno pomanjšano"
+#: ../vu-meter/reclevel.desktop.in.in.h:2
+msgid "Recording Level Monitor"
+msgstr "Kazalec stopnje glasnosti snemanja"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
-msgctxt "Sound event"
-msgid "Window minimised"
-msgstr "Skrčeno okno"
+#: ../vu-meter/vumeter.desktop.in.in.h:1
+msgid "Monitor the sound output volume"
+msgstr "Meri izhodno glasnost zvoka"
 
-#. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
-msgctxt "Sound event"
-msgid "Desktop"
-msgstr "Namizje"
+#: ../vu-meter/vumeter.desktop.in.in.h:2
+msgid "Volume Monitor"
+msgstr "Kazalec glasnosti"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
-msgctxt "Sound event"
-msgid "Login"
-msgstr "Prijava"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:87
-msgctxt "Sound event"
-msgid "Logout"
-msgstr "Odjava"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:88
-msgctxt "Sound event"
-msgid "New e-mail"
-msgstr "Nova pošta"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:89
-msgctxt "Sound event"
-msgid "Empty trash"
-msgstr "Sprazni smeti"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:90
-msgctxt "Sound event"
-msgid "Long action completed (download, CD burning, etc.)"
-msgstr "Končano dolgotrajno dejanje (omrežni prenos, zapis CD-ja ...)"
-
-#. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
-msgctxt "Sound event"
-msgid "Alerts"
-msgstr "Opozorila"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:93
-msgctxt "Sound event"
-msgid "Information or question"
-msgstr "Podrobnosti ali vprašanje"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:94
-msgctxt "Sound event"
-msgid "Warning"
-msgstr "Opozorilo"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:95
-msgctxt "Sound event"
-msgid "Error"
-msgstr "Napaka"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:96
-msgctxt "Sound event"
-msgid "Battery warning"
-msgstr "Opozorilo baterije"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:593
-msgid "Select Sound File"
-msgstr "Izbor zvočne datoteke"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:604
-msgid "Sound files"
-msgstr "Zvočne datoteke"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Po meni ..."
-
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "Zvočna tema:"
-
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "Omogoči zvoke oken in gumbov"
-
-#. Translators: This is the name of an audio file that sounds like the bark of a dog.
-#. You might want to translate it into the equivalent words of your language.
-#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:3
-msgid "Bark"
-msgstr "Lajanje"
-
-#. Translators: This is the name of an audio file that sounds like a water drip.
-#. You might want to translate it into the equivalent words of your language.
-#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
-msgid "Drip"
-msgstr "Pokapljanje"
-
-#. Translators: This is the name of an audio file that sounds like tapping glass.
-#. You might want to translate it into the equivalent words of your language.
-#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:9
-msgid "Glass"
-msgstr "Steklo"
-
-#. Translators: This is the name of an audio file that sounds sort of like a submarine sonar ping.
-#. You might want to translate it into the equivalent words of your language.
-#: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
-msgid "Sonar"
-msgstr "Sonar"
-
-#~ msgid "Address of the server to contact for CD queries"
-#~ msgstr "Naslov strežnika z podatki o CD-jih"
-#~ msgid "Information to send to server"
-#~ msgstr "Podatki, ki naj se pošljejo strežniku"
-#~ msgid "Port"
-#~ msgstr "Vrata"
-#~ msgid "Server name"
-#~ msgstr "Ime strežnika"
-#~ msgid "Server type"
-#~ msgstr "Vrsta strežnika"
-#~ msgid "The hostname that will be sent with all queries"
-#~ msgstr "Ime gostitelja, ki bo poslano skupaj z vsemi poizvedbami"
-#~ msgid "The port that the server is running the database on"
-#~ msgstr "Vrata na katerih teče strežnik podatkovne zbirke"
-#~ msgid ""
-#~ "The type of the server to contact for CD queries. Possible values are 0 "
-#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-#~ msgstr ""
-#~ "Vrsta strežnika s katerim naj se poveže za poizvedbe po CDjih. Mogoče "
-#~ "vrednosti so 0 (krožni strežnik FreeDB), 1 (drugačen strežnik freedb) in "
-#~ "2 (drug strežnik)"
-#~ msgid "The username"
-#~ msgstr "Uporabniško ime"
-#~ msgid "The username that will be sent with all queries"
-#~ msgstr "Uporabniško ime, ki bo poslano skupaj z vsemi poizvedbami"
-#~ msgid ""
-#~ "This key specifies which user information will be sent to the server to "
-#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
-#~ "information) and 3 (other information)."
-#~ msgstr ""
-#~ "Ta ključ določa kateri uporabnikovi podatki se bodo poslali strežniku ob "
-#~ "izvajanju poizvedb po CDjih. Mogoče vrednosti so 0 (brez podatkov), 1 "
-#~ "(resnični podatki),  in 3 (drugi podatki)."
-#~ msgid "Your hostname"
-#~ msgstr "Ime vašega računalnika"
-#~ msgid ""
-#~ "There was an error displaying help: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Ob zagonu prikazovanju pomoči se je zgodila napaka: \n"
-#~ "%s"
-#~ msgid "Sen_d no information"
-#~ msgstr "_Ne pošlji nobenih podatkov"
-#~ msgid "Send real _information"
-#~ msgstr "Pošlji _resnične podatke"
-#~ msgid "Send _other information:"
-#~ msgstr "Pošlji _druge podatke:"
-#~ msgid "Hostna_me:"
-#~ msgstr "Ime _gostitelja:"
-#~ msgid "Login Information"
-#~ msgstr "Podatki prijave"
-#~ msgid "FreeDB _round robin server"
-#~ msgstr "K_rožni strežnik FreeDB"
-#~ msgid "Other _FreeDB server:"
-#~ msgstr "Drug strežnik _FreeDB:"
-#~ msgid "Server"
-#~ msgstr "Strežnik"
-#~ msgid "Location"
-#~ msgstr "Mesto"
-#~ msgid "_Update Server List"
-#~ msgstr "_Posodobi seznam strežnikov"
-#~ msgid "Other _server:"
-#~ msgstr "Drug _strežnik:"
-#~ msgid "Hos_tname:"
-#~ msgstr "Ime _gostitelja:"
-#~ msgid "_Port:"
-#~ msgstr "_Vrata:"
-#~ msgid "CD Database Preferences"
-#~ msgstr "Nastavitve zbirke podatkov o CDjih"
-#~ msgid "Unknown / Unknown"
-#~ msgstr "Neznano / Neznano"
-#~ msgid "Multiple matches..."
-#~ msgstr "Več zadetkov ..."
-#~ msgid ""
-#~ "There were multiple matches found in the database.\n"
-#~ "Below is a list of possible matches, please choose the best match"
-#~ msgstr ""
-#~ "V zbirki podatkov je bilo najdenih več zadetkov.\n"
-#~ "Spodaj je seznam mogočih zadetkov, prosim, izberite najboljšega."
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-#~ msgid "Disc ID"
-#~ msgstr "ID zgoščenke"
-#~ msgid "Artist and Title"
-#~ msgstr "Izvajalec in naslov"
-#~ msgid "Unknown track"
-#~ msgstr "Neznana skladba"
-#~ msgid "CD Database Server"
-#~ msgstr "Podatkovni strežnik CD-jev"
-#~ msgid "Modify your CD database server preferences"
-#~ msgstr "Spremenite svoje nastavitve podatkovnega strežnika CD-jev"
-#~ msgid "Blues"
-#~ msgstr "Bluz"
-#~ msgid "Classical Rock"
-#~ msgstr "Klasični rok"
-#~ msgid "Country"
-#~ msgstr "Country"
-#~ msgid "Dance"
-#~ msgstr "Plesna"
-#~ msgid "Disco"
-#~ msgstr "Disko"
-#~ msgid "Funk"
-#~ msgstr "Funk"
-#~ msgid "Grunge"
-#~ msgstr "Grunge"
-#~ msgid "Hip-Hop"
-#~ msgstr "Hip hop"
-#~ msgid "Jazz"
-#~ msgstr "Jazz"
-#~ msgid "Metal"
-#~ msgstr "Metal"
-#~ msgid "New Age"
-#~ msgstr "New age"
-#~ msgid "Oldies"
-#~ msgstr "Stare"
-#~ msgid "Other"
-#~ msgstr "Drugo"
-#~ msgid "Pop"
-#~ msgstr "Pop"
-#~ msgid "R&B"
-#~ msgstr "Ritm in blues"
-#~ msgid "Rap"
-#~ msgstr "Rap"
-#~ msgid "Reggae"
-#~ msgstr "Reggae"
-#~ msgid "Rock"
-#~ msgstr "Rok"
-#~ msgid "Techno"
-#~ msgstr "Tehno"
-#~ msgid "Industrial"
-#~ msgstr "Industrial"
-#~ msgid "Alternative"
-#~ msgstr "Alternativna"
-#~ msgid "Ska"
-#~ msgstr "Ska"
-#~ msgid "Death Metal"
-#~ msgstr "Death metal"
-#~ msgid "Pranks"
-#~ msgstr "Nategi"
-#~ msgid "Soundtrack"
-#~ msgstr "Filmska glasba"
-#~ msgid "Euro-Techno"
-#~ msgstr "Evro tehno"
-#~ msgid "Ambient"
-#~ msgstr "Ambientalna"
-#~ msgid "Trip-Hop"
-#~ msgstr "Trip hop"
-#~ msgid "Vocal"
-#~ msgstr "Vokalna"
-#~ msgid "Jazz+Funk"
-#~ msgstr "Jazz+Funk"
-#~ msgid "Fusion"
-#~ msgstr "Fusion"
-#~ msgid "Trance"
-#~ msgstr "Trance"
-#~ msgid "Classical"
-#~ msgstr "Klasična"
-#~ msgid "Instrumental"
-#~ msgstr "Inštrumentalna"
-#~ msgid "Acid"
-#~ msgstr "Acid"
-#~ msgid "House"
-#~ msgstr "House"
-#~ msgid "Game"
-#~ msgstr "Igra"
-#~ msgid "Sound Clip"
-#~ msgstr "Zvočni odsek"
-#~ msgid "Gospel"
-#~ msgstr "Gospel"
-#~ msgid "Noise"
-#~ msgstr "Šum"
-#~ msgid "Alt"
-#~ msgstr "Alt"
-#~ msgid "Bass"
-#~ msgstr "Bass"
-#~ msgid "Soul"
-#~ msgstr "Soul"
-#~ msgid "Punk"
-#~ msgstr "Punk"
-#~ msgid "Space"
-#~ msgstr "Vesoljna"
-#~ msgid "Meditative"
-#~ msgstr "Meditativna"
-#~ msgid "Instrumental Pop"
-#~ msgstr "Inštrumentalni pop"
-#~ msgid "Instrumental Rock"
-#~ msgstr "Inštrumentalni rok"
-#~ msgid "Ethnic"
-#~ msgstr "Etnična"
-#~ msgid "Gothic"
-#~ msgstr "Gotska"
-#~ msgid "Darkwave"
-#~ msgstr "Darkwave"
-#~ msgid "Techno-Industrial"
-#~ msgstr "Tehno-industrial"
-#~ msgid "Electronic"
-#~ msgstr "Elektronska"
-#~ msgid "Pop-Folk"
-#~ msgstr "Pop-folk"
-#~ msgid "Eurodance"
-#~ msgstr "Eurodance"
-#~ msgid "Dream"
-#~ msgstr "Sanje"
-#~ msgid "Southern Rock"
-#~ msgstr "Južni rok"
-#~ msgid "Comedy"
-#~ msgstr "Komedija"
-#~ msgid "Cult"
-#~ msgstr "Cultna"
-#~ msgid "Gangsta Rap"
-#~ msgstr "Gangsterski rap"
-#~ msgid "Top 40"
-#~ msgstr "Top 40"
-#~ msgid "Christian Rap"
-#~ msgstr "Krščanski rap"
-#~ msgid "Pop/Funk"
-#~ msgstr "Pop/funk"
-#~ msgid "Jungle"
-#~ msgstr "Jungle"
-#~ msgid "Native American"
-#~ msgstr "Indijanska"
-#~ msgid "Cabaret"
-#~ msgstr "Kabare"
-#~ msgid "New Wave"
-#~ msgstr "Novi val"
-#~ msgid "Psychedelic"
-#~ msgstr "Psihadelična"
-#~ msgid "Rave"
-#~ msgstr "Rave"
-#~ msgid "Showtunes"
-#~ msgstr "Showtunes"
-#~ msgid "Trailer"
-#~ msgstr "Trailer"
-#~ msgid "Lo-Fi"
-#~ msgstr "Lo-Fi"
-#~ msgid "Tribal"
-#~ msgstr "Plemenska"
-#~ msgid "Acid Punk"
-#~ msgstr "Acid punk"
-#~ msgid "Acid Jazz"
-#~ msgstr "Acid jazz"
-#~ msgid "Polka"
-#~ msgstr "Polka"
-#~ msgid "Musical"
-#~ msgstr "Muzikal"
-#~ msgid "Rock & Roll"
-#~ msgstr "Rock & roll"
-#~ msgid "Hard Rock"
-#~ msgstr "Hard rock"
-#~ msgid "Folk"
-#~ msgstr "Folk"
-#~ msgid "Folk/Rock"
-#~ msgstr "Folk/rock"
-#~ msgid "National Folk"
-#~ msgstr "Nacionalna folk"
-#~ msgid "Swing"
-#~ msgstr "Sving"
-#~ msgid "Fast-Fusion"
-#~ msgstr "Fast-fusion"
-#~ msgid "Bebop"
-#~ msgstr "Bebop"
-#~ msgid "Latin"
-#~ msgstr "Latinska"
-#~ msgid "Revival"
-#~ msgstr "Revival"
-#~ msgid "Celtic"
-#~ msgstr "Keltska"
-#~ msgid "Bluegrass"
-#~ msgstr "Bluegrass"
-#~ msgid "Avantgarde"
-#~ msgstr "Avantgardna"
-#~ msgid "Gothic Rock"
-#~ msgstr "Gotski rok"
-#~ msgid "Progressive Rock"
-#~ msgstr "Progresivni rok"
-#~ msgid "Psychedelic Rock"
-#~ msgstr "Psihadelični rok"
-#~ msgid "Symphonic Rock"
-#~ msgstr "Simfonični rok"
-#~ msgid "Slow Rock"
-#~ msgstr "Počasen rok"
-#~ msgid "Big Band"
-#~ msgstr "Big band"
-#~ msgid "Chorus"
-#~ msgstr "Zborovska"
-#~ msgid "Easy Listening"
-#~ msgstr "Lahko poslušljiva"
-#~ msgid "Acoustic"
-#~ msgstr "Akustična"
-#~ msgid "Humour"
-#~ msgstr "Humor"
-#~ msgid "Speech"
-#~ msgstr "Govor"
-#~ msgid "Chanson"
-#~ msgstr "Šanson"
-#~ msgid "Opera"
-#~ msgstr "Opera"
-#~ msgid "Chamber Music"
-#~ msgstr "Prostorska glasba"
-#~ msgid "Sonata"
-#~ msgstr "Sonata"
-#~ msgid "Symphony"
-#~ msgstr "Simfonija"
-#~ msgid "Booty Bass"
-#~ msgstr "Booty bass"
-#~ msgid "Primus"
-#~ msgstr "Primus"
-#~ msgid "Porn Groove"
-#~ msgstr "Porn groove"
-#~ msgid "Satire"
-#~ msgstr "Satira"
-#~ msgid "Slow Jam"
-#~ msgstr "Slow jam"
-#~ msgid "Club"
-#~ msgstr "Klubska"
-#~ msgid "Tango"
-#~ msgstr "Tango"
-#~ msgid "Samba"
-#~ msgstr "Samba"
-#~ msgid "Folklore"
-#~ msgstr "Folklorna"
-#~ msgid "Ballad"
-#~ msgstr "Balada"
-#~ msgid "Power Ballad"
-#~ msgstr "Močna balada"
-#~ msgid "Rhythmic Soul"
-#~ msgstr "Ritmični soul"
-#~ msgid "Freestyle"
-#~ msgstr "Prosti stil"
-#~ msgid "Duet"
-#~ msgstr "Duet"
-#~ msgid "Punk Rock"
-#~ msgstr "Punk rok"
-#~ msgid "Drum Solo"
-#~ msgstr "Solo bobni"
-#~ msgid "A Cappella"
-#~ msgstr "A cappella"
-#~ msgid "Euro-House"
-#~ msgstr "Euro-house"
-#~ msgid "Dance Hall"
-#~ msgstr "Plesna dvorana"
-#~ msgid "Goa"
-#~ msgstr "Goa"
-#~ msgid "Drum & Bass"
-#~ msgstr "Drum & bass"
-#~ msgid "Club-House"
-#~ msgstr "Klub-house"
-#~ msgid "Terror"
-#~ msgstr "Terror"
-#~ msgid "Indie"
-#~ msgstr "Indijska"
-#~ msgid "BritPop"
-#~ msgstr "BritPop"
-#~ msgid "Negerpunk"
-#~ msgstr "Negerpunk"
-#~ msgid "Polsk Punk"
-#~ msgstr "Polsk punk"
-#~ msgid "Beat"
-#~ msgstr "Beat"
-#~ msgid "Christian Gangsta Rap"
-#~ msgstr "Krščanski gangstrski rap"
-#~ msgid "Heavy Metal"
-#~ msgstr "Težki metal"
-#~ msgid "Black Metal"
-#~ msgstr "Črni metal"
-#~ msgid "Crossover"
-#~ msgstr "Crossover"
-#~ msgid "Contemporary Christian"
-#~ msgstr "Sodobna krščanska glasba"
-#~ msgid "Christian Rock"
-#~ msgstr "Krščanski rok"
-#~ msgid "Merengue"
-#~ msgstr "Merengue"
-#~ msgid "Salsa"
-#~ msgstr "Salsa"
-#~ msgid "Thrash Metal"
-#~ msgstr "Thrash metal"
-#~ msgid "Anime"
-#~ msgstr "Anime"
-#~ msgid "JPop"
-#~ msgstr "Jpop"
-#~ msgid "Synthpop"
-#~ msgstr "Synthpop"
-#~ msgid "Nu-Metal"
-#~ msgstr "Nu-metal"
-#~ msgid "Art Rock"
-#~ msgstr "Umetniški rock"
-#~ msgid "Unknown Artist"
-#~ msgstr "Neznan izvajalec"
-#~ msgid "Unknown Album"
-#~ msgstr "Neznan album"
-#~ msgid "Editing Disc ID: %s"
-#~ msgstr "Urejanje ID zgoščenke: %s"
-#~ msgid "Hide advanced disc options"
-#~ msgstr "Skrij napredne možnosti zgoščenke"
-#~ msgid "Show advanced disc options"
-#~ msgstr "Pokaži napredne možnosti zgoščenke"
-#~ msgid "Hide advanced track options"
-#~ msgstr "Skrij napredne možnosti skladbe"
-#~ msgid "Show advanced track options"
-#~ msgstr "Prikaži napredne možnosti skladbe"
-#~ msgid "Editing Disc ID: "
-#~ msgstr "Urejanje ID zgoščenke: "
-#~ msgid "_Artist:"
-#~ msgstr "_Izvajalec:"
-#~ msgid "Disc _Title:"
-#~ msgstr "Naslov _zgoščenke"
-#~ msgid "_Disc comments:"
-#~ msgstr "Komentarji _zgoščenke:"
-#~ msgid "_Genre:"
-#~ msgstr "Ž_anr:"
-#~ msgid "_Year:"
-#~ msgstr "_Leto:"
-#~ msgid "Title"
-#~ msgstr "Naziv"
-#~ msgid "Length"
-#~ msgstr "Dolžina"
-#~ msgid "_Extra track data:"
-#~ msgstr "_Dodatni podatki skladbe:"
-#~ msgid "CDDB Track Editor"
-#~ msgstr "Urejevalnik skladbe CDDB"
-#~ msgid ""
-#~ "Cannot create CDDBTrackEditor factory.\n"
-#~ "This may be caused by another copy of cddb-track-editor already running.\n"
-#~ msgstr ""
-#~ "Ni mogoče ustvariti tovarne CDDBTrackEditor.\n"
-#~ "Vzrok je lahko, da ena kopija cddb-track-editor že teče.\n"
-#~ msgid "CD Display"
-#~ msgstr "Predvajalnik CD"
-#~ msgid ""
-#~ "Displays information about the currently playing album, artist and time "
-#~ "elapsed"
-#~ msgstr ""
-#~ "Pokaže podatke o trenutno predvajanem albumu, izvajalcu in porabljenem "
-#~ "času"
-#~ msgid "Time Line"
-#~ msgstr "Časovna vrstica"
-#~ msgid "Line for displaying the time elapsed for the current track"
-#~ msgstr "Vrstica uporabljena za prikaz časa porabljenega za trenutno skladba"
-#~ msgid "Info Line"
-#~ msgstr "Podatkovna vrstica"
-#~ msgid "Line for displaying information"
-#~ msgstr "Vrstica za prikazovanje podatkov"
-#~ msgid "Artist Line"
-#~ msgstr "Vrstica izvajalca"
-#~ msgid "Line for displaying the name of the artist"
-#~ msgstr "Vrstica za prikaz imena izvajalca"
-#~ msgid "Album Line"
-#~ msgstr "Vrstica albuma"
-#~ msgid "Line for displaying the name of the album"
-#~ msgstr "Vrstica za prikaz imena albuma"
-#~ msgid "Play"
-#~ msgstr "Predvajaj"
-#~ msgid "Pause"
-#~ msgstr "Premor"
-#~ msgid ""
-#~ "Playing %s - %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Predvajanje %s - %s\n"
-#~ "%s"
-#~ msgid ""
-#~ "Playing\n"
-#~ ": %s"
-#~ msgstr ""
-#~ "Predvajanje\n"
-#~ ": %s"
-#~ msgid "Paused"
-#~ msgstr "Premor"
-#~ msgid "CD Player"
-#~ msgstr "Predvajalnik CD"
-#~ msgid "Stopped"
-#~ msgstr "Ustavljeno"
-#~ msgid "Disc error"
-#~ msgstr "Napaka zgoščenke"
-#~ msgid "No disc"
-#~ msgstr "Ni zgoščenke"
-#~ msgid "Empty disc"
-#~ msgstr "Sprazni zgoščenko"
-#~ msgid "Drive open"
-#~ msgstr "Predvajalnik odprt"
-#~ msgid "Data CD"
-#~ msgstr "Podatkovni CD"
-#~ msgid "No Cdrom"
-#~ msgstr "Ni CDROMa"
-#~ msgid "Drive Error"
-#~ msgstr "Napaka predvajalnika"
-#~ msgid "A CD player for GNOME"
-#~ msgstr "Predvajalnik CDjev za GNOME"
-#~ msgid "Contents in the CDDB have changed"
-#~ msgstr "Vsebina CDDB se je spremenila"
-#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-#~ msgstr "Če izberete 'Da', bo prejšnja vsebina CDDB izbrisana."
-#~ msgid "Do you wish to continue?"
-#~ msgstr "Želite nadaljevati?"
-#~ msgid "Volume %d%%"
-#~ msgstr "Glasnost %d%%"
-#~ msgid "You do not seem to have permission to access %s."
-#~ msgstr "Nimate dovoljenj za dostop do %s."
-#~ msgid ""
-#~ "%s does not appear to point to a valid CD device. This may be because:\n"
-#~ "a) CD support is not present in your machine\n"
-#~ "b) You do not have the correct permissions to access the CD drive\n"
-#~ "c) %s is not the CD drive.\n"
-#~ msgstr ""
-#~ "%s ni povezava do veljavnega pogona CD-ROM. To je lahko zaradi:\n"
-#~ "a) Podpore za CD-ROM ni v vašem jedru\n"
-#~ "b) Nimate ustreznih dovoljenj za dostop do pogona CD-ROM\n"
-#~ "c) %s ni pogon CDRom.\n"
-#~ msgid "%d - Unknown"
-#~ msgstr "%d - Neznano"
-#~ msgid "_Play / Pause"
-#~ msgstr "_Predvajaj / Premor"
-#~ msgid "_Stop"
-#~ msgstr "_Ustavi"
-#~ msgid "P_revious"
-#~ msgstr "P_rejšnja"
-#~ msgid "_Next"
-#~ msgstr "_Naslednja"
-#~ msgid "_Eject disc"
-#~ msgstr "_Izvrzi zgoščenko"
-#~ msgid "_About"
-#~ msgstr "_O programu"
-#~ msgid "_Quit"
-#~ msgstr "_Izhod"
-#~ msgid ""
-#~ "There is no CD device set. This means that the CD player\n"
-#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
-#~ "where you can set the device, or click 'Quit' to quit the CD player."
-#~ msgstr ""
-#~ "Nobena CD naprava ni nastavljena. To pomeni, da se predvajalnik\n"
-#~ "CDjev ne more pognati. Pritisnite \"Nastavi napravo\", da boste\n"
-#~ "šli na dialog, kjer boste lahko nastavili napravo ali \n"
-#~ "kliknite \"Izhod\" za izhod iz CD predvajalnika."
-#~ msgid "Set device"
-#~ msgstr "Nastavi napravo"
-#~ msgid "No CD device"
-#~ msgstr "Ni CD naprave"
-#~ msgid ""
-#~ "The CD player is unable to run correctly.\n"
-#~ "\n"
-#~ "Press 'Details' for more details on reasons for the failure.\n"
-#~ "\n"
-#~ "Press 'Set device' to go to a dialog where you can set the device, or "
-#~ "press 'Quit' to quit the CD player"
-#~ msgstr ""
-#~ "Predvajalnik CDjev ne more pravilno teči.\n"
-#~ "\n"
-#~ "Za več podrobnosti o vzrokih te napake pritisnite na gumb \"Podrobnosti"
-#~ "\".\n"
-#~ "Pritisnite \"Nastavi napravo\" za dialog kjer boste lahko nastavili "
-#~ "napravo ali kliknite \"Izhod\" za izhod iz predvajalnika CDjev"
-#~ msgid "_Details"
-#~ msgstr "_Podrobnosti"
-#~ msgid "_Set device"
-#~ msgstr "_Nastavi napravo"
-#~ msgid "Invalid CD device"
-#~ msgstr "Neveljavna naprava CD"
-#~ msgid "Position"
-#~ msgstr "Mesto"
-#~ msgid "Open preferences"
-#~ msgstr "Odpri nastavitve"
-#~ msgid "Preferences"
-#~ msgstr "Nastavitve"
-#~ msgid "Track List"
-#~ msgstr "Seznam skladbe"
-#~ msgid "Open track editor"
-#~ msgstr "Odpri urejevalnik skladbe"
-#~ msgid "Track editor"
-#~ msgstr "Urejevalnik skladbe"
-#~ msgid "Play / Pause"
-#~ msgstr "Predvajaj / Premor"
-#~ msgid "Stop"
-#~ msgstr "Ustavi"
-#~ msgid "Previous track"
-#~ msgstr "Prejšnja skladba"
-#~ msgid "Previous"
-#~ msgstr "Prejšnja"
-#~ msgid "Rewind"
-#~ msgstr "Previj"
-#~ msgid "Fast forward"
-#~ msgstr "Hitro naprej"
-#~ msgid "Next track"
-#~ msgstr "Naslednja skladba"
-#~ msgid "Eject CD"
-#~ msgstr "Izvrzi CD"
-#~ msgid "Eject"
-#~ msgstr "Izvrzi"
-#~ msgid "Only start if there isn't already a CD player application running"
-#~ msgstr "Zaženi se le, če predvajalnik CDjev še ne teče"
-#~ msgid "Play the CD on startup"
-#~ msgstr "Ob zagonu samodejno predvajaj CD"
-#~ msgid "Start iconified in notification area"
-#~ msgstr "Začni pomanjšano v obvestilni vrstici"
-#~ msgid "Cannot create player"
-#~ msgstr "Ni mogoče ustvariti predvajalnika"
-#~ msgid "Play audio CDs"
-#~ msgstr "Predvajaj glasbene CDje"
-#~ msgid "CD player Volume"
-#~ msgstr "Glasnost predvajalnika CD-jev"
-#~ msgid "CD player theme"
-#~ msgstr "Tema predvajalnika CDjev"
-#~ msgid "Device path"
-#~ msgstr "Pot naprave"
-#~ msgid "Display the Remaining time?"
-#~ msgstr "Prikaži preostali čas?"
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "Ob izhodu iz predvajalnika izvrži CD?"
-#~ msgid "How the time should be displayed while CD Player is playing?"
-#~ msgstr "Kako naj bo prikazan čas, ko predvajalnik CD-jev predvaja CD?"
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "Predvajaj, ko se zažene predvajalnik?"
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "Ali naj se CD izvrže ob izhodu iz prevajalnika?"
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr "Pot do pogona CD-ROM, ki naj jo uporabi predvajalnik CDjev"
-#~ msgid "What theme should the CD player use for its appearance"
-#~ msgstr "Katero temo naj uporablja predvajalnik CD-jev"
-#~ msgid "What volume should the CD player use when it is started?"
-#~ msgstr "Kakšno glasnost naj uporablja predvajalnik CD-jev ob zagonu?"
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr "Ko se zažene predvajalnik CDjev, ali naj začne predvajati CD?"
-#~ msgid "Failed to eject CD: %s"
-#~ msgstr "Ni mogoče izvreči zgoščenke CD: %s"
-#~ msgid ""
-#~ "%s\n"
-#~ "This means that the CD player will not be able to run."
-#~ msgstr ""
-#~ "%s\n"
-#~ "To pomeni, da se Predvajalnik CDjev ne bo mogel pognati."
-#~ msgid "Error setting device"
-#~ msgstr "Napaka ob nastavljanju naprave"
-#~ msgid "CD Player Preferences"
-#~ msgstr "Nastavitve Predvajalnika CDjev"
-#~ msgid "_Device:"
-#~ msgstr "_Naprava:"
-#~ msgid "Behavior"
-#~ msgstr "Obnašanje"
-#~ msgid "Start _playback when CD Player starts"
-#~ msgstr "Ob zagonu _predvajalnika začni predvajati CD"
-#~ msgid "Start playback when CD Player starts"
-#~ msgstr "Ob zagonu predvajalnika začni predvajati CD"
-#~ msgid "Attempt to _eject CD when CD Player exits"
-#~ msgstr "Ob _izhodu iz predvajalnika poskusi izvreči CD"
-#~ msgid "Attempt to eject CD when CD Player exits"
-#~ msgstr "Ob izhodu iz predvajalnika poskusi izvreči CD"
-#~ msgid "Themes"
-#~ msgstr "Teme"
-#~ msgid "_Select a theme:"
-#~ msgstr "_Izberi temo:"
-
-#, fuzzy
-#~ msgid "GNOME Volume Control"
-#~ msgstr "Nadzor glasnosti"
-#~ msgid "Adjust the volume level"
-#~ msgstr "Prilagodi nivo glasnosti"
-#~ msgid "<b>Default Input</b>"
-#~ msgstr "<b>Privzeti vhod</b>"
-#~ msgid "<b>Default Output</b>"
-#~ msgstr "<b>Privzeti izhod</b>"
-#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-#~ msgstr "<span weight=\"bold\" size=\"x-large\">Preizkušanje ...</span>"
-#~ msgid "Audio"
-#~ msgstr "Avdio"
-#~ msgid "Click Ok to finish."
-#~ msgstr "Klikni \"V redu\" za zaključek."
-#~ msgid "D_evice:"
-#~ msgstr "_Naprava:"
-#~ msgid "P_ipeline:"
-#~ msgstr "_Cevovod:"
-#~ msgid "P_lugin:"
-#~ msgstr "_Vstavek:"
-#~ msgid "Pipeli_ne:"
-#~ msgstr "C_evovod:"
-#~ msgid "Te_st"
-#~ msgstr "_Preizkus"
-#~ msgid "Testing Pipeline"
-#~ msgstr "Preizkušanje cevovoda"
-#~ msgid "Video"
-#~ msgstr "Video"
-#~ msgid "_Plugin:"
-#~ msgstr "_Vstavek"
-#~ msgid "_Test"
-#~ msgstr "_Preizkus"
-#~ msgid ""
-#~ "Cannot connect to sound daemon.\n"
-#~ "Please run 'esd' at a command prompt."
-#~ msgstr ""
-#~ "Ni se mogoče povezati s strežnikom za zvok.\n"
-#~ "Prosim, zaženite 'esd' v ukazni vrstici."
-#~ msgid "Specify the X position of the meter."
-#~ msgstr "Določi X mesto metra."
-#~ msgid "X"
-#~ msgstr "X"
-#~ msgid "Specify the Y position of the meter."
-#~ msgstr "Določi Y mesto metra."
-#~ msgid "Y"
-#~ msgstr "Y"
-#~ msgid "Connect to the esd server on this host."
-#~ msgstr "Poveži se s strežnikom esd na tem gostitelju."
-#~ msgid "HOST"
-#~ msgstr "HOST"
-#~ msgid "Open a vertical version of the meter."
-#~ msgstr "Odpri navpično različico metra."
-#~ msgid "Act as recording level meter."
-#~ msgstr "Deluj kot merilec glasnosti snemanja."
-#~ msgid "Host is %s\n"
-#~ msgstr "Gostitelj je %s\n"
-#~ msgid "Recording level"
-#~ msgstr "Stopnja snemanja"
-#~ msgid "Volume Meter"
-#~ msgstr "Meter glasnosti"
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "Meri glasnost snemalnega vhoda"
-#~ msgid "Recording Level Monitor"
-#~ msgstr "Kazalec stopnje glasnosti snemanja"
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "Meri izhodno glasnost zvoka"
-#~ msgid "Volume Monitor"
-#~ msgstr "Kazalec glasnosti"
 #~ msgid "Capture"
 #~ msgstr "Zajem"
 #~ msgid "Switch"
