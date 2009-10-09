@@ -651,7 +651,7 @@ on_adjustment_value_changed (GtkAdjustment  *adjustment,
 
         stream = g_object_get_data (G_OBJECT (adjustment), "gvc-mixer-dialog-stream");
         if (stream != NULL) {
-        	GObject *bar;
+                GObject *bar;
                 gdouble volume, rounded;
                 char *name;
 
@@ -1940,22 +1940,38 @@ gvc_mixer_dialog_new (GvcMixerControl *control)
         return GVC_MIXER_DIALOG (dialog);
 }
 
+enum {
+        PAGE_EVENTS,
+        PAGE_HARDWARE,
+        PAGE_INPUT,
+        PAGE_OUTPUT,
+        PAGE_APPLICATIONS
+};
+
 gboolean
 gvc_mixer_dialog_set_page (GvcMixerDialog *self,
                            const char     *page)
 {
+        guint num;
+
         g_return_val_if_fail (self != NULL, FALSE);
 
-        if (g_ascii_strncasecmp(page, "playback",8) == 0)
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 2);
-        else if (g_ascii_strncasecmp(page, "recording",9) == 0)
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 1);
-        else if (g_ascii_strncasecmp(page, "effects",7) == 0)
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 0);
-        else if (g_ascii_strncasecmp(page, "applications",12) == 0)
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 3);
-        else /* default is "playback" */
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), 0);
+        if (page == NULL)
+                num = 0;
+        else if (g_str_equal (page, "effects"))
+                num = PAGE_EVENTS;
+        else if (g_str_equal (page, "hardware"))
+                num = PAGE_HARDWARE;
+        else if (g_str_equal (page, "input"))
+                num = PAGE_INPUT;
+        else if (g_str_equal (page, "output"))
+                num = PAGE_OUTPUT;
+        else if (g_str_equal (page, "applications"))
+                num = PAGE_APPLICATIONS;
+        else
+                num = 0;
+
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), num);
 
         return TRUE;
 }

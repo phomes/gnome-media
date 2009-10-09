@@ -98,8 +98,7 @@ on_control_ready (GvcMixerControl *control,
                           G_CALLBACK (on_dialog_close),
                           NULL);
 
-        if (page != NULL)
-                gvc_mixer_dialog_set_page(GVC_MIXER_DIALOG (dialog), page);
+        gvc_mixer_dialog_set_page(GVC_MIXER_DIALOG (dialog), page);
 
         g_signal_connect (app, "message-received",
                           G_CALLBACK (message_received_cb), dialog);
@@ -152,7 +151,7 @@ main (int argc, char **argv)
         GvcMixerControl    *control;
         UniqueApp          *app;
         static GOptionEntry entries[] = {
-                { "page", 'p', 0, G_OPTION_ARG_STRING, &page, N_("Startup page"), "playback|recording|effects|applications" },
+                { "page", 'p', 0, G_OPTION_ARG_STRING, &page, N_("Startup page"), "effects|hardware|input|output|applications" },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
