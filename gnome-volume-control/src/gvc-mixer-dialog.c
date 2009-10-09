@@ -162,6 +162,42 @@ update_default_input (GvcMixerDialog *dialog)
 }
 
 static void
+update_description (GvcMixerDialog *dialog,
+                    guint column,
+                    const char *value,
+                    GvcMixerStream *stream)
+{
+        GtkTreeModel *model;
+        GtkTreeIter   iter;
+        guint         id;
+
+        if (GVC_IS_MIXER_SOURCE (stream))
+                model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->input_treeview));
+        else if (GVC_IS_MIXER_SINK (stream))
+                model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
+        else
+                g_assert_not_reached ();
+        gtk_tree_model_get_iter_first (model, &iter);
+
+        id = gvc_mixer_stream_get_id (stream);
+        do {
+                guint       current_id;
+
+                gtk_tree_model_get (model, &iter,
+                                    ID_COLUMN, &current_id,
+                                    -1);
+                if (id != current_id)
+                        continue;
+
+                gtk_list_store_set (GTK_LIST_STORE (model),
+                                    &iter,
+                                    column, value,
+                                    -1);
+                break;
+        } while (gtk_tree_model_iter_next (model, &iter));
+}
+
+static void
 port_selection_changed (GvcComboBox *combo_box,
                         const char  *port,
                         GvcMixerDialog *dialog)
@@ -736,6 +772,16 @@ lookup_combo_box_for_stream (GvcMixerDialog *dialog,
 }
 
 static void
+on_stream_description_notify (GvcMixerStream *stream,
+                              GParamSpec     *pspec,
+                              GvcMixerDialog *dialog)
+{
+        update_description (dialog, NAME_COLUMN,
+                            gvc_mixer_stream_get_description (stream),
+                            stream);
+}
+
+static void
 on_stream_port_notify (GObject        *object,
                        GParamSpec     *pspec,
                        GvcMixerDialog *dialog)
@@ -1001,6 +1047,10 @@ add_stream (GvcMixerDialog *dialog,
                                     ACTIVE_COLUMN, is_default,
                                     ID_COLUMN, gvc_mixer_stream_get_id (stream),
                                     -1);
+                g_signal_connect (stream,
+                                  "notify::description",
+                                  G_CALLBACK (on_stream_description_notify),
+                                  dialog);
         } else if (GVC_IS_MIXER_SINK (stream)) {
                 GtkTreeModel  *model;
                 GtkTreeIter    iter;
@@ -1017,6 +1067,10 @@ add_stream (GvcMixerDialog *dialog,
                                     ID_COLUMN, gvc_mixer_stream_get_id (stream),
                                     SPEAKERS_COLUMN, gvc_channel_map_get_mapping (map),
                                     -1);
+                g_signal_connect (stream,
+                                  "notify::description",
+                                  G_CALLBACK (on_stream_description_notify),
+                                  dialog);
         }
 
         if (bar != NULL) {
