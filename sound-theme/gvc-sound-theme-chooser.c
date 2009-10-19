@@ -1078,14 +1078,14 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 
         chooser->priv = GVC_SOUND_THEME_CHOOSER_GET_PRIVATE (chooser);
 
-        chooser->priv->theme_box = gtk_hbox_new (FALSE, 6);
+        chooser->priv->theme_box = gtk_hbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (chooser),
                             chooser->priv->theme_box, FALSE, FALSE, 0);
 
         label = gtk_label_new_with_mnemonic (_("Sound _theme:"));
-        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), label, FALSE, FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), label, FALSE, FALSE, 0);
         chooser->priv->combo_box = gtk_combo_box_new ();
-        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), chooser->priv->combo_box, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (chooser->priv->theme_box), chooser->priv->combo_box, FALSE, FALSE, 6);
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), chooser->priv->combo_box);
 
         client = gconf_client_get_default ();
@@ -1098,11 +1098,14 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
         gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
 
-        gtk_box_pack_start (GTK_BOX (chooser), box, TRUE, TRUE, 6);
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (alignment), box);
+        gtk_box_pack_start (GTK_BOX (chooser), alignment, TRUE, TRUE, 6);
 
         alignment = gtk_alignment_new (0, 0, 1, 1);
-        gtk_container_add (GTK_CONTAINER (box), alignment);
         gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (box), alignment);
 
         chooser->priv->treeview = create_alert_treeview (chooser);
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), chooser->priv->treeview);

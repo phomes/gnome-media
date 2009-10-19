@@ -268,7 +268,7 @@ update_output_settings (GvcMixerDialog *dialog)
         }
         gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
                             dialog->priv->output_balance_bar,
-                            FALSE, FALSE, 12);
+                            FALSE, FALSE, 6);
         gtk_widget_show (dialog->priv->output_balance_bar);
 
         if (gvc_channel_map_can_fade (map)) {
@@ -280,7 +280,7 @@ update_output_settings (GvcMixerDialog *dialog)
                 }
                 gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
                                     dialog->priv->output_fade_bar,
-                                    FALSE, FALSE, 12);
+                                    FALSE, FALSE, 6);
                 gtk_widget_show (dialog->priv->output_fade_bar);
         }
 
@@ -293,7 +293,7 @@ update_output_settings (GvcMixerDialog *dialog)
                 }
                 gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
                                     dialog->priv->output_lfe_bar,
-                                    FALSE, FALSE, 12);
+                                    FALSE, FALSE, 6);
                 gtk_widget_show (dialog->priv->output_lfe_bar);
         }
 
@@ -312,7 +312,10 @@ update_output_settings (GvcMixerDialog *dialog)
 
                 gtk_box_pack_start (GTK_BOX (dialog->priv->output_settings_box),
                                     dialog->priv->output_port_combo,
-                                    TRUE, FALSE, 0);
+                                    TRUE, FALSE, 6);
+
+                gvc_combo_box_set_size_group (dialog->priv->output_port_combo, dialog->priv->size_group, FALSE);
+
                 gtk_widget_show (dialog->priv->output_port_combo);
         }
 
@@ -566,6 +569,7 @@ update_input_settings (GvcMixerDialog *dialog)
                 g_signal_connect (G_OBJECT (dialog->priv->input_port_combo), "changed",
                                   G_CALLBACK (port_selection_changed), dialog);
 
+                gvc_combo_box_set_size_group (dialog->priv->input_port_combo, dialog->priv->size_group, FALSE);
                 gtk_box_pack_start (GTK_BOX (dialog->priv->input_settings_box),
                                     dialog->priv->input_port_combo,
                                     TRUE, TRUE, 0);
@@ -1493,7 +1497,7 @@ on_card_selection_changed (GtkTreeSelection *selection,
 
         gtk_box_pack_start (GTK_BOX (dialog->priv->hw_settings_box),
                             dialog->priv->hw_profile_combo,
-                            FALSE, FALSE, 12);
+                            TRUE, TRUE, 6);
         gtk_widget_show (dialog->priv->hw_profile_combo);
 
         g_object_set_data (G_OBJECT (dialog->priv->hw_profile_combo), "card", card);
@@ -1630,13 +1634,17 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_dialog_add_button (GTK_DIALOG (self), "gtk-close", GTK_RESPONSE_OK);
 
         main_vbox = gtk_dialog_get_content_area (GTK_DIALOG (self));
+        gtk_box_set_spacing (GTK_BOX (main_vbox), 2);
 
         gtk_container_set_border_width (GTK_CONTAINER (self), 6);
 
         self->priv->output_stream_box = gtk_hbox_new (FALSE, 12);
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 12, 0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (alignment), self->priv->output_stream_box);
         gtk_box_pack_start (GTK_BOX (main_vbox),
-                            self->priv->output_stream_box,
-                            FALSE, FALSE, 12);
+                            alignment,
+                            FALSE, FALSE, 0);
         self->priv->output_bar = create_bar (self, self->priv->size_group, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->output_bar),
                                   _("_Output volume: "));
@@ -1647,7 +1655,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         self->priv->notebook = gtk_notebook_new ();
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             self->priv->notebook,
-                            TRUE, TRUE, 6);
+                            TRUE, TRUE, 0);
+        gtk_container_set_border_width (GTK_CONTAINER (self->priv->notebook), 5);
 
         /* Set up accels (borrowed from Empathy) */
         accel_group = gtk_accel_group_new ();
@@ -1679,7 +1688,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   _("_Alert volume: "));
         gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
-                            self->priv->effects_bar, FALSE, FALSE, 12);
+                            self->priv->effects_bar, FALSE, FALSE, 0);
 
         self->priv->sound_theme_chooser = gvc_sound_theme_chooser_new ();
         gtk_box_pack_start (GTK_BOX (self->priv->sound_effects_box),
@@ -1745,14 +1754,17 @@ gvc_mixer_dialog_constructor (GType                  type,
         gvc_channel_bar_set_high_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                             "audio-input-microphone-high");
         gtk_widget_set_sensitive (self->priv->input_bar, FALSE);
+        alignment = gtk_alignment_new (0, 0, 1, 1);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 6, 0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (alignment), self->priv->input_bar);
         gtk_box_pack_start (GTK_BOX (self->priv->input_box),
-                            self->priv->input_bar,
-                            FALSE, FALSE, 12);
+                            alignment,
+                            FALSE, FALSE, 0);
 
         box = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (self->priv->input_box),
                             box,
-                            FALSE, FALSE, 12);
+                            FALSE, FALSE, 6);
 
         sbox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box),
@@ -1772,7 +1784,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                  GVC_LEVEL_SCALE_LINEAR);
         gtk_box_pack_start (GTK_BOX (box),
                             self->priv->input_level_bar,
-                            TRUE, TRUE, 0);
+                            TRUE, TRUE, 6);
 
         ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box),
@@ -1851,8 +1863,8 @@ gvc_mixer_dialog_constructor (GType                  type,
         label = gtk_frame_get_label_widget (GTK_FRAME (box));
         _gtk_label_make_bold (GTK_LABEL (label));
         gtk_frame_set_shadow_type (GTK_FRAME (box), GTK_SHADOW_NONE);
-        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, TRUE, TRUE, 12);
-        self->priv->output_settings_box = gtk_vbox_new (FALSE, 12);
+        gtk_box_pack_start (GTK_BOX (self->priv->output_box), box, FALSE, FALSE, 12);
+        self->priv->output_settings_box = gtk_vbox_new (FALSE, 0);
         gtk_container_add (GTK_CONTAINER (box), self->priv->output_settings_box);
 
         /* Applications */

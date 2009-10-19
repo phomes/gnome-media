@@ -280,14 +280,14 @@ gvc_combo_box_init (GvcComboBox *combo_box)
                                        renderer,
                                        "text", COL_HUMAN_NAME);
 
-        gtk_widget_set_size_request (combo_box->priv->combobox, 128, -1);
+/*       gtk_widget_set_size_request (combo_box->priv->combobox, 128, -1); */
 
         combo_box->priv->start_box = sbox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), sbox, FALSE, FALSE, 0);
 
         gtk_box_pack_start (GTK_BOX (sbox), combo_box->priv->label, FALSE, FALSE, 0);
 
-        gtk_box_pack_start (GTK_BOX (box), combo_box->priv->combobox, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (box), combo_box->priv->combobox, FALSE, FALSE, 0);
 
         combo_box->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
