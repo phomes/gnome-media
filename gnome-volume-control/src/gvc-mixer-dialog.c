@@ -1773,7 +1773,6 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (box),
                             self->priv->input_level_bar,
                             TRUE, TRUE, 0);
-        gtk_widget_show (self->priv->input_level_bar);
 
         ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box),
@@ -1885,7 +1884,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                           G_CALLBACK (on_control_card_removed),
                           self);
 
-        gtk_widget_show_all (GTK_WIDGET (self));
+        gtk_widget_show_all (main_vbox);
 
         streams = gvc_mixer_control_get_streams (self->priv->mixer_control);
         for (l = streams; l != NULL; l = l->next) {
