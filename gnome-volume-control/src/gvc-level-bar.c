@@ -566,10 +566,10 @@ gvc_level_bar_expose (GtkWidget      *widget,
                 for (i = 0; i < NUM_BOXES; i++) {
                         by = i * bar->priv->layout.delta;
                         curved_rectangle (cr,
-                                          bar->priv->layout.area.x,
-                                          by,
-                                          bar->priv->layout.box_width,
-                                          bar->priv->layout.box_height,
+                                          bar->priv->layout.area.x + 0.5,
+                                          by + 0.5,
+                                          bar->priv->layout.box_width - 1,
+                                          bar->priv->layout.box_height - 1,
                                           bar->priv->layout.box_radius);
                         if ((bar->priv->layout.max_peak_num - 1) == i) {
                                 /* fill peak foreground */
@@ -601,10 +601,10 @@ gvc_level_bar_expose (GtkWidget      *widget,
                 for (i = 0; i < NUM_BOXES; i++) {
                         bx = i * bar->priv->layout.delta;
                         curved_rectangle (cr,
-                                          bx,
-                                          bar->priv->layout.area.y,
-                                          bar->priv->layout.box_width,
-                                          bar->priv->layout.box_height,
+                                          bx + 0.5,
+                                          bar->priv->layout.area.y + 0.5,
+                                          bar->priv->layout.box_width - 1,
+                                          bar->priv->layout.box_height - 1,
                                           bar->priv->layout.box_radius);
 
                         if ((bar->priv->layout.max_peak_num - 1) == i) {
