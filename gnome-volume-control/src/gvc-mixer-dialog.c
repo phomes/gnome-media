@@ -314,7 +314,7 @@ update_output_settings (GvcMixerDialog *dialog)
                                     dialog->priv->output_port_combo,
                                     TRUE, FALSE, 6);
 
-                gvc_combo_box_set_size_group (dialog->priv->output_port_combo, dialog->priv->size_group, FALSE);
+                gvc_combo_box_set_size_group (GVC_COMBO_BOX (dialog->priv->output_port_combo), dialog->priv->size_group, FALSE);
 
                 gtk_widget_show (dialog->priv->output_port_combo);
         }
@@ -569,7 +569,7 @@ update_input_settings (GvcMixerDialog *dialog)
                 g_signal_connect (G_OBJECT (dialog->priv->input_port_combo), "changed",
                                   G_CALLBACK (port_selection_changed), dialog);
 
-                gvc_combo_box_set_size_group (dialog->priv->input_port_combo, dialog->priv->size_group, FALSE);
+                gvc_combo_box_set_size_group (GVC_COMBO_BOX (dialog->priv->input_port_combo), dialog->priv->size_group, FALSE);
                 gtk_box_pack_start (GTK_BOX (dialog->priv->input_settings_box),
                                     dialog->priv->input_port_combo,
                                     TRUE, TRUE, 0);
