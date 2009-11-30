@@ -871,6 +871,8 @@ gsr_discard_confirmation_dialog (GSRWindow *window, gboolean closing)
 				GTK_RESPONSE_YES,
 				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 				GTK_STOCK_SAVE_AS, GTK_RESPONSE_NO, NULL);
+	gtk_dialog_set_default_response (GTK_DIALOG (confirmation_dialog),
+				GTK_RESPONSE_NO);
 
 	gtk_window_set_title (GTK_WINDOW (confirmation_dialog), "");
 
