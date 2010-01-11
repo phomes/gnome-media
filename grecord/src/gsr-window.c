@@ -2360,7 +2360,7 @@ gsr_window_init (GSRWindow *window)
 
 	atk_object_add_relationship (gtk_widget_get_accessible (GTK_WIDGET (priv->input)),
 				ATK_RELATION_LABELLED_BY,
-				gtk_widget_get_accessible (GTK_WIDGET (label)));
+				gtk_widget_get_accessible (GTK_WIDGET (priv->input_label)));
 
 	/* choose profile */
 	hbox = gtk_hbox_new (FALSE, 12);
