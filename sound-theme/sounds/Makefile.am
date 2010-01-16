@@ -20,7 +20,7 @@ CLEANFILES = gnome-sounds-default.xml gnome-sounds-default.xml.in
 EXTRA_DIST = $(sound_DATA) gnome-sounds-default.xml.in.in
 
 gnome-sounds-default.xml.in: gnome-sounds-default.xml.in.in Makefile
-	sed -e 's^\@datadir\@^$(datadir)^g' < $(srcdir)/gnome-sounds-default.xml.in.in > gnome-sounds-default.xml.in.tmp \
+	$(AM_V_GEN)sed -e 's^\@datadir\@^$(datadir)^g' < $(srcdir)/gnome-sounds-default.xml.in.in > gnome-sounds-default.xml.in.tmp \
 	&& mv gnome-sounds-default.xml.in.tmp gnome-sounds-default.xml.in
 
 MAINTAINERCLEANFILES = \
