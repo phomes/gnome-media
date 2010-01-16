@@ -73,12 +73,4 @@ $(top_srcdir)/.version:
 dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
 
-update-shave:
-	for i in shave.in shave.m4 shave-libtool.in; do \
-		wget -O $$i http://git.lespiau.name/cgit/shave/blob/\?path=shave/$$i ; \
-	done
-	mv shave.m4 m4/
-
-.PHONY: update-shave
-
 -include $(top_srcdir)/git.mk
