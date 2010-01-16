@@ -324,6 +324,8 @@ dnl ---------------------------------------------------------------------------
 dnl - Finish
 dnl ---------------------------------------------------------------------------
 
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
+
 # Turn on the additional warnings last, so warnings don't affect other tests.
 AC_ARG_ENABLE(more-warnings,
         [AC_HELP_STRING([--enable-more-warnings],
@@ -372,8 +374,6 @@ AC_SUBST(LDFLAGS)
 
 AC_CONFIG_FILES([
 Makefile
-shave
-shave-libtool
 po/Makefile.in
 sound-theme/Makefile
 sound-theme/sounds/Makefile
@@ -430,7 +430,6 @@ gst-mixer/gnome-volume-control.desktop.in
 gstreamer-properties/gstreamer-properties.desktop.in
 ])
 
-SHAVE_INIT
 AC_OUTPUT
 
 echo "

@@ -21,4 +21,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-. gnome-autogen.sh --enable-shave "$@"
+. gnome-autogen.sh "$@"
