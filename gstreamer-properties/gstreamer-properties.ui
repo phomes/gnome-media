@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
+  <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="gst_properties_dialog">
     <property name="visible">True</property>
@@ -886,9 +886,12 @@
               <object class="GtkLabel" id="test_pipeline_testing_label">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
-                <property name="label" translatable="yes">&lt;span weight="bold" size="x-large"&gt;Testing...&lt;/span&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="label" translatable="yes">Testing...</property>
                 <property name="justify">center</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="scale" value="1.2"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
