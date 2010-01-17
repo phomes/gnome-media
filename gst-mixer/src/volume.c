@@ -70,7 +70,11 @@ gnome_volume_control_volume_class_init (GnomeVolumeControlVolumeClass *klass)
 static void
 gnome_volume_control_volume_init (GnomeVolumeControlVolume *vol)
 {
+  #if GTK_CHECK_VERSION(2,18,0)
+  gtk_widget_set_has_window (GTK_WIDGET (vol), TRUE);
+  #else
   gtk_fixed_set_has_window (GTK_FIXED (vol), TRUE);
+  #endif
 
   vol->mixer = NULL;
   vol->track = NULL;
