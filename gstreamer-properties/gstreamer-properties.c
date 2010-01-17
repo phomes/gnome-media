@@ -45,8 +45,6 @@ static GtkDialog *main_window;
 static GConfClient *gconf_client; /* NULL */
 
 static gchar pipeline_editor_property[] = "gstp-editor";
-static gchar pipeline_desc_property[] = "gstp-pipe-desc";
-static gchar device_property[] = "gstp-device";
 
 static gchar *
 gst_properties_gconf_get_full_key (const gchar * key)
