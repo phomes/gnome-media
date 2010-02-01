@@ -37,6 +37,7 @@
 #define ADJUSTMENT_MAX_NORMAL 65536.0 /* PA_VOLUME_NORM */
 #define ADJUSTMENT_MAX_AMPLIFIED 98304.0 /* 1.5 * ADJUSTMENT_MAX_NORMAL */
 #define ADJUSTMENT_MAX (bar->priv->is_amplified ? ADJUSTMENT_MAX_AMPLIFIED : ADJUSTMENT_MAX_NORMAL)
+#define SCROLLSTEP (ADJUSTMENT_MAX / 100.0 * 5.0)
 
 #define GVC_CHANNEL_BAR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_CHANNEL_BAR, GvcChannelBarPrivate))
 
@@ -453,15 +454,15 @@ gvc_channel_bar_scroll (GvcChannelBar *bar, GdkScrollDirection direction)
         value = gtk_adjustment_get_value (adj);
 
         if (direction == GDK_SCROLL_UP) {
-                if (value + ADJUSTMENT_MAX/100.0 > ADJUSTMENT_MAX)
+                if (value + SCROLLSTEP > ADJUSTMENT_MAX)
                         value = ADJUSTMENT_MAX;
                 else
-                        value = value + ADJUSTMENT_MAX/100.0;
+                        value = value + SCROLLSTEP;
         } else if (direction == GDK_SCROLL_DOWN) {
-                if (value - ADJUSTMENT_MAX/100.0 < 0)
+                if (value - SCROLLSTEP < 0)
                         value = 0.0;
                 else
-                        value = value - ADJUSTMENT_MAX/100.0;
+                        value = value - SCROLLSTEP;
         }
 
         gvc_channel_bar_set_is_muted (bar, (value == 0.0));
