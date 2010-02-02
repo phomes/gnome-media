@@ -541,9 +541,11 @@ gvc_stream_status_icon_set_mixer_stream (GvcStreamStatusIcon *icon,
 
                 g_object_ref (icon->priv->mixer_stream);
 
+                icon->priv->thaw = TRUE;
                 adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (icon->priv->bar)));
                 gtk_adjustment_set_value (adj,
                                           gvc_mixer_stream_get_volume (icon->priv->mixer_stream));
+                icon->priv->thaw = FALSE;
 
                 g_signal_connect (icon->priv->mixer_stream,
                                   "notify::volume",
