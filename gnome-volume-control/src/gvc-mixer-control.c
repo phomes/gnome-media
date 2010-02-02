@@ -688,6 +688,7 @@ update_sink (GvcMixerControl    *control,
         gvc_mixer_stream_set_volume (stream, (guint)max_volume);
         gvc_mixer_stream_set_is_muted (stream, info->mute);
         gvc_mixer_stream_set_can_decibel (stream, !!(info->flags & PA_SINK_DECIBEL_VOLUME));
+        gvc_mixer_stream_set_base_volume (stream, (guint32) info->base_volume);
 #if PA_MICRO > 15
         if (info->active_port != NULL)
                 gvc_mixer_stream_set_port (stream, info->active_port->name);
