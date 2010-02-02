@@ -844,6 +844,9 @@ gvc_mixer_stream_finalize (GObject *object)
 
         g_return_if_fail (mixer_stream->priv != NULL);
 
+        g_object_unref (mixer_stream->priv->channel_map);
+        mixer_stream->priv->channel_map = NULL;
+
         g_free (mixer_stream->priv->name);
         mixer_stream->priv->name = NULL;
 
