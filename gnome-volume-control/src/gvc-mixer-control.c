@@ -474,6 +474,10 @@ _set_default_sink (GvcMixerControl *control,
         guint new_id;
 
         if (stream == NULL) {
+                /* Don't tell front-ends about an unset default
+                 * sink if it's already unset */
+                if (control->priv->default_sink_is_set == FALSE)
+                        return;
                 control->priv->default_sink_id = 0;
                 control->priv->default_sink_is_set = FALSE;
                 g_signal_emit (control,
