@@ -141,7 +141,7 @@ update_default_source (GvcApplet *applet)
                                                          stream);
                 maybe_show_status_icons(applet);
         } else {
-                g_warning ("Unable to get default source");
+                g_debug ("Unable to get default source, or no source available");
         }
 }
 

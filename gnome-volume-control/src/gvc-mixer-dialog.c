@@ -129,9 +129,14 @@ update_default_input (GvcMixerDialog *dialog)
 {
         GtkTreeModel *model;
         GtkTreeIter   iter;
+        gboolean      ret;
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->input_treeview));
-        gtk_tree_model_get_iter_first (model, &iter);
+        ret = gtk_tree_model_get_iter_first (model, &iter);
+        if (ret == FALSE) {
+                g_debug ("No default input selected or available");
+                return;
+        }
         do {
                 gboolean        toggled;
                 gboolean        is_default;
@@ -369,8 +374,11 @@ on_mixer_control_default_sink_changed (GvcMixerControl *control,
 
         g_debug ("GvcMixerDialog: default sink changed: %u", id);
 
-        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
-                                                     id);
+        if (id == PA_INVALID_INDEX)
+                stream = NULL;
+        else
+                stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control,
+                                                             id);
         bar_set_stream (dialog, dialog->priv->output_bar, stream);
 
         update_output_settings (dialog);
@@ -547,7 +555,7 @@ update_input_settings (GvcMixerDialog *dialog)
 
         stream = gvc_mixer_control_get_default_source (dialog->priv->mixer_control);
         if (stream == NULL) {
-                g_warning ("Default source stream not found");
+                g_debug ("Default source stream not found");
                 return;
         }
 
@@ -589,7 +597,10 @@ on_mixer_control_default_source_changed (GvcMixerControl *control,
 
         g_debug ("GvcMixerDialog: default source changed: %u", id);
 
-        stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control, id);
+        if (id == PA_INVALID_INDEX)
+                stream = NULL;
+        else
+                stream = gvc_mixer_control_lookup_stream_id (dialog->priv->mixer_control, id);
 
         /* Disconnect the adj, otherwise it might change if is_amplified changes */
         adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (dialog->priv->input_bar)));

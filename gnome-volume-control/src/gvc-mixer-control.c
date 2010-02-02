@@ -448,6 +448,10 @@ _set_default_source (GvcMixerControl *control,
         if (stream == NULL) {
                 control->priv->default_source_id = 0;
                 control->priv->default_source_is_set = FALSE;
+                g_signal_emit (control,
+                               signals[DEFAULT_SOURCE_CHANGED],
+                               0,
+                               PA_INVALID_INDEX);
                 return;
         }
 
@@ -472,6 +476,10 @@ _set_default_sink (GvcMixerControl *control,
         if (stream == NULL) {
                 control->priv->default_sink_id = 0;
                 control->priv->default_sink_is_set = FALSE;
+                g_signal_emit (control,
+                               signals[DEFAULT_SINK_CHANGED],
+                               0,
+                               PA_INVALID_INDEX);
                 return;
         }
 
@@ -480,7 +488,6 @@ _set_default_sink (GvcMixerControl *control,
         if (control->priv->default_sink_id != new_id) {
                 control->priv->default_sink_id = new_id;
                 control->priv->default_sink_is_set = TRUE;
-
                 g_signal_emit (control,
                                signals[DEFAULT_SINK_CHANGED],
                                0,
