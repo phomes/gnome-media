@@ -536,7 +536,38 @@ create_monitor_stream_for_source (GvcMixerDialog *dialog,
                 pa_stream_unref (s);
         } else {
                 g_object_set_data (G_OBJECT (stream), "has-monitor", GINT_TO_POINTER (TRUE));
+                g_object_set_data (G_OBJECT (dialog->priv->input_level_bar), "pa_stream", s);
+                g_object_set_data (G_OBJECT (dialog->priv->input_level_bar), "stream", stream);
         }
+}
+
+static void
+stop_monitor_stream_for_source (GvcMixerDialog *dialog)
+{
+        pa_stream      *s;
+        pa_context     *context;
+        int             res;
+        GvcMixerStream *stream;
+
+        s = g_object_get_data (G_OBJECT (dialog->priv->input_level_bar), "pa_stream");
+        if (s == NULL)
+                return;
+        stream = g_object_get_data (G_OBJECT (dialog->priv->input_level_bar), "stream");
+        g_assert (stream != NULL);
+
+        g_debug ("Stopping monitor for %u", pa_stream_get_index (s));
+
+        context = gvc_mixer_control_get_pa_context (dialog->priv->mixer_control);
+
+        if (pa_context_get_server_protocol_version (context) < 13) {
+                return;
+        }
+
+        res = pa_stream_disconnect (s);
+        if (res == 0)
+                g_object_set_data (G_OBJECT (stream), "has-monitor", GINT_TO_POINTER (FALSE));
+        g_object_set_data (G_OBJECT (dialog->priv->input_level_bar), "pa_stream", NULL);
+        g_object_set_data (G_OBJECT (dialog->priv->input_level_bar), "stream", NULL);
 }
 
 static void
@@ -546,6 +577,8 @@ update_input_settings (GvcMixerDialog *dialog)
         GvcMixerStream *stream;
 
         g_debug ("Updating input settings");
+
+        stop_monitor_stream_for_source (dialog);
 
         if (dialog->priv->input_port_combo != NULL) {
                 gtk_container_remove (GTK_CONTAINER (dialog->priv->input_settings_box),
