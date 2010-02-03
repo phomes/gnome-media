@@ -412,14 +412,9 @@ on_scale_button_release_event (GtkWidget      *widget,
 
         value = gtk_adjustment_get_value (adj);
 
-        if (bar->priv->show_mute == FALSE) {
-                /* this means the adjustment moved away from zero and
-                 * therefore we should unmute and set the volume. */
-                if (value > 0)
-                        gvc_channel_bar_set_is_muted (bar, FALSE);
-                else
-                        gvc_channel_bar_set_is_muted (bar, TRUE);
-        }
+        /* this means the adjustment moved away from zero and
+         * therefore we should unmute and set the volume. */
+        gvc_channel_bar_set_is_muted (bar, (value == 0.0));
 
         /* Play a sound! */
         ca_gtk_play_for_widget (GTK_WIDGET (bar), 0,
