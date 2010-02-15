@@ -45,6 +45,7 @@ libgnomevolumecontrol_la_SOURCES =		\
 	$(NULL)
 
 gnome_volume_control_applet_LDADD =		\
+	-lm					\
 	libgnomevolumecontrol.la		\
 	$(VOLUME_CONTROL_LIBS)			\
 	$(PULSEAUDIO_LIBS)			\
@@ -57,6 +58,7 @@ gnome_volume_control_applet_SOURCES =		\
 	$(NULL)
 
 gnome_volume_control_LDADD =				\
+	-lm						\
 	libgnomevolumecontrol.la			\
 	$(top_builddir)/sound-theme/libsoundtheme.la	\
 	$(VOLUME_CONTROL_LIBS)				\
