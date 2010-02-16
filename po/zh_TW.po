@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media 2.27.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-29 21:52+0800\n"
-"PO-Revision-Date: 2009-08-29 14:49+0800\n"
+"POT-Creation-Date: 2010-02-16 09:54+0800\n"
+"PO-Revision-Date: 2010-02-15 14:58+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -39,12 +39,12 @@ msgid "Sound"
 msgstr "聲音"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:156
+#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:157
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "這個程式的版本"
 
@@ -52,25 +52,25 @@ msgstr "這個程式的版本"
 msgid " - GNOME Volume Control Applet"
 msgstr " - GNOME 音量控制面板程式"
 
-#: ../gnome-volume-control/src/dialog-main.c:125
+#: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
 msgstr "正在等候音效系統回應"
 
-#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "啟始頁面"
 
-#: ../gnome-volume-control/src/dialog-main.c:169
+#: ../gnome-volume-control/src/dialog-main.c:168
 msgid " - GNOME Volume Control"
 msgstr " - GNOME 音量控制"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "輸出"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "輸入"
 
@@ -84,16 +84,16 @@ msgctxt "balance"
 msgid "Right"
 msgstr "右"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
-msgctxt "balance"
-msgid "Front"
-msgstr "前"
-
 # Hard to distinguish this with Oldies -- Abel
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
 msgctxt "balance"
 msgid "Rear"
 msgstr "後"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Front"
+msgstr "前"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:116
 msgctxt "balance"
@@ -117,28 +117,29 @@ msgstr "淡化(_F):"
 msgid "_Subwoofer:"
 msgstr "重低音(_S):"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:584
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "未經放大"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:844
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "靜音"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
 msgid "_Profile:"
 msgstr "設定組合(_P):"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -146,7 +147,7 @@ msgstr "已停用"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -155,86 +156,86 @@ msgstr[1] "%u 輸出"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u 輸入"
 msgstr[1] "%u 輸入"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
 msgid "System Sounds"
 msgstr "系統音效"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
 msgid "Co_nnector:"
 msgstr "連接器(_N):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
 msgid "Peak detect"
 msgstr "峰值檢測"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "名稱"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
 msgid "Device"
 msgstr "裝置"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
 msgid "_Output volume: "
 msgstr "輸出音量(_O):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "聲音效果"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "_Alert volume: "
 msgstr "警示音量(_A):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
 msgid "Hardware"
 msgstr "硬體"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
 msgid "C_hoose a device to configure:"
 msgstr "選擇要設定的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "已選取裝置的設定值："
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "_Input volume: "
 msgstr "輸入音量(_I):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
 msgid "Input level:"
 msgstr "輸入等級:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
 msgid "C_hoose a device for sound input:"
 msgstr "選擇聲音輸入的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
 msgid "C_hoose a device for sound output:"
 msgstr "選擇聲音輸出的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "應用程式"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "沒有應用程式目前正在播放或錄製音效。"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -265,7 +266,7 @@ msgid "Record sound clips"
 msgstr "錄音"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1236
+#: ../grecord/src/gsr-window.c:1238
 msgid "Sound Recorder"
 msgstr "錄音程式"
 
@@ -273,12 +274,12 @@ msgstr "錄音程式"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
-#: ../grecord/src/gsr-window.c:2688
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2690
 msgid "Untitled"
 msgstr "未命名"
 
-#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
 #, c-format
 msgid "Untitled-%d"
 msgstr "未命名-%d"
@@ -360,8 +361,8 @@ msgstr ""
 "無法載入檔案：\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
-#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
+#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
 msgid "Ready"
 msgstr "準備就緒"
 
@@ -414,100 +415,100 @@ msgstr "關閉但不儲存(_W)"
 msgid "Continue _without Saving"
 msgstr "繼續但不儲存(_W)"
 
-#: ../grecord/src/gsr-window.c:878
+#: ../grecord/src/gsr-window.c:880
 msgid "Question"
 msgstr "問題"
 
-#: ../grecord/src/gsr-window.c:985
+#: ../grecord/src/gsr-window.c:987
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (仍未儲存)"
 
-#: ../grecord/src/gsr-window.c:1001
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu 位元組)"
 msgstr[1] "%s (%llu 位元組)"
 
-#: ../grecord/src/gsr-window.c:1005
+#: ../grecord/src/gsr-window.c:1007
 msgid "Unknown size"
 msgstr "大小不詳"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
-#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
-#: ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:303
+#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1408
+#: ../gstreamer-properties/gstreamer-properties.c:301
 msgid "Unknown"
 msgstr "不明"
 
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1028
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1034
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s"
 msgstr "每秒 %.0f kb"
 
-#: ../grecord/src/gsr-window.c:1037
+#: ../grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "每秒 %.0f kb（預計）"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1054
 msgid "1 (mono)"
 msgstr "1（單聲道）"
 
-#: ../grecord/src/gsr-window.c:1055
+#: ../grecord/src/gsr-window.c:1057
 msgid "2 (stereo)"
 msgstr "2（立體聲）"
 
-#: ../grecord/src/gsr-window.c:1082
+#: ../grecord/src/gsr-window.c:1084
 #, c-format
 msgid "%s Information"
 msgstr "%s 資訊"
 
-#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
 msgid "File Information"
 msgstr "檔案資訊"
 
-#: ../grecord/src/gsr-window.c:1121
+#: ../grecord/src/gsr-window.c:1123
 msgid "Folder:"
 msgstr "資料夾："
 
-#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
 msgid "Filename:"
 msgstr "檔案名稱："
 
-#: ../grecord/src/gsr-window.c:1133
+#: ../grecord/src/gsr-window.c:1135
 msgid "File size:"
 msgstr "檔案大小："
 
-#: ../grecord/src/gsr-window.c:1142
+#: ../grecord/src/gsr-window.c:1144
 msgid "Audio Information"
 msgstr "音效資訊"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1159
 msgid "File duration:"
 msgstr "檔案長度："
 
-#: ../grecord/src/gsr-window.c:1163
+#: ../grecord/src/gsr-window.c:1165
 msgid "Number of channels:"
 msgstr "聲道數目："
 
-#: ../grecord/src/gsr-window.c:1169
+#: ../grecord/src/gsr-window.c:1171
 msgid "Sample rate:"
 msgstr "取樣率："
 
 # No good translation of bit rate can be found. -- Abel
-#: ../grecord/src/gsr-window.c:1175
+#: ../grecord/src/gsr-window.c:1177
 msgid "Bit rate:"
 msgstr "位元率："
 
-#: ../grecord/src/gsr-window.c:1239
+#: ../grecord/src/gsr-window.c:1241
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -515,169 +516,169 @@ msgstr ""
 "適用於 GNOME 的錄音程式\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1510
+#: ../grecord/src/gsr-window.c:1512
 msgid "Playing..."
 msgstr "播放中..."
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
 msgstr "GConf 音效輸出"
 
-#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "播放"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:1732
 msgid "Recording..."
 msgstr "錄音中..."
 
-#: ../grecord/src/gsr-window.c:1820
+#: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
 msgstr "GConf 錄音"
 
-#: ../grecord/src/gsr-window.c:1829
+#: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
 "您的音效擷取設定不正確。請在系統-偏好設定選單中的「音效偏好設定」更正。"
 
-#: ../grecord/src/gsr-window.c:2001
+#: ../grecord/src/gsr-window.c:2003
 msgid "file output"
 msgstr "檔案輸出"
 
-#: ../grecord/src/gsr-window.c:2019
+#: ../grecord/src/gsr-window.c:2021
 msgid "level"
 msgstr "等級"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "無法分析音效設定組合‘%s’。"
 
-#: ../grecord/src/gsr-window.c:2060
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "音效設定組合‘%s’無法進行擷取。"
 
-#: ../grecord/src/gsr-window.c:2069
+#: ../grecord/src/gsr-window.c:2071
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "無法使用音效設定組合‘%s’來寫入檔案。"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2125
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2127
 msgid "Create a new sample"
 msgstr "製作新的音效樣本"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2129
 msgid "Open a file"
 msgstr "開啟檔案"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file"
 msgstr "儲存目前的檔案"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file with a different name"
 msgstr "以另一個名稱儲存目前的檔案"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2134
 msgid "Open Volu_me Control"
 msgstr "開啟音量控制(_M)"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2135
 msgid "Open the audio mixer"
 msgstr "開啟混音程式"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2137
 msgid "Show information about the current file"
 msgstr "顯示有關目前檔案的資訊"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2139
 msgid "Close the current file"
 msgstr "關閉目前的檔案"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2141
 msgid "Quit the program"
 msgstr "結束程式"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2144
 msgid "_Control"
 msgstr "控制(_C)"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2146
 msgid "Record sound"
 msgstr "錄音"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2148
 msgid "Play sound"
 msgstr "播放音效"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2150
 msgid "Stop sound"
 msgstr "停止播放"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2151
+#: ../grecord/src/gsr-window.c:2153
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: ../grecord/src/gsr-window.c:2152
+#: ../grecord/src/gsr-window.c:2154
 msgid "Contents"
 msgstr "內容"
 
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2155
 msgid "Open the manual"
 msgstr "開啟說明文件"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2157
 msgid "About this application"
 msgstr "關於此程式"
 
-#: ../grecord/src/gsr-window.c:2277
+#: ../grecord/src/gsr-window.c:2279
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr "無法載入 ui.xml。程式可能未完全安裝。"
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2302
 msgid "Open"
 msgstr "開啟"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save"
 msgstr "儲存"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2306
 msgid "Save As"
 msgstr "另存檔案"
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2362
 msgid "Record from _input:"
 msgstr "從輸入源錄音(_I):"
 
-#: ../grecord/src/gsr-window.c:2378
+#: ../grecord/src/gsr-window.c:2380
 msgid "_Record as:"
 msgstr "錄音為(_R):"
 
-#: ../grecord/src/gsr-window.c:2425
+#: ../grecord/src/gsr-window.c:2427
 msgid "<none>"
 msgstr "<無>"
 
-#: ../grecord/src/gsr-window.c:2439
+#: ../grecord/src/gsr-window.c:2441
 msgid "Length:"
 msgstr "長度："
 
-#: ../grecord/src/gsr-window.c:2477
+#: ../grecord/src/gsr-window.c:2479
 msgid "Level:"
 msgstr "等級:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2572
+#: ../grecord/src/gsr-window.c:2574
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - 錄音程式"
@@ -765,60 +766,60 @@ msgstr "歌由 %s：錄音"
 msgid "%s Option Selection"
 msgstr "%s 選項"
 
-#: ../gst-mixer/src/volume.c:108
+#: ../gst-mixer/src/volume.c:112
 #, c-format
 msgid "Track %s"
 msgstr "聲道 %s"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:115
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "%2$s 聲道的第 %1$d 個頻道"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:118
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "聲道 %s，頻道 %d"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:138
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "將 %s 的頻道鎖定"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:156
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "聲道 %s：將頻道鎖定"
 
-#: ../gst-mixer/src/volume.c:197
+#: ../gst-mixer/src/volume.c:201
 msgid "mono"
 msgstr "單聲道"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "left"
 msgstr "左"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "right"
 msgstr "右"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "front left"
 msgstr "前左"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front right"
 msgstr "前右"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:208
 msgid "rear left"
 msgstr "後左"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:209
 msgid "rear right"
 msgstr "後右"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:210
 msgid "front center"
 msgstr "前中"
 
@@ -826,25 +827,25 @@ msgstr "前中"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:216
 msgid "side left"
 msgstr "左邊"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:217
 msgid "side right"
 msgstr "右邊"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:218
 msgid "unknown"
 msgstr "不明"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:220
+#: ../gst-mixer/src/volume.c:224
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "在%2$s上%1$s頻道的音量"
@@ -880,27 +881,27 @@ msgstr "裝置(_V):"
 msgid "Control volume on a different device"
 msgstr "在不同裝置上控制音量"
 
-#: ../gstreamer-properties/gstreamer-properties.c:206
+#: ../gstreamer-properties/gstreamer-properties.c:204
 msgid "None"
 msgstr "沒有"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:248
+#: ../gstreamer-properties/gstreamer-properties.c:246
 msgid "Unsupported"
 msgstr "不支援"
 
-#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../gstreamer-properties/gstreamer-properties.c:268
 #: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "預設值"
 
-#: ../gstreamer-properties/gstreamer-properties.c:627
+#: ../gstreamer-properties/gstreamer-properties.c:625
 msgid "Failure instantiating main window"
 msgstr "開啟主視窗出現錯誤"
 
-#: ../gstreamer-properties/gstreamer-properties.c:680
+#: ../gstreamer-properties/gstreamer-properties.c:678
 msgid "Failed to load UI file; please check your installation."
 msgstr "無法載入 UI 檔案；請檢查安裝是否正確。"
 
@@ -909,8 +910,70 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "修改 GStreamer 應用程式的預設設定"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.ui.h:6
 msgid "Multimedia Systems Selector"
 msgstr "多媒體系統選擇器"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:1
+msgid "Audio"
+msgstr "音訊"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:2
+msgid "Click Ok to finish."
+msgstr "請按確定來結束。"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:3
+msgid "D_evice:"
+msgstr "裝置(_E):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:4
+msgid "Default Input"
+msgstr "預設輸入"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:5
+msgid "Default Output"
+msgstr "預設輸出"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:7
+msgid "P_ipeline:"
+msgstr "管線(_I):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:8
+msgid "P_lugin:"
+msgstr "外掛程式(_L):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:9
+msgid "Pipeli_ne:"
+msgstr "管線(_N):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:10
+msgid "Te_st"
+msgstr "測試(_S)"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:11
+msgid "Testing Pipeline"
+msgstr "正在測試管線"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:12
+msgid "Testing..."
+msgstr "測試中..."
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:13
+msgid "Video"
+msgstr "視訊"
+
+# (Abel) prevent conflicting mnemonic key usage below
+#: ../gstreamer-properties/gstreamer-properties.ui.h:14
+msgid "_Device:"
+msgstr "裝置(_D):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:15
+msgid "_Plugin:"
+msgstr "外掛程式(_P):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:16
+msgid "_Test"
+msgstr "測試(_T)"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:86
@@ -1003,12 +1066,12 @@ msgstr "Video for Linux 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "無法產生‘%s’的管線測試"
 
-#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
+#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:529
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "顯示說明文件時出現錯誤：%s"
 
-#: ../profiles/audio-profile-edit.c:335
+#: ../profiles/audio-profile-edit.c:341
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "編輯設定組合“%s”"
@@ -1038,46 +1101,46 @@ msgstr "訂閱音效設定組合清單已改變的通知時發生錯誤。(%s)\n
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "捨棄設定組合路徑 %s 時發生錯誤。(%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:78
 msgid "_Edit"
 msgstr "編輯(_E)"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:456
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "刪除這個設定組合？\n"
 msgstr[1] "刪除這 %d 個設定組合？\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:475
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "刪除設定組合“%s”?"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:497
 msgid "Delete Profile"
 msgstr "刪除設定組合"
 
-#: ../profiles/audio-profiles-edit.c:599
+#: ../profiles/audio-profiles-edit.c:590
 msgid "Edit GNOME Audio Profiles"
 msgstr "編輯 GNOME 音效設定組合"
 
-#: ../profiles/audio-profiles-edit.c:648
+#: ../profiles/audio-profiles-edit.c:639
 msgid "_Profiles:"
 msgstr "設定組合(_P):"
 
-#: ../profiles/audio-profiles-edit.c:832
+#: ../profiles/audio-profiles-edit.c:823
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "您已經有一個設定組合稱為“%s”"
 
-#: ../profiles/audio-profiles-edit.c:857
+#: ../profiles/audio-profiles-edit.c:848
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf 錯誤(FIXME):%s\n"
 
-#: ../profiles/gmp-util.c:68
+#: ../profiles/gmp-util.c:61
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
@@ -1093,39 +1156,40 @@ msgstr ""
 "%s\n"
 "執行「%s --help」可列出命令列中可用的完整選項。\n"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:1
+#: ../profiles/gnome-audio-profile-edit.ui.h:1
 msgid "Edit Audio Profile"
 msgstr "編輯音效設定組合"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
-msgid "New Profile"
-msgstr "新增設定組合"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:3
+#: ../profiles/gnome-audio-profile-edit.ui.h:2
 msgid "Profile _description:"
 msgstr "設定組合描述(_D):"
 
 # (Abel) The question mark shouldn't be there, it is a checkbox
 # indicating whether an audio profile is active or not
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profile-edit.ui.h:3
 msgid "_Active?"
 msgstr "啟用(_A)"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "_Create"
-msgstr "新增(_C)"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:6
+#: ../profiles/gnome-audio-profile-edit.ui.h:4
 msgid "_File extension:"
 msgstr "檔案延伸(_F):"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:7
+#: ../profiles/gnome-audio-profile-edit.ui.h:5
 msgid "_GStreamer pipeline:"
 msgstr "_GStreamer 管線："
 
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profile-edit.ui.h:6
+#: ../profiles/gnome-audio-profile-new.ui.h:3
 msgid "_Profile name:"
 msgstr "設定組合名稱(_P):"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:1
+msgid "New Profile"
+msgstr "新增設定組合"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:2
+msgid "_Create"
+msgstr "新增(_C)"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
@@ -1230,9 +1294,9 @@ msgid ""
 "codec. Note that using this format may be illegal in your jurisdiction; "
 "contact your lawyer for advice."
 msgstr ""
-"用來轉換為 CD 品質的音效，但使用破壞性的 MP2 編碼解碼器。適用於準備複製檔案到"
-"僅支援 MP2 編碼解碼器的裝置。注意！使用此格式在您處於的司法管轄領域內可能是違"
-"法的；請聯絡律師詢問意見。"
+"用來轉換 CD 品質的音效，但使用破壞性的 MP2 編碼解碼器。適用於準備複製檔案到僅"
+"支援 MP2 編碼解碼器的裝置。注意！使用此格式在您處於的司法管轄領域內可能是違法"
+"的；請聯絡律師詢問意見。"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
 msgid ""
@@ -1306,7 +1370,7 @@ msgstr "音效主題(_T):"
 msgid "C_hoose an alert sound:"
 msgstr "選擇警示音效(_H):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+#: ../sound-theme/gvc-sound-theme-chooser.c:1124
 msgid "Enable _window and button sounds"
 msgstr "啟用視窗與按鈕音效(_W)"
 
