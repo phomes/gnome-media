@@ -191,7 +191,7 @@ show_missing_known_element_error (GtkWindow *win, gchar *description,
 {
 	show_error_dialog (win, NULL,
             _("Could not create the GStreamer %s element.\n"
-	      "Please install the '%s' plug-in from the '%s' module.\n"
+	      "Please install the '%s' plugin from the '%s' module.\n"
 	      "Verify that the installation is correct by running\n"
               "    gst-inspect-0.10 %s\n"
 	      "and then restart gnome-sound-recorder."),
@@ -207,7 +207,7 @@ show_profile_error (GtkWindow *win, gchar *debug, gchar *description,
 	first = g_strdup_printf (description, profile);
 	show_error_dialog (win, debug, "%s%s", first,
 		  _("Please verify its settings.\n"
-		    "You may be missing the necessary plug-ins."));
+		    "You may be missing the necessary plugins."));
 	g_free (first);
 }
 /* Why do we need this? when a bin changes from READY => NULL state, its
@@ -1830,7 +1830,7 @@ make_record_source (GSRWindow *window)
 		show_error_dialog (NULL, NULL,
 			_("Your audio capture settings are invalid. "
 			  "Please correct them with the \"Sound Preferences\" "
-			  "under the System-Preferences menu."));
+			  "under the System Preferences menu."));
 		return FALSE;
 	}
 	window->priv->source = source;
@@ -2276,7 +2276,7 @@ gsr_window_init (GSRWindow *window)
 	if (error != NULL)
 	{
 		show_error_dialog (GTK_WINDOW (window), error->message,
-			_("Could not load ui.xml. The program may be not properly installed"));
+			_("Could not load UI file. The program may not be properly installed."));
 		g_error_free (error);
 		exit (1);
 	}

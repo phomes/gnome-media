@@ -336,7 +336,7 @@ gnome_volume_control_track_put_switch (GtkTable *table,
   }
 
   /* mute button */
-  msg = g_strdup_printf (_("Mute/unmute %s"), ctrl->track->label);
+  msg = g_strdup_printf (_("Mute/Unmute %s"), ctrl->track->label);
   button = gnome_volume_control_button_new ("audio-volume-high",
 					    "audio-volume-muted",
 					     msg);
