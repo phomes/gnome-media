@@ -51,30 +51,30 @@ extern GSTPPipelineDescription videosrc_pipelines[];
 GSTPPipelineDescription audiosink_pipelines[] = {
   {PIPE_TYPE_AUDIOSINK, 0, N_("Autodetect"), "autoaudiosink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-  {PIPE_TYPE_AUDIOSINK, 0, N_("ALSA - Advanced Linux Sound Architecture"),
+  {PIPE_TYPE_AUDIOSINK, 0, N_("ALSA — Advanced Linux Sound Architecture"),
       "alsasink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #if 0
   {PIPE_TYPE_AUDIOSINK, 0,
-        "ALSA - Advanced Linux Sound Architecture (Default Device)",
+        "ALSA — Advanced Linux Sound Architecture (Default Device)",
       "alsasink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
   {PIPE_TYPE_AUDIOSINK, 0,
-        "ALSA - Advanced Linux Sound Architecture (Sound Card #1 Direct)",
+        "ALSA — Advanced Linux Sound Architecture (Sound Card #1 Direct)",
         "alsasink device=hw:0", NULL, FALSE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, FALSE},
   {PIPE_TYPE_AUDIOSINK, 0,
-        "ALSA - Advanced Linux Sound Architecture (Sound Card #1 DMix)",
+        "ALSA — Advanced Linux Sound Architecture (Sound Card #1 DMix)",
         "alsasink device=dmix:0", NULL, FALSE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSINK, 0, N_("Artsd - ART Sound Daemon"),
+  {PIPE_TYPE_AUDIOSINK, 0, N_("Artsd — ART Sound Daemon"),
       "artsdsink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
-  {PIPE_TYPE_AUDIOSINK, 0, N_("ESD - Enlightenment Sound Daemon"),
+  {PIPE_TYPE_AUDIOSINK, 0, N_("ESD — Enlightenment Sound Daemon"),
       "esdsink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #if 0                           /* Disabled this until it works */
   {PIPE_TYPE_AUDIOSINK, 0, "Jack", "jackbin.( jacksink )", NULL, FALSE,
       TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System"),
+  {PIPE_TYPE_AUDIOSINK, 0, N_("OSS — Open Sound System"),
       "osssink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
   {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System Version 4"),
       "oss4sink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
@@ -93,9 +93,9 @@ GSTPPipelineDescription videosink_pipelines[] = {
   /*
    * aasink is disabled because it is not a serious alternative.
    */
-  {PIPE_TYPE_VIDEOSINK, 0, "Ascii Art - X11", "aasink driver=0", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSINK, 0, "Ascii Art — X11", "aasink driver=0", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, "Ascii Art - console", "aasink driver=1", NULL, FALSE,
+  {PIPE_TYPE_VIDEOSINK, 0, "Ascii Art — console", "aasink driver=1", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
 #endif
 #if 0
@@ -107,7 +107,7 @@ GSTPPipelineDescription videosink_pipelines[] = {
 #endif
   {PIPE_TYPE_VIDEOSINK, 0, N_("OpenGL"), "glimagesink", NULL, FALSE,
       TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
-  {PIPE_TYPE_VIDEOSINK, 0, N_("SDL - Simple DirectMedia Layer"), "sdlvideosink",
+  {PIPE_TYPE_VIDEOSINK, 0, N_("SDL — Simple DirectMedia Layer"), "sdlvideosink",
       NULL, FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
   {PIPE_TYPE_VIDEOSINK, 0, N_("X Window System (No Xv)"),
       "ximagesink", NULL, FALSE, TEST_PIPE_SUPPLIED, videosink_test_pipe, FALSE},
@@ -118,16 +118,16 @@ GSTPPipelineDescription videosink_pipelines[] = {
 };
 
 GSTPPipelineDescription audiosrc_pipelines[] = {
-  {PIPE_TYPE_AUDIOSRC, 0, N_("ALSA - Advanced Linux Sound Architecture"),
+  {PIPE_TYPE_AUDIOSRC, 0, N_("ALSA — Advanced Linux Sound Architecture"),
       "alsasrc", NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
-  {PIPE_TYPE_AUDIOSRC, 0, N_("ESD - Enlightenment Sound Daemon"), "esdmon",
+  {PIPE_TYPE_AUDIOSRC, 0, N_("ESD — Enlightenment Sound Daemon"), "esdmon",
       NULL, FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
 #if 0                           /* Disabled this until it works */
   {PIPE_TYPE_AUDIOSRC, 0, "Jack", "jackbin{ jacksrc }", NULL, FALSE,
         TEST_PIPE_AUDIOSINK,
       NULL, FALSE},
 #endif
-  {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System"), "osssrc", NULL, FALSE,
+  {PIPE_TYPE_AUDIOSRC, 0, N_("OSS — Open Sound System"), "osssrc", NULL, FALSE,
       TEST_PIPE_AUDIOSINK, NULL, FALSE},
   {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System Version 4"), "oss4src", NULL, FALSE,
       TEST_PIPE_AUDIOSINK, NULL, FALSE},

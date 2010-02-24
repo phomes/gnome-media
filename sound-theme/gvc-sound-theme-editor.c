@@ -897,7 +897,7 @@ fill_custom_model (GtkListStore *store,
                                            1, SOUND_OFF,
                                            -1);
         gtk_list_store_insert_with_values (store, &iter, G_MAXINT,
-                                           0, _("Custom..."),
+                                           0, _("Custom…"),
                                            1, SOUND_CUSTOM, -1);
 }
 

@@ -1509,7 +1509,7 @@ play_state_changed_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 				   window->priv->status_message_cid);
 		gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
 				    window->priv->status_message_cid,
-				    _("Playing..."));
+				    _("Playing…"));
 
 		if (window->priv->ebusy_timeout_id) {
 			g_source_remove (window->priv->ebusy_timeout_id);
@@ -1729,7 +1729,7 @@ record_start (gpointer user_data)
 			   window->priv->status_message_cid);
 	gtk_statusbar_push (GTK_STATUSBAR (window->priv->statusbar),
 			    window->priv->status_message_cid,
-			    _("Recording..."));
+			    _("Recording…"));
 
 	window->priv->record_id = 0;
 
@@ -2571,7 +2571,7 @@ gsr_window_set_property (GObject      *object,
 		gsr_add_recent (priv->filename);
 
 		/*Translators: this is the window title, %s is the currently open file's name or Untitled*/
-		title = g_strdup_printf (_("%s - Sound Recorder"), utf8_name);
+		title = g_strdup_printf (_("%s — Sound Recorder"), utf8_name);
 		gtk_window_set_title (GTK_WINDOW (window), title);
 		g_free (title);
 		g_free (utf8_name);
