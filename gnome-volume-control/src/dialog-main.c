@@ -165,7 +165,7 @@ main (int argc, char **argv)
 
         error = NULL;
         gtk_init_with_args (&argc, &argv,
-                            (char *) _(" - GNOME Volume Control"),
+                            (char *) _(" — GNOME Volume Control"),
                             entries, GETTEXT_PACKAGE,
                             &error);
         if (error != NULL) {

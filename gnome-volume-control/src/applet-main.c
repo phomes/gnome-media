@@ -59,7 +59,7 @@ main (int argc, char **argv)
 
         error = NULL;
         gtk_init_with_args (&argc, &argv,
-                            (char *) _(" - GNOME Volume Control Applet"),
+                            (char *) _(" — GNOME Volume Control Applet"),
                             entries, GETTEXT_PACKAGE,
                             &error);
 
