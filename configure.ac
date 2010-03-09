@@ -155,7 +155,7 @@ AM_CONDITIONAL(HAVE_GMP, [test x$have_profiles = xyes])
 dnl Profiles glade ui: needed to edit .ui files with glade3
 have_gladeui=no
 
-PKG_CHECK_MODULES(GLADEUI, [gladeui-1.0], have_gladeui=yes)
+PKG_CHECK_MODULES(GLADEUI, [gladeui-1.0], have_gladeui=yes, have_gladeui=no)
 AC_SUBST(GLADEUI_CFLAGS)
 AC_SUBST(GLADEUI_LIBS)
 AM_CONDITIONAL(HAVE_GLADEUI, [test x$have_gladeui = xyes])
