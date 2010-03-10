@@ -1197,7 +1197,7 @@ remove_stream (GvcMixerDialog  *dialog,
                 bar_set_stream (dialog, bar, NULL);
         } else if (bar != NULL) {
                 g_hash_table_remove (dialog->priv->bars, GUINT_TO_POINTER (id));
-                gtk_container_remove (GTK_CONTAINER (bar->parent),
+                gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (bar)),
                                       bar);
                 dialog->priv->num_apps--;
                 if (dialog->priv->num_apps == 0) {

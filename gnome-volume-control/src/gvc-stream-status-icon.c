@@ -172,7 +172,7 @@ popup_dock (GvcStreamStatusIcon *icon,
         /* grab focus */
         gtk_grab_add (icon->priv->dock);
 
-        if (gdk_pointer_grab (icon->priv->dock->window, TRUE,
+        if (gdk_pointer_grab (gtk_widget_get_window (icon->priv->dock), TRUE,
                               GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
                               GDK_POINTER_MOTION_MASK | GDK_SCROLL_MASK, NULL, NULL,
                               time)
@@ -182,7 +182,7 @@ popup_dock (GvcStreamStatusIcon *icon,
                 return FALSE;
         }
 
-        if (gdk_keyboard_grab (icon->priv->dock->window, TRUE, time) != GDK_GRAB_SUCCESS) {
+        if (gdk_keyboard_grab (gtk_widget_get_window (icon->priv->dock), TRUE, time) != GDK_GRAB_SUCCESS) {
                 display = gtk_widget_get_display (icon->priv->dock);
                 gdk_display_pointer_ungrab (display, time);
                 gtk_grab_remove (icon->priv->dock);

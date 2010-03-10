@@ -221,7 +221,7 @@ update_layout (GvcChannelBar *bar)
         }
 
         box = bar->priv->scale_box;
-        frame = box->parent;
+        frame = gtk_widget_get_parent (box);
 
         g_object_ref (bar->priv->image);
         g_object_ref (bar->priv->label);
