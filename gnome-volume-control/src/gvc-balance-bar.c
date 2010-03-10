@@ -85,6 +85,7 @@ _scale_box_new (GvcBalanceBar *bar)
         GtkWidget            *ebox;
         GtkAdjustment        *adjustment = bar->priv->adjustment;
         char                 *str_lower, *str_upper;
+        gdouble              lower, upper;
 
         bar->priv->scale_box = box = gtk_hbox_new (FALSE, 6);
         priv->scale = gtk_hscale_new (priv->adjustment);
@@ -120,16 +121,18 @@ _scale_box_new (GvcBalanceBar *bar)
                 g_assert_not_reached ();
         }
 
-        gtk_scale_add_mark (GTK_SCALE (priv->scale), adjustment->lower,
+        lower = gtk_adjustment_get_lower (adjustment);
+        gtk_scale_add_mark (GTK_SCALE (priv->scale), lower,
                             GTK_POS_BOTTOM, str_lower);
         g_free (str_lower);
-        gtk_scale_add_mark (GTK_SCALE (priv->scale),  adjustment->upper,
+        upper = gtk_adjustment_get_upper (adjustment);
+        gtk_scale_add_mark (GTK_SCALE (priv->scale), upper,
                             GTK_POS_BOTTOM, str_upper);
         g_free (str_upper);
 
         if (bar->priv->btype != BALANCE_TYPE_LFE) {
                 gtk_scale_add_mark (GTK_SCALE (priv->scale),
-                                    (adjustment->upper - adjustment->lower)/2 + adjustment->lower,
+                                    (upper - lower)/2 + lower,
                                     GTK_POS_BOTTOM, NULL);
         }
 

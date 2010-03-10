@@ -167,19 +167,23 @@ bar_calc_layout (GvcLevelBar *bar)
         GdkColor color;
         int      peak_level;
         int      max_peak_level;
+        GtkAllocation allocation;
+        GtkStyle *style;
 
-        bar->priv->layout.area.width = GTK_WIDGET (bar)->allocation.width - 2;
-        bar->priv->layout.area.height = GTK_WIDGET (bar)->allocation.height - 2;
+        gtk_widget_get_allocation (GTK_WIDGET (bar), &allocation);
+        bar->priv->layout.area.width = allocation.width - 2;
+        bar->priv->layout.area.height = allocation.height - 2;
 
-        color = GTK_WIDGET (bar)->style->bg [GTK_STATE_NORMAL];
+        style = gtk_widget_get_style (GTK_WIDGET (bar));
+        color = style->bg [GTK_STATE_NORMAL];
         bar->priv->layout.bg_r = (float)color.red / 65535.0;
         bar->priv->layout.bg_g = (float)color.green / 65535.0;
         bar->priv->layout.bg_b = (float)color.blue / 65535.0;
-        color = GTK_WIDGET (bar)->style->dark [GTK_STATE_NORMAL];
+        color = style->dark [GTK_STATE_NORMAL];
         bar->priv->layout.bdr_r = (float)color.red / 65535.0;
         bar->priv->layout.bdr_g = (float)color.green / 65535.0;
         bar->priv->layout.bdr_b = (float)color.blue / 65535.0;
-        color = GTK_WIDGET (bar)->style->bg [GTK_STATE_SELECTED];
+        color = style->bg [GTK_STATE_SELECTED];
         bar->priv->layout.fl_r = (float)color.red / 65535.0;
         bar->priv->layout.fl_g = (float)color.green / 65535.0;
         bar->priv->layout.fl_b = (float)color.blue / 65535.0;
@@ -466,14 +470,15 @@ gvc_level_bar_size_allocate (GtkWidget     *widget,
         /* FIXME: add height property, labels, etc */
         GTK_WIDGET_CLASS (gvc_level_bar_parent_class)->size_allocate (widget, allocation);
 
-        widget->allocation = *allocation;
+        gtk_widget_set_allocation (widget, allocation);
+        gtk_widget_get_allocation (widget, allocation);
 
         if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
-                allocation->height = MIN (widget->allocation.height, MIN_VERTICAL_BAR_HEIGHT);
-                allocation->width = MAX (widget->allocation.width, VERTICAL_BAR_WIDTH);
+                allocation->height = MIN (allocation->height, MIN_VERTICAL_BAR_HEIGHT);
+                allocation->width = MAX (allocation->width, VERTICAL_BAR_WIDTH);
         } else {
-                allocation->width = MIN (widget->allocation.width, MIN_HORIZONTAL_BAR_WIDTH);
-                allocation->height = MAX (widget->allocation.height, HORIZONTAL_BAR_HEIGHT);
+                allocation->width = MIN (allocation->width, MIN_HORIZONTAL_BAR_WIDTH);
+                allocation->height = MAX (allocation->height, HORIZONTAL_BAR_HEIGHT);
         }
 
         bar_calc_layout (bar);
@@ -542,6 +547,7 @@ gvc_level_bar_expose (GtkWidget      *widget,
 {
         GvcLevelBar     *bar;
         cairo_t         *cr;
+        GtkAllocation   allocation;
 
         g_return_val_if_fail (GVC_IS_LEVEL_BAR (widget), FALSE);
         g_return_val_if_fail (event != NULL, FALSE);
@@ -553,11 +559,12 @@ gvc_level_bar_expose (GtkWidget      *widget,
 
         bar = GVC_LEVEL_BAR (widget);
 
-        cr = gdk_cairo_create (widget->window);
+        cr = gdk_cairo_create (gtk_widget_get_window (widget));
 
+        gtk_widget_get_allocation (widget, &allocation);
         cairo_translate (cr,
-                         widget->allocation.x,
-                         widget->allocation.y);
+                         allocation.x,
+                         allocation.y);
 
         if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
                 int i;
@@ -714,7 +721,7 @@ gvc_level_bar_init (GvcLevelBar *bar)
                           G_CALLBACK (on_rms_adjustment_value_changed),
                           bar);
 
-        GTK_WIDGET_SET_FLAGS (GTK_WIDGET (bar), GTK_NO_WINDOW);
+        gtk_widget_set_has_window (GTK_WIDGET (bar), FALSE);
 }
 
 static void
