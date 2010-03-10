@@ -304,12 +304,14 @@ gnome_volume_control_volume_size_alloc (GtkWidget *widget,
   GtkAllocation but_all, scale_all;
   gint x_offset, but_deco_width, n = 0;
   GList *scales;
+  GtkAllocation allocation;
 
   /* loop? */
-  if (alloc->x == widget->allocation.x &&
-      alloc->y == widget->allocation.y &&
-      alloc->width == widget->allocation.width &&
-      alloc->height == widget->allocation.height)
+  gtk_widget_get_allocation (widget, &allocation);
+  if (alloc->x == allocation.x &&
+      alloc->y == allocation.y &&
+      alloc->width == allocation.width &&
+      alloc->height == allocation.height)
     return;
 
   /* request size of kids */
@@ -350,18 +352,21 @@ static gboolean
 gnome_volume_control_volume_expose (GtkWidget *widget,
 				    GdkEventExpose *expose)
 {
+  GtkAllocation allocation;
   GnomeVolumeControlVolume *vol = GNOME_VOLUME_CONTROL_VOLUME (widget);
-  GtkStateType state;
 
   /* clear background */
-  gdk_window_clear_area (widget->window, 0, 0,
-			 widget->allocation.width,
-			 widget->allocation.height);
+  gtk_widget_get_allocation (widget, &allocation);
+  gdk_window_clear_area (gtk_widget_get_window (widget), 0, 0,
+			 allocation.width,
+			 allocation.height);
 
   if (vol->track->num_channels > 1) {
     gint x_offset, y_offset, height, width;
     GtkRequisition scale_req, but_req;
     GdkPoint points[3];
+    GtkStyle *style;
+    GtkStateType state;
 
     /* request size of kids */
     GTK_WIDGET_GET_CLASS (vol->button)->size_request (vol->button, &but_req);
@@ -369,29 +374,31 @@ gnome_volume_control_volume_expose (GtkWidget *widget,
 							    &scale_req);
 
     /* calculate */
-    x_offset = (widget->allocation.width -
+    gtk_widget_get_allocation (widget, &allocation);
+    x_offset = (allocation.width -
         ((vol->track->num_channels * scale_req.width) +
         (vol->track->num_channels - 1) * vol->padding)) / 2;
-    y_offset = widget->allocation.height - but_req.height;
-    width = widget->allocation.width - (2 * x_offset + but_req.width);
+    y_offset = allocation.height - but_req.height;
+    width = allocation.width - (2 * x_offset + but_req.width);
     height = but_req.height / 2;
     points[0].y = y_offset + 3;
     points[1].y = points[2].y = points[0].y + height - 3;
 
     /* draw chainbutton decorations */
+    style = gtk_widget_get_style (widget);
     state = gtk_widget_get_state (widget);
 
     points[0].x = points[1].x = x_offset + 3;
     points[2].x = points[0].x + width - 6;
-    gtk_paint_polygon (widget->style, widget->window,
+    gtk_paint_polygon (style, gtk_widget_get_window (widget),
 		       state,
 		       GTK_SHADOW_ETCHED_IN,
 		       &expose->area, widget, "hseparator",
 		       points, 3, FALSE);
 
-    points[0].x = points[1].x = widget->allocation.width - x_offset - 3;
+    points[0].x = points[1].x = allocation.width - x_offset - 3;
     points[2].x = points[0].x - width + 6;
-    gtk_paint_polygon (widget->style, widget->window,
+    gtk_paint_polygon (style, gtk_widget_get_window (widget),
 		       state,
 		       GTK_SHADOW_ETCHED_IN,
 		       &expose->area, widget, "hseparator",
