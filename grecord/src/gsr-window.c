@@ -578,7 +578,7 @@ pipeline_error_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 
 	show_error_dialog (GTK_WINDOW (window), dbg, "%s", error->message);
 
-	gdk_window_set_cursor (window->priv->main_vbox->window, NULL);
+	gdk_window_set_cursor (gtk_widget_get_window (window->priv->main_vbox), NULL);
 
 	set_action_sensitive (window, "Stop", FALSE);
 	set_action_sensitive (window, "Play", TRUE);
@@ -614,7 +614,7 @@ gsr_dialog_add_button (GtkDialog *dialog,
 			      gtk_image_new_from_stock (stock_id,
 							GTK_ICON_SIZE_BUTTON));
 
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default (button, TRUE);
 
 	gtk_widget_show (button);
 
@@ -1091,7 +1091,7 @@ file_properties_cb (GtkAction *action,
 	gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
 	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), 2);
 	fp = g_new (struct _file_props, 1);
 	fp->dialog = dialog;
 
@@ -1100,7 +1100,7 @@ file_properties_cb (GtkAction *action,
 
 	vbox = gtk_vbox_new (FALSE, 18);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), vbox, TRUE, TRUE, 0);
 
 	inner_vbox = gtk_vbox_new (FALSE, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE,0);
@@ -1361,7 +1361,7 @@ seek_to (GtkRange *range,
 	if (window->priv->play->state < GST_STATE_PLAYING)
 		return FALSE;
 
-	value = range->adjustment->value;
+	value = gtk_adjustment_get_value (gtk_range_get_adjustment (range));
 	time = ((value / 100.0) * window->priv->len_secs) * GST_SECOND;
 
 	gst_element_seek (window->priv->play->pipeline, 1.0, GST_FORMAT_TIME,
@@ -1427,8 +1427,8 @@ play_tick_callback (GSRWindow *window)
 		pos = (gdouble) (val - (val % GST_SECOND));
 		len = (gdouble) window->priv->len_secs * GST_SECOND;
 		percentage = pos / len * 100.0;
-		
-		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment,
+
+		gtk_adjustment_set_value (gtk_range_get_adjustment (GTK_RANGE (window->priv->scale)),
 		                          CLAMP (percentage + 0.5, 0.0, 100.0));
 	} else {
 		GST_DEBUG ("failed to query position");
@@ -1523,7 +1523,7 @@ play_state_changed_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 			g_source_remove (window->priv->play->tick_id);
 			window->priv->play->tick_id = 0;
 		}
-		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
+		gtk_adjustment_set_value (gtk_range_get_adjustment (GTK_RANGE (window->priv->scale)), 0.0);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 		/* fallthrough */
 	case GST_STATE_PAUSED:
@@ -1778,7 +1778,7 @@ record_state_changed_cb (GstBus *bus, GstMessage *msg, GSRWindow *window)
 		gtk_widget_set_sensitive (window->priv->input, FALSE);
 		break;
 	case GST_STATE_READY:
-		gtk_adjustment_set_value (GTK_RANGE (window->priv->scale)->adjustment, 0.0);
+		gtk_adjustment_set_value (gtk_range_get_adjustment (GTK_RANGE (window->priv->scale)), 0.0);
 		gtk_widget_set_sensitive (window->priv->scale, FALSE);
 		gtk_widget_set_sensitive (window->priv->profile, TRUE);
 		gtk_widget_set_sensitive (window->priv->input, GST_IS_MIXER (window->priv->mixer));
@@ -2444,7 +2444,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_table_attach (GTK_TABLE (table), label,
 			  0, 1, 2, 3,
 			  GTK_FILL, 0, 0, 0);
-	
+
 	priv->length_label = gtk_label_new ("");
 	gtk_label_set_selectable (GTK_LABEL (priv->length_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (priv->length_label), 0, 0.5);
@@ -2459,7 +2459,7 @@ gsr_window_init (GSRWindow *window)
 
 	/* statusbar */
 	priv->statusbar = gtk_statusbar_new ();
-	GTK_WIDGET_SET_FLAGS (priv->statusbar, GTK_CAN_FOCUS);
+	gtk_widget_set_can_focus (priv->statusbar, TRUE);
 	gtk_box_pack_end (GTK_BOX (main_vbox), priv->statusbar, FALSE, FALSE, 0);
 	gtk_widget_show (priv->statusbar);
 
