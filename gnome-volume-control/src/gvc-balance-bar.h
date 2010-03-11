@@ -57,7 +57,7 @@ typedef struct
 
 GType               gvc_balance_bar_get_type            (void);
 
-GtkWidget *         gvc_balance_bar_new                 (GvcChannelMap *map,
+GtkWidget *         gvc_balance_bar_new                 (const GvcChannelMap *map,
                                                          GvcBalanceType btype);
 
 void                gvc_balance_bar_set_size_group      (GvcBalanceBar *bar,

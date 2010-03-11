@@ -537,7 +537,7 @@ gvc_balance_bar_finalize (GObject *object)
 }
 
 GtkWidget *
-gvc_balance_bar_new (GvcChannelMap *channel_map, GvcBalanceType btype)
+gvc_balance_bar_new (const GvcChannelMap *channel_map, GvcBalanceType btype)
 {
         GObject *bar;
         bar = g_object_new (GVC_TYPE_BALANCE_BAR,
