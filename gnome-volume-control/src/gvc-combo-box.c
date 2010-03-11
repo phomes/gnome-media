@@ -41,6 +41,7 @@ struct GvcComboBoxPrivate
         GtkWidget     *start_box;
         GtkWidget     *end_box;
         GtkWidget     *label;
+        GtkWidget     *button;
         GtkTreeModel  *model;
         GtkWidget     *combobox;
         gboolean       set_called;
@@ -56,12 +57,15 @@ enum {
 
 enum {
         CHANGED,
+        BUTTON_CLICKED,
         LAST_SIGNAL
 };
 
 enum {
         PROP_0,
-        PROP_LABEL
+        PROP_LABEL,
+        PROP_SHOW_BUTTON,
+        PROP_BUTTON_LABEL
 };
 
 static guint signals [LAST_SIGNAL] = { 0, };
@@ -106,6 +110,12 @@ gvc_combo_box_set_property (GObject       *object,
         case PROP_LABEL:
                 gtk_label_set_text_with_mnemonic (GTK_LABEL (self->priv->label), g_value_get_string (value));
                 break;
+        case PROP_BUTTON_LABEL:
+                gtk_button_set_label (GTK_BUTTON (self->priv->button), g_value_get_string (value));
+                break;
+        case PROP_SHOW_BUTTON:
+                gtk_widget_set_visible (self->priv->button, g_value_get_boolean (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -124,6 +134,14 @@ gvc_combo_box_get_property (GObject     *object,
         case PROP_LABEL:
                 g_value_set_string (value,
                                     gtk_label_get_text (GTK_LABEL (self->priv->label)));
+                break;
+        case PROP_BUTTON_LABEL:
+                g_value_set_string (value,
+                                    gtk_button_get_label (GTK_BUTTON (self->priv->button)));
+                break;
+        case PROP_SHOW_BUTTON:
+                g_value_set_boolean (value,
+                                     gtk_widget_get_visible (self->priv->button));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -144,8 +162,22 @@ gvc_combo_box_class_init (GvcComboBoxClass *klass)
                                          PROP_LABEL,
                                          g_param_spec_string ("label",
                                                               "label",
-                                                              "The combo box labale",
+                                                              "The combo box label",
                                                               _("_Profile:"),
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_SHOW_BUTTON,
+                                         g_param_spec_boolean ("show-button",
+                                                              "show-button",
+                                                              "Whether to show the button",
+                                                              FALSE,
+                                                              G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_BUTTON_LABEL,
+                                         g_param_spec_string ("button-label",
+                                                              "button-label",
+                                                              "The button's label",
+                                                              "APPLICATION BUG",
                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         signals [CHANGED] =
                 g_signal_new ("changed",
@@ -155,6 +187,14 @@ gvc_combo_box_class_init (GvcComboBoxClass *klass)
                               NULL, NULL,
                               g_cclosure_marshal_VOID__STRING,
                               G_TYPE_NONE, 1, G_TYPE_STRING);
+        signals [BUTTON_CLICKED] =
+                g_signal_new ("button-clicked",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GvcComboBoxClass, button_clicked),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0, G_TYPE_NONE);
 
         g_type_class_add_private (klass, sizeof (GvcComboBoxPrivate));
 }
@@ -246,6 +286,13 @@ on_combo_box_changed (GtkComboBox *widget,
 }
 
 static void
+on_combo_box_button_clicked (GtkButton   *button,
+                             GvcComboBox *combo_box)
+{
+        g_signal_emit (combo_box, signals[BUTTON_CLICKED], 0);
+}
+
+static void
 gvc_combo_box_init (GvcComboBox *combo_box)
 {
         GtkWidget *frame;
@@ -287,7 +334,12 @@ gvc_combo_box_init (GvcComboBox *combo_box)
 
         gtk_box_pack_start (GTK_BOX (sbox), combo_box->priv->label, FALSE, FALSE, 0);
 
-        gtk_box_pack_start (GTK_BOX (box), combo_box->priv->combobox, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (box), combo_box->priv->combobox, TRUE, TRUE, 0);
+
+        combo_box->priv->button = gtk_button_new_with_label ("APPLICATION BUG");
+        gtk_widget_set_no_show_all (combo_box->priv->button, TRUE);
+        gtk_box_pack_start (GTK_BOX (box), combo_box->priv->button, FALSE, FALSE, 0);
+
 
         combo_box->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (box), ebox, FALSE, FALSE, 0);
@@ -302,11 +354,14 @@ gvc_combo_box_init (GvcComboBox *combo_box)
 
         gtk_container_add (GTK_CONTAINER (frame), combo_box->priv->drop_box);
         gtk_widget_show_all (frame);
+
         gtk_label_set_mnemonic_widget (GTK_LABEL (combo_box->priv->label),
                                        combo_box->priv->combobox);
 
         g_signal_connect (G_OBJECT (combo_box->priv->combobox), "changed",
                           G_CALLBACK (on_combo_box_changed), combo_box);
+        g_signal_connect (G_OBJECT (combo_box->priv->button), "clicked",
+                          G_CALLBACK (on_combo_box_button_clicked), combo_box);
 }
 
 static void
