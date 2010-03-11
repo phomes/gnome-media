@@ -38,8 +38,6 @@ libgnomevolumecontrol_la_SOURCES =		\
 	gvc-mixer-control.c			\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
-	gvc-applet.h				\
-	gvc-applet.c				\
 	gvc-log.h				\
 	gvc-log.c				\
 	$(NULL)
@@ -54,6 +52,8 @@ gnome_volume_control_applet_LDADD =		\
 gnome_volume_control_applet_SOURCES =		\
 	gvc-stream-status-icon.h		\
 	gvc-stream-status-icon.c		\
+	gvc-applet.h				\
+	gvc-applet.c				\
 	applet-main.c				\
 	$(NULL)
 
@@ -74,6 +74,8 @@ gnome_volume_control_SOURCES =			\
 	gvc-level-bar.c				\
 	gvc-combo-box.h				\
 	gvc-combo-box.c				\
+	gvc-speaker-test.h			\
+	gvc-speaker-test.c			\
 	dialog-main.c				\
 	$(NULL)
 

@@ -42,8 +42,9 @@ typedef struct
 
 typedef struct
 {
-        GtkHBoxClass          parent_class;
-        void (* changed)       (GvcComboBox *combobox, const char *name);
+        GtkHBoxClass            parent_class;
+        void (* changed)        (GvcComboBox *combobox, const char *name);
+        void (* button_clicked) (GvcComboBox *combobox);
 } GvcComboBoxClass;
 
 GType               gvc_combo_box_get_type            (void);
