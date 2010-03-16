@@ -8,7 +8,7 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2002, 2007, 2008.
 # Taco Witte <T.C.Witte@phys.uu.nl>, 2002.
 # Reinout van Schouwen <reinouts@gnome.org>, 2002–2006, 2009
-# Wouter Bolsterlee <wbolster@gnome.org>, 2006–2009.
+# Wouter Bolsterlee <wbolster@gnome.org>, 2006–2010.
 #
 # alert         - waarschuwing
 # event         - gebeurtenis
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-23 17:04+0100\n"
-"PO-Revision-Date: 2009-03-23 17:06+0100\n"
+"POT-Creation-Date: 2010-03-16 23:05+0100\n"
+"PO-Revision-Date: 2010-03-16 23:04+0100\n"
 "Last-Translator: Reinout van Schouwen <reinouts@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,1335 +26,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:1
-msgid "Address of the server to contact for CD queries"
-msgstr "Adres van de voor cd-aanvragen te benaderen server"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:2
-msgid "Information to send to server"
-msgstr "Informatie om naar server te sturen"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:3
-#: ../cddb-slave2/cddb-slave-capplet.c:955
-msgid "Port"
-msgstr "Poort"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:4
-msgid "Server name"
-msgstr "Servernaam"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:5
-msgid "Server type"
-msgstr "Servertype"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:6
-msgid "The hostname that will be sent with all queries"
-msgstr "De hostnaam die met alle aanvragen wordt meegestuurd"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:7
-msgid "The port that the server is running the database on"
-msgstr "De serverpoort waarop de database actief is"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:8
-msgid ""
-"The type of the server to contact for CD queries. Possible values are 0 "
-"(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
-msgstr ""
-"Het servertype om contact mee op te nemen voor cd-aanvragen. Mogelijke "
-"waarden zijn 0 (FreeDB round robin server), 1 (andere freedb-server) en 2 "
-"(andere server)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:9
-msgid "The username"
-msgstr "De gebruikersnaam"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:10
-msgid "The username that will be sent with all queries"
-msgstr "De gebruikersnaam die met alle aanvragen wordt meegestuurd"
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:11
-msgid ""
-"This key specifies which user information will be sent to the server to "
-"contact for CD queries. Possible values are 0 (no information), 1 (real "
-"information) and 3 (other information)."
-msgstr ""
-"Deze sleutel geeft aan welke gebruikersinformatie naar de server te zenden "
-"die voor cd-aanvragen gebruikt wordt. Mogelijke waarden zijn (geen "
-"informatie), 1 (echte informatie) en 3 (andere informatie)."
-
-#: ../cddb-slave2/CDDB-Slave2.schemas.in.h:12
-msgid "Your hostname"
-msgstr "Uw hostnaam"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:133
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Er is een fout opgetreden bij het weergeven van de hulptekst:\n"
-"%s"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:807
-msgid "Sen_d no information"
-msgstr "Geen in_formatie sturen"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:816
-msgid "Send real _information"
-msgstr "Echte _informatie sturen"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:825
-msgid "Send _other information:"
-msgstr "Andere inf_ormatie sturen:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:850
-msgid "_Name:"
-msgstr "_Naam:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:874
-msgid "Hostna_me:"
-msgstr "Hostnaa_m:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:898
-msgid "Login Information"
-msgstr "Aanmeldingsinformatie"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:914
-msgid "FreeDB _round robin server"
-msgstr "FreeDB _round robin server"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:920
-msgid "Other _FreeDB server:"
-msgstr "Andere _FreeDB-server:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:952
-#: ../cddb-slave2/cddb-slave-capplet.c:1062
-msgid "Server"
-msgstr "Server"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:958
-msgid "Location"
-msgstr "Locatie"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:987
-msgid "_Update Server List"
-msgstr "Ser_verlijst verversen"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:994
-msgid "Other _server:"
-msgstr "Andere _server:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1014
-msgid "Hos_tname:"
-msgstr "Hos_tnaam:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1031
-msgid "_Port:"
-msgstr "_Poort:"
-
-#: ../cddb-slave2/cddb-slave-capplet.c:1104
-msgid "CD Database Preferences"
-msgstr "Voorkeuren cd-database"
-
-#: ../cddb-slave2/cddb-slave.c:221
-msgid "Unknown / Unknown"
-msgstr "Onbekend / Onbekend"
-
-#. Attempts to get length ran out.
-#: ../cddb-slave2/cddb-slave.c:227 ../grecord/src/gsr-window.c:1013
-#: ../grecord/src/gsr-window.c:1023 ../grecord/src/gsr-window.c:1039
-#: ../grecord/src/gsr-window.c:1048 ../grecord/src/gsr-window.c:1402
-#: ../gstreamer-properties/gstreamer-properties.c:281
-msgid "Unknown"
-msgstr "Onbekend"
-
-#: ../cddb-slave2/cddb-slave.c:272
-msgid "Multiple matches..."
-msgstr "Meerdere overeenkomsten…"
-
-#: ../cddb-slave2/cddb-slave.c:277
-msgid ""
-"There were multiple matches found in the database.\n"
-"Below is a list of possible matches, please choose the best match"
-msgstr ""
-"Er zijn meerdere overeenkomsten gevonden in de database.\n"
-"Hieronder staat een lijst van mogelijkheden, kies de beste overeenkomst"
-
-#: ../cddb-slave2/cddb-slave.c:288
-msgid "Category"
-msgstr "Categorie"
-
-#: ../cddb-slave2/cddb-slave.c:292
-msgid "Disc ID"
-msgstr "Schijf-ID"
-
-#: ../cddb-slave2/cddb-slave.c:296
-msgid "Artist and Title"
-msgstr "Artiest en titel"
-
-#: ../cddb-slave2/cddb-slave.c:1351 ../cddb-slave2/cddb-slave.c:1353
-#: ../gnome-cd/gnome-cd.c:221
-msgid "Unknown track"
-msgstr "Onbekend nummer"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:1
-msgid "CD Database Server"
-msgstr "Cd database-server"
-
-#: ../cddb-slave2/cddb-slave.desktop.in.in.h:2
-msgid "Modify your CD database server preferences"
-msgstr "Uw voorkeuren voor cd-database-server wijzigen"
-
-#: ../cddb-slave2/cddb-track-editor.c:78
-msgid "Blues"
-msgstr "Blues"
-
-#: ../cddb-slave2/cddb-track-editor.c:79
-msgid "Classical Rock"
-msgstr "Klassieke rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:80
-msgid "Country"
-msgstr "Country"
-
-#: ../cddb-slave2/cddb-track-editor.c:81
-msgid "Dance"
-msgstr "Dance"
-
-#: ../cddb-slave2/cddb-track-editor.c:82
-msgid "Disco"
-msgstr "Disco"
-
-#: ../cddb-slave2/cddb-track-editor.c:83
-msgid "Funk"
-msgstr "Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:84
-msgid "Grunge"
-msgstr "Grunge"
-
-#: ../cddb-slave2/cddb-track-editor.c:85
-msgid "Hip-Hop"
-msgstr "Hip-Hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:86
-msgid "Jazz"
-msgstr "Jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:87
-msgid "Metal"
-msgstr "Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:88
-msgid "New Age"
-msgstr "New Age"
-
-#: ../cddb-slave2/cddb-track-editor.c:89
-msgid "Oldies"
-msgstr "Gouwe ouwe"
-
-#: ../cddb-slave2/cddb-track-editor.c:90
-msgid "Other"
-msgstr "Anders"
-
-#: ../cddb-slave2/cddb-track-editor.c:91
-msgid "Pop"
-msgstr "Pop"
-
-#: ../cddb-slave2/cddb-track-editor.c:92
-msgid "R&B"
-msgstr "R&B"
-
-#: ../cddb-slave2/cddb-track-editor.c:93
-msgid "Rap"
-msgstr "Rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:94
-msgid "Reggae"
-msgstr "Reggae"
-
-#: ../cddb-slave2/cddb-track-editor.c:95
-msgid "Rock"
-msgstr "Rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:96
-msgid "Techno"
-msgstr "Techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:97
-msgid "Industrial"
-msgstr "Industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:98
-msgid "Alternative"
-msgstr "Alternatief"
-
-#: ../cddb-slave2/cddb-track-editor.c:99
-msgid "Ska"
-msgstr "Ska"
-
-#: ../cddb-slave2/cddb-track-editor.c:100
-msgid "Death Metal"
-msgstr "Death Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:101
-msgid "Pranks"
-msgstr "Grappen"
-
-#: ../cddb-slave2/cddb-track-editor.c:102
-msgid "Soundtrack"
-msgstr "Soundtrack"
-
-#: ../cddb-slave2/cddb-track-editor.c:103
-msgid "Euro-Techno"
-msgstr "Euro-Techno"
-
-#: ../cddb-slave2/cddb-track-editor.c:104
-msgid "Ambient"
-msgstr "Ambient"
-
-#: ../cddb-slave2/cddb-track-editor.c:105
-msgid "Trip-Hop"
-msgstr "Trip-Hop"
-
-#: ../cddb-slave2/cddb-track-editor.c:106
-msgid "Vocal"
-msgstr "Vocaal"
-
-#: ../cddb-slave2/cddb-track-editor.c:107
-msgid "Jazz+Funk"
-msgstr "Jazz+Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:108
-msgid "Fusion"
-msgstr "Fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:109
-msgid "Trance"
-msgstr "Trance"
-
-#: ../cddb-slave2/cddb-track-editor.c:110
-msgid "Classical"
-msgstr "Klassiek"
-
-#: ../cddb-slave2/cddb-track-editor.c:111
-msgid "Instrumental"
-msgstr "Instrumentaal"
-
-#: ../cddb-slave2/cddb-track-editor.c:112
-msgid "Acid"
-msgstr "Acid"
-
-#: ../cddb-slave2/cddb-track-editor.c:113
-msgid "House"
-msgstr "House"
-
-#: ../cddb-slave2/cddb-track-editor.c:114
-msgid "Game"
-msgstr "Spel"
-
-#: ../cddb-slave2/cddb-track-editor.c:115
-msgid "Sound Clip"
-msgstr "Geluidsfragment"
-
-#: ../cddb-slave2/cddb-track-editor.c:116
-msgid "Gospel"
-msgstr "Gospel"
-
-#: ../cddb-slave2/cddb-track-editor.c:117
-msgid "Noise"
-msgstr "Ruis"
-
-#: ../cddb-slave2/cddb-track-editor.c:118
-msgid "Alt"
-msgstr "Alt"
-
-#: ../cddb-slave2/cddb-track-editor.c:119
-msgid "Bass"
-msgstr "Bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:120
-msgid "Soul"
-msgstr "Soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:121
-msgid "Punk"
-msgstr "Punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:122
-msgid "Space"
-msgstr "Ruimte"
-
-#: ../cddb-slave2/cddb-track-editor.c:123
-msgid "Meditative"
-msgstr "Meditatie"
-
-#: ../cddb-slave2/cddb-track-editor.c:124
-msgid "Instrumental Pop"
-msgstr "Instrumentale pop"
-
-#: ../cddb-slave2/cddb-track-editor.c:125
-msgid "Instrumental Rock"
-msgstr "Instrumentale rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:126
-msgid "Ethnic"
-msgstr "Etnisch"
-
-#: ../cddb-slave2/cddb-track-editor.c:127
-msgid "Gothic"
-msgstr "Gothic"
-
-#: ../cddb-slave2/cddb-track-editor.c:128
-msgid "Darkwave"
-msgstr "Darkwave"
-
-#: ../cddb-slave2/cddb-track-editor.c:129
-msgid "Techno-Industrial"
-msgstr "Techno-Industrial"
-
-#: ../cddb-slave2/cddb-track-editor.c:130
-msgid "Electronic"
-msgstr "Electronisch"
-
-#: ../cddb-slave2/cddb-track-editor.c:131
-msgid "Pop-Folk"
-msgstr "Pop-Folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:132
-msgid "Eurodance"
-msgstr "Eurodance"
-
-#: ../cddb-slave2/cddb-track-editor.c:133
-msgid "Dream"
-msgstr "Droom"
-
-#: ../cddb-slave2/cddb-track-editor.c:134
-msgid "Southern Rock"
-msgstr "Zuidelijke rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:135
-msgid "Comedy"
-msgstr "Komedie"
-
-#: ../cddb-slave2/cddb-track-editor.c:136
-msgid "Cult"
-msgstr "Cult"
-
-#: ../cddb-slave2/cddb-track-editor.c:137
-msgid "Gangsta Rap"
-msgstr "Gangsta rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:138
-msgid "Top 40"
-msgstr "Top 40"
-
-#: ../cddb-slave2/cddb-track-editor.c:139
-msgid "Christian Rap"
-msgstr "Christelijke rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:140
-msgid "Pop/Funk"
-msgstr "Pop/Funk"
-
-#: ../cddb-slave2/cddb-track-editor.c:141
-msgid "Jungle"
-msgstr "Jungle"
-
-#: ../cddb-slave2/cddb-track-editor.c:142
-msgid "Native American"
-msgstr "Native American"
-
-#: ../cddb-slave2/cddb-track-editor.c:143
-msgid "Cabaret"
-msgstr "Cabaret"
-
-#: ../cddb-slave2/cddb-track-editor.c:144
-msgid "New Wave"
-msgstr "New Wave"
-
-#: ../cddb-slave2/cddb-track-editor.c:145
-msgid "Psychedelic"
-msgstr "Psychedelisch"
-
-#: ../cddb-slave2/cddb-track-editor.c:146
-msgid "Rave"
-msgstr "Rave"
-
-#: ../cddb-slave2/cddb-track-editor.c:147
-msgid "Showtunes"
-msgstr "Showmelodieën"
-
-#: ../cddb-slave2/cddb-track-editor.c:148
-msgid "Trailer"
-msgstr "Trailer"
-
-#: ../cddb-slave2/cddb-track-editor.c:149
-msgid "Lo-Fi"
-msgstr "Lo-Fi"
-
-#: ../cddb-slave2/cddb-track-editor.c:150
-msgid "Tribal"
-msgstr "Tribal"
-
-#: ../cddb-slave2/cddb-track-editor.c:151
-msgid "Acid Punk"
-msgstr "Acid Punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:152
-msgid "Acid Jazz"
-msgstr "Acid Jazz"
-
-#: ../cddb-slave2/cddb-track-editor.c:153
-msgid "Polka"
-msgstr "Polka"
-
-#: ../cddb-slave2/cddb-track-editor.c:154
-msgid "Retro"
-msgstr "Retro"
-
-#: ../cddb-slave2/cddb-track-editor.c:155
-msgid "Musical"
-msgstr "Musical"
-
-#: ../cddb-slave2/cddb-track-editor.c:156
-msgid "Rock & Roll"
-msgstr "Rock & Roll"
-
-#: ../cddb-slave2/cddb-track-editor.c:157
-msgid "Hard Rock"
-msgstr "Hardrock"
-
-#: ../cddb-slave2/cddb-track-editor.c:158
-msgid "Folk"
-msgstr "Folk"
-
-#: ../cddb-slave2/cddb-track-editor.c:159
-msgid "Folk/Rock"
-msgstr "Folk/Rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:160
-msgid "National Folk"
-msgstr "Nationale volksmuziek"
-
-#: ../cddb-slave2/cddb-track-editor.c:161
-msgid "Swing"
-msgstr "Swing"
-
-#: ../cddb-slave2/cddb-track-editor.c:162
-msgid "Fast-Fusion"
-msgstr "Fast-Fusion"
-
-#: ../cddb-slave2/cddb-track-editor.c:163
-msgid "Bebop"
-msgstr "Bebop"
-
-#: ../cddb-slave2/cddb-track-editor.c:164
-msgid "Latin"
-msgstr "Latin"
-
-#: ../cddb-slave2/cddb-track-editor.c:165
-msgid "Revival"
-msgstr "Revival"
-
-#: ../cddb-slave2/cddb-track-editor.c:166
-msgid "Celtic"
-msgstr "Keltisch"
-
-#: ../cddb-slave2/cddb-track-editor.c:167
-msgid "Bluegrass"
-msgstr "Bluegrass"
-
-#: ../cddb-slave2/cddb-track-editor.c:168
-msgid "Avantgarde"
-msgstr "Avantgarde"
-
-#: ../cddb-slave2/cddb-track-editor.c:169
-msgid "Gothic Rock"
-msgstr "Gothic rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:170
-msgid "Progressive Rock"
-msgstr "Progressieve rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:171
-msgid "Psychedelic Rock"
-msgstr "Psychedelische rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:172
-msgid "Symphonic Rock"
-msgstr "Symphonische rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:173
-msgid "Slow Rock"
-msgstr "Slow rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:174
-msgid "Big Band"
-msgstr "Big band"
-
-#: ../cddb-slave2/cddb-track-editor.c:175
-msgid "Chorus"
-msgstr "Koor"
-
-#: ../cddb-slave2/cddb-track-editor.c:176
-msgid "Easy Listening"
-msgstr "Ontspannend"
-
-#: ../cddb-slave2/cddb-track-editor.c:177
-msgid "Acoustic"
-msgstr "Acoustisch"
-
-#: ../cddb-slave2/cddb-track-editor.c:178
-msgid "Humour"
-msgstr "Humor"
-
-#: ../cddb-slave2/cddb-track-editor.c:179
-msgid "Speech"
-msgstr "Toespraak"
-
-#: ../cddb-slave2/cddb-track-editor.c:180
-msgid "Chanson"
-msgstr "Chanson"
-
-#: ../cddb-slave2/cddb-track-editor.c:181
-msgid "Opera"
-msgstr "Opera"
-
-#: ../cddb-slave2/cddb-track-editor.c:182
-msgid "Chamber Music"
-msgstr "Kamermuziek"
-
-#: ../cddb-slave2/cddb-track-editor.c:183
-msgid "Sonata"
-msgstr "Sonate"
-
-#: ../cddb-slave2/cddb-track-editor.c:184
-msgid "Symphony"
-msgstr "Symphonie"
-
-#: ../cddb-slave2/cddb-track-editor.c:185
-msgid "Booty Bass"
-msgstr "Booty Bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:186
-msgid "Primus"
-msgstr "Primus"
-
-#: ../cddb-slave2/cddb-track-editor.c:187
-msgid "Porn Groove"
-msgstr "Porn Groove"
-
-#: ../cddb-slave2/cddb-track-editor.c:188
-msgid "Satire"
-msgstr "Satire"
-
-#: ../cddb-slave2/cddb-track-editor.c:189
-msgid "Slow Jam"
-msgstr "Slow Jam"
-
-#: ../cddb-slave2/cddb-track-editor.c:190
-msgid "Club"
-msgstr "Club"
-
-#: ../cddb-slave2/cddb-track-editor.c:191
-msgid "Tango"
-msgstr "Tango"
-
-#: ../cddb-slave2/cddb-track-editor.c:192
-msgid "Samba"
-msgstr "Samba"
-
-#: ../cddb-slave2/cddb-track-editor.c:193
-msgid "Folklore"
-msgstr "Folklore"
-
-#: ../cddb-slave2/cddb-track-editor.c:194
-msgid "Ballad"
-msgstr "Ballad"
-
-#: ../cddb-slave2/cddb-track-editor.c:195
-msgid "Power Ballad"
-msgstr "Power Ballad"
-
-#: ../cddb-slave2/cddb-track-editor.c:196
-msgid "Rhythmic Soul"
-msgstr "Ritmische soul"
-
-#: ../cddb-slave2/cddb-track-editor.c:197
-msgid "Freestyle"
-msgstr "Freestyle"
-
-#: ../cddb-slave2/cddb-track-editor.c:198
-msgid "Duet"
-msgstr "Duet"
-
-#: ../cddb-slave2/cddb-track-editor.c:199
-msgid "Punk Rock"
-msgstr "Punkrock"
-
-#: ../cddb-slave2/cddb-track-editor.c:200
-msgid "Drum Solo"
-msgstr "Drumsolo"
-
-#: ../cddb-slave2/cddb-track-editor.c:201
-msgid "A Cappella"
-msgstr "A cappella"
-
-#: ../cddb-slave2/cddb-track-editor.c:202
-msgid "Euro-House"
-msgstr "Euro-House"
-
-#: ../cddb-slave2/cddb-track-editor.c:203
-msgid "Dance Hall"
-msgstr "Dance Hall"
-
-#: ../cddb-slave2/cddb-track-editor.c:204
-msgid "Goa"
-msgstr "Goa"
-
-#: ../cddb-slave2/cddb-track-editor.c:205
-msgid "Drum & Bass"
-msgstr "Drum & Bass"
-
-#: ../cddb-slave2/cddb-track-editor.c:206
-msgid "Club-House"
-msgstr "Club-House"
-
-#: ../cddb-slave2/cddb-track-editor.c:207
-msgid "Hardcore"
-msgstr "Hardcore"
-
-#: ../cddb-slave2/cddb-track-editor.c:208
-msgid "Terror"
-msgstr "Terror"
-
-#: ../cddb-slave2/cddb-track-editor.c:209
-msgid "Indie"
-msgstr "Indie"
-
-#: ../cddb-slave2/cddb-track-editor.c:210
-msgid "BritPop"
-msgstr "Britpop"
-
-#: ../cddb-slave2/cddb-track-editor.c:211
-msgid "Negerpunk"
-msgstr "Negerpunk"
-
-#: ../cddb-slave2/cddb-track-editor.c:212
-msgid "Polsk Punk"
-msgstr "Polsk Punk"
-
-#: ../cddb-slave2/cddb-track-editor.c:213
-msgid "Beat"
-msgstr "Beat"
-
-#: ../cddb-slave2/cddb-track-editor.c:214
-msgid "Christian Gangsta Rap"
-msgstr "Christelijke gangsta rap"
-
-#: ../cddb-slave2/cddb-track-editor.c:215
-msgid "Heavy Metal"
-msgstr "Heavy metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:216
-msgid "Black Metal"
-msgstr "Black metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:217
-msgid "Crossover"
-msgstr "Crossover"
-
-#: ../cddb-slave2/cddb-track-editor.c:218
-msgid "Contemporary Christian"
-msgstr "Eigentijds christelijk"
-
-#: ../cddb-slave2/cddb-track-editor.c:219
-msgid "Christian Rock"
-msgstr "Christelijke rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:220
-msgid "Merengue"
-msgstr "Merengue"
-
-#: ../cddb-slave2/cddb-track-editor.c:221
-msgid "Salsa"
-msgstr "Salsa"
-
-#: ../cddb-slave2/cddb-track-editor.c:222
-msgid "Thrash Metal"
-msgstr "Thrash metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:223
-msgid "Anime"
-msgstr "Anime"
-
-#: ../cddb-slave2/cddb-track-editor.c:224
-msgid "JPop"
-msgstr "JPop"
-
-#: ../cddb-slave2/cddb-track-editor.c:225
-msgid "Synthpop"
-msgstr "Synthesizer"
-
-#: ../cddb-slave2/cddb-track-editor.c:226
-msgid "Nu-Metal"
-msgstr "Nu-Metal"
-
-#: ../cddb-slave2/cddb-track-editor.c:227
-msgid "Art Rock"
-msgstr "Art rock"
-
-#: ../cddb-slave2/cddb-track-editor.c:532 ../gnome-cd/callbacks.c:603
-#: ../gnome-cd/callbacks.c:749 ../gnome-cd/callbacks.c:760
-#: ../gnome-cd/display.c:89
-msgid "Unknown Artist"
-msgstr "Onbekende artiest"
-
-#: ../cddb-slave2/cddb-track-editor.c:533 ../gnome-cd/callbacks.c:604
-#: ../gnome-cd/callbacks.c:752 ../gnome-cd/callbacks.c:764
-#: ../gnome-cd/display.c:90
-msgid "Unknown Album"
-msgstr "Onbekend album"
-
-#: ../cddb-slave2/cddb-track-editor.c:541
-#, c-format
-msgid "Editing Disc ID: %s"
-msgstr "Bezig schijf-ID te wijzigen: %s"
-
-#: ../cddb-slave2/cddb-track-editor.c:618
-msgid "Hide advanced disc options"
-msgstr "Gevorderde schijfopties"
-
-#: ../cddb-slave2/cddb-track-editor.c:620
-#: ../cddb-slave2/cddb-track-editor.c:697
-msgid "Show advanced disc options"
-msgstr "Gevorderde schijfopties tonen"
-
-#: ../cddb-slave2/cddb-track-editor.c:634
-msgid "Hide advanced track options"
-msgstr "Verberg geavanceerde track opties"
-
-#. More advanced options
-#: ../cddb-slave2/cddb-track-editor.c:636
-#: ../cddb-slave2/cddb-track-editor.c:799
-msgid "Show advanced track options"
-msgstr "Gevorderde trackopties tonen"
-
-#. Info label
-#: ../cddb-slave2/cddb-track-editor.c:662
-msgid "Editing Disc ID: "
-msgstr "Bezig schijf-ID te wijzigen: "
-
-#: ../cddb-slave2/cddb-track-editor.c:673
-msgid "_Artist:"
-msgstr "_Artiest:"
-
-#: ../cddb-slave2/cddb-track-editor.c:687
-msgid "Disc _Title:"
-msgstr "Cd-_titel:"
-
-#. Top box: Disc comments. Maybe should be a GtkText?
-#: ../cddb-slave2/cddb-track-editor.c:711
-msgid "_Disc comments:"
-msgstr "Schij_f-opmerkingen:"
-
-#. Genre
-#: ../cddb-slave2/cddb-track-editor.c:726
-msgid "_Genre:"
-msgstr "_Genre:"
-
-#. Year
-#: ../cddb-slave2/cddb-track-editor.c:742
-msgid "_Year:"
-msgstr "_Jaar:"
-
-#: ../cddb-slave2/cddb-track-editor.c:781
-msgid "Title"
-msgstr "Titel"
-
-#: ../cddb-slave2/cddb-track-editor.c:788
-msgid "Length"
-msgstr "Duur"
-
-#. Extra data
-#: ../cddb-slave2/cddb-track-editor.c:808
-msgid "_Extra track data:"
-msgstr "_Extra trackgegevens:"
-
-#: ../cddb-slave2/cddb-track-editor.c:935
-msgid "CDDB Track Editor"
-msgstr "CDDB track-editor"
-
-#: ../cddb-slave2/cddb-track-editor.c:1072
-#, c-format
-msgid ""
-"Cannot create CDDBTrackEditor factory.\n"
-"This may be caused by another copy of cddb-track-editor already running.\n"
-msgstr ""
-"Kon geen CDDBTrackEditor-fabriek aanmaken.\n"
-"Het kan zijn dat er al een andere cddb-track-editor actief is.\n"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:118
-msgid "CD Display"
-msgstr "Cd-weergave"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:120
-msgid ""
-"Displays information about the currently playing album, artist and time "
-"elapsed"
-msgstr ""
-"Geeft informatie weer over het momenteel afgespeelde album, de artiest en de "
-"verstreken tijd"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:189
-msgid "Time Line"
-msgstr "Tijdlijn"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:190
-msgid "Line for displaying the time elapsed for the current track"
-msgstr "Lijn om de verstreken tijd van het huidige nummer weer te geven"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:193
-msgid "Info Line"
-msgstr "Infolijn"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:194
-msgid "Line for displaying information"
-msgstr "Lijn om informatie weer te geven"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:197
-msgid "Artist Line"
-msgstr "Artiestlijn"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:198
-msgid "Line for displaying the name of the artist"
-msgstr "Lijn om de naam van de artiest weer te geven"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:201
-msgid "Album Line"
-msgstr "Albumlijn"
-
-#: ../gnome-cd/access/cddisplayaccessible.c:202
-msgid "Line for displaying the name of the album"
-msgstr "Lijn om de naam van het album weer te geven"
-
-#: ../gnome-cd/callbacks.c:101 ../gnome-cd/callbacks.c:189
-#: ../gnome-cd/callbacks.c:297 ../gnome-cd/callbacks.c:619
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play"
-msgstr "Afspelen"
-
-#: ../gnome-cd/callbacks.c:174 ../gnome-cd/callbacks.c:225
-#: ../gnome-cd/callbacks.c:256 ../gnome-cd/callbacks.c:339
-#: ../gnome-cd/callbacks.c:379 ../gnome-cd/callbacks.c:403
-#: ../gnome-cd/callbacks.c:444 ../gnome-cd/callbacks.c:541
-msgid "Pause"
-msgstr "Pauzeren"
-
-#: ../gnome-cd/callbacks.c:602
-#, c-format
-msgid ""
-"Playing %s - %s\n"
-"%s"
-msgstr ""
-"Afspelen %s - %s\n"
-"%s"
-
-#: ../gnome-cd/callbacks.c:607
-#, c-format
-msgid ""
-"Playing\n"
-": %s"
-msgstr ""
-"Afspelen\n"
-": %s"
-
-#: ../gnome-cd/callbacks.c:631
-msgid "Paused"
-msgstr "Gepauzeerd"
-
-#: ../gnome-cd/callbacks.c:682 ../gnome-cd/callbacks.c:684
-#: ../gnome-cd/callbacks.c:941 ../gnome-cd/gnome-cd.c:128
-#: ../gnome-cd/gnome-cd.c:665 ../gnome-cd/gnome-cd.c:841
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:1 ../gnome-cd/preferences.c:553
-msgid "CD Player"
-msgstr "Cd-speler"
-
-#: ../gnome-cd/callbacks.c:708
-msgid "Stopped"
-msgstr "Gestopt"
-
-#: ../gnome-cd/callbacks.c:714
-msgid "Disc error"
-msgstr "Schijffout"
-
-#: ../gnome-cd/callbacks.c:725 ../gnome-cd/callbacks.c:826
-msgid "No disc"
-msgstr "Geen schijf"
-
-#: ../gnome-cd/callbacks.c:824
-msgid "Empty disc"
-msgstr "Lege schijf"
-
-#: ../gnome-cd/callbacks.c:854
-msgid "Drive open"
-msgstr "Speler open"
-
-#: ../gnome-cd/callbacks.c:880
-msgid "Data CD"
-msgstr "Data-cd"
-
-#: ../gnome-cd/callbacks.c:904 ../gnome-cd/callbacks.c:909
-msgid "No Cdrom"
-msgstr "Geen cd-rom"
-
-#: ../gnome-cd/callbacks.c:922
-msgid "Drive Error"
-msgstr "Cd-spelerfout"
-
-#: ../gnome-cd/callbacks.c:944
-msgid "A CD player for GNOME"
-msgstr "Een cd-speler voor GNOME"
-
-#: ../gnome-cd/callbacks.c:1123
-msgid "Contents in the CDDB have changed"
-msgstr "De inhoud in de CDDB is veranderd"
-
-#: ../gnome-cd/callbacks.c:1124
-msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-msgstr "'Ja' kiezen zal de vorige inhoud in CDDB verwijderen."
-
-#: ../gnome-cd/callbacks.c:1125
-msgid "Do you wish to continue?"
-msgstr "Wilt u doorgaan?"
-
-#. Set the tooltip
-#: ../gnome-cd/callbacks.c:1197 ../gnome-cd/gnome-cd.c:518
-#, c-format
-msgid "Volume %d%%"
-msgstr "Volume %d%%"
-
-#: ../gnome-cd/cdrom.c:382
-#, c-format
-msgid "You do not seem to have permission to access %s."
-msgstr "Het lijkt erop dat u geen toestemming hebt om %s te benaderen."
-
-#: ../gnome-cd/cdrom.c:388
-#, c-format
-msgid ""
-"%s does not appear to point to a valid CD device. This may be because:\n"
-"a) CD support is not present in your machine\n"
-"b) You do not have the correct permissions to access the CD drive\n"
-"c) %s is not the CD drive.\n"
-msgstr ""
-"%s lijkt niet naar een geldig cd apparaat te wijzen. Dit kan zo zijn omdat:\n"
-"a) cd-ondersteuning niet aanwezig is op uw computer\n"
-"b) U niet de juiste rechten heeft om het cd-station te benaderen\n"
-"c) %s niet het cd-station is.\n"
-
-#: ../gnome-cd/gnome-cd.c:260
-#, c-format
-msgid "%d - Unknown"
-msgstr "%d - Onbekend"
-
-#: ../gnome-cd/gnome-cd.c:360
-msgid "_Play / Pause"
-msgstr "Afs_pelen/Pauzeren"
-
-#: ../gnome-cd/gnome-cd.c:361
-msgid "_Stop"
-msgstr "_Stoppen"
-
-#: ../gnome-cd/gnome-cd.c:362
-msgid "P_revious"
-msgstr "Vo_rige"
-
-#: ../gnome-cd/gnome-cd.c:363
-msgid "_Next"
-msgstr "V_olgende"
-
-#: ../gnome-cd/gnome-cd.c:364
-msgid "_Eject disc"
-msgstr "Schijf uitw_erpen"
-
-#. Help menu
-#: ../gnome-cd/gnome-cd.c:365 ../grecord/src/gsr-window.c:2144
-msgid "_Help"
-msgstr "_Hulp"
-
-#: ../gnome-cd/gnome-cd.c:366
-msgid "_About"
-msgstr "I_nfo"
-
-#: ../gnome-cd/gnome-cd.c:367
-msgid "_Quit"
-msgstr "A_fsluiten"
-
-#: ../gnome-cd/gnome-cd.c:585
-msgid ""
-"There is no CD device set. This means that the CD player\n"
-"will be unable to run. Click 'Set device' to go to a dialog\n"
-"where you can set the device, or click 'Quit' to quit the CD player."
-msgstr ""
-"Er is geen cd-speler ingesteld. Dit betekent dat de cd-speler\n"
-"niet kan starten. Klik op \"Apparaat instellen\" om een\n"
-"venster te openen waar u  het apparaat kunt instellen, of klik op \"Afsluiten"
-"\" om de cd-speler te verlaten."
-
-#: ../gnome-cd/gnome-cd.c:589
-msgid "Set device"
-msgstr "Apparaat instellen"
-
-#: ../gnome-cd/gnome-cd.c:591
-msgid "No CD device"
-msgstr "Geen cd-apparaat"
-
-#: ../gnome-cd/gnome-cd.c:644
-msgid ""
-"The CD player is unable to run correctly.\n"
-"\n"
-"Press 'Details' for more details on reasons for the failure.\n"
-"\n"
-"Press 'Set device' to go to a dialog where you can set the device, or press "
-"'Quit' to quit the CD player"
-msgstr ""
-"De cd-speler is niet in staat correct te functioneren.\n"
-"\n"
-"Druk op 'Details' voor meer details over de reden voor dit falen.\n"
-"\n"
-"Klik op 'Apparaat instellen' om een venster te openen waar u het apparaat "
-"kunt instellen of klik op 'Afsluiten' om de cd-speler te verlaten"
-
-#: ../gnome-cd/gnome-cd.c:648
-msgid "_Details"
-msgstr "_Details"
-
-#: ../gnome-cd/gnome-cd.c:649
-msgid "_Set device"
-msgstr "Apparaat in_stellen"
-
-#: ../gnome-cd/gnome-cd.c:651
-msgid "Invalid CD device"
-msgstr "Ongeldig cd-apparaat"
-
-#: ../gnome-cd/gnome-cd.c:723
-msgid "Position"
-msgstr "Positie"
-
-#: ../gnome-cd/gnome-cd.c:740
-msgid "Open preferences"
-msgstr "Voorkeuren openen"
-
-#: ../gnome-cd/gnome-cd.c:741
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: ../gnome-cd/gnome-cd.c:749
-msgid "Track List"
-msgstr "Tracklijst"
-
-#: ../gnome-cd/gnome-cd.c:755
-msgid "Open track editor"
-msgstr "Track-editor openen"
-
-#: ../gnome-cd/gnome-cd.c:756
-msgid "Track editor"
-msgstr "Track-editor"
-
-#: ../gnome-cd/gnome-cd.c:785
-msgid "Play / Pause"
-msgstr "Afspelen/Pauzeren"
-
-#: ../gnome-cd/gnome-cd.c:790
-msgid "Stop"
-msgstr "Stoppen"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous track"
-msgstr "Vorige track"
-
-#: ../gnome-cd/gnome-cd.c:794
-msgid "Previous"
-msgstr "Vorige"
-
-#: ../gnome-cd/gnome-cd.c:798
-msgid "Rewind"
-msgstr "Terugspoelen"
-
-#: ../gnome-cd/gnome-cd.c:806
-msgid "Fast forward"
-msgstr "Vooruitspoelen"
-
-#: ../gnome-cd/gnome-cd.c:814
-msgid "Next track"
-msgstr "Volgende nummer"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject CD"
-msgstr "Cd uitwerpen"
-
-#: ../gnome-cd/gnome-cd.c:818
-msgid "Eject"
-msgstr "Uitwerpen"
-
-#: ../gnome-cd/gnome-cd.c:892
-msgid "CD device to use"
-msgstr "Te gebruiken cd-apparaat"
-
-#: ../gnome-cd/gnome-cd.c:894
-msgid "Only start if there isn't already a CD player application running"
-msgstr "Alleen starten als er niet al een cd-spelertoepassing actief is"
-
-#: ../gnome-cd/gnome-cd.c:896
-msgid "Play the CD on startup"
-msgstr "cd afspelen bij opstarten"
-
-# vak/gebied
-#: ../gnome-cd/gnome-cd.c:898
-msgid "Start iconified in notification area"
-msgstr "Opstarten met alleen een pictogram in het mededelingengebied"
-
-#. Stick a message box here?
-#: ../gnome-cd/gnome-cd.c:939
-msgid "Cannot create player"
-msgstr "Kan geen speler aanmaken"
-
-#: ../gnome-cd/gnome-cd.desktop.in.in.h:2
-msgid "Play audio CDs"
-msgstr "Audio-cd's afspelen"
-
-# geluidsvolume/volume
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:1
-msgid "CD player Volume"
-msgstr "Volume van cd-speler"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:2
-msgid "CD player theme"
-msgstr "Cd-spelerthema"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:3
-msgid "Device path"
-msgstr "Apparaatpad"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:4
-msgid "Display the Remaining time?"
-msgstr "De resterende tijd weergeven?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:5
-msgid "Eject the CD when CD player quits?"
-msgstr "Cd uitwerpen wanneer cd-speler afsluit?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:6
-msgid "How the time should be displayed while CD Player is playing?"
-msgstr "Hoe de tijd moet worden weergegeven tijdens het afspelen"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:7
-msgid "Play when the CD player starts?"
-msgstr "Afspelen wanneer cd-speler start?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:8
-msgid "Should the CD be ejected when the CD player quits?"
-msgstr "Moet de cd worden uitgeworpen wanneer de cd-speler afsluit?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:9
-msgid "The path to the CD drive that the CD player should use to play CDs"
-msgstr ""
-"Het pad naar het cd-station dat de cd-speler gebruikt om cd's af te spelen"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:10
-msgid "What theme should the CD player use for its appearance"
-msgstr "Welk thema de cd-speler dient te gebruiken voor zijn uiterlijk"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:11
-msgid "What volume should the CD player use when it is started?"
-msgstr "Welk volume dient de cd-speler te gebruiken wanneer hij wordt gestart?"
-
-#: ../gnome-cd/gnome-cd.schemas.in.in.h:12
-msgid "When the CD player is started, should it start playing the CD?"
-msgstr ""
-"Dient de cd-speler te beginnen met afspelen van de cd wanneer hij start?"
-
-#: ../gnome-cd/gst-cdrom.c:301
-#, c-format
-msgid "Failed to eject CD: %s"
-msgstr "cd uitwerpen mislukt: %s"
-
-#: ../gnome-cd/preferences.c:81
-#, c-format
-msgid ""
-"%s\n"
-"This means that the CD player will not be able to run."
-msgstr ""
-"%s\n"
-"Dit betekent dat de cd-speler niet kan functioneren."
-
-#: ../gnome-cd/preferences.c:82
-msgid "Error setting device"
-msgstr "Fout bij instellen van apparaat"
-
-#: ../gnome-cd/preferences.c:526
-msgid "CD Player Preferences"
-msgstr "Cd-spelervoorkeuren"
-
-#: ../gnome-cd/preferences.c:565
-#: ../gstreamer-properties/gstreamer-properties.glade.h:14
-msgid "_Device:"
-msgstr "A_pparaat:"
-
-#: ../gnome-cd/preferences.c:579
-msgid "Behavior"
-msgstr "Gedrag"
-
-#: ../gnome-cd/preferences.c:592
-msgid "Start _playback when CD Player starts"
-msgstr "Beginnen met afs_pelen wanneer cd-speler start"
-
-#: ../gnome-cd/preferences.c:593
-msgid "Start playback when CD Player starts"
-msgstr "Beginnen met afspelen wanneer cd-speler start"
-
-#: ../gnome-cd/preferences.c:605
-msgid "Attempt to _eject CD when CD Player exits"
-msgstr "Prob_eren cd uit te werpen wanneer cd-speler afsluit"
-
-#: ../gnome-cd/preferences.c:606
-msgid "Attempt to eject CD when CD Player exits"
-msgstr "Proberen cd uit te werpen wanneer cd-speler afsluit"
-
-#: ../gnome-cd/preferences.c:622
-msgid "Themes"
-msgstr "Thema's"
-
-#: ../gnome-cd/preferences.c:634
-msgid "_Select a theme:"
-msgstr "_Selecteer een thema:"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and associate sounds with events"
-msgstr "Geluidsvolume aanpassen en geluiden aan gebeurtenissen koppelen"
-
-#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
-msgid "Sound"
-msgstr "Geluid"
-
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
 msgstr "Volumeregeling tonen"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:2
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
-#: ../gst-mixer/src/window.c:280 ../gst-mixer/src/window.c:281
+#: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "Volumeregeling"
 
+# Vrij vertaald (Wouter Bolsterlee)
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
+msgid "Change sound volume and sound events"
+msgstr "Geluidsvolume en systeemgeluiden aanpassen"
+
+#: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
+msgid "Sound"
+msgstr "Geluid"
+
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:141
+#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Debug-code inschakelen"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:142
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
@@ -1362,131 +60,212 @@ msgstr "Versie van deze toepassing"
 msgid " - GNOME Volume Control Applet"
 msgstr " — Volumeregeling-applet"
 
-#: ../gnome-volume-control/src/dialog-main.c:122
+#: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
 msgstr "Wachten op antwoord van het geluidsysteem"
 
 # huh? startup page?
-#: ../gnome-volume-control/src/dialog-main.c:140 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Startup-pagina"
 
-#: ../gnome-volume-control/src/dialog-main.c:154
+#: ../gnome-volume-control/src/dialog-main.c:168
 msgid " - GNOME Volume Control"
 msgstr " — Volumeregeling"
 
-#: ../gnome-volume-control/src/gvc-applet.c:260
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1136
+#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "Uitvoer"
 
-#: ../gnome-volume-control/src/gvc-applet.c:264
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1060
+#: ../gnome-volume-control/src/gvc-applet.c:277
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "Invoer"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:101
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
 msgid "Left"
 msgstr "Links"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:106
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Right"
 msgstr "Rechts"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:385
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+msgctxt "balance"
+msgid "Rear"
+msgstr "Achter"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Front"
+msgstr "Voor"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Minimum"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Maximum"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "_Balans:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:798
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+msgid "_Fade:"
+msgstr "_Fade:"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+msgid "_Subwoofer:"
+msgstr "_Subwoofer:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
+msgctxt "volume"
+msgid "100%"
+msgstr "100%"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "Onversterkt"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "Dempen"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:988
+#: ../gnome-volume-control/src/gvc-combo-box.c:148
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+msgid "_Profile:"
+msgstr "_Profiel:"
+
+#. translators:
+#. * The device has been disabled
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
+#: ../sound-theme/gvc-sound-theme-editor.c:896
+#: ../sound-theme/gvc-sound-theme-editor.c:992
+msgid "Disabled"
+msgstr "Uigeschakeld"
+
+#. translators:
+#. * The number of sound outputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#, c-format
+msgid "%u Output"
+msgid_plural "%u Outputs"
+msgstr[0] "%u uitgang"
+msgstr[1] "%u uitgangen"
+
+#. translators:
+#. * The number of sound inputs on a particular device
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#, c-format
+msgid "%u Input"
+msgid_plural "%u Inputs"
+msgstr[0] "%u ingang"
+msgstr[1] "%u ingangen"
+
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
 msgid "System Sounds"
 msgstr "Systeemgeluiden"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1512
-msgid "GNOME Volume Control"
-msgstr "GNOME Volumeregeling"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+msgid "Co_nnector:"
+msgstr "Co_nnector:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:359
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
 msgid "Peak detect"
 msgstr "Piekdetectie"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:978
-#: ../sound-theme/gvc-sound-theme-chooser.c:863
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
+#: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Naam"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:985
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
 msgid "Device"
 msgstr "Apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1027
-msgid "Output volume: "
-msgstr "Uitvoervolume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+msgid "_Output volume: "
+msgstr "_Uitvoervolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1040
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "Geluidseffecten"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1047
-msgid "Alert Volume: "
-msgstr "Waarschuwingsvolume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+msgid "_Alert volume: "
+msgstr "_Waarschuwingsvolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1067
-msgid "Input volume: "
-msgstr "Invoervolume: "
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+msgid "Hardware"
+msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1087
-msgid "Input level:"
-msgstr "Invoerniveau:"
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+msgid "C_hoose a device to configure:"
+msgstr "Kies een apparaat om te _configureren"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1109
-msgid "Choose a device for sound input"
-msgstr "Kies een apparaat voor geluidsinvoer"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1141
-msgid "Choose a device for sound output"
-msgstr "Kies een apparaat voor geluidsuitvoer"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1165
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "Instellingen voor het geselecteerde apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1176
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+msgid "_Input volume: "
+msgstr "_Invoervolume: "
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+msgid "Input level:"
+msgstr "Invoerniveau:"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+msgid "C_hoose a device for sound input:"
+msgstr "Kies een apparaat voor geluids_invoer"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+msgid "C_hoose a device for sound output:"
+msgstr "Kies een _apparaat voor geluidsuitvoer"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "Toepassingen"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1180
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "Er is momenteel geen toepassing geluid aan het opnemen of afspelen."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1283
-#: ../sound-theme/gvc-sound-theme-chooser.c:728
-#: ../sound-theme/gvc-sound-theme-chooser.c:740
-#: ../sound-theme/gvc-sound-theme-chooser.c:752
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
+#: ../sound-theme/gvc-sound-theme-chooser.c:730
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:754
 #: ../sound-theme/gvc-sound-theme-editor.c:561
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Geluidsvoorkeuren"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:213
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Kon volumeregelingsvoorkeuren niet starten: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "_Dempen"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:245
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "_Geluidsvoorkeuren"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:419
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "Gedempt"
 
@@ -1495,7 +274,7 @@ msgid "Record sound clips"
 msgstr "Geluidsfragmenten opnemen"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1236
+#: ../grecord/src/gsr-window.c:1238
 msgid "Sound Recorder"
 msgstr "Geluidsrecorder"
 
@@ -1503,17 +282,17 @@ msgstr "Geluidsrecorder"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:145 ../grecord/src/gsr-window.c:1732
-#: ../grecord/src/gsr-window.c:2679
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2690
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: ../grecord/src/gnome-recorder.c:147 ../grecord/src/gsr-window.c:1734
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
 #, c-format
 msgid "Untitled-%d"
 msgstr "Naamloos-%d"
 
-#: ../grecord/src/gsr-window.c:194
+#: ../grecord/src/gsr-window.c:193
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
@@ -1528,7 +307,7 @@ msgstr ""
 "    gst-inspect-0.10 %s\n"
 "uit te voeren en dan gnome-sound-recorder te herstarten."
 
-#: ../grecord/src/gsr-window.c:210
+#: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plug-ins."
@@ -1536,7 +315,7 @@ msgstr ""
 "Ga de instellingen ervan na.\n"
 "U mist wellicht de benodigde plug-ins."
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:294
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
@@ -1544,14 +323,14 @@ msgstr[0] "%ld minuut"
 msgstr[1] "%ld minuten"
 
 # meervoud van uur hier beter: uur ipv uren
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld uur"
 msgstr[1] "%ld uur"
 
-#: ../grecord/src/gsr-window.c:297
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
@@ -1559,24 +338,24 @@ msgstr[0] "%ld seconde"
 msgstr[1] "%ld seconden"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:304
+#: ../grecord/src/gsr-window.c:303
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s en %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
-#: ../grecord/src/gsr-window.c:329
+#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
+#: ../grecord/src/gsr-window.c:328
 #, c-format
 msgid "%s and %s"
 msgstr "%s en %s"
 
-#: ../grecord/src/gsr-window.c:372
+#: ../grecord/src/gsr-window.c:371
 msgid "Open a File"
 msgstr "Een bestand openen"
 
-#: ../grecord/src/gsr-window.c:449
+#: ../grecord/src/gsr-window.c:448
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -1585,17 +364,17 @@ msgstr ""
 "Niet in staat bestand te laden:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1533
-#: ../grecord/src/gsr-window.c:1791 ../grecord/src/gsr-window.c:2492
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
+#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
 msgid "Ready"
 msgstr "Gereed"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:648
+#: ../grecord/src/gsr-window.c:647
 msgid "_Replace"
 msgstr "Ve_rvangen"
 
-#: ../grecord/src/gsr-window.c:665
+#: ../grecord/src/gsr-window.c:664
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -1604,119 +383,134 @@ msgstr ""
 "Een bestand met de naam \"%s\" bestaat reeds.\n"
 "Wilt u het overschrijven met degene die u nu opslaat?"
 
-#: ../grecord/src/gsr-window.c:713
+#: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "Kan het bestand \"%s\" niet opslaan"
 
-#: ../grecord/src/gsr-window.c:733
+#: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
 msgstr "Bestand opslaan als"
 
-#: ../grecord/src/gsr-window.c:827
+#: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s is niet in het pad geïnstalleerd."
 
-#: ../grecord/src/gsr-window.c:836
+#: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "Er is een fout opgetreden bij het starten van %s: %s"
 
 #: ../grecord/src/gsr-window.c:864
-#, c-format
-msgid "Save the changes to file \"%s\" before closing?"
-msgstr "Bestanden opslaan naar \"%s\" alvorens af te sluiten?"
+msgid "Save recording before closing?"
+msgstr "Opname opslaan alvorens af te sluiten?"
 
-#: ../grecord/src/gsr-window.c:876
+#: ../grecord/src/gsr-window.c:865
+msgid "Save recording?"
+msgstr "Opname opslaan?"
+
+#: ../grecord/src/gsr-window.c:869
 msgid "Close _without Saving"
 msgstr "Sluiten _zonder opslaan"
 
-#: ../grecord/src/gsr-window.c:883
+#: ../grecord/src/gsr-window.c:870
+msgid "Continue _without Saving"
+msgstr "Sluiten _zonder opslaan"
+
+#: ../grecord/src/gsr-window.c:880
 msgid "Question"
 msgstr "Vraag"
 
-#: ../grecord/src/gsr-window.c:984
+#: ../grecord/src/gsr-window.c:987
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (niet opgeslagen)"
 
-#: ../grecord/src/gsr-window.c:1000
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: ../grecord/src/gsr-window.c:1004
+#: ../grecord/src/gsr-window.c:1007
 msgid "Unknown size"
 msgstr "Onbekende grootte"
 
-#: ../grecord/src/gsr-window.c:1025
+#. Attempts to get length ran out.
+#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1408
+#: ../gstreamer-properties/gstreamer-properties.c:301
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: ../grecord/src/gsr-window.c:1028
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1033
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Geschat)"
 
-#: ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1054
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1057
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1081
+#: ../grecord/src/gsr-window.c:1084
 #, c-format
 msgid "%s Information"
 msgstr "%s-informatie"
 
-#: ../grecord/src/gsr-window.c:1105 ../grecord/src/gsr-window.c:2404
+#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
 msgid "File Information"
 msgstr "Bestandsinformatie"
 
-#: ../grecord/src/gsr-window.c:1120
+#: ../grecord/src/gsr-window.c:1123
 msgid "Folder:"
 msgstr "Map:"
 
-#: ../grecord/src/gsr-window.c:1126 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
 msgid "Filename:"
 msgstr "Bestandsnaam:"
 
-#: ../grecord/src/gsr-window.c:1132
+#: ../grecord/src/gsr-window.c:1135
 msgid "File size:"
 msgstr "Bestandsgrootte:"
 
-#: ../grecord/src/gsr-window.c:1141
+#: ../grecord/src/gsr-window.c:1144
 msgid "Audio Information"
 msgstr "Audio-informatie"
 
-#: ../grecord/src/gsr-window.c:1156
+#: ../grecord/src/gsr-window.c:1159
 msgid "File duration:"
 msgstr "Bestandsduur:"
 
-#: ../grecord/src/gsr-window.c:1162
+#: ../grecord/src/gsr-window.c:1165
 msgid "Number of channels:"
 msgstr "Aantal kanalen:"
 
-#: ../grecord/src/gsr-window.c:1168
+#: ../grecord/src/gsr-window.c:1171
 msgid "Sample rate:"
 msgstr "Sample rate: "
 
-#: ../grecord/src/gsr-window.c:1174
+#: ../grecord/src/gsr-window.c:1177
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: ../grecord/src/gsr-window.c:1239
+#: ../grecord/src/gsr-window.c:1241
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -1724,27 +518,27 @@ msgstr ""
 "Een geluidsrecorder voor Gnome\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1505
+#: ../grecord/src/gsr-window.c:1512
 msgid "Playing..."
 msgstr "Afspelen…"
 
-#: ../grecord/src/gsr-window.c:1637
+#: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
 msgstr "GConf audio-uitvoer"
 
-#: ../grecord/src/gsr-window.c:1646 ../gst-mixer/src/misc.c:60
+#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Weergave"
 
-#: ../grecord/src/gsr-window.c:1723
+#: ../grecord/src/gsr-window.c:1732
 msgid "Recording..."
 msgstr "Opname actief…"
 
-#: ../grecord/src/gsr-window.c:1813
+#: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
 msgstr "GConf audio-opname"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
@@ -1752,25 +546,25 @@ msgstr ""
 "Uw instellingen voor audio-opname zijn ongeldig. Corrigeer ze met "
 "‘Geluidsvoorkeuren’ onder het menu Systeemvoorkeuren."
 
-#: ../grecord/src/gsr-window.c:1994
+#: ../grecord/src/gsr-window.c:2003
 msgid "file output"
 msgstr "bestandsuitvoer"
 
-#: ../grecord/src/gsr-window.c:2012
+#: ../grecord/src/gsr-window.c:2021
 msgid "level"
 msgstr "geluidsniveau"
 
-#: ../grecord/src/gsr-window.c:2036
+#: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Kon het audioprofiel ‘%s’ niet analyseren. "
 
-#: ../grecord/src/gsr-window.c:2053
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Opnemen met behulp van het ‘%s’-audioprofiel was niet mogelijk. "
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2071
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
@@ -1778,121 +572,122 @@ msgstr ""
 "mogelijk. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2116
+#: ../grecord/src/gsr-window.c:2125
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../grecord/src/gsr-window.c:2118
+#: ../grecord/src/gsr-window.c:2127
 msgid "Create a new sample"
 msgstr "Nieuw sample maken"
 
-#: ../grecord/src/gsr-window.c:2120
+#: ../grecord/src/gsr-window.c:2129
 msgid "Open a file"
 msgstr "Bestand openen"
 
-#: ../grecord/src/gsr-window.c:2122
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file"
 msgstr "Huidige bestand opslaan"
 
-#: ../grecord/src/gsr-window.c:2124
+#: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file with a different name"
 msgstr "Het huidige bestand opslaan onder een andere naam"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2134
 msgid "Open Volu_me Control"
 msgstr "Volu_meregeling openen"
 
-#: ../grecord/src/gsr-window.c:2126
+#: ../grecord/src/gsr-window.c:2135
 msgid "Open the audio mixer"
 msgstr "De geluidsmixer starten"
 
-#: ../grecord/src/gsr-window.c:2128
+#: ../grecord/src/gsr-window.c:2137
 msgid "Show information about the current file"
 msgstr "Informatie over het huidige bestand tonen"
 
-#: ../grecord/src/gsr-window.c:2130
+#: ../grecord/src/gsr-window.c:2139
 msgid "Close the current file"
 msgstr "Huidige bestand sluiten"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2141
 msgid "Quit the program"
 msgstr "Toepassing afsluiten"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2144
 msgid "_Control"
 msgstr "Be_sturing"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2146
 msgid "Record sound"
 msgstr "Geluid opnemen"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2148
 msgid "Play sound"
 msgstr "Geluid afspelen"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2150
 msgid "Stop sound"
 msgstr "Geluid stoppen"
 
-#: ../grecord/src/gsr-window.c:2145
+#. Help menu
+#: ../grecord/src/gsr-window.c:2153
+msgid "_Help"
+msgstr "_Hulp"
+
+#: ../grecord/src/gsr-window.c:2154
 msgid "Contents"
 msgstr "Inhoud"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2155
 msgid "Open the manual"
 msgstr "Handleiding openen"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2157
 msgid "About this application"
 msgstr "Informatie over deze toepassing"
 
-#: ../grecord/src/gsr-window.c:2270
+#: ../grecord/src/gsr-window.c:2279
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Kan ui.xml niet laden. Het programma is wellicht niet correct geïnstalleerd"
 
-#: ../grecord/src/gsr-window.c:2293
+#: ../grecord/src/gsr-window.c:2302
 msgid "Open"
 msgstr "Openen"
 
-#: ../grecord/src/gsr-window.c:2295
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../grecord/src/gsr-window.c:2297
+#: ../grecord/src/gsr-window.c:2306
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: ../grecord/src/gsr-window.c:2353
+#: ../grecord/src/gsr-window.c:2362
 msgid "Record from _input:"
 msgstr "Opnemen van i_nvoer:"
 
-#: ../grecord/src/gsr-window.c:2371
+#: ../grecord/src/gsr-window.c:2380
 msgid "_Record as:"
 msgstr "O_pnemen als:"
 
-#: ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:2427
 msgid "<none>"
 msgstr "<geen>"
 
-#: ../grecord/src/gsr-window.c:2432
+#: ../grecord/src/gsr-window.c:2441
 msgid "Length:"
 msgstr "Duur:"
 
-#: ../grecord/src/gsr-window.c:2470
+#: ../grecord/src/gsr-window.c:2479
 msgid "Level:"
 msgstr "Geluidsniveau:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2564
+#: ../grecord/src/gsr-window.c:2574
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - Geluidsrecorder"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Adjust the volume level"
-msgstr "Geluidsniveau aanpassen"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
@@ -1910,7 +705,7 @@ msgstr "Breedte van het venster"
 msgid "Width of the Window to be displayed"
 msgstr "Breedte van  het weer te geven venster"
 
-#: ../gst-mixer/src/element.c:423
+#: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Geluidsthema"
 
@@ -1924,15 +719,15 @@ msgid "No volume control GStreamer plugins and/or devices found."
 msgstr ""
 "Geen volumeregelingselementen en/of -apparaten voor GStreamer gevonden."
 
-#: ../gst-mixer/src/misc.c:62
+#: ../gst-mixer/src/misc.c:64
 msgid "Recording"
 msgstr "Opname actief"
 
-#: ../gst-mixer/src/misc.c:64
+#: ../gst-mixer/src/misc.c:66
 msgid "Switches"
 msgstr "Schakelaars"
 
-#: ../gst-mixer/src/misc.c:66
+#: ../gst-mixer/src/misc.c:68
 msgid "Options"
 msgstr "Opties"
 
@@ -1942,95 +737,95 @@ msgid "Volume Control Preferences"
 msgstr "Volumeregelingsvoorkeuren"
 
 #: ../gst-mixer/src/preferences.c:120
-msgid "_Select tracks to be visible:"
-msgstr "_Selecteer zichtbare sporen:"
+msgid "_Select mixers to be visible:"
+msgstr "_Selecteer zichtbare mixers:"
 
-#: ../gst-mixer/src/track.c:271
+#: ../gst-mixer/src/track.c:295
 #, c-format
 msgid "%s:"
 msgstr "%s:"
 
 #. mute button
-#: ../gst-mixer/src/track.c:310
+#: ../gst-mixer/src/track.c:339
 #, c-format
 msgid "Mute/unmute %s"
 msgstr "%s dempen/luid"
 
-#: ../gst-mixer/src/track.c:325
+#: ../gst-mixer/src/track.c:356
 #, c-format
 msgid "Track %s: mute"
-msgstr "Spoor %s: gedempt"
+msgstr "Track %s: gedempt"
 
 #. only the record button here
-#: ../gst-mixer/src/track.c:391
+#: ../gst-mixer/src/track.c:433
 #, c-format
 msgid "Toggle audio recording from %s"
 msgstr "Audio-opname vanaf %s aan/uitschakelen"
 
-#: ../gst-mixer/src/track.c:408
+#: ../gst-mixer/src/track.c:449
 #, c-format
 msgid "Track %s: audio recording"
-msgstr "Spoor %s: audio-opname"
+msgstr "Track %s: audio-opname"
 
-#: ../gst-mixer/src/track.c:496
+#: ../gst-mixer/src/track.c:562
 #, c-format
 msgid "%s Option Selection"
 msgstr "%s optie-selectie"
 
-#: ../gst-mixer/src/volume.c:108
+#: ../gst-mixer/src/volume.c:112
 #, c-format
 msgid "Track %s"
-msgstr "Spoor %s"
+msgstr "Track %s"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:115
 #, c-format
 msgid "Channel %d of track %s"
-msgstr "Kanaal %d van spoor %s"
+msgstr "Kanaal %d van track %s"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:118
 #, c-format
 msgid "Track %s, channel %d"
-msgstr "Spoor %s, kanaal %d"
+msgstr "Track %s, kanaal %d"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:138
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "Kanalen voor %s aan elkaar koppelen"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:156
 #, c-format
 msgid "Track %s: lock channels together"
-msgstr "Spoor %s: kanalen aan elkaar koppelen"
+msgstr "Track %s: kanalen aan elkaar koppelen"
 
-#: ../gst-mixer/src/volume.c:197
+#: ../gst-mixer/src/volume.c:201
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "left"
 msgstr "links"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "right"
 msgstr "rechts"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "front left"
 msgstr "linksvoor"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front right"
 msgstr "rechtsvoor"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:208
 msgid "rear left"
 msgstr "linksachter"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:209
 msgid "rear right"
 msgstr "rechtsachter"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:210
 msgid "front center"
 msgstr "middenvoor"
 
@@ -2038,34 +833,34 @@ msgstr "middenvoor"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:216
 msgid "side left"
 msgstr "zijkant links"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:217
 msgid "side right"
 msgstr "zijkant rechts"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:218
 msgid "unknown"
 msgstr "onbekend"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:220
+#: ../gst-mixer/src/volume.c:224
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Geluidssterkte van %s-kanaal op %s"
 
-#: ../gst-mixer/src/window.c:144
+#: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
 msgstr "Een GNOME/GStreamer-gebaseerde volumeregeling"
 
-#: ../gst-mixer/src/window.c:147
+#: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
 "Dennis Smit\n"
@@ -2078,211 +873,215 @@ msgstr ""
 "Kijk voor meer info op http://nl.gnome.org/"
 
 #. change window title
-#: ../gst-mixer/src/window.c:184
+#: ../gst-mixer/src/window.c:173
 #, c-format
 msgid "Volume Control: %s"
 msgstr "Volumeregeling: %s"
 
-#: ../gst-mixer/src/window.c:389
+#: ../gst-mixer/src/window.c:378
 msgid "_Device: "
 msgstr "A_pparaat:"
 
 #. set tooltips
-#: ../gst-mixer/src/window.c:428
+#: ../gst-mixer/src/window.c:417
 msgid "Control volume on a different device"
 msgstr "Volume op een ander apparaat regelen"
 
-#: ../gstreamer-properties/gstreamer-properties.c:195
+#: ../gstreamer-properties/gstreamer-properties.c:204
 msgid "None"
 msgstr "Geen"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:233
+#: ../gstreamer-properties/gstreamer-properties.c:246
 msgid "Unsupported"
 msgstr "Niet ondersteund"
 
-#: ../gstreamer-properties/gstreamer-properties.c:251
-#: ../sound-theme/gvc-sound-theme-chooser.c:839
+#: ../gstreamer-properties/gstreamer-properties.c:268
+#: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "Standaard"
 
-#: ../gstreamer-properties/gstreamer-properties.c:603
+#: ../gstreamer-properties/gstreamer-properties.c:625
 msgid "Failure instantiating main window"
 msgstr "Hoofdvenster instantiëren mislukt"
 
-#: ../gstreamer-properties/gstreamer-properties.c:652
-msgid "Failed to load glade file; please check your installation."
-msgstr "Laden van glade-bestand mislukt; controleer uw installatie."
+#: ../gstreamer-properties/gstreamer-properties.c:678
+msgid "Failed to load UI file; please check your installation."
+msgstr "Laden van UI-bestand mislukt; controleer uw installatie."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
 msgid "Configure defaults for GStreamer applications"
 msgstr "Standaardinstellingen configureren voor GStreamer-toepassingen"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.glade.h:7
+#: ../gstreamer-properties/gstreamer-properties.ui.h:6
 msgid "Multimedia Systems Selector"
 msgstr "Multimediasystemen selecteren"
 
-# ingang/invoer/ingangskanaal
-#: ../gstreamer-properties/gstreamer-properties.glade.h:1
-msgid "<b>Default Input</b>"
-msgstr "<b>Standaard ingang</b>"
-
-# uitvoer/uitgang/uigangskanaal
-#: ../gstreamer-properties/gstreamer-properties.glade.h:2
-msgid "<b>Default Output</b>"
-msgstr "<b>Standaard uitgang</b>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:3
-msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-msgstr "<span weight=\"bold\" size=\"x-large\">Bezig met testen…</span>"
-
-#: ../gstreamer-properties/gstreamer-properties.glade.h:4
+#: ../gstreamer-properties/gstreamer-properties.ui.h:1
 msgid "Audio"
 msgstr "Audio"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:5
+#: ../gstreamer-properties/gstreamer-properties.ui.h:2
 msgid "Click Ok to finish."
 msgstr "Klik op OK om te voltooien."
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:6
+#: ../gstreamer-properties/gstreamer-properties.ui.h:3
 msgid "D_evice:"
 msgstr "A_pparaat:"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:8
+# ingang/invoer/ingangskanaal
+#: ../gstreamer-properties/gstreamer-properties.ui.h:4
+msgid "Default Input"
+msgstr "Standaard ingang"
+
+# uitvoer/uitgang/uigangskanaal
+#: ../gstreamer-properties/gstreamer-properties.ui.h:5
+msgid "Default Output"
+msgstr "Standaard uitgang"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:7
 msgid "P_ipeline:"
 msgstr "P_ijplijn:"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:9
+#: ../gstreamer-properties/gstreamer-properties.ui.h:8
 msgid "P_lugin:"
 msgstr "Plu_gin:"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:10
+#: ../gstreamer-properties/gstreamer-properties.ui.h:9
 msgid "Pipeli_ne:"
 msgstr "Pi_jplijn:"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:11
+#: ../gstreamer-properties/gstreamer-properties.ui.h:10
 msgid "Te_st"
 msgstr "Te_st"
 
 # zelfstandig naamwoord/werkwoord?
-#: ../gstreamer-properties/gstreamer-properties.glade.h:12
+#: ../gstreamer-properties/gstreamer-properties.ui.h:11
 msgid "Testing Pipeline"
 msgstr "Test-pijplijn"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:13
+#: ../gstreamer-properties/gstreamer-properties.ui.h:12
+msgid "Testing..."
+msgstr "Testen…"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
 msgstr "Video"
 
-#: ../gstreamer-properties/gstreamer-properties.glade.h:15
+#: ../gstreamer-properties/gstreamer-properties.ui.h:14
+msgid "_Device:"
+msgstr "A_pparaat:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:15
 msgid "_Plugin:"
 msgstr "_Plugin:"
 
 # testen/test
-#: ../gstreamer-properties/gstreamer-properties.glade.h:16
+#: ../gstreamer-properties/gstreamer-properties.ui.h:16
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gstreamer-properties/pipeline-constants.c:50
-#: ../gstreamer-properties/pipeline-constants.c:84
+#: ../gstreamer-properties/pipeline-constants.c:52
+#: ../gstreamer-properties/pipeline-constants.c:86
 msgid "Autodetect"
 msgstr "Automatisch detecteren"
 
-#: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:115
+#: ../gstreamer-properties/pipeline-constants.c:54
+#: ../gstreamer-properties/pipeline-constants.c:117
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../gstreamer-properties/pipeline-constants.c:67
+#: ../gstreamer-properties/pipeline-constants.c:69
 msgid "Artsd - ART Sound Daemon"
 msgstr "Artsd - ART Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:69
-#: ../gstreamer-properties/pipeline-constants.c:117
+#: ../gstreamer-properties/pipeline-constants.c:71
+#: ../gstreamer-properties/pipeline-constants.c:119
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment Sound Daemon"
 
-#: ../gstreamer-properties/pipeline-constants.c:75
-#: ../gstreamer-properties/pipeline-constants.c:124
+#: ../gstreamer-properties/pipeline-constants.c:77
+#: ../gstreamer-properties/pipeline-constants.c:126
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
-#: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
+#: ../gstreamer-properties/pipeline-constants.c:79
+#: ../gstreamer-properties/pipeline-constants.c:128
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio Sound Server"
 
-#: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:110
-#: ../gstreamer-properties/pipeline-constants.c:134
-#: ../gstreamer-properties/pipeline-constants.c:149
-#: ../sound-theme/gvc-sound-theme-chooser.c:618
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:112
+#: ../gstreamer-properties/pipeline-constants.c:136
+#: ../gstreamer-properties/pipeline-constants.c:151
+#: ../sound-theme/gvc-sound-theme-chooser.c:620
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Aangepast"
 
-#: ../gstreamer-properties/pipeline-constants.c:102
+#: ../gstreamer-properties/pipeline-constants.c:104
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:106
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "X Window System (No Xv)"
 msgstr "X Window System (geen Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:110
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:130
+#: ../gstreamer-properties/pipeline-constants.c:132
 msgid "Test Sound"
 msgstr "Testgeluid"
 
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:134
 msgid "Silence"
 msgstr "Stilte"
 
-#: ../gstreamer-properties/pipeline-constants.c:139
+#: ../gstreamer-properties/pipeline-constants.c:141
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (bijv. Zoran v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:143
 msgid "QCAM"
 msgstr "QCAM"
 
 # ingang/invoer
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:145
 msgid "Test Input"
 msgstr "Testinvoer"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:147
 msgid "Video for Linux (v4l)"
 msgstr "Video voor Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video voor Linux 2 (v4l2)"
 
-#: ../gstreamer-properties/pipeline-tests.c:175
+#: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "Opbouwen van testpijplijn voor ‘%s’ mislukt"
 
-#: ../profiles/audio-profile-edit.c:123 ../profiles/audio-profiles-edit.c:540
+#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:529
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Er is een fout opgetreden bij het weergeven van de hulptekst: %s"
 
-#: ../profiles/audio-profile-edit.c:336
+#: ../profiles/audio-profile-edit.c:341
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "Bewerken van profiel ‘%s’"
@@ -2316,46 +1115,46 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Er is een fout opgetreden bij het vergeten van profielpad %s. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:88
+#: ../profiles/audio-profiles-edit.c:78
 msgid "_Edit"
 msgstr "Be_werken"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:466
+#: ../profiles/audio-profiles-edit.c:456
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Dit profiel verwijderen?\n"
 msgstr[1] "Deze %d profielen verwijderen?\n"
 
-#: ../profiles/audio-profiles-edit.c:485
+#: ../profiles/audio-profiles-edit.c:475
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "Profiel ‘%s’ verwijderen?"
 
-#: ../profiles/audio-profiles-edit.c:507
+#: ../profiles/audio-profiles-edit.c:497
 msgid "Delete Profile"
 msgstr "Profiel verwijderen"
 
-#: ../profiles/audio-profiles-edit.c:601
+#: ../profiles/audio-profiles-edit.c:590
 msgid "Edit GNOME Audio Profiles"
 msgstr "GNOME audio-profielen bewerken"
 
-#: ../profiles/audio-profiles-edit.c:650
+#: ../profiles/audio-profiles-edit.c:639
 msgid "_Profiles:"
 msgstr "_Profielen:"
 
-#: ../profiles/audio-profiles-edit.c:834
+#: ../profiles/audio-profiles-edit.c:823
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "U heeft al een profiel met naam ‘%s’"
 
-#: ../profiles/audio-profiles-edit.c:859
+#: ../profiles/audio-profiles-edit.c:848
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf-fout (FIXME): %s\n"
 
-#: ../profiles/gmp-util.c:68
+#: ../profiles/gmp-util.c:61
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
@@ -2364,38 +1163,48 @@ msgstr ""
 "Het bestand ‘%s’ ontbreekt. Dit geeft aan dat de toepassing incorrect is "
 "geïnstalleerd, het dialoogvenster kan dus niet worden weergegeven."
 
-#: ../profiles/gnome-audio-profiles.glade2.h:1
+#: ../profiles/gnome-audio-profiles-properties.c:54
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"Voer ‘%s --help’ uit om een volledige lijst van opdrachtparameters te zien.\n"
+
+#: ../profiles/gnome-audio-profile-edit.ui.h:1
 msgid "Edit Audio Profile"
 msgstr "Audioprofiel bewerken"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
-msgid "New Profile"
-msgstr "Nieuw profiel"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:3
+#: ../profiles/gnome-audio-profile-edit.ui.h:2
 msgid "Profile _description:"
 msgstr "Profiel_omschrijving:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profile-edit.ui.h:3
 msgid "_Active?"
 msgstr "_Actief?"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "_Create"
-msgstr "Aan_maken"
-
 # extensie/achtervoegsel
-#: ../profiles/gnome-audio-profiles.glade2.h:6
+#: ../profiles/gnome-audio-profile-edit.ui.h:4
 msgid "_File extension:"
 msgstr "B_estandsachtervoegsel:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:7
+#: ../profiles/gnome-audio-profile-edit.ui.h:5
 msgid "_GStreamer pipeline:"
 msgstr "_GStreamerpijplijn:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profile-edit.ui.h:6
+#: ../profiles/gnome-audio-profile-new.ui.h:3
 msgid "_Profile name:"
 msgstr "Pro_fielnaam:"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:1
+msgid "New Profile"
+msgstr "Nieuw profiel"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:2
+msgid "_Create"
+msgstr "Aan_maken"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
@@ -2559,44 +1368,42 @@ msgstr "Of dit profiel gebruikt moet worden"
 msgid "Whether or not to use and display this profile."
 msgstr "Of dit profiel gebruikt en weergegeven moet worden"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:320
+#: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Geen geluiden"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:442
+#: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Ingebouwd"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:731
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
+#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:744
+#: ../sound-theme/gvc-sound-theme-chooser.c:756
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Geluid testen"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:840
+#: ../sound-theme/gvc-sound-theme-chooser.c:842
 msgid "From theme"
 msgstr "Van thema"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:870
+#: ../sound-theme/gvc-sound-theme-chooser.c:872
 msgid "Type"
 msgstr "Type"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1081
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
-msgid "Sound Theme:"
-msgstr "Geluidsthema:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+msgid "Sound _theme:"
+msgstr "Geluids_thema:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1089
-msgid "Choose an alert sound:"
-msgstr "Kies een waarschuwingsgeluid:"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+msgid "C_hoose an alert sound:"
+msgstr "Kies een _waarschuwingsgeluid:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1107
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
-msgid "Enable window and button sounds"
-msgstr "Scherm- en knopgeluiden inschakelen"
+#: ../sound-theme/gvc-sound-theme-chooser.c:1124
+msgid "Enable _window and button sounds"
+msgstr "Scherm- en knop_geluiden inschakelen"
 
 #. Bell
 #: ../sound-theme/gvc-sound-theme-editor.c:76
@@ -2700,14 +1507,17 @@ msgstr "Geluidsbestand selecteren"
 msgid "Sound files"
 msgstr "Geluidsbestanden"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
-msgid "Disabled"
-msgstr "Uigeschakeld"
-
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
 msgstr "Aangepast…"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1310
+msgid "Sound Theme:"
+msgstr "Geluidsthema:"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:1338
+msgid "Enable window and button sounds"
+msgstr "Scherm- en knopgeluiden inschakelen"
 
 #. Translators: This is the name of an audio file that sounds like the bark of a dog.
 #. You might want to translate it into the equivalent words of your language.
@@ -2733,74 +1543,1017 @@ msgstr "Glas"
 msgid "Sonar"
 msgstr "Sonar"
 
-#: ../vu-meter/main.c:102
-msgid ""
-"Cannot connect to sound daemon.\n"
-"Please run 'esd' at a command prompt."
-msgstr ""
-"Kan niet verbinden met geluidsvoorziening.\n"
-"Start 'esd' vanaf de opdrachtregel."
+#~ msgid "Address of the server to contact for CD queries"
+#~ msgstr "Adres van de voor cd-aanvragen te benaderen server"
 
-#: ../vu-meter/main.c:231
-msgid "Specify the X position of the meter."
-msgstr "De X-positie van de meter specificeren."
+#~ msgid "Information to send to server"
+#~ msgstr "Informatie om naar server te sturen"
 
-#: ../vu-meter/main.c:232
-msgid "X"
-msgstr "X"
+#~ msgid "Port"
+#~ msgstr "Poort"
 
-#: ../vu-meter/main.c:234
-msgid "Specify the Y position of the meter."
-msgstr "De Y-positie van de meter specificeren."
+#~ msgid "Server name"
+#~ msgstr "Servernaam"
 
-#: ../vu-meter/main.c:235
-msgid "Y"
-msgstr "Y"
+#~ msgid "Server type"
+#~ msgstr "Servertype"
 
-#: ../vu-meter/main.c:237
-msgid "Connect to the esd server on this host."
-msgstr "Verbinding maken met de esd-server op deze host."
+#~ msgid "The hostname that will be sent with all queries"
+#~ msgstr "De hostnaam die met alle aanvragen wordt meegestuurd"
 
-#: ../vu-meter/main.c:238
-msgid "HOST"
-msgstr "HOST"
+#~ msgid "The port that the server is running the database on"
+#~ msgstr "De serverpoort waarop de database actief is"
 
-#: ../vu-meter/main.c:240
-msgid "Open a vertical version of the meter."
-msgstr "Verticale versie van de meter openen."
+#~ msgid ""
+#~ "The type of the server to contact for CD queries. Possible values are 0 "
+#~ "(FreeDB round robin server), 1 (other freedb server) and 2 (other server)."
+#~ msgstr ""
+#~ "Het servertype om contact mee op te nemen voor cd-aanvragen. Mogelijke "
+#~ "waarden zijn 0 (FreeDB round robin server), 1 (andere freedb-server) en 2 "
+#~ "(andere server)."
 
-#: ../vu-meter/main.c:242
-msgid "Act as recording level meter."
-msgstr "Als opnameniveaumeter functioneren"
+#~ msgid "The username"
+#~ msgstr "De gebruikersnaam"
 
-#: ../vu-meter/main.c:258
-#, c-format
-msgid "Host is %s\n"
-msgstr "Host is %s\n"
+#~ msgid "The username that will be sent with all queries"
+#~ msgstr "De gebruikersnaam die met alle aanvragen wordt meegestuurd"
 
-#: ../vu-meter/main.c:275
-msgid "Recording level"
-msgstr "Opnameniveau"
+#~ msgid ""
+#~ "This key specifies which user information will be sent to the server to "
+#~ "contact for CD queries. Possible values are 0 (no information), 1 (real "
+#~ "information) and 3 (other information)."
+#~ msgstr ""
+#~ "Deze sleutel geeft aan welke gebruikersinformatie naar de server te "
+#~ "zenden die voor cd-aanvragen gebruikt wordt. Mogelijke waarden zijn (geen "
+#~ "informatie), 1 (echte informatie) en 3 (andere informatie)."
 
-#: ../vu-meter/main.c:275
-msgid "Volume Meter"
-msgstr "Volumemeter"
+#~ msgid "Your hostname"
+#~ msgstr "Uw hostnaam"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:1
-msgid "Monitor the recording input volume"
-msgstr "Opname-invoervolume bijhouden"
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Er is een fout opgetreden bij het weergeven van de hulptekst:\n"
+#~ "%s"
 
-#: ../vu-meter/reclevel.desktop.in.in.h:2
-msgid "Recording Level Monitor"
-msgstr "Opnameniveau-observatie"
+#~ msgid "Sen_d no information"
+#~ msgstr "Geen in_formatie sturen"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:1
-msgid "Monitor the sound output volume"
-msgstr "Geluidsuitvoervolume bijhouden"
+#~ msgid "Send real _information"
+#~ msgstr "Echte _informatie sturen"
 
-#: ../vu-meter/vumeter.desktop.in.in.h:2
-msgid "Volume Monitor"
-msgstr "Volume-observatie"
+#~ msgid "Send _other information:"
+#~ msgstr "Andere inf_ormatie sturen:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Naam:"
+
+#~ msgid "Hostna_me:"
+#~ msgstr "Hostnaa_m:"
+
+#~ msgid "Login Information"
+#~ msgstr "Aanmeldingsinformatie"
+
+#~ msgid "FreeDB _round robin server"
+#~ msgstr "FreeDB _round robin server"
+
+#~ msgid "Other _FreeDB server:"
+#~ msgstr "Andere _FreeDB-server:"
+
+#~ msgid "Server"
+#~ msgstr "Server"
+
+#~ msgid "Location"
+#~ msgstr "Locatie"
+
+#~ msgid "_Update Server List"
+#~ msgstr "Ser_verlijst verversen"
+
+#~ msgid "Other _server:"
+#~ msgstr "Andere _server:"
+
+#~ msgid "Hos_tname:"
+#~ msgstr "Hos_tnaam:"
+
+#~ msgid "_Port:"
+#~ msgstr "_Poort:"
+
+#~ msgid "CD Database Preferences"
+#~ msgstr "Voorkeuren cd-database"
+
+#~ msgid "Unknown / Unknown"
+#~ msgstr "Onbekend / Onbekend"
+
+#~ msgid "Multiple matches..."
+#~ msgstr "Meerdere overeenkomsten…"
+
+#~ msgid ""
+#~ "There were multiple matches found in the database.\n"
+#~ "Below is a list of possible matches, please choose the best match"
+#~ msgstr ""
+#~ "Er zijn meerdere overeenkomsten gevonden in de database.\n"
+#~ "Hieronder staat een lijst van mogelijkheden, kies de beste overeenkomst"
+
+#~ msgid "Category"
+#~ msgstr "Categorie"
+
+#~ msgid "Disc ID"
+#~ msgstr "Schijf-ID"
+
+#~ msgid "Artist and Title"
+#~ msgstr "Artiest en titel"
+
+#~ msgid "Unknown track"
+#~ msgstr "Onbekend nummer"
+
+#~ msgid "CD Database Server"
+#~ msgstr "Cd database-server"
+
+#~ msgid "Modify your CD database server preferences"
+#~ msgstr "Uw voorkeuren voor cd-database-server wijzigen"
+
+#~ msgid "Blues"
+#~ msgstr "Blues"
+
+#~ msgid "Classical Rock"
+#~ msgstr "Klassieke rock"
+
+#~ msgid "Country"
+#~ msgstr "Country"
+
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Disco"
+#~ msgstr "Disco"
+
+#~ msgid "Funk"
+#~ msgstr "Funk"
+
+#~ msgid "Grunge"
+#~ msgstr "Grunge"
+
+#~ msgid "Hip-Hop"
+#~ msgstr "Hip-Hop"
+
+#~ msgid "Jazz"
+#~ msgstr "Jazz"
+
+#~ msgid "Metal"
+#~ msgstr "Metal"
+
+#~ msgid "New Age"
+#~ msgstr "New Age"
+
+#~ msgid "Oldies"
+#~ msgstr "Gouwe ouwe"
+
+#~ msgid "Other"
+#~ msgstr "Anders"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "R&B"
+#~ msgstr "R&B"
+
+#~ msgid "Rap"
+#~ msgstr "Rap"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Techno"
+#~ msgstr "Techno"
+
+#~ msgid "Industrial"
+#~ msgstr "Industrial"
+
+#~ msgid "Alternative"
+#~ msgstr "Alternatief"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Death Metal"
+#~ msgstr "Death Metal"
+
+#~ msgid "Pranks"
+#~ msgstr "Grappen"
+
+#~ msgid "Soundtrack"
+#~ msgstr "Soundtrack"
+
+#~ msgid "Euro-Techno"
+#~ msgstr "Euro-Techno"
+
+#~ msgid "Ambient"
+#~ msgstr "Ambient"
+
+#~ msgid "Trip-Hop"
+#~ msgstr "Trip-Hop"
+
+#~ msgid "Vocal"
+#~ msgstr "Vocaal"
+
+#~ msgid "Jazz+Funk"
+#~ msgstr "Jazz+Funk"
+
+#~ msgid "Fusion"
+#~ msgstr "Fusion"
+
+#~ msgid "Trance"
+#~ msgstr "Trance"
+
+#~ msgid "Classical"
+#~ msgstr "Klassiek"
+
+#~ msgid "Instrumental"
+#~ msgstr "Instrumentaal"
+
+#~ msgid "Acid"
+#~ msgstr "Acid"
+
+#~ msgid "House"
+#~ msgstr "House"
+
+#~ msgid "Game"
+#~ msgstr "Spel"
+
+#~ msgid "Sound Clip"
+#~ msgstr "Geluidsfragment"
+
+#~ msgid "Gospel"
+#~ msgstr "Gospel"
+
+#~ msgid "Noise"
+#~ msgstr "Ruis"
+
+#~ msgid "Alt"
+#~ msgstr "Alt"
+
+#~ msgid "Bass"
+#~ msgstr "Bass"
+
+#~ msgid "Soul"
+#~ msgstr "Soul"
+
+#~ msgid "Punk"
+#~ msgstr "Punk"
+
+#~ msgid "Space"
+#~ msgstr "Ruimte"
+
+#~ msgid "Meditative"
+#~ msgstr "Meditatie"
+
+#~ msgid "Instrumental Pop"
+#~ msgstr "Instrumentale pop"
+
+#~ msgid "Instrumental Rock"
+#~ msgstr "Instrumentale rock"
+
+#~ msgid "Ethnic"
+#~ msgstr "Etnisch"
+
+#~ msgid "Gothic"
+#~ msgstr "Gothic"
+
+#~ msgid "Darkwave"
+#~ msgstr "Darkwave"
+
+#~ msgid "Techno-Industrial"
+#~ msgstr "Techno-Industrial"
+
+#~ msgid "Electronic"
+#~ msgstr "Electronisch"
+
+#~ msgid "Pop-Folk"
+#~ msgstr "Pop-Folk"
+
+#~ msgid "Eurodance"
+#~ msgstr "Eurodance"
+
+#~ msgid "Dream"
+#~ msgstr "Droom"
+
+#~ msgid "Southern Rock"
+#~ msgstr "Zuidelijke rock"
+
+#~ msgid "Comedy"
+#~ msgstr "Komedie"
+
+#~ msgid "Cult"
+#~ msgstr "Cult"
+
+#~ msgid "Gangsta Rap"
+#~ msgstr "Gangsta rap"
+
+#~ msgid "Top 40"
+#~ msgstr "Top 40"
+
+#~ msgid "Christian Rap"
+#~ msgstr "Christelijke rap"
+
+#~ msgid "Pop/Funk"
+#~ msgstr "Pop/Funk"
+
+#~ msgid "Jungle"
+#~ msgstr "Jungle"
+
+#~ msgid "Native American"
+#~ msgstr "Native American"
+
+#~ msgid "Cabaret"
+#~ msgstr "Cabaret"
+
+#~ msgid "New Wave"
+#~ msgstr "New Wave"
+
+#~ msgid "Psychedelic"
+#~ msgstr "Psychedelisch"
+
+#~ msgid "Rave"
+#~ msgstr "Rave"
+
+#~ msgid "Showtunes"
+#~ msgstr "Showmelodieën"
+
+#~ msgid "Trailer"
+#~ msgstr "Trailer"
+
+#~ msgid "Lo-Fi"
+#~ msgstr "Lo-Fi"
+
+#~ msgid "Tribal"
+#~ msgstr "Tribal"
+
+#~ msgid "Acid Punk"
+#~ msgstr "Acid Punk"
+
+#~ msgid "Acid Jazz"
+#~ msgstr "Acid Jazz"
+
+#~ msgid "Polka"
+#~ msgstr "Polka"
+
+#~ msgid "Musical"
+#~ msgstr "Musical"
+
+#~ msgid "Rock & Roll"
+#~ msgstr "Rock & Roll"
+
+#~ msgid "Hard Rock"
+#~ msgstr "Hardrock"
+
+#~ msgid "Folk"
+#~ msgstr "Folk"
+
+#~ msgid "Folk/Rock"
+#~ msgstr "Folk/Rock"
+
+#~ msgid "National Folk"
+#~ msgstr "Nationale volksmuziek"
+
+#~ msgid "Swing"
+#~ msgstr "Swing"
+
+#~ msgid "Fast-Fusion"
+#~ msgstr "Fast-Fusion"
+
+#~ msgid "Bebop"
+#~ msgstr "Bebop"
+
+#~ msgid "Latin"
+#~ msgstr "Latin"
+
+#~ msgid "Revival"
+#~ msgstr "Revival"
+
+#~ msgid "Celtic"
+#~ msgstr "Keltisch"
+
+#~ msgid "Bluegrass"
+#~ msgstr "Bluegrass"
+
+#~ msgid "Avantgarde"
+#~ msgstr "Avantgarde"
+
+#~ msgid "Gothic Rock"
+#~ msgstr "Gothic rock"
+
+#~ msgid "Progressive Rock"
+#~ msgstr "Progressieve rock"
+
+#~ msgid "Psychedelic Rock"
+#~ msgstr "Psychedelische rock"
+
+#~ msgid "Symphonic Rock"
+#~ msgstr "Symphonische rock"
+
+#~ msgid "Slow Rock"
+#~ msgstr "Slow rock"
+
+#~ msgid "Big Band"
+#~ msgstr "Big band"
+
+#~ msgid "Chorus"
+#~ msgstr "Koor"
+
+#~ msgid "Easy Listening"
+#~ msgstr "Ontspannend"
+
+#~ msgid "Acoustic"
+#~ msgstr "Acoustisch"
+
+#~ msgid "Humour"
+#~ msgstr "Humor"
+
+#~ msgid "Speech"
+#~ msgstr "Toespraak"
+
+#~ msgid "Chanson"
+#~ msgstr "Chanson"
+
+#~ msgid "Opera"
+#~ msgstr "Opera"
+
+#~ msgid "Chamber Music"
+#~ msgstr "Kamermuziek"
+
+#~ msgid "Sonata"
+#~ msgstr "Sonate"
+
+#~ msgid "Symphony"
+#~ msgstr "Symphonie"
+
+#~ msgid "Booty Bass"
+#~ msgstr "Booty Bass"
+
+#~ msgid "Primus"
+#~ msgstr "Primus"
+
+#~ msgid "Porn Groove"
+#~ msgstr "Porn Groove"
+
+#~ msgid "Satire"
+#~ msgstr "Satire"
+
+#~ msgid "Slow Jam"
+#~ msgstr "Slow Jam"
+
+#~ msgid "Club"
+#~ msgstr "Club"
+
+#~ msgid "Tango"
+#~ msgstr "Tango"
+
+#~ msgid "Samba"
+#~ msgstr "Samba"
+
+#~ msgid "Folklore"
+#~ msgstr "Folklore"
+
+#~ msgid "Ballad"
+#~ msgstr "Ballad"
+
+#~ msgid "Power Ballad"
+#~ msgstr "Power Ballad"
+
+#~ msgid "Rhythmic Soul"
+#~ msgstr "Ritmische soul"
+
+#~ msgid "Freestyle"
+#~ msgstr "Freestyle"
+
+#~ msgid "Duet"
+#~ msgstr "Duet"
+
+#~ msgid "Punk Rock"
+#~ msgstr "Punkrock"
+
+#~ msgid "Drum Solo"
+#~ msgstr "Drumsolo"
+
+#~ msgid "A Cappella"
+#~ msgstr "A cappella"
+
+#~ msgid "Euro-House"
+#~ msgstr "Euro-House"
+
+#~ msgid "Dance Hall"
+#~ msgstr "Dance Hall"
+
+#~ msgid "Goa"
+#~ msgstr "Goa"
+
+#~ msgid "Drum & Bass"
+#~ msgstr "Drum & Bass"
+
+#~ msgid "Club-House"
+#~ msgstr "Club-House"
+
+#~ msgid "Terror"
+#~ msgstr "Terror"
+
+#~ msgid "Indie"
+#~ msgstr "Indie"
+
+#~ msgid "BritPop"
+#~ msgstr "Britpop"
+
+#~ msgid "Negerpunk"
+#~ msgstr "Negerpunk"
+
+#~ msgid "Polsk Punk"
+#~ msgstr "Polsk Punk"
+
+#~ msgid "Beat"
+#~ msgstr "Beat"
+
+#~ msgid "Christian Gangsta Rap"
+#~ msgstr "Christelijke gangsta rap"
+
+#~ msgid "Heavy Metal"
+#~ msgstr "Heavy metal"
+
+#~ msgid "Black Metal"
+#~ msgstr "Black metal"
+
+#~ msgid "Crossover"
+#~ msgstr "Crossover"
+
+#~ msgid "Contemporary Christian"
+#~ msgstr "Eigentijds christelijk"
+
+#~ msgid "Christian Rock"
+#~ msgstr "Christelijke rock"
+
+#~ msgid "Merengue"
+#~ msgstr "Merengue"
+
+#~ msgid "Salsa"
+#~ msgstr "Salsa"
+
+#~ msgid "Thrash Metal"
+#~ msgstr "Thrash metal"
+
+#~ msgid "Anime"
+#~ msgstr "Anime"
+
+#~ msgid "JPop"
+#~ msgstr "JPop"
+
+#~ msgid "Synthpop"
+#~ msgstr "Synthesizer"
+
+#~ msgid "Nu-Metal"
+#~ msgstr "Nu-Metal"
+
+#~ msgid "Art Rock"
+#~ msgstr "Art rock"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Onbekende artiest"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Onbekend album"
+
+#~ msgid "Editing Disc ID: %s"
+#~ msgstr "Bezig schijf-ID te wijzigen: %s"
+
+#~ msgid "Hide advanced disc options"
+#~ msgstr "Gevorderde schijfopties"
+
+#~ msgid "Show advanced disc options"
+#~ msgstr "Gevorderde schijfopties tonen"
+
+#~ msgid "Hide advanced track options"
+#~ msgstr "Verberg geavanceerde track opties"
+
+#~ msgid "Show advanced track options"
+#~ msgstr "Gevorderde trackopties tonen"
+
+#~ msgid "Editing Disc ID: "
+#~ msgstr "Bezig schijf-ID te wijzigen: "
+
+#~ msgid "_Artist:"
+#~ msgstr "_Artiest:"
+
+#~ msgid "Disc _Title:"
+#~ msgstr "Cd-_titel:"
+
+#~ msgid "_Disc comments:"
+#~ msgstr "Schij_f-opmerkingen:"
+
+#~ msgid "_Genre:"
+#~ msgstr "_Genre:"
+
+#~ msgid "_Year:"
+#~ msgstr "_Jaar:"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Length"
+#~ msgstr "Duur"
+
+#~ msgid "_Extra track data:"
+#~ msgstr "_Extra trackgegevens:"
+
+#~ msgid "CDDB Track Editor"
+#~ msgstr "CDDB track-editor"
+
+#~ msgid ""
+#~ "Cannot create CDDBTrackEditor factory.\n"
+#~ "This may be caused by another copy of cddb-track-editor already running.\n"
+#~ msgstr ""
+#~ "Kon geen CDDBTrackEditor-fabriek aanmaken.\n"
+#~ "Het kan zijn dat er al een andere cddb-track-editor actief is.\n"
+
+#~ msgid "CD Display"
+#~ msgstr "Cd-weergave"
+
+#~ msgid ""
+#~ "Displays information about the currently playing album, artist and time "
+#~ "elapsed"
+#~ msgstr ""
+#~ "Geeft informatie weer over het momenteel afgespeelde album, de artiest en "
+#~ "de verstreken tijd"
+
+#~ msgid "Time Line"
+#~ msgstr "Tijdlijn"
+
+#~ msgid "Line for displaying the time elapsed for the current track"
+#~ msgstr "Lijn om de verstreken tijd van het huidige nummer weer te geven"
+
+#~ msgid "Info Line"
+#~ msgstr "Infolijn"
+
+#~ msgid "Line for displaying information"
+#~ msgstr "Lijn om informatie weer te geven"
+
+#~ msgid "Artist Line"
+#~ msgstr "Artiestlijn"
+
+#~ msgid "Line for displaying the name of the artist"
+#~ msgstr "Lijn om de naam van de artiest weer te geven"
+
+#~ msgid "Album Line"
+#~ msgstr "Albumlijn"
+
+#~ msgid "Line for displaying the name of the album"
+#~ msgstr "Lijn om de naam van het album weer te geven"
+
+#~ msgid "Play"
+#~ msgstr "Afspelen"
+
+#~ msgid "Pause"
+#~ msgstr "Pauzeren"
+
+#~ msgid ""
+#~ "Playing %s - %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Afspelen %s - %s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Playing\n"
+#~ ": %s"
+#~ msgstr ""
+#~ "Afspelen\n"
+#~ ": %s"
+
+#~ msgid "Paused"
+#~ msgstr "Gepauzeerd"
+
+#~ msgid "CD Player"
+#~ msgstr "Cd-speler"
+
+#~ msgid "Stopped"
+#~ msgstr "Gestopt"
+
+#~ msgid "Disc error"
+#~ msgstr "Schijffout"
+
+#~ msgid "No disc"
+#~ msgstr "Geen schijf"
+
+#~ msgid "Empty disc"
+#~ msgstr "Lege schijf"
+
+#~ msgid "Drive open"
+#~ msgstr "Speler open"
+
+#~ msgid "Data CD"
+#~ msgstr "Data-cd"
+
+#~ msgid "No Cdrom"
+#~ msgstr "Geen cd-rom"
+
+#~ msgid "Drive Error"
+#~ msgstr "Cd-spelerfout"
+
+#~ msgid "A CD player for GNOME"
+#~ msgstr "Een cd-speler voor GNOME"
+
+#~ msgid "Contents in the CDDB have changed"
+#~ msgstr "De inhoud in de CDDB is veranderd"
+
+#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
+#~ msgstr "'Ja' kiezen zal de vorige inhoud in CDDB verwijderen."
+
+#~ msgid "Do you wish to continue?"
+#~ msgstr "Wilt u doorgaan?"
+
+#~ msgid "Volume %d%%"
+#~ msgstr "Volume %d%%"
+
+#~ msgid "You do not seem to have permission to access %s."
+#~ msgstr "Het lijkt erop dat u geen toestemming hebt om %s te benaderen."
+
+#~ msgid ""
+#~ "%s does not appear to point to a valid CD device. This may be because:\n"
+#~ "a) CD support is not present in your machine\n"
+#~ "b) You do not have the correct permissions to access the CD drive\n"
+#~ "c) %s is not the CD drive.\n"
+#~ msgstr ""
+#~ "%s lijkt niet naar een geldig cd apparaat te wijzen. Dit kan zo zijn "
+#~ "omdat:\n"
+#~ "a) cd-ondersteuning niet aanwezig is op uw computer\n"
+#~ "b) U niet de juiste rechten heeft om het cd-station te benaderen\n"
+#~ "c) %s niet het cd-station is.\n"
+
+#~ msgid "%d - Unknown"
+#~ msgstr "%d - Onbekend"
+
+#~ msgid "_Play / Pause"
+#~ msgstr "Afs_pelen/Pauzeren"
+
+#~ msgid "_Stop"
+#~ msgstr "_Stoppen"
+
+#~ msgid "P_revious"
+#~ msgstr "Vo_rige"
+
+#~ msgid "_Next"
+#~ msgstr "V_olgende"
+
+#~ msgid "_Eject disc"
+#~ msgstr "Schijf uitw_erpen"
+
+#~ msgid "_About"
+#~ msgstr "I_nfo"
+
+#~ msgid "_Quit"
+#~ msgstr "A_fsluiten"
+
+#~ msgid ""
+#~ "There is no CD device set. This means that the CD player\n"
+#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
+#~ "where you can set the device, or click 'Quit' to quit the CD player."
+#~ msgstr ""
+#~ "Er is geen cd-speler ingesteld. Dit betekent dat de cd-speler\n"
+#~ "niet kan starten. Klik op \"Apparaat instellen\" om een\n"
+#~ "venster te openen waar u  het apparaat kunt instellen, of klik op "
+#~ "\"Afsluiten\" om de cd-speler te verlaten."
+
+#~ msgid "Set device"
+#~ msgstr "Apparaat instellen"
+
+#~ msgid "No CD device"
+#~ msgstr "Geen cd-apparaat"
+
+#~ msgid ""
+#~ "The CD player is unable to run correctly.\n"
+#~ "\n"
+#~ "Press 'Details' for more details on reasons for the failure.\n"
+#~ "\n"
+#~ "Press 'Set device' to go to a dialog where you can set the device, or "
+#~ "press 'Quit' to quit the CD player"
+#~ msgstr ""
+#~ "De cd-speler is niet in staat correct te functioneren.\n"
+#~ "\n"
+#~ "Druk op 'Details' voor meer details over de reden voor dit falen.\n"
+#~ "\n"
+#~ "Klik op 'Apparaat instellen' om een venster te openen waar u het apparaat "
+#~ "kunt instellen of klik op 'Afsluiten' om de cd-speler te verlaten"
+
+#~ msgid "_Details"
+#~ msgstr "_Details"
+
+#~ msgid "_Set device"
+#~ msgstr "Apparaat in_stellen"
+
+#~ msgid "Invalid CD device"
+#~ msgstr "Ongeldig cd-apparaat"
+
+#~ msgid "Position"
+#~ msgstr "Positie"
+
+#~ msgid "Open preferences"
+#~ msgstr "Voorkeuren openen"
+
+#~ msgid "Preferences"
+#~ msgstr "Voorkeuren"
+
+#~ msgid "Track List"
+#~ msgstr "Tracklijst"
+
+#~ msgid "Open track editor"
+#~ msgstr "Track-editor openen"
+
+#~ msgid "Track editor"
+#~ msgstr "Track-editor"
+
+#~ msgid "Play / Pause"
+#~ msgstr "Afspelen/Pauzeren"
+
+#~ msgid "Stop"
+#~ msgstr "Stoppen"
+
+#~ msgid "Previous track"
+#~ msgstr "Vorige track"
+
+#~ msgid "Previous"
+#~ msgstr "Vorige"
+
+#~ msgid "Rewind"
+#~ msgstr "Terugspoelen"
+
+#~ msgid "Fast forward"
+#~ msgstr "Vooruitspoelen"
+
+#~ msgid "Next track"
+#~ msgstr "Volgende nummer"
+
+#~ msgid "Eject CD"
+#~ msgstr "Cd uitwerpen"
+
+#~ msgid "Eject"
+#~ msgstr "Uitwerpen"
+
+#~ msgid "CD device to use"
+#~ msgstr "Te gebruiken cd-apparaat"
+
+#~ msgid "Only start if there isn't already a CD player application running"
+#~ msgstr "Alleen starten als er niet al een cd-spelertoepassing actief is"
+
+#~ msgid "Play the CD on startup"
+#~ msgstr "cd afspelen bij opstarten"
+
+# vak/gebied
+#~ msgid "Start iconified in notification area"
+#~ msgstr "Opstarten met alleen een pictogram in het mededelingengebied"
+
+#~ msgid "Cannot create player"
+#~ msgstr "Kan geen speler aanmaken"
+
+#~ msgid "Play audio CDs"
+#~ msgstr "Audio-cd's afspelen"
+
+# geluidsvolume/volume
+#~ msgid "CD player Volume"
+#~ msgstr "Volume van cd-speler"
+
+#~ msgid "CD player theme"
+#~ msgstr "Cd-spelerthema"
+
+#~ msgid "Device path"
+#~ msgstr "Apparaatpad"
+
+#~ msgid "Display the Remaining time?"
+#~ msgstr "De resterende tijd weergeven?"
+
+#~ msgid "Eject the CD when CD player quits?"
+#~ msgstr "Cd uitwerpen wanneer cd-speler afsluit?"
+
+#~ msgid "How the time should be displayed while CD Player is playing?"
+#~ msgstr "Hoe de tijd moet worden weergegeven tijdens het afspelen"
+
+#~ msgid "Play when the CD player starts?"
+#~ msgstr "Afspelen wanneer cd-speler start?"
+
+#~ msgid "Should the CD be ejected when the CD player quits?"
+#~ msgstr "Moet de cd worden uitgeworpen wanneer de cd-speler afsluit?"
+
+#~ msgid "The path to the CD drive that the CD player should use to play CDs"
+#~ msgstr ""
+#~ "Het pad naar het cd-station dat de cd-speler gebruikt om cd's af te spelen"
+
+#~ msgid "What theme should the CD player use for its appearance"
+#~ msgstr "Welk thema de cd-speler dient te gebruiken voor zijn uiterlijk"
+
+#~ msgid "What volume should the CD player use when it is started?"
+#~ msgstr ""
+#~ "Welk volume dient de cd-speler te gebruiken wanneer hij wordt gestart?"
+
+#~ msgid "When the CD player is started, should it start playing the CD?"
+#~ msgstr ""
+#~ "Dient de cd-speler te beginnen met afspelen van de cd wanneer hij start?"
+
+#~ msgid "Failed to eject CD: %s"
+#~ msgstr "cd uitwerpen mislukt: %s"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "This means that the CD player will not be able to run."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Dit betekent dat de cd-speler niet kan functioneren."
+
+#~ msgid "Error setting device"
+#~ msgstr "Fout bij instellen van apparaat"
+
+#~ msgid "CD Player Preferences"
+#~ msgstr "Cd-spelervoorkeuren"
+
+#~ msgid "Behavior"
+#~ msgstr "Gedrag"
+
+#~ msgid "Start _playback when CD Player starts"
+#~ msgstr "Beginnen met afs_pelen wanneer cd-speler start"
+
+#~ msgid "Start playback when CD Player starts"
+#~ msgstr "Beginnen met afspelen wanneer cd-speler start"
+
+#~ msgid "Attempt to _eject CD when CD Player exits"
+#~ msgstr "Prob_eren cd uit te werpen wanneer cd-speler afsluit"
+
+#~ msgid "Attempt to eject CD when CD Player exits"
+#~ msgstr "Proberen cd uit te werpen wanneer cd-speler afsluit"
+
+#~ msgid "Themes"
+#~ msgstr "Thema's"
+
+#~ msgid "_Select a theme:"
+#~ msgstr "_Selecteer een thema:"
+
+#~ msgid "GNOME Volume Control"
+#~ msgstr "GNOME Volumeregeling"
+
+#~ msgid "Adjust the volume level"
+#~ msgstr "Geluidsniveau aanpassen"
+
+#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
+#~ msgstr "<span weight=\"bold\" size=\"x-large\">Bezig met testen…</span>"
+
+#~ msgid ""
+#~ "Cannot connect to sound daemon.\n"
+#~ "Please run 'esd' at a command prompt."
+#~ msgstr ""
+#~ "Kan niet verbinden met geluidsvoorziening.\n"
+#~ "Start 'esd' vanaf de opdrachtregel."
+
+#~ msgid "Specify the X position of the meter."
+#~ msgstr "De X-positie van de meter specificeren."
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Specify the Y position of the meter."
+#~ msgstr "De Y-positie van de meter specificeren."
+
+#~ msgid "Y"
+#~ msgstr "Y"
+
+#~ msgid "Connect to the esd server on this host."
+#~ msgstr "Verbinding maken met de esd-server op deze host."
+
+#~ msgid "HOST"
+#~ msgstr "HOST"
+
+#~ msgid "Open a vertical version of the meter."
+#~ msgstr "Verticale versie van de meter openen."
+
+#~ msgid "Act as recording level meter."
+#~ msgstr "Als opnameniveaumeter functioneren"
+
+#~ msgid "Host is %s\n"
+#~ msgstr "Host is %s\n"
+
+#~ msgid "Recording level"
+#~ msgstr "Opnameniveau"
+
+#~ msgid "Volume Meter"
+#~ msgstr "Volumemeter"
+
+#~ msgid "Monitor the recording input volume"
+#~ msgstr "Opname-invoervolume bijhouden"
+
+#~ msgid "Recording Level Monitor"
+#~ msgstr "Opnameniveau-observatie"
+
+#~ msgid "Monitor the sound output volume"
+#~ msgstr "Geluidsuitvoervolume bijhouden"
+
+#~ msgid "Volume Monitor"
+#~ msgstr "Volume-observatie"
 
 #~ msgid "Capture"
 #~ msgstr "Opname"
@@ -3137,9 +2890,6 @@ msgstr "Volume-observatie"
 
 #~ msgid "Equalizer"
 #~ msgstr "Equalizer"
-
-#~ msgid "Fader"
-#~ msgstr "Fader"
 
 #~ msgid "Effect"
 #~ msgstr "Effect"
