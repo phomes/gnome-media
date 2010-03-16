@@ -322,10 +322,11 @@ gvc_combo_box_init (GvcComboBox *combo_box)
         combo_box->priv->combobox = gtk_combo_box_new_with_model (combo_box->priv->model);
         renderer = gtk_cell_renderer_text_new ();
         gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box->priv->combobox),
-                                    renderer, FALSE);
+                                    renderer, TRUE);
         gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->combobox),
                                        renderer,
                                        "text", COL_HUMAN_NAME);
+        g_object_set (G_OBJECT (renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
 /*       gtk_widget_set_size_request (combo_box->priv->combobox, 128, -1); */
 
