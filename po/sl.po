@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
-"POT-Creation-Date: 2010-01-17 19:48+0000\n"
-"PO-Revision-Date: 2010-01-26 09:29+0100\n"
+"POT-Creation-Date: 2010-03-17 14:14+0000\n"
+"PO-Revision-Date: 2010-03-17 15:20+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -71,12 +71,12 @@ msgid " - GNOME Volume Control"
 msgstr "- GNOME nadzor glasnosti"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1830
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Odvod"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1744
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Dovod"
 
@@ -122,28 +122,29 @@ msgstr "_Utišaj:"
 msgid "_Subwoofer:"
 msgstr "_Nizkotonski zvočnik"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:596
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Neojačano"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:852
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "Nemo"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1494
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -151,7 +152,7 @@ msgstr "Onemogočeno"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -162,7 +163,7 @@ msgstr[3] "%u odvodi"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
@@ -171,79 +172,88 @@ msgstr[1] "%u dovod"
 msgstr[2] "%u dovoda"
 msgstr[3] "%u dovodi"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Sistemski zvoki"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:305
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:564
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
 msgid "Co_nnector:"
 msgstr "_Povezava:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:510
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
 msgid "Peak detect"
 msgstr "Zaznava vrhov"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1423
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Ime"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1428
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
 msgid "Device"
 msgstr "Naprava"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1650
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "Preizkus zvočnikov za %s"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+msgid "Test Speakers"
+msgstr "Preizkus zvočnikov"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
 msgid "_Output volume: "
 msgstr "_Glasnost odvoda:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1681
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
 msgid "Sound Effects"
 msgstr "Zvočni učinki"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1688
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
 msgid "_Alert volume: "
 msgstr "_Glasnost opozoril:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1701
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
 msgid "Hardware"
 msgstr "Strojna oprema"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1706
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
 msgid "C_hoose a device to configure:"
 msgstr "_Izbor naprave za nastavitev:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1733
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
 msgid "Settings for the selected device:"
 msgstr "Nastavitve izbrane naprave:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1751
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
 msgid "_Input volume: "
 msgstr "_Glasnost dovajanja:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1774
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
 msgid "Input level:"
 msgstr "Raven dovajanja:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1800
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
 msgid "C_hoose a device for sound input:"
 msgstr "_Izbor naprave za dovod zvoka:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1835
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
 msgid "C_hoose a device for sound output:"
 msgstr "_Izbor naprave za odvod zvoka_"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1873
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
 msgid "Applications"
 msgstr "Programi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1877
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
 msgid "No application is currently playing or recording audio."
 msgstr "Ni programa, ki bi trenutno predvajal ali snemal zvočni posnetek."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2001
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -251,6 +261,19 @@ msgstr "Ni programa, ki bi trenutno predvajal ali snemal zvočni posnetek."
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Lastnosti zvoka"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "Ustavi"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "Preizkus"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "Nizkotonski zvočnik"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -910,7 +933,7 @@ msgstr "Privzeto"
 
 #: ../gstreamer-properties/gstreamer-properties.c:625
 msgid "Failure instantiating main window"
-msgstr "Napaka ob inicializaciji glavnega okna"
+msgstr "Napaka ob začenjanju glavnega okna"
 
 #: ../gstreamer-properties/gstreamer-properties.c:678
 msgid "Failed to load UI file; please check your installation."
@@ -938,12 +961,10 @@ msgid "D_evice:"
 msgstr "_Naprava:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:4
-#| msgid "<b>Default Input</b>"
 msgid "Default Input"
 msgstr "Privzeti vhod"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:5
-#| msgid "<b>Default Output</b>"
 msgid "Default Output"
 msgstr "Privzeti izhod"
 
@@ -968,7 +989,6 @@ msgid "Testing Pipeline"
 msgstr "Preizkušanje cevovoda"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-#| msgid "Recording..."
 msgid "Testing..."
 msgstr "Preiskušanje ..."
 
@@ -2001,7 +2021,7 @@ msgstr "Sonar"
 #~ msgid "_Next"
 #~ msgstr "_Naslednja"
 #~ msgid "_Eject disc"
-#~ msgstr "_Izvrzi zgoščenko"
+#~ msgstr "_Izvrzi disk"
 #~ msgid "_About"
 #~ msgstr "_O programu"
 #~ msgid "_Quit"
@@ -2053,8 +2073,6 @@ msgstr "Sonar"
 #~ msgstr "Urejevalnik skladbe"
 #~ msgid "Play / Pause"
 #~ msgstr "Predvajaj / Premor"
-#~ msgid "Stop"
-#~ msgstr "Ustavi"
 #~ msgid "Previous track"
 #~ msgstr "Prejšnja skladba"
 #~ msgid "Previous"
@@ -2106,7 +2124,7 @@ msgstr "Sonar"
 #~ msgid "When the CD player is started, should it start playing the CD?"
 #~ msgstr "Ko se zažene predvajalnik CDjev, ali naj začne predvajati CD?"
 #~ msgid "Failed to eject CD: %s"
-#~ msgstr "Ni mogoče izvreči zgoščenke CD: %s"
+#~ msgstr "Ni mogoče izvreči CD nosilca: %s"
 #~ msgid ""
 #~ "%s\n"
 #~ "This means that the CD player will not be able to run."
