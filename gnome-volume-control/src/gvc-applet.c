@@ -273,10 +273,14 @@ gvc_applet_init (GvcApplet *applet)
                                                                        output_icon_names);
         gvc_stream_status_icon_set_display_name (applet->priv->output_status_icon,
                                                  _("Output"));
+        gtk_status_icon_set_title (GTK_STATUS_ICON (applet->priv->output_status_icon),
+                                   _("Sound Output Volume"));
         applet->priv->input_status_icon = gvc_stream_status_icon_new (NULL,
                                                                       input_icon_names);
         gvc_stream_status_icon_set_display_name (applet->priv->input_status_icon,
                                                  _("Input"));
+        gtk_status_icon_set_title (GTK_STATUS_ICON (applet->priv->input_status_icon),
+                                   _("Microphone Volume"));
 }
 
 static void
