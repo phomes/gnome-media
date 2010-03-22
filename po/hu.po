@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 21:22+0100\n"
+"POT-Creation-Date: 2010-03-22 14:33+0100\n"
 "PO-Revision-Date: 2010-02-25 21:25+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
@@ -70,12 +70,12 @@ msgid " - GNOME Volume Control"
 msgstr " – GNOME hangerőszabályzó"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Kimenet"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Bemenet"
 
@@ -136,14 +136,14 @@ msgstr "Erősítetlen"
 msgid "Mute"
 msgstr "Némítás"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -151,7 +151,7 @@ msgstr "Tiltva"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -160,86 +160,95 @@ msgstr[1] "%u kimenet"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u bemenet"
 msgstr[1] "%u bemenet"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Rendszerhangok"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
 msgid "Co_nnector:"
 msgstr "_Csatlakozó:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
 msgid "Peak detect"
 msgstr "Csúcsérzékelés"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Név"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
 msgid "Device"
 msgstr "Eszköz"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+msgid "Test Speakers"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
 msgid "_Output volume: "
 msgstr "_Kimeneti hangerő: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
 msgid "Sound Effects"
 msgstr "Hangeffektusok"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
 msgid "_Alert volume: "
 msgstr "_Riasztás hangereje: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
 msgid "Hardware"
 msgstr "Hardver"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
 msgid "C_hoose a device to configure:"
 msgstr "_Válassza ki a beállítandó eszközt:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
 msgid "Settings for the selected device:"
 msgstr "Kiválasztott eszköz beállításai:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
 msgid "_Input volume: "
 msgstr "B_emeneti hangerő: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
 msgid "Input level:"
 msgstr "Bemeneti szint:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
 msgid "C_hoose a device for sound input:"
 msgstr "Válasszon _hangbemeneti eszközt:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
 msgid "C_hoose a device for sound output:"
 msgstr "Válasszon ha_ngkimeneti eszközt:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
 msgid "No application is currently playing or recording audio."
 msgstr "Jelenleg nincs hangot lejátszó vagy felvevő alkalmazás."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -247,6 +256,21 @@ msgstr "Jelenleg nincs hangot lejátszó vagy felvevő alkalmazás."
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Hangbeállítások"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+#, fuzzy
+msgid "Test"
+msgstr "Te_sztelés"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+#, fuzzy
+msgid "Subwoofer"
+msgstr "_Mélysugárzó:"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -538,7 +562,7 @@ msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
-"A hangfelvétel beállításai érvénytelenek. Javítsa ezeket a Rendszer -> "
+"A hangfelvétel beállításai érvénytelenek. Javítsa ezeket a Rendszer → "
 "Beállítások menü Hang pontja alatt."
 
 #: ../grecord/src/gsr-window.c:2003
@@ -710,7 +734,8 @@ msgstr "Ismeretlen hangerőszabályzó %d"
 
 #: ../gst-mixer/src/main.c:159
 msgid "No volume control GStreamer plugins and/or devices found."
-msgstr "Nem találhatók hangerőszabályzó GStreamer bővítmények és/vagy eszközök."
+msgstr ""
+"Nem találhatók hangerőszabályzó GStreamer bővítmények és/vagy eszközök."
 
 #: ../gst-mixer/src/misc.c:64
 msgid "Recording"
@@ -1204,8 +1229,10 @@ msgstr ""
 "használandó ez a profil."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:3
-msgid "A filename extension to be used when storing files encoded with this profile."
-msgstr "Az ezzel a profillal kódolt fájlok tárolásakor használt fájlnévkiterjesztés."
+msgid ""
+"A filename extension to be used when storing files encoded with this profile."
+msgstr ""
+"Az ezzel a profillal kódolt fájlok tárolásakor használt fájlnévkiterjesztés."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:4
 msgid "A partial GStreamer pipeline to use for this profile."
@@ -1219,7 +1246,8 @@ msgstr "A hangprofil rövid neve"
 msgid ""
 "A short name for the audio profile, to be used in selections and uniquely "
 "identifying the profile."
-msgstr "A profil kiválasztásokkor és egyedi azonosítására használandó rövid neve."
+msgstr ""
+"A profil kiválasztásokkor és egyedi azonosítására használandó rövid neve."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:7
 msgid "CD Quality, AAC"
@@ -1521,4 +1549,3 @@ msgstr "Üveg"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Szonár"
-
