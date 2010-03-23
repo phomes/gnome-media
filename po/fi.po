@@ -4,15 +4,15 @@
 # Mikko Rauhala <mjr@iki.fi>, 1999.
 # Jarkko Ranta <jjranta@cc.joensuu.fi>, 2000-2004.
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009.
-# Tommi Vainikainen <thv@iki.fi>, 2009.
+# Tommi Vainikainen <thv@iki.fi>, 2009-2010.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-14 15:08+0300\n"
-"PO-Revision-Date: 2009-08-14 15:13+0300\n"
+"POT-Creation-Date: 2010-03-23 11:51+0200\n"
+"PO-Revision-Date: 2010-03-23 11:50+0200\n"
 "Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -40,12 +40,12 @@ msgid "Sound"
 msgstr "Äänet"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:156
+#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Ota vianetsintäkoodi käyttöön"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:157
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
@@ -53,25 +53,25 @@ msgstr "Tämän ohjelman versio"
 msgid " - GNOME Volume Control Applet"
 msgstr "- Gnomen äänenvoimakkuden hallintasovelma"
 
-#: ../gnome-volume-control/src/dialog-main.c:125
+#: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
 msgstr "Odotetaan äänijärjestelmän vastausta"
 
-#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
+#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
 msgid "Startup page"
 msgstr "Aloitussivu"
 
-#: ../gnome-volume-control/src/dialog-main.c:169
+#: ../gnome-volume-control/src/dialog-main.c:168
 msgid " - GNOME Volume Control"
 msgstr " - Gnomen äänenvoimakkuuden hallinta"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1731
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "Toisto"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1647
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "Tallennus"
 
@@ -87,13 +87,13 @@ msgstr "oikea"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:112
 msgctxt "balance"
-msgid "Front"
-msgstr "etu"
+msgid "Rear"
+msgstr "taka"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
-msgid "Rear"
-msgstr "taka"
+msgid "Front"
+msgstr "etu"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:116
 msgctxt "balance"
@@ -117,29 +117,30 @@ msgstr "_Häivytys:"
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:585
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100 %"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:589
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Vahvistamaton"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:845
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "Vaimenna"
 
 #
 #: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1402
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
 msgid "_Profile:"
 msgstr "_Profiili:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:985
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -147,7 +148,7 @@ msgstr "Ei käytössä"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -156,90 +157,86 @@ msgstr[1] "%u ulostuloa"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1002
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u sisääntulo"
 msgstr[1] "%u sisääntuloa"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1298
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
 msgid "System Sounds"
 msgstr "Järjestelmä-äänet"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1750
-msgid "GNOME Volume Control"
-msgstr "Gnomen äänenvoimakkuuden hallinta"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
 msgid "Co_nnector:"
 msgstr "_Liitin:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
 msgid "Peak detect"
 msgstr "Havaitse piikit"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1331
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1484
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Nimi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1336
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
 msgid "Device"
 msgstr "Laite"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1554
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
 msgid "_Output volume: "
 msgstr "_Toistovoimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1584
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "Ääniefektit"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1591
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "_Alert volume: "
 msgstr "_Hälytysten voimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1604
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
 msgid "Hardware"
 msgstr "Laitteisto"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1609
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
 msgid "C_hoose a device to configure:"
 msgstr "_Valitse määriteltävä laite:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1636
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1763
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "Valitun laitteen asetukset:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1654
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "_Input volume: "
 msgstr "_Äänitysvoimakkuus: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1674
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
 msgid "Input level:"
 msgstr "Äänitystaso: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1701
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
 msgid "C_hoose a device for sound input:"
 msgstr "_Valitse laite äänen tallentamiseksi:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1736
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
 msgid "C_hoose a device for sound output:"
 msgstr "_Valitse laite äänen toistamiseksi:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1774
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "Sovellukset"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "Mikään sovellus ei nyt soita tai tallenna ääntä."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1902
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -248,20 +245,20 @@ msgstr "Mikään sovellus ei nyt soita tai tallenna ääntä."
 msgid "Sound Preferences"
 msgstr "Ääniasetukset"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:230
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "Ääniasetuksia ei voitu käynnistää: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:253
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
 msgstr "_Vaimenna"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:262
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
 msgstr "Ää_niasetukset"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:446
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
 msgstr "Vaimennettu"
 
@@ -270,7 +267,7 @@ msgid "Record sound clips"
 msgstr "Nauhoita äänitiedostoja"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1236
+#: ../grecord/src/gsr-window.c:1238
 msgid "Sound Recorder"
 msgstr "Ääninauhuri"
 
@@ -278,12 +275,12 @@ msgstr "Ääninauhuri"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
-#: ../grecord/src/gsr-window.c:2688
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2690
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
 #, c-format
 msgid "Untitled-%d"
 msgstr "Nimetön-%d"
@@ -298,7 +295,7 @@ msgid ""
 "and then restart gnome-sound-recorder."
 msgstr ""
 "GStreamer-elementtiä %s ei voitu luoda.\n"
-"Asenna liitännäinen \"%s\" moduulista \"%s\".\n"
+"Asenna liitännäinen ”%s” moduulista ”%s”.\n"
 "Varmista asennuksen onnistumisen suorittamalla komennon\n"
 "    gst-inspect-0.10 %s\n"
 "ja käynnistä gnome-sound-recorder sen jälkeen uudestaan."
@@ -360,8 +357,8 @@ msgstr ""
 "Tiedosto ei voi avata:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
-#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
+#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
 msgid "Ready"
 msgstr "Valmis"
 
@@ -376,13 +373,13 @@ msgid ""
 "A file named \"%s\" already exists. \n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
-"Tiedosto \"%s\" on jo olemassa.\n"
+"Tiedosto ”%s” on jo olemassa.\n"
 "Haluatko korvata sen?"
 
 #: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr "Tiedostoa \"%s\" ei voi tallentaa"
+msgstr "Tiedostoa ”%s” ei voi tallentaa"
 
 #: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
@@ -396,7 +393,7 @@ msgstr "%s ei ole asennettuna polussa."
 #: ../grecord/src/gsr-window.c:835
 #, c-format
 msgid "There was an error starting %s: %s"
-msgstr "Virhe käynnistettäessä kohdetta \"%s\": %s"
+msgstr "Virhe käynnistettäessä kohdetta ”%s”: %s"
 
 #: ../grecord/src/gsr-window.c:864
 msgid "Save recording before closing?"
@@ -414,103 +411,103 @@ msgstr "Sulje _tallentamatta"
 msgid "Continue _without Saving"
 msgstr "Jatka _tallentamatta"
 
-#: ../grecord/src/gsr-window.c:878
+#: ../grecord/src/gsr-window.c:880
 msgid "Question"
 msgstr "Kysymys"
 
-#: ../grecord/src/gsr-window.c:985
+#: ../grecord/src/gsr-window.c:987
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Ei tallennettu)"
 
-#: ../grecord/src/gsr-window.c:1001
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu tavu)"
 msgstr[1] "%s (%llu tavua)"
 
-#: ../grecord/src/gsr-window.c:1005
+#: ../grecord/src/gsr-window.c:1007
 msgid "Unknown size"
 msgstr "Tuntematon koko"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
-#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
-#: ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:303
+#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1408
+#: ../gstreamer-properties/gstreamer-properties.c:301
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1028
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1034
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kt/s"
 
-#: ../grecord/src/gsr-window.c:1037
+#: ../grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kt/s (arvioitu)"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1054
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1055
+#: ../grecord/src/gsr-window.c:1057
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
 #
-#: ../grecord/src/gsr-window.c:1082
+#: ../grecord/src/gsr-window.c:1084
 #, c-format
 msgid "%s Information"
 msgstr "%s - Tiedot"
 
 #
-#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
 msgid "File Information"
 msgstr "Tiedoston tiedot"
 
-#: ../grecord/src/gsr-window.c:1121
+#: ../grecord/src/gsr-window.c:1123
 msgid "Folder:"
 msgstr "Kansio:"
 
-#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
 msgid "Filename:"
 msgstr "Tiedostonimi:"
 
-#: ../grecord/src/gsr-window.c:1133
+#: ../grecord/src/gsr-window.c:1135
 msgid "File size:"
 msgstr "Tiedoston koko:"
 
-#: ../grecord/src/gsr-window.c:1142
+#: ../grecord/src/gsr-window.c:1144
 msgid "Audio Information"
 msgstr "Tietoja äänestä"
 
 #
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1159
 msgid "File duration:"
 msgstr "Tiedoston kesto:"
 
-#: ../grecord/src/gsr-window.c:1163
+#: ../grecord/src/gsr-window.c:1165
 msgid "Number of channels:"
 msgstr "Kanavien määrä:"
 
-#: ../grecord/src/gsr-window.c:1169
+#: ../grecord/src/gsr-window.c:1171
 msgid "Sample rate:"
 msgstr "Näytetaajuus:"
 
 # Onkohan tälle jotain vakiintunutta suomennosta?
-#: ../grecord/src/gsr-window.c:1175
+#: ../grecord/src/gsr-window.c:1177
 msgid "Bit rate:"
 msgstr "Bittinopeus:"
 
-#: ../grecord/src/gsr-window.c:1239
+#: ../grecord/src/gsr-window.c:1241
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -518,172 +515,172 @@ msgstr ""
 "Ääninauhuri Gnomelle\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1510
+#: ../grecord/src/gsr-window.c:1512
 msgid "Playing..."
-msgstr "Soitetaan..."
+msgstr "Soitetaan…"
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
 msgstr "GConfin ääniulostulo"
 
-#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Toisto"
 
-#: ../grecord/src/gsr-window.c:1730
+#: ../grecord/src/gsr-window.c:1732
 msgid "Recording..."
-msgstr "Nauhoitetaan..."
+msgstr "Nauhoitetaan…"
 
-#: ../grecord/src/gsr-window.c:1820
+#: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
 msgstr "GConfin äänisisääntulo"
 
-#: ../grecord/src/gsr-window.c:1829
+#: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System-Preferences menu."
 msgstr ""
 "Äänen nauhoitusasetukset ovat virheelliset. Korjaa asetukset kohdasta "
-"\"Ääniasetukset\" valikossa \"Järjestelmäasetukset\"."
+"”Ääniasetukset” valikossa ”Järjestelmäasetukset”."
 
-#: ../grecord/src/gsr-window.c:2001
+#: ../grecord/src/gsr-window.c:2003
 msgid "file output"
 msgstr "tiedostoulostulo"
 
-#: ../grecord/src/gsr-window.c:2019
+#: ../grecord/src/gsr-window.c:2021
 msgid "level"
 msgstr "taso"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Ääniprofiilia \"%s\" ei voitu tulkita."
+msgstr "Ääniprofiilia ”%s” ei voitu tulkita."
 
-#: ../grecord/src/gsr-window.c:2060
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
-msgstr "Ääntä ei voitu kaapata käyttäen ääniprofiilia \"%s\""
+msgstr "Ääntä ei voitu kaapata käyttäen ääniprofiilia ”%s”"
 
-#: ../grecord/src/gsr-window.c:2069
+#: ../grecord/src/gsr-window.c:2071
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
-msgstr "Tiedostoon ei voitu kirjoittaa käyttäen ääniprofiilia \"%s\""
+msgstr "Tiedostoon ei voitu kirjoittaa käyttäen ääniprofiilia ”%s”"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2125
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2127
 msgid "Create a new sample"
 msgstr "Luo uusi äänitiedosto"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2129
 msgid "Open a file"
 msgstr "Avaa tiedosto"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file"
 msgstr "Tallenna nykyinen tiedosto"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file with a different name"
 msgstr "Tallenna nykyinen tiedosto eri tiedostonimellä"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2134
 msgid "Open Volu_me Control"
 msgstr "Avaa Äänen_hallinta"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2135
 msgid "Open the audio mixer"
 msgstr "Avaa äänenvoimakkuuden hallinta"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2137
 msgid "Show information about the current file"
 msgstr "Näytä tietoja nykyisestä tiedostosta"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2139
 msgid "Close the current file"
 msgstr "Sulje nykyinen tiedosto"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2141
 msgid "Quit the program"
 msgstr "Lopeta ohjelma"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2144
 msgid "_Control"
 msgstr "_Hallinta"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2146
 msgid "Record sound"
 msgstr "Nauhoita äänitiedostoja"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2148
 msgid "Play sound"
 msgstr "Soita ääni"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2150
 msgid "Stop sound"
 msgstr "Pysäytä ääni"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2151
+#: ../grecord/src/gsr-window.c:2153
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../grecord/src/gsr-window.c:2152
+#: ../grecord/src/gsr-window.c:2154
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2155
 msgid "Open the manual"
 msgstr "Avaa manuaali"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2157
 msgid "About this application"
 msgstr "Tietoja tästä ohjelmasta"
 
-#: ../grecord/src/gsr-window.c:2277
+#: ../grecord/src/gsr-window.c:2279
 msgid "Could not load ui.xml. The program may be not properly installed"
 msgstr ""
 "Tiedostoa ui.xml ei voi avata. Voi olla ettei ohjelma ole oikein asennettu."
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2302
 msgid "Open"
 msgstr "Avaa"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2306
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2362
 msgid "Record from _input:"
 msgstr "Nauhoita _sisääntulosta:"
 
 #
-#: ../grecord/src/gsr-window.c:2378
+#: ../grecord/src/gsr-window.c:2380
 msgid "_Record as:"
 msgstr "Nauhoita _muodossa:"
 
-#: ../grecord/src/gsr-window.c:2425
+#: ../grecord/src/gsr-window.c:2427
 msgid "<none>"
 msgstr "<ei mitään>"
 
-#: ../grecord/src/gsr-window.c:2439
+#: ../grecord/src/gsr-window.c:2441
 msgid "Length:"
 msgstr "Pituus:"
 
-#: ../grecord/src/gsr-window.c:2477
+#: ../grecord/src/gsr-window.c:2479
 msgid "Level:"
 msgstr "Taso:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2572
+#: ../grecord/src/gsr-window.c:2574
 #, c-format
 msgid "%s - Sound Recorder"
 msgstr "%s - ääninauhuri"
@@ -770,60 +767,60 @@ msgstr "Raita %s: nauhoitus"
 msgid "%s Option Selection"
 msgstr "%s option valinta"
 
-#: ../gst-mixer/src/volume.c:108
+#: ../gst-mixer/src/volume.c:112
 #, c-format
 msgid "Track %s"
 msgstr "Raita %s"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:115
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "Kanava %d raidasta %s"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:118
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "Raita %s, kanava %d"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:138
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "Lukitse lähteen %s kanavat yhteen"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:156
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "Raita %s: lukitse kanavat yhteen"
 
-#: ../gst-mixer/src/volume.c:197
+#: ../gst-mixer/src/volume.c:201
 msgid "mono"
 msgstr "mono"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "left"
 msgstr "vasen"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "right"
 msgstr "oikea"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "front left"
 msgstr "edessä vasen"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front right"
 msgstr "edessä oikea"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:208
 msgid "rear left"
 msgstr "takana vasen"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:209
 msgid "rear right"
 msgstr "takana oikea"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:210
 msgid "front center"
 msgstr "edessä keskellä"
 
@@ -831,25 +828,25 @@ msgstr "edessä keskellä"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:216
 msgid "side left"
 msgstr "vasen sivu"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:217
 msgid "side right"
 msgstr "oikea sivu"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:218
 msgid "unknown"
 msgstr "tuntematon"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:220
+#: ../gst-mixer/src/volume.c:224
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "Kanavan %s äänenvoimakkuus kortilla %s"
@@ -883,27 +880,27 @@ msgstr "_Laite: "
 msgid "Control volume on a different device"
 msgstr "Säädä toisen laitteen äänenvoimakkuutta"
 
-#: ../gstreamer-properties/gstreamer-properties.c:206
+#: ../gstreamer-properties/gstreamer-properties.c:204
 msgid "None"
 msgstr "Ei mitään"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:248
+#: ../gstreamer-properties/gstreamer-properties.c:246
 msgid "Unsupported"
 msgstr "Ei tuettu"
 
-#: ../gstreamer-properties/gstreamer-properties.c:270
+#: ../gstreamer-properties/gstreamer-properties.c:268
 #: ../sound-theme/gvc-sound-theme-chooser.c:841
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
 msgstr "Oletus"
 
-#: ../gstreamer-properties/gstreamer-properties.c:627
+#: ../gstreamer-properties/gstreamer-properties.c:625
 msgid "Failure instantiating main window"
 msgstr "Virhe luotaessa pääikkunaa"
 
-#: ../gstreamer-properties/gstreamer-properties.c:680
+#: ../gstreamer-properties/gstreamer-properties.c:678
 msgid "Failed to load UI file; please check your installation."
 msgstr ""
 "UI-tiedoston avaus epäonnistui. Tarkista että ohjelman on asennettu oikein."
@@ -913,8 +910,69 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "Aseta GStreamer-sovellusten oletusarvot"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.ui.h:6
 msgid "Multimedia Systems Selector"
 msgstr "Multimediajärjestelmien valitsimet"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:1
+msgid "Audio"
+msgstr "Ääni"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:2
+msgid "Click Ok to finish."
+msgstr "Napsauta Ok lopettaaksesi."
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:3
+msgid "D_evice:"
+msgstr "_Laite:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:4
+msgid "Default Input"
+msgstr "Oletuslähde"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:5
+msgid "Default Output"
+msgstr "Oletusulostulo"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:7
+msgid "P_ipeline:"
+msgstr "Put_ki:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:8
+msgid "P_lugin:"
+msgstr "_Liitännäinen:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:9
+msgid "Pipeli_ne:"
+msgstr "Pu_tki:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:10
+msgid "Te_st"
+msgstr "Ko_keile"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:11
+msgid "Testing Pipeline"
+msgstr "Kokeillaan putkea"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:12
+msgid "Testing..."
+msgstr "Kokeillaan…"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:13
+msgid "Video"
+msgstr "Video"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:14
+msgid "_Device:"
+msgstr "_Laite:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:15
+msgid "_Plugin:"
+msgstr "_Liitännäinen:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:16
+msgid "_Test"
+msgstr "K_okeile"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:86
@@ -1005,17 +1063,17 @@ msgstr "Video for Linux versio 2 (v4l2)"
 #: ../gstreamer-properties/pipeline-tests.c:176
 #, c-format
 msgid "Failed to construct test pipeline for '%s'"
-msgstr "Koeputken \"%s\" luonti epäonnistui"
+msgstr "Koeputken ”%s” luonti epäonnistui"
 
-#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
+#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:529
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Virhe näytettäessä ohjetta: %s"
 
-#: ../profiles/audio-profile-edit.c:335
+#: ../profiles/audio-profile-edit.c:341
 #, c-format
 msgid "Editing profile \"%s\""
-msgstr "Muokataan profiilia \"%s\""
+msgstr "Muokataan profiilia ”%s”"
 
 #: ../profiles/audio-profile.c:92
 msgid "<no name>"
@@ -1043,54 +1101,54 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "Virhe unohdettaessa profiilipolkua %s. (%s)\n"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:78
 msgid "_Edit"
 msgstr "_Muokkaa"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:456
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "Poistetaanko tämä profiili?\n"
 msgstr[1] "Poistetaanko nämä %d profiilia?\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:475
 #, c-format
 msgid "Delete profile \"%s\"?"
-msgstr "Poistetaanko profiili \"%s\"?"
+msgstr "Poistetaanko profiili ”%s”?"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:497
 msgid "Delete Profile"
 msgstr "Poista profiili"
 
-#: ../profiles/audio-profiles-edit.c:599
+#: ../profiles/audio-profiles-edit.c:590
 msgid "Edit GNOME Audio Profiles"
 msgstr "Muokkaa Gnomen ääniprofiileja"
 
 #
-#: ../profiles/audio-profiles-edit.c:648
+#: ../profiles/audio-profiles-edit.c:639
 msgid "_Profiles:"
 msgstr "_Profiilit:"
 
-#: ../profiles/audio-profiles-edit.c:832
+#: ../profiles/audio-profiles-edit.c:823
 #, c-format
 msgid "You already have a profile called \"%s\""
-msgstr "Sinulla on jo profiili nimeltä \"%s\""
+msgstr "Sinulla on jo profiili nimeltä ”%s”"
 
-#: ../profiles/audio-profiles-edit.c:857
+#: ../profiles/audio-profiles-edit.c:848
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf-virhe (KORJAA): %s\n"
 
-#: ../profiles/gmp-util.c:68
+#: ../profiles/gmp-util.c:61
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
 "incorrectly, so the dialog can't be displayed."
 msgstr ""
-"Tiedostoa \"%s\" ei ole. Sovellus on todennäköisesti asennettu väärin. "
-"Ikkunan näyttäminen ei onnistu."
+"Tiedostoa ”%s” ei ole. Sovellus on todennäköisesti asennettu väärin. Ikkunan "
+"näyttäminen ei onnistu."
 
 #: ../profiles/gnome-audio-profiles-properties.c:54
 #, c-format
@@ -1099,40 +1157,41 @@ msgid ""
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "%s\n"
-"Suorita \"%s --help\", jos haluat nähdä kaikki mahdolliset "
+"Suorita ”%s --help”, jos haluat nähdä kaikki mahdolliset "
 "komentorivivalitsimet.\n"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:1
+#: ../profiles/gnome-audio-profile-edit.ui.h:1
 msgid "Edit Audio Profile"
 msgstr "Muokkaa ääniprofiilia"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
-msgid "New Profile"
-msgstr "Uusi profiili"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:3
+#: ../profiles/gnome-audio-profile-edit.ui.h:2
 msgid "Profile _description:"
 msgstr "Profiilin _kuvaus:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profile-edit.ui.h:3
 msgid "_Active?"
 msgstr "_Käytössä?"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "_Create"
-msgstr "_Luo"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:6
+#: ../profiles/gnome-audio-profile-edit.ui.h:4
 msgid "_File extension:"
 msgstr "Tiedosto_pääte:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:7
+#: ../profiles/gnome-audio-profile-edit.ui.h:5
 msgid "_GStreamer pipeline:"
 msgstr "_GStreamer-putki:"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profile-edit.ui.h:6
+#: ../profiles/gnome-audio-profile-new.ui.h:3
 msgid "_Profile name:"
 msgstr "_Profiilin nimi:"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:1
+msgid "New Profile"
+msgstr "Uusi profiili"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:2
+msgid "_Create"
+msgstr "_Luo"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
@@ -1325,7 +1384,7 @@ msgstr "Ääni_teema:"
 msgid "C_hoose an alert sound:"
 msgstr "_Valitse hälytysääni:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+#: ../sound-theme/gvc-sound-theme-chooser.c:1124
 msgid "Enable _window and button sounds"
 msgstr "Ota _ikkuna- ja painikeäänet käyttöön"
 
@@ -1433,7 +1492,7 @@ msgstr "Äänitiedostot"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:900
 msgid "Custom..."
-msgstr "Mukautettu..."
+msgstr "Mukautettu…"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:1310
 msgid "Sound Theme:"
@@ -1466,6 +1525,9 @@ msgstr "Napsautus lasiin"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Kaikuluotain"
+
+#~ msgid "GNOME Volume Control"
+#~ msgstr "Gnomen äänenvoimakkuuden hallinta"
 
 #~ msgid "Address of the server to contact for CD queries"
 #~ msgstr "Sen palvelimen osoite johon CD-kyselyt tehdään"
@@ -1572,7 +1634,7 @@ msgstr "Kaikuluotain"
 #~ msgstr "Tuntematon / Tuntematon"
 
 #~ msgid "Multiple matches..."
-#~ msgstr "Useita osumia..."
+#~ msgstr "Useita osumia…"
 
 #~ msgid ""
 #~ "There were multiple matches found in the database.\n"
@@ -2203,9 +2265,6 @@ msgstr "Kaikuluotain"
 #~ msgid "Contents in the CDDB have changed"
 #~ msgstr "Sisältö CDDB:ssä on muuttunut"
 
-#~ msgid "Choosing 'Yes' will delete the previous contents in CDDB."
-#~ msgstr "Valinta \"Kyllä\" poistaa vanhat tiedot CDDB:stä."
-
 #~ msgid "Do you wish to continue?"
 #~ msgstr "Haluatko jatkaa?"
 
@@ -2251,35 +2310,11 @@ msgstr "Kaikuluotain"
 #~ msgid "_Quit"
 #~ msgstr "_Lopeta"
 
-#~ msgid ""
-#~ "There is no CD device set. This means that the CD player\n"
-#~ "will be unable to run. Click 'Set device' to go to a dialog\n"
-#~ "where you can set the device, or click 'Quit' to quit the CD player."
-#~ msgstr ""
-#~ "CD-laitetta ei ole asetettu. Tämä tarkoittaa sitä ettei CD-soitin\n"
-#~ "tule toimimaan. Valitse \"Aseta laite\" päästäksesi valitsemaan\n"
-#~ "oikeaa laitetta, tai valitse \"Lopeta\" poistuaksesi CD-soittimesta."
-
 #~ msgid "Set device"
 #~ msgstr "Aseta laite"
 
 #~ msgid "No CD device"
 #~ msgstr "Ei CD-asemaa"
-
-#~ msgid ""
-#~ "The CD player is unable to run correctly.\n"
-#~ "\n"
-#~ "Press 'Details' for more details on reasons for the failure.\n"
-#~ "\n"
-#~ "Press 'Set device' to go to a dialog where you can set the device, or "
-#~ "press 'Quit' to quit the CD player"
-#~ msgstr ""
-#~ "CD-soitinta ei voi käynnistää kunnolla.\n"
-#~ "\n"
-#~ "Napsauta \"Lisätietoja\" saadaksesi lisätietoja virheen syystä.\n"
-#~ "\n"
-#~ "Napsauta \"Aseta laite\" asettaaksesi oikein CD-laitteen, tai napsauta "
-#~ "\"Lopeta\" poistuaksesi CD-soittimesta."
 
 #~ msgid "_Details"
 #~ msgstr "_Lisätietoja"
@@ -2406,9 +2441,6 @@ msgstr "Kaikuluotain"
 #~ msgid "CD Player Preferences"
 #~ msgstr "CD-soittimen asetukset"
 
-#~ msgid "_Device:"
-#~ msgstr "_Laite:"
-
 #~ msgid "Behavior"
 #~ msgstr "Käytös"
 
@@ -2429,13 +2461,6 @@ msgstr "Kaikuluotain"
 
 #~ msgid "_Select a theme:"
 #~ msgstr "_Valitse teema:"
-
-#~ msgid ""
-#~ "Cannot connect to sound daemon.\n"
-#~ "Please run 'esd' at a command prompt."
-#~ msgstr ""
-#~ "Äänipalvelimeen ei saatu yhteyttä.\n"
-#~ "Aja \"esd\" komentoriviltä."
 
 #~ msgid "Specify the X position of the meter."
 #~ msgstr "Anna mittarin vaakasuora sijainti."
@@ -2485,48 +2510,6 @@ msgstr "Kaikuluotain"
 #~ msgid "Adjust the volume level"
 #~ msgstr "Säädä äänenvoimakkuutta"
 
-#~ msgid "<b>Default Input</b>"
-#~ msgstr "<b>Oletuslähde</b>"
-
-#~ msgid "<b>Default Output</b>"
-#~ msgstr "<b>Oletusulostulo</b>"
-
-#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-#~ msgstr "<span weight=\"bold\" size=\"x-large\">Kokeillaan..</span>"
-
-#~ msgid "Audio"
-#~ msgstr "Ääni"
-
-#~ msgid "Click Ok to finish."
-#~ msgstr "Napsauta Ok lopettaaksesi."
-
-#~ msgid "D_evice:"
-#~ msgstr "_Laite:"
-
-#~ msgid "P_ipeline:"
-#~ msgstr "Put_ki:"
-
-#~ msgid "P_lugin:"
-#~ msgstr "_Liitännäinen:"
-
-#~ msgid "Pipeli_ne:"
-#~ msgstr "Pu_tki:"
-
-#~ msgid "Te_st"
-#~ msgstr "Ko_keile"
-
-#~ msgid "Testing Pipeline"
-#~ msgstr "Kokeillaan putkea"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "_Plugin:"
-#~ msgstr "_Liitännäinen:"
-
-#~ msgid "_Test"
-#~ msgstr "K_okeile"
-
 #~ msgid "hours"
 #~ msgstr "tuntia"
 
@@ -2538,10 +2521,10 @@ msgstr "Kaikuluotain"
 #~ msgstr "sekuntia"
 
 #~ msgid "_Open..."
-#~ msgstr "_Avaa..."
+#~ msgstr "_Avaa…"
 
 #~ msgid "Save _As..."
-#~ msgstr "Tallenna _nimellä..."
+#~ msgstr "Tallenna _nimellä…"
 
 #~ msgid "Capture"
 #~ msgstr "Kaappaus"
