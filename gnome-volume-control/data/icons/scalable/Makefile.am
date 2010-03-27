@@ -1,4 +1,4 @@
-SUBDIRS = status apps devices
+SUBDIRS = status apps
 
 
 -include $(top_srcdir)/git.mk

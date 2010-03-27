@@ -42,7 +42,6 @@
 #include "gvc-mixer-dialog.h"
 #include "gvc-sound-theme-chooser.h"
 #include "gvc-level-bar.h"
-#include "gvc-speaker-test.h"
 
 #define SCALE_SIZE 128
 
@@ -223,9 +222,9 @@ port_selection_changed (GvcComboBox *combo_box,
 static void
 update_output_settings (GvcMixerDialog *dialog)
 {
-        GvcMixerStream      *stream;
-        const GvcChannelMap *map;
-        const GList         *ports;
+        GvcMixerStream *stream;
+        GvcChannelMap  *map;
+        const GList    *ports;
 
         g_debug ("Updating output settings");
         if (dialog->priv->output_balance_bar != NULL) {
@@ -305,7 +304,7 @@ update_output_settings (GvcMixerDialog *dialog)
 
         ports = gvc_mixer_stream_get_ports (stream);
         if (ports != NULL) {
-                const GvcMixerStreamPort *port;
+                GvcMixerStreamPort *port;
                 port = gvc_mixer_stream_get_port (stream);
 
                 dialog->priv->output_port_combo = gvc_combo_box_new (_("Co_nnector:"));
@@ -600,7 +599,7 @@ update_input_settings (GvcMixerDialog *dialog)
 
         ports = gvc_mixer_stream_get_ports (stream);
         if (ports != NULL) {
-                const GvcMixerStreamPort *port;
+                GvcMixerStreamPort *port;
                 port = gvc_mixer_stream_get_port (stream);
 
                 dialog->priv->input_port_combo = gvc_combo_box_new (_("Co_nnector:"));
@@ -1101,9 +1100,9 @@ add_stream (GvcMixerDialog *dialog,
                                   G_CALLBACK (on_stream_description_notify),
                                   dialog);
         } else if (GVC_IS_MIXER_SINK (stream)) {
-                GtkTreeModel        *model;
-                GtkTreeIter          iter;
-                const GvcChannelMap *map;
+                GtkTreeModel  *model;
+                GtkTreeIter    iter;
+                GvcChannelMap *map;
 
                 model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->priv->output_treeview));
                 gtk_list_store_append (GTK_LIST_STORE (model), &iter);
@@ -1267,9 +1266,6 @@ add_card (GvcMixerDialog *dialog,
                 if (gvc_mixer_card_get_index (selected) == gvc_mixer_card_get_index (card)) {
                         gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->hw_profile_combo),
                                                   profile->profile);
-                        g_object_set (G_OBJECT (dialog->priv->hw_profile_combo),
-                                      "show-button", profile->n_sinks == 1,
-                                      NULL);
                 }
         }
 }
@@ -1502,42 +1498,6 @@ on_profile_changed (GvcComboBox *widget,
 }
 
 static void
-on_test_speakers_clicked (GvcComboBox *widget,
-                          gpointer     user_data)
-{
-        GvcMixerDialog      *dialog = GVC_MIXER_DIALOG (user_data);
-        GvcMixerCard        *card;
-        GvcMixerCardProfile *profile;
-        GtkWidget           *d, *speaker_test, *container;
-        char                *title;
-
-        card = g_object_get_data (G_OBJECT (widget), "card");
-        if (card == NULL) {
-                g_warning ("Could not find card for combobox");
-                return;
-        }
-        profile = gvc_mixer_card_get_profile (card);
-
-        g_debug ("XXX Start speaker testing for profile '%s', card %s XXX",
-                 profile->profile, gvc_mixer_card_get_name (card));
-
-	title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
-        d = gtk_dialog_new_with_buttons (title,
-                                         GTK_WINDOW (dialog),
-                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
-                                         NULL);
-        g_free (title);
-        speaker_test = gvc_speaker_test_new (dialog->priv->mixer_control,
-                                             card);
-        gtk_widget_show (speaker_test);
-        container = gtk_dialog_get_content_area (GTK_DIALOG (d));
-        gtk_container_add (GTK_CONTAINER (container), speaker_test);
-
-        gtk_dialog_run (GTK_DIALOG (d));
-        gtk_widget_destroy (d);
-}
-
-static void
 on_card_selection_changed (GtkTreeSelection *selection,
                            gpointer          user_data)
 {
@@ -1576,23 +1536,17 @@ on_card_selection_changed (GtkTreeSelection *selection,
         current_profile = gvc_mixer_card_get_profile (card);
         profiles = gvc_mixer_card_get_profiles (card);
         dialog->priv->hw_profile_combo = gvc_combo_box_new (_("_Profile:"));
-        g_object_set (G_OBJECT (dialog->priv->hw_profile_combo), "button-label", _("Test Speakers"), NULL);
         gvc_combo_box_set_profiles (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), profiles);
         gvc_combo_box_set_active (GVC_COMBO_BOX (dialog->priv->hw_profile_combo), current_profile->profile);
 
         gtk_box_pack_start (GTK_BOX (dialog->priv->hw_settings_box),
                             dialog->priv->hw_profile_combo,
                             TRUE, TRUE, 6);
-        g_object_set (G_OBJECT (dialog->priv->hw_profile_combo),
-                      "show-button", current_profile->n_sinks == 1,
-                      NULL);
         gtk_widget_show (dialog->priv->hw_profile_combo);
 
         g_object_set_data (G_OBJECT (dialog->priv->hw_profile_combo), "card", card);
         g_signal_connect (G_OBJECT (dialog->priv->hw_profile_combo), "changed",
                           G_CALLBACK (on_profile_changed), dialog);
-        g_signal_connect (G_OBJECT (dialog->priv->hw_profile_combo), "button-clicked",
-                          G_CALLBACK (on_test_speakers_clicked), dialog);
 }
 
 static void
