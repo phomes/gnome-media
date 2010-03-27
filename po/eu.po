@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
-"POT-Creation-Date: 2010-03-11 19:13+0000\n"
-"PO-Revision-Date: 2010-03-23 14:30+0100\n"
+"POT-Creation-Date: 2010-03-27 15:56+0000\n"
+"PO-Revision-Date: 2010-03-27 17:40+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,29 +68,26 @@ msgid " - GNOME Volume Control"
 msgstr " - GNOMEren bolumen-kontrola"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Irteera"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Sarrera"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:108
-#| msgid "left"
 msgctxt "balance"
 msgid "Left"
 msgstr "Ezkerrekoa"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:109
-#| msgid "right"
 msgctxt "balance"
 msgid "Right"
 msgstr "Eskuinekoa"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:112
-#| msgid "Ready"
 msgctxt "balance"
 msgid "Rear"
 msgstr "Atzekoa"
@@ -138,14 +135,14 @@ msgstr "Anplifikatu gabea"
 msgid "Mute"
 msgstr "Mututu"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
 msgid "_Profile:"
 msgstr "_Profila:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -153,7 +150,7 @@ msgstr "Desgaituta"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -162,7 +159,7 @@ msgstr[1] "%u irteera"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
@@ -170,81 +167,90 @@ msgstr[0] "Sarrera %u"
 msgstr[1] "%u sarrera"
 
 #
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Sistemako soinuak"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
 msgid "Co_nnector:"
 msgstr "_Konektorea:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
 msgid "Peak detect"
 msgstr "Gailur-detekzioa"
 
 #
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Izena"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
 msgid "Device"
 msgstr "Gailua"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "%s(r)en probako bozgorailua"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+msgid "Test Speakers"
+msgstr "Probatu bozgorailuak"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
 msgid "_Output volume: "
 msgstr "_Irteerako bolumena: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
 msgid "Sound Effects"
 msgstr "Soinu-efektuak"
 
 #
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
 msgid "_Alert volume: "
 msgstr "_Abisuaren bolumena: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
 msgid "Hardware"
 msgstr "Hardwarea"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
 msgid "C_hoose a device to configure:"
 msgstr "A_ukeratu gailu bat konfiguratzeko:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
 msgid "Settings for the selected device:"
 msgstr "Hautatutako gailuaren ezarpenak:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
 msgid "_Input volume: "
 msgstr "_Sarrerako bolumena: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
 msgid "Input level:"
 msgstr "Sarrerako maila:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
 msgid "C_hoose a device for sound input:"
 msgstr "Aukeratu _sarrerako soinuaren gailua:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
 msgid "C_hoose a device for sound output:"
 msgstr "Aukeratu _irteerako soinuaren gailua:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
 msgid "Applications"
 msgstr "Aplikazioak"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
 msgid "No application is currently playing or recording audio."
 msgstr "Ez dago unean audioa erreproduzitzen edo grabatzen duen aplikaziorik."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -252,6 +258,21 @@ msgstr "Ez dago unean audioa erreproduzitzen edo grabatzen duen aplikaziorik."
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Soinuaren hobespenak"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "Gelditu"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+#| msgid "Te_st"
+msgid "Test"
+msgstr "Probatu"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+#| msgid "_Subwoofer:"
+msgid "Subwoofer"
+msgstr "Subwoofer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -1325,7 +1346,7 @@ msgstr ""
 "CD-kalitateko audiora bihurtzeko erabiltzen da, galeradun AAC kodekarekin "
 "ordea. Erabili hau fitxategiak prestatzeko AAC kodeka onartzen duten "
 "gailuetan kopiatzeko. Jakin ezazu formatu hau erabiltzea ilegala izan "
-"daitekela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
+"daitekeela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
 "gehiagorako."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:19
@@ -1338,7 +1359,7 @@ msgstr ""
 "CD-kalitateko audiora bihurtzeko erabiltzen da, galeradun MP2 kodekarekin "
 "ordea. Erabili hau fitxategiak prestatzeko MP2 kodeka onartzen duten "
 "gailuetan kopiatzeko. Jakin ezazu formatu hau erabiltzea ilegala izan "
-"daitekela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
+"daitekeela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
 "gehiagorako."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
@@ -1351,7 +1372,7 @@ msgstr ""
 "CD-kalitateko audiora bihurtzeko erabiltzen da, galeradun MP3 kodekarekin "
 "ordea. Erabili hau fitxategiak prestatzeko MP3 kodeka onartzen duten "
 "gailuetan kopiatzeko. Jakin ezazu formatu hau erabiltzea ilegala izan "
-"daitekela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
+"daitekeela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
 "gehiagorako."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
@@ -1429,14 +1450,12 @@ msgstr "Gaitu _leihoen eta botoien soinuak"
 #
 #. Bell
 #: ../sound-theme/gvc-sound-theme-editor.c:76
-#| msgid "Record sound"
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Alerten soinua"
 
 #. Windows and buttons
 #: ../sound-theme/gvc-sound-theme-editor.c:78
-#| msgid "Enable window and button sounds"
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Leihoak eta botoiak"
@@ -1464,7 +1483,7 @@ msgstr "Leihoa desmaximizatua"
 #: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Window minimised"
-msgstr "Leihoa ikonotuta"
+msgstr "Leihoa minimizatuta"
 
 #. Desktop
 #: ../sound-theme/gvc-sound-theme-editor.c:85
@@ -1499,7 +1518,6 @@ msgstr "Ekintza luzea burututa (deskargatzea, CDa grabatzea, e.a.)"
 
 #. Alerts?
 #: ../sound-theme/gvc-sound-theme-editor.c:92
-#| msgid "left"
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Alertak"
