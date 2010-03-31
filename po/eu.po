@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-31 15:03+0200\n"
-"PO-Revision-Date: 2010-03-31 15:06+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media&component=general\n"
+"POT-Creation-Date: 2010-03-31 13:00+0000\n"
+"PO-Revision-Date: 2010-03-31 16:05+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -77,6 +77,39 @@ msgstr "Irteera"
 msgid "Input"
 msgstr "Sarrera"
 
+#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#| msgid "left"
+msgctxt "balance"
+msgid "Left"
+msgstr "Ezkerrekoa"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#| msgid "right"
+msgctxt "balance"
+msgid "Right"
+msgstr "Eskuinekoa"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#| msgid "Ready"
+msgctxt "balance"
+msgid "Rear"
+msgstr "Atzekoa"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+msgctxt "balance"
+msgid "Front"
+msgstr "Aurrekoa"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+msgctxt "balance"
+msgid "Minimum"
+msgstr "Gutxienekoa"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+msgctxt "balance"
+msgid "Maximum"
+msgstr "Gehienezkoa"
+
 #: ../gnome-volume-control/src/gvc-balance-bar.c:291
 msgid "_Balance:"
 msgstr "_Balantzea:"
@@ -89,6 +122,16 @@ msgstr "_Iraungitu:"
 #: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+msgctxt "volume"
+msgid "100%"
+msgstr "% 100"
+
+#: ../gnome-volume-control/src/gvc-channel-bar.c:596
+msgctxt "volume"
+msgid "Unamplified"
+msgstr "Anplifikatu gabea"
 
 #: ../gnome-volume-control/src/gvc-channel-bar.c:852
 msgid "Mute"
@@ -1293,7 +1336,7 @@ msgstr ""
 "CD-kalitateko audiora bihurtzeko erabiltzen da, galeradun MP2 kodekarekin "
 "ordea. Erabili hau fitxategiak prestatzeko MP2 kodeka onartzen duten "
 "gailuetan kopiatzeko. Jakin ezazu formatu hau erabiltzea ilegala izan "
-"daitekela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
+"daitekeela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
 "gehiagorako."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:20
@@ -1306,7 +1349,7 @@ msgstr ""
 "CD-kalitateko audiora bihurtzeko erabiltzen da, galeradun MP3 kodekarekin "
 "ordea. Erabili hau fitxategiak prestatzeko MP3 kodeka onartzen duten "
 "gailuetan kopiatzeko. Jakin ezazu formatu hau erabiltzea ilegala izan "
-"daitekela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
+"daitekeela bizi zaren estatuan. Galdetu iezaiozu abokatu bati xehetasun "
 "gehiagorako."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:21
@@ -1380,6 +1423,104 @@ msgstr "_Aukeratu alertaren soinua:"
 #: ../sound-theme/gvc-sound-theme-chooser.c:1124
 msgid "Enable _window and button sounds"
 msgstr "Gaitu _leihoen eta botoien soinuak"
+
+#
+#. Bell
+#: ../sound-theme/gvc-sound-theme-editor.c:76
+#| msgid "Record sound"
+msgctxt "Sound event"
+msgid "Alert sound"
+msgstr "Alerten soinua"
+
+#. Windows and buttons
+#: ../sound-theme/gvc-sound-theme-editor.c:78
+#| msgid "Enable window and button sounds"
+msgctxt "Sound event"
+msgid "Windows and Buttons"
+msgstr "Leihoak eta botoiak"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:79
+msgctxt "Sound event"
+msgid "Button clicked"
+msgstr "Botoian klik eginda"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:80
+msgctxt "Sound event"
+msgid "Toggle button clicked"
+msgstr "Txandakatzeko botoian klik eginda"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:81
+msgctxt "Sound event"
+msgid "Window maximized"
+msgstr "Leihoa maximizatua"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:82
+msgctxt "Sound event"
+msgid "Window unmaximized"
+msgstr "Leihoa desmaximizatua"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:83
+msgctxt "Sound event"
+msgid "Window minimised"
+msgstr "Leihoa minimizatuta"
+
+#. Desktop
+#: ../sound-theme/gvc-sound-theme-editor.c:85
+msgctxt "Sound event"
+msgid "Desktop"
+msgstr "Mahaigaina"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:86
+msgctxt "Sound event"
+msgid "Login"
+msgstr "Saio-hasiera"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:87
+msgctxt "Sound event"
+msgid "Logout"
+msgstr "Saio-amaiera"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:88
+msgctxt "Sound event"
+msgid "New e-mail"
+msgstr "Mezu berria"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:89
+msgctxt "Sound event"
+msgid "Empty trash"
+msgstr "Hustu zakarrontzia"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:90
+msgctxt "Sound event"
+msgid "Long action completed (download, CD burning, etc.)"
+msgstr "Ekintza luzea burututa (deskarga, CDa grabatzea, e.a.)"
+
+#. Alerts?
+#: ../sound-theme/gvc-sound-theme-editor.c:92
+#| msgid "left"
+msgctxt "Sound event"
+msgid "Alerts"
+msgstr "Alertak"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:93
+msgctxt "Sound event"
+msgid "Information or question"
+msgstr "Informazioa edo galdera"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:94
+msgctxt "Sound event"
+msgid "Warning"
+msgstr "Abisua"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:95
+msgctxt "Sound event"
+msgid "Error"
+msgstr "Errorea"
+
+#: ../sound-theme/gvc-sound-theme-editor.c:96
+msgctxt "Sound event"
+msgid "Battery warning"
+msgstr "Bateriaren abisua"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:593
 msgid "Select Sound File"
