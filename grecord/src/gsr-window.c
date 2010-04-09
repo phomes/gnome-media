@@ -855,7 +855,7 @@ gsr_discard_confirmation_dialog (GSRWindow *window, gboolean closing)
 	gchar *utf8_filename = NULL;
 	gboolean ret = TRUE;
 
-	confirmation_dialog = gtk_message_dialog_new_with_markup (NULL,
+	confirmation_dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
 								  GTK_DIALOG_MODAL,
 								  GTK_MESSAGE_WARNING,
 								  GTK_BUTTONS_NONE,
