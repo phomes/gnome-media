@@ -7,7 +7,7 @@ context = apps
 iconsdir = $(themedir)/$(size)/$(context)
 
 icons_DATA = 			 	      	\
-	gnome-volume-control.png		\
+	multimedia-volume-control.png		\
 	$(NULL)
 
 EXTRA_DIST =		\
