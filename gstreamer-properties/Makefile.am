@@ -28,7 +28,8 @@ AM_CPPFLAGS = \
 	-DGSTPROPS_ICONDIR=\""$(iconsdir)"\" \
 	-DDATADIR=\""$(datadir)"\" \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	-DG_LOG_DOMAIN="\"gstreamer-properties\""
+	-DG_LOG_DOMAIN="\"gstreamer-properties\"" \
+	$(DISABLE_DEPRECATED)
 
 CLEANFILES = $(GSTPROPS_CLEANFILES) $(desktop_DATA)
 DISTCLEANFILES = $(Desktop_in_files:.desktop.in.in=.desktop.in)

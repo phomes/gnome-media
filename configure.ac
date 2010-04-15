@@ -326,6 +326,10 @@ dnl ---------------------------------------------------------------------------
 
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
+GNOME_MAINTAINER_MODE_DEFINES
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_CXX_WARNINGS
+
 # Turn on the additional warnings last, so warnings don't affect other tests.
 AC_ARG_ENABLE(more-warnings,
         [AC_HELP_STRING([--enable-more-warnings],
