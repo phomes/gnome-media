@@ -343,7 +343,7 @@ gvc_icon_grab_notify (GvcStreamStatusIcon *icon,
                 return;
         }
 
-        if (!GTK_WIDGET_HAS_GRAB (icon->priv->dock)) {
+        if (!gtk_widget_has_grab (icon->priv->dock)) {
                 return;
         }
 
