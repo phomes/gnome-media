@@ -351,6 +351,7 @@ gnome_volume_control_volume_expose (GtkWidget *widget,
 				    GdkEventExpose *expose)
 {
   GnomeVolumeControlVolume *vol = GNOME_VOLUME_CONTROL_VOLUME (widget);
+  GtkStateType state;
 
   /* clear background */
   gdk_window_clear_area (widget->window, 0, 0,
@@ -378,10 +379,12 @@ gnome_volume_control_volume_expose (GtkWidget *widget,
     points[1].y = points[2].y = points[0].y + height - 3;
 
     /* draw chainbutton decorations */
+    state = gtk_widget_get_state (widget);
+
     points[0].x = points[1].x = x_offset + 3;
     points[2].x = points[0].x + width - 6;
     gtk_paint_polygon (widget->style, widget->window,
-		       GTK_WIDGET_STATE (widget),
+		       state,
 		       GTK_SHADOW_ETCHED_IN,
 		       &expose->area, widget, "hseparator",
 		       points, 3, FALSE);
@@ -389,7 +392,7 @@ gnome_volume_control_volume_expose (GtkWidget *widget,
     points[0].x = points[1].x = widget->allocation.width - x_offset - 3;
     points[2].x = points[0].x - width + 6;
     gtk_paint_polygon (widget->style, widget->window,
-		       GTK_WIDGET_STATE (widget),
+		       state,
 		       GTK_SHADOW_ETCHED_IN,
 		       &expose->area, widget, "hseparator",
 		       points, 3, FALSE);

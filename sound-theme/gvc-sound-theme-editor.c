@@ -585,7 +585,7 @@ get_sound_filename (GvcSoundThemeEditor *editor)
 
 	/* Try to get the parent window of the widget */
 	toplevel = gtk_widget_get_toplevel (GTK_WIDGET (editor));
-	if (GTK_WIDGET_TOPLEVEL (toplevel) != FALSE)
+	if (gtk_widget_is_toplevel (toplevel) != FALSE)
 		parent = GTK_WINDOW (toplevel);
 	else
 		parent = NULL;
