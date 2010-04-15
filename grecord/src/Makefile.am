@@ -5,6 +5,7 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)						\
 	-I$(top_srcdir)/grecord/src/recent-files/		\
 	$(GSR_CFLAGS)						\
+	$(DISABLE_DEPRECATED)					\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DGSR_DATADIR=\""$(datadir)/gnome-sound-recorder"\"	\
 	-DGSR_UIDIR=\""$(datadir)/gnome-sound-recorder/ui/"\"

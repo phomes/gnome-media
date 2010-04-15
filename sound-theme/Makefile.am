@@ -6,6 +6,7 @@ noinst_LTLIBRARIES = libsoundtheme.la
 
 AM_CPPFLAGS =						\
         $(WARN_CFLAGS)					\
+        $(DISABLE_DEPRECATED)				\
         $(SOUND_THEME_CFLAGS)				\
         -DSOUND_DATA_DIR="\"$(datadir)/sounds\""	\
         -DSOUND_SET_DIR="\"$(pkgdatadir)/sounds\""	\

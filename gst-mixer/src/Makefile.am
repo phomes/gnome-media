@@ -6,6 +6,7 @@ endif
 
 AM_CPPFLAGS = \
 	$(GSTMIXER_CFLAGS)				\
+	$(DISABLE_DEPRECATED)				\
 	-I$(top_srcdir)/sound-theme			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(pkgdatadir)"\"			\
