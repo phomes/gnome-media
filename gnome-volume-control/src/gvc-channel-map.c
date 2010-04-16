@@ -33,14 +33,6 @@
 
 #define GVC_CHANNEL_MAP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_CHANNEL_MAP, GvcChannelMapPrivate))
 
-#ifndef PA_CHECK_VERSION
-#define PA_CHECK_VERSION(major,minor,micro)                             \
-        ((PA_MAJOR > (major)) ||                                        \
-         (PA_MAJOR == (major) && PA_MINOR > (minor)) ||                 \
-         (PA_MAJOR == (major) && PA_MINOR == (minor) && PA_MICRO >= (micro)))
-#endif
-
-
 struct GvcChannelMapPrivate
 {
         pa_channel_map        pa_map;
@@ -63,44 +55,6 @@ static void     gvc_channel_map_init       (GvcChannelMap      *channel_map);
 static void     gvc_channel_map_finalize   (GObject            *object);
 
 G_DEFINE_TYPE (GvcChannelMap, gvc_channel_map, G_TYPE_OBJECT)
-
-/* FIXME remove when we depend on a newer PA */
-static int
-gvc_pa_channel_map_has_position (const pa_channel_map *map, pa_channel_position_t p) {
-        unsigned c;
-
-        g_return_val_if_fail(pa_channel_map_valid(map), 0);
-        g_return_val_if_fail(p < PA_CHANNEL_POSITION_MAX, 0);
-
-        for (c = 0; c < map->channels; c++)
-                if (map->map[c] == p)
-                        return 1;
-
-        return 0;
-}
-
-#if !PA_CHECK_VERSION(0,9,16)
-/* The PulseAudio master increase version only when tagged, so let's avoid clashing with pa_ namespace */
-#define pa_cvolume_get_position gvc_cvolume_get_position
-static pa_volume_t
-gvc_cvolume_get_position (pa_cvolume *cv, const pa_channel_map *map, pa_channel_position_t t) {
-        unsigned c;
-        pa_volume_t v = PA_VOLUME_MUTED;
-
-        g_assert(cv);
-        g_assert(map);
-
-        g_return_val_if_fail(pa_cvolume_compatible_with_channel_map(cv, map), PA_VOLUME_MUTED);
-        g_return_val_if_fail(t < PA_CHANNEL_POSITION_MAX, PA_VOLUME_MUTED);
-
-        for (c = 0; c < map->channels; c++)
-                if (map->map[c] == t)
-                        if (cv->values[c] > v)
-                                v = cv->values[c];
-
-        return v;
-}
-#endif
 
 guint
 gvc_channel_map_get_num_channels (const GvcChannelMap *map)
@@ -171,7 +125,7 @@ gvc_channel_map_has_position (const GvcChannelMap  *map,
 {
         g_return_val_if_fail (GVC_IS_CHANNEL_MAP (map), FALSE);
 
-        return gvc_pa_channel_map_has_position (&(map->priv->pa_map), position);
+        return pa_channel_map_has_position (&(map->priv->pa_map), position);
 }
 
 const pa_channel_map *
