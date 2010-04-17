@@ -61,7 +61,7 @@ GLIB_REQUIRED_VERSION=2.18.2
 GTK_REQUIRED_VERSION=2.18.0
 GCONF_REQUIRED_VERSION=2.6.1
 PA_REQUIRED_VERSION=0.9.16
-CANBERRA_REQUIRED_VERSION=0.4
+CANBERRA_REQUIRED_VERSION=0.13
 
 dnl=======================================================================
 dnl Check for libcanberra
