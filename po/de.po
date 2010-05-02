@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-01-17 19:48+0000\n"
-"PO-Revision-Date: 2010-02-07 22:33+0100\n"
+"POT-Creation-Date: 2010-04-13 06:36+0000\n"
+"PO-Revision-Date: 2010-05-02 15:35+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,14 +68,23 @@ msgid " - GNOME Volume Control"
 msgstr " - GNOME-Lautstärkeregler"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1830
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Ausgabe"
 
-#: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1744
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#| msgid "_Output volume: "
+msgid "Sound Output Volume"
+msgstr "Wiedergabelautstärke"
+
+#: ../gnome-volume-control/src/gvc-applet.c:279
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Eingabe"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+msgid "Microphone Volume"
+msgstr "Mikrofonlautstärke"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:108
 msgctxt "balance"
@@ -119,28 +128,29 @@ msgstr "_Ein-/Ausblenden:"
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:596
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Nicht verstärkt"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:852
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "Stumm"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1494
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -148,7 +158,7 @@ msgstr "Deaktiviert"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -157,86 +167,95 @@ msgstr[1] "%u Ausgaben"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u Eingabe"
 msgstr[1] "%u Eingaben"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Systemklänge"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:305
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:564
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
 msgid "Co_nnector:"
 msgstr "_Verbindungsglied:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:510
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
 msgid "Peak detect"
 msgstr "Spitzenerkennung"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1423
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Name"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1428
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
 msgid "Device"
 msgstr "Gerät"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1650
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "Lautsprecher wird getestet für %s"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+msgid "Test Speakers"
+msgstr "Lautsprechertest"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
 msgid "_Output volume: "
 msgstr "_Wiedergabelautstärke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1681
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
 msgid "Sound Effects"
 msgstr "Klangeffekte"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1688
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
 msgid "_Alert volume: "
 msgstr "_Warnlautstärke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1701
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1706
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
 msgid "C_hoose a device to configure:"
 msgstr "Wä_hlen Sie ein Gerät zum Konfigurieren:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1733
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
 msgid "Settings for the selected device:"
 msgstr "Einstellungen für das gewählte Gerät:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1751
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
 msgid "_Input volume: "
 msgstr "_Aufnahmelautstärke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1774
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
 msgid "Input level:"
 msgstr "Aufnahmeniveau:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1800
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
 msgid "C_hoose a device for sound input:"
 msgstr "Wä_hlen Sie ein Gerät zur Toneingabe:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1835
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
 msgid "C_hoose a device for sound output:"
 msgstr "Wä_hlen Sie ein Gerät zur Tonausgabe:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1873
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1877
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
 msgid "No application is currently playing or recording audio."
 msgstr "Derzeit wird von keiner Audio-Anwendung aufgenommen oder wiedergegeben."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2001
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -244,6 +263,22 @@ msgstr "Derzeit wird von keiner Audio-Anwendung aufgenommen oder wiedergegeben."
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Audio-Einstellungen"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#| msgid "Synthpop"
+msgid "Stop"
+msgstr "Stop"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+#| msgid "Te_st"
+msgid "Test"
+msgstr "Test"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+#| msgid "_Subwoofer:"
+msgid "Subwoofer"
+msgstr "Subwoofer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -925,12 +960,10 @@ msgid "D_evice:"
 msgstr "_Gerät:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:4
-#| msgid "<b>Default Input</b>"
 msgid "Default Input"
 msgstr "Vorgabe-Eingabe"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:5
-#| msgid "<b>Default Output</b>"
 msgid "Default Output"
 msgstr "Vorgabe-Ausgabe"
 
@@ -955,7 +988,6 @@ msgid "Testing Pipeline"
 msgstr "Test der Weiterleitung"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-#| msgid "Recording..."
 msgid "Testing..."
 msgstr "Test läuft …"
 
@@ -2100,9 +2132,6 @@ msgstr "Sonar"
 
 #~ msgid "JPop"
 #~ msgstr "JPop"
-
-#~ msgid "Synthpop"
-#~ msgstr "Synthpop"
 
 #~ msgid "Nu-Metal"
 #~ msgstr "Nu-Metal"
