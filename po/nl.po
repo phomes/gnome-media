@@ -17,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-16 23:05+0100\n"
-"PO-Revision-Date: 2010-03-16 23:04+0100\n"
-"Last-Translator: Reinout van Schouwen <reinouts@gnome.org>\n"
+"POT-Creation-Date: 2010-05-03 23:27+0200\n"
+"PO-Revision-Date: 2010-05-03 23:28+0200\n"
+"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,54 +74,62 @@ msgid " - GNOME Volume Control"
 msgstr " — Volumeregeling"
 
 #: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Uitvoer"
 
-#: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+#: ../gnome-volume-control/src/gvc-applet.c:275
+msgid "Sound Output Volume"
+msgstr "Geluidsvolume"
+
+#: ../gnome-volume-control/src/gvc-applet.c:279
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Invoer"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:281
+msgid "Microphone Volume"
+msgstr "Microfoonvolume"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "Links"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "Rechts"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "Achter"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "Voor"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "Maximum"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "_Balans:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "_Fade:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
@@ -140,14 +148,14 @@ msgstr "Onversterkt"
 msgid "Mute"
 msgstr "Dempen"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
 msgid "_Profile:"
 msgstr "_Profiel:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
 #: ../sound-theme/gvc-sound-theme-editor.c:896
 #: ../sound-theme/gvc-sound-theme-editor.c:992
 msgid "Disabled"
@@ -155,7 +163,7 @@ msgstr "Uigeschakeld"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -164,86 +172,95 @@ msgstr[1] "%u uitgangen"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u ingang"
 msgstr[1] "%u ingangen"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Systeemgeluiden"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
 msgid "Co_nnector:"
 msgstr "Co_nnector:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
 msgid "Peak detect"
 msgstr "Piekdetectie"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
 #: ../sound-theme/gvc-sound-theme-chooser.c:865
 msgid "Name"
 msgstr "Naam"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
 msgid "Device"
 msgstr "Apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "Speaker-test voor %s"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+msgid "Test Speakers"
+msgstr "Speakers testen"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
 msgid "_Output volume: "
 msgstr "_Uitvoervolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
 msgid "Sound Effects"
 msgstr "Geluidseffecten"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
 msgid "_Alert volume: "
 msgstr "_Waarschuwingsvolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
 msgid "C_hoose a device to configure:"
 msgstr "Kies een apparaat om te _configureren"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
 msgid "Settings for the selected device:"
 msgstr "Instellingen voor het geselecteerde apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
 msgid "_Input volume: "
 msgstr "_Invoervolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
 msgid "Input level:"
 msgstr "Invoerniveau:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
 msgid "C_hoose a device for sound input:"
 msgstr "Kies een apparaat voor geluids_invoer"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
 msgid "C_hoose a device for sound output:"
 msgstr "Kies een _apparaat voor geluidsuitvoer"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
 msgid "Applications"
 msgstr "Toepassingen"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
 msgid "No application is currently playing or recording audio."
 msgstr "Er is momenteel geen toepassing geluid aan het opnemen of afspelen."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
 #: ../sound-theme/gvc-sound-theme-chooser.c:730
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:754
@@ -251,6 +268,19 @@ msgstr "Er is momenteel geen toepassing geluid aan het opnemen of afspelen."
 #: ../sound-theme/gvc-sound-theme-editor.c:950
 msgid "Sound Preferences"
 msgstr "Geluidsvoorkeuren"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "Stoppen"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "Testen"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "Subwoofer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -2374,9 +2404,6 @@ msgstr "Sonar"
 #~ msgid "Play / Pause"
 #~ msgstr "Afspelen/Pauzeren"
 
-#~ msgid "Stop"
-#~ msgstr "Stoppen"
-
 #~ msgid "Previous track"
 #~ msgstr "Vorige track"
 
@@ -2848,9 +2875,6 @@ msgstr "Sonar"
 
 #~ msgid "Mono"
 #~ msgstr "Mono"
-
-#~ msgid "PC Speaker"
-#~ msgstr "PC-speaker"
 
 #~ msgid "Aux"
 #~ msgstr "Aux"
