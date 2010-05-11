@@ -76,8 +76,12 @@ GSTPPipelineDescription audiosink_pipelines[] = {
 #endif
   {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System"),
       "osssink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
+  {PIPE_TYPE_AUDIOSINK, 0, N_("OSS - Open Sound System Version 4"),
+      "oss4sink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
   {PIPE_TYPE_AUDIOSINK, 0, N_("PulseAudio Sound Server"),
       "pulsesink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, FALSE},
+  {PIPE_TYPE_AUDIOSINK, 0, N_("Sun Audio"),
+      "sunaudiosink", NULL, FALSE, TEST_PIPE_SUPPLIED, audiosink_test_pipe, TRUE},
   {PIPE_TYPE_AUDIOSINK, 0, N_("Custom"), NULL, NULL, TRUE, TEST_PIPE_SUPPLIED,
       audiosink_test_pipe, TRUE}
 };
@@ -124,6 +128,10 @@ GSTPPipelineDescription audiosrc_pipelines[] = {
       NULL, FALSE},
 #endif
   {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System"), "osssrc", NULL, FALSE,
+      TEST_PIPE_AUDIOSINK, NULL, FALSE},
+  {PIPE_TYPE_AUDIOSRC, 0, N_("OSS - Open Sound System Version 4"), "oss4src", NULL, FALSE,
+      TEST_PIPE_AUDIOSINK, NULL, FALSE},
+  {PIPE_TYPE_AUDIOSRC, 0, N_("Sun Audio"), "sunaudiosrc", NULL, FALSE,
       TEST_PIPE_AUDIOSINK, NULL, FALSE},
   {PIPE_TYPE_AUDIOSRC, 0, N_("PulseAudio Sound Server"), "pulsesrc", NULL,
       FALSE, TEST_PIPE_AUDIOSINK, NULL, FALSE},
