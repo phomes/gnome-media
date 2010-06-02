@@ -24,6 +24,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <utime.h>
+#include <errno.h>
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -517,6 +519,7 @@ save_alert_sounds (GvcSoundThemeChooser  *chooser,
                    const char            *id)
 {
         const char *sounds[3] = { "bell-terminal", "bell-window-system", NULL };
+        char *path;
 
         if (strcmp (id, DEFAULT_ALERT_ID) == 0) {
                 delete_old_files (sounds);
@@ -526,6 +529,14 @@ save_alert_sounds (GvcSoundThemeChooser  *chooser,
                 delete_disabled_files (sounds);
                 add_custom_file (sounds, id);
         }
+
+        /* And poke the directory so the theme gets updated */
+        path = custom_theme_dir_path (NULL);
+        if (utime (path, NULL) != 0) {
+                g_warning ("Failed to update mtime for directory '%s': %s",
+                           path, g_strerror (errno));
+        }
+        g_free (path);
 
         return FALSE;
 }
