@@ -3,8 +3,8 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "2.2.2">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "September 2003">
+  <!ENTITY manrevision "2.5">
+  <!ENTITY date "June 2010">
   <!ENTITY app "GStreamer Properties">
 ]>
 <!-- 
@@ -74,13 +74,21 @@
 			<revnumber>&app; Manual V&manrevision;</revnumber> 
 			<date>&date;</date> 
 			<revdescription> 
+	  			<para role="author">Marc-Andre Lureau</para>
+	  			<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+      </revision>
+      <revision> 
+			<revnumber>&app; Manual V2.4</revnumber> 
+			<date>December 2003</date> 
+			<revdescription> 
 	  			<para role="author">Christian Fredrik Kalager Schaller</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
 			</revdescription> 
       </revision>
       <revision> 
 			<revnumber>GStreamer Properties Manual V1.0</revnumber> 
-			<date>December 2003</date> 
+			<date>September 2003</date> 
 			<revdescription> 
 	  			<para role="author">Christian Fredrik Kalager Schaller</para>
 	  			<para role="publisher">GNOME Documentation Project</para>
@@ -110,7 +118,12 @@
 
   <sect1 id="gstreamer-properties-introduction"> 
     <title>Introduction</title> 
-    <para>The <application>&app;</application> application enables you to configure parameters related to the hardware and multimedia systems on your system. Only advanced users should normally need this as your OS vendor should be shipping the system with the correct defaults.</para> 
+    <para>The <application>&app;</application> application enables you
+    to configure parameters related to the hardware and multimedia
+    systems on your system.</para>
+    <note><para>Only advanced users should normally need
+    this as your OS vendor should be shipping the system with the
+    correct defaults.</para></note>
   </sect1>
 
   <sect1 id="gstreamer-properties-getting-started">
@@ -160,22 +173,41 @@
 
   <sect1 id="gstreamer-properties-usage"> 
     <title>Usage</title>
-	<para>The GStreamer properties capplet offers four drop down menus spread over two tabs.
-	There are two drop-menues for audio and two for video. These choices set the default for most GNOME applications for output and input of Sound and Video.</para>
-  <sect2 id="gstreamer-properties-concepts">
+	<para>The GStreamer properties applet offers four drop down
+	menus spread over two tabs.  There are two drop-menues for
+	audio and two for video. These choices set the default for
+	most GNOME applications for output and input of Sound and
+	Video.</para>
+
+    <sect2 id="gstreamer-properties-concepts">
     	<title>Understanding the menu options</title>
-    	<para>Looking at the screen for setting audio options you notice that the two sections 		says are called Default Sink and Default Source. These are terms used in the GStreamer 		framework that GNOME uses to describe where data is sent and where it comes from. The 		Default sink is in other words where GNOME apps should output their sound, while 		Default source is where the sound comes from.</para>
-	<para>The reason you might want to alter these settings is because under Unix there are 
-	many different audio systems and sound server which you might want to output to. For	
-	for instance on Linux popular alternatives are the OSS sound system, the ALSA sound 
-	system, the ESD sound server and the ARTSd sound server.</para>
-	<para>For instance if you wish that your GNOME applcations output their sound to the 
-	ESD sound server you set the Default Sink to use ESD. And if you wish that your GNOME 
-	applications which has sound recording capabilities use the OSS sound system to do this 
-	you choose OSS as the Default Source.</para>
-	<para>As mentioned elsewhere in this user guide. These setting are meant for as a tool 		for advanced users who have specialized need. As an ordinary user you should not need 	
-	to set these as the vendor of your distribution of Linux or Unix should have set them 
-	for you and sensible defaults.</para> 
+
+    	<para>Looking at the screen for setting audio options you
+    	notice that the two sections are called Default Sink and
+    	Default Source. These are terms used in the GStreamer
+    	framework that GNOME uses to describe where data is sent and
+    	where it comes from. The Default sink is in other words where
+    	GNOME apps should output their sound, while Default source is
+    	where the sound comes from.</para>
+
+	<para>The reason you might want to alter these settings is
+	because under Unix there are many different audio systems and
+	sound server which you might want to output to. For instance
+	on Linux popular alternatives are the PulseAudio sound server
+	or ALSA.</para>
+
+	<para>If you wish that your GNOME applcations output their
+	sound to the PulseAudio sound server you set the Default Sink
+	to use PulseAudio. And if you wish that your GNOME
+	applications which has sound recording capabilities use the
+	ALSA sound system, choose ALSA as the Default Source.</para>
+
+	<note><para>As mentioned elsewhere in this user guide. These setting
+	are meant for as a tool for advanced users who have
+	specialized need. As an ordinary user, you should not need to
+	set these as the vendor of your distribution should have set
+	them to sensible defaults for you.
+        </para></note>
     	
     </sect2>
   </sect1>  
