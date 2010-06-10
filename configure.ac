@@ -384,6 +384,9 @@ sound-theme/sounds/Makefile
 gnome-volume-control/Makefile
 gnome-volume-control/data/Makefile
 gnome-volume-control/data/gnome-volume-control.desktop.in
+gnome-volume-control/data/symbolic-icons/Makefile
+gnome-volume-control/data/symbolic-icons/scalable/Makefile
+gnome-volume-control/data/symbolic-icons/scalable/status/Makefile
 gnome-volume-control/data/icons/Makefile
 gnome-volume-control/data/icons/16x16/Makefile
 gnome-volume-control/data/icons/16x16/apps/Makefile
