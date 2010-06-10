@@ -94,8 +94,10 @@ maybe_show_status_icons (GvcApplet *applet)
                         const char *id;
 
                         id = gvc_mixer_stream_get_application_id (s);
-                        if (id == NULL)
-                                continue;
+                        if (id == NULL) {
+                                show = TRUE;
+                                break;
+                        }
 
                         if (!g_str_equal (id, "org.gnome.VolumeControl") &&
                             !g_str_equal (id, "org.PulseAudio.pavucontrol")) {
