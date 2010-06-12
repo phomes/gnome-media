@@ -405,7 +405,6 @@ gnome-volume-control/data/icons/48x48/apps/Makefile
 gnome-volume-control/data/icons/scalable/Makefile
 gnome-volume-control/data/icons/scalable/apps/Makefile
 gnome-volume-control/data/icons/scalable/devices/Makefile
-gnome-volume-control/data/icons/scalable/status/Makefile
 gnome-volume-control/src/Makefile
 grecord/Makefile
 grecord/gnome-sound-recorder.schemas.in
