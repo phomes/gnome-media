@@ -9,4 +9,6 @@ icons_DATA =						\
         audio-input-microphone-muted-symbolic.svg	\
         $(NULL)
 
+EXTRA_DIST = $(icons_DATA)
+
 -include $(top_srcdir)/git.mk
