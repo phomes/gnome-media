@@ -1670,7 +1670,7 @@ create_cards_treeview (GvcMixerDialog *dialog,
 }
 
 static const guint tab_accel_keys[] = {
-        GDK_1, GDK_2, GDK_3, GDK_4
+        GDK_1, GDK_2, GDK_3, GDK_4, GDK_5
 };
 
 static void
