@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: gnome-media.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-05-11 21:59+0000\n"
-"PO-Revision-Date: 2010-05-12 08:15+0200\n"
+"POT-Creation-Date: 2010-06-16 20:41+0000\n"
+"PO-Revision-Date: 2010-06-22 21:22+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,8 +63,9 @@ msgstr "Versión de esta aplicación"
 
 # tcd/gtcd.c:506
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " - Miniaplicación Control de volumen de GNOME"
+#| msgid " - GNOME Volume Control Applet"
+msgid " — GNOME Volume Control Applet"
+msgstr " : Miniaplicación Control de volumen de GNOME"
 
 #: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
@@ -76,24 +77,25 @@ msgstr "Página de inicio"
 
 # tcd/gtcd.c:506
 #: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr " - Control de volumen de GNOME"
+#| msgid " - GNOME Volume Control"
+msgid " — GNOME Volume Control"
+msgstr " : Control de volumen de GNOME"
 
-#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-applet.c:275
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
 msgid "Output"
 msgstr "Salida"
 
-#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-applet.c:277
 msgid "Sound Output Volume"
 msgstr "Volumen de salida del sonido"
 
-#: ../gnome-volume-control/src/gvc-applet.c:279
+#: ../gnome-volume-control/src/gvc-applet.c:281
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
 msgid "Input"
 msgstr "Entrada"
 
-#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-applet.c:283
 msgid "Microphone Volume"
 msgstr "Volumen del micrófono"
 
@@ -324,7 +326,7 @@ msgstr "Grabe clips de sonido"
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
 #: ../grecord/src/gsr-window.c:1238
 msgid "Sound Recorder"
-msgstr "Grabador de sonido"
+msgstr "Grabadora de sonidos"
 
 # tcd/gtracked.c:173
 #. Translator comment: default trackname is 'untitled', which
@@ -344,23 +346,32 @@ msgstr "Sin título - %d"
 
 #: ../grecord/src/gsr-window.c:193
 #, c-format
+#| msgid ""
+#| "Could not create the GStreamer %s element.\n"
+#| "Please install the '%s' plug-in from the '%s' module.\n"
+#| "Verify that the installation is correct by running\n"
+#| "    gst-inspect-0.10 %s\n"
+#| "and then restart gnome-sound-recorder."
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"No se ha podido crear el elemento de GStreamer %s.\n"
+"No se ha podido crear el elemento %s de GStreamer.\n"
 "Instale el complemento «%s» del módulo «%s».\n"
 "Compruebe que la instalación es correcta ejecutando\n"
 "    gst-inspect-0.10 %s\n"
 "y vuelva a iniciar gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:209
+#| msgid ""
+#| "Please verify its settings.\n"
+#| "You may be missing the necessary plug-ins."
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "Compruebe sus ajustes.\n"
 "Podría carecer de los complementos necesarios."
@@ -586,12 +597,13 @@ msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
 msgstr ""
-"Un grabador de sonido para GNOME\n"
+"Una grabadora de sonidos para GNOME\n"
 " gnome-multimedia@gnome.org"
 
 # grecord/src/grec.c:122
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
+#| msgid "Playing..."
+msgid "Playing…"
 msgstr "Reproduciendo…"
 
 #: ../grecord/src/gsr-window.c:1644
@@ -606,7 +618,8 @@ msgstr "Reproducción"
 
 # grecord/src/grec.c:92
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
+#| msgid "Recording"
+msgid "Recording…"
 msgstr "Grabando…"
 
 #: ../grecord/src/gsr-window.c:1822
@@ -614,12 +627,15 @@ msgid "GConf audio recording"
 msgstr "Grabación de sonido de GConf"
 
 #: ../grecord/src/gsr-window.c:1831
+#| msgid ""
+#| "Your audio capture settings are invalid. Please correct them with the "
+#| "\"Sound Preferences\" under the System-Preferences menu."
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
-"Sus ajustes de captura de audio no son válidos. Corríjalos en los ajustes de "
-"«Sonido» bajo el menú «Sistema -> Preferencias»."
+"Sus ajustes de captura de sonido no son válidos. Corríjalos en las "
+"«Preferencias de sonido» bajo el menú «Preferencias del sistema»."
 
 #: ../grecord/src/gsr-window.c:2003
 msgid "file output"
@@ -727,10 +743,11 @@ msgid "About this application"
 msgstr "Acerca de esta aplicación"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
+#| msgid "Could not load ui.xml. The program may be not properly installed"
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"No se pudo cargar ui.xml. Es posible que el programa no esté instalado "
-"correctamente."
+"No se pudo cargar el archivo de IU. Es posible que el programa no esté "
+"instalado correctamente."
 
 # tcd/prefs.c:401
 #: ../grecord/src/gsr-window.c:2302
@@ -771,24 +788,27 @@ msgstr "Nivel:"
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - Grabador de sonido"
+#| msgid "%s - Sound Recorder"
+msgid "%s — Sound Recorder"
+msgstr "%s : Grabadora de sonidos"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Altura de la ventana"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "La altura de la ventana que se mostrará"
+#| msgid "Height of the Window to be displayed"
+msgid "Height of the window to be displayed."
+msgstr "La altura de la ventana que mostrar."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "Anchura de la ventana"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "La anchura de la ventana que de mostrará"
+#| msgid "Width of the Window to be displayed"
+msgid "Width of the window to be displayed."
+msgstr "La anchura de la ventana que mostrar."
 
 # grecord/Soundrecorder.desktop.in.h:2
 #: ../gst-mixer/src/element.c:495
@@ -838,7 +858,8 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
+#| msgid "Mute/unmute %s"
+msgid "Mute/Unmute %s"
 msgstr "Silenciar/dar voz %s"
 
 # tcd/gtracked.c:197
@@ -1053,7 +1074,8 @@ msgstr "Probando pipeline"
 
 # grecord/src/grec.c:92
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
+#| msgid "Testing..."
+msgid "Testing…"
 msgstr "Probando…"
 
 # gmix/device_labels_alsa.h:15
@@ -1081,26 +1103,29 @@ msgstr "Autodetectar"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
 #: ../gstreamer-properties/pipeline-constants.c:121
-msgid "ALSA - Advanced Linux Sound Architecture"
+#| msgid "ALSA - Advanced Linux Sound Architecture"
+msgid "ALSA — Advanced Linux Sound Architecture"
 msgstr "ALSA: Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
+#| msgid "Artsd - ART Sound Daemon"
+msgid "Artsd — ART Sound Daemon"
 msgstr "Artsd: ART Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
 #: ../gstreamer-properties/pipeline-constants.c:123
-msgid "ESD - Enlightenment Sound Daemon"
+#| msgid "ESD - Enlightenment Sound Daemon"
+msgid "ESD — Enlightenment Sound Daemon"
 msgstr "ESD: Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
 #: ../gstreamer-properties/pipeline-constants.c:130
-msgid "OSS - Open Sound System"
+#| msgid "OSS - Open Sound System"
+msgid "OSS — Open Sound System"
 msgstr "OSS: Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:132
-#| msgid "OSS - Open Sound System"
 msgid "OSS - Open Sound System Version 4"
 msgstr "OSS: Open Sound System versión 4"
 
@@ -1111,7 +1136,6 @@ msgstr "Servidor de sonido PulseAudio"
 
 #: ../gstreamer-properties/pipeline-constants.c:83
 #: ../gstreamer-properties/pipeline-constants.c:134
-#| msgid "Audio"
 msgid "Sun Audio"
 msgstr "Sonido de Sun"
 
@@ -1132,7 +1156,8 @@ msgid "OpenGL"
 msgstr "OpenGL"
 
 #: ../gstreamer-properties/pipeline-constants.c:110
-msgid "SDL - Simple DirectMedia Layer"
+#| msgid "SDL - Simple DirectMedia Layer"
+msgid "SDL — Simple DirectMedia Layer"
 msgstr "SDL: Simple DirectMedia Layer"
 
 #: ../gstreamer-properties/pipeline-constants.c:112
@@ -1466,12 +1491,14 @@ msgid "Voice, Lossy"
 msgstr "Voz, con pérdida"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "Indica si este perfil se usa o no"
+#| msgid "Whether or not this profile is to be used"
+msgid "Whether this profile is to be used"
+msgstr "Indica si este perfil es para usarse"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Indica si este perfil se usa y muestra o no."
+#| msgid "Whether or not to use and display this profile."
+msgid "Whether to use and display this profile."
+msgstr "Indica si se debe usar y mostrar este perfil."
 
 # gmix/device_labels_alsa.h:33
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
@@ -1620,8 +1647,9 @@ msgid "Sound files"
 msgstr "Archivos de sonido"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Personalizado..."
+#| msgid "Custom"
+msgid "Custom…"
+msgstr "Personalizado…"
 
 # grecord/Soundrecorder.desktop.in.h:2
 #: ../sound-theme/gvc-sound-theme-editor.c:1310
@@ -1656,6 +1684,13 @@ msgstr "Vaso"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+# grecord/src/grec.c:92
+#~ msgid "Recording..."
+#~ msgstr "Grabando…"
+
+#~ msgid "Custom..."
+#~ msgstr "Personalizado..."
 
 # tcd/gtcd.c:506
 #~ msgid "GNOME Volume Control"
