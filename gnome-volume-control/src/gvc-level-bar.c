@@ -31,7 +31,7 @@
 
 #include "gvc-level-bar.h"
 
-#define NUM_BOXES 15
+#define NUM_BOXES 30
 
 #define GVC_LEVEL_BAR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_LEVEL_BAR, GvcLevelBarPrivate))
 
@@ -209,6 +209,10 @@ bar_calc_layout (GvcLevelBar *bar)
                 bar->priv->layout.box_height = bar->priv->layout.area.height;
                 bar->priv->layout.box_radius = bar->priv->layout.box_height / 2;
         }
+
+        /* This can happen if the level bar isn't realized */
+        if (bar->priv->layout.delta == 0)
+                return;
 
         bar->priv->layout.peak_num = peak_level / bar->priv->layout.delta;
         bar->priv->layout.max_peak_num = max_peak_level / bar->priv->layout.delta;

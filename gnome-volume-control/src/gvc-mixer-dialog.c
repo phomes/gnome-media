@@ -123,7 +123,7 @@ static void     bar_set_stream              (GvcMixerDialog      *dialog,
 static void     on_adjustment_value_changed (GtkAdjustment  *adjustment,
                                              GvcMixerDialog *dialog);
 
-G_DEFINE_TYPE (GvcMixerDialog, gvc_mixer_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_TYPE (GvcMixerDialog, gvc_mixer_dialog, GTK_TYPE_VBOX)
 
 static void
 update_default_input (GvcMixerDialog *dialog)
@@ -1522,8 +1522,11 @@ on_test_speakers_clicked (GvcComboBox *widget,
                  profile->profile, gvc_mixer_card_get_name (card));
 
 	title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
+	// FIXME
+	// set parent dialogue
+	// https://bugzilla.gnome.org/show_bug.cgi?id=621940
         d = gtk_dialog_new_with_buttons (title,
-                                         GTK_WINDOW (dialog),
+                                         NULL,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
                                          NULL);
         g_free (title);
@@ -1669,32 +1672,6 @@ create_cards_treeview (GvcMixerDialog *dialog,
         return treeview;
 }
 
-static const guint tab_accel_keys[] = {
-        GDK_1, GDK_2, GDK_3, GDK_4, GDK_5
-};
-
-static void
-dialog_accel_cb (GtkAccelGroup    *accelgroup,
-                 GObject          *object,
-                 guint             key,
-                 GdkModifierType   mod,
-                 GvcMixerDialog   *self)
-{
-        gint num = -1;
-        gint i;
-
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                if (tab_accel_keys[i] == key) {
-                        num = i;
-                        break;
-                }
-        }
-
-        if (num != -1) {
-                gtk_notebook_set_current_page (GTK_NOTEBOOK (self->priv->notebook), num);
-        }
-}
-
 static GObject *
 gvc_mixer_dialog_constructor (GType                  type,
                               guint                  n_construct_properties,
@@ -1714,16 +1691,12 @@ gvc_mixer_dialog_constructor (GType                  type,
         GvcMixerStream   *stream;
         GvcMixerCard     *card;
         GtkTreeSelection *selection;
-        GtkAccelGroup    *accel_group;
-        GClosure         *closure;
-        gint             i;
 
         object = G_OBJECT_CLASS (gvc_mixer_dialog_parent_class)->constructor (type, n_construct_properties, construct_params);
 
         self = GVC_MIXER_DIALOG (object);
-        gtk_dialog_add_button (GTK_DIALOG (self), "gtk-close", GTK_RESPONSE_OK);
 
-        main_vbox = gtk_dialog_get_content_area (GTK_DIALOG (self));
+        main_vbox = GTK_WIDGET (self);
         gtk_box_set_spacing (GTK_BOX (main_vbox), 2);
 
         gtk_container_set_border_width (GTK_CONTAINER (self), 6);
@@ -1747,23 +1720,6 @@ gvc_mixer_dialog_constructor (GType                  type,
                             self->priv->notebook,
                             TRUE, TRUE, 0);
         gtk_container_set_border_width (GTK_CONTAINER (self->priv->notebook), 5);
-
-        /* Set up accels (borrowed from Empathy) */
-        accel_group = gtk_accel_group_new ();
-        gtk_window_add_accel_group (GTK_WINDOW (self), accel_group);
-
-        for (i = 0; i < G_N_ELEMENTS (tab_accel_keys); i++) {
-                closure =  g_cclosure_new (G_CALLBACK (dialog_accel_cb),
-                                           self,
-                                           NULL);
-                gtk_accel_group_connect (accel_group,
-                                         tab_accel_keys[i],
-                                         GDK_MOD1_MASK,
-                                         0,
-                                         closure);
-        }
-
-        g_object_unref (accel_group);
 
         /* Effects page */
         self->priv->sound_effects_box = gtk_vbox_new (FALSE, 6);
@@ -2087,9 +2043,6 @@ gvc_mixer_dialog_new (GvcMixerControl *control)
 {
         GObject *dialog;
         dialog = g_object_new (GVC_TYPE_MIXER_DIALOG,
-                               "icon-name", "multimedia-volume-control",
-                               "title", _("Sound Preferences"),
-                               "has-separator", FALSE,
                                "mixer-control", control,
                                NULL);
         return GVC_MIXER_DIALOG (dialog);

@@ -1,14 +1,17 @@
 NULL =
 
-bin_PROGRAMS = 					\
+ccpanelsdir = $(PANELS_DIR)
+ccpanels_LTLIBRARIES = libsound.la
+
+bin_PROGRAMS =					\
 	gnome-volume-control-applet		\
-	gnome-volume-control			\
 	$(NULL)
 
 AM_CPPFLAGS =					\
 	$(WARN_CFLAGS)				\
 	-I$(top_srcdir)/sound-theme		\
 	$(VOLUME_CONTROL_CFLAGS)		\
+	$(VOLUME_PANEL_CFLAGS)			\
 	$(DISABLE_DEPRECATED)			\
 	$(PULSEAUDIO_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
@@ -58,15 +61,17 @@ gnome_volume_control_applet_SOURCES =		\
 	applet-main.c				\
 	$(NULL)
 
-gnome_volume_control_LDADD =				\
+libsound_la_LIBADD =					\
 	-lm						\
 	libgnomevolumecontrol.la			\
 	$(top_builddir)/sound-theme/libsoundtheme.la	\
-	$(VOLUME_CONTROL_LIBS)				\
+	$(VOLUME_PANEL_LIBS)				\
 	$(PULSEAUDIO_LIBS)				\
 	$(NULL)
 
-gnome_volume_control_SOURCES =			\
+libsound_la_LDFLAGS = -avoid-version -module -no-undefined
+
+libsound_la_SOURCES =				\
 	gvc-balance-bar.h			\
 	gvc-balance-bar.c			\
 	gvc-mixer-dialog.h			\
@@ -77,7 +82,8 @@ gnome_volume_control_SOURCES =			\
 	gvc-combo-box.c				\
 	gvc-speaker-test.h			\
 	gvc-speaker-test.c			\
-	dialog-main.c				\
+	cc-sound-panel.c			\
+	cc-sound-panel.h			\
 	$(NULL)
 
 BUILT_SOURCES =				\

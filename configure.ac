@@ -120,6 +120,17 @@ if test "x$enable_pulseaudio" != "xno"; then
     )
     AC_SUBST(VOLUME_CONTROL_CFLAGS)
     AC_SUBST(VOLUME_CONTROL_LIBS)
+    PKG_CHECK_MODULES(VOLUME_PANEL,
+            gobject-2.0 >= $GLIB_REQUIRED_VERSION
+            gtk+-2.0 >= $GTK_REQUIRED_VERSION
+            gio-2.0
+            gconf-2.0 >= $GCONF_REQUIRED_VERSION
+            libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+            libgnome-control-center
+            libxml-2.0
+    )
+    AC_SUBST(VOLUME_PANEL_CFLAGS)
+    AC_SUBST(VOLUME_PANEL_LIBS)
     AC_DEFINE(HAVE_PULSEAUDIO, [], [Define if we have pulseaudio])
   fi
 else
@@ -129,6 +140,10 @@ AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
 AC_SUBST(HAVE_PULSEAUDIO)
 AC_SUBST(PULSEAUDIO_CFLAGS)
 AC_SUBST(PULSEAUDIO_LIBS)
+
+dnl Requires for the gnome-volume-control panel
+PANELS_DIR="${libdir}/control-center-1/panels"
+AC_SUBST(PANELS_DIR)
 
 dnl=======================================================================
 dnl profiles
