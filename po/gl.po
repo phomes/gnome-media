@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-18 21:44+0200\n"
+"POT-Creation-Date: 2010-07-07 14:55+0200\n"
 "PO-Revision-Date: 2010-06-18 21:46+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11.net>\n"
@@ -50,12 +50,10 @@ msgid "Sound"
 msgstr "Son"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Versión deste aplicativo"
 
@@ -63,20 +61,12 @@ msgstr "Versión deste aplicativo"
 msgid " — GNOME Volume Control Applet"
 msgstr " — Miniaplicativo de control de volume de GNOME"
 
-#: ../gnome-volume-control/src/dialog-main.c:124
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
 msgstr "Esperando a que o sistema de son responda"
 
-#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Páxina de inicio"
-
-#: ../gnome-volume-control/src/dialog-main.c:168
-msgid " — GNOME Volume Control"
-msgstr " — Control de volume do GNOME"
-
 #: ../gnome-volume-control/src/gvc-applet.c:275
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1876
 msgid "Output"
 msgstr "Saída"
 
@@ -85,7 +75,7 @@ msgid "Sound Output Volume"
 msgstr "Volume de son de saída"
 
 #: ../gnome-volume-control/src/gvc-applet.c:281
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1790
 msgid "Input"
 msgstr "Entrada"
 
@@ -151,7 +141,7 @@ msgid "Mute"
 msgstr "Sen son"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:166
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1581
 msgid "_Profile:"
 msgstr "_Perfil:"
 
@@ -195,8 +185,8 @@ msgid "Peak detect"
 msgstr "Detección de picos"
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1669
+#: ../sound-theme/gvc-sound-theme-chooser.c:876
 msgid "Name"
 msgstr "Nome"
 
@@ -209,68 +199,59 @@ msgstr "Dispositivo"
 msgid "Speaker Testing for %s"
 msgstr "Proba de altavoces para %s"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1582
 msgid "Test Speakers"
 msgstr "Proba de altavoces"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1713
 msgid "_Output volume: "
 msgstr "V_olume de saída: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1727
 msgid "Sound Effects"
 msgstr "Efectos de son"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1734
 msgid "_Alert volume: "
 msgstr "Volume de _alerta: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1747
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1752
 msgid "C_hoose a device to configure:"
 msgstr "E_scolla un dispositivo para configurar:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1779
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1908
 msgid "Settings for the selected device:"
 msgstr "Configuracións para o dispositivo seleccionado:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1797
 msgid "_Input volume: "
 msgstr "Volume de _entrada: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1820
 msgid "Input level:"
 msgstr "Nivel de entrada:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1846
 msgid "C_hoose a device for sound input:"
 msgstr "E_scolla un dispositivo para o son de entrada:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1881
 msgid "C_hoose a device for sound output:"
 msgstr "E_scolla un dispositivo para o son de saída:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1919
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1923
 msgid "No application is currently playing or recording audio."
 msgstr ""
 "Neste momento non hai ningún aplicativo reproducindo ou gravando audio."
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "Preferencias de son"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 msgid "Stop"
@@ -740,6 +721,10 @@ msgstr "Largura da xanela que se vai mostrar"
 msgid "Sound Theme"
 msgstr "Tema de son"
 
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Páxina de inicio"
+
 #: ../gst-mixer/src/main.c:82
 #, c-format
 msgid "Unknown Volume Control %d"
@@ -923,7 +908,7 @@ msgid "Unsupported"
 msgstr "Non compatíbel"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
+#: ../sound-theme/gvc-sound-theme-chooser.c:852
 #: ../sound-theme/gvc-sound-theme-editor.c:892
 #: ../sound-theme/gvc-sound-theme-editor.c:996
 msgid "Default"
@@ -1051,7 +1036,7 @@ msgstr "Sonido de Sun"
 #: ../gstreamer-properties/pipeline-constants.c:116
 #: ../gstreamer-properties/pipeline-constants.c:144
 #: ../gstreamer-properties/pipeline-constants.c:159
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
+#: ../sound-theme/gvc-sound-theme-chooser.c:631
 #: ../sound-theme/gvc-sound-theme-editor.c:706
 #: ../sound-theme/gvc-sound-theme-editor.c:760
 #: ../sound-theme/sound-theme-file-utils.c:292
@@ -1403,40 +1388,48 @@ msgstr "Indica se se vai usar ou non este perfil"
 msgid "Whether to use and display this profile."
 msgstr "Indica se se mostra e usa ou non este perfil."
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:322
+#: ../sound-theme/gvc-sound-theme-chooser.c:324
 #: ../sound-theme/gvc-sound-theme-editor.c:523
 msgid "No sounds"
 msgstr "Sen sons"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:444
+#: ../sound-theme/gvc-sound-theme-chooser.c:446
 msgid "Built-in"
 msgstr "Incorporado"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
+#: ../sound-theme/gvc-sound-theme-chooser.c:741
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:561
+#: ../sound-theme/gvc-sound-theme-editor.c:950
+msgid "Sound Preferences"
+msgstr "Preferencias de son"
+
 #: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
+#: ../sound-theme/gvc-sound-theme-chooser.c:755
+#: ../sound-theme/gvc-sound-theme-chooser.c:767
 #: ../sound-theme/gvc-sound-theme-editor.c:563
 #: ../sound-theme/gvc-sound-theme-editor.c:952
 msgid "Testing event sound"
 msgstr "Probando o son de evento"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:853
 msgid "From theme"
 msgstr "Do tema"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:883
 msgid "Type"
 msgstr "Tipo"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1085
+#: ../sound-theme/gvc-sound-theme-chooser.c:1096
 msgid "Sound _theme:"
 msgstr "_Tema de son:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1093
+#: ../sound-theme/gvc-sound-theme-chooser.c:1104
 msgid "C_hoose an alert sound:"
 msgstr "E_scolla un son de alerta:"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1124
+#: ../sound-theme/gvc-sound-theme-chooser.c:1135
 msgid "Enable _window and button sounds"
 msgstr "Activar sons de _xanela e de botóns"
 
@@ -1577,6 +1570,9 @@ msgstr "Cristal"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sónar"
+
+#~ msgid " — GNOME Volume Control"
+#~ msgstr " — Control de volume do GNOME"
 
 #~ msgid "Recording..."
 #~ msgstr "Gravando..."
