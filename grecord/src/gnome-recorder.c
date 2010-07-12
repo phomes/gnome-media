@@ -124,29 +124,14 @@ gsr_add_recent (gchar *filename)
 
 }
 
-/* Also referenced from gsr-window.c */
-gint gsr_sample_count = 1;
-
 GtkWidget *
 gsr_open_window (const char *filename)
 {
 	GtkWidget *window;
-	char *utf8_name;
-	char *name;
+	gchar *name;
 
 	if (filename == NULL) {
-		/* Translator comment: untitled here implies that
-		 * there is no active sound sample. Any newly
-		 * recorded samples will be saved to disk with this
-		 * name as default value. */
-		if (gsr_sample_count == 1) {
-			utf8_name = g_strdup (_("Untitled"));
-		} else {
-			utf8_name = g_strdup_printf (_("Untitled-%d"), gsr_sample_count);
-		}
-		name = g_filename_from_utf8 (utf8_name, -1, NULL, NULL, NULL);
-		g_free (utf8_name);
-		++gsr_sample_count;
+		name = gsr_generate_filename ();
 	} else {
 		name = g_strdup (filename);
 	}

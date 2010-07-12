@@ -801,17 +801,6 @@ file_save_as_cb (GtkAction *action,
 }
 
 static void
-file_save_cb (GtkAction *action,
-	      GSRWindow *window)
-{
-	if (!window->priv->has_file) {
-		file_save_as_cb (NULL, window);
-	} else {
-		do_save_file (window, window->priv->filename);
-	}
-}
-
-static void
 run_mixer_cb (GtkAction *action,
 	       GSRWindow *window)
 {
@@ -1704,15 +1693,37 @@ record_eos_msg_cb (GstBus * bus, GstMessage * msg, GSRWindow * window)
 	window->priv->has_file = TRUE;
 }
 
-extern int gsr_sample_count;
+gchar*
+gsr_generate_filename (void)
+{
+	struct tm *ptr;
+	time_t tm;
+
+	gchar *date = g_malloc (18);
+	tm  = time (NULL);
+	ptr = localtime (&tm);
+	strftime (date, 18, "%Y-%m-%d-%H%M%S", ptr);
+
+	return date;
+}
 
 static gboolean
 record_start (gpointer user_data) 
 {
 	GSRWindow *window = GSR_WINDOW (user_data);
-	gchar *name;
+	gchar *title;
 
 	g_assert (window->priv->tick_id == 0);
+
+	g_free (window->priv->filename);
+	window->priv->filename = gsr_generate_filename ();
+	gtk_label_set_text (GTK_LABEL (window->priv->name_label),
+						window->priv->filename);
+	title = g_strdup_printf (_("%s — Sound Recorder"),
+						window->priv->filename);
+	gtk_window_set_title (GTK_WINDOW (window), title);
+
+	g_free (title);
 
 	window->priv->get_length_attempts = 16;
 	window->priv->tick_id = g_timeout_add (200, (GSourceFunc) record_tick_callback, window);
@@ -1731,20 +1742,6 @@ record_start (gpointer user_data)
 			    _("Recording…"));
 
 	window->priv->record_id = 0;
-
-	/* Translator comment: untitled here implies that
-	 * there is no active sound sample. Any newly
-	 * recorded samples will be saved to disk with this
-	 * name as default value. */
-	if (gsr_sample_count == 1) {
-		name = g_strdup (_("Untitled"));
-	} else {
-		name = g_strdup_printf (_("Untitled-%d"), gsr_sample_count);
-	}
-	++gsr_sample_count;
-	gtk_window_set_title (GTK_WINDOW(window), name);
-
-	g_free (name);
 
 	return FALSE;
 }
@@ -2127,7 +2124,7 @@ static const GtkActionEntry menu_entries[] =
 	{ "FileOpen", GTK_STOCK_OPEN, NULL, NULL,
 	  N_("Open a file"), G_CALLBACK (file_open_cb) },
 	{ "FileSave", GTK_STOCK_SAVE, NULL, NULL,
-	  N_("Save the current file"), G_CALLBACK (file_save_cb) },
+	  N_("Save the current file"), G_CALLBACK (file_save_as_cb) },
 	{ "FileSaveAs", GTK_STOCK_SAVE_AS, NULL, "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (file_save_as_cb) },
 	{ "RunMixer", GTK_STOCK_EXECUTE, N_("Open Volu_me Control"), NULL,
