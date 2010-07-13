@@ -1,3 +1,56 @@
+==============
+Version 2.31.5
+==============
+
+!!! Packagers !!! this release uses GTK+ 3.0, libgnome-media-profiles.so has
+been renamed to libgnome-media-profiles-3.0.so to be parallel installable
+with an older release, however the GConf schema and translation files are
+not shared, this will get resolved in a subsequent release.
+
+Hackers to thank for contributing to this release: Stéphane Maniaci, Pascal
+de Bruijn, William Jon McCann, Philip Withnall, Javier Jardón, Bastien
+Nocera, Brian Cameron, Tadej Borovšak, Jakub Steiner, Marc-Andre Lureau &
+Tomas Frydrych.
+
+- fixed bugs
+  + #497795, faders are jumping around and mute gets on and off radmonly
+  + #572353, Remove deprecated GTK+ symbols
+  + #578573, mixer does not restore the mic setting after restarting machine
+  + #597025, g-v-c doesn't update UI when device description/icon changes
+  + #607681, volume-applet changes volume by only 1% per scroll wheel step
+  + #608169, GmAudioProfileChoose isn't even a GtkWidget
+  + #611017, Miscellaneous string fixes
+  + #612479, Does not compile with -DGSEAL_ENABLED
+  + #613410, gnome-volume-control-applet segfaults
+  + #613689, 3 typeo's in GStreamer-roperties manual
+  + #614212, Use symbolic icons for applet
+  + #614913, gnome-volume-control doesn't use the right icon
+  + #615273, sound-recorder 'save before closing' dialog should be
+             application-modal, not system-modal
+  + #618402, Patch to add OSSv4 and SunAudio support to gstreamer-properties
+  + #619642, The default MP3 profile is broken
+  + #620360, Force updating the custom theme dir on change
+  + #621175, Missing audio-input-microphone-*-symbolic
+
+- added/updated translations
+  + ca@valencia, courtesy of Carles Ferrando
+  + de, courtesy of Mario Blättermann
+  + en@shaw, courtesy of Thomas Thurman
+  + eo, courtesy of Kristjan Schmidt
+  + es, courtesy of Jorge González
+  + et, courtesy of Ivar Smolin
+  + gl, courtesy of Fran Diéguez
+  + gu, courtesy of Sweta Kothari
+  + he, courtesy of Yaron Shahrabani
+  + id, courtesy of Andika Triwidada
+  + kn, courtesy of Shankar Prasad
+  + lv, courtesy of Peteris Krisjanis
+  + mr, courtesy of Sandeep Shedmake
+  + nb, courtesy of Kjartan Maraas
+  + nl, courtesy of Wouter Bolsterlee
+  + or, courtesy of Manoj Kumar Giri
+  + te, courtesy of krishnababu k
+  + zh_CN, courtesy of Aron Xu & Zhang Miao
 
 ==============
 Version 2.31.0
