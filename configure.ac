@@ -69,10 +69,10 @@ dnl=======================================================================
 
 PKG_CHECK_MODULES(SOUND_THEME,
         gobject-2.0 >= $GLIB_REQUIRED_VERSION
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
+        gtk+-3.0 >= $GTK_REQUIRED_VERSION
         gio-2.0
         gconf-2.0 >= $GCONF_REQUIRED_VERSION
-        libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+        libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
         libxml-2.0,
         have_soundtheme=yes,
         have_soundtheme=no)
@@ -111,10 +111,10 @@ if test "x$enable_pulseaudio" != "xno"; then
   if test "x$have_pulseaudio" = "xyes" ; then
     PKG_CHECK_MODULES(VOLUME_CONTROL,
             gobject-2.0 >= $GLIB_REQUIRED_VERSION
-            gtk+-2.0 >= $GTK_REQUIRED_VERSION
+            gtk+-3.0 >= $GTK_REQUIRED_VERSION
             gio-2.0
             gconf-2.0 >= $GCONF_REQUIRED_VERSION
-            libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+            libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
             unique-1.0
             libxml-2.0
     )
@@ -122,10 +122,10 @@ if test "x$enable_pulseaudio" != "xno"; then
     AC_SUBST(VOLUME_CONTROL_LIBS)
     PKG_CHECK_MODULES(VOLUME_PANEL,
             gobject-2.0 >= $GLIB_REQUIRED_VERSION
-            gtk+-2.0 >= $GTK_REQUIRED_VERSION
+            gtk+-3.0 >= $GTK_REQUIRED_VERSION
             gio-2.0
             gconf-2.0 >= $GCONF_REQUIRED_VERSION
-            libcanberra-gtk >= $CANBERRA_REQUIRED_VERSION
+            libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
             libgnome-control-center
             libxml-2.0
     )
@@ -157,7 +157,7 @@ AC_ARG_ENABLE([profiles],
 
 if test "x$enable_profiles" = "xyes"; then
   PKG_CHECK_MODULES(GMP, [
-    gtk+-2.0 >= $GTK_REQUIRED_VERSION
+    gtk+-3.0 >= $GTK_REQUIRED_VERSION
     gstreamer-0.10
     gconf-2.0
     gio-2.0],
@@ -170,15 +170,16 @@ AM_CONDITIONAL(HAVE_GMP, [test x$have_profiles = xyes])
 dnl Profiles glade ui: needed to edit .ui files with glade3
 have_gladeui=no
 
-PKG_CHECK_MODULES(GLADEUI, [gladeui-1.0], have_gladeui=yes, have_gladeui=no)
+# gladeui-3.0 is hypothetical
+PKG_CHECK_MODULES(GLADEUI, [gladeui-3.0], have_gladeui=yes, have_gladeui=no)
 AC_SUBST(GLADEUI_CFLAGS)
 AC_SUBST(GLADEUI_LIBS)
 AM_CONDITIONAL(HAVE_GLADEUI, [test x$have_gladeui = xyes])
 
-GLADEUI_CATALOG_DIR="`$PKG_CONFIG --variable=catalogdir gladeui-1.0`"
+GLADEUI_CATALOG_DIR="`$PKG_CONFIG --variable=catalogdir gladeui-3.0`"
 AC_SUBST(GLADEUI_CATALOG_DIR)
 
-GLADEUI_MODULE_DIR="`$PKG_CONFIG --variable=moduledir gladeui-1.0`"
+GLADEUI_MODULE_DIR="`$PKG_CONFIG --variable=moduledir gladeui-3.0`"
 AC_SUBST(GLADEUI_MODULE_DIR)
 
 dnl=======================================================================
@@ -199,7 +200,7 @@ have_gst=no
 PKG_CHECK_MODULES(GSR, [
   gstreamer-$GST_MAJORMINOR >= $GST_REQ
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_REQ
-  gtk+-2.0 >= 2.6.0
+  gtk+-3.0 >= 2.6.0
   gio-2.0
   gconf-2.0],
   have_gst=yes,
@@ -274,7 +275,7 @@ if test "x$have_gst" = "xyes" && test "x$enable_gstprops" = "xyes";
 then
   PKG_CHECK_MODULES(GSTPROPS, [
     glib-2.0
-    gtk+-2.0 >= $GTK_REQUIRED_VERSION
+    gtk+-3.0 >= $GTK_REQUIRED_VERSION
     gconf-2.0
     gstreamer-$GST_MAJORMINOR
     gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_PLUGINS_BASE_REQ
@@ -312,7 +313,7 @@ fi
 if test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
 then
   PKG_CHECK_MODULES(GSTMIXER, [
-    gtk+-2.0
+    gtk+-3.0
     gconf-2.0
     gstreamer-$GST_MAJORMINOR
     gstreamer-plugins-base-$GST_MAJORMINOR
@@ -444,7 +445,7 @@ gst-mixer/pixmaps/Makefile
 gst-mixer/doc/Makefile
 profiles/Makefile
 profiles/gnome-audio-profiles.schemas.in
-profiles/gnome-media-profiles.pc
+profiles/gnome-media-profiles-3.0.pc
 profiles/glade/Makefile
 profiles/help/Makefile
 grecord/gnome-sound-recorder.desktop.in

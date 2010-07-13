@@ -25,6 +25,6 @@ EXTRA_DIST = $(ui_DATA)
 gnome_sound_recorder_LDADD =					\
 	-lm							\
 	$(GSR_LIBS) -lgstinterfaces-@GST_MAJORMINOR@		\
-	$(top_builddir)/profiles/libgnome-media-profiles.la
+	$(top_builddir)/profiles/libgnome-media-profiles-3.0.la
 
 -include $(top_srcdir)/git.mk
