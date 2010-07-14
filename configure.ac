@@ -115,7 +115,7 @@ if test "x$enable_pulseaudio" != "xno"; then
             gio-2.0
             gconf-2.0 >= $GCONF_REQUIRED_VERSION
             libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
-            unique-1.0
+            unique-3.0
             libxml-2.0
     )
     AC_SUBST(VOLUME_CONTROL_CFLAGS)
