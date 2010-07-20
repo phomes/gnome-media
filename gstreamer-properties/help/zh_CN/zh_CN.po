@@ -1,15 +1,16 @@
 # Simplified Chinese translation of gstreamer-properties.
-# Copyright (C) 2009 Free Software Foundation, Inc.
+# Copyright (C) 2009, 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gstreamer-properties package.
 #
 # TeliuTe <teliute@163.com>, 2009.
+# YunQiang Su <wzssyqa@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gstreamer-properties.HEAD\n"
-"POT-Creation-Date: 2009-04-08 22:08+0000\n"
-"PO-Revision-Date: 2009-04-15 12:17+0600\n"
-"Last-Translator: TeliuTe <TeliuTe@163.com>\n"
+"Project-Id-Version: gstreamer-properties master\n"
+"POT-Creation-Date: 2010-07-14 00:48+0000\n"
+"PO-Revision-Date: 2010-07-20 13:52+0800\n"
+"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +18,7 @@ msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/gstreamer-properties.xml:147(None)
+#: C/gstreamer-properties.xml:160(None)
 msgid ""
 "@@image: 'figures/gstreamer_properties_window.png'; "
 "md5=131b5536ef622be97dafffec5a571626"
@@ -27,15 +28,15 @@ msgstr ""
 
 #: C/gstreamer-properties.xml:23(title)
 #: C/gstreamer-properties.xml:74(revnumber)
-msgid "GStreamer Properties Manual V2.4"
-msgstr "GStreamer 属性手册 V2.4"
+msgid "GStreamer Properties Manual V2.5"
+msgstr "GStreamer 属性手册 V2.5"
 
 #: C/gstreamer-properties.xml:26(year)
 msgid "2003"
 msgstr "2003"
 
-#: C/gstreamer-properties.xml:27(holder) C/gstreamer-properties.xml:77(para)
-#: C/gstreamer-properties.xml:85(para)
+#: C/gstreamer-properties.xml:27(holder) C/gstreamer-properties.xml:85(para)
+#: C/gstreamer-properties.xml:93(para)
 msgid "Christian Fredrik Kalager Schaller"
 msgstr "Christian Fredrik Kalager Schaller"
 
@@ -47,6 +48,7 @@ msgstr "GStreamer 属性允许您配置硬件和多媒体的有关参数"
 
 #: C/gstreamer-properties.xml:43(publishername)
 #: C/gstreamer-properties.xml:78(para) C/gstreamer-properties.xml:86(para)
+#: C/gstreamer-properties.xml:94(para)
 msgid "GNOME Documentation Project"
 msgstr "GNOME 文档项目"
 
@@ -150,26 +152,38 @@ msgid "gnome.org"
 msgstr "gnome.org"
 
 #: C/gstreamer-properties.xml:75(date)
-msgid "September 2003"
-msgstr "2003年9月"
+msgid "June 2010"
+msgstr "2010年6月"
+
+#: C/gstreamer-properties.xml:77(para)
+msgid "Marc-Andre Lureau"
+msgstr "Marc-Andre Lureau"
 
 #: C/gstreamer-properties.xml:82(revnumber)
-msgid "GStreamer Properties Manual V1.0"
-msgstr "GStreamer 属性手册 V1.0"
+msgid "GStreamer Properties Manual V2.4"
+msgstr "GStreamer 属性手册 V2.4"
 
 #: C/gstreamer-properties.xml:83(date)
 msgid "December 2003"
 msgstr "2003年12月"
 
-#: C/gstreamer-properties.xml:91(releaseinfo)
+#: C/gstreamer-properties.xml:90(revnumber)
+msgid "GStreamer Properties Manual V1.0"
+msgstr "GStreamer 属性手册 V1.0"
+
+#: C/gstreamer-properties.xml:91(date)
+msgid "September 2003"
+msgstr "2003年9月"
+
+#: C/gstreamer-properties.xml:99(releaseinfo)
 msgid "This manual describes version 2.2.2 of GStreamer Properties."
 msgstr "本手册讲述的是 GStreamer 属性手册 2.2.2 版。"
 
-#: C/gstreamer-properties.xml:94(title)
+#: C/gstreamer-properties.xml:102(title)
 msgid "Feedback"
 msgstr "反馈"
 
-#: C/gstreamer-properties.xml:95(para)
+#: C/gstreamer-properties.xml:103(para)
 msgid ""
 "To report a bug or make a suggestion regarding the GStreamer Properties "
 "application or this manual, follow the directions in the <ulink url=\"ghelp:"
@@ -179,51 +193,56 @@ msgstr ""
 "<ulink url=\"ghelp:gnome-feedback\" type=\"help\">GNOME 反馈页</ulink> 上的指"
 "导。"
 
-#: C/gstreamer-properties.xml:105(primary)
+#: C/gstreamer-properties.xml:113(primary)
 msgid "GStreamer properties"
 msgstr "GStreamer 属性"
 
-#: C/gstreamer-properties.xml:112(title)
+#: C/gstreamer-properties.xml:120(title)
 msgid "Introduction"
 msgstr "介绍"
 
-#: C/gstreamer-properties.xml:113(para)
+#: C/gstreamer-properties.xml:121(para)
 msgid ""
 "The <application>GStreamer Properties</application> application enables you "
 "to configure parameters related to the hardware and multimedia systems on "
-"your system. Only advanced users should normally need this as your OS vendor "
-"should be shipping the system with the correct defaults."
+"your system."
 msgstr ""
 "<application>GStreamer 属性</application> 程序允许您配置硬件和多媒体系统的有"
-"关参数。仅高级用户需要配置它，您的系统发行版应该已经正确地配置好它。"
+"关参数。"
 
-#: C/gstreamer-properties.xml:117(title)
+#: C/gstreamer-properties.xml:124(para)
+msgid ""
+"Only advanced users should normally need this as your OS vendor should be "
+"shipping the system with the correct defaults."
+msgstr "仅高级用户需要这些，因为操作系统发行者应该已经设定好了正确的默认值。"
+
+#: C/gstreamer-properties.xml:130(title)
 msgid "Getting Started"
 msgstr "快速入门"
 
-#: C/gstreamer-properties.xml:119(para)
+#: C/gstreamer-properties.xml:132(para)
 msgid ""
 "You can start <application>GStreamer Properties</application> in the "
 "following ways:"
 msgstr "您可以用下面的方法来启动 <application>GStreamer 属性</application>："
 
-#: C/gstreamer-properties.xml:123(term)
+#: C/gstreamer-properties.xml:136(term)
 msgid "<guimenu>Applications</guimenu> menu"
 msgstr "<guimenu>应用程序</guimenu> 菜单"
 
-#: C/gstreamer-properties.xml:125(para)
+#: C/gstreamer-properties.xml:138(para)
 msgid ""
 "Choose <menuchoice><guisubmenu>Preferences</"
 "guisubmenu><guimenuitem>Gstreamer Properties</guimenuitem></menuchoice>."
 msgstr ""
-"点菜单 <menuchoice><guisubmenu>首选项</guisubmenu><guimenuitem>Gstreamer 属性"
-"</guimenuitem></menuchoice>。"
+"选择菜单 <menuchoice><guisubmenu>首选项</guisubmenu><guimenuitem>Gstreamer 属"
+"性</guimenuitem></menuchoice>。"
 
-#: C/gstreamer-properties.xml:130(term)
+#: C/gstreamer-properties.xml:143(term)
 msgid "Command line"
 msgstr "命令行"
 
-#: C/gstreamer-properties.xml:132(para)
+#: C/gstreamer-properties.xml:145(para)
 msgid ""
 "Type <command>gstreamer-properties</command>, then press <keycap>Return</"
 "keycap>."
@@ -231,31 +250,32 @@ msgstr ""
 "输入 <command>gstreamer-properties</command>，然后按一下 <keycap>回车键</"
 "keycap>。"
 
-#: C/gstreamer-properties.xml:139(para)
+#: C/gstreamer-properties.xml:152(para)
 msgid ""
 "When you start <application>GStreamer Properties</application>, the "
 "following window is displayed."
 msgstr ""
 "当您启动 <application>GStreamer 属性</application> 后，会显示出来一个窗口。"
 
-#: C/gstreamer-properties.xml:143(title)
+#: C/gstreamer-properties.xml:156(title)
 msgid "GStreamer Properties Window"
 msgstr "GStreamer 属性窗口"
 
-#: C/gstreamer-properties.xml:150(phrase)
+#: C/gstreamer-properties.xml:163(phrase)
 msgid ""
 "Shows GStreamer Properties main window. Contains menubar, toolbar, drop-down "
 "menus for the input and output audio options."
 msgstr ""
-"显示 GStreamer 属性主窗口。包含菜单栏、工具栏、音频输入/输出选项的下拉菜单。"
+"显示 GStreamer 属性主窗口。包含菜单栏、工具栏、下拉菜单，以供设置音频输入/输"
+"出选项。"
 
-#: C/gstreamer-properties.xml:162(title)
+#: C/gstreamer-properties.xml:175(title)
 msgid "Usage"
 msgstr "用法"
 
-#: C/gstreamer-properties.xml:163(para)
+#: C/gstreamer-properties.xml:176(para)
 msgid ""
-"The GStreamer properties capplet offers four drop down menus spread over two "
+"The GStreamer properties applet offers four drop down menus spread over two "
 "tabs. There are two drop-menues for audio and two for video. These choices "
 "set the default for most GNOME applications for output and input of Sound "
 "and Video."
@@ -264,58 +284,57 @@ msgstr ""
 "外两个是视频的。这些选择默认为绝大多数的 GNOME 应用程序的音频和视频的输入和输"
 "出而设置。"
 
-#: C/gstreamer-properties.xml:166(title)
+#: C/gstreamer-properties.xml:183(title)
 msgid "Understanding the menu options"
 msgstr "理解菜单选项"
 
-#: C/gstreamer-properties.xml:167(para)
+#: C/gstreamer-properties.xml:185(para)
 msgid ""
 "Looking at the screen for setting audio options you notice that the two "
-"sections says are called Default Sink and Default Source. These are terms "
-"used in the GStreamer framework that GNOME uses to describe where data is "
-"sent and where it comes from. The Default sink is in other words where GNOME "
-"apps should output their sound, while Default source is where the sound "
-"comes from."
+"sections are called Default Sink and Default Source. These are terms used in "
+"the GStreamer framework that GNOME uses to describe where data is sent and "
+"where it comes from. The Default sink is in other words where GNOME apps "
+"should output their sound, while Default source is where the sound comes "
+"from."
 msgstr ""
-"看一下音频选项的设置，您会发现两个选项，一个是默认输出，另一个是默认输入。这"
-"些项用于 GStreamer framework，GNOME 用它来描述数据从哪儿发送和接受。“默认的输"
-"出”是 GNOME 应用程序应当输出的声音，“默认的输入”是声音来自这儿。"
+"看一下音频选项的设置，您会发现两个选项，一个是默认输出池，另一个是默认输入"
+"源。这些项用于 GStreamer 框架，GNOME 用它来描述数据从哪儿发送和接收。默认输出"
+"也就是 GNOME 应用程序输出声音的地方，默认的输入是声音进入到电脑的地方。"
 
-#: C/gstreamer-properties.xml:168(para)
+#: C/gstreamer-properties.xml:193(para)
 msgid ""
 "The reason you might want to alter these settings is because under Unix "
 "there are many different audio systems and sound server which you might want "
-"to output to. For for instance on Linux popular alternatives are the OSS "
-"sound system, the ALSA sound system, the ESD sound server and the ARTSd "
-"sound server."
+"to output to. For instance on Linux popular alternatives are the PulseAudio "
+"sound server or ALSA."
 msgstr ""
-"您可能想知道警告的原因，这是因为在 Unix 下有许多不调的声音系统和声音服务，这"
-"些您都可以用来输出。例如在 Linux 上常见的类型有 OSS 声音系统，ALSA 声音系统，"
-"ESD 声音系统服务和 ARTSd 声音服务。"
+"您可能想知道警告的原因，这是因为在 Unix 下有许多不同的声音系统和声音服务，这"
+"些您都可以用来作为输出。例如在 Linux 上常见的类型有 PulseAudio 声音服务或 "
+"ALSA。"
 
-#: C/gstreamer-properties.xml:172(para)
+#: C/gstreamer-properties.xml:199(para)
 msgid ""
-"For instance if you wish that your GNOME applcations output their sound to "
-"the ESD sound server you set the Default Sink to use ESD. And if you wish "
+"If you wish that your GNOME applcations output their sound to the PulseAudio "
+"sound server you set the Default Sink to use PulseAudio. And if you wish "
 "that your GNOME applications which has sound recording capabilities use the "
-"OSS sound system to do this you choose OSS as the Default Source."
+"ALSA sound system, choose ALSA as the Default Source."
 msgstr ""
-"假如您想让 GNOME 应用程序把它们的声音输出到 ESD 声音服务，您可以设置默认输出"
-"为 ESD。如果您想让 GNOME 应用程序通过 OSS 声音系统来录音，您可以选择 OSS 作为"
-"默认输入。"
+"假如您想让 GNOME 应用程序把它们的声音输出到 PulseAudio 声音服务，您可以设置默"
+"认输出为 PulseAudio。如果您想让 GNOME 应用程序通过 ALSA 声音系统来录音，您可"
+"以选择 ALSA 作为默认输入源。"
 
-#: C/gstreamer-properties.xml:176(para)
+#: C/gstreamer-properties.xml:205(para)
 msgid ""
 "As mentioned elsewhere in this user guide. These setting are meant for as a "
-"tool for advanced users who have specialized need. As an ordinary user you "
-"should not need to set these as the vendor of your distribution of Linux or "
-"Unix should have set them for you and sensible defaults."
+"tool for advanced users who have specialized need. As an ordinary user, you "
+"should not need to set these as the vendor of your distribution should have "
+"set them to sensible defaults for you."
 msgstr ""
-"另外在这个用户指南里要说一下，这些设置应该由那些特殊需要的高级用户来设置。作"
-"为一个普通用户，您不需要设置它们，您的发行版或 Unix 应该已经为您设置好了。"
+"另外在这个用户指南里要说一下，这些设置作为工具，应该由那些有特殊需要的高级用"
+"户来使用。作为一个普通用户，您不需要设置它们，您的发行版应该已经为您设置好"
+"了。"
 
-#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/gstreamer-properties.xml:0(None)
 msgid "translator-credits"
-msgstr ""
-"TeliuTe <teliute@163.com>, 2009."
+msgstr "TeliuTe <teliute@163.com>, 2009, 2010"
