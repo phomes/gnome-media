@@ -219,7 +219,7 @@ on_menu_activate_open_volume_control (GtkMenuItem *item,
 
         error = NULL;
         gdk_spawn_command_line_on_screen (gtk_widget_get_screen (icon->priv->dock),
-                                          "gnome-volume-control",
+                                          "gnome-control-center sound",
                                           &error);
 
         if (error != NULL) {
