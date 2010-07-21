@@ -29,7 +29,7 @@
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <unique/uniqueapp.h>
+#include <gio/gio.h>
 
 #include "gvc-applet.h"
 #include "gvc-log.h"
@@ -44,7 +44,7 @@ main (int argc, char **argv)
 {
         GError             *error;
         GvcApplet          *applet;
-        UniqueApp          *app = NULL;
+        GApplication       *app = NULL;
         static GOptionEntry entries[] = {
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -76,8 +76,8 @@ main (int argc, char **argv)
         gvc_log_set_debug (debug);
 
         if (debug == FALSE) {
-                app = unique_app_new (GVCA_DBUS_NAME, NULL);
-                if (unique_app_is_running (app)) {
+                app = g_application_new (GVCA_DBUS_NAME, argc, argv);
+                if (g_application_is_remote (app)) {
                         g_warning ("Applet is already running, exiting");
                         return 0;
                 }
