@@ -29,8 +29,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include <gconf/gconf-client.h>
-
 #include "gvc-channel-bar.h"
 #include "gvc-balance-bar.h"
 #include "gvc-combo-box.h"
