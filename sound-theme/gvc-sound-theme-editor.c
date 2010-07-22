@@ -43,6 +43,9 @@ struct GvcSoundThemeEditorPrivate
         GtkWidget *theme_box;
         GtkWidget *selection_box;
         GtkWidget *click_feedback_button;
+        GConfClient *client;
+        guint sounds_dir_id;
+        guint metacity_dir_id;
 };
 
 static void     gvc_sound_theme_editor_class_init (GvcSoundThemeEditorClass *klass);
@@ -297,9 +300,7 @@ set_theme_name (GvcSoundThemeEditor *editor,
                 name = "freedesktop";
         }
 
-        client = gconf_client_get_default ();
-        gconf_client_set_string (client, SOUND_THEME_KEY, theme_name, NULL);
-        g_object_unref (client);
+        gconf_client_set_string (editor->priv->client, SOUND_THEME_KEY, theme_name, NULL);
 }
 
 /* Functions to toggle whether the audible bell sound is editable */
@@ -439,7 +440,7 @@ update_theme (GvcSoundThemeEditor *editor)
         GConfClient *client;
         gboolean     feedback_enabled;
 
-        client = gconf_client_get_default ();
+        client = editor->priv->client;
 
         bell_enabled = gconf_client_get_bool (client, AUDIO_BELL_KEY, NULL);
         set_audible_bell_enabled (editor, bell_enabled);
@@ -467,8 +468,6 @@ update_theme (GvcSoundThemeEditor *editor)
                                         NULL);
         }
         g_free (theme_name);
-
-        g_object_unref (client);
 }
 
 static void
@@ -1061,11 +1060,8 @@ setup_theme_custom_selector (GvcSoundThemeEditor *editor,
         GtkCellRenderer   *renderer;
         GtkTreeIter        iter;
         GtkTreeIter        parent;
-        GConfClient       *client;
         CategoryType       type;
         guint              i;
-
-        client = gconf_client_get_default ();
 
         /* Set up the model for the custom view */
         store = gtk_tree_store_new (NUM_COLS,
@@ -1179,9 +1175,6 @@ setup_theme_custom_selector (GvcSoundThemeEditor *editor,
         }
 
         gtk_tree_view_expand_all (GTK_TREE_VIEW (editor->priv->treeview));
-
-
-        g_object_unref (client);
 }
 
 static GObject *
@@ -1299,7 +1292,6 @@ gvc_sound_theme_editor_init (GvcSoundThemeEditor *editor)
         GtkWidget   *box;
         GtkWidget   *label;
         GtkWidget   *scrolled_window;
-        GConfClient *client;
 
         editor->priv = GVC_SOUND_THEME_EDITOR_GET_PRIVATE (editor);
 
@@ -1313,7 +1305,7 @@ gvc_sound_theme_editor_init (GvcSoundThemeEditor *editor)
         gtk_box_pack_start (GTK_BOX (editor->priv->theme_box), editor->priv->combo_box, FALSE, FALSE, 0);
 
 
-        client = gconf_client_get_default ();
+        editor->priv->client = gconf_client_get_default ();
 
         editor->priv->selection_box = box = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (editor), box, TRUE, TRUE, 0);
@@ -1337,7 +1329,7 @@ gvc_sound_theme_editor_init (GvcSoundThemeEditor *editor)
 
         editor->priv->click_feedback_button = gtk_check_button_new_with_mnemonic (_("Enable window and button sounds"));
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (editor->priv->click_feedback_button),
-                                      gconf_client_get_bool (client, INPUT_SOUNDS_KEY, NULL));
+                                      gconf_client_get_bool (editor->priv->client, INPUT_SOUNDS_KEY, NULL));
         gtk_box_pack_start (GTK_BOX (box),
                             editor->priv->click_feedback_button,
                             FALSE, FALSE, 0);
@@ -1347,22 +1339,20 @@ gvc_sound_theme_editor_init (GvcSoundThemeEditor *editor)
                           editor);
 
 
-        gconf_client_add_dir (client, KEY_SOUNDS_DIR,
+        gconf_client_add_dir (editor->priv->client, KEY_SOUNDS_DIR,
                               GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
-        gconf_client_notify_add (client,
-                                 KEY_SOUNDS_DIR,
-                                 (GConfClientNotifyFunc)on_key_changed,
-                                 editor, NULL, NULL);
-        gconf_client_add_dir (client, KEY_METACITY_DIR,
+        editor->priv->sounds_dir_id = gconf_client_notify_add (editor->priv->client,
+                                                               KEY_SOUNDS_DIR,
+							       (GConfClientNotifyFunc)on_key_changed,
+							       editor, NULL, NULL);
+        gconf_client_add_dir (editor->priv->client, KEY_METACITY_DIR,
                               GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
-        gconf_client_notify_add (client,
-                                 KEY_METACITY_DIR,
-                                 (GConfClientNotifyFunc)on_key_changed,
-                                 editor, NULL, NULL);
-
-        g_object_unref (client);
+        editor->priv->metacity_dir_id = gconf_client_notify_add (editor->priv->client,
+								 KEY_METACITY_DIR,
+								 (GConfClientNotifyFunc)on_key_changed,
+								 editor, NULL, NULL);
 
         /* FIXME: should accept drag and drop themes.  should also
            add an "Add Theme..." item to the theme combobox */
@@ -1378,7 +1368,20 @@ gvc_sound_theme_editor_finalize (GObject *object)
 
         sound_theme_editor = GVC_SOUND_THEME_EDITOR (object);
 
-        g_return_if_fail (sound_theme_editor->priv != NULL);
+	if (sound_theme_editor->priv != NULL) {
+		if (sound_theme_editor->priv->sounds_dir_id > 0) {
+			gconf_client_notify_remove (sound_theme_editor->priv->client,
+						    sound_theme_editor->priv->sounds_dir_id);
+			sound_theme_editor->priv->sounds_dir_id = 0;
+		}
+		if (sound_theme_editor->priv->metacity_dir_id > 0) {
+			gconf_client_notify_remove (sound_theme_editor->priv->client,
+						    sound_theme_editor->priv->metacity_dir_id);
+			sound_theme_editor->priv->metacity_dir_id = 0;
+		}
+		g_object_unref (sound_theme_editor->priv->client);
+		sound_theme_editor->priv->client = NULL;
+	}
 
         G_OBJECT_CLASS (gvc_sound_theme_editor_parent_class)->finalize (object);
 }
