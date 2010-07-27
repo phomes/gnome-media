@@ -1,11 +1,13 @@
+# translation of gnome-media.master.po to Indonesian
 #
+# Dirgita <dirgitadevina@yahoo.co.id>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-05-12 23:04+0000\n"
-"PO-Revision-Date: 2010-05-17 18:10+0700\n"
+"POT-Creation-Date: 2010-07-27 08:17+0000\n"
+"PO-Revision-Date: 2010-07-27 21:31+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +17,7 @@ msgstr ""
 "X-Poedit-Language: Indonesian\n"
 "X-Poedit-Country: Indonesia\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -29,53 +32,43 @@ msgstr "Kendali Volume"
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:1
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
 msgid "Change sound volume and sound events"
-msgstr "Ubah volume suara dan peristiwa suara"
+msgstr "Mengubah volume serta suara kejadian"
 
 #: ../gnome-volume-control/data/gnome-volume-control.desktop.in.in.h:2
 msgid "Sound"
 msgstr "Suara"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
-msgstr "Aktifkan kode awa kutu"
+msgstr "Mengangktifkan debug kode"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
-msgstr "Versi dari aplikasi ini"
+msgstr "Versi aplikasi ini"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " - Aplet Kendali Volume GNOME"
+msgid " — GNOME Volume Control Applet"
+msgstr " — Aplet Kendali Volume GNOME"
 
-#: ../gnome-volume-control/src/dialog-main.c:124
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
 msgstr "Menunggu sistem suara merespon"
 
-#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Halaman awalan"
-
-#: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr " - Kendali Volume GNOME"
-
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "Keluaran"
 
-#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-applet.c:277
 msgid "Sound Output Volume"
 msgstr "Volume Keluaran Suara"
 
-#: ../gnome-volume-control/src/gvc-applet.c:279
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "Masukan"
 
-#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-applet.c:283
 msgid "Microphone Volume"
 msgstr "Volume Mikrofon"
 
@@ -102,16 +95,16 @@ msgstr "Depan"
 #: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
-msgstr "Minimum"
+msgstr "Minimal"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
-msgstr "Maksimum"
+msgstr "Maksimal"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
-msgstr "_Balance:"
+msgstr "Keseim_bangan:"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
@@ -137,17 +130,17 @@ msgid "Mute"
 msgstr "Bisu"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:166
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
 #: ../gnome-volume-control/src/gvc-mixer-control.c:1005
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
-msgstr "Dimatikan"
+msgstr "Dinonaktifkan"
 
 #. translators:
 #. * The number of sound outputs on a particular device
@@ -169,91 +162,82 @@ msgstr[0] "%u Masukan"
 msgid "System Sounds"
 msgstr "Suara Sistem"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "Ko_nektor:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "Deteksi puncak"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Nama"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "Perangkat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
 #, c-format
 msgid "Speaker Testing for %s"
 msgstr "Pengujian Speaker bagi %s"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
 msgid "Test Speakers"
 msgstr "Uji Speaker"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1711
 msgid "_Output volume: "
 msgstr "V_olume keluaran:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "Efek Suara"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "_Alert volume: "
 msgstr "Volume peringat_an:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
 msgid "Hardware"
 msgstr "Perangkat keras"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
 msgid "C_hoose a device to configure:"
 msgstr "Pili_h perangkat untuk ditata:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "Tatanan bagi perangkat yang dipilih:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "_Input volume: "
 msgstr "Volume _masukan:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
 msgid "Input level:"
-msgstr "Aras masukan:"
+msgstr "Tingkat masukan:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
 msgid "C_hoose a device for sound input:"
 msgstr "Pili_h perangkat bagi masukan suara:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
 msgid "C_hoose a device for sound output:"
 msgstr "Pili_h perangkat bagi keluaran suara:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "Aplikasi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "Tak ada aplikasi yang kini memainkan atau merekam audio."
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "Preferensi Suara"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 msgid "Stop"
@@ -275,7 +259,7 @@ msgstr "Gagal memulai Preferensi Suara: %s"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
 msgid "_Mute"
-msgstr "_Senyap"
+msgstr "_Bisu"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
 msgid "_Sound Preferences"
@@ -283,7 +267,7 @@ msgstr "Preferensi _Suara"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
 msgid "Muted"
-msgstr "Senyap"
+msgstr "Bisu"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
 msgid "Record sound clips"
@@ -312,24 +296,24 @@ msgstr "Tanpa-judul-%d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"Tidak bisa membuat elemen %s GStreamer.\n"
-"Silakan pasang plug in '%s' dari modul '%s'.\n"
-"Pastikan pemasangannya benar dengan menjalankan\n"
+"Tidak dapat membuat elemen GStreamer %s.\n"
+"Pasanglah pengaya '%s' dari modul '%s'.\n"
+"Pastikan bahwa instalasinya telah benar dengan menjalankan\n"
 "    gst-inspect-0.10 %s\n"
-"dan kemudian restart gnome-sound-recoder."
+"kemudian jalankan ulang gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
-"Coba periksa pengaturannya.\n"
-"Anda mungkin kehilangan plug-ins yang dibutuhkan."
+"Pastikanlah pengaturannya.\n"
+"Anda mungkin kehilangan beberapa pengaya penting."
 
 #: ../grecord/src/gsr-window.c:294
 #, c-format
@@ -373,7 +357,7 @@ msgid ""
 "Unable to load file:\n"
 "%s"
 msgstr ""
-"Berkas tidak dapat dibuka:\n"
+"Tidak dapat memuat berkas:\n"
 "%s"
 
 #: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
@@ -398,7 +382,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:712
 #, c-format
 msgid "Could not save the file \"%s\""
-msgstr "Berkas \"%s\" tidak dapat disimpan"
+msgstr "Tidak dapat menyimpan berkas \"%s\""
 
 #: ../grecord/src/gsr-window.c:732
 msgid "Save file as"
@@ -407,7 +391,7 @@ msgstr "Simpan berkas sebagai"
 #: ../grecord/src/gsr-window.c:826
 #, c-format
 msgid "%s is not installed in the path."
-msgstr "%s tak terpasang pada path"
+msgstr "%s tak terpasang pada lokasi"
 
 #: ../grecord/src/gsr-window.c:835
 #, c-format
@@ -503,7 +487,7 @@ msgstr "Ukuran berkas:"
 
 #: ../grecord/src/gsr-window.c:1144
 msgid "Audio Information"
-msgstr "Informasi audio"
+msgstr "Informasi Audio"
 
 #: ../grecord/src/gsr-window.c:1159
 msgid "File duration:"
@@ -530,8 +514,8 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
-msgstr "Sedang memutar..."
+msgid "Playing…"
+msgstr "Memutar…"
 
 #: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
@@ -542,20 +526,20 @@ msgid "Playback"
 msgstr "Main ulang"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "Sedang merekam..."
+msgid "Recording…"
+msgstr "Merekam…"
 
 #: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
-msgstr "Perekaman audio GConf"
+msgstr "Perekaman suara GConf"
 
 #: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
-"Pengaturan penangkap audio Anda tak valid. Coba perbaiki pada \"Preferensi "
-"Suara\" di bawah menu Sistem-Preferensi."
+"Pengaturan audio Anda tidak benar. Perbaikilah dengan \"Preferensi Suara\" "
+"pada menu Preferensi Sistem."
 
 #: ../grecord/src/gsr-window.c:2003
 msgid "file output"
@@ -563,12 +547,12 @@ msgstr "berkas keluaran"
 
 #: ../grecord/src/gsr-window.c:2021
 msgid "level"
-msgstr "aras"
+msgstr "tingkat"
 
 #: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
-msgstr "Tidak bisa mengurai profil audio '%s'. "
+msgstr "Tidak bisa mengurai profil suara '%s'. "
 
 #: ../grecord/src/gsr-window.c:2062
 #, c-format
@@ -595,11 +579,11 @@ msgstr "Buka berkas"
 
 #: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file"
-msgstr "Simpan berkas ini"
+msgstr "Menyimpan berkas ini"
 
 #: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file with a different name"
-msgstr "Simpan berkas ini dengan nama lain"
+msgstr "Menyimpan berkas ini dengan nama berbeda"
 
 #: ../grecord/src/gsr-window.c:2134
 msgid "Open Volu_me Control"
@@ -653,11 +637,12 @@ msgstr "Buka manual"
 
 #: ../grecord/src/gsr-window.c:2157
 msgid "About this application"
-msgstr "Tentang aplikasi ini"
+msgstr "Keterangan mengenai aplikasi ini"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr "ui.xml tidak dapat dimuat. Program mungkin belum dipasang dengan benar"
+msgid "Could not load UI file. The program may not be properly installed."
+msgstr ""
+"Tidak dapat memuat berkas UI. Pemasangan program mungkin tidak sempurna."
 
 #: ../grecord/src/gsr-window.c:2302
 msgid "Open"
@@ -669,7 +654,7 @@ msgstr "Simpan"
 
 #: ../grecord/src/gsr-window.c:2306
 msgid "Save As"
-msgstr "Simpan Ke"
+msgstr "Simpan Sebagai"
 
 #: ../grecord/src/gsr-window.c:2362
 msgid "Record from _input:"
@@ -681,7 +666,7 @@ msgstr "_Rekam sebagai:"
 
 #: ../grecord/src/gsr-window.c:2427
 msgid "<none>"
-msgstr "<tidak ada>"
+msgstr "<nihil>"
 
 #: ../grecord/src/gsr-window.c:2441
 msgid "Length:"
@@ -689,12 +674,12 @@ msgstr "Panjang:"
 
 #: ../grecord/src/gsr-window.c:2479
 msgid "Level:"
-msgstr "Aras:"
+msgstr "Tingkat:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
+msgid "%s — Sound Recorder"
 msgstr "%s - Perekam Suara"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
@@ -702,20 +687,24 @@ msgid "Height of the Window"
 msgstr "Tinggi Jendela"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "Tinggi jendela yang ditampilkan"
+msgid "Height of the window to be displayed."
+msgstr "Tinggi jendela yang akan ditampilkan."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "Lebar Jendela"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "Lebar jendela yang ditampilkan"
+msgid "Width of the window to be displayed."
+msgstr "Lebar jendela yang akan ditampilkan."
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Tema Suara"
+
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Halaman awalan"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -736,12 +725,12 @@ msgstr "Saklar"
 
 #: ../gst-mixer/src/misc.c:68
 msgid "Options"
-msgstr "Pilihan"
+msgstr "Opsi"
 
 #. make window look cute
 #: ../gst-mixer/src/preferences.c:107
 msgid "Volume Control Preferences"
-msgstr "Pengaturan Kendali Volume"
+msgstr "Preferensi Kendali Volume"
 
 #: ../gst-mixer/src/preferences.c:120
 msgid "_Select mixers to be visible:"
@@ -755,8 +744,8 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
-msgstr "Bisu/bunyi %s"
+msgid "Mute/Unmute %s"
+msgstr "Bisu/Suarakan %s"
 
 #: ../gst-mixer/src/track.c:356
 #, c-format
@@ -782,7 +771,7 @@ msgstr "Pilihan %s"
 #: ../gst-mixer/src/volume.c:112
 #, c-format
 msgid "Track %s"
-msgstr "Jalur %s"
+msgstr "Trek %s"
 
 #: ../gst-mixer/src/volume.c:115
 #, c-format
@@ -792,7 +781,7 @@ msgstr "Kanal %d pada jalur %s"
 #: ../gst-mixer/src/volume.c:118
 #, c-format
 msgid "Track %s, channel %d"
-msgstr "Jalur %s, kanal %d"
+msgstr "Trek %s, kanal %d"
 
 #: ../gst-mixer/src/volume.c:138
 #, c-format
@@ -846,11 +835,11 @@ msgstr "LFE"
 
 #: ../gst-mixer/src/volume.c:216
 msgid "side left"
-msgstr "sisi kiri"
+msgstr "samping kiri"
 
 #: ../gst-mixer/src/volume.c:217
 msgid "side right"
-msgstr "sisi kanan"
+msgstr "samping kanan"
 
 #: ../gst-mixer/src/volume.c:218
 msgid "unknown"
@@ -870,8 +859,9 @@ msgstr "Aplikasi pengatur suara GNOME berbasis GStreamer"
 #: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
 msgstr ""
-"Mohammad DAMT <mdamt@bisnisweb.com>\n"
-"Andika Triwidada <andika@gmail.com>, 2010"
+"Mohammad DAMT <mdamt@bisnisweb.com>.\n"
+"Andika Triwidada <andika@gmail.com>, 2010.\n"
+"Dirgita <dirgitadevina@yahoo.co.id>, 2010."
 
 #. change window title
 #: ../gst-mixer/src/window.c:173
@@ -881,7 +871,7 @@ msgstr "Kendali Volume: %s"
 
 #: ../gst-mixer/src/window.c:378
 msgid "_Device: "
-msgstr "_Perangkat:"
+msgstr "_Perangkat: "
 
 #. set tooltips
 #: ../gst-mixer/src/window.c:417
@@ -890,7 +880,7 @@ msgstr "Atur volume pada perangkat yang berbeda"
 
 #: ../gstreamer-properties/gstreamer-properties.c:204
 msgid "None"
-msgstr "Tak Ada"
+msgstr "Nihil"
 
 #. Element does not support setting devices
 #: ../gstreamer-properties/gstreamer-properties.c:246
@@ -898,9 +888,9 @@ msgid "Unsupported"
 msgstr "Tak Didukung"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Baku"
 
@@ -927,11 +917,11 @@ msgstr "Audio"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:2
 msgid "Click Ok to finish."
-msgstr "Klik OK untuk mengakhiri."
+msgstr "Klik Oke untuk mengakhiri."
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:3
 msgid "D_evice:"
-msgstr "_Perangkat:"
+msgstr "P_erangkat:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:4
 msgid "Default Input"
@@ -947,7 +937,7 @@ msgstr "P_ipeline:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:8
 msgid "P_lugin:"
-msgstr "P_lugin:"
+msgstr "_Pengaya:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:9
 msgid "Pipeli_ne:"
@@ -962,8 +952,8 @@ msgid "Testing Pipeline"
 msgstr "Mencoba Pipeline"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
-msgstr "Percobaan..."
+msgid "Testing…"
+msgstr "Menguji..."
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -975,7 +965,7 @@ msgstr "_Perangkat:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:15
 msgid "_Plugin:"
-msgstr "_Plugin:"
+msgstr "_Pengaya:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:16
 msgid "_Test"
@@ -984,26 +974,26 @@ msgstr "_Tes"
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
-msgstr "Deteksi sendiri"
+msgstr "Deteksi otomatis"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
 #: ../gstreamer-properties/pipeline-constants.c:121
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART Sound Daemon"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
 #: ../gstreamer-properties/pipeline-constants.c:123
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
 #: ../gstreamer-properties/pipeline-constants.c:130
-msgid "OSS - Open Sound System"
-msgstr "OSS - Open Sound System"
+msgid "OSS — Open Sound System"
+msgstr "OSS — Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:132
@@ -1013,7 +1003,7 @@ msgstr "OSS - Open Sound System Versi 4"
 #: ../gstreamer-properties/pipeline-constants.c:81
 #: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
-msgstr "PulseAudio Sound Server"
+msgstr "Server Suara PulseAudio"
 
 #: ../gstreamer-properties/pipeline-constants.c:83
 #: ../gstreamer-properties/pipeline-constants.c:134
@@ -1024,20 +1014,20 @@ msgstr "Sun Audio"
 #: ../gstreamer-properties/pipeline-constants.c:116
 #: ../gstreamer-properties/pipeline-constants.c:144
 #: ../gstreamer-properties/pipeline-constants.c:159
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
-msgstr "Gubahan"
+msgstr "Ubahan"
 
 #: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
 #: ../gstreamer-properties/pipeline-constants.c:110
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Simple DirectMedia Layer"
 
 #: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
@@ -1085,20 +1075,20 @@ msgstr "Gagal membuat test pipeline untuk '%s'"
 #: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:529
 #, c-format
 msgid "There was an error displaying help: %s"
-msgstr "Terjadi error ketika menampilkan layar bantuan: %s"
+msgstr "Terjadi galat ketika menampilkan layar bantuan: %s"
 
 #: ../profiles/audio-profile-edit.c:341
 #, c-format
 msgid "Editing profile \"%s\""
-msgstr "Ubah profil \"%s\""
+msgstr "Menyunting profil \"%s\""
 
 #: ../profiles/audio-profile.c:92
 msgid "<no name>"
-msgstr "<tidak ada>"
+msgstr "<tanpa nama>"
 
 #: ../profiles/audio-profile.c:93 ../profiles/audio-profile.c:1002
 msgid "<no description>"
-msgstr "<tidak ada keterangan>"
+msgstr "<tidak ada deskripsi>"
 
 #: ../profiles/audio-profile.c:208
 #, c-format
@@ -1117,7 +1107,7 @@ msgstr ""
 #: ../profiles/audio-profile.c:912
 #, c-format
 msgid "There was an error forgetting profile path %s. (%s)\n"
-msgstr "Ada kesalahan saat menghapus path profil %s dari memori (%s)\n"
+msgstr "Ada kesalahan saat menghapus lokasi profil %s dari memori (%s)\n"
 
 #: ../profiles/audio-profiles-edit.c:78
 msgid "_Edit"
@@ -1127,7 +1117,8 @@ msgstr "_Sunting"
 #: ../profiles/audio-profiles-edit.c:456
 #, c-format
 msgid "Delete this profile?\n"
-msgstr "Hapus profil ini?\n"
+msgid_plural "Delete these %d profiles?\n"
+msgstr[0] "Hapus %d profil ini?\n"
 
 #: ../profiles/audio-profiles-edit.c:475
 #, c-format
@@ -1154,7 +1145,7 @@ msgstr "Profil \"%s\" sudah ada"
 #: ../profiles/audio-profiles-edit.c:848
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
-msgstr "Kesalahan GConf (FIXME): %s\n"
+msgstr "Galat pada GConf (FIXME): %s\n"
 
 #: ../profiles/gmp-util.c:61
 #, c-format
@@ -1181,7 +1172,7 @@ msgstr "Sunting Profil Audio"
 
 #: ../profiles/gnome-audio-profile-edit.ui.h:2
 msgid "Profile _description:"
-msgstr "_Keterangan profil:"
+msgstr "_Deskripsi profil:"
 
 #: ../profiles/gnome-audio-profile-edit.ui.h:3
 msgid "_Active?"
@@ -1352,22 +1343,22 @@ msgstr ""
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:23
 msgid "Voice, Lossless"
-msgstr "Suara, Bagus"
+msgstr "Suara, Tak Aus"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:24
 msgid "Voice, Lossy"
-msgstr "Suara, Kurang bagus"
+msgstr "Suara, Aus"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "Gunakan profil ini atau tidak"
+msgid "Whether this profile is to be used"
+msgstr "Menentukan apakah profil ini akan dipakai"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Gunakan dan tampilkan profil ini atau tidak."
+msgid "Whether to use and display this profile."
+msgstr "Menentukan apakah memakai dan menampilkan profil ini."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Tanpa suara"
 
@@ -1375,19 +1366,27 @@ msgstr "Tanpa suara"
 msgid "Built-in"
 msgstr "Bawaan"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "Preferensi Suara"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Menguji suara peristiwa"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "Dari tema"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Jenis"
 
@@ -1404,116 +1403,116 @@ msgid "Enable _window and button sounds"
 msgstr "Aktifkan suara _jendela dan tombol"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Suara waspada"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Jendela dan Tombol"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Tombol diklik"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Tombol jungkit diklik"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Jendela dimaksimalkan"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Jendela tak dimaksimalkan"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Jendela diminimalkan"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Log masuk"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Log keluar"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Surel baru"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "Kosongkan tong sampah"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Aksi lama selesai (mengunduh, membakar CD, dsb.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Waspada"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Informasi atau pertanyaan"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Peringatan"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Galat"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Peringatan baterai"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Pilih Berkas Suara"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Berkas suara"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Gubahan..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "Ubahan…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Tema Suara:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Aktifkan suara jendela dan tombol"
 
@@ -1527,7 +1526,7 @@ msgstr "Gonggong"
 #. You might want to translate it into the equivalent words of your language.
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:6
 msgid "Drip"
-msgstr "Tetesan Air"
+msgstr "Tetesan"
 
 #. Translators: This is the name of an audio file that sounds like tapping glass.
 #. You might want to translate it into the equivalent words of your language.
