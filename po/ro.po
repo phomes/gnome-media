@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-media.HEAD.ro\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-02-07 21:36+0000\n"
+"POT-Creation-Date: 2010-07-22 14:12+0000\n"
 "PO-Revision-Date: 2010-02-12 16:30+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
@@ -42,80 +42,78 @@ msgid "Sound"
 msgstr "Sunet"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Activare cod depanare"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Versiunea aceastei aplicații"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr "- Miniaplicație control volum GNOME"
+msgid " — GNOME Volume Control Applet"
+msgstr " — Miniaplicație control volum GNOME"
 
-#: ../gnome-volume-control/src/dialog-main.c:124
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
 msgstr "Se așteatpă răspuns de la sistemul de sunet"
 
-#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Pagină pornire"
-
-#: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr "- Control volum GNOME"
-
-#: ../gnome-volume-control/src/gvc-applet.c:273
+#: ../gnome-volume-control/src/gvc-applet.c:275
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "Ieșire"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
+msgid "Sound Output Volume"
+msgstr "Volum ieșire"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "Intrare"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "Volum microfon"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "Stânga"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "Dreapta"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "Spate"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "Față"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "Minim"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "Maxim"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "_Balanță:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "_Estompare:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
@@ -134,22 +132,22 @@ msgstr "Neamplificat"
 msgid "Mute"
 msgstr "Mut"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "Dezactivat"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -159,7 +157,7 @@ msgstr[2] "%u de ieșiri"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
@@ -167,30 +165,39 @@ msgstr[0] "%u intrare"
 msgstr[1] "%u intrări"
 msgstr[2] "%u de intrări"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Sunete sistem"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "Co_nector:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "Detectare vârf"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Nume"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "Dispozitiv"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
+msgid "Test Speakers"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1711
 msgid "_Output volume: "
 msgstr "V_olum ieșire:"
 
@@ -239,14 +246,18 @@ msgstr "Aplicații"
 msgid "No application is currently playing or recording audio."
 msgstr "Nici o aplicație nu redă sau înregistrează sunete în acest moment."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "Preferințe sunet"
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr ""
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "Test"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "Subwoofer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -289,10 +300,9 @@ msgid "Untitled-%d"
 msgstr "Fără titlu-%d"
 
 #: ../grecord/src/gsr-window.c:193
-#, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
@@ -306,7 +316,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "Verificați configurările.\n"
 "Probabil vă lipsesc modulele necesare."
@@ -518,8 +528,8 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
-msgstr "Se redă..."
+msgid "Playing…"
+msgstr "Se redă…"
 
 #: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
@@ -530,8 +540,8 @@ msgid "Playback"
 msgstr "Redare"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "Înregistrare..."
+msgid "Recording…"
+msgstr "Se înregistrează…"
 
 #: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
@@ -540,10 +550,10 @@ msgstr "Înregistrare audio GConf"
 #: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Configurările dumneavoastră pentru capturi audio nu sunt valide. Vă rugăm să "
-"le corectați în configurările „Preferințe sunet” din meniul Sistem - "
+"le corectați în configurările „Preferințe sunet” din meniul Sistem -> "
 "Preferințe."
 
 #: ../grecord/src/gsr-window.c:2003
@@ -645,9 +655,9 @@ msgid "About this application"
 msgstr "Despre această aplicație"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"Nu s-a putut încărca ui.xml. Probabil programul nu a fost corect instalat"
+"Nu s-a putut încărca fișierul cu interfața cu utilizatorul. Probabil programul nu a fost instalat corect."
 
 #: ../grecord/src/gsr-window.c:2302
 msgid "Open"
@@ -683,16 +693,15 @@ msgstr "Nivel:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
-#, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - Înregistrare sunet"
+msgid "%s — Sound Recorder"
+msgstr "%s — Înregistrare sunet"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Înălțimea ferestrei"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
+msgid "Height of the window to be displayed."
 msgstr "Înălțimea ferestrei afișate"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
@@ -700,12 +709,16 @@ msgid "Width of the Window"
 msgstr "Lățimea ferestrei"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
+msgid "Width of the window to be displayed."
 msgstr "Lățimea ferestrei afișate"
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Temă sunet"
+
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Pagină pornire"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -744,9 +757,8 @@ msgstr "%s:"
 
 #. mute button
 #: ../gst-mixer/src/track.c:339
-#, c-format
-msgid "Mute/unmute %s"
-msgstr "Anulează/restaurează sunet  %s"
+msgid "Mute/Unmute %s"
+msgstr "Anulează/restaurează sunet %s"
 
 #: ../gst-mixer/src/track.c:356
 #, c-format
@@ -889,9 +901,9 @@ msgid "Unsupported"
 msgstr "Nesuportat"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Implicit"
 
@@ -953,8 +965,8 @@ msgid "Testing Pipeline"
 msgstr "Se testează banda de ansamblare"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
-msgstr "Se testează..."
+msgid "Testing…"
+msgstr "Se testează…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -973,88 +985,98 @@ msgid "_Test"
 msgstr "_Test"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "Autodetectare"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - Server sunet ART"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — Server sunet ART"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - Open Sound System"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
+msgstr "OSS — Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS - Open Sound System versiunea 4"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio - Server sunet"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Sun Audio"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Personalizat"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "X Window System (fără Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "Testare sunet"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "Liniște"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (ex. dispozitiv v4l Zoran)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "Test intrare"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video pentru Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video pentru Linux 2 (v4l2)"
 
@@ -1350,15 +1372,15 @@ msgid "Voice, Lossy"
 msgstr "Voce, cu pierderi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "Dacă acest profil să fie folosit sau nu"
+msgid "Whether this profile is to be used"
+msgstr "Dacă acest profil să fie folosit"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Dacă acest profil să fie sau nu folosit și afișat."
+msgid "Whether to use and display this profile."
+msgstr "Dacă acest profil să fie folosit și afișat."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Fără sunete"
 
@@ -1366,19 +1388,27 @@ msgstr "Fără sunete"
 msgid "Built-in"
 msgstr "Integrat"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "Preferințe sunet"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Testare eveniment sunet"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "Din temă"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Tip"
 
@@ -1395,116 +1425,116 @@ msgid "Enable _window and button sounds"
 msgstr "Acti_vare sunete pentru fereastră și butoane"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Sunet alertă"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Ferestre și butoane"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Buton apăsat"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Buton comutare apăsat"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Fereastră maximizată"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Fereastră demaximizată"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Fereastră minimizată"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Înregistrare"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Ieșire"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Mesaj e-mail nou"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
-msgstr "Golire gunoi"
+msgstr "Golire coș de gunoi"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Acțiune lungă finalizată (descărcare, scriere CD, etc.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Alerte"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Informare sau întrebare"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Avertisment"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Eroare"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Avertisment acumulator"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Alegere fișier sunet"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Fișiere sunet"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Personalizat..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "Personalizat…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Temă sunet:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Activare sunete fereastră și butoane"
 
