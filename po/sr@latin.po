@@ -6,21 +6,22 @@
 # Maintainer: Danilo Šegan <dsegan@gmx.net>
 # Reviewed on 2005-08-08 by: Igor Nestorović <igor@prevod.org>"
 # Translated on 2006-01-31 by: Slobodan D. Sredojević <slobo@akrep.be>
+# Miloš Popović <gpopac@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-01-17 19:48+0000\n"
-"PO-Revision-Date: 2010-03-07 17:26+0100\n"
-"Last-Translator: Goran Rakić <grakic@devbase.net>\n"
-"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
+"POT-Creation-Date: 2010-08-04 13:24+0000\n"
+"PO-Revision-Date: 2010-08-20 16:50+0200\n"
+"Last-Translator: Miloš Popović <gpopac@gmail.com>\n"
+"Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -52,8 +53,9 @@ msgid "Version of this application"
 msgstr "Izdanje programa"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " — Gnomovo programče za upravljanje zvukom"
+#| msgid " - GNOME Volume Control Applet"
+msgid " — GNOME Volume Control Applet"
+msgstr " — Gnomovo programče upravljanje zvukom"
 
 #: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
@@ -64,189 +66,226 @@ msgid "Startup page"
 msgstr "Početna stranica"
 
 #: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
+#| msgid " - GNOME Volume Control"
+msgid " — GNOME Volume Control"
 msgstr " — Gnomovo upravljanje zvukom"
 
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1830
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1918
 msgid "Output"
 msgstr "Izlaz"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1744
+#| msgid "_Output volume: "
+msgid "Sound Output Volume"
+msgstr "Jačina izlaznog zvuka"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1832
 msgid "Input"
 msgstr "Ulaz"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "Jačina mikrofona"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "Levi"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "Desni"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "Zadnji"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "Prednji"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "Majtiše"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "Najglasnije"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "_Odnos:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "_Izbledi:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "_Subvufer"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:596
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Bez pojačavanja"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:852
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "Utišaj"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1494
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "Onemogućeno"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
 msgstr[0] "%u izlaz"
 msgstr[1] "%u izlaza"
 msgstr[2] "%u izlaza"
+msgstr[3] "%u izlaz"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u ulaz"
 msgstr[1] "%u ulaza"
 msgstr[2] "%u ulaza"
+msgstr[3] "%u ulaz"
 
 # 48x48/emblems/emblem-sound.icon.in.h:1
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Sistemski zvuci"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:305
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:564
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "_Konektor:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:510
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "Praćenje šiljka"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1423
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1664
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Naziv"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1428
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "Uređaj"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1650
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "Proba zvučnika %s"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1577
+msgid "Test Speakers"
+msgstr "Proba zvučnika"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1738
 msgid "_Output volume: "
 msgstr "Jačina _zvuka na izlazu: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1681
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1769
 msgid "Sound Effects"
 msgstr "Zvučni efekti"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1688
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1776
 msgid "_Alert volume: "
 msgstr "Jačina zvuka za _upozorenja: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1701
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1789
 msgid "Hardware"
 msgstr "Zvučne kartice"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1706
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "C_hoose a device to configure:"
 msgstr "Izaberite uređaj _radi podešavanja:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1733
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1821
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1950
 msgid "Settings for the selected device:"
 msgstr "Podešavanja za izabrani uređaj:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1751
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1839
 msgid "_Input volume: "
 msgstr "Jačina z_vuka na ulazu: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1774
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
 msgid "Input level:"
 msgstr "Ulazni nivo:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1800
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1888
 msgid "C_hoose a device for sound input:"
 msgstr "Izaberite uređaj kao zvučni ulaz:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1835
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1923
 msgid "C_hoose a device for sound output:"
 msgstr "Izaberite uređaj kao zvučni izlaz:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1873
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1961
 msgid "Applications"
 msgstr "Programi"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1877
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1965
 msgid "No application is currently playing or recording audio."
 msgstr "Ni jedan program ne pušta ili snima zvuk."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2001
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2089
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
 msgid "Sound Preferences"
 msgstr "Postavke zvuka"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "Zaustavi"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+#| msgid "Te_st"
+msgid "Test"
+msgstr "Proba"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+#| msgid "_Subwoofer:"
+msgid "Subwoofer"
+msgstr "Subvufer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -292,26 +331,35 @@ msgstr "Neimenovano-%d"
 
 #: ../grecord/src/gsr-window.c:193
 #, c-format
+#| msgid ""
+#| "Could not create the GStreamer %s element.\n"
+#| "Please install the '%s' plug-in from the '%s' module.\n"
+#| "Verify that the installation is correct by running\n"
+#| "    gst-inspect-0.10 %s\n"
+#| "and then restart gnome-sound-recorder."
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"Ne mogu pronaći GStreamer elemenat %s.\n"
-"Molim instalirajte dodatak „%s“ iz modula „%s“.\n"
+"Ne mogu da obrazujem Gstrimerov element %s.\n"
+"Instalirajte dodatak „%s“ iz modula „%s“.\n"
 "Proverite da li ste to uspešno uradili pozivanjem naredbe\n"
 "    gst-inspect-0.10 %s\n"
 "a nakon toga ponovo pokrenite snimanje zvuka."
 
 #: ../grecord/src/gsr-window.c:209
+#| msgid ""
+#| "Please verify its settings.\n"
+#| "You may be missing the necessary plug-ins."
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
-"Molim potvrdite njegova podešavanja.\n"
-"Možda bam nedostaju neophodni dodaci."
+"Proverite podešavanja.\n"
+"Možda vam nedostaju neophodni dodaci."
 
 # bug: plural-forms
 #: ../grecord/src/gsr-window.c:294
@@ -321,6 +369,7 @@ msgid_plural "%ld minutes"
 msgstr[0] "%ld minut"
 msgstr[1] "%ld minuta"
 msgstr[2] "%ld minuta"
+msgstr[3] "%ld minut"
 
 # bug: plural-forms
 #: ../grecord/src/gsr-window.c:295
@@ -330,6 +379,7 @@ msgid_plural "%ld hours"
 msgstr[0] "%ld sat"
 msgstr[1] "%ld sata"
 msgstr[2] "%ld sata"
+msgstr[3] "%ld sat"
 
 # bug: plural-forms
 #: ../grecord/src/gsr-window.c:296
@@ -339,6 +389,7 @@ msgid_plural "%ld seconds"
 msgstr[0] "%ld sekunda"
 msgstr[1] "%ld sekunde"
 msgstr[2] "%ld sekundi"
+msgstr[3] "%ld sekunda"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
 #: ../grecord/src/gsr-window.c:303
@@ -437,6 +488,7 @@ msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu bajt)"
 msgstr[1] "%s (%llu bajta)"
 msgstr[2] "%s (%llu bajtova)"
+msgstr[3] "%s (%llu bajt)"
 
 #: ../grecord/src/gsr-window.c:1007
 msgid "Unknown size"
@@ -523,32 +575,37 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
-msgstr "Pušta..."
+#| msgid "Playing..."
+msgid "Playing…"
+msgstr "Puštam…"
 
 #: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
-msgstr "GCOnf zvučni izlaz"
+msgstr "GKonf zvučni izlaz"
 
 #: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Puštanje"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "Snima..."
+#| msgid "Recording"
+msgid "Recording…"
+msgstr "Snimam…"
 
 #: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
 msgstr "GConf snimanje zvuka"
 
 #: ../grecord/src/gsr-window.c:1831
+#| msgid ""
+#| "Your audio capture settings are invalid. Please correct them with the "
+#| "\"Sound Preferences\" under the System-Preferences menu."
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
-"Vaša podešavanja za snimanje zvuka nisu ispravna. Molim ispravite ih iz "
-"„Postavke zvuka“ u meniju Sistem — Postavke."
+"Nisu ispravna podešavanja za snimanje zvuka. Možete ih izmeniti preko postavke "
+"„Upravljanje zvukom“ iz Gnomovog menija."
 
 #: ../grecord/src/gsr-window.c:2003
 msgid "file output"
@@ -649,8 +706,9 @@ msgid "About this application"
 msgstr "O ovom programu"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr "Nije moguće učitati ui.xml. Program možda nije ispravno instaliran"
+#| msgid "Could not load ui.xml. The program may be not properly installed"
+msgid "Could not load UI file. The program may not be properly installed."
+msgstr "Ne mogu da učitam UI datoteku. Možda program nije ispravno instaliran."
 
 #: ../grecord/src/gsr-window.c:2302
 msgid "Open"
@@ -687,7 +745,8 @@ msgstr "Nivo:"
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
+#| msgid "%s - Sound Recorder"
+msgid "%s — Sound Recorder"
 msgstr "%s — snimanje zvuka"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
@@ -695,16 +754,18 @@ msgid "Height of the Window"
 msgstr "Visina prozora"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "Visina prozora za prikaz"
+#| msgid "Height of the Window to be displayed"
+msgid "Height of the window to be displayed."
+msgstr "Visina prozora za prikaz."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
-msgstr "Dužina prozora"
+msgstr "Širina prozora"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "Dužina prozora za prikaz"
+#| msgid "Width of the Window to be displayed"
+msgid "Width of the window to be displayed."
+msgstr "Širina prozora za prikaz."
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
@@ -748,7 +809,8 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
+#| msgid "Mute/unmute %s"
+msgid "Mute/Unmute %s"
 msgstr "Isključi/uključi zvuk %s"
 
 #: ../gst-mixer/src/track.c:356
@@ -893,9 +955,9 @@ msgid "Unsupported"
 msgstr "Postavka nije moguća"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Uobičajno"
 
@@ -929,12 +991,10 @@ msgid "D_evice:"
 msgstr "_Uređaj:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:4
-#| msgid "<b>Default Input</b>"
 msgid "Default Input"
 msgstr "Uobičajeni ulaz"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:5
-#| msgid "<b>Default Output</b>"
 msgid "Default Output"
 msgstr "Uobičajeni izlaz"
 
@@ -959,9 +1019,9 @@ msgid "Testing Pipeline"
 msgstr "Isprobava cev"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-#| msgid "Recording..."
-msgid "Testing..."
-msgstr "Isprobavam..."
+#| msgid "Testing..."
+msgid "Testing…"
+msgstr "Isprobavam…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -980,89 +1040,106 @@ msgid "_Test"
 msgstr "_Proba"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "Automatski prepoznaj"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Napredna arhitektura za zvuk na Linuksu"
+#: ../gstreamer-properties/pipeline-constants.c:121
+#| msgid "ALSA - Advanced Linux Sound Architecture"
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Napredna arhitektura za zvuk na Linuksu"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART zvučni servis"
+#| msgid "Artsd - ART Sound Daemon"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART zvučni servis"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Prosvetljeni zvučni servis"
+#: ../gstreamer-properties/pipeline-constants.c:123
+#| msgid "ESD - Enlightenment Sound Daemon"
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Prosvetljeni zvučni servis"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - Otvoreni sistem zvuka"
+#: ../gstreamer-properties/pipeline-constants.c:130
+#| msgid "OSS - Open Sound System"
+msgid "OSS — Open Sound System"
+msgstr "OSS — Otvoreni sistem zvuka"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+#| msgid "OSS - Open Sound System"
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS — Otvoreni sistem zvuka 4. izdanje"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio zvučni server"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+#| msgid "Audio"
+msgid "Sun Audio"
+msgstr "Sanov zvuk"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Prilagođeno"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Jednostavan DirektMedia sloj"
+#: ../gstreamer-properties/pipeline-constants.c:110
+#| msgid "SDL - Simple DirectMedia Layer"
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Jednostavan DirektMedija sloj"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "Iks sistem prozora (bez Xv proširenja)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "Iks sistem prozora (X11/XShm/Xv)"
 
 # 48x48/emblems/emblem-sound.icon.in.h:1
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "Proveri zvuk"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "Tišina"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (npr. Zoran v4l uređaj)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "Proveri ulaz"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video za Linuks (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video za Linuks 2 (v4l2)"
 
@@ -1118,9 +1195,10 @@ msgstr "_Uređivanje"
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
-msgstr[0] "Obrisati ovaj %d profil?\n"
-msgstr[1] "Obriši ova %d profila?\n"
-msgstr[2] "Obriši ovih %d profila?\n"
+msgstr[0] "Da obrišem ovaj %d profil?\n"
+msgstr[1] "Da obrišem ova %d profila?\n"
+msgstr[2] "Da obrišem ovih %d profila?\n"
+msgstr[3] "Da obrišem ovaj profil?\n"
 
 #: ../profiles/audio-profiles-edit.c:475
 #, c-format
@@ -1355,15 +1433,17 @@ msgid "Voice, Lossy"
 msgstr "Glas, sa gubicima"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
+#| msgid "Whether or not this profile is to be used"
+msgid "Whether this profile is to be used"
 msgstr "Da li se ovaj profil koristi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Da li se prikazuje i koristi ovaj profil."
+#| msgid "Whether or not to use and display this profile."
+msgid "Whether to use and display this profile."
+msgstr "Određuje da li se prikazuje i koristi ovaj profil."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Bez zvuka"
 
@@ -1372,19 +1452,19 @@ msgid "Built-in"
 msgstr "Ugrađeno"
 
 # 48x48/emblems/emblem-sound.icon.in.h:1
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Provera zvuka za događaj"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "Iz teme"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Vrsta"
 
@@ -1401,116 +1481,117 @@ msgid "Enable _window and button sounds"
 msgstr "Omo_gući zvuke za prozore i dugmiće"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Zvuk upozorenja"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Prozori i dugmići"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Pritisnuto dugme"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Uključen prekidač"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Uvećan prozor"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Vraćen prozor"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Umanjen prozor"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Radna površ"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Prijava"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Odjava"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Nova e-poruka"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "Ispražnjeno smeće"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Završetak duge radnje (preuzimanje, upis diska i sl.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Upozorenje"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Podatak ili pitanje"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Greška"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Upozorenje o bateriji"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Izaberite zvučnu datoteku"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Zvučne datoteke"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Proizvoljno"
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+#| msgid "Custom"
+msgid "Custom…"
+msgstr "Prilagođeno…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Zvučna tema:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Omogući zvuke za prozore i dugmiće"
 
@@ -1537,6 +1618,12 @@ msgstr "Staklo"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid "Recording..."
+#~ msgstr "Snima..."
+
+#~ msgid "Custom..."
+#~ msgstr "Proizvoljno"
 
 #~ msgid "Address of the server to contact for CD queries"
 #~ msgstr "Adresa servera kome će se prosleđivati CD upiti"
@@ -2364,9 +2451,6 @@ msgstr "Sonar"
 
 #~ msgid "Play / Pause"
 #~ msgstr "Pusti / Pauza"
-
-#~ msgid "Stop"
-#~ msgstr "Zaustavi"
 
 #~ msgid "Previous track"
 #~ msgstr "Prethodna numera"
