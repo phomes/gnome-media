@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-media 2.27.5\n"
+"Project-Id-Version: gnome-media 2.31.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-16 09:54+0800\n"
-"PO-Revision-Date: 2010-02-16 09:55+0800\n"
+"POT-Creation-Date: 2010-08-21 20:33+0800\n"
+"PO-Revision-Date: 2010-08-21 20:33+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,8 +49,8 @@ msgid "Version of this application"
 msgstr "這個程式的版本"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " - GNOME 音量控制面板程式"
+msgid " — GNOME Volume Control Applet"
+msgstr " — GNOME 音量控制面板程式"
 
 #: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
@@ -61,59 +61,67 @@ msgid "Startup page"
 msgstr "啟始頁面"
 
 #: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr " - GNOME 音量控制"
+msgid " — GNOME Volume Control"
+msgstr " — GNOME 音量控制"
 
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1918
 msgid "Output"
 msgstr "輸出"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+msgid "Sound Output Volume"
+msgstr "音效輸出音量"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1832
 msgid "Input"
 msgstr "輸入"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "麥克風音量"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "左"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "右"
 
 # Hard to distinguish this with Oldies -- Abel
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "後"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "前"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "最小值"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "最大值"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "平衡(_B):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "淡化(_F):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "重低音(_S):"
 
@@ -132,22 +140,22 @@ msgstr "未經放大"
 msgid "Mute"
 msgstr "靜音"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
 msgid "_Profile:"
 msgstr "設定組合(_P):"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "已停用"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -156,93 +164,115 @@ msgstr[1] "%u 輸出"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u 輸入"
 msgstr[1] "%u 輸入"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "系統音效"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "連接器(_N):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "峰值檢測"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1664
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "名稱"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "裝置"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "%s 的喇叭測試"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1577
+msgid "Test Speakers"
+msgstr "測試喇叭"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1738
 msgid "_Output volume: "
 msgstr "輸出音量(_O):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1769
 msgid "Sound Effects"
 msgstr "聲音效果"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1776
 msgid "_Alert volume: "
 msgstr "警示音量(_A):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1789
 msgid "Hardware"
 msgstr "硬件"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "C_hoose a device to configure:"
 msgstr "選擇要設定的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1821
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1950
 msgid "Settings for the selected device:"
 msgstr "已選取裝置的設定值："
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1839
 msgid "_Input volume: "
 msgstr "輸入音量(_I):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
 msgid "Input level:"
 msgstr "輸入等級:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1888
 msgid "C_hoose a device for sound input:"
 msgstr "選擇聲音輸入的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1923
 msgid "C_hoose a device for sound output:"
 msgstr "選擇聲音輸出的裝置(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1961
 msgid "Applications"
 msgstr "應用程式"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1965
 msgid "No application is currently playing or recording audio."
 msgstr "沒有應用程式目前正在播放或錄製音效。"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2089
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
 msgid "Sound Preferences"
 msgstr "音效偏好設定"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "停止"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "測試"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "重低音"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -295,22 +325,23 @@ msgstr "未命名-%d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
 "無法建立 GStreamer %1$s 元件。\n"
-"請從‘%3$s’套件中安裝‘%2$s’外掛程式。\n"
-"執行‘gst-inspect-0.10 %4$s’來檢查安裝是否正確，\n"
-"及重新啟動 gnome 錄音程式。"
+"請從「%3$s」模組中安裝「%2$s」外掛程式。\n"
+"要檢查安裝是否正確，請執行\n"
+"    gst-inspect-0.10 %4$s\n"
+"並重新啟動 gnome-sound-recorder。"
 
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
-"請檢查你的設定。\n"
+"請檢查它的設定值。\n"
 "你可能遺漏了需要的外掛程式。"
 
 #: ../grecord/src/gsr-window.c:294
@@ -517,8 +548,8 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
-msgstr "播放中..."
+msgid "Playing…"
+msgstr "正在播放…"
 
 #: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
@@ -529,8 +560,8 @@ msgid "Playback"
 msgstr "播放"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "錄音中..."
+msgid "Recording…"
+msgstr "正在錄製…"
 
 #: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
@@ -539,8 +570,8 @@ msgstr "GConf 錄音"
 #: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
-msgstr "你的音效擷取設定不正確。請在系統-偏好設定選單中的「音效偏好設定」更正。"
+"\"Sound Preferences\" under the System Preferences menu."
+msgstr "你的音效擷取設定不正確。請在系統偏好設定選單中的「音效偏好設定」更正。"
 
 #: ../grecord/src/gsr-window.c:2003
 msgid "file output"
@@ -641,8 +672,8 @@ msgid "About this application"
 msgstr "關於此程式"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
-msgstr "無法載入 ui.xml。程式可能未完全安裝。"
+msgid "Could not load UI file. The program may not be properly installed."
+msgstr "無法載入 UI 檔案。程式可能沒有正確的安裝。"
 
 #: ../grecord/src/gsr-window.c:2302
 msgid "Open"
@@ -679,24 +710,24 @@ msgstr "等級:"
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - 錄音程式"
+msgid "%s — Sound Recorder"
+msgstr "%s — 錄音程式"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "視窗高度"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "顯示的視窗的高度"
+msgid "Height of the window to be displayed."
+msgstr "顯示的視窗的高度。"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "視窗闊度"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "顯示的視窗的闊度"
+msgid "Width of the window to be displayed."
+msgstr "顯示的視窗的闊度。"
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
@@ -741,7 +772,7 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
+msgid "Mute/Unmute %s"
 msgstr "靜音/解除靜音 %s"
 
 #: ../gst-mixer/src/track.c:356
@@ -890,9 +921,9 @@ msgid "Unsupported"
 msgstr "不支援"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "預設值"
 
@@ -954,8 +985,8 @@ msgid "Testing Pipeline"
 msgstr "正在測試管線"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
-msgstr "測試中..."
+msgid "Testing…"
+msgstr "正在測試…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -975,88 +1006,98 @@ msgid "_Test"
 msgstr "測試(_T)"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "自動偵測"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - 先進 Linux 音效架構"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — 先進 Linux 音效架構"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART 音效服務程式"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART 音效伺服程式"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment 音效服務程式"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment 音效伺服程式"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - 開放音效系統"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
+msgstr "OSS — 開放音效系統"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS — 開放音效系統第 4 版"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio 聲音伺服器"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Sun 音效"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "自選"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - 簡易直接媒體層"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — 簡易直接媒體層"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "X 視窗系統（非 Xv）"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X 視窗系統 (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "音效測試"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "無聲"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG（如 Zoran v4l 裝置）"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "輸入測試"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
@@ -1314,15 +1355,15 @@ msgid "Voice, Lossy"
 msgstr "語音，失真"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "是否使用此設定組合"
+msgid "Whether this profile is to be used"
+msgstr "是否使用這個設定組合"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "是否使用及顯示此設定組合"
+msgid "Whether to use and display this profile."
+msgstr "是否使用及顯示這個設定組合。"
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "不使用音效"
 
@@ -1330,19 +1371,19 @@ msgstr "不使用音效"
 msgid "Built-in"
 msgstr "內置"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "測試事件音效"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "從主題"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "類型"
 
@@ -1359,116 +1400,116 @@ msgid "Enable _window and button sounds"
 msgstr "啟用視窗與按鈕音效(_W)"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "警示音效"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "視窗與按鈕"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "按下按鈕"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "按下切換按鈕"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "視窗最大化"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "視窗取消最大化"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "視窗最小化"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "桌面"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "登入"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "登出"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "新郵件通知"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "清理回收筒"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "長時間動作已完成（下載、燒錄 CD 等等）"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "警示"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "資訊或問題"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "警告"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "錯誤"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "電池警告"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "選擇音效檔案"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "音效檔案"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "自選..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "自選…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "音效主題:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "啟用視窗與按鈕音效"
 
@@ -1496,6 +1537,12 @@ msgstr "敲玻璃"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "聲納"
+
+#~ msgid "Recording..."
+#~ msgstr "錄音中..."
+
+#~ msgid "Custom..."
+#~ msgstr "自訂..."
 
 #~ msgid "Profile:"
 #~ msgstr "設定組合："
