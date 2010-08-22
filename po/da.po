@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-27 16:20+0100\n"
-"PO-Revision-Date: 2010-03-25 02:06+0100\n"
+"POT-Creation-Date: 2010-08-22 13:22+0200\n"
+"PO-Revision-Date: 2010-08-22 00:28+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -61,8 +61,8 @@ msgid "Version of this application"
 msgstr "Versionen af dette program"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " - GNOME-panelprogram til lydstyrkekontrol"
+msgid " — GNOME Volume Control Applet"
+msgstr " — GNOME-panelprogram til lydstyrkekontrol"
 
 #: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
@@ -73,58 +73,66 @@ msgid "Startup page"
 msgstr "Opstartsside"
 
 #: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr " - Lydstyrkekontrol til GNOME"
+msgid " — GNOME Volume Control"
+msgstr " — Lydstyrkekontrol til GNOME"
 
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1918
 msgid "Output"
 msgstr "Output"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+msgid "Sound Output Volume"
+msgstr "Afspilningslydstyrke"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1832
 msgid "Input"
 msgstr "Input"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "Lydstyrke for mikrofon"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "Venstre"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "Højre"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "Bagved"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "Foran"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "Maksimum"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "_Balance:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "_Dæmp:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
@@ -143,22 +151,22 @@ msgstr "Uforstærket"
 msgid "Mute"
 msgstr "Stilhed"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1538
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1576
 msgid "_Profile:"
 msgstr "_Profil:"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1003
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "Deaktiveret"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1010
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -167,93 +175,115 @@ msgstr[1] "%u output"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1020
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u input"
 msgstr[1] "%u input"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1316
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "Systemlyde"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:310
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:605
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "Ko_nnektor:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:518
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "Find toppe"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1467
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1620
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1664
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Navn"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1472
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "Enhed"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1694
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "Højttalertest for %s"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1577
+msgid "Test Speakers"
+msgstr "Afprøv højttalere"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1738
 msgid "_Output volume: "
 msgstr "_Afspilningslydstyrke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1769
 msgid "Sound Effects"
 msgstr "Lydeffekter"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1776
 msgid "_Alert volume: "
 msgstr "_Påmindelseslydstyrke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1789
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
 msgid "C_hoose a device to configure:"
 msgstr "_Vælg en enhed at konfigurere:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1821
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1950
 msgid "Settings for the selected device:"
 msgstr "Indstillinger for den valgte enhed:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1839
 msgid "_Input volume: "
 msgstr "_Optagelydstyrke: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1862
 msgid "Input level:"
 msgstr "Inputniveau:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1888
 msgid "C_hoose a device for sound input:"
 msgstr "_Vælg en enhed til lydinput:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1923
 msgid "C_hoose a device for sound output:"
 msgstr "_Vælg en enhed til lydoutput:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1961
 msgid "Applications"
 msgstr "Programmer"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1965
 msgid "No application is currently playing or recording audio."
 msgstr "Intet program afspiller eller optager i øjeblikket lyd."
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2045
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2089
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
 msgid "Sound Preferences"
 msgstr "Lydindstillinger"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "Stop"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "Test"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "Subwoofer"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -299,12 +329,12 @@ msgstr "Uden titel-%d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
-"Kunne ikke oprettet GStreamer elementet \"%s\".\n"
+"Kunne ikke oprette %s-element til GStreamer.\n"
 "Installér udvidelsesmodulet \"%s\" fra modulet \"%s\".\n"
 "Kontrollér at installationen er i orden ved at køre\n"
 "    gst-inspect-0.10 %s\n"
@@ -313,7 +343,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "Kontrollér indstillingerne.\n"
 "Du mangler muligvis de nødvendige udvidelsesmoduler."
@@ -521,8 +551,8 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
-msgstr "Afspiller..."
+msgid "Playing…"
+msgstr "Afspiller…"
 
 #: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
@@ -533,8 +563,8 @@ msgid "Playback"
 msgstr "Playback"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "Optager..."
+msgid "Recording…"
+msgstr "Optager…"
 
 #: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
@@ -543,10 +573,10 @@ msgstr "GConf-lydindspilning"
 #: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Dine lydoptageindstillinger er ugyldige. Kontrollér dem venligst under "
-"\"Lydindstillinger\" i menuen System -> Indstillinger."
+"\"Lydindstillinger\" i menuen Indstillinger under System."
 
 #: ../grecord/src/gsr-window.c:2003
 msgid "file output"
@@ -647,9 +677,9 @@ msgid "About this application"
 msgstr "Om programmet"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"Kunne ikke indlæse ui.xml. Programmet er muligvis ikke korrekt installeret"
+"Kunne ikke indlæse UI-fil. Programmet er muligvis ikke korrekt installeret."
 
 #: ../grecord/src/gsr-window.c:2302
 msgid "Open"
@@ -686,24 +716,24 @@ msgstr "Niveau:"
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - Lydoptager"
+msgid "%s — Sound Recorder"
+msgstr "%s — Lydoptager"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Vinduets højde"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "Højden af vinduet der skal vises"
+msgid "Height of the window to be displayed."
+msgstr "Højden af vinduet der skal vises."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "Vinduets bredde"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "Bredden af vinduet der skal vises"
+msgid "Width of the window to be displayed."
+msgstr "Bredden af vinduet der skal vises."
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
@@ -747,8 +777,8 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
-msgstr "Slå lyden på %s til/fra"
+msgid "Mute/Unmute %s"
+msgstr "Slå lyden for %s til/fra"
 
 #: ../gst-mixer/src/track.c:356
 #, c-format
@@ -898,9 +928,9 @@ msgid "Unsupported"
 msgstr "Ikke understøttet"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Standard"
 
@@ -963,8 +993,8 @@ msgid "Testing Pipeline"
 msgstr "Tester datakanal"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
-msgstr "Tester..."
+msgid "Testing…"
+msgstr "Tester…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -983,88 +1013,99 @@ msgid "_Test"
 msgstr "_Test"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "Automatisk genkendelse"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART Sound Deamon"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART Sound Deamon"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - Open Sound System"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
+msgstr "OSS — Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS - Open Sound System version 4"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio Sound Server"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+# navn, velsagtens
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Sun Audio"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Brugerdefineret"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "X Window System (ingen Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "Test-lyd"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "Stilhed"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (fx. Zoran v4l-enhed)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "Test indgang"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
@@ -1259,8 +1300,7 @@ msgid ""
 "subdirectories relative to /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 msgstr ""
 "Liste af lydoptagelsesprofiler. Listen indeholder strenge der navngiver "
-"undermapper relativt til \"/system/gstreamer/@GST_MAJORMINOR@/audio/profiles"
-"\"."
+"undermapper relativt til /system/gstreamer/@GST_MAJORMINOR@/audio/profiles."
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:13
 msgid "List of profiles"
@@ -1352,15 +1392,15 @@ msgid "Voice, Lossy"
 msgstr "Tale, med tab"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "Om profilen skal bruges"
+msgid "Whether this profile is to be used"
+msgstr "Om denne profil skal bruges"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Om profilen skal vises."
+msgid "Whether to use and display this profile."
+msgstr "Om denne profil skal bruges og vises."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Ingen lyde"
 
@@ -1368,19 +1408,19 @@ msgstr "Ingen lyde"
 msgid "Built-in"
 msgstr "Indbygget"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Afprøver begivenhedslyd"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "Fra tema"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Type"
 
@@ -1397,116 +1437,116 @@ msgid "Enable _window and button sounds"
 msgstr "Aktivér lyde for _vinduer og knapper"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Påmindelseslyd"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Vinduer og knapper"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Knap klikket"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Skifteknap klikket"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Vindue maksimeret"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Vindue gendannet"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Vindue minimeret"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Skrivebord"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Logind"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Logud"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Ny e-post"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "Tøm affald"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Langvarig handling færdiggjort (download, cd-brænding osv.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Påmindelser"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Information eller spørgsmål"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Advarsel"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Fejl"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Batteriadvarsel"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Vælg lydfil"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Lydfiler"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Brugertilpasset..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "Brugerdefineret…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Lydtema:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Aktivér vindues- og knappelyde"
 
@@ -1533,6 +1573,12 @@ msgstr "Glas"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid "Recording..."
+#~ msgstr "Optager..."
+
+#~ msgid "Custom..."
+#~ msgstr "Brugertilpasset..."
 
 #~ msgid "GNOME Volume Control"
 #~ msgstr "GNOME-lydstyrkekontrol"
@@ -2367,9 +2413,6 @@ msgstr "Sonar"
 
 #~ msgid "Play / Pause"
 #~ msgstr "Spil/pause"
-
-#~ msgid "Stop"
-#~ msgstr "Stop"
 
 #~ msgid "Previous track"
 #~ msgstr "Foregående spor"
