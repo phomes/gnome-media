@@ -13,10 +13,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-17 17:00+0200\n"
-"PO-Revision-Date: 2010-03-17 16:59+0200\n"
+"POT-Creation-Date: 2010-08-26 23:29+0300\n"
+"PO-Revision-Date: 2010-08-26 23:29+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,80 +43,78 @@ msgid "Sound"
 msgstr "Звук"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Версия на тази програма"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
+msgid " — GNOME Volume Control Applet"
 msgstr "— аплет на GNOME за силата на звука"
 
-#: ../gnome-volume-control/src/dialog-main.c:124
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
 msgstr "Изчакване на отговор от аудио подсистемата"
 
-#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Начална страница"
-
-#: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr "— сила на звука на GNOME"
-
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "Изход"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
+msgid "Sound Output Volume"
+msgstr "Сила на изхода"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "Вход"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "Сила на микрофона"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "Ляво"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "Дясно"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
+#: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "Отзад"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:113
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
 msgctxt "balance"
 msgid "Front"
 msgstr "Отпред"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "Минимум"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "Максимум"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "_Баланс:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "_Затихване:"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "_Бас:"
 
@@ -135,15 +134,15 @@ msgid "Mute"
 msgstr "Заглушаване"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:166
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
 msgid "_Profile:"
 msgstr "Про_фил:"
 
 #. translators:
 #. * The device has been disabled
 #: ../gnome-volume-control/src/gvc-mixer-control.c:1005
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "Изключен"
 
@@ -169,91 +168,82 @@ msgstr[1] "%u входа"
 msgid "System Sounds"
 msgstr "Системни звуци"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "_Конектор:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "Засичане на максимумите"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Име"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "Устройство"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
 #, c-format
 msgid "Speaker Testing for %s"
 msgstr "Тестване на високоговорителите към %s"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
 msgid "Test Speakers"
 msgstr "Тестване на високоговорителите"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1711
 msgid "_Output volume: "
 msgstr "Сила на _изхода:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "Аудио ефекти"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "_Alert volume: "
 msgstr "Сила на _известяването:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
 msgid "Hardware"
 msgstr "Хардуер"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
 msgid "C_hoose a device to configure:"
 msgstr "_Избор на устройството за настройване:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "Настройки на избраното устройство:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "_Input volume: "
 msgstr "Сила на _входа:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
 msgid "Input level:"
 msgstr "Ниво на входа:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
 msgid "C_hoose a device for sound input:"
 msgstr "_Избор на входно аудио устройство:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
 msgid "C_hoose a device for sound output:"
 msgstr "_Избор на изходно аудио устройство:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "Програми"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "В момента никоя програма не записва и не възпроизвежда звук"
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "Настройки на звука"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 msgid "Stop"
@@ -312,7 +302,7 @@ msgstr "Без заглавие — %d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
@@ -326,7 +316,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "Проверете дали настройките са правилни.\n"
 "Може да ви липсват нужните приставки."
@@ -534,7 +524,7 @@ msgstr ""
 " gnome-multimedia@gnome.org"
 
 #: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
+msgid "Playing…"
 msgstr "Изпълнява се…"
 
 #: ../grecord/src/gsr-window.c:1644
@@ -546,7 +536,7 @@ msgid "Playback"
 msgstr "При изпълнение"
 
 #: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
+msgid "Recording…"
 msgstr "Запис…"
 
 #: ../grecord/src/gsr-window.c:1822
@@ -556,7 +546,7 @@ msgstr "Запис на аудио на GConf"
 #: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Настройките ви за прихващане на звук са неправилни. Поправете ги от "
 "„Настройка за звук“ в „Система“ → „Настройки“."
@@ -660,9 +650,9 @@ msgid "About this application"
 msgstr "Относно програмата"
 
 #: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"Файлът ui.xml не може да бъде зареден. Най-вероятно програмата е инсталирана "
+"Файлът за ГПИ не може да бъде зареден. Най-вероятно програмата е инсталирана "
 "неправилно."
 
 #: ../grecord/src/gsr-window.c:2302
@@ -700,7 +690,7 @@ msgstr "Ниво:"
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
 #: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
+msgid "%s — Sound Recorder"
 msgstr "%s — запис на звуци"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
@@ -708,20 +698,24 @@ msgid "Height of the Window"
 msgstr "Височина на прозореца"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "Височина на прозореца, който ще бъде показан"
+msgid "Height of the window to be displayed."
+msgstr "Височина на прозореца, който ще бъде показан."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "Широчина на прозореца"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "Широчина на прозореца, който ще бъде показан"
+msgid "Width of the window to be displayed."
+msgstr "Широчина на прозореца, който ще бъде показан."
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Тема от звуци"
+
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Начална страница"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -761,7 +755,7 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
+msgid "Mute/Unmute %s"
 msgstr "Загл./вкл. %s"
 
 #: ../gst-mixer/src/track.c:356
@@ -912,9 +906,9 @@ msgid "Unsupported"
 msgstr "Не се поддържа"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "По подразбиране"
 
@@ -977,7 +971,7 @@ msgid "Testing Pipeline"
 msgstr "Тестване на конвейер"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
+msgid "Testing…"
 msgstr "Тестване…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
@@ -997,88 +991,98 @@ msgid "_Test"
 msgstr "_Тест"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "Автоматично засичане"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
 msgstr "ALSA — съвременна архитектура за звук на Линукс"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
+msgid "Artsd — ART Sound Daemon"
 msgstr "Artsd — звуков сървър „ART“"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
 msgstr "ESD — звуков сървър „Enlightened“"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
 msgstr "OSS — отворена система за звук „OSS“"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS — отворена система за звук „OSS“ в. 4"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "Pulse — звуков сървър „PulseAudio“"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Аудио на Сън"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Потребителска"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
 msgstr "SDL — опростен слой за директна медия (SDL)"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "Системата X Window (без Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "Системата X Window (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "Пробен звук"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "Тишина"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (т.е. устройство за v4l „Zoran“)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "Проба на входа"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Видео за Линукс (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Видео за Линукс 2 (v4l2)"
 
@@ -1116,8 +1120,8 @@ msgid ""
 "There was an error subscribing to notification of audio profile list "
 "changes. (%s)\n"
 msgstr ""
-"Грешка при абонирането за известяване на промени в списъка с аудиопрофили. (%"
-"s)\n"
+"Грешка при абонирането за известяване на промени в списъка с аудиопрофили. "
+"(%s)\n"
 
 #: ../profiles/audio-profile.c:912
 #, c-format
@@ -1372,15 +1376,15 @@ msgid "Voice, Lossy"
 msgstr "Глас със загуби"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
+msgid "Whether this profile is to be used"
 msgstr "Дали да се използва този профил или не"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
+msgid "Whether to use and display this profile."
 msgstr "Дали този профил да се използва и показва."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Без звуци"
 
@@ -1388,19 +1392,27 @@ msgstr "Без звуци"
 msgid "Built-in"
 msgstr "Вградена"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "Настройки на звука"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Проба на звука за събитие"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "От тема"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Вид"
 
@@ -1417,116 +1429,116 @@ msgid "Enable _window and button sounds"
 msgstr "_Включване на звуците за прозорци и бутони"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Звук за известяване"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Прозорци и бутони"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Натискане на бутон"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Превключване на бутон"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Максимизиране на прозорец"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Демаксимизиране на прозорец"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Минимизиране на прозорец"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Работен плот"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Влизане в системата"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Изход от системата"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Ново е-писмо"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "Изчистване на кошчето"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Завършване на продължително действие (изтегляне, запис на диск и т.н.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Известявания"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Информация или въпрос"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Грешка"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Предупреждение за батерията"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Избор на аудио файл"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Аудио файлове"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "Потребителски…"
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "Потребителска…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Тема от звуци:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Включване на звуците за прозорци и бутони"
 
@@ -1553,3 +1565,6 @@ msgstr "Стъкло"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Сонар"
+
+#~ msgid " — GNOME Volume Control"
+#~ msgstr "— сила на звука на GNOME"
