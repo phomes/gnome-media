@@ -1,21 +1,22 @@
 # gnome-media ja.po.
-# Copyright (C) 1998-2000, 2002-2009 Free Software Foundation, Inc.
+# Copyright (C) 1998-2000, 2002-2010 Free Software Foundation, Inc.
 # Mitsuru Oka <95i44@is.kochi-u.ac.jp>, 1998.
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1999.
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2000.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002, 2009.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002, 2009-2010.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <aihana@gnome.gr.jp>, 2006.
+# Hideki Yamane (Debian-JP) <henrich@debian.or.jp>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2009-09-17 20:39+0900\n"
-"PO-Revision-Date: 2009-09-17 20:40+0900\n"
-"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"POT-Creation-Date: 2010-08-29 17:23+0000\n"
+"PO-Revision-Date: 2010-08-30 02:42+0900\n"
+"Last-Translator: Hideki Yamane (Debian-JP) <henrich@debian.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,115 +44,113 @@ msgid "Sound"
 msgstr "サウンド"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Enable debugging code"
 msgstr "デバッグ情報を表示する"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:157
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
 # この名称を変更したら gnome-applets/po/ja.po も変更すること
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " - GNOME 音量調節アプレット"
+msgid " — GNOME Volume Control Applet"
+msgstr " — GNOME 音量調節アプレット"
 
-#: ../gnome-volume-control/src/dialog-main.c:125
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
-msgstr "サウンド・システムからの応答待ちです"
+msgstr "サウンドシステムからの応答待ちです"
 
-#: ../gnome-volume-control/src/dialog-main.c:155 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "起動時に開くページを指定する"
-
-# この名称を変更したら gnome-applets/po/ja.po も変更すること
-#: ../gnome-volume-control/src/dialog-main.c:169
-msgid " - GNOME Volume Control"
-msgstr " - 音量調節ツール"
-
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1762
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
 msgid "Output"
 msgstr "出力"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1678
+msgid "Sound Output Volume"
+msgstr "出力の音量"
+
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
 msgid "Input"
 msgstr "入力"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:108
+#: ../gnome-volume-control/src/gvc-applet.c:283
+msgid "Microphone Volume"
+msgstr "マイクのボリューム"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
 msgid "Left"
 msgstr "左"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:109
+#: ../gnome-volume-control/src/gvc-balance-bar.c:110
 msgctxt "balance"
 msgid "Right"
 msgstr "右"
-
-#: ../gnome-volume-control/src/gvc-balance-bar.c:112
-msgctxt "balance"
-msgid "Front"
-msgstr "フロント"
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:113
 msgctxt "balance"
 msgid "Rear"
 msgstr "リア"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:116
+#: ../gnome-volume-control/src/gvc-balance-bar.c:114
+msgctxt "balance"
+msgid "Front"
+msgstr "フロント"
+
+#: ../gnome-volume-control/src/gvc-balance-bar.c:117
 msgctxt "balance"
 msgid "Minimum"
 msgstr "最小"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:117
+#: ../gnome-volume-control/src/gvc-balance-bar.c:118
 msgctxt "balance"
 msgid "Maximum"
 msgstr "最大"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:291
+#: ../gnome-volume-control/src/gvc-balance-bar.c:294
 msgid "_Balance:"
 msgstr "バランス(_B):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:294
+#: ../gnome-volume-control/src/gvc-balance-bar.c:297
 msgid "_Fade:"
 msgstr "フェード(_F):"
 
-#: ../gnome-volume-control/src/gvc-balance-bar.c:297
+#: ../gnome-volume-control/src/gvc-balance-bar.c:300
 msgid "_Subwoofer:"
 msgstr "サブウーファー(_S):"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:584
+#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:597
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:588
+#: ../gnome-volume-control/src/gvc-channel-bar.c:592
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "増幅しない"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:844
+#: ../gnome-volume-control/src/gvc-channel-bar.c:854
 msgid "Mute"
 msgstr "ミュート"
 
-#: ../gnome-volume-control/src/gvc-combo-box.c:148
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1433
+#: ../gnome-volume-control/src/gvc-combo-box.c:166
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
 msgid "_Profile:"
 msgstr "プロファイル(_P):"
 
 #. translators:
 #. * The device has been disabled
-#: ../gnome-volume-control/src/gvc-mixer-control.c:991
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1005
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "無効"
 
 #. translators:
 #. * The number of sound outputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:998
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1012
 #, c-format
 msgid "%u Output"
 msgid_plural "%u Outputs"
@@ -159,92 +158,105 @@ msgstr[0] "%u 出力"
 
 #. translators:
 #. * The number of sound inputs on a particular device
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1008
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1022
 #, c-format
 msgid "%u Input"
 msgid_plural "%u Inputs"
 msgstr[0] "%u 入力"
 
-#: ../gnome-volume-control/src/gvc-mixer-control.c:1304
+#: ../gnome-volume-control/src/gvc-mixer-control.c:1320
 msgid "System Sounds"
 msgstr "システムのサウンド"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:268
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:309
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:604
 msgid "Co_nnector:"
 msgstr "コネクター(_N):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:470
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:517
 msgid "Peak detect"
 msgstr "ピークの検出"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1362
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1515
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "名前"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1367
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1474
 msgid "Device"
 msgstr "デバイス"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1585
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
+#, c-format
+msgid "Speaker Testing for %s"
+msgstr "%s でスピーカのテスト"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
+msgid "Test Speakers"
+msgstr "スピーカのテスト"
+
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1711
 msgid "_Output volume: "
 msgstr "出力の音量(_O): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1615
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
 msgid "Sound Effects"
 msgstr "サウンドの効果"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1622
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "_Alert volume: "
 msgstr "警告音の音量(_A): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1635
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
 msgid "Hardware"
 msgstr "ハードウェア"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1640
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
 msgid "C_hoose a device to configure:"
 msgstr "設定するデバイスを選択してください(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1794
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
 msgid "Settings for the selected device:"
 msgstr "選択したデバイスの設定:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1685
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "_Input volume: "
 msgstr "入力の音量(_I): "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1705
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
 msgid "Input level:"
 msgstr "入力レベル:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
 msgid "C_hoose a device for sound input:"
 msgstr "サウンドの入力デバイスを選択してください(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1767
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
 msgid "C_hoose a device for sound output:"
 msgstr "サウンドの出力デバイスを選択してください(_H):"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1805
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
 msgid "Applications"
 msgstr "アプリケーション"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1809
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
 msgid "No application is currently playing or recording audio."
 msgstr "現在、再生または録音しているアプリケーションはありません"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1933
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "サウンドの設定"
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+msgid "Stop"
+msgstr "停止します"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:220
+#: ../gnome-volume-control/src/gvc-speaker-test.c:332
+msgid "Test"
+msgstr "テスト"
+
+#: ../gnome-volume-control/src/gvc-speaker-test.c:228
+msgid "Subwoofer"
+msgstr "サブウーファー"
 
 #: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
 #, c-format
@@ -268,7 +280,7 @@ msgid "Record sound clips"
 msgstr "サウンド・クリップを記録します"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1236
+#: ../grecord/src/gsr-window.c:1238
 msgid "Sound Recorder"
 msgstr "サウンド・レコーダ"
 
@@ -276,12 +288,12 @@ msgstr "サウンド・レコーダ"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1739
-#: ../grecord/src/gsr-window.c:2688
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:2690
 msgid "Untitled"
 msgstr "タイトルなし"
 
-#: ../grecord/src/gnome-recorder.c:146 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
 #, c-format
 msgid "Untitled-%d"
 msgstr "タイトルなし-%d"
@@ -290,20 +302,21 @@ msgstr "タイトルなし-%d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
 msgstr ""
 "GStreamer の %s エレメントを作成できませんでした。\n"
 "'%s' プラグインを '%s' モジュールからインストールして下さい。\n"
-"gst-inspect-0.10 %s を実行して、適切にインストールされているか確認し\n"
+"以下のコマンドを実行して、適切にインストールされているか確認し、\n"
+"    gst-inspect-0.10 %s\n"
 "gnome-sound-recorder を再起動して下さい。"
 
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "設定を確認して下さい。\n"
 "おそらく必要なプラグインがありません。"
@@ -353,8 +366,8 @@ msgstr ""
 "ファイルを読み込めません:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
-#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
+#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
 msgid "Ready"
 msgstr "準備完了です"
 
@@ -407,98 +420,98 @@ msgstr "保存せずに閉じる(_W)"
 msgid "Continue _without Saving"
 msgstr "保存せずに続ける(_W)"
 
-#: ../grecord/src/gsr-window.c:878
+#: ../grecord/src/gsr-window.c:880
 msgid "Question"
 msgstr "質問"
 
-#: ../grecord/src/gsr-window.c:985
+#: ../grecord/src/gsr-window.c:987
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (未保存)"
 
-#: ../grecord/src/gsr-window.c:1001
+#: ../grecord/src/gsr-window.c:1003
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu バイト)"
 
-#: ../grecord/src/gsr-window.c:1005
+#: ../grecord/src/gsr-window.c:1007
 msgid "Unknown size"
 msgstr "未知のサイズ"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1014 ../grecord/src/gsr-window.c:1024
-#: ../grecord/src/gsr-window.c:1040 ../grecord/src/gsr-window.c:1049
-#: ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:303
+#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
+#: ../grecord/src/gsr-window.c:1408
+#: ../gstreamer-properties/gstreamer-properties.c:301
 msgid "Unknown"
 msgstr "不明"
 
-#: ../grecord/src/gsr-window.c:1026
+#: ../grecord/src/gsr-window.c:1028
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1034
+#: ../grecord/src/gsr-window.c:1036
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/秒"
 
-#: ../grecord/src/gsr-window.c:1037
+#: ../grecord/src/gsr-window.c:1039
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/秒 (推定)"
 
-#: ../grecord/src/gsr-window.c:1052
+#: ../grecord/src/gsr-window.c:1054
 msgid "1 (mono)"
 msgstr "1 (モノラル)"
 
-#: ../grecord/src/gsr-window.c:1055
+#: ../grecord/src/gsr-window.c:1057
 msgid "2 (stereo)"
 msgstr "2 (ステレオ)"
 
-#: ../grecord/src/gsr-window.c:1082
+#: ../grecord/src/gsr-window.c:1084
 #, c-format
 msgid "%s Information"
 msgstr "%s の情報"
 
-#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
 msgid "File Information"
 msgstr "ファイル情報"
 
-#: ../grecord/src/gsr-window.c:1121
+#: ../grecord/src/gsr-window.c:1123
 msgid "Folder:"
 msgstr "フォルダ:"
 
-#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
 msgid "Filename:"
 msgstr "ファイル名:"
 
-#: ../grecord/src/gsr-window.c:1133
+#: ../grecord/src/gsr-window.c:1135
 msgid "File size:"
 msgstr "サイズ:"
 
-#: ../grecord/src/gsr-window.c:1142
+#: ../grecord/src/gsr-window.c:1144
 msgid "Audio Information"
 msgstr "オーディオ情報"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1159
 msgid "File duration:"
 msgstr "録音/再生時間:"
 
-#: ../grecord/src/gsr-window.c:1163
+#: ../grecord/src/gsr-window.c:1165
 msgid "Number of channels:"
 msgstr "チャネル数:"
 
-#: ../grecord/src/gsr-window.c:1169
+#: ../grecord/src/gsr-window.c:1171
 msgid "Sample rate:"
 msgstr "サンプリング・レート:"
 
-#: ../grecord/src/gsr-window.c:1175
+#: ../grecord/src/gsr-window.c:1177
 msgid "Bit rate:"
 msgstr "ビット・レート:"
 
-#: ../grecord/src/gsr-window.c:1239
+#: ../grecord/src/gsr-window.c:1241
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -506,51 +519,53 @@ msgstr ""
 "GNOME 向けのサウンド録音ツール\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1510
-msgid "Playing..."
-msgstr "再生中..."
+#: ../grecord/src/gsr-window.c:1512
+msgid "Playing…"
+msgstr "再生中…"
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1644
 msgid "GConf audio output"
 msgstr "GConf  オーディオ出力"
 
-#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "録音再生"
 
-#: ../grecord/src/gsr-window.c:1730
-msgid "Recording..."
-msgstr "録音中..."
+#: ../grecord/src/gsr-window.c:1732
+msgid "Recording…"
+msgstr "録音…"
 
-#: ../grecord/src/gsr-window.c:1820
+#: ../grecord/src/gsr-window.c:1822
 msgid "GConf audio recording"
 msgstr "GConf オーディオ録音"
 
-#: ../grecord/src/gsr-window.c:1829
+#: ../grecord/src/gsr-window.c:1831
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
-msgstr "オーディオ・キャプチャの設定が適切ではありません。"
+"\"Sound Preferences\" under the System Preferences menu."
+msgstr ""
+"オーディオ・キャプチャの設定が適切ではありません。設定メニューのにある「サウ"
+"ンドの設定」で設定し直してください。"
 
-#: ../grecord/src/gsr-window.c:2001
+#: ../grecord/src/gsr-window.c:2003
 msgid "file output"
 msgstr "ファイル出力"
 
-#: ../grecord/src/gsr-window.c:2019
+#: ../grecord/src/gsr-window.c:2021
 msgid "level"
 msgstr "レベル:"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2045
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "オーディオ・プロファイル '%s' を解析できませんでした。"
 
-#: ../grecord/src/gsr-window.c:2060
+#: ../grecord/src/gsr-window.c:2062
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "オーディオ・プロファイル '%s' を使ってキャプチャできませんでした。"
 
-#: ../grecord/src/gsr-window.c:2069
+#: ../grecord/src/gsr-window.c:2071
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
@@ -558,131 +573,131 @@ msgstr ""
 "た。"
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2125
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2127
 msgid "Create a new sample"
 msgstr "新しいサンプルを生成します"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2129
 msgid "Open a file"
 msgstr "ファイルを開きます"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file"
 msgstr "このファイルを保存します"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file with a different name"
 msgstr "このファイルに名前を付けて保存します"
 
 # この名称を変更したら gnome-applets/po/ja.po も変更すること
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2134
 msgid "Open Volu_me Control"
 msgstr "音量調節ツールを開く(_M)"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2135
 msgid "Open the audio mixer"
 msgstr "音量を調節するオーディオ・ミキサを起動します"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2137
 msgid "Show information about the current file"
 msgstr "このファイルの情報を表示します"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2139
 msgid "Close the current file"
 msgstr "このファイルを閉じます"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2141
 msgid "Quit the program"
 msgstr "プログラムを終了します"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2144
 msgid "_Control"
 msgstr "コントロール(_C)"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2146
 msgid "Record sound"
 msgstr "サウンドを保存します"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2148
 msgid "Play sound"
 msgstr "サウンドを再生します"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2150
 msgid "Stop sound"
 msgstr "録音/再生を停止します"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2151
+#: ../grecord/src/gsr-window.c:2153
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../grecord/src/gsr-window.c:2152
+#: ../grecord/src/gsr-window.c:2154
 msgid "Contents"
 msgstr "目次"
 
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2155
 msgid "Open the manual"
 msgstr "このアプリケーションのヘルプを表示します"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2157
 msgid "About this application"
 msgstr "このアプリケーションについて"
 
-#: ../grecord/src/gsr-window.c:2277
-msgid "Could not load ui.xml. The program may be not properly installed"
+#: ../grecord/src/gsr-window.c:2279
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"ui.xml を読み込めませんでした。おそらくプログラムが正しくインストールされてい"
-"ないようです。"
+"UI ファイルを読み込めませんでした。おそらくプログラムが正しくインストールされ"
+"ていないようです。"
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2302
 msgid "Open"
 msgstr "開く"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save"
 msgstr "保存"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2306
 msgid "Save As"
 msgstr "別名で保存"
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2362
 msgid "Record from _input:"
 msgstr "録音元(_I):"
 
-#: ../grecord/src/gsr-window.c:2378
+#: ../grecord/src/gsr-window.c:2380
 msgid "_Record as:"
 msgstr "録音形式(_R):"
 
-#: ../grecord/src/gsr-window.c:2425
+#: ../grecord/src/gsr-window.c:2427
 msgid "<none>"
 msgstr "<なし>"
 
-#: ../grecord/src/gsr-window.c:2439
+#: ../grecord/src/gsr-window.c:2441
 msgid "Length:"
 msgstr "録音時間:"
 
-#: ../grecord/src/gsr-window.c:2477
+#: ../grecord/src/gsr-window.c:2479
 msgid "Level:"
 msgstr "レベル:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2572
+#: ../grecord/src/gsr-window.c:2574
 #, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s- サウンド・レコーダ"
+msgid "%s — Sound Recorder"
+msgstr "%s — サウンド・レコーダ"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "ウィンドウの高さ"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
+msgid "Height of the window to be displayed."
 msgstr "表示するウィンドウの高さです。"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
@@ -690,12 +705,16 @@ msgid "Width of the Window"
 msgstr "ウィンドウの幅"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
+msgid "Width of the window to be displayed."
 msgstr "表示するウィンドウの幅です。"
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "サウンドのテーマ"
+
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "起動時に開くページを指定する"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -736,8 +755,8 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
-msgstr "%s のミュートを ON/OFF します"
+msgid "Mute/Unmute %s"
+msgstr "%s のミュートを ON/OFF"
 
 #: ../gst-mixer/src/track.c:356
 #, c-format
@@ -760,60 +779,60 @@ msgstr "トラック %s: オーディオの録音"
 msgid "%s Option Selection"
 msgstr "%s のオプション"
 
-#: ../gst-mixer/src/volume.c:108
+#: ../gst-mixer/src/volume.c:112
 #, c-format
 msgid "Track %s"
 msgstr "トラック %s"
 
-#: ../gst-mixer/src/volume.c:111
+#: ../gst-mixer/src/volume.c:115
 #, c-format
 msgid "Channel %d of track %s"
 msgstr "トラック %2$s のチャンネル %1$d"
 
-#: ../gst-mixer/src/volume.c:114
+#: ../gst-mixer/src/volume.c:118
 #, c-format
 msgid "Track %s, channel %d"
 msgstr "トラック %s、チャンネル %d"
 
-#: ../gst-mixer/src/volume.c:134
+#: ../gst-mixer/src/volume.c:138
 #, c-format
 msgid "Lock channels for %s together"
 msgstr "\"%s\" のチャンネルを両方共にロックします"
 
-#: ../gst-mixer/src/volume.c:152
+#: ../gst-mixer/src/volume.c:156
 #, c-format
 msgid "Track %s: lock channels together"
 msgstr "トラック %s: 両方のチャンネルをロックします"
 
-#: ../gst-mixer/src/volume.c:197
+#: ../gst-mixer/src/volume.c:201
 msgid "mono"
 msgstr "モノラル"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "left"
 msgstr "左側"
 
-#: ../gst-mixer/src/volume.c:199
+#: ../gst-mixer/src/volume.c:203
 msgid "right"
 msgstr "右側"
 
-#: ../gst-mixer/src/volume.c:202
+#: ../gst-mixer/src/volume.c:206
 msgid "front left"
 msgstr "左前方"
 
-#: ../gst-mixer/src/volume.c:203
+#: ../gst-mixer/src/volume.c:207
 msgid "front right"
 msgstr "右前方"
 
-#: ../gst-mixer/src/volume.c:204
+#: ../gst-mixer/src/volume.c:208
 msgid "rear left"
 msgstr "左後方"
 
-#: ../gst-mixer/src/volume.c:205
+#: ../gst-mixer/src/volume.c:209
 msgid "rear right"
 msgstr "右後方"
 
-#: ../gst-mixer/src/volume.c:206
+#: ../gst-mixer/src/volume.c:210
 msgid "front center"
 msgstr "中央前方"
 
@@ -821,25 +840,25 @@ msgstr "中央前方"
 #. * stands for "Low-Frequency Effects". If you're not sure that
 #. * this has an established and different translation in your
 #. * language, leave it unchanged.
-#: ../gst-mixer/src/volume.c:211
+#: ../gst-mixer/src/volume.c:215
 msgid "LFE"
 msgstr "LFE"
 
-#: ../gst-mixer/src/volume.c:212
+#: ../gst-mixer/src/volume.c:216
 msgid "side left"
 msgstr "左側"
 
-#: ../gst-mixer/src/volume.c:213
+#: ../gst-mixer/src/volume.c:217
 msgid "side right"
 msgstr "右側"
 
-#: ../gst-mixer/src/volume.c:214
+#: ../gst-mixer/src/volume.c:218
 msgid "unknown"
 msgstr "不明"
 
 #. Here, we can actually tell people that this
 #. * is a slider that will change channel X.
-#: ../gst-mixer/src/volume.c:220
+#: ../gst-mixer/src/volume.c:224
 #, c-format
 msgid "Volume of %s channel on %s"
 msgstr "\"%2$s\" の音量です (%1$sチャンネル)"
@@ -854,11 +873,12 @@ msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "佐藤 暁 <ss@gnome.gr.jp>\n"
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
-"Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
 "Akira TAGOH <tagoh@gnome.gr.jp>\n"
 "Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "Mitsuru Oka <95i44@is.kochi-u.ac.jp>\n"
-"日本 GNOME ユーザー会 <http://www.gnome.gr.jp>"
+"やまね ひでき <henrich@debian.or.jp>\n"
+"日本 GNOME ユーザー会 <http://www.gnome.gr.jp/>"
 
 #. change window title
 #: ../gst-mixer/src/window.c:173
@@ -875,27 +895,27 @@ msgstr "デバイス(_D):"
 msgid "Control volume on a different device"
 msgstr "別のデバイスの音量を調節します"
 
-#: ../gstreamer-properties/gstreamer-properties.c:206
+#: ../gstreamer-properties/gstreamer-properties.c:204
 msgid "None"
 msgstr "なし"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:248
+#: ../gstreamer-properties/gstreamer-properties.c:246
 msgid "Unsupported"
 msgstr "未サポート"
 
-#: ../gstreamer-properties/gstreamer-properties.c:270
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../gstreamer-properties/gstreamer-properties.c:268
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "デフォルト"
 
-#: ../gstreamer-properties/gstreamer-properties.c:627
+#: ../gstreamer-properties/gstreamer-properties.c:625
 msgid "Failure instantiating main window"
 msgstr "メイン・ウィンドウを生成できませんでした"
 
-#: ../gstreamer-properties/gstreamer-properties.c:680
+#: ../gstreamer-properties/gstreamer-properties.c:678
 msgid "Failed to load UI file; please check your installation."
 msgstr "UI ファイルの読み込みに失敗しました: インストールを確認して下さい。"
 
@@ -904,92 +924,163 @@ msgid "Configure defaults for GStreamer applications"
 msgstr "GStreamer を使用するアプリのデフォルト値を設定します"
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
+#: ../gstreamer-properties/gstreamer-properties.ui.h:6
 msgid "Multimedia Systems Selector"
 msgstr "マルチメディア・システム・セレクタ"
 
+#: ../gstreamer-properties/gstreamer-properties.ui.h:1
+msgid "Audio"
+msgstr "オーディオ"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:2
+msgid "Click Ok to finish."
+msgstr "[OK] をクリックすると終了します。"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:3
+msgid "D_evice:"
+msgstr "デバイス(_E):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:4
+msgid "Default Input"
+msgstr "デフォルトの入力"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:5
+msgid "Default Output"
+msgstr "デフォルトの出力"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:7
+msgid "P_ipeline:"
+msgstr "パイプライン(_I):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:8
+msgid "P_lugin:"
+msgstr "プラグイン(_L):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:9
+msgid "Pipeli_ne:"
+msgstr "パイプライン(_N):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:10
+msgid "Te_st"
+msgstr "テスト(_S)"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:11
+msgid "Testing Pipeline"
+msgstr "パイプラインのテスト"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:12
+msgid "Testing…"
+msgstr "テスト中…"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:13
+msgid "Video"
+msgstr "ビデオ"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:14
+msgid "_Device:"
+msgstr "デバイス(_D):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:15
+msgid "_Plugin:"
+msgstr "プラグイン(_P):"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:16
+msgid "_Test"
+msgstr "テスト(_T)"
+
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "自動検出"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART サウンド・デーモン"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART サウンド・デーモン"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment サウンド・デーモン"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment サウンド・デーモン"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - オープン・サウンド・システム"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
+msgstr "OSS — オープン・サウンド・システム"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS - オープン・サウンド・システム Version 4"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio サウンド・サーバ"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Sun オーディオ"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "その他"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "Ｘウィンドウ・システム(Xv なし)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "Ｘウィンドウ・システム(X11/Xshm/Xv あり)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "テスト用の音"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "無音"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (例: Zoran v4l デバイス)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "テスト用の入力"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video for Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video for Linux 2 (v4l2)"
 
@@ -998,12 +1089,12 @@ msgstr "Video for Linux 2 (v4l2)"
 msgid "Failed to construct test pipeline for '%s'"
 msgstr "'%s' のテスト用パイプラインの構築に失敗しました"
 
-#: ../profiles/audio-profile-edit.c:122 ../profiles/audio-profiles-edit.c:538
+#: ../profiles/audio-profile-edit.c:121 ../profiles/audio-profiles-edit.c:529
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "ヘルプを表示する際にエラーが発生しました: %s"
 
-#: ../profiles/audio-profile-edit.c:335
+#: ../profiles/audio-profile-edit.c:341
 #, c-format
 msgid "Editing profile \"%s\""
 msgstr "プロファイル \"%s\" の編集"
@@ -1035,45 +1126,45 @@ msgstr ""
 msgid "There was an error forgetting profile path %s. (%s)\n"
 msgstr "プロファイルのフォルダ %s を破棄する際にエラーが発生しました (%s)。\n"
 
-#: ../profiles/audio-profiles-edit.c:87
+#: ../profiles/audio-profiles-edit.c:78
 msgid "_Edit"
 msgstr "編集(_E)"
 
 #. the first argument will never be used since we only run for count > 1
-#: ../profiles/audio-profiles-edit.c:465
+#: ../profiles/audio-profiles-edit.c:456
 #, c-format
 msgid "Delete this profile?\n"
 msgid_plural "Delete these %d profiles?\n"
 msgstr[0] "この %d 個のプロファイルを削除しますか？\n"
 
-#: ../profiles/audio-profiles-edit.c:484
+#: ../profiles/audio-profiles-edit.c:475
 #, c-format
 msgid "Delete profile \"%s\"?"
 msgstr "プロファイル \"%s\" を削除しますか？"
 
-#: ../profiles/audio-profiles-edit.c:506
+#: ../profiles/audio-profiles-edit.c:497
 msgid "Delete Profile"
 msgstr "プロファイルの削除"
 
-#: ../profiles/audio-profiles-edit.c:599
+#: ../profiles/audio-profiles-edit.c:590
 msgid "Edit GNOME Audio Profiles"
 msgstr "GNOME オーディオ・プロファイルの編集"
 
-#: ../profiles/audio-profiles-edit.c:648
+#: ../profiles/audio-profiles-edit.c:639
 msgid "_Profiles:"
 msgstr "プロファイル(_P):"
 
-#: ../profiles/audio-profiles-edit.c:832
+#: ../profiles/audio-profiles-edit.c:823
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "\"%s\" という名前のプロファイルが既に存在します"
 
-#: ../profiles/audio-profiles-edit.c:857
+#: ../profiles/audio-profiles-edit.c:848
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf エラー (FIXME): %s\n"
 
-#: ../profiles/gmp-util.c:68
+#: ../profiles/gmp-util.c:61
 #, c-format
 msgid ""
 "The file \"%s\" is missing. This indicates that the application is installed "
@@ -1092,37 +1183,38 @@ msgstr ""
 "'%s --help' を実行すれば、指定可能なコマンドライン・オプションの完全な一覧を"
 "見られます。\n"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:1
+#: ../profiles/gnome-audio-profile-edit.ui.h:1
 msgid "Edit Audio Profile"
 msgstr "オーディオ・プロファイルの編集"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:2
-msgid "New Profile"
-msgstr "新しいプロファイル"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:3
+#: ../profiles/gnome-audio-profile-edit.ui.h:2
 msgid "Profile _description:"
 msgstr "プロファイルの説明(_D):"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:4
+#: ../profiles/gnome-audio-profile-edit.ui.h:3
 msgid "_Active?"
 msgstr "有効にする(_A)"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:5
-msgid "_Create"
-msgstr "生成する(_C)"
-
-#: ../profiles/gnome-audio-profiles.glade2.h:6
+#: ../profiles/gnome-audio-profile-edit.ui.h:4
 msgid "_File extension:"
 msgstr "ファイルの拡張子(_F):"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:7
+#: ../profiles/gnome-audio-profile-edit.ui.h:5
 msgid "_GStreamer pipeline:"
 msgstr "GStreamer のパイプライン(_G):"
 
-#: ../profiles/gnome-audio-profiles.glade2.h:8
+#: ../profiles/gnome-audio-profile-edit.ui.h:6
+#: ../profiles/gnome-audio-profile-new.ui.h:3
 msgid "_Profile name:"
 msgstr "プロファイルの名前(_P):"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:1
+msgid "New Profile"
+msgstr "新しいプロファイル"
+
+#: ../profiles/gnome-audio-profile-new.ui.h:2
+msgid "_Create"
+msgstr "生成する(_C)"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:1
 msgid "A description for the audio profile"
@@ -1278,15 +1370,15 @@ msgid "Voice, Lossy"
 msgstr "音声 (品質劣化あり)"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
-msgstr "プロファイルを使用するかどうか"
+msgid "Whether this profile is to be used"
+msgstr "このプロファイルを使用するかどうか"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "このプロファイルを使用したり表示するかどうかを指定します。"
+msgid "Whether to use and display this profile."
+msgstr "このプロファイルを使用したり表示するかどうか。"
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "なし"
 
@@ -1294,19 +1386,27 @@ msgstr "なし"
 msgid "Built-in"
 msgstr "インストール済"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "サウンドの設定"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "イベント音のテスト中"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "テーマ"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "種類"
 
@@ -1318,121 +1418,121 @@ msgstr "サウンドのテーマ(_T):"
 msgid "C_hoose an alert sound:"
 msgstr "警告音を選択してください(_H):"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:1121
+#: ../sound-theme/gvc-sound-theme-chooser.c:1124
 msgid "Enable _window and button sounds"
 msgstr "ウィンドウとボタンの音を鳴らす(_W)"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "警告音"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "ウィンドウとボタン"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "ボタンをクリックした"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "トグル・ボタンをクリックした"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "ウィンドウを最大化した"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "ウィンドウの最大化を解除した"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "ウィンドウを最小化した"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "ログインした"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "ログアウトした"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "E-メールが届いた"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "ゴミ箱を空にした"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "時間のかかる処理 (ダウンロードや CD への書き込み等) が終了した"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "注意"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "情報または質問"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "警告"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "エラー"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "バッテリーの警告"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "サウンド・ファイルの選択"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "サウンド・ファイル"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
-msgstr "その他..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
+msgstr "カスタム…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "サウンドのテーマ:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "ウィンドウとボタンの音を鳴らす"
 
@@ -1459,6 +1559,16 @@ msgstr "ガラスを叩く音"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "ソナーのピング音"
+
+# この名称を変更したら gnome-applets/po/ja.po も変更すること
+#~ msgid " — GNOME Volume Control"
+#~ msgstr " — 音量調節ツール"
+
+#~ msgid "Recording..."
+#~ msgstr "録音中..."
+
+#~ msgid "Custom..."
+#~ msgstr "その他..."
 
 #~ msgid "Address of the server to contact for CD queries"
 #~ msgstr "CD 検索で使用するサーバのアドレスです。"
@@ -2285,9 +2395,6 @@ msgstr "ソナーのピング音"
 #~ msgid "Play / Pause"
 #~ msgstr "演奏/停止します"
 
-#~ msgid "Stop"
-#~ msgstr "停止します"
-
 #~ msgid "Previous track"
 #~ msgstr "前のトラックへ戻ります"
 
@@ -2380,9 +2487,6 @@ msgstr "ソナーのピング音"
 #~ msgid "CD Player Preferences"
 #~ msgstr "CD プレイヤーの設定"
 
-#~ msgid "_Device:"
-#~ msgstr "デバイス(_D):"
-
 #~ msgid "Behavior"
 #~ msgstr "動作"
 
@@ -2411,47 +2515,8 @@ msgstr "ソナーのピング音"
 #~ msgid "Adjust the volume level"
 #~ msgstr "音量レベルを調整します"
 
-#~ msgid "<b>Default Input</b>"
-#~ msgstr "<b>デフォルトの入力</b>"
-
-#~ msgid "<b>Default Output</b>"
-#~ msgstr "<b>デフォルトの出力</b>"
-
 #~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
 #~ msgstr "<span weight=\"bold\" size=\"x-large\">テスト中...</span>"
-
-#~ msgid "Audio"
-#~ msgstr "オーディオ"
-
-#~ msgid "Click Ok to finish."
-#~ msgstr "[OK] をクリックすると終了します。"
-
-#~ msgid "D_evice:"
-#~ msgstr "デバイス(_E):"
-
-#~ msgid "P_ipeline:"
-#~ msgstr "パイプライン(_I):"
-
-#~ msgid "P_lugin:"
-#~ msgstr "プラグイン(_L):"
-
-#~ msgid "Pipeli_ne:"
-#~ msgstr "パイプライン(_N):"
-
-#~ msgid "Te_st"
-#~ msgstr "テスト(_S)"
-
-#~ msgid "Testing Pipeline"
-#~ msgstr "パイプラインのテスト"
-
-#~ msgid "Video"
-#~ msgstr "ビデオ"
-
-#~ msgid "_Plugin:"
-#~ msgstr "プラグイン(_P):"
-
-#~ msgid "_Test"
-#~ msgstr "テスト(_T)"
 
 #~ msgid ""
 #~ "Cannot connect to sound daemon.\n"
