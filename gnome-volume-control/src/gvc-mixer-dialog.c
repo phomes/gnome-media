@@ -78,7 +78,6 @@ struct GvcMixerDialogPrivate
         GtkWidget       *click_feedback_button;
         GtkWidget       *audible_bell_button;
         GtkSizeGroup    *size_group;
-        GtkSizeGroup    *apps_size_group;
 
         gdouble          last_input_peak;
         guint            num_apps;
@@ -926,18 +925,15 @@ save_bar_for_stream (GvcMixerDialog *dialog,
 
 static GtkWidget *
 create_bar (GvcMixerDialog *dialog,
-            GtkSizeGroup   *size_group,
             gboolean        symmetric)
 {
         GtkWidget *bar;
 
         bar = gvc_channel_bar_new ();
         gtk_widget_set_sensitive (bar, FALSE);
-        if (size_group != NULL) {
-                gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
-                                                size_group,
-                                                symmetric);
-        }
+        gvc_channel_bar_set_size_group (GVC_CHANNEL_BAR (bar),
+                                        dialog->priv->size_group,
+                                        symmetric);
         gvc_channel_bar_set_orientation (GVC_CHANNEL_BAR (bar),
                                          GTK_ORIENTATION_HORIZONTAL);
         gvc_channel_bar_set_show_mute (GVC_CHANNEL_BAR (bar),
@@ -946,6 +942,31 @@ create_bar (GvcMixerDialog *dialog,
                           "notify::is-muted",
                           G_CALLBACK (on_bar_is_muted_notify),
                           dialog);
+        return bar;
+}
+
+static GtkWidget *
+create_app_bar (GvcMixerDialog *dialog,
+                const char     *name,
+                const char     *icon_name)
+{
+        GtkWidget *bar;
+
+        bar = create_bar (dialog, FALSE);
+        gvc_channel_bar_set_ellipsize (GVC_CHANNEL_BAR (bar), TRUE);
+        gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar), icon_name);
+        if (name == NULL || strchr (name, '_') == NULL) {
+                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), name);
+        } else {
+                char **tokens, *escaped;
+
+                tokens = g_strsplit (name, "_", -1);
+                escaped = g_strjoinv ("__", tokens);
+                g_strfreev (tokens);
+                gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), escaped);
+                g_free (escaped);
+        }
+
         return bar;
 }
 
@@ -1058,23 +1079,9 @@ add_stream (GvcMixerDialog *dialog,
                    && g_strcmp0 (id, "org.PulseAudio.pavucontrol") != 0) {
                 const char *name;
 
-                bar = create_bar (dialog, dialog->priv->apps_size_group, FALSE);
-
                 name = gvc_mixer_stream_get_name (stream);
-                if (name == NULL || strchr (name, '_') == NULL) {
-                        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), name);
-                } else {
-                        char **tokens, *escaped;
-
-                        tokens = g_strsplit (name, "_", -1); 
-                        escaped = g_strjoinv ("__", tokens);
-                        g_strfreev (tokens);
-                        gvc_channel_bar_set_name (GVC_CHANNEL_BAR (bar), escaped);
-                        g_free (escaped);
-                }
-
-                gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (bar),
-                                               gvc_mixer_stream_get_icon_name (stream));
+                bar = create_app_bar (dialog, name,
+                                      gvc_mixer_stream_get_icon_name (stream));
 
                 gtk_box_pack_start (GTK_BOX (dialog->priv->applications_box), bar, FALSE, FALSE, 12);
                 dialog->priv->num_apps++;
@@ -1519,10 +1526,10 @@ on_test_speakers_clicked (GvcComboBox *widget,
         g_debug ("XXX Start speaker testing for profile '%s', card %s XXX",
                  profile->profile, gvc_mixer_card_get_name (card));
 
-	title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
-	// FIXME
-	// set parent dialogue
-	// https://bugzilla.gnome.org/show_bug.cgi?id=621940
+        title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
+        // FIXME
+        // set parent dialogue
+        // https://bugzilla.gnome.org/show_bug.cgi?id=621940
         d = gtk_dialog_new_with_buttons (title,
                                          NULL,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
@@ -1706,7 +1713,7 @@ gvc_mixer_dialog_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (main_vbox),
                             alignment,
                             FALSE, FALSE, 0);
-        self->priv->output_bar = create_bar (self, self->priv->size_group, TRUE);
+        self->priv->output_bar = create_bar (self, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->output_bar),
                                   _("_Output volume: "));
         gtk_widget_set_sensitive (self->priv->output_bar, FALSE);
@@ -1727,7 +1734,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->sound_effects_box,
                                   label);
 
-        self->priv->effects_bar = create_bar (self, self->priv->size_group, TRUE);
+        self->priv->effects_bar = create_bar (self, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->effects_bar),
                                   _("_Alert volume: "));
         gtk_widget_set_sensitive (self->priv->effects_bar, FALSE);
@@ -1790,7 +1797,7 @@ gvc_mixer_dialog_constructor (GType                  type,
                                   self->priv->input_box,
                                   label);
 
-        self->priv->input_bar = create_bar (self, self->priv->size_group, TRUE);
+        self->priv->input_bar = create_bar (self, TRUE);
         gvc_channel_bar_set_name (GVC_CHANNEL_BAR (self->priv->input_bar),
                                   _("_Input volume: "));
         gvc_channel_bar_set_low_icon_name (GVC_CHANNEL_BAR (self->priv->input_bar),
@@ -2019,7 +2026,6 @@ gvc_mixer_dialog_init (GvcMixerDialog *dialog)
         dialog->priv = GVC_MIXER_DIALOG_GET_PRIVATE (dialog);
         dialog->priv->bars = g_hash_table_new (NULL, NULL);
         dialog->priv->size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-        dialog->priv->apps_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
 }
 
 static void
