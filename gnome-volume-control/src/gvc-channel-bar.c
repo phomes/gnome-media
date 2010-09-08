@@ -435,9 +435,23 @@ gvc_channel_bar_scroll (GvcChannelBar *bar, GdkScrollDirection direction)
         g_return_val_if_fail (bar != NULL, FALSE);
         g_return_val_if_fail (GVC_IS_CHANNEL_BAR (bar), FALSE);
 
-        /* FIXME we should handle left/right for horizontal bars */
-        if (direction != GDK_SCROLL_UP && direction != GDK_SCROLL_DOWN)
-                return FALSE;
+        if (bar->priv->orientation == GTK_ORIENTATION_VERTICAL) {
+                if (direction != GDK_SCROLL_UP && direction != GDK_SCROLL_DOWN)
+                        return FALSE;
+        } else {
+                /* Switch direction for RTL */
+                if (gtk_widget_get_direction (GTK_WIDGET (bar)) == GTK_TEXT_DIR_RTL) {
+                        if (direction == GDK_SCROLL_RIGHT)
+                                direction = GDK_SCROLL_LEFT;
+                        else if (direction == GDK_SCROLL_LEFT)
+                                direction = GDK_SCROLL_RIGHT;
+                }
+                /* Switch side scroll to vertical */
+                if (direction == GDK_SCROLL_RIGHT)
+                        direction = GDK_SCROLL_UP;
+                else if (GDK_SCROLL_LEFT)
+                        direction = GDK_SCROLL_DOWN;
+        }
 
         adj = gtk_range_get_adjustment (GTK_RANGE (bar->priv->scale));
         if (adj == bar->priv->zero_adjustment) {
