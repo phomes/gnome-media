@@ -81,6 +81,7 @@ enum
         PROP_LOW_ICON_NAME,
         PROP_HIGH_ICON_NAME,
         PROP_IS_AMPLIFIED,
+        PROP_ELLIPSIZE
 };
 
 static void     gvc_channel_bar_class_init    (GvcChannelBarClass *klass);
@@ -134,6 +135,7 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_start (GTK_BOX (ebox), priv->mute_box, FALSE, FALSE, 0);
         } else {
                 bar->priv->scale_box = box = gtk_hbox_new (FALSE, 6);
+                gtk_box_pack_start (GTK_BOX (box), priv->image, FALSE, FALSE, 0);
 
                 priv->scale = gtk_hscale_new (priv->adjustment);
 
@@ -145,8 +147,7 @@ _scale_box_new (GvcChannelBar *bar)
                 gtk_box_pack_end (GTK_BOX (sbox), priv->low_image, FALSE, FALSE, 0);
                 gtk_widget_show (priv->low_image);
 
-                gtk_box_pack_start (GTK_BOX (sbox), priv->image, FALSE, FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (sbox), priv->label, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (sbox), priv->label, TRUE, TRUE, 0);
                 gtk_box_pack_start (GTK_BOX (box), priv->scale, TRUE, TRUE, 0);
 
                 bar->priv->end_box = ebox = gtk_hbox_new (FALSE, 6);
@@ -627,6 +628,26 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *bar, gboolean amplified)
         }
 }
 
+gboolean
+gvc_channel_bar_get_ellipsize (GvcChannelBar *bar)
+{
+        g_return_val_if_fail (GVC_IS_CHANNEL_BAR (bar), FALSE);
+
+        return gtk_label_get_ellipsize (GTK_LABEL (bar->priv->label)) != PANGO_ELLIPSIZE_NONE;
+}
+
+void
+gvc_channel_bar_set_ellipsize (GvcChannelBar *bar,
+                               gboolean       ellipsized)
+{
+        g_return_if_fail (GVC_IS_CHANNEL_BAR (bar));
+
+        if (ellipsized)
+                gtk_label_set_ellipsize (GTK_LABEL (bar->priv->label), PANGO_ELLIPSIZE_END);
+	else
+                gtk_label_set_ellipsize (GTK_LABEL (bar->priv->label), PANGO_ELLIPSIZE_NONE);
+}
+
 void
 gvc_channel_bar_set_base_volume (GvcChannelBar *bar,
                                  pa_volume_t    base_volume)
@@ -678,6 +699,9 @@ gvc_channel_bar_set_property (GObject       *object,
         case PROP_IS_AMPLIFIED:
                 gvc_channel_bar_set_is_amplified (self, g_value_get_boolean (value));
                 break;
+        case PROP_ELLIPSIZE:
+                gvc_channel_bar_set_ellipsize (self, g_value_get_boolean (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -720,6 +744,9 @@ gvc_channel_bar_get_property (GObject     *object,
                 break;
         case PROP_IS_AMPLIFIED:
                 g_value_set_boolean (value, priv->is_amplified);
+                break;
+        case PROP_ELLIPSIZE:
+                g_value_set_boolean (value, gvc_channel_bar_get_ellipsize (self));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -815,11 +842,17 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_IS_AMPLIFIED,
                                          g_param_spec_boolean ("is-amplified",
-                                                               "is amplified",
+                                                               "Is amplified",
                                                                "Whether the stream is digitally amplified",
                                                                FALSE,
                                                                G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
-
+        g_object_class_install_property (object_class,
+                                         PROP_ELLIPSIZE,
+                                         g_param_spec_boolean ("ellipsize",
+                                                               "Label is ellipsized",
+                                                               "Whether the label is ellipsized",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE|G_PARAM_CONSTRUCT));
         g_type_class_add_private (klass, sizeof (GvcChannelBarPrivate));
 }
 
