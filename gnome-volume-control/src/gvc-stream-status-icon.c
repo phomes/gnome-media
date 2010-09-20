@@ -377,7 +377,7 @@ on_dock_key_release (GtkWidget           *widget,
                      GdkEventKey         *event,
                      GvcStreamStatusIcon *icon)
 {
-        if (event->keyval == GDK_Escape) {
+        if (event->keyval == GDK_KEY_Escape) {
                 popdown_dock (icon);
                 return TRUE;
         }

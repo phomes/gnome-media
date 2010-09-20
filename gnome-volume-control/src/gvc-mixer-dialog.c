@@ -1532,7 +1532,7 @@ on_test_speakers_clicked (GvcComboBox *widget,
         // https://bugzilla.gnome.org/show_bug.cgi?id=621940
         d = gtk_dialog_new_with_buttons (title,
                                          NULL,
-                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                          NULL);
         g_free (title);
         speaker_test = gvc_speaker_test_new (dialog->priv->mixer_control,

@@ -58,7 +58,7 @@ fi
 AC_MSG_NOTICE([Using $GM_ERROR_CFLAGS as error checking CFLAGS])
 
 GLIB_REQUIRED_VERSION=2.18.2
-GTK_REQUIRED_VERSION=2.18.0
+GTK_REQUIRED_VERSION=2.90.7
 GCONF_REQUIRED_VERSION=2.6.1
 PA_REQUIRED_VERSION=0.9.16
 CANBERRA_REQUIRED_VERSION=0.13
@@ -90,7 +90,7 @@ dnl Check for the new volume control modules
 dnl=======================================================================
 
 dnl The new gnome-volume-control needs a newer GTK+
-GTK_REQUIRED_VERSION=2.15.1
+GTK_REQUIRED_VERSION=2.90.7
 
 AC_ARG_ENABLE([pulseaudio],
               AS_HELP_STRING([--enable-pulseaudio],
@@ -312,7 +312,7 @@ fi
 if test "x$have_gst" = "xyes" && test "x$enable_gstmix" = "xyes";
 then
   PKG_CHECK_MODULES(GSTMIXER, [
-    gtk+-3.0
+    gtk+-3.0 >= $GTK_REQUIRED_VERSION
     gconf-2.0
     gstreamer-$GST_MAJORMINOR
     gstreamer-plugins-base-$GST_MAJORMINOR
