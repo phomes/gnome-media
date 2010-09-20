@@ -26,8 +26,12 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#if GTK_CHECK_VERSION (2, 21, 8)
+#include <gdk/gdkkeysyms-compat.h>
+#else
+#include <gdk/gdkkeysyms.h>
+#endif
 
 #include "gvc-mixer-stream.h"
 #include "gvc-channel-bar.h"

@@ -1519,10 +1519,14 @@ on_test_speakers_clicked (GvcComboBox *widget,
         g_debug ("XXX Start speaker testing for profile '%s', card %s XXX",
                  profile->profile, gvc_mixer_card_get_name (card));
 
-	title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
+        title = g_strdup_printf (_("Speaker Testing for %s"), gvc_mixer_card_get_name (card));
         d = gtk_dialog_new_with_buttons (title,
                                          GTK_WINDOW (dialog),
-                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+                                         GTK_DIALOG_MODAL |
+#if !GTK_CHECK_VERSION (2, 21, 8)
+                                         GTK_DIALOG_NO_SEPARATOR |
+#endif
+                                         GTK_DIALOG_DESTROY_WITH_PARENT,
                                          NULL);
         g_free (title);
         speaker_test = gvc_speaker_test_new (dialog->priv->mixer_control,
