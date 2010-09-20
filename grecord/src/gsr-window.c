@@ -852,7 +852,6 @@ gsr_discard_confirmation_dialog (GSRWindow *window, gboolean closing)
 	GtkWidget *confirmation_dialog;
 	AtkObject *atk_obj;
 	gint response_id;
-	gchar *utf8_filename = NULL;
 	gboolean ret = TRUE;
 
 	confirmation_dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -1000,7 +999,7 @@ fill_in_information (GSRWindow *window,
 		file_size = (guint64) buf.st_size;
 		human = g_format_size_for_display (file_size);
 
-		text = g_strdup_printf (ngettext ("%s (%llu byte)", "%s (%llu bytes)", 
+		text = g_strdup_printf (ngettext ("%s (%"G_GUINT64_FORMAT" byte)", "%s (%"G_GUINT64_FORMAT" bytes)",
 		                        file_size), human, file_size);
 		g_free (human);
 	} else {
