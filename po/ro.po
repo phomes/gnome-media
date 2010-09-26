@@ -10,17 +10,17 @@ msgstr ""
 "Project-Id-Version: gnome-media.HEAD.ro\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "media&component=general\n"
-"POT-Creation-Date: 2010-07-22 14:12+0000\n"
-"PO-Revision-Date: 2010-08-01 22:46+0300\n"
+"POT-Creation-Date: 2010-09-25 13:07+0000\n"
+"PO-Revision-Date: 2010-02-12 16:30+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
-"Language: ro\n"
+"Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #: ../gnome-volume-control/data/gnome-volume-control-applet.desktop.in.h:1
 msgid "Show desktop volume control"
@@ -42,38 +42,54 @@ msgid "Sound"
 msgstr "Sunet"
 
 #: ../gnome-volume-control/src/applet-main.c:49
+#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Activare cod depanare"
 
 #: ../gnome-volume-control/src/applet-main.c:50
+#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Versiunea aceastei aplicații"
 
 #: ../gnome-volume-control/src/applet-main.c:62
+#, fuzzy
+#| msgid " - GNOME Volume Control Applet"
 msgid " — GNOME Volume Control Applet"
-msgstr " — Miniaplicație control volum GNOME"
+msgstr "- Miniaplicație control volum GNOME"
 
-#: ../gnome-volume-control/src/cc-sound-panel.c:106
+#: ../gnome-volume-control/src/dialog-main.c:124
 msgid "Waiting for sound system to respond"
 msgstr "Se așteatpă răspuns de la sistemul de sunet"
 
+#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Pagină pornire"
+
+#: ../gnome-volume-control/src/dialog-main.c:168
+#, fuzzy
+#| msgid " - GNOME Volume Control"
+msgid " — GNOME Volume Control"
+msgstr "- Control volum GNOME"
+
 #: ../gnome-volume-control/src/gvc-applet.c:275
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1874
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1922
 msgid "Output"
 msgstr "Ieșire"
 
 #: ../gnome-volume-control/src/gvc-applet.c:277
+#, fuzzy
+#| msgid "_Output volume: "
 msgid "Sound Output Volume"
-msgstr "Volum ieșire"
+msgstr "V_olum ieșire:"
 
 #: ../gnome-volume-control/src/gvc-applet.c:281
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1788
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1836
 msgid "Input"
 msgstr "Intrare"
 
 #: ../gnome-volume-control/src/gvc-applet.c:283
 msgid "Microphone Volume"
-msgstr "Volum microfon"
+msgstr ""
 
 #: ../gnome-volume-control/src/gvc-balance-bar.c:109
 msgctxt "balance"
@@ -117,23 +133,23 @@ msgstr "_Estompare:"
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:588
-#: ../gnome-volume-control/src/gvc-channel-bar.c:597
+#: ../gnome-volume-control/src/gvc-channel-bar.c:602
+#: ../gnome-volume-control/src/gvc-channel-bar.c:611
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+#: ../gnome-volume-control/src/gvc-channel-bar.c:606
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Neamplificat"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:854
+#: ../gnome-volume-control/src/gvc-channel-bar.c:868
 msgid "Mute"
 msgstr "Mut"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:166
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
 msgid "_Profile:"
 msgstr "_Profil:"
 
@@ -179,7 +195,7 @@ msgid "Peak detect"
 msgstr "Detectare vârf"
 
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1469
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1667
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1668
 #: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Nume"
@@ -191,88 +207,101 @@ msgstr "Dispozitiv"
 #: ../gnome-volume-control/src/gvc-mixer-dialog.c:1522
 #, c-format
 msgid "Speaker Testing for %s"
-msgstr "Testare difuzoare pentru %s"
+msgstr ""
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1580
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1581
 msgid "Test Speakers"
-msgstr "Test difuzoare"
+msgstr ""
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1711
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1742
 msgid "_Output volume: "
 msgstr "V_olum ieșire:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1725
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1773
 msgid "Sound Effects"
 msgstr "Efecte sunet"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1780
 msgid "_Alert volume: "
 msgstr "Volum _alertă:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1745
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1793
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1750
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1798
 msgid "C_hoose a device to configure:"
 msgstr "Ale_geți un dispozitiv pentru configurare:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1777
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1906
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1825
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1954
 msgid "Settings for the selected device:"
 msgstr "Configurări pentru dispozitivul ales:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1843
 msgid "_Input volume: "
 msgstr "Volum _intrare:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1818
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1866
 msgid "Input level:"
 msgstr "Nivel intrare:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1844
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1892
 msgid "C_hoose a device for sound input:"
 msgstr "Ale_geți un dispozitiv pentru intrare sunet:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1879
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1927
 msgid "C_hoose a device for sound output:"
 msgstr "Ale_geți un dispozitiv pentru ieșire sunet:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1917
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1965
 msgid "Applications"
 msgstr "Aplicații"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1921
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1969
 msgid "No application is currently playing or recording audio."
 msgstr "Nici o aplicație nu redă sau înregistrează sunete în acest moment."
 
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2093
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "Preferințe sunet"
+
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 msgid "Stop"
-msgstr "Stop"
+msgstr ""
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 #: ../gnome-volume-control/src/gvc-speaker-test.c:332
+#, fuzzy
+#| msgid "Te_st"
 msgid "Test"
-msgstr "Test"
+msgstr "Te_st"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:228
+#, fuzzy
+#| msgid "_Subwoofer:"
 msgid "Subwoofer"
-msgstr "Subwoofer"
+msgstr "_Subwoofer:"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:232
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:236
 #, c-format
 msgid "Failed to start Sound Preferences: %s"
 msgstr "A eșuat pornirea preferințelor sunt: %s"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:255
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:259
 msgid "_Mute"
 msgstr "_Mut"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:264
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:268
 msgid "_Sound Preferences"
 msgstr "Preferințe _sunet"
 
-#: ../gnome-volume-control/src/gvc-stream-status-icon.c:448
+#: ../gnome-volume-control/src/gvc-stream-status-icon.c:452
 msgid "Muted"
 msgstr "Fără sunet"
 
@@ -281,7 +310,7 @@ msgid "Record sound clips"
 msgstr "Înregistrează clipuri sonore"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1238
+#: ../grecord/src/gsr-window.c:1239
 msgid "Sound Recorder"
 msgstr "Înregistrare sunet"
 
@@ -289,17 +318,24 @@ msgstr "Înregistrare sunet"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
-#: ../grecord/src/gsr-window.c:2690
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1742
+#: ../grecord/src/gsr-window.c:2691
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1744
 #, c-format
 msgid "Untitled-%d"
 msgstr "Fără titlu-%d"
 
 #: ../grecord/src/gsr-window.c:193
+#, fuzzy, c-format
+#| msgid ""
+#| "Could not create the GStreamer %s element.\n"
+#| "Please install the '%s' plug-in from the '%s' module.\n"
+#| "Verify that the installation is correct by running\n"
+#| "    gst-inspect-0.10 %s\n"
+#| "and then restart gnome-sound-recorder."
 msgid ""
 "Could not create the GStreamer %s element.\n"
 "Please install the '%s' plugin from the '%s' module.\n"
@@ -314,6 +350,10 @@ msgstr ""
 "si apoi restartați gnome-sound-recorder."
 
 #: ../grecord/src/gsr-window.c:209
+#, fuzzy
+#| msgid ""
+#| "Please verify its settings.\n"
+#| "You may be missing the necessary plug-ins."
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plugins."
@@ -372,8 +412,8 @@ msgstr ""
 "Nu s-a putut încărca fișierul:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
-#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1541
+#: ../grecord/src/gsr-window.c:1801 ../grecord/src/gsr-window.c:2502
 msgid "Ready"
 msgstr "Pregătit"
 
@@ -410,32 +450,32 @@ msgstr "%s nu este instalat în cale."
 msgid "There was an error starting %s: %s"
 msgstr "A intervenit o eroare la pornirea %s: %s"
 
-#: ../grecord/src/gsr-window.c:864
+#: ../grecord/src/gsr-window.c:863
 msgid "Save recording before closing?"
 msgstr "Salvați înregistrarea înainte de închidere?"
 
-#: ../grecord/src/gsr-window.c:865
+#: ../grecord/src/gsr-window.c:864
 msgid "Save recording?"
 msgstr "Salvați înregistrarea?"
 
-#: ../grecord/src/gsr-window.c:869
+#: ../grecord/src/gsr-window.c:868
 msgid "Close _without Saving"
 msgstr "Închide _fără salvare"
 
-#: ../grecord/src/gsr-window.c:870
+#: ../grecord/src/gsr-window.c:869
 msgid "Continue _without Saving"
 msgstr "Continuă _fără salvare"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:879
 msgid "Question"
 msgstr "Întrebare"
 
-#: ../grecord/src/gsr-window.c:987
+#: ../grecord/src/gsr-window.c:986
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Nu a fost salvat)"
 
-#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:1002
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
@@ -443,83 +483,83 @@ msgstr[0] "%s (%llu octet)"
 msgstr[1] "%s (%llu octeți)"
 msgstr[2] "%s (%llu de octeți)"
 
-#: ../grecord/src/gsr-window.c:1007
+#: ../grecord/src/gsr-window.c:1006
 msgid "Unknown size"
 msgstr "Mărime necunoscută"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
-#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
-#: ../grecord/src/gsr-window.c:1408
+#: ../grecord/src/gsr-window.c:1015 ../grecord/src/gsr-window.c:1025
+#: ../grecord/src/gsr-window.c:1041 ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1409
 #: ../gstreamer-properties/gstreamer-properties.c:301
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: ../grecord/src/gsr-window.c:1028
+#: ../grecord/src/gsr-window.c:1027
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1038
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (estimat)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1053
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1057
+#: ../grecord/src/gsr-window.c:1056
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1084
+#: ../grecord/src/gsr-window.c:1083
 #, c-format
 msgid "%s Information"
 msgstr "Informații %s"
 
-#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
+#: ../grecord/src/gsr-window.c:1109 ../grecord/src/gsr-window.c:2414
 msgid "File Information"
 msgstr "Informații fișier"
 
-#: ../grecord/src/gsr-window.c:1123
+#: ../grecord/src/gsr-window.c:1124
 msgid "Folder:"
 msgstr "Dosar:"
 
-#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
+#: ../grecord/src/gsr-window.c:1130 ../grecord/src/gsr-window.c:2421
 msgid "Filename:"
 msgstr "Nume fișier:"
 
-#: ../grecord/src/gsr-window.c:1135
+#: ../grecord/src/gsr-window.c:1136
 msgid "File size:"
 msgstr "Mărime fișier:"
 
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1145
 msgid "Audio Information"
 msgstr "Informație audio"
 
-#: ../grecord/src/gsr-window.c:1159
+#: ../grecord/src/gsr-window.c:1160
 msgid "File duration:"
 msgstr "Durată fișier:"
 
-#: ../grecord/src/gsr-window.c:1165
+#: ../grecord/src/gsr-window.c:1166
 msgid "Number of channels:"
 msgstr "Număr de canale:"
 
-#: ../grecord/src/gsr-window.c:1171
+#: ../grecord/src/gsr-window.c:1172
 msgid "Sample rate:"
 msgstr "Rată eșantionare:"
 
-#: ../grecord/src/gsr-window.c:1177
+#: ../grecord/src/gsr-window.c:1178
 msgid "Bit rate:"
 msgstr "Rată biți:"
 
-#: ../grecord/src/gsr-window.c:1241
+#: ../grecord/src/gsr-window.c:1242
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -527,180 +567,194 @@ msgstr ""
 "O aplicație de înregistrat sunete pentru GNOME\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1512
+#: ../grecord/src/gsr-window.c:1513
+#, fuzzy
+#| msgid "Playing..."
 msgid "Playing…"
-msgstr "Se redă…"
+msgstr "Se redă..."
 
-#: ../grecord/src/gsr-window.c:1644
+#: ../grecord/src/gsr-window.c:1645
 msgid "GConf audio output"
 msgstr "Ieșire audio GConf"
 
-#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1654 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Redare"
 
-#: ../grecord/src/gsr-window.c:1732
+#: ../grecord/src/gsr-window.c:1733
+#, fuzzy
+#| msgid "Recording"
 msgid "Recording…"
-msgstr "Se înregistrează…"
+msgstr "Înregistrare"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1823
 msgid "GConf audio recording"
 msgstr "Înregistrare audio GConf"
 
-#: ../grecord/src/gsr-window.c:1831
+#: ../grecord/src/gsr-window.c:1832
+#, fuzzy
+#| msgid ""
+#| "Your audio capture settings are invalid. Please correct them with the "
+#| "\"Sound Preferences\" under the System-Preferences menu."
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Configurările dumneavoastră pentru capturi audio nu sunt valide. Vă rugăm să "
-"le corectați în configurările „Preferințe sunet” din meniul Sistem -> "
+"le corectați în configurările „Preferințe sunet” din meniul Sistem - "
 "Preferințe."
 
-#: ../grecord/src/gsr-window.c:2003
+#: ../grecord/src/gsr-window.c:2004
 msgid "file output"
 msgstr "fișier de ieșire"
 
-#: ../grecord/src/gsr-window.c:2021
+#: ../grecord/src/gsr-window.c:2022
 msgid "level"
 msgstr "nivel"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:2046
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Nu s-a putut analiza profilul audio „%s”. "
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2063
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Nu s-a putut realiza captura folosind profilul audio „%s”. "
 
-#: ../grecord/src/gsr-window.c:2071
+#: ../grecord/src/gsr-window.c:2072
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "Nu s-a putut scrie în fișier folosind profilul audio „%s”. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2126
 msgid "_File"
 msgstr "_Fișier"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2128
 msgid "Create a new sample"
 msgstr "Creează un nou eșantion"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2130
 msgid "Open a file"
 msgstr "Deschide un fișier"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2132
 msgid "Save the current file"
 msgstr "Salvează fișierul curent"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2134
 msgid "Save the current file with a different name"
 msgstr "Salvează fișierul curent sub un alt nume"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2135
 msgid "Open Volu_me Control"
 msgstr "Deschide control volu_m"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open the audio mixer"
 msgstr "Deschide mixerul audio"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2138
 msgid "Show information about the current file"
 msgstr "Arată informații despre fișierul curent"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2140
 msgid "Close the current file"
 msgstr "Închide fișierul curent"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2142
 msgid "Quit the program"
 msgstr "Închide aplicația"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2145
 msgid "_Control"
 msgstr "_Control"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2147
 msgid "Record sound"
 msgstr "Înregistrează sunet"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2149
 msgid "Play sound"
 msgstr "Redă sunet"
 
-#: ../grecord/src/gsr-window.c:2150
+#: ../grecord/src/gsr-window.c:2151
 msgid "Stop sound"
 msgstr "Oprește sunet"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2154
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: ../grecord/src/gsr-window.c:2154
+#: ../grecord/src/gsr-window.c:2155
 msgid "Contents"
 msgstr "Conținut"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2156
 msgid "Open the manual"
 msgstr "Deschide manualul"
 
-#: ../grecord/src/gsr-window.c:2157
+#: ../grecord/src/gsr-window.c:2158
 msgid "About this application"
 msgstr "Despre această aplicație"
 
-#: ../grecord/src/gsr-window.c:2279
+#: ../grecord/src/gsr-window.c:2280
+#, fuzzy
+#| msgid "Could not load ui.xml. The program may be not properly installed"
 msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"Nu s-a putut încărca fișierul cu interfața cu utilizatorul. Probabil programul nu a fost instalat corect."
+"Nu s-a putut încărca ui.xml. Probabil programul nu a fost corect instalat"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2303
 msgid "Open"
 msgstr "Deschide"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2305
 msgid "Save"
 msgstr "Salvează"
 
-#: ../grecord/src/gsr-window.c:2306
+#: ../grecord/src/gsr-window.c:2307
 msgid "Save As"
 msgstr "Salvează ca"
 
-#: ../grecord/src/gsr-window.c:2362
+#: ../grecord/src/gsr-window.c:2363
 msgid "Record from _input:"
 msgstr "Înregistrează de la _intrare:"
 
-#: ../grecord/src/gsr-window.c:2380
+#: ../grecord/src/gsr-window.c:2381
 msgid "_Record as:"
 msgstr "În_registrează ca:"
 
-#: ../grecord/src/gsr-window.c:2427
+#: ../grecord/src/gsr-window.c:2428
 msgid "<none>"
 msgstr "<nici unul>"
 
-#: ../grecord/src/gsr-window.c:2441
+#: ../grecord/src/gsr-window.c:2442
 msgid "Length:"
 msgstr "Lungime:"
 
-#: ../grecord/src/gsr-window.c:2479
+#: ../grecord/src/gsr-window.c:2480
 msgid "Level:"
 msgstr "Nivel:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2574
+#: ../grecord/src/gsr-window.c:2575
+#, fuzzy, c-format
+#| msgid "%s - Sound Recorder"
 msgid "%s — Sound Recorder"
-msgstr "%s — Înregistrare sunet"
+msgstr "%s - Înregistrare sunet"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Înălțimea ferestrei"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
+#, fuzzy
+#| msgid "Height of the Window to be displayed"
 msgid "Height of the window to be displayed."
 msgstr "Înălțimea ferestrei afișate"
 
@@ -709,16 +763,14 @@ msgid "Width of the Window"
 msgstr "Lățimea ferestrei"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
+#, fuzzy
+#| msgid "Width of the Window to be displayed"
 msgid "Width of the window to be displayed."
 msgstr "Lățimea ferestrei afișate"
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Temă sunet"
-
-#: ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Pagină pornire"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -757,8 +809,10 @@ msgstr "%s:"
 
 #. mute button
 #: ../gst-mixer/src/track.c:339
+#, fuzzy, c-format
+#| msgid "Mute/unmute %s"
 msgid "Mute/Unmute %s"
-msgstr "Anulează/restaurează sunet %s"
+msgstr "Anulează/restaurează sunet  %s"
 
 #: ../gst-mixer/src/track.c:356
 #, c-format
@@ -965,8 +1019,10 @@ msgid "Testing Pipeline"
 msgstr "Se testează banda de ansamblare"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
+#, fuzzy
+#| msgid "Testing..."
 msgid "Testing…"
-msgstr "Se testează…"
+msgstr "Se testează..."
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
@@ -991,27 +1047,37 @@ msgstr "Autodetectare"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
 #: ../gstreamer-properties/pipeline-constants.c:121
+#, fuzzy
+#| msgid "ALSA - Advanced Linux Sound Architecture"
 msgid "ALSA — Advanced Linux Sound Architecture"
-msgstr "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
+#, fuzzy
+#| msgid "Artsd - ART Sound Daemon"
 msgid "Artsd — ART Sound Daemon"
-msgstr "Artsd — Server sunet ART"
+msgstr "Artsd - Server sunet ART"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
 #: ../gstreamer-properties/pipeline-constants.c:123
+#, fuzzy
+#| msgid "ESD - Enlightenment Sound Daemon"
 msgid "ESD — Enlightenment Sound Daemon"
-msgstr "ESD — Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
 #: ../gstreamer-properties/pipeline-constants.c:130
+#, fuzzy
+#| msgid "OSS - Open Sound System"
 msgid "OSS — Open Sound System"
-msgstr "OSS — Open Sound System"
+msgstr "OSS - Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:132
+#, fuzzy
+#| msgid "OSS - Open Sound System"
 msgid "OSS - Open Sound System Version 4"
-msgstr "OSS - Open Sound System versiunea 4"
+msgstr "OSS - Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:81
 #: ../gstreamer-properties/pipeline-constants.c:136
@@ -1020,8 +1086,10 @@ msgstr "PulseAudio - Server sunet"
 
 #: ../gstreamer-properties/pipeline-constants.c:83
 #: ../gstreamer-properties/pipeline-constants.c:134
+#, fuzzy
+#| msgid "Audio"
 msgid "Sun Audio"
-msgstr "Sun Audio"
+msgstr "Audio"
 
 #: ../gstreamer-properties/pipeline-constants.c:85
 #: ../gstreamer-properties/pipeline-constants.c:116
@@ -1039,8 +1107,10 @@ msgid "OpenGL"
 msgstr "OpenGL"
 
 #: ../gstreamer-properties/pipeline-constants.c:110
+#, fuzzy
+#| msgid "SDL - Simple DirectMedia Layer"
 msgid "SDL — Simple DirectMedia Layer"
-msgstr "SDL — Simple DirectMedia Layer"
+msgstr "SDL - Simple DirectMedia Layer"
 
 #: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
@@ -1148,16 +1218,16 @@ msgstr "Ștergere profil"
 msgid "Edit GNOME Audio Profiles"
 msgstr "Editare profile audio GNOME"
 
-#: ../profiles/audio-profiles-edit.c:639
+#: ../profiles/audio-profiles-edit.c:641
 msgid "_Profiles:"
 msgstr "_Profile:"
 
-#: ../profiles/audio-profiles-edit.c:823
+#: ../profiles/audio-profiles-edit.c:825
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "Aveți deja un profil numit „%s”"
 
-#: ../profiles/audio-profiles-edit.c:848
+#: ../profiles/audio-profiles-edit.c:850
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "Eroare GCONF (FIXME): %s\n"
@@ -1372,12 +1442,16 @@ msgid "Voice, Lossy"
 msgstr "Voce, cu pierderi"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
+#, fuzzy
+#| msgid "Whether or not this profile is to be used"
 msgid "Whether this profile is to be used"
-msgstr "Dacă acest profil să fie folosit"
+msgstr "Dacă acest profil să fie folosit sau nu"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
+#, fuzzy
+#| msgid "Whether or not to use and display this profile."
 msgid "Whether to use and display this profile."
-msgstr "Dacă acest profil să fie folosit și afișat."
+msgstr "Dacă acest profil să fie sau nu folosit și afișat."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
 #: ../sound-theme/gvc-sound-theme-editor.c:522
@@ -1387,14 +1461,6 @@ msgstr "Fără sunete"
 #: ../sound-theme/gvc-sound-theme-chooser.c:444
 msgid "Built-in"
 msgstr "Integrat"
-
-#: ../sound-theme/gvc-sound-theme-chooser.c:739
-#: ../sound-theme/gvc-sound-theme-chooser.c:751
-#: ../sound-theme/gvc-sound-theme-chooser.c:763
-#: ../sound-theme/gvc-sound-theme-editor.c:560
-#: ../sound-theme/gvc-sound-theme-editor.c:949
-msgid "Sound Preferences"
-msgstr "Preferințe sunet"
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:742
 #: ../sound-theme/gvc-sound-theme-chooser.c:753
@@ -1485,7 +1551,7 @@ msgstr "Mesaj e-mail nou"
 #: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
-msgstr "Golire coș de gunoi"
+msgstr "Golire gunoi"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
@@ -1527,8 +1593,10 @@ msgid "Sound files"
 msgstr "Fișiere sunet"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:899
+#, fuzzy
+#| msgid "Custom"
 msgid "Custom…"
-msgstr "Personalizat…"
+msgstr "Personalizat"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
@@ -1561,3 +1629,9 @@ msgstr "Sticlă"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid "Recording..."
+#~ msgstr "Înregistrare..."
+
+#~ msgid "Custom..."
+#~ msgstr "Personalizat..."
