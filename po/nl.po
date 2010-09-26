@@ -9,6 +9,7 @@
 # Taco Witte <T.C.Witte@phys.uu.nl>, 2002.
 # Reinout van Schouwen <reinouts@gnome.org>, 2002–2006, 2009
 # Wouter Bolsterlee <wbolster@gnome.org>, 2006–2010.
+# Mario Blättermann <mariobl@gnome.org>, 2010.
 #
 # alert         - waarschuwing
 # event         - gebeurtenis
@@ -17,10 +18,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 23:27+0200\n"
-"PO-Revision-Date: 2010-05-03 23:28+0200\n"
+"POT-Creation-Date: 2010-09-26 15:28+0200\n"
+"PO-Revision-Date: 2010-09-26 15:26+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,47 +49,36 @@ msgid "Sound"
 msgstr "Geluid"
 
 #: ../gnome-volume-control/src/applet-main.c:49
-#: ../gnome-volume-control/src/dialog-main.c:155
 msgid "Enable debugging code"
 msgstr "Debug-code inschakelen"
 
 #: ../gnome-volume-control/src/applet-main.c:50
-#: ../gnome-volume-control/src/dialog-main.c:156
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
 #: ../gnome-volume-control/src/applet-main.c:62
-msgid " - GNOME Volume Control Applet"
-msgstr " — Volumeregeling-applet"
+msgid " — GNOME Volume Control Applet"
+msgstr " — Gnome Volumeregeling-applet"
 
-#: ../gnome-volume-control/src/dialog-main.c:124
+#: ../gnome-volume-control/src/cc-sound-panel.c:106
 msgid "Waiting for sound system to respond"
 msgstr "Wachten op antwoord van het geluidsysteem"
 
-# huh? startup page?
-#: ../gnome-volume-control/src/dialog-main.c:154 ../gst-mixer/src/main.c:39
-msgid "Startup page"
-msgstr "Startup-pagina"
-
-#: ../gnome-volume-control/src/dialog-main.c:168
-msgid " - GNOME Volume Control"
-msgstr " — Volumeregeling"
-
-#: ../gnome-volume-control/src/gvc-applet.c:273
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1920
+#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1881
 msgid "Output"
 msgstr "Uitvoer"
 
-#: ../gnome-volume-control/src/gvc-applet.c:275
+#: ../gnome-volume-control/src/gvc-applet.c:277
 msgid "Sound Output Volume"
-msgstr "Geluidsvolume"
+msgstr "Uitvoervolume"
 
-#: ../gnome-volume-control/src/gvc-applet.c:279
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1834
+#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1795
 msgid "Input"
 msgstr "Invoer"
 
-#: ../gnome-volume-control/src/gvc-applet.c:281
+#: ../gnome-volume-control/src/gvc-applet.c:283
 msgid "Microphone Volume"
 msgstr "Microfoonvolume"
 
@@ -133,31 +124,31 @@ msgstr "_Fade:"
 msgid "_Subwoofer:"
 msgstr "_Subwoofer:"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:588
-#: ../gnome-volume-control/src/gvc-channel-bar.c:597
+#: ../gnome-volume-control/src/gvc-channel-bar.c:603
+#: ../gnome-volume-control/src/gvc-channel-bar.c:612
 msgctxt "volume"
 msgid "100%"
 msgstr "100%"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:592
+#: ../gnome-volume-control/src/gvc-channel-bar.c:607
 msgctxt "volume"
 msgid "Unamplified"
 msgstr "Onversterkt"
 
-#: ../gnome-volume-control/src/gvc-channel-bar.c:854
+#: ../gnome-volume-control/src/gvc-channel-bar.c:901
 msgid "Mute"
 msgstr "Dempen"
 
 #: ../gnome-volume-control/src/gvc-combo-box.c:166
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1578
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1586
 msgid "_Profile:"
 msgstr "_Profiel:"
 
 #. translators:
 #. * The device has been disabled
 #: ../gnome-volume-control/src/gvc-mixer-control.c:1005
-#: ../sound-theme/gvc-sound-theme-editor.c:896
-#: ../sound-theme/gvc-sound-theme-editor.c:992
+#: ../sound-theme/gvc-sound-theme-editor.c:895
+#: ../sound-theme/gvc-sound-theme-editor.c:991
 msgid "Disabled"
 msgstr "Uigeschakeld"
 
@@ -183,91 +174,82 @@ msgstr[1] "%u ingangen"
 msgid "System Sounds"
 msgstr "Systeemgeluiden"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:311
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:606
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:308
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:603
 msgid "Co_nnector:"
 msgstr "Co_nnector:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:519
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:516
 msgid "Peak detect"
 msgstr "Piekdetectie"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1471
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1666
-#: ../sound-theme/gvc-sound-theme-chooser.c:865
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1674
+#: ../sound-theme/gvc-sound-theme-chooser.c:874
 msgid "Name"
 msgstr "Naam"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1476
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1481
 msgid "Device"
 msgstr "Apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1524
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1529
 #, c-format
 msgid "Speaker Testing for %s"
-msgstr "Speaker-test voor %s"
+msgstr "Luidsprekertest voor %s"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1579
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1587
 msgid "Test Speakers"
-msgstr "Speakers testen"
+msgstr "Luidsprekers testen"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1740
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1718
 msgid "_Output volume: "
 msgstr "_Uitvoervolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1771
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1732
 msgid "Sound Effects"
 msgstr "Geluidseffecten"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1778
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1739
 msgid "_Alert volume: "
 msgstr "_Waarschuwingsvolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1791
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1752
 msgid "Hardware"
 msgstr "Hardware"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1796
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1757
 msgid "C_hoose a device to configure:"
 msgstr "Kies een apparaat om te _configureren"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1823
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1952
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1784
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1913
 msgid "Settings for the selected device:"
 msgstr "Instellingen voor het geselecteerde apparaat"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1841
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1802
 msgid "_Input volume: "
 msgstr "_Invoervolume: "
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1864
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1825
 msgid "Input level:"
 msgstr "Invoerniveau:"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1890
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1851
 msgid "C_hoose a device for sound input:"
 msgstr "Kies een apparaat voor geluids_invoer"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1925
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1886
 msgid "C_hoose a device for sound output:"
 msgstr "Kies een _apparaat voor geluidsuitvoer"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1963
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1924
 msgid "Applications"
 msgstr "Toepassingen"
 
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1967
+#: ../gnome-volume-control/src/gvc-mixer-dialog.c:1928
 msgid "No application is currently playing or recording audio."
 msgstr "Er is momenteel geen toepassing geluid aan het opnemen of afspelen."
-
-#: ../gnome-volume-control/src/gvc-mixer-dialog.c:2091
-#: ../sound-theme/gvc-sound-theme-chooser.c:730
-#: ../sound-theme/gvc-sound-theme-chooser.c:742
-#: ../sound-theme/gvc-sound-theme-chooser.c:754
-#: ../sound-theme/gvc-sound-theme-editor.c:561
-#: ../sound-theme/gvc-sound-theme-editor.c:950
-msgid "Sound Preferences"
-msgstr "Geluidsvoorkeuren"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 msgid "Stop"
@@ -276,7 +258,7 @@ msgstr "Stoppen"
 #: ../gnome-volume-control/src/gvc-speaker-test.c:220
 #: ../gnome-volume-control/src/gvc-speaker-test.c:332
 msgid "Test"
-msgstr "Testen"
+msgstr "Test"
 
 #: ../gnome-volume-control/src/gvc-speaker-test.c:228
 msgid "Subwoofer"
@@ -304,7 +286,7 @@ msgid "Record sound clips"
 msgstr "Geluidsfragmenten opnemen"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1238
+#: ../grecord/src/gsr-window.c:1236
 msgid "Sound Recorder"
 msgstr "Geluidsrecorder"
 
@@ -312,12 +294,12 @@ msgstr "Geluidsrecorder"
 #. * has as effect that the user cannot save to this file. The
 #. * 'save' action will open the save-as dialog instead to give
 #. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1741
-#: ../grecord/src/gsr-window.c:2690
+#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1739
+#: ../grecord/src/gsr-window.c:2688
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1743
+#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1741
 #, c-format
 msgid "Untitled-%d"
 msgstr "Naamloos-%d"
@@ -326,7 +308,7 @@ msgstr "Naamloos-%d"
 #, c-format
 msgid ""
 "Could not create the GStreamer %s element.\n"
-"Please install the '%s' plug-in from the '%s' module.\n"
+"Please install the '%s' plugin from the '%s' module.\n"
 "Verify that the installation is correct by running\n"
 "    gst-inspect-0.10 %s\n"
 "and then restart gnome-sound-recorder."
@@ -340,7 +322,7 @@ msgstr ""
 #: ../grecord/src/gsr-window.c:209
 msgid ""
 "Please verify its settings.\n"
-"You may be missing the necessary plug-ins."
+"You may be missing the necessary plugins."
 msgstr ""
 "Ga de instellingen ervan na.\n"
 "U mist wellicht de benodigde plug-ins."
@@ -394,8 +376,8 @@ msgstr ""
 "Niet in staat bestand te laden:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1540
-#: ../grecord/src/gsr-window.c:1800 ../grecord/src/gsr-window.c:2501
+#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
+#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
 msgid "Ready"
 msgstr "Gereed"
 
@@ -432,115 +414,115 @@ msgstr "%s is niet in het pad geïnstalleerd."
 msgid "There was an error starting %s: %s"
 msgstr "Er is een fout opgetreden bij het starten van %s: %s"
 
-#: ../grecord/src/gsr-window.c:864
+#: ../grecord/src/gsr-window.c:863
 msgid "Save recording before closing?"
 msgstr "Opname opslaan alvorens af te sluiten?"
 
-#: ../grecord/src/gsr-window.c:865
+#: ../grecord/src/gsr-window.c:864
 msgid "Save recording?"
 msgstr "Opname opslaan?"
 
-#: ../grecord/src/gsr-window.c:869
+#: ../grecord/src/gsr-window.c:868
 msgid "Close _without Saving"
 msgstr "Sluiten _zonder opslaan"
 
-#: ../grecord/src/gsr-window.c:870
+#: ../grecord/src/gsr-window.c:869
 msgid "Continue _without Saving"
 msgstr "Sluiten _zonder opslaan"
 
-#: ../grecord/src/gsr-window.c:880
+#: ../grecord/src/gsr-window.c:879
 msgid "Question"
 msgstr "Vraag"
 
-#: ../grecord/src/gsr-window.c:987
+#: ../grecord/src/gsr-window.c:986
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (niet opgeslagen)"
 
-#: ../grecord/src/gsr-window.c:1003
+#: ../grecord/src/gsr-window.c:1002
 #, c-format
 msgid "%s (%llu byte)"
 msgid_plural "%s (%llu bytes)"
 msgstr[0] "%s (%llu byte)"
 msgstr[1] "%s (%llu bytes)"
 
-#: ../grecord/src/gsr-window.c:1007
+#: ../grecord/src/gsr-window.c:1006
 msgid "Unknown size"
 msgstr "Onbekende grootte"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1016 ../grecord/src/gsr-window.c:1026
-#: ../grecord/src/gsr-window.c:1042 ../grecord/src/gsr-window.c:1051
-#: ../grecord/src/gsr-window.c:1408
+#: ../grecord/src/gsr-window.c:1015 ../grecord/src/gsr-window.c:1025
+#: ../grecord/src/gsr-window.c:1041 ../grecord/src/gsr-window.c:1050
+#: ../grecord/src/gsr-window.c:1406
 #: ../gstreamer-properties/gstreamer-properties.c:301
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../grecord/src/gsr-window.c:1028
+#: ../grecord/src/gsr-window.c:1027
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1036
+#: ../grecord/src/gsr-window.c:1035
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1039
+#: ../grecord/src/gsr-window.c:1038
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Geschat)"
 
-#: ../grecord/src/gsr-window.c:1054
+#: ../grecord/src/gsr-window.c:1053
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1057
+#: ../grecord/src/gsr-window.c:1056
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1084
+#: ../grecord/src/gsr-window.c:1083
 #, c-format
 msgid "%s Information"
 msgstr "%s-informatie"
 
-#: ../grecord/src/gsr-window.c:1108 ../grecord/src/gsr-window.c:2413
+#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
 msgid "File Information"
 msgstr "Bestandsinformatie"
 
-#: ../grecord/src/gsr-window.c:1123
+#: ../grecord/src/gsr-window.c:1121
 msgid "Folder:"
 msgstr "Map:"
 
-#: ../grecord/src/gsr-window.c:1129 ../grecord/src/gsr-window.c:2420
+#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
 msgid "Filename:"
 msgstr "Bestandsnaam:"
 
-#: ../grecord/src/gsr-window.c:1135
+#: ../grecord/src/gsr-window.c:1133
 msgid "File size:"
 msgstr "Bestandsgrootte:"
 
-#: ../grecord/src/gsr-window.c:1144
+#: ../grecord/src/gsr-window.c:1142
 msgid "Audio Information"
 msgstr "Audio-informatie"
 
-#: ../grecord/src/gsr-window.c:1159
+#: ../grecord/src/gsr-window.c:1157
 msgid "File duration:"
 msgstr "Bestandsduur:"
 
-#: ../grecord/src/gsr-window.c:1165
+#: ../grecord/src/gsr-window.c:1163
 msgid "Number of channels:"
 msgstr "Aantal kanalen:"
 
-#: ../grecord/src/gsr-window.c:1171
+#: ../grecord/src/gsr-window.c:1169
 msgid "Sample rate:"
 msgstr "Sample rate: "
 
-#: ../grecord/src/gsr-window.c:1177
+#: ../grecord/src/gsr-window.c:1175
 msgid "Bit rate:"
 msgstr "Bit rate:"
 
-#: ../grecord/src/gsr-window.c:1241
+#: ../grecord/src/gsr-window.c:1239
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -548,53 +530,53 @@ msgstr ""
 "Een geluidsrecorder voor Gnome\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1512
-msgid "Playing..."
+#: ../grecord/src/gsr-window.c:1510
+msgid "Playing…"
 msgstr "Afspelen…"
 
-#: ../grecord/src/gsr-window.c:1644
+#: ../grecord/src/gsr-window.c:1642
 msgid "GConf audio output"
 msgstr "GConf audio-uitvoer"
 
-#: ../grecord/src/gsr-window.c:1653 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Weergave"
 
-#: ../grecord/src/gsr-window.c:1732
-msgid "Recording..."
-msgstr "Opname actief…"
+#: ../grecord/src/gsr-window.c:1730
+msgid "Recording…"
+msgstr "Opnemen…"
 
-#: ../grecord/src/gsr-window.c:1822
+#: ../grecord/src/gsr-window.c:1820
 msgid "GConf audio recording"
 msgstr "GConf audio-opname"
 
-#: ../grecord/src/gsr-window.c:1831
+#: ../grecord/src/gsr-window.c:1829
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
-"\"Sound Preferences\" under the System-Preferences menu."
+"\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Uw instellingen voor audio-opname zijn ongeldig. Corrigeer ze met "
 "‘Geluidsvoorkeuren’ onder het menu Systeemvoorkeuren."
 
-#: ../grecord/src/gsr-window.c:2003
+#: ../grecord/src/gsr-window.c:2001
 msgid "file output"
 msgstr "bestandsuitvoer"
 
-#: ../grecord/src/gsr-window.c:2021
+#: ../grecord/src/gsr-window.c:2019
 msgid "level"
 msgstr "geluidsniveau"
 
-#: ../grecord/src/gsr-window.c:2045
+#: ../grecord/src/gsr-window.c:2043
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "Kon het audioprofiel ‘%s’ niet analyseren. "
 
-#: ../grecord/src/gsr-window.c:2062
+#: ../grecord/src/gsr-window.c:2060
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "Opnemen met behulp van het ‘%s’-audioprofiel was niet mogelijk. "
 
-#: ../grecord/src/gsr-window.c:2071
+#: ../grecord/src/gsr-window.c:2069
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr ""
@@ -602,142 +584,148 @@ msgstr ""
 "mogelijk. "
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2123
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2125
 msgid "Create a new sample"
 msgstr "Nieuw sample maken"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2127
 msgid "Open a file"
 msgstr "Bestand openen"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2129
 msgid "Save the current file"
 msgstr "Huidige bestand opslaan"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2131
 msgid "Save the current file with a different name"
 msgstr "Het huidige bestand opslaan onder een andere naam"
 
-#: ../grecord/src/gsr-window.c:2134
+#: ../grecord/src/gsr-window.c:2132
 msgid "Open Volu_me Control"
 msgstr "Volu_meregeling openen"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2133
 msgid "Open the audio mixer"
 msgstr "De geluidsmixer starten"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2135
 msgid "Show information about the current file"
 msgstr "Informatie over het huidige bestand tonen"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2137
 msgid "Close the current file"
 msgstr "Huidige bestand sluiten"
 
-#: ../grecord/src/gsr-window.c:2141
+#: ../grecord/src/gsr-window.c:2139
 msgid "Quit the program"
 msgstr "Toepassing afsluiten"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2142
 msgid "_Control"
 msgstr "Be_sturing"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2144
 msgid "Record sound"
 msgstr "Geluid opnemen"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2146
 msgid "Play sound"
 msgstr "Geluid afspelen"
 
-#: ../grecord/src/gsr-window.c:2150
+#: ../grecord/src/gsr-window.c:2148
 msgid "Stop sound"
 msgstr "Geluid stoppen"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2151
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../grecord/src/gsr-window.c:2154
+#: ../grecord/src/gsr-window.c:2152
 msgid "Contents"
 msgstr "Inhoud"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2153
 msgid "Open the manual"
 msgstr "Handleiding openen"
 
-#: ../grecord/src/gsr-window.c:2157
+#: ../grecord/src/gsr-window.c:2155
 msgid "About this application"
 msgstr "Informatie over deze toepassing"
 
-#: ../grecord/src/gsr-window.c:2279
-msgid "Could not load ui.xml. The program may be not properly installed"
+#: ../grecord/src/gsr-window.c:2277
+msgid "Could not load UI file. The program may not be properly installed."
 msgstr ""
-"Kan ui.xml niet laden. Het programma is wellicht niet correct geïnstalleerd"
+"Kan ui-bestand niet laden. Het programma is wellicht niet correct "
+"geïnstalleerd."
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2300
 msgid "Open"
 msgstr "Openen"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2302
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../grecord/src/gsr-window.c:2306
+#: ../grecord/src/gsr-window.c:2304
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: ../grecord/src/gsr-window.c:2362
+#: ../grecord/src/gsr-window.c:2360
 msgid "Record from _input:"
 msgstr "Opnemen van i_nvoer:"
 
-#: ../grecord/src/gsr-window.c:2380
+#: ../grecord/src/gsr-window.c:2378
 msgid "_Record as:"
 msgstr "O_pnemen als:"
 
-#: ../grecord/src/gsr-window.c:2427
+#: ../grecord/src/gsr-window.c:2425
 msgid "<none>"
 msgstr "<geen>"
 
-#: ../grecord/src/gsr-window.c:2441
+#: ../grecord/src/gsr-window.c:2439
 msgid "Length:"
 msgstr "Duur:"
 
-#: ../grecord/src/gsr-window.c:2479
+#: ../grecord/src/gsr-window.c:2477
 msgid "Level:"
 msgstr "Geluidsniveau:"
 
 #. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2574
+#: ../grecord/src/gsr-window.c:2572
 #, c-format
-msgid "%s - Sound Recorder"
-msgstr "%s - Geluidsrecorder"
+msgid "%s — Sound Recorder"
+msgstr "%s — Geluidsrecorder"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Hoogte van het venster"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-msgid "Height of the Window to be displayed"
-msgstr "Hoogte van het weer te geven venster"
+msgid "Height of the window to be displayed."
+msgstr "Hoogte van het weer te geven venster."
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:3
 msgid "Width of the Window"
 msgstr "Breedte van het venster"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-msgid "Width of the Window to be displayed"
-msgstr "Breedte van  het weer te geven venster"
+msgid "Width of the window to be displayed."
+msgstr "Breedte van  het weer te geven venster."
 
 #: ../gst-mixer/src/element.c:495
 msgid "Sound Theme"
 msgstr "Geluidsthema"
+
+# huh? startup page?
+#: ../gst-mixer/src/main.c:39
+msgid "Startup page"
+msgstr "Startup-pagina"
 
 #: ../gst-mixer/src/main.c:82
 #, c-format
@@ -778,7 +766,7 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-msgid "Mute/unmute %s"
+msgid "Mute/Unmute %s"
 msgstr "%s dempen/luid"
 
 #: ../gst-mixer/src/track.c:356
@@ -888,7 +876,7 @@ msgstr "Geluidssterkte van %s-kanaal op %s"
 
 #: ../gst-mixer/src/window.c:133
 msgid "A GNOME/GStreamer-based volume control application"
-msgstr "Een GNOME/GStreamer-gebaseerde volumeregeling"
+msgstr "Een Gnome/GStreamer-gebaseerde volumeregeling"
 
 #: ../gst-mixer/src/window.c:136
 msgid "translator-credits"
@@ -927,9 +915,9 @@ msgid "Unsupported"
 msgstr "Niet ondersteund"
 
 #: ../gstreamer-properties/gstreamer-properties.c:268
-#: ../sound-theme/gvc-sound-theme-chooser.c:841
-#: ../sound-theme/gvc-sound-theme-editor.c:892
-#: ../sound-theme/gvc-sound-theme-editor.c:996
+#: ../sound-theme/gvc-sound-theme-chooser.c:850
+#: ../sound-theme/gvc-sound-theme-editor.c:891
+#: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Standaard"
 
@@ -994,7 +982,7 @@ msgid "Testing Pipeline"
 msgstr "Test-pijplijn"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing..."
+msgid "Testing…"
 msgstr "Testen…"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
@@ -1015,89 +1003,99 @@ msgid "_Test"
 msgstr "_Test"
 
 #: ../gstreamer-properties/pipeline-constants.c:52
-#: ../gstreamer-properties/pipeline-constants.c:86
+#: ../gstreamer-properties/pipeline-constants.c:90
 msgid "Autodetect"
 msgstr "Automatisch detecteren"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
-#: ../gstreamer-properties/pipeline-constants.c:117
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
+#: ../gstreamer-properties/pipeline-constants.c:121
+msgid "ALSA — Advanced Linux Sound Architecture"
+msgstr "ALSA — Advanced Linux Sound Architecture"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-msgid "Artsd - ART Sound Daemon"
-msgstr "Artsd - ART Sound Daemon"
+msgid "Artsd — ART Sound Daemon"
+msgstr "Artsd — ART Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
-#: ../gstreamer-properties/pipeline-constants.c:119
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
+#: ../gstreamer-properties/pipeline-constants.c:123
+msgid "ESD — Enlightenment Sound Daemon"
+msgstr "ESD — Enlightenment Sound Daemon"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
-#: ../gstreamer-properties/pipeline-constants.c:126
-msgid "OSS - Open Sound System"
-msgstr "OSS - Open Sound System"
+#: ../gstreamer-properties/pipeline-constants.c:130
+msgid "OSS — Open Sound System"
+msgstr "OSS — Open Sound System"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
-#: ../gstreamer-properties/pipeline-constants.c:128
+#: ../gstreamer-properties/pipeline-constants.c:132
+msgid "OSS - Open Sound System Version 4"
+msgstr "OSS - Open Sound System versie 4"
+
+#: ../gstreamer-properties/pipeline-constants.c:81
+#: ../gstreamer-properties/pipeline-constants.c:136
 msgid "PulseAudio Sound Server"
 msgstr "PulseAudio Sound Server"
 
-#: ../gstreamer-properties/pipeline-constants.c:81
-#: ../gstreamer-properties/pipeline-constants.c:112
-#: ../gstreamer-properties/pipeline-constants.c:136
-#: ../gstreamer-properties/pipeline-constants.c:151
-#: ../sound-theme/gvc-sound-theme-chooser.c:620
-#: ../sound-theme/gvc-sound-theme-editor.c:706
-#: ../sound-theme/gvc-sound-theme-editor.c:760
+#: ../gstreamer-properties/pipeline-constants.c:83
+#: ../gstreamer-properties/pipeline-constants.c:134
+msgid "Sun Audio"
+msgstr "Sun Audio"
+
+#: ../gstreamer-properties/pipeline-constants.c:85
+#: ../gstreamer-properties/pipeline-constants.c:116
+#: ../gstreamer-properties/pipeline-constants.c:144
+#: ../gstreamer-properties/pipeline-constants.c:159
+#: ../sound-theme/gvc-sound-theme-chooser.c:629
+#: ../sound-theme/gvc-sound-theme-editor.c:705
+#: ../sound-theme/gvc-sound-theme-editor.c:759
 #: ../sound-theme/sound-theme-file-utils.c:292
 msgid "Custom"
 msgstr "Aangepast"
 
-#: ../gstreamer-properties/pipeline-constants.c:104
+#: ../gstreamer-properties/pipeline-constants.c:108
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../gstreamer-properties/pipeline-constants.c:106
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
+#: ../gstreamer-properties/pipeline-constants.c:110
+msgid "SDL — Simple DirectMedia Layer"
+msgstr "SDL — Simple DirectMedia Layer"
 
-#: ../gstreamer-properties/pipeline-constants.c:108
+#: ../gstreamer-properties/pipeline-constants.c:112
 msgid "X Window System (No Xv)"
 msgstr "X Window System (geen Xv)"
 
-#: ../gstreamer-properties/pipeline-constants.c:110
+#: ../gstreamer-properties/pipeline-constants.c:114
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
 #. Note: using triangle instead of sine for test sound so we
 #. * can test the vorbis encoder as well (otherwise it'd compress too well)
-#: ../gstreamer-properties/pipeline-constants.c:132
+#: ../gstreamer-properties/pipeline-constants.c:140
 msgid "Test Sound"
 msgstr "Testgeluid"
 
-#: ../gstreamer-properties/pipeline-constants.c:134
+#: ../gstreamer-properties/pipeline-constants.c:142
 msgid "Silence"
 msgstr "Stilte"
 
-#: ../gstreamer-properties/pipeline-constants.c:141
+#: ../gstreamer-properties/pipeline-constants.c:149
 msgid "MJPEG (e.g. Zoran v4l device)"
 msgstr "MJPEG (bijv. Zoran v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:143
+#: ../gstreamer-properties/pipeline-constants.c:151
 msgid "QCAM"
 msgstr "QCAM"
 
 # ingang/invoer
-#: ../gstreamer-properties/pipeline-constants.c:145
+#: ../gstreamer-properties/pipeline-constants.c:153
 msgid "Test Input"
 msgstr "Testinvoer"
 
-#: ../gstreamer-properties/pipeline-constants.c:147
+#: ../gstreamer-properties/pipeline-constants.c:155
 msgid "Video for Linux (v4l)"
 msgstr "Video voor Linux (v4l)"
 
-#: ../gstreamer-properties/pipeline-constants.c:149
+#: ../gstreamer-properties/pipeline-constants.c:157
 msgid "Video for Linux 2 (v4l2)"
 msgstr "Video voor Linux 2 (v4l2)"
 
@@ -1168,18 +1166,18 @@ msgstr "Profiel verwijderen"
 
 #: ../profiles/audio-profiles-edit.c:590
 msgid "Edit GNOME Audio Profiles"
-msgstr "GNOME audio-profielen bewerken"
+msgstr "Gnome-audioprofielen bewerken"
 
-#: ../profiles/audio-profiles-edit.c:639
+#: ../profiles/audio-profiles-edit.c:638
 msgid "_Profiles:"
 msgstr "_Profielen:"
 
-#: ../profiles/audio-profiles-edit.c:823
+#: ../profiles/audio-profiles-edit.c:822
 #, c-format
 msgid "You already have a profile called \"%s\""
 msgstr "U heeft al een profiel met naam ‘%s’"
 
-#: ../profiles/audio-profiles-edit.c:848
+#: ../profiles/audio-profiles-edit.c:847
 #, c-format
 msgid "GConf Error (FIXME): %s\n"
 msgstr "GConf-fout (FIXME): %s\n"
@@ -1391,15 +1389,15 @@ msgid "Voice, Lossy"
 msgstr "Telefoonkwaliteit, speex (met kwaliteitsverlies)"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:25
-msgid "Whether or not this profile is to be used"
+msgid "Whether this profile is to be used"
 msgstr "Of dit profiel gebruikt moet worden"
 
 #: ../profiles/gnome-audio-profiles.schemas.in.in.h:26
-msgid "Whether or not to use and display this profile."
-msgstr "Of dit profiel gebruikt en weergegeven moet worden"
+msgid "Whether to use and display this profile."
+msgstr "Of dit profiel gebruikt en weergegeven moet worden."
 
 #: ../sound-theme/gvc-sound-theme-chooser.c:322
-#: ../sound-theme/gvc-sound-theme-editor.c:523
+#: ../sound-theme/gvc-sound-theme-editor.c:522
 msgid "No sounds"
 msgstr "Geen geluiden"
 
@@ -1407,19 +1405,27 @@ msgstr "Geen geluiden"
 msgid "Built-in"
 msgstr "Ingebouwd"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:733
-#: ../sound-theme/gvc-sound-theme-chooser.c:744
-#: ../sound-theme/gvc-sound-theme-chooser.c:756
-#: ../sound-theme/gvc-sound-theme-editor.c:563
-#: ../sound-theme/gvc-sound-theme-editor.c:952
+#: ../sound-theme/gvc-sound-theme-chooser.c:739
+#: ../sound-theme/gvc-sound-theme-chooser.c:751
+#: ../sound-theme/gvc-sound-theme-chooser.c:763
+#: ../sound-theme/gvc-sound-theme-editor.c:560
+#: ../sound-theme/gvc-sound-theme-editor.c:949
+msgid "Sound Preferences"
+msgstr "Geluidsvoorkeuren"
+
+#: ../sound-theme/gvc-sound-theme-chooser.c:742
+#: ../sound-theme/gvc-sound-theme-chooser.c:753
+#: ../sound-theme/gvc-sound-theme-chooser.c:765
+#: ../sound-theme/gvc-sound-theme-editor.c:562
+#: ../sound-theme/gvc-sound-theme-editor.c:951
 msgid "Testing event sound"
 msgstr "Geluid testen"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:842
+#: ../sound-theme/gvc-sound-theme-chooser.c:851
 msgid "From theme"
 msgstr "Van thema"
 
-#: ../sound-theme/gvc-sound-theme-chooser.c:872
+#: ../sound-theme/gvc-sound-theme-chooser.c:881
 msgid "Type"
 msgstr "Type"
 
@@ -1436,116 +1442,116 @@ msgid "Enable _window and button sounds"
 msgstr "Scherm- en knop_geluiden inschakelen"
 
 #. Bell
-#: ../sound-theme/gvc-sound-theme-editor.c:76
+#: ../sound-theme/gvc-sound-theme-editor.c:79
 msgctxt "Sound event"
 msgid "Alert sound"
 msgstr "Waarschuwingsgeluid"
 
 #. Windows and buttons
-#: ../sound-theme/gvc-sound-theme-editor.c:78
+#: ../sound-theme/gvc-sound-theme-editor.c:81
 msgctxt "Sound event"
 msgid "Windows and Buttons"
 msgstr "Vensters en knoppen"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:79
+#: ../sound-theme/gvc-sound-theme-editor.c:82
 msgctxt "Sound event"
 msgid "Button clicked"
 msgstr "Knop geklikt"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:80
+#: ../sound-theme/gvc-sound-theme-editor.c:83
 msgctxt "Sound event"
 msgid "Toggle button clicked"
 msgstr "Schakelknop geklikt"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:81
+#: ../sound-theme/gvc-sound-theme-editor.c:84
 msgctxt "Sound event"
 msgid "Window maximized"
 msgstr "Venster gemaximaliseerd"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:82
+#: ../sound-theme/gvc-sound-theme-editor.c:85
 msgctxt "Sound event"
 msgid "Window unmaximized"
 msgstr "Venster hersteld"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:83
+#: ../sound-theme/gvc-sound-theme-editor.c:86
 msgctxt "Sound event"
 msgid "Window minimised"
 msgstr "Venster geminimaliseerd"
 
 #. Desktop
-#: ../sound-theme/gvc-sound-theme-editor.c:85
+#: ../sound-theme/gvc-sound-theme-editor.c:88
 msgctxt "Sound event"
 msgid "Desktop"
 msgstr "Bureaublad"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:86
+#: ../sound-theme/gvc-sound-theme-editor.c:89
 msgctxt "Sound event"
 msgid "Login"
 msgstr "Aanmelden"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:87
+#: ../sound-theme/gvc-sound-theme-editor.c:90
 msgctxt "Sound event"
 msgid "Logout"
 msgstr "Afmelden"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:88
+#: ../sound-theme/gvc-sound-theme-editor.c:91
 msgctxt "Sound event"
 msgid "New e-mail"
 msgstr "Nieuwe e-mail"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:89
+#: ../sound-theme/gvc-sound-theme-editor.c:92
 msgctxt "Sound event"
 msgid "Empty trash"
 msgstr "Prullenbak legen"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:90
+#: ../sound-theme/gvc-sound-theme-editor.c:93
 msgctxt "Sound event"
 msgid "Long action completed (download, CD burning, etc.)"
 msgstr "Langdurige bezigheid voltooid (download, cd-branden, etc.)"
 
 #. Alerts?
-#: ../sound-theme/gvc-sound-theme-editor.c:92
+#: ../sound-theme/gvc-sound-theme-editor.c:95
 msgctxt "Sound event"
 msgid "Alerts"
 msgstr "Waarschuwingen"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:93
+#: ../sound-theme/gvc-sound-theme-editor.c:96
 msgctxt "Sound event"
 msgid "Information or question"
 msgstr "Informatie of vraag"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:94
+#: ../sound-theme/gvc-sound-theme-editor.c:97
 msgctxt "Sound event"
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:95
+#: ../sound-theme/gvc-sound-theme-editor.c:98
 msgctxt "Sound event"
 msgid "Error"
 msgstr "Fout"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:96
+#: ../sound-theme/gvc-sound-theme-editor.c:99
 msgctxt "Sound event"
 msgid "Battery warning"
 msgstr "Accu-waarschuwing"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:593
+#: ../sound-theme/gvc-sound-theme-editor.c:592
 msgid "Select Sound File"
 msgstr "Geluidsbestand selecteren"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:604
+#: ../sound-theme/gvc-sound-theme-editor.c:603
 msgid "Sound files"
 msgstr "Geluidsbestanden"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:900
-msgid "Custom..."
+#: ../sound-theme/gvc-sound-theme-editor.c:899
+msgid "Custom…"
 msgstr "Aangepast…"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1310
+#: ../sound-theme/gvc-sound-theme-editor.c:1302
 msgid "Sound Theme:"
 msgstr "Geluidsthema:"
 
-#: ../sound-theme/gvc-sound-theme-editor.c:1338
+#: ../sound-theme/gvc-sound-theme-editor.c:1330
 msgid "Enable window and button sounds"
 msgstr "Scherm- en knopgeluiden inschakelen"
 
@@ -1572,6 +1578,15 @@ msgstr "Glas"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid " — GNOME Volume Control"
+#~ msgstr " — Gnome Volumeregeling"
+
+#~ msgid "Recording..."
+#~ msgstr "Opname actief…"
+
+#~ msgid "Custom..."
+#~ msgstr "Aangepast…"
 
 #~ msgid "Address of the server to contact for CD queries"
 #~ msgstr "Adres van de voor cd-aanvragen te benaderen server"
@@ -2289,9 +2304,6 @@ msgstr "Sonar"
 #~ msgid "Drive Error"
 #~ msgstr "Cd-spelerfout"
 
-#~ msgid "A CD player for GNOME"
-#~ msgstr "Een cd-speler voor GNOME"
-
 #~ msgid "Contents in the CDDB have changed"
 #~ msgstr "De inhoud in de CDDB is veranderd"
 
@@ -2433,921 +2445,3 @@ msgstr "Sonar"
 
 #~ msgid "Play the CD on startup"
 #~ msgstr "cd afspelen bij opstarten"
-
-# vak/gebied
-#~ msgid "Start iconified in notification area"
-#~ msgstr "Opstarten met alleen een pictogram in het mededelingengebied"
-
-#~ msgid "Cannot create player"
-#~ msgstr "Kan geen speler aanmaken"
-
-#~ msgid "Play audio CDs"
-#~ msgstr "Audio-cd's afspelen"
-
-# geluidsvolume/volume
-#~ msgid "CD player Volume"
-#~ msgstr "Volume van cd-speler"
-
-#~ msgid "CD player theme"
-#~ msgstr "Cd-spelerthema"
-
-#~ msgid "Device path"
-#~ msgstr "Apparaatpad"
-
-#~ msgid "Display the Remaining time?"
-#~ msgstr "De resterende tijd weergeven?"
-
-#~ msgid "Eject the CD when CD player quits?"
-#~ msgstr "Cd uitwerpen wanneer cd-speler afsluit?"
-
-#~ msgid "How the time should be displayed while CD Player is playing?"
-#~ msgstr "Hoe de tijd moet worden weergegeven tijdens het afspelen"
-
-#~ msgid "Play when the CD player starts?"
-#~ msgstr "Afspelen wanneer cd-speler start?"
-
-#~ msgid "Should the CD be ejected when the CD player quits?"
-#~ msgstr "Moet de cd worden uitgeworpen wanneer de cd-speler afsluit?"
-
-#~ msgid "The path to the CD drive that the CD player should use to play CDs"
-#~ msgstr ""
-#~ "Het pad naar het cd-station dat de cd-speler gebruikt om cd's af te spelen"
-
-#~ msgid "What theme should the CD player use for its appearance"
-#~ msgstr "Welk thema de cd-speler dient te gebruiken voor zijn uiterlijk"
-
-#~ msgid "What volume should the CD player use when it is started?"
-#~ msgstr ""
-#~ "Welk volume dient de cd-speler te gebruiken wanneer hij wordt gestart?"
-
-#~ msgid "When the CD player is started, should it start playing the CD?"
-#~ msgstr ""
-#~ "Dient de cd-speler te beginnen met afspelen van de cd wanneer hij start?"
-
-#~ msgid "Failed to eject CD: %s"
-#~ msgstr "cd uitwerpen mislukt: %s"
-
-#~ msgid ""
-#~ "%s\n"
-#~ "This means that the CD player will not be able to run."
-#~ msgstr ""
-#~ "%s\n"
-#~ "Dit betekent dat de cd-speler niet kan functioneren."
-
-#~ msgid "Error setting device"
-#~ msgstr "Fout bij instellen van apparaat"
-
-#~ msgid "CD Player Preferences"
-#~ msgstr "Cd-spelervoorkeuren"
-
-#~ msgid "Behavior"
-#~ msgstr "Gedrag"
-
-#~ msgid "Start _playback when CD Player starts"
-#~ msgstr "Beginnen met afs_pelen wanneer cd-speler start"
-
-#~ msgid "Start playback when CD Player starts"
-#~ msgstr "Beginnen met afspelen wanneer cd-speler start"
-
-#~ msgid "Attempt to _eject CD when CD Player exits"
-#~ msgstr "Prob_eren cd uit te werpen wanneer cd-speler afsluit"
-
-#~ msgid "Attempt to eject CD when CD Player exits"
-#~ msgstr "Proberen cd uit te werpen wanneer cd-speler afsluit"
-
-#~ msgid "Themes"
-#~ msgstr "Thema's"
-
-#~ msgid "_Select a theme:"
-#~ msgstr "_Selecteer een thema:"
-
-#~ msgid "GNOME Volume Control"
-#~ msgstr "GNOME Volumeregeling"
-
-#~ msgid "Adjust the volume level"
-#~ msgstr "Geluidsniveau aanpassen"
-
-#~ msgid "<span weight=\"bold\" size=\"x-large\">Testing...</span>"
-#~ msgstr "<span weight=\"bold\" size=\"x-large\">Bezig met testen…</span>"
-
-#~ msgid ""
-#~ "Cannot connect to sound daemon.\n"
-#~ "Please run 'esd' at a command prompt."
-#~ msgstr ""
-#~ "Kan niet verbinden met geluidsvoorziening.\n"
-#~ "Start 'esd' vanaf de opdrachtregel."
-
-#~ msgid "Specify the X position of the meter."
-#~ msgstr "De X-positie van de meter specificeren."
-
-#~ msgid "X"
-#~ msgstr "X"
-
-#~ msgid "Specify the Y position of the meter."
-#~ msgstr "De Y-positie van de meter specificeren."
-
-#~ msgid "Y"
-#~ msgstr "Y"
-
-#~ msgid "Connect to the esd server on this host."
-#~ msgstr "Verbinding maken met de esd-server op deze host."
-
-#~ msgid "HOST"
-#~ msgstr "HOST"
-
-#~ msgid "Open a vertical version of the meter."
-#~ msgstr "Verticale versie van de meter openen."
-
-#~ msgid "Act as recording level meter."
-#~ msgstr "Als opnameniveaumeter functioneren"
-
-#~ msgid "Host is %s\n"
-#~ msgstr "Host is %s\n"
-
-#~ msgid "Recording level"
-#~ msgstr "Opnameniveau"
-
-#~ msgid "Volume Meter"
-#~ msgstr "Volumemeter"
-
-#~ msgid "Monitor the recording input volume"
-#~ msgstr "Opname-invoervolume bijhouden"
-
-#~ msgid "Recording Level Monitor"
-#~ msgstr "Opnameniveau-observatie"
-
-#~ msgid "Monitor the sound output volume"
-#~ msgstr "Geluidsuitvoervolume bijhouden"
-
-#~ msgid "Volume Monitor"
-#~ msgstr "Volume-observatie"
-
-#~ msgid "Capture"
-#~ msgstr "Opname"
-
-#~ msgid "Switch"
-#~ msgstr "Schakelaar"
-
-#~ msgid "Option"
-#~ msgstr "Optie"
-
-#~ msgid "_Change Device"
-#~ msgstr "Ver_anderen van apparaat"
-
-#~ msgid "Quit the application"
-#~ msgstr "De toepassing afsluiten"
-
-#~ msgid "Prefere_nces"
-#~ msgstr "_Voorkeuren"
-
-#~ msgid "Configure the application"
-#~ msgstr "De toepassing configureren"
-
-#~ msgid "_Contents"
-#~ msgstr "In_houd"
-
-#~ msgid "Change device to %s"
-#~ msgstr "Apparaat veranderen naar %s"
-
-#~ msgid "hours"
-#~ msgstr "uren"
-
-#~ msgid "minutes"
-#~ msgstr "minuten"
-
-#~ msgid "seconds"
-#~ msgstr "seconden"
-
-#~ msgid "Orientation"
-#~ msgstr "Oriëntatie"
-
-# 'Vak' juiste vertaling van 'tray'? (RvS)
-#~ msgid "The orientation of the tray."
-#~ msgstr "De oriëntatie van het vak."
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "identity"
-#~ msgstr "identiteit"
-
-#~ msgid "wav"
-#~ msgstr "wav"
-
-#~ msgid "You must select one or more profiles to delete."
-#~ msgstr "U dient één of meerdere profielen te selecteren om te verwijderen."
-
-#~ msgid "Profile Description:"
-#~ msgstr "Profielomschrijving:"
-
-#~ msgid "Profile _name:"
-#~ msgstr "Profiel_naam:"
-
-#~ msgid "X-Position"
-#~ msgstr "X-positie"
-
-#~ msgid "Y-Position"
-#~ msgstr "Y-positie"
-
-#~ msgid "ESD Server Host"
-#~ msgstr "ESD-server host"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register"
-#~ msgstr ""
-#~ "Register is afwezig of gecorrumpeerd, werkt u het alstublieft bij door de "
-#~ "opdracht gst-register uit te voeren"
-
-#~ msgid ""
-#~ "Failed to set up CD reader; please install the GStreamer cdparanoia "
-#~ "plugin."
-#~ msgstr ""
-#~ "Instellen cd-speler mislukt; installeer de GStreamer cdparanoia-plugin."
-
-#~ msgid ""
-#~ "Failed to set up audio output; please install a GStreamer plugin for your "
-#~ "soundcard."
-#~ msgstr ""
-#~ "Instellen audio-uitvoer mislukt; installeer een GStreamer-plugin voor uw "
-#~ "geluidskaart."
-
-#~ msgid "Dummy option"
-#~ msgstr "Dummy-optie"
-
-#~ msgid ""
-#~ "There is no default GStreamer audio input plugin set - please install the "
-#~ "GStreamer-GConf schemas or set one manually"
-#~ msgstr ""
-#~ "Er is geen standaard GStreamer-audioinvoerelement ingesteld - installeer "
-#~ "de GStreamer-GConf schemas of stel er handmatig één in"
-
-#~ msgid ""
-#~ "Failed to create GStreamer encoder plugins - check your encoding setup"
-#~ msgstr ""
-#~ "Aanmaken GStreamer-coderingselementen mislukt - controleer uw instellingen"
-
-#~ msgid "Could not find \"filesink\" GStreamer plugin - please install it"
-#~ msgstr "Kan de GStreamer-“filesink”-plugin niet vinden - installeer deze"
-
-#~ msgid ""
-#~ "Failed to link encoder plugin with file output plugin - you probably "
-#~ "selected an invalid encoder"
-#~ msgstr ""
-#~ "Koppelen van coderingselement met bestandsuitvoerelement mislukt - u "
-#~ "heeft waarschijnlijk een ongeldige codering geselecteerd"
-
-#~ msgid ""
-#~ "Registry is not present or it is corrupted, please update it by running "
-#~ "gst-register."
-#~ msgstr ""
-#~ "Register is afwezig of gecorrumpeerd, werkt u het alstublieft bij door de "
-#~ "opdracht gst-register uit te voeren."
-
-#~ msgid "Voice"
-#~ msgstr "Stem"
-
-#~ msgid ""
-#~ "Playing\n"
-#~ "Current Time: %s"
-#~ msgstr ""
-#~ "Afspelen\n"
-#~ "Huidige speelduur: %s"
-
-#~ msgid "Run _Mixer"
-#~ msgstr "_Mengpaneel starten"
-
-#~ msgid "File information"
-#~ msgstr "Bestandsinformatie"
-
-#~ msgid "<b>Default Source</b>"
-#~ msgstr "<b>Standaardbron</b>"
-
-#~ msgid "P_revious track"
-#~ msgstr "Vo_rige track"
-
-#~ msgid "_Next track"
-#~ msgstr "Volge_nde track"
-
-#~ msgid "_About CD player"
-#~ msgstr "Info _over cd-speler"
-
-#~ msgid "_Save"
-#~ msgstr "Op_slaan"
-
-#~ msgid "File _Information"
-#~ msgstr "Bestands_informatie"
-
-#~ msgid "_Record"
-#~ msgstr "O_pnemen"
-
-#~ msgid "_Play"
-#~ msgstr "_Afspelen"
-
-#~ msgid "Could not load UI resource %s"
-#~ msgstr "Kon UI-bron %s niet laden"
-
-#~ msgid "<not described>"
-#~ msgstr "<niet omschreven>"
-
-#~ msgid "Expander Size"
-#~ msgstr "Uitschuivergrootte"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Grootte van de uitschuiverpijl"
-
-#~ msgid "About"
-#~ msgstr "Info"
-
-#~ msgid "Close"
-#~ msgstr "Sluiten"
-
-#~ msgid "Close this window"
-#~ msgstr "Dit venster sluiten"
-
-#~ msgid "Display help for Sound Recorder"
-#~ msgstr "Hulp weergeven voor Geluidsrecorder"
-
-#~ msgid "Main toolbar"
-#~ msgstr "Hoofdwerkbalk"
-
-#~ msgid "New"
-#~ msgstr "Nieuw"
-
-#~ msgid "Quit"
-#~ msgstr "Afsluiten"
-
-#~ msgid "Recent _Files"
-#~ msgstr "_Recente bestanden"
-
-#~ msgid "Record"
-#~ msgstr "Opnemen"
-
-#~ msgid "Run Mixer"
-#~ msgstr "Mengpaneel starten"
-
-#~ msgid "Show information for Sound Recorder"
-#~ msgstr "Informatie tonen over Geluidsrecorder"
-
-#~ msgid "_Close Window"
-#~ msgstr "Venster _sluiten"
-
-#~ msgid "Song length:"
-#~ msgstr "Lengte nummer:"
-
-#~ msgid "GStreamer Preferences"
-#~ msgstr "GStreamer-eigenschappen"
-
-#~ msgid "CD Player De_vice:"
-#~ msgstr "Apparaat Cd-speler:"
-
-#~ msgid "CD Player Behaviour:"
-#~ msgstr "Gedrag Cd-speler:"
-
-#~ msgid "_Available Themes:"
-#~ msgstr "Beschikb_are thema's:"
-
-#~ msgid "_Apply change"
-#~ msgstr "Wijziging toep_assen"
-
-#~ msgid "%s Slider"
-#~ msgstr "%s Schuifbalk"
-
-#~ msgid "%s Slider %d"
-#~ msgstr "%s Schuifbalk %d"
-
-#~ msgid "Lock"
-#~ msgstr "Koppelen"
-
-#~ msgid "%s Lock"
-#~ msgstr "%s koppelen"
-
-#~ msgid "%s Mute"
-#~ msgstr "%s dempen"
-
-#~ msgid "Rec."
-#~ msgstr "Rec."
-
-#~ msgid "%s Record"
-#~ msgstr "%s opnemen"
-
-#~ msgid "Delete these two profiles?\n"
-#~ msgstr "Deze twee profielen verwijderen?\n"
-
-#~ msgid "Unknown artist"
-#~ msgstr "Onbekende artiest"
-
-#~ msgid "Unknown disc"
-#~ msgstr "Onbekende CD"
-
-#~ msgid "GStreamer Volume Control"
-#~ msgstr "GStreamer volumeregeling"
-
-#~ msgid "GStreamer"
-#~ msgstr "GStreamer"
-
-#~ msgid "Synth"
-#~ msgstr "Synth"
-
-#~ msgid "PCM"
-#~ msgstr "PCM"
-
-#~ msgid "DAC"
-#~ msgstr "DAC"
-
-#~ msgid "FM"
-#~ msgstr "FM"
-
-#~ msgid "DSP Input"
-#~ msgstr "DSP Ingang"
-
-#~ msgid "MIC"
-#~ msgstr "MIC"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "Radio"
-#~ msgstr "Radio"
-
-#~ msgid "Phone"
-#~ msgstr "Telefoon"
-
-#~ msgid "Mono"
-#~ msgstr "Mono"
-
-#~ msgid "Aux"
-#~ msgstr "Aux"
-
-#~ msgid "Woofer Input"
-#~ msgstr "Woofer-invoer"
-
-#~ msgid "Surround Input"
-#~ msgstr "Surround-invoer"
-
-#~ msgid "Master"
-#~ msgstr "Master"
-
-#~ msgid "Master Mono"
-#~ msgstr "Master mono"
-
-#~ msgid "Master Digital"
-#~ msgstr "Master digitaal"
-
-#~ msgid "Headphone"
-#~ msgstr "Koptelefoon"
-
-#~ msgid "Phone Output"
-#~ msgstr "Phone-uitvoer"
-
-#~ msgid "Center"
-#~ msgstr "Centrum"
-
-#~ msgid "Woofer"
-#~ msgstr "Woofer"
-
-#~ msgid "DSP Output"
-#~ msgstr "DSP-uitvoer"
-
-#~ msgid "Treble"
-#~ msgstr "Treble"
-
-#~ msgid "Equalizer"
-#~ msgstr "Equalizer"
-
-#~ msgid "Effect"
-#~ msgstr "Effect"
-
-#~ msgid "3D Effect"
-#~ msgstr "3D Effect"
-
-#~ msgid "Mic Gain"
-#~ msgstr "Mic gain"
-
-#~ msgid "Input Gain"
-#~ msgstr "Invoer-gain"
-
-#~ msgid "Output Gain"
-#~ msgstr "Uitvoer-gain"
-
-#~ msgid "Analog Loopback"
-#~ msgstr "Analoge terugkoppeling"
-
-#~ msgid "Digital Loopback"
-#~ msgstr "Digitale terugkoppeling"
-
-#~ msgid "Vol  "
-#~ msgstr "Vol  "
-
-#~ msgid "Bass "
-#~ msgstr "Bass "
-
-#~ msgid "Trebl"
-#~ msgstr "Trebl"
-
-#~ msgid "Pcm  "
-#~ msgstr "Pcm  "
-
-#~ msgid "Spkr "
-#~ msgstr "Spkr "
-
-#~ msgid "Line "
-#~ msgstr "Line "
-
-#~ msgid "Mic  "
-#~ msgstr "Mic  "
-
-#~ msgid "CD   "
-#~ msgstr "CD   "
-
-#~ msgid "Mix  "
-#~ msgstr "Mix  "
-
-#~ msgid "Pcm2 "
-#~ msgstr "Pcm2 "
-
-#~ msgid "Rec  "
-#~ msgstr "Rec  "
-
-#~ msgid "IGain"
-#~ msgstr "IGain"
-
-#~ msgid "OGain"
-#~ msgstr "OGain"
-
-#~ msgid "Line1"
-#~ msgstr "Line1"
-
-#~ msgid "Line2"
-#~ msgstr "Line2"
-
-#~ msgid "Line3"
-#~ msgstr "Line3"
-
-#~ msgid "Digital1"
-#~ msgstr "Digitaal1"
-
-#~ msgid "Digital2"
-#~ msgstr "Digitaal2"
-
-#~ msgid "Digital3"
-#~ msgstr "Digitaal3"
-
-#~ msgid "PhoneIn"
-#~ msgstr "PhoneIn"
-
-#~ msgid "PhoneOut"
-#~ msgstr "PhoneUit"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitor"
-
-#~ msgid "Help"
-#~ msgstr "Hulp"
-
-#~ msgid "Mixer device to use"
-#~ msgstr "Te gebruiken mixerapparaat"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Unable to open audio device '%s'.\n"
-#~ "Please check that you have permissions to open '%s'\n"
-#~ "and that you have sound support in your kernel.\n"
-#~ "\n"
-#~ "Press Quit to exit Volume control"
-#~ msgstr ""
-#~ "Volumeregeling is niet in staat tot correct functioneren.\n"
-#~ "\n"
-#~ "Kan audio-apparaat '%s' niet openen.\n"
-#~ "Ga na of u rechten heeft om '%s' te openen\n"
-#~ "en dat uw besturingssysteem geluidsondersteuning heeft.\n"
-#~ "\n"
-#~ "Druk op 'Afsluiten' om de Volumeregeling te verlaten"
-
-#~ msgid ""
-#~ "Volume control is unable to run correctly.\n"
-#~ "\n"
-#~ "Press the details button for more details on the reasons for failure.\n"
-#~ "\n"
-#~ "Press Quit to quit Volume control"
-#~ msgstr ""
-#~ "Volumeregeling is niet in staat tot correct functioneren.\n"
-#~ "\n"
-#~ "Druk op de 'details'-knop voor meer details over de redenen voor het "
-#~ "falen.\n"
-#~ "Volumeregeling is niet in staat tot correct functioneren.\n"
-#~ "\n"
-#~ "Druk op 'Afsluiten' om de Volumeregeling te verlaten"
-
-#~ msgid "Invalid mixer device"
-#~ msgstr "Ongeldig mixerapparaat"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "a version prior to 3.6.0.\n"
-#~ msgstr ""
-#~ "Waarschuwing: deze versie van Gnome Volumeregeling is gecompileerd met\n"
-#~ "OSS versie %d.%d.%d, uw systeem draait echter een\n"
-#~ "versie ouder dan 3.6.0.\n"
-
-#~ msgid ""
-#~ "Warning: This version of the Gnome Volume Control was compiled with\n"
-#~ "OSS version %d.%d.%d, and your system is running\n"
-#~ "version %d.%d.%d.\n"
-#~ msgstr ""
-#~ "Waarschuwing: deze versie van Gnome Volumeregeling is gecompileerd met\n"
-#~ "OSS versie %d.%d.%d, uw systeem draait echter\n"
-#~ "versie %d.%d.%d.\n"
-
-#~ msgid "A mixer for sound devices"
-#~ msgstr "Een mengpaneel voor geluidsapparaten"
-
-#~ msgid "Shown"
-#~ msgstr "Weergegeven"
-
-#~ msgid "Mixer label"
-#~ msgstr "Mengpaneel-label"
-
-#~ msgid "_Reset labels to their defaults"
-#~ msgstr "O_riginele labels terugzetten"
-
-#~ msgid "Don't show this message again."
-#~ msgstr "Dit bericht niet nogmaals tonen."
-
-#~ msgid ""
-#~ "Could not find '%s'.\n"
-#~ "Set the correct path to sox inpreferences under the tab 'paths'.\n"
-#~ "\n"
-#~ "If you don't have sox, you will not be able to record or do any effects."
-#~ msgstr ""
-#~ "Kan '%s' niet vinden .\n"
-#~ "U kunt het goede pad naar 'sox' instellen in de voorkeuren onder het "
-#~ "tabblad 'paden'.\n"
-#~ "\n"
-#~ "Als u geen sox heeft geïnstalleerd kunt u niet opnemen of effecten "
-#~ "toevoegen."
-
-#~ msgid "Cancel"
-#~ msgstr "Annuleren"
-
-#~ msgid "Audioformat: "
-#~ msgstr "Audioformaat: "
-
-#~ msgid "Sample rate: "
-#~ msgstr "Sample rate: "
-
-#~ msgid "Channels: "
-#~ msgstr "Kanalen: "
-
-#~ msgid "Cancel open"
-#~ msgstr "Openen annuleren"
-
-#~ msgid "%s is not installed in the path"
-#~ msgstr "%s staat niet in het pad"
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please select a sound file to be opened."
-#~ msgstr ""
-#~ "'%s' is een map.\n"
-#~ "Kies een geluidsbestand om te openen."
-
-#~ msgid ""
-#~ "File '%s' doesn't exist.\n"
-#~ "Please select an existing sound file to be opened."
-#~ msgstr ""
-#~ "bestand '%s' bestaad niet.\n"
-#~ "Selecteer een bestaand geluidsbestand."
-
-#~ msgid "File '%s isn't a valid sound file."
-#~ msgstr "Bestand '%s' is geen geldig geluidsbestand."
-
-#~ msgid ""
-#~ "'%s' is a folder.\n"
-#~ "Please enter another filename."
-#~ msgstr ""
-#~ "'%s' is een map.\n"
-#~ "Geef een andere bestandsnaam."
-
-#~ msgid "Cancel save"
-#~ msgstr "Opslaan annuleren"
-
-#~ msgid "Overwrite"
-#~ msgstr "Overschrijven"
-
-#~ msgid "Error saving '%s'"
-#~ msgstr "Er is een fout opgetreden bij het opslaan van %s"
-
-#~ msgid ""
-#~ "<b>Do you want to save the changes you made to \"%s\"?</b>\n"
-#~ "\n"
-#~ "Your changes will be lost if you don't save them."
-#~ msgstr ""
-#~ "<b>Wilt u de veranderingen opslaan die u in \"%s\" heeft gemaakt?</b>\n"
-#~ "\n"
-#~ "Uw veranderingen zullen verloren gaan als u deze niet opslaat."
-
-#~ msgid "Do_n't save"
-#~ msgstr "_Niet opslaan"
-
-#~ msgid "Save %s?"
-#~ msgstr "%s opslaan?"
-
-#~ msgid ""
-#~ "The size of the current sample is more than\n"
-#~ "%i Mb!"
-#~ msgstr ""
-#~ "De grootte van het huidige sample is groter dan\n"
-#~ "%i MB!"
-
-#~ msgid ""
-#~ "The sound device is not ready. Please check that there isn't\n"
-#~ "another program running that is using the device."
-#~ msgstr ""
-#~ "Geluidsapparaat is niet gereed. Ga na of een ander\n"
-#~ "programma geluidsapparaat in gebruik heeft."
-
-#~ msgid "Run GNOME Volume Control"
-#~ msgstr "GNOME Volumeregeling starten"
-
-#~ msgid "Add echo"
-#~ msgstr "Echo toevoegen"
-
-#~ msgid "Add echo to the current sample"
-#~ msgstr "Echo toevoegen aan huidig sample"
-
-#~ msgid "Echo"
-#~ msgstr "Echo"
-
-#~ msgid "_Undo All"
-#~ msgstr "A_lles ongedaan maken"
-
-#~ msgid "Undo all changes made on the current sample"
-#~ msgstr "Alle veranderingen aan het huidige sample ongedaan maken"
-
-#~ msgid "16bit PCM"
-#~ msgstr "16bit PCM"
-
-#~ msgid "8bit PCM"
-#~ msgstr "8bit PCM"
-
-#~ msgid "stereo"
-#~ msgstr "stereo"
-
-#~ msgid "Create new sample"
-#~ msgstr "Nieuw sample maken"
-
-#~ msgid "Stop playing/recording"
-#~ msgstr "Stop het afspelen/opnemen"
-
-#~ msgid "Audio format: "
-#~ msgstr "Geluidsformaat: "
-
-#~ msgid "File '%s' doesn't exist; using default."
-#~ msgstr "Bestand '%s' bestaat niet; gebruik standaard."
-
-#~ msgid "File '%s' isn't a supported soundfile."
-#~ msgstr "Bestand '%s' is geen ondersteund geluidsbestand."
-
-#~ msgid "GNOME Sound Recorder"
-#~ msgstr "GNOME Geluidsrecorder"
-
-#~ msgid ""
-#~ "A simple soundrecorder and soundplayer for GNOME.\n"
-#~ "Dedicated to my cat, Malte."
-#~ msgstr ""
-#~ "Een simpele geluidsrecorder en -afspeler voor GNOME.\n"
-#~ "Voor mijn kat, Malte."
-
-#~ msgid "Gnome Sound Recorder Preferences"
-#~ msgstr "GNOME Geluidsrecorder-voorkeuren"
-
-#~ msgid "_Recording timeout: "
-#~ msgstr "_Opneemtimeout: "
-
-#~ msgid "_Stop recording on timeout"
-#~ msgstr "_Stop opnemen bij timeout"
-
-#~ msgid "_Open save dialog when recording is finished"
-#~ msgstr "Dial_oogvenster 'Opslaan' weergeven als opnemen klaar is"
-
-#~ msgid "Size"
-#~ msgstr "Grootte"
-
-#~ msgid "Show warning _message if size (MB) of sample becomes bigger than:"
-#~ msgstr "_Waarschuwing tonen als omvang (MB) van sample groter wordt dan:"
-
-#~ msgid "Sto_p recording if size (MB) of sample becomes bigger than:"
-#~ msgstr "Opname sto_ppen als omvang (MB) van sample groter wordt dan:"
-
-#~ msgid "Repetition"
-#~ msgstr "Herhaling"
-
-#~ msgid "_Repeat the sound"
-#~ msgstr "Geluid he_rhalen"
-
-#~ msgid "Play the sound _once only."
-#~ msgstr "Speel het geluid slechts _eenmalig af."
-
-#~ msgid "Repeat _forever"
-#~ msgstr "_Oneindig herhalen"
-
-#~ msgid "_Number of times:"
-#~ msgstr "_Aantal keer:"
-
-#~ msgid "Paths"
-#~ msgstr "Paden"
-
-#~ msgid "Program files"
-#~ msgstr "Programmabestanden"
-
-#~ msgid "_Path to sox:"
-#~ msgstr "_Pad naar sox:"
-
-#~ msgid "_Apply"
-#~ msgstr "Toep_assen"
-
-#~ msgid "Folders"
-#~ msgstr "Mappen"
-
-#~ msgid "_Temporary folder:"
-#~ msgstr "_Tijdelijke map:"
-
-#~ msgid "Apply"
-#~ msgstr "Toepassen"
-
-#~ msgid ""
-#~ "Note: These options only take effect whenever a new sound sample\n"
-#~ "is created. They do not operate on an existing sample."
-#~ msgstr ""
-#~ "Opmerking: Deze opties zullen pas in werking treden wanneer een nieuwe\n"
-#~ "geluidsopname wordt gemaakt.  Bestaande opnames worden hierdoor niet "
-#~ "beïnvloed."
-
-#~ msgid "Audio format:"
-#~ msgstr "Geluidsformaat:"
-
-#~ msgid "8 _bit PCM"
-#~ msgstr "8  _bit PCM"
-
-#~ msgid "16 b_it PCM"
-#~ msgstr "16 b_it PCM"
-
-#~ msgid "S_ample rate:"
-#~ msgstr "S_ample rate:"
-
-#~ msgid "Mono or Stereo:"
-#~ msgstr "Mono of stereo:"
-
-#~ msgid "_Mono"
-#~ msgstr "_Mono"
-
-#~ msgid "_Stereo"
-#~ msgstr "_Stereo"
-
-#~ msgid "Stereo"
-#~ msgstr "Stereo"
-
-#~ msgid "Specify the geometry of the main window"
-#~ msgstr "Geef de afmetingen van hoofdvenster"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GEOMETRIE"
-
-#~ msgid "Specify a file to be opened"
-#~ msgstr "Geef een bestand om te openen"
-
-#~ msgid "Specify a file to start recording"
-#~ msgstr "Geef een bestand om in op te nemen"
-
-#~ msgid "Specify a file to start playing"
-#~ msgstr "Geef een bestand om af te spelen"
-
-#~ msgid "Sound recorder"
-#~ msgstr "Geluidsrecorder"
-
-#~ msgid "Audio format: 8bit PCM"
-#~ msgstr "Geluidsformaat: 8bit PCM"
-
-#~ msgid "Audio format: 16bit PCM"
-#~ msgstr "Geluidsformaat: 16bit PCM"
-
-#~ msgid "Sample rate: %s"
-#~ msgstr "Sample rate: %s"
-
-#~ msgid "Channels: mono"
-#~ msgstr "Kanalen: mono"
-
-#~ msgid "Channels: stereo"
-#~ msgstr "Kanalen: stereo"
-
-#~ msgid "Send _no info"
-#~ msgstr "Gee_n informatie sturen"
-
-#~ msgid "_Hostname:"
-#~ msgstr "_Hostnaam:"
-
-#~ msgid "Audio _Input:"
-#~ msgstr "Aud_io-invoer:"
