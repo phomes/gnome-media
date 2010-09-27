@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 #include <canberra.h>
 #include <canberra-gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-speaker-test.h"
 #include "gvc-mixer-stream.h"

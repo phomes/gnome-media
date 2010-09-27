@@ -28,6 +28,7 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <canberra-gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-combo-box.h"
 #include "gvc-mixer-stream.h"

@@ -22,8 +22,7 @@
 #define __GVC_MIXER_STREAM_H
 
 #include <glib-object.h>
-#include <pulse/pulseaudio.h>
-
+#include "gvc-pulseaudio-fake.h"
 #include "gvc-channel-map.h"
 
 G_BEGIN_DECLS
@@ -65,7 +64,6 @@ typedef struct
 
 GType               gvc_mixer_stream_get_type        (void);
 
-pa_context *        gvc_mixer_stream_get_pa_context  (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_index       (GvcMixerStream *stream);
 guint               gvc_mixer_stream_get_id          (GvcMixerStream *stream);
 const GvcChannelMap *gvc_mixer_stream_get_channel_map(GvcMixerStream *stream);

@@ -29,6 +29,7 @@
 #include <glib/gi18n-lib.h>
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "cc-sound-panel.h"
 #include "gvc-mixer-dialog.h"

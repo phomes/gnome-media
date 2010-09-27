@@ -28,6 +28,7 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-mixer-stream.h"
 #include "gvc-channel-bar.h"

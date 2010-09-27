@@ -30,6 +30,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-applet.h"
 #include "gvc-mixer-control.h"

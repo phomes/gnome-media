@@ -28,6 +28,7 @@
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-channel-bar.h"
 #include "gvc-balance-bar.h"
@@ -41,6 +42,7 @@
 #include "gvc-sound-theme-chooser.h"
 #include "gvc-level-bar.h"
 #include "gvc-speaker-test.h"
+#include "gvc-mixer-control-private.h"
 
 #define SCALE_SIZE 128
 

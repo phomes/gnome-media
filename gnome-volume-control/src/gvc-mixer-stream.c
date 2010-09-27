@@ -30,6 +30,8 @@
 #include <pulse/pulseaudio.h>
 
 #include "gvc-mixer-stream.h"
+#include "gvc-mixer-stream-private.h"
+#include "gvc-channel-map-private.h"
 
 #define GVC_MIXER_STREAM_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_STREAM, GvcMixerStreamPrivate))
 
@@ -126,6 +128,13 @@ gvc_mixer_stream_get_channel_map (GvcMixerStream *stream)
         return stream->priv->channel_map;
 }
 
+/**
+ * gvc_mixer_stream_get_volume:
+ *
+ * @stream:
+ *
+ * Returns: (type guint32) (transfer none):
+ */
 pa_volume_t
 gvc_mixer_stream_get_volume (GvcMixerStream *stream)
 {
@@ -143,6 +152,14 @@ gvc_mixer_stream_get_decibel (GvcMixerStream *stream)
                         (pa_volume_t) gvc_channel_map_get_volume(stream->priv->channel_map)[VOLUME]);
 }
 
+/**
+ * gvc_mixer_stream_set_volume:
+ *
+ * @stream:
+ * @volume: (type guint32):
+ *
+ * Returns:
+ */
 gboolean
 gvc_mixer_stream_set_volume (GvcMixerStream *stream,
                               pa_volume_t     volume)
@@ -386,6 +403,13 @@ gvc_mixer_stream_set_icon_name (GvcMixerStream *stream,
         return TRUE;
 }
 
+/**
+ * gvc_mixer_stream_get_base_volume:
+ *
+ * @stream:
+ *
+ * Returns: (type guint32) (transfer none):
+ */
 pa_volume_t
 gvc_mixer_stream_get_base_volume (GvcMixerStream *stream)
 {
@@ -394,6 +418,14 @@ gvc_mixer_stream_get_base_volume (GvcMixerStream *stream)
         return stream->priv->base_volume;
 }
 
+/**
+ * gvc_mixer_stream_set_base_volume:
+ *
+ * @stream:
+ * @base_volume: (type guint32):
+ *
+ * Returns:
+ */
 gboolean
 gvc_mixer_stream_set_base_volume (GvcMixerStream *stream,
                                   pa_volume_t base_volume)

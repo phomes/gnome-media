@@ -24,10 +24,13 @@ noinst_LTLIBRARIES = libgnomevolumecontrol.la
 libgnomevolumecontrol_la_SOURCES =		\
 	gvc-mixer-card.h			\
 	gvc-mixer-card.c			\
+	gvc-mixer-card-private.h		\
 	gvc-mixer-stream.h			\
 	gvc-mixer-stream.c			\
+	gvc-mixer-stream-private.h		\
 	gvc-channel-map.h			\
 	gvc-channel-map.c			\
+	gvc-channel-map-private.h		\
 	gvc-mixer-sink.h			\
 	gvc-mixer-sink.c			\
 	gvc-mixer-source.h			\
@@ -40,10 +43,12 @@ libgnomevolumecontrol_la_SOURCES =		\
 	gvc-mixer-event-role.c			\
 	gvc-mixer-control.h			\
 	gvc-mixer-control.c			\
+	gvc-mixer-control-private.h		\
 	gvc-channel-bar.h			\
 	gvc-channel-bar.c			\
 	gvc-log.h				\
 	gvc-log.c				\
+	gvc-pulseaudio-fake.h			\
 	$(NULL)
 
 gnome_volume_control_applet_LDADD =		\

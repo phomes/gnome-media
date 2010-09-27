@@ -40,6 +40,9 @@
 #include "gvc-mixer-source-output.h"
 #include "gvc-mixer-event-role.h"
 #include "gvc-mixer-card.h"
+#include "gvc-mixer-card-private.h"
+#include "gvc-channel-map-private.h"
+#include "gvc-mixer-control-private.h"
 
 #define GVC_MIXER_CONTROL_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GVC_TYPE_MIXER_CONTROL, GvcMixerControlPrivate))
 
@@ -107,6 +110,13 @@ gvc_mixer_control_get_pa_context (GvcMixerControl *control)
         return control->priv->pa_context;
 }
 
+/**
+ * gvc_mixer_control_get_event_sink_input:
+ *
+ * @control:
+ *
+ * Returns: (transfer none):
+ */
 GvcMixerStream *
 gvc_mixer_control_get_event_sink_input (GvcMixerControl *control)
 {
@@ -218,6 +228,13 @@ gvc_mixer_control_set_default_source (GvcMixerControl *control,
         return TRUE;
 }
 
+/**
+ * gvc_mixer_control_get_default_sink:
+ *
+ * @control:
+ *
+ * Returns: (transfer none):
+ */
 GvcMixerStream *
 gvc_mixer_control_get_default_sink (GvcMixerControl *control)
 {
@@ -235,6 +252,13 @@ gvc_mixer_control_get_default_sink (GvcMixerControl *control)
         return stream;
 }
 
+/**
+ * gvc_mixer_control_get_default_source:
+ *
+ * @control:
+ *
+ * Returns: (transfer none):
+ */
 GvcMixerStream *
 gvc_mixer_control_get_default_source (GvcMixerControl *control)
 {
@@ -260,6 +284,14 @@ gvc_mixer_control_lookup_id (GHashTable *hash_table,
                                     GUINT_TO_POINTER (id));
 }
 
+/**
+ * gvc_mixer_control_lookup_stream_id:
+ *
+ * @control:
+ * @id:
+ *
+ * Returns: (transfer none):
+ */
 GvcMixerStream *
 gvc_mixer_control_lookup_stream_id (GvcMixerControl *control,
                                     guint            id)
@@ -269,6 +301,14 @@ gvc_mixer_control_lookup_stream_id (GvcMixerControl *control,
         return gvc_mixer_control_lookup_id (control->priv->all_streams, id);
 }
 
+/**
+ * gvc_mixer_control_lookup_card_id:
+ *
+ * @control:
+ * @id:
+ *
+ * Returns: (transfer none):
+ */
 GvcMixerCard *
 gvc_mixer_control_lookup_card_id (GvcMixerControl *control,
                                   guint            id)
@@ -318,6 +358,13 @@ gvc_card_collate (GvcMixerCard *a,
         return gvc_name_collate (namea, nameb);
 }
 
+/**
+ * gvc_mixer_control_get_cards:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerCard):
+ */
 GSList *
 gvc_mixer_control_get_cards (GvcMixerControl *control)
 {
@@ -348,6 +395,13 @@ gvc_stream_collate (GvcMixerStream *a,
         return gvc_name_collate (namea, nameb);
 }
 
+/**
+ * gvc_mixer_control_get_streams:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerStream):
+ */
 GSList *
 gvc_mixer_control_get_streams (GvcMixerControl *control)
 {
@@ -362,6 +416,13 @@ gvc_mixer_control_get_streams (GvcMixerControl *control)
         return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
 }
 
+/**
+ * gvc_mixer_control_get_sinks:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerSink):
+ */
 GSList *
 gvc_mixer_control_get_sinks (GvcMixerControl *control)
 {
@@ -376,6 +437,13 @@ gvc_mixer_control_get_sinks (GvcMixerControl *control)
         return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
 }
 
+/**
+ * gvc_mixer_control_get_sources:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerSource):
+ */
 GSList *
 gvc_mixer_control_get_sources (GvcMixerControl *control)
 {
@@ -390,6 +458,13 @@ gvc_mixer_control_get_sources (GvcMixerControl *control)
         return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
 }
 
+/**
+ * gvc_mixer_control_get_sink_inputs:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerSinkInput):
+ */
 GSList *
 gvc_mixer_control_get_sink_inputs (GvcMixerControl *control)
 {
@@ -404,6 +479,13 @@ gvc_mixer_control_get_sink_inputs (GvcMixerControl *control)
         return g_slist_sort (retval, (GCompareFunc) gvc_stream_collate);
 }
 
+/**
+ * gvc_mixer_control_get_source_outputs:
+ *
+ * @control:
+ *
+ * Returns: (transfer container) (element-type Gvc.MixerSourceOutput):
+ */
 GSList *
 gvc_mixer_control_get_source_outputs (GvcMixerControl *control)
 {

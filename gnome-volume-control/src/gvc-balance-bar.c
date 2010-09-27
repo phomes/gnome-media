@@ -28,8 +28,10 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <canberra-gtk.h>
+#include <pulse/pulseaudio.h>
 
 #include "gvc-balance-bar.h"
+#include "gvc-channel-map-private.h"
 
 #define SCALE_SIZE 128
 #define ADJUSTMENT_MAX_NORMAL 65536.0 /* PA_VOLUME_NORM */
