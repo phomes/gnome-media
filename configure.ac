@@ -1,7 +1,7 @@
 AC_PREREQ(2.60)
 
 AC_INIT([gnome-media],
-        [2.31.6],
+        [2.32.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-media])
 
 AC_CONFIG_AUX_DIR([build-aux])
