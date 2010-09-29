@@ -80,7 +80,6 @@ enum {
         ALERT_DISPLAY_COL,
         ALERT_IDENTIFIER_COL,
         ALERT_SOUND_TYPE_COL,
-        ALERT_ACTIVE_COL,
         ALERT_NUM_COLS
 };
 
@@ -442,7 +441,6 @@ populate_model_from_node (GvcSoundThemeChooser *chooser,
                                                    ALERT_IDENTIFIER_COL, filename,
                                                    ALERT_DISPLAY_COL, name,
                                                    ALERT_SOUND_TYPE_COL, _("Built-in"),
-                                                   ALERT_ACTIVE_COL, FALSE,
                                                    -1);
         }
 
@@ -550,7 +548,6 @@ update_alert_model (GvcSoundThemeChooser  *chooser,
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
         gtk_tree_model_get_iter_first (model, &iter);
         do {
-                gboolean toggled;
                 char    *this_id;
 
                 gtk_tree_model_get (model, &iter,
@@ -558,16 +555,13 @@ update_alert_model (GvcSoundThemeChooser  *chooser,
                                     -1);
 
                 if (strcmp (this_id, id) == 0) {
-                        toggled = TRUE;
-                } else {
-                        toggled = FALSE;
-                }
-                g_free (this_id);
+                        GtkTreeSelection *selection;
 
-                gtk_list_store_set (GTK_LIST_STORE (model),
-                                    &iter,
-                                    ALERT_ACTIVE_COL, toggled,
-                                    -1);
+                        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (chooser->priv->treeview));
+                        gtk_tree_selection_select_iter (selection, &iter);
+                }
+
+                g_free (this_id);
         } while (gtk_tree_model_iter_next (model, &iter));
 }
 
@@ -659,58 +653,13 @@ update_alert (GvcSoundThemeChooser *chooser,
 }
 
 static void
-on_alert_toggled (GtkCellRendererToggle *renderer,
-                  char                  *path_str,
-                  GvcSoundThemeChooser  *chooser)
+play_preview_for_id (GvcSoundThemeChooser *chooser,
+                     const char           *id)
 {
-        GtkTreeModel *model;
-        GtkTreeIter   iter;
-        GtkTreePath  *path;
-        gboolean      toggled;
-        char         *id;
-
-        model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
-
-        path = gtk_tree_path_new_from_string (path_str);
-        gtk_tree_model_get_iter (model, &iter, path);
-        gtk_tree_path_free (path);
-
-        id = NULL;
-        gtk_tree_model_get (model, &iter,
-                            ALERT_IDENTIFIER_COL, &id,
-                            ALERT_ACTIVE_COL, &toggled,
-                            -1);
-
-        toggled ^= 1;
-        if (toggled) {
-                update_alert (chooser, id);
-        }
-
-        g_free (id);
-}
-
-static void
-play_preview_for_path (GvcSoundThemeChooser *chooser,
-                       GtkTreePath          *path)
-{
-        GtkTreeModel *model;
-        GtkTreeIter   iter;
         GtkTreeIter   theme_iter;
-        char         *id;
         char         *parent_theme;
 
-        model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
-        if (gtk_tree_model_get_iter (model, &iter, path) == FALSE) {
-                return;
-        }
-
-        id = NULL;
-        gtk_tree_model_get (model, &iter,
-                            ALERT_IDENTIFIER_COL, &id,
-                            -1);
-        if (id == NULL) {
-                return;
-        }
+        g_return_if_fail (id != NULL);
 
         parent_theme = NULL;
         if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (chooser->priv->combo_box), &theme_iter)) {
@@ -772,25 +721,15 @@ play_preview_for_path (GvcSoundThemeChooser *chooser,
 
         }
         g_free (parent_theme);
-        g_free (id);
-}
-
-static void
-on_treeview_row_activated (GtkTreeView          *treeview,
-                           GtkTreePath          *path,
-                           GtkTreeViewColumn    *column,
-                           GvcSoundThemeChooser *chooser)
-{
-        play_preview_for_path (chooser, path);
 }
 
 static void
 on_treeview_selection_changed (GtkTreeSelection     *selection,
                                GvcSoundThemeChooser *chooser)
 {
-        GList        *paths;
         GtkTreeModel *model;
-        GtkTreePath  *path;
+        GtkTreeIter   iter;
+        char         *id;
 
         if (chooser->priv->treeview == NULL) {
                 return;
@@ -798,16 +737,46 @@ on_treeview_selection_changed (GtkTreeSelection     *selection,
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (chooser->priv->treeview));
 
-        paths = gtk_tree_selection_get_selected_rows (selection, &model);
-        if (paths == NULL) {
+        if (gtk_tree_selection_get_selected (selection, &model, &iter) == FALSE) {
                 return;
         }
 
-        path = paths->data;
-        play_preview_for_path (chooser, path);
+        id = NULL;
+        gtk_tree_model_get (model, &iter,
+                            ALERT_IDENTIFIER_COL, &id,
+                            -1);
+        if (id == NULL) {
+                return;
+        }
 
-        g_list_foreach (paths, (GFunc)gtk_tree_path_free, NULL);
-        g_list_free (paths);
+        play_preview_for_id (chooser, id);
+        update_alert (chooser, id);
+        g_free (id);
+}
+
+static gboolean
+on_treeview_button_pressed (GtkTreeView          *treeview,
+                            GdkEventButton       *event,
+                            GvcSoundThemeChooser *chooser)
+{
+        GtkTreeSelection *selection;
+        GtkTreePath      *path;
+
+        selection = gtk_tree_view_get_selection (treeview);
+        if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (treeview),
+                                           event->x, event->y, &path, NULL, NULL, NULL) == FALSE) {
+                return FALSE;
+        }
+
+        if (gtk_tree_selection_path_is_selected (selection, path) == FALSE) {
+                gtk_tree_path_free (path);
+                return FALSE;
+        }
+        gtk_tree_path_free (path);
+
+        on_treeview_selection_changed (selection, chooser);
+
+        return FALSE;
 }
 
 static GtkWidget *
@@ -821,8 +790,8 @@ create_alert_treeview (GvcSoundThemeChooser *chooser)
 
         treeview = gtk_tree_view_new ();
         g_signal_connect (treeview,
-                          "row-activated",
-                          G_CALLBACK (on_treeview_row_activated),
+                          "button-press-event",
+                          G_CALLBACK (on_treeview_button_pressed),
                           chooser);
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -840,8 +809,7 @@ create_alert_treeview (GvcSoundThemeChooser *chooser)
         store = gtk_list_store_new (ALERT_NUM_COLS,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
-                                    G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN);
+                                    G_TYPE_STRING);
 
         gtk_list_store_insert_with_values (store,
                                            NULL,
@@ -849,26 +817,12 @@ create_alert_treeview (GvcSoundThemeChooser *chooser)
                                            ALERT_IDENTIFIER_COL, DEFAULT_ALERT_ID,
                                            ALERT_DISPLAY_COL, _("Default"),
                                            ALERT_SOUND_TYPE_COL, _("From theme"),
-                                           ALERT_ACTIVE_COL, TRUE,
                                            -1);
 
         populate_model_from_dir (chooser, GTK_TREE_MODEL (store), SOUND_SET_DIR);
 
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (store));
-
-        renderer = gtk_cell_renderer_toggle_new ();
-        gtk_cell_renderer_toggle_set_radio (GTK_CELL_RENDERER_TOGGLE (renderer),
-                                            TRUE);
-        column = gtk_tree_view_column_new_with_attributes (NULL,
-                                                           renderer,
-                                                           "active", ALERT_ACTIVE_COL,
-                                                           NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-        g_signal_connect (renderer,
-                          "toggled",
-                          G_CALLBACK (on_alert_toggled),
-                          chooser);
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Name"),
@@ -1137,16 +1091,16 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
                               GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
         chooser->priv->sounds_dir_id = gconf_client_notify_add (chooser->priv->client,
-								KEY_SOUNDS_DIR,
-								(GConfClientNotifyFunc)on_key_changed,
-								chooser, NULL, NULL);
+                                                                KEY_SOUNDS_DIR,
+                                                                (GConfClientNotifyFunc)on_key_changed,
+                                                                chooser, NULL, NULL);
         gconf_client_add_dir (chooser->priv->client, KEY_METACITY_DIR,
                               GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
         chooser->priv->metacity_dir_id = gconf_client_notify_add (chooser->priv->client,
-								  KEY_METACITY_DIR,
-								  (GConfClientNotifyFunc)on_key_changed,
-								  chooser, NULL, NULL);
+                                                                  KEY_METACITY_DIR,
+                                                                  (GConfClientNotifyFunc)on_key_changed,
+                                                                  chooser, NULL, NULL);
 
         /* FIXME: should accept drag and drop themes.  should also
            add an "Add Theme..." item to the theme combobox */
@@ -1162,20 +1116,20 @@ gvc_sound_theme_chooser_finalize (GObject *object)
 
         sound_theme_chooser = GVC_SOUND_THEME_CHOOSER (object);
 
-	if (sound_theme_chooser->priv != NULL) {
-		if (sound_theme_chooser->priv->sounds_dir_id > 0) {
-			gconf_client_notify_remove (sound_theme_chooser->priv->client,
-						    sound_theme_chooser->priv->sounds_dir_id);
-			sound_theme_chooser->priv->sounds_dir_id = 0;
-		}
-		if (sound_theme_chooser->priv->metacity_dir_id > 0) {
-			gconf_client_notify_remove (sound_theme_chooser->priv->client,
-						    sound_theme_chooser->priv->metacity_dir_id);
-			sound_theme_chooser->priv->metacity_dir_id = 0;
-		}
-		g_object_unref (sound_theme_chooser->priv->client);
-		sound_theme_chooser->priv->client = NULL;
-	}
+        if (sound_theme_chooser->priv != NULL) {
+                if (sound_theme_chooser->priv->sounds_dir_id > 0) {
+                        gconf_client_notify_remove (sound_theme_chooser->priv->client,
+                                                    sound_theme_chooser->priv->sounds_dir_id);
+                        sound_theme_chooser->priv->sounds_dir_id = 0;
+                }
+                if (sound_theme_chooser->priv->metacity_dir_id > 0) {
+                        gconf_client_notify_remove (sound_theme_chooser->priv->client,
+                                                    sound_theme_chooser->priv->metacity_dir_id);
+                        sound_theme_chooser->priv->metacity_dir_id = 0;
+                }
+                g_object_unref (sound_theme_chooser->priv->client);
+                sound_theme_chooser->priv->client = NULL;
+        }
 
         G_OBJECT_CLASS (gvc_sound_theme_chooser_parent_class)->finalize (object);
 }
