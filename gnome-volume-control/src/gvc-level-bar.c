@@ -546,24 +546,15 @@ curved_rectangle (cairo_t *cr,
 }
 
 static int
-gvc_level_bar_expose (GtkWidget      *widget,
-                      GdkEventExpose *event)
+gvc_level_bar_draw (GtkWidget *widget,
+                    cairo_t   *cr)
 {
         GvcLevelBar     *bar;
-        cairo_t         *cr;
         GtkAllocation   allocation;
 
         g_return_val_if_fail (GVC_IS_LEVEL_BAR (widget), FALSE);
-        g_return_val_if_fail (event != NULL, FALSE);
-
-        /* event queue compression */
-        if (event->count > 0) {
-                return FALSE;
-        }
 
         bar = GVC_LEVEL_BAR (widget);
-
-        cr = gdk_cairo_create (gtk_widget_get_window (widget));
 
         gtk_widget_get_allocation (widget, &allocation);
         cairo_translate (cr,
@@ -641,7 +632,6 @@ gvc_level_bar_expose (GtkWidget      *widget,
                         cairo_stroke (cr);
                 }
         }
-        cairo_destroy (cr);
 
         return FALSE;
 }
@@ -657,7 +647,7 @@ gvc_level_bar_class_init (GvcLevelBarClass *klass)
         object_class->set_property = gvc_level_bar_set_property;
         object_class->get_property = gvc_level_bar_get_property;
 
-        widget_class->expose_event = gvc_level_bar_expose;
+        widget_class->draw = gvc_level_bar_draw;
         widget_class->size_request = gvc_level_bar_size_request;
         widget_class->size_allocate = gvc_level_bar_size_allocate;
 
