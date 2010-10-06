@@ -91,7 +91,7 @@ get_scale (GnomeVolumeControlVolume *vol,
 	   gint volume)
 {
   GtkWidget *slider;
-  GtkObject *adj;
+  GtkAdjustment *adj;
   AtkObject *accessible;
   gchar *accessible_name;
 
@@ -101,7 +101,7 @@ get_scale (GnomeVolumeControlVolume *vol,
 		(vol->track->max_volume - vol->track->min_volume) / 10.0, 0.0);
   g_signal_connect (adj, "value_changed",
 		    G_CALLBACK (cb_volume_changed), vol);
-  slider = gtk_vscale_new (GTK_ADJUSTMENT (adj));
+  slider = gtk_vscale_new (adj);
   gtk_scale_set_draw_value (GTK_SCALE (slider), FALSE);
   gtk_range_set_inverted (GTK_RANGE (slider), TRUE);
 
