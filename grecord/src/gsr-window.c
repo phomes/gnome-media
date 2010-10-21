@@ -1918,7 +1918,7 @@ fill_record_input (GSRWindow *window, gchar *selected)
 		if (t->label == NULL)
 			continue;
 		if (t->flags & GST_MIXER_TRACK_INPUT) {
-			gtk_combo_box_append_text (GTK_COMBO_BOX (window->priv->input), t->label);
+			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (window->priv->input), t->label);
 			++i;
 		}
 		if (t->flags & GST_MIXER_TRACK_RECORD) {
@@ -2361,7 +2361,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_misc_set_alignment (GTK_MISC (priv->input_label), 0, 0.5);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->input_label, FALSE, FALSE, 0);
 
-	priv->input = gtk_combo_box_new_text ();
+	priv->input = gtk_combo_box_text_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (priv->input_label), priv->input);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->input, TRUE, TRUE, 0);
 

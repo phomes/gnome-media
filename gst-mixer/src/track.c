@@ -542,13 +542,13 @@ gnome_volume_control_track_add_option (GtkTable *table,
   /* optionmenu */
   active_opt = gst_mixer_get_option (mixer, options);
   if (active_opt != NULL) {
-    ctrl->options = gtk_combo_box_new_text ();
+    ctrl->options = gtk_combo_box_text_new ();
     opts = gst_mixer_options_get_values (options);
     for (opt = opts; opt != NULL; opt = opt->next, i++) {
       if (opt->data == NULL)
 	continue;
 
-      gtk_combo_box_append_text (GTK_COMBO_BOX (ctrl->options), opt->data);
+      gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (ctrl->options), opt->data);
 
       if (g_str_equal (active_opt, opt->data)) {
 	gtk_combo_box_set_active (GTK_COMBO_BOX (ctrl->options), i);

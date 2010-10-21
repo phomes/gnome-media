@@ -349,7 +349,7 @@ gnome_volume_control_window_new (GList *elements)
   }
   active_element_num = count;
 
-  combo_box = gtk_combo_box_new_text ();
+  combo_box = gtk_combo_box_text_new ();
   renderer = gtk_cell_renderer_text_new ();
   g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   gtk_cell_layout_clear (GTK_CELL_LAYOUT (combo_box));
@@ -359,7 +359,7 @@ gnome_volume_control_window_new (GList *elements)
     const gchar *name;
 
     name = g_object_get_data (item->data, "gnome-volume-control-name");
-    gtk_combo_box_append_text(GTK_COMBO_BOX (combo_box), name);
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT (combo_box), name);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), active_element_num);
   g_signal_connect (combo_box, "changed", G_CALLBACK (cb_change), win);
