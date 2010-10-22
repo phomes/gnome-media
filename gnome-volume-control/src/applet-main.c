@@ -76,8 +76,16 @@ main (int argc, char **argv)
         gvc_log_set_debug (debug);
 
         if (debug == FALSE) {
-                app = g_application_new (GVCA_DBUS_NAME, argc, argv);
-                if (g_application_is_remote (app)) {
+                GError *error = NULL;
+
+                app = g_application_new (GVCA_DBUS_NAME,
+                                         G_APPLICATION_FLAGS_NONE);
+                if (!g_application_register (app, NULL, &error)) {
+                       g_warning ("%s", error->message);
+                       g_error_free (error);
+                       return 1;
+                }
+                if (g_application_get_is_remote (app)) {
                         g_warning ("Applet is already running, exiting");
                         return 0;
                 }
