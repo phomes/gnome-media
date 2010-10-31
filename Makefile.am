@@ -10,10 +10,6 @@ if HAVE_SOUND_THEME
 SUBDIRS += sound-theme
 endif
 
-if HAVE_PULSEAUDIO
-SUBDIRS += gnome-volume-control
-endif
-
 if HAVE_GSTMIXER
 SUBDIRS += gst-mixer
 endif
@@ -29,7 +25,6 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 DIST_SUBDIRS = \
 	po 			\
-	gnome-volume-control	\
 	grecord			\
 	gst-mixer		\
 	gstreamer-properties	\

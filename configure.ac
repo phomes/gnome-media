@@ -86,65 +86,6 @@ AC_SUBST(SOUNDTHEME_CFLAGS)
 AC_SUBST(SOUNDTHEME_LIBS)
 
 dnl=======================================================================
-dnl Check for the new volume control modules
-dnl=======================================================================
-
-dnl The new gnome-volume-control needs a newer GTK+
-GTK_REQUIRED_VERSION=2.90.7
-
-AC_ARG_ENABLE([pulseaudio],
-              AS_HELP_STRING([--enable-pulseaudio],
-                             [Enable PulseAudio support @<:@default=auto@:>@]),
-              enable_pulseaudio=$enableval, enable_pulseaudio=auto)
-
-if test "x$enable_pulseaudio" != "xno"; then
-
-  PKG_CHECK_MODULES(PULSEAUDIO,
-          libpulse >= $PA_REQUIRED_VERSION libpulse-mainloop-glib >= $PA_REQUIRED_VERSION,
-          have_pulseaudio=yes,
-          have_pulseaudio=no)
-
-  if test "x$enable_pulseaudio" = "xyes" -a "x$have_pulseaudio" = "xno"; then
-    AC_MSG_ERROR([PulseAudio support explicitly requested but dependencies not found])
-  fi
-
-  if test "x$have_pulseaudio" = "xyes" ; then
-    PKG_CHECK_MODULES(VOLUME_CONTROL,
-            gobject-2.0 >= $GLIB_REQUIRED_VERSION
-            gtk+-3.0 >= $GTK_REQUIRED_VERSION
-            gio-2.0
-            gconf-2.0 >= $GCONF_REQUIRED_VERSION
-            libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
-            libxml-2.0
-    )
-    AC_SUBST(VOLUME_CONTROL_CFLAGS)
-    AC_SUBST(VOLUME_CONTROL_LIBS)
-    PKG_CHECK_MODULES(VOLUME_PANEL,
-            gobject-2.0 >= $GLIB_REQUIRED_VERSION
-            gtk+-3.0 >= $GTK_REQUIRED_VERSION
-            gio-2.0
-            gconf-2.0 >= $GCONF_REQUIRED_VERSION
-            libcanberra-gtk3 >= $CANBERRA_REQUIRED_VERSION
-            libgnome-control-center
-            libxml-2.0
-    )
-    AC_SUBST(VOLUME_PANEL_CFLAGS)
-    AC_SUBST(VOLUME_PANEL_LIBS)
-    AC_DEFINE(HAVE_PULSEAUDIO, [], [Define if we have pulseaudio])
-  fi
-else
-  have_pulseaudio=no
-fi
-AM_CONDITIONAL(HAVE_PULSEAUDIO, test x$have_pulseaudio = xyes)
-AC_SUBST(HAVE_PULSEAUDIO)
-AC_SUBST(PULSEAUDIO_CFLAGS)
-AC_SUBST(PULSEAUDIO_LIBS)
-
-dnl Requires for the gnome-volume-control panel
-PANELS_DIR="${libdir}/control-center-1/panels"
-AC_SUBST(PANELS_DIR)
-
-dnl=======================================================================
 dnl Check for GStreamer and GSR deps
 dnl=======================================================================
 
@@ -353,31 +294,6 @@ Makefile
 po/Makefile.in
 sound-theme/Makefile
 sound-theme/sounds/Makefile
-gnome-volume-control/Makefile
-gnome-volume-control/data/Makefile
-gnome-volume-control/data/gnome-volume-control.desktop.in
-gnome-volume-control/data/symbolic-icons/Makefile
-gnome-volume-control/data/symbolic-icons/scalable/Makefile
-gnome-volume-control/data/symbolic-icons/scalable/status/Makefile
-gnome-volume-control/data/icons/Makefile
-gnome-volume-control/data/icons/16x16/Makefile
-gnome-volume-control/data/icons/16x16/apps/Makefile
-gnome-volume-control/data/icons/16x16/status/Makefile
-gnome-volume-control/data/icons/22x22/Makefile
-gnome-volume-control/data/icons/22x22/apps/Makefile
-gnome-volume-control/data/icons/22x22/status/Makefile
-gnome-volume-control/data/icons/24x24/Makefile
-gnome-volume-control/data/icons/24x24/apps/Makefile
-gnome-volume-control/data/icons/24x24/status/Makefile
-gnome-volume-control/data/icons/32x32/Makefile
-gnome-volume-control/data/icons/32x32/apps/Makefile
-gnome-volume-control/data/icons/32x32/status/Makefile
-gnome-volume-control/data/icons/48x48/Makefile
-gnome-volume-control/data/icons/48x48/apps/Makefile
-gnome-volume-control/data/icons/scalable/Makefile
-gnome-volume-control/data/icons/scalable/apps/Makefile
-gnome-volume-control/data/icons/scalable/devices/Makefile
-gnome-volume-control/src/Makefile
 grecord/Makefile
 grecord/gnome-sound-recorder.schemas.in
 grecord/src/Makefile
@@ -417,7 +333,6 @@ echo "
         Compiler:               ${CC}
         CFLAGS:                 ${CFLAGS}
 
-        Volume Control          $have_pulseaudio
         GStreamer properties:   $have_gstprops
         Sound recorder:         $have_grecord$grecord_reason
 
