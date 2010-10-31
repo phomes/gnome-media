@@ -1317,7 +1317,7 @@ record_cb (GtkAction *action,
 		shutdown_pipeline (priv->record);
 		if (!make_record_source (window))
 			return;
-		current_source = gtk_combo_box_get_active_text (GTK_COMBO_BOX (window->priv->input));
+		current_source = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (window->priv->input));
 		fill_record_input (window, current_source);
 	}
 
@@ -1846,7 +1846,7 @@ record_input_changed_cb (GtkComboBox *input, GSRWindow *window)
 	GstMixerTrack *t = NULL, *new = NULL;
 	static GstMixerTrack *selected = NULL;
 
-	text = gtk_combo_box_get_active_text (input);
+	text = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (input));
 	GST_DEBUG ("record input changed to '%s'", GST_STR_NULL (text));
 
 	if (text == NULL)
