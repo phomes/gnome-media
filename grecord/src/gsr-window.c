@@ -44,7 +44,7 @@
 #include <gst/gst.h>
 #include <gst/interfaces/mixer.h>
 
-#include <profiles/gnome-media-profiles.h>
+#include <libgnome-media-profiles/gnome-media-profiles.h>
 
 #include "gsr-window.h"
 

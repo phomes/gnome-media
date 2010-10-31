@@ -145,43 +145,6 @@ PANELS_DIR="${libdir}/control-center-1/panels"
 AC_SUBST(PANELS_DIR)
 
 dnl=======================================================================
-dnl profiles
-dnl=======================================================================
-
-have_profiles=no
-
-AC_ARG_ENABLE([profiles],
-  AS_HELP_STRING([--enable-profiles], [enable gnome media profiles]),
-  ,enable_profiles=yes)
-
-if test "x$enable_profiles" = "xyes"; then
-  PKG_CHECK_MODULES(GMP, [
-    gtk+-3.0 >= $GTK_REQUIRED_VERSION
-    gstreamer-0.10
-    gconf-2.0
-    gio-2.0],
-    have_profiles=yes)
-fi
-AC_SUBST(GMP_CFLAGS)
-AC_SUBST(GMP_LIBS)
-AM_CONDITIONAL(HAVE_GMP, [test x$have_profiles = xyes])
-
-dnl Profiles glade ui: needed to edit .ui files with glade3
-have_gladeui=no
-
-# gladeui-3.0 is hypothetical
-PKG_CHECK_MODULES(GLADEUI, [gladeui-3.0], have_gladeui=yes, have_gladeui=no)
-AC_SUBST(GLADEUI_CFLAGS)
-AC_SUBST(GLADEUI_LIBS)
-AM_CONDITIONAL(HAVE_GLADEUI, [test x$have_gladeui = xyes])
-
-GLADEUI_CATALOG_DIR="`$PKG_CONFIG --variable=catalogdir gladeui-3.0`"
-AC_SUBST(GLADEUI_CATALOG_DIR)
-
-GLADEUI_MODULE_DIR="`$PKG_CONFIG --variable=moduledir gladeui-3.0`"
-AC_SUBST(GLADEUI_MODULE_DIR)
-
-dnl=======================================================================
 dnl Check for GStreamer and GSR deps
 dnl=======================================================================
 
@@ -199,6 +162,7 @@ have_gst=no
 PKG_CHECK_MODULES(GSR, [
   gstreamer-$GST_MAJORMINOR >= $GST_REQ
   gstreamer-plugins-base-$GST_MAJORMINOR >= $GST_REQ
+  libgnome-media-profiles-3.0
   gtk+-3.0 >= 2.6.0
   gio-2.0
   gconf-2.0],
@@ -215,13 +179,6 @@ grecord_reason=""
 AC_ARG_ENABLE([grecord],
   AS_HELP_STRING([--enable-grecord], [enable gnome sound recorder]),
   ,enable_grecord=yes)
-
-if test "x$have_profiles" = "xno" ; then
-  AC_MSG_WARN([Grecord will be disabled because of disabled profiles])
-  enable_grecord=no
-  have_grecord=no
-  grecord_reason=", gnome media profiles is disabled"
-fi
 
 if test "x$have_gst" = "xyes" && test "x$enable_grecord" = "xyes"; then
   have_grecord=yes
@@ -442,11 +399,6 @@ gst-mixer/icons/16x16/status/Makefile
 gst-mixer/src/Makefile
 gst-mixer/pixmaps/Makefile
 gst-mixer/doc/Makefile
-profiles/Makefile
-profiles/gnome-audio-profiles.schemas.in
-profiles/gnome-media-profiles-3.0.pc
-profiles/glade/Makefile
-profiles/help/Makefile
 grecord/gnome-sound-recorder.desktop.in
 gst-mixer/gnome-volume-control.desktop.in
 gstreamer-properties/gstreamer-properties.desktop.in
@@ -467,7 +419,6 @@ echo "
 
         Volume Control          $have_pulseaudio
         GStreamer properties:   $have_gstprops
-        GStreamer profiles:     $have_profiles (GladeUI: $have_gladeui)
         Sound recorder:         $have_grecord$grecord_reason
 
   *Deprecated*:

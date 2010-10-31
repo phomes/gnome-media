@@ -2,10 +2,6 @@ NULL =
 
 SUBDIRS = po
 
-if HAVE_GMP
-SUBDIRS += profiles
-endif
-
 if HAVE_GRECORD
 SUBDIRS += grecord
 endif
@@ -33,7 +29,6 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 DIST_SUBDIRS = \
 	po 			\
-	profiles		\
 	gnome-volume-control	\
 	grecord			\
 	gst-mixer		\
@@ -49,7 +44,6 @@ EXTRA_DIST = \
 	COPYING-DOCS		\
 	COPYING.grecord		\
 	COPYING.gst-mixer	\
-	COPYING.profiles	\
 	MAINTAINERS		\
         build-aux/git-version-gen \
 	build-aux/gnome-doc-utils.make	\
