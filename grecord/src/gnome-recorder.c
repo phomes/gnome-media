@@ -32,6 +32,7 @@
 #include <glib/gi18n.h>
 #include <gconf/gconf-client.h>
 #include <gst/gst.h>
+#include <stdlib.h>
 
 #include "gsr-window.h"
 
