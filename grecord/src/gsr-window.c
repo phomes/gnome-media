@@ -989,7 +989,7 @@ fill_in_information (GSRWindow *window,
 		file_size = (guint64) buf.st_size;
 		human = g_format_size (file_size);
 
-		text = g_strdup_printf (ngettext ("%s (%llu byte)", "%s (%llu bytes)",
+		text = g_strdup_printf (ngettext ("%s (%" G_GINT64_FORMAT " byte)", "%s (%" G_GINT64_FORMAT " bytes)",
 		                        file_size), human, file_size);
 		g_free (human);
 	} else {
