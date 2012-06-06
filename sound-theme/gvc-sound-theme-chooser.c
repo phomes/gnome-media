@@ -1032,7 +1032,7 @@ gvc_sound_theme_chooser_init (GvcSoundThemeChooser *chooser)
 
         chooser->priv = GVC_SOUND_THEME_CHOOSER_GET_PRIVATE (chooser);
 
-        chooser->priv->theme_box = gtk_hbox_new (FALSE, 0);
+        chooser->priv->theme_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_box_pack_start (GTK_BOX (chooser),
                             chooser->priv->theme_box, FALSE, FALSE, 0);
 

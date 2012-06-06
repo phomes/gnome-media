@@ -987,7 +987,7 @@ fill_in_information (GSRWindow *window,
 		gchar *human;
 
 		file_size = (guint64) buf.st_size;
-		human = g_format_size_for_display (file_size);
+		human = g_format_size (file_size);
 
 		text = g_strdup_printf (ngettext ("%s (%llu byte)", "%s (%llu bytes)",
 		                        file_size), human, file_size);
@@ -1086,17 +1086,17 @@ file_properties_cb (GtkAction *action,
 	g_signal_connect (G_OBJECT (dialog), "response",
 			  G_CALLBACK (dialog_closed_cb), fp);
 
-	vbox = gtk_vbox_new (FALSE, 18);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 18);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), vbox, TRUE, TRUE, 0);
 
-	inner_vbox = gtk_vbox_new (FALSE, 6);
+	inner_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE,0);
 
 	label = make_title_label (_("File Information"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 0);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 
 	label = gtk_label_new ("    ");
@@ -1126,13 +1126,13 @@ file_properties_cb (GtkAction *action,
 	fp->size = make_info_label ("");
 	pack_table_widget (table, fp->size, 1, 2);
 
-	inner_vbox = gtk_vbox_new (FALSE, 6);
+	inner_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (vbox), inner_vbox, FALSE, FALSE, 0);
 
 	label = make_title_label (_("Audio Information"));
 	gtk_box_pack_start (GTK_BOX (inner_vbox), label, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 0);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (inner_vbox), hbox, TRUE, TRUE, 0);
 
 	label = gtk_label_new ("    ");
@@ -2255,7 +2255,7 @@ gsr_window_init (GSRWindow *window)
 	if (gconf_client == NULL)
 		gconf_client = gconf_client_get_default ();
 
-	main_vbox = gtk_vbox_new (FALSE, 0);
+	main_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (window), main_vbox);
 	priv->main_vbox = main_vbox;
 	gtk_widget_show (main_vbox);
@@ -2331,12 +2331,13 @@ gsr_window_init (GSRWindow *window)
 			  G_CALLBACK (file_open_recent_cb), window);
 
 	/* window content: hscale, labels, etc */
-	content_vbox = gtk_vbox_new (FALSE, 7);
+	content_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 7);
 	gtk_container_set_border_width (GTK_CONTAINER (content_vbox), 6);
 	gtk_box_pack_start (GTK_BOX (main_vbox), content_vbox, TRUE, TRUE, 0);
 	gtk_widget_show (content_vbox);
 
-	priv->scale = gtk_hscale_new (GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 100, 1, 1, 0)));
+	priv->scale = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL,
+				     GTK_ADJUSTMENT (gtk_adjustment_new (0, 0, 100, 1, 1, 0)));
 	priv->seek_in_progress = FALSE;
 	g_signal_connect (priv->scale, "format-value",
 			  G_CALLBACK (calculate_format_value), window);
@@ -2352,7 +2353,7 @@ gsr_window_init (GSRWindow *window)
 	gtk_widget_show (window->priv->scale);
 
         /* create source and choose mixer input */
-	hbox = gtk_hbox_new (FALSE, 12);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
 	priv->input_label = gtk_label_new_with_mnemonic (_("Record from _input:"));
@@ -2370,7 +2371,7 @@ gsr_window_init (GSRWindow *window)
 			  G_CALLBACK (record_input_changed_cb), window);
 
 	/* choose profile */
-	hbox = gtk_hbox_new (FALSE, 12);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new_with_mnemonic (_("_Record as:"));
@@ -2395,7 +2396,7 @@ gsr_window_init (GSRWindow *window)
         g_signal_connect (priv->profile, "changed",
                           G_CALLBACK (profile_changed_cb), window);
 
-	hbox = gtk_hbox_new (FALSE, 0);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (content_vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new ("    "); /* FIXME: better padding? */
@@ -2468,7 +2469,7 @@ gsr_window_init (GSRWindow *window)
 
 	gtk_box_pack_end (GTK_BOX (priv->statusbar), frame, FALSE, TRUE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 0);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_container_add (GTK_CONTAINER (frame), hbox);
 	gtk_box_set_spacing (GTK_BOX (hbox), 6);
 
