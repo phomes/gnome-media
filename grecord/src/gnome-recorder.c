@@ -190,6 +190,7 @@ main (int argc,
 
 	g_option_context_free (ctx);
 	gtk_window_set_default_icon_name ("gnome-sound-recorder");
+	g_setenv ("PULSE_PROP_media.role", "production", TRUE);
 
 	/* use it like a singleton */
 	gconf_client = gconf_client_get_default ();
