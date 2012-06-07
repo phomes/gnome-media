@@ -805,16 +805,16 @@ run_mixer_cb (GtkAction *action,
 	       GSRWindow *window)
 {
 	char *mixer_path;
-	char *argv[4] = {NULL, "--page", "recording",  NULL};
+	char *argv[4] = {NULL, "sound", "input",  NULL};
 	GError *error = NULL;
 	gboolean ret;
 
 	/* Open the mixer */
-	mixer_path = g_find_program_in_path ("gnome-volume-control");
+	mixer_path = g_find_program_in_path ("gnome-control-center");
 	if (mixer_path == NULL) {
 		show_error_dialog (GTK_WINDOW (window), NULL,
 		                   _("%s is not installed in the path."),
-		                   "gnome-volume-control");
+		                   "gnome-control-center");
 		return;
 	}
 
