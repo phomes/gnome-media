@@ -14,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"media&component=general\n"
-"POT-Creation-Date: 2010-12-09 13:27+0000\n"
-"PO-Revision-Date: 2010-05-26 19:07+0300\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"media&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-11-24 12:58+0000\n"
+"PO-Revision-Date: 2012-12-19 18:09+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -25,22 +25,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Record sound clips"
-msgstr "Heliklippide salvestamine"
-
 msgid "Sound Recorder"
 msgstr "Helisalvestaja"
 
-#. Translator comment: default trackname is 'untitled', which
-#. * has as effect that the user cannot save to this file. The
-#. * 'save' action will open the save-as dialog instead to give
-#. * a proper filename. See gnome-record.c:94.
-msgid "Untitled"
-msgstr "Pealkirjata"
-
-#, c-format
-msgid "Untitled-%d"
-msgstr "Pealkirjata-%d"
+msgid "Record sound clips"
+msgstr "Heliklippide salvestamine"
 
 #, c-format
 msgid ""
@@ -152,11 +141,10 @@ msgstr "Küsimus"
 msgid "%s (Has not been saved)"
 msgstr "%s (salvestamata)"
 
-#, c-format
-msgid "%s (%llu byte)"
-msgid_plural "%s (%llu bytes)"
-msgstr[0] "%s (%llu bait)"
-msgstr[1] "%s (%llu baiti)"
+msgid "%s (%"
+msgid_plural "%s (%"
+msgstr[0] "%s (%"
+msgstr[1] "%s (%"
 
 msgid "Unknown size"
 msgstr "Tundmatu suurus"
@@ -229,6 +217,11 @@ msgstr "GConf audioväljund"
 
 msgid "Playback"
 msgstr "Esitamine"
+
+#. Translators: this is the window title, %s is the currently open file's name or Untitled
+#, c-format
+msgid "%s — Sound Recorder"
+msgstr "%s — Helisalvestaja"
 
 msgid "Recording…"
 msgstr "Salvestamine…"
@@ -347,16 +340,18 @@ msgstr "Pikkus:"
 msgid "Level:"
 msgstr "Tase:"
 
-#. Translators: this is the window title, %s is the currently open file's name or Untitled
-#, c-format
-msgid "%s — Sound Recorder"
-msgstr "%s — Helisalvestaja"
-
-msgid "Change sound volume and sound events"
-msgstr "Helivaljuse muutmine ja helide määramine sündmustele"
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+msgid "Untitled"
+msgstr "Pealkirjata"
 
 msgid "Volume Control"
 msgstr "Helitugevuse juhtija"
+
+msgid "Change sound volume and sound events"
+msgstr "Helivaljuse muutmine ja helide määramine sündmustele"
 
 msgid "Height of the Window"
 msgstr "Akna kõrgus"
@@ -530,29 +525,29 @@ msgid "Failed to load UI file; please check your installation."
 msgstr ""
 "Tõrge kasutajaliidese faili laadimisel; palun kontrolli tarkvara paigaldust."
 
-msgid "Configure defaults for GStreamer applications"
-msgstr "GStreamer rakenduste vaikeseadete määramine"
-
 msgid "Multimedia Systems Selector"
 msgstr "Multimeediasüsteemi valija"
 
-msgid "Audio"
-msgstr "Audio"
-
-msgid "Click Ok to finish."
-msgstr "Lõpetamiseks klõpsa 'Olgu'."
-
-msgid "D_evice:"
-msgstr "_Seade:"
-
-msgid "Default Input"
-msgstr "Vaikimisi sisend"
+msgid "Configure defaults for GStreamer applications"
+msgstr "GStreamer rakenduste vaikeseadete määramine"
 
 msgid "Default Output"
 msgstr "Vaikimisi väljund"
 
+msgid "_Plugin:"
+msgstr "_Plugin:"
+
 msgid "P_ipeline:"
 msgstr "_Toru:"
+
+msgid "_Test"
+msgstr "_Testi"
+
+msgid "_Device:"
+msgstr "_Seade:"
+
+msgid "Default Input"
+msgstr "Vaikimisi sisend"
 
 msgid "P_lugin:"
 msgstr "P_lugin:"
@@ -563,23 +558,23 @@ msgstr "T_oru:"
 msgid "Te_st"
 msgstr "Te_sti"
 
+msgid "D_evice:"
+msgstr "_Seade:"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Video"
+msgstr "Video"
+
 msgid "Testing Pipeline"
 msgstr "Toru testimine"
 
 msgid "Testing…"
 msgstr "Testimine…"
 
-msgid "Video"
-msgstr "Video"
-
-msgid "_Device:"
-msgstr "_Seade:"
-
-msgid "_Plugin:"
-msgstr "_Plugin:"
-
-msgid "_Test"
-msgstr "_Testi"
+msgid "Click Ok to finish."
+msgstr "Lõpetamiseks klõpsa 'Olgu'."
 
 msgid "Autodetect"
 msgstr "Automaattuvastus"
@@ -790,6 +785,14 @@ msgstr "Klaas"
 #. You might want to translate it into the equivalent words of your language.
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid "Untitled-%d"
+#~ msgstr "Pealkirjata-%d"
+
+#~ msgid "%s (%llu byte)"
+#~ msgid_plural "%s (%llu bytes)"
+#~ msgstr[0] "%s (%llu bait)"
+#~ msgstr[1] "%s (%llu baiti)"
 
 #~ msgid "Show desktop volume control"
 #~ msgstr "Töölaua helivaljuse juhtimise näitamine"
