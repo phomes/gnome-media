@@ -4,54 +4,35 @@
 # Fatih Demir <kabalak@gtranslator.org>, 2000.
 # Arman Aksoy (Armish) <armish@linux-sevenler.de>, 2003.
 # Baris Cicek <baris@teamforce.name.tr>, 2004, 2005, 2008, 2009.
-# Muhammet Kara <muhammet.k@gmail.com>, 2011.
+# Muhammet Kara <muhammetk@gmail.com>, 2011, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-media\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"media&component=general\n"
-"POT-Creation-Date: 2010-11-10 12:44+0000\n"
-"PO-Revision-Date: 2011-07-09 23:52+0300\n"
-"Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
+"media&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-12-28 12:06+0000\n"
+"PO-Revision-Date: 2013-04-20 01:07+0300\n"
+"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: tr\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../grecord/gnome-sound-recorder.desktop.in.in.h:1
-msgid "Record sound clips"
-msgstr "Ses parçalarını kaydet"
-
-#: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
-#: ../grecord/src/gsr-window.c:1236
+#: ../grecord/src/gsr-window.c:1226
 msgid "Sound Recorder"
 msgstr "Ses Kaydedicisi"
 
-#. Translator comment: default trackname is 'untitled', which
-#. * has as effect that the user cannot save to this file. The
-#. * 'save' action will open the save-as dialog instead to give
-#. * a proper filename. See gnome-record.c:94.
-#: ../grecord/src/gnome-recorder.c:142 ../grecord/src/gsr-window.c:1739
-#: ../grecord/src/gsr-window.c:2688
-msgid "Untitled"
-msgstr "Adsız"
+#: ../grecord/gnome-sound-recorder.desktop.in.in.h:2
+msgid "Record sound clips"
+msgstr "Ses parçalarını kaydet"
 
-#: ../grecord/src/gnome-recorder.c:144 ../grecord/src/gsr-window.c:1741
+#: ../grecord/src/gsr-window.c:194
 #, c-format
-msgid "Untitled-%d"
-msgstr "Adsız-%d"
-
-#: ../grecord/src/gsr-window.c:193
-#, c-format
-#| msgid ""
-#| "Could not create the GStreamer %s element.\n"
-#| "Please install the '%s' plug-in from the '%s' module.\n"
-#| "Verify that the installation is correct by running\n"
-#| "    gst-inspect-0.10 %s\n"
-#| "and then restart gnome-sound-recorder."
 msgid ""
 "Could not create the GStreamer %s element.\n"
 "Please install the '%s' plugin from the '%s' module.\n"
@@ -66,10 +47,7 @@ msgstr ""
 "komutunu çalıştırarak sınayın ve sonra gnome-sound-recorder'ı yeniden "
 "başlatın."
 
-#: ../grecord/src/gsr-window.c:209
-#| msgid ""
-#| "Please verify its settings.\n"
-#| "You may be missing the necessary plug-ins."
+#: ../grecord/src/gsr-window.c:210
 msgid ""
 "Please verify its settings.\n"
 "You may be missing the necessary plugins."
@@ -77,43 +55,43 @@ msgstr ""
 "Lütfen ayarlarını doğrulayın.\n"
 "Gerekli eklentiler eksik olabilir."
 
-#: ../grecord/src/gsr-window.c:294
+#: ../grecord/src/gsr-window.c:295
 #, c-format
 msgid "%ld minute"
 msgid_plural "%ld minutes"
 msgstr[0] "%ld dakika"
 
-#: ../grecord/src/gsr-window.c:295
+#: ../grecord/src/gsr-window.c:296
 #, c-format
 msgid "%ld hour"
 msgid_plural "%ld hours"
 msgstr[0] "%ld saat"
 
-#: ../grecord/src/gsr-window.c:296
+#: ../grecord/src/gsr-window.c:297
 #, c-format
 msgid "%ld second"
 msgid_plural "%ld seconds"
 msgstr[0] "%ld saniye"
 
 #. Translators: the format is "X hours, X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:303
+#: ../grecord/src/gsr-window.c:304
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ve %s"
 
 #. Translators: the format is "X hours and X minutes"
 #. Translators: the format is "X minutes and X seconds"
-#: ../grecord/src/gsr-window.c:309 ../grecord/src/gsr-window.c:317
-#: ../grecord/src/gsr-window.c:328
+#: ../grecord/src/gsr-window.c:310 ../grecord/src/gsr-window.c:318
+#: ../grecord/src/gsr-window.c:329
 #, c-format
 msgid "%s and %s"
 msgstr "%s ve %s"
 
-#: ../grecord/src/gsr-window.c:371
+#: ../grecord/src/gsr-window.c:372
 msgid "Open a File"
 msgstr "Dosya Aç"
 
-#: ../grecord/src/gsr-window.c:448
+#: ../grecord/src/gsr-window.c:449
 #, c-format
 msgid ""
 "Unable to load file:\n"
@@ -122,17 +100,17 @@ msgstr ""
 "Dosya yüklenemedi:\n"
 "%s"
 
-#: ../grecord/src/gsr-window.c:594 ../grecord/src/gsr-window.c:1538
-#: ../grecord/src/gsr-window.c:1798 ../grecord/src/gsr-window.c:2499
+#: ../grecord/src/gsr-window.c:595 ../grecord/src/gsr-window.c:1534
+#: ../grecord/src/gsr-window.c:1802 ../grecord/src/gsr-window.c:2504
 msgid "Ready"
 msgstr "Hazır"
 
 #. Add replace button
-#: ../grecord/src/gsr-window.c:647
+#: ../grecord/src/gsr-window.c:648
 msgid "_Replace"
 msgstr "_Yerine Koy"
 
-#: ../grecord/src/gsr-window.c:664
+#: ../grecord/src/gsr-window.c:665
 #, c-format
 msgid ""
 "A file named \"%s\" already exists. \n"
@@ -141,134 +119,132 @@ msgstr ""
 "\"%s\" adında bir dosya zate mevcut. \n"
 "Şu anda kaydetmekte olduğunuz dosyayı onun yerine koymak ister misiniz?"
 
-#: ../grecord/src/gsr-window.c:712
+#: ../grecord/src/gsr-window.c:713
 #, c-format
 msgid "Could not save the file \"%s\""
 msgstr "\"%s\" dosyası kaydedilemedi"
 
-#: ../grecord/src/gsr-window.c:732
+#: ../grecord/src/gsr-window.c:733
 msgid "Save file as"
 msgstr "Dosyayı farklı kaydet"
 
-#: ../grecord/src/gsr-window.c:826
+#: ../grecord/src/gsr-window.c:816
 #, c-format
 msgid "%s is not installed in the path."
 msgstr "%s yok içinde kurulu değil."
 
-#: ../grecord/src/gsr-window.c:835
+#: ../grecord/src/gsr-window.c:825
 #, c-format
 msgid "There was an error starting %s: %s"
 msgstr "%s başlatılırken bir hata oluştu: %s"
 
-#: ../grecord/src/gsr-window.c:863
+#: ../grecord/src/gsr-window.c:853
 msgid "Save recording before closing?"
 msgstr "Kayıt kapatmadan önce kaydedilsin mi?"
 
-#: ../grecord/src/gsr-window.c:864
+#: ../grecord/src/gsr-window.c:854
 msgid "Save recording?"
 msgstr "Ses kaydı kaydedilsin mi?"
 
-#: ../grecord/src/gsr-window.c:868
+#: ../grecord/src/gsr-window.c:858
 msgid "Close _without Saving"
 msgstr "Kaydetmeden çı_k"
 
-#: ../grecord/src/gsr-window.c:869
+#: ../grecord/src/gsr-window.c:859
 msgid "Continue _without Saving"
 msgstr "Kaydetmeden Çı_k"
 
-#: ../grecord/src/gsr-window.c:879
+#: ../grecord/src/gsr-window.c:869
 msgid "Question"
 msgstr "Soru"
 
-#: ../grecord/src/gsr-window.c:986
+#: ../grecord/src/gsr-window.c:976
 #, c-format
 msgid "%s (Has not been saved)"
 msgstr "%s (Henüz kaydedilmedi)"
 
-# msgstr[1] "%s (%llu bayt)"
-#: ../grecord/src/gsr-window.c:1002
-#, c-format
-msgid "%s (%llu byte)"
-msgid_plural "%s (%llu bytes)"
-msgstr[0] "%s (%llu bayt)"
+#: ../grecord/src/gsr-window.c:992
+msgid "%s (%"
+msgid_plural "%s (%"
+msgstr[0] "%s (%"
 
-#: ../grecord/src/gsr-window.c:1006
+#: ../grecord/src/gsr-window.c:996
 msgid "Unknown size"
 msgstr "Bilinmeyen boyut"
 
 #. Attempts to get length ran out.
-#: ../grecord/src/gsr-window.c:1015 ../grecord/src/gsr-window.c:1025
-#: ../grecord/src/gsr-window.c:1041 ../grecord/src/gsr-window.c:1050
-#: ../grecord/src/gsr-window.c:1406
-#: ../gstreamer-properties/gstreamer-properties.c:301
+#: ../grecord/src/gsr-window.c:1005 ../grecord/src/gsr-window.c:1015
+#: ../grecord/src/gsr-window.c:1031 ../grecord/src/gsr-window.c:1040
+#: ../grecord/src/gsr-window.c:1402
+#: ../gstreamer-properties/gstreamer-properties.c:302
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: ../grecord/src/gsr-window.c:1027
+#: ../grecord/src/gsr-window.c:1017
 #, c-format
 msgid "%.1f kHz"
 msgstr "%.1f kHz"
 
-#: ../grecord/src/gsr-window.c:1035
+#: ../grecord/src/gsr-window.c:1025
 #, c-format
 msgid "%.0f kb/s"
 msgstr "%.0f kb/s"
 
-#: ../grecord/src/gsr-window.c:1038
+#: ../grecord/src/gsr-window.c:1028
 #, c-format
 msgid "%.0f kb/s (Estimated)"
 msgstr "%.0f kb/s (Yaklaşık)"
 
-#: ../grecord/src/gsr-window.c:1053
+#: ../grecord/src/gsr-window.c:1043
 msgid "1 (mono)"
 msgstr "1 (mono)"
 
-#: ../grecord/src/gsr-window.c:1056
+#: ../grecord/src/gsr-window.c:1046
 msgid "2 (stereo)"
 msgstr "2 (stereo)"
 
-#: ../grecord/src/gsr-window.c:1083
+#: ../grecord/src/gsr-window.c:1073
 #, c-format
 msgid "%s Information"
 msgstr "%s Bilgi"
 
-#: ../grecord/src/gsr-window.c:1106 ../grecord/src/gsr-window.c:2411
+#: ../grecord/src/gsr-window.c:1096 ../grecord/src/gsr-window.c:2416
 msgid "File Information"
 msgstr "Dosya Bilgisi"
 
-#: ../grecord/src/gsr-window.c:1121
+#: ../grecord/src/gsr-window.c:1111
 msgid "Folder:"
 msgstr "Klasör:"
 
-#: ../grecord/src/gsr-window.c:1127 ../grecord/src/gsr-window.c:2418
+#: ../grecord/src/gsr-window.c:1117 ../grecord/src/gsr-window.c:2423
 msgid "Filename:"
 msgstr "Dosya adı:"
 
-#: ../grecord/src/gsr-window.c:1133
+#: ../grecord/src/gsr-window.c:1123
 msgid "File size:"
 msgstr "Dosya boyutu:"
 
-#: ../grecord/src/gsr-window.c:1142
+#: ../grecord/src/gsr-window.c:1132
 msgid "Audio Information"
 msgstr "Ses Bilgisi"
 
-#: ../grecord/src/gsr-window.c:1157
+#: ../grecord/src/gsr-window.c:1147
 msgid "File duration:"
 msgstr "Dosya süresi:"
 
-#: ../grecord/src/gsr-window.c:1163
+#: ../grecord/src/gsr-window.c:1153
 msgid "Number of channels:"
 msgstr "Kanal sayısı:"
 
-#: ../grecord/src/gsr-window.c:1169
+#: ../grecord/src/gsr-window.c:1159
 msgid "Sample rate:"
 msgstr "Örnekleme hızı:"
 
-#: ../grecord/src/gsr-window.c:1175
+#: ../grecord/src/gsr-window.c:1165
 msgid "Bit rate:"
 msgstr "Bit oranı:"
 
-#: ../grecord/src/gsr-window.c:1239
+#: ../grecord/src/gsr-window.c:1229
 msgid ""
 "A sound recorder for GNOME\n"
 " gnome-multimedia@gnome.org"
@@ -276,197 +252,196 @@ msgstr ""
 "GNOME için ses kaydedicisi\n"
 " gnome-multimedia@gnome.org"
 
-#: ../grecord/src/gsr-window.c:1510
-#| msgid "Playing..."
+#: ../grecord/src/gsr-window.c:1506
 msgid "Playing…"
 msgstr "Yürütülüyor..."
 
-#: ../grecord/src/gsr-window.c:1642
+#: ../grecord/src/gsr-window.c:1638
 msgid "GConf audio output"
 msgstr "GConf ses çıkışı"
 
-#: ../grecord/src/gsr-window.c:1651 ../gst-mixer/src/misc.c:62
+#: ../grecord/src/gsr-window.c:1647 ../gst-mixer/src/misc.c:62
 msgid "Playback"
 msgstr "Ses çıkışı"
 
-#: ../grecord/src/gsr-window.c:1730
-#| msgid "Recording"
+#. Translators: this is the window title, %s is the currently open file's name or Untitled
+#: ../grecord/src/gsr-window.c:1728 ../grecord/src/gsr-window.c:2577
+#, c-format
+msgid "%s — Sound Recorder"
+msgstr "%s — Ses Kaydedicisi"
+
+#: ../grecord/src/gsr-window.c:1748
 msgid "Recording…"
 msgstr "Kaydediliyor..."
 
-#: ../grecord/src/gsr-window.c:1820
+#: ../grecord/src/gsr-window.c:1824
 msgid "GConf audio recording"
 msgstr "GConf ses kayıdı"
 
-#: ../grecord/src/gsr-window.c:1829
-#| msgid ""
-#| "Your audio capture settings are invalid. Please correct them with the "
-#| "\"Sound Preferences\" under the System-Preferences menu."
+#: ../grecord/src/gsr-window.c:1833
 msgid ""
 "Your audio capture settings are invalid. Please correct them with the "
 "\"Sound Preferences\" under the System Preferences menu."
 msgstr ""
 "Ses yakalama ayarlarınız geçersiz. Lütfen bunları, Sistem Tercihler menüsü "
-"altındaki "
-"\"Ses Tercihleri\"nden düzeltin."
+"altındaki \"Ses Tercihleri\"nden düzeltin."
 
-#: ../grecord/src/gsr-window.c:2001
+#: ../grecord/src/gsr-window.c:2005
 msgid "file output"
 msgstr "dosya çıktısı"
 
-#: ../grecord/src/gsr-window.c:2019
+#: ../grecord/src/gsr-window.c:2023
 msgid "level"
 msgstr "seviye"
 
-#: ../grecord/src/gsr-window.c:2043
+#: ../grecord/src/gsr-window.c:2047
 #, c-format
 msgid "Could not parse the '%s' audio profile. "
 msgstr "'%s' ses profili ayrıştırılamadı."
 
-#: ../grecord/src/gsr-window.c:2060
+#: ../grecord/src/gsr-window.c:2064
 #, c-format
 msgid "Could not capture using the '%s' audio profile. "
 msgstr "'%s' ses profili kullanılarak kayıt yapılamadı."
 
-#: ../grecord/src/gsr-window.c:2069
+#: ../grecord/src/gsr-window.c:2073
 #, c-format
 msgid "Could not write to a file using the '%s' audio profile. "
 msgstr "'%s' ses profilini kullanarak dosyaya yazılamıyor."
 
 #. File menu.
-#: ../grecord/src/gsr-window.c:2123
+#: ../grecord/src/gsr-window.c:2127
 msgid "_File"
 msgstr "_Dosya"
 
-#: ../grecord/src/gsr-window.c:2125
+#: ../grecord/src/gsr-window.c:2129
 msgid "Create a new sample"
 msgstr "Yeni bir örnekleme yarat"
 
-#: ../grecord/src/gsr-window.c:2127
+#: ../grecord/src/gsr-window.c:2131
 msgid "Open a file"
 msgstr "Bir dosya aç"
 
-#: ../grecord/src/gsr-window.c:2129
+#: ../grecord/src/gsr-window.c:2133
 msgid "Save the current file"
 msgstr "Güncel dosyayı kaydet"
 
-#: ../grecord/src/gsr-window.c:2131
+#: ../grecord/src/gsr-window.c:2135
 msgid "Save the current file with a different name"
 msgstr "Güncel dosyayı başka bir adla kaydet"
 
-#: ../grecord/src/gsr-window.c:2132
+#: ../grecord/src/gsr-window.c:2136
 msgid "Open Volu_me Control"
 msgstr "Ses _Kontrolünü Aç"
 
-#: ../grecord/src/gsr-window.c:2133
+#: ../grecord/src/gsr-window.c:2137
 msgid "Open the audio mixer"
 msgstr "Ses karıştırıcısını çalıştır"
 
-#: ../grecord/src/gsr-window.c:2135
+#: ../grecord/src/gsr-window.c:2139
 msgid "Show information about the current file"
 msgstr "Güncel dosya bilgisini göster"
 
-#: ../grecord/src/gsr-window.c:2137
+#: ../grecord/src/gsr-window.c:2141
 msgid "Close the current file"
 msgstr "Mevcut dosyayı kapat"
 
-#: ../grecord/src/gsr-window.c:2139
+#: ../grecord/src/gsr-window.c:2143
 msgid "Quit the program"
 msgstr "Programdan çık"
 
 #. Control menu
-#: ../grecord/src/gsr-window.c:2142
+#: ../grecord/src/gsr-window.c:2146
 msgid "_Control"
 msgstr "_Kontrol"
 
-#: ../grecord/src/gsr-window.c:2144
+#: ../grecord/src/gsr-window.c:2148
 msgid "Record sound"
 msgstr "Sesi kaydet"
 
-#: ../grecord/src/gsr-window.c:2146
+#: ../grecord/src/gsr-window.c:2150
 msgid "Play sound"
 msgstr "Ses çal"
 
-#: ../grecord/src/gsr-window.c:2148
+#: ../grecord/src/gsr-window.c:2152
 msgid "Stop sound"
 msgstr "Sesi durdur"
 
 #. Help menu
-#: ../grecord/src/gsr-window.c:2151
+#: ../grecord/src/gsr-window.c:2155
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../grecord/src/gsr-window.c:2152
+#: ../grecord/src/gsr-window.c:2156
 msgid "Contents"
 msgstr "İçindekiler"
 
-#: ../grecord/src/gsr-window.c:2153
+#: ../grecord/src/gsr-window.c:2157
 msgid "Open the manual"
 msgstr "Kılavuzu aç"
 
-#: ../grecord/src/gsr-window.c:2155
+#: ../grecord/src/gsr-window.c:2159
 msgid "About this application"
 msgstr "Bu uygulama hakkında"
 
-#: ../grecord/src/gsr-window.c:2277
-#| msgid "Could not load ui.xml. The program may be not properly installed"
+#: ../grecord/src/gsr-window.c:2281
 msgid "Could not load UI file. The program may not be properly installed."
 msgstr "UI dosyası yüklenemedi. Program düzgün şekilde kurulmamış olabilir."
 
-#: ../grecord/src/gsr-window.c:2300
+#: ../grecord/src/gsr-window.c:2304
 msgid "Open"
 msgstr "Aç"
 
-#: ../grecord/src/gsr-window.c:2302
+#: ../grecord/src/gsr-window.c:2306
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../grecord/src/gsr-window.c:2304
+#: ../grecord/src/gsr-window.c:2308
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: ../grecord/src/gsr-window.c:2360
+#: ../grecord/src/gsr-window.c:2365
 msgid "Record from _input:"
 msgstr "Kayıt edilecek _giriş:"
 
-#: ../grecord/src/gsr-window.c:2378
+#: ../grecord/src/gsr-window.c:2383
 msgid "_Record as:"
 msgstr "Kayıt _biçimi:"
 
-#: ../grecord/src/gsr-window.c:2425
+#: ../grecord/src/gsr-window.c:2430
 msgid "<none>"
 msgstr "<hiçbiri>"
 
-#: ../grecord/src/gsr-window.c:2439
+#: ../grecord/src/gsr-window.c:2444
 msgid "Length:"
 msgstr "Uzunluk:"
 
-#: ../grecord/src/gsr-window.c:2477
+#: ../grecord/src/gsr-window.c:2482
 msgid "Level:"
 msgstr "Seviye:"
 
-#. Translators: this is the window title, %s is the currently open file's name or Untitled
-#: ../grecord/src/gsr-window.c:2572
-#, c-format
-#| msgid "%s - Sound Recorder"
-msgid "%s — Sound Recorder"
-msgstr "%s — Ses Kaydedicisi"
+#. Translator comment: default trackname is 'untitled', which
+#. * has as effect that the user cannot save to this file. The
+#. * 'save' action will open the save-as dialog instead to give
+#. * a proper filename. See gnome-record.c:94.
+#: ../grecord/src/gsr-window.c:2693
+msgid "Untitled"
+msgstr "Adsız"
 
 #: ../gst-mixer/gnome-volume-control.desktop.in.in.h:1
-msgid "Change sound volume and sound events"
-msgstr "Ses seviyesini ve olay seslerini değiştir"
-
-#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
 #: ../gst-mixer/src/window.c:269 ../gst-mixer/src/window.c:270
 msgid "Volume Control"
 msgstr "Ses Kontrolü"
+
+#: ../gst-mixer/gnome-volume-control.desktop.in.in.h:2
+msgid "Change sound volume and sound events"
+msgstr "Ses seviyesini ve olay seslerini değiştir"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:1
 msgid "Height of the Window"
 msgstr "Pencerenin Yüksekliği"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:2
-#| msgid "Height of the Window to be displayed"
 msgid "Height of the window to be displayed."
 msgstr "Görüntülenecek pencerenin yüksekliği."
 
@@ -475,7 +450,6 @@ msgid "Width of the Window"
 msgstr "Pencerenin Genişliği"
 
 #: ../gst-mixer/gnome-volume-control.schemas.in.h:4
-#| msgid "Width of the Window to be displayed"
 msgid "Width of the window to be displayed."
 msgstr "Görüntülenecek pencerenin genişliği."
 
@@ -525,7 +499,6 @@ msgstr "%s:"
 #. mute button
 #: ../gst-mixer/src/track.c:339
 #, c-format
-#| msgid "Mute/unmute %s"
 msgid "Mute/Unmute %s"
 msgstr "Sessiz/Sesli %s"
 
@@ -657,65 +630,63 @@ msgstr "_Aygıt: "
 msgid "Control volume on a different device"
 msgstr "Ses seviyesini baska bir aygıt üzerinden kontrol et"
 
-#: ../gstreamer-properties/gstreamer-properties.c:204
+#: ../gstreamer-properties/gstreamer-properties.c:205
 msgid "None"
 msgstr "Hiçbiri"
 
 #. Element does not support setting devices
-#: ../gstreamer-properties/gstreamer-properties.c:246
+#: ../gstreamer-properties/gstreamer-properties.c:247
 msgid "Unsupported"
 msgstr "Desteklenmeyen"
 
-#: ../gstreamer-properties/gstreamer-properties.c:268
+#: ../gstreamer-properties/gstreamer-properties.c:269
 #: ../sound-theme/gvc-sound-theme-chooser.c:818
 #: ../sound-theme/gvc-sound-theme-editor.c:891
 #: ../sound-theme/gvc-sound-theme-editor.c:995
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ../gstreamer-properties/gstreamer-properties.c:625
+#: ../gstreamer-properties/gstreamer-properties.c:626
 msgid "Failure instantiating main window"
 msgstr "Ana pencere örneklendirilirken hata oluştu"
 
-#: ../gstreamer-properties/gstreamer-properties.c:678
+#: ../gstreamer-properties/gstreamer-properties.c:679
 msgid "Failed to load UI file; please check your installation."
 msgstr ""
 "UI dosyası yüklerken başarısız olundu, lütfen kurulumunuzu kontrol edin."
 
 #: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:1
-msgid "Configure defaults for GStreamer applications"
-msgstr "GStreamer uygulamaları için öntanımlı ayarları yapılandır"
-
-#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
-#: ../gstreamer-properties/gstreamer-properties.ui.h:6
+#: ../gstreamer-properties/gstreamer-properties.ui.h:1
 msgid "Multimedia Systems Selector"
 msgstr "Çokluortam Sistemleri Seçicisi"
 
-#: ../gstreamer-properties/gstreamer-properties.ui.h:1
-msgid "Audio"
-msgstr "Ses"
+#: ../gstreamer-properties/gstreamer-properties.desktop.in.in.h:2
+msgid "Configure defaults for GStreamer applications"
+msgstr "GStreamer uygulamaları için öntanımlı ayarları yapılandır"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:2
-msgid "Click Ok to finish."
-msgstr "Bitirmek için Tamam'a tıklayın."
-
-#: ../gstreamer-properties/gstreamer-properties.ui.h:3
-msgid "D_evice:"
-msgstr "_Aygıt:"
-
-#: ../gstreamer-properties/gstreamer-properties.ui.h:4
-#| msgid "<b>Default Input</b>"
-msgid "Default Input"
-msgstr "Öntanımlı Girdi"
-
-#: ../gstreamer-properties/gstreamer-properties.ui.h:5
-#| msgid "<b>Default Output</b>"
 msgid "Default Output"
 msgstr "Öntanımlı Çıktı"
 
-#: ../gstreamer-properties/gstreamer-properties.ui.h:7
+#: ../gstreamer-properties/gstreamer-properties.ui.h:3
+msgid "_Plugin:"
+msgstr "_Eklenti:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:4
 msgid "P_ipeline:"
 msgstr "Y_önlendirme:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:5
+msgid "_Test"
+msgstr "_Dene"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:6
+msgid "_Device:"
+msgstr "_Aygıt:"
+
+#: ../gstreamer-properties/gstreamer-properties.ui.h:7
+msgid "Default Input"
+msgstr "Öntanımlı Girdi"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:8
 msgid "P_lugin:"
@@ -730,28 +701,28 @@ msgid "Te_st"
 msgstr "_Dene"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:11
-msgid "Testing Pipeline"
-msgstr "Yönlendirme (Pipeline) Testi"
+msgid "D_evice:"
+msgstr "_Aygıt:"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:12
-msgid "Testing…"
-msgstr "Sınanıyor..."
+msgid "Audio"
+msgstr "Ses"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:13
 msgid "Video"
 msgstr "Video"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:14
-msgid "_Device:"
-msgstr "_Aygıt:"
+msgid "Testing Pipeline"
+msgstr "Yönlendirme (Pipeline) Testi"
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:15
-msgid "_Plugin:"
-msgstr "_Eklenti:"
+msgid "Testing…"
+msgstr "Sınanıyor..."
 
 #: ../gstreamer-properties/gstreamer-properties.ui.h:16
-msgid "_Test"
-msgstr "_Dene"
+msgid "Click Ok to finish."
+msgstr "Bitirmek için Tamam'a tıklayın."
 
 #: ../gstreamer-properties/pipeline-constants.c:52
 #: ../gstreamer-properties/pipeline-constants.c:90
@@ -760,30 +731,25 @@ msgstr "Kendiliğinden tanı"
 
 #: ../gstreamer-properties/pipeline-constants.c:54
 #: ../gstreamer-properties/pipeline-constants.c:121
-#| msgid "ALSA - Advanced Linux Sound Architecture"
 msgid "ALSA — Advanced Linux Sound Architecture"
 msgstr "ALSA — Gelişmiş Linux Ses Mimarisi"
 
 #: ../gstreamer-properties/pipeline-constants.c:69
-#| msgid "Artsd - ART Sound Daemon"
 msgid "Artsd — ART Sound Daemon"
 msgstr "Artsd — ART Ses Servisi"
 
 #: ../gstreamer-properties/pipeline-constants.c:71
 #: ../gstreamer-properties/pipeline-constants.c:123
-#| msgid "ESD - Enlightenment Sound Daemon"
 msgid "ESD — Enlightenment Sound Daemon"
 msgstr "ESD — Enlightenment Ses Servisi"
 
 #: ../gstreamer-properties/pipeline-constants.c:77
 #: ../gstreamer-properties/pipeline-constants.c:130
-#| msgid "OSS - Open Sound System"
 msgid "OSS — Open Sound System"
 msgstr "OSS — Açık Ses Sistemi"
 
 #: ../gstreamer-properties/pipeline-constants.c:79
 #: ../gstreamer-properties/pipeline-constants.c:132
-#| msgid "OSS - Open Sound System"
 msgid "OSS - Open Sound System Version 4"
 msgstr "OSS - Açık Ses Sistemi Sürüm 4"
 
@@ -794,7 +760,6 @@ msgstr "PulseAudio Ses Sunucusu"
 
 #: ../gstreamer-properties/pipeline-constants.c:83
 #: ../gstreamer-properties/pipeline-constants.c:134
-#| msgid "Audio"
 msgid "Sun Audio"
 msgstr "Sun Audio"
 
@@ -814,7 +779,6 @@ msgid "OpenGL"
 msgstr "OpenGL"
 
 #: ../gstreamer-properties/pipeline-constants.c:110
-#| msgid "SDL - Simple DirectMedia Layer"
 msgid "SDL — Simple DirectMedia Layer"
 msgstr "SDL — Basit DirectMedia Katmanı"
 
@@ -1018,7 +982,6 @@ msgid "Disabled"
 msgstr "Kapalı"
 
 #: ../sound-theme/gvc-sound-theme-editor.c:899
-#| msgid "Custom"
 msgid "Custom…"
 msgstr "Özel..."
 
@@ -1053,6 +1016,14 @@ msgstr "Cam"
 #: ../sound-theme/sounds/gnome-sounds-default.xml.in.in.h:12
 msgid "Sonar"
 msgstr "Sonar"
+
+#~ msgid "Untitled-%d"
+#~ msgstr "Adsız-%d"
+
+# msgstr[1] "%s (%llu bayt)"
+#~ msgid "%s (%llu byte)"
+#~ msgid_plural "%s (%llu bytes)"
+#~ msgstr[0] "%s (%llu bayt)"
 
 #~ msgid "Show desktop volume control"
 #~ msgstr "Masaüstü ses kontrolünü göster"
