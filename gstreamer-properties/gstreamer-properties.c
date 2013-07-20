@@ -99,7 +99,7 @@ dialog_response (GtkDialog * widget, gint response_id, GtkBuilder * dialog)
 
   if (response_id == GTK_RESPONSE_HELP)
     gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (dialog)),
-                  "ghelp:gstreamer-properties",
+                  "help:gstreamer-properties",
                    gtk_get_current_event_time (),
                   &error);
   else

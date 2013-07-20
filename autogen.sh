@@ -7,7 +7,7 @@ test -z "$srcdir" && srcdir=.
 PKG_NAME="gnome-media"
 REQUIRED_AUTOMAKE_VERSION=1.9
 REQUIRED_INTLTOOL_VERSION=0.35
-USE_COMMON_DOC_BUILD=yes
+REQUIRED_YELP_TOOLS_VERSION=3.1.1
 
 (test -f $srcdir/configure.ac \
   && test -d $srcdir/grecord) || {

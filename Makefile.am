@@ -41,7 +41,6 @@ EXTRA_DIST = \
 	COPYING.gst-mixer	\
 	MAINTAINERS		\
         build-aux/git-version-gen \
-	build-aux/gnome-doc-utils.make	\
 	m4/as-compiler-flag.m4	\
 	m4/as-version.m4	\
 	ChangeLog.pre-2-26	\
@@ -49,7 +48,6 @@ EXTRA_DIST = \
 	$(NULL)
 
 DISTCLEANFILES = \
-	build-aux/gnome-doc-utils.make	\
 	po/.intltool-merge-cache	\
 	$(NULL)
 

@@ -1,4 +1,4 @@
-SUBDIRS = src doc icons
+SUBDIRS = help icons src
 
 EXTRA_DIST = \
 	README AUTHORS INSTALL ChangeLog.pre-2-26 \

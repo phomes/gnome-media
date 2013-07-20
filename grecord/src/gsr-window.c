@@ -1200,7 +1200,7 @@ help_contents_cb (GtkAction *action,
 	GError *error = NULL;
 
 	gtk_show_uri (gtk_window_get_screen (GTK_WINDOW (window)),
-		      "ghelp:gnome-sound-recorder",
+		      "help:gnome-sound-recorder",
 		      gtk_get_current_event_time (), &error);
 
 	if (error != NULL)

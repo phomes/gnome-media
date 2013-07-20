@@ -1,5 +1,5 @@
 Desktopdir = $(datadir)/applications
-SUBDIRS = doc icons pixmaps src
+SUBDIRS = help icons pixmaps src
 
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@

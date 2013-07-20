@@ -153,7 +153,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
 AM_GLIB_GNU_GETTEXT
 
-GNOME_DOC_INIT
+YELP_HELP_INIT
 
 AM_PROG_LIBTOOL
 AM_PROG_CC_C_O
@@ -297,7 +297,7 @@ sound-theme/sounds/Makefile
 grecord/Makefile
 grecord/gnome-sound-recorder.schemas.in
 grecord/src/Makefile
-grecord/doc/Makefile
+grecord/help/Makefile
 grecord/icons/Makefile
 grecord/icons/16x16/Makefile
 grecord/icons/22x22/Makefile
@@ -314,7 +314,7 @@ gst-mixer/icons/16x16/devices/Makefile
 gst-mixer/icons/16x16/status/Makefile
 gst-mixer/src/Makefile
 gst-mixer/pixmaps/Makefile
-gst-mixer/doc/Makefile
+gst-mixer/help/Makefile
 grecord/gnome-sound-recorder.desktop.in
 gst-mixer/gnome-volume-control.desktop.in
 gstreamer-properties/gstreamer-properties.desktop.in
